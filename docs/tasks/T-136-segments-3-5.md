@@ -1,5 +1,5 @@
 # T-136 — Đoạn 3–5 và cái kết
-- Lane: core (Claude) | Trạng thái: doing (phần 1 xong) | Agent: Claude (integrator)
+- Lane: core (Claude) | Trạng thái: review (chờ chơi thử) | Agent: Claude (integrator)
 - Phụ thuộc: T-117 (đoạn 1–2), T-131, T-132 (done); **T-134 (A), T-135 (B)** cho truy đuổi và gương. Thiết kế: `docs/design/RULES.md` mục 5, 5b, 6.
 
 ## Mục tiêu
@@ -32,3 +32,13 @@ Demo chơi được từ đầu đến cuối, khoảng 15–20 phút:
 - **Test:** `tests/core/test_story_segments_3_5.gd` (13 test); test đoạn 1–2 dùng `stop_after = &"seg2"`.
 
 **Còn lại (phần 2, khi T-134/T-135 xong):** thay phán định góc camera bằng `GazeDetector`; bóng người + `sting_hit` + truy đuổi 1 (đoạn 3); `mirror.stare()` + truy đuổi 2 (đoạn 5); đèn tắt dần sau lưng khi truy đuổi, vùng an toàn, bị bắt thì cộng lệch và tải lại; tiếng nước chảy thật (T-133 hoặc lane E).
+
+**Phần 2 (2026-10-03, Claude), sau khi merge T-134 và T-135:**
+- **Gaze:** `_watch()` gắn `GazeDetector` từ camera người chơi: tiếng dép 50°/0,3 s, gương 25°/1 s (chỉ tính khi đứng trong nhà vệ sinh).
+- **Truy đuổi 1:** quay lại nhìn → `sting_hit`, bóng người hiện đúng chỗ tiếng dép, đứng 0,6 s rồi đuổi. Đèn Desk/408/407/406 tắt khi thực thể đi qua. An toàn: hành lang còn đèn (x < 26) hoặc phòng 407 đã chốt.
+- **Truy đuổi 2:** nhìn gương → hình phản chiếu trễ 0,5 s, 1,4 s sau `stare()` + `sting_hit`, bóng người bước ra trước bồn rửa. Còn đứng trong nhà vệ sinh sau 5 s là bị bắt; chạy ra thì thực thể đuổi từ cửa nhà vệ sinh, đèn 401–406 tắt sau lưng. An toàn: phòng 407 đã chốt.
+- **Bị bắt:** màn tối, "(Một bàn tay lạnh đặt lên vai bạn.)", tải lại checkpoint đầu đoạn và cộng 1 "lệch" sau khi tải (`carry_deviation`, không bao giờ tự đẩy lên mức 5). Thoát thì đèn sáng lại.
+- **Trả lời tên Lâm:** tiếng `whisper_co`, mùng giường trên của Đạt phồng mạnh, màn tối, tải lại đoạn 4.
+- **Giảm hù dọa:** `sting_low` thay `sting_hit`, gương không `stare()`, bóng người hiện dần (1,5–2 s), tiếng thì thầm nhỏ hơn; thực thể chậm 0,85 (T-134).
+- **Test:** 16 test đoạn 3–5 (bị bắt, thoát ở hành lang sáng, thoát vào phòng đã chốt, mang "lệch" qua lần tải lại). Ảnh kiểm tra trong game: bóng người ở hành lang, bóng bước ra từ gương.
+- **Chưa thử bằng tay:** cảm giác tốc độ truy đuổi, âm lượng tiếng dép dồn và tiếng thở, độ khó khi chốt cửa lúc bị đuổi.

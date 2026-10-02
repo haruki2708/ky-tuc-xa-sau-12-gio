@@ -1,5 +1,5 @@
 # T-134 — Thực thể truy đuổi và phát hiện ánh nhìn
-- Lane: A (Gameplay) | Trạng thái: todo | Agent:
+- Lane: A (Gameplay) | Trạng thái: done | Agent:
 - Nhánh: `lane-a/T-134-pursuer-gaze`
 - Phụ thuộc: T-131 (âm thanh, done), T-132 (done). **Đọc `docs/design/RULES.md` mục 5b** (D-024) và `docs/SETTINGS.md` (`[accessibility] reduce_scares`). Làm song song với T-135 (lane B, hình bóng người và gương).
 - Lane A được thêm thư mục `game/scenes/entity/` và `game/scripts/entity/` (xem `AGENTS.md` §3).
@@ -82,3 +82,8 @@ Thực thể **không tự quyết khi nào xuất hiện**; luồng chơi (inte
 - T-136/integrator instance Pursuer, nối `caught`/`escaped`, chọn spawn/vùng an toàn theo tình huống và gắn GazeDetector cho nguồn tiếng dép/gương; gán body_scene T-135 khi có. Không cần thêm input action, signal EventBus, settings key hay sửa audio. Phím P chỉ là shortcut của scene thử.
 - Không còn blocker code/test/push hoặc code dở của T-134. Việc ghép vào tầng 4 và kiểm duyệt cảm giác thực tế thuộc T-135/T-136. Không tự quyết thời điểm xuất hiện, hậu quả, luật hoặc cốt truyện.
 - Mạng sandbox bị chặn và sau đó Windows báo lỗi tạo tiến trình 1326; đã chạy lệnh cần thiết ngoài sandbox qua cơ chế cấp quyền. Không cài công cụ/plugin, không làm việc trong bản tích hợp.
+
+### Review (integrator, 2026-10-03)
+- Đạt. Merge `c988ac2`. Code gọn, pause đúng, `reduce_scares` đúng D-024, 18 test mới.
+- Tích hợp ở T-136: `StoryDirector` tạo Pursuer (gắn silhouette T-135), hai vùng an toàn (hành lang còn đèn x < 26; phòng 407 khi đã chốt), GazeDetector cho tiếng dép (50°/0,3 s) và gương (25°/1 s).
+- Giới hạn đã biết: thực thể không tìm đường qua cửa, nên truy đuổi 2 xuất phát từ cửa nhà vệ sinh phía hành lang. Âm lượng `slipper_rush` và tiếng thở cần chủ dự án nghe thử.

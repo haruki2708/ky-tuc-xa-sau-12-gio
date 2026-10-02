@@ -124,3 +124,6 @@ DOC_ROOM_RECORD_3,Giường B trên: Phạm Thành Đạt,"Bunk B, top: Phạm T
 DOC_ROOM_RECORD_4,Giường B dưới: Trần Trung,"Bunk B, bottom: Trần Trung"
 DOC_ROOM_RECORD_NOTE,Phòng 4 người.,Four-person room.
 SUB_NAME_CALLED_AGAIN,Loa (chậm hơn): Trần… Trung.,Speaker (slower): Trần… Trung.
+SUB_RUN_TO_LIGHT,(Chạy! Về phía còn đèn…),(Run! Toward the light…)
+SUB_RUN_TO_ROOM,(Chạy về phòng 407. Chốt cửa lại.),(Run back to room 407. Latch the door.)
+SUB_CAUGHT,(Một bàn tay lạnh đặt lên vai bạn.),(A cold hand rests on your shoulder.)

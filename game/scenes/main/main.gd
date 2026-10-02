@@ -30,6 +30,8 @@ func _ready() -> void:
 	_place_story_papers()
 	_place_speaker()
 	$StoryDirector.restart_requested.connect(_on_restart_requested)
+	# The washroom mirror (T-135) reflects and lags the player.
+	$Floor4/Washroom/Mirror.follow = $Player
 	EventBus.interacted.connect(_on_interacted)
 	# Kit ceiling fans expose their blades as a separate "fan_rotor" node (T-102).
 	for rotor in $Floor4.find_children("fan_rotor", "", true, false):

@@ -34,6 +34,7 @@ func after_each() -> void:
 			EventBus.subtitle_requested.disconnect(hook)
 	_hooks.clear()
 	DIRECTOR_SCRIPT.resume_checkpoint = &""
+	DIRECTOR_SCRIPT.carry_deviation = 0
 	for node in main.find_children("*", "AudioStreamPlayer3D", true, false):
 		if node.has_method("stop_emitting"):
 			node.stop_emitting()
@@ -94,14 +95,34 @@ func test_seg3_walking_on_to_the_room_is_correct() -> void:
 	assert_eq(GameState.get_flag(&"signed_log"), true, "log signed;")
 
 
-func test_seg3_turning_around_follows_the_fake_rule() -> void:
+func test_seg3_turning_around_and_standing_gets_you_caught() -> void:
 	GameState.set_flag(&"read_duty_log", true)
 	# In the corridor, facing east: toward the slippers behind.
 	_place(Vector3(36, 0.03, 1.2), -PI / 2.0)
 	await _run(&"seg3")
 	assert_eq(RuleSystem.outcome_of(&"footsteps_behind"), RuleSystem.OUTCOME_FOLLOWED_FAKE, "turned around;")
 	assert_eq(GameState.deviation, 2, "fake rule 3 penalty;")
-	assert_eq(GameState.get_flag(&"lights_off_behind"), true, "lights behind go out")
+	assert_eq(GameState.get_flag(&"lights_off_behind"), true, "lights behind go out;")
+	assert_false(main.get_node("Floor4/Corridor/CorridorLight_Desk").visible, "desk light died behind the chase;")
+	assert_eq(restarts, [&"seg3_start"] as Array[StringName], "caught: back to the segment start;")
+	assert_eq(DIRECTOR_SCRIPT.carry_deviation, 1, "being caught costs one deviation")
+
+
+func test_seg3_chase_ends_in_the_lit_corridor() -> void:
+	GameState.set_flag(&"read_duty_log", true)
+	_place(Vector3(36, 0.03, 1.2), -PI / 2.0)
+	var flee := func(consequence: StringName, _rule_id: StringName) -> void:
+		if consequence == &"light_off_behind":
+			(func() -> void:
+				await wait_frames(2)
+				_place(Vector3(20, 0.03, 1.2), PI / 2.0)).call()
+	EventBus.consequence_triggered.connect(flee)
+	await _run(&"seg3")
+	EventBus.consequence_triggered.disconnect(flee)
+	assert_true(restarts.is_empty(), "not caught;")
+	assert_eq(GameState.get_flag(&"chase_escaped"), true, "escaped;")
+	assert_true(main.get_node("Floor4/Corridor/CorridorLight_Desk").visible, "lights come back;")
+	assert_true(director.finished, "the night goes on")
 
 
 func test_seg3_standing_still_breaks_the_rule() -> void:
@@ -150,11 +171,32 @@ func test_seg4_answering_lam_loses_and_resumes_at_seg4() -> void:
 
 # --- Segment 5 -----------------------------------------------------------------
 
-func test_seg5_looking_in_the_mirror_follows_the_fake_rule() -> void:
+func test_seg5_freezing_at_the_mirror_gets_you_caught() -> void:
+	director.mirror_flee_seconds = 0.5
 	_place(Vector3(2.0, 0.03, -1.85), PI / 2.0)
 	await _run(&"seg5")
 	assert_eq(RuleSystem.outcome_of(&"tap_running"), RuleSystem.OUTCOME_FOLLOWED_FAKE, "looked in the mirror;")
 	assert_eq(GameState.deviation, 2, "fake rule 6 penalty;")
+	assert_eq(restarts, [&"seg5_start"] as Array[StringName], "caught at the mirror;")
+
+
+func test_seg5_running_to_the_latched_room_escapes() -> void:
+	_place(Vector3(2.0, 0.03, -1.85), PI / 2.0)
+	var mirror := main.get_node("Floor4/Washroom/Mirror")
+	var flee := func(text_key: String, _duration: float) -> void:
+		if text_key == "SUB_RUN_TO_ROOM":
+			(func() -> void:
+				assert_true(mirror.is_staring, "the reflection stares")
+				_place(Vector3(9.0, 0.03, 1.2), -PI / 2.0)
+				await tree.create_timer(0.6).timeout
+				GameState.set_flag(&"door_locked", true)
+				_place(Vector3(32.0, 0.03, -2.5), 0.0)).call()
+	_hook(flee)
+	await _run(&"seg5")
+	assert_true(restarts.is_empty(), "not caught;")
+	assert_eq(GameState.get_flag(&"chase_escaped"), true, "escaped into room 407;")
+	assert_false(mirror.is_staring, "mirror released;")
+	assert_true(main.get_node("Floor4/Corridor/CorridorLight_401").visible, "lights come back")
 
 
 func test_seg5_closing_the_tap_and_leaving_is_correct() -> void:
@@ -237,3 +279,17 @@ func test_resume_from_checkpoint_after_reload() -> void:
 	assert_true(player.global_position.distance_to(main.get_node("Floor4/Anchors/seg4_start").global_position) < 0.05,
 		"player placed at the checkpoint")
 	assert_eq(director.resume_checkpoint, &"", "resume consumed")
+
+
+func test_caught_penalty_survives_the_reload() -> void:
+	GameState.set_segment(&"seg3")
+	GameState.add_deviation(3, &"test")
+	assert_eq(Checkpoint.save(&"seg3_start"), OK, "save;")
+	GameState.reset()
+	director.resume_checkpoint = &"seg3_start"
+	DIRECTOR_SCRIPT.carry_deviation = 2
+	director.stop_after = &"seg3"
+	director.start()
+	await wait_frames(3)
+	assert_eq(GameState.deviation, 4, "carried, but never to the losing level;")
+	assert_eq(DIRECTOR_SCRIPT.carry_deviation, 0, "carry consumed")

@@ -1,5 +1,5 @@
 # T-135 — Bóng người và gương phản chiếu chậm
-- Lane: B (Môi trường và 3D) | Trạng thái: todo | Agent:
+- Lane: B (Môi trường và 3D) | Trạng thái: done | Agent:
 - Nhánh: `lane-b/T-135-silhouette-mirror`
 - Phụ thuộc: T-112, T-118 (done). **Đọc `docs/design/RULES.md` mục 5b** (D-024). Làm song song với T-134 (lane A, thực thể truy đuổi).
 
@@ -94,3 +94,8 @@ Cách thử: mở `res://scenes/levels/entity/mirror_test.tscn`, F6; WASD/chuộ
 
 ### Trạng thái chặn
 Không bị chặn ở triển khai, test đầy đủ, check hoặc push. Các bước tích hợp/chơi thử và ghi chú QA đã chuyển rõ cho lane phụ trách.
+
+### Review (integrator, 2026-10-03)
+- Đạt. Merge `aeee9ab`. Bóng người 408 tam giác rất hợp không khí; gương phản chiếu thật, FPS > 500.
+- Đã làm các yêu cầu ngoài phạm vi: `main.gd` gán `Mirror.follow = $Player`; `export_presets.cfg` loại `mirror_test*`, `reflection_import.gd` (và `pursuer_test*` của T-134).
+- Ghi chú smoke chạy riêng còn tài nguyên lúc thoát: chuyển lane C khi có task QA tiếp.
