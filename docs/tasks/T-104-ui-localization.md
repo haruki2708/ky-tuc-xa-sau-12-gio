@@ -36,9 +36,36 @@ Chữ tiếng Việt hiển thị đúng dấu. HUD phản ứng với tín hi�
    - Mọi key trong CSV có đủ `vi` và `en`, không rỗng.
 
 ## Checklist hoàn thành
-- [ ] `pwsh tools/test.ps1` PASS
-- [ ] Ảnh chụp `hud_test.tscn` thấy rõ dấu tiếng Việt (ví dụ "Tương tác", "Kỷ luật", "Điểm danh")
-- [ ] Không chạm file ngoài phạm vi; có `CREDITS.md` cho font
-- [ ] Mục Handoff đã điền
+- [x] `pwsh tools/test.ps1` PASS
+- [x] Ảnh chụp `hud_test.tscn` thấy rõ dấu tiếng Việt (ví dụ "Tương tác", "Kỷ luật", "Điểm danh")
+- [x] Không chạm file ngoài phạm vi; có `CREDITS.md` cho font
+- [x] Mục Handoff đã điền
 
 ## Handoff (agent điền)
+
+### Đã làm (2026-10-02, Lane D)
+- Commit triển khai: `2c69ac2` — `T-104: Add localized HUD, Vietnamese font and UI tests`; đã push lên `origin/lane-d/T-104-ui-localization`.
+- Thêm Be Vietnam Pro Regular, giấy phép OFL 1.1 và nguồn trong `game/assets/fonts/CREDITS.md`. Font và ảnh chụp được lưu bằng Git LFS; kèm metadata `.import`/`.uid` do Godot tạo.
+- Theme nền tối, chữ sáng; HUD có tâm ngắm sáng khi focus, gợi ý `[E]` qua key dịch, phụ đề nền mờ ở cạnh dưới và hàng đợi FIFO.
+- `locale_settings.gd`: `set_locale(code)` trả về `Error`, `get_locale()` đọc lựa chọn đã lưu; chỉ nhận `vi`/`en`, mặc định `vi`. Lưu `[ui] locale` trong `user://settings.cfg`, giữ các mục cấu hình khác. HUD đọc và áp dụng lựa chọn khi vào cây scene; gợi ý và phụ đề đang hiện cập nhật theo thay đổi locale.
+- Scene F6 có nút bật/tắt focus, phát hai phụ đề và đổi VI/EN. Nội dung mẫu chỉ kiểm tra chữ, không bổ sung luật chơi/cốt truyện.
+- Thêm 11 test UI (tổng 16 test toàn dự án): glyph tiếng Việt, theme/font, signal focus, phụ đề hết hạn và FIFO, đổi ngôn ngữ khi đang hiện/chờ, yêu cầu phụ đề không hợp lệ, mặc định/lưu/khôi phục locale, bảo toàn cấu hình, CSV và các nút scene thử. Test sao lưu rồi khôi phục nguyên trạng file settings của người dùng.
+- Quyết định kỹ thuật: bỏ yêu cầu phụ đề có key rỗng hoặc thời lượng không hữu hạn/không dương; dùng key `UI_INTERACTION_PROMPT` cho mẫu `[E] %s`; không cần autoload hay signal mới.
+
+### Kiểm chứng và cách kiểm tra
+- Đã chạy `pwsh tools/test.ps1` bằng Godot `4.7.2.stable.official.ed1daf0bf`: **`RESULT: 16 passed, 0 failed`**, exit code 0, lần cuối không có lỗi script/runtime.
+- `git diff --cached --check` sạch trước commit triển khai; thay đổi chỉ trong các thư mục được phép và phần checklist/Handoff của card này. CSV chỉ thêm key.
+- Đã chạy Movie Maker với Vulkan Forward+ và xem trực tiếp ảnh 1920×1080: `game/ui/hud/previews/hud_test_vi.png`. Thấy rõ dấu trong “Tương tác”, “Kỷ luật”, “Điểm danh”, các glyph mẫu, gợi ý và phụ đề.
+- Mở `game/ui/hud/hud_test.tscn`, nhấn F6; bấm bật/tắt gợi ý, thử hàng đợi, rồi đổi VI/EN khi phụ đề đang hiện. Hai câu lần lượt tồn tại 2,5 giây; đổi ngôn ngữ không làm mất hàng đợi. Đóng/mở lại scene để kiểm tra ngôn ngữ đã lưu.
+- Có thể tái tạo ảnh: tạo `D:\GAME_WORK\lane-d\build\ui-capture`, rồi chạy `& 'D:\Tools\Godot\Godot_v4.7.2-stable_win64_console.exe' --path game res://ui/hud/hud_test.tscn --write-movie D:/GAME_WORK/lane-d/build/ui-capture/frame.png --fixed-fps 30 --quit-after 2 --resolution 1280x720 --windowed -- --capture-ui`. Chế độ này ép VI/focus/phụ đề mẫu để chụp, không ghi đè lựa chọn ngôn ngữ đã lưu.
+- Các nút đã được gọi bằng signal trong test tự động; chưa có phiên bấm chuột chơi thử thủ công của chủ dự án.
+
+### Còn dở / checklist chưa đạt
+- Không còn mục checklist chưa đạt trong phạm vi T-104. HUD sẵn sàng để integrator gắn vào scene chơi chính.
+
+### Yêu cầu thay đổi ngoài phạm vi
+- Integrator instance `res://ui/hud/hud.tscn` vào scene chơi chính trong `game/scenes/main/` khi tích hợp. Lane D không sửa scene này. Việc đọc locale đã nằm trong `_ready()` của HUD, không cần thêm autoload hoặc sửa `project.godot` cho task hiện tại.
+- Không có câu hỏi mới về luật chơi hoặc cốt truyện.
+
+### Trở ngại
+- Không còn bị chặn. Sandbox Windows gặp lỗi đăng nhập `1326`; các lệnh cần thiết đã chạy thành công qua cơ chế cấp quyền ngoài sandbox, trong `D:\GAME_WORK\lane-d`.
