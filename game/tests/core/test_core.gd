@@ -57,6 +57,10 @@ func test_main_scene_footsteps_and_ambience_wired() -> void:
 	var steps: AudioStreamPlayer3D = main.get_node("Player/Footsteps")
 	assert_not_null(main.get_node_or_null("PauseMenu"), "pause menu in main scene")
 	assert_not_null(main.get_node_or_null("Floor4"), "floor 4 in main scene")
+	var ps1 := main.get_node_or_null("PS1Filter") as CanvasLayer
+	assert_not_null(ps1, "PS1 filter in main scene")
+	if ps1 != null:
+		assert_true(ps1.layer < (main.get_node("HUD") as CanvasLayer).layer, "filter below HUD")
 	var player: Node3D = main.get_node("Player")
 	var spawn: Node3D = main.get_node("Floor4/Anchors/seg1_start")
 	assert_true(player.global_position.is_equal_approx(spawn.global_position), "player starts at seg1_start;")

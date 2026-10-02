@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scripts/audio/footstep_player.gd" id="4_steps"]
 [ext_resource type="PackedScene" path="res://ui/hud/hud.tscn" id="5_hud"]
 [ext_resource type="PackedScene" path="res://ui/pause/pause_menu.tscn" id="6_pause"]
+[ext_resource type="PackedScene" path="res://rendering/ps1_filter.tscn" id="7_ps1"]
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_main")
@@ -18,6 +19,8 @@ position = Vector3(32, 0.03, 1.15)
 [node name="Footsteps" type="AudioStreamPlayer3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
 script = ExtResource("4_steps")
+
+[node name="PS1Filter" parent="." instance=ExtResource("7_ps1")]
 
 [node name="HUD" parent="." instance=ExtResource("5_hud")]
 
