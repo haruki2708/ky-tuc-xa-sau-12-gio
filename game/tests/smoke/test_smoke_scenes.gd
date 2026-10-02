@@ -16,8 +16,17 @@ func test_all_scenes_load_and_instantiate() -> void:
 		tree.root.add_child(instance)
 		await wait_frames(2)
 		assert_true(instance.is_inside_tree(), "enter tree " + path)
+		# Stop audio producers before releasing scenes; allow the mixer to drain.
+		instance.process_mode = Node.PROCESS_MODE_DISABLED
+		var nodes: Array[Node] = [instance]
+		nodes.append_array(instance.find_children("*", "", true, false))
+		for node: Node in nodes:
+			if node.has_method("stop_emitting"):
+				node.stop_emitting()
+			if node is AudioStreamPlayer or node is AudioStreamPlayer2D or node is AudioStreamPlayer3D:
+				node.stop()
 		instance.queue_free()
-		await wait_frames()
+		await tree.create_timer(0.3, true, false, true).timeout
 
 
 func _find_scenes(directory: String) -> PackedStringArray:
