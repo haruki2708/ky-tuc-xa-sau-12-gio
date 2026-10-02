@@ -36,7 +36,7 @@
 | T-125 Player theo menu tạm dừng và cài đặt | A | todo (giao ngay; merge sau T-116) |
 | T-126 Bus riêng cho bước chân | E | todo (giao ngay) |
 | T-110 Kiến trúc RuleSystem và GameState | core | **done**, đã merge (xem `docs/design/RULE_SYSTEM.md`) |
-| T-113 Chốt bộ luật demo và sơ đồ tầng | Chủ dự án + Claude | todo |
+| T-113 Chốt bộ luật demo và sơ đồ tầng | Chủ dự án + Claude | **bản nháp** `docs/design/RULES.md`, `LAYOUT.md`; chờ chủ dự án duyệt |
 
 ## Đang vướng
 - Khi mở project bằng editor, Godot tự đổi texture kit (`game/assets/textures/kit/*.png.import`) sang nén VRAM và bật mipmap vì `detect_3d/compress_to=1`. Như vậy sẽ phá nét PS1. Lane B sửa ở T-118 (đặt `detect_3d/compress_to=0`). Trong lúc chờ, **đừng commit** các file `.import` bị editor sửa.
