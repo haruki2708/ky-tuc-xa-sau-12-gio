@@ -47,6 +47,14 @@
 | T-134 Thực thể truy đuổi, phát hiện ánh nhìn | A | done (review 2026-10-03) |
 | T-135 Bóng người, gương phản chiếu chậm | B | done (review 2026-10-03) |
 | T-136 Đoạn 3–5 và cái kết | core | review: chờ chủ dự án chơi thử cả demo |
+| **Đợt 3 (2026-10-03): hoàn thiện P3** | | |
+| T-140 Đánh bóng chốt cửa, vùng chọn giấy, lộ trình thực thể | A | todo (giao ngay) |
+| T-138 Đạo cụ thật thay khối hộp | B | todo (giao ngay) |
+| T-115 Bot tự chơi cả demo | C | todo (giao ngay) |
+| T-139 Màn hình chính, cảnh báo, credits | D | todo (giao ngay) |
+| T-133 Nhạc nền và drone | E | todo (giao ngay) |
+| T-137 Giọng loa TTS offline | E | todo (sau T-133) |
+| T-141 Ghép đợt 3: title làm main scene, MusicDirector, giọng loa, đạo cụ, truy đuổi 2 từ gương | core | chờ các lane |
 | T-110 Kiến trúc RuleSystem và GameState | core | **done**, đã merge (xem `docs/design/RULE_SYSTEM.md`) |
 | T-113 Chốt bộ luật demo và sơ đồ tầng | Chủ dự án + Claude | **done** (D-020); dữ liệu `game/data/rules/demo.tres` |
 

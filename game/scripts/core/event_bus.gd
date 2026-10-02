@@ -72,3 +72,15 @@ signal document_opened(document_id: StringName)
 
 ## The close-up view of a document was closed.
 signal document_closed(document_id: StringName)
+
+# --- Scares and chases (D-024, T-136; music T-133 listens) ---
+
+## One of the demo's scripted scares: &"corridor_glimpse" (seg3),
+## &"mirror_stare" (seg5), &"lost" (a real loss: answering Lâm or deviation 5).
+signal scare_triggered(scare_id: StringName)
+
+## A chase began: &"corridor" (seg3) or &"mirror" (seg5).
+signal chase_started(chase_id: StringName)
+
+## A chase ended: caught = true when the pursuer got the player.
+signal chase_ended(chase_id: StringName, caught: bool)

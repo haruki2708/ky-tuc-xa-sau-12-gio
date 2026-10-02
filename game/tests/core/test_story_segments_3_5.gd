@@ -319,3 +319,20 @@ func test_caught_penalty_survives_the_reload() -> void:
 	await wait_frames(3)
 	assert_eq(GameState.deviation, 4, "carried, but never to the losing level;")
 	assert_eq(DIRECTOR_SCRIPT.carry_deviation, 0, "carry consumed")
+
+
+func test_chases_and_scares_are_announced() -> void:
+	var events: Array[String] = []
+	var on_scare := func(id: StringName) -> void: events.append("scare:" + id)
+	var on_start := func(id: StringName) -> void: events.append("start:" + id)
+	var on_end := func(id: StringName, caught: bool) -> void: events.append("end:%s:%s" % [id, caught])
+	EventBus.scare_triggered.connect(on_scare)
+	EventBus.chase_started.connect(on_start)
+	EventBus.chase_ended.connect(on_end)
+	GameState.set_flag(&"read_duty_log", true)
+	_place(Vector3(36, 0.03, 1.2), -PI / 2.0)
+	await _run(&"seg3")
+	EventBus.scare_triggered.disconnect(on_scare)
+	EventBus.chase_started.disconnect(on_start)
+	EventBus.chase_ended.disconnect(on_end)
+	assert_eq(events, ["scare:corridor_glimpse", "start:corridor", "end:corridor:true"] as Array[String], "music hooks")

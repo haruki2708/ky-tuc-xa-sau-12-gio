@@ -269,3 +269,15 @@ func test_room_407_ceiling_fan_spins() -> void:
 		(node as AudioStreamPlayer3D).stop()
 	main.queue_free()
 	await tree.create_timer(0.5).timeout
+
+
+func test_checkpoint_peek_reads_the_id_without_restoring() -> void:
+	var path := "user://test_peek_checkpoint.json"
+	assert_eq(Checkpoint.peek_id(path), &"", "no save;")
+	GameState.reset()
+	GameState.add_deviation(2, &"test")
+	assert_eq(Checkpoint.save(&"seg3_start", path), OK, "save;")
+	GameState.reset()
+	assert_eq(Checkpoint.peek_id(path), &"seg3_start", "peeked;")
+	assert_eq(GameState.deviation, 0, "state untouched")
+	Checkpoint.clear(path)

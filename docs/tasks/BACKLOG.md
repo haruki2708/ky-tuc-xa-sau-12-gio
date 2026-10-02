@@ -9,7 +9,7 @@ Mỗi việc sẽ được tách thành task card chi tiết khi đến lượt.
 | T-111 | Màn xem giấy cận cảnh và sổ tay theo nguồn (`T-111-document-view-notebook.md`) | **D** | T-128, T-110 |
 | T-112 | Dựng greybox tầng 4 theo `LAYOUT.md` (`T-112-floor4-greybox.md`); làm trước T-118 | B | T-102, T-121, T-113 |
 | T-114 | Sửa tiếng ù đèn tuýp; vùng âm môi trường, vùng reverb; đèn tắt thì im tiếng (`T-114-audio-zones.md`). Bước chân đã được integrator nối ở `main.tscn` | E | T-101, T-105 |
-| T-115 | Kịch bản chơi tự động "từ đầu đến luật số 1", chạy được trong CI hoặc trên máy | C | T-103, T-117 |
+| T-115 | **Giao đợt 3.** Bot tự chơi cả demo (`T-115-full-playthrough.md`) | C | T-136 |
 | T-116 | Menu tạm dừng và cài đặt, script `Settings` (`T-116-pause-settings.md`, hợp đồng `docs/SETTINGS.md`) | D | T-104, T-105; merge trước T-125 |
 | T-117 | **Luật đầu tiên chạy trọn vòng** (đoạn 1–2, `T-117-first-rule-loop.md`) | core | T-129, T-111, T-130 |
 | T-118 | (`T-118-ps1-filter.md`) Filter PS1: render độ phân giải thấp, dithering, rung đỉnh nhẹ; trừ phần UI và giấy tờ. Kèm sửa import texture kit: `detect_3d/compress_to=0` để editor không tự nén và bật mipmap | B | T-102 |
@@ -25,7 +25,7 @@ Mỗi việc sẽ được tách thành task card chi tiết khi đến lượt.
 | T-130 | Âm thanh đoạn 1–2: gõ cửa, loa, điện thoại, công tắc, chốt (`T-130-segment12-sounds.md`) | E | T-126 |
 | T-131 | Âm hù dọa và truy đuổi (`T-131-scare-sounds.md`, D-024) | E | T-130 |
 | T-132 | Tùy chọn "Giảm hù dọa" (`T-132-reduce-scares-setting.md`) | D | T-116 |
-| T-133 | **Nhạc nền / drone** cho các khoảnh khắc căng thẳng (đèn tắt, sau khi làm sai, truy đuổi), bus `Music`, có lớp im lặng (D-025) | E | T-131 |
+| T-133 | **Giao đợt 3.** Nhạc nền và drone (`T-133-music-drone.md`) | E | T-136 |
 | T-134 | Thực thể truy đuổi và phát hiện ánh nhìn (`T-134-pursuer-gaze.md`) | A | T-131, T-132 |
 | T-135 | Bóng người và gương phản chiếu chậm (`T-135-silhouette-mirror.md`) | B | T-112, T-118 |
 | T-136 | **Đoạn 3–5 và cái kết** (`T-136-segments-3-5.md`) | core | T-117, T-134, T-135 |

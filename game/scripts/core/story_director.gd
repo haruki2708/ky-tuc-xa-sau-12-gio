@@ -319,9 +319,10 @@ func _footsteps_behind() -> void:
 ## comes. Safe: the corridor that is still lit, or room 407 latched.
 func _chase_1(spawn: Vector3) -> void:
 	spawn.y = 0.03
+	EventBus.scare_triggered.emit(&"corridor_glimpse")
 	_play_scare_sting()
 	_say("SUB_RUN_TO_LIGHT", 4.0)
-	await _run_chase(spawn, CHASE_1_LIGHTS, true, 0.6)
+	await _run_chase(&"corridor", spawn, CHASE_1_LIGHTS, true, 0.6)
 
 
 # --- Segment 4: 01:00, roll call ----------------------------------------------
@@ -446,6 +447,7 @@ func _chase_2(mirror: Node3D) -> void:
 	var figure: Node3D = null
 	if not reduce_scares and mirror != null:
 		mirror.stare()
+	EventBus.scare_triggered.emit(&"mirror_stare")
 	_play_scare_sting()
 	if mirror != null and _floor != null:
 		figure = SILHOUETTE.instantiate()
@@ -469,18 +471,22 @@ func _chase_2(mirror: Node3D) -> void:
 	if _failing:
 		return
 	if _player_in_washroom():
+		EventBus.chase_started.emit(&"mirror")
+		EventBus.chase_ended.emit(&"mirror", true)
 		await _lose(&"SUB_CAUGHT", 1)
 		return
-	await _run_chase(WASHROOM_DOOR, CHASE_2_LIGHTS, false, 0.0)
+	await _run_chase(&"mirror", WASHROOM_DOOR, CHASE_2_LIGHTS, false, 0.0)
 
 
 # --- Chases (T-134 pursuer) ------------------------------------------------------
 
 ## Runs one chase until the pursuer catches the player or gives up. The lights
 ## listed die as the pursuer passes them and come back afterwards.
-func _run_chase(spawn: Vector3, lights: Array[String], lit_corridor_safe: bool, hold_seconds: float) -> void:
+func _run_chase(chase_id: StringName, spawn: Vector3, lights: Array[String], lit_corridor_safe: bool,
+		hold_seconds: float) -> void:
 	if _pursuer == null or _player == null or not _pursuer.is_inside_tree():
 		return
+	EventBus.chase_started.emit(chase_id)
 	_lit_zone.monitoring = lit_corridor_safe
 	_room_zone.monitoring = GameState.get_flag(&"door_locked", false) == true
 	_chase_result = &""
@@ -513,6 +519,7 @@ func _run_chase(spawn: Vector3, lights: Array[String], lit_corridor_safe: bool, 
 	_pursuer.speed = base_speed
 	_lit_zone.set_deferred("monitoring", false)
 	_room_zone.set_deferred("monitoring", false)
+	EventBus.chase_ended.emit(chase_id, _chase_result == &"caught")
 	if _chase_result == &"caught":
 		await _lose(&"SUB_CAUGHT", 1)
 		return
@@ -636,6 +643,7 @@ func _ending() -> void:
 func _on_player_failed(rule_id: StringName) -> void:
 	if _failing:
 		return
+	EventBus.scare_triggered.emit(&"lost")
 	var whisper := _play_at(&"whisper_co", _player, &"Voice")
 	if whisper != null and reduce_scares:
 		whisper.volume_db = -8.0

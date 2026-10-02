@@ -11,6 +11,10 @@ extends Node
 
 const AUDIO_DRAIN_SECONDS: float = 0.25
 const QUIT_AFTER_ARG := "--quit-after-frames="
+const GAME_SCENE := "res://scenes/main/main.tscn"
+## Lane D's title screen (wave 3). Until it exists, the game starts straight in.
+const TITLE_SCENE := "res://ui/title/title_screen.tscn"
+const STORY_DIRECTOR := preload("res://scripts/core/story_director.gd")
 
 var _quitting: bool = false
 
@@ -30,6 +34,28 @@ func _notification(what: int) -> void:
 
 func is_quitting() -> bool:
 	return _quitting
+
+
+## True when there is a checkpoint to continue from (title screen "Continue").
+func has_saved_game() -> bool:
+	return not Checkpoint.peek_id().is_empty()
+
+
+## Starts the night from the beginning, or from the last checkpoint.
+func start_game(continue_saved: bool = false) -> void:
+	STORY_DIRECTOR.resume_checkpoint = Checkpoint.peek_id() if continue_saved else &""
+	STORY_DIRECTOR.carry_deviation = 0
+	get_tree().paused = false
+	get_tree().change_scene_to_file(GAME_SCENE)
+
+
+## Back to the title screen (pause menu, end card), or quit if there is none.
+func return_to_title() -> void:
+	if not ResourceLoader.exists(TITLE_SCENE):
+		quit()
+		return
+	get_tree().paused = false
+	get_tree().change_scene_to_file(TITLE_SCENE)
 
 
 func quit(exit_code: int = 0) -> void:

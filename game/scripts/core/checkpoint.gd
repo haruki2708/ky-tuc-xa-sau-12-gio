@@ -39,6 +39,16 @@ static func restore(path: String = DEFAULT_PATH) -> StringName:
 	return checkpoint_id
 
 
+## The id of a usable save without restoring it, or &"" (title screen).
+static func peek_id(path: String = DEFAULT_PATH) -> StringName:
+	if not FileAccess.file_exists(path):
+		return &""
+	var parsed: Variant = JSON.parse_string(FileAccess.get_file_as_string(path))
+	if not parsed is Dictionary or int(parsed.get("version", 0)) != VERSION:
+		return &""
+	return StringName(str(parsed.get("id", "")))
+
+
 static func exists(path: String = DEFAULT_PATH) -> bool:
 	return FileAccess.file_exists(path)
 

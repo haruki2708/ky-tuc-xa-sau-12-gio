@@ -13,6 +13,7 @@
 | Mục | Kiểu | Mặc định | Khoảng | Ai áp dụng | Ghi chú |
 |---|---|---|---|---|---|
 | `[ui] locale` | String | `"vi"` | `vi`, `en` | D | Đã có từ T-104 |
+| `[ui] content_warning_seen` | bool | `false` | | D | Màn cảnh báo nội dung đã hiện lần đầu (T-139) |
 | `[audio] master_db` | float | `0.0` | −40…+6 | D | Đặt `AudioServer.set_bus_volume_db` cho bus `Master`; ≤ −40 thì mute bus |
 | `[audio] ambience_db` | float | `0.0` | −40…+6 | D | Bus `Ambience` |
 | `[audio] sfx_db` | float | `0.0` | −40…+6 | D | Bus `SFX` |
