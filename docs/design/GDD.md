@@ -6,7 +6,7 @@ Tài liệu đang làm. Các phần cần chốt đã được quyết ở T-113
 Nửa đêm trong ký túc xá vắng người dịp nghỉ lễ, bạn phải tìm ra dòng nào trong "Nội quy ban đêm" là giả trước khi làm theo nó.
 
 ## Trụ cột trải nghiệm
-1. **Suy luận hơn phản xạ.** Người chơi sợ vì không chắc mình đúng, không phải vì bị hù.
+1. **Suy luận hơn phản xạ.** Người chơi sợ vì không chắc mình đúng. Hù dọa và truy đuổi chỉ đến **sau** khi người chơi tin nhầm dòng giả, như cái giá của suy luận sai (D-024).
 2. **Đời thường hóa bất thường.** Việc quen thuộc (tắt đèn, lấy nước, khóa cửa) bị luật biến thành rủi ro.
 3. **Hậu quả có thể nhìn thấy.** Làm sai thì ký túc xá thay đổi, hiếm khi chết ngay.
 4. **Rõ ràng.** Đồ vật và manh mối dễ nhận ra dù đồ họa theo phong cách PS1.

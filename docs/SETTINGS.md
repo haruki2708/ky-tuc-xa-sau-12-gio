@@ -23,6 +23,7 @@
 | `[video] head_bob` | bool | `true` | | A | Player đọc; tắt cho người dễ say 3D |
 | `[video] ps1_strength` | float | `1.0` | 0…1 | B | Filter PS1 đọc; 0 là tắt filter (D-005) |
 | `[video] brightness` | float | `1.0` | 0.5…1.5 | B | Filter PS1 đọc, áp dụng kể cả khi `ps1_strength = 0` |
+| `[accessibility] reduce_scares` | bool | `false` | | core, A, E | Giảm hù dọa (D-024): StoryDirector bỏ jumpscare hình ảnh và sting mạnh; thực thể truy đuổi chậm hơn; tiếng thì thầm nhỏ hơn |
 
 ## Tạm dừng
 - Lane D mở menu tạm dừng bằng phím `pause` (Esc), đặt `get_tree().paused`, rồi emit `EventBus.game_paused(paused)`.

@@ -8,7 +8,7 @@ Duyệt ngày 2026-10-02. Các quyết định chi tiết xem `DECISIONS.md`.
 - Nền tảng PC Windows, chuột và bàn phím. Song ngữ Việt/Anh ngay từ đầu.
 
 ## Trải nghiệm cốt lõi
-Mỗi đêm có một bộ "Nội quy ban đêm", và **một vài dòng đã bị sửa**. Người chơi làm việc thường ngày, so sánh các bản nội quy, dùng sổ trực và hồ sơ để tìm dòng giả, rồi quyết định làm theo luật nào. Làm sai thì ký túc xá biến đổi: kinh dị đến từ hậu quả, không phải jumpscare. Chi tiết xem `design/GDD.md`.
+Mỗi đêm có một bộ "Nội quy ban đêm", và **một vài dòng đã bị sửa**. Người chơi làm việc thường ngày, so sánh các bản nội quy, dùng sổ trực và hồ sơ để tìm dòng giả, rồi quyết định làm theo luật nào. Làm sai thì ký túc xá biến đổi: kinh dị chủ yếu đến từ hậu quả; jumpscare hiếm và 2 cảnh truy đuổi theo kịch bản chỉ xảy ra khi người chơi tin nhầm dòng giả (D-024). Chi tiết xem `design/GDD.md`.
 
 ## Các giai đoạn
 Mỗi mốc đều phải có bản `.exe` chạy được.
@@ -27,7 +27,7 @@ Mỗi mốc đều phải có bản `.exe` chạy được.
 ## Phạm vi demo
 - **Khu vực:** 1 tầng gồm phòng 4 người, hành lang, nhà vệ sinh chung, bàn trực, cầu thang bị chặn.
 - **Nhân vật:** 3 bạn cùng phòng nằm tĩnh sau mùng. Bảo vệ chỉ có giọng trên loa. Thực thể chỉ lộ qua bóng và âm thanh.
-- **Để sau:** rượt đuổi, AI quái vật, ẩn nấp, nhiều tầng hoặc nhiều đêm, NPC có hoạt họa, lồng tiếng Anh, tay cầm, thành tựu Steam.
+- **Để sau:** AI quái vật đi tuần tự do, ẩn nấp (demo chỉ có 2 cảnh truy đuổi theo kịch bản, D-024), nhiều tầng hoặc nhiều đêm, NPC có hoạt họa, lồng tiếng Anh, tay cầm, thành tựu Steam.
 
 ## Lane và phân công
 Xem `AGENTS.md` §3.

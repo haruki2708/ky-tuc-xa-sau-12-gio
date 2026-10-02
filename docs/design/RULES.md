@@ -105,6 +105,26 @@ Mỗi đoạn bắt đầu bằng một **checkpoint**.
 - **"Lệch" 3–4:** loa đọc 4 tên, nhưng chỗ tên Trung là **"Vũ Đức Lâm"**. Sau đó: *"…và Trần Trung. Mời trả lời."* Màn hình tối.
 - Màn hình cuối: "Còn tiếp", kèm lời mời theo dõi game.
 
+## 5b. Hù dọa và truy đuổi (D-024)
+Nguyên tắc: **nội quy thật là cách sống sót.** Làm đúng thì không bao giờ bị đuổi hay bị hù. Đoạn 1–2 không có jumpscare, để người chơi tin rằng đây là game "nội quy và hậu quả", và để cú hù đầu tiên thật sự bất ngờ.
+
+**Hậu quả rõ hơn cho đoạn 1–2:**
+- **Để đèn lúc 0 giờ (điều 1):** đèn chính trong phòng chập chờn rồi tắt phụt, tiếng ù im bặt, vài giây im lặng rồi đèn sáng lại. Đèn hành lang trước phòng chập chờn như hiện có. Kèm tiếng sting trầm.
+- **Mở cửa khi có tiếng gõ (điều 2):** hành lang trống, rồi có **tiếng dép lê đi xa dần** về phía nhà vệ sinh. Đóng cửa lại thì nghe **tiếng một đôi dép được đặt xuống** trước cửa; lần sau ra ngoài sẽ thấy đôi dép thứ năm. Kèm tiếng sting trầm.
+
+**Jumpscare (khoảng 3 lần cả demo):**
+| Lúc | Làm sai | Hù |
+|---|---|---|
+| Đoạn 3 | Quay lại chào khi nghe tiếng dép sau lưng (điều 3 giả) | Thoáng thấy bóng người cuối hành lang, sting mạnh, rồi **truy đuổi 1** |
+| Đoạn 4 | Trả lời tên Lâm (thua thật) | Màn hình tối, tiếng thì thầm "Có…" sát tai, mùng giường trống phồng lên, rồi tải lại checkpoint |
+| Đoạn 5 | Nhìn gương (điều 6 giả) | Hình phản chiếu chậm nửa nhịp rồi quay đầu nhìn thẳng vào người chơi, rồi **truy đuổi 2** |
+
+**Truy đuổi 1 (hành lang, đoạn 3):** đèn hành lang sau lưng tắt dần từng bóng, thực thể (chỉ là bóng người và tiếng dép dồn dập) đi theo trong vùng tối. Thoát nếu tới đoạn hành lang **còn đèn** (đúng như điều 3 thật: "đi tới chỗ có đèn") hoặc vào phòng 407 và chốt cửa. Bị bắt thì màn hình tối, cộng mức "lệch", tải lại checkpoint đầu đoạn 3. Tốc độ thực thể chậm hơn chạy, nhanh hơn đi bộ.
+
+**Truy đuổi 2 (gương, đoạn 5):** bóng trong gương bước ra. Người chơi phải chạy từ nhà vệ sinh về phòng 407 (26 m) và chốt cửa. Đèn hành lang tắt dần phía sau. Bị bắt thì xử lý như truy đuổi 1, tải lại checkpoint đầu đoạn 5.
+
+**"Giảm hù dọa"** (`[accessibility] reduce_scares` trong `docs/SETTINGS.md`): bỏ hình ảnh đột ngột và sting mạnh, giảm âm lượng tiếng thì thầm. Truy đuổi vẫn diễn ra nhưng thực thể chậm hơn. Hậu quả rõ của đoạn 1–2 giữ nguyên.
+
 ## 6. Mức "lệch" (0–5)
 Mức "lệch" cộng dồn. Mỗi mức để lại một thay đổi **nhìn hoặc nghe thấy được** và không tự mất đi. Thay đổi theo mức chồng lên hậu quả riêng của từng điều.
 
