@@ -5,11 +5,16 @@ signal footstep(surface: StringName, intensity: float)
 
 const WALK_SPEED: float = 2.2
 const SPRINT_SPEED: float = 3.6
+const SETTINGS_PATH: String = "user://settings.cfg"
+const DEFAULT_MOUSE_SENSITIVITY: float = 0.002
+const MIN_MOUSE_SENSITIVITY: float = 0.0005
+const MAX_MOUSE_SENSITIVITY: float = 0.006
+const DEFAULT_HEAD_BOB: bool = true
 
-@export var mouse_sensitivity: float = 0.002
+@export var mouse_sensitivity: float = DEFAULT_MOUSE_SENSITIVITY
 @export var acceleration: float = 12.0
 @export var deceleration: float = 16.0
-@export var head_bob_enabled: bool = true
+@export var head_bob_enabled: bool = DEFAULT_HEAD_BOB
 @export var head_bob_amplitude: float = 0.018
 @export_range(0.1, 3.0, 0.01) var walk_step_length: float = 1.1
 @export_range(0.1, 3.0, 0.01) var sprint_step_length: float = 1.4
@@ -29,8 +34,40 @@ var _mouse_captured: bool = false
 
 
 func _ready() -> void:
+	EventBus.game_paused.connect(_on_game_paused)
+	EventBus.settings_changed.connect(_on_settings_changed)
+	_read_settings(true, true)
 	_set_mouse_captured(true)
 	_step_scale = _next_step_scale()
+
+
+func _on_game_paused(paused: bool) -> void:
+	_set_mouse_captured(not paused)
+
+
+func _on_settings_changed(section: String, key: String) -> void:
+	if section == "input" and key == "mouse_sensitivity":
+		_read_settings(true, false)
+	elif section == "video" and key == "head_bob":
+		_read_settings(false, true)
+
+
+func _read_settings(update_mouse: bool, update_bob: bool) -> void:
+	var config: ConfigFile = ConfigFile.new()
+	if config.load(SETTINGS_PATH) != OK:
+		config.clear()
+	if update_mouse:
+		var sensitivity: Variant = config.get_value("input", "mouse_sensitivity", DEFAULT_MOUSE_SENSITIVITY)
+		mouse_sensitivity = DEFAULT_MOUSE_SENSITIVITY
+		if typeof(sensitivity) == TYPE_FLOAT:
+			if is_finite(sensitivity) and sensitivity >= MIN_MOUSE_SENSITIVITY and sensitivity <= MAX_MOUSE_SENSITIVITY:
+				mouse_sensitivity = sensitivity
+	if update_bob:
+		var bob: Variant = config.get_value("video", "head_bob", DEFAULT_HEAD_BOB)
+		head_bob_enabled = bob if typeof(bob) == TYPE_BOOL else DEFAULT_HEAD_BOB
+		if not head_bob_enabled:
+			# Signals still arrive while the tree is paused; reset without a physics tick.
+			camera.position.y = 0.0
 
 
 func _set_mouse_captured(captured: bool) -> void:
@@ -40,10 +77,7 @@ func _set_mouse_captured(captured: bool) -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("pause") and not event.is_echo():
-		_set_mouse_captured(not _mouse_captured)
-		get_viewport().set_input_as_handled()
-	elif event is InputEventMouseMotion and _mouse_captured:
+	if event is InputEventMouseMotion and _mouse_captured:
 		rotate_y(-event.relative.x * mouse_sensitivity)
 		head.rotation.x = clampf(head.rotation.x - event.relative.y * mouse_sensitivity,
 			deg_to_rad(-85.0), deg_to_rad(85.0))
