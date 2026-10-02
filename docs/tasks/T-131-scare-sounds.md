@@ -1,5 +1,5 @@
 # T-131 — Âm hù dọa và truy đuổi
-- Lane: E (Âm thanh) | Trạng thái: todo | Agent:
+- Lane: E (Âm thanh) | Trạng thái: done | Agent:
 - Nhánh: `lane-e/T-131-scare-sounds`
 - Phụ thuộc: T-130 (done). **Đọc `docs/design/RULES.md` mục 5b** (D-024: hậu quả rõ, jumpscare hiếm, 2 cảnh truy đuổi).
 
@@ -72,3 +72,13 @@ Các âm làm cho lỗi sai "có cảm giác", cho 3 cú hù và 2 cảnh truy �
 
 ### Chặn / câu hỏi
 - Không có chặn kỹ thuật hoặc câu hỏi thiết kế mới. Chờ chủ dự án duyệt bằng tai và các lane tích hợp các điểm nêu trên; không coi các bước đó là đã làm trong T-131.
+
+## Review (integrator, 2026-10-03)
+**Kết quả: chấp nhận, đã merge vào `main`.** Sau merge cùng T-132: `test.ps1` → `RESULT: 173 passed, 0 failed`; `check.ps1` → `RESULT: check 0 error(s)`.
+
+- Đúng phạm vi. 11 âm, đủ mức độ to (±1 LU); `sting_hit` hơn `sting_low` 12 LU; 56 file đã duyệt giữ nguyên hash. Bus hợp lý: SFX cho hiệu ứng và bước thực thể, Voice cho tiếng thì thầm.
+- **Đã có tác dụng ngay ở đoạn 1–2:** `StoryDirector` (T-117) tự nạp `sting_low` khi làm sai, `tube_cut` khi đèn phòng tắt phụt, `slipper_place` khi đặt đôi dép thứ năm.
+- `sting_hit`, `breath_close`, `slipper_rush_*`, `whisper_co`, `net_billow` dùng ở đợt 2 (cú hù, truy đuổi, thua ở điểm danh).
+- Handoff trung thực: chưa nghe bằng tai. Chủ dự án nghe ở `res://audio/test/scare_test.tscn` và trong game.
+
+**Chấm điểm (1–5):** phạm vi 5 · checklist 5 · test 5 · chất lượng code 5 · bàn giao trung thực 5 · số vòng sửa 0.

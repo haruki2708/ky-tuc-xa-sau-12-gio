@@ -11,7 +11,7 @@
   - lớp `Interactable`,
   - scene `main.tscn` là hành lang greybox,
   - song ngữ CSV (vi/en).
-- Test runner headless chạy được: `tools/test.ps1`, 168/168 test PASS (sau T-101…T-105, T-110, T-112…T-114, T-116, T-118, T-121…T-126). Autoload `App` lo việc thoát sạch (`App.quit()`, `-- --quit-after-frames=N`). Có thêm `check.ps1`, `capture.ps1`, `package.ps1` và autoload `Autoplay` để phát lại input (xem `tools/README.md`).
+- Test runner headless chạy được: `tools/test.ps1`, 173/173 test PASS (sau T-101…T-105, T-110, T-112…T-114, T-116, T-118, T-121…T-126). Autoload `App` lo việc thoát sạch (`App.quit()`, `-- --quit-after-frames=N`). Có thêm `check.ps1`, `capture.ps1`, `package.ps1` và autoload `Autoplay` để phát lại input (xem `tools/README.md`).
 - Export chạy được: `tools/export.ps1` ra `build/windows/KyTucXa.exe`. Đã chạy thử, mở được.
 - Chụp khung hình bằng Movie Maker chạy được, integrator xem được ảnh.
 - Blender 5.2.2 LTS portable ở `D:\Tools\Blender\5.2.2`; bộ 7 mô hình ký túc xá (T-102), preview ở `art_source/kit/previews/`.
@@ -42,8 +42,8 @@
 | T-130 Âm thanh đoạn 1–2 | E (Claude hoàn tất bước push) | **done**, đã merge và ghép vào game |
 | T-111 Màn xem giấy và sổ tay | D | **done**, đã merge (Claude sửa 1 lỗi tích hợp) |
 | T-117 Luật đầu tiên chạy trọn vòng | core | **review**: đoạn 1–2 chơi được trọn vòng; chờ chủ dự án chơi thử (T-120) |
-| T-131 Âm hù dọa và truy đuổi | E | todo (giao ngay) |
-| T-132 Tùy chọn "Giảm hù dọa" | D | todo (giao ngay) |
+| T-131 Âm hù dọa và truy đuổi | E | **done**, đã merge |
+| T-132 Tùy chọn "Giảm hù dọa" | D | **done**, đã merge |
 | T-110 Kiến trúc RuleSystem và GameState | core | **done**, đã merge (xem `docs/design/RULE_SYSTEM.md`) |
 | T-113 Chốt bộ luật demo và sơ đồ tầng | Chủ dự án + Claude | **done** (D-020); dữ liệu `game/data/rules/demo.tres` |
 

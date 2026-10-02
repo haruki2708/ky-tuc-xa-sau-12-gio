@@ -1,5 +1,5 @@
 # T-132 — Tùy chọn "Giảm hù dọa"
-- Lane: D (UI và Đa ngôn ngữ) | Trạng thái: todo | Agent:
+- Lane: D (UI và Đa ngôn ngữ) | Trạng thái: done | Agent:
 - Nhánh: `lane-d/T-132-reduce-scares`
 - Phụ thuộc: T-116 (done). **Đọc `docs/SETTINGS.md`** (mục mới `[accessibility] reduce_scares`) và `docs/design/RULES.md` mục 5b (D-024).
 
@@ -41,3 +41,11 @@ Người dễ hoảng vẫn chơi được: một công tắc trong Cài đặt 
 - Không còn checklist chưa đạt hoặc blocker phía Lane D. Lỗi checkout do sandbox chặn Git LFS đã xử lý; giữ stash `Recovery: interrupted LFS checkout before T-132` để có thể phục hồi, không đưa nội dung này vào nhánh task.
 - **Core/A/E áp dụng theo D-024:** đọc `user://settings.cfg` bằng `ConfigFile` lúc khởi tạo và khi nhận `EventBus.settings_changed("accessibility", "reduce_scares")`; thiếu/sai kiểu dùng `false`. StoryDirector bỏ hình ảnh hù đột ngột và sting mạnh, thực thể truy đuổi chậm hơn, giảm tiếng thì thầm; hậu quả đoạn 1–2 giữ nguyên. Lane D chỉ cung cấp cài đặt, không tự sửa các file sở hữu bởi lane khác.
 - Không cần thêm signal, autoload, input action hay sửa hợp đồng `docs/SETTINGS.md`; mục mới đã có trong hợp đồng. Không có câu hỏi mới về luật chơi/cốt truyện.
+
+## Review (integrator, 2026-10-03)
+**Kết quả: chấp nhận, đã merge vào `main`.** Sau merge: `test.ps1` → `RESULT: 173 passed, 0 failed`; `check.ps1` → `RESULT: check 0 error(s)`.
+
+- Đúng phạm vi, đúng hợp đồng `docs/SETTINGS.md`. Nhóm "Trợ năng" và công tắc "Giảm hù dọa" có mô tả song ngữ; test bấm công tắc thật khi đang tạm dừng.
+- Integrator nối vào `StoryDirector` (đọc lúc khởi động và khi `settings_changed`), có test `test_director_follows_reduce_scares_setting`. Hiệu ứng thật của tùy chọn sẽ thấy ở đợt 2 (cú hù, truy đuổi).
+
+**Chấm điểm (1–5):** phạm vi 5 · checklist 5 · test 5 · chất lượng code 5 · bàn giao trung thực 5 · số vòng sửa 0.
