@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/notebook_test.gd" id="1"]
+[ext_resource type="Theme" path="res://ui/theme/main_theme.tres" id="2"]
+[ext_resource type="PackedScene" path="res://ui/document/document_view.tscn" id="3"]
+[ext_resource type="PackedScene" path="res://ui/notebook/notebook.tscn" id="4"]
+[ext_resource type="PackedScene" path="res://ui/pause/pause_menu.tscn" id="5"]
+
+[node name="NotebookTest" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource("2")
+script = ExtResource("1")
+
+[node name="Controls" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 60.0
+offset_right = 1000.0
+theme_override_constants/separation = 20
+
+[node name="Title" type="Label" parent="Controls"]
+layout_mode = 2
+text = "UI_NOTEBOOK_TEST_TITLE"
+
+[node name="DocumentView" parent="." instance=ExtResource("3")]
+[node name="Notebook" parent="." instance=ExtResource("4")]
+[node name="PauseMenu" parent="." instance=ExtResource("5")]

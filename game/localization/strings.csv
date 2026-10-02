@@ -73,3 +73,20 @@ PROMPT_UNLOCK_DOOR,Mở chốt,Unlock door
 PROMPT_READ,Đọc,Read
 PROMPT_PHONE,Xem điện thoại,Check phone
 UI_INTERACTION_TEST_HINT,WASD: đi · E: tương tác · R: rung điện thoại · Esc: tạm dừng,WASD: move · E: interact · R: ring phone · Esc: pause
+SOURCE_SPEAKER,Loa phát thanh,Loudspeaker
+SOURCE_HALL_BOARD,Bảng nội quy hành lang,Corridor rules board
+SOURCE_ROOM_PAPER,Giấy dán sau cửa phòng 407,Paper behind room 407's door
+SOURCE_HANDWRITTEN_NOTE,Giấy viết tay kẹp ở bảng,Handwritten note clipped to the board
+SOURCE_WASHROOM_NOTICE,Giấy dán trong nhà vệ sinh,Washroom notice
+UI_DOCUMENT_STAMP,Ký túc xá – Tầng 4,Dormitory – Floor 4
+UI_DOCUMENT_CLOSE_HINT,E / Chuột trái / Esc / Tab — Đóng · Cuộn để đọc tiếp,E / Left click / Esc / Tab — Close · Scroll to read more
+UI_NOTEBOOK_TITLE,Sổ tay,Notebook
+UI_NOTEBOOK_EMPTY,Chưa ghi gì. Đọc nội quy để ghi vào sổ.,Nothing recorded yet. Read the rules to add them here.
+UI_NOTEBOOK_SUSPECT,Nghi ngờ,Suspect
+UI_NOTEBOOK_MARK,?,?
+UI_NOTEBOOK_CLOSE,Đóng (Tab / Esc),Close (Tab / Esc)
+SUB_NOTEBOOK_HINT,Đã ghi vào sổ tay (Tab),Added to notebook (Tab)
+UI_NOTEBOOK_TEST_TITLE,Thử màn xem giấy và sổ tay,Document and notebook preview
+UI_NOTEBOOK_TEST_SPEAKER,Giả lập loa đọc 5 điều,Simulate five rules from the speaker
+UI_LOG_PREVIEW_TITLE,Trang thử kiểu sổ,Log page style preview
+UI_LOG_PREVIEW_TEXT,Đây là trang thử hiển thị chữ và dòng kẻ.,This sample page previews text and ruled lines.
