@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="DocumentData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/core/document_data.gd" id="1_doc"]
+
+[resource]
+script = ExtResource("1_doc")
+id = &"hall_board_note"
+title_key = ""
+style = &"handwritten"
+source = &"handwritten_note"
+rule_ids = Array[StringName]([&"rollcall_mate_note"])
+text_keys = Array[String]([])

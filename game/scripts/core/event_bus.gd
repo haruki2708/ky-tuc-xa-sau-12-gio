@@ -40,6 +40,10 @@ signal flag_changed(flag: StringName, value: Variant)
 ## The player read a rule line for the first time (notebook adds it).
 signal rule_read(rule_id: StringName)
 
+## The player saw a rule line on a source (new notebook entry, or its text
+## changed). Notebook rebuilds from RuleSystem.read_entries().
+signal rule_entry_added(rule_id: StringName, source: StringName)
+
 ## The player marked or unmarked a rule line as suspicious in the notebook.
 signal rule_suspicion_changed(rule_id: StringName, suspected: bool)
 
@@ -60,3 +64,11 @@ signal checkpoint_saved(checkpoint_id: StringName)
 
 ## A checkpoint was restored. Scenes move the player to the matching spawn.
 signal checkpoint_loaded(checkpoint_id: StringName)
+
+# --- Documents (T-117: lane A readable objects, lane D close-up view) ---
+
+## A readable paper/board/log was opened. Data: DocumentData.load_by_id(id).
+signal document_opened(document_id: StringName)
+
+## The close-up view of a document was closed.
+signal document_closed(document_id: StringName)

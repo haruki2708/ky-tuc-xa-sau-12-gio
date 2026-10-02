@@ -263,3 +263,69 @@ func test_demo_rule_set_matches_design() -> void:
 		assert_eq(genuine.size(), 1, "one genuine line for %s;" % situation)
 	assert_true(RuleSystem.resolve(&"roll_call_fifth", &"answer")["fatal"], "answering Lam fails the night")
 	assert_eq(RuleSystem.resolve(&"tap_running", &"look_in_mirror")["outcome"], RuleSystem.OUTCOME_FOLLOWED_FAKE, "mirror notice is fake;")
+
+
+func test_notebook_entries_keep_source_and_seen_text() -> void:
+	_load_fixture()
+	var added: Array = []
+	var record := func(rule_id: StringName, source: StringName) -> void: added.append([rule_id, source])
+	EventBus.rule_entry_added.connect(record)
+	RuleSystem.mark_read(&"knock_genuine", &"speaker", "RULE_KNOCK_GARBLED")
+	RuleSystem.mark_read(&"knock_genuine", &"speaker", "RULE_KNOCK_GARBLED")
+	RuleSystem.mark_read(&"knock_genuine", &"hall_board")
+	RuleSystem.mark_read(&"knock_genuine", &"speaker")
+	EventBus.rule_entry_added.disconnect(record)
+	var entries := RuleSystem.read_entries()
+	assert_eq(entries.size(), 2, "one entry per (rule, source);")
+	assert_eq(entries[0]["source"], &"speaker", "first seen on the speaker;")
+	assert_eq(entries[0]["text_key"], "RULE_KNOCK_GENUINE", "clear reading replaces garbled text;")
+	assert_eq(entries[1]["text_key"], "RULE_KNOCK_GENUINE", "board shows the rule's own text;")
+	assert_eq(added.size(), 3, "new entries and text changes announced, repeats not;")
+	assert_eq(_events("rule_read").size(), 1, "rule_read only the first time;")
+	RuleSystem.mark_read(&"water_fake")
+	assert_eq(RuleSystem.read_entries()[2]["source"], &"hall_board", "default source from the rule;")
+
+
+func test_notebook_entries_survive_checkpoint() -> void:
+	_load_fixture()
+	RuleSystem.mark_read(&"knock_paper", &"room_paper")
+	RuleSystem.mark_read(&"knock_genuine", &"speaker", "RULE_KNOCK_GARBLED")
+	assert_eq(Checkpoint.save(&"seg2_start", SAVE_PATH), OK, "save;")
+	RuleSystem.from_dict({})
+	assert_eq(RuleSystem.read_entries().size(), 0, "cleared;")
+	Checkpoint.restore(SAVE_PATH)
+	var entries := RuleSystem.read_entries()
+	assert_eq(entries.size(), 2, "entries restored;")
+	assert_eq(entries[1]["text_key"], "RULE_KNOCK_GARBLED", "seen text restored;")
+	assert_eq(typeof(entries[1]["source"]), TYPE_STRING_NAME, "source restored as StringName;")
+
+
+func test_demo_documents_match_rule_set() -> void:
+	assert_eq(RuleSystem.load_rule_set(load("res://data/rules/demo.tres")), PackedStringArray(), "demo rules;")
+	for file in DirAccess.get_files_at(DocumentData.DIRECTORY):
+		if not file.ends_with(".tres"):
+			continue
+		var document := DocumentData.load_by_id(StringName(file.get_basename()))
+		assert_not_null(document, file + " loads")
+		if document == null:
+			continue
+		assert_eq(document.id, StringName(file.get_basename()), file + " id matches file name;")
+		assert_true(document.style in [&"stamped", &"photocopy", &"handwritten", &"notice", &"log"], file + " style")
+		assert_false(document.source.is_empty(), file + " has a source")
+		if not document.title_key.is_empty():
+			assert_true(tr(document.title_key) != document.title_key, file + " title translated")
+		for key in document.text_keys:
+			assert_true(tr(key) != key, file + " text translated: " + key)
+		for rule_id in document.rule_ids:
+			assert_not_null(RuleSystem.get_rule(rule_id), file + " rule exists: " + rule_id)
+	assert_null_document(DocumentData.load_by_id(&"no_such_paper"))
+	var paper := DocumentData.load_by_id(&"room_paper_407")
+	paper.mark_rules_read()
+	var sources := RuleSystem.read_entries().map(func(entry: Dictionary) -> StringName: return entry["source"])
+	assert_eq(sources, [&"room_paper", &"room_paper", &"room_paper", &"room_paper"], "paper lines recorded with paper source;")
+	assert_true(RuleSystem.is_read(&"slippers_paper"), "fake line 3 read from the room paper")
+	assert_true(tr("RULE_3_GARBLED") != "RULE_3_GARBLED", "garbled speaker text exists")
+
+
+func assert_null_document(document: DocumentData) -> void:
+	assert_true(document == null, "unknown document id returns null")

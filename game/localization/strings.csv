@@ -47,3 +47,5 @@ UI_SETTINGS_RESET,Khôi phục mặc định,Restore defaults
 UI_SETTINGS_BACK,Quay lại,Back
 UI_SETTINGS_SAVE_ERROR,Không lưu được cài đặt. Vui lòng thử lại.,Could not save settings. Please try again.
 UI_PAUSE_TEST_HINT,Nhấn Esc để mở hoặc đóng menu tạm dừng.,Press Esc to open or close the pause menu.
+RULE_HEADER,Nội quy ban đêm dịp lễ,Holiday night rules
+RULE_3_GARBLED,Nghe tiếng dép đi sau lưng ở hành lang: …(tiếng rè)…,If you hear slippers walking behind you in the corridor… (static)…

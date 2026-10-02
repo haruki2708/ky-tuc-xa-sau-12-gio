@@ -18,6 +18,9 @@ const OUTCOME_UNRULED := &"unruled"
 var _rules: Dictionary[StringName, RuleData] = {}
 var _order: Array[StringName] = []
 var _read: Array[StringName] = []
+## What the player saw, per source, in order: {rule_id, source, text_key}.
+## text_key can differ from the rule's own text (e.g. garbled on the speaker).
+var _entries: Array[Dictionary] = []
 var _suspected: Dictionary[StringName, bool] = {}
 var _outcomes: Dictionary[StringName, StringName] = {}
 
@@ -40,6 +43,7 @@ func reset() -> void:
 	_rules.clear()
 	_order.clear()
 	_read.clear()
+	_entries.clear()
 	_suspected.clear()
 	_outcomes.clear()
 
@@ -60,14 +64,29 @@ func rules_for(situation: StringName) -> Array[RuleData]:
 	return found
 
 
-func mark_read(rule_id: StringName) -> void:
+## Records that the player saw a rule line on a source (notebook entry).
+## source defaults to the rule's own source; text_key defaults to its text.
+## Seeing the same rule on the same source again only updates the text.
+func mark_read(rule_id: StringName, source: StringName = &"", text_key: String = "") -> void:
 	if not _rules.has(rule_id):
 		push_warning("RuleSystem: unknown rule '%s'" % rule_id)
 		return
-	if _read.has(rule_id):
-		return
-	_read.append(rule_id)
-	EventBus.rule_read.emit(rule_id)
+	var rule := _rules[rule_id]
+	var seen_source: StringName = source if not source.is_empty() else rule.source
+	var seen_text: String = text_key if not text_key.is_empty() else rule.text_key
+	var known := false
+	for entry in _entries:
+		if entry["rule_id"] == rule_id and entry["source"] == seen_source:
+			known = true
+			if entry["text_key"] == seen_text:
+				return
+			entry["text_key"] = seen_text
+	if not known:
+		_entries.append({"rule_id": rule_id, "source": seen_source, "text_key": seen_text})
+	EventBus.rule_entry_added.emit(rule_id, seen_source)
+	if not _read.has(rule_id):
+		_read.append(rule_id)
+		EventBus.rule_read.emit(rule_id)
 
 
 func is_read(rule_id: StringName) -> bool:
@@ -77,6 +96,11 @@ func is_read(rule_id: StringName) -> bool:
 ## Rule ids in the order the player first read them (notebook order).
 func read_rules() -> Array[StringName]:
 	return _read.duplicate()
+
+
+## Notebook entries in the order seen: {rule_id, source, text_key}.
+func read_entries() -> Array[Dictionary]:
+	return _entries.duplicate(true)
 
 
 func set_suspected(rule_id: StringName, suspected: bool) -> void:
@@ -147,6 +171,8 @@ func to_dict() -> Dictionary:
 		outcomes[String(situation)] = String(_outcomes[situation])
 	return {
 		"read": _read.map(func(rule_id: StringName) -> String: return String(rule_id)),
+		"entries": _entries.map(func(entry: Dictionary) -> Dictionary:
+			return {"rule_id": String(entry["rule_id"]), "source": String(entry["source"]), "text_key": entry["text_key"]}),
 		"suspected": _suspected.keys().map(func(rule_id: StringName) -> String: return String(rule_id)),
 		"outcomes": outcomes,
 	}
@@ -155,8 +181,13 @@ func to_dict() -> Dictionary:
 ## Restores progress for the rules already loaded. Unknown ids are dropped.
 func from_dict(data: Dictionary) -> void:
 	_read.clear()
+	_entries.clear()
 	_suspected.clear()
 	_outcomes.clear()
+	for entry in data.get("entries", []):
+		if entry is Dictionary and _rules.has(StringName(str(entry.get("rule_id", "")))):
+			_entries.append({"rule_id": StringName(str(entry["rule_id"])),
+				"source": StringName(str(entry.get("source", ""))), "text_key": str(entry.get("text_key", ""))})
 	for rule_id in data.get("read", []):
 		if _rules.has(StringName(rule_id)):
 			_read.append(StringName(rule_id))
