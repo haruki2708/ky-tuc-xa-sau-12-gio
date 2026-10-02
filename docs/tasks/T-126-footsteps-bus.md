@@ -1,5 +1,5 @@
 # T-126 — Bus âm thanh riêng cho bước chân
-- Lane: E (Âm thanh) | Trạng thái: todo | Agent:
+- Lane: E (Âm thanh) | Trạng thái: done | Agent:
 - Nhánh: `lane-e/T-126-footsteps-bus`
 - Phụ thuộc: T-123 (done). **Đọc `docs/SETTINGS.md`** (mục `[audio] footsteps_db`). Làm song song với T-116 của lane D.
 
@@ -52,3 +52,11 @@ Chủ dự án đã chỉnh độ to bước chân nhiều lần (D-015…D-019)
 - Không có câu hỏi luật chơi/cốt truyện phát sinh.
 
 **Blocked:** Không còn chặn kỹ thuật. Lỗi mạng/quyền sandbox đã xử lý bằng chạy ngoài sandbox; commit triển khai đã push thành công. Phần UI thanh trượt thuộc T-116 và không chặn task bus này.
+
+## Review (integrator, 2026-10-02)
+**Kết quả: chấp nhận, đã merge vào `main`.** Sau merge: `test.ps1` → `RESULT: 119 passed, 0 failed`; `check.ps1` → `RESULT: check 0 error(s)`.
+
+- Đúng phạm vi, gọn. Bus `Footsteps` gửi vào `SFX`, nên bước chân vẫn nhận reverb theo khu. Đã đối chiếu 34 file âm thanh với hash trên `main`: không đổi byte nào (D-019 giữ nguyên).
+- Integrator thêm test core `test_footsteps_volume_setting_reaches_footsteps_bus`: `Settings.set_value("audio", "footsteps_db")` đổi đúng bus, và thanh trượt "Bước chân" hiện trong menu tạm dừng của `main.tscn`.
+
+**Chấm điểm (1–5):** phạm vi 5 · checklist 5 · test 5 · chất lượng code 5 · bàn giao trung thực 5 · số vòng sửa 0.
