@@ -15,17 +15,17 @@
     },
     {
       "file": "game/audio/ambience/fluorescent_hum.ogg",
-      "sha256": "48fef45ed177a5b7388e6067be743fd199a0b765c1122fcb3f4402b3d3322196",
+      "sha256": "249ecf5373c60773f707a4a60db723b6daa8f5f0df1b96f44441cf6386caa823",
       "raw_sha256": "0592f09cac50655dd696b17dd6793bc0f00ba5febfb8ee74e846798ca3db8dc8",
-      "bytes": 101943,
+      "bytes": 97468,
       "seconds": 12.0,
       "channels": 1,
-      "lufs": -31.98,
-      "true_peak_db": -23.13,
+      "lufs": -43.98,
+      "true_peak_db": -35.08,
       "loop": true,
-      "boundary_delta": 0.0008937,
-      "highpass_200hz_lufs": -33.99,
-      "highpass_200hz_loss_lu": 2.01
+      "boundary_delta": 0.0008388,
+      "highpass_200hz_lufs": -46.0,
+      "highpass_200hz_loss_lu": 2.02
     },
     {
       "file": "game/audio/sfx/fluorescent_flicker.ogg",
