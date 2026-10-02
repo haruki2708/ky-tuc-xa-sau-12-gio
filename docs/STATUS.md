@@ -38,6 +38,10 @@
 | T-128 Nút Thoát qua `App.quit()`, key biển tầng 4 | D | todo (giao ngay) |
 | T-125 Player theo menu tạm dừng và cài đặt | A | **done**, đã merge |
 | T-126 Bus riêng cho bước chân | E | **done**, đã merge; menu có thanh trượt Bước chân |
+| T-129 Đồ vật tương tác đoạn 1–2 | A | todo (giao ngay) |
+| T-130 Âm thanh đoạn 1–2 | E | todo (giao ngay) |
+| T-111 Màn xem giấy và sổ tay | D | todo (sau T-128) |
+| T-117 Luật đầu tiên chạy trọn vòng | core | todo (ghép khi A, D, E xong) |
 | T-110 Kiến trúc RuleSystem và GameState | core | **done**, đã merge (xem `docs/design/RULE_SYSTEM.md`) |
 | T-113 Chốt bộ luật demo và sơ đồ tầng | Chủ dự án + Claude | **done** (D-020); dữ liệu `game/data/rules/demo.tres` |
 

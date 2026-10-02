@@ -48,8 +48,9 @@ Bộ luật của một đêm là một `RuleSet` (`rules: Array[RuleData]`), l�
 | Việc | Gọi |
 |---|---|
 | Nạp bộ luật (luồng game, T-117) | `RuleSystem.load_rule_set(load("res://data/rules/demo.tres"))`; danh sách lỗi trả về phải rỗng |
-| Người chơi đọc một dòng (giấy, bảng, loa) | `RuleSystem.mark_read(rule_id)` |
-| Sổ tay liệt kê các dòng đã đọc (T-111) | `RuleSystem.read_rules()` theo thứ tự đọc; `get_rule(id).text_key` để hiện chữ |
+| Người chơi thấy một dòng ở một nguồn | `RuleSystem.mark_read(rule_id, source, text_key)`; `source` mặc định là nguồn của dòng, `text_key` mặc định là chữ của dòng. Loa đọc điều 3 bị rè: `mark_read(&"slippers_genuine", &"speaker", "RULE_3_GARBLED")` |
+| Sổ tay (T-111) | `RuleSystem.read_entries()`: mỗi phần tử `{rule_id, source, text_key}` theo thứ tự thấy. Cùng dòng, cùng nguồn chỉ một mục; thấy lại với chữ khác thì cập nhật chữ. Nghe `EventBus.rule_entry_added` để vẽ lại |
+| Giấy tờ (T-129, T-111) | `DocumentData.load_by_id(id)`; `mark_rules_read()` ghi mọi dòng của tờ vào sổ tay với nguồn của tờ. Mở hoặc đóng: `EventBus.document_opened(id)`, `document_closed(id)` |
 | Đánh dấu nghi ngờ | `RuleSystem.set_suspected(id, bool)`, `is_suspected(id)` |
 | Đồ vật hoặc sự kiện cần phán định | `RuleSystem.resolve(situation, action)` trả `{outcome, rule_id, consequence, fatal}` |
 | Giờ trong game | `GameState.set_time(phút)`, `advance_minutes(n)`, `clock_text()` ("00:30"). Mặc định giờ chỉ chạy theo cốt truyện; `minutes_per_second > 0` để chạy theo thời gian thực |
@@ -58,6 +59,22 @@ Bộ luật của một đêm là một `RuleSet` (`rules: Array[RuleData]`), l�
 | Lưu và tải | `Checkpoint.save(&"before_roll_call")`, `Checkpoint.restore()` |
 
 Mọi thay đổi đều được báo qua `EventBus`: `time_changed`, `segment_changed`, `deviation_changed`, `flag_changed`, `rule_read`, `rule_suspicion_changed`, `rule_resolved`, `consequence_triggered`, `player_failed`, `checkpoint_saved`, `checkpoint_loaded`. Lane nào cần thì nghe signal tương ứng, không gọi chéo vào code của lane khác.
+
+## Giấy tờ (`DocumentData`)
+File `game/data/documents/<id>.tres`:
+
+| Trường | Ý nghĩa |
+|---|---|
+| `id` | Trùng tên file |
+| `title_key` | Key tiêu đề, có thể để trống (giấy viết tay) |
+| `style` | `stamped` (đánh máy, dấu đỏ), `photocopy`, `handwritten`, `notice` (giấy dán tường), `log` (sổ trực) |
+| `source` | Nguồn ghi vào sổ tay |
+| `rule_ids` | Các dòng luật theo thứ tự in, đánh số 1..n |
+| `text_keys` | Đoạn văn thường sau các dòng luật (sổ trực, chữ ký…) |
+
+Đã có: `room_paper_407` (photo sau cửa, có điều 3 giả), `hall_board` (bảng có dấu, 5 điều thật), `hall_board_note` (giấy viết tay, điều 4 giả), `washroom_notice` (6 điều, có điều 6 giả). Sổ trực (`duty_log`) làm ở đoạn 3.
+
+Điều 4 thật có 3 dòng dữ liệu cùng chữ (tên mình, tên bạn cùng phòng, tên lạ). Giấy tờ chỉ in dòng `rollcall_self_genuine`.
 
 ## Checkpoint
 - File `user://checkpoint.json`, có trường `version`. Lưu giờ, đoạn chơi, mức "lệch", cờ, các dòng đã đọc, đã nghi ngờ, và kết quả từng tình huống.
