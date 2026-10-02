@@ -45,3 +45,22 @@ func test_translations_registered() -> void:
 	TranslationServer.set_locale("en")
 	assert_eq(tr("PROMPT_INTERACT"), "Interact", "en;")
 	TranslationServer.set_locale("vi")
+
+
+func test_main_scene_footsteps_and_ambience_wired() -> void:
+	var main: Node = load("res://scenes/main/main.tscn").instantiate()
+	tree.root.add_child(main)
+	var steps: AudioStreamPlayer3D = main.get_node("Player/Footsteps")
+	for i in 30:
+		await tree.physics_frame
+	Input.action_press("move_forward")
+	for i in 60:
+		await tree.physics_frame
+	Input.action_release("move_forward")
+	assert_not_null(steps.stream, "walking on tile floor plays a footstep;")
+	for path in ["Audio/HumNear", "Audio/HumFar", "Audio/NightOutside"]:
+		var source: AudioStreamPlayer3D = main.get_node(path)
+		assert_true(source.playing, path + " plays;")
+		assert_eq(source.bus, &"Ambience", path + " bus;")
+	main.queue_free()
+	await wait_frames(2)
