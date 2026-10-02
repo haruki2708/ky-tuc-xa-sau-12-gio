@@ -15,6 +15,7 @@ var _sliders: Dictionary = {}
 var _values: Dictionary = {}
 var _audio_rows: Dictionary = {}
 var _head_bob: CheckButton
+var _reduce_scares: CheckButton
 var _locale: OptionButton
 
 
@@ -37,6 +38,22 @@ func _ready() -> void:
 	_locale.name = "Locale"
 	_locale.item_selected.connect(_on_locale_selected)
 	$Scroll/Columns/Other.add_child(_locale)
+	var accessibility := VBoxContainer.new()
+	accessibility.name = "Accessibility"
+	accessibility.add_theme_constant_override("separation", 4)
+	$Scroll/Columns/Other.add_child(accessibility)
+	_add_heading(accessibility, "UI_SETTINGS_ACCESSIBILITY")
+	_reduce_scares = CheckButton.new()
+	_reduce_scares.name = "ReduceScares"
+	_reduce_scares.text = "UI_REDUCE_SCARES"
+	_reduce_scares.toggled.connect(_on_reduce_scares_changed)
+	accessibility.add_child(_reduce_scares)
+	var description := Label.new()
+	description.name = "Description"
+	description.text = "UI_REDUCE_SCARES_DESCRIPTION"
+	description.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	description.add_theme_font_size_override("font_size", 22)
+	accessibility.add_child(description)
 	$Footer/Reset.pressed.connect(_on_reset_pressed)
 	$Footer/Back.pressed.connect(func() -> void: back_requested.emit())
 	EventBus.settings_changed.connect(_on_settings_changed)
@@ -68,6 +85,7 @@ func refresh() -> void:
 		var row: Control = _audio_rows[key]
 		row.visible = AudioServer.get_bus_index(SettingsStore.AUDIO_BUSES[key]) >= 0
 	_head_bob.set_pressed_no_signal(_settings.get_value("video", "head_bob"))
+	_reduce_scares.set_pressed_no_signal(_settings.get_value("accessibility", "reduce_scares"))
 	_locale.clear()
 	_locale.add_item(tr("UI_LANGUAGE_VI"))
 	_locale.add_item(tr("UI_LANGUAGE_EN"))
@@ -128,6 +146,11 @@ func _on_head_bob_changed(enabled: bool) -> void:
 func _on_locale_selected(index: int) -> void:
 	if _settings != null:
 		_show_save_result(_settings.set_value("ui", "locale", "vi" if index == 0 else "en"))
+
+
+func _on_reduce_scares_changed(enabled: bool) -> void:
+	if _settings != null:
+		_show_save_result(_settings.set_value("accessibility", "reduce_scares", enabled))
 
 
 func _on_reset_pressed() -> void:
