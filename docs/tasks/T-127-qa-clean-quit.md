@@ -1,5 +1,5 @@
 # T-127 — Công cụ QA thoát game qua `App.quit()`
-- Lane: C (QA và Tools) | Trạng thái: todo | Agent:
+- Lane: C (QA và Tools) | Trạng thái: done | Agent:
 - Nhánh: `lane-c/T-127-qa-clean-quit`
 - Phụ thuộc: T-124 (done). Đọc mục **Review** trong `docs/tasks/T-124-qa-followups.md`.
 
@@ -74,3 +74,14 @@ App chờ 0,25 giây để giải phóng audio, trong lúc này Movie Maker ti�
 ### Còn dở / Yêu cầu thay đổi
 - Không còn mục checklist chưa đạt, không còn blocker T-127.
 - **Yêu cầu thay đổi ngoài phạm vi: không có.** App của integrator đã được dùng; không cần sửa core hay audio trong task này.
+
+## Review (integrator, 2026-10-02)
+**Kết quả: chấp nhận, đã merge vào `main`.** Chạy lại trên `main` đầy đủ (tầng 4, filter PS1, T-126): `test.ps1` → `RESULT: 132 passed, 0 failed`; `check.ps1` → `RESULT: check 0 error(s)`; `package.ps1` → **`RESULT: package PASS`**, zip 40.167.798 byte, exe tự giải nén chạy 60 frame, thoát sạch. Blocker T-124 đã gỡ.
+
+- Đúng phạm vi. `package.ps1`, `capture.ps1` và autoplay đi qua `App.quit()`; capture bỏ đúng phần khung hình ghi thêm trong 0,25 giây chờ thoát, giữ đúng 136 ảnh.
+- **Phát hiện đáng giá:** các lane chạy test song song dùng chung `user://settings.cfg` (cùng tên project), làm test cài đặt của nhau FAIL thất thường. `test.ps1` giờ cho mỗi lần chạy một thư mục `APPDATA` riêng trong `build/test-userdata/`, dọn sau khi chạy. Việc này cũng **bảo vệ file cài đặt thật của chủ dự án** khỏi bị test ghi đè. Có test xác nhận thư mục dữ liệu nằm trong vùng riêng.
+- Bàn giao trung thực: ghi cả lượt 3 test FAIL trước khi tìm ra nguyên nhân, không giấu.
+
+**Việc nhỏ cho lần sau (không chặn):** README trong zip chưa nhắc filter PS1 và độ sáng trong Cài đặt (đã có từ T-118).
+
+**Chấm điểm (1–5):** phạm vi 5 · checklist 5 · test 5 · chất lượng code 5 · bàn giao trung thực 5 · số vòng sửa 0.
