@@ -42,10 +42,10 @@ func _settle_into_room() -> void:
 
 func _run_slice() -> void:
 	director.start()
-	var waited := 0
-	while not director.finished and waited < 1200:
+	# The speaker's power/chime cues play in real time, so wait on the clock.
+	var deadline := Time.get_ticks_msec() + 30000
+	while not director.finished and Time.get_ticks_msec() < deadline:
 		await tree.process_frame
-		waited += 1
 	assert_true(director.finished, "slice reaches its end")
 
 
