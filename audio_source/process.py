@@ -36,7 +36,7 @@ ASSETS = [
 
 
 # Footsteps sit well below doors (-18) so walking stays a soft background cue.
-TARGET_OVERRIDES = {"slipper_tile": -26, "slipper_run": -23}
+TARGET_OVERRIDES = {"slipper_tile": -30, "slipper_run": -27}
 
 
 def target_lufs(name: str, loop: bool) -> int:
@@ -132,11 +132,11 @@ def synthesize_slipper(seconds: float, seed: int, running: bool) -> list[float]:
     contact = .02 + rng.uniform(0, .012)
     gap = rng.uniform(.075, .105) if running else rng.uniform(.13, .19)
     heel_amp = rng.uniform(.8, 1.0) if running else rng.uniform(.55, .75)
-    slap_amp = rng.uniform(.75, .95) if running else rng.uniform(.35, .55)
+    slap_amp = rng.uniform(.6, .75) if running else rng.uniform(.25, .4)
     flutter = rng.uniform(.008, .013)
     body_hz = rng.uniform(170, 230)
-    heel_lp = 1 - math.exp(-TAU * (2400 if running else 1800) / RATE)
-    slap_lp = 1 - math.exp(-TAU * 4500 / RATE)
+    heel_lp = 1 - math.exp(-TAU * (1900 if running else 1400) / RATE)
+    slap_lp = 1 - math.exp(-TAU * 3500 / RATE)
     slap_hp = 1 - math.exp(-TAU * 1200 / RATE)
     scuff_lp = 1 - math.exp(-TAU * 900 / RATE)
     heel_state = slap_low = slap_band = scuff_state = 0.0
@@ -155,9 +155,9 @@ def synthesize_slipper(seconds: float, seed: int, running: bool) -> list[float]:
         slap_low += slap_hp * (slap_band - slap_low)
         scuff_state += scuff_lp * (noise - scuff_state)
         u = t - contact
-        heel = burst(u, .004, .03) * (heel_state + .35 * math.sin(TAU * body_hz * u))
+        heel = burst(u, .007, .03) * (heel_state + .35 * math.sin(TAU * body_hz * u))
         slap_noise = slap_band - slap_low
-        slap = burst(u - gap, .002, .014) + .3 * burst(u - gap - flutter, .002, .01)
+        slap = burst(u - gap, .003, .014) + .3 * burst(u - gap - flutter, .003, .01)
         scuff = 0.0
         if 0 <= u < gap:
             scuff = math.sin(math.pi * u / gap) * scuff_state * (.06 if running else .04)
