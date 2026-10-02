@@ -23,4 +23,6 @@ Mỗi việc sẽ được tách thành task card chi tiết khi đến lượt.
 | T-128 | Nút Thoát qua `App.quit()`; key dịch biển tầng 4 (`T-128-menu-quit-signs.md`) | D | T-116, T-112 |
 | T-129 | Đồ vật tương tác đoạn 1–2: công tắc, chốt cửa, giấy đọc được, điện thoại (`T-129-segment12-interactables.md`) | A | T-125, T-110 |
 | T-130 | Âm thanh đoạn 1–2: gõ cửa, loa, điện thoại, công tắc, chốt (`T-130-segment12-sounds.md`) | E | T-126 |
+| T-131 | Âm hù dọa và truy đuổi (`T-131-scare-sounds.md`, D-024) | E | T-130 |
+| T-132 | Tùy chọn "Giảm hù dọa" (`T-132-reduce-scares-setting.md`) | D | T-116 |
 | T-120 | **Cổng kiểm tra P1:** chủ dự án chơi bản v0.1 và đánh giá theo `docs/design/GDD.md` | Chủ dự án | Tất cả ở trên |
