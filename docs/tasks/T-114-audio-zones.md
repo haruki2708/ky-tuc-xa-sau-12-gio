@@ -30,8 +30,7 @@
    - Hai phòng nối nhau bằng hành lang. Mỗi khu có vùng âm và vùng reverb riêng.
    - Một đèn có `light_hum`, phím `L` bật/tắt đèn, phím `F` gọi `flicker(1.5)`.
    - Có Player của lane A (instance `res://scenes/player/player.tscn`) để đi qua lại và nghe thử.
-6. **Sửa `audio_test.tscn`:** hiện phím 5/6 chỉ tắt các nguồn khác, chủ dự án phải chờ 8–18 giây mới nghe được tiếng cửa. Đổi thành: bấm 5/6 thì phát tiếng cửa **ngay lập tức**. Áp dụng tương tự cho phím 4 (nước nhỏ giọt).
-7. **Test `game/tests/audio/`:**
+6. **Test `game/tests/audio/`:**
    - Hum mới load được, là loop, có số đo sau high-pass 200 Hz trong report.
    - Player vào và ra `AmbientZone` thì âm lượng emitter thay đổi đúng hướng.
    - `ReverbZone` đổi và trả lại thông số reverb của bus.
