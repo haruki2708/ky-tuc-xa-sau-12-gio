@@ -1,0 +1,172 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scenes/levels/floor4/floor4.gd" id="e1"]
+[ext_resource type="PackedScene" path="res://scenes/levels/floor4/corridor.tscn" id="e2"]
+[ext_resource type="PackedScene" path="res://scenes/levels/floor4/room_407.tscn" id="e3"]
+[ext_resource type="PackedScene" path="res://scenes/levels/floor4/washroom.tscn" id="e4"]
+[ext_resource type="PackedScene" path="res://scenes/levels/floor4/duty_desk.tscn" id="e5"]
+[ext_resource type="Script" path="res://scenes/levels/floor4/door407.gd" id="e6"]
+[ext_resource type="PackedScene" path="res://assets/models/kit/door.glb" id="e7"]
+
+[sub_resource type="StandardMaterial3D" id="s1"]
+albedo_color = Color(0.73, 0.71, 0.56, 1)
+roughness = 0.85
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="s2"]
+size = Vector3(0.28, 0.4, 0.008)
+material = SubResource("s1")
+
+[sub_resource type="BoxShape3D" id="s3"]
+size = Vector3(1.1, 2.2, 0.25)
+
+[sub_resource type="Environment" id="s4"]
+background_mode = 1
+background_color = Color(0.012, 0.02, 0.027, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.30, 0.39, 0.47, 1)
+ambient_light_energy = 0.40
+tonemap_mode = 2
+fog_enabled = true
+fog_light_color = Color(0.06, 0.09, 0.10, 1)
+fog_density = 0.012
+
+[node name="Floor4" type="Node3D"]
+
+script = ExtResource("e1")
+
+[node name="Corridor" parent="." instance=ExtResource("e2")]
+position = Vector3(0, 0, 0)
+
+[node name="Room407" parent="." instance=ExtResource("e3")]
+position = Vector3(30, 0, 0)
+
+[node name="Washroom" parent="." instance=ExtResource("e4")]
+position = Vector3(0, 0, 0)
+
+[node name="DutyDesk" parent="." instance=ExtResource("e5")]
+position = Vector3(38, 0, 0)
+
+[node name="Door407" type="Area3D" parent="."]
+position = Vector3(32.44, 0.01, 0)
+script = ExtResource("e6")
+
+[node name="Pivot" type="Node3D" parent="Door407"]
+
+
+[node name="Leaf" parent="Door407/Pivot" instance=ExtResource("e7")]
+position = Vector3(0, 0, 0)
+rotation_degrees = Vector3(0, 0, 0)
+scale = Vector3(1, 1, 1)
+
+[node name="RulesPaper" type="Node3D" parent="Door407/Pivot"]
+position = Vector3(-0.44, 1.39, -0.025)
+
+[node name="Mesh" type="MeshInstance3D" parent="Door407/Pivot/RulesPaper"]
+mesh = SubResource("s2")
+
+[node name="InteractShape" type="CollisionShape3D" parent="Door407"]
+position = Vector3(-0.44, 1.04, 0)
+shape = SubResource("s3")
+
+[node name="Anchors" type="Node3D" parent="."]
+
+
+[node name="seg1_start" type="Marker3D" parent="Anchors"]
+position = Vector3(32, 0.03, 1.15)
+rotation_degrees = Vector3(0, 0, 0)
+
+[node name="seg2_start" type="Marker3D" parent="Anchors"]
+position = Vector3(32.95, 0.03, -0.75)
+rotation_degrees = Vector3(0, 0, 0)
+
+[node name="seg3_start" type="Marker3D" parent="Anchors"]
+position = Vector3(32, 0.03, -1.2)
+rotation_degrees = Vector3(0, 180, 0)
+
+[node name="seg4_start" type="Marker3D" parent="Anchors"]
+position = Vector3(32.9, 0.03, -1.25)
+rotation_degrees = Vector3(0, -90, 0)
+
+[node name="seg5_start" type="Marker3D" parent="Anchors"]
+position = Vector3(32, 0.03, 1.15)
+rotation_degrees = Vector3(0, 90, 0)
+
+[node name="Door407" type="Marker3D" parent="Anchors"]
+position = Vector3(32.44, 0.01, 0)
+rotation_degrees = Vector3(0, 0, 0)
+
+[node name="Room407LightSwitch" type="Marker3D" parent="Anchors"]
+position = Vector3(32.72, 1.35, -0.16)
+rotation_degrees = Vector3(0, 180, 0)
+
+[node name="RulesPaper407" type="Marker3D" parent="Anchors"]
+position = Vector3(32, 1.4, -0.023)
+rotation_degrees = Vector3(0, 180, 0)
+
+[node name="Locker_Trung" type="Marker3D" parent="Anchors"]
+position = Vector3(33.7, 0, -1.25)
+rotation_degrees = Vector3(0, 90, 0)
+
+[node name="Phone_Trung" type="Marker3D" parent="Anchors"]
+position = Vector3(33.35, 0.46, -2.45)
+rotation_degrees = Vector3(0, 0, 0)
+
+[node name="Bed_Phuc" type="Marker3D" parent="Anchors"]
+position = Vector3(30.65, 1.2, -3)
+rotation_degrees = Vector3(0, 0, 0)
+
+[node name="Bed_Viet" type="Marker3D" parent="Anchors"]
+position = Vector3(30.65, 0.43, -3)
+rotation_degrees = Vector3(0, 0, 0)
+
+[node name="Bed_Dat" type="Marker3D" parent="Anchors"]
+position = Vector3(33.35, 1.2, -3)
+rotation_degrees = Vector3(0, 0, 0)
+
+[node name="Bed_Trung" type="Marker3D" parent="Anchors"]
+position = Vector3(33.35, 0.43, -3)
+rotation_degrees = Vector3(0, 0, 0)
+
+[node name="Slippers407" type="Marker3D" parent="Anchors"]
+position = Vector3(31.025, 0.05, 0.35)
+rotation_degrees = Vector3(0, 0, 0)
+
+[node name="HallBoard" type="Marker3D" parent="Anchors"]
+position = Vector3(38.5, 1.6, 0.19)
+rotation_degrees = Vector3(0, 0, 0)
+
+[node name="HallBoardNote" type="Marker3D" parent="Anchors"]
+position = Vector3(38.7, 1.9, 0.205)
+rotation_degrees = Vector3(0, 0, 0)
+
+[node name="DutyLog" type="Marker3D" parent="Anchors"]
+position = Vector3(39.8, 0.85, 0.42)
+rotation_degrees = Vector3(0, 0, 0)
+
+[node name="Speaker" type="Marker3D" parent="Anchors"]
+position = Vector3(40, 2.45, 0.37)
+rotation_degrees = Vector3(0, 0, 0)
+
+[node name="WashroomTapRunning" type="Marker3D" parent="Anchors"]
+position = Vector3(0.35, 1.03, -2.85)
+rotation_degrees = Vector3(0, 0, 0)
+
+[node name="WashroomMirror" type="Marker3D" parent="Anchors"]
+position = Vector3(0.15, 1.62, -1.85)
+rotation_degrees = Vector3(0, -90, 0)
+
+[node name="WashroomNotice" type="Marker3D" parent="Anchors"]
+position = Vector3(0.15, 1.55, -3.25)
+rotation_degrees = Vector3(0, -90, 0)
+
+[node name="ClotheslineExtraShirt" type="Marker3D" parent="Anchors"]
+position = Vector3(25.5, 1.76, 2.27)
+rotation_degrees = Vector3(0, 0, 0)
+
+[node name="DarkSection" type="Marker3D" parent="Anchors"]
+position = Vector3(16, 1.5, 1.2)
+rotation_degrees = Vector3(0, 0, 0)
+
+[node name="Environment" type="WorldEnvironment" parent="."]
+environment = SubResource("s4")
