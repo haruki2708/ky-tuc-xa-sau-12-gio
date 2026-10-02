@@ -28,7 +28,7 @@
 | T-114 Sửa tiếng ù, vùng âm, đèn tắt thì im tiếng | E | **done**, đã merge; chủ dự án đã duyệt tiếng ù (D-014) |
 | T-121 Kit: ghế nhựa VN, mùng, collision | B | **done**, đã merge; chủ dự án đã duyệt (D-013) |
 | T-122 Nhịp bước chân tự nhiên | A | todo (giao ngay) |
-| T-123 Âm dép lê mềm hơn | E (Claude làm thay) | **done**, đã merge; chờ chủ dự án nghe |
+| T-123 Âm dép lê mềm hơn | E (Claude làm thay) | **done**, đã merge; chủ dự án đã chốt độ to (D-015) |
 | T-110 Kiến trúc RuleSystem và GameState | core | todo |
 | T-113 Chốt bộ luật demo và sơ đồ tầng | Chủ dự án + Claude | todo |
 
