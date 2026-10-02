@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3]
+[gd_scene load_steps=16 format=3]
 
 [ext_resource type="PackedScene" path="res://assets/models/kit/wall_straight.glb" id="1"]
 [ext_resource type="PackedScene" path="res://assets/models/kit/wall_door.glb" id="2"]
@@ -7,6 +7,17 @@
 [ext_resource type="PackedScene" path="res://assets/models/kit/locker.glb" id="5"]
 [ext_resource type="PackedScene" path="res://assets/models/kit/ceiling_fan.glb" id="6"]
 [ext_resource type="PackedScene" path="res://assets/models/kit/plastic_stool.glb" id="7"]
+[ext_resource type="PackedScene" path="res://assets/models/kit/mosquito_net_closed.glb" id="8"]
+[ext_resource type="PackedScene" path="res://assets/models/kit/mosquito_net_open.glb" id="9"]
+
+[sub_resource type="StandardMaterial3D" id="Material_dummy"]
+albedo_color = Color(0.16, 0.10, 0.075, 1)
+roughness = 0.85
+
+[sub_resource type="CapsuleMesh" id="Mesh_dummy"]
+material = SubResource("Material_dummy")
+radius = 0.18
+height = 1.6
 
 [sub_resource type="Environment" id="Environment_studio"]
 background_mode = 1
@@ -71,6 +82,17 @@ position = Vector3(2.58, 0, 0)
 [node name="BunkBed" parent="Models" instance=ExtResource("4")]
 position = Vector3(0.2, 0, 0)
 rotation_degrees = Vector3(0, -22, 0)
+
+[node name="LowerNet" parent="Models/BunkBed" instance=ExtResource("8")]
+
+[node name="UpperNet" parent="Models/BunkBed" instance=ExtResource("9")]
+position = Vector3(0, 0.8800379, 0)
+scale = Vector3(1, 0.7348485, 1)
+
+[node name="SleepingDummy" type="MeshInstance3D" parent="Models/BunkBed"]
+position = Vector3(0, 0.62, 0)
+rotation_degrees = Vector3(90, 0, 0)
+mesh = SubResource("Mesh_dummy")
 
 [node name="Locker" parent="Models" instance=ExtResource("5")]
 position = Vector3(-2.2, 0, 0)

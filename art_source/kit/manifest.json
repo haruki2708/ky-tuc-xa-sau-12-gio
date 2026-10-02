@@ -87,17 +87,45 @@
       ]
     },
     "plastic_stool": {
-      "triangles": 108,
+      "triangles": 320,
       "triangle_limit_exclusive": 500,
       "blender_dimensions_m": [
-        0.32,
-        0.32,
-        0.45
+        0.36,
+        0.36,
+        0.3
       ],
       "godot_dimensions_m": [
-        0.32,
-        0.45,
-        0.32
+        0.36,
+        0.3,
+        0.36
+      ]
+    },
+    "mosquito_net_closed": {
+      "triangles": 360,
+      "triangle_limit_exclusive": 500,
+      "blender_dimensions_m": [
+        0.836,
+        1.936,
+        0.66
+      ],
+      "godot_dimensions_m": [
+        0.836,
+        0.66,
+        1.936
+      ]
+    },
+    "mosquito_net_open": {
+      "triangles": 372,
+      "triangle_limit_exclusive": 500,
+      "blender_dimensions_m": [
+        0.8535,
+        1.936,
+        0.66
+      ],
+      "godot_dimensions_m": [
+        0.8535,
+        0.66,
+        1.936
       ]
     }
   }
