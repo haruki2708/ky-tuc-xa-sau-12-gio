@@ -60,3 +60,11 @@ SIGN_ROOM_408,Phòng 408,Room 408
 SIGN_GATE_LOCKED,Khóa cổng 23:00,Gate locked at 23:00
 SIGN_WASHROOM,Nhà vệ sinh,Washroom
 SIGN_DUTY_DESK,Bàn trực tầng 4,Floor 4 duty desk
+PROMPT_LIGHT_OFF,Tắt đèn,Turn off light
+PROMPT_LIGHT_ON,Bật đèn,Turn on light
+PROMPT_LOCK_DOOR,Chốt cửa,Lock door
+PROMPT_UNLOCK_DOOR,Mở chốt,Unlock door
+PROMPT_READ,Đọc,Read
+PROMPT_PHONE,Xem điện thoại,Check phone
+SUB_PHONE_MIDNIGHT,0 giờ. Báo thức: tắt đèn đi ngủ.,"Midnight. Alarm: lights out, go to sleep."
+UI_INTERACTION_TEST_HINT,WASD: đi · E: tương tác · R: rung điện thoại · Esc: tạm dừng,WASD: move · E: interact · R: ring phone · Esc: pause
