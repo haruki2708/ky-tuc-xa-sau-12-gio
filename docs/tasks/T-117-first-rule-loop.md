@@ -1,5 +1,5 @@
 # T-117 — Luật đầu tiên chạy trọn vòng (đoạn 1–2)
-- Lane: core (Claude) | Trạng thái: doing | Agent: Claude (integrator)
+- Lane: core (Claude) | Trạng thái: review (chờ chủ dự án chơi thử) | Agent: Claude (integrator)
 - Phụ thuộc: T-110, T-112, T-113 (done); **T-129 (A), T-111 (D), T-130 (E)** cung cấp đồ vật, màn xem giấy, sổ tay và âm thanh.
 - Đây là bản cho **cổng kiểm tra P1 (T-120)**: chủ dự án chơi thử cơ chế chính lần đầu.
 
@@ -52,3 +52,9 @@ Chơi được đoạn 1–2 trong `docs/design/RULES.md`:
 - Gắn âm thanh lane E (T-130): loa ở bàn trực đọc nội quy (bật, chuông, rè, tràng rè ở điều 3, tắt), điện thoại rung, tiếng công tắc và chốt, ba lượt gõ cửa.
 - Test luồng chơi chờ theo đồng hồ thật (tối đa 30 giây), vì chuông và tiếng bật/tắt loa phát theo thời gian thật.
 - **Còn lại:** màn xem giấy và sổ tay (lane D, T-111), rồi chơi thử trọn vòng.
+
+### Phiên 2026-10-02 (phần 2b) — Claude
+- Gắn màn xem giấy và sổ tay (T-111). Sửa lỗi E đóng giấy rồi mở lại ngay (xem Review T-111).
+- **Đoạn 1–2 chơi được trọn vòng:** về phòng → chốt cửa (âm "cạch") → đọc tờ nội quy cận cảnh, tự ghi vào sổ tay → điện thoại rung 23:59 → tắt đèn (âm "tách") → 0:00 loa đọc 5 điều, điều 3 rè → phán định điều 1 → 0:10 ba lượt gõ cửa → phán định điều 2 → hậu quả (đèn hành lang chập chờn, đôi dép thứ năm) → "Hết bản thử".
+- `RESULT: 166 passed, 0 failed`; `check` 0 lỗi.
+- **Chưa chơi thử bằng người.** Chờ chủ dự án chơi (cổng kiểm tra P1, T-120).

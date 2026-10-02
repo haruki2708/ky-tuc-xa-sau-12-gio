@@ -1,5 +1,5 @@
 # T-111 — Xem giấy tờ cận cảnh và sổ tay
-- Lane: D (UI và Đa ngôn ngữ) | Trạng thái: todo | Agent:
+- Lane: D (UI và Đa ngôn ngữ) | Trạng thái: done | Agent:
 - Nhánh: `lane-d/T-111-document-view-notebook`
 - Phụ thuộc: **T-128 (lane D) xong trước**, T-110 (done). Đọc `docs/design/RULES.md` mục 3 ("Cách nhận ra dòng giả") và `docs/design/RULE_SYSTEM.md` mục "Dùng từ các lane" và "Giấy tờ".
 - Làm song song với T-129 (lane A) và T-130 (lane E). Integrator ghép ở T-117.
@@ -76,3 +76,13 @@
 - **Integrator (T-117):** instance đúng một `res://ui/document/document_view.tscn` và một `res://ui/notebook/notebook.tscn` ở gốc `main.tscn`; giữ layer 15, trên filter PS1 (5)/HUD (10), dưới pause menu (20). Lane D không tự sửa scene main.
 - **Phối hợp Lane A/core:** nạp bộ luật demo trước tương tác; đồ vật đọc gọi `DocumentData.mark_rules_read()` rồi phát `EventBus.document_opened(id)` theo hợp đồng hiện có. Màn xem giấy chỉ hiển thị, không tự ghi luật lần nữa; scene F6 mô phỏng đúng luồng này.
 - Không cần thay đổi signal, autoload, input action hay cài đặt dự án. Không có câu hỏi mới về luật chơi/cốt truyện.
+
+## Review (integrator, 2026-10-02)
+**Kết quả: chấp nhận, đã merge vào `main`, kèm một sửa lỗi tích hợp do Claude làm thay (chủ dự án đồng ý).** Sau merge và ghép: `test.ps1` → `RESULT: 166 passed, 0 failed`; `check.ps1` → `RESULT: check 0 error(s)`.
+
+- Đúng phạm vi. Màn xem giấy đủ 5 kiểu, chữ sắc nét; sổ tay gom theo nguồn, giữ chữ rè của loa, nút Nghi ngờ đánh dấu đỏ, không lộ `is_fake`. Lớp chung `reading_overlay.gd` lo việc dừng game và chuột; menu tạm dừng nhường Esc. 10 test, 6 ảnh.
+- `strings.csv`: xung đột cuối file với key T-117/T-129, đã gộp (92 key, không trùng).
+- **Lỗi tích hợp tìm ra khi ghép với Player thật (T-129):** đóng giấy bằng E lúc *nhấn* thì game chạy lại ngay trong khung hình đó; Player vẫn thấy `interact` "vừa nhấn" và đang nhìn tờ giấy, nên **mở lại ngay**, người chơi bị kẹt. Test riêng của lane D không thể bắt được vì không có Player. **Claude sửa** (commit `d57d0ce`): `document_view.gd` đóng khi *nhả* `interact`; Esc và Tab vẫn đóng khi nhấn. Test UI của lane D vẫn PASS.
+- **Integrator đã ghép (T-117):** `DocumentView`, `Notebook` vào `main.tscn`. Test core `test_reading_the_door_paper_opens_and_closes_cleanly`: Player trong phòng nhìn tờ giấy, E mở, E đóng và không mở lại, Tab mở sổ tay, Esc đóng sổ tay mà không mở menu tạm dừng.
+
+**Chấm điểm (1–5):** phạm vi 5 · checklist 5 · test 4 (thiếu kịch bản cùng Player, nhưng khi đó Player chưa có giấy để đọc) · chất lượng code 5 · bàn giao trung thực 5 · số vòng sửa 0 (sửa do integrator làm khi ghép).
