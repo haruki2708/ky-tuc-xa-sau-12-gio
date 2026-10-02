@@ -19,3 +19,44 @@ signal game_paused(paused: bool)
 ## A value in user://settings.cfg changed (see docs/SETTINGS.md). Readers reload
 ## the key they care about; the writer saves the file before emitting.
 signal settings_changed(section: String, key: String)
+
+# --- Game state (GameState autoload) ---
+
+## In-game clock changed. minutes counts from 00:00 of the first day and keeps
+## growing past midnight (23:50 = 1430, 00:30 = 1470).
+signal time_changed(minutes: int)
+
+## Story segment changed (e.g. &"tutorial", &"roll_call").
+signal segment_changed(segment: StringName)
+
+## "Deviation" level changed. reason is usually the rule id that caused it.
+signal deviation_changed(level: int, reason: StringName)
+
+## A story flag changed (door locked, light switched off...).
+signal flag_changed(flag: StringName, value: Variant)
+
+# --- Night rules (RuleSystem autoload) ---
+
+## The player read a rule line for the first time (notebook adds it).
+signal rule_read(rule_id: StringName)
+
+## The player marked or unmarked a rule line as suspicious in the notebook.
+signal rule_suspicion_changed(rule_id: StringName, suspected: bool)
+
+## A ruled situation was decided. outcome is one of RuleSystem.OUTCOME_*.
+## rule_id is empty when no line governs the situation.
+signal rule_resolved(situation: StringName, action: StringName, outcome: StringName, rule_id: StringName)
+
+## A wrong choice triggers a world change. Level/audio/UI lanes perform it.
+signal consequence_triggered(consequence: StringName, rule_id: StringName)
+
+## A fatal line was broken. Game flow reloads the last checkpoint.
+signal player_failed(rule_id: StringName)
+
+# --- Checkpoints (Checkpoint helper) ---
+
+## A checkpoint was written. id names the place the player resumes from.
+signal checkpoint_saved(checkpoint_id: StringName)
+
+## A checkpoint was restored. Scenes move the player to the matching spawn.
+signal checkpoint_loaded(checkpoint_id: StringName)

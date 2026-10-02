@@ -11,10 +11,11 @@
   - lớp `Interactable`,
   - scene `main.tscn` là hành lang greybox,
   - song ngữ CSV (vi/en).
-- Test runner headless chạy được: `tools/test.ps1`, 70/70 test PASS (sau T-101…T-105, T-114, T-121…T-123). Có thêm `check.ps1`, `capture.ps1`, `package.ps1` và autoload `Autoplay` để phát lại input (xem `tools/README.md`).
+- Test runner headless chạy được: `tools/test.ps1`, 83/83 test PASS (sau T-101…T-105, T-110, T-114, T-121…T-123). Có thêm `check.ps1`, `capture.ps1`, `package.ps1` và autoload `Autoplay` để phát lại input (xem `tools/README.md`).
 - Export chạy được: `tools/export.ps1` ra `build/windows/KyTucXa.exe`. Đã chạy thử, mở được.
 - Chụp khung hình bằng Movie Maker chạy được, integrator xem được ảnh.
 - Blender 5.2.2 LTS portable ở `D:\Tools\Blender\5.2.2`; bộ 7 mô hình ký túc xá (T-102), preview ở `art_source/kit/previews/`.
+- Lõi luật chơi (T-110): autoload `GameState`, `RuleSystem`, helper `Checkpoint`; chưa có nội dung luật (chờ T-113).
 - Tài liệu: `AGENTS.md`, `docs/PLAN.md`, `docs/DECISIONS.md`, `docs/design/GDD.md`, task card cho tuần đầu.
 
 ## Đang làm / tiếp theo
@@ -34,7 +35,7 @@
 | T-124 Dọn công cụ QA, lọc file build | C | todo (giao ngay) |
 | T-125 Player theo menu tạm dừng và cài đặt | A | todo (giao ngay; merge sau T-116) |
 | T-126 Bus riêng cho bước chân | E | todo (giao ngay) |
-| T-110 Kiến trúc RuleSystem và GameState | core | todo |
+| T-110 Kiến trúc RuleSystem và GameState | core | **done**, đã merge (xem `docs/design/RULE_SYSTEM.md`) |
 | T-113 Chốt bộ luật demo và sơ đồ tầng | Chủ dự án + Claude | todo |
 
 ## Đang vướng

@@ -4,7 +4,7 @@ Mỗi việc sẽ được tách thành task card chi tiết khi đến lượt.
 
 | ID | Việc | Lane | Phụ thuộc |
 |---|---|---|---|
-| T-110 | Kiến trúc lõi: `GameState` (giờ trong game, đoạn chơi, mức "lệch"), `RuleSystem` (dữ liệu luật, cờ giả, điều kiện và hậu quả), lưu checkpoint | core (Claude) | P0 |
+| T-110 | **Xong.** Kiến trúc lõi: `GameState`, `RuleSystem`, `Checkpoint` (`T-110-rule-system.md`, thiết kế `docs/design/RULE_SYSTEM.md`) | core (Claude) | P0 |
 | T-113 | **Chốt bộ luật demo, câu chữ nội quy, sơ đồ tầng** (cùng chủ dự án) → `docs/design/RULES.md`, `docs/design/LAYOUT.md` | Chủ dự án + Claude | — |
 | T-111 | Xem giấy tờ cận cảnh (chữ sắc nét, lấy từ file dịch) và sổ tay (các luật đã đọc, đánh dấu nghi ngờ) | A | T-101, T-104, T-110 |
 | T-112 | Dựng greybox tầng ký túc xá theo `LAYOUT.md`, mỗi phòng là một scene con, dùng bộ module của T-102. Mọi sàn phải có metadata `surface` (xem Review T-105) | B | T-102, T-113 |
