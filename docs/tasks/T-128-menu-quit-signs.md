@@ -1,5 +1,5 @@
 # T-128 — Nút Thoát qua `App.quit()` và chữ trên biển tầng 4
-- Lane: D (UI và Đa ngôn ngữ) | Trạng thái: todo | Agent:
+- Lane: D (UI và Đa ngôn ngữ) | Trạng thái: done | Agent:
 - Nhánh: `lane-d/T-128-menu-quit-signs`
 - Phụ thuộc: T-116 (done), T-112 (done). Đọc mục **Review** trong `docs/tasks/T-112-floor4-greybox.md`.
 
@@ -52,3 +52,13 @@
 
 ### Trở ngại
 - Không còn bị chặn. Sandbox gặp lỗi khởi chạy Windows `1223` và chặn mạng/quyền ghi `user://`; các lệnh cần thiết đã chạy thành công qua cấp quyền ngoài sandbox, trong `D:\GAME_WORK\lane-d`.
+
+## Review (integrator, 2026-10-02)
+**Kết quả: chấp nhận, đã merge vào `main`.** Sau merge: `test.ps1` → `RESULT: 134 passed, 0 failed`; `check.ps1` → `RESULT: check 0 error(s)`.
+
+- Đúng phạm vi, gọn. Nút Thoát đi qua `App.quit()`; có đường dự phòng cho scene thử F6. Test dùng App giả, không làm thoát runner.
+- 11 key biển tầng 4 đủ `vi` và `en`. Xung đột cuối `strings.csv` với key `RULE_HEADER`, `RULE_3_GARBLED` (T-117) đã được integrator gộp (62 key, không trùng).
+- **Integrator đã thử thật:** mở `main.tscn`, mở menu tạm dừng, bấm Thoát game, 5 lần liền: mã thoát 0, không có `ERROR` hay "resources still in use".
+- Handoff trung thực: ghi rõ chưa thử thoát thật bằng thao tác tay.
+
+**Chấm điểm (1–5):** phạm vi 5 · checklist 5 · test 5 · chất lượng code 5 · bàn giao trung thực 5 · số vòng sửa 0.
