@@ -25,7 +25,8 @@ func test_hum_small_speaker_report_matches_asset() -> void:
 		assert_true(entry.has("highpass_200hz_lufs"), "HP200 measured")
 		assert_true(is_finite(float(entry.get("highpass_200hz_lufs", INF))), "finite HP200 loudness")
 		assert_true(float(entry.get("highpass_200hz_loss_lu", INF)) <= 10.0, "small-speaker loss <=10 LU")
-		assert_true(absf(float(entry["lufs"]) + 24.0) <= 1.0, "hum at -24 LUFS")
+		# Owner-chosen level (D-016), quieter than the -24 LUFS ambience default.
+		assert_true(absf(float(entry["lufs"]) + 32.0) <= 1.0, "hum at -32 LUFS")
 		assert_true(float(entry["boundary_delta"]) <= 0.02, "loop seam threshold")
 		assert_eq(entry["sha256"], FileAccess.get_sha256("res://audio/ambience/fluorescent_hum.ogg"), "measurement matches OGG;")
 	assert_true(found, "hum measurement in report")
