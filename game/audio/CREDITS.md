@@ -1,4 +1,4 @@
-# Nguồn âm thanh T-105 / T-114 / T-123 / T-130
+# Nguồn âm thanh T-105 / T-114 / T-123 / T-130 / T-131
 
 Toàn bộ WAV và OGG dưới đây được **tự tổng hợp**, không lấy mẫu từ game, thư viện hoặc bản ghi âm bên ngoài. Công thức và seed nằm trong [process.py](../../audio_source/process.py).
 
@@ -50,3 +50,23 @@ Mono PCM16/48 kHz ở `audio_source/raw/`, OGG Vorbis q4 ở `game/audio/`. Cắ
 | `phone_vibrate.wav` | `sfx/phone_vibrate.ogg` | Motor 170/340 Hz, xung rung 0.8 s và rattle kim loại 1850/2730 Hz; loop 2.4 s; −36 LUFS | T-130/process.py trên; Lane E; CC0 1.0 |
 | `light_switch.wav` | `sfx/light_switch.ogg` | Hai xung click nhựa và cộng hưởng 1250 Hz; 0.5 s; −36 LUFS | T-130/process.py trên; Lane E; CC0 1.0 |
 | `door_latch.wav` | `sfx/door_latch.ogg` | Ma sát kéo và hai chạm kim loại 940/2300 Hz; 0.65 s; −36 LUFS | T-130/process.py trên; Lane E; CC0 1.0 |
+
+## T-131 — hiệu ứng hù dọa và truy đuổi
+
+Nguồn cho **từng WAV/OGG** trong bảng: [T-131/process.py](https://github.com/tuaanh666/ky-tuc-xa-sau-12-gio/blob/lane-e/T-131-scare-sounds/audio_source/process.py), hàm `synthesize_scare`. Tác giả: Lane E / dự án “Ký túc xá sau 12 giờ”. Giấy phép waveform gốc và OGG: **CC0 1.0**. Khai báo AI: **OpenAI Codex** viết mã tổng hợp/processing, Python 3 tổng hợp và FFmpeg 9.0.2 xử lý. Không dùng giọng thu, TTS, âm từ game khác hoặc mẫu bên thứ ba.
+
+Định dạng raw mono PCM16/48 kHz, OGG mono Vorbis q4/48 kHz. Lọc 35 Hz–11 kHz, chuẩn hóa và đo OGG theo pipeline; one-shot fade 8/80 ms. Các âm tên `slipper_` không qua compressor để giữ tiếp đất/đế vỗ; các one-shot khác dùng compressor đã có. Breath crossfade 1 s, raw 9 s thành loop 8 s. Mức ghi dưới đây là mục tiêu; số đo thật và hash nằm trong `audio_source/build_report.json`.
+
+| WAV gốc | OGG | Công thức / seed / mục tiêu | Nguồn, tác giả, giấy phép |
+|---|---|---|---|
+| `sting_low.wav` | `sfx/sting_low.ogg` | Nốt 64 Hz, họa âm/rung nhẹ, attack 0.5 s, decay mềm; 13101; −32 LUFS | T-131/process.py trên; Lane E; CC0 1.0 |
+| `sting_hit.wav` | `sfx/sting_hit.ogg` | Cộng hưởng kim loại 147/431/1037/2213 Hz, tanh distortion và burst nhiễu, đuôi ngân; 13102; −20 LUFS | T-131/process.py trên; Lane E; CC0 1.0 |
+| `slipper_place.wav` | `sfx/slipper_place.ogg` | Hai tiếp đất mềm cách 0.215 s, noise lọc thấp và thân 185 Hz; 13103; −32 LUFS | T-131/process.py trên; Lane E; CC0 1.0 |
+| `tube_cut.wav` | `sfx/tube_cut.ogg` | Bụp 110 Hz decay ngắn và tách nhiễu cao nhỏ; 13104; −32 LUFS | T-131/process.py trên; Lane E; CC0 1.0 |
+| `breath_close.wav` | `ambience/breath_close.ogg` | Nhiễu dải trung/cao với envelope hít/thở và rasp 31/47.3 Hz; 13105; −36 LUFS | T-131/process.py trên; Lane E; CC0 1.0 |
+| `slipper_rush_01.wav` | `sfx/slipper_rush_01.ogg` | Tiếp đất trầm, noise ma sát, vỗ đế sau 0.074 s; 13106; −34 LUFS | T-131/process.py trên; Lane E; CC0 1.0 |
+| `slipper_rush_02.wav` | `sfx/slipper_rush_02.ogg` | Biến thể cộng hưởng/độ trễ 0.077 s; 13107; −34 LUFS | T-131/process.py trên; Lane E; CC0 1.0 |
+| `slipper_rush_03.wav` | `sfx/slipper_rush_03.ogg` | Biến thể cộng hưởng/độ trễ 0.080 s; 13108; −34 LUFS | T-131/process.py trên; Lane E; CC0 1.0 |
+| `slipper_rush_04.wav` | `sfx/slipper_rush_04.ogg` | Biến thể cộng hưởng/độ trễ 0.083 s; 13109; −34 LUFS | T-131/process.py trên; Lane E; CC0 1.0 |
+| `whisper_co.wav` | `sfx/whisper_co.ogg` | Phụ âm hơi ngắn, nhiễu qua cộng hưởng 480/850/2400 Hz tạo hơi nguyên âm, không voiced pitch; 13110; −30 LUFS | T-131/process.py trên; Lane E; CC0 1.0 |
+| `net_billow.wav` | `sfx/net_billow.ogg` | Nhiễu vải phồng gió, attack mềm và rung vải tăng tốc; 13111; −32 LUFS | T-131/process.py trên; Lane E; CC0 1.0 |

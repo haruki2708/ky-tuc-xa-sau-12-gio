@@ -15,7 +15,7 @@ pwsh tools/test.ps1
 
 ## Các bước và kiểm chứng
 
-1. Tổng hợp 28 WAV PCM16 mono 48 kHz bằng Python `math`, `random`, `wave`, không có bản ghi âm bên ngoài. Chi tiết nguồn và công cụ ở `game/audio/CREDITS.md`.
+1. Tổng hợp 39 WAV PCM16 mono 48 kHz bằng Python `math`, `random`, `wave`, không có bản ghi âm bên ngoài. Chi tiết nguồn và công cụ ở `game/audio/CREDITS.md`.
 2. Cắt theo thời lượng định nghĩa trong `ASSETS`, lọc high-pass 35 Hz và low-pass 11 kHz. One-shot qua compressor (threshold 0.025, ratio 6, attack 0.1 ms, release 80 ms) để kiểm soát đỉnh transient trước chuẩn hóa; fade đầu 8 ms, cuối 80 ms.
 3. Loop: crossfade tuyến tính 1 giây giữa đuôi và đầu; xoay điểm nối để hai biên còn lại là các mẫu liền nhau từ nguồn. Hum mới chọn thêm điểm nối có độ dốc/biên độ thấp nhằm giảm sai lệch biên do codec ở phần họa âm cao. Loop quạt/đèn dài 12 giây, côn trùng và xe máy xa dài 20 giây.
 4. Đo và chuẩn hóa hai lượt bằng [loudnorm](https://ffmpeg.org/ffmpeg-filters.html#loudnorm): Ambience −24 LUFS, SFX −18 LUFS (ngoại lệ trong `TARGET_OVERRIDES`: hum −44, dép đi −56, dép chạy −53), true peak mục tiêu −2 dBTP. Xuất mono OGG Vorbis quality 4, 48 kHz; bỏ metadata, bật bitexact cho muxer/encoder. Đo OGG rồi hiệu chỉnh gain tối đa hai lần nếu lệch >0.5 LU, có giới hạn theo headroom; luôn encode lại từ PCM, không nối nhiều lượt encode lossy.
@@ -102,3 +102,33 @@ Mở `res://audio/test/segment12_test.tscn`, F6, hoặc:
 | Esc | Thoát qua `App.quit()` |
 
 Đổi phím thử dừng âm trước để nghe riêng. Static khi solo F7 phát ở gain gốc; trong chuỗi Speaker nó có gain nền −12 dB. Tham số QA `-- --segment12-preview --quit-after-frames=210` tự chạy lượt thử với 0.6 giây/dòng rồi thoát sạch qua App; chỉ phục vụ kiểm tra khởi chạy. **Chưa nghe 11 âm mới và mix Speaker bằng tai**; phép đo/headless không thay cho chủ dự án duyệt chất âm, mức âm thực và độ liền của loop.
+
+## T-131: âm hù dọa và truy đuổi
+
+11 âm mới dùng `synthesize_scare`, seed 13101–13111. `SEGMENT12_NAMES` giới hạn riêng dải 13000–13099 để công thức mới không đổi âm T-130. Không đổi bus layout, mức âm hay công thức của 28 âm đã duyệt. Bản raw/OGG tái tạo bằng cùng lệnh ở đầu tài liệu.
+
+Mở `res://audio/test/scare_test.tscn` bằng F6 trong editor, hoặc:
+
+```powershell
+& 'D:\Tools\Godot\Godot_v4.7.2-stable_win64_console.exe' --path game res://audio/test/scare_test.tscn --windowed --resolution 960x540
+```
+
+| Phím | File (bỏ đuôi .ogg) | Thời lượng OGG | Mục tiêu LUFS | Bus tích hợp |
+|---|---|---|---|---|
+| F1 | `sfx/sting_low` | 3 s | −32 | SFX |
+| F2 | `sfx/sting_hit` | 2 s | −20 | SFX |
+| F3 | `sfx/slipper_place` | 0.9 s | −32 | SFX |
+| F4 | `sfx/tube_cut` | 0.5 s | −32 | SFX |
+| F5 | `ambience/breath_close` | 8 s, loop | −36 | SFX |
+| F6–F9 | `sfx/slipper_rush_01…04` | 0.6 s mỗi file | −34 | SFX |
+| F10 | `sfx/whisper_co` | 1.5 s | −30 | Voice |
+| F11 | `sfx/net_billow` | 1.1 s | −32 | SFX |
+| 0 / Esc | Dừng / thoát qua App | | | |
+
+Fixture không tự phát; mỗi phím dừng âm trước, phát một file ở gain 0 dB, pitch 1 qua `AudioStreamPlayer` để nghe mức asset không bị suy hao khoảng cách. Không có chữ mới trên màn hình; bảng phím ở đây. F5 lặp đến khi bấm 0 hoặc chọn âm khác. Nghe loop ít nhất 60 giây để đánh giá nhịp thở và điểm nối. F2 là âm lớn nhất theo card (hơn F1 khoảng 12 LU).
+
+Sting là hiệu ứng nên chọn SFX; tiếng thì thầm là hơi giọng nên chọn Voice, thuận tiện điều chỉnh riêng. Hơi thở và bước chân thực thể là âm truy đuổi nên cũng dùng SFX, **không dùng Footsteps**. Dù breath lưu dưới ambience để pipeline tạo loop, bus phát vẫn do node quyết định. OGG không tự chứa bus: Integrator/Lane A phải gán bus khi tạo player. Có thể dùng `AudioStreamPlayer3D` ở vị trí thực thể; không dùng `FootstepPlayer` của người chơi cho bank rush. Caller quyết định thời điểm, nhịp bước, khoảng cách, dừng breath khi kết thúc truy đuổi và biến thể không lặp liên tiếp; task này không thêm các quyết định gameplay đó.
+
+`sting_low` có attack mềm 0.5 s, nốt 64 Hz với họa âm/rung nhẹ rồi tắt dần; hit gồm kim loại méo và burst nhiễu. Dép đặt gồm hai xung 0.025/0.24 s, rush có tiếp đất trầm và đế vỗ sát hơn bank người chơi. Hơi thở là nhiễu điều biên khàn theo chu kỳ 4 s; raw 9 s crossfade thành loop 8 s. `whisper_co` là hơi nhiễu qua cộng hưởng nguyên âm, không TTS, không giọng nói thu âm và chưa xác nhận nghe ra chữ “Có”. Phụ đề và xử lý `reduce_scares` thuộc bên tích hợp theo D-024, không tự nối settings/StoryDirector ở lane E.
+
+Test kiểm tra decode/loop toàn bộ 39 OGG, hash file khớp report, LUFS của 11 âm mới trong ±1 LU, hit lớn hơn low, phím thử và bus. **Chưa nghe bằng tai cả 11 âm T-131**; số đo và test không xác nhận chất âm, độ giật mình, âm giống dép/vải hay tiếng thì thầm. Cần chủ dự án nghe thử trước khi duyệt cảm nhận.

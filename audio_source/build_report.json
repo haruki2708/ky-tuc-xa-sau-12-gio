@@ -338,6 +338,138 @@
       "true_peak_db": -22.89,
       "loop": false,
       "boundary_delta": 5.1e-06
+    },
+    {
+      "file": "game/audio/sfx/sting_low.ogg",
+      "sha256": "2067adc402e3231154bc2632fc00de8802b8fb7899403c9dc036a4700ec2c4c6",
+      "raw_sha256": "0a89d123105d7df85201fed072881c5497222fbc5a8d6ad501b067b2191cfc8f",
+      "bytes": 23286,
+      "seconds": 3.0,
+      "channels": 1,
+      "lufs": -32.01,
+      "true_peak_db": -22.03,
+      "loop": false,
+      "boundary_delta": 5.6e-06
+    },
+    {
+      "file": "game/audio/sfx/sting_hit.ogg",
+      "sha256": "cb55a0863b8af99c3ec746c0db27b55c7914ab06c205f7933ff1bfe0ebdf7cfe",
+      "raw_sha256": "440326d30e5e8421c25eb260b359561abe4d000609c031e5f8981675967c1385",
+      "bytes": 21553,
+      "seconds": 2.0,
+      "channels": 1,
+      "lufs": -19.93,
+      "true_peak_db": -9.86,
+      "loop": false,
+      "boundary_delta": 4.6e-06
+    },
+    {
+      "file": "game/audio/sfx/slipper_place.ogg",
+      "sha256": "8a35ffadcbcca7545b906f01513987f3021c041f89dc068a694673f394bbded2",
+      "raw_sha256": "edca9f7753e145fa55cec69e045de2ee628aba001b2bdd42c22e282e4a71c36e",
+      "bytes": 8150,
+      "seconds": 0.8973,
+      "channels": 1,
+      "lufs": -32.17,
+      "true_peak_db": -10.72,
+      "loop": false,
+      "boundary_delta": 0.0
+    },
+    {
+      "file": "game/audio/sfx/tube_cut.ogg",
+      "sha256": "0db6ab9eb3509520646a62530fce0bf148a7408ae2f26f7e2bbe1d1e48e48ae2",
+      "raw_sha256": "438bf0ec0bfcb175258d8089efaec897f71d7fbdd98715542c33647fe0b28878",
+      "bytes": 5349,
+      "seconds": 0.4973,
+      "channels": 1,
+      "lufs": -32.05,
+      "true_peak_db": -13.27,
+      "loop": false,
+      "boundary_delta": 0.0
+    },
+    {
+      "file": "game/audio/ambience/breath_close.ogg",
+      "sha256": "815b15f5925f8d52dc8da1543c355195c7e4fa67fa5446df937f515901b83ec8",
+      "raw_sha256": "8a5afa2a8837a0dc2588d221246a922b0b7d68cc083d963318f23103ea735481",
+      "bytes": 59302,
+      "seconds": 8.0,
+      "channels": 1,
+      "lufs": -36.35,
+      "true_peak_db": -22.42,
+      "loop": true,
+      "boundary_delta": 0.0072131
+    },
+    {
+      "file": "game/audio/sfx/slipper_rush_01.ogg",
+      "sha256": "2864b244f005a1029fb440e66605330c91d28e5146b9e36a252be90da0b6d9a2",
+      "raw_sha256": "b80ae37a3c807a2796bc45b994a7cb7d223b13ae82391708743de49ba4d23c26",
+      "bytes": 7472,
+      "seconds": 0.5973,
+      "channels": 1,
+      "lufs": -34.19,
+      "true_peak_db": -16.4,
+      "loop": false,
+      "boundary_delta": 0.0
+    },
+    {
+      "file": "game/audio/sfx/slipper_rush_02.ogg",
+      "sha256": "c21f158cf4709149c743249f4f8c95cfb0ecebae2bf7a4ebc0fe96d58620e394",
+      "raw_sha256": "13e52346527349c49185a2951e9e09ab250cbb4f916cd7bf8f029157ae2b9f51",
+      "bytes": 7517,
+      "seconds": 0.5973,
+      "channels": 1,
+      "lufs": -34.19,
+      "true_peak_db": -15.21,
+      "loop": false,
+      "boundary_delta": 0.0
+    },
+    {
+      "file": "game/audio/sfx/slipper_rush_03.ogg",
+      "sha256": "ce3e60c5f3fa1cc62973808f5bfa1bd3dc52d423bc254606f7ab8153401174c5",
+      "raw_sha256": "87d00501c0c82ea79ef72924d25f9c461eea4b9d240a0f2548eeff5bdd77349b",
+      "bytes": 7538,
+      "seconds": 0.5973,
+      "channels": 1,
+      "lufs": -34.19,
+      "true_peak_db": -14.78,
+      "loop": false,
+      "boundary_delta": 0.0
+    },
+    {
+      "file": "game/audio/sfx/slipper_rush_04.ogg",
+      "sha256": "265de61f230b47398a82fb1e0380faa4d208b39d813cb2f4dfb88a99160b9b7e",
+      "raw_sha256": "7185743a0159b21016dab781674bb68f98357e71804e4521a7cb7cd86bf85c40",
+      "bytes": 7501,
+      "seconds": 0.62,
+      "channels": 1,
+      "lufs": -34.08,
+      "true_peak_db": -15.65,
+      "loop": false,
+      "boundary_delta": 0.0
+    },
+    {
+      "file": "game/audio/sfx/whisper_co.ogg",
+      "sha256": "11cfcba389ac8a829d889d6c36d6861f6147f2e0d2ad07262f6c53f64c8143a5",
+      "raw_sha256": "ebf99fcda47acc5f0737733191e88e668760e25047fe617c8c8147ec8fb81a8a",
+      "bytes": 16191,
+      "seconds": 1.5,
+      "channels": 1,
+      "lufs": -30.2,
+      "true_peak_db": -18.77,
+      "loop": false,
+      "boundary_delta": 7.61e-05
+    },
+    {
+      "file": "game/audio/sfx/net_billow.ogg",
+      "sha256": "d5ce94265439dbce953883869d539e178c01ae39398e0862d55e9340197d1a43",
+      "raw_sha256": "78641292563452ddc985b37016dca06528fabd52e96cc373bd929eb7f71fca4d",
+      "bytes": 12898,
+      "seconds": 1.1,
+      "channels": 1,
+      "lufs": -32.36,
+      "true_peak_db": -19.56,
+      "loop": false,
+      "boundary_delta": 4e-07
     }
   ]
 }
