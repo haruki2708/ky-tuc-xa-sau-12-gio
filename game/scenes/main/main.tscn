@@ -1,6 +1,7 @@
 [gd_scene format=3]
 
 [ext_resource type="PackedScene" path="res://scenes/player/player.tscn" id="1_player"]
+[ext_resource type="PackedScene" path="res://ui/hud/hud.tscn" id="2_hud"]
 
 [sub_resource type="Environment" id="Environment_main"]
 background_mode = 1
@@ -76,3 +77,5 @@ omni_range = 6.0
 
 [node name="Player" parent="." instance=ExtResource("1_player")]
 position = Vector3(0, 0, 1)
+
+[node name="HUD" parent="." instance=ExtResource("2_hud")]

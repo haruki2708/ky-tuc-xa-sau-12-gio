@@ -30,6 +30,10 @@ window/size/mode=2
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
+[gui]
+
+theme/custom="res://ui/theme/main_theme.tres"
+
 [internationalization]
 
 locale/translations=PackedStringArray("res://localization/strings.vi.translation", "res://localization/strings.en.translation")
