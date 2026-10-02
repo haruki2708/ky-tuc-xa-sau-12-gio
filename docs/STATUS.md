@@ -11,7 +11,7 @@
   - lớp `Interactable`,
   - scene `main.tscn` là hành lang greybox,
   - song ngữ CSV (vi/en).
-- Test runner headless chạy được: `tools/test.ps1`, 84/84 test PASS (sau T-101…T-105, T-110, T-113, T-114, T-121…T-123). Có thêm `check.ps1`, `capture.ps1`, `package.ps1` và autoload `Autoplay` để phát lại input (xem `tools/README.md`).
+- Test runner headless chạy được: `tools/test.ps1`, 111/111 test PASS (sau T-101…T-105, T-110, T-113, T-114, T-116, T-121…T-123, T-125). Có thêm `check.ps1`, `capture.ps1`, `package.ps1` và autoload `Autoplay` để phát lại input (xem `tools/README.md`).
 - Export chạy được: `tools/export.ps1` ra `build/windows/KyTucXa.exe`. Đã chạy thử, mở được.
 - Chụp khung hình bằng Movie Maker chạy được, integrator xem được ảnh.
 - Blender 5.2.2 LTS portable ở `D:\Tools\Blender\5.2.2`; bộ 7 mô hình ký túc xá (T-102), preview ở `art_source/kit/previews/`.
@@ -30,11 +30,11 @@
 | T-121 Kit: ghế nhựa VN, mùng, collision | B | **done**, đã merge; chủ dự án đã duyệt (D-013) |
 | T-122 Nhịp bước chân tự nhiên | A | **done**, đã merge; chủ dự án đã duyệt nhịp (D-018) |
 | T-123 Âm dép lê mềm hơn | E (Claude làm thay) | **done**, đã merge; chủ dự án đã chốt độ to (D-015) |
-| T-116 Menu tạm dừng và cài đặt | D | todo (giao ngay; merge trước T-125) |
+| T-116 Menu tạm dừng và cài đặt | D | **done**, đã merge |
 | T-112 Dựng greybox tầng 4 | B | todo (giao ngay, làm trước T-118) |
 | T-118 Filter PS1, sửa import texture | B | todo (sau T-112) |
 | T-124 Dọn công cụ QA, lọc file build | C | todo (giao ngay) |
-| T-125 Player theo menu tạm dừng và cài đặt | A | todo (giao ngay; merge sau T-116) |
+| T-125 Player theo menu tạm dừng và cài đặt | A | **done**, đã merge |
 | T-126 Bus riêng cho bước chân | E | todo (giao ngay) |
 | T-110 Kiến trúc RuleSystem và GameState | core | **done**, đã merge (xem `docs/design/RULE_SYSTEM.md`) |
 | T-113 Chốt bộ luật demo và sơ đồ tầng | Chủ dự án + Claude | **done** (D-020); dữ liệu `game/data/rules/demo.tres` |
@@ -46,5 +46,6 @@
 - Hành lang xám đi lại được: WASD đi, Shift chạy, chuột nhìn, Esc bắt/thả chuột. Có HUD (tâm ngắm, gợi ý, phụ đề), font tiếng Việt, tiếng bước chân dép lê, tiếng ù đèn tuýp và côn trùng đêm. Chưa có đồ vật để tương tác trong hành lang chính.
 - Nghe thử vùng âm và tiếng ù mới: mở `res://audio/test/zones_test.tscn`, F6; đi giữa hai phòng, phím L bật/tắt đèn, F cho đèn chập chờn.
 - Nghe thử âm thanh: mở `res://audio/test/audio_test.tscn`, F6; phím 0–7 để nghe riêng từng nguồn.
+- Trong game: Esc mở menu tạm dừng (Tiếp tục, Cài đặt, Thoát). Cài đặt có âm lượng, độ nhạy chuột, nhún đầu, ngôn ngữ.
 - Thử HUD và đổi ngôn ngữ: mở `res://ui/hud/hud_test.tscn`, F6.
 - Thử tương tác: mở `res://scenes/player/player_test.tscn`, F6, nhìn hộp xanh bấm E để bật/tắt đèn.

@@ -1,5 +1,5 @@
 # T-125 — Player làm theo menu tạm dừng và cài đặt
-- Lane: A (Gameplay) | Trạng thái: todo | Agent:
+- Lane: A (Gameplay) | Trạng thái: done | Agent:
 - Nhánh: `lane-a/T-125-player-settings`
 - Phụ thuộc: T-122 (done). **Đọc `docs/SETTINGS.md` trước khi làm.** Làm song song với T-116 (lane D, menu). Integrator merge T-116 **trước** T-125.
 
@@ -56,3 +56,13 @@ Lý do: nếu cả Player lẫn menu cùng xử lý Esc, cờ bắt chuột củ
 - Không cần sửa thêm file ngoài phạm vi hoặc thêm signal/settings key. **Integrator merge T-116 trước T-125**, đúng thứ tự card; sau đó kiểm tra luồng menu thật. Khi chưa có menu, Esc không còn được Player xử lý theo yêu cầu task.
 - Không còn blocker code/test/push hoặc phần code đang làm dở. Kiểm tra tích hợp menu và chuột/phím thật vẫn chờ T-116.
 - GitHub bị chặn mạng trong sandbox, sau đó sandbox Windows báo lỗi tạo tiến trình 1326; đã dùng cơ chế cấp quyền ngoài sandbox cho các lệnh cần thiết. Không cài phần mềm, không thêm plugin, không làm việc trong bản tích hợp.
+
+## Review (integrator, 2026-10-02)
+**Kết quả: chấp nhận, đã merge vào `main`** (sau T-116, đúng thứ tự). Sau merge: `test.ps1` → `RESULT: 110 passed, 0 failed`; `check.ps1` → `RESULT: check 0 error(s)`.
+
+- Đúng phạm vi. Bỏ hẳn xử lý Esc; bắt và thả chuột theo `game_paused`. Đọc độ nhạy và nhún đầu theo hợp đồng: sai kiểu, ngoài khoảng, NaN hay vô cực thì dùng mặc định, không kẹp. Không ghi file cài đặt.
+- 8 test mới, kể cả đổi cài đặt khi cây scene đang dừng và tự gỡ kết nối signal khi Player bị xóa.
+- Tích hợp với menu T-116 đã được kiểm bằng test core (Esc trong `main.tscn`).
+- Handoff trung thực: chưa thử bằng chuột và phím thật. Chủ dự án kiểm khi chơi.
+
+**Chấm điểm (1–5):** phạm vi 5 · checklist 5 · test 5 · chất lượng code 5 · bàn giao trung thực 5 · số vòng sửa 0.

@@ -1,5 +1,5 @@
 # T-116 — Menu tạm dừng và cài đặt
-- Lane: D (UI và Đa ngôn ngữ) | Trạng thái: todo | Agent:
+- Lane: D (UI và Đa ngôn ngữ) | Trạng thái: done | Agent:
 - Nhánh: `lane-d/T-116-pause-settings`
 - Phụ thuộc: T-104, T-105 (done). **Đọc `docs/SETTINGS.md` trước khi làm**; đó là hợp đồng chung với lane A, B, E.
 - Làm song song với T-118 (B), T-125 (A), T-126 (E). Integrator merge T-116 **trước** T-125.
@@ -79,3 +79,14 @@ Người chơi bấm Esc để tạm dừng, chỉnh âm lượng từng loại 
 - Không còn mục checklist chưa đạt; không bị chặn trong phạm vi Lane D. Các thay đổi tích hợp nêu trên do integrator thực hiện.
 - Sandbox không truy cập được GitHub/Git LFS và không ghi được `user://`; đã chạy các lệnh liên quan thành công qua cơ chế cấp quyền ngoài sandbox. Lần checkout LFS lỗi ban đầu để lại file dở dang; đã lưu stash phục hồi `Recovery snapshot after interrupted T-116 LFS checkout`, rồi checkout sạch. Stash này chỉ là snapshot phục hồi cục bộ, không thuộc commit T-116.
 - Không phát sinh câu hỏi về luật chơi/cốt truyện, không thêm plugin hay cài phần mềm.
+
+## Review (integrator, 2026-10-02)
+**Kết quả: chấp nhận, đã merge vào `main`** (trước T-125). Sau khi merge cả T-116 và T-125: `test.ps1` → `RESULT: 110 passed, 0 failed`; `check.ps1` → `RESULT: check 0 error(s)`.
+
+- Đúng phạm vi; `strings.csv` chỉ thêm key. Xung đột cuối file với key `RULE_*` của T-113 đã được integrator gộp (49 key, không trùng).
+- `Settings` đúng hợp đồng `docs/SETTINGS.md`: kiểm tra kiểu và khoảng khi đọc, kẹp khi ghi, lưu trước rồi mới emit. Lỗi lưu thì không áp dụng. Theo dõi bus thêm, xóa, đổi tên.
+- Menu tạm dừng bắt Esc ở `_input()`, dùng `PROCESS_MODE_ALWAYS`, trả lại chế độ chuột cũ khi đóng, và tự bỏ dừng nếu bị xóa khi đang mở.
+- Integrator đã xử lý yêu cầu thay đổi: autoload `Settings` ngay sau `EventBus`; `PauseMenu` trong `main.tscn`; test core `test_main_scene_escape_pauses_and_resumes_player` (Esc dừng game, Player thả chuột; Esc lần nữa chạy lại, Player bắt chuột).
+- Thanh "Bước chân" sẽ hiện khi T-126 (bus `Footsteps`) được merge.
+
+**Chấm điểm (1–5):** phạm vi 5 · checklist 5 · test 5 · chất lượng code 5 · bàn giao trung thực 5 · số vòng sửa 0.
