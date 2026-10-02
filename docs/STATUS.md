@@ -1,7 +1,7 @@
 # STATUS — cập nhật bởi integrator
 
 **Cập nhật lần cuối:** 2026-10-02
-**Giai đoạn:** P1. Xong 5 task thử tuần đầu (T-101…T-105). Tất cả lane đang rảnh.
+**Giai đoạn:** P1. Xong 5 task thử tuần đầu (T-101…T-105). Lane A làm T-122, lane E làm T-123 (bước chân tự nhiên hơn).
 **Repo:** https://github.com/tuaanh666/ky-tuc-xa-sau-12-gio (private)
 
 ## Đã xong
@@ -25,8 +25,10 @@
 | T-103 Công cụ capture, package, check | C | **done**, đã merge |
 | T-104 Font, HUD, phụ đề, đổi ngôn ngữ | D | **done**, đã merge |
 | T-105 Pipeline âm thanh và âm môi trường đầu tiên | E | **done**, đã merge; chủ dự án đã nghe: tạm ổn, riêng tiếng ù đèn tuýp quá nhỏ |
-| T-114 Sửa tiếng ù, vùng âm, đèn tắt thì im tiếng | E | **done**, đã merge; chờ chủ dự án nghe lại tiếng ù |
+| T-114 Sửa tiếng ù, vùng âm, đèn tắt thì im tiếng | E | **done**, đã merge; chủ dự án đã duyệt tiếng ù (D-014) |
 | T-121 Kit: ghế nhựa VN, mùng, collision | B | **done**, đã merge; chủ dự án đã duyệt (D-013) |
+| T-122 Nhịp bước chân tự nhiên | A | todo (giao ngay) |
+| T-123 Âm dép lê mềm hơn | E | todo (giao ngay; merge trước T-122) |
 | T-110 Kiến trúc RuleSystem và GameState | core | todo |
 | T-113 Chốt bộ luật demo và sơ đồ tầng | Chủ dự án + Claude | todo |
 

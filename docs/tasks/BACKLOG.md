@@ -14,4 +14,6 @@ Mỗi việc sẽ được tách thành task card chi tiết khi đến lượt.
 | T-117 | **Luật đầu tiên chạy trọn vòng:** loa đọc luật → tình huống → người chơi chọn → hậu quả | core + A | T-110, T-111 |
 | T-118 | Filter PS1: render độ phân giải thấp, dithering, rung đỉnh nhẹ; trừ phần UI và giấy tờ. Kèm sửa import texture kit: `detect_3d/compress_to=0` để editor không tự nén và bật mipmap | B | T-102 |
 | T-121 | Cập nhật bộ kit: ghế nhựa kiểu Việt Nam, mùng, collision, bỏ texture trùng (`T-121-kit-update.md`) | B | T-102 |
+| T-122 | Nhịp bước chân tự nhiên theo tốc độ, signal `footstep(surface, intensity)`; dọn việc tồn T-101 (`T-122-natural-footsteps.md`) | A | T-101; merge sau T-123 |
+| T-123 | Âm dép lê mềm hơn, bank đi/chạy, `play_footstep(surface, intensity)` (`T-123-softer-footsteps-audio.md`) | E | T-114 |
 | T-120 | **Cổng kiểm tra P1:** chủ dự án chơi bản v0.1 và đánh giá theo `docs/design/GDD.md` | Chủ dự án | Tất cả ở trên |
