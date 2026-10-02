@@ -211,6 +211,12 @@ func _tap(action: StringName) -> void:
 
 
 func test_reading_the_door_paper_opens_and_closes_cleanly() -> void:
+	# Earlier suites may leave an action held or the tree paused; a held
+	# "interact" would hide the press this test simulates.
+	tree.paused = false
+	for action in ["interact", "pause", "notebook", "move_forward", "sprint"]:
+		Input.action_release(action)
+	await wait_frames(2)
 	var main: Node = load("res://scenes/main/main.tscn").instantiate()
 	main.get_node("StoryDirector").auto_start = false
 	tree.root.add_child(main)
@@ -244,3 +250,22 @@ func test_reading_the_door_paper_opens_and_closes_cleanly() -> void:
 	await tree.create_timer(0.5).timeout
 	GameState.reset()
 	RuleSystem.reset()
+
+
+func test_room_407_ceiling_fan_spins() -> void:
+	var main: Node = load("res://scenes/main/main.tscn").instantiate()
+	main.get_node("StoryDirector").auto_start = false
+	tree.root.add_child(main)
+	var rotors: Array[Node] = main.get_node("Floor4").find_children("fan_rotor", "", true, false)
+	assert_false(rotors.is_empty(), "room 407 has a ceiling fan rotor")
+	if not rotors.is_empty():
+		var rotor := rotors[0] as Node3D
+		var before := rotor.basis
+		await wait_frames(5)
+		assert_false(rotor.basis.is_equal_approx(before), "fan blades turn")
+	for node in main.find_children("*", "AudioStreamPlayer3D", true, false):
+		if node.has_method("stop_emitting"):
+			node.stop_emitting()
+		(node as AudioStreamPlayer3D).stop()
+	main.queue_free()
+	await tree.create_timer(0.5).timeout

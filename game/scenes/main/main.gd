@@ -16,13 +16,25 @@ const INTERACT_CUES := {
 ## interaction volume and leaf collision stick out ~0.13 m into the room, so a
 ## flush paper would never be the first thing the interaction ray hits.
 const PAPER_PICK_DEPTH: float = 0.15
+## Ceiling fan blade speed (rad/s), about 2.4 turns per second.
+const FAN_SPEED: float = 15.0
+
+var _fan_rotors: Array[Node3D] = []
 
 
 func _ready() -> void:
 	_place_interactables()
 	_place_speaker()
 	EventBus.interacted.connect(_on_interacted)
+	# Kit ceiling fans expose their blades as a separate "fan_rotor" node (T-102).
+	for rotor in $Floor4.find_children("fan_rotor", "", true, false):
+		_fan_rotors.append(rotor as Node3D)
 	place_player(&"seg1_start")
+
+
+func _process(delta: float) -> void:
+	for rotor in _fan_rotors:
+		rotor.rotate_y(FAN_SPEED * delta)
 
 
 ## Moves the player onto a checkpoint anchor of floor 4 (docs/design/LAYOUT.md §6).
