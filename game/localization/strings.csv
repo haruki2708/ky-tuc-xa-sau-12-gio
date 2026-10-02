@@ -60,3 +60,9 @@ SIGN_ROOM_408,Phòng 408,Room 408
 SIGN_GATE_LOCKED,Khóa cổng 23:00,Gate locked at 23:00
 SIGN_WASHROOM,Nhà vệ sinh,Washroom
 SIGN_DUTY_DESK,Bàn trực tầng 4,Floor 4 duty desk
+SUB_SEG1_GO_ROOM,"Về phòng 407, chốt cửa lại rồi đi ngủ.","Go back to room 407, latch the door and get some sleep."
+SUB_SEG1_READ_PAPER,Tờ nội quy ban đêm dán sau cánh cửa. Đọc kỹ trước khi ngủ.,The night rules are taped behind the door. Read them before you sleep.
+SUB_PHONE_MIDNIGHT,0 giờ. Báo thức: tắt đèn đi ngủ.,"Midnight. Alarm: lights out, go to sleep."
+SUB_KNOCK,(Có tiếng gõ cửa. Không ai gọi số phòng.),(Someone knocks. Nobody calls the room number.)
+SUB_KNOCK_STOPPED,(Tiếng gõ đã dừng.),(The knocking has stopped.)
+SUB_SLICE_END,Hết bản thử đoạn 1–2. Cảm ơn bạn đã chơi. (Esc → Thoát),End of the segment 1–2 prototype. Thank you for playing. (Esc → Quit)

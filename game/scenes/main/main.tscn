@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" path="res://ui/hud/hud.tscn" id="5_hud"]
 [ext_resource type="PackedScene" path="res://ui/pause/pause_menu.tscn" id="6_pause"]
 [ext_resource type="PackedScene" path="res://rendering/ps1_filter.tscn" id="7_ps1"]
+[ext_resource type="Script" path="res://scripts/core/story_director.gd" id="8_story"]
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_main")
@@ -25,5 +26,8 @@ script = ExtResource("4_steps")
 [node name="HUD" parent="." instance=ExtResource("5_hud")]
 
 [node name="PauseMenu" parent="." instance=ExtResource("6_pause")]
+
+[node name="StoryDirector" type="Node" parent="."]
+script = ExtResource("8_story")
 
 [connection signal="footstep" from="Player" to="Player/Footsteps" method="play_footstep"]

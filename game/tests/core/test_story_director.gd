@@ -1,0 +1,94 @@
+extends TestCase
+## T-117 slice: segments 1–2 run end to end at high speed, both rulings.
+
+var main: Node
+var director: Node
+var subtitles: Array[String] = []
+
+
+func before_each() -> void:
+	main = load("res://scenes/main/main.tscn").instantiate()
+	director = main.get_node("StoryDirector")
+	director.auto_start = false
+	director.time_scale = 0.01
+	tree.root.add_child(main)
+	EventBus.subtitle_requested.connect(_on_subtitle)
+	await wait_frames(2)
+
+
+func after_each() -> void:
+	EventBus.subtitle_requested.disconnect(_on_subtitle)
+	for node in main.find_children("*", "AudioStreamPlayer3D", true, false):
+		if node.has_method("stop_emitting"):
+			node.stop_emitting()
+		(node as AudioStreamPlayer3D).stop()
+	main.queue_free()
+	await tree.create_timer(0.5).timeout
+	GameState.reset()
+	RuleSystem.reset()
+	Checkpoint.clear()
+
+
+func _on_subtitle(text_key: String, _duration: float) -> void:
+	subtitles.append(text_key)
+
+
+## Walks into room 407 and latches the door (lane A's latch sets this flag).
+func _settle_into_room() -> void:
+	var player := main.get_node("Player") as Node3D
+	player.global_position = Vector3(32, 0.03, -2.0)
+	GameState.set_flag(&"door_locked", true)
+
+
+func _run_slice() -> void:
+	director.start()
+	var waited := 0
+	while not director.finished and waited < 1200:
+		await tree.process_frame
+		waited += 1
+	assert_true(director.finished, "slice reaches its end")
+
+
+func test_lights_off_and_silence_keep_the_dorm_calm() -> void:
+	_settle_into_room()
+	main.get_node("Floor4/Room407/Room407MainLight").visible = false
+	await _run_slice()
+	assert_eq(GameState.deviation, 0, "no deviation;")
+	assert_eq(RuleSystem.outcome_of(&"lights_out"), RuleSystem.OUTCOME_CORRECT, "rule 1;")
+	assert_eq(RuleSystem.outcome_of(&"knock_at_door"), RuleSystem.OUTCOME_CORRECT, "rule 2;")
+	assert_false(main.get_node("Floor4/Anchors/Slippers407").has_node("FifthPair"), "no fifth pair")
+	assert_eq(GameState.clock_text(), "00:10", "clock reached 00:10;")
+	assert_true("SUB_KNOCK_STOPPED" in subtitles, "knocking stops on its own")
+	assert_true("SUB_SLICE_END" in subtitles, "end of slice shown")
+	var speaker := RuleSystem.read_entries().filter(func(entry: Dictionary) -> bool:
+		return entry["source"] == &"speaker")
+	assert_eq(speaker.size(), 5, "five rules heard on the speaker;")
+	var rule3 := speaker.filter(func(entry: Dictionary) -> bool: return entry["rule_id"] == &"slippers_genuine")
+	assert_eq(rule3[0]["text_key"], "RULE_3_GARBLED", "rule 3 heard through static;")
+
+
+func test_light_left_on_and_opened_door_change_the_dorm() -> void:
+	_settle_into_room()
+	main.get_node("Floor4/Room407/Room407MainLight").visible = true
+	var door := main.get_node("Floor4/Door407")
+	var open_on_knock := func(text_key: String, _duration: float) -> void:
+		if text_key == "SUB_KNOCK" and not door.is_open:
+			door.set_open(true)
+	EventBus.subtitle_requested.connect(open_on_knock)
+	await _run_slice()
+	EventBus.subtitle_requested.disconnect(open_on_knock)
+	assert_eq(RuleSystem.outcome_of(&"lights_out"), RuleSystem.OUTCOME_BROKE_RULE, "rule 1 broken;")
+	assert_eq(RuleSystem.outcome_of(&"knock_at_door"), RuleSystem.OUTCOME_BROKE_RULE, "rule 2 broken;")
+	assert_eq(GameState.deviation, 3, "1 + 2 deviation;")
+	assert_true(main.get_node("Floor4/Anchors/Slippers407").has_node("FifthPair"), "fifth pair of slippers")
+	assert_true(GameState.get_flag(&"corridor_light_flickering", false), "corridor light flickers")
+
+
+func test_checkpoints_saved_at_segment_starts() -> void:
+	_settle_into_room()
+	var saved: Array[StringName] = []
+	var record := func(checkpoint_id: StringName) -> void: saved.append(checkpoint_id)
+	EventBus.checkpoint_saved.connect(record)
+	await _run_slice()
+	EventBus.checkpoint_saved.disconnect(record)
+	assert_eq(saved, [&"seg1_start", &"seg2_start"] as Array[StringName], "segment checkpoints;")
