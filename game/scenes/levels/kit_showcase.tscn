@@ -1,0 +1,92 @@
+[gd_scene load_steps=12 format=3]
+
+[ext_resource type="PackedScene" path="res://assets/models/kit/wall_straight.glb" id="1"]
+[ext_resource type="PackedScene" path="res://assets/models/kit/wall_door.glb" id="2"]
+[ext_resource type="PackedScene" path="res://assets/models/kit/door.glb" id="3"]
+[ext_resource type="PackedScene" path="res://assets/models/kit/bunk_bed.glb" id="4"]
+[ext_resource type="PackedScene" path="res://assets/models/kit/locker.glb" id="5"]
+[ext_resource type="PackedScene" path="res://assets/models/kit/ceiling_fan.glb" id="6"]
+[ext_resource type="PackedScene" path="res://assets/models/kit/plastic_stool.glb" id="7"]
+
+[sub_resource type="Environment" id="Environment_studio"]
+background_mode = 1
+background_color = Color(0.09, 0.12, 0.14, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.76, 0.82, 0.88, 1)
+ambient_light_energy = 0.65
+tonemap_mode = 0
+
+[sub_resource type="StandardMaterial3D" id="Material_floor"]
+albedo_color = Color(0.18, 0.21, 0.22, 1)
+roughness = 1.0
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="Mesh_floor"]
+material = SubResource("Material_floor")
+size = Vector2(24, 10)
+
+[sub_resource type="BoxShape3D" id="Shape_floor"]
+size = Vector3(24, 0.1, 10)
+
+[node name="KitShowcase" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_studio")
+
+[node name="KeyLight" type="DirectionalLight3D" parent="."]
+rotation_degrees = Vector3(-48, 145, 0)
+light_color = Color(1, 0.91, 0.76, 1)
+light_energy = 1.25
+shadow_enabled = true
+directional_shadow_max_distance = 40.0
+
+[node name="FillLight" type="DirectionalLight3D" parent="."]
+rotation_degrees = Vector3(-30, -32, 0)
+light_color = Color(0.68, 0.82, 1, 1)
+light_energy = 0.5
+
+[node name="Floor" type="StaticBody3D" parent="."]
+collision_layer = 1
+collision_mask = 0
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor"]
+position = Vector3(0, -0.01, 0)
+mesh = SubResource("Mesh_floor")
+
+[node name="Collision" type="CollisionShape3D" parent="Floor"]
+position = Vector3(0, -0.06, 0)
+shape = SubResource("Shape_floor")
+
+[node name="Models" type="Node3D" parent="."]
+
+[node name="WallStraight" parent="Models" instance=ExtResource("1")]
+position = Vector3(6.9, 0, 0)
+
+[node name="WallDoor" parent="Models" instance=ExtResource("2")]
+position = Vector3(4.4, 0, 0)
+
+[node name="Door" parent="Models" instance=ExtResource("3")]
+position = Vector3(2.58, 0, 0)
+
+[node name="BunkBed" parent="Models" instance=ExtResource("4")]
+position = Vector3(0.2, 0, 0)
+rotation_degrees = Vector3(0, -22, 0)
+
+[node name="Locker" parent="Models" instance=ExtResource("5")]
+position = Vector3(-2.2, 0, 0)
+
+[node name="CeilingFan" parent="Models" instance=ExtResource("6")]
+position = Vector3(-4.2, 2, 0)
+
+[node name="PlasticStool" parent="Models" instance=ExtResource("7")]
+position = Vector3(-6.2, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+position = Vector3(0, 4.6, -12)
+rotation_degrees = Vector3(-16, 180, 0)
+projection = 1
+keep_aspect = 0
+size = 17.5
+current = true
+near = 0.05
+far = 60.0

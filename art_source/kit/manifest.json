@@ -1,0 +1,104 @@
+{
+  "blender": "5.2.2 LTS",
+  "seed": 102,
+  "models": {
+    "wall_straight": {
+      "triangles": 24,
+      "triangle_limit_exclusive": 1500,
+      "blender_dimensions_m": [
+        2.0,
+        0.2,
+        3.0
+      ],
+      "godot_dimensions_m": [
+        2.0,
+        3.0,
+        0.2
+      ]
+    },
+    "wall_door": {
+      "triangles": 60,
+      "triangle_limit_exclusive": 1500,
+      "blender_dimensions_m": [
+        2.0,
+        0.2,
+        3.0
+      ],
+      "godot_dimensions_m": [
+        2.0,
+        3.0,
+        0.2
+      ]
+    },
+    "door": {
+      "triangles": 120,
+      "triangle_limit_exclusive": 1500,
+      "blender_dimensions_m": [
+        0.88,
+        0.1,
+        2.08
+      ],
+      "godot_dimensions_m": [
+        0.88,
+        2.08,
+        0.1
+      ]
+    },
+    "bunk_bed": {
+      "triangles": 372,
+      "triangle_limit_exclusive": 1500,
+      "blender_dimensions_m": [
+        0.9,
+        2.0,
+        1.7
+      ],
+      "godot_dimensions_m": [
+        0.9,
+        1.7,
+        2.0
+      ]
+    },
+    "locker": {
+      "triangles": 228,
+      "triangle_limit_exclusive": 1500,
+      "blender_dimensions_m": [
+        0.76,
+        0.56,
+        1.77
+      ],
+      "godot_dimensions_m": [
+        0.76,
+        1.77,
+        0.56
+      ]
+    },
+    "ceiling_fan": {
+      "triangles": 180,
+      "triangle_limit_exclusive": 500,
+      "blender_dimensions_m": [
+        1.02379,
+        1.18217,
+        0.62
+      ],
+      "godot_dimensions_m": [
+        1.02379,
+        0.62,
+        1.18217
+      ]
+    },
+    "plastic_stool": {
+      "triangles": 108,
+      "triangle_limit_exclusive": 500,
+      "blender_dimensions_m": [
+        0.32,
+        0.32,
+        0.45
+      ],
+      "godot_dimensions_m": [
+        0.32,
+        0.45,
+        0.32
+      ]
+    }
+  }
+}
