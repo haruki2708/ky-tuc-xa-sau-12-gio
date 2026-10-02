@@ -1,5 +1,5 @@
 # T-123 — Âm bước chân dép lê nhẹ và tự nhiên hơn
-- Lane: E (Âm thanh) | Trạng thái: todo | Agent:
+- Lane: E (Âm thanh) | Trạng thái: done | Agent: Claude (integrator, làm thay theo yêu cầu chủ dự án)
 - Nhánh: `lane-e/T-123-softer-footsteps`
 - Phụ thuộc: T-114 (done). Làm song song với T-122 của lane A (nhịp bước). **Integrator merge T-123 trước T-122.**
 
@@ -33,11 +33,11 @@ Phần nhịp bước (bước thưa hơn, không đều tăm tắp) do lane A l
    - Độ to của bank đi thấp hơn bank chạy (đọc từ `build_report.json`).
 
 ## Checklist hoàn thành
-- [ ] Chạy lại `process.py --regenerate-raw` ra file giống nhau; tổng audio dưới 15 MB
-- [ ] Các âm đã duyệt không đổi hash
-- [ ] `pwsh tools/test.ps1` và `pwsh tools/check.ps1` PASS
-- [ ] Không chạm file ngoài phạm vi; `CREDITS.md` cập nhật
-- [ ] Mục Handoff đã điền, ghi rõ phần nào **chưa nghe bằng tai**
+- [x] Chạy lại `process.py --regenerate-raw` ra file giống nhau; tổng audio dưới 15 MB
+- [x] Các âm đã duyệt không đổi hash
+- [x] `pwsh tools/test.ps1` và `pwsh tools/check.ps1` PASS
+- [x] Không chạm file ngoài phạm vi; `CREDITS.md` cập nhật
+- [x] Mục Handoff đã điền, ghi rõ phần nào **chưa nghe bằng tai**
 
 ## Cách kiểm tra
 ```
@@ -47,3 +47,19 @@ pwsh tools/test.ps1 -Filter audio
 Nghe thử: `res://audio/test/zones_test.tscn` (F6), đi bộ rồi giữ Shift để chạy.
 
 ## Handoff (agent điền)
+
+### Phiên 2026-10-02 — Claude (integrator làm thay lane E)
+**Đã làm**
+- `process.py`: thêm `synthesize_slipper()` thay cho công thức cũ. Mỗi bước gồm tiếng "lẹp" gót chạm sàn (noise lọc thấp, attack 4 ms, thân 170–230 Hz rất nhẹ), tiếng "xẹp" đế dép đập lại gót (noise dải 1,2–4,5 kHz, có rung kép) và ma sát nhẹ ở giữa. Đi bộ: "xẹp" sau 0,13–0,19 s, nhẹ hơn. Chạy: sau 0,075–0,105 s, mạnh hơn.
+- Bước chân **không qua compressor** (compressor làm phẳng hai nhịp). Độ to riêng: đi bộ **−26 LUFS**, chạy **−23 LUFS**. Chạy không đạt −22 như card đề xuất vì âm ngắn, đỉnh nhọn, vướng giới hạn −2 dBTP; −23 vẫn hơn đi bộ 3 LU.
+- Thêm 4 âm `slipper_run_01…04`. Làm lại `slipper_tile_01…04` (seed mới 12301–12304).
+- `FootstepPlayer.play_footstep(surface, intensity = 0.5)`: dưới 0,8 dùng bank đi, từ 0,8 dùng bank chạy. Âm lượng −3…+3 dB theo intensity; mỗi bank nhớ biến thể vừa phát riêng.
+
+**Kiểm tra**
+- `py -3 audio_source/process.py --regenerate-raw`: `AUDIO RESULT: 17 assets validated; raw + OGG = 6325740 bytes`. Chạy lại lần hai: `build_report.json` giống hệt.
+- So với report trước task: **9/9 âm đã duyệt giữ nguyên hash** (quạt, hum, flicker, côn trùng, 3 giọt nước, 2 cửa).
+- `pwsh tools/test.ps1`: `RESULT: 65 passed, 0 failed`. `pwsh tools/check.ps1`: `RESULT: check 0 error(s)`.
+- Đã xem dạng sóng: hai nhịp "lẹp"/"xẹp" rõ, bản chạy sát và mạnh hơn.
+- **Chưa nghe bằng tai** (Claude không nghe được). Chờ chủ dự án nghe trong hành lang chính.
+
+**Yêu cầu thay đổi ngoài phạm vi:** integrator đặt lại `Footsteps.volume_db = 0` trong `main.tscn` sau khi merge (làm ngay trong cùng đợt).
