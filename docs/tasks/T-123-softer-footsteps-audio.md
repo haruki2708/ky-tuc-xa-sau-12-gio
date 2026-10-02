@@ -71,3 +71,6 @@ Nghe thử: `res://audio/test/zones_test.tscn` (F6), đi bộ rồi giữ Shift 
 
 ### Phiên 2026-10-02 (lần 3) — Claude
 - Chủ dự án muốn nhỏ hơn nữa. Giảm thêm 4 dB: đi bộ **−34 LUFS**, chạy **−31 LUFS**; chất âm giữ nguyên. 9/9 âm đã duyệt giữ nguyên hash.
+
+### Phiên 2026-10-02 (lần 4, chốt) — Claude
+- Chủ dự án nghe bằng tai nghe, muốn nhỏ hơn nữa, "sửa lần cuối". Giảm thêm 4 dB: đi bộ **−38 LUFS**, chạy **−35 LUFS**. 9/9 âm đã duyệt giữ nguyên hash. Mức này được chốt ở D-015.

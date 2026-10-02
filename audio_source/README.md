@@ -40,7 +40,7 @@ Scene tự phát âm khi vào phòng; camera cố định làm listener. Quạt 
 ## API tích hợp
 
 - `AmbientEmitter` kế thừa `AudioStreamPlayer3D`. Gán stream hoặc `clips`, bus, vị trí và gain ở scene. `LOOP` phát ngay; `RANDOM_INTERVAL` đợi khoảng ngẫu nhiên trước lần đầu và sau mỗi one-shot kết thúc. Có biến thiên pitch/volume quanh giá trị gốc, không tích lũy; `stop_emitting()` hủy cả timer và playback. Stream được duplicate trước khi đổi loop để không ảnh hưởng emitter khác. Dùng OGG/WAV cho loop liền mạch.
-- `FootstepPlayer.play_footstep(surface, intensity = 0.5)`: `intensity` 0–1 (đi bộ khoảng 0,6, chạy 1). Dưới 0,8 dùng bank đi `slipper_tile_01…04` (−34 LUFS), từ 0,8 dùng bank chạy `slipper_run_01…04` (−31 LUFS). Âm lượng cộng thêm −3…+3 dB theo `intensity`, biến thiên ±1,5 dB, cao độ ±4%. Mỗi bank không phát lại biến thể vừa phát. Gọi một tham số vẫn chạy (Player cũ). Chỉ hỗ trợ surface `tile`; surface khác im lặng. Bus SFX. Bước chân không qua compressor để giữ hai nhịp "lẹp"/"xẹp".
+- `FootstepPlayer.play_footstep(surface, intensity = 0.5)`: `intensity` 0–1 (đi bộ khoảng 0,6, chạy 1). Dưới 0,8 dùng bank đi `slipper_tile_01…04` (−38 LUFS), từ 0,8 dùng bank chạy `slipper_run_01…04` (−35 LUFS). Âm lượng cộng thêm −3…+3 dB theo `intensity`, biến thiên ±1,5 dB, cao độ ±4%. Mỗi bank không phát lại biến thể vừa phát. Gọi một tham số vẫn chạy (Player cũ). Chỉ hỗ trợ surface `tile`; surface khác im lặng. Bus SFX. Bước chân không qua compressor để giữ hai nhịp "lẹp"/"xẹp".
 - `default_bus_layout.tres` tự được Godot nạp theo tên chuẩn, không cần autoload hoặc sửa `project.godot`. Bus Ambience gửi về Master, reverb wet 0.12 và gain −3 dB; SFX/Voice/Music gửi về Master.
 
 ## T-114: vùng âm và đèn
