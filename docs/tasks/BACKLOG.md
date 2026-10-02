@@ -25,4 +25,5 @@ Mỗi việc sẽ được tách thành task card chi tiết khi đến lượt.
 | T-130 | Âm thanh đoạn 1–2: gõ cửa, loa, điện thoại, công tắc, chốt (`T-130-segment12-sounds.md`) | E | T-126 |
 | T-131 | Âm hù dọa và truy đuổi (`T-131-scare-sounds.md`, D-024) | E | T-130 |
 | T-132 | Tùy chọn "Giảm hù dọa" (`T-132-reduce-scares-setting.md`) | D | T-116 |
+| T-133 | **Nhạc nền / drone** cho các khoảnh khắc căng thẳng (đèn tắt, sau khi làm sai, truy đuổi), bus `Music`, có lớp im lặng (D-025) | E | T-131 |
 | T-120 | **Cổng kiểm tra P1:** chủ dự án chơi bản v0.1 và đánh giá theo `docs/design/GDD.md` | Chủ dự án | Tất cả ở trên |
