@@ -3,15 +3,15 @@
   "assets": [
     {
       "file": "game/audio/ambience/ceiling_fan.ogg",
-      "sha256": "d3cb17bd6d6b2b4e00119e76db6480c3cca759bfbd429e38bd42d562b6fdec1f",
+      "sha256": "318c580083f4c5dc28a1f5a6c1600b87b84df3d803b6f5e7d66ae1530d96e308",
       "raw_sha256": "975e6078ef3df2bc44cf503b7469ca2958415a4e86867c37a6b648014344ef57",
-      "bytes": 104698,
+      "bytes": 103754,
       "seconds": 12.0,
       "channels": 1,
-      "lufs": -24.12,
-      "true_peak_db": -10.12,
+      "lufs": -34.15,
+      "true_peak_db": -20.01,
       "loop": true,
-      "boundary_delta": 0.008074
+      "boundary_delta": 0.0012125
     },
     {
       "file": "game/audio/ambience/fluorescent_hum.ogg",

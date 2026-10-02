@@ -49,8 +49,8 @@ SEGMENT12_NAMES = {asset[0] for asset in ASSETS if asset[3] >= 13000}
 LOOP_SFX = {"phone_vibrate"}
 
 
-# Per-asset loudness chosen by ear with the owner (D-015…D-019); default: loops -24, SFX -18.
-TARGET_OVERRIDES = {"slipper_tile": -56, "slipper_run": -53, "fluorescent_hum": -44}
+# Per-asset loudness chosen by ear with the owner (D-015…D-023); default: loops -24, SFX -18.
+TARGET_OVERRIDES = {"slipper_tile": -56, "slipper_run": -53, "fluorescent_hum": -44, "ceiling_fan": -34}
 TARGET_OVERRIDES.update({"knock_": -30, "speaker_": -32, "phone_vibrate": -36,
                          "light_switch": -36, "door_latch": -36})
 
