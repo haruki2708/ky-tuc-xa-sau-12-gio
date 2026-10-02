@@ -76,3 +76,12 @@ Bằng chứng đối chứng:
 - Sau khi sửa bên sở hữu: chạy lại `pwsh tools/test.ps1`, `pwsh tools/check.ps1`, `pwsh tools/package.ps1`, `pwsh tools/verify-capture.ps1`; chỉ đánh dấu checklist package khi lần kiểm chứng thực tế sạch lỗi.
 - Các log/ZIP/ảnh là artifact local trong build/ (Git ignore); lệnh và bằng chứng tóm tắt đã ghi ở đây để tái hiện. Chưa chơi thử gameplay thủ công.
 - Checkout đầu phiên bị ngắt do sandbox chặn Git LFS; đã lưu trạng thái dở vào stash `Recovery of interrupted T-124 LFS checkout`, rồi checkout lại thành công. Stash bảo toàn này vẫn giữ; working tree trước checkout sạch. Không có blocker Git/mạng sau khi cấp quyền cần thiết.
+
+### Phiên tiếp tục — kiểm chứng KeepSnapshot và trạng thái blocker
+- Đã fetch/switch/pull theo yêu cầu: nhánh đã đồng bộ, `origin/main` vẫn là `7552c07`; chưa có bản sửa blocker từ integrator/Lane E, không cần rebase. Không lấy code chưa merge từ lane khác.
+- Kiểm chứng bổ sung `pwsh tools/capture.ps1 -Scene res://scenes/main/main.tscn -Frames 2 -KeepSnapshot -Out build/captures/T-124-keep-recheck`: tạo 2 PNG và giữ `project/project.godot` dưới run `7b5f212bc4d24730a9d49eb16726101c`. Nhánh KeepSnapshot trước đây chưa test nay đã xác minh giữ snapshot cả khi capture lỗi. Log `build/T-124-keep-recheck.log`.
+- Capture vẫn FAIL với `ERROR: 2 resources still in use at exit`, cảnh báo 11 ObjectDB instances. Không đánh dấu capture PASS chỉ vì tạo được ảnh/snapshot.
+- Chạy lại `pwsh tools/test.ps1`: **`RESULT: 84 passed, 0 failed`**, exit 0; log `build/T-124-resume-tests.log`.
+- Phiên này không chạy lại package/check hoặc chuỗi năm capture vì mã thực thi và nền main chưa đổi; kết quả package FAIL/check PASS/năm lượt 136 ảnh ở phần trên thuộc phiên trước, không phải kết quả chạy mới.
+- Commit `0ccdef2` cập nhật hướng dẫn chẩn đoán trong tools/README.md, đã push trước cập nhật Handoff này. Chỉ sửa tài liệu trong phạm vi.
+- **Blocked vẫn còn:** checklist package PASS chưa đạt. Giữ yêu cầu integrator/Lane E điều tra shutdown Ogg như trên; không sửa file âm thanh/core, không bỏ qua ERROR. Các mục checklist khác không đổi. Không có yêu cầu thiết kế game mới.
