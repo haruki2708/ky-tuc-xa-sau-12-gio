@@ -35,7 +35,7 @@ Có 6 người làm việc trên dự án:
 |---|---|---|
 | core | Integrator (Claude) | `game/project.godot`, `game/export_presets.cfg`, `game/scripts/core/`, `game/scenes/main/`, `game/localization/` (cấu trúc), `game/tests/run_tests.*`, `game/tests/test_case.gd`, `game/tests/core/`, `tools/godot-path.ps1`, `AGENTS.md`, `CLAUDE.md`, `docs/` |
 | A | Gameplay | `game/scenes/player/`, `game/scripts/player/`, `game/scripts/interaction/`, `game/tests/player/` |
-| B | Môi trường và 3D | `art_source/`, `game/assets/models/`, `game/assets/textures/`, `game/scenes/levels/`, `game/tests/levels/` |
+| B | Môi trường và 3D | `art_source/`, `game/assets/models/`, `game/assets/textures/`, `game/scenes/levels/`, `game/rendering/`, `game/tests/levels/` |
 | C | QA và Tools | `tools/` (trừ `godot-path.ps1`), `game/scripts/debug/`, `game/tests/smoke/`, `game/tests/tools/` |
 | D | UI và Đa ngôn ngữ | `game/ui/`, `game/scripts/ui/`, `game/assets/fonts/`, `game/localization/strings.csv` (thêm key), `game/tests/ui/` |
 | E | Âm thanh | `audio_source/`, `game/audio/`, `game/scripts/audio/`, `game/default_bus_layout.tres`, `game/tests/audio/` |
@@ -45,6 +45,7 @@ Mọi lane đều được sửa: task card của mình (`docs/tasks/T-xxx*.md`,
 **Cần sửa file ngoài phạm vi?** Không tự sửa. Ghi vào mục "Yêu cầu thay đổi" trong task card, integrator sẽ xử lý. Các trường hợp thường gặp:
 - thêm autoload hoặc input action,
 - thêm signal vào `EventBus`,
+- thêm mục mới vào file cài đặt (xem `docs/SETTINGS.md`),
 - đổi cài đặt trong `project.godot`.
 
 ## 4. Lệnh thường dùng (PowerShell, chạy từ gốc repo)

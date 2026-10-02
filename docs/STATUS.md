@@ -1,7 +1,7 @@
 # STATUS — cập nhật bởi integrator
 
 **Cập nhật lần cuối:** 2026-10-02
-**Giai đoạn:** P1. Xong 5 task thử tuần đầu (T-101…T-105). Tất cả lane đang rảnh. Bước chân (T-122, T-123) và mức âm đã duyệt (D-019, tiếng ù D-017).
+**Giai đoạn:** P1. Xong 5 task thử tuần đầu (T-101…T-105). Cả 5 lane nhận task mới (T-116, T-118, T-124, T-125, T-126), dùng chung hợp đồng cài đặt `docs/SETTINGS.md`.
 **Repo:** https://github.com/tuaanh666/ky-tuc-xa-sau-12-gio (private)
 
 ## Đã xong
@@ -29,6 +29,11 @@
 | T-121 Kit: ghế nhựa VN, mùng, collision | B | **done**, đã merge; chủ dự án đã duyệt (D-013) |
 | T-122 Nhịp bước chân tự nhiên | A | **done**, đã merge; chủ dự án đã duyệt nhịp (D-018) |
 | T-123 Âm dép lê mềm hơn | E (Claude làm thay) | **done**, đã merge; chủ dự án đã chốt độ to (D-015) |
+| T-116 Menu tạm dừng và cài đặt | D | todo (giao ngay; merge trước T-125) |
+| T-118 Filter PS1, sửa import texture | B | todo (giao ngay) |
+| T-124 Dọn công cụ QA, lọc file build | C | todo (giao ngay) |
+| T-125 Player theo menu tạm dừng và cài đặt | A | todo (giao ngay; merge sau T-116) |
+| T-126 Bus riêng cho bước chân | E | todo (giao ngay) |
 | T-110 Kiến trúc RuleSystem và GameState | core | todo |
 | T-113 Chốt bộ luật demo và sơ đồ tầng | Chủ dự án + Claude | todo |
 
