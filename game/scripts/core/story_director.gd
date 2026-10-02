@@ -21,6 +21,12 @@ const ROOM_407_X := Vector2(30.0, 34.0)
 const WASHROOM_MAX_X := 6.0
 const PURSUER := preload("res://scenes/entity/pursuer.tscn")
 const SILHOUETTE := preload("res://scenes/levels/entity/silhouette.tscn")
+const SLIPPERS_PAIR := preload("res://scenes/levels/props/slippers_pair.tscn")
+const SHIRT_HANGING := preload("res://scenes/levels/props/shirt_hanging.tscn")
+## The fifth pair sits next to the four pairs of room 407 (T-138: x 30.5–31.55).
+const FIFTH_PAIR_OFFSET := Vector3(0.875, -0.05, 0.0)
+## Clothesline height; the shirt's origin is on the line (anchor is mid-cloth).
+const CLOTHESLINE_Y := 2.15
 ## Chase safe zones (RULES.md §5b) use their own physics layer 8 so the
 ## interaction ray (layers 1 and 3) never hits them.
 const SAFE_ZONE_LAYER := 1 << 7
@@ -835,43 +841,33 @@ func _set_corridor_flicker(on: bool) -> void:
 		_flicker_timer.start(randf_range(3.0, 7.0))
 
 
-## A fifth pair of slippers outside room 407 (placeholder boxes until lane B
-## models slippers). Kept in Anchors/Slippers407 so it survives into later segments.
+## A fifth pair of slippers (dark red) next to the four of room 407. Kept in
+## Anchors/Slippers407 so it survives into later segments.
 func _place_fifth_slippers() -> void:
 	var anchor := _anchor("Slippers407")
 	if anchor == null or anchor.has_node("FifthPair"):
 		return
-	var pair := Node3D.new()
+	var pair := SLIPPERS_PAIR.instantiate()
 	pair.name = "FifthPair"
-	var material := StandardMaterial3D.new()
-	material.albedo_color = Color(0.55, 0.09, 0.07)
-	for side in [-0.06, 0.06]:
-		var sole := MeshInstance3D.new()
-		var mesh := BoxMesh.new()
-		mesh.size = Vector3(0.09, 0.025, 0.26)
-		mesh.material = material
-		sole.mesh = mesh
-		sole.position = Vector3(side, 0.0125, 0.0)
-		pair.add_child(sole)
-	pair.position = Vector3(0.45, 0.0, 0.0)
+	pair.color = Color(0.5, 0.08, 0.06)
+	pair.position = FIFTH_PAIR_OFFSET
+	pair.rotation.y = deg_to_rad(9.0) # Set down a little crooked.
 	anchor.add_child(pair)
 	GameState.set_flag(&"fifth_slippers", true)
 
 
+## Deviation 3: a white shirt nobody hung appears in the free clothesline slot.
 func _place_extra_shirt() -> void:
 	var anchor := _anchor("ClotheslineExtraShirt")
 	if anchor == null or anchor.has_node("ExtraShirt"):
 		return
-	var shirt := MeshInstance3D.new()
+	var shirt := SHIRT_HANGING.instantiate()
 	shirt.name = "ExtraShirt"
-	var mesh := BoxMesh.new()
-	mesh.size = Vector3(0.5, 0.65, 0.02)
-	var material := StandardMaterial3D.new()
-	material.albedo_color = Color(0.86, 0.86, 0.82)
-	mesh.material = material
-	shirt.mesh = mesh
-	shirt.position = Vector3(0, -0.35, 0)
+	shirt.color = Color(0.95, 0.95, 0.92)
+	# Hangs dead still, unlike the laundry around it.
+	shirt.sway = 0.0
 	anchor.add_child(shirt)
+	shirt.global_position.y = CLOTHESLINE_Y
 
 
 # --- Helpers ------------------------------------------------------------------
@@ -995,14 +991,21 @@ func _play_at(file_name: StringName, where: Node, bus: StringName = &"SFX") -> A
 	return player
 
 
-## Placeholder running tap: a quick drip loop at the tap until it is closed.
+## The running tap: the stream (T-138) plus a quick drip loop for its sound
+## until it is closed (a real running-water loop is lane E work).
 func _start_running_water() -> Node:
 	var tap := _anchor("WashroomTapRunning")
 	if tap == null:
 		return null
+	var stream := _floor.get_node_or_null("Washroom/TapWater")
+	if stream != null:
+		stream.running = true
 	var water := Node.new()
 	water.name = "RunningWater"
 	tap.add_child(water)
+	water.tree_exiting.connect(func() -> void:
+		if is_instance_valid(stream):
+			stream.running = false)
 	_drip_loop(water, tap)
 	return water
 

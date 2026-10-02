@@ -336,3 +336,29 @@ func test_chases_and_scares_are_announced() -> void:
 	EventBus.chase_started.disconnect(on_start)
 	EventBus.chase_ended.disconnect(on_end)
 	assert_eq(events, ["scare:corridor_glimpse", "start:corridor", "end:corridor:true"] as Array[String], "music hooks")
+
+
+func test_story_uses_the_real_props() -> void:
+	GameState.add_deviation(3, &"test")
+	var pair := main.get_node("Floor4/Anchors/Slippers407/FifthPair")
+	assert_true(pair.has_method("_apply_color"), "fifth pair is a T-138 slippers_pair;")
+	assert_true(pair.global_position.x > 31.8, "set down beside the four pairs;")
+	var shirt := main.get_node("Floor4/Anchors/ClotheslineExtraShirt/ExtraShirt") as Node3D
+	assert_true(absf(shirt.global_position.y - 2.15) < 0.01, "white shirt hangs on the line;")
+	var stream := main.get_node("Floor4/Washroom/TapWater")
+	assert_false(stream.running, "tap dry before segment 5;")
+	_place(Vector3(2.0, 0.03, -2.5), -PI / 2.0)
+	var checked := [false]
+	var close_and_leave := func(text_key: String, _duration: float) -> void:
+		if text_key == "SPK_CHECK_TAPS":
+			(func() -> void:
+				while GameState.get_flag(&"tap_running", false) != true:
+					await tree.process_frame
+				checked[0] = stream.running
+				main.get_node("Floor4/Anchors/WashroomTapRunning/TapTrigger").interact(player)
+				await wait_frames(3)
+				player.global_position = Vector3(8.0, 0.03, 1.2)).call()
+	_hook(close_and_leave)
+	await _run(&"seg5")
+	assert_true(checked[0], "water runs while the tap is open;")
+	assert_false(stream.running, "closing the tap stops the stream")

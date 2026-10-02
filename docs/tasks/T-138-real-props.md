@@ -1,5 +1,5 @@
 # T-138 — Đạo cụ thật thay khối hộp tạm
-- Lane: B (Môi trường và 3D) | Trạng thái: review | Agent: **Claude làm thay** (chủ dự án giao, 2026-10-03)
+- Lane: B (Môi trường và 3D) | Trạng thái: done | Agent: **Claude làm thay** (chủ dự án giao, 2026-10-03)
 - Nhánh: `lane-b/T-138-real-props`
 - Phụ thuộc: T-112, T-121, T-135 (done). D-021: đồ họa đẹp làm sau, giờ đến lúc làm.
 
@@ -49,3 +49,6 @@ Demo đã chơi được trọn vẹn nhưng nhiều thứ trên tầng 4 vẫn 
 
 ### Yêu cầu cho integrator (T-141)
 1. `StoryDirector`: đôi dép thứ năm dùng `slippers_pair.tscn` màu đỏ sẫm, đặt cạnh 4 đôi (x 31,9); áo trắng dùng `shirt_hanging.tscn`, gốc trên dây phơi (y 2,15); bật `Washroom/TapWater` khi vòi tự chảy, tắt khi khóa vòi.
+
+### Review và ghép (integrator, 2026-10-03)
+- Merge `ef49f3c`. Đã làm yêu cầu T-141 ở trên: đôi dép thứ năm là `slippers_pair` đỏ sẫm cạnh 4 đôi, áo trắng không lắc trên dây phơi, `TapWater` chảy khi vòi tự chảy và tắt khi khóa. Test `test_story_uses_the_real_props`.
