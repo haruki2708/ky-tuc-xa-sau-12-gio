@@ -1,7 +1,7 @@
 # STATUS — cập nhật bởi integrator
 
 **Cập nhật lần cuối:** 2026-10-02
-**Giai đoạn:** P1. Xong 5 task thử tuần đầu (T-101…T-105). Cả 5 lane nhận task mới (T-112, T-116, T-124, T-125, T-126), dùng chung hợp đồng cài đặt `docs/SETTINGS.md`.
+**Giai đoạn:** P1 → P3 (đợt 2: đoạn 3–5 với hù dọa và truy đuổi, D-024). Xong 5 task thử tuần đầu (T-101…T-105). Cả 5 lane nhận task mới (T-112, T-116, T-124, T-125, T-126), dùng chung hợp đồng cài đặt `docs/SETTINGS.md`.
 **Repo:** https://github.com/tuaanh666/ky-tuc-xa-sau-12-gio (private)
 
 ## Đã xong
@@ -44,6 +44,9 @@
 | T-117 Luật đầu tiên chạy trọn vòng | core | **review**: đoạn 1–2 chơi được trọn vòng; chờ chủ dự án chơi thử (T-120) |
 | T-131 Âm hù dọa và truy đuổi | E | **done**, đã merge |
 | T-132 Tùy chọn "Giảm hù dọa" | D | **done**, đã merge |
+| T-134 Thực thể truy đuổi, phát hiện ánh nhìn | A | todo (giao ngay) |
+| T-135 Bóng người, gương phản chiếu chậm | B | todo (giao ngay) |
+| T-136 Đoạn 3–5 và cái kết | core | doing |
 | T-110 Kiến trúc RuleSystem và GameState | core | **done**, đã merge (xem `docs/design/RULE_SYSTEM.md`) |
 | T-113 Chốt bộ luật demo và sơ đồ tầng | Chủ dự án + Claude | **done** (D-020); dữ liệu `game/data/rules/demo.tres` |
 

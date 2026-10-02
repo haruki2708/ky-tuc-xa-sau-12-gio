@@ -26,4 +26,7 @@ Mỗi việc sẽ được tách thành task card chi tiết khi đến lượt.
 | T-131 | Âm hù dọa và truy đuổi (`T-131-scare-sounds.md`, D-024) | E | T-130 |
 | T-132 | Tùy chọn "Giảm hù dọa" (`T-132-reduce-scares-setting.md`) | D | T-116 |
 | T-133 | **Nhạc nền / drone** cho các khoảnh khắc căng thẳng (đèn tắt, sau khi làm sai, truy đuổi), bus `Music`, có lớp im lặng (D-025) | E | T-131 |
+| T-134 | Thực thể truy đuổi và phát hiện ánh nhìn (`T-134-pursuer-gaze.md`) | A | T-131, T-132 |
+| T-135 | Bóng người và gương phản chiếu chậm (`T-135-silhouette-mirror.md`) | B | T-112, T-118 |
+| T-136 | **Đoạn 3–5 và cái kết** (`T-136-segments-3-5.md`) | core | T-117, T-134, T-135 |
 | T-120 | **Cổng kiểm tra P1:** chủ dự án chơi bản v0.1 và đánh giá theo `docs/design/GDD.md` | Chủ dự án | Tất cả ở trên |

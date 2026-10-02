@@ -34,7 +34,7 @@ Có 6 người làm việc trên dự án:
 | Lane | Vai trò | Được sửa |
 |---|---|---|
 | core | Integrator (Claude) | `game/project.godot`, `game/export_presets.cfg`, `game/scripts/core/`, `game/data/`, `game/scenes/main/`, `game/localization/` (cấu trúc), `game/tests/run_tests.*`, `game/tests/test_case.gd`, `game/tests/core/`, `tools/godot-path.ps1`, `AGENTS.md`, `CLAUDE.md`, `docs/` |
-| A | Gameplay | `game/scenes/player/`, `game/scenes/interaction/`, `game/scripts/player/`, `game/scripts/interaction/`, `game/tests/player/` |
+| A | Gameplay | `game/scenes/player/`, `game/scenes/interaction/`, `game/scenes/entity/`, `game/scripts/player/`, `game/scripts/interaction/`, `game/scripts/entity/`, `game/tests/player/` |
 | B | Môi trường và 3D | `art_source/`, `game/assets/models/`, `game/assets/textures/`, `game/scenes/levels/`, `game/rendering/`, `game/tests/levels/` |
 | C | QA và Tools | `tools/` (trừ `godot-path.ps1`), `game/scripts/debug/`, `game/tests/smoke/`, `game/tests/tools/` |
 | D | UI và Đa ngôn ngữ | `game/ui/`, `game/scripts/ui/`, `game/assets/fonts/`, `game/localization/strings.csv` (thêm key), `game/tests/ui/` |
