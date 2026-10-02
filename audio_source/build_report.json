@@ -470,6 +470,54 @@
       "true_peak_db": -19.56,
       "loop": false,
       "boundary_delta": 4e-07
+    },
+    {
+      "file": "game/audio/music/drone_base.ogg",
+      "sha256": "dc5056cc74cf46dbb967ab8a8860b97d3e899fbcd35ed55eee871b162bd45a36",
+      "raw_sha256": "167757665801d15a3ec54f0509d13d7271bd3b49451fbb1b0193c90ff2139886",
+      "bytes": 242250,
+      "seconds": 32.0,
+      "channels": 1,
+      "lufs": -41.96,
+      "true_peak_db": -30.83,
+      "loop": true,
+      "boundary_delta": 0.0007746
+    },
+    {
+      "file": "game/audio/music/drone_tension.ogg",
+      "sha256": "0e812d84d8637568fd2cd4f94d90568c870a38fc1d071fc68c85845deff88c85",
+      "raw_sha256": "fcf12650703d7df19e6ec224af3bb1e28679937e27aefdcdeb94b826fd0eadfc",
+      "bytes": 135398,
+      "seconds": 16.0,
+      "channels": 1,
+      "lufs": -35.99,
+      "true_peak_db": -22.75,
+      "loop": true,
+      "boundary_delta": 0.0015736
+    },
+    {
+      "file": "game/audio/music/chase_pulse.ogg",
+      "sha256": "9579c152a09f2a015f7f4e0179a3fe17ddda96422d595d73eaf7474c78aa968a",
+      "raw_sha256": "562360fea381e98d1c3bdc84e232603d49f0b52a6c156cc231bd911c918dabb0",
+      "bytes": 134412,
+      "seconds": 16.0,
+      "channels": 1,
+      "lufs": -29.96,
+      "true_peak_db": -13.51,
+      "loop": true,
+      "boundary_delta": 0.0012073
+    },
+    {
+      "file": "game/audio/music/end_tone.ogg",
+      "sha256": "61ba84731b6f1c8252afcbefb26f48be365c00cfa984d845f0b8ec3c82ee1b48",
+      "raw_sha256": "b7c49f36d0e32781d227b55920dbd816f24178ca4f571d6af4d108ab23973b8a",
+      "bytes": 80786,
+      "seconds": 10.0,
+      "channels": 1,
+      "lufs": -32.49,
+      "true_peak_db": -21.42,
+      "loop": false,
+      "boundary_delta": 0.0
     }
   ]
 }

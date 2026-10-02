@@ -15,12 +15,12 @@ pwsh tools/test.ps1
 
 ## Các bước và kiểm chứng
 
-1. Tổng hợp 39 WAV PCM16 mono 48 kHz bằng Python `math`, `random`, `wave`, không có bản ghi âm bên ngoài. Chi tiết nguồn và công cụ ở `game/audio/CREDITS.md`.
+1. Tổng hợp 43 WAV PCM16 mono 48 kHz bằng Python `math`, `random`, `wave`, không có bản ghi âm bên ngoài. Chi tiết nguồn và công cụ ở `game/audio/CREDITS.md`.
 2. Cắt theo thời lượng định nghĩa trong `ASSETS`, lọc high-pass 35 Hz và low-pass 11 kHz. One-shot qua compressor (threshold 0.025, ratio 6, attack 0.1 ms, release 80 ms) để kiểm soát đỉnh transient trước chuẩn hóa; fade đầu 8 ms, cuối 80 ms.
 3. Loop: crossfade tuyến tính 1 giây giữa đuôi và đầu; xoay điểm nối để hai biên còn lại là các mẫu liền nhau từ nguồn. Hum mới chọn thêm điểm nối có độ dốc/biên độ thấp nhằm giảm sai lệch biên do codec ở phần họa âm cao. Loop quạt/đèn dài 12 giây, côn trùng và xe máy xa dài 20 giây.
 4. Đo và chuẩn hóa hai lượt bằng [loudnorm](https://ffmpeg.org/ffmpeg-filters.html#loudnorm): Ambience −24 LUFS, SFX −18 LUFS (ngoại lệ trong `TARGET_OVERRIDES`: hum −44, dép đi −56, dép chạy −53), true peak mục tiêu −2 dBTP. Xuất mono OGG Vorbis quality 4, 48 kHz; bỏ metadata, bật bitexact cho muxer/encoder. Đo OGG rồi hiệu chỉnh gain tối đa hai lần nếu lệch >0.5 LU, có giới hạn theo headroom; luôn encode lại từ PCM, không nối nhiều lượt encode lossy.
-5. Ghi `loop=true` cho ambience và `sfx/phone_vibrate`, `loop=false` cho các SFX còn lại trong `.ogg.import`; bảo toàn UID/remap khi Godot đã import. Chạy test để Godot hoàn thiện metadata import; commit `.import` và `.uid`.
-6. Đo lại **OGG đã encode** và ghi `build_report.json`: hash WAV/OGG, LUFS, true peak, độ dài, dung lượng, chênh hai mẫu ở biên loop. Pipeline fail nếu lệch mục tiêu >1 LU, peak >−1 dBTP, chênh biên loop >0.02 hoặc tổng WAV+OGG ≥15 MB. Những số đo này không thay thế nghe thử.
+5. Ghi `loop=true` cho ambience, `sfx/phone_vibrate` và ba file thuộc `MUSIC_LOOPS`; `loop=false` cho các one-shot, gồm `music/end_tone`, trong `.ogg.import`; bảo toàn UID/remap khi Godot đã import. Chạy test để Godot hoàn thiện metadata import; commit `.import` và `.uid`.
+6. Đo lại **OGG đã encode** và ghi `build_report.json`: hash WAV/OGG, LUFS, true peak, độ dài, dung lượng, chênh hai mẫu ở biên loop. Pipeline fail nếu lệch mục tiêu >1 LU, peak >−1 dBTP, chênh biên loop >0.02 hoặc tổng WAV+OGG ≥20 MB. T-133 nâng giới hạn tổng từ 15 lên 20 MB để chứa loop nhạc 32/16/16 s và end tone 10 s ở PCM16/48 kHz; vẫn giữ giới hạn 10 MB mỗi file của dự án. Những số đo này không thay thế nghe thử.
 7. T-114: hum giữ nền 100 Hz, thêm rè chấn lưu 300/500/700/1100/1900/2900 Hz dao động chậm không đều và rít nhỏ 6.2 kHz. Đo OGG qua `highpass=f=200:p=2` **trước** phép đo loudnorm, không chuẩn hóa lại bản lọc để che mất mức suy giảm. Report có `highpass_200hz_lufs` và `highpass_200hz_loss_lu`; fail nếu mất >10 LU. Kết quả: −23.97 → −25.99 LUFS, mất 2.02 LU. Flicker là one-shot 1.5 giây gồm relay click và rè ngắt quãng; 11 âm khác giữ nguyên hash so với T-105.
 
 Tái tạo byte giống nhau yêu cầu cùng phiên bản Python/ffmpeg. Để đối chiếu, lưu bản `build_report.json`, chạy lại `--regenerate-raw` rồi so SHA256 từng WAV và OGG. Báo cáo không chứa timestamp hay đường dẫn tuyệt đối. Script chỉ tạo file tạm bên trong `audio_source/` và tự dọn thư mục tạm của lần chạy đó.
@@ -132,3 +132,32 @@ Sting là hiệu ứng nên chọn SFX; tiếng thì thầm là hơi giọng nê
 `sting_low` có attack mềm 0.5 s, nốt 64 Hz với họa âm/rung nhẹ rồi tắt dần; hit gồm kim loại méo và burst nhiễu. Dép đặt gồm hai xung 0.025/0.24 s, rush có tiếp đất trầm và đế vỗ sát hơn bank người chơi. Hơi thở là nhiễu điều biên khàn theo chu kỳ 4 s; raw 9 s crossfade thành loop 8 s. `whisper_co` là hơi nhiễu qua cộng hưởng nguyên âm, không TTS, không giọng nói thu âm và chưa xác nhận nghe ra chữ “Có”. Phụ đề và xử lý `reduce_scares` thuộc bên tích hợp theo D-024, không tự nối settings/StoryDirector ở lane E.
 
 Test kiểm tra decode/loop toàn bộ 39 OGG, hash file khớp report, LUFS của 11 âm mới trong ±1 LU, hit lớn hơn low, phím thử và bus. **Chưa nghe bằng tai cả 11 âm T-131**; số đo và test không xác nhận chất âm, độ giật mình, âm giống dép/vải hay tiếng thì thầm. Cần chủ dự án nghe thử trước khi duyệt cảm nhận.
+
+## T-133: nhạc nền và MusicDirector
+
+Thêm bốn âm tự tổng hợp, seed 13301–13304; không thay công thức/target/hash 39 âm đã có. Drone gồm họa âm trầm quanh 55/110 Hz, nhiễu lọc và tiếng kim loại xa 731.125 Hz, không chuỗi giai điệu. Tension thêm dao động lệch tần; chase có 112.5 BPM (30 nhịp trong loop 16 s), attack tròn. Ba loop crossfade 1 s; raw dài hơn OGG 1 s. End tone attack mềm, tắt dần trong 10 s. Mono 48 kHz, cùng pipeline bitexact cũ.
+
+| File dưới `game/audio/music/` | OGG | LUFS mục tiêu / đo thật | Chênh biên loop |
+|---|---|---|---|
+| `drone_base.ogg` | 32 s loop | −42 / −41.96 | 0.0007746 |
+| `drone_tension.ogg` | 16 s loop | −36 / −35.99 | 0.0015736 |
+| `chase_pulse.ogg` | 16 s loop, 112.5 BPM | −30 / −29.96 | 0.0012073 |
+| `end_tone.ogg` | 10 s one-shot | −32 / −32.49 | Không loop |
+
+Gắn script `res://scripts/audio/music_director.gd` lên một `Node` tên `MusicDirector` trong main. Node tự tạo bốn `AudioStreamPlayer`, tất cả bus **Music**, không chỉnh volume bus (slider Music/Master vẫn thuộc Lane D). Đặt node trước nơi khởi động StoryDirector để kết nối xong trước signal `segment_changed`; khi resume, caller phải phát segment và deviation hiện tại qua EventBus. Director không đọc GameState/StoryDirector, không quyết định cốt truyện và không là autoload.
+
+- `seg1`/segment ngoài seg2–5: fade về im lặng. `seg2`–`seg5`: base vào 2 s, reset chase/khoảng im/lịch transient cũ. Ba loop chạy cùng lúc, layer chưa cần có gain tuyến tính 0 để giữ pha khi đưa lên lại. `end`: fade loop 0.8 s, sau 0.85 s dừng loop và phát end tone một lần. Đổi đoạn trong lúc chờ end hủy lịch đó.
+- Consequence thường: tension lên 2 s, giữ 15 s rồi về mức nền trong 8 s. Gọi lại kéo dài lượt mới, tween tiếp từ gain hiện tại. Mức transient theo deviation 0–4: −8/−6/−4/−2/0 dB so với asset; không vượt −36 LUFS mục tiêu của riêng layer. Mức nền: level 0 im; level 1–4 là −12/−10/−8/−6 dB. Tổng mix nhiều layer có thể lớn hơn một layer đơn.
+- `corridor_light_flicker`: ramp toàn bộ nhạc về **0 tuyến tính trong 10 ms**, giữ 3 s, sau đó tension lên 2 s/giữ 15 s/fade 8 s. `scare_triggered`: ramp 10 ms về 0, giữ khoảng 1.5 s, trả mix trong 0.3 s. Release 10 ms để tránh cắt waveform ở mẫu khác 0; đây là lựa chọn kỹ thuật cho yêu cầu vừa cắt ngay vừa tránh tiếng bụp. Hai khoảng im được giữ riêng: khoảng ngắn hết không phá khoảng dài đang còn.
+- `chase_started(id)`: pulse vào 0.5 s; `chase_ended(id, false)` ra 1.5 s; caught ra 10 ms. Bỏ qua end của chase id khác. Nếu chase kết thúc trong khoảng im, nó không tự phát lại khi hết im.
+- Node và các tween dùng process Always để nhạc tiếp tục trong menu. `game_paused` duck 10 dB trong 0.2 s; bỏ pause trả lại. Đồng hồ hold/silence/end chờ trong lúc pause; các fade ngắn vẫn chạy mượt. Không thay tree pause hoặc settings.
+- Chỉ đọc bool `[accessibility] reduce_scares` lúc ready và khi đúng `settings_changed`; sai kiểu/thiếu file là false. Khi bật, pulse giảm riêng 6 dB, hủy/bỏ khoảng im của scare, giữ khoảng im do đèn tắt theo D-024. Thay đổi giảm âm và pause độc lập, không ghi đè gain transient; pause + reduction cho chase là −16 dB.
+- `stop_emitting()` hủy tween/lịch, dừng cả bốn player và khóa phát lại; dùng lúc App.quit hoặc unload. Muốn tạo lượt chơi mới sau shutdown, tạo node mới. `seg1` là cách reset nhẹ trong fixture.
+
+Scene nghe thử vẫn là `res://audio/test/scare_test.tscn`. F1–F11 giữ các âm T-131. Phím **1/2/3/4** nghe riêng base/tension/chase/end ở gain 0 dB qua Music. Phím **M** giả lập: bắt đầu seg2 → sau 3 s làm sai (level 2) → sau 4 s bắt đầu đuổi → sau 5 s thoát. Sau đó nhạc nền tiếp tục. **L** giả lập đèn tắt; **H** hù; **P** giả lập signal pause/unpause cho MusicDirector; **E** giả lập end. Dùng M trước L/H/P để có nhạc đang chạy. **0** dừng solo, hủy chuỗi và fade director về seg1; **Esc** thoát sạch. Chuyển solo có thể nghe đuôi fade director 0.8 s. Phím P không pause cả cây và không tác động solo; thử pause thật bằng test tự động hoặc main sau tích hợp. Fixture không ghi settings; thiết lập “Giảm hù dọa” có sẵn được đọc khi mở scene.
+
+**Giới hạn tích hợp:** core hiện emit `scare_triggered` cùng frame phát sting/whisper; MusicDirector chỉ bảo đảm im nhạc từ khi nhận signal. Để có 1.5 s im **trước** cú hù, Integrator cần dời signal sớm tương ứng ở core, xử lý nhánh reduce_scares và đồng bộ hình/sting. Không tự trì hoãn sting, mute SFX/Voice hoặc sửa core ở lane E.
+
+`corridor_light_flicker` hiện được phát lúc bắt đầu nhấp nháy đèn; lần tắt giữ lâu xảy ra sau chuỗi nhấp nháy. Director cắt nhạc theo signal ngay từ lần tắt đầu. Nếu muốn 3 s được tính từ lần tắt giữ lâu, Integrator cần đồng bộ cue tại core; không hardcode độ dài nhấp nháy vào nhạc.
+
+**Chưa nghe bằng tai bốn âm mới, loop nối dài, mix với hum/dép, fade/duck hay chuỗi truy đuổi.** Test kiểm tra decode, bus, LUFS/hash, vòng đời signal và tham số tween; không xác nhận chất lượng cảm nhận hay hứa không có tiếng bụp trên mọi thiết bị. Chủ dự án cần nghe thử và duyệt mix sau khi gắn main.
