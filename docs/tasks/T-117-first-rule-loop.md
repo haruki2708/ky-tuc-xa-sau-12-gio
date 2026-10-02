@@ -46,3 +46,9 @@ Chơi được đoạn 1–2 trong `docs/design/RULES.md`:
 **Còn lại (phần 2, khi A, D, E xong):** đặt công tắc, chốt cửa, giấy sau cửa, điện thoại vào anchor; gắn màn xem giấy và sổ tay; gắn `Speaker` ở bàn trực; nối `phone_path`, `speaker_path`; thử chơi trọn vòng và chụp ảnh.
 
 **Lưu ý:** `SUB_PHONE_MIDNIGHT` đã được thêm ở đây. Lane A (T-129) không cần thêm key này nữa; nếu thêm trùng thì integrator bỏ bản trùng khi merge.
+
+### Phiên 2026-10-02 (phần 2a) — Claude
+- Gắn đồ của lane A (T-129) vào phòng 407: công tắc, chốt và tờ `room_paper_407` trên cánh cửa, điện thoại trên giường Trung. Vùng bấm của tờ giấy kéo dài 0,15 m để không bị vùng tương tác của cửa che. Test bắn tia trong phòng.
+- Gắn âm thanh lane E (T-130): loa ở bàn trực đọc nội quy (bật, chuông, rè, tràng rè ở điều 3, tắt), điện thoại rung, tiếng công tắc và chốt, ba lượt gõ cửa.
+- Test luồng chơi chờ theo đồng hồ thật (tối đa 30 giây), vì chuông và tiếng bật/tắt loa phát theo thời gian thật.
+- **Còn lại:** màn xem giấy và sổ tay (lane D, T-111), rồi chơi thử trọn vòng.

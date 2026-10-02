@@ -1,5 +1,5 @@
 # T-130 — Âm thanh cho đoạn 1–2
-- Lane: E (Âm thanh) | Trạng thái: todo | Agent:
+- Lane: E (Âm thanh) | Trạng thái: done | Agent:
 - Nhánh: `lane-e/T-130-segment12-sounds`
 - Phụ thuộc: T-126 (done). Đọc `docs/design/RULES.md` mục 5 (đoạn 1–2). Làm song song với T-129 (lane A) và T-111 (lane D).
 
@@ -82,3 +82,13 @@ Các âm mà đoạn 1–2 cần: tiếng gõ cửa, loa phát thanh (chuông b�
 - Không cần thay bus layout, autoload, signal EventBus hoặc key dịch cho T-130. Không phát sinh câu hỏi luật chơi/cốt truyện; nội dung đoạn 1–2 lấy theo thiết kế đã duyệt.
 
 **Blocked:** Không còn chặn kỹ thuật; chờ duyệt nghe thực tế và tích hợp ở T-117. Fetch/checkout LFS/push và các lệnh kiểm tra cần quyền ngoài sandbox; đã thực hiện thành công.
+
+## Review (integrator, 2026-10-02)
+**Kết quả: chấp nhận, đã merge vào `main`.** Sau merge và ghép vào game: `test.ps1` → `RESULT: 155 passed, 0 failed`; `check.ps1` → `RESULT: check 0 error(s)`.
+
+- **Agent lane E hết token ở bước cuối.** Toàn bộ việc đã xong; chỉ commit Handoff `d4a77d7` chưa được push. Theo yêu cầu chủ dự án, **Claude (integrator) hoàn tất thay**: fetch commit đó thẳng từ `D:\GAME_WORK\lane-e` (không sửa thư mục của agent), push lên `origin/lane-e/T-130-segment12-sounds`, rồi merge. Claude không sửa nội dung nào của lane E.
+- Đúng phạm vi. 11 âm mới đúng mức đề xuất; 34 âm đã duyệt giữ nguyên hash. `Speaker`: bật loa → chuông → rè nền và phụ đề → tắt loa, dòng `garbled` có tràng rè; test kỹ cả hủy, phát lại, tạm dừng.
+- **Integrator đã ghép (T-117):** `FloorSpeaker` (script `Speaker`) ở anchor `Speaker` của bàn trực, nối `StoryDirector.speaker_path`; điện thoại dùng `phone_vibrate.ogg`; công tắc và chốt phát `light_switch` / `door_latch` qua `EventBus.interacted`; tiếng gõ `knock_01…03` được `StoryDirector` nạp theo lượt.
+- Handoff trung thực: chưa nghe bằng tai. Chủ dự án nghe khi chơi thử bản đầy đủ.
+
+**Chấm điểm (1–5):** phạm vi 5 · checklist 5 · test 5 · chất lượng code 5 · bàn giao trung thực 5 · số vòng sửa 0 (bước push cuối do Claude làm thay).
