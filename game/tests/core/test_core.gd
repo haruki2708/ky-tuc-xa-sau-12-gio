@@ -68,5 +68,10 @@ func test_main_scene_footsteps_and_ambience_wired() -> void:
 	assert_false(hum.playing, "hum stops when its tube light turns off;")
 	light.visible = true
 	assert_true(hum.playing, "hum resumes when its tube light turns on;")
+	# Stop audio first: the audio thread releases playbacks a little later.
+	for node in main.find_children("*", "AudioStreamPlayer3D", true, false):
+		if node.has_method("stop_emitting"):
+			node.stop_emitting()
+		(node as AudioStreamPlayer3D).stop()
 	main.queue_free()
-	await wait_frames(2)
+	await tree.create_timer(0.2).timeout
