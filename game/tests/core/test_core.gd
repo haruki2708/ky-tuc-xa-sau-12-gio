@@ -86,3 +86,28 @@ func test_main_scene_footsteps_and_ambience_wired() -> void:
 		(node as AudioStreamPlayer3D).stop()
 	main.queue_free()
 	await tree.create_timer(0.2).timeout
+
+
+func test_main_scene_escape_pauses_and_resumes_player() -> void:
+	var main: Node = load("res://scenes/main/main.tscn").instantiate()
+	tree.root.add_child(main)
+	await wait_frames(2)
+	var player: Node = main.get_node("Player")
+	var escape := InputEventAction.new()
+	escape.action = &"pause"
+	escape.pressed = true
+	Input.parse_input_event(escape)
+	await wait_frames(2)
+	assert_true(tree.paused, "Esc pauses the game")
+	assert_false(player._mouse_captured, "Player releases the mouse while paused")
+	Input.parse_input_event(escape)
+	await wait_frames(2)
+	assert_false(tree.paused, "second Esc resumes")
+	assert_true(player._mouse_captured, "Player captures the mouse again")
+	tree.paused = false
+	for node in main.find_children("*", "AudioStreamPlayer3D", true, false):
+		if node.has_method("stop_emitting"):
+			node.stop_emitting()
+		(node as AudioStreamPlayer3D).stop()
+	main.queue_free()
+	await tree.create_timer(0.2).timeout
