@@ -1,0 +1,15 @@
+{
+  "blender": "5.2.2 LTS",
+  "models": {
+    "silhouette": {
+      "triangles": 408,
+      "origin": "feet",
+      "front": "Godot -Z"
+    },
+    "reflection_body": {
+      "triangles": 612,
+      "origin": "feet",
+      "front": "Godot -Z"
+    }
+  }
+}

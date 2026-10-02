@@ -1,0 +1,46 @@
+[gd_scene load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://scenes/levels/mirror.gd" id="1"]
+[ext_resource type="Shader" path="res://rendering/mirror_surface.gdshader" id="2"]
+[ext_resource type="PackedScene" path="res://scenes/levels/entity/reflection_body.tscn" id="3"]
+
+[sub_resource type="ShaderMaterial" id="MirrorMaterial"]
+shader = ExtResource("2")
+
+[sub_resource type="QuadMesh" id="Glass"]
+size = Vector2(2.8, 0.95)
+
+[sub_resource type="StandardMaterial3D" id="FrameMaterial"]
+albedo_color = Color(0.12, 0.17, 0.16, 1)
+roughness = 0.9
+
+[sub_resource type="BoxMesh" id="FrameMesh"]
+size = Vector3(2.88, 1.03, 0.025)
+material = SubResource("FrameMaterial")
+
+[node name="Mirror" type="Node3D"]
+script = ExtResource("1")
+
+[node name="Frame" type="MeshInstance3D" parent="."]
+position = Vector3(0, 0, -0.02)
+mesh = SubResource("FrameMesh")
+
+[node name="Surface" type="MeshInstance3D" parent="."]
+layers = 262144
+cast_shadow = 0
+mesh = SubResource("Glass")
+material_override = SubResource("MirrorMaterial")
+
+[node name="ReflectionViewport" type="SubViewport" parent="."]
+size = Vector2i(560, 190)
+handle_input_locally = false
+gui_disable_input = true
+render_target_update_mode = 0
+audio_listener_enable_3d = false
+
+[node name="Camera3D" type="Camera3D" parent="ReflectionViewport"]
+current = true
+cull_mask = 786431
+
+[node name="ReflectionBody" parent="." instance=ExtResource("3")]
+visible = false

@@ -20,3 +20,12 @@ Giấy phép phần mềm Blender/Godot độc lập với giấy phép các ass
 ## Greybox T-112
 
 `game/scenes/levels/floor4/*.tscn` dùng lại các model/texture kit ở trên và primitive Godot (hộp, capsule), sinh bằng `art_source/floor4/build_floor4.py`. Tác giả: Lane B, Codex (OpenAI); nguồn nội bộ là script này và bố cục đã duyệt `docs/design/LAYOUT.md`; giấy phép hình khối/ảnh mới CC0-1.0. Ảnh `art_source/floor4/previews/*.png` do Godot Forward+ render. Không dùng ảnh/asset tải ngoài. Âm thanh chỉ tham chiếu tài nguyên của Lane E; nguồn của chúng giữ ở `game/audio/CREDITS.md`.
+
+## Bóng người và gương T-135
+
+| File / nhóm | Tác giả / công cụ | Nguồn | Giấy phép asset |
+|---|---|---|---|
+| `game/assets/models/entity/silhouette.glb`, `reflection_body.glb` | Lane B, Codex (OpenAI), Blender 5.2.2 LTS | [Script gốc](entity/build_entity.py); hình khối mới, không dùng asset ngoài | CC0-1.0 |
+| `entity/previews/*.png` | Godot 4.7.2 Forward+; Codex viết script chụp | [Script chụp](entity/capture_entity.gd), kit CC0 và mô hình trên | CC0-1.0 |
+
+Shader bóng người/gương và scene là mã mới có hỗ trợ AI (Codex). Không dùng mô hình sinh ảnh, texture tải ngoài, plugin hoặc bản quét người thật. Khai báo AI và URL giấy phép ở trên tiếp tục áp dụng. Các đoạn âm phát trong scene thử giữ nguồn ở `game/audio/CREDITS.md`.
