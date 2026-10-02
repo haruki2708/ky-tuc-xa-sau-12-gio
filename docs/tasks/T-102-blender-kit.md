@@ -45,10 +45,56 @@ Chứng minh pipeline sau chạy được: **script Python → Blender headless 
 7. **Ghi nguồn:** `art_source/CREDITS.md` liệt kê nguồn của mọi texture không tự tạo.
 
 ## Checklist hoàn thành
-- [ ] Chạy lại `build_kit.ps1` từ đầu thì ra đúng các file như cũ
-- [ ] `pwsh tools/test.ps1` PASS
-- [ ] Có `contact_sheet.png` và ảnh chụp `kit_showcase.tscn` từ Godot
-- [ ] Không chạm file ngoài phạm vi; có `CREDITS.md`
-- [ ] Mục Handoff đã điền, kèm số tam giác của từng mô hình
+- [x] Chạy lại `build_kit.ps1` từ đầu thì ra đúng các file như cũ
+- [x] `pwsh tools/test.ps1` PASS
+- [x] Có `contact_sheet.png` và ảnh chụp `kit_showcase.tscn` từ Godot
+- [x] Không chạm file ngoài phạm vi; có `CREDITS.md`
+- [x] Mục Handoff đã điền, kèm số tam giác của từng mô hình
 
 ## Handoff (agent điền)
+
+### 2026-10-02 — Lane B / Codex
+
+**Đã làm**
+- Cài Blender **5.2.2 LTS** portable chính thức ở `D:\Tools\Blender\5.2.2\`, xác minh SHA256 ZIP; không cài vào C:, không thêm plugin. Phiên bản, đường dẫn và nguồn tải nằm trong `art_source/README.md`.
+- Dựng đủ 7 GLB, 9 texture tự tạo 128 px, 7 preview 512 px và contact sheet. Có script cài, build và kiểm tra tái lập; không cần file nguồn `.blend` hoặc thư viện ngoài.
+- Thêm `kit_showcase.tscn`, ảnh `art_source/kit/previews/kit_showcase.png` 1280 × 720 chụp bằng Godot 4.7.2 Forward+ (Vulkan, RTX 3050 Laptop). Đã xem trực tiếp contact sheet và ảnh Godot để kiểm tra hình ảnh.
+- Thêm 7 test cho kit: load/mesh/ngân sách tam giác, kích thước, ô cửa, bản lề/mặt trước, nhóm cánh quạt, texture nearest và scene showcase. Giữ đủ `.import`, `.uid` Godot sinh ra; asset nhị phân qua Git LFS, mọi file dưới 10 MB.
+- Nguồn asset và khai báo hỗ trợ AI nằm ở `art_source/CREDITS.md`. Không dùng texture ngoài.
+- Commit triển khai **`39a252f`** đã push thành công lên `origin/lane-b/T-102-blender-kit`, kèm 25 LFS object duy nhất (3,2 MB). Bản cập nhật checklist/Handoff này được commit riêng sau đó. Không push `main`.
+
+**Số tam giác** (mesh triangulate trước export; chi tiết kích thước trong `art_source/kit/manifest.json`)
+
+| Mô hình | Tam giác | Giới hạn |
+|---|---:|---:|
+| wall_straight | 24 | <1500 |
+| wall_door | 60 | <1500 |
+| door | 120 | <1500 |
+| bunk_bed | 372 | <1500 |
+| locker | 228 | <1500 |
+| ceiling_fan | 180 | <500 |
+| plastic_stool | 108 | <500 |
+
+**Cách kiểm tra / kết quả đã chạy**
+1. Từ gốc repo: `pwsh -File art_source/kit/build_kit.ps1`.
+2. `pwsh -File art_source/kit/verify_rebuild.ps1`: dựng mới hai lần bằng Blender 5.2.2, so SHA256 của 24 đầu ra, kết quả **`REBUILD_RESULT: PASS 24/24 generated GLB, texture and preview hashes match`**. PNG loại metadata thời gian để hash ổn định; cam kết tái lập đã kiểm chứng trên cùng máy và bản Blender, không khẳng định hash render giống giữa mọi nền tảng.
+3. `pwsh tools/test.ps1`: kết quả cuối **`RESULT: 12 passed, 0 failed`**, exit code 0 (5 test core + 7 test kit). Đã chạy sau lần rebuild cuối và các chỉnh sửa scene.
+4. Lệnh chụp đầy đủ trong `art_source/README.md`; kết quả **`CAPTURE_RESULT: PASS`**. Mở contact sheet và `kit_showcase.png` trong `art_source/kit/previews/` để duyệt.
+5. `git diff --cached --check` trước commit triển khai không báo lỗi; các file thay đổi chỉ thuộc phạm vi Lane B và checklist/Handoff của card này.
+
+**Quyết định kỹ thuật / điểm cần biết khi tích hợp**
+- Blender -Y qua glTF Y-up mặc định thành Godot +Z. Script bake thêm nửa vòng vào node con để mặt trước cuối là Godot -Z, giữ root identity và bản lề ở gốc. Test kiểm tra hướng tay nắm và quay cửa.
+- Cửa 0,88 × 2,08 m để có khe trong ô 0,9 × 2,1 m. Lá trải local X=-0,88..0 trong Godot; đặt bản lề X=+0,44, Y=0,01 khi lắp vào ô ở gốc. Xoay quanh local Y.
+- Giường bao gồm thang và khung mùng trong đúng envelope 0,9 × 2 × 1,7 m; chưa có vải mùng. Tủ chọn hai ngăn xếp dọc.
+- Quạt có `fan_rotor` con độc lập, quay local Y; pivot nằm trên trục motor. Showcase nâng quạt lên 2 m để xem, asset gốc có đáy ở Y=0.
+- GLB dùng nearest thuần ở cả min/mag sampler; không cần thay cài đặt project. Godot tách texture nhúng thành PNG có tiền tố model, đã commit các bản sao và import metadata.
+
+**Còn dở / checklist chưa đạt**
+- Không có mục checklist kỹ thuật nào chưa đạt. Hướng hình ảnh chờ chủ dự án duyệt qua preview; chưa coi là đã được duyệt mỹ thuật.
+- Showcase chỉ phục vụ duyệt asset. Chưa lắp vào scene main, chưa có hành vi tương tác/collision trên từng mô hình; không thuộc yêu cầu T-102. Không tự suy diễn luật chơi hoặc cốt truyện.
+
+**Yêu cầu thay đổi ngoài phạm vi**
+- Không có. Không sửa `docs/STATUS.md`, cấu hình project, scene main hoặc file lane khác.
+
+**Bị chặn**
+- Không còn blocker. Sandbox từng lỗi khởi chạy PowerShell 1326, chặn mạng và log Godot; các thao tác cần thiết đã chạy lại với quyền được phê duyệt, test và push đều thành công.
