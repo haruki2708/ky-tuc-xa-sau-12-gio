@@ -28,10 +28,22 @@ ASSETS = [
     ("fluorescent_flicker", "sfx", 1.5, 11401),
     ("night_insects_motorbike", "ambience", 21.0, 10503),
     *[(f"water_drip_{i:02}", "sfx", 1.0, 10510 + i) for i in range(1, 4)],
-    *[(f"slipper_tile_{i:02}", "sfx", 0.85, 10520 + i) for i in range(1, 5)],
+    *[(f"slipper_tile_{i:02}", "sfx", 0.6, 12300 + i) for i in range(1, 5)],
+    *[(f"slipper_run_{i:02}", "sfx", 0.6, 12310 + i) for i in range(1, 5)],
     ("wood_door_open", "sfx", 2.4, 10531),
     ("wood_door_close", "sfx", 1.8, 10532),
 ]
+
+
+# Footsteps sit well below doors (-18) so walking stays a soft background cue.
+TARGET_OVERRIDES = {"slipper_tile": -26, "slipper_run": -23}
+
+
+def target_lufs(name: str, loop: bool) -> int:
+    for prefix, target in TARGET_OVERRIDES.items():
+        if name.startswith(prefix):
+            return target
+    return -24 if loop else -18
 
 
 def write_wav(path: Path, values: list[float]) -> None:
@@ -45,6 +57,8 @@ def write_wav(path: Path, values: list[float]) -> None:
 
 def synthesize(name: str, seconds: float, seed: int) -> list[float]:
     rng = random.Random(seed)
+    if name.startswith("slipper_"):
+        return synthesize_slipper(seconds, seed, running=name.startswith("slipper_run"))
     result: list[float] = []
     low_noise = 0.0
     phase = 0.0
@@ -111,6 +125,46 @@ def synthesize(name: str, seconds: float, seed: int) -> list[float]:
     return result
 
 
+def synthesize_slipper(seconds: float, seed: int, running: bool) -> list[float]:
+    """Flip-flop on glazed tile: a muffled heel "lep", then the sole flapping
+    back against the heel ("xep"). Soft attacks, no low thump, no hard click."""
+    rng = random.Random(seed)
+    contact = .02 + rng.uniform(0, .012)
+    gap = rng.uniform(.075, .105) if running else rng.uniform(.13, .19)
+    heel_amp = rng.uniform(.8, 1.0) if running else rng.uniform(.55, .75)
+    slap_amp = rng.uniform(.75, .95) if running else rng.uniform(.35, .55)
+    flutter = rng.uniform(.008, .013)
+    body_hz = rng.uniform(170, 230)
+    heel_lp = 1 - math.exp(-TAU * (2400 if running else 1800) / RATE)
+    slap_lp = 1 - math.exp(-TAU * 4500 / RATE)
+    slap_hp = 1 - math.exp(-TAU * 1200 / RATE)
+    scuff_lp = 1 - math.exp(-TAU * 900 / RATE)
+    heel_state = slap_low = slap_band = scuff_state = 0.0
+
+    def burst(u: float, attack: float, decay: float) -> float:
+        if u < 0:
+            return 0.0
+        return min(1.0, u / attack) * math.exp(-u / decay)
+
+    result: list[float] = []
+    for index in range(round(seconds * RATE)):
+        t = index / RATE
+        noise = rng.uniform(-1.0, 1.0)
+        heel_state += heel_lp * (noise - heel_state)
+        slap_band += slap_lp * (noise - slap_band)
+        slap_low += slap_hp * (slap_band - slap_low)
+        scuff_state += scuff_lp * (noise - scuff_state)
+        u = t - contact
+        heel = burst(u, .004, .03) * (heel_state + .35 * math.sin(TAU * body_hz * u))
+        slap_noise = slap_band - slap_low
+        slap = burst(u - gap, .002, .014) + .3 * burst(u - gap - flutter, .002, .01)
+        scuff = 0.0
+        if 0 <= u < gap:
+            scuff = math.sin(math.pi * u / gap) * scuff_state * (.06 if running else .04)
+        result.append(.5 * (heel_amp * heel + slap_amp * slap * slap_noise + scuff))
+    return result
+
+
 def run(ffmpeg: str, args: list[str]) -> subprocess.CompletedProcess:
     return subprocess.run([ffmpeg, "-hide_banner", "-nostdin", "-y", *args],
                           check=True, capture_output=True)
@@ -173,11 +227,13 @@ def main() -> None:
             if args.regenerate_raw or not raw.exists():
                 write_wav(raw, synthesize(name, seconds, seed))
             loop = category == "ambience"
-            target = -24 if loop else -18
+            target = target_lufs(name, loop)
             prepared = Path(temp) / f"{name}.wav"
             filters = f"atrim=start=0:end={seconds},asetpts=PTS-STARTPTS,highpass=f=35,lowpass=f=11000"
             if not loop:
-                filters += ",acompressor=threshold=0.025:ratio=6:attack=0.1:release=80:makeup=1:knee=2"
+                # Footsteps skip the compressor: it flattens heel vs. sole-slap dynamics.
+                if not name.startswith("slipper_"):
+                    filters += ",acompressor=threshold=0.025:ratio=6:attack=0.1:release=80:makeup=1:knee=2"
                 filters += f",afade=t=in:d=0.008,afade=t=out:st={seconds - .08}:d=0.08"
             run(ffmpeg, ["-i", str(raw), "-af", filters, "-ar", str(RATE), "-ac", "1", "-c:a", "pcm_s16le", str(prepared)])
             if loop:

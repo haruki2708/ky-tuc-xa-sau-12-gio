@@ -1,7 +1,7 @@
 extends TestCase
 
 const AMBIENCE := ["ceiling_fan", "fluorescent_hum", "night_insects_motorbike"]
-const SFX := ["water_drip_01", "water_drip_02", "water_drip_03", "slipper_tile_01", "slipper_tile_02", "slipper_tile_03", "slipper_tile_04", "wood_door_open", "wood_door_close", "fluorescent_flicker"]
+const SFX := ["water_drip_01", "water_drip_02", "water_drip_03", "slipper_tile_01", "slipper_tile_02", "slipper_tile_03", "slipper_tile_04", "slipper_run_01", "slipper_run_02", "slipper_run_03", "slipper_run_04", "wood_door_open", "wood_door_close", "fluorescent_flicker"]
 
 
 func test_all_ogg_load_and_decode_with_correct_loop_flags() -> void:
@@ -58,8 +58,8 @@ func test_footsteps_do_not_repeat_and_cover_all_variants() -> void:
 		player.play_footstep(&"tile")
 		assert_not_null(player.stream, "step clip")
 		assert_true(player.stream != previous, "consecutive step %d" % index)
-		assert_true(player.pitch_scale >= 0.94 and player.pitch_scale <= 1.06, "pitch bounded")
-		assert_true(absf(player.volume_db) <= 1.0, "volume bounded")
+		assert_true(player.pitch_scale >= 0.96 and player.pitch_scale <= 1.04, "pitch bounded")
+		assert_true(absf(player.volume_db) <= 1.5, "volume bounded at default intensity")
 		if not seen.has(player.stream):
 			seen.append(player.stream)
 		previous = player.stream
@@ -148,3 +148,55 @@ func _find_ogg(path: String) -> Array[String]:
 	for directory in DirAccess.get_directories_at(path):
 		found.append_array(_find_ogg(path.path_join(directory)))
 	return found
+
+
+func test_footstep_intensity_selects_bank_without_repeats() -> void:
+	var player := FootstepPlayer.new()
+	tree.root.add_child(player)
+	player._rng.seed = 123
+	for case: Array in [[0.2, player.tile_variants], [0.6, player.tile_variants], [1.0, player.tile_run_variants]]:
+		var intensity: float = case[0]
+		var bank: Array[AudioStream] = case[1]
+		var seen: Array[AudioStream] = []
+		var previous: AudioStream
+		for index in 64:
+			player.play_footstep(&"tile", intensity)
+			assert_true(bank.has(player.stream), "intensity %.1f uses expected bank" % intensity)
+			assert_true(player.stream != previous, "no consecutive repeat at %.1f" % intensity)
+			if not seen.has(player.stream):
+				seen.append(player.stream)
+			previous = player.stream
+		assert_eq(seen.size(), 4, "all variants used at %.1f;" % intensity)
+	player.free()
+
+
+func test_footstep_louder_when_running() -> void:
+	var player := FootstepPlayer.new()
+	tree.root.add_child(player)
+	player.volume_variation_db = 0.0
+	player.play_footstep(&"tile", 0.0)
+	var soft := player.volume_db
+	player.play_footstep(&"tile", 1.0)
+	assert_true(player.volume_db > soft, "running gain above slow walk")
+	player.play_footstep(&"tile", 5.0)
+	assert_eq(player.volume_db, 3.0, "intensity clamps to 1;")
+	player.free()
+
+
+func test_walk_bank_quieter_than_run_bank() -> void:
+	var report: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://../audio_source/build_report.json"))
+	assert_not_null(report, "build report readable")
+	if report == null:
+		return
+	var walk: Array[float] = []
+	var run: Array[float] = []
+	for entry: Dictionary in report["assets"]:
+		var file: String = entry["file"]
+		if file.contains("slipper_tile_"):
+			walk.append(entry["lufs"])
+		elif file.contains("slipper_run_"):
+			run.append(entry["lufs"])
+	assert_eq(walk.size(), 4, "walk entries;")
+	assert_eq(run.size(), 4, "run entries;")
+	assert_true(walk.max() < run.min(), "walk bank quieter than run bank")
+	assert_true(walk.max() < -24.0, "walking clearly below door SFX (-18 LUFS)")
