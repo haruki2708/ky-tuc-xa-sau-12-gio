@@ -1,0 +1,108 @@
+extends Node
+## Optional QA autoload. Idle unless --autoplay=<path> is supplied.
+
+signal playback_finished
+
+var quit_on_finish: bool = true
+var _events: Array[Dictionary] = []
+var _held: Array[StringName] = []
+var _frame: int = 0
+var _cursor: int = 0
+var _end_frame: int = 0
+var _active: bool = false
+
+
+func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
+	for arg in OS.get_cmdline_user_args():
+		if arg.begins_with("--autoplay="):
+			if not load_recording(arg.trim_prefix("--autoplay=")):
+				get_tree().quit(1)
+			return
+
+
+func load_recording(path: String) -> bool:
+	stop()
+	var file := FileAccess.open(path, FileAccess.READ)
+	if file == null:
+		return false
+	var json := JSON.new()
+	if json.parse(file.get_as_text()) != OK or not json.data is Array:
+		return false
+	var parsed: Array[Dictionary] = []
+	var previous: int = -1
+	for value: Variant in json.data:
+		if not value is Dictionary:
+			return false
+		var event: Dictionary = value
+		var number: Variant = event.get("frame")
+		if not _is_number(number) or number < 0 or number != floor(number) or number < previous:
+			return false
+		previous = int(number)
+		var operations: int = 0
+		for key: Variant in event:
+			if key not in ["frame", "press", "release", "mouse_dx", "mouse_dy"]:
+				return false
+		for key: String in ["press", "release"]:
+			if event.has(key):
+				if not event[key] is String or not InputMap.has_action(event[key]):
+					return false
+				operations += 1
+		for key: String in ["mouse_dx", "mouse_dy"]:
+			if event.has(key):
+				if not _is_number(event[key]):
+					return false
+				operations += 1
+		if operations == 0:
+			return false
+		parsed.append(event)
+	_events = parsed
+	_frame = 0
+	_cursor = 0
+	_end_frame = maxi(previous, 0) + 30
+	_active = true
+	print("AUTOPLAY: loaded %d events from %s" % [_events.size(), path])
+	return true
+
+
+func _is_number(value: Variant) -> bool:
+	return (value is int or value is float) and is_finite(float(value))
+
+
+func _process(_delta: float) -> void:
+	if not _active:
+		return
+	while _cursor < _events.size() and int(_events[_cursor]["frame"]) == _frame:
+		var event: Dictionary = _events[_cursor]
+		if event.has("press"):
+			var action := StringName(event["press"])
+			Input.action_press(action)
+			if action not in _held:
+				_held.append(action)
+		if event.has("release"):
+			var action := StringName(event["release"])
+			Input.action_release(action)
+			_held.erase(action)
+		if event.has("mouse_dx") or event.has("mouse_dy"):
+			var motion := InputEventMouseMotion.new()
+			motion.relative = Vector2(event.get("mouse_dx", 0), event.get("mouse_dy", 0))
+			motion.screen_relative = motion.relative
+			get_viewport().push_input(motion, true)
+		_cursor += 1
+	if _frame >= _end_frame:
+		stop()
+		playback_finished.emit()
+		if quit_on_finish:
+			get_tree().quit()
+	_frame += 1
+
+
+func stop() -> void:
+	_active = false
+	for action: StringName in _held:
+		Input.action_release(action)
+	_held.clear()
+
+
+func _exit_tree() -> void:
+	stop()
