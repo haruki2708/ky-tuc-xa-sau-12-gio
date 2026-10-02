@@ -1,0 +1,38 @@
+{
+	"cpu": "AMD Ryzen 5 5600H with Radeon Graphics",
+	"fixed_fps": false,
+	"godot": "4.7.2-stable (official)",
+	"gpu": "NVIDIA GeForce RTX 3050 Laptop GPU",
+	"mirror_resolution": "560x190",
+	"renderer": "Forward+ Vulkan",
+	"resolution": "1280x720",
+	"scenario": "Full floor4 playtest, Player physics/HUD/audio and PS1 strength=1; stationary views",
+	"views": [
+		{
+			"frames": 240,
+			"max_frame_ms": 2.443,
+			"mean_fps": 559.122550344326,
+			"mirror_active": true,
+			"p95_frame_ms": 2.305,
+			"view": "mirror_normal"
+		},
+		{
+			"frames": 240,
+			"max_frame_ms": 2.8,
+			"mean_fps": 543.883463903134,
+			"mirror_active": true,
+			"p95_frame_ms": 2.443,
+			"view": "mirror_stare"
+		},
+		{
+			"frames": 240,
+			"max_frame_ms": 2.722,
+			"mean_fps": 543.512722726985,
+			"mirror_active": false,
+			"p95_frame_ms": 2.483,
+			"view": "silhouette_corridor"
+		}
+	],
+	"vsync": false,
+	"warmup_frames": 90
+}

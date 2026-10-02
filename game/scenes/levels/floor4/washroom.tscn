@@ -5,6 +5,7 @@
 [ext_resource type="AudioStream" path="res://audio/sfx/water_drip_01.ogg" id="e3"]
 [ext_resource type="Script" path="res://scripts/audio/reverb_zone.gd" id="e4"]
 [ext_resource type="Script" path="res://scripts/audio/ambient_zone.gd" id="e5"]
+[ext_resource type="PackedScene" path="res://scenes/levels/mirror.tscn" id="e6"]
 
 [sub_resource type="BoxShape3D" id="s1"]
 size = Vector3(6, 0.2, 5)
@@ -161,16 +162,6 @@ material = SubResource("s33")
 [sub_resource type="BoxMesh" id="s42"]
 size = Vector3(0.09, 0.25, 0.05)
 material = SubResource("s35")
-
-[sub_resource type="StandardMaterial3D" id="s43"]
-albedo_color = Color(0.18, 0.27, 0.28, 1)
-roughness = 0.18
-texture_filter = 0
-metallic = 0.65
-
-[sub_resource type="BoxMesh" id="s44"]
-size = Vector3(0.03, 0.95, 2.8)
-material = SubResource("s43")
 
 [sub_resource type="StandardMaterial3D" id="s45"]
 albedo_color = Color(0.73, 0.71, 0.56, 1)
@@ -398,11 +389,9 @@ position = Vector3(0.35, 1.03, -2.85)
 [node name="Mesh" type="MeshInstance3D" parent="Tap_2"]
 mesh = SubResource("s42")
 
-[node name="Mirror" type="Node3D" parent="."]
-position = Vector3(0.125, 1.62, -1.85)
-
-[node name="Mesh" type="MeshInstance3D" parent="Mirror"]
-mesh = SubResource("s44")
+[node name="Mirror" parent="." instance=ExtResource("e6")]
+position = Vector3(0.145, 1.62, -1.85)
+rotation = Vector3(0, 1.57079632679, 0)
 
 [node name="Notice" type="Node3D" parent="."]
 position = Vector3(0.125, 1.55, -3.25)

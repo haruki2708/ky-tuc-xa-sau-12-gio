@@ -217,7 +217,8 @@ def washroom():
     for i, z in enumerate((-.85, -1.85, -2.85)):
         s.box(f"Sink_{i}", (.42, .43, z), (.65, .86, .72), "white")
         s.box(f"Tap_{i}", (.35, 1.03, z), (.09, .25, .05), "iron", solid=False)
-    s.box("Mirror", (.125, 1.62, -1.85), (.03, .95, 2.8), "glass", solid=False)
+    s.node("Mirror", instance=s.resource("res://scenes/levels/mirror.tscn"),
+           properties="position = Vector3(0.145, 1.62, -1.85)\nrotation = Vector3(0, 1.57079632679, 0)")
     s.box("Notice", (.125, 1.55, -3.25), (.035, .42, .28), "paper", solid=False)
     s.lamp("WashroomLight", (3, 2.8, -2), energy=1.2, radius=5)
     s.emitter("WaterDrips", (.35, .9, -2.85), "sfx/water_drip_01.ogg", -8, random=True)
