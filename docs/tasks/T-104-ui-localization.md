@@ -1,5 +1,5 @@
 # T-104 — Font tiếng Việt, theme, HUD (tâm ngắm, gợi ý tương tác, phụ đề), đổi ngôn ngữ
-- Lane: D (UI và Đa ngôn ngữ) | Trạng thái: todo | Agent:
+- Lane: D (UI và Đa ngôn ngữ) | Trạng thái: done | Agent:
 - Nhánh: `lane-d/T-104-ui-localization`
 - Phụ thuộc: P0 (xong). HUD lắng nghe `EventBus`. Không phụ thuộc T-101.
 - Loại: task thử tuần đầu
@@ -69,3 +69,18 @@ Chữ tiếng Việt hiển thị đúng dấu. HUD phản ứng với tín hi�
 
 ### Trở ngại
 - Không còn bị chặn. Sandbox Windows gặp lỗi đăng nhập `1326`; các lệnh cần thiết đã chạy thành công qua cơ chế cấp quyền ngoài sandbox, trong `D:\GAME_WORK\lane-d`.
+
+## Review (integrator, 2026-10-02)
+**Kết quả: chấp nhận, đã merge vào `main`.** Sau merge (gồm T-101…T-103): `test.ps1` → `RESULT: 41 passed, 0 failed`; `check.ps1` → `RESULT: check 0 error(s)`.
+
+- Đúng phạm vi; `strings.csv` chỉ thêm key. Font OFL có đủ giấy phép và nguồn.
+- Test rất kỹ: đủ bảng chữ cái tiếng Việt, hàng đợi phụ đề FIFO, bỏ yêu cầu không hợp lệ, đổi ngôn ngữ khi phụ đề đang hiện, sao lưu và khôi phục `settings.cfg` của người dùng.
+- Ảnh `hud_test_vi.png`: dấu tiếng Việt rõ, phụ đề dễ đọc trên nền tối.
+- Integrator đã xử lý yêu cầu thay đổi: instance `hud.tscn` vào `main.tscn`. Ngoài ra đặt `gui/theme/custom` = `main_theme.tres` để mọi UI trong game mặc định dùng Be Vietnam Pro.
+
+**Việc cần làm kèm task sau của lane D (T-116), không chặn:**
+1. Tâm ngắm 4 × 4 px gần như không thấy ở 1080p trên nền hành lang sáng. Tăng lên khoảng 6 px và thêm viền tối mảnh để thấy được trên cả nền sáng lẫn tối.
+2. Áp dụng ngôn ngữ đã lưu đang nằm trong `hud.gd` `_ready()`. Khi có menu chính/menu tạm dừng, chuyển việc này về một chỗ chạy lúc khởi động game (ví dụ script cài đặt chung), để menu không có HUD vẫn đúng ngôn ngữ.
+3. Gợi ý `[E]` đang cố định trong key dịch. Khi có menu đổi phím (nếu làm), lấy tên phím từ `InputMap`.
+
+**Chấm điểm (1–5):** phạm vi 5 · checklist 5 · test 5 · chất lượng code 5 · bàn giao trung thực 5 · số vòng sửa 0.
