@@ -1,0 +1,149 @@
+{
+  "ffmpeg": "ffmpeg version 9.0.2-essentials_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers",
+  "assets": [
+    {
+      "file": "game/audio/ambience/ceiling_fan.ogg",
+      "sha256": "d3cb17bd6d6b2b4e00119e76db6480c3cca759bfbd429e38bd42d562b6fdec1f",
+      "raw_sha256": "975e6078ef3df2bc44cf503b7469ca2958415a4e86867c37a6b648014344ef57",
+      "bytes": 104698,
+      "seconds": 12.0,
+      "channels": 1,
+      "lufs": -24.12,
+      "true_peak_db": -10.12,
+      "loop": true,
+      "boundary_delta": 0.008074
+    },
+    {
+      "file": "game/audio/ambience/fluorescent_hum.ogg",
+      "sha256": "5af317469abc319b273e5a39fefc56c806e0849c5699f567ba319c7f571f60f7",
+      "raw_sha256": "a10d495d498e4cca9d870c36d712e8b572966cb85f6ba748ac696f49374ad4c2",
+      "bytes": 91947,
+      "seconds": 12.0,
+      "channels": 1,
+      "lufs": -23.95,
+      "true_peak_db": -16.89,
+      "loop": true,
+      "boundary_delta": 0.0002834
+    },
+    {
+      "file": "game/audio/ambience/night_insects_motorbike.ogg",
+      "sha256": "16c5732dac68493dd48dbe98b90293dafe4ee4cd07eb8765fc6812f180d829a7",
+      "raw_sha256": "b04f7de5fe9fc713ae89b7520222e2d5273e0a793afad2a6737db8ad8f31a8b0",
+      "bytes": 179939,
+      "seconds": 20.0,
+      "channels": 1,
+      "lufs": -24.39,
+      "true_peak_db": -6.8,
+      "loop": true,
+      "boundary_delta": 0.0007886
+    },
+    {
+      "file": "game/audio/sfx/water_drip_01.ogg",
+      "sha256": "ca3073760f5def6e8c2f1d502225e37257bc961ffd923584e75cb60404cad323",
+      "raw_sha256": "19431d84c6fe7010e44f7a20dcd826684dca15c65cde30c7f0a5aea50c73dcf7",
+      "bytes": 7717,
+      "seconds": 0.9973,
+      "channels": 1,
+      "lufs": -18.05,
+      "true_peak_db": -6.2,
+      "loop": false,
+      "boundary_delta": 0.0
+    },
+    {
+      "file": "game/audio/sfx/water_drip_02.ogg",
+      "sha256": "42942e1b6548cb1c16db0fd71595318337b57bba5ace75828c11794158f24724",
+      "raw_sha256": "8fdab395d2a4051236d53d57fe54472283df4344a109c446e4304246d45c0131",
+      "bytes": 7696,
+      "seconds": 0.9973,
+      "channels": 1,
+      "lufs": -18.01,
+      "true_peak_db": -6.3,
+      "loop": false,
+      "boundary_delta": 0.0
+    },
+    {
+      "file": "game/audio/sfx/water_drip_03.ogg",
+      "sha256": "0ec959cea614ec52af8e18db4fe9a41ab0248c90dc4e5b7e091ba02905cd6dc3",
+      "raw_sha256": "54c140b97150721ca179720d27ed65d4e9fecad62b90b7710735ea49cfe1f1e4",
+      "bytes": 7621,
+      "seconds": 0.9973,
+      "channels": 1,
+      "lufs": -17.95,
+      "true_peak_db": -6.52,
+      "loop": false,
+      "boundary_delta": 0.0
+    },
+    {
+      "file": "game/audio/sfx/slipper_tile_01.ogg",
+      "sha256": "d3e0603ff2d995c671e17f3bf4fad48ee983d8a056a61b5e4469f3ca39a7c2a4",
+      "raw_sha256": "3605a0d5a9e9c22669140a139f8aebfb1f0e3371f397b3e10bf5f562287ce4cc",
+      "bytes": 8429,
+      "seconds": 0.8473,
+      "channels": 1,
+      "lufs": -18.3,
+      "true_peak_db": -4.51,
+      "loop": false,
+      "boundary_delta": 9.27e-05
+    },
+    {
+      "file": "game/audio/sfx/slipper_tile_02.ogg",
+      "sha256": "4f6c6a1e7e6da1f79fb26cbbc909cbae407b1331e9328b7272a2011371705590",
+      "raw_sha256": "ffbe9dccc8e2fa98ee5015854f3778f01e49e8b36b742232124c72d1d2f7bba0",
+      "bytes": 8407,
+      "seconds": 0.8473,
+      "channels": 1,
+      "lufs": -17.98,
+      "true_peak_db": -3.65,
+      "loop": false,
+      "boundary_delta": 0.0001228
+    },
+    {
+      "file": "game/audio/sfx/slipper_tile_03.ogg",
+      "sha256": "ccf6989246ed8934959eef867265fd3422d1aa37b8ec662786487ae930d73d2d",
+      "raw_sha256": "d4ebc207ec5477e7aaaf11e130eedb03cab869fa2685dd04d488190463b86265",
+      "bytes": 8364,
+      "seconds": 0.8473,
+      "channels": 1,
+      "lufs": -18.23,
+      "true_peak_db": -4.24,
+      "loop": false,
+      "boundary_delta": 1.93e-05
+    },
+    {
+      "file": "game/audio/sfx/slipper_tile_04.ogg",
+      "sha256": "9228836b3ecde5e60be573546a1a489136547d1cba6cfc1a119e78ad21a7ca40",
+      "raw_sha256": "a881e5cbe0a1d6625c62acaf220449df782f8c5bcade34d398ed55197be01ea8",
+      "bytes": 8404,
+      "seconds": 0.8473,
+      "channels": 1,
+      "lufs": -18.29,
+      "true_peak_db": -4.28,
+      "loop": false,
+      "boundary_delta": 3.02e-05
+    },
+    {
+      "file": "game/audio/sfx/wood_door_open.ogg",
+      "sha256": "b99346567f5ba4fd7f2a256c9a30e545442884a7af17cab739229737982eb91b",
+      "raw_sha256": "d370079d7a9b6e5118c9f5d247fd0192d8575de416a343ea0e7b1947e4b3cde3",
+      "bytes": 22445,
+      "seconds": 2.4,
+      "channels": 1,
+      "lufs": -17.96,
+      "true_peak_db": -9.22,
+      "loop": false,
+      "boundary_delta": 0.0
+    },
+    {
+      "file": "game/audio/sfx/wood_door_close.ogg",
+      "sha256": "79afc99472314949627851f2fa24c798af945224b99d571d556c88f432d376d6",
+      "raw_sha256": "660fd5fdc6d15fd8f9da98be148304ff60fff2c63e55a69bebb8a4c77517a0e3",
+      "bytes": 17990,
+      "seconds": 1.8,
+      "channels": 1,
+      "lufs": -17.96,
+      "true_peak_db": -8.59,
+      "loop": false,
+      "boundary_delta": 0.0
+    }
+  ]
+}
