@@ -1,3 +1,13 @@
 keys,vi,en
 GAME_TITLE,Ký túc xá sau 12 giờ,The Dorm After Midnight
 PROMPT_INTERACT,Tương tác,Interact
+UI_INTERACTION_PROMPT,[E] %s,[E] %s
+UI_LANGUAGE,Ngôn ngữ: VI / EN,Language: VI / EN
+UI_HUD_TEST_TITLE,Kiểm tra HUD và tiếng Việt,HUD and Vietnamese font test
+UI_FONT_SAMPLE,Tương tác · Kỷ luật · Điểm danh · ạ ằ ẵ ữ ỹ đ Đ ơ ư,Interact · Discipline · Roll call · ạ ằ ẵ ữ ỹ đ Đ ơ ư
+UI_TEST_FOCUS,Bật / tắt gợi ý,Toggle interaction prompt
+UI_TEST_SUBTITLES,Thử hàng đợi phụ đề,Test subtitle queue
+UI_TEST_HINT,Bấm đổi ngôn ngữ khi phụ đề đang hiện để kiểm tra cập nhật.,Switch language while a subtitle is visible to check live updates.
+UI_LOCALE_SAVE_ERROR,Không lưu được ngôn ngữ. Vui lòng thử lại.,Could not save language. Please try again.
+SUB_TEST_1,Phụ đề thử: Kỷ luật · Điểm danh,Sample subtitle: Discipline · Roll call
+SUB_TEST_2,Dòng thử thứ hai: Tiếng Việt có dấu đầy đủ.,Second sample: Vietnamese text with full diacritics.
