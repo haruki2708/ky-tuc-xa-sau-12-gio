@@ -1,4 +1,4 @@
-[gd_resource type="AudioBusLayout" load_steps=2 format=3]
+[gd_resource type="AudioBusLayout" load_steps=3 format=3]
 
 [sub_resource type="AudioEffectReverb" id="AudioEffectReverb_ambience"]
 resource_name = "Room ambience"
@@ -7,6 +7,13 @@ damping = 0.65
 spread = 0.6
 dry = 1.0
 wet = 0.12
+
+[sub_resource type="AudioEffectReverb" id="AudioEffectReverb_sfx"]
+resource_name = "Spatial SFX room"
+room_size = 0.35
+damping = 0.65
+dry = 1.0
+wet = 0.0
 
 [resource]
 bus/0/name = &"Master"
@@ -29,6 +36,8 @@ bus/2/mute = false
 bus/2/bypass_fx = false
 bus/2/volume_db = 0.0
 bus/2/send = &"Master"
+bus/2/effect/0/effect = SubResource("AudioEffectReverb_sfx")
+bus/2/effect/0/enabled = true
 bus/3/name = &"Voice"
 bus/3/solo = false
 bus/3/mute = false
