@@ -63,3 +63,8 @@ Nghe thử: `res://audio/test/zones_test.tscn` (F6), đi bộ rồi giữ Shift 
 - **Chưa nghe bằng tai** (Claude không nghe được). Chờ chủ dự án nghe trong hành lang chính.
 
 **Yêu cầu thay đổi ngoài phạm vi:** integrator đặt lại `Footsteps.volume_db = 0` trong `main.tscn` sau khi merge (làm ngay trong cùng đợt).
+
+### Phiên 2026-10-02 (lần 2) — Claude
+- Chủ dự án nghe bản đầu: "ổn rồi, cả bước chân lẫn chạy", nhưng muốn **nhỏ và nhẹ nhàng hơn nữa**.
+- Giảm độ to: đi bộ **−30 LUFS**, chạy **−27 LUFS** (−4 dB so với lần 1). Làm mềm: attack gót 4 → 7 ms, lọc thấp gót 1,8 → 1,4 kHz (chạy 2,4 → 1,9 kHz), dải "xẹp" 4,5 → 3,5 kHz, "xẹp" nhẹ hơn khoảng 30%.
+- `process.py --regenerate-raw`: `AUDIO RESULT: 17 assets validated`. 9/9 âm đã duyệt giữ nguyên hash.
