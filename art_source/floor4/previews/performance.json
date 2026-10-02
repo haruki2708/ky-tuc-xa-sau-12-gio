@@ -1,0 +1,47 @@
+{
+	"cpu": "AMD Ryzen 5 5600H with Radeon Graphics",
+	"godot": "4.7.2-stable (official)",
+	"gpu": "NVIDIA GeForce RTX 3050 Laptop GPU",
+	"renderer": "forward_plus",
+	"resolution": "1280x720",
+	"scenario": "floor4_playtest; Player physics, HUD, audio zones active; stationary views; door open",
+	"views": [
+		{
+			"frames": 240,
+			"max_frame_ms": 2.589,
+			"mean_fps": 566.880034012802,
+			"p95_frame_ms": 2.056,
+			"view": "corridor_west"
+		},
+		{
+			"frames": 240,
+			"max_frame_ms": 3.456,
+			"mean_fps": 489.423357321875,
+			"p95_frame_ms": 2.808,
+			"view": "corridor_east"
+		},
+		{
+			"frames": 240,
+			"max_frame_ms": 2.609,
+			"mean_fps": 496.905726631455,
+			"p95_frame_ms": 2.489,
+			"view": "room_407"
+		},
+		{
+			"frames": 240,
+			"max_frame_ms": 7.62,
+			"mean_fps": 539.767360267725,
+			"p95_frame_ms": 2.357,
+			"view": "washroom"
+		},
+		{
+			"frames": 240,
+			"max_frame_ms": 3.075,
+			"mean_fps": 524.350624523442,
+			"p95_frame_ms": 2.64,
+			"view": "duty_desk"
+		}
+	],
+	"vsync": false,
+	"warmup_frames_per_view": 90
+}

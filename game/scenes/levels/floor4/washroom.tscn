@@ -1,0 +1,467 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/audio/light_hum.gd" id="e1"]
+[ext_resource type="Script" path="res://scripts/audio/ambient_emitter.gd" id="e2"]
+[ext_resource type="AudioStream" path="res://audio/sfx/water_drip_01.ogg" id="e3"]
+[ext_resource type="Script" path="res://scripts/audio/reverb_zone.gd" id="e4"]
+[ext_resource type="Script" path="res://scripts/audio/ambient_zone.gd" id="e5"]
+
+[sub_resource type="BoxShape3D" id="s1"]
+size = Vector3(6, 0.2, 5)
+
+[sub_resource type="StandardMaterial3D" id="s2"]
+albedo_color = Color(0.28, 0.35, 0.35, 1)
+roughness = 0.18
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="s3"]
+size = Vector3(6, 0.2, 5)
+material = SubResource("s2")
+
+[sub_resource type="BoxShape3D" id="s4"]
+size = Vector3(0.2, 3, 5)
+
+[sub_resource type="StandardMaterial3D" id="s5"]
+albedo_color = Color(0.47, 0.49, 0.4, 1)
+roughness = 0.85
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="s6"]
+size = Vector3(0.2, 3, 5)
+material = SubResource("s5")
+
+[sub_resource type="BoxShape3D" id="s7"]
+size = Vector3(6, 3, 0.2)
+
+[sub_resource type="BoxMesh" id="s8"]
+size = Vector3(6, 3, 0.2)
+material = SubResource("s5")
+
+[sub_resource type="BoxShape3D" id="s9"]
+size = Vector3(0.2, 3, 5)
+
+[sub_resource type="BoxMesh" id="s10"]
+size = Vector3(0.2, 3, 5)
+material = SubResource("s5")
+
+[sub_resource type="BoxShape3D" id="s11"]
+size = Vector3(6, 0.15, 5)
+
+[sub_resource type="BoxMesh" id="s12"]
+size = Vector3(6, 0.15, 5)
+material = SubResource("s5")
+
+[sub_resource type="BoxShape3D" id="s13"]
+size = Vector3(2.4, 3, 0.2)
+
+[sub_resource type="BoxMesh" id="s14"]
+size = Vector3(2.4, 3, 0.2)
+material = SubResource("s5")
+
+[sub_resource type="BoxShape3D" id="s15"]
+size = Vector3(2.4, 3, 0.2)
+
+[sub_resource type="BoxMesh" id="s16"]
+size = Vector3(2.4, 3, 0.2)
+material = SubResource("s5")
+
+[sub_resource type="BoxShape3D" id="s17"]
+size = Vector3(1.2, 0.7, 0.2)
+
+[sub_resource type="BoxMesh" id="s18"]
+size = Vector3(1.2, 0.7, 0.2)
+material = SubResource("s5")
+
+[sub_resource type="BoxShape3D" id="s19"]
+size = Vector3(1.94, 2.2, 0.08)
+
+[sub_resource type="StandardMaterial3D" id="s20"]
+albedo_color = Color(0.12, 0.25, 0.33, 1)
+roughness = 0.85
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="s21"]
+size = Vector3(1.94, 2.2, 0.08)
+material = SubResource("s20")
+
+[sub_resource type="BoxShape3D" id="s22"]
+size = Vector3(0.08, 2.5, 1.5)
+
+[sub_resource type="BoxMesh" id="s23"]
+size = Vector3(0.08, 2.5, 1.5)
+material = SubResource("s5")
+
+[sub_resource type="BoxShape3D" id="s24"]
+size = Vector3(1.94, 2.2, 0.08)
+
+[sub_resource type="BoxMesh" id="s25"]
+size = Vector3(1.94, 2.2, 0.08)
+material = SubResource("s20")
+
+[sub_resource type="BoxShape3D" id="s26"]
+size = Vector3(0.08, 2.5, 1.5)
+
+[sub_resource type="BoxMesh" id="s27"]
+size = Vector3(0.08, 2.5, 1.5)
+material = SubResource("s5")
+
+[sub_resource type="BoxShape3D" id="s28"]
+size = Vector3(1.94, 2.2, 0.08)
+
+[sub_resource type="BoxMesh" id="s29"]
+size = Vector3(1.94, 2.2, 0.08)
+material = SubResource("s20")
+
+[sub_resource type="BoxShape3D" id="s30"]
+size = Vector3(0.08, 2.5, 1.5)
+
+[sub_resource type="BoxMesh" id="s31"]
+size = Vector3(0.08, 2.5, 1.5)
+material = SubResource("s5")
+
+[sub_resource type="BoxShape3D" id="s32"]
+size = Vector3(0.65, 0.86, 0.72)
+
+[sub_resource type="StandardMaterial3D" id="s33"]
+albedo_color = Color(0.74, 0.79, 0.72, 1)
+roughness = 0.85
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="s34"]
+size = Vector3(0.65, 0.86, 0.72)
+material = SubResource("s33")
+
+[sub_resource type="StandardMaterial3D" id="s35"]
+albedo_color = Color(0.1, 0.15, 0.15, 1)
+roughness = 0.85
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="s36"]
+size = Vector3(0.09, 0.25, 0.05)
+material = SubResource("s35")
+
+[sub_resource type="BoxShape3D" id="s37"]
+size = Vector3(0.65, 0.86, 0.72)
+
+[sub_resource type="BoxMesh" id="s38"]
+size = Vector3(0.65, 0.86, 0.72)
+material = SubResource("s33")
+
+[sub_resource type="BoxMesh" id="s39"]
+size = Vector3(0.09, 0.25, 0.05)
+material = SubResource("s35")
+
+[sub_resource type="BoxShape3D" id="s40"]
+size = Vector3(0.65, 0.86, 0.72)
+
+[sub_resource type="BoxMesh" id="s41"]
+size = Vector3(0.65, 0.86, 0.72)
+material = SubResource("s33")
+
+[sub_resource type="BoxMesh" id="s42"]
+size = Vector3(0.09, 0.25, 0.05)
+material = SubResource("s35")
+
+[sub_resource type="StandardMaterial3D" id="s43"]
+albedo_color = Color(0.18, 0.27, 0.28, 1)
+roughness = 0.18
+texture_filter = 0
+metallic = 0.65
+
+[sub_resource type="BoxMesh" id="s44"]
+size = Vector3(0.03, 0.95, 2.8)
+material = SubResource("s43")
+
+[sub_resource type="StandardMaterial3D" id="s45"]
+albedo_color = Color(0.73, 0.71, 0.56, 1)
+roughness = 0.85
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="s46"]
+size = Vector3(0.035, 0.42, 0.28)
+material = SubResource("s45")
+
+[sub_resource type="BoxMesh" id="s47"]
+size = Vector3(1.15, 0.08, 0.13)
+material = SubResource("s33")
+
+[sub_resource type="BoxShape3D" id="s48"]
+size = Vector3(5.8, 3, 4.9)
+
+[node name="Washroom" type="Node3D"]
+
+
+[node name="Floor" type="StaticBody3D" parent="."]
+position = Vector3(3, -0.1, -2.5)
+metadata/surface = &"tile"
+metadata/is_floor = true
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("s1")
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor"]
+mesh = SubResource("s3")
+
+[node name="WestWall" type="StaticBody3D" parent="."]
+position = Vector3(0, 1.5, -2.5)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="WestWall"]
+shape = SubResource("s4")
+
+[node name="Mesh" type="MeshInstance3D" parent="WestWall"]
+mesh = SubResource("s6")
+
+[node name="BackWall" type="StaticBody3D" parent="."]
+position = Vector3(3, 1.5, -5)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="BackWall"]
+shape = SubResource("s7")
+
+[node name="Mesh" type="MeshInstance3D" parent="BackWall"]
+mesh = SubResource("s8")
+
+[node name="EastWall" type="StaticBody3D" parent="."]
+position = Vector3(6, 1.5, -2.5)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="EastWall"]
+shape = SubResource("s9")
+
+[node name="Mesh" type="MeshInstance3D" parent="EastWall"]
+mesh = SubResource("s10")
+
+[node name="Ceiling" type="StaticBody3D" parent="."]
+position = Vector3(3, 3.075, -2.5)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Ceiling"]
+shape = SubResource("s11")
+
+[node name="Mesh" type="MeshInstance3D" parent="Ceiling"]
+mesh = SubResource("s12")
+
+[node name="EntranceWest" type="StaticBody3D" parent="."]
+position = Vector3(1.2, 1.5, 0)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="EntranceWest"]
+shape = SubResource("s13")
+
+[node name="Mesh" type="MeshInstance3D" parent="EntranceWest"]
+mesh = SubResource("s14")
+
+[node name="EntranceEast" type="StaticBody3D" parent="."]
+position = Vector3(4.8, 1.5, 0)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="EntranceEast"]
+shape = SubResource("s15")
+
+[node name="Mesh" type="MeshInstance3D" parent="EntranceEast"]
+mesh = SubResource("s16")
+
+[node name="EntranceLintel" type="StaticBody3D" parent="."]
+position = Vector3(3, 2.65, 0)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="EntranceLintel"]
+shape = SubResource("s17")
+
+[node name="Mesh" type="MeshInstance3D" parent="EntranceLintel"]
+mesh = SubResource("s18")
+
+[node name="StallDoor_0" type="StaticBody3D" parent="."]
+position = Vector3(1, 1.1, -3.55)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="StallDoor_0"]
+shape = SubResource("s19")
+
+[node name="Mesh" type="MeshInstance3D" parent="StallDoor_0"]
+mesh = SubResource("s21")
+
+[node name="StallPartition_0" type="StaticBody3D" parent="."]
+position = Vector3(0, 1.25, -4.25)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="StallPartition_0"]
+shape = SubResource("s22")
+
+[node name="Mesh" type="MeshInstance3D" parent="StallPartition_0"]
+mesh = SubResource("s23")
+
+[node name="StallDoor_1" type="StaticBody3D" parent="."]
+position = Vector3(3, 1.1, -3.55)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="StallDoor_1"]
+shape = SubResource("s24")
+
+[node name="Mesh" type="MeshInstance3D" parent="StallDoor_1"]
+mesh = SubResource("s25")
+
+[node name="StallPartition_1" type="StaticBody3D" parent="."]
+position = Vector3(2, 1.25, -4.25)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="StallPartition_1"]
+shape = SubResource("s26")
+
+[node name="Mesh" type="MeshInstance3D" parent="StallPartition_1"]
+mesh = SubResource("s27")
+
+[node name="StallDoor_2" type="StaticBody3D" parent="."]
+position = Vector3(5, 1.1, -3.55)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="StallDoor_2"]
+shape = SubResource("s28")
+
+[node name="Mesh" type="MeshInstance3D" parent="StallDoor_2"]
+mesh = SubResource("s29")
+
+[node name="StallPartition_2" type="StaticBody3D" parent="."]
+position = Vector3(4, 1.25, -4.25)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="StallPartition_2"]
+shape = SubResource("s30")
+
+[node name="Mesh" type="MeshInstance3D" parent="StallPartition_2"]
+mesh = SubResource("s31")
+
+[node name="Sink_0" type="StaticBody3D" parent="."]
+position = Vector3(0.42, 0.43, -0.85)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Sink_0"]
+shape = SubResource("s32")
+
+[node name="Mesh" type="MeshInstance3D" parent="Sink_0"]
+mesh = SubResource("s34")
+
+[node name="Tap_0" type="Node3D" parent="."]
+position = Vector3(0.35, 1.03, -0.85)
+
+[node name="Mesh" type="MeshInstance3D" parent="Tap_0"]
+mesh = SubResource("s36")
+
+[node name="Sink_1" type="StaticBody3D" parent="."]
+position = Vector3(0.42, 0.43, -1.85)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Sink_1"]
+shape = SubResource("s37")
+
+[node name="Mesh" type="MeshInstance3D" parent="Sink_1"]
+mesh = SubResource("s38")
+
+[node name="Tap_1" type="Node3D" parent="."]
+position = Vector3(0.35, 1.03, -1.85)
+
+[node name="Mesh" type="MeshInstance3D" parent="Tap_1"]
+mesh = SubResource("s39")
+
+[node name="Sink_2" type="StaticBody3D" parent="."]
+position = Vector3(0.42, 0.43, -2.85)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Sink_2"]
+shape = SubResource("s40")
+
+[node name="Mesh" type="MeshInstance3D" parent="Sink_2"]
+mesh = SubResource("s41")
+
+[node name="Tap_2" type="Node3D" parent="."]
+position = Vector3(0.35, 1.03, -2.85)
+
+[node name="Mesh" type="MeshInstance3D" parent="Tap_2"]
+mesh = SubResource("s42")
+
+[node name="Mirror" type="Node3D" parent="."]
+position = Vector3(0.125, 1.62, -1.85)
+
+[node name="Mesh" type="MeshInstance3D" parent="Mirror"]
+mesh = SubResource("s44")
+
+[node name="Notice" type="Node3D" parent="."]
+position = Vector3(0.125, 1.55, -3.25)
+
+[node name="Mesh" type="MeshInstance3D" parent="Notice"]
+mesh = SubResource("s46")
+
+[node name="WashroomLight" type="OmniLight3D" parent="."]
+position = Vector3(3, 2.8, -2)
+light_energy = 1.2
+light_color = Color(0.82, 0.90, 0.76, 1)
+omni_range = 5
+shadow_enabled = false
+
+[node name="Fixture" type="Node3D" parent="WashroomLight"]
+position = Vector3(0, 0.08, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="WashroomLight/Fixture"]
+mesh = SubResource("s47")
+
+[node name="LightHum" type="AudioStreamPlayer3D" parent="WashroomLight" node_paths=PackedStringArray("light")]
+script = ExtResource("e1")
+light = NodePath("..")
+bus = &"Ambience"
+unit_size = 2.0
+max_distance = 6.0
+volume_db = -10.0
+pitch_variation = 0.0
+volume_variation_db = 0.0
+
+[node name="WaterDrips" type="AudioStreamPlayer3D" parent="."]
+position = Vector3(0.35, 0.9, -2.85)
+script = ExtResource("e2")
+stream = ExtResource("e3")
+bus = &"Ambience"
+volume_db = -8
+unit_size = 4.0
+max_distance = 22.0
+playback_mode = 1
+interval_min = 2.0
+interval_max = 6.0
+
+[node name="ReverbZone" type="Area3D" parent="."]
+position = Vector3(3, 1.5, -2.5)
+script = ExtResource("e4")
+collision_layer = 0
+collision_mask = 2
+preset = 2
+mix_priority = 2
+
+[node name="Shape" type="CollisionShape3D" parent="ReverbZone"]
+shape = SubResource("s48")
+
+[node name="AmbientZone" type="Area3D" parent="."]
+position = Vector3(3, 1.5, -2.5)
+script = ExtResource("e5")
+collision_layer = 0
+collision_mask = 2
+emitters = Array[NodePath]([NodePath("../WashroomLight/LightHum"), NodePath("../WaterDrips")])
+
+[node name="Shape" type="CollisionShape3D" parent="AmbientZone"]
+shape = SubResource("s48")
