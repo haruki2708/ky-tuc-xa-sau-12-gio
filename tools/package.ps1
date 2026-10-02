@@ -1,33 +1,61 @@
 param()
 $ErrorActionPreference = 'Stop'
 . "$PSScriptRoot/godot-path.ps1"
-& pwsh -NoProfile -File "$PSScriptRoot/export.ps1"
-if ($LASTEXITCODE -ne 0) { throw 'Release export failed.' }
-$project = Get-Content -LiteralPath (Join-Path $GameDir 'project.godot') -Raw
-if ($project -notmatch '(?m)^config/version="([^"]+)"') { throw 'Missing config/version.' }
-$version = $Matches[1]
-if ($version -notmatch '^[a-zA-Z0-9._-]+$') { throw 'Version is not safe for a filename.' }
-$hash = & git -C $RepoRoot rev-parse --short HEAD
-if ($LASTEXITCODE -ne 0) { throw 'Cannot read Git revision.' }
 $dist = Join-Path $RepoRoot 'build/dist'
-$stage = Join-Path $dist ('stage-' + [guid]::NewGuid().ToString('N'))
-New-Item -ItemType Directory -Path $stage -Force | Out-Null
-# The current export preset embeds the PCK. Copy only release runtime files.
-Copy-Item -LiteralPath (Join-Path $RepoRoot 'build/windows/KyTucXa.exe') -Destination $stage
-@'
-KÝ TÚC XÁ SAU 12 GIỜ / THE DORM AFTER MIDNIGHT
-
-VI: Giải nén toàn bộ ZIP, chạy KyTucXa.exe trên Windows 64-bit.
-Phím đã đăng ký: WASD di chuyển; Shift chạy; E/chuột trái tương tác;
-Tab sổ tay; Esc tạm dừng; chuột nhìn quanh khi có bộ điều khiển người chơi.
-Bản P0 chỉ có hành lang và camera đứng yên; các chức năng chơi chưa hoàn thiện.
-
-EN: Extract the entire ZIP and run KyTucXa.exe on 64-bit Windows.
-Registered controls: WASD move; Shift sprint; E/left mouse interact;
-Tab notebook; Esc pause; mouse look when a player controller is available.
-The P0 build contains a corridor and a fixed camera; gameplay is incomplete.
-'@ | Set-Content -LiteralPath (Join-Path $stage 'README.txt') -Encoding utf8
-$zip = Join-Path $dist "KyTucXa-$version-$hash-win64.zip"
-Compress-Archive -Path (Join-Path $stage '*') -DestinationPath $zip -Force
+$work = Join-Path $dist ('verify-' + [guid]::NewGuid().ToString('N'))
+$failed = $false
+try {
+    $exportLog = & pwsh -NoProfile -File "$PSScriptRoot/export.ps1" 2>&1
+    $exportCode = $LASTEXITCODE
+    $exportLog | Write-Host
+    if ($exportCode -ne 0 -or ($exportLog -match '\bERROR\b')) { throw 'Release export failed.' }
+    $project = Get-Content -LiteralPath (Join-Path $GameDir 'project.godot') -Raw
+    if ($project -notmatch '(?m)^config/version="([^"]+)"') { throw 'Missing config/version.' }
+    $version = $Matches[1]
+    if ($version -notmatch '^[a-zA-Z0-9._-]+$') { throw 'Version is not safe for a filename.' }
+    $hash = & git -C $RepoRoot rev-parse --short HEAD
+    if ($LASTEXITCODE -ne 0) { throw 'Cannot read Git revision.' }
+    $stage = Join-Path $work 'stage'
+    $unpacked = Join-Path $work 'unpacked'
+    New-Item -ItemType Directory -Path $stage -Force | Out-Null
+    # The Windows preset embeds its PCK in the executable.
+    Copy-Item -LiteralPath (Join-Path $RepoRoot 'build/windows/KyTucXa.exe') -Destination $stage
+    Copy-Item -LiteralPath "$PSScriptRoot/package_readme.txt" -Destination (Join-Path $stage 'README.txt')
+    $zip = Join-Path $dist "KyTucXa-$version-$hash-win64.zip"
+    Compress-Archive -Path (Join-Path $stage '*') -DestinationPath $zip -Force
+    Write-Host ('ZIP: {0} bytes ({1:F2} MiB)' -f (Get-Item $zip).Length, ((Get-Item $zip).Length / 1MB))
+    Expand-Archive -LiteralPath $zip -DestinationPath $unpacked
+    # Keep logs outside the temporary extraction directory, including on failure.
+    $logPath = "$zip.verify.log"
+    $stdout = "$zip.stdout.log"
+    $stderr = "$zip.stderr.log"
+    $process = Start-Process -FilePath (Join-Path $unpacked 'KyTucXa.exe') -WorkingDirectory $unpacked -ArgumentList @('--windowed', '--quit-after', '60', '--log-file', ('"' + $logPath + '"')) -WindowStyle Hidden -PassThru -RedirectStandardOutput $stdout -RedirectStandardError $stderr
+    if (-not $process.WaitForExit(60000)) {
+        $process.Kill()
+        $process.WaitForExit()
+        throw 'Extracted release timed out after 60 seconds.'
+    }
+    $process.WaitForExit()
+    $process.Refresh()
+    if ($process.ExitCode -ne 0) { throw "Extracted release exited with $($process.ExitCode)." }
+    if (-not (Test-Path -LiteralPath $logPath)) { throw 'Extracted release did not create a Godot log.' }
+    $logs = Get-Content -LiteralPath $logPath, $stdout, $stderr
+    $logs | Write-Host
+    if ($logs -match '\bERROR\b') { throw 'Extracted release logged ERROR.' }
+    Write-Host 'Verified extracted release: 60-frame run, exit 0, no ERROR.'
+} catch {
+    $failed = $true
+    Write-Host "Package error: $($_.Exception.Message)"
+} finally {
+    if (Test-Path -LiteralPath $work) {
+        $resolvedDist = (Resolve-Path -LiteralPath $dist).Path
+        $resolvedWork = (Resolve-Path -LiteralPath $work).Path
+        if ((Split-Path -Parent $resolvedWork) -ne $resolvedDist -or (Split-Path -Leaf $resolvedWork) -notmatch '^verify-[0-9a-f]{32}$') {
+            throw 'Unsafe package cleanup path.'
+        }
+        Remove-Item -LiteralPath $resolvedWork -Recurse -Force
+    }
+}
+if ($failed) { Write-Host 'RESULT: package FAIL'; exit 1 }
 Write-Host 'RESULT: package PASS'
 Write-Output $zip
