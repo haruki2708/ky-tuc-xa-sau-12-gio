@@ -10,6 +10,8 @@ func test_input_actions_registered() -> void:
 func test_autoloads_present() -> void:
 	assert_not_null(tree.root.get_node_or_null("GameInput"), "GameInput autoload")
 	assert_not_null(tree.root.get_node_or_null("EventBus"), "EventBus autoload")
+	for autoload in ["Settings", "GameState", "RuleSystem"]:
+		assert_not_null(tree.root.get_node_or_null(autoload), autoload + " autoload")
 	for sig in ["interaction_focus_changed", "interacted", "subtitle_requested", "game_paused", "settings_changed"]:
 		assert_true(EventBus.has_signal(sig), "EventBus signal " + sig)
 
@@ -53,6 +55,7 @@ func test_main_scene_footsteps_and_ambience_wired() -> void:
 	var main: Node = load("res://scenes/main/main.tscn").instantiate()
 	tree.root.add_child(main)
 	var steps: AudioStreamPlayer3D = main.get_node("Player/Footsteps")
+	assert_not_null(main.get_node_or_null("PauseMenu"), "pause menu in main scene")
 	for i in 30:
 		await tree.physics_frame
 	Input.action_press("move_forward")
