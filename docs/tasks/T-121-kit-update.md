@@ -112,7 +112,7 @@ pwsh tools/capture.ps1 -Scene res://scenes/levels/kit_showcase.tscn -Out build/c
 - **Ghế nhựa:** đạt. Nhận ra ngay là ghế nhựa đỏ lùn Việt Nam (thân loe, mặt bên khoét vòm, khe cầm xuyên thật).
 - **Collision:** sinh tự động khi import bằng `EditorScenePostImport`, không cần plugin. Test `cast_motion` có cả đối chứng trụ/dầm chặn, rất tốt.
 - **Texture trùng:** đã bỏ; GLB tham chiếu `textures/kit/`, có test chặn tái phát.
-- **Mùng:** kỹ thuật đúng (alpha scissor, hai mặt, không collision, đúng độ cao hai tầng, thấy hình nộm bên trong). **Hình ảnh chưa đạt theo nhận xét của integrator:** mắt lưới quá to (chu kỳ 4 px trên texture 128 px), sợi quá rõ, nhìn giống lồng sắt hoặc lưới rào hơn vải mùng. Hình nộm hiện quá rõ. Chờ chủ dự án quyết định trước khi giao sửa.
+- **Mùng:** kỹ thuật đúng (alpha scissor, hai mặt, không collision, đúng độ cao hai tầng, thấy hình nộm bên trong). **Hình ảnh chưa đạt theo nhận xét của integrator:** mắt lưới quá to (chu kỳ 4 px trên texture 128 px), sợi quá rõ, nhìn giống lồng sắt hoặc lưới rào hơn vải mùng. Hình nộm hiện quá rõ. **Chủ dự án đã duyệt giữ nguyên (D-013).**
 
 **Ghi chú cho task sau (không chặn):**
 1. Collision của giường, tủ và cửa là hộp đặc theo bounds. Người chơi không chui được vào gầm giường hay đứng sát thang. Đủ cho P1; nếu sau này cần nằm hoặc trốn thì làm collision chi tiết hơn.

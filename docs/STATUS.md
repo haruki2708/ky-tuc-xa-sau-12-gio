@@ -26,7 +26,7 @@
 | T-104 Font, HUD, phụ đề, đổi ngôn ngữ | D | **done**, đã merge |
 | T-105 Pipeline âm thanh và âm môi trường đầu tiên | E | **done**, đã merge; chủ dự án đã nghe: tạm ổn, riêng tiếng ù đèn tuýp quá nhỏ |
 | T-114 Sửa tiếng ù, vùng âm, đèn tắt thì im tiếng | E | todo (giao ngay) |
-| T-121 Kit: ghế nhựa VN, mùng, collision | B | **done**, đã merge; mùng chờ chủ dự án duyệt hình ảnh |
+| T-121 Kit: ghế nhựa VN, mùng, collision | B | **done**, đã merge; chủ dự án đã duyệt (D-013) |
 | T-110 Kiến trúc RuleSystem và GameState | core | todo |
 | T-113 Chốt bộ luật demo và sơ đồ tầng | Chủ dự án + Claude | todo |
 
