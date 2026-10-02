@@ -56,8 +56,14 @@ func test_main_scene_footsteps_and_ambience_wired() -> void:
 	Input.action_press("move_forward")
 	for i in 60:
 		await tree.physics_frame
-	Input.action_release("move_forward")
 	assert_not_null(steps.stream, "walking on tile floor plays a footstep;")
+	assert_true(steps.tile_variants.has(steps.stream), "walking uses the walk bank;")
+	Input.action_press("sprint")
+	for i in 60:
+		await tree.physics_frame
+	Input.action_release("sprint")
+	Input.action_release("move_forward")
+	assert_true(steps.tile_run_variants.has(steps.stream), "sprinting uses the run bank;")
 	for path in ["Audio/HumNear", "Audio/HumFar", "Audio/NightOutside"]:
 		var source: AudioStreamPlayer3D = main.get_node(path)
 		assert_true(source.playing, path + " plays;")
