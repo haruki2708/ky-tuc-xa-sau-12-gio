@@ -1,7 +1,7 @@
 # STATUS — cập nhật bởi integrator
 
 **Cập nhật lần cuối:** 2026-10-02
-**Giai đoạn:** P1. Xong 5 task thử tuần đầu (T-101…T-105). Lane B đang làm T-121.
+**Giai đoạn:** P1. Xong 5 task thử tuần đầu (T-101…T-105). Lane B đang làm T-121, lane E nhận T-114.
 **Repo:** https://github.com/tuaanh666/ky-tuc-xa-sau-12-gio (private)
 
 ## Đã xong
@@ -24,7 +24,8 @@
 | T-102 Bộ module 3D bằng script Blender | B | **done**, đã merge; chủ dự án đã duyệt (D-012) |
 | T-103 Công cụ capture, package, check | C | **done**, đã merge |
 | T-104 Font, HUD, phụ đề, đổi ngôn ngữ | D | **done**, đã merge |
-| T-105 Pipeline âm thanh và âm môi trường đầu tiên | E | **done**, đã merge; chờ chủ dự án nghe thử |
+| T-105 Pipeline âm thanh và âm môi trường đầu tiên | E | **done**, đã merge; chủ dự án đã nghe: tạm ổn, riêng tiếng ù đèn tuýp quá nhỏ |
+| T-114 Sửa tiếng ù, vùng âm, đèn tắt thì im tiếng | E | todo (giao ngay) |
 | T-121 Kit: ghế nhựa VN, mùng, collision | B | todo (giao ngay) |
 | T-110 Kiến trúc RuleSystem và GameState | core | todo |
 | T-113 Chốt bộ luật demo và sơ đồ tầng | Chủ dự án + Claude | todo |
