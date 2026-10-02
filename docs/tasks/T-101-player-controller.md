@@ -1,5 +1,5 @@
 # T-101 — Điều khiển người chơi góc nhìn thứ nhất và tương tác
-- Lane: A (Gameplay) | Trạng thái: todo | Agent:
+- Lane: A (Gameplay) | Trạng thái: done | Agent:
 - Nhánh: `lane-a/T-101-player-controller`
 - Phụ thuộc: P0 (xong). Dùng `EventBus` và `Interactable` có sẵn ở `game/scripts/core/`.
 - Loại: task thử tuần đầu
@@ -77,3 +77,17 @@ Chụp khung hình kiểm tra: xem lệnh trong `AGENTS.md` §4, dùng scene `re
 ### Yêu cầu thay đổi
 - Integrator: khi tích hợp gameplay vào hành lang chính, instance `res://scenes/player/player.tscn` trong `game/scenes/main/main.tscn`, đặt vị trí spawn trên sàn và thay camera tĩnh hiện tại. Lane A không sửa scene main vì ngoài phạm vi; scene thử độc lập đã dùng Player mới.
 - Không yêu cầu thêm input action, autoload, signal EventBus hoặc thay đổi luật chơi/cốt truyện. Không có câu hỏi thiết kế còn treo.
+
+## Review (integrator, 2026-10-02)
+**Kết quả: chấp nhận, đã merge vào `main`.** Test sau merge: `RESULT: 19 passed, 0 failed`.
+
+- Đúng phạm vi file. Code sạch, có kiểu, đúng quy ước. Test kiểm tra đúng những điều quan trọng (tường chắn, đồ vật bị xóa, đổi target cùng key, không phát bước chân khi đi vào tường).
+- Handoff trung thực: ghi rõ chưa thử F6 bằng chuột/phím thật. Mục này để chủ dự án kiểm tra khi chơi bản build.
+- Integrator đã xử lý yêu cầu thay đổi: instance `player.tscn` vào `main.tscn` (thay camera tĩnh) và bịt hai đầu hành lang.
+
+**Việc nhỏ để làm kèm task sau của lane A (không chặn):**
+1. `player_test.tscn`: `ambient_light_source = 3` (Sky) nhưng scene không có sky, nên mặt trước các hộp đen kịt. Đổi thành `2` (Color).
+2. Đổi tên `scripts/interaction/test_light_switch.gd` thành `demo_light_switch.gd`, để tiền tố `test_` chỉ dùng cho file test.
+3. Phím `pause` hiện đang bắt/thả chuột trong `player.gd`. Khi lane D làm menu tạm dừng (T-116), việc bắt/thả chuột sẽ chuyển sang menu; lúc đó sẽ có task card riêng.
+
+**Chấm điểm (1–5):** phạm vi 5 · checklist 4 (thiếu kiểm tra F6 thủ công, đã ghi trung thực) · test 5 · chất lượng code 5 · bàn giao trung thực 5 · số vòng sửa 0.
