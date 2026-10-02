@@ -2,19 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c642ldf4wcjj0"
-path="res://.godot/imported/locker_iron.png-5aa591da4fa629a69b589f89ab23ed06.ctex"
+uid="uid://dbn2ug2q1k724"
+path="res://.godot/imported/net_weave.png-f7463b5457bcb66acc9969ed0d786017.ctex"
 metadata={
 "vram_texture": false
-}
-generator_parameters={
-"md5": "6c744dc7f254acd762b49c08d869619c"
 }
 
 [deps]
 
-source_file="res://assets/models/kit/locker_iron.png"
-dest_files=["res://.godot/imported/locker_iron.png-5aa591da4fa629a69b589f89ab23ed06.ctex"]
+source_file="res://assets/textures/kit/net_weave.png"
+dest_files=["res://.godot/imported/net_weave.png-f7463b5457bcb66acc9969ed0d786017.ctex"]
 
 [params]
 
@@ -26,7 +23,7 @@ compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""

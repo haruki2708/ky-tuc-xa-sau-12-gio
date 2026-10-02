@@ -7,6 +7,7 @@ import random
 import struct
 
 import bpy
+import bmesh
 from mathutils import Vector
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -14,18 +15,20 @@ MODELS = ROOT / "game/assets/models/kit"
 TEXTURES = ROOT / "game/assets/textures/kit"
 PREVIEWS = ROOT / "art_source/kit/previews"
 NAMES = ("wall_straight", "wall_door", "door", "bunk_bed", "locker",
-         "ceiling_fan", "plastic_stool")
+         "ceiling_fan", "plastic_stool", "mosquito_net_closed", "mosquito_net_open")
 MATERIALS = {}
 REPORT = {}
 
 
 def texture_material(name, color, seed, pattern="speckle"):
     rng = random.Random(seed)
-    image = bpy.data.images.new(name, width=128, height=128, alpha=False)
+    image = bpy.data.images.new(name, width=128, height=128, alpha=pattern == "net")
     pixels = []
     for y in range(128):
         for x in range(128):
             noise = rng.uniform(-0.045, 0.045)
+            if name == "red_plastic":
+                noise *= 0.2
             if pattern == "wood":
                 noise += 0.05 * math.sin(x * 0.55 + math.sin(y * 0.07))
                 if x % 32 < 2:
@@ -35,7 +38,8 @@ def texture_material(name, color, seed, pattern="speckle"):
                 noise += 0.02 if y % 4 == 0 else 0
             elif pattern == "metal" and rng.random() < 0.035:
                 noise -= 0.15
-            pixels.extend([max(0, min(1, c + noise)) for c in color] + [1])
+            alpha = 1 if pattern != "net" or x % 4 == 0 or y % 4 == 0 else 0
+            pixels.extend([max(0, min(1, c + noise)) for c in color] + [alpha])
     image.pixels.foreach_set(pixels)
     image.filepath_raw = str(TEXTURES / f"{name}.png")
     image.file_format = "PNG"
@@ -43,11 +47,13 @@ def texture_material(name, color, seed, pattern="speckle"):
     material = bpy.data.materials.new(name)
     material.use_nodes = True
     shader = material.node_tree.nodes.get("Principled BSDF")
-    shader.inputs["Roughness"].default_value = 0.88
+    shader.inputs["Roughness"].default_value = 0.3 if name == "red_plastic" else 0.88
     tex = material.node_tree.nodes.new("ShaderNodeTexImage")
     tex.image = image
     tex.interpolation = "Closest"
     material.node_tree.links.new(tex.outputs["Color"], shader.inputs["Base Color"])
+    if pattern == "net":
+        material.node_tree.links.new(tex.outputs["Alpha"], shader.inputs["Alpha"])
     MATERIALS[name] = material
 
 
@@ -158,14 +164,105 @@ def ceiling_fan(root):
 
 
 def plastic_stool(root):
-    box("seat", (0, 0, 0.435), (0.32, 0.32, 0.03), "red_plastic", root)
-    for x in (-0.13, 0.13):
-        for y in (-0.13, 0.13):
-            box("leg", (x, y, 0.21), (0.038, 0.038, 0.42), "red_plastic", root)
-    for x in (-0.13, 0.13):
-        box("brace", (x, 0, 0.14), (0.025, 0.26, 0.03), "red_plastic", root)
-    for y in (-0.13, 0.13):
-        box("brace", (0, y, 0.14), (0.26, 0.025, 0.03), "red_plastic", root)
+    def rounded_loop(width, depth, radius, z):
+        points = []
+        for cx, cy, angle in ((1, 1, 0), (-1, 1, 90), (-1, -1, 180), (1, -1, 270)):
+            for step in range(4):
+                theta = math.radians(angle + step * 30)
+                points.append((cx * (width / 2 - radius) + radius * math.cos(theta),
+                               cy * (depth / 2 - radius) + radius * math.sin(theta), z))
+        return points
+
+    # Four rounded rings form a solid seat with a real through-hole for carrying.
+    vertices = []
+    for z in (0.30, 0.278):
+        vertices += rounded_loop(0.28, 0.28, 0.025, z)
+        vertices += rounded_loop(0.09, 0.026, 0.012, z)
+    faces = []
+    for i in range(16):
+        j = (i + 1) % 16
+        faces += [(i, j, j + 16, i + 16), (i + 32, i + 48, j + 48, j + 32),
+                  (i, i + 32, j + 32, j), (i + 16, j + 16, j + 48, i + 48)]
+    mesh_object("rounded_seat", vertices, faces, "red_plastic", root)
+    # Each splayed side is a continuous molded panel with an arch cut out.
+    outline = [(-0.135, 0.28), (0.135, 0.28), (0.18, 0), (0.10, 0)]
+    outline += [(0.10 * math.cos(i * math.pi / 8), 0.185 * math.sin(i * math.pi / 8))
+                for i in range(1, 9)]
+    outline += [(-0.18, 0)]
+    count = len(outline)
+    for side in range(4):
+        vertices = []
+        angle = side * math.pi / 2
+        for inset in (0, 0.009):
+            for x, z in outline:
+                y = 0.18 - 0.05 * z / 0.28 - inset
+                vertices.append((x * math.cos(angle) - y * math.sin(angle),
+                                 x * math.sin(angle) + y * math.cos(angle), z))
+        faces = [tuple(range(count)), tuple(reversed(range(count, 2 * count)))]
+        faces += [(i, (i + 1) % count, (i + 1) % count + count, i + count)
+                  for i in range(count)]
+        mesh_object("arched_side", vertices, faces, "red_plastic", root)
+
+
+def mesh_object(name, vertices, faces, material, parent, uvs=None):
+    mesh = bpy.data.meshes.new(name)
+    mesh.from_pydata(vertices, [], faces)
+    mesh.update()
+    if uvs is None:
+        bm = bmesh.new()
+        bm.from_mesh(mesh)
+        bmesh.ops.recalc_face_normals(bm, faces=list(bm.faces))
+        bm.to_mesh(mesh)
+        bm.free()
+    layer = mesh.uv_layers.new(name="UVMap")
+    for polygon in mesh.polygons:
+        for index in polygon.loop_indices:
+            vertex = mesh.loops[index].vertex_index
+            layer.data[index].uv = uvs[vertex] if uvs is not None else (
+                vertices[vertex][0] * 3, (vertices[vertex][1] + vertices[vertex][2]) * 3)
+    obj = bpy.data.objects.new(name, mesh)
+    bpy.context.collection.objects.link(obj)
+    obj.parent = parent
+    mesh.materials.append(MATERIALS[material])
+    return obj
+
+
+def cloth_grid(name, columns, rows, point, root):
+    vertices, uvs, faces = [], [], []
+    for j in range(rows + 1):
+        for i in range(columns + 1):
+            u, v = i / columns, j / rows
+            vertices.append(point(u, v))
+            uvs.append((u, v))
+    for j in range(rows):
+        for i in range(columns):
+            a = j * (columns + 1) + i
+            faces.append((a, a + 1, a + columns + 2, a + columns + 1))
+    mesh_object(name, vertices, faces, "net_weave", root, uvs)
+
+
+def mosquito_net(root, opened=False):
+    # Reference origin is the bed's foot center. Identity fits the lower bunk.
+    hem, roof = 0.415, 1.075
+    for axis, half, along, columns in ((0, 0.41, 0.96, 12), (1, 0.96, 0.41, 6)):
+        for sign in (-1, 1):
+            lifted = opened and axis == 0 and sign == 1
+
+            def point(u, v, axis=axis, half=half, along=along, sign=sign, lifted=lifted):
+                gather = math.sin(math.pi * u)
+                bottom = hem + (0.54 * gather ** 0.45 if lifted else 0)
+                top = roof - 0.035 * gather
+                z = bottom + (top - bottom) * v
+                normal = half - 0.012 * (1 - v) + 0.016 * math.sin(u * math.tau * 4) * math.sin(math.pi * v)
+                tangent = (2 * u - 1) * (along - 0.018 * (1 - v))
+                return (sign * normal, tangent, z) if axis == 0 else (tangent, sign * normal, z)
+
+            cloth_grid("gathered_side" if lifted else "hanging_side", columns, 3, point, root)
+    cloth_grid("sagging_roof", 6, 12,
+               lambda u, v: ((2 * u - 1) * 0.41, (2 * v - 1) * 0.96,
+                             roof - 0.055 * math.sin(math.pi * u) * math.sin(math.pi * v)), root)
+    if opened:
+        box("curtain_tie", (0.418, 0, 0.955), (0.035, 0.07, 0.025), "cloth", root)
 
 
 def consolidate(parent):
@@ -235,7 +332,7 @@ def preview(root, name):
 def export(root, name):
     meshes = [obj for obj in root.children_recursive if obj.type == "MESH"]
     triangles = sum(len(obj.data.polygons) for obj in meshes)
-    limit = 500 if name in ("ceiling_fan", "plastic_stool") else 1500
+    limit = 500 if name in ("ceiling_fan", "plastic_stool") or name.startswith("mosquito_net") else 1500
     assert triangles < limit, (name, triangles, limit)
     lo, hi = bounds(root)
     REPORT[name] = {"triangles": triangles, "triangle_limit_exclusive": limit,
@@ -261,13 +358,13 @@ def export(root, name):
                               export_yup=True, export_animations=False,
                               export_cameras=False, export_lights=False,
                               export_extras=False, export_image_format="AUTO")
-    force_nearest_sampler(MODELS / f"{name}.glb")
+    finalize_gltf(MODELS / f"{name}.glb")
     for obj, matrix in original:
         obj.matrix_world = matrix
     bpy.context.view_layer.update()
 
 
-def force_nearest_sampler(path):
+def finalize_gltf(path):
     # Blender Closest exports NEAREST_MIPMAP_LINEAR for minification.
     # Pin both glTF sampler filters to NEAREST without changing project settings.
     data = path.read_bytes()
@@ -276,22 +373,49 @@ def force_nearest_sampler(path):
     document = json.loads(data[20:20 + json_size])
     for sampler in document.get("samplers", []):
         sampler["magFilter"] = sampler["minFilter"] = 9728
+    for material in document.get("materials", []):
+        if material["name"] == "net_weave":
+            material.update(alphaMode="MASK", alphaCutoff=0.5, doubleSided=True)
+    # Remove embedded image bytes, reference the one canonical texture per name.
+    image_views = {image["bufferView"] for image in document["images"]}
+    for image in document["images"]:
+        assert (TEXTURES / f"{image['name']}.png").is_file()
+        image.pop("bufferView")
+        image.pop("mimeType", None)
+        image["uri"] = f"../../textures/kit/{image['name']}.png"
+    old_binary = data[28 + json_size:]
+    binary, views, mapping = bytearray(), [], {}
+    for old_index, view in enumerate(document["bufferViews"]):
+        if old_index in image_views:
+            continue
+        binary.extend(b"\0" * (-len(binary) % 4))
+        offset = view.get("byteOffset", 0)
+        mapping[old_index] = len(views)
+        views.append(dict(view, byteOffset=len(binary)))
+        binary.extend(old_binary[offset:offset + view["byteLength"]])
+    for accessor in document["accessors"]:
+        assert "sparse" not in accessor
+        if "bufferView" in accessor:
+            accessor["bufferView"] = mapping[accessor["bufferView"]]
+    document["bufferViews"] = views
+    document["buffers"] = [{"byteLength": len(binary)}]
+    binary.extend(b"\0" * (-len(binary) % 4))
     payload = json.dumps(document, separators=(",", ":")).encode("utf-8")
     payload += b" " * (-len(payload) % 4)
-    tail = data[20 + json_size:]
+    tail = struct.pack("<II", len(binary), 0x004E4942) + binary
     path.write_bytes(struct.pack("<4sII", b"glTF", 2, 20 + len(payload) + len(tail)) +
                      struct.pack("<II", len(payload), chunk_type) + payload + tail)
 
 
 def contact_sheet():
-    # 4 x 2 tiles, 256 px each. Bottom-right tile is intentionally empty.
-    width, height = 1024, 512
+    # 3 x 3 tiles: the original kit followed by the two net variants.
+    width, height = 768, 768
     pixels = [0.12, 0.15, 0.16, 1.0] * (width * height)
     for index, name in enumerate(NAMES):
         source = bpy.data.images.load(str(PREVIEWS / f"{name}.png"), check_existing=False)
         source.scale(256, 256)
         data = list(source.pixels)
-        ox, oy = (index % 4) * 256, (1 - index // 4) * 256
+        ox, oy = (index % 3) * 256, (2 - index // 3) * 256
         for y in range(256):
             start = ((oy + y) * width + ox) * 4
             pixels[start:start + 1024] = data[y * 1024:(y + 1) * 1024]
@@ -352,11 +476,13 @@ def main():
         ("locker_paint", (0.28, 0.40, 0.37), "metal"),
         ("fan_paint", (0.57, 0.58, 0.46), "metal"),
         ("red_plastic", (0.59, 0.055, 0.035), "speckle"),
+        ("net_weave", (0.71, 0.79, 0.68), "net"),
     ]
     for seed, (name, color, pattern) in enumerate(definitions):
         texture_material(name, color, 102 + seed, pattern)
     builders = (lambda r: wall(r), lambda r: wall(r, True), door, bunk_bed,
-                locker, ceiling_fan, plastic_stool)
+                locker, ceiling_fan, plastic_stool,
+                lambda r: mosquito_net(r), lambda r: mosquito_net(r, True))
     for name, builder in zip(NAMES, builders):
         root = empty(name)
         builder(root)
@@ -376,7 +502,7 @@ def main():
               hashlib.sha256(path.read_bytes()).hexdigest() for path in paths}
     (ROOT / "art_source/kit/build_hashes.json").write_text(
         json.dumps(hashes, indent=2) + "\n", encoding="utf-8")
-    print("KIT_RESULT: 7 models, 9 textures, 8 previews generated")
+    print("KIT_RESULT: 9 models, 10 textures, 10 previews generated")
 
 
 if __name__ == "__main__":
