@@ -152,6 +152,65 @@ func test_mouse_can_open_settings_adjust_slider_and_resume() -> void:
 	assert_false(tree.paused, "mouse resumes gameplay")
 
 
+func test_reduce_scares_toggle_persists_before_signal_and_reset_turns_it_off() -> void:
+	_menu.open_menu()
+	_menu.show_settings()
+	var panel: VBoxContainer = _menu.get_node("Root/SettingsCard/SettingsPanel")
+	var toggle: CheckButton = panel.get_node("Scroll/Columns/Other/Accessibility/ReduceScares")
+	assert_false(toggle.button_pressed)
+	assert_eq(settings.get_value("accessibility", "reduce_scares"), false)
+	await wait_frames(2)
+	panel.get_node("Scroll").ensure_control_visible(toggle)
+	await wait_frames(2)
+	var observed: Array = []
+	var callback := func(section: String, key: String) -> void:
+		var saved := ConfigFile.new()
+		assert_eq(saved.load(SettingsStore.SETTINGS_PATH), OK)
+		observed.append([section, key, saved.get_value(section, key)])
+	EventBus.settings_changed.connect(callback)
+	_click(toggle.get_global_rect().get_center())
+	assert_eq(observed, [["accessibility", "reduce_scares", true]])
+	assert_true(toggle.button_pressed)
+	assert_true(tree.paused)
+	var fresh := SettingsStore.new()
+	assert_eq(fresh.get_value("accessibility", "reduce_scares"), true)
+	fresh.free()
+	_menu.close_menu()
+	_menu.open_menu()
+	_menu.show_settings()
+	assert_true(toggle.button_pressed, "reopening retains the saved setting")
+	observed.clear()
+	toggle.button_pressed = false
+	assert_eq(observed, [["accessibility", "reduce_scares", false]])
+	toggle.button_pressed = true
+	observed.clear()
+	panel.get_node("Footer/Reset").pressed.emit()
+	EventBus.settings_changed.disconnect(callback)
+	assert_true(observed.has(["accessibility", "reduce_scares", false]))
+	assert_eq(settings.get_value("accessibility", "reduce_scares"), false)
+	assert_false(toggle.button_pressed)
+	assert_false(panel.get_node("SaveError").visible)
+
+
+func test_reduce_scares_labels_switch_between_vietnamese_and_english() -> void:
+	_menu.open_menu()
+	_menu.show_settings()
+	var panel: VBoxContainer = _menu.get_node("Root/SettingsCard/SettingsPanel")
+	var group: VBoxContainer = panel.get_node("Scroll/Columns/Other/Accessibility")
+	var heading: Label = group.get_child(0)
+	var toggle: CheckButton = group.get_node("ReduceScares")
+	var description: Label = group.get_node("Description")
+	assert_eq(heading.tr(heading.text), "Trợ năng")
+	assert_eq(toggle.tr(toggle.text), "Giảm hù dọa")
+	assert_eq(description.tr(description.text), "Bỏ hình ảnh và âm thanh giật mình đột ngột. Truy đuổi chậm hơn.")
+	assert_eq(settings.set_value("ui", "locale", "en"), OK)
+	await wait_frames(1)
+	assert_eq(heading.tr(heading.text), "Accessibility")
+	assert_eq(toggle.tr(toggle.text), "Reduce scares")
+	assert_eq(description.tr(description.text), "Remove sudden startling visuals and sounds. Slower chases.")
+	assert_false(toggle.button_pressed, "changing language must not enable the setting")
+
+
 func test_removing_open_menu_resumes_tree() -> void:
 	_menu.open_menu()
 	tree.root.remove_child(_menu)

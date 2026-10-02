@@ -18,6 +18,7 @@ const SCHEMA := {
 		"music_db": {"default": 0.0, "min": -40.0, "max": 6.0},
 	},
 	"input": {"mouse_sensitivity": {"default": 0.002, "min": 0.0005, "max": 0.006}},
+	"accessibility": {"reduce_scares": {"default": false}},
 	"video": {
 		"head_bob": {"default": true},
 		"brightness": {"default": 1.0, "min": 0.5, "max": 1.5},

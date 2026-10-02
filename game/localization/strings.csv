@@ -90,3 +90,6 @@ UI_NOTEBOOK_TEST_TITLE,Thử màn xem giấy và sổ tay,Document and notebook 
 UI_NOTEBOOK_TEST_SPEAKER,Giả lập loa đọc 5 điều,Simulate five rules from the speaker
 UI_LOG_PREVIEW_TITLE,Trang thử kiểu sổ,Log page style preview
 UI_LOG_PREVIEW_TEXT,Đây là trang thử hiển thị chữ và dòng kẻ.,This sample page previews text and ruled lines.
+UI_SETTINGS_ACCESSIBILITY,Trợ năng,Accessibility
+UI_REDUCE_SCARES,Giảm hù dọa,Reduce scares
+UI_REDUCE_SCARES_DESCRIPTION,Bỏ hình ảnh và âm thanh giật mình đột ngột. Truy đuổi chậm hơn.,Remove sudden startling visuals and sounds. Slower chases.

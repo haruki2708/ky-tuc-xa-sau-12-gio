@@ -71,7 +71,8 @@ func test_invalid_writes_do_not_save_or_emit() -> void:
 	EventBus.settings_changed.connect(callback)
 	for request in [["audio", "sfx_db", "loud"], ["audio", "sfx_db", true],
 		["audio", "sfx_db", INF], ["audio", "sfx_db", NAN], ["ui", "locale", "fr"],
-		["video", "head_bob", 1], ["unknown", "value", 0.5], ["audio", "new_bus", 0.0]]:
+		["video", "head_bob", 1], ["accessibility", "reduce_scares", "true"],
+		["accessibility", "reduce_scares", 1], ["unknown", "value", 0.5], ["audio", "new_bus", 0.0]]:
 		assert_eq(settings.set_value(request[0], request[1], request[2]), ERR_INVALID_PARAMETER)
 	EventBus.settings_changed.disconnect(callback)
 	assert_true(observed.is_empty())
@@ -143,6 +144,7 @@ func _assert_defaults() -> void:
 		"audio": {"master_db": 0.0, "ambience_db": 0.0, "sfx_db": 0.0,
 			"footsteps_db": 0.0, "voice_db": 0.0, "music_db": 0.0},
 		"input": {"mouse_sensitivity": 0.002},
+		"accessibility": {"reduce_scares": false},
 		"video": {"head_bob": true, "brightness": 1.0, "ps1_strength": 1.0},
 	}
 	for section: String in expected:
