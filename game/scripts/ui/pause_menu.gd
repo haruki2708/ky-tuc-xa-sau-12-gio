@@ -23,6 +23,9 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("pause") and not event.is_echo():
+		for reader in get_tree().get_nodes_in_group("reading_overlay"):
+			if reader.is_open():
+				return
 		get_viewport().set_input_as_handled()
 		if _open:
 			close_menu()
@@ -31,7 +34,7 @@ func _input(event: InputEvent) -> void:
 
 
 func open_menu() -> void:
-	if _open:
+	if _open or get_tree().paused:
 		return
 	_previous_mouse_mode = Input.mouse_mode
 	_open = true
