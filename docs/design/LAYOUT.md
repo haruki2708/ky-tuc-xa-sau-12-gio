@@ -1,6 +1,6 @@
 # Sơ đồ tầng 4, nhà B (T-113)
 
-> **Trạng thái: BẢN NHÁP, chờ chủ dự án duyệt.** Dùng cho T-112 (lane B dựng greybox). Kích thước tính bằng mét, theo bộ module 2 m của T-102.
+> **Trạng thái: ĐÃ DUYỆT** (D-020). Dùng cho T-112 (lane B dựng greybox). Kích thước tính bằng mét, theo bộ module 2 m của T-102.
 
 ## 1. Tổng thể
 Kiểu ký túc xá Việt Nam phổ biến: **hành lang ngoài** chạy dọc một bên tòa nhà, có lan can nhìn xuống sân. Các phòng nằm một phía. Nhà vệ sinh chung ở một đầu. Cầu thang và bàn trực ở đầu kia.
@@ -46,7 +46,7 @@ Kiểu ký túc xá Việt Nam phổ biến: **hành lang ngoài** chạy dọc 
    |                                  |
    | [giường tầng A]   [giường tầng B]|
    |  trên: Phúc        trên: Đạt     |
-   |  dưới: Việt        dưới: Khang   |
+   |  dưới: Việt        dưới: Trung   |
    |               (quạt trần)        |
    | [tủ sắt x2]         [tủ sắt x2]  |
    +----------------D------[công tắc]-+
@@ -54,13 +54,13 @@ Kiểu ký túc xá Việt Nam phổ biến: **hành lang ngoài** chạy dọc 
 ```
 | Vật | Ghi chú |
 |---|---|
-| 2 giường tầng | Ba giường có mùng **đóng** và người nằm (Phúc, Việt, Đạt). Giường dưới bên B (của Khang) có mùng **mở** |
-| 4 tủ sắt | Tủ của Khang mở được. Trong cửa tủ dán **hồ sơ phòng 407** (4 tên, 4 ảnh thẻ) |
+| 2 giường tầng | Ba giường có mùng **đóng** và người nằm (Phúc, Việt, Đạt). Giường dưới bên B (của Trung) có mùng **mở** |
+| 4 tủ sắt | Tủ của Trung mở được. Trong cửa tủ dán **hồ sơ phòng 407** (4 tên, 4 ảnh thẻ) |
 | Cửa | Khóa và mở được. **Giấy nội quy photo** dán ở mặt trong cánh cửa (có điều 3 giả) |
 | Công tắc đèn chính | Cạnh cửa, phía trong. Đèn chính là đèn tuýp trần (có `LightHum`) |
 | Đèn bàn | Luôn sáng, đủ để nhìn sau khi tắt đèn chính |
 | Quạt trần | Có `AmbientEmitter` tiếng quạt; mức "lệch" 4 thì quay chậm lại |
-| Điện thoại của Khang | Trên giường Khang; rung báo 0 giờ ở đoạn 1 |
+| Điện thoại của Trung | Trên giường Trung; rung báo 0 giờ ở đoạn 1 |
 
 ## 4. Nhà vệ sinh chung (6 m × 5 m)
 | Vật | Ghi chú |
@@ -71,7 +71,7 @@ Kiểu ký túc xá Việt Nam phổ biến: **hành lang ngoài** chạy dọc 
 | Vòi nước nhỏ giọt | `AmbientEmitter` nhỏ giọt ngẫu nhiên |
 | Sàn | Gạch men ướt, metadata `surface = &"tile"` (sau này có thể thêm `wet_tile`) |
 
-**Nếu cắt nhà vệ sinh** (danh sách cắt số 1): thay bằng **bồn rửa chung có gương** ở đầu tây hành lang, ngay chỗ cửa nhà vệ sinh. Cửa nhà vệ sinh khóa.
+**Không cắt nhà vệ sinh** (D-020), kể cả khi chậm tiến độ.
 
 ## 5. Âm thanh theo khu
 | Khu | ReverbZone | AmbientZone |
@@ -91,7 +91,7 @@ Node `Marker3D` đặt tên đúng `checkpoint_id`:
 | `seg1_start` | Hành lang trước cửa 407, quay mặt vào cửa |
 | `seg2_start` | Trong phòng 407, cạnh công tắc đèn |
 | `seg3_start` | Trong phòng 407, quay ra cửa |
-| `seg4_start` | Trong phòng 407, cạnh tủ của Khang |
+| `seg4_start` | Trong phòng 407, cạnh tủ của Trung |
 | `seg5_start` | Hành lang trước cửa 407, quay về phía tây |
 
 ## 7. Module cần thêm (task sau của lane B)

@@ -237,3 +237,29 @@ func test_restore_without_or_with_bad_save() -> void:
 	_load_fixture()
 	RuleSystem.from_dict({"read": ["ghost_rule", "knock_genuine"], "suspected": ["ghost_rule"]})
 	assert_eq(RuleSystem.read_rules(), [&"knock_genuine"] as Array[StringName], "unknown ids dropped;")
+
+
+func test_demo_rule_set_matches_design() -> void:
+	# docs/design/RULES.md §7 (D-020).
+	var demo := load("res://data/rules/demo.tres") as RuleSet
+	assert_not_null(demo, "demo rule set loads")
+	if demo == null:
+		return
+	assert_eq(demo.validate(true), PackedStringArray(), "demo rules valid, with translations;")
+	assert_eq(RuleSystem.load_rule_set(demo), PackedStringArray(), "demo rules load;")
+	assert_eq(demo.rules.size(), 11, "rule line count;")
+	var fatal: Array[StringName] = []
+	for rule in demo.rules:
+		if rule.fatal:
+			fatal.append(rule.id)
+		for locale in ["vi", "en"]:
+			TranslationServer.set_locale(locale)
+			assert_true(tr(rule.text_key) != rule.text_key, "%s has %s text" % [rule.text_key, locale])
+	TranslationServer.set_locale("vi")
+	assert_eq(fatal, [&"rollcall_fifth_note"] as Array[StringName], "only answering the fifth name is fatal;")
+	for situation in [&"lights_out", &"knock_at_door", &"footsteps_behind", &"roll_call_self",
+			&"roll_call_roommate", &"roll_call_fifth", &"tap_running"]:
+		var genuine := RuleSystem.rules_for(situation).filter(func(rule: RuleData) -> bool: return not rule.is_fake)
+		assert_eq(genuine.size(), 1, "one genuine line for %s;" % situation)
+	assert_true(RuleSystem.resolve(&"roll_call_fifth", &"answer")["fatal"], "answering Lam fails the night")
+	assert_eq(RuleSystem.resolve(&"tap_running", &"look_in_mirror")["outcome"], RuleSystem.OUTCOME_FOLLOWED_FAKE, "mirror notice is fake;")

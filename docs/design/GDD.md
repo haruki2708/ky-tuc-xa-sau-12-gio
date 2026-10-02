@@ -1,6 +1,6 @@
 # GDD rút gọn — Demo
 
-Tài liệu đang làm. Phần **[CẦN CHỐT]** sẽ được quyết định cùng chủ dự án ở task T-113.
+Tài liệu đang làm. Các phần cần chốt đã được quyết ở T-113 (xem RULES.md, LAYOUT.md).
 
 ## Một câu
 Nửa đêm trong ký túc xá vắng người dịp nghỉ lễ, bạn phải tìm ra dòng nào trong "Nội quy ban đêm" là giả trước khi làm theo nó.
@@ -21,7 +21,7 @@ Nhận nội quy (giấy dán, loa) → làm việc thường ngày → gặp t�
 - **Hậu quả:** mức "lệch" tăng dần. Mỗi mức đổi môi trường: tắt đèn một đoạn, đổi số phòng, thêm tên vào danh sách điểm danh. Chỉ có 1–2 trường hợp thua thật, khi đó quay lại checkpoint.
 - **Giấy tờ:** xem cận cảnh ở độ phân giải đầy đủ. Chữ lấy từ file dịch, không in vào texture.
 
-## Diễn biến demo (nháp, [CẦN CHỐT])
+## Diễn biến demo (tóm tắt; chi tiết ở RULES.md)
 | Giờ | Đoạn | Nội dung | Thời lượng |
 |---|---|---|---|
 | 23:50 | Hướng dẫn | Về phòng, khóa cửa, tắt đèn; học di chuyển và tương tác | 3' |
@@ -35,7 +35,5 @@ Nhận nội quy (giấy dán, loa) → làm việc thường ngày → gặp t�
 - **Âm thanh:** quạt trần, tiếng ù đèn tuýp, dế, nước nhỏ giọt, dép lê, loa phát thanh rè. Im lặng cũng là công cụ.
 - **Chi tiết Việt Nam:** mùng, giường tầng sắt, tủ sắt, ghế nhựa đỏ, xô chậu, dây phơi đồ ở hành lang, bảng nội quy đóng khung, sổ trực, giờ khóa cổng.
 
-## [CẦN CHỐT] ở T-113
-- Bộ luật của demo: số luật, câu chữ, luật nào giả.
-- Tên nhân vật và lai lịch "người thứ năm".
-- Sơ đồ tầng.
+## Đã chốt ở T-113
+Bộ luật, câu chữ, nhân vật, "người thứ năm", diễn biến chi tiết và các mức "lệch": `docs/design/RULES.md`. Sơ đồ tầng: `docs/design/LAYOUT.md`. Bảng "Diễn biến demo" ở trên chỉ là bản tóm tắt ban đầu.

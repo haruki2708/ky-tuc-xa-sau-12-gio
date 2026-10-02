@@ -1,13 +1,13 @@
 # Bộ luật, cốt truyện và diễn biến demo (T-113)
 
-> **Trạng thái: BẢN NHÁP, chờ chủ dự án duyệt.** Mọi tên riêng, câu chữ và con số đều sửa được. Mục cuối liệt kê các câu cần chủ dự án quyết.
+> **Trạng thái: ĐÃ DUYỆT** (chủ dự án, 2026-10-02, D-020). Câu chữ và con số vẫn tinh chỉnh được khi chơi thử.
 
 ## 1. Tiền đề
 - **Thời gian:** đêm 30/4, kỳ nghỉ lễ 30/4–1/5. Trời nóng, quạt trần chạy, ngoài sân có dế, thỉnh thoảng có xe máy chạy xa.
 - **Nơi chốn:** tầng 4, nhà B, một ký túc xá đại học không tên. Không dùng tên trường thật.
-- **Nhân vật chính:** **Nguyễn Minh Khang**, sinh viên năm nhất, ở lại vì vé xe về quê hết.
+- **Nhân vật chính:** **Trần Trung**, sinh viên năm nhất, ở lại vì vé xe về quê hết.
 - **Phòng 407, 4 người:**
-  - Khang,
+  - Trung,
   - **Lê Hoàng Phúc**, **Đặng Quốc Việt**, **Phạm Thành Đạt**: ba bạn cùng phòng cũng ở lại. Cả ba ngủ sớm sau mùng, không thức dậy suốt demo.
 - **Bảo vệ:** chỉ xuất hiện bằng giọng trên loa phát thanh của tầng (giọng TTS, D-006). Loa cũ, **rè**.
 - Cả tầng gần như trống. Các phòng khác khóa cửa.
@@ -54,7 +54,7 @@ Loa đọc lúc 0 giờ: *"Nội quy ban đêm dịp lễ, gồm 5 điều."*
 Mỗi đoạn bắt đầu bằng một **checkpoint**.
 
 ### Đoạn 1 — 23:50 Hướng dẫn (khoảng 3 phút)
-- Khang đánh răng ở nhà vệ sinh chung về, đứng ngoài cửa phòng 407. **Học đi lại.**
+- Trung đánh răng ở nhà vệ sinh chung về, đứng ngoài cửa phòng 407. **Học đi lại.**
 - Vào phòng, ba bạn đã ngủ sau mùng. **Học tương tác:** khóa cửa, đọc tờ nội quy photo sau cửa (sổ tay ghi điều 1, 2, 3 giả, 4).
 - Gợi ý trên màn hình: "Sổ tay (Tab)".
 - 23:59: điện thoại rung, báo thức "0 giờ". Người chơi nên tắt đèn chính.
@@ -77,11 +77,11 @@ Mỗi đoạn bắt đầu bằng một **checkpoint**.
 
 ### Đoạn 4 — 01:00 Điểm danh (khoảng 4 phút)
 - Trước giờ điểm danh, người chơi có thể thấy **tờ giấy viết tay** mới kẹp vào khung bảng nội quy (điều 4 giả).
-- **Hồ sơ phòng 407** dán trong cửa tủ sắt của Khang: 4 tên, 4 ảnh thẻ.
+- **Hồ sơ phòng 407** dán trong cửa tủ sắt của Trung: 4 tên, 4 ảnh thẻ.
 - Loa đọc chậm 5 tên, mỗi tên cách nhau vài giây, chờ trả lời:
   1. Lê Hoàng Phúc
   2. Đặng Quốc Việt
-  3. **Nguyễn Minh Khang**
+  3. **Trần Trung**
   4. Phạm Thành Đạt
   5. **Vũ Đức Lâm**
 - Trả lời bằng phím tương tác ("Có") trong lúc tên đang được đọc.
@@ -89,7 +89,7 @@ Mỗi đoạn bắt đầu bằng một **checkpoint**.
   - **Đúng:** chỉ trả lời tên mình.
   - **Trả lời thay bạn cùng phòng:** sai nhẹ. Thêm "lệch", một chiếc mùng bên giường bạn đó khẽ lay.
   - **Trả lời tên Lâm: thua thật.** Màn hình tối, giọng loa nói "Phòng 407, đủ 5 người", rồi tải lại checkpoint đầu đoạn 4.
-  - **Không trả lời tên mình:** sai nhẹ. Loa đọc lại tên Khang lần nữa, chậm hơn.
+  - **Không trả lời tên mình:** sai nhẹ. Loa đọc lại tên Trung lần nữa, chậm hơn.
 
 ### Đoạn 5 — 01:30 Mâu thuẫn (khoảng 3 phút)
 - 01:20, loa: *"Sinh viên ở lại kiểm tra khóa vòi nước nhà vệ sinh tầng mình."*
@@ -102,7 +102,7 @@ Mỗi đoạn bắt đầu bằng một **checkpoint**.
 ### Kết — 01:40
 - Về phòng. Loa điểm danh lần cuối, không báo trước.
 - **"Lệch" 0–2:** loa đọc đúng 4 tên của phòng, im lặng vài giây, rồi nói: *"…và một người nữa."* Màn hình tối.
-- **"Lệch" 3–4:** loa đọc 4 tên, nhưng chỗ tên Khang là **"Vũ Đức Lâm"**. Sau đó: *"…và Nguyễn Minh Khang. Mời trả lời."* Màn hình tối.
+- **"Lệch" 3–4:** loa đọc 4 tên, nhưng chỗ tên Trung là **"Vũ Đức Lâm"**. Sau đó: *"…và Trần Trung. Mời trả lời."* Màn hình tối.
 - Màn hình cuối: "Còn tiếp", kèm lời mời theo dõi game.
 
 ## 6. Mức "lệch" (0–5)
@@ -115,7 +115,7 @@ Mức "lệch" cộng dồn. Mỗi mức để lại một thay đổi **nhìn h
 | 2 | Một đoạn hành lang tối hẳn (đèn tắt, tiếng ù im) |
 | 3 | Trước cửa 407 có 5 đôi dép. Trên dây phơi hành lang có thêm một chiếc áo trắng |
 | 4 | Biển số phòng mờ đi. Tiếng quạt trần trong phòng chậm lại |
-| 5 | **Thua thật:** ký túc xá "giữ lại". Loa đọc tên Khang ở vị trí thứ năm, rồi tải lại checkpoint đầu đoạn hiện tại |
+| 5 | **Thua thật:** ký túc xá "giữ lại". Loa đọc tên Trung ở vị trí thứ năm, rồi tải lại checkpoint đầu đoạn hiện tại |
 
 Cả demo chỉ có 2 cách thua thật: **trả lời tên Lâm**, và **chạm mức 5**.
 
@@ -139,11 +139,11 @@ Ghi chú:
 - Điều 6 (gương) được mô hình là dòng giả của tình huống `tap_running`, vì nó bảo người chơi làm khác với điều 5.
 - Key dịch: `RULE_1` … `RULE_5`, `RULE_3_FAKE`, `RULE_4_FAKE`, `RULE_6_FAKE`, cộng thêm `RULE_HEADER_5`, `RULE_HEADER_6` cho tiêu đề "gồm 5/6 điều".
 
-## 8. Cần chủ dự án quyết
-1. **Dịp nghỉ:** 30/4–1/5 (trời nóng, có quạt) hay Tết (vắng hơn, nhiều yếu tố tâm linh dân gian, nhưng phải đổi không khí)?
-2. **Nhân vật chính:** tầng nam, tên "Nguyễn Minh Khang"? Hay tầng nữ, hoặc để người chơi tự đặt tên? Tự đặt tên thì loa TTS phải đọc tên động, khó hơn nhiều.
-3. **Twist:** đồng ý hướng "ký túc xá muốn đủ người, có thể Khang chính là người thứ năm" không?
-4. **Loa rè ở điều 3:** đồng ý cách "loa không hoàn hảo" không?
-5. **Cái kết:** hai biến thể theo mức "lệch" như trên, hay chỉ một?
-6. **2 cách thua thật** (trả lời tên Lâm, chạm mức 5): đồng ý không? Có cần nhẹ tay hơn không?
-7. **Nhà vệ sinh** đứng đầu danh sách cắt nếu chậm tiến độ. Nếu cắt, đoạn 5 chuyển ra **bồn rửa chung đầu hành lang** (vẫn có vòi nước và gương). Đồng ý không?
+## 8. Quyết định của chủ dự án (D-020)
+1. **Dịp nghỉ:** lễ 30/4–1/5.
+2. **Nhân vật chính:** tầng nam, tên **Trần Trung**, tên cố định (không cho người chơi tự đặt).
+3. **Twist:** "Trần Trung có thể chính là người thứ năm".
+4. **Loa rè đúng chỗ điều 3:** giữ, theo đề xuất của integrator, để "cứ tin loa" không phải lời giải. Chủ dự án có thể đổi lại.
+5. **Cái kết:** có biến thể theo mức "lệch" (0–2 và 3–4, như mục 5).
+6. **Thua thật:** 2 cách, trả lời tên Lâm và chạm mức "lệch" 5.
+7. **Không cắt nội dung khi chậm tiến độ**, kể cả nhà vệ sinh. Chậm thì lùi lịch.

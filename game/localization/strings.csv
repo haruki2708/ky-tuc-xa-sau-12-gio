@@ -11,3 +11,13 @@ UI_TEST_HINT,Bấm đổi ngôn ngữ khi phụ đề đang hiện để kiểm 
 UI_LOCALE_SAVE_ERROR,Không lưu được ngôn ngữ. Vui lòng thử lại.,Could not save language. Please try again.
 SUB_TEST_1,Phụ đề thử: Kỷ luật · Điểm danh,Sample subtitle: Discipline · Roll call
 SUB_TEST_2,Dòng thử thứ hai: Tiếng Việt có dấu đầy đủ.,Second sample: Vietnamese text with full diacritics.
+RULE_HEADER_5,Nội quy ban đêm dịp lễ — gồm 5 điều,Holiday night rules — 5 articles
+RULE_HEADER_6,Nội quy (6 điều),Rules (6 articles)
+RULE_1,"Sau 0 giờ, tắt đèn chính trong phòng.","After midnight, turn off the main light in your room."
+RULE_2,"Có tiếng gõ cửa sau 0 giờ: không mở, không trả lời. Người của ký túc xá luôn gọi số phòng trước khi gõ.","If someone knocks after midnight, do not open and do not answer. Dorm staff always call the room number before knocking."
+RULE_3,"Nghe tiếng dép đi sau lưng ở hành lang: không quay lại, đi tiếp tới chỗ có đèn.","If you hear slippers walking behind you in the corridor, do not turn around. Keep walking to the light."
+RULE_3_FAKE,"Nghe tiếng dép đi sau lưng ở hành lang: dừng lại, quay lại chào.","If you hear slippers walking behind you in the corridor, stop, turn around and greet them."
+RULE_4,"Khi điểm danh, chỉ trả lời ""Có"" khi nghe đúng tên mình.","At roll call, answer ""Here"" only to your own name."
+RULE_4_FAKE,"Khi điểm danh, phòng phải trả lời đủ số tên được đọc. Ai ngủ thì trả lời thay.","At roll call, the room must answer every name that is read. Answer for anyone asleep."
+RULE_5,"Vòi nước tự chảy: khóa vòi, rời nhà vệ sinh, không nhìn vào gương.","If a tap runs by itself, close it and leave the washroom. Do not look in the mirror."
+RULE_6_FAKE,"Trước khi ra khỏi nhà vệ sinh, nhìn vào gương để chắc người bước ra là bạn.","Before leaving the washroom, look in the mirror to make sure the one leaving is you."

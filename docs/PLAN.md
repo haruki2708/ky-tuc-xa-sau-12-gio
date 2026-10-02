@@ -22,11 +22,7 @@ Mỗi mốc đều phải có bản `.exe` chạy được.
 | P4 Hoàn thiện | Tuần 6–7 | Sửa lỗi, bản tiếng Anh, tối ưu, 3–5 người chơi thử | Không còn lỗi chặn; ≥70% người thử chơi hết |
 | P5 Phát hành | Tuần 7–8 | Trang itch.io | Đăng công khai |
 
-**Nếu bị chậm, cắt dần theo thứ tự:**
-1. Bỏ nhà vệ sinh
-2. Giảm 5 đoạn chơi xuống 4
-3. Bỏ giọng đọc, chỉ dùng chữ
-4. Demo rút còn 10–12 phút
+**Nếu bị chậm:** chủ dự án quyết định **không cắt nội dung**; lùi lịch phát hành thay vì cắt (D-020). Danh sách cắt cũ (bỏ nhà vệ sinh, giảm đoạn chơi, bỏ giọng đọc, rút ngắn demo) không còn áp dụng.
 
 ## Phạm vi demo
 - **Khu vực:** 1 tầng gồm phòng 4 người, hành lang, nhà vệ sinh chung, bàn trực, cầu thang bị chặn.

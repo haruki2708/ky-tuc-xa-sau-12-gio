@@ -1,0 +1,140 @@
+[gd_resource type="Resource" script_class="RuleSet" load_steps=14 format=3]
+
+[ext_resource type="Script" path="res://scripts/core/rule_set.gd" id="1_set"]
+[ext_resource type="Script" path="res://scripts/core/rule_data.gd" id="2_rule"]
+
+[sub_resource type="Resource" id="Rule_lights_genuine"]
+script = ExtResource("2_rule")
+id = &"lights_genuine"
+text_key = "RULE_1"
+is_fake = false
+source = &"speaker"
+situation = &"lights_out"
+action = &"turn_off_main_light"
+penalty = 1
+consequence = &"corridor_light_flicker"
+fatal = false
+
+[sub_resource type="Resource" id="Rule_knock_genuine"]
+script = ExtResource("2_rule")
+id = &"knock_genuine"
+text_key = "RULE_2"
+is_fake = false
+source = &"speaker"
+situation = &"knock_at_door"
+action = &"stay_silent"
+penalty = 2
+consequence = &"extra_slippers"
+fatal = false
+
+[sub_resource type="Resource" id="Rule_slippers_genuine"]
+script = ExtResource("2_rule")
+id = &"slippers_genuine"
+text_key = "RULE_3"
+is_fake = false
+source = &"hall_board"
+situation = &"footsteps_behind"
+action = &"keep_walking"
+penalty = 1
+consequence = &"footsteps_close_in"
+fatal = false
+
+[sub_resource type="Resource" id="Rule_slippers_paper"]
+script = ExtResource("2_rule")
+id = &"slippers_paper"
+text_key = "RULE_3_FAKE"
+is_fake = true
+source = &"room_paper"
+situation = &"footsteps_behind"
+action = &"turn_around"
+penalty = 2
+consequence = &"light_off_behind"
+fatal = false
+
+[sub_resource type="Resource" id="Rule_rollcall_self_genuine"]
+script = ExtResource("2_rule")
+id = &"rollcall_self_genuine"
+text_key = "RULE_4"
+is_fake = false
+source = &"speaker"
+situation = &"roll_call_self"
+action = &"answer"
+penalty = 1
+consequence = &"name_called_again"
+fatal = false
+
+[sub_resource type="Resource" id="Rule_rollcall_mate_genuine"]
+script = ExtResource("2_rule")
+id = &"rollcall_mate_genuine"
+text_key = "RULE_4"
+is_fake = false
+source = &"speaker"
+situation = &"roll_call_roommate"
+action = &"stay_silent"
+penalty = 1
+consequence = &"net_stirs"
+fatal = false
+
+[sub_resource type="Resource" id="Rule_rollcall_mate_note"]
+script = ExtResource("2_rule")
+id = &"rollcall_mate_note"
+text_key = "RULE_4_FAKE"
+is_fake = true
+source = &"handwritten_note"
+situation = &"roll_call_roommate"
+action = &"answer"
+penalty = 1
+consequence = &"net_stirs"
+fatal = false
+
+[sub_resource type="Resource" id="Rule_rollcall_fifth_genuine"]
+script = ExtResource("2_rule")
+id = &"rollcall_fifth_genuine"
+text_key = "RULE_4"
+is_fake = false
+source = &"speaker"
+situation = &"roll_call_fifth"
+action = &"stay_silent"
+penalty = 1
+consequence = &""
+fatal = false
+
+[sub_resource type="Resource" id="Rule_rollcall_fifth_note"]
+script = ExtResource("2_rule")
+id = &"rollcall_fifth_note"
+text_key = "RULE_4_FAKE"
+is_fake = true
+source = &"handwritten_note"
+situation = &"roll_call_fifth"
+action = &"answer"
+penalty = 0
+consequence = &""
+fatal = true
+
+[sub_resource type="Resource" id="Rule_tap_genuine"]
+script = ExtResource("2_rule")
+id = &"tap_genuine"
+text_key = "RULE_5"
+is_fake = false
+source = &"speaker"
+situation = &"tap_running"
+action = &"close_tap_and_leave"
+penalty = 1
+consequence = &"water_follows"
+fatal = false
+
+[sub_resource type="Resource" id="Rule_mirror_notice"]
+script = ExtResource("2_rule")
+id = &"mirror_notice"
+text_key = "RULE_6_FAKE"
+is_fake = true
+source = &"washroom_notice"
+situation = &"tap_running"
+action = &"look_in_mirror"
+penalty = 2
+consequence = &"mirror_delay"
+fatal = false
+
+[resource]
+script = ExtResource("1_set")
+rules = Array[ExtResource("2_rule")]([SubResource("Rule_lights_genuine"), SubResource("Rule_knock_genuine"), SubResource("Rule_slippers_genuine"), SubResource("Rule_slippers_paper"), SubResource("Rule_rollcall_self_genuine"), SubResource("Rule_rollcall_mate_genuine"), SubResource("Rule_rollcall_mate_note"), SubResource("Rule_rollcall_fifth_genuine"), SubResource("Rule_rollcall_fifth_note"), SubResource("Rule_tap_genuine"), SubResource("Rule_mirror_notice")])
