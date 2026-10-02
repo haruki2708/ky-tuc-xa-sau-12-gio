@@ -58,3 +58,10 @@ Chơi được đoạn 1–2 trong `docs/design/RULES.md`:
 - **Đoạn 1–2 chơi được trọn vòng:** về phòng → chốt cửa (âm "cạch") → đọc tờ nội quy cận cảnh, tự ghi vào sổ tay → điện thoại rung 23:59 → tắt đèn (âm "tách") → 0:00 loa đọc 5 điều, điều 3 rè → phán định điều 1 → 0:10 ba lượt gõ cửa → phán định điều 2 → hậu quả (đèn hành lang chập chờn, đôi dép thứ năm) → "Hết bản thử".
 - `RESULT: 166 passed, 0 failed`; `check` 0 lỗi.
 - **Chưa chơi thử bằng người.** Chờ chủ dự án chơi (cổng kiểm tra P1, T-120).
+
+### Phiên 2026-10-02 (phần 3, D-024 đợt 1) — Claude
+Chủ dự án chơi thử: thấy được đèn chập chờn và đôi dép thứ năm, nhưng hậu quả quá nhẹ. Theo D-024:
+- **Điều 1 sai (để đèn):** ngoài đèn hành lang chập chờn, **đèn chính trong phòng chập chờn rồi tắt phụt** (tiếng ù im theo), tối khoảng 4 giây rồi sáng lại. Cờ `room_light_cut`.
+- **Điều 2 sai (mở cửa):** hành lang trống, **tiếng dép lê đi xa dần** về phía tây (10 bước, nguồn âm di chuyển; âm dép của lane E cộng +20 dB vì đã được chỉnh rất nhỏ cho người chơi). Cờ `visitor_walked_away`. **Đôi dép thứ năm chỉ xuất hiện sau khi cửa đóng lại** (hoặc sau tối đa 20 giây), kèm tiếng đặt dép.
+- **Sting** khi làm sai (`sting_low`), tiếng tắt đèn (`tube_cut`), tiếng đặt dép (`slipper_place`): code đã sẵn, tự phát khi lane E giao file (T-131); hiện chưa có tiếng.
+- Test mới `test_fifth_pair_waits_for_the_door_to_close`. `RESULT: 168 passed, 0 failed`.
