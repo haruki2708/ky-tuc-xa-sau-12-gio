@@ -5,9 +5,9 @@ Mỗi việc sẽ được tách thành task card chi tiết khi đến lượt.
 | ID | Việc | Lane | Phụ thuộc |
 |---|---|---|---|
 | T-110 | **Xong.** Kiến trúc lõi: `GameState`, `RuleSystem`, `Checkpoint` (`T-110-rule-system.md`, thiết kế `docs/design/RULE_SYSTEM.md`) | core (Claude) | P0 |
-| T-113 | **Chốt bộ luật demo, câu chữ nội quy, sơ đồ tầng** (cùng chủ dự án) → `docs/design/RULES.md`, `docs/design/LAYOUT.md` | Chủ dự án + Claude | — |
+| T-113 | **Xong (D-020).** Bộ luật, câu chữ, cốt truyện, sơ đồ tầng → `docs/design/RULES.md`, `LAYOUT.md`, dữ liệu `game/data/rules/demo.tres` | Chủ dự án + Claude | — |
 | T-111 | Xem giấy tờ cận cảnh (chữ sắc nét, lấy từ file dịch) và sổ tay (các luật đã đọc, đánh dấu nghi ngờ) | A | T-101, T-104, T-110 |
-| T-112 | Dựng greybox tầng ký túc xá theo `LAYOUT.md`, mỗi phòng là một scene con, dùng bộ module của T-102. Mọi sàn phải có metadata `surface` (xem Review T-105) | B | T-102, T-113 |
+| T-112 | Dựng greybox tầng 4 theo `LAYOUT.md` (`T-112-floor4-greybox.md`); làm trước T-118 | B | T-102, T-121, T-113 |
 | T-114 | Sửa tiếng ù đèn tuýp; vùng âm môi trường, vùng reverb; đèn tắt thì im tiếng (`T-114-audio-zones.md`). Bước chân đã được integrator nối ở `main.tscn` | E | T-101, T-105 |
 | T-115 | Kịch bản chơi tự động "từ đầu đến luật số 1", chạy được trong CI hoặc trên máy | C | T-103, T-117 |
 | T-116 | Menu tạm dừng và cài đặt, script `Settings` (`T-116-pause-settings.md`, hợp đồng `docs/SETTINGS.md`) | D | T-104, T-105; merge trước T-125 |

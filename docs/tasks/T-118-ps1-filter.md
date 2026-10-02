@@ -1,7 +1,7 @@
 # T-118 — Filter hình ảnh PS1 và sửa import texture
 - Lane: B (Môi trường và 3D) | Trạng thái: todo | Agent:
 - Nhánh: `lane-b/T-118-ps1-filter`
-- Phụ thuộc: T-102, T-121 (done). **Đọc `docs/SETTINGS.md`** (mục `[video] ps1_strength` và `[video] brightness`). Làm song song với T-116 của lane D.
+- Phụ thuộc: T-102, T-121 (done). **Làm sau T-112** (dựng tầng). **Đọc `docs/SETTINGS.md`** (mục `[video] ps1_strength` và `[video] brightness`). Làm song song với T-116 của lane D.
 - Lane B được thêm thư mục `game/rendering/` (xem `AGENTS.md` §3).
 
 ## Mục tiêu

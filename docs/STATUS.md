@@ -1,7 +1,7 @@
 # STATUS — cập nhật bởi integrator
 
 **Cập nhật lần cuối:** 2026-10-02
-**Giai đoạn:** P1. Xong 5 task thử tuần đầu (T-101…T-105). Cả 5 lane nhận task mới (T-116, T-118, T-124, T-125, T-126), dùng chung hợp đồng cài đặt `docs/SETTINGS.md`.
+**Giai đoạn:** P1. Xong 5 task thử tuần đầu (T-101…T-105). Cả 5 lane nhận task mới (T-112, T-116, T-124, T-125, T-126), dùng chung hợp đồng cài đặt `docs/SETTINGS.md`.
 **Repo:** https://github.com/tuaanh666/ky-tuc-xa-sau-12-gio (private)
 
 ## Đã xong
@@ -11,11 +11,11 @@
   - lớp `Interactable`,
   - scene `main.tscn` là hành lang greybox,
   - song ngữ CSV (vi/en).
-- Test runner headless chạy được: `tools/test.ps1`, 83/83 test PASS (sau T-101…T-105, T-110, T-114, T-121…T-123). Có thêm `check.ps1`, `capture.ps1`, `package.ps1` và autoload `Autoplay` để phát lại input (xem `tools/README.md`).
+- Test runner headless chạy được: `tools/test.ps1`, 84/84 test PASS (sau T-101…T-105, T-110, T-113, T-114, T-121…T-123). Có thêm `check.ps1`, `capture.ps1`, `package.ps1` và autoload `Autoplay` để phát lại input (xem `tools/README.md`).
 - Export chạy được: `tools/export.ps1` ra `build/windows/KyTucXa.exe`. Đã chạy thử, mở được.
 - Chụp khung hình bằng Movie Maker chạy được, integrator xem được ảnh.
 - Blender 5.2.2 LTS portable ở `D:\Tools\Blender\5.2.2`; bộ 7 mô hình ký túc xá (T-102), preview ở `art_source/kit/previews/`.
-- Lõi luật chơi (T-110): autoload `GameState`, `RuleSystem`, helper `Checkpoint`; chưa có nội dung luật (chờ T-113).
+- Lõi luật chơi (T-110): autoload `GameState`, `RuleSystem`, helper `Checkpoint`; bộ luật demo đã có (T-113, `game/data/rules/demo.tres`).
 - Tài liệu: `AGENTS.md`, `docs/PLAN.md`, `docs/DECISIONS.md`, `docs/design/GDD.md`, task card cho tuần đầu.
 
 ## Đang làm / tiếp theo
@@ -31,12 +31,13 @@
 | T-122 Nhịp bước chân tự nhiên | A | **done**, đã merge; chủ dự án đã duyệt nhịp (D-018) |
 | T-123 Âm dép lê mềm hơn | E (Claude làm thay) | **done**, đã merge; chủ dự án đã chốt độ to (D-015) |
 | T-116 Menu tạm dừng và cài đặt | D | todo (giao ngay; merge trước T-125) |
-| T-118 Filter PS1, sửa import texture | B | todo (giao ngay) |
+| T-112 Dựng greybox tầng 4 | B | todo (giao ngay, làm trước T-118) |
+| T-118 Filter PS1, sửa import texture | B | todo (sau T-112) |
 | T-124 Dọn công cụ QA, lọc file build | C | todo (giao ngay) |
 | T-125 Player theo menu tạm dừng và cài đặt | A | todo (giao ngay; merge sau T-116) |
 | T-126 Bus riêng cho bước chân | E | todo (giao ngay) |
 | T-110 Kiến trúc RuleSystem và GameState | core | **done**, đã merge (xem `docs/design/RULE_SYSTEM.md`) |
-| T-113 Chốt bộ luật demo và sơ đồ tầng | Chủ dự án + Claude | **bản nháp** `docs/design/RULES.md`, `LAYOUT.md`; chờ chủ dự án duyệt |
+| T-113 Chốt bộ luật demo và sơ đồ tầng | Chủ dự án + Claude | **done** (D-020); dữ liệu `game/data/rules/demo.tres` |
 
 ## Đang vướng
 - Khi mở project bằng editor, Godot tự đổi texture kit (`game/assets/textures/kit/*.png.import`) sang nén VRAM và bật mipmap vì `detect_3d/compress_to=1`. Như vậy sẽ phá nét PS1. Lane B sửa ở T-118 (đặt `detect_3d/compress_to=0`). Trong lúc chờ, **đừng commit** các file `.import` bị editor sửa.
