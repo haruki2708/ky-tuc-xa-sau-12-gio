@@ -28,9 +28,9 @@ func before_each() -> void:
 	floor_body = _body(Vector3(120, 0.2, 120), Vector3(0, -0.1, 0))
 	player = PLAYER_SCENE.instantiate() as PlayerController
 	player.position = Vector3(0, 0.5, 0)
-	player.head_bob_enabled = false
 	player._step_rng.seed = 122
 	world.add_child(player)
+	player.head_bob_enabled = false
 	EventBus.interaction_focus_changed.connect(_record_focus)
 	player.footstep.connect(_record_step)
 
@@ -377,7 +377,7 @@ func test_bob_cycles_stay_with_steps_through_speed_changes() -> void:
 	assert_true(cycles > 20, "exercise many jittered steps and speed transitions")
 
 
-func test_mouse_look_clamped_and_pause_toggles_capture() -> void:
+func test_mouse_look_clamped_and_pause_signal_toggles_capture() -> void:
 	# Headless cannot capture an OS pointer; assert the controller's requested state.
 	assert_true(player._mouse_captured, "capture requested on ready")
 	if DisplayServer.get_name() != "headless":
@@ -390,17 +390,14 @@ func test_mouse_look_clamped_and_pause_toggles_capture() -> void:
 	motion.relative.y = 100000
 	player._unhandled_input(motion)
 	assert_true(is_equal_approx(player.head.rotation.x, deg_to_rad(-85.0)), "lower pitch clamp")
-	var pause_event: InputEventAction = InputEventAction.new()
-	pause_event.action = &"pause"
-	pause_event.pressed = true
-	player._unhandled_input(pause_event)
-	assert_false(player._mouse_captured, "Esc clears capture request")
-	assert_eq(Input.mouse_mode, Input.MOUSE_MODE_VISIBLE, "Esc releases mouse")
+	EventBus.game_paused.emit(true)
+	assert_false(player._mouse_captured, "pause signal clears capture request")
+	assert_eq(Input.mouse_mode, Input.MOUSE_MODE_VISIBLE, "pause releases mouse")
 	var yaw: float = player.rotation.y
 	player._unhandled_input(motion)
 	assert_eq(player.rotation.y, yaw, "released mouse does not look")
-	player._unhandled_input(pause_event)
-	assert_true(player._mouse_captured, "Esc requests capture again")
+	EventBus.game_paused.emit(false)
+	assert_true(player._mouse_captured, "resume signal requests capture again")
 	if DisplayServer.get_name() != "headless":
 		assert_eq(Input.mouse_mode, Input.MOUSE_MODE_CAPTURED, "OS recapture")
 
