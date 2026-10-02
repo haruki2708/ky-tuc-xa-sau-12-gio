@@ -15,15 +15,29 @@
     },
     {
       "file": "game/audio/ambience/fluorescent_hum.ogg",
-      "sha256": "5af317469abc319b273e5a39fefc56c806e0849c5699f567ba319c7f571f60f7",
-      "raw_sha256": "a10d495d498e4cca9d870c36d712e8b572966cb85f6ba748ac696f49374ad4c2",
-      "bytes": 91947,
+      "sha256": "dbae2200e018dd369c3029afbf0fc453395bebc201256ec9ebe36b4711c791c1",
+      "raw_sha256": "0592f09cac50655dd696b17dd6793bc0f00ba5febfb8ee74e846798ca3db8dc8",
+      "bytes": 103146,
       "seconds": 12.0,
       "channels": 1,
-      "lufs": -23.95,
-      "true_peak_db": -16.89,
+      "lufs": -23.97,
+      "true_peak_db": -15.04,
       "loop": true,
-      "boundary_delta": 0.0002834
+      "boundary_delta": 0.0066025,
+      "highpass_200hz_lufs": -25.99,
+      "highpass_200hz_loss_lu": 2.02
+    },
+    {
+      "file": "game/audio/sfx/fluorescent_flicker.ogg",
+      "sha256": "454a4b3fb42512a3bfa4637eddaae62804df90317309bf1dfc5b425717f7dd50",
+      "raw_sha256": "b8285580962e6020dce7f0c9bd4690478cc02699f11862c93f5ed975d4287793",
+      "bytes": 14497,
+      "seconds": 1.5,
+      "channels": 1,
+      "lufs": -18.01,
+      "true_peak_db": -7.02,
+      "loop": false,
+      "boundary_delta": 0.0
     },
     {
       "file": "game/audio/ambience/night_insects_motorbike.ogg",

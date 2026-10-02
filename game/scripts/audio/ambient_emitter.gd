@@ -17,12 +17,16 @@ var _timer: Timer
 var _active: bool = false
 var _base_pitch: float
 var _base_volume: float
+var _volume_offset_db: float = 0.0
+var _zone_gains: Dictionary[int, float] = {}
 
 
 func _ready() -> void:
 	_rng.randomize()
 	_base_pitch = pitch_scale
-	_base_volume = volume_db
+	# A zone can register before this node's _ready (scene child order).
+	if _zone_gains.is_empty():
+		_base_volume = volume_db
 	_timer = Timer.new()
 	_timer.one_shot = true
 	_timer.timeout.connect(_play_clip)
@@ -64,8 +68,29 @@ func _play_clip() -> void:
 	elif stream is AudioStreamWAV:
 		(stream as AudioStreamWAV).loop_mode = AudioStreamWAV.LOOP_FORWARD if playback_mode == PlaybackMode.LOOP else AudioStreamWAV.LOOP_DISABLED
 	pitch_scale = maxf(0.01, _base_pitch * _rng.randf_range(1.0 - pitch_variation, 1.0 + pitch_variation))
-	volume_db = _base_volume + _rng.randf_range(-volume_variation_db, volume_variation_db)
+	_volume_offset_db = _rng.randf_range(-volume_variation_db, volume_variation_db)
+	_apply_volume()
 	play()
+
+
+func set_zone_gain(zone_id: int, gain: float) -> void:
+	if _zone_gains.is_empty() and not is_node_ready():
+		_base_volume = volume_db
+	_zone_gains[zone_id] = clampf(gain, 0.0, 1.0)
+	_apply_volume()
+
+
+func remove_zone_gain(zone_id: int) -> void:
+	_zone_gains.erase(zone_id)
+	_apply_volume()
+
+
+func _apply_volume() -> void:
+	var gain: float = 1.0 if _zone_gains.is_empty() else 0.0
+	for value: float in _zone_gains.values():
+		gain = maxf(gain, value)
+	# Max, not sum: overlapping zones cannot amplify a shared source.
+	volume_linear = db_to_linear(_base_volume + _volume_offset_db) * gain
 
 
 func _on_finished() -> void:
@@ -81,3 +106,7 @@ func _schedule_next() -> void:
 	var lower := maxf(0.05, minf(interval_min, interval_max))
 	var upper := maxf(lower, maxf(interval_min, interval_max))
 	_timer.start(_rng.randf_range(lower, upper))
+
+
+func _exit_tree() -> void:
+	stop_emitting()

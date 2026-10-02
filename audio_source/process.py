@@ -25,6 +25,7 @@ TAU = math.tau
 ASSETS = [
     ("ceiling_fan", "ambience", 13.0, 10501),
     ("fluorescent_hum", "ambience", 13.0, 10502),
+    ("fluorescent_flicker", "sfx", 1.5, 11401),
     ("night_insects_motorbike", "ambience", 21.0, 10503),
     *[(f"water_drip_{i:02}", "sfx", 1.0, 10510 + i) for i in range(1, 4)],
     *[(f"slipper_tile_{i:02}", "sfx", 0.85, 10520 + i) for i in range(1, 5)],
@@ -57,8 +58,22 @@ def synthesize(name: str, seconds: float, seed: int) -> list[float]:
             value = 0.32 * low_noise * blade + 0.045 * math.sin(TAU * 60 * t)
             value += 0.013 * math.sin(TAU * 120 * t) * blade
         elif name == "fluorescent_hum":
-            value = sum(a * math.sin(TAU * f * t) for f, a in [(100, .07), (200, .022), (400, .008)])
-            value = value * (1 + .035 * math.sin(TAU * .7 * t)) + .006 * low_noise
+            # Keep mains hum, but put ballast energy where laptop speakers work.
+            modulation = 1 + .07 * math.sin(TAU * .73 * t) + .035 * math.sin(TAU * 1.137 * t + .8)
+            buzz = sum(a * math.sin(TAU * f * t) for f, a in
+                       [(300, .033), (500, .030), (700, .022), (1100, .014), (1900, .008), (2900, .004)])
+            value = .045 * math.sin(TAU * 100 * t) + buzz * modulation
+            value += .008 * low_noise + .002 * math.sin(TAU * 6200 * t + .15 * math.sin(TAU * .91 * t))
+        elif name == "fluorescent_flicker":
+            # Irregular relay strikes followed by brief ballast ignition bursts.
+            value = 0.0
+            for onset, length in [(.025, .075), (.17, .12), (.39, .06), (.57, .23), (.93, .10), (1.12, .27)]:
+                u = t - onset
+                if 0 <= u < length:
+                    envelope = min(1.0, u / .003) * min(1.0, (length - u) / .012)
+                    value += envelope * (.035 * math.sin(TAU * 100 * t) + .055 * math.sin(TAU * 700 * t)
+                                         + .028 * math.sin(TAU * 1700 * t) + .018 * noise)
+                    value += .18 * noise * math.exp(-u * 200) * min(1.0, u / .0005)
         elif name == "night_insects_motorbike":
             chirp = max(0.0, math.sin(TAU * 2.3 * t)) ** 8
             pulse = max(0.0, math.sin(TAU * 31 * t)) ** 2
@@ -101,15 +116,15 @@ def run(ffmpeg: str, args: list[str]) -> subprocess.CompletedProcess:
                           check=True, capture_output=True)
 
 
-def loudness(ffmpeg: str, path: Path, target: int) -> dict:
-    proc = run(ffmpeg, ["-i", str(path), "-af", f"loudnorm=I={target}:TP=-2:LRA=7:print_format=json", "-f", "null", "-"])
+def loudness(ffmpeg: str, path: Path, target: int, pre_filter: str = "") -> dict:
+    proc = run(ffmpeg, ["-i", str(path), "-af", f"{pre_filter}loudnorm=I={target}:TP=-2:LRA=7:print_format=json", "-f", "null", "-"])
     match = re.search(r'\{\s*"input_i".*?\}', proc.stderr.decode(), re.S)
     if not match:
         raise RuntimeError(f"No loudness measurement for {path}")
     return json.loads(match.group())
 
 
-def join_loop(path: Path, fade_seconds: float = 1.0) -> None:
+def join_loop(path: Path, fade_seconds: float = 1.0, align_seam: bool = False) -> None:
     with wave.open(str(path), "rb") as src:
         samples = array("h", src.readframes(src.getnframes()))
     if sys.byteorder != "little":
@@ -118,7 +133,13 @@ def join_loop(path: Path, fade_seconds: float = 1.0) -> None:
     count = round(fade_seconds * RATE)
     # Middle + tail/head crossfade: both ends retain adjacent source samples.
     blend = [values[-count + i] * (1 - i / (count - 1)) + values[i] * i / (count - 1) for i in range(count)]
-    write_wav(path, values[count:-count] + blend)
+    loop = values[count:-count] + blend
+    if align_seam:
+        # Rotate the already crossfaded loop to a low-slope, low-level sample.
+        # This reduces codec-edge error for the new high-frequency ballast buzz.
+        seam = min(range(1, RATE // 10), key=lambda i: abs(loop[i] - loop[i - 1]) + .01 * abs(loop[i]))
+        loop = loop[seam:] + loop[:seam]
+    write_wav(path, loop)
 
 
 def import_settings(path: Path, loop: bool) -> None:
@@ -160,7 +181,7 @@ def main() -> None:
                 filters += f",afade=t=in:d=0.008,afade=t=out:st={seconds - .08}:d=0.08"
             run(ffmpeg, ["-i", str(raw), "-af", filters, "-ar", str(RATE), "-ac", "1", "-c:a", "pcm_s16le", str(prepared)])
             if loop:
-                join_loop(prepared)
+                join_loop(prepared, align_seam=name == "fluorescent_hum")
             measured = loudness(ffmpeg, prepared, target)
             norm = (f"loudnorm=I={target}:TP=-2:LRA=7:linear=true:"
                     f"measured_I={measured['input_i']}:measured_TP={measured['input_tp']}:"
@@ -193,6 +214,13 @@ def main() -> None:
                 raise RuntimeError(f"Loudness/peak validation failed: {entry}")
             if loop and entry["boundary_delta"] > .02:
                 raise RuntimeError(f"Loop boundary validation failed: {entry}")
+            if name == "fluorescent_hum":
+                filtered = loudness(ffmpeg, out, target, "highpass=f=200:p=2,")
+                entry["highpass_200hz_lufs"] = float(filtered["input_i"])
+                entry["highpass_200hz_loss_lu"] = round(entry["lufs"] - entry["highpass_200hz_lufs"], 2)
+                if not math.isfinite(entry["highpass_200hz_lufs"]) or entry["highpass_200hz_loss_lu"] > 10:
+                    raise RuntimeError(f"Small-speaker validation failed: {entry}")
+                print(f"HUM HP200: {entry['lufs']} -> {entry['highpass_200hz_lufs']} LUFS; loss {entry['highpass_200hz_loss_lu']} LU", flush=True)
             report["assets"].append(entry)
             print(f"{name}: {entry['lufs']} LUFS, {entry['true_peak_db']} dBTP, {entry['bytes']} bytes", flush=True)
     (SOURCE / "build_report.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
