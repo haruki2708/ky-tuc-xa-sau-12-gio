@@ -11,7 +11,7 @@
   - lớp `Interactable`,
   - scene `main.tscn` là hành lang greybox,
   - song ngữ CSV (vi/en).
-- Test runner headless chạy được: `tools/test.ps1`, 111/111 test PASS (sau T-101…T-105, T-110, T-113, T-114, T-116, T-121…T-123, T-125). Có thêm `check.ps1`, `capture.ps1`, `package.ps1` và autoload `Autoplay` để phát lại input (xem `tools/README.md`).
+- Test runner headless chạy được: `tools/test.ps1`, 117/117 test PASS (sau T-101…T-105, T-110, T-112…T-114, T-116, T-121…T-123, T-125). Có thêm `check.ps1`, `capture.ps1`, `package.ps1` và autoload `Autoplay` để phát lại input (xem `tools/README.md`).
 - Export chạy được: `tools/export.ps1` ra `build/windows/KyTucXa.exe`. Đã chạy thử, mở được.
 - Chụp khung hình bằng Movie Maker chạy được, integrator xem được ảnh.
 - Blender 5.2.2 LTS portable ở `D:\Tools\Blender\5.2.2`; bộ 7 mô hình ký túc xá (T-102), preview ở `art_source/kit/previews/`.
@@ -31,7 +31,7 @@
 | T-122 Nhịp bước chân tự nhiên | A | **done**, đã merge; chủ dự án đã duyệt nhịp (D-018) |
 | T-123 Âm dép lê mềm hơn | E (Claude làm thay) | **done**, đã merge; chủ dự án đã chốt độ to (D-015) |
 | T-116 Menu tạm dừng và cài đặt | D | **done**, đã merge |
-| T-112 Dựng greybox tầng 4 | B | todo (giao ngay, làm trước T-118) |
+| T-112 Dựng greybox tầng 4 | B | **done**, đã merge; game chính chạy trên tầng 4 |
 | T-118 Filter PS1, sửa import texture | B | todo (sau T-112) |
 | T-124 Dọn công cụ QA, lọc file build | C | todo (giao ngay) |
 | T-125 Player theo menu tạm dừng và cài đặt | A | **done**, đã merge |
@@ -43,7 +43,7 @@
 - Khi mở project bằng editor, Godot tự đổi texture kit (`game/assets/textures/kit/*.png.import`) sang nén VRAM và bật mipmap vì `detect_3d/compress_to=1`. Như vậy sẽ phá nét PS1. Lane B sửa ở T-118 (đặt `detect_3d/compress_to=0`). Trong lúc chờ, **đừng commit** các file `.import` bị editor sửa.
 
 ## Ghi chú cho người chơi thử
-- Hành lang xám đi lại được: WASD đi, Shift chạy, chuột nhìn, Esc bắt/thả chuột. Có HUD (tâm ngắm, gợi ý, phụ đề), font tiếng Việt, tiếng bước chân dép lê, tiếng ù đèn tuýp và côn trùng đêm. Chưa có đồ vật để tương tác trong hành lang chính.
+- Game chính chạy trên **tầng 4** (T-112): bắt đầu trước cửa phòng 407; E mở và đóng cửa 407; đi được khắp hành lang, phòng 407, nhà vệ sinh, bàn trực. WASD đi, Shift chạy, chuột nhìn, Esc mở menu. Có HUD (tâm ngắm, gợi ý, phụ đề), font tiếng Việt, tiếng bước chân dép lê, tiếng ù đèn tuýp và côn trùng đêm. Chưa có đồ vật để tương tác trong hành lang chính.
 - Nghe thử vùng âm và tiếng ù mới: mở `res://audio/test/zones_test.tscn`, F6; đi giữa hai phòng, phím L bật/tắt đèn, F cho đèn chập chờn.
 - Nghe thử âm thanh: mở `res://audio/test/audio_test.tscn`, F6; phím 0–7 để nghe riêng từng nguồn.
 - Trong game: Esc mở menu tạm dừng (Tiếp tục, Cài đặt, Thoát). Cài đặt có âm lượng, độ nhạy chuột, nhún đầu, ngôn ngữ.

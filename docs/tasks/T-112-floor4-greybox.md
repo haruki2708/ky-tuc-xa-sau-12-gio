@@ -1,5 +1,5 @@
 # T-112 — Dựng greybox tầng 4 nhà B
-- Lane: B (Môi trường và 3D) | Trạng thái: todo | Agent:
+- Lane: B (Môi trường và 3D) | Trạng thái: done | Agent:
 - Nhánh: `lane-b/T-112-floor4-greybox`
 - Phụ thuộc: T-102, T-121 (done), T-113 (đã duyệt, D-020). **Đọc kỹ `docs/design/LAYOUT.md`**, đọc thêm `docs/design/RULES.md` mục 5 để biết đồ vật nào dùng ở đoạn nào.
 - **Làm trước T-118** (filter PS1): cổng kiểm tra P1 cần tầng chơi được hơn là filter.
@@ -109,3 +109,25 @@ Cách kiểm tra lại: mở `game/scenes/levels/floor4/floor4_playtest.tscn`, F
 
 ### Trạng thái chặn
 Không bị chặn. Triển khai và kiểm tra greybox hoàn tất; các yêu cầu trên dành cho bước tích hợp/nội dung tiếp theo.
+
+## Review (integrator, 2026-10-02)
+**Kết quả: chấp nhận, đã merge vào `main`.** Sau merge và tích hợp: `test.ps1` → `RESULT: 117 passed, 0 failed`; `check.ps1` → `RESULT: check 0 error(s)`.
+
+- Đúng phạm vi. Tầng dựng bằng script (`art_source/floor4/build_floor4.py`) nhưng scene vẫn là file text sửa được trong editor. Đủ 24 anchor đúng tên, 11 sàn có `surface`, lan can có tường vô hình, cửa 407 mở và đóng được.
+- Test rất tốt: đi thử bằng capsule thật qua các đường chính, không vượt lan can, cửa và cổng khóa chặn được, giấy nội quy đi theo cánh cửa.
+- Hiệu năng khoảng 490–570 FPS ở 1280×720, vượt xa mức 60 FPS.
+- Ảnh 5 góc: đúng bảng màu và không khí ký túc xá trong GDD.
+
+**Integrator đã tích hợp:**
+- `main.tscn` dùng `floor4.tscn` thay hành lang tạm. Thêm `main.gd`: đặt Player ở `seg1_start`; `place_player(anchor)` để dùng cho checkpoint (T-117).
+- **Lỗi khi thoát game:** với khoảng 15 nguồn âm, thoát ngay sẽ báo `ERROR: resources still in use at exit`, vì luồng âm thanh nhả playback chậm và `LightHum` tự bật lại khi đèn còn sáng. `main.gd` giờ chặn yêu cầu đóng cửa sổ: dừng cây scene, tắt mọi nguồn âm, chờ 0,25 giây rồi mới thoát. Đã chạy 5 lần, không còn lỗi.
+- Test core cập nhật theo tầng mới (bước chân đi và chạy, tiếng ù tắt theo đèn ở `CorridorLight_407`).
+
+**Việc cho task sau (không chặn):**
+1. **Lane D:** nút "Thoát game" trong menu tạm dừng đang gọi `get_tree().quit()` trực tiếp, nên bỏ qua bước thoát sạch ở trên. Nên gửi `NOTIFICATION_WM_CLOSE_REQUEST` khi `auto_accept_quit` tắt.
+2. **Lane D:** key dịch cho biển phòng 401–408 và biển "Khóa cổng 23:00" (yêu cầu trong Handoff).
+3. **Lane E:** âm loa rè thật cho loa bàn trực (đang dùng tạm `fluorescent_flicker`).
+4. **Lane B (task sau):** làm mô hình thật cho các vật đang là hộp tạm (danh sách trong Handoff).
+5. Cửa 407 đang hiện "[E] Tương tác" chung. Khi làm T-117 sẽ dùng key riêng (mở cửa, khóa cửa).
+
+**Chấm điểm (1–5):** phạm vi 5 · checklist 5 · test 5 · chất lượng code 5 · bàn giao trung thực 5 · số vòng sửa 0.
