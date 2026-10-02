@@ -1,5 +1,5 @@
 # T-103 — Công cụ QA: chụp hình, đóng gói, kiểm tra lỗi script, phát lại input
-- Lane: C (QA và Tools) | Trạng thái: todo | Agent:
+- Lane: C (QA và Tools) | Trạng thái: done | Agent:
 - Nhánh: `lane-c/T-103-qa-tools`
 - Phụ thuộc: P0 (xong)
 - Loại: task thử tuần đầu
@@ -75,3 +75,18 @@ Cho mọi agent và integrator công cụ để **tự kiểm tra game mà khôn
 - **Yêu cầu thay đổi: thêm autoload `Autoplay`** trong `game/project.godot`, đường dẫn `res://scripts/debug/autoplay.gd`, sau `GameInput` để các action đã được đăng ký. Dòng đề xuất: `Autoplay="*res://scripts/debug/autoplay.gd"`.
 - Khi đã thêm autoload, chạy capture với scene game bình thường; không dùng `autoplay_scene.tscn` có script thủ công để tránh phát hai lần. Khi không có `--autoplay=...`, autoload không phát input.
 - Không có yêu cầu thay đổi ngoài phạm vi khác.
+
+## Review (integrator, 2026-10-02)
+**Kết quả: chấp nhận, đã merge vào `main`.** Sau merge (gồm T-101, T-102): `test.ps1` → `RESULT: 30 passed, 0 failed`; `check.ps1` → `RESULT: check 0 error(s)`.
+
+- Đúng phạm vi. `test.ps1` chặt hơn (bắt `ERROR:` trong log) nhưng giữ nguyên cách gọi. Đây là thay đổi tốt.
+- Integrator đã thêm autoload `Autoplay` vào `project.godot` theo yêu cầu.
+- Integrator đã thử autoplay trên `main.tscn` có Player: đi thẳng, chạy, quay chuột đều đúng khung hình (136 ảnh = frame cuối 105 + 30 + 1). Lần chạy đầu tiên sau import từng ra 97 ảnh và góc nhìn lệch; ba lần sau đều đúng. Có thể do capture chạy cửa sổ thật nên chuột thật chạm vào làm lệch. Theo dõi thêm ở T-115.
+
+**Việc cần làm kèm task sau của lane C (T-115), không chặn:**
+1. `capture.ps1` giữ lại bản sao toàn bộ project cho mỗi lần chạy (hiện khoảng 4 MB; sẽ lớn dần khi có âm thanh và mô hình). Mặc định xóa bản sao sau khi chụp xong, thêm `-KeepSnapshot` nếu cần giữ.
+2. README trong `package.ps1` ghi "camera đứng yên". Nội dung này đã lỗi thời sau T-101. Nên đưa README ra file riêng (ví dụ `tools/package_readme.txt`) để dễ cập nhật.
+3. `check.ps1` gọi Godot một lần cho mỗi file `.gd`, sẽ chậm khi số script tăng. Chưa cần sửa, chỉ ghi nhận.
+4. Autoplay đếm theo frame `_process`. Kịch bản chơi tự động dài (T-115) nên có cách chờ theo điều kiện (ví dụ chờ signal) thay vì chỉ theo số frame.
+
+**Chấm điểm (1–5):** phạm vi 5 · checklist 5 · test 5 · chất lượng code 4 (bản sao project tích tụ) · bàn giao trung thực 5 · số vòng sửa 0.

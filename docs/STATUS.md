@@ -11,7 +11,7 @@
   - lớp `Interactable`,
   - scene `main.tscn` là hành lang greybox,
   - song ngữ CSV (vi/en).
-- Test runner headless chạy được: `tools/test.ps1`, 26/26 test PASS (sau T-101, T-102).
+- Test runner headless chạy được: `tools/test.ps1`, 30/30 test PASS (sau T-101, T-102, T-103). Có thêm `check.ps1`, `capture.ps1`, `package.ps1` và autoload `Autoplay` để phát lại input (xem `tools/README.md`).
 - Export chạy được: `tools/export.ps1` ra `build/windows/KyTucXa.exe`. Đã chạy thử, mở được.
 - Chụp khung hình bằng Movie Maker chạy được, integrator xem được ảnh.
 - Blender 5.2.2 LTS portable ở `D:\Tools\Blender\5.2.2`; bộ 7 mô hình ký túc xá (T-102), preview ở `art_source/kit/previews/`.
@@ -22,7 +22,7 @@
 |---|---|---|
 | T-101 Điều khiển người chơi và tương tác | A | **done**, đã merge |
 | T-102 Bộ module 3D bằng script Blender | B | **done**, đã merge; chờ chủ dự án duyệt hình ảnh |
-| T-103 Công cụ capture, package, check | C | review (agent đã push, chờ integrator) |
+| T-103 Công cụ capture, package, check | C | **done**, đã merge |
 | T-104 Font, HUD, phụ đề, đổi ngôn ngữ | D | review (agent đã push, chờ integrator) |
 | T-105 Pipeline âm thanh và âm môi trường đầu tiên | E | review (agent đã push, chờ integrator) |
 | T-110 Kiến trúc RuleSystem và GameState | core | todo |
