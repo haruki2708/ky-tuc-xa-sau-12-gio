@@ -30,7 +30,7 @@ var _base_volume: float
 
 
 func _ready() -> void:
-	bus = &"SFX"
+	bus = &"Footsteps"
 	_rng.randomize()
 	_base_pitch = pitch_scale
 	_base_volume = volume_db
