@@ -6,6 +6,10 @@ var _focused := false
 
 
 func _ready() -> void:
+	# This F6 scene also works before the Settings autoload is integrated.
+	if get_node_or_null("/root/Settings") == null:
+		var settings := preload("res://scripts/ui/settings.gd").new()
+		add_child(settings)
 	$Controls/Buttons/Focus.pressed.connect(_toggle_focus)
 	$Controls/Buttons/Subtitles.pressed.connect(_queue_subtitles)
 	$Controls/Buttons/Language.pressed.connect(_toggle_locale)

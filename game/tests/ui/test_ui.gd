@@ -1,6 +1,7 @@
 extends TestCase
 
 const LocaleSettings = preload("res://scripts/ui/locale_settings.gd")
+const SettingsStore = preload("res://scripts/ui/settings.gd")
 const HUD_SCENE = preload("res://ui/hud/hud.tscn")
 const FONT = preload("res://assets/fonts/be_vietnam_pro_regular.ttf")
 
@@ -8,10 +9,12 @@ var _hud: CanvasLayer
 var _previous_locale: String
 var _had_settings: bool
 var _settings_backup: PackedByteArray
+var _audio_backup: AudioBusLayout
 
 
 func before_each() -> void:
 	_previous_locale = TranslationServer.get_locale()
+	_audio_backup = AudioServer.generate_bus_layout()
 	_had_settings = FileAccess.file_exists(LocaleSettings.SETTINGS_PATH)
 	if _had_settings:
 		_settings_backup = FileAccess.get_file_as_bytes(LocaleSettings.SETTINGS_PATH)
@@ -19,6 +22,7 @@ func before_each() -> void:
 	var config := ConfigFile.new()
 	config.set_value("ui", "locale", "vi")
 	assert_eq(config.save(LocaleSettings.SETTINGS_PATH), OK, "prepare settings;")
+	_apply_startup_settings()
 	_hud = HUD_SCENE.instantiate()
 	tree.root.add_child(_hud)
 
@@ -33,6 +37,14 @@ func after_each() -> void:
 	else:
 		DirAccess.remove_absolute(LocaleSettings.SETTINGS_PATH)
 	TranslationServer.set_locale(_previous_locale)
+	AudioServer.set_bus_layout(_audio_backup)
+
+
+func _apply_startup_settings() -> void:
+	# Startup moved from HUD to Settings in T-116; retain the T-104 guarantees.
+	var settings := SettingsStore.new()
+	settings.apply_startup()
+	settings.free()
 
 
 func test_font_has_vietnamese_glyphs() -> void:
@@ -123,10 +135,11 @@ func test_locale_defaults_to_vi_without_settings() -> void:
 	assert_eq(DirAccess.remove_absolute(LocaleSettings.SETTINGS_PATH), OK)
 	assert_eq(LocaleSettings.get_locale(), "vi")
 	TranslationServer.set_locale("en")
+	_apply_startup_settings()
 	_hud.free()
 	_hud = HUD_SCENE.instantiate()
 	tree.root.add_child(_hud)
-	assert_eq(TranslationServer.get_locale(), "vi", "HUD applies default on startup;")
+	assert_eq(TranslationServer.get_locale(), "vi", "Settings applies default on startup;")
 
 
 func test_locale_persists_and_preserves_other_settings() -> void:
@@ -139,10 +152,24 @@ func test_locale_persists_and_preserves_other_settings() -> void:
 	assert_eq(config.get_value("ui", "locale"), "en")
 	assert_eq(config.get_value("audio", "volume"), 0.4)
 	TranslationServer.set_locale("vi")
+	_apply_startup_settings()
 	_hud.free()
 	_hud = HUD_SCENE.instantiate()
 	tree.root.add_child(_hud)
-	assert_eq(TranslationServer.get_locale(), "en", "new HUD restores saved language;")
+	assert_eq(TranslationServer.get_locale(), "en", "Settings restores saved language before HUD;")
+
+
+func test_hud_does_not_override_locale_and_has_outlined_crosshair() -> void:
+	TranslationServer.set_locale("en")
+	_hud.free()
+	_hud = HUD_SCENE.instantiate()
+	tree.root.add_child(_hud)
+	assert_eq(TranslationServer.get_locale(), "en", "HUD leaves startup locale to Settings;")
+	var crosshair: ColorRect = _hud.get_node("Root/Crosshair")
+	var outline: ColorRect = _hud.get_node("Root/CrosshairOutline")
+	assert_eq(crosshair.size, Vector2(6, 6))
+	assert_eq(outline.size, Vector2(8, 8))
+	assert_true(outline.color.r < crosshair.color.r)
 
 
 func test_invalid_locale_is_rejected_or_defaults_to_vi() -> void:

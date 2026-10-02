@@ -39,9 +39,43 @@ Người chơi bấm Esc để tạm dừng, chỉnh âm lượng từng loại 
    - Test sao lưu và khôi phục `user://settings.cfg` như T-104.
 
 ## Checklist hoàn thành
-- [ ] `pwsh tools/test.ps1` và `pwsh tools/check.ps1` PASS
-- [ ] Có ảnh chụp menu tạm dừng và màn hình cài đặt (tiếng Việt)
-- [ ] Không chạm file ngoài phạm vi
-- [ ] Mục Handoff đã điền, kèm "Yêu cầu thay đổi" (autoload `Settings`, gắn menu vào `main.tscn`)
+- [x] `pwsh tools/test.ps1` và `pwsh tools/check.ps1` PASS
+- [x] Có ảnh chụp menu tạm dừng và màn hình cài đặt (tiếng Việt)
+- [x] Không chạm file ngoài phạm vi
+- [x] Mục Handoff đã điền, kèm "Yêu cầu thay đổi" (autoload `Settings`, gắn menu vào `main.tscn`)
 
 ## Handoff (agent điền)
+
+### Đã làm (2026-10-02, Lane D)
+- Commit triển khai `2483370` — `T-116: Add pause menu and shared persistent settings`; đã push lên `origin/lane-d/T-116-pause-settings`, tạo từ `origin/main` tại `7552c07`.
+- Thêm `res://scripts/ui/settings.gd` (`extends Node`) theo đúng 11 mục trong `docs/SETTINGS.md`: đọc mặc định khi thiếu/sai kiểu/ngoài khoảng; kẹp số khi ghi; lưu trước, áp dụng ngôn ngữ và âm lượng, rồi emit `EventBus.settings_changed(section, key)`. `set_value()` và `reset_defaults()` trả về `Error`; lỗi lưu không phát signal hay áp dụng giá trị mới. Không thêm mục cấu hình mới.
+- `Settings._ready()` áp dụng locale và các bus có sẵn. Ngưỡng −40 dB mute bus; tăng trở lại thì unmute. Theo dõi cả thêm/xóa và đổi tên bus. `reset_defaults()` lưu toàn bộ mặc định một lần trước khi thông báo từng mục; giữ nguyên dữ liệu ngoài các mục được cập nhật.
+- `locale_settings.gd` giữ API cũ, gọi chung logic của Settings. HUD không còn áp dụng locale trong `_ready()`; tâm ngắm 6×6 px với viền tối 1 px (kích thước ngoài 8×8).
+- Menu `res://ui/pause/pause_menu.tscn`: CanvasLayer 20 trên HUD, `PROCESS_MODE_ALWAYS`, Esc mở/đóng, nút Tiếp tục/Cài đặt/Thoát game. Cập nhật `SceneTree.paused` trước signal `game_paused`; thả chuột lúc mở và khôi phục chế độ chuột trước đó khi đóng. Bắt Esc ở `_input()` để không rơi tiếp xuống input gameplay.
+- Màn hình cài đặt có các thanh âm lượng theo bus, độ nhạy chuột, nhún đầu, độ sáng, cường độ PS1, VI/EN, khôi phục mặc định và thông báo lỗi lưu. Thanh của bus thiếu được ẩn; thay đổi áp dụng/lưu ngay qua Settings. Chữ bổ sung đủ VI/EN, chỉ thêm key CSV.
+- Scene thử độc lập `res://ui/pause/pause_test.tscn` dùng autoload nếu có, hoặc tạo Settings cục bộ khi chưa tích hợp. Scene HUD F6 cũ cũng có đường khởi động tương tự. Menu production mặc định tìm `/root/Settings`; khi thiếu thì nút Cài đặt bị vô hiệu hóa, không tự đăng ký autoload.
+
+### Kiểm chứng
+- `pwsh tools/test.ps1`: **`RESULT: 101 passed, 0 failed`**, exit code 0; bao gồm 29 test UI. Các cảnh báo GameState/Checkpoint trong bộ core là từ test dữ liệu không hợp lệ, không có `SCRIPT ERROR`/`ERROR` trong lượt cuối.
+- `pwsh tools/check.ps1`: **`RESULT: check 0 error(s)`**, exit code 0.
+- Log cục bộ (không commit, thuộc `build/`): `build/T-116/test.log`, `build/T-116/check.log`.
+- Test bao phủ hợp đồng mặc định/kiểu/khoảng, kẹp giá trị, lưu trước signal, bảo toàn mục khác, mute/unmute SFX, startup locale/audio, reset; Esc, key repeat, Tiếp tục, Quay lại, game timer dừng/chạy lại, ẩn bus thiếu và nhận bus được thêm/đổi tên. Test chuột đẩy `InputEventMouseMotion`/`InputEventMouseButton` qua viewport để mở Cài đặt, chỉnh âm lượng và tiếp tục khi đang pause.
+- Test T-104 vẫn PASS; hai test startup locale đã chuyển bước khởi động sang Settings theo yêu cầu review. Fixture sao lưu/khôi phục nguyên byte `user://settings.cfg`, locale, audio layout và trạng thái pause/chuột.
+- Đã chạy scene bằng Vulkan Forward+ và xem hai ảnh 1920×1080: [menu tạm dừng](../../game/ui/pause/previews/pause_vi.png), [cài đặt tiếng Việt](../../game/ui/pause/previews/settings_vi.png). Chữ không bị cắt, dấu tiếng Việt rõ. Ảnh nằm trong Git LFS, kèm `.import`; script mới kèm `.uid`.
+- `git diff --cached --check` sạch; thay đổi triển khai chỉ trong `game/ui/`, `game/scripts/ui/`, `game/tests/ui/`, thêm key `strings.csv`; tài liệu chỉ đổi checklist/Handoff của card này. Không sửa `project.godot`, main, player, audio bus hoặc metadata texture kit.
+
+### Cách thử và giới hạn kiểm chứng
+- Mở `game/ui/pause/pause_test.tscn`, F6, nhấn Esc. Thử Cài đặt, kéo các thanh, đổi ngôn ngữ, Khôi phục mặc định, Quay lại, Tiếp tục; đóng/mở lại để kiểm tra lưu lựa chọn. Nút Thoát game gọi `SceneTree.quit()`.
+- Tái tạo ảnh bằng Movie Maker với scene trên, thư mục đích tuyệt đối đã tạo trước, `--fixed-fps 30 --quit-after 3 --resolution 1280x720 --windowed`, và đối số sau `--`: `--capture-pause` hoặc `--capture-settings`. Hai chế độ chỉ ép locale hiển thị thành VI, không ghi cấu hình để chụp.
+- Bus `Footsteps` chưa có ở base `7552c07`, nên ảnh cài đặt hiện 5 thanh âm lượng; test đã xác nhận thanh thứ sáu hiện và áp dụng giá trị đã lưu khi bus có mặt.
+- Các lựa chọn của lane A/B đã được kiểm tra việc lưu và signal; chưa xác nhận tác động thực tế lên player/filter vì T-125/T-118 chưa có trong base này. Chưa chơi thử thủ công bằng người; các thao tác được kiểm tra tự động qua input/signal và ảnh được xem trực tiếp. Chưa chạy nút Thoát game trong phiên chơi thủ công.
+
+### Yêu cầu thay đổi ngoài phạm vi
+1. **Thêm autoload `Settings`**, đường dẫn `res://scripts/ui/settings.gd`, **ngay sau `EventBus`** trong `[autoload]` của `game/project.godot`: `Settings="*res://scripts/ui/settings.gd"`. Cần thực hiện cùng lúc tích hợp T-116 vì HUD đã bỏ trách nhiệm áp dụng locale khởi động.
+2. Instance `res://ui/pause/pause_menu.tscn` vào `game/scenes/main/main.tscn`; giữ `settings_path` mặc định `/root/Settings`.
+3. Tích hợp tiếp T-125 để player đọc độ nhạy/nhún đầu, nghe `game_paused` và bỏ tự xử lý Esc; T-118 để filter áp dụng độ sáng/PS1; T-126 để thêm bus `Footsteps`. Không cần thêm signal hay sửa hợp đồng cài đặt.
+
+### Còn dở / trở ngại
+- Không còn mục checklist chưa đạt; không bị chặn trong phạm vi Lane D. Các thay đổi tích hợp nêu trên do integrator thực hiện.
+- Sandbox không truy cập được GitHub/Git LFS và không ghi được `user://`; đã chạy các lệnh liên quan thành công qua cơ chế cấp quyền ngoài sandbox. Lần checkout LFS lỗi ban đầu để lại file dở dang; đã lưu stash phục hồi `Recovery snapshot after interrupted T-116 LFS checkout`, rồi checkout sạch. Stash này chỉ là snapshot phục hồi cục bộ, không thuộc commit T-116.
+- Không phát sinh câu hỏi về luật chơi/cốt truyện, không thêm plugin hay cài phần mềm.

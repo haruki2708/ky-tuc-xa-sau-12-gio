@@ -21,3 +21,29 @@ RULE_4,"Khi điểm danh, chỉ trả lời ""Có"" khi nghe đúng tên mình."
 RULE_4_FAKE,"Khi điểm danh, phòng phải trả lời đủ số tên được đọc. Ai ngủ thì trả lời thay.","At roll call, the room must answer every name that is read. Answer for anyone asleep."
 RULE_5,"Vòi nước tự chảy: khóa vòi, rời nhà vệ sinh, không nhìn vào gương.","If a tap runs by itself, close it and leave the washroom. Do not look in the mirror."
 RULE_6_FAKE,"Trước khi ra khỏi nhà vệ sinh, nhìn vào gương để chắc người bước ra là bạn.","Before leaving the washroom, look in the mirror to make sure the one leaving is you."
+UI_PAUSE_TITLE,Tạm dừng,Paused
+UI_PAUSE_RESUME,Tiếp tục,Resume
+UI_PAUSE_QUIT,Thoát game,Quit game
+UI_SETTINGS_TITLE,Cài đặt,Settings
+UI_SETTINGS_AUDIO,Âm thanh,Audio
+UI_AUDIO_MASTER,Âm lượng tổng,Master
+UI_AUDIO_AMBIENCE,Âm môi trường,Ambience
+UI_AUDIO_SFX,Hiệu ứng,Sound effects
+UI_AUDIO_FOOTSTEPS,Bước chân,Footsteps
+UI_AUDIO_VOICE,Giọng đọc,Voice
+UI_AUDIO_MUSIC,Nhạc,Music
+UI_AUDIO_MUTED,Tắt tiếng,Muted
+UI_AUDIO_DB_VALUE,%.1f dB,%.1f dB
+UI_SETTINGS_CONTROLS,Điều khiển,Controls
+UI_MOUSE_SENSITIVITY,Độ nhạy chuột,Mouse sensitivity
+UI_SETTINGS_VIDEO,Hình ảnh,Video
+UI_HEAD_BOB,Nhún đầu,Head bob
+UI_BRIGHTNESS,Độ sáng,Brightness
+UI_PS1_STRENGTH,Cường độ filter PS1,PS1 filter strength
+UI_SETTINGS_LANGUAGE,Ngôn ngữ,Language
+UI_LANGUAGE_VI,Tiếng Việt,Vietnamese
+UI_LANGUAGE_EN,Tiếng Anh,English
+UI_SETTINGS_RESET,Khôi phục mặc định,Restore defaults
+UI_SETTINGS_BACK,Quay lại,Back
+UI_SETTINGS_SAVE_ERROR,Không lưu được cài đặt. Vui lòng thử lại.,Could not save settings. Please try again.
+UI_PAUSE_TEST_HINT,Nhấn Esc để mở hoặc đóng menu tạm dừng.,Press Esc to open or close the pause menu.
