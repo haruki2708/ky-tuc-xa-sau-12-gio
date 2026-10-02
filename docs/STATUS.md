@@ -32,7 +32,7 @@
 | T-123 Âm dép lê mềm hơn | E (Claude làm thay) | **done**, đã merge; chủ dự án đã chốt độ to (D-015) |
 | T-116 Menu tạm dừng và cài đặt | D | **done**, đã merge |
 | T-112 Dựng greybox tầng 4 | B | **done**, đã merge; game chính chạy trên tầng 4 |
-| T-118 Filter PS1, sửa import texture | B | todo (sau T-112) |
+| T-118 Filter PS1, sửa import texture | B | todo (giao ngay) |
 | T-124 Dọn công cụ QA, lọc file build | C | **done**, đã merge; package PASS chuyển sang T-127 |
 | T-127 Công cụ QA thoát qua `App.quit()` | C | todo (giao ngay) |
 | T-128 Nút Thoát qua `App.quit()`, key biển tầng 4 | D | todo (giao ngay) |
