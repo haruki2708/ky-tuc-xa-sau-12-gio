@@ -1,5 +1,5 @@
 # T-121 — Cập nhật bộ kit: ghế nhựa kiểu Việt Nam, mùng, collision
-- Lane: B (Môi trường và 3D) | Trạng thái: todo | Agent:
+- Lane: B (Môi trường và 3D) | Trạng thái: done | Agent:
 - Nhánh: `lane-b/T-121-kit-update`
 - Phụ thuộc: T-102 (done). Đọc mục **Review** trong `docs/tasks/T-102-blender-kit.md` trước khi làm.
 
@@ -104,3 +104,18 @@ pwsh tools/capture.ps1 -Scene res://scenes/levels/kit_showcase.tscn -Out build/c
 
 **Bị chặn**
 - Không còn blocker. Fetch/push GitHub bị giới hạn mạng sandbox đã chạy lại với quyền được phê duyệt; test/check/capture cũng đã chạy thành công.
+
+## Review (integrator, 2026-10-02)
+**Kết quả: chấp nhận, đã merge vào `main`.** Sau merge (gồm T-101…T-105): `test.ps1` → `RESULT: 54 passed, 0 failed`; `check.ps1` → `RESULT: check 0 error(s)`.
+
+- Đúng phạm vi, không cần yêu cầu thay đổi ngoài lane.
+- **Ghế nhựa:** đạt. Nhận ra ngay là ghế nhựa đỏ lùn Việt Nam (thân loe, mặt bên khoét vòm, khe cầm xuyên thật).
+- **Collision:** sinh tự động khi import bằng `EditorScenePostImport`, không cần plugin. Test `cast_motion` có cả đối chứng trụ/dầm chặn, rất tốt.
+- **Texture trùng:** đã bỏ; GLB tham chiếu `textures/kit/`, có test chặn tái phát.
+- **Mùng:** kỹ thuật đúng (alpha scissor, hai mặt, không collision, đúng độ cao hai tầng, thấy hình nộm bên trong). **Hình ảnh chưa đạt theo nhận xét của integrator:** mắt lưới quá to (chu kỳ 4 px trên texture 128 px), sợi quá rõ, nhìn giống lồng sắt hoặc lưới rào hơn vải mùng. Hình nộm hiện quá rõ. Chờ chủ dự án quyết định trước khi giao sửa.
+
+**Ghi chú cho task sau (không chặn):**
+1. Collision của giường, tủ và cửa là hộp đặc theo bounds. Người chơi không chui được vào gầm giường hay đứng sát thang. Đủ cho P1; nếu sau này cần nằm hoặc trốn thì làm collision chi tiết hơn.
+2. `kit_import.gd` dùng lớp editor (`EditorScenePostImport`). Khi xuất bản build, lane C nên loại file này khỏi export (export filter) để bản phát hành gọn hơn.
+
+**Chấm điểm (1–5):** phạm vi 5 · checklist 5 · test 5 · chất lượng code 5 · bàn giao trung thực 5 · số vòng sửa 0.

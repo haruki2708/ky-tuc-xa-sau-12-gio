@@ -1,7 +1,7 @@
 # STATUS — cập nhật bởi integrator
 
 **Cập nhật lần cuối:** 2026-10-02
-**Giai đoạn:** P1. Xong 5 task thử tuần đầu (T-101…T-105). Lane B đang làm T-121, lane E nhận T-114.
+**Giai đoạn:** P1. Xong 5 task thử tuần đầu (T-101…T-105). Lane E nhận T-114.
 **Repo:** https://github.com/tuaanh666/ky-tuc-xa-sau-12-gio (private)
 
 ## Đã xong
@@ -11,7 +11,7 @@
   - lớp `Interactable`,
   - scene `main.tscn` là hành lang greybox,
   - song ngữ CSV (vi/en).
-- Test runner headless chạy được: `tools/test.ps1`, 49/49 test PASS (sau T-101…T-105). Có thêm `check.ps1`, `capture.ps1`, `package.ps1` và autoload `Autoplay` để phát lại input (xem `tools/README.md`).
+- Test runner headless chạy được: `tools/test.ps1`, 54/54 test PASS (sau T-101…T-105, T-121). Có thêm `check.ps1`, `capture.ps1`, `package.ps1` và autoload `Autoplay` để phát lại input (xem `tools/README.md`).
 - Export chạy được: `tools/export.ps1` ra `build/windows/KyTucXa.exe`. Đã chạy thử, mở được.
 - Chụp khung hình bằng Movie Maker chạy được, integrator xem được ảnh.
 - Blender 5.2.2 LTS portable ở `D:\Tools\Blender\5.2.2`; bộ 7 mô hình ký túc xá (T-102), preview ở `art_source/kit/previews/`.
@@ -26,7 +26,7 @@
 | T-104 Font, HUD, phụ đề, đổi ngôn ngữ | D | **done**, đã merge |
 | T-105 Pipeline âm thanh và âm môi trường đầu tiên | E | **done**, đã merge; chủ dự án đã nghe: tạm ổn, riêng tiếng ù đèn tuýp quá nhỏ |
 | T-114 Sửa tiếng ù, vùng âm, đèn tắt thì im tiếng | E | todo (giao ngay) |
-| T-121 Kit: ghế nhựa VN, mùng, collision | B | todo (giao ngay) |
+| T-121 Kit: ghế nhựa VN, mùng, collision | B | **done**, đã merge; mùng chờ chủ dự án duyệt hình ảnh |
 | T-110 Kiến trúc RuleSystem và GameState | core | todo |
 | T-113 Chốt bộ luật demo và sơ đồ tầng | Chủ dự án + Claude | todo |
 
