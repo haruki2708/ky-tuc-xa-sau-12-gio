@@ -30,3 +30,8 @@ Smoke test duyệt đệ quy toàn bộ `res://scenes/*.tscn`, load, instance v�
 - `pwsh tools/verify-capture.ps1`: năm lần liên tiếp trên main, kịch bản `autoplay_main.json` có đi/chạy/quay chuột; frame cuối 105 nên mong đợi 136 PNG mỗi lần. Dùng KeepEvery=1, Frames=200 và kiểm tra không còn thư mục snapshot. Chạy với cửa sổ thật; tránh thao tác chuột/phím trong lúc đo. Đây là phép kiểm tra số frame, không bảo đảm ảnh giống từng pixel khi có input thật.
 - `pwsh tools/test.ps1 -Filter export_filters`: bảo vệ các mẫu loại trừ Windows Desktop. Giữ `scripts/debug/` vì project có autoload Autoplay; loại thư mục này đã được xác minh gây lỗi khởi động EXE. Các scene test/showcase và script import editor bị loại khỏi build. `project.godot` không bị sửa.
 - ZIP dùng hash HEAD, nhưng chứa nội dung workspace hiện tại. Commit trước khi tạo bản phát hành. Log cạnh ZIP mô tả lần kiểm chứng gần nhất; artifact FAIL không được coi là bản đã xác minh.
+### Lỗi shutdown đang theo dõi
+
+Trên nền main `7552c07`, main có thể báo `ERROR: ... resources still in use at exit` khi thoát (tài nguyên Ogg trong log verbose). Capture/package vẫn trả FAIL dù engine exit 0; xem Handoff T-124 để tái hiện và theo dõi yêu cầu integrator/Lane E. Không coi một lần thoát sạch là bằng chứng lỗi không ổn định đã được sửa.
+
+Để giữ dữ liệu chẩn đoán: `pwsh tools/capture.ps1 -Scene res://scenes/main/main.tscn -Frames 2 -KeepSnapshot -Out build/captures/debug`. Đã xác minh tùy chọn giữ snapshot và PNG ngay cả khi Godot báo lỗi shutdown; mặc định không có tùy chọn này thì snapshot được dọn trong finally.
