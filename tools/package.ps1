@@ -29,7 +29,7 @@ try {
     $logPath = "$zip.verify.log"
     $stdout = "$zip.stdout.log"
     $stderr = "$zip.stderr.log"
-    $process = Start-Process -FilePath (Join-Path $unpacked 'KyTucXa.exe') -WorkingDirectory $unpacked -ArgumentList @('--windowed', '--quit-after', '60', '--log-file', ('"' + $logPath + '"')) -WindowStyle Hidden -PassThru -RedirectStandardOutput $stdout -RedirectStandardError $stderr
+    $process = Start-Process -FilePath (Join-Path $unpacked 'KyTucXa.exe') -WorkingDirectory $unpacked -ArgumentList @('--windowed', '--log-file', ('"' + $logPath + '"'), '--', '--quit-after-frames=60') -WindowStyle Hidden -PassThru -RedirectStandardOutput $stdout -RedirectStandardError $stderr
     if (-not $process.WaitForExit(60000)) {
         $process.Kill()
         $process.WaitForExit()
