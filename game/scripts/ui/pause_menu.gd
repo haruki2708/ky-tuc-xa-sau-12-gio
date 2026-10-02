@@ -66,6 +66,15 @@ func _show_pause_buttons() -> void:
 
 
 func _quit_game() -> void:
+	var app := get_node_or_null("/root/App")
+	if app != null:
+		app.quit()
+	else:
+		_quit_tree()
+
+
+func _quit_tree() -> void:
+	# Keep the standalone fallback separate so tests can intercept the exit.
 	get_tree().quit()
 
 

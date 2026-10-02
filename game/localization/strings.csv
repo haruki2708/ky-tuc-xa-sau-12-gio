@@ -47,3 +47,14 @@ UI_SETTINGS_RESET,Khôi phục mặc định,Restore defaults
 UI_SETTINGS_BACK,Quay lại,Back
 UI_SETTINGS_SAVE_ERROR,Không lưu được cài đặt. Vui lòng thử lại.,Could not save settings. Please try again.
 UI_PAUSE_TEST_HINT,Nhấn Esc để mở hoặc đóng menu tạm dừng.,Press Esc to open or close the pause menu.
+SIGN_ROOM_401,Phòng 401,Room 401
+SIGN_ROOM_402,Phòng 402,Room 402
+SIGN_ROOM_403,Phòng 403,Room 403
+SIGN_ROOM_404,Phòng 404,Room 404
+SIGN_ROOM_405,Phòng 405,Room 405
+SIGN_ROOM_406,Phòng 406,Room 406
+SIGN_ROOM_407,Phòng 407,Room 407
+SIGN_ROOM_408,Phòng 408,Room 408
+SIGN_GATE_LOCKED,Khóa cổng 23:00,Gate locked at 23:00
+SIGN_WASHROOM,Nhà vệ sinh,Washroom
+SIGN_DUTY_DESK,Bàn trực tầng 4,Floor 4 duty desk
