@@ -1,0 +1,24 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://rendering/ps1_filter.gd" id="1_script"]
+[ext_resource type="Shader" path="res://rendering/ps1_screen.gdshader" id="2_shader"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_screen"]
+shader = ExtResource("2_shader")
+shader_parameter/strength = 1.0
+shader_parameter/brightness = 1.0
+shader_parameter/target_height = 360.0
+shader_parameter/color_levels = 32.0
+
+[node name="PS1Filter" type="CanvasLayer"]
+layer = 5
+script = ExtResource("1_script")
+
+[node name="Screen" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_screen")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2

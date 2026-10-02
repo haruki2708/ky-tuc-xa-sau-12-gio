@@ -1,11 +1,17 @@
 @tool
 extends EditorScenePostImport
-## Bake simple world collision into PackedScenes; no runtime script or plugin.
+## Bake PS1 surface materials (T-118) and simple world collision (T-121)
+## into PackedScenes; no runtime script or plugin.
+
+const SURFACE_SHADER := preload("res://rendering/ps1_surface.gdshader")
+const CUTOUT_SHADER := preload("res://rendering/ps1_surface_cutout.gdshader")
+const COLLIDERS: Array[String] = ["wall_straight", "wall_door", "door", "bunk_bed", "locker", "plastic_stool"]
 
 
 func _post_import(scene: Node) -> Object:
 	var model_name := get_source_file().get_file().get_basename()
-	if model_name not in ["wall_straight", "wall_door", "door", "bunk_bed", "locker", "plastic_stool"]:
+	_convert_materials(scene)
+	if model_name not in COLLIDERS:
 		return scene
 	var body := StaticBody3D.new()
 	body.name = "WorldCollision"
@@ -60,3 +66,25 @@ func _points(node: Node, parent_transform: Transform3D = Transform3D.IDENTITY) -
 	for child in node.get_children():
 		result.append_array(_points(child, transform))
 	return result
+
+
+## Replaces imported StandardMaterial3D surfaces with PS1 shader materials that
+## keep the same texture, colour and roughness; alpha-scissor stays cutout.
+func _convert_materials(node: Node) -> void:
+	if node is MeshInstance3D:
+		var mesh := (node as MeshInstance3D).mesh
+		for surface in range(mesh.get_surface_count()):
+			var source := mesh.surface_get_material(surface) as BaseMaterial3D
+			if source == null:
+				continue
+			var cutout := source.transparency == BaseMaterial3D.TRANSPARENCY_ALPHA_SCISSOR
+			var material := ShaderMaterial.new()
+			material.resource_name = source.resource_name
+			material.shader = CUTOUT_SHADER if cutout else SURFACE_SHADER
+			material.set_shader_parameter("albedo_texture", source.albedo_texture)
+			material.set_shader_parameter("albedo_color", source.albedo_color)
+			material.set_shader_parameter("roughness", source.roughness)
+			material.set_shader_parameter("metallic", source.metallic)
+			mesh.surface_set_material(surface, material)
+	for child in node.get_children():
+		_convert_materials(child)

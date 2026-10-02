@@ -49,6 +49,13 @@ locale/fallback="vi"
 3d_physics/layer_2="player"
 3d_physics/layer_3="interactable"
 
+[shader_globals]
+
+ps1_strength={
+"type": "float",
+"value": 1.0
+}
+
 [rendering]
 
 anti_aliasing/quality/msaa_3d=1
