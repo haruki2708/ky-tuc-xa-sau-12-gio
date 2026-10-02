@@ -15,11 +15,11 @@ pwsh tools/test.ps1
 
 ## Các bước và kiểm chứng
 
-1. Tổng hợp 13 WAV PCM16 mono 48 kHz bằng Python `math`, `random`, `wave`, không có bản ghi âm bên ngoài. Chi tiết nguồn và công cụ ở `game/audio/CREDITS.md`.
+1. Tổng hợp 28 WAV PCM16 mono 48 kHz bằng Python `math`, `random`, `wave`, không có bản ghi âm bên ngoài. Chi tiết nguồn và công cụ ở `game/audio/CREDITS.md`.
 2. Cắt theo thời lượng định nghĩa trong `ASSETS`, lọc high-pass 35 Hz và low-pass 11 kHz. One-shot qua compressor (threshold 0.025, ratio 6, attack 0.1 ms, release 80 ms) để kiểm soát đỉnh transient trước chuẩn hóa; fade đầu 8 ms, cuối 80 ms.
 3. Loop: crossfade tuyến tính 1 giây giữa đuôi và đầu; xoay điểm nối để hai biên còn lại là các mẫu liền nhau từ nguồn. Hum mới chọn thêm điểm nối có độ dốc/biên độ thấp nhằm giảm sai lệch biên do codec ở phần họa âm cao. Loop quạt/đèn dài 12 giây, côn trùng và xe máy xa dài 20 giây.
 4. Đo và chuẩn hóa hai lượt bằng [loudnorm](https://ffmpeg.org/ffmpeg-filters.html#loudnorm): Ambience −24 LUFS, SFX −18 LUFS (ngoại lệ trong `TARGET_OVERRIDES`: hum −44, dép đi −56, dép chạy −53), true peak mục tiêu −2 dBTP. Xuất mono OGG Vorbis quality 4, 48 kHz; bỏ metadata, bật bitexact cho muxer/encoder. Đo OGG rồi hiệu chỉnh gain tối đa hai lần nếu lệch >0.5 LU, có giới hạn theo headroom; luôn encode lại từ PCM, không nối nhiều lượt encode lossy.
-5. Ghi `loop=true` cho ambience, `loop=false` cho SFX trong `.ogg.import`; bảo toàn UID/remap khi Godot đã import. Chạy test để Godot hoàn thiện metadata import; commit `.import` và `.uid`.
+5. Ghi `loop=true` cho ambience và `sfx/phone_vibrate`, `loop=false` cho các SFX còn lại trong `.ogg.import`; bảo toàn UID/remap khi Godot đã import. Chạy test để Godot hoàn thiện metadata import; commit `.import` và `.uid`.
 6. Đo lại **OGG đã encode** và ghi `build_report.json`: hash WAV/OGG, LUFS, true peak, độ dài, dung lượng, chênh hai mẫu ở biên loop. Pipeline fail nếu lệch mục tiêu >1 LU, peak >−1 dBTP, chênh biên loop >0.02 hoặc tổng WAV+OGG ≥15 MB. Những số đo này không thay thế nghe thử.
 7. T-114: hum giữ nền 100 Hz, thêm rè chấn lưu 300/500/700/1100/1900/2900 Hz dao động chậm không đều và rít nhỏ 6.2 kHz. Đo OGG qua `highpass=f=200:p=2` **trước** phép đo loudnorm, không chuẩn hóa lại bản lọc để che mất mức suy giảm. Report có `highpass_200hz_lufs` và `highpass_200hz_loss_lu`; fail nếu mất >10 LU. Kết quả: −23.97 → −25.99 LUFS, mất 2.02 LU. Flicker là one-shot 1.5 giây gồm relay click và rè ngắt quãng; 11 âm khác giữ nguyên hash so với T-105.
 
@@ -60,3 +60,45 @@ Player của Lane A bắt đầu ở phòng có quạt và đèn (z=8), nhìn d�
 - `flicker(duration)` phát one-shot bằng player 3D con cùng bus/attenuation, ngắt hum bằng các khoảng 40–160 ms. Hết thời gian dừng flicker và khôi phục hum; gọi lại bắt đầu lại thời lượng; duration không dương/không hữu hạn hoặc light đang tắt thì bỏ qua. Nếu duration dài hơn clip, retrigger one-shot đến hết thời lượng. Tắt đèn hủy cả flicker lẫn hum; không tự sửa visibility/energy để tạo nhấp nháy thị giác. Volume flicker đi theo gain zone của hum.
 
 Đã test tự động phản ứng vùng, overlap, đảo fade, Player bị xóa, reverb restore/unload, đèn và phím L/F. **Chưa nghe hum mới, flicker và mix chuyển vùng bằng tai hoặc trên loa laptop thật.** Phép lọc HP200 là kiểm tra tín hiệu mô phỏng giới hạn bass, không phải chứng nhận cảm nhận nghe. Tài liệu tham khảo API: [Area3D](https://docs.godotengine.org/en/stable/classes/class_area3d.html), [Tween](https://docs.godotengine.org/en/stable/classes/class_tween.html), [Node3D visibility](https://docs.godotengine.org/en/stable/classes/class_node3d.html).
+
+## T-130: âm đoạn 1–2 và Speaker
+
+11 âm mới nằm trong `ASSETS` với seed 13001–13011 và hàm `synthesize_segment12`. `TARGET_OVERRIDES` thêm `knock_` −30 LUFS, `speaker_` −32 LUFS, điện thoại/công tắc/chốt −36 LUFS. Không thay công thức, filter hoặc mức mục tiêu của các âm đã duyệt. `phone_vibrate` là ngoại lệ loop trong thư mục SFX (`LOOP_SFX`); loop raw 3.4 giây thành 2.4 giây sau crossfade. `speaker_static` raw 7 giây thành loop 6 giây. Ba file knock mỗi file chứa đúng ba cú gõ; khoảng cách lần lượt 0.43/0.73/1.03 giây, âm 03 trầm và decay dài nhất. Mọi nguồn, xử lý và giấy phép được ghi từng file trong `game/audio/CREDITS.md`.
+
+Gắn `game/scripts/audio/speaker.gd` lên `AudioStreamPlayer3D` ở vị trí loa. Script chọn bus `Voice` và tạo hai player 3D con cùng vị trí: `BackgroundStatic`, `StaticBurst`; các thiết lập khoảng cách, hướng phát, pitch và volume đi theo player cha.
+
+```gdscript
+speaker.play_announcement([
+	{"text_key": "RULE_1", "garbled": false},
+	{"text_key": "RULE_3_GARBLED", "garbled": true},
+	{"text_key": "RULE_2", "garbled": false},
+], 4.0)
+```
+
+Đây là lượt **fixture thử 3 dòng**, không phải thứ tự nội dung đầy đủ của đoạn 2. T-117 cấp danh sách chính thức. Với dòng bị rè, caller phải truyền key che phần bị mất (`RULE_3_GARBLED` đã có), không truyền `RULE_3` rồi mong âm thanh che chữ. Speaker không tự đổi key, không quyết định luật hoặc cập nhật sổ tay.
+
+- Trình tự: phát on xong → chime xong → bật static nền, phát từng `EventBus.subtitle_requested(text_key, line_seconds)` → mỗi dòng giữ đủ thời gian → tắt nền và phát off → dừng tất cả, emit `announcement_finished` đúng một lần. Chưa có giọng đọc TTS.
+- `static_gain_db` mặc định −12 dB so với gain cha để rè nằm dưới giọng đọc tương lai; burst giữ gain cha nên rõ hơn nền khoảng 12 dB. Asset loa vẫn −32 LUFS theo card. Burst phát từ đầu dòng `garbled`; dừng ở biên dòng để không tràn sang dòng rõ nếu `line_seconds` ngắn hơn 1.5 giây.
+- `play_announcement` mới hủy chuỗi cũ rồi phát chuỗi mới; sao chép key/cờ của đầu vào. `stop_emitting()` hủy lịch và cả ba lớp âm, không emit hoàn tất; tương thích quy trình `App.quit()`. Khi unload cũng dừng phát. Mặc định kế thừa pause của scene tree; không đặt Speaker ở process mode Always nếu muốn dừng khi mở menu.
+- Dictionary thiếu `garbled` hiểu là false. Bỏ qua phần tử sai kiểu, key rỗng hoặc cờ không phải bool. Danh sách rỗng/hết phần tử hợp lệ emit hoàn tất ngay, không có âm. `line_seconds <= 0`, NaN/Inf hoặc gọi trước `_ready` thì bỏ qua. Chỉ lịch tương lai được hủy; phụ đề đã gửi thuộc HUD và hết hạn theo thời lượng đã gửi.
+
+Mở `res://audio/test/segment12_test.tscn`, F6, hoặc:
+
+```powershell
+& 'D:\Tools\Godot\Godot_v4.7.2-stable_win64_console.exe' --path game res://audio/test/segment12_test.tscn --windowed --resolution 1280x720
+```
+
+| Phím | Âm thử |
+|---|---|
+| F1 / F2 / F3 | Ba lượt gõ: thường / chậm / chậm và nặng nhất |
+| F4 | Chuông loa |
+| F5 / F6 | Bật / tắt loa |
+| F7 | Static nền loop |
+| F8 | Static burst 1.5 giây |
+| F9 | Điện thoại rung loop |
+| F10 / F11 | Công tắc / chốt cửa |
+| Space | Chuỗi loa thử 3 dòng với HUD dịch sẵn |
+| 0 | Dừng mọi nguồn fixture |
+| Esc | Thoát qua `App.quit()` |
+
+Đổi phím thử dừng âm trước để nghe riêng. Static khi solo F7 phát ở gain gốc; trong chuỗi Speaker nó có gain nền −12 dB. Tham số QA `-- --segment12-preview --quit-after-frames=210` tự chạy lượt thử với 0.6 giây/dòng rồi thoát sạch qua App; chỉ phục vụ kiểm tra khởi chạy. **Chưa nghe 11 âm mới và mix Speaker bằng tai**; phép đo/headless không thay cho chủ dự án duyệt chất âm, mức âm thực và độ liền của loop.

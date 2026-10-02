@@ -206,6 +206,138 @@
       "true_peak_db": -8.59,
       "loop": false,
       "boundary_delta": 0.0
+    },
+    {
+      "file": "game/audio/sfx/knock_01.ogg",
+      "sha256": "1da3e40325174fe186b64bdbfed1455bd70f97fb8be009e072aff04536a3343f",
+      "raw_sha256": "1863b0be8eece423f579b6e5b62e294131b97c9ce1fe8eae1a8c8042bb1813ec",
+      "bytes": 14266,
+      "seconds": 1.5,
+      "channels": 1,
+      "lufs": -29.94,
+      "true_peak_db": -15.72,
+      "loop": false,
+      "boundary_delta": 0.0
+    },
+    {
+      "file": "game/audio/sfx/knock_02.ogg",
+      "sha256": "4f895116b8b3fa06d339226a185df8f3ea601559ad9277d8558b60905205d4b1",
+      "raw_sha256": "86638277a0e2e60a93732a8db72cced7a23c9f5a611f2d3d1a80a9638a1fd856",
+      "bytes": 18252,
+      "seconds": 2.1,
+      "channels": 1,
+      "lufs": -29.95,
+      "true_peak_db": -16.14,
+      "loop": false,
+      "boundary_delta": 0.0
+    },
+    {
+      "file": "game/audio/sfx/knock_03.ogg",
+      "sha256": "a5cfb7f8c92f510a3aa83a3c3ba589fc4765a69d74833e0d752a7dc17737572a",
+      "raw_sha256": "f9213c245359bae6d05e2c452a8d0a677e10c2d7130e80afdd0e1ee286572568",
+      "bytes": 22743,
+      "seconds": 2.9,
+      "channels": 1,
+      "lufs": -29.97,
+      "true_peak_db": -17.17,
+      "loop": false,
+      "boundary_delta": 0.0
+    },
+    {
+      "file": "game/audio/sfx/speaker_chime.ogg",
+      "sha256": "bd4446cbd1dca9c2bc2e5a8f259d8221dc8432c6b787048f51e5d95f2267a7fe",
+      "raw_sha256": "32a73f1fc4f1059879ed715854f6b5dec44586c422576b6699e6fbdfac6440ec",
+      "bytes": 17957,
+      "seconds": 1.6,
+      "channels": 1,
+      "lufs": -31.94,
+      "true_peak_db": -25.06,
+      "loop": false,
+      "boundary_delta": 1.36e-05
+    },
+    {
+      "file": "game/audio/sfx/speaker_on.ogg",
+      "sha256": "f272c09eedc2657f52e41b36b06a54a52edff5166d9c25b5ff758ab317acef73",
+      "raw_sha256": "6b70f9cc1bf4299090b6b73755c7a8d8410776fc4cf0c8d7b7d1298eb92aa4b6",
+      "bytes": 8391,
+      "seconds": 0.5693,
+      "channels": 1,
+      "lufs": -32.14,
+      "true_peak_db": -15.89,
+      "loop": false,
+      "boundary_delta": 0.0
+    },
+    {
+      "file": "game/audio/sfx/speaker_off.ogg",
+      "sha256": "921b364c5818e74bbfa59065b02dc5f4836d1ac187abb3f4cf9d9abaf9b78f04",
+      "raw_sha256": "1761a378049e3a30d1e939a9edd388f970f6fbfe7cc11c0bd4481d5bb337d066",
+      "bytes": 8339,
+      "seconds": 0.5473,
+      "channels": 1,
+      "lufs": -32.12,
+      "true_peak_db": -15.61,
+      "loop": false,
+      "boundary_delta": 2.6e-06
+    },
+    {
+      "file": "game/audio/ambience/speaker_static.ogg",
+      "sha256": "a6a0f888b86f6e4a4bd3b1aa12d71bfbff1b5a7cee84520bddf488eb314177a6",
+      "raw_sha256": "2083fba6cc31714d1847544c197f58af8ab800e41f21137f234e5e26872ec117",
+      "bytes": 58729,
+      "seconds": 6.0,
+      "channels": 1,
+      "lufs": -32.34,
+      "true_peak_db": -21.11,
+      "loop": true,
+      "boundary_delta": 0.0053427
+    },
+    {
+      "file": "game/audio/sfx/speaker_static_burst.ogg",
+      "sha256": "fb29e1768d07ff41420e9961c24fe6473162866753c3153c0a42e33fe8bd25a5",
+      "raw_sha256": "09bcf439765a0e3980382a0b3ac03b54be331b45856339f4e6b6ac2e53f0f64d",
+      "bytes": 17500,
+      "seconds": 1.5,
+      "channels": 1,
+      "lufs": -32.33,
+      "true_peak_db": -24.59,
+      "loop": false,
+      "boundary_delta": 0.001132
+    },
+    {
+      "file": "game/audio/sfx/phone_vibrate.ogg",
+      "sha256": "3e5e81d41f3377f5d15f0ec8655914cfb14bd5231a6351316c91ebcd2062e159",
+      "raw_sha256": "bf59ae8dc00785c0cb3b6ae09835352eed67cdd934a382cfdc9ad73c84dd4073",
+      "bytes": 26178,
+      "seconds": 2.4,
+      "channels": 1,
+      "lufs": -36.0,
+      "true_peak_db": -23.58,
+      "loop": true,
+      "boundary_delta": 0.0023034
+    },
+    {
+      "file": "game/audio/sfx/light_switch.ogg",
+      "sha256": "07a4c4f94753cf5f7628af772a36c5b8b00230932795aed7d7c01144d5a32444",
+      "raw_sha256": "da84b8f0b6f108bf980699a72b57c85f54f5ca15e878409830f48a663335f41c",
+      "bytes": 4929,
+      "seconds": 0.4973,
+      "channels": 1,
+      "lufs": -36.25,
+      "true_peak_db": -16.65,
+      "loop": false,
+      "boundary_delta": 0.0
+    },
+    {
+      "file": "game/audio/sfx/door_latch.ogg",
+      "sha256": "4e700b7f44c0767651eb610b599f879ae524d1e31d79e6e2f29b52a798b5d8c1",
+      "raw_sha256": "3efa926774ce3a5af3c7319b56a206d8975251498b98ad5f95679c268fa72b9c",
+      "bytes": 7619,
+      "seconds": 0.6473,
+      "channels": 1,
+      "lufs": -36.26,
+      "true_peak_db": -22.89,
+      "loop": false,
+      "boundary_delta": 5.1e-06
     }
   ]
 }

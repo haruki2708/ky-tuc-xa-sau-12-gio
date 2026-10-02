@@ -32,11 +32,27 @@ ASSETS = [
     *[(f"slipper_run_{i:02}", "sfx", 0.6, 12310 + i) for i in range(1, 5)],
     ("wood_door_open", "sfx", 2.4, 10531),
     ("wood_door_close", "sfx", 1.8, 10532),
+    ("knock_01", "sfx", 1.5, 13001),
+    ("knock_02", "sfx", 2.1, 13002),
+    ("knock_03", "sfx", 2.9, 13003),
+    ("speaker_chime", "sfx", 1.6, 13004),
+    ("speaker_on", "sfx", 0.55, 13005),
+    ("speaker_off", "sfx", 0.55, 13006),
+    ("speaker_static", "ambience", 7.0, 13007),
+    ("speaker_static_burst", "sfx", 1.5, 13008),
+    ("phone_vibrate", "sfx", 3.4, 13009),
+    ("light_switch", "sfx", 0.5, 13010),
+    ("door_latch", "sfx", 0.65, 13011),
 ]
+
+SEGMENT12_NAMES = {asset[0] for asset in ASSETS if asset[3] >= 13000}
+LOOP_SFX = {"phone_vibrate"}
 
 
 # Per-asset loudness chosen by ear with the owner (D-015…D-019); default: loops -24, SFX -18.
 TARGET_OVERRIDES = {"slipper_tile": -56, "slipper_run": -53, "fluorescent_hum": -44}
+TARGET_OVERRIDES.update({"knock_": -30, "speaker_": -32, "phone_vibrate": -36,
+                         "light_switch": -36, "door_latch": -36})
 
 
 def target_lufs(name: str, loop: bool) -> int:
@@ -57,6 +73,8 @@ def write_wav(path: Path, values: list[float]) -> None:
 
 def synthesize(name: str, seconds: float, seed: int) -> list[float]:
     rng = random.Random(seed)
+    if name in SEGMENT12_NAMES:
+        return synthesize_segment12(name, seconds, seed)
     if name.startswith("slipper_"):
         return synthesize_slipper(seconds, seed, running=name.startswith("slipper_run"))
     result: list[float] = []
@@ -165,6 +183,70 @@ def synthesize_slipper(seconds: float, seed: int, running: bool) -> list[float]:
     return result
 
 
+def synthesize_segment12(name: str, seconds: float, seed: int) -> list[float]:
+    """Original physical approximations; no sampled voices or third-party recordings."""
+    rng = random.Random(seed)
+    values: list[float] = []
+    low = band = 0.0
+
+    def envelope(u: float, attack: float, decay: float) -> float:
+        return min(1.0, max(0.0, u) / attack) * math.exp(-max(0.0, u) / decay)
+
+    for index in range(round(seconds * RATE)):
+        t = index / RATE
+        noise = rng.uniform(-1, 1)
+        low += .035 * (noise - low)
+        band += .42 * (noise - band)
+        hiss = band - low
+        value = 0.0
+        if name.startswith("knock_"):
+            variant = int(name[-2:]) - 1
+            spacing = [.43, .73, 1.03][variant]
+            for strike in range(3):
+                u = t - (.025 + strike * spacing)
+                body = sum(a * math.sin(TAU * f * u) for f, a in
+                           [(210 - variant * 28, .24), (370 - variant * 35, .11), (790, .025)])
+                value += envelope(u, .002, .045 + variant * .019) * body
+                value += .12 * envelope(u, .001, .009) * hiss
+        elif name == "speaker_chime":
+            for onset, hz in [(.02, 880), (.65, 660)]:
+                u = t - onset
+                tone = math.sin(TAU * hz * u) + .19 * math.sin(TAU * hz * 2.01 * u)
+                value += .16 * envelope(u, .006, .23) * math.tanh(1.6 * tone)
+                value += .024 * envelope(u, .003, .28) * hiss
+        elif name in ("speaker_on", "speaker_off"):
+            u = t - .02
+            hz = 105 if name.endswith("on") else 76
+            value = .25 * envelope(u, .003, .032) * math.sin(TAU * hz * u)
+            value += .11 * envelope(u, .001, .085) * hiss
+        elif name.startswith("speaker_static"):
+            drift = .8 + .13 * math.sin(TAU * .81 * t) + .07 * math.sin(TAU * 2.17 * t)
+            value = .2 * hiss * drift + .008 * math.sin(TAU * 100 * t)
+            if name.endswith("burst"):
+                value *= .7 + .3 * math.sin(TAU * 27 * t) ** 2
+                value += .035 * math.tanh(6 * hiss)
+        elif name == "phone_vibrate":
+            u = t % .8
+            pulse = min(1.0, u / .035) * max(0.0, min(1.0, (.56 - u) / .04))
+            motor = .10 * math.sin(TAU * 170 * t) + .055 * math.sin(TAU * 340 * t)
+            rattle = max(0.0, math.sin(TAU * 42.5 * t)) ** 12
+            metal = .11 * hiss + .06 * math.sin(TAU * 1850 * t) + .035 * math.sin(TAU * 2730 * t)
+            value = pulse * (motor + rattle * metal)
+        elif name == "light_switch":
+            for onset, amplitude in [(.02, 1.0), (.048, .55)]:
+                u = t - onset
+                value += amplitude * envelope(u, .001, .012) * (.16 * hiss + .06 * math.sin(TAU * 1250 * u))
+        elif name == "door_latch":
+            u = t - .02
+            scrape = math.exp(-((t - .14) / .075) ** 2)
+            value = .08 * scrape * hiss
+            for onset in [.025, .24]:
+                u = t - onset
+                value += envelope(u, .002, .023) * (.12 * hiss + .08 * math.sin(TAU * 940 * u) + .035 * math.sin(TAU * 2300 * u))
+        values.append(value)
+    return values
+
+
 def run(ffmpeg: str, args: list[str]) -> subprocess.CompletedProcess:
     return subprocess.run([ffmpeg, "-hide_banner", "-nostdin", "-y", *args],
                           check=True, capture_output=True)
@@ -226,7 +308,7 @@ def main() -> None:
             raw = raw_dir / f"{name}.wav"
             if args.regenerate_raw or not raw.exists():
                 write_wav(raw, synthesize(name, seconds, seed))
-            loop = category == "ambience"
+            loop = category == "ambience" or name in LOOP_SFX
             target = target_lufs(name, loop)
             prepared = Path(temp) / f"{name}.wav"
             filters = f"atrim=start=0:end={seconds},asetpts=PTS-STARTPTS,highpass=f=35,lowpass=f=11000"

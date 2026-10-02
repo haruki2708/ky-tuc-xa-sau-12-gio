@@ -1,7 +1,7 @@
 extends TestCase
 
-const AMBIENCE := ["ceiling_fan", "fluorescent_hum", "night_insects_motorbike"]
-const SFX := ["water_drip_01", "water_drip_02", "water_drip_03", "slipper_tile_01", "slipper_tile_02", "slipper_tile_03", "slipper_tile_04", "slipper_run_01", "slipper_run_02", "slipper_run_03", "slipper_run_04", "wood_door_open", "wood_door_close", "fluorescent_flicker"]
+const AMBIENCE := ["ceiling_fan", "fluorescent_hum", "night_insects_motorbike", "speaker_static"]
+const SFX := ["water_drip_01", "water_drip_02", "water_drip_03", "slipper_tile_01", "slipper_tile_02", "slipper_tile_03", "slipper_tile_04", "slipper_run_01", "slipper_run_02", "slipper_run_03", "slipper_run_04", "wood_door_open", "wood_door_close", "fluorescent_flicker", "knock_01", "knock_02", "knock_03", "speaker_chime", "speaker_on", "speaker_off", "speaker_static_burst", "phone_vibrate", "light_switch", "door_latch"]
 
 
 func test_all_ogg_load_and_decode_with_correct_loop_flags() -> void:
@@ -16,7 +16,7 @@ func test_all_ogg_load_and_decode_with_correct_loop_flags() -> void:
 			if clip == null:
 				continue
 			assert_true(clip.get_length() > 0.4, "nonempty " + path)
-			assert_eq(clip.loop, category == "ambience", "loop " + path)
+			assert_eq(clip.loop, category == "ambience" or clip_name == "phone_vibrate", "loop " + path)
 			var playback := clip.instantiate_playback()
 			playback.start()
 			var frames := playback.mix_audio(1.0, 4096)
