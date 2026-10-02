@@ -1,0 +1,109 @@
+[gd_scene load_steps=13 format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/player/player.tscn" id="1_player"]
+[ext_resource type="Script" path="res://scripts/interaction/test_light_switch.gd" id="2_switch"]
+[ext_resource type="Script" path="res://scripts/player/player_test.gd" id="3_test"]
+
+[sub_resource type="BoxShape3D" id="Floor_shape"]
+size = Vector3(12, 0.2, 16)
+
+[sub_resource type="BoxMesh" id="Floor_mesh"]
+size = Vector3(12, 0.2, 16)
+
+[sub_resource type="BoxShape3D" id="Wall_shape"]
+size = Vector3(12, 3, 0.2)
+
+[sub_resource type="BoxMesh" id="Wall_mesh"]
+size = Vector3(12, 3, 0.2)
+
+[sub_resource type="BoxShape3D" id="Switch_shape"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="BoxMesh" id="Switch_mesh"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="Enabled_material"]
+albedo_color = Color(0.2, 0.7, 0.35, 1)
+
+[sub_resource type="StandardMaterial3D" id="Disabled_material"]
+albedo_color = Color(0.6, 0.2, 0.2, 1)
+
+[sub_resource type="Environment" id="Environment_test"]
+background_mode = 1
+background_color = Color(0.08, 0.09, 0.12, 1)
+ambient_light_source = 3
+ambient_light_color = Color(0.7, 0.75, 0.85, 1)
+ambient_light_energy = 0.5
+
+[node name="PlayerTest" type="Node3D"]
+script = ExtResource("3_test")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_test")
+
+[node name="Floor" type="StaticBody3D" parent="."]
+position = Vector3(0, -0.1, 0)
+metadata/surface = &"concrete"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("Floor_shape")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+mesh = SubResource("Floor_mesh")
+
+[node name="Wall" type="StaticBody3D" parent="."]
+position = Vector3(0, 1.5, -3)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall"]
+shape = SubResource("Wall_shape")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Wall"]
+mesh = SubResource("Wall_mesh")
+
+[node name="Player" parent="." instance=ExtResource("1_player")]
+position = Vector3(0, 0.1, 0)
+
+[node name="Lamp" type="OmniLight3D" parent="."]
+position = Vector3(0, 2.3, -1.5)
+light_color = Color(1, 0.8, 0.5, 1)
+light_energy = 3.0
+omni_range = 7.0
+
+[node name="LightSwitch" type="Area3D" parent="." node_paths=PackedStringArray("light")]
+position = Vector3(0, 1.6, -1.5)
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("2_switch")
+light = NodePath("../Lamp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LightSwitch"]
+shape = SubResource("Switch_shape")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LightSwitch"]
+mesh = SubResource("Switch_mesh")
+material_override = SubResource("Enabled_material")
+
+[node name="DisabledSwitch" type="Area3D" parent="." node_paths=PackedStringArray("light")]
+position = Vector3(1.2, 1.6, -1.5)
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("2_switch")
+enabled = false
+light = NodePath("../Lamp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DisabledSwitch"]
+shape = SubResource("Switch_shape")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="DisabledSwitch"]
+mesh = SubResource("Switch_mesh")
+material_override = SubResource("Disabled_material")
+
+[node name="Debug" type="CanvasLayer" parent="."]
+
+[node name="Prompt" type="Label" parent="Debug"]
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 500.0
+offset_bottom = 60.0
+mouse_filter = 2
+auto_translate_mode = 2
