@@ -19,4 +19,6 @@ Mỗi việc sẽ được tách thành task card chi tiết khi đến lượt.
 | T-124 | Dọn công cụ QA, lọc file khi xuất bản build (`T-124-qa-followups.md`) | C | T-103 |
 | T-125 | Player làm theo menu tạm dừng và đọc cài đặt (`T-125-player-settings.md`) | A | T-122; merge sau T-116 |
 | T-126 | Bus `Footsteps` riêng cho bước chân (`T-126-footsteps-bus.md`) | E | T-123 |
+| T-127 | Công cụ QA thoát qua `App.quit()`; package và verify-capture PASS (`T-127-qa-clean-quit.md`) | C | T-124 |
+| T-128 | Nút Thoát qua `App.quit()`; key dịch biển tầng 4 (`T-128-menu-quit-signs.md`) | D | T-116, T-112 |
 | T-120 | **Cổng kiểm tra P1:** chủ dự án chơi bản v0.1 và đánh giá theo `docs/design/GDD.md` | Chủ dự án | Tất cả ở trên |

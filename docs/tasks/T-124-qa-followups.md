@@ -1,5 +1,5 @@
 # T-124 — Dọn công cụ QA và lọc file khi xuất bản build
-- Lane: C (QA và Tools) | Trạng thái: todo | Agent:
+- Lane: C (QA và Tools) | Trạng thái: done | Agent:
 - Nhánh: `lane-c/T-124-qa-followups`
 - Phụ thuộc: T-103 (done). Đọc mục **Review** trong `docs/tasks/T-103-qa-tools.md` và `docs/tasks/T-121-kit-update.md`.
 - **Riêng task này** lane C được sửa thêm `game/export_presets.cfg` (bình thường thuộc integrator).
@@ -85,3 +85,18 @@ Bằng chứng đối chứng:
 - Phiên này không chạy lại package/check hoặc chuỗi năm capture vì mã thực thi và nền main chưa đổi; kết quả package FAIL/check PASS/năm lượt 136 ảnh ở phần trên thuộc phiên trước, không phải kết quả chạy mới.
 - Commit `0ccdef2` cập nhật hướng dẫn chẩn đoán trong tools/README.md, đã push trước cập nhật Handoff này. Chỉ sửa tài liệu trong phạm vi.
 - **Blocked vẫn còn:** checklist package PASS chưa đạt. Giữ yêu cầu integrator/Lane E điều tra shutdown Ogg như trên; không sửa file âm thanh/core, không bỏ qua ERROR. Các mục checklist khác không đổi. Không có yêu cầu thiết kế game mới.
+
+## Review (integrator, 2026-10-02)
+**Kết quả: chấp nhận, đã merge vào `main`.** Mục "package PASS" chưa đạt vì một lỗi ở phía core, không phải lỗi của lane C. Phần còn lại chuyển sang T-127.
+
+- Đúng phạm vi, kể cả ngoại lệ `export_presets.cfg`. Bản sao project được dọn trong `finally`; `-KeepSnapshot` có tác dụng; package tự giải nén và chạy thử, có timeout, bắt `ERROR`; test bảo vệ bộ lọc export.
+- 5 lần autoplay liên tiếp đều đúng 136 ảnh: hết lệch khung hình.
+- **Bàn giao trung thực, rất đáng ghi nhận:** không che `ERROR` khi thoát, không chạy lại cho tới khi xanh, ghi Blocked kèm bằng chứng đối chứng.
+
+**Integrator đã xử lý blocker:**
+- Nguyên nhân: thoát ngay khi âm thanh còn phát. Luồng âm thanh nhả playback chậm một nhịp, và `LightHum` tự bật lại khi đèn còn sáng.
+- Thêm autoload `App` (`game/scripts/core/app.gd`): `App.quit()` dừng cây scene, tắt mọi nguồn âm, chờ 0,25 giây rồi mới thoát. Nhận đóng cửa sổ (X) và tham số `-- --quit-after-frames=N`.
+- Đối chứng trên `main.tscn` (headless): cờ `--quit-after` của engine lỗi 4/5 lần; `--quit-after-frames` lỗi 0/5. Bản build release chạy có cửa sổ 5/5 lần thoát sạch.
+- Công cụ QA vẫn dùng `--quit-after` của engine. **T-127 (lane C)** chuyển `package.ps1`, `capture.ps1` và `autoplay.gd` sang `App`, rồi chạy lại package và verify-capture. **T-128 (lane D)** cho nút Thoát gọi `App.quit()`.
+
+**Chấm điểm (1–5):** phạm vi 5 · checklist 4 (package bị chặn bởi lỗi core) · test 5 · chất lượng code 5 · bàn giao trung thực 5 · số vòng sửa 0.

@@ -11,7 +11,7 @@
   - lớp `Interactable`,
   - scene `main.tscn` là hành lang greybox,
   - song ngữ CSV (vi/en).
-- Test runner headless chạy được: `tools/test.ps1`, 117/117 test PASS (sau T-101…T-105, T-110, T-112…T-114, T-116, T-121…T-123, T-125). Có thêm `check.ps1`, `capture.ps1`, `package.ps1` và autoload `Autoplay` để phát lại input (xem `tools/README.md`).
+- Test runner headless chạy được: `tools/test.ps1`, 118/118 test PASS (sau T-101…T-105, T-110, T-112…T-114, T-116, T-121…T-125). Autoload `App` lo việc thoát sạch (`App.quit()`, `-- --quit-after-frames=N`). Có thêm `check.ps1`, `capture.ps1`, `package.ps1` và autoload `Autoplay` để phát lại input (xem `tools/README.md`).
 - Export chạy được: `tools/export.ps1` ra `build/windows/KyTucXa.exe`. Đã chạy thử, mở được.
 - Chụp khung hình bằng Movie Maker chạy được, integrator xem được ảnh.
 - Blender 5.2.2 LTS portable ở `D:\Tools\Blender\5.2.2`; bộ 7 mô hình ký túc xá (T-102), preview ở `art_source/kit/previews/`.
@@ -33,7 +33,9 @@
 | T-116 Menu tạm dừng và cài đặt | D | **done**, đã merge |
 | T-112 Dựng greybox tầng 4 | B | **done**, đã merge; game chính chạy trên tầng 4 |
 | T-118 Filter PS1, sửa import texture | B | todo (sau T-112) |
-| T-124 Dọn công cụ QA, lọc file build | C | todo (giao ngay) |
+| T-124 Dọn công cụ QA, lọc file build | C | **done**, đã merge; package PASS chuyển sang T-127 |
+| T-127 Công cụ QA thoát qua `App.quit()` | C | todo (giao ngay) |
+| T-128 Nút Thoát qua `App.quit()`, key biển tầng 4 | D | todo (giao ngay) |
 | T-125 Player theo menu tạm dừng và cài đặt | A | **done**, đã merge |
 | T-126 Bus riêng cho bước chân | E | todo (giao ngay) |
 | T-110 Kiến trúc RuleSystem và GameState | core | **done**, đã merge (xem `docs/design/RULE_SYSTEM.md`) |
