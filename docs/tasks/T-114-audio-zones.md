@@ -1,5 +1,5 @@
 # T-114 — Sửa tiếng ù đèn tuýp, vùng âm thanh và đèn tắt thì im tiếng
-- Lane: E (Âm thanh) | Trạng thái: todo | Agent:
+- Lane: E (Âm thanh) | Trạng thái: done | Agent:
 - Nhánh: `lane-e/T-114-audio-zones`
 - Phụ thuộc: T-101, T-105 (done). Đọc mục **Review** trong `docs/tasks/T-105-audio-pipeline.md` trước khi làm.
 
@@ -91,3 +91,18 @@ Nghe thử: mở `res://audio/test/zones_test.tscn` và bấm F6.
 - Không cần thêm autoload, signal EventBus, input action toàn cục hoặc sửa `project.godot`. Không phát sinh câu hỏi luật chơi/cốt truyện.
 
 **Blocked:** Không còn chặn kỹ thuật; chờ chủ dự án nghe duyệt chất âm. Các lần chạy sandbox bị lỗi credential LFS, log/certificate/editor settings; đã chạy lại ngoài sandbox thành công. Checkout LFS dừng giữa chừng đã được lưu bằng stash dự phòng tên `T-114: preserve files from interrupted LFS checkout` trước khi chuyển nhánh lại; stash chỉ là trạng thái checkout lỗi, không cần áp vào nhánh task.
+
+## Review (integrator, 2026-10-02)
+**Kết quả: chấp nhận, đã merge vào `main`.** Sau merge: `test.ps1` → `RESULT: 62 passed, 0 failed`; `check.ps1` → `RESULT: check 0 error(s)`.
+
+- Đúng phạm vi. Hum mới đạt yêu cầu loa nhỏ: sau high-pass 200 Hz chỉ giảm **2,02 LU** (giới hạn 10 LU). 11 âm đã được duyệt giữ nguyên byte.
+- `AmbientZone` dùng mức lớn nhất giữa các vùng chồng nhau, nên âm không bị cộng dồn. `ReverbZone` có ưu tiên và trả về mặc định đúng. `LightHum` xử lý đủ các trường hợp đèn ẩn, đèn tắt năng lượng, node cha bị ẩn.
+- Test rất kỹ (15 test audio), gồm cả Player thật đi qua fixture.
+- Handoff trung thực: ghi rõ **chưa nghe bằng tai**.
+- Integrator đã xử lý yêu cầu thay đổi: `HumNear`/`HumFar` trong `main.tscn` dùng `light_hum.gd`, gán `TubeLight1`/`TubeLight2`. Test core kiểm tra tắt đèn thì hum dừng, bật lại thì phát.
+
+**Ghi chú (không chặn):**
+1. Điểm nối loop của hum mới có chênh mẫu 0,0066, cao hơn bản cũ (0,0003) nhưng dưới ngưỡng 0,02. Chủ dự án nghe kỹ chỗ nối, khoảng mỗi 12 giây.
+2. `ReverbZone` sửa trực tiếp hiệu ứng reverb của bus SFX. Khi có menu âm thanh (T-116), lane D không được thay bus layout trong lúc đang chơi.
+
+**Chấm điểm (1–5):** phạm vi 5 · checklist 4 (thiếu nghe thử, đã ghi trung thực) · test 5 · chất lượng code 5 · bàn giao trung thực 5 · số vòng sửa 0.

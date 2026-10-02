@@ -12,6 +12,6 @@ Mỗi việc sẽ được tách thành task card chi tiết khi đến lượt.
 | T-115 | Kịch bản chơi tự động "từ đầu đến luật số 1", chạy được trong CI hoặc trên máy | C | T-103, T-117 |
 | T-116 | Menu tạm dừng và cài đặt: âm lượng theo bus, độ nhạy chuột, độ sáng, ngôn ngữ, cường độ filter PS1 | D | T-104, T-105 |
 | T-117 | **Luật đầu tiên chạy trọn vòng:** loa đọc luật → tình huống → người chơi chọn → hậu quả | core + A | T-110, T-111 |
-| T-118 | Filter PS1: render độ phân giải thấp, dithering, rung đỉnh nhẹ; trừ phần UI và giấy tờ | B | T-102 |
+| T-118 | Filter PS1: render độ phân giải thấp, dithering, rung đỉnh nhẹ; trừ phần UI và giấy tờ. Kèm sửa import texture kit: `detect_3d/compress_to=0` để editor không tự nén và bật mipmap | B | T-102 |
 | T-121 | Cập nhật bộ kit: ghế nhựa kiểu Việt Nam, mùng, collision, bỏ texture trùng (`T-121-kit-update.md`) | B | T-102 |
 | T-120 | **Cổng kiểm tra P1:** chủ dự án chơi bản v0.1 và đánh giá theo `docs/design/GDD.md` | Chủ dự án | Tất cả ở trên |
