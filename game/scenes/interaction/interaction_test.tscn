@@ -1,0 +1,194 @@
+[gd_scene load_steps=29 format=3]
+
+[ext_resource type="Script" path="res://scripts/interaction/interaction_test.gd" id="test"]
+
+[ext_resource type="Script" path="res://scripts/interaction/demo_door.gd" id="door"]
+
+[ext_resource type="PackedScene" path="res://scenes/player/player.tscn" id="player"]
+
+[ext_resource type="PackedScene" path="res://scenes/interaction/light_switch.tscn" id="light"]
+
+[ext_resource type="PackedScene" path="res://scenes/interaction/door_latch.tscn" id="latch"]
+
+[ext_resource type="PackedScene" path="res://scenes/interaction/readable.tscn" id="paper"]
+
+[ext_resource type="PackedScene" path="res://scenes/interaction/phone.tscn" id="phone"]
+
+[ext_resource type="PackedScene" path="res://ui/hud/hud.tscn" id="hud"]
+
+[ext_resource type="PackedScene" path="res://ui/pause/pause_menu.tscn" id="pause"]
+
+[sub_resource type="Environment" id="Environment"]
+background_mode = 1
+background_color = Color(0.06, 0.07, 0.09, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.6, 0.65, 0.7, 1)
+ambient_light_energy = 0.4
+
+[sub_resource type="BoxShape3D" id="FloorShape"]
+size = Vector3(6, 0.2, 6)
+
+[sub_resource type="BoxMesh" id="FloorMesh"]
+size = Vector3(6, 0.2, 6)
+
+[sub_resource type="BoxShape3D" id="LeftWallShape"]
+size = Vector3(0.15, 3, 6)
+
+[sub_resource type="BoxMesh" id="LeftWallMesh"]
+size = Vector3(0.15, 3, 6)
+
+[sub_resource type="BoxShape3D" id="RightWallShape"]
+size = Vector3(0.15, 3, 6)
+
+[sub_resource type="BoxMesh" id="RightWallMesh"]
+size = Vector3(0.15, 3, 6)
+
+[sub_resource type="BoxShape3D" id="FrontWallShape"]
+size = Vector3(6, 3, 0.15)
+
+[sub_resource type="BoxMesh" id="FrontWallMesh"]
+size = Vector3(6, 3, 0.15)
+
+[sub_resource type="BoxShape3D" id="BackLeftShape"]
+size = Vector3(1.12, 3, 0.15)
+
+[sub_resource type="BoxMesh" id="BackLeftMesh"]
+size = Vector3(1.12, 3, 0.15)
+
+[sub_resource type="BoxShape3D" id="BackRightShape"]
+size = Vector3(4, 3, 0.15)
+
+[sub_resource type="BoxMesh" id="BackRightMesh"]
+size = Vector3(4, 3, 0.15)
+
+[sub_resource type="BoxShape3D" id="DoorLintelShape"]
+size = Vector3(0.88, 0.8, 0.15)
+
+[sub_resource type="BoxMesh" id="DoorLintelMesh"]
+size = Vector3(0.88, 0.8, 0.15)
+
+[sub_resource type="BoxShape3D" id="TableShape"]
+size = Vector3(0.6, 0.8, 0.6)
+
+[sub_resource type="BoxMesh" id="TableMesh"]
+size = Vector3(0.6, 0.8, 0.6)
+
+[sub_resource type="BoxShape3D" id="DoorShape"]
+size = Vector3(0.88, 2.2, 0.04)
+
+[sub_resource type="BoxMesh" id="DoorMesh"]
+size = Vector3(0.88, 2.2, 0.04)
+
+[node name="InteractionTest" type="Node3D"]
+script = ExtResource("test")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment")
+
+[node name="Floor" type="StaticBody3D" parent="."]
+position = Vector3(0, -0.1, 0)
+metadata/surface = &"tile"
+[node name="Shape" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("FloorShape")
+[node name="Mesh" type="MeshInstance3D" parent="Floor"]
+mesh = SubResource("FloorMesh")
+
+[node name="LeftWall" type="StaticBody3D" parent="."]
+position = Vector3(-3, 1.5, 0)
+metadata/surface = &"tile"
+[node name="Shape" type="CollisionShape3D" parent="LeftWall"]
+shape = SubResource("LeftWallShape")
+[node name="Mesh" type="MeshInstance3D" parent="LeftWall"]
+mesh = SubResource("LeftWallMesh")
+
+[node name="RightWall" type="StaticBody3D" parent="."]
+position = Vector3(3, 1.5, 0)
+metadata/surface = &"tile"
+[node name="Shape" type="CollisionShape3D" parent="RightWall"]
+shape = SubResource("RightWallShape")
+[node name="Mesh" type="MeshInstance3D" parent="RightWall"]
+mesh = SubResource("RightWallMesh")
+
+[node name="FrontWall" type="StaticBody3D" parent="."]
+position = Vector3(0, 1.5, 3)
+metadata/surface = &"tile"
+[node name="Shape" type="CollisionShape3D" parent="FrontWall"]
+shape = SubResource("FrontWallShape")
+[node name="Mesh" type="MeshInstance3D" parent="FrontWall"]
+mesh = SubResource("FrontWallMesh")
+
+[node name="BackLeft" type="StaticBody3D" parent="."]
+position = Vector3(-2.44, 1.5, -3)
+metadata/surface = &"tile"
+[node name="Shape" type="CollisionShape3D" parent="BackLeft"]
+shape = SubResource("BackLeftShape")
+[node name="Mesh" type="MeshInstance3D" parent="BackLeft"]
+mesh = SubResource("BackLeftMesh")
+
+[node name="BackRight" type="StaticBody3D" parent="."]
+position = Vector3(1, 1.5, -3)
+metadata/surface = &"tile"
+[node name="Shape" type="CollisionShape3D" parent="BackRight"]
+shape = SubResource("BackRightShape")
+[node name="Mesh" type="MeshInstance3D" parent="BackRight"]
+mesh = SubResource("BackRightMesh")
+
+[node name="DoorLintel" type="StaticBody3D" parent="."]
+position = Vector3(-1.44, 2.6, -3)
+metadata/surface = &"tile"
+[node name="Shape" type="CollisionShape3D" parent="DoorLintel"]
+shape = SubResource("DoorLintelShape")
+[node name="Mesh" type="MeshInstance3D" parent="DoorLintel"]
+mesh = SubResource("DoorLintelMesh")
+
+[node name="Table" type="StaticBody3D" parent="."]
+position = Vector3(2, 0.4, -1.6)
+metadata/surface = &"tile"
+[node name="Shape" type="CollisionShape3D" parent="Table"]
+shape = SubResource("TableShape")
+[node name="Mesh" type="MeshInstance3D" parent="Table"]
+mesh = SubResource("TableMesh")
+
+[node name="Player" parent="." instance=ExtResource("player")]
+position = Vector3(0, 0.03, 0.5)
+[node name="Lamp" type="OmniLight3D" parent="."]
+position = Vector3(0, 2.5, -1)
+light_energy = 2.0
+omni_range = 7.0
+[node name="LightSwitch" parent="." node_paths=PackedStringArray("light") instance=ExtResource("light")]
+position = Vector3(0, 1.35, -2.84)
+light = NodePath("../Lamp")
+[node name="Door" type="Area3D" parent="."]
+position = Vector3(-1, 0, -3)
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("door")
+[node name="Pivot" type="Node3D" parent="Door"]
+[node name="Mesh" type="MeshInstance3D" parent="Door/Pivot"]
+position = Vector3(-0.44, 1.1, 0)
+mesh = SubResource("DoorMesh")
+[node name="Body" type="StaticBody3D" parent="Door/Pivot"]
+[node name="Shape" type="CollisionShape3D" parent="Door/Pivot/Body"]
+position = Vector3(-0.44, 1.1, 0)
+shape = SubResource("DoorShape")
+[node name="Shape" type="CollisionShape3D" parent="Door"]
+position = Vector3(-0.44, 1.1, 0.04)
+shape = SubResource("DoorShape")
+[node name="Latch" parent="Door/Pivot" node_paths=PackedStringArray("door") instance=ExtResource("latch")]
+position = Vector3(0, 0, 0.32)
+door = NodePath("../..")
+[node name="Paper" parent="." instance=ExtResource("paper")]
+position = Vector3(1, 1.4, -2.84)
+document_id = &"room_paper_407"
+[node name="Phone" parent="." instance=ExtResource("phone")]
+position = Vector3(2, 0.8, -1.6)
+[node name="HUD" parent="." instance=ExtResource("hud")]
+[node name="PauseMenu" parent="." instance=ExtResource("pause")]
+[node name="Help" type="CanvasLayer" parent="."]
+[node name="Hint" type="Label" parent="Help"]
+offset_left = 24.0
+offset_top = 72.0
+offset_right = 850.0
+offset_bottom = 110.0
+text = "UI_INTERACTION_TEST_HINT"
+mouse_filter = 2

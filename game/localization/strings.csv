@@ -66,3 +66,10 @@ SUB_PHONE_MIDNIGHT,0 giờ. Báo thức: tắt đèn đi ngủ.,"Midnight. Alarm
 SUB_KNOCK,(Có tiếng gõ cửa. Không ai gọi số phòng.),(Someone knocks. Nobody calls the room number.)
 SUB_KNOCK_STOPPED,(Tiếng gõ đã dừng.),(The knocking has stopped.)
 SUB_SLICE_END,Hết bản thử đoạn 1–2. Cảm ơn bạn đã chơi. (Esc → Thoát),End of the segment 1–2 prototype. Thank you for playing. (Esc → Quit)
+PROMPT_LIGHT_OFF,Tắt đèn,Turn off light
+PROMPT_LIGHT_ON,Bật đèn,Turn on light
+PROMPT_LOCK_DOOR,Chốt cửa,Lock door
+PROMPT_UNLOCK_DOOR,Mở chốt,Unlock door
+PROMPT_READ,Đọc,Read
+PROMPT_PHONE,Xem điện thoại,Check phone
+UI_INTERACTION_TEST_HINT,WASD: đi · E: tương tác · R: rung điện thoại · Esc: tạm dừng,WASD: move · E: interact · R: ring phone · Esc: pause
