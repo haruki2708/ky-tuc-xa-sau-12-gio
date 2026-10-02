@@ -12,7 +12,7 @@ Toàn bộ WAV và OGG dưới đây được **tự tổng hợp**, không lấ
 | WAV gốc | OGG | Cách tạo / chỉnh riêng | Nguồn, tác giả, giấy phép |
 |---|---|---|---|
 | `ceiling_fan.wav` | `ambience/ceiling_fan.ogg` | Noise lọc thấp, điều biên nhịp cánh quạt, nền động cơ 60/120 Hz; loop | Mã nguồn T-105 trên; Lane E; CC0 1.0 |
-| `fluorescent_hum.wav` | `ambience/fluorescent_hum.ogg` | Nền 100 Hz, rè 300–2900 Hz biến thiên nhẹ không đều, rít nhỏ 6200 Hz; crossfade và căn điểm nối; đo HP200 | Mã nguồn T-114 trên; Lane E; CC0 1.0 |
+| `fluorescent_hum.wav` | `ambience/fluorescent_hum.ogg` | Nền 100 Hz, rè 300–2900 Hz biến thiên nhẹ không đều, rít nhỏ 6200 Hz; crossfade và căn điểm nối; đo HP200. **−32 LUFS** theo chủ dự án (D-016) | Mã nguồn T-114 trên; Lane E; CC0 1.0 |
 | `fluorescent_flicker.wav` | `sfx/fluorescent_flicker.ogg` | Click relay, burst rè chấn lưu ngắt quãng, seed 11401; one-shot 1.5 giây, compressor/fade/−18 LUFS | Mã nguồn T-114 trên; Lane E; CC0 1.0 |
 | `night_insects_motorbike.wav` | `ambience/night_insects_motorbike.ogg` | Chirp 4.2/5.1 kHz, xung côn trùng và động cơ xa đổi tần số/envelope; loop | Mã nguồn T-105 trên; Lane E; CC0 1.0 |
 | `water_drip_01.wav` | `sfx/water_drip_01.ogg` | Sin giảm tần, decay ngắn và noise, seed 10511; one-shot | Mã nguồn T-105 trên; Lane E; CC0 1.0 |

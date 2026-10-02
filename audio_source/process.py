@@ -35,8 +35,8 @@ ASSETS = [
 ]
 
 
-# Footsteps sit well below doors (-18) so walking stays a soft background cue.
-TARGET_OVERRIDES = {"slipper_tile": -38, "slipper_run": -35}
+# Per-asset loudness chosen by ear with the owner (D-015, D-016); default: loops -24, SFX -18.
+TARGET_OVERRIDES = {"slipper_tile": -38, "slipper_run": -35, "fluorescent_hum": -32}
 
 
 def target_lufs(name: str, loop: bool) -> int:
