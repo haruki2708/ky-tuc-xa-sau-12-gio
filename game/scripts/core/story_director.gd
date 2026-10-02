@@ -99,9 +99,12 @@ var _roll_call_active: bool = false
 var _current_name: String = ""
 var _answered: Dictionary[String, bool] = {}
 var _tap_closed: bool = false
+## Own name met with silence: the speaker calls it once more before judging.
+var _recall_pending: bool = false
 var _flicker_timer: Timer
 var _overlay: ColorRect
 var _overlay_label: Label
+var _overlay_why: Label
 var _pursuer: Pursuer
 var _chase_result: StringName = &""
 var _gaze: GazeDetector
@@ -335,7 +338,12 @@ func _segment_4() -> void:
 	var lines: Array = [{"text_key": "SPK_ROLLCALL_INTRO", "garbled": false}]
 	for entry in ROLL_CALL:
 		lines.append({"text_key": entry[0], "garbled": false})
+	_recall_pending = false
 	await _announce(lines)
+	if _recall_pending and not _failing:
+		# RULES.md §5 seg4: silence on your own name gets it read again, slower.
+		_recall_pending = false
+		await _announce([{"text_key": "SPK_NAME_TRUNG_AGAIN", "garbled": false}])
 	_roll_call_active = false
 	if _failing:
 		return
@@ -355,6 +363,13 @@ func _on_subtitle(text_key: String, _duration: float) -> void:
 
 
 func _judge_name(name_key: String) -> void:
+	var answered_now: bool = _answered.get(name_key, false)
+	if name_key == "SPK_NAME_TRUNG" and not answered_now:
+		_recall_pending = true
+		return
+	if name_key == "SPK_NAME_TRUNG_AGAIN":
+		RuleSystem.resolve(&"roll_call_self", &"answer" if answered_now else &"stay_silent")
+		return
 	for entry in ROLL_CALL:
 		if entry[0] != name_key:
 			continue
@@ -364,8 +379,6 @@ func _judge_name(name_key: String) -> void:
 		var result := RuleSystem.resolve(situation, action)
 		if result["consequence"] == &"net_stirs":
 			_stir_net(entry[2])
-		elif result["consequence"] == &"name_called_again":
-			_say("SUB_NAME_CALLED_AGAIN", 4.0)
 
 
 func _input(event: InputEvent) -> void:
@@ -620,7 +633,7 @@ func _ending() -> void:
 # --- Losing and resuming -------------------------------------------------------
 
 ## A real loss (Lâm answered, deviation 5): §5b scare 2, then reload.
-func _on_player_failed(_rule_id: StringName) -> void:
+func _on_player_failed(rule_id: StringName) -> void:
 	if _failing:
 		return
 	var whisper := _play_at(&"whisper_co", _player, &"Voice")
@@ -628,12 +641,12 @@ func _on_player_failed(_rule_id: StringName) -> void:
 		whisper.volume_db = -8.0
 	# The net over the empty top bunk billows.
 	_stir_net("BunkB/Net_Dat", 1.12)
-	await _lose(&"SUB_FAIL", 0)
+	await _lose(&"SUB_FAIL", 0, &"SUB_FAIL_WHY_DEVIATION" if rule_id == &"deviation" else &"SUB_FAIL_WHY_FIFTH")
 
 
 ## Fades out, then asks Main to reload from the current segment's checkpoint,
 ## carrying `carry` deviation over the reload (being caught, §5b).
-func _lose(card_key: StringName, carry: int) -> void:
+func _lose(card_key: StringName, carry: int, why_key: StringName = &"") -> void:
 	if _failing:
 		return
 	_failing = true
@@ -644,8 +657,8 @@ func _lose(card_key: StringName, carry: int) -> void:
 	var checkpoint := StringName(String(GameState.segment) + "_start")
 	carry_deviation = carry
 	await _fade_to_black(0.4 if carry > 0 else 1.5)
-	_show_card(card_key)
-	await _wait(3.0)
+	_show_card(card_key, why_key)
+	await _wait(3.0 if why_key.is_empty() else 6.0)
 	restart_requested.emit(checkpoint)
 
 
@@ -1009,13 +1022,24 @@ func _build_overlay() -> void:
 	_overlay.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	_overlay.set_anchors_preset(Control.PRESET_FULL_RECT)
 	layer.add_child(_overlay)
+	var center := CenterContainer.new()
+	center.set_anchors_preset(Control.PRESET_FULL_RECT)
+	center.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_overlay.add_child(center)
+	var lines := VBoxContainer.new()
+	lines.add_theme_constant_override("separation", 28)
+	center.add_child(lines)
 	_overlay_label = Label.new()
-	_overlay_label.set_anchors_preset(Control.PRESET_CENTER)
 	_overlay_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	_overlay_label.add_theme_font_size_override("font_size", 44)
-	_overlay_label.grow_horizontal = Control.GROW_DIRECTION_BOTH
-	_overlay_label.grow_vertical = Control.GROW_DIRECTION_BOTH
-	_overlay.add_child(_overlay_label)
+	lines.add_child(_overlay_label)
+	_overlay_why = Label.new()
+	_overlay_why.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_overlay_why.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	_overlay_why.custom_minimum_size.x = 900.0
+	_overlay_why.add_theme_font_size_override("font_size", 26)
+	_overlay_why.modulate = Color(1, 1, 1, 0.75)
+	lines.add_child(_overlay_why)
 
 
 func _fade_to_black(seconds: float) -> void:
@@ -1024,5 +1048,7 @@ func _fade_to_black(seconds: float) -> void:
 	await tween.finished
 
 
-func _show_card(text_key: String) -> void:
+## Text on the black card; why_key (optional) says what went wrong.
+func _show_card(text_key: String, why_key: String = "") -> void:
 	_overlay_label.text = text_key
+	_overlay_why.text = why_key

@@ -161,6 +161,32 @@ func test_seg4_answering_for_a_roommate_stirs_the_net() -> void:
 	assert_eq(GameState.get_flag(&"net_stirred"), true, "a net stirs")
 
 
+func test_seg4_silence_on_your_name_gets_a_second_call() -> void:
+	_place(Vector3(32.9, 0.03, -1.25), 0.0)
+	_answer_on(["SPK_NAME_TRUNG_AGAIN"])
+	await _run(&"seg4")
+	assert_true("SPK_NAME_TRUNG_AGAIN" in subtitles, "name read again;")
+	assert_eq(RuleSystem.outcome_of(&"roll_call_self"), RuleSystem.OUTCOME_CORRECT, "late answer counts;")
+	assert_eq(GameState.deviation, 0, "no deviation")
+
+
+func test_seg4_silence_twice_breaks_the_rule() -> void:
+	_place(Vector3(32.9, 0.03, -1.25), 0.0)
+	await _run(&"seg4")
+	assert_eq(RuleSystem.outcome_of(&"roll_call_self"), RuleSystem.OUTCOME_BROKE_RULE, "never answered;")
+	assert_eq(GameState.deviation, 1, "genuine rule 4 penalty")
+
+
+func test_losing_on_deviation_says_why() -> void:
+	GameState.set_segment(&"seg4")
+	GameState.add_deviation(5, &"test")
+	var deadline := Time.get_ticks_msec() + 10000
+	while restarts.is_empty() and Time.get_ticks_msec() < deadline:
+		await tree.process_frame
+	assert_eq(restarts, [&"seg4_start"] as Array[StringName], "reload;")
+	assert_eq(director._overlay_why.text, "SUB_FAIL_WHY_DEVIATION", "the card explains the loss")
+
+
 func test_seg4_answering_lam_loses_and_resumes_at_seg4() -> void:
 	_place(Vector3(32.9, 0.03, -1.25), 0.0)
 	_answer_on(["SPK_NAME_TRUNG", "SPK_NAME_LAM"])
