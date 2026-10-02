@@ -38,8 +38,8 @@ Integrator chấm mỗi tiêu chí từ 1 đến 5. Chủ dự án ghi thêm ti�
 
 | Agent (tên trong SpaceVibe Deck) | Lane thử | Điểm 1–6 | Ghi chú 7 |
 |---|---|---|---|
-| | A | | |
-| | B | | |
-| | C | | |
-| | D | | |
-| | E | | |
+| | A | 5 · 4 · 5 · 5 · 5 · 0 vòng | |
+| | B | 5 · 5 · 5 · 5 · 5 · 0 vòng | |
+| | C | 5 · 5 · 5 · 4 · 5 · 0 vòng | |
+| | D | 5 · 5 · 5 · 5 · 5 · 0 vòng | |
+| | E | 5 · 4 · 5 · 5 · 5 · 0 vòng | |

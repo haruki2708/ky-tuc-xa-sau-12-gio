@@ -1,5 +1,5 @@
 # T-105 — Pipeline âm thanh và bộ âm môi trường đầu tiên
-- Lane: E (Âm thanh) | Trạng thái: todo | Agent:
+- Lane: E (Âm thanh) | Trạng thái: done | Agent:
 - Nhánh: `lane-e/T-105-audio-pipeline`
 - Phụ thuộc: P0 (xong)
 - Loại: task thử tuần đầu
@@ -83,3 +83,21 @@ Có quy trình lặp lại được: **file âm thanh gốc → xử lý → .og
 - Không có câu hỏi luật chơi/cốt truyện phát sinh trong task này.
 
 **Blocked:** Không còn chặn kỹ thuật; chờ chủ dự án/QA xác nhận checklist nghe thực tế. Lỗi mạng/sandbox trong phiên đã vượt qua bằng quyền chạy ngoài sandbox, push nhánh task đã thành công.
+
+## Review (integrator, 2026-10-02)
+**Kết quả: chấp nhận, đã merge vào `main`.** Sau merge (gồm T-101…T-104): `test.ps1` → `RESULT: 48 passed, 0 failed`; `check.ps1` → `RESULT: check 0 error(s)`.
+
+- Đúng phạm vi. Âm thanh tự tổng hợp bằng code, CC0, có khai báo AI. Pipeline tái lập được (so hash), có đo LUFS, true peak và kiểm tra điểm nối loop.
+- Test tốt: decode từng OGG, đúng cờ loop, 5 bus và reverb, bước chân không lặp và dùng đủ 4 biến thể, emitter không sửa stream dùng chung.
+- Handoff trung thực: ghi rõ **chưa nghe bằng tai**. Mục checklist nghe thử để chủ dự án kiểm tra.
+- Integrator đã xử lý yêu cầu thay đổi trong `main.tscn`:
+  - sàn hành lang có metadata `surface = &"tile"`;
+  - thêm `Player/Footsteps` (FootstepPlayer) và nối `Player.footstep` → `play_footstep`;
+  - thêm `AmbientEmitter`: tiếng ù đèn tuýp tại hai bóng đèn, côn trùng và xe máy ở cuối hành lang;
+  - thêm test `test_main_scene_footsteps_and_ambience_wired` trong `tests/core/`. Sau đó: `RESULT: 49 passed, 0 failed`.
+
+**Việc cần làm kèm task sau (không chặn):**
+1. **Chủ dự án nghe thử** `audio_test.tscn` và hành lang chính, đánh giá chất âm: tiếng dép, quạt, côn trùng có giống thật không, có rè hoặc tách ở điểm nối không. Âm tổng hợp có thể nghe "điện tử"; nếu chưa đạt, T-114 cân nhắc lấy mẫu CC0 thật (Freesound cần chủ dự án tải giúp).
+2. Player mặc định `surface = &"concrete"` khi sàn không có metadata, còn FootstepPlayer chỉ có bank `tile`, nên sàn thiếu metadata sẽ không có tiếng bước chân. Ở T-112, lane B phải gắn metadata `surface` cho mọi sàn. Ở T-114, lane E cân nhắc thêm bank cho các bề mặt khác (bê tông cầu thang, sàn nhà vệ sinh ướt).
+
+**Chấm điểm (1–5):** phạm vi 5 · checklist 4 (thiếu nghe thử, đã ghi trung thực) · test 5 · chất lượng code 5 · bàn giao trung thực 5 · số vòng sửa 0.
