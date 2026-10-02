@@ -29,3 +29,14 @@ Giấy phép phần mềm Blender/Godot độc lập với giấy phép các ass
 | `entity/previews/*.png` | Godot 4.7.2 Forward+; Codex viết script chụp | [Script chụp](entity/capture_entity.gd), kit CC0 và mô hình trên | CC0-1.0 |
 
 Shader bóng người/gương và scene là mã mới có hỗ trợ AI (Codex). Không dùng mô hình sinh ảnh, texture tải ngoài, plugin hoặc bản quét người thật. Khai báo AI và URL giấy phép ở trên tiếp tục áp dụng. Các đoạn âm phát trong scene thử giữ nguồn ở `game/audio/CREDITS.md`.
+
+## Đạo cụ T-138 (Claude làm thay lane B)
+
+| File / nhóm | Tác giả / công cụ | Nguồn | Giấy phép asset |
+|---|---|---|---|
+| `game/assets/models/props/*.glb` (13 đạo cụ: bàn, đèn bàn, điện thoại, đồ trên bàn trực, bảng tin, bồn rửa, vòi, cửa buồng vệ sinh, dép lê, áo, khăn, xô, loa nén) | Claude (Anthropic), Blender 5.2.2 LTS | [Script gốc](props/build_props.py), dùng lại hàm của `kit/build_kit.py` | CC0-1.0 |
+| `game/assets/textures/props/*.png` (10 texture 128 × 128) | Claude (Anthropic), texture thủ tục bằng Python, seed 138 | [Script gốc](props/build_props.py) | CC0-1.0 |
+| `game/scenes/levels/props/*`, `game/rendering/water_stream.gdshader` | Claude (Anthropic) | Mã mới | CC0-1.0 |
+| `props/previews/*.png` | Blender Cycles CPU; `ingame.png` do Godot Forward+ render | Các mô hình trên | CC0-1.0 |
+
+Các đạo cụ dùng lại texture kit (`old_wood`, `iron`, `cloth`, `green_paint`, `fan_paint`), không chép PNG trùng. **Khai báo AI:** Claude (Anthropic) viết script sinh mô hình, texture, scene và shader; nội dung tạo bằng mã có hỗ trợ AI. Không dùng mô hình sinh ảnh hay asset tải ngoài.

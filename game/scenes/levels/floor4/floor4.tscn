@@ -149,7 +149,7 @@ position = Vector3(40, 2.45, 0.37)
 rotation_degrees = Vector3(0, 0, 0)
 
 [node name="WashroomTapRunning" type="Marker3D" parent="Anchors"]
-position = Vector3(0.35, 1.03, -2.85)
+position = Vector3(0.24, 1.0, -2.85)
 rotation_degrees = Vector3(0, 0, 0)
 
 [node name="WashroomMirror" type="Marker3D" parent="Anchors"]

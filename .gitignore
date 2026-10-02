@@ -11,3 +11,5 @@ build/
 Thumbs.db
 # Generated from strings.csv on import
 game/localization/*.translation
+art_source/kit/__pycache__/
+art_source/props/.scratch.tmp/
