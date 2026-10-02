@@ -123,7 +123,8 @@ func test_fan_rotor_is_independent() -> void:
 	model.free()
 
 
-func test_materials_use_small_nearest_textures() -> void:
+func test_materials_use_ps1_shader_with_small_nearest_textures() -> void:
+	# T-118: kit_import.gd bakes PS1 shader materials (nearest albedo + vertex snap).
 	for name in KIT_NAMES:
 		var model := _instance(name)
 		if model == null:
@@ -131,13 +132,14 @@ func test_materials_use_small_nearest_textures() -> void:
 		for node in model.find_children("*", "MeshInstance3D", true, false):
 			var instance := node as MeshInstance3D
 			for surface in range(instance.mesh.get_surface_count()):
-				var material := instance.get_active_material(surface) as BaseMaterial3D
-				assert_not_null(material, name + " material")
+				var material := instance.get_active_material(surface) as ShaderMaterial
+				assert_not_null(material, name + " PS1 shader material")
 				if material == null:
 					continue
-				assert_eq(material.texture_filter, BaseMaterial3D.TEXTURE_FILTER_NEAREST,
-					name + " nearest sampling")
-				var texture := material.albedo_texture
+				var shader_file := material.shader.resource_path.get_file()
+				assert_true(shader_file in ["ps1_surface.gdshader", "ps1_surface_cutout.gdshader"],
+					name + " uses a PS1 surface shader, got " + shader_file)
+				var texture := material.get_shader_parameter("albedo_texture") as Texture2D
 				assert_not_null(texture, name + " albedo texture")
 				if texture != null:
 					assert_true(texture.resource_path.begins_with("res://assets/textures/kit/"),
@@ -147,6 +149,23 @@ func test_materials_use_small_nearest_textures() -> void:
 					assert_true(texture.get_height() >= 64 and texture.get_height() <= 256,
 						name + " texture height 64..256")
 		model.free()
+	var include := FileAccess.get_file_as_string("res://rendering/ps1_surface.gdshaderinc")
+	assert_true(include.contains("albedo_texture : source_color, filter_nearest"), "albedo sampled nearest")
+
+
+func test_kit_textures_are_lossless_without_mipmaps() -> void:
+	# The editor must not turn them into VRAM-compressed, mipmapped textures.
+	for file in DirAccess.get_files_at("res://assets/textures/kit"):
+		if not file.ends_with(".png"):
+			continue
+		var import := ConfigFile.new()
+		assert_eq(import.load("res://assets/textures/kit/%s.import" % file), OK, file + " import settings")
+		assert_eq(import.get_value("params", "compress/mode"), 0, file + " lossless")
+		assert_eq(import.get_value("params", "mipmaps/generate"), false, file + " no mipmaps")
+		assert_eq(import.get_value("params", "detect_3d/compress_to"), 0, file + " editor 3D detection disabled")
+		var image := (load("res://assets/textures/kit/" + file) as Texture2D).get_image()
+		assert_false(image.is_compressed(), file + " imported uncompressed")
+		assert_false(image.has_mipmaps(), file + " imported without mipmaps")
 
 
 func test_showcase_has_seven_models_and_camera() -> void:
@@ -208,12 +227,12 @@ func test_nets_have_cutout_weave_and_no_collision() -> void:
 		for node in model.find_children("*", "MeshInstance3D", true, false):
 			var mesh := node as MeshInstance3D
 			for surface in range(mesh.mesh.get_surface_count()):
-				var material := mesh.get_active_material(surface) as BaseMaterial3D
-				if material.resource_name == "net_weave":
+				var material := mesh.get_active_material(surface) as ShaderMaterial
+				if material != null and material.resource_name == "net_weave":
 					transparent_surfaces += 1
-					assert_eq(material.transparency, BaseMaterial3D.TRANSPARENCY_ALPHA_SCISSOR,
-						name + " alpha scissor")
-					assert_eq(material.cull_mode, BaseMaterial3D.CULL_DISABLED, name + " two-sided cloth")
+					# Cutout shader: alpha scissor 0.5 and cull_disabled (two-sided cloth).
+					assert_eq(material.shader.resource_path.get_file(), "ps1_surface_cutout.gdshader",
+						name + " alpha-scissor, two-sided shader")
 		assert_true(transparent_surfaces > 0, name + " transparent weave exists")
 		assert_true(model.find_children("*", "CollisionShape3D", true, false).is_empty(),
 			name + " has no collision")
