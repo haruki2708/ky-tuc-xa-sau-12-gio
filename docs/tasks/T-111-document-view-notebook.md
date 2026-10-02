@@ -44,9 +44,35 @@
 5. Ảnh chụp: từng kiểu giấy và sổ tay có ít nhất 2 nguồn, tiếng Việt.
 
 ## Checklist hoàn thành
-- [ ] `pwsh tools/test.ps1` và `pwsh tools/check.ps1` PASS
-- [ ] Ảnh chụp đủ kiểu giấy và sổ tay
-- [ ] Không chạm file ngoài phạm vi; `CREDITS.md` nếu có font mới
-- [ ] Mục Handoff đã điền, kèm "Yêu cầu thay đổi" (gắn màn xem giấy và sổ tay vào `main.tscn`)
+- [x] `pwsh tools/test.ps1` và `pwsh tools/check.ps1` PASS
+- [x] Ảnh chụp đủ kiểu giấy và sổ tay
+- [x] Không chạm file ngoài phạm vi; `CREDITS.md` nếu có font mới
+- [x] Mục Handoff đã điền, kèm "Yêu cầu thay đổi" (gắn màn xem giấy và sổ tay vào `main.tscn`)
 
 ## Handoff (agent điền)
+
+### Đã làm
+- Lane D, ngày 2026-10-02; nhánh `lane-d/T-111-document-view-notebook`, tạo từ `origin/main` tại `6cf176c`. Commit triển khai `1dc37f3` đã push.
+- Thêm `document_view.tscn`: nhận `document_opened`, tải `DocumentData`, dịch tiêu đề/dòng luật/đoạn văn; hỗ trợ đủ năm kiểu giấy, đóng bằng E/chuột trái/Esc/Tab và phát đúng signal đóng/dừng game.
+- Thêm `notebook.tscn`: Tab mở/đóng, gom nguồn theo lần xuất hiện đầu, giữ `text_key` của từng mục (bao gồm chữ loa rè), nút Nghi ngờ và dấu đỏ đồng bộ giữa các nguồn; xử lý sổ trống, đổi ngôn ngữ và gợi ý lần đọc đầu. Không hiển thị `is_fake`.
+- Hai màn dùng CanvasLayer 15, phối hợp với pause menu để Esc chỉ đóng màn đang đọc. Tái sử dụng font Be Vietnam Pro sẵn có; kiểu viết tay dùng chữ nghiêng. Không thêm font/asset bên ngoài, plugin, autoload hay input action.
+- Thêm scene F6 `game/ui/notebook/notebook_test.tscn`, 17 key VI/EN và 10 test UI. Các ảnh kiểm chứng cùng `.import` đã commit qua LFS.
+
+### Kiểm tra
+- `pwsh tools/test.ps1`: **RESULT: 144 passed, 0 failed**.
+- `pwsh tools/check.ps1`: **RESULT: check 0 error(s)**.
+- Test bao phủ dữ liệu giấy thật, tín hiệu đóng/dừng, xung đột Esc với cả hai thứ tự node, E/Tab/chuột trái, chặn mở khi đang có màn khác, nhóm nguồn/chữ rè, đổi ngôn ngữ, click thực tế vào nút Nghi ngờ, gợi ý một lần và scene F6; dọn bằng `RuleSystem.reset()`.
+- Đã render và xem trực tiếp cả sáu ảnh tiếng Việt: [dấu đỏ](../../game/ui/document/previews/stamped_vi.png), [bản photo](../../game/ui/document/previews/photocopy_vi.png), [viết tay](../../game/ui/document/previews/handwritten_vi.png), [giấy dán](../../game/ui/document/previews/notice_vi.png), [trang sổ](../../game/ui/document/previews/log_vi.png), [sổ tay hai nguồn](../../game/ui/notebook/previews/notebook_vi.png).
+- Cách thử: mở `notebook_test.tscn`, F6; chọn từng giấy, đóng bằng các phím trên; chọn giả lập loa rồi mở sổ tay, đánh dấu Nghi ngờ. Bản photo + loa cho ít nhất hai nguồn và mục điều 3 bị rè.
+- Tái tạo ảnh: chạy Godot với scene trên, `--write-movie <thư mục>/frame.png --fixed-fps 30 -- --reading-capture=<style> --quit-after-frames=5`; `<style>` là `stamped`, `photocopy`, `handwritten`, `notice`, `log` hoặc `notebook`. Chế độ này dùng tiếng Việt, không lưu thay đổi ngôn ngữ vào cài đặt.
+- Lượt test đầy đủ đầu tiên có một lỗi metadata texture kit do Godot tự đổi `green_paint.png.import`; đã khôi phục nguyên bản Git và chạy lại đạt kết quả trên. Không commit thay đổi ngoài phạm vi. Check còn cảnh báo cache UID texture trong model và dùng đường dẫn thay thế; không có lỗi parse.
+- Đây là test tự động và kiểm tra ảnh render; chưa chơi thử thủ công trong scene main đã tích hợp.
+
+### Còn lại / giới hạn
+- Không còn checklist chưa đạt, không bị chặn ở phạm vi Lane D.
+- Repo hiện có bốn giấy gameplay; chưa có `duty_log.tres`. Nút/ảnh `log` dùng `DocumentData` tạm với câu mô tả thử giao diện trung tính, không bổ sung luật hay cốt truyện. Nội dung sổ trực thật chờ lane sở hữu dữ liệu.
+
+### Yêu cầu thay đổi
+- **Integrator (T-117):** instance đúng một `res://ui/document/document_view.tscn` và một `res://ui/notebook/notebook.tscn` ở gốc `main.tscn`; giữ layer 15, trên filter PS1 (5)/HUD (10), dưới pause menu (20). Lane D không tự sửa scene main.
+- **Phối hợp Lane A/core:** nạp bộ luật demo trước tương tác; đồ vật đọc gọi `DocumentData.mark_rules_read()` rồi phát `EventBus.document_opened(id)` theo hợp đồng hiện có. Màn xem giấy chỉ hiển thị, không tự ghi luật lần nữa; scene F6 mô phỏng đúng luồng này.
+- Không cần thay đổi signal, autoload, input action hay cài đặt dự án. Không có câu hỏi mới về luật chơi/cốt truyện.
