@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/debug/autoplay.gd" id="1"]
+[ext_resource type="PackedScene" path="res://scenes/main/main.tscn" id="2"]
+
+[node name="AutoplayTest" type="Node"]
+
+[node name="Main" parent="." instance=ExtResource("2")]
+
+[node name="Autoplay" type="Node" parent="."]
+script = ExtResource("1")
