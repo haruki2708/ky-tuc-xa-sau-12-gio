@@ -151,3 +151,47 @@ func test_footsteps_volume_setting_reaches_footsteps_bus() -> void:
 	else:
 		DirAccess.remove_absolute(path)
 	Settings.apply_startup()
+
+
+func _first_pick(main: Node, from: Vector3, to: Vector3) -> Object:
+	# Same mask and target kinds as the Player's InteractRay (world + interactable).
+	var query := PhysicsRayQueryParameters3D.create(from, to, 5)
+	query.collide_with_areas = true
+	query.collide_with_bodies = true
+	var hit := (main as Node3D).get_world_3d().direct_space_state.intersect_ray(query)
+	return null if hit.is_empty() else hit["collider"]
+
+
+func test_room_407_interactables_are_reachable_from_inside() -> void:
+	var main: Node = load("res://scenes/main/main.tscn").instantiate()
+	main.get_node("StoryDirector").auto_start = false
+	tree.root.add_child(main)
+	await tree.physics_frame
+	await tree.physics_frame
+	var paper := main.get_node("Floor4/Door407/Pivot/RulesPaper/RulesPaper407")
+	var latch := main.get_node("Floor4/Door407/Pivot/DoorLatch407")
+	var switch := main.get_node("Room407LightSwitch")
+	var door := main.get_node("Floor4/Door407")
+	assert_eq(_first_pick(main, Vector3(32.0, 1.39, -1.0), Vector3(32.0, 1.39, 0.3)), paper, "paper wins over the door")
+	assert_eq(_first_pick(main, Vector3(32.0, 0.8, -1.0), Vector3(32.0, 0.8, 0.3)), door, "rest of the leaf opens the door")
+	var latch_at := (latch.get_node("CollisionShape3D") as Node3D).global_position
+	assert_eq(_first_pick(main, latch_at + Vector3(0, 0, -0.8), latch_at + Vector3(0, 0, 0.3)), latch, "latch reachable")
+	assert_eq(_first_pick(main, Vector3(32.72, 1.36, -1.0), Vector3(32.72, 1.36, 0.3)), switch, "light switch reachable")
+	assert_eq(main.get_node("StoryDirector").get_node(main.get_node("StoryDirector").phone_path), main.get_node("PhoneTrung"), "director rings Trung's phone")
+	# Latch locks the real door; the paper fills the notebook.
+	RuleSystem.load_rule_set(load("res://data/rules/demo.tres"))
+	latch.interact(null)
+	assert_false(door.enabled, "latched door cannot be opened")
+	assert_eq(GameState.get_flag(&"door_locked"), true, "door_locked flag;")
+	paper.interact(null)
+	assert_true(RuleSystem.is_read(&"slippers_paper"), "paper adds the fake rule 3 to the notebook")
+	switch.interact(null)
+	assert_false(main.get_node("Floor4/Room407/Room407MainLight").visible, "switch turns the main light off")
+	for node in main.find_children("*", "AudioStreamPlayer3D", true, false):
+		if node.has_method("stop_emitting"):
+			node.stop_emitting()
+		(node as AudioStreamPlayer3D).stop()
+	main.queue_free()
+	await tree.create_timer(0.5).timeout
+	GameState.reset()
+	RuleSystem.reset()
