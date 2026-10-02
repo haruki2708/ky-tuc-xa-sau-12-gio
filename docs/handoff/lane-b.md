@@ -1,6 +1,6 @@
-# Prompt bàn giao — Lane B
+# Prompt bàn giao — Lane B (Môi trường và 3D)
 
-> **T-138 đã do Claude làm thay và đã merge (2026-10-03). Không gửi prompt này cho agent B.** Lane B đang rảnh, chờ task mới. (Môi trường và 3D)
+> **T-138 đã do Claude làm thay và đã merge (2026-10-03). Không gửi prompt này cho agent B.** Lane B đang rảnh, chờ task mới.
 
 ## 1. Prompt giao task (dán nguyên khối)
 ```
