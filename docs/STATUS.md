@@ -1,7 +1,7 @@
 # STATUS — cập nhật bởi integrator
 
 **Cập nhật lần cuối:** 2026-10-02
-**Giai đoạn:** P1. Xong 5 task thử tuần đầu (T-101…T-105). Tất cả lane đang rảnh. Bước chân (T-122, T-123) và mức âm đã chốt (D-015…D-018).
+**Giai đoạn:** P1. Xong 5 task thử tuần đầu (T-101…T-105). Tất cả lane đang rảnh. Bước chân (T-122, T-123) và mức âm theo D-015…D-019.
 **Repo:** https://github.com/tuaanh666/ky-tuc-xa-sau-12-gio (private)
 
 ## Đã xong
