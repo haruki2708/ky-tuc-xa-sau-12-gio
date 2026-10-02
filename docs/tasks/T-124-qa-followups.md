@@ -26,10 +26,53 @@ Dọn các việc tồn từ review T-103 và T-121, để bản build gửi ng�
 6. **Test** (`game/tests/tools/` hoặc script PowerShell kèm theo): kiểm tra `export_presets.cfg` có các mẫu loại trừ ở mục 3.
 
 ## Checklist hoàn thành
-- [ ] `pwsh tools/test.ps1` và `pwsh tools/check.ps1` PASS
+- [x] `pwsh tools/test.ps1` và `pwsh tools/check.ps1` PASS
 - [ ] `pwsh tools/package.ps1` ra `RESULT: package PASS`; dung lượng zip ghi trong Handoff, so với trước khi lọc
-- [ ] `capture.ps1` không còn để lại bản sao project
-- [ ] Không chạm file ngoài phạm vi
-- [ ] Mục Handoff đã điền
+- [x] `capture.ps1` không còn để lại bản sao project
+- [x] Không chạm file ngoài phạm vi
+- [x] Mục Handoff đã điền
 
 ## Handoff (agent điền)
+
+### Kết quả phiên 2026-10-02
+- Commit triển khai `cd3deab`, đã push `origin/lane-c/T-124-qa-followups`; nền `origin/main` là `7552c07`. Chỉ sửa các file được phép cùng checklist/Handoff card này.
+- Capture dọn snapshot bằng finally, cả khi Godot báo lỗi; có `-KeepSnapshot`. Có chặn output trong game/ để tránh sao chép đệ quy và kiểm tra đường dẫn trước xóa. PNG/WAV giữ nguyên. Nhánh mặc định đã kiểm chứng thực tế; chưa chạy riêng nhánh `-KeepSnapshot`.
+- README song ngữ chuyển sang `tools/package_readme.txt`, mô tả đúng hiện trạng đi lại/HUD/âm thanh, chưa có nội dung cốt truyện/luật. Phím lấy từ hiện trạng main (Esc bắt/thả chuột).
+- Windows export loại toàn bộ mẫu bắt buộc trừ debug theo ngoại lệ của card. Test mới bảo vệ các mẫu loại trừ và autoload cần giữ.
+- Package tự giải nén ZIP, chạy EXE 60 frame, kiểm tra exit code + log/stdout/stderr, timeout 60 giây, in byte/MiB và PASS/FAIL. Stage và bản giải nén tự dọn; log giữ cạnh ZIP. Không bỏ qua ERROR dù EXE exit 0.
+
+### Kiểm chứng
+- `pwsh tools/test.ps1`: **`RESULT: 84 passed, 0 failed`**, exit 0 (83 test có sẵn + 1 test export filters).
+- `pwsh tools/check.ps1`: **`RESULT: check 0 error(s)`**; log `build/T-124-check.log`.
+- `pwsh tools/package.ps1`: **`RESULT: package FAIL`**. ZIP vẫn được tạo nhưng KHÔNG coi là bản phát hành đã xác minh.
+- ZIP trước lọc/cập nhật README: `build/dist/T-124-before-filter.zip`, **40.108.631 byte**. ZIP sau: `build/dist/KyTucXa-0.0.1-7552c07-win64.zip`, **40.027.541 byte** (38,17 MiB), giảm **81.090 byte**, khoảng **0,202%**. Được tạo trước commit triển khai nên tên mang hash nền; nội dung là workspace T-124 đã sửa.
+- Log package: `build/T-124-package-filtered.log` và các file `.verify.log`, `.stdout.log`, `.stderr.log` cạnh ZIP. EXE chạy/thoát với exit 0 nhưng stderr có `ERROR: 2 resources still in use at exit` và cảnh báo 11 ObjectDB instances.
+- Khi thử loại cả `scripts/debug/*`, EXE báo không tìm thấy `res://scripts/debug/autoplay.gd` và không khởi tạo được autoload; package trả FAIL. Bằng chứng: `build/T-124-exclude-debug.log`. Vì vậy giữ debug, không sửa project.godot, đúng ngoại lệ card.
+
+### Năm lần autoplay liên tiếp
+Lệnh tái hiện: `pwsh tools/verify-capture.ps1`. Script chạy main.tscn với `autoplay_main.json` (đi/chạy/quay chuột; frame cuối 105), Frames=200, FPS=30, Resolution=1280x720, KeepEvery=1.
+
+| Lượt | Số PNG | Còn snapshot | Exit capture |
+|---|---:|---|---:|
+| 1 | 136 | Không | 1 |
+| 2 | 136 | Không | 1 |
+| 3 | 136 | Không | 1 |
+| 4 | 136 | Không | 1 |
+| 5 | 136 | Không | 1 |
+
+- Không tái hiện lệch frame: cả năm đúng 105 + 30 + 1. Không thay thuật toán đếm frame autoplay khi chưa có bằng chứng lỗi.
+- Cả năm báo lỗi resource khi shutdown nên tổng kết trung thực **`RESULT: autoplay capture FAIL (inspect run logs)`**; không chỉ dựa số ảnh để kết luận PASS.
+- Log/ảnh: `build/captures/T-124-ff88c43de5d241a4a5b5a992c7897cea/run-1.log` đến `run-5.log` và thư mục run tương ứng. Một lượt thăm dò trước chuỗi năm cũng có 136 ảnh và lỗi tương tự, không tính vào bảng.
+
+### Blocked / yêu cầu thay đổi ngoài phạm vi
+**Blocked: chưa đạt checklist package PASS vì lỗi giải phóng tài nguyên âm thanh khi thoát main, tái hiện không ổn định cả trước khi lọc.** Không sửa code âm thanh/core ngoài phạm vi Lane C; không che log hoặc lặp tới khi xanh để đánh dấu đạt.
+
+**Yêu cầu thay đổi:** integrator/Lane E điều tra lifecycle/shutdown Ogg của main trong `game/scripts/audio/` và cấu hình scene do core sở hữu nếu cần. Chưa kết luận nguyên nhân gốc; đây là yêu cầu điều tra và sửa lỗi, không khẳng định file cụ thể có bug.
+
+Bằng chứng đối chứng:
+- EXE baseline lấy từ ZIP trước mọi thay đổi, giải nén ở `build/dist/T-124-baseline-probe`, chạy `--windowed --quit-after 60` với cùng cách thu log của package: exit 0 nhưng `ERROR: 1 resources still in use at exit`. Log: `build/T-124-baseline-controlled.stderr`.
+- EXE sau lọc chạy cùng điều kiện trong lượt đối chứng kế tiếp lại không ERROR (`build/T-124-filtered-controlled.stderr`), trong khi lượt package trước đó có lỗi. Lượt baseline có `--verbose` cũng chưa tái hiện. Vì vậy lỗi shutdown không ổn định; chưa có bằng chứng nó do bộ lọc mới gây ra.
+- Chạy main headless/autoplay với `--verbose` chỉ ra OggPacketSequence, AudioStreamOggVorbis và playback còn giữ tham chiếu, gồm clip dép và ambience: `build/T-124-autoplay-verbose.log`. Lượt headless này khác điều kiện Movie Maker, chỉ dùng hỗ trợ điều tra tài nguyên.
+- Sau khi sửa bên sở hữu: chạy lại `pwsh tools/test.ps1`, `pwsh tools/check.ps1`, `pwsh tools/package.ps1`, `pwsh tools/verify-capture.ps1`; chỉ đánh dấu checklist package khi lần kiểm chứng thực tế sạch lỗi.
+- Các log/ZIP/ảnh là artifact local trong build/ (Git ignore); lệnh và bằng chứng tóm tắt đã ghi ở đây để tái hiện. Chưa chơi thử gameplay thủ công.
+- Checkout đầu phiên bị ngắt do sandbox chặn Git LFS; đã lưu trạng thái dở vào stash `Recovery of interrupted T-124 LFS checkout`, rồi checkout lại thành công. Stash bảo toàn này vẫn giữ; working tree trước checkout sạch. Không có blocker Git/mạng sau khi cấp quyền cần thiết.
