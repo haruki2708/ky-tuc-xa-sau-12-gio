@@ -37,8 +37,17 @@ const ANNOUNCEMENT: Array = [
 @export var knock_gap_seconds: float = 4.0
 @export var knock_silence_seconds: float = 20.0
 
+## Seconds the room light stays dark after the rule-1 cut-out.
+@export var room_light_dark_seconds: float = 4.0
+## Steps of the visitor walking away after the door was opened (rule 2).
+@export var walk_away_steps: int = 10
+@export var walk_away_step_seconds: float = 0.55
+## Max wait for the player to close the door before the fifth pair appears anyway.
+@export var slippers_max_wait_seconds: float = 20.0
+
 var finished: bool = false
 var _door_opened_during_knock: bool = false
+var _pending_slippers: bool = false
 
 @onready var _player: Node3D = get_node_or_null(player_path)
 @onready var _floor: Node3D = get_node_or_null(floor_path)
@@ -131,6 +140,8 @@ func _knocking() -> void:
 	if action == &"stay_silent":
 		_say("SUB_KNOCK_STOPPED", 4.0)
 	RuleSystem.resolve(&"knock_at_door", action)
+	if _pending_slippers:
+		await _slippers_aftermath()
 	await _wait(4.0)
 
 
@@ -140,14 +151,18 @@ func _finish() -> void:
 	slice_finished.emit()
 
 
-# --- Consequences -------------------------------------------------------------
+# --- Consequences (D-024: clear and unsettling, no jump scares in segments 1–2) ---
 
 func _on_consequence(consequence: StringName, _rule_id: StringName) -> void:
 	match consequence:
 		&"corridor_light_flicker":
+			_play_sting()
 			_flicker_corridor_light()
+			_room_light_cutout()
 		&"extra_slippers":
-			_place_fifth_slippers()
+			_play_sting()
+			_pending_slippers = true
+			_walk_away()
 
 
 func _flicker_corridor_light() -> void:
@@ -163,6 +178,63 @@ func _flicker_corridor_light() -> void:
 		tween.tween_property(light, "light_energy", base_energy * 0.15, 0.06)
 		tween.tween_property(light, "light_energy", base_energy, 0.09 + 0.05 * (i % 2))
 	GameState.set_flag(&"corridor_light_flickering", true)
+
+
+## Rule 1 broken: the room's own tube stutters and dies, its hum cut with it,
+## then comes back after a few silent seconds.
+func _room_light_cutout() -> void:
+	var light := _floor.get_node_or_null("Room407/Room407MainLight") as Light3D if _floor else null
+	if light == null or not light.visible:
+		return
+	for i in 5:
+		light.visible = false
+		await _wait_real(0.05 + 0.04 * (i % 3))
+		light.visible = true
+		await _wait_real(0.08 + 0.05 * (i % 2))
+	_play_at(&"tube_cut", light)
+	light.visible = false
+	GameState.set_flag(&"room_light_cut", true)
+	await _wait(room_light_dark_seconds)
+	light.visible = true
+
+
+## Rule 2 broken: the empty corridor answers with slippers walking away west.
+func _walk_away() -> void:
+	var door := _door() as Node3D
+	if door == null or _floor == null:
+		return
+	GameState.set_flag(&"visitor_walked_away", true)
+	var steps := AudioStreamPlayer3D.new()
+	steps.name = "VisitorSteps"
+	steps.bus = &"SFX"
+	# Lane E's slipper takes are mastered very quiet for the player (D-019);
+	# the visitor must be heard from inside the room.
+	steps.volume_db = 20.0
+	_floor.add_child(steps)
+	steps.global_position = door.global_position + Vector3(-0.4, 0.1, 1.2)
+	for i in walk_away_steps:
+		var clip := _load_sfx("slipper_tile_%02d" % ((i % 4) + 1))
+		if clip != null:
+			steps.stream = clip
+			steps.play()
+		await _wait(walk_away_step_seconds)
+		if not is_instance_valid(steps):
+			return
+		steps.global_position += Vector3(-0.9, 0, 0)
+	steps.queue_free()
+
+
+## After the door was opened: once it is shut again (or after a while), a pair
+## of slippers is set down outside and the fifth pair is there for good.
+func _slippers_aftermath() -> void:
+	var door := _door()
+	await _wait_until(func() -> bool: return not _door_is_open(door), slippers_max_wait_seconds)
+	await _wait(1.5)
+	var anchor := _floor.get_node_or_null("Anchors/Slippers407") as Node3D if _floor else null
+	if anchor != null:
+		_play_at(&"slipper_place", anchor)
+	_place_fifth_slippers()
+	_pending_slippers = false
 
 
 ## A fifth pair of slippers outside room 407 (placeholder boxes until lane B
@@ -226,6 +298,41 @@ func _door() -> Node:
 
 func _door_is_open(door: Node) -> bool:
 	return door != null and door.get("is_open") == true
+
+
+func _wait_real(seconds: float) -> void:
+	# Flicker timing is about perception; it does not follow time_scale.
+	await get_tree().create_timer(seconds * minf(time_scale, 1.0), false).timeout
+
+
+func _load_sfx(file_name: StringName) -> AudioStream:
+	var path := "res://audio/sfx/%s.ogg" % file_name
+	return load(path) if ResourceLoader.exists(path) else null
+
+
+## Non-positional mistake cue (lane E T-131); silent until the asset exists.
+func _play_sting() -> void:
+	var clip := _load_sfx(&"sting_low")
+	if clip == null:
+		return
+	var player := AudioStreamPlayer.new()
+	player.stream = clip
+	player.bus = &"SFX"
+	add_child(player)
+	player.finished.connect(player.queue_free)
+	player.play()
+
+
+func _play_at(file_name: StringName, where: Node3D) -> void:
+	var clip := _load_sfx(file_name)
+	if clip == null or where == null:
+		return
+	var player := AudioStreamPlayer3D.new()
+	player.stream = clip
+	player.bus = &"SFX"
+	where.add_child(player)
+	player.finished.connect(player.queue_free)
+	player.play()
 
 
 func _play_knock(round_index: int) -> void:

@@ -82,6 +82,34 @@ func test_light_left_on_and_opened_door_change_the_dorm() -> void:
 	assert_eq(GameState.deviation, 3, "1 + 2 deviation;")
 	assert_true(main.get_node("Floor4/Anchors/Slippers407").has_node("FifthPair"), "fifth pair of slippers")
 	assert_true(GameState.get_flag(&"corridor_light_flickering", false), "corridor light flickers")
+	assert_true(GameState.get_flag(&"room_light_cut", false), "room light cut out after rule 1")
+	assert_true(main.get_node("Floor4/Room407/Room407MainLight").visible, "room light comes back")
+
+
+func test_fifth_pair_waits_for_the_door_to_close() -> void:
+	# Rule 2 aftermath: the visitor walks away; the pair is set down only once
+	# the door is shut again (or after slippers_max_wait_seconds).
+	_settle_into_room()
+	director.slippers_max_wait_seconds = 1000.0
+	var door := main.get_node("Floor4/Door407")
+	var anchor := main.get_node("Floor4/Anchors/Slippers407")
+	var open_on_knock := func(text_key: String, _duration: float) -> void:
+		if text_key == "SUB_KNOCK" and not door.is_open:
+			door.set_open(true)
+	EventBus.subtitle_requested.connect(open_on_knock)
+	director.start()
+	var deadline := Time.get_ticks_msec() + 30000
+	while RuleSystem.outcome_of(&"knock_at_door").is_empty() and Time.get_ticks_msec() < deadline:
+		await tree.process_frame
+	EventBus.subtitle_requested.disconnect(open_on_knock)
+	await wait_frames(20)
+	assert_false(anchor.has_node("FifthPair"), "no fifth pair while the door stays open")
+	assert_true(GameState.get_flag(&"visitor_walked_away", false), "visitor walks away in the corridor")
+	door.set_open(false)
+	deadline = Time.get_ticks_msec() + 30000
+	while not director.finished and Time.get_ticks_msec() < deadline:
+		await tree.process_frame
+	assert_true(anchor.has_node("FifthPair"), "fifth pair set down after the door closes")
 
 
 func test_checkpoints_saved_at_segment_starts() -> void:
