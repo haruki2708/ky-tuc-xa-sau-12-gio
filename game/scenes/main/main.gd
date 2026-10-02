@@ -18,13 +18,18 @@ const INTERACT_CUES := {
 const PAPER_PICK_DEPTH: float = 0.15
 ## Ceiling fan blade speed (rad/s), about 2.4 turns per second.
 const FAN_SPEED: float = 15.0
+## Deviation 4 (RULES.md §6): the fan labours.
+const FAN_SLOW_FACTOR: float = 0.3
+const STORY_DIRECTOR := preload("res://scripts/core/story_director.gd")
 
 var _fan_rotors: Array[Node3D] = []
 
 
 func _ready() -> void:
 	_place_interactables()
+	_place_story_papers()
 	_place_speaker()
+	$StoryDirector.restart_requested.connect(_on_restart_requested)
 	EventBus.interacted.connect(_on_interacted)
 	# Kit ceiling fans expose their blades as a separate "fan_rotor" node (T-102).
 	for rotor in $Floor4.find_children("fan_rotor", "", true, false):
@@ -33,8 +38,9 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
+	var speed := FAN_SPEED * (FAN_SLOW_FACTOR if GameState.get_flag(&"fan_slow", false) == true else 1.0)
 	for rotor in _fan_rotors:
-		rotor.rotate_y(FAN_SPEED * delta)
+		rotor.rotate_y(speed * delta)
 
 
 ## Moves the player onto a checkpoint anchor of floor 4 (docs/design/LAYOUT.md §6).
@@ -76,6 +82,55 @@ func _place_interactables() -> void:
 	phone.vibrate_stream = PHONE_VIBRATE
 	_attach(phone, anchors.get_node("Phone_Trung"))
 	$StoryDirector.phone_path = $StoryDirector.get_path_to(phone)
+
+
+## Papers for segments 3–5 (T-136) and the washroom tap the story watches.
+func _place_story_papers() -> void:
+	var anchors := $Floor4/Anchors
+	# Hall board: faces the corridor (+Z) like its anchor.
+	_place_readable(&"hall_board", anchors.get_node("HallBoard"), Vector2(0.42, 0.58),
+		Transform3D(Basis.IDENTITY, Vector3(0, 0, 0.012)))
+	# Handwritten note clipped to the frame; shown from segment 4 (StoryDirector).
+	var note := _place_readable(&"hall_board_note", anchors.get_node("HallBoardNote"), Vector2(0.15, 0.2),
+		Transform3D(Basis.IDENTITY, Vector3(0, 0, 0.02)))
+	note.name = "HallBoardNoteReadable"
+	note.visible = false
+	note.enabled = false
+	# Duty log lies open on the desk: readable +Z points up.
+	_place_readable(&"duty_log", anchors.get_node("DutyLog"), Vector2(0.34, 0.24),
+		Transform3D(Basis.from_euler(Vector3(-PI / 2.0, 0, 0)), Vector3(0, 0.03, 0)))
+	# Washroom notice and room record: their anchors face the wall, turn around.
+	_place_readable(&"washroom_notice", anchors.get_node("WashroomNotice"), Vector2(0.21, 0.3),
+		Transform3D(Basis.from_euler(Vector3(0, PI, 0)), Vector3(0, 0, -0.02)))
+	_place_readable(&"room_record_407", anchors.get_node("Locker_Trung"), Vector2(0.21, 0.3),
+		Transform3D(Basis.from_euler(Vector3(0, PI, 0)), Vector3(0, 1.25, -0.27)))
+	var tap := StoryTrigger.new()
+	tap.name = "TapTrigger"
+	tap.prompt_key = "PROMPT_CLOSE_TAP"
+	tap.enabled = false
+	tap.size = Vector3(0.3, 0.3, 0.3)
+	anchors.get_node("WashroomTapRunning").add_child(tap)
+
+
+func _place_readable(document_id: StringName, anchor: Node3D, size: Vector2, offset: Transform3D) -> Node3D:
+	var paper := READABLE.instantiate()
+	paper.name = String(document_id).to_pascal_case()
+	paper.document_id = document_id
+	paper.size = size
+	anchor.add_child(paper)
+	paper.transform = offset
+	_extend_pick_depth(paper)
+	return paper
+
+
+## A real loss (StoryDirector): reload the scene and resume at the checkpoint.
+## Only the running game reloads; tests that instance Main do not.
+func _on_restart_requested(checkpoint_id: StringName) -> void:
+	if get_tree().current_scene != self:
+		return
+	STORY_DIRECTOR.resume_checkpoint = checkpoint_id
+	get_tree().paused = false
+	get_tree().reload_current_scene()
 
 
 ## Lane E's PA speaker (T-130) on the duty desk; the story reads the rules through it.

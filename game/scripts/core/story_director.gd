@@ -1,17 +1,24 @@
 extends Node
-## Story flow for segments 1–2 (T-117, docs/design/RULES.md §5):
-## 23:50 back to room 407 → 23:59 phone → 00:00 speaker reads the 5 rules
-## (rule 3 garbled) → rule 1 judged → 00:10 knocking → rule 2 judged →
-## consequences → end of the prototype slice.
+## Story flow of the demo night (docs/design/RULES.md §5, §5b, §6):
+##   seg1 23:50 back to room 407 → seg2 00:00 speaker rules, knocking →
+##   seg3 00:30 duty log, slippers behind you → seg4 01:00 roll call →
+##   seg5 01:20 washroom tap and mirror → end 01:40 last roll call.
+## Each segment starts with a checkpoint. A real loss asks Main to reload the
+## scene and resume from that checkpoint (restart_requested).
 ##
-## Optional collaborators are found by path and may be missing until their lane
-## delivers: the phone (T-129), the Speaker (T-130). Without them the director
-## falls back to subtitles and timers. Owner: integrator.
+## Optional collaborators may be missing until their lane delivers: phone
+## (T-129), Speaker (T-130), pursuer/gaze (T-134), mirror/silhouette (T-135).
+## The director falls back to subtitles, timers and simple checks.
+## Owner: integrator.
 
 signal slice_finished
+## A real loss: Main reloads the scene and calls resume from this checkpoint.
+signal restart_requested(checkpoint_id: StringName)
 
 const RULE_SET_PATH := "res://data/rules/demo.tres"
+const SEGMENTS: Array[StringName] = [&"seg1", &"seg2", &"seg3", &"seg4", &"seg5", &"end"]
 const ROOM_407_X := Vector2(30.0, 34.0)
+const WASHROOM_MAX_X := 6.0
 ## Speaker lines: [text_key, rule_id, garbled]. Rule 3's action is lost in static.
 const ANNOUNCEMENT: Array = [
 	["RULE_HEADER_5", &"", false],
@@ -21,6 +28,17 @@ const ANNOUNCEMENT: Array = [
 	["RULE_4", &"rollcall_self_genuine", false],
 	["RULE_5", &"tap_genuine", false],
 ]
+## Roll call order (RULES.md §5 seg4): [speaker key, situation, net node].
+const ROLL_CALL: Array = [
+	["SPK_NAME_PHUC", &"roll_call_roommate", "BunkA/Net_Phuc"],
+	["SPK_NAME_VIET", &"roll_call_roommate", "BunkA/Net_Viet"],
+	["SPK_NAME_TRUNG", &"roll_call_self", ""],
+	["SPK_NAME_DAT", &"roll_call_roommate", "BunkB/Net_Dat"],
+	["SPK_NAME_LAM", &"roll_call_fifth", ""],
+]
+
+## Checkpoint to resume after a reload; kept across the scene change.
+static var resume_checkpoint: StringName = &""
 
 ## Multiplies every wait; tests use a small value.
 @export var time_scale: float = 1.0
@@ -36,21 +54,35 @@ const ANNOUNCEMENT: Array = [
 @export var knock_rounds: int = 3
 @export var knock_gap_seconds: float = 4.0
 @export var knock_silence_seconds: float = 20.0
-
-## Seconds the room light stays dark after the rule-1 cut-out.
 @export var room_light_dark_seconds: float = 4.0
-## Steps of the visitor walking away after the door was opened (rule 2).
 @export var walk_away_steps: int = 10
 @export var walk_away_step_seconds: float = 0.55
-## Max wait for the player to close the door before the fifth pair appears anyway.
 @export var slippers_max_wait_seconds: float = 20.0
+## Segment 3: how long to wait for the log, how long standing still counts as
+## stopping, and the overall limit of the slippers-behind-you moment.
+@export var duty_log_max_seconds: float = 240.0
+@export var footsteps_still_seconds: float = 8.0
+@export var footsteps_max_seconds: float = 120.0
+## Segment 5: how long looking at the mirror counts as "looking", and limits.
+@export var mirror_look_seconds: float = 1.0
+@export var washroom_max_seconds: float = 240.0
+@export var end_wait_seconds: float = 60.0
+## Stop after this segment (tests run one stretch of the night). Empty = to the end.
+@export var stop_after: StringName = &""
 
-## [accessibility] reduce_scares (docs/SETTINGS.md, D-024): no jump-scare
-## visuals or strong stings, slower pursuers, quieter whisper.
+## [accessibility] reduce_scares (docs/SETTINGS.md, D-024).
 var reduce_scares: bool = false
 var finished: bool = false
 var _door_opened_during_knock: bool = false
 var _pending_slippers: bool = false
+var _failing: bool = false
+var _roll_call_active: bool = false
+var _current_name: String = ""
+var _answered: Dictionary[String, bool] = {}
+var _tap_closed: bool = false
+var _flicker_timer: Timer
+var _overlay: ColorRect
+var _overlay_label: Label
 
 @onready var _player: Node3D = get_node_or_null(player_path)
 @onready var _floor: Node3D = get_node_or_null(floor_path)
@@ -59,28 +91,69 @@ var _pending_slippers: bool = false
 func _ready() -> void:
 	EventBus.consequence_triggered.connect(_on_consequence)
 	EventBus.settings_changed.connect(_on_settings_changed)
+	EventBus.deviation_changed.connect(_on_deviation_changed)
+	EventBus.player_failed.connect(_on_player_failed)
+	EventBus.document_opened.connect(_on_document_opened)
+	EventBus.subtitle_requested.connect(_on_subtitle)
 	_read_reduce_scares()
+	_build_overlay()
 	if auto_start:
 		start.call_deferred()
 
 
+## Starts the night, or resumes from resume_checkpoint after a reload.
 func start() -> void:
 	var errors := RuleSystem.load_rule_set(load(RULE_SET_PATH))
 	if not errors.is_empty():
 		push_warning("StoryDirector: demo rules invalid: %s" % ", ".join(errors))
 		return
-	GameState.reset()
-	GameState.set_time(GameState.START_MINUTES)
-	await _segment_1()
-	await _segment_2()
-	_finish()
+	var from := &"seg1"
+	if not resume_checkpoint.is_empty():
+		var restored := Checkpoint.restore()
+		resume_checkpoint = &""
+		if not restored.is_empty():
+			from = StringName(String(restored).trim_suffix("_start"))
+			_place_player_at(restored)
+	else:
+		GameState.reset()
+		GameState.set_time(GameState.START_MINUTES)
+	apply_world_state()
+	await run_from(from)
+
+
+## Runs the night from a segment id in SEGMENTS (tests start mid-night too).
+func run_from(segment: StringName) -> void:
+	var index := SEGMENTS.find(segment)
+	if index < 0:
+		push_warning("StoryDirector: unknown segment '%s'" % segment)
+		return
+	for i in range(index, SEGMENTS.size()):
+		if _failing or not is_inside_tree():
+			return
+		match SEGMENTS[i]:
+			&"seg1": await _segment_1()
+			&"seg2": await _segment_2()
+			&"seg3": await _segment_3()
+			&"seg4": await _segment_4()
+			&"seg5": await _segment_5()
+			&"end": await _ending()
+		if SEGMENTS[i] == stop_after:
+			break
+	if not _failing and is_inside_tree():
+		finished = true
+		slice_finished.emit()
+
+
+func _begin_segment(segment: StringName, minutes: int) -> void:
+	GameState.set_segment(segment)
+	GameState.set_time(minutes)
+	Checkpoint.save(StringName(String(segment) + "_start"))
 
 
 # --- Segment 1: 23:50, tutorial -------------------------------------------
 
 func _segment_1() -> void:
-	GameState.set_segment(&"seg1")
-	Checkpoint.save(&"seg1_start")
+	_begin_segment(&"seg1", GameState.START_MINUTES)
 	_say("SUB_SEG1_GO_ROOM", 6.0)
 	await _wait_until(func() -> bool: return _player_in_room(), segment1_max_seconds)
 	_say("SUB_SEG1_READ_PAPER", 6.0)
@@ -100,31 +173,17 @@ func _segment_1() -> void:
 # --- Segment 2: 00:00, rules over the speaker, first rulings -----------------
 
 func _segment_2() -> void:
-	GameState.set_time(24 * 60)
-	GameState.set_segment(&"seg2")
-	Checkpoint.save(&"seg2_start")
-	await _announce_rules()
-	RuleSystem.resolve(&"lights_out", &"turn_off_main_light" if not _main_light_on() else &"left_on")
-	await _wait(6.0)
-	GameState.set_time(24 * 60 + 10)
-	await _knocking()
-
-
-func _announce_rules() -> void:
+	_begin_segment(&"seg2", 24 * 60)
 	for line in ANNOUNCEMENT:
 		var rule_id: StringName = line[1]
 		if not rule_id.is_empty():
 			RuleSystem.mark_read(rule_id, &"speaker", line[0])
-	var speaker := get_node_or_null(speaker_path)
-	if speaker != null and speaker.has_method("play_announcement"):
-		var lines: Array = ANNOUNCEMENT.map(func(line: Array) -> Dictionary:
-			return {"text_key": line[0], "garbled": line[2]})
-		speaker.play_announcement(lines, line_seconds * time_scale)
-		await speaker.announcement_finished
-	else:
-		for line in ANNOUNCEMENT:
-			_say(line[0], line_seconds)
-		await _wait(line_seconds * ANNOUNCEMENT.size())
+	await _announce(ANNOUNCEMENT.map(func(line: Array) -> Dictionary:
+		return {"text_key": line[0], "garbled": line[2]}))
+	RuleSystem.resolve(&"lights_out", &"turn_off_main_light" if not _main_light_on() else &"left_on")
+	await _wait(6.0)
+	GameState.set_time(24 * 60 + 10)
+	await _knocking()
 
 
 func _knocking() -> void:
@@ -150,13 +209,246 @@ func _knocking() -> void:
 	await _wait(4.0)
 
 
-func _finish() -> void:
-	finished = true
-	_say("SUB_SLICE_END", 30.0)
-	slice_finished.emit()
+# --- Segment 3: 00:30, duty log, slippers behind you ------------------------
+
+func _segment_3() -> void:
+	_begin_segment(&"seg3", 24 * 60 + 30)
+	await _announce([{"text_key": "SPK_SIGN_LOG", "garbled": false}])
+	await _wait_until(func() -> bool: return GameState.get_flag(&"read_duty_log", false) == true,
+		duty_log_max_seconds)
+	GameState.set_flag(&"signed_log", true)
+	await _wait_until(func() -> bool: return _player == null or _player.global_position.x < 37.5, 30.0)
+	await _footsteps_behind()
 
 
-# --- Consequences (D-024: clear and unsettling, no jump scares in segments 1–2) ---
+## Slippers follow a few metres behind. Rule 3 (genuine): don't turn around,
+## keep walking to the light. The fake copy says: stop, turn and greet them.
+func _footsteps_behind() -> void:
+	if _player == null or _floor == null:
+		RuleSystem.resolve(&"footsteps_behind", &"keep_walking")
+		return
+	_say("SUB_FOOTSTEPS_BEHIND", 4.0)
+	var follower := AudioStreamPlayer3D.new()
+	follower.name = "FollowerSteps"
+	follower.bus = &"SFX"
+	follower.volume_db = 20.0
+	_floor.add_child(follower)
+	var distance := 3.5
+	var looked := 0.0
+	var still := 0.0
+	var elapsed := 0.0
+	var step_clock := 0.0
+	var step_index := 0
+	var action := &"keep_walking"
+	while is_inside_tree() and not _failing:
+		await get_tree().process_frame
+		if get_tree().paused:
+			continue
+		var delta := get_process_delta_time()
+		elapsed += delta
+		var speed := Vector2((_player as CharacterBody3D).velocity.x, (_player as CharacterBody3D).velocity.z).length() \
+			if _player is CharacterBody3D else 1.0
+		still = still + delta if speed < 0.2 else 0.0
+		# Standing still lets the slippers close in.
+		distance = maxf(1.2, distance - delta * (0.35 if speed < 0.2 else 0.0))
+		follower.global_position = Vector3(minf(_player.global_position.x + distance, 43.0), 0.1, 1.2)
+		step_clock += delta
+		if step_clock >= 0.6:
+			step_clock = 0.0
+			var clip := _load_sfx("slipper_tile_%02d" % ((step_index % 4) + 1))
+			step_index += 1
+			if clip != null:
+				follower.stream = clip
+				follower.play()
+		looked = looked + delta if _looking_at(follower.global_position + Vector3(0, 1.0, 0), 50.0) else 0.0
+		if looked >= 0.3 * minf(time_scale, 1.0):
+			action = &"turn_around"
+			break
+		if _player_in_room():
+			action = &"keep_walking"
+			break
+		if still >= footsteps_still_seconds * time_scale:
+			action = &"stop_and_wait"
+			break
+		if elapsed >= footsteps_max_seconds * time_scale:
+			break
+	follower.queue_free()
+	GameState.set_flag(&"footsteps_resolved", true)
+	RuleSystem.resolve(&"footsteps_behind", action)
+	await _wait(3.0)
+
+
+# --- Segment 4: 01:00, roll call ----------------------------------------------
+
+func _segment_4() -> void:
+	# The handwritten note is on the board from now on (part of the checkpoint).
+	GameState.set_flag(&"note_on_board", true)
+	apply_world_state()
+	_begin_segment(&"seg4", 25 * 60)
+	await _wait(6.0)
+	_say("SUB_ROLLCALL_HINT", 6.0)
+	_answered.clear()
+	_roll_call_active = true
+	var lines: Array = [{"text_key": "SPK_ROLLCALL_INTRO", "garbled": false}]
+	for entry in ROLL_CALL:
+		lines.append({"text_key": entry[0], "garbled": false})
+	await _announce(lines)
+	_roll_call_active = false
+	if _failing:
+		return
+	await _wait(3.0)
+
+
+## Called whenever a subtitle line starts: the roll call judges the previous
+## name when the next line begins, so answers count only while a name is read.
+func _on_subtitle(text_key: String, _duration: float) -> void:
+	# Only speaker lines (SPK_*) open or close a name window; "You: Here!" and
+	# hints must not.
+	if not _roll_call_active or (not text_key.is_empty() and not text_key.begins_with("SPK_")):
+		return
+	if not _current_name.is_empty():
+		_judge_name(_current_name)
+	_current_name = text_key if text_key.begins_with("SPK_NAME_") else ""
+
+
+func _judge_name(name_key: String) -> void:
+	for entry in ROLL_CALL:
+		if entry[0] != name_key:
+			continue
+		var answered: bool = _answered.get(name_key, false)
+		var situation: StringName = entry[1]
+		var action := &"answer" if answered else &"stay_silent"
+		var result := RuleSystem.resolve(situation, action)
+		if result["consequence"] == &"net_stirs":
+			_stir_net(entry[2])
+		elif result["consequence"] == &"name_called_again":
+			_say("SUB_NAME_CALLED_AGAIN", 4.0)
+
+
+func _input(event: InputEvent) -> void:
+	if not _roll_call_active or _current_name.is_empty() or get_tree().paused:
+		return
+	if event.is_action_pressed("interact") and not event.is_echo():
+		if not _answered.get(_current_name, false):
+			_answered[_current_name] = true
+			EventBus.subtitle_requested.emit("SUB_YOU_ANSWER", 1.5)
+
+
+# --- Segment 5: 01:20, washroom tap and mirror --------------------------------
+
+func _segment_5() -> void:
+	_begin_segment(&"seg5", 25 * 60 + 20)
+	await _announce([{"text_key": "SPK_CHECK_TAPS", "garbled": false}])
+	var tap := _floor.get_node_or_null("Anchors/WashroomTapRunning/TapTrigger") as StoryTrigger if _floor else null
+	GameState.set_flag(&"tap_running", true)
+	var water := _start_running_water()
+	_tap_closed = false
+	if tap != null:
+		tap.enabled = true
+		tap.triggered.connect(func() -> void:
+			_tap_closed = true
+			tap.enabled = false
+			if is_instance_valid(water):
+				water.queue_free()
+			GameState.set_flag(&"tap_running", false), CONNECT_ONE_SHOT)
+	await _wait_until(func() -> bool: return _player_in_washroom(), washroom_max_seconds)
+	GameState.set_time(25 * 60 + 30)
+	var looked := 0.0
+	var elapsed := 0.0
+	var action := &""
+	var mirror := _anchor("WashroomMirror")
+	while is_inside_tree() and not _failing and action.is_empty():
+		await get_tree().process_frame
+		if get_tree().paused:
+			continue
+		var delta := get_process_delta_time()
+		elapsed += delta
+		if mirror != null and _player_in_washroom() and _looking_at(mirror.global_position, 25.0):
+			looked += delta
+		else:
+			looked = 0.0
+		if looked >= mirror_look_seconds * minf(time_scale, 1.0):
+			action = &"look_in_mirror"
+		elif not _player_in_washroom():
+			action = &"close_tap_and_leave" if _tap_closed else &"leave_tap_running"
+		elif elapsed >= washroom_max_seconds * time_scale:
+			action = &"close_tap_and_leave" if _tap_closed else &"leave_tap_running"
+	RuleSystem.resolve(&"tap_running", action)
+	await _wait(3.0)
+
+
+# --- End: 01:40, the last roll call --------------------------------------------
+
+func _ending() -> void:
+	GameState.set_segment(&"end")
+	GameState.set_time(25 * 60 + 40)
+	await _wait_until(func() -> bool: return _player_in_room(), end_wait_seconds)
+	var lines: Array = [{"text_key": "SPK_ROLLCALL_INTRO", "garbled": false},
+		{"text_key": "SPK_NAME_PHUC", "garbled": false}, {"text_key": "SPK_NAME_VIET", "garbled": false}]
+	if GameState.deviation >= 3:
+		# The dorm has made up its mind: Lâm takes Trung's place.
+		lines.append({"text_key": "SPK_NAME_LAM", "garbled": false})
+		lines.append({"text_key": "SPK_NAME_DAT", "garbled": false})
+		lines.append({"text_key": "SPK_AND_TRUNG", "garbled": true})
+	else:
+		lines.append({"text_key": "SPK_NAME_TRUNG", "garbled": false})
+		lines.append({"text_key": "SPK_NAME_DAT", "garbled": false})
+		lines.append({"text_key": "SPK_AND_ONE_MORE", "garbled": false})
+	GameState.set_flag(&"ending_variant", 2 if GameState.deviation >= 3 else 1)
+	await _announce(lines)
+	await _fade_to_black(2.0)
+	_show_card("SUB_TO_BE_CONTINUED")
+	_say("SUB_FOLLOW_GAME", 600.0)
+
+
+# --- Losing and resuming -------------------------------------------------------
+
+func _on_player_failed(_rule_id: StringName) -> void:
+	if _failing:
+		return
+	_failing = true
+	_roll_call_active = false
+	var checkpoint := StringName(String(GameState.segment) + "_start")
+	var whisper := _play_at(&"whisper_co", _player, &"Voice")
+	if whisper != null and reduce_scares:
+		whisper.volume_db = -8.0
+	if _floor != null and _floor.get_node_or_null("Room407") != null:
+		_play_at(&"net_billow", _floor.get_node("Room407"))
+	await _fade_to_black(1.5)
+	_show_card("SUB_FAIL")
+	await _wait(3.0)
+	restart_requested.emit(checkpoint)
+
+
+## Rebuilds the world from GameState (after a reload or a deviation change).
+func apply_world_state() -> void:
+	if _floor == null:
+		return
+	var level := GameState.deviation
+	_set_corridor_flicker(level >= 1)
+	for room in [402, 403, 404]:
+		var light := _floor.get_node_or_null("Corridor/CorridorLight_%d" % room) as Light3D
+		if light != null:
+			light.visible = level < 2
+	if level >= 3 or GameState.get_flag(&"fifth_slippers", false) == true:
+		_place_fifth_slippers()
+	if level >= 3:
+		_place_extra_shirt()
+	GameState.set_flag(&"fan_slow", level >= 4)
+	var note := _floor.get_node_or_null("Anchors/HallBoardNote/HallBoardNoteReadable") as Node3D
+	if note != null:
+		var shown: bool = GameState.get_flag(&"note_on_board", false) == true
+		note.visible = shown
+		note.set("enabled", shown)
+
+
+func _on_deviation_changed(level: int, _reason: StringName) -> void:
+	apply_world_state()
+	if level >= GameState.MAX_DEVIATION and not _failing:
+		EventBus.player_failed.emit(&"deviation")
+
+
+# --- Consequences (D-024) -------------------------------------------------------
 
 func _on_consequence(consequence: StringName, _rule_id: StringName) -> void:
 	match consequence:
@@ -168,6 +460,19 @@ func _on_consequence(consequence: StringName, _rule_id: StringName) -> void:
 			_play_sting()
 			_pending_slippers = true
 			_walk_away()
+		&"light_off_behind":
+			_play_sting()
+			_lights_off_behind()
+		&"footsteps_close_in":
+			_play_sting()
+			_play_at(&"slipper_rush_01", _player)
+		&"mirror_delay":
+			_play_sting()
+			_say("SUB_MIRROR_LAG", 4.0)
+		&"water_follows":
+			_play_sting()
+			_say("SUB_WATER_FOLLOWS", 4.0)
+			_water_follows()
 
 
 func _flicker_corridor_light() -> void:
@@ -235,17 +540,69 @@ func _slippers_aftermath() -> void:
 	var door := _door()
 	await _wait_until(func() -> bool: return not _door_is_open(door), slippers_max_wait_seconds)
 	await _wait(1.5)
-	var anchor := _floor.get_node_or_null("Anchors/Slippers407") as Node3D if _floor else null
+	var anchor := _anchor("Slippers407")
 	if anchor != null:
 		_play_at(&"slipper_place", anchor)
 	_place_fifth_slippers()
+	GameState.set_flag(&"fifth_slippers", true)
 	_pending_slippers = false
+
+
+## Rule 3 fake followed: the tubes behind the player die one by one. (The
+## jump scare and chase of D-024 hook in here once T-134/T-135 land.)
+func _lights_off_behind() -> void:
+	GameState.set_flag(&"lights_off_behind", true)
+	for light_name in ["CorridorLight_Desk", "CorridorLight_408", "CorridorLight_407"]:
+		var light := _floor.get_node_or_null("Corridor/" + light_name) as Light3D if _floor else null
+		if light == null or not light.visible:
+			continue
+		_play_at(&"tube_cut", light)
+		light.visible = false
+		await _wait(0.8)
+
+
+func _water_follows() -> void:
+	for i in 12:
+		if not is_inside_tree() or _player == null:
+			return
+		_play_at(&"water_drip_%02d" % ((i % 3) + 1), _player)
+		await _wait(1.6)
+
+
+func _stir_net(path: String) -> void:
+	var net := _floor.get_node_or_null("Room407/" + path) as Node3D if _floor and not path.is_empty() else null
+	if net == null:
+		return
+	_play_at(&"net_billow", net)
+	var base := net.scale
+	var tween := create_tween()
+	tween.tween_property(net, "scale", base * Vector3(1.04, 1.0, 1.04), 0.35)
+	tween.tween_property(net, "scale", base, 0.6)
+	GameState.set_flag(&"net_stirred", true)
+
+
+func _set_corridor_flicker(on: bool) -> void:
+	if not on:
+		if _flicker_timer != null:
+			_flicker_timer.stop()
+		return
+	if _flicker_timer == null:
+		_flicker_timer = Timer.new()
+		_flicker_timer.one_shot = false
+		add_child(_flicker_timer)
+		_flicker_timer.timeout.connect(func() -> void:
+			var light := _floor.get_node_or_null("Corridor/CorridorLight_405") as Light3D
+			if light != null and light.visible and light.get_node_or_null("LightHum") != null:
+				light.get_node("LightHum").flicker(0.6)
+			_flicker_timer.wait_time = randf_range(3.0, 7.0))
+	if _flicker_timer.is_stopped():
+		_flicker_timer.start(randf_range(3.0, 7.0))
 
 
 ## A fifth pair of slippers outside room 407 (placeholder boxes until lane B
 ## models slippers). Kept in Anchors/Slippers407 so it survives into later segments.
 func _place_fifth_slippers() -> void:
-	var anchor := _floor.get_node_or_null("Anchors/Slippers407") as Node3D if _floor else null
+	var anchor := _anchor("Slippers407")
 	if anchor == null or anchor.has_node("FifthPair"):
 		return
 	var pair := Node3D.new()
@@ -265,7 +622,41 @@ func _place_fifth_slippers() -> void:
 	GameState.set_flag(&"fifth_slippers", true)
 
 
+func _place_extra_shirt() -> void:
+	var anchor := _anchor("ClotheslineExtraShirt")
+	if anchor == null or anchor.has_node("ExtraShirt"):
+		return
+	var shirt := MeshInstance3D.new()
+	shirt.name = "ExtraShirt"
+	var mesh := BoxMesh.new()
+	mesh.size = Vector3(0.5, 0.65, 0.02)
+	var material := StandardMaterial3D.new()
+	material.albedo_color = Color(0.86, 0.86, 0.82)
+	mesh.material = material
+	shirt.mesh = mesh
+	shirt.position = Vector3(0, -0.35, 0)
+	anchor.add_child(shirt)
+
+
 # --- Helpers ------------------------------------------------------------------
+
+func _announce(lines: Array) -> void:
+	var speaker := get_node_or_null(speaker_path)
+	if speaker != null and speaker.has_method("play_announcement"):
+		speaker.play_announcement(lines, line_seconds * time_scale)
+		await speaker.announcement_finished
+	else:
+		for line in lines:
+			_say(line["text_key"], line_seconds)
+			await _wait(line_seconds)
+	# Close the last roll-call name window.
+	if _roll_call_active:
+		_on_subtitle("", 0.0)
+
+
+func _on_document_opened(document_id: StringName) -> void:
+	GameState.set_flag(StringName("read_" + String(document_id)), true)
+
 
 func _on_settings_changed(section: String, key: String) -> void:
 	if section == "accessibility" and key == "reduce_scares":
@@ -298,11 +689,41 @@ func _wait_until(condition: Callable, max_seconds: float) -> void:
 			elapsed += get_process_delta_time()
 
 
+func _wait_real(seconds: float) -> void:
+	# Flicker timing is about perception; it does not follow time_scale.
+	await get_tree().create_timer(seconds * minf(time_scale, 1.0), false).timeout
+
+
+func _anchor(anchor_name: String) -> Node3D:
+	return _floor.get_node_or_null("Anchors/" + anchor_name) as Node3D if _floor else null
+
+
+func _place_player_at(checkpoint_id: StringName) -> void:
+	var anchor := _anchor(String(checkpoint_id))
+	if anchor != null and _player != null:
+		_player.global_transform = anchor.global_transform
+
+
 func _player_in_room() -> bool:
 	if _player == null:
 		return true
 	var p := _player.global_position
 	return p.x > ROOM_407_X.x and p.x < ROOM_407_X.y and p.z < -0.3
+
+
+func _player_in_washroom() -> bool:
+	return _player != null and _player.global_position.x < WASHROOM_MAX_X
+
+
+## True when the player's camera faces a world point within max_degrees.
+## (T-134's GazeDetector replaces this for the D-024 scares.)
+func _looking_at(point: Vector3, max_degrees: float) -> bool:
+	var camera := get_viewport().get_camera_3d()
+	if camera == null:
+		return false
+	var forward := -camera.global_basis.z
+	var to_point := (point - camera.global_position).normalized()
+	return forward.angle_to(to_point) <= deg_to_rad(max_degrees)
 
 
 func _main_light_on() -> bool:
@@ -318,17 +739,12 @@ func _door_is_open(door: Node) -> bool:
 	return door != null and door.get("is_open") == true
 
 
-func _wait_real(seconds: float) -> void:
-	# Flicker timing is about perception; it does not follow time_scale.
-	await get_tree().create_timer(seconds * minf(time_scale, 1.0), false).timeout
-
-
 func _load_sfx(file_name: StringName) -> AudioStream:
 	var path := "res://audio/sfx/%s.ogg" % file_name
 	return load(path) if ResourceLoader.exists(path) else null
 
 
-## Non-positional mistake cue (lane E T-131); silent until the asset exists.
+## Non-positional mistake cue (lane E T-131).
 func _play_sting() -> void:
 	var clip := _load_sfx(&"sting_low")
 	if clip == null:
@@ -341,29 +757,68 @@ func _play_sting() -> void:
 	player.play()
 
 
-func _play_at(file_name: StringName, where: Node3D) -> void:
+func _play_at(file_name: StringName, where: Node, bus: StringName = &"SFX") -> AudioStreamPlayer3D:
 	var clip := _load_sfx(file_name)
 	if clip == null or where == null:
-		return
+		return null
 	var player := AudioStreamPlayer3D.new()
 	player.stream = clip
-	player.bus = &"SFX"
+	player.bus = bus
 	where.add_child(player)
 	player.finished.connect(player.queue_free)
 	player.play()
+	return player
+
+
+## Placeholder running tap: a quick drip loop at the tap until it is closed.
+func _start_running_water() -> Node:
+	var tap := _anchor("WashroomTapRunning")
+	if tap == null:
+		return null
+	var water := Node.new()
+	water.name = "RunningWater"
+	tap.add_child(water)
+	_drip_loop(water, tap)
+	return water
+
+
+func _drip_loop(owner_node: Node, tap: Node3D) -> void:
+	var index := 0
+	while is_instance_valid(owner_node) and is_inside_tree():
+		_play_at(&"water_drip_%02d" % ((index % 3) + 1), tap)
+		index += 1
+		await _wait(0.35)
 
 
 func _play_knock(round_index: int) -> void:
 	var door := _door()
-	if door == null:
-		return
-	var stream := load("res://audio/sfx/knock_%02d.ogg" % (mini(round_index, 2) + 1)) \
-		if ResourceLoader.exists("res://audio/sfx/knock_%02d.ogg" % (mini(round_index, 2) + 1)) else null
-	if stream == null:
-		return
-	var player := AudioStreamPlayer3D.new()
-	player.stream = stream
-	player.bus = &"SFX"
-	door.add_child(player)
-	player.play()
-	player.finished.connect(player.queue_free)
+	if door != null:
+		_play_at(StringName("knock_%02d" % (mini(round_index, 2) + 1)), door)
+
+
+func _build_overlay() -> void:
+	var layer := CanvasLayer.new()
+	layer.layer = 18 # Above HUD (10) and reading views (15), below the pause menu (20).
+	add_child(layer)
+	_overlay = ColorRect.new()
+	_overlay.color = Color(0, 0, 0, 0)
+	_overlay.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_overlay.set_anchors_preset(Control.PRESET_FULL_RECT)
+	layer.add_child(_overlay)
+	_overlay_label = Label.new()
+	_overlay_label.set_anchors_preset(Control.PRESET_CENTER)
+	_overlay_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_overlay_label.add_theme_font_size_override("font_size", 44)
+	_overlay_label.grow_horizontal = Control.GROW_DIRECTION_BOTH
+	_overlay_label.grow_vertical = Control.GROW_DIRECTION_BOTH
+	_overlay.add_child(_overlay_label)
+
+
+func _fade_to_black(seconds: float) -> void:
+	var tween := create_tween()
+	tween.tween_property(_overlay, "color:a", 1.0, maxf(seconds * time_scale, 0.01))
+	await tween.finished
+
+
+func _show_card(text_key: String) -> void:
+	_overlay_label.text = text_key

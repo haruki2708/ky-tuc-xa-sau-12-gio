@@ -1,5 +1,5 @@
 # T-136 — Đoạn 3–5 và cái kết
-- Lane: core (Claude) | Trạng thái: todo | Agent: Claude (integrator)
+- Lane: core (Claude) | Trạng thái: doing (phần 1 xong) | Agent: Claude (integrator)
 - Phụ thuộc: T-117 (đoạn 1–2), T-131, T-132 (done); **T-134 (A), T-135 (B)** cho truy đuổi và gương. Thiết kế: `docs/design/RULES.md` mục 5, 5b, 6.
 
 ## Mục tiêu
@@ -23,3 +23,12 @@ Demo chơi được từ đầu đến cuối, khoảng 15–20 phút:
 8. **Test core:** chạy nhanh từng đoạn, các nhánh đúng và sai, thua và tải lại checkpoint, cả hai biến thể kết.
 
 ## Handoff
+**Phần 1 (2026-10-03, Claude):** chơi được từ đầu đến cuối, chưa có cú hù hình ảnh và truy đuổi.
+- **Dữ liệu:** `duty_log.tres`, `room_record_407.tres`; key `DOC_DUTY_LOG_*`, `DOC_ROOM_RECORD_*`, `SPK_*` (loa ký sổ, điểm danh, khóa vòi, kết), `SUB_*` mới, `PROMPT_CLOSE_TAP`.
+- **Đặt đồ (`main.gd` `_place_story_papers`):** bảng nội quy, giấy viết tay (ẩn đến đoạn 4), sổ trực nằm trên bàn, thông báo nhà vệ sinh, hồ sơ phòng trên tủ Trung; vòi nước là `StoryTrigger` (lõi, `scripts/core/story_trigger.gd`). Đã chụp ảnh kiểm tra hướng.
+- **`StoryDirector`:** `run_from(segment)` chạy từ một đoạn bất kỳ; `stop_after` cho test. Đoạn 3: dép sau lưng, phán định tạm bằng góc camera (50°, 0,3 s), về phòng là `keep_walking`, đứng yên 8 s là `stop_and_wait`. Đoạn 4: loa đọc 5 tên, bấm E trong lúc đang đọc một tên là trả lời; trả lời cho bạn cùng phòng làm mùng phồng; trả lời tên Lâm thì thua. Đoạn 5: vòi chảy (tiếng nhỏ giọt tạm); nhìn gương 25° trong 1 s là `look_in_mirror`. Kết: lệch 0–2 "…và một người nữa", lệch 3–4 Lâm thay Trung, rồi màn "Còn tiếp".
+- **Mức lệch:** 1 đèn 405 chập chờn; 2 tắt đèn 402–404; 3 đôi dép thứ 5 và áo trắng trên dây phơi; 4 quạt quay chậm; 5 thua.
+- **Thua:** `player_failed` → tiếng `whisper_co` và `net_billow` → tối màn hình → `restart_requested` → `main.gd` nạp lại scene, `StoryDirector.resume_checkpoint` khôi phục checkpoint đầu đoạn và đặt người chơi.
+- **Test:** `tests/core/test_story_segments_3_5.gd` (13 test); test đoạn 1–2 dùng `stop_after = &"seg2"`.
+
+**Còn lại (phần 2, khi T-134/T-135 xong):** thay phán định góc camera bằng `GazeDetector`; bóng người + `sting_hit` + truy đuổi 1 (đoạn 3); `mirror.stare()` + truy đuổi 2 (đoạn 5); đèn tắt dần sau lưng khi truy đuổi, vùng an toàn, bị bắt thì cộng lệch và tải lại; tiếng nước chảy thật (T-133 hoặc lane E).

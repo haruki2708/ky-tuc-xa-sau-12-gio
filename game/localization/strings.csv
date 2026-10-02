@@ -93,3 +93,34 @@ UI_LOG_PREVIEW_TEXT,Đây là trang thử hiển thị chữ và dòng kẻ.,Thi
 UI_SETTINGS_ACCESSIBILITY,Trợ năng,Accessibility
 UI_REDUCE_SCARES,Giảm hù dọa,Reduce scares
 UI_REDUCE_SCARES_DESCRIPTION,Bỏ hình ảnh và âm thanh giật mình đột ngột. Truy đuổi chậm hơn.,Remove sudden startling visuals and sounds. Slower chases.
+SPK_SIGN_LOG,Loa: Sinh viên ở lại tầng 4 xuống bàn trực ký sổ.,"Speaker: Students staying on floor 4, come to the duty desk and sign the log."
+SPK_ROLLCALL_INTRO,Loa: Điểm danh phòng 407.,"Speaker: Roll call, room 407."
+SPK_NAME_PHUC,Lê Hoàng Phúc.,Lê Hoàng Phúc.
+SPK_NAME_VIET,Đặng Quốc Việt.,Đặng Quốc Việt.
+SPK_NAME_TRUNG,Trần Trung.,Trần Trung.
+SPK_NAME_DAT,Phạm Thành Đạt.,Phạm Thành Đạt.
+SPK_NAME_LAM,Vũ Đức Lâm.,Vũ Đức Lâm.
+SPK_CHECK_TAPS,Loa: Sinh viên ở lại kiểm tra khóa vòi nước nhà vệ sinh tầng mình.,"Speaker: Students staying, check that the taps in your floor's washroom are closed."
+SPK_AND_ONE_MORE,…và một người nữa.,…and one more.
+SPK_AND_TRUNG,…và Trần Trung. Mời trả lời.,…and Trần Trung. Please answer.
+SUB_ROLLCALL_HINT,"(Nhấn E để trả lời ""Có"" khi nghe tên.)","(Press E to answer ""Here"" when a name is called.)"
+SUB_YOU_ANSWER,"Bạn: ""Có!""","You: ""Here!"""
+SUB_FOOTSTEPS_BEHIND,(Có tiếng dép lê đi phía sau bạn.),(Slippers are walking behind you.)
+SUB_MIRROR_LAG,(Hình trong gương chậm hơn bạn nửa nhịp.),(Your reflection moves half a beat late.)
+SUB_WATER_FOLLOWS,(Tiếng nước chảy theo bạn.),(The sound of running water follows you.)
+SUB_FAIL,Ký túc xá đã đủ người.,The dorm has its full count.
+SUB_TO_BE_CONTINUED,Còn tiếp…,To be continued…
+SUB_FOLLOW_GAME,"Theo dõi ""Ký túc xá sau 12 giờ"" để chơi bản đầy đủ. (Esc → Thoát)","Follow ""The Dorm After Midnight"" for the full game. (Esc → Quit)"
+PROMPT_CLOSE_TAP,Khóa vòi,Close tap
+DOC_DUTY_LOG_TITLE,Sổ trực tầng 4 — dịp lễ 30/4,Floor 4 duty log — 30 April holiday
+DOC_DUTY_LOG_1,22:00 — Khóa cổng tầng 4. Ở lại: phòng 407 (4 sinh viên).,22:00 — Floor 4 gate locked. Staying: room 407 (4 students).
+DOC_DUTY_LOG_2,23:40 — Thay bản photo nội quy các phòng tầng 4. Bản cũ in sai điều 3.,23:40 — Replaced the photocopied rules in floor 4 rooms. The old copy misprinted article 3.
+DOC_DUTY_LOG_3,00:30 — Sinh viên ở lại ký sổ: ____________,"00:30 — Students staying, sign here: ____________"
+DOC_DUTY_LOG_OLD,"(Trang cũ, kẹp giữa sổ) 30/4/2009 — 01:00 điểm danh phòng 407: 5 tiếng ""Có"". Sáng 1/5: phòng có 4 người. Tên thứ năm bị gạch: Vũ Đức Lâm.","(An old page tucked inside) 30/4/2009 — 01:00 roll call, room 407: 5 answers of ""Here"". Morning of 1/5: four people in the room. The fifth name is crossed out: Vũ Đức Lâm."
+DOC_ROOM_RECORD_TITLE,Hồ sơ phòng 407 — năm học 2025–2026,Room 407 record — school year 2025–2026
+DOC_ROOM_RECORD_1,Giường A trên: Lê Hoàng Phúc,"Bunk A, top: Lê Hoàng Phúc"
+DOC_ROOM_RECORD_2,Giường A dưới: Đặng Quốc Việt,"Bunk A, bottom: Đặng Quốc Việt"
+DOC_ROOM_RECORD_3,Giường B trên: Phạm Thành Đạt,"Bunk B, top: Phạm Thành Đạt"
+DOC_ROOM_RECORD_4,Giường B dưới: Trần Trung,"Bunk B, bottom: Trần Trung"
+DOC_ROOM_RECORD_NOTE,Phòng 4 người.,Four-person room.
+SUB_NAME_CALLED_AGAIN,Loa (chậm hơn): Trần… Trung.,Speaker (slower): Trần… Trung.

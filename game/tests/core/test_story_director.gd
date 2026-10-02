@@ -11,6 +11,8 @@ func before_each() -> void:
 	director = main.get_node("StoryDirector")
 	director.auto_start = false
 	director.time_scale = 0.01
+	# These tests cover segments 1–2; test_story_segments_3_5.gd covers the rest.
+	director.stop_after = &"seg2"
 	tree.root.add_child(main)
 	EventBus.subtitle_requested.connect(_on_subtitle)
 	await wait_frames(2)
@@ -59,7 +61,6 @@ func test_lights_off_and_silence_keep_the_dorm_calm() -> void:
 	assert_false(main.get_node("Floor4/Anchors/Slippers407").has_node("FifthPair"), "no fifth pair")
 	assert_eq(GameState.clock_text(), "00:10", "clock reached 00:10;")
 	assert_true("SUB_KNOCK_STOPPED" in subtitles, "knocking stops on its own")
-	assert_true("SUB_SLICE_END" in subtitles, "end of slice shown")
 	var speaker := RuleSystem.read_entries().filter(func(entry: Dictionary) -> bool:
 		return entry["source"] == &"speaker")
 	assert_eq(speaker.size(), 5, "five rules heard on the speaker;")
@@ -90,6 +91,9 @@ func test_fifth_pair_waits_for_the_door_to_close() -> void:
 	# Rule 2 aftermath: the visitor walks away; the pair is set down only once
 	# the door is shut again (or after slippers_max_wait_seconds).
 	_settle_into_room()
+	# Light off: only rule 2 is broken (deviation 2), so the level-3 world
+	# change cannot place the pair early.
+	main.get_node("Floor4/Room407/Room407MainLight").visible = false
 	director.slippers_max_wait_seconds = 1000.0
 	var door := main.get_node("Floor4/Door407")
 	var anchor := main.get_node("Floor4/Anchors/Slippers407")
