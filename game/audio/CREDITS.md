@@ -18,14 +18,14 @@ Toàn bộ WAV và OGG dưới đây được **tự tổng hợp**, không lấ
 | `water_drip_01.wav` | `sfx/water_drip_01.ogg` | Sin giảm tần, decay ngắn và noise, seed 10511; one-shot | Mã nguồn T-105 trên; Lane E; CC0 1.0 |
 | `water_drip_02.wav` | `sfx/water_drip_02.ogg` | Biến thể tần số/seed 10512; one-shot | Mã nguồn T-105 trên; Lane E; CC0 1.0 |
 | `water_drip_03.wav` | `sfx/water_drip_03.ogg` | Biến thể tần số/seed 10513; one-shot | Mã nguồn T-105 trên; Lane E; CC0 1.0 |
-| `slipper_tile_01.wav` | `sfx/slipper_tile_01.ogg` | **T-123, làm lại:** dép tổ ong/dép lào đi bộ trên gạch men. Tiếng "lẹp" gót chạm sàn (noise lọc thấp 1,4 kHz, attack 7 ms, thân 170–230 Hz rất nhẹ), tiếng "xẹp" đế dép đập lại gót 0,13–0,19 s sau (noise dải 1,2–3,5 kHz, có rung kép), ma sát nhẹ ở giữa. Không compressor, −30 LUFS, seed 12301 | Mã nguồn T-105 trên; Lane E (Claude, integrator, làm thay theo yêu cầu chủ dự án); CC0 1.0 |
+| `slipper_tile_01.wav` | `sfx/slipper_tile_01.ogg` | **T-123, làm lại:** dép tổ ong/dép lào đi bộ trên gạch men. Tiếng "lẹp" gót chạm sàn (noise lọc thấp 1,4 kHz, attack 7 ms, thân 170–230 Hz rất nhẹ), tiếng "xẹp" đế dép đập lại gót 0,13–0,19 s sau (noise dải 1,2–3,5 kHz, có rung kép), ma sát nhẹ ở giữa. Không compressor, −34 LUFS, seed 12301 | Mã nguồn T-105 trên; Lane E (Claude, integrator, làm thay theo yêu cầu chủ dự án); CC0 1.0 |
 | `slipper_tile_02.wav` | `sfx/slipper_tile_02.ogg` | T-123: biến thể thời điểm và độ mạnh "lẹp"/"xẹp", seed 12302 | Mã nguồn T-105 trên; Lane E (Claude); CC0 1.0 |
 | `slipper_tile_03.wav` | `sfx/slipper_tile_03.ogg` | T-123: biến thể thời điểm và độ mạnh "lẹp"/"xẹp", seed 12303 | Mã nguồn T-105 trên; Lane E (Claude); CC0 1.0 |
 | `slipper_tile_04.wav` | `sfx/slipper_tile_04.ogg` | T-123: biến thể thời điểm và độ mạnh "lẹp"/"xẹp", seed 12304 | Mã nguồn T-105 trên; Lane E (Claude); CC0 1.0 |
-| `slipper_run_01.wav` | `sfx/slipper_run_01.ogg` | T-123, mới: bước chạy nhẹ; "xẹp" sát hơn (0,075–0,105 s) và mạnh hơn, −27 LUFS, seed 12311 | Mã nguồn T-105 trên; Lane E (Claude); CC0 1.0 |
-| `slipper_run_02.wav` | `sfx/slipper_run_02.ogg` | T-123, mới: bước chạy nhẹ; "xẹp" sát hơn (0,075–0,105 s) và mạnh hơn, −27 LUFS, seed 12312 | Mã nguồn T-105 trên; Lane E (Claude); CC0 1.0 |
-| `slipper_run_03.wav` | `sfx/slipper_run_03.ogg` | T-123, mới: bước chạy nhẹ; "xẹp" sát hơn (0,075–0,105 s) và mạnh hơn, −27 LUFS, seed 12313 | Mã nguồn T-105 trên; Lane E (Claude); CC0 1.0 |
-| `slipper_run_04.wav` | `sfx/slipper_run_04.ogg` | T-123, mới: bước chạy nhẹ; "xẹp" sát hơn (0,075–0,105 s) và mạnh hơn, −27 LUFS, seed 12314 | Mã nguồn T-105 trên; Lane E (Claude); CC0 1.0 |
+| `slipper_run_01.wav` | `sfx/slipper_run_01.ogg` | T-123, mới: bước chạy nhẹ; "xẹp" sát hơn (0,075–0,105 s) và mạnh hơn, −31 LUFS, seed 12311 | Mã nguồn T-105 trên; Lane E (Claude); CC0 1.0 |
+| `slipper_run_02.wav` | `sfx/slipper_run_02.ogg` | T-123, mới: bước chạy nhẹ; "xẹp" sát hơn (0,075–0,105 s) và mạnh hơn, −31 LUFS, seed 12312 | Mã nguồn T-105 trên; Lane E (Claude); CC0 1.0 |
+| `slipper_run_03.wav` | `sfx/slipper_run_03.ogg` | T-123, mới: bước chạy nhẹ; "xẹp" sát hơn (0,075–0,105 s) và mạnh hơn, −31 LUFS, seed 12313 | Mã nguồn T-105 trên; Lane E (Claude); CC0 1.0 |
+| `slipper_run_04.wav` | `sfx/slipper_run_04.ogg` | T-123, mới: bước chạy nhẹ; "xẹp" sát hơn (0,075–0,105 s) và mạnh hơn, −31 LUFS, seed 12314 | Mã nguồn T-105 trên; Lane E (Claude); CC0 1.0 |
 | `wood_door_open.wav` | `sfx/wood_door_open.ogg` | Tiếng chốt đầu, kẽo kẹt họa âm điều tần và ma sát gỗ; one-shot | Mã nguồn T-105 trên; Lane E; CC0 1.0 |
 | `wood_door_close.wav` | `sfx/wood_door_close.ogg` | Kẽo kẹt, tiếng đập gỗ cuối chuyển động; one-shot | Mã nguồn T-105 trên; Lane E; CC0 1.0 |
 
