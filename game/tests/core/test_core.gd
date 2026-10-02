@@ -115,3 +115,35 @@ func test_main_scene_escape_pauses_and_resumes_player() -> void:
 		(node as AudioStreamPlayer3D).stop()
 	main.queue_free()
 	await tree.create_timer(0.5).timeout
+
+
+func test_footsteps_volume_setting_reaches_footsteps_bus() -> void:
+	# Lane D settings (T-116) + lane E bus (T-126), through the main scene menu.
+	var path := "user://settings.cfg"
+	var had := FileAccess.file_exists(path)
+	var backup := FileAccess.get_file_as_bytes(path) if had else PackedByteArray()
+	var bus := AudioServer.get_bus_index(&"Footsteps")
+	assert_true(bus >= 0, "Footsteps bus exists")
+	assert_eq(AudioServer.get_bus_send(bus), &"SFX", "footsteps feed SFX;")
+	assert_eq(Settings.set_value("audio", "footsteps_db", -12.0), OK, "save footsteps volume;")
+	assert_eq(AudioServer.get_bus_volume_db(bus), -12.0, "bus follows setting;")
+	var main: Node = load("res://scenes/main/main.tscn").instantiate()
+	tree.root.add_child(main)
+	await wait_frames(2)
+	var row := main.get_node_or_null("PauseMenu/Root/SettingsCard/SettingsPanel/Scroll/Columns/Audio/footsteps_db") as Control
+	assert_not_null(row, "footsteps slider row in main pause menu")
+	if row != null:
+		assert_true(row.visible, "footsteps slider shown now that the bus exists")
+	for node in main.find_children("*", "AudioStreamPlayer3D", true, false):
+		if node.has_method("stop_emitting"):
+			node.stop_emitting()
+		(node as AudioStreamPlayer3D).stop()
+	main.queue_free()
+	await tree.create_timer(0.5).timeout
+	if had:
+		var file := FileAccess.open(path, FileAccess.WRITE)
+		file.store_buffer(backup)
+		file.close()
+	else:
+		DirAccess.remove_absolute(path)
+	Settings.apply_startup()
