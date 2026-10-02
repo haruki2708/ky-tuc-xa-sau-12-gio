@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3]
 
 [ext_resource type="PackedScene" path="res://scenes/player/player.tscn" id="1_player"]
-[ext_resource type="Script" path="res://scripts/interaction/test_light_switch.gd" id="2_switch"]
+[ext_resource type="Script" path="res://scripts/interaction/demo_light_switch.gd" id="2_switch"]
 [ext_resource type="Script" path="res://scripts/player/player_test.gd" id="3_test"]
 
 [sub_resource type="BoxShape3D" id="Floor_shape"]
@@ -31,7 +31,7 @@ albedo_color = Color(0.6, 0.2, 0.2, 1)
 [sub_resource type="Environment" id="Environment_test"]
 background_mode = 1
 background_color = Color(0.08, 0.09, 0.12, 1)
-ambient_light_source = 3
+ambient_light_source = 2
 ambient_light_color = Color(0.7, 0.75, 0.85, 1)
 ambient_light_energy = 0.5
 

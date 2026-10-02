@@ -16,6 +16,8 @@ var player: PlayerController
 var floor_body: StaticBody3D
 var focus_events: Array[String] = []
 var steps: Array[StringName] = []
+var step_intensities: Array[float] = []
+var step_positions: Array[Vector3] = []
 var previous_mouse_mode: Input.MouseMode
 
 
@@ -23,10 +25,11 @@ func before_each() -> void:
 	previous_mouse_mode = Input.mouse_mode
 	world = Node3D.new()
 	tree.root.add_child(world)
-	floor_body = _body(Vector3(30, 0.2, 30), Vector3(0, -0.1, 0))
+	floor_body = _body(Vector3(120, 0.2, 120), Vector3(0, -0.1, 0))
 	player = PLAYER_SCENE.instantiate() as PlayerController
 	player.position = Vector3(0, 0.5, 0)
 	player.head_bob_enabled = false
+	player._step_rng.seed = 122
 	world.add_child(player)
 	EventBus.interaction_focus_changed.connect(_record_focus)
 	player.footstep.connect(_record_step)
@@ -45,8 +48,10 @@ func _record_focus(key: String) -> void:
 	focus_events.append(key)
 
 
-func _record_step(surface: StringName) -> void:
+func _record_step(surface: StringName, intensity: float) -> void:
 	steps.append(surface)
+	step_intensities.append(intensity)
+	step_positions.append(player.global_position)
 
 
 func _ticks(count: int) -> void:
@@ -223,13 +228,14 @@ func test_footsteps_follow_distance_and_surface() -> void:
 	Input.action_press("move_forward")
 	await _ticks(70)
 	var distance: float = Vector2(player.position.x - start.x, player.position.z - start.z).length()
-	assert_eq(steps.size(), int(floorf(distance / 0.7)), "one step per 0.7 meters")
+	assert_true(steps.size() >= int(floorf(distance / (1.1 * 1.06))), "walk steps within longest stride bound")
+	assert_true(steps.size() <= int(floorf(distance / (1.1 * 0.94))), "walk steps within shortest stride bound")
 	assert_true(steps.size() > 0, "walking produces steps")
 	for surface: StringName in steps:
 		assert_eq(surface, &"wood", "surface metadata")
 	floor_body.remove_meta("surface")
 	steps.clear()
-	await _ticks(30)
+	await _ticks(40)
 	assert_true(steps.size() > 0, "walking continues")
 	for surface: StringName in steps:
 		assert_eq(surface, &"concrete", "default surface")
@@ -251,6 +257,124 @@ func test_no_airborne_footsteps_and_bob_can_be_disabled() -> void:
 	await _ticks(30)
 	assert_false(player.is_on_floor(), "still airborne")
 	assert_eq(steps.size(), 0, "air movement does not produce steps")
+
+
+func test_steady_walk_five_seconds_cadence_and_intensity() -> void:
+	await _ticks(60)
+	Input.action_press("move_forward")
+	await _ticks(30)
+	steps.clear()
+	step_intensities.clear()
+	await _ticks(5 * Engine.physics_ticks_per_second)
+	assert_true(steps.size() >= 9 and steps.size() <= 11, "five seconds walking: 9-11 steps, got %d" % steps.size())
+	for intensity: float in step_intensities:
+		assert_true(absf(intensity - 2.2 / 3.6) < 0.001, "walking intensity approximately 0.61, below sprint")
+		assert_true(intensity >= 0.0 and intensity <= 1.0, "intensity bounded")
+
+
+func test_steady_sprint_five_seconds_cadence_and_intensity() -> void:
+	await _ticks(60)
+	Input.action_press("move_forward")
+	Input.action_press("sprint")
+	await _ticks(30)
+	steps.clear()
+	step_intensities.clear()
+	await _ticks(5 * Engine.physics_ticks_per_second)
+	assert_true(steps.size() >= 12 and steps.size() <= 14, "five seconds sprinting: 12-14 steps, got %d" % steps.size())
+	for intensity: float in step_intensities:
+		assert_true(is_equal_approx(intensity, 1.0), "sprint intensity is 1, above walking")
+		assert_true(intensity >= 0.0 and intensity <= 1.0, "intensity bounded")
+
+
+func _simulate_ground_distance(speed: float, distance: float) -> void:
+	# Fine distance increments remove 60 Hz quantization from stride-bound checks.
+	# The existing grounded body supplies the same surface query as normal physics.
+	player.velocity = Vector3(speed, 0, 0)
+	for index: int in int(roundf(distance / 0.001)):
+		var previous: Vector3 = player.global_position
+		player.position.x += 0.001
+		player._update_steps_and_bob(previous, true, 0.001 / speed)
+
+
+func test_stride_jitter_stays_within_six_percent_at_walk_and_sprint() -> void:
+	await _ticks(60)
+	player.set_physics_process(false)
+	for speed: float in [2.2, 3.6]:
+		player.position.x = 0.0
+		player._step_progress = 0.0
+		player._step_rng.seed = 122
+		player._step_scale = player._next_step_scale()
+		step_positions.clear()
+		_simulate_ground_distance(speed, 20.0)
+		assert_true(step_positions.size() >= 12, "enough strides to measure variation")
+		var base_length: float = 1.1 if speed == 2.2 else 1.4
+		var previous_x: float = 0.0
+		var shortest: float = INF
+		var longest: float = 0.0
+		for position: Vector3 in step_positions:
+			var stride: float = position.x - previous_x
+			previous_x = position.x
+			assert_true(stride >= base_length * 0.94 - 0.002, "stride lower bound, 2 mm sampling tolerance")
+			assert_true(stride <= base_length * 1.06 + 0.002, "stride upper bound, 2 mm sampling tolerance")
+			shortest = minf(shortest, stride)
+			longest = maxf(longest, stride)
+		assert_true(longest - shortest > 0.02, "successive strides are not identical")
+
+
+func test_stride_interpolates_during_speed_changes_and_honors_exports() -> void:
+	await _ticks(60)
+	player.set_physics_process(false)
+	player.step_length_variation = 0.0
+	player._step_scale = 1.0
+	for speed: float in [2.2, 2.9, 3.6, 2.9, 2.2]:
+		player.position.x = 0.0
+		player._step_progress = 0.0
+		step_positions.clear()
+		_simulate_ground_distance(speed, 3.0)
+		var expected: float = 1.25
+		if speed == 2.2:
+			expected = 1.1
+		elif speed == 3.6:
+			expected = 1.4
+		assert_true(step_positions.size() >= 2, "at least two steps")
+		if step_positions.size() >= 2:
+			assert_true(absf(step_positions[1].x - step_positions[0].x - expected) < 0.002, "interpolated physical stride")
+	player.walk_step_length = 0.8
+	player.sprint_step_length = 1.0
+	player.position.x = 0.0
+	player._step_progress = 0.0
+	step_positions.clear()
+	_simulate_ground_distance(2.9, 2.0)
+	assert_true(step_positions.size() >= 2, "custom exports produce steps")
+	if step_positions.size() >= 2:
+		assert_true(absf(step_positions[1].x - step_positions[0].x - 0.9) < 0.002, "exported lengths affect intermediate stride")
+	step_intensities.clear()
+	_simulate_ground_distance(7.2, 2.0)
+	assert_true(not step_intensities.is_empty(), "overspeed produces a step")
+	for intensity: float in step_intensities:
+		assert_eq(intensity, 1.0, "overspeed intensity clamps to 1")
+
+
+func test_bob_cycles_stay_with_steps_through_speed_changes() -> void:
+	await _ticks(60)
+	player.set_physics_process(false)
+	player.head_bob_enabled = true
+	var cycles: int = 0
+	var previous_y: float = 0.0
+	for speed: float in [2.2, 2.9, 3.6, 2.9, 2.2]:
+		player.velocity = Vector3(speed, 0, 0)
+		for index: int in 180:
+			var before: Vector3 = player.global_position
+			var step_count: int = steps.size()
+			player.position.x += speed / 60.0
+			player._update_steps_and_bob(before, true, 1.0 / 60.0)
+			var crossed: bool = previous_y < 0.0 and player.camera.position.y >= 0.0
+			if crossed:
+				cycles += 1
+			assert_eq(steps.size() > step_count, crossed, "each bob wrap coincides with a footstep")
+			previous_y = player.camera.position.y
+	assert_eq(cycles, steps.size(), "one bob cycle per emitted step")
+	assert_true(cycles > 20, "exercise many jittered steps and speed transitions")
 
 
 func test_mouse_look_clamped_and_pause_toggles_capture() -> void:
@@ -287,6 +411,8 @@ func test_demo_scene_focus_label_and_light_switch() -> void:
 	var scene: PackedScene = load("res://scenes/player/player_test.tscn")
 	var demo: Node3D = scene.instantiate()
 	world.add_child(demo)
+	var environment: WorldEnvironment = demo.get_node("WorldEnvironment")
+	assert_eq(environment.environment.ambient_light_source, Environment.AMBIENT_SOURCE_COLOR, "demo boxes receive ambient color")
 	await _ticks(60)
 	var label: Label = demo.get_node("Debug/Prompt")
 	var lamp: OmniLight3D = demo.get_node("Lamp")
