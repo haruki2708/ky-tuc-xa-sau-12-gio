@@ -1,7 +1,6 @@
 extends CanvasLayer
 ## Passive overlay. EventBus producers retain ownership of interaction/gameplay.
 
-const LocaleSettings = preload("res://scripts/ui/locale_settings.gd")
 const IDLE_CROSSHAIR := Color(0.55, 0.58, 0.62, 0.8)
 const FOCUSED_CROSSHAIR := Color(1.0, 1.0, 1.0, 1.0)
 
@@ -17,7 +16,6 @@ var _subtitle_queue: Array[Dictionary] = []
 
 
 func _ready() -> void:
-	TranslationServer.set_locale(LocaleSettings.get_locale())
 	EventBus.interaction_focus_changed.connect(_on_focus_changed)
 	EventBus.subtitle_requested.connect(_on_subtitle_requested)
 	_subtitle_timer.timeout.connect(_show_next_subtitle)

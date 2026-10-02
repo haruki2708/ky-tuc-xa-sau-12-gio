@@ -1,0 +1,60 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/settings_panel.gd" id="1_script"]
+
+[node name="SettingsPanel" type="VBoxContainer"]
+theme_override_constants/separation = 24
+script = ExtResource("1_script")
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "UI_SETTINGS_TITLE"
+
+[node name="Scroll" type="ScrollContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="Columns" type="HBoxContainer" parent="Scroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 64
+
+[node name="Audio" type="VBoxContainer" parent="Scroll/Columns"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 18
+
+[node name="Title" type="Label" parent="Scroll/Columns/Audio"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "UI_SETTINGS_AUDIO"
+
+[node name="Other" type="VBoxContainer" parent="Scroll/Columns"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 14
+
+[node name="SaveError" type="Label" parent="."]
+visible = false
+layout_mode = 2
+text = "UI_SETTINGS_SAVE_ERROR"
+autowrap_mode = 3
+
+[node name="Footer" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="Reset" type="Button" parent="Footer"]
+layout_mode = 2
+text = "UI_SETTINGS_RESET"
+
+[node name="Spacer" type="Control" parent="Footer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="Back" type="Button" parent="Footer"]
+layout_mode = 2
+text = "UI_SETTINGS_BACK"

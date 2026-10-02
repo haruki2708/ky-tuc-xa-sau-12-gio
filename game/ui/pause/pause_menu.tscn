@@ -1,0 +1,71 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/pause_menu.gd" id="1_script"]
+[ext_resource type="Theme" path="res://ui/theme/main_theme.tres" id="2_theme"]
+[ext_resource type="PackedScene" path="res://ui/pause/settings_panel.tscn" id="3_settings"]
+
+[node name="PauseMenu" type="CanvasLayer"]
+process_mode = 3
+layer = 20
+script = ExtResource("1_script")
+
+[node name="Root" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_theme")
+
+[node name="Shade" type="ColorRect" parent="Root"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.015, 0.02, 0.03, 0.9)
+
+[node name="PauseCard" type="PanelContainer" parent="Root"]
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -280.0
+offset_top = -210.0
+offset_right = 280.0
+offset_bottom = 210.0
+
+[node name="Buttons" type="VBoxContainer" parent="Root/PauseCard"]
+layout_mode = 2
+theme_override_constants/separation = 28
+
+[node name="Title" type="Label" parent="Root/PauseCard/Buttons"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "UI_PAUSE_TITLE"
+horizontal_alignment = 1
+
+[node name="Resume" type="Button" parent="Root/PauseCard/Buttons"]
+layout_mode = 2
+text = "UI_PAUSE_RESUME"
+
+[node name="Settings" type="Button" parent="Root/PauseCard/Buttons"]
+layout_mode = 2
+text = "UI_SETTINGS_TITLE"
+
+[node name="Quit" type="Button" parent="Root/PauseCard/Buttons"]
+layout_mode = 2
+text = "UI_PAUSE_QUIT"
+
+[node name="SettingsCard" type="PanelContainer" parent="Root"]
+visible = false
+layout_mode = 0
+anchor_left = 0.1
+anchor_top = 0.08
+anchor_right = 0.9
+anchor_bottom = 0.92
+
+[node name="SettingsPanel" parent="Root/SettingsCard" instance=ExtResource("3_settings")]
+layout_mode = 2
