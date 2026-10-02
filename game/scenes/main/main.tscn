@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scripts/audio/ambient_emitter.gd" id="4_emitter"]
 [ext_resource type="AudioStream" path="res://audio/ambience/fluorescent_hum.ogg" id="5_hum"]
 [ext_resource type="AudioStream" path="res://audio/ambience/night_insects_motorbike.ogg" id="6_night"]
+[ext_resource type="Script" path="res://scripts/audio/light_hum.gd" id="7_light_hum"]
 
 [sub_resource type="Environment" id="Environment_main"]
 background_mode = 1
@@ -91,19 +92,21 @@ script = ExtResource("3_steps")
 
 [node name="Audio" type="Node3D" parent="."]
 
-[node name="HumNear" type="AudioStreamPlayer3D" parent="Audio"]
+[node name="HumNear" type="AudioStreamPlayer3D" parent="Audio" node_paths=PackedStringArray("light")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.8, -2)
 stream = ExtResource("5_hum")
 unit_size = 2.0
 bus = &"Ambience"
-script = ExtResource("4_emitter")
+script = ExtResource("7_light_hum")
+light = NodePath("../../TubeLight1")
 
-[node name="HumFar" type="AudioStreamPlayer3D" parent="Audio"]
+[node name="HumFar" type="AudioStreamPlayer3D" parent="Audio" node_paths=PackedStringArray("light")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.8, -12)
 stream = ExtResource("5_hum")
 unit_size = 2.0
 bus = &"Ambience"
-script = ExtResource("4_emitter")
+script = ExtResource("7_light_hum")
+light = NodePath("../../TubeLight2")
 
 [node name="NightOutside" type="AudioStreamPlayer3D" parent="Audio"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -18.5)

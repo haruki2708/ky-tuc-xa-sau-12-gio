@@ -62,5 +62,11 @@ func test_main_scene_footsteps_and_ambience_wired() -> void:
 		var source: AudioStreamPlayer3D = main.get_node(path)
 		assert_true(source.playing, path + " plays;")
 		assert_eq(source.bus, &"Ambience", path + " bus;")
+	var hum: AudioStreamPlayer3D = main.get_node("Audio/HumNear")
+	var light: Light3D = main.get_node("TubeLight1")
+	light.visible = false
+	assert_false(hum.playing, "hum stops when its tube light turns off;")
+	light.visible = true
+	assert_true(hum.playing, "hum resumes when its tube light turns on;")
 	main.queue_free()
 	await wait_frames(2)
