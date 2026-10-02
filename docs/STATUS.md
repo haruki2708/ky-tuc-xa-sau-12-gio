@@ -21,10 +21,11 @@
 | Task | Lane | Trạng thái |
 |---|---|---|
 | T-101 Điều khiển người chơi và tương tác | A | **done**, đã merge |
-| T-102 Bộ module 3D bằng script Blender | B | **done**, đã merge; chờ chủ dự án duyệt hình ảnh |
+| T-102 Bộ module 3D bằng script Blender | B | **done**, đã merge; chủ dự án đã duyệt (D-012) |
 | T-103 Công cụ capture, package, check | C | **done**, đã merge |
 | T-104 Font, HUD, phụ đề, đổi ngôn ngữ | D | review (agent đã push, chờ integrator) |
 | T-105 Pipeline âm thanh và âm môi trường đầu tiên | E | review (agent đã push, chờ integrator) |
+| T-121 Kit: ghế nhựa VN, mùng, collision | B | todo (giao ngay) |
 | T-110 Kiến trúc RuleSystem và GameState | core | todo |
 | T-113 Chốt bộ luật demo và sơ đồ tầng | Chủ dự án + Claude | todo |
 

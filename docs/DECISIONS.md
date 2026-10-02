@@ -15,3 +15,4 @@ Mỗi quyết định ghi: ngày, nội dung, lý do. Muốn đổi một quyế
 | D-009 | 2026-10-02 | Repo GitHub **private**, Git LFS cho file nhị phân. Mỗi agent làm trong clone riêng ở `D:\GAME_WORK\lane-x` | Tránh việc agent chuyển nhánh làm đè lên nhau |
 | D-010 | 2026-10-02 | Công cụ cài vào `D:\Tools\`. Godot ở chế độ self-contained (dữ liệu editor nằm ở `D:\Tools\Godot\editor_data`) | Ổ C: chỉ còn khoảng 6 GB |
 | D-011 | 2026-10-02 | Input action đăng ký bằng code (`scripts/core/game_input.gd`). Test dùng runner tự viết (`tests/run_tests.tscn`), không dùng addon | Giữ `project.godot` gọn, không phụ thuộc plugin |
+| D-012 | 2026-10-02 | Duyệt hướng hình ảnh bộ kit T-102. Sửa **ghế nhựa đỏ thành kiểu lùn Việt Nam** (chân loe, có lỗ cầm). **Thêm mùng** cho giường tầng, có bản đóng và bản mở, nhìn xuyên lờ mờ | Ghế phải nhận ra ngay là đồ Việt Nam; mùng gắn với cốt truyện (bạn cùng phòng nằm sau mùng). Giao ở T-121 |
