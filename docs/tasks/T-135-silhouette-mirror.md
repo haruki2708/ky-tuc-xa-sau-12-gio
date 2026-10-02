@@ -31,9 +31,66 @@
 6. **Ảnh:** bóng người đứng cuối hành lang tối; gương bình thường; gương lúc `stare()`.
 
 ## Checklist hoàn thành
-- [ ] `pwsh tools/test.ps1` và `pwsh tools/check.ps1` PASS
-- [ ] Có ảnh ở mục 6, FPS ghi trong Handoff
-- [ ] Không chạm file ngoài phạm vi; `CREDITS.md` cập nhật
-- [ ] Mục Handoff đã điền: API, cách gắn; ghi rõ phần nào chưa thử bằng tay
+- [x] `pwsh tools/test.ps1` và `pwsh tools/check.ps1` PASS
+- [x] Có ảnh ở mục 6, FPS ghi trong Handoff
+- [x] Không chạm file ngoài phạm vi; `CREDITS.md` cập nhật
+- [x] Mục Handoff đã điền: API, cách gắn; ghi rõ phần nào chưa thử bằng tay
 
 ## Handoff (agent điền)
+
+### Đã làm
+- Lane B, 2026-10-03. Triển khai đã commit/push `e7a67f2` lên `origin/lane-b/T-135-silhouette-mirror` trước khi ghi bàn giao này. Hoàn tất phần Lane B, chờ review/tích hợp T-134/T-136.
+- `game/scenes/levels/entity/silhouette.tscn`: mô hình Blender mới, **408 tam giác**, cao khoảng 1,85 m, gốc ở chân, mặt trước -Z; vai gù nhẹ, tay dài, đầu nghiêng, không mặt. Shader gần đen, viền tối, rung đỉnh PS1, dither 4 × 4 và lắc lư chậm ở node con. Không tự điều khiển truy đuổi hoặc thêm collision.
+- `reflection_body.tscn`: **612 tam giác**, áo thun/quần đùi/dép, đầu có pivot riêng. Vật liệu PS1 và layer render được gán tại bước import theo pipeline kit; không thêm plugin.
+- Thay hộp `Washroom/Mirror` bằng gương có SubViewport **560 × 190**, camera đối xứng qua mặt kính và frustum lệch tâm. Phản chiếu phòng thật, hiển thị thân người chơi trên layer riêng, không đưa HUD vào viewport. Camera vẫn theo mắt hiện tại để giữ đúng parallax; chỉ thân/hướng đầu dùng lịch sử trễ. Chỉ render khi Player ở trong bounds nhà vệ sinh và trước mặt kính.
+- Có script Blender, scene thử riêng, script chụp/đo FPS, 6 test mới; cập nhật generator tầng để không sinh lại hộp gương cũ và `art_source/CREDITS.md`. Tất cả source/asset mới nằm trong phạm vi; không sửa main, Player, core, audio hoặc export preset.
+
+### API và cách gắn
+- Gán `Pursuer.body_scene = preload("res://scenes/levels/entity/silhouette.tscn")`. `set_visible_amount(value: float)` clamp 0…1, 0 ẩn hẳn; gọi được trước `_ready()`, material riêng từng instance.
+- Sau khi main sẵn sàng: `$Floor4/Washroom/Mirror.follow = $Player`. `follow` là gốc ở chân, có `Head/Camera3D` (hoặc Camera3D con). Chưa gán thì gương tắt; không tự tìm Player trong main.
+- `set_lag(0.5)`: trễ vị trí, hướng thân và hướng camera 0,5 s; 0 theo ngay. API clamp 0…10 s, không đủ lịch sử thì giữ mẫu đầu. Ra khỏi phòng xóa lịch sử.
+- `stare()`: giữ thân ở tư thế đang hiển thị, quay đầu về mắt phản chiếu để nhìn thẳng ra kính vào Player. Đầu tiếp tục theo vị trí mắt khi Player di chuyển.
+- `release()`: bỏ stare, đưa lag về 0, xóa lịch sử; frame sau theo tư thế hiện tại. Gọi khi khôi phục checkpoint/kết thúc hiệu ứng; đặt lại lag nếu cần chu kỳ mới.
+- `step_out() -> Vector3`: điểm world-space ngay trước bồn, hiện tại **(1.27, 0.03, -1.85)**; có sàn và capsule r=0,3 m cao 1,85 m không chạm tường/bồn. Truyền điểm này cho `Pursuer.start_chase()`.
+- Render layer **19** dành cho kính (camera gương loại ra), **20** dành cho thân phản chiếu. Gương loại layer 20 khỏi camera của follow và khôi phục bit cũ khi unbind/thoát tree. Camera bổ sung cũng cần loại layer 20. Thiết kế hiện tại dành cho một gương/một Player.
+- Không tự kích hoạt luật, sting hoặc đọc `reduce_scares`: integrator quyết định lúc gọi `stare()`/fade và áp dụng tùy chọn giảm hù dọa theo D-024.
+
+### Kiểm tra và bằng chứng
+Lần chạy đầy đủ cuối trên Godot 4.7.2, mã thoát 0:
+
+```text
+pwsh tools/test.ps1
+RESULT: 179 passed, 0 failed
+pwsh tools/check.ps1
+RESULT: check 0 error(s)
+ENTITY_CAPTURE_RESULT: PASS 3 views
+```
+
+Test mới xác nhận độ trễ vị trí/hướng bằng timeline kiểm soát và `_process` thực; freeze/stare/release; layer/mask và frustum khi mắt lệch tâm; tắt render ngoài phòng; điểm step_out có sàn/không va chạm; số tam giác/kích thước bóng, fade riêng từng instance và sway. Smoke trong lần chạy đầy đủ cuối load được mọi scene, không còn lỗi material.
+
+Ghi chú QA: một lần chạy riêng `pwsh tools/test.ps1 -Filter smoke` sau sửa material có `1 passed, 0 failed` nhưng launcher trả FAIL vì lúc thoát còn 42 ObjectDB instances/3 resources. Chưa xác định nguồn giữ tài nguyên của lần chạy riêng đó; không ghi nhận lỗi này trong lần chạy đầy đủ cuối hoặc capture thoát qua `App.quit()`. Đề nghị Lane C kiểm tra cleanup của runner khi lọc smoke, không bỏ qua kiểm tra lỗi engine.
+
+Ảnh đã xem: [bóng cuối hành lang tối](../../art_source/entity/previews/silhouette_corridor.png), [gương bình thường](../../art_source/entity/previews/mirror_normal.png), [gương stare](../../art_source/entity/previews/mirror_stare.png).
+
+| Góc đo | FPS trung bình | Frame p95 (ms) | Gương render |
+|---|---:|---:|---|
+| Gương bình thường | 559,12 | 2,305 | Có |
+| Gương stare | 543,88 | 2,443 | Có |
+| Bóng hành lang | 543,51 | 2,483 | Không |
+
+Máy Ryzen 5 5600H / RTX 3050 Laptop, Forward+ Vulkan, 1280 × 720, PS1 strength=1, VSync/max FPS tắt; toàn bộ tầng, Player physics, HUD và âm thanh hoạt động. Mỗi góc warm-up 90 frame rồi đo 240 frame bằng đồng hồ thực, không fixed-fps. Hai góc có gương vượt 60 FPS. Đây là mẫu đứng yên, chưa đại diện mọi máy hoặc truy đuổi hoàn chỉnh. Số đo gốc: [performance.json](../../art_source/entity/previews/performance.json).
+
+Cách thử: mở `res://scenes/levels/entity/mirror_test.tscn`, F6; WASD/chuột, phím **1** gương bình thường/release, **2** lag 0,5 s, **3** stare, **4** hành lang có bóng, Esc menu. Lệnh dựng model/chụp và mô tả kỹ thuật: [README](../../art_source/entity/README.md).
+
+### Chưa thử bằng tay / giới hạn
+- Đã chạy test tự động và kiểm tra ba ảnh render thực. Chưa có phiên chơi bằng chuột/bàn phím của người dùng, chưa review cảm giác quay đầu/fade trong chuyển động.
+- Chưa ghép hoặc chơi thử truy đuổi T-134/T-136, checkpoint và tùy chọn giảm hù dọa trong luồng đoạn 5. Không tự đoán luật/cốt truyện.
+- Không có checklist bắt buộc nào chưa đạt trong phạm vi thành phần Lane B.
+
+### Yêu cầu thay đổi ngoài phạm vi
+1. **Integrator/Lane A:** gán follow trong main, gán silhouette vào Pursuer.body_scene và nối `set_lag(0.5) → stare() → start_chase(..., step_out())` theo D-024; gọi `release()` khi phục hồi, xử lý `reduce_scares` tại luồng chơi. Không cần đổi Player scene: mask camera được thành phần gương quản lý.
+2. **Integrator/Lane C:** thêm `scenes/levels/entity/mirror_test*` và `assets/models/entity/reflection_import.gd` vào loại trừ bản xuất trong `game/export_presets.cfg`; giữ model/scene/script runtime. Chưa chạy export/package vì không thuộc checklist card.
+3. **Lane C:** rà soát cảnh báo tài nguyên khi chạy riêng `-Filter smoke` nêu trên; cân nhắc drain cleanup trước khi runner thoát. Không sửa runner ngoài phạm vi.
+
+### Trạng thái chặn
+Không bị chặn ở triển khai, test đầy đủ, check hoặc push. Các bước tích hợp/chơi thử và ghi chú QA đã chuyển rõ cho lane phụ trách.
