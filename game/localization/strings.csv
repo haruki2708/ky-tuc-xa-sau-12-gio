@@ -93,6 +93,26 @@ UI_LOG_PREVIEW_TEXT,Đây là trang thử hiển thị chữ và dòng kẻ.,Thi
 UI_SETTINGS_ACCESSIBILITY,Trợ năng,Accessibility
 UI_REDUCE_SCARES,Giảm hù dọa,Reduce scares
 UI_REDUCE_SCARES_DESCRIPTION,Bỏ hình ảnh và âm thanh giật mình đột ngột. Truy đuổi chậm hơn.,Remove sudden startling visuals and sounds. Slower chases.
+UI_GAME_TITLE,Ký túc xá sau 12 giờ,The Dorm After Midnight
+UI_TITLE_CONTINUE,Tiếp tục,Continue
+UI_TITLE_NEW_GAME,Chơi mới,New game
+UI_TITLE_CREDITS,Ghi công,Credits
+UI_CONFIRM_CANCEL,Hủy,Cancel
+UI_CONFIRM_ACCEPT,Xác nhận,Confirm
+UI_NEW_GAME_CONFIRM,Bắt đầu lượt chơi mới? Lượt chơi cũ sẽ được thay thế.,Start a new game? Your previous playthrough will be replaced.
+UI_RETURN_TITLE,Về màn hình chính,Return to title
+UI_RETURN_TITLE_CONFIRM,Về màn hình chính? Tiến độ kể từ checkpoint gần nhất sẽ bị mất.,Return to the title screen? Progress since your last checkpoint will be lost.
+UI_CONTENT_WARNING_TITLE,Cảnh báo nội dung,Content warning
+UI_CONTENT_WARNING_TEXT,"Đây là game kinh dị, có cảnh hù đột ngột và âm thanh lớn đột ngột. Bạn có thể bật Giảm hù dọa trong Cài đặt.","This horror game contains sudden scares and sudden loud sounds. You can enable Reduce scares in Settings."
+UI_WARNING_REDUCE_SCARES,Bật Giảm hù dọa rồi tiếp tục,Enable Reduce scares and continue
+UI_CREDITS_KIT_TITLE,Môi trường và mô hình,Environment and models
+UI_CREDITS_KIT_TEXT,"Lane B — bộ kit ký túc xá, tầng 4, bóng người và gương. Mô hình và texture được tạo bằng script với Blender 5.2.2 LTS và Godot. Asset: CC0 1.0 — https://creativecommons.org/publicdomain/zero/1.0/","Lane B — dormitory kit, floor 4, silhouette and mirror. Models and textures created with scripts using Blender 5.2.2 LTS and Godot. Assets: CC0 1.0 — https://creativecommons.org/publicdomain/zero/1.0/"
+UI_CREDITS_AUDIO_TITLE,Âm thanh,Audio
+UI_CREDITS_AUDIO_TEXT,"Lane E — âm môi trường, bước chân, hiệu ứng đoạn 1–2 và hù dọa/truy đuổi. Tự tổng hợp bằng Python 3, xử lý bằng FFmpeg 9.0.2; không dùng mẫu âm bên ngoài. Waveform và OGG: CC0 1.0.","Lane E — ambience, footsteps, segment 1–2 effects and scare/chase sounds. Synthesized with Python 3 and processed with FFmpeg 9.0.2; no external samples. Waveforms and OGG: CC0 1.0."
+UI_CREDITS_FONT_TITLE,Phông chữ,Font
+UI_CREDITS_FONT_TEXT,Be Vietnam Pro Regular — The Be Vietnam Pro Project Authors. SIL Open Font License 1.1. https://github.com/bettergui/BeVietnamPro,Be Vietnam Pro Regular — The Be Vietnam Pro Project Authors. SIL Open Font License 1.1. https://github.com/bettergui/BeVietnamPro
+UI_CREDITS_AI_TITLE,Nội dung có hỗ trợ AI,AI-assisted content
+UI_CREDITS_AI_TEXT,"OpenAI Codex hỗ trợ viết mã tạo mô hình, texture, scene, shader và tổng hợp âm thanh. Anthropic Claude hỗ trợ mã âm bước chân T-123. Ảnh nền là ảnh chụp hành lang trong game qua Godot; không dùng mô hình sinh ảnh hoặc asset lấy từ game khác.","OpenAI Codex assisted with code for models, textures, scenes, shaders and synthesized audio. Anthropic Claude assisted with T-123 footstep audio code. The background is an in-game corridor capture from Godot; no image-generation models or assets extracted from other games were used."
 SPK_SIGN_LOG,Loa: Sinh viên ở lại tầng 4 xuống bàn trực ký sổ.,"Speaker: Students staying on floor 4, come to the duty desk and sign the log."
 SPK_ROLLCALL_INTRO,Loa: Điểm danh phòng 407.,"Speaker: Roll call, room 407."
 SPK_NAME_PHUC,Lê Hoàng Phúc.,Lê Hoàng Phúc.
