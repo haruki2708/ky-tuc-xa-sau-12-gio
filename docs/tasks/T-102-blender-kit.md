@@ -1,5 +1,5 @@
 # T-102 — Bộ module 3D ký túc xá dựng bằng script Blender
-- Lane: B (Môi trường và 3D) | Trạng thái: todo | Agent:
+- Lane: B (Môi trường và 3D) | Trạng thái: done | Agent:
 - Nhánh: `lane-b/T-102-blender-kit`
 - Phụ thuộc: P0 (xong)
 - Loại: task thử tuần đầu
@@ -98,3 +98,19 @@ Chứng minh pipeline sau chạy được: **script Python → Blender headless 
 
 **Bị chặn**
 - Không còn blocker. Sandbox từng lỗi khởi chạy PowerShell 1326, chặn mạng và log Godot; các thao tác cần thiết đã chạy lại với quyền được phê duyệt, test và push đều thành công.
+
+## Review (integrator, 2026-10-02)
+**Kết quả: chấp nhận, đã merge vào `main`.** Test sau merge: `RESULT: 26 passed, 0 failed`.
+
+- Đúng phạm vi file. Pipeline script → Blender headless → GLB → Godot chạy được và tái lập được (có `verify_rebuild.ps1`, so hash).
+- Test tốt: kiểm tra số tam giác, kích thước, ô cửa trống, bản lề và hướng mặt trước của cửa, cánh quạt quay độc lập, texture lọc nearest.
+- Ghi nguồn và khai báo AI đầy đủ trong `art_source/CREDITS.md`.
+- Hình ảnh: đúng hướng PS1. Bảng màu (chân tường xanh, vôi vàng, sắt sẫm, ghế đỏ) khớp GDD. **Chủ dự án chưa duyệt mỹ thuật**; xem `art_source/kit/previews/contact_sheet.png`.
+
+**Việc cần làm kèm task sau của lane B (T-112, T-118), không chặn:**
+1. **Collision:** các mô hình chưa có va chạm. Khi dựng tầng ở T-112, tường, cửa, giường và tủ cần collision (ví dụ dùng hậu tố `-col`/`-colonly` trong Blender, hoặc thêm `StaticBody3D` trong scene con). Player hiện đi xuyên qua được.
+2. **Texture bị nhân đôi:** Godot tách texture nhúng trong GLB ra `assets/models/kit/*.png`, trùng với `assets/textures/kit/*.png`. Nên xuất GLB tham chiếu texture ngoài, hoặc đổi cách import để chỉ còn một bản.
+3. **Ghế nhựa đỏ** hiện là ghế đẩu 4 chân thẳng. Ghế nhựa đỏ kiểu Việt Nam thường thấp, chân loe và có lỗ trên mặt ghế. Chờ ý kiến chủ dự án.
+4. Giường chưa có vải mùng (đã ghi trung thực). Mùng là chi tiết quan trọng của truyện: bạn cùng phòng nằm sau mùng.
+
+**Chấm điểm (1–5):** phạm vi 5 · checklist 5 · test 5 · chất lượng code 5 · bàn giao trung thực 5 · số vòng sửa 0.

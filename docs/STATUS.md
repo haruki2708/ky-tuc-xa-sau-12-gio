@@ -11,16 +11,17 @@
   - lớp `Interactable`,
   - scene `main.tscn` là hành lang greybox,
   - song ngữ CSV (vi/en).
-- Test runner headless chạy được: `tools/test.ps1`, 19/19 test PASS (sau T-101).
+- Test runner headless chạy được: `tools/test.ps1`, 26/26 test PASS (sau T-101, T-102).
 - Export chạy được: `tools/export.ps1` ra `build/windows/KyTucXa.exe`. Đã chạy thử, mở được.
 - Chụp khung hình bằng Movie Maker chạy được, integrator xem được ảnh.
+- Blender 5.2.2 LTS portable ở `D:\Tools\Blender\5.2.2`; bộ 7 mô hình ký túc xá (T-102), preview ở `art_source/kit/previews/`.
 - Tài liệu: `AGENTS.md`, `docs/PLAN.md`, `docs/DECISIONS.md`, `docs/design/GDD.md`, task card cho tuần đầu.
 
 ## Đang làm / tiếp theo
 | Task | Lane | Trạng thái |
 |---|---|---|
 | T-101 Điều khiển người chơi và tương tác | A | **done**, đã merge |
-| T-102 Bộ module 3D bằng script Blender | B | review (agent đã push, chờ integrator) |
+| T-102 Bộ module 3D bằng script Blender | B | **done**, đã merge; chờ chủ dự án duyệt hình ảnh |
 | T-103 Công cụ capture, package, check | C | review (agent đã push, chờ integrator) |
 | T-104 Font, HUD, phụ đề, đổi ngôn ngữ | D | review (agent đã push, chờ integrator) |
 | T-105 Pipeline âm thanh và âm môi trường đầu tiên | E | review (agent đã push, chờ integrator) |
