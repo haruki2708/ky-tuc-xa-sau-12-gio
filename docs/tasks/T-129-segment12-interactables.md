@@ -1,5 +1,5 @@
 # T-129 — Đồ vật tương tác cho đoạn 1–2
-- Lane: A (Gameplay) | Trạng thái: todo | Agent:
+- Lane: A (Gameplay) | Trạng thái: done | Agent:
 - Nhánh: `lane-a/T-129-segment12-interactables`
 - Phụ thuộc: T-125 (done), T-110 (done). Đọc `docs/design/RULES.md` mục 5 (đoạn 1–2) và `docs/design/RULE_SYSTEM.md` mục "Giấy tờ".
 - Làm song song với T-111 (lane D) và T-130 (lane E). Integrator ghép tất cả ở T-117.
@@ -81,3 +81,17 @@ Các scene nằm trong `res://scenes/interaction/`, script cùng tên nằm tron
 - T-117/integrator đặt bốn scene vào anchor, gán đèn/cửa thật, nạp `demo.tres` trước khi đọc giấy, nối màn xem giấy T-111 và gán âm rung T-130; luồng game quyết định lúc gọi `ring()`. Lane A không sửa tầng 4, main, core hay file các lane khác.
 - **Xử lý vùng tương tác cửa 407 khi gắn giấy:** từ cấu trúc hiện tại, `Door407/InteractShape` dày 0,25 m (mép phía phòng z = −0,125), trong khi anchor giấy ở z ≈ −0,023. Ray từ trong phòng sẽ chạm proxy cửa trước giấy. Integrator/Lane B cần thu hoặc bố trí lại collider tương tác cửa để giấy/chốt được nhắm riêng, đồng thời giữ collision world của cánh cửa; thay mesh giấy tạm cũ và bảo đảm giấy/chốt đi theo pivot. Chưa kiểm chứng thay đổi này trong scene tầng 4 vì ngoài phạm vi.
 - Không có blocker code/test/push của T-129, không còn code dở. Phần ghép tầng 4 và xem/nghe thật chờ T-117/T-111/T-130. Không thêm luật, cốt truyện, plugin, phần mềm hoặc input action mới.
+
+## Review (integrator, 2026-10-02)
+**Kết quả: chấp nhận, đã merge vào `main`.** Sau merge và gắn vào tầng 4: `test.ps1` → `RESULT: 150 passed, 0 failed`; `check.ps1` → `RESULT: check 0 error(s)`.
+
+- Đúng phạm vi. Bốn đồ vật gọn, dùng lại được; bảng tham số và hệ tọa độ trong Handoff giúp ghép rất nhanh. 12 test, gồm cả tia nhắm thật.
+- **Phát hiện trước khi ghép, rất đáng giá:** vùng tương tác của cửa 407 che tờ giấy dán ở mặt trong. Integrator xử lý trong `main.gd`, không sửa file lane A hay lane B: vùng bấm của tờ giấy kéo dài 0,15 m vào phòng (`PAPER_PICK_DEPTH`), mặt giấy vẫn sát cánh cửa.
+- `strings.csv`: trùng `SUB_PHONE_MIDNIGHT` với key integrator đã thêm ở T-117 (cùng nội dung), đã bỏ bản trùng khi merge.
+- **Đã gắn (T-117):** công tắc ở `Room407LightSwitch` (gán `Room407MainLight`); chốt và tờ `room_paper_407` gắn vào `Door407/Pivot` nên đi theo cánh cửa; điện thoại ở `Phone_Trung`, nối vào `StoryDirector.phone_path`. Test core `test_room_407_interactables_are_reachable_from_inside` bắn tia từ trong phòng: giấy, cửa, chốt, công tắc đều trúng đúng vật; chốt làm cửa không mở được; đọc giấy ghi điều 3 giả vào sổ tay.
+
+**Việc nhỏ cho lần sau (không chặn):**
+1. Thêm `@export var pick_depth` vào `readable.gd` để integrator không phải sửa collision từ ngoài.
+2. Cửa 407 vẫn hiện gợi ý chung "Tương tác". Nên có `PROMPT_OPEN_DOOR` và `PROMPT_CLOSE_DOOR` (cửa thuộc lane B, `door407.gd`).
+
+**Chấm điểm (1–5):** phạm vi 5 · checklist 5 · test 5 · chất lượng code 5 · bàn giao trung thực 5 · số vòng sửa 0.

@@ -11,7 +11,7 @@
   - lớp `Interactable`,
   - scene `main.tscn` là hành lang greybox,
   - song ngữ CSV (vi/en).
-- Test runner headless chạy được: `tools/test.ps1`, 137/137 test PASS (sau T-101…T-105, T-110, T-112…T-114, T-116, T-118, T-121…T-126). Autoload `App` lo việc thoát sạch (`App.quit()`, `-- --quit-after-frames=N`). Có thêm `check.ps1`, `capture.ps1`, `package.ps1` và autoload `Autoplay` để phát lại input (xem `tools/README.md`).
+- Test runner headless chạy được: `tools/test.ps1`, 150/150 test PASS (sau T-101…T-105, T-110, T-112…T-114, T-116, T-118, T-121…T-126). Autoload `App` lo việc thoát sạch (`App.quit()`, `-- --quit-after-frames=N`). Có thêm `check.ps1`, `capture.ps1`, `package.ps1` và autoload `Autoplay` để phát lại input (xem `tools/README.md`).
 - Export chạy được: `tools/export.ps1` ra `build/windows/KyTucXa.exe`. Đã chạy thử, mở được.
 - Chụp khung hình bằng Movie Maker chạy được, integrator xem được ảnh.
 - Blender 5.2.2 LTS portable ở `D:\Tools\Blender\5.2.2`; bộ 7 mô hình ký túc xá (T-102), preview ở `art_source/kit/previews/`.
@@ -38,7 +38,7 @@
 | T-128 Nút Thoát qua `App.quit()`, key biển tầng 4 | D | **done**, đã merge |
 | T-125 Player theo menu tạm dừng và cài đặt | A | **done**, đã merge |
 | T-126 Bus riêng cho bước chân | E | **done**, đã merge; menu có thanh trượt Bước chân |
-| T-129 Đồ vật tương tác đoạn 1–2 | A | todo (giao ngay) |
+| T-129 Đồ vật tương tác đoạn 1–2 | A | **done**, đã merge và gắn vào phòng 407 |
 | T-130 Âm thanh đoạn 1–2 | E | todo (giao ngay) |
 | T-111 Màn xem giấy và sổ tay | D | todo (giao ngay) |
 | T-117 Luật đầu tiên chạy trọn vòng | core | **doing**: luồng chơi đã chạy (phụ đề thay giọng loa); chờ A, D, E để ghép |
