@@ -33,12 +33,24 @@ func test_all_ogg_load_and_decode_with_correct_loop_flags() -> void:
 
 func test_bus_layout_is_loaded_and_routed() -> void:
 	assert_not_null(load("res://default_bus_layout.tres"), "layout resource")
-	assert_eq(AudioServer.bus_count, 5, "bus count;")
-	for bus_name in [&"Master", &"Ambience", &"SFX", &"Voice", &"Music"]:
+	assert_eq(AudioServer.bus_count, 6, "bus count;")
+	for bus_name in [&"Master", &"Ambience", &"SFX", &"Voice", &"Music", &"Footsteps"]:
 		var index := AudioServer.get_bus_index(bus_name)
 		assert_true(index >= 0, "bus " + bus_name)
 		if index > 0:
-			assert_eq(AudioServer.get_bus_send(index), &"Master", "send;")
+			var expected_send: StringName = &"SFX" if bus_name == &"Footsteps" else &"Master"
+			assert_eq(AudioServer.get_bus_send(index), expected_send, "send " + bus_name + ";")
+	var footsteps := AudioServer.get_bus_index(&"Footsteps")
+	if footsteps >= 0:
+		assert_eq(AudioServer.get_bus_volume_db(footsteps), 0.0, "footsteps default gain;")
+		assert_false(AudioServer.is_bus_mute(footsteps), "footsteps unmuted by default")
+		assert_eq(AudioServer.get_bus_effect_count(footsteps), 0, "reverb stays on parent SFX bus;")
+	var sfx := AudioServer.get_bus_index(&"SFX")
+	if sfx >= 0:
+		assert_eq(AudioServer.get_bus_effect_count(sfx), 1, "SFX reverb count;")
+		if AudioServer.get_bus_effect_count(sfx) > 0:
+			assert_true(AudioServer.get_bus_effect(sfx, 0) is AudioEffectReverb, "SFX retains reverb for footsteps")
+			assert_true(AudioServer.is_bus_effect_enabled(sfx, 0), "SFX reverb enabled")
 	var ambience := AudioServer.get_bus_index(&"Ambience")
 	if ambience >= 0:
 		assert_eq(AudioServer.get_bus_effect_count(ambience), 1, "reverb count;")
@@ -64,7 +76,8 @@ func test_footsteps_do_not_repeat_and_cover_all_variants() -> void:
 			seen.append(player.stream)
 		previous = player.stream
 	assert_eq(seen.size(), 4, "all variants used;")
-	assert_eq(player.bus, &"SFX", "step bus;")
+	assert_eq(player.bus, &"Footsteps", "step bus;")
+	assert_true(player.playing, "step playback active on Footsteps")
 	player.free()
 
 
@@ -136,6 +149,7 @@ func test_audio_room_loads_and_starts_sources() -> void:
 		var source := room.get_node(source_name) as AudioStreamPlayer3D
 		assert_true(source.playing, source_name + " starts")
 		assert_eq(source.bus, &"Ambience", source_name + " bus;")
+	assert_eq((room.get_node("Footsteps") as AudioStreamPlayer3D).bus, &"Footsteps", "scene step bus;")
 	assert_true((room.get_node("Camera3D") as Camera3D).current, "listener camera")
 	room.free()
 
@@ -167,6 +181,7 @@ func test_footstep_intensity_selects_bank_without_repeats() -> void:
 				seen.append(player.stream)
 			previous = player.stream
 		assert_eq(seen.size(), 4, "all variants used at %.1f;" % intensity)
+		assert_eq(player.bus, &"Footsteps", "walk/run step bus;")
 	player.free()
 
 
