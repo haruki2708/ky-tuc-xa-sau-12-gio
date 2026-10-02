@@ -36,7 +36,7 @@ ASSETS = [
 
 
 # Footsteps sit well below doors (-18) so walking stays a soft background cue.
-TARGET_OVERRIDES = {"slipper_tile": -30, "slipper_run": -27}
+TARGET_OVERRIDES = {"slipper_tile": -34, "slipper_run": -31}
 
 
 def target_lufs(name: str, loop: bool) -> int:
