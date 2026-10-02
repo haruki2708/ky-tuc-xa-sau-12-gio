@@ -1,5 +1,5 @@
 # T-117 — Luật đầu tiên chạy trọn vòng (đoạn 1–2)
-- Lane: core (Claude) | Trạng thái: todo | Agent: Claude (integrator)
+- Lane: core (Claude) | Trạng thái: doing | Agent: Claude (integrator)
 - Phụ thuộc: T-110, T-112, T-113 (done); **T-129 (A), T-111 (D), T-130 (E)** cung cấp đồ vật, màn xem giấy, sổ tay và âm thanh.
 - Đây là bản cho **cổng kiểm tra P1 (T-120)**: chủ dự án chơi thử cơ chế chính lần đầu.
 
@@ -29,3 +29,20 @@ Chơi được đoạn 1–2 trong `docs/design/RULES.md`:
 5. **Test core:** chạy luồng nhanh (rút ngắn thời gian chờ) cho cả hai nhánh: (a) tắt đèn, im lặng → không lệch; (b) để đèn, mở cửa → lệch 3, có đôi dép thứ năm. Sổ tay có 5 dòng từ loa, điều 3 là chữ rè.
 
 ## Handoff
+
+### Phiên 2026-10-02 (phần 1) — Claude
+- `game/scripts/core/story_director.gd`, gắn vào `main.tscn` (node `StoryDirector`): chạy đủ đoạn 1–2 theo `RULES.md`. Thời gian chờ nhân `time_scale`; nhường máy khi game dừng (timer không chạy lúc tạm dừng).
+- **Chạy được ngay cả khi chưa có đồ của A, D, E:**
+  - chưa có điện thoại thì hiện phụ đề `SUB_PHONE_MIDNIGHT`;
+  - chưa có `Speaker` thì đọc nội quy bằng phụ đề, mỗi dòng 4 giây;
+  - chưa có âm gõ cửa thì chỉ hiện phụ đề `SUB_KNOCK`;
+  - chưa có chốt cửa (T-129) thì đoạn 1 chờ tối đa 90 giây rồi đi tiếp.
+- Sổ tay nhận 5 dòng từ nguồn `speaker`; điều 3 ghi chữ rè `RULE_3_GARBLED`.
+- Phán định điều 1 theo trạng thái thật của đèn `Room407MainLight`; điều 2 theo việc cửa 407 có bị mở trong lúc gõ hoặc 20 giây sau đó không.
+- Hậu quả: `corridor_light_flicker` (đèn trước phòng 407 chập chờn cùng tiếng ù), `extra_slippers` (đôi dép thứ năm, hộp tạm đỏ ở anchor `Slippers407`).
+- Checkpoint `seg1_start`, `seg2_start`. Phụ đề mới: `SUB_SEG1_GO_ROOM`, `SUB_SEG1_READ_PAPER`, `SUB_PHONE_MIDNIGHT`, `SUB_KNOCK`, `SUB_KNOCK_STOPPED`, `SUB_SLICE_END`.
+- Test `tests/core/test_story_director.gd`: hai nhánh (đúng: lệch 0; sai: lệch 3, có dép thứ năm, đèn chập chờn) và checkpoint. `RESULT: 137 passed, 0 failed`.
+
+**Còn lại (phần 2, khi A, D, E xong):** đặt công tắc, chốt cửa, giấy sau cửa, điện thoại vào anchor; gắn màn xem giấy và sổ tay; gắn `Speaker` ở bàn trực; nối `phone_path`, `speaker_path`; thử chơi trọn vòng và chụp ảnh.
+
+**Lưu ý:** `SUB_PHONE_MIDNIGHT` đã được thêm ở đây. Lane A (T-129) không cần thêm key này nữa; nếu thêm trùng thì integrator bỏ bản trùng khi merge.
