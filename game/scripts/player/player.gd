@@ -1,17 +1,19 @@
 extends CharacterBody3D
 ## First-person locomotion; the root origin is at the player's feet.
 
-signal footstep(surface: StringName)
+signal footstep(surface: StringName, intensity: float)
 
 const WALK_SPEED: float = 2.2
 const SPRINT_SPEED: float = 3.6
-const STEP_DISTANCE: float = 0.7
 
 @export var mouse_sensitivity: float = 0.002
 @export var acceleration: float = 12.0
 @export var deceleration: float = 16.0
 @export var head_bob_enabled: bool = true
 @export var head_bob_amplitude: float = 0.018
+@export_range(0.1, 3.0, 0.01) var walk_step_length: float = 1.1
+@export_range(0.1, 3.0, 0.01) var sprint_step_length: float = 1.4
+@export_range(0.0, 0.06, 0.001) var step_length_variation: float = 0.06
 
 @onready var head: Node3D = $Head
 @onready var camera: Camera3D = $Head/Camera3D
@@ -20,13 +22,15 @@ const STEP_DISTANCE: float = 0.7
 var _target: Interactable
 var _focus_id: int = 0
 var _focus_key: String = ""
-var _step_distance: float = 0.0
-var _bob_phase: float = 0.0
+var _step_progress: float = 0.0
+var _step_scale: float = 1.0
+var _step_rng: RandomNumberGenerator = RandomNumberGenerator.new()
 var _mouse_captured: bool = false
 
 
 func _ready() -> void:
 	_set_mouse_captured(true)
+	_step_scale = _next_step_scale()
 
 
 func _set_mouse_captured(captured: bool) -> void:
@@ -87,18 +91,37 @@ func _update_steps_and_bob(previous_position: Vector3, was_grounded: bool, delta
 	displacement.y = 0.0
 	var distance: float = displacement.length() if was_grounded and is_on_floor() else 0.0
 	if not is_on_floor():
-		_step_distance = 0.0
-	_step_distance += distance
-	while _step_distance >= STEP_DISTANCE:
-		_step_distance -= STEP_DISTANCE
-		footstep.emit(_floor_surface())
+		_step_progress = 0.0
+	var horizontal_speed: float = Vector2(velocity.x, velocity.z).length()
+	var base_length: float = _step_length_at_speed(horizontal_speed)
+	var remaining_distance: float = distance
+	# Progress is shared by sound and bob, including speed changes and per-step jitter.
+	while remaining_distance > 0.0:
+		var step_length: float = base_length * _step_scale
+		var distance_to_step: float = (1.0 - _step_progress) * step_length
+		if remaining_distance < distance_to_step:
+			_step_progress += remaining_distance / step_length
+			break
+		remaining_distance -= distance_to_step
+		_step_progress = 0.0
+		_step_scale = _next_step_scale()
+		footstep.emit(_floor_surface(), clampf(horizontal_speed / SPRINT_SPEED, 0.0, 1.0))
 	if head_bob_enabled and distance > 0.0001:
-		_bob_phase += distance * TAU / STEP_DISTANCE
-		camera.position.y = sin(_bob_phase) * head_bob_amplitude
+		camera.position.y = sin(_step_progress * TAU) * head_bob_amplitude
 	elif head_bob_enabled:
 		camera.position.y = move_toward(camera.position.y, 0.0, delta * 0.1)
 	else:
 		camera.position.y = 0.0
+
+
+func _step_length_at_speed(speed: float) -> float:
+	var blend: float = clampf((speed - WALK_SPEED) / (SPRINT_SPEED - WALK_SPEED), 0.0, 1.0)
+	return maxf(0.1, lerpf(walk_step_length, sprint_step_length, blend))
+
+
+func _next_step_scale() -> float:
+	var variation: float = clampf(step_length_variation, 0.0, 0.06)
+	return _step_rng.randf_range(1.0 - variation, 1.0 + variation)
 
 
 func _floor_surface() -> StringName:

@@ -1,5 +1,5 @@
 extends Interactable
-## Demonstration fixture for player_test.tscn.
+## Light-switch demonstration fixture for player_test.tscn.
 
 @export var light: Light3D
 
