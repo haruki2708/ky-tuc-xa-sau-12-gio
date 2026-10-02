@@ -1,7 +1,7 @@
 # STATUS — cập nhật bởi integrator
 
 **Cập nhật lần cuối:** 2026-10-02
-**Giai đoạn:** P1. Xong 5 task thử tuần đầu (T-101…T-105). Lane A làm T-122 (nhịp bước chân). T-123 (âm dép) Claude đã làm thay lane E.
+**Giai đoạn:** P1. Xong 5 task thử tuần đầu (T-101…T-105). Tất cả lane đang rảnh. Bước chân (T-122, T-123) và mức âm đã chốt (D-015…D-017).
 **Repo:** https://github.com/tuaanh666/ky-tuc-xa-sau-12-gio (private)
 
 ## Đã xong
@@ -11,7 +11,7 @@
   - lớp `Interactable`,
   - scene `main.tscn` là hành lang greybox,
   - song ngữ CSV (vi/en).
-- Test runner headless chạy được: `tools/test.ps1`, 65/65 test PASS (sau T-101…T-105, T-114, T-121, T-123). Có thêm `check.ps1`, `capture.ps1`, `package.ps1` và autoload `Autoplay` để phát lại input (xem `tools/README.md`).
+- Test runner headless chạy được: `tools/test.ps1`, 70/70 test PASS (sau T-101…T-105, T-114, T-121…T-123). Có thêm `check.ps1`, `capture.ps1`, `package.ps1` và autoload `Autoplay` để phát lại input (xem `tools/README.md`).
 - Export chạy được: `tools/export.ps1` ra `build/windows/KyTucXa.exe`. Đã chạy thử, mở được.
 - Chụp khung hình bằng Movie Maker chạy được, integrator xem được ảnh.
 - Blender 5.2.2 LTS portable ở `D:\Tools\Blender\5.2.2`; bộ 7 mô hình ký túc xá (T-102), preview ở `art_source/kit/previews/`.
@@ -27,7 +27,7 @@
 | T-105 Pipeline âm thanh và âm môi trường đầu tiên | E | **done**, đã merge; chủ dự án đã nghe: tạm ổn, riêng tiếng ù đèn tuýp quá nhỏ |
 | T-114 Sửa tiếng ù, vùng âm, đèn tắt thì im tiếng | E | **done**, đã merge; chủ dự án đã duyệt tiếng ù (D-014) |
 | T-121 Kit: ghế nhựa VN, mùng, collision | B | **done**, đã merge; chủ dự án đã duyệt (D-013) |
-| T-122 Nhịp bước chân tự nhiên | A | todo (giao ngay) |
+| T-122 Nhịp bước chân tự nhiên | A | **done**, đã merge; chờ chủ dự án nghe |
 | T-123 Âm dép lê mềm hơn | E (Claude làm thay) | **done**, đã merge; chủ dự án đã chốt độ to (D-015) |
 | T-110 Kiến trúc RuleSystem và GameState | core | todo |
 | T-113 Chốt bộ luật demo và sơ đồ tầng | Chủ dự án + Claude | todo |

@@ -1,5 +1,5 @@
 # T-122 — Nhịp bước chân tự nhiên và dọn việc tồn từ T-101
-- Lane: A (Gameplay) | Trạng thái: todo | Agent:
+- Lane: A (Gameplay) | Trạng thái: done | Agent:
 - Nhánh: `lane-a/T-122-natural-footsteps`
 - Phụ thuộc: T-101 (done). Làm song song với T-123 của lane E (âm bước chân). **Integrator merge T-123 trước T-122.**
 
@@ -61,3 +61,14 @@ pwsh tools/test.ps1 -Filter player
 ### Yêu cầu thay đổi / chặn
 - Không có yêu cầu sửa ngoài phạm vi; dependency T-123 đã có trên main. Không còn blocker triển khai/test/push; phần cảm nhận thủ công cần chủ dự án/integrator kiểm tra tiếp.
 - Git LFS ban đầu lỗi mạng sandbox làm checkout dở. Đã lưu bản dở vào stash `Recovery: partial T-122 checkout after sandbox LFS failure`, sau đó checkout lại thành công với quyền truy cập mạng. Stash dự phòng này còn giữ cục bộ, không thuộc commit task; không cần áp dụng lại. Không cài phần mềm, không thêm plugin, không làm việc trong bản tích hợp.
+
+## Review (integrator, 2026-10-02)
+**Kết quả: chấp nhận, đã merge vào `main`.** Sau merge: `test.ps1` → `RESULT: 70 passed, 0 failed`; `check.ps1` → `RESULT: check 0 error(s)`.
+
+- Đúng phạm vi; tương thích với T-123 đã có trên `main`, không cần yêu cầu thay đổi.
+- Bước chân và head-bob dùng chung tiến độ bước, nên luôn khớp nhau kể cả khi đổi tốc độ và có jitter. Test đo nhịp bằng physics thật (đi 9–11, chạy 12–14 bước trong 5 giây) và kiểm tra jitter ±6% bằng mẫu 1 mm. Rất kỹ.
+- Đã dọn hai việc tồn từ T-101 (ánh sáng hộp, đổi tên `demo_light_switch.gd` giữ UID).
+- Integrator thêm vào test core: trong `main.tscn`, đi bộ dùng bank đi, chạy dùng bank chạy (nối lane A ↔ lane E).
+- Handoff trung thực: chưa thử bằng chuột, phím và tai thật. Chủ dự án nghe ngay sau merge.
+
+**Chấm điểm (1–5):** phạm vi 5 · checklist 5 · test 5 · chất lượng code 5 · bàn giao trung thực 5 · số vòng sửa 0.
