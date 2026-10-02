@@ -10,7 +10,7 @@ func test_input_actions_registered() -> void:
 func test_autoloads_present() -> void:
 	assert_not_null(tree.root.get_node_or_null("GameInput"), "GameInput autoload")
 	assert_not_null(tree.root.get_node_or_null("EventBus"), "EventBus autoload")
-	for autoload in ["Settings", "GameState", "RuleSystem"]:
+	for autoload in ["App", "Settings", "GameState", "RuleSystem"]:
 		assert_not_null(tree.root.get_node_or_null(autoload), autoload + " autoload")
 	for sig in ["interaction_focus_changed", "interacted", "subtitle_requested", "game_paused", "settings_changed"]:
 		assert_true(EventBus.has_signal(sig), "EventBus signal " + sig)

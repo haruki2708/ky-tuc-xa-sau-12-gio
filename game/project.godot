@@ -19,6 +19,7 @@ config/features=PackedStringArray("4.7", "Forward Plus")
 [autoload]
 
 GameInput="*res://scripts/core/game_input.gd"
+App="*res://scripts/core/app.gd"
 EventBus="*res://scripts/core/event_bus.gd"
 Settings="*res://scripts/ui/settings.gd"
 GameState="*res://scripts/core/game_state.gd"
