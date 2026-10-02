@@ -93,7 +93,8 @@ func _process(_delta: float) -> void:
 		stop()
 		playback_finished.emit()
 		if quit_on_finish:
-			get_tree().quit()
+			print("AUTOPLAY: finished after %d frames" % (_frame + 1))
+			_request_quit()
 	_frame += 1
 
 
@@ -106,3 +107,19 @@ func stop() -> void:
 
 func _exit_tree() -> void:
 	stop()
+
+
+func _request_quit() -> void:
+	var app := _get_app()
+	if app != null:
+		app.quit()
+	else:
+		_quit_tree()
+
+
+func _get_app() -> Node:
+	return get_node_or_null("/root/App")
+
+
+func _quit_tree() -> void:
+	get_tree().quit()

@@ -2,7 +2,7 @@
 param()
 $ErrorActionPreference = 'Stop'
 $repo = Split-Path -Parent $PSScriptRoot
-$batch = 'build/captures/T-124-' + [guid]::NewGuid().ToString('N')
+$batch = 'build/captures/T-127-' + [guid]::NewGuid().ToString('N')
 $failed = $false
 for ($run = 1; $run -le 5; $run++) {
     $out = "$batch/run-$run"
