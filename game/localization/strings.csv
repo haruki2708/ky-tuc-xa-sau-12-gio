@@ -129,3 +129,5 @@ SUB_RUN_TO_ROOM,(Chạy về phòng 407. Chốt cửa lại.),(Run back to room 
 SUB_CAUGHT,(Một bàn tay lạnh đặt lên vai bạn.),(A cold hand rests on your shoulder.)
 SUB_FAIL_WHY_DEVIATION,Mức lệch đã chạm 5/5. Đọc lại sổ tay (Tab): nội quy thật là cách sống sót.,Deviation reached 5/5. Reread your notebook (Tab): the genuine rules keep you alive.
 SUB_FAIL_WHY_FIFTH,Bạn đã trả lời thay cho một người không có trong phòng.,You answered for someone who is not in the room.
+PROMPT_OPEN_DOOR,Mở cửa,Open door
+PROMPT_CLOSE_DOOR,Đóng cửa,Close door

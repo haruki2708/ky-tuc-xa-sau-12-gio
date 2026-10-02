@@ -1,0 +1,188 @@
+{
+  "blender": "5.2.2 LTS",
+  "seed": 138,
+  "models": {
+    "desk": {
+      "triangles": 132,
+      "triangle_limit_exclusive": 1500,
+      "blender_dimensions_m": [
+        1.5,
+        0.65,
+        0.8
+      ],
+      "godot_dimensions_m": [
+        1.5,
+        0.8,
+        0.65
+      ]
+    },
+    "desk_lamp": {
+      "triangles": 128,
+      "triangle_limit_exclusive": 500,
+      "blender_dimensions_m": [
+        0.20923,
+        0.39079,
+        0.43713
+      ],
+      "godot_dimensions_m": [
+        0.20923,
+        0.43713,
+        0.39079
+      ]
+    },
+    "telephone": {
+      "triangles": 168,
+      "triangle_limit_exclusive": 500,
+      "blender_dimensions_m": [
+        0.218,
+        0.21125,
+        0.165
+      ],
+      "godot_dimensions_m": [
+        0.218,
+        0.165,
+        0.21125
+      ]
+    },
+    "desk_items": {
+      "triangles": 180,
+      "triangle_limit_exclusive": 500,
+      "blender_dimensions_m": [
+        1.4474,
+        0.47308,
+        0.19015
+      ],
+      "godot_dimensions_m": [
+        1.4474,
+        0.19015,
+        0.47308
+      ]
+    },
+    "hall_board": {
+      "triangles": 72,
+      "triangle_limit_exclusive": 1500,
+      "blender_dimensions_m": [
+        0.75,
+        0.06,
+        0.9
+      ],
+      "godot_dimensions_m": [
+        0.75,
+        0.9,
+        0.06
+      ]
+    },
+    "sink": {
+      "triangles": 164,
+      "triangle_limit_exclusive": 1500,
+      "blender_dimensions_m": [
+        0.6,
+        0.5,
+        0.99
+      ],
+      "godot_dimensions_m": [
+        0.6,
+        0.99,
+        0.5
+      ]
+    },
+    "tap": {
+      "triangles": 140,
+      "triangle_limit_exclusive": 500,
+      "blender_dimensions_m": [
+        0.08,
+        0.164,
+        0.1975
+      ],
+      "godot_dimensions_m": [
+        0.08,
+        0.1975,
+        0.164
+      ]
+    },
+    "stall_front": {
+      "triangles": 96,
+      "triangle_limit_exclusive": 1500,
+      "blender_dimensions_m": [
+        1.94,
+        0.07,
+        2.2
+      ],
+      "godot_dimensions_m": [
+        1.94,
+        2.2,
+        0.07
+      ]
+    },
+    "slippers_pair": {
+      "triangles": 136,
+      "triangle_limit_exclusive": 500,
+      "blender_dimensions_m": [
+        0.2466,
+        0.25965,
+        0.066
+      ],
+      "godot_dimensions_m": [
+        0.2466,
+        0.066,
+        0.25965
+      ]
+    },
+    "shirt": {
+      "triangles": 116,
+      "triangle_limit_exclusive": 500,
+      "blender_dimensions_m": [
+        0.66,
+        0.047,
+        0.783
+      ],
+      "godot_dimensions_m": [
+        0.66,
+        0.783,
+        0.047
+      ]
+    },
+    "towel": {
+      "triangles": 48,
+      "triangle_limit_exclusive": 500,
+      "blender_dimensions_m": [
+        0.42,
+        0.043,
+        0.667
+      ],
+      "godot_dimensions_m": [
+        0.42,
+        0.667,
+        0.043
+      ]
+    },
+    "bucket": {
+      "triangles": 316,
+      "triangle_limit_exclusive": 500,
+      "blender_dimensions_m": [
+        0.324,
+        0.324,
+        0.494
+      ],
+      "godot_dimensions_m": [
+        0.324,
+        0.494,
+        0.324
+      ]
+    },
+    "pa_horn": {
+      "triangles": 240,
+      "triangle_limit_exclusive": 500,
+      "blender_dimensions_m": [
+        0.42,
+        0.66,
+        0.42
+      ],
+      "godot_dimensions_m": [
+        0.42,
+        0.42,
+        0.66
+      ]
+    }
+  }
+}

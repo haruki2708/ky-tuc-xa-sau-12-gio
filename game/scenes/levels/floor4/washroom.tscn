@@ -1,11 +1,15 @@
 [gd_scene format=3]
 
-[ext_resource type="Script" path="res://scripts/audio/light_hum.gd" id="e1"]
-[ext_resource type="Script" path="res://scripts/audio/ambient_emitter.gd" id="e2"]
-[ext_resource type="AudioStream" path="res://audio/sfx/water_drip_01.ogg" id="e3"]
-[ext_resource type="Script" path="res://scripts/audio/reverb_zone.gd" id="e4"]
-[ext_resource type="Script" path="res://scripts/audio/ambient_zone.gd" id="e5"]
-[ext_resource type="PackedScene" path="res://scenes/levels/mirror.tscn" id="e6"]
+[ext_resource type="PackedScene" path="res://assets/models/props/stall_front.glb" id="e1"]
+[ext_resource type="PackedScene" path="res://assets/models/props/sink.glb" id="e2"]
+[ext_resource type="PackedScene" path="res://assets/models/props/tap.glb" id="e3"]
+[ext_resource type="PackedScene" path="res://scenes/levels/props/water_stream.tscn" id="e4"]
+[ext_resource type="PackedScene" path="res://scenes/levels/mirror.tscn" id="e5"]
+[ext_resource type="Script" path="res://scripts/audio/light_hum.gd" id="e6"]
+[ext_resource type="Script" path="res://scripts/audio/ambient_emitter.gd" id="e7"]
+[ext_resource type="AudioStream" path="res://audio/sfx/water_drip_01.ogg" id="e8"]
+[ext_resource type="Script" path="res://scripts/audio/reverb_zone.gd" id="e9"]
+[ext_resource type="Script" path="res://scripts/audio/ambient_zone.gd" id="e10"]
 
 [sub_resource type="BoxShape3D" id="s1"]
 size = Vector3(6, 0.2, 5)
@@ -76,28 +80,25 @@ material = SubResource("s5")
 [sub_resource type="BoxShape3D" id="s19"]
 size = Vector3(1.94, 2.2, 0.08)
 
-[sub_resource type="StandardMaterial3D" id="s20"]
-albedo_color = Color(0.12, 0.25, 0.33, 1)
-roughness = 0.85
-texture_filter = 0
-
-[sub_resource type="BoxMesh" id="s21"]
-size = Vector3(1.94, 2.2, 0.08)
-material = SubResource("s20")
-
-[sub_resource type="BoxShape3D" id="s22"]
+[sub_resource type="BoxShape3D" id="s20"]
 size = Vector3(0.08, 2.5, 1.5)
 
-[sub_resource type="BoxMesh" id="s23"]
+[sub_resource type="BoxMesh" id="s21"]
 size = Vector3(0.08, 2.5, 1.5)
 material = SubResource("s5")
 
-[sub_resource type="BoxShape3D" id="s24"]
+[sub_resource type="BoxShape3D" id="s22"]
 size = Vector3(1.94, 2.2, 0.08)
 
-[sub_resource type="BoxMesh" id="s25"]
+[sub_resource type="BoxShape3D" id="s23"]
+size = Vector3(0.08, 2.5, 1.5)
+
+[sub_resource type="BoxMesh" id="s24"]
+size = Vector3(0.08, 2.5, 1.5)
+material = SubResource("s5")
+
+[sub_resource type="BoxShape3D" id="s25"]
 size = Vector3(1.94, 2.2, 0.08)
-material = SubResource("s20")
 
 [sub_resource type="BoxShape3D" id="s26"]
 size = Vector3(0.08, 2.5, 1.5)
@@ -107,76 +108,24 @@ size = Vector3(0.08, 2.5, 1.5)
 material = SubResource("s5")
 
 [sub_resource type="BoxShape3D" id="s28"]
-size = Vector3(1.94, 2.2, 0.08)
+size = Vector3(0.52, 0.86, 0.62)
 
-[sub_resource type="BoxMesh" id="s29"]
-size = Vector3(1.94, 2.2, 0.08)
-material = SubResource("s20")
+[sub_resource type="BoxShape3D" id="s29"]
+size = Vector3(0.52, 0.86, 0.62)
 
 [sub_resource type="BoxShape3D" id="s30"]
-size = Vector3(0.08, 2.5, 1.5)
+size = Vector3(0.52, 0.86, 0.62)
 
-[sub_resource type="BoxMesh" id="s31"]
-size = Vector3(0.08, 2.5, 1.5)
-material = SubResource("s5")
-
-[sub_resource type="BoxShape3D" id="s32"]
-size = Vector3(0.65, 0.86, 0.72)
-
-[sub_resource type="StandardMaterial3D" id="s33"]
+[sub_resource type="StandardMaterial3D" id="s31"]
 albedo_color = Color(0.74, 0.79, 0.72, 1)
 roughness = 0.85
 texture_filter = 0
 
-[sub_resource type="BoxMesh" id="s34"]
-size = Vector3(0.65, 0.86, 0.72)
-material = SubResource("s33")
-
-[sub_resource type="StandardMaterial3D" id="s35"]
-albedo_color = Color(0.1, 0.15, 0.15, 1)
-roughness = 0.85
-texture_filter = 0
-
-[sub_resource type="BoxMesh" id="s36"]
-size = Vector3(0.09, 0.25, 0.05)
-material = SubResource("s35")
-
-[sub_resource type="BoxShape3D" id="s37"]
-size = Vector3(0.65, 0.86, 0.72)
-
-[sub_resource type="BoxMesh" id="s38"]
-size = Vector3(0.65, 0.86, 0.72)
-material = SubResource("s33")
-
-[sub_resource type="BoxMesh" id="s39"]
-size = Vector3(0.09, 0.25, 0.05)
-material = SubResource("s35")
-
-[sub_resource type="BoxShape3D" id="s40"]
-size = Vector3(0.65, 0.86, 0.72)
-
-[sub_resource type="BoxMesh" id="s41"]
-size = Vector3(0.65, 0.86, 0.72)
-material = SubResource("s33")
-
-[sub_resource type="BoxMesh" id="s42"]
-size = Vector3(0.09, 0.25, 0.05)
-material = SubResource("s35")
-
-[sub_resource type="StandardMaterial3D" id="s45"]
-albedo_color = Color(0.73, 0.71, 0.56, 1)
-roughness = 0.85
-texture_filter = 0
-
-[sub_resource type="BoxMesh" id="s46"]
-size = Vector3(0.035, 0.42, 0.28)
-material = SubResource("s45")
-
-[sub_resource type="BoxMesh" id="s47"]
+[sub_resource type="BoxMesh" id="s32"]
 size = Vector3(1.15, 0.08, 0.13)
-material = SubResource("s33")
+material = SubResource("s31")
 
-[sub_resource type="BoxShape3D" id="s48"]
+[sub_resource type="BoxShape3D" id="s33"]
 size = Vector3(5.8, 3, 4.9)
 
 [node name="Washroom" type="Node3D"]
@@ -280,8 +229,10 @@ collision_mask = 0
 [node name="Collision" type="CollisionShape3D" parent="StallDoor_0"]
 shape = SubResource("s19")
 
-[node name="Mesh" type="MeshInstance3D" parent="StallDoor_0"]
-mesh = SubResource("s21")
+[node name="Model" parent="StallDoor_0" instance=ExtResource("e1")]
+position = Vector3(0, -1.1, 0)
+rotation_degrees = Vector3(0, 180, 0)
+scale = Vector3(1, 1, 1)
 
 [node name="StallPartition_0" type="StaticBody3D" parent="."]
 position = Vector3(0, 1.25, -4.25)
@@ -289,10 +240,10 @@ collision_layer = 1
 collision_mask = 0
 
 [node name="Collision" type="CollisionShape3D" parent="StallPartition_0"]
-shape = SubResource("s22")
+shape = SubResource("s20")
 
 [node name="Mesh" type="MeshInstance3D" parent="StallPartition_0"]
-mesh = SubResource("s23")
+mesh = SubResource("s21")
 
 [node name="StallDoor_1" type="StaticBody3D" parent="."]
 position = Vector3(3, 1.1, -3.55)
@@ -300,10 +251,12 @@ collision_layer = 1
 collision_mask = 0
 
 [node name="Collision" type="CollisionShape3D" parent="StallDoor_1"]
-shape = SubResource("s24")
+shape = SubResource("s22")
 
-[node name="Mesh" type="MeshInstance3D" parent="StallDoor_1"]
-mesh = SubResource("s25")
+[node name="Model" parent="StallDoor_1" instance=ExtResource("e1")]
+position = Vector3(0, -1.1, 0)
+rotation_degrees = Vector3(0, 180, 0)
+scale = Vector3(1, 1, 1)
 
 [node name="StallPartition_1" type="StaticBody3D" parent="."]
 position = Vector3(2, 1.25, -4.25)
@@ -311,10 +264,10 @@ collision_layer = 1
 collision_mask = 0
 
 [node name="Collision" type="CollisionShape3D" parent="StallPartition_1"]
-shape = SubResource("s26")
+shape = SubResource("s23")
 
 [node name="Mesh" type="MeshInstance3D" parent="StallPartition_1"]
-mesh = SubResource("s27")
+mesh = SubResource("s24")
 
 [node name="StallDoor_2" type="StaticBody3D" parent="."]
 position = Vector3(5, 1.1, -3.55)
@@ -322,10 +275,12 @@ collision_layer = 1
 collision_mask = 0
 
 [node name="Collision" type="CollisionShape3D" parent="StallDoor_2"]
-shape = SubResource("s28")
+shape = SubResource("s25")
 
-[node name="Mesh" type="MeshInstance3D" parent="StallDoor_2"]
-mesh = SubResource("s29")
+[node name="Model" parent="StallDoor_2" instance=ExtResource("e1")]
+position = Vector3(0, -1.1, 0)
+rotation_degrees = Vector3(0, 180, 0)
+scale = Vector3(1, 1, 1)
 
 [node name="StallPartition_2" type="StaticBody3D" parent="."]
 position = Vector3(4, 1.25, -4.25)
@@ -333,71 +288,72 @@ collision_layer = 1
 collision_mask = 0
 
 [node name="Collision" type="CollisionShape3D" parent="StallPartition_2"]
-shape = SubResource("s30")
+shape = SubResource("s26")
 
 [node name="Mesh" type="MeshInstance3D" parent="StallPartition_2"]
-mesh = SubResource("s31")
+mesh = SubResource("s27")
 
 [node name="Sink_0" type="StaticBody3D" parent="."]
-position = Vector3(0.42, 0.43, -0.85)
+position = Vector3(0.36, 0.43, -0.85)
 collision_layer = 1
 collision_mask = 0
 
 [node name="Collision" type="CollisionShape3D" parent="Sink_0"]
-shape = SubResource("s32")
+shape = SubResource("s28")
 
-[node name="Mesh" type="MeshInstance3D" parent="Sink_0"]
-mesh = SubResource("s34")
+[node name="Model" parent="Sink_0" instance=ExtResource("e2")]
+position = Vector3(-0.02, -0.43, 0)
+rotation_degrees = Vector3(0, -90, 0)
+scale = Vector3(1, 1, 1)
 
-[node name="Tap_0" type="Node3D" parent="."]
-position = Vector3(0.35, 1.03, -0.85)
-
-[node name="Mesh" type="MeshInstance3D" parent="Tap_0"]
-mesh = SubResource("s36")
+[node name="Tap_0" parent="." instance=ExtResource("e3")]
+position = Vector3(0.17, 0.86, -0.85)
+rotation_degrees = Vector3(0, -90, 0)
+scale = Vector3(1, 1, 1)
 
 [node name="Sink_1" type="StaticBody3D" parent="."]
-position = Vector3(0.42, 0.43, -1.85)
+position = Vector3(0.36, 0.43, -1.85)
 collision_layer = 1
 collision_mask = 0
 
 [node name="Collision" type="CollisionShape3D" parent="Sink_1"]
-shape = SubResource("s37")
+shape = SubResource("s29")
 
-[node name="Mesh" type="MeshInstance3D" parent="Sink_1"]
-mesh = SubResource("s38")
+[node name="Model" parent="Sink_1" instance=ExtResource("e2")]
+position = Vector3(-0.02, -0.43, 0)
+rotation_degrees = Vector3(0, -90, 0)
+scale = Vector3(1, 1, 1)
 
-[node name="Tap_1" type="Node3D" parent="."]
-position = Vector3(0.35, 1.03, -1.85)
-
-[node name="Mesh" type="MeshInstance3D" parent="Tap_1"]
-mesh = SubResource("s39")
+[node name="Tap_1" parent="." instance=ExtResource("e3")]
+position = Vector3(0.17, 0.86, -1.85)
+rotation_degrees = Vector3(0, -90, 0)
+scale = Vector3(1, 1, 1)
 
 [node name="Sink_2" type="StaticBody3D" parent="."]
-position = Vector3(0.42, 0.43, -2.85)
+position = Vector3(0.36, 0.43, -2.85)
 collision_layer = 1
 collision_mask = 0
 
 [node name="Collision" type="CollisionShape3D" parent="Sink_2"]
-shape = SubResource("s40")
+shape = SubResource("s30")
 
-[node name="Mesh" type="MeshInstance3D" parent="Sink_2"]
-mesh = SubResource("s41")
+[node name="Model" parent="Sink_2" instance=ExtResource("e2")]
+position = Vector3(-0.02, -0.43, 0)
+rotation_degrees = Vector3(0, -90, 0)
+scale = Vector3(1, 1, 1)
 
-[node name="Tap_2" type="Node3D" parent="."]
-position = Vector3(0.35, 1.03, -2.85)
+[node name="Tap_2" parent="." instance=ExtResource("e3")]
+position = Vector3(0.17, 0.86, -2.85)
+rotation_degrees = Vector3(0, -90, 0)
+scale = Vector3(1, 1, 1)
 
-[node name="Mesh" type="MeshInstance3D" parent="Tap_2"]
-mesh = SubResource("s42")
+[node name="TapWater" parent="." instance=ExtResource("e4")]
+position = Vector3(0.282, 0.985, -2.85)
+rotation_degrees = Vector3(0, 0, 0)
 
-[node name="Mirror" parent="." instance=ExtResource("e6")]
+[node name="Mirror" parent="." instance=ExtResource("e5")]
 position = Vector3(0.145, 1.62, -1.85)
 rotation = Vector3(0, 1.57079632679, 0)
-
-[node name="Notice" type="Node3D" parent="."]
-position = Vector3(0.125, 1.55, -3.25)
-
-[node name="Mesh" type="MeshInstance3D" parent="Notice"]
-mesh = SubResource("s46")
 
 [node name="WashroomLight" type="OmniLight3D" parent="."]
 position = Vector3(3, 2.8, -2)
@@ -410,10 +366,10 @@ shadow_enabled = false
 position = Vector3(0, 0.08, 0)
 
 [node name="Mesh" type="MeshInstance3D" parent="WashroomLight/Fixture"]
-mesh = SubResource("s47")
+mesh = SubResource("s32")
 
 [node name="LightHum" type="AudioStreamPlayer3D" parent="WashroomLight" node_paths=PackedStringArray("light")]
-script = ExtResource("e1")
+script = ExtResource("e6")
 light = NodePath("..")
 bus = &"Ambience"
 unit_size = 2.0
@@ -424,8 +380,8 @@ volume_variation_db = 0.0
 
 [node name="WaterDrips" type="AudioStreamPlayer3D" parent="."]
 position = Vector3(0.35, 0.9, -2.85)
-script = ExtResource("e2")
-stream = ExtResource("e3")
+script = ExtResource("e7")
+stream = ExtResource("e8")
 bus = &"Ambience"
 volume_db = -8
 unit_size = 4.0
@@ -436,21 +392,21 @@ interval_max = 6.0
 
 [node name="ReverbZone" type="Area3D" parent="."]
 position = Vector3(3, 1.5, -2.5)
-script = ExtResource("e4")
+script = ExtResource("e9")
 collision_layer = 0
 collision_mask = 2
 preset = 2
 mix_priority = 2
 
 [node name="Shape" type="CollisionShape3D" parent="ReverbZone"]
-shape = SubResource("s48")
+shape = SubResource("s33")
 
 [node name="AmbientZone" type="Area3D" parent="."]
 position = Vector3(3, 1.5, -2.5)
-script = ExtResource("e5")
+script = ExtResource("e10")
 collision_layer = 0
 collision_mask = 2
 emitters = Array[NodePath]([NodePath("../WashroomLight/LightHum"), NodePath("../WaterDrips")])
 
 [node name="Shape" type="CollisionShape3D" parent="AmbientZone"]
-shape = SubResource("s48")
+shape = SubResource("s33")

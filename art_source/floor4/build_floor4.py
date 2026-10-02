@@ -76,9 +76,24 @@ class Scene:
         return self.node(name, parent=parent, instance=resource,
             properties=f"position = {vec(pos)}\nrotation_degrees = {vec((0, yaw, 0))}\nscale = {vec(scale)}")
 
-    def lamp(self, name, pos, tube=True, energy=1.0, radius=4.0):
+    def prop(self, name, model, pos=(0, 0, 0), yaw=0, parent=".", scale=(1, 1, 1), pitch=0):
+        """A T-138 prop model (visual only; collision stays an invisible box)."""
+        resource = self.resource(f"res://assets/models/props/{model}.glb")
+        return self.node(name, parent=parent, instance=resource,
+            properties=f"position = {vec(pos)}\nrotation_degrees = {vec((pitch, yaw, 0))}\nscale = {vec(scale)}")
+
+    def scene(self, name, path, pos=(0, 0, 0), yaw=0, parent=".", extra=""):
+        resource = self.resource(f"res://scenes/levels/props/{path}.tscn")
+        return self.node(name, parent=parent, instance=resource,
+            properties=f"position = {vec(pos)}\nrotation_degrees = {vec((0, yaw, 0))}" + extra)
+
+    def lamp(self, name, pos, tube=True, energy=1.0, radius=4.0, desk_lamp=False):
         self.node(name, "OmniLight3D", properties=f"position = {vec(pos)}\nlight_energy = {energy}\n"
                   f"light_color = Color(0.82, 0.90, 0.76, 1)\nomni_range = {radius}\nshadow_enabled = false")
+        if desk_lamp:
+            # Origin of the model is the bulb, like the light itself.
+            self.prop("Fixture", "desk_lamp", yaw=180, parent=name)
+            return
         self.box("Fixture", (0, 0.08, 0), (1.15, 0.08, 0.13) if tube else (0.22, 0.1, 0.2),
                  "white", parent=name, solid=False)
         if not tube:
@@ -145,13 +160,21 @@ def corridor():
     s.lamp("CorridorLight_Desk", (40, 2.80, 1.2), radius=4.7)
     emitters.append("CorridorLight_Desk/LightHum")
     s.box("Clothesline", (24, 2.15, 2.27), (16, .018, .018), "iron", solid=False)
-    for i, x in enumerate((17, 20, 23, 27, 30)):
-        s.box(f"HangingCloth_{i}", (x, 1.76, 2.27), (.48, .72, .025), "cloth", solid=False)
-    for i in range(4):
-        for side in (-1, 1):
-            s.box(f"Slippers_{i}_{side}", (30.5 + i * .35 + side * .065, .025, .35), (.10, .05, .25), "blue", solid=False)
+    # Laundry on the line (origin on the line). Slot 25.5 stays free for the
+    # story's extra white shirt (anchor ClotheslineExtraShirt).
+    cloths = ((17, "shirt", "Color(0.62, 0.72, 0.82, 1)"), (20, "towel", "Color(0.9, 0.62, 0.62, 1)"),
+              (23, "shirt", "Color(0.45, 0.47, 0.5, 1)"), (27, "towel", "Color(1, 1, 1, 1)"),
+              (30, "shirt", "Color(0.3, 0.42, 0.33, 1)"))
+    for i, (x, kind, color) in enumerate(cloths):
+        s.scene(f"HangingCloth_{i}", f"{kind}_hanging", (x, 2.15, 2.27), extra=f"\ncolor = {color}")
+    # Four pairs of slippers outside room 407: four students live there.
+    for i, color in enumerate(("Color(0.16, 0.3, 0.45, 1)", "Color(0.5, 0.5, 0.47, 1)",
+                               "Color(0.2, 0.34, 0.24, 1)", "Color(0.12, 0.12, 0.13, 1)")):
+        s.scene(f"Slippers_{i}", "slippers_pair", (30.5 + i * .35, 0, .35), (i % 2) * 6 - 3,
+                extra=f"\ncolor = {color}")
     for x in (11, 19, 35):
-        s.box(f"Bucket_{x}", (x, .18, .35), (.3, .36, .3), "blue")
+        s.box(f"Bucket_{x}", (x, .18, .35), (.3, .36, .3), "blue", visible=False)
+        s.prop("Model", "bucket", (0, -.18, 0), x * 37 % 90, parent=f"Bucket_{x}")
     s.emitter("YardInsects", (23, -1, 9), "ambience/night_insects_motorbike.ogg", -5)
     emitters.append("YardInsects")
     s.zones((22, 1.5, 1.2), (44, 3, 2.4), 1, emitters)
@@ -188,13 +211,12 @@ def room():
     for person, x, z, yaw in (("Phuc", .3, -.45, -90), ("Viet", .3, -1.25, -90),
                                ("Dat", 3.7, -.45, 90), ("Trung", 3.7, -1.25, 90)):
         s.kit(f"Locker_{person}", "locker", (x, 0, z), yaw)
-    s.box("StudyDesk", (1.8, .38, -4.55), (1.5, .76, .65), "wood")
+    s.box("StudyDesk", (1.8, .38, -4.55), (1.5, .76, .65), "wood", visible=False)
+    s.prop("Model", "desk", (0, -.38, 0), 180, parent="StudyDesk", scale=(1, .95, 1))
     s.kit("StudyStool", "plastic_stool", (2.95, 0, -4.5))
     s.kit("CeilingFan", "ceiling_fan", (2, 2.28, -2.5))
-    s.box("LightSwitch", (2.72, 1.35, -.12), (.10, .16, .04), "white", solid=False)
-    s.box("Phone", (3.35, .445, -2.45), (.075, .022, .15), "iron", solid=False)
     s.lamp("Room407MainLight", (2, 2.78, -1.2), radius=4)
-    s.lamp("Room407DeskLamp", (1.8, 1.02, -4.6), tube=False, energy=.5, radius=2.4)
+    s.lamp("Room407DeskLamp", (1.8, 1.02, -4.6), tube=False, energy=.5, radius=2.4, desk_lamp=True)
     s.emitter("FanAmbience", (2, 2.4, -2.5), "ambience/ceiling_fan.ogg", -12)
     s.zones((2, 1.5, -2.5), (3.8, 3, 4.9), 0, ["Room407MainLight/LightHum", "FanAmbience"])
     s.save("room_407.tscn")
@@ -212,14 +234,18 @@ def washroom():
     s.box("EntranceEast", (4.8, 1.5, 0), (2.4, 3, .2))
     s.box("EntranceLintel", (3, 2.65, 0), (1.2, .7, .2))
     for i, x in enumerate((1, 3, 5)):
-        s.box(f"StallDoor_{i}", (x, 1.1, -3.55), (1.94, 2.2, .08), "blue")
+        s.box(f"StallDoor_{i}", (x, 1.1, -3.55), (1.94, 2.2, .08), "blue", visible=False)
+        s.prop("Model", "stall_front", (0, -1.1, 0), 180, parent=f"StallDoor_{i}")
         s.box(f"StallPartition_{i}", (i * 2, 1.25, -4.25), (.08, 2.5, 1.5))
     for i, z in enumerate((-.85, -1.85, -2.85)):
-        s.box(f"Sink_{i}", (.42, .43, z), (.65, .86, .72), "white")
-        s.box(f"Tap_{i}", (.35, 1.03, z), (.09, .25, .05), "iron", solid=False)
+        # Pedestal basin against the west wall, deck tap on its back rim.
+        s.box(f"Sink_{i}", (.36, .43, z), (.52, .86, .62), "white", visible=False)
+        s.prop("Model", "sink", (-.02, -.43, 0), -90, parent=f"Sink_{i}")
+        s.prop(f"Tap_{i}", "tap", (.17, .86, z), -90)
+    # The story runs this one in segment 5 (RULES.md §5); off by default.
+    s.scene("TapWater", "water_stream", (.282, .985, -2.85))
     s.node("Mirror", instance=s.resource("res://scenes/levels/mirror.tscn"),
            properties="position = Vector3(0.145, 1.62, -1.85)\nrotation = Vector3(0, 1.57079632679, 0)")
-    s.box("Notice", (.125, 1.55, -3.25), (.035, .42, .28), "paper", solid=False)
     s.lamp("WashroomLight", (3, 2.8, -2), energy=1.2, radius=5)
     s.emitter("WaterDrips", (.35, .9, -2.85), "sfx/water_drip_01.ogg", -8, random=True)
     s.zones((3, 1.5, -2.5), (5.8, 3, 4.9), 2, ["WashroomLight/LightHum", "WaterDrips"])
@@ -240,14 +266,15 @@ def duty_desk():
     s.box("GateSign", (3.95, 2.0, .10), (.7, .25, .03), "paper", solid=False)
     s.box("StairLanding", (3.95, -.1, -1.2), (2, .2, 2.4), "tile", floor=True)
     s.box("StairBack", (3.95, 1.5, -2.4), (2, 3, .2))
-    s.box("Desk", (2, .4, .42), (1.5, .8, .65), "wood")
-    s.box("DutyLog", (1.8, .825, .42), (.33, .045, .25), "paper", solid=False)
-    s.box("DeskTelephone", (2.4, .88, .42), (.22, .16, .18), "iron", solid=False)
+    s.box("Desk", (2, .4, .42), (1.5, .8, .65), "wood", visible=False)
+    s.prop("Model", "desk", (0, -.4, 0), 180, parent="Desk")
+    s.prop("DeskItems", "desk_items", (2, .8, .42), 180)
+    s.prop("DeskTelephone", "telephone", (2.4, .8, .42), 172)
     s.kit("DutyStool", "plastic_stool", (3, 0, .5))
-    s.box("HallBoard", (.5, 1.6, .14), (.75, .90, .06), "wood", solid=False)
-    s.box("HallBoardPaper", (.5, 1.6, .18), (.67, .82, .015), "paper", solid=False)
-    s.box("Speaker", (2, 2.45, .2), (.5, .35, .3), "iron", solid=False)
-    s.lamp("DutyDeskLamp", (1.5, 1.06, .42), tube=False, energy=.6, radius=2)
+    s.prop("HallBoard", "hall_board", (.5, 1.6, .14), 180)
+    # "Loa nén" horn on the wall, aimed down the corridor.
+    s.prop("Speaker", "pa_horn", (2, 2.55, .11), 180, pitch=-12)
+    s.lamp("DutyDeskLamp", (1.5, 1.06, .42), tube=False, energy=.6, radius=2, desk_lamp=True)
     # Existing electrical crackle is a quiet temporary idle-speaker cue.
     s.emitter("SpeakerIdle", (2, 2.45, .3), "sfx/fluorescent_flicker.ogg", -28, random=True)
     s.zones((3, 1.5, 1.2), (6, 3, 2.4), 1, ["SpeakerIdle"])
@@ -264,7 +291,7 @@ ANCHORS = {
     "Bed_Dat": ((33.35, 1.20, -3), 0), "Bed_Trung": ((33.35, .43, -3), 0),
     "Slippers407": ((31.025, .05, .35), 0), "HallBoard": ((38.5, 1.6, .19), 0),
     "HallBoardNote": ((38.7, 1.9, .205), 0), "DutyLog": ((39.8, .85, .42), 0),
-    "Speaker": ((40, 2.45, .37), 0), "WashroomTapRunning": ((.35, 1.03, -2.85), 0),
+    "Speaker": ((40, 2.45, .37), 0), "WashroomTapRunning": ((.24, 1.0, -2.85), 0),
     "WashroomMirror": ((.15, 1.62, -1.85), -90), "WashroomNotice": ((.15, 1.55, -3.25), -90),
     "ClotheslineExtraShirt": ((25.5, 1.76, 2.27), 0), "DarkSection": ((16, 1.5, 1.2), 0),
 }
