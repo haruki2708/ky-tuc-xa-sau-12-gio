@@ -25,7 +25,12 @@ func show_document(document: DocumentData) -> void:
 func _input(event: InputEvent) -> void:
 	if not _open or event.is_echo():
 		return
-	if event.is_action_pressed("interact") or event.is_action_pressed("pause") or event.is_action_pressed("notebook"):
+	# Close on the *release* of interact: closing on its press resumes the game
+	# in the same frame, and the Player would see interact as just pressed and
+	# reopen the paper it is still looking at.
+	if event.is_action_pressed("interact"):
+		get_viewport().set_input_as_handled()
+	elif event.is_action_released("interact") or event.is_action_pressed("pause") or event.is_action_pressed("notebook"):
 		get_viewport().set_input_as_handled()
 		close_view()
 
