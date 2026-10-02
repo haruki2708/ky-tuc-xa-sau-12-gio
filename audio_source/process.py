@@ -43,9 +43,18 @@ ASSETS = [
     ("phone_vibrate", "sfx", 3.4, 13009),
     ("light_switch", "sfx", 0.5, 13010),
     ("door_latch", "sfx", 0.65, 13011),
+    ("sting_low", "sfx", 3.0, 13101),
+    ("sting_hit", "sfx", 2.0, 13102),
+    ("slipper_place", "sfx", 0.9, 13103),
+    ("tube_cut", "sfx", 0.5, 13104),
+    ("breath_close", "ambience", 9.0, 13105),
+    *[(f"slipper_rush_{i:02}", "sfx", 0.6, 13105 + i) for i in range(1, 5)],
+    ("whisper_co", "sfx", 1.5, 13110),
+    ("net_billow", "sfx", 1.1, 13111),
 ]
 
-SEGMENT12_NAMES = {asset[0] for asset in ASSETS if asset[3] >= 13000}
+SEGMENT12_NAMES = {asset[0] for asset in ASSETS if 13000 <= asset[3] < 13100}
+SCARE_NAMES = {asset[0] for asset in ASSETS if 13100 <= asset[3] < 13200}
 LOOP_SFX = {"phone_vibrate"}
 
 
@@ -53,6 +62,9 @@ LOOP_SFX = {"phone_vibrate"}
 TARGET_OVERRIDES = {"slipper_tile": -56, "slipper_run": -53, "fluorescent_hum": -44, "ceiling_fan": -34}
 TARGET_OVERRIDES.update({"knock_": -30, "speaker_": -32, "phone_vibrate": -36,
                          "light_switch": -36, "door_latch": -36})
+TARGET_OVERRIDES.update({"sting_low": -32, "sting_hit": -20, "slipper_place": -32,
+                         "tube_cut": -32, "breath_close": -36, "slipper_rush_": -34,
+                         "whisper_co": -30, "net_billow": -32})
 
 
 def target_lufs(name: str, loop: bool) -> int:
@@ -73,6 +85,8 @@ def write_wav(path: Path, values: list[float]) -> None:
 
 def synthesize(name: str, seconds: float, seed: int) -> list[float]:
     rng = random.Random(seed)
+    if name in SCARE_NAMES:
+        return synthesize_scare(name, seconds, seed)
     if name in SEGMENT12_NAMES:
         return synthesize_segment12(name, seconds, seed)
     if name.startswith("slipper_"):
@@ -243,6 +257,83 @@ def synthesize_segment12(name: str, seconds: float, seed: int) -> list[float]:
             for onset in [.025, .24]:
                 u = t - onset
                 value += envelope(u, .002, .023) * (.12 * hiss + .08 * math.sin(TAU * 940 * u) + .035 * math.sin(TAU * 2300 * u))
+        values.append(value)
+    return values
+
+
+def synthesize_scare(name: str, seconds: float, seed: int) -> list[float]:
+    """Seeded noise, resonances and envelopes; no speech recordings or TTS."""
+    rng = random.Random(seed)
+    values: list[float] = []
+    low = mid = high = 0.0
+    # Noise resonators approximate a whispered rounded vowel without voiced pitch.
+    resonators = [(f, math.exp(-math.pi * width / RATE)) for f, width in
+                  [(480, 150), (850, 220), (2400, 400)]]
+    states = [[0.0, 0.0] for _ in resonators]
+    variant = seed % 10
+
+    def envelope(u: float, attack: float, decay: float) -> float:
+        return min(1.0, max(0.0, u) / attack) * math.exp(-max(0.0, u) / decay)
+
+    for index in range(round(seconds * RATE)):
+        t = index / RATE
+        noise = rng.uniform(-1, 1)
+        low += .045 * (noise - low)
+        mid += .22 * (noise - mid)
+        high += .55 * (noise - high)
+        air = high - mid
+        soft = mid - low
+        value = 0.0
+        if name == "sting_low":
+            # Slow onset and gently beating harmonics avoid a startling attack.
+            swell = math.sin(math.pi * min(t / .5, 1) / 2) ** 2
+            tail = math.exp(-t / .85) * min(1.0, (seconds - t) / .45)
+            tone = (.3 * math.sin(TAU * 64 * t) + .13 * math.sin(TAU * 128.7 * t)
+                    + .04 * math.sin(TAU * 192 * t))
+            value = swell * tail * (.92 + .08 * math.sin(TAU * 4.2 * t)) * tone
+        elif name == "sting_hit":
+            u = t - .016
+            metal = sum(a * math.sin(TAU * hz * u) for hz, a in
+                        [(147, .19), (431, .16), (1037, .11), (2213, .06)])
+            value = envelope(u, .001, .36) * math.tanh(3.0 * metal)
+            value += .36 * envelope(u, .001, .038) * (soft + air)
+        elif name == "slipper_place":
+            for onset, strength in [(.025, 1.0), (.24, .83)]:
+                u = t - onset
+                value += strength * envelope(u, .009, .035) * (.55 * low + .07 * math.sin(TAU * 185 * u))
+                value += strength * .12 * envelope(u - .014, .007, .022) * soft
+        elif name == "tube_cut":
+            u = t - .018
+            value = envelope(u, .002, .018) * (.2 * math.sin(TAU * 110 * u) + .15 * low)
+            value += .08 * envelope(u - .036, .001, .007) * air
+        elif name == "breath_close":
+            # Two unvoiced breaths per eight-second output loop; uneven rasp.
+            cycle = t % 4.0
+            inhale = math.sin(math.pi * min(cycle / 1.35, 1)) ** 2
+            exhale = math.sin(math.pi * max(0.0, min((cycle - 1.65) / 1.8, 1))) ** 2
+            rasp = .7 + .2 * math.sin(TAU * 31 * t) + .1 * math.sin(TAU * 47.3 * t)
+            value = (.34 * inhale + .48 * exhale) * (soft + .24 * air) * rasp
+        elif name.startswith("slipper_rush_"):
+            u = t - (.022 + variant * .001)
+            gap = .056 + variant * .003
+            body = .16 * math.sin(TAU * (138 + variant * 7) * u)
+            value = envelope(u, .005, .045) * (.65 * low + body)
+            value += .65 * envelope(u - gap, .0025, .025) * soft
+            value += .10 * envelope(u - .025, .014, .065) * low
+        elif name == "whisper_co":
+            vowel = 0.0
+            for k, (hz, radius) in enumerate(resonators):
+                prev, prev2 = states[k]
+                current = (1 - radius) * noise + 2 * radius * math.cos(TAU * hz / RATE) * prev - radius * radius * prev2
+                states[k] = [current, prev]
+                vowel += current * [.24, .18, .08][k]
+            # Brief breath consonant followed by a fading unvoiced "o" shape.
+            value = .20 * envelope(t - .02, .01, .035) * air
+            value += envelope(t - .10, .10, .38) * (vowel + .045 * soft)
+        elif name == "net_billow":
+            u = t - .02
+            flutter = .75 + .25 * math.sin(TAU * (17 * t + 8 * t * t))
+            value = .6 * envelope(u, .075, .14) * (soft + .12 * air) * flutter
         values.append(value)
     return values
 
