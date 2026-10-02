@@ -1,0 +1,122 @@
+[gd_scene load_steps=19 format=3]
+
+[ext_resource type="Script" path="res://scripts/entity/pursuer_test.gd" id="script"]
+
+[ext_resource type="PackedScene" path="res://scenes/entity/pursuer.tscn" id="pursuer"]
+
+[ext_resource type="PackedScene" path="res://scenes/player/player.tscn" id="player"]
+
+[ext_resource type="PackedScene" path="res://ui/pause/pause_menu.tscn" id="pause"]
+
+[sub_resource type="Environment" id="Environment"]
+background_mode = 1
+background_color = Color(0.1, 0.12, 0.15, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.5, 0.55, 0.6, 1)
+ambient_light_energy = 0.35
+
+[sub_resource type="BoxShape3D" id="SafeShape"]
+size = Vector3(5, 3, 4.8)
+
+[sub_resource type="BoxMesh" id="SafeMesh"]
+size = Vector3(5, 0.01, 4.8)
+
+[sub_resource type="StandardMaterial3D" id="SafeMaterial"]
+albedo_color = Color(0.45, 0.65, 0.4, 1)
+
+[sub_resource type="BoxShape3D" id="FloorShape"]
+size = Vector3(60, 0.2, 5)
+
+[sub_resource type="BoxMesh" id="FloorMesh"]
+size = Vector3(60, 0.2, 5)
+
+[sub_resource type="BoxShape3D" id="NorthWallShape"]
+size = Vector3(60, 3, 0.2)
+
+[sub_resource type="BoxMesh" id="NorthWallMesh"]
+size = Vector3(60, 3, 0.2)
+
+[sub_resource type="BoxShape3D" id="SouthWallShape"]
+size = Vector3(60, 3, 0.2)
+
+[sub_resource type="BoxMesh" id="SouthWallMesh"]
+size = Vector3(60, 3, 0.2)
+
+[sub_resource type="BoxShape3D" id="WestWallShape"]
+size = Vector3(0.2, 3, 5)
+
+[sub_resource type="BoxMesh" id="WestWallMesh"]
+size = Vector3(0.2, 3, 5)
+
+[sub_resource type="BoxShape3D" id="EastWallShape"]
+size = Vector3(0.2, 3, 5)
+
+[sub_resource type="BoxMesh" id="EastWallMesh"]
+size = Vector3(0.2, 3, 5)
+
+[node name="PursuerTest" type="Node3D"]
+script = ExtResource("script")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment")
+
+[node name="Floor" type="StaticBody3D" parent="."]
+position = Vector3(0, -0.1, 0)
+metadata/surface = &"tile"
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("FloorShape")
+[node name="Mesh" type="MeshInstance3D" parent="Floor"]
+mesh = SubResource("FloorMesh")
+
+[node name="NorthWall" type="StaticBody3D" parent="."]
+position = Vector3(0, 1.5, -2.5)
+metadata/surface = &"tile"
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NorthWall"]
+shape = SubResource("NorthWallShape")
+[node name="Mesh" type="MeshInstance3D" parent="NorthWall"]
+mesh = SubResource("NorthWallMesh")
+
+[node name="SouthWall" type="StaticBody3D" parent="."]
+position = Vector3(0, 1.5, 2.5)
+metadata/surface = &"tile"
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SouthWall"]
+shape = SubResource("SouthWallShape")
+[node name="Mesh" type="MeshInstance3D" parent="SouthWall"]
+mesh = SubResource("SouthWallMesh")
+
+[node name="WestWall" type="StaticBody3D" parent="."]
+position = Vector3(-30, 1.5, 0)
+metadata/surface = &"tile"
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WestWall"]
+shape = SubResource("WestWallShape")
+[node name="Mesh" type="MeshInstance3D" parent="WestWall"]
+mesh = SubResource("WestWallMesh")
+
+[node name="EastWall" type="StaticBody3D" parent="."]
+position = Vector3(30, 1.5, 0)
+metadata/surface = &"tile"
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EastWall"]
+shape = SubResource("EastWallShape")
+[node name="Mesh" type="MeshInstance3D" parent="EastWall"]
+mesh = SubResource("EastWallMesh")
+
+[node name="Player" parent="." instance=ExtResource("player")]
+position = Vector3(-20, 0.03, 0)
+rotation = Vector3(0, -1.5707963, 0)
+[node name="Pursuer" parent="." instance=ExtResource("pursuer")]
+[node name="SafeZone" type="Area3D" parent="." groups=["safe_zone"]]
+position = Vector3(22, 1.5, 0)
+collision_layer = 8
+collision_mask = 2
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SafeZone"]
+shape = SubResource("SafeShape")
+[node name="SafeFloor" type="MeshInstance3D" parent="."]
+position = Vector3(22, 0.005, 0)
+mesh = SubResource("SafeMesh")
+material_override = SubResource("SafeMaterial")
+[node name="SafeLight" type="OmniLight3D" parent="."]
+position = Vector3(22, 2.4, 0)
+light_color = Color(1, 0.9, 0.7, 1)
+light_energy = 3.0
+omni_range = 8.0
+[node name="PauseMenu" parent="." instance=ExtResource("pause")]
