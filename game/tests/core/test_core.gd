@@ -195,3 +195,52 @@ func test_room_407_interactables_are_reachable_from_inside() -> void:
 	await tree.create_timer(0.5).timeout
 	GameState.reset()
 	RuleSystem.reset()
+
+
+func _tap(action: StringName) -> void:
+	var press := InputEventAction.new()
+	press.action = action
+	press.pressed = true
+	Input.parse_input_event(press)
+	await wait_frames(2)
+	var release := InputEventAction.new()
+	release.action = action
+	release.pressed = false
+	Input.parse_input_event(release)
+	await wait_frames(2)
+
+
+func test_reading_the_door_paper_opens_and_closes_cleanly() -> void:
+	var main: Node = load("res://scenes/main/main.tscn").instantiate()
+	main.get_node("StoryDirector").auto_start = false
+	tree.root.add_child(main)
+	RuleSystem.load_rule_set(load("res://data/rules/demo.tres"))
+	var player := main.get_node("Player") as Node3D
+	player.global_position = Vector3(32.0, 0.03, -0.9)
+	player.rotation.y = PI
+	player.get_node("Head").rotation.x = -0.28
+	for i in 10:
+		await tree.physics_frame
+	var view := main.get_node("DocumentView")
+	await _tap(&"interact")
+	assert_true(view.is_open(), "E on the paper opens the close-up")
+	assert_true(tree.paused, "reading pauses the game")
+	await _tap(&"interact")
+	for i in 10:
+		await tree.physics_frame
+	assert_false(view.is_open(), "E closes the paper and it stays closed")
+	assert_false(tree.paused, "game resumes")
+	await _tap(&"notebook")
+	assert_true(main.get_node("Notebook").is_open(), "Tab opens the notebook")
+	await _tap(&"pause")
+	assert_false(main.get_node("Notebook").is_open(), "Esc closes the notebook")
+	assert_false(main.get_node("PauseMenu")._open, "Esc did not also open the pause menu")
+	tree.paused = false
+	for node in main.find_children("*", "AudioStreamPlayer3D", true, false):
+		if node.has_method("stop_emitting"):
+			node.stop_emitting()
+		(node as AudioStreamPlayer3D).stop()
+	main.queue_free()
+	await tree.create_timer(0.5).timeout
+	GameState.reset()
+	RuleSystem.reset()
