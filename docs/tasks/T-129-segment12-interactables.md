@@ -45,8 +45,39 @@ Mỗi đồ vật kế thừa `Interactable` (`game/scripts/core/interactable.gd
 6. **Scene thử `game/scenes/interaction/interaction_test.tscn`:** một phòng nhỏ có Player, công tắc, đèn, cửa có chốt (dùng cửa tạm của riêng lane A), một tờ giấy, điện thoại có phím `R` để rung. Dùng để thử bằng F6.
 
 ## Checklist hoàn thành
-- [ ] `pwsh tools/test.ps1` và `pwsh tools/check.ps1` PASS
-- [ ] Không chạm file ngoài phạm vi
-- [ ] Mục Handoff đã điền, kèm danh sách scene và tham số `@export` để integrator gắn vào anchor
+- [x] `pwsh tools/test.ps1` và `pwsh tools/check.ps1` PASS
+- [x] Không chạm file ngoài phạm vi
+- [x] Mục Handoff đã điền, kèm danh sách scene và tham số `@export` để integrator gắn vào anchor
 
 ## Handoff (agent điền)
+
+### Phiên 2026-10-02 — Lane A
+- Đã thêm bốn scene tái sử dụng, kế thừa `Interactable`, layer 3 (giá trị 4), mask 0, có collider và mesh hộp. Công tắc đồng bộ cờ/gợi ý ngay khi ready và khi visibility của đèn đổi; chốt kiểm tra `is_open` nếu có, khóa/mở bằng `door.enabled`; giấy ghi luật trước khi mở document, id sai chỉ warning; điện thoại rung mesh ±2 mm, phát/lặp stream được gán, trả lời thì dừng rung/âm, đặt cờ và phát signal/phụ đề.
+- Thêm phòng thử `res://scenes/interaction/interaction_test.tscn`: Player, sàn/tường, đèn/công tắc, cửa tạm riêng Lane A với chốt, giấy `room_paper_407`, điện thoại trên bàn, HUD và menu pause có sẵn. R gọi `Phone.ring()` bằng phím debug trong scene, không thêm input action. Phòng thử tự nạp `demo.tres`; không đặt thời điểm hay phán định cốt truyện.
+- Thêm 8 key vi/en vào cuối CSV, không sửa key cũ. Thêm 12 test và commit các UID do Godot sinh.
+- Commit code `5dfefba` — `T-129: Add reusable segment one and two interactables and test room`; đã push `origin/lane-a/T-129-segment12-interactables` trước khi cập nhật Handoff.
+
+### Scene và tham số cho integrator
+Các scene nằm trong `res://scenes/interaction/`, script cùng tên nằm trong `res://scripts/interaction/`. Gán tham chiếu trước khi scene vào cây. Các export kế thừa `enabled` và `prompt_key` vẫn có; gợi ý của công tắc/chốt được cập nhật theo trạng thái, điện thoại tự quản lý `enabled`.
+
+| Scene | Export cần gán | Anchor / hệ tọa độ và kích thước |
+|---|---|---|
+| `light_switch.tscn` | `light: Light3D`; `flag: StringName = &"main_light_on"` | Gắn `Room407LightSwitch`, gán đèn chính thực tế. Gốc là tâm mặt lưng; hộp 0,08 × 0,12 × 0,025 m theo XYZ, nhô về local +Z. Cờ khởi tạo theo `light.visible`, không theo cờ lưu trước đó. |
+| `door_latch.tscn` | `door: Interactable`; `flag: StringName = &"door_locked"` | Gán node cửa 407 thật, không gán marker. Gốc theo anchor `Door407` ở bản lề/chân cửa; tâm chốt local `(-0.78, 1.05, -0.16)`, hộp 0,18 × 0,06 × 0,06 m ở mặt trong phòng. Parent theo `Door407/Pivot` để chốt đi theo cánh cửa. Khởi tạo mở chốt/cờ false. |
+| `readable.tscn` | `document_id: StringName`; `size: Vector2 = Vector2(0.21, 0.297)` | Gán `&"room_paper_407"`, đặt theo `RulesPaper407` và cho đi theo cánh cửa. Gốc ở tâm mặt lưng, giấy nằm trên XY, dày 0,004 m nhô local +Z. Bảng lớn chỉnh `size` theo mét; collider/mesh riêng từng instance, đổi size lúc chạy cũng cập nhật. |
+| `phone.tscn` | `vibrate_stream: AudioStream` (có thể để null) | Gắn `Phone_Trung`, gốc ở đáy điện thoại. Hộp 0,075 × 0,012 × 0,15 m theo XYZ, nằm trên XZ. Sau ready, luồng game gọi `ring()` rồi nghe `answered`; audio qua node `Vibration` trên bus `SFX`, clip không loop tự phát lại khi còn rung. |
+
+### Kiểm tra và phần chưa thử
+- Nền: `origin/main` tại `6cf176c`.
+- `pwsh tools/test.ps1 -Filter segment12`: **`RESULT: 12 passed, 0 failed`**, exit code 0.
+- `pwsh tools/test.ps1`: **`RESULT: 146 passed, 0 failed`**, exit code 0.
+- `pwsh tools/check.ps1`: **`RESULT: check 0 error(s)`**, exit code 0. `git diff --cached --check` sạch trước commit code.
+- Test bao phủ trạng thái/cờ/gợi ý đèn, cờ tùy chỉnh, disabled, chốt với chính script `door407.gd` hiện có, cửa thiếu thuộc tính/không còn tồn tại, đọc đúng luật/nguồn/id/thứ tự signal, đọc lại không trùng, id sai, kích thước giấy độc lập, điện thoại chưa rung/rung/trả lời/rung lại, stream được gán phát và dừng, bản dịch, wiring phòng thử/phím R và ray mask 5 chạm đúng cả bốn đồ vật. Mỗi test mới reset `GameState`/`RuleSystem` trước và sau.
+- Lượt test đầu trong sandbox có 11 test hành vi đạt nhưng launcher trả FAIL do Godot không đọc được kho chứng chỉ Windows. Đã chạy lại ngoài sandbox qua cơ chế cấp quyền, rồi thêm test ray và chạy các lượt PASS phía trên. Warning của id giấy sai là ca kiểm tra có chủ ý; smoke test mở công tắc riêng lẻ chưa gán đèn cũng phát warning cấu hình, không phải lỗi parse/runtime.
+- **Chưa chơi F6 bằng chuột/phím thật, chưa chụp hình hoặc nghe âm thật.** Âm điện thoại mới kiểm tra bằng stream WAV im lặng tạo trong test; chưa có clip T-130 được gán. Chưa có màn xem giấy T-111 trong phòng thử, nên đọc giấy hiện ghi sổ tay/phát signal, chưa hiện cận cảnh. Chưa kiểm tra bốn scene sau khi gắn vào tầng 4.
+- Cách thử tiếp: mở `interaction_test.tscn`, F6; WASD đến gần đồ vật, E tương tác, Esc mở menu, R rung điện thoại. Thử chốt khi cửa mở/đóng, bật/tắt đèn, đọc giấy và trả lời điện thoại; gán `Phone.vibrate_stream` để nghe rung. Sau T-111, gắn màn xem giấy để nhận `document_opened` và đóng qua `document_closed`.
+
+### Yêu cầu thay đổi / chặn
+- T-117/integrator đặt bốn scene vào anchor, gán đèn/cửa thật, nạp `demo.tres` trước khi đọc giấy, nối màn xem giấy T-111 và gán âm rung T-130; luồng game quyết định lúc gọi `ring()`. Lane A không sửa tầng 4, main, core hay file các lane khác.
+- **Xử lý vùng tương tác cửa 407 khi gắn giấy:** từ cấu trúc hiện tại, `Door407/InteractShape` dày 0,25 m (mép phía phòng z = −0,125), trong khi anchor giấy ở z ≈ −0,023. Ray từ trong phòng sẽ chạm proxy cửa trước giấy. Integrator/Lane B cần thu hoặc bố trí lại collider tương tác cửa để giấy/chốt được nhắm riêng, đồng thời giữ collision world của cánh cửa; thay mesh giấy tạm cũ và bảo đảm giấy/chốt đi theo pivot. Chưa kiểm chứng thay đổi này trong scene tầng 4 vì ngoài phạm vi.
+- Không có blocker code/test/push của T-129, không còn code dở. Phần ghép tầng 4 và xem/nghe thật chờ T-117/T-111/T-130. Không thêm luật, cốt truyện, plugin, phần mềm hoặc input action mới.
