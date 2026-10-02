@@ -35,8 +35,8 @@ ASSETS = [
 ]
 
 
-# Per-asset loudness chosen by ear with the owner (D-015…D-018); default: loops -24, SFX -18.
-TARGET_OVERRIDES = {"slipper_tile": -46, "slipper_run": -43, "fluorescent_hum": -44}
+# Per-asset loudness chosen by ear with the owner (D-015…D-019); default: loops -24, SFX -18.
+TARGET_OVERRIDES = {"slipper_tile": -56, "slipper_run": -53, "fluorescent_hum": -44}
 
 
 def target_lufs(name: str, loop: bool) -> int:
@@ -136,7 +136,7 @@ def synthesize_slipper(seconds: float, seed: int, running: bool) -> list[float]:
     flutter = rng.uniform(.008, .013)
     body_hz = rng.uniform(170, 230)
     heel_lp = 1 - math.exp(-TAU * (1900 if running else 1400) / RATE)
-    slap_lp = 1 - math.exp(-TAU * 3500 / RATE)
+    slap_lp = 1 - math.exp(-TAU * 2500 / RATE)
     slap_hp = 1 - math.exp(-TAU * 1200 / RATE)
     scuff_lp = 1 - math.exp(-TAU * 900 / RATE)
     heel_state = slap_low = slap_band = scuff_state = 0.0
