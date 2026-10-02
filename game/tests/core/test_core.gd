@@ -56,8 +56,14 @@ func test_main_scene_footsteps_and_ambience_wired() -> void:
 	tree.root.add_child(main)
 	var steps: AudioStreamPlayer3D = main.get_node("Player/Footsteps")
 	assert_not_null(main.get_node_or_null("PauseMenu"), "pause menu in main scene")
+	assert_not_null(main.get_node_or_null("Floor4"), "floor 4 in main scene")
+	var player: Node3D = main.get_node("Player")
+	var spawn: Node3D = main.get_node("Floor4/Anchors/seg1_start")
+	assert_true(player.global_position.is_equal_approx(spawn.global_position), "player starts at seg1_start;")
 	for i in 30:
 		await tree.physics_frame
+	# seg1_start faces the closed door of 407; turn west along the corridor.
+	player.rotation.y = PI / 2.0
 	Input.action_press("move_forward")
 	for i in 60:
 		await tree.physics_frame
@@ -69,12 +75,10 @@ func test_main_scene_footsteps_and_ambience_wired() -> void:
 	Input.action_release("sprint")
 	Input.action_release("move_forward")
 	assert_true(steps.tile_run_variants.has(steps.stream), "sprinting uses the run bank;")
-	for path in ["Audio/HumNear", "Audio/HumFar", "Audio/NightOutside"]:
-		var source: AudioStreamPlayer3D = main.get_node(path)
-		assert_true(source.playing, path + " plays;")
-		assert_eq(source.bus, &"Ambience", path + " bus;")
-	var hum: AudioStreamPlayer3D = main.get_node("Audio/HumNear")
-	var light: Light3D = main.get_node("TubeLight1")
+	var light: Light3D = main.get_node("Floor4/Corridor/CorridorLight_407")
+	var hum: AudioStreamPlayer3D = light.get_node("LightHum")
+	assert_true(hum.playing, "corridor tube hums;")
+	assert_eq(hum.bus, &"Ambience", "hum bus;")
 	light.visible = false
 	assert_false(hum.playing, "hum stops when its tube light turns off;")
 	light.visible = true
@@ -85,7 +89,7 @@ func test_main_scene_footsteps_and_ambience_wired() -> void:
 			node.stop_emitting()
 		(node as AudioStreamPlayer3D).stop()
 	main.queue_free()
-	await tree.create_timer(0.2).timeout
+	await tree.create_timer(0.5).timeout
 
 
 func test_main_scene_escape_pauses_and_resumes_player() -> void:
@@ -110,4 +114,4 @@ func test_main_scene_escape_pauses_and_resumes_player() -> void:
 			node.stop_emitting()
 		(node as AudioStreamPlayer3D).stop()
 	main.queue_free()
-	await tree.create_timer(0.2).timeout
+	await tree.create_timer(0.5).timeout
