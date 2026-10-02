@@ -35,8 +35,8 @@ ASSETS = [
 ]
 
 
-# Per-asset loudness chosen by ear with the owner (D-015…D-017); default: loops -24, SFX -18.
-TARGET_OVERRIDES = {"slipper_tile": -38, "slipper_run": -35, "fluorescent_hum": -44}
+# Per-asset loudness chosen by ear with the owner (D-015…D-018); default: loops -24, SFX -18.
+TARGET_OVERRIDES = {"slipper_tile": -46, "slipper_run": -43, "fluorescent_hum": -44}
 
 
 def target_lufs(name: str, loop: bool) -> int:
