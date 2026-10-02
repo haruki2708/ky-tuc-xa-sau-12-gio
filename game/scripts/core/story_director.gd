@@ -45,6 +45,9 @@ const ANNOUNCEMENT: Array = [
 ## Max wait for the player to close the door before the fifth pair appears anyway.
 @export var slippers_max_wait_seconds: float = 20.0
 
+## [accessibility] reduce_scares (docs/SETTINGS.md, D-024): no jump-scare
+## visuals or strong stings, slower pursuers, quieter whisper.
+var reduce_scares: bool = false
 var finished: bool = false
 var _door_opened_during_knock: bool = false
 var _pending_slippers: bool = false
@@ -55,6 +58,8 @@ var _pending_slippers: bool = false
 
 func _ready() -> void:
 	EventBus.consequence_triggered.connect(_on_consequence)
+	EventBus.settings_changed.connect(_on_settings_changed)
+	_read_reduce_scares()
 	if auto_start:
 		start.call_deferred()
 
@@ -261,6 +266,19 @@ func _place_fifth_slippers() -> void:
 
 
 # --- Helpers ------------------------------------------------------------------
+
+func _on_settings_changed(section: String, key: String) -> void:
+	if section == "accessibility" and key == "reduce_scares":
+		_read_reduce_scares()
+
+
+func _read_reduce_scares() -> void:
+	var config := ConfigFile.new()
+	var value: Variant = false
+	if config.load("user://settings.cfg") == OK:
+		value = config.get_value("accessibility", "reduce_scares", false)
+	reduce_scares = value if value is bool else false
+
 
 func _say(text_key: String, seconds: float) -> void:
 	EventBus.subtitle_requested.emit(text_key, maxf(seconds * time_scale, 0.05))

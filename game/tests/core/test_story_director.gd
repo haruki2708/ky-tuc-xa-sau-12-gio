@@ -120,3 +120,20 @@ func test_checkpoints_saved_at_segment_starts() -> void:
 	await _run_slice()
 	EventBus.checkpoint_saved.disconnect(record)
 	assert_eq(saved, [&"seg1_start", &"seg2_start"] as Array[StringName], "segment checkpoints;")
+
+
+func test_director_follows_reduce_scares_setting() -> void:
+	var path := "user://settings.cfg"
+	var had := FileAccess.file_exists(path)
+	var backup := FileAccess.get_file_as_bytes(path) if had else PackedByteArray()
+	assert_false(director.reduce_scares, "off by default")
+	assert_eq(Settings.set_value("accessibility", "reduce_scares", true), OK, "toggle on;")
+	assert_true(director.reduce_scares, "director follows the setting live")
+	assert_eq(Settings.set_value("accessibility", "reduce_scares", false), OK, "toggle off;")
+	assert_false(director.reduce_scares, "and back")
+	if had:
+		var file := FileAccess.open(path, FileAccess.WRITE)
+		file.store_buffer(backup)
+		file.close()
+	else:
+		DirAccess.remove_absolute(path)
