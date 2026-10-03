@@ -63,6 +63,7 @@
 - Editor có thể tự lưu lại một số file (`default_bus_layout.tres`, `.import`) khi mở. Đừng commit các thay đổi đó; integrator sẽ dọn.
 
 ## Đang vướng
+- Chờ chủ dự án gửi thiết kế mới (D-028) trước khi giao việc cho lane A, B, D.
 - Không có. (Lỗi editor tự nén texture kit đã sửa ở T-118.)
 
 ## Ghi chú cho người chơi thử
