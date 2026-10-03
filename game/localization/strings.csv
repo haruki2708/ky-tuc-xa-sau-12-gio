@@ -125,6 +125,7 @@ DOC_ROOM_RECORD_4,Giường B dưới: Trần Trung,"Bunk B, bottom: Trần Trun
 DOC_ROOM_RECORD_NOTE,Phòng 4 người.,Four-person room.
 SPK_NAME_TRUNG_AGAIN,Loa (chậm hơn): Trần… Trung.,Speaker (slower): Trần… Trung.
 SUB_RUN_TO_LIGHT,(Chạy! Về phía còn đèn…),(Run! Toward the light…)
+PROMPT_CLOSE_DOOR_FIRST,Đóng cửa trước,Close the door first
 SUB_RUN_TO_ROOM,(Chạy về phòng 407. Chốt cửa lại.),(Run back to room 407. Latch the door.)
 SUB_CAUGHT,(Một bàn tay lạnh đặt lên vai bạn.),(A cold hand rests on your shoulder.)
 SUB_FAIL_WHY_DEVIATION,Mức lệch đã chạm 5/5. Đọc lại sổ tay (Tab): nội quy thật là cách sống sót.,Deviation reached 5/5. Reread your notebook (Tab): the genuine rules keep you alive.

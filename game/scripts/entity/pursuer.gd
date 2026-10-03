@@ -8,6 +8,7 @@ signal escaped
 const SETTINGS_PATH: String = "user://settings.cfg"
 const STEP_DISTANCE: float = 0.9
 const BREATH_DISTANCE: float = 6.0
+const ROUTE_ARRIVAL_RADIUS: float = 0.4
 const RUSH_STEPS: Array[AudioStream] = [
 	preload("res://audio/sfx/slipper_rush_01.ogg"),
 	preload("res://audio/sfx/slipper_rush_02.ogg"),
@@ -35,6 +36,8 @@ var _retreat_elapsed: float = 0.0
 var _step_distance: float = 0.0
 var _previous_step: int = -1
 var _detour_sign: float = 0.0
+var _route: PackedVector3Array = PackedVector3Array()
+var _route_index: int = 0
 var _rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
 
@@ -53,11 +56,12 @@ func _ready() -> void:
 	stop_chase()
 
 
-func start_chase(target: Node3D, spawn: Vector3) -> void:
+func start_chase(target: Node3D, spawn: Vector3, route: PackedVector3Array = PackedVector3Array()) -> void:
 	stop_chase()
 	if not is_instance_valid(target) or not target.is_inside_tree():
 		return
 	_target = target
+	_route = route.duplicate()
 	global_position = spawn
 	body.position = Vector3.ZERO
 	body.reset_physics_interpolation()
@@ -72,6 +76,8 @@ func stop_chase() -> void:
 	_retreat_elapsed = 0.0
 	_step_distance = 0.0
 	_detour_sign = 0.0
+	_route.clear()
+	_route_index = 0
 	visible = false
 	set_physics_process(false)
 	if is_instance_valid(body):
@@ -105,11 +111,17 @@ func _physics_process(delta: float) -> void:
 		stop_chase()
 		caught.emit()
 		return
-	var direction: Vector3 = _horizontal_offset().normalized()
-	direction = _avoid_wall(direction, _effective_speed() * delta)
+	var offset: Vector3 = _route_offset()
+	var direction: Vector3 = offset.normalized()
+	var move_speed: float = _effective_speed()
+	if _route_index < _route.size():
+		# Authored waypoints steer through doorways; collision still prevents crossing walls.
+		move_speed = minf(move_speed, offset.length() / maxf(delta, 0.000001))
+	else:
+		direction = _avoid_wall(direction, move_speed * delta)
 	var previous: Vector3 = global_position
 	var was_grounded: bool = body.is_on_floor()
-	_move(direction, _effective_speed(), delta)
+	_move(direction, move_speed, delta)
 	var distance: float = Vector2(global_position.x - previous.x, global_position.z - previous.z).length()
 	if was_grounded and body.is_on_floor():
 		_step_distance += distance
@@ -117,6 +129,22 @@ func _physics_process(delta: float) -> void:
 			_step_distance -= STEP_DISTANCE
 			_play_step()
 	_update_breath()
+
+
+func _route_offset() -> Vector3:
+	while _route_index < _route.size():
+		var offset: Vector3 = _route[_route_index] - global_position
+		offset.y = 0.0
+		if offset.length() > ROUTE_ARRIVAL_RADIUS:
+			return offset
+		# Do not cut a doorway corner just because its approach point is in range.
+		var next_point: Vector3 = _route[_route_index + 1] if _route_index + 1 < _route.size() else _target.global_position
+		var next_offset: Vector3 = next_point - global_position
+		next_offset.y = 0.0
+		if offset.length() > 0.01 and body.test_move(body.global_transform, next_offset):
+			return offset
+		_route_index += 1
+	return _horizontal_offset()
 
 
 func _horizontal_offset() -> Vector3:

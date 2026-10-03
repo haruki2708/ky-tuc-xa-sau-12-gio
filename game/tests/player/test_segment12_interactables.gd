@@ -107,12 +107,24 @@ func test_latch_blocks_real_door407_until_unlocked() -> void:
 	world.add_child(latch)
 	door.interact(null)
 	assert_eq(door.get("is_open"), true)
+	assert_eq(latch.prompt_key, "PROMPT_CLOSE_DOOR_FIRST")
+	var before_attempt: int = interacted_count
 	latch.interact(null)
 	assert_true(door.enabled, "open door cannot be latched")
 	assert_eq(GameState.get_flag(&"door_locked"), false)
-	assert_eq(latch.prompt_key, "PROMPT_LOCK_DOOR")
+	assert_eq(latch.prompt_key, "PROMPT_CLOSE_DOOR_FIRST")
+	assert_eq(interacted_count, before_attempt, "failed latch must not trigger Main's normal cue")
+	assert_true(latch.blocked_sound.playing)
+	assert_eq(latch.blocked_sound.stream.resource_path, "res://audio/sfx/door_latch.ogg")
+	assert_eq(latch.blocked_sound.bus, &"SFX")
+	assert_true(latch.blocked_sound.volume_db < 0.0, "quieter than the normal cue")
+	assert_false(is_equal_approx(latch.blocked_sound.pitch_scale, 1.0))
+	for locale: String in ["vi", "en"]:
+		assert_false(TranslationServer.get_translation_object(locale).get_message(latch.prompt_key).is_empty())
 	door.interact(null)
+	assert_eq(latch.prompt_key, "PROMPT_LOCK_DOOR", "closing updates prompt immediately")
 	latch.interact(null)
+	assert_false(latch.blocked_sound.playing)
 	assert_false(door.enabled)
 	assert_eq(GameState.get_flag(&"door_locked"), true)
 	assert_eq(latch.prompt_key, "PROMPT_UNLOCK_DOOR")
@@ -124,6 +136,40 @@ func test_latch_blocks_real_door407_until_unlocked() -> void:
 	assert_eq(latch.prompt_key, "PROMPT_LOCK_DOOR")
 	door.interact(null)
 	assert_eq(door.get("is_open"), true, "unlocked door can open")
+
+
+func test_latch_prompt_refreshes_without_looking_away() -> void:
+	var door: Interactable = load("res://scripts/interaction/demo_door.gd").new()
+	world.add_child(door)
+	var latch: LatchScript = LATCH.instantiate()
+	latch.door = door
+	world.add_child(latch)
+	var player: CharacterBody3D = load("res://scenes/player/player.tscn").instantiate()
+	world.add_child(player)
+	player.set_physics_process(false)
+	var ray: RayCast3D = player.get_node("Head/Camera3D/InteractRay")
+	ray.global_position = latch.get_node("CollisionShape3D").global_position + Vector3.BACK
+	var prompts: Array[String] = []
+	var on_focus: Callable = func(key: String) -> void: prompts.append(key)
+	EventBus.interaction_focus_changed.connect(on_focus)
+	await tree.physics_frame
+	await tree.process_frame
+	player.call("_update_focus")
+	door.set("is_open", true)
+	await tree.physics_frame
+	await tree.process_frame
+	player.call("_update_focus")
+	latch.enabled = false
+	latch.interact(player)
+	assert_false(latch.blocked_sound.playing, "disabled latch stays silent")
+	latch.enabled = true
+	door.set("is_open", false)
+	await tree.physics_frame
+	await tree.process_frame
+	player.call("_update_focus")
+	assert_eq(prompts, ["PROMPT_LOCK_DOOR", "PROMPT_CLOSE_DOOR_FIRST", "PROMPT_LOCK_DOOR"])
+	assert_eq(player.get("_target"), latch, "same focus throughout")
+	EventBus.interaction_focus_changed.disconnect(on_focus)
 
 
 func test_latch_handles_optional_open_property_and_missing_door() -> void:
@@ -184,6 +230,35 @@ func test_readable_size_updates_mesh_and_collision_per_instance() -> void:
 	board.size = Vector2(1, 1.5)
 	assert_eq(board.get_node("CollisionShape3D").shape.size, Vector3(1, 1.5, 0.004))
 	assert_eq(paper.get_node("CollisionShape3D").shape.size, Vector3(0.21, 0.297, 0.004))
+
+
+func test_readable_pick_depth_extends_forward_and_survives_resize() -> void:
+	var paper: PaperScript = PAPER.instantiate()
+	var board: PaperScript = PAPER.instantiate()
+	board.pick_depth = 0.15
+	board.rotation.y = PI / 2.0
+	world.add_child(paper)
+	world.add_child(board)
+	var collision: CollisionShape3D = board.get_node("CollisionShape3D")
+	assert_true(is_equal_approx(collision.shape.size.z, 0.15))
+	assert_true(is_equal_approx(collision.position.z, 0.075))
+	assert_true(is_equal_approx(paper.get_node("CollisionShape3D").shape.size.z, 0.004))
+	assert_true(is_equal_approx(paper.get_node("CollisionShape3D").position.z, 0.002))
+	board.size = Vector2(0.5, 0.7)
+	board.pick_depth = 0.3
+	assert_eq(collision.shape.size, Vector3(0.5, 0.7, 0.3))
+	assert_true(is_equal_approx(collision.position.z, 0.15))
+	assert_eq(board.get_node("Mesh").mesh.size, Vector3(0.5, 0.7, 0.004))
+	await tree.physics_frame
+	await tree.process_frame
+	var query: PhysicsRayQueryParameters3D = PhysicsRayQueryParameters3D.create(
+		board.to_global(Vector3(0, 0, 0.5)), board.to_global(Vector3(0, 0, 0.1)), 4)
+	query.collide_with_areas = true
+	query.collide_with_bodies = false
+	var hit: Dictionary = world.get_world_3d().direct_space_state.intersect_ray(query)
+	assert_eq(hit.get("collider"), board, "ray hits extended local +Z even on a rotated paper")
+	board.pick_depth = -1.0
+	assert_true(collision.shape.size.z > 0.0, "invalid depth cannot create an invalid shape")
 
 
 func test_phone_ring_answer_and_repeat_cycle() -> void:
