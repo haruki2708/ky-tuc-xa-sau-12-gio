@@ -1,5 +1,5 @@
 param(
-    [ValidateSet('correct', 'deviant', 'all')][string]$Scenario = 'all',
+    [ValidateSet('correct', 'deviant', 'mirror', 'all')][string]$Scenario = 'all',
     [switch]$Capture,
     [ValidateRange(0.005, 1.0)][double]$TimeScale = 0.05,
     [ValidateRange(5, 120)][int]$SegmentTimeout = 45
@@ -15,7 +15,7 @@ if ($LASTEXITCODE -ne 0 -or $importLog -match 'SCRIPT ERROR:|ERROR:') {
     Write-Host 'PLAYTHROUGH_RESULT: FAIL import'
     exit 1
 }
-$scenarios = if ($Scenario -eq 'all') { @('correct', 'deviant') } else { @($Scenario) }
+$scenarios = if ($Scenario -eq 'all') { @('correct', 'deviant', 'mirror') } else { @($Scenario) }
 $failures = 0
 foreach ($case in $scenarios) {
     $caseDir = Join-Path $runRoot $case

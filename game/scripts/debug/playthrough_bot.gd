@@ -33,7 +33,7 @@ func _ready() -> void:
 			segment_timeout = float(arg.trim_prefix("--segment-timeout="))
 		elif arg.begins_with("--capture-dir="):
 			capture_dir = arg.trim_prefix("--capture-dir=")
-	if scenario not in ["correct", "deviant"] or story_scale <= 0.0 or segment_timeout <= 0.0:
+	if scenario not in ["correct", "deviant", "mirror"] or story_scale <= 0.0 or segment_timeout <= 0.0:
 		failure = "invalid bot arguments"
 		_finish.call_deferred()
 		return
@@ -43,6 +43,9 @@ func _ready() -> void:
 func _run() -> void:
 	started = Time.get_ticks_msec()
 	main = MAIN.instantiate()
+	# The bot must run while documents pause the tree, but gameplay must not
+	# inherit ALWAYS: LightHum would restart audio during App.quit's drain.
+	main.process_mode = Node.PROCESS_MODE_PAUSABLE
 	director = main.get_node("StoryDirector")
 	director.auto_start = false
 	director.time_scale = story_scale
@@ -64,8 +67,7 @@ func _play() -> void:
 	_place(Vector3(32, 0.03, -2.0), 0.0)
 	_set_door(false)
 	await _read("Floor4/Door407/Pivot/RulesPaper/RulesPaper407")
-	if scenario == "correct":
-		_use("Room407LightSwitch")
+	_use("Room407LightSwitch")
 	_set_latched(true)
 	if not await _until(func() -> bool: return main.get_node("PhoneTrung").enabled, "phone rings"):
 		return
@@ -92,7 +94,7 @@ func _play() -> void:
 	_place(Vector3(36, 0.03, 1.2), -PI / 2.0 if scenario == "deviant" else PI / 2.0)
 	if not await _until(func() -> bool: return main.get_node("Floor4").has_node("FollowerSteps"), "following footsteps"):
 		return
-	if scenario == "correct":
+	if scenario != "deviant":
 		_place(Vector3(32, 0.03, -2.0), 0.0)
 	else:
 		if not await _until(func() -> bool: return &"corridor" in chases_started, "corridor chase"):
@@ -118,7 +120,7 @@ func _play() -> void:
 		return
 	_place(Vector3(2.0, 0.03, -2.5), -PI / 2.0)
 	await _read("Floor4/Anchors/WashroomNotice/WashroomNotice")
-	if scenario == "correct":
+	if scenario != "mirror":
 		_use("Floor4/Anchors/WashroomTapRunning/TapTrigger")
 		await get_tree().physics_frame
 		await get_tree().physics_frame
@@ -133,17 +135,18 @@ func _play() -> void:
 	_place(Vector3(32, 0.03, -2.5), 0.0)
 	_set_door(false)
 	_set_latched(true)
-	if scenario == "deviant":
+	if scenario == "mirror":
 		if not await _until(func() -> bool: return &"mirror" in chases_escaped, "escape to latched room"):
 			return
 		_mark("mirror escaped")
 	if not await _until(func() -> bool: return director.finished, "ending completes"):
 		return
-	var expected: int = 1 if scenario == "correct" else 2
+	var expected: int = 2 if scenario == "deviant" else 1
+	var expected_deviation: int = {"correct": 0, "deviant": 4, "mirror": 2}[scenario]
 	if GameState.get_flag(&"ending_variant", 0) != expected:
 		failure = "wrong ending: expected %d, got %s" % [expected, GameState.get_flag(&"ending_variant", 0)]
-	elif scenario == "correct" and GameState.deviation != 0:
-		failure = "correct path gained deviation %d" % GameState.deviation
+	elif GameState.deviation != expected_deviation:
+		failure = "wrong deviation: expected %d, got %d" % [expected_deviation, GameState.deviation]
 	elif visited != [&"seg1", &"seg2", &"seg3", &"seg4", &"seg5", &"end"]:
 		failure = "missing or repeated segment: %s" % str(visited)
 	else:
