@@ -32,9 +32,15 @@ const CLOTHESLINE_Y := 2.15
 const SAFE_ZONE_LAYER := 1 << 7
 ## Chase 1 ends where the corridor is still lit: west of light 406.
 const LIT_CORRIDOR_MAX_X := 26.0
-## Chase 2 starts at the washroom doorway (x 2.6–3.6), corridor side, because
-## the pursuer does not path-find through doors (T-134 handoff).
+## Washroom doorway (x 2.6–3.6). Chase 2 steps out of the mirror and walks
+## this route through the doorway when the player is already outside (T-140).
 const WASHROOM_DOOR := Vector3(3.1, 0.03, 0.6)
+const WASHROOM_EXIT_ROUTE: PackedVector3Array = [Vector3(3.1, 0.0, -0.5), Vector3(3.1, 0.0, 0.6)]
+## Music goes silent this long before a scare lands (T-133, D-025). Skipped
+## with reduce_scares, like the music's own silence.
+const SCARE_LEAD_SECONDS := 1.5
+## How long the figure stands in front of the glass before it comes.
+const MIRROR_STEP_OUT_SECONDS := 1.0
 ## Corridor lights that die behind each chase, in the order the pursuer passes them.
 const CHASE_1_LIGHTS: Array[String] = ["CorridorLight_Desk", "CorridorLight_408", "CorridorLight_407", "CorridorLight_406"]
 const CHASE_2_LIGHTS: Array[String] = ["CorridorLight_401", "CorridorLight_402", "CorridorLight_403",
@@ -89,8 +95,6 @@ static var carry_deviation: int = 0
 @export var mirror_look_seconds: float = 1.0
 @export var washroom_max_seconds: float = 240.0
 @export var end_wait_seconds: float = 60.0
-## Seconds the player has to leave the washroom once the reflection stares.
-@export var mirror_flee_seconds: float = 5.0
 @export var mirror_path: NodePath = ^"../Floor4/Washroom/Mirror"
 ## Stop after this segment (tests run one stretch of the night). Empty = to the end.
 @export var stop_after: StringName = &""
@@ -117,6 +121,7 @@ var _gaze: GazeDetector
 var _gazed: bool = false
 var _lit_zone: Area3D
 var _room_zone: Area3D
+var _loss_pending: bool = false
 
 @onready var _player: Node3D = get_node_or_null(player_path)
 @onready var _floor: Node3D = get_node_or_null(floor_path)
@@ -326,6 +331,10 @@ func _footsteps_behind() -> void:
 func _chase_1(spawn: Vector3) -> void:
 	spawn.y = 0.03
 	EventBus.scare_triggered.emit(&"corridor_glimpse")
+	# The slippers stop. Silence, then the figure is there.
+	await _scare_lead()
+	if _failing:
+		return
 	_play_scare_sting()
 	_say("SUB_RUN_TO_LIGHT", 4.0)
 	await _run_chase(&"corridor", spawn, CHASE_1_LIGHTS, true, 0.6)
@@ -447,13 +456,14 @@ func _segment_5() -> void:
 ## Chase 2 (§5b): the reflection lags, turns to stare, steps out of the
 ## glass. Freeze and it takes you; run and it follows you to room 407.
 func _chase_2(mirror: Node3D) -> void:
+	# The music falls silent as the reflection starts to lag.
+	EventBus.scare_triggered.emit(&"mirror_stare")
 	if mirror != null:
 		mirror.set_lag(0.5)
 	await _wait_real(1.4)
 	var figure: Node3D = null
 	if not reduce_scares and mirror != null:
 		mirror.stare()
-	EventBus.scare_triggered.emit(&"mirror_stare")
 	_play_scare_sting()
 	if mirror != null and _floor != null:
 		figure = SILHOUETTE.instantiate()
@@ -466,22 +476,18 @@ func _chase_2(mirror: Node3D) -> void:
 		figure.set_visible_amount(0.0)
 		figure.create_tween().tween_method(figure.set_visible_amount, 0.0, 1.0, 2.0 if reduce_scares else 0.25)
 	_say("SUB_RUN_TO_ROOM", 4.0)
-	var player_out := func() -> bool:
-		return not _player_in_washroom() and _player.global_position.distance_to(WASHROOM_DOOR) >= 2.0
-	# Real seconds, like the chase itself (_wait_until scales by time_scale).
-	await _wait_until(player_out, mirror_flee_seconds / maxf(time_scale, 0.0001))
+	await _wait_real(MIRROR_STEP_OUT_SECONDS)
+	var spawn := figure.global_position if is_instance_valid(figure) else WASHROOM_DOOR
 	if is_instance_valid(figure):
 		figure.queue_free()
 	if mirror != null:
 		mirror.release()
 	if _failing:
 		return
-	if _player_in_washroom():
-		EventBus.chase_started.emit(&"mirror")
-		EventBus.chase_ended.emit(&"mirror", true)
-		await _lose(&"SUB_CAUGHT", 1)
-		return
-	await _run_chase(&"mirror", WASHROOM_DOOR, CHASE_2_LIGHTS, false, 0.0)
+	# Still in the washroom: it comes straight at you. Outside: it follows
+	# through the doorway.
+	var route := PackedVector3Array() if _player_in_washroom() else WASHROOM_EXIT_ROUTE
+	await _run_chase(&"mirror", spawn, CHASE_2_LIGHTS, false, 0.0, route)
 
 
 # --- Chases (T-134 pursuer) ------------------------------------------------------
@@ -489,14 +495,14 @@ func _chase_2(mirror: Node3D) -> void:
 ## Runs one chase until the pursuer catches the player or gives up. The lights
 ## listed die as the pursuer passes them and come back afterwards.
 func _run_chase(chase_id: StringName, spawn: Vector3, lights: Array[String], lit_corridor_safe: bool,
-		hold_seconds: float) -> void:
+		hold_seconds: float, route: PackedVector3Array = PackedVector3Array()) -> void:
 	if _pursuer == null or _player == null or not _pursuer.is_inside_tree():
 		return
 	EventBus.chase_started.emit(chase_id)
 	_lit_zone.monitoring = lit_corridor_safe
 	_room_zone.monitoring = GameState.get_flag(&"door_locked", false) == true
 	_chase_result = &""
-	_pursuer.start_chase(_player, spawn)
+	_pursuer.start_chase(_player, spawn, route)
 	var figure := _pursuer_figure()
 	if figure != null and reduce_scares:
 		figure.set_visible_amount(0.0)
@@ -647,15 +653,24 @@ func _ending() -> void:
 
 ## A real loss (Lâm answered, deviation 5): §5b scare 2, then reload.
 func _on_player_failed(rule_id: StringName) -> void:
-	if _failing:
+	if _failing or _loss_pending:
 		return
+	_loss_pending = true
+	_roll_call_active = false
 	EventBus.scare_triggered.emit(&"lost")
+	await _scare_lead()
 	var whisper := _play_at(&"whisper_co", _player, &"Voice")
 	if whisper != null and reduce_scares:
 		whisper.volume_db = -8.0
 	# The net over the empty top bunk billows.
 	_stir_net("BunkB/Net_Dat", 1.12)
 	await _lose(&"SUB_FAIL", 0, &"SUB_FAIL_WHY_DEVIATION" if rule_id == &"deviation" else &"SUB_FAIL_WHY_FIFTH")
+
+
+## The quiet beat before a scare (music already cut by scare_triggered).
+func _scare_lead() -> void:
+	if not reduce_scares:
+		await _wait_real(SCARE_LEAD_SECONDS)
 
 
 ## Fades out, then asks Main to reload from the current segment's checkpoint,

@@ -1,5 +1,5 @@
 # T-139 — Màn hình chính, cảnh báo nội dung, credits
-- Lane: D (UI và Đa ngôn ngữ) | Trạng thái: todo | Agent:
+- Lane: D (UI và Đa ngôn ngữ) | Trạng thái: done | Agent:
 - Nhánh: `lane-d/T-139-title-screen`
 - Phụ thuộc: T-116, T-128, T-132 (done).
 
@@ -72,3 +72,8 @@ Sau khi merge, integrator đổi `run/main_scene` sang màn hình chính và cho
 ### Yêu cầu thay đổi ngoài phạm vi
 - **Integrator / T-141:** đổi `project.godot` mục `run/main_scene` sang `res://ui/title/title_screen.tscn`; nối màn “Còn tiếp…” về `App.return_to_title()`. Lane D không sửa cấu hình project/core/main.
 - Sau khi tích hợp T-133/T-137, bổ sung credits nhạc/TTS từ nguồn đã xác nhận của Lane E và kiểm tra vòng chuyển scene/checkpoint thật, âm thanh, bản export. Không cần signal/autoload/input action mới; API App và key trong hợp đồng cài đặt đã có.
+
+### Review (integrator, 2026-10-03)
+- Đạt, merge `582aa10`. Màn hình chính, cảnh báo và ghi công đẹp, đúng không khí.
+- Ghép ở T-141: `run/main_scene` là màn hình chính; màn "Còn tiếp…" về màn hình chính khi bấm phím bất kỳ (sau 4 s) hoặc tự về sau 40 s, và xóa checkpoint vì đêm đã xong; bản xuất loại `ui/title/previews/*`, `title_test*`, `background_test*`.
+- Integrator sửa `UI_CREDITS_AI_TEXT` cho đúng phần Claude đã làm (lõi, cốt truyện, filter PS1, âm bước chân, đạo cụ tầng 4). Khi có T-137 (giọng TTS) cần thêm dòng ghi công.

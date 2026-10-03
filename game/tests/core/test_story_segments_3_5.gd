@@ -198,7 +198,6 @@ func test_seg4_answering_lam_loses_and_resumes_at_seg4() -> void:
 # --- Segment 5 -----------------------------------------------------------------
 
 func test_seg5_freezing_at_the_mirror_gets_you_caught() -> void:
-	director.mirror_flee_seconds = 0.5
 	_place(Vector3(2.0, 0.03, -1.85), PI / 2.0)
 	await _run(&"seg5")
 	assert_eq(RuleSystem.outcome_of(&"tap_running"), RuleSystem.OUTCOME_FOLLOWED_FAKE, "looked in the mirror;")

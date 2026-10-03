@@ -1,5 +1,5 @@
 # T-140 — Đánh bóng tương tác và lối đi của thực thể
-- Lane: A (Gameplay) | Trạng thái: todo | Agent:
+- Lane: A (Gameplay) | Trạng thái: done | Agent:
 - Nhánh: `lane-a/T-140-interaction-chase-polish`
 - Phụ thuộc: T-129, T-134 (done), T-136 (done). Đọc mục Review của `docs/tasks/T-134-pursuer-gaze.md` và Handoff phần 2 của `docs/tasks/T-136-segments-3-5.md`.
 
@@ -63,3 +63,7 @@ Ba chỗ nhỏ lộ ra khi ghép đợt 2 và chơi thử:
 - **Integrator / T-141:** tại `game/scripts/core/story_director.gd`, đổi truy đuổi 2 sang spawn trước gương và truyền `PackedVector3Array([Vector3(3.1, 0, -0.5), Vector3(3.1, 0, 0.6)])`; xác nhận tọa độ theo bố trí tầng 4 hiện tại, ghép lại thời điểm bắt đầu/kết thúc theo thiết kế đã chốt. Lane A không sửa luồng chơi này.
 - Không cần signal/input/settings/plugin mới; chỉ thêm key CSV mà card cho phép. Không sửa file ngoài phạm vi hoặc bản tích hợp. Không có câu hỏi luật chơi/cốt truyện mới.
 - Không còn blocker code/test/push. Mạng sandbox và lỗi tạo tiến trình Windows 1326 đã được xử lý bằng cơ chế chạy lệnh ngoài sandbox có cấp quyền; không cài công cụ.
+
+### Review (integrator, 2026-10-03)
+- Đạt, merge `5bfaab5`. Ghép ở T-141: `main.gd` dùng `pick_depth = 0.15` (bỏ `_extend_pick_depth`); truy đuổi 2 xuất phát từ trước gương, đi lộ trình `WASHROOM_EXIT_ROUTE` qua cửa nhà vệ sinh khi người chơi đã ra ngoài, còn trong nhà vệ sinh thì đuổi thẳng.
+- Góp ý nhỏ (không chặn): chốt gọi `get_property_list()` của cửa mỗi physics frame; có thể dùng `"is_open" in door` cho nhẹ.

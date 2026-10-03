@@ -22,7 +22,11 @@ const FAN_SPEED: float = 15.0
 const FAN_SLOW_FACTOR: float = 0.3
 const STORY_DIRECTOR := preload("res://scripts/core/story_director.gd")
 
+const END_CARD_MIN_SECONDS: float = 4.0
+const END_CARD_MAX_SECONDS: float = 40.0
+
 var _fan_rotors: Array[Node3D] = []
+var _end_card_key_pressed: bool = false
 
 
 func _ready() -> void:
@@ -30,6 +34,12 @@ func _ready() -> void:
 	_place_story_papers()
 	_place_speaker()
 	$StoryDirector.restart_requested.connect(_on_restart_requested)
+	$StoryDirector.slice_finished.connect(_on_night_finished)
+	# Adaptive music (T-133) listens to EventBus; it must exist before the
+	# story's first segment_changed (the director starts deferred).
+	var music := MusicDirector.new()
+	music.name = "MusicDirector"
+	add_child(music)
 	# The washroom mirror (T-135) reflects and lags the player.
 	$Floor4/Washroom/Mirror.follow = $Player
 	EventBus.interacted.connect(_on_interacted)
@@ -77,7 +87,7 @@ func _place_interactables() -> void:
 	paper.document_id = &"room_paper_407"
 	paper.rotation.y = PI # Face into the room (readable faces its local +Z).
 	paper_mount.add_child(paper)
-	_extend_pick_depth(paper)
+	paper.pick_depth = PAPER_PICK_DEPTH
 
 	var phone := PHONE.instantiate()
 	phone.name = "PhoneTrung"
@@ -121,7 +131,7 @@ func _place_readable(document_id: StringName, anchor: Node3D, size: Vector2, off
 	paper.size = size
 	anchor.add_child(paper)
 	paper.transform = offset
-	_extend_pick_depth(paper)
+	paper.pick_depth = PAPER_PICK_DEPTH
 	return paper
 
 
@@ -133,6 +143,26 @@ func _on_restart_requested(checkpoint_id: StringName) -> void:
 	STORY_DIRECTOR.resume_checkpoint = checkpoint_id
 	get_tree().paused = false
 	get_tree().reload_current_scene()
+
+
+## After "To be continued…": back to the title screen on any key (after a
+## short beat so a held key does not skip it) or by itself after a while.
+## The night is over, so there is nothing left to continue.
+func _on_night_finished() -> void:
+	if get_tree().current_scene != self:
+		return
+	Checkpoint.clear()
+	await get_tree().create_timer(END_CARD_MIN_SECONDS).timeout
+	var deadline := Time.get_ticks_msec() + int(END_CARD_MAX_SECONDS * 1000.0)
+	_end_card_key_pressed = false
+	while not _end_card_key_pressed and Time.get_ticks_msec() < deadline:
+		await get_tree().process_frame
+	App.return_to_title()
+
+
+func _input(event: InputEvent) -> void:
+	if (event is InputEventKey or event is InputEventMouseButton) and event.is_pressed():
+		_end_card_key_pressed = true
 
 
 ## Lane E's PA speaker (T-130) on the duty desk; the story reads the rules through it.
@@ -161,11 +191,3 @@ func _on_interacted(target: Node) -> void:
 func _attach(node: Node3D, anchor: Node3D) -> void:
 	add_child(node)
 	node.global_transform = anchor.global_transform
-
-
-func _extend_pick_depth(readable: Node) -> void:
-	var collision := readable.get_node("CollisionShape3D") as CollisionShape3D
-	var shape := (collision.shape as BoxShape3D).duplicate() as BoxShape3D
-	shape.size.z = PAPER_PICK_DEPTH
-	collision.shape = shape
-	collision.position.z = PAPER_PICK_DEPTH * 0.5

@@ -1,5 +1,5 @@
 # T-133 — Nhạc nền và drone căng thẳng
-- Lane: E (Âm thanh) | Trạng thái: todo | Agent:
+- Lane: E (Âm thanh) | Trạng thái: done | Agent:
 - Nhánh: `lane-e/T-133-music-drone`
 - Phụ thuộc: T-131 (done), T-136 (done). Đọc `docs/design/RULES.md` mục 5b, 6 và D-024, D-025 trong `docs/DECISIONS.md`.
 
@@ -80,3 +80,9 @@ Demo hiện chỉ có âm môi trường và sting. Chủ dự án đã chơi th
 
 ### Chặn / câu hỏi
 - Không có chặn kỹ thuật trong phạm vi Lane E. Sandbox có lỗi Windows 1326, các lệnh cần thiết đã chạy ngoài sandbox với quyền được cấp; test/commit/push hoạt động. Chờ tích hợp thời điểm ở core và chủ dự án duyệt bằng tai; không tự đoán thay đổi luật/cốt truyện.
+
+### Review (integrator, 2026-10-03)
+- Đạt, merge `db9495b`. Số đo LUFS và loop đầy đủ; director gọn, chỉ nghe EventBus.
+- Ghép ở T-141: `main.gd` tạo `MusicDirector` trước khi cốt truyện bắt đầu; khi tải checkpoint, `GameState.from_dict` đã phát lại `segment_changed` và `deviation_changed`. `scare_triggered` giờ đến **trước** cú hù 1,5 s (quay lại nhìn ở đoạn 3, thua thật) hoặc lúc gương bắt đầu chậm nhịp (1,4 s trước khi quay đầu); bỏ khoảng này khi bật Giảm hù dọa.
+- Mục 3 (đèn tắt giữ lâu) để nguyên: nhạc im từ lần nháy đầu, chờ chủ dự án nghe rồi quyết.
+- **Chờ chủ dự án nghe bằng tai** trong game.
