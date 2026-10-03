@@ -39,7 +39,15 @@ func _unhandled_key_input(event: InputEvent) -> void:
 		$Preview.play()
 	elif key == KEY_SPACE:
 		$Preview.stop()
+		$Speaker.voice_locale = "Settings"
 		$Speaker.play_announcement(DEMO_LINES)
+	elif key == KEY_V or key == KEY_B:
+		$Preview.stop()
+		$Speaker.voice_locale = "vi" if key == KEY_V else "en"
+		var lines: Array = []
+		for text_key: String in SpeakerVoiceBank.KEYS:
+			lines.append({"text_key": text_key, "garbled": text_key == "RULE_3_GARBLED"})
+		$Speaker.play_announcement(lines)
 	elif key == KEY_0:
 		$Preview.stop()
 		$Speaker.stop_emitting()

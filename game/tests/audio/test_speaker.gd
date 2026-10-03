@@ -7,6 +7,8 @@ var _completed: int = 0
 
 func before_each() -> void:
 	_speaker = Speaker.new()
+	# Keep the original subtitle-only contract covered independently of voice assets.
+	_speaker.voice_directory = "res://audio/voice_missing_fixture"
 	tree.root.add_child(_speaker)
 	_speaker.announcement_finished.connect(_on_completed)
 	EventBus.subtitle_requested.connect(_on_subtitle)

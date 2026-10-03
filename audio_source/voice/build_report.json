@@ -1,0 +1,704 @@
+{
+  "engine": "eSpeak NG text-to-speech: 1.52.0",
+  "engine_sha256": "3080ec3822c1b266ef557c710bc79a97d20a7ab133a34bac308b81ab0afc733e",
+  "ffmpeg": "ffmpeg version 9.0.2-essentials_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers",
+  "target_lufs": -26,
+  "assets": [
+    {
+      "file": "game/audio/voice/vi/RULE_HEADER_5.ogg",
+      "locale": "vi",
+      "key": "RULE_HEADER_5",
+      "spoken_parts": [
+        {
+          "text": "Nội quy ban đêm dịp lễ — gồm 5 điều",
+          "voice": "vi"
+        }
+      ],
+      "speed_wpm": 145,
+      "sha256": "35504fbe80ac80376ba3331ba4a6cd11e9c9bf4b77bc64ba926005119893c941",
+      "raw_sha256": "370a586e17f5bd593583ca11f9b7ab403187a2332d6c26d2ced55fd60b645a0b",
+      "seconds": 3.2064,
+      "lufs": -26.04,
+      "true_peak_db": -9.77,
+      "loop": false,
+      "hidden_from_seconds": null,
+      "hidden_speech_gain": null
+    },
+    {
+      "file": "game/audio/voice/vi/RULE_1.ogg",
+      "locale": "vi",
+      "key": "RULE_1",
+      "spoken_parts": [
+        {
+          "text": "Sau 0 giờ, tắt đèn chính trong phòng.",
+          "voice": "vi"
+        }
+      ],
+      "speed_wpm": 145,
+      "sha256": "b7dd309e31da833e6044d63d45bd05d170e9262528f1db6442f9ee87c9ecc827",
+      "raw_sha256": "723676b9ca3782a183ab6b96807391aae1f328307bb3fc51956de2b645bc153f",
+      "seconds": 2.9759,
+      "lufs": -26.06,
+      "true_peak_db": -8.09,
+      "loop": false,
+      "hidden_from_seconds": null,
+      "hidden_speech_gain": null
+    },
+    {
+      "file": "game/audio/voice/vi/RULE_2.ogg",
+      "locale": "vi",
+      "key": "RULE_2",
+      "spoken_parts": [
+        {
+          "text": "Có tiếng gõ cửa sau 0 giờ: không mở, không trả lời. Người của ký túc xá luôn gọi số phòng trước khi gõ.",
+          "voice": "vi"
+        }
+      ],
+      "speed_wpm": 145,
+      "sha256": "052295d5a513aa01e072b79230c5d34d84bd6d26b67fc8248ea30a645c81bc59",
+      "raw_sha256": "44c3a5d8f282c4ba8f413db68ed9f02eb8394583ac27d2a64c56ffb86590fa08",
+      "seconds": 8.6191,
+      "lufs": -26.04,
+      "true_peak_db": -9.46,
+      "loop": false,
+      "hidden_from_seconds": null,
+      "hidden_speech_gain": null
+    },
+    {
+      "file": "game/audio/voice/vi/RULE_3_GARBLED.ogg",
+      "locale": "vi",
+      "key": "RULE_3_GARBLED",
+      "spoken_parts": [
+        {
+          "text": "Nghe tiếng dép đi sau lưng ở hành lang:",
+          "voice": "vi"
+        },
+        {
+          "text": "không quay lại, đi tiếp tới chỗ có đèn.",
+          "voice": "vi"
+        }
+      ],
+      "speed_wpm": 145,
+      "sha256": "3e359c52777a9cae69d41a66e3a165d8d076c0c72a910ab235aa9c867b85e034",
+      "raw_sha256": "0f208a865f2fd96342b6581cf4630823a3384317b36493d41d08cefc77017aeb",
+      "seconds": 5.848,
+      "lufs": -26.42,
+      "true_peak_db": -11.38,
+      "loop": false,
+      "hidden_from_seconds": 2.6630839002267575,
+      "hidden_speech_gain": 0
+    },
+    {
+      "file": "game/audio/voice/vi/RULE_4.ogg",
+      "locale": "vi",
+      "key": "RULE_4",
+      "spoken_parts": [
+        {
+          "text": "Khi điểm danh, chỉ trả lời \"Có\" khi nghe đúng tên mình.",
+          "voice": "vi"
+        }
+      ],
+      "speed_wpm": 145,
+      "sha256": "8eb6c730a5b3155215d8138a88d7f6732af186be8cd5b52dc864182e67eff2d7",
+      "raw_sha256": "2afac980d7e4bb57fe56d6071b7593c3a08a9b4dbd89dd59979ae03d4a03251a",
+      "seconds": 4.3872,
+      "lufs": -26.05,
+      "true_peak_db": -9.63,
+      "loop": false,
+      "hidden_from_seconds": null,
+      "hidden_speech_gain": null
+    },
+    {
+      "file": "game/audio/voice/vi/RULE_5.ogg",
+      "locale": "vi",
+      "key": "RULE_5",
+      "spoken_parts": [
+        {
+          "text": "Vòi nước tự chảy: khóa vòi, rời nhà vệ sinh, không nhìn vào gương.",
+          "voice": "vi"
+        }
+      ],
+      "speed_wpm": 145,
+      "sha256": "6b68fd5dc489a4a9e9410e650cd827f30f8a5e55d17b990be304a792495536bb",
+      "raw_sha256": "2e51c550f68d54c3521ed3eef2f6978ed68e6d3e2574056ae2f9a3025b235de4",
+      "seconds": 5.508,
+      "lufs": -26.1,
+      "true_peak_db": -8.59,
+      "loop": false,
+      "hidden_from_seconds": null,
+      "hidden_speech_gain": null
+    },
+    {
+      "file": "game/audio/voice/vi/SPK_SIGN_LOG.ogg",
+      "locale": "vi",
+      "key": "SPK_SIGN_LOG",
+      "spoken_parts": [
+        {
+          "text": "Sinh viên ở lại tầng 4 xuống bàn trực ký sổ.",
+          "voice": "vi"
+        }
+      ],
+      "speed_wpm": 145,
+      "sha256": "aed8ec84d07e8c9b31449825f7fcc7489762bf7df2ed67b8c79e97deedb7af56",
+      "raw_sha256": "51683a750713bebb16c502542b91c322ac732e04c5c96e6193e7ec0b4bdb1f00",
+      "seconds": 3.6172,
+      "lufs": -26.02,
+      "true_peak_db": -8.98,
+      "loop": false,
+      "hidden_from_seconds": null,
+      "hidden_speech_gain": null
+    },
+    {
+      "file": "game/audio/voice/vi/SPK_ROLLCALL_INTRO.ogg",
+      "locale": "vi",
+      "key": "SPK_ROLLCALL_INTRO",
+      "spoken_parts": [
+        {
+          "text": "Điểm danh phòng 407.",
+          "voice": "vi"
+        }
+      ],
+      "speed_wpm": 145,
+      "sha256": "428a85c3933c5915c9dc9000b82038a9069d345fdfbe0891e52a4e6d840934c8",
+      "raw_sha256": "cc5b395e0621f5b0cb9609d220454dd5de0c8bf64561709a07b621fb8dd3f7bd",
+      "seconds": 2.2956,
+      "lufs": -26.1,
+      "true_peak_db": -7.62,
+      "loop": false,
+      "hidden_from_seconds": null,
+      "hidden_speech_gain": null
+    },
+    {
+      "file": "game/audio/voice/vi/SPK_CHECK_TAPS.ogg",
+      "locale": "vi",
+      "key": "SPK_CHECK_TAPS",
+      "spoken_parts": [
+        {
+          "text": "Sinh viên ở lại kiểm tra khóa vòi nước nhà vệ sinh tầng mình.",
+          "voice": "vi"
+        }
+      ],
+      "speed_wpm": 145,
+      "sha256": "f370ef143c66893190d3866d3d6aaf35ce5be1370b4bf18e0efda9e3b4353bae",
+      "raw_sha256": "162ccfad7679985fb9cfb4634e85581849f5078a304b08f02a16e04563afbdf9",
+      "seconds": 4.4162,
+      "lufs": -26.07,
+      "true_peak_db": -9.83,
+      "loop": false,
+      "hidden_from_seconds": null,
+      "hidden_speech_gain": null
+    },
+    {
+      "file": "game/audio/voice/vi/SPK_NAME_PHUC.ogg",
+      "locale": "vi",
+      "key": "SPK_NAME_PHUC",
+      "spoken_parts": [
+        {
+          "text": "Lê Hoàng Phúc.",
+          "voice": "vi"
+        }
+      ],
+      "speed_wpm": 145,
+      "sha256": "b759e9aa271102740b475090ab5aba9d6ff0f67d8c781d96c52439a226c5eb27",
+      "raw_sha256": "c19ec58a66fc8f53724cf1fdc50ac5295c77135617ff837b4b9660792da922ac",
+      "seconds": 1.4282,
+      "lufs": -26.05,
+      "true_peak_db": -9.1,
+      "loop": false,
+      "hidden_from_seconds": null,
+      "hidden_speech_gain": null
+    },
+    {
+      "file": "game/audio/voice/vi/SPK_NAME_VIET.ogg",
+      "locale": "vi",
+      "key": "SPK_NAME_VIET",
+      "spoken_parts": [
+        {
+          "text": "Đặng Quốc Việt.",
+          "voice": "vi"
+        }
+      ],
+      "speed_wpm": 145,
+      "sha256": "6311129ad041b22a00a16dd21848cd678ddf396a99cd1d7f4056e3b627e236cf",
+      "raw_sha256": "9bd70b5845dbeeeb475a3b9c86d4c67097db2e025c4ef7a04fbadd0f4dac6fd3",
+      "seconds": 1.3079,
+      "lufs": -26.03,
+      "true_peak_db": -7.86,
+      "loop": false,
+      "hidden_from_seconds": null,
+      "hidden_speech_gain": null
+    },
+    {
+      "file": "game/audio/voice/vi/SPK_NAME_TRUNG.ogg",
+      "locale": "vi",
+      "key": "SPK_NAME_TRUNG",
+      "spoken_parts": [
+        {
+          "text": "Trần Trung.",
+          "voice": "vi"
+        }
+      ],
+      "speed_wpm": 145,
+      "sha256": "3d1138db279e15709d7738cb01e14aea9d5f7773b646f03398887b82415a9967",
+      "raw_sha256": "cad01d10afcf67b89a85afd51395d7fcd96f0aa9fa603f786f6271ab50fb9b28",
+      "seconds": 1.1596,
+      "lufs": -26.08,
+      "true_peak_db": -8.0,
+      "loop": false,
+      "hidden_from_seconds": null,
+      "hidden_speech_gain": null
+    },
+    {
+      "file": "game/audio/voice/vi/SPK_NAME_DAT.ogg",
+      "locale": "vi",
+      "key": "SPK_NAME_DAT",
+      "spoken_parts": [
+        {
+          "text": "Phạm Thành Đạt.",
+          "voice": "vi"
+        }
+      ],
+      "speed_wpm": 145,
+      "sha256": "52fb5bde1e626913f0090269746d2f329d98e1c41aa2eadae74772ff8dc50258",
+      "raw_sha256": "fe0f3e51a5506b8d2ea328f2c3e292b597b0ec8952d5e39483a30ff01d88fe23",
+      "seconds": 1.3381,
+      "lufs": -26.13,
+      "true_peak_db": -8.41,
+      "loop": false,
+      "hidden_from_seconds": null,
+      "hidden_speech_gain": null
+    },
+    {
+      "file": "game/audio/voice/vi/SPK_NAME_LAM.ogg",
+      "locale": "vi",
+      "key": "SPK_NAME_LAM",
+      "spoken_parts": [
+        {
+          "text": "Vũ Đức Lâm.",
+          "voice": "vi"
+        }
+      ],
+      "speed_wpm": 145,
+      "sha256": "e8fd9162682413c1e05968b63c4812eb29bd2620d234b631c3e9673ed35cb106",
+      "raw_sha256": "313143ad55353d58d0327fe5a241a9322515297be7929cad5ed28b66b62e53c4",
+      "seconds": 1.3259,
+      "lufs": -26.04,
+      "true_peak_db": -9.23,
+      "loop": false,
+      "hidden_from_seconds": null,
+      "hidden_speech_gain": null
+    },
+    {
+      "file": "game/audio/voice/vi/SPK_NAME_TRUNG_AGAIN.ogg",
+      "locale": "vi",
+      "key": "SPK_NAME_TRUNG_AGAIN",
+      "spoken_parts": [
+        {
+          "text": "Trần… Trung.",
+          "voice": "vi"
+        }
+      ],
+      "speed_wpm": 95,
+      "sha256": "a8c154a6fd0a03d5fb7bbc25eea9fdbe329bc66bea046a605e4fcdde2fc745a9",
+      "raw_sha256": "2a7ab8f046de260de818fdd30c1c0c001ef1b8ba84c5d65e077d22ba3acfa113",
+      "seconds": 2.3966,
+      "lufs": -26.04,
+      "true_peak_db": -8.71,
+      "loop": false,
+      "hidden_from_seconds": null,
+      "hidden_speech_gain": null
+    },
+    {
+      "file": "game/audio/voice/vi/SPK_AND_ONE_MORE.ogg",
+      "locale": "vi",
+      "key": "SPK_AND_ONE_MORE",
+      "spoken_parts": [
+        {
+          "text": "…và một người nữa.",
+          "voice": "vi"
+        }
+      ],
+      "speed_wpm": 145,
+      "sha256": "94d2a7272b4e3ff5099f6fc9eb482cbe44523e5aae02f52c8dabb20750522d56",
+      "raw_sha256": "2eb680e61250ecc896bb9f910091576340b52c8a84cd543ca02894a65fdbf08d",
+      "seconds": 1.6089,
+      "lufs": -26.02,
+      "true_peak_db": -9.35,
+      "loop": false,
+      "hidden_from_seconds": null,
+      "hidden_speech_gain": null
+    },
+    {
+      "file": "game/audio/voice/vi/SPK_AND_TRUNG.ogg",
+      "locale": "vi",
+      "key": "SPK_AND_TRUNG",
+      "spoken_parts": [
+        {
+          "text": "…và Trần Trung. Mời trả lời.",
+          "voice": "vi"
+        }
+      ],
+      "speed_wpm": 145,
+      "sha256": "84400c659ba89ea29f8cef3ed52fdd6af152d7b4257e143cd9b6c43718c4402c",
+      "raw_sha256": "a460f5f9f159a3661acc9886584a448d226935c2ce9d4c1af298069129e88c58",
+      "seconds": 2.7579,
+      "lufs": -26.06,
+      "true_peak_db": -9.12,
+      "loop": false,
+      "hidden_from_seconds": null,
+      "hidden_speech_gain": null
+    },
+    {
+      "file": "game/audio/voice/en/RULE_HEADER_5.ogg",
+      "locale": "en",
+      "key": "RULE_HEADER_5",
+      "spoken_parts": [
+        {
+          "text": "Holiday night rules — 5 articles",
+          "voice": "en"
+        }
+      ],
+      "speed_wpm": 145,
+      "sha256": "303350f47d9f551329377beee2f9346f7d74bed29d87b9b30f49a2f4804759ce",
+      "raw_sha256": "0967c2acbac2200e49fbd5e97f00fa99adae72dcb576e7cfafa6385251097ab7",
+      "seconds": 3.282,
+      "lufs": -26.19,
+      "true_peak_db": -9.55,
+      "loop": false,
+      "hidden_from_seconds": null,
+      "hidden_speech_gain": null
+    },
+    {
+      "file": "game/audio/voice/en/RULE_1.ogg",
+      "locale": "en",
+      "key": "RULE_1",
+      "spoken_parts": [
+        {
+          "text": "After midnight, turn off the main light in your room.",
+          "voice": "en"
+        }
+      ],
+      "speed_wpm": 145,
+      "sha256": "df599db8c253feeba45850875a8f16be94268c70daf12d4fdfe169457b0e8f91",
+      "raw_sha256": "657ecc816673fff203fa92c0e0a9931c58b324a29a08378f51634e4525568986",
+      "seconds": 3.7228,
+      "lufs": -26.12,
+      "true_peak_db": -10.07,
+      "loop": false,
+      "hidden_from_seconds": null,
+      "hidden_speech_gain": null
+    },
+    {
+      "file": "game/audio/voice/en/RULE_2.ogg",
+      "locale": "en",
+      "key": "RULE_2",
+      "spoken_parts": [
+        {
+          "text": "If someone knocks after midnight, do not open and do not answer. Dorm staff always call the room number before knocking.",
+          "voice": "en"
+        }
+      ],
+      "speed_wpm": 145,
+      "sha256": "c86cbc91beb6f2eaa14b49ba4d0779adf4ae4920db89ca697c20392b30296ccd",
+      "raw_sha256": "65f1f273b977e3907a589bda8f93e91c957a05b0bc3514ced743f38c5296ed4f",
+      "seconds": 8.5006,
+      "lufs": -26.11,
+      "true_peak_db": -8.74,
+      "loop": false,
+      "hidden_from_seconds": null,
+      "hidden_speech_gain": null
+    },
+    {
+      "file": "game/audio/voice/en/RULE_3_GARBLED.ogg",
+      "locale": "en",
+      "key": "RULE_3_GARBLED",
+      "spoken_parts": [
+        {
+          "text": "If you hear slippers walking behind you in the corridor,",
+          "voice": "en"
+        },
+        {
+          "text": "do not turn around. Keep walking to the light.",
+          "voice": "en"
+        }
+      ],
+      "speed_wpm": 145,
+      "sha256": "610a53a0b51e3b64f6866347d38e30cccdc35fb8f6f48c1ee689c8555683c273",
+      "raw_sha256": "8d12285a5a48dd3e5050efad5213c5a9e3e46682b6204e73ba187c8c8e96c068",
+      "seconds": 7.086,
+      "lufs": -26.45,
+      "true_peak_db": -11.15,
+      "loop": false,
+      "hidden_from_seconds": 3.3187755102040817,
+      "hidden_speech_gain": 0
+    },
+    {
+      "file": "game/audio/voice/en/RULE_4.ogg",
+      "locale": "en",
+      "key": "RULE_4",
+      "spoken_parts": [
+        {
+          "text": "At roll call, answer \"Here\" only to your own name.",
+          "voice": "en"
+        }
+      ],
+      "speed_wpm": 145,
+      "sha256": "bb4198498364bfe3abd3c143f3eba1eea7c15ffa399da841eedbc072c3a77ed2",
+      "raw_sha256": "0c8424638fd14bbe818a29bfc51566c73336a3c6714fdce36583eafccdf615fb",
+      "seconds": 4.2243,
+      "lufs": -26.13,
+      "true_peak_db": -9.19,
+      "loop": false,
+      "hidden_from_seconds": null,
+      "hidden_speech_gain": null
+    },
+    {
+      "file": "game/audio/voice/en/RULE_5.ogg",
+      "locale": "en",
+      "key": "RULE_5",
+      "spoken_parts": [
+        {
+          "text": "If a tap runs by itself, close it and leave the washroom. Do not look in the mirror.",
+          "voice": "en"
+        }
+      ],
+      "speed_wpm": 145,
+      "sha256": "e47857e4b12678fd074720b3892bd0c742fba1aa980e065f138603067bb0a2c9",
+      "raw_sha256": "f99958ee3c194d3975bb78dc1bc921bb9f56a0f9d469666d0e1d2d344bb9ca07",
+      "seconds": 6.169,
+      "lufs": -26.11,
+      "true_peak_db": -8.59,
+      "loop": false,
+      "hidden_from_seconds": null,
+      "hidden_speech_gain": null
+    },
+    {
+      "file": "game/audio/voice/en/SPK_SIGN_LOG.ogg",
+      "locale": "en",
+      "key": "SPK_SIGN_LOG",
+      "spoken_parts": [
+        {
+          "text": "Students staying on floor 4, come to the duty desk and sign the log.",
+          "voice": "en"
+        }
+      ],
+      "speed_wpm": 145,
+      "sha256": "7046ff9d25edc3fd99b0f43a90b0fa3c783a7a74a46ec4436f352d28f16a4f24",
+      "raw_sha256": "3f8eb2fb2847fb0479c4eafb9d5b3a40523e2b227836669108ad974058d67840",
+      "seconds": 5.5576,
+      "lufs": -26.12,
+      "true_peak_db": -9.02,
+      "loop": false,
+      "hidden_from_seconds": null,
+      "hidden_speech_gain": null
+    },
+    {
+      "file": "game/audio/voice/en/SPK_ROLLCALL_INTRO.ogg",
+      "locale": "en",
+      "key": "SPK_ROLLCALL_INTRO",
+      "spoken_parts": [
+        {
+          "text": "Roll call, room 407.",
+          "voice": "en"
+        }
+      ],
+      "speed_wpm": 145,
+      "sha256": "701b74cbc7908b8d548494fc23d018d711b0ef966c0ce1e5fc8fccbbcfe76655",
+      "raw_sha256": "985ea2243c0b80582a0fe9abc8ef93c1c570f9ac990ad07e9779e09bf34180f4",
+      "seconds": 3.2354,
+      "lufs": -26.12,
+      "true_peak_db": -8.75,
+      "loop": false,
+      "hidden_from_seconds": null,
+      "hidden_speech_gain": null
+    },
+    {
+      "file": "game/audio/voice/en/SPK_CHECK_TAPS.ogg",
+      "locale": "en",
+      "key": "SPK_CHECK_TAPS",
+      "spoken_parts": [
+        {
+          "text": "Students staying, check that the taps in your floor's washroom are closed.",
+          "voice": "en"
+        }
+      ],
+      "speed_wpm": 145,
+      "sha256": "cd6606f24d5da5c4dada1d415a1f355588176963247a1966a3cfabe155114e30",
+      "raw_sha256": "47f326a883670445e8609e941882b2a21c3ad7a7637bdb10101a169402522f04",
+      "seconds": 5.0617,
+      "lufs": -26.14,
+      "true_peak_db": -8.88,
+      "loop": false,
+      "hidden_from_seconds": null,
+      "hidden_speech_gain": null
+    },
+    {
+      "file": "game/audio/voice/en/SPK_NAME_PHUC.ogg",
+      "locale": "en",
+      "key": "SPK_NAME_PHUC",
+      "spoken_parts": [
+        {
+          "text": "Lê Hoàng Phúc.",
+          "voice": "vi"
+        }
+      ],
+      "speed_wpm": 145,
+      "sha256": "dfd028d0571a0dee13c1657dd1d886f43bf1ccc75c92a0de163aa517d52ed26a",
+      "raw_sha256": "c19ec58a66fc8f53724cf1fdc50ac5295c77135617ff837b4b9660792da922ac",
+      "seconds": 1.4282,
+      "lufs": -26.05,
+      "true_peak_db": -9.1,
+      "loop": false,
+      "hidden_from_seconds": null,
+      "hidden_speech_gain": null
+    },
+    {
+      "file": "game/audio/voice/en/SPK_NAME_VIET.ogg",
+      "locale": "en",
+      "key": "SPK_NAME_VIET",
+      "spoken_parts": [
+        {
+          "text": "Đặng Quốc Việt.",
+          "voice": "vi"
+        }
+      ],
+      "speed_wpm": 145,
+      "sha256": "efb20aac3722161583a1166d84811ea928122e1a9d1aaf8271d9658519d4a154",
+      "raw_sha256": "9bd70b5845dbeeeb475a3b9c86d4c67097db2e025c4ef7a04fbadd0f4dac6fd3",
+      "seconds": 1.3079,
+      "lufs": -26.06,
+      "true_peak_db": -7.87,
+      "loop": false,
+      "hidden_from_seconds": null,
+      "hidden_speech_gain": null
+    },
+    {
+      "file": "game/audio/voice/en/SPK_NAME_TRUNG.ogg",
+      "locale": "en",
+      "key": "SPK_NAME_TRUNG",
+      "spoken_parts": [
+        {
+          "text": "Trần Trung.",
+          "voice": "vi"
+        }
+      ],
+      "speed_wpm": 145,
+      "sha256": "131992b30522f0d5154ea395e499eebc3f0a71642329330bd1ae737406529b84",
+      "raw_sha256": "cad01d10afcf67b89a85afd51395d7fcd96f0aa9fa603f786f6271ab50fb9b28",
+      "seconds": 1.1596,
+      "lufs": -26.08,
+      "true_peak_db": -8.05,
+      "loop": false,
+      "hidden_from_seconds": null,
+      "hidden_speech_gain": null
+    },
+    {
+      "file": "game/audio/voice/en/SPK_NAME_DAT.ogg",
+      "locale": "en",
+      "key": "SPK_NAME_DAT",
+      "spoken_parts": [
+        {
+          "text": "Phạm Thành Đạt.",
+          "voice": "vi"
+        }
+      ],
+      "speed_wpm": 145,
+      "sha256": "11d20c164c1deee3ffd82fdb0f4415dd21593eca2d32afb4094d819a9df4d85d",
+      "raw_sha256": "fe0f3e51a5506b8d2ea328f2c3e292b597b0ec8952d5e39483a30ff01d88fe23",
+      "seconds": 1.3381,
+      "lufs": -26.09,
+      "true_peak_db": -8.11,
+      "loop": false,
+      "hidden_from_seconds": null,
+      "hidden_speech_gain": null
+    },
+    {
+      "file": "game/audio/voice/en/SPK_NAME_LAM.ogg",
+      "locale": "en",
+      "key": "SPK_NAME_LAM",
+      "spoken_parts": [
+        {
+          "text": "Vũ Đức Lâm.",
+          "voice": "vi"
+        }
+      ],
+      "speed_wpm": 145,
+      "sha256": "e8055bdf54027e809b09278c893e8fee13157e8814ff72820512d449db7e58f5",
+      "raw_sha256": "313143ad55353d58d0327fe5a241a9322515297be7929cad5ed28b66b62e53c4",
+      "seconds": 1.3259,
+      "lufs": -26.04,
+      "true_peak_db": -9.18,
+      "loop": false,
+      "hidden_from_seconds": null,
+      "hidden_speech_gain": null
+    },
+    {
+      "file": "game/audio/voice/en/SPK_NAME_TRUNG_AGAIN.ogg",
+      "locale": "en",
+      "key": "SPK_NAME_TRUNG_AGAIN",
+      "spoken_parts": [
+        {
+          "text": "Trần… Trung.",
+          "voice": "vi"
+        }
+      ],
+      "speed_wpm": 95,
+      "sha256": "ce49919482074eb475a7bf3eaf9223d77c74d887c966b258638c177d561e8839",
+      "raw_sha256": "2a7ab8f046de260de818fdd30c1c0c001ef1b8ba84c5d65e077d22ba3acfa113",
+      "seconds": 2.3966,
+      "lufs": -26.04,
+      "true_peak_db": -8.7,
+      "loop": false,
+      "hidden_from_seconds": null,
+      "hidden_speech_gain": null
+    },
+    {
+      "file": "game/audio/voice/en/SPK_AND_ONE_MORE.ogg",
+      "locale": "en",
+      "key": "SPK_AND_ONE_MORE",
+      "spoken_parts": [
+        {
+          "text": "…and one more.",
+          "voice": "en"
+        }
+      ],
+      "speed_wpm": 145,
+      "sha256": "23f7fe6d8567eaa88b333710fad3c43a134220892adbfa40e19e291dda968cb5",
+      "raw_sha256": "5b053f94e877325325651012ee8292c5d836fd27fa9266419fc5b000647a25da",
+      "seconds": 1.4625,
+      "lufs": -26.15,
+      "true_peak_db": -9.7,
+      "loop": false,
+      "hidden_from_seconds": null,
+      "hidden_speech_gain": null
+    },
+    {
+      "file": "game/audio/voice/en/SPK_AND_TRUNG.ogg",
+      "locale": "en",
+      "key": "SPK_AND_TRUNG",
+      "spoken_parts": [
+        {
+          "text": "…and",
+          "voice": "en"
+        },
+        {
+          "text": "Trần Trung",
+          "voice": "vi"
+        },
+        {
+          "text": ". Please answer.",
+          "voice": "en"
+        }
+      ],
+      "speed_wpm": 145,
+      "sha256": "58d12fa3d4f88ce0048c1f961526db167fd6cb874f592537ef818cab745baf7e",
+      "raw_sha256": "50a4776d570ed9b6eb6d63c8fcbfa47c1010fa3f7cc9025143cdfdf30b084a6c",
+      "seconds": 3.1999,
+      "lufs": -26.18,
+      "true_peak_db": -8.56,
+      "loop": false,
+      "hidden_from_seconds": null,
+      "hidden_speech_gain": null
+    }
+  ]
+}
