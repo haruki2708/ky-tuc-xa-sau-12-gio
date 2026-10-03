@@ -1,6 +1,11 @@
 extends Interactable
 
 @export var document_id: StringName
+@export var pick_depth: float = 0.004:
+	set(value):
+		pick_depth = maxf(value, 0.001)
+		if is_node_ready():
+			_update_size()
 @export var size: Vector2 = Vector2(0.21, 0.297):
 	set(value):
 		size = Vector2(maxf(value.x, 0.01), maxf(value.y, 0.01))
@@ -19,8 +24,9 @@ func _update_size() -> void:
 	box.size = Vector3(size.x, size.y, 0.004)
 	$Mesh.mesh = box
 	var shape: BoxShape3D = BoxShape3D.new()
-	shape.size = box.size
+	shape.size = Vector3(size.x, size.y, pick_depth)
 	$CollisionShape3D.shape = shape
+	$CollisionShape3D.position.z = pick_depth * 0.5
 
 
 func interact(_player: Node) -> void:

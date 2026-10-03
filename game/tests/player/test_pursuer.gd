@@ -134,6 +134,73 @@ func test_blocked_direct_path_detours_along_corridor_x() -> void:
 	assert_eq(catches, 1, "can reach target around a finite obstacle")
 
 
+func test_route_crosses_one_meter_doorway_then_catches_target() -> void:
+	# Front wall at z=0, with a 1m opening centered on x=3.1.
+	_wall(Vector3(5.6, 3, 0.2), Vector3(-0.2, 1.5, 0))
+	_wall(Vector3(3.4, 3, 0.2), Vector3(5.3, 1.5, 0))
+	_wall(Vector3(0.2, 3, 5), Vector3(-3, 1.5, -2.5))
+	_wall(Vector3(0.2, 3, 5), Vector3(7, 1.5, -2.5))
+	_wall(Vector3(10, 3, 0.2), Vector3(2, 1.5, -5))
+	target.position = Vector3(-1, 0, 2)
+	var route: PackedVector3Array = PackedVector3Array([Vector3(3.1, 0, -0.5), Vector3(3.1, 0, 0.6)])
+	pursuer.start_chase(target, Vector3(0, 0.02, -3), route)
+	route[0] = Vector3(-50, 0, -3)
+	var crossed: bool = false
+	for tick: int in 360:
+		await _ticks(1)
+		if absf(pursuer.position.z) < 0.1:
+			crossed = true
+			assert_true(absf(pursuer.position.x - 3.1) < 0.21, "capsule clears both door jambs")
+		if catches > 0:
+			break
+	assert_true(crossed, "route passes through the door, not around the room")
+	assert_eq(catches, 1, "leaves route and catches stationary target beyond doorway")
+	assert_eq(escapes, 0)
+
+
+func test_route_still_catches_and_prioritizes_safety_before_finishing() -> void:
+	var route: PackedVector3Array = PackedVector3Array([Vector3(-20, 0, 0)])
+	target.position = Vector3(0.5, 0, 0)
+	pursuer.start_chase(target, Vector3.ZERO, route)
+	await _ticks(2)
+	assert_eq(catches, 1, "catch checked before unfinished route")
+	_safe_zone(target.position)
+	pursuer.give_up_seconds = 0.05
+	await _ticks(2)
+	pursuer.start_chase(target, Vector3.ZERO, route)
+	await _ticks(10)
+	assert_eq(catches, 1, "safe zone still takes priority over catch")
+	assert_eq(escapes, 1, "unfinished route cannot defer escape")
+
+
+func test_route_order_pause_stop_and_legacy_restart() -> void:
+	target.position = Vector3(15, 0, 0)
+	pursuer.start_chase(target, Vector3.ZERO, PackedVector3Array([
+		Vector3.ZERO, Vector3.ZERO, Vector3(0, 10, -3), Vector3(3, 0, -3)]))
+	await _ticks(20)
+	assert_true(pursuer.position.z < -0.5, "visits first distinct point before second or target")
+	assert_true(absf(pursuer.position.x) < 0.01, "route is XZ even if point height differs")
+	var position: Vector3 = pursuer.position
+	tree.paused = true
+	await tree.create_timer(0.1, true).timeout
+	assert_eq(pursuer.position, position)
+	tree.paused = false
+	pursuer.stop_chase()
+	pursuer.start_chase(target, Vector3.ZERO)
+	await _ticks(20)
+	assert_true(pursuer.position.x > 0.5, "legacy restart discards previous waypoints")
+	assert_true(absf(pursuer.position.z) < 0.01)
+
+
+func test_route_does_not_cross_walls_when_waypoint_is_unreachable() -> void:
+	_wall(Vector3(0.1, 3, 20), Vector3(0.5, 1.5, 0))
+	target.position.x = 5.0
+	pursuer.start_chase(target, Vector3.ZERO, PackedVector3Array([Vector3(3, 0, 0)]))
+	await _ticks(60)
+	assert_true(pursuer.position.x < 0.2)
+	assert_eq(catches, 0)
+
+
 func test_running_target_increases_gap_but_walking_is_caught() -> void:
 	target.position = Vector3(3, 0, 0)
 	pursuer.start_chase(target, Vector3(0, 0.02, 0))
