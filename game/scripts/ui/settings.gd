@@ -8,7 +8,10 @@ const AUDIO_BUSES := {
 	"footsteps_db": "Footsteps", "voice_db": "Voice", "music_db": "Music",
 }
 const SCHEMA := {
-	"ui": {"locale": {"default": "vi", "choices": ["vi", "en"]}},
+	"ui": {
+		"locale": {"default": "vi", "choices": ["vi", "en"]},
+		"content_warning_seen": {"default": false},
+	},
 	"audio": {
 		"master_db": {"default": 0.0, "min": -40.0, "max": 6.0},
 		"ambience_db": {"default": 0.0, "min": -40.0, "max": 6.0},
@@ -85,6 +88,10 @@ func reset_defaults() -> Error:
 		return error
 	for section: String in SCHEMA:
 		for key: String in SCHEMA[section]:
+			# Acknowledgement is not a preference: reset must not repeat first-run UI.
+			if section == "ui" and key == "content_warning_seen":
+				config.set_value(section, key, get_value(section, key))
+				continue
 			config.set_value(section, key, SCHEMA[section][key]["default"])
 	error = config.save(SETTINGS_PATH)
 	if error != OK:

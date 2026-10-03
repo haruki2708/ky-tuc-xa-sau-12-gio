@@ -140,7 +140,7 @@ func test_reset_defaults_preserves_unrelated_entries_and_notifies_every_key() ->
 func _assert_defaults() -> void:
 	# Pin the public contract independently of the implementation's schema.
 	var expected := {
-		"ui": {"locale": "vi"},
+		"ui": {"locale": "vi", "content_warning_seen": false},
 		"audio": {"master_db": 0.0, "ambience_db": 0.0, "sfx_db": 0.0,
 			"footsteps_db": 0.0, "voice_db": 0.0, "music_db": 0.0},
 		"input": {"mouse_sensitivity": 0.002},
