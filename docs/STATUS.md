@@ -53,7 +53,7 @@
 | T-115 Bot tự chơi cả demo | C | **changes requested**: sửa 2 kịch bản (lỗi card) và rò rỉ lúc thoát; phần đã xong đã merge |
 | T-139 Màn hình chính, cảnh báo, credits | D | **done**, đã merge; game khởi động vào màn hình chính |
 | T-133 Nhạc nền và drone | E | **done**, đã merge; chờ chủ dự án nghe |
-| T-137 Giọng loa TTS offline | E | todo (giao ngay, `docs/handoff/lane-e.md` mục 4) |
+| T-137 Giọng loa TTS offline | E | todo (giao ngay, `docs/handoff/lane-e.md` mục 1) |
 | T-141 Ghép đợt 3: title làm main scene, MusicDirector, giọng loa, đạo cụ, truy đuổi 2 từ gương | core | xong trừ giọng loa (chờ T-137) |
 | T-110 Kiến trúc RuleSystem và GameState | core | **done**, đã merge (xem `docs/design/RULE_SYSTEM.md`) |
 | T-113 Chốt bộ luật demo và sơ đồ tầng | Chủ dự án + Claude | **done** (D-020); dữ liệu `game/data/rules/demo.tres` |
