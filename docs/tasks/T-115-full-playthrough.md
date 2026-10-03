@@ -28,7 +28,7 @@ Chủ dự án vừa gặp lỗi kẹt vòng lặp ở đoạn 4 khi chơi thử
 4. **Tài liệu:** thêm mục "Tự chơi cả demo" vào `tools/README.md`.
 
 ## Checklist hoàn thành
-- [ ] `pwsh tools/test.ps1`, `pwsh tools/check.ps1` và `pwsh tools/playthrough.ps1 -Scenario all` PASS (dán dòng RESULT)
+- [x] `pwsh tools/test.ps1`, `pwsh tools/check.ps1` và `pwsh tools/playthrough.ps1 -Scenario all` PASS (dán dòng RESULT)
 - [x] Thời gian chạy mỗi kịch bản ghi trong Handoff
 - [x] Handoff: lỗi game tìm thấy trong lúc làm bot (nếu có) ghi thành "Yêu cầu thay đổi", không tự sửa code ngoài phạm vi
 
@@ -68,3 +68,31 @@ Phần độc lập đã hoàn tất; dừng phần deviant tại điểm chặn
 - **Blocker là lỗi card của integrator, không phải thiết kế:** kịch bản `deviant` cũ cộng 1 + 2 + 2 = 5. Card đã sửa ở mục 1: `deviant` (mở cửa + quay lại, lệch 4, kết 2) và thêm `mirror` (nhìn gương, lệch 2, kết 1). Lưu ý luồng mới: nhìn gương thì bóng bước ra trước bồn rửa sau khoảng 2,4 s; ra hành lang trước đó thì thực thể đi qua cửa nhà vệ sinh rồi đuổi (xem `StoryDirector._chase_2`).
 - **Rò rỉ lúc thoát:** trên máy integrator, kịch bản `correct` cũng báo `31 ObjectDB instances leaked` và `1 resources still in use` (lặp lại 3/3, có từ commit `7dbce51`; chạy `--verbose` thì không tái hiện). Tìm thủ phạm như đã làm với smoke (ví dụ coroutine/timer còn chờ khi `App.quit()`, node mồ côi, audio). Nếu nằm ở core hoặc lane khác thì ghi loại đối tượng và nơi tạo vào "Yêu cầu thay đổi".
 - Cần: `pwsh tools/playthrough.ps1 -Scenario all` PASS ở cả 3 kịch bản.
+
+### Lane C — hoàn tất yêu cầu review, 2026-10-03
+
+- Đã fetch/pull nhánh và rebase lên `origin/main` tại `25da80b`; commit sửa `c8a45e7` đã push lên `lane-c/T-115-full-playthrough`.
+- Bot/launcher có đủ `correct`, `deviant`, `mirror` theo card đã sửa. Kiểm tra chính xác cả ending và độ lệch 0/4/2, đủ đoạn, điểm danh đúng, corridor/mirror chase có tín hiệu thoát. Đã cập nhật hướng dẫn trong `tools/README.md`.
+- **Đã xác định và sửa rò rỉ trong phạm vi Lane C:** root bot dùng `PROCESS_MODE_ALWAYS`, main mặc định INHERIT nên LightHum vẫn chạy khi `App.quit()` pause. `LightHum._process()` gọi `_sync_light()` rồi `start_emitting()` trong thời gian App đang drain âm thanh; `AmbientEmitter._play_clip()` tạo lại playback của âm ù đèn. Lỗi nằm ở cách bot gắn main, không cần sửa App/core/audio. Main nay đặt `PROCESS_MODE_PAUSABLE` trước khi add_child; bot vẫn ALWAYS để đóng giấy và kiểm tra timeout.
+- Test mới `test_playthrough_pause.gd` dùng main/LightHum thật: xác nhận hum đang phát, pause và dừng nguồn như App, chờ thêm frame rồi kiểm tra bot vẫn chạy, game ngừng xử lý và hum không phát lại.
+- Tái hiện trước sửa (không `--verbose`): correct 31 ObjectDB / 1 resource, deviant 22 ObjectDB / 1 resource; launcher trả FAIL dù ending đúng. Sau sửa: cả ba luồng headless và cả ba luồng capture đều exit 0, không ERROR hoặc cảnh báo leak; không tăng thời gian drain hay lọc bỏ lỗi.
+
+**Kết quả cuối trên Godot 4.7.2:**
+
+| Lệnh | Dòng kết quả | Exit |
+|---|---|---|
+| `pwsh tools/test.ps1` | `RESULT: 247 passed, 0 failed` | 0 |
+| `pwsh tools/check.ps1` | `RESULT: check 0 error(s)` | 0 |
+| `pwsh tools/test.ps1 -Filter playthrough_pause` | `RESULT: 1 passed, 0 failed` | 0 |
+| `pwsh tools/playthrough.ps1 -Scenario all` | `RESULT: playthrough 3 passed, 0 failed` | 0 |
+| `pwsh tools/playthrough.ps1 -Scenario all -Capture` | `RESULT: playthrough 3 passed, 0 failed` | 0 |
+
+| Kịch bản | Ending / độ lệch | Headless: bot / tiến trình | Capture: bot / tiến trình | PNG |
+|---|---|---|---|---|
+| correct | 1 / 0 | 23,71 / 24,81 giây | 22,57 / 28,49 giây | 14 |
+| deviant | 2 / 4 | 23,54 / 24,68 giây | 22,96 / 26,05 giây | 16 |
+| mirror | 1 / 2 | 25,58 / 26,53 giây | 24,86 / 28,05 giây | 16 |
+
+- Log local: `build/T-115-followup-tests.log`, `build/T-115-followup-check.log`, `build/T-115-pause-test.log`, `build/T-115-followup-before.log`, `build/T-115-followup-all.log`, `build/T-115-followup-capture.log`. Headless sau sửa: `build/playthrough/bc225bf99a17495a84ccceeee11b9d52/`; capture: `build/playthrough/88f4b5f0801c42b4a3950da3ad74d6ad/`, mỗi scenario có thư mục `captures` và log. Artifact build không commit.
+- **Yêu cầu thay đổi ngoài phạm vi:** không còn. Hai điểm chặn ở Handoff cũ đã được giải quyết bằng card sửa của integrator và bản sửa bot này. Không sửa luật, core, audio hay STATUS.
+- **Còn dở / Blocked:** không. Đủ checklist, sẵn sàng integrator review. Bot vẫn là kiểm tra API có teleport; chưa thay thế lượt chơi thủ công để đánh giá điều khiển/va chạm/nhịp chơi.

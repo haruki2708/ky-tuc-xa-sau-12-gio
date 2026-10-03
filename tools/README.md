@@ -10,11 +10,19 @@ Godot được tìm qua `godot-path.ps1`; có thể đặt biến môi trường
 
 ## Tự chơi cả demo
 
-Chạy `pwsh tools/playthrough.ps1 -Scenario all` để kiểm tra hai luồng `correct` và `deviant`; chọn riêng bằng `-Scenario correct` hoặc `-Scenario deviant`. Bot instance main, tương tác qua API thật, dịch chuyển/quay người chơi và trả lời điểm danh bằng InputEventAction. Không tự ghi cờ story hoặc giải quyết luật. Đây là kiểm tra luồng truyện, không thay thế kiểm tra điều khiển và va chạm bằng tay.
+Chạy `pwsh tools/playthrough.ps1 -Scenario all` để kiểm tra ba luồng `correct`, `deviant`, `mirror`; chọn riêng bằng `-Scenario correct`, `-Scenario deviant` hoặc `-Scenario mirror`. Bot instance main, tương tác qua API thật, dịch chuyển/quay người chơi và trả lời điểm danh bằng InputEventAction. Không tự ghi cờ story hoặc giải quyết luật. Đây là kiểm tra luồng truyện, không thay thế kiểm tra điều khiển và va chạm bằng tay.
 
 Mặc định headless, `-TimeScale 0.05` chỉ tăng tốc StoryDirector; `-SegmentTimeout 45` giới hạn giây thực cho mỗi đoạn. `-Capture` chạy có cửa sổ và lưu PNG ở frame render kế tiếp của mỗi mốc. Log và ảnh nằm trong `build/playthrough/<uuid>/<scenario>/`; APPDATA riêng được dọn sau chạy. Launcher trả exit 1 khi bot thất bại, quá giờ, engine báo ERROR hoặc thiếu dòng PASS; dòng tổng là `RESULT: playthrough N passed, M failed`.
 
-`correct` yêu cầu ending 1, độ lệch 0 và đủ sáu mốc seg1–seg5/end. `deviant` giữ đúng chuỗi hành động trong card T-115 và yêu cầu ending 2. Với dữ liệu luật hiện tại, để đèn (+1), mở cửa (+2), quay lại (+2) đã chạm ngưỡng thua 5 ở seg3: đây là FAIL được phát hiện, không bỏ qua hoặc ép ending. Xem Handoff T-115 để giải quyết xung đột yêu cầu trước khi dùng cả hai luồng làm cổng merge.
+Mọi luồng đều kiểm tra đủ sáu mốc seg1–seg5/end, đúng ending và chính xác độ lệch:
+
+| Kịch bản | Hành động | Ending | Độ lệch |
+|---|---|---|---|
+| `correct` | Làm đúng mọi luật | 1 | 0 |
+| `deviant` | Tắt đèn đúng, mở cửa (+2), quay lại (+2), thoát vào vùng sáng, điểm danh và khóa vòi đúng | 2 | 4 |
+| `mirror` | Làm đúng các đoạn trước, nhìn gương (+2), ra hành lang rồi chạy về phòng 407 và chốt cửa | 1 | 2 |
+
+Bot chạy khi pause để xử lý giấy và timeout; scene game được đặt `PAUSABLE` riêng để giữ hành vi pause như chạy main bình thường. Nếu main kế thừa `ALWAYS` từ bot, LightHum có thể bật âm thanh lại sau khi App đã dừng, gây rò rỉ tài nguyên lúc thoát. Test `pwsh tools/test.ps1 -Filter playthrough_pause` bảo vệ trường hợp này.
 
 ## Autoplay theo frame
 
