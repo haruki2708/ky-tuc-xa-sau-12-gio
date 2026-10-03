@@ -1,5 +1,5 @@
 # T-137 — Giọng đọc của loa phát thanh (TTS offline)
-- Lane: E (Âm thanh) | Trạng thái: todo | Agent:
+- Lane: E (Âm thanh) | Trạng thái: done | Agent:
 - Nhánh: `lane-e/T-137-speaker-voice`
 - Phụ thuộc: T-130 (loa, done), T-136 (done). Làm sau T-133 hoặc song song nếu tách nhánh. Chủ dự án chọn **giọng máy TTS chạy offline** (2026-10-03), đúng với D-006.
 
@@ -111,3 +111,9 @@ Không cần thêm node/autoload/bus mới vào main: Speaker hiện hữu tự 
 
 ### Chưa nghe bằng tai / còn dở
 **Chưa nghe bằng tai** cả 34 file, phát âm/dấu Việt/Anh/tên riêng, câu Trung chậm, tiền đề điều 3 và chuyển rè, chất loa/vang hoặc mix trong main. Không chạy GUI nghe thử trong phiên này; chỉ headless/đo tín hiệu. Cần chủ dự án nghe V/B và chơi thử điểm danh sau khi test core được điều chỉnh. Không có câu hỏi cốt truyện mới; **task vẫn Blocked ở full-test gate**, không đánh dấu checklist đầu là đạt.
+
+### Review (integrator, 2026-10-03)
+- Đạt, đã merge. Chọn eSpeak NG là hợp lý khi chưa chứng minh được giấy phép thương mại của giọng Piper tiếng Việt; GPL áp dụng cho công cụ, không đóng gói vào game. Điều 3 bị nhiễu che hẳn phần hành động, đúng câu đố.
+- Integrator sửa 4 test core timeout: fixture chạy nhanh tắt giọng (`FloorSpeaker.voice_directory = ""`), test giọng của lane E giữ nguyên. Full suite 253/253 PASS; bot 3 kịch bản PASS với giọng thật.
+- Ghi công trong game (`UI_CREDITS_AUDIO_TEXT`) thêm nhạc nền và eSpeak NG.
+- **Chờ chủ dự án nghe:** giọng formant nghe khá "máy"; nếu không hợp, phương án khác là chủ dự án tự thu âm (đã hỏi trước đây) hoặc tìm giọng neural có giấy phép rõ.

@@ -19,6 +19,9 @@ func before_each() -> void:
 	director.auto_start = false
 	director.time_scale = 0.01
 	tree.root.add_child(main)
+	# Fast fixture: the real voice clips (T-137) do not follow time_scale;
+	# lane E tests the voices themselves.
+	main.get_node("FloorSpeaker").voice_directory = ""
 	player = main.get_node("Player")
 	EventBus.subtitle_requested.connect(_on_subtitle)
 	director.restart_requested.connect(_on_restart)

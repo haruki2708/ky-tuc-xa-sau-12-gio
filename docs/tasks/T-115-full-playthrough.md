@@ -1,5 +1,5 @@
 # T-115 — Kịch bản tự chơi cả demo
-- Lane: C (QA và Tools) | Trạng thái: changes requested | Agent:
+- Lane: C (QA và Tools) | Trạng thái: done | Agent:
 - Nhánh: `lane-c/T-115-full-playthrough`
 - Phụ thuộc: T-103, T-124, T-127 (done), T-136 (done). Đọc `docs/design/RULES.md` mục 5 và `game/scripts/core/story_director.gd` để biết luồng chơi.
 
@@ -96,3 +96,7 @@ Phần độc lập đã hoàn tất; dừng phần deviant tại điểm chặn
 - Log local: `build/T-115-followup-tests.log`, `build/T-115-followup-check.log`, `build/T-115-pause-test.log`, `build/T-115-followup-before.log`, `build/T-115-followup-all.log`, `build/T-115-followup-capture.log`. Headless sau sửa: `build/playthrough/bc225bf99a17495a84ccceeee11b9d52/`; capture: `build/playthrough/88f4b5f0801c42b4a3950da3ad74d6ad/`, mỗi scenario có thư mục `captures` và log. Artifact build không commit.
 - **Yêu cầu thay đổi ngoài phạm vi:** không còn. Hai điểm chặn ở Handoff cũ đã được giải quyết bằng card sửa của integrator và bản sửa bot này. Không sửa luật, core, audio hay STATUS.
 - **Còn dở / Blocked:** không. Đủ checklist, sẵn sàng integrator review. Bot vẫn là kiểm tra API có teleport; chưa thay thế lượt chơi thủ công để đánh giá điều khiển/va chạm/nhịp chơi.
+
+### Review lần 2 (integrator, 2026-10-03)
+- Đạt, đã merge. Nguyên nhân rò rỉ tìm đúng (main thừa hưởng `ALWAYS` từ bot nên LightHum bật lại lúc thoát), có test bảo vệ.
+- Integrator chạy lại trên bản tích hợp có giọng loa T-137: `RESULT: playthrough 3 passed, 0 failed` (mỗi kịch bản khoảng 82–85 s).

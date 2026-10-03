@@ -14,6 +14,9 @@ func before_each() -> void:
 	# These tests cover segments 1–2; test_story_segments_3_5.gd covers the rest.
 	director.stop_after = &"seg2"
 	tree.root.add_child(main)
+	# Fast fixture: the real voice clips (T-137) do not follow time_scale;
+	# lane E tests the voices themselves.
+	main.get_node("FloorSpeaker").voice_directory = ""
 	EventBus.subtitle_requested.connect(_on_subtitle)
 	await wait_frames(2)
 
