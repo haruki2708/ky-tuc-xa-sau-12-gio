@@ -1,4 +1,4 @@
-# Nguồn âm thanh T-105 / T-114 / T-123 / T-130 / T-131
+# Nguồn âm thanh T-105 / T-114 / T-123 / T-130 / T-131 / T-133
 
 Toàn bộ WAV và OGG dưới đây được **tự tổng hợp**, không lấy mẫu từ game, thư viện hoặc bản ghi âm bên ngoài. Công thức và seed nằm trong [process.py](../../audio_source/process.py).
 
@@ -70,3 +70,16 @@ Nguồn cho **từng WAV/OGG** trong bảng: [T-131/process.py](https://github.c
 | `slipper_rush_04.wav` | `sfx/slipper_rush_04.ogg` | Biến thể cộng hưởng/độ trễ 0.083 s; 13109; −34 LUFS | T-131/process.py trên; Lane E; CC0 1.0 |
 | `whisper_co.wav` | `sfx/whisper_co.ogg` | Phụ âm hơi ngắn, nhiễu qua cộng hưởng 480/850/2400 Hz tạo hơi nguyên âm, không voiced pitch; 13110; −30 LUFS | T-131/process.py trên; Lane E; CC0 1.0 |
 | `net_billow.wav` | `sfx/net_billow.ogg` | Nhiễu vải phồng gió, attack mềm và rung vải tăng tốc; 13111; −32 LUFS | T-131/process.py trên; Lane E; CC0 1.0 |
+
+## T-133 — nhạc nền tối giản
+
+Nguồn của từng WAV/OGG: [T-133/process.py](https://github.com/tuaanh666/ky-tuc-xa-sau-12-gio/blob/lane-e/T-133-music-drone/audio_source/process.py), hàm `synthesize_music`. Tác giả **Lane E / dự án “Ký túc xá sau 12 giờ”**, giấy phép waveform gốc và bản OGG **CC0 1.0**. Khai báo AI: **OpenAI Codex** viết công thức và processing; Python 3 tạo waveform, FFmpeg 9.0.2 xử lý. Không lấy nhạc/mẫu/giọng bên thứ ba; không có giai điệu từ tác phẩm khác.
+
+Raw PCM16 mono 48 kHz; OGG Vorbis q4 mono 48 kHz, lọc 35 Hz–11 kHz và loudnorm hai lượt/hiệu chỉnh theo OGG đo lại. Loop crossfade 1 s, end tone dùng compressor và fade 8/80 ms của pipeline; envelope mềm dài nằm trong công thức gốc. Tất cả đi bus Music tại player, không nhúng bus vào OGG.
+
+| WAV gốc | OGG | Công thức / seed / mục tiêu | Nguồn, tác giả, giấy phép |
+|---|---|---|---|
+| `drone_base.wav` | `music/drone_base.ogg` | Họa âm 55/55.1875/110 Hz, noise trầm và kim loại xa rất nhỏ, drift 8/16 s; loop 32 s; 13301; −42 LUFS | T-133/process.py trên; Lane E; CC0 1.0 |
+| `drone_tension.wav` | `music/drone_tension.ogg` | Drone cộng lệch tần 58.25/116.75 Hz, noise dải trung và kim loại 731.125 Hz; loop 16 s; 13302; −36 LUFS | T-133/process.py trên; Lane E; CC0 1.0 |
+| `chase_pulse.wav` | `music/chase_pulse.ogg` | Xung trầm attack tròn, ma sát/kim loại, 112.5 BPM và 30 nhịp/loop 16 s; 13303; −30 LUFS | T-133/process.py trên; Lane E; CC0 1.0 |
+| `end_tone.wav` | `music/end_tone.ogg` | Drone attack 1.2 s, decay trầm/kim loại tắt dần, one-shot 10 s; 13304; −32 LUFS | T-133/process.py trên; Lane E; CC0 1.0 |

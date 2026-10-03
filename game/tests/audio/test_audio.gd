@@ -6,8 +6,10 @@ const SFX := ["water_drip_01", "water_drip_02", "water_drip_03", "slipper_tile_0
 
 func test_all_ogg_load_and_decode_with_correct_loop_flags() -> void:
 	var expected: Array[String] = []
-	for category in ["ambience", "sfx"]:
+	for category in ["ambience", "sfx", "music"]:
 		var names: Array = AMBIENCE if category == "ambience" else SFX + ["sting_low", "sting_hit", "slipper_place", "tube_cut", "slipper_rush_01", "slipper_rush_02", "slipper_rush_03", "slipper_rush_04", "whisper_co", "net_billow"]
+		if category == "music":
+			names = ["drone_base", "drone_tension", "chase_pulse", "end_tone"]
 		for clip_name in names:
 			var path: String = "res://audio/%s/%s.ogg" % [category, clip_name]
 			expected.append(path)
@@ -16,7 +18,7 @@ func test_all_ogg_load_and_decode_with_correct_loop_flags() -> void:
 			if clip == null:
 				continue
 			assert_true(clip.get_length() > 0.4, "nonempty " + path)
-			assert_eq(clip.loop, category == "ambience" or clip_name == "phone_vibrate", "loop " + path)
+			assert_eq(clip.loop, category == "ambience" or clip_name == "phone_vibrate" or (category == "music" and clip_name != "end_tone"), "loop " + path)
 			var playback := clip.instantiate_playback()
 			playback.start()
 			var frames := playback.mix_audio(1.0, 4096)

@@ -51,11 +51,16 @@ ASSETS = [
     *[(f"slipper_rush_{i:02}", "sfx", 0.6, 13105 + i) for i in range(1, 5)],
     ("whisper_co", "sfx", 1.5, 13110),
     ("net_billow", "sfx", 1.1, 13111),
+    ("drone_base", "music", 33.0, 13301),
+    ("drone_tension", "music", 17.0, 13302),
+    ("chase_pulse", "music", 17.0, 13303),
+    ("end_tone", "music", 10.0, 13304),
 ]
 
 SEGMENT12_NAMES = {asset[0] for asset in ASSETS if 13000 <= asset[3] < 13100}
 SCARE_NAMES = {asset[0] for asset in ASSETS if 13100 <= asset[3] < 13200}
 LOOP_SFX = {"phone_vibrate"}
+MUSIC_LOOPS = {"drone_base", "drone_tension", "chase_pulse"}
 
 
 # Per-asset loudness chosen by ear with the owner (D-015…D-023); default: loops -24, SFX -18.
@@ -65,6 +70,8 @@ TARGET_OVERRIDES.update({"knock_": -30, "speaker_": -32, "phone_vibrate": -36,
 TARGET_OVERRIDES.update({"sting_low": -32, "sting_hit": -20, "slipper_place": -32,
                          "tube_cut": -32, "breath_close": -36, "slipper_rush_": -34,
                          "whisper_co": -30, "net_billow": -32})
+TARGET_OVERRIDES.update({"drone_base": -42, "drone_tension": -36,
+                         "chase_pulse": -30, "end_tone": -32})
 
 
 def target_lufs(name: str, loop: bool) -> int:
@@ -85,6 +92,8 @@ def write_wav(path: Path, values: list[float]) -> None:
 
 def synthesize(name: str, seconds: float, seed: int) -> list[float]:
     rng = random.Random(seed)
+    if name in MUSIC_LOOPS or name == "end_tone":
+        return synthesize_music(name, seconds, seed)
     if name in SCARE_NAMES:
         return synthesize_scare(name, seconds, seed)
     if name in SEGMENT12_NAMES:
@@ -338,6 +347,39 @@ def synthesize_scare(name: str, seconds: float, seed: int) -> list[float]:
     return values
 
 
+def synthesize_music(name: str, seconds: float, seed: int) -> list[float]:
+    """Unpitched air and slowly beating low partials, without a melodic sequence."""
+    rng = random.Random(seed)
+    values: list[float] = []
+    low = air = 0.0
+    for index in range(round(seconds * RATE)):
+        t = index / RATE
+        noise = rng.uniform(-1, 1)
+        low += .012 * (noise - low)
+        air += .13 * (noise - air)
+        drift = .8 + .12 * math.sin(TAU * t / 16) + .08 * math.sin(TAU * t / 8)
+        body = .15 * math.sin(TAU * 55 * t) + .065 * math.sin(TAU * 55.1875 * t)
+        body += .035 * math.sin(TAU * 110 * t)
+        metal = .016 * math.sin(TAU * 731.125 * t + .5 * math.sin(TAU * t / 8))
+        if name == "drone_base":
+            value = drift * (body + .09 * low + .15 * metal)
+        elif name == "drone_tension":
+            rub = .055 * math.sin(TAU * 58.25 * t) + .025 * math.sin(TAU * 116.75 * t)
+            value = drift * (body + rub + metal + .12 * (air - low))
+        elif name == "chase_pulse":
+            # 112.5 BPM, 30 pulses per sixteen-second loop; rounded attacks.
+            beat = (t * 1.875) % 1.0
+            pulse = math.sin(math.pi * min(beat / .22, 1) / 2) ** 2 * math.exp(-beat * 5)
+            value = (.2 + 1.8 * pulse) * body + pulse * (.16 * low + 1.4 * metal)
+            value += .025 * (air - low) * drift
+        else:
+            envelope = math.sin(math.pi * min(t / 1.2, 1) / 2) ** 2
+            envelope *= math.exp(-t / 2.7) * min(1.0, (seconds - t) / 1.5)
+            value = envelope * (body + metal + .05 * low)
+        values.append(value)
+    return values
+
+
 def run(ffmpeg: str, args: list[str]) -> subprocess.CompletedProcess:
     return subprocess.run([ffmpeg, "-hide_banner", "-nostdin", "-y", *args],
                           check=True, capture_output=True)
@@ -399,7 +441,7 @@ def main() -> None:
             raw = raw_dir / f"{name}.wav"
             if args.regenerate_raw or not raw.exists():
                 write_wav(raw, synthesize(name, seconds, seed))
-            loop = category == "ambience" or name in LOOP_SFX
+            loop = category == "ambience" or name in LOOP_SFX or name in MUSIC_LOOPS
             target = target_lufs(name, loop)
             prepared = Path(temp) / f"{name}.wav"
             filters = f"atrim=start=0:end={seconds},asetpts=PTS-STARTPTS,highpass=f=35,lowpass=f=11000"
@@ -454,8 +496,9 @@ def main() -> None:
             print(f"{name}: {entry['lufs']} LUFS, {entry['true_peak_db']} dBTP, {entry['bytes']} bytes", flush=True)
     (SOURCE / "build_report.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
     total = sum(p.stat().st_size for p in raw_dir.glob("*.wav")) + sum(p.stat().st_size for p in OUTPUT.rglob("*.ogg"))
-    if total >= 15_000_000:
-        raise RuntimeError(f"Audio exceeds 15 MB: {total}")
+    # T-133 adds long music loops; retain a bounded total and the per-file LFS limit.
+    if total >= 20_000_000:
+        raise RuntimeError(f"Audio exceeds 20 MB: {total}")
     print(f"AUDIO RESULT: {len(ASSETS)} assets validated; raw + OGG = {total} bytes")
 
 
