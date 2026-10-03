@@ -64,7 +64,6 @@
 
 ## Đang vướng
 - Chờ chủ dự án gửi thiết kế mới (D-028) trước khi giao việc cho lane A, B, D.
-- Không có. (Lỗi editor tự nén texture kit đã sửa ở T-118.)
 
 ## Ghi chú cho người chơi thử
 - Game chính chạy trên **tầng 4** (T-112): bắt đầu trước cửa phòng 407; E mở và đóng cửa 407; đi được khắp hành lang, phòng 407, nhà vệ sinh, bàn trực. WASD đi, Shift chạy, chuột nhìn, Esc mở menu. Có filter PS1 (chỉnh cường độ và độ sáng trong Cài đặt). Có HUD (tâm ngắm, gợi ý, phụ đề), font tiếng Việt, tiếng bước chân dép lê, tiếng ù đèn tuýp và côn trùng đêm. Đồ vật tương tác hiện chỉ có cửa 407; giấy tờ, công tắc, sổ trực chờ T-111 và T-117.
