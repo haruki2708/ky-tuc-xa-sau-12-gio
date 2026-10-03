@@ -361,3 +361,18 @@ func test_story_uses_the_real_props() -> void:
 	await _run(&"seg5")
 	assert_true(checked[0], "water runs while the tap is open;")
 	assert_false(stream.running, "closing the tap stops the stream")
+
+
+func test_leaving_the_scene_mid_night_stops_the_story_quietly() -> void:
+	# Back to the title screen or a reload takes Main out of the tree while the
+	# director is waiting; nothing may run (or error) on the dying scene.
+	director.stop_after = &"seg1"
+	director.run_from(&"seg1")
+	await wait_frames(3)
+	tree.root.remove_child(main)
+	await wait_frames(10)
+	await tree.create_timer(0.3).timeout
+	assert_false(main.get_node("PhoneTrung").get("ringing") == true, "the phone did not ring off-stage")
+	tree.root.add_child(main)
+	await wait_frames(2)
+	assert_false(director.finished, "the night did not carry on")

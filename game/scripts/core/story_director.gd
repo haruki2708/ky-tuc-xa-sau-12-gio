@@ -286,7 +286,7 @@ func _footsteps_behind() -> void:
 	var step_index := 0
 	var action := &"keep_walking"
 	while is_inside_tree() and not _failing:
-		await get_tree().process_frame
+		await _frame()
 		if get_tree().paused:
 			continue
 		var delta := get_process_delta_time()
@@ -433,7 +433,7 @@ func _segment_5() -> void:
 		mirror.release()
 	_watch(look_target, 25.0, mirror_look_seconds)
 	while is_inside_tree() and not _failing and action.is_empty():
-		await get_tree().process_frame
+		await _frame()
 		if get_tree().paused:
 			continue
 		elapsed += get_process_delta_time()
@@ -515,7 +515,7 @@ func _run_chase(chase_id: StringName, spawn: Vector3, lights: Array[String], lit
 		_pursuer.speed = base_speed
 	var east_to_west := spawn.x > _player.global_position.x
 	while is_inside_tree() and not _failing and _chase_result.is_empty():
-		await get_tree().physics_frame
+		await _physics_frame()
 		var locked: bool = GameState.get_flag(&"door_locked", false) == true
 		if _room_zone.monitoring != locked:
 			_room_zone.set_deferred("monitoring", locked)
@@ -923,7 +923,9 @@ func _say(text_key: String, seconds: float) -> void:
 
 
 func _wait(seconds: float) -> void:
+	await _stay()
 	await get_tree().create_timer(maxf(seconds * time_scale, 0.0), false).timeout
+	await _stay()
 
 
 ## Waits until condition() is true or max_seconds pass (scaled). Pausable.
@@ -931,14 +933,37 @@ func _wait_until(condition: Callable, max_seconds: float) -> void:
 	var limit := maxf(max_seconds * time_scale, 0.0)
 	var elapsed := 0.0
 	while not condition.call() and elapsed < limit:
-		await get_tree().process_frame
+		await _frame()
 		if not get_tree().paused:
 			elapsed += get_process_delta_time()
 
 
 func _wait_real(seconds: float) -> void:
 	# Flicker timing is about perception; it does not follow time_scale.
+	await _stay()
 	await get_tree().create_timer(seconds * minf(time_scale, 1.0), false).timeout
+	await _stay()
+
+
+func _frame() -> void:
+	await _stay()
+	await get_tree().process_frame
+	await _stay()
+
+
+func _physics_frame() -> void:
+	await _stay()
+	await get_tree().physics_frame
+	await _stay()
+
+
+## Once the scene leaves the tree (back to the title, a reload) the night is
+## over for this director: park the coroutine until the node re-enters the
+## tree, which in the game never happens, so nothing after the wait runs on a
+## dying scene. The parked coroutine is freed with the node.
+func _stay() -> void:
+	if not is_inside_tree():
+		await tree_entered
 
 
 func _anchor(anchor_name: String) -> Node3D:
