@@ -495,7 +495,9 @@ def main() -> None:
             report["assets"].append(entry)
             print(f"{name}: {entry['lufs']} LUFS, {entry['true_peak_db']} dBTP, {entry['bytes']} bytes", flush=True)
     (SOURCE / "build_report.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
-    total = sum(p.stat().st_size for p in raw_dir.glob("*.wav")) + sum(p.stat().st_size for p in OUTPUT.rglob("*.ogg"))
+    # Offline speech has its own raw files, report and 20 MB budget in voice_process.py.
+    total = sum((raw_dir / f"{name}.wav").stat().st_size + (OUTPUT / category / f"{name}.ogg").stat().st_size
+                for name, category, _seconds, _seed in ASSETS)
     # T-133 adds long music loops; retain a bounded total and the per-file LFS limit.
     if total >= 20_000_000:
         raise RuntimeError(f"Audio exceeds 20 MB: {total}")

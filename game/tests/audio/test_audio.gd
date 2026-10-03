@@ -27,6 +27,9 @@ func test_all_ogg_load_and_decode_with_correct_loop_flags() -> void:
 				peak = maxf(peak, absf(frame.x))
 			assert_true(peak > 0.00001, "decoded signal " + path)
 			playback.stop()
+	for locale in ["vi", "en"]:
+		for key: String in SpeakerVoiceBank.KEYS:
+			expected.append("res://audio/voice/%s/%s.ogg" % [locale, key])
 	var actual := _find_ogg("res://audio")
 	actual.sort()
 	expected.sort()

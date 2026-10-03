@@ -1,6 +1,6 @@
 class_name Speaker
 extends AudioStreamPlayer3D
-## Old PA speaker effects and subtitle timing; no TTS or story decisions.
+## Old PA effects, offline voice clips and subtitles; no story decisions.
 ## Use stop_emitting() to cancel, including during App's audio drain.
 
 signal announcement_finished
@@ -14,10 +14,14 @@ const BURST: AudioStream = preload("res://audio/sfx/speaker_static_burst.ogg")
 
 ## Relative gain keeps the static bed below subtitles' future spoken audio.
 @export_range(-40.0, 0.0) var static_gain_db: float = -12.0
+@export_dir var voice_directory: String = "res://audio/voice"
+## Settings is the runtime default; fixed locales support the audition fixture.
+@export_enum("Settings", "vi", "en") var voice_locale: String = "Settings"
 
 var stage: Stage = Stage.IDLE
 var _background: AudioStreamPlayer3D
 var _burst: AudioStreamPlayer3D
+var _voice: AudioStreamPlayer3D
 var _lines: Array[Dictionary] = []
 var _line_index: int = 0
 var _line_seconds: float = 4.0
@@ -28,6 +32,8 @@ func _ready() -> void:
 	bus = &"Voice"
 	_background = _make_layer("BackgroundStatic", STATIC)
 	_burst = _make_layer("StaticBurst", BURST)
+	_voice = _make_layer("Speech", null)
+	_sync_layers()
 	finished.connect(_on_effect_finished)
 
 
@@ -62,6 +68,8 @@ func stop_emitting() -> void:
 		_background.stop()
 	if is_instance_valid(_burst):
 		_burst.stop()
+	if is_instance_valid(_voice):
+		_voice.stop()
 
 
 func _make_layer(label: String, clip: AudioStream) -> AudioStreamPlayer3D:
@@ -73,7 +81,7 @@ func _make_layer(label: String, clip: AudioStream) -> AudioStreamPlayer3D:
 
 
 func _sync_layers() -> void:
-	for player in [_background, _burst]:
+	for player in [_background, _burst, _voice]:
 		player.bus = &"Voice"
 		player.volume_db = volume_db + (static_gain_db if player == _background else 0.0)
 		player.pitch_scale = pitch_scale
@@ -112,6 +120,8 @@ func _on_effect_finished() -> void:
 
 func _begin_line() -> void:
 	_burst.stop()
+	_voice.stop()
+	_voice.stream = null
 	if _line_index >= _lines.size():
 		_background.stop()
 		stage = Stage.POWER_OFF
@@ -119,11 +129,27 @@ func _begin_line() -> void:
 		return
 	var entry := _lines[_line_index]
 	_remaining = _line_seconds
+	_sync_layers()
+	_voice.stream = SpeakerVoiceBank.load_clip(voice_directory, _current_voice_locale(), entry["text_key"])
+	if _voice.stream != null:
+		_remaining = maxf(_line_seconds, _voice.stream.get_length() + 0.4)
+		_voice.play()
 	if entry["garbled"]:
 		_burst.play()
 	# Caller chooses the key (e.g. RULE_3_GARBLED); never reveal hidden text here.
 	# No work after emit: subscribers may cancel/restart the announcement.
-	EventBus.subtitle_requested.emit(entry["text_key"], _line_seconds)
+	EventBus.subtitle_requested.emit(entry["text_key"], _remaining)
+
+
+func _current_voice_locale() -> String:
+	if voice_locale in ["vi", "en"]:
+		return voice_locale
+	var config := ConfigFile.new()
+	if config.load("user://settings.cfg") == OK:
+		var locale: Variant = config.get_value("ui", "locale", "vi")
+		if locale is String and locale in ["vi", "en"]:
+			return locale
+	return "vi"
 
 
 func _process(delta: float) -> void:

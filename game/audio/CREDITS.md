@@ -1,4 +1,4 @@
-# Nguồn âm thanh T-105 / T-114 / T-123 / T-130 / T-131 / T-133
+# Nguồn âm thanh T-105 / T-114 / T-123 / T-130 / T-131 / T-133 / T-137
 
 Toàn bộ WAV và OGG dưới đây được **tự tổng hợp**, không lấy mẫu từ game, thư viện hoặc bản ghi âm bên ngoài. Công thức và seed nằm trong [process.py](../../audio_source/process.py).
 
@@ -83,3 +83,39 @@ Raw PCM16 mono 48 kHz; OGG Vorbis q4 mono 48 kHz, lọc 35 Hz–11 kHz và loudn
 | `drone_tension.wav` | `music/drone_tension.ogg` | Drone cộng lệch tần 58.25/116.75 Hz, noise dải trung và kim loại 731.125 Hz; loop 16 s; 13302; −36 LUFS | T-133/process.py trên; Lane E; CC0 1.0 |
 | `chase_pulse.wav` | `music/chase_pulse.ogg` | Xung trầm attack tròn, ma sát/kim loại, 112.5 BPM và 30 nhịp/loop 16 s; 13303; −30 LUFS | T-133/process.py trên; Lane E; CC0 1.0 |
 | `end_tone.wav` | `music/end_tone.ogg` | Drone attack 1.2 s, decay trầm/kim loại tắt dần, one-shot 10 s; 13304; −32 LUFS | T-133/process.py trên; Lane E; CC0 1.0 |
+
+## T-137 — giọng loa offline, khai báo AI-assisted
+
+**Nội dung âm thanh tạo bằng quy trình có AI hỗ trợ:** OpenAI Codex viết mã chuẩn bị câu/processing/tích hợp; **eSpeak NG 1.52.0** tạo giọng máy bằng formant và quy tắc, không phải neural TTS, không clone giọng người. Text của dự án lấy từ CSV; waveform xuất và xử lý loa do Lane E/dự án tạo, phát hành phần âm thanh gốc này theo **CC0 1.0**. Công cụ/dữ liệu giọng bên dưới giữ nguyên giấy phép của họ; **không** tái cấp phép công cụ thành CC0. Engine và dữ liệu giọng chỉ ở máy build, không nằm trong repo/export của game.
+
+| Thành phần | Tác giả/nguồn chính thức | Phiên bản, giọng và giấy phép |
+|---|---|---|
+| Engine eSpeak NG | Jonathan Duddington, Reece H. Dunn và eSpeak NG contributors; [release](https://github.com/espeak-ng/espeak-ng/releases/tag/1.52.0), [README](https://github.com/espeak-ng/espeak-ng/blob/1.52.0/README.md), [COPYING](https://github.com/espeak-ng/espeak-ng/blob/1.52.0/COPYING) | 1.52.0; **GPL-3.0-or-later**, cho phép sử dụng thương mại. Dùng executable riêng để render WAV offline, không link/đóng gói vào Godot. GPL §2 phân biệt output với phần mềm; ở đây xuất lời của dự án, không phân phối mã/dữ liệu engine. |
+| Giọng Việt tích hợp | [lang/aav/vi](https://github.com/espeak-ng/espeak-ng/blob/1.52.0/espeak-ng-data/lang/aav/vi), [vi_rules](https://github.com/espeak-ng/espeak-ng/blob/1.52.0/dictsource/vi_rules), cùng contributors | `vi`, Vietnamese Northern, nam; dữ liệu formant/quy tắc cùng bản GPL-3.0-or-later, không có checkpoint neural hoặc điều khoản NC riêng. Không dùng giọng MBROLA. |
+| Giọng Anh tích hợp | [lang/gmw/en](https://github.com/espeak-ng/espeak-ng/blob/1.52.0/espeak-ng-data/lang/gmw/en), eSpeak NG contributors, maintainer Reece H. Dunn | `en-gb`, English Great Britain; dữ liệu formant/quy tắc cùng bản GPL-3.0-or-later; tên Việt vẫn render bằng `vi`. |
+| Công cụ giải nén build | Scott Willeke/lessmsi contributors; [lessmsi](https://github.com/activescott/lessmsi), [release](https://github.com/activescott/lessmsi/releases/tag/v2.12.9) | 2.12.9, MIT; chỉ giải nén MSI vào D:\Tools, không phân phối cùng game. |
+| Processing | Lane E/OpenAI Codex; [voice_process.py](https://github.com/tuaanh666/ky-tuc-xa-sau-12-gio/blob/lane-e/T-137-speaker-voice/audio_source/voice_process.py) | Python 3 có sẵn, FFmpeg 9.0.2; band-pass 300–3400 Hz, méo nhẹ, vang ngắn, hiss và −26 LUFS. |
+
+Các lựa chọn đã xét nhưng **không dùng**: Piper 2023.11.14-2 engine MIT; [vais1000 model card](https://huggingface.co/rhasspy/piper-voices/blob/main/vi/vi_VN/vais1000/medium/MODEL_CARD) ghi dataset CC BY 4.0 nhưng fine-tune từ Lessac; [Lessac medium model card](https://huggingface.co/rhasspy/piper-voices/blob/main/en/en_US/lessac/medium/MODEL_CARD) dẫn tới [giấy phép nghiên cứu](https://www.cstr.ed.ac.uk/projects/blizzard/2013/lessac_blizzard2013/license.html). Không đủ cơ sở xác nhận toàn bộ chuỗi giọng đó cho task thương mại nên không tải/dùng model; không khẳng định nhãn MIT chung của repo tự giải quyết quyền từng giọng.
+
+Nguồn **mọi file** trong bảng: text CSV của dự án + eSpeak NG/giọng tương ứng ở trên + `voice_process.py`; tác giả waveform/processing: Lane E; **CC0 1.0**, khai báo AI-assisted như trên. Mỗi dòng đại diện cả `vi` và `en`: WAV ở `audio_source/voice/raw/<locale>/<KEY>.wav`, OGG ở `game/audio/voice/<locale>/<KEY>.ogg`. Hash/text/voice/LUFS từng file ghi trong `audio_source/voice/build_report.json`.
+
+| KEY (cả hai locale) | Ghi chú giọng / xử lý riêng |
+|---|---|
+| `RULE_HEADER_5` | Giọng theo locale, bỏ phần ngoặc nếu có |
+| `RULE_1` | Giọng theo locale |
+| `RULE_2` | Giọng theo locale |
+| `RULE_3_GARBLED` | Tạo raw đầy đủ RULE_3, loại lời hành động khỏi bản game rồi thay bằng nhiễu; không xuất bản rõ RULE_3 |
+| `RULE_4` | Giọng theo locale |
+| `RULE_5` | Giọng theo locale |
+| `SPK_SIGN_LOG` | Bỏ tiền tố Loa/Speaker |
+| `SPK_ROLLCALL_INTRO` | Bỏ tiền tố Loa/Speaker |
+| `SPK_CHECK_TAPS` | Bỏ tiền tố Loa/Speaker |
+| `SPK_NAME_PHUC` | Giọng `vi` cả hai bản |
+| `SPK_NAME_VIET` | Giọng `vi` cả hai bản |
+| `SPK_NAME_TRUNG` | Giọng `vi` cả hai bản |
+| `SPK_NAME_DAT` | Giọng `vi` cả hai bản |
+| `SPK_NAME_LAM` | Giọng `vi` cả hai bản |
+| `SPK_NAME_TRUNG_AGAIN` | Giọng `vi`, 95 WPM thay vì 145, giữ ngắt ba chấm; bỏ chỉ dẫn chậm hơn |
+| `SPK_AND_ONE_MORE` | Giọng theo locale |
+| `SPK_AND_TRUNG` | Bản Anh ghép phần tên bằng `vi`, hai phần xung quanh `en-gb` |
