@@ -168,12 +168,12 @@ PROMPT_LIE_DOWN,Nằm lên giường,Lie on the bunk
 PROMPT_HIDE_ENTER,Nấp,Hide
 PROMPT_HIDE_EXIT,Rời chỗ nằm hoặc nấp,Leave the bunk or hiding spot
 PROMPT_PUZZLE_OPEN,Xem khóa số,Inspect combination lock
-UI_SURVIVAL_TEST_HELP,"E: nằm/nấp/rời hoặc xem khóa. Space: nín thở. C/Ctrl: cúi. Q: điện thoại. F: đèn pin.\nPhím thử: Y bật/tắt sạc; U bật/tắt cuộc gọi; B đặt pin 1%; K giải khóa; X đóng khóa.","E: lie/hide/leave or inspect lock. Space: hold breath. C/Ctrl: crouch. Q: phone. F: flashlight.\nTest keys: Y charge; U call; B set 1% battery; K solve lock; X close lock."
-UI_SURVIVAL_TEST_STATUS,"Giường: %d | Nín thở: %s | Pin: %.1f%% | Sạc: %s | Cuộc gọi: %s\nTiếng gần nhất: %s / %.1f m","Bed: %d | Holding breath: %s | Battery: %.1f%% | Charging: %s | Call: %s\nLast noise: %s / %.1f m"
+UI_SURVIVAL_TEST_HELP,E: nằm/nấp/rời hoặc xem khóa. Space: nín thở. C/Ctrl: cúi. Q: điện thoại. F: đèn pin.\nPhím thử: Y bật/tắt sạc; U bật/tắt cuộc gọi; B đặt pin 1%; K giải khóa; X đóng khóa.,E: lie/hide/leave or inspect lock. Space: hold breath. C/Ctrl: crouch. Q: phone. F: flashlight.\nTest keys: Y charge; U call; B set 1% battery; K solve lock; X close lock.
+UI_SURVIVAL_TEST_STATUS,Giường: %d | Nín thở: %s | Pin: %.1f%% | Sạc: %s | Cuộc gọi: %s\nTiếng gần nhất: %s / %.1f m,Bed: %d | Holding breath: %s | Battery: %.1f%% | Charging: %s | Call: %s\nLast noise: %s / %.1f m
 UI_SURVIVAL_TEST_BED,Giường %d,Bed %d
 UI_MANAGER_TEST_BED,Giường %d,Bed %d
-UI_MANAGER_TEST_HELP,"P: chạy cảnh mẫu. E: nằm/rời giường. Space: nín thở khi quản lý chờ nghe.\nNhìn đi chỗ khác để thử xác đổi tư thế. Esc: tạm dừng.","P: run sample scene. E: lie/leave bunk. Space: hold breath while the manager listens.\nLook away to test corpse poses. Esc: pause."
-UI_MANAGER_TEST_STATUS,"Cảnh thử: %s | Quản lý: %s | Số nhát: %d","Sample stage: %s | Manager: %s | Hits: %d"
+UI_MANAGER_TEST_HELP,P: chạy cảnh mẫu. E: nằm/rời giường. Space: nín thở khi quản lý chờ nghe.\nNhìn đi chỗ khác để thử xác đổi tư thế. Esc: tạm dừng.,P: run sample scene. E: lie/leave bunk. Space: hold breath while the manager listens.\nLook away to test corpse poses. Esc: pause.
+UI_MANAGER_TEST_STATUS,Cảnh thử: %s | Quản lý: %s | Số nhát: %d,Sample stage: %s | Manager: %s | Hits: %d
 UI_CHAPTER_SELECT,Chọn chương,Select chapter
 UI_CHAPTER_LOCKED,%s — Chưa mở,%s — Locked
 UI_CHAPTER_START_CONFIRM,Bắt đầu chương này? Bản lưu của lượt chơi hiện tại sẽ được thay thế.,Start this chapter? Your current saved playthrough will be replaced.
@@ -394,24 +394,6 @@ CCTV_CAM_306,CAM 306 · nhà B,CAM 306 · Bldg B
 CCTV_CAM_209,CAM 209 · nhà B,CAM 209 · Bldg B
 CCTV_CAM_106,CAM 106 · nhà B,CAM 106 · Bldg B
 CCTV_CAM_CORRIDOR,CAM T4 · hành lang,CAM F4 · corridor
-UI_RULEBOOK_TITLE,Sổ quy tắc,Rulebook
-UI_RULEBOOK_GENERAL,Tổng tắc,General rules
-UI_RULEBOOK_ROUND,Vòng %d,Round %d
-UI_RULEBOOK_EXPIRED,Hết hiệu lực,Expired
-UI_RULEBOOK_NOTEWORTHY,Đáng chú ý,Noteworthy
-UI_RULEBOOK_EVIDENCE,Chứng cứ: %s,Evidence: %s
-UI_SURVIVORS_COUNT,Số người sống sót: %d,Survivors: %d
-UI_SURVIVORS_UNKNOWN,Số người sống sót: chưa rõ,Survivors: unknown
-UI_DEATH_RELOADING,Đang trở lại điểm lưu…,Returning to the checkpoint…
-UI_DEATH_REASON_UNKNOWN,Bạn không còn sống sót.,You did not survive.
-UI_PUZZLE_INSTRUCTIONS,Đặt tất cả các vòng số để thử mã.,Set every dial to try a code.
-UI_PUZZLE_HELP,Bấm nút hoặc lăn chuột trên từng vòng số.,Press the buttons or scroll over each dial.
-UI_PUZZLE_UP,+,+
-UI_PUZZLE_DOWN,−,−
-UI_PUZZLE_HINT,Xem gợi ý,View hint
-UI_PUZZLE_CLOSE,Đóng (Esc),Close (Esc)
-UI_PUZZLE_WRONG,Khóa chưa mở. Thử lại.,Still locked. Try again.
-UI_PUZZLE_SOLVED,Khóa đã mở.,Unlocked.
 PROMPT_WALL_KNOCK,Gõ tường,Knock on wall
 PROMPT_SEARCH,Lục đồ,Search
 PROMPT_SEARCH_LOCKER,Mở tủ Việt,Open Việt's locker

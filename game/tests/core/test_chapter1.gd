@@ -63,6 +63,13 @@ func _play_well() -> void:
 func _latch_in_round_1(segment: StringName) -> void:
 	if segment == &"r1":
 		(func() -> void: GameState.set_flag(&"door_locked", true)).call_deferred()
+	# N6: the desk lamp goes off before the manager comes (D-039).
+	if segment in [&"r2", &"r2_manager"]:
+		(func() -> void:
+			var room := scene.get_node_or_null("Floor4/Room407")
+			if room != null and room.has_method("set_desk_lamp"):
+				room.set_desk_lamp(false)
+			GameState.set_flag(&"desk_lamp_on", false)).call_deferred()
 
 
 func _answer_choices(choice_id: StringName, _keys: PackedStringArray) -> void:
@@ -172,11 +179,12 @@ func test_breathing_on_any_bed_is_heard_in_the_silence() -> void:
 func test_dead_roommates_bed_and_silence_survive() -> void:
 	_play_well()
 	await _manager_scene(2)
+	_latch_in_round_1(&"r2_manager")
 	await _until(func() -> bool: return GameState.segment == &"r2_listen", 40.0)
 	Input.action_press("hold_breath")
 	await _until(func() -> bool: return GameState.segment != &"r2_listen", 20.0)
 	Input.action_release("hold_breath")
-	await _until(func() -> bool: return director.finished, 60.0)
+	await _until(func() -> bool: return director.finished or not restarts.is_empty(), 60.0)
 	assert_true(director.finished, "the manager leaves;")
 	assert_true(restarts.is_empty(), "alive;")
 	assert_eq(GameState.get_flag(&"ch1_choice_tell", -1), 0, "Trung tells Minh Nhật the trick;")

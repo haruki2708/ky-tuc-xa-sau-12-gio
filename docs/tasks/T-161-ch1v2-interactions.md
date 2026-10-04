@@ -1,5 +1,5 @@
 # T-161 — Chương 1 bản 2: tương tác cho 8 nhiệm vụ
-- Lane: A (Gameplay) | Trạng thái: todo | Agent:
+- Lane: A (Gameplay) | Trạng thái: done | Agent:
 - Nhánh: `lane-a/T-161-ch1v2-interactions`
 - Phụ thuộc: T-151, T-152. **Đọc kỹ `docs/design/CH1_V2_MISSIONS.md`** (D-039, D-040).
 - **Hạn: hết ngày 2026-10-06.**
@@ -97,3 +97,13 @@ Tất cả scene tương tác dưới `res://scenes/interaction/`; node tương 
 3. **Lane B/E/D:** thay Placeholder/gắn anchor/model T-162, diễn tủ/nệm/tay nắm theo signal core; E nối tiếng gõ, chập, cầm/cắm/rút và âm chết/thở dốc với event thích hợp; D nối lớp máu/màn đen với player_death_started và tôn trọng reduce_scares. Không sửa các file lane này trong T-161.
 
 Không có blocker còn lại trong phạm vi T-161. Hai mục checklist của card đã đạt; các yêu cầu ghép ở trên dành cho T-160/B/D/E, không phải phần đã được chơi thử trong chương thật.
+
+### Review (integrator, 2026-10-05)
+- **Đạt, đã merge.** Đúng phạm vi; 16 test mới; ba cảnh chết đã render kiểm tra. Handoff rất chi tiết, ghi rõ chỗ khác card (công tắc 0..2, `is_searched`, signal `heard_movement` riêng).
+- **Ghép:**
+  - `power_strip.tscn` gắn dưới `Anchors/PowerStrip` của B, vùng `Switch1..3` đặt theo mô hình B, đồng bộ `set_switch`/`set_tripped`;
+  - `lan_cable.tscn` ở `LanBlueEnd`/`LanGrayEnd`, `lan_socket.tscn` ở `LanWallPort` (chỉ nối signal của socket), hình dây do `Room407.set_plugged` của B;
+  - `desk_lamp_switch.tscn` ở `DeskLampSwitch`, `light` là `Room407DeskLamp`;
+  - `search_spot`, `wall_knock`, `max_breath_seconds = 6`, `heard_movement`, `death_animation_finished`.
+- **Integrator sửa `manager.gd`:** thêm export `hear_radius` (mặc định 4 như card). Chương 1 Insane đặt 7,5 m, vì phòng 407 mới rộng 8 m làm giường dãy A ra ngoài tầm 4 m.
+- Thứ tự cảnh chết theo đúng yêu cầu số 2: phát `player_death_started(manager_kill)` cùng lúc `kill_player()`, chờ `death_animation_finished` rồi mới `player_failed`.

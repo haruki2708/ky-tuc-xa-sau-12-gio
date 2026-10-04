@@ -62,6 +62,9 @@ const DOOR_HOLD_SECONDS := 10.0
 ## N7: seconds to choose the advice for Minh Nhật.
 const TELL_SECONDS := 10.0
 const TELL_CORRECT := 0
+## Insane (D-039): in the enlarged room (T-162) he hears a breath or a move
+## anywhere in 407, not just near Trung's bunk.
+const MANAGER_HEAR_RADIUS_INSANE := 7.5
 ## Security cameras (D-041): camera id → label key and lane B's room number.
 const CCTV_ROOMS := {&"cam_102": "102", &"cam_306": "306", &"cam_209": "209", &"cam_106": "106"}
 const CCTV_CORRIDOR := &"cam_corridor"
@@ -146,6 +149,8 @@ var _taps: Array[float] = []
 var _tap_listening: bool = false
 var _form_pieces: Dictionary[StringName, bool] = {}
 var _death_scene_started: bool = false
+var _death_animation_done: bool = false
+var _manager_moved: bool = false
 var _cctv_set: Node3D
 var _overlay: ColorRect
 var _overlay_label: Label
@@ -167,6 +172,8 @@ func _ready() -> void:
 	EventBus.wall_tapped.connect(_on_wall_tapped)
 	EventBus.document_opened.connect(_on_document_opened)
 	EventBus.document_closed.connect(_on_document_closed)
+	if _player != null and _player.has_signal("death_animation_finished"):
+		_player.death_animation_finished.connect(func() -> void: _death_animation_done = true)
 	_read_reduce_scares()
 	_build_overlay()
 	_place_bunks()
@@ -291,7 +298,6 @@ func _round_1() -> void:
 	_rules_live = true
 	_set_blood(1)
 	_missions.clear()
-	_set_door_latched(false)
 	await _wait(8.0)
 	_think("THINK_CH1_WALL")
 	await _wait(10.0)
@@ -490,6 +496,9 @@ func _manager_at_407() -> void:
 		await _manager_kills(manager, &"DEATH_NOT_IN_BED")
 		return
 	await _manager_walk(manager, _manager_spot(), MANAGER_VIA)
+	if _manager_moved:
+		await _manager_kills(manager, &"DEATH_HEARD")
+		return
 	if _bed == 0:
 		await _manager_kills(manager, &"DEATH_NOT_IN_BED")
 		return
@@ -503,12 +512,20 @@ func _manager_at_407() -> void:
 	if _bed == 0:
 		await _manager_kills(manager, &"DEATH_NOT_IN_BED")
 		return
-	if heard:
+	if heard or _manager_moved:
 		await _manager_kills(manager, &"DEATH_HEARD")
 		return
 	await _manager_line("MGR_CH1_LAUGH")
 	await _slash_trung_bed(manager)
+	if _manager_moved:
+		await _manager_kills(manager, &"DEATH_HEARD")
+		return
 	await _manager_walk(manager, DOOR_SPOT, MANAGER_OUT_VIA)
+	if _manager_moved:
+		await _manager_kills(manager, &"DEATH_HEARD")
+		return
+	if manager != null:
+		manager.set("hear_movement_while_present", false)
 	if manager != null:
 		manager.queue_free()
 	_close_door()
@@ -854,6 +871,10 @@ func _spawn_manager() -> Node3D:
 	manager.set("listen_seconds", MANAGER_LISTEN_SECONDS)
 	# Insane (D-039): from the door to the door, a move or a step gives you away.
 	manager.set("hear_movement_while_present", true)
+	manager.set("hear_radius", MANAGER_HEAR_RADIUS_INSANE)
+	_manager_moved = false
+	if manager.has_signal("heard_movement"):
+		manager.heard_movement.connect(func() -> void: _manager_moved = true)
 	manager.set("look_target", _bunks.get(TRUNG_BED))
 	if ResourceLoader.exists(MANAGER_BODY):
 		manager.set("body_scene", load(MANAGER_BODY))
@@ -897,7 +918,7 @@ func _manager_ask(manager: Node3D, key: String) -> bool:
 		# He listens once the question is out (T-152): mark that moment.
 		await _wait_until(func() -> bool: return result[0], _voice_seconds(key, "MGR_CH1_"), false)
 		GameState.set_segment(&"r2_listen")
-		await _wait_until(func() -> bool: return result[0] or _bed == 0, 30.0, false)
+		await _wait_until(func() -> bool: return result[0] or _bed == 0 or _manager_moved, 30.0, false)
 		if manager.answered.is_connected(on_answer):
 			manager.answered.disconnect(on_answer)
 		return result[1]
@@ -971,6 +992,7 @@ func _die(reason_key: StringName) -> void:
 	if not _death_scene_started:
 		_death_scene_started = true
 		EventBus.player_death_started.emit(DEATH_KINDS.get(reason_key, &"fall_back"))
+	if DEATH_KINDS.get(reason_key, &"fall_back") != &"none":
 		await _death_scene()
 	var checkpoint: StringName = DEATH_CHECKPOINTS.get(GameState.segment, &"ch1_prologue")
 	var count := int(GameState.get_flag(&"survivors", SURVIVORS_START)) - 1
@@ -1056,15 +1078,55 @@ func _place_mission_props() -> void:
 		knock.name = "WallKnock406"
 		knock.set("wall_id", &"wall_406")
 		wall.add_child(knock)
-	# Power strip and network cables (N2).
-	var strip := _find_component("power_strip.gd")
-	if strip != null and strip.has_signal("switch_toggled"):
-		strip.switch_toggled.connect(_on_strip_switch)
-	for cable in _find_components("lan_cable.gd"):
-		if cable.has_signal("plugged"):
-			cable.plugged.connect(_on_cable_plugged)
-		if cable.has_signal("unplugged"):
-			cable.unplugged.connect(_on_cable_unplugged)
+	# Power strip (N2): lane A's three switch areas over lane B's model.
+	var strip_anchor := _room_anchor("PowerStrip")
+	if strip_anchor != null and ResourceLoader.exists("res://scenes/interaction/power_strip.tscn"):
+		var strip := load("res://scenes/interaction/power_strip.tscn").instantiate() as Node3D
+		strip.name = "PowerStripInteract"
+		strip_anchor.add_child(strip)
+		for n in range(1, 4):
+			var area := strip.get_node_or_null("Switch%d" % n) as Node3D
+			var model := strip_anchor.get_node_or_null("Switch%d" % n) as Node3D
+			if area != null and model != null and model != area:
+				area.global_transform = model.global_transform
+		var placeholder := strip.get_node_or_null("Placeholder") as Node3D
+		if placeholder != null:
+			placeholder.visible = false
+		strip.switch_toggled.connect(func(index: int, on: bool) -> void:
+			if strip_anchor.has_method("set_switch"):
+				strip_anchor.set_switch(index + 1, on)
+			_on_strip_switch(index + 1, on))
+	# Network cables (N2): two loose ends and the wall socket.
+	for entry: Array in [["LanBlueEnd", &"blue"], ["LanGrayEnd", &"gray"]]:
+		var end := _room_anchor(entry[0])
+		if end != null and ResourceLoader.exists("res://scenes/interaction/lan_cable.tscn"):
+			var cable := load("res://scenes/interaction/lan_cable.tscn").instantiate() as Node3D
+			cable.name = "Cable_" + String(entry[1])
+			cable.set("cable_id", entry[1])
+			end.add_child(cable)
+	var port := _room_anchor("LanWallPort")
+	if port != null and ResourceLoader.exists("res://scenes/interaction/lan_socket.tscn"):
+		var socket := load("res://scenes/interaction/lan_socket.tscn").instantiate() as Node3D
+		socket.name = "LanSocket"
+		port.add_child(socket)
+		socket.plugged.connect(func(cable_id: StringName) -> void:
+			if room.has_method("set_plugged"):
+				room.set_plugged(cable_id, true)
+			_on_cable_plugged(cable_id))
+		socket.unplugged.connect(func(cable_id: StringName) -> void:
+			if room.has_method("set_plugged"):
+				room.set_plugged(cable_id, false)
+			_on_cable_unplugged(cable_id))
+	# Desk lamp switch (N6).
+	var lamp_anchor := _room_anchor("DeskLampSwitch")
+	if lamp_anchor != null and ResourceLoader.exists("res://scenes/interaction/desk_lamp_switch.tscn"):
+		var lamp_switch := load("res://scenes/interaction/desk_lamp_switch.tscn").instantiate() as Node3D
+		lamp_switch.name = "DeskLampSwitch"
+		var lamp := room.find_child("Room407DeskLamp", true, false)
+		if lamp != null:
+			lamp_switch.set("light", lamp)
+		lamp_anchor.add_child(lamp_switch)
+		GameState.set_flag(&"desk_lamp_on", lamp != null and (lamp as Node3D).visible)
 	# Door latch (N4): lane A's latch on the door leaf, as in the demo.
 	var latch_scene := "res://scenes/interaction/door_latch.tscn"
 	var door := _door()
@@ -1133,6 +1195,9 @@ func _on_strip_switch(index: int, on: bool) -> void:
 	if index == 3:
 		# The kettle: the whole strip trips and sparks, try again later.
 		var strip := _find_component("power_strip.gd")
+		var strip_model := _room_anchor("PowerStrip")
+		if strip_model != null and strip_model.has_method("set_tripped"):
+			strip_model.set_tripped(true)
 		if strip != null:
 			if strip.has_method("trip"):
 				strip.trip()
@@ -1436,10 +1501,8 @@ func _cctv_kill(camera_id: StringName) -> void:
 
 # Death scene (D-042): lane A's camera, lane D's blood, lane E's sound.
 func _death_scene() -> void:
-	var done := [false]
-	if _player != null and _player.has_signal("death_animation_finished"):
-		_player.death_animation_finished.connect(func() -> void: done[0] = true, CONNECT_ONE_SHOT)
-	await _wait_until(func() -> bool: return done[0], DEATH_SCENE_SECONDS, false)
+	var has_animation := _player != null and _player.has_signal("death_animation_finished")
+	await _wait_until(func() -> bool: return _death_animation_done, DEATH_SCENE_SECONDS if has_animation else 0.8, false)
 
 
 # --- World ---------------------------------------------------------------------------

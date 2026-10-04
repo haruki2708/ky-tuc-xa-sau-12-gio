@@ -1,5 +1,5 @@
 # T-162 — Chương 1 bản 2: đạo cụ và trạng thái phòng 407
-- Lane: B (Môi trường và 3D) | Trạng thái: todo | Agent:
+- Lane: B (Môi trường và 3D) | Trạng thái: done | Agent:
 - Nhánh: `lane-b/T-162-ch1v2-props`
 - Phụ thuộc: T-153, T-154. **Đọc kỹ `docs/design/CH1_V2_MISSIONS.md`** (D-039).
 - **Hạn: hết ngày 2026-10-06.**
@@ -132,3 +132,11 @@ Không còn mục checklist Lane B chưa đạt. Không bị chặn ở phần a
 những yêu cầu trên cần hoàn tất trước khi nghiệm thu gameplay v2. Không sửa
 file core/A/D, STATUS, main; không thêm plugin hoặc cài công cụ. Không có câu
 hỏi cốt truyện mới; dùng các quyết định D-039/D-041 đã chốt.
+
+### Review (integrator, 2026-10-05)
+- **Đạt, đã merge.** Đúng phạm vi; FPS 489–557; đủ anchor và API; README rõ.
+- **Ghép:**
+  - core dùng `Anchors/ManagerApproach` làm chỗ quản lý đứng hỏi;
+  - `Bounds` để biết người chơi còn trong phòng: kiểm tra theo vị trí trong hộp, vì lúc nằm giường va chạm thân bị tắt (T-151);
+  - tâm phòng lấy từ `Bounds/Main`.
+- Lưu ý: đèn bàn mặc định bật, đúng ý nhiệm vụ N6 (người chơi phải tự tắt).

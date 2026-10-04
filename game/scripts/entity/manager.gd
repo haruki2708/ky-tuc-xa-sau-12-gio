@@ -17,6 +17,9 @@ enum State { IDLE, WALKING, SPEAKING, LISTENING, SLASHING, LUNGING, KILLING }
 @export var speed: float = 0.9
 @export var route: PackedVector3Array = PackedVector3Array()
 @export var listen_seconds: float = 6.0
+## How far (from his head) he hears; the card's default is 4 m. Chapter 1
+## Insane widens it for the enlarged room (integrator, T-161 review).
+@export var hear_radius: float = 4.0
 ## The director enables this at room entry and disables it after leaving.
 @export var hear_movement_while_present: bool = false
 @export var subtitle_seconds: float = 2.5
@@ -127,7 +130,7 @@ func _on_noise(position: Vector3, _radius: float, source: StringName) -> void:
 	# The card defines a fixed four-metre listening radius, measured at head height.
 	if not is_inside_tree() or get_tree().paused:
 		return
-	if position.distance_to(global_position + Vector3.UP * 1.6) > 4.0:
+	if position.distance_to(global_position + Vector3.UP * 1.6) > hear_radius:
 		return
 	if hear_movement_while_present and source in [&"move", &"step"]:
 		heard_movement.emit()
