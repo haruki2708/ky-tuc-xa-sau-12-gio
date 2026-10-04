@@ -1,5 +1,5 @@
 # T-158 — Âm thanh chương 1: tòa nhà la hét, quản lý kéo dao, cuộc gọi, máu
-- Lane: E (Âm thanh) | Trạng thái: todo | Agent:
+- Lane: E (Âm thanh) | Trạng thái: done | Agent:
 - Nhánh: `lane-e/T-158-ch1-audio`
 - Phụ thuộc: T-131, T-133. Đọc `docs/design/STORY.md` v2 §0, §5, §9, và D-015…D-019, D-023 (chủ dự án thích nền **khẽ**).
 - **Hạn: hết ngày 2026-10-05.** Xong thì làm T-159 ngay.
@@ -152,3 +152,14 @@ QA đã chạy:
 4. **T-159 / câu hỏi cho Integrator:** bản thoại nháp đã lên main `47c58c2`, nhưng card T-150 còn ghi chờ chủ dự án duyệt. Khi nào bản thoại được chốt/báo sẵn sàng để bắt đầu T-159? Không tự viết, suy đoán hoặc sinh giọng cho bản nháp trong T-158. Đường nạp giọng và tra duration đã sẵn.
 
 **Không còn blocker kỹ thuật trong phạm vi T-158; ba checklist đã đạt.** Còn chờ ghép vào chương 1 và chủ dự án nghe/duyệt chất âm; đây chưa phải xác nhận toàn chương đã tích hợp hoặc chơi thử xong.
+
+### Review (integrator, 2026-10-04)
+- **Đạt, đã merge.** Đúng phạm vi; 13 test mới; LUFS ghi đủ; Handoff ghi rõ chưa nghe bằng tai. **Chủ dự án cần nghe duyệt** qua `res://audio/test/ch1_audio_test.tscn` hoặc trong chương 1.
+- Đã ghép vào `chapter1.tscn`:
+  - `Ch1Music` thay `MusicDirector` demo; độ căng tăng dần qua vòng 2; im lặng trước khi quản lý mở cửa 407;
+  - `PhoneCallAudio`, `Ch1PlayerAudio`;
+  - `ManagerAudioFar` (group `manager_audio`): dao kéo lê ở các tầng khác, gõ cửa, chém giường khi chưa có quản lý của lane A;
+  - `BuildingScreams` (group `screams`);
+  - `RoomDrips` (`CorpseAudio`, group `corpse_audio`): máu nhỏ giọt bật theo `set_blood_stage`;
+  - loa dùng `chapter_profile`.
+- **Integrator sửa một lỗi tích hợp** trong `ch1_player_audio.gd`: khi scene bị giải phóng lúc người chơi đang nằm, `Player._exit_tree` phát `player_hidden(false)` làm `play_action` phát âm ngoài scene tree ("Playback can only happen when a node is inside the scene tree"). Đã thêm kiểm tra `is_inside_tree()`.

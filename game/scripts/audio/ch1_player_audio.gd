@@ -56,7 +56,8 @@ func _process(delta: float) -> void:
 
 
 func play_action(action: StringName) -> void:
-	if _stopped or _foley == null or action not in [&"breath_gasp", &"bunk_climb", &"bunk_creak", &"wall_knock", &"locker_unlock", &"charger_plug", &"manager_kill", &"kill_soft"]:
+	# A scene being freed can still emit player_hidden (Player._exit_tree).
+	if _stopped or _foley == null or not _foley.is_inside_tree() or action not in [&"breath_gasp", &"bunk_climb", &"bunk_creak", &"wall_knock", &"locker_unlock", &"charger_plug", &"manager_kill", &"kill_soft"]:
 		return
 	var clip_name := String(action)
 	if action == &"manager_kill" and Ch1AudioBank.reduced():

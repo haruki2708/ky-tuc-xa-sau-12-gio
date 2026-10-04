@@ -274,6 +274,7 @@ func _round_2() -> void:
 	await _line("n_beds")
 	_think("THINK_CH1_GET_IN_BED")
 	_manager_far(Vector3(4.0, -9.9, -2.0))
+	_music(&"set_tension", 0.2)
 	await _wait(45.0)
 	_set_clock("05:05")
 	await _line("hung_knock")
@@ -288,6 +289,7 @@ func _round_2() -> void:
 	await _wait(35.0)
 	_set_clock("05:12")
 	_manager_far(Vector3(24.0, -3.3, -2.0))
+	_music(&"set_tension", 0.4)
 	await _line("kiet_306")
 	await _manager_line("MGR_CH1_ASK_BED_3")
 	await _line("kiet_no")
@@ -307,6 +309,7 @@ func _round_2() -> void:
 	await _wait(30.0)
 	_set_clock("05:28")
 	_manager_far(Vector3(12.0, -9.9, -2.0))
+	_music(&"set_tension", 0.6)
 	await _line("dang_here")
 	await _choice(&"advise", 3)
 	await _manager_line("MGR_CH1_ASK_BED_2")
@@ -321,6 +324,7 @@ func _round_2() -> void:
 	_set_clock("05:38")
 	await _line("n_just_us")
 	_manager_far(Vector3(40.0, 0.0, 1.2))
+	_music(&"set_tension", 0.8)
 	await _wait(12.0)
 	_set_clock("05:40")
 	_think("THINK_CH1_DRAG")
@@ -338,7 +342,9 @@ func _manager_at_407() -> void:
 	if manager_deaths >= 2:
 		await _wait(4.0)
 		_think("THINK_CH1_HINT_2")
+	_music(&"set_tension", 1.0)
 	await _wait(18.0)
+	_music(&"silence_before_door", true)
 	_play_knock()
 	await _wait(2.0)
 	_open_door()
@@ -371,6 +377,8 @@ func _manager_at_407() -> void:
 		manager.queue_free()
 	_close_door()
 	_set_flicker(false)
+	_music(&"silence_before_door", false)
+	_music(&"set_tension", 0.2)
 	await _wait(3.0)
 	_set_clock("05:46")
 	_think("THINK_CH1_SURVIVED")
@@ -615,21 +623,34 @@ func _member_dies(member: StringName, where: Vector3) -> void:
 
 ## The manager somewhere else in the building: only his blade is heard (T-158).
 func _manager_far(where: Vector3) -> void:
-	var audio := get_tree().get_first_node_in_group(&"manager_audio")
+	var audio := _manager_audio()
 	if audio != null and audio.has_method("place_at"):
 		audio.place_at(where)
+		if audio.has_method("play_drag"):
+			audio.play_drag(true)
 
 
 func _manager_line(key: String, manager: Node = null) -> void:
 	var seconds := _spoken_seconds(key)
+	var audio := _manager_audio()
 	if manager != null and manager.has_method("ask"):
 		manager.ask(key)
+	elif audio != null and audio.has_method("say"):
+		# The rig plays the voice (T-159) or shows the subtitle itself.
+		seconds = maxf(float(audio.say(key)), 0.5)
 	else:
 		_say(key, seconds)
 	await _wait(seconds + 0.5)
 
 
+func _manager_audio() -> Node3D:
+	return get_tree().get_first_node_in_group(&"manager_audio") as Node3D
+
+
 func _spawn_manager() -> Node3D:
+	var audio := _manager_audio()
+	if audio != null:
+		audio.place_at(DOOR_SPOT)
 	if not ResourceLoader.exists(MANAGER_SCENE):
 		return null
 	var manager := load(MANAGER_SCENE).instantiate() as Node3D
@@ -643,6 +664,9 @@ func _spawn_manager() -> Node3D:
 
 func _manager_walk(manager: Node3D, to: Vector3) -> void:
 	if manager == null or not manager.has_method("walk_to"):
+		var audio := _manager_audio()
+		if audio != null:
+			audio.place_at(to)
 		await _wait(2.5)
 		return
 	manager.walk_to(to)
@@ -659,8 +683,10 @@ func _slash_trung_bed(manager: Node3D) -> void:
 		else:
 			await _wait(4.0)
 	else:
+		var audio := _manager_audio()
 		for cut in 6:
-			_play_sfx_at(&"door_latch", MANAGER_SPOT)
+			if audio != null:
+				audio.play_slash(&"mattress" if cut % 3 != 2 else &"wood")
 			_set_bed_slashed(float(cut + 1) / 6.0)
 			await _wait(0.45)
 	_set_bed_slashed(1.0)
@@ -727,6 +753,16 @@ func _set_blood(stage: int) -> void:
 	var room := _room()
 	if room != null and room.has_method("set_blood_stage"):
 		room.set_blood_stage(stage)
+	for drips in get_tree().get_nodes_in_group(&"corpse_audio"):
+		if drips.has_method("play_drips"):
+			drips.play_drips(stage >= 1)
+
+
+## Lane E's chapter score (T-158): tension and the silence before the door.
+func _music(method: StringName, value: Variant) -> void:
+	var music := get_parent().get_node_or_null("Ch1Music") if get_parent() else null
+	if music != null and music.has_method(method):
+		music.call(method, value)
 
 
 func _set_flicker(on: bool) -> void:
@@ -764,7 +800,12 @@ func _close_door() -> void:
 
 
 func _play_knock() -> void:
-	_play_sfx_at(&"knock_01", Vector3(32.0, 1.2, 0.0))
+	var audio := _manager_audio()
+	if audio != null and audio.has_method("play_knock"):
+		audio.place_at(Vector3(32.0, 0.05, 0.6))
+		audio.play_knock()
+	else:
+		_play_sfx_at(&"knock_01", Vector3(32.0, 1.2, 0.0))
 
 
 func _play_sfx_at(file_name: StringName, where: Vector3) -> void:

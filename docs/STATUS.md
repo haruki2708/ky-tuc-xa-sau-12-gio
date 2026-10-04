@@ -56,7 +56,7 @@
 | T-155 Điện thoại và cuộc gọi nhóm, chọn chương, cảnh báo nội dung | D | todo, hạn 10-05 |
 | T-156 Sổ quy tắc, bảng sống sót, màn chết, panel khóa số | D | todo (sau T-155), hạn 10-06 |
 | T-157 Bot chương 1, FPS, lưu game | C | todo: công cụ hạn 10-05, chạy trên bản ghép 10-07 |
-| T-158 Âm thanh chương 1 | E | todo, hạn 10-05 |
+| T-158 Âm thanh chương 1 | E | **done**, đã merge; chờ chủ dự án nghe |
 | T-159 Giọng loa, quản lý, thành viên cuộc gọi | E | todo (sau T-158 và khi có câu thoại), hạn 10-06 |
 | **Đợt 3 (2026-10-03): hoàn thiện P3** | | |
 | T-140 Đánh bóng chốt cửa, vùng chọn giấy, lộ trình thực thể | A | **done**, đã merge |

@@ -6,6 +6,7 @@ extends Node3D
 const READABLE := preload("res://scenes/interaction/readable.tscn")
 const SPEAKER_SCRIPT := preload("res://scripts/audio/speaker.gd")
 const DIRECTOR := preload("res://scripts/core/chapter1_director.gd")
+const MANAGER_AUDIO := preload("res://audio/entities/manager_audio.tscn")
 ## Ceiling fan blade speed (rad/s), as in the demo.
 const FAN_SPEED: float = 15.0
 const PAPER_PICK_DEPTH: float = 0.15
@@ -32,9 +33,7 @@ func _ready() -> void:
 	var light := $Floor4.get_node_or_null("Room407/Room407MainLight") as Node3D
 	if light != null:
 		light.visible = false
-	var music := MusicDirector.new()
-	music.name = "MusicDirector"
-	add_child(music)
+	_place_audio()
 	for rotor in $Floor4.find_children("fan_rotor", "", true, false):
 		_fan_rotors.append(rotor as Node3D)
 	$Chapter1Director.restart_requested.connect(_on_restart_requested)
@@ -54,9 +53,41 @@ func _place_speaker() -> void:
 	speaker.name = "FloorSpeaker"
 	speaker.set_script(SPEAKER_SCRIPT)
 	speaker.unit_size = 10.0
+	speaker.set("chapter_profile", true)
 	add_child(speaker)
 	speaker.global_transform = anchor.global_transform
 	$Chapter1Director.speaker_path = $Chapter1Director.get_path_to(speaker)
+
+
+## Lane E's chapter 1 rigs (T-158). They must exist before the director
+## starts (it emits chapter_started deferred).
+func _place_audio() -> void:
+	var music := Ch1Music.new()
+	music.name = "Ch1Music"
+	add_child(music)
+	var call := PhoneCallAudio.new()
+	call.name = "PhoneCallAudio"
+	add_child(call)
+	var player_audio := Ch1PlayerAudio.new()
+	player_audio.name = "Ch1PlayerAudio"
+	add_child(player_audio)
+	# The manager heard from elsewhere in the building (Chapter1Director moves it).
+	var far := MANAGER_AUDIO.instantiate()
+	far.name = "ManagerAudioFar"
+	far.listener = $Player
+	far.add_to_group(&"manager_audio")
+	add_child(far)
+	var screams := BuildingScreams.new()
+	screams.name = "BuildingScreams"
+	screams.listener = $Player
+	screams.add_to_group(&"screams")
+	add_child(screams)
+	# Blood dripping from the three beds once the roommates are dead.
+	var drips := CorpseAudio.new()
+	drips.name = "RoomDrips"
+	drips.add_to_group(&"corpse_audio")
+	add_child(drips)
+	drips.global_position = Vector3(32.0, 0.3, -3.0)
 
 
 func _place_papers() -> void:
