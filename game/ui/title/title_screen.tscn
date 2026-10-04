@@ -72,6 +72,10 @@ text = "UI_SETTINGS_TITLE"
 layout_mode = 2
 text = "UI_TITLE_CREDITS"
 
+[node name="Chapters" type="Button" parent="Menu/Buttons"]
+layout_mode = 2
+text = "UI_CHAPTER_SELECT"
+
 [node name="Quit" type="Button" parent="Menu/Buttons"]
 layout_mode = 2
 text = "UI_PAUSE_QUIT"

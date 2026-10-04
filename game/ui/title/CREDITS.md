@@ -8,3 +8,5 @@
 - Khai báo AI: OpenAI Codex hỗ trợ viết mã UI, shader và scene chụp. Ảnh render từ asset nội bộ có mã tạo bằng AI hỗ trợ như khai báo của Lane B; không sử dụng mô hình sinh ảnh hay nguồn ảnh bên ngoài. Credits âm thanh cũng ghi Anthropic Claude cho phần bước chân T-123 theo nguồn Lane E.
 
 Chụp lại nền: `pwsh tools/capture.ps1 -Scene res://ui/title/background_test.tscn -Frames 5 -Resolution 1920x1080 -Out build/T-139/background`. Dùng user data riêng để filter lấy mặc định cường độ/độ sáng 1.0. Ảnh bằng chứng UI nằm trong `previews/`, chụp qua `title_test.tscn`.
+
+T-155 bổ sung `previews/chapters_vi.png`, `chapters_en.png`, `warning_ch1_vi.png` và `warning_ch1_en.png`: ảnh render UI bằng Godot 4.7.2, 1920×1080, cùng nền/font nêu trên. Mã chọn chương và cảnh báo được viết với hỗ trợ của OpenAI Codex; không thêm nguồn artwork bên ngoài.

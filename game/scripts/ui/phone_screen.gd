@@ -1,0 +1,334 @@
+extends CanvasLayer
+## Non-modal phone: never changes mouse mode, pauses gameplay or consumes movement.
+
+const PhoneState = preload("res://scripts/ui/phone_state.gd")
+const MemberView = preload("res://scripts/ui/phone_member.gd")
+
+@export_range(0.1, 60.0) var choice_seconds := 10.0
+@export_range(0.1, 30.0) var subtitle_seconds := 4.0
+
+var state := PhoneState.new()
+var _paused := false
+var _documents: Dictionary = {}
+var _puzzles: Dictionary = {}
+var _hidden := false
+var _holding := false
+var _contraction := 0.0
+
+
+func _ready() -> void:
+	state.minutes = GameState.minutes
+	EventBus.phone_raised.connect(_on_raised)
+	EventBus.phone_battery_changed.connect(_on_battery)
+	EventBus.flashlight_toggled.connect(func(on: bool) -> void:
+		state.flashlight = on and state.battery > 0.0
+		_refresh_status())
+	EventBus.time_changed.connect(func(minutes: int) -> void:
+		state.minutes = minutes
+		_refresh_status())
+	EventBus.phone_call_incoming.connect(_on_incoming)
+	EventBus.phone_call_answered.connect(_on_answered)
+	EventBus.phone_message_received.connect(_on_message)
+	EventBus.chat_member_changed.connect(_on_member)
+	EventBus.chat_choice_requested.connect(_on_choice)
+	EventBus.game_paused.connect(func(paused: bool) -> void:
+		_paused = paused
+		_refresh_visibility())
+	EventBus.document_opened.connect(func(id: StringName) -> void:
+		_documents[id] = true
+		_refresh_visibility())
+	EventBus.document_closed.connect(func(id: StringName) -> void:
+		_documents.erase(id)
+		_refresh_visibility())
+	EventBus.puzzle_opened.connect(func(id: StringName) -> void:
+		_puzzles[id] = true
+		_refresh_visibility())
+	EventBus.puzzle_closed.connect(_close_puzzle)
+	EventBus.puzzle_solved.connect(_close_puzzle)
+	EventBus.player_hidden.connect(func(hidden: bool, _kind: StringName) -> void:
+		_hidden = hidden
+		if not hidden:
+			_holding = false
+		_refresh_visibility())
+	EventBus.breath_held.connect(func(holding: bool) -> void: _holding = holding and _hidden)
+	var paper := StyleBoxFlat.new()
+	paper.bg_color = Color(0.025, 0.04, 0.055, 1)
+	paper.set_border_width_all(8)
+	paper.border_color = Color(0.008, 0.012, 0.016, 1)
+	paper.set_corner_radius_all(20)
+	paper.content_margin_left = 18
+	paper.content_margin_right = 18
+	paper.content_margin_top = 12
+	paper.content_margin_bottom = 12
+	$Root/Phone.add_theme_stylebox_override("panel", paper)
+	var light := Control.new()
+	light.name = "Flashlight"
+	light.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	$Root/Phone/Content/Status.add_child(light)
+	light.set_anchors_and_offsets_preset(Control.PRESET_TOP_RIGHT)
+	light.position.x -= 28
+	light.size = Vector2(28, 26)
+	light.draw.connect(func() -> void:
+		var color := Color(1, 0.9, 0.55) if state.flashlight else Color(0.3, 0.35, 0.4)
+		light.draw_rect(Rect2(2, 10, 12, 8), color)
+		light.draw_line(Vector2(14, 10), Vector2(20, 6), color, 3)
+		light.draw_line(Vector2(14, 18), Vector2(20, 22), color, 3)
+		light.draw_line(Vector2(20, 6), Vector2(20, 22), color, 3))
+	_render()
+
+
+func _process(delta: float) -> void:
+	_refresh_visibility()
+	if _blocked():
+		return
+	_contraction = move_toward(_contraction, 1.0 if _holding else 0.0, delta * 2.0)
+	$Root/HiddenVignette.material.set_shader_parameter("contraction", _contraction)
+	if not state.choice.is_empty():
+		state.remaining = maxf(0.0, state.remaining - delta)
+		$Root/Choices/Content/Timer.value = state.remaining
+		if state.remaining <= 0.0:
+			_finish_choice(-1)
+
+
+func _input(event: InputEvent) -> void:
+	if _blocked() or not state.raised or state.battery <= 0.0 or event.is_echo():
+		return
+	if not state.incoming.is_empty() and event.is_action_pressed("interact"):
+		_consume_interact()
+		EventBus.phone_call_answered.emit(StringName(state.incoming))
+		return
+	if not state.choice.is_empty() and not state.disconnected_choice:
+		if event is InputEventKey and event.pressed:
+			var code: int = event.physical_keycode if event.physical_keycode != 0 else event.keycode
+			if code >= KEY_1 and code <= KEY_4:
+				get_viewport().set_input_as_handled()
+				_choose(code - KEY_1)
+				return
+		if event is InputEventMouseButton and event.pressed:
+			if event.button_index == MOUSE_BUTTON_LEFT and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+				_consume_interact()
+				_choose(state.selected)
+				return
+	if event is InputEventMouseButton and event.pressed and event.button_index in [MOUSE_BUTTON_WHEEL_UP, MOUSE_BUTTON_WHEEL_DOWN]:
+		var direction := 1 if event.button_index == MOUSE_BUTTON_WHEEL_DOWN else -1
+		if event.shift_pressed:
+			$Root/Phone/Content/MembersScroll.scroll_horizontal += direction * 100
+		elif not state.choice.is_empty() and not state.disconnected_choice:
+			state.selected = posmod(state.selected + direction, state.options.size())
+			_render_choices()
+		else:
+			$Root/Phone/Content/Transcript.get_v_scroll_bar().value += direction * 64
+		get_viewport().set_input_as_handled()
+
+
+func _consume_interact() -> void:
+	get_viewport().set_input_as_handled()
+	# Player currently polls interact in physics; handled events alone do not suppress it.
+	Input.action_release("interact")
+
+
+func _blocked() -> bool:
+	if _paused or get_tree().paused or not _documents.is_empty() or not _puzzles.is_empty():
+		return true
+	for overlay in get_tree().get_nodes_in_group("reading_overlay"):
+		if overlay.is_open():
+			return true
+	return false
+
+
+func _refresh_visibility() -> void:
+	var blocked := _blocked()
+	$Root/Phone.visible = state.raised and not blocked
+	$Root/Phone/Content.visible = state.battery > 0.0
+	$Root/Phone/BlackScreen.visible = state.battery <= 0.0
+	$Root/Incoming.visible = not state.incoming.is_empty() and state.battery > 0.0 and not blocked
+	$Root/Choices.visible = not state.choice.is_empty() and state.raised and state.battery > 0.0 and not state.disconnected_choice and not blocked
+	$Root/HiddenVignette.visible = _hidden and not blocked
+	$Root/BreathHint.visible = _hidden and not blocked
+
+
+func _on_raised(raised: bool) -> void:
+	state.raised = raised
+	_refresh_status()
+	_refresh_visibility()
+
+
+func _on_battery(percent: float) -> void:
+	if not is_finite(percent):
+		return
+	state.battery = clampf(percent, 0.0, 100.0)
+	if state.battery <= 0.0:
+		state.incoming = ""
+		state.call = ""
+		state.flashlight = false
+		state.disconnected_choice = true
+	_refresh_status()
+	_refresh_visibility()
+
+
+func _on_incoming(id: StringName) -> void:
+	if state.battery <= 0.0 or id.is_empty():
+		return
+	state.incoming = String(id)
+	# Lane E listens to this same incoming signal; never re-emit it recursively.
+	_refresh_status()
+	_refresh_visibility()
+
+
+func _on_answered(id: StringName) -> void:
+	if state.battery <= 0.0 or String(id) != state.incoming:
+		return
+	state.call = String(id)
+	state.incoming = ""
+	_refresh_status()
+	_refresh_visibility()
+
+
+func _load_message(id: StringName) -> MessageData:
+	return MessageData.load_by_id(id)
+
+
+func _on_message(id: StringName) -> void:
+	if state.battery <= 0.0:
+		return
+	var message := _load_message(id)
+	if message == null or message.text_key.is_empty():
+		return
+	state.history.append({"id": String(id), "sender": String(message.sender),
+		"name_key": message.sender_name_key, "text_key": message.text_key, "minutes": message.minutes,
+		"outgoing": message.outgoing, "spoken": message.spoken})
+	var sender := String(message.sender)
+	if not state.members.has(sender):
+		state.members[sender] = {"state": "joined", "name_key": message.sender_name_key}
+	else:
+		state.members[sender]["name_key"] = message.sender_name_key
+	_render_members()
+	_render_transcript()
+	if message.spoken:
+		EventBus.subtitle_requested.emit(message.text_key, subtitle_seconds)
+
+
+func _on_member(id: StringName, member_state: StringName) -> void:
+	if id.is_empty() or member_state not in [&"joined", &"dead", &"left"]:
+		return
+	var name_key: String = state.members.get(String(id), {}).get("name_key", "")
+	state.members[String(id)] = {"state": String(member_state), "name_key": name_key}
+	_render_members()
+
+
+func _on_choice(id: StringName, option_keys: PackedStringArray) -> void:
+	if id.is_empty() or option_keys.size() < 2 or option_keys.size() > 4:
+		return
+	for key in option_keys:
+		if key.is_empty():
+			return
+	if not state.choice.is_empty():
+		return # Core issues one prompt at a time; do not silently replace an unanswered prompt.
+	state.choice = String(id)
+	state.options = option_keys.duplicate()
+	state.remaining = maxf(0.1, choice_seconds)
+	state.selected = 0
+	state.disconnected_choice = state.battery <= 0.0
+	EventBus.phone_raised.emit(true)
+	_render_choices()
+	_refresh_visibility()
+
+
+func _choose(index: int) -> void:
+	if _blocked() or state.disconnected_choice or state.battery <= 0.0 or index < 0 or index >= state.options.size():
+		return
+	_consume_interact()
+	_finish_choice(index)
+
+
+func _finish_choice(index: int) -> void:
+	if state.choice.is_empty():
+		return
+	var id := StringName(state.choice)
+	state.choice = ""
+	state.options.clear()
+	state.remaining = 0.0
+	_refresh_visibility()
+	EventBus.chat_choice_made.emit(id, index)
+
+
+func _close_puzzle(id: StringName) -> void:
+	_puzzles.erase(id)
+	_refresh_visibility()
+
+
+func snapshot() -> Dictionary:
+	return state.snapshot()
+
+
+func restore(data: Dictionary) -> void:
+	state.restore(data)
+	_render() # No replay of speech, incoming calls or player-choice signals.
+
+
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_TRANSLATION_CHANGED and is_node_ready():
+		_render()
+
+
+func _render() -> void:
+	_refresh_status()
+	_render_members()
+	_render_transcript()
+	_render_choices()
+	_refresh_visibility()
+
+
+func _refresh_status() -> void:
+	var clock := "%02d:%02d" % [(state.minutes / 60) % 24, state.minutes % 60]
+	$Root/Phone/Content/Status.text = tr("UI_PHONE_STATUS") % [clock, int(state.battery), tr("UI_PHONE_NO_SIGNAL")]
+	$Root/Phone/Content/Status/Flashlight.tooltip_text = tr("UI_PHONE_LIGHT_ON" if state.flashlight else "UI_PHONE_LIGHT_OFF")
+	$Root/Phone/Content/Status/Flashlight.queue_redraw()
+	$Root/Phone/Content/Call.text = tr("UI_PHONE_GROUP_CALL" if not state.call.is_empty() else "UI_PHONE_HISTORY")
+	$Root/Incoming/Content/Hint.text = tr("UI_PHONE_ANSWER" if state.raised else "UI_PHONE_RAISE_ANSWER")
+
+
+func _render_members() -> void:
+	var parent := $Root/Phone/Content/MembersScroll/Members
+	for child in parent.get_children():
+		parent.remove_child(child)
+		child.queue_free()
+	for id: String in state.members:
+		var entry: Dictionary = state.members[id]
+		var member := MemberView.new()
+		member.configure(id, tr(entry["name_key"]) if not entry["name_key"].is_empty() else id, entry["state"])
+		parent.add_child(member)
+
+
+func _render_transcript() -> void:
+	var transcript: RichTextLabel = $Root/Phone/Content/Transcript
+	transcript.clear()
+	if state.history.is_empty():
+		transcript.add_text(tr("UI_PHONE_EMPTY"))
+	for entry in state.history:
+		var minutes: int = entry["minutes"]
+		var clock := "%02d:%02d" % [(minutes / 60) % 24, minutes % 60]
+		var sender: String = tr(entry["name_key"]) if not entry["name_key"].is_empty() else entry["sender"]
+		transcript.push_paragraph(HORIZONTAL_ALIGNMENT_RIGHT if entry["outgoing"] else HORIZONTAL_ALIGNMENT_LEFT)
+		transcript.add_text(tr("UI_PHONE_TRANSCRIPT_LINE") % [clock, sender, tr(entry["text_key"])])
+		transcript.add_text("\n")
+		transcript.pop()
+
+
+func _render_choices() -> void:
+	var parent := $Root/Choices/Content/Options
+	for child in parent.get_children():
+		parent.remove_child(child)
+		child.queue_free()
+	for index in state.options.size():
+		var button := Button.new()
+		button.name = "Option%d" % (index + 1)
+		button.text = tr("UI_PHONE_OPTION") % [index + 1, tr(state.options[index])]
+		button.add_theme_font_size_override("font_size", 22)
+		button.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		button.focus_mode = Control.FOCUS_NONE
+		button.modulate = Color(1, 0.88, 0.58) if index == state.selected else Color.WHITE
+		button.pressed.connect(_choose.bind(index))
+		parent.add_child(button)
+	$Root/Choices/Content/Timer.max_value = maxf(choice_seconds, state.remaining)
+	$Root/Choices/Content/Timer.value = state.remaining

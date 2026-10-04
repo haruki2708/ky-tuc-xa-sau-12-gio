@@ -6,11 +6,13 @@ const CREDIT_SECTIONS := ["KIT", "AUDIO", "FONT", "AI"]
 
 @export var settings_path: NodePath = ^"/root/Settings"
 @export var app_path: NodePath = ^"/root/App"
+@export var progress_path: String = Progress.DEFAULT_PATH
 
 var _settings: SettingsStore
 var _screen := ""
 var _leaving := false
 var _return_focus := "NewGame"
+var _pending_chapter := 0
 
 
 func _ready() -> void:
@@ -21,14 +23,16 @@ func _ready() -> void:
 		add_child(_settings)
 	_build_warning()
 	_build_credits()
+	_build_chapters()
 	$SettingsCard/SettingsPanel.configure(_settings)
 	$SettingsCard/SettingsPanel.back_requested.connect(_back_to_menu)
 	$Menu/Buttons/Continue.pressed.connect(func() -> void: _start_game(true))
 	$Menu/Buttons/NewGame.pressed.connect(_new_game)
 	$Menu/Buttons/Settings.pressed.connect(show_settings)
 	$Menu/Buttons/Credits.pressed.connect(show_credits)
+	$Menu/Buttons/Chapters.pressed.connect(show_chapters)
 	$Menu/Buttons/Quit.pressed.connect(_quit_game)
-	$Confirmation.confirmed.connect(func() -> void: _start_game(false))
+	$Confirmation.confirmed.connect(_confirm_start)
 	$Confirmation.cancelled.connect(_back_to_menu)
 	EventBus.settings_changed.connect(_settings_changed)
 	_settings_changed("accessibility", "reduce_scares")
@@ -50,7 +54,7 @@ func _input(event: InputEvent) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel") and not event.is_echo():
 		get_viewport().set_input_as_handled()
-		if _screen in ["SettingsCard", "Credits", "Confirmation"]:
+		if _screen in ["SettingsCard", "Credits", "Confirmation", "Chapters"]:
 			_back_to_menu()
 		elif _screen == "Menu":
 			$Menu/Buttons/Quit.grab_focus()
@@ -60,7 +64,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _show_screen(screen: String) -> void:
 	_screen = screen
-	for node_name: String in ["Menu", "Warning", "Credits", "SettingsCard", "Confirmation"]:
+	for node_name: String in ["Menu", "Warning", "Credits", "SettingsCard", "Confirmation", "Chapters"]:
 		get_node(node_name).visible = node_name == screen
 
 
@@ -93,6 +97,9 @@ func show_credits() -> void:
 
 
 func _back_to_menu() -> void:
+	if _screen == "Confirmation" and _pending_chapter > 0:
+		show_chapters()
+		return
 	show_menu()
 	get_node("Menu/Buttons/" + _return_focus).grab_focus()
 
@@ -109,12 +116,69 @@ func _acknowledge_warning(reduce_scares: bool) -> void:
 
 
 func _new_game() -> void:
+	_pending_chapter = 0
 	if _has_saved_game():
 		_return_focus = "NewGame"
 		_show_screen("Confirmation")
 		$Confirmation.open("UI_NEW_GAME_CONFIRM")
 	else:
 		_start_game(false)
+
+
+func _confirm_start() -> void:
+	if _pending_chapter > 0:
+		_start_chapter(_pending_chapter)
+	else:
+		_start_game(false)
+
+
+func show_chapters() -> void:
+	_return_focus = "Chapters"
+	_pending_chapter = 0
+	_refresh_chapters()
+	_show_screen("Chapters")
+	$Chapters/Content/Chapter1.grab_focus()
+
+
+func _select_chapter(chapter: int) -> void:
+	if chapter < 1 or chapter > Progress.unlocked_chapter(progress_path):
+		return
+	_pending_chapter = chapter
+	if _has_saved_game():
+		_show_screen("Confirmation")
+		$Confirmation.open("UI_CHAPTER_START_CONFIRM")
+	else:
+		_start_chapter(chapter)
+
+
+func _start_chapter(chapter: int) -> void:
+	if _leaving or chapter > Progress.unlocked_chapter(progress_path):
+		return
+	_leaving = true
+	get_node(app_path).start_chapter(chapter)
+
+
+func _build_chapters() -> void:
+	var content := _add_card("Chapters", Rect2(0.23, 0.18, 0.54, 0.64))
+	_add_label(content, "Heading", "UI_CHAPTER_SELECT", 40)
+	for chapter in range(1, Progress.CHAPTER_COUNT + 1):
+		_add_button(content, "Chapter%d" % chapter, "CH_%d_TITLE" % chapter, _select_chapter.bind(chapter))
+	_add_button(content, "Back", "UI_SETTINGS_BACK", _back_to_menu)
+	_refresh_chapters()
+
+
+func _refresh_chapters() -> void:
+	var unlocked := Progress.unlocked_chapter(progress_path)
+	for chapter in range(1, Progress.CHAPTER_COUNT + 1):
+		var button: Button = get_node("Chapters/Content/Chapter%d" % chapter)
+		button.disabled = chapter > unlocked
+		var title := tr("CH_%d_TITLE" % chapter)
+		button.text = tr("UI_CHAPTER_LOCKED") % title if button.disabled else title
+
+
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_TRANSLATION_CHANGED and is_node_ready():
+		_refresh_chapters()
 
 
 func _has_saved_game() -> bool:
@@ -148,9 +212,9 @@ func _settings_changed(section: String, key: String) -> void:
 
 
 func _build_warning() -> void:
-	var content := _add_card("Warning", Rect2(0.2, 0.28, 0.6, 0.44))
+	var content := _add_card("Warning", Rect2(0.2, 0.24, 0.6, 0.52))
 	_add_label(content, "Heading", "UI_CONTENT_WARNING_TITLE", 40)
-	var body := _add_label(content, "Description", "UI_CONTENT_WARNING_TEXT", 30)
+	var body := _add_label(content, "Description", "UI_CONTENT_WARNING_CHAPTERS", 30)
 	body.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	_add_button(content, "Continue", "UI_TITLE_CONTINUE", _acknowledge_warning.bind(false))
 	_add_button(content, "ReduceScares", "UI_WARNING_REDUCE_SCARES", _acknowledge_warning.bind(true))
