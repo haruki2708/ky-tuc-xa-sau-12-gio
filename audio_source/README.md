@@ -1,5 +1,7 @@
 # Pipeline âm thanh T-105
 
+Bộ âm chương 1 T-158: [ch1/README.md](ch1/README.md), lệnh `py -3 audio_source/ch1_process.py`; ngân sách riêng 15 MB. Không ghi đè hai bank cũ bên dưới.
+
 Giọng loa T-137 có pipeline riêng: [voice/README.md](voice/README.md), lệnh `py -3 audio_source/voice_process.py`. Bank 43 hiệu ứng/nhạc bên dưới giữ ngân sách riêng 20 MB; bank giọng có raw/report và ngân sách riêng 20 MB. Tổng hai bank dưới 40 MB, mỗi file dưới 10 MB.
 
 Chạy từ gốc repo, Python 3 chuẩn (không cần pip hoặc plugin):

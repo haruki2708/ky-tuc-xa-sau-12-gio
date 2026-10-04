@@ -1,4 +1,4 @@
-[gd_resource type="AudioBusLayout" load_steps=3 format=3]
+[gd_resource type="AudioBusLayout" load_steps=6 format=3]
 
 [sub_resource type="AudioEffectReverb" id="AudioEffectReverb_ambience"]
 resource_name = "Room ambience"
@@ -14,6 +14,22 @@ room_size = 0.35
 damping = 0.65
 dry = 1.0
 wet = 0.0
+
+[sub_resource type="AudioEffectHighPassFilter" id="PhoneHP"]
+cutoff_hz = 300.0
+resonance = 0.5
+db = 1
+
+[sub_resource type="AudioEffectDistortion" id="PhoneGrain"]
+mode = 1
+pre_gain = 12.0
+post_gain = -12.0
+drive = 0.12
+
+[sub_resource type="AudioEffectLowPassFilter" id="PhoneLP"]
+cutoff_hz = 3400.0
+resonance = 0.5
+db = 1
 
 [resource]
 bus/0/name = &"Master"
@@ -56,3 +72,21 @@ bus/5/mute = false
 bus/5/bypass_fx = false
 bus/5/volume_db = 0.0
 bus/5/send = &"SFX"
+bus/6/name = &"PhoneVoice"
+bus/6/send = &"Voice"
+bus/6/volume_db = 0.0
+bus/6/effect/0/effect = SubResource("PhoneHP")
+bus/6/effect/0/enabled = true
+bus/6/effect/1/effect = SubResource("PhoneGrain")
+bus/6/effect/1/enabled = true
+bus/6/effect/2/effect = SubResource("PhoneLP")
+bus/6/effect/2/enabled = true
+bus/7/name = &"PhoneSFX"
+bus/7/send = &"SFX"
+bus/7/volume_db = 0.0
+bus/7/effect/0/effect = SubResource("PhoneHP")
+bus/7/effect/0/enabled = true
+bus/7/effect/1/effect = SubResource("PhoneGrain")
+bus/7/effect/1/enabled = true
+bus/7/effect/2/effect = SubResource("PhoneLP")
+bus/7/effect/2/enabled = true

@@ -30,6 +30,8 @@ func test_all_ogg_load_and_decode_with_correct_loop_flags() -> void:
 	for locale in ["vi", "en"]:
 		for key: String in SpeakerVoiceBank.KEYS:
 			expected.append("res://audio/voice/%s/%s.ogg" % [locale, key])
+	for clip_name in Ch1AudioBank.NAMES:
+		expected.append("res://audio/ch1/%s.ogg" % clip_name)
 	var actual := _find_ogg("res://audio")
 	actual.sort()
 	expected.sort()
@@ -38,7 +40,7 @@ func test_all_ogg_load_and_decode_with_correct_loop_flags() -> void:
 
 func test_bus_layout_is_loaded_and_routed() -> void:
 	assert_not_null(load("res://default_bus_layout.tres"), "layout resource")
-	assert_eq(AudioServer.bus_count, 6, "bus count;")
+	assert_eq(AudioServer.bus_count, 8, "bus count;")
 	for bus_name in [&"Master", &"Ambience", &"SFX", &"Voice", &"Music", &"Footsteps"]:
 		var index := AudioServer.get_bus_index(bus_name)
 		assert_true(index >= 0, "bus " + bus_name)
