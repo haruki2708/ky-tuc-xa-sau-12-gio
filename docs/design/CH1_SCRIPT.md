@@ -23,7 +23,7 @@ Ký hiệu: **Loa** = loa trường · **Quản lý** · *(trong phòng)* = gi�
 - **04:00** **Loa:** Chú ý. Một phút nữa, người nào còn nằm trên giường sẽ chết.
 - **04:00** **Phúc** *(trong phòng)*: Ai mở loa giờ này vậy trời…
 - **04:00** **Đạt** *(trong phòng)*: Bốn giờ sáng đó. Để người ta ngủ với.
-- **04:00** **Việt (ngoài cửa)** *(trong phòng)*: Kệ nó. Ngủ tiếp đi.
+- **04:00** **Việt** *(trong phòng)*: Kệ nó. Ngủ tiếp đi.
 - **04:00** 💭 Tỉnh rồi thì đi vệ sinh luôn vậy.
 - **04:01** `[Hết 60 giây thật. Còn nằm trên giường thì chết (DEATH_STAYED_IN_BED). Trung đã ra nhà vệ sinh chung cuối hành lang thì nghe tiếng la hét lan khắp tòa nhà.]`
 - **04:03** 💭 Sao im lặng quá vậy…

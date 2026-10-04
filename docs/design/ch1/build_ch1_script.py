@@ -31,7 +31,7 @@ NAMES = {
     "trung": ("Tôi", "Me"),
 }
 # Who speaks in the room or on the speaker (not in the call).
-VOICES = {"loa": "Loa trường", "mgr": "Quản lý", "phuc": "Phúc", "viet": "Việt (ngoài cửa)",
+VOICES = {"loa": "Loa trường", "mgr": "Quản lý", "phuc": "Phúc", "viet": "Việt", "viet_door": "Việt (ngoài cửa)",
           "dat": "Đạt", "trung": "Trung (suy nghĩ, chỉ phụ đề)"}
 
 # kind: spk (speaker), rule (speaker, also a rule-book line), mgr (manager),
@@ -110,10 +110,10 @@ SCRIPT = [
     ("event", "", "", "04:20", "Câu đố: tủ khóa số của Đạt (`locker_combo_dat`, mã 1407). Sổ tay Đạt: \"mật khẩu là sinh nhật tao\"; thẻ sinh viên: sinh ngày 14/07/2006. Mở tủ, lấy cục sạc, cắm ở ổ cạnh bàn Trung.", ""),
     ("think", "CHARGING", "trung", "04:25", "Đang sạc rồi. Phải ở gần ổ điện.", "It's charging. I have to stay near the socket."),
     ("event", "", "", "04:35", "Cám dỗ: tiếng gõ cửa và giọng Việt ngoài hành lang. Mở cửa thì hành lang trống, có dấu chân máu đi xa; bước ra là chết.", ""),
-    ("room", "KNOCK_VIET", "viet", "04:35", "Trung ơi, mở cửa cho tao. Tao ra ngoài đi vệ sinh, giờ không vào được…",
+    ("room", "KNOCK_VIET", "viet_door", "04:35", "Trung ơi, mở cửa cho tao. Tao ra ngoài đi vệ sinh, giờ không vào được…",
      "Trung, open the door for me. I went to the toilet and now I can't get back in…"),
     ("think", "VIET_BED", "trung", "04:35", "Việt… đang nằm trên giường kia mà.", "But Việt… is lying in that bed right there."),
-    ("room", "KNOCK_VIET_2", "viet", "04:36", "Ra đây với tao đi. Ngoài này không có ai đâu.", "Come out here with me. There's nobody out here."),
+    ("room", "KNOCK_VIET_2", "viet_door", "04:36", "Ra đây với tao đi. Ngoài này không có ai đâu.", "Come out here with me. There's nobody out here."),
     ("chat", "VINH_ASK", "vinh", "04:37", "Vinh, 311. Có ai nghe tiếng bạn cùng phòng gọi ngoài cửa không? Tôi vừa nghe…",
      "Vinh, 311. Has anyone heard their roommate calling from outside the door? I just did…"),
     ("chat", "N_DONT_OPEN", "minh_nhat", "04:37", "Đừng ra. Mở cửa thì chưa sao, nhưng bước qua ngưỡng cửa là hết.",
