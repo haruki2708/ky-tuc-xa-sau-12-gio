@@ -1,6 +1,6 @@
 # Thiết kế game đầy đủ theo chương
 
-> **Trạng thái: BẢN NHÁP, chờ chủ dự án duyệt** (2026-10-04). Dựa trên D-029 và ý chính của chủ dự án (D-030). Chỗ ghi **[Claude đề xuất]** là phần chủ dự án giao cho Claude đề xuất, sửa thoải mái. Chia khu vực theo đêm (mục 6) là bản tạm, sẽ chốt khi trao đổi.
+> **Trạng thái: BẢN NHÁP, chờ chủ dự án duyệt** (2026-10-04). Dựa trên D-029 và ý chính của chủ dự án (D-030). Chỗ ghi **[Claude đề xuất]** là phần chủ dự án giao cho Claude đề xuất, sửa thoải mái. Đã duyệt (D-031): khu vực theo đêm (mục 6), 8–10 jumpscare mỗi chương (mục 7), chương 1 dùng lại nội dung demo (mục 10). Còn chờ: sửa cốt truyện (mục 3), duyệt bản chi tiết thực thể (mục 5).
 
 ## 1. Một câu
 Kỳ nghỉ lễ, ký túc xá gần như trống. Mỗi đêm, phòng 407 lại "đếm thừa" một người. Trung phải điều tra chuyện đã xảy ra năm 2009, nhận ra dòng nội quy nào đã bị sửa, và trốn những thứ đang đi dép lê ngoài hành lang, trước khi ký túc xá đếm đủ người theo cách của nó.
@@ -56,18 +56,171 @@ Không có cái chết, tự tử hay bạo lực (D-003). Nỗi sợ là **bị
 - **Sổ tay:** ghi dòng luật kèm nguồn như hiện tại, thêm phần **gắn chứng cứ** vào dòng nghi ngờ (ảnh dấu, trang sổ trực).
 - Mức "lệch" 0–5 giữ nguyên ý nghĩa, tính lại từ đầu mỗi đêm. Tổng "lệch" cả game quyết định cái kết.
 
-## 5. Thực thể [Claude đề xuất]
-Ba thực thể chính dùng suốt game, cộng các lần hiện hình theo kịch bản riêng từng khu vực.
+## 5. Thực thể [Claude đề xuất, bản chi tiết]
+Có ba thực thể chính dùng suốt game, cộng các lần hiện hình theo kịch bản riêng của từng khu (5.5). Con số trong mục này là giá trị khởi đầu, sẽ chỉnh khi chơi thử. Để so sánh: người chơi đi bộ 2,2 m/s, chạy 3,6 m/s; thêm dáng **cúi**, đi 1,2 m/s.
 
-| Thực thể | Vai trò | Cách hành xử | Cách sống sót | Từ đêm |
-|---|---|---|---|---|
-| **Người đi dép** | Lang thang tự do: người đã bị quên đi tìm giường của mình | Đi tuần giữa các tầng, vào phòng kiểm tra giường. **Nghe là chính:** tiếng chạy, tiếng cửa, đồ rơi. Thấy người trong vùng sáng ở gần. Tiếng dép của nó luôn nghe được, xa hay gần. Khi đuổi, đèn tắt dần phía sau | Đi êm hoặc cúi; nấp gầm giường, buồng vệ sinh, tủ sắt, sau mùng; tắt đèn pin; đi tới chỗ có đèn (điều 3) | Đêm 1 chỉ thoáng thấy theo kịch bản; đêm 2 trở đi đi tuần tự do |
-| **Người thứ năm** | Kẻ theo dõi và thay chỗ | **Chỉ di chuyển khi không bị nhìn:** đứng ở cuối hành lang, ở lan can tầng đối diện bên kia sân, trong gương, sau mùng. Mỗi lần người chơi quay đi, nó lại gần hơn. Chạm tới thì jumpscare | Để ý xung quanh, không quay lưng quá lâu ở nơi nó đã hiện. Gương là cửa của nó | Đêm 1 (theo kịch bản), bán tự do từ đêm 2 |
-| **Giọng loa** | Không có thân xác: giả giọng bác Tư qua loa, điện thoại bàn, tiếng gõ cửa có gọi số phòng | Ra lệnh giả để dụ người chơi tới chỗ Người đi dép, hoặc làm điều bị cấm | Kiểm chứng (mục 4). Đêm 3: phòng bảo vệ trống, nghĩa là mọi lời loa đều đáng ngờ | Đêm 1 |
+**Cơ chế sinh tồn mới:**
+- Cúi để đi êm, nấp vào chỗ nấp, nín thở.
+- Đèn pin điện thoại tốn pin; màn hình điện thoại cũng là chỗ xem giờ (D-027).
+- Chạy gây tiếng động.
+- Không có máu. Bị bắt thì có màn hù, cộng "lệch", rồi tải lại checkpoint gần nhất (đặt checkpoint dày).
 
-**Cơ chế sinh tồn mới:** cúi đi êm, chỗ nấp, đèn pin điện thoại tốn pin (pin cũng là đồng hồ, D-027), chạy gây tiếng động. Không có máu. Bị bắt thì có màn hù, cộng "lệch", rồi tải lại checkpoint gần nhất (đặt checkpoint dày).
+### 5.1 Người đi dép (lang thang tự do)
+**Là ai:** người đã bị ký túc xá quên; Lâm là người đầu tiên. Nó không ác. Nó đi tìm giường của mình, và hễ thấy người là muốn lấy lại chỗ.
 
-## 6. Khu vực theo đêm (BẢN TẠM, sẽ chốt khi trao đổi)
+**Hình dạng:**
+- Dáng sinh viên gầy, áo thun trắng ngả vàng, quần đùi, dép lê tổ ong xanh.
+- Không thấy rõ mặt: đầu luôn cúi, mặt chìm trong bóng.
+- Đi hơi lệch, một chiếc dép lết trên sàn.
+- Low-poly dưới 1500 tam giác, theo chuẩn PS1.
+
+**Dấu hiệu âm thanh:**
+- Tiếng "lẹp xẹp", kèm một tiếng dép lết dài. Tiếng này **luôn phát**, nên người chơi luôn nghe thấy nó trước khi thấy nó.
+- Ở tầng trên hoặc tầng dưới thì tiếng vọng qua trần và sàn, trầm và nhỏ. Lại gần thì nghe được tiếng thở khò khè rất khẽ.
+- **Tiếng dép dừng là lúc nguy hiểm nhất:** nó đang đứng nghe ngóng.
+
+**Trạng thái:**
+| Trạng thái | Làm gì | Tốc độ |
+|---|---|---|
+| Đi tuần | Theo lộ trình qua các tầng đang mở. Dừng trước cửa phòng; phòng nào mở thì vào, đi quanh từng giường và giơ tay **đếm** | 1,2 m/s |
+| Nghe ngóng | Nghe tiếng động thì đứng im 3–5 giây, quay đầu về hướng tiếng | đứng im |
+| Tìm | Đi tới chỗ phát ra tiếng, kiểm tra chỗ nấp gần đó | 1,8 m/s |
+| Đuổi | Đã thấy người chơi | 2,9 m/s: nhanh hơn đi bộ, chậm hơn chạy |
+| Mất dấu | Tìm 20–30 giây quanh chỗ thấy người chơi lần cuối, rồi quay lại đi tuần | 1,8 m/s |
+
+**Giác quan:**
+- **Nghe là chính.** Khoảng cách nó nghe được người chơi:
+  - chạy: 12 m,
+  - đi bộ: 5 m,
+  - cúi: 1,5 m,
+  - đóng cửa mạnh: 15 m,
+  - làm rơi đồ: 10 m.
+- Tiếng to (chạy, đóng cửa) ở tầng khác cũng kéo nó tới tầng đó.
+- **Mắt:** nhìn trong hình nón 70°. Tầm nhìn xa 10 m trong chỗ sáng, 3 m trong chỗ tối. **Bật đèn pin thì nó thấy người chơi từ 15 m.**
+- Thấy rồi vẫn cần khoảng 0,7 giây để "nhận ra". Lúc đó tiếng dép dừng và có tiếng hít vào: đây là cảnh báo cuối cùng.
+
+**Ánh sáng:**
+- Nó đi qua đâu thì đèn tuýp ở đó chập chờn. Khi đuổi, đèn sau lưng nó tắt dần.
+- **Vùng an toàn chỉ có ở đèn vàng sợi đốt cũ:** bàn trực, đèn bàn trong phòng, phòng bảo vệ. Cầu thang **không** có đèn an toàn (điều 5 đêm 1). Nó không bước vào vùng đèn vàng. Đây là ý "đi tới chỗ có đèn" của điều 3, nhưng chỉ đúng với **đèn vàng**. Phân biệt được đèn nào thật sự an toàn là một phần của việc điều tra.
+
+**Chỗ nấp:**
+| Chỗ | Ghi chú |
+|---|---|
+| Gầm giường | Nằm nhìn ra qua khe, thấy được chân nó đi qua |
+| Tủ sắt | Nhìn qua khe thông gió |
+| Buồng vệ sinh | Cài chốt. Nó có thể đứng ngoài cửa buồng |
+| **Trong mùng giường trống** | Rủi ro: nếu nó đang "đếm" phòng đó, nó **đếm luôn người chơi**, cộng 1 "lệch" |
+
+- Nếu thấy người chơi chui vào thì nó lôi ra. Nếu không thấy, nó chỉ dừng trước chỗ nấp 2–3 giây rồi đi (một cú hù hụt).
+- **Nín thở:** giữ phím khi nó sát chỗ nấp, tối đa 8 giây. Thả ra sớm thì có tiếng thở, nó nghe được.
+
+**Bị bắt:** đầu đang cúi ngẩng lên sát camera, một bàn tay đặt lên vai, tiếng thì thầm "Giường của tao". Màn hình tối, cộng 1 "lệch", tải lại checkpoint.
+
+**Phòng 407 khóa cửa là an toàn ở đêm 1–3:** nó không vào, chỉ gõ cửa. Đêm 4 thì không còn an toàn nữa.
+
+**Theo đêm:**
+| Đêm | Hành vi |
+|---|---|
+| 1 | Chỉ xuất hiện theo kịch bản (chiếu nghỉ cầu thang, cuối hành lang tầng 6), chưa đi tuần |
+| 2 | Một con đi tuần tầng 2–4 |
+| 3 | Đi tuần nhanh hơn 10%, nghe xa hơn, đi cả ra sân và nhà xe |
+| 4 | **Hai con.** Con thứ hai đi **đôi dép của Đạt**, người đã biến mất ở đêm 2 |
+
+**Công bằng:**
+- Không bao giờ xuất hiện ngay sát người chơi.
+- Luôn có tiếng trước, rồi mới thấy hình.
+- Không đuổi cùng lúc với Người thứ năm.
+
+**"Giảm hù dọa":** chậm hơn 20%, bỏ cảnh mặt sát camera, thay bằng màn hình tối.
+
+### 5.2 Người thứ năm (theo dõi, chỉ di chuyển khi không bị nhìn)
+**Là gì:** thứ đã thế chỗ Lâm. Nó không có hình dạng riêng mà **mượn dáng người nó định thay**. Lúc đầu là một dáng người mơ hồ; càng về sau càng giống Trung. Đêm 4, nó mặc đúng áo của Trung.
+
+**Hình dạng:**
+- Cao hơn người thường một chút, đứng thẳng tuyệt đối, tay buông.
+- Mặt trắng phẳng không có nét, giống ảnh thẻ bị cào mờ.
+
+**Dấu hiệu:** nó không có tiếng bước chân. Dấu hiệu duy nhất là **tiếng nền tắt dần** quanh nó: dế, quạt, tiếng ù đèn. Bị theo dõi nghĩa là xung quanh im lặng.
+
+**Luật di chuyển:**
+- **Đang bị nhìn thì đứng im tuyệt đối.** "Bị nhìn" nghĩa là nó nằm trong khung hình, không bị vật gì che, và cách người chơi dưới 20 m.
+- **Không bị nhìn thì lại gần:** mỗi lần người chơi quay đi quá 2 giây, nó nhảy tới một điểm đặt sẵn gần hơn (cuối hành lang, khung cửa, góc cầu thang, sau mùng). Không trượt liên tục, để dễ thiết kế và nhẹ máy.
+- Đèn chớp tắt, hoặc đèn pin hết pin, cũng tính là không bị nhìn.
+- Tới cách sau lưng người chơi 1,5 m thì jumpscare: quay lại là thấy cái mặt trắng.
+
+**Nơi nó hiện:**
+- **Trong gương:** lúc nào cũng có thể có nó.
+- Ở lan can tầng đối diện, bên kia sân.
+- Cuối hành lang, sau mùng giường trống.
+- **Trong ảnh:** ảnh phòng 407 năm 2009 đổi tư thế mỗi lần xem lại.
+- **Qua camera điện thoại** (từ đêm 3): chụp ảnh thì thấy nó, dù mắt thường không thấy. Đây là một công cụ điều tra mới.
+
+**Đợt theo dõi:** nó không lúc nào cũng có mặt. Mỗi chương có 2–4 đợt, mỗi đợt 1–3 phút. Mỗi đợt bắt đầu bằng việc tiếng nền tắt.
+
+**Cách sống sót:**
+- Giữ nó trong tầm mắt trong lúc lùi về phòng hoặc chỗ sáng.
+- Đóng cửa giữa mình và nó: nó không mở cửa, nhưng sẽ gọi tên Trung từ phía sau cửa.
+- Không nhìn gương (điều 6).
+
+**Bị bắt:** cộng 2 "lệch" (nặng hơn Người đi dép), rồi tải lại checkpoint. Mỗi lần bị bắt, ảnh thẻ của Trung trong hồ sơ mờ thêm một chút, vì nó vừa "giống Trung" thêm một chút.
+
+**Theo đêm:**
+| Đêm | Hành vi |
+|---|---|
+| 1 | Thoáng thấy theo kịch bản; truy đuổi ở gương |
+| 2 | Đợt theo dõi bán tự do ở hành lang |
+| 3 | Hiện qua camera điện thoại; đứng giữa các hàng xe trong nhà xe |
+| 4 | Mang dáng Trung; ở sân thượng |
+
+**"Giảm hù dọa":** bỏ cảnh mặt sát camera.
+
+### 5.3 Giọng loa (không có thân xác)
+**Là gì:** ký túc xá "nói" bằng giọng bác Tư. Mục đích của nó là ra lệnh giả, dẫn người chơi tới chỗ Người đi dép, hoặc bảo người chơi mở cửa, trả lời hộ, nhìn gương.
+
+**Kênh:**
+- loa các tầng,
+- điện thoại bàn ở bàn trực (reo, người chơi nhấc máy),
+- tiếng gõ cửa có gọi,
+- tin nhắn từ số lạ hoặc giả làm bạn cùng phòng,
+- đêm 4: giọng của chính các bạn cùng phòng.
+
+**Cách nhận ra giọng giả** (học được dần qua sổ trực và sổ riêng của bác Tư):
+| Bác Tư thật | Giọng giả |
+|---|---|
+| Mở đầu bằng "A lô, a lô, phòng trực thông báo" và gõ micro 2 lần | Thiếu câu mở đầu hoặc tiếng gõ |
+| Xưng "bác", gọi "các cháu" | Gọi "sinh viên", hoặc **gọi đúng tên Trung** (bác Tư không biết tên Trung) |
+| Đèn "ĐANG PHÁT" ở phòng phát thanh sáng | Đèn tắt |
+| 02:00–02:30 bác đi tuần, không phát loa | Có phát loa trong giờ này |
+
+**Nghe theo thì sao:** không có jumpscare ngay, mà người chơi bước vào bẫy: cửa sắt khóa sau lưng, đèn cả tầng tắt, hoặc Người đi dép được dẫn tới đúng chỗ người chơi.
+
+**Theo đêm:**
+| Đêm | Hành vi |
+|---|---|
+| 1 | Một thông báo giả giữa nhiều thông báo thật; dấu hiệu dễ nhận |
+| 2 | Thêm điện thoại bàn |
+| 3 | Bác Tư mất tích, **mọi lời trên loa đều giả**. Nguồn thật duy nhất là **băng cát-xét** bác ghi sẵn, phát được ở phòng bảo vệ |
+| 4 | Giọng các bạn cùng phòng và giọng của Trung |
+
+### 5.4 Ba thực thể phối hợp
+- **Chuỗi bẫy điển hình:** Giọng loa dụ người chơi đi, Người đi dép đuổi, còn Người thứ năm chờ sẵn ở chỗ người chơi chạy tới (gương, phòng trống).
+- **Không bao giờ hai thực thể cùng đuổi một lúc.** Khi Người đi dép đang đuổi thì Người thứ năm đứng yên.
+- **Mức "lệch" làm cả ba mạnh lên:**
+  - mức 2: Người đi dép nghe xa hơn 20%,
+  - mức 3: Người thứ năm có thêm một đợt theo dõi,
+  - mức 4: Giọng loa gọi tên Trung.
+
+### 5.5 Hiện hình theo kịch bản riêng từng khu
+| Khu | Hiện hình |
+|---|---|
+| Cầu thang | Đếm bậc ở chiếu nghỉ thì thừa một bậc so với lúc đi lên |
+| Tầng 5, phòng sinh hoạt | TV cũ tự bật, chiếu hành lang tầng 4 từ trên cao: có người đứng trước cửa 407 |
+| Tầng 6, sân phơi | Dãy áo trắng bay; một chiếc phồng lên như có người bên trong |
+| Sân | Có người ngồi ở ghế đá, ngước nhìn lên cửa sổ phòng 407 |
+| Nhà xe | Đèn cảm ứng bật lần lượt từng dãy về phía người chơi, dù không có ai đi |
+| Sân thượng | Loa tổng tự phát danh sách điểm danh năm 2009 |
+
+## 6. Khu vực theo đêm (ĐÃ CHỐT, D-031)
 | Đêm | Khu mở | Ý |
 |---|---|---|
 | 1 (30/4) | Tầng 4 (đầy đủ như demo), **tầng 5, tầng 6** | Cửa sắt chỉ mở lên trên. Bác Tư nhờ lên tầng 6 làm việc vặt |
@@ -130,7 +283,7 @@ Dùng lại phần lớn demo hiện tại (tầng 4, gõ cửa, tiếng dép sa
 | Ban ngày 30/4 | Tin nhắn | Mẹ hỏi có về quê không; nhóm lớp; Phúc dặn chuyện điểm danh; bác Tư nhắn cả tầng: tối nay có nội quy dịp lễ |
 | 23:40 | Mở đêm | Từ nhà vệ sinh về phòng 407. **Học** đi, cúi, điện thoại (Q). Đọc giấy photo sau cửa |
 | 00:00 | Nội quy | Loa đọc 6 điều. Phán định điều 1 (đèn) |
-| 00:15 | Việc vặt | Loa: "Sinh viên phòng 407 lên tầng 6 đóng cửa sân phơi, mưa sắp tới." Bác Tư mở xích cửa sắt **chiều đi lên** |
+| 00:15 | Việc vặt | Loa (bác Tư thật, đủ câu mở đầu): "A lô, a lô, phòng trực thông báo. Cháu nào phòng 407 còn thức thì lên tầng 6 đóng cửa sân phơi giúp bác, trời sắp mưa." Bác Tư mở xích cửa sắt **chiều đi lên** |
 | 00:20–00:45 | Điều tra tầng 5, 6 | **Tầng 5:** phòng sinh hoạt chung có TV cũ, phòng trống đồ đạc bỏ lại, thông báo dấu giả (điều 5). **Tầng 6:** kho đồ cũ, sân phơi, **tủ sắt khóa số**: mã lấy từ ngày trên tấm lịch cũ, trong có **ảnh phòng 407 năm 2009** (5 người, một mặt cào mờ). **Câu đố cầu dao:** sân phơi không có điện, phải bật đúng aptomat theo sơ đồ dán trong hộp. **Hù:** tiếng dép ở tầng trên khi đang ở tầng 6, mà tầng trên là sân thượng đã khóa. Người thứ năm thoáng đứng ở lan can bên kia sân |
 | 00:50 | Cầu thang | Phán định điều 5. Bật đèn cầu thang thì Người đi dép xuất hiện ở chiếu nghỉ dưới, **truy đuổi 1** về tầng 4 |
 | 01:00 | Gõ cửa | Tiếng gõ "Phòng 407 ơi" không xưng tên. Phán định điều 2 |
@@ -149,8 +302,8 @@ Dùng lại phần lớn demo hiện tại (tầng 4, gõ cửa, tiếng dép sa
 | core | Luồng chương và đêm, lưu game, dữ liệu nội quy đêm 1, ghép |
 
 ## 11. Cần chủ dự án quyết
-1. Cốt truyện 2009 (điểm danh hộ, bị thay chỗ, bị quên) và 3 cái kết: duyệt hay sửa?
-2. Ba thực thể và cách hành xử: duyệt hay sửa?
-3. Chia khu vực theo đêm (mục 6): trao đổi để chốt.
-4. Số jumpscare 8–10 mỗi chương: có đúng mức "nhiều" anh/chị muốn không?
-5. Chương 1 dùng lại nội dung demo, viết lại nội quy và thêm tầng 5, 6: có đồng ý không?
+1. Cốt truyện năm 2009 và 3 cái kết (mục 3): chủ dự án muốn **sửa một chút**, chờ nói cụ thể chỗ nào.
+2. Ba thực thể bản chi tiết (mục 5): duyệt hay sửa?
+3. ~~Chia khu vực theo đêm~~: đã chốt (D-031).
+4. ~~8–10 jumpscare mỗi chương~~: đã duyệt (D-031).
+5. ~~Chương 1 dùng lại nội dung demo~~: đã duyệt (D-031).
