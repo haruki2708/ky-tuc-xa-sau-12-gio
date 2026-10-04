@@ -1,7 +1,7 @@
 # STATUS — cập nhật bởi integrator
 
 **Cập nhật lần cuối:** 2026-10-04
-**Giai đoạn:** Game đầy đủ theo chương (D-029), cốt truyện chuyển thể video "Quy tắc kí túc xá lúc nửa đêm" (D-034), thiết kế v2 đã duyệt (`docs/design/STORY.md`, D-035). **Đang làm chương 1 "Tổng tắc"**, hạn chơi thử **2026-10-07**.
+**Giai đoạn:** Game theo chương (D-029), thiết kế v2 (D-034…D-036). **Chương 1 "Tổng tắc" đã ghép đủ T-150…T-159** (bot 4/4 PASS, 355 test PASS). Bản chơi thử `build/windows/KyTucXa.exe` (tag `v0.2-ch1`). **Chờ chủ dự án chơi thử** theo `docs/playtest/CH1_PLAYTEST.md`.
 **Repo:** https://github.com/tuaanh666/ky-tuc-xa-sau-12-gio (private)
 
 ## Đã xong
@@ -48,7 +48,7 @@
 | T-135 Bóng người, gương phản chiếu chậm | B | done (review 2026-10-03) |
 | T-136 Đoạn 3–5 và cái kết | core | review: chờ chủ dự án chơi thử cả demo |
 | **Chương 1 "Tổng tắc" (2026-10-04 → 2026-10-07)** | | |
-| T-150 Hợp đồng chung, luồng chương, kịch bản, ghép | core | **doing**: hợp đồng chung xong |
+| T-150 Hợp đồng chung, luồng chương, kịch bản, ghép | core | **done**: chờ chủ dự án chơi thử |
 | T-151 Nằm giường, nín thở, tiếng động, cúi, điện thoại, đèn pin, trạm câu đố | A | **done**, đã merge |
 | T-152 Quản lý, xác đổi tư thế khi không bị nhìn | A | **done**, đã merge |
 | T-153 Phòng 407 chi tiết, máu me, giường bị chém | B | **done**, đã merge |
