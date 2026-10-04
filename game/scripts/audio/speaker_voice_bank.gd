@@ -11,7 +11,11 @@ const KEYS: Array[String] = [
 
 
 static func load_clip(directory: String, locale: String, key: String) -> AudioStream:
-	if not KEYS.has(key) or locale not in ["vi", "en"] or directory.is_empty():
+	var chapter_key := key.begins_with("SPK_CH1_")
+	for character in key:
+		if not character in "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_":
+			chapter_key = false
+	if (not KEYS.has(key) and not chapter_key) or locale not in ["vi", "en"] or directory.is_empty():
 		return null
 	var path := directory.path_join(locale).path_join(key + ".ogg")
 	if not ResourceLoader.exists(path, "AudioStream"):

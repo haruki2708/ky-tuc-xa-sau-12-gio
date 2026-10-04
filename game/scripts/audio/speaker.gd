@@ -17,6 +17,8 @@ const BURST: AudioStream = preload("res://audio/sfx/speaker_static_burst.ogg")
 @export_dir var voice_directory: String = "res://audio/voice"
 ## Settings is the runtime default; fixed locales support the audition fixture.
 @export_enum("Settings", "vi", "en") var voice_locale: String = "Settings"
+## Chapter 1 replaces the demo jingle with a relay/noise start and short line hiss.
+@export var chapter_profile: bool = false
 
 var stage: Stage = Stage.IDLE
 var _background: AudioStreamPlayer3D
@@ -56,7 +58,7 @@ func play_announcement(lines: Array, line_seconds: float = 4.0) -> void:
 	_line_seconds = line_seconds
 	_line_index = 0
 	stage = Stage.POWER_ON
-	_play_effect(POWER_ON)
+	_play_effect(Ch1AudioBank.clip("pa_on") if chapter_profile else POWER_ON)
 
 
 func stop_emitting() -> void:
@@ -106,6 +108,12 @@ func _play_effect(clip: AudioStream) -> void:
 func _on_effect_finished() -> void:
 	match stage:
 		Stage.POWER_ON:
+			if chapter_profile:
+				stage = Stage.LINES
+				_sync_layers()
+				_background.play()
+				_begin_line()
+				return
 			stage = Stage.CHIME
 			_play_effect(CHIME)
 		Stage.CHIME:
@@ -135,6 +143,10 @@ func _begin_line() -> void:
 		_remaining = maxf(_line_seconds, _voice.stream.get_length() + 0.4)
 		_voice.play()
 	if entry["garbled"]:
+		_burst.stream = BURST
+		_burst.play()
+	elif chapter_profile:
+		_burst.stream = Ch1AudioBank.clip("pa_burst")
 		_burst.play()
 	# Caller chooses the key (e.g. RULE_3_GARBLED); never reveal hidden text here.
 	# No work after emit: subscribers may cancel/restart the announcement.

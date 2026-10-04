@@ -119,3 +119,36 @@ Nguồn **mọi file** trong bảng: text CSV của dự án + eSpeak NG/giọng
 | `SPK_NAME_TRUNG_AGAIN` | Giọng `vi`, 95 WPM thay vì 145, giữ ngắt ba chấm; bỏ chỉ dẫn chậm hơn |
 | `SPK_AND_ONE_MORE` | Giọng theo locale |
 | `SPK_AND_TRUNG` | Bản Anh ghép phần tên bằng `vi`, hai phần xung quanh `en-gb` |
+
+## T-158 — Foley chương 1, nội dung AI-assisted
+
+**Nguồn toàn bộ 29 âm mới:** [ch1_process.py của dự án](https://github.com/tuaanh666/ky-tuc-xa-sau-12-gio/blob/lane-e/T-158-ch1-audio/audio_source/ch1_process.py). **Tác giả:** Lane E/dự án, mã tổng hợp và xử lý được **OpenAI Codex** hỗ trợ tạo; khai báo AI-assisted khi phát hành. **Giấy phép waveform gốc và bản xử lý: [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/)**. Không mẫu thu, không âm trích video/game, không neural model hoặc clone giọng. Tiếng hét là tổng hợp glottal/formant, chưa được chủ dự án nghe duyệt.
+
+Công cụ build có sẵn: Python 3.14 chuẩn và FFmpeg 9.0.2/libvorbis (bản `full_build-www.gyan.dev` ghi chính xác trong `audio_source/ch1/build_report.json`); không đóng gói công cụ vào game. Nguồn công cụ: [Python](https://www.python.org/), [FFmpeg](https://ffmpeg.org/), [Vorbis](https://xiph.org/vorbis/). Engine hiệu ứng runtime: Godot 4.7.2 có sẵn. Không cài plugin hoặc công cụ mới.
+
+Mọi basename dưới đây ánh xạ **đủ hai file** `audio_source/ch1/raw/<name>.wav` và `game/audio/ch1/<name>.ogg`. Cùng nguồn/tác giả/CC0 như trên; seed, hash, thời lượng và LUFS từng file trong report. HP35/LP8500, fade one-shot, crossfade loop, gain đo theo LUFS; bản soft thêm LP700.
+
+| Basename | Cách tạo âm |
+|---|---|
+| `manager_step_01`, `manager_step_02` | Xung trọng lượng trầm, nhiễu tiếp đất, hai cộng hưởng khác nhau |
+| `manager_drag` | Ma sát noise điều biên, kim loại trượt lệch tần; loop6 s |
+| `manager_knock` | Ba xung gõ trầm cách nhau |
+| `slash_mattress_01`, `slash_mattress_02` | Gió chém, va đập, xé vải lọc trầm |
+| `slash_wood_01`, `slash_wood_02` | Gió chém, thân gỗ cộng hưởng và vỡ ngắn |
+| `manager_kill` | Ba lớp chém/va đập dồn trong2 s |
+| `kill_soft`, `slash_soft` | Va đập trầm, bỏ lớp chi tiết xé/vỡ, nhỏ hơn |
+| `scream_01`, `scream_02`, `scream_03`, `scream_04` | Harmonic glottal theo formant nguyên âm, pitch/duration/vibrato khác nhau, noise hơi |
+| `call_ring` | Hai tiếng tít 440/660 Hz, vòng3 s |
+| `call_disconnect` | Ba tiếng ngắt kết nối ngắn |
+| `call_drop` | Điện thoại va gạch và13 mảnh kính tổng hợp; lọc qua PhoneSFX khi phát |
+| `blood_drip` | Giọt lỏng đổi cao độ, noise va gạch không đều; loop8 s |
+| `corpse_rustle` | Nhiễu ma sát vải khẽ theo envelope |
+| `heartbeat` | Hai xung tim trầm; API tăng nhịp, không tăng gain |
+| `breath_gasp` | Noise hơi trầm, envelope hít/thở gấp |
+| `bunk_climb`, `bunk_creak` | Xung chân/tay trên sắt và cộng hưởng sắt giường |
+| `wall_knock` | Ba xung gõ tường trầm |
+| `locker_unlock` | Chốt/cơ cấu khóa và thân tủ kim loại |
+| `charger_plug` | Tiếng cắm cơ khí ngắn |
+| `pa_on`, `pa_burst` | Relay bật, noise và cộng hưởng loa cũ; không có lời thoại |
+
+Nhạc Ch1Music dùng lại **drone_base/drone_tension của T-133**, cùng tác giả/CC0 ở mục T-133, không tạo hoặc sửa file nhạc cũ. Giọng T-159 chưa có trong task này; Speaker/ManagerAudio/PhoneCallAudio chỉ chuẩn bị API nạp clip và fallback.
