@@ -41,8 +41,37 @@
 6. **Test:** mất/nối lại kết nối và câu bị bỏ lỡ; snapshot; sơ đồ đánh dấu và lưu; khóa kẹt sau 3 lần sai, đếm ngược, mở lại.
 
 ## Checklist hoàn thành
-- [ ] `pwsh tools/test.ps1` và `pwsh tools/check.ps1` PASS
-- [ ] Ảnh chụp: mất kết nối, sơ đồ, camera, khóa kẹt (vi và en)
-- [ ] Handoff
+- [x] `pwsh tools/test.ps1` và `pwsh tools/check.ps1` PASS
+- [x] Ảnh chụp: mất kết nối, sơ đồ, camera, khóa kẹt (vi và en)
+- [x] Handoff
 
 ## Handoff (agent điền)
+
+### Đã làm (2026-10-05, Lane D)
+- Base `c97874e` (`origin/main`), commit triển khai `8843256`, đã push lên `lane-d/T-163-ch1v2-phone-map-lock` trước khi cập nhật Handoff. Chỉ sửa phạm vi card và thêm 17 key vi/en; không sửa core, dữ liệu nhiệm vụ hay STATUS.
+- Cuộc gọi mất mạng: lọc đúng `call_id`, dòng mất kết nối, biểu tượng mạng gạch chéo, thành viên mờ. Câu `spoken` nhận trong lúc mất mạng không vào lịch sử, không phát phụ đề; nối lại ghi đúng một dòng hệ thống, không phát lại câu đã bỏ lỡ. Hết pin xóa trạng thái cuộc gọi.
+- Sơ đồ đủ 48 phòng 101–608, đánh dấu X đỏ bằng tay, chú thích 407 là phòng mình. Không đọc vị trí quản lý. Snapshot JSON vẫn version 1, tương thích bản cũ; thêm mất mạng, dấu phòng, tab, trạng thái mở khóa camera và camera đang chọn.
+- Camera lấy texture trực tiếp từ group `cctv_feed`, không tạo camera gameplay. Shader đen trắng, nhiễu, dòng quét, lấy mẫu 320×180; nhãn camera, giờ và chấm đỏ REC. Focus làm điện thoại rung nhẹ và hiện thông báo trên điện thoại 5 giây; chỉ tự đổi tab/camera khi đang giơ máy, không tự giơ máy. Khi bật Giảm hù dọa, không rung và `cctv_kill` che hoàn toàn hình bằng nhiễu trắng 1,5 giây.
+- Khóa `max_attempts > 0` có nút **Thử mở**: chỉ tính mã đã xác nhận, không tính các nấc xoay trung gian. Đủ lần sai thì vô hiệu hóa vòng số/nút thử, đếm ngược và phát âm fallback hiện có; phát noise một lần tại `player_path` (mặc định `../Player`), bán kính 12 m, source `alarm`. Khóa không giới hạn giữ hành vi tự kiểm tra cũ.
+- Lưu số lần sai ở `puzzle_attempts_<id>` và giây kẹt còn lại ở `puzzle_lockout_<id>` trong GameState; đóng/mở panel không xóa. Đếm khi panel đang mở hoặc gameplay đang chạy; menu khác tạm dừng đồng hồ. Hết thời gian thì nhận mã lại và reset số lần sai về 0. Khôi phục checkpoint không phát lại âm/noise. Đây là trạng thái tại thời điểm checkpoint được lưu, không ghi đè checkpoint cũ sau mỗi lần thử.
+- `ui/death/blood_overlay.tscn` layer 29, dưới DeathScreen 30: viền đỏ lan/vệt chảy cho fall_back, bed_burst; manager_kill phủ máu ngay khung hình đầu rồi chảy. Giảm hù dọa chỉ viền tối. Không pause/giữ input; tự xóa khi checkpoint/chương bắt đầu; `none` không phủ máu.
+- Thêm 5 test hồi quy về mất/nối mạng, câu bị bỏ lỡ, snapshot cũ/mới, điều khiển và dấu phòng, camera/accessibility, khóa 3 lần/60 giây/noise/khôi phục/mở lại, lifecycle hiệu ứng chết.
+
+### Điều khiển và kiểm tra
+- Giơ điện thoại bằng Q như cũ. `[` / `]` đổi tab (bỏ qua Camera khi chưa mở khóa); có nút chuột trên thanh tab. Không đổi mouse mode hay pause gameplay.
+- Tab Sơ đồ: mũi tên chọn phòng, Enter đánh dấu/bỏ dấu; có thể bấm trực tiếp ô phòng khi con trỏ đang hiển thị. Tab Camera: `,` / `.` hoặc hai nút mũi tên để đổi camera. WASD, Q/F, Tab sổ và lựa chọn 1–4 giữ nguyên.
+- Chạy `pwsh tools/test.ps1`: **`RESULT: 360 passed, 0 failed`**, exit 0. Chạy `pwsh tools/check.ps1`: **`RESULT: check 0 error(s)`**, exit 0. Log tại `build/T-163/test.log`, `build/T-163/check.log` (ignored). Có warning UID texture của model kit có sẵn; không có engine error.
+- Đã chụp và xem ảnh 1920×1080 tại `game/ui/phone_missions_previews/`: `lost_vi/en`, `map_vi/en`, `camera_vi/en`, `lock_vi/en`; thêm `blood_vi`, `blood_reduced_vi`, `static_vi`. PNG qua LFS, kèm `.import`, nguồn trong CREDITS.md. Đã thu gọn nút để sơ đồ không lấn dải phụ đề.
+- Scene thử riêng: `res://ui/phone_missions_preview.tscn`, đối số `-- --missions-ui=map_vi` (các mode khác theo tên ảnh), chụp frame 4 với `--fixed-fps 30 --quit-after-frames=8`. Dùng APPDATA riêng trên D: vì mode accessibility đổi setting của môi trường thử.
+- Ảnh camera dùng **fixture** ảnh hành lang của dự án để kiểm tra hợp đồng texture/shader; không phải ảnh camera gameplay thật. Chưa chơi trọn chương 1 v2 sau ghép, chưa chạy bot v2/export/package, chưa nghe đánh giá chất lượng âm báo động.
+
+### Yêu cầu thay đổi ngoài phạm vi
+1. **Core T-160:** cập nhật `game/data/puzzles/locker_combo_dat.tres` theo N1: `solution = "2109"`, `max_attempts = 3`, `lockout_seconds = 60.0`, `hint_document = &""`. Base hiện vẫn 1407/có hint/không giới hạn, nên panel gameplay chỉ bật giới hạn sau thay đổi dữ liệu này. Không tăng số lần sai thêm tại station để tránh đếm hai lần.
+2. **Core T-160:** ghép `res://ui/death/blood_overlay.tscn` vào `game/scenes/main/chapter1.tscn`; phát `player_death_started(kind)` trước `player_failed(reason)` như D-042. Giữ PuzzlePanel cạnh Player hoặc đặt `player_path` đúng để noise có vị trí thực.
+3. **Core T-160 + B T-165:** ghép node `cctv_feed` có `camera_id`, `label_key`, `get_texture()`, phát unlock/focus/scare đúng beat; phát lost/restored với ID cuộc gọi hiện tại. UI và các signal đã sẵn sàng; không thêm dựng cảnh/camera trong lane D.
+4. **Lane E T-164:** khi clip khóa báo động có sẵn, gán `PuzzlePanel.alarm_sound` thay fallback `door_latch.ogg`; bảo đảm phần voice cũng bỏ câu nói trong khoảng mất mạng (UI chỉ sở hữu lịch sử/phụ đề).
+5. **Core export:** loại `ui/phone_missions_previews/*`, `ui/phone_missions_preview*`, `scripts/ui/phone_missions_preview.gd*` khỏi bản phát hành. **Lane C:** bot khóa giới hạn cần bấm `Root/Card/Content/Submit` sau khi đặt các vòng số.
+
+### Còn dở / chặn
+- Không còn mục checklist chưa đạt trong phạm vi Lane D. Không bị chặn triển khai; các bước ghép cảnh/dữ liệu/âm thanh/bot nêu trên thuộc lane khác.
+- Không thêm luật chơi hay lời thoại cốt truyện; dùng dữ liệu đã chốt trong đặc tả và fixture kỹ thuật tách riêng. Chưa có câu hỏi thiết kế mới.
