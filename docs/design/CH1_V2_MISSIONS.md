@@ -110,6 +110,19 @@
 - Các phòng này là **phòng tiêu chuẩn** (dùng lại khung phòng 407 cũ 4×5 m, bày đồ khác), đặt ở một khu riêng ngoài tòa nhà, chỉ nhìn qua camera.
 - **Camera hành lang tầng 4:** thấy quản lý đi tới 407 lúc cuối vòng 2.
 
+## Cảnh chết (D-042)
+Mọi cái chết của người chơi đều có **cảnh chết góc nhìn thứ nhất** (khoảng 3 giây) trước màn "Bạn đã chết".
+- Core phát `EventBus.player_death_started(kind)`: lane A diễn cảnh bằng camera và hạt máu, lane D phủ máu lên màn hình, lane E phát âm. Sau đó core phát `player_failed(reason)` như cũ.
+
+| `kind` | Khi nào | Cảnh |
+|---|---|---|
+| `fall_back` | Bước ra khỏi phòng (`DEATH_LEFT_ROOM`), bị lôi ra (`DEATH_DRAGGED_OUT`) | Cơ thể khựng lại, **máu phụt** từ ngực hoặc cổ vào tầm nhìn, **ngã ngửa ra sau**, camera đập xuống sàn rồi nhìn lên trần, máu loang, thở hắt, tối dần |
+| `manager_kill` | Bị quản lý phát hiện (`DEATH_HEARD`, `DEATH_OWN_BED`, `DEATH_NOT_IN_BED`, `DEATH_SEEN`) | **Jumpscare:** camera bị khóa nhìn quản lý, ông ta lao tới, mặt sát camera, dao chém xuống, **máu bắn kín màn hình**, camera ngã nghiêng |
+| `bed_burst` | Nằm lì trên giường lúc 4 giờ (`DEATH_STAYED_IN_BED`) | Máu trào lên từ dưới khung nhìn, cơ thể co giật, màn hình đỏ dần |
+| `none` | Minh Nhật chết (`DEATH_LOST_NHAT`) | Không có cảnh của người chơi; nghe cảnh của Minh Nhật qua cuộc gọi rồi tối |
+
+- **"Giảm hù dọa":** không có mặt sát camera và máu bắn kín màn hình; chỉ ngã và tối dần.
+
 ## Lý do chết mới
 | Key | Câu |
 |---|---|

@@ -33,7 +33,12 @@
    - Đổi camera bằng nút trên tab (chuột, hoặc phím không đụng di chuyển).
    - `cctv_focus_requested(camera_id)`: rung và thông báo "Camera 102: có chuyển động"; nếu đang giơ máy thì tự chuyển sang camera đó.
    - Có "Giảm hù dọa": khi core phát `scare_triggered(&"cctv_kill")` thì màn hình nhiễu trắng trong khoảng 1,5 giây.
-5. **Test:** mất/nối lại kết nối và câu bị bỏ lỡ; snapshot; sơ đồ đánh dấu và lưu; khóa kẹt sau 3 lần sai, đếm ngược, mở lại.
+5. **Máu trên màn hình khi chết (D-042):** lớp phủ toàn màn hình (`ui/death/blood_overlay.tscn`) nghe `EventBus.player_death_started(kind)`:
+   - `fall_back`, `bed_burst`: viền đỏ lan dần, vài vệt máu chảy xuống;
+   - `manager_kill`: **vệt máu bắn kín** màn hình trong một khung hình, rồi chảy xuống;
+   - nằm dưới màn chết (`DeathScreen`) và tự xóa khi `checkpoint_loaded`/`chapter_started`;
+   - "Giảm hù dọa": chỉ viền tối, không vệt máu.
+6. **Test:** mất/nối lại kết nối và câu bị bỏ lỡ; snapshot; sơ đồ đánh dấu và lưu; khóa kẹt sau 3 lần sai, đếm ngược, mở lại.
 
 ## Checklist hoàn thành
 - [ ] `pwsh tools/test.ps1` và `pwsh tools/check.ps1` PASS

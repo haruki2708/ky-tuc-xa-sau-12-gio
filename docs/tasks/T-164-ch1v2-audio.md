@@ -15,9 +15,14 @@
 5. **Khóa số kẹt:** chuông báo động ngắn, chói, nhưng vẫn trong mức đã duyệt (tham chiếu −30 LUFS).
 6. **Chuông điện thoại của Kiệt nghe qua cuộc gọi** (một đoạn chuông khác chuông của Trung).
 7. **Mất kết nối:** dùng lại `call_disconnect` của T-158; thêm tiếng nối lại.
-8. **Camera an ninh:** tiếng rè nền rất khẽ khi xem tab Camera; tiếng nhiễu chuyển kênh. Cảnh giết trên camera nghe qua cuộc gọi (đã có), không cần thêm âm cho từng cảnh.
-9. Ghi `CREDITS.md`, LUFS từng âm; cảnh thử nghe từng âm.
-10. **Test:** đủ file, đúng bus, API chuỗi gõ đúng số nhịp và thứ tự.
+8. **Cảnh chết (D-042):** nghe `EventBus.player_death_started(kind)`.
+   - `fall_back`: máu phụt, thở hắt nghẹn, thân người đập xuống sàn gạch.
+   - `bed_burst`: máu trào, co giật trên giường sắt.
+   - `manager_kill`: dùng `manager_kill` của T-158 (đừng phát trùng nếu `Ch1PlayerAudio` đã phát), thêm tiếng thịt bị chém sát tai.
+   - "Giảm hù dọa": nhẹ và ít chi tiết hơn.
+9. **Camera an ninh:** tiếng rè nền rất khẽ khi xem tab Camera; tiếng nhiễu chuyển kênh. Cảnh giết trên camera nghe qua cuộc gọi (đã có), không cần thêm âm cho từng cảnh.
+10. Ghi `CREDITS.md`, LUFS từng âm; cảnh thử nghe từng âm.
+11. **Test:** đủ file, đúng bus, API chuỗi gõ đúng số nhịp và thứ tự.
 
 ## Checklist hoàn thành
 - [ ] `pwsh tools/test.ps1` và `pwsh tools/check.ps1` PASS

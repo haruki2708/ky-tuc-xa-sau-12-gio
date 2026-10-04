@@ -192,5 +192,9 @@ signal entity_state_changed(entity_id: StringName, state: StringName)
 ## watcher while it lasts (STORY.md §5.2: silence is its only sign).
 signal watcher_active(active: bool, position: Vector3)
 
+## The player's death scene begins (D-042), before player_failed and the
+## death screen. kind: &"fall_back", &"manager_kill", &"bed_burst", &"none".
+signal player_death_started(kind: StringName)
+
 ## An entity caught the player. Story adds deviation and reloads.
 signal player_caught(entity_id: StringName)

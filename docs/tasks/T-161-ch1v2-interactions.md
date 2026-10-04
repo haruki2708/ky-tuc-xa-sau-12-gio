@@ -31,13 +31,22 @@ Các đồ vật và thao tác người chơi cần cho 8 nhiệm vụ mới c�
    - Mô hình do lane B làm (T-162); lane A làm vùng tương tác và trạng thái, gắn vào anchor của B.
 6. **Tủ khóa số:** trạm câu đố hiện có giữ nguyên. Giới hạn số lần thử do panel của lane D (T-163) xử lý.
 7. **Quản lý:** thêm chế độ nghe cử động. Export `hear_movement_while_present: bool`; khi bật, mọi `noise_emitted` có `source` là `move` hoặc `step` trong 4 m từ đầu, kể từ lúc quản lý vào phòng tới lúc rời phòng, đều làm phát `answered(true)` sớm (hoặc signal riêng `heard_movement`). Tiếng thở vẫn chỉ tính trong lúc nghe sau câu hỏi.
-8. **Test:**
+8. **Cảnh chết góc nhìn thứ nhất (D-042):** đọc mục "Cảnh chết" trong `CH1_V2_MISSIONS.md`.
+   - Player nghe `EventBus.player_death_started(kind)` và diễn trong khoảng 3 giây: khóa điều khiển, camera chuyển động, hạt máu.
+   - **`fall_back`:** khựng lại, máu phụt (GPUParticles kiểu PS1, hạt to, đỏ sẫm) từ phía dưới khung nhìn, ngã ngửa ra sau, camera chạm sàn nhìn lên trần, thở dốc chậm dần.
+   - **`manager_kill`:** quay camera nhìn thẳng vào quản lý (`DormManager` trong scene; không có thì giữ hướng), giữ khoảng 0,8 giây cho cú lao và chém của quản lý (`kill_player()` đã có), máu bắn lên camera, ngã nghiêng sang bên.
+   - **`bed_burst`:** đang nằm, máu trào lên trong khung nhìn, camera rung co giật, chậm dần.
+   - Xong thì phát signal riêng `death_animation_finished` của Player.
+   - **"Giảm hù dọa":** không có hạt máu bắn vào camera, chỉ ngã.
+   - Tải lại checkpoint (scene mới) thì Player trở lại bình thường.
+9. **Test:**
    - gõ tường phát đúng signal;
    - `max_breath_seconds`;
    - chỗ lục chỉ lục một lần và mở giấy;
    - ổ điện `trip`/`set_locked`;
    - dây mạng cắm/rút đúng `cable_id`;
-   - quản lý nghe cử động khi bật cờ, không nghe tiếng thở ngoài lúc nghe.
+   - quản lý nghe cử động khi bật cờ, không nghe tiếng thở ngoài lúc nghe;
+   - mỗi `kind` của cảnh chết khóa điều khiển, đưa camera về tư thế cuối đúng và phát `death_animation_finished`.
 
 ## Checklist hoàn thành
 - [ ] `pwsh tools/test.ps1` và `pwsh tools/check.ps1` PASS
