@@ -47,6 +47,9 @@ signal rule_entry_added(rule_id: StringName, source: StringName)
 ## The player marked or unmarked a rule line as suspicious in the notebook.
 signal rule_suspicion_changed(rule_id: StringName, suspected: bool)
 
+## Documents pinned as evidence to a rule line changed (RuleSystem.evidence_for).
+signal rule_evidence_changed(rule_id: StringName)
+
 ## A ruled situation was decided. outcome is one of RuleSystem.OUTCOME_*.
 ## rule_id is empty when no line governs the situation.
 signal rule_resolved(situation: StringName, action: StringName, outcome: StringName, rule_id: StringName)
@@ -84,3 +87,65 @@ signal chase_started(chase_id: StringName)
 
 ## A chase ended: caught = true when the pursuer got the player.
 signal chase_ended(chase_id: StringName, caught: bool)
+
+# --- Chapters (T-150, docs/design/STORY.md) ---
+
+## A chapter (one night, 1..4) began or was resumed from a checkpoint.
+signal chapter_started(chapter: int)
+
+## The player reached the end of a chapter; the next one is unlocked.
+signal chapter_finished(chapter: int)
+
+# --- Survival (T-151 lane A; entities T-152 listen) ---
+
+## Something made a sound an entity may hear. radius is how far it carries in
+## metres (STORY.md §5.1: run 12, walk 5, crouch 1.5, door slam 15, drop 10).
+## source names the cause: &"step", &"door", &"drop", &"breath"...
+signal noise_emitted(position: Vector3, radius: float, source: StringName)
+
+## The player entered (true) or left (false) a hiding spot. spot_kind is
+## &"bed", &"locker", &"stall" or &"net" (mosquito net: STORY.md §5.1).
+signal player_hidden(hidden: bool, spot_kind: StringName)
+
+## The player started (true) or stopped holding their breath while hidden.
+signal breath_held(holding: bool)
+
+# --- Phone (T-151 item, T-155 screen; D-027) ---
+
+## The player raised (true) or lowered the phone (Q).
+signal phone_raised(raised: bool)
+
+## The phone flashlight was switched on or off (F).
+signal flashlight_toggled(on: bool)
+
+## Phone battery changed, 0..100. At 0 the flashlight cannot turn on.
+signal phone_battery_changed(percent: float)
+
+## A text message arrived. Data: MessageData.load_by_id(message_id).
+signal phone_message_received(message_id: StringName)
+
+# --- Puzzles (T-151 stations, T-155 close-up panels) ---
+
+## The player opened a puzzle close-up (combination lock, fuse box...).
+signal puzzle_opened(puzzle_id: StringName)
+
+## The puzzle close-up was closed (solved or not).
+signal puzzle_closed(puzzle_id: StringName)
+
+## The puzzle was solved. Story and the station react; the panel closes.
+signal puzzle_solved(puzzle_id: StringName)
+
+# --- Entities (T-152; audio T-158 and music listen) ---
+
+## An entity changed state. entity_id: &"walker" (Người đi dép), &"watcher"
+## (Người thứ năm). state for the walker: &"idle", &"patrol", &"listen",
+## &"search", &"chase", &"lost"; for the watcher: &"hidden", &"watching",
+## &"closing_in".
+signal entity_state_changed(entity_id: StringName, state: StringName)
+
+## A watcher period began (true) or ended. Ambience fades out around the
+## watcher while it lasts (STORY.md §5.2: silence is its only sign).
+signal watcher_active(active: bool, position: Vector3)
+
+## An entity caught the player. Story adds deviation and reloads.
+signal player_caught(entity_id: StringName)

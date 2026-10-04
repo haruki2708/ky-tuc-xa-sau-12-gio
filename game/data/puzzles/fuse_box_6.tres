@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="PuzzleData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/core/puzzle_data.gd" id="1_puz"]
+
+[resource]
+script = ExtResource("1_puz")
+id = &"fuse_box_6"
+kind = &"fuse_box"
+title_key = "PUZZLE_FUSE_6_TITLE"
+solution = "10010"
+label_keys = Array[String](["FUSE_MAIN_6", "FUSE_CORRIDOR_6", "FUSE_STAIRS", "FUSE_DRYING_ROOF", "FUSE_PUMP"])
+hint_document = &"fuse_diagram_6"

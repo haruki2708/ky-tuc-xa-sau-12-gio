@@ -10,6 +10,9 @@ const MAX_DEVIATION: int = 5
 ## Minutes since 00:00 of the first day; keeps growing past midnight.
 var minutes: int = START_MINUTES
 var segment: StringName = &""
+## Night being played, 1..Progress.CHAPTER_COUNT (D-029). reset() keeps it:
+## a fresh start of the same night.
+var chapter: int = 1
 var deviation: int = 0
 ## In-game minutes per real second. 0 = the clock only moves on story beats.
 var minutes_per_second: float = 0.0
@@ -97,6 +100,7 @@ func to_dict() -> Dictionary:
 	return {
 		"minutes": minutes,
 		"segment": String(segment),
+		"chapter": chapter,
 		"deviation": deviation,
 		"flags": flags,
 	}
@@ -107,6 +111,7 @@ func from_dict(data: Dictionary) -> void:
 	reset()
 	minutes = maxi(0, int(data.get("minutes", START_MINUTES)))
 	segment = StringName(str(data.get("segment", "")))
+	chapter = maxi(1, int(data.get("chapter", 1)))
 	deviation = clampi(int(data.get("deviation", 0)), 0, MAX_DEVIATION)
 	var flags: Dictionary = data.get("flags", {})
 	for key: String in flags:

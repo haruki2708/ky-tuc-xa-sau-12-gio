@@ -281,3 +281,71 @@ func test_checkpoint_peek_reads_the_id_without_restoring() -> void:
 	assert_eq(Checkpoint.peek_id(path), &"seg3_start", "peeked;")
 	assert_eq(GameState.deviation, 0, "state untouched")
 	Checkpoint.clear(path)
+
+
+func test_chapter_contract_inputs_and_signals() -> void:
+	for action in ["crouch", "phone", "flashlight", "hold_breath"]:
+		assert_true(InputMap.has_action(action), "missing input action " + action)
+	for sig in ["chapter_started", "chapter_finished", "noise_emitted", "player_hidden", "breath_held",
+			"phone_raised", "flashlight_toggled", "phone_battery_changed", "phone_message_received",
+			"puzzle_opened", "puzzle_closed", "puzzle_solved", "entity_state_changed", "watcher_active",
+			"player_caught"]:
+		assert_true(EventBus.has_signal(sig), "EventBus signal " + sig)
+
+
+func test_progress_unlocks_and_keeps_typed_facts() -> void:
+	var path := "user://test_progress.json"
+	Progress.clear(path)
+	assert_eq(Progress.unlocked_chapter(path), 1, "fresh progress starts at chapter 1;")
+	Progress.unlock(3, path)
+	Progress.unlock(2, path)
+	assert_eq(Progress.unlocked_chapter(path), 3, "unlock never locks;")
+	Progress.unlock(9, path)
+	assert_eq(Progress.unlocked_chapter(path), Progress.CHAPTER_COUNT, "clamped to chapter count;")
+	Progress.set_fact(&"replaced_roommate", "phuc", path)
+	Progress.set_fact(&"total_deviation", 4, path)
+	var total: Variant = Progress.get_fact(&"total_deviation", 0, path)
+	assert_eq(Progress.get_fact(&"replaced_roommate", "", path), "phuc", "string fact;")
+	assert_eq(typeof(total), TYPE_INT, "int fact survives JSON;")
+	assert_eq(total, 4, "int fact value;")
+	assert_eq(Progress.get_fact(&"missing", 7, path), 7, "default;")
+	Progress.clear(path)
+
+
+func test_game_state_checkpoint_keeps_chapter() -> void:
+	GameState.reset()
+	GameState.chapter = 2
+	var snapshot := GameState.to_dict()
+	GameState.chapter = 1
+	GameState.from_dict(snapshot)
+	assert_eq(GameState.chapter, 2, "chapter restored;")
+	GameState.from_dict({})
+	assert_eq(GameState.chapter, 1, "old saves default to chapter 1;")
+	GameState.reset()
+	assert_eq(MessageData.load_by_id(&"no_such_message"), null, "missing message is null;")
+
+
+func test_rule_evidence_pins_and_survives_checkpoint() -> void:
+	var errors := RuleSystem.load_rule_set(load("res://data/rules/demo.tres"))
+	assert_eq(errors.size(), 0, "demo rules load;")
+	RuleSystem.set_evidence(&"knock_genuine", &"hall_board", true)
+	RuleSystem.set_evidence(&"knock_genuine", &"duty_log", true)
+	RuleSystem.set_evidence(&"knock_genuine", &"hall_board", true)
+	assert_eq(RuleSystem.evidence_for(&"knock_genuine"), [&"hall_board", &"duty_log"] as Array[StringName], "pinned once, in order;")
+	var snapshot := RuleSystem.to_dict()
+	RuleSystem.set_evidence(&"knock_genuine", &"hall_board", false)
+	assert_eq(RuleSystem.evidence_for(&"knock_genuine"), [&"duty_log"] as Array[StringName], "unpinned;")
+	RuleSystem.from_dict(snapshot)
+	assert_eq(RuleSystem.evidence_for(&"knock_genuine").size(), 2, "restored from checkpoint;")
+	RuleSystem.reset()
+
+
+func test_chapter_1_puzzles_load_and_check() -> void:
+	var locker := PuzzleData.load_by_id(&"locker_combo_601")
+	var fuse := PuzzleData.load_by_id(&"fuse_box_6")
+	assert_not_null(locker, "locker puzzle")
+	assert_not_null(fuse, "fuse puzzle")
+	assert_true(locker.check("304") and not locker.check("403"), "combination check;")
+	assert_eq(fuse.label_keys.size(), fuse.solution.length(), "one label per switch;")
+	for key in fuse.label_keys + [locker.title_key, fuse.title_key]:
+		assert_true(tr(key) != key, "translated " + key)

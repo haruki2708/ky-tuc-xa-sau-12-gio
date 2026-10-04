@@ -152,3 +152,14 @@ SUB_FAIL_WHY_DEVIATION,Mức lệch đã chạm 5/5. Đọc lại sổ tay (Tab)
 SUB_FAIL_WHY_FIFTH,Bạn đã trả lời thay cho một người không có trong phòng.,You answered for someone who is not in the room.
 PROMPT_OPEN_DOOR,Mở cửa,Open door
 PROMPT_CLOSE_DOOR,Đóng cửa,Close door
+PUZZLE_LOCKER_601_TITLE,Tủ sắt khóa số,Combination locker
+PUZZLE_FUSE_6_TITLE,Hộp cầu dao tầng 6,Floor 6 fuse box
+FUSE_MAIN_6,TỔNG T6,FLOOR 6 MAIN
+FUSE_CORRIDOR_6,ĐÈN HÀNH LANG T6,FLOOR 6 CORRIDOR LIGHTS
+FUSE_STAIRS,ĐÈN CẦU THANG,STAIRWELL LIGHTS
+FUSE_DRYING_ROOF,SÂN PHƠI,DRYING TERRACE
+FUSE_PUMP,BƠM NƯỚC,WATER PUMP
+CH_1_TITLE,Đêm 1 — Đếm thừa,Night 1 — One Too Many
+CH_2_TITLE,Đêm 2 — Người đi dép,Night 2 — The Slipper Walker
+CH_3_TITLE,Đêm 3 — Phòng bảo vệ bỏ hoang,Night 3 — The Empty Guard Room
+CH_4_TITLE,Đêm 4 — Điểm danh cuối,Night 4 — Last Roll Call

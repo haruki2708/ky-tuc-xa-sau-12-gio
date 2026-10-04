@@ -23,6 +23,8 @@ var _read: Array[StringName] = []
 var _entries: Array[Dictionary] = []
 var _suspected: Dictionary[StringName, bool] = {}
 var _outcomes: Dictionary[StringName, StringName] = {}
+## Documents the player pinned to a rule line as evidence (STORY.md §4).
+var _evidence: Dictionary[StringName, Array] = {}
 
 
 ## Replaces the current rules. Returns validation errors; on errors nothing changes.
@@ -46,6 +48,7 @@ func reset() -> void:
 	_entries.clear()
 	_suspected.clear()
 	_outcomes.clear()
+	_evidence.clear()
 
 
 func get_rule(rule_id: StringName) -> RuleData:
@@ -120,6 +123,34 @@ func is_suspected(rule_id: StringName) -> bool:
 	return _suspected.has(rule_id)
 
 
+## Pins (or unpins) a document the player read as evidence for a rule line.
+## Notebook (T-156) shows it under the line; order is the order pinned.
+func set_evidence(rule_id: StringName, document_id: StringName, pinned: bool) -> void:
+	if not _rules.has(rule_id):
+		push_warning("RuleSystem: unknown rule '%s'" % rule_id)
+		return
+	var docs: Array = _evidence.get(rule_id, [])
+	if pinned == docs.has(document_id):
+		return
+	if pinned:
+		docs.append(document_id)
+	else:
+		docs.erase(document_id)
+	if docs.is_empty():
+		_evidence.erase(rule_id)
+	else:
+		_evidence[rule_id] = docs
+	EventBus.rule_evidence_changed.emit(rule_id)
+
+
+## Document ids pinned to a rule line, in the order pinned.
+func evidence_for(rule_id: StringName) -> Array[StringName]:
+	var found: Array[StringName] = []
+	for document_id in _evidence.get(rule_id, []):
+		found.append(document_id)
+	return found
+
+
 ## Decides a ruled situation, applies deviation and announces consequences.
 ## Returns {outcome, rule_id, consequence, fatal}.
 func resolve(situation: StringName, action: StringName) -> Dictionary:
@@ -175,7 +206,15 @@ func to_dict() -> Dictionary:
 			return {"rule_id": String(entry["rule_id"]), "source": String(entry["source"]), "text_key": entry["text_key"]}),
 		"suspected": _suspected.keys().map(func(rule_id: StringName) -> String: return String(rule_id)),
 		"outcomes": outcomes,
+		"evidence": _evidence_to_dict(),
 	}
+
+
+func _evidence_to_dict() -> Dictionary:
+	var out := {}
+	for rule_id in _evidence:
+		out[String(rule_id)] = _evidence[rule_id].map(func(doc: StringName) -> String: return String(doc))
+	return out
 
 
 ## Restores progress for the rules already loaded. Unknown ids are dropped.
@@ -184,6 +223,11 @@ func from_dict(data: Dictionary) -> void:
 	_entries.clear()
 	_suspected.clear()
 	_outcomes.clear()
+	_evidence.clear()
+	var evidence: Dictionary = data.get("evidence", {})
+	for rule_id: String in evidence:
+		if _rules.has(StringName(rule_id)):
+			_evidence[StringName(rule_id)] = evidence[rule_id].map(func(doc: String) -> StringName: return StringName(doc))
 	for entry in data.get("entries", []):
 		if entry is Dictionary and _rules.has(StringName(str(entry.get("rule_id", "")))):
 			_entries.append({"rule_id": StringName(str(entry["rule_id"])),

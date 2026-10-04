@@ -12,6 +12,11 @@ const KEY_ACTIONS := {
 	"interact": [KEY_E],
 	"notebook": [KEY_TAB],
 	"pause": [KEY_ESCAPE],
+	# Chapter 1 (T-150): survival and the phone (docs/design/STORY.md §5).
+	"crouch": [KEY_C, KEY_CTRL],
+	"phone": [KEY_Q],
+	"flashlight": [KEY_F],
+	"hold_breath": [KEY_SPACE],
 }
 
 const MOUSE_ACTIONS := {

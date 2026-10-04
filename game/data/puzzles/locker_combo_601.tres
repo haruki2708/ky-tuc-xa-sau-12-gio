@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="PuzzleData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/core/puzzle_data.gd" id="1_puz"]
+
+[resource]
+script = ExtResource("1_puz")
+id = &"locker_combo_601"
+kind = &"combination"
+title_key = "PUZZLE_LOCKER_601_TITLE"
+solution = "304"
+label_keys = Array[String]([])
+hint_document = &"calendar_601"

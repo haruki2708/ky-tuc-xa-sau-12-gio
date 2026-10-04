@@ -49,6 +49,15 @@ func start_game(continue_saved: bool = false) -> void:
 	get_tree().change_scene_to_file(GAME_SCENE)
 
 
+## Starts a night from its beginning (title screen chapter select, T-155).
+## Chapters past 1 fall back to chapter 1 until their story exists (T-150).
+func start_chapter(chapter: int) -> void:
+	GameState.reset()
+	GameState.chapter = clampi(chapter, 1, Progress.CHAPTER_COUNT)
+	Checkpoint.clear()
+	start_game(false)
+
+
 ## Back to the title screen (pause menu, end card), or quit if there is none.
 func return_to_title() -> void:
 	if not ResourceLoader.exists(TITLE_SCENE):
