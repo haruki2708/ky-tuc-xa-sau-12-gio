@@ -1,0 +1,22 @@
+{
+  "scene": "res://scenes/main/main.tscn",
+  "director": "StoryDirector",
+  "chapter_select_scene": null,
+  "chapter2_button_path": null,
+  "bindings": {
+    "opening_segment": null,
+    "round1_segment": null,
+    "manager_segment": null,
+    "charger_puzzle": null,
+    "breath_seconds": null,
+    "solution_choice": null,
+    "solution_index": null,
+    "death_ui_path": null,
+    "opening_checkpoint": null,
+    "round1_checkpoint": null,
+    "manager_checkpoint": null,
+    "stay_failure_rule": null,
+    "leave_failure_rule": null,
+    "bed_failure_rule": null
+  }
+}

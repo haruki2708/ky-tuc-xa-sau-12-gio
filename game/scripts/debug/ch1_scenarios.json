@@ -1,0 +1,65 @@
+{
+  "ch1_good": {
+    "steps": [
+      {"op":"wait_segment","id":"$opening_segment"},
+      {"op":"leave_bed"},
+      {"op":"opening_deadline"},
+      {"op":"goto","position":[2,0.03,-2.5]},
+      {"op":"still","seconds":0.25},
+      {"op":"goto","position":[32,0.03,-2]},
+      {"op":"wait_segment","id":"$round1_segment"},
+      {"op":"phone","raised":true},
+      {"op":"wait_call"},
+      {"op":"answer_call"},
+      {"op":"puzzle","id":"$charger_puzzle"},
+      {"op":"save_reload"},
+      {"op":"wait_segment","id":"$manager_segment"},
+      {"op":"bed","number":1},
+      {"op":"breath","seconds":"$breath_seconds"},
+      {"op":"wait_choice","id":"$solution_choice"},
+      {"op":"choice","id":"$solution_choice","index":"$solution_index"},
+      {"op":"phone","raised":false}
+    ]
+  },
+  "ch1_stay_in_bed": {
+    "checkpoint":"$opening_checkpoint","failure_rule":"$stay_failure_rule",
+    "steps":[
+      {"op":"wait_segment","id":"$opening_segment"},
+      {"op":"bed","number":3},
+      {"op":"death_ui","path":"$death_ui_path"}
+    ]
+  },
+  "ch1_leave_room": {
+    "checkpoint":"$round1_checkpoint","failure_rule":"$leave_failure_rule",
+    "steps":[
+      {"op":"wait_segment","id":"$opening_segment"},
+      {"op":"leave_bed"},
+      {"op":"opening_deadline"},
+      {"op":"goto","position":[2,0.03,-2.5]},
+      {"op":"still","seconds":0.25},
+      {"op":"goto","position":[32,0.03,-2]},
+      {"op":"wait_segment","id":"$round1_segment"},
+      {"op":"goto","position":[32,0.03,1.2]},
+      {"op":"death_ui","path":"$death_ui_path"}
+    ]
+  },
+  "ch1_own_bed": {
+    "checkpoint":"$manager_checkpoint","failure_rule":"$bed_failure_rule",
+    "steps":[
+      {"op":"wait_segment","id":"$opening_segment"},
+      {"op":"leave_bed"},
+      {"op":"opening_deadline"},
+      {"op":"goto","position":[2,0.03,-2.5]},
+      {"op":"still","seconds":0.25},
+      {"op":"goto","position":[32,0.03,-2]},
+      {"op":"wait_segment","id":"$round1_segment"},
+      {"op":"phone","raised":true},
+      {"op":"wait_call"},
+      {"op":"answer_call"},
+      {"op":"puzzle","id":"$charger_puzzle"},
+      {"op":"wait_segment","id":"$manager_segment"},
+      {"op":"bed","number":3},
+      {"op":"death_ui","path":"$death_ui_path"}
+    ]
+  }
+}

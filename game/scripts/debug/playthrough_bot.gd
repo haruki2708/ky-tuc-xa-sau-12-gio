@@ -33,11 +33,15 @@ func _ready() -> void:
 			segment_timeout = float(arg.trim_prefix("--segment-timeout="))
 		elif arg.begins_with("--capture-dir="):
 			capture_dir = arg.trim_prefix("--capture-dir=")
-	if scenario not in ["correct", "deviant", "mirror"] or story_scale <= 0.0 or segment_timeout <= 0.0:
+	if scenario not in valid_scenarios() or story_scale <= 0.0 or segment_timeout <= 0.0:
 		failure = "invalid bot arguments"
 		_finish.call_deferred()
 		return
 	_run.call_deferred()
+
+
+func valid_scenarios() -> Array[String]:
+	return ["correct", "deviant", "mirror"]
 
 
 func _run() -> void:

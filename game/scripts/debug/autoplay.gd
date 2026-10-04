@@ -2,6 +2,12 @@ extends Node
 ## Optional QA autoload. Idle unless --autoplay=<path> is supplied.
 
 signal playback_finished
+signal command_finished(outcome: Dictionary)
+
+const CHAPTER_ACTIONS := preload("res://scripts/debug/chapter_actions.gd")
+var _commands: Node
+var _command_busy: bool = false
+var command_failed: bool = false
 
 var quit_on_finish: bool = true
 var _events: Array[Dictionary] = []
@@ -14,6 +20,10 @@ var _active: bool = false
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
+	# Observe calls/choices before the first scheduled command; otherwise an
+	# answer_call event would miss an already ringing phone.
+	_commands = CHAPTER_ACTIONS.new()
+	add_child(_commands)
 	for arg in OS.get_cmdline_user_args():
 		if arg.begins_with("--autoplay="):
 			if not load_recording(arg.trim_prefix("--autoplay=")):
@@ -41,8 +51,12 @@ func load_recording(path: String) -> bool:
 		previous = int(number)
 		var operations: int = 0
 		for key: Variant in event:
-			if key not in ["frame", "press", "release", "mouse_dx", "mouse_dy"]:
+			if key not in ["frame", "press", "release", "mouse_dx", "mouse_dy", "command"]:
 				return false
+		if event.has("command"):
+			if not event.command is Dictionary or not CHAPTER_ACTIONS.valid(event.command) or event.size() != 2:
+				return false
+			operations += 1
 		for key: String in ["press", "release"]:
 			if event.has(key):
 				if not event[key] is String or not InputMap.has_action(event[key]):
@@ -61,6 +75,7 @@ func load_recording(path: String) -> bool:
 	_cursor = 0
 	_end_frame = maxi(previous, 0) + 30
 	_active = true
+	command_failed = false
 	print("AUTOPLAY: loaded %d events from %s" % [_events.size(), path])
 	return true
 
@@ -70,10 +85,14 @@ func _is_number(value: Variant) -> bool:
 
 
 func _process(_delta: float) -> void:
-	if not _active:
+	if not _active or _command_busy:
 		return
 	while _cursor < _events.size() and int(_events[_cursor]["frame"]) == _frame:
 		var event: Dictionary = _events[_cursor]
+		if event.has("command"):
+			_cursor += 1
+			_run_command(event.command)
+			return
 		if event.has("press"):
 			var action := StringName(event["press"])
 			Input.action_press(action)
@@ -100,9 +119,25 @@ func _process(_delta: float) -> void:
 
 func stop() -> void:
 	_active = false
+	if is_instance_valid(_commands):
+		_commands.cancel()
 	for action: StringName in _held:
 		Input.action_release(action)
 	_held.clear()
+
+
+func _run_command(command: Dictionary) -> void:
+	_command_busy = true
+	_commands.world = get_tree().current_scene
+	var outcome: Dictionary = await _commands.execute(command)
+	print("AUTOPLAY_COMMAND: %s %s" % [outcome.status, outcome.reason])
+	command_finished.emit(outcome)
+	_command_busy = false
+	if outcome.status == "FAIL":
+		command_failed = true
+		stop()
+		if quit_on_finish:
+			get_node("/root/App").quit(1)
 
 
 func _exit_tree() -> void:

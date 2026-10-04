@@ -24,7 +24,39 @@ Mọi luồng đều kiểm tra đủ sáu mốc seg1–seg5/end, đúng ending 
 
 Bot chạy khi pause để xử lý giấy và timeout; scene game được đặt `PAUSABLE` riêng để giữ hành vi pause như chạy main bình thường. Nếu main kế thừa `ALWAYS` từ bot, LightHum có thể bật âm thanh lại sau khi App đã dừng, gây rò rỉ tài nguyên lúc thoát. Test `pwsh tools/test.ps1 -Filter playthrough_pause` bảo vệ trường hợp này.
 
-## Autoplay theo frame
+## Chương 1 và hiệu năng (T-157)
+
+```powershell
+pwsh tools/playthrough.ps1 -Chapter 1 -Scenario all
+pwsh tools/playthrough.ps1 -Chapter 1 -Scenario ch1_good -ChapterProfile tools/ch1-profile.example.json
+pwsh tools/playthrough.ps1 -Chapter 1 -Scenario all -ChapterProfile build/ch1-profile.json -RequireComplete
+pwsh tools/playthrough.ps1 -Performance
+```
+
+`-Chapter 0` (mặc định) giữ ba kịch bản demo cũ. Chương 1 có `ch1_good`, `ch1_stay_in_bed`, `ch1_leave_room`, `ch1_own_bed`; template hành động nằm ở `game/scripts/debug/ch1_scenarios.json`. Chương 1 mặc định timeout mỗi đoạn/chờ là 120 giây thật, demo là 45; đổi bằng `-SegmentTimeout`. Nín thở/đứng yên dùng giây thật, không nhân TimeScale. Bot không tự đặt cờ sống sót hoặc mở khóa chương.
+
+**Main ngày 2026-10-04 chưa có luồng T-150, cơ chế T-151 và UI T-155.** Bốn kịch bản hiện trả SKIP có lý do; đây không phải bốn lượt chơi PASS. Launcher đếm riêng PASS/FAIL/SKIP: mặc định SKIP không gây exit lỗi; `-RequireComplete` trả exit 2 khi còn SKIP, exit 1 khi có FAIL/ERROR. Chỉ dùng kết quả không có SKIP để xác nhận chương chơi được. APPDATA riêng chứa cả progress và checkpoint, dọn sau từng lượt; log và `report.json` giữ trong `build/playthrough/<uuid>/<scenario>/`.
+
+Sau khi ghép, sao chép `ch1-profile.example.json` rồi điền **ID thật từ core** vào `bindings`, cùng scene/path nút chương 2 của T-155. Giá trị null là chưa có, không tự đoán. `opening_segment` là đoạn người chơi bắt đầu trên giường; `round1_segment` là lúc luật cấm rời phòng có hiệu lực; `manager_segment` là checkpoint chuẩn bị trước khi quản lý bước vào. `breath_seconds` phải khớp cửa sổ nín thở của luồng đã ghép (T-151 giới hạn 8 giây); `solution_choice`/`solution_index` là lựa chọn báo lời giải cho Nhật sau quản lý. Ba `*_checkpoint` và `*_failure_rule` phải trùng tín hiệu chết/tải lại thực tế; `death_ui_path` trỏ tới node có thuộc tính `visible` trong scene chương. Các tọa độ ở template theo tầng 4 hiện tại, cần đối chiếu lại khi T-153 ghép.
+
+Nhánh chết phải quan sát đúng nguyên nhân, UI hiện và scene thực sự được thay rồi tải đúng checkpoint. Nhánh tốt phải nhận `chapter_finished(1)` và `Progress.unlocked_chapter() >= 2`. Probe hiện kiểm chứng round-trip `GameState.chapter` qua checkpoint tạm; việc giữ pin/lịch sử qua **reload scene** vẫn SKIP khi thiếu phone/snapshot/restore. Khi có các thành phần này, bước `save_reload` đặt pin 37% qua API thật, lưu checkpoint hiện hành, gọi `App.start_game(true)` và so chapter/pin/snapshot sau tải lại (dung sai pin 0,5% cho hao pin theo thời gian). Không tự nhét dữ liệu pin/chat vào checkpoint để che thiếu sót core. Màn chọn chương được kiểm tra nút chương 2 bị disabled trên progress mới; kiểm tra này chưa chạy khi chưa có binding UI.
+
+Autoplay nhận thêm event độc lập `command`; các event phím/chuột cũ giữ nguyên. Ví dụ:
+
+```json
+[
+  {"frame":0,"command":{"op":"bed","number":1}},
+  {"frame":1,"command":{"op":"breath","seconds":3}},
+  {"frame":2,"command":{"op":"leave_bed"}},
+  {"frame":3,"command":{"op":"goto","position":[32,0.03,-2]}}
+]
+```
+
+Các command khác: `still` + `seconds`; `phone` + `raised` true/false; `answer_call` (dùng cuộc gọi đến đã quan sát); `choice` + `id`/`index` (lựa chọn đang chờ); `puzzle` + `id` (station phải tồn tại). Timeline frame dừng trong lúc command chờ, rồi tiếp tục; command FAIL dừng playback, SKIP ghi lý do và tiếp tục. Signal đã khai báo nhưng chưa có component nhận không được xem là hành động thành công.
+
+`-Performance` mở renderer thật, 1280×720, tắt VSync/giới hạn FPS, warm-up 90 frame và đo 240 frame mỗi góc. Có thể đổi `-WarmupFrames`/`-PerfFrames`. Bảy góc: bốn giường, cửa 407, hành lang, nhà vệ sinh. FPS trung bình = số frame / tổng thời gian thực; `p95_frame_ms` là phân vị 95 của thời gian frame (nearest rank), **đơn vị ms**, như T-112. JSON ghi CPU/GPU/renderer, cấu hình và tọa độ camera. Không đo headless/fixed-fps, không chụp ảnh trong khoảng lấy mẫu. Story tắt, Player physics/HUD/audio vẫn chạy; số đo trên main hiện tại chưa đại diện chương 1 đã ghép. Chạy riêng, không chạy test/Godot khác đồng thời để so sánh hiệu năng.
+
+## Autoplay theo frame (demo)
 
 Godot `--check-only --script` không khởi tạo tên singleton autoload. Nếu gặp lỗi `Identifier not found`, check chạy lại file đó trong scene probe với autoload của project; lỗi parse/compile thực vẫn khiến check thất bại.
 
