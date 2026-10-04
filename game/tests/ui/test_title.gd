@@ -8,6 +8,7 @@ class FakeApp:
 	var saved := false
 	var starts: Array[bool] = []
 	var quits := 0
+	var chapters: Array[int] = []
 
 	func has_saved_game() -> bool:
 		return saved
@@ -17,6 +18,9 @@ class FakeApp:
 
 	func quit() -> void:
 		quits += 1
+
+	func start_chapter(chapter: int) -> void:
+		chapters.append(chapter)
 
 class ReturnSpy:
 	extends "res://scripts/ui/pause_menu.gd"
@@ -34,11 +38,14 @@ class FailingSettings:
 var _app: FakeApp
 var _title: Control
 var _pause: ReturnSpy
+var _progress_path := ""
 
 
 func before_each() -> void:
 	super.before_each()
 	_app = FakeApp.new()
+	_progress_path = "user://test_title_progress_%d.json" % get_instance_id()
+	Progress.clear(_progress_path)
 	tree.root.add_child(_app)
 	_create_title()
 
@@ -52,6 +59,7 @@ func after_each() -> void:
 		_pause.queue_free()
 	_title.queue_free()
 	_app.queue_free()
+	Progress.clear(_progress_path)
 	await wait_frames(2)
 	super.after_each()
 
@@ -60,6 +68,7 @@ func _create_title() -> void:
 	_title = TITLE.instantiate()
 	_title.settings_path = settings.get_path()
 	_title.app_path = _app.get_path()
+	_title.progress_path = _progress_path
 	tree.root.add_child(_title)
 	# Headless uses a square 64x64 window; test the shipped 16:9 UI canvas.
 	_title.set_anchors_and_offsets_preset(Control.PRESET_TOP_LEFT)
@@ -220,3 +229,43 @@ func _key(code: Key) -> void:
 	tree.root.push_input(event, true)
 	event.pressed = false
 	tree.root.push_input(event, true)
+
+
+func test_chapter_selection_uses_temporary_progress_and_blocks_locked_chapters() -> void:
+	_title.get_node("Warning/Content/Continue").pressed.emit()
+	_title.get_node("Menu/Buttons/Chapters").pressed.emit()
+	assert_true(_title.get_node("Chapters").visible)
+	assert_false(_title.get_node("Chapters/Content/Chapter1").disabled)
+	for chapter in [2, 3, 4]:
+		assert_true(_title.get_node("Chapters/Content/Chapter%d" % chapter).disabled)
+	_title._select_chapter(4)
+	assert_true(_app.chapters.is_empty())
+	Progress.unlock(2, _progress_path)
+	_title.show_chapters()
+	assert_false(_title.get_node("Chapters/Content/Chapter2").disabled)
+	assert_true(_title.get_node("Chapters/Content/Chapter3").disabled)
+	_title.get_node("Chapters/Content/Chapter2").pressed.emit()
+	assert_eq(_app.chapters, [2])
+	assert_true(_app.starts.is_empty())
+
+
+func test_saved_chapter_requires_confirmation_and_warning_describes_chapter_content() -> void:
+	var body: Label = _title.get_node("Warning/Content/Description")
+	assert_true(body.tr(body.text).contains("máu"))
+	assert_true(body.tr(body.text).contains("động đất"))
+	TranslationServer.set_locale("en")
+	await wait_frames(1)
+	assert_true(body.tr(body.text).contains("human corpses"))
+	assert_true(body.tr(body.text).contains("earthquake"))
+	_app.saved = true
+	_title.get_node("Warning/Content/Continue").pressed.emit()
+	_title.show_chapters()
+	_title.get_node("Chapters/Content/Chapter1").pressed.emit()
+	assert_true(_title.get_node("Confirmation").visible)
+	assert_true(_app.chapters.is_empty())
+	_title.get_node("Confirmation/Content/Buttons/Cancel").pressed.emit()
+	assert_true(_title.get_node("Chapters").visible)
+	assert_true(_app.chapters.is_empty())
+	_title.get_node("Chapters/Content/Chapter1").pressed.emit()
+	_title.get_node("Confirmation/Content/Buttons/Confirm").pressed.emit()
+	assert_eq(_app.chapters, [1])

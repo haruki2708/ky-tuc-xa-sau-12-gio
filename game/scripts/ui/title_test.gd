@@ -12,6 +12,9 @@ class PreviewApp:
 	func quit() -> void:
 		App.quit()
 
+	func start_chapter(_chapter: int) -> void:
+		pass
+
 
 func _ready() -> void:
 	var app := PreviewApp.new()
@@ -24,7 +27,7 @@ func _ready() -> void:
 	for arg in OS.get_cmdline_user_args():
 		if arg.begins_with("--title-capture="):
 			screen = arg.trim_prefix("--title-capture=")
-	TranslationServer.set_locale("en" if screen == "en" else "vi")
+	TranslationServer.set_locale("en" if screen == "en" or screen.ends_with("_en") else "vi")
 	match screen:
 		"vi", "en": title.show_menu()
 		"credits": title.show_credits()
@@ -34,4 +37,5 @@ func _ready() -> void:
 			await get_tree().process_frame
 			title.get_node("Credits/Content/Scroll").scroll_vertical = 10000
 		"settings": title.show_settings()
+		"chapters", "chapters_en": title.show_chapters()
 		_: title.show_warning()

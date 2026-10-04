@@ -294,3 +294,33 @@ PROMPT_PUZZLE_OPEN,Xem khóa số,Inspect combination lock
 UI_SURVIVAL_TEST_HELP,"E: nằm/nấp/rời hoặc xem khóa. Space: nín thở. C/Ctrl: cúi. Q: điện thoại. F: đèn pin.\nPhím thử: Y bật/tắt sạc; U bật/tắt cuộc gọi; B đặt pin 1%; K giải khóa; X đóng khóa.","E: lie/hide/leave or inspect lock. Space: hold breath. C/Ctrl: crouch. Q: phone. F: flashlight.\nTest keys: Y charge; U call; B set 1% battery; K solve lock; X close lock."
 UI_SURVIVAL_TEST_STATUS,"Giường: %d | Nín thở: %s | Pin: %.1f%% | Sạc: %s | Cuộc gọi: %s\nTiếng gần nhất: %s / %.1f m","Bed: %d | Holding breath: %s | Battery: %.1f%% | Charging: %s | Call: %s\nLast noise: %s / %.1f m"
 UI_SURVIVAL_TEST_BED,Giường %d,Bed %d
+UI_CHAPTER_SELECT,Chọn chương,Select chapter
+UI_CHAPTER_LOCKED,%s — Chưa mở,%s — Locked
+UI_CHAPTER_START_CONFIRM,Bắt đầu chương này? Bản lưu của lượt chơi hiện tại sẽ được thay thế.,Start this chapter? Your current saved playthrough will be replaced.
+UI_CONTENT_WARNING_CHAPTERS,"Game có máu, cảnh chết bạo lực, xác người, cảnh hù và âm thanh lớn đột ngột; có nhắc tới thảm họa động đất. Bật Giảm hù dọa trong Cài đặt để giảm hù dọa và máu me.","This game contains blood, violent deaths, human corpses, sudden scares and loud sounds, and references to an earthquake disaster. Enable Reduce scares in Settings to reduce scares and gore."
+UI_PHONE_INCOMING,Người lạ muốn bắt đầu cuộc gọi với bạn,A stranger wants to start a call with you
+UI_PHONE_RAISE_ANSWER,Q — Giơ điện thoại · E — Bắt máy,Q — Raise phone · E — Answer
+UI_PHONE_ANSWER,E / Chuột trái — Bắt máy,E / Left click — Answer
+UI_PHONE_NO_SIGNAL,Không có sóng,No signal
+UI_PHONE_STATUS,%s   ·   %d%%   ·   %s,%s   ·   %d%%   ·   %s
+UI_PHONE_LIGHT_ON,Đèn pin bật,Flashlight on
+UI_PHONE_LIGHT_OFF,Đèn pin tắt,Flashlight off
+UI_PHONE_GROUP_CALL,Cuộc gọi nhóm,Group call
+UI_PHONE_HISTORY,Lịch sử điện thoại,Phone history
+UI_PHONE_EMPTY,Chưa có tin nhắn.,No messages yet.
+UI_PHONE_MEMBER_JOINED,Đang trong nhóm,In the group
+UI_PHONE_MEMBER_DEAD,Đã chết,Dead
+UI_PHONE_MEMBER_LEFT,Đã rời nhóm,Left the group
+UI_PHONE_TRANSCRIPT_LINE,%s  %s: %s,%s  %s: %s
+UI_PHONE_CHOICE_HINT,1–4 để trả lời · Hoặc lăn chuột rồi nhấp trái,1–4 to reply · Or scroll then left-click
+UI_PHONE_OPTION,%d. %s,%d. %s
+UI_PHONE_PREVIEW_TITLE,Thử giao diện điện thoại — dữ liệu minh họa,Phone UI preview — sample data
+UI_PHONE_PREVIEW_MEMBER_A,Người thử A,Test member A
+UI_PHONE_PREVIEW_MEMBER_B,Người thử B,Test member B
+UI_PHONE_PREVIEW_LINE_A,Đây là câu nói dùng để kiểm tra bản chép lời.,This sample line tests the live transcript.
+UI_PHONE_PREVIEW_LINE_B,Dòng mới được thêm ở cuối lịch sử.,New lines are added at the end of the history.
+UI_PHONE_PREVIEW_OPTION_1,Lựa chọn thử thứ nhất,First test option
+UI_PHONE_PREVIEW_OPTION_2,Lựa chọn thử thứ hai,Second test option
+UI_PHONE_PREVIEW_OPTION_3,Lựa chọn thử thứ ba,Third test option
+UI_PHONE_PREVIEW_OPTION_4,Lựa chọn thử thứ tư,Fourth test option
+UI_PHONE_SCROLL_HINT,Lăn: hội thoại · Shift + lăn: thành viên,Scroll: transcript · Shift + scroll: members
