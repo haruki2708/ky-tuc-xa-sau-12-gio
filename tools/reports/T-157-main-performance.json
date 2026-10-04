@@ -1,0 +1,138 @@
+{
+  "cpu": "AMD Ryzen 5 5600H with Radeon Graphics",
+  "godot": "4.7.2-stable (official)",
+  "gpu": "NVIDIA GeForce RTX 3050 Laptop GPU",
+  "max_fps": 0,
+  "renderer": "forward_plus",
+  "resolution": [
+    1280,
+    720
+  ],
+  "sample_frames_per_view": 240,
+  "scope": "current main scene; story disabled; fixed camera; player physics/HUD/audio active; not integrated chapter gameplay",
+  "views": [
+    {
+      "eye": [
+        32.0,
+        1.60000002384186,
+        -1.0
+      ],
+      "frames": 240,
+      "max_frame_ms": 2.479,
+      "mean_fps": 524.940124017104,
+      "p95_frame_ms": 1.944,
+      "target": [
+        30.7999992370605,
+        2.0,
+        -3.5
+      ],
+      "view": "bed_1_phuc"
+    },
+    {
+      "eye": [
+        32.0,
+        1.60000002384186,
+        -1.0
+      ],
+      "frames": 240,
+      "max_frame_ms": 3.148,
+      "mean_fps": 524.022043860646,
+      "p95_frame_ms": 1.967,
+      "target": [
+        30.7999992370605,
+        0.600000023841858,
+        -3.5
+      ],
+      "view": "bed_2_viet"
+    },
+    {
+      "eye": [
+        32.0,
+        1.60000002384186,
+        -1.0
+      ],
+      "frames": 240,
+      "max_frame_ms": 2.126,
+      "mean_fps": 525.407847841887,
+      "p95_frame_ms": 1.947,
+      "target": [
+        33.2000007629395,
+        0.600000023841858,
+        -3.5
+      ],
+      "view": "bed_3_trung"
+    },
+    {
+      "eye": [
+        32.0,
+        1.60000002384186,
+        -1.0
+      ],
+      "frames": 240,
+      "max_frame_ms": 4.024,
+      "mean_fps": 514.167455770887,
+      "p95_frame_ms": 2.146,
+      "target": [
+        33.2000007629395,
+        2.0,
+        -3.5
+      ],
+      "view": "bed_4_dat"
+    },
+    {
+      "eye": [
+        32.0,
+        1.60000002384186,
+        -3.0
+      ],
+      "frames": 240,
+      "max_frame_ms": 2.36,
+      "mean_fps": 528.669295327885,
+      "p95_frame_ms": 1.953,
+      "target": [
+        32.0,
+        1.5,
+        0.0
+      ],
+      "view": "door_407"
+    },
+    {
+      "eye": [
+        32.0,
+        1.60000002384186,
+        1.20000004768372
+      ],
+      "frames": 240,
+      "max_frame_ms": 3.737,
+      "mean_fps": 562.096432327102,
+      "p95_frame_ms": 2.374,
+      "target": [
+        3.0,
+        1.60000002384186,
+        1.20000004768372
+      ],
+      "view": "corridor"
+    },
+    {
+      "eye": [
+        4.80000019073486,
+        1.60000002384186,
+        -0.550000011920929
+      ],
+      "frames": 240,
+      "max_frame_ms": 4.202,
+      "mean_fps": 537.421318160138,
+      "p95_frame_ms": 2.501,
+      "target": [
+        0.5,
+        1.29999995231628,
+        -2.5
+      ],
+      "view": "washroom"
+    }
+  ],
+  "vsync": false,
+  "warmup_frames_per_view": 90,
+  "base_commit": "37bdfa79f9a15f9b0097f1bafe0877d16659205a",
+  "measured_on": "2026-10-04"
+}

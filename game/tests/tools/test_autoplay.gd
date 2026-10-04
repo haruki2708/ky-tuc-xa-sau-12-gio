@@ -66,6 +66,38 @@ class MotionListener extends Node:
 			motions.append(event.relative)
 
 
+func test_semantic_command_skip_is_reported_and_playback_continues() -> void:
+	var path := "user://qa_semantic_autoplay.json"
+	var file := FileAccess.open(path, FileAccess.WRITE)
+	file.store_string('[{"frame":0,"command":{"op":"bed","number":1}},{"frame":1,"press":"move_forward"},{"frame":2,"release":"move_forward"}]')
+	file.close()
+	var outcomes: Array[Dictionary] = []
+	player.command_finished.connect(func(outcome: Dictionary) -> void: outcomes.append(outcome))
+	assert_true(player.load_recording(path))
+	player._process(0.0)
+	await wait_frames(2)
+	assert_eq(outcomes.size(), 1)
+	if not outcomes.is_empty():
+		assert_eq(outcomes[0].status, "SKIP", "runner scene has no chapter player")
+	player._process(0.0)
+	player._process(0.0)
+	assert_true(Input.is_action_pressed("move_forward"))
+	player._process(0.0)
+	assert_false(Input.is_action_pressed("move_forward"))
+	assert_false(player.command_failed)
+	DirAccess.remove_absolute(path)
+
+
+func test_calls_and_choices_are_observed_before_first_command() -> void:
+	EventBus.phone_call_incoming.emit(&"qa_incoming")
+	EventBus.chat_choice_requested.emit(&"qa_choice", PackedStringArray(["A", "B"]))
+	EventBus.phone_raised.emit(true)
+	assert_eq(player._commands.incoming, &"qa_incoming")
+	assert_eq(player._commands.choices[&"qa_choice"], PackedStringArray(["A", "B"]))
+	assert_true(player._commands.raised)
+	EventBus.phone_raised.emit(false)
+
+
 func test_quit_prefers_app_and_does_not_quit_runner() -> void:
 	assert_eq(player._get_app(), tree.root.get_node("App"), "resolve real App autoload")
 	var probe := QuitProbe.new()
