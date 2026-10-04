@@ -1,0 +1,13 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scenes/levels/ch1v2/torn_paper.gd" id="e1"]
+
+[node name="TornPaper" type="Marker3D"]
+
+script = ExtResource("e1")
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+
+
+[node name="ReadSurface" type="Marker3D" parent="."]
+position = Vector3(0, 0.005, 0)

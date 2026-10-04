@@ -27,7 +27,7 @@ func test_mesh_budgets_materials_and_texture_imports() -> void:
 		for mesh: MeshInstance3D in node.find_children("*", "MeshInstance3D", true, false):
 			count += mesh.mesh.get_faces().size() / 3
 			var material := mesh.get_active_material(0)
-			assert_true(material is ShaderMaterial or mesh.name in ["Screen", "LED"], model + " PS1 surface")
+			assert_true(material is ShaderMaterial or mesh.name in ["Screen", "LED", "NetworkLED"], model + " PS1 surface")
 		assert_true(count > 20 and count < (1500 if model.begins_with("corpse") or model == "manager_body" else 500), "%s has %d triangles" % [model, count])
 		print("MODEL_TRIANGLES: %s %d" % [model,count])
 	for file in DirAccess.get_files_at("res://assets/textures/ch1_models"):

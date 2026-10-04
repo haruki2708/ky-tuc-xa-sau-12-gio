@@ -1,0 +1,160 @@
+[gd_scene format=3]
+
+[ext_resource type="Shader" path="res://rendering/ps1_surface.gdshader" id="e1"]
+[ext_resource type="Texture2D" path="res://assets/textures/ch1_models/hair.png" id="e2"]
+[ext_resource type="Texture2D" path="res://assets/textures/ch1_models/metal.png" id="e3"]
+[ext_resource type="Texture2D" path="res://assets/textures/ch1_models/paper.png" id="e4"]
+[ext_resource type="PackedScene" path="res://scenes/levels/ch1v2/torn_paper.tscn" id="e5"]
+
+[sub_resource type="ShaderMaterial" id="s1"]
+shader = ExtResource("e1")
+shader_parameter/albedo_texture = ExtResource("e2")
+shader_parameter/roughness = 0.9
+
+[sub_resource type="CylinderMesh" id="s2"]
+top_radius = 0.135
+bottom_radius = 0.135
+height = 0.035
+radial_segments = 6
+rings = 1
+material = SubResource("s1")
+
+[sub_resource type="ShaderMaterial" id="s3"]
+shader = ExtResource("e1")
+shader_parameter/albedo_texture = ExtResource("e3")
+shader_parameter/roughness = 0.9
+
+[sub_resource type="BoxMesh" id="s4"]
+size = Vector3(0.014, 0.3, 0.035)
+material = SubResource("s3")
+
+[sub_resource type="BoxMesh" id="s5"]
+size = Vector3(0.014, 0.3, 0.035)
+material = SubResource("s3")
+
+[sub_resource type="BoxMesh" id="s6"]
+size = Vector3(0.014, 0.3, 0.035)
+material = SubResource("s3")
+
+[sub_resource type="BoxMesh" id="s7"]
+size = Vector3(0.014, 0.3, 0.035)
+material = SubResource("s3")
+
+[sub_resource type="BoxMesh" id="s8"]
+size = Vector3(0.014, 0.3, 0.035)
+material = SubResource("s3")
+
+[sub_resource type="BoxMesh" id="s9"]
+size = Vector3(0.014, 0.3, 0.035)
+material = SubResource("s3")
+
+[sub_resource type="BoxMesh" id="s10"]
+size = Vector3(0.014, 0.3, 0.035)
+material = SubResource("s3")
+
+[sub_resource type="BoxMesh" id="s11"]
+size = Vector3(0.014, 0.3, 0.035)
+material = SubResource("s3")
+
+[sub_resource type="BoxMesh" id="s12"]
+size = Vector3(0.014, 0.3, 0.035)
+material = SubResource("s3")
+
+[sub_resource type="BoxMesh" id="s13"]
+size = Vector3(0.014, 0.3, 0.035)
+material = SubResource("s3")
+
+[sub_resource type="ShaderMaterial" id="s14"]
+shader = ExtResource("e1")
+shader_parameter/albedo_texture = ExtResource("e4")
+shader_parameter/roughness = 0.9
+
+[sub_resource type="PrismMesh" id="s15"]
+size = Vector3(0.07, 0.025, 0.1)
+material = SubResource("s14")
+
+[sub_resource type="PrismMesh" id="s16"]
+size = Vector3(0.07, 0.025, 0.1)
+material = SubResource("s14")
+
+[sub_resource type="PrismMesh" id="s17"]
+size = Vector3(0.07, 0.025, 0.1)
+material = SubResource("s14")
+
+[node name="TrashBin" type="Marker3D"]
+
+
+[node name="Base" type="MeshInstance3D" parent="."]
+position = Vector3(0, 0.02, 0)
+mesh = SubResource("s2")
+
+
+[node name="Slat0" type="MeshInstance3D" parent="."]
+position = Vector3(0.13, 0.16, 0.0)
+mesh = SubResource("s4")
+rotation_degrees = Vector3(0, 0, 0)
+
+[node name="Slat1" type="MeshInstance3D" parent="."]
+position = Vector3(0.1051722, 0.16, 0.0764121)
+mesh = SubResource("s5")
+rotation_degrees = Vector3(0, -36, 0)
+
+[node name="Slat2" type="MeshInstance3D" parent="."]
+position = Vector3(0.0401722, 0.16, 0.1236373)
+mesh = SubResource("s6")
+rotation_degrees = Vector3(0, -72, 0)
+
+[node name="Slat3" type="MeshInstance3D" parent="."]
+position = Vector3(-0.0401722, 0.16, 0.1236373)
+mesh = SubResource("s7")
+rotation_degrees = Vector3(0, -108, 0)
+
+[node name="Slat4" type="MeshInstance3D" parent="."]
+position = Vector3(-0.1051722, 0.16, 0.0764121)
+mesh = SubResource("s8")
+rotation_degrees = Vector3(0, -144, 0)
+
+[node name="Slat5" type="MeshInstance3D" parent="."]
+position = Vector3(-0.13, 0.16, 0.0)
+mesh = SubResource("s9")
+rotation_degrees = Vector3(0, -180, 0)
+
+[node name="Slat6" type="MeshInstance3D" parent="."]
+position = Vector3(-0.1051722, 0.16, -0.0764121)
+mesh = SubResource("s10")
+rotation_degrees = Vector3(0, -216, 0)
+
+[node name="Slat7" type="MeshInstance3D" parent="."]
+position = Vector3(-0.0401722, 0.16, -0.1236373)
+mesh = SubResource("s11")
+rotation_degrees = Vector3(0, -252, 0)
+
+[node name="Slat8" type="MeshInstance3D" parent="."]
+position = Vector3(0.0401722, 0.16, -0.1236373)
+mesh = SubResource("s12")
+rotation_degrees = Vector3(0, -288, 0)
+
+[node name="Slat9" type="MeshInstance3D" parent="."]
+position = Vector3(0.1051722, 0.16, -0.0764121)
+mesh = SubResource("s13")
+rotation_degrees = Vector3(0, -324, 0)
+
+[node name="Waste0" type="MeshInstance3D" parent="."]
+position = Vector3(-0.04, 0.08, 0)
+mesh = SubResource("s15")
+
+
+[node name="Waste1" type="MeshInstance3D" parent="."]
+position = Vector3(0.0, 0.08, 0)
+mesh = SubResource("s16")
+
+
+[node name="Waste2" type="MeshInstance3D" parent="."]
+position = Vector3(0.04, 0.08, 0)
+mesh = SubResource("s17")
+
+
+[node name="Paper3" parent="." instance=ExtResource("e5")]
+position = Vector3(0, 0.13, 0)
+rotation_degrees = Vector3(0, 0, 0)
+fragment_id = 3

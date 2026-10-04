@@ -1,0 +1,176 @@
+[gd_scene format=3]
+
+[ext_resource type="Shader" path="res://rendering/ps1_surface.gdshader" id="e1"]
+[ext_resource type="Texture2D" path="res://assets/textures/ch1_models/metal.png" id="e2"]
+[ext_resource type="Texture2D" path="res://assets/textures/ch1_models/wood.png" id="e3"]
+[ext_resource type="Texture2D" path="res://assets/textures/ch1_models/paper.png" id="e4"]
+[ext_resource type="Texture2D" path="res://assets/textures/ch1_models/stripes.png" id="e5"]
+
+[sub_resource type="BoxShape3D" id="s1"]
+size = Vector3(0.04, 1.7, 0.04)
+
+[sub_resource type="ShaderMaterial" id="s2"]
+shader = ExtResource("e1")
+shader_parameter/albedo_texture = ExtResource("e2")
+shader_parameter/roughness = 0.9
+
+[sub_resource type="BoxMesh" id="s3"]
+size = Vector3(0.04, 1.7, 0.04)
+material = SubResource("s2")
+
+[sub_resource type="BoxShape3D" id="s4"]
+size = Vector3(0.04, 1.7, 0.04)
+
+[sub_resource type="BoxMesh" id="s5"]
+size = Vector3(0.04, 1.7, 0.04)
+material = SubResource("s2")
+
+[sub_resource type="BoxShape3D" id="s6"]
+size = Vector3(0.04, 1.7, 0.04)
+
+[sub_resource type="BoxMesh" id="s7"]
+size = Vector3(0.04, 1.7, 0.04)
+material = SubResource("s2")
+
+[sub_resource type="BoxShape3D" id="s8"]
+size = Vector3(0.04, 1.7, 0.04)
+
+[sub_resource type="BoxMesh" id="s9"]
+size = Vector3(0.04, 1.7, 0.04)
+material = SubResource("s2")
+
+[sub_resource type="BoxShape3D" id="s10"]
+size = Vector3(0.87, 0.06, 1.98)
+
+[sub_resource type="ShaderMaterial" id="s11"]
+shader = ExtResource("e1")
+shader_parameter/albedo_texture = ExtResource("e3")
+shader_parameter/roughness = 0.9
+
+[sub_resource type="BoxMesh" id="s12"]
+size = Vector3(0.87, 0.06, 1.98)
+material = SubResource("s11")
+
+[sub_resource type="BoxShape3D" id="s13"]
+size = Vector3(0.87, 0.06, 1.98)
+
+[sub_resource type="BoxMesh" id="s14"]
+size = Vector3(0.87, 0.06, 1.98)
+material = SubResource("s11")
+
+[sub_resource type="ShaderMaterial" id="s15"]
+shader = ExtResource("e1")
+shader_parameter/albedo_texture = ExtResource("e4")
+shader_parameter/roughness = 0.9
+
+[sub_resource type="BoxMesh" id="s16"]
+size = Vector3(0.8, 0.05, 1.9)
+material = SubResource("s15")
+
+[sub_resource type="ShaderMaterial" id="s17"]
+shader = ExtResource("e1")
+shader_parameter/albedo_texture = ExtResource("e5")
+shader_parameter/roughness = 0.9
+
+[sub_resource type="BoxMesh" id="s18"]
+size = Vector3(0.54, 0.06, 0.3)
+material = SubResource("s17")
+
+[sub_resource type="BoxMesh" id="s19"]
+size = Vector3(0.54, 0.06, 0.3)
+material = SubResource("s17")
+
+[node name="BunkAFrame" type="Node3D"]
+
+
+[node name="Post-0.43-0.98" type="StaticBody3D" parent="."]
+position = Vector3(-0.43, 0.85, -0.98)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Post-0.43-0.98"]
+shape = SubResource("s1")
+
+[node name="Mesh" type="MeshInstance3D" parent="Post-0.43-0.98"]
+position = Vector3(0, 0, 0)
+mesh = SubResource("s3")
+
+
+[node name="Post-0.430.98" type="StaticBody3D" parent="."]
+position = Vector3(-0.43, 0.85, 0.98)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Post-0.430.98"]
+shape = SubResource("s4")
+
+[node name="Mesh" type="MeshInstance3D" parent="Post-0.430.98"]
+position = Vector3(0, 0, 0)
+mesh = SubResource("s5")
+
+
+[node name="Post0.43-0.98" type="StaticBody3D" parent="."]
+position = Vector3(0.43, 0.85, -0.98)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Post0.43-0.98"]
+shape = SubResource("s6")
+
+[node name="Mesh" type="MeshInstance3D" parent="Post0.43-0.98"]
+position = Vector3(0, 0, 0)
+mesh = SubResource("s7")
+
+
+[node name="Post0.430.98" type="StaticBody3D" parent="."]
+position = Vector3(0.43, 0.85, 0.98)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Post0.430.98"]
+shape = SubResource("s8")
+
+[node name="Mesh" type="MeshInstance3D" parent="Post0.430.98"]
+position = Vector3(0, 0, 0)
+mesh = SubResource("s9")
+
+
+[node name="Board0.36" type="StaticBody3D" parent="."]
+position = Vector3(0, 0.36, 0)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Board0.36"]
+shape = SubResource("s10")
+
+[node name="Mesh" type="MeshInstance3D" parent="Board0.36"]
+position = Vector3(0, 0, 0)
+mesh = SubResource("s12")
+
+
+[node name="Board1.14" type="StaticBody3D" parent="."]
+position = Vector3(0, 1.14, 0)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Board1.14"]
+shape = SubResource("s13")
+
+[node name="Mesh" type="MeshInstance3D" parent="Board1.14"]
+position = Vector3(0, 0, 0)
+mesh = SubResource("s14")
+
+
+[node name="LowerMattress" type="MeshInstance3D" parent="."]
+position = Vector3(0, 0.405, 0)
+mesh = SubResource("s16")
+
+
+[node name="LowerPillow" type="MeshInstance3D" parent="."]
+position = Vector3(0, 0.475, 0.7)
+mesh = SubResource("s18")
+
+
+[node name="UpperPillow" type="MeshInstance3D" parent="."]
+position = Vector3(0, 1.26, 0.7)
+mesh = SubResource("s19")
