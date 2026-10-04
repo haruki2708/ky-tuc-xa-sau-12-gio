@@ -92,6 +92,7 @@ func _ready() -> void:
 	EventBus.puzzle_solved.connect(_on_puzzle_solved)
 	EventBus.player_caught.connect(_on_player_caught)
 	EventBus.settings_changed.connect(_on_settings_changed)
+	EventBus.checkpoint_saving.connect(func(_id: StringName) -> void: _store_phone())
 	_read_reduce_scares()
 	_build_overlay()
 	_place_bunks()
@@ -157,7 +158,6 @@ func _begin(stage: StringName, clock: String) -> void:
 	GameState.set_segment(stage)
 	_set_clock(clock)
 	if CHECKPOINTS.has(stage):
-		_store_phone()
 		Checkpoint.save(CHECKPOINTS[stage])
 
 
@@ -590,6 +590,10 @@ func _restore_phone() -> void:
 		var data: Variant = JSON.parse_string(saved)
 		if data is Dictionary:
 			screen.restore(data)
+			# Keep the phone in Trung's hand in step with the restored screen.
+			var phone := _phone_item()
+			if phone != null and phone.has_method("set_raised"):
+				phone.set_raised(data.get("raised", false) == true)
 	if GameState.has_flag(&"phone_battery"):
 		_set_battery(float(GameState.get_flag(&"phone_battery", 100.0)))
 	_call_answered = GameState.get_flag(&"in_call", false) == true
@@ -755,9 +759,10 @@ func _die(reason_key: StringName) -> void:
 	EventBus.scare_triggered.emit(&"lost")
 	var checkpoint: StringName = CHECKPOINTS.get(GameState.segment, &"ch1_prologue")
 	var count := int(GameState.get_flag(&"survivors", SURVIVORS_START)) - 1
-	var screen := get_tree().get_first_node_in_group(&"death_screen")
-	if screen != null and screen.has_method("show_death"):
-		screen.show_death(String(reason_key))
+	# Every chapter death is announced with its reason key (DEATH_*): lane D's
+	# death screen (T-156) and the QA bot (T-157) listen to it.
+	EventBus.player_failed.emit(reason_key)
+	if get_tree().get_first_node_in_group(&"death_screen") != null:
 		await _wait(5.0)
 	else:
 		await _fade_to_black(0.6 if reduce_scares else 0.25)
@@ -988,6 +993,8 @@ func _wait_until(condition: Callable, max_seconds: float) -> void:
 	while not condition.call() and elapsed < limit:
 		await _stay()
 		await get_tree().process_frame
+		# The scene may have been replaced during the frame (reload, title).
+		await _stay()
 		if not get_tree().paused:
 			elapsed += get_process_delta_time()
 
@@ -1010,9 +1017,12 @@ func _stay() -> void:
 
 func _build_overlay() -> void:
 	var layer := CanvasLayer.new()
+	layer.name = "DeathLayer"
 	layer.layer = 18 # Above HUD (10) and reading views (15), below the pause menu (20).
 	add_child(layer)
 	_overlay = ColorRect.new()
+	_overlay.name = "DeathCard"
+	_overlay.visible = false
 	_overlay.color = Color(0, 0, 0, 0)
 	_overlay.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	_overlay.set_anchors_preset(Control.PRESET_FULL_RECT)
@@ -1043,6 +1053,7 @@ func _build_overlay() -> void:
 
 
 func _fade_to_black(seconds: float) -> void:
+	_overlay.visible = true
 	var tween := create_tween()
 	tween.tween_property(_overlay, "color:a", 1.0, maxf(seconds * time_scale, 0.01))
 	await tween.finished

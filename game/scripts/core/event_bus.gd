@@ -62,6 +62,10 @@ signal player_failed(rule_id: StringName)
 
 # --- Checkpoints (Checkpoint helper) ---
 
+## A checkpoint is about to be written: last chance to put live state (phone
+## battery, call history...) into GameState flags so it is saved too.
+signal checkpoint_saving(checkpoint_id: StringName)
+
 ## A checkpoint was written. id names the place the player resumes from.
 signal checkpoint_saved(checkpoint_id: StringName)
 

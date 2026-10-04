@@ -9,6 +9,7 @@ const VERSION := 1
 
 
 static func save(checkpoint_id: StringName, path: String = DEFAULT_PATH) -> Error:
+	EventBus.checkpoint_saving.emit(checkpoint_id)
 	var data := {
 		"version": VERSION,
 		"id": String(checkpoint_id),

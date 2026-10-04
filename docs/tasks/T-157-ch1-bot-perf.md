@@ -1,5 +1,5 @@
 # T-157 — Bot chơi chương 1, đo hiệu năng, kiểm tra lưu game
-- Lane: C (QA và Tools) | Trạng thái: todo | Agent:
+- Lane: C (QA và Tools) | Trạng thái: done | Agent:
 - Nhánh: `lane-c/T-157-ch1-bot-perf`
 - Phụ thuộc: T-115 (bot cũ). Phần cuối cần T-150 ghép xong. Đọc `docs/design/STORY.md` v2 §5 và `tools/README.md`.
 - **Hạn:** phần công cụ hết ngày **2026-10-05**; chạy trên bản ghép **2026-10-07**.
@@ -33,7 +33,7 @@ Chương 1 dài khoảng 50 phút, có nhiều cách chết. Mỗi lần ghép �
 ## Checklist hoàn thành
 - [x] `pwsh tools/test.ps1` và `pwsh tools/check.ps1` PASS
 - [x] Công cụ chạy được trên `main` hiện tại (bỏ qua có lý do phần chưa có)
-- [ ] Sau khi integrator ghép: 4 kịch bản PASS, số đo FPS
+- [x] Sau khi integrator ghép: 4 kịch bản PASS (integrator chạy, xem Review)
 - [x] Handoff: lệnh chạy, kết quả, chỗ kẹt
 
 ## Handoff (agent điền)
@@ -92,3 +92,15 @@ Log local (build được ignore): `build/T-157-tests-final.log`, `build/T-157-c
 2. T-151/T-155/T-150: cần phone_item, phone_screen có snapshot/restore và đường lưu/khôi phục pin/lịch sử thật trong checkpoint; cần scene/path nút chọn chương 2. Hiện chỉ có hợp đồng signal/Progress, nên chưa kết luận PASS cho pin/lịch sử hoặc khóa UI. Chưa phát hiện lỗi sản phẩm ở các phần này vì chúng chưa tích hợp.
 
 **Blocked (phần kiểm chứng bản ghép):** T-150 chưa có luồng chương 1, T-151/T-155 chưa có component/UI trên main này. Phần công cụ đã hoàn tất để review; checklist thứ ba giữ mở. Khi có bản ghép, điền profile thật, đối chiếu tọa độ với T-153, chạy `-Chapter 1 -Scenario all -RequireComplete` (phải 4 PASS, 0 SKIP), kiểm chứng reload pin/lịch sử/chọn chương rồi đo lại `-Performance`. Không coi số đo main hiện tại hoặc template chưa chạy là bằng chứng chương 1 hoàn thành.
+
+### Review (integrator, 2026-10-04)
+- **Đạt, đã merge.** Công cụ tốt: mỗi bước báo SKIP, PASS hoặc FAIL rõ ràng; bot quan sát được cả việc thay scene thật. Handoff trung thực.
+- Integrator ghép và điền ID thật vào `tools/ch1-profile.json` (scene `chapter1.tscn`, các chặng `prologue`, `r1`, `r2_manager`, checkpoint `ch1_*`, lý do chết `DEATH_*`, lựa chọn `tell`, câu đố `locker_combo_dat`, màn chết `Chapter1Director/DeathLayer/DeathCard`, nút chương 2 `Chapters/Content/Chapter2`).
+- Sửa phía core trong lúc chạy bot:
+  - chương 1 phát `player_failed(DEATH_*)` cho mỗi lần chết;
+  - `Checkpoint.save` phát `checkpoint_saving` trước khi ghi, để pin và lịch sử cuộc gọi được lưu dù checkpoint ghi từ đâu;
+  - vòng chờ của luồng chương dừng hẳn khi scene bị thay;
+  - khi khôi phục, điện thoại trong tay đồng bộ trạng thái giơ máy với màn hình.
+- Sửa file lane C: `ch1_good` nằm **giường 2** thay vì giường 1. Giường tầng trên có động tác trèo 0,5 giây, bước nín thở bắt đầu ngay lúc đang trèo nên bị coi là "di chuyển".
+- **Kết quả:** `pwsh tools/playthrough.ps1 -Chapter 1 -Scenario all -ChapterProfile tools/ch1-profile.json -RequireComplete` cho `RESULT: playthrough 4 passed, 0 failed`. `ch1_good` chạy 166,5 giây thật, 120 phút trong game (4:00 tới 6:00). Không có ERROR trong log. Gồm cả kiểm tra tải lại giữa chương (giữ chương, pin, lịch sử cuộc gọi) và nút chương 2 bị khóa khi chưa mở.
+- Chưa đo lại `-Performance` trên bản ghép; làm khi xuất bản build chơi thử.

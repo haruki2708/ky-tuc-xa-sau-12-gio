@@ -1,5 +1,7 @@
 # Prompt bàn giao — Lane C (QA và Tools)
 
+> **Lane C đang rảnh (2026-10-04):** T-157 đã merge, bot chương 1 4/4 PASS. Chưa có task mới.
+
 ## 1. Prompt giao task (dán nguyên khối)
 ```
 Bạn là agent Lane C (QA và Tools) trong dự án game "Ký túc xá sau 12 giờ" (Godot 4.7.2, GDScript).

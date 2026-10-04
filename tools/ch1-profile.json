@@ -1,0 +1,22 @@
+{
+  "scene": "res://scenes/main/chapter1.tscn",
+  "director": "Chapter1Director",
+  "chapter_select_scene": "res://ui/title/title_screen.tscn",
+  "chapter2_button_path": "Chapters/Content/Chapter2",
+  "bindings": {
+    "opening_segment": "prologue",
+    "round1_segment": "r1",
+    "manager_segment": "r2_manager",
+    "charger_puzzle": "locker_combo_dat",
+    "breath_seconds": 5,
+    "solution_choice": "tell",
+    "solution_index": 0,
+    "death_ui_path": "Chapter1Director/DeathLayer/DeathCard",
+    "opening_checkpoint": "ch1_prologue",
+    "round1_checkpoint": "ch1_r1",
+    "manager_checkpoint": "ch1_r2_manager",
+    "stay_failure_rule": "DEATH_STAYED_IN_BED",
+    "leave_failure_rule": "DEATH_LEFT_ROOM",
+    "bed_failure_rule": "DEATH_OWN_BED"
+  }
+}
