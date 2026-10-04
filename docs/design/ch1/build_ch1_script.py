@@ -304,12 +304,20 @@ UI_ROWS = [
     ("UI_CH1_DEATH_TITLE", "Bạn đã chết", "You died"),
     ("UI_CH1_SURVIVORS", "Số sinh viên còn sống: %d", "Students still alive: %d"),
     ("UI_CH1_END", "Hết chương 1", "End of chapter 1"),
+    ("PROMPT_CH1_SEARCH_LOCKER", "Mở tủ của Việt", "Open Việt's locker"),
+    ("PROMPT_CH1_LIFT_MATTRESS", "Lật nệm", "Lift the mattress"),
+    ("PROMPT_CH1_SEARCH_TRASH", "Lục sọt rác", "Search the bin"),
+    ("CCTV_CAM_102", "CAM 102 · nhà B", "CAM 102 · Bldg B"),
+    ("CCTV_CAM_306", "CAM 306 · nhà B", "CAM 306 · Bldg B"),
+    ("CCTV_CAM_209", "CAM 209 · nhà B", "CAM 209 · Bldg B"),
+    ("CCTV_CAM_106", "CAM 106 · nhà B", "CAM 106 · Bldg B"),
+    ("CCTV_CAM_CORRIDOR", "CAM T4 · hành lang", "CAM F4 · corridor"),
 ]
 PUZZLES = {"locker_combo_dat": ("PUZZLE_LOCKER_DAT_TITLE", ("Tủ của Đạt", "Đạt's locker"), "2109", "")}
 PUZZLE_MAX_ATTEMPTS = 3
 PUZZLE_LOCKOUT_SECONDS = 60.0
 
-PREFIXES = ("PROMPT_CH1_", "UI_CH1_", "SPK_CH1_", "RULE_CH1_", "MGR_CH1_", "ROOM_CH1_", "THINK_CH1_", "CHAT_CH1_", "CHOICE_CH1_",
+PREFIXES = ("CCTV_CAM_", "PROMPT_CH1_", "UI_CH1_", "SPK_CH1_", "RULE_CH1_", "MGR_CH1_", "ROOM_CH1_", "THINK_CH1_", "CHAT_CH1_", "CHOICE_CH1_",
             "DEATH_", "NAME_CH1_", "DOC_CH1_", "PUZZLE_LOCKER_DAT_")
 
 

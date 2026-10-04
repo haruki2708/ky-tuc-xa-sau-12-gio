@@ -386,3 +386,11 @@ PROMPT_CH1_LOCKER,Mở tủ của Đạt,Open Đạt's locker
 UI_CH1_DEATH_TITLE,Bạn đã chết,You died
 UI_CH1_SURVIVORS,Số sinh viên còn sống: %d,Students still alive: %d
 UI_CH1_END,Hết chương 1,End of chapter 1
+PROMPT_CH1_SEARCH_LOCKER,Mở tủ của Việt,Open Việt's locker
+PROMPT_CH1_LIFT_MATTRESS,Lật nệm,Lift the mattress
+PROMPT_CH1_SEARCH_TRASH,Lục sọt rác,Search the bin
+CCTV_CAM_102,CAM 102 · nhà B,CAM 102 · Bldg B
+CCTV_CAM_306,CAM 306 · nhà B,CAM 306 · Bldg B
+CCTV_CAM_209,CAM 209 · nhà B,CAM 209 · Bldg B
+CCTV_CAM_106,CAM 106 · nhà B,CAM 106 · Bldg B
+CCTV_CAM_CORRIDOR,CAM T4 · hành lang,CAM F4 · corridor

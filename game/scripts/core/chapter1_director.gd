@@ -6,6 +6,10 @@ extends Node
 ##   round 1 4:05 locked in, group call, Đạt's locker, a voice at the door →
 ##   round 2 5:00 the manager checks the rooms → 407: lie on a dead roommate's
 ##   bed and hold your breath → 6:00 end.
+## Chapter 1 v2 (docs/design/CH1_V2_MISSIONS.md, D-039…D-042): eight missions,
+## Insane only (checkpoints at round starts, 6 s breath, no hint thoughts, the
+## manager hears movement), idle waits cut once a round's missions are done,
+## kills seen on the phone's security cameras, a death scene before every death.
 ## Lane pieces are optional. Missing bunks (T-151), manager (T-152), room API
 ## (T-153), phone screen (T-155), death screen (T-156) or voices (T-158/159)
 ## fall back to stubs, subtitles and timers, so the chapter always runs.
@@ -19,13 +23,52 @@ const RULE_SET_PATH := "res://data/rules/ch1.tres"
 const STAGES: Array[StringName] = [&"prologue", &"r1", &"r2", &"r2_manager", &"end"]
 ## Checkpoint id of each stage (ids start with "ch1_": App routes "Continue").
 const CHECKPOINTS := {
-	&"prologue": &"ch1_prologue", &"r1": &"ch1_r1", &"r2": &"ch1_r2", &"r2_manager": &"ch1_r2_manager",
+	&"prologue": &"ch1_prologue", &"r1": &"ch1_r1", &"r2": &"ch1_r2",
 }
 ## Deaths reload the checkpoint of the stage they happen in. r2_listen is the
 ## silence after the manager's question, inside the r2_manager stage.
+## Insane (D-039): a death in the manager scene replays the whole round 2.
 const DEATH_CHECKPOINTS := {
-	&"prologue": &"ch1_prologue", &"r1": &"ch1_r1", &"r2": &"ch1_r2", &"r2_manager": &"ch1_r2_manager",
-	&"r2_listen": &"ch1_r2_manager",
+	&"prologue": &"ch1_prologue", &"r1": &"ch1_r1", &"r2": &"ch1_r2", &"r2_manager": &"ch1_r2",
+	&"r2_listen": &"ch1_r2", &"end": &"ch1_r2",
+}
+## The death scene played before each death (D-042).
+const DEATH_KINDS := {
+	&"DEATH_LEFT_ROOM": &"fall_back", &"DEATH_DRAGGED_OUT": &"fall_back", &"DEATH_STAYED_IN_BED": &"bed_burst",
+	&"DEATH_HEARD": &"manager_kill", &"DEATH_OWN_BED": &"manager_kill", &"DEATH_NOT_IN_BED": &"manager_kill",
+	&"DEATH_SEEN": &"manager_kill", &"DEATH_LOST_NHAT": &"none",
+}
+const DEATH_SCENE_SECONDS := 3.2
+## Insane breath hold (D-039).
+const MAX_BREATH_SECONDS := 6.0
+## Tap code (D-039 N3): 5×5 without J, row first then column.
+const TAP_ROWS: Array[String] = ["ABCDE", "FGHIK", "LMNOP", "QRSTU", "VWXYZ"]
+## Gaps between taps of one digit / between digits / between letters (seconds).
+const TAP_BEAT := 0.32
+const TAP_DIGIT_GAP := 0.9
+const TAP_LETTER_GAP := 2.0
+const TAP_WORD_GAP := 3.2
+## Player taps: a pause longer than this ends a digit; longer than the next ends a letter.
+const TAP_READ_DIGIT := 0.7
+const TAP_READ_LETTER := 1.8
+const TAP_READ_DONE := 4.0
+const TAP_REPLY_SECONDS := 90.0
+## N2: how long the network stays down before Minh Nhật restarts it himself.
+const OUTAGE_SECONDS := 150.0
+const ROUTER_BOOT_SECONDS := 8.0
+const STRIP_COOLDOWN_SECONDS := 20.0
+## N4: seconds to latch the door while the handle rattles.
+const DOOR_HOLD_SECONDS := 10.0
+## N7: seconds to choose the advice for Minh Nhật.
+const TELL_SECONDS := 10.0
+const TELL_CORRECT := 0
+## Security cameras (D-041): camera id → label key and lane B's room number.
+const CCTV_ROOMS := {&"cam_102": "102", &"cam_306": "306", &"cam_209": "209", &"cam_106": "106"}
+const CCTV_CORRIDOR := &"cam_corridor"
+const CCTV_SET_SCENE := "res://scenes/levels/cctv/cctv_set.tscn"
+const STUDENT_SCENES := {
+	"102": "res://scenes/levels/cctv/student_hung.tscn", "306": "res://scenes/levels/cctv/student_kiet.tscn",
+	"209": "res://scenes/levels/cctv/student_bao.tscn", "106": "res://scenes/levels/cctv/student_dang.tscn",
 }
 ## The manager walks in through the door, around the open leaf (T-152 needs
 ## clear straight lines between waypoints).
@@ -92,6 +135,18 @@ var _manager_listening: bool = false
 var _manager_heard: bool = false
 var _pending_death: StringName = &""
 var _charging: bool = false
+## Mission state of the current round (D-040): id → true when done.
+var _missions: Dictionary[StringName, bool] = {}
+var _network_up: bool = true
+var _router_booting: bool = false
+var _strip_on: Dictionary[int, bool] = {}
+var _blue_plugged: bool = false
+var _door_held: bool = false
+var _taps: Array[float] = []
+var _tap_listening: bool = false
+var _form_pieces: Dictionary[StringName, bool] = {}
+var _death_scene_started: bool = false
+var _cctv_set: Node3D
 var _overlay: ColorRect
 var _overlay_label: Label
 var _overlay_why: Label
@@ -109,10 +164,16 @@ func _ready() -> void:
 	EventBus.player_caught.connect(_on_player_caught)
 	EventBus.settings_changed.connect(_on_settings_changed)
 	EventBus.checkpoint_saving.connect(func(_id: StringName) -> void: _store_phone())
+	EventBus.wall_tapped.connect(_on_wall_tapped)
+	EventBus.document_opened.connect(_on_document_opened)
+	EventBus.document_closed.connect(_on_document_closed)
 	_read_reduce_scares()
 	_build_overlay()
 	_place_bunks()
 	_place_room_props()
+	_place_mission_props()
+	_build_cctv()
+	_apply_insane()
 	if auto_start:
 		start.call_deferred()
 
@@ -229,9 +290,11 @@ func _round_1() -> void:
 	_begin(&"r1", "04:05")
 	_rules_live = true
 	_set_blood(1)
-	await _wait(25.0)
+	_missions.clear()
+	_set_door_latched(false)
+	await _wait(8.0)
 	_think("THINK_CH1_WALL")
-	await _wait(15.0)
+	await _wait(10.0)
 	_set_clock("04:10")
 	await _incoming_call()
 	await _line("n_hello")
@@ -248,33 +311,63 @@ func _round_1() -> void:
 	await _wait(1.5)
 	await _line("hung_shaken")
 	_think("THINK_CH1_RULE_REAL")
-	await _wait(20.0)
+	await _wait(6.0)
 	_set_clock("04:18")
 	await _line("n_battery")
 	_set_battery(18.0)
 	_think("THINK_CH1_LOW_BATTERY")
-	await _wait(4.0)
-	# Time to search the room and open Đạt's locker.
-	await _wait(150.0)
+	# N1: Đạt's locker (done when solved).
+	_missions[&"locker"] = GameState.get_flag(&"has_charger", false) == true
+	await _gap(90.0)
+	# N2: the network goes down.
+	_set_clock("04:28")
+	_network_down()
+	await _gap(30.0)
+	# N4: a voice at the door, then the handle.
 	_set_clock("04:35")
-	await _voice_at_door()
-	await _wait(120.0)
+	await _hold_the_door()
+	if _dying:
+		return
+	await _gap(15.0)
+	# N3: Khoa knocks from 406.
+	_set_clock("04:38")
+	await _wall_taps()
+	# Minh Nhật brings the network back himself if the player has not.
+	await _wait_until(func() -> bool: return _network_up, maxf(OUTAGE_SECONDS - 60.0, 1.0))
+	if not _network_up:
+		_set_clock("04:48")
+		_network_restored(true)
+	await _gap(20.0)
 	_set_clock("04:50")
 	await _line("n_theory")
 	await _choice(&"words", 2)
 	await _line("n_words_reply")
-	await _wait(40.0)
+	await _gap(20.0)
 	_set_clock("05:00")
 	await _announce(["SPK_CH1_R1_END"])
 	_survivors(SURVIVORS_R1)
 	await _line("son_352")
 
 
-func _voice_at_door() -> void:
+func _hold_the_door() -> void:
+	_missions[&"door"] = false
+	_door_held = false
 	_play_knock()
 	await _room_line("ROOM_CH1_KNOCK_VIET", 4.5)
-	await _wait(4.0)
-	_play_knock()
+	# The handle twists: latch within DOOR_HOLD_SECONDS or be dragged out.
+	var door := _door()
+	if door != null and door.has_method("rattle"):
+		door.rattle(DOOR_HOLD_SECONDS)
+	_play_sfx_at(&"door_rattle", Vector3(32.0, 1.0, 0.0))
+	await _wait_until(func() -> bool: return GameState.get_flag(&"door_locked", false) == true, DOOR_HOLD_SECONDS)
+	if door != null and door.has_method("stop_rattle"):
+		door.stop_rattle()
+	if GameState.get_flag(&"door_locked", false) != true:
+		_open_door()
+		_die(&"DEATH_DRAGGED_OUT")
+		return
+	_door_held = true
+	_missions[&"door"] = true
 	await _room_line("ROOM_CH1_KNOCK_VIET_2", 3.5)
 	await _line("vinh_ask")
 	await _line("n_dont_open")
@@ -286,65 +379,92 @@ func _round_2() -> void:
 	_begin(&"r2", "05:00")
 	_rules_live = true
 	_set_blood(1)
+	_missions.clear()
+	_missions[&"form"] = false
+	_missions[&"ready"] = false
 	await _announce(["RULE_CH1_R2"])
 	RuleSystem.mark_read(&"ch1_r2")
 	await _line("n_beds")
+	await _line("n_cctv")
+	EventBus.cctv_unlocked.emit()
 	_manager_far(Vector3(4.0, -9.9, -2.0))
 	_music(&"set_tension", 0.2)
-	await _wait(45.0)
+	await _gap(30.0)
 	_set_clock("05:05")
 	await _line("hung_knock")
+	_cctv_scene(&"cam_102", &"answer")
 	await _manager_line("MGR_CH1_ASK_HUNG")
 	await _line("hung_yes")
 	await _manager_line("MGR_CH1_GOOD")
+	_cctv_kill(&"cam_102")
 	_member_dies(&"hung", Vector3(8.0, -9.9, -2.0))
 	await _wait(3.0)
 	await _line("n_analyze")
 	await _choice(&"theory", 3)
 	await _line("n_unknown")
-	await _wait(35.0)
+	await _gap(25.0)
 	_set_clock("05:12")
 	_manager_far(Vector3(24.0, -3.3, -2.0))
 	_music(&"set_tension", 0.4)
 	await _line("kiet_306")
+	_cctv_scene(&"cam_306", &"phone_lit")
+	_play_sfx_at(&"kiet_ringtone", Vector3(24.0, -3.3, -2.0))
 	await _manager_line("MGR_CH1_ASK_BED_3")
 	await _line("kiet_no")
 	await _manager_line("MGR_CH1_WHY_NOT")
+	_cctv_kill(&"cam_306")
 	_member_dies(&"kiet", Vector3(24.0, -3.3, -2.0))
-	await _wait(40.0)
+	await _wait(2.0)
+	await _line("n_kiet_lit")
+	await _gap(25.0)
 	_set_clock("05:20")
 	_manager_far(Vector3(36.0, -6.6, -2.0))
 	await _line("bao_209")
 	await _line("n_try_silent")
+	_cctv_scene(&"cam_209", &"cower")
 	await _manager_line("MGR_CH1_ASK_BED_4")
 	await _wait(8.0)
 	await _manager_line("MGR_CH1_LAUGH")
+	_cctv_kill(&"cam_209")
 	_member_dies(&"bao", Vector3(36.0, -6.6, -2.0))
 	await _wait(2.0)
 	await _line("dang_curse")
-	await _wait(30.0)
+	await _gap(15.0)
+	_set_clock("05:26")
+	await _line("dang_lamp")
 	_set_clock("05:28")
 	_manager_far(Vector3(12.0, -9.9, -2.0))
 	_music(&"set_tension", 0.6)
 	await _line("dang_here")
+	_cctv_scene(&"cam_106", &"sit_up")
 	await _choice(&"advise", 3)
 	await _manager_line("MGR_CH1_ASK_BED_2")
+	_cctv_kill(&"cam_106")
 	_member_dies(&"dang", Vector3(12.0, -9.9, -2.0))
 	await _wait(4.0)
 	_set_clock("05:32")
 	await _line("n_all_fail")
 	for member: StringName in [&"son", &"vinh"]:
-		await _wait(5.0)
+		await _wait(3.0)
 		_member_dies(member, Vector3(16.0, 3.3, -2.0))
-	await _wait(25.0)
+	await _gap(15.0)
 	_set_clock("05:38")
 	await _line("n_just_us")
-	_manager_far(Vector3(40.0, 0.0, 1.2))
-	_music(&"set_tension", 0.8)
-	await _wait(12.0)
+	# Through the wall: the manager in 406 (Khoa).
 	_set_clock("05:40")
+	_manager_far(Vector3(28.0, 0.05, -2.0))
+	_music(&"set_tension", 0.8)
+	await _wait(3.0)
+	await _manager_line("MGR_CH1_ASK_BED_2")
+	_screams(Vector3(28.0, 1.2, -2.0), 1, 0.0)
+	var audio := _manager_audio()
+	if audio != null and audio.has_method("play_slash"):
+		audio.play_slash(&"mattress")
+	await _wait(4.0)
+	EventBus.cctv_focus_requested.emit(CCTV_CORRIDOR)
+	_manager_far(Vector3(36.0, 0.05, 1.2))
 	_think("THINK_CH1_DRAG")
-	await _wait(10.0)
+	await _gap(8.0)
 
 
 # --- Round 2 at room 407: 5:43 -----------------------------------------------------
@@ -354,7 +474,7 @@ func _manager_at_407() -> void:
 	_rules_live = true
 	_set_blood(1)
 	_music(&"set_tension", 1.0)
-	await _wait(18.0)
+	await _gap(12.0)
 	_music(&"silence_before_door", true)
 	_play_knock()
 	await _wait(2.0)
@@ -362,6 +482,10 @@ func _manager_at_407() -> void:
 	_set_flicker(true)
 	var manager := _spawn_manager()
 	await _wait(1.5)
+	# N6: any light or a raised phone gives the room away.
+	if _traces_visible():
+		await _manager_kills(manager, &"DEATH_SEEN")
+		return
 	if _bed == 0:
 		await _manager_kills(manager, &"DEATH_NOT_IN_BED")
 		return
@@ -397,7 +521,17 @@ func _manager_at_407() -> void:
 	await _wait(4.0)
 	_think("THINK_CH1_WHY")
 	await _wait(5.0)
-	await _choice(&"tell", 1)
+	# N7: the right advice in TELL_SECONDS, or Minh Nhật dies (D-039).
+	var picked := await _choice(&"tell", 4, TELL_SECONDS, -1)
+	if picked != TELL_CORRECT:
+		await _wait(2.0)
+		await _line("n_dying")
+		await _manager_line("MGR_CH1_ASK_BED_1")
+		_screams(Vector3(20.0, -6.6, -2.0), 1, 0.0)
+		_member_dies(&"minh_nhat", Vector3(20.0, -6.6, -2.0))
+		EventBus.phone_call_lost.emit(&"stranger_call")
+		await _wait(2.0)
+		_die(&"DEATH_LOST_NHAT")
 
 
 # --- End: 5:47–6:00 ----------------------------------------------------------------
@@ -633,6 +767,10 @@ func _line(id: String) -> void:
 	if data == null:
 		push_warning("Chapter1Director: missing message " + message_id)
 		return
+	if not _network_up:
+		# Spoken while the call is down: nobody hears it (missed).
+		await _wait(_spoken_seconds(data.text_key) * 0.5)
+		return
 	EventBus.phone_message_received.emit(message_id)
 	var seconds := _voice_seconds(data.text_key, "CHAT_CH1_")
 	# Lane D's phone screen (T-155) subtitles every spoken line itself.
@@ -643,16 +781,21 @@ func _line(id: String) -> void:
 
 ## Offers Trung's replies; returns the picked index (0-based). Time out or no
 ## phone screen picks the first. The reply then appears in the call.
-func _choice(id: StringName, count: int) -> int:
+func _choice(id: StringName, count: int, seconds: float = -1.0, timeout_index: int = 0) -> int:
 	var keys := PackedStringArray()
 	for n in range(1, count + 1):
 		keys.append("CHOICE_CH1_%s_%d" % [String(id).to_upper(), n])
 	_choice_id = id
 	_choice_index = -2
 	EventBus.chat_choice_requested.emit(id, keys)
-	await _wait_until(func() -> bool: return _choice_index != -2, choice_seconds)
-	var picked := clampi(_choice_index, 0, count - 1)
+	await _wait_until(func() -> bool: return _choice_index != -2, choice_seconds if seconds < 0.0 else seconds)
+	var picked := _choice_index if _choice_index >= 0 else timeout_index
 	_choice_id = &""
+	if picked < 0:
+		GameState.set_flag(StringName("ch1_choice_" + String(id)), -1)
+		await _wait(0.5)
+		return -1
+	picked = clampi(picked, 0, count - 1)
 	EventBus.phone_message_received.emit(StringName("choice_ch1_%s_%d" % [id, picked + 1]))
 	GameState.set_flag(StringName("ch1_choice_" + String(id)), picked)
 	await _wait(1.2)
@@ -709,6 +852,8 @@ func _spawn_manager() -> Node3D:
 	manager.name = "Manager"
 	manager.set("player", _player)
 	manager.set("listen_seconds", MANAGER_LISTEN_SECONDS)
+	# Insane (D-039): from the door to the door, a move or a step gives you away.
+	manager.set("hear_movement_while_present", true)
 	manager.set("look_target", _bunks.get(TRUNG_BED))
 	if ResourceLoader.exists(MANAGER_BODY):
 		manager.set("body_scene", load(MANAGER_BODY))
@@ -770,6 +915,9 @@ func _manager_ask(manager: Node3D, key: String) -> bool:
 ## then the death card and the reload.
 func _manager_kills(manager: Node3D, reason: StringName) -> void:
 	_pending_death = reason
+	# The jumpscare scene starts with the lunge (D-042), not after it.
+	_death_scene_started = true
+	EventBus.player_death_started.emit(&"manager_kill")
 	if manager != null and manager.has_method("kill_player"):
 		manager.kill_player()
 		await _wait_until(func() -> bool: return _dying, 3.0, false)
@@ -820,6 +968,10 @@ func _die(reason_key: StringName) -> void:
 	if GameState.segment in [&"r2_manager", &"r2_listen"]:
 		manager_deaths += 1
 	EventBus.scare_triggered.emit(&"lost")
+	if not _death_scene_started:
+		_death_scene_started = true
+		EventBus.player_death_started.emit(DEATH_KINDS.get(reason_key, &"fall_back"))
+		await _death_scene()
 	var checkpoint: StringName = DEATH_CHECKPOINTS.get(GameState.segment, &"ch1_prologue")
 	var count := int(GameState.get_flag(&"survivors", SURVIVORS_START)) - 1
 	# Every chapter death is announced with its reason key (DEATH_*): lane D's
@@ -837,6 +989,457 @@ func _die(reason_key: StringName) -> void:
 func _survivors(count: int) -> void:
 	GameState.set_flag(&"survivors", count)
 	EventBus.survivor_count_changed.emit(count)
+
+
+# --- Chapter 1 v2: missions (docs/design/CH1_V2_MISSIONS.md) ---------------------
+
+## Waits up to `seconds`, or less once every active mission of the round is
+## done (D-040: no idle time when the player has finished everything).
+func _gap(seconds: float) -> void:
+	await _wait_until(_round_done, seconds)
+
+
+func _round_done() -> bool:
+	if _missions.has(&"ready"):
+		_missions[&"ready"] = _ready_for_manager()
+	if _missions.has(&"form"):
+		_missions[&"form"] = _form_pieces.size() >= 3
+	if _missions.has(&"network"):
+		_missions[&"network"] = _network_up
+	if _missions.has(&"locker"):
+		_missions[&"locker"] = GameState.get_flag(&"has_charger", false) == true
+	for done: bool in _missions.values():
+		if not done:
+			return false
+	return not _missions.is_empty()
+
+
+## Lamp off, phone down, flashlight off, lying still on a dead roommate's bed.
+func _ready_for_manager() -> bool:
+	return _bed in [1, 2, 4] and not _traces_visible()
+
+
+func _apply_insane() -> void:
+	if _player != null and "max_breath_seconds" in _player:
+		_player.set("max_breath_seconds", MAX_BREATH_SECONDS)
+
+
+## Lane A's interactables (T-161) on lane B's anchors (T-162). Missing pieces
+## are skipped: the chapter still runs, that mission just cannot be done.
+func _place_mission_props() -> void:
+	var room := _room()
+	if room == null:
+		return
+	# Search spots for the torn inspection form (N5).
+	var search_scene := "res://scenes/interaction/search_spot.tscn"
+	var spots := {"VietLocker": [&"viet_locker", "PROMPT_CH1_SEARCH_LOCKER", &"ch1_form_piece_1"],
+		"PhucMattress": [&"phuc_mattress", "PROMPT_CH1_LIFT_MATTRESS", &"ch1_form_piece_2"],
+		"TrashBin": [&"trash_bin", "PROMPT_CH1_SEARCH_TRASH", &"ch1_form_piece_3"]}
+	if ResourceLoader.exists(search_scene):
+		for anchor_name: String in spots:
+			var anchor := _room_anchor(anchor_name)
+			if anchor == null:
+				continue
+			var spot := load(search_scene).instantiate() as Node3D
+			spot.name = "Search" + anchor_name
+			spot.set("spot_id", spots[anchor_name][0])
+			spot.set("prompt_key", spots[anchor_name][1])
+			spot.set("document_id", spots[anchor_name][2])
+			anchor.add_child(spot)
+			if spot.has_signal("searched"):
+				spot.searched.connect(_on_searched.bind(anchor_name))
+	# Shared wall with 406 (N3).
+	var wall_scene := "res://scenes/interaction/wall_knock.tscn"
+	var wall := _room_anchor("WallKnock406")
+	if wall != null and ResourceLoader.exists(wall_scene):
+		var knock := load(wall_scene).instantiate() as Node3D
+		knock.name = "WallKnock406"
+		knock.set("wall_id", &"wall_406")
+		wall.add_child(knock)
+	# Power strip and network cables (N2).
+	var strip := _find_component("power_strip.gd")
+	if strip != null and strip.has_signal("switch_toggled"):
+		strip.switch_toggled.connect(_on_strip_switch)
+	for cable in _find_components("lan_cable.gd"):
+		if cable.has_signal("plugged"):
+			cable.plugged.connect(_on_cable_plugged)
+		if cable.has_signal("unplugged"):
+			cable.unplugged.connect(_on_cable_unplugged)
+	# Door latch (N4): lane A's latch on the door leaf, as in the demo.
+	var latch_scene := "res://scenes/interaction/door_latch.tscn"
+	var door := _door()
+	if door != null and ResourceLoader.exists(latch_scene) and door.get_node_or_null("Pivot") != null:
+		var latch := load(latch_scene).instantiate() as Node3D
+		latch.name = "DoorLatch407"
+		latch.set("door", door)
+		door.get_node("Pivot").add_child(latch)
+		var mount := _anchor("Door407")
+		if mount != null:
+			latch.position = Vector3(-0.85, 1.05, -0.06)
+
+
+func _find_component(script_file: String) -> Node:
+	var found := _find_components(script_file)
+	return found[0] if not found.is_empty() else null
+
+
+func _find_components(script_file: String) -> Array[Node]:
+	var found: Array[Node] = []
+	var root := get_parent() if get_parent() != null else self
+	for node in root.find_children("*", "", true, false):
+		var script: Script = node.get_script()
+		if script != null and script.resource_path.ends_with("/" + script_file):
+			found.append(node)
+	return found
+
+
+# N2: network down, power strip, router, cables.
+func _network_down() -> void:
+	_missions[&"network"] = false
+	_network_up = false
+	_strip_on.clear()
+	_blue_plugged = false
+	EventBus.phone_call_lost.emit(&"stranger_call")
+	var strip := _find_component("power_strip.gd")
+	if strip != null and strip.has_method("trip"):
+		strip.trip()
+	_router_state(false, &"off")
+	_play_sfx_at(&"router_off", _router_position())
+	for cable in _find_components("lan_cable.gd"):
+		if cable.has_method("unplug"):
+			cable.unplug()
+
+
+func _network_restored(remote: bool) -> void:
+	if _network_up:
+		return
+	_network_up = true
+	_missions[&"network"] = true
+	_router_state(true, &"ok")
+	EventBus.phone_call_restored.emit(&"stranger_call")
+	if remote:
+		await _line("n_back_remote")
+	else:
+		await _line("n_back")
+		await _line("n_missed")
+
+
+func _on_strip_switch(index: int, on: bool) -> void:
+	_strip_on[index] = on
+	if not on or _network_up:
+		if index == 2 and not on and not _network_up:
+			_router_state(false, &"off")
+		return
+	if index == 3:
+		# The kettle: the whole strip trips and sparks, try again later.
+		var strip := _find_component("power_strip.gd")
+		if strip != null:
+			if strip.has_method("trip"):
+				strip.trip()
+			if strip.has_method("set_locked"):
+				strip.set_locked(STRIP_COOLDOWN_SECONDS)
+		var room := _room_anchor("PowerStrip")
+		if room != null and room.has_method("spark"):
+			room.spark()
+		_play_sfx_at(&"strip_spark", _router_position())
+		_strip_on.clear()
+		_router_state(false, &"off")
+		return
+	if index == 2:
+		_boot_router()
+
+
+func _boot_router() -> void:
+	if _router_booting:
+		return
+	_router_booting = true
+	_router_state(true, &"booting")
+	_play_sfx_at(&"router_boot", _router_position())
+	await _wait(ROUTER_BOOT_SECONDS)
+	_router_booting = false
+	if _strip_on.get(2, false) != true:
+		return
+	if _blue_plugged:
+		_network_restored(false)
+	else:
+		_router_state(true, &"red")
+
+
+func _on_cable_plugged(cable_id: StringName) -> void:
+	if cable_id != &"blue":
+		return
+	_blue_plugged = true
+	if not _network_up and _strip_on.get(2, false) == true and not _router_booting:
+		_network_restored(false)
+
+
+func _on_cable_unplugged(cable_id: StringName) -> void:
+	if cable_id == &"blue":
+		_blue_plugged = false
+
+
+func _router_state(power: bool, network: StringName) -> void:
+	var router := _room_anchor("Router/Model")
+	if router == null:
+		router = _room_anchor("Router")
+	if router == null:
+		return
+	if router.has_method("set_power"):
+		router.set_power(power)
+	if router.has_method("set_network"):
+		router.set_network(network)
+	elif router.has_method("set_led"):
+		router.set_led(power and network == &"ok")
+
+
+func _router_position() -> Vector3:
+	var router := _room_anchor("Router")
+	return router.global_position if router != null else _room_center()
+
+
+# N4: the latch.
+func _set_door_latched(latched: bool) -> void:
+	GameState.set_flag(&"door_locked", latched)
+	var latch := _door().find_child("DoorLatch407", true, false) if _door() != null else null
+	if latch != null and latch.has_method("set_locked"):
+		latch.set_locked(latched)
+
+
+# N3: tap code with Khoa in 406.
+func _wall_taps() -> void:
+	_missions[&"wall"] = false
+	var wall := _room_anchor("WallKnock406")
+	var where := wall.global_position if wall != null else Vector3(30.1, 1.3, -1.65)
+	for repeat in 2:
+		await _play_taps(where, "CON SONG")
+		await _wait(2.5)
+	_taps.clear()
+	_tap_listening = true
+	var started := Time.get_ticks_msec()
+	var reply := ""
+	while _tap_listening and is_inside_tree():
+		await _wait(0.25)
+		if _taps.is_empty():
+			if float(Time.get_ticks_msec() - started) / 1000.0 > TAP_REPLY_SECONDS * maxf(time_scale, 0.0001):
+				break
+			continue
+		var quiet := float(Time.get_ticks_msec()) / 1000.0 - _taps[-1]
+		if quiet >= TAP_READ_DONE * maxf(time_scale, 0.0001):
+			reply = decode_taps(_taps, maxf(time_scale, 0.0001))
+			break
+	_tap_listening = false
+	GameState.set_flag(&"khoa_reply", reply)
+	if reply == "CO":
+		await _wait(2.0)
+		await _play_taps(where, "SO GIUONG")
+		GameState.set_flag(&"khoa_hint", true)
+	_missions[&"wall"] = true
+
+
+func _on_wall_tapped(wall_id: StringName) -> void:
+	if _tap_listening and wall_id == &"wall_406":
+		_taps.append(float(Time.get_ticks_msec()) / 1000.0)
+
+
+## Turns tap times (seconds) into letters: pauses split digits and letters.
+static func decode_taps(times: Array[float], scale: float = 1.0) -> String:
+	if times.is_empty():
+		return ""
+	var digits: Array[int] = [1]
+	var letters: Array = []
+	for i in range(1, times.size()):
+		var gap := (times[i] - times[i - 1]) / scale
+		if gap < TAP_READ_DIGIT:
+			digits[-1] += 1
+		elif gap < TAP_READ_LETTER:
+			digits.append(1)
+		else:
+			letters.append(digits)
+			digits = [1]
+	letters.append(digits)
+	var text := ""
+	for pair: Array in letters:
+		if pair.size() != 2 or pair[0] < 1 or pair[0] > 5 or pair[1] < 1 or pair[1] > 5:
+			text += "?"
+		else:
+			text += TAP_ROWS[pair[0] - 1][pair[1] - 1]
+	return text
+
+
+## Row/column tap counts for a message (spaces are a longer pause).
+static func encode_taps(message: String) -> Array:
+	var groups: Array = []
+	for character in message.to_upper():
+		if character == " ":
+			groups.append(0)
+			continue
+		var letter := "C" if character == "K" and false else character
+		for row in TAP_ROWS.size():
+			var column := TAP_ROWS[row].find(letter)
+			if column >= 0:
+				groups.append([row + 1, column + 1])
+	return groups
+
+
+func _play_taps(where: Vector3, message: String) -> void:
+	var taps := get_tree().get_first_node_in_group(&"wall_taps")
+	for group: Variant in encode_taps(message):
+		if group is int:
+			await _wait(TAP_WORD_GAP)
+			continue
+		for digit: int in group:
+			for knock in digit:
+				if taps != null and taps.has_method("play_tap"):
+					taps.play_tap(where)
+				else:
+					_play_sfx_at(&"wall_knock", where)
+				await _wait(TAP_BEAT)
+			await _wait(TAP_DIGIT_GAP)
+		await _wait(TAP_LETTER_GAP - TAP_DIGIT_GAP)
+
+
+# N5: the torn inspection form.
+func _on_searched(_spot_id: StringName, anchor_name: String) -> void:
+	var anchor := _room_anchor(anchor_name)
+	if anchor != null and anchor.has_method("set_open"):
+		anchor.set_open(true)
+	if anchor != null and anchor.has_method("set_lifted"):
+		anchor.set_lifted(true)
+
+
+func _on_document_opened(document_id: StringName) -> void:
+	if String(document_id).begins_with("ch1_form_piece_"):
+		_form_pieces[document_id] = true
+
+
+func _on_document_closed(document_id: StringName) -> void:
+	if String(document_id).begins_with("ch1_form_piece_") and _form_pieces.size() >= 3 \
+			and GameState.get_flag(&"form_assembled", false) != true:
+		GameState.set_flag(&"form_assembled", true)
+		# The three scraps fit together: read the whole form.
+		EventBus.document_opened.emit.call_deferred(&"ch1_inspection_form")
+
+
+# N6: what the manager sees when the door opens.
+func _traces_visible() -> bool:
+	if GameState.get_flag(&"desk_lamp_on", false) == true:
+		return true
+	var phone := _phone_item()
+	if phone != null:
+		if phone.get("raised") == true:
+			return true
+		if phone.has_method("is_flashlight_on") and phone.is_flashlight_on():
+			return true
+	return false
+
+
+# Security cameras (D-041): lane B's set (T-165), feeds for lane D (T-163).
+## A feed is a SubViewport: get_texture() is what lane D's Camera tab shows.
+class CctvFeed extends SubViewport:
+	var camera_id: StringName
+	var label_key: String
+
+
+func _build_cctv() -> void:
+	if not ResourceLoader.exists(CCTV_SET_SCENE):
+		return
+	_cctv_set = load(CCTV_SET_SCENE).instantiate() as Node3D
+	_cctv_set.name = "CctvSet"
+	add_child(_cctv_set)
+	for camera_id: StringName in CCTV_ROOMS:
+		var cam := _cctv_camera(CCTV_ROOMS[camera_id])
+		if cam != null:
+			_add_feed(camera_id, "CCTV_" + String(camera_id).to_upper(), cam)
+	var corridor := _cctv_camera("orridor")
+	if corridor != null:
+		_add_feed(CCTV_CORRIDOR, "CCTV_CAM_CORRIDOR", corridor)
+
+
+func _cctv_room(number: String) -> Node3D:
+	if _cctv_set == null:
+		return null
+	for child in _cctv_set.get_children():
+		if child is Node3D and number in String(child.name):
+			return child
+	return null
+
+
+func _cctv_camera(number: String) -> Camera3D:
+	var room := _cctv_room(number)
+	return room.find_child("Cam", true, false) as Camera3D if room != null else null
+
+
+func _add_feed(camera_id: StringName, label_key: String, source: Camera3D) -> void:
+	var feed := CctvFeed.new()
+	feed.name = "Feed_" + String(camera_id)
+	feed.camera_id = camera_id
+	feed.label_key = label_key
+	feed.size = Vector2i(320, 240)
+	feed.render_target_update_mode = SubViewport.UPDATE_WHEN_VISIBLE
+	feed.add_to_group(&"cctv_feed")
+	add_child(feed)
+	var camera := Camera3D.new()
+	camera.fov = source.fov
+	feed.add_child(camera)
+	camera.global_transform = source.global_transform
+	camera.current = true
+
+
+## Puts the victim in a room on camera and the manager at the door (D-041).
+func _cctv_scene(camera_id: StringName, victim_pose: StringName) -> void:
+	EventBus.cctv_focus_requested.emit(camera_id)
+	var room := _cctv_room(CCTV_ROOMS.get(camera_id, ""))
+	if room == null:
+		return
+	var number: String = CCTV_ROOMS[camera_id]
+	var victim := room.get_node_or_null("Victim") as Node3D
+	if victim == null and STUDENT_SCENES.has(number) and ResourceLoader.exists(STUDENT_SCENES[number]):
+		victim = load(STUDENT_SCENES[number]).instantiate() as Node3D
+		victim.name = "Victim"
+		room.add_child(victim)
+		var bed := room.find_child("VictimBed", true, false) as Node3D
+		if bed != null:
+			victim.global_transform = bed.global_transform
+	if victim != null and victim.has_method("set_pose"):
+		victim.set_pose(victim_pose)
+	if not ResourceLoader.exists(MANAGER_SCENE) or room.get_node_or_null("Manager") != null:
+		return
+	var manager := load(MANAGER_SCENE).instantiate() as Node3D
+	manager.name = "Manager"
+	if ResourceLoader.exists(MANAGER_BODY):
+		manager.set("body_scene", load(MANAGER_BODY))
+	manager.set("look_target", victim)
+	manager.set("audio_rig", Node3D.new())
+	room.add_child(manager)
+	var door := room.find_child("Door", true, false) as Node3D
+	var spot := room.find_child("ManagerSpot", true, false) as Node3D
+	if door != null:
+		manager.global_position = door.global_position
+	if spot != null and manager.has_method("walk_to"):
+		manager.walk_to(spot.global_position)
+
+
+func _cctv_kill(camera_id: StringName) -> void:
+	var room := _cctv_room(CCTV_ROOMS.get(camera_id, ""))
+	EventBus.scare_triggered.emit(&"cctv_kill")
+	if room == null:
+		return
+	var victim := room.get_node_or_null("Victim") as Node3D
+	var manager := room.get_node_or_null("Manager") as Node3D
+	if manager != null and victim != null and manager.has_method("slash"):
+		manager.slash(victim)
+	if victim != null and victim.has_method("set_pose"):
+		get_tree().create_timer(0.8 * time_scale, false).timeout.connect(func() -> void:
+			if is_instance_valid(victim):
+				victim.set_pose(&"dead"))
+
+
+# Death scene (D-042): lane A's camera, lane D's blood, lane E's sound.
+func _death_scene() -> void:
+	var done := [false]
+	if _player != null and _player.has_signal("death_animation_finished"):
+		_player.death_animation_finished.connect(func() -> void: done[0] = true, CONNECT_ONE_SHOT)
+	await _wait_until(func() -> bool: return done[0], DEATH_SCENE_SECONDS, false)
 
 
 # --- World ---------------------------------------------------------------------------
@@ -1016,6 +1619,9 @@ func _spoken_seconds(key: String) -> float:
 func _player_in_room() -> bool:
 	if _player == null:
 		return true
+	var bounds := _room().get_node_or_null("Bounds") as Area3D if _room() != null else null
+	if bounds != null and _player is PhysicsBody3D:
+		return bounds.overlaps_body(_player)
 	var p := _player.global_position
 	return p.x > ROOM_407_X.x and p.x < ROOM_407_X.y and p.z < 0.05 and p.y > -1.0 and p.y < 3.0
 

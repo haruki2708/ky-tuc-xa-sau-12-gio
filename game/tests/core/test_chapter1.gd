@@ -25,6 +25,10 @@ func before_each() -> void:
 
 func after_each() -> void:
 	EventBus.subtitle_requested.disconnect(_on_subtitle)
+	if EventBus.segment_changed.is_connected(_latch_in_round_1):
+		EventBus.segment_changed.disconnect(_latch_in_round_1)
+	if EventBus.chat_choice_requested.is_connected(_answer_choices):
+		EventBus.chat_choice_requested.disconnect(_answer_choices)
 	for node in scene.find_children("*", "AudioStreamPlayer3D", true, false):
 		if node.has_method("stop_emitting"):
 			node.stop_emitting()
@@ -47,6 +51,22 @@ func _until(condition: Callable, seconds: float = 20.0) -> void:
 	var deadline := Time.get_ticks_msec() + int(seconds * 1000.0)
 	while not condition.call() and Time.get_ticks_msec() < deadline:
 		await tree.process_frame
+
+
+## Holds the door (N4) as soon as round 1 starts, and gives the right advice
+## to Minh Nhật (N7) when asked: the good path of chapter 1 v2.
+func _play_well() -> void:
+	EventBus.segment_changed.connect(_latch_in_round_1)
+	EventBus.chat_choice_requested.connect(_answer_choices)
+
+
+func _latch_in_round_1(segment: StringName) -> void:
+	if segment == &"r1":
+		(func() -> void: GameState.set_flag(&"door_locked", true)).call_deferred()
+
+
+func _answer_choices(choice_id: StringName, _keys: PackedStringArray) -> void:
+	(func() -> void: EventBus.chat_choice_made.emit(choice_id, 0)).call_deferred()
 
 
 func _start(stage: StringName, stop: StringName) -> void:
@@ -94,6 +114,7 @@ func test_round_1_group_call_and_survivor_count() -> void:
 			members.append(id)
 	EventBus.survivor_count_changed.connect(on_count)
 	EventBus.chat_member_changed.connect(on_member)
+	_play_well()
 	_start(&"r1", &"r1")
 	await _until(func() -> bool: return director.finished, 40.0)
 	EventBus.survivor_count_changed.disconnect(on_count)
@@ -122,14 +143,14 @@ func _manager_scene(bed: int) -> void:
 func test_manager_kills_on_your_own_bed() -> void:
 	await _manager_scene(3)
 	await _until(func() -> bool: return not restarts.is_empty(), 40.0)
-	assert_eq(restarts, [&"ch1_r2_manager"] as Array[StringName], "reload before the manager;")
+	assert_eq(restarts, [&"ch1_r2"] as Array[StringName], "Insane: reload at the start of round 2;")
 	assert_eq(Chapter1Director.manager_deaths, 1, "death counted for hints;")
 
 
 func test_manager_kills_when_not_in_bed() -> void:
 	await _manager_scene(0)
 	await _until(func() -> bool: return not restarts.is_empty(), 20.0)
-	assert_eq(restarts, [&"ch1_r2_manager"] as Array[StringName], "standing up dies;")
+	assert_eq(restarts, [&"ch1_r2"] as Array[StringName], "standing up dies;")
 
 
 func test_manager_hears_a_breath() -> void:
@@ -137,7 +158,7 @@ func test_manager_hears_a_breath() -> void:
 	await _until(func() -> bool: return GameState.segment == &"r2_listen", 40.0)
 	EventBus.noise_emitted.emit(Vector3(33.35, 1.2, -3.0), 1.5, &"breath")
 	await _until(func() -> bool: return not restarts.is_empty(), 20.0)
-	assert_eq(restarts, [&"ch1_r2_manager"] as Array[StringName], "a breath near him kills;")
+	assert_eq(restarts, [&"ch1_r2"] as Array[StringName], "a breath near him kills;")
 
 
 func test_breathing_on_any_bed_is_heard_in_the_silence() -> void:
@@ -145,10 +166,11 @@ func test_breathing_on_any_bed_is_heard_in_the_silence() -> void:
 	await _until(func() -> bool: return GameState.segment == &"r2_listen", 40.0)
 	EventBus.noise_emitted.emit(Vector3(30.65, 0.43, -3.0), 1.5, &"breath")
 	await _until(func() -> bool: return not restarts.is_empty(), 20.0)
-	assert_eq(restarts, [&"ch1_r2_manager"] as Array[StringName], "within four metres of his head;")
+	assert_eq(restarts, [&"ch1_r2"] as Array[StringName], "within four metres of his head;")
 
 
 func test_dead_roommates_bed_and_silence_survive() -> void:
+	_play_well()
 	await _manager_scene(2)
 	await _until(func() -> bool: return GameState.segment == &"r2_listen", 40.0)
 	Input.action_press("hold_breath")
@@ -194,6 +216,7 @@ func test_resume_from_checkpoint_places_player_in_room() -> void:
 
 func test_whole_chapter_runs_to_the_end() -> void:
 	Progress.clear()
+	_play_well()
 	director.start()
 	await _until(func() -> bool: return GameState.get_flag(&"player_bed", 0) == 3)
 	director.get_up()
@@ -223,3 +246,92 @@ func test_every_chapter_1_line_has_a_voice() -> void:
 				if SpeakerVoiceBank.load_clip("res://audio/voice", locale, key) == null:
 					missing.append(locale + "/" + key)
 	assert_eq(missing, [] as Array[String], "voiced lines;")
+
+
+func test_tap_code_round_trip() -> void:
+	var groups := Chapter1Director.encode_taps("CO")
+	assert_eq(groups, [[1, 3], [3, 4]], "C = row 1 col 3, O = row 3 col 4;")
+	var times: Array[float] = []
+	var t := 0.0
+	for pair: Array in groups:
+		for digit: int in pair:
+			for knock in digit:
+				times.append(t)
+				t += 0.3
+			t += 1.0
+		t += 1.5
+	assert_eq(Chapter1Director.decode_taps(times), "CO", "decodes the reply;")
+	assert_eq(Chapter1Director.decode_taps([] as Array[float]), "", "no taps;")
+
+
+func test_late_latch_drags_you_out() -> void:
+	var kinds: Array[StringName] = []
+	var on_kind := func(kind: StringName) -> void: kinds.append(kind)
+	EventBus.player_death_started.connect(on_kind)
+	_start(&"r1", &"r1")
+	await _until(func() -> bool: return not restarts.is_empty(), 40.0)
+	EventBus.player_death_started.disconnect(on_kind)
+	assert_eq(restarts, [&"ch1_r1"] as Array[StringName], "back to the start of round 1;")
+	assert_eq(kinds, [&"fall_back"] as Array[StringName], "falls back with blood (D-042);")
+
+
+func test_wrong_advice_loses_minh_nhat() -> void:
+	var on_choice := func(choice_id: StringName, _keys: PackedStringArray) -> void:
+		(func() -> void: EventBus.chat_choice_made.emit(choice_id, 2 if choice_id == &"tell" else 0)).call_deferred()
+	EventBus.chat_choice_requested.connect(on_choice)
+	await _manager_scene(2)
+	await _until(func() -> bool: return GameState.segment == &"r2_listen", 40.0)
+	Input.action_press("hold_breath")
+	await _until(func() -> bool: return GameState.segment != &"r2_listen", 20.0)
+	Input.action_release("hold_breath")
+	await _until(func() -> bool: return not restarts.is_empty(), 60.0)
+	EventBus.chat_choice_requested.disconnect(on_choice)
+	assert_eq(restarts, [&"ch1_r2"] as Array[StringName], "Minh Nhật dies, round 2 again;")
+
+
+func test_desk_lamp_gives_you_away() -> void:
+	GameState.set_flag(&"desk_lamp_on", true)
+	await _manager_scene(2)
+	await _until(func() -> bool: return not restarts.is_empty(), 30.0)
+	assert_eq(restarts, [&"ch1_r2"] as Array[StringName], "the manager sees the light;")
+
+
+func test_network_fix_needs_switch_two_and_the_blue_cable() -> void:
+	director._network_down()
+	assert_false(director._network_up, "down;")
+	director._on_strip_switch(3, true)
+	await wait_frames(2)
+	assert_false(director._network_up, "the kettle trips the strip;")
+	director._on_strip_switch(2, true)
+	await _until(func() -> bool: return not director._router_booting, 5.0)
+	assert_false(director._network_up, "router up but the cable is out;")
+	director._on_cable_plugged(&"gray")
+	assert_false(director._network_up, "the gray cable is Việt's laptop;")
+	director._on_cable_plugged(&"blue")
+	await wait_frames(2)
+	assert_true(director._network_up, "back online;")
+
+
+func test_three_scraps_make_the_form() -> void:
+	var opened: Array[StringName] = []
+	var on_open := func(id: StringName) -> void: opened.append(id)
+	EventBus.document_opened.connect(on_open)
+	for n in range(1, 4):
+		EventBus.document_opened.emit(StringName("ch1_form_piece_%d" % n))
+		EventBus.document_closed.emit(StringName("ch1_form_piece_%d" % n))
+	await wait_frames(2)
+	EventBus.document_opened.disconnect(on_open)
+	assert_true(opened.has(&"ch1_inspection_form"), "the whole form opens;")
+	assert_eq(GameState.get_flag(&"form_assembled", false), true, "assembled;")
+
+
+func test_idle_waits_are_cut_when_the_round_is_done() -> void:
+	director._missions.clear()
+	director._missions[&"locker"] = false
+	assert_false(director._round_done(), "locker still shut;")
+	GameState.set_flag(&"has_charger", true)
+	assert_true(director._round_done(), "every active mission done;")
+	var started := Time.get_ticks_msec()
+	director.time_scale = 1.0
+	await director._gap(30.0)
+	assert_true(Time.get_ticks_msec() - started < 2000, "the 30 s gap is skipped (D-040);")
