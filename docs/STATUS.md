@@ -50,9 +50,9 @@
 | **Chương 1 "Tổng tắc" (2026-10-04 → 2026-10-07)** | | |
 | T-150 Hợp đồng chung, luồng chương, kịch bản, ghép | core | **doing**: hợp đồng chung xong |
 | T-151 Nằm giường, nín thở, tiếng động, cúi, điện thoại, đèn pin, trạm câu đố | A | **done**, đã merge |
-| T-152 Quản lý, xác đổi tư thế khi không bị nhìn | A | **giao**, hạn 10-06 |
+| T-152 Quản lý, xác đổi tư thế khi không bị nhìn | A | **done**, đã merge |
 | T-153 Phòng 407 chi tiết, máu me, giường bị chém | B | **done**, đã merge |
-| T-154 Mô hình quản lý, xác ba bạn, đạo cụ | B | **giao**, hạn 10-06 |
+| T-154 Mô hình quản lý, xác ba bạn, đạo cụ | B | **done**, đã merge |
 | T-155 Điện thoại và cuộc gọi nhóm, chọn chương, cảnh báo nội dung | D | **done**, đã merge |
 | T-156 Sổ quy tắc, bảng sống sót, màn chết, panel khóa số | D | **giao**, hạn 10-06 |
 | T-157 Bot chương 1, FPS, lưu game | C | **done**, đã merge; bot 4/4 PASS trên chương 1 |

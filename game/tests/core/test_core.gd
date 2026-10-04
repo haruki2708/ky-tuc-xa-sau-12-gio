@@ -202,12 +202,17 @@ func _tap(action: StringName) -> void:
 	press.action = action
 	press.pressed = true
 	Input.parse_input_event(press)
+	# The player reads "just pressed" in _physics_process: hold the key across
+	# physics ticks, not just process frames (headless frames outrun physics).
 	await wait_frames(2)
+	await tree.physics_frame
+	await tree.physics_frame
 	var release := InputEventAction.new()
 	release.action = action
 	release.pressed = false
 	Input.parse_input_event(release)
 	await wait_frames(2)
+	await tree.physics_frame
 
 
 func test_reading_the_door_paper_opens_and_closes_cleanly() -> void:
@@ -225,8 +230,13 @@ func test_reading_the_door_paper_opens_and_closes_cleanly() -> void:
 	player.global_position = Vector3(32.0, 0.03, -0.9)
 	player.rotation.y = PI
 	player.get_node("Head").rotation.x = -0.28
-	for i in 10:
+	# Wait until the interaction ray actually rests on the paper (the busier
+	# room 407 of T-153 can take a few more physics ticks to settle).
+	var paper := main.find_child("RulesPaper407", true, false)
+	for i in 120:
 		await tree.physics_frame
+		if paper != null and player.get("_target") == paper:
+			break
 	var view := main.get_node("DocumentView")
 	await _tap(&"interact")
 	assert_true(view.is_open(), "E on the paper opens the close-up")

@@ -1,5 +1,7 @@
 # Prompt bàn giao — Lane B (Môi trường và 3D)
 
+> **Lane B đang rảnh (2026-10-04):** T-154 đã merge. Chưa có task mới.
+
 ## 1. Prompt giao task (dán nguyên khối)
 ```
 Bạn là agent Lane B (Môi trường và 3D) trong dự án game "Ký túc xá sau 12 giờ" (Godot 4.7.2, GDScript).

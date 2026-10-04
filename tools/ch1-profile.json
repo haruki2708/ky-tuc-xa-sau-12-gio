@@ -8,7 +8,7 @@
     "round1_segment": "r1",
     "manager_segment": "r2_manager",
     "charger_puzzle": "locker_combo_dat",
-    "breath_seconds": 5,
+    "breath_seconds": 7,
     "solution_choice": "tell",
     "solution_index": 0,
     "death_ui_path": "Chapter1Director/DeathLayer/DeathCard",
@@ -17,6 +17,7 @@
     "manager_checkpoint": "ch1_r2_manager",
     "stay_failure_rule": "DEATH_STAYED_IN_BED",
     "leave_failure_rule": "DEATH_LEFT_ROOM",
-    "bed_failure_rule": "DEATH_OWN_BED"
+    "bed_failure_rule": "DEATH_OWN_BED",
+    "listen_segment": "r2_listen"
   }
 }

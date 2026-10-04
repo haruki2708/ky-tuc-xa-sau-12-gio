@@ -15,6 +15,7 @@
       {"op":"save_reload"},
       {"op":"wait_segment","id":"$manager_segment"},
       {"op":"bed","number":2},
+      {"op":"wait_segment","id":"$listen_segment"},
       {"op":"breath","seconds":"$breath_seconds"},
       {"op":"wait_choice","id":"$solution_choice"},
       {"op":"choice","id":"$solution_choice","index":"$solution_index"},

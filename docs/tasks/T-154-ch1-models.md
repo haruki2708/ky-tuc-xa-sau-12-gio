@@ -1,5 +1,5 @@
 # T-154 — Mô hình chương 1: quản lý, xác ba bạn cùng phòng, đạo cụ
-- Lane: B (Môi trường và 3D) | Trạng thái: todo | Agent:
+- Lane: B (Môi trường và 3D) | Trạng thái: done | Agent:
 - Nhánh: `lane-b/T-154-ch1-models`
 - Phụ thuộc: T-153 (làm ngay sau). Đọc `docs/design/STORY.md` v2 §0, §2, §9.
 - **Hạn: hết ngày 2026-10-06.**
@@ -120,3 +120,16 @@ F6 `res://scenes/levels/ch1_models/models_test.tscn`: trái/phải đổi model;
 ### Còn lại / bị chặn
 
 Không checklist T-154 còn thiếu, không bị chặn. Hai mục tùy thời gian (`sit_up`, giẻ lau) cũng đã có. Còn review mỹ thuật của chủ dự án và kiểm tra gameplay sau tích hợp như trên. Không có câu hỏi thiết kế mới; dùng thiết kế v2 và dữ liệu hiện có, không tự thêm luật/cốt truyện.
+
+### Review (integrator, 2026-10-04)
+- **Đạt, đã merge.** Đúng phạm vi; 10 mô hình, 5 test mới, 25 ảnh preview; ba xác đặt sẵn trên giường, capsule cũ đã ẩn.
+- **Đã ghép:**
+  - `manager_body.tscn` làm `body_scene` của quản lý (T-152);
+  - ba xác có `UnseenPoser` và `CorpseAudio`;
+  - router nhấp nháy đèn (`set_led(true)`);
+  - cục sạc trong tủ Đạt ẩn đi khi đã cắm sạc.
+- **Chưa ghép:**
+  - `phone_viewmodel` (cần lane A/D thay điện thoại tạm và đưa giao diện lên `Screen`);
+  - nội dung `dat_notebook` (đang dùng giấy đọc được ở cùng vị trí, tránh hai lớp chữ);
+  - `sit_up` và giẻ để cho chương 2.
+- Loại `models_test*` khỏi bản export: integrator làm khi xuất bản build.

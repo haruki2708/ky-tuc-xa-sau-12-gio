@@ -57,3 +57,5 @@ Chương 1 (4:00–6:00, khoảng 50 phút): mở đầu, vòng 1 (bị giam tro
   - **E:** node trong group `manager_audio` có `place_at(position)`; node trong group `screams` có `play_wave(origin, count, spread)`.
 - **Quản lý nghe tiếng ở độ cao đầu** (1,6 m trên chỗ đứng trước giường 3): thở ở giường 4 (ngay trên giường Trung) bị nghe thấy; thở ở giường 1, 2 thì không.
 - Test: `tests/core/test_chapter1.gd`, 12 test (chết vì nằm giường, rời phòng, giường mình, không nằm giường, tiếng thở; sống khi nằm giường bạn; cả chương chạy hết; mở khóa chương 2; tiếp tục từ checkpoint). Toàn bộ: 271/271 PASS, check 0 lỗi.
+- **Sửa lỗi game ở màn xem giấy** (`document_view.gd`, lane D): giấy đóng khi nhả E, nên chính lần nhả của phím đã mở giấy cũng đóng nó luôn. Lỗi chỉ lộ ra tùy nhịp khung hình (test demo cũ `test_reading_the_door_paper...` chập chờn từ T-153). Nay chỉ đóng khi có một lần bấm E **sau khi** giấy đã mở. Hàm `_tap` trong `test_core.gd` giữ phím qua các bước vật lý. Test ổn định, toàn bộ 348/348 PASS.
+

@@ -1,5 +1,5 @@
 # T-152 — Quản lý ký túc xá và xác bạn cùng phòng đổi tư thế khi không bị nhìn
-- Lane: A (Gameplay) | Trạng thái: todo | Agent:
+- Lane: A (Gameplay) | Trạng thái: done | Agent:
 - Nhánh: `lane-a/T-152-manager-corpses`
 - Phụ thuộc: T-151 (làm ngay sau; được tạo nhánh từ nhánh T-151 nếu T-151 chưa merge, ghi rõ trong Handoff). Đọc `docs/design/STORY.md` v2 §5 (vòng 2), §9.
 - **Hạn: hết ngày 2026-10-06.**
@@ -98,3 +98,18 @@
 4. **Lane B/E:** gắn model T-154 và các pose theo hợp đồng trên; gắn UnseenPoser lên ba xác trong phòng thật, nối CorpseAudio.poser trước ready. Actor đã gọi rig bước/kéo/chém và rig say phát phụ đề, tránh phát trùng ở signal slashed/player_caught. Chưa cần thêm asset/plugin/settings/signal EventBus.
 
 Giữ checklist test ở trạng thái chưa đạt cho đến khi integrator xử lý blocker và chạy lại toàn bộ suite. Nhánh đã có code/test để review, chưa sẵn sàng xác nhận hoàn thành T-152.
+
+### Review (integrator, 2026-10-04)
+- **Đạt, đã merge.** Đúng phạm vi; 18 test mới. Handoff rất tốt: chỉ đúng chỗ test của core không hợp với quản lý thật và hỏi lại luật nghe, thay vì tự đổi luật.
+- **Đã giải quyết "blocker":** lỗi nằm ở core. Integrator viết lại cảnh quản lý ở 407 và **chốt luật nghe theo card T-152**:
+  - quản lý chỉ nghe trong **khoảng im lặng sau câu hỏi**, bán kính 4 m tính từ đầu;
+  - core đặt `listen_seconds = 5` (ngắn hơn 8 giây nín thở tối đa);
+  - chặng `r2_listen` đánh dấu đúng lúc bắt đầu nghe, chết trong chặng này tải lại `ch1_r2_manager`;
+  - core dùng `answered(heard)` của quản lý, không tự nghe song song nữa.
+- **Ghép:**
+  - quản lý đi qua cửa theo `via` (32, −0,8), dùng `manager_body.tscn` của T-154;
+  - mỗi nhát `slashed` làm giường nát dần (`set_slashed`);
+  - khi chết, `kill_player()` lao tới trước rồi mới hiện màn chết;
+  - `UnseenPoser` gắn lên ba xác của T-154 (group `corpse_poser`), bật sau khi ba bạn chết; `CorpseAudio.poser` nối sẵn.
+- Test chương 1 viết lại cho luật mới: thở trong khoảng im lặng ở bất kỳ giường nào là chết; nằm giường bạn và nín thở là sống; cả chương chạy hết với quản lý thật. Tất cả PASS.
+- Còn để sau: `Player._exit_tree` phát `player_hidden` khi scene đang bị giải phóng, đã gây hai lỗi tích hợp (âm thanh của E, điện thoại của D; integrator chặn ở phía nhận). Nên sửa ở Player trong một task sau.

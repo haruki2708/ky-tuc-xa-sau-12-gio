@@ -104,3 +104,5 @@ Log local (build được ignore): `build/T-157-tests-final.log`, `build/T-157-c
 - Sửa file lane C: `ch1_good` nằm **giường 2** thay vì giường 1. Giường tầng trên có động tác trèo 0,5 giây, bước nín thở bắt đầu ngay lúc đang trèo nên bị coi là "di chuyển".
 - **Kết quả:** `pwsh tools/playthrough.ps1 -Chapter 1 -Scenario all -ChapterProfile tools/ch1-profile.json -RequireComplete` cho `RESULT: playthrough 4 passed, 0 failed`. `ch1_good` chạy 166,5 giây thật, 120 phút trong game (4:00 tới 6:00). Không có ERROR trong log. Gồm cả kiểm tra tải lại giữa chương (giữ chương, pin, lịch sử cuộc gọi) và nút chương 2 bị khóa khi chưa mở.
 - Chưa đo lại `-Performance` trên bản ghép; làm khi xuất bản build chơi thử.
+- **Cập nhật sau T-152 (quản lý thật):** `ch1_good` chờ chặng `r2_listen` (binding `listen_segment`) rồi mới nín thở 7 giây. Chạy lại: `RESULT: playthrough 4 passed, 0 failed`; `ch1_good` 196 giây thật.
+

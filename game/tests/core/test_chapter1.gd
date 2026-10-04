@@ -121,34 +121,46 @@ func _manager_scene(bed: int) -> void:
 
 func test_manager_kills_on_your_own_bed() -> void:
 	await _manager_scene(3)
-	await _until(func() -> bool: return not restarts.is_empty())
+	await _until(func() -> bool: return not restarts.is_empty(), 40.0)
 	assert_eq(restarts, [&"ch1_r2_manager"] as Array[StringName], "reload before the manager;")
 	assert_eq(Chapter1Director.manager_deaths, 1, "death counted for hints;")
 
 
 func test_manager_kills_when_not_in_bed() -> void:
 	await _manager_scene(0)
-	await _until(func() -> bool: return not restarts.is_empty())
+	await _until(func() -> bool: return not restarts.is_empty(), 20.0)
 	assert_eq(restarts, [&"ch1_r2_manager"] as Array[StringName], "standing up dies;")
 
 
 func test_manager_hears_a_breath() -> void:
 	await _manager_scene(4)
-	await _until(func() -> bool: return director._manager_listening)
+	await _until(func() -> bool: return GameState.segment == &"r2_listen", 40.0)
 	EventBus.noise_emitted.emit(Vector3(33.35, 1.2, -3.0), 1.5, &"breath")
-	await _until(func() -> bool: return not restarts.is_empty())
+	await _until(func() -> bool: return not restarts.is_empty(), 20.0)
 	assert_eq(restarts, [&"ch1_r2_manager"] as Array[StringName], "a breath near him kills;")
+
+
+func test_breathing_on_any_bed_is_heard_in_the_silence() -> void:
+	await _manager_scene(2)
+	await _until(func() -> bool: return GameState.segment == &"r2_listen", 40.0)
+	EventBus.noise_emitted.emit(Vector3(30.65, 0.43, -3.0), 1.5, &"breath")
+	await _until(func() -> bool: return not restarts.is_empty(), 20.0)
+	assert_eq(restarts, [&"ch1_r2_manager"] as Array[StringName], "within four metres of his head;")
 
 
 func test_dead_roommates_bed_and_silence_survive() -> void:
 	await _manager_scene(2)
-	await _until(func() -> bool: return director._manager_listening)
-	# A breath on Việt's bed is too far from him to hear (MANAGER_HEAR_RADIUS).
-	EventBus.noise_emitted.emit(Vector3(30.65, 0.43, -3.0), 1.5, &"breath")
-	await _until(func() -> bool: return director.finished)
+	await _until(func() -> bool: return GameState.segment == &"r2_listen", 40.0)
+	Input.action_press("hold_breath")
+	await _until(func() -> bool: return GameState.segment != &"r2_listen", 20.0)
+	Input.action_release("hold_breath")
+	await _until(func() -> bool: return director.finished, 60.0)
 	assert_true(director.finished, "the manager leaves;")
 	assert_true(restarts.is_empty(), "alive;")
 	assert_eq(GameState.get_flag(&"ch1_choice_tell", -1), 0, "Trung tells Minh Nhật the trick;")
+	var room := scene.get_node("Floor4/Room407")
+	assert_true(scene.get_node_or_null("Chapter1Director/Manager") == null, "he walked out;")
+	assert_not_null(room, "room;")
 
 
 func test_ending_unlocks_chapter_2() -> void:
@@ -187,6 +199,10 @@ func test_whole_chapter_runs_to_the_end() -> void:
 	director.get_up()
 	await _until(func() -> bool: return GameState.segment == &"r2_manager", 90.0)
 	director.lie_on(2)
+	await _until(func() -> bool: return GameState.segment == &"r2_listen", 60.0)
+	Input.action_press("hold_breath")
+	await _until(func() -> bool: return GameState.segment != &"r2_listen", 20.0)
+	Input.action_release("hold_breath")
 	await _until(func() -> bool: return director.finished, 90.0)
 	assert_true(director.finished, "chapter 1 plays to its end;")
 	assert_true(restarts.is_empty(), "no death on the good path;")

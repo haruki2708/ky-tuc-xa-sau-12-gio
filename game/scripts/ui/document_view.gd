@@ -18,8 +18,14 @@ func show_document(document: DocumentData) -> void:
 	if document == null or not _begin_reading():
 		return
 	_document = document
+	_close_press_seen = false
 	_render()
 	$Root/Paper/Content/Scroll.scroll_vertical = 0
+
+
+## True once interact was pressed while this paper is open; only that press's
+## release closes it (the opening press is released after the paper opens).
+var _close_press_seen: bool = false
 
 
 func _input(event: InputEvent) -> void:
@@ -29,6 +35,10 @@ func _input(event: InputEvent) -> void:
 	# in the same frame, and the Player would see interact as just pressed and
 	# reopen the paper it is still looking at.
 	if event.is_action_pressed("interact"):
+		_close_press_seen = true
+		get_viewport().set_input_as_handled()
+	elif event.is_action_released("interact") and not _close_press_seen:
+		# The release of the press that opened this paper: keep it open.
 		get_viewport().set_input_as_handled()
 	elif event.is_action_released("interact") or event.is_action_pressed("pause") or event.is_action_pressed("notebook"):
 		get_viewport().set_input_as_handled()

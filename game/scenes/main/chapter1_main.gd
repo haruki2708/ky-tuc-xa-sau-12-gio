@@ -34,6 +34,7 @@ func _ready() -> void:
 	if light != null:
 		light.visible = false
 	_place_audio()
+	_wire_room()
 	for rotor in $Floor4.find_children("fan_rotor", "", true, false):
 		_fan_rotors.append(rotor as Node3D)
 	$Chapter1Director.restart_requested.connect(_on_restart_requested)
@@ -88,6 +89,30 @@ func _place_audio() -> void:
 	drips.add_to_group(&"corpse_audio")
 	add_child(drips)
 	drips.global_position = Vector3(32.0, 0.3, -3.0)
+
+
+## Lane B's bodies (T-154) get lane A's UnseenPoser (T-152) and lane E's
+## CorpseAudio (T-158); the router blinks (the call runs over it).
+func _wire_room() -> void:
+	var anchors := $Floor4.get_node_or_null("Room407/Anchors") as Node3D
+	if anchors == null:
+		return
+	for corpse in ["Corpse1", "Corpse2", "Corpse4"]:
+		var body := anchors.get_node_or_null(corpse + "/Body") as Node3D
+		if body == null:
+			continue
+		var poser := UnseenPoser.new()
+		poser.name = "UnseenPoser"
+		poser.enabled = false
+		poser.add_to_group(&"corpse_poser")
+		body.add_child(poser)
+		var rustle := CorpseAudio.new()
+		rustle.name = "CorpseAudio"
+		rustle.poser = poser
+		body.add_child(rustle)
+	var router := anchors.get_node_or_null("Router/Model")
+	if router != null and router.has_method("set_led"):
+		router.set_led(true)
 
 
 func _place_papers() -> void:

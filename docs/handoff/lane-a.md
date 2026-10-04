@@ -1,5 +1,7 @@
 # Prompt bàn giao — Lane A (Gameplay)
 
+> **Lane A đang rảnh (2026-10-04):** T-152 đã merge. Chưa có task mới.
+
 ## 1. Prompt giao task (dán nguyên khối)
 ```
 Bạn là agent Lane A (Gameplay) trong dự án game "Ký túc xá sau 12 giờ" (Godot 4.7.2, GDScript).

@@ -21,6 +21,17 @@ const STAGES: Array[StringName] = [&"prologue", &"r1", &"r2", &"r2_manager", &"e
 const CHECKPOINTS := {
 	&"prologue": &"ch1_prologue", &"r1": &"ch1_r1", &"r2": &"ch1_r2", &"r2_manager": &"ch1_r2_manager",
 }
+## Deaths reload the checkpoint of the stage they happen in. r2_listen is the
+## silence after the manager's question, inside the r2_manager stage.
+const DEATH_CHECKPOINTS := {
+	&"prologue": &"ch1_prologue", &"r1": &"ch1_r1", &"r2": &"ch1_r2", &"r2_manager": &"ch1_r2_manager",
+	&"r2_listen": &"ch1_r2_manager",
+}
+## The manager walks in through the door, around the open leaf (T-152 needs
+## clear straight lines between waypoints).
+const MANAGER_VIA: PackedVector3Array = [Vector3(32.0, 0.05, -0.8)]
+const MANAGER_OUT_VIA: PackedVector3Array = [Vector3(32.0, 0.05, -0.8)]
+const MANAGER_BODY := "res://scenes/levels/ch1_models/manager_body.tscn"
 const ROOM_407_X := Vector2(30.0, 34.0)
 ## Bed number → floor 4 anchor (docs/tasks/T-150: 1 Phúc, 2 Việt, 3 Trung, 4 Đạt).
 const BED_ANCHORS := {1: "Bed_Phuc", 2: "Bed_Viet", 3: "Bed_Trung", 4: "Bed_Dat"}
@@ -30,7 +41,11 @@ const BED_EXIT := {1: Vector3(31.4, 0.05, -2.2), 2: Vector3(31.4, 0.05, -2.2),
 	3: Vector3(32.6, 0.05, -2.2), 4: Vector3(32.6, 0.05, -2.2)}
 ## Spot in front of Trung's bunk where the manager stands and listens.
 const MANAGER_SPOT := Vector3(33.0, 0.05, -1.9)
-const MANAGER_HEAR_RADIUS := 1.0
+## Without lane A's manager: he hears anything within this distance of his head
+## while he waits for an answer (same rule as T-152).
+const MANAGER_HEAR_RADIUS := 4.0
+## Silence he waits for after the question; shorter than the 8 s breath hold.
+const MANAGER_LISTEN_SECONDS := 5.0
 const DOOR_SPOT := Vector3(32.0, 0.05, 0.6)
 const BUNK_SCENE := "res://scenes/interaction/bunk_spot.tscn"
 const PUZZLE_STATION_SCENE := "res://scenes/interaction/puzzle_station.tscn"
@@ -56,7 +71,7 @@ static var manager_deaths: int = 0
 @export var line_seconds: float = 4.5
 @export var get_up_seconds: float = 60.0
 @export var choice_seconds: float = 12.0
-@export var manager_listen_seconds: float = 6.0
+@export var manager_listen_seconds: float = 5.0
 ## Stop after this stage (tests run one stretch). Empty = to the end.
 @export var stop_after: StringName = &""
 
@@ -75,6 +90,7 @@ var _choice_id: StringName = &""
 var _choice_index: int = -2
 var _manager_listening: bool = false
 var _manager_heard: bool = false
+var _pending_death: StringName = &""
 var _charging: bool = false
 var _overlay: ColorRect
 var _overlay_label: Label
@@ -124,6 +140,7 @@ func start() -> void:
 		_set_bed(0)
 		if from != &"prologue":
 			_place_player(Vector3(32.0, 0.05, -1.6))
+			_set_corpses_watching.call_deferred(true)
 	else:
 		manager_deaths = 0
 		GameState.reset()
@@ -186,6 +203,7 @@ func _prologue() -> void:
 	_screams(_room_center(), 6, 4.0)
 	_set_blood(1)
 	GameState.set_flag(&"roommates_dead", true)
+	_set_corpses_watching(true)
 	await _wait_until(_player_in_room, 120.0)
 	await _wait(1.0)
 	_think("THINK_CH1_RETURN")
@@ -352,29 +370,30 @@ func _manager_at_407() -> void:
 	_open_door()
 	_set_flicker(true)
 	var manager := _spawn_manager()
-	# He is in the room from here: any noise near him, or not lying on a bed, kills.
-	_manager_heard = false
-	_manager_listening = true
 	await _wait(1.5)
 	if _bed == 0:
-		_die(&"DEATH_NOT_IN_BED")
+		await _manager_kills(manager, &"DEATH_NOT_IN_BED")
 		return
-	await _manager_walk(manager, MANAGER_SPOT)
-	await _manager_line("MGR_CH1_ASK_BED_3", manager)
-	await _wait(manager_listen_seconds)
+	await _manager_walk(manager, MANAGER_SPOT, MANAGER_VIA)
+	if _bed == 0:
+		await _manager_kills(manager, &"DEATH_NOT_IN_BED")
+		return
+	# The question, then silence: the only moment he listens (breath, a quick
+	# turn of the head, getting up).
+	var heard := await _manager_ask(manager, "MGR_CH1_ASK_BED_3")
+	GameState.set_segment(&"r2_manager")
 	if _bed == TRUNG_BED:
-		_die(&"DEATH_OWN_BED")
+		await _manager_kills(manager, &"DEATH_OWN_BED")
 		return
-	if _manager_heard:
-		_die(&"DEATH_HEARD")
+	if _bed == 0:
+		await _manager_kills(manager, &"DEATH_NOT_IN_BED")
 		return
-	await _manager_line("MGR_CH1_LAUGH", manager)
+	if heard:
+		await _manager_kills(manager, &"DEATH_HEARD")
+		return
+	await _manager_line("MGR_CH1_LAUGH")
 	await _slash_trung_bed(manager)
-	if _manager_heard:
-		_die(&"DEATH_HEARD")
-		return
-	_manager_listening = false
-	await _manager_walk(manager, DOOR_SPOT)
+	await _manager_walk(manager, DOOR_SPOT, MANAGER_OUT_VIA)
 	if manager != null:
 		manager.queue_free()
 	_close_door()
@@ -556,6 +575,9 @@ func _plug_in_charger() -> void:
 		return
 	_charging = true
 	GameState.set_flag(&"charging", true)
+	var charger := _room_anchor("DatLocker/Charger")
+	if charger != null:
+		charger.visible = false
 	var socket := get_node_or_null("ChargerSocket") as StoryTrigger
 	if socket != null:
 		socket.enabled = false
@@ -694,31 +716,81 @@ func _spawn_manager() -> Node3D:
 	if manager == null:
 		return null
 	manager.name = "Manager"
+	manager.set("player", _player)
+	manager.set("listen_seconds", MANAGER_LISTEN_SECONDS)
+	manager.set("look_target", _bunks.get(TRUNG_BED))
+	if ResourceLoader.exists(MANAGER_BODY):
+		manager.set("body_scene", load(MANAGER_BODY))
 	add_child(manager)
 	manager.global_position = DOOR_SPOT
+	if manager.has_signal("slashed"):
+		manager.slashed.connect(func(_target: Node3D) -> void: _slash_progress())
 	return manager
 
 
-func _manager_walk(manager: Node3D, to: Vector3) -> void:
+var _slash_cuts: int = 0
+
+
+func _slash_progress() -> void:
+	_slash_cuts += 1
+	_set_bed_slashed(minf(float(_slash_cuts) / 6.0, 1.0))
+
+
+## The actor moves in real time; its waits are not scaled (tests speed up only
+## the director's own beats).
+func _manager_walk(manager: Node3D, to: Vector3, via: PackedVector3Array = PackedVector3Array()) -> void:
 	if manager == null or not manager.has_method("walk_to"):
 		var audio := _manager_audio()
 		if audio != null:
 			audio.place_at(to)
 		await _wait(2.5)
 		return
-	manager.walk_to(to)
-	if manager.has_signal("arrived"):
-		await _with_timeout(manager.arrived, 8.0)
+	manager.walk_to(to, via)
+	await _with_timeout(manager.arrived, 15.0, false)
+
+
+## Asks one line and returns whether he heard anything in the silence after.
+func _manager_ask(manager: Node3D, key: String) -> bool:
+	if manager != null and manager.has_method("ask") and manager.has_signal("answered"):
+		var result := [false, false]
+		var on_answer := func(heard: bool) -> void:
+			result[0] = true
+			result[1] = heard
+		manager.answered.connect(on_answer, CONNECT_ONE_SHOT)
+		manager.ask(key)
+		# He listens once the question is out (T-152): mark that moment.
+		await _wait_until(func() -> bool: return result[0], _voice_seconds(key, "MGR_CH1_"), false)
+		GameState.set_segment(&"r2_listen")
+		await _wait_until(func() -> bool: return result[0] or _bed == 0, 30.0, false)
+		if manager.answered.is_connected(on_answer):
+			manager.answered.disconnect(on_answer)
+		return result[1]
+	# Core stand-in: the rig speaks, then the director listens.
+	await _manager_line(key)
+	GameState.set_segment(&"r2_listen")
+	_manager_heard = false
+	_manager_listening = true
+	await _wait(manager_listen_seconds)
+	_manager_listening = false
+	return _manager_heard
+
+
+## Lane A's actor lunges and finishes the player first (it emits player_caught),
+## then the death card and the reload.
+func _manager_kills(manager: Node3D, reason: StringName) -> void:
+	_pending_death = reason
+	if manager != null and manager.has_method("kill_player"):
+		manager.kill_player()
+		await _wait_until(func() -> bool: return _dying, 3.0, false)
+	_die(reason)
 
 
 func _slash_trung_bed(manager: Node3D) -> void:
 	var bed := _bunks.get(TRUNG_BED) as Node3D
+	_slash_cuts = 0
 	if manager != null and manager.has_method("slash") and bed != null:
 		manager.slash(bed)
-		if manager.has_signal("slash_finished"):
-			await _with_timeout(manager.slash_finished, 8.0)
-		else:
-			await _wait(4.0)
+		await _with_timeout(manager.slash_finished, 10.0, false)
 	else:
 		var audio := _manager_audio()
 		for cut in 6:
@@ -735,13 +807,13 @@ func _on_noise(position: Vector3, radius: float, _source: StringName) -> void:
 	var manager := get_node_or_null("Manager") as Node3D
 	# He listens at head height: breathing on the bunk above Trung's carries.
 	var ear := (manager.global_position if manager != null else MANAGER_SPOT) + Vector3(0, 1.6, 0)
-	if position.distance_to(ear) <= maxf(radius, MANAGER_HEAR_RADIUS):
+	if position.distance_to(ear) <= MANAGER_HEAR_RADIUS:
 		_manager_heard = true
 
 
 func _on_player_caught(entity_id: StringName) -> void:
 	if entity_id == &"manager":
-		_die(&"DEATH_HEARD")
+		_die(_pending_death if not _pending_death.is_empty() else &"DEATH_HEARD")
 
 
 # --- Death and end ----------------------------------------------------------------
@@ -754,10 +826,10 @@ func _die(reason_key: StringName) -> void:
 	_dying = true
 	_rules_live = false
 	_manager_listening = false
-	if GameState.segment == &"r2_manager":
+	if GameState.segment in [&"r2_manager", &"r2_listen"]:
 		manager_deaths += 1
 	EventBus.scare_triggered.emit(&"lost")
-	var checkpoint: StringName = CHECKPOINTS.get(GameState.segment, &"ch1_prologue")
+	var checkpoint: StringName = DEATH_CHECKPOINTS.get(GameState.segment, &"ch1_prologue")
 	var count := int(GameState.get_flag(&"survivors", SURVIVORS_START)) - 1
 	# Every chapter death is announced with its reason key (DEATH_*): lane D's
 	# death screen (T-156) and the QA bot (T-157) listen to it.
@@ -780,6 +852,13 @@ func _survivors(count: int) -> void:
 
 func _room() -> Node:
 	return _floor.get_node_or_null("Room407") if _floor else null
+
+
+## Lane A's UnseenPoser on lane B's bodies (T-152, T-154): they shift only
+## while nobody looks. Off during the prologue, on once they are dead.
+func _set_corpses_watching(on: bool) -> void:
+	for poser in get_tree().get_nodes_in_group(&"corpse_poser"):
+		poser.set("enabled", on)
 
 
 func _room_anchor(path: String) -> Node3D:
@@ -987,8 +1066,8 @@ func _wait(seconds: float) -> void:
 
 
 ## Waits until condition() is true or max_seconds pass (scaled). Pausable.
-func _wait_until(condition: Callable, max_seconds: float) -> void:
-	var limit := maxf(max_seconds * time_scale, 0.0)
+func _wait_until(condition: Callable, max_seconds: float, scaled: bool = true) -> void:
+	var limit := maxf(max_seconds * (time_scale if scaled else 1.0), 0.0)
 	var elapsed := 0.0
 	while not condition.call() and elapsed < limit:
 		await _stay()
@@ -999,11 +1078,11 @@ func _wait_until(condition: Callable, max_seconds: float) -> void:
 			elapsed += get_process_delta_time()
 
 
-func _with_timeout(sig: Signal, max_seconds: float) -> void:
+func _with_timeout(sig: Signal, max_seconds: float, scaled: bool = true) -> void:
 	var done := [false]
 	var mark := func(_a: Variant = null, _b: Variant = null) -> void: done[0] = true
 	sig.connect(mark, CONNECT_ONE_SHOT)
-	await _wait_until(func() -> bool: return done[0], max_seconds)
+	await _wait_until(func() -> bool: return done[0], max_seconds, scaled)
 	if sig.is_connected(mark):
 		sig.disconnect(mark)
 
