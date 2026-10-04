@@ -5,41 +5,165 @@
   "chapter2_button_path": "Chapters/Content/Chapter2",
   "bindings": {
     "opening_segment": "prologue",
-    "toilet_position": null,
-    "room_position": null,
+    "toilet_position": [
+      2,
+      0.03,
+      -2.5
+    ],
+    "room_position": [
+      33,
+      0.03,
+      -2.5
+    ],
     "round1_segment": "r1",
-    "network_lost_flag": null,
-    "network_restored_flag": null,
-    "door_threat_flag": null,
-    "door_safe_flag": null,
-    "wall_prompt_flag": null,
-    "wall_answer_flag": null,
+    "network_lost_flag": "network_lost",
+    "network_restored_flag": "network_restored",
+    "door_threat_flag": "door_threat",
+    "door_safe_flag": "door_safe",
+    "wall_prompt_flag": "wall_prompt",
+    "wall_answer_flag": "khoa_hint",
     "round2_segment": "r2",
-    "report_complete_flag": null,
-    "manager_segment": null,
-    "listen_segment": null,
+    "report_complete_flag": "form_assembled",
+    "manager_segment": "r2_manager",
+    "listen_segment": "r2_listen",
     "solution_choice": "tell",
-    "power_tripped_flag": null,
+    "power_tripped_flag": "strip_tripped",
     "round1_checkpoint": "ch1_r1",
     "death_ui_path": "DeathScreen/Root",
     "round2_checkpoint": "ch1_r2"
   },
   "actions": {
-    "wall_taps": null,
-    "power_switch_1": null,
-    "power_switch_2": null,
-    "power_switch_3": null,
-    "cable_blue": null,
-    "cable_gray": null,
-    "latch": null,
-    "search_viet_locker": null,
-    "search_phuc_mattress": null,
-    "search_trash": null,
-    "desk_lamp": null,
+    "wall_taps": {
+      "path": "Floor4/Room407/Anchors/WallKnock406/WallKnock406"
+    },
+    "power_switch_1": {
+      "path": "Floor4/Room407/Anchors/PowerStrip/PowerStripInteract/Switch1",
+      "method": "interact",
+      "args": [
+        "$player"
+      ],
+      "verify": {
+        "flag": "strip_switch_1",
+        "equals": "$on"
+      }
+    },
+    "power_switch_2": {
+      "path": "Floor4/Room407/Anchors/PowerStrip/PowerStripInteract/Switch2",
+      "method": "interact",
+      "args": [
+        "$player"
+      ],
+      "verify": {
+        "flag": "strip_switch_2",
+        "equals": "$on"
+      }
+    },
+    "power_switch_3": {
+      "path": "Floor4/Room407/Anchors/PowerStrip/PowerStripInteract/Switch3",
+      "method": "interact",
+      "args": [
+        "$player"
+      ],
+      "verify": {
+        "flag": "strip_tripped",
+        "equals": true
+      }
+    },
+    "cable_blue": {
+      "path": "Chapter1Director",
+      "method": "qa_plug_cable",
+      "args": [
+        "blue",
+        "$player"
+      ],
+      "verify": {
+        "flag": "lan_plugged",
+        "equals": "blue"
+      }
+    },
+    "cable_gray": {
+      "path": "Chapter1Director",
+      "method": "qa_plug_cable",
+      "args": [
+        "gray",
+        "$player"
+      ],
+      "verify": {
+        "flag": "lan_plugged",
+        "equals": "gray"
+      }
+    },
+    "latch": {
+      "path": "Floor4/Door407/Pivot/DoorLatch407",
+      "method": "interact",
+      "args": [
+        "$player"
+      ],
+      "verify": {
+        "flag": "door_locked",
+        "equals": "$on"
+      }
+    },
+    "search_viet_locker": {
+      "path": "Floor4/Room407/Anchors/VietLocker/SearchVietLocker",
+      "method": "interact",
+      "args": [
+        "$player"
+      ],
+      "verify": {
+        "property": "is_searched",
+        "equals": true
+      }
+    },
+    "search_phuc_mattress": {
+      "path": "Floor4/Room407/Anchors/PhucMattress/SearchPhucMattress",
+      "method": "interact",
+      "args": [
+        "$player"
+      ],
+      "verify": {
+        "property": "is_searched",
+        "equals": true
+      }
+    },
+    "search_trash": {
+      "path": "Floor4/Room407/Anchors/TrashBin/SearchTrashBin",
+      "method": "interact",
+      "args": [
+        "$player"
+      ],
+      "verify": {
+        "property": "is_searched",
+        "equals": true
+      }
+    },
+    "desk_lamp": {
+      "path": "Floor4/Room407/Anchors/DeskLampSwitch/DeskLampSwitch",
+      "method": "interact",
+      "args": [
+        "$player"
+      ],
+      "verify": {
+        "flag": "desk_lamp_on",
+        "equals": "$on"
+      }
+    },
     "camera_tab": null,
     "map_tab": null,
-    "keypad": null,
-    "charge": null
+    "keypad": {
+      "path": "Chapter1Director/DatLocker"
+    },
+    "charge": {
+      "path": "Chapter1Director/ChargerSocket",
+      "method": "interact",
+      "args": [
+        "$player"
+      ],
+      "verify": {
+        "flag": "charging",
+        "equals": true
+      }
+    }
   },
   "jumps": {
     "prologue": "prologue",

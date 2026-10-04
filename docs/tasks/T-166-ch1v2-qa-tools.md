@@ -1,5 +1,5 @@
 # T-166 — Công cụ thử chương 1 bản 2: nhảy tới nhiệm vụ, bot 8 nhiệm vụ, đo hiệu năng camera
-- Lane: C (QA và Tools) | Trạng thái: todo | Agent:
+- Lane: C (QA và Tools) | Trạng thái: doing (công cụ đã merge, chờ chạy trên bản ghép) | Agent:
 - Nhánh: `lane-c/T-166-ch1v2-qa-tools`
 - Phụ thuộc: T-157. **Đọc `docs/design/CH1_V2_MISSIONS.md`** (D-039…D-042).
 - **Hạn:** phần 1 và 3 hết ngày **2026-10-06**; phần 2 chạy trên bản ghép **sáng 2026-10-07**.
@@ -72,3 +72,19 @@ Chương 1 bản 2 dài khoảng 60 phút, độ khó Insane, chết là làm l�
 4. Sau ghép: đối chiếu lịch N2/N3/N4 để sửa mạng/gõ tường không bỏ lỡ cửa 10 giây; rà lại hook bất tử nếu pipeline chết thay đổi; chạy năm case với `-RequireComplete` tới **5 PASS/0 SKIP**, xác nhận reload đầu vòng 1/2, rồi đo performance riêng, không đồng thời chạy test/Godot khác. Chưa xác nhận những hành vi này trên bản 2.
 
 **Blocked: phần xác nhận tích hợp bản 2 và bốn mốc menu mới chờ T-160/T-161/T-162/T-163/T-165.** Main hiện tại vẫn là chương 1 bản đầu. Phần công cụ đã kiểm thử có thể review; chưa coi toàn task T-166 hoàn thành.
+
+### Review (integrator, 2026-10-05)
+- **Đạt, đã merge phần công cụ.** Đúng phạm vi. Bot bản 2 dùng tương tác thật, không tự đặt cờ hoàn thành; SKIP/FAIL rõ ràng; menu QA tách bản lưu.
+- **Integrator đã điền `tools/ch1v2-profile.json`:**
+  - cờ trạng thái mới do core giữ tới cuối vòng: `network_lost`, `network_restored`, `door_threat`, `door_safe`, `wall_prompt`, `strip_tripped`, `strip_switch_1..3`, `lan_plugged`;
+  - cờ có sẵn: `khoa_hint` (Khoa đã gõ "SO GIUONG"), `form_assembled`, `desk_lamp_on`, `door_locked`, `charging`;
+  - segment `r2_manager` và `r2_listen`;
+  - đường dẫn thật tới công tắc ổ điện, chỗ lục, tường, chốt cửa, đèn bàn, tủ Đạt, ổ sạc;
+  - dây mạng dùng `Chapter1Director.qa_plug_cable(color, player)`: gọi đúng hai lần `interact` thật (cầm dây, rồi cắm vào ổ).
+- Còn chờ: `map_tab`/`camera_tab` (T-163 của D), góc đo hiệu năng và 5 feed (T-165 của B), nút nhảy tới mất mạng/gõ tường/giữ cửa/cứu Nhật (core, làm sau bản chơi thử nếu kịp).
+- **Integrator sửa bot (`ch1v2_actions.gd`, `ch1v2_bot.gd`):**
+  - so sánh an toàn kiểu `_same()`, vì GDScript 4 báo lỗi khi so `bool == String`;
+  - JSON đọc số `2` thành `2.0`, nên `power_switch` nhận cả float.
+- Core đồng bộ cờ `door_locked` theo chốt thật ở đầu vòng 1.
+- **`ch1v2_door_late`: PASS** (315 s thật, chết `DEATH_DRAGGED_OUT`, tải lại `ch1_r1`). Mất mạng, công tắc 2, dây xanh, mạng có lại: đều PASS.
+

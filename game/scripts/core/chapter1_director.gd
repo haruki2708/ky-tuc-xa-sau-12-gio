@@ -298,6 +298,13 @@ func _round_1() -> void:
 	_rules_live = true
 	_set_blood(1)
 	_missions.clear()
+	for flag: StringName in [&"network_lost", &"network_restored", &"door_threat", &"door_safe", &"wall_prompt", &"strip_tripped"]:
+		GameState.set_flag(flag, false)
+	# The flag follows the real latch: a reloaded scene starts unlatched even
+	# when the checkpoint was saved latched.
+	var latch := _door().find_child("DoorLatch407", true, false) if _door() != null else null
+	if latch != null:
+		GameState.set_flag(&"door_locked", latch.get("_locked") == true)
 	await _wait(8.0)
 	_think("THINK_CH1_WALL")
 	await _wait(10.0)
@@ -362,6 +369,7 @@ func _hold_the_door() -> void:
 	await _room_line("ROOM_CH1_KNOCK_VIET", 4.5)
 	# The handle twists: latch within DOOR_HOLD_SECONDS or be dragged out.
 	var door := _door()
+	GameState.set_flag(&"door_threat", true)
 	if door != null and door.has_method("rattle"):
 		door.rattle(DOOR_HOLD_SECONDS)
 	var mission := get_parent().get_node_or_null("MissionAudio") if get_parent() else null
@@ -378,6 +386,7 @@ func _hold_the_door() -> void:
 		return
 	_door_held = true
 	_missions[&"door"] = true
+	GameState.set_flag(&"door_safe", true)
 	await _room_line("ROOM_CH1_KNOCK_VIET_2", 3.5)
 	await _line("vinh_ask")
 	await _line("n_dont_open")
@@ -1097,9 +1106,10 @@ func _place_mission_props() -> void:
 			var model := strip_anchor.get_node_or_null("Switch%d" % n) as Node3D
 			if area != null and model != null and model != area:
 				area.global_transform = model.global_transform
-		var placeholder := strip.get_node_or_null("Placeholder") as Node3D
-		if placeholder != null:
-			placeholder.visible = false
+		for placeholder_path in ["Placeholder", "Switch1/Placeholder", "Switch2/Placeholder", "Switch3/Placeholder"]:
+			var placeholder := strip.get_node_or_null(placeholder_path) as Node3D
+			if placeholder != null:
+				placeholder.visible = false
 		strip.switch_toggled.connect(func(index: int, on: bool) -> void:
 			if strip_anchor.has_method("set_switch"):
 				strip_anchor.set_switch(index + 1, on)
@@ -1118,10 +1128,12 @@ func _place_mission_props() -> void:
 		socket.name = "LanSocket"
 		port.add_child(socket)
 		socket.plugged.connect(func(cable_id: StringName) -> void:
+			GameState.set_flag(&"lan_plugged", String(cable_id))
 			if room.has_method("set_plugged"):
 				room.set_plugged(cable_id, true)
 			_on_cable_plugged(cable_id))
 		socket.unplugged.connect(func(cable_id: StringName) -> void:
+			GameState.set_flag(&"lan_plugged", "")
 			if room.has_method("set_plugged"):
 				room.set_plugged(cable_id, false)
 			_on_cable_unplugged(cable_id))
@@ -1148,6 +1160,17 @@ func _place_mission_props() -> void:
 			latch.position = Vector3(-0.85, 1.05, -0.06)
 
 
+## QA (lane C bot, T-166): pick up a cable and plug it in with the player's
+## two real interactions, as a player would.
+func qa_plug_cable(cable_id: String, player: Node) -> void:
+	var end := _room_anchor("LanBlueEnd" if cable_id == "blue" else "LanGrayEnd")
+	var cable := end.get_node_or_null("Cable_" + cable_id) if end != null else null
+	var socket := _room_anchor("LanWallPort/LanSocket")
+	if cable != null and socket != null:
+		cable.interact(player)
+		socket.interact(player)
+
+
 func _find_component(script_file: String) -> Node:
 	var found := _find_components(script_file)
 	return found[0] if not found.is_empty() else null
@@ -1165,6 +1188,7 @@ func _find_components(script_file: String) -> Array[Node]:
 
 # N2: network down, power strip, router, cables.
 func _network_down() -> void:
+	GameState.set_flag(&"network_lost", true)
 	_missions[&"network"] = false
 	_network_up = false
 	_strip_on.clear()
@@ -1185,6 +1209,7 @@ func _network_restored(remote: bool) -> void:
 		return
 	_network_up = true
 	_missions[&"network"] = true
+	GameState.set_flag(&"network_restored", true)
 	_router_state(true, &"ok")
 	_mission_cue(&"router_online")
 	EventBus.phone_call_restored.emit(&"stranger_call")
@@ -1197,6 +1222,7 @@ func _network_restored(remote: bool) -> void:
 
 func _on_strip_switch(index: int, on: bool) -> void:
 	_strip_on[index] = on
+	GameState.set_flag(StringName("strip_switch_%d" % index), on)
 	_mission_cue(&"power_switch")
 	if not on or _network_up:
 		if index == 2 and not on and not _network_up:
@@ -1208,6 +1234,7 @@ func _on_strip_switch(index: int, on: bool) -> void:
 		var strip_model := _room_anchor("PowerStrip")
 		if strip_model != null and strip_model.has_method("set_tripped"):
 			strip_model.set_tripped(true)
+		GameState.set_flag(&"strip_tripped", true)
 		if strip != null:
 			if strip.has_method("trip"):
 				strip.trip()
@@ -1221,6 +1248,9 @@ func _on_strip_switch(index: int, on: bool) -> void:
 		_router_state(false, &"off")
 		return
 	if index == 2:
+		var strip_model := _room_anchor("PowerStrip")
+		if strip_model != null and strip_model.has_method("set_tripped"):
+			strip_model.set_tripped(false)
 		_boot_router()
 
 
@@ -1298,6 +1328,7 @@ func _wall_taps() -> void:
 		await _wait(2.5)
 	_taps.clear()
 	_tap_listening = true
+	GameState.set_flag(&"wall_prompt", true)
 	var started := Time.get_ticks_msec()
 	var reply := ""
 	while _tap_listening and is_inside_tree():

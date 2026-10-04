@@ -35,7 +35,7 @@ func _step(step: Dictionary) -> void:
 		if id.is_empty() or not step.has("equals"):
 			failure = "wait_flag requires an explicit flag and expected value"
 			return
-		await _until(func() -> bool: return GameState.get_flag(id, null) == step.equals, "flag " + id)
+		await _until(func() -> bool: return preload("res://scripts/debug/ch1v2_actions.gd")._same(GameState.get_flag(id, null), step.equals), "flag " + id)
 		_mark("flag " + id)
 	else:
 		await super._step(step)

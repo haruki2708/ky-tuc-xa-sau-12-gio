@@ -9,7 +9,10 @@ static func valid_v2(command: Dictionary) -> bool:
 	match str(command.get("op", "")):
 		"wall_taps":
 			return command.get("code") is String and not tap_schedule(command.code).is_empty()
-		"power_switch": return command.get("index") in [1, 2, 3] and command.get("on") is bool
+		"power_switch":
+			# JSON numbers arrive as floats (integrator, T-166 review).
+			var index: Variant = command.get("index")
+			return (index is int or index is float) and float(index) in [1.0, 2.0, 3.0] and command.get("on") is bool
 		"cable": return command.get("color") in ["blue", "gray"]
 		"latch", "desk_lamp": return command.get("on") is bool
 		"search": return command.get("spot") in ["viet_locker", "phuc_mattress", "trash"]
@@ -47,7 +50,7 @@ func execute(command: Dictionary) -> Dictionary:
 	var key: String = op
 	if op == "search": key += "_" + str(command.spot)
 	if op == "cable": key += "_" + str(command.color)
-	if op == "power_switch": key += "_" + str(command.index)
+	if op == "power_switch": key += "_" + str(int(command.index))
 	var spec: Variant = bindings.get(key)
 	if not spec is Dictionary or not spec.get("path") is String:
 		return result("SKIP", "T-161/T-163 action binding missing: " + key)
@@ -104,22 +107,31 @@ func execute(command: Dictionary) -> Dictionary:
 	if not target.has_method(spec.method): return result("SKIP", "API not integrated: " + key + "." + spec.method)
 	var params: Array = []
 	for argument: Variant in spec.get("args", []):
-		if argument == "$player": params.append(actor)
-		elif argument == "$on": params.append(command.get("on"))
+		if _same(argument, "$player"): params.append(actor)
+		elif _same(argument, "$on"): params.append(command.get("on"))
 		else: params.append(argument)
 	var expected: Variant = spec.verify.get("equals")
-	if expected == "$on": expected = command.get("on")
-	if _observed(target, spec.verify) != expected:
+	if _same(expected, "$on"): expected = command.get("on")
+	if not _same(_observed(target, spec.verify), expected):
 		target.callv(spec.method, params)
 	var deadline := Time.get_ticks_msec() + 3000
-	while _observed(target, spec.verify) != expected and Time.get_ticks_msec() < deadline and not _cancelled:
+	while not _same(_observed(target, spec.verify), expected) and Time.get_ticks_msec() < deadline and not _cancelled:
 		await get_tree().process_frame
 	if _cancelled: return result("SKIP", "action cancelled")
-	if _observed(target, spec.verify) != expected: return result("FAIL", "state acknowledgement failed: " + key)
+	if not _same(_observed(target, spec.verify), expected): return result("FAIL", "state acknowledgement failed: " + key)
 	if op == "search":
 		var reader := component("document_view.gd")
 		if reader != null: reader.close_view()
 	return result("PASS", key)
+
+
+## Type-safe equality: GDScript 4 errors on bool == String (integrator, T-166 review).
+static func _same(a: Variant, b: Variant) -> bool:
+	if (a is String or a is StringName) and (b is String or b is StringName):
+		return String(a) == String(b)
+	if (a is int or a is float) and (b is int or b is float):
+		return float(a) == float(b)
+	return typeof(a) == typeof(b) and a == b
 
 
 func _observed(target: Node, check: Dictionary) -> Variant:
