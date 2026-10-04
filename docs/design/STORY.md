@@ -1,6 +1,6 @@
 # Thiết kế game đầy đủ theo chương
 
-> **Trạng thái: BẢN NHÁP, chờ chủ dự án duyệt** (2026-10-04). Dựa trên D-029 và ý chính của chủ dự án (D-030). Chỗ ghi **[Claude đề xuất]** là phần chủ dự án giao cho Claude đề xuất, sửa thoải mái. Đã duyệt (D-031): khu vực theo đêm (mục 6), 8–10 jumpscare mỗi chương (mục 7), chương 1 dùng lại nội dung demo (mục 10). Còn chờ: sửa cốt truyện (mục 3), duyệt bản chi tiết thực thể (mục 5).
+> **Trạng thái: BẢN NHÁP, chờ chủ dự án duyệt** (2026-10-04). Dựa trên D-029 và ý chính của chủ dự án (D-030). Chỗ ghi **[Claude đề xuất]** là phần chủ dự án giao cho Claude đề xuất, sửa thoải mái. Đã duyệt (D-031): khu vực theo đêm (mục 6), 8–10 jumpscare mỗi chương (mục 7), chương 1 dùng lại nội dung demo (mục 10). Sửa cốt truyện theo D-032: giữ giường bỏ trống từ 2009, bác Tư đã bị quên từ trước, người bị thay ở đêm 2 tùy lựa chọn của người chơi. Còn chờ: duyệt bản sửa cốt truyện (mục 3) và bản chi tiết thực thể (mục 5).
 
 ## 1. Một câu
 Kỳ nghỉ lễ, ký túc xá gần như trống. Mỗi đêm, phòng 407 lại "đếm thừa" một người. Trung phải điều tra chuyện đã xảy ra năm 2009, nhận ra dòng nội quy nào đã bị sửa, và trốn những thứ đang đi dép lê ngoài hành lang, trước khi ký túc xá đếm đủ người theo cách của nó.
@@ -17,24 +17,32 @@ Kỳ nghỉ lễ, ký túc xá gần như trống. Mỗi đêm, phòng 407 lại
 - **4 chương là 4 đêm:** đêm 30/4, 1/5, 2/5 và 3/5. Đêm cuối là hạn chót: phải xong trước khi mọi người trở lại.
 - **Nhân vật:**
   - **Trần Trung**, sinh viên năm nhất, ở phòng 407.
-  - Ba bạn cùng phòng **Phúc, Việt, Đạt** ngủ sau mùng. Ban ngày chỉ liên lạc qua tin nhắn. Không cần hoạt họa NPC, đỡ tốn công.
-  - **Bác Tư**, bảo vệ, chỉ có giọng trên loa. Năm 2009 bác là người trực trẻ nhất, và là người duy nhất còn nhớ Lâm.
+  - Ba bạn cùng phòng **Phúc, Việt, Đạt** ngủ sau mùng. Ban ngày chỉ liên lạc qua tin nhắn. Không cần hoạt họa NPC, đỡ tốn công. Mỗi người một màu dép: Phúc đỏ, Việt xanh dương, Đạt đen. Màu dép quan trọng ở đêm 4.
+  - **Bác Tư**, bảo vệ, chỉ có giọng trên loa. **Thật ra bác đã bị ký túc xá quên từ nhiều năm trước** (xem phần dưới). Người chơi chỉ biết điều này ở đêm 3.
   - **Vũ Đức Lâm**, sinh viên phòng 407 năm 2009.
 
 ### Giữ phòng 407 và Vũ Đức Lâm: **giữ cả hai**
 Câu chuyện có thật năm 2009, lộ dần qua 4 đêm:
 - Lễ 30/4 năm 2009, cả phòng 407 về quê, chỉ còn Lâm ở lại. Ba bạn nhắn Lâm **điểm danh hộ**, vì vắng thì bị trừ điểm rèn luyện. Đây là thói quen sinh viên Việt ai cũng biết.
 - Đêm đó, Lâm trả lời "Có" cho cả bốn tên. Sổ trực ghi phòng 407 có **5 tiếng "Có"**: tiếng thứ năm không phải của Lâm.
-- Ký túc xá "đếm" được 5 người. Sáng hôm sau, phòng vẫn chỉ có 4 người, nhưng một trong số đó **không phải Lâm**. Không ai nhớ Lâm từng tồn tại, trừ bác Tư.
-- Bác Tư viết "Nội quy ban đêm dịp lễ" để ký túc xá không bao giờ đếm thừa nữa. **Dòng giả là do "người thứ năm" sửa**, để dụ người ta trả lời thay, mở cửa, nhìn gương, nghĩa là để nó được đếm.
-- **Luật ngầm của ký túc xá:** ai được đếm thì có chỗ. Ai bị thay chỗ thì bị quên, và thành **người đi dép lê** lang thang hành lang tìm lại giường của mình.
+- Ký túc xá "đếm" được 5 người. Sáng hôm sau, phòng vẫn chỉ có 4 người, nhưng một trong số đó **không phải Lâm**. Không ai nhớ Lâm từng tồn tại, trừ **bác Tư**, bảo vệ trực đêm đó.
+- Bác Tư viết "Nội quy ban đêm dịp lễ" để ký túc xá không bao giờ đếm thừa nữa, và ghi lại mọi chuyện trong một **cuốn sổ riêng**. **Dòng giả là do "người thứ năm" sửa**, để dụ người ta trả lời thay, mở cửa, nhìn gương, nghĩa là để nó được đếm.
+- **Luật ngầm của ký túc xá:** ai được đếm thì có chỗ. Ai bị thay chỗ thì bị quên. Người bị quên vẫn ở lại và **lặp lại việc cũ của mình**: Lâm thành **người đi dép lê** lang thang hành lang tìm lại giường.
+- **Bác Tư cũng đã bị quên.** Lễ 30/4 năm 2016, bác cố ngăn một lần đếm thừa và bị ký túc xá "xóa" thay. Từ đó không còn ai trực ở nhà B; danh sách nhân viên ghi vị trí bảo vệ nhà B là "để trống". Nhưng bác vẫn làm việc cũ: **mỗi đêm vẫn đọc thông báo trên loa**. Giọng bác thật là giọng tốt duy nhất trong tòa nhà, và **Giọng loa** (mục 5.3) giả chính giọng đó.
+- Dấu vết từ đêm 1, nếu để ý: xích cửa sắt đã mở sẵn dù "bác Tư mở"; nhóm lớp không ai biết bảo vệ nhà B tên gì; sổ trực có chữ ký bác ở mọi trang, nhưng mực ở các trang sau năm 2016 đã phai như nhau.
+- **Người bị thay ở đêm 2 tùy người chơi (D-032):**
+  - Lúc điểm danh đêm 1, nếu người chơi **trả lời hộ** một bạn cùng phòng thì sáng ra bạn đó đã bị thay. Trả lời hộ nhiều người thì tính người đầu tiên.
+  - Nếu không trả lời hộ ai, người bị thay là **Phúc**, người đã nhắn nhờ điểm danh hộ.
+  - Người bị thay vẫn nằm sau mùng nhưng không còn là người đó: nhắn tin xưng hô lạ, gửi tin lúc 3 giờ sáng, nhắc chuyện năm 2009. Hai bạn còn lại không nhận ra gì.
+  - Người thật bị quên, và ở đêm 4 thành **người đi dép thứ hai**, đi đúng màu dép của mình.
+  - Chỉ cần làm một bộ nội dung; tên và màu dép đổi theo dữ liệu.
 - **Twist (D-020):** Trung được xếp vào phòng 407 muộn, nằm đúng chiếc giường "bỏ trống từ 2009". Dần dần có dấu hiệu Trung không phải người đầu tiên mang tên Trung ở chiếc giường đó: ảnh thẻ trong hồ sơ mờ dần, tin nhắn của mẹ gọi bằng tên khác. Game giữ mơ hồ tới đêm 4.
 
 ### Kết thúc: 3 cái kết [Claude đề xuất]
 | Kết | Điều kiện | Diễn biến |
 |---|---|---|
 | **"Đủ người"** (kết thường) | Sống qua đêm 4, thiếu manh mối quan trọng | Sáng 4/5, điểm danh đọc đúng 4 tên. Các bạn về phòng, chào "Trung". Cảnh cuối: chiếc mùng giường Trung khẽ lay dù không có gió |
-| **"Gọi tên"** (kết thật) | Tìm đủ hồ sơ gốc 2009 và sổ riêng của bác Tư, giữ mức "lệch" thấp | Ở điểm danh cuối, Trung tự đọc tên **Vũ Đức Lâm** lên loa. Tiếng dép ngoài hành lang dừng lại. Sáng ra, tấm ảnh phòng 407 năm 2009 hiện đủ mặt Lâm |
+| **"Gọi tên"** (kết thật) | Tìm đủ hồ sơ gốc 2009, sổ riêng của bác Tư và tên thật của bác; giữ mức "lệch" thấp | Ở điểm danh cuối, Trung tự đọc lên loa tên những người đã bị quên: **Vũ Đức Lâm**, tên thật của bác Tư, và người bạn cùng phòng bị thay ở đêm 2. Tiếng dép ngoài hành lang dừng lại. Sáng ra, người bạn thật trở về; ảnh phòng 407 năm 2009 hiện đủ mặt Lâm; ở phòng bảo vệ có một chiếc ghế như vừa có người ngồi |
 | **"Người thứ năm"** (kết xấu) | Mức "lệch" cao, hoặc trả lời thay ở điểm danh cuối | Sáng 4/5, các bạn chào "Trung", nhưng camera nhìn từ ngoài hành lang: người chơi đang đi dép lê, gõ cửa phòng 407 mà không ai mở |
 
 Không có cái chết, tự tử hay bạo lực (D-003). Nỗi sợ là **bị quên và bị thay chỗ**.
@@ -124,7 +132,7 @@ Có ba thực thể chính dùng suốt game, cộng các lần hiện hình the
 | 1 | Chỉ xuất hiện theo kịch bản (chiếu nghỉ cầu thang, cuối hành lang tầng 6), chưa đi tuần |
 | 2 | Một con đi tuần tầng 2–4 |
 | 3 | Đi tuần nhanh hơn 10%, nghe xa hơn, đi cả ra sân và nhà xe |
-| 4 | **Hai con.** Con thứ hai đi **đôi dép của Đạt**, người đã biến mất ở đêm 2 |
+| 4 | **Hai con.** Con thứ hai đi **đúng màu dép của người bạn cùng phòng bị thay** ở đêm 2; người chơi nhận ra qua màu dép |
 
 **Công bằng:**
 - Không bao giờ xuất hiện ngay sát người chơi.
@@ -175,7 +183,7 @@ Có ba thực thể chính dùng suốt game, cộng các lần hiện hình the
 **"Giảm hù dọa":** bỏ cảnh mặt sát camera.
 
 ### 5.3 Giọng loa (không có thân xác)
-**Là gì:** ký túc xá "nói" bằng giọng bác Tư. Mục đích của nó là ra lệnh giả, dẫn người chơi tới chỗ Người đi dép, hoặc bảo người chơi mở cửa, trả lời hộ, nhìn gương.
+**Là gì:** ký túc xá "nói" bằng giọng bác Tư. Trên loa có **hai giọng giống hệt nhau**: giọng thật của bác Tư (người đã bị quên nhưng vẫn làm việc cũ) và Giọng loa giả. Mục đích của Giọng loa là ra lệnh giả, dẫn người chơi tới chỗ Người đi dép, hoặc bảo người chơi mở cửa, trả lời hộ, nhìn gương.
 
 **Kênh:**
 - loa các tầng,
@@ -184,7 +192,7 @@ Có ba thực thể chính dùng suốt game, cộng các lần hiện hình the
 - tin nhắn từ số lạ hoặc giả làm bạn cùng phòng,
 - đêm 4: giọng của chính các bạn cùng phòng.
 
-**Cách nhận ra giọng giả** (học được dần qua sổ trực và sổ riêng của bác Tư):
+**Cách nhận ra giọng giả** (học được dần qua sổ trực và sổ riêng của bác Tư; đây là thói quen của bác từ khi còn được nhớ):
 | Bác Tư thật | Giọng giả |
 |---|---|
 | Mở đầu bằng "A lô, a lô, phòng trực thông báo" và gõ micro 2 lần | Thiếu câu mở đầu hoặc tiếng gõ |
@@ -199,7 +207,7 @@ Có ba thực thể chính dùng suốt game, cộng các lần hiện hình the
 |---|---|
 | 1 | Một thông báo giả giữa nhiều thông báo thật; dấu hiệu dễ nhận |
 | 2 | Thêm điện thoại bàn |
-| 3 | Bác Tư mất tích, **mọi lời trên loa đều giả**. Nguồn thật duy nhất là **băng cát-xét** bác ghi sẵn, phát được ở phòng bảo vệ |
+| 3 | Trung xuống phòng bảo vệ và thấy nơi này **bỏ hoang nhiều năm**: bụi phủ micro, lịch treo dừng ở tháng 4/2016. Vậy mà mỗi khi giọng bác thật cất lên, đèn "ĐANG PHÁT" vẫn sáng. Sau đêm này giọng bác yếu dần và rè hơn, còn Giọng loa giả bắt chước giỏi hơn. Có thêm **băng cát-xét** bác ghi trước năm 2016 để đối chiếu |
 | 4 | Giọng các bạn cùng phòng và giọng của Trung |
 
 ### 5.4 Ba thực thể phối hợp
@@ -259,9 +267,9 @@ Lưu game theo checkpoint, có chọn chương ở màn hình chính.
 ## 9. Khung 4 đêm
 | Đêm | Tên | Bí ẩn mở ra | Cảnh treo cuối đêm |
 |---|---|---|---|
-| 1 (30/4) | **Đếm thừa** | Điểm danh có tên lạ (Vũ Đức Lâm). Ảnh phòng 407 năm 2009 có 5 người, một mặt bị cào mờ | Điểm danh cuối: "…và một người nữa." Sáng ra, trước cửa có 5 đôi dép |
-| 2 (1/5) | **Người đi dép** | Người đi dép đi tuần tự do. Những trang sổ riêng của bác Tư nói về Lâm. Sáng ra **Đạt biến mất**, Phúc và Việt nhắn tin như thể phòng chỉ có 3 người | Tin nhắn từ số lạ: "Mai em về phòng nhé. — Lâm" |
-| 3 (2/5) | **Phòng bảo vệ trống** | Bác Tư không còn ở phòng bảo vệ, loa hoàn toàn do Giọng loa điều khiển. Kho hồ sơ cho thấy hồ sơ của Trung bất thường. Ở nhà xe có xe đạp của Lâm, còn thẻ gửi xe năm 2009 | Ảnh thẻ của Trung trong hồ sơ phòng trắng trơn |
+| 1 (30/4) | **Đếm thừa** | Điểm danh có tên lạ (Vũ Đức Lâm). Ảnh phòng 407 năm 2009 có 5 người, một mặt bị cào mờ. Trả lời hộ ai quyết định ai bị thay ở đêm 2 | Điểm danh cuối: "…và một người nữa." Sáng ra, trước cửa có 5 đôi dép |
+| 2 (1/5) | **Người đi dép** | Sáng ra, **người bạn cùng phòng được trả lời hộ** (hoặc Phúc) đã bị thay: nhắn tin lạ, nằm im bất thường sau mùng. Người đi dép đi tuần tự do. Những trang sổ riêng của bác Tư nói về Lâm | Tin nhắn từ số lạ: "Mai em về phòng nhé. — Lâm" |
+| 3 (2/5) | **Phòng bảo vệ bỏ hoang** | Phòng bảo vệ bỏ hoang từ 2016: bác Tư đã bị quên từ lâu, giọng trên loa là "người cũ vẫn làm việc cũ". Tìm ra tên thật của bác. Kho hồ sơ cho thấy hồ sơ của Trung bất thường. Ở nhà xe có xe đạp của Lâm, còn thẻ gửi xe năm 2009 | Giọng bác Tư thật trên loa: "Cháu Trung… bác không còn nhớ mặt cháu nữa." Ảnh thẻ của Trung trong hồ sơ trắng trơn |
 | 4 (3/5) | **Điểm danh cuối** | Cả tòa nhà và sân thượng. Ghép đủ sự thật | 3 cái kết (mục 3) |
 
 ## 10. Chương 1 "Đếm thừa" (khoảng 50 phút)
@@ -280,14 +288,14 @@ Dùng lại phần lớn demo hiện tại (tầng 4, gõ cửa, tiếng dép sa
 ### Diễn biến
 | Giờ | Phần | Nội dung |
 |---|---|---|
-| Ban ngày 30/4 | Tin nhắn | Mẹ hỏi có về quê không; nhóm lớp; Phúc dặn chuyện điểm danh; bác Tư nhắn cả tầng: tối nay có nội quy dịp lễ |
+| Ban ngày 30/4 | Tin nhắn | Mẹ hỏi có về quê không; nhóm lớp; Phúc dặn chuyện điểm danh; nhóm lớp hỏi "bảo vệ nhà B tên gì nhỉ?", không ai biết |
 | 23:40 | Mở đêm | Từ nhà vệ sinh về phòng 407. **Học** đi, cúi, điện thoại (Q). Đọc giấy photo sau cửa |
 | 00:00 | Nội quy | Loa đọc 6 điều. Phán định điều 1 (đèn) |
-| 00:15 | Việc vặt | Loa (bác Tư thật, đủ câu mở đầu): "A lô, a lô, phòng trực thông báo. Cháu nào phòng 407 còn thức thì lên tầng 6 đóng cửa sân phơi giúp bác, trời sắp mưa." Bác Tư mở xích cửa sắt **chiều đi lên** |
+| 00:15 | Việc vặt | Loa (bác Tư thật, đủ câu mở đầu): "A lô, a lô, phòng trực thông báo. Cháu nào phòng 407 còn thức thì lên tầng 6 đóng cửa sân phơi giúp bác, trời sắp mưa." Xích cửa sắt **chiều đi lên** đã mở sẵn, dù không ai lên mở |
 | 00:20–00:45 | Điều tra tầng 5, 6 | **Tầng 5:** phòng sinh hoạt chung có TV cũ, phòng trống đồ đạc bỏ lại, thông báo dấu giả (điều 5). **Tầng 6:** kho đồ cũ, sân phơi, **tủ sắt khóa số**: mã lấy từ ngày trên tấm lịch cũ, trong có **ảnh phòng 407 năm 2009** (5 người, một mặt cào mờ). **Câu đố cầu dao:** sân phơi không có điện, phải bật đúng aptomat theo sơ đồ dán trong hộp. **Hù:** tiếng dép ở tầng trên khi đang ở tầng 6, mà tầng trên là sân thượng đã khóa. Người thứ năm thoáng đứng ở lan can bên kia sân |
 | 00:50 | Cầu thang | Phán định điều 5. Bật đèn cầu thang thì Người đi dép xuất hiện ở chiếu nghỉ dưới, **truy đuổi 1** về tầng 4 |
 | 01:00 | Gõ cửa | Tiếng gõ "Phòng 407 ơi" không xưng tên. Phán định điều 2 |
-| 01:10 | Điểm danh | Loa đọc 5 tên: Phúc, Việt, Trung, Đạt, Vũ Đức Lâm. Có áp lực từ tin nhắn trả lời hộ. Phán định điều 4. Trả lời tên Lâm là thua thật |
+| 01:10 | Điểm danh | Loa đọc 5 tên: Phúc, Việt, Trung, Đạt, Vũ Đức Lâm. Có áp lực từ tin nhắn trả lời hộ. Phán định điều 4. Trả lời tên Lâm là thua thật. **Ghi lại bạn đầu tiên được trả lời hộ**, vì người đó sẽ bị thay ở đêm 2 (D-032) |
 | 01:30 | Nhà vệ sinh | Vòi tự chảy, gương. Phán định điều 6. Nhìn gương thì **truy đuổi 2** (Người thứ năm) |
 | 01:50 | Kết đêm | Về phòng, điểm danh lần cuối không báo trước: 4 tên, rồi *"…và một người nữa."* Màn hình tối. Sáng 1/5: trước cửa có 5 đôi dép |
 
@@ -302,7 +310,7 @@ Dùng lại phần lớn demo hiện tại (tầng 4, gõ cửa, tiếng dép sa
 | core | Luồng chương và đêm, lưu game, dữ liệu nội quy đêm 1, ghép |
 
 ## 11. Cần chủ dự án quyết
-1. Cốt truyện năm 2009 và 3 cái kết (mục 3): chủ dự án muốn **sửa một chút**, chờ nói cụ thể chỗ nào.
+1. Bản sửa cốt truyện (mục 3, D-032): bác Tư đã bị quên từ năm 2016 nhưng vẫn đọc loa; người bị thay ở đêm 2 tùy người chơi đã trả lời hộ ai. Duyệt hay sửa?
 2. Ba thực thể bản chi tiết (mục 5): duyệt hay sửa?
 3. ~~Chia khu vực theo đêm~~: đã chốt (D-031).
 4. ~~8–10 jumpscare mỗi chương~~: đã duyệt (D-031).
