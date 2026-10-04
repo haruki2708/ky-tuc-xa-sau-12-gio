@@ -42,6 +42,9 @@ func _input(event: InputEvent) -> void:
 func open_menu() -> void:
 	if _open or get_tree().paused:
 		return
+	for death in get_tree().get_nodes_in_group("death_screen"):
+		if death.is_open():
+			return
 	_previous_mouse_mode = Input.mouse_mode
 	_open = true
 	get_tree().paused = true

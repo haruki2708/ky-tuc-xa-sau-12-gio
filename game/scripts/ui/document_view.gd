@@ -1,6 +1,7 @@
 extends "res://scripts/ui/reading_overlay.gd"
 
 var _document: DocumentData
+var _close_on_release := false
 
 
 func _ready() -> void:
@@ -18,6 +19,7 @@ func show_document(document: DocumentData) -> void:
 	if document == null or not _begin_reading():
 		return
 	_document = document
+	_close_on_release = false
 	_render()
 	$Root/Paper/Content/Scroll.scroll_vertical = 0
 
@@ -25,12 +27,16 @@ func show_document(document: DocumentData) -> void:
 func _input(event: InputEvent) -> void:
 	if not _open or event.is_echo():
 		return
-	# Close on the *release* of interact: closing on its press resumes the game
-	# in the same frame, and the Player would see interact as just pressed and
-	# reopen the paper it is still looking at.
+	# Ignore the release of the press that opened the paper in player physics.
+	# A new press while reading arms closure; release resumes gameplay safely.
 	if event.is_action_pressed("interact"):
+		_close_on_release = true
 		get_viewport().set_input_as_handled()
-	elif event.is_action_released("interact") or event.is_action_pressed("pause") or event.is_action_pressed("notebook"):
+	elif event.is_action_released("interact"):
+		get_viewport().set_input_as_handled()
+		if _close_on_release:
+			close_view()
+	elif event.is_action_pressed("pause") or event.is_action_pressed("notebook"):
 		get_viewport().set_input_as_handled()
 		close_view()
 
