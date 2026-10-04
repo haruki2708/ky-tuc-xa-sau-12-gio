@@ -63,7 +63,7 @@
 - Editor có thể tự lưu lại một số file (`default_bus_layout.tres`, `.import`) khi mở. Đừng commit các thay đổi đó; integrator sẽ dọn.
 
 ## Đang vướng
-- Chờ chủ dự án gửi thiết kế mới (D-028) trước khi giao việc cho lane A, B, D.
+- Chờ chủ dự án gửi ý chính cho game theo chương (D-028, D-029: khoảng 4 chương, mỗi chương một đêm, 45–60 phút, 3–4 ngày một chương, cơ chế chính mới). Claude viết thiết kế chương 1 để duyệt rồi mới giao task cho các lane.
 
 ## Ghi chú cho người chơi thử
 - Game chính chạy trên **tầng 4** (T-112): bắt đầu trước cửa phòng 407; E mở và đóng cửa 407; đi được khắp hành lang, phòng 407, nhà vệ sinh, bàn trực. WASD đi, Shift chạy, chuột nhìn, Esc mở menu. Có filter PS1 (chỉnh cường độ và độ sáng trong Cài đặt). Có HUD (tâm ngắm, gợi ý, phụ đề), font tiếng Việt, tiếng bước chân dép lê, tiếng ù đèn tuýp và côn trùng đêm. Đồ vật tương tác hiện chỉ có cửa 407; giấy tờ, công tắc, sổ trực chờ T-111 và T-117.
