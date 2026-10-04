@@ -4,6 +4,8 @@ extends "res://scripts/ui/reading_overlay.gd"
 const Layout = preload("res://scripts/ui/chapter_ui_layout.gd")
 @export var wrong_sound: AudioStream = preload("res://audio/sfx/door_latch.ogg")
 @export_range(0.1, 3.0) var solved_delay := 0.8
+@export var player_path: NodePath = ^"../Player"
+@export var alarm_sound: AudioStream = preload("res://audio/sfx/door_latch.ogg")
 var _puzzle: PuzzleData
 var _digits: Array[int] = []
 var _solved := false
@@ -11,6 +13,7 @@ var _close_remaining := 0.0
 var _shake_remaining := 0.0
 var _hint: DocumentData
 var _feedback_key := "UI_PUZZLE_INSTRUCTIONS"
+var _lockouts: Dictionary[StringName, float] = {}
 
 
 func _ready() -> void:
@@ -34,6 +37,7 @@ func _ready() -> void:
 	dials.alignment = BoxContainer.ALIGNMENT_CENTER
 	scroll.add_child(dials)
 	Layout.label(content, "Feedback", _feedback_key, 26)
+	Layout.button(content, "Submit", "UI_PUZZLE_SUBMIT", _submit)
 	Layout.button(content, "Hint", "UI_PUZZLE_HINT", _show_hint)
 	var hint_scroll := ScrollContainer.new()
 	hint_scroll.name = "HintScroll"
@@ -51,6 +55,9 @@ func _ready() -> void:
 	sound.volume_db = 0.0
 	add_child(sound)
 	EventBus.puzzle_opened.connect(_on_opened)
+	EventBus.checkpoint_loaded.connect(_on_checkpoint)
+	EventBus.chapter_started.connect(func(_chapter: int) -> void: _load_lockouts())
+	_load_lockouts()
 
 
 func _on_opened(id: StringName) -> void:
@@ -116,10 +123,19 @@ func _dial_input(event: InputEvent, index: int) -> void:
 
 
 func _turn(index: int, direction: int) -> void:
-	if not _open or _solved or index < 0 or index >= _digits.size():
+	if not _open or _solved or _locked() or index < 0 or index >= _digits.size():
 		return
 	_digits[index] = (0 if direction > 0 else 9) if _digits[index] < 0 else posmod(_digits[index] + direction, 10)
 	$Root/Card/Content/DialScroll/Dials.get_child(index).get_node("Value").text = str(_digits[index])
+	if _puzzle.max_attempts > 0:
+		_refresh()
+		return # Limited locks count confirmed combinations, not intermediate dial positions.
+	_submit()
+
+
+func _submit() -> void:
+	if not _open or _solved or _locked():
+		return
 	if _digits.has(-1):
 		return
 	var answer := ""
@@ -135,18 +151,40 @@ func _turn(index: int, direction: int) -> void:
 		EventBus.puzzle_solved.emit(_puzzle.id)
 	else:
 		_feedback_key = "UI_PUZZLE_WRONG"
+		var attempts := maxi(0, int(GameState.get_flag(_attempts_key(_puzzle.id), 0))) + 1
+		GameState.set_flag(_attempts_key(_puzzle.id), attempts)
 		var settings := get_node_or_null("/root/Settings")
 		var reduce: bool = settings != null and settings.get_value("accessibility", "reduce_scares")
 		_shake_remaining = 0.0 if reduce else 0.24
 		$WrongSound.stream = wrong_sound
 		if wrong_sound != null:
 			$WrongSound.play()
+		if _puzzle.max_attempts > 0 and attempts >= _puzzle.max_attempts:
+			_lockouts[_puzzle.id] = maxf(0.0, _puzzle.lockout_seconds)
+			GameState.set_flag(_lockout_key(_puzzle.id), _lockouts[_puzzle.id])
+			$WrongSound.stream = alarm_sound
+			if alarm_sound != null:
+				$WrongSound.play()
+			var player := get_node_or_null(player_path) as Node3D
+			if player != null:
+				EventBus.noise_emitted.emit(player.global_position, 12.0, &"alarm")
 	_refresh()
 
 
 func _process(delta: float) -> void:
+	# The panel owns the pause while open. Other menus suspend the countdown.
+	if _open or not get_tree().paused:
+		for id: StringName in _lockouts.keys():
+			_lockouts[id] = maxf(0.0, _lockouts[id] - delta)
+			GameState.set_flag(_lockout_key(id), _lockouts[id])
+			if _lockouts[id] <= 0.0:
+				_lockouts.erase(id)
+				GameState.set_flag(_attempts_key(id), 0)
+				if _puzzle != null and _puzzle.id == id:
+					_feedback_key = "UI_PUZZLE_INSTRUCTIONS"
 	if not _open:
 		return
+	_refresh()
 	if _shake_remaining > 0.0:
 		_shake_remaining = maxf(0.0, _shake_remaining - delta)
 		$Root.position.x = sin(_shake_remaining * 90.0) * 5.0 if _shake_remaining > 0.0 else 0.0
@@ -175,6 +213,16 @@ func _refresh() -> void:
 		return
 	$Root/Card/Content/Title.text = tr(_puzzle.title_key)
 	$Root/Card/Content/Feedback.text = tr(_feedback_key)
+	var locked := _locked()
+	if locked:
+		$Root/Card/Content/Feedback.text = tr("UI_PUZZLE_LOCKED") % ceili(_lockouts[_puzzle.id])
+	elif _puzzle.max_attempts > 0 and not _solved:
+		$Root/Card/Content/Feedback.text += "  " + tr("UI_PUZZLE_ATTEMPTS") % [int(GameState.get_flag(_attempts_key(_puzzle.id), 0)), _puzzle.max_attempts]
+	$Root/Card/Content/Submit.visible = _puzzle.max_attempts > 0
+	$Root/Card/Content/Submit.disabled = locked or _solved or _digits.has(-1)
+	for dial in $Root/Card/Content/DialScroll/Dials.get_children():
+		dial.get_node("Up").disabled = locked or _solved
+		dial.get_node("Down").disabled = locked or _solved
 	$Root/Card/Content/Hint.visible = _hint != null and not _solved
 	if _hint != null:
 		var paragraphs: PackedStringArray = [tr(_hint.title_key)]
@@ -201,3 +249,30 @@ func close_view() -> void:
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_TRANSLATION_CHANGED and is_node_ready():
 		_refresh()
+
+
+func _locked() -> bool:
+	return _puzzle != null and _lockouts.get(_puzzle.id, 0.0) > 0.0
+
+
+func _attempts_key(id: StringName) -> StringName:
+	return StringName("puzzle_attempts_" + String(id))
+
+
+func _lockout_key(id: StringName) -> StringName:
+	return StringName("puzzle_lockout_" + String(id))
+
+
+func _load_lockouts() -> void:
+	_lockouts.clear()
+	var flags: Dictionary = GameState.to_dict().get("flags", {})
+	for key: String in flags:
+		if key.begins_with("puzzle_lockout_"):
+			var remaining := maxf(0.0, float(GameState.get_flag(StringName(key), 0.0)))
+			if is_finite(remaining) and remaining > 0.0:
+				_lockouts[StringName(key.trim_prefix("puzzle_lockout_"))] = remaining
+
+
+func _on_checkpoint(_id: StringName) -> void:
+	close_view()
+	_load_lockouts()

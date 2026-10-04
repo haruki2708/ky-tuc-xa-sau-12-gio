@@ -3,6 +3,7 @@ extends CanvasLayer
 
 const PhoneState = preload("res://scripts/ui/phone_state.gd")
 const MemberView = preload("res://scripts/ui/phone_member.gd")
+const ToolsView = preload("res://scripts/ui/phone_tools.gd")
 
 @export_range(0.1, 60.0) var choice_seconds := 10.0
 @export_range(0.1, 30.0) var subtitle_seconds := 4.0
@@ -14,6 +15,7 @@ var _puzzles: Dictionary = {}
 var _hidden := false
 var _holding := false
 var _contraction := 0.0
+var tools_view: Control
 
 
 func _ready() -> void:
@@ -28,6 +30,8 @@ func _ready() -> void:
 		_refresh_status())
 	EventBus.phone_call_incoming.connect(_on_incoming)
 	EventBus.phone_call_answered.connect(_on_answered)
+	EventBus.phone_call_lost.connect(_on_connection_lost)
+	EventBus.phone_call_restored.connect(_on_connection_restored)
 	EventBus.phone_message_received.connect(_on_message)
 	EventBus.chat_member_changed.connect(_on_member)
 	EventBus.chat_choice_requested.connect(_on_choice)
@@ -74,6 +78,11 @@ func _ready() -> void:
 		light.draw_line(Vector2(14, 10), Vector2(20, 6), color, 3)
 		light.draw_line(Vector2(14, 18), Vector2(20, 22), color, 3)
 		light.draw_line(Vector2(20, 6), Vector2(20, 22), color, 3))
+	tools_view = ToolsView.new()
+	tools_view.name = "Tools"
+	tools_view.phone = self
+	$Root/Phone/Content.add_child(tools_view)
+	$Root/Phone/Content.move_child(tools_view, 1)
 	_render()
 
 
@@ -81,6 +90,7 @@ func _process(delta: float) -> void:
 	_refresh_visibility()
 	if _blocked():
 		return
+	tools_view.advance(delta)
 	_contraction = move_toward(_contraction, 1.0 if _holding else 0.0, delta * 2.0)
 	$Root/HiddenVignette.material.set_shader_parameter("contraction", _contraction)
 	if not state.choice.is_empty():
@@ -96,6 +106,9 @@ func _input(event: InputEvent) -> void:
 	if not state.incoming.is_empty() and event.is_action_pressed("interact"):
 		_consume_interact()
 		EventBus.phone_call_answered.emit(StringName(state.incoming))
+		return
+	if tools_view.handle_input(event):
+		get_viewport().set_input_as_handled()
 		return
 	if not state.choice.is_empty() and not state.disconnected_choice:
 		if event is InputEventKey and event.pressed:
@@ -116,7 +129,7 @@ func _input(event: InputEvent) -> void:
 		elif not state.choice.is_empty() and not state.disconnected_choice:
 			state.selected = posmod(state.selected + direction, state.options.size())
 			_render_choices()
-		else:
+		elif state.tab == 0:
 			$Root/Phone/Content/Transcript.get_v_scroll_bar().value += direction * 64
 		get_viewport().set_input_as_handled()
 
@@ -163,6 +176,7 @@ func _on_battery(percent: float) -> void:
 	if state.battery <= 0.0:
 		state.incoming = ""
 		state.call = ""
+		state.connection_lost = false
 		state.flashlight = false
 		state.disconnected_choice = true
 	_refresh_status()
@@ -183,6 +197,7 @@ func _on_answered(id: StringName) -> void:
 		return
 	state.call = String(id)
 	state.incoming = ""
+	state.connection_lost = false
 	_refresh_status()
 	_refresh_visibility()
 
@@ -191,11 +206,30 @@ func _load_message(id: StringName) -> MessageData:
 	return MessageData.load_by_id(id)
 
 
+func _on_connection_lost(id: StringName) -> void:
+	if String(id) != state.call or state.call.is_empty():
+		return
+	state.connection_lost = true
+	_refresh_status()
+
+
+func _on_connection_restored(id: StringName) -> void:
+	if String(id) != state.call or not state.connection_lost or state.battery <= 0.0:
+		return
+	state.connection_lost = false
+	state.history.append({"id": "", "sender": "", "name_key": "UI_PHONE_SYSTEM",
+		"text_key": "UI_PHONE_RECONNECTED", "minutes": state.minutes, "outgoing": false, "spoken": false})
+	_render_transcript()
+	_refresh_status()
+
+
 func _on_message(id: StringName) -> void:
 	if state.battery <= 0.0:
 		return
 	var message := _load_message(id)
 	if message == null or message.text_key.is_empty():
+		return
+	if message.spoken and state.connection_lost:
 		return
 	state.history.append({"id": String(id), "sender": String(message.sender),
 		"name_key": message.sender_name_key, "text_key": message.text_key, "minutes": message.minutes,
@@ -280,6 +314,7 @@ func _render() -> void:
 	_render_transcript()
 	_render_choices()
 	_refresh_visibility()
+	tools_view.refresh()
 
 
 func _refresh_status() -> void:
@@ -288,6 +323,11 @@ func _refresh_status() -> void:
 	$Root/Phone/Content/Status/Flashlight.tooltip_text = tr("UI_PHONE_LIGHT_ON" if state.flashlight else "UI_PHONE_LIGHT_OFF")
 	$Root/Phone/Content/Status/Flashlight.queue_redraw()
 	$Root/Phone/Content/Call.text = tr("UI_PHONE_GROUP_CALL" if not state.call.is_empty() else "UI_PHONE_HISTORY")
+	if state.connection_lost:
+		$Root/Phone/Content/Call.text = tr("UI_PHONE_CONNECTION_LOST")
+	$Root/Phone/Content/MembersScroll.modulate.a = 0.35 if state.connection_lost else 1.0
+	if is_instance_valid(tools_view):
+		tools_view.refresh_network()
 	$Root/Incoming/Content/Hint.text = tr("UI_PHONE_ANSWER" if state.raised else "UI_PHONE_RAISE_ANSWER")
 
 
