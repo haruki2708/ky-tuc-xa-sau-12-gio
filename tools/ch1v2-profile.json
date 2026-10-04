@@ -148,8 +148,28 @@
         "equals": "$on"
       }
     },
-    "camera_tab": null,
-    "map_tab": null,
+    "camera_tab": {
+      "path": "PhoneScreen/Root/Phone/Content/Tools",
+      "method": "select_tab",
+      "args": [
+        2
+      ],
+      "verify": {
+        "property": "current_tab",
+        "equals": 2
+      }
+    },
+    "map_tab": {
+      "path": "PhoneScreen/Root/Phone/Content/Tools",
+      "method": "select_tab",
+      "args": [
+        1
+      ],
+      "verify": {
+        "property": "current_tab",
+        "equals": 1
+      }
+    },
     "keypad": {
       "path": "Chapter1Director/DatLocker"
     },

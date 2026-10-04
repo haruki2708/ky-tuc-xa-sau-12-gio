@@ -92,6 +92,10 @@ func execute(command: Dictionary) -> Dictionary:
 			for turn in int(command.code[index]) + 1:
 				if up.disabled: break
 				up.pressed.emit()
+		# Limited locks (T-163) check only on "Thử mở" (integrator, T-166 review).
+		var submit := panel.get_node_or_null("Root/Card/Content/Submit") as BaseButton
+		if not solved[0] and submit != null and submit.visible and not submit.disabled:
+			submit.pressed.emit()
 		EventBus.puzzle_solved.disconnect(observe)
 		if not solved[0]:
 			panel.close_view()

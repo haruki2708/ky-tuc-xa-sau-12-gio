@@ -1,5 +1,7 @@
 # Prompt bàn giao — Lane D (UI và Đa ngôn ngữ)
 
+> **Lane D đang rảnh (2026-10-05):** T-163 đã merge. Chưa có task mới.
+
 
 ## 1. Prompt giao task (dán nguyên khối)
 ```

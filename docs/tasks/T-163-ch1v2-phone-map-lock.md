@@ -1,5 +1,5 @@
 # T-163 — Chương 1 bản 2: mất kết nối, sơ đồ tòa nhà, khóa số giới hạn lần thử
-- Lane: D (UI và Đa ngôn ngữ) | Trạng thái: todo | Agent:
+- Lane: D (UI và Đa ngôn ngữ) | Trạng thái: done | Agent:
 - Nhánh: `lane-d/T-163-ch1v2-phone-map-lock`
 - Phụ thuộc: T-155, T-156. **Đọc kỹ `docs/design/CH1_V2_MISSIONS.md`** (D-039), đặc biệt N1, N2, N8.
 - **Hạn: hết ngày 2026-10-06.**
@@ -75,3 +75,15 @@
 ### Còn dở / chặn
 - Không còn mục checklist chưa đạt trong phạm vi Lane D. Không bị chặn triển khai; các bước ghép cảnh/dữ liệu/âm thanh/bot nêu trên thuộc lane khác.
 - Không thêm luật chơi hay lời thoại cốt truyện; dùng dữ liệu đã chốt trong đặc tả và fixture kỹ thuật tách riêng. Chưa có câu hỏi thiết kế mới.
+
+### Review (integrator, 2026-10-05)
+- **Đạt, đã merge.** Đúng phạm vi; 5 test mới; ảnh preview đủ vi/en; lọc đúng `call_id` (`stranger_call`); giảm hù dọa được tôn trọng.
+- **Ghép:**
+  - `blood_overlay.tscn` thêm lúc chạy trong `chapter1_main.gd`;
+  - `PuzzlePanel.alarm_sound` dùng `audio/ch1v2/lock_alarm.ogg` của E;
+  - dữ liệu `locker_combo_dat` đã là 2109, tối đa 3 lần, kẹt 60 giây, không gợi ý (core làm từ trước);
+  - loại ảnh và scene preview khỏi export.
+- **Integrator thêm vào `phone_tools.gd`:** thuộc tính chỉ-đọc `current_tab` để bot xác nhận tab Sơ đồ/Camera.
+- Test `test_puzzle_variable_dials_wrong_then_correct...` đổi theo khóa giới hạn: chỉ kiểm tra khi bấm "Thử mở". Bot bấm `Submit` sau khi xoay số.
+- Toàn bộ test 405/405.
+

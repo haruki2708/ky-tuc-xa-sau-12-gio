@@ -168,14 +168,19 @@ func test_puzzle_variable_dials_wrong_then_correct_signal_and_delay() -> void:
 	assert_eq(panel.get_node("Root/Card/Content/DialScroll/Dials").get_child_count(), 4)
 	for index in 4:
 		panel._turn(index, 1)
+	# Limited lock (T-163): nothing is checked until "Thử mở".
 	assert_true(_solved.is_empty())
-	assert_eq(panel.get_node("Root/Card/Content/Feedback").text, tr("UI_PUZZLE_WRONG"))
+	panel._submit()
+	assert_true(_solved.is_empty())
+	assert_true(panel.get_node("Root/Card/Content/Feedback").text.begins_with(tr("UI_PUZZLE_WRONG")), "wrong code;")
 	assert_not_null(panel.get_node("WrongSound").stream)
 	# 0000 -> 2109 (Phúc's birthday, D-039).
 	panel._turn(0, 1)
 	panel._turn(0, 1)
 	panel._turn(1, 1)
 	panel._turn(3, -1)
+	assert_true(_solved.is_empty(), "no check before submit")
+	panel._submit()
 	assert_eq(_solved, [&"locker_combo_dat"])
 	panel._turn(3, 1)
 	assert_eq(_solved.size(), 1)

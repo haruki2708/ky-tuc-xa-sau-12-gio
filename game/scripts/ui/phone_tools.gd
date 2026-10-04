@@ -14,6 +14,10 @@ var _network: Control
 var _static_left := 0.0
 var _notice_left := 0.0
 var _buzz_left := 0.0
+## Read-only for QA (lane C bot): 0 call, 1 map, 2 camera (integrator, T-163 review).
+var current_tab: int:
+	get:
+		return phone.state.tab if phone != null else 0
 
 
 func _ready() -> void:

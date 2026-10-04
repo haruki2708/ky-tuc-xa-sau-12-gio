@@ -91,6 +91,15 @@ func _place_audio() -> void:
 	screams.listener = $Player
 	screams.add_to_group(&"screams")
 	add_child(screams)
+	# Chapter 1 v2 (T-163): blood over the screen when the player dies, and
+	# lane E's alarm (T-164) when Đạt's lock jams.
+	if ResourceLoader.exists("res://ui/death/blood_overlay.tscn"):
+		var blood := (load("res://ui/death/blood_overlay.tscn") as PackedScene).instantiate()
+		blood.name = "BloodOverlay"
+		add_child(blood)
+	var panel := get_node_or_null("PuzzlePanel")
+	if panel != null and ResourceLoader.exists("res://audio/ch1v2/lock_alarm.ogg"):
+		panel.set("alarm_sound", load("res://audio/ch1v2/lock_alarm.ogg"))
 	# Chapter 1 v2 (T-164): mission cues in 407, Khoa's knocks behind the wall.
 	var mission := Ch1MissionAudio.new()
 	mission.name = "MissionAudio"
