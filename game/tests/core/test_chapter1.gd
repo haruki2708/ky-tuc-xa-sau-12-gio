@@ -192,3 +192,18 @@ func test_whole_chapter_runs_to_the_end() -> void:
 	assert_true(restarts.is_empty(), "no death on the good path;")
 	assert_eq(Progress.unlocked_chapter(), 2, "chapter 2 unlocked;")
 	Progress.clear()
+
+
+func test_every_chapter_1_line_has_a_voice() -> void:
+	var missing: Array[String] = []
+	for line in FileAccess.get_file_as_string("res://localization/strings.csv").split("\n"):
+		var key := line.get_slice(",", 0)
+		if key.begins_with("CHAT_CH1_") or key.begins_with("MGR_CH1_") or key.begins_with("ROOM_CH1_"):
+			var prefix := key.substr(0, key.find("_CH1_") + 5)
+			if Ch1AudioBank.voice(key, prefix) == null:
+				missing.append(key)
+		elif key.begins_with("SPK_CH1_") or key.begins_with("RULE_CH1_"):
+			for locale in ["vi", "en"]:
+				if SpeakerVoiceBank.load_clip("res://audio/voice", locale, key) == null:
+					missing.append(locale + "/" + key)
+	assert_eq(missing, [] as Array[String], "voiced lines;")

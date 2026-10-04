@@ -586,7 +586,7 @@ func _line(id: String) -> void:
 		push_warning("Chapter1Director: missing message " + message_id)
 		return
 	EventBus.phone_message_received.emit(message_id)
-	var seconds := _spoken_seconds(data.text_key)
+	var seconds := _voice_seconds(data.text_key, "CHAT_CH1_")
 	_say(data.text_key, seconds)
 	await _wait(seconds + 0.4)
 
@@ -860,9 +860,36 @@ func _announce(keys: Array) -> void:
 			await _wait(line_seconds)
 
 
+## Where a roommate's voice comes from (beds of T-150, Việt at the door).
+const ROOM_VOICES := {
+	"ROOM_CH1_PHUC_GRUMBLE": Vector3(30.65, 1.4, -3.0),
+	"ROOM_CH1_DAT_GRUMBLE": Vector3(33.35, 1.4, -3.0),
+	"ROOM_CH1_VIET_GRUMBLE": Vector3(30.65, 0.7, -3.0),
+	"ROOM_CH1_KNOCK_VIET": Vector3(32.0, 1.5, 0.5),
+	"ROOM_CH1_KNOCK_VIET_2": Vector3(32.0, 1.5, 0.5),
+}
+
+
 func _room_line(key: String, seconds: float) -> void:
+	var clip := Ch1AudioBank.voice(key, "ROOM_CH1_")
+	if clip != null and is_inside_tree():
+		var voice := AudioStreamPlayer3D.new()
+		voice.stream = clip
+		voice.bus = &"Voice"
+		voice.unit_size = 3.0
+		add_child(voice)
+		voice.global_position = ROOM_VOICES.get(key, _room_center())
+		voice.finished.connect(voice.queue_free)
+		voice.play()
+		seconds = maxf(seconds, clip.get_length() + 0.3)
 	_say(key, seconds)
 	await _wait(seconds)
+
+
+## Length of a voiced line (T-159), or the text-length estimate without one.
+func _voice_seconds(key: String, prefix: String) -> float:
+	var clip := Ch1AudioBank.voice(key, prefix)
+	return clip.get_length() + 0.2 if clip != null else _spoken_seconds(key)
 
 
 func _think(key: String) -> void:

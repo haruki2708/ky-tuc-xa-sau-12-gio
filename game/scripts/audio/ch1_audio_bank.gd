@@ -50,4 +50,9 @@ static func voice(key: String, prefix: String, directory: String = "res://audio/
 	for character in key:
 		if not character in "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_":
 			return null
-	return load_if_present(directory.path_join(locale()).path_join(key + ".ogg"))
+	var clip := load_if_present(directory.path_join(locale()).path_join(key + ".ogg"))
+	# Chapter voices exist in Vietnamese only; English plays them with English
+	# subtitles (D-006, T-159).
+	if clip == null:
+		clip = load_if_present(directory.path_join("vi").path_join(key + ".ogg"))
+	return clip

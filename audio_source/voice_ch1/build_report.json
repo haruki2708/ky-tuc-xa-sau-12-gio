@@ -1,0 +1,677 @@
+{
+  "engine": "eSpeak NG 1.52.0",
+  "voices": {
+    "loa": [
+      "vi+m1",
+      132,
+      30,
+      -26
+    ],
+    "mgr": [
+      "vi+m3",
+      112,
+      20,
+      -27
+    ],
+    "minh_nhat": [
+      "vi+m2",
+      150,
+      46,
+      -26
+    ],
+    "hung": [
+      "vi+m4",
+      172,
+      56,
+      -26
+    ],
+    "dang": [
+      "vi+m6",
+      178,
+      38,
+      -25
+    ],
+    "bao": [
+      "vi+m5",
+      140,
+      66,
+      -27
+    ],
+    "son": [
+      "vi+m1",
+      128,
+      34,
+      -27
+    ],
+    "kiet": [
+      "vi+m7",
+      162,
+      58,
+      -26
+    ],
+    "tung": [
+      "vi+m8",
+      176,
+      50,
+      -26
+    ],
+    "vinh": [
+      "vi+m2",
+      166,
+      40,
+      -26
+    ],
+    "ngu": [
+      "vi+f2",
+      150,
+      58,
+      -26
+    ],
+    "phuc": [
+      "vi+m4",
+      128,
+      44,
+      -32
+    ],
+    "dat": [
+      "vi+m5",
+      122,
+      40,
+      -32
+    ],
+    "viet": [
+      "vi+m3",
+      126,
+      48,
+      -32
+    ],
+    "viet_door": [
+      "vi+m3",
+      120,
+      48,
+      -33
+    ]
+  },
+  "assets": [
+    {
+      "key": "SPK_CH1_WARN",
+      "who": "loa",
+      "text": "Chú ý. Một phút nữa, người nào còn nằm trên giường sẽ chết.",
+      "file": "game/audio/voice/vi/SPK_CH1_WARN.ogg",
+      "seconds": 5.203,
+      "lufs": -26.14,
+      "true_peak_db": -6.59,
+      "sha256": "42f1910856fc1278cc4e31d11413d5092a6e2ccfb03c570578b231ee3bf76321"
+    },
+    {
+      "key": "ROOM_CH1_PHUC_GRUMBLE",
+      "who": "phuc",
+      "text": "Ai mở loa giờ này vậy trời…",
+      "file": "game/audio/voice/vi/ROOM_CH1_PHUC_GRUMBLE.ogg",
+      "seconds": 2.752,
+      "lufs": -32.16,
+      "true_peak_db": -12.85,
+      "sha256": "a53f16183f12ae4e0f9c4bf1ed9e934e5205e2029dbb56b3a05e6cb16fe5ee10"
+    },
+    {
+      "key": "ROOM_CH1_DAT_GRUMBLE",
+      "who": "dat",
+      "text": "Bốn giờ sáng đó. Để người ta ngủ với.",
+      "file": "game/audio/voice/vi/ROOM_CH1_DAT_GRUMBLE.ogg",
+      "seconds": 4.076,
+      "lufs": -32.15,
+      "true_peak_db": -11.98,
+      "sha256": "831097aabdf0a972a37d3a26fd5c2b2a25fc98fcae3703ac91c184390c7654bc"
+    },
+    {
+      "key": "ROOM_CH1_VIET_GRUMBLE",
+      "who": "viet",
+      "text": "Kệ nó. Ngủ tiếp đi.",
+      "file": "game/audio/voice/vi/ROOM_CH1_VIET_GRUMBLE.ogg",
+      "seconds": 2.665,
+      "lufs": -32.1,
+      "true_peak_db": -13.63,
+      "sha256": "7a94e9f57d4ad2012ffb000ef883d0e911e84b3adda58e8acf07891bf8d1b6fc"
+    },
+    {
+      "key": "SPK_CH1_GENERAL_INTRO",
+      "who": "loa",
+      "text": "Toàn thể sinh viên chú ý. Sau đây là Tổng tắc của ký túc xá.",
+      "file": "game/audio/voice/vi/SPK_CH1_GENERAL_INTRO.ogg",
+      "seconds": 5.461,
+      "lufs": -26.11,
+      "true_peak_db": -7.35,
+      "sha256": "b3c333f444edfd630383c7680074b96313240085d93bcee52ad0b0dfcb0e73c0"
+    },
+    {
+      "key": "RULE_CH1_GENERAL_1",
+      "who": "loa",
+      "text": "Mọi quy tắc phải được nghe rõ và làm đúng. Ai vi phạm sẽ chết ngay tại chỗ.",
+      "file": "game/audio/voice/vi/RULE_CH1_GENERAL_1.ogg",
+      "seconds": 6.265,
+      "lufs": -26.14,
+      "true_peak_db": -8.11,
+      "sha256": "e3eedddf8d32c091fe942cbc619194a9ac4f74b2f914dbe6b544aa93f5ab22ba"
+    },
+    {
+      "key": "RULE_CH1_GENERAL_2",
+      "who": "loa",
+      "text": "Khi quy tắc mới được công bố, quy tắc cũ hết hiệu lực. Không có quy tắc nào lặp lại.",
+      "file": "game/audio/voice/vi/RULE_CH1_GENERAL_2.ogg",
+      "seconds": 7.184,
+      "lufs": -26.11,
+      "true_peak_db": -7.25,
+      "sha256": "2d973b294d3467021bdcfa425b6858e31bcd550ab4d2875cfe2e30085c00db45"
+    },
+    {
+      "key": "RULE_CH1_GENERAL_3",
+      "who": "loa",
+      "text": "Không sinh viên nào được rời khỏi phòng của mình. Ai rời phòng sẽ chết.",
+      "file": "game/audio/voice/vi/RULE_CH1_GENERAL_3.ogg",
+      "seconds": 5.46,
+      "lufs": -26.11,
+      "true_peak_db": -7.02,
+      "sha256": "d256714947e9516014fa1c5be6a39e43e71ce36937086942f5cf9b17e38449ee"
+    },
+    {
+      "key": "RULE_CH1_GENERAL_4",
+      "who": "loa",
+      "text": "Không được tấn công quản lý ký túc xá, bảo vệ hay bất kỳ nhân viên nào.",
+      "file": "game/audio/voice/vi/RULE_CH1_GENERAL_4.ogg",
+      "seconds": 5.901,
+      "lufs": -26.13,
+      "true_peak_db": -8.2,
+      "sha256": "dda37f8a6e89c63ea673672aa30249303b14e540cf6aa3245958d25262712ad9"
+    },
+    {
+      "key": "RULE_CH1_GENERAL_5",
+      "who": "loa",
+      "text": "Mỗi giờ sẽ có một quy tắc mới, trong năm giờ. Ai còn sống đến cuối cùng sẽ được rời đi an toàn.",
+      "file": "game/audio/voice/vi/RULE_CH1_GENERAL_5.ogg",
+      "seconds": 8.138,
+      "lufs": -26.11,
+      "true_peak_db": -7.52,
+      "sha256": "cda5780b0605416ca216ce773253b27dd1fbe13f5950d57044767e9dd9e598e9"
+    },
+    {
+      "key": "CHAT_CH1_N_HELLO",
+      "who": "minh_nhat",
+      "text": "Alo? Nghe được không? Tôi là Minh Nhật, phòng 203 nhà B.",
+      "file": "game/audio/voice/vi/CHAT_CH1_N_HELLO.ogg",
+      "seconds": 5.384,
+      "lufs": -26.16,
+      "true_peak_db": -6.18,
+      "sha256": "edfe631e7287f6f315aa88a6048de143c36ac890ac946e579ef8a7be1524772e"
+    },
+    {
+      "key": "CHAT_CH1_N_HOW",
+      "who": "minh_nhat",
+      "text": "Hồi trước rảnh quá, tôi dựng một nhóm gọi qua mạng nội bộ của ký túc xá. Không cần sóng, chỉ cần còn wifi trong tòa nhà.",
+      "file": "game/audio/voice/vi/CHAT_CH1_N_HOW.ogg",
+      "seconds": 9.244,
+      "lufs": -26.15,
+      "true_peak_db": -5.15,
+      "sha256": "e9d238e0bf7f2e39479144fb81dd5bf8943b7f71aa4928272cd51eca249d3b9c"
+    },
+    {
+      "key": "CHAT_CH1_N_TOGETHER",
+      "who": "minh_nhat",
+      "text": "Tôi đang mời mọi máy còn kết nối. Phải bám vào nhau mà sống.",
+      "file": "game/audio/voice/vi/CHAT_CH1_N_TOGETHER.ogg",
+      "seconds": 4.317,
+      "lufs": -26.16,
+      "true_peak_db": -4.36,
+      "sha256": "e94dc1d95cc9fd8828ebac3d937cef0f9ede7f99418cd769cecc71f420f6a1aa"
+    },
+    {
+      "key": "CHAT_CH1_HUNG_JOKE",
+      "who": "hung",
+      "text": "Hùng đây, 102. Chắc trường bày trò diễn tập thôi, ai lại làm thật.",
+      "file": "game/audio/voice/vi/CHAT_CH1_HUNG_JOKE.ogg",
+      "seconds": 4.927,
+      "lufs": -26.16,
+      "true_peak_db": -5.21,
+      "sha256": "1d2ac8afb448ea7af46d8e2dcf457dde161b36e06700972a56a2c006db1c3c58"
+    },
+    {
+      "key": "CHAT_CH1_DANG_ANGRY",
+      "who": "dang",
+      "text": "Diễn tập cái đầu mày! Ba thằng phòng tao nằm chết trên giường kìa!",
+      "file": "game/audio/voice/vi/CHAT_CH1_DANG_ANGRY.ogg",
+      "seconds": 3.736,
+      "lufs": -25.15,
+      "true_peak_db": -3.89,
+      "sha256": "10d953b8b58c4857f7b276c3679985bef4d38e32fc682d104e63d66f31ff04ec"
+    },
+    {
+      "key": "CHAT_CH1_BAO_CRY",
+      "who": "bao",
+      "text": "Bảo, phòng 209… tôi sợ lắm… máu chảy xuống tận sàn…",
+      "file": "game/audio/voice/vi/CHAT_CH1_BAO_CRY.ogg",
+      "seconds": 5.013,
+      "lufs": -27.16,
+      "true_peak_db": -6.03,
+      "sha256": "889ca37d60ed4ddfaf8c0bbaa7ec09d86fec95bc5e2e837bad7f4da41de19adb"
+    },
+    {
+      "key": "CHAT_CH1_SON_QUIET",
+      "who": "son",
+      "text": "Sơn, 504. Hai phòng bên cạnh tôi không còn tiếng gì nữa.",
+      "file": "game/audio/voice/vi/CHAT_CH1_SON_QUIET.ogg",
+      "seconds": 5.851,
+      "lufs": -27.11,
+      "true_peak_db": -4.35,
+      "sha256": "4c6d26bc5c4f1ee7346b3d2fead0d1f925c5c908b6b5fc39b0f8fa4be01213ec"
+    },
+    {
+      "key": "CHAT_CH1_KIET_ASK",
+      "who": "kiet",
+      "text": "Có ai thử ra ngoài chưa? Biết đâu xuống được tới cổng?",
+      "file": "game/audio/voice/vi/CHAT_CH1_KIET_ASK.ogg",
+      "seconds": 3.64,
+      "lufs": -26.05,
+      "true_peak_db": -6.92,
+      "sha256": "eff0410c6e85d026481a1a7b625389e6f8b00ad9c5f87a09f628322009b0db1e"
+    },
+    {
+      "key": "CHAT_CH1_TUNG_GO",
+      "who": "tung",
+      "text": "Tùng, 110. Phòng tao ở tầng một, sát cổng. Để tao chạy ra gọi người.",
+      "file": "game/audio/voice/vi/CHAT_CH1_TUNG_GO.ogg",
+      "seconds": 4.972,
+      "lufs": -26.09,
+      "true_peak_db": -3.47,
+      "sha256": "1df5055de02e6e6cd6841a9b07410a472b449b2d0b8096f0b0a2db77c2040a4e"
+    },
+    {
+      "key": "CHAT_CH1_N_STOP",
+      "who": "minh_nhat",
+      "text": "Đừng! Tổng tắc điều ba, rời phòng là chết!",
+      "file": "game/audio/voice/vi/CHAT_CH1_N_STOP.ogg",
+      "seconds": 3.377,
+      "lufs": -26.22,
+      "true_peak_db": -5.78,
+      "sha256": "77c5ad0c906654de1864d5c27f84e9d9a17bddeb004f676b9dd608af9227f0e2"
+    },
+    {
+      "key": "CHAT_CH1_TUNG_OUT",
+      "who": "tung",
+      "text": "Tao mở cửa rồi. Hành lang không có ai cả. Thấy chưa, có gì đâ…",
+      "file": "game/audio/voice/vi/CHAT_CH1_TUNG_OUT.ogg",
+      "seconds": 4.554,
+      "lufs": -26.12,
+      "true_peak_db": -5.32,
+      "sha256": "559f44f201677ae2fe0bf92a68063dc9943f294e660ba71263d3412706c03b4a"
+    },
+    {
+      "key": "CHAT_CH1_HUNG_SHAKEN",
+      "who": "hung",
+      "text": "Tùng? Tùng ơi?",
+      "file": "game/audio/voice/vi/CHAT_CH1_HUNG_SHAKEN.ogg",
+      "seconds": 1.483,
+      "lufs": -26.15,
+      "true_peak_db": -5.91,
+      "sha256": "91e5a419d946a76dda61f38e5e8998f1017cb56812657f9384c3e84ebc48da1b"
+    },
+    {
+      "key": "CHAT_CH1_N_BATTERY",
+      "who": "minh_nhat",
+      "text": "Mọi người để ý pin. Cuộc gọi này ngốn pin lắm. Mất kết nối là coi như một mình.",
+      "file": "game/audio/voice/vi/CHAT_CH1_N_BATTERY.ogg",
+      "seconds": 5.697,
+      "lufs": -26.11,
+      "true_peak_db": -4.0,
+      "sha256": "fd08b775ede9fb1f6354c0022f77869c7d4948854a8a54b1f3612cf49ed818b1"
+    },
+    {
+      "key": "ROOM_CH1_KNOCK_VIET",
+      "who": "viet_door",
+      "text": "Trung ơi, mở cửa cho tao. Tao ra ngoài đi vệ sinh, giờ không vào được…",
+      "file": "game/audio/voice/vi/ROOM_CH1_KNOCK_VIET.ogg",
+      "seconds": 6.768,
+      "lufs": -33.06,
+      "true_peak_db": -13.83,
+      "sha256": "35652db962d4208e369c134712108ef5a65dae3ff4d7655341040663dc969406"
+    },
+    {
+      "key": "ROOM_CH1_KNOCK_VIET_2",
+      "who": "viet_door",
+      "text": "Ra đây với tao đi. Ngoài này không có ai đâu.",
+      "file": "game/audio/voice/vi/ROOM_CH1_KNOCK_VIET_2.ogg",
+      "seconds": 4.549,
+      "lufs": -33.09,
+      "true_peak_db": -14.4,
+      "sha256": "05709eb88051de297fc74c8bbc028ea102b9786484afcb0b53aac7d784bbb097"
+    },
+    {
+      "key": "CHAT_CH1_VINH_ASK",
+      "who": "vinh",
+      "text": "Vinh, 311. Có ai nghe tiếng bạn cùng phòng gọi ngoài cửa không? Tôi vừa nghe…",
+      "file": "game/audio/voice/vi/CHAT_CH1_VINH_ASK.ogg",
+      "seconds": 5.515,
+      "lufs": -26.15,
+      "true_peak_db": -4.48,
+      "sha256": "94826a4c709834e429baf129ca101ad70afe4ac980bfa3aa3330aeab48030611"
+    },
+    {
+      "key": "CHAT_CH1_N_DONT_OPEN",
+      "who": "minh_nhat",
+      "text": "Đừng ra. Mở cửa thì chưa sao, nhưng bước qua ngưỡng cửa là hết.",
+      "file": "game/audio/voice/vi/CHAT_CH1_N_DONT_OPEN.ogg",
+      "seconds": 4.753,
+      "lufs": -26.15,
+      "true_peak_db": -5.57,
+      "sha256": "b49be68e76812c8f53cf4f991f020a3bdb50f6454584dc2467d918ba600eafc0"
+    },
+    {
+      "key": "CHAT_CH1_N_THEORY",
+      "who": "minh_nhat",
+      "text": "Loa nói mỗi giờ một quy tắc mới. Năm giờ sẽ có quy tắc thứ hai. Phải nghe thật kỹ từng chữ.",
+      "file": "game/audio/voice/vi/CHAT_CH1_N_THEORY.ogg",
+      "seconds": 7.243,
+      "lufs": -26.1,
+      "true_peak_db": -4.85,
+      "sha256": "cf812a3d713807085c937583cab7187e2f2662beafabd90b8b40614ba5e91b1d"
+    },
+    {
+      "key": "CHAT_CH1_N_WORDS_REPLY",
+      "who": "minh_nhat",
+      "text": "Quy tắc chưa nói dối lần nào. Nếu có đường sống, nó nằm trong câu chữ.",
+      "file": "game/audio/voice/vi/CHAT_CH1_N_WORDS_REPLY.ogg",
+      "seconds": 5.31,
+      "lufs": -26.12,
+      "true_peak_db": -4.34,
+      "sha256": "c694d042e4069e7f15e4d0ccfb6a298d12af53d9efd71de7941e4dfbf718febe"
+    },
+    {
+      "key": "SPK_CH1_R1_END",
+      "who": "loa",
+      "text": "Vòng một kết thúc. Số sinh viên còn sống: ba trăm năm mươi hai.",
+      "file": "game/audio/voice/vi/SPK_CH1_R1_END.ogg",
+      "seconds": 5.453,
+      "lufs": -26.14,
+      "true_peak_db": -6.15,
+      "sha256": "9af7c12277a6360c0a2e0c7c059ebe5c8a2f1fd7445bbdc0d0545cce774a8d13"
+    },
+    {
+      "key": "CHAT_CH1_SON_352",
+      "who": "son",
+      "text": "Ba trăm năm mươi hai… cả trường mấy nghìn người mà…",
+      "file": "game/audio/voice/vi/CHAT_CH1_SON_352.ogg",
+      "seconds": 4.133,
+      "lufs": -27.16,
+      "true_peak_db": -5.72,
+      "sha256": "ee746554ea86d0147045e9f7e1d05390cd6c76289428773dca0918b9015bc1ff"
+    },
+    {
+      "key": "RULE_CH1_R2",
+      "who": "loa",
+      "text": "Vòng hai. Trong một giờ tới, nhà trường kiểm tra phòng. Mỗi tòa nhà có một quản lý. Sinh viên hãy nằm yên trên giường và hợp tác với công việc của quản lý.",
+      "file": "game/audio/voice/vi/RULE_CH1_R2.ogg",
+      "seconds": 12.931,
+      "lufs": -26.13,
+      "true_peak_db": -6.83,
+      "sha256": "0731da3ee537cade471c1b4cafd17276c8de9810386d6ae56df14249ced54638"
+    },
+    {
+      "key": "CHAT_CH1_N_BEDS",
+      "who": "minh_nhat",
+      "text": "Lên giường hết đi. Nhanh lên.",
+      "file": "game/audio/voice/vi/CHAT_CH1_N_BEDS.ogg",
+      "seconds": 2.47,
+      "lufs": -26.17,
+      "true_peak_db": -5.03,
+      "sha256": "e2268880eb4a38e4c0d7cadcf2704166959d9ff47ee20bf01043f81ea52f2a41"
+    },
+    {
+      "key": "CHAT_CH1_HUNG_KNOCK",
+      "who": "hung",
+      "text": "Có người gõ cửa phòng tao… Quản lý tới rồi.",
+      "file": "game/audio/voice/vi/CHAT_CH1_HUNG_KNOCK.ogg",
+      "seconds": 3.074,
+      "lufs": -26.09,
+      "true_peak_db": -5.77,
+      "sha256": "fb51e31cbb9f5a9a9bb9f6d75fb0278861e77629f87f5c13f89fcd1788ec6f38"
+    },
+    {
+      "key": "MGR_CH1_ASK_HUNG",
+      "who": "mgr",
+      "text": "Đinh Xuân Hùng. Có ở đây không?",
+      "file": "game/audio/voice/vi/MGR_CH1_ASK_HUNG.ogg",
+      "seconds": 3.563,
+      "lufs": -27.06,
+      "true_peak_db": -9.86,
+      "sha256": "d2f9f980498d86ba166d5e504fa08e8bf3c71d4970e36fde61205db03255cad7"
+    },
+    {
+      "key": "CHAT_CH1_HUNG_YES",
+      "who": "hung",
+      "text": "Dạ… dạ có. Em đây ạ.",
+      "file": "game/audio/voice/vi/CHAT_CH1_HUNG_YES.ogg",
+      "seconds": 2.661,
+      "lufs": -26.14,
+      "true_peak_db": -7.35,
+      "sha256": "144d371f075db5251ac4e662d3d060405ee420901b078161689db0995a651c00"
+    },
+    {
+      "key": "MGR_CH1_GOOD",
+      "who": "mgr",
+      "text": "Tốt. Vậy thì đến lượt cậu.",
+      "file": "game/audio/voice/vi/MGR_CH1_GOOD.ogg",
+      "seconds": 3.082,
+      "lufs": -27.09,
+      "true_peak_db": -7.57,
+      "sha256": "236639cf3f662905b126e74800071227c7f90a39290a3762c32cd8bd7fc91f11"
+    },
+    {
+      "key": "CHAT_CH1_N_ANALYZE",
+      "who": "minh_nhat",
+      "text": "Quy tắc bảo nằm yên trên giường và hợp tác. Hùng trả lời thật mà vẫn chết. Hay là chữ \"hợp tác\" có vấn đề?",
+      "file": "game/audio/voice/vi/CHAT_CH1_N_ANALYZE.ogg",
+      "seconds": 7.84,
+      "lufs": -26.15,
+      "true_peak_db": -5.59,
+      "sha256": "5bbb93cb88554232fa757f3c10ef8db510531a8c0d283faaf1692eb91e2bde9d"
+    },
+    {
+      "key": "CHAT_CH1_N_UNKNOWN",
+      "who": "minh_nhat",
+      "text": "Chưa biết được. Ai đó… sẽ phải thử.",
+      "file": "game/audio/voice/vi/CHAT_CH1_N_UNKNOWN.ogg",
+      "seconds": 3.241,
+      "lufs": -26.13,
+      "true_peak_db": -4.26,
+      "sha256": "1dd8108ed8e21be2e49188b02905cc65b5c8c4101c3963bf1bd1a19a2f334c10"
+    },
+    {
+      "key": "CHAT_CH1_KIET_306",
+      "who": "kiet",
+      "text": "Sao ông ta lên 306 rồi? Không đi theo số phòng à?",
+      "file": "game/audio/voice/vi/CHAT_CH1_KIET_306.ogg",
+      "seconds": 4.222,
+      "lufs": -26.06,
+      "true_peak_db": -7.88,
+      "sha256": "543cf17d6753d1c3ebedb0365fbdbec7e27c8fca62ae29f9d07516f524f33de2"
+    },
+    {
+      "key": "MGR_CH1_ASK_BED_3",
+      "who": "mgr",
+      "text": "Giường số ba. Có ở đây không?",
+      "file": "game/audio/voice/vi/MGR_CH1_ASK_BED_3.ogg",
+      "seconds": 3.985,
+      "lufs": -27.08,
+      "true_peak_db": -9.48,
+      "sha256": "3847d6d592c9e62ac3e7bd072eeda4677dc7b89d5b84d34c966ef189752ab1f0"
+    },
+    {
+      "key": "CHAT_CH1_KIET_NO",
+      "who": "kiet",
+      "text": "Không… không có ai ở đây hết.",
+      "file": "game/audio/voice/vi/CHAT_CH1_KIET_NO.ogg",
+      "seconds": 2.216,
+      "lufs": -26.05,
+      "true_peak_db": -7.54,
+      "sha256": "a119bb684f3010decb8c0f77ba3271ae6020d148f1143d69f531c46354eae3e1"
+    },
+    {
+      "key": "MGR_CH1_WHY_NOT",
+      "who": "mgr",
+      "text": "Nằm ngoan trên giường thế kia, sao lại nói không có?",
+      "file": "game/audio/voice/vi/MGR_CH1_WHY_NOT.ogg",
+      "seconds": 4.945,
+      "lufs": -27.09,
+      "true_peak_db": -8.82,
+      "sha256": "4e2df595fd60f561605a728330d40b839717306976f3519b0ad1f11a7d0a16a6"
+    },
+    {
+      "key": "CHAT_CH1_BAO_209",
+      "who": "bao",
+      "text": "Ông ta tới 209 rồi… tôi phải làm sao… làm sao bây giờ…",
+      "file": "game/audio/voice/vi/CHAT_CH1_BAO_209.ogg",
+      "seconds": 5.355,
+      "lufs": -27.12,
+      "true_peak_db": -7.46,
+      "sha256": "2500a655928ff21edceab22b53c1bea45bb644086c5fe5412e838b9587c4af49"
+    },
+    {
+      "key": "CHAT_CH1_N_TRY_SILENT",
+      "who": "minh_nhat",
+      "text": "Bảo, thử im lặng. Ông ta hỏi gì cũng đừng trả lời.",
+      "file": "game/audio/voice/vi/CHAT_CH1_N_TRY_SILENT.ogg",
+      "seconds": 4.196,
+      "lufs": -26.11,
+      "true_peak_db": -5.13,
+      "sha256": "4be4967a5f97696213a3cda4dc82cc3d520a0a2b7ad07abd6d23ecb021a910c8"
+    },
+    {
+      "key": "MGR_CH1_ASK_BED_4",
+      "who": "mgr",
+      "text": "Giường số bốn. Có ở đây không?",
+      "file": "game/audio/voice/vi/MGR_CH1_ASK_BED_4.ogg",
+      "seconds": 3.866,
+      "lufs": -27.06,
+      "true_peak_db": -9.72,
+      "sha256": "b4fd173398116602edb2342347f9006dd32258fdd1a8cc2e94f21dcb0f022fb6"
+    },
+    {
+      "key": "MGR_CH1_LAUGH",
+      "who": "mgr",
+      "text": "Khà… khà… khà.",
+      "file": "game/audio/voice/vi/MGR_CH1_LAUGH.ogg",
+      "seconds": 3.139,
+      "lufs": -27.12,
+      "true_peak_db": -10.58,
+      "sha256": "0652c20620cdab89a1b5142cf750960954b1e31b92b07782e0f63a66ecba158d"
+    },
+    {
+      "key": "CHAT_CH1_DANG_CURSE",
+      "who": "dang",
+      "text": "Im lặng cũng chết! Thế này thì làm cái quái gì mới đúng!",
+      "file": "game/audio/voice/vi/CHAT_CH1_DANG_CURSE.ogg",
+      "seconds": 3.441,
+      "lufs": -25.16,
+      "true_peak_db": -4.05,
+      "sha256": "b493dca70e0a4aaa77216026c8599cbbadcc2e55c91bdeed0e54b8ecbb2890e4"
+    },
+    {
+      "key": "CHAT_CH1_DANG_HERE",
+      "who": "dang",
+      "text": "106… ông ta tới 106 rồi. Phòng tao. Nói gì đi, tao phải làm gì?",
+      "file": "game/audio/voice/vi/CHAT_CH1_DANG_HERE.ogg",
+      "seconds": 5.911,
+      "lufs": -25.08,
+      "true_peak_db": -4.14,
+      "sha256": "6925369461f5b0163ee7a9224600d0695c134d582467d0ff692fc48bb6861656"
+    },
+    {
+      "key": "MGR_CH1_ASK_BED_2",
+      "who": "mgr",
+      "text": "Giường số hai. Có ở đây không?",
+      "file": "game/audio/voice/vi/MGR_CH1_ASK_BED_2.ogg",
+      "seconds": 3.874,
+      "lufs": -27.04,
+      "true_peak_db": -9.51,
+      "sha256": "828c3f95b7f541738085fb102cfdea38f1bda50e36a37472e9852cd29ba08862"
+    },
+    {
+      "key": "CHAT_CH1_N_ALL_FAIL",
+      "who": "minh_nhat",
+      "text": "Sơn trùm chăn, Vinh hô tên, có người còn chạm vào ông ta… Không cách nào được cả.",
+      "file": "game/audio/voice/vi/CHAT_CH1_N_ALL_FAIL.ogg",
+      "seconds": 5.906,
+      "lufs": -26.18,
+      "true_peak_db": -5.13,
+      "sha256": "f5d89327d368e6fd5d334d080c2772ae64b0803bcab27f201bc8d6086e8de30e"
+    },
+    {
+      "key": "CHAT_CH1_N_JUST_US",
+      "who": "minh_nhat",
+      "text": "Trong nhóm… chỉ còn tôi với cậu.",
+      "file": "game/audio/voice/vi/CHAT_CH1_N_JUST_US.ogg",
+      "seconds": 2.687,
+      "lufs": -26.12,
+      "true_peak_db": -4.1,
+      "sha256": "bc5ab0bfc9747d1c926aa8d71a6623fb1fd34cf996693dece8e3e722b14d53b7"
+    },
+    {
+      "key": "CHAT_CH1_N_THANKS",
+      "who": "minh_nhat",
+      "text": "Ông ta vừa chém nát giường tôi… Tôi còn sống. Cảm ơn cậu, Trung.",
+      "file": "game/audio/voice/vi/CHAT_CH1_N_THANKS.ogg",
+      "seconds": 4.953,
+      "lufs": -26.13,
+      "true_peak_db": -3.86,
+      "sha256": "0a328058f129faf5204735fb380e340f658c67325056b0b8405f21a0f74e8f45"
+    },
+    {
+      "key": "CHAT_CH1_N_NETWORK",
+      "who": "minh_nhat",
+      "text": "Để tôi thử mở rộng mạng… Được rồi, bắt được nhà A bên kia vườn hoa.",
+      "file": "game/audio/voice/vi/CHAT_CH1_N_NETWORK.ogg",
+      "seconds": 5.14,
+      "lufs": -26.11,
+      "true_peak_db": -5.7,
+      "sha256": "bde04f20aed63d0a6dfa44e8411f7ca6a8a63913089d7ce5ec74bf99cf1348dc"
+    },
+    {
+      "key": "CHAT_CH1_NGU_HELLO",
+      "who": "ngu",
+      "text": "Các cậu là… ai vậy? Nhà A, phòng 401, Khương Ngọc Ngư.",
+      "file": "game/audio/voice/vi/CHAT_CH1_NGU_HELLO.ogg",
+      "seconds": 5.72,
+      "lufs": -26.06,
+      "true_peak_db": -7.44,
+      "sha256": "416bfebb16323735314409810244ec0af1e93d3e50df4112ea8aa97528994e76"
+    },
+    {
+      "key": "CHAT_CH1_NGU_LUCK",
+      "who": "ngu",
+      "text": "Lúc quản lý tới, tôi đang ở cửa sổ gọi người. Không kịp về giường mình nên nằm đại lên giường bạn… Chắc nhờ vậy mà sống.",
+      "file": "game/audio/voice/vi/CHAT_CH1_NGU_LUCK.ogg",
+      "seconds": 8.355,
+      "lufs": -26.05,
+      "true_peak_db": -7.78,
+      "sha256": "9776b599740cee27be7195f0b8df7c216098d28c8796b573c172bdc5b9b515ae"
+    },
+    {
+      "key": "CHAT_CH1_NGU_ALONE",
+      "who": "ngu",
+      "text": "Hình như cả nhà A… chỉ còn mình tôi.",
+      "file": "game/audio/voice/vi/CHAT_CH1_NGU_ALONE.ogg",
+      "seconds": 3.2,
+      "lufs": -26.03,
+      "true_peak_db": -10.03,
+      "sha256": "b11700ffeeab1186723d08525b861b97341d4c61f16b1ed0cd2ae5ee567a9f06"
+    },
+    {
+      "key": "SPK_CH1_R2_END",
+      "who": "loa",
+      "text": "Vòng hai kết thúc. Số sinh viên còn sống: hai mươi tám.",
+      "file": "game/audio/voice/vi/SPK_CH1_R2_END.ogg",
+      "seconds": 4.974,
+      "lufs": -26.08,
+      "true_peak_db": -5.91,
+      "sha256": "3a088fac9cb5316ac0ff88a2b04f9c896312051e16759bb63ed29814ae326a1a"
+    }
+  ]
+}

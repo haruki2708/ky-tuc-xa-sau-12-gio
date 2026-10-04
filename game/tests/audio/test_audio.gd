@@ -32,6 +32,12 @@ func test_all_ogg_load_and_decode_with_correct_loop_flags() -> void:
 			expected.append("res://audio/voice/%s/%s.ogg" % [locale, key])
 	for clip_name in Ch1AudioBank.NAMES:
 		expected.append("res://audio/ch1/%s.ogg" % clip_name)
+	# Chapter 1 voices (T-159): every voiced key of the chapter-1 script, Vietnamese only (D-006).
+	for line in FileAccess.get_file_as_string("res://localization/strings.csv").split("\n"):
+		var key := line.get_slice(",", 0)
+		for prefix in ["SPK_CH1_", "RULE_CH1_", "MGR_CH1_", "CHAT_CH1_", "ROOM_CH1_"]:
+			if key.begins_with(prefix):
+				expected.append("res://audio/voice/vi/%s.ogg" % key)
 	var actual := _find_ogg("res://audio")
 	actual.sort()
 	expected.sort()

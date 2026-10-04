@@ -1,5 +1,5 @@
 # T-159 — Giọng chương 1: loa trường, quản lý, các thành viên cuộc gọi nhóm
-- Lane: E (Âm thanh) | Trạng thái: todo | Agent:
+- Lane: E (Âm thanh) | Trạng thái: done | Agent: **Claude làm thay** (agent E hết hạn mức; chủ dự án yêu cầu)
 - Nhánh: `lane-e/T-159-ch1-voices`
 - Phụ thuộc: T-137 (pipeline giọng TTS), T-158 (làm ngay sau). Câu thoại do integrator viết trong T-150 phần 2 (key `SPK_CH1_*`, `MGR_*`, `CHAT_CH1_*` trong `strings.csv`, và `game/data/messages/`); **bắt đầu khi integrator báo câu thoại đã lên `main`**, dự kiến sáng 2026-10-06.
 - **Hạn: hết ngày 2026-10-06.**
@@ -32,3 +32,19 @@ Chương 1 có nhiều giọng:
 - [ ] Handoff: bảng giọng, thời lượng, LUFS, cách nghe thử
 
 ## Handoff (agent điền)
+
+### Phiên 2026-10-04 — Claude làm thay
+- **Pipeline:** `audio_source/ch1_voice_process.py`. Đọc danh sách câu và người nói từ `docs/design/ch1/build_ch1_script.py`, đọc lời từ `strings.csv`.
+  - Mỗi người một giọng eSpeak NG: biến thể, tốc độ, cao độ, chuỗi FFmpeg, LUFS (bảng `VOICES`).
+  - **Loa:** lạnh, chậm, qua bộ lọc loa như T-137, −26 LUFS.
+  - **Quản lý:** hạ tông 0,8 lần, đục, chậm, −27.
+  - **Thành viên cuộc gọi:** giọng sạch, chưa lọc điện thoại (bộ lọc của T-158 áp lúc chạy), −25 đến −27. Bảo có rung giọng.
+  - **Ba bạn càu nhàu trong phòng:** khẽ, −32. **Việt ngoài cửa:** lọc như nghe qua cửa, −33.
+- **58 câu** chỉ có bản tiếng Việt; khi chơi bằng tiếng Anh vẫn nghe giọng Việt, phụ đề tiếng Anh (D-006). `SpeakerVoiceBank` và `Ch1AudioBank.voice` rơi về `vi/` khi thiếu `en/`. `SpeakerVoiceBank` nhận thêm tiền tố `RULE_CH1_`. "(cười khàn khàn)" của quản lý đọc thành "Khà… khà… khà.".
+- **Luồng chương:**
+  - chờ đúng độ dài câu thật (`_voice_seconds`);
+  - phát giọng ba bạn từ đúng giường, giọng Việt từ ngoài cửa (`_room_line`);
+  - lời quản lý phát qua `ManagerAudio.say` (T-158).
+- **Test:** `test_every_chapter_1_line_has_a_voice` (mọi câu đều có giọng, loa có cả `vi` và `en`); `test_audio` thêm 58 file vào danh sách. Toàn bộ 305/305 PASS.
+- **Chưa nghe bằng tai.** eSpeak là giọng máy, nghe rất "robot". **Chủ dự án cần nghe** và quyết có giữ hay tìm công cụ TTS tốt hơn (phải cho phép dùng thương mại, D-006).
+- Kịch bản còn chờ chủ dự án duyệt. Sửa lời thì chạy lại `docs/design/ch1/build_ch1_script.py` rồi `audio_source/ch1_voice_process.py`.

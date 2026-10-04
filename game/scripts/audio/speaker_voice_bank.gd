@@ -11,13 +11,17 @@ const KEYS: Array[String] = [
 
 
 static func load_clip(directory: String, locale: String, key: String) -> AudioStream:
-	var chapter_key := key.begins_with("SPK_CH1_")
+	var chapter_key := key.begins_with("SPK_CH1_") or key.begins_with("RULE_CH1_")
 	for character in key:
 		if not character in "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_":
 			chapter_key = false
 	if (not KEYS.has(key) and not chapter_key) or locale not in ["vi", "en"] or directory.is_empty():
 		return null
 	var path := directory.path_join(locale).path_join(key + ".ogg")
+	# Chapter voices exist in Vietnamese only; English plays them with English
+	# subtitles (D-006, T-159).
+	if chapter_key and not ResourceLoader.exists(path, "AudioStream"):
+		path = directory.path_join("vi").path_join(key + ".ogg")
 	if not ResourceLoader.exists(path, "AudioStream"):
 		return null
 	return load(path) as AudioStream

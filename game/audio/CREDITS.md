@@ -152,3 +152,8 @@ Mọi basename dưới đây ánh xạ **đủ hai file** `audio_source/ch1/raw/
 | `pa_on`, `pa_burst` | Relay bật, noise và cộng hưởng loa cũ; không có lời thoại |
 
 Nhạc Ch1Music dùng lại **drone_base/drone_tension của T-133**, cùng tác giả/CC0 ở mục T-133, không tạo hoặc sửa file nhạc cũ. Giọng T-159 chưa có trong task này; Speaker/ManagerAudio/PhoneCallAudio chỉ chuẩn bị API nạp clip và fallback.
+
+## Giọng chương 1 (T-159, Claude làm thay, 2026-10-04)
+- `game/audio/voice/vi/{SPK_CH1_*, RULE_CH1_*, MGR_CH1_*, CHAT_CH1_*, ROOM_CH1_*}.ogg`: 58 câu, tổng hợp offline bằng **eSpeak NG 1.52.0** (giọng `vi` với các biến thể `m1`–`m8`, `f2`), cùng công cụ và giấy phép như T-137; xử lý bằng FFmpeg. **Nội dung do AI tạo** (lời thoại do Claude viết, giọng máy tổng hợp): phải khai báo khi lên Steam (D-006).
+- Tạo lại: `py -3 audio_source/ch1_voice_process.py`; báo cáo `audio_source/voice_ch1/build_report.json`.
+

@@ -1,5 +1,7 @@
 # Prompt bàn giao — Lane E (Âm thanh)
 
+> **Lane E đang rảnh (2026-10-04):** T-158 đã merge; T-159 do Claude làm thay. Chưa gửi prompt mới cho agent E.
+
 ## 1. Prompt giao task (dán nguyên khối)
 ```
 Bạn là agent Lane E (Âm thanh) trong dự án game "Ký túc xá sau 12 giờ" (Godot 4.7.2, GDScript).
