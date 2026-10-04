@@ -342,6 +342,7 @@ func _manager_at_407() -> void:
 	_play_knock()
 	await _wait(2.0)
 	_open_door()
+	_set_flicker(true)
 	var manager := _spawn_manager()
 	# He is in the room from here: any noise near him, or not lying on a bed, kills.
 	_manager_heard = false
@@ -369,6 +370,7 @@ func _manager_at_407() -> void:
 	if manager != null:
 		manager.queue_free()
 	_close_door()
+	_set_flicker(false)
 	await _wait(3.0)
 	_set_clock("05:46")
 	_think("THINK_CH1_SURVIVED")
@@ -459,13 +461,23 @@ func _place_bunks() -> void:
 		return
 	var scene: PackedScene = load(BUNK_SCENE) if ResourceLoader.exists(BUNK_SCENE) else null
 	for bed: int in BED_ANCHORS:
-		var anchor := _anchor(BED_ANCHORS[bed])
+		# Lane B's room anchors (T-153) carry View/Exit markers; the floor's
+		# Bed_* markers are the fallback.
+		var room_anchor := _room_anchor("Bunks/Bunk%d" % bed)
+		var anchor := room_anchor if room_anchor != null else _anchor(BED_ANCHORS[bed])
 		if anchor == null:
 			continue
 		var spot: Node3D
 		if scene != null:
 			spot = scene.instantiate()
 			spot.set("bed_number", bed)
+			if room_anchor != null:
+				spot.name = "Bunk%d" % bed
+				room_anchor.add_child(spot)
+				spot.set("view", NodePath("../View"))
+				spot.set("exit", NodePath("../Exit"))
+				_bunks[bed] = spot
+				continue
 		else:
 			var stub := StoryTrigger.new()
 			stub.prompt_key = "PROMPT_CH1_LIE"
@@ -484,7 +496,11 @@ func _place_room_props() -> void:
 	var room := _room()
 	if room == null:
 		return
-	var locker := room.get_node_or_null("Locker_Dat") as Node3D
+	var locker := _room_anchor("DatLocker")
+	var station_offset := Vector3(-0.12, 0.0, 0.0)
+	if locker == null:
+		locker = room.get_node_or_null("Locker_Dat") as Node3D
+		station_offset = Vector3(-0.35, 1.2, 0.0)
 	if locker != null:
 		var station: Node3D
 		if ResourceLoader.exists(PUZZLE_STATION_SCENE):
@@ -498,9 +514,10 @@ func _place_room_props() -> void:
 			station = stub
 		station.name = "DatLocker"
 		add_child(station)
-		station.global_transform = locker.global_transform
-		station.position.y += 1.2
-	var phone_anchor := _anchor("Phone_Trung")
+		station.global_position = locker.global_position + station_offset
+	var phone_anchor := _room_anchor("TrungChargingCable")
+	if phone_anchor == null:
+		phone_anchor = _anchor("Phone_Trung")
 	if phone_anchor != null:
 		var socket := StoryTrigger.new()
 		socket.name = "ChargerSocket"
@@ -516,8 +533,7 @@ func _on_puzzle_solved(puzzle_id: StringName) -> void:
 	if puzzle_id != &"locker_combo_dat":
 		return
 	GameState.set_flag(&"has_charger", true)
-	var room := _room()
-	var locker := room.get_node_or_null("Locker_Dat") if room else null
+	var locker := _room_anchor("DatLocker")
 	if locker != null and locker.has_method("set_unlocked"):
 		locker.set_unlocked(true)
 	var socket := get_node_or_null("ChargerSocket") as StoryTrigger
@@ -702,10 +718,21 @@ func _room() -> Node:
 	return _floor.get_node_or_null("Room407") if _floor else null
 
 
+func _room_anchor(path: String) -> Node3D:
+	var room := _room()
+	return room.get_node_or_null("Anchors/" + path) as Node3D if room else null
+
+
 func _set_blood(stage: int) -> void:
 	var room := _room()
 	if room != null and room.has_method("set_blood_stage"):
 		room.set_blood_stage(stage)
+
+
+func _set_flicker(on: bool) -> void:
+	var room := _room()
+	if room != null and room.has_method("set_flicker"):
+		room.set_flicker(on)
 
 
 func _set_bed_slashed(amount: float) -> void:

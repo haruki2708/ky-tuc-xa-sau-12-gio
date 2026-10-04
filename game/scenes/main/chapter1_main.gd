@@ -12,13 +12,14 @@ const PAPER_PICK_DEPTH: float = 0.15
 const END_CARD_MIN_SECONDS: float = 4.0
 const END_CARD_MAX_SECONDS: float = 40.0
 
-## Room 407 papers until lane B's anchors (T-153) exist: [document, position,
-## rotation (degrees), size]. Desk papers lie flat; locker papers face the room.
+## Room 407 papers on lane B's anchors (T-153, under Room407/Anchors):
+## [document, anchor, offset, rotation (degrees), size]. Desk papers lie flat;
+## the others face into the room (+X from the west wall).
 const PAPERS: Array = [
-	[&"ch1_dat_card", Vector3(32.25, 0.79, -4.45), Vector3(-90, 0, 0), Vector2(0.09, 0.06)],
-	[&"ch1_dat_note", Vector3(31.85, 0.79, -4.4), Vector3(-90, 15, 0), Vector2(0.15, 0.21)],
-	[&"ch1_phuc_schedule", Vector3(30.58, 1.35, -0.45), Vector3(0, 90, 0), Vector2(0.21, 0.3)],
-	[&"ch1_viet_photo", Vector3(30.58, 1.3, -1.25), Vector3(0, 90, 0), Vector2(0.15, 0.1)],
+	[&"ch1_dat_note", "DatNote", Vector3.ZERO, Vector3(-90, 15, 0), Vector2(0.15, 0.21)],
+	[&"ch1_dat_card", "DatNote", Vector3(0.0, 0.0, 0.22), Vector3(-90, -10, 0), Vector2(0.09, 0.06)],
+	[&"ch1_phuc_schedule", "PhucBooks", Vector3(0.12, -0.25, 0.0), Vector3(0, 90, 0), Vector2(0.21, 0.3)],
+	[&"ch1_viet_photo", "VietPhoto", Vector3(0.05, 0.0, 0.0), Vector3(0, 90, 0), Vector2(0.15, 0.1)],
 ]
 
 var _fan_rotors: Array[Node3D] = []
@@ -59,14 +60,20 @@ func _place_speaker() -> void:
 
 
 func _place_papers() -> void:
+	var anchors := $Floor4.get_node_or_null("Room407/Anchors") as Node3D
+	if anchors == null:
+		return
 	for entry: Array in PAPERS:
+		var anchor := anchors.get_node_or_null(String(entry[1])) as Node3D
+		if anchor == null:
+			continue
 		var paper := READABLE.instantiate()
 		paper.name = String(entry[0]).to_pascal_case()
 		paper.document_id = entry[0]
-		paper.size = entry[3]
+		paper.size = entry[4]
 		add_child(paper)
-		paper.global_position = entry[1]
-		paper.rotation_degrees = entry[2]
+		paper.global_position = anchor.global_position + entry[2]
+		paper.rotation_degrees = entry[3]
 		paper.pick_depth = PAPER_PICK_DEPTH
 
 

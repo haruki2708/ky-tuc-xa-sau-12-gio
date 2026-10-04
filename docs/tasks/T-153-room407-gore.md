@@ -1,5 +1,5 @@
 # T-153 — Phòng 407 chi tiết, máu me, giường bị chém
-- Lane: B (Môi trường và 3D) | Trạng thái: todo | Agent:
+- Lane: B (Môi trường và 3D) | Trạng thái: done | Agent:
 - Nhánh: `lane-b/T-153-room407-gore`
 - Phụ thuộc: T-112, T-121, T-138. Đọc `docs/design/STORY.md` v2 §0 (nội dung nhạy cảm), §5, và bảng số giường trong `docs/tasks/T-150-chapter1-core.md`.
 - **Hạn: hết ngày 2026-10-05.** Xong thì làm T-154 ngay.
@@ -118,3 +118,14 @@ F6 `res://scenes/levels/room407/room407_test.tscn`: WASD/chuột/E/Esc; 1 reset,
 ### Còn lại / bị chặn
 
 Không bị chặn trong T-153. Ảnh tham khảo của chủ dự án chưa có; có thể chỉnh mỹ thuật sau review. T-154 là task mô hình xác/quản lý tiếp theo, chưa triển khai trong nhánh T-153. Phần chơi thử toàn chương và các kết nối gameplay ở trên chờ tích hợp, không được coi là đã kiểm thử.
+
+### Review (integrator, 2026-10-04)
+- **Đạt, đã merge.** Đúng phạm vi; 6 test mới; FPS trên 400; ảnh preview đẹp hơn hẳn demo. Handoff đầy đủ và trung thực.
+- Đã ghép vào chương 1:
+  - `bunk_spot` của lane A gắn làm con của `Anchors/Bunks/BunkN`, dùng `View` và `Exit` của lane B; chụp khung hình thấy nằm đúng trong giường Trung;
+  - trạm khóa ở `Anchors/DatLocker`, ổ sạc ở `TrungChargingCable`;
+  - sổ tay, thẻ của Đạt, ảnh của Việt, lịch thi của Phúc gắn ở `DatNote`, `VietPhoto`, `PhucBooks`;
+  - đèn nhấp nháy khi quản lý ở trong phòng.
+- Trả lời câu hỏi số 2: nội dung sổ tay và mã khóa có trong `docs/design/CH1_SCRIPT.md` (mã `1407`, ngày sinh trên thẻ sinh viên).
+- Yêu cầu số 4 (loại scene thử khỏi bản export): integrator làm khi xuất bản build chương 1.
+- Sau khi merge có một lần test demo cũ `test_reading_the_door_paper_opens_and_closes_cleanly` lỗi chập chờn; chạy lại hai lần đều PASS. Test này sẽ bị xóa cùng phần demo.
