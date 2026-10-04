@@ -1,7 +1,5 @@
 # Prompt bàn giao — Lane E (Âm thanh)
 
-> **TẠM DỪNG (D-034): chưa gửi prompt này. Cốt truyện đổi, integrator sẽ sửa task card rồi mới giao.**
-
 ## 1. Prompt giao task (dán nguyên khối)
 ```
 Bạn là agent Lane E (Âm thanh) trong dự án game "Ký túc xá sau 12 giờ" (Godot 4.7.2, GDScript).

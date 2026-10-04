@@ -289,7 +289,8 @@ func test_chapter_contract_inputs_and_signals() -> void:
 	for sig in ["chapter_started", "chapter_finished", "noise_emitted", "player_hidden", "breath_held",
 			"phone_raised", "flashlight_toggled", "phone_battery_changed", "phone_message_received",
 			"puzzle_opened", "puzzle_closed", "puzzle_solved", "entity_state_changed", "watcher_active",
-			"player_caught"]:
+			"player_caught", "phone_call_incoming", "phone_call_answered", "chat_member_changed",
+			"chat_choice_requested", "chat_choice_made", "survivor_count_changed"]:
 		assert_true(EventBus.has_signal(sig), "EventBus signal " + sig)
 
 

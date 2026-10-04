@@ -1,6 +1,6 @@
 # Thiết kế v2: chuyển thể "Quy tắc ký túc xá lúc nửa đêm"
 
-> **Trạng thái: BẢN NHÁP, chờ chủ dự án duyệt** (2026-10-04, D-034). Thay thiết kế v1 (`STORY_v1.md`).
+> **Trạng thái: ĐÃ DUYỆT** (chủ dự án, 2026-10-04, D-034, D-035). Thay thiết kế v1 (`STORY_v1.md`). Chương 1 đang sản xuất (T-150…T-159), hạn chơi thử **2026-10-07**.
 >
 > **Nguồn:** video *(Full) Quy tắc kí túc xá lúc nửa đêm*, kênh YouTube *Thế Giới Kì Quái*. Bản chép lời và bản chuyển thể nằm ở `D:\GAME_WORK\kich_ban\`. Chủ dự án chọn **chuyển thể sát video** và **máu me như video**.
 >
@@ -157,10 +157,10 @@ Video chỉ dài khoảng 30 phút. Để mỗi chương đủ 45–60 phút, m�
 - **Jumpscare:** 8–10 mỗi chương (D-031). Máu me như video (D-034).
 - **Âm thanh:** tiếng la hét lan khắp tòa nhà; tiếng kéo dao kim loại; nhóm chat có tiếng người (TTS cho các thành viên); nhạc rất khẽ.
 
-## 10. Cần chủ dự án quyết
-1. Tên nhân vật đổi sang tiếng Việt như bảng mục 2: đồng ý hay muốn giữ tên gốc?
-2. Phòng của Trung là **407** (tầng 4 đã làm kỹ) thay vì 609 như video: được không?
-3. Chia 4 chương như mục 4: được không?
-4. Vòng 3 đổi thành **nối từ tiếng Việt**, vòng 4 **đổi quy luật số**: đồng ý không?
-5. Các phần **[Claude đề xuất]** để kéo dài thời lượng: duyệt hay sửa?
-6. **Hạn chương 1 lùi sang 2026-10-08**, vì mất một ngày viết lại thiết kế.
+## 10. Quyết định (D-035)
+1. Tên nhân vật đổi sang tiếng Việt như bảng mục 2.
+2. Phòng của Trung giữ là **407**.
+3. Chia 4 chương như mục 4.
+4. Vòng 3 là **nối từ tiếng Việt**; vòng 4 **đổi quy luật số** so với video (Claude chọn quy luật mới khi viết chương 2).
+5. Duyệt các phần **[Claude đề xuất]**.
+6. **Không lùi hạn chương 1:** chơi thử ngày 2026-10-07.

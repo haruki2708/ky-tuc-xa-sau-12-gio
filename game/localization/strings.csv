@@ -159,24 +159,8 @@ FUSE_CORRIDOR_6,ĐÈN HÀNH LANG T6,FLOOR 6 CORRIDOR LIGHTS
 FUSE_STAIRS,ĐÈN CẦU THANG,STAIRWELL LIGHTS
 FUSE_DRYING_ROOF,SÂN PHƠI,DRYING TERRACE
 FUSE_PUMP,BƠM NƯỚC,WATER PUMP
-CH_1_TITLE,Đêm 1 — Đếm thừa,Night 1 — One Too Many
-CH_2_TITLE,Đêm 2 — Người đi dép,Night 2 — The Slipper Walker
-CH_3_TITLE,Đêm 3 — Phòng bảo vệ bỏ hoang,Night 3 — The Empty Guard Room
-CH_4_TITLE,Đêm 4 — Điểm danh cuối,Night 4 — Last Roll Call
-RULE_CH1_HEADER,Nội quy ban đêm dịp lễ — gồm 6 điều,Holiday night rules — 6 articles
-RULE_CH1_1,"Sau 0 giờ, tắt đèn chính trong phòng.","After midnight, turn off the main light in your room."
-RULE_CH1_2,"Có tiếng gõ cửa sau 0 giờ: không mở, không trả lời. Người của ký túc xá luôn gọi số phòng và xưng tên trước khi gõ.","If someone knocks after midnight, do not open and do not answer. Dorm staff always call the room number and say their name before knocking."
-RULE_CH1_2_FAKE,"Có tiếng gõ cửa sau 0 giờ: không mở, không trả lời. Người của ký túc xá luôn gọi số phòng trước khi gõ.","If someone knocks after midnight, do not open and do not answer. Dorm staff always call the room number before knocking."
-RULE_CH1_3,"Nghe tiếng dép đi sau lưng: không quay lại, đi tiếp tới chỗ có đèn.","If you hear slippers walking behind you, do not turn around. Keep walking to the light."
-RULE_CH1_4,"Khi điểm danh, chỉ trả lời ""Có"" khi nghe đúng tên mình.","At roll call, answer ""Here"" only to your own name."
-RULE_CH1_4_FAKE,"Tin nhắn của Phúc: ""Tối nay điểm danh trả lời giúp tao nhé.""","Text from Phúc: ""Answer roll call for me tonight, okay?"""
-RULE_CH1_5,"Sau 0 giờ, đi cầu thang không bật đèn, không dừng lại ở chiếu nghỉ.","After midnight, use the stairs without turning on the light, and do not stop on the landing."
-RULE_CH1_5_FAKE,"Sau 0 giờ, đi cầu thang phải bật đèn, đi chậm, nhìn kỹ từng bậc.","After midnight, always turn on the stair light, walk slowly and watch every step."
-RULE_CH1_6,"Vòi nước tự chảy: khóa vòi, rời nhà vệ sinh, không nhìn vào gương.","If a tap runs by itself, close it and leave the washroom. Do not look in the mirror."
-SPK_CH1_RULES_INTRO,"A lô, a lô. Phòng trực thông báo. Các cháu ở lại nghe cho kỹ nội quy ban đêm.","Hello, hello. Duty desk announcement. Those of you staying, listen carefully to the night rules."
-SPK_CH1_ROOF_ERRAND,"A lô, a lô. Phòng trực thông báo. Cháu nào phòng 407 còn thức thì lên tầng 6 đóng cửa sân phơi giúp bác, trời sắp mưa.","Hello, hello. Duty desk announcement. If anyone in room 407 is still awake, go up to floor 6 and close the drying terrace door for me. It's about to rain."
-SPK_CH1_FAKE_INSPECTION,Phòng trực thông báo. Sinh viên phòng 407 mở cửa cho người trực kiểm tra phòng.,"Duty desk announcement. Students of room 407, open the door for the room inspection."
-SPK_CH1_ROLLCALL_INTRO,"A lô, a lô. Phòng trực điểm danh. Phòng 407.","Hello, hello. Duty desk roll call. Room 407."
-SPK_CH1_CHECK_TAPS,"A lô, a lô. Phòng trực thông báo. Các cháu ở lại kiểm tra khóa vòi nước nhà vệ sinh tầng mình.","Hello, hello. Duty desk announcement. Those of you staying, check that the taps in your floor's washroom are closed."
-SUB_WALKER_WHISPER,Giường của tao…,That's my bed…
+CH_1_TITLE,Chương 1 — Tổng tắc,Chapter 1 — The General Rules
+CH_2_TITLE,Chương 2 — Trò chơi,Chapter 2 — The Games
+CH_3_TITLE,Chương 3 — Truy sát,Chapter 3 — The Hunt
+CH_4_TITLE,Chương 4 — Người sống sót,Chapter 4 — The Survivor
 PROMPT_HOLD_BREATH,Giữ Space để nín thở,Hold Space to hold your breath

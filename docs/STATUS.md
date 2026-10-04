@@ -1,7 +1,7 @@
 # STATUS — cập nhật bởi integrator
 
 **Cập nhật lần cuối:** 2026-10-04
-**Giai đoạn:** Game đầy đủ theo chương (D-029). **Cốt truyện đổi sang chuyển thể video "Quy tắc kí túc xá lúc nửa đêm" (D-034)**; thiết kế v2 `docs/design/STORY.md` chờ duyệt. Task chương 1 T-151…T-159 **tạm dừng** cho tới khi duyệt v2 và sửa card.
+**Giai đoạn:** Game đầy đủ theo chương (D-029), cốt truyện chuyển thể video "Quy tắc kí túc xá lúc nửa đêm" (D-034), thiết kế v2 đã duyệt (`docs/design/STORY.md`, D-035). **Đang làm chương 1 "Tổng tắc"**, hạn chơi thử **2026-10-07**.
 **Repo:** https://github.com/tuaanh666/ky-tuc-xa-sau-12-gio (private)
 
 ## Đã xong
@@ -47,17 +47,17 @@
 | T-134 Thực thể truy đuổi, phát hiện ánh nhìn | A | done (review 2026-10-03) |
 | T-135 Bóng người, gương phản chiếu chậm | B | done (review 2026-10-03) |
 | T-136 Đoạn 3–5 và cái kết | core | review: chờ chủ dự án chơi thử cả demo |
-| **Chương 1 (TẠM DỪNG từ D-034, card sẽ sửa theo thiết kế v2)** | | |
-| T-150 Hợp đồng chung, luồng chương, dữ liệu đêm 1, ghép | core | **doing**: phần 1 (hợp đồng chung) xong, `5f31722` |
-| T-151 Sinh tồn: cúi, tiếng động, nấp, nín thở, điện thoại, đèn pin, trạm câu đố | A | todo, hạn 10-05 |
-| T-152 Người đi dép và Người thứ năm | A | todo (sau T-151), hạn 10-06 |
-| T-153 Cầu thang, tầng 5, tầng 6, sân phơi, nhà đối diện | B | todo, hạn 10-05 |
-| T-154 Đạo cụ chương 1, mô hình hai thực thể | B | todo (sau T-153), hạn 10-06 |
-| T-155 Màn hình điện thoại, màn ban ngày, chọn đêm | D | todo, hạn 10-05 |
-| T-156 Panel câu đố, gắn chứng cứ trong sổ tay | D | todo (sau T-155), hạn 10-06 |
-| T-157 Bot chơi chương 1, đo FPS nhiều tầng, lưu game | C | todo: công cụ hạn 10-05, chạy trên bản ghép 10-07 |
+| **Chương 1 "Tổng tắc" (2026-10-04 → 2026-10-07)** | | |
+| T-150 Hợp đồng chung, luồng chương, kịch bản, ghép | core | **doing**: hợp đồng chung xong |
+| T-151 Nằm giường, nín thở, tiếng động, cúi, điện thoại, đèn pin, trạm câu đố | A | todo, hạn 10-05 |
+| T-152 Quản lý, xác đổi tư thế khi không bị nhìn | A | todo (sau T-151), hạn 10-06 |
+| T-153 Phòng 407 chi tiết, máu me, giường bị chém | B | todo, hạn 10-05 |
+| T-154 Mô hình quản lý, xác ba bạn, đạo cụ | B | todo (sau T-153), hạn 10-06 |
+| T-155 Điện thoại và cuộc gọi nhóm, chọn chương, cảnh báo nội dung | D | todo, hạn 10-05 |
+| T-156 Sổ quy tắc, bảng sống sót, màn chết, panel khóa số | D | todo (sau T-155), hạn 10-06 |
+| T-157 Bot chương 1, FPS, lưu game | C | todo: công cụ hạn 10-05, chạy trên bản ghép 10-07 |
 | T-158 Âm thanh chương 1 | E | todo, hạn 10-05 |
-| T-159 Giọng loa chương 1 (bác Tư thật và giả) | E | todo (sau T-158), hạn 10-06 |
+| T-159 Giọng loa, quản lý, thành viên cuộc gọi | E | todo (sau T-158 và khi có câu thoại), hạn 10-06 |
 | **Đợt 3 (2026-10-03): hoàn thiện P3** | | |
 | T-140 Đánh bóng chốt cửa, vùng chọn giấy, lộ trình thực thể | A | **done**, đã merge |
 | T-138 Đạo cụ thật thay khối hộp | B (**Claude làm thay**) | **done**, đã merge; chờ chủ dự án xem trong game |
@@ -74,7 +74,7 @@
 - Editor có thể tự lưu lại một số file (`default_bus_layout.tres`, `.import`) khi mở. Đừng commit các thay đổi đó; integrator sẽ dọn.
 
 ## Đang vướng
-- Chờ chủ dự án duyệt thiết kế v2 (`docs/design/STORY.md`, D-034). **Chưa gửi prompt chương 1 cho lane nào.**
+- Không có gì chặn. Ảnh tham khảo đồ họa chủ dự án gửi sau.
 
 ## Ghi chú cho người chơi thử
 - Game chính chạy trên **tầng 4** (T-112): bắt đầu trước cửa phòng 407; E mở và đóng cửa 407; đi được khắp hành lang, phòng 407, nhà vệ sinh, bàn trực. WASD đi, Shift chạy, chuột nhìn, Esc mở menu. Có filter PS1 (chỉnh cường độ và độ sáng trong Cài đặt). Có HUD (tâm ngắm, gợi ý, phụ đề), font tiếng Việt, tiếng bước chân dép lê, tiếng ù đèn tuýp và côn trùng đêm. Đồ vật tương tác hiện chỉ có cửa 407; giấy tờ, công tắc, sổ trực chờ T-111 và T-117.

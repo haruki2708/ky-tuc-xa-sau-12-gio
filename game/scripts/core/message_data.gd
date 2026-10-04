@@ -20,6 +20,9 @@ const DIRECTORY := "res://data/messages/"
 @export var minutes: int = 0
 ## True when Trung sent it (shown on the right).
 @export var outgoing: bool = false
+## True for a line spoken in the group call: lane E has a voice clip under
+## text_key; the phone shows it as a transcript line.
+@export var spoken: bool = false
 
 
 static func load_by_id(message_id: StringName) -> MessageData:

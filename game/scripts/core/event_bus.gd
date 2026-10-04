@@ -122,7 +122,29 @@ signal flashlight_toggled(on: bool)
 signal phone_battery_changed(percent: float)
 
 ## A text message arrived. Data: MessageData.load_by_id(message_id).
+## In the group call (STORY.md v2) every spoken line also arrives here, with
+## MessageData.spoken = true; lane E plays its voice, lane D shows the text.
 signal phone_message_received(message_id: StringName)
+
+## Someone is calling (&"stranger_call": Minh Nhật's group call, ch. 1).
+signal phone_call_incoming(call_id: StringName)
+
+## The player answered the call (lane D's phone screen emits it).
+signal phone_call_answered(call_id: StringName)
+
+## A group chat member joined, went silent (dead) or left.
+## state: &"joined", &"dead", &"left". Names: MessageData sender ids.
+signal chat_member_changed(member_id: StringName, state: StringName)
+
+## The story asks the player to say something in the group call. option_keys
+## are translation keys; lane D shows them and emits chat_choice_made.
+signal chat_choice_requested(choice_id: StringName, option_keys: PackedStringArray)
+
+## The player picked option index (0-based), or -1 when time ran out.
+signal chat_choice_made(choice_id: StringName, index: int)
+
+## The speaker announced how many students are still alive.
+signal survivor_count_changed(count: int)
 
 # --- Puzzles (T-151 stations, T-155 close-up panels) ---
 

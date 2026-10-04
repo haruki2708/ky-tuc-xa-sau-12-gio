@@ -1,18 +1,18 @@
 # Backlog
 
-## Chương 1 "Đếm thừa" (thiết kế `docs/design/STORY.md`, hạn 2026-10-07)
+## Chương 1 "Tổng tắc" (thiết kế v2 `docs/design/STORY.md`, hạn 2026-10-07)
 | ID | Việc | Lane | Phụ thuộc |
 |---|---|---|---|
-| T-150 | Hợp đồng chung (xong), luồng chương, dữ liệu đêm 1, ghép (`T-150-chapter1-core.md`) | core | — |
-| T-151 | Sinh tồn và điện thoại (`T-151-survival-phone.md`) | A | T-150 phần 1 |
-| T-152 | Người đi dép, Người thứ năm (`T-152-walker-watcher.md`) | A | T-151, navmesh T-153 |
-| T-153 | Cầu thang, tầng 5, 6, sân phơi, nhà đối diện (`T-153-stairs-floors-5-6.md`) | B | T-112 |
-| T-154 | Đạo cụ chương 1, mô hình thực thể (`T-154-ch1-props-entities.md`) | B | T-153 |
-| T-155 | Điện thoại, màn ban ngày, chọn đêm (`T-155-phone-day-chapters.md`) | D | T-150 phần 1 |
-| T-156 | Panel câu đố, chứng cứ trong sổ tay (`T-156-puzzle-panels-evidence.md`) | D | T-155 |
+| T-150 | Hợp đồng chung (xong), luồng chương, kịch bản, ghép (`T-150-chapter1-core.md`) | core | — |
+| T-151 | Nằm giường, nín thở, tiếng động, điện thoại (`T-151-survival-phone.md`) | A | T-150 phần 1 |
+| T-152 | Quản lý, xác đổi tư thế (`T-152-manager-corpses.md`) | A | T-151 |
+| T-153 | Phòng 407 chi tiết, máu me (`T-153-room407-gore.md`) | B | T-112 |
+| T-154 | Mô hình chương 1 (`T-154-ch1-models.md`) | B | T-153 |
+| T-155 | Cuộc gọi nhóm, chọn chương, cảnh báo (`T-155-group-chat-phone.md`) | D | T-150 phần 1 |
+| T-156 | Sổ quy tắc, sống sót, màn chết, khóa số (`T-156-rulebook-survivors.md`) | D | T-155 |
 | T-157 | Bot chương 1, FPS, lưu game (`T-157-ch1-bot-perf.md`) | C | T-115; chạy cuối sau T-150 |
 | T-158 | Âm thanh chương 1 (`T-158-ch1-audio.md`) | E | T-131, T-133 |
-| T-159 | Giọng loa chương 1 (`T-159-ch1-speaker-voice.md`) | E | T-137, T-158 |
+| T-159 | Giọng chương 1 (`T-159-ch1-voices.md`) | E | T-137, T-158, câu thoại T-150 |
 
 # Backlog P1 (prototype greybox, đã xong)
 

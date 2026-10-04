@@ -1,36 +1,49 @@
-# T-150 — Chương 1 "Đếm thừa": hợp đồng chung, luồng chương, dữ liệu, ghép
+# T-150 — Chương 1 "Tổng tắc": hợp đồng chung, luồng chương, kịch bản, ghép
 - Lane: core (Claude) | Trạng thái: doing | Agent: Claude
-- Phụ thuộc: thiết kế `docs/design/STORY.md` (D-029…D-033)
-- Hạn chương 1: chơi thử được ngày **2026-10-07**, muộn nhất 2026-10-08.
+- Phụ thuộc: thiết kế `docs/design/STORY.md` v2 (D-034, D-035)
+- **Hạn chơi thử chương 1: 2026-10-07.**
 
 ## Mục tiêu
-Lõi cho chương 1 và các chương sau: hợp đồng chung giữa các lane, luồng chương, lưu tiến độ, dữ liệu của đêm 1 (nội quy, giấy tờ, tin nhắn, câu đố), rồi ghép việc của 5 lane thành một đêm chơi trọn khoảng 50 phút.
+Chương 1 (4:00–6:00, khoảng 50 phút): mở đầu, vòng 1 (bị giam trong phòng, nhóm chat), vòng 2 (quản lý kiểm tra phòng). Người chơi ở gần như suốt chương trong **phòng 407**. Core lo: hợp đồng giữa các lane, luồng chương, kịch bản (loa, nhóm chat, đường đi của quản lý), dữ liệu, ghép và cảnh chết.
 
-## Phần 1 — Hợp đồng chung (đã xong, `5f31722`)
-- **Phím mới** (`game_input.gd`): `crouch` (C, Ctrl), `phone` (Q), `flashlight` (F), `hold_breath` (Space).
-- **Signal mới** (`event_bus.gd`): `chapter_started`, `chapter_finished`, `noise_emitted`, `player_hidden`, `breath_held`, `phone_raised`, `flashlight_toggled`, `phone_battery_changed`, `phone_message_received`, `puzzle_opened`, `puzzle_closed`, `puzzle_solved`, `entity_state_changed`, `watcher_active`, `player_caught`, `rule_evidence_changed`. Ý nghĩa từng signal ghi ngay trong code.
-- **`Progress`** (`scripts/core/progress.gd`, file `user://progress.json`): `unlocked_chapter()`, `unlock(n)`, `set_fact/get_fact` cho dữ kiện sống qua nhiều đêm (ví dụ `replaced_roommate`).
-- **`GameState.chapter`**: lưu trong checkpoint. **`App.start_chapter(n)`**: chọn đêm ở màn hình chính.
-- **`MessageData`** (`data/messages/<id>.tres`): tin nhắn điện thoại. **`PuzzleData`** (`data/puzzles/<id>.tres`): câu đố. Đã có `locker_combo_601` (mã 304) và `fuse_box_6` (5 cầu dao, đáp án `10010`).
-- **`RuleSystem.set_evidence(rule_id, document_id, pinned)`, `evidence_for(rule_id)`**: gắn chứng cứ vào dòng nghi ngờ; lưu trong checkpoint.
+## Phần 1 — Hợp đồng chung (xong)
+- `5f31722`:
+  - phím `crouch` (C, Ctrl), `phone` (Q), `flashlight` (F), `hold_breath` (Space);
+  - signal sinh tồn, điện thoại, câu đố, thực thể;
+  - `Progress`, `GameState.chapter`, `App.start_chapter(n)`;
+  - `MessageData`, `PuzzleData`; chứng cứ trong `RuleSystem`.
+- Bổ sung cho v2:
+  - signal `phone_call_incoming`, `phone_call_answered`, `chat_member_changed`, `chat_choice_requested`, `chat_choice_made`, `survivor_count_changed`;
+  - `MessageData.spoken` (câu nói trong cuộc gọi nhóm, có giọng).
 
-## Phần 2 — Dữ liệu đêm 1 (integrator)
-- Bộ luật `data/rules/ch1.tres` theo `STORY.md` §10: 6 điều thật, 3 dòng giả (điều 2 bỏ vế xưng tên, điều 4 tin nhắn "Phúc", điều 5 dấu "nhà 8"), cộng bản giả năm 2015 của điều 3.
-- Giấy tờ mới: thông báo dấu giả tầng 5, giấy cũ 2015 tầng 6, lịch cũ `calendar_601`, sơ đồ cầu dao `fuse_diagram_6`, mẫu dấu trong sổ trực, ảnh phòng 407 năm 2009.
-- Tin nhắn ban ngày và trong đêm (mẹ, nhóm lớp, Phúc, số lạ).
-- Câu loa chương 1 (văn bản cho T-159).
+## Số giường phòng 407 (dùng chung mọi lane)
+| Giường | Vị trí | Chủ |
+|---|---|---|
+| 1 | Tầng trên, giường tầng A | Phúc |
+| 2 | Tầng dưới, giường tầng A | Việt |
+| 3 | Tầng dưới, giường tầng B | **Trung** |
+| 4 | Tầng trên, giường tầng B | Đạt |
 
-## Phần 3 — Luồng chương và ghép
-- Tách `story_director.gd` thành luồng theo chương; chương 1 dùng lại đoạn 1–5 của demo, chèn đoạn việc vặt tầng 5–6 và truy đuổi cầu thang.
-- Main ghép tầng 4, cầu thang, tầng 5, 6 (T-153), đặt chỗ nấp, trạm câu đố, giấy tờ theo anchor của lane B.
-- Phản ứng của thế giới: đèn chập chờn quanh Người đi dép, bị bắt thì màn hù rồi tải checkpoint, nấp trong mùng bị "đếm" thì cộng "lệch".
-- Ghi `Progress.set_fact(&"replaced_roommate", …)` theo người được trả lời hộ (D-032); `Progress.unlock(2)` khi xong đêm.
+## Phần 2 — Kịch bản và dữ liệu
+- Loa: lời cảnh báo mở đầu, Tổng tắc 5 điều, quy tắc vòng 1, vòng 2, số người sống sót. Câu chữ **viết lại**, không chép video.
+- Nhóm chat: Minh Nhật và khoảng 6 thành viên có tên và giọng riêng; các câu thoại theo thời gian; các lựa chọn trả lời của người chơi. Khi quản lý tới phòng của một thành viên, nhóm nghe được cách trả lời và cái chết của người đó.
+- Câu đố vòng 1: điện thoại sắp hết pin; sạc nằm trong tủ khóa số của Đạt; mã lấy từ thẻ sinh viên hoặc sổ tay của Đạt.
+- Cám dỗ rời phòng ở vòng 1: tiếng gõ cửa xin vào, tiếng bạn quen gọi ngoài hành lang.
+
+## Phần 3 — Luồng và ghép
+- Luồng chương mới thay luồng demo:
+  - **Mở đầu:** 60 giây để rời giường; nhà vệ sinh chung; quay về thấy ba bạn đã chết.
+  - **Tổng tắc:** từ đây ra khỏi cửa là chết (vùng ngưỡng cửa).
+  - **Vòng 1**, rồi **vòng 2:** quản lý đi các phòng (nghe qua nhóm chat và qua tầng) rồi tới 407.
+  - Chết thì: màn chết, rồi tải checkpoint.
+- Ghép việc của T-151…T-159; checkpoint ở đầu mỗi vòng và trước khi quản lý tới 407.
+- `Progress.unlock(2)` khi xong chương.
 
 ## Checklist
-- [x] Phần 1: hợp đồng chung, test PASS (258/258)
-- [ ] Phần 2: dữ liệu đêm 1, `RuleSet.validate()` sạch
-- [ ] Phần 3: ghép T-151…T-159, chơi trọn chương 1
-- [ ] Bot T-157 chạy 3 kịch bản PASS
+- [x] Phần 1: hợp đồng chung, test PASS
+- [ ] Phần 2: kịch bản, dữ liệu, câu chữ (vi/en)
+- [ ] Phần 3: ghép, chơi trọn chương 1
+- [ ] Bot T-157 PASS
 - [ ] Bản build cho chủ dự án chơi thử
 
 ## Handoff
