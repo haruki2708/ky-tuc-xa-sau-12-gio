@@ -343,3 +343,16 @@ func test_idle_waits_are_cut_when_the_round_is_done() -> void:
 	director.time_scale = 1.0
 	await director._gap(30.0)
 	assert_true(Time.get_ticks_msec() - started < 2000, "the 30 s gap is skipped (D-040);")
+
+
+func test_door_flicker_keeps_the_desk_lamp_off() -> void:
+	# N6: the manager's flicker must not relight the lamp the player switched off.
+	var room := scene.get_node("Floor4/Room407")
+	var lamp := room.get_node("Room407DeskLamp") as Node3D
+	lamp.visible = false
+	await wait_frames(2)
+	assert_eq(GameState.get_flag(&"desk_lamp_on", null), false, "lamp off;")
+	director._set_flicker(true)
+	await wait_frames(3)
+	assert_eq(GameState.get_flag(&"desk_lamp_on", null), false, "still off while the ceiling light flickers;")
+	director._set_flicker(false)

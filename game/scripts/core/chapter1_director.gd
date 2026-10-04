@@ -1603,7 +1603,12 @@ func _music(method: StringName, value: Variant) -> void:
 
 func _set_flicker(on: bool) -> void:
 	var room := _room()
-	if room != null and room.has_method("set_flicker"):
+	# Only the ceiling light: lane B's room flicker also lights the desk lamp,
+	# which the player switched off for N6 (it would count as a trace).
+	var main_light := room.get_node_or_null("Room407MainLight") if room != null else null
+	if main_light != null and main_light.has_method("set_flicker"):
+		main_light.set_flicker(on)
+	elif room != null and room.has_method("set_flicker"):
 		room.set_flicker(on)
 
 
