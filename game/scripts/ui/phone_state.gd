@@ -14,13 +14,20 @@ var options := PackedStringArray()
 var remaining := 0.0
 var selected := 0
 var disconnected_choice := false
+var connection_lost := false
+var marked_rooms: Array[int] = []
+var tab := 0
+var camera_unlocked := false
+var camera_id := ""
 
 
 func snapshot() -> Dictionary:
 	return {"version": 1, "history": history.duplicate(true), "members": members.duplicate(true),
 		"raised": raised, "battery": battery, "minutes": minutes, "flashlight": flashlight,
 		"incoming": incoming, "call": call, "choice": choice, "options": Array(options),
-		"remaining": remaining, "selected": selected, "disconnected_choice": disconnected_choice}
+		"remaining": remaining, "selected": selected, "disconnected_choice": disconnected_choice,
+		"connection_lost": connection_lost, "marked_rooms": marked_rooms.duplicate(),
+		"tab": tab, "camera_unlocked": camera_unlocked, "camera_id": camera_id}
 
 
 func restore(data: Dictionary) -> void:
@@ -61,6 +68,17 @@ func restore(data: Dictionary) -> void:
 		remaining = 0.0
 	selected = clampi(int(data.get("selected", 0)), 0, maxi(0, options.size() - 1))
 	disconnected_choice = data.get("disconnected_choice", false) == true or battery <= 0.0
+	connection_lost = data.get("connection_lost", false) == true
+	marked_rooms.clear()
+	var rooms: Variant = data.get("marked_rooms", [])
+	if rooms is Array:
+		for room: Variant in rooms:
+			if (room is int or room is float) and int(room) / 100 in range(1, 7) and int(room) % 100 in range(1, 9):
+				if not marked_rooms.has(int(room)):
+					marked_rooms.append(int(room))
+	camera_unlocked = data.get("camera_unlocked", false) == true
+	camera_id = str(data.get("camera_id", ""))
+	tab = clampi(int(data.get("tab", 0)), 0, 2 if camera_unlocked else 1)
 	if options.size() < 2:
 		choice = ""
 		options.clear()

@@ -345,3 +345,20 @@ UI_PUZZLE_HINT,Xem gợi ý,View hint
 UI_PUZZLE_CLOSE,Đóng (Esc),Close (Esc)
 UI_PUZZLE_WRONG,Khóa chưa mở. Thử lại.,Still locked. Try again.
 UI_PUZZLE_SOLVED,Khóa đã mở.,Unlocked.
+UI_PHONE_CONNECTION_LOST,Mất kết nối mạng nội bộ…,Local network connection lost…
+UI_PHONE_RECONNECTED,Đã kết nối lại,Reconnected
+UI_PHONE_SYSTEM,Hệ thống,System
+UI_PHONE_TAB_CALL,Cuộc gọi [ ],Call [ ]
+UI_PHONE_TAB_MAP,Sơ đồ,Map
+UI_PHONE_TAB_CAMERA,Camera,Camera
+UI_PHONE_MAP_HELP,* 407: Phòng mình · ↑↓←→ chọn · Enter đánh dấu,* 407: My room · ↑↓←→ select · Enter mark
+UI_PHONE_MY_ROOM,Phòng mình,My room
+UI_CCTV_PREVIOUS,"‹ ,","‹ ,"
+UI_CCTV_NEXT,. ›,. ›
+UI_CCTV_CAPTION,%s · %s · ● REC,%s · %s · ● REC
+UI_CCTV_NO_FEED,Chưa có hình camera,Camera feed unavailable
+UI_CCTV_MOVEMENT,%s: có chuyển động,%s: movement detected
+UI_CCTV_PREVIEW_LABEL,CAM 102,CAM 102
+UI_PUZZLE_SUBMIT,Thử mở,Try combination
+UI_PUZZLE_LOCKED,Khóa bị kẹt — còn %d giây,Lock jammed — %d seconds remaining
+UI_PUZZLE_ATTEMPTS,Số lần sai: %d/%d,Wrong attempts: %d/%d
