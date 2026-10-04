@@ -16,7 +16,7 @@ static func valid_v2(command: Dictionary) -> bool:
 		"cable": return command.get("color") in ["blue", "gray"]
 		"latch", "desk_lamp": return command.get("on") is bool
 		"search": return command.get("spot") in ["viet_locker", "phuc_mattress", "trash"]
-		"camera_tab", "map_tab", "charge": return true
+		"camera_tab", "map_tab", "charge", "close_document": return true
 		"keypad":
 			var code: Variant = command.get("code")
 			if not code is String or code.length() != 4: return false
@@ -47,6 +47,14 @@ func execute(command: Dictionary) -> Dictionary:
 	var op: String = command.op
 	if valid(command): return await super.execute(command)
 	_cancelled = false
+	if op == "close_document":
+		# The assembled form opens itself and pauses the world (N5); a player
+		# closes it (integrator, T-166 review).
+		await get_tree().process_frame
+		var reader := component("document_view.gd")
+		if reader == null: return result("SKIP", "document view not integrated")
+		reader.close_view()
+		return result("PASS", "document closed")
 	var key: String = op
 	if op == "search": key += "_" + str(command.spot)
 	if op == "cable": key += "_" + str(command.color)

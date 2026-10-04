@@ -401,11 +401,13 @@ func _round_2() -> void:
 	_missions.clear()
 	_missions[&"form"] = false
 	_missions[&"ready"] = false
+	GameState.set_flag(&"cctv_unlocked", false)
 	await _announce(["RULE_CH1_R2"])
 	RuleSystem.mark_read(&"ch1_r2")
 	await _line("n_beds")
 	await _line("n_cctv")
 	EventBus.cctv_unlocked.emit()
+	GameState.set_flag(&"cctv_unlocked", true)
 	_manager_far(Vector3(4.0, -9.9, -2.0))
 	_music(&"set_tension", 0.2)
 	await _gap(30.0)

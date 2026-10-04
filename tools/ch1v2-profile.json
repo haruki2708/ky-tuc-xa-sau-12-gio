@@ -30,7 +30,8 @@
     "power_tripped_flag": "strip_tripped",
     "round1_checkpoint": "ch1_r1",
     "death_ui_path": "DeathScreen/Root",
-    "round2_checkpoint": "ch1_r2"
+    "round2_checkpoint": "ch1_r2",
+    "cctv_flag": "cctv_unlocked"
   },
   "actions": {
     "wall_taps": {
