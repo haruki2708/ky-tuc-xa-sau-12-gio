@@ -233,7 +233,7 @@ Có ba thực thể chính dùng suốt game, cộng các lần hiện hình the
 |---|---|---|
 | 1 (30/4) | Tầng 4 (đầy đủ như demo), **tầng 5, tầng 6** | Cửa sắt chỉ mở lên trên. Bác Tư nhờ lên tầng 6 làm việc vặt |
 | 2 (1/5) | Thêm **tầng 3, tầng 2** | Đi xuống tìm phòng 307 (phòng cũ của bác Tư) |
-| 3 (2/5) | Thêm **tầng 1** (phòng bảo vệ, kho hồ sơ), **sân, nhà xe** | Phòng bảo vệ trống; ra ngoài trời lần đầu |
+| 3 (2/5) | Thêm **tầng 1** (phòng bảo vệ, kho hồ sơ), **sân, nhà xe** | Phòng bảo vệ bỏ hoang; ra ngoài trời lần đầu |
 | 4 (3/5) | Cả tòa nhà và **sân thượng** | Điểm danh cuối trên sân thượng, cạnh loa tổng và bồn nước |
 
 **Để kịp 3–4 ngày một chương:** các tầng dùng chung bộ module với tầng 4, khác nhau ở cách bày đồ và vài phòng đặc biệt mỗi tầng. Không dựng mỗi tầng từ đầu.
