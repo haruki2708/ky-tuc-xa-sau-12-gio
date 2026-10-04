@@ -1,5 +1,7 @@
 # Prompt bàn giao — Lane B (Môi trường và 3D)
 
+> **TẠM DỪNG (D-034): chưa gửi prompt này. Cốt truyện đổi, integrator sẽ sửa task card rồi mới giao.**
+
 ## 1. Prompt giao task (dán nguyên khối)
 ```
 Bạn là agent Lane B (Môi trường và 3D) trong dự án game "Ký túc xá sau 12 giờ" (Godot 4.7.2, GDScript).

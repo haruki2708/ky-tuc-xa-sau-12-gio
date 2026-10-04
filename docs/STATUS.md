@@ -1,7 +1,7 @@
 # STATUS — cập nhật bởi integrator
 
 **Cập nhật lần cuối:** 2026-10-04
-**Giai đoạn:** Game đầy đủ theo chương (D-029): 4 đêm, mỗi đêm 45–60 phút. Thiết kế đã duyệt (`docs/design/STORY.md`, D-033). **Đang làm chương 1 "Đếm thừa"**, hạn chơi thử 2026-10-07 (muộn nhất 2026-10-08).
+**Giai đoạn:** Game đầy đủ theo chương (D-029). **Cốt truyện đổi sang chuyển thể video "Quy tắc kí túc xá lúc nửa đêm" (D-034)**; thiết kế v2 `docs/design/STORY.md` chờ duyệt. Task chương 1 T-151…T-159 **tạm dừng** cho tới khi duyệt v2 và sửa card.
 **Repo:** https://github.com/tuaanh666/ky-tuc-xa-sau-12-gio (private)
 
 ## Đã xong
@@ -47,7 +47,7 @@
 | T-134 Thực thể truy đuổi, phát hiện ánh nhìn | A | done (review 2026-10-03) |
 | T-135 Bóng người, gương phản chiếu chậm | B | done (review 2026-10-03) |
 | T-136 Đoạn 3–5 và cái kết | core | review: chờ chủ dự án chơi thử cả demo |
-| **Chương 1 "Đếm thừa" (2026-10-04 → 2026-10-07)** | | |
+| **Chương 1 (TẠM DỪNG từ D-034, card sẽ sửa theo thiết kế v2)** | | |
 | T-150 Hợp đồng chung, luồng chương, dữ liệu đêm 1, ghép | core | **doing**: phần 1 (hợp đồng chung) xong, `5f31722` |
 | T-151 Sinh tồn: cúi, tiếng động, nấp, nín thở, điện thoại, đèn pin, trạm câu đố | A | todo, hạn 10-05 |
 | T-152 Người đi dép và Người thứ năm | A | todo (sau T-151), hạn 10-06 |
@@ -74,7 +74,7 @@
 - Editor có thể tự lưu lại một số file (`default_bus_layout.tres`, `.import`) khi mở. Đừng commit các thay đổi đó; integrator sẽ dọn.
 
 ## Đang vướng
-- Không có gì chặn. Ảnh tham khảo đồ họa chủ dự án gửi sau; lane B làm theo phong cách PS1 hiện tại cho tới khi có.
+- Chờ chủ dự án duyệt thiết kế v2 (`docs/design/STORY.md`, D-034). **Chưa gửi prompt chương 1 cho lane nào.**
 
 ## Ghi chú cho người chơi thử
 - Game chính chạy trên **tầng 4** (T-112): bắt đầu trước cửa phòng 407; E mở và đóng cửa 407; đi được khắp hành lang, phòng 407, nhà vệ sinh, bàn trực. WASD đi, Shift chạy, chuột nhìn, Esc mở menu. Có filter PS1 (chỉnh cường độ và độ sáng trong Cài đặt). Có HUD (tâm ngắm, gợi ý, phụ đề), font tiếng Việt, tiếng bước chân dép lê, tiếng ù đèn tuýp và côn trùng đêm. Đồ vật tương tác hiện chỉ có cửa 407; giấy tờ, công tắc, sổ trực chờ T-111 và T-117.
