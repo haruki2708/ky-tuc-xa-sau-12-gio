@@ -31,6 +31,10 @@ func set_blood_stage(stage: int) -> void:
 		return
 	$Details/BloodSeep.visible = blood_stage >= 1
 	$Details/BloodPools.visible = blood_stage >= 2
+	for number in [1, 2, 4]:
+		var body := get_node_or_null("Anchors/Corpse%d/Body" % number)
+		if body:
+			body.set_blood_visible(blood_stage > 0)
 	_drip_time = 0.0
 
 

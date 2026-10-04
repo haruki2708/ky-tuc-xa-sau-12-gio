@@ -1,0 +1,105 @@
+[gd_scene format=3]
+
+[ext_resource type="Shader" path="res://rendering/ps1_surface.gdshader" id="e1"]
+[ext_resource type="Texture2D" path="res://assets/textures/ch1_models/foam.png" id="e2"]
+[ext_resource type="Texture2D" path="res://assets/textures/ch1_models/wood.png" id="e3"]
+[ext_resource type="Texture2D" path="res://assets/textures/ch1_models/stripes.png" id="e4"]
+
+[sub_resource type="ShaderMaterial" id="s1"]
+shader = ExtResource("e1")
+shader_parameter/albedo_texture = ExtResource("e2")
+shader_parameter/roughness = 0.9
+
+[sub_resource type="PrismMesh" id="s2"]
+size = Vector3(0.08, 0.025, 0.045)
+material = SubResource("s1")
+
+[sub_resource type="ShaderMaterial" id="s3"]
+shader = ExtResource("e1")
+shader_parameter/albedo_texture = ExtResource("e3")
+shader_parameter/roughness = 0.9
+
+[sub_resource type="PrismMesh" id="s4"]
+size = Vector3(0.106, 0.025, 0.045)
+material = SubResource("s3")
+
+[sub_resource type="ShaderMaterial" id="s5"]
+shader = ExtResource("e1")
+shader_parameter/albedo_texture = ExtResource("e4")
+shader_parameter/roughness = 0.9
+
+[sub_resource type="PrismMesh" id="s6"]
+size = Vector3(0.132, 0.025, 0.045)
+material = SubResource("s5")
+
+[sub_resource type="PrismMesh" id="s7"]
+size = Vector3(0.08, 0.025, 0.045)
+material = SubResource("s1")
+
+[sub_resource type="PrismMesh" id="s8"]
+size = Vector3(0.106, 0.025, 0.045)
+material = SubResource("s3")
+
+[sub_resource type="PrismMesh" id="s9"]
+size = Vector3(0.132, 0.025, 0.045)
+material = SubResource("s5")
+
+[sub_resource type="PrismMesh" id="s10"]
+size = Vector3(0.08, 0.025, 0.045)
+material = SubResource("s1")
+
+[sub_resource type="PrismMesh" id="s11"]
+size = Vector3(0.106, 0.025, 0.045)
+material = SubResource("s3")
+
+[sub_resource type="PrismMesh" id="s12"]
+size = Vector3(0.132, 0.025, 0.045)
+material = SubResource("s5")
+
+[node name="BedDebris" type="Node3D"]
+
+
+[node name="Scrap0" type="MeshInstance3D" parent="."]
+position = Vector3(0.18, 0.015, 0.0)
+mesh = SubResource("s2")
+rotation_degrees = Vector3(0, 0, 8)
+
+[node name="Scrap1" type="MeshInstance3D" parent="."]
+position = Vector3(-0.1327309, 0.025, 0.1418473)
+mesh = SubResource("s4")
+rotation_degrees = Vector3(0, 31, 8)
+
+[node name="Scrap2" type="MeshInstance3D" parent="."]
+position = Vector3(0.0157498, 0.035, -0.2091946)
+mesh = SubResource("s6")
+rotation_degrees = Vector3(0, 62, 8)
+
+[node name="Scrap3" type="MeshInstance3D" parent="."]
+position = Vector3(0.1095032, 0.015, 0.1666703)
+mesh = SubResource("s7")
+rotation_degrees = Vector3(0, 93, 8)
+
+[node name="Scrap4" type="MeshInstance3D" parent="."]
+position = Vector3(-0.1772438, 0.025, -0.0366086)
+mesh = SubResource("s8")
+rotation_degrees = Vector3(0, 124, 8)
+
+[node name="Scrap5" type="MeshInstance3D" parent="."]
+position = Vector3(0.1518937, 0.035, -0.1126803)
+mesh = SubResource("s9")
+rotation_degrees = Vector3(0, 155, 8)
+
+[node name="Scrap6" type="MeshInstance3D" parent="."]
+position = Vector3(-0.0467671, 0.015, 0.2027881)
+mesh = SubResource("s10")
+rotation_degrees = Vector3(0, 186, 8)
+
+[node name="Scrap7" type="MeshInstance3D" parent="."]
+position = Vector3(-0.0829221, 0.025, -0.1863891)
+mesh = SubResource("s11")
+rotation_degrees = Vector3(0, 217, 8)
+
+[node name="Scrap8" type="MeshInstance3D" parent="."]
+position = Vector3(0.1690597, 0.035, 0.0720961)
+mesh = SubResource("s12")
+rotation_degrees = Vector3(0, 248, 8)

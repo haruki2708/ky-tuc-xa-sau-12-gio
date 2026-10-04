@@ -5,6 +5,18 @@
 [ext_resource type="Texture2D" path="res://assets/textures/room407/ink.png" id="e3"]
 [ext_resource type="Texture2D" path="res://assets/textures/room407/paper.png" id="e4"]
 
+[ext_resource type="PackedScene" path="res://scenes/levels/ch1_models/corpse_phuc.tscn" id="t154_phuc"]
+
+[ext_resource type="PackedScene" path="res://scenes/levels/ch1_models/corpse_viet.tscn" id="t154_viet"]
+
+[ext_resource type="PackedScene" path="res://scenes/levels/ch1_models/corpse_dat.tscn" id="t154_dat"]
+
+[ext_resource type="PackedScene" path="res://scenes/levels/ch1_models/router.tscn" id="t154_router"]
+
+[ext_resource type="PackedScene" path="res://scenes/levels/ch1_models/dat_notebook.tscn" id="t154_dat_notebook"]
+
+[ext_resource type="PackedScene" path="res://scenes/levels/ch1_models/charger.tscn" id="t154_charger"]
+
 [sub_resource type="ShaderMaterial" id="s1"]
 shader = ExtResource("e2")
 shader_parameter/albedo_texture = ExtResource("e3")
@@ -185,3 +197,18 @@ position = Vector3(0.04, 0.05, 0)
 
 [node name="Mesh" type="MeshInstance3D" parent="DatLocker/Shackle/Leg0.04"]
 mesh = SubResource("s9")
+
+[node name="Body" parent="Corpse1" instance=ExtResource("t154_phuc")]
+
+[node name="Body" parent="Corpse2" instance=ExtResource("t154_viet")]
+
+[node name="Body" parent="Corpse4" instance=ExtResource("t154_dat")]
+
+[node name="Model" parent="Router" instance=ExtResource("t154_router")]
+rotation_degrees = Vector3(0,-90,0)
+
+[node name="Model" parent="DatNote" instance=ExtResource("t154_dat_notebook")]
+position = Vector3(0,-0.027,0)
+
+[node name="Charger" parent="DatLocker" instance=ExtResource("t154_charger")]
+position = Vector3(0,-0.30,-0.28)

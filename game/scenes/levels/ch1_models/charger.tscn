@@ -1,0 +1,68 @@
+[gd_scene format=3]
+
+[ext_resource type="Shader" path="res://rendering/ps1_surface.gdshader" id="e1"]
+[ext_resource type="Texture2D" path="res://assets/textures/ch1_models/paper.png" id="e2"]
+[ext_resource type="Texture2D" path="res://assets/textures/ch1_models/metal.png" id="e3"]
+[ext_resource type="Texture2D" path="res://assets/textures/ch1_models/hair.png" id="e4"]
+
+[sub_resource type="ShaderMaterial" id="s1"]
+shader = ExtResource("e1")
+shader_parameter/albedo_texture = ExtResource("e2")
+shader_parameter/roughness = 0.9
+
+[sub_resource type="BoxMesh" id="s2"]
+size = Vector3(0.045, 0.065, 0.038)
+material = SubResource("s1")
+
+[sub_resource type="ShaderMaterial" id="s3"]
+shader = ExtResource("e1")
+shader_parameter/albedo_texture = ExtResource("e3")
+shader_parameter/roughness = 0.9
+
+[sub_resource type="BoxMesh" id="s4"]
+size = Vector3(0.005, 0.027, 0.007)
+material = SubResource("s3")
+
+[sub_resource type="BoxMesh" id="s5"]
+size = Vector3(0.005, 0.027, 0.007)
+material = SubResource("s3")
+
+[sub_resource type="ShaderMaterial" id="s6"]
+shader = ExtResource("e1")
+shader_parameter/albedo_texture = ExtResource("e4")
+shader_parameter/roughness = 0.9
+
+[sub_resource type="BoxMesh" id="s7"]
+size = Vector3(0.025, 0.009, 0.003)
+material = SubResource("s6")
+
+[sub_resource type="BoxMesh" id="s8"]
+size = Vector3(0.039, 0.003, 0.002)
+material = SubResource("s3")
+
+[node name="Charger" type="Node3D"]
+
+
+[node name="Case" type="MeshInstance3D" parent="."]
+position = Vector3(0, 0.037, 0)
+mesh = SubResource("s2")
+
+
+[node name="Pin-0.011" type="MeshInstance3D" parent="."]
+position = Vector3(-0.011, 0.082, 0)
+mesh = SubResource("s4")
+
+
+[node name="Pin0.011" type="MeshInstance3D" parent="."]
+position = Vector3(0.011, 0.082, 0)
+mesh = SubResource("s5")
+
+
+[node name="USBPort" type="MeshInstance3D" parent="."]
+position = Vector3(0, 0.041, -0.02)
+mesh = SubResource("s7")
+
+
+[node name="Seam" type="MeshInstance3D" parent="."]
+position = Vector3(0, 0.015, -0.02)
+mesh = SubResource("s8")

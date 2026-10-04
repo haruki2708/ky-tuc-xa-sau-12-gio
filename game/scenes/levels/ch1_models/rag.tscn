@@ -1,0 +1,57 @@
+[gd_scene format=3]
+
+[ext_resource type="Shader" path="res://rendering/ps1_surface.gdshader" id="e1"]
+[ext_resource type="Texture2D" path="res://assets/textures/ch1_models/rag.png" id="e2"]
+
+[sub_resource type="ShaderMaterial" id="s1"]
+shader = ExtResource("e1")
+shader_parameter/albedo_texture = ExtResource("e2")
+shader_parameter/roughness = 0.9
+
+[sub_resource type="PrismMesh" id="s2"]
+size = Vector3(0.05, 0.026, 0.19)
+material = SubResource("s1")
+
+[sub_resource type="PrismMesh" id="s3"]
+size = Vector3(0.05, 0.026, 0.19)
+material = SubResource("s1")
+
+[sub_resource type="PrismMesh" id="s4"]
+size = Vector3(0.05, 0.026, 0.19)
+material = SubResource("s1")
+
+[sub_resource type="PrismMesh" id="s5"]
+size = Vector3(0.05, 0.026, 0.19)
+material = SubResource("s1")
+
+[sub_resource type="PrismMesh" id="s6"]
+size = Vector3(0.05, 0.026, 0.19)
+material = SubResource("s1")
+
+[node name="Rag" type="Node3D"]
+
+
+[node name="Fold0" type="MeshInstance3D" parent="."]
+position = Vector3(-0.084, 0.013, 0)
+mesh = SubResource("s2")
+rotation_degrees = Vector3(0, 0, 0)
+
+[node name="Fold1" type="MeshInstance3D" parent="."]
+position = Vector3(-0.042, 0.021, 0)
+mesh = SubResource("s3")
+rotation_degrees = Vector3(0, 4, 0)
+
+[node name="Fold2" type="MeshInstance3D" parent="."]
+position = Vector3(0.0, 0.013, 0)
+mesh = SubResource("s4")
+rotation_degrees = Vector3(0, 8, 0)
+
+[node name="Fold3" type="MeshInstance3D" parent="."]
+position = Vector3(0.042, 0.021, 0)
+mesh = SubResource("s5")
+rotation_degrees = Vector3(0, 12, 0)
+
+[node name="Fold4" type="MeshInstance3D" parent="."]
+position = Vector3(0.084, 0.013, 0)
+mesh = SubResource("s6")
+rotation_degrees = Vector3(0, 16, 0)

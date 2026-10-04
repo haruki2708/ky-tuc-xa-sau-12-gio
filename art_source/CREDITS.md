@@ -51,3 +51,13 @@ Các đạo cụ dùng lại texture kit (`old_wood`, `iron`, `cloth`, `green_pa
 | `room407/previews/*.png` | Godot 4.7.2 Forward+, Codex viết script chụp | [Script chụp](room407/capture_room407.gd) | CC0-1.0 |
 
 Poster bóng đá là hình sân/quả bóng hình học tự dựng; khung ảnh có hình người cách điệu tự dựng, không phải ảnh người thật. Không logo, nhãn hàng, lời thoại hoặc nội dung video được đưa vào texture. Máu là mảng pixel đỏ sẫm, không chi tiết giải phẫu. **Khai báo AI:** Codex viết mã tạo model, texture, scene, shader và test; không dùng mô hình sinh ảnh. Âm thanh tham chiếu Lane E giữ nguồn trong `game/audio/CREDITS.md`.
+
+## Mô hình chương 1 — T-154
+
+| File / nhóm | Tác giả / công cụ | Nguồn | Giấy phép |
+|---|---|---|---|
+| `game/scenes/levels/ch1_models/{manager_body,corpse_phuc,corpse_viet,corpse_dat,charger,router,dat_notebook,phone_viewmodel,bed_debris,rag}.tscn` | Lane B, Codex (OpenAI), hình học và animation Godot 4.7.2 | [Generator gốc](ch1_models/build_models.py), không dùng model tải ngoài | CC0-1.0 |
+| `game/assets/textures/ch1_models/*.png` (13 texture 128 px) | Lane B, Codex, Python stdlib, seed 154 | [Generator gốc](ch1_models/build_models.py) | CC0-1.0 |
+| `ch1_models/previews/*.png`, script và scene hỗ trợ T-154 | Codex, Godot Forward+ | [Script chụp](ch1_models/capture_models.gd), [README](ch1_models/README.md) | CC0-1.0 |
+
+Tái dùng shader PS1 và scene tầng/anchor T-153 đã ghi nguồn phía trên. Chữ dùng font Be Vietnam Pro theo [nguồn và SIL OFL](../game/assets/fonts/CREDITS.md); nội dung chữ preview lấy từ localization chương 1 hiện có, không thêm mã khóa, tên trường hoặc nhãn hiệu. Nhân vật là hình học hư cấu, không ảnh người thật. **Khai báo AI:** Codex viết generator model/rig/animation, texture thủ tục, runtime, test và script preview; không dùng mô hình sinh ảnh, plugin hay asset tải ngoài. Texture PNG đi Git LFS; mesh và AnimationLibrary được lưu trực tiếp trong scene văn bản Godot.
