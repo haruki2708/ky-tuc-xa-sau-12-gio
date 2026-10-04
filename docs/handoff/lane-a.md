@@ -1,5 +1,7 @@
 # Prompt bàn giao — Lane A (Gameplay)
 
+> **Lane A đang rảnh (2026-10-05):** T-161 đã merge. Chưa có task mới.
+
 
 ## 1. Prompt giao task (dán nguyên khối)
 ```
