@@ -157,3 +157,29 @@ Nhạc Ch1Music dùng lại **drone_base/drone_tension của T-133**, cùng tác
 - `game/audio/voice/vi/{SPK_CH1_*, RULE_CH1_*, MGR_CH1_*, CHAT_CH1_*, ROOM_CH1_*}.ogg`: 58 câu, tổng hợp offline bằng **eSpeak NG 1.52.0** (giọng `vi` với các biến thể `m1`–`m8`, `f2`), cùng công cụ và giấy phép như T-137; xử lý bằng FFmpeg. **Nội dung do AI tạo** (lời thoại do Claude viết, giọng máy tổng hợp): phải khai báo khi lên Steam (D-006).
 - Tạo lại: `py -3 audio_source/ch1_voice_process.py`; báo cáo `audio_source/voice_ch1/build_report.json`.
 
+## T-164 — Foley nhiệm vụ chương 1 bản 2 (2026-10-05)
+
+Nguồn **mọi file trong bảng**: [ch1v2_process.py](https://github.com/tuaanh666/ky-tuc-xa-sau-12-gio/blob/lane-e/T-164-ch1v2-audio/audio_source/ch1v2_process.py). Tác giả waveform/công thức: Lane E/dự án, mã có **OpenAI Codex** hỗ trợ; khai báo **AI-assisted** khi phát hành. Waveform gốc và xử lý phát hành **[CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/)**. Không dùng bản thu người thật, neural model, âm từ video hoặc game khác.
+
+Công cụ có sẵn: Python 3.14 chuẩn ([Python](https://www.python.org/)); FFmpeg 9.0.2/libvorbis ([FFmpeg](https://ffmpeg.org/), [Vorbis](https://xiph.org/vorbis/)), phiên bản chính xác trong `audio_source/ch1v2/build_report.json`; Godot 4.7.2 xử lý runtime. Không tải/cài thêm gì, không đóng gói công cụ build vào game.
+
+Mỗi basename dưới đây đại diện cả `audio_source/ch1v2/raw/<name>.wav` và `game/audio/ch1v2/<name>.ogg`; seed/hash/LUFS/thời lượng nằm trong report. Cùng nguồn/tác giả/giấy phép trên cho tất cả 20 cặp file.
+
+| Basename | Công thức gốc |
+|---|---|
+| wall_tap_01, wall_tap_02, wall_tap_03 | Xung knuckle, cộng hưởng vôi/gạch tắt nhanh; ba cao độ/seed |
+| router_power_off | Relay nhả và âm điện tụt cao độ |
+| router_boot, router_online | Bíp sin/họa âm tăng cao độ |
+| power_switch | Cơ cấu công tắc gọn, nhiễu tiếp xúc |
+| power_short | Chuỗi burst điện, noise/tần số lưới và relay nhảy |
+| handle_rattle, handle_stop | Kim loại lạch cạch, trục bản lề rung; loop và đuôi nhả riêng |
+| lock_alarm | Tín hiệu điều tần dải trung cao, chuẩn −30 LUFS |
+| kiet_ring | Hai lượt ba nốt 740/988/831 Hz; khác chuông Trung |
+| call_reconnect | Hai nốt nối lại tăng cao độ |
+| death_fall_back | Noise phụt, hơi nghẹn điều biên, va đập trầm trên gạch |
+| death_bed_burst | Noise chất lỏng/hơi và nhiều xung sắt giường |
+| death_flesh | Ma sát ướt lọc trầm và xung chém ngắn |
+| death_fall_soft, death_bed_soft | Bỏ lớp máu/hơi nghẹn, lọc LP700 và giảm mức |
+| cctv_static, cctv_switch | Noise band-pass khẽ, nhiễu điều biên khi đổi kênh |
+
+Dùng lại `call_disconnect`, `manager_kill`, `kill_soft` của **T-158**, cùng nguồn/CC0 đã ghi ở trên; không sửa các waveform đó. Chưa nghe/duyệt cảm nhận cho 20 âm mới. Mọi mức LUFS là trước bus/filter/khoảng cách, không khẳng định loudness tổng mix tại tai.
