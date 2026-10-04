@@ -1,6 +1,5 @@
 # Prompt bàn giao — Lane D (UI và Đa ngôn ngữ)
 
-> **Lane D đang rảnh (2026-10-04):** T-156 đã merge. Chưa có task mới.
 
 ## 1. Prompt giao task (dán nguyên khối)
 ```
@@ -12,13 +11,13 @@ TUYỆT ĐỐI không làm việc trong D:\GAME_DEMO (đó là bản tích hợp
 Bước 1. Chuẩn bị:
   - Nếu chưa có D:\GAME_WORK\lane-d: git clone https://github.com/tuaanh666/ky-tuc-xa-sau-12-gio.git D:\GAME_WORK\lane-d
   - cd D:\GAME_WORK\lane-d; git fetch origin
-  - Nếu nhánh lane-d/T-156-rulebook-survivors đã có trên origin: git switch lane-d/T-156-rulebook-survivors; git pull
-    Nếu chưa có: git switch -c lane-d/T-156-rulebook-survivors origin/main
-Bước 2. Đọc kỹ, theo thứ tự: AGENTS.md, docs/STATUS.md, docs/tasks/T-156-rulebook-survivors.md
+  - Nếu nhánh lane-d/T-163-ch1v2-phone-map-lock đã có trên origin: git switch lane-d/T-163-ch1v2-phone-map-lock; git pull
+    Nếu chưa có: git switch -c lane-d/T-163-ch1v2-phone-map-lock origin/main
+Bước 2. Đọc kỹ, theo thứ tự: AGENTS.md, docs/STATUS.md, docs/tasks/T-163-ch1v2-phone-map-lock.md
 Bước 3. Làm task trong card, CHỈ sửa file trong mục "Được phép sửa".
         Cần sửa file ngoài phạm vi thì ghi "Yêu cầu thay đổi" vào mục Handoff, không tự sửa.
-Bước 4. Trước khi kết thúc: chạy pwsh tools/test.ps1 (phải PASS); commit dạng "T-156: ...";
-        git push -u origin lane-d/T-156-rulebook-survivors; điền mục Handoff trong card, commit và push lại.
+Bước 4. Trước khi kết thúc: chạy pwsh tools/test.ps1 (phải PASS); commit dạng "T-163: ...";
+        git push -u origin lane-d/T-163-ch1v2-phone-map-lock; điền mục Handoff trong card, commit và push lại.
 Bước 5. Trả lời tôi bằng tiếng Việt, ngắn gọn:
   (1) đã làm gì, (2) kết quả test (dán dòng RESULT), (3) checklist mục nào chưa đạt và vì sao,
   (4) yêu cầu thay đổi ngoài phạm vi, (5) có bị chặn ở đâu không.
@@ -28,14 +27,14 @@ luật chơi hay cốt truyện (ghi câu hỏi vào Handoff). Ghi trung thực:
 
 ## 2. Prompt tiếp tục (sau khi tắt máy, hoặc khi agent mất ngữ cảnh)
 ```
-Tiếp tục task T-156 của Lane D. cd D:\GAME_WORK\lane-d; git fetch origin; git switch lane-d/T-156-rulebook-survivors; git pull.
-Đọc lại AGENTS.md, docs/STATUS.md và docs/tasks/T-156-rulebook-survivors.md (đặc biệt mục Handoff để biết lần trước dừng ở đâu).
+Tiếp tục task T-163 của Lane D. cd D:\GAME_WORK\lane-d; git fetch origin; git switch lane-d/T-163-ch1v2-phone-map-lock; git pull.
+Đọc lại AGENTS.md, docs/STATUS.md và docs/tasks/T-163-ch1v2-phone-map-lock.md (đặc biệt mục Handoff để biết lần trước dừng ở đâu).
 Kiểm tra git status và git log -5. Tiếp tục các mục checklist chưa xong, rồi kết thúc phiên theo AGENTS.md §2.
 ```
 
 ## 3. Prompt yêu cầu sửa (khi integrator trả task về)
 ```
-Integrator đã review T-156 và yêu cầu sửa: xem mục "Review" trong docs/tasks/T-156-rulebook-survivors.md trên origin/main
-(git fetch; git show origin/main:docs/tasks/T-156-rulebook-survivors.md). Rebase nhánh lên origin/main, sửa từng ý, chạy test,
+Integrator đã review T-163 và yêu cầu sửa: xem mục "Review" trong docs/tasks/T-163-ch1v2-phone-map-lock.md trên origin/main
+(git fetch; git show origin/main:docs/tasks/T-163-ch1v2-phone-map-lock.md). Rebase nhánh lên origin/main, sửa từng ý, chạy test,
 push, cập nhật Handoff và báo lại theo 5 mục như trước.
 ```

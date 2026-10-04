@@ -1,7 +1,7 @@
 # STATUS — cập nhật bởi integrator
 
 **Cập nhật lần cuối:** 2026-10-04
-**Giai đoạn:** Game theo chương (D-029), thiết kế v2 (D-034…D-036). **Chương 1 "Tổng tắc" đã ghép đủ T-150…T-159** (bot 4/4 PASS, 355 test PASS). Bản chơi thử `build/windows/KyTucXa.exe` (tag `v0.2-ch1`). **Chờ chủ dự án chơi thử** theo `docs/playtest/CH1_PLAYTEST.md`.
+**Giai đoạn:** Chương 1 bản 2 (D-039, D-040): 8 nhiệm vụ, độ khó Insane, cắt thời gian trống. Đặc tả `docs/design/CH1_V2_MISSIONS.md`. Task T-160…T-164, bản chơi thử **2026-10-07**. Bản trước: `v0.2-ch1`.
 **Repo:** https://github.com/tuaanh666/ky-tuc-xa-sau-12-gio (private)
 
 ## Đã xong
@@ -47,7 +47,13 @@
 | T-134 Thực thể truy đuổi, phát hiện ánh nhìn | A | done (review 2026-10-03) |
 | T-135 Bóng người, gương phản chiếu chậm | B | done (review 2026-10-03) |
 | T-136 Đoạn 3–5 và cái kết | core | review: chờ chủ dự án chơi thử cả demo |
-| **Chương 1 "Tổng tắc" (2026-10-04 → 2026-10-07)** | | |
+| **Chương 1 bản 2 (2026-10-05 → 2026-10-07)** | | |
+| T-160 Luồng 8 nhiệm vụ, Insane, cắt thời gian trống, ghép | core | **doing** |
+| T-161 Tương tác: gõ tường, chỗ lục đồ, ổ điện, dây mạng, nín thở 6 giây, quản lý nghe cử động | A | todo, hạn 10-06 |
+| T-162 Đạo cụ: ổ điện, dây mạng, giấy xé, tủ Việt, nệm Phúc, ảnh, tay nắm cửa rung, đèn bàn | B | todo, hạn 10-06 |
+| T-163 Mất kết nối, sơ đồ tòa nhà, khóa số giới hạn lần thử | D | todo, hạn 10-06 |
+| T-164 Âm thanh nhiệm vụ mới | E | todo, hạn 10-06 |
+| **Chương 1 bản 1 "Tổng tắc" (2026-10-04, `v0.2-ch1`)** | | |
 | T-150 Hợp đồng chung, luồng chương, kịch bản, ghép | core | **done**: chờ chủ dự án chơi thử |
 | T-151 Nằm giường, nín thở, tiếng động, cúi, điện thoại, đèn pin, trạm câu đố | A | **done**, đã merge |
 | T-152 Quản lý, xác đổi tư thế khi không bị nhìn | A | **done**, đã merge |

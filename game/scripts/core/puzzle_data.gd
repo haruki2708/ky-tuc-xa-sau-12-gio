@@ -20,6 +20,10 @@ const DIRECTORY := "res://data/puzzles/"
 @export var label_keys: Array[String] = []
 ## Optional document shown next to the panel as the hint (diagram, calendar).
 @export var hint_document: StringName
+## Wrong answers allowed before the lock jams (0 = unlimited). T-160 N1.
+@export var max_attempts: int = 0
+## How long a jammed lock refuses input, in seconds.
+@export var lockout_seconds: float = 60.0
 
 
 static func load_by_id(puzzle_id: StringName) -> PuzzleData:

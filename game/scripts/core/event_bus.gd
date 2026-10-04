@@ -116,6 +116,17 @@ signal breath_held(holding: bool)
 
 # --- Phone (T-151 item, T-155 screen; D-027) ---
 
+## The group call dropped (network down, T-160 N2): the phone shows "lost
+## connection"; spoken lines meanwhile are not shown or heard.
+signal phone_call_lost(call_id: StringName)
+
+## The group call came back after phone_call_lost.
+signal phone_call_restored(call_id: StringName)
+
+## The player knocked once on a shared wall (T-161). wall_id: &"wall_406",
+## &"wall_408". The chapter director decodes the taps (tap code, T-160 N3).
+signal wall_tapped(wall_id: StringName)
+
 ## The player raised (true) or lowered the phone (Q).
 signal phone_raised(raised: bool)
 
