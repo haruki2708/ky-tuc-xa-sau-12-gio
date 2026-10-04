@@ -6,6 +6,7 @@ signal arrived
 signal answered(heard: bool)
 signal slashed(target: Node3D)
 signal slash_finished
+signal heard_movement
 
 enum State { IDLE, WALKING, SPEAKING, LISTENING, SLASHING, LUNGING, KILLING }
 
@@ -16,6 +17,8 @@ enum State { IDLE, WALKING, SPEAKING, LISTENING, SLASHING, LUNGING, KILLING }
 @export var speed: float = 0.9
 @export var route: PackedVector3Array = PackedVector3Array()
 @export var listen_seconds: float = 6.0
+## The director enables this at room entry and disables it after leaving.
+@export var hear_movement_while_present: bool = false
 @export var subtitle_seconds: float = 2.5
 @export_range(1, 20, 1) var slash_count: int = 6
 @export var slash_interval: float = 0.45
@@ -44,6 +47,7 @@ var _serial: int = 0
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_PAUSABLE
+	add_to_group(&"dorm_manager")
 	_read_settings()
 	EventBus.settings_changed.connect(_on_settings_changed)
 	EventBus.noise_emitted.connect(_on_noise)
@@ -119,9 +123,15 @@ func hear() -> void:
 		_heard = true
 
 
-func _on_noise(position: Vector3, _radius: float, _source: StringName) -> void:
+func _on_noise(position: Vector3, _radius: float, source: StringName) -> void:
 	# The card defines a fixed four-metre listening radius, measured at head height.
-	if state == State.LISTENING and position.distance_to(global_position + Vector3.UP * 1.6) <= 4.0:
+	if not is_inside_tree() or get_tree().paused:
+		return
+	if position.distance_to(global_position + Vector3.UP * 1.6) > 4.0:
+		return
+	if hear_movement_while_present and source in [&"move", &"step"]:
+		heard_movement.emit()
+	if state == State.LISTENING:
 		hear()
 
 

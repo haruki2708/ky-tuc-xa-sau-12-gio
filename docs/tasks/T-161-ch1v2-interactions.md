@@ -49,7 +49,51 @@ Các đồ vật và thao tác người chơi cần cho 8 nhiệm vụ mới c�
    - mỗi `kind` của cảnh chết khóa điều khiển, đưa camera về tư thế cuối đúng và phát `death_animation_finished`.
 
 ## Checklist hoàn thành
-- [ ] `pwsh tools/test.ps1` và `pwsh tools/check.ps1` PASS
-- [ ] Handoff: API, tên scene/node để integrator gắn, cách thử
+- [x] `pwsh tools/test.ps1` và `pwsh tools/check.ps1` PASS
+- [x] Handoff: API, tên scene/node để integrator gắn, cách thử
 
 ## Handoff (agent điền)
+
+### Kết quả Lane A — 2026-10-05
+
+- Nhánh tạo từ `origin/main` tại `c97874e`; commit code `0f44e82` đã push trước khi cập nhật Handoff. Chỉ thay đổi vùng được phép, thêm 11 key vi/en; không sửa core, level, audio, UI, STATUS hay project settings.
+- Hoàn tất cơ chế gõ tường, lục một lần, đèn bàn, ba công tắc ổ điện, cầm/cắm/rút dây mạng, nín thở cấu hình được, manager nghe cử động và ba cảnh chết Player. Thêm scene thử và 16 test. Trạm câu đố giữ nguyên; giới hạn thử thuộc panel T-163.
+
+### Scene/API để tích hợp
+
+Tất cả scene tương tác dưới `res://scenes/interaction/`; node tương tác dùng layer 4, mask 0. `Placeholder` là mesh thử có thể ẩn khi gắn model/anchor T-162; giữ CollisionShape3D/vùng tương tác.
+
+| Scene / node | Cấu hình và API |
+|---|---|
+| `wall_knock.tscn` / WallKnock | Export `wall_id`, mặc định `&"wall_406"`; mỗi E phát `EventBus.wall_tapped(wall_id)` và noise tại tường, radius 3, source knock. Không debounce/cooldown/giải mã. |
+| `search_spot.tscn` / SearchSpot | Export `spot_id`, `document_id`, `prompt_key` kế thừa, `is_searched`. Signal `searched(spot_id)`, sau đó `document_opened(document_id)` nếu ID không rỗng. Latch trước signal để tránh lục lại do callback; disable sau lần đầu. |
+| `desk_lamp_switch.tscn` / DeskLampSwitch | Dùng nguyên light_switch; gán `light` của đèn bàn trước ready. Cờ `desk_lamp_on` đồng bộ cả khi visibility của đèn thay đổi bên ngoài. |
+| `power_strip.tscn` / PowerStrip | Ba vùng riêng `Switch1`, `Switch2`, `Switch3`. Signal `switch_toggled(index, on)` dùng index **0..2**, tương ứng nhãn 1..3. Trạng thái `switches` khởi đầu false; `toggle(index)`, `trip()`, `set_locked(seconds)`, `lock_remaining`. trip tắt cả ba trước khi báo các mục vừa tắt; gọi lại không phát thừa. |
+| `lan_cable.tscn` / LanCable | Export `cable_id` blue/gray; enum `State.LOOSE/HELD/PLUGGED`, `state`, `holder`, `socket`; signal `plugged(cable_id)`, `unplugged(cable_id)`. Cầm dây theo camera, tạm bỏ layer tương tác để không chắn ray; cầm dây khác trả dây cũ về vị trí ban đầu. `drop()` trả connector về vị trí trước khi cầm. |
+| `lan_socket.tscn` / LanSocket | E cắm dây đang cầm vào socket; E vào connector hoặc socket đang có dây thì rút thành dây đang cầm. Socket cũng phát `plugged/unplugged(cable_id)`; core chỉ nối một nguồn (socket hoặc cable) để tránh xử lý hai lần. Cả xanh/xám đều cắm được; core quyết định có mạng. |
+
+- **Khác tên trong card:** dùng `is_searched` cho biến export vì GDScript không cho biến và signal cùng tên `searched`. Signal vẫn đúng `searched(spot_id)`. Khi phục hồi checkpoint gán is_searched trước cho phép tương tác; nếu cần reset cùng instance thì đặt is_searched=false và enabled=true. Không tự thêm dữ liệu giấy/luật nhiệm vụ.
+- PowerStrip chỉ chặn **bật** trong thời gian khóa, vẫn cho tắt. Khóa dừng theo pause; hết thời gian bật lại được. Core gọi `trip(); set_locked(20)` khi chập và tự xử lý ánh sáng/âm chập/router; scene thử dùng T để thử API này, không gán ý nghĩa nhiệm vụ cho công tắc 3.
+- Gắn từng Switch vào anchor của model B được; nếu đổi parent thì gán export `strip` trước ready. Màu/đèn báo và chuyển động model thuộc B. Gắn connector LanCable vào đầu dây có thể di chuyển; không gắn cả sợi dây dài làm con của connector đi theo camera.
+- Player export `max_breath_seconds = 8.0`; core đặt 6 cho Insane. Hết giới hạn thở hắt radius 4; nghỉ bằng nửa giới hạn (giữ tỉ lệ cũ 8/4, Insane 6/3). Giá trị runtime không hữu hạn về 8, quá nhỏ dùng 0,1. Không thay input action.
+- Manager export `hear_movement_while_present = false`: core bật khi vào/mở cửa phòng và tắt khi rời phòng. Mỗi noise move/step cách đầu ≤4 m phát signal riêng `heard_movement()` ngay, kể cả đang đi/nói/chém; không tự giết. `answered(heard)` vẫn chỉ kết thúc câu hỏi như cũ, tiếng thở ngoài LISTENING bị bỏ qua. Pause và manager đã rời cây scene không nhận noise. Core giữ quyền dàn vị trí/thời điểm hiện diện.
+- Player nghe `EventBus.player_death_started(kind)`, có child runtime `DeathAnimation` (script `player_death.gd`) và signal **`death_animation_finished()`** trên Player. fall_back/manager_kill/bed_burst dài 3 giây game time, pause được, signal kết thúc một lần; khóa điều khiển giữ tới khi thay scene. kind none/không hợp lệ bỏ qua, không khóa và không phát completion; core xử lý riêng.
+- fall_back khựng rồi ngã ngửa, camera thấp sát sàn nhìn lên; manager_kill quay nhìn manager gần nhất trong group `dorm_manager` cùng world trong 0,8 s rồi ngã nghiêng (không có manager thì giữ hướng ban đầu); bed_burst rung giảm dần tại giường. Volume camera nhỏ tránh xuyên tường/sàn; bị tường chắn ngang vẫn rơi xuống.
+- GPUParticles3D dùng hạt hộp đỏ sẫm, 15 FPS, không thêm texture/plugin. Giảm hù dọa bỏ máu, rung và khóa nhìn mặt quản lý; manager_kill chuyển nhìn lên trần trong 0,3 s và ngã ngay để tránh khuôn mặt sát camera; thay đổi setting trực tiếp ẩn/dừng hạt. Camera không bị head-bob setting hoặc đóng panel khác đặt lại khi đang chết. Scene Player mới trở về trạng thái bình thường. Âm thở/tiếng chết và lớp máu màn hình do E/D xử lý.
+
+### Cách thử và kiểm chứng
+
+- Mở `res://scenes/interaction/ch1v2_interactions_test.tscn`, F6. E dùng props, T trip/khóa ổ điện 20 s, 1 fall_back, 2 manager_kill, 3 bed_burst, R tải lại; Esc menu có Giảm hù dọa. Scene có Player nín 6 s, BunkSpot, manager capsule, đèn và các props placeholder. Ba chỗ lục chưa gán document_id thật trong scene thử; việc mở giấy đã test bằng signal.
+- Test mới: tương tác 9/9, cảnh chết 7/7; survival cũ 14/14, Player settings 8/8 và smoke scene 1/1 đạt ở các lượt lọc. Toàn bộ `pwsh tools/test.ps1`: **`RESULT: 371 passed, 0 failed`**, exit 0. `pwsh tools/check.ps1`: **`RESULT: check 0 error(s)`**, exit 0.
+- Lượt toàn bộ trước báo 370 đạt/1 lỗi ở `test_freed_player_leaves_no_signal_connections`: component mới đăng ký thêm listener settings. Đã chuyển refresh reduce_scares qua listener sẵn có của Player, giữ nguyên test cũ; kết quả bản cuối ở dòng trên và log `build/T-161-test-final.log`.
+- Đã render và xem các khung hình đầu/giữa/cuối của ba cảnh bằng Godot Movie Maker, mỗi cảnh 100 frame. Ảnh/log cục bộ trong `build/captures/T-161-deaths/`: fall_back, manager_kill, bed_burst_fixed. Lượt bed_burst đầu phát hiện callback noise tới manager đã tháo khỏi tree; đã sửa và thêm test hồi quy. Render lại: `RESULT: bed_burst capture PASS (100 frames; no engine errors)`.
+- Chưa chơi bằng chuột/phím trực tiếp, chưa nghe bằng tai, chưa duyệt với model/anchor phòng T-162 và chưa chạy đủ 8 nhiệm vụ trong bản ghép T-160. Render manager dùng capsule dự phòng, không thay thế duyệt hình ảnh model cuối.
+- Lệnh shell/Godot chạy ngoài sandbox sau lỗi khởi chạy helper 1223. Không cài công cụ mới; ảnh/log/userdata kiểm thử nằm trong workspace.
+
+### Yêu cầu thay đổi ngoài phạm vi
+
+1. **Core T-160:** instance props vào anchor B, gán spot/document/wall IDs, nối searched/switch_toggled/plugged/unplugged với nhiệm vụ và checkpoint. Đặt max_breath_seconds=6; bật/tắt hear_movement_while_present đúng cửa sổ hiện diện và nối heard_movement với kết quả luật. Giới hạn thử tủ do T-163, Lane A không sửa PuzzleStation.
+2. **Core — thứ tự cảnh chết:** bản nền hiện gọi kill_player rồi player_caught mới _die/player_failed, chưa phát player_death_started. Khi ghép D-042 cần đánh dấu đang chết trước, phát player_death_started(manager_kill) đồng thời bắt đầu kill_player, chờ Player.death_animation_finished rồi mới player_failed/màn chết/reload. Không để player_caught từ cú chém gây khởi động lần hai hoặc phủ màn chết trước 3 giây. Player chỉ diễn camera, không gọi kill_player lần nữa. kind none không chờ signal Player.
+3. **Lane B/E/D:** thay Placeholder/gắn anchor/model T-162, diễn tủ/nệm/tay nắm theo signal core; E nối tiếng gõ, chập, cầm/cắm/rút và âm chết/thở dốc với event thích hợp; D nối lớp máu/màn đen với player_death_started và tôn trọng reduce_scares. Không sửa các file lane này trong T-161.
+
+Không có blocker còn lại trong phạm vi T-161. Hai mục checklist của card đã đạt; các yêu cầu ghép ở trên dành cho T-160/B/D/E, không phải phần đã được chơi thử trong chương thật.

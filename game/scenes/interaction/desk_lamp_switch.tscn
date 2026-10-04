@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/interaction/light_switch.tscn" id="1"]
+
+[node name="DeskLampSwitch" instance=ExtResource("1")]
+flag = &"desk_lamp_on"

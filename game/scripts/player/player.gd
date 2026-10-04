@@ -2,6 +2,7 @@ extends CharacterBody3D
 ## First-person locomotion; the root origin is at the player's feet.
 
 signal footstep(surface: StringName, intensity: float)
+signal death_animation_finished
 
 const WALK_SPEED: float = 2.2
 const SPRINT_SPEED: float = 3.6
@@ -21,6 +22,7 @@ const DEFAULT_HEAD_BOB: bool = true
 @export_range(0.1, 3.0, 0.01) var sprint_step_length: float = 1.4
 @export_range(0.0, 0.06, 0.001) var step_length_variation: float = 0.06
 @export var restless_degrees_per_second: float = 180.0
+@export_range(0.1, 60.0, 0.1) var max_breath_seconds: float = 8.0
 
 @onready var head: Node3D = $Head
 @onready var camera: Camera3D = $Head/Camera3D
@@ -45,6 +47,7 @@ var _breath_elapsed: float = 0.0
 var _hold_elapsed: float = 0.0
 var _breath_cooldown: float = 0.0
 var _control_locks: Array[Node] = []
+var death_animation: PlayerDeath
 
 
 func _ready() -> void:
@@ -56,6 +59,20 @@ func _ready() -> void:
 	_read_settings(true, true)
 	_set_mouse_captured(true)
 	_step_scale = _next_step_scale()
+	death_animation = PlayerDeath.new()
+	death_animation.name = "DeathAnimation"
+	add_child(death_animation)
+	EventBus.player_death_started.connect(_on_death_started)
+
+
+func _on_death_started(kind: StringName) -> void:
+	if death_animation.active or kind not in [&"fall_back", &"manager_kill", &"bed_burst"]:
+		return
+	if _climb != null and _climb.is_valid():
+		_climb.kill()
+	_set_holding_breath(false)
+	acquire_control_lock(death_animation)
+	death_animation.start(self, camera, kind)
 
 
 func _on_game_paused(paused: bool) -> void:
@@ -67,6 +84,8 @@ func _on_settings_changed(section: String, key: String) -> void:
 		_read_settings(true, false)
 	elif section == "video" and key == "head_bob":
 		_read_settings(false, true)
+	elif section == "accessibility" and key == "reduce_scares" and death_animation != null:
+		death_animation.refresh_settings()
 
 
 func _read_settings(update_mouse: bool, update_bob: bool) -> void:
@@ -82,7 +101,7 @@ func _read_settings(update_mouse: bool, update_bob: bool) -> void:
 	if update_bob:
 		var bob: Variant = config.get_value("video", "head_bob", DEFAULT_HEAD_BOB)
 		head_bob_enabled = bob if typeof(bob) == TYPE_BOOL else DEFAULT_HEAD_BOB
-		if not head_bob_enabled:
+		if not head_bob_enabled and (death_animation == null or not death_animation.active):
 			# Signals still arrive while the tree is paused; reset without a physics tick.
 			camera.position.y = 0.0
 
@@ -109,6 +128,9 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if death_animation != null and death_animation.active:
+		velocity = Vector3.ZERO
+		return
 	_breath_cooldown = maxf(0.0, _breath_cooldown - delta)
 	if is_hidden():
 		_update_breath(delta)
@@ -313,9 +335,10 @@ func _update_breath(delta: float) -> void:
 	if wants_hold:
 		_set_holding_breath(true)
 		_hold_elapsed += delta
-		if _hold_elapsed >= 8.0 - 0.000001:
+		var limit: float = maxf(0.1, max_breath_seconds) if is_finite(max_breath_seconds) else 8.0
+		if _hold_elapsed >= limit - 0.000001:
 			_set_holding_breath(false)
-			_breath_cooldown = 4.0
+			_breath_cooldown = limit * 0.5
 			_breath_elapsed = 0.0
 			make_noise(4.0, &"breath")
 	else:
