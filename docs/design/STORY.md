@@ -1,6 +1,6 @@
 # Thiết kế game đầy đủ theo chương
 
-> **Trạng thái: BẢN NHÁP, chờ chủ dự án duyệt** (2026-10-04). Dựa trên D-029 và ý chính của chủ dự án (D-030). Chỗ ghi **[Claude đề xuất]** là phần chủ dự án giao cho Claude đề xuất, sửa thoải mái. Đã duyệt (D-031): khu vực theo đêm (mục 6), 8–10 jumpscare mỗi chương (mục 7), chương 1 dùng lại nội dung demo (mục 10). Sửa cốt truyện theo D-032: giữ giường bỏ trống từ 2009, bác Tư đã bị quên từ trước, người bị thay ở đêm 2 tùy lựa chọn của người chơi. Còn chờ: duyệt bản sửa cốt truyện (mục 3) và bản chi tiết thực thể (mục 5).
+> **Trạng thái: ĐÃ DUYỆT** (chủ dự án, 2026-10-04, D-029…D-033). Chương 1 đang sản xuất: task T-150…T-159. Chi tiết và con số vẫn tinh chỉnh được khi chơi thử.
 
 ## 1. Một câu
 Kỳ nghỉ lễ, ký túc xá gần như trống. Mỗi đêm, phòng 407 lại "đếm thừa" một người. Trung phải điều tra chuyện đã xảy ra năm 2009, nhận ra dòng nội quy nào đã bị sửa, và trốn những thứ đang đi dép lê ngoài hành lang, trước khi ký túc xá đếm đủ người theo cách của nó.
@@ -309,9 +309,5 @@ Dùng lại phần lớn demo hiện tại (tầng 4, gõ cửa, tiếng dép sa
 | E Âm thanh | Bước chân vọng tầng trên, bước chân trùng nhịp, tiếng hù hụt, xích cửa sắt, câu thoại loa mới (TTS) |
 | core | Luồng chương và đêm, lưu game, dữ liệu nội quy đêm 1, ghép |
 
-## 11. Cần chủ dự án quyết
-1. Bản sửa cốt truyện (mục 3, D-032): bác Tư đã bị quên từ năm 2016 nhưng vẫn đọc loa; người bị thay ở đêm 2 tùy người chơi đã trả lời hộ ai. Duyệt hay sửa?
-2. Ba thực thể bản chi tiết (mục 5): duyệt hay sửa?
-3. ~~Chia khu vực theo đêm~~: đã chốt (D-031).
-4. ~~8–10 jumpscare mỗi chương~~: đã duyệt (D-031).
-5. ~~Chương 1 dùng lại nội dung demo~~: đã duyệt (D-031).
+## 11. Quyết định
+Đã duyệt toàn bộ (D-031, D-032, D-033). Ảnh tham khảo đồ họa chủ dự án gửi sau; lane B giữ phong cách PS1 hiện tại cho tới khi có.
