@@ -350,3 +350,26 @@ func test_chapter_1_puzzles_load_and_check() -> void:
 	assert_eq(fuse.label_keys.size(), fuse.solution.length(), "one label per switch;")
 	for key in fuse.label_keys + [locker.title_key, fuse.title_key]:
 		assert_true(tr(key) != key, "translated " + key)
+
+
+func test_chapter_1_script_data_loads_and_is_translated() -> void:
+	var dir := DirAccess.open(MessageData.DIRECTORY)
+	assert_not_null(dir, "messages directory")
+	var count := 0
+	for file in dir.get_files():
+		if not file.ends_with(".tres") or not (file.begins_with("chat_ch1_") or file.begins_with("choice_ch1_")):
+			continue
+		var msg := MessageData.load_by_id(StringName(file.get_basename()))
+		assert_not_null(msg, file)
+		assert_true(tr(msg.text_key) != msg.text_key, "translated " + msg.text_key)
+		assert_true(tr(msg.sender_name_key) != msg.sender_name_key, "translated " + msg.sender_name_key)
+		count += 1
+	assert_true(count > 40, "chapter 1 has its group-call lines;")
+	for doc_id in [&"ch1_dat_note", &"ch1_dat_card", &"ch1_phuc_schedule", &"ch1_viet_photo"]:
+		var doc := DocumentData.load_by_id(doc_id)
+		assert_not_null(doc, String(doc_id))
+		for key in doc.text_keys + [doc.title_key]:
+			assert_true(tr(key) != key, "translated " + key)
+	var locker := PuzzleData.load_by_id(&"locker_combo_dat")
+	assert_true(locker.check("1407"), "Đạt's locker opens with his birthday;")
+	assert_not_null(DocumentData.load_by_id(locker.hint_document), "locker hint document exists;")

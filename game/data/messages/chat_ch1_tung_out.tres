@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="MessageData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/core/message_data.gd" id="1_msg"]
+
+[resource]
+script = ExtResource("1_msg")
+id = &"chat_ch1_tung_out"
+sender = &"tung"
+sender_name_key = "NAME_CH1_TUNG"
+text_key = "CHAT_CH1_TUNG_OUT"
+minutes = 256
+outgoing = false
+spoken = true
