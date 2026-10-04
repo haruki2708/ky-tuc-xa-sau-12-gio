@@ -1,5 +1,5 @@
 # T-156 — Sổ quy tắc, bảng số người sống sót, màn chết, panel khóa số
-- Lane: D (UI và Đa ngôn ngữ) | Trạng thái: todo | Agent:
+- Lane: D (UI và Đa ngôn ngữ) | Trạng thái: done | Agent:
 - Nhánh: `lane-d/T-156-rulebook-survivors`
 - Phụ thuộc: T-155 (làm ngay sau). Đọc `docs/design/STORY.md` v2 §3, §5, §8.
 - **Hạn: hết ngày 2026-10-06.**
@@ -112,3 +112,9 @@ RESULT: 18 passed, 0 failed
 
 - Chưa chạy bot/chơi xuyên chương sau khi gắn ba scene mới vì main và profile nằm ngoài phạm vi. Chưa nghiệm thu bằng tai mức âm của tiếng khóa; đã kiểm tra đường phát clip qua test, dùng asset có sẵn. Chưa export/package bản phát hành.
 - Không bị chặn phần Lane D. Cả ba mục checklist đạt; các yêu cầu tích hợp trên cần lane sở hữu thực hiện. Không đổi luật, câu chữ kịch bản hoặc cấu trúc dữ liệu ngoài phạm vi.
+
+### Review (integrator, 2026-10-04)
+- **Đạt, đã merge.** Đúng phạm vi; test mới đầy đủ; ảnh vi/en rõ. Handoff tốt, hỏi lại các điểm dữ liệu thay vì tự đoán.
+- **Xung đột `document_view.gd`:** D và integrator cùng sửa lỗi "giấy đóng ngay khi nhả phím vừa mở nó", theo hai cách tương đương. Giữ **bản của D** (file thuộc lane D).
+- **Trả lời câu hỏi số 4, đã sửa trong `notebook.gd`:** **Tổng tắc luôn còn hiệu lực** qua mọi vòng (STORY.md §3); chỉ quy tắc của vòng cũ mới "hết hiệu lực" khi có vòng mới. Test `test_rulebook_rounds...` cập nhật theo: thêm một dòng vòng 1 (nguồn `round_1`) để kiểm tra hết hiệu lực; Tổng tắc không mờ.
+- **Đã ghép vào `chapter1.tscn`:** `SurvivorNotice`, `PuzzlePanel`, `DeathScreen`. Bot dùng `death_ui_path = DeathScreen/Root`. Export loại `ui/chapter_previews/*`.

@@ -11,6 +11,9 @@
 [ext_resource type="PackedScene" path="res://ui/document/document_view.tscn" id="9_document"]
 [ext_resource type="PackedScene" path="res://ui/notebook/notebook.tscn" id="10_notebook"]
 [ext_resource type="PackedScene" path="res://ui/phone/phone_screen.tscn" id="11_phone"]
+[ext_resource type="PackedScene" path="res://ui/survivors/survivor_notice.tscn" id="12_survivors"]
+[ext_resource type="PackedScene" path="res://ui/death/death_screen.tscn" id="13_death"]
+[ext_resource type="PackedScene" path="res://ui/puzzle/puzzle_panel.tscn" id="14_puzzle"]
 
 [node name="Chapter1" type="Node3D"]
 script = ExtResource("1_main")
@@ -33,6 +36,12 @@ script = ExtResource("4_steps")
 [node name="Notebook" parent="." instance=ExtResource("10_notebook")]
 
 [node name="PhoneScreen" parent="." instance=ExtResource("11_phone")]
+
+[node name="SurvivorNotice" parent="." instance=ExtResource("12_survivors")]
+
+[node name="PuzzlePanel" parent="." instance=ExtResource("14_puzzle")]
+
+[node name="DeathScreen" parent="." instance=ExtResource("13_death")]
 
 [node name="PauseMenu" parent="." instance=ExtResource("6_pause")]
 

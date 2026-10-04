@@ -89,7 +89,9 @@ func _render() -> void:
 			heading.text = tr(SOURCE_KEYS[source]) if SOURCE_KEYS.has(source) else String(source)
 			if round_number >= 0:
 				heading.text = tr("UI_RULEBOOK_GENERAL") if round_number == 0 else tr("UI_RULEBOOK_ROUND") % round_number
-				if round_number < latest_round:
+				# The General Rules stay in force through every round (STORY.md §3);
+				# only an older round's rule expires when a new round begins.
+				if round_number > 0 and round_number < latest_round:
 					heading.text += " — " + tr("UI_RULEBOOK_EXPIRED")
 					section.modulate = Color(0.68, 0.68, 0.68)
 			heading.add_theme_font_size_override("font_size", 32)

@@ -11,7 +11,7 @@
     "breath_seconds": 7,
     "solution_choice": "tell",
     "solution_index": 0,
-    "death_ui_path": "Chapter1Director/DeathLayer/DeathCard",
+    "death_ui_path": "DeathScreen/Root",
     "opening_checkpoint": "ch1_prologue",
     "round1_checkpoint": "ch1_r1",
     "manager_checkpoint": "ch1_r2_manager",

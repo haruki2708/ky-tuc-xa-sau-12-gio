@@ -1,5 +1,7 @@
 # Prompt bàn giao — Lane D (UI và Đa ngôn ngữ)
 
+> **Lane D đang rảnh (2026-10-04):** T-156 đã merge. Chưa có task mới.
+
 ## 1. Prompt giao task (dán nguyên khối)
 ```
 Bạn là agent Lane D (UI và Đa ngôn ngữ) trong dự án game "Ký túc xá sau 12 giờ" (Godot 4.7.2, GDScript).
