@@ -5,10 +5,11 @@ const SURFACE := preload("res://rendering/room407_surface.gdshader")
 var blood_stage: int = 0
 var slashed_amount: float = 0.0
 var _drip_time: float = 0.0
+var desk_lamp_on: bool = true
 
 
 func _ready() -> void:
-	_apply_surface($Floor/Mesh, preload("res://assets/textures/room407/room_tile.png"), Vector2(10, 8))
+	_apply_surface($Floor/Mesh, preload("res://assets/textures/room407/room_tile.png"), Vector2(20, 12))
 	for node in [$WestWall/Mesh, $EastWall/Mesh]:
 		_apply_surface(node, preload("res://assets/textures/room407/room_wall.png"), Vector2(2, 1))
 	for net in [$BunkA/Net_Phuc, $BunkA/Net_Viet, $BunkB/Net_Dat, $BunkB/Net_Trung]:
@@ -56,6 +57,21 @@ func set_slashed(amount: float) -> void:
 func set_flicker(value: bool) -> void:
 	$Room407MainLight.set_flicker(value)
 	$Room407DeskLamp.set_flicker(value)
+
+
+func set_bathroom_door_open(value: bool) -> void:
+	$Extension/BathroomDoor.set_open(value)
+
+
+func set_desk_lamp(value: bool) -> void:
+	desk_lamp_on = value
+	$Room407DeskLamp.set_flicker(false)
+	$Room407DeskLamp.light_energy = .5 if value else 0.0
+	$Room407DeskLamp.visible = true
+
+
+func set_plugged(cable_id: StringName, value: bool) -> bool:
+	return $Cables.set_plugged(cable_id,value)
 
 
 func _process(delta: float) -> void:

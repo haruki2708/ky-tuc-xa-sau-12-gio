@@ -297,6 +297,7 @@ material = SubResource("s2")
 
 
 [node name="Dat" type="Node3D" parent="."]
+position = Vector3(4, 0, 0.3)
 
 
 [node name="Shelf" type="Node3D" parent="Phuc"]
@@ -338,17 +339,17 @@ rotation_degrees = Vector3(0, -90, 0)
 scale = Vector3(1, 1, 1)
 
 [node name="OldLaptop" parent="Viet" instance=ExtResource("e13")]
-position = Vector3(0.3, 0.9, -1.82)
-rotation_degrees = Vector3(0, -90, 0)
+rotation_degrees = Vector3(0, 0, 0)
+position = Vector3(4.45, 0.79, -0.65)
 scale = Vector3(1, 1, 1)
 
 [node name="FamilyPhoto" parent="Viet" instance=ExtResource("e14")]
-position = Vector3(0.16, 0.9, -2.22)
-rotation_degrees = Vector3(0, -90, 0)
+rotation_degrees = Vector3(0, 0, 0)
+position = Vector3(4.05, 0.79, -0.4)
 scale = Vector3(1, 1, 1)
 
 [node name="Guitar" parent="Viet" instance=ExtResource("e15")]
-position = Vector3(0.19, 0.06, -1.8)
+position = Vector3(3.65, 0.06, -0.75)
 rotation_degrees = Vector3(-80, -90, 0)
 scale = Vector3(1, 1, 1)
 
@@ -407,7 +408,7 @@ rotation_degrees = Vector3(0,180,0)
 color = Color(0.04,0.045,0.05,1)
 
 [node name="RouterShelf" type="Node3D" parent="."]
-position = Vector3(3.77, 2.11, -0.55)
+position = Vector3(4.6, 1.48, -0.18)
 
 [node name="Mesh" type="MeshInstance3D" parent="RouterShelf"]
 mesh = SubResource("s10")
@@ -462,7 +463,7 @@ position = Vector3(0.65, 0.66, -2.98)
 mesh = SubResource("s13")
 
 [node name="Blanket4" type="Node3D" parent="."]
-position = Vector3(3.35, 1.43, -2.98)
+position = Vector3(7.35, 1.43, -2.68)
 
 [node name="Mesh" type="MeshInstance3D" parent="Blanket4"]
 mesh = SubResource("s14")
@@ -534,36 +535,37 @@ mesh = SubResource("s24")
 cast_shadow = 0
 
 [node name="BlanketStain4" type="MeshInstance3D" parent="BloodSeep"]
-position = Vector3(3.35, 1.515, -2.98)
+position = Vector3(7.35, 1.515, -2.68)
 rotation_degrees = Vector3(-90, 0, 0)
 mesh = SubResource("s25")
 cast_shadow = 0
 
 [node name="HangingStain4" type="MeshInstance3D" parent="BloodSeep"]
-position = Vector3(3.01, 1.345, -2.8)
+position = Vector3(7.01, 1.345, -2.5)
 rotation_degrees = Vector3(0, 90, 0)
 mesh = SubResource("s26")
 cast_shadow = 0
 
 [node name="Droplet4" type="MeshInstance3D" parent="BloodSeep"]
-position = Vector3(2.985, 1.265, -2.8)
+position = Vector3(6.985, 1.265, -2.5)
 rotation_degrees = Vector3(0, 90, 0)
 mesh = SubResource("s27")
 cast_shadow = 0
 
 [node name="SmallStain4" type="MeshInstance3D" parent="BloodSeep"]
-position = Vector3(3.01, 0.013, -2.8)
+position = Vector3(7.01, 0.013, -2.5)
 rotation_degrees = Vector3(-90, 0, 0)
 mesh = SubResource("s28")
 cast_shadow = 0
 
 [node name="Pool4" type="MeshInstance3D" parent="BloodPools"]
-position = Vector3(2.93, 0.009, -3.35)
+position = Vector3(6.93, 0.009, -3.05)
 rotation_degrees = Vector3(-90, 0, 0)
 mesh = SubResource("s29")
 cast_shadow = 0
 
 [node name="TrungBedding" type="Node3D" parent="."]
+position = Vector3(4, 0, 0.3)
 
 
 [node name="Section0" type="Node3D" parent="TrungBedding"]
@@ -687,15 +689,17 @@ position = Vector3(3.35, 0.438, -2.195)
 mesh = SubResource("s45")
 
 [node name="TrungPillow" type="Node3D" parent="."]
-position = Vector3(3.35, 0.475, -2.3)
+position = Vector3(7.35, 0.475, -2.0)
 
 [node name="Mesh" type="MeshInstance3D" parent="TrungPillow"]
 mesh = SubResource("s46")
 
 [node name="SlashRips" type="Node3D" parent="."]
+position = Vector3(4, 0, 0.3)
 visible = false
 
 [node name="Debris" type="Node3D" parent="."]
+position = Vector3(4, 0, 0.3)
 visible = false
 
 [node name="Rip0" type="Node3D" parent="SlashRips"]

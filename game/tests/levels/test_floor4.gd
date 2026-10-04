@@ -61,7 +61,7 @@ func test_floor4_structure_dimensions_and_anchors() -> void:
 	assert_eq(floor_scene.get_node("Anchors").get_child_count(), ANCHORS.size(), "anchor inventory")
 	for name in ANCHORS:
 		assert_true(floor_scene.get_node_or_null("Anchors/" + name) is Marker3D, "marker " + name)
-	var sizes := {"Corridor": Vector3(44, 0.2, 2.4), "Room407": Vector3(4, 0.2, 5), "Washroom": Vector3(6, 0.2, 5)}
+	var sizes := {"Corridor": Vector3(44, 0.2, 2.4), "Room407": Vector3(8, 0.2, 7), "Washroom": Vector3(6, 0.2, 5)}
 	for name: String in sizes:
 		var collider := floor_scene.get_node(name + "/Floor/Collision") as CollisionShape3D
 		assert_true((collider.shape as BoxShape3D).size.is_equal_approx(sizes[name]), name + " floor dimensions")

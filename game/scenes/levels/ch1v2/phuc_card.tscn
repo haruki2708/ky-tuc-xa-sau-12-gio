@@ -1,0 +1,54 @@
+[gd_scene format=3]
+
+[ext_resource type="Shader" path="res://rendering/ps1_surface.gdshader" id="e1"]
+[ext_resource type="Texture2D" path="res://assets/textures/ch1_models/paper.png" id="e2"]
+[ext_resource type="Texture2D" path="res://assets/textures/ch1_models/red.png" id="e3"]
+[ext_resource type="Texture2D" path="res://assets/textures/ch1_models/skin.png" id="e4"]
+
+[sub_resource type="ShaderMaterial" id="s1"]
+shader = ExtResource("e1")
+shader_parameter/albedo_texture = ExtResource("e2")
+shader_parameter/roughness = 0.9
+
+[sub_resource type="BoxMesh" id="s2"]
+size = Vector3(0.09, 0.002, 0.06)
+material = SubResource("s1")
+
+[sub_resource type="ShaderMaterial" id="s3"]
+shader = ExtResource("e1")
+shader_parameter/albedo_texture = ExtResource("e3")
+shader_parameter/roughness = 0.9
+
+[sub_resource type="BoxMesh" id="s4"]
+size = Vector3(0.024, 0.002, 0.033)
+material = SubResource("s3")
+
+[sub_resource type="ShaderMaterial" id="s5"]
+shader = ExtResource("e1")
+shader_parameter/albedo_texture = ExtResource("e4")
+shader_parameter/roughness = 0.9
+
+[sub_resource type="BoxMesh" id="s6"]
+size = Vector3(0.012, 0.002, 0.01)
+material = SubResource("s5")
+
+[node name="PhucCard" type="Marker3D"]
+
+
+[node name="Card" type="MeshInstance3D" parent="."]
+position = Vector3(0, 0, 0)
+mesh = SubResource("s2")
+
+
+[node name="Photo" type="MeshInstance3D" parent="."]
+position = Vector3(-0.026, 0.002, 0)
+mesh = SubResource("s4")
+
+
+[node name="Head" type="MeshInstance3D" parent="."]
+position = Vector3(-0.026, 0.003, -0.012)
+mesh = SubResource("s6")
+
+
+[node name="ReadSurface" type="Marker3D" parent="."]
+position = Vector3(0.015, 0.003, 0)

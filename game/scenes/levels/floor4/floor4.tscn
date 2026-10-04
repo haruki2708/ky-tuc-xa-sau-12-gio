@@ -36,6 +36,9 @@ fog_density = 0.012
 [sub_resource type="BoxShape3D" id="t153_threshold"]
 size = Vector3(0.90,2.0,0.36)
 
+[sub_resource type="BoxMesh" id="v2_handle"]
+size = Vector3(0.16,0.035,0.04)
+
 [node name="Floor4" type="Node3D"]
 
 script = ExtResource("e1")
@@ -110,11 +113,11 @@ position = Vector3(32, 1.4, -0.023)
 rotation_degrees = Vector3(0, 180, 0)
 
 [node name="Locker_Trung" type="Marker3D" parent="Anchors"]
-position = Vector3(33.7, 0, -1.25)
+position = Vector3(37.7, 0, -1.25)
 rotation_degrees = Vector3(0, 90, 0)
 
 [node name="Phone_Trung" type="Marker3D" parent="Anchors"]
-position = Vector3(33.35, 0.46, -2.45)
+position = Vector3(37.35, 0.46, -2.15)
 rotation_degrees = Vector3(0, 0, 0)
 
 [node name="Bed_Phuc" type="Marker3D" parent="Anchors"]
@@ -126,11 +129,11 @@ position = Vector3(30.65, 0.43, -3)
 rotation_degrees = Vector3(0, 0, 0)
 
 [node name="Bed_Dat" type="Marker3D" parent="Anchors"]
-position = Vector3(33.35, 1.2, -3)
+position = Vector3(37.35, 1.2, -2.7)
 rotation_degrees = Vector3(0, 0, 0)
 
 [node name="Bed_Trung" type="Marker3D" parent="Anchors"]
-position = Vector3(33.35, 0.43, -3)
+position = Vector3(37.35, 0.43, -2.7)
 rotation_degrees = Vector3(0, 0, 0)
 
 [node name="Slippers407" type="Marker3D" parent="Anchors"]
@@ -186,3 +189,10 @@ collision_mask = 2
 
 [node name="Shape" type="CollisionShape3D" parent="Threshold"]
 shape = SubResource("t153_threshold")
+
+[node name="HandlePivot" type="Node3D" parent="Door407/Pivot"]
+position = Vector3(-0.73,1.055,-0.067)
+
+[node name="Grip" type="MeshInstance3D" parent="Door407/Pivot/HandlePivot"]
+position = Vector3(0.04,0,0)
+mesh = SubResource("v2_handle")

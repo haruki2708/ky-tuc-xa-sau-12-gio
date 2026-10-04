@@ -1,0 +1,111 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/levels/ch1_models/dat_notebook.tscn" id="e1"]
+[ext_resource type="Shader" path="res://rendering/ps1_surface.gdshader" id="e2"]
+[ext_resource type="Texture2D" path="res://assets/textures/ch1_models/hair.png" id="e3"]
+
+[sub_resource type="ShaderMaterial" id="s1"]
+shader = ExtResource("e2")
+shader_parameter/albedo_texture = ExtResource("e3")
+shader_parameter/roughness = 0.9
+
+[sub_resource type="BoxMesh" id="s2"]
+size = Vector3(0.002, 0.001, 0.08)
+material = SubResource("s1")
+
+[sub_resource type="BoxMesh" id="s3"]
+size = Vector3(0.002, 0.001, 0.08)
+material = SubResource("s1")
+
+[sub_resource type="BoxMesh" id="s4"]
+size = Vector3(0.002, 0.001, 0.08)
+material = SubResource("s1")
+
+[sub_resource type="BoxMesh" id="s5"]
+size = Vector3(0.002, 0.001, 0.08)
+material = SubResource("s1")
+
+[sub_resource type="BoxMesh" id="s6"]
+size = Vector3(0.002, 0.001, 0.08)
+material = SubResource("s1")
+
+[sub_resource type="BoxMesh" id="s7"]
+size = Vector3(0.002, 0.001, 0.08)
+material = SubResource("s1")
+
+[sub_resource type="BoxMesh" id="s8"]
+size = Vector3(0.095, 0.001, 0.002)
+material = SubResource("s1")
+
+[sub_resource type="BoxMesh" id="s9"]
+size = Vector3(0.095, 0.001, 0.002)
+material = SubResource("s1")
+
+[sub_resource type="BoxMesh" id="s10"]
+size = Vector3(0.095, 0.001, 0.002)
+material = SubResource("s1")
+
+[sub_resource type="BoxMesh" id="s11"]
+size = Vector3(0.095, 0.001, 0.002)
+material = SubResource("s1")
+
+[node name="GuitarSongbook" type="Marker3D"]
+
+
+[node name="Book" parent="." instance=ExtResource("e1")]
+position = Vector3(0, 0, 0)
+rotation_degrees = Vector3(0, 0, 0)
+
+
+[node name="ChordString0" type="MeshInstance3D" parent="."]
+position = Vector3(-0.044, 0.027, -0.04)
+mesh = SubResource("s2")
+
+
+[node name="ChordString1" type="MeshInstance3D" parent="."]
+position = Vector3(-0.026, 0.027, -0.04)
+mesh = SubResource("s3")
+
+
+[node name="ChordString2" type="MeshInstance3D" parent="."]
+position = Vector3(-0.008, 0.027, -0.04)
+mesh = SubResource("s4")
+
+
+[node name="ChordString3" type="MeshInstance3D" parent="."]
+position = Vector3(0.01, 0.027, -0.04)
+mesh = SubResource("s5")
+
+
+[node name="ChordString4" type="MeshInstance3D" parent="."]
+position = Vector3(0.028, 0.027, -0.04)
+mesh = SubResource("s6")
+
+
+[node name="ChordString5" type="MeshInstance3D" parent="."]
+position = Vector3(0.046, 0.027, -0.04)
+mesh = SubResource("s7")
+
+
+[node name="ChordFret0" type="MeshInstance3D" parent="."]
+position = Vector3(0, 0.027, -0.08)
+mesh = SubResource("s8")
+
+
+[node name="ChordFret1" type="MeshInstance3D" parent="."]
+position = Vector3(0, 0.027, -0.055)
+mesh = SubResource("s9")
+
+
+[node name="ChordFret2" type="MeshInstance3D" parent="."]
+position = Vector3(0, 0.027, -0.03)
+mesh = SubResource("s10")
+
+
+[node name="ChordFret3" type="MeshInstance3D" parent="."]
+position = Vector3(0, 0.027, -0.005)
+mesh = SubResource("s11")
+
+
+[node name="CodeSheet" type="Marker3D" parent="."]
+position = Vector3(0, 0.03, 0.08)

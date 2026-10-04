@@ -1,0 +1,109 @@
+{
+	"cpu": "AMD Ryzen 5 5600H with Radeon Graphics",
+	"fixed_fps": false,
+	"godot": "4.7.2-stable (official)",
+	"gpu": "NVIDIA GeForce RTX 3050 Laptop GPU",
+	"ps1_strength": 1,
+	"resolution": "1280x720",
+	"sample_frames": 240,
+	"scenario": "Full floor4, Player physics/HUD/audio active, static preview camera",
+	"views": [
+		{
+			"mean_fps": 503.734985024379,
+			"p95_ms": 2.158,
+			"view": "room_wide"
+		},
+		{
+			"mean_fps": 489.365476489047,
+			"p95_ms": 2.517,
+			"view": "room_beds"
+		},
+		{
+			"mean_fps": 514.459528111998,
+			"p95_ms": 2.651,
+			"view": "bathroom"
+		},
+		{
+			"mean_fps": 513.82510677928,
+			"p95_ms": 2.701,
+			"view": "balcony"
+		},
+		{
+			"mean_fps": 524.966533383497,
+			"p95_ms": 2.515,
+			"view": "under_desk_cables"
+		},
+		{
+			"mean_fps": 509.68616074652,
+			"p95_ms": 2.183,
+			"view": "floor_wiring_overview"
+		},
+		{
+			"mean_fps": 537.278148897684,
+			"p95_ms": 2.243,
+			"view": "power_strip"
+		},
+		{
+			"mean_fps": 524.459478949508,
+			"p95_ms": 2.4,
+			"view": "power_strip_tripped"
+		},
+		{
+			"mean_fps": 515.264717248486,
+			"p95_ms": 2.638,
+			"view": "router"
+		},
+		{
+			"mean_fps": 493.164534072532,
+			"p95_ms": 2.709,
+			"view": "viet_locker_open"
+		},
+		{
+			"mean_fps": 521.442135131729,
+			"p95_ms": 1.975,
+			"view": "phuc_mattress_lifted"
+		},
+		{
+			"mean_fps": 557.452442338513,
+			"p95_ms": 2.258,
+			"view": "trash_paper"
+		},
+		{
+			"mean_fps": 557.211712590199,
+			"p95_ms": 2.263,
+			"view": "team_photo"
+		},
+		{
+			"mean_fps": 529.815359347268,
+			"p95_ms": 2.545,
+			"view": "guitar_songbook"
+		},
+		{
+			"mean_fps": 500.302265952346,
+			"p95_ms": 2.509,
+			"view": "phuc_card"
+		},
+		{
+			"mean_fps": 518.337260457994,
+			"p95_ms": 2.318,
+			"view": "kitchen"
+		},
+		{
+			"mean_fps": 522.153447844485,
+			"p95_ms": 2.233,
+			"view": "desk_lamp_off"
+		},
+		{
+			"mean_fps": 510.502525923956,
+			"p95_ms": 2.477,
+			"view": "door_handle"
+		},
+		{
+			"mean_fps": 556.577235527253,
+			"p95_ms": 2.341,
+			"view": "blue_plugged"
+		}
+	],
+	"vsync": false,
+	"warmup_frames": 90
+}

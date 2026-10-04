@@ -61,3 +61,16 @@ Poster bóng đá là hình sân/quả bóng hình học tự dựng; khung ản
 | `ch1_models/previews/*.png`, script và scene hỗ trợ T-154 | Codex, Godot Forward+ | [Script chụp](ch1_models/capture_models.gd), [README](ch1_models/README.md) | CC0-1.0 |
 
 Tái dùng shader PS1 và scene tầng/anchor T-153 đã ghi nguồn phía trên. Chữ dùng font Be Vietnam Pro theo [nguồn và SIL OFL](../game/assets/fonts/CREDITS.md); nội dung chữ preview lấy từ localization chương 1 hiện có, không thêm mã khóa, tên trường hoặc nhãn hiệu. Nhân vật là hình học hư cấu, không ảnh người thật. **Khai báo AI:** Codex viết generator model/rig/animation, texture thủ tục, runtime, test và script preview; không dùng mô hình sinh ảnh, plugin hay asset tải ngoài. Texture PNG đi Git LFS; mesh và AnimationLibrary được lưu trực tiếp trong scene văn bản Godot.
+
+## Phòng 407 và đạo cụ chương 1 v2 — T-162
+
+| File / nhóm | Tác giả / công cụ | Nguồn | Giấy phép |
+|---|---|---|---|
+| `game/scenes/levels/ch1v2/*.tscn`, các mesh runtime giấy và dây | Lane B, Codex (OpenAI), Python stdlib và Godot 4.7.2 | [Generator](ch1v2_props/build_room.py), helper T-154; hình học tự tạo | CC0-1.0 |
+| Bố cục 407 mở rộng, bathroom/ban công, runtime và API | Lane B, Codex | [README](ch1v2_props/README.md); dùng lại kit/T-138/T-153/T-154 đã ghi nguồn trên | CC0-1.0 |
+| `ch1v2_props/previews/*.png` | Godot 4.7.2 Forward+, Codex viết script | [Script chụp](ch1v2_props/capture_room.gd) | CC0-1.0 |
+
+Không tải asset ngoài hoặc thêm texture mới; tái dùng texture thủ tục CC0 128 px
+của T-153/T-154 và prop kit. Ảnh đội là hình người hình học hư cấu tự dựng;
+giấy có vệt đỏ sẫm, không giải phẫu. **Khai báo AI:** Codex viết mã tạo scene,
+mesh, runtime, test và preview; không dùng mô hình sinh ảnh hay plugin.

@@ -1,0 +1,102 @@
+[gd_scene format=3]
+
+[ext_resource type="Shader" path="res://rendering/ps1_surface.gdshader" id="e1"]
+[ext_resource type="Texture2D" path="res://assets/textures/ch1_models/wood.png" id="e2"]
+[ext_resource type="Texture2D" path="res://assets/textures/ch1_models/paper.png" id="e3"]
+[ext_resource type="Texture2D" path="res://assets/textures/ch1_models/red.png" id="e4"]
+[ext_resource type="Texture2D" path="res://assets/textures/ch1_models/skin.png" id="e5"]
+[ext_resource type="Texture2D" path="res://assets/textures/ch1_models/sport.png" id="e6"]
+
+[sub_resource type="ShaderMaterial" id="s1"]
+shader = ExtResource("e1")
+shader_parameter/albedo_texture = ExtResource("e2")
+shader_parameter/roughness = 0.9
+
+[sub_resource type="BoxMesh" id="s2"]
+size = Vector3(0.34, 0.3, 0.035)
+material = SubResource("s1")
+
+[sub_resource type="ShaderMaterial" id="s3"]
+shader = ExtResource("e1")
+shader_parameter/albedo_texture = ExtResource("e3")
+shader_parameter/roughness = 0.9
+
+[sub_resource type="BoxMesh" id="s4"]
+size = Vector3(0.3, 0.26, 0.004)
+material = SubResource("s3")
+
+[sub_resource type="ShaderMaterial" id="s5"]
+shader = ExtResource("e1")
+shader_parameter/albedo_texture = ExtResource("e4")
+shader_parameter/roughness = 0.9
+
+[sub_resource type="BoxMesh" id="s6"]
+size = Vector3(0.092, 0.13, 0.003)
+material = SubResource("s5")
+
+[sub_resource type="ShaderMaterial" id="s7"]
+shader = ExtResource("e1")
+shader_parameter/albedo_texture = ExtResource("e5")
+shader_parameter/roughness = 0.9
+
+[sub_resource type="BoxMesh" id="s8"]
+size = Vector3(0.052, 0.058, 0.004)
+material = SubResource("s7")
+
+[sub_resource type="ShaderMaterial" id="s9"]
+shader = ExtResource("e1")
+shader_parameter/albedo_texture = ExtResource("e6")
+shader_parameter/roughness = 0.9
+
+[sub_resource type="BoxMesh" id="s10"]
+size = Vector3(0.092, 0.13, 0.003)
+material = SubResource("s9")
+
+[sub_resource type="BoxMesh" id="s11"]
+size = Vector3(0.052, 0.058, 0.004)
+material = SubResource("s7")
+
+[sub_resource type="BoxMesh" id="s12"]
+size = Vector3(0.168, 0.022, 0.004)
+material = SubResource("s7")
+
+[node name="TeamPhoto" type="Marker3D"]
+
+
+[node name="Frame" type="MeshInstance3D" parent="."]
+position = Vector3(0, 0.15, 0)
+mesh = SubResource("s2")
+
+
+[node name="Photo" type="MeshInstance3D" parent="."]
+position = Vector3(0, 0.15, -0.02)
+mesh = SubResource("s4")
+
+
+[node name="Jersey-1" type="MeshInstance3D" parent="."]
+position = Vector3(-0.066, 0.132, -0.024)
+mesh = SubResource("s6")
+
+
+[node name="Head-1" type="MeshInstance3D" parent="."]
+position = Vector3(-0.066, 0.223, -0.027)
+mesh = SubResource("s8")
+
+
+[node name="Jersey1" type="MeshInstance3D" parent="."]
+position = Vector3(0.066, 0.132, -0.024)
+mesh = SubResource("s10")
+
+
+[node name="Head1" type="MeshInstance3D" parent="."]
+position = Vector3(0.066, 0.223, -0.027)
+mesh = SubResource("s11")
+
+
+[node name="ArmOverShoulder" type="MeshInstance3D" parent="."]
+position = Vector3(-0.012, 0.185, -0.03)
+mesh = SubResource("s12")
+
+
+[node name="BackText" type="Marker3D" parent="."]
+position = Vector3(0, 0.15, 0.021)

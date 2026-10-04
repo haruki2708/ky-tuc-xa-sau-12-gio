@@ -1,0 +1,298 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scenes/levels/ch1v2/power_strip.gd" id="e1"]
+[ext_resource type="Shader" path="res://rendering/ps1_surface.gdshader" id="e2"]
+[ext_resource type="Texture2D" path="res://assets/textures/ch1_models/paper.png" id="e3"]
+[ext_resource type="Texture2D" path="res://assets/textures/ch1_models/hair.png" id="e4"]
+[ext_resource type="Texture2D" path="res://assets/textures/ch1_models/red.png" id="e5"]
+
+[sub_resource type="ShaderMaterial" id="s1"]
+shader = ExtResource("e2")
+shader_parameter/albedo_texture = ExtResource("e3")
+shader_parameter/roughness = 0.9
+
+[sub_resource type="BoxMesh" id="s2"]
+size = Vector3(0.43, 0.07, 0.16)
+material = SubResource("s1")
+
+[sub_resource type="StandardMaterial3D" id="s3"]
+shading_mode = 0
+albedo_color = Color(0.95,0.19,0.025,1)
+
+[sub_resource type="ShaderMaterial" id="s4"]
+shader = ExtResource("e2")
+shader_parameter/albedo_texture = ExtResource("e4")
+shader_parameter/roughness = 0.9
+
+[sub_resource type="BoxMesh" id="s5"]
+size = Vector3(0.067, 0.017, 0.045)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s6"]
+size = Vector3(0.042,0.005,0.018)
+material = SubResource("s3")
+
+[sub_resource type="BoxMesh" id="s7"]
+size = Vector3(0.007, 0.002, 0.02)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s8"]
+size = Vector3(0.007, 0.002, 0.02)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s9"]
+size = Vector3(0.067, 0.017, 0.045)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s10"]
+size = Vector3(0.042,0.005,0.018)
+material = SubResource("s3")
+
+[sub_resource type="BoxMesh" id="s11"]
+size = Vector3(0.007, 0.002, 0.02)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s12"]
+size = Vector3(0.007, 0.002, 0.02)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s13"]
+size = Vector3(0.067, 0.017, 0.045)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s14"]
+size = Vector3(0.042,0.005,0.018)
+material = SubResource("s3")
+
+[sub_resource type="BoxMesh" id="s15"]
+size = Vector3(0.007, 0.002, 0.02)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s16"]
+size = Vector3(0.007, 0.002, 0.02)
+material = SubResource("s4")
+
+[sub_resource type="ShaderMaterial" id="s17"]
+shader = ExtResource("e2")
+shader_parameter/albedo_texture = ExtResource("e5")
+shader_parameter/roughness = 0.9
+
+[sub_resource type="BoxMesh" id="s18"]
+size = Vector3(0.035, 0.004, 0.022)
+material = SubResource("s17")
+
+[sub_resource type="BoxMesh" id="s19"]
+size = Vector3(0.051, 0.034, 0.042)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s20"]
+size = Vector3(0.053, 0.012, 0.044)
+material = SubResource("s17")
+
+[sub_resource type="StandardMaterial3D" id="s21"]
+shading_mode = 0
+albedo_color = Color(1,0.75,0.20,1)
+
+[sub_resource type="PrismMesh" id="s22"]
+size = Vector3(0.008,0.055,0.008)
+material = SubResource("s21")
+
+[sub_resource type="PrismMesh" id="s23"]
+size = Vector3(0.008,0.055,0.008)
+material = SubResource("s21")
+
+[sub_resource type="PrismMesh" id="s24"]
+size = Vector3(0.008,0.055,0.008)
+material = SubResource("s21")
+
+[sub_resource type="PrismMesh" id="s25"]
+size = Vector3(0.008,0.055,0.008)
+material = SubResource("s21")
+
+[sub_resource type="PrismMesh" id="s26"]
+size = Vector3(0.008,0.055,0.008)
+material = SubResource("s21")
+
+[sub_resource type="PrismMesh" id="s27"]
+size = Vector3(0.008,0.055,0.008)
+material = SubResource("s21")
+
+[sub_resource type="PrismMesh" id="s28"]
+size = Vector3(0.008,0.055,0.008)
+material = SubResource("s21")
+
+[node name="PowerStrip" type="Marker3D"]
+
+script = ExtResource("e1")
+
+[node name="Case" type="MeshInstance3D" parent="."]
+position = Vector3(0, 0.035, 0)
+mesh = SubResource("s2")
+
+
+[node name="Switch1" type="Marker3D" parent="."]
+position = Vector3(-0.135, 0.075, 0)
+
+[node name="Rocker" type="Node3D" parent="Switch1"]
+position = Vector3(0, 0, -0.035)
+rotation_degrees = Vector3(0, 0, 0)
+
+[node name="Button" type="MeshInstance3D" parent="Switch1/Rocker"]
+position = Vector3(0, 0, 0)
+mesh = SubResource("s5")
+
+
+[node name="LED" type="MeshInstance3D" parent="Switch1"]
+position = Vector3(0,0.011,-0.035)
+mesh = SubResource("s6")
+
+[node name="Socket-0.013" type="MeshInstance3D" parent="Switch1"]
+position = Vector3(-0.013, 0, 0.035)
+mesh = SubResource("s7")
+
+
+[node name="Socket0.013" type="MeshInstance3D" parent="Switch1"]
+position = Vector3(0.013, 0, 0.035)
+mesh = SubResource("s8")
+
+
+[node name="WornNumber" type="Label3D" parent="Switch1"]
+position = Vector3(0,0.002,0.063)
+rotation_degrees = Vector3(-90,0,0)
+text = "1"
+font_size = 22
+pixel_size = 0.001
+modulate = Color(0.35,0.32,0.27,0.48)
+outline_size = 0
+texture_filter = 0
+
+[node name="Switch2" type="Marker3D" parent="."]
+position = Vector3(0.0, 0.075, 0)
+
+[node name="Rocker" type="Node3D" parent="Switch2"]
+position = Vector3(0, 0, -0.035)
+rotation_degrees = Vector3(0, 0, 0)
+
+[node name="Button" type="MeshInstance3D" parent="Switch2/Rocker"]
+position = Vector3(0, 0, 0)
+mesh = SubResource("s9")
+
+
+[node name="LED" type="MeshInstance3D" parent="Switch2"]
+position = Vector3(0,0.011,-0.035)
+mesh = SubResource("s10")
+
+[node name="Socket-0.013" type="MeshInstance3D" parent="Switch2"]
+position = Vector3(-0.013, 0, 0.035)
+mesh = SubResource("s11")
+
+
+[node name="Socket0.013" type="MeshInstance3D" parent="Switch2"]
+position = Vector3(0.013, 0, 0.035)
+mesh = SubResource("s12")
+
+
+[node name="WornNumber" type="Label3D" parent="Switch2"]
+position = Vector3(0,0.002,0.063)
+rotation_degrees = Vector3(-90,0,0)
+text = "2"
+font_size = 22
+pixel_size = 0.001
+modulate = Color(0.35,0.32,0.27,0.48)
+outline_size = 0
+texture_filter = 0
+
+[node name="Switch3" type="Marker3D" parent="."]
+position = Vector3(0.135, 0.075, 0)
+
+[node name="Rocker" type="Node3D" parent="Switch3"]
+position = Vector3(0, 0, -0.035)
+rotation_degrees = Vector3(0, 0, 0)
+
+[node name="Button" type="MeshInstance3D" parent="Switch3/Rocker"]
+position = Vector3(0, 0, 0)
+mesh = SubResource("s13")
+
+
+[node name="LED" type="MeshInstance3D" parent="Switch3"]
+position = Vector3(0,0.011,-0.035)
+mesh = SubResource("s14")
+
+[node name="Socket-0.013" type="MeshInstance3D" parent="Switch3"]
+position = Vector3(-0.013, 0, 0.035)
+mesh = SubResource("s15")
+
+
+[node name="Socket0.013" type="MeshInstance3D" parent="Switch3"]
+position = Vector3(0.013, 0, 0.035)
+mesh = SubResource("s16")
+
+
+[node name="WornNumber" type="Label3D" parent="Switch3"]
+position = Vector3(0,0.002,0.063)
+rotation_degrees = Vector3(-90,0,0)
+text = "3"
+font_size = 22
+pixel_size = 0.001
+modulate = Color(0.35,0.32,0.27,0.48)
+outline_size = 0
+texture_filter = 0
+
+[node name="RedPaint" type="MeshInstance3D" parent="."]
+position = Vector3(0, 0.081, -0.063)
+mesh = SubResource("s18")
+
+
+[node name="RouterPlug" type="MeshInstance3D" parent="."]
+position = Vector3(0, 0.098, 0.032)
+mesh = SubResource("s19")
+
+
+[node name="RedTape" type="MeshInstance3D" parent="."]
+position = Vector3(0, 0.12, 0.032)
+mesh = SubResource("s20")
+
+
+[node name="Sparks" type="Node3D" parent="."]
+visible = false
+
+[node name="Spark0" type="MeshInstance3D" parent="Sparks"]
+position = Vector3(0.14, 0.12, -0.01)
+rotation_degrees = Vector3(0, 0, 0)
+mesh = SubResource("s22")
+
+[node name="Spark1" type="MeshInstance3D" parent="Sparks"]
+position = Vector3(0.16, 0.132, -0.01)
+rotation_degrees = Vector3(29, 0, 47)
+mesh = SubResource("s23")
+
+[node name="Spark2" type="MeshInstance3D" parent="Sparks"]
+position = Vector3(0.18, 0.144, -0.01)
+rotation_degrees = Vector3(58, 0, 94)
+mesh = SubResource("s24")
+
+[node name="Spark3" type="MeshInstance3D" parent="Sparks"]
+position = Vector3(0.14, 0.156, -0.01)
+rotation_degrees = Vector3(87, 0, 141)
+mesh = SubResource("s25")
+
+[node name="Spark4" type="MeshInstance3D" parent="Sparks"]
+position = Vector3(0.16, 0.168, -0.01)
+rotation_degrees = Vector3(116, 0, 188)
+mesh = SubResource("s26")
+
+[node name="Spark5" type="MeshInstance3D" parent="Sparks"]
+position = Vector3(0.18, 0.18, -0.01)
+rotation_degrees = Vector3(145, 0, 235)
+mesh = SubResource("s27")
+
+[node name="Spark6" type="MeshInstance3D" parent="Sparks"]
+position = Vector3(0.14, 0.192, -0.01)
+rotation_degrees = Vector3(174, 0, 282)
+mesh = SubResource("s28")
+
+[node name="Flash" type="OmniLight3D" parent="Sparks"]
+position = Vector3(0.15,0.2,0)
+light_color = Color(1,0.45,0.1,1)
+light_energy = 0.7
+omni_range = 0.7

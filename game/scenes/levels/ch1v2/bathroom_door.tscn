@@ -1,0 +1,52 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scenes/levels/ch1v2/hinged.gd" id="e1"]
+[ext_resource type="Shader" path="res://rendering/ps1_surface.gdshader" id="e2"]
+[ext_resource type="Texture2D" path="res://assets/textures/ch1_models/paper.png" id="e3"]
+[ext_resource type="Texture2D" path="res://assets/textures/ch1_models/metal.png" id="e4"]
+
+[sub_resource type="BoxShape3D" id="s1"]
+size = Vector3(0.98, 2.04, 0.035)
+
+[sub_resource type="ShaderMaterial" id="s2"]
+shader = ExtResource("e2")
+shader_parameter/albedo_texture = ExtResource("e3")
+shader_parameter/roughness = 0.9
+
+[sub_resource type="BoxMesh" id="s3"]
+size = Vector3(0.98, 2.04, 0.035)
+material = SubResource("s2")
+
+[sub_resource type="ShaderMaterial" id="s4"]
+shader = ExtResource("e2")
+shader_parameter/albedo_texture = ExtResource("e4")
+shader_parameter/roughness = 0.9
+
+[sub_resource type="BoxMesh" id="s5"]
+size = Vector3(0.12, 0.025, 0.03)
+material = SubResource("s4")
+
+[node name="BathroomDoor" type="Marker3D"]
+
+script = ExtResource("e1")
+
+[node name="Pivot" type="Node3D" parent="."]
+position = Vector3(0, 0, 0)
+rotation_degrees = Vector3(0, 0, 0)
+
+[node name="Leaf" type="StaticBody3D" parent="Pivot"]
+position = Vector3(0.49, 1.02, 0)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Pivot/Leaf"]
+shape = SubResource("s1")
+
+[node name="Mesh" type="MeshInstance3D" parent="Pivot/Leaf"]
+position = Vector3(0, 0, 0)
+mesh = SubResource("s3")
+
+
+[node name="Handle" type="MeshInstance3D" parent="Pivot"]
+position = Vector3(0.84, 1.0, 0.045)
+mesh = SubResource("s5")
