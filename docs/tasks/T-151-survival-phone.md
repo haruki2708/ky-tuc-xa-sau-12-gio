@@ -1,5 +1,5 @@
 # T-151 — Sinh tồn: nằm trên giường, nín thở, tiếng động, cúi, điện thoại và đèn pin, trạm câu đố
-- Lane: A (Gameplay) | Trạng thái: todo | Agent:
+- Lane: A (Gameplay) | Trạng thái: done | Agent:
 - Nhánh: `lane-a/T-151-survival-phone`
 - Phụ thuộc: T-150 phần 1 (đã có trên `main`). Đọc `docs/design/STORY.md` (v2) §5 và bảng số giường trong `docs/tasks/T-150-chapter1-core.md`.
 - **Hạn: hết ngày 2026-10-05.** Xong thì làm T-152 ngay.
@@ -106,3 +106,8 @@ Ngoài ra cần tiếng động cho thực thể nghe, điện thoại (nhóm ch
 - **Core T-150 + lane D T-155/T-156:** cấp PuzzleData cho tủ của Đạt, gán ID vào station, nối panel đóng/giải; ghép màn điện thoại, cuộc gọi, UI pin. Dùng `is_solved` (khác tên biến trong mô tả card vì xung đột tên với signal); gọi `set_in_call`, `charge`, xử lý `battery_empty`/mất kết nối và lưu/khôi phục pin theo checkpoint.
 - **Lane E T-158 / core:** nối các sự kiện breath/move/step vào âm phù hợp và AI nghe. Không cần thêm signal, input action, setting hay plugin. T-151 không sửa các file thuộc lane khác.
 - Không còn blocker code/test/push của T-151. Không có câu hỏi thiết kế chưa giải quyết. Sandbox gặp lỗi Windows 1326; lệnh cần thiết chạy qua cơ chế cấp quyền ngoài sandbox. Không cài công cụ và không làm việc trong `D:\GAME_DEMO`.
+
+### Review (integrator, 2026-10-04)
+- **Đạt, đã merge.** Đúng phạm vi, 14 test mới, Handoff rõ và trung thực. Đổi tên `solved` thành `is_solved` vì trùng tên với signal là hợp lý.
+- Xung đột `strings.csv` với key chương 1 của core: giữ cả hai.
+- Đã ghép vào chương 1: luồng chương dùng `bunk_spot.tscn` thật, `Player.lie_on()`, `leave_hide_spot()`, `PhoneItem`. Chụp khung hình: nằm trong mùng giường 3 đúng. Góc camera khi nằm hơi thấp; lane B chỉnh `View` theo mô hình ở T-153.

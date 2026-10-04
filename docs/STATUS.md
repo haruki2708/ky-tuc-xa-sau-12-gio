@@ -49,8 +49,8 @@
 | T-136 Đoạn 3–5 và cái kết | core | review: chờ chủ dự án chơi thử cả demo |
 | **Chương 1 "Tổng tắc" (2026-10-04 → 2026-10-07)** | | |
 | T-150 Hợp đồng chung, luồng chương, kịch bản, ghép | core | **doing**: hợp đồng chung xong |
-| T-151 Nằm giường, nín thở, tiếng động, cúi, điện thoại, đèn pin, trạm câu đố | A | todo, hạn 10-05 |
-| T-152 Quản lý, xác đổi tư thế khi không bị nhìn | A | todo (sau T-151), hạn 10-06 |
+| T-151 Nằm giường, nín thở, tiếng động, cúi, điện thoại, đèn pin, trạm câu đố | A | **done**, đã merge |
+| T-152 Quản lý, xác đổi tư thế khi không bị nhìn | A | **giao**, hạn 10-06 |
 | T-153 Phòng 407 chi tiết, máu me, giường bị chém | B | todo, hạn 10-05 |
 | T-154 Mô hình quản lý, xác ba bạn, đạo cụ | B | todo (sau T-153), hạn 10-06 |
 | T-155 Điện thoại và cuộc gọi nhóm, chọn chương, cảnh báo nội dung | D | todo, hạn 10-05 |

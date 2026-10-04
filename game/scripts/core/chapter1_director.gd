@@ -424,7 +424,12 @@ func lie_on(bed: int) -> void:
 
 
 func get_up() -> void:
-	if not _stub_lying or _player == null:
+	if _player == null:
+		return
+	if not _stub_lying:
+		# Lane A's bunk (T-151): the player leaves through its exit marker.
+		if _player.has_method("is_hidden") and _player.is_hidden() and _player.has_method("leave_hide_spot"):
+			_player.leave_hide_spot()
 		return
 	_player.global_position = BED_EXIT.get(_bed, Vector3(32.0, 0.05, -2.2))
 	_player.set_physics_process(true)
@@ -749,7 +754,7 @@ func _play_sfx_at(file_name: StringName, where: Vector3) -> void:
 
 
 func _phone_item() -> Node:
-	return _player.get_node_or_null("PhoneItem") if _player else null
+	return _player.find_child("PhoneItem", true, false) if _player else null
 
 
 func _set_battery(percent: float) -> void:
