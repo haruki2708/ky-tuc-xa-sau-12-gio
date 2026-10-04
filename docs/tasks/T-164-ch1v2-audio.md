@@ -17,7 +17,7 @@
 7. **Mất kết nối:** dùng lại `call_disconnect` của T-158; thêm tiếng nối lại.
 8. **Camera an ninh:** tiếng rè nền rất khẽ khi xem tab Camera; tiếng nhiễu chuyển kênh. Cảnh giết trên camera nghe qua cuộc gọi (đã có), không cần thêm âm cho từng cảnh.
 9. Ghi `CREDITS.md`, LUFS từng âm; cảnh thử nghe từng âm.
-9. **Test:** đủ file, đúng bus, API chuỗi gõ đúng số nhịp và thứ tự.
+10. **Test:** đủ file, đúng bus, API chuỗi gõ đúng số nhịp và thứ tự.
 
 ## Checklist hoàn thành
 - [ ] `pwsh tools/test.ps1` và `pwsh tools/check.ps1` PASS
