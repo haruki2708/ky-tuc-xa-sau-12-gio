@@ -332,6 +332,7 @@ rotation_degrees = Vector3(0, 0, 0)
 scale = Vector3(1, 1, 1)
 
 [node name="Sleeper_Viet" type="MeshInstance3D" parent="BunkA"]
+visible = false
 position = Vector3(0, 0.61, 0)
 rotation_degrees = Vector3(90, 0, 0)
 mesh = SubResource("s31")
@@ -342,6 +343,7 @@ rotation_degrees = Vector3(0, 0, 0)
 scale = Vector3(1, 0.7348485, 1)
 
 [node name="Sleeper_Phuc" type="MeshInstance3D" parent="BunkA"]
+visible = false
 position = Vector3(0, 1.38, 0)
 rotation_degrees = Vector3(90, 0, 0)
 mesh = SubResource("s32")
@@ -362,6 +364,7 @@ rotation_degrees = Vector3(0, 0, 0)
 scale = Vector3(1, 0.7348485, 1)
 
 [node name="Sleeper_Dat" type="MeshInstance3D" parent="BunkB"]
+visible = false
 position = Vector3(0, 1.38, 0)
 rotation_degrees = Vector3(90, 0, 0)
 mesh = SubResource("s33")

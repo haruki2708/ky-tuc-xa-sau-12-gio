@@ -26,6 +26,10 @@
 [ext_resource type="PackedScene" path="res://assets/models/props/bucket.glb" id="e24"]
 [ext_resource type="PackedScene" path="res://assets/models/props/towel.glb" id="e25"]
 
+[ext_resource type="PackedScene" path="res://scenes/levels/ch1_models/bed_debris.tscn" id="t154_bed_debris"]
+
+[ext_resource type="PackedScene" path="res://scenes/levels/ch1_models/rag.tscn" id="t154_rag"]
+
 [sub_resource type="ShaderMaterial" id="s1"]
 shader = ExtResource("e1")
 shader_parameter/albedo_texture = ExtResource("e2")
@@ -364,6 +368,7 @@ rotation_degrees = Vector3(0, 0, 0)
 scale = Vector3(1, 1, 1)
 
 [node name="Notebook" parent="Dat" instance=ExtResource("e19")]
+visible = false
 position = Vector3(1.27, 0.77, -4.53)
 rotation_degrees = Vector3(0, -12, 0)
 scale = Vector3(1, 1, 1)
@@ -408,6 +413,7 @@ position = Vector3(3.77, 2.11, -0.55)
 mesh = SubResource("s10")
 
 [node name="Router" parent="." instance=ExtResource("e22")]
+visible = false
 position = Vector3(3.78, 2.13, -0.55)
 rotation_degrees = Vector3(0, 90, 0)
 scale = Vector3(1, 1, 1)
@@ -779,3 +785,9 @@ mesh = SubResource("s61")
 position = Vector3(3.07, 0.021, -2.87)
 rotation_degrees = Vector3(0, 329, 0)
 mesh = SubResource("s62")
+
+[node name="RichDebris" parent="Debris" instance=ExtResource("t154_bed_debris")]
+position = Vector3(3.02, 0.018, -2.18)
+
+[node name="CleaningRag" parent="." instance=ExtResource("t154_rag")]
+position = Vector3(1.22, 0.016, -4.3)

@@ -1,0 +1,131 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scenes/levels/ch1_models/router.gd" id="e1"]
+[ext_resource type="Shader" path="res://rendering/ps1_surface.gdshader" id="e2"]
+[ext_resource type="Texture2D" path="res://assets/textures/ch1_models/paper.png" id="e3"]
+[ext_resource type="Texture2D" path="res://assets/textures/ch1_models/hair.png" id="e4"]
+
+[sub_resource type="ShaderMaterial" id="s1"]
+shader = ExtResource("e2")
+shader_parameter/albedo_texture = ExtResource("e3")
+shader_parameter/roughness = 0.9
+
+[sub_resource type="BoxMesh" id="s2"]
+size = Vector3(0.21, 0.064, 0.135)
+material = SubResource("s1")
+
+[sub_resource type="ShaderMaterial" id="s3"]
+shader = ExtResource("e2")
+shader_parameter/albedo_texture = ExtResource("e4")
+shader_parameter/roughness = 0.9
+
+[sub_resource type="CylinderMesh" id="s4"]
+top_radius = 0.0045
+bottom_radius = 0.0045
+height = 0.24
+radial_segments = 6
+rings = 1
+material = SubResource("s3")
+
+[sub_resource type="CylinderMesh" id="s5"]
+top_radius = 0.0045
+bottom_radius = 0.0045
+height = 0.24
+radial_segments = 6
+rings = 1
+material = SubResource("s3")
+
+[sub_resource type="BoxMesh" id="s6"]
+size = Vector3(0.012, 0.002, 0.07)
+material = SubResource("s3")
+
+[sub_resource type="BoxMesh" id="s7"]
+size = Vector3(0.012, 0.002, 0.07)
+material = SubResource("s3")
+
+[sub_resource type="BoxMesh" id="s8"]
+size = Vector3(0.012, 0.002, 0.07)
+material = SubResource("s3")
+
+[sub_resource type="BoxMesh" id="s9"]
+size = Vector3(0.012, 0.002, 0.07)
+material = SubResource("s3")
+
+[sub_resource type="BoxMesh" id="s10"]
+size = Vector3(0.012, 0.002, 0.07)
+material = SubResource("s3")
+
+[sub_resource type="BoxMesh" id="s11"]
+size = Vector3(0.012, 0.002, 0.07)
+material = SubResource("s3")
+
+[sub_resource type="BoxMesh" id="s12"]
+size = Vector3(0.012, 0.002, 0.07)
+material = SubResource("s3")
+
+[sub_resource type="StandardMaterial3D" id="s13"]
+shading_mode = 0
+albedo_color = Color(0.1,1,0.24,1)
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="s14"]
+size = Vector3(0.009,0.007,0.003)
+material = SubResource("s13")
+
+[node name="Router" type="Node3D"]
+
+script = ExtResource("e1")
+
+[node name="Case" type="MeshInstance3D" parent="."]
+position = Vector3(0, 0.032, 0)
+mesh = SubResource("s2")
+
+
+[node name="Antenna-0.08" type="MeshInstance3D" parent="."]
+position = Vector3(-0.08, 0.15, 0.052)
+mesh = SubResource("s4")
+
+
+[node name="Antenna0.08" type="MeshInstance3D" parent="."]
+position = Vector3(0.08, 0.15, 0.052)
+mesh = SubResource("s5")
+
+
+[node name="Vent0" type="MeshInstance3D" parent="."]
+position = Vector3(-0.075, 0.065, 0)
+mesh = SubResource("s6")
+
+
+[node name="Vent1" type="MeshInstance3D" parent="."]
+position = Vector3(-0.05, 0.065, 0)
+mesh = SubResource("s7")
+
+
+[node name="Vent2" type="MeshInstance3D" parent="."]
+position = Vector3(-0.025, 0.065, 0)
+mesh = SubResource("s8")
+
+
+[node name="Vent3" type="MeshInstance3D" parent="."]
+position = Vector3(0.0, 0.065, 0)
+mesh = SubResource("s9")
+
+
+[node name="Vent4" type="MeshInstance3D" parent="."]
+position = Vector3(0.025, 0.065, 0)
+mesh = SubResource("s10")
+
+
+[node name="Vent5" type="MeshInstance3D" parent="."]
+position = Vector3(0.05, 0.065, 0)
+mesh = SubResource("s11")
+
+
+[node name="Vent6" type="MeshInstance3D" parent="."]
+position = Vector3(0.075, 0.065, 0)
+mesh = SubResource("s12")
+
+
+[node name="LED" type="MeshInstance3D" parent="."]
+position = Vector3(-0.07,0.034,-0.069)
+mesh = SubResource("s14")

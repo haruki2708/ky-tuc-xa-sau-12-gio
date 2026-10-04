@@ -1,0 +1,144 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scenes/levels/ch1_models/dat_notebook.gd" id="e1"]
+[ext_resource type="Shader" path="res://rendering/ps1_surface.gdshader" id="e2"]
+[ext_resource type="Texture2D" path="res://assets/textures/ch1_models/sport.png" id="e3"]
+[ext_resource type="Texture2D" path="res://assets/textures/ch1_models/paper.png" id="e4"]
+[ext_resource type="Texture2D" path="res://assets/textures/ch1_models/metal.png" id="e5"]
+[ext_resource type="FontFile" path="res://assets/fonts/be_vietnam_pro_regular.ttf" id="e6"]
+
+[sub_resource type="ShaderMaterial" id="s1"]
+shader = ExtResource("e2")
+shader_parameter/albedo_texture = ExtResource("e3")
+shader_parameter/roughness = 0.9
+
+[sub_resource type="BoxMesh" id="s2"]
+size = Vector3(0.2, 0.016, 0.28)
+material = SubResource("s1")
+
+[sub_resource type="ShaderMaterial" id="s3"]
+shader = ExtResource("e2")
+shader_parameter/albedo_texture = ExtResource("e4")
+shader_parameter/roughness = 0.9
+
+[sub_resource type="BoxMesh" id="s4"]
+size = Vector3(0.18, 0.009, 0.26)
+material = SubResource("s3")
+
+[sub_resource type="ShaderMaterial" id="s5"]
+shader = ExtResource("e2")
+shader_parameter/albedo_texture = ExtResource("e5")
+shader_parameter/roughness = 0.9
+
+[sub_resource type="BoxMesh" id="s6"]
+size = Vector3(0.026, 0.005, 0.009)
+material = SubResource("s5")
+
+[sub_resource type="BoxMesh" id="s7"]
+size = Vector3(0.026, 0.005, 0.009)
+material = SubResource("s5")
+
+[sub_resource type="BoxMesh" id="s8"]
+size = Vector3(0.026, 0.005, 0.009)
+material = SubResource("s5")
+
+[sub_resource type="BoxMesh" id="s9"]
+size = Vector3(0.026, 0.005, 0.009)
+material = SubResource("s5")
+
+[sub_resource type="BoxMesh" id="s10"]
+size = Vector3(0.026, 0.005, 0.009)
+material = SubResource("s5")
+
+[sub_resource type="BoxMesh" id="s11"]
+size = Vector3(0.026, 0.005, 0.009)
+material = SubResource("s5")
+
+[sub_resource type="BoxMesh" id="s12"]
+size = Vector3(0.026, 0.005, 0.009)
+material = SubResource("s5")
+
+[node name="DatNotebook" type="Node3D"]
+
+script = ExtResource("e1")
+
+[node name="Cover" type="MeshInstance3D" parent="."]
+position = Vector3(0, 0.008, 0)
+mesh = SubResource("s2")
+
+
+[node name="Page" type="MeshInstance3D" parent="."]
+position = Vector3(0, 0.02, 0)
+mesh = SubResource("s4")
+
+
+[node name="Binding0" type="MeshInstance3D" parent="."]
+position = Vector3(-0.093, 0.026, -0.11)
+mesh = SubResource("s6")
+
+
+[node name="Binding1" type="MeshInstance3D" parent="."]
+position = Vector3(-0.093, 0.026, -0.074)
+mesh = SubResource("s7")
+
+
+[node name="Binding2" type="MeshInstance3D" parent="."]
+position = Vector3(-0.093, 0.026, -0.038)
+mesh = SubResource("s8")
+
+
+[node name="Binding3" type="MeshInstance3D" parent="."]
+position = Vector3(-0.093, 0.026, -0.002)
+mesh = SubResource("s9")
+
+
+[node name="Binding4" type="MeshInstance3D" parent="."]
+position = Vector3(-0.093, 0.026, 0.034)
+mesh = SubResource("s10")
+
+
+[node name="Binding5" type="MeshInstance3D" parent="."]
+position = Vector3(-0.093, 0.026, 0.07)
+mesh = SubResource("s11")
+
+
+[node name="Binding6" type="MeshInstance3D" parent="."]
+position = Vector3(-0.093, 0.026, 0.106)
+mesh = SubResource("s12")
+
+
+[node name="Title" type="Label3D" parent="."]
+position = Vector3(0,0.026,-0.074)
+rotation_degrees = Vector3(-90,0,0)
+font = ExtResource("e6")
+font_size = 36
+pixel_size = 0.00032
+modulate = Color(0.04,0.05,0.05,1)
+outline_size = 0
+texture_filter = 0
+shaded = false
+no_depth_test = false
+
+[node name="Name" type="Label3D" parent="."]
+position = Vector3(0,0.026,-0.012)
+rotation_degrees = Vector3(-90,0,0)
+font = ExtResource("e6")
+font_size = 30
+pixel_size = 0.00032
+modulate = Color(0.04,0.05,0.05,1)
+outline_size = 0
+texture_filter = 0
+shaded = false
+no_depth_test = false
+
+[node name="BirthDate" type="Label3D" parent="."]
+position = Vector3(0,0.026,0.056)
+rotation_degrees = Vector3(-90,0,0)
+font = ExtResource("e6")
+font_size = 32
+pixel_size = 0.00032
+modulate = Color(0.04,0.05,0.05,1)
+outline_size = 0
+texture_filter = 0
+shaded = false
+no_depth_test = false

@@ -1,0 +1,38 @@
+{
+	"godot": "4.7.2-stable (official)",
+	"models": {
+		"bed_debris": {
+			"triangles": 72
+		},
+		"charger": {
+			"triangles": 60
+		},
+		"corpse_dat": {
+			"triangles": 616
+		},
+		"corpse_phuc": {
+			"triangles": 592
+		},
+		"corpse_viet": {
+			"triangles": 592
+		},
+		"dat_notebook": {
+			"triangles": 108
+		},
+		"manager_body": {
+			"triangles": 776
+		},
+		"phone_viewmodel": {
+			"triangles": 50
+		},
+		"rag": {
+			"triangles": 40
+		},
+		"router": {
+			"triangles": 180
+		}
+	},
+	"ps1_strength": 1,
+	"resolution": "1280x720",
+	"shots": 25
+}
