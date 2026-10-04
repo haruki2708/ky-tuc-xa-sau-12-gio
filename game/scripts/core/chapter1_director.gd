@@ -364,10 +364,14 @@ func _hold_the_door() -> void:
 	var door := _door()
 	if door != null and door.has_method("rattle"):
 		door.rattle(DOOR_HOLD_SECONDS)
-	_play_sfx_at(&"door_rattle", Vector3(32.0, 1.0, 0.0))
+	var mission := get_parent().get_node_or_null("MissionAudio") if get_parent() else null
+	if mission != null and mission.has_method("set_handle_rattling"):
+		mission.set_handle_rattling(true)
 	await _wait_until(func() -> bool: return GameState.get_flag(&"door_locked", false) == true, DOOR_HOLD_SECONDS)
 	if door != null and door.has_method("stop_rattle"):
 		door.stop_rattle()
+	if mission != null and mission.has_method("set_handle_rattling"):
+		mission.set_handle_rattling(false)
 	if GameState.get_flag(&"door_locked", false) != true:
 		_open_door()
 		_die(&"DEATH_DRAGGED_OUT")
@@ -414,10 +418,14 @@ func _round_2() -> void:
 	_music(&"set_tension", 0.4)
 	await _line("kiet_306")
 	_cctv_scene(&"cam_306", &"phone_lit")
-	_play_sfx_at(&"kiet_ringtone", Vector3(24.0, -3.3, -2.0))
+	var call_audio := get_parent().get_node_or_null("PhoneCallAudio") if get_parent() else null
+	if call_audio != null and call_audio.has_method("play_remote_ring"):
+		call_audio.play_remote_ring(true, &"kiet")
 	await _manager_line("MGR_CH1_ASK_BED_3")
 	await _line("kiet_no")
 	await _manager_line("MGR_CH1_WHY_NOT")
+	if call_audio != null and call_audio.has_method("play_remote_ring"):
+		call_audio.play_remote_ring(false, &"kiet")
 	_cctv_kill(&"cam_306")
 	_member_dies(&"kiet", Vector3(24.0, -3.3, -2.0))
 	await _wait(2.0)
@@ -1166,7 +1174,7 @@ func _network_down() -> void:
 	if strip != null and strip.has_method("trip"):
 		strip.trip()
 	_router_state(false, &"off")
-	_play_sfx_at(&"router_off", _router_position())
+	_mission_cue(&"router_power_off")
 	for cable in _find_components("lan_cable.gd"):
 		if cable.has_method("unplug"):
 			cable.unplug()
@@ -1178,6 +1186,7 @@ func _network_restored(remote: bool) -> void:
 	_network_up = true
 	_missions[&"network"] = true
 	_router_state(true, &"ok")
+	_mission_cue(&"router_online")
 	EventBus.phone_call_restored.emit(&"stranger_call")
 	if remote:
 		await _line("n_back_remote")
@@ -1188,6 +1197,7 @@ func _network_restored(remote: bool) -> void:
 
 func _on_strip_switch(index: int, on: bool) -> void:
 	_strip_on[index] = on
+	_mission_cue(&"power_switch")
 	if not on or _network_up:
 		if index == 2 and not on and not _network_up:
 			_router_state(false, &"off")
@@ -1206,7 +1216,7 @@ func _on_strip_switch(index: int, on: bool) -> void:
 		var room := _room_anchor("PowerStrip")
 		if room != null and room.has_method("spark"):
 			room.spark()
-		_play_sfx_at(&"strip_spark", _router_position())
+		_mission_cue(&"power_short")
 		_strip_on.clear()
 		_router_state(false, &"off")
 		return
@@ -1219,7 +1229,7 @@ func _boot_router() -> void:
 		return
 	_router_booting = true
 	_router_state(true, &"booting")
-	_play_sfx_at(&"router_boot", _router_position())
+	_mission_cue(&"router_boot")
 	await _wait(ROUTER_BOOT_SECONDS)
 	_router_booting = false
 	if _strip_on.get(2, false) != true:
@@ -1255,6 +1265,14 @@ func _router_state(power: bool, network: StringName) -> void:
 		router.set_network(network)
 	elif router.has_method("set_led"):
 		router.set_led(power and network == &"ok")
+
+
+func _mission_cue(cue: StringName) -> void:
+	var mission := get_parent().get_node_or_null("MissionAudio") if get_parent() else null
+	if mission != null and mission.has_method("play_cue"):
+		var rig := mission as Node3D
+		rig.global_position = _router_position()
+		mission.play_cue(cue)
 
 
 func _router_position() -> Vector3:
@@ -1347,7 +1365,18 @@ static func encode_taps(message: String) -> Array:
 
 
 func _play_taps(where: Vector3, message: String) -> void:
-	var taps := get_tree().get_first_node_in_group(&"wall_taps")
+	var rig := get_parent().get_node_or_null("KhoaTaps") if get_parent() else null
+	if rig != null and rig.has_method("play_sequence") and time_scale >= 0.999:
+		for word in message.split(" ", false):
+			var flat: Array[int] = []
+			for pair: Variant in encode_taps(word):
+				if pair is Array:
+					flat.append_array(pair)
+			if rig.play_sequence(where, flat, TAP_DIGIT_GAP, TAP_LETTER_GAP):
+				await _with_timeout(rig.sequence_finished, 60.0, false)
+			await _wait(TAP_WORD_GAP)
+		return
+	var taps := rig if rig != null and rig.has_method("play_tap") else null
 	for group: Variant in encode_taps(message):
 		if group is int:
 			await _wait(TAP_WORD_GAP)

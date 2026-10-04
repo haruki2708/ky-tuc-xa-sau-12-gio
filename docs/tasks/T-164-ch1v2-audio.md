@@ -1,5 +1,5 @@
 # T-164 — Chương 1 bản 2: âm thanh nhiệm vụ mới
-- Lane: E (Âm thanh) | Trạng thái: todo | Agent:
+- Lane: E (Âm thanh) | Trạng thái: done | Agent:
 - Nhánh: `lane-e/T-164-ch1v2-audio`
 - Phụ thuộc: T-158. **Đọc `docs/design/CH1_V2_MISSIONS.md`** (D-039). Chủ dự án thích âm **nhỏ**; ghi LUFS.
 - **Hạn: hết ngày 2026-10-06.**
@@ -94,3 +94,13 @@ Thêm 10 test kiểm tra đủ asset/hash/LUFS/loop, bus, chuỗi đúng nhịp/
 4. **Lane D, T-163:** tạo CctvAudio và gọi set_viewing theo tab Camera thực sự đang hiển thị, select_channel khi đổi kênh; dừng khi rời tab/mất quyền xem. Gọi lock_alarm một lần lúc khóa kẹt, chọn một chủ thể phát để tránh trùng; gameplay noise bán kính 12 m vẫn do UI/core xử lý.
 
 Không yêu cầu signal, setting, autoload hoặc bus mới. **Blocked: không có trong phạm vi Lane E**; chờ integrator nối API và chủ dự án nghe duyệt.
+
+### Review (integrator, 2026-10-05)
+- **Đạt, đã merge.** Đúng phạm vi; 20 âm mới, 10 test; LUFS ghi đủ; trung thực về việc chưa nghe bằng tai. **Chủ dự án cần nghe.**
+- **Ghép vào chương 1:**
+  - `Ch1MissionAudio` (`MissionAudio`): `router_power_off`, `router_boot`, `router_online`, `power_switch`, `power_short`, tay nắm cửa vặn;
+  - `WallTaps` (`KhoaTaps`, `set_other_side(true)`): chuỗi gõ của Khoa theo từng từ;
+  - `PhoneCallAudio.play_remote_ring` cho chuông của Kiệt;
+  - mất kết nối và cảnh chết dùng signal có sẵn.
+- Còn lại cho lane D (T-163): `CctvAudio.set_viewing/select_channel`, `lock_alarm` khi khóa kẹt.
+

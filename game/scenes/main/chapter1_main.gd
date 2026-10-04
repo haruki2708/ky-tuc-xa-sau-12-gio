@@ -91,6 +91,15 @@ func _place_audio() -> void:
 	screams.listener = $Player
 	screams.add_to_group(&"screams")
 	add_child(screams)
+	# Chapter 1 v2 (T-164): mission cues in 407, Khoa's knocks behind the wall.
+	var mission := Ch1MissionAudio.new()
+	mission.name = "MissionAudio"
+	add_child(mission)
+	mission.global_position = Vector3(32.0, 1.0, -0.5)
+	var taps := WallTaps.new()
+	taps.name = "KhoaTaps"
+	add_child(taps)
+	taps.set_other_side(true)
 	# Blood dripping from the three beds once the roommates are dead.
 	var drips := CorpseAudio.new()
 	drips.name = "RoomDrips"
