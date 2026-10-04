@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3]
+[ext_resource type="Script" path="res://scripts/interaction/hide_spot.gd" id="1"]
+[sub_resource type="BoxShape3D" id="Pick"]
+size = Vector3(0.7, 1.0, 0.2)
+[node name="HideSpot" type="Area3D"]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1")
+prompt_key = "PROMPT_HIDE_ENTER"
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+position = Vector3(0, 0.8, 0)
+shape = SubResource("Pick")
+[node name="View" type="Marker3D" parent="."]
+position = Vector3(0, 1.0, -0.4)
+[node name="Exit" type="Marker3D" parent="."]
+position = Vector3(0, 0.02, 0.8)

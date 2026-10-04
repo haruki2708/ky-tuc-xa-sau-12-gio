@@ -42,6 +42,7 @@ func interact(player: Node) -> void:
 	_update_prompt()
 	if not _locked and _door_is_open():
 		blocked_sound.play()
+		EventBus.noise_emitted.emit(global_position, 3.0, &"latch")
 		# No successful interaction: Main must not also play the normal latch cue.
 		return
 	super.interact(player)
@@ -55,3 +56,4 @@ func _on_interact(_player: Node) -> void:
 	door.enabled = not _locked
 	_update_prompt()
 	GameState.set_flag(flag, _locked)
+	EventBus.noise_emitted.emit(global_position, 3.0, &"latch")
