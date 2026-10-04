@@ -15,8 +15,8 @@ Sau đó chờ tôi giao việc.
 ## 2. Làm thiết kế mới: cốt truyện, nhiệm vụ, đồ họa (D-028)
 Dán prompt mục 1, rồi dán thêm khối này và điền phần của bạn:
 ```
-Hôm nay làm thiết kế mới theo D-028 (lùi ngày đăng để cải thiện game). Đọc thêm docs/design/GDD.md,
-docs/design/RULES.md, docs/design/LAYOUT.md và docs/PLAN.md để biết thiết kế hiện tại.
+Hôm nay làm thiết kế mới theo D-028 (lùi ngày đăng để cải thiện game). Đọc thêm docs/design/STORY.md (thiết kế v2 hiện hành),
+docs/design/LAYOUT.md; phần chơi cũ ở docs/design/archive/.
 Ý tưởng của tôi (chưa đủ thì hỏi lại tôi, đừng tự đoán phần thiết kế):
 
 1. Cốt truyện: <bối cảnh, nhân vật, bí ẩn, kết thúc>

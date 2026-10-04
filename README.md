@@ -2,7 +2,7 @@
 
 Game kinh dị và giải đố 3D, góc nhìn thứ nhất, bối cảnh ký túc xá Việt Nam. Làm bằng Godot 4.7.2.
 
-- Kế hoạch tổng: `docs/PLAN.md`
+- Kế hoạch tổng: `docs/design/STORY.md` (thiết kế hiện hành); kế hoạch và thiết kế cũ ở `docs/design/archive/`
 - Tiến độ hiện tại: `docs/STATUS.md`
 - Luật cho agent: `AGENTS.md`
 - Prompt gửi agent: `docs/handoff/lane-*.md`

@@ -1,5 +1,7 @@
 # GDD rút gọn — Demo
 
+> **PHẦN CHƠI CŨ — KHÔNG CÒN DÙNG.** Thuộc bản demo "người thứ năm" (tag git `demo-v1`). Thiết kế hiện hành: `docs/design/STORY.md` (v2, D-034, D-035). Giữ lại để tham khảo.
+
 Tài liệu đang làm. Các phần cần chốt đã được quyết ở T-113 (xem RULES.md, LAYOUT.md).
 
 ## Một câu

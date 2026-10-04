@@ -1,5 +1,7 @@
 # Kế hoạch tổng — "Ký túc xá sau 12 giờ"
 
+> **PHẦN CHƠI CŨ — KHÔNG CÒN DÙNG.** Thuộc bản demo "người thứ năm" (tag git `demo-v1`). Thiết kế hiện hành: `docs/design/STORY.md` (v2, D-034, D-035). Giữ lại để tham khảo.
+
 Duyệt ngày 2026-10-02. Các quyết định chi tiết xem `DECISIONS.md`.
 
 ## Mục tiêu

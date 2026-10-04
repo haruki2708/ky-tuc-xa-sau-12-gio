@@ -1,5 +1,7 @@
 # Thiết kế v1 (THAY BỞI v2, D-034): người thứ năm, bác Tư, Vũ Đức Lâm
 
+> **PHẦN CHƠI CŨ — KHÔNG CÒN DÙNG.** Thuộc bản demo "người thứ năm" (tag git `demo-v1`). Thiết kế hiện hành: `docs/design/STORY.md` (v2, D-034, D-035). Giữ lại để tham khảo.
+
 > **Trạng thái: ĐÃ DUYỆT** (chủ dự án, 2026-10-04, D-029…D-033). Chương 1 đang sản xuất: task T-150…T-159. Chi tiết và con số vẫn tinh chỉnh được khi chơi thử.
 
 ## 1. Một câu

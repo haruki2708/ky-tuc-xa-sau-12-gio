@@ -1,5 +1,7 @@
 # Bộ luật, cốt truyện và diễn biến demo (T-113)
 
+> **PHẦN CHƠI CŨ — KHÔNG CÒN DÙNG.** Thuộc bản demo "người thứ năm" (tag git `demo-v1`). Thiết kế hiện hành: `docs/design/STORY.md` (v2, D-034, D-035). Giữ lại để tham khảo.
+
 > **Trạng thái: ĐÃ DUYỆT** (chủ dự án, 2026-10-02, D-020). Câu chữ và con số vẫn tinh chỉnh được khi chơi thử.
 
 ## 1. Tiền đề

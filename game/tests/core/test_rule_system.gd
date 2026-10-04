@@ -240,7 +240,7 @@ func test_restore_without_or_with_bad_save() -> void:
 
 
 func test_demo_rule_set_matches_design() -> void:
-	# docs/design/RULES.md §7 (D-020).
+	# docs/design/archive/RULES.md §7 (D-020).
 	var demo := load("res://data/rules/demo.tres") as RuleSet
 	assert_not_null(demo, "demo rule set loads")
 	if demo == null:

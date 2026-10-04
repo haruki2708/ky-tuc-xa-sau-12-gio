@@ -1,6 +1,6 @@
 # Thiết kế v2: chuyển thể "Quy tắc ký túc xá lúc nửa đêm"
 
-> **Trạng thái: ĐÃ DUYỆT** (chủ dự án, 2026-10-04, D-034, D-035). Thay thiết kế v1 (`STORY_v1.md`). Chương 1 đang sản xuất (T-150…T-159), hạn chơi thử **2026-10-07**.
+> **Trạng thái: ĐÃ DUYỆT** (chủ dự án, 2026-10-04, D-034, D-035). Thay thiết kế v1 (`archive/STORY_v1.md`). Chương 1 đang sản xuất (T-150…T-159), hạn chơi thử **2026-10-07**.
 >
 > **Nguồn:** video *(Full) Quy tắc kí túc xá lúc nửa đêm*, kênh YouTube *Thế Giới Kì Quái*. Bản chép lời và bản chuyển thể nằm ở `D:\GAME_WORK\kich_ban\`. Chủ dự án chọn **chuyển thể sát video** và **máu me như video**.
 >

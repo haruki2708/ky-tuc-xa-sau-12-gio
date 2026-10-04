@@ -1,5 +1,5 @@
 extends Node
-## Story flow of the demo night (docs/design/RULES.md §5, §5b, §6):
+## Story flow of the demo night (docs/design/archive/RULES.md §5, §5b, §6; old demo):
 ##   seg1 23:50 back to room 407 → seg2 00:00 speaker rules, knocking →
 ##   seg3 00:30 duty log, slippers behind you → seg4 01:00 roll call →
 ##   seg5 01:20 washroom tap and mirror → end 01:40 last roll call.
