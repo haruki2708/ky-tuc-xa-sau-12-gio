@@ -1,6 +1,6 @@
 # Kịch bản chương 1 "Tổng tắc"
 
-> **Bản 1 đã duyệt (D-036). Phần bản 2 (D-039…D-042) chờ chủ dự án duyệt.** Sinh tự động từ `docs/design/ch1/build_ch1_script.py`; muốn sửa lời thì báo integrator (hoặc sửa file nguồn rồi chạy lại). Thiết kế: `docs/design/STORY.md` §5.
+> **Bản 1 đã duyệt (D-036); bản 2 tạm duyệt (D-043), góp ý thêm sau khi chơi thử.** Sinh tự động từ `docs/design/ch1/build_ch1_script.py`; muốn sửa lời thì báo integrator (hoặc sửa file nguồn rồi chạy lại). Thiết kế: `docs/design/STORY.md` §5.
 
 Ký hiệu: **Loa** = loa trường · **Quản lý** · *(trong phòng)* = giọng nghe trực tiếp · 📞 = trong cuộc gọi nhóm · 💭 = suy nghĩ của Trung (chỉ phụ đề) · ▶ = lựa chọn của người chơi · `[…]` = diễn biến.
 
