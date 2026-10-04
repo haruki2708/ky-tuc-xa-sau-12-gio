@@ -1,5 +1,5 @@
 # T-155 — Điện thoại và cuộc gọi nhóm, chọn chương, cảnh báo nội dung
-- Lane: D (UI và Đa ngôn ngữ) | Trạng thái: todo | Agent:
+- Lane: D (UI và Đa ngôn ngữ) | Trạng thái: done | Agent:
 - Nhánh: `lane-d/T-155-group-chat-phone`
 - Phụ thuộc: T-150 phần 1 (đã có trên `main`). Đọc `docs/design/STORY.md` v2 §0, §2, §5.
 - **Hạn: hết ngày 2026-10-05.** Xong thì làm T-156 ngay.
@@ -101,3 +101,12 @@ RESULT: 10 passed, 0 failed
 
 - Chưa chơi xuyên chương với dữ liệu/thoại/chuông thật và checkpoint tích hợp; base chưa có dữ liệu `game/data/messages/` hay đầu nối T-151/T-158 hoàn chỉnh. Snapshot đã qua JSON round-trip trong test, chưa qua luồng save/load chương thực tế. Chưa xác minh giảm máu me bằng gameplay (chỉ cập nhật cảnh báo theo card).
 - Không bị chặn phần triển khai Lane D; ba mục checklist đều đạt. Những đầu nối liên lane trên cần integrator/lane sở hữu thực hiện trước khi nghiệm thu gameplay. Không tự suy đoán luật chơi hay lời thoại.
+
+### Review (integrator, 2026-10-04)
+- **Đạt, đã merge.** Đúng phạm vi; 10 test mới; ảnh vi/en rõ ràng. Handoff trung thực, có báo test demo chập chờn.
+- Xung đột `strings.csv` (hai bên cùng thêm dòng cuối): giữ cả hai, không trùng key.
+- Đã ghép vào chương 1:
+  - `PhoneScreen` có trong `chapter1.tscn`;
+  - luồng chương không tự hiện phụ đề câu thoại nữa (màn hình điện thoại đã hiện);
+  - lịch sử cuộc gọi (`snapshot`/`restore`), pin và trạng thái đang gọi lưu trong cờ `GameState` cùng checkpoint.
+- **Integrator sửa một lỗi tích hợp** trong `phone_screen.gd`: `Player._exit_tree` (T-151) phát `player_hidden(false)` khi scene đang bị giải phóng, làm `_refresh_visibility` gọi `get_tree()` khi node đã rời tree. Đã thêm kiểm tra `is_inside_tree()`. Lỗi gốc nằm ở việc Player phát signal trong `_exit_tree`; ghi cho lane A xem lại ở task sau.

@@ -118,6 +118,7 @@ func start() -> void:
 		for stage: StringName in CHECKPOINTS:
 			if CHECKPOINTS[stage] == restored:
 				from = stage
+		_restore_phone()
 		# Resume standing in the middle of 407 (the prologue lies down itself).
 		_set_bed(0)
 		if from != &"prologue":
@@ -156,6 +157,7 @@ func _begin(stage: StringName, clock: String) -> void:
 	GameState.set_segment(stage)
 	_set_clock(clock)
 	if CHECKPOINTS.has(stage):
+		_store_phone()
 		Checkpoint.save(CHECKPOINTS[stage])
 
 
@@ -565,6 +567,35 @@ func _plug_in_charger() -> void:
 
 # --- Group call ---------------------------------------------------------------------
 
+func _phone_screen() -> Node:
+	return get_parent().get_node_or_null("PhoneScreen") if get_parent() else null
+
+
+## The call history (T-155 snapshot) and battery ride in GameState flags, so
+## they are saved with the checkpoint.
+func _store_phone() -> void:
+	var screen := _phone_screen()
+	if screen != null and screen.has_method("snapshot"):
+		GameState.set_flag(&"phone_snapshot", JSON.stringify(screen.snapshot()))
+	var phone := _phone_item()
+	if phone != null and "battery" in phone:
+		GameState.set_flag(&"phone_battery", float(phone.battery))
+	GameState.set_flag(&"in_call", _call_answered)
+
+
+func _restore_phone() -> void:
+	var screen := _phone_screen()
+	var saved: Variant = GameState.get_flag(&"phone_snapshot", "")
+	if screen != null and screen.has_method("restore") and saved is String and not saved.is_empty():
+		var data: Variant = JSON.parse_string(saved)
+		if data is Dictionary:
+			screen.restore(data)
+	if GameState.has_flag(&"phone_battery"):
+		_set_battery(float(GameState.get_flag(&"phone_battery", 100.0)))
+	_call_answered = GameState.get_flag(&"in_call", false) == true
+	_set_in_call(_call_answered)
+
+
 func _incoming_call() -> void:
 	_call_answered = false
 	for ring in 4:
@@ -587,7 +618,9 @@ func _line(id: String) -> void:
 		return
 	EventBus.phone_message_received.emit(message_id)
 	var seconds := _voice_seconds(data.text_key, "CHAT_CH1_")
-	_say(data.text_key, seconds)
+	# Lane D's phone screen (T-155) subtitles every spoken line itself.
+	if _phone_screen() == null:
+		_say(data.text_key, seconds)
 	await _wait(seconds + 0.4)
 
 

@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://scripts/core/chapter1_director.gd" id="8_director"]
 [ext_resource type="PackedScene" path="res://ui/document/document_view.tscn" id="9_document"]
 [ext_resource type="PackedScene" path="res://ui/notebook/notebook.tscn" id="10_notebook"]
+[ext_resource type="PackedScene" path="res://ui/phone/phone_screen.tscn" id="11_phone"]
 
 [node name="Chapter1" type="Node3D"]
 script = ExtResource("1_main")
@@ -30,6 +31,8 @@ script = ExtResource("4_steps")
 [node name="DocumentView" parent="." instance=ExtResource("9_document")]
 
 [node name="Notebook" parent="." instance=ExtResource("10_notebook")]
+
+[node name="PhoneScreen" parent="." instance=ExtResource("11_phone")]
 
 [node name="PauseMenu" parent="." instance=ExtResource("6_pause")]
 

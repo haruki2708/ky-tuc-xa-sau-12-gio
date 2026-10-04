@@ -137,6 +137,9 @@ func _blocked() -> bool:
 
 
 func _refresh_visibility() -> void:
+	# The scene may be freeing (Player._exit_tree still emits player_hidden).
+	if not is_inside_tree():
+		return
 	var blocked := _blocked()
 	$Root/Phone.visible = state.raised and not blocked
 	$Root/Phone/Content.visible = state.battery > 0.0

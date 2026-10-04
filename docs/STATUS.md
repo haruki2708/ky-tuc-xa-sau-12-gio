@@ -53,8 +53,8 @@
 | T-152 Quản lý, xác đổi tư thế khi không bị nhìn | A | **giao**, hạn 10-06 |
 | T-153 Phòng 407 chi tiết, máu me, giường bị chém | B | **done**, đã merge |
 | T-154 Mô hình quản lý, xác ba bạn, đạo cụ | B | **giao**, hạn 10-06 |
-| T-155 Điện thoại và cuộc gọi nhóm, chọn chương, cảnh báo nội dung | D | todo, hạn 10-05 |
-| T-156 Sổ quy tắc, bảng sống sót, màn chết, panel khóa số | D | todo (sau T-155), hạn 10-06 |
+| T-155 Điện thoại và cuộc gọi nhóm, chọn chương, cảnh báo nội dung | D | **done**, đã merge |
+| T-156 Sổ quy tắc, bảng sống sót, màn chết, panel khóa số | D | **giao**, hạn 10-06 |
 | T-157 Bot chương 1, FPS, lưu game | C | todo: công cụ hạn 10-05, chạy trên bản ghép 10-07 |
 | T-158 Âm thanh chương 1 | E | **done**, đã merge; chờ chủ dự án nghe |
 | T-159 Giọng loa, quản lý, thành viên cuộc gọi | E (**Claude làm thay**) | **done**; chờ chủ dự án nghe (giọng eSpeak) |
