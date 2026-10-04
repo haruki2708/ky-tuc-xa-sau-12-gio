@@ -60,4 +60,9 @@ Ngoài ra cần tiếng động cho thực thể nghe, điện thoại (nhóm ch
 - [ ] `pwsh tools/test.ps1` và `pwsh tools/check.ps1` PASS
 - [ ] Handoff: API, cách gắn vào phòng 407 (cho integrator), cách thử, phần chưa thử
 
+## Bổ sung từ integrator (2026-10-04, sau khi viết luồng chương)
+- Đặt tên scene đúng: `res://scenes/interaction/bunk_spot.tscn` (property `bed_number`) và `res://scenes/interaction/puzzle_station.tscn` (property `puzzle_id`). Luồng chương tự tìm hai đường dẫn này.
+- Điện thoại gắn vào Player với **tên node `PhoneItem`**; có `set_battery(percent)`, `set_in_call(on)`, `charge(percent_per_second)`.
+- `Player.lie_on(spot)` phải đặt cờ `GameState.player_bed` ngay khi nằm xong.
+
 ## Handoff (agent điền)

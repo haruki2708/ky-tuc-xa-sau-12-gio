@@ -51,4 +51,8 @@
 - [ ] `pwsh tools/test.ps1` và `pwsh tools/check.ps1` PASS
 - [ ] Handoff: API, cách dàn cảnh mẫu, phần chưa thử, yêu cầu cho lane B/E/integrator
 
+## Bổ sung từ integrator (2026-10-04, sau khi viết luồng chương)
+- Scene đúng đường dẫn `res://scenes/entity/manager.tscn`.
+- Ngoài `slashed(target)` mỗi nhát, phát thêm signal **`slash_finished`** khi chém xong cả loạt; `walk_to()` kết thúc bằng signal `arrived`. Luồng chương chờ hai signal này (tối đa 8 giây).
+
 ## Handoff (agent điền)

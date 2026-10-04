@@ -47,4 +47,8 @@ Tầng 5, 6 và nhà A đối diện để sang chương 3.
 - [ ] `CREDITS.md` đủ nguồn
 - [ ] Handoff: tên anchor và API
 
+## Bổ sung từ integrator (2026-10-04, sau khi viết luồng chương)
+- Đặt `set_blood_stage(stage)` và `set_slashed(amount)` **trên node gốc `Room407`** (script của `room_407.tscn`). Luồng chương gọi `Floor4/Room407.set_blood_stage(...)`.
+- `set_unlocked(bool)` đặt trên node `Room407/Locker_Dat` (tủ có sẵn trong phòng).
+
 ## Handoff (agent điền)

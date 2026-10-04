@@ -47,4 +47,9 @@ Chương 1 diễn ra trong một căn phòng; âm thanh vẽ ra mọi thứ bên
 - [ ] `CREDITS.md` đủ nguồn và công cụ
 - [ ] Handoff: danh sách âm và LUFS, API, cách nghe thử
 
+## Bổ sung từ integrator (2026-10-04, sau khi viết luồng chương)
+- Bộ âm quản lý "từ xa": node vào **group `manager_audio`**, có `place_at(position: Vector3)`.
+- Tiếng la hét: node vào **group `screams`**, có `play_wave(origin: Vector3, count: int, spread_seconds: float)`.
+- Hai node này nên được tạo sẵn trong một scene, ví dụ `res://audio/entities/ch1_audio.tscn`, để integrator instance vào `chapter1.tscn`.
+
 ## Handoff (agent điền)

@@ -40,7 +40,7 @@ Ký hiệu: **Loa** = loa trường · **Quản lý** · *(trong phòng)* = gi�
 - **04:05** 💭 Suýt nữa thì… Tay mình vẫn còn trên nắm cửa.
 ## Vòng 1 — 4:05 đến 5:00: bị giam trong phòng
 
-- **04:05** `[Từ đây bước qua ngưỡng cửa là chết (DEATH_LEFT_ROOM). Checkpoint `r1_start`.]`
+- **04:05** `[Từ đây bước qua ngưỡng cửa là chết (DEATH_LEFT_ROOM). Checkpoint `ch1_r1`.]`
 - **04:06** 💭 Phòng bên cạnh không ai trả lời. Không một tiếng động.
 - **04:10** `[Điện thoại: cuộc gọi từ Người lạ (`stranger_call`). Bắt máy thì vào cuộc gọi nhóm.]`
 - **04:10** 📞 **Minh Nhật · 203:** Alo? Nghe được không? Tôi là Minh Nhật, phòng 203 nhà B.
@@ -80,7 +80,7 @@ Ký hiệu: **Loa** = loa trường · **Quản lý** · *(trong phòng)* = gi�
 - **05:00** **Loa:** Vòng hai. Trong một giờ tới, nhà trường kiểm tra phòng. Mỗi tòa nhà có một quản lý. Sinh viên hãy nằm yên trên giường và hợp tác với công việc của quản lý.
 - **05:01** 📞 **Minh Nhật · 203:** Lên giường hết đi. Nhanh lên.
 - **05:01** 💭 Phải lên giường trước khi ông ta tới.
-- **05:01** `[Checkpoint `r2_start`. Tiếng dao kéo lê bắt đầu vọng từ tầng một.]`
+- **05:01** `[Checkpoint `ch1_r2`. Tiếng dao kéo lê bắt đầu vọng từ tầng một.]`
 - **05:05** 📞 **Hùng · 102:** Có người gõ cửa phòng tao… Quản lý tới rồi.
 - **05:05** **Quản lý:** Đinh Xuân Hùng. Có ở đây không?
 - **05:05** 📞 **Hùng · 102:** Dạ… dạ có. Em đây ạ.
@@ -109,7 +109,7 @@ Ký hiệu: **Loa** = loa trường · **Quản lý** · *(trong phòng)* = gi�
 - **05:33** `[Sơn, Vinh và những người im lặng lần lượt xám tên.]`
 - **05:38** 📞 **Minh Nhật · 203:** Trong nhóm… chỉ còn tôi với cậu.
 - **05:40** 💭 Tiếng kéo dao… ở ngay tầng này.
-- **05:43** `[Checkpoint `r2_manager` (người chơi phải đang nằm trên một giường). Tiếng gõ cửa 407. Quản lý mở cửa, vào phòng.]`
+- **05:43** `[Checkpoint `ch1_r2_manager` (người chơi phải đang nằm trên một giường). Tiếng gõ cửa 407. Quản lý mở cửa, vào phòng.]`
 - **05:43** 💭 Quy tắc chỉ nói "nằm yên trên giường". Nó không nói giường của ai.
 - **05:43** 💭 Ông ta sẽ hỏi giường số ba, giường của mình. Nếu mình không nằm ở đó…
 - **05:43** `[HINT_1 chỉ hiện từ lần chết thứ hai ở cảnh này, HINT_2 từ lần thứ ba.]`

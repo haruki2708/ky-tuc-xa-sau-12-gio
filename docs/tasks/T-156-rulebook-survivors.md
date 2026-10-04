@@ -46,4 +46,7 @@ Theo thiết kế, lời giải nằm ở **câu chữ** của quy tắc, nên n
 - [ ] Ảnh chụp: sổ quy tắc, bảng sống sót, màn chết, panel khóa số (vi và en)
 - [ ] Handoff: API, yêu cầu cho integrator
 
+## Bổ sung từ integrator (2026-10-04, sau khi viết luồng chương)
+- Màn chết: node của màn chết vào **group `death_screen`** và có hàm `show_death(reason_key: String)`. Luồng chương tìm node này; không có thì dùng thẻ đen tạm. Lý do chết là các key `DEATH_STAYED_IN_BED`, `DEATH_LEFT_ROOM`, `DEATH_NOT_IN_BED`, `DEATH_OWN_BED`, `DEATH_HEARD` (xem `docs/design/CH1_SCRIPT.md`).
+
 ## Handoff (agent điền)
