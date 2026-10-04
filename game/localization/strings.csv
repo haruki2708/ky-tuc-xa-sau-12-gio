@@ -345,3 +345,14 @@ UI_PUZZLE_HINT,Xem gợi ý,View hint
 UI_PUZZLE_CLOSE,Đóng (Esc),Close (Esc)
 UI_PUZZLE_WRONG,Khóa chưa mở. Thử lại.,Still locked. Try again.
 UI_PUZZLE_SOLVED,Khóa đã mở.,Unlocked.
+PROMPT_WALL_KNOCK,Gõ tường,Knock on wall
+PROMPT_SEARCH,Lục đồ,Search
+PROMPT_SEARCH_LOCKER,Mở tủ Việt,Open Việt's locker
+PROMPT_SEARCH_MATTRESS,Lật nệm,Turn over mattress
+PROMPT_SEARCH_BIN,Lục sọt rác,Search wastebasket
+PROMPT_POWER_ON,Bật công tắc,Switch on
+PROMPT_POWER_OFF,Tắt công tắc,Switch off
+PROMPT_CABLE_PICK_UP,Cầm dây mạng,Pick up network cable
+PROMPT_CABLE_PLUG,Cắm dây mạng,Plug in network cable
+PROMPT_CABLE_UNPLUG,Rút dây mạng,Unplug network cable
+UI_CH1V2_TEST_HELP,E: tương tác | T: ngắt ổ điện 20 giây | 1/2/3: thử cảnh chết | R: tải lại,E: interact | T: trip power for 20s | 1/2/3: preview death | R: reload
