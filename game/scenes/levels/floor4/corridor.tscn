@@ -2137,21 +2137,25 @@ rotation_degrees = Vector3(0, 0, 0)
 color = Color(0.3, 0.42, 0.33, 1)
 
 [node name="Slippers_0" parent="." instance=ExtResource("e7")]
+visible = false
 position = Vector3(30.5, 0, 0.35)
 rotation_degrees = Vector3(0, -3, 0)
 color = Color(0.16, 0.3, 0.45, 1)
 
 [node name="Slippers_1" parent="." instance=ExtResource("e7")]
+visible = false
 position = Vector3(30.85, 0, 0.35)
 rotation_degrees = Vector3(0, 3, 0)
 color = Color(0.5, 0.5, 0.47, 1)
 
 [node name="Slippers_2" parent="." instance=ExtResource("e7")]
+visible = false
 position = Vector3(31.2, 0, 0.35)
 rotation_degrees = Vector3(0, -3, 0)
 color = Color(0.2, 0.34, 0.24, 1)
 
 [node name="Slippers_3" parent="." instance=ExtResource("e7")]
+visible = false
 position = Vector3(31.55, 0, 0.35)
 rotation_degrees = Vector3(0, 3, 0)
 color = Color(0.12, 0.12, 0.13, 1)

@@ -11,3 +11,4 @@ func sync_door_anchor() -> void:
 	var anchor := $Anchors/RulesPaper407 as Marker3D
 	anchor.global_transform = paper.global_transform
 	anchor.rotate_object_local(Vector3.UP, PI)
+	$DoorGap.visible = not $Door407.is_open

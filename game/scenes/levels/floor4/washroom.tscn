@@ -11,6 +11,8 @@
 [ext_resource type="Script" path="res://scripts/audio/reverb_zone.gd" id="e9"]
 [ext_resource type="Script" path="res://scripts/audio/ambient_zone.gd" id="e10"]
 
+[ext_resource type="PackedScene" path="res://scenes/levels/room407/washroom_details.tscn" id="t153_washroom"]
+
 [sub_resource type="BoxShape3D" id="s1"]
 size = Vector3(6, 0.2, 5)
 
@@ -410,3 +412,5 @@ emitters = Array[NodePath]([NodePath("../WashroomLight/LightHum"), NodePath("../
 
 [node name="Shape" type="CollisionShape3D" parent="AmbientZone"]
 shape = SubResource("s33")
+
+[node name="Details" parent="." instance=ExtResource("t153_washroom")]
