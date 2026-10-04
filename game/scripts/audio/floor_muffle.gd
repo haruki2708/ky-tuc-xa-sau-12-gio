@@ -7,6 +7,9 @@ extends Node
 @export var floor_base_y: float = 0.0
 @export var listener: Node3D
 @export var loss_per_floor_db: float = 8.0
+## Optional source-local occlusion, independent of the floor gap (T-164 wall taps).
+@export var maximum_cutoff_hz: float = 20500.0
+@export var extra_loss_db: float = 0.0
 
 var floor_gap: int = 0
 var _source: AudioStreamPlayer3D
@@ -59,10 +62,12 @@ func _apply_gap(gap: int) -> void:
 	if index < 0 or _filter == null:
 		return
 	floor_gap = gap
-	_filter.cutoff_hz = 20500.0 if gap == 0 else maxf(450.0, 2200.0 / gap)
-	AudioServer.set_bus_effect_enabled(index, 0, gap > 0)
+	var ceiling := clampf(maximum_cutoff_hz, 100.0, 20500.0) if is_finite(maximum_cutoff_hz) else 20500.0
+	_filter.cutoff_hz = minf(ceiling, 20500.0 if gap == 0 else maxf(450.0, 2200.0 / gap))
+	AudioServer.set_bus_effect_enabled(index, 0, gap > 0 or ceiling < 20500.0)
 	var loss := clampf(loss_per_floor_db, 0.0, 20.0) if is_finite(loss_per_floor_db) else 8.0
-	AudioServer.set_bus_volume_db(index, -loss * gap)
+	var extra := clampf(extra_loss_db, 0.0, 40.0) if is_finite(extra_loss_db) else 0.0
+	AudioServer.set_bus_volume_db(index, -loss * gap - extra)
 
 
 func _exit_tree() -> void:
