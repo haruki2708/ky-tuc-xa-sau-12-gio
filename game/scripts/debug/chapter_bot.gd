@@ -24,6 +24,14 @@ func valid_scenarios() -> Array[String]:
 	return ["ch1_good", "ch1_stay_in_bed", "ch1_leave_room", "ch1_own_bed"]
 
 
+func template_path() -> String:
+	return "res://scripts/debug/ch1_scenarios.json"
+
+
+func create_actions() -> Node:
+	return ACTIONS.new()
+
+
 func _run() -> void:
 	started = Time.get_ticks_msec()
 	for arg: String in OS.get_cmdline_user_args():
@@ -46,7 +54,7 @@ func _run() -> void:
 		failure = "chapter profile bindings must be an object"
 		await _finish()
 		return
-	var templates: Variant = JSON.parse_string(FileAccess.get_file_as_string("res://scripts/debug/ch1_scenarios.json"))
+	var templates: Variant = JSON.parse_string(FileAccess.get_file_as_string(template_path()))
 	if not templates is Dictionary or not templates.has(scenario):
 		failure = "chapter scenario template missing or invalid"
 		await _finish()
@@ -54,7 +62,7 @@ func _run() -> void:
 	var bound_plan: Variant = bind_template(templates[scenario], profile.get("bindings", {}), missing_bindings)
 	if missing_bindings.is_empty():
 		profile["scenarios"] = {scenario: bound_plan}
-	actions = ACTIONS.new()
+	actions = create_actions()
 	add_child(actions)
 	EventBus.player_failed.connect(func(id: StringName) -> void: failed_rules.append(id))
 	EventBus.checkpoint_loaded.connect(func(id: StringName) -> void: loaded_checkpoints.append(id))
@@ -91,13 +99,13 @@ func _run() -> void:
 		for command: Dictionary in [{"op": "bed", "number": 3}, {"op": "leave_bed"}, {"op": "breath", "seconds": 0.1}, {"op": "phone", "raised": true}, {"op": "answer_call"}]:
 			if actions.component("bunk_spot.gd") == null and command.op in ["bed", "leave_bed", "breath"] or actions.component("phone_item.gd") == null and command.op == "phone" or actions.component("phone_screen.gd") == null and command.op == "answer_call":
 				_record(await actions.execute(command))
-		_skip("T-150 chapter flow bindings unavailable: scenario=" + scenario)
+		_skip("chapter flow bindings unavailable (T-150/T-160): scenario=" + scenario)
 		_skip("missing bindings: " + ", ".join(missing_bindings))
 		if actions.component("puzzle_station.gd") == null:
 			_skip("T-151 puzzle_station is not integrated")
 		if actions.component("phone_screen.gd") == null:
 			_skip("T-155 chat_choice_made receiver is not integrated")
-		_skip("T-155 battery/history checkpoint integration and locked chapter selection are not bound")
+		_skip("bound chapter scenario not executed; no completion claimed")
 		await _finish()
 		return
 	var plan: Variant = plans[scenario]
@@ -122,7 +130,7 @@ func _run() -> void:
 			break
 		await _step(step)
 	if failure.is_empty() and not plan_incomplete:
-		if scenario == "ch1_good":
+		if plan.get("outcome", "complete" if scenario == "ch1_good" else "death") == "complete":
 			if not await _until(func() -> bool: return 1 in completed_chapters, "chapter_finished(1)"):
 				await _finish()
 				return
@@ -263,8 +271,12 @@ func _verify_save_reload() -> void:
 
 func _process(delta: float) -> void:
 	super._process(delta)
-	if not finishing and started > 0 and Time.get_ticks_msec() - started > segment_timeout * 6000.0 and failure.is_empty():
+	if not finishing and started > 0 and Time.get_ticks_msec() - started > total_timeout() * 1000.0 and failure.is_empty():
 		failure = "chapter observer timeout"
+
+
+func total_timeout() -> float:
+	return segment_timeout * 6.0
 
 
 func _until(condition: Callable, label: String) -> bool:

@@ -1,0 +1,63 @@
+{
+  "scene": "res://scenes/main/chapter1.tscn",
+  "director": "Chapter1Director",
+  "chapter_select_scene": "res://ui/title/title_screen.tscn",
+  "chapter2_button_path": "Chapters/Content/Chapter2",
+  "bindings": {
+    "opening_segment": "prologue",
+    "toilet_position": null,
+    "room_position": null,
+    "round1_segment": "r1",
+    "network_lost_flag": null,
+    "network_restored_flag": null,
+    "door_threat_flag": null,
+    "door_safe_flag": null,
+    "wall_prompt_flag": null,
+    "wall_answer_flag": null,
+    "round2_segment": "r2",
+    "report_complete_flag": null,
+    "manager_segment": null,
+    "listen_segment": null,
+    "solution_choice": "tell",
+    "power_tripped_flag": null,
+    "round1_checkpoint": "ch1_r1",
+    "death_ui_path": "DeathScreen/Root",
+    "round2_checkpoint": "ch1_r2"
+  },
+  "actions": {
+    "wall_taps": null,
+    "power_switch_1": null,
+    "power_switch_2": null,
+    "power_switch_3": null,
+    "cable_blue": null,
+    "cable_gray": null,
+    "latch": null,
+    "search_viet_locker": null,
+    "search_phuc_mattress": null,
+    "search_trash": null,
+    "desk_lamp": null,
+    "camera_tab": null,
+    "map_tab": null,
+    "keypad": null,
+    "charge": null
+  },
+  "jumps": {
+    "prologue": "prologue",
+    "r1": "r1",
+    "network": null,
+    "wall": null,
+    "door": null,
+    "r2": "r2",
+    "manager": "r2_manager",
+    "advice": null
+  },
+  "performance": {
+    "views": {
+      "door": null,
+      "bed": null,
+      "washroom": null,
+      "balcony": null
+    },
+    "camera_view": null
+  }
+}

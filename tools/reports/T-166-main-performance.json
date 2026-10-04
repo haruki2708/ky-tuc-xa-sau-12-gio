@@ -1,0 +1,26 @@
+{
+  "cpu": "AMD Ryzen 5 5600H with Radeon Graphics",
+  "godot": "4.7.2-stable (official)",
+  "gpu": "NVIDIA GeForce RTX 3050 Laptop GPU",
+  "max_fps": 0,
+  "renderer": "forward_plus",
+  "resolution": [
+    1280,
+    720
+  ],
+  "sample_frames_per_view": 240,
+  "scope": "chapter 1 v2 profile; story disabled; fixed views; camera tab uses real UI",
+  "skipped": [
+    "T-162/T-165 view not bound: door",
+    "T-162/T-165 view not bound: bed",
+    "T-162/T-165 view not bound: washroom",
+    "T-162/T-165 view not bound: balcony",
+    "T-162/T-165 view not bound: camera"
+  ],
+  "status": "SKIP",
+  "views": [],
+  "vsync": false,
+  "warmup_frames_per_view": 90,
+  "base_commit": "c97874e",
+  "run_at": "2026-10-05"
+}

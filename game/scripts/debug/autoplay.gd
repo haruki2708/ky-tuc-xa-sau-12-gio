@@ -20,6 +20,10 @@ var _active: bool = false
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
+	if OS.is_debug_build() or "--qa-menu" in OS.get_cmdline_user_args():
+		var menu := preload("res://scripts/debug/qa_menu.gd").new()
+		menu.name = "QAMenu"
+		add_child(menu)
 	# Observe calls/choices before the first scheduled command; otherwise an
 	# answer_call event would miss an already ringing phone.
 	_commands = CHAPTER_ACTIONS.new()

@@ -1,19 +1,27 @@
 param(
-    [ValidateSet('correct', 'deviant', 'mirror', 'ch1_good', 'ch1_stay_in_bed', 'ch1_leave_room', 'ch1_own_bed', 'all')][string]$Scenario = 'all',
+    [ValidateSet('correct', 'deviant', 'mirror', 'ch1_good', 'ch1_stay_in_bed', 'ch1_leave_room', 'ch1_own_bed', 'ch1v2_good', 'ch1v2_wrong_switch', 'ch1v2_door_late', 'ch1v2_lamp_on', 'ch1v2_wrong_advice', 'all')][string]$Scenario = 'all',
     [ValidateSet(0, 1)][int]$Chapter = 0,
     [string]$ChapterProfile,
     [switch]$RequireComplete,
     [switch]$Performance,
+    [switch]$V2,
     [ValidateRange(20, 10000)][int]$PerfFrames = 240,
     [ValidateRange(1, 10000)][int]$WarmupFrames = 90,
     [switch]$Capture,
     [ValidateRange(0.005, 1.0)][double]$TimeScale = 0.05,
-    [ValidateRange(5, 120)][int]$SegmentTimeout = 45
+    [ValidateRange(5, 3600)][int]$SegmentTimeout = 45
 )
 $ErrorActionPreference = 'Stop'
 . "$PSScriptRoot/godot-path.ps1"
 if ($Chapter -eq 1 -and -not $PSBoundParameters.ContainsKey('SegmentTimeout')) { $SegmentTimeout = 120 }
 $allowed = if ($Chapter -eq 1) { @('ch1_good', 'ch1_stay_in_bed', 'ch1_leave_room', 'ch1_own_bed') } else { @('correct', 'deviant', 'mirror') }
+if ($V2) {
+    $Chapter = 1
+    $allowed = @('ch1v2_good', 'ch1v2_wrong_switch', 'ch1v2_door_late', 'ch1v2_lamp_on', 'ch1v2_wrong_advice')
+    if (-not $ChapterProfile) { $ChapterProfile = Join-Path $PSScriptRoot 'ch1v2-profile.json' }
+    if (-not $PSBoundParameters.ContainsKey('TimeScale')) { $TimeScale = 1.0 }
+    if (-not $PSBoundParameters.ContainsKey('SegmentTimeout')) { $SegmentTimeout = 1800 }
+}
 if (-not $Performance -and $Scenario -ne 'all' -and $Scenario -notin $allowed) { throw 'Scenario does not belong to selected Chapter (0 = legacy demo, 1 = chapter 1).' }
 if ($ChapterProfile) { $ChapterProfile = (Resolve-Path -LiteralPath $ChapterProfile).Path }
 $runRoot = Join-Path $RepoRoot ('build/playthrough/' + [guid]::NewGuid().ToString('N'))
@@ -38,7 +46,7 @@ foreach ($case in $scenarios) {
     try {
         $env:APPDATA = $dataDir
         $env:QA_PLAYTHROUGH_ROOT = $dataDir.Replace('\', '/')
-        $scene = if ($Performance) { 'performance_bot' } elseif ($Chapter -eq 1) { 'chapter_bot' } else { 'playthrough_bot' }
+        $scene = if ($Performance) { 'performance_bot' } elseif ($V2) { 'ch1v2_bot' } elseif ($Chapter -eq 1) { 'chapter_bot' } else { 'playthrough_bot' }
         $arguments = @('--path', ('"' + $GameDir + '"'), "res://scripts/debug/$scene.tscn", '--max-fps', $(if ($Performance) { '0' } else { '60' }))
         $arguments += if ($Capture -or $Performance) { @('--windowed', '--resolution', '1280x720') } else { @('--headless') }
         $scale = $TimeScale.ToString([Globalization.CultureInfo]::InvariantCulture)
@@ -46,6 +54,7 @@ foreach ($case in $scenarios) {
         $arguments += '"--report=' + (Join-Path $caseDir 'report.json').Replace('\', '/') + '"'
         if ($ChapterProfile) { $arguments += '"--chapter-profile=' + $ChapterProfile.Replace('\', '/') + '"' }
         if ($Performance) { $arguments += @("--perf-frames=$PerfFrames", "--warmup-frames=$WarmupFrames") }
+        if ($V2) { $arguments += '--ch1v2' }
         if ($Capture) {
             $images = Join-Path $caseDir 'captures'
             New-Item -ItemType Directory -Path $images -Force | Out-Null
@@ -59,7 +68,7 @@ foreach ($case in $scenarios) {
                 $process.Kill($true)
                 break
             }
-            if ($watch.Elapsed.TotalSeconds -gt (6 * $SegmentTimeout + 15)) {
+            if ($watch.Elapsed.TotalSeconds -gt $(if ($V2 -and -not $Performance) { 4515 } else { 6 * $SegmentTimeout + 15 })) {
                 $process.Kill($true)
                 $timeout = $true
                 break
@@ -70,7 +79,7 @@ foreach ($case in $scenarios) {
         $watch.Stop()
         $output = @(Get-Content -LiteralPath (Join-Path $caseDir 'stdout.log'), (Join-Path $caseDir 'stderr.log'))
         $output | Write-Host
-        $caseSkipped = $Chapter -eq 1 -and -not $Performance -and ($output -match "^PLAYTHROUGH_RESULT: SKIP scenario=$case ")
+        $caseSkipped = ($output -match "^PLAYTHROUGH_RESULT: SKIP scenario=$case ")
         if ($timeout -or $process.ExitCode -ne 0 -or ($output -match '\bERROR\b') -or (-not $caseSkipped -and -not ($output -match "^PLAYTHROUGH_RESULT: PASS scenario=$case "))) {
             $failures++
             Write-Host "PLAYTHROUGH_RESULT: FAIL scenario=$case launcher exit=$($process.ExitCode) timeout=$timeout; inspect $caseDir"
@@ -87,7 +96,13 @@ foreach ($case in $scenarios) {
         $env:QA_PLAYTHROUGH_ROOT = $previousQaRoot
         $resolved = (Resolve-Path -LiteralPath $dataDir).Path
         if ($resolved -ne [IO.Path]::GetFullPath((Join-Path $caseDir 'userdata')) -or -not $resolved.StartsWith([IO.Path]::GetFullPath($runRoot) + [IO.Path]::DirectorySeparatorChar)) { throw 'Unsafe playthrough cleanup path.' }
-        Remove-Item -LiteralPath $resolved -Recurse -Force
+        for ($attempt = 0; $attempt -lt 5; $attempt++) {
+            try { Remove-Item -LiteralPath $resolved -Recurse -Force; break }
+            catch {
+                if ($attempt -eq 4) { Write-Warning "Temporary userdata retained (file still locked): $resolved" }
+                else { Start-Sleep -Milliseconds 300 }
+            }
+        }
     }
 }
 Write-Host "PLAYTHROUGH_ARTIFACTS: $runRoot"

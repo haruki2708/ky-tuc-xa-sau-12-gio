@@ -87,3 +87,48 @@ App dừng scene/âm thanh rồi chờ 0,25 giây trước khi thoát. Movie Mak
 
 Không bỏ qua ERROR, exit code hoặc timeout của package. Để giữ snapshot chẩn đoán, thêm `-KeepSnapshot`; không có tùy chọn này thì snapshot được dọn trong finally cả khi lệnh lỗi. Lịch sử lỗi Ogg khi thoát ngay được ghi trong Handoff T-124; công cụ hiện dùng App của core để dừng sạch.
 `test.ps1` giữ nguyên tham số nhưng đặt APPDATA riêng cho tiến trình Godot chạy test trong `build/test-userdata/<uuid>`, rồi khôi phục biến môi trường và dọn thư mục ở finally. Cách này tách `user://settings.cfg` giữa các lane/lần chạy; test launcher kiểm chứng đường dẫn thực tế. Không đổi project.godot hay test UI/player. Tham khảo [đường dẫn dữ liệu Godot](https://docs.godotengine.org/en/stable/tutorials/io/data_paths.html).
+
+## T-166: chương 1 bản 2 và menu F9
+
+- Trong chương 1 bản debug, F9 mở/đóng menu thử nhanh. Bản release ẩn menu trừ khi truyền `-- --qa-menu`.
+- Chọn mốc ở phiên chơi thường sẽ mở một tiến trình Godot mới, dùng APPDATA riêng dưới `build/qa-menu/`. Phiên gốc tạm dừng khi menu mở. Không thay checkpoint/progress của phiên gốc. Các tùy chọn bất tử/x4 áp dụng cho phiên thử riêng; đóng phiên thử để trở lại game gốc.
+- Trong phiên QA, mỗi lần nhảy tạo scene mới rồi gọi `Chapter1Director.run_from(stage)`, không chạy chồng coroutine của mốc trước. Menu giữ nguyên trạng thái pause có từ trước.
+- Mốc chưa có trong profile hoặc `Chapter1Director.STAGES` bị vô hiệu hóa. Hiện có prologue/r1/r2/r2_manager. Mất mạng/gõ tường/giữ cửa/cứu Nhật cần T-160 thêm entry point rồi điền `jumps`.
+- Bất tử dùng subclass debug `qa_director.gd` chặn `_die` và `_manager_kills`, ghi `QA_DEATH_SUPPRESSED` (mỗi lý do một lần mỗi scene). Không áp dụng vào scene chơi thường. Khi core đổi pipeline chết, cần kiểm tra lại hai hook này. Chặn chết không tự giải nhiệm vụ; một nhánh truyện có thể kết thúc sớm, dùng F9 nhảy lại để tiếp tục thử.
+- Đáp án lấy từ D-039: 2109, công tắc 2, dây xanh, CO = 13 34. Menu ghi rõ đây là đáp án **bản 2**, không phải xác nhận dữ liệu trên main cũ. Catalog vi/en dành riêng QA được đăng ký lúc chạy, trong phạm vi `scripts/debug/`.
+
+```powershell
+pwsh tools/qa-menu.ps1 -Stage r1
+pwsh tools/qa-menu.ps1 -Smoke
+pwsh tools/playthrough.ps1 -V2 -Scenario all
+pwsh tools/playthrough.ps1 -V2 -Scenario ch1v2_good -RequireComplete
+pwsh tools/playthrough.ps1 -V2 -Performance -RequireComplete
+```
+
+`-V2` tự chọn chương 1 và `tools/ch1v2-profile.json`. Năm case: `ch1v2_good`, `ch1v2_wrong_switch`, `ch1v2_door_late`, `ch1v2_lamp_on`, `ch1v2_wrong_advice`. Thiếu binding/cơ chế => SKIP với lý do; `-RequireComplete` trả exit 2 nếu chỉ còn SKIP. FAIL thật trả exit 1. Bộ cũ vẫn dùng lệnh cũ; chương 1 bản đầu cần `-Chapter 1 -ChapterProfile tools/ch1-profile.json`.
+
+Bot bản 2 mặc định chạy thời gian thật (`TimeScale=1`), timeout mỗi lần đợi 1800 giây, toàn phiên 4500 giây; launcher dừng sau 4515 giây. Có thể đặt `-SegmentTimeout 5..3600`. Không tăng tốc khi cần đo cửa 10 giây, cooldown ổ điện 20 giây, nhịp gõ hoặc nín thở 6 giây. Tua x4 trong menu chỉ dùng khám phá thủ công.
+
+### Điền profile sau khi ghép
+
+- `bindings`: ID segment/cờ và tọa độ thật. Giá trị `null` khiến kịch bản SKIP trước khi chạy; không lấy mốc thời gian suy ra thành ID. Cờ chờ phải là cờ trạng thái tồn tại tới khi bot đọc được, không phải xung một frame.
+- `actions`: đường dẫn tương đối từ scene chương 1. `wall_taps` và `keypad` chỉ cần `{ "path": "..." }`: tường gọi `interact(Player)` và đếm `wall_tapped`; keypad mở trạm thật rồi bấm nút Up của panel, chờ `puzzle_solved`, không tự phát signal giải khóa.
+- Các thao tác khác cần `path`, `method`, `args`, `verify`. `$player` trong args được thay bằng Player; `$on` bằng bool của command. `verify` dùng `flag` (GameState) hoặc `property` (trên target) và `equals`. Khi trạng thái đã đúng, không toggle lại. Không có phương thức thì SKIP; có phương thức nhưng trạng thái không đúng trong 3 giây thì FAIL.
+- Ví dụ adapter cho ổ sạc hiện tại (xác nhận lại sau T-160):
+
+```json
+{"path":"Chapter1Director/ChargerSocket","method":"interact","args":["$player"],"verify":{"flag":"charging","equals":true}}
+```
+
+- Key adapter: `power_switch_1..3`, `cable_blue/gray`, `latch`, `search_viet_locker/phuc_mattress/trash`, `desk_lamp`, `camera_tab`, `map_tab`, `charge`. Dây mạng cần bind API thao tác cầm/cắm thật do T-161 cung cấp; nếu API gồm hai đối tượng, cập nhật adapter sau ghép. Không tự set cờ đã cắm. Switch 3 phải xác nhận cờ **đã chập**, không đòi công tắc còn bật sau `trip()`.
+- `wall_taps`: chuỗi số 1..5, hai số/chữ, ví dụ `13 34`; cách nhau 0,18 giây trong nhóm, 1 giây giữa tọa độ, 2,5 giây giữa chữ, theo đồng hồ thực. Đổi nhịp chỉ sau khi đối chiếu bộ giải mã T-160.
+- Bot đóng giấy sau lục, kiểm tra cờ ghép đủ ba mảnh, mở Sơ đồ/Camera, tắt đèn/điện thoại, nằm giường Việt và nín 5,5 giây ở mốc nghe. Cần xác nhận lịch nhiệm vụ thật: sửa mạng/gõ tường không được khiến bot lỡ cửa 10 giây. Case sai công tắc đợi 20,5 giây trước sửa lại. Case chết kiểm tra lý do, UI và reload scene thật về đầu vòng 1/2.
+- Chưa có binding không có nghĩa là đã chơi hết tám nhiệm vụ. `report.json` ghi status, checks, skipped, thời gian thật và phút game.
+
+### Hiệu năng bản 2
+
+`performance.views` cần bốn mục `door`, `bed`, `washroom`, `balcony`; mỗi mục `{ "eye":[x,y,z], "target":[x,y,z] }` do người ghép lấy từ **phòng mới**. `camera_view` cùng cấu trúc, dùng thêm adapter `actions.camera_tab` để mở tab thật sau `cctv_unlocked` và giơ máy. Không lấy tọa độ phòng cũ thay cho phòng mới.
+
+Bài đo chỉ tính case Camera khi tìm thấy ít nhất năm SubViewport có Camera3D hiện hành, `UPDATE_ALWAYS`, thuộc các node group `cctv_feed`. Không tính viewport gương; không ép bật năm viewport để che lỗi tích hợp. Nếu cách bố trí viewport của core khác hợp đồng trên, cập nhật adapter kiểm kê trước khi đo.
+
+JSON ghi phần cứng, renderer, 1280×720, VSync off, không giới hạn FPS, warmup 90 frame/góc, sample 240 frame/góc, mean FPS, p95 frame ms, max frame ms và `target_met` (mean ≥60). Camera đo cuối sau các góc tĩnh. Scene vẫn có physics/HUD/audio, story tắt để so sánh góc cố định; không phải benchmark đầy đủ luồng truyện. Chạy riêng, không đồng thời chạy Godot/test khác. Mục chưa ghép trả SKIP và không sinh FPS. `-RequireComplete` giúp CI không nhận nhầm SKIP thành hoàn thành.
