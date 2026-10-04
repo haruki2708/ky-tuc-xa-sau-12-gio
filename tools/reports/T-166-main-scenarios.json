@@ -1,0 +1,178 @@
+{
+  "cases": [
+    {
+      "checks": [
+        {
+          "reason": "chapter round-trip through temporary checkpoint (not scene reload)",
+          "status": "PASS"
+        },
+        {
+          "reason": "chapter 2 selection disabled with fresh progress",
+          "status": "PASS"
+        },
+        {
+          "reason": "chapter flow bindings unavailable (T-150/T-160): scenario=ch1v2_good",
+          "status": "SKIP"
+        },
+        {
+          "reason": "missing bindings: toilet_position, room_position, network_lost_flag, network_restored_flag, door_threat_flag, door_safe_flag, wall_prompt_flag, wall_answer_flag, report_complete_flag, manager_segment, listen_segment",
+          "status": "SKIP"
+        },
+        {
+          "reason": "bound chapter scenario not executed; no completion claimed",
+          "status": "SKIP"
+        }
+      ],
+      "game_minutes": 0,
+      "real_seconds": 0.322,
+      "reason": "",
+      "scenario": "ch1v2_good",
+      "skipped": [
+        "chapter flow bindings unavailable (T-150/T-160): scenario=ch1v2_good",
+        "missing bindings: toilet_position, room_position, network_lost_flag, network_restored_flag, door_threat_flag, door_safe_flag, wall_prompt_flag, wall_answer_flag, report_complete_flag, manager_segment, listen_segment",
+        "bound chapter scenario not executed; no completion claimed"
+      ],
+      "status": "SKIP"
+    },
+    {
+      "checks": [
+        {
+          "reason": "chapter round-trip through temporary checkpoint (not scene reload)",
+          "status": "PASS"
+        },
+        {
+          "reason": "chapter 2 selection disabled with fresh progress",
+          "status": "PASS"
+        },
+        {
+          "reason": "chapter flow bindings unavailable (T-150/T-160): scenario=ch1v2_wrong_switch",
+          "status": "SKIP"
+        },
+        {
+          "reason": "missing bindings: toilet_position, room_position, network_lost_flag, power_tripped_flag, network_restored_flag, door_threat_flag, door_safe_flag, wall_prompt_flag, wall_answer_flag, report_complete_flag, manager_segment, listen_segment",
+          "status": "SKIP"
+        },
+        {
+          "reason": "bound chapter scenario not executed; no completion claimed",
+          "status": "SKIP"
+        }
+      ],
+      "game_minutes": 0,
+      "real_seconds": 0.312,
+      "reason": "",
+      "scenario": "ch1v2_wrong_switch",
+      "skipped": [
+        "chapter flow bindings unavailable (T-150/T-160): scenario=ch1v2_wrong_switch",
+        "missing bindings: toilet_position, room_position, network_lost_flag, power_tripped_flag, network_restored_flag, door_threat_flag, door_safe_flag, wall_prompt_flag, wall_answer_flag, report_complete_flag, manager_segment, listen_segment",
+        "bound chapter scenario not executed; no completion claimed"
+      ],
+      "status": "SKIP"
+    },
+    {
+      "checks": [
+        {
+          "reason": "chapter round-trip through temporary checkpoint (not scene reload)",
+          "status": "PASS"
+        },
+        {
+          "reason": "chapter 2 selection disabled with fresh progress",
+          "status": "PASS"
+        },
+        {
+          "reason": "chapter flow bindings unavailable (T-150/T-160): scenario=ch1v2_door_late",
+          "status": "SKIP"
+        },
+        {
+          "reason": "missing bindings: toilet_position, room_position, network_lost_flag, network_restored_flag, door_threat_flag",
+          "status": "SKIP"
+        },
+        {
+          "reason": "bound chapter scenario not executed; no completion claimed",
+          "status": "SKIP"
+        }
+      ],
+      "game_minutes": 0,
+      "real_seconds": 0.315,
+      "reason": "",
+      "scenario": "ch1v2_door_late",
+      "skipped": [
+        "chapter flow bindings unavailable (T-150/T-160): scenario=ch1v2_door_late",
+        "missing bindings: toilet_position, room_position, network_lost_flag, network_restored_flag, door_threat_flag",
+        "bound chapter scenario not executed; no completion claimed"
+      ],
+      "status": "SKIP"
+    },
+    {
+      "checks": [
+        {
+          "reason": "chapter round-trip through temporary checkpoint (not scene reload)",
+          "status": "PASS"
+        },
+        {
+          "reason": "chapter 2 selection disabled with fresh progress",
+          "status": "PASS"
+        },
+        {
+          "reason": "chapter flow bindings unavailable (T-150/T-160): scenario=ch1v2_lamp_on",
+          "status": "SKIP"
+        },
+        {
+          "reason": "missing bindings: toilet_position, room_position, network_lost_flag, network_restored_flag, door_threat_flag, door_safe_flag, wall_prompt_flag, wall_answer_flag, report_complete_flag, manager_segment",
+          "status": "SKIP"
+        },
+        {
+          "reason": "bound chapter scenario not executed; no completion claimed",
+          "status": "SKIP"
+        }
+      ],
+      "game_minutes": 0,
+      "real_seconds": 0.31,
+      "reason": "",
+      "scenario": "ch1v2_lamp_on",
+      "skipped": [
+        "chapter flow bindings unavailable (T-150/T-160): scenario=ch1v2_lamp_on",
+        "missing bindings: toilet_position, room_position, network_lost_flag, network_restored_flag, door_threat_flag, door_safe_flag, wall_prompt_flag, wall_answer_flag, report_complete_flag, manager_segment",
+        "bound chapter scenario not executed; no completion claimed"
+      ],
+      "status": "SKIP"
+    },
+    {
+      "checks": [
+        {
+          "reason": "chapter round-trip through temporary checkpoint (not scene reload)",
+          "status": "PASS"
+        },
+        {
+          "reason": "chapter 2 selection disabled with fresh progress",
+          "status": "PASS"
+        },
+        {
+          "reason": "chapter flow bindings unavailable (T-150/T-160): scenario=ch1v2_wrong_advice",
+          "status": "SKIP"
+        },
+        {
+          "reason": "missing bindings: toilet_position, room_position, network_lost_flag, network_restored_flag, door_threat_flag, door_safe_flag, wall_prompt_flag, wall_answer_flag, report_complete_flag, manager_segment, listen_segment",
+          "status": "SKIP"
+        },
+        {
+          "reason": "bound chapter scenario not executed; no completion claimed",
+          "status": "SKIP"
+        }
+      ],
+      "game_minutes": 0,
+      "real_seconds": 0.358,
+      "reason": "",
+      "scenario": "ch1v2_wrong_advice",
+      "skipped": [
+        "chapter flow bindings unavailable (T-150/T-160): scenario=ch1v2_wrong_advice",
+        "missing bindings: toilet_position, room_position, network_lost_flag, network_restored_flag, door_threat_flag, door_safe_flag, wall_prompt_flag, wall_answer_flag, report_complete_flag, manager_segment, listen_segment",
+        "bound chapter scenario not executed; no completion claimed"
+      ],
+      "status": "SKIP"
+    }
+  ],
+  "exit_code": 2,
+  "run_at": "2026-10-05",
+  "command": "pwsh tools/playthrough.ps1 -V2 -Scenario all -RequireComplete",
+  "base_commit": "c97874e"
+}
