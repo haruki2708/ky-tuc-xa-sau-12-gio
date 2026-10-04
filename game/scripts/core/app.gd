@@ -11,10 +11,13 @@ extends Node
 
 const AUDIO_DRAIN_SECONDS: float = 0.25
 const QUIT_AFTER_ARG := "--quit-after-frames="
-const GAME_SCENE := "res://scenes/main/main.tscn"
+## Chapter 1 (T-150). The old demo night lives in res://scenes/main/main.tscn
+## until it is removed after chapter 1.
+const GAME_SCENE := "res://scenes/main/chapter1.tscn"
 ## Lane D's title screen (wave 3). Until it exists, the game starts straight in.
 const TITLE_SCENE := "res://ui/title/title_screen.tscn"
 const STORY_DIRECTOR := preload("res://scripts/core/story_director.gd")
+const CHAPTER_1_DIRECTOR := preload("res://scripts/core/chapter1_director.gd")
 
 var _quitting: bool = false
 
@@ -43,7 +46,10 @@ func has_saved_game() -> bool:
 
 ## Starts the night from the beginning, or from the last checkpoint.
 func start_game(continue_saved: bool = false) -> void:
-	STORY_DIRECTOR.resume_checkpoint = Checkpoint.peek_id() if continue_saved else &""
+	var saved := Checkpoint.peek_id() if continue_saved else &""
+	# Only chapter checkpoints resume; an old demo save starts chapter 1 afresh.
+	CHAPTER_1_DIRECTOR.resume_checkpoint = saved if String(saved).begins_with("ch1_") else &""
+	STORY_DIRECTOR.resume_checkpoint = &""
 	STORY_DIRECTOR.carry_deviation = 0
 	get_tree().paused = false
 	get_tree().change_scene_to_file(GAME_SCENE)

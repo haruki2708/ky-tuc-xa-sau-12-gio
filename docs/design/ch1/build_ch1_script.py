@@ -223,9 +223,29 @@ DOCUMENTS = {
         ("Học xong thì về quê làm thầy giáo nghe con. Ba mẹ.", "Finish school and come home to teach, son. Mom and Dad."),
     ]),
 }
+# Rule-book lines (RuleSet res://data/rules/ch1.tres): id, script key, situation, action.
+# The chapter director judges deaths itself; these lines exist for the notebook.
+RULE_LINES = [
+    ("ch1_general_1", "GENERAL_1", "rules_heard", "obey"),
+    ("ch1_general_2", "GENERAL_2", "new_rule", "old_rule_expires"),
+    ("ch1_general_3", "GENERAL_3", "leave_room", "stay_in_room"),
+    ("ch1_general_4", "GENERAL_4", "attack_staff", "never_attack"),
+    ("ch1_general_5", "GENERAL_5", "each_hour", "survive_five_hours"),
+    ("ch1_r2", "R2", "room_check", "stay_still_in_bed"),
+]
+# Interface text used by the chapter flow (prompts, cards).
+UI_ROWS = [
+    ("PROMPT_CH1_LIE", "Nằm lên giường", "Lie down on the bed"),
+    ("PROMPT_CH1_GET_UP", "Rời giường", "Get up"),
+    ("PROMPT_CH1_CHARGE", "Cắm sạc điện thoại", "Plug in the phone"),
+    ("PROMPT_CH1_LOCKER", "Mở tủ của Đạt", "Open Đạt's locker"),
+    ("UI_CH1_DEATH_TITLE", "Bạn đã chết", "You died"),
+    ("UI_CH1_SURVIVORS", "Số sinh viên còn sống: %d", "Students still alive: %d"),
+    ("UI_CH1_END", "Hết chương 1", "End of chapter 1"),
+]
 PUZZLES = {"locker_combo_dat": ("PUZZLE_LOCKER_DAT_TITLE", ("Tủ của Đạt", "Đạt's locker"), "1407", "ch1_dat_card")}
 
-PREFIXES = ("SPK_CH1_", "RULE_CH1_", "MGR_CH1_", "ROOM_CH1_", "THINK_CH1_", "CHAT_CH1_", "CHOICE_CH1_",
+PREFIXES = ("PROMPT_CH1_", "UI_CH1_", "SPK_CH1_", "RULE_CH1_", "MGR_CH1_", "ROOM_CH1_", "THINK_CH1_", "CHAT_CH1_", "CHOICE_CH1_",
             "DEATH_", "NAME_CH1_", "DOC_CH1_", "PUZZLE_LOCKER_DAT_")
 
 
@@ -274,6 +294,7 @@ def main():
             rows.append(("DOC_CH1_%s_%d" % (doc_id[4:].upper(), n), v, e))
     for pid, (title_key, title, _, _) in PUZZLES.items():
         rows.append((title_key, title[0], title[1]))
+    rows.extend(UI_ROWS)
 
     # strings.csv: drop old rows of our prefixes, append fresh ones.
     path = os.path.join(ROOT, "game", "localization", "strings.csv")
@@ -316,6 +337,20 @@ def main():
             '[ext_resource type="Script" path="res://scripts/core/puzzle_data.gd" id="1_puz"]\n\n'
             '[resource]\nscript = ExtResource("1_puz")\nid = &"%s"\nkind = &"combination"\ntitle_key = "%s"\n'
             'solution = "%s"\nlabel_keys = Array[String]([])\nhint_document = &"%s"\n' % (pid, title_key, solution, hint))
+
+    # Rule book lines.
+    nl = "\n"
+    body = ['[gd_resource type="Resource" script_class="RuleSet" load_steps=%d format=3]%s' % (len(RULE_LINES) + 3, nl),
+            '[ext_resource type="Script" path="res://scripts/core/rule_set.gd" id="1_set"]',
+            '[ext_resource type="Script" path="res://scripts/core/rule_data.gd" id="2_rule"]' + nl]
+    for rid, key, situation, action in RULE_LINES:
+        body.append(nl.join([
+            '[sub_resource type="Resource" id="Rule_%s"]' % rid, 'script = ExtResource("2_rule")', 'id = &"%s"' % rid,
+            'text_key = "RULE_CH1_%s"' % key, "is_fake = false", 'source = &"speaker"', 'situation = &"%s"' % situation,
+            'action = &"%s"' % action, "penalty = 0", 'consequence = &""', "fatal = false", ""]))
+    body.append(nl.join(["[resource]", 'script = ExtResource("1_set")',
+                         'rules = Array[ExtResource("2_rule")]([%s])' % ", ".join('SubResource("Rule_%s")' % r[0] for r in RULE_LINES), ""]))
+    open(os.path.join(ROOT, "game", "data", "rules", "ch1.tres"), "w", encoding="utf-8", newline=nl).write(nl.join(body))
 
     # Readable script for review.
     out = ["# Kịch bản chương 1 \"Tổng tắc\"", "",
