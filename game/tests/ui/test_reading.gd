@@ -121,6 +121,22 @@ func test_modal_conflicts_invalid_document_and_removal_cleanup() -> void:
 	_document.free()
 
 
+func test_opening_interact_release_does_not_close_paper_and_next_tap_does() -> void:
+	# Player opens the paper during physics after the opening press was dispatched.
+	Input.action_press("interact")
+	EventBus.document_opened.emit(&"room_paper_407")
+	var release := InputEventKey.new()
+	release.physical_keycode = KEY_E
+	release.pressed = false
+	tree.root.push_input(release, true)
+	assert_true(_document.is_open(), "opening release leaves the paper readable")
+	Input.action_press("interact")
+	_press(KEY_E)
+	assert_false(_document.is_open())
+	assert_false(tree.paused)
+	assert_false(Input.is_action_pressed("interact"), "closing input cannot reopen the world paper")
+
+
 func test_document_locale_and_log_paragraphs_update() -> void:
 	EventBus.document_opened.emit(&"hall_board")
 	TranslationServer.set_locale("en")

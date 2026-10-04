@@ -36,7 +36,7 @@ theme_override_constants/separation = 24
 [node name="Title" type="Label" parent="Root/Book/Content"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
-text = "UI_NOTEBOOK_TITLE"
+text = "UI_RULEBOOK_TITLE"
 
 [node name="Empty" type="Label" parent="Root/Book/Content"]
 layout_mode = 2

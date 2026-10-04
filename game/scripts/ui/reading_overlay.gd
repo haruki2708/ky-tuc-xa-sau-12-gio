@@ -18,6 +18,9 @@ func is_open() -> bool:
 func _begin_reading() -> bool:
 	if _open or get_tree().paused:
 		return false
+	for death in get_tree().get_nodes_in_group("death_screen"):
+		if death.is_open():
+			return false
 	_previous_mouse_mode = Input.mouse_mode
 	_open = true
 	$Root.show()
@@ -32,6 +35,8 @@ func close_view() -> void:
 		return
 	_open = false
 	$Root.hide()
+	# Player polls actions in physics, even if the UI handled the input event.
+	Input.action_release("interact")
 	get_tree().paused = false
 	Input.mouse_mode = _previous_mouse_mode
 	EventBus.game_paused.emit(false)

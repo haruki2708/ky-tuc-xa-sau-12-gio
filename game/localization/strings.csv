@@ -327,3 +327,21 @@ PROMPT_CH1_LOCKER,Mở tủ của Đạt,Open Đạt's locker
 UI_CH1_DEATH_TITLE,Bạn đã chết,You died
 UI_CH1_SURVIVORS,Số sinh viên còn sống: %d,Students still alive: %d
 UI_CH1_END,Hết chương 1,End of chapter 1
+UI_RULEBOOK_TITLE,Sổ quy tắc,Rulebook
+UI_RULEBOOK_GENERAL,Tổng tắc,General rules
+UI_RULEBOOK_ROUND,Vòng %d,Round %d
+UI_RULEBOOK_EXPIRED,Hết hiệu lực,Expired
+UI_RULEBOOK_NOTEWORTHY,Đáng chú ý,Noteworthy
+UI_RULEBOOK_EVIDENCE,Chứng cứ: %s,Evidence: %s
+UI_SURVIVORS_COUNT,Số người sống sót: %d,Survivors: %d
+UI_SURVIVORS_UNKNOWN,Số người sống sót: chưa rõ,Survivors: unknown
+UI_DEATH_RELOADING,Đang trở lại điểm lưu…,Returning to the checkpoint…
+UI_DEATH_REASON_UNKNOWN,Bạn không còn sống sót.,You did not survive.
+UI_PUZZLE_INSTRUCTIONS,Đặt tất cả các vòng số để thử mã.,Set every dial to try a code.
+UI_PUZZLE_HELP,Bấm nút hoặc lăn chuột trên từng vòng số.,Press the buttons or scroll over each dial.
+UI_PUZZLE_UP,+,+
+UI_PUZZLE_DOWN,−,−
+UI_PUZZLE_HINT,Xem gợi ý,View hint
+UI_PUZZLE_CLOSE,Đóng (Esc),Close (Esc)
+UI_PUZZLE_WRONG,Khóa chưa mở. Thử lại.,Still locked. Try again.
+UI_PUZZLE_SOLVED,Khóa đã mở.,Unlocked.
