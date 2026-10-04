@@ -16,6 +16,7 @@ func _on_interact(_player: Node) -> void:
 	if is_instance_valid(light):
 		light.visible = not light.visible
 		_sync_light()
+		EventBus.noise_emitted.emit(global_position, 2.0, &"switch")
 
 
 func _sync_light() -> void:

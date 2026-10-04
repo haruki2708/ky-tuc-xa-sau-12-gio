@@ -287,3 +287,10 @@ PROMPT_CH1_LOCKER,Mở tủ của Đạt,Open Đạt's locker
 UI_CH1_DEATH_TITLE,Bạn đã chết,You died
 UI_CH1_SURVIVORS,Số sinh viên còn sống: %d,Students still alive: %d
 UI_CH1_END,Hết chương 1,End of chapter 1
+PROMPT_LIE_DOWN,Nằm lên giường,Lie on the bunk
+PROMPT_HIDE_ENTER,Nấp,Hide
+PROMPT_HIDE_EXIT,Rời chỗ nằm hoặc nấp,Leave the bunk or hiding spot
+PROMPT_PUZZLE_OPEN,Xem khóa số,Inspect combination lock
+UI_SURVIVAL_TEST_HELP,"E: nằm/nấp/rời hoặc xem khóa. Space: nín thở. C/Ctrl: cúi. Q: điện thoại. F: đèn pin.\nPhím thử: Y bật/tắt sạc; U bật/tắt cuộc gọi; B đặt pin 1%; K giải khóa; X đóng khóa.","E: lie/hide/leave or inspect lock. Space: hold breath. C/Ctrl: crouch. Q: phone. F: flashlight.\nTest keys: Y charge; U call; B set 1% battery; K solve lock; X close lock."
+UI_SURVIVAL_TEST_STATUS,"Giường: %d | Nín thở: %s | Pin: %.1f%% | Sạc: %s | Cuộc gọi: %s\nTiếng gần nhất: %s / %.1f m","Bed: %d | Holding breath: %s | Battery: %.1f%% | Charging: %s | Call: %s\nLast noise: %s / %.1f m"
+UI_SURVIVAL_TEST_BED,Giường %d,Bed %d

@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3]
+[ext_resource type="Script" path="res://scripts/interaction/puzzle_station.gd" id="1"]
+[sub_resource type="BoxShape3D" id="Pick"]
+size = Vector3(0.22, 0.3, 0.16)
+[sub_resource type="BoxMesh" id="Lock"]
+size = Vector3(0.2, 0.28, 0.08)
+[node name="PuzzleStation" type="Area3D"]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1")
+prompt_key = "PROMPT_PUZZLE_OPEN"
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("Pick")
+[node name="Mesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("Lock")

@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/player/phone_item.gd" id="1"]
+[sub_resource type="BoxMesh" id="Body"]
+size = Vector3(0.075, 0.145, 0.012)
+[sub_resource type="StandardMaterial3D" id="BodyMaterial"]
+albedo_color = Color(0.04, 0.045, 0.05, 1)
+roughness = 0.75
+[sub_resource type="BoxMesh" id="Screen"]
+size = Vector3(0.065, 0.12, 0.002)
+[sub_resource type="StandardMaterial3D" id="ScreenMaterial"]
+albedo_color = Color(0.18, 0.24, 0.28, 1)
+shading_mode = 0
+
+[node name="PhoneItem" type="Node3D"]
+script = ExtResource("1")
+[node name="Model" type="Node3D" parent="."]
+visible = false
+position = Vector3(0.17, -0.15, -0.35)
+rotation = Vector3(-0.15, -0.2, -0.08)
+[node name="Body" type="MeshInstance3D" parent="Model"]
+mesh = SubResource("Body")
+material_override = SubResource("BodyMaterial")
+[node name="Screen" type="MeshInstance3D" parent="Model"]
+position = Vector3(0, 0, 0.008)
+mesh = SubResource("Screen")
+material_override = SubResource("ScreenMaterial")
+[node name="Flashlight" type="SpotLight3D" parent="."]
+visible = false
+position = Vector3(0.1, -0.08, -0.15)
+light_color = Color(0.9, 0.94, 1, 1)
+light_energy = 2.5
+shadow_enabled = true
+spot_range = 12.0
+spot_angle = 28.0
