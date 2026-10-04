@@ -324,6 +324,36 @@
       "sha256": "fd08b775ede9fb1f6354c0022f77869c7d4948854a8a54b1f3612cf49ed818b1"
     },
     {
+      "key": "CHAT_CH1_N_BACK",
+      "who": "minh_nhat",
+      "text": "Trung? Trung! Cậu vừa mất tín hiệu. Mạng nội bộ chập chờn lắm, cố giữ máy.",
+      "file": "game/audio/voice/vi/CHAT_CH1_N_BACK.ogg",
+      "seconds": 6.003,
+      "lufs": -26.06,
+      "true_peak_db": -3.75,
+      "sha256": "2477418e62371a94b00f48e2958eb41125c1698e9b1dcb114cbea9b45d476d4b"
+    },
+    {
+      "key": "CHAT_CH1_N_MISSED",
+      "who": "minh_nhat",
+      "text": "Lúc cậu mất kết nối, thêm hai người trong nhóm im lặng luôn. Không ai biết họ làm gì.",
+      "file": "game/audio/voice/vi/CHAT_CH1_N_MISSED.ogg",
+      "seconds": 5.92,
+      "lufs": -26.12,
+      "true_peak_db": -4.56,
+      "sha256": "aab8a935d9c1cbdfc01072b650bc843babd194ea2343839a7c8c2d0984ef11e5"
+    },
+    {
+      "key": "CHAT_CH1_N_BACK_REMOTE",
+      "who": "minh_nhat",
+      "text": "Tôi khởi động lại mạng từ phía tôi rồi… Trung, nghe được không? Cậu bỏ lỡ nhiều lắm.",
+      "file": "game/audio/voice/vi/CHAT_CH1_N_BACK_REMOTE.ogg",
+      "seconds": 6.017,
+      "lufs": -26.15,
+      "true_peak_db": -5.27,
+      "sha256": "9943ea603a1a40e891c37fa6b2521e609ac0fb16b71d99f0753deca7b4435c67"
+    },
+    {
       "key": "ROOM_CH1_KNOCK_VIET",
       "who": "viet_door",
       "text": "Trung ơi, mở cửa cho tao. Tao ra ngoài đi vệ sinh, giờ không vào được…",
@@ -422,6 +452,16 @@
       "lufs": -26.17,
       "true_peak_db": -5.03,
       "sha256": "e2268880eb4a38e4c0d7cadcf2704166959d9ff47ee20bf01043f81ea52f2a41"
+    },
+    {
+      "key": "CHAT_CH1_N_CCTV",
+      "who": "minh_nhat",
+      "text": "Tôi vào được hệ thống camera của ký túc xá rồi. Mở tab Camera trên điện thoại đi. Ông ta vào phòng nào… mình thấy hết.",
+      "file": "game/audio/voice/vi/CHAT_CH1_N_CCTV.ogg",
+      "seconds": 8.532,
+      "lufs": -26.17,
+      "true_peak_db": -5.41,
+      "sha256": "fabb3a0e44bd484e830cf6adeab4acdf2f09b6b3622aa7874f3a43fb25474657"
     },
     {
       "key": "CHAT_CH1_HUNG_KNOCK",
@@ -524,6 +564,16 @@
       "sha256": "4e2df595fd60f561605a728330d40b839717306976f3519b0ad1f11a7d0a16a6"
     },
     {
+      "key": "CHAT_CH1_N_KIET_LIT",
+      "who": "minh_nhat",
+      "text": "Lúc ông ta vào, điện thoại Kiệt còn sáng… cậu ấy đang gọi với tụi mình.",
+      "file": "game/audio/voice/vi/CHAT_CH1_N_KIET_LIT.ogg",
+      "seconds": 4.979,
+      "lufs": -26.19,
+      "true_peak_db": -4.56,
+      "sha256": "a044ff1f7c85b13ea39d7dd8af9c2333eb51469a74d811d8507be159bb2b33e6"
+    },
+    {
       "key": "CHAT_CH1_BAO_209",
       "who": "bao",
       "text": "Ông ta tới 209 rồi… tôi phải làm sao… làm sao bây giờ…",
@@ -574,6 +624,16 @@
       "sha256": "b493dca70e0a4aaa77216026c8599cbbadcc2e55c91bdeed0e54b8ecbb2890e4"
     },
     {
+      "key": "CHAT_CH1_DANG_LAMP",
+      "who": "dang",
+      "text": "Đèn phòng tao còn sáng, kệ. Tối quá tao chịu không nổi.",
+      "file": "game/audio/voice/vi/CHAT_CH1_DANG_LAMP.ogg",
+      "seconds": 3.675,
+      "lufs": -25.08,
+      "true_peak_db": -4.7,
+      "sha256": "be2508e8aeae95c45377f8f3eca689c3bf7449d0fb8b666d99a0ef090a1fc754"
+    },
+    {
       "key": "CHAT_CH1_DANG_HERE",
       "who": "dang",
       "text": "106… ông ta tới 106 rồi. Phòng tao. Nói gì đi, tao phải làm gì?",
@@ -614,6 +674,26 @@
       "sha256": "bc5ab0bfc9747d1c926aa8d71a6623fb1fd34cf996693dece8e3e722b14d53b7"
     },
     {
+      "key": "CHAT_CH1_N_DYING",
+      "who": "minh_nhat",
+      "text": "Trung… ông ta đang mở cửa phòng tôi… tôi làm đúng như cậu nói mà…",
+      "file": "game/audio/voice/vi/CHAT_CH1_N_DYING.ogg",
+      "seconds": 4.738,
+      "lufs": -26.1,
+      "true_peak_db": -3.85,
+      "sha256": "e5932f1a8c61e24404a215ee1d200f42c0288ae35f94263e72b09d43535fff87"
+    },
+    {
+      "key": "MGR_CH1_ASK_BED_1",
+      "who": "mgr",
+      "text": "Giường số một. Có ở đây không?",
+      "file": "game/audio/voice/vi/MGR_CH1_ASK_BED_1.ogg",
+      "seconds": 3.763,
+      "lufs": -27.07,
+      "true_peak_db": -9.14,
+      "sha256": "48446dc17e55a73f7470008754099f94adbe791ca9b55ba426558e677ea9b137"
+    },
+    {
       "key": "CHAT_CH1_N_THANKS",
       "who": "minh_nhat",
       "text": "Ông ta vừa chém nát giường tôi… Tôi còn sống. Cảm ơn cậu, Trung.",
@@ -639,9 +719,9 @@
       "text": "Các cậu là… ai vậy? Nhà A, phòng 401, Khương Ngọc Ngư.",
       "file": "game/audio/voice/vi/CHAT_CH1_NGU_HELLO.ogg",
       "seconds": 5.72,
-      "lufs": -26.06,
-      "true_peak_db": -7.44,
-      "sha256": "416bfebb16323735314409810244ec0af1e93d3e50df4112ea8aa97528994e76"
+      "lufs": -26.07,
+      "true_peak_db": -7.39,
+      "sha256": "4eac32f7c7d0a91d80638dec6eaca052551e7ff9135d36f79202ddcfd0f47a2c"
     },
     {
       "key": "CHAT_CH1_NGU_LUCK",
@@ -650,8 +730,8 @@
       "file": "game/audio/voice/vi/CHAT_CH1_NGU_LUCK.ogg",
       "seconds": 8.355,
       "lufs": -26.05,
-      "true_peak_db": -7.78,
-      "sha256": "9776b599740cee27be7195f0b8df7c216098d28c8796b573c172bdc5b9b515ae"
+      "true_peak_db": -7.64,
+      "sha256": "8003efa3ac5b181bf5273b93fc574623b8ece39634ecbed1dea5e61dbafb0ff2"
     },
     {
       "key": "CHAT_CH1_NGU_ALONE",
@@ -659,9 +739,9 @@
       "text": "Hình như cả nhà A… chỉ còn mình tôi.",
       "file": "game/audio/voice/vi/CHAT_CH1_NGU_ALONE.ogg",
       "seconds": 3.2,
-      "lufs": -26.03,
-      "true_peak_db": -10.03,
-      "sha256": "b11700ffeeab1186723d08525b861b97341d4c61f16b1ed0cd2ae5ee567a9f06"
+      "lufs": -26.04,
+      "true_peak_db": -9.95,
+      "sha256": "aaae1a1fbfc41d4736f09239231c2d944538f7e52e1ca3216e9a7958927dc4ed"
     },
     {
       "key": "SPK_CH1_R2_END",

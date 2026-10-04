@@ -47,7 +47,6 @@ SCRIPT = [
     ("room", "PHUC_GRUMBLE", "phuc", "04:00", "Ai mở loa giờ này vậy trời…", "Who turns the speaker on at this hour…"),
     ("room", "DAT_GRUMBLE", "dat", "04:00", "Bốn giờ sáng đó. Để người ta ngủ với.", "It's four in the morning. Let people sleep."),
     ("room", "VIET_GRUMBLE", "viet", "04:00", "Kệ nó. Ngủ tiếp đi.", "Ignore it. Go back to sleep."),
-    ("think", "GET_UP", "trung", "04:00", "Tỉnh rồi thì đi vệ sinh luôn vậy.", "Since I'm awake, I might as well go to the toilet."),
     ("event", "", "", "04:01", "Hết 60 giây thật. Còn nằm trên giường thì chết (DEATH_STAYED_IN_BED). Trung đã ra nhà vệ sinh chung cuối hành lang thì nghe tiếng la hét lan khắp tòa nhà.", ""),
     ("think", "RETURN", "trung", "04:03", "Sao im lặng quá vậy…", "Why is it so quiet…"),
     ("think", "BLOOD", "trung", "04:03", "Máu… Phúc? Việt? Đạt?", "Blood… Phúc? Việt? Đạt?"),
@@ -105,19 +104,25 @@ SCRIPT = [
      "Watch your battery, everyone. This call eats power. Lose the connection and you're on your own."),
     ("think", "LOW_BATTERY", "trung", "04:18", "Pin còn ít quá. Dây sạc của mình còn đây, nhưng cục sạc đâu…",
      "My battery's almost gone. My cable's here, but where's the charger…"),
-    ("think", "DAT_CHARGER", "trung", "04:19", "Hôm qua Đạt mượn cục sạc của mình rồi khóa trong tủ…",
-     "Đạt borrowed my charger yesterday and locked it in his locker…"),
-    ("event", "", "", "04:20", "Câu đố: tủ khóa số của Đạt (`locker_combo_dat`, mã 1407). Sổ tay Đạt: \"mật khẩu là sinh nhật tao\"; thẻ sinh viên: sinh ngày 14/07/2006. Mở tủ, lấy cục sạc, cắm ở ổ cạnh bàn Trung.", ""),
+    ("event", "", "", "04:20", "N1 tủ của Đạt (`locker_combo_dat`, mã 2109, sai 3 lần thì kẹt 60 giây). Sổ Đạt: \"sinh nhật thằng thân nhất phòng\"; ảnh đội bóng: Phúc & Đạt; thẻ của Phúc kẹp trong sách: 21/09/2006. Thẻ của Đạt (14/07) và của Việt (03/03) là mồi nhử. Lấy cục sạc, cắm ở chỗ dây sạc trên bàn Trung.", ""),
     ("think", "CHARGING", "trung", "04:25", "Đang sạc rồi. Phải ở gần ổ điện.", "It's charging. I have to stay near the socket."),
-    ("event", "", "", "04:35", "Cám dỗ: tiếng gõ cửa và giọng Việt ngoài hành lang. Mở cửa thì hành lang trống, có dấu chân máu đi xa; bước ra là chết.", ""),
+    ("event", "", "", "04:28", "N2 mất mạng: đèn cục phát tắt, cuộc gọi đứt (phone_call_lost). Ổ điện dưới giường Phúc: công tắc 2 (vệt đỏ) cấp điện cục phát, công tắc 3 chập (chờ 20 giây). Cục phát khởi động 8 giây, đèn mạng đỏ: cắm dây xanh vào ổ mạng trên tường. Các câu trong lúc mất mạng không nghe được.", ""),
+    ("chat", "N_BACK", "minh_nhat", "04:30", "Trung? Trung! Cậu vừa mất tín hiệu. Mạng nội bộ chập chờn lắm, cố giữ máy.",
+     "Trung? Trung! You just dropped out. The local network is shaky, try to stay on."),
+    ("chat", "N_MISSED", "minh_nhat", "04:30", "Lúc cậu mất kết nối, thêm hai người trong nhóm im lặng luôn. Không ai biết họ làm gì.",
+     "While you were gone, two more people in the group went silent. Nobody knows what they did."),
+    ("chat", "N_BACK_REMOTE", "minh_nhat", "04:48", "Tôi khởi động lại mạng từ phía tôi rồi… Trung, nghe được không? Cậu bỏ lỡ nhiều lắm.",
+     "I restarted the network from my side… Trung, can you hear me? You missed a lot."),
+    ("event", "", "", "04:30", "N_BACK và N_MISSED khi người chơi tự sửa xong; N_BACK_REMOTE nếu tới 4:48 vẫn chưa sửa.", ""),
+    ("event", "", "", "04:35", "N4 giữ cửa: cửa chưa chốt. Giọng Việt ngoài cửa, rồi tay nắm bị vặn mạnh. 10 giây để chốt cửa; không kịp thì cửa bật mở, một bàn tay lôi Trung ra (DEATH_DRAGGED_OUT, cảnh chết fall_back).", ""),
     ("room", "KNOCK_VIET", "viet_door", "04:35", "Trung ơi, mở cửa cho tao. Tao ra ngoài đi vệ sinh, giờ không vào được…",
      "Trung, open the door for me. I went to the toilet and now I can't get back in…"),
-    ("think", "VIET_BED", "trung", "04:35", "Việt… đang nằm trên giường kia mà.", "But Việt… is lying in that bed right there."),
     ("room", "KNOCK_VIET_2", "viet_door", "04:36", "Ra đây với tao đi. Ngoài này không có ai đâu.", "Come out here with me. There's nobody out here."),
     ("chat", "VINH_ASK", "vinh", "04:37", "Vinh, 311. Có ai nghe tiếng bạn cùng phòng gọi ngoài cửa không? Tôi vừa nghe…",
      "Vinh, 311. Has anyone heard their roommate calling from outside the door? I just did…"),
     ("chat", "N_DONT_OPEN", "minh_nhat", "04:37", "Đừng ra. Mở cửa thì chưa sao, nhưng bước qua ngưỡng cửa là hết.",
      "Don't go out. Opening the door may be fine, but step over the threshold and it's over."),
+    ("event", "", "", "04:38", "N3 gõ tường: Khoa (406) gõ mã 5×5 \"CON SONG\" hai lần. Gõ lại \"CO\" ở tường 406 trong 90 giây thì Khoa gõ \"SO GIUONG\". Bảng mã kẹp trong sổ hợp âm guitar của Việt.", ""),
     ("chat", "N_THEORY", "minh_nhat", "04:50", "Loa nói mỗi giờ một quy tắc mới. Năm giờ sẽ có quy tắc thứ hai. Phải nghe thật kỹ từng chữ.",
      "The speaker said a new rule every hour. At five there'll be a second one. We have to listen to every single word."),
     ("choice", "WORDS", "trung", "04:50",
@@ -134,7 +139,9 @@ SCRIPT = [
     ("rule", "R2", "loa", "05:00", "Vòng hai. Trong một giờ tới, nhà trường kiểm tra phòng. Mỗi tòa nhà có một quản lý. Sinh viên hãy nằm yên trên giường và hợp tác với công việc của quản lý.",
      "Round two. Over the next hour the school will inspect the rooms. Each building has one manager. Students must stay still in bed and cooperate with the manager's work."),
     ("chat", "N_BEDS", "minh_nhat", "05:01", "Lên giường hết đi. Nhanh lên.", "Everyone, get in bed. Now."),
-    ("think", "GET_IN_BED", "trung", "05:01", "Phải lên giường trước khi ông ta tới.", "I need to be in bed before he gets here."),
+    ("chat", "N_CCTV", "minh_nhat", "05:02", "Tôi vào được hệ thống camera của ký túc xá rồi. Mở tab Camera trên điện thoại đi. Ông ta vào phòng nào… mình thấy hết.",
+     "I'm into the dorm's camera system. Open the Camera tab on your phone. Whichever room he walks into… we'll see it all."),
+    ("event", "", "", "05:02", "cctv_unlocked. N5: 3 mảnh biên bản ở tủ Việt, dưới nệm Phúc, sọt rác. N8: tab Sơ đồ.", ""),
     ("event", "", "", "05:01", "Checkpoint `ch1_r2`. Tiếng dao kéo lê bắt đầu vọng từ tầng một.", ""),
     ("chat", "HUNG_KNOCK", "hung", "05:05", "Có người gõ cửa phòng tao… Quản lý tới rồi.", "Someone's knocking on my door… The manager's here."),
     ("mgr", "ASK_HUNG", "mgr", "05:05", "Đinh Xuân Hùng. Có ở đây không?", "Đinh Xuân Hùng. Are you here?"),
@@ -151,7 +158,9 @@ SCRIPT = [
     ("mgr", "ASK_BED_3", "mgr", "05:12", "Giường số ba. Có ở đây không?", "Bed three. Is anyone here?"),
     ("chat", "KIET_NO", "kiet", "05:12", "Không… không có ai ở đây hết.", "N-no… there's nobody here."),
     ("mgr", "WHY_NOT", "mgr", "05:12", "Nằm ngoan trên giường thế kia, sao lại nói không có?", "Lying so nicely in bed, and you say nobody's here?"),
-    ("event", "", "", "05:13", "Kiệt chết.", ""),
+    ("event", "", "", "05:13", "Kiệt chết (camera 306: màn hình điện thoại Kiệt đang sáng).", ""),
+    ("chat", "N_KIET_LIT", "minh_nhat", "05:14", "Lúc ông ta vào, điện thoại Kiệt còn sáng… cậu ấy đang gọi với tụi mình.",
+     "When he walked in, Kiệt's phone was still lit… he was on the call with us."),
     ("chat", "BAO_209", "bao", "05:20", "Ông ta tới 209 rồi… tôi phải làm sao… làm sao bây giờ…", "He's at 209… what do I do… what do I do…"),
     ("chat", "N_TRY_SILENT", "minh_nhat", "05:20", "Bảo, thử im lặng. Ông ta hỏi gì cũng đừng trả lời.", "Bảo, try staying silent. Whatever he asks, don't answer."),
     ("mgr", "ASK_BED_4", "mgr", "05:21", "Giường số bốn. Có ở đây không?", "Bed four. Is anyone here?"),
@@ -159,6 +168,8 @@ SCRIPT = [
     ("mgr", "LAUGH", "mgr", "05:22", "(cười khàn khàn)", "(a hoarse chuckle)"),
     ("event", "", "", "05:22", "Bảo chết.", ""),
     ("chat", "DANG_CURSE", "dang", "05:23", "Im lặng cũng chết! Thế này thì làm cái quái gì mới đúng!", "Silence gets you killed too! What the hell are we supposed to do?!"),
+    ("chat", "DANG_LAMP", "dang", "05:26", "Đèn phòng tao còn sáng, kệ. Tối quá tao chịu không nổi.",
+     "My light's still on, whatever. I can't stand the dark."),
     ("chat", "DANG_HERE", "dang", "05:28", "106… ông ta tới 106 rồi. Phòng tao. Nói gì đi, tao phải làm gì?", "106… he's at 106. My room. Say something, what do I do?"),
     ("choice", "ADVISE", "trung", "05:28",
      ["Trùm chăn kín người lại!", "Hô to tên mày với số giường!", "Chạm vào ông ta, cho ông ta biết mày còn sống!"],
@@ -169,20 +180,27 @@ SCRIPT = [
      "Sơn hid under his blanket, Vinh shouted his name, someone even touched him… Nothing works."),
     ("event", "", "", "05:33", "Sơn, Vinh và những người im lặng lần lượt xám tên.", ""),
     ("chat", "N_JUST_US", "minh_nhat", "05:38", "Trong nhóm… chỉ còn tôi với cậu.", "In the group… it's just you and me now."),
+    ("event", "", "", "05:40", "Qua tường 406: quản lý vào phòng Khoa, \"Giường số hai…\" (MGR ASK_BED_2), tiếng chém, im lặng.", ""),
     ("think", "DRAG", "trung", "05:40", "Tiếng kéo dao… ở ngay tầng này.", "That dragging blade… it's on this floor."),
-    ("event", "", "", "05:43", "Checkpoint `ch1_r2_manager` (người chơi phải đang nằm trên một giường). Tiếng gõ cửa 407. Quản lý mở cửa, vào phòng.", ""),
-    ("think", "HINT_1", "trung", "05:43", "Quy tắc chỉ nói \"nằm yên trên giường\". Nó không nói giường của ai.",
-     "The rule only says \"stay in bed\". It never says whose bed."),
-    ("think", "HINT_2", "trung", "05:43", "Ông ta sẽ hỏi giường số ba, giường của mình. Nếu mình không nằm ở đó…",
-     "He'll ask for bed three, my bed. If I'm not lying in it…"),
-    ("event", "", "", "05:43", "HINT_1 chỉ hiện từ lần chết thứ hai ở cảnh này, HINT_2 từ lần thứ ba.", ""),
-    ("event", "", "", "05:44", "Quản lý hỏi giường số ba (MGR ASK_BED_3), chờ. Không nằm giường nào: chết (DEATH_NOT_IN_BED). Nằm giường số 3: chết (DEATH_OWN_BED). Có tiếng thở hoặc nhúc nhích: chết (DEATH_HEARD). Nằm giường bạn, nín thở: quản lý cười rồi chém nát giường số 3, bỏ đi.", ""),
+    ("event", "", "", "05:43", "Camera hành lang: quản lý đi tới 407. Tiếng gõ cửa 407. Quản lý mở cửa (N6: đèn bàn sáng, điện thoại đang giơ hoặc đèn pin bật thì chết, DEATH_SEEN). Từ lúc vào tới lúc ra, ông ta nghe cả tiếng cử động.", ""),
+    ("event", "", "", "05:44", "Quản lý hỏi giường số ba (MGR ASK_BED_3), chờ. Không nằm giường nào: chết (DEATH_NOT_IN_BED). Nằm giường số 3: chết (DEATH_OWN_BED). Thở trong 5 giây im lặng sau câu hỏi, hoặc cử động bất cứ lúc nào: chết (DEATH_HEARD). Mọi cái chết ở cảnh này: cảnh chết manager_kill. Nằm giường bạn, nín thở: quản lý cười rồi chém nát giường số 3, bỏ đi.", ""),
     ("think", "SURVIVED", "trung", "05:46", "Ông ta chém nát giường của mình… rồi bỏ đi.", "He hacked my bed to pieces… and walked away."),
     ("think", "WHY", "trung", "05:46", "Việc của quản lý không phải kiểm tra phòng. Mà là dọn sạch người sống. \"Hợp tác\"… là nằm như người chết.",
      "The manager's job isn't inspecting rooms. It's clearing out the living. \"Cooperate\"… means lying there like the dead."),
+    ("event", "", "", "05:47", "N7: 10 giây chọn lời khuyên. Đúng là (1). Sai hoặc hết giờ: Minh Nhật chết (DEATH_LOST_NHAT), làm lại vòng 2.", ""),
     ("choice", "TELL", "trung", "05:47",
-     ["Nhật! Nằm lên giường của bạn cùng phòng đã chết. Đừng nằm giường mình, nín thở!"],
-     ["Nhật! Lie on your dead roommate's bed. Not your own. Hold your breath!"]),
+     ["Nằm giường của người đã chết, tắt hết đèn, nín thở khi ông ta hỏi xong.",
+      "Nằm yên trên giường của mình, nín thở thật lâu.",
+      "Chui xuống gầm giường, tắt điện thoại.",
+      "Nằm giường của người đã chết, trả lời \"không có\" khi ông ta hỏi."],
+     ["Lie on a dead roommate's bed, kill every light, hold your breath after he asks.",
+      "Lie still in your own bed and hold your breath as long as you can.",
+      "Crawl under the bed and switch your phone off.",
+      "Lie on a dead roommate's bed and answer \"nobody\" when he asks."]),
+    ("chat", "N_DYING", "minh_nhat", "05:49", "Trung… ông ta đang mở cửa phòng tôi… tôi làm đúng như cậu nói mà…",
+     "Trung… he's opening my door… I did exactly what you said…"),
+    ("mgr", "ASK_BED_1", "mgr", "05:49", "Giường số một. Có ở đây không?", "Bed one. Is anyone here?"),
+    ("event", "", "", "05:49", "N_DYING và ASK_BED_1 chỉ khi chọn sai; rồi tiếng chém, cuộc gọi tắt, cảnh chết none.", ""),
     ("chat", "N_THANKS", "minh_nhat", "05:52", "Ông ta vừa chém nát giường tôi… Tôi còn sống. Cảm ơn cậu, Trung.",
      "He just shredded my bed… I'm alive. Thank you, Trung."),
     ("chat", "N_NETWORK", "minh_nhat", "05:54", "Để tôi thử mở rộng mạng… Được rồi, bắt được nhà A bên kia vườn hoa.",
@@ -202,18 +220,62 @@ SCRIPT = [
     ("death", "NOT_IN_BED", "", "", "Bạn không nằm trên giường khi quản lý vào phòng.", "You weren't in bed when the manager came in."),
     ("death", "OWN_BED", "", "", "Quản lý tìm thấy bạn trên giường của chính mình.", "The manager found you in your own bed."),
     ("death", "HEARD", "", "", "Quản lý nghe thấy bạn.", "The manager heard you."),
+    ("death", "DRAGGED_OUT", "", "", "Một bàn tay lôi bạn ra khỏi phòng.", "A hand dragged you out of the room."),
+    ("death", "SEEN", "", "", "Quản lý thấy ánh sáng trong phòng.", "The manager saw light in the room."),
+    ("death", "LOST_NHAT", "", "", "Minh Nhật đã chết. Không còn ai giữ mạng nội bộ.", "Minh Nhật is dead. No one is left to keep the network alive."),
 ]
 
 # Readable papers in room 407. id -> (style, title vi/en, [lines vi/en])
 DOCUMENTS = {
     "ch1_dat_note": ("handwritten", ("Sổ tay của Đạt", "Đạt's notebook"), [
-        ("Mật khẩu tủ: sinh nhật tao. Đứa nào mở trộm là chết với tao.", "Locker code: my birthday. Whoever opens it behind my back is dead meat."),
+        ("Mật khẩu tủ: sinh nhật thằng thân nhất phòng. Đứa nào mở trộm là chết với tao.", "Locker code: my best mate's birthday. Whoever opens it behind my back is dead meat."),
         ("Thứ hai: trả cục sạc cho Trung.", "Monday: give Trung his charger back."),
     ]),
     "ch1_dat_card": ("stamped", ("Thẻ sinh viên", "Student ID card"), [
         ("Họ tên: Phạm Thành Đạt", "Name: Phạm Thành Đạt"),
         ("Ngày sinh: 14/07/2006", "Date of birth: 14/07/2006"),
         ("Ký túc xá: phòng 407, nhà B", "Dormitory: room 407, building B"),
+    ]),
+    "ch1_phuc_card": ("stamped", ("Thẻ sinh viên", "Student ID card"), [
+        ("Họ tên: Lê Hoàng Phúc", "Name: Lê Hoàng Phúc"),
+        ("Ngày sinh: 21/09/2006", "Date of birth: 21/09/2006"),
+        ("Ký túc xá: phòng 407, nhà B", "Dormitory: room 407, building B"),
+    ]),
+    "ch1_viet_card": ("stamped", ("Thẻ sinh viên", "Student ID card"), [
+        ("Họ tên: Đặng Quốc Việt", "Name: Đặng Quốc Việt"),
+        ("Ngày sinh: 03/03/2006", "Date of birth: 03/03/2006"),
+        ("Ký túc xá: phòng 407, nhà B", "Dormitory: room 407, building B"),
+    ]),
+    "ch1_team_photo": ("handwritten", ("Ảnh đội bóng khoa", "Faculty football team photo"), [
+        ("Mặt trước: Đạt khoác vai Phúc, hai đứa cười toe, mặc áo đội.", "Front: Đạt has his arm around Phúc, both grinning in team shirts."),
+        ("Mặt sau, chữ của Đạt: \"Anh em cây khế. Phúc & Đạt, mùa giải 2025.\"", "Back, in Đạt's hand: \"Brothers for life. Phúc & Đạt, 2025 season.\""),
+    ]),
+    "ch1_tap_chart": ("handwritten", ("Sổ hợp âm của Việt (trang cuối)", "Việt's chord book (last page)"), [
+        ("A   B   C   D   E", "A   B   C   D   E"),
+        ("F   G   H   I   K", "F   G   H   I   K"),
+        ("L   M   N   O   P", "L   M   N   O   P"),
+        ("Q   R   S   T   U", "Q   R   S   T   U"),
+        ("V   W   X   Y   Z", "V   W   X   Y   Z"),
+        ("Hồi nhỏ ngủ chung với thằng em, cách vách thì gõ: hàng trước, cột sau.", "When my little brother and I slept on either side of the wall, we knocked: row first, then column."),
+    ]),
+    "ch1_form_piece_1": ("photocopy", ("Mảnh giấy xé (1)", "Torn scrap (1)"), [
+        ("Biên bản kiểm tra phòng ban đêm (mẫu c…", "Night room inspection form (old ver…"),
+        ("Cán bộ kiểm tra hỏi theo số giư…", "The inspector asks by the regist…"),
+        ("Giường trống: ghi \"v…", "Empty bed: mark \"ab…"),
+    ]),
+    "ch1_form_piece_2": ("photocopy", ("Mảnh giấy xé (2), đẫm máu", "Torn scrap (2), soaked in blood"), [
+        ("…ờng đã đăng ký, không hỏi theo người.", "…ered bed number, not by the person."),
+        ("…ắng\". Giường có người nằm im: ghi \"đã kiểm tra\".", "…sent\". A bed with someone lying still: mark \"checked\"."),
+    ]),
+    "ch1_form_piece_3": ("photocopy", ("Mảnh giấy xé (3), bị vo tròn", "Torn scrap (3), crumpled"), [
+        ("Phòng còn đèn sáng: kiểm tra kỹ từng giường.", "A room with a light on: check every bed closely."),
+        ("Sinh viên không được tự ý đổi giường đã đăng ký.", "Students may not swap their registered bed."),
+    ]),
+    "ch1_inspection_form": ("photocopy", ("Biên bản kiểm tra phòng ban đêm (mẫu cũ)", "Night room inspection form (old version)"), [
+        ("Cán bộ kiểm tra hỏi theo số giường đã đăng ký, không hỏi theo người.", "The inspector asks by the registered bed number, not by the person."),
+        ("Giường trống: ghi \"vắng\". Giường có người nằm im: ghi \"đã kiểm tra\".", "Empty bed: mark \"absent\". A bed with someone lying still: mark \"checked\"."),
+        ("Phòng còn đèn sáng: kiểm tra kỹ từng giường.", "A room with a light on: check every bed closely."),
+        ("Sinh viên không được tự ý đổi giường đã đăng ký.", "Students may not swap their registered bed."),
     ]),
     "ch1_phuc_schedule": ("handwritten", ("Lịch thi của Phúc", "Phúc's exam schedule"), [
         ("Giải tích 2: thứ hai, 7 giờ 30. KHÔNG ĐƯỢC NGỦ QUÊN.", "Calculus 2: Monday, 7:30. DO NOT OVERSLEEP."),
@@ -243,7 +305,9 @@ UI_ROWS = [
     ("UI_CH1_SURVIVORS", "Số sinh viên còn sống: %d", "Students still alive: %d"),
     ("UI_CH1_END", "Hết chương 1", "End of chapter 1"),
 ]
-PUZZLES = {"locker_combo_dat": ("PUZZLE_LOCKER_DAT_TITLE", ("Tủ của Đạt", "Đạt's locker"), "1407", "ch1_dat_card")}
+PUZZLES = {"locker_combo_dat": ("PUZZLE_LOCKER_DAT_TITLE", ("Tủ của Đạt", "Đạt's locker"), "2109", "")}
+PUZZLE_MAX_ATTEMPTS = 3
+PUZZLE_LOCKOUT_SECONDS = 60.0
 
 PREFIXES = ("PROMPT_CH1_", "UI_CH1_", "SPK_CH1_", "RULE_CH1_", "MGR_CH1_", "ROOM_CH1_", "THINK_CH1_", "CHAT_CH1_", "CHOICE_CH1_",
             "DEATH_", "NAME_CH1_", "DOC_CH1_", "PUZZLE_LOCKER_DAT_")
@@ -336,7 +400,8 @@ def main():
             '[gd_resource type="Resource" script_class="PuzzleData" load_steps=2 format=3]\n\n'
             '[ext_resource type="Script" path="res://scripts/core/puzzle_data.gd" id="1_puz"]\n\n'
             '[resource]\nscript = ExtResource("1_puz")\nid = &"%s"\nkind = &"combination"\ntitle_key = "%s"\n'
-            'solution = "%s"\nlabel_keys = Array[String]([])\nhint_document = &"%s"\n' % (pid, title_key, solution, hint))
+            'solution = "%s"\nlabel_keys = Array[String]([])\nhint_document = &"%s"\nmax_attempts = %d\nlockout_seconds = %.1f\n'
+            % (pid, title_key, solution, hint, PUZZLE_MAX_ATTEMPTS, PUZZLE_LOCKOUT_SECONDS))
 
     # Rule book lines.
     nl = "\n"
@@ -354,7 +419,7 @@ def main():
 
     # Readable script for review.
     out = ["# Kịch bản chương 1 \"Tổng tắc\"", "",
-           "> **ĐÃ DUYỆT** (chủ dự án, 2026-10-04, D-036). Sinh tự động từ `docs/design/ch1/build_ch1_script.py`; muốn sửa lời thì báo integrator (hoặc sửa file nguồn rồi chạy lại). Thiết kế: `docs/design/STORY.md` §5.",
+           "> **Bản 1 đã duyệt (D-036). Phần bản 2 (D-039…D-042) chờ chủ dự án duyệt.** Sinh tự động từ `docs/design/ch1/build_ch1_script.py`; muốn sửa lời thì báo integrator (hoặc sửa file nguồn rồi chạy lại). Thiết kế: `docs/design/STORY.md` §5.",
            "",
            "Ký hiệu: **Loa** = loa trường · **Quản lý** · *(trong phòng)* = giọng nghe trực tiếp · 📞 = trong cuộc gọi nhóm · 💭 = suy nghĩ của Trung (chỉ phụ đề) · ▶ = lựa chọn của người chơi · `[…]` = diễn biến.",
            "",
@@ -394,7 +459,7 @@ def main():
     out += ["", "## Giấy tờ đọc được trong phòng 407", ""]
     for doc_id, (style, title, lines) in DOCUMENTS.items():
         out.append("- **%s:** %s" % (title[0], " · ".join(v for v, _ in lines)))
-    out.append("- **Tủ của Đạt:** mã `1407` (ngày sinh 14/07 trên thẻ sinh viên).")
+    out.append("- **Tủ của Đạt:** mã `2109` (ngày sinh 21/09 của Phúc, \"thằng thân nhất phòng\"; thẻ của Đạt và Việt là mồi nhử). Sai 3 lần thì kẹt 60 giây.")
     open(os.path.join(ROOT, "docs", "design", "CH1_SCRIPT.md"), "w", encoding="utf-8", newline="\n").write("\n".join(out) + "\n")
     print("rows", len(rows), "messages", len(messages))
 

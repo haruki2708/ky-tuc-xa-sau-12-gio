@@ -171,11 +171,11 @@ func test_puzzle_variable_dials_wrong_then_correct_signal_and_delay() -> void:
 	assert_true(_solved.is_empty())
 	assert_eq(panel.get_node("Root/Card/Content/Feedback").text, tr("UI_PUZZLE_WRONG"))
 	assert_not_null(panel.get_node("WrongSound").stream)
+	# 0000 -> 2109 (Phúc's birthday, D-039).
 	panel._turn(0, 1)
-	for step in 4:
-		panel._turn(1, 1)
-	for step in 3:
-		panel._turn(3, -1)
+	panel._turn(0, 1)
+	panel._turn(1, 1)
+	panel._turn(3, -1)
 	assert_eq(_solved, [&"locker_combo_dat"])
 	panel._turn(3, 1)
 	assert_eq(_solved.size(), 1)
@@ -204,7 +204,13 @@ func test_puzzle_hint_missing_data_escape_and_pause_ownership() -> void:
 	_key(KEY_ESCAPE)
 	assert_false(panel.is_open())
 	assert_false(menu._open)
-	EventBus.puzzle_opened.emit(&"locker_combo_dat")
+	# The real locker has no hint under Insane (D-039); test the hint view with sample data.
+	var hinted := PuzzleData.new()
+	hinted.id = &"test_hint"
+	hinted.title_key = "PUZZLE_LOCKER_DAT_TITLE"
+	hinted.solution = "2109"
+	hinted.hint_document = &"ch1_dat_card"
+	assert_true(panel.open_puzzle(hinted))
 	panel._show_hint()
 	assert_true(panel.get_node("Root/Card/Content/HintScroll").visible)
 	assert_true(panel.get_node("Root/Card/Content/HintScroll/Text").text.contains(tr("DOC_CH1_DAT_CARD_1")))

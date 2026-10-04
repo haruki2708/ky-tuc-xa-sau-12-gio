@@ -58,7 +58,7 @@ const MEMBERS: Array[StringName] = [&"hung", &"dang", &"bao", &"son", &"kiet", &
 
 ## Checkpoint to resume after a reload (kept across the scene change).
 static var resume_checkpoint: StringName = &""
-## Deaths in the manager scene this session: the second shows HINT_1, the third HINT_2.
+## Deaths in the manager scene this session (kept for QA; Insane shows no hints, D-039).
 static var manager_deaths: int = 0
 
 ## Multiplies every wait; tests use a small value.
@@ -191,7 +191,6 @@ func _prologue() -> void:
 	await _room_line("ROOM_CH1_PHUC_GRUMBLE", 2.5)
 	await _room_line("ROOM_CH1_DAT_GRUMBLE", 2.5)
 	await _room_line("ROOM_CH1_VIET_GRUMBLE", 2.0)
-	_think("THINK_CH1_GET_UP")
 	var minute_started := Time.get_ticks_msec()
 	await _wait_until(func() -> bool: return _bed == 0, get_up_seconds)
 	if _bed != 0:
@@ -255,7 +254,6 @@ func _round_1() -> void:
 	_set_battery(18.0)
 	_think("THINK_CH1_LOW_BATTERY")
 	await _wait(4.0)
-	_think("THINK_CH1_DAT_CHARGER")
 	# Time to search the room and open Đạt's locker.
 	await _wait(150.0)
 	_set_clock("04:35")
@@ -275,7 +273,6 @@ func _round_1() -> void:
 func _voice_at_door() -> void:
 	_play_knock()
 	await _room_line("ROOM_CH1_KNOCK_VIET", 4.5)
-	_think("THINK_CH1_VIET_BED")
 	await _wait(4.0)
 	_play_knock()
 	await _room_line("ROOM_CH1_KNOCK_VIET_2", 3.5)
@@ -292,7 +289,6 @@ func _round_2() -> void:
 	await _announce(["RULE_CH1_R2"])
 	RuleSystem.mark_read(&"ch1_r2")
 	await _line("n_beds")
-	_think("THINK_CH1_GET_IN_BED")
 	_manager_far(Vector3(4.0, -9.9, -2.0))
 	_music(&"set_tension", 0.2)
 	await _wait(45.0)
@@ -357,11 +353,6 @@ func _manager_at_407() -> void:
 	_begin(&"r2_manager", "05:43")
 	_rules_live = true
 	_set_blood(1)
-	if manager_deaths >= 1:
-		_think("THINK_CH1_HINT_1")
-	if manager_deaths >= 2:
-		await _wait(4.0)
-		_think("THINK_CH1_HINT_2")
 	_music(&"set_tension", 1.0)
 	await _wait(18.0)
 	_music(&"silence_before_door", true)

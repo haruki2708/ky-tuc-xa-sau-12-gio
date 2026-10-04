@@ -13,3 +13,6 @@ Thumbs.db
 game/localization/*.translation
 art_source/kit/__pycache__/
 art_source/props/.scratch.tmp/
+
+# Office lock files (a doc open in Word)
+~$*

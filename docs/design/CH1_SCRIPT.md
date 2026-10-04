@@ -1,6 +1,6 @@
 # Kịch bản chương 1 "Tổng tắc"
 
-> **ĐÃ DUYỆT** (chủ dự án, 2026-10-04, D-036). Sinh tự động từ `docs/design/ch1/build_ch1_script.py`; muốn sửa lời thì báo integrator (hoặc sửa file nguồn rồi chạy lại). Thiết kế: `docs/design/STORY.md` §5.
+> **Bản 1 đã duyệt (D-036). Phần bản 2 (D-039…D-042) chờ chủ dự án duyệt.** Sinh tự động từ `docs/design/ch1/build_ch1_script.py`; muốn sửa lời thì báo integrator (hoặc sửa file nguồn rồi chạy lại). Thiết kế: `docs/design/STORY.md` §5.
 
 Ký hiệu: **Loa** = loa trường · **Quản lý** · *(trong phòng)* = giọng nghe trực tiếp · 📞 = trong cuộc gọi nhóm · 💭 = suy nghĩ của Trung (chỉ phụ đề) · ▶ = lựa chọn của người chơi · `[…]` = diễn biến.
 
@@ -24,7 +24,6 @@ Ký hiệu: **Loa** = loa trường · **Quản lý** · *(trong phòng)* = gi�
 - **04:00** **Phúc** *(trong phòng)*: Ai mở loa giờ này vậy trời…
 - **04:00** **Đạt** *(trong phòng)*: Bốn giờ sáng đó. Để người ta ngủ với.
 - **04:00** **Việt** *(trong phòng)*: Kệ nó. Ngủ tiếp đi.
-- **04:00** 💭 Tỉnh rồi thì đi vệ sinh luôn vậy.
 - **04:01** `[Hết 60 giây thật. Còn nằm trên giường thì chết (DEATH_STAYED_IN_BED). Trung đã ra nhà vệ sinh chung cuối hành lang thì nghe tiếng la hét lan khắp tòa nhà.]`
 - **04:03** 💭 Sao im lặng quá vậy…
 - **04:03** 💭 Máu… Phúc? Việt? Đạt?
@@ -61,15 +60,19 @@ Ký hiệu: **Loa** = loa trường · **Quản lý** · *(trong phòng)* = gi�
 - **04:17** 💭 Loa không đùa. Không được ra khỏi phòng.
 - **04:18** 📞 **Minh Nhật · 203:** Mọi người để ý pin. Cuộc gọi này ngốn pin lắm. Mất kết nối là coi như một mình.
 - **04:18** 💭 Pin còn ít quá. Dây sạc của mình còn đây, nhưng cục sạc đâu…
-- **04:19** 💭 Hôm qua Đạt mượn cục sạc của mình rồi khóa trong tủ…
-- **04:20** `[Câu đố: tủ khóa số của Đạt (`locker_combo_dat`, mã 1407). Sổ tay Đạt: "mật khẩu là sinh nhật tao"; thẻ sinh viên: sinh ngày 14/07/2006. Mở tủ, lấy cục sạc, cắm ở ổ cạnh bàn Trung.]`
+- **04:20** `[N1 tủ của Đạt (`locker_combo_dat`, mã 2109, sai 3 lần thì kẹt 60 giây). Sổ Đạt: "sinh nhật thằng thân nhất phòng"; ảnh đội bóng: Phúc & Đạt; thẻ của Phúc kẹp trong sách: 21/09/2006. Thẻ của Đạt (14/07) và của Việt (03/03) là mồi nhử. Lấy cục sạc, cắm ở chỗ dây sạc trên bàn Trung.]`
 - **04:25** 💭 Đang sạc rồi. Phải ở gần ổ điện.
-- **04:35** `[Cám dỗ: tiếng gõ cửa và giọng Việt ngoài hành lang. Mở cửa thì hành lang trống, có dấu chân máu đi xa; bước ra là chết.]`
+- **04:28** `[N2 mất mạng: đèn cục phát tắt, cuộc gọi đứt (phone_call_lost). Ổ điện dưới giường Phúc: công tắc 2 (vệt đỏ) cấp điện cục phát, công tắc 3 chập (chờ 20 giây). Cục phát khởi động 8 giây, đèn mạng đỏ: cắm dây xanh vào ổ mạng trên tường. Các câu trong lúc mất mạng không nghe được.]`
+- **04:30** 📞 **Minh Nhật · 203:** Trung? Trung! Cậu vừa mất tín hiệu. Mạng nội bộ chập chờn lắm, cố giữ máy.
+- **04:30** 📞 **Minh Nhật · 203:** Lúc cậu mất kết nối, thêm hai người trong nhóm im lặng luôn. Không ai biết họ làm gì.
+- **04:48** 📞 **Minh Nhật · 203:** Tôi khởi động lại mạng từ phía tôi rồi… Trung, nghe được không? Cậu bỏ lỡ nhiều lắm.
+- **04:30** `[N_BACK và N_MISSED khi người chơi tự sửa xong; N_BACK_REMOTE nếu tới 4:48 vẫn chưa sửa.]`
+- **04:35** `[N4 giữ cửa: cửa chưa chốt. Giọng Việt ngoài cửa, rồi tay nắm bị vặn mạnh. 10 giây để chốt cửa; không kịp thì cửa bật mở, một bàn tay lôi Trung ra (DEATH_DRAGGED_OUT, cảnh chết fall_back).]`
 - **04:35** **Việt (ngoài cửa)** *(trong phòng)*: Trung ơi, mở cửa cho tao. Tao ra ngoài đi vệ sinh, giờ không vào được…
-- **04:35** 💭 Việt… đang nằm trên giường kia mà.
 - **04:36** **Việt (ngoài cửa)** *(trong phòng)*: Ra đây với tao đi. Ngoài này không có ai đâu.
 - **04:37** 📞 **Vinh · 311:** Vinh, 311. Có ai nghe tiếng bạn cùng phòng gọi ngoài cửa không? Tôi vừa nghe…
 - **04:37** 📞 **Minh Nhật · 203:** Đừng ra. Mở cửa thì chưa sao, nhưng bước qua ngưỡng cửa là hết.
+- **04:38** `[N3 gõ tường: Khoa (406) gõ mã 5×5 "CON SONG" hai lần. Gõ lại "CO" ở tường 406 trong 90 giây thì Khoa gõ "SO GIUONG". Bảng mã kẹp trong sổ hợp âm guitar của Việt.]`
 - **04:50** 📞 **Minh Nhật · 203:** Loa nói mỗi giờ một quy tắc mới. Năm giờ sẽ có quy tắc thứ hai. Phải nghe thật kỹ từng chữ.
 - **04:50** ▶ **Trung chọn:** (1) Ừ. Tôi sẽ ghi lại từng chữ. / (2) Nghe kỹ thì được gì? Nó muốn giết thì giết thôi.
 - **04:51** 📞 **Minh Nhật · 203:** Quy tắc chưa nói dối lần nào. Nếu có đường sống, nó nằm trong câu chữ.
@@ -79,7 +82,8 @@ Ký hiệu: **Loa** = loa trường · **Quản lý** · *(trong phòng)* = gi�
 
 - **05:00** **Loa:** Vòng hai. Trong một giờ tới, nhà trường kiểm tra phòng. Mỗi tòa nhà có một quản lý. Sinh viên hãy nằm yên trên giường và hợp tác với công việc của quản lý.
 - **05:01** 📞 **Minh Nhật · 203:** Lên giường hết đi. Nhanh lên.
-- **05:01** 💭 Phải lên giường trước khi ông ta tới.
+- **05:02** 📞 **Minh Nhật · 203:** Tôi vào được hệ thống camera của ký túc xá rồi. Mở tab Camera trên điện thoại đi. Ông ta vào phòng nào… mình thấy hết.
+- **05:02** `[cctv_unlocked. N5: 3 mảnh biên bản ở tủ Việt, dưới nệm Phúc, sọt rác. N8: tab Sơ đồ.]`
 - **05:01** `[Checkpoint `ch1_r2`. Tiếng dao kéo lê bắt đầu vọng từ tầng một.]`
 - **05:05** 📞 **Hùng · 102:** Có người gõ cửa phòng tao… Quản lý tới rồi.
 - **05:05** **Quản lý:** Đinh Xuân Hùng. Có ở đây không?
@@ -93,7 +97,8 @@ Ký hiệu: **Loa** = loa trường · **Quản lý** · *(trong phòng)* = gi�
 - **05:12** **Quản lý:** Giường số ba. Có ở đây không?
 - **05:12** 📞 **Kiệt · 306:** Không… không có ai ở đây hết.
 - **05:12** **Quản lý:** Nằm ngoan trên giường thế kia, sao lại nói không có?
-- **05:13** `[Kiệt chết.]`
+- **05:13** `[Kiệt chết (camera 306: màn hình điện thoại Kiệt đang sáng).]`
+- **05:14** 📞 **Minh Nhật · 203:** Lúc ông ta vào, điện thoại Kiệt còn sáng… cậu ấy đang gọi với tụi mình.
 - **05:20** 📞 **Bảo · 209:** Ông ta tới 209 rồi… tôi phải làm sao… làm sao bây giờ…
 - **05:20** 📞 **Minh Nhật · 203:** Bảo, thử im lặng. Ông ta hỏi gì cũng đừng trả lời.
 - **05:21** **Quản lý:** Giường số bốn. Có ở đây không?
@@ -101,6 +106,7 @@ Ký hiệu: **Loa** = loa trường · **Quản lý** · *(trong phòng)* = gi�
 - **05:22** **Quản lý:** (cười khàn khàn)
 - **05:22** `[Bảo chết.]`
 - **05:23** 📞 **Đăng · 106:** Im lặng cũng chết! Thế này thì làm cái quái gì mới đúng!
+- **05:26** 📞 **Đăng · 106:** Đèn phòng tao còn sáng, kệ. Tối quá tao chịu không nổi.
 - **05:28** 📞 **Đăng · 106:** 106… ông ta tới 106 rồi. Phòng tao. Nói gì đi, tao phải làm gì?
 - **05:28** ▶ **Trung chọn:** (1) Trùm chăn kín người lại! / (2) Hô to tên mày với số giường! / (3) Chạm vào ông ta, cho ông ta biết mày còn sống!
 - **05:29** **Quản lý:** Giường số hai. Có ở đây không?
@@ -108,15 +114,17 @@ Ký hiệu: **Loa** = loa trường · **Quản lý** · *(trong phòng)* = gi�
 - **05:32** 📞 **Minh Nhật · 203:** Sơn trùm chăn, Vinh hô tên, có người còn chạm vào ông ta… Không cách nào được cả.
 - **05:33** `[Sơn, Vinh và những người im lặng lần lượt xám tên.]`
 - **05:38** 📞 **Minh Nhật · 203:** Trong nhóm… chỉ còn tôi với cậu.
+- **05:40** `[Qua tường 406: quản lý vào phòng Khoa, "Giường số hai…" (MGR ASK_BED_2), tiếng chém, im lặng.]`
 - **05:40** 💭 Tiếng kéo dao… ở ngay tầng này.
-- **05:43** `[Checkpoint `ch1_r2_manager` (người chơi phải đang nằm trên một giường). Tiếng gõ cửa 407. Quản lý mở cửa, vào phòng.]`
-- **05:43** 💭 Quy tắc chỉ nói "nằm yên trên giường". Nó không nói giường của ai.
-- **05:43** 💭 Ông ta sẽ hỏi giường số ba, giường của mình. Nếu mình không nằm ở đó…
-- **05:43** `[HINT_1 chỉ hiện từ lần chết thứ hai ở cảnh này, HINT_2 từ lần thứ ba.]`
-- **05:44** `[Quản lý hỏi giường số ba (MGR ASK_BED_3), chờ. Không nằm giường nào: chết (DEATH_NOT_IN_BED). Nằm giường số 3: chết (DEATH_OWN_BED). Có tiếng thở hoặc nhúc nhích: chết (DEATH_HEARD). Nằm giường bạn, nín thở: quản lý cười rồi chém nát giường số 3, bỏ đi.]`
+- **05:43** `[Camera hành lang: quản lý đi tới 407. Tiếng gõ cửa 407. Quản lý mở cửa (N6: đèn bàn sáng, điện thoại đang giơ hoặc đèn pin bật thì chết, DEATH_SEEN). Từ lúc vào tới lúc ra, ông ta nghe cả tiếng cử động.]`
+- **05:44** `[Quản lý hỏi giường số ba (MGR ASK_BED_3), chờ. Không nằm giường nào: chết (DEATH_NOT_IN_BED). Nằm giường số 3: chết (DEATH_OWN_BED). Thở trong 5 giây im lặng sau câu hỏi, hoặc cử động bất cứ lúc nào: chết (DEATH_HEARD). Mọi cái chết ở cảnh này: cảnh chết manager_kill. Nằm giường bạn, nín thở: quản lý cười rồi chém nát giường số 3, bỏ đi.]`
 - **05:46** 💭 Ông ta chém nát giường của mình… rồi bỏ đi.
 - **05:46** 💭 Việc của quản lý không phải kiểm tra phòng. Mà là dọn sạch người sống. "Hợp tác"… là nằm như người chết.
-- **05:47** ▶ **Trung chọn:** (1) Nhật! Nằm lên giường của bạn cùng phòng đã chết. Đừng nằm giường mình, nín thở!
+- **05:47** `[N7: 10 giây chọn lời khuyên. Đúng là (1). Sai hoặc hết giờ: Minh Nhật chết (DEATH_LOST_NHAT), làm lại vòng 2.]`
+- **05:47** ▶ **Trung chọn:** (1) Nằm giường của người đã chết, tắt hết đèn, nín thở khi ông ta hỏi xong. / (2) Nằm yên trên giường của mình, nín thở thật lâu. / (3) Chui xuống gầm giường, tắt điện thoại. / (4) Nằm giường của người đã chết, trả lời "không có" khi ông ta hỏi.
+- **05:49** 📞 **Minh Nhật · 203:** Trung… ông ta đang mở cửa phòng tôi… tôi làm đúng như cậu nói mà…
+- **05:49** **Quản lý:** Giường số một. Có ở đây không?
+- **05:49** `[N_DYING và ASK_BED_1 chỉ khi chọn sai; rồi tiếng chém, cuộc gọi tắt, cảnh chết none.]`
 - **05:52** 📞 **Minh Nhật · 203:** Ông ta vừa chém nát giường tôi… Tôi còn sống. Cảm ơn cậu, Trung.
 - **05:54** 📞 **Minh Nhật · 203:** Để tôi thử mở rộng mạng… Được rồi, bắt được nhà A bên kia vườn hoa.
 - **05:55** 📞 **Ngọc Ngư · 401 nhà A:** Các cậu là… ai vậy? Nhà A, phòng 401, Khương Ngọc Ngư.
@@ -132,11 +140,22 @@ Ký hiệu: **Loa** = loa trường · **Quản lý** · *(trong phòng)* = gi�
 - **NOT_IN_BED:** Bạn không nằm trên giường khi quản lý vào phòng.
 - **OWN_BED:** Quản lý tìm thấy bạn trên giường của chính mình.
 - **HEARD:** Quản lý nghe thấy bạn.
+- **DRAGGED_OUT:** Một bàn tay lôi bạn ra khỏi phòng.
+- **SEEN:** Quản lý thấy ánh sáng trong phòng.
+- **LOST_NHAT:** Minh Nhật đã chết. Không còn ai giữ mạng nội bộ.
 
 ## Giấy tờ đọc được trong phòng 407
 
-- **Sổ tay của Đạt:** Mật khẩu tủ: sinh nhật tao. Đứa nào mở trộm là chết với tao. · Thứ hai: trả cục sạc cho Trung.
+- **Sổ tay của Đạt:** Mật khẩu tủ: sinh nhật thằng thân nhất phòng. Đứa nào mở trộm là chết với tao. · Thứ hai: trả cục sạc cho Trung.
 - **Thẻ sinh viên:** Họ tên: Phạm Thành Đạt · Ngày sinh: 14/07/2006 · Ký túc xá: phòng 407, nhà B
+- **Thẻ sinh viên:** Họ tên: Lê Hoàng Phúc · Ngày sinh: 21/09/2006 · Ký túc xá: phòng 407, nhà B
+- **Thẻ sinh viên:** Họ tên: Đặng Quốc Việt · Ngày sinh: 03/03/2006 · Ký túc xá: phòng 407, nhà B
+- **Ảnh đội bóng khoa:** Mặt trước: Đạt khoác vai Phúc, hai đứa cười toe, mặc áo đội. · Mặt sau, chữ của Đạt: "Anh em cây khế. Phúc & Đạt, mùa giải 2025."
+- **Sổ hợp âm của Việt (trang cuối):** A   B   C   D   E · F   G   H   I   K · L   M   N   O   P · Q   R   S   T   U · V   W   X   Y   Z · Hồi nhỏ ngủ chung với thằng em, cách vách thì gõ: hàng trước, cột sau.
+- **Mảnh giấy xé (1):** Biên bản kiểm tra phòng ban đêm (mẫu c… · Cán bộ kiểm tra hỏi theo số giư… · Giường trống: ghi "v…
+- **Mảnh giấy xé (2), đẫm máu:** …ờng đã đăng ký, không hỏi theo người. · …ắng". Giường có người nằm im: ghi "đã kiểm tra".
+- **Mảnh giấy xé (3), bị vo tròn:** Phòng còn đèn sáng: kiểm tra kỹ từng giường. · Sinh viên không được tự ý đổi giường đã đăng ký.
+- **Biên bản kiểm tra phòng ban đêm (mẫu cũ):** Cán bộ kiểm tra hỏi theo số giường đã đăng ký, không hỏi theo người. · Giường trống: ghi "vắng". Giường có người nằm im: ghi "đã kiểm tra". · Phòng còn đèn sáng: kiểm tra kỹ từng giường. · Sinh viên không được tự ý đổi giường đã đăng ký.
 - **Lịch thi của Phúc:** Giải tích 2: thứ hai, 7 giờ 30. KHÔNG ĐƯỢC NGỦ QUÊN. · Hứa với mẹ kỳ này qua hết các môn.
 - **Mặt sau tấm ảnh gia đình:** Học xong thì về quê làm thầy giáo nghe con. Ba mẹ.
-- **Tủ của Đạt:** mã `1407` (ngày sinh 14/07 trên thẻ sinh viên).
+- **Tủ của Đạt:** mã `2109` (ngày sinh 21/09 của Phúc, "thằng thân nhất phòng"; thẻ của Đạt và Việt là mồi nhử). Sai 3 lần thì kẹt 60 giây.

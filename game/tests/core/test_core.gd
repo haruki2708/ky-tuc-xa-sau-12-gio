@@ -376,11 +376,14 @@ func test_chapter_1_script_data_loads_and_is_translated() -> void:
 		assert_true(tr(msg.sender_name_key) != msg.sender_name_key, "translated " + msg.sender_name_key)
 		count += 1
 	assert_true(count > 40, "chapter 1 has its group-call lines;")
-	for doc_id in [&"ch1_dat_note", &"ch1_dat_card", &"ch1_phuc_schedule", &"ch1_viet_photo"]:
+	for doc_id in [&"ch1_dat_note", &"ch1_dat_card", &"ch1_phuc_schedule", &"ch1_viet_photo", &"ch1_phuc_card",
+			&"ch1_viet_card", &"ch1_team_photo", &"ch1_tap_chart", &"ch1_form_piece_1", &"ch1_form_piece_2",
+			&"ch1_form_piece_3", &"ch1_inspection_form"]:
 		var doc := DocumentData.load_by_id(doc_id)
 		assert_not_null(doc, String(doc_id))
 		for key in doc.text_keys + [doc.title_key]:
 			assert_true(tr(key) != key, "translated " + key)
 	var locker := PuzzleData.load_by_id(&"locker_combo_dat")
-	assert_true(locker.check("1407"), "Đạt's locker opens with his birthday;")
-	assert_not_null(DocumentData.load_by_id(locker.hint_document), "locker hint document exists;")
+	assert_true(locker.check("2109") and not locker.check("1407"), "Đạt's locker opens with Phúc's birthday (D-039);")
+	assert_eq(locker.max_attempts, 3, "Insane: three tries;")
+	assert_eq(String(locker.hint_document), "", "Insane: no hint button;")
