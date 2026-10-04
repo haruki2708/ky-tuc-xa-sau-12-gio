@@ -1,0 +1,132 @@
+[gd_scene format=3]
+
+[ext_resource type="Shader" path="res://rendering/ps1_surface.gdshader" id="e1"]
+[ext_resource type="Texture2D" path="res://assets/textures/room407/ink.png" id="e2"]
+[ext_resource type="Texture2D" path="res://assets/textures/room407/paper.png" id="e3"]
+[ext_resource type="Texture2D" path="res://assets/textures/room407/moss.png" id="e4"]
+[ext_resource type="Texture2D" path="res://assets/textures/room407/wood.png" id="e5"]
+[ext_resource type="PackedScene" path="res://assets/models/props/towel.glb" id="e6"]
+[ext_resource type="PackedScene" path="res://assets/models/props/bucket.glb" id="e7"]
+
+[sub_resource type="ShaderMaterial" id="s1"]
+shader = ExtResource("e1")
+shader_parameter/albedo_texture = ExtResource("e2")
+shader_parameter/roughness = 0.95
+
+[sub_resource type="ShaderMaterial" id="s2"]
+shader = ExtResource("e1")
+shader_parameter/albedo_texture = ExtResource("e3")
+shader_parameter/roughness = 0.95
+
+[sub_resource type="ShaderMaterial" id="s3"]
+shader = ExtResource("e1")
+shader_parameter/albedo_texture = ExtResource("e4")
+shader_parameter/roughness = 0.95
+
+[sub_resource type="ShaderMaterial" id="s4"]
+shader = ExtResource("e1")
+shader_parameter/albedo_texture = ExtResource("e5")
+shader_parameter/roughness = 0.95
+
+[sub_resource type="BoxMesh" id="s5"]
+size = Vector3(0.13, 0.02, 0.08)
+material = SubResource("s2")
+
+[sub_resource type="BoxMesh" id="s6"]
+size = Vector3(0.1, 0.028, 0.056)
+material = SubResource("s3")
+
+[sub_resource type="BoxMesh" id="s7"]
+size = Vector3(0.13, 0.02, 0.08)
+material = SubResource("s2")
+
+[sub_resource type="BoxMesh" id="s8"]
+size = Vector3(0.1, 0.028, 0.056)
+material = SubResource("s3")
+
+[sub_resource type="BoxMesh" id="s9"]
+size = Vector3(0.13, 0.02, 0.08)
+material = SubResource("s2")
+
+[sub_resource type="BoxMesh" id="s10"]
+size = Vector3(0.1, 0.028, 0.056)
+material = SubResource("s3")
+
+[sub_resource type="BoxMesh" id="s11"]
+size = Vector3(0.045, 0.022, 0.32)
+material = SubResource("s1")
+
+[sub_resource type="BoxMesh" id="s12"]
+size = Vector3(0.023, 1.37, 0.023)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s13"]
+size = Vector3(0.24, 0.055, 0.09)
+material = SubResource("s2")
+
+[node name="WashroomDetails" type="Node3D"]
+
+
+[node name="SoapTray0" type="Node3D" parent="."]
+position = Vector3(0.47, 0.895, -0.63)
+
+[node name="Mesh" type="MeshInstance3D" parent="SoapTray0"]
+mesh = SubResource("s5")
+
+[node name="Soap0" type="Node3D" parent="."]
+position = Vector3(0.47, 0.919, -0.63)
+
+[node name="Mesh" type="MeshInstance3D" parent="Soap0"]
+mesh = SubResource("s6")
+
+[node name="SoapTray1" type="Node3D" parent="."]
+position = Vector3(0.47, 0.895, -1.63)
+
+[node name="Mesh" type="MeshInstance3D" parent="SoapTray1"]
+mesh = SubResource("s7")
+
+[node name="Soap1" type="Node3D" parent="."]
+position = Vector3(0.47, 0.919, -1.63)
+
+[node name="Mesh" type="MeshInstance3D" parent="Soap1"]
+mesh = SubResource("s8")
+
+[node name="SoapTray2" type="Node3D" parent="."]
+position = Vector3(0.47, 0.895, -2.63)
+
+[node name="Mesh" type="MeshInstance3D" parent="SoapTray2"]
+mesh = SubResource("s9")
+
+[node name="Soap2" type="Node3D" parent="."]
+position = Vector3(0.47, 0.919, -2.63)
+
+[node name="Mesh" type="MeshInstance3D" parent="Soap2"]
+mesh = SubResource("s10")
+
+[node name="TowelRail" type="Node3D" parent="."]
+position = Vector3(0.14, 1.4, -3.26)
+
+[node name="Mesh" type="MeshInstance3D" parent="TowelRail"]
+mesh = SubResource("s11")
+
+[node name="HandTowel" parent="." instance=ExtResource("e6")]
+position = Vector3(0.17, 1.35, -3.25)
+rotation_degrees = Vector3(0, 90, 0)
+scale = Vector3(0.7, 0.7, 0.7)
+
+[node name="CleaningBucket" parent="." instance=ExtResource("e7")]
+position = Vector3(5.5, 0.01, -0.45)
+rotation_degrees = Vector3(0, 0, 0)
+scale = Vector3(1, 1, 1)
+
+[node name="MopHandle" type="Node3D" parent="."]
+position = Vector3(5.67, 0.69, -0.42)
+
+[node name="Mesh" type="MeshInstance3D" parent="MopHandle"]
+mesh = SubResource("s12")
+
+[node name="MopHead" type="Node3D" parent="."]
+position = Vector3(5.67, 0.04, -0.42)
+
+[node name="Mesh" type="MeshInstance3D" parent="MopHead"]
+mesh = SubResource("s13")

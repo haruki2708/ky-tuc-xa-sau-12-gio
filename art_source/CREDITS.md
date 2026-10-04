@@ -40,3 +40,14 @@ Shader bóng người/gương và scene là mã mới có hỗ trợ AI (Codex).
 | `props/previews/*.png` | Blender Cycles CPU; `ingame.png` do Godot Forward+ render | Các mô hình trên | CC0-1.0 |
 
 Các đạo cụ dùng lại texture kit (`old_wood`, `iron`, `cloth`, `green_paint`, `fan_paint`), không chép PNG trùng. **Khai báo AI:** Claude (Anthropic) viết script sinh mô hình, texture, scene và shader; nội dung tạo bằng mã có hỗ trợ AI. Không dùng mô hình sinh ảnh hay asset tải ngoài.
+
+## Phòng 407 chương 1 — T-153
+
+| File / nhóm | Tác giả / công cụ | Nguồn | Giấy phép asset |
+|---|---|---|---|
+| `game/assets/models/room407/*.glb` (13 đạo cụ cá nhân và biến thể giường Trung) | Lane B, Codex (OpenAI), Blender 5.2.2 LTS | [Script gốc](room407/build_assets.py); biến thể giường dùng lại hình khối kit CC0 | CC0-1.0 |
+| `game/assets/textures/room407/*.png` (10 texture 128 px) | Lane B, Codex, texture thủ tục bằng Python, seed 153 | [Script gốc](room407/build_assets.py); không dùng ảnh tải ngoài | CC0-1.0 |
+| `game/scenes/levels/room407/*`, `game/rendering/room407_surface.gdshader` | Lane B, Codex | [Generator scene](room407/build_scenes.py), mã mới; dùng lại shader PS1 và prop kit/T-138 đã ghi nguồn trên | CC0-1.0 |
+| `room407/previews/*.png` | Godot 4.7.2 Forward+, Codex viết script chụp | [Script chụp](room407/capture_room407.gd) | CC0-1.0 |
+
+Poster bóng đá là hình sân/quả bóng hình học tự dựng; khung ảnh có hình người cách điệu tự dựng, không phải ảnh người thật. Không logo, nhãn hàng, lời thoại hoặc nội dung video được đưa vào texture. Máu là mảng pixel đỏ sẫm, không chi tiết giải phẫu. **Khai báo AI:** Codex viết mã tạo model, texture, scene, shader và test; không dùng mô hình sinh ảnh. Âm thanh tham chiếu Lane E giữ nguồn trong `game/audio/CREDITS.md`.

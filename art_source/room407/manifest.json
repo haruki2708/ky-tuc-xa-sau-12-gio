@@ -1,0 +1,198 @@
+{
+  "books": {
+    "triangles": 108,
+    "triangle_limit_exclusive": 500,
+    "blender_dimensions_m": [
+      0.28091,
+      0.34046,
+      0.111
+    ],
+    "godot_dimensions_m": [
+      0.28091,
+      0.111,
+      0.34046
+    ]
+  },
+  "headphones": {
+    "triangles": 128,
+    "triangle_limit_exclusive": 500,
+    "blender_dimensions_m": [
+      0.235,
+      0.065,
+      0.1985
+    ],
+    "godot_dimensions_m": [
+      0.235,
+      0.1985,
+      0.065
+    ]
+  },
+  "noodles": {
+    "triangles": 72,
+    "triangle_limit_exclusive": 500,
+    "blender_dimensions_m": [
+      0.16986,
+      0.14251,
+      0.1465
+    ],
+    "godot_dimensions_m": [
+      0.16986,
+      0.1465,
+      0.14251
+    ]
+  },
+  "football_poster": {
+    "triangles": 72,
+    "triangle_limit_exclusive": 500,
+    "blender_dimensions_m": [
+      0.46,
+      0.04912,
+      0.62
+    ],
+    "godot_dimensions_m": [
+      0.46,
+      0.62,
+      0.04912
+    ]
+  },
+  "laptop": {
+    "triangles": 120,
+    "triangle_limit_exclusive": 500,
+    "blender_dimensions_m": [
+      0.33,
+      0.233,
+      0.249
+    ],
+    "godot_dimensions_m": [
+      0.33,
+      0.249,
+      0.233
+    ]
+  },
+  "guitar": {
+    "triangles": 240,
+    "triangle_limit_exclusive": 500,
+    "blender_dimensions_m": [
+      0.36,
+      1.09,
+      0.105
+    ],
+    "godot_dimensions_m": [
+      0.36,
+      0.105,
+      1.09
+    ]
+  },
+  "family_photo": {
+    "triangles": 144,
+    "triangle_limit_exclusive": 500,
+    "blender_dimensions_m": [
+      0.21,
+      0.045,
+      0.24
+    ],
+    "godot_dimensions_m": [
+      0.21,
+      0.24,
+      0.045
+    ]
+  },
+  "backpack": {
+    "triangles": 96,
+    "triangle_limit_exclusive": 500,
+    "blender_dimensions_m": [
+      0.29,
+      0.30274,
+      0.45636
+    ],
+    "godot_dimensions_m": [
+      0.29,
+      0.45636,
+      0.30274
+    ]
+  },
+  "power_strip": {
+    "triangles": 108,
+    "triangle_limit_exclusive": 500,
+    "blender_dimensions_m": [
+      0.45486,
+      0.33208,
+      0.0475
+    ],
+    "godot_dimensions_m": [
+      0.45486,
+      0.0475,
+      0.33208
+    ]
+  },
+  "charging_cable": {
+    "triangles": 148,
+    "triangle_limit_exclusive": 500,
+    "blender_dimensions_m": [
+      0.648,
+      0.20539,
+      0.012
+    ],
+    "godot_dimensions_m": [
+      0.648,
+      0.012,
+      0.20539
+    ]
+  },
+  "notebook": {
+    "triangles": 120,
+    "triangle_limit_exclusive": 500,
+    "blender_dimensions_m": [
+      0.18,
+      0.25,
+      0.036
+    ],
+    "godot_dimensions_m": [
+      0.18,
+      0.036,
+      0.25
+    ]
+  },
+  "trainers": {
+    "triangles": 144,
+    "triangle_limit_exclusive": 500,
+    "blender_dimensions_m": [
+      0.295,
+      0.27,
+      0.1335
+    ],
+    "godot_dimensions_m": [
+      0.295,
+      0.1335,
+      0.27
+    ]
+  },
+  "router": {
+    "triangles": 76,
+    "triangle_limit_exclusive": 500,
+    "blender_dimensions_m": [
+      0.2,
+      0.1235,
+      0.2305
+    ],
+    "godot_dimensions_m": [
+      0.2,
+      0.2305,
+      0.1235
+    ]
+  },
+  "bunk_trung": {
+    "triangles": 348,
+    "triangle_limit_exclusive": 1500,
+    "blender_dimensions_m": [
+      0.9,
+      2.0,
+      1.7
+    ],
+    "godot_dimensions_m": [
+      0.9,
+      1.7,
+      2.0
+    ]
+  }
+}

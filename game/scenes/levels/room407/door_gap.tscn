@@ -1,0 +1,46 @@
+[gd_scene format=3]
+
+
+[sub_resource type="StandardMaterial3D" id="s1"]
+shading_mode = 0
+albedo_color = Color(0.23,0.20,0.09,1)
+
+[sub_resource type="StandardMaterial3D" id="s2"]
+shading_mode = 0
+albedo_color = Color(0.014,0.018,0.019,1)
+
+[sub_resource type="QuadMesh" id="s3"]
+size = Vector2(0.86, 0.3)
+material = SubResource("s1")
+
+[sub_resource type="QuadMesh" id="s4"]
+size = Vector2(0.13, 0.29)
+material = SubResource("s2")
+
+[sub_resource type="QuadMesh" id="s5"]
+size = Vector2(0.13, 0.29)
+material = SubResource("s2")
+
+[node name="DoorGap" type="Node3D"]
+
+
+[node name="LightSlit" type="MeshInstance3D" parent="."]
+position = Vector3(0, 0.012, -0.15)
+rotation_degrees = Vector3(-90,0,0)
+mesh = SubResource("s3")
+cast_shadow = 0
+
+[node name="UnderDoorShadow" type="Node3D" parent="."]
+visible = false
+
+[node name="FootLeft" type="MeshInstance3D" parent="UnderDoorShadow"]
+position = Vector3(-0.11, 0.014, -0.15)
+rotation_degrees = Vector3(-90,0,0)
+mesh = SubResource("s4")
+cast_shadow = 0
+
+[node name="FootRight" type="MeshInstance3D" parent="UnderDoorShadow"]
+position = Vector3(0.11, 0.014, -0.15)
+rotation_degrees = Vector3(-90,0,0)
+mesh = SubResource("s5")
+cast_shadow = 0

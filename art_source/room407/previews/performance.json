@@ -1,0 +1,45 @@
+{
+	"cpu": "AMD Ryzen 5 5600H with Radeon Graphics",
+	"fixed_fps": false,
+	"godot": "4.7.2-stable (official)",
+	"gpu": "NVIDIA GeForce RTX 3050 Laptop GPU",
+	"ps1_strength": 1,
+	"renderer": "Forward+ Vulkan",
+	"resolution": "1280x720",
+	"sample_frames": 240,
+	"scenario": "Full floor4, Player physics/HUD/audio; stationary views; room main energy=0, desk/window/slit lights on",
+	"views": [
+		{
+			"max_frame_ms": 2.919,
+			"mean_fps": 430.591363413728,
+			"p95_frame_ms": 2.403,
+			"view": "room_clean"
+		},
+		{
+			"max_frame_ms": 2.562,
+			"mean_fps": 429.531738816067,
+			"p95_frame_ms": 2.385,
+			"view": "room_blood"
+		},
+		{
+			"max_frame_ms": 2.18,
+			"mean_fps": 495.162877639063,
+			"p95_frame_ms": 2.075,
+			"view": "bed_slashed"
+		},
+		{
+			"max_frame_ms": 2.106,
+			"mean_fps": 537.528444213506,
+			"p95_frame_ms": 1.902,
+			"view": "desk_details"
+		},
+		{
+			"max_frame_ms": 3.664,
+			"mean_fps": 449.331338801446,
+			"p95_frame_ms": 2.703,
+			"view": "personal_items"
+		}
+	],
+	"vsync": false,
+	"warmup_frames": 90
+}

@@ -1,0 +1,781 @@
+[gd_scene format=3]
+
+[ext_resource type="Shader" path="res://rendering/ps1_surface.gdshader" id="e1"]
+[ext_resource type="Texture2D" path="res://assets/textures/room407/wood.png" id="e2"]
+[ext_resource type="Texture2D" path="res://assets/textures/room407/paper.png" id="e3"]
+[ext_resource type="Texture2D" path="res://assets/textures/room407/cloth.png" id="e4"]
+[ext_resource type="Texture2D" path="res://assets/textures/room407/ink.png" id="e5"]
+[ext_resource type="Texture2D" path="res://assets/textures/room407/moss.png" id="e6"]
+[ext_resource type="Shader" path="res://rendering/ps1_surface_cutout.gdshader" id="e7"]
+[ext_resource type="Texture2D" path="res://assets/textures/room407/blood.png" id="e8"]
+[ext_resource type="PackedScene" path="res://assets/models/room407/books.glb" id="e9"]
+[ext_resource type="PackedScene" path="res://assets/models/room407/headphones.glb" id="e10"]
+[ext_resource type="PackedScene" path="res://assets/models/room407/noodles.glb" id="e11"]
+[ext_resource type="PackedScene" path="res://assets/models/room407/football_poster.glb" id="e12"]
+[ext_resource type="PackedScene" path="res://assets/models/room407/laptop.glb" id="e13"]
+[ext_resource type="PackedScene" path="res://assets/models/room407/family_photo.glb" id="e14"]
+[ext_resource type="PackedScene" path="res://assets/models/room407/guitar.glb" id="e15"]
+[ext_resource type="PackedScene" path="res://assets/models/room407/backpack.glb" id="e16"]
+[ext_resource type="PackedScene" path="res://assets/models/room407/power_strip.glb" id="e17"]
+[ext_resource type="PackedScene" path="res://assets/models/room407/charging_cable.glb" id="e18"]
+[ext_resource type="PackedScene" path="res://assets/models/room407/notebook.glb" id="e19"]
+[ext_resource type="PackedScene" path="res://assets/models/room407/trainers.glb" id="e20"]
+[ext_resource type="PackedScene" path="res://scenes/levels/props/slippers_pair.tscn" id="e21"]
+[ext_resource type="PackedScene" path="res://assets/models/room407/router.glb" id="e22"]
+[ext_resource type="PackedScene" path="res://assets/models/props/shirt.glb" id="e23"]
+[ext_resource type="PackedScene" path="res://assets/models/props/bucket.glb" id="e24"]
+[ext_resource type="PackedScene" path="res://assets/models/props/towel.glb" id="e25"]
+
+[sub_resource type="ShaderMaterial" id="s1"]
+shader = ExtResource("e1")
+shader_parameter/albedo_texture = ExtResource("e2")
+shader_parameter/roughness = 0.95
+
+[sub_resource type="ShaderMaterial" id="s2"]
+shader = ExtResource("e1")
+shader_parameter/albedo_texture = ExtResource("e3")
+shader_parameter/roughness = 0.95
+
+[sub_resource type="ShaderMaterial" id="s3"]
+shader = ExtResource("e1")
+shader_parameter/albedo_texture = ExtResource("e4")
+shader_parameter/roughness = 0.95
+
+[sub_resource type="ShaderMaterial" id="s4"]
+shader = ExtResource("e1")
+shader_parameter/albedo_texture = ExtResource("e5")
+shader_parameter/roughness = 0.95
+
+[sub_resource type="ShaderMaterial" id="s5"]
+shader = ExtResource("e1")
+shader_parameter/albedo_texture = ExtResource("e6")
+shader_parameter/roughness = 0.95
+
+[sub_resource type="ShaderMaterial" id="s6"]
+shader = ExtResource("e7")
+shader_parameter/albedo_texture = ExtResource("e8")
+shader_parameter/roughness = 0.95
+
+[sub_resource type="BoxMesh" id="s7"]
+size = Vector3(0.4, 0.035, 0.8)
+material = SubResource("s1")
+
+[sub_resource type="BoxMesh" id="s8"]
+size = Vector3(0.4, 0.035, 0.8)
+material = SubResource("s1")
+
+[sub_resource type="BoxMesh" id="s9"]
+size = Vector3(0.4, 0.035, 0.8)
+material = SubResource("s1")
+
+[sub_resource type="BoxMesh" id="s10"]
+size = Vector3(0.25, 0.025, 0.44)
+material = SubResource("s1")
+
+[sub_resource type="BoxMesh" id="s11"]
+size = Vector3(3.42, 0.012, 0.012)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s12"]
+size = Vector3(0.64, 0.16, 1.15)
+material = SubResource("s3")
+
+[sub_resource type="BoxMesh" id="s13"]
+size = Vector3(0.64, 0.16, 1.15)
+material = SubResource("s3")
+
+[sub_resource type="BoxMesh" id="s14"]
+size = Vector3(0.64, 0.16, 1.15)
+material = SubResource("s3")
+
+[sub_resource type="QuadMesh" id="s15"]
+size = Vector2(0.62, 1.08)
+material = SubResource("s6")
+
+[sub_resource type="QuadMesh" id="s16"]
+size = Vector2(0.35, 0.28)
+material = SubResource("s6")
+
+[sub_resource type="QuadMesh" id="s17"]
+size = Vector2(0.018, 0.09)
+material = SubResource("s6")
+
+[sub_resource type="QuadMesh" id="s18"]
+size = Vector2(0.2, 0.27)
+material = SubResource("s6")
+
+[sub_resource type="QuadMesh" id="s19"]
+size = Vector2(0.9, 1.1)
+material = SubResource("s6")
+
+[sub_resource type="QuadMesh" id="s20"]
+size = Vector2(0.62, 1.08)
+material = SubResource("s6")
+
+[sub_resource type="QuadMesh" id="s21"]
+size = Vector2(0.35, 0.28)
+material = SubResource("s6")
+
+[sub_resource type="QuadMesh" id="s22"]
+size = Vector2(0.018, 0.09)
+material = SubResource("s6")
+
+[sub_resource type="QuadMesh" id="s23"]
+size = Vector2(0.2, 0.27)
+material = SubResource("s6")
+
+[sub_resource type="QuadMesh" id="s24"]
+size = Vector2(0.9, 1.1)
+material = SubResource("s6")
+
+[sub_resource type="QuadMesh" id="s25"]
+size = Vector2(0.62, 1.08)
+material = SubResource("s6")
+
+[sub_resource type="QuadMesh" id="s26"]
+size = Vector2(0.35, 0.28)
+material = SubResource("s6")
+
+[sub_resource type="QuadMesh" id="s27"]
+size = Vector2(0.018, 0.09)
+material = SubResource("s6")
+
+[sub_resource type="QuadMesh" id="s28"]
+size = Vector2(0.2, 0.27)
+material = SubResource("s6")
+
+[sub_resource type="QuadMesh" id="s29"]
+size = Vector2(0.9, 1.1)
+material = SubResource("s6")
+
+[sub_resource type="BoxMesh" id="s30"]
+size = Vector3(0.8, 0.05, 0.23)
+material = SubResource("s2")
+
+[sub_resource type="BoxMesh" id="s31"]
+size = Vector3(0.77, 0.014, 0.229)
+material = SubResource("s5")
+
+[sub_resource type="BoxMesh" id="s32"]
+size = Vector3(0.8, 0.05, 0.23)
+material = SubResource("s2")
+
+[sub_resource type="BoxMesh" id="s33"]
+size = Vector3(0.77, 0.014, 0.229)
+material = SubResource("s5")
+
+[sub_resource type="BoxMesh" id="s34"]
+size = Vector3(0.8, 0.05, 0.23)
+material = SubResource("s2")
+
+[sub_resource type="BoxMesh" id="s35"]
+size = Vector3(0.77, 0.014, 0.229)
+material = SubResource("s5")
+
+[sub_resource type="BoxMesh" id="s36"]
+size = Vector3(0.8, 0.05, 0.23)
+material = SubResource("s2")
+
+[sub_resource type="BoxMesh" id="s37"]
+size = Vector3(0.77, 0.014, 0.229)
+material = SubResource("s5")
+
+[sub_resource type="BoxMesh" id="s38"]
+size = Vector3(0.8, 0.05, 0.23)
+material = SubResource("s2")
+
+[sub_resource type="BoxMesh" id="s39"]
+size = Vector3(0.77, 0.014, 0.229)
+material = SubResource("s5")
+
+[sub_resource type="BoxMesh" id="s40"]
+size = Vector3(0.8, 0.05, 0.23)
+material = SubResource("s2")
+
+[sub_resource type="BoxMesh" id="s41"]
+size = Vector3(0.77, 0.014, 0.229)
+material = SubResource("s5")
+
+[sub_resource type="BoxMesh" id="s42"]
+size = Vector3(0.8, 0.05, 0.23)
+material = SubResource("s2")
+
+[sub_resource type="BoxMesh" id="s43"]
+size = Vector3(0.77, 0.014, 0.229)
+material = SubResource("s5")
+
+[sub_resource type="BoxMesh" id="s44"]
+size = Vector3(0.8, 0.05, 0.23)
+material = SubResource("s2")
+
+[sub_resource type="BoxMesh" id="s45"]
+size = Vector3(0.77, 0.014, 0.229)
+material = SubResource("s5")
+
+[sub_resource type="BoxMesh" id="s46"]
+size = Vector3(0.54, 0.06, 0.3)
+material = SubResource("s3")
+
+[sub_resource type="BoxMesh" id="s47"]
+size = Vector3(0.79, 0.009, 0.018)
+material = SubResource("s4")
+
+[sub_resource type="PrismMesh" id="s48"]
+size = Vector3(0.16,0.025,0.19)
+material = SubResource("s5")
+
+[sub_resource type="BoxMesh" id="s49"]
+size = Vector3(0.79, 0.009, 0.018)
+material = SubResource("s4")
+
+[sub_resource type="PrismMesh" id="s50"]
+size = Vector3(0.16,0.025,0.19)
+material = SubResource("s2")
+
+[sub_resource type="BoxMesh" id="s51"]
+size = Vector3(0.79, 0.009, 0.018)
+material = SubResource("s4")
+
+[sub_resource type="PrismMesh" id="s52"]
+size = Vector3(0.16,0.025,0.19)
+material = SubResource("s5")
+
+[sub_resource type="BoxMesh" id="s53"]
+size = Vector3(0.79, 0.009, 0.018)
+material = SubResource("s4")
+
+[sub_resource type="PrismMesh" id="s54"]
+size = Vector3(0.16,0.025,0.19)
+material = SubResource("s2")
+
+[sub_resource type="BoxMesh" id="s55"]
+size = Vector3(0.79, 0.009, 0.018)
+material = SubResource("s4")
+
+[sub_resource type="PrismMesh" id="s56"]
+size = Vector3(0.16,0.025,0.19)
+material = SubResource("s5")
+
+[sub_resource type="BoxMesh" id="s57"]
+size = Vector3(0.79, 0.009, 0.018)
+material = SubResource("s4")
+
+[sub_resource type="PrismMesh" id="s58"]
+size = Vector3(0.16,0.025,0.19)
+material = SubResource("s2")
+
+[sub_resource type="BoxMesh" id="s59"]
+size = Vector3(0.79, 0.009, 0.018)
+material = SubResource("s4")
+
+[sub_resource type="PrismMesh" id="s60"]
+size = Vector3(0.16,0.025,0.19)
+material = SubResource("s5")
+
+[sub_resource type="BoxMesh" id="s61"]
+size = Vector3(0.79, 0.009, 0.018)
+material = SubResource("s4")
+
+[sub_resource type="PrismMesh" id="s62"]
+size = Vector3(0.16,0.025,0.19)
+material = SubResource("s2")
+
+[node name="Details" type="Node3D"]
+
+
+[node name="Phuc" type="Node3D" parent="."]
+
+
+[node name="Viet" type="Node3D" parent="."]
+
+
+[node name="Trung" type="Node3D" parent="."]
+
+
+[node name="Dat" type="Node3D" parent="."]
+
+
+[node name="Shelf" type="Node3D" parent="Phuc"]
+position = Vector3(0.3, 1.9, -1.84)
+
+[node name="Mesh" type="MeshInstance3D" parent="Phuc/Shelf"]
+mesh = SubResource("s7")
+
+[node name="Shelf" type="Node3D" parent="Viet"]
+position = Vector3(0.3, 0.88, -1.84)
+
+[node name="Mesh" type="MeshInstance3D" parent="Viet/Shelf"]
+mesh = SubResource("s8")
+
+[node name="Shelf" type="Node3D" parent="Dat"]
+position = Vector3(3.7, 1.9, -1.84)
+
+[node name="Mesh" type="MeshInstance3D" parent="Dat/Shelf"]
+mesh = SubResource("s9")
+
+[node name="Textbooks" parent="Phuc" instance=ExtResource("e9")]
+position = Vector3(0.3, 1.92, -1.84)
+rotation_degrees = Vector3(0, 90, 0)
+scale = Vector3(1, 1, 1)
+
+[node name="Headphones" parent="Phuc" instance=ExtResource("e10")]
+position = Vector3(0.3, 1.92, -1.52)
+rotation_degrees = Vector3(0, 90, 0)
+scale = Vector3(1, 1, 1)
+
+[node name="InstantNoodles" parent="Phuc" instance=ExtResource("e11")]
+position = Vector3(0.3, 1.92, -2.15)
+rotation_degrees = Vector3(0, 0, 0)
+scale = Vector3(1, 1, 1)
+
+[node name="FootballPoster" parent="Phuc" instance=ExtResource("e12")]
+position = Vector3(0.105, 2.26, -2.82)
+rotation_degrees = Vector3(0, -90, 0)
+scale = Vector3(1, 1, 1)
+
+[node name="OldLaptop" parent="Viet" instance=ExtResource("e13")]
+position = Vector3(0.3, 0.9, -1.82)
+rotation_degrees = Vector3(0, -90, 0)
+scale = Vector3(1, 1, 1)
+
+[node name="FamilyPhoto" parent="Viet" instance=ExtResource("e14")]
+position = Vector3(0.16, 0.9, -2.22)
+rotation_degrees = Vector3(0, -90, 0)
+scale = Vector3(1, 1, 1)
+
+[node name="Guitar" parent="Viet" instance=ExtResource("e15")]
+position = Vector3(0.19, 0.06, -1.8)
+rotation_degrees = Vector3(-80, -90, 0)
+scale = Vector3(1, 1, 1)
+
+[node name="Backpack" parent="Trung" instance=ExtResource("e16")]
+position = Vector3(3.78, 0.02, -4.52)
+rotation_degrees = Vector3(0, 90, 0)
+scale = Vector3(1, 1, 1)
+
+[node name="PowerStrip" parent="Trung" instance=ExtResource("e17")]
+position = Vector3(2.17, 0.77, -4.67)
+rotation_degrees = Vector3(0, 0, 0)
+scale = Vector3(1, 1, 1)
+
+[node name="ChargingCableNoAdapter" parent="Trung" instance=ExtResource("e18")]
+position = Vector3(1.66, 0.78, -4.51)
+rotation_degrees = Vector3(0, 0, 0)
+scale = Vector3(1, 1, 1)
+
+[node name="Notebook" parent="Dat" instance=ExtResource("e19")]
+position = Vector3(1.27, 0.77, -4.53)
+rotation_degrees = Vector3(0, -12, 0)
+scale = Vector3(1, 1, 1)
+
+[node name="Trainers" parent="Dat" instance=ExtResource("e20")]
+position = Vector3(3.63, 0.015, -1.87)
+rotation_degrees = Vector3(0, 15, 0)
+scale = Vector3(1, 1, 1)
+
+[node name="Books" parent="Dat" instance=ExtResource("e9")]
+position = Vector3(3.7, 1.92, -1.84)
+rotation_degrees = Vector3(0, 90, 0)
+scale = Vector3(1, 1, 1)
+
+[node name="Slippers" type="Node3D" parent="."]
+
+
+[node name="Phuc" parent="Slippers" instance=ExtResource("e21")]
+position = Vector3(0.67,0.005,-0.18)
+rotation_degrees = Vector3(0,180,0)
+color = Color(0.55,0.055,0.045,1)
+
+[node name="Viet" parent="Slippers" instance=ExtResource("e21")]
+position = Vector3(1.0,0.005,-0.18)
+rotation_degrees = Vector3(0,180,0)
+color = Color(0.055,0.20,0.55,1)
+
+[node name="Trung" parent="Slippers" instance=ExtResource("e21")]
+position = Vector3(3.0,0.005,-0.18)
+rotation_degrees = Vector3(0,180,0)
+color = Color(0.08,0.35,0.14,1)
+
+[node name="Dat" parent="Slippers" instance=ExtResource("e21")]
+position = Vector3(3.33,0.005,-0.18)
+rotation_degrees = Vector3(0,180,0)
+color = Color(0.04,0.045,0.05,1)
+
+[node name="RouterShelf" type="Node3D" parent="."]
+position = Vector3(3.77, 2.11, -0.55)
+
+[node name="Mesh" type="MeshInstance3D" parent="RouterShelf"]
+mesh = SubResource("s10")
+
+[node name="Router" parent="." instance=ExtResource("e22")]
+position = Vector3(3.78, 2.13, -0.55)
+rotation_degrees = Vector3(0, 90, 0)
+scale = Vector3(1, 1, 1)
+
+[node name="ClothesLine" type="Node3D" parent="."]
+position = Vector3(2, 2.58, -3.9)
+
+[node name="Mesh" type="MeshInstance3D" parent="ClothesLine"]
+mesh = SubResource("s11")
+
+[node name="HangingShirt_0" parent="." instance=ExtResource("e23")]
+position = Vector3(1.2, 2.5, -3.9)
+rotation_degrees = Vector3(0, 12, 0)
+scale = Vector3(0.8, 0.8, 0.8)
+
+[node name="HangingShirt_1" parent="." instance=ExtResource("e23")]
+position = Vector3(1.98, 2.5, -3.9)
+rotation_degrees = Vector3(0, 4, 0)
+scale = Vector3(0.8, 0.8, 0.8)
+
+[node name="HangingShirt_2" parent="." instance=ExtResource("e23")]
+position = Vector3(2.76, 2.5, -3.9)
+rotation_degrees = Vector3(0, -4, 0)
+scale = Vector3(0.8, 0.8, 0.8)
+
+[node name="Bucket" parent="." instance=ExtResource("e24")]
+position = Vector3(0.5, 0.015, -4.6)
+rotation_degrees = Vector3(0, 0, 0)
+scale = Vector3(1, 1, 1)
+
+[node name="FoldedTowel" parent="." instance=ExtResource("e25")]
+position = Vector3(0.49, 0.4, -4.6)
+rotation_degrees = Vector3(90, 0, 0)
+scale = Vector3(0.5, 0.5, 0.5)
+
+[node name="Blanket1" type="Node3D" parent="."]
+position = Vector3(0.65, 1.43, -2.98)
+
+[node name="Mesh" type="MeshInstance3D" parent="Blanket1"]
+mesh = SubResource("s12")
+
+[node name="Blanket2" type="Node3D" parent="."]
+position = Vector3(0.65, 0.66, -2.98)
+
+[node name="Mesh" type="MeshInstance3D" parent="Blanket2"]
+mesh = SubResource("s13")
+
+[node name="Blanket4" type="Node3D" parent="."]
+position = Vector3(3.35, 1.43, -2.98)
+
+[node name="Mesh" type="MeshInstance3D" parent="Blanket4"]
+mesh = SubResource("s14")
+
+[node name="BloodSeep" type="Node3D" parent="."]
+visible = false
+
+[node name="BloodPools" type="Node3D" parent="."]
+visible = false
+
+[node name="BlanketStain1" type="MeshInstance3D" parent="BloodSeep"]
+position = Vector3(0.65, 1.515, -2.98)
+rotation_degrees = Vector3(-90, 0, 0)
+mesh = SubResource("s15")
+cast_shadow = 0
+
+[node name="HangingStain1" type="MeshInstance3D" parent="BloodSeep"]
+position = Vector3(0.99, 1.345, -2.8)
+rotation_degrees = Vector3(0, 90, 0)
+mesh = SubResource("s16")
+cast_shadow = 0
+
+[node name="Droplet1" type="MeshInstance3D" parent="BloodSeep"]
+position = Vector3(1.015, 1.265, -2.8)
+rotation_degrees = Vector3(0, 90, 0)
+mesh = SubResource("s17")
+cast_shadow = 0
+
+[node name="SmallStain1" type="MeshInstance3D" parent="BloodSeep"]
+position = Vector3(0.99, 0.01, -2.8)
+rotation_degrees = Vector3(-90, 0, 0)
+mesh = SubResource("s18")
+cast_shadow = 0
+
+[node name="Pool1" type="MeshInstance3D" parent="BloodPools"]
+position = Vector3(1.07, 0.006, -2.9)
+rotation_degrees = Vector3(-90, 0, 0)
+mesh = SubResource("s19")
+cast_shadow = 0
+
+[node name="BlanketStain2" type="MeshInstance3D" parent="BloodSeep"]
+position = Vector3(0.65, 0.745, -2.98)
+rotation_degrees = Vector3(-90, 0, 0)
+mesh = SubResource("s20")
+cast_shadow = 0
+
+[node name="HangingStain2" type="MeshInstance3D" parent="BloodSeep"]
+position = Vector3(0.99, 0.575, -2.8)
+rotation_degrees = Vector3(0, 90, 0)
+mesh = SubResource("s21")
+cast_shadow = 0
+
+[node name="Droplet2" type="MeshInstance3D" parent="BloodSeep"]
+position = Vector3(1.015, 0.495, -2.8)
+rotation_degrees = Vector3(0, 90, 0)
+mesh = SubResource("s22")
+cast_shadow = 0
+
+[node name="SmallStain2" type="MeshInstance3D" parent="BloodSeep"]
+position = Vector3(0.99, 0.011, -2.8)
+rotation_degrees = Vector3(-90, 0, 0)
+mesh = SubResource("s23")
+cast_shadow = 0
+
+[node name="Pool2" type="MeshInstance3D" parent="BloodPools"]
+position = Vector3(1.07, 0.007, -3.05)
+rotation_degrees = Vector3(-90, 0, 0)
+mesh = SubResource("s24")
+cast_shadow = 0
+
+[node name="BlanketStain4" type="MeshInstance3D" parent="BloodSeep"]
+position = Vector3(3.35, 1.515, -2.98)
+rotation_degrees = Vector3(-90, 0, 0)
+mesh = SubResource("s25")
+cast_shadow = 0
+
+[node name="HangingStain4" type="MeshInstance3D" parent="BloodSeep"]
+position = Vector3(3.01, 1.345, -2.8)
+rotation_degrees = Vector3(0, 90, 0)
+mesh = SubResource("s26")
+cast_shadow = 0
+
+[node name="Droplet4" type="MeshInstance3D" parent="BloodSeep"]
+position = Vector3(2.985, 1.265, -2.8)
+rotation_degrees = Vector3(0, 90, 0)
+mesh = SubResource("s27")
+cast_shadow = 0
+
+[node name="SmallStain4" type="MeshInstance3D" parent="BloodSeep"]
+position = Vector3(3.01, 0.013, -2.8)
+rotation_degrees = Vector3(-90, 0, 0)
+mesh = SubResource("s28")
+cast_shadow = 0
+
+[node name="Pool4" type="MeshInstance3D" parent="BloodPools"]
+position = Vector3(2.93, 0.009, -3.35)
+rotation_degrees = Vector3(-90, 0, 0)
+mesh = SubResource("s29")
+cast_shadow = 0
+
+[node name="TrungBedding" type="Node3D" parent="."]
+
+
+[node name="Section0" type="Node3D" parent="TrungBedding"]
+
+
+[node name="Mattress" type="Node3D" parent="TrungBedding/Section0"]
+position = Vector3(3.35, 0.405, -3.84)
+
+[node name="Mesh" type="MeshInstance3D" parent="TrungBedding/Section0/Mattress"]
+mesh = SubResource("s30")
+
+[node name="Quilt" type="Node3D" parent="TrungBedding/Section0"]
+position = Vector3(3.35, 0.438, -3.84)
+
+[node name="Mesh" type="MeshInstance3D" parent="TrungBedding/Section0/Quilt"]
+mesh = SubResource("s31")
+
+[node name="Section1" type="Node3D" parent="TrungBedding"]
+
+
+[node name="Mattress" type="Node3D" parent="TrungBedding/Section1"]
+position = Vector3(3.35, 0.405, -3.605)
+
+[node name="Mesh" type="MeshInstance3D" parent="TrungBedding/Section1/Mattress"]
+mesh = SubResource("s32")
+
+[node name="Quilt" type="Node3D" parent="TrungBedding/Section1"]
+position = Vector3(3.35, 0.438, -3.605)
+
+[node name="Mesh" type="MeshInstance3D" parent="TrungBedding/Section1/Quilt"]
+mesh = SubResource("s33")
+
+[node name="Section2" type="Node3D" parent="TrungBedding"]
+
+
+[node name="Mattress" type="Node3D" parent="TrungBedding/Section2"]
+position = Vector3(3.35, 0.405, -3.37)
+
+[node name="Mesh" type="MeshInstance3D" parent="TrungBedding/Section2/Mattress"]
+mesh = SubResource("s34")
+
+[node name="Quilt" type="Node3D" parent="TrungBedding/Section2"]
+position = Vector3(3.35, 0.438, -3.37)
+
+[node name="Mesh" type="MeshInstance3D" parent="TrungBedding/Section2/Quilt"]
+mesh = SubResource("s35")
+
+[node name="Section3" type="Node3D" parent="TrungBedding"]
+
+
+[node name="Mattress" type="Node3D" parent="TrungBedding/Section3"]
+position = Vector3(3.35, 0.405, -3.135)
+
+[node name="Mesh" type="MeshInstance3D" parent="TrungBedding/Section3/Mattress"]
+mesh = SubResource("s36")
+
+[node name="Quilt" type="Node3D" parent="TrungBedding/Section3"]
+position = Vector3(3.35, 0.438, -3.135)
+
+[node name="Mesh" type="MeshInstance3D" parent="TrungBedding/Section3/Quilt"]
+mesh = SubResource("s37")
+
+[node name="Section4" type="Node3D" parent="TrungBedding"]
+
+
+[node name="Mattress" type="Node3D" parent="TrungBedding/Section4"]
+position = Vector3(3.35, 0.405, -2.9)
+
+[node name="Mesh" type="MeshInstance3D" parent="TrungBedding/Section4/Mattress"]
+mesh = SubResource("s38")
+
+[node name="Quilt" type="Node3D" parent="TrungBedding/Section4"]
+position = Vector3(3.35, 0.438, -2.9)
+
+[node name="Mesh" type="MeshInstance3D" parent="TrungBedding/Section4/Quilt"]
+mesh = SubResource("s39")
+
+[node name="Section5" type="Node3D" parent="TrungBedding"]
+
+
+[node name="Mattress" type="Node3D" parent="TrungBedding/Section5"]
+position = Vector3(3.35, 0.405, -2.665)
+
+[node name="Mesh" type="MeshInstance3D" parent="TrungBedding/Section5/Mattress"]
+mesh = SubResource("s40")
+
+[node name="Quilt" type="Node3D" parent="TrungBedding/Section5"]
+position = Vector3(3.35, 0.438, -2.665)
+
+[node name="Mesh" type="MeshInstance3D" parent="TrungBedding/Section5/Quilt"]
+mesh = SubResource("s41")
+
+[node name="Section6" type="Node3D" parent="TrungBedding"]
+
+
+[node name="Mattress" type="Node3D" parent="TrungBedding/Section6"]
+position = Vector3(3.35, 0.405, -2.43)
+
+[node name="Mesh" type="MeshInstance3D" parent="TrungBedding/Section6/Mattress"]
+mesh = SubResource("s42")
+
+[node name="Quilt" type="Node3D" parent="TrungBedding/Section6"]
+position = Vector3(3.35, 0.438, -2.43)
+
+[node name="Mesh" type="MeshInstance3D" parent="TrungBedding/Section6/Quilt"]
+mesh = SubResource("s43")
+
+[node name="Section7" type="Node3D" parent="TrungBedding"]
+
+
+[node name="Mattress" type="Node3D" parent="TrungBedding/Section7"]
+position = Vector3(3.35, 0.405, -2.195)
+
+[node name="Mesh" type="MeshInstance3D" parent="TrungBedding/Section7/Mattress"]
+mesh = SubResource("s44")
+
+[node name="Quilt" type="Node3D" parent="TrungBedding/Section7"]
+position = Vector3(3.35, 0.438, -2.195)
+
+[node name="Mesh" type="MeshInstance3D" parent="TrungBedding/Section7/Quilt"]
+mesh = SubResource("s45")
+
+[node name="TrungPillow" type="Node3D" parent="."]
+position = Vector3(3.35, 0.475, -2.3)
+
+[node name="Mesh" type="MeshInstance3D" parent="TrungPillow"]
+mesh = SubResource("s46")
+
+[node name="SlashRips" type="Node3D" parent="."]
+visible = false
+
+[node name="Debris" type="Node3D" parent="."]
+visible = false
+
+[node name="Rip0" type="Node3D" parent="SlashRips"]
+position = Vector3(3.35, 0.45, -3.83)
+
+[node name="Mesh" type="MeshInstance3D" parent="SlashRips/Rip0"]
+mesh = SubResource("s47")
+
+[node name="Scrap0" type="MeshInstance3D" parent="Debris"]
+position = Vector3(2.57, 0.014, -3.72)
+rotation_degrees = Vector3(0, 0, 0)
+mesh = SubResource("s48")
+
+[node name="Rip1" type="Node3D" parent="SlashRips"]
+position = Vector3(3.35, 0.45, -3.595)
+
+[node name="Mesh" type="MeshInstance3D" parent="SlashRips/Rip1"]
+mesh = SubResource("s49")
+
+[node name="Scrap1" type="MeshInstance3D" parent="Debris"]
+position = Vector3(2.82, 0.021, -3.38)
+rotation_degrees = Vector3(0, 47, 0)
+mesh = SubResource("s50")
+
+[node name="Rip2" type="Node3D" parent="SlashRips"]
+position = Vector3(3.35, 0.45, -3.36)
+
+[node name="Mesh" type="MeshInstance3D" parent="SlashRips/Rip2"]
+mesh = SubResource("s51")
+
+[node name="Scrap2" type="MeshInstance3D" parent="Debris"]
+position = Vector3(3.07, 0.014, -3.04)
+rotation_degrees = Vector3(0, 94, 0)
+mesh = SubResource("s52")
+
+[node name="Rip3" type="Node3D" parent="SlashRips"]
+position = Vector3(3.35, 0.45, -3.125)
+
+[node name="Mesh" type="MeshInstance3D" parent="SlashRips/Rip3"]
+mesh = SubResource("s53")
+
+[node name="Scrap3" type="MeshInstance3D" parent="Debris"]
+position = Vector3(2.695, 0.021, -2.7)
+rotation_degrees = Vector3(0, 141, 0)
+mesh = SubResource("s54")
+
+[node name="Rip4" type="Node3D" parent="SlashRips"]
+position = Vector3(3.35, 0.45, -2.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="SlashRips/Rip4"]
+mesh = SubResource("s55")
+
+[node name="Scrap4" type="MeshInstance3D" parent="Debris"]
+position = Vector3(2.945, 0.014, -2.36)
+rotation_degrees = Vector3(0, 188, 0)
+mesh = SubResource("s56")
+
+[node name="Rip5" type="Node3D" parent="SlashRips"]
+position = Vector3(3.35, 0.45, -2.655)
+
+[node name="Mesh" type="MeshInstance3D" parent="SlashRips/Rip5"]
+mesh = SubResource("s57")
+
+[node name="Scrap5" type="MeshInstance3D" parent="Debris"]
+position = Vector3(2.57, 0.021, -3.55)
+rotation_degrees = Vector3(0, 235, 0)
+mesh = SubResource("s58")
+
+[node name="Rip6" type="Node3D" parent="SlashRips"]
+position = Vector3(3.35, 0.45, -2.42)
+
+[node name="Mesh" type="MeshInstance3D" parent="SlashRips/Rip6"]
+mesh = SubResource("s59")
+
+[node name="Scrap6" type="MeshInstance3D" parent="Debris"]
+position = Vector3(2.82, 0.014, -3.21)
+rotation_degrees = Vector3(0, 282, 0)
+mesh = SubResource("s60")
+
+[node name="Rip7" type="Node3D" parent="SlashRips"]
+position = Vector3(3.35, 0.45, -2.185)
+
+[node name="Mesh" type="MeshInstance3D" parent="SlashRips/Rip7"]
+mesh = SubResource("s61")
+
+[node name="Scrap7" type="MeshInstance3D" parent="Debris"]
+position = Vector3(3.07, 0.021, -2.87)
+rotation_degrees = Vector3(0, 329, 0)
+mesh = SubResource("s62")
