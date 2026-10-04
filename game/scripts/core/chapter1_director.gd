@@ -489,7 +489,7 @@ func _manager_at_407() -> void:
 	if _bed == 0:
 		await _manager_kills(manager, &"DEATH_NOT_IN_BED")
 		return
-	await _manager_walk(manager, MANAGER_SPOT, MANAGER_VIA)
+	await _manager_walk(manager, _manager_spot(), MANAGER_VIA)
 	if _bed == 0:
 		await _manager_kills(manager, &"DEATH_NOT_IN_BED")
 		return
@@ -945,7 +945,7 @@ func _on_noise(position: Vector3, radius: float, _source: StringName) -> void:
 		return
 	var manager := get_node_or_null("Manager") as Node3D
 	# He listens at head height: breathing on the bunk above Trung's carries.
-	var ear := (manager.global_position if manager != null else MANAGER_SPOT) + Vector3(0, 1.6, 0)
+	var ear := (manager.global_position if manager != null else _manager_spot()) + Vector3(0, 1.6, 0)
 	if position.distance_to(ear) <= MANAGER_HEAR_RADIUS:
 		_manager_heard = true
 
@@ -1619,9 +1619,22 @@ func _spoken_seconds(key: String) -> float:
 func _player_in_room() -> bool:
 	if _player == null:
 		return true
+	# Lane B's Bounds (T-162). Test the position, not the collider: lying in a
+	# bunk turns the player's collider off (T-151).
 	var bounds := _room().get_node_or_null("Bounds") as Area3D if _room() != null else null
-	if bounds != null and _player is PhysicsBody3D:
-		return bounds.overlaps_body(_player)
+	if bounds != null:
+		var found_box := false
+		for shape_node in bounds.find_children("*", "CollisionShape3D", true, false):
+			var box := (shape_node as CollisionShape3D).shape as BoxShape3D
+			if box == null:
+				continue
+			found_box = true
+			var local: Vector3 = (shape_node as Node3D).global_transform.affine_inverse() * (_player.global_position + Vector3(0, 0.5, 0))
+			var half := box.size * 0.5
+			if absf(local.x) <= half.x and absf(local.y) <= half.y and absf(local.z) <= half.z:
+				return true
+		if found_box:
+			return false
 	var p := _player.global_position
 	return p.x > ROOM_407_X.x and p.x < ROOM_407_X.y and p.z < 0.05 and p.y > -1.0 and p.y < 3.0
 
@@ -1630,7 +1643,18 @@ func _near_door() -> bool:
 	return _player != null and _player.global_position.distance_to(Vector3(32.0, _player.global_position.y, -0.3)) < 1.0
 
 
+## Where the manager stands to ask for bed 3: lane B's ManagerApproach anchor
+## in the enlarged room (T-162), else the old spot.
+func _manager_spot() -> Vector3:
+	var anchor := _room_anchor("ManagerApproach")
+	return anchor.global_position if anchor != null else MANAGER_SPOT
+
+
 func _room_center() -> Vector3:
+	var room := _room()
+	var main := room.get_node_or_null("Bounds/Main") as Node3D if room != null else null
+	if main != null:
+		return Vector3(main.global_position.x, 1.2, main.global_position.z)
 	return Vector3(32.0, 1.2, -2.5)
 
 
