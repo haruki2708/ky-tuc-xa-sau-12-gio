@@ -50,8 +50,9 @@
 | **Chương 1 bản 2 (2026-10-05 → 2026-10-07)** | | |
 | T-160 Luồng 8 nhiệm vụ, Insane, cắt thời gian trống, ghép | core | **doing** |
 | T-161 Tương tác: gõ tường, chỗ lục đồ, ổ điện, dây mạng, nín thở 6 giây, quản lý nghe cử động | A | todo, hạn 10-06 |
-| T-162 Đạo cụ: ổ điện, dây mạng, giấy xé, tủ Việt, nệm Phúc, ảnh, tay nắm cửa rung, đèn bàn | B | todo, hạn 10-06 |
-| T-163 Mất kết nối, sơ đồ tòa nhà, khóa số giới hạn lần thử | D | todo, hạn 10-06 |
+| T-162 Phòng 407 to (chiếm chỗ 408, nhà vệ sinh, ban công) và đạo cụ nhiệm vụ | B | todo, hạn 10-06 |
+| T-165 Khu camera: 4 phòng sinh viên, camera hành lang, 4 mô hình sinh viên | B | todo (sau T-162), hạn sáng 10-07 |
+| T-163 Mất kết nối, sơ đồ tòa nhà, tab camera an ninh, khóa số giới hạn lần thử | D | todo, hạn 10-06 |
 | T-164 Âm thanh nhiệm vụ mới | E | todo, hạn 10-06 |
 | **Chương 1 bản 1 "Tổng tắc" (2026-10-04, `v0.2-ch1`)** | | |
 | T-150 Hợp đồng chung, luồng chương, kịch bản, ghép | core | **done**: chờ chủ dự án chơi thử |

@@ -301,7 +301,7 @@ func test_chapter_contract_inputs_and_signals() -> void:
 			"puzzle_opened", "puzzle_closed", "puzzle_solved", "entity_state_changed", "watcher_active",
 			"player_caught", "phone_call_incoming", "phone_call_answered", "chat_member_changed",
 			"chat_choice_requested", "chat_choice_made", "survivor_count_changed",
-			"phone_call_lost", "phone_call_restored", "wall_tapped"]:
+			"phone_call_lost", "phone_call_restored", "wall_tapped", "cctv_unlocked", "cctv_focus_requested"]:
 		assert_true(EventBus.has_signal(sig), "EventBus signal " + sig)
 
 

@@ -88,6 +88,28 @@
 - Tab **Sơ đồ** trên điện thoại: 6 tầng × 8 phòng của nhà B. Người chơi tự bấm đánh dấu phòng quản lý đã tới, dựa vào tiếng dao kéo lê (qua tầng) và tin trong nhóm.
 - Game không tự hiện vị trí quản lý. Không bắt buộc, nhưng là cách duy nhất để đoán còn bao lâu ông ta tới 407.
 
+## Phòng 407 mới (D-041)
+- Phòng 407 **chiếm luôn chỗ phòng 408**: X 30→38, sâu tới Z khoảng −7. Cửa vào giữ ở X = 32 như cũ.
+- Cửa 408 ngoài hành lang thành **cửa giả bị bịt** (hoặc tủ vòi chữa cháy), không mở được. Phòng 406 giữ nguyên (gõ tường).
+- **Nhà vệ sinh riêng** trong phòng: bồn cầu, lavabo, gương, **vòi sen** (vòng 4 chương 2 dùng). Cửa nhà vệ sinh mở được.
+- **Ban công nhỏ** phía cửa sổ: dây phơi, chậu cây, nhìn ra trời tối. Ban công **vẫn là trong phòng** (không phạm Tổng tắc).
+- **Đồ đạc:** mỗi người một bàn học, kệ sách, tủ lạnh mini, nồi cơm điện, ấm siêu tốc (công tắc 3 của ổ điện), giá giày, balo, gương, quạt đứng, đồ ăn vặt, chăn gối lộn xộn. Giữ bốn giường, bốn tủ, mọi anchor đã có (dời vị trí theo phòng mới).
+
+## Camera an ninh (D-041)
+- **Vòng 2, đầu vòng:** Minh Nhật: *"Tôi vào được hệ thống camera của ký túc xá rồi. Mở tab Camera trên điện thoại."* (lời thoại mới).
+- Điện thoại có **tab Camera**:
+  - hình đen trắng, nhiễu, có tên camera (`CAM 102`…) và giờ;
+  - đổi qua lại giữa các camera;
+  - khi quản lý vào một phòng có camera, game phát `cctv_focus_requested(camera_id)`: điện thoại rung, hiện thông báo; giơ máy thì tự chuyển sang camera đó.
+- **Bốn cảnh, đủ 4 người:**
+  - **Hùng (102):** trả lời "có", bị giết.
+  - **Kiệt (306):** trả lời "không có", **màn hình điện thoại đang sáng**.
+  - **Bảo (209):** im lặng nhưng thở run, quản lý cúi sát nghe rồi giết.
+  - **Đăng (106):** **đèn bàn sáng**, làm theo lời khuyên của Trung, vẫn chết.
+- Mỗi cảnh cho thấy một manh mối cho nhiệm vụ N6. Máu me như video; "Giảm hù dọa" thì camera nhiễu trắng đúng lúc chém.
+- Các phòng này là **phòng tiêu chuẩn** (dùng lại khung phòng 407 cũ 4×5 m, bày đồ khác), đặt ở một khu riêng ngoài tòa nhà, chỉ nhìn qua camera.
+- **Camera hành lang tầng 4:** thấy quản lý đi tới 407 lúc cuối vòng 2.
+
 ## Lý do chết mới
 | Key | Câu |
 |---|---|
@@ -103,4 +125,5 @@
 | B T-162 | Ổ điện kéo dài 3 công tắc (chữ mờ, vệt đỏ), phích quấn băng keo đỏ, 2 dây mạng (xanh, xám) và ổ mạng trên tường, sọt rác, 3 mảnh giấy xé, tủ Việt mở được, nệm Phúc lật được, ảnh đội bóng, sổ hợp âm guitar, tay nắm cửa rung |
 | D T-163 | Điện thoại "Mất kết nối" và nối lại; tab Sơ đồ; panel khóa số giới hạn 3 lần thử, khóa 60 giây |
 | E T-164 | Tiếng gõ tường, cục phát khởi động, ổ điện chập, tay nắm cửa vặn, chuông báo khóa, chuông điện thoại trong cuộc gọi |
+| B T-165 | Khu camera: 4 phòng tiêu chuẩn (102, 306, 209, 106), camera hành lang tầng 4, mô hình 4 sinh viên còn sống với các tư thế |
 | C | Cập nhật bot cho 8 nhiệm vụ sau khi ghép |

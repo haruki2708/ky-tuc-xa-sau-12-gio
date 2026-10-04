@@ -123,6 +123,14 @@ signal phone_call_lost(call_id: StringName)
 ## The group call came back after phone_call_lost.
 signal phone_call_restored(call_id: StringName)
 
+## Minh Nhật got into the dorm's security cameras (round 2, D-041): the
+## phone's Camera tab opens. Feeds are nodes in group "cctv_feed" with
+## camera_id: StringName, label_key: String and get_texture() -> Texture2D.
+signal cctv_unlocked()
+
+## Something happens on a camera: the phone buzzes and, when raised, shows it.
+signal cctv_focus_requested(camera_id: StringName)
+
 ## The player knocked once on a shared wall (T-161). wall_id: &"wall_406",
 ## &"wall_408". The chapter director decodes the taps (tap code, T-160 N3).
 signal wall_tapped(wall_id: StringName)

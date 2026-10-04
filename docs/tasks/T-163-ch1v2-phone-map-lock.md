@@ -26,11 +26,18 @@
    - phát `EventBus.noise_emitted(vị trí người chơi, 12.0, &"alarm")` một lần khi kẹt;
    - số lần sai lưu trong `GameState` (cờ `puzzle_attempts_<id>`) để tải lại checkpoint vẫn giữ;
    - `hint_document` rỗng thì không có nút gợi ý (đã có).
-4. **Test:** mất/nối lại kết nối và câu bị bỏ lỡ; snapshot; sơ đồ đánh dấu và lưu; khóa kẹt sau 3 lần sai, đếm ngược, mở lại.
+4. **Tab Camera (D-041):** đọc mục "Camera an ninh" trong `CH1_V2_MISSIONS.md`.
+   - Mở khóa khi `EventBus.cctv_unlocked`.
+   - Nguồn hình: các node trong group `cctv_feed`, mỗi node có `camera_id`, `label_key`, `get_texture()`. Core tạo các node này; lane D không tự dựng camera.
+   - Hiển thị kiểu camera an ninh: đen trắng, nhiễu, dòng quét, chữ `CAM 102` và giờ trong game, chấm đỏ "REC". Shader riêng của lane D, độ phân giải thấp.
+   - Đổi camera bằng nút trên tab (chuột, hoặc phím không đụng di chuyển).
+   - `cctv_focus_requested(camera_id)`: rung và thông báo "Camera 102: có chuyển động"; nếu đang giơ máy thì tự chuyển sang camera đó.
+   - Có "Giảm hù dọa": khi core phát `scare_triggered(&"cctv_kill")` thì màn hình nhiễu trắng trong khoảng 1,5 giây.
+5. **Test:** mất/nối lại kết nối và câu bị bỏ lỡ; snapshot; sơ đồ đánh dấu và lưu; khóa kẹt sau 3 lần sai, đếm ngược, mở lại.
 
 ## Checklist hoàn thành
 - [ ] `pwsh tools/test.ps1` và `pwsh tools/check.ps1` PASS
-- [ ] Ảnh chụp: mất kết nối, sơ đồ, khóa kẹt (vi và en)
+- [ ] Ảnh chụp: mất kết nối, sơ đồ, camera, khóa kẹt (vi và en)
 - [ ] Handoff
 
 ## Handoff (agent điền)

@@ -11,6 +11,17 @@ Mô hình, anchor và trạng thái trong phòng 407 cho 8 nhiệm vụ mới. P
 `art_source/`, `game/assets/models/`, `game/assets/textures/`, `game/scenes/levels/`, `game/tests/levels/`
 
 ## Yêu cầu
+0. **Phòng 407 mới, to hơn hẳn (D-041), làm trước tiên.** Đọc mục "Phòng 407 mới" trong `CH1_V2_MISSIONS.md`.
+   - Phòng chiếm luôn chỗ 408: X 30→38, sâu tới Z khoảng −7. Cửa vào giữ ở X = 32.
+   - Cửa 408 ngoài hành lang bịt lại (hoặc thành tủ vòi chữa cháy).
+   - **Nhà vệ sinh riêng có vòi sen**, cửa mở được (`Room407.set_bathroom_door_open(bool)`), sàn `surface = tile`.
+   - **Ban công nhỏ** phía cửa sổ, vẫn tính là trong phòng.
+   - Nhiều đồ đạc: bàn học từng người, kệ sách, tủ lạnh mini, nồi cơm, ấm siêu tốc, giá giày, balo, gương, quạt đứng…
+   - **Giữ mọi anchor đã có** dưới `Room407/Anchors` (Bunks/Bunk1..4 có View/Exit, Corpse1/2/4, DatLocker, DatNote, Router, TrungChargingCable, PhucBooks, VietPhoto, WallKnock406…), dời theo bố cục mới.
+   - **Thêm `Room407/Bounds`**: một Area3D bao trọn phòng, cả nhà vệ sinh và ban công. Core dùng nó để biết người chơi còn trong phòng.
+   - Navmesh cho quản lý đi từ cửa tới trước giường Trung.
+   - Dời các thứ T-153/T-154 đã đặt; giữ máu, chém, xác.
+   - FPS ≥ 60.
 1. **Ổ điện kéo dài** dưới giường Phúc (anchor `Anchors/PowerStrip`):
    - 3 công tắc có đèn; chữ số 1, 2, 3 đã mờ; **công tắc 2 có vệt sơn đỏ**;
    - API `set_switch(i, on)`, `set_tripped(bool)` (tắt hết đèn công tắc), `spark()` (tóe lửa ngắn);
