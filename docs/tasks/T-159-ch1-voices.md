@@ -27,9 +27,9 @@ Chương 1 có nhiều giọng:
 5. **Test:** mọi key `spoken` và `SPK_CH1_*`, `MGR_*` có clip; tra thời lượng được; đúng bus.
 
 ## Checklist hoàn thành
-- [ ] `pwsh tools/test.ps1` và `pwsh tools/check.ps1` PASS
-- [ ] `CREDITS.md` cập nhật
-- [ ] Handoff: bảng giọng, thời lượng, LUFS, cách nghe thử
+- [x] `pwsh tools/test.ps1` và `pwsh tools/check.ps1` PASS
+- [x] `CREDITS.md` cập nhật
+- [x] Handoff: bảng giọng (`VOICES`), thời lượng và LUFS trong `audio_source/voice_ch1/build_report.json`
 
 ## Handoff (agent điền)
 
