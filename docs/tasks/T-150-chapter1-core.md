@@ -41,7 +41,7 @@ Chương 1 (4:00–6:00, khoảng 50 phút): mở đầu, vòng 1 (bị giam tro
 
 ## Checklist
 - [x] Phần 1: hợp đồng chung, test PASS
-- [ ] Phần 2: kịch bản, dữ liệu, câu chữ (vi/en). **Bản nháp xong** (`1cf33a7`): `docs/design/CH1_SCRIPT.md`, nguồn `docs/design/ch1/build_ch1_script.py`; chờ chủ dự án duyệt. Còn thiếu: dữ liệu quy tắc cho sổ quy tắc (`RuleSet` chương 1), làm cùng phần 3
+- [x] Phần 2: kịch bản, dữ liệu, câu chữ (vi/en). **Đã duyệt (D-036)** (`1cf33a7`): `docs/design/CH1_SCRIPT.md`, nguồn `docs/design/ch1/build_ch1_script.py`; chờ chủ dự án duyệt. Còn thiếu: dữ liệu quy tắc cho sổ quy tắc (`RuleSet` chương 1), làm cùng phần 3
 - [ ] Phần 3: ghép, chơi trọn chương 1. **Luồng chương xong với hàng tạm** (giường, tủ Đạt, ổ sạc là `StoryTrigger`; thoại là phụ đề; màn chết là thẻ đen). Còn: cắm hàng thật của các lane khi về
 - [ ] Bot T-157 PASS
 - [ ] Bản build cho chủ dự án chơi thử
