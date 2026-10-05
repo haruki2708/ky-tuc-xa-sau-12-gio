@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/ch3_status.gd" id="1"]
+[ext_resource type="Shader" path="res://ui/ch3/stamina.gdshader" id="2"]
+[ext_resource type="Shader" path="res://ui/ch3/guard_warning.gdshader" id="3"]
+[ext_resource type="Script" path="res://scripts/ui/iron_bar_icon.gd" id="4"]
+
+[sub_resource type="ShaderMaterial" id="Stamina"]
+resource_local_to_scene = true
+shader = ExtResource("2")
+
+[sub_resource type="ShaderMaterial" id="Guard"]
+resource_local_to_scene = true
+shader = ExtResource("3")
+
+[node name="Chapter3Status" type="CanvasLayer"]
+process_mode = 3
+layer = 8
+script = ExtResource("1")
+
+[node name="Root" type="Control" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="Stamina" type="ColorRect" parent="Root"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+material = SubResource("Stamina")
+
+[node name="GuardWarning" type="ColorRect" parent="Root"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+material = SubResource("Guard")
+
+[node name="BarIcon" type="Control" parent="Root"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 28.0
+offset_right = 168.0
+offset_top = -125.0
+offset_bottom = -35.0
+mouse_filter = 2
+script = ExtResource("4")
