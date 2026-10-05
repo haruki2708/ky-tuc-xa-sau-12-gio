@@ -426,3 +426,36 @@ CCTV_CAM_HALL_102,CAM T1 · hành lang 102,CAM F1 · corridor 102
 CCTV_CAM_HALL_306,CAM T3 · hành lang 306,CAM F3 · corridor 306
 CCTV_CAM_HALL_209,CAM T2 · hành lang 209,CAM F2 · corridor 209
 CCTV_CAM_HALL_106,CAM T1 · hành lang 106,CAM F1 · corridor 106
+UI_CH2_PHUC,Phúc,Phúc
+UI_CH2_VIET,Việt,Việt
+UI_CH2_DAT,Đạt,Đạt
+UI_CH2_TRUNG,Trung,Trung
+UI_CHAIN_TITLE,NỐI TỪ,WORD CHAIN
+UI_CHAIN_TURN,Lượt: %s,Turn: %s
+UI_CHAIN_SPOKEN_BY,Người vừa nói: %s,Last speaker: %s
+UI_CHAIN_UNKNOWN,—,—
+UI_CHAIN_WAITING,…,…
+UI_CHAIN_HISTORY,3 từ gần nhất: %s,Last 3 words: %s
+UI_CHAIN_BLOCKED,Họ không nghe thấy bạn,They cannot hear you
+UI_CHAIN_SECONDS,Còn %d giây,%d seconds remaining
+UI_CHAIN_TIMEOUT,Hết giờ,Time is up
+UI_CHAIN_CONTROLS,1–4: chọn · Lăn chuột: chọn · Bấm trái: trả lời,1–4: choose · Scroll: select · Left click: answer
+UI_SHOWER_TITLE,VÒI SEN,SHOWER
+UI_SHOWER_RULE,"Chọn có xả nước trong 2 phút tới hay không. Đã chọn thì bắt buộc làm theo. Nếu không, chết.","Choose whether to run the water for the next 2 minutes. You must follow your choice. Otherwise, you die."
+UI_SHOWER_COUNTDOWN,Chọn trong %d giây,Choose within %d seconds
+UI_SHOWER_WAITING,Đang chờ lượt tiếp theo,Waiting for the next slot
+UI_SHOWER_OPTIONS,CÓ                         KHÔNG,YES                         NO
+UI_SHOWER_YES,CÓ,YES
+UI_SHOWER_NO,KHÔNG,NO
+UI_SHOWER_SELECTED,Đã chọn: %s,Selected: %s
+UI_SHOWER_TEMPERATURE,Nhiệt độ: %d °C,Temperature: %d °C
+UI_SHOWER_TEMPERATURE_UNKNOWN,Nhiệt độ: — °C,Temperature: — °C
+UI_SHOWER_HISTORY,LỊCH SỬ NHIỆT ĐỘ,TEMPERATURE HISTORY
+UI_SHOWER_HISTORY_CELL,%02d · %d°,%02d · %d°
+UI_SHOWER_PROGRESS,Đã tắm %d/25 phút,Showered %d/25 minutes
+UI_CH2_PREVIEW_WORD_1,oan khuất,oan khuất
+UI_CH2_PREVIEW_WORD_2,khuất phục,khuất phục
+UI_CH2_PREVIEW_WORD_3,khuyết điểm,khuyết điểm
+UI_CH2_PREVIEW_WORD_4,khuất bóng,khuất bóng
+UI_CH2_PREVIEW_WORD_5,khuất mắt,khuất mắt
+UI_CH2_PREVIEW_LOOP,học sinh → sinh viên → viên phấn → phấn đấu → đấu tranh → tranh luận → luận văn → văn học → học sinh…,học sinh → sinh viên → viên phấn → phấn đấu → đấu tranh → tranh luận → luận văn → văn học → học sinh…
