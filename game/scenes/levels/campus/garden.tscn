@@ -1,0 +1,417 @@
+[gd_scene format=3]
+
+
+[sub_resource type="BoxShape3D" id="s1"]
+size = Vector3(44, 0.06, 40)
+
+[sub_resource type="StandardMaterial3D" id="s2"]
+albedo_color = Color(0.34, 0.38, 0.36, 1)
+roughness = 0.85
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="s3"]
+size = Vector3(44, 0.06, 40)
+material = SubResource("s2")
+
+[sub_resource type="BoxShape3D" id="s4"]
+size = Vector3(6, 0.5, 4)
+
+[sub_resource type="StandardMaterial3D" id="s5"]
+albedo_color = Color(0.38, 0.39, 0.35, 1)
+roughness = 0.85
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="s6"]
+size = Vector3(6, 0.5, 4)
+material = SubResource("s5")
+
+[sub_resource type="StandardMaterial3D" id="s7"]
+albedo_color = Color(0.13, 0.2, 0.13, 1)
+roughness = 0.85
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="s8"]
+size = Vector3(5.7, 0.08, 3.7)
+material = SubResource("s7")
+
+[sub_resource type="BoxShape3D" id="s9"]
+size = Vector3(6, 0.5, 4)
+
+[sub_resource type="BoxMesh" id="s10"]
+size = Vector3(6, 0.5, 4)
+material = SubResource("s5")
+
+[sub_resource type="BoxMesh" id="s11"]
+size = Vector3(5.7, 0.08, 3.7)
+material = SubResource("s7")
+
+[sub_resource type="BoxShape3D" id="s12"]
+size = Vector3(6, 0.5, 4)
+
+[sub_resource type="BoxMesh" id="s13"]
+size = Vector3(6, 0.5, 4)
+material = SubResource("s5")
+
+[sub_resource type="BoxMesh" id="s14"]
+size = Vector3(5.7, 0.08, 3.7)
+material = SubResource("s7")
+
+[sub_resource type="BoxShape3D" id="s15"]
+size = Vector3(6, 0.5, 4)
+
+[sub_resource type="BoxMesh" id="s16"]
+size = Vector3(6, 0.5, 4)
+material = SubResource("s5")
+
+[sub_resource type="BoxMesh" id="s17"]
+size = Vector3(5.7, 0.08, 3.7)
+material = SubResource("s7")
+
+[sub_resource type="BoxShape3D" id="s18"]
+size = Vector3(6, 0.5, 4)
+
+[sub_resource type="BoxMesh" id="s19"]
+size = Vector3(6, 0.5, 4)
+material = SubResource("s5")
+
+[sub_resource type="BoxMesh" id="s20"]
+size = Vector3(5.7, 0.08, 3.7)
+material = SubResource("s7")
+
+[sub_resource type="BoxShape3D" id="s21"]
+size = Vector3(6, 0.5, 4)
+
+[sub_resource type="BoxMesh" id="s22"]
+size = Vector3(6, 0.5, 4)
+material = SubResource("s5")
+
+[sub_resource type="BoxMesh" id="s23"]
+size = Vector3(5.7, 0.08, 3.7)
+material = SubResource("s7")
+
+[sub_resource type="BoxShape3D" id="s24"]
+size = Vector3(6, 0.5, 4)
+
+[sub_resource type="BoxMesh" id="s25"]
+size = Vector3(6, 0.5, 4)
+material = SubResource("s5")
+
+[sub_resource type="BoxMesh" id="s26"]
+size = Vector3(5.7, 0.08, 3.7)
+material = SubResource("s7")
+
+[sub_resource type="BoxShape3D" id="s27"]
+size = Vector3(6, 0.5, 4)
+
+[sub_resource type="BoxMesh" id="s28"]
+size = Vector3(6, 0.5, 4)
+material = SubResource("s5")
+
+[sub_resource type="BoxMesh" id="s29"]
+size = Vector3(5.7, 0.08, 3.7)
+material = SubResource("s7")
+
+[sub_resource type="BoxShape3D" id="s30"]
+size = Vector3(6, 0.5, 4)
+
+[sub_resource type="BoxMesh" id="s31"]
+size = Vector3(6, 0.5, 4)
+material = SubResource("s5")
+
+[sub_resource type="BoxMesh" id="s32"]
+size = Vector3(5.7, 0.08, 3.7)
+material = SubResource("s7")
+
+[sub_resource type="BoxShape3D" id="s33"]
+size = Vector3(6, 0.5, 4)
+
+[sub_resource type="BoxMesh" id="s34"]
+size = Vector3(6, 0.5, 4)
+material = SubResource("s5")
+
+[sub_resource type="BoxMesh" id="s35"]
+size = Vector3(5.7, 0.08, 3.7)
+material = SubResource("s7")
+
+[sub_resource type="BoxShape3D" id="s36"]
+size = Vector3(6, 0.5, 4)
+
+[sub_resource type="BoxMesh" id="s37"]
+size = Vector3(6, 0.5, 4)
+material = SubResource("s5")
+
+[sub_resource type="BoxMesh" id="s38"]
+size = Vector3(5.7, 0.08, 3.7)
+material = SubResource("s7")
+
+[sub_resource type="BoxShape3D" id="s39"]
+size = Vector3(6, 0.5, 4)
+
+[sub_resource type="BoxMesh" id="s40"]
+size = Vector3(6, 0.5, 4)
+material = SubResource("s5")
+
+[sub_resource type="BoxMesh" id="s41"]
+size = Vector3(5.7, 0.08, 3.7)
+material = SubResource("s7")
+
+[sub_resource type="BoxShape3D" id="s42"]
+size = Vector3(2.4, 0.18, 0.7)
+
+[sub_resource type="BoxMesh" id="s43"]
+size = Vector3(2.4, 0.18, 0.7)
+material = SubResource("s5")
+
+[sub_resource type="BoxShape3D" id="s44"]
+size = Vector3(2, 0.9, 1)
+
+[sub_resource type="StandardMaterial3D" id="s45"]
+albedo_color = Color(0.1, 0.15, 0.15, 1)
+roughness = 0.85
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="s46"]
+size = Vector3(2, 0.9, 1)
+material = SubResource("s45")
+
+[node name="Garden" type="Node3D"]
+
+
+[node name="Paving" type="StaticBody3D" parent="."]
+position = Vector3(22, -9.93, 28)
+metadata/surface = &"tile"
+metadata/is_floor = true
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Paving"]
+shape = SubResource("s1")
+
+[node name="Mesh" type="MeshInstance3D" parent="Paving"]
+mesh = SubResource("s3")
+
+[node name="Bed0_0" type="StaticBody3D" parent="."]
+position = Vector3(6, -9.65, 12)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Bed0_0"]
+shape = SubResource("s4")
+
+[node name="Mesh" type="MeshInstance3D" parent="Bed0_0"]
+mesh = SubResource("s6")
+
+[node name="Soil" type="Node3D" parent="Bed0_0"]
+position = Vector3(0, 0.28, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Bed0_0/Soil"]
+mesh = SubResource("s8")
+
+[node name="Bed0_1" type="StaticBody3D" parent="."]
+position = Vector3(22, -9.65, 12)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Bed0_1"]
+shape = SubResource("s9")
+
+[node name="Mesh" type="MeshInstance3D" parent="Bed0_1"]
+mesh = SubResource("s10")
+
+[node name="Soil" type="Node3D" parent="Bed0_1"]
+position = Vector3(0, 0.28, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Bed0_1/Soil"]
+mesh = SubResource("s11")
+
+[node name="Bed0_2" type="StaticBody3D" parent="."]
+position = Vector3(38, -9.65, 12)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Bed0_2"]
+shape = SubResource("s12")
+
+[node name="Mesh" type="MeshInstance3D" parent="Bed0_2"]
+mesh = SubResource("s13")
+
+[node name="Soil" type="Node3D" parent="Bed0_2"]
+position = Vector3(0, 0.28, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Bed0_2/Soil"]
+mesh = SubResource("s14")
+
+[node name="Bed1_0" type="StaticBody3D" parent="."]
+position = Vector3(6, -9.65, 22)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Bed1_0"]
+shape = SubResource("s15")
+
+[node name="Mesh" type="MeshInstance3D" parent="Bed1_0"]
+mesh = SubResource("s16")
+
+[node name="Soil" type="Node3D" parent="Bed1_0"]
+position = Vector3(0, 0.28, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Bed1_0/Soil"]
+mesh = SubResource("s17")
+
+[node name="Bed1_1" type="StaticBody3D" parent="."]
+position = Vector3(22, -9.65, 22)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Bed1_1"]
+shape = SubResource("s18")
+
+[node name="Mesh" type="MeshInstance3D" parent="Bed1_1"]
+mesh = SubResource("s19")
+
+[node name="Soil" type="Node3D" parent="Bed1_1"]
+position = Vector3(0, 0.28, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Bed1_1/Soil"]
+mesh = SubResource("s20")
+
+[node name="Bed1_2" type="StaticBody3D" parent="."]
+position = Vector3(38, -9.65, 22)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Bed1_2"]
+shape = SubResource("s21")
+
+[node name="Mesh" type="MeshInstance3D" parent="Bed1_2"]
+mesh = SubResource("s22")
+
+[node name="Soil" type="Node3D" parent="Bed1_2"]
+position = Vector3(0, 0.28, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Bed1_2/Soil"]
+mesh = SubResource("s23")
+
+[node name="Bed2_0" type="StaticBody3D" parent="."]
+position = Vector3(6, -9.65, 32)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Bed2_0"]
+shape = SubResource("s24")
+
+[node name="Mesh" type="MeshInstance3D" parent="Bed2_0"]
+mesh = SubResource("s25")
+
+[node name="Soil" type="Node3D" parent="Bed2_0"]
+position = Vector3(0, 0.28, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Bed2_0/Soil"]
+mesh = SubResource("s26")
+
+[node name="Bed2_1" type="StaticBody3D" parent="."]
+position = Vector3(22, -9.65, 32)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Bed2_1"]
+shape = SubResource("s27")
+
+[node name="Mesh" type="MeshInstance3D" parent="Bed2_1"]
+mesh = SubResource("s28")
+
+[node name="Soil" type="Node3D" parent="Bed2_1"]
+position = Vector3(0, 0.28, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Bed2_1/Soil"]
+mesh = SubResource("s29")
+
+[node name="Bed2_2" type="StaticBody3D" parent="."]
+position = Vector3(38, -9.65, 32)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Bed2_2"]
+shape = SubResource("s30")
+
+[node name="Mesh" type="MeshInstance3D" parent="Bed2_2"]
+mesh = SubResource("s31")
+
+[node name="Soil" type="Node3D" parent="Bed2_2"]
+position = Vector3(0, 0.28, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Bed2_2/Soil"]
+mesh = SubResource("s32")
+
+[node name="Bed3_0" type="StaticBody3D" parent="."]
+position = Vector3(6, -9.65, 42)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Bed3_0"]
+shape = SubResource("s33")
+
+[node name="Mesh" type="MeshInstance3D" parent="Bed3_0"]
+mesh = SubResource("s34")
+
+[node name="Soil" type="Node3D" parent="Bed3_0"]
+position = Vector3(0, 0.28, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Bed3_0/Soil"]
+mesh = SubResource("s35")
+
+[node name="Bed3_1" type="StaticBody3D" parent="."]
+position = Vector3(22, -9.65, 42)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Bed3_1"]
+shape = SubResource("s36")
+
+[node name="Mesh" type="MeshInstance3D" parent="Bed3_1"]
+mesh = SubResource("s37")
+
+[node name="Soil" type="Node3D" parent="Bed3_1"]
+position = Vector3(0, 0.28, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Bed3_1/Soil"]
+mesh = SubResource("s38")
+
+[node name="Bed3_2" type="StaticBody3D" parent="."]
+position = Vector3(38, -9.65, 42)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Bed3_2"]
+shape = SubResource("s39")
+
+[node name="Mesh" type="MeshInstance3D" parent="Bed3_2"]
+mesh = SubResource("s40")
+
+[node name="Soil" type="Node3D" parent="Bed3_2"]
+position = Vector3(0, 0.28, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Bed3_2/Soil"]
+mesh = SubResource("s41")
+
+[node name="NguBench" type="StaticBody3D" parent="."]
+position = Vector3(22, -9.42, 28)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="NguBench"]
+shape = SubResource("s42")
+
+[node name="Mesh" type="MeshInstance3D" parent="NguBench"]
+mesh = SubResource("s43")
+
+[node name="FallenBunk" type="StaticBody3D" parent="."]
+position = Vector3(8, -9.45, 37)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="FallenBunk"]
+shape = SubResource("s44")
+
+[node name="Mesh" type="MeshInstance3D" parent="FallenBunk"]
+mesh = SubResource("s46")

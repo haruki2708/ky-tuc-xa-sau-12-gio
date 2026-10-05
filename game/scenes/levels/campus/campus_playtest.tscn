@@ -1,0 +1,20 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/levels/floor4/floor4.tscn" id="floor"]
+[ext_resource type="PackedScene" path="res://scenes/levels/campus/campus.tscn" id="campus"]
+[ext_resource type="PackedScene" path="res://scenes/player/player.tscn" id="player"]
+[ext_resource type="PackedScene" path="res://ui/hud/hud.tscn" id="hud"]
+[ext_resource type="PackedScene" path="res://ui/pause/pause_menu.tscn" id="pause"]
+
+[node name="CampusPlaytest" type="Node3D"]
+
+[node name="Floor4" parent="." instance=ExtResource("floor")]
+
+[node name="Campus" parent="." instance=ExtResource("campus")]
+
+[node name="Player" parent="." instance=ExtResource("player")]
+position = Vector3(32, 0.03, 1.15)
+
+[node name="HUD" parent="." instance=ExtResource("hud")]
+
+[node name="PauseMenu" parent="." instance=ExtResource("pause")]

@@ -1,0 +1,3374 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scenes/levels/campus/campus.gd" id="e1"]
+[ext_resource type="PackedScene" path="res://scenes/levels/campus/building_b.tscn" id="e2"]
+[ext_resource type="PackedScene" path="res://scenes/levels/campus/shells.tscn" id="e3"]
+[ext_resource type="PackedScene" path="res://scenes/levels/campus/garden.tscn" id="e4"]
+[ext_resource type="PackedScene" path="res://scenes/levels/campus/stadium.tscn" id="e5"]
+[ext_resource type="PackedScene" path="res://scenes/levels/campus/gate.tscn" id="e6"]
+[ext_resource type="PackedScene" path="res://scenes/levels/campus/canteen.tscn" id="e7"]
+[ext_resource type="NavigationMesh" path="res://scenes/levels/campus/outdoor_navigation.tres" id="e8"]
+
+[sub_resource type="BoxShape3D" id="s1"]
+size = Vector3(50, 0.3, 50)
+
+[sub_resource type="StandardMaterial3D" id="s2"]
+albedo_color = Color(0.13, 0.2, 0.13, 1)
+roughness = 0.85
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="s3"]
+size = Vector3(50, 0.3, 50)
+material = SubResource("s2")
+
+[sub_resource type="BoxShape3D" id="s4"]
+size = Vector3(50, 0.3, 50)
+
+[sub_resource type="BoxMesh" id="s5"]
+size = Vector3(50, 0.3, 50)
+material = SubResource("s2")
+
+[sub_resource type="BoxShape3D" id="s6"]
+size = Vector3(50, 0.3, 50)
+
+[sub_resource type="BoxMesh" id="s7"]
+size = Vector3(50, 0.3, 50)
+material = SubResource("s2")
+
+[sub_resource type="BoxShape3D" id="s8"]
+size = Vector3(50, 0.3, 50)
+
+[sub_resource type="BoxMesh" id="s9"]
+size = Vector3(50, 0.3, 50)
+material = SubResource("s2")
+
+[sub_resource type="BoxShape3D" id="s10"]
+size = Vector3(50, 0.3, 50)
+
+[sub_resource type="BoxMesh" id="s11"]
+size = Vector3(50, 0.3, 50)
+material = SubResource("s2")
+
+[sub_resource type="BoxShape3D" id="s12"]
+size = Vector3(50, 0.3, 50)
+
+[sub_resource type="BoxMesh" id="s13"]
+size = Vector3(50, 0.3, 50)
+material = SubResource("s2")
+
+[sub_resource type="BoxShape3D" id="s14"]
+size = Vector3(50, 0.3, 50)
+
+[sub_resource type="BoxMesh" id="s15"]
+size = Vector3(50, 0.3, 50)
+material = SubResource("s2")
+
+[sub_resource type="BoxShape3D" id="s16"]
+size = Vector3(50, 0.3, 50)
+
+[sub_resource type="BoxMesh" id="s17"]
+size = Vector3(50, 0.3, 50)
+material = SubResource("s2")
+
+[sub_resource type="BoxShape3D" id="s18"]
+size = Vector3(50, 0.3, 50)
+
+[sub_resource type="BoxMesh" id="s19"]
+size = Vector3(50, 0.3, 50)
+material = SubResource("s2")
+
+[sub_resource type="BoxShape3D" id="s20"]
+size = Vector3(50, 0.3, 50)
+
+[sub_resource type="BoxMesh" id="s21"]
+size = Vector3(50, 0.3, 50)
+material = SubResource("s2")
+
+[sub_resource type="BoxShape3D" id="s22"]
+size = Vector3(50, 0.3, 50)
+
+[sub_resource type="BoxMesh" id="s23"]
+size = Vector3(50, 0.3, 50)
+material = SubResource("s2")
+
+[sub_resource type="BoxShape3D" id="s24"]
+size = Vector3(50, 0.3, 50)
+
+[sub_resource type="BoxMesh" id="s25"]
+size = Vector3(50, 0.3, 50)
+material = SubResource("s2")
+
+[sub_resource type="BoxShape3D" id="s26"]
+size = Vector3(50, 0.3, 50)
+
+[sub_resource type="BoxMesh" id="s27"]
+size = Vector3(50, 0.3, 50)
+material = SubResource("s2")
+
+[sub_resource type="BoxShape3D" id="s28"]
+size = Vector3(50, 0.3, 50)
+
+[sub_resource type="BoxMesh" id="s29"]
+size = Vector3(50, 0.3, 50)
+material = SubResource("s2")
+
+[sub_resource type="BoxShape3D" id="s30"]
+size = Vector3(50, 0.3, 50)
+
+[sub_resource type="BoxMesh" id="s31"]
+size = Vector3(50, 0.3, 50)
+material = SubResource("s2")
+
+[sub_resource type="BoxShape3D" id="s32"]
+size = Vector3(50, 0.3, 50)
+
+[sub_resource type="BoxMesh" id="s33"]
+size = Vector3(50, 0.3, 50)
+material = SubResource("s2")
+
+[sub_resource type="BoxShape3D" id="s34"]
+size = Vector3(50, 0.3, 50)
+
+[sub_resource type="BoxMesh" id="s35"]
+size = Vector3(50, 0.3, 50)
+material = SubResource("s2")
+
+[sub_resource type="BoxShape3D" id="s36"]
+size = Vector3(50, 0.3, 50)
+
+[sub_resource type="BoxMesh" id="s37"]
+size = Vector3(50, 0.3, 50)
+material = SubResource("s2")
+
+[sub_resource type="BoxShape3D" id="s38"]
+size = Vector3(50, 0.3, 50)
+
+[sub_resource type="BoxMesh" id="s39"]
+size = Vector3(50, 0.3, 50)
+material = SubResource("s2")
+
+[sub_resource type="BoxShape3D" id="s40"]
+size = Vector3(50, 0.3, 50)
+
+[sub_resource type="BoxMesh" id="s41"]
+size = Vector3(50, 0.3, 50)
+material = SubResource("s2")
+
+[sub_resource type="BoxShape3D" id="s42"]
+size = Vector3(50, 0.3, 50)
+
+[sub_resource type="BoxMesh" id="s43"]
+size = Vector3(50, 0.3, 50)
+material = SubResource("s2")
+
+[sub_resource type="BoxShape3D" id="s44"]
+size = Vector3(50, 0.3, 50)
+
+[sub_resource type="BoxMesh" id="s45"]
+size = Vector3(50, 0.3, 50)
+material = SubResource("s2")
+
+[sub_resource type="BoxShape3D" id="s46"]
+size = Vector3(50, 0.3, 50)
+
+[sub_resource type="BoxMesh" id="s47"]
+size = Vector3(50, 0.3, 50)
+material = SubResource("s2")
+
+[sub_resource type="BoxShape3D" id="s48"]
+size = Vector3(50, 0.3, 50)
+
+[sub_resource type="BoxMesh" id="s49"]
+size = Vector3(50, 0.3, 50)
+material = SubResource("s2")
+
+[sub_resource type="BoxShape3D" id="s50"]
+size = Vector3(50, 0.3, 50)
+
+[sub_resource type="BoxMesh" id="s51"]
+size = Vector3(50, 0.3, 50)
+material = SubResource("s2")
+
+[sub_resource type="BoxShape3D" id="s52"]
+size = Vector3(50, 0.3, 50)
+
+[sub_resource type="BoxMesh" id="s53"]
+size = Vector3(50, 0.3, 50)
+material = SubResource("s2")
+
+[sub_resource type="BoxShape3D" id="s54"]
+size = Vector3(50, 0.3, 50)
+
+[sub_resource type="BoxMesh" id="s55"]
+size = Vector3(50, 0.3, 50)
+material = SubResource("s2")
+
+[sub_resource type="BoxShape3D" id="s56"]
+size = Vector3(50, 0.3, 50)
+
+[sub_resource type="BoxMesh" id="s57"]
+size = Vector3(50, 0.3, 50)
+material = SubResource("s2")
+
+[sub_resource type="BoxShape3D" id="s58"]
+size = Vector3(50, 0.3, 50)
+
+[sub_resource type="BoxMesh" id="s59"]
+size = Vector3(50, 0.3, 50)
+material = SubResource("s2")
+
+[sub_resource type="BoxShape3D" id="s60"]
+size = Vector3(50, 0.3, 50)
+
+[sub_resource type="BoxMesh" id="s61"]
+size = Vector3(50, 0.3, 50)
+material = SubResource("s2")
+
+[sub_resource type="BoxShape3D" id="s62"]
+size = Vector3(50, 0.3, 50)
+
+[sub_resource type="BoxMesh" id="s63"]
+size = Vector3(50, 0.3, 50)
+material = SubResource("s2")
+
+[sub_resource type="BoxShape3D" id="s64"]
+size = Vector3(50, 0.3, 50)
+
+[sub_resource type="BoxMesh" id="s65"]
+size = Vector3(50, 0.3, 50)
+material = SubResource("s2")
+
+[sub_resource type="BoxShape3D" id="s66"]
+size = Vector3(50, 0.3, 50)
+
+[sub_resource type="BoxMesh" id="s67"]
+size = Vector3(50, 0.3, 50)
+material = SubResource("s2")
+
+[sub_resource type="BoxShape3D" id="s68"]
+size = Vector3(50, 0.3, 50)
+
+[sub_resource type="BoxMesh" id="s69"]
+size = Vector3(50, 0.3, 50)
+material = SubResource("s2")
+
+[sub_resource type="BoxShape3D" id="s70"]
+size = Vector3(50, 0.3, 50)
+
+[sub_resource type="BoxMesh" id="s71"]
+size = Vector3(50, 0.3, 50)
+material = SubResource("s2")
+
+[sub_resource type="BoxShape3D" id="s72"]
+size = Vector3(50, 0.3, 50)
+
+[sub_resource type="BoxMesh" id="s73"]
+size = Vector3(50, 0.3, 50)
+material = SubResource("s2")
+
+[sub_resource type="BoxShape3D" id="s74"]
+size = Vector3(50, 0.3, 50)
+
+[sub_resource type="BoxMesh" id="s75"]
+size = Vector3(50, 0.3, 50)
+material = SubResource("s2")
+
+[sub_resource type="BoxShape3D" id="s76"]
+size = Vector3(50, 0.3, 50)
+
+[sub_resource type="BoxMesh" id="s77"]
+size = Vector3(50, 0.3, 50)
+material = SubResource("s2")
+
+[sub_resource type="BoxShape3D" id="s78"]
+size = Vector3(50, 0.3, 50)
+
+[sub_resource type="BoxMesh" id="s79"]
+size = Vector3(50, 0.3, 50)
+material = SubResource("s2")
+
+[sub_resource type="BoxShape3D" id="s80"]
+size = Vector3(50, 0.3, 50)
+
+[sub_resource type="BoxMesh" id="s81"]
+size = Vector3(50, 0.3, 50)
+material = SubResource("s2")
+
+[sub_resource type="BoxShape3D" id="s82"]
+size = Vector3(50, 0.3, 50)
+
+[sub_resource type="BoxMesh" id="s83"]
+size = Vector3(50, 0.3, 50)
+material = SubResource("s2")
+
+[sub_resource type="BoxShape3D" id="s84"]
+size = Vector3(50, 0.3, 50)
+
+[sub_resource type="BoxMesh" id="s85"]
+size = Vector3(50, 0.3, 50)
+material = SubResource("s2")
+
+[sub_resource type="BoxShape3D" id="s86"]
+size = Vector3(50, 0.3, 50)
+
+[sub_resource type="BoxMesh" id="s87"]
+size = Vector3(50, 0.3, 50)
+material = SubResource("s2")
+
+[sub_resource type="BoxShape3D" id="s88"]
+size = Vector3(50, 0.3, 50)
+
+[sub_resource type="BoxMesh" id="s89"]
+size = Vector3(50, 0.3, 50)
+material = SubResource("s2")
+
+[sub_resource type="BoxShape3D" id="s90"]
+size = Vector3(50, 0.3, 50)
+
+[sub_resource type="BoxMesh" id="s91"]
+size = Vector3(50, 0.3, 50)
+material = SubResource("s2")
+
+[sub_resource type="BoxShape3D" id="s92"]
+size = Vector3(50, 0.3, 50)
+
+[sub_resource type="BoxMesh" id="s93"]
+size = Vector3(50, 0.3, 50)
+material = SubResource("s2")
+
+[sub_resource type="BoxShape3D" id="s94"]
+size = Vector3(50, 0.3, 50)
+
+[sub_resource type="BoxMesh" id="s95"]
+size = Vector3(50, 0.3, 50)
+material = SubResource("s2")
+
+[sub_resource type="BoxShape3D" id="s96"]
+size = Vector3(50, 0.3, 50)
+
+[sub_resource type="BoxMesh" id="s97"]
+size = Vector3(50, 0.3, 50)
+material = SubResource("s2")
+
+[sub_resource type="BoxShape3D" id="s98"]
+size = Vector3(50, 0.3, 50)
+
+[sub_resource type="BoxMesh" id="s99"]
+size = Vector3(50, 0.3, 50)
+material = SubResource("s2")
+
+[sub_resource type="BoxShape3D" id="s100"]
+size = Vector3(50, 0.3, 50)
+
+[sub_resource type="BoxMesh" id="s101"]
+size = Vector3(50, 0.3, 50)
+material = SubResource("s2")
+
+[sub_resource type="BoxShape3D" id="s102"]
+size = Vector3(50, 0.3, 50)
+
+[sub_resource type="BoxMesh" id="s103"]
+size = Vector3(50, 0.3, 50)
+material = SubResource("s2")
+
+[sub_resource type="BoxShape3D" id="s104"]
+size = Vector3(50, 0.3, 50)
+
+[sub_resource type="BoxMesh" id="s105"]
+size = Vector3(50, 0.3, 50)
+material = SubResource("s2")
+
+[sub_resource type="BoxShape3D" id="s106"]
+size = Vector3(50, 0.3, 50)
+
+[sub_resource type="BoxMesh" id="s107"]
+size = Vector3(50, 0.3, 50)
+material = SubResource("s2")
+
+[sub_resource type="BoxShape3D" id="s108"]
+size = Vector3(50, 0.3, 50)
+
+[sub_resource type="BoxMesh" id="s109"]
+size = Vector3(50, 0.3, 50)
+material = SubResource("s2")
+
+[sub_resource type="BoxShape3D" id="s110"]
+size = Vector3(50, 0.3, 50)
+
+[sub_resource type="BoxMesh" id="s111"]
+size = Vector3(50, 0.3, 50)
+material = SubResource("s2")
+
+[sub_resource type="BoxShape3D" id="s112"]
+size = Vector3(50, 0.3, 50)
+
+[sub_resource type="BoxMesh" id="s113"]
+size = Vector3(50, 0.3, 50)
+material = SubResource("s2")
+
+[sub_resource type="BoxShape3D" id="s114"]
+size = Vector3(50, 0.3, 50)
+
+[sub_resource type="BoxMesh" id="s115"]
+size = Vector3(50, 0.3, 50)
+material = SubResource("s2")
+
+[sub_resource type="BoxShape3D" id="s116"]
+size = Vector3(50, 0.3, 50)
+
+[sub_resource type="BoxMesh" id="s117"]
+size = Vector3(50, 0.3, 50)
+material = SubResource("s2")
+
+[sub_resource type="BoxShape3D" id="s118"]
+size = Vector3(50, 0.3, 50)
+
+[sub_resource type="BoxMesh" id="s119"]
+size = Vector3(50, 0.3, 50)
+material = SubResource("s2")
+
+[sub_resource type="BoxShape3D" id="s120"]
+size = Vector3(50, 0.3, 50)
+
+[sub_resource type="BoxMesh" id="s121"]
+size = Vector3(50, 0.3, 50)
+material = SubResource("s2")
+
+[sub_resource type="BoxShape3D" id="s122"]
+size = Vector3(50, 0.3, 50)
+
+[sub_resource type="BoxMesh" id="s123"]
+size = Vector3(50, 0.3, 50)
+material = SubResource("s2")
+
+[sub_resource type="BoxShape3D" id="s124"]
+size = Vector3(50, 0.3, 50)
+
+[sub_resource type="BoxMesh" id="s125"]
+size = Vector3(50, 0.3, 50)
+material = SubResource("s2")
+
+[sub_resource type="BoxShape3D" id="s126"]
+size = Vector3(50, 0.3, 50)
+
+[sub_resource type="BoxMesh" id="s127"]
+size = Vector3(50, 0.3, 50)
+material = SubResource("s2")
+
+[sub_resource type="BoxShape3D" id="s128"]
+size = Vector3(50, 0.3, 50)
+
+[sub_resource type="BoxMesh" id="s129"]
+size = Vector3(50, 0.3, 50)
+material = SubResource("s2")
+
+[sub_resource type="BoxShape3D" id="s130"]
+size = Vector3(50, 0.3, 50)
+
+[sub_resource type="BoxMesh" id="s131"]
+size = Vector3(50, 0.3, 50)
+material = SubResource("s2")
+
+[sub_resource type="BoxShape3D" id="s132"]
+size = Vector3(50, 0.3, 50)
+
+[sub_resource type="BoxMesh" id="s133"]
+size = Vector3(50, 0.3, 50)
+material = SubResource("s2")
+
+[sub_resource type="BoxShape3D" id="s134"]
+size = Vector3(50, 0.3, 50)
+
+[sub_resource type="BoxMesh" id="s135"]
+size = Vector3(50, 0.3, 50)
+material = SubResource("s2")
+
+[sub_resource type="BoxShape3D" id="s136"]
+size = Vector3(50, 0.3, 50)
+
+[sub_resource type="BoxMesh" id="s137"]
+size = Vector3(50, 0.3, 50)
+material = SubResource("s2")
+
+[sub_resource type="BoxShape3D" id="s138"]
+size = Vector3(50, 0.3, 50)
+
+[sub_resource type="BoxMesh" id="s139"]
+size = Vector3(50, 0.3, 50)
+material = SubResource("s2")
+
+[sub_resource type="BoxShape3D" id="s140"]
+size = Vector3(50, 0.3, 50)
+
+[sub_resource type="BoxMesh" id="s141"]
+size = Vector3(50, 0.3, 50)
+material = SubResource("s2")
+
+[sub_resource type="StandardMaterial3D" id="s142"]
+albedo_color = Color(0.38, 0.39, 0.35, 1)
+roughness = 0.85
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="s143"]
+size = Vector3(220, 0.03, 8)
+material = SubResource("s142")
+
+[sub_resource type="BoxMesh" id="s144"]
+size = Vector3(8, 0.03, 184)
+material = SubResource("s142")
+
+[sub_resource type="BoxMesh" id="s145"]
+size = Vector3(8, 0.03, 196)
+material = SubResource("s142")
+
+[sub_resource type="BoxMesh" id="s146"]
+size = Vector3(232, 0.03, 6)
+material = SubResource("s142")
+
+[sub_resource type="BoxShape3D" id="s147"]
+size = Vector3(0.3, 3, 350)
+
+[sub_resource type="StandardMaterial3D" id="s148"]
+albedo_color = Color(0.47, 0.49, 0.4, 1)
+roughness = 0.85
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="s149"]
+size = Vector3(0.3, 3, 350)
+material = SubResource("s148")
+
+[sub_resource type="BoxShape3D" id="s150"]
+size = Vector3(0.3, 3, 350)
+
+[sub_resource type="BoxMesh" id="s151"]
+size = Vector3(0.3, 3, 350)
+material = SubResource("s148")
+
+[sub_resource type="BoxShape3D" id="s152"]
+size = Vector3(500, 3, 0.3)
+
+[sub_resource type="BoxMesh" id="s153"]
+size = Vector3(500, 3, 0.3)
+material = SubResource("s148")
+
+[sub_resource type="BoxShape3D" id="s154"]
+size = Vector3(500, 3, 0.3)
+
+[sub_resource type="BoxMesh" id="s155"]
+size = Vector3(500, 3, 0.3)
+material = SubResource("s148")
+
+[sub_resource type="BoxShape3D" id="s156"]
+size = Vector3(54, 14, 12)
+
+[sub_resource type="BoxShape3D" id="s157"]
+size = Vector3(220, 4, 10)
+
+[sub_resource type="BoxShape3D" id="s158"]
+size = Vector3(44, 4, 40)
+
+[sub_resource type="BoxShape3D" id="s159"]
+size = Vector3(176, 12, 120)
+
+[sub_resource type="BoxShape3D" id="s160"]
+size = Vector3(60, 4, 40)
+
+[sub_resource type="BoxShape3D" id="s161"]
+size = Vector3(48, 4, 32)
+
+[sub_resource type="BoxShape3D" id="s162"]
+size = Vector3(22, 3, 3)
+
+[sub_resource type="BoxShape3D" id="s163"]
+size = Vector3(86, 5, 14)
+
+[sub_resource type="NavigationMesh" id="s164"]
+vertices = PackedVector3Array(7.6,-9.9,-2,7.6,-9.9,0.9,8.9,-9.9,0.9,8.9,-9.9,-2)
+polygons = [PackedInt32Array(0,1,2,3)]
+agent_radius = 0.3
+agent_height = 1.75
+
+[sub_resource type="NavigationMesh" id="s165"]
+vertices = PackedVector3Array(24.1,-9.9,-2,24.1,-9.9,0.9,25.4,-9.9,0.9,25.4,-9.9,-2)
+polygons = [PackedInt32Array(0,1,2,3)]
+agent_radius = 0.3
+agent_height = 1.75
+
+[sub_resource type="NavigationMesh" id="s166"]
+vertices = PackedVector3Array(35.1,-9.9,-2,35.1,-9.9,0.9,36.4,-9.9,0.9,36.4,-9.9,-2)
+polygons = [PackedInt32Array(0,1,2,3)]
+agent_radius = 0.3
+agent_height = 1.75
+
+[sub_resource type="NavigationMesh" id="s167"]
+vertices = PackedVector3Array(0.35,-9.9,0.5,0.35,-9.9,1.95,43.65,-9.9,1.95,43.65,-9.9,0.5)
+polygons = [PackedInt32Array(0,1,2,3)]
+agent_radius = 0.3
+agent_height = 1.75
+
+[sub_resource type="NavigationMesh" id="s168"]
+vertices = PackedVector3Array(7.6,-6.6,-2,7.6,-6.6,0.9,8.9,-6.6,0.9,8.9,-6.6,-2)
+polygons = [PackedInt32Array(0,1,2,3)]
+agent_radius = 0.3
+agent_height = 1.75
+
+[sub_resource type="NavigationMesh" id="s169"]
+vertices = PackedVector3Array(24.1,-6.6,-2,24.1,-6.6,0.9,25.4,-6.6,0.9,25.4,-6.6,-2)
+polygons = [PackedInt32Array(0,1,2,3)]
+agent_radius = 0.3
+agent_height = 1.75
+
+[sub_resource type="NavigationMesh" id="s170"]
+vertices = PackedVector3Array(35.1,-6.6,-2,35.1,-6.6,0.9,36.4,-6.6,0.9,36.4,-6.6,-2)
+polygons = [PackedInt32Array(0,1,2,3)]
+agent_radius = 0.3
+agent_height = 1.75
+
+[sub_resource type="NavigationMesh" id="s171"]
+vertices = PackedVector3Array(0.35,-6.6,0.5,0.35,-6.6,1.95,43.65,-6.6,1.95,43.65,-6.6,0.5)
+polygons = [PackedInt32Array(0,1,2,3)]
+agent_radius = 0.3
+agent_height = 1.75
+
+[sub_resource type="NavigationMesh" id="s172"]
+vertices = PackedVector3Array(11.4,-6.6,-6.8,11.4,-6.6,-0.4,16.1,-6.6,-0.4,16.1,-6.6,-6.8)
+polygons = [PackedInt32Array(0,1,2,3)]
+agent_radius = 0.3
+agent_height = 1.75
+
+[sub_resource type="NavigationMesh" id="s173"]
+vertices = PackedVector3Array(7.6,-3.3,-2,7.6,-3.3,0.9,8.9,-3.3,0.9,8.9,-3.3,-2)
+polygons = [PackedInt32Array(0,1,2,3)]
+agent_radius = 0.3
+agent_height = 1.75
+
+[sub_resource type="NavigationMesh" id="s174"]
+vertices = PackedVector3Array(24.1,-3.3,-2,24.1,-3.3,0.9,25.4,-3.3,0.9,25.4,-3.3,-2)
+polygons = [PackedInt32Array(0,1,2,3)]
+agent_radius = 0.3
+agent_height = 1.75
+
+[sub_resource type="NavigationMesh" id="s175"]
+vertices = PackedVector3Array(35.1,-3.3,-2,35.1,-3.3,0.9,36.4,-3.3,0.9,36.4,-3.3,-2)
+polygons = [PackedInt32Array(0,1,2,3)]
+agent_radius = 0.3
+agent_height = 1.75
+
+[sub_resource type="NavigationMesh" id="s176"]
+vertices = PackedVector3Array(0.35,-3.3,0.5,0.35,-3.3,1.95,43.65,-3.3,1.95,43.65,-3.3,0.5)
+polygons = [PackedInt32Array(0,1,2,3)]
+agent_radius = 0.3
+agent_height = 1.75
+
+[sub_resource type="NavigationMesh" id="s177"]
+vertices = PackedVector3Array(0.6,-9.9,-6.9,0.6,-9.9,-0.5,5.05,-9.9,-0.5,5.05,-9.9,-6.9)
+polygons = [PackedInt32Array(0,1,2,3)]
+agent_radius = 0.3
+agent_height = 1.75
+
+[sub_resource type="NavigationMesh" id="s178"]
+vertices = PackedVector3Array(3.42,-9.9,-4.5,3.42,-8.9,-7.2,4.58,-8.9,-7.2,4.58,-9.9,-4.5)
+polygons = [PackedInt32Array(0,1,2,3)]
+agent_radius = 0.3
+agent_height = 1.75
+
+[sub_resource type="NavigationMesh" id="s179"]
+vertices = PackedVector3Array(3.42,-8.9,-8.0,3.42,-9.9,-10.7,4.58,-9.9,-10.7,4.58,-8.9,-8.0)
+polygons = [PackedInt32Array(0,1,2,3)]
+agent_radius = 0.3
+agent_height = 1.75
+
+[sub_resource type="NavigationMesh" id="s180"]
+vertices = PackedVector3Array(3.42,-8.9,-8.0,3.42,-8.9,-7.2,4.58,-8.9,-7.2,4.58,-8.9,-8.0)
+polygons = [PackedInt32Array(0,1,2,3)]
+agent_radius = 0.3
+agent_height = 1.75
+
+[sub_resource type="NavigationMesh" id="s181"]
+vertices = PackedVector3Array(-4.68,-9.9,0.32,-4.68,-9.9,2.08,-0.32,-9.9,2.08,-0.32,-9.9,0.32)
+polygons = [PackedInt32Array(0,1,2,3)]
+agent_radius = 0.3
+agent_height = 1.75
+
+[sub_resource type="NavigationMesh" id="s182"]
+vertices = PackedVector3Array(-4.68,-6.6,0.32,-4.68,-6.6,2.08,-0.32,-6.6,2.08,-0.32,-6.6,0.32)
+polygons = [PackedInt32Array(0,1,2,3)]
+agent_radius = 0.3
+agent_height = 1.75
+
+[sub_resource type="NavigationMesh" id="s183"]
+vertices = PackedVector3Array(-4.68,-3.3,0.32,-4.68,-3.3,2.08,-0.32,-3.3,2.08,-0.32,-3.3,0.32)
+polygons = [PackedInt32Array(0,1,2,3)]
+agent_radius = 0.3
+agent_height = 1.75
+
+[sub_resource type="NavigationMesh" id="s184"]
+vertices = PackedVector3Array(-4.68,0.0,0.32,-4.68,0.0,2.08,-0.32,0.0,2.08,-0.32,0.0,0.32)
+polygons = [PackedInt32Array(0,1,2,3)]
+agent_radius = 0.3
+agent_height = 1.75
+
+[sub_resource type="NavigationMesh" id="s185"]
+vertices = PackedVector3Array(-4.56,0.0,0,-4.56,-1.65,-4.8,-3.04,-1.65,-4.8,-3.04,0.0,0)
+polygons = [PackedInt32Array(0,1,2,3)]
+agent_radius = 0.3
+agent_height = 1.75
+
+[sub_resource type="NavigationMesh" id="s186"]
+vertices = PackedVector3Array(-4.68,-1.65,-5.85,-4.68,-1.65,-4.85,-0.32,-1.65,-4.85,-0.32,-1.65,-5.85)
+polygons = [PackedInt32Array(0,1,2,3)]
+agent_radius = 0.3
+agent_height = 1.75
+
+[sub_resource type="NavigationMesh" id="s187"]
+vertices = PackedVector3Array(-1.96,-1.65,-4.8,-1.96,-3.3,0,-0.44,-3.3,0,-0.44,-1.65,-4.8)
+polygons = [PackedInt32Array(0,1,2,3)]
+agent_radius = 0.3
+agent_height = 1.75
+
+[sub_resource type="NavigationMesh" id="s188"]
+vertices = PackedVector3Array(-4.56,-3.3,0,-4.56,-4.95,-4.8,-3.04,-4.95,-4.8,-3.04,-3.3,0)
+polygons = [PackedInt32Array(0,1,2,3)]
+agent_radius = 0.3
+agent_height = 1.75
+
+[sub_resource type="NavigationMesh" id="s189"]
+vertices = PackedVector3Array(-4.68,-4.95,-5.85,-4.68,-4.95,-4.85,-0.32,-4.95,-4.85,-0.32,-4.95,-5.85)
+polygons = [PackedInt32Array(0,1,2,3)]
+agent_radius = 0.3
+agent_height = 1.75
+
+[sub_resource type="NavigationMesh" id="s190"]
+vertices = PackedVector3Array(-1.96,-4.95,-4.8,-1.96,-6.6,0,-0.44,-6.6,0,-0.44,-4.95,-4.8)
+polygons = [PackedInt32Array(0,1,2,3)]
+agent_radius = 0.3
+agent_height = 1.75
+
+[sub_resource type="NavigationMesh" id="s191"]
+vertices = PackedVector3Array(-4.56,-6.6,0,-4.56,-8.25,-4.8,-3.04,-8.25,-4.8,-3.04,-6.6,0)
+polygons = [PackedInt32Array(0,1,2,3)]
+agent_radius = 0.3
+agent_height = 1.75
+
+[sub_resource type="NavigationMesh" id="s192"]
+vertices = PackedVector3Array(-4.68,-8.25,-5.85,-4.68,-8.25,-4.85,-0.32,-8.25,-4.85,-0.32,-8.25,-5.85)
+polygons = [PackedInt32Array(0,1,2,3)]
+agent_radius = 0.3
+agent_height = 1.75
+
+[sub_resource type="NavigationMesh" id="s193"]
+vertices = PackedVector3Array(-1.96,-8.25,-4.8,-1.96,-9.9,0,-0.44,-9.9,0,-0.44,-8.25,-4.8)
+polygons = [PackedInt32Array(0,1,2,3)]
+agent_radius = 0.3
+agent_height = 1.75
+
+[sub_resource type="NavigationMesh" id="s194"]
+vertices = PackedVector3Array(44.32,-9.9,0.32,44.32,-9.9,2.08,48.68,-9.9,2.08,48.68,-9.9,0.32)
+polygons = [PackedInt32Array(0,1,2,3)]
+agent_radius = 0.3
+agent_height = 1.75
+
+[sub_resource type="NavigationMesh" id="s195"]
+vertices = PackedVector3Array(44.32,-6.6,0.32,44.32,-6.6,2.08,48.68,-6.6,2.08,48.68,-6.6,0.32)
+polygons = [PackedInt32Array(0,1,2,3)]
+agent_radius = 0.3
+agent_height = 1.75
+
+[sub_resource type="NavigationMesh" id="s196"]
+vertices = PackedVector3Array(44.32,-3.3,0.32,44.32,-3.3,2.08,48.68,-3.3,2.08,48.68,-3.3,0.32)
+polygons = [PackedInt32Array(0,1,2,3)]
+agent_radius = 0.3
+agent_height = 1.75
+
+[sub_resource type="NavigationMesh" id="s197"]
+vertices = PackedVector3Array(44.32,0.0,0.32,44.32,0.0,2.08,48.68,0.0,2.08,48.68,0.0,0.32)
+polygons = [PackedInt32Array(0,1,2,3)]
+agent_radius = 0.3
+agent_height = 1.75
+
+[sub_resource type="NavigationMesh" id="s198"]
+vertices = PackedVector3Array(44.44,0.0,0,44.44,-1.65,-4.8,45.96,-1.65,-4.8,45.96,0.0,0)
+polygons = [PackedInt32Array(0,1,2,3)]
+agent_radius = 0.3
+agent_height = 1.75
+
+[sub_resource type="NavigationMesh" id="s199"]
+vertices = PackedVector3Array(44.32,-1.65,-5.85,44.32,-1.65,-4.85,48.68,-1.65,-4.85,48.68,-1.65,-5.85)
+polygons = [PackedInt32Array(0,1,2,3)]
+agent_radius = 0.3
+agent_height = 1.75
+
+[sub_resource type="NavigationMesh" id="s200"]
+vertices = PackedVector3Array(47.04,-1.65,-4.8,47.04,-3.3,0,48.56,-3.3,0,48.56,-1.65,-4.8)
+polygons = [PackedInt32Array(0,1,2,3)]
+agent_radius = 0.3
+agent_height = 1.75
+
+[sub_resource type="NavigationMesh" id="s201"]
+vertices = PackedVector3Array(44.44,-3.3,0,44.44,-4.95,-4.8,45.96,-4.95,-4.8,45.96,-3.3,0)
+polygons = [PackedInt32Array(0,1,2,3)]
+agent_radius = 0.3
+agent_height = 1.75
+
+[sub_resource type="NavigationMesh" id="s202"]
+vertices = PackedVector3Array(44.32,-4.95,-5.85,44.32,-4.95,-4.85,48.68,-4.95,-4.85,48.68,-4.95,-5.85)
+polygons = [PackedInt32Array(0,1,2,3)]
+agent_radius = 0.3
+agent_height = 1.75
+
+[sub_resource type="NavigationMesh" id="s203"]
+vertices = PackedVector3Array(47.04,-4.95,-4.8,47.04,-6.6,0,48.56,-6.6,0,48.56,-4.95,-4.8)
+polygons = [PackedInt32Array(0,1,2,3)]
+agent_radius = 0.3
+agent_height = 1.75
+
+[sub_resource type="NavigationMesh" id="s204"]
+vertices = PackedVector3Array(0.35,0,0.6,0.35,0,1.95,43.65,0,1.95,43.65,0,0.6)
+polygons = [PackedInt32Array(0,1,2,3)]
+agent_radius = 0.3
+agent_height = 1.75
+
+[sub_resource type="NavigationMesh" id="s205"]
+vertices = PackedVector3Array(158.4,-9.6,213.75,158.4,-9.6,214.25,237.6,-9.6,214.25,237.6,-9.6,213.75)
+polygons = [PackedInt32Array(0,1,2,3)]
+agent_radius = 0.3
+agent_height = 1.75
+
+[sub_resource type="NavigationMesh" id="s206"]
+vertices = PackedVector3Array(158.4,-9.3,214.95,158.4,-9.3,215.45,237.6,-9.3,215.45,237.6,-9.3,214.95)
+polygons = [PackedInt32Array(0,1,2,3)]
+agent_radius = 0.3
+agent_height = 1.75
+
+[sub_resource type="NavigationMesh" id="s207"]
+vertices = PackedVector3Array(158.4,-9.0,216.15,158.4,-9.0,216.65,237.6,-9.0,216.65,237.6,-9.0,216.15)
+polygons = [PackedInt32Array(0,1,2,3)]
+agent_radius = 0.3
+agent_height = 1.75
+
+[sub_resource type="NavigationMesh" id="s208"]
+vertices = PackedVector3Array(158.4,-8.7,217.35,158.4,-8.7,217.85,237.6,-8.7,217.85,237.6,-8.7,217.35)
+polygons = [PackedInt32Array(0,1,2,3)]
+agent_radius = 0.3
+agent_height = 1.75
+
+[sub_resource type="NavigationMesh" id="s209"]
+vertices = PackedVector3Array(158.4,-8.4,218.55,158.4,-8.4,219.05,237.6,-8.4,219.05,237.6,-8.4,218.55)
+polygons = [PackedInt32Array(0,1,2,3)]
+agent_radius = 0.3
+agent_height = 1.75
+
+[sub_resource type="NavigationMesh" id="s210"]
+vertices = PackedVector3Array(158.4,-8.1,219.75,158.4,-8.1,220.25,237.6,-8.1,220.25,237.6,-8.1,219.75)
+polygons = [PackedInt32Array(0,1,2,3)]
+agent_radius = 0.3
+agent_height = 1.75
+
+[sub_resource type="NavigationMesh" id="s211"]
+vertices = PackedVector3Array(158.4,-7.8,220.95,158.4,-7.8,221.45,237.6,-7.8,221.45,237.6,-7.8,220.95)
+polygons = [PackedInt32Array(0,1,2,3)]
+agent_radius = 0.3
+agent_height = 1.75
+
+[sub_resource type="NavigationMesh" id="s212"]
+vertices = PackedVector3Array(158.4,-7.5,222.15,158.4,-7.5,222.65,237.6,-7.5,222.65,237.6,-7.5,222.15)
+polygons = [PackedInt32Array(0,1,2,3)]
+agent_radius = 0.3
+agent_height = 1.75
+
+[sub_resource type="NavigationMesh" id="s213"]
+vertices = PackedVector3Array(158.4,-7.2,223.35,158.4,-7.2,223.85,237.6,-7.2,223.85,237.6,-7.2,223.35)
+polygons = [PackedInt32Array(0,1,2,3)]
+agent_radius = 0.3
+agent_height = 1.75
+
+[sub_resource type="NavigationMesh" id="s214"]
+vertices = PackedVector3Array(158.4,-6.9,224.55,158.4,-6.9,225.05,237.6,-6.9,225.05,237.6,-6.9,224.55)
+polygons = [PackedInt32Array(0,1,2,3)]
+agent_radius = 0.3
+agent_height = 1.75
+
+[sub_resource type="NavigationMesh" id="s215"]
+vertices = PackedVector3Array(155.32,-9.9,213,155.32,-6.9,224.8,157.28,-6.9,224.8,157.28,-9.9,213)
+polygons = [PackedInt32Array(0,1,2,3)]
+agent_radius = 0.3
+agent_height = 1.75
+
+[sub_resource type="NavigationMesh" id="s216"]
+vertices = PackedVector3Array(168.4,-9.6,107.75,168.4,-9.6,108.25,227.6,-9.6,108.25,227.6,-9.6,107.75)
+polygons = [PackedInt32Array(0,1,2,3)]
+agent_radius = 0.3
+agent_height = 1.75
+
+[sub_resource type="NavigationMesh" id="s217"]
+vertices = PackedVector3Array(168.4,-9.3,108.95,168.4,-9.3,109.45,227.6,-9.3,109.45,227.6,-9.3,108.95)
+polygons = [PackedInt32Array(0,1,2,3)]
+agent_radius = 0.3
+agent_height = 1.75
+
+[sub_resource type="NavigationMesh" id="s218"]
+vertices = PackedVector3Array(168.4,-9.0,110.15,168.4,-9.0,110.65,227.6,-9.0,110.65,227.6,-9.0,110.15)
+polygons = [PackedInt32Array(0,1,2,3)]
+agent_radius = 0.3
+agent_height = 1.75
+
+[sub_resource type="NavigationMesh" id="s219"]
+vertices = PackedVector3Array(168.4,-8.7,111.35,168.4,-8.7,111.85,227.6,-8.7,111.85,227.6,-8.7,111.35)
+polygons = [PackedInt32Array(0,1,2,3)]
+agent_radius = 0.3
+agent_height = 1.75
+
+[sub_resource type="NavigationMesh" id="s220"]
+vertices = PackedVector3Array(165.32,-9.9,107,165.32,-8.7,111.6,167.28,-8.7,111.6,167.28,-9.9,107)
+polygons = [PackedInt32Array(0,1,2,3)]
+agent_radius = 0.3
+agent_height = 1.75
+
+[sub_resource type="NavigationMesh" id="s221"]
+vertices = PackedVector3Array(170.5,-9.9,20.5,170.5,-9.9,43.5,209.5,-9.9,43.5,209.5,-9.9,20.5)
+polygons = [PackedInt32Array(0,1,2,3)]
+agent_radius = 0.3
+agent_height = 1.75
+
+[sub_resource type="NavigationMesh" id="s222"]
+vertices = PackedVector3Array(186.5,-9.9,44.5,186.5,-9.9,51.5,197.5,-9.9,51.5,197.5,-9.9,44.5)
+polygons = [PackedInt32Array(0,1,2,3)]
+agent_radius = 0.3
+agent_height = 1.75
+
+[sub_resource type="NavigationMesh" id="s223"]
+vertices = PackedVector3Array(198.5,-9.9,44.5,198.5,-9.9,51.5,209.5,-9.9,51.5,209.5,-9.9,44.5)
+polygons = [PackedInt32Array(0,1,2,3)]
+agent_radius = 0.3
+agent_height = 1.75
+
+[sub_resource type="Environment" id="s224"]
+background_mode = 1
+background_color = Color(0.13,0.055,0.06,1)
+ambient_light_source = 2
+ambient_light_color = Color(0.48,0.43,0.45,1)
+ambient_light_energy = 0.65
+tonemap_mode = 2
+fog_enabled = true
+fog_light_color = Color(0.18,0.10,0.11,1)
+fog_density = 0.018
+fog_sky_affect = 1.0
+
+[node name="Campus" type="Node3D"]
+
+script = ExtResource("e1")
+metadata/size = Vector2(500,350)
+metadata/greybox = true
+
+[node name="BuildingB" parent="." instance=ExtResource("e2")]
+position = Vector3(0, 0, 0)
+
+
+[node name="Shells" parent="." instance=ExtResource("e3")]
+position = Vector3(0, 0, 0)
+
+
+[node name="Garden" parent="." instance=ExtResource("e4")]
+position = Vector3(0, 0, 0)
+
+
+[node name="Stadium" parent="." instance=ExtResource("e5")]
+position = Vector3(0, 0, 0)
+
+
+[node name="Gate" parent="." instance=ExtResource("e6")]
+position = Vector3(0, 0, 0)
+
+
+[node name="Canteen" parent="." instance=ExtResource("e7")]
+position = Vector3(0, 0, 0)
+
+
+[node name="Ground" type="Node3D" parent="."]
+
+
+[node name="Tile_-80_-60" type="StaticBody3D" parent="Ground"]
+position = Vector3(-55, -10.05, -35)
+metadata/surface = &"tile"
+metadata/is_floor = true
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Ground/Tile_-80_-60"]
+shape = SubResource("s1")
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_-80_-60"]
+mesh = SubResource("s3")
+
+[node name="Tile_-80_-10" type="StaticBody3D" parent="Ground"]
+position = Vector3(-55, -10.05, 15)
+metadata/surface = &"tile"
+metadata/is_floor = true
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Ground/Tile_-80_-10"]
+shape = SubResource("s4")
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_-80_-10"]
+mesh = SubResource("s5")
+
+[node name="Tile_-80_40" type="StaticBody3D" parent="Ground"]
+position = Vector3(-55, -10.05, 65)
+metadata/surface = &"tile"
+metadata/is_floor = true
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Ground/Tile_-80_40"]
+shape = SubResource("s6")
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_-80_40"]
+mesh = SubResource("s7")
+
+[node name="Tile_-80_90" type="StaticBody3D" parent="Ground"]
+position = Vector3(-55, -10.05, 115)
+metadata/surface = &"tile"
+metadata/is_floor = true
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Ground/Tile_-80_90"]
+shape = SubResource("s8")
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_-80_90"]
+mesh = SubResource("s9")
+
+[node name="Tile_-80_140" type="StaticBody3D" parent="Ground"]
+position = Vector3(-55, -10.05, 165)
+metadata/surface = &"tile"
+metadata/is_floor = true
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Ground/Tile_-80_140"]
+shape = SubResource("s10")
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_-80_140"]
+mesh = SubResource("s11")
+
+[node name="Tile_-80_190" type="StaticBody3D" parent="Ground"]
+position = Vector3(-55, -10.05, 215)
+metadata/surface = &"tile"
+metadata/is_floor = true
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Ground/Tile_-80_190"]
+shape = SubResource("s12")
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_-80_190"]
+mesh = SubResource("s13")
+
+[node name="Tile_-80_240" type="StaticBody3D" parent="Ground"]
+position = Vector3(-55, -10.05, 265)
+metadata/surface = &"tile"
+metadata/is_floor = true
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Ground/Tile_-80_240"]
+shape = SubResource("s14")
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_-80_240"]
+mesh = SubResource("s15")
+
+[node name="Tile_-30_-60" type="StaticBody3D" parent="Ground"]
+position = Vector3(-5, -10.05, -35)
+metadata/surface = &"tile"
+metadata/is_floor = true
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Ground/Tile_-30_-60"]
+shape = SubResource("s16")
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_-30_-60"]
+mesh = SubResource("s17")
+
+[node name="Tile_-30_-10" type="StaticBody3D" parent="Ground"]
+position = Vector3(-5, -10.05, 15)
+metadata/surface = &"tile"
+metadata/is_floor = true
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Ground/Tile_-30_-10"]
+shape = SubResource("s18")
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_-30_-10"]
+mesh = SubResource("s19")
+
+[node name="Tile_-30_40" type="StaticBody3D" parent="Ground"]
+position = Vector3(-5, -10.05, 65)
+metadata/surface = &"tile"
+metadata/is_floor = true
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Ground/Tile_-30_40"]
+shape = SubResource("s20")
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_-30_40"]
+mesh = SubResource("s21")
+
+[node name="Tile_-30_90" type="StaticBody3D" parent="Ground"]
+position = Vector3(-5, -10.05, 115)
+metadata/surface = &"tile"
+metadata/is_floor = true
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Ground/Tile_-30_90"]
+shape = SubResource("s22")
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_-30_90"]
+mesh = SubResource("s23")
+
+[node name="Tile_-30_140" type="StaticBody3D" parent="Ground"]
+position = Vector3(-5, -10.05, 165)
+metadata/surface = &"tile"
+metadata/is_floor = true
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Ground/Tile_-30_140"]
+shape = SubResource("s24")
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_-30_140"]
+mesh = SubResource("s25")
+
+[node name="Tile_-30_190" type="StaticBody3D" parent="Ground"]
+position = Vector3(-5, -10.05, 215)
+metadata/surface = &"tile"
+metadata/is_floor = true
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Ground/Tile_-30_190"]
+shape = SubResource("s26")
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_-30_190"]
+mesh = SubResource("s27")
+
+[node name="Tile_-30_240" type="StaticBody3D" parent="Ground"]
+position = Vector3(-5, -10.05, 265)
+metadata/surface = &"tile"
+metadata/is_floor = true
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Ground/Tile_-30_240"]
+shape = SubResource("s28")
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_-30_240"]
+mesh = SubResource("s29")
+
+[node name="Tile_20_-60" type="StaticBody3D" parent="Ground"]
+position = Vector3(45, -10.05, -35)
+metadata/surface = &"tile"
+metadata/is_floor = true
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Ground/Tile_20_-60"]
+shape = SubResource("s30")
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_20_-60"]
+mesh = SubResource("s31")
+
+[node name="Tile_20_-10" type="StaticBody3D" parent="Ground"]
+position = Vector3(45, -10.05, 15)
+metadata/surface = &"tile"
+metadata/is_floor = true
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Ground/Tile_20_-10"]
+shape = SubResource("s32")
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_20_-10"]
+mesh = SubResource("s33")
+
+[node name="Tile_20_40" type="StaticBody3D" parent="Ground"]
+position = Vector3(45, -10.05, 65)
+metadata/surface = &"tile"
+metadata/is_floor = true
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Ground/Tile_20_40"]
+shape = SubResource("s34")
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_20_40"]
+mesh = SubResource("s35")
+
+[node name="Tile_20_90" type="StaticBody3D" parent="Ground"]
+position = Vector3(45, -10.05, 115)
+metadata/surface = &"tile"
+metadata/is_floor = true
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Ground/Tile_20_90"]
+shape = SubResource("s36")
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_20_90"]
+mesh = SubResource("s37")
+
+[node name="Tile_20_140" type="StaticBody3D" parent="Ground"]
+position = Vector3(45, -10.05, 165)
+metadata/surface = &"tile"
+metadata/is_floor = true
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Ground/Tile_20_140"]
+shape = SubResource("s38")
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_20_140"]
+mesh = SubResource("s39")
+
+[node name="Tile_20_190" type="StaticBody3D" parent="Ground"]
+position = Vector3(45, -10.05, 215)
+metadata/surface = &"tile"
+metadata/is_floor = true
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Ground/Tile_20_190"]
+shape = SubResource("s40")
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_20_190"]
+mesh = SubResource("s41")
+
+[node name="Tile_20_240" type="StaticBody3D" parent="Ground"]
+position = Vector3(45, -10.05, 265)
+metadata/surface = &"tile"
+metadata/is_floor = true
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Ground/Tile_20_240"]
+shape = SubResource("s42")
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_20_240"]
+mesh = SubResource("s43")
+
+[node name="Tile_70_-60" type="StaticBody3D" parent="Ground"]
+position = Vector3(95, -10.05, -35)
+metadata/surface = &"tile"
+metadata/is_floor = true
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Ground/Tile_70_-60"]
+shape = SubResource("s44")
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_70_-60"]
+mesh = SubResource("s45")
+
+[node name="Tile_70_-10" type="StaticBody3D" parent="Ground"]
+position = Vector3(95, -10.05, 15)
+metadata/surface = &"tile"
+metadata/is_floor = true
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Ground/Tile_70_-10"]
+shape = SubResource("s46")
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_70_-10"]
+mesh = SubResource("s47")
+
+[node name="Tile_70_40" type="StaticBody3D" parent="Ground"]
+position = Vector3(95, -10.05, 65)
+metadata/surface = &"tile"
+metadata/is_floor = true
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Ground/Tile_70_40"]
+shape = SubResource("s48")
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_70_40"]
+mesh = SubResource("s49")
+
+[node name="Tile_70_90" type="StaticBody3D" parent="Ground"]
+position = Vector3(95, -10.05, 115)
+metadata/surface = &"tile"
+metadata/is_floor = true
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Ground/Tile_70_90"]
+shape = SubResource("s50")
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_70_90"]
+mesh = SubResource("s51")
+
+[node name="Tile_70_140" type="StaticBody3D" parent="Ground"]
+position = Vector3(95, -10.05, 165)
+metadata/surface = &"tile"
+metadata/is_floor = true
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Ground/Tile_70_140"]
+shape = SubResource("s52")
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_70_140"]
+mesh = SubResource("s53")
+
+[node name="Tile_70_190" type="StaticBody3D" parent="Ground"]
+position = Vector3(95, -10.05, 215)
+metadata/surface = &"tile"
+metadata/is_floor = true
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Ground/Tile_70_190"]
+shape = SubResource("s54")
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_70_190"]
+mesh = SubResource("s55")
+
+[node name="Tile_70_240" type="StaticBody3D" parent="Ground"]
+position = Vector3(95, -10.05, 265)
+metadata/surface = &"tile"
+metadata/is_floor = true
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Ground/Tile_70_240"]
+shape = SubResource("s56")
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_70_240"]
+mesh = SubResource("s57")
+
+[node name="Tile_120_-60" type="StaticBody3D" parent="Ground"]
+position = Vector3(145, -10.05, -35)
+metadata/surface = &"tile"
+metadata/is_floor = true
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Ground/Tile_120_-60"]
+shape = SubResource("s58")
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_120_-60"]
+mesh = SubResource("s59")
+
+[node name="Tile_120_-10" type="StaticBody3D" parent="Ground"]
+position = Vector3(145, -10.05, 15)
+metadata/surface = &"tile"
+metadata/is_floor = true
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Ground/Tile_120_-10"]
+shape = SubResource("s60")
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_120_-10"]
+mesh = SubResource("s61")
+
+[node name="Tile_120_40" type="StaticBody3D" parent="Ground"]
+position = Vector3(145, -10.05, 65)
+metadata/surface = &"tile"
+metadata/is_floor = true
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Ground/Tile_120_40"]
+shape = SubResource("s62")
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_120_40"]
+mesh = SubResource("s63")
+
+[node name="Tile_120_90" type="StaticBody3D" parent="Ground"]
+position = Vector3(145, -10.05, 115)
+metadata/surface = &"tile"
+metadata/is_floor = true
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Ground/Tile_120_90"]
+shape = SubResource("s64")
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_120_90"]
+mesh = SubResource("s65")
+
+[node name="Tile_120_140" type="StaticBody3D" parent="Ground"]
+position = Vector3(145, -10.05, 165)
+metadata/surface = &"tile"
+metadata/is_floor = true
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Ground/Tile_120_140"]
+shape = SubResource("s66")
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_120_140"]
+mesh = SubResource("s67")
+
+[node name="Tile_120_190" type="StaticBody3D" parent="Ground"]
+position = Vector3(145, -10.05, 215)
+metadata/surface = &"tile"
+metadata/is_floor = true
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Ground/Tile_120_190"]
+shape = SubResource("s68")
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_120_190"]
+mesh = SubResource("s69")
+
+[node name="Tile_120_240" type="StaticBody3D" parent="Ground"]
+position = Vector3(145, -10.05, 265)
+metadata/surface = &"tile"
+metadata/is_floor = true
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Ground/Tile_120_240"]
+shape = SubResource("s70")
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_120_240"]
+mesh = SubResource("s71")
+
+[node name="Tile_170_-60" type="StaticBody3D" parent="Ground"]
+position = Vector3(195, -10.05, -35)
+metadata/surface = &"tile"
+metadata/is_floor = true
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Ground/Tile_170_-60"]
+shape = SubResource("s72")
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_170_-60"]
+mesh = SubResource("s73")
+
+[node name="Tile_170_-10" type="StaticBody3D" parent="Ground"]
+position = Vector3(195, -10.05, 15)
+metadata/surface = &"tile"
+metadata/is_floor = true
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Ground/Tile_170_-10"]
+shape = SubResource("s74")
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_170_-10"]
+mesh = SubResource("s75")
+
+[node name="Tile_170_40" type="StaticBody3D" parent="Ground"]
+position = Vector3(195, -10.05, 65)
+metadata/surface = &"tile"
+metadata/is_floor = true
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Ground/Tile_170_40"]
+shape = SubResource("s76")
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_170_40"]
+mesh = SubResource("s77")
+
+[node name="Tile_170_90" type="StaticBody3D" parent="Ground"]
+position = Vector3(195, -10.05, 115)
+metadata/surface = &"tile"
+metadata/is_floor = true
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Ground/Tile_170_90"]
+shape = SubResource("s78")
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_170_90"]
+mesh = SubResource("s79")
+
+[node name="Tile_170_140" type="StaticBody3D" parent="Ground"]
+position = Vector3(195, -10.05, 165)
+metadata/surface = &"tile"
+metadata/is_floor = true
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Ground/Tile_170_140"]
+shape = SubResource("s80")
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_170_140"]
+mesh = SubResource("s81")
+
+[node name="Tile_170_190" type="StaticBody3D" parent="Ground"]
+position = Vector3(195, -10.05, 215)
+metadata/surface = &"tile"
+metadata/is_floor = true
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Ground/Tile_170_190"]
+shape = SubResource("s82")
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_170_190"]
+mesh = SubResource("s83")
+
+[node name="Tile_170_240" type="StaticBody3D" parent="Ground"]
+position = Vector3(195, -10.05, 265)
+metadata/surface = &"tile"
+metadata/is_floor = true
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Ground/Tile_170_240"]
+shape = SubResource("s84")
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_170_240"]
+mesh = SubResource("s85")
+
+[node name="Tile_220_-60" type="StaticBody3D" parent="Ground"]
+position = Vector3(245, -10.05, -35)
+metadata/surface = &"tile"
+metadata/is_floor = true
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Ground/Tile_220_-60"]
+shape = SubResource("s86")
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_220_-60"]
+mesh = SubResource("s87")
+
+[node name="Tile_220_-10" type="StaticBody3D" parent="Ground"]
+position = Vector3(245, -10.05, 15)
+metadata/surface = &"tile"
+metadata/is_floor = true
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Ground/Tile_220_-10"]
+shape = SubResource("s88")
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_220_-10"]
+mesh = SubResource("s89")
+
+[node name="Tile_220_40" type="StaticBody3D" parent="Ground"]
+position = Vector3(245, -10.05, 65)
+metadata/surface = &"tile"
+metadata/is_floor = true
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Ground/Tile_220_40"]
+shape = SubResource("s90")
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_220_40"]
+mesh = SubResource("s91")
+
+[node name="Tile_220_90" type="StaticBody3D" parent="Ground"]
+position = Vector3(245, -10.05, 115)
+metadata/surface = &"tile"
+metadata/is_floor = true
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Ground/Tile_220_90"]
+shape = SubResource("s92")
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_220_90"]
+mesh = SubResource("s93")
+
+[node name="Tile_220_140" type="StaticBody3D" parent="Ground"]
+position = Vector3(245, -10.05, 165)
+metadata/surface = &"tile"
+metadata/is_floor = true
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Ground/Tile_220_140"]
+shape = SubResource("s94")
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_220_140"]
+mesh = SubResource("s95")
+
+[node name="Tile_220_190" type="StaticBody3D" parent="Ground"]
+position = Vector3(245, -10.05, 215)
+metadata/surface = &"tile"
+metadata/is_floor = true
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Ground/Tile_220_190"]
+shape = SubResource("s96")
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_220_190"]
+mesh = SubResource("s97")
+
+[node name="Tile_220_240" type="StaticBody3D" parent="Ground"]
+position = Vector3(245, -10.05, 265)
+metadata/surface = &"tile"
+metadata/is_floor = true
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Ground/Tile_220_240"]
+shape = SubResource("s98")
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_220_240"]
+mesh = SubResource("s99")
+
+[node name="Tile_270_-60" type="StaticBody3D" parent="Ground"]
+position = Vector3(295, -10.05, -35)
+metadata/surface = &"tile"
+metadata/is_floor = true
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Ground/Tile_270_-60"]
+shape = SubResource("s100")
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_270_-60"]
+mesh = SubResource("s101")
+
+[node name="Tile_270_-10" type="StaticBody3D" parent="Ground"]
+position = Vector3(295, -10.05, 15)
+metadata/surface = &"tile"
+metadata/is_floor = true
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Ground/Tile_270_-10"]
+shape = SubResource("s102")
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_270_-10"]
+mesh = SubResource("s103")
+
+[node name="Tile_270_40" type="StaticBody3D" parent="Ground"]
+position = Vector3(295, -10.05, 65)
+metadata/surface = &"tile"
+metadata/is_floor = true
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Ground/Tile_270_40"]
+shape = SubResource("s104")
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_270_40"]
+mesh = SubResource("s105")
+
+[node name="Tile_270_90" type="StaticBody3D" parent="Ground"]
+position = Vector3(295, -10.05, 115)
+metadata/surface = &"tile"
+metadata/is_floor = true
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Ground/Tile_270_90"]
+shape = SubResource("s106")
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_270_90"]
+mesh = SubResource("s107")
+
+[node name="Tile_270_140" type="StaticBody3D" parent="Ground"]
+position = Vector3(295, -10.05, 165)
+metadata/surface = &"tile"
+metadata/is_floor = true
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Ground/Tile_270_140"]
+shape = SubResource("s108")
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_270_140"]
+mesh = SubResource("s109")
+
+[node name="Tile_270_190" type="StaticBody3D" parent="Ground"]
+position = Vector3(295, -10.05, 215)
+metadata/surface = &"tile"
+metadata/is_floor = true
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Ground/Tile_270_190"]
+shape = SubResource("s110")
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_270_190"]
+mesh = SubResource("s111")
+
+[node name="Tile_270_240" type="StaticBody3D" parent="Ground"]
+position = Vector3(295, -10.05, 265)
+metadata/surface = &"tile"
+metadata/is_floor = true
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Ground/Tile_270_240"]
+shape = SubResource("s112")
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_270_240"]
+mesh = SubResource("s113")
+
+[node name="Tile_320_-60" type="StaticBody3D" parent="Ground"]
+position = Vector3(345, -10.05, -35)
+metadata/surface = &"tile"
+metadata/is_floor = true
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Ground/Tile_320_-60"]
+shape = SubResource("s114")
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_320_-60"]
+mesh = SubResource("s115")
+
+[node name="Tile_320_-10" type="StaticBody3D" parent="Ground"]
+position = Vector3(345, -10.05, 15)
+metadata/surface = &"tile"
+metadata/is_floor = true
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Ground/Tile_320_-10"]
+shape = SubResource("s116")
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_320_-10"]
+mesh = SubResource("s117")
+
+[node name="Tile_320_40" type="StaticBody3D" parent="Ground"]
+position = Vector3(345, -10.05, 65)
+metadata/surface = &"tile"
+metadata/is_floor = true
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Ground/Tile_320_40"]
+shape = SubResource("s118")
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_320_40"]
+mesh = SubResource("s119")
+
+[node name="Tile_320_90" type="StaticBody3D" parent="Ground"]
+position = Vector3(345, -10.05, 115)
+metadata/surface = &"tile"
+metadata/is_floor = true
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Ground/Tile_320_90"]
+shape = SubResource("s120")
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_320_90"]
+mesh = SubResource("s121")
+
+[node name="Tile_320_140" type="StaticBody3D" parent="Ground"]
+position = Vector3(345, -10.05, 165)
+metadata/surface = &"tile"
+metadata/is_floor = true
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Ground/Tile_320_140"]
+shape = SubResource("s122")
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_320_140"]
+mesh = SubResource("s123")
+
+[node name="Tile_320_190" type="StaticBody3D" parent="Ground"]
+position = Vector3(345, -10.05, 215)
+metadata/surface = &"tile"
+metadata/is_floor = true
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Ground/Tile_320_190"]
+shape = SubResource("s124")
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_320_190"]
+mesh = SubResource("s125")
+
+[node name="Tile_320_240" type="StaticBody3D" parent="Ground"]
+position = Vector3(345, -10.05, 265)
+metadata/surface = &"tile"
+metadata/is_floor = true
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Ground/Tile_320_240"]
+shape = SubResource("s126")
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_320_240"]
+mesh = SubResource("s127")
+
+[node name="Tile_370_-60" type="StaticBody3D" parent="Ground"]
+position = Vector3(395, -10.05, -35)
+metadata/surface = &"tile"
+metadata/is_floor = true
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Ground/Tile_370_-60"]
+shape = SubResource("s128")
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_370_-60"]
+mesh = SubResource("s129")
+
+[node name="Tile_370_-10" type="StaticBody3D" parent="Ground"]
+position = Vector3(395, -10.05, 15)
+metadata/surface = &"tile"
+metadata/is_floor = true
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Ground/Tile_370_-10"]
+shape = SubResource("s130")
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_370_-10"]
+mesh = SubResource("s131")
+
+[node name="Tile_370_40" type="StaticBody3D" parent="Ground"]
+position = Vector3(395, -10.05, 65)
+metadata/surface = &"tile"
+metadata/is_floor = true
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Ground/Tile_370_40"]
+shape = SubResource("s132")
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_370_40"]
+mesh = SubResource("s133")
+
+[node name="Tile_370_90" type="StaticBody3D" parent="Ground"]
+position = Vector3(395, -10.05, 115)
+metadata/surface = &"tile"
+metadata/is_floor = true
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Ground/Tile_370_90"]
+shape = SubResource("s134")
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_370_90"]
+mesh = SubResource("s135")
+
+[node name="Tile_370_140" type="StaticBody3D" parent="Ground"]
+position = Vector3(395, -10.05, 165)
+metadata/surface = &"tile"
+metadata/is_floor = true
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Ground/Tile_370_140"]
+shape = SubResource("s136")
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_370_140"]
+mesh = SubResource("s137")
+
+[node name="Tile_370_190" type="StaticBody3D" parent="Ground"]
+position = Vector3(395, -10.05, 215)
+metadata/surface = &"tile"
+metadata/is_floor = true
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Ground/Tile_370_190"]
+shape = SubResource("s138")
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_370_190"]
+mesh = SubResource("s139")
+
+[node name="Tile_370_240" type="StaticBody3D" parent="Ground"]
+position = Vector3(395, -10.05, 265)
+metadata/surface = &"tile"
+metadata/is_floor = true
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Ground/Tile_370_240"]
+shape = SubResource("s140")
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_370_240"]
+mesh = SubResource("s141")
+
+[node name="Road" type="Node3D" parent="."]
+
+
+[node name="Avenue" type="Node3D" parent="Road"]
+position = Vector3(110, -9.885, -15)
+
+[node name="Mesh" type="MeshInstance3D" parent="Road/Avenue"]
+mesh = SubResource("s143")
+
+[node name="WestBranch" type="Node3D" parent="Road"]
+position = Vector3(80, -9.885, 77)
+
+[node name="Mesh" type="MeshInstance3D" parent="Road/WestBranch"]
+mesh = SubResource("s144")
+
+[node name="EastBranch" type="Node3D" parent="Road"]
+position = Vector3(310, -9.885, 68)
+
+[node name="Mesh" type="MeshInstance3D" parent="Road/EastBranch"]
+mesh = SubResource("s145")
+
+[node name="StadiumAccess" type="Node3D" parent="Road"]
+position = Vector3(198, -9.885, 166)
+
+[node name="Mesh" type="MeshInstance3D" parent="Road/StadiumAccess"]
+mesh = SubResource("s146")
+
+[node name="Fence" type="Node3D" parent="."]
+
+
+[node name="W" type="StaticBody3D" parent="Fence"]
+position = Vector3(-80, -8.4, 115)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Fence/W"]
+shape = SubResource("s147")
+
+[node name="Mesh" type="MeshInstance3D" parent="Fence/W"]
+mesh = SubResource("s149")
+
+[node name="E" type="StaticBody3D" parent="Fence"]
+position = Vector3(420, -8.4, 115)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Fence/E"]
+shape = SubResource("s150")
+
+[node name="Mesh" type="MeshInstance3D" parent="Fence/E"]
+mesh = SubResource("s151")
+
+[node name="N" type="StaticBody3D" parent="Fence"]
+position = Vector3(170, -8.4, 290)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Fence/N"]
+shape = SubResource("s152")
+
+[node name="Mesh" type="MeshInstance3D" parent="Fence/N"]
+mesh = SubResource("s153")
+
+[node name="S" type="StaticBody3D" parent="Fence"]
+position = Vector3(170, -8.4, -60)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Fence/S"]
+shape = SubResource("s154")
+
+[node name="Mesh" type="MeshInstance3D" parent="Fence/S"]
+mesh = SubResource("s155")
+
+[node name="Anchors" type="Node3D" parent="."]
+
+
+[node name="Room203Door" type="Marker3D" parent="Anchors"]
+position = Vector3(13.75, -6.6, 0)
+
+[node name="Extinguisher2F" type="Marker3D" parent="Anchors"]
+position = Vector3(20, -5.5, 0.25)
+
+[node name="MainDoor1F" type="Marker3D" parent="Anchors"]
+position = Vector3(19.25, -9.9, 2.5)
+
+[node name="ManagerWindow" type="Marker3D" parent="Anchors"]
+position = Vector3(4, -8.9, -7.6)
+
+[node name="ManagerKnife" type="Marker3D" parent="Anchors"]
+position = Vector3(1.4, -8.95, -3.2)
+
+[node name="Collapse2F" type="Marker3D" parent="Anchors"]
+position = Vector3(46.5, -6.6, -1.0)
+
+[node name="FireDoor" type="Marker3D" parent="Anchors"]
+position = Vector3(44, 0, 1.2)
+
+[node name="FireKey" type="Marker3D" parent="Anchors"]
+position = Vector3(39.8, 0.66, 0.42)
+
+[node name="Clues" type="Node3D" parent="Anchors"]
+
+
+[node name="Clock4F" type="Marker3D" parent="Anchors/Clues"]
+position = Vector3(40, 2.05, 0.18)
+
+[node name="CrackStair" type="Marker3D" parent="Anchors/Clues"]
+position = Vector3(49, -2, -3)
+
+[node name="NguBench" type="Marker3D" parent="Anchors"]
+position = Vector3(22, -9.33, 28)
+
+[node name="Start_garden" type="Marker3D" parent="Anchors"]
+position = Vector3(22, -9.9, 8)
+
+[node name="SirenSpot" type="Marker3D" parent="Anchors/Clues"]
+position = Vector3(198, -6.9, 224.8)
+
+[node name="Start_stadium" type="Marker3D" parent="Anchors"]
+position = Vector3(115, -9.9, 166)
+
+[node name="GuardLine" type="Node3D" parent="Anchors"]
+
+
+[node name="G01" type="Marker3D" parent="Anchors/GuardLine"]
+position = Vector3(210.0, -9.9, -54)
+
+[node name="G02" type="Marker3D" parent="Anchors/GuardLine"]
+position = Vector3(211.8181818, -9.9, -54)
+
+[node name="G03" type="Marker3D" parent="Anchors/GuardLine"]
+position = Vector3(213.6363636, -9.9, -54)
+
+[node name="G04" type="Marker3D" parent="Anchors/GuardLine"]
+position = Vector3(215.4545455, -9.9, -54)
+
+[node name="G05" type="Marker3D" parent="Anchors/GuardLine"]
+position = Vector3(217.2727273, -9.9, -54)
+
+[node name="G06" type="Marker3D" parent="Anchors/GuardLine"]
+position = Vector3(219.0909091, -9.9, -54)
+
+[node name="G07" type="Marker3D" parent="Anchors/GuardLine"]
+position = Vector3(220.9090909, -9.9, -54)
+
+[node name="G08" type="Marker3D" parent="Anchors/GuardLine"]
+position = Vector3(222.7272727, -9.9, -54)
+
+[node name="G09" type="Marker3D" parent="Anchors/GuardLine"]
+position = Vector3(224.5454545, -9.9, -54)
+
+[node name="G10" type="Marker3D" parent="Anchors/GuardLine"]
+position = Vector3(226.3636364, -9.9, -54)
+
+[node name="G11" type="Marker3D" parent="Anchors/GuardLine"]
+position = Vector3(228.1818182, -9.9, -54)
+
+[node name="G12" type="Marker3D" parent="Anchors/GuardLine"]
+position = Vector3(230.0, -9.9, -54)
+
+[node name="GuardBooth" type="Marker3D" parent="Anchors"]
+position = Vector3(240, -9.9, -51)
+
+[node name="GatePillar" type="Marker3D" parent="Anchors/Clues"]
+position = Vector3(209, -9.9, -58)
+
+[node name="Start_gate" type="Marker3D" parent="Anchors"]
+position = Vector3(220, -9.9, -25)
+
+[node name="CanteenTV" type="Marker3D" parent="Anchors"]
+position = Vector3(170.3, -7.5, 32)
+
+[node name="CanteenClock" type="Marker3D" parent="Anchors"]
+position = Vector3(192, -7.4, 51.85)
+
+[node name="CanteenExit" type="Marker3D" parent="Anchors"]
+position = Vector3(202, -9.9, 52)
+
+[node name="BarSpawns" type="Node3D" parent="Anchors"]
+
+
+[node name="B01" type="Marker3D" parent="Anchors/BarSpawns"]
+position = Vector3(8, -9.65, 37)
+
+[node name="B02" type="Marker3D" parent="Anchors/BarSpawns"]
+position = Vector3(154, -9.9, 221)
+
+[node name="B03" type="Marker3D" parent="Anchors/BarSpawns"]
+position = Vector3(160, -9.9, 223)
+
+[node name="B04" type="Marker3D" parent="Anchors/BarSpawns"]
+position = Vector3(64, -9.9, -10)
+
+[node name="B05" type="Marker3D" parent="Anchors/BarSpawns"]
+position = Vector3(228, -9.9, -29)
+
+[node name="B06" type="Marker3D" parent="Anchors/BarSpawns"]
+position = Vector3(194, -9.9, 40)
+
+[node name="ZombieSpawns" type="Node3D" parent="Anchors"]
+
+
+[node name="B4" type="Node3D" parent="Anchors/ZombieSpawns"]
+
+
+[node name="S01" type="Marker3D" parent="Anchors/ZombieSpawns/B4"]
+position = Vector3(8, 0, 1.3)
+
+[node name="ZombieIdle" type="Node3D" parent="Anchors"]
+
+
+[node name="B4" type="Node3D" parent="Anchors/ZombieIdle"]
+
+
+[node name="I01" type="Marker3D" parent="Anchors/ZombieIdle/B4"]
+position = Vector3(8, 0, 1.3)
+
+[node name="S02" type="Marker3D" parent="Anchors/ZombieSpawns/B4"]
+position = Vector3(12, 0, 1.3)
+
+[node name="I02" type="Marker3D" parent="Anchors/ZombieIdle/B4"]
+position = Vector3(12, 0, 1.3)
+
+[node name="S03" type="Marker3D" parent="Anchors/ZombieSpawns/B4"]
+position = Vector3(16, 0, 1.3)
+
+[node name="I03" type="Marker3D" parent="Anchors/ZombieIdle/B4"]
+position = Vector3(16, 0, 1.3)
+
+[node name="S04" type="Marker3D" parent="Anchors/ZombieSpawns/B4"]
+position = Vector3(20, 0, 1.3)
+
+[node name="I04" type="Marker3D" parent="Anchors/ZombieIdle/B4"]
+position = Vector3(20, 0, 1.3)
+
+[node name="S05" type="Marker3D" parent="Anchors/ZombieSpawns/B4"]
+position = Vector3(24, 0, 1.3)
+
+[node name="I05" type="Marker3D" parent="Anchors/ZombieIdle/B4"]
+position = Vector3(24, 0, 1.3)
+
+[node name="S06" type="Marker3D" parent="Anchors/ZombieSpawns/B4"]
+position = Vector3(28, 0, 1.3)
+
+[node name="I06" type="Marker3D" parent="Anchors/ZombieIdle/B4"]
+position = Vector3(28, 0, 1.3)
+
+[node name="B3" type="Node3D" parent="Anchors/ZombieSpawns"]
+
+
+[node name="S01" type="Marker3D" parent="Anchors/ZombieSpawns/B3"]
+position = Vector3(8, -3.3, 1.3)
+
+[node name="B3" type="Node3D" parent="Anchors/ZombieIdle"]
+
+
+[node name="I01" type="Marker3D" parent="Anchors/ZombieIdle/B3"]
+position = Vector3(8, -3.3, 1.3)
+
+[node name="S02" type="Marker3D" parent="Anchors/ZombieSpawns/B3"]
+position = Vector3(12, -3.3, 1.3)
+
+[node name="I02" type="Marker3D" parent="Anchors/ZombieIdle/B3"]
+position = Vector3(12, -3.3, 1.3)
+
+[node name="S03" type="Marker3D" parent="Anchors/ZombieSpawns/B3"]
+position = Vector3(16, -3.3, 1.3)
+
+[node name="I03" type="Marker3D" parent="Anchors/ZombieIdle/B3"]
+position = Vector3(16, -3.3, 1.3)
+
+[node name="S04" type="Marker3D" parent="Anchors/ZombieSpawns/B3"]
+position = Vector3(20, -3.3, 1.3)
+
+[node name="I04" type="Marker3D" parent="Anchors/ZombieIdle/B3"]
+position = Vector3(20, -3.3, 1.3)
+
+[node name="S05" type="Marker3D" parent="Anchors/ZombieSpawns/B3"]
+position = Vector3(24, -3.3, 1.3)
+
+[node name="I05" type="Marker3D" parent="Anchors/ZombieIdle/B3"]
+position = Vector3(24, -3.3, 1.3)
+
+[node name="S06" type="Marker3D" parent="Anchors/ZombieSpawns/B3"]
+position = Vector3(28, -3.3, 1.3)
+
+[node name="I06" type="Marker3D" parent="Anchors/ZombieIdle/B3"]
+position = Vector3(28, -3.3, 1.3)
+
+[node name="B2" type="Node3D" parent="Anchors/ZombieSpawns"]
+
+
+[node name="S01" type="Marker3D" parent="Anchors/ZombieSpawns/B2"]
+position = Vector3(8, -6.6, 1.3)
+
+[node name="B2" type="Node3D" parent="Anchors/ZombieIdle"]
+
+
+[node name="I01" type="Marker3D" parent="Anchors/ZombieIdle/B2"]
+position = Vector3(8, -6.6, 1.3)
+
+[node name="S02" type="Marker3D" parent="Anchors/ZombieSpawns/B2"]
+position = Vector3(12, -6.6, 1.3)
+
+[node name="I02" type="Marker3D" parent="Anchors/ZombieIdle/B2"]
+position = Vector3(12, -6.6, 1.3)
+
+[node name="S03" type="Marker3D" parent="Anchors/ZombieSpawns/B2"]
+position = Vector3(16, -6.6, 1.3)
+
+[node name="I03" type="Marker3D" parent="Anchors/ZombieIdle/B2"]
+position = Vector3(16, -6.6, 1.3)
+
+[node name="S04" type="Marker3D" parent="Anchors/ZombieSpawns/B2"]
+position = Vector3(20, -6.6, 1.3)
+
+[node name="I04" type="Marker3D" parent="Anchors/ZombieIdle/B2"]
+position = Vector3(20, -6.6, 1.3)
+
+[node name="S05" type="Marker3D" parent="Anchors/ZombieSpawns/B2"]
+position = Vector3(24, -6.6, 1.3)
+
+[node name="I05" type="Marker3D" parent="Anchors/ZombieIdle/B2"]
+position = Vector3(24, -6.6, 1.3)
+
+[node name="S06" type="Marker3D" parent="Anchors/ZombieSpawns/B2"]
+position = Vector3(28, -6.6, 1.3)
+
+[node name="I06" type="Marker3D" parent="Anchors/ZombieIdle/B2"]
+position = Vector3(28, -6.6, 1.3)
+
+[node name="B1" type="Node3D" parent="Anchors/ZombieSpawns"]
+
+
+[node name="S01" type="Marker3D" parent="Anchors/ZombieSpawns/B1"]
+position = Vector3(8, -9.9, 1.3)
+
+[node name="B1" type="Node3D" parent="Anchors/ZombieIdle"]
+
+
+[node name="I01" type="Marker3D" parent="Anchors/ZombieIdle/B1"]
+position = Vector3(8, -9.9, 1.3)
+
+[node name="S02" type="Marker3D" parent="Anchors/ZombieSpawns/B1"]
+position = Vector3(12, -9.9, 1.3)
+
+[node name="I02" type="Marker3D" parent="Anchors/ZombieIdle/B1"]
+position = Vector3(12, -9.9, 1.3)
+
+[node name="S03" type="Marker3D" parent="Anchors/ZombieSpawns/B1"]
+position = Vector3(16, -9.9, 1.3)
+
+[node name="I03" type="Marker3D" parent="Anchors/ZombieIdle/B1"]
+position = Vector3(16, -9.9, 1.3)
+
+[node name="S04" type="Marker3D" parent="Anchors/ZombieSpawns/B1"]
+position = Vector3(20, -9.9, 1.3)
+
+[node name="I04" type="Marker3D" parent="Anchors/ZombieIdle/B1"]
+position = Vector3(20, -9.9, 1.3)
+
+[node name="S05" type="Marker3D" parent="Anchors/ZombieSpawns/B1"]
+position = Vector3(24, -9.9, 1.3)
+
+[node name="I05" type="Marker3D" parent="Anchors/ZombieIdle/B1"]
+position = Vector3(24, -9.9, 1.3)
+
+[node name="S06" type="Marker3D" parent="Anchors/ZombieSpawns/B1"]
+position = Vector3(28, -9.9, 1.3)
+
+[node name="I06" type="Marker3D" parent="Anchors/ZombieIdle/B1"]
+position = Vector3(28, -9.9, 1.3)
+
+[node name="Road" type="Node3D" parent="Anchors/ZombieSpawns"]
+
+
+[node name="S01" type="Marker3D" parent="Anchors/ZombieSpawns/Road"]
+position = Vector3(65, -9.9, -12)
+
+[node name="Road" type="Node3D" parent="Anchors/ZombieIdle"]
+
+
+[node name="I01" type="Marker3D" parent="Anchors/ZombieIdle/Road"]
+position = Vector3(65, -9.9, -11)
+
+[node name="S02" type="Marker3D" parent="Anchors/ZombieSpawns/Road"]
+position = Vector3(69, -9.9, -12)
+
+[node name="I02" type="Marker3D" parent="Anchors/ZombieIdle/Road"]
+position = Vector3(69, -9.9, -11)
+
+[node name="S03" type="Marker3D" parent="Anchors/ZombieSpawns/Road"]
+position = Vector3(73, -9.9, -12)
+
+[node name="I03" type="Marker3D" parent="Anchors/ZombieIdle/Road"]
+position = Vector3(73, -9.9, -11)
+
+[node name="S04" type="Marker3D" parent="Anchors/ZombieSpawns/Road"]
+position = Vector3(77, -9.9, -12)
+
+[node name="I04" type="Marker3D" parent="Anchors/ZombieIdle/Road"]
+position = Vector3(77, -9.9, -11)
+
+[node name="S05" type="Marker3D" parent="Anchors/ZombieSpawns/Road"]
+position = Vector3(81, -9.9, -12)
+
+[node name="I05" type="Marker3D" parent="Anchors/ZombieIdle/Road"]
+position = Vector3(81, -9.9, -11)
+
+[node name="S06" type="Marker3D" parent="Anchors/ZombieSpawns/Road"]
+position = Vector3(85, -9.9, -12)
+
+[node name="I06" type="Marker3D" parent="Anchors/ZombieIdle/Road"]
+position = Vector3(85, -9.9, -11)
+
+[node name="Garden" type="Node3D" parent="Anchors/ZombieSpawns"]
+
+
+[node name="S01" type="Marker3D" parent="Anchors/ZombieSpawns/Garden"]
+position = Vector3(12, -9.9, 17)
+
+[node name="Garden" type="Node3D" parent="Anchors/ZombieIdle"]
+
+
+[node name="I01" type="Marker3D" parent="Anchors/ZombieIdle/Garden"]
+position = Vector3(12, -9.9, 18)
+
+[node name="S02" type="Marker3D" parent="Anchors/ZombieSpawns/Garden"]
+position = Vector3(28, -9.9, 17)
+
+[node name="I02" type="Marker3D" parent="Anchors/ZombieIdle/Garden"]
+position = Vector3(28, -9.9, 18)
+
+[node name="S03" type="Marker3D" parent="Anchors/ZombieSpawns/Garden"]
+position = Vector3(44, -9.9, 17)
+
+[node name="I03" type="Marker3D" parent="Anchors/ZombieIdle/Garden"]
+position = Vector3(44, -9.9, 18)
+
+[node name="S04" type="Marker3D" parent="Anchors/ZombieSpawns/Garden"]
+position = Vector3(12, -9.9, 27)
+
+[node name="I04" type="Marker3D" parent="Anchors/ZombieIdle/Garden"]
+position = Vector3(12, -9.9, 28)
+
+[node name="S05" type="Marker3D" parent="Anchors/ZombieSpawns/Garden"]
+position = Vector3(28, -9.9, 27)
+
+[node name="I05" type="Marker3D" parent="Anchors/ZombieIdle/Garden"]
+position = Vector3(28, -9.9, 28)
+
+[node name="S06" type="Marker3D" parent="Anchors/ZombieSpawns/Garden"]
+position = Vector3(44, -9.9, 27)
+
+[node name="I06" type="Marker3D" parent="Anchors/ZombieIdle/Garden"]
+position = Vector3(44, -9.9, 28)
+
+[node name="Stadium" type="Node3D" parent="Anchors/ZombieSpawns"]
+
+
+[node name="S01" type="Marker3D" parent="Anchors/ZombieSpawns/Stadium"]
+position = Vector3(112, -9.9, 166)
+
+[node name="Stadium" type="Node3D" parent="Anchors/ZombieIdle"]
+
+
+[node name="I01" type="Marker3D" parent="Anchors/ZombieIdle/Stadium"]
+position = Vector3(112, -9.9, 167)
+
+[node name="S02" type="Marker3D" parent="Anchors/ZombieSpawns/Stadium"]
+position = Vector3(284, -9.9, 166)
+
+[node name="I02" type="Marker3D" parent="Anchors/ZombieIdle/Stadium"]
+position = Vector3(284, -9.9, 167)
+
+[node name="S03" type="Marker3D" parent="Anchors/ZombieSpawns/Stadium"]
+position = Vector3(198, -9.9, 122)
+
+[node name="I03" type="Marker3D" parent="Anchors/ZombieIdle/Stadium"]
+position = Vector3(198, -9.9, 123)
+
+[node name="S04" type="Marker3D" parent="Anchors/ZombieSpawns/Stadium"]
+position = Vector3(198, -9.9, 210)
+
+[node name="I04" type="Marker3D" parent="Anchors/ZombieIdle/Stadium"]
+position = Vector3(198, -9.9, 211)
+
+[node name="S05" type="Marker3D" parent="Anchors/ZombieSpawns/Stadium"]
+position = Vector3(112, -9.9, 170)
+
+[node name="I05" type="Marker3D" parent="Anchors/ZombieIdle/Stadium"]
+position = Vector3(112, -9.9, 171)
+
+[node name="S06" type="Marker3D" parent="Anchors/ZombieSpawns/Stadium"]
+position = Vector3(284, -9.9, 170)
+
+[node name="I06" type="Marker3D" parent="Anchors/ZombieIdle/Stadium"]
+position = Vector3(284, -9.9, 171)
+
+[node name="Gate" type="Node3D" parent="Anchors/ZombieSpawns"]
+
+
+[node name="S01" type="Marker3D" parent="Anchors/ZombieSpawns/Gate"]
+position = Vector3(196, -9.9, -30)
+
+[node name="Gate" type="Node3D" parent="Anchors/ZombieIdle"]
+
+
+[node name="I01" type="Marker3D" parent="Anchors/ZombieIdle/Gate"]
+position = Vector3(196, -9.9, -29)
+
+[node name="S02" type="Marker3D" parent="Anchors/ZombieSpawns/Gate"]
+position = Vector3(200, -9.9, -30)
+
+[node name="I02" type="Marker3D" parent="Anchors/ZombieIdle/Gate"]
+position = Vector3(200, -9.9, -29)
+
+[node name="S03" type="Marker3D" parent="Anchors/ZombieSpawns/Gate"]
+position = Vector3(204, -9.9, -30)
+
+[node name="I03" type="Marker3D" parent="Anchors/ZombieIdle/Gate"]
+position = Vector3(204, -9.9, -29)
+
+[node name="S04" type="Marker3D" parent="Anchors/ZombieSpawns/Gate"]
+position = Vector3(196, -9.9, -25)
+
+[node name="I04" type="Marker3D" parent="Anchors/ZombieIdle/Gate"]
+position = Vector3(196, -9.9, -24)
+
+[node name="S05" type="Marker3D" parent="Anchors/ZombieSpawns/Gate"]
+position = Vector3(200, -9.9, -25)
+
+[node name="I05" type="Marker3D" parent="Anchors/ZombieIdle/Gate"]
+position = Vector3(200, -9.9, -24)
+
+[node name="S06" type="Marker3D" parent="Anchors/ZombieSpawns/Gate"]
+position = Vector3(204, -9.9, -25)
+
+[node name="I06" type="Marker3D" parent="Anchors/ZombieIdle/Gate"]
+position = Vector3(204, -9.9, -24)
+
+[node name="Canteen" type="Node3D" parent="Anchors/ZombieSpawns"]
+
+
+[node name="S01" type="Marker3D" parent="Anchors/ZombieSpawns/Canteen"]
+position = Vector3(178, -9.9, 24)
+
+[node name="Canteen" type="Node3D" parent="Anchors/ZombieIdle"]
+
+
+[node name="I01" type="Marker3D" parent="Anchors/ZombieIdle/Canteen"]
+position = Vector3(178, -9.9, 25)
+
+[node name="S02" type="Marker3D" parent="Anchors/ZombieSpawns/Canteen"]
+position = Vector3(182, -9.9, 24)
+
+[node name="I02" type="Marker3D" parent="Anchors/ZombieIdle/Canteen"]
+position = Vector3(182, -9.9, 25)
+
+[node name="S03" type="Marker3D" parent="Anchors/ZombieSpawns/Canteen"]
+position = Vector3(186, -9.9, 24)
+
+[node name="I03" type="Marker3D" parent="Anchors/ZombieIdle/Canteen"]
+position = Vector3(186, -9.9, 25)
+
+[node name="S04" type="Marker3D" parent="Anchors/ZombieSpawns/Canteen"]
+position = Vector3(178, -9.9, 29)
+
+[node name="I04" type="Marker3D" parent="Anchors/ZombieIdle/Canteen"]
+position = Vector3(178, -9.9, 30)
+
+[node name="S05" type="Marker3D" parent="Anchors/ZombieSpawns/Canteen"]
+position = Vector3(182, -9.9, 29)
+
+[node name="I05" type="Marker3D" parent="Anchors/ZombieIdle/Canteen"]
+position = Vector3(182, -9.9, 30)
+
+[node name="S06" type="Marker3D" parent="Anchors/ZombieSpawns/Canteen"]
+position = Vector3(186, -9.9, 29)
+
+[node name="I06" type="Marker3D" parent="Anchors/ZombieIdle/Canteen"]
+position = Vector3(186, -9.9, 30)
+
+[node name="Paths" type="Node3D" parent="Anchors"]
+
+
+[node name="Nhat" type="Node3D" parent="Anchors/Paths"]
+
+
+[node name="P01" type="Marker3D" parent="Anchors/Paths/Nhat"]
+position = Vector3(13.75, -6.6, -2)
+
+[node name="P02" type="Marker3D" parent="Anchors/Paths/Nhat"]
+position = Vector3(13.75, -6.6, 1.2)
+
+[node name="P03" type="Marker3D" parent="Anchors/Paths/Nhat"]
+position = Vector3(-1.2, -6.6, 1.2)
+
+[node name="P04" type="Marker3D" parent="Anchors/Paths/Nhat"]
+position = Vector3(-3.8, -8.25, -5.3)
+
+[node name="P05" type="Marker3D" parent="Anchors/Paths/Nhat"]
+position = Vector3(-1.2, -9.9, 1.2)
+
+[node name="P06" type="Marker3D" parent="Anchors/Paths/Nhat"]
+position = Vector3(2.75, -9.9, 1.2)
+
+[node name="P07" type="Marker3D" parent="Anchors/Paths/Nhat"]
+position = Vector3(2.75, -9.9, -3)
+
+[node name="P08" type="Marker3D" parent="Anchors/Paths/Nhat"]
+position = Vector3(4, -9.9, -4)
+
+[node name="P09" type="Marker3D" parent="Anchors/Paths/Nhat"]
+position = Vector3(4, -8.9, -7.6)
+
+[node name="P10" type="Marker3D" parent="Anchors/Paths/Nhat"]
+position = Vector3(4, -9.9, -12)
+
+[node name="P11" type="Marker3D" parent="Anchors/Paths/Nhat"]
+position = Vector3(-8, -9.9, -12)
+
+[node name="P12" type="Marker3D" parent="Anchors/Paths/Nhat"]
+position = Vector3(-8, -9.9, 8)
+
+[node name="P13" type="Marker3D" parent="Anchors/Paths/Nhat"]
+position = Vector3(22, -9.9, 8)
+
+[node name="P14_Wait_garden" type="Marker3D" parent="Anchors/Paths/Nhat"]
+position = Vector3(22, -9.9, 24)
+
+[node name="P15" type="Marker3D" parent="Anchors/Paths/Nhat"]
+position = Vector3(48, -9.9, 28)
+
+[node name="P16" type="Marker3D" parent="Anchors/Paths/Nhat"]
+position = Vector3(80, -9.9, 28)
+
+[node name="P17" type="Marker3D" parent="Anchors/Paths/Nhat"]
+position = Vector3(80, -9.9, 166)
+
+[node name="P18_Wait_stadium" type="Marker3D" parent="Anchors/Paths/Nhat"]
+position = Vector3(115, -9.9, 166)
+
+[node name="P19" type="Marker3D" parent="Anchors/Paths/Nhat"]
+position = Vector3(150, -9.9, 166)
+
+[node name="P20" type="Marker3D" parent="Anchors/Paths/Nhat"]
+position = Vector3(198, -9.9, 135)
+
+[node name="P21" type="Marker3D" parent="Anchors/Paths/Nhat"]
+position = Vector3(250, -9.9, 166)
+
+[node name="P22" type="Marker3D" parent="Anchors/Paths/Nhat"]
+position = Vector3(198, -9.9, 195)
+
+[node name="P23_Wait_stadium" type="Marker3D" parent="Anchors/Paths/Nhat"]
+position = Vector3(115, -9.9, 166)
+
+[node name="P24" type="Marker3D" parent="Anchors/Paths/Nhat"]
+position = Vector3(80, -9.9, 166)
+
+[node name="P25" type="Marker3D" parent="Anchors/Paths/Nhat"]
+position = Vector3(80, -9.9, -15)
+
+[node name="P26" type="Marker3D" parent="Anchors/Paths/Nhat"]
+position = Vector3(220, -9.9, -15)
+
+[node name="P27_Wait_gate" type="Marker3D" parent="Anchors/Paths/Nhat"]
+position = Vector3(220, -9.9, -30)
+
+[node name="P28" type="Marker3D" parent="Anchors/Paths/Nhat"]
+position = Vector3(220, -9.9, 10)
+
+[node name="P29" type="Marker3D" parent="Anchors/Paths/Nhat"]
+position = Vector3(190, -9.9, 18)
+
+[node name="P30_Wait_canteen" type="Marker3D" parent="Anchors/Paths/Nhat"]
+position = Vector3(190, -9.9, 32)
+
+[node name="P31" type="Marker3D" parent="Anchors/Paths/Nhat"]
+position = Vector3(202, -9.9, 43)
+
+[node name="P32" type="Marker3D" parent="Anchors/Paths/Nhat"]
+position = Vector3(202, -9.9, 48)
+
+[node name="P33" type="Marker3D" parent="Anchors/Paths/Nhat"]
+position = Vector3(202, -9.9, 54)
+
+[node name="Ngu" type="Node3D" parent="Anchors/Paths"]
+
+
+[node name="P01_Wait_garden" type="Marker3D" parent="Anchors/Paths/Ngu"]
+position = Vector3(22, -9.9, 24)
+
+[node name="P02" type="Marker3D" parent="Anchors/Paths/Ngu"]
+position = Vector3(48, -9.9, 28)
+
+[node name="P03" type="Marker3D" parent="Anchors/Paths/Ngu"]
+position = Vector3(80, -9.9, 28)
+
+[node name="P04" type="Marker3D" parent="Anchors/Paths/Ngu"]
+position = Vector3(80, -9.9, 166)
+
+[node name="P05_Wait_stadium" type="Marker3D" parent="Anchors/Paths/Ngu"]
+position = Vector3(115, -9.9, 166)
+
+[node name="P06" type="Marker3D" parent="Anchors/Paths/Ngu"]
+position = Vector3(150, -9.9, 166)
+
+[node name="P07" type="Marker3D" parent="Anchors/Paths/Ngu"]
+position = Vector3(198, -9.9, 135)
+
+[node name="P08" type="Marker3D" parent="Anchors/Paths/Ngu"]
+position = Vector3(250, -9.9, 166)
+
+[node name="P09" type="Marker3D" parent="Anchors/Paths/Ngu"]
+position = Vector3(198, -9.9, 195)
+
+[node name="P10_Wait_stadium" type="Marker3D" parent="Anchors/Paths/Ngu"]
+position = Vector3(115, -9.9, 166)
+
+[node name="P11" type="Marker3D" parent="Anchors/Paths/Ngu"]
+position = Vector3(80, -9.9, 166)
+
+[node name="P12" type="Marker3D" parent="Anchors/Paths/Ngu"]
+position = Vector3(80, -9.9, -15)
+
+[node name="P13" type="Marker3D" parent="Anchors/Paths/Ngu"]
+position = Vector3(220, -9.9, -15)
+
+[node name="P14_Wait_gate" type="Marker3D" parent="Anchors/Paths/Ngu"]
+position = Vector3(220, -9.9, -30)
+
+[node name="P15" type="Marker3D" parent="Anchors/Paths/Ngu"]
+position = Vector3(220, -9.9, 10)
+
+[node name="P16" type="Marker3D" parent="Anchors/Paths/Ngu"]
+position = Vector3(190, -9.9, 18)
+
+[node name="P17_Wait_canteen" type="Marker3D" parent="Anchors/Paths/Ngu"]
+position = Vector3(190, -9.9, 32)
+
+[node name="P18" type="Marker3D" parent="Anchors/Paths/Ngu"]
+position = Vector3(202, -9.9, 43)
+
+[node name="P19" type="Marker3D" parent="Anchors/Paths/Ngu"]
+position = Vector3(202, -9.9, 48)
+
+[node name="P20" type="Marker3D" parent="Anchors/Paths/Ngu"]
+position = Vector3(202, -9.9, 54)
+
+[node name="Zones" type="Node3D" parent="."]
+
+
+[node name="BuildingB" type="Area3D" parent="Zones"]
+position = Vector3(22, -4, -2)
+collision_layer = 0
+collision_mask = 2
+
+[node name="Collision" type="CollisionShape3D" parent="Zones/BuildingB"]
+shape = SubResource("s156")
+
+[node name="Road" type="Area3D" parent="Zones"]
+position = Vector3(110, -7.9, -15)
+collision_layer = 0
+collision_mask = 2
+
+[node name="Collision" type="CollisionShape3D" parent="Zones/Road"]
+shape = SubResource("s157")
+
+[node name="Garden" type="Area3D" parent="Zones"]
+position = Vector3(22, -7.9, 28)
+collision_layer = 0
+collision_mask = 2
+
+[node name="Collision" type="CollisionShape3D" parent="Zones/Garden"]
+shape = SubResource("s158")
+
+[node name="Stadium" type="Area3D" parent="Zones"]
+position = Vector3(198, -3.9, 166)
+collision_layer = 0
+collision_mask = 2
+
+[node name="Collision" type="CollisionShape3D" parent="Zones/Stadium"]
+shape = SubResource("s159")
+
+[node name="Gate" type="Area3D" parent="Zones"]
+position = Vector3(220, -7.9, -40)
+collision_layer = 0
+collision_mask = 2
+
+[node name="Collision" type="CollisionShape3D" parent="Zones/Gate"]
+shape = SubResource("s160")
+
+[node name="Canteen" type="Area3D" parent="Zones"]
+position = Vector3(194, -7.9, 36)
+collision_layer = 0
+collision_mask = 2
+
+[node name="Collision" type="CollisionShape3D" parent="Zones/Canteen"]
+shape = SubResource("s161")
+
+[node name="GuardRadius" type="Area3D" parent="Zones"]
+position = Vector3(220, -8.4, -52.5)
+collision_layer = 0
+collision_mask = 2
+
+[node name="Collision" type="CollisionShape3D" parent="Zones/GuardRadius"]
+shape = SubResource("s162")
+
+[node name="Bleachers" type="Area3D" parent="Zones"]
+position = Vector3(198, -7.9, 219.4)
+collision_layer = 0
+collision_mask = 2
+
+[node name="Collision" type="CollisionShape3D" parent="Zones/Bleachers"]
+shape = SubResource("s163")
+
+[node name="Navigation" type="Node3D" parent="."]
+
+
+[node name="Alcove1_1" type="NavigationRegion3D" parent="Navigation"]
+navigation_mesh = SubResource("s164")
+
+[node name="Alcove1_4" type="NavigationRegion3D" parent="Navigation"]
+navigation_mesh = SubResource("s165")
+
+[node name="Alcove1_6" type="NavigationRegion3D" parent="Navigation"]
+navigation_mesh = SubResource("s166")
+
+[node name="Hall1" type="NavigationRegion3D" parent="Navigation"]
+navigation_mesh = SubResource("s167")
+
+[node name="Alcove2_1" type="NavigationRegion3D" parent="Navigation"]
+navigation_mesh = SubResource("s168")
+
+[node name="Alcove2_4" type="NavigationRegion3D" parent="Navigation"]
+navigation_mesh = SubResource("s169")
+
+[node name="Alcove2_6" type="NavigationRegion3D" parent="Navigation"]
+navigation_mesh = SubResource("s170")
+
+[node name="Hall2" type="NavigationRegion3D" parent="Navigation"]
+navigation_mesh = SubResource("s171")
+
+[node name="Room203" type="NavigationRegion3D" parent="Navigation"]
+navigation_mesh = SubResource("s172")
+
+[node name="Alcove3_1" type="NavigationRegion3D" parent="Navigation"]
+navigation_mesh = SubResource("s173")
+
+[node name="Alcove3_4" type="NavigationRegion3D" parent="Navigation"]
+navigation_mesh = SubResource("s174")
+
+[node name="Alcove3_6" type="NavigationRegion3D" parent="Navigation"]
+navigation_mesh = SubResource("s175")
+
+[node name="Hall3" type="NavigationRegion3D" parent="Navigation"]
+navigation_mesh = SubResource("s176")
+
+[node name="ManagerRoom" type="NavigationRegion3D" parent="Navigation"]
+navigation_mesh = SubResource("s177")
+
+[node name="WindowApproach" type="NavigationRegion3D" parent="Navigation"]
+navigation_mesh = SubResource("s178")
+
+[node name="WindowExit" type="NavigationRegion3D" parent="Navigation"]
+navigation_mesh = SubResource("s179")
+
+[node name="WindowSill" type="NavigationRegion3D" parent="Navigation"]
+navigation_mesh = SubResource("s180")
+
+[node name="MainStairsLanding1" type="NavigationRegion3D" parent="Navigation"]
+navigation_mesh = SubResource("s181")
+
+[node name="MainStairsLanding2" type="NavigationRegion3D" parent="Navigation"]
+navigation_mesh = SubResource("s182")
+
+[node name="MainStairsLanding3" type="NavigationRegion3D" parent="Navigation"]
+navigation_mesh = SubResource("s183")
+
+[node name="MainStairsLanding4" type="NavigationRegion3D" parent="Navigation"]
+navigation_mesh = SubResource("s184")
+
+[node name="MainStairsDown4A" type="NavigationRegion3D" parent="Navigation"]
+navigation_mesh = SubResource("s185")
+
+[node name="MainStairsTurn4" type="NavigationRegion3D" parent="Navigation"]
+navigation_mesh = SubResource("s186")
+
+[node name="MainStairsDown4B" type="NavigationRegion3D" parent="Navigation"]
+navigation_mesh = SubResource("s187")
+
+[node name="MainStairsDown3A" type="NavigationRegion3D" parent="Navigation"]
+navigation_mesh = SubResource("s188")
+
+[node name="MainStairsTurn3" type="NavigationRegion3D" parent="Navigation"]
+navigation_mesh = SubResource("s189")
+
+[node name="MainStairsDown3B" type="NavigationRegion3D" parent="Navigation"]
+navigation_mesh = SubResource("s190")
+
+[node name="MainStairsDown2A" type="NavigationRegion3D" parent="Navigation"]
+navigation_mesh = SubResource("s191")
+
+[node name="MainStairsTurn2" type="NavigationRegion3D" parent="Navigation"]
+navigation_mesh = SubResource("s192")
+
+[node name="MainStairsDown2B" type="NavigationRegion3D" parent="Navigation"]
+navigation_mesh = SubResource("s193")
+
+[node name="FireStairsLanding1" type="NavigationRegion3D" parent="Navigation"]
+navigation_mesh = SubResource("s194")
+
+[node name="FireStairsLanding2" type="NavigationRegion3D" parent="Navigation"]
+navigation_mesh = SubResource("s195")
+
+[node name="FireStairsLanding3" type="NavigationRegion3D" parent="Navigation"]
+navigation_mesh = SubResource("s196")
+
+[node name="FireStairsLanding4" type="NavigationRegion3D" parent="Navigation"]
+navigation_mesh = SubResource("s197")
+
+[node name="FireStairsDown4A" type="NavigationRegion3D" parent="Navigation"]
+navigation_mesh = SubResource("s198")
+
+[node name="FireStairsTurn4" type="NavigationRegion3D" parent="Navigation"]
+navigation_mesh = SubResource("s199")
+
+[node name="FireStairsDown4B" type="NavigationRegion3D" parent="Navigation"]
+navigation_mesh = SubResource("s200")
+
+[node name="FireStairsDown3A" type="NavigationRegion3D" parent="Navigation"]
+navigation_mesh = SubResource("s201")
+
+[node name="FireStairsTurn3" type="NavigationRegion3D" parent="Navigation"]
+navigation_mesh = SubResource("s202")
+
+[node name="FireStairsDown3B" type="NavigationRegion3D" parent="Navigation"]
+navigation_mesh = SubResource("s203")
+
+[node name="Hall4" type="NavigationRegion3D" parent="Navigation"]
+navigation_mesh = SubResource("s204")
+
+[node name="MainTier0" type="NavigationRegion3D" parent="Navigation"]
+navigation_mesh = SubResource("s205")
+
+[node name="MainTier1" type="NavigationRegion3D" parent="Navigation"]
+navigation_mesh = SubResource("s206")
+
+[node name="MainTier2" type="NavigationRegion3D" parent="Navigation"]
+navigation_mesh = SubResource("s207")
+
+[node name="MainTier3" type="NavigationRegion3D" parent="Navigation"]
+navigation_mesh = SubResource("s208")
+
+[node name="MainTier4" type="NavigationRegion3D" parent="Navigation"]
+navigation_mesh = SubResource("s209")
+
+[node name="MainTier5" type="NavigationRegion3D" parent="Navigation"]
+navigation_mesh = SubResource("s210")
+
+[node name="MainTier6" type="NavigationRegion3D" parent="Navigation"]
+navigation_mesh = SubResource("s211")
+
+[node name="MainTier7" type="NavigationRegion3D" parent="Navigation"]
+navigation_mesh = SubResource("s212")
+
+[node name="MainTier8" type="NavigationRegion3D" parent="Navigation"]
+navigation_mesh = SubResource("s213")
+
+[node name="MainTier9" type="NavigationRegion3D" parent="Navigation"]
+navigation_mesh = SubResource("s214")
+
+[node name="MainBleacherRamp" type="NavigationRegion3D" parent="Navigation"]
+navigation_mesh = SubResource("s215")
+
+[node name="SecondaryTier0" type="NavigationRegion3D" parent="Navigation"]
+navigation_mesh = SubResource("s216")
+
+[node name="SecondaryTier1" type="NavigationRegion3D" parent="Navigation"]
+navigation_mesh = SubResource("s217")
+
+[node name="SecondaryTier2" type="NavigationRegion3D" parent="Navigation"]
+navigation_mesh = SubResource("s218")
+
+[node name="SecondaryTier3" type="NavigationRegion3D" parent="Navigation"]
+navigation_mesh = SubResource("s219")
+
+[node name="SecondaryBleacherRamp" type="NavigationRegion3D" parent="Navigation"]
+navigation_mesh = SubResource("s220")
+
+[node name="CanteenMain" type="NavigationRegion3D" parent="Navigation"]
+navigation_mesh = SubResource("s221")
+
+[node name="Kitchen" type="NavigationRegion3D" parent="Navigation"]
+navigation_mesh = SubResource("s222")
+
+[node name="Store" type="NavigationRegion3D" parent="Navigation"]
+navigation_mesh = SubResource("s223")
+
+[node name="Outdoor" type="NavigationRegion3D" parent="Navigation"]
+navigation_mesh = ExtResource("e8")
+
+[node name="AlcoveLink1_1" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(8.25, -9.9, -0.5)
+end_position = Vector3(8.25, -9.9, 1.2)
+bidirectional = true
+
+
+[node name="AlcoveLink1_4" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(24.75, -9.9, -0.5)
+end_position = Vector3(24.75, -9.9, 1.2)
+bidirectional = true
+
+
+[node name="AlcoveLink1_6" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(35.75, -9.9, -0.5)
+end_position = Vector3(35.75, -9.9, 1.2)
+bidirectional = true
+
+
+[node name="AlcoveLink2_1" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(8.25, -6.6, -0.5)
+end_position = Vector3(8.25, -6.6, 1.2)
+bidirectional = true
+
+
+[node name="AlcoveLink2_4" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(24.75, -6.6, -0.5)
+end_position = Vector3(24.75, -6.6, 1.2)
+bidirectional = true
+
+
+[node name="AlcoveLink2_6" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(35.75, -6.6, -0.5)
+end_position = Vector3(35.75, -6.6, 1.2)
+bidirectional = true
+
+
+[node name="Room203Link" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(13.75, -6.6, -1)
+end_position = Vector3(13.75, -6.6, 1.2)
+bidirectional = true
+
+
+[node name="AlcoveLink3_1" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(8.25, -3.3, -0.5)
+end_position = Vector3(8.25, -3.3, 1.2)
+bidirectional = true
+
+
+[node name="AlcoveLink3_4" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(24.75, -3.3, -0.5)
+end_position = Vector3(24.75, -3.3, 1.2)
+bidirectional = true
+
+
+[node name="AlcoveLink3_6" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(35.75, -3.3, -0.5)
+end_position = Vector3(35.75, -3.3, 1.2)
+bidirectional = true
+
+
+[node name="ManagerEntry" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(2.75, -9.9, 1.2)
+end_position = Vector3(2.75, -9.9, -1)
+bidirectional = true
+
+
+[node name="WindowInside" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(4, -9.9, -4)
+end_position = Vector3(4, -9.78, -4.82)
+bidirectional = true
+
+
+[node name="WindowCross" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(4, -8.97, -7)
+end_position = Vector3(4, -8.9, -7.5)
+bidirectional = true
+metadata/requires_crouch = true
+
+[node name="WindowCrossOut" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(4, -8.9, -7.7)
+end_position = Vector3(4, -8.97, -8.2)
+bidirectional = true
+metadata/requires_crouch = true
+
+[node name="WindowOutside" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(4, -9.83, -10.5)
+end_position = Vector3(4, -9.9, -12)
+bidirectional = true
+
+
+[node name="MainStairsHall1" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(-0.4, -9.9, 1.2)
+end_position = Vector3(0.5, -9.9, 1.2)
+bidirectional = true
+
+
+[node name="MainStairsHall2" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(-0.4, -6.6, 1.2)
+end_position = Vector3(0.5, -6.6, 1.2)
+bidirectional = true
+
+
+[node name="MainStairsHall3" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(-0.4, -3.3, 1.2)
+end_position = Vector3(0.5, -3.3, 1.2)
+bidirectional = true
+
+
+[node name="MainStairsDown4ATop" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(-3.8, 0.0, 0.5)
+end_position = Vector3(-3.8, -0.07, -0.2)
+bidirectional = true
+
+
+[node name="MainStairsDown4ABottom" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(-3.8, -1.58, -4.6)
+end_position = Vector3(-3.8, -1.65, -5.2)
+bidirectional = true
+
+
+[node name="MainStairsDown4BTop" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(-1.2, -1.65, -5.2)
+end_position = Vector3(-1.2, -1.72, -4.6)
+bidirectional = true
+
+
+[node name="MainStairsDown4BBottom" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(-1.2, -3.23, -0.2)
+end_position = Vector3(-1.2, -3.3, 0.5)
+bidirectional = true
+
+
+[node name="MainStairsDown3ATop" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(-3.8, -3.3, 0.5)
+end_position = Vector3(-3.8, -3.37, -0.2)
+bidirectional = true
+
+
+[node name="MainStairsDown3ABottom" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(-3.8, -4.88, -4.6)
+end_position = Vector3(-3.8, -4.95, -5.2)
+bidirectional = true
+
+
+[node name="MainStairsDown3BTop" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(-1.2, -4.95, -5.2)
+end_position = Vector3(-1.2, -5.02, -4.6)
+bidirectional = true
+
+
+[node name="MainStairsDown3BBottom" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(-1.2, -6.53, -0.2)
+end_position = Vector3(-1.2, -6.6, 0.5)
+bidirectional = true
+
+
+[node name="MainStairsDown2ATop" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(-3.8, -6.6, 0.5)
+end_position = Vector3(-3.8, -6.67, -0.2)
+bidirectional = true
+
+
+[node name="MainStairsDown2ABottom" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(-3.8, -8.18, -4.6)
+end_position = Vector3(-3.8, -8.25, -5.2)
+bidirectional = true
+
+
+[node name="MainStairsDown2BTop" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(-1.2, -8.25, -5.2)
+end_position = Vector3(-1.2, -8.32, -4.6)
+bidirectional = true
+
+
+[node name="MainStairsDown2BBottom" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(-1.2, -9.83, -0.2)
+end_position = Vector3(-1.2, -9.9, 0.5)
+bidirectional = true
+
+
+[node name="FireStairsHall1" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(44.4, -9.9, 1.2)
+end_position = Vector3(43.5, -9.9, 1.2)
+bidirectional = true
+
+
+[node name="FireStairsHall2" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(44.4, -6.6, 1.2)
+end_position = Vector3(43.5, -6.6, 1.2)
+bidirectional = true
+
+
+[node name="FireStairsHall3" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(44.4, -3.3, 1.2)
+end_position = Vector3(43.5, -3.3, 1.2)
+bidirectional = true
+
+
+[node name="FireStairsDown4ATop" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(45.2, 0.0, 0.5)
+end_position = Vector3(45.2, -0.07, -0.2)
+bidirectional = true
+
+
+[node name="FireStairsDown4ABottom" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(45.2, -1.58, -4.6)
+end_position = Vector3(45.2, -1.65, -5.2)
+bidirectional = true
+
+
+[node name="FireStairsDown4BTop" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(47.8, -1.65, -5.2)
+end_position = Vector3(47.8, -1.72, -4.6)
+bidirectional = true
+
+
+[node name="FireStairsDown4BBottom" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(47.8, -3.23, -0.2)
+end_position = Vector3(47.8, -3.3, 0.5)
+bidirectional = true
+
+
+[node name="FireStairsDown3ATop" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(45.2, -3.3, 0.5)
+end_position = Vector3(45.2, -3.37, -0.2)
+bidirectional = true
+
+
+[node name="FireStairsDown3ABottom" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(45.2, -4.88, -4.6)
+end_position = Vector3(45.2, -4.95, -5.2)
+bidirectional = true
+
+
+[node name="FireStairsDown3BTop" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(47.8, -4.95, -5.2)
+end_position = Vector3(47.8, -5.02, -4.6)
+bidirectional = true
+
+
+[node name="FireStairsDown3BBottom" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(47.8, -6.53, -0.2)
+end_position = Vector3(47.8, -6.6, 0.5)
+bidirectional = true
+
+
+[node name="FireDoorLink" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(43.5, 0, 1.2)
+end_position = Vector3(44.5, 0, 1.2)
+bidirectional = true
+enabled = false
+
+[node name="MainStairsHall4" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(0.5, 0, 1.2)
+end_position = Vector3(-0.5, 0, 1.2)
+bidirectional = true
+
+
+[node name="MainDoorLink" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(19.25, -9.9, 1.6)
+end_position = Vector3(19.25, -9.9, 4)
+bidirectional = true
+enabled = false
+
+[node name="Room407Link" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(32, 0.03, -0.7)
+end_position = Vector3(32, 0, 1.2)
+bidirectional = true
+metadata/requires_open_door = true
+
+[node name="MainTierLink1" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(198.0, -9.6, 214.0)
+end_position = Vector3(198.0, -9.3, 215.2)
+bidirectional = true
+
+
+[node name="MainTierLink2" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(198.0, -9.3, 215.2)
+end_position = Vector3(198.0, -9.0, 216.4)
+bidirectional = true
+
+
+[node name="MainTierLink3" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(198.0, -9.0, 216.4)
+end_position = Vector3(198.0, -8.7, 217.6)
+bidirectional = true
+
+
+[node name="MainTierLink4" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(198.0, -8.7, 217.6)
+end_position = Vector3(198.0, -8.4, 218.8)
+bidirectional = true
+
+
+[node name="MainTierLink5" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(198.0, -8.4, 218.8)
+end_position = Vector3(198.0, -8.1, 220.0)
+bidirectional = true
+
+
+[node name="MainTierLink6" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(198.0, -8.1, 220.0)
+end_position = Vector3(198.0, -7.8, 221.2)
+bidirectional = true
+
+
+[node name="MainTierLink7" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(198.0, -7.8, 221.2)
+end_position = Vector3(198.0, -7.5, 222.4)
+bidirectional = true
+
+
+[node name="MainTierLink8" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(198.0, -7.5, 222.4)
+end_position = Vector3(198.0, -7.2, 223.6)
+bidirectional = true
+
+
+[node name="MainTierLink9" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(198.0, -7.2, 223.6)
+end_position = Vector3(198.0, -6.9, 224.8)
+bidirectional = true
+
+
+[node name="MainRampTier0" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(156.3, -9.6457627, 214.0)
+end_position = Vector3(158.6, -9.6, 214.0)
+bidirectional = true
+
+
+[node name="MainRampTier1" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(156.3, -9.340678, 215.2)
+end_position = Vector3(158.6, -9.3, 215.2)
+bidirectional = true
+
+
+[node name="MainRampTier2" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(156.3, -9.0355932, 216.4)
+end_position = Vector3(158.6, -9.0, 216.4)
+bidirectional = true
+
+
+[node name="MainRampTier3" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(156.3, -8.7305085, 217.6)
+end_position = Vector3(158.6, -8.7, 217.6)
+bidirectional = true
+
+
+[node name="MainRampTier4" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(156.3, -8.4254237, 218.8)
+end_position = Vector3(158.6, -8.4, 218.8)
+bidirectional = true
+
+
+[node name="MainRampTier5" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(156.3, -8.120339, 220.0)
+end_position = Vector3(158.6, -8.1, 220.0)
+bidirectional = true
+
+
+[node name="MainRampTier6" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(156.3, -7.8152542, 221.2)
+end_position = Vector3(158.6, -7.8, 221.2)
+bidirectional = true
+
+
+[node name="MainRampTier7" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(156.3, -7.5101695, 222.4)
+end_position = Vector3(158.6, -7.5, 222.4)
+bidirectional = true
+
+
+[node name="MainRampTier8" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(156.3, -7.2050847, 223.6)
+end_position = Vector3(158.6, -7.2, 223.6)
+bidirectional = true
+
+
+[node name="MainRampTier9" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(156.3, -6.9, 224.8)
+end_position = Vector3(158.6, -6.9, 224.8)
+bidirectional = true
+
+
+[node name="MainRampGround" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(156.3, -9.9, 212)
+end_position = Vector3(156.3, -9.87, 213.1)
+bidirectional = true
+
+
+[node name="SecondaryTierLink1" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(198.0, -9.6, 108.0)
+end_position = Vector3(198.0, -9.3, 109.2)
+bidirectional = true
+
+
+[node name="SecondaryTierLink2" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(198.0, -9.3, 109.2)
+end_position = Vector3(198.0, -9.0, 110.4)
+bidirectional = true
+
+
+[node name="SecondaryTierLink3" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(198.0, -9.0, 110.4)
+end_position = Vector3(198.0, -8.7, 111.6)
+bidirectional = true
+
+
+[node name="SecondaryRampTier0" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(166.3, -9.6391304, 108.0)
+end_position = Vector3(168.6, -9.6, 108.0)
+bidirectional = true
+
+
+[node name="SecondaryRampTier1" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(166.3, -9.326087, 109.2)
+end_position = Vector3(168.6, -9.3, 109.2)
+bidirectional = true
+
+
+[node name="SecondaryRampTier2" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(166.3, -9.0130435, 110.4)
+end_position = Vector3(168.6, -9.0, 110.4)
+bidirectional = true
+
+
+[node name="SecondaryRampTier3" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(166.3, -8.7, 111.6)
+end_position = Vector3(168.6, -8.7, 111.6)
+bidirectional = true
+
+
+[node name="SecondaryRampGround" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(166.3, -9.9, 106)
+end_position = Vector3(166.3, -9.87, 107.1)
+bidirectional = true
+
+
+[node name="CanteenEntry" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(190, -9.9, 18)
+end_position = Vector3(190, -9.9, 21)
+bidirectional = true
+
+
+[node name="KitchenEntry" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(192, -9.9, 43)
+end_position = Vector3(192, -9.9, 45)
+bidirectional = true
+
+
+[node name="StoreEntry" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(202, -9.9, 43)
+end_position = Vector3(202, -9.9, 45)
+bidirectional = true
+
+
+[node name="StoreExit" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(202, -9.9, 51)
+end_position = Vector3(202, -9.9, 54)
+bidirectional = true
+
+
+[node name="Environment" type="WorldEnvironment" parent="."]
+environment = SubResource("s224")
+
+[node name="Dawn" type="DirectionalLight3D" parent="."]
+rotation_degrees = Vector3(-22,-35,0)
+light_color = Color(0.70,0.39,0.32,1)
+light_energy = 0.65
+shadow_enabled = false

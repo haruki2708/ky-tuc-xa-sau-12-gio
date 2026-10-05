@@ -1,0 +1,1008 @@
+{
+  "ground_y": -9.9,
+  "bounds": [
+    -80,
+    420,
+    -60,
+    290
+  ],
+  "anchors": {
+    "Room203Door": [
+      13.75,
+      -6.6,
+      0
+    ],
+    "Extinguisher2F": [
+      20,
+      -5.5,
+      0.25
+    ],
+    "MainDoor1F": [
+      19.25,
+      -9.9,
+      2.5
+    ],
+    "ManagerWindow": [
+      4,
+      -8.9,
+      -7.6
+    ],
+    "ManagerKnife": [
+      1.4,
+      -8.950000000000001,
+      -3.2
+    ],
+    "Collapse2F": [
+      46.5,
+      -6.6,
+      -1.0
+    ],
+    "FireDoor": [
+      44,
+      0,
+      1.2
+    ],
+    "FireKey": [
+      39.8,
+      0.66,
+      0.42
+    ],
+    "Clues/Clock4F": [
+      40,
+      2.05,
+      0.18
+    ],
+    "Clues/CrackStair": [
+      49,
+      -2,
+      -3
+    ],
+    "NguBench": [
+      22,
+      -9.33,
+      28
+    ],
+    "Start_garden": [
+      22,
+      -9.9,
+      8
+    ],
+    "Clues/SirenSpot": [
+      198,
+      -6.9,
+      224.8
+    ],
+    "Start_stadium": [
+      115,
+      -9.9,
+      166
+    ],
+    "GuardLine/G01": [
+      210.0,
+      -9.9,
+      -54
+    ],
+    "GuardLine/G02": [
+      211.8181818181818,
+      -9.9,
+      -54
+    ],
+    "GuardLine/G03": [
+      213.63636363636363,
+      -9.9,
+      -54
+    ],
+    "GuardLine/G04": [
+      215.45454545454547,
+      -9.9,
+      -54
+    ],
+    "GuardLine/G05": [
+      217.27272727272728,
+      -9.9,
+      -54
+    ],
+    "GuardLine/G06": [
+      219.0909090909091,
+      -9.9,
+      -54
+    ],
+    "GuardLine/G07": [
+      220.9090909090909,
+      -9.9,
+      -54
+    ],
+    "GuardLine/G08": [
+      222.72727272727272,
+      -9.9,
+      -54
+    ],
+    "GuardLine/G09": [
+      224.54545454545453,
+      -9.9,
+      -54
+    ],
+    "GuardLine/G10": [
+      226.36363636363637,
+      -9.9,
+      -54
+    ],
+    "GuardLine/G11": [
+      228.1818181818182,
+      -9.9,
+      -54
+    ],
+    "GuardLine/G12": [
+      230.0,
+      -9.9,
+      -54
+    ],
+    "GuardBooth": [
+      240,
+      -9.9,
+      -51
+    ],
+    "Clues/GatePillar": [
+      209,
+      -9.9,
+      -58
+    ],
+    "Start_gate": [
+      220,
+      -9.9,
+      -25
+    ],
+    "CanteenTV": [
+      170.3,
+      -7.5,
+      32
+    ],
+    "CanteenClock": [
+      192,
+      -7.4,
+      51.85
+    ],
+    "CanteenExit": [
+      202,
+      -9.9,
+      52
+    ],
+    "BarSpawns/B01": [
+      8,
+      -9.65,
+      37
+    ],
+    "BarSpawns/B02": [
+      154,
+      -9.9,
+      221
+    ],
+    "BarSpawns/B03": [
+      160,
+      -9.9,
+      223
+    ],
+    "BarSpawns/B04": [
+      64,
+      -9.9,
+      -10
+    ],
+    "BarSpawns/B05": [
+      228,
+      -9.9,
+      -29
+    ],
+    "BarSpawns/B06": [
+      194,
+      -9.9,
+      40
+    ],
+    "ZombieSpawns/B4/S01": [
+      8,
+      0,
+      1.3
+    ],
+    "ZombieIdle/B4/I01": [
+      8,
+      0,
+      1.3
+    ],
+    "ZombieSpawns/B4/S02": [
+      12,
+      0,
+      1.3
+    ],
+    "ZombieIdle/B4/I02": [
+      12,
+      0,
+      1.3
+    ],
+    "ZombieSpawns/B4/S03": [
+      16,
+      0,
+      1.3
+    ],
+    "ZombieIdle/B4/I03": [
+      16,
+      0,
+      1.3
+    ],
+    "ZombieSpawns/B4/S04": [
+      20,
+      0,
+      1.3
+    ],
+    "ZombieIdle/B4/I04": [
+      20,
+      0,
+      1.3
+    ],
+    "ZombieSpawns/B4/S05": [
+      24,
+      0,
+      1.3
+    ],
+    "ZombieIdle/B4/I05": [
+      24,
+      0,
+      1.3
+    ],
+    "ZombieSpawns/B4/S06": [
+      28,
+      0,
+      1.3
+    ],
+    "ZombieIdle/B4/I06": [
+      28,
+      0,
+      1.3
+    ],
+    "ZombieSpawns/B3/S01": [
+      8,
+      -3.3,
+      1.3
+    ],
+    "ZombieIdle/B3/I01": [
+      8,
+      -3.3,
+      1.3
+    ],
+    "ZombieSpawns/B3/S02": [
+      12,
+      -3.3,
+      1.3
+    ],
+    "ZombieIdle/B3/I02": [
+      12,
+      -3.3,
+      1.3
+    ],
+    "ZombieSpawns/B3/S03": [
+      16,
+      -3.3,
+      1.3
+    ],
+    "ZombieIdle/B3/I03": [
+      16,
+      -3.3,
+      1.3
+    ],
+    "ZombieSpawns/B3/S04": [
+      20,
+      -3.3,
+      1.3
+    ],
+    "ZombieIdle/B3/I04": [
+      20,
+      -3.3,
+      1.3
+    ],
+    "ZombieSpawns/B3/S05": [
+      24,
+      -3.3,
+      1.3
+    ],
+    "ZombieIdle/B3/I05": [
+      24,
+      -3.3,
+      1.3
+    ],
+    "ZombieSpawns/B3/S06": [
+      28,
+      -3.3,
+      1.3
+    ],
+    "ZombieIdle/B3/I06": [
+      28,
+      -3.3,
+      1.3
+    ],
+    "ZombieSpawns/B2/S01": [
+      8,
+      -6.6,
+      1.3
+    ],
+    "ZombieIdle/B2/I01": [
+      8,
+      -6.6,
+      1.3
+    ],
+    "ZombieSpawns/B2/S02": [
+      12,
+      -6.6,
+      1.3
+    ],
+    "ZombieIdle/B2/I02": [
+      12,
+      -6.6,
+      1.3
+    ],
+    "ZombieSpawns/B2/S03": [
+      16,
+      -6.6,
+      1.3
+    ],
+    "ZombieIdle/B2/I03": [
+      16,
+      -6.6,
+      1.3
+    ],
+    "ZombieSpawns/B2/S04": [
+      20,
+      -6.6,
+      1.3
+    ],
+    "ZombieIdle/B2/I04": [
+      20,
+      -6.6,
+      1.3
+    ],
+    "ZombieSpawns/B2/S05": [
+      24,
+      -6.6,
+      1.3
+    ],
+    "ZombieIdle/B2/I05": [
+      24,
+      -6.6,
+      1.3
+    ],
+    "ZombieSpawns/B2/S06": [
+      28,
+      -6.6,
+      1.3
+    ],
+    "ZombieIdle/B2/I06": [
+      28,
+      -6.6,
+      1.3
+    ],
+    "ZombieSpawns/B1/S01": [
+      8,
+      -9.9,
+      1.3
+    ],
+    "ZombieIdle/B1/I01": [
+      8,
+      -9.9,
+      1.3
+    ],
+    "ZombieSpawns/B1/S02": [
+      12,
+      -9.9,
+      1.3
+    ],
+    "ZombieIdle/B1/I02": [
+      12,
+      -9.9,
+      1.3
+    ],
+    "ZombieSpawns/B1/S03": [
+      16,
+      -9.9,
+      1.3
+    ],
+    "ZombieIdle/B1/I03": [
+      16,
+      -9.9,
+      1.3
+    ],
+    "ZombieSpawns/B1/S04": [
+      20,
+      -9.9,
+      1.3
+    ],
+    "ZombieIdle/B1/I04": [
+      20,
+      -9.9,
+      1.3
+    ],
+    "ZombieSpawns/B1/S05": [
+      24,
+      -9.9,
+      1.3
+    ],
+    "ZombieIdle/B1/I05": [
+      24,
+      -9.9,
+      1.3
+    ],
+    "ZombieSpawns/B1/S06": [
+      28,
+      -9.9,
+      1.3
+    ],
+    "ZombieIdle/B1/I06": [
+      28,
+      -9.9,
+      1.3
+    ],
+    "ZombieSpawns/Road/S01": [
+      65,
+      -9.9,
+      -12
+    ],
+    "ZombieIdle/Road/I01": [
+      65,
+      -9.9,
+      -11
+    ],
+    "ZombieSpawns/Road/S02": [
+      69,
+      -9.9,
+      -12
+    ],
+    "ZombieIdle/Road/I02": [
+      69,
+      -9.9,
+      -11
+    ],
+    "ZombieSpawns/Road/S03": [
+      73,
+      -9.9,
+      -12
+    ],
+    "ZombieIdle/Road/I03": [
+      73,
+      -9.9,
+      -11
+    ],
+    "ZombieSpawns/Road/S04": [
+      77,
+      -9.9,
+      -12
+    ],
+    "ZombieIdle/Road/I04": [
+      77,
+      -9.9,
+      -11
+    ],
+    "ZombieSpawns/Road/S05": [
+      81,
+      -9.9,
+      -12
+    ],
+    "ZombieIdle/Road/I05": [
+      81,
+      -9.9,
+      -11
+    ],
+    "ZombieSpawns/Road/S06": [
+      85,
+      -9.9,
+      -12
+    ],
+    "ZombieIdle/Road/I06": [
+      85,
+      -9.9,
+      -11
+    ],
+    "ZombieSpawns/Garden/S01": [
+      12,
+      -9.9,
+      17
+    ],
+    "ZombieIdle/Garden/I01": [
+      12,
+      -9.9,
+      18
+    ],
+    "ZombieSpawns/Garden/S02": [
+      28,
+      -9.9,
+      17
+    ],
+    "ZombieIdle/Garden/I02": [
+      28,
+      -9.9,
+      18
+    ],
+    "ZombieSpawns/Garden/S03": [
+      44,
+      -9.9,
+      17
+    ],
+    "ZombieIdle/Garden/I03": [
+      44,
+      -9.9,
+      18
+    ],
+    "ZombieSpawns/Garden/S04": [
+      12,
+      -9.9,
+      27
+    ],
+    "ZombieIdle/Garden/I04": [
+      12,
+      -9.9,
+      28
+    ],
+    "ZombieSpawns/Garden/S05": [
+      28,
+      -9.9,
+      27
+    ],
+    "ZombieIdle/Garden/I05": [
+      28,
+      -9.9,
+      28
+    ],
+    "ZombieSpawns/Garden/S06": [
+      44,
+      -9.9,
+      27
+    ],
+    "ZombieIdle/Garden/I06": [
+      44,
+      -9.9,
+      28
+    ],
+    "ZombieSpawns/Stadium/S01": [
+      112,
+      -9.9,
+      166
+    ],
+    "ZombieIdle/Stadium/I01": [
+      112,
+      -9.9,
+      167
+    ],
+    "ZombieSpawns/Stadium/S02": [
+      284,
+      -9.9,
+      166
+    ],
+    "ZombieIdle/Stadium/I02": [
+      284,
+      -9.9,
+      167
+    ],
+    "ZombieSpawns/Stadium/S03": [
+      198,
+      -9.9,
+      122
+    ],
+    "ZombieIdle/Stadium/I03": [
+      198,
+      -9.9,
+      123
+    ],
+    "ZombieSpawns/Stadium/S04": [
+      198,
+      -9.9,
+      210
+    ],
+    "ZombieIdle/Stadium/I04": [
+      198,
+      -9.9,
+      211
+    ],
+    "ZombieSpawns/Stadium/S05": [
+      112,
+      -9.9,
+      170
+    ],
+    "ZombieIdle/Stadium/I05": [
+      112,
+      -9.9,
+      171
+    ],
+    "ZombieSpawns/Stadium/S06": [
+      284,
+      -9.9,
+      170
+    ],
+    "ZombieIdle/Stadium/I06": [
+      284,
+      -9.9,
+      171
+    ],
+    "ZombieSpawns/Gate/S01": [
+      196,
+      -9.9,
+      -30
+    ],
+    "ZombieIdle/Gate/I01": [
+      196,
+      -9.9,
+      -29
+    ],
+    "ZombieSpawns/Gate/S02": [
+      200,
+      -9.9,
+      -30
+    ],
+    "ZombieIdle/Gate/I02": [
+      200,
+      -9.9,
+      -29
+    ],
+    "ZombieSpawns/Gate/S03": [
+      204,
+      -9.9,
+      -30
+    ],
+    "ZombieIdle/Gate/I03": [
+      204,
+      -9.9,
+      -29
+    ],
+    "ZombieSpawns/Gate/S04": [
+      196,
+      -9.9,
+      -25
+    ],
+    "ZombieIdle/Gate/I04": [
+      196,
+      -9.9,
+      -24
+    ],
+    "ZombieSpawns/Gate/S05": [
+      200,
+      -9.9,
+      -25
+    ],
+    "ZombieIdle/Gate/I05": [
+      200,
+      -9.9,
+      -24
+    ],
+    "ZombieSpawns/Gate/S06": [
+      204,
+      -9.9,
+      -25
+    ],
+    "ZombieIdle/Gate/I06": [
+      204,
+      -9.9,
+      -24
+    ],
+    "ZombieSpawns/Canteen/S01": [
+      178,
+      -9.9,
+      24
+    ],
+    "ZombieIdle/Canteen/I01": [
+      178,
+      -9.9,
+      25
+    ],
+    "ZombieSpawns/Canteen/S02": [
+      182,
+      -9.9,
+      24
+    ],
+    "ZombieIdle/Canteen/I02": [
+      182,
+      -9.9,
+      25
+    ],
+    "ZombieSpawns/Canteen/S03": [
+      186,
+      -9.9,
+      24
+    ],
+    "ZombieIdle/Canteen/I03": [
+      186,
+      -9.9,
+      25
+    ],
+    "ZombieSpawns/Canteen/S04": [
+      178,
+      -9.9,
+      29
+    ],
+    "ZombieIdle/Canteen/I04": [
+      178,
+      -9.9,
+      30
+    ],
+    "ZombieSpawns/Canteen/S05": [
+      182,
+      -9.9,
+      29
+    ],
+    "ZombieIdle/Canteen/I05": [
+      182,
+      -9.9,
+      30
+    ],
+    "ZombieSpawns/Canteen/S06": [
+      186,
+      -9.9,
+      29
+    ],
+    "ZombieIdle/Canteen/I06": [
+      186,
+      -9.9,
+      30
+    ],
+    "Paths/Nhat/P01": [
+      13.75,
+      -6.6,
+      -2
+    ],
+    "Paths/Nhat/P02": [
+      13.75,
+      -6.6,
+      1.2
+    ],
+    "Paths/Nhat/P03": [
+      -1.2,
+      -6.6,
+      1.2
+    ],
+    "Paths/Nhat/P04": [
+      -3.8,
+      -8.25,
+      -5.3
+    ],
+    "Paths/Nhat/P05": [
+      -1.2,
+      -9.9,
+      1.2
+    ],
+    "Paths/Nhat/P06": [
+      2.75,
+      -9.9,
+      1.2
+    ],
+    "Paths/Nhat/P07": [
+      2.75,
+      -9.9,
+      -3
+    ],
+    "Paths/Nhat/P08": [
+      4,
+      -9.9,
+      -4
+    ],
+    "Paths/Nhat/P09": [
+      4,
+      -8.9,
+      -7.6
+    ],
+    "Paths/Nhat/P10": [
+      4,
+      -9.9,
+      -12
+    ],
+    "Paths/Nhat/P11": [
+      -8,
+      -9.9,
+      -12
+    ],
+    "Paths/Nhat/P12": [
+      -8,
+      -9.9,
+      8
+    ],
+    "Paths/Nhat/P13": [
+      22,
+      -9.9,
+      8
+    ],
+    "Paths/Nhat/P14_Wait_garden": [
+      22,
+      -9.9,
+      24
+    ],
+    "Paths/Nhat/P15": [
+      48,
+      -9.9,
+      28
+    ],
+    "Paths/Nhat/P16": [
+      80,
+      -9.9,
+      28
+    ],
+    "Paths/Nhat/P17": [
+      80,
+      -9.9,
+      166
+    ],
+    "Paths/Nhat/P18_Wait_stadium": [
+      115,
+      -9.9,
+      166
+    ],
+    "Paths/Nhat/P19": [
+      150,
+      -9.9,
+      166
+    ],
+    "Paths/Nhat/P20": [
+      198,
+      -9.9,
+      135
+    ],
+    "Paths/Nhat/P21": [
+      250,
+      -9.9,
+      166
+    ],
+    "Paths/Nhat/P22": [
+      198,
+      -9.9,
+      195
+    ],
+    "Paths/Nhat/P23_Wait_stadium": [
+      115,
+      -9.9,
+      166
+    ],
+    "Paths/Nhat/P24": [
+      80,
+      -9.9,
+      166
+    ],
+    "Paths/Nhat/P25": [
+      80,
+      -9.9,
+      -15
+    ],
+    "Paths/Nhat/P26": [
+      220,
+      -9.9,
+      -15
+    ],
+    "Paths/Nhat/P27_Wait_gate": [
+      220,
+      -9.9,
+      -30
+    ],
+    "Paths/Nhat/P28": [
+      220,
+      -9.9,
+      10
+    ],
+    "Paths/Nhat/P29": [
+      190,
+      -9.9,
+      18
+    ],
+    "Paths/Nhat/P30_Wait_canteen": [
+      190,
+      -9.9,
+      32
+    ],
+    "Paths/Nhat/P31": [
+      202,
+      -9.9,
+      43
+    ],
+    "Paths/Nhat/P32": [
+      202,
+      -9.9,
+      48
+    ],
+    "Paths/Nhat/P33": [
+      202,
+      -9.9,
+      54
+    ],
+    "Paths/Ngu/P01_Wait_garden": [
+      22,
+      -9.9,
+      24
+    ],
+    "Paths/Ngu/P02": [
+      48,
+      -9.9,
+      28
+    ],
+    "Paths/Ngu/P03": [
+      80,
+      -9.9,
+      28
+    ],
+    "Paths/Ngu/P04": [
+      80,
+      -9.9,
+      166
+    ],
+    "Paths/Ngu/P05_Wait_stadium": [
+      115,
+      -9.9,
+      166
+    ],
+    "Paths/Ngu/P06": [
+      150,
+      -9.9,
+      166
+    ],
+    "Paths/Ngu/P07": [
+      198,
+      -9.9,
+      135
+    ],
+    "Paths/Ngu/P08": [
+      250,
+      -9.9,
+      166
+    ],
+    "Paths/Ngu/P09": [
+      198,
+      -9.9,
+      195
+    ],
+    "Paths/Ngu/P10_Wait_stadium": [
+      115,
+      -9.9,
+      166
+    ],
+    "Paths/Ngu/P11": [
+      80,
+      -9.9,
+      166
+    ],
+    "Paths/Ngu/P12": [
+      80,
+      -9.9,
+      -15
+    ],
+    "Paths/Ngu/P13": [
+      220,
+      -9.9,
+      -15
+    ],
+    "Paths/Ngu/P14_Wait_gate": [
+      220,
+      -9.9,
+      -30
+    ],
+    "Paths/Ngu/P15": [
+      220,
+      -9.9,
+      10
+    ],
+    "Paths/Ngu/P16": [
+      190,
+      -9.9,
+      18
+    ],
+    "Paths/Ngu/P17_Wait_canteen": [
+      190,
+      -9.9,
+      32
+    ],
+    "Paths/Ngu/P18": [
+      202,
+      -9.9,
+      43
+    ],
+    "Paths/Ngu/P19": [
+      202,
+      -9.9,
+      48
+    ],
+    "Paths/Ngu/P20": [
+      202,
+      -9.9,
+      54
+    ]
+  },
+  "navigation_surfaces": 60,
+  "navigation_links": 77
+}

@@ -1,0 +1,862 @@
+[gd_scene format=3]
+
+
+[sub_resource type="BoxShape3D" id="s1"]
+size = Vector3(176, 0.05, 92)
+
+[sub_resource type="StandardMaterial3D" id="s2"]
+albedo_color = Color(0.32, 0.13, 0.1, 1)
+roughness = 0.85
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="s3"]
+size = Vector3(176, 0.05, 92)
+material = SubResource("s2")
+
+[sub_resource type="StandardMaterial3D" id="s4"]
+albedo_color = Color(0.13, 0.2, 0.13, 1)
+roughness = 0.85
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="s5"]
+size = Vector3(100, 0.01, 58)
+material = SubResource("s4")
+
+[sub_resource type="BoxShape3D" id="s6"]
+size = Vector3(80, 0.18, 1.2)
+
+[sub_resource type="StandardMaterial3D" id="s7"]
+albedo_color = Color(0.38, 0.39, 0.35, 1)
+roughness = 0.85
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="s8"]
+size = Vector3(80, 0.18, 1.2)
+material = SubResource("s7")
+
+[sub_resource type="BoxShape3D" id="s9"]
+size = Vector3(80, 0.18, 1.2)
+
+[sub_resource type="BoxMesh" id="s10"]
+size = Vector3(80, 0.18, 1.2)
+material = SubResource("s7")
+
+[sub_resource type="BoxShape3D" id="s11"]
+size = Vector3(80, 0.18, 1.2)
+
+[sub_resource type="BoxMesh" id="s12"]
+size = Vector3(80, 0.18, 1.2)
+material = SubResource("s7")
+
+[sub_resource type="BoxShape3D" id="s13"]
+size = Vector3(80, 0.18, 1.2)
+
+[sub_resource type="BoxMesh" id="s14"]
+size = Vector3(80, 0.18, 1.2)
+material = SubResource("s7")
+
+[sub_resource type="BoxShape3D" id="s15"]
+size = Vector3(80, 0.18, 1.2)
+
+[sub_resource type="BoxMesh" id="s16"]
+size = Vector3(80, 0.18, 1.2)
+material = SubResource("s7")
+
+[sub_resource type="BoxShape3D" id="s17"]
+size = Vector3(80, 0.18, 1.2)
+
+[sub_resource type="BoxMesh" id="s18"]
+size = Vector3(80, 0.18, 1.2)
+material = SubResource("s7")
+
+[sub_resource type="BoxShape3D" id="s19"]
+size = Vector3(80, 0.18, 1.2)
+
+[sub_resource type="BoxMesh" id="s20"]
+size = Vector3(80, 0.18, 1.2)
+material = SubResource("s7")
+
+[sub_resource type="BoxShape3D" id="s21"]
+size = Vector3(80, 0.18, 1.2)
+
+[sub_resource type="BoxMesh" id="s22"]
+size = Vector3(80, 0.18, 1.2)
+material = SubResource("s7")
+
+[sub_resource type="BoxShape3D" id="s23"]
+size = Vector3(80, 0.18, 1.2)
+
+[sub_resource type="BoxMesh" id="s24"]
+size = Vector3(80, 0.18, 1.2)
+material = SubResource("s7")
+
+[sub_resource type="BoxShape3D" id="s25"]
+size = Vector3(80, 0.18, 1.2)
+
+[sub_resource type="BoxMesh" id="s26"]
+size = Vector3(80, 0.18, 1.2)
+material = SubResource("s7")
+
+[sub_resource type="ConvexPolygonShape3D" id="s27"]
+points = PackedVector3Array(155,-9.9,213,155,-6.9,224.8,157.6,-6.9,224.8,157.6,-9.9,213,155,-10.14,213,155,-7.14,224.8,157.6,-7.14,224.8,157.6,-10.14,213)
+
+[sub_resource type="BoxMesh" id="s28"]
+size = Vector3(2.6, 0.18, 0.6)
+material = SubResource("s7")
+
+[sub_resource type="BoxMesh" id="s29"]
+size = Vector3(2.6, 0.18, 0.6)
+material = SubResource("s7")
+
+[sub_resource type="BoxMesh" id="s30"]
+size = Vector3(2.6, 0.18, 0.6)
+material = SubResource("s7")
+
+[sub_resource type="BoxMesh" id="s31"]
+size = Vector3(2.6, 0.18, 0.6)
+material = SubResource("s7")
+
+[sub_resource type="BoxMesh" id="s32"]
+size = Vector3(2.6, 0.18, 0.6)
+material = SubResource("s7")
+
+[sub_resource type="BoxMesh" id="s33"]
+size = Vector3(2.6, 0.18, 0.6)
+material = SubResource("s7")
+
+[sub_resource type="BoxMesh" id="s34"]
+size = Vector3(2.6, 0.18, 0.6)
+material = SubResource("s7")
+
+[sub_resource type="BoxMesh" id="s35"]
+size = Vector3(2.6, 0.18, 0.6)
+material = SubResource("s7")
+
+[sub_resource type="BoxMesh" id="s36"]
+size = Vector3(2.6, 0.18, 0.6)
+material = SubResource("s7")
+
+[sub_resource type="BoxMesh" id="s37"]
+size = Vector3(2.6, 0.18, 0.6)
+material = SubResource("s7")
+
+[sub_resource type="BoxMesh" id="s38"]
+size = Vector3(2.6, 0.18, 0.6)
+material = SubResource("s7")
+
+[sub_resource type="BoxMesh" id="s39"]
+size = Vector3(2.6, 0.18, 0.6)
+material = SubResource("s7")
+
+[sub_resource type="BoxMesh" id="s40"]
+size = Vector3(2.6, 0.18, 0.6)
+material = SubResource("s7")
+
+[sub_resource type="BoxMesh" id="s41"]
+size = Vector3(2.6, 0.18, 0.6)
+material = SubResource("s7")
+
+[sub_resource type="BoxMesh" id="s42"]
+size = Vector3(2.6, 0.18, 0.6)
+material = SubResource("s7")
+
+[sub_resource type="BoxMesh" id="s43"]
+size = Vector3(2.6, 0.18, 0.6)
+material = SubResource("s7")
+
+[sub_resource type="BoxMesh" id="s44"]
+size = Vector3(2.6, 0.18, 0.6)
+material = SubResource("s7")
+
+[sub_resource type="BoxMesh" id="s45"]
+size = Vector3(2.6, 0.18, 0.6)
+material = SubResource("s7")
+
+[sub_resource type="BoxMesh" id="s46"]
+size = Vector3(2.6, 0.18, 0.6)
+material = SubResource("s7")
+
+[sub_resource type="BoxMesh" id="s47"]
+size = Vector3(2.6, 0.18, 0.6)
+material = SubResource("s7")
+
+[sub_resource type="BoxShape3D" id="s48"]
+size = Vector3(60, 0.18, 1.2)
+
+[sub_resource type="BoxMesh" id="s49"]
+size = Vector3(60, 0.18, 1.2)
+material = SubResource("s7")
+
+[sub_resource type="BoxShape3D" id="s50"]
+size = Vector3(60, 0.18, 1.2)
+
+[sub_resource type="BoxMesh" id="s51"]
+size = Vector3(60, 0.18, 1.2)
+material = SubResource("s7")
+
+[sub_resource type="BoxShape3D" id="s52"]
+size = Vector3(60, 0.18, 1.2)
+
+[sub_resource type="BoxMesh" id="s53"]
+size = Vector3(60, 0.18, 1.2)
+material = SubResource("s7")
+
+[sub_resource type="BoxShape3D" id="s54"]
+size = Vector3(60, 0.18, 1.2)
+
+[sub_resource type="BoxMesh" id="s55"]
+size = Vector3(60, 0.18, 1.2)
+material = SubResource("s7")
+
+[sub_resource type="ConvexPolygonShape3D" id="s56"]
+points = PackedVector3Array(165,-9.9,107,165,-8.7,111.6,167.6,-8.7,111.6,167.6,-9.9,107,165,-10.14,107,165,-8.94,111.6,167.6,-8.94,111.6,167.6,-10.14,107)
+
+[sub_resource type="BoxMesh" id="s57"]
+size = Vector3(2.6, 0.18, 0.585)
+material = SubResource("s7")
+
+[sub_resource type="BoxMesh" id="s58"]
+size = Vector3(2.6, 0.18, 0.585)
+material = SubResource("s7")
+
+[sub_resource type="BoxMesh" id="s59"]
+size = Vector3(2.6, 0.18, 0.585)
+material = SubResource("s7")
+
+[sub_resource type="BoxMesh" id="s60"]
+size = Vector3(2.6, 0.18, 0.585)
+material = SubResource("s7")
+
+[sub_resource type="BoxMesh" id="s61"]
+size = Vector3(2.6, 0.18, 0.585)
+material = SubResource("s7")
+
+[sub_resource type="BoxMesh" id="s62"]
+size = Vector3(2.6, 0.18, 0.585)
+material = SubResource("s7")
+
+[sub_resource type="BoxMesh" id="s63"]
+size = Vector3(2.6, 0.18, 0.585)
+material = SubResource("s7")
+
+[sub_resource type="BoxMesh" id="s64"]
+size = Vector3(2.6, 0.18, 0.585)
+material = SubResource("s7")
+
+[sub_resource type="BoxShape3D" id="s65"]
+size = Vector3(0.35, 3.6, 0.35)
+
+[sub_resource type="StandardMaterial3D" id="s66"]
+albedo_color = Color(0.1, 0.15, 0.15, 1)
+roughness = 0.85
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="s67"]
+size = Vector3(0.35, 3.6, 0.35)
+material = SubResource("s66")
+
+[sub_resource type="BoxShape3D" id="s68"]
+size = Vector3(0.35, 3.6, 0.35)
+
+[sub_resource type="BoxMesh" id="s69"]
+size = Vector3(0.35, 3.6, 0.35)
+material = SubResource("s66")
+
+[sub_resource type="BoxShape3D" id="s70"]
+size = Vector3(0.35, 3.6, 0.35)
+
+[sub_resource type="BoxMesh" id="s71"]
+size = Vector3(0.35, 3.6, 0.35)
+material = SubResource("s66")
+
+[sub_resource type="BoxShape3D" id="s72"]
+size = Vector3(0.35, 3.6, 0.35)
+
+[sub_resource type="BoxMesh" id="s73"]
+size = Vector3(0.35, 3.6, 0.35)
+material = SubResource("s66")
+
+[sub_resource type="BoxShape3D" id="s74"]
+size = Vector3(0.35, 3.6, 0.35)
+
+[sub_resource type="BoxMesh" id="s75"]
+size = Vector3(0.35, 3.6, 0.35)
+material = SubResource("s66")
+
+[sub_resource type="BoxShape3D" id="s76"]
+size = Vector3(0.35, 3.6, 0.35)
+
+[sub_resource type="BoxMesh" id="s77"]
+size = Vector3(0.35, 3.6, 0.35)
+material = SubResource("s66")
+
+[sub_resource type="BoxShape3D" id="s78"]
+size = Vector3(0.35, 3.6, 0.35)
+
+[sub_resource type="BoxMesh" id="s79"]
+size = Vector3(0.35, 3.6, 0.35)
+material = SubResource("s66")
+
+[sub_resource type="BoxShape3D" id="s80"]
+size = Vector3(0.35, 3.6, 0.35)
+
+[sub_resource type="BoxMesh" id="s81"]
+size = Vector3(0.35, 3.6, 0.35)
+material = SubResource("s66")
+
+[sub_resource type="BoxShape3D" id="s82"]
+size = Vector3(0.3, 18, 0.3)
+
+[sub_resource type="BoxMesh" id="s83"]
+size = Vector3(0.3, 18, 0.3)
+material = SubResource("s66")
+
+[sub_resource type="BoxShape3D" id="s84"]
+size = Vector3(0.3, 18, 0.3)
+
+[sub_resource type="BoxMesh" id="s85"]
+size = Vector3(0.3, 18, 0.3)
+material = SubResource("s66")
+
+[sub_resource type="BoxShape3D" id="s86"]
+size = Vector3(0.3, 18, 0.3)
+
+[sub_resource type="BoxMesh" id="s87"]
+size = Vector3(0.3, 18, 0.3)
+material = SubResource("s66")
+
+[sub_resource type="BoxShape3D" id="s88"]
+size = Vector3(0.3, 18, 0.3)
+
+[sub_resource type="BoxMesh" id="s89"]
+size = Vector3(0.3, 18, 0.3)
+material = SubResource("s66")
+
+[node name="Stadium" type="Node3D"]
+
+
+[node name="TrackBounds" type="StaticBody3D" parent="."]
+position = Vector3(198, -9.925, 166)
+metadata/surface = &"tile"
+metadata/is_floor = true
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="TrackBounds"]
+shape = SubResource("s1")
+
+[node name="Mesh" type="MeshInstance3D" parent="TrackBounds"]
+mesh = SubResource("s3")
+
+[node name="Grass" type="Node3D" parent="."]
+position = Vector3(198, -9.895, 166)
+
+[node name="Mesh" type="MeshInstance3D" parent="Grass"]
+mesh = SubResource("s5")
+
+[node name="MainBleachers" type="Node3D" parent="."]
+
+
+[node name="Tier0" type="StaticBody3D" parent="MainBleachers"]
+position = Vector3(198.0, -9.69, 214.0)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="MainBleachers/Tier0"]
+shape = SubResource("s6")
+
+[node name="Mesh" type="MeshInstance3D" parent="MainBleachers/Tier0"]
+mesh = SubResource("s8")
+
+[node name="Tier1" type="StaticBody3D" parent="MainBleachers"]
+position = Vector3(198.0, -9.39, 215.2)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="MainBleachers/Tier1"]
+shape = SubResource("s9")
+
+[node name="Mesh" type="MeshInstance3D" parent="MainBleachers/Tier1"]
+mesh = SubResource("s10")
+
+[node name="Tier2" type="StaticBody3D" parent="MainBleachers"]
+position = Vector3(198.0, -9.09, 216.4)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="MainBleachers/Tier2"]
+shape = SubResource("s11")
+
+[node name="Mesh" type="MeshInstance3D" parent="MainBleachers/Tier2"]
+mesh = SubResource("s12")
+
+[node name="Tier3" type="StaticBody3D" parent="MainBleachers"]
+position = Vector3(198.0, -8.79, 217.6)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="MainBleachers/Tier3"]
+shape = SubResource("s13")
+
+[node name="Mesh" type="MeshInstance3D" parent="MainBleachers/Tier3"]
+mesh = SubResource("s14")
+
+[node name="Tier4" type="StaticBody3D" parent="MainBleachers"]
+position = Vector3(198.0, -8.49, 218.8)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="MainBleachers/Tier4"]
+shape = SubResource("s15")
+
+[node name="Mesh" type="MeshInstance3D" parent="MainBleachers/Tier4"]
+mesh = SubResource("s16")
+
+[node name="Tier5" type="StaticBody3D" parent="MainBleachers"]
+position = Vector3(198.0, -8.19, 220.0)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="MainBleachers/Tier5"]
+shape = SubResource("s17")
+
+[node name="Mesh" type="MeshInstance3D" parent="MainBleachers/Tier5"]
+mesh = SubResource("s18")
+
+[node name="Tier6" type="StaticBody3D" parent="MainBleachers"]
+position = Vector3(198.0, -7.89, 221.2)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="MainBleachers/Tier6"]
+shape = SubResource("s19")
+
+[node name="Mesh" type="MeshInstance3D" parent="MainBleachers/Tier6"]
+mesh = SubResource("s20")
+
+[node name="Tier7" type="StaticBody3D" parent="MainBleachers"]
+position = Vector3(198.0, -7.59, 222.4)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="MainBleachers/Tier7"]
+shape = SubResource("s21")
+
+[node name="Mesh" type="MeshInstance3D" parent="MainBleachers/Tier7"]
+mesh = SubResource("s22")
+
+[node name="Tier8" type="StaticBody3D" parent="MainBleachers"]
+position = Vector3(198.0, -7.29, 223.6)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="MainBleachers/Tier8"]
+shape = SubResource("s23")
+
+[node name="Mesh" type="MeshInstance3D" parent="MainBleachers/Tier8"]
+mesh = SubResource("s24")
+
+[node name="Tier9" type="StaticBody3D" parent="MainBleachers"]
+position = Vector3(198.0, -6.99, 224.8)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="MainBleachers/Tier9"]
+shape = SubResource("s25")
+
+[node name="Mesh" type="MeshInstance3D" parent="MainBleachers/Tier9"]
+mesh = SubResource("s26")
+
+[node name="MainBleacherRamp" type="StaticBody3D" parent="."]
+collision_layer = 1
+collision_mask = 0
+metadata/surface = &"tile"
+
+[node name="Collision" type="CollisionShape3D" parent="MainBleacherRamp"]
+shape = SubResource("s27")
+
+[node name="Tread00" type="Node3D" parent="MainBleacherRamp"]
+position = Vector3(156.3, -9.915, 213.295)
+
+[node name="Mesh" type="MeshInstance3D" parent="MainBleacherRamp/Tread00"]
+mesh = SubResource("s28")
+
+[node name="Tread01" type="Node3D" parent="MainBleacherRamp"]
+position = Vector3(156.3, -9.765, 213.885)
+
+[node name="Mesh" type="MeshInstance3D" parent="MainBleacherRamp/Tread01"]
+mesh = SubResource("s29")
+
+[node name="Tread02" type="Node3D" parent="MainBleacherRamp"]
+position = Vector3(156.3, -9.615, 214.475)
+
+[node name="Mesh" type="MeshInstance3D" parent="MainBleacherRamp/Tread02"]
+mesh = SubResource("s30")
+
+[node name="Tread03" type="Node3D" parent="MainBleacherRamp"]
+position = Vector3(156.3, -9.465, 215.065)
+
+[node name="Mesh" type="MeshInstance3D" parent="MainBleacherRamp/Tread03"]
+mesh = SubResource("s31")
+
+[node name="Tread04" type="Node3D" parent="MainBleacherRamp"]
+position = Vector3(156.3, -9.315, 215.655)
+
+[node name="Mesh" type="MeshInstance3D" parent="MainBleacherRamp/Tread04"]
+mesh = SubResource("s32")
+
+[node name="Tread05" type="Node3D" parent="MainBleacherRamp"]
+position = Vector3(156.3, -9.165, 216.245)
+
+[node name="Mesh" type="MeshInstance3D" parent="MainBleacherRamp/Tread05"]
+mesh = SubResource("s33")
+
+[node name="Tread06" type="Node3D" parent="MainBleacherRamp"]
+position = Vector3(156.3, -9.015, 216.835)
+
+[node name="Mesh" type="MeshInstance3D" parent="MainBleacherRamp/Tread06"]
+mesh = SubResource("s34")
+
+[node name="Tread07" type="Node3D" parent="MainBleacherRamp"]
+position = Vector3(156.3, -8.865, 217.425)
+
+[node name="Mesh" type="MeshInstance3D" parent="MainBleacherRamp/Tread07"]
+mesh = SubResource("s35")
+
+[node name="Tread08" type="Node3D" parent="MainBleacherRamp"]
+position = Vector3(156.3, -8.715, 218.015)
+
+[node name="Mesh" type="MeshInstance3D" parent="MainBleacherRamp/Tread08"]
+mesh = SubResource("s36")
+
+[node name="Tread09" type="Node3D" parent="MainBleacherRamp"]
+position = Vector3(156.3, -8.565, 218.605)
+
+[node name="Mesh" type="MeshInstance3D" parent="MainBleacherRamp/Tread09"]
+mesh = SubResource("s37")
+
+[node name="Tread10" type="Node3D" parent="MainBleacherRamp"]
+position = Vector3(156.3, -8.415, 219.195)
+
+[node name="Mesh" type="MeshInstance3D" parent="MainBleacherRamp/Tread10"]
+mesh = SubResource("s38")
+
+[node name="Tread11" type="Node3D" parent="MainBleacherRamp"]
+position = Vector3(156.3, -8.265, 219.785)
+
+[node name="Mesh" type="MeshInstance3D" parent="MainBleacherRamp/Tread11"]
+mesh = SubResource("s39")
+
+[node name="Tread12" type="Node3D" parent="MainBleacherRamp"]
+position = Vector3(156.3, -8.115, 220.375)
+
+[node name="Mesh" type="MeshInstance3D" parent="MainBleacherRamp/Tread12"]
+mesh = SubResource("s40")
+
+[node name="Tread13" type="Node3D" parent="MainBleacherRamp"]
+position = Vector3(156.3, -7.965, 220.965)
+
+[node name="Mesh" type="MeshInstance3D" parent="MainBleacherRamp/Tread13"]
+mesh = SubResource("s41")
+
+[node name="Tread14" type="Node3D" parent="MainBleacherRamp"]
+position = Vector3(156.3, -7.815, 221.555)
+
+[node name="Mesh" type="MeshInstance3D" parent="MainBleacherRamp/Tread14"]
+mesh = SubResource("s42")
+
+[node name="Tread15" type="Node3D" parent="MainBleacherRamp"]
+position = Vector3(156.3, -7.665, 222.145)
+
+[node name="Mesh" type="MeshInstance3D" parent="MainBleacherRamp/Tread15"]
+mesh = SubResource("s43")
+
+[node name="Tread16" type="Node3D" parent="MainBleacherRamp"]
+position = Vector3(156.3, -7.515, 222.735)
+
+[node name="Mesh" type="MeshInstance3D" parent="MainBleacherRamp/Tread16"]
+mesh = SubResource("s44")
+
+[node name="Tread17" type="Node3D" parent="MainBleacherRamp"]
+position = Vector3(156.3, -7.365, 223.325)
+
+[node name="Mesh" type="MeshInstance3D" parent="MainBleacherRamp/Tread17"]
+mesh = SubResource("s45")
+
+[node name="Tread18" type="Node3D" parent="MainBleacherRamp"]
+position = Vector3(156.3, -7.215, 223.915)
+
+[node name="Mesh" type="MeshInstance3D" parent="MainBleacherRamp/Tread18"]
+mesh = SubResource("s46")
+
+[node name="Tread19" type="Node3D" parent="MainBleacherRamp"]
+position = Vector3(156.3, -7.065, 224.505)
+
+[node name="Mesh" type="MeshInstance3D" parent="MainBleacherRamp/Tread19"]
+mesh = SubResource("s47")
+
+[node name="SecondaryBleachers" type="Node3D" parent="."]
+
+
+[node name="Tier0" type="StaticBody3D" parent="SecondaryBleachers"]
+position = Vector3(198.0, -9.69, 108.0)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="SecondaryBleachers/Tier0"]
+shape = SubResource("s48")
+
+[node name="Mesh" type="MeshInstance3D" parent="SecondaryBleachers/Tier0"]
+mesh = SubResource("s49")
+
+[node name="Tier1" type="StaticBody3D" parent="SecondaryBleachers"]
+position = Vector3(198.0, -9.39, 109.2)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="SecondaryBleachers/Tier1"]
+shape = SubResource("s50")
+
+[node name="Mesh" type="MeshInstance3D" parent="SecondaryBleachers/Tier1"]
+mesh = SubResource("s51")
+
+[node name="Tier2" type="StaticBody3D" parent="SecondaryBleachers"]
+position = Vector3(198.0, -9.09, 110.4)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="SecondaryBleachers/Tier2"]
+shape = SubResource("s52")
+
+[node name="Mesh" type="MeshInstance3D" parent="SecondaryBleachers/Tier2"]
+mesh = SubResource("s53")
+
+[node name="Tier3" type="StaticBody3D" parent="SecondaryBleachers"]
+position = Vector3(198.0, -8.79, 111.6)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="SecondaryBleachers/Tier3"]
+shape = SubResource("s54")
+
+[node name="Mesh" type="MeshInstance3D" parent="SecondaryBleachers/Tier3"]
+mesh = SubResource("s55")
+
+[node name="SecondaryBleacherRamp" type="StaticBody3D" parent="."]
+collision_layer = 1
+collision_mask = 0
+metadata/surface = &"tile"
+
+[node name="Collision" type="CollisionShape3D" parent="SecondaryBleacherRamp"]
+shape = SubResource("s56")
+
+[node name="Tread00" type="Node3D" parent="SecondaryBleacherRamp"]
+position = Vector3(166.3, -9.915, 107.2875)
+
+[node name="Mesh" type="MeshInstance3D" parent="SecondaryBleacherRamp/Tread00"]
+mesh = SubResource("s57")
+
+[node name="Tread01" type="Node3D" parent="SecondaryBleacherRamp"]
+position = Vector3(166.3, -9.765, 107.8625)
+
+[node name="Mesh" type="MeshInstance3D" parent="SecondaryBleacherRamp/Tread01"]
+mesh = SubResource("s58")
+
+[node name="Tread02" type="Node3D" parent="SecondaryBleacherRamp"]
+position = Vector3(166.3, -9.615, 108.4375)
+
+[node name="Mesh" type="MeshInstance3D" parent="SecondaryBleacherRamp/Tread02"]
+mesh = SubResource("s59")
+
+[node name="Tread03" type="Node3D" parent="SecondaryBleacherRamp"]
+position = Vector3(166.3, -9.465, 109.0125)
+
+[node name="Mesh" type="MeshInstance3D" parent="SecondaryBleacherRamp/Tread03"]
+mesh = SubResource("s60")
+
+[node name="Tread04" type="Node3D" parent="SecondaryBleacherRamp"]
+position = Vector3(166.3, -9.315, 109.5875)
+
+[node name="Mesh" type="MeshInstance3D" parent="SecondaryBleacherRamp/Tread04"]
+mesh = SubResource("s61")
+
+[node name="Tread05" type="Node3D" parent="SecondaryBleacherRamp"]
+position = Vector3(166.3, -9.165, 110.1625)
+
+[node name="Mesh" type="MeshInstance3D" parent="SecondaryBleacherRamp/Tread05"]
+mesh = SubResource("s62")
+
+[node name="Tread06" type="Node3D" parent="SecondaryBleacherRamp"]
+position = Vector3(166.3, -9.015, 110.7375)
+
+[node name="Mesh" type="MeshInstance3D" parent="SecondaryBleacherRamp/Tread06"]
+mesh = SubResource("s63")
+
+[node name="Tread07" type="Node3D" parent="SecondaryBleacherRamp"]
+position = Vector3(166.3, -8.865, 111.3125)
+
+[node name="Mesh" type="MeshInstance3D" parent="SecondaryBleacherRamp/Tread07"]
+mesh = SubResource("s64")
+
+[node name="GatePostW-4" type="StaticBody3D" parent="."]
+position = Vector3(110, -8.1, 162)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="GatePostW-4"]
+shape = SubResource("s65")
+
+[node name="Mesh" type="MeshInstance3D" parent="GatePostW-4"]
+mesh = SubResource("s67")
+
+[node name="GatePostW4" type="StaticBody3D" parent="."]
+position = Vector3(110, -8.1, 170)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="GatePostW4"]
+shape = SubResource("s68")
+
+[node name="Mesh" type="MeshInstance3D" parent="GatePostW4"]
+mesh = SubResource("s69")
+
+[node name="GatePostE-4" type="StaticBody3D" parent="."]
+position = Vector3(286, -8.1, 162)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="GatePostE-4"]
+shape = SubResource("s70")
+
+[node name="Mesh" type="MeshInstance3D" parent="GatePostE-4"]
+mesh = SubResource("s71")
+
+[node name="GatePostE4" type="StaticBody3D" parent="."]
+position = Vector3(286, -8.1, 170)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="GatePostE4"]
+shape = SubResource("s72")
+
+[node name="Mesh" type="MeshInstance3D" parent="GatePostE4"]
+mesh = SubResource("s73")
+
+[node name="GatePostS-4" type="StaticBody3D" parent="."]
+position = Vector3(194, -8.1, 120)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="GatePostS-4"]
+shape = SubResource("s74")
+
+[node name="Mesh" type="MeshInstance3D" parent="GatePostS-4"]
+mesh = SubResource("s75")
+
+[node name="GatePostS4" type="StaticBody3D" parent="."]
+position = Vector3(202, -8.1, 120)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="GatePostS4"]
+shape = SubResource("s76")
+
+[node name="Mesh" type="MeshInstance3D" parent="GatePostS4"]
+mesh = SubResource("s77")
+
+[node name="GatePostN-4" type="StaticBody3D" parent="."]
+position = Vector3(194, -8.1, 212)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="GatePostN-4"]
+shape = SubResource("s78")
+
+[node name="Mesh" type="MeshInstance3D" parent="GatePostN-4"]
+mesh = SubResource("s79")
+
+[node name="GatePostN4" type="StaticBody3D" parent="."]
+position = Vector3(202, -8.1, 212)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="GatePostN4"]
+shape = SubResource("s80")
+
+[node name="Mesh" type="MeshInstance3D" parent="GatePostN4"]
+mesh = SubResource("s81")
+
+[node name="Floodlights" type="Node3D" parent="."]
+visible = false
+
+[node name="Pole0" type="StaticBody3D" parent="."]
+position = Vector3(112, -0.9, 122)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Pole0"]
+shape = SubResource("s82")
+
+[node name="Mesh" type="MeshInstance3D" parent="Pole0"]
+mesh = SubResource("s83")
+
+[node name="Light0" type="OmniLight3D" parent="Floodlights"]
+position = Vector3(112, 5.1, 122)
+light_energy = 6.0
+omni_range = 80.0
+shadow_enabled = false
+light_color = Color(0.78,0.83,0.72,1)
+
+[node name="Pole1" type="StaticBody3D" parent="."]
+position = Vector3(284, -0.9, 122)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Pole1"]
+shape = SubResource("s84")
+
+[node name="Mesh" type="MeshInstance3D" parent="Pole1"]
+mesh = SubResource("s85")
+
+[node name="Light1" type="OmniLight3D" parent="Floodlights"]
+position = Vector3(284, 5.1, 122)
+light_energy = 6.0
+omni_range = 80.0
+shadow_enabled = false
+light_color = Color(0.78,0.83,0.72,1)
+
+[node name="Pole2" type="StaticBody3D" parent="."]
+position = Vector3(112, -0.9, 210)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Pole2"]
+shape = SubResource("s86")
+
+[node name="Mesh" type="MeshInstance3D" parent="Pole2"]
+mesh = SubResource("s87")
+
+[node name="Light2" type="OmniLight3D" parent="Floodlights"]
+position = Vector3(112, 5.1, 210)
+light_energy = 6.0
+omni_range = 80.0
+shadow_enabled = false
+light_color = Color(0.78,0.83,0.72,1)
+
+[node name="Pole3" type="StaticBody3D" parent="."]
+position = Vector3(284, -0.9, 210)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Pole3"]
+shape = SubResource("s88")
+
+[node name="Mesh" type="MeshInstance3D" parent="Pole3"]
+mesh = SubResource("s89")
+
+[node name="Light3" type="OmniLight3D" parent="Floodlights"]
+position = Vector3(284, 5.1, 210)
+light_energy = 6.0
+omni_range = 80.0
+shadow_enabled = false
+light_color = Color(0.78,0.83,0.72,1)
