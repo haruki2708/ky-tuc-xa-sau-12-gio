@@ -1,6 +1,6 @@
 # Chương 2 "Trò chơi" (6:00–8:00): thiết kế để duyệt
 
-> **Bản nháp chờ chủ dự án duyệt** (2026-10-05). Đã chốt 4 điểm (D-046). Bổ sung cho `STORY.md` §6. Chuẩn chương 1 bản 2 áp dụng mặc định: nhiều nhiệm vụ, **chỉ một độ khó Insane** (D-039), **cắt thời gian trống** khi xong nhiệm vụ (D-040), **không giải thích luật** (D-038), **có cảnh chết** (D-042). Các mục **[cần chốt]** ở cuối. Con số là giá trị khởi đầu, chỉnh sau chơi thử.
+> **Bản nháp chờ chủ dự án duyệt** (2026-10-05). Đã chốt 4 điểm (D-046). Bổ sung cho `STORY.md` §6. Chuẩn chương 1 bản 2 áp dụng mặc định: nhiều nhiệm vụ, **chỉ một độ khó Insane** (D-039), **cắt thời gian trống** khi xong nhiệm vụ (D-040), **không giải thích luật** (D-038), **có cảnh chết** (D-042). Các điểm đã chốt ghi ở cuối. Con số là giá trị khởi đầu, chỉnh sau chơi thử.
 
 ## Tóm tắt
 - **Vòng 3 (6:00–7:00), nối từ:** ba xác bạn cùng phòng ngồi dậy, chơi nối từ tiếng Việt với Trung. Lời giải: bịt miệng cả ba xác bằng giẻ, rồi lặp vòng từ Minh Nhật đưa tới hết giờ. Hết vòng: còn **5** người.
