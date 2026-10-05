@@ -1,6 +1,6 @@
 # Chương 3 "Truy sát" (8:00–8:30): thiết kế để duyệt
 
-> **Bản nháp chờ chủ dự án duyệt** (2026-10-06). Đã chốt 4 điểm (D-052). Bổ sung cho `STORY.md` §7.
+> **Tạm duyệt (D-053, 2026-10-06)**, góp ý sau khi chơi thử bản ghép. Đã chốt 4 điểm (D-052). Bổ sung cho `STORY.md` §7.
 >
 > Chuẩn của chương 1 và 2 áp dụng mặc định:
 > - chỉ một độ khó **Insane** (D-039);
@@ -22,6 +22,42 @@
   - làm kỹ: nhà B từ tầng 4 xuống tầng 1, vườn hoa, sân vận động;
   - làm nhỏ: cổng trường và nhà ăn.
 - **Cài sẵn manh mối động đất** cho twist của chương 4, không ai nói ra: vết nứt, đồng hồ dừng lúc 4:00, đồ đổ, tiếng còi cứu hộ rất nhỏ.
+
+## Quy mô map [Claude đề xuất]
+Tính theo kích thước đã có: hành lang tầng 4 dài **44 m**, rộng 2,4 m, hành lang ngoài có lan can; mỗi tầng cao **3,3 m**; phòng 407 khoảng 8 × 7 m. Người chơi đi bộ **2,2 m/s**, chạy **3,6 m/s**. Xác đề xuất đi **khoảng 1,5 m/s**.
+
+```
+                        (sương mù, tường rào, cây)
+   ┌───────────── SÂN VẬN ĐỘNG ~90 × 55 m ─────────────┐
+   │  đường chạy vòng ~220 m (1 vòng chạy ≈ 60 giây)   │
+   │  khán đài 1 bên: dài 40 m, 6 bậc                  │
+   └─────────────┬─────────────────────────────────────┘
+                 │ lối đi ~70 m
+   NHÀ A (chỉ mặt tiền, 6 tầng)
+   ┌─────────────────────────────┐
+   └─────────────────────────────┘        NHÀ ĂN ~24 × 16 m
+        VƯỜN HOA ~44 × 25 m                + bếp 8 × 6 m
+   ┌─────────────────────────────┐        + kho 6 × 4 m
+   │ NHÀ B 44 × 10 m, tầng 1–4   │              │ ~60 m
+   │ chơi được; tầng 5–6 vỏ      │              │
+   └─────────────────────────────┘     CỔNG TRƯỜNG: sân ~30 × 20 m,
+        đường nội bộ ~100 m ─────────► cổng rộng 12 m, chốt bảo vệ,
+                                       8 bảo vệ đứng hàng
+```
+
+| Khu | Kích thước | Chơi được những gì | Làm mới hay dùng lại |
+|---|---|---|---|
+| **Nhà B** | 44 × 10 m, tầng 1–4 (cao 13,2 m) | Hành lang 4 tầng; cầu thang chính (một đầu) và cầu thang thoát hiểm (đầu kia); phòng 407; phòng 203; sảnh và phòng quản lý ở tầng 1. Các phòng khác đóng cửa (chỉ là cửa và lối xác tràn ra) | Tầng 4 dùng lại; tầng 3, 2, 1 nhân bản từ kit tầng 4 rồi sửa (sập, nứt, sảnh). Tầng 5–6 chỉ là vỏ ngoài |
+| **Vườn hoa** | 44 × 25 m, giữa nhà B và nhà A | Lối lát gạch, 6–8 bồn hoa, ghế đá, cây thấp, đèn vườn | Mới. Nhà A chỉ có mặt tiền, không vào được |
+| **Sân vận động** | ~90 × 55 m (nhỏ hơn sân thật 400 m, cho vừa mức PS1 và số xác) | Đường chạy vòng, sân cỏ, khán đài 6 bậc, 3 cổng xác tràn vào, cột đèn | Mới |
+| **Cổng trường** | Sân trước cổng 30 × 20 m | Cổng sắt, chốt bảo vệ, hàng bảo vệ, cột cổng nghiêng | Mới, nhỏ |
+| **Nhà ăn** | Sảnh 24 × 16 m, bếp, kho | Bàn ghế đổ, quầy, tivi, đồng hồ, cửa kho để thoát | Mới, nhỏ |
+| **Đường nối** | Tổng khoảng 250 m đường nội bộ | Chạy giữa các khu, xác lác đác | Mới; hai bên là cây, tường rào |
+
+- **Toàn bộ khuôn viên chơi được** khoảng **250 × 150 m**, bao bởi tường rào và cây. **Sương mù** che các tòa xa (giảng đường, thư viện, nhà thi đấu), những tòa này chỉ là khối mờ, để chương 4 làm tiếp. Sương mù cũng giữ FPS.
+- **Ước lượng thời gian di chuyển** (chạy liên tục): nhà B ra vườn hoa khoảng 10 giây; vườn hoa tới sân vận động khoảng 25 giây; sân vận động tới cổng khoảng 30 giây; cổng tới nhà ăn khoảng 20 giây. Phần lớn thời gian chương nằm ở việc né xác, tìm đồ, đợt xác, chứ không ở quãng đường.
+- **So với chương 1–2:** chương 1–2 chỉ là tầng 4 (khoảng 44 × 15 m). Chương 3 rộng hơn khoảng **30 lần** về diện tích, nhưng phần lớn là ngoài trời trống (dựng nhanh hơn trong nhà). Phần trong nhà mới chủ yếu là 3 tầng nhân bản từ kit tầng 4.
+- **Cách làm để kịp hạn:** lane B dựng **greybox cả khuôn viên trước** (khối hộp đúng kích thước, chơi thử được), rồi mới thay mô hình thật theo thứ tự nhà B → vườn hoa → sân vận động → cổng → nhà ăn.
 
 ## Mở đầu (8:00)
 - Loa: "Quy tắc vòng bốn kết thúc. Số người sống sót hiện tại: 3 người." Rồi đọc **luật vòng 5** (viết lại, không chép nguyên văn video):
