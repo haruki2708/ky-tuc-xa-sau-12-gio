@@ -1,5 +1,7 @@
 # Prompt bàn giao — Lane B (Môi trường và 3D)
 
+> **Lane B đang rảnh (2026-10-05):** T-162 đã merge; T-165 do Claude làm thay theo yêu cầu chủ dự án. **Không chạy prompt T-165 bên dưới.** Chưa có task mới.
+
 
 ## 1. Prompt giao task (dán nguyên khối)
 ```

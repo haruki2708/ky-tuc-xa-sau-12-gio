@@ -160,6 +160,7 @@ var _tap_listening: bool = false
 var _form_pieces: Dictionary[StringName, bool] = {}
 var _death_scene_started: bool = false
 var _death_animation_done: bool = false
+var _cctv_nav_map: RID
 var _manager_moved: bool = false
 var _cctv_set: Node3D
 var _overlay: ColorRect
@@ -1479,6 +1480,12 @@ class CctvFeed extends SubViewport:
 	var label_key: String
 
 
+func _exit_tree() -> void:
+	if _cctv_nav_map.is_valid():
+		NavigationServer3D.free_rid(_cctv_nav_map)
+		_cctv_nav_map = RID()
+
+
 func _build_cctv() -> void:
 	if not ResourceLoader.exists(CCTV_SET_SCENE):
 		return
@@ -1550,12 +1557,19 @@ func _cctv_scene(camera_id: StringName, victim_pose: StringName) -> void:
 	manager.set("look_target", victim)
 	manager.set("audio_rig", Node3D.new())
 	room.add_child(manager)
+	# The world's navmesh is room 407's: on camera he walks straight instead.
+	var agent := manager.get_node_or_null("NavigationAgent3D") as NavigationAgent3D
+	if agent != null:
+		if not _cctv_nav_map.is_valid():
+			_cctv_nav_map = NavigationServer3D.map_create()
+		agent.set_navigation_map(_cctv_nav_map)
 	var door := room.find_child("Door", true, false) as Node3D
 	var spot := room.find_child("ManagerSpot", true, false) as Node3D
 	if door != null:
 		manager.global_position = door.global_position
 	if spot != null and manager.has_method("walk_to"):
-		manager.walk_to(spot.global_position)
+		# Straight in: without a via the actor falls back to its floor-4 route.
+		manager.walk_to(spot.global_position, PackedVector3Array([spot.global_position]))
 
 
 func _cctv_kill(camera_id: StringName) -> void:

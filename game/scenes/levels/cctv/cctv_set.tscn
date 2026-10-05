@@ -1,0 +1,1442 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://assets/models/kit/bunk_bed.glb" id="e1"]
+[ext_resource type="PackedScene" path="res://assets/models/kit/mosquito_net_closed.glb" id="e2"]
+[ext_resource type="PackedScene" path="res://assets/models/kit/mosquito_net_open.glb" id="e3"]
+[ext_resource type="PackedScene" path="res://assets/models/kit/locker.glb" id="e4"]
+[ext_resource type="PackedScene" path="res://assets/models/props/desk.glb" id="e5"]
+[ext_resource type="PackedScene" path="res://assets/models/kit/plastic_stool.glb" id="e6"]
+[ext_resource type="PackedScene" path="res://assets/models/kit/ceiling_fan.glb" id="e7"]
+[ext_resource type="PackedScene" path="res://assets/models/props/shirt.glb" id="e8"]
+[ext_resource type="PackedScene" path="res://assets/models/props/slippers_pair.glb" id="e9"]
+[ext_resource type="PackedScene" path="res://scenes/levels/cctv/student_hung.tscn" id="e10"]
+[ext_resource type="PackedScene" path="res://assets/models/props/towel.glb" id="e11"]
+[ext_resource type="PackedScene" path="res://assets/models/props/bucket.glb" id="e12"]
+[ext_resource type="PackedScene" path="res://assets/models/props/desk_items.glb" id="e13"]
+[ext_resource type="PackedScene" path="res://scenes/levels/cctv/student_kiet.tscn" id="e14"]
+[ext_resource type="PackedScene" path="res://scenes/levels/cctv/student_bao.tscn" id="e15"]
+[ext_resource type="PackedScene" path="res://assets/models/props/desk_lamp.glb" id="e16"]
+[ext_resource type="PackedScene" path="res://scenes/levels/cctv/student_dang.tscn" id="e17"]
+[ext_resource type="PackedScene" path="res://assets/models/kit/door.glb" id="e18"]
+
+[sub_resource type="BoxShape3D" id="s1"]
+size = Vector3(4, 0.2, 5)
+
+[sub_resource type="StandardMaterial3D" id="s2"]
+albedo_color = Color(0.34, 0.38, 0.36, 1)
+roughness = 0.85
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="s3"]
+size = Vector3(4, 0.2, 5)
+material = SubResource("s2")
+
+[sub_resource type="BoxShape3D" id="s4"]
+size = Vector3(2.2, 0.2, 2.0)
+
+[sub_resource type="BoxMesh" id="s5"]
+size = Vector3(2.2, 0.2, 2.0)
+material = SubResource("s2")
+
+[sub_resource type="BoxShape3D" id="s6"]
+size = Vector3(0.2, 3, 5)
+
+[sub_resource type="StandardMaterial3D" id="s7"]
+albedo_color = Color(0.47, 0.49, 0.4, 1)
+roughness = 0.85
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="s8"]
+size = Vector3(0.2, 3, 5)
+material = SubResource("s7")
+
+[sub_resource type="BoxShape3D" id="s9"]
+size = Vector3(0.2, 3, 5)
+
+[sub_resource type="BoxMesh" id="s10"]
+size = Vector3(0.2, 3, 5)
+material = SubResource("s7")
+
+[sub_resource type="BoxShape3D" id="s11"]
+size = Vector3(4, 3, 0.2)
+
+[sub_resource type="BoxMesh" id="s12"]
+size = Vector3(4, 3, 0.2)
+material = SubResource("s7")
+
+[sub_resource type="BoxShape3D" id="s13"]
+size = Vector3(2.0, 3, 0.2)
+
+[sub_resource type="BoxMesh" id="s14"]
+size = Vector3(2.0, 3, 0.2)
+material = SubResource("s7")
+
+[sub_resource type="BoxShape3D" id="s15"]
+size = Vector3(1.1, 3, 0.2)
+
+[sub_resource type="BoxMesh" id="s16"]
+size = Vector3(1.1, 3, 0.2)
+material = SubResource("s7")
+
+[sub_resource type="BoxShape3D" id="s17"]
+size = Vector3(0.9, 0.8, 0.2)
+
+[sub_resource type="BoxMesh" id="s18"]
+size = Vector3(0.9, 0.8, 0.2)
+material = SubResource("s7")
+
+[sub_resource type="BoxShape3D" id="s19"]
+size = Vector3(4, 0.15, 5)
+
+[sub_resource type="BoxMesh" id="s20"]
+size = Vector3(4, 0.15, 5)
+material = SubResource("s7")
+
+[sub_resource type="StandardMaterial3D" id="s21"]
+albedo_color = Color(0.12, 0.25, 0.33, 1)
+roughness = 0.85
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="s22"]
+size = Vector3(0.02, 0.6, 0.45)
+material = SubResource("s21")
+
+[sub_resource type="BoxShape3D" id="s23"]
+size = Vector3(4, 0.2, 5)
+
+[sub_resource type="BoxMesh" id="s24"]
+size = Vector3(4, 0.2, 5)
+material = SubResource("s2")
+
+[sub_resource type="BoxShape3D" id="s25"]
+size = Vector3(2.2, 0.2, 2.0)
+
+[sub_resource type="BoxMesh" id="s26"]
+size = Vector3(2.2, 0.2, 2.0)
+material = SubResource("s2")
+
+[sub_resource type="BoxShape3D" id="s27"]
+size = Vector3(0.2, 3, 5)
+
+[sub_resource type="BoxMesh" id="s28"]
+size = Vector3(0.2, 3, 5)
+material = SubResource("s7")
+
+[sub_resource type="BoxShape3D" id="s29"]
+size = Vector3(0.2, 3, 5)
+
+[sub_resource type="BoxMesh" id="s30"]
+size = Vector3(0.2, 3, 5)
+material = SubResource("s7")
+
+[sub_resource type="BoxShape3D" id="s31"]
+size = Vector3(4, 3, 0.2)
+
+[sub_resource type="BoxMesh" id="s32"]
+size = Vector3(4, 3, 0.2)
+material = SubResource("s7")
+
+[sub_resource type="BoxShape3D" id="s33"]
+size = Vector3(2.0, 3, 0.2)
+
+[sub_resource type="BoxMesh" id="s34"]
+size = Vector3(2.0, 3, 0.2)
+material = SubResource("s7")
+
+[sub_resource type="BoxShape3D" id="s35"]
+size = Vector3(1.1, 3, 0.2)
+
+[sub_resource type="BoxMesh" id="s36"]
+size = Vector3(1.1, 3, 0.2)
+material = SubResource("s7")
+
+[sub_resource type="BoxShape3D" id="s37"]
+size = Vector3(0.9, 0.8, 0.2)
+
+[sub_resource type="BoxMesh" id="s38"]
+size = Vector3(0.9, 0.8, 0.2)
+material = SubResource("s7")
+
+[sub_resource type="BoxShape3D" id="s39"]
+size = Vector3(4, 0.15, 5)
+
+[sub_resource type="BoxMesh" id="s40"]
+size = Vector3(4, 0.15, 5)
+material = SubResource("s7")
+
+[sub_resource type="BoxShape3D" id="s41"]
+size = Vector3(4, 0.2, 5)
+
+[sub_resource type="BoxMesh" id="s42"]
+size = Vector3(4, 0.2, 5)
+material = SubResource("s2")
+
+[sub_resource type="BoxShape3D" id="s43"]
+size = Vector3(2.2, 0.2, 2.0)
+
+[sub_resource type="BoxMesh" id="s44"]
+size = Vector3(2.2, 0.2, 2.0)
+material = SubResource("s2")
+
+[sub_resource type="BoxShape3D" id="s45"]
+size = Vector3(0.2, 3, 5)
+
+[sub_resource type="BoxMesh" id="s46"]
+size = Vector3(0.2, 3, 5)
+material = SubResource("s7")
+
+[sub_resource type="BoxShape3D" id="s47"]
+size = Vector3(0.2, 3, 5)
+
+[sub_resource type="BoxMesh" id="s48"]
+size = Vector3(0.2, 3, 5)
+material = SubResource("s7")
+
+[sub_resource type="BoxShape3D" id="s49"]
+size = Vector3(4, 3, 0.2)
+
+[sub_resource type="BoxMesh" id="s50"]
+size = Vector3(4, 3, 0.2)
+material = SubResource("s7")
+
+[sub_resource type="BoxShape3D" id="s51"]
+size = Vector3(2.0, 3, 0.2)
+
+[sub_resource type="BoxMesh" id="s52"]
+size = Vector3(2.0, 3, 0.2)
+material = SubResource("s7")
+
+[sub_resource type="BoxShape3D" id="s53"]
+size = Vector3(1.1, 3, 0.2)
+
+[sub_resource type="BoxMesh" id="s54"]
+size = Vector3(1.1, 3, 0.2)
+material = SubResource("s7")
+
+[sub_resource type="BoxShape3D" id="s55"]
+size = Vector3(0.9, 0.8, 0.2)
+
+[sub_resource type="BoxMesh" id="s56"]
+size = Vector3(0.9, 0.8, 0.2)
+material = SubResource("s7")
+
+[sub_resource type="BoxShape3D" id="s57"]
+size = Vector3(4, 0.15, 5)
+
+[sub_resource type="BoxMesh" id="s58"]
+size = Vector3(4, 0.15, 5)
+material = SubResource("s7")
+
+[sub_resource type="StandardMaterial3D" id="s59"]
+albedo_color = Color(0.29, 0.37, 0.42, 1)
+roughness = 0.85
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="s60"]
+size = Vector3(0.07, 0.08, 0.22)
+material = SubResource("s59")
+
+[sub_resource type="StandardMaterial3D" id="s61"]
+albedo_color = Color(0.73, 0.71, 0.56, 1)
+roughness = 0.85
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="s62"]
+size = Vector3(0.07, 0.12, 0.22)
+material = SubResource("s61")
+
+[sub_resource type="BoxMesh" id="s63"]
+size = Vector3(0.07, 0.08, 0.22)
+material = SubResource("s59")
+
+[sub_resource type="BoxMesh" id="s64"]
+size = Vector3(0.07, 0.12, 0.22)
+material = SubResource("s61")
+
+[sub_resource type="BoxMesh" id="s65"]
+size = Vector3(0.5, 0.12, 0.35)
+material = SubResource("s59")
+
+[sub_resource type="BoxShape3D" id="s66"]
+size = Vector3(4, 0.2, 5)
+
+[sub_resource type="BoxMesh" id="s67"]
+size = Vector3(4, 0.2, 5)
+material = SubResource("s2")
+
+[sub_resource type="BoxShape3D" id="s68"]
+size = Vector3(2.2, 0.2, 2.0)
+
+[sub_resource type="BoxMesh" id="s69"]
+size = Vector3(2.2, 0.2, 2.0)
+material = SubResource("s2")
+
+[sub_resource type="BoxShape3D" id="s70"]
+size = Vector3(0.2, 3, 5)
+
+[sub_resource type="BoxMesh" id="s71"]
+size = Vector3(0.2, 3, 5)
+material = SubResource("s7")
+
+[sub_resource type="BoxShape3D" id="s72"]
+size = Vector3(0.2, 3, 5)
+
+[sub_resource type="BoxMesh" id="s73"]
+size = Vector3(0.2, 3, 5)
+material = SubResource("s7")
+
+[sub_resource type="BoxShape3D" id="s74"]
+size = Vector3(4, 3, 0.2)
+
+[sub_resource type="BoxMesh" id="s75"]
+size = Vector3(4, 3, 0.2)
+material = SubResource("s7")
+
+[sub_resource type="BoxShape3D" id="s76"]
+size = Vector3(2.0, 3, 0.2)
+
+[sub_resource type="BoxMesh" id="s77"]
+size = Vector3(2.0, 3, 0.2)
+material = SubResource("s7")
+
+[sub_resource type="BoxShape3D" id="s78"]
+size = Vector3(1.1, 3, 0.2)
+
+[sub_resource type="BoxMesh" id="s79"]
+size = Vector3(1.1, 3, 0.2)
+material = SubResource("s7")
+
+[sub_resource type="BoxShape3D" id="s80"]
+size = Vector3(0.9, 0.8, 0.2)
+
+[sub_resource type="BoxMesh" id="s81"]
+size = Vector3(0.9, 0.8, 0.2)
+material = SubResource("s7")
+
+[sub_resource type="BoxShape3D" id="s82"]
+size = Vector3(4, 0.15, 5)
+
+[sub_resource type="BoxMesh" id="s83"]
+size = Vector3(4, 0.15, 5)
+material = SubResource("s7")
+
+[sub_resource type="BoxShape3D" id="s84"]
+size = Vector3(10, 0.2, 2.4)
+
+[sub_resource type="BoxMesh" id="s85"]
+size = Vector3(10, 0.2, 2.4)
+material = SubResource("s2")
+
+[sub_resource type="BoxShape3D" id="s86"]
+size = Vector3(10, 3, 0.2)
+
+[sub_resource type="BoxMesh" id="s87"]
+size = Vector3(10, 3, 0.2)
+material = SubResource("s7")
+
+[sub_resource type="BoxShape3D" id="s88"]
+size = Vector3(10, 3, 0.2)
+
+[sub_resource type="BoxMesh" id="s89"]
+size = Vector3(10, 3, 0.2)
+material = SubResource("s7")
+
+[sub_resource type="BoxShape3D" id="s90"]
+size = Vector3(10, 0.15, 2.4)
+
+[sub_resource type="BoxMesh" id="s91"]
+size = Vector3(10, 0.15, 2.4)
+material = SubResource("s7")
+
+[sub_resource type="BoxShape3D" id="s92"]
+size = Vector3(0.2, 3, 2.6)
+
+[sub_resource type="BoxMesh" id="s93"]
+size = Vector3(0.2, 3, 2.6)
+material = SubResource("s7")
+
+[sub_resource type="BoxShape3D" id="s94"]
+size = Vector3(0.2, 3, 2.6)
+
+[sub_resource type="BoxMesh" id="s95"]
+size = Vector3(0.2, 3, 2.6)
+material = SubResource("s7")
+
+[node name="CctvSet" type="Node3D"]
+
+position = Vector3(0, -60, 0)
+
+[node name="Room102" type="Node3D" parent="."]
+position = Vector3(0.0, 0, 0)
+
+[node name="Floor" type="StaticBody3D" parent="Room102"]
+position = Vector3(2, -0.1, -2.5)
+metadata/surface = &"tile"
+metadata/is_floor = true
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Room102/Floor"]
+shape = SubResource("s1")
+
+[node name="Mesh" type="MeshInstance3D" parent="Room102/Floor"]
+mesh = SubResource("s3")
+
+[node name="DoorStep" type="StaticBody3D" parent="Room102"]
+position = Vector3(2.45, -0.1, 1.0)
+metadata/surface = &"tile"
+metadata/is_floor = true
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Room102/DoorStep"]
+shape = SubResource("s4")
+
+[node name="Mesh" type="MeshInstance3D" parent="Room102/DoorStep"]
+mesh = SubResource("s5")
+
+[node name="WestWall" type="StaticBody3D" parent="Room102"]
+position = Vector3(0, 1.5, -2.5)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Room102/WestWall"]
+shape = SubResource("s6")
+
+[node name="Mesh" type="MeshInstance3D" parent="Room102/WestWall"]
+mesh = SubResource("s8")
+
+[node name="EastWall" type="StaticBody3D" parent="Room102"]
+position = Vector3(4, 1.5, -2.5)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Room102/EastWall"]
+shape = SubResource("s9")
+
+[node name="Mesh" type="MeshInstance3D" parent="Room102/EastWall"]
+mesh = SubResource("s10")
+
+[node name="BackWall" type="StaticBody3D" parent="Room102"]
+position = Vector3(2, 1.5, -5)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Room102/BackWall"]
+shape = SubResource("s11")
+
+[node name="Mesh" type="MeshInstance3D" parent="Room102/BackWall"]
+mesh = SubResource("s12")
+
+[node name="FrontWallLeft" type="StaticBody3D" parent="Room102"]
+position = Vector3(1.0, 1.5, 0)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Room102/FrontWallLeft"]
+shape = SubResource("s13")
+
+[node name="Mesh" type="MeshInstance3D" parent="Room102/FrontWallLeft"]
+mesh = SubResource("s14")
+
+[node name="FrontWallRight" type="StaticBody3D" parent="Room102"]
+position = Vector3(3.45, 1.5, 0)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Room102/FrontWallRight"]
+shape = SubResource("s15")
+
+[node name="Mesh" type="MeshInstance3D" parent="Room102/FrontWallRight"]
+mesh = SubResource("s16")
+
+[node name="DoorLintel" type="StaticBody3D" parent="Room102"]
+position = Vector3(2.45, 2.6, 0)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Room102/DoorLintel"]
+shape = SubResource("s17")
+
+[node name="Mesh" type="MeshInstance3D" parent="Room102/DoorLintel"]
+mesh = SubResource("s18")
+
+[node name="Ceiling" type="StaticBody3D" parent="Room102"]
+position = Vector3(2, 3.075, -2.5)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Room102/Ceiling"]
+shape = SubResource("s19")
+
+[node name="Mesh" type="MeshInstance3D" parent="Room102/Ceiling"]
+mesh = SubResource("s20")
+
+[node name="BunkA" parent="Room102" instance=ExtResource("e1")]
+position = Vector3(0.65, 0, -3)
+rotation_degrees = Vector3(0, 0, 0)
+scale = Vector3(1, 1, 1)
+
+[node name="NetLower" parent="Room102/BunkA" instance=ExtResource("e2")]
+position = Vector3(0, 0, 0)
+rotation_degrees = Vector3(0, 0, 0)
+scale = Vector3(1, 1, 1)
+
+[node name="NetUpper" parent="Room102/BunkA" instance=ExtResource("e3")]
+position = Vector3(0, 0.8800379, 0)
+rotation_degrees = Vector3(0, 0, 0)
+scale = Vector3(1, 0.7348485, 1)
+
+[node name="BunkB" parent="Room102" instance=ExtResource("e1")]
+position = Vector3(3.35, 0, -3)
+rotation_degrees = Vector3(0, 0, 0)
+scale = Vector3(1, 1, 1)
+
+[node name="NetLower" parent="Room102/BunkB" instance=ExtResource("e2")]
+position = Vector3(0, 0, 0)
+rotation_degrees = Vector3(0, 0, 0)
+scale = Vector3(1, 1, 1)
+
+[node name="NetUpper" parent="Room102/BunkB" instance=ExtResource("e2")]
+position = Vector3(0, 0.8800379, 0)
+rotation_degrees = Vector3(0, 0, 0)
+scale = Vector3(1, 0.7348485, 1)
+
+[node name="Locker1" parent="Room102" instance=ExtResource("e4")]
+position = Vector3(0.3, 0, -0.45)
+rotation_degrees = Vector3(0, -90, 0)
+scale = Vector3(1, 1, 1)
+
+[node name="Locker2" parent="Room102" instance=ExtResource("e4")]
+position = Vector3(0.3, 0, -1.25)
+rotation_degrees = Vector3(0, -90, 0)
+scale = Vector3(1, 1, 1)
+
+[node name="Locker3" parent="Room102" instance=ExtResource("e4")]
+position = Vector3(3.7, 0, -0.45)
+rotation_degrees = Vector3(0, 90, 0)
+scale = Vector3(1, 1, 1)
+
+[node name="Locker4" parent="Room102" instance=ExtResource("e4")]
+position = Vector3(3.7, 0, -1.25)
+rotation_degrees = Vector3(0, 90, 0)
+scale = Vector3(1, 1, 1)
+
+[node name="Desk" parent="Room102" instance=ExtResource("e5")]
+position = Vector3(1.8, 0, -4.55)
+rotation_degrees = Vector3(0, 180, 0)
+scale = Vector3(1, 0.95, 1)
+
+[node name="Stool" parent="Room102" instance=ExtResource("e6")]
+position = Vector3(2.95, 0, -4.5)
+rotation_degrees = Vector3(0, 0, 0)
+scale = Vector3(1, 1, 1)
+
+[node name="CeilingFan" parent="Room102" instance=ExtResource("e7")]
+position = Vector3(2, 2.28, -2.5)
+rotation_degrees = Vector3(0, 0, 0)
+scale = Vector3(1, 1, 1)
+
+[node name="NightLight" type="OmniLight3D" parent="Room102"]
+position = Vector3(1.5, 2.5, -2.6)
+light_color = Color(0.62, 0.7, 0.9, 1)
+light_energy = 1.1
+omni_range = 7.0
+shadow_enabled = false
+
+[node name="Shirt" parent="Room102" instance=ExtResource("e8")]
+position = Vector3(3.35, 1.25, -2.2)
+rotation_degrees = Vector3(0, 0, 0)
+scale = Vector3(1, 1, 1)
+
+[node name="Slippers" parent="Room102" instance=ExtResource("e9")]
+position = Vector3(1.4, 0, -3.4)
+rotation_degrees = Vector3(0, 30, 0)
+scale = Vector3(1, 1, 1)
+
+[node name="Poster" type="Node3D" parent="Room102"]
+position = Vector3(3.89, 1.7, -3.6)
+
+[node name="Mesh" type="MeshInstance3D" parent="Room102/Poster"]
+mesh = SubResource("s22")
+
+[node name="NumberInside" type="Label3D" parent="Room102"]
+position = Vector3(2.45, 2.42, -0.11)
+rotation_degrees = Vector3(0, 180, 0)
+text = "102"
+font_size = 48
+pixel_size = 0.004
+modulate = Color(0.85, 0.85, 0.78, 1)
+outline_size = 0
+shaded = true
+
+[node name="NumberOutside" type="Label3D" parent="Room102"]
+position = Vector3(2.45, 2.42, 0.11)
+rotation_degrees = Vector3(0, 0, 0)
+text = "102"
+font_size = 48
+pixel_size = 0.004
+modulate = Color(0.85, 0.85, 0.78, 1)
+outline_size = 0
+shaded = true
+
+[node name="Door" type="Marker3D" parent="Room102"]
+position = Vector3(2.45, 0.05, 1.2)
+
+[node name="ManagerSpot" type="Marker3D" parent="Room102"]
+position = Vector3(1.55, 0.05, -2.35)
+rotation_degrees = Vector3(0, -60, 0)
+
+[node name="VictimBed" type="Marker3D" parent="Room102"]
+position = Vector3(0.65, 1.2, -3)
+
+[node name="Victim" parent="Room102" instance=ExtResource("e10")]
+position = Vector3(0.65, 1.2, -3)
+
+[node name="Cam" type="Camera3D" parent="Room102"]
+position = Vector3(3.72, 2.78, -4.72)
+rotation_degrees = Vector3(-25.8447588, 143.0694398, 0)
+fov = 66.0
+far = 30.0
+
+[node name="Room306" type="Node3D" parent="."]
+position = Vector3(6.0, 0, 0)
+
+[node name="Floor" type="StaticBody3D" parent="Room306"]
+position = Vector3(2, -0.1, -2.5)
+metadata/surface = &"tile"
+metadata/is_floor = true
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Room306/Floor"]
+shape = SubResource("s23")
+
+[node name="Mesh" type="MeshInstance3D" parent="Room306/Floor"]
+mesh = SubResource("s24")
+
+[node name="DoorStep" type="StaticBody3D" parent="Room306"]
+position = Vector3(2.45, -0.1, 1.0)
+metadata/surface = &"tile"
+metadata/is_floor = true
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Room306/DoorStep"]
+shape = SubResource("s25")
+
+[node name="Mesh" type="MeshInstance3D" parent="Room306/DoorStep"]
+mesh = SubResource("s26")
+
+[node name="WestWall" type="StaticBody3D" parent="Room306"]
+position = Vector3(0, 1.5, -2.5)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Room306/WestWall"]
+shape = SubResource("s27")
+
+[node name="Mesh" type="MeshInstance3D" parent="Room306/WestWall"]
+mesh = SubResource("s28")
+
+[node name="EastWall" type="StaticBody3D" parent="Room306"]
+position = Vector3(4, 1.5, -2.5)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Room306/EastWall"]
+shape = SubResource("s29")
+
+[node name="Mesh" type="MeshInstance3D" parent="Room306/EastWall"]
+mesh = SubResource("s30")
+
+[node name="BackWall" type="StaticBody3D" parent="Room306"]
+position = Vector3(2, 1.5, -5)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Room306/BackWall"]
+shape = SubResource("s31")
+
+[node name="Mesh" type="MeshInstance3D" parent="Room306/BackWall"]
+mesh = SubResource("s32")
+
+[node name="FrontWallLeft" type="StaticBody3D" parent="Room306"]
+position = Vector3(1.0, 1.5, 0)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Room306/FrontWallLeft"]
+shape = SubResource("s33")
+
+[node name="Mesh" type="MeshInstance3D" parent="Room306/FrontWallLeft"]
+mesh = SubResource("s34")
+
+[node name="FrontWallRight" type="StaticBody3D" parent="Room306"]
+position = Vector3(3.45, 1.5, 0)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Room306/FrontWallRight"]
+shape = SubResource("s35")
+
+[node name="Mesh" type="MeshInstance3D" parent="Room306/FrontWallRight"]
+mesh = SubResource("s36")
+
+[node name="DoorLintel" type="StaticBody3D" parent="Room306"]
+position = Vector3(2.45, 2.6, 0)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Room306/DoorLintel"]
+shape = SubResource("s37")
+
+[node name="Mesh" type="MeshInstance3D" parent="Room306/DoorLintel"]
+mesh = SubResource("s38")
+
+[node name="Ceiling" type="StaticBody3D" parent="Room306"]
+position = Vector3(2, 3.075, -2.5)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Room306/Ceiling"]
+shape = SubResource("s39")
+
+[node name="Mesh" type="MeshInstance3D" parent="Room306/Ceiling"]
+mesh = SubResource("s40")
+
+[node name="BunkA" parent="Room306" instance=ExtResource("e1")]
+position = Vector3(0.65, 0, -3)
+rotation_degrees = Vector3(0, 0, 0)
+scale = Vector3(1, 1, 1)
+
+[node name="NetLower" parent="Room306/BunkA" instance=ExtResource("e2")]
+position = Vector3(0, 0, 0)
+rotation_degrees = Vector3(0, 0, 0)
+scale = Vector3(1, 1, 1)
+
+[node name="NetUpper" parent="Room306/BunkA" instance=ExtResource("e3")]
+position = Vector3(0, 0.8800379, 0)
+rotation_degrees = Vector3(0, 0, 0)
+scale = Vector3(1, 0.7348485, 1)
+
+[node name="BunkB" parent="Room306" instance=ExtResource("e1")]
+position = Vector3(3.35, 0, -3)
+rotation_degrees = Vector3(0, 0, 0)
+scale = Vector3(1, 1, 1)
+
+[node name="NetLower" parent="Room306/BunkB" instance=ExtResource("e2")]
+position = Vector3(0, 0, 0)
+rotation_degrees = Vector3(0, 0, 0)
+scale = Vector3(1, 1, 1)
+
+[node name="NetUpper" parent="Room306/BunkB" instance=ExtResource("e2")]
+position = Vector3(0, 0.8800379, 0)
+rotation_degrees = Vector3(0, 0, 0)
+scale = Vector3(1, 0.7348485, 1)
+
+[node name="Locker1" parent="Room306" instance=ExtResource("e4")]
+position = Vector3(0.3, 0, -0.45)
+rotation_degrees = Vector3(0, -90, 0)
+scale = Vector3(1, 1, 1)
+
+[node name="Locker2" parent="Room306" instance=ExtResource("e4")]
+position = Vector3(0.3, 0, -1.25)
+rotation_degrees = Vector3(0, -90, 0)
+scale = Vector3(1, 1, 1)
+
+[node name="Locker3" parent="Room306" instance=ExtResource("e4")]
+position = Vector3(3.7, 0, -0.45)
+rotation_degrees = Vector3(0, 90, 0)
+scale = Vector3(1, 1, 1)
+
+[node name="Locker4" parent="Room306" instance=ExtResource("e4")]
+position = Vector3(3.7, 0, -1.25)
+rotation_degrees = Vector3(0, 90, 0)
+scale = Vector3(1, 1, 1)
+
+[node name="Desk" parent="Room306" instance=ExtResource("e5")]
+position = Vector3(1.8, 0, -4.55)
+rotation_degrees = Vector3(0, 180, 0)
+scale = Vector3(1, 0.95, 1)
+
+[node name="Stool" parent="Room306" instance=ExtResource("e6")]
+position = Vector3(2.95, 0, -4.5)
+rotation_degrees = Vector3(0, 0, 0)
+scale = Vector3(1, 1, 1)
+
+[node name="CeilingFan" parent="Room306" instance=ExtResource("e7")]
+position = Vector3(2, 2.28, -2.5)
+rotation_degrees = Vector3(0, 0, 0)
+scale = Vector3(1, 1, 1)
+
+[node name="NightLight" type="OmniLight3D" parent="Room306"]
+position = Vector3(1.5, 2.5, -2.6)
+light_color = Color(0.62, 0.7, 0.9, 1)
+light_energy = 1.1
+omni_range = 7.0
+shadow_enabled = false
+
+[node name="Towel" parent="Room306" instance=ExtResource("e11")]
+position = Vector3(3.6, 1.6, -4.85)
+rotation_degrees = Vector3(0, 0, 0)
+scale = Vector3(1, 1, 1)
+
+[node name="Bucket" parent="Room306" instance=ExtResource("e12")]
+position = Vector3(3.4, 0, -4.4)
+rotation_degrees = Vector3(0, 0, 0)
+scale = Vector3(1, 1, 1)
+
+[node name="DeskItems" parent="Room306" instance=ExtResource("e13")]
+position = Vector3(1.8, 0.76, -4.5)
+rotation_degrees = Vector3(0, 180, 0)
+scale = Vector3(1, 1, 1)
+
+[node name="NumberInside" type="Label3D" parent="Room306"]
+position = Vector3(2.45, 2.42, -0.11)
+rotation_degrees = Vector3(0, 180, 0)
+text = "306"
+font_size = 48
+pixel_size = 0.004
+modulate = Color(0.85, 0.85, 0.78, 1)
+outline_size = 0
+shaded = true
+
+[node name="NumberOutside" type="Label3D" parent="Room306"]
+position = Vector3(2.45, 2.42, 0.11)
+rotation_degrees = Vector3(0, 0, 0)
+text = "306"
+font_size = 48
+pixel_size = 0.004
+modulate = Color(0.85, 0.85, 0.78, 1)
+outline_size = 0
+shaded = true
+
+[node name="Door" type="Marker3D" parent="Room306"]
+position = Vector3(2.45, 0.05, 1.2)
+
+[node name="ManagerSpot" type="Marker3D" parent="Room306"]
+position = Vector3(1.55, 0.05, -2.35)
+rotation_degrees = Vector3(0, -60, 0)
+
+[node name="VictimBed" type="Marker3D" parent="Room306"]
+position = Vector3(0.65, 1.2, -3)
+
+[node name="Victim" parent="Room306" instance=ExtResource("e14")]
+position = Vector3(0.65, 1.2, -3)
+
+[node name="Cam" type="Camera3D" parent="Room306"]
+position = Vector3(3.72, 2.78, -4.72)
+rotation_degrees = Vector3(-25.8447588, 143.0694398, 0)
+fov = 66.0
+far = 30.0
+
+[node name="Room209" type="Node3D" parent="."]
+position = Vector3(12.0, 0, 0)
+
+[node name="Floor" type="StaticBody3D" parent="Room209"]
+position = Vector3(2, -0.1, -2.5)
+metadata/surface = &"tile"
+metadata/is_floor = true
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Room209/Floor"]
+shape = SubResource("s41")
+
+[node name="Mesh" type="MeshInstance3D" parent="Room209/Floor"]
+mesh = SubResource("s42")
+
+[node name="DoorStep" type="StaticBody3D" parent="Room209"]
+position = Vector3(2.45, -0.1, 1.0)
+metadata/surface = &"tile"
+metadata/is_floor = true
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Room209/DoorStep"]
+shape = SubResource("s43")
+
+[node name="Mesh" type="MeshInstance3D" parent="Room209/DoorStep"]
+mesh = SubResource("s44")
+
+[node name="WestWall" type="StaticBody3D" parent="Room209"]
+position = Vector3(0, 1.5, -2.5)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Room209/WestWall"]
+shape = SubResource("s45")
+
+[node name="Mesh" type="MeshInstance3D" parent="Room209/WestWall"]
+mesh = SubResource("s46")
+
+[node name="EastWall" type="StaticBody3D" parent="Room209"]
+position = Vector3(4, 1.5, -2.5)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Room209/EastWall"]
+shape = SubResource("s47")
+
+[node name="Mesh" type="MeshInstance3D" parent="Room209/EastWall"]
+mesh = SubResource("s48")
+
+[node name="BackWall" type="StaticBody3D" parent="Room209"]
+position = Vector3(2, 1.5, -5)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Room209/BackWall"]
+shape = SubResource("s49")
+
+[node name="Mesh" type="MeshInstance3D" parent="Room209/BackWall"]
+mesh = SubResource("s50")
+
+[node name="FrontWallLeft" type="StaticBody3D" parent="Room209"]
+position = Vector3(1.0, 1.5, 0)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Room209/FrontWallLeft"]
+shape = SubResource("s51")
+
+[node name="Mesh" type="MeshInstance3D" parent="Room209/FrontWallLeft"]
+mesh = SubResource("s52")
+
+[node name="FrontWallRight" type="StaticBody3D" parent="Room209"]
+position = Vector3(3.45, 1.5, 0)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Room209/FrontWallRight"]
+shape = SubResource("s53")
+
+[node name="Mesh" type="MeshInstance3D" parent="Room209/FrontWallRight"]
+mesh = SubResource("s54")
+
+[node name="DoorLintel" type="StaticBody3D" parent="Room209"]
+position = Vector3(2.45, 2.6, 0)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Room209/DoorLintel"]
+shape = SubResource("s55")
+
+[node name="Mesh" type="MeshInstance3D" parent="Room209/DoorLintel"]
+mesh = SubResource("s56")
+
+[node name="Ceiling" type="StaticBody3D" parent="Room209"]
+position = Vector3(2, 3.075, -2.5)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Room209/Ceiling"]
+shape = SubResource("s57")
+
+[node name="Mesh" type="MeshInstance3D" parent="Room209/Ceiling"]
+mesh = SubResource("s58")
+
+[node name="BunkA" parent="Room209" instance=ExtResource("e1")]
+position = Vector3(0.65, 0, -3)
+rotation_degrees = Vector3(0, 0, 0)
+scale = Vector3(1, 1, 1)
+
+[node name="NetLower" parent="Room209/BunkA" instance=ExtResource("e2")]
+position = Vector3(0, 0, 0)
+rotation_degrees = Vector3(0, 0, 0)
+scale = Vector3(1, 1, 1)
+
+[node name="NetUpper" parent="Room209/BunkA" instance=ExtResource("e3")]
+position = Vector3(0, 0.8800379, 0)
+rotation_degrees = Vector3(0, 0, 0)
+scale = Vector3(1, 0.7348485, 1)
+
+[node name="BunkB" parent="Room209" instance=ExtResource("e1")]
+position = Vector3(3.35, 0, -3)
+rotation_degrees = Vector3(0, 0, 0)
+scale = Vector3(1, 1, 1)
+
+[node name="NetLower" parent="Room209/BunkB" instance=ExtResource("e2")]
+position = Vector3(0, 0, 0)
+rotation_degrees = Vector3(0, 0, 0)
+scale = Vector3(1, 1, 1)
+
+[node name="NetUpper" parent="Room209/BunkB" instance=ExtResource("e2")]
+position = Vector3(0, 0.8800379, 0)
+rotation_degrees = Vector3(0, 0, 0)
+scale = Vector3(1, 0.7348485, 1)
+
+[node name="Locker1" parent="Room209" instance=ExtResource("e4")]
+position = Vector3(0.3, 0, -0.45)
+rotation_degrees = Vector3(0, -90, 0)
+scale = Vector3(1, 1, 1)
+
+[node name="Locker2" parent="Room209" instance=ExtResource("e4")]
+position = Vector3(0.3, 0, -1.25)
+rotation_degrees = Vector3(0, -90, 0)
+scale = Vector3(1, 1, 1)
+
+[node name="Locker3" parent="Room209" instance=ExtResource("e4")]
+position = Vector3(3.7, 0, -0.45)
+rotation_degrees = Vector3(0, 90, 0)
+scale = Vector3(1, 1, 1)
+
+[node name="Locker4" parent="Room209" instance=ExtResource("e4")]
+position = Vector3(3.7, 0, -1.25)
+rotation_degrees = Vector3(0, 90, 0)
+scale = Vector3(1, 1, 1)
+
+[node name="Desk" parent="Room209" instance=ExtResource("e5")]
+position = Vector3(1.8, 0, -4.55)
+rotation_degrees = Vector3(0, 180, 0)
+scale = Vector3(1, 0.95, 1)
+
+[node name="Stool" parent="Room209" instance=ExtResource("e6")]
+position = Vector3(2.95, 0, -4.5)
+rotation_degrees = Vector3(0, 0, 0)
+scale = Vector3(1, 1, 1)
+
+[node name="CeilingFan" parent="Room209" instance=ExtResource("e7")]
+position = Vector3(2, 2.28, -2.5)
+rotation_degrees = Vector3(0, 0, 0)
+scale = Vector3(1, 1, 1)
+
+[node name="NightLight" type="OmniLight3D" parent="Room209"]
+position = Vector3(1.5, 2.5, -2.6)
+light_color = Color(0.62, 0.7, 0.9, 1)
+light_energy = 1.1
+omni_range = 7.0
+shadow_enabled = false
+
+[node name="Book0" type="Node3D" parent="Room209"]
+position = Vector3(1.3, 0.8, -4.55)
+
+[node name="Mesh" type="MeshInstance3D" parent="Room209/Book0"]
+mesh = SubResource("s60")
+
+[node name="Book1" type="Node3D" parent="Room209"]
+position = Vector3(1.39, 0.8, -4.55)
+
+[node name="Mesh" type="MeshInstance3D" parent="Room209/Book1"]
+mesh = SubResource("s62")
+
+[node name="Book2" type="Node3D" parent="Room209"]
+position = Vector3(1.48, 0.8, -4.55)
+
+[node name="Mesh" type="MeshInstance3D" parent="Room209/Book2"]
+mesh = SubResource("s63")
+
+[node name="Book3" type="Node3D" parent="Room209"]
+position = Vector3(1.57, 0.8, -4.55)
+
+[node name="Mesh" type="MeshInstance3D" parent="Room209/Book3"]
+mesh = SubResource("s64")
+
+[node name="Laundry" type="Node3D" parent="Room209"]
+position = Vector3(3.3, 0.45, -1.6)
+
+[node name="Mesh" type="MeshInstance3D" parent="Room209/Laundry"]
+mesh = SubResource("s65")
+
+[node name="NumberInside" type="Label3D" parent="Room209"]
+position = Vector3(2.45, 2.42, -0.11)
+rotation_degrees = Vector3(0, 180, 0)
+text = "209"
+font_size = 48
+pixel_size = 0.004
+modulate = Color(0.85, 0.85, 0.78, 1)
+outline_size = 0
+shaded = true
+
+[node name="NumberOutside" type="Label3D" parent="Room209"]
+position = Vector3(2.45, 2.42, 0.11)
+rotation_degrees = Vector3(0, 0, 0)
+text = "209"
+font_size = 48
+pixel_size = 0.004
+modulate = Color(0.85, 0.85, 0.78, 1)
+outline_size = 0
+shaded = true
+
+[node name="Door" type="Marker3D" parent="Room209"]
+position = Vector3(2.45, 0.05, 1.2)
+
+[node name="ManagerSpot" type="Marker3D" parent="Room209"]
+position = Vector3(1.55, 0.05, -2.35)
+rotation_degrees = Vector3(0, -60, 0)
+
+[node name="VictimBed" type="Marker3D" parent="Room209"]
+position = Vector3(0.65, 1.2, -3)
+
+[node name="Victim" parent="Room209" instance=ExtResource("e15")]
+position = Vector3(0.65, 1.2, -3)
+
+[node name="Cam" type="Camera3D" parent="Room209"]
+position = Vector3(3.72, 2.78, -4.72)
+rotation_degrees = Vector3(-25.8447588, 143.0694398, 0)
+fov = 66.0
+far = 30.0
+
+[node name="Room106" type="Node3D" parent="."]
+position = Vector3(18.0, 0, 0)
+
+[node name="Floor" type="StaticBody3D" parent="Room106"]
+position = Vector3(2, -0.1, -2.5)
+metadata/surface = &"tile"
+metadata/is_floor = true
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Room106/Floor"]
+shape = SubResource("s66")
+
+[node name="Mesh" type="MeshInstance3D" parent="Room106/Floor"]
+mesh = SubResource("s67")
+
+[node name="DoorStep" type="StaticBody3D" parent="Room106"]
+position = Vector3(2.45, -0.1, 1.0)
+metadata/surface = &"tile"
+metadata/is_floor = true
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Room106/DoorStep"]
+shape = SubResource("s68")
+
+[node name="Mesh" type="MeshInstance3D" parent="Room106/DoorStep"]
+mesh = SubResource("s69")
+
+[node name="WestWall" type="StaticBody3D" parent="Room106"]
+position = Vector3(0, 1.5, -2.5)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Room106/WestWall"]
+shape = SubResource("s70")
+
+[node name="Mesh" type="MeshInstance3D" parent="Room106/WestWall"]
+mesh = SubResource("s71")
+
+[node name="EastWall" type="StaticBody3D" parent="Room106"]
+position = Vector3(4, 1.5, -2.5)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Room106/EastWall"]
+shape = SubResource("s72")
+
+[node name="Mesh" type="MeshInstance3D" parent="Room106/EastWall"]
+mesh = SubResource("s73")
+
+[node name="BackWall" type="StaticBody3D" parent="Room106"]
+position = Vector3(2, 1.5, -5)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Room106/BackWall"]
+shape = SubResource("s74")
+
+[node name="Mesh" type="MeshInstance3D" parent="Room106/BackWall"]
+mesh = SubResource("s75")
+
+[node name="FrontWallLeft" type="StaticBody3D" parent="Room106"]
+position = Vector3(1.0, 1.5, 0)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Room106/FrontWallLeft"]
+shape = SubResource("s76")
+
+[node name="Mesh" type="MeshInstance3D" parent="Room106/FrontWallLeft"]
+mesh = SubResource("s77")
+
+[node name="FrontWallRight" type="StaticBody3D" parent="Room106"]
+position = Vector3(3.45, 1.5, 0)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Room106/FrontWallRight"]
+shape = SubResource("s78")
+
+[node name="Mesh" type="MeshInstance3D" parent="Room106/FrontWallRight"]
+mesh = SubResource("s79")
+
+[node name="DoorLintel" type="StaticBody3D" parent="Room106"]
+position = Vector3(2.45, 2.6, 0)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Room106/DoorLintel"]
+shape = SubResource("s80")
+
+[node name="Mesh" type="MeshInstance3D" parent="Room106/DoorLintel"]
+mesh = SubResource("s81")
+
+[node name="Ceiling" type="StaticBody3D" parent="Room106"]
+position = Vector3(2, 3.075, -2.5)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Room106/Ceiling"]
+shape = SubResource("s82")
+
+[node name="Mesh" type="MeshInstance3D" parent="Room106/Ceiling"]
+mesh = SubResource("s83")
+
+[node name="BunkA" parent="Room106" instance=ExtResource("e1")]
+position = Vector3(0.65, 0, -3)
+rotation_degrees = Vector3(0, 0, 0)
+scale = Vector3(1, 1, 1)
+
+[node name="NetLower" parent="Room106/BunkA" instance=ExtResource("e2")]
+position = Vector3(0, 0, 0)
+rotation_degrees = Vector3(0, 0, 0)
+scale = Vector3(1, 1, 1)
+
+[node name="NetUpper" parent="Room106/BunkA" instance=ExtResource("e3")]
+position = Vector3(0, 0.8800379, 0)
+rotation_degrees = Vector3(0, 0, 0)
+scale = Vector3(1, 0.7348485, 1)
+
+[node name="BunkB" parent="Room106" instance=ExtResource("e1")]
+position = Vector3(3.35, 0, -3)
+rotation_degrees = Vector3(0, 0, 0)
+scale = Vector3(1, 1, 1)
+
+[node name="NetLower" parent="Room106/BunkB" instance=ExtResource("e2")]
+position = Vector3(0, 0, 0)
+rotation_degrees = Vector3(0, 0, 0)
+scale = Vector3(1, 1, 1)
+
+[node name="NetUpper" parent="Room106/BunkB" instance=ExtResource("e2")]
+position = Vector3(0, 0.8800379, 0)
+rotation_degrees = Vector3(0, 0, 0)
+scale = Vector3(1, 0.7348485, 1)
+
+[node name="Locker1" parent="Room106" instance=ExtResource("e4")]
+position = Vector3(0.3, 0, -0.45)
+rotation_degrees = Vector3(0, -90, 0)
+scale = Vector3(1, 1, 1)
+
+[node name="Locker2" parent="Room106" instance=ExtResource("e4")]
+position = Vector3(0.3, 0, -1.25)
+rotation_degrees = Vector3(0, -90, 0)
+scale = Vector3(1, 1, 1)
+
+[node name="Locker3" parent="Room106" instance=ExtResource("e4")]
+position = Vector3(3.7, 0, -0.45)
+rotation_degrees = Vector3(0, 90, 0)
+scale = Vector3(1, 1, 1)
+
+[node name="Locker4" parent="Room106" instance=ExtResource("e4")]
+position = Vector3(3.7, 0, -1.25)
+rotation_degrees = Vector3(0, 90, 0)
+scale = Vector3(1, 1, 1)
+
+[node name="Desk" parent="Room106" instance=ExtResource("e5")]
+position = Vector3(1.8, 0, -4.55)
+rotation_degrees = Vector3(0, 180, 0)
+scale = Vector3(1, 0.95, 1)
+
+[node name="Stool" parent="Room106" instance=ExtResource("e6")]
+position = Vector3(2.95, 0, -4.5)
+rotation_degrees = Vector3(0, 0, 0)
+scale = Vector3(1, 1, 1)
+
+[node name="CeilingFan" parent="Room106" instance=ExtResource("e7")]
+position = Vector3(2, 2.28, -2.5)
+rotation_degrees = Vector3(0, 0, 0)
+scale = Vector3(1, 1, 1)
+
+[node name="NightLight" type="OmniLight3D" parent="Room106"]
+position = Vector3(1.5, 2.5, -2.6)
+light_color = Color(0.62, 0.7, 0.9, 1)
+light_energy = 1.1
+omni_range = 7.0
+shadow_enabled = false
+
+[node name="DeskLamp" type="OmniLight3D" parent="Room106"]
+position = Vector3(1.3, 1.02, -4.4)
+light_color = Color(1, 0.86, 0.6, 1)
+light_energy = 0.9
+omni_range = 3.2
+shadow_enabled = false
+
+[node name="Fixture" parent="Room106/DeskLamp" instance=ExtResource("e16")]
+position = Vector3(0, 0, 0)
+rotation_degrees = Vector3(0, 180, 0)
+scale = Vector3(1, 1, 1)
+
+[node name="DeskItems" parent="Room106" instance=ExtResource("e13")]
+position = Vector3(2.1, 0.76, -4.5)
+rotation_degrees = Vector3(0, 180, 0)
+scale = Vector3(1, 1, 1)
+
+[node name="NumberInside" type="Label3D" parent="Room106"]
+position = Vector3(2.45, 2.42, -0.11)
+rotation_degrees = Vector3(0, 180, 0)
+text = "106"
+font_size = 48
+pixel_size = 0.004
+modulate = Color(0.85, 0.85, 0.78, 1)
+outline_size = 0
+shaded = true
+
+[node name="NumberOutside" type="Label3D" parent="Room106"]
+position = Vector3(2.45, 2.42, 0.11)
+rotation_degrees = Vector3(0, 0, 0)
+text = "106"
+font_size = 48
+pixel_size = 0.004
+modulate = Color(0.85, 0.85, 0.78, 1)
+outline_size = 0
+shaded = true
+
+[node name="Door" type="Marker3D" parent="Room106"]
+position = Vector3(2.45, 0.05, 1.2)
+
+[node name="ManagerSpot" type="Marker3D" parent="Room106"]
+position = Vector3(1.55, 0.05, -2.35)
+rotation_degrees = Vector3(0, -60, 0)
+
+[node name="VictimBed" type="Marker3D" parent="Room106"]
+position = Vector3(0.65, 1.2, -3)
+
+[node name="Victim" parent="Room106" instance=ExtResource("e17")]
+position = Vector3(0.65, 1.2, -3)
+
+[node name="Cam" type="Camera3D" parent="Room106"]
+position = Vector3(3.72, 2.78, -4.72)
+rotation_degrees = Vector3(-25.8447588, 143.0694398, 0)
+fov = 66.0
+far = 30.0
+
+[node name="Corridor" type="Node3D" parent="."]
+position = Vector3(26.0, 0, 0)
+
+[node name="Floor" type="StaticBody3D" parent="Corridor"]
+position = Vector3(5, -0.1, 1.0)
+metadata/surface = &"tile"
+metadata/is_floor = true
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Corridor/Floor"]
+shape = SubResource("s84")
+
+[node name="Mesh" type="MeshInstance3D" parent="Corridor/Floor"]
+mesh = SubResource("s85")
+
+[node name="RoomWall" type="StaticBody3D" parent="Corridor"]
+position = Vector3(5, 1.5, -0.1)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Corridor/RoomWall"]
+shape = SubResource("s86")
+
+[node name="Mesh" type="MeshInstance3D" parent="Corridor/RoomWall"]
+mesh = SubResource("s87")
+
+[node name="OuterWall" type="StaticBody3D" parent="Corridor"]
+position = Vector3(5, 1.5, 2.3)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Corridor/OuterWall"]
+shape = SubResource("s88")
+
+[node name="Mesh" type="MeshInstance3D" parent="Corridor/OuterWall"]
+mesh = SubResource("s89")
+
+[node name="Ceiling" type="StaticBody3D" parent="Corridor"]
+position = Vector3(5, 3.075, 1.0)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Corridor/Ceiling"]
+shape = SubResource("s90")
+
+[node name="Mesh" type="MeshInstance3D" parent="Corridor/Ceiling"]
+mesh = SubResource("s91")
+
+[node name="EndWest" type="StaticBody3D" parent="Corridor"]
+position = Vector3(-0.1, 1.5, 1.0)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Corridor/EndWest"]
+shape = SubResource("s92")
+
+[node name="Mesh" type="MeshInstance3D" parent="Corridor/EndWest"]
+mesh = SubResource("s93")
+
+[node name="EndEast" type="StaticBody3D" parent="Corridor"]
+position = Vector3(10.1, 1.5, 1.0)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Corridor/EndEast"]
+shape = SubResource("s94")
+
+[node name="Mesh" type="MeshInstance3D" parent="Corridor/EndEast"]
+mesh = SubResource("s95")
+
+[node name="Door405" parent="Corridor" instance=ExtResource("e18")]
+position = Vector3(1.5, 0.01, 0)
+rotation_degrees = Vector3(0, 0, 0)
+scale = Vector3(1, 1, 1)
+
+[node name="Number405" type="Label3D" parent="Corridor"]
+position = Vector3(1.94, 2.3, 0.02)
+rotation_degrees = Vector3(0, 0, 0)
+text = "405"
+font_size = 40
+pixel_size = 0.004
+modulate = Color(0.85, 0.85, 0.78, 1)
+outline_size = 0
+shaded = true
+
+[node name="Door406" parent="Corridor" instance=ExtResource("e18")]
+position = Vector3(4.7, 0.01, 0)
+rotation_degrees = Vector3(0, 0, 0)
+scale = Vector3(1, 1, 1)
+
+[node name="Number406" type="Label3D" parent="Corridor"]
+position = Vector3(5.14, 2.3, 0.02)
+rotation_degrees = Vector3(0, 0, 0)
+text = "406"
+font_size = 40
+pixel_size = 0.004
+modulate = Color(0.85, 0.85, 0.78, 1)
+outline_size = 0
+shaded = true
+
+[node name="Door407" parent="Corridor" instance=ExtResource("e18")]
+position = Vector3(7.9, 0.01, 0)
+rotation_degrees = Vector3(0, 0, 0)
+scale = Vector3(1, 1, 1)
+
+[node name="Number407" type="Label3D" parent="Corridor"]
+position = Vector3(8.34, 2.3, 0.02)
+rotation_degrees = Vector3(0, 0, 0)
+text = "407"
+font_size = 40
+pixel_size = 0.004
+modulate = Color(0.85, 0.85, 0.78, 1)
+outline_size = 0
+shaded = true
+
+[node name="Tube" type="OmniLight3D" parent="Corridor"]
+position = Vector3(5, 2.8, 1.0)
+light_color = Color(0.82, 0.9, 0.76, 1)
+light_energy = 0.55
+omni_range = 7.0
+shadow_enabled = false
+
+[node name="Cam" type="Camera3D" parent="Corridor"]
+position = Vector3(0.3, 2.75, 2.0)
+rotation_degrees = Vector3(-13.1676564, -76.8424573, 0)
+fov = 75.0
+far = 30.0

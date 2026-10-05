@@ -23,7 +23,7 @@ $paths = & git -C $RepoRoot -c core.quotepath=false ls-files --cached --others -
 if ($LASTEXITCODE -ne 0) { throw 'Cannot enumerate repository files.' }
 foreach ($path in $paths | Sort-Object -Unique) {
     $full = Join-Path $RepoRoot $path
-    if ((Test-Path -LiteralPath $full -PathType Leaf) -and (Get-Item -LiteralPath $full).Length -gt 10MB) {
+    if ((Test-Path -LiteralPath $full -PathType Leaf) -and (Get-Item -LiteralPath $full -Force).Length -gt 10MB) {
         Write-Host "FAIL size (>10 MB): $path"
         $errorsFound++
     }

@@ -74,3 +74,14 @@ Không tải asset ngoài hoặc thêm texture mới; tái dùng texture thủ t
 của T-153/T-154 và prop kit. Ảnh đội là hình người hình học hư cấu tự dựng;
 giấy có vệt đỏ sẫm, không giải phẫu. **Khai báo AI:** Codex viết mã tạo scene,
 mesh, runtime, test và preview; không dùng mô hình sinh ảnh hay plugin.
+
+## Khu camera an ninh — T-165 (Claude làm thay lane B)
+
+| File / nhóm | Tác giả / công cụ | Nguồn | Giấy phép |
+|---|---|---|---|
+| `game/scenes/levels/cctv/{cctv_set,student_hung,student_kiet,student_bao,student_dang}.tscn`, `student_body.gd` | Claude (Anthropic), hình học và animation Godot 4.7.2 | [Generator](cctv/build_cctv.py), dùng lại helper T-153/T-154 và prop kit có sẵn | CC0-1.0 |
+| `game/assets/textures/cctv/*.png` (6 texture 128 px) | Claude, Python stdlib, seed 165 | [Generator](cctv/build_cctv.py) | CC0-1.0 |
+| `cctv/previews/*.png`, script chụp | Claude, Godot Forward+ | [Ảnh từ camera](cctv/capture_cctv.gd), [ảnh trên điện thoại](cctv/capture_phone.gd) | CC0-1.0 |
+
+Không tải asset ngoài. Máu là mảng đỏ sẫm hình học kiểu PS1, không giải phẫu.
+**Khai báo AI:** Claude viết mã tạo scene, mesh, texture, test và preview; không dùng mô hình sinh ảnh hay plugin.
