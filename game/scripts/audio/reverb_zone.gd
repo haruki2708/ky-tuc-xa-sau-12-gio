@@ -3,8 +3,11 @@ extends AudioZone
 ## One listener/SFX bus. Higher mix_priority wins; latest entry breaks ties.
 ## Retarget one shared tween from current values so overlaps never reset the bus.
 
-enum Preset { ROOM, CORRIDOR, BATHROOM }
-const PRESETS: Array[Vector3] = [Vector3(0.35, 0.65, 0.12), Vector3(0.7, 0.45, 0.22), Vector3(0.85, 0.2, 0.32)]
+enum Preset { ROOM, CORRIDOR, BATHROOM, STADIUM, CANTEEN, STAIRS }
+const PRESETS: Array[Vector3] = [
+	Vector3(0.35, 0.65, 0.12), Vector3(0.7, 0.45, 0.22), Vector3(0.85, 0.2, 0.32),
+	Vector3(0.95, 0.65, 0.12), Vector3(0.45, 0.8, 0.1), Vector3(0.75, 0.4, 0.24),
+]
 const PARAMETERS: Array[StringName] = [&"room_size", &"damping", &"wet"]
 
 @export var preset: Preset = Preset.ROOM

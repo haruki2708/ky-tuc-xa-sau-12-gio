@@ -206,3 +206,27 @@ LUFS từng file và API: `audio_source/ch2/README.md`; hash/peak/seed: `audio_s
 ## T-178 — phát giọng ghép theo tiếng (2026-10-06)
 
 Chỉ bổ sung code cắt/ghép PCM tạm và fade trong RAM, có OpenAI Codex hỗ trợ; không tạo hoặc chỉnh file giọng. Nguồn vẫn là bốn `game/audio/voice/vi/ch2_syllables_0..3.ogg` do core sinh bằng eSpeak NG (pipeline `audio_source/ch2_syllable_voices.py`); giữ nguồn/giấy phép eSpeak của chương 2 đã ghi ở trên. Không nhập thêm nội dung từ điển hoặc sinh lời thoại. Báo cáo so sánh âm lượng: `audio_source/ch2/syllable_audit.json`; cách nghe phím B/V: `audio_source/ch2/syllable_playback.md`. **Chưa nghe/duyệt cảm nhận.**
+
+## T-186 — chương 3 (2026-10-06)
+
+**35 âm tự tổng hợp, CC0 1.0**, tác giả Lane E/dự án; công thức/code có **OpenAI Codex hỗ trợ (AI-assisted)**, cần khai báo khi phát hành. Nguồn cho mọi file trong bảng: [audio_source/ch3_process.py](https://github.com/tuaanh666/ky-tuc-xa-sau-12-gio/blob/lane-e/T-186-ch3-audio/audio_source/ch3_process.py). [Giấy phép CC0](https://creativecommons.org/publicdomain/zero/1.0/). Công cụ sẵn có: [Python](https://www.python.org/) stdlib, [FFmpeg](https://ffmpeg.org/) 9.0.2/libvorbis, Godot 4.7.2. Không dùng bản thu người, model giọng, âm tải về hoặc sample game/video khác; không tạo lời thoại.
+
+Mỗi basename áp dụng cho `audio_source/ch3/raw/<name>.wav` và `game/audio/ch3/<name>.ogg`.
+
+| Basename | Nguồn tổng hợp |
+|---|---|
+| zombie_growl, zombie_hiss, horde | Họa âm trầm lệch pha/điều biên, noise lọc; cổ họng và nhiều partial cho bầy |
+| zombie_drag_01, zombie_drag_02 | Xung trầm và noise ma sát kéo dài |
+| door_pound_01, door_pound_02 | Xung va gỗ/low-noise nhiều đợt |
+| bar_swing, bar_miss | Noise khí có envelope |
+| bar_hit, bar_bend, bar_break | Xung nặng khô và partial kim loại không hòa âm, burst gãy |
+| pant | Noise hơi thở có envelope hai pha, không tiếng người thật |
+| run_grass_01…04, run_concrete_01…04 | Xung va đất, noise cỏ và transient nền cứng; seed riêng mỗi mẫu |
+| wind, stadium, canteen, stairs | Noise gió lọc, cộng hưởng khác nhau; không có côn trùng/động vật |
+| far_scream, rescue_siren | Dao động điều tần/họa âm; hét vô ngôn và còi rất khẽ |
+| baton_buzz | Dao động điện 100 Hz, noise ngắt quãng |
+| death_zombie_grab, death_guard_shock | Throat/ma sát xé/va trầm hoặc điện + cú ngã |
+| death_zombie_soft, death_guard_soft | Va trầm nhẹ, bỏ lớp gắt/xé và LP700 |
+| music_run, music_wave, music_end | Drone trầm không giai điệu, pulse nhịp chạy/đợt xác và nốt sin dài |
+
+Dùng lại heartbeat T-158 và bước gạch T-105/T-126 theo nguồn CC0 đã ghi ở trên. Không sửa waveform cũ. LUFS/hash/peak/seed: `audio_source/ch3/build_report.json`; API và bảng mức đo: `audio_source/ch3/README.md`. **Chưa nghe bằng tai/chưa duyệt mix thực tế.**
