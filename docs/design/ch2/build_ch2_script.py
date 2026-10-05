@@ -136,9 +136,9 @@ RULE_LINES = [
     ("ch1_general_3", "RULE_CH1_GENERAL_3", "leave_room", "stay_in_room"),
     ("ch1_general_4", "RULE_CH1_GENERAL_4", "attack_staff", "never_attack"),
     ("ch1_general_5", "RULE_CH1_GENERAL_5", "each_hour", "survive_five_hours"),
-    ("ch2_r3_1", "RULE_CH2_R3_1", "word_chain", "all_four_play"),
-    ("ch2_r3_2", "RULE_CH2_R3_2", "word_chain", "match_syllable"),
-    ("ch2_r3_3", "RULE_CH2_R3_3", "word_chain", "no_repeat"),
+    ("ch2_r3_1", "RULE_CH2_R3_1", "word_chain_turns", "all_four_play"),
+    ("ch2_r3_2", "RULE_CH2_R3_2", "word_chain_match", "match_syllable"),
+    ("ch2_r3_3", "RULE_CH2_R3_3", "word_chain_repeat", "no_repeat"),
     ("ch2_r4_1", "RULE_CH2_R4_1", "shower", "run_25_minutes"),
 ]
 UI_ROWS = [
@@ -245,7 +245,11 @@ def main():
 
     path = os.path.join(ROOT, "game", "localization", "strings.csv")
     text = open(path, encoding="utf-8").read()
-    kept = [line for line in text.split("\n") if line and not line.startswith(PREFIXES)]
+    # Replace only the keys generated here: lanes add their own *_CH2_ keys
+    # (prompts, UI, previews) that must survive a rerun.
+    generated = {row[0] for row in rows}
+    kept = [line for line in text.split("\n")
+            if line and not (line.startswith(PREFIXES) and line.split(",", 1)[0] in generated)]
     buf = io.StringIO()
     writer = csv.writer(buf, lineterminator="\n")
     seen = set(line.split(",", 1)[0] for line in kept)

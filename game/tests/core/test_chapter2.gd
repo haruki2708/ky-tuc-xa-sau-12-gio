@@ -182,3 +182,9 @@ func test_wrong_advice_loses_ngu() -> void:
 	await _until(func() -> bool: return not restarts.is_empty(), 90.0)
 	EventBus.chat_choice_requested.disconnect(bad)
 	assert_eq(failed, [&"DEATH_CH2_LOST_NGU"] as Array[StringName], "Ngư lost;")
+
+
+func test_rule_book_loads_so_the_chapter_can_start() -> void:
+	# start() stops on an invalid rule set: the chapter would never run.
+	var errors := RuleSystem.load_rule_set(load(Chapter2Director.CH2_RULE_SET))
+	assert_true(errors.is_empty(), "chapter 2 rules valid: %s" % ", ".join(errors))

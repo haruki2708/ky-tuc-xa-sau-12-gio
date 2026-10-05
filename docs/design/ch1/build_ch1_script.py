@@ -375,8 +375,11 @@ def main():
     # strings.csv: drop old rows of our prefixes, append fresh ones.
     path = os.path.join(ROOT, "game", "localization", "strings.csv")
     text = open(path, encoding="utf-8").read()
-    # DEATH_CH2_* belong to the chapter-2 script (docs/design/ch2/build_ch2_script.py).
-    kept = [line for line in text.split("\n") if line and (not line.startswith(PREFIXES) or line.startswith("DEATH_CH2_"))]
+    # Replace only the keys generated here: chapter 2 (DEATH_CH2_*) and the
+    # lanes add keys with the same prefixes that must survive a rerun.
+    generated = {row[0] for row in rows}
+    kept = [line for line in text.split("\n")
+            if line and not (line.startswith(PREFIXES) and line.split(",", 1)[0] in generated)]
     buf = io.StringIO()
     writer = csv.writer(buf, lineterminator="\n")
     seen = set(line.split(",", 1)[0] for line in kept)
