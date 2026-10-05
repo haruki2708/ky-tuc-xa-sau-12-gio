@@ -88,3 +88,21 @@ Chương 1 bản 2 dài khoảng 60 phút, độ khó Insane, chết là làm l�
 - Core đồng bộ cờ `door_locked` theo chốt thật ở đầu vòng 1.
 - **`ch1v2_door_late`: PASS** (315 s thật, chết `DEATH_DRAGGED_OUT`, tải lại `ch1_r1`). Mất mạng, công tắc 2, dây xanh, mạng có lại: đều PASS.
 
+### Kết quả bot bản 2 trên bản ghép (integrator, 2026-10-05)
+Chạy từng kịch bản một (chạy cả 5 liền bị dừng vì máy hết RAM).
+
+| Kịch bản | Kết quả | Thời gian thật |
+|---|---|---|
+| `ch1v2_good` | **PASS**, hết chương, mở chương 2 | 910 s |
+| `ch1v2_wrong_switch` | **PASS** | 930 s |
+| `ch1v2_door_late` | **PASS**, `DEATH_DRAGGED_OUT`, về `ch1_r1` | 315 s |
+| `ch1v2_lamp_on` | **PASS**, `DEATH_SEEN`, về `ch1_r2` | 803 s |
+| `ch1v2_wrong_advice` | **PASS**, `DEATH_LOST_NHAT` | 856 s |
+
+Bot tìm ra 2 lỗi thật, đã sửa trong core:
+1. Đèn trần chập chờn khi quản lý mở cửa làm đèn bàn sáng lại, nên người chơi luôn chết `DEATH_SEEN`.
+2. Sau khi tải lại checkpoint, cờ `desk_lamp_on` bị mất, nên đèn sáng mà quản lý không thấy.
+
+Thêm bước bot: chờ `cctv_unlocked` trước khi mở tab Camera; `close_document` sau khi biên bản tự mở.
+Còn chờ: đo FPS (góc phòng mới và 5 camera, sau T-165), nút nhảy giữa vòng của menu F9.
+
