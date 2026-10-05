@@ -1,0 +1,43 @@
+{
+  "chapter": 2,
+  "scene": "res://scenes/main/chapter2.tscn",
+  "director": "Chapter2Director",
+  "rule_set": null,
+  "lexicon": {},
+  "bindings": {
+    "round3_segment": null,
+    "round4_segment": null,
+    "death_ui_path": null,
+    "ngu_choice_id": null,
+    "ngu_temperatures": null,
+    "ngu_yes_index": null,
+    "ngu_no_index": null,
+    "scald_temperature_flag": null
+  },
+  "actions": {
+    "pickup_rag": null,
+    "pickup_towel": null,
+    "pickup_shirt": null,
+    "gag_1": null,
+    "gag_2": null,
+    "gag_4": null,
+    "bedroom": null,
+    "push_door_1": null,
+    "push_door_2": null,
+    "push_door_3": null,
+    "enter_shower": null,
+    "leave_shower": null,
+    "wipe": null
+  },
+  "jumps": {
+    "r3": null,
+    "r4": null
+  },
+  "performance": {
+    "view": null,
+    "setup": null,
+    "steam_0": null,
+    "steam_1": null,
+    "hot_water": null
+  }
+}

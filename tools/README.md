@@ -132,3 +132,55 @@ Bot bản 2 mặc định chạy thời gian thật (`TimeScale=1`), timeout m�
 Bài đo chỉ tính case Camera khi tìm thấy ít nhất năm SubViewport có Camera3D hiện hành, `UPDATE_ALWAYS`, thuộc các node group `cctv_feed`. Không tính viewport gương; không ép bật năm viewport để che lỗi tích hợp. Nếu cách bố trí viewport của core khác hợp đồng trên, cập nhật adapter kiểm kê trước khi đo.
 
 JSON ghi phần cứng, renderer, 1280×720, VSync off, không giới hạn FPS, warmup 90 frame/góc, sample 240 frame/góc, mean FPS, p95 frame ms, max frame ms và `target_met` (mean ≥60). Camera đo cuối sau các góc tĩnh. Scene vẫn có physics/HUD/audio, story tắt để so sánh góc cố định; không phải benchmark đầy đủ luồng truyện. Chạy riêng, không đồng thời chạy Godot/test khác. Mục chưa ghép trả SKIP và không sinh FPS. `-RequireComplete` giúp CI không nhận nhầm SKIP thành hoàn thành.
+
+## T-173: chương 2 (khung trước khi ghép T-170…T-175)
+
+```powershell
+pwsh tools/playthrough.ps1 -Chapter 2 -Scenario all
+pwsh tools/playthrough.ps1 -Chapter 2 -Scenario all -RequireComplete
+pwsh tools/playthrough.ps1 -Chapter 2 -Performance -RequireComplete
+pwsh tools/qa-menu.ps1 -Chapter 2 -Stage r3
+pwsh tools/qa-menu.ps1 -Chapter 2 -Smoke
+```
+
+Chương 2 tự chọn `tools/ch2-profile.json`, thời gian thật (`TimeScale=1`), watchdog toàn chương 60 phút. Các phép đợi reload dùng `-SegmentTimeout` (mặc định 120 giây). Không dùng `-V2` cùng `-Chapter 2`. Sáu case: good, chain_timeout, chain_wrong, scald, leave_shower, lost_ngu (đều có tiền tố `ch2_`). Exit 0 = không có FAIL; `-RequireComplete` trả 2 nếu còn SKIP, 1 nếu FAIL. Menu smoke cũng trả 2 nếu scene/mốc chưa ghép. Mỗi lượt chạy dùng APPDATA riêng dưới build, không dùng checkpoint/progress thật.
+
+### Profile và dữ liệu cần core cung cấp
+
+- `scene`, `director`: scene chương 2 thật và node director có `auto_start`, `start()`. Các đường dẫn dự kiến từ T-170 có thể chưa tồn tại; bot kiểm tra trước khi load, trả SKIP có lý do.
+- `bindings.round3_segment`, `round4_segment`, `death_ui_path`: ID/path thật. Không đoán theo tên task. Checkpoint kỳ vọng `ch2_r3`/`ch2_r4` và lý do chết lấy từ thiết kế đã duyệt.
+- `lexicon`: map từ key `WORD_CH2_*` sang `{ "text": "từ tiếng Việt", "valid": true, "dead_end": false }`. Phải bao gồm cả phương án bẫy (valid=false khi không phải từ hợp lệ). Text chuẩn hóa theo dữ liệu core, giữ nguyên dấu; không dùng bản dịch tiếng Anh của UI để nối từ. Cần kho đầy đủ để tìm đường 1–3 từ trung gian vào vòng tám từ. Không tự tạo kho từ trong tool.
+- `ngu_choice_id`, `ngu_temperatures` (ba nhiệt độ đã nói trong cuộc gọi), `ngu_yes_index`, `ngu_no_index`: core điền theo dữ liệu lời thoại thật. Bot chỉ dùng chúng khi câu hỏi đó đang chờ. Case lost_ngu đảo đáp án dự đoán.
+- `scald_temperature_flag`: cờ core công bố nhiệt độ thật tại lúc chết; case scald chọn Có ở lượt thứ tư (81°C trong dãy đã duyệt), nhưng chỉ PASS khi quan sát được đúng 81°C. Nếu nhiệt độ chưa được core công bố, SKIP binding; không suy 81 chỉ từ tên case.
+- `jumps`: r3/r4 và tùy ý thêm mốc giữa vòng do core cung cấp. Menu chương 2 gọi `run_from(stage)` trên scene mới. `rule_set` là resource luật nếu API run_from cần tool load trước. Không dùng bất tử của Chapter1Director cho chương 2.
+
+### Thao tác vật lý
+
+`actions` cần binding cho pickup_rag/towel/shirt, gag_1/2/4, bedroom, push_door_1/2/3, enter_shower, leave_shower, wipe. Mỗi binding là một bước hoặc `{ "steps": [...] }`. Mỗi bước:
+
+```json
+{
+  "path": "duong/dan/node/thuc",
+  "method": "interact",
+  "args": ["$player"],
+  "verify": {"signal": "picked", "property": "ten_thuoc_tinh_thuc", "equals": true}
+}
+```
+
+Đây là **schema**, không phải node/API đã tồn tại. `verify` dùng signal trên target, hoặc `property` trên target / `flag` trong GameState và `equals`; nếu có cả signal và state thì phải xác nhận cả hai. Signal được nối trước thao tác và tháo sau đó; trạng thái khớp từ trước không thay thế một signal chưa phát. JSON number được so sánh an toàn với int/float của Godot.
+
+- Bước có `position: [x,y,z]` đưa Player tới tọa độ thật rồi chờ acknowledgement (ví dụ `shower_stall.player_inside`). Không tự ghi cờ trong/ngoài buồng.
+- Bước có `hold_action`, `seconds` (1…5, mặc định 1,05) giữ input thật; có thể thêm `aim: [x,y,z]` để camera nhìn vùng tương tác và đợi hai physics frame. Binding lau phải xác nhận `wiped`, không gọi thẳng UI.wipe() để bỏ qua một giây giữ E.
+- Mỗi bước chờ tối đa 3 giây cho xác nhận, không có component/API thì SKIP. Có API nhưng không đạt trạng thái/signal thì FAIL. Cần kiểm tra lại adapter với API T-171 sau merge; đặc biệt vị trí lấy đồ/quay về phòng ngủ, điều kiện giữ E và cửa đẩy đúng ba lần.
+
+### Hành vi bot và menu
+
+Bot nghe signal trước khi scene bắt đầu. Nối từ kiểm tra đúng hai tiếng, dấu chính xác và ba từ vừa nói; ưu tiên từ cụt có metadata khi còn cần lấy đồ. Sau ba signal xác đã bịt, chọn đường vào vòng học sinh…văn học và ghi nhận đủ tám lựa chọn liên tiếp. Không trả lời khi chain_choice_blocked; quay lại phòng ngủ bằng adapter. Case timeout không phát lựa chọn -1 giả, kiểm tra đã chờ ít nhất 15 giây thực. Case wrong chỉ chọn phương án sai dấu; nếu chưa có thì tiếp tục chọn hợp lệ.
+
+Vòi sen: lượt đầu chưa có dữ liệu thì chọn Không; các lượt sau dùng `(hàng chục + hàng đơn vị) % 10 < 5` của nhiệt độ vừa hiện, không đọc trước dãy. Trước Có phải vào vùng buồng tắm thật; case leave_shower bước ra sau Có. Good chỉ PASS khi có ba xác bịt, đủ vòng tám từ, ≥25 phút nước, đã trả lời Ngư, chapter_finished(2) và unlock chương 3, không có chết. Case chết kiểm tra lý do, kind, UI và scene reload thật về đầu vòng.
+
+F9 trong scene chương 2 mở menu riêng (chỉ debug hoặc `--qa-menu`); các mốc thiếu bị khóa. Nhảy từ phiên thường mở tiến trình mới có userdata riêng. Bật đáp án chỉ hiển thị từ hợp lệ và dự đoán Có/Không từ dữ liệu đã quan sát; chưa có dữ liệu thì báo chưa có. Catalog vi/en nằm trong debug như T-166 để giữ phạm vi file; tên mốc bổ sung hiển thị ID do core cung cấp.
+
+### FPS hơi nước
+
+`performance.view` = eye/target XYZ trong nhà vệ sinh thật. `setup`, `hot_water`, `steam_0`, `steam_1` dùng cùng schema action/acknowledgement, gọi API fixture của cơ chế thật khi director auto_start=false. Đo hai trạng thái **nước nóng đang chảy** ở hơi nước 0 và 1, 1280×720, VSync off, không giới hạn FPS, 90 frame warmup + 240 frame mẫu/trạng thái. `hot_water` và `steam_*` phải có state acknowledgement, không chỉ signal; kiểm tra state mỗi frame lấy mẫu. State đổi trong lúc đo thì FAIL, không gán số đo nhầm trạng thái. JSON có mean FPS, p95/max frame ms, steam level, hot_water_running, ngưỡng mean ≥60 và thời gian. Không có scene/fixture thì SKIP, views rỗng. Đo riêng, không chạy đồng thời Godot/test khác; không lấy FPS phòng chương 1 để thay thế.

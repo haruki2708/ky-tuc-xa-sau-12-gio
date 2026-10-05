@@ -1,0 +1,569 @@
+{
+  "cases": [
+    {
+      "checks": [
+        {
+          "reason": "T-170 chapter2.tscn is not integrated",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-170 word lexicon is not bound",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-170 binding missing: round3_segment",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-170 binding missing: round4_segment",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-170 binding missing: death_ui_path",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-170 binding missing: ngu_choice_id",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-170 binding missing: ngu_temperatures",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-170 binding missing: ngu_yes_index",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-170 binding missing: ngu_no_index",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-171 physical binding missing: pickup_rag",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-171 physical binding missing: pickup_towel",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-171 physical binding missing: pickup_shirt",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-171 physical binding missing: gag_1",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-171 physical binding missing: gag_2",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-171 physical binding missing: gag_4",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-171 physical binding missing: bedroom",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-171 physical binding missing: push_door_1",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-171 physical binding missing: push_door_2",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-171 physical binding missing: push_door_3",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-171 physical binding missing: enter_shower",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-171 physical binding missing: leave_shower",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-171 physical binding missing: wipe",
+          "status": "SKIP"
+        }
+      ],
+      "game_minutes": 0,
+      "real_seconds": 0.019,
+      "reason": "",
+      "scenario": "ch2_good",
+      "skipped": [
+        "T-170 chapter2.tscn is not integrated",
+        "T-170 word lexicon is not bound",
+        "T-170 binding missing: round3_segment",
+        "T-170 binding missing: round4_segment",
+        "T-170 binding missing: death_ui_path",
+        "T-170 binding missing: ngu_choice_id",
+        "T-170 binding missing: ngu_temperatures",
+        "T-170 binding missing: ngu_yes_index",
+        "T-170 binding missing: ngu_no_index",
+        "T-171 physical binding missing: pickup_rag",
+        "T-171 physical binding missing: pickup_towel",
+        "T-171 physical binding missing: pickup_shirt",
+        "T-171 physical binding missing: gag_1",
+        "T-171 physical binding missing: gag_2",
+        "T-171 physical binding missing: gag_4",
+        "T-171 physical binding missing: bedroom",
+        "T-171 physical binding missing: push_door_1",
+        "T-171 physical binding missing: push_door_2",
+        "T-171 physical binding missing: push_door_3",
+        "T-171 physical binding missing: enter_shower",
+        "T-171 physical binding missing: leave_shower",
+        "T-171 physical binding missing: wipe"
+      ],
+      "status": "SKIP"
+    },
+    {
+      "checks": [
+        {
+          "reason": "T-170 chapter2.tscn is not integrated",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-170 word lexicon is not bound",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-170 binding missing: round3_segment",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-170 binding missing: round4_segment",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-170 binding missing: death_ui_path",
+          "status": "SKIP"
+        }
+      ],
+      "game_minutes": 0,
+      "real_seconds": 0.006,
+      "reason": "",
+      "scenario": "ch2_chain_timeout",
+      "skipped": [
+        "T-170 chapter2.tscn is not integrated",
+        "T-170 word lexicon is not bound",
+        "T-170 binding missing: round3_segment",
+        "T-170 binding missing: round4_segment",
+        "T-170 binding missing: death_ui_path"
+      ],
+      "status": "SKIP"
+    },
+    {
+      "checks": [
+        {
+          "reason": "T-170 chapter2.tscn is not integrated",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-170 word lexicon is not bound",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-170 binding missing: round3_segment",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-170 binding missing: round4_segment",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-170 binding missing: death_ui_path",
+          "status": "SKIP"
+        }
+      ],
+      "game_minutes": 0,
+      "real_seconds": 0.007,
+      "reason": "",
+      "scenario": "ch2_chain_wrong",
+      "skipped": [
+        "T-170 chapter2.tscn is not integrated",
+        "T-170 word lexicon is not bound",
+        "T-170 binding missing: round3_segment",
+        "T-170 binding missing: round4_segment",
+        "T-170 binding missing: death_ui_path"
+      ],
+      "status": "SKIP"
+    },
+    {
+      "checks": [
+        {
+          "reason": "T-170 chapter2.tscn is not integrated",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-170 word lexicon is not bound",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-170 binding missing: round3_segment",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-170 binding missing: round4_segment",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-170 binding missing: death_ui_path",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-170 binding missing: ngu_choice_id",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-170 binding missing: ngu_temperatures",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-170 binding missing: ngu_yes_index",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-170 binding missing: ngu_no_index",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-170 binding missing: scald_temperature_flag",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-171 physical binding missing: pickup_rag",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-171 physical binding missing: pickup_towel",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-171 physical binding missing: pickup_shirt",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-171 physical binding missing: gag_1",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-171 physical binding missing: gag_2",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-171 physical binding missing: gag_4",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-171 physical binding missing: bedroom",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-171 physical binding missing: push_door_1",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-171 physical binding missing: push_door_2",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-171 physical binding missing: push_door_3",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-171 physical binding missing: enter_shower",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-171 physical binding missing: leave_shower",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-171 physical binding missing: wipe",
+          "status": "SKIP"
+        }
+      ],
+      "game_minutes": 0,
+      "real_seconds": 0.021,
+      "reason": "",
+      "scenario": "ch2_scald",
+      "skipped": [
+        "T-170 chapter2.tscn is not integrated",
+        "T-170 word lexicon is not bound",
+        "T-170 binding missing: round3_segment",
+        "T-170 binding missing: round4_segment",
+        "T-170 binding missing: death_ui_path",
+        "T-170 binding missing: ngu_choice_id",
+        "T-170 binding missing: ngu_temperatures",
+        "T-170 binding missing: ngu_yes_index",
+        "T-170 binding missing: ngu_no_index",
+        "T-170 binding missing: scald_temperature_flag",
+        "T-171 physical binding missing: pickup_rag",
+        "T-171 physical binding missing: pickup_towel",
+        "T-171 physical binding missing: pickup_shirt",
+        "T-171 physical binding missing: gag_1",
+        "T-171 physical binding missing: gag_2",
+        "T-171 physical binding missing: gag_4",
+        "T-171 physical binding missing: bedroom",
+        "T-171 physical binding missing: push_door_1",
+        "T-171 physical binding missing: push_door_2",
+        "T-171 physical binding missing: push_door_3",
+        "T-171 physical binding missing: enter_shower",
+        "T-171 physical binding missing: leave_shower",
+        "T-171 physical binding missing: wipe"
+      ],
+      "status": "SKIP"
+    },
+    {
+      "checks": [
+        {
+          "reason": "T-170 chapter2.tscn is not integrated",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-170 word lexicon is not bound",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-170 binding missing: round3_segment",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-170 binding missing: round4_segment",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-170 binding missing: death_ui_path",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-170 binding missing: ngu_choice_id",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-170 binding missing: ngu_temperatures",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-170 binding missing: ngu_yes_index",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-170 binding missing: ngu_no_index",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-171 physical binding missing: pickup_rag",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-171 physical binding missing: pickup_towel",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-171 physical binding missing: pickup_shirt",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-171 physical binding missing: gag_1",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-171 physical binding missing: gag_2",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-171 physical binding missing: gag_4",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-171 physical binding missing: bedroom",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-171 physical binding missing: push_door_1",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-171 physical binding missing: push_door_2",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-171 physical binding missing: push_door_3",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-171 physical binding missing: enter_shower",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-171 physical binding missing: leave_shower",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-171 physical binding missing: wipe",
+          "status": "SKIP"
+        }
+      ],
+      "game_minutes": 0,
+      "real_seconds": 0.019,
+      "reason": "",
+      "scenario": "ch2_leave_shower",
+      "skipped": [
+        "T-170 chapter2.tscn is not integrated",
+        "T-170 word lexicon is not bound",
+        "T-170 binding missing: round3_segment",
+        "T-170 binding missing: round4_segment",
+        "T-170 binding missing: death_ui_path",
+        "T-170 binding missing: ngu_choice_id",
+        "T-170 binding missing: ngu_temperatures",
+        "T-170 binding missing: ngu_yes_index",
+        "T-170 binding missing: ngu_no_index",
+        "T-171 physical binding missing: pickup_rag",
+        "T-171 physical binding missing: pickup_towel",
+        "T-171 physical binding missing: pickup_shirt",
+        "T-171 physical binding missing: gag_1",
+        "T-171 physical binding missing: gag_2",
+        "T-171 physical binding missing: gag_4",
+        "T-171 physical binding missing: bedroom",
+        "T-171 physical binding missing: push_door_1",
+        "T-171 physical binding missing: push_door_2",
+        "T-171 physical binding missing: push_door_3",
+        "T-171 physical binding missing: enter_shower",
+        "T-171 physical binding missing: leave_shower",
+        "T-171 physical binding missing: wipe"
+      ],
+      "status": "SKIP"
+    },
+    {
+      "checks": [
+        {
+          "reason": "T-170 chapter2.tscn is not integrated",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-170 word lexicon is not bound",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-170 binding missing: round3_segment",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-170 binding missing: round4_segment",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-170 binding missing: death_ui_path",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-170 binding missing: ngu_choice_id",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-170 binding missing: ngu_temperatures",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-170 binding missing: ngu_yes_index",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-170 binding missing: ngu_no_index",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-171 physical binding missing: pickup_rag",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-171 physical binding missing: pickup_towel",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-171 physical binding missing: pickup_shirt",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-171 physical binding missing: gag_1",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-171 physical binding missing: gag_2",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-171 physical binding missing: gag_4",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-171 physical binding missing: bedroom",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-171 physical binding missing: push_door_1",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-171 physical binding missing: push_door_2",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-171 physical binding missing: push_door_3",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-171 physical binding missing: enter_shower",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-171 physical binding missing: leave_shower",
+          "status": "SKIP"
+        },
+        {
+          "reason": "T-171 physical binding missing: wipe",
+          "status": "SKIP"
+        }
+      ],
+      "game_minutes": 0,
+      "real_seconds": 0.018,
+      "reason": "",
+      "scenario": "ch2_lost_ngu",
+      "skipped": [
+        "T-170 chapter2.tscn is not integrated",
+        "T-170 word lexicon is not bound",
+        "T-170 binding missing: round3_segment",
+        "T-170 binding missing: round4_segment",
+        "T-170 binding missing: death_ui_path",
+        "T-170 binding missing: ngu_choice_id",
+        "T-170 binding missing: ngu_temperatures",
+        "T-170 binding missing: ngu_yes_index",
+        "T-170 binding missing: ngu_no_index",
+        "T-171 physical binding missing: pickup_rag",
+        "T-171 physical binding missing: pickup_towel",
+        "T-171 physical binding missing: pickup_shirt",
+        "T-171 physical binding missing: gag_1",
+        "T-171 physical binding missing: gag_2",
+        "T-171 physical binding missing: gag_4",
+        "T-171 physical binding missing: bedroom",
+        "T-171 physical binding missing: push_door_1",
+        "T-171 physical binding missing: push_door_2",
+        "T-171 physical binding missing: push_door_3",
+        "T-171 physical binding missing: enter_shower",
+        "T-171 physical binding missing: leave_shower",
+        "T-171 physical binding missing: wipe"
+      ],
+      "status": "SKIP"
+    }
+  ],
+  "base_commit": "c68888b",
+  "run_at": "2026-10-05",
+  "command": "pwsh tools/playthrough.ps1 -Chapter 2 -Scenario all -RequireComplete",
+  "exit_code": 2
+}

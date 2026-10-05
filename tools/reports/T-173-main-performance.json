@@ -1,0 +1,30 @@
+{
+  "chapter": 2,
+  "cpu": "AMD Ryzen 5 5600H with Radeon Graphics",
+  "godot": "4.7.2-stable (official)",
+  "gpu": "NVIDIA GeForce RTX 3050 Laptop GPU",
+  "max_fps": 0,
+  "real_seconds": 0.001,
+  "reason": "",
+  "renderer": "forward_plus",
+  "resolution": [
+    1280,
+    720
+  ],
+  "sample_frames_per_view": 240,
+  "scope": "real chapter 2 bathroom; story disabled; hot water active at steam 0 and 1",
+  "skipped": [
+    "T-170 chapter 2 scene not integrated",
+    "T-172/T-174 performance binding missing: view",
+    "T-172/T-174 performance binding missing: setup",
+    "T-172/T-174 performance binding missing: hot_water",
+    "T-172/T-174 performance binding missing: steam_0",
+    "T-172/T-174 performance binding missing: steam_1"
+  ],
+  "status": "SKIP",
+  "views": [],
+  "vsync": false,
+  "warmup_frames_per_view": 90,
+  "base_commit": "c68888b",
+  "run_at": "2026-10-05"
+}

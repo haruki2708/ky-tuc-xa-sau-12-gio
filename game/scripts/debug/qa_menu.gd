@@ -54,7 +54,7 @@ func _ready() -> void:
 				jumps.merge(data.jumps, true)
 	_build()
 	for arg: String in OS.get_cmdline_user_args():
-		if arg.begins_with("--qa-stage=") and isolated():
+		if arg.begins_with("--qa-stage=") and isolated() and "--qa-chapter=2" not in OS.get_cmdline_user_args():
 			invincible = "--qa-invincible" in OS.get_cmdline_user_args()
 			fast = "--qa-fast" in OS.get_cmdline_user_args()
 			var box := panel.get_child(0)
