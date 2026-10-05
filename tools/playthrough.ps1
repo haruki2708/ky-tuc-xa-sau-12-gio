@@ -1,5 +1,5 @@
 param(
-    [ValidateSet('correct', 'deviant', 'mirror', 'ch1_good', 'ch1_stay_in_bed', 'ch1_leave_room', 'ch1_own_bed', 'ch1v2_good', 'ch1v2_wrong_switch', 'ch1v2_door_late', 'ch1v2_lamp_on', 'ch1v2_wrong_advice', 'ch2_good', 'ch2_chain_timeout', 'ch2_chain_wrong', 'ch2_scald', 'ch2_leave_shower', 'ch2_lost_ngu', 'all')][string]$Scenario = 'all',
+    [ValidateSet('correct', 'deviant', 'mirror', 'ch1_good', 'ch1_stay_in_bed', 'ch1_leave_room', 'ch1_own_bed', 'ch1v2_good', 'ch1v2_wrong_switch', 'ch1v2_door_late', 'ch1v2_lamp_on', 'ch1v2_wrong_advice', 'ch2_good', 'ch2_chain_timeout', 'ch2_chain_wrong', 'ch2_scald', 'ch2_leave_shower', 'ch2_wrong_prediction', 'all')][string]$Scenario = 'all',
     [ValidateSet(0, 1, 2)][int]$Chapter = 0,
     [string]$ChapterProfile,
     [switch]$RequireComplete,
@@ -24,7 +24,7 @@ if ($V2) {
     if (-not $PSBoundParameters.ContainsKey('SegmentTimeout')) { $SegmentTimeout = 1800 }
 }
 if ($Chapter -eq 2) {
-    $allowed = @('ch2_good', 'ch2_chain_timeout', 'ch2_chain_wrong', 'ch2_scald', 'ch2_leave_shower', 'ch2_lost_ngu')
+    $allowed = @('ch2_good', 'ch2_chain_timeout', 'ch2_chain_wrong', 'ch2_scald', 'ch2_leave_shower', 'ch2_wrong_prediction')
     if (-not $ChapterProfile) { $ChapterProfile = Join-Path $PSScriptRoot 'ch2-profile.json' }
     if (-not $PSBoundParameters.ContainsKey('TimeScale')) { $TimeScale = 1.0 }
     if (-not $PSBoundParameters.ContainsKey('SegmentTimeout')) { $SegmentTimeout = 120 }

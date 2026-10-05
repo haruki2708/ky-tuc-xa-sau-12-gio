@@ -15,25 +15,58 @@ func test_chain_requires_exact_tone_two_words_and_last_three_turns() -> void:
 	assert_true(POLICY.legal("văn học", "học sinh", ["học sinh", "sinh viên", "viên phấn", "phấn đấu"]))
 
 
-func test_loop_bridge_uses_dictionary_and_avoids_recent_repeat() -> void:
-	var lexicon := {
-		"a": {"text": "liệu pháp", "valid": true}, "b": {"text": "pháp luật", "valid": true},
-		"c": {"text": "luật học", "valid": true}, "d": {"text": "học sinh", "valid": true},
-		"bad": {"text": "liệu pháp", "valid": false}}
-	assert_eq(POLICY.choose("tài liệu", ["bad", "a"], [], lexicon, "loop"), 1)
-	assert_eq(POLICY.choose("tài liệu", ["a"], ["liệu pháp"], lexicon, "loop"), -1)
-	lexicon.erase("c")
-	# No route within three words: a legal word keeps the chain going (the
-	# director steers toward the loop; integrator, T-173 review).
-	assert_eq(POLICY.choose("tài liệu", ["a"], [], lexicon, "loop"), 0)
+func test_dictionary_typing_trap_and_loop_route() -> void:
+	var dictionary := Ch2Dictionary.shared()
+	var history: Array = ["tài liệu"]
+	var previous := "tài liệu"
+	var reached := false
+	for i in 20:
+		var word := POLICY.choose_word(previous, history, "loop")
+		assert_true(dictionary.has(VietText.canon_word(word)), word)
+		assert_true(POLICY.legal(previous, word, history), word)
+		if word in POLICY.LOOP:
+			reached = true
+			break
+		history.append(word)
+		previous = word
+	assert_true(reached, "independent route reaches loop")
+	var trap := POLICY.choose_word("", [], "trap")
+	assert_true(dictionary.has(VietText.canon_word(trap)))
+	assert_true(POLICY.dead_end(trap))
+	assert_true(POLICY.choose_word(trap, [trap], "trap") != trap)
+	var wrong := POLICY.choose_word("sách vở", [], "wrong_tone")
+	assert_true(POLICY.wrong_tone("sách vở", wrong))
+	assert_false(POLICY.legal("sách vở", wrong, []))
+	assert_true(POLICY.legal("văn học", "  HỌC   SINH  ", []))
+	assert_eq(POLICY.words("hoà bình"), POLICY.words("hòa bình"))
 
 
-func test_trap_and_wrong_tone_selection_are_deliberate() -> void:
-	var lexicon := {"right": {"text": "đá bóng", "valid": true}, "wrong": {"text": "đà điểu", "valid": true}, "trap": {"text": "đá tảng", "valid": true, "dead_end": true}}
-	# Fixture metadata only; no claim that this is the game's dead-end list.
-	assert_eq(POLICY.choose("viên đá", ["wrong", "right"], [], lexicon), 1)
-	assert_eq(POLICY.choose("viên đá", ["wrong", "right"], [], lexicon, "wrong_tone"), 0)
-	assert_eq(POLICY.choose("viên đá", ["right", "trap"], [], lexicon, "trap"), 1)
+func test_typed_policy_matches_core_and_requires_real_trap_observations() -> void:
+	var director := Chapter2Director.new()
+	director._dictionary = Ch2Dictionary.shared()
+	director._last_word = VietText.canon_word("sách vở")
+	director._recent.assign([director._last_word])
+	assert_true(director.is_valid_word(POLICY.choose_word("sách vở", ["sách vở"])))
+	assert_false(director.is_valid_word(POLICY.choose_word("sách vở", [], "wrong_tone")))
+	director._last_word = ""
+	director._recent.clear()
+	var trap := POLICY.choose_word("", [], "trap")
+	assert_true(director.is_valid_word(trap))
+	assert_false(director._dictionary.corpse_by_first.has(Ch2Dictionary.last_of(VietText.canon_word(trap))))
+	director.free()
+	var helper := ACTIONS.new()
+	tree.root.add_child(helper)
+	helper.recent = [""]
+	EventBus.chain_input_requested.emit(15.0)
+	assert_eq(helper.answer_chain("trap").status, "PASS")
+	EventBus.corpse_state_changed.emit(1, &"fall")
+	assert_false(helper.trap_confirmed, "submission is not an accepted trap")
+	EventBus.chain_input_closed.emit(&"accepted")
+	EventBus.chain_word_spoken.emit(&"trung", trap)
+	assert_false(helper.trap_confirmed, "accepted trap still needs corpse stall")
+	EventBus.corpse_state_changed.emit(1, &"fall")
+	assert_true(helper.trap_confirmed)
+	helper.free()
 
 
 func test_temperature_oracle_predicts_entire_approved_sequence_without_lookahead() -> void:
@@ -46,26 +79,30 @@ func test_temperature_oracle_predicts_entire_approved_sequence_without_lookahead
 	assert_true(POLICY.shower_yes([83]), "10..19 is safe")
 
 
-func test_action_observer_answers_only_pending_unblocked_turn_and_sees_shower_history() -> void:
+func test_action_observer_types_once_and_waits_for_core_acknowledgement() -> void:
 	var helper := ACTIONS.new()
-	helper.profile = {"lexicon": {"old": {"text": "viên đá", "valid": true}, "wrong": {"text": "đà điểu", "valid": true}, "right": {"text": "đá bóng", "valid": true}, "long": {"text": "đá bóng giỏi", "valid": false}, "other": {"text": "học sinh", "valid": true}}}
 	tree.root.add_child(helper)
-	var picked: Array[int] = []
-	var listen := func(index: int) -> void: picked.append(index)
-	EventBus.chain_choice_made.connect(listen)
-	EventBus.chain_word_spoken.emit(&"dat", "old")
-	EventBus.chain_choice_requested.emit(PackedStringArray(["wrong", "right", "long", "other"]), 15.0)
+	var typed: Array[String] = []
+	var listen := func(text: String) -> void: typed.append(text)
+	EventBus.chain_word_typed.connect(listen)
+	EventBus.chain_word_spoken.emit(&"dat", "WORD_CH2_HOC_SINH")
+	assert_eq(helper.recent, ["học sinh"])
+	EventBus.chain_input_requested.emit(15.0)
 	EventBus.chain_choice_blocked.emit(true)
 	assert_eq(helper.answer_chain().status, "FAIL")
-	assert_true(picked.is_empty())
+	assert_true(typed.is_empty())
 	EventBus.chain_choice_blocked.emit(false)
 	assert_eq(helper.answer_chain().status, "PASS")
-	assert_eq(picked, [1])
-	assert_eq(helper.answer_chain().status, "FAIL", "must not answer twice")
+	assert_eq(typed.size(), 1)
+	assert_true(POLICY.legal("học sinh", typed[0], ["học sinh"]))
+	assert_true(helper.chain_pending, "submission is not acknowledgement")
+	assert_eq(helper.answer_chain().status, "FAIL")
+	EventBus.chain_input_closed.emit(&"accepted")
+	assert_false(helper.chain_pending)
 	EventBus.shower_slot_finished.emit(37, true, 2)
 	assert_eq(helper.temperatures, [37])
 	assert_eq(helper.counted_minutes, 2)
-	EventBus.chain_choice_made.disconnect(listen)
+	EventBus.chain_word_typed.disconnect(listen)
 	helper.free()
 
 
@@ -83,17 +120,48 @@ func test_missing_chapter_and_physical_bindings_skip_instead_of_faking_progress(
 
 func test_complete_eight_word_loop_is_observed_not_assumed() -> void:
 	var helper := ACTIONS.new()
-	var lexicon := {"bad1": {"text": "", "valid": false}, "bad2": {"text": "", "valid": false}, "bad3": {"text": "", "valid": false}}
-	for i in 8: lexicon[str(i)] = {"text": POLICY.LOOP[i], "valid": true}
-	helper.profile = {"lexicon": lexicon}
 	tree.root.add_child(helper)
-	EventBus.chain_word_spoken.emit(&"dat", "7")
+	for bed in [1, 2, 4]: EventBus.corpse_state_changed.emit(bed, &"gagged")
+	EventBus.chain_word_spoken.emit(&"dat", "văn học")
 	for i in 8:
-		EventBus.chain_choice_requested.emit(PackedStringArray([str(i), "bad1", "bad2", "bad3"]), 15.0)
-		assert_eq(helper.answer_chain("loop").status, "PASS")
-		EventBus.chain_word_spoken.emit(&"trung", str(i))
+		EventBus.chain_input_requested.emit(15.0)
+		assert_eq(helper.answer_chain("loop").word, POLICY.LOOP[i])
+		assert_false(helper.loop_completed, "sending is not completing")
+		EventBus.chain_input_closed.emit(&"accepted")
+		EventBus.chain_word_spoken.emit(&"trung", POLICY.LOOP[i])
 		assert_eq(helper.loop_completed, i == 7)
 	helper.free()
+
+
+func test_predictions_use_history_and_require_both_core_results() -> void:
+	for sample: Array in [[[38, 16, 75], 23], [[74, 15, 62], 81], [[11, 22, 67], 37]]:
+		for ranged in [false, true]:
+			assert_true(Chapter2Director.is_right_prediction(POLICY.prediction(sample[0], false, ranged), sample[1]))
+		assert_false(Chapter2Director.is_right_prediction(POLICY.prediction(sample[0], true), sample[1]))
+	assert_eq(POLICY.prediction([11, 22]), "")
+	assert_eq(POLICY.prediction([11, 22, 100]), "")
+	assert_eq(POLICY.prediction([11, 22, 67], false, true), "3x")
+	var helper := ACTIONS.new()
+	tree.root.add_child(helper)
+	for member: StringName in [&"minh_nhat", &"ngu"]:
+		EventBus.prediction_requested.emit(member, PackedInt32Array([11, 22, 67]), 20.0)
+		assert_eq(helper.answer_prediction(member).status, "PASS")
+		assert_false(helper.both_predictions_correct())
+		assert_eq(helper.answer_prediction(member).status, "FAIL")
+		EventBus.prediction_result.emit(member, true)
+	assert_true(helper.both_predictions_correct())
+	EventBus.chapter_started.emit(2)
+	assert_false(helper.both_predictions_correct())
+	EventBus.prediction_requested.emit(&"ngu", PackedInt32Array([74, 15, 62]), 20.0)
+	assert_eq(helper.answer_prediction(&"ngu", true).status, "PASS")
+	assert_eq(helper.prediction_answers[&"ngu"], "có")
+	EventBus.prediction_result.emit(&"ngu", false)
+	assert_false(helper.both_predictions_correct())
+	helper.free()
+	assert_true(BOT.CASES.has("ch2_wrong_prediction"))
+	assert_false(BOT.CASES.has("ch2_lost_ngu"))
+	assert_eq(BOT.CASES.ch2_wrong_prediction.reason, "DEATH_CH2_LOST_NGU")
+	assert_eq(BOT.CASES.ch2_wrong_prediction.checkpoint, "ch2_r4")
 
 
 class AcknowledgementProbe extends Node:

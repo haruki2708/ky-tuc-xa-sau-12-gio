@@ -6,11 +6,11 @@ const CH2_ACTIONS := preload("res://scripts/debug/ch2_actions.gd")
 const POLICY := preload("res://scripts/debug/ch2_policy.gd")
 const CASES := {
 	"ch2_good": {"reason": "", "checkpoint": "", "kind": ""},
-	"ch2_chain_timeout": {"reason": "DEATH_CHAIN_TIMEOUT", "checkpoint": "ch2_r3", "kind": "corpse_lunge"},
-	"ch2_chain_wrong": {"reason": "DEATH_CHAIN_WRONG", "checkpoint": "ch2_r3", "kind": "corpse_lunge"},
-	"ch2_scald": {"reason": "DEATH_SCALDED", "checkpoint": "ch2_r4", "kind": "scald"},
-	"ch2_leave_shower": {"reason": "DEATH_SHOWER_BROKEN", "checkpoint": "ch2_r4", "kind": "fall_back"},
-	"ch2_lost_ngu": {"reason": "DEATH_LOST_NGU", "checkpoint": "ch2_r4", "kind": "none"},
+	"ch2_chain_timeout": {"reason": "DEATH_CH2_CHAIN_TIMEOUT", "checkpoint": "ch2_r3", "kind": "corpse_lunge"},
+	"ch2_chain_wrong": {"reason": "DEATH_CH2_CHAIN_WRONG", "checkpoint": "ch2_r3", "kind": "corpse_lunge"},
+	"ch2_scald": {"reason": "DEATH_CH2_SCALDED", "checkpoint": "ch2_r4", "kind": "scald"},
+	"ch2_leave_shower": {"reason": "DEATH_CH2_SHOWER_BROKEN", "checkpoint": "ch2_r4", "kind": "fall_back"},
+	"ch2_wrong_prediction": {"reason": "DEATH_CH2_LOST_NGU", "checkpoint": "ch2_r4", "kind": "none"},
 }
 var death_kinds: Array[StringName] = []
 var busy: bool = false
@@ -19,7 +19,6 @@ var pickup_index: int = 0
 var timeout_started: int = 0
 var timeout_limit: float = 0.0
 var door_opened: bool = false
-var ngu_answered: bool = false
 var scald_verified: bool = false
 var last_wipe_slot: int = -1
 
@@ -82,8 +81,8 @@ func _run() -> void:
 	director.start()
 	while failure.is_empty() and skipped.is_empty():
 		if scenario == "ch2_good" and 2 in completed_chapters:
-			if Progress.unlocked_chapter() < 3 or not failed_rules.is_empty() or actions.gagged.size() != 3 or not actions.loop_completed or actions.counted_minutes < 25 or not ngu_answered:
-				failure = "chapter completion did not verify gags, shower minutes, Ngu and unlock 3"
+			if Progress.unlocked_chapter() < 3 or not failed_rules.is_empty() or actions.gagged.size() != 3 or not actions.loop_completed or actions.counted_minutes < 25 or not actions.both_predictions_correct() or not actions.trap_confirmed:
+				failure = "chapter completion did not verify gags, trap, eight-word loop, shower minutes, both predictions and unlock 3"
 			break
 		if not failed_rules.is_empty():
 			await _verify_death()
@@ -103,10 +102,8 @@ static func preflight(data: Dictionary, case_name: String) -> Array[String]:
 	var missing: Array[String] = []
 	if not data.get("scene") is String or not ResourceLoader.exists(str(data.get("scene", ""))):
 		missing.append("T-170 chapter2.tscn is not integrated")
-	if not data.get("lexicon") is Dictionary or data.lexicon.is_empty(): missing.append("T-170 word lexicon is not bound")
+	if Ch2Dictionary.shared().spelling.is_empty(): missing.append("T-176 dictionary is unavailable")
 	var required := ["round3_segment", "round4_segment", "death_ui_path"]
-	if case_name not in ["ch2_chain_timeout", "ch2_chain_wrong"]:
-		required.append_array(["ngu_choice_id", "ngu_temperatures", "ngu_yes_index", "ngu_no_index"])
 	if case_name == "ch2_scald": required.append("scald_temperature_flag")
 	for key: String in required:
 		if data.get("bindings", {}).get(key) == null: missing.append("T-170 binding missing: " + key)
@@ -135,16 +132,15 @@ func _failure_observed(reason: StringName) -> void:
 func _tick_actions() -> void:
 	var bindings: Dictionary = profile.bindings
 	if actions.incoming != &"": _record(await actions.execute({"op": "answer_call"}))
-	var ngu_id := StringName(str(bindings.get("ngu_choice_id", "")))
-	if actions.choices.has(ngu_id) and not ngu_answered:
-		var yes := POLICY.shower_yes(bindings.ngu_temperatures)
-		if scenario == "ch2_lost_ngu": yes = not yes
-		var index: int = int(bindings.ngu_yes_index if yes else bindings.ngu_no_index)
-		_record(await actions.execute({"op": "choice", "id": str(ngu_id), "index": index}))
-		ngu_answered = true
-		if scenario == "ch2_lost_ngu": negative_action_done = true
+	for member: StringName in actions.prediction_pending.keys():
+		if actions.prediction_answers.has(member): continue
+		var wrong: bool = scenario == "ch2_wrong_prediction" and member == &"ngu"
+		var outcome: Dictionary = actions.answer_prediction(member, wrong, member == &"minh_nhat")
+		_record(outcome)
+		if wrong and outcome.status == "PASS": negative_action_done = true
 	if negative_action_done: return
 	if actions.chain_pending:
+		if actions.chain_submitted: return
 		if actions.chain_blocked:
 			await _physical("bedroom")
 			return
@@ -160,12 +156,18 @@ func _tick_actions() -> void:
 		if mode == "legal" and pickup_index < 3:
 			var trap: Dictionary = actions.recommendation("trap")
 			if trap.status == "PASS": mode = "trap"
+		answer = actions.recommendation(mode)
+		if answer.status == "PASS" and director.has_method("is_valid_word"):
+			var valid: bool = director.is_valid_word(answer.word)
+			if valid == (mode == "wrong_tone"):
+				failure = "independent word policy disagrees with core validity"
+				return
 		answer = actions.answer_chain(mode)
-		if answer.status == "UNAVAILABLE": answer = ACTIONS.result("FAIL", "no legal option/route to the eight-word loop")
+		if answer.status == "UNAVAILABLE": answer = ACTIONS.result("FAIL", "no legal word/route to the eight-word loop")
 		_record(answer)
 		if mode == "wrong_tone" and answer.status == "PASS": negative_action_done = true
 		return
-	if str(GameState.segment) == str(bindings.round3_segment) and scenario not in ["ch2_chain_timeout", "ch2_chain_wrong"] and pickup_index < 3:
+	if str(GameState.segment) == str(bindings.round3_segment) and scenario not in ["ch2_chain_timeout", "ch2_chain_wrong"] and pickup_index < 3 and actions.trap_confirmed:
 		var item: String = ["rag", "towel", "shirt"][pickup_index]
 		var bed_number: int = [1, 2, 4][pickup_index]
 		await _physical("pickup_" + item)
