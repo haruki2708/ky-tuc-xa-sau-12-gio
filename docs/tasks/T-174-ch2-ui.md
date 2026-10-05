@@ -1,5 +1,5 @@
 # T-174 — Chương 2: bảng nối từ, màn hình vòi sen, lớp hơi nước và bỏng
-- Lane: D (UI) | Trạng thái: todo | Agent:
+- Lane: D (UI) | Trạng thái: done | Agent:
 - Nhánh: `lane-d/T-174-ch2-ui`
 - Phụ thuộc: T-155, T-163. **Đọc kỹ `docs/design/CH2_DESIGN.md`** (D-046).
 - **Hạn: hết ngày 2026-10-07.**
@@ -79,3 +79,11 @@ Giao diện cho hai trò chơi của chương 2 và hiệu ứng màn hình cho 
 ### Còn dở / chặn
 - Không còn mục checklist chưa đạt trong phạm vi Lane D; không bị chặn triển khai. Các bước ghép và kiểm thử trên chương 2 đầy đủ thuộc T-170 cùng các lane liên quan như trên.
 - Không thêm luật, cốt truyện hoặc gợi ý quy luật nhiệt độ. Không có câu hỏi thiết kế mới.
+
+### Review (integrator, 2026-10-05)
+- **Đạt, đã merge.** Đúng phạm vi; 8 test; 24 ảnh preview. Ghép:
+  - `ChainPanel` là con của director chương 2, đóng khi hết vòng 3;
+  - LCD vòi sen ở `ShowerScreen`;
+  - lau màn hình gọi `wipe()`;
+  - vùng buồng tắm nối với `BloodOverlay.set_shower_inside`;
+  - đã loại ảnh và scene preview khỏi export.

@@ -1,5 +1,5 @@
 # T-175 — Chương 2: âm thanh nối từ, nước tắm, cảnh chết mới
-- Lane: E (Âm thanh) | Trạng thái: todo | Agent:
+- Lane: E (Âm thanh) | Trạng thái: done | Agent:
 - Nhánh: `lane-e/T-175-ch2-audio`
 - Phụ thuộc: T-158, T-164. **Đọc `docs/design/CH2_DESIGN.md`** (D-046).
 - **Hạn: hết ngày 2026-10-07.**
@@ -81,3 +81,13 @@ Test bao phủ decode/hash/LUFS/loop, ba profile/bus giọng và giải phóng b
 4. **Core/Lane D:** tại mốc camera phòng khác thua gọi CctvAudio.play_room_loss với đúng ID trên rig đang theo dõi tab/kênh thật. Gắn Ch2Music cho chapter2; sau restore ch2_r4 gọi set_round(shower) sau reset. Kiểm tra mix điện thoại/camera để không phát hai âm chết cùng sự kiện ngoài ý muốn.
 
 **Blocked:** không có chặn triển khai trong phạm vi Lane E; kiểm chứng giọng từ thật đang phụ thuộc voice bank của core và ghép chương2. Không coi headless PASS là đã nghe/duyệt âm.
+
+### Review (integrator, 2026-10-05)
+- **Đạt, đã merge.** Đúng phạm vi; 23 âm, 11 test, LUFS ghi đủ. Ghép:
+  - `CorpseVoice` ở `Gag1/2/4` (miệng xác);
+  - `Ch2Countdown`;
+  - `ShowerAudio` ở buồng tắm: nước theo nhiệt độ khi công bố, hơi nước, đẩy cửa 1–3, cửa bật mở, gương;
+  - `Ch2Music` đổi theo vòng.
+- Lượt của xác chờ đúng độ dài từ sau khi hạ giọng.
+- Chưa: `CctvAudio.play_room_loss` (chưa có rig `CctvAudio` nào trong chương; cần tab Camera báo kênh đang xem).
+- **Chủ dự án cần nghe**, nhất là giọng xác đọc từ.

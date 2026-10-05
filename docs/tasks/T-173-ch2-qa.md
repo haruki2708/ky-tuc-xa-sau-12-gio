@@ -1,5 +1,5 @@
 # T-173 — Chương 2: bot, menu nhảy tới đoạn, đo hiệu năng hơi nước
-- Lane: C (QA và Tools) | Trạng thái: todo | Agent:
+- Lane: C (QA và Tools) | Trạng thái: done | Agent:
 - Nhánh: `lane-c/T-173-ch2-qa`
 - Phụ thuộc: T-166. **Đọc `docs/design/CH2_DESIGN.md`** (D-046).
 - **Hạn:** phần khung hết ngày 2026-10-07; chạy trên bản ghép ngày 2026-10-08.
@@ -66,3 +66,7 @@ Chạy tại `D:\GAME_WORK\lane-c`, Godot 4.7.2, ngày 2026-10-05:
 - Lane A/D và integrator: cung cấp node path, method/args, tọa độ và signal/property xác nhận cầm từng đồ, bịt giường 1/2/4, ba lần đẩy cửa, vào/ra buồng tắm, lau màn hình; trạng thái nước nóng đang chảy và mức hơi nước để đo liên tục. Không cần thêm signal nếu component hiện có đã đủ xác nhận.
 - Lane B/D/core: cung cấp góc camera nhà vệ sinh và cách dựng trạng thái steam 0/1 với nước nóng đang chảy cho bài đo thật.
 - Không sửa file ngoài phạm vi; không sửa `tools/godot-path.ps1` hay `docs/STATUS.md`; không cài phần mềm/plugin. Không có câu hỏi thiết kế/cốt truyện mới; các mục còn chờ là hợp đồng tích hợp.
+
+### Review (integrator, 2026-10-05)
+- **Đạt phần khung, đã merge.** Đúng phạm vi; 8 test công cụ; SKIP có lý do.
+- Còn lại (integrator): điền `tools/ch2-profile.json` theo chương 2 đã ghép, rồi chạy 6 kịch bản và đo FPS.

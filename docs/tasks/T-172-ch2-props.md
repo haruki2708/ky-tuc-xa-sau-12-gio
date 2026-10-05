@@ -1,5 +1,5 @@
 # T-172 — Chương 2: xác chơi nối từ, đồ bịt miệng, nhà vệ sinh có vòi sen
-- Lane: B (Môi trường và 3D) | Trạng thái: todo | Agent:
+- Lane: B (Môi trường và 3D) | Trạng thái: done | Agent:
 - Nhánh: `lane-b/T-172-ch2-props`
 - Phụ thuộc: T-154, T-162, T-165. **Đọc kỹ `docs/design/CH2_DESIGN.md`** (D-046).
 - **Hạn: hết ngày 2026-10-07.**
@@ -131,3 +131,9 @@ feed nào dùng trong kịch bản, không tự thay lựa chọn này trong cor
 
 **Blocked:** không còn chặn trong phần việc Lane B; các yêu cầu tích hợp/câu hỏi
 ở trên được bàn giao, không tự sửa file ngoài phạm vi.
+
+### Review (integrator, 2026-10-05)
+- **Đạt, đã merge.** Đúng phạm vi; 7 test; FPS hơi nước 329–486.
+- Trả lời câu hỏi: camera vòng 3 dùng **Room310** đúng như card (số 102 trong thiết kế chỉ là ví dụ).
+- Core đổi trạng thái `sit` của hợp đồng sang `sit_play` của B.
+- **Cần sửa (lần sau):** `test_stuck_door_shakes_without_opening_then_cancels_on_open` chập chờn khi máy bận (chờ bộ hẹn giờ 0,07 giây); chạy riêng thì đạt.

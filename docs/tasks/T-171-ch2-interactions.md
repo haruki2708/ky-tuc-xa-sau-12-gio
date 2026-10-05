@@ -1,5 +1,5 @@
 # T-171 — Chương 2: cầm giẻ, bịt miệng xác, buồng tắm, cảnh chết mới
-- Lane: A (Gameplay) | Trạng thái: todo | Agent:
+- Lane: A (Gameplay) | Trạng thái: done | Agent:
 - Nhánh: `lane-a/T-171-ch2-interactions`
 - Phụ thuộc: T-161. **Đọc kỹ `docs/design/CH2_DESIGN.md`** (D-046).
 - **Hạn: hết ngày 2026-10-07.**
@@ -82,3 +82,12 @@ Thiết lập `accessibility/reduce_scares` dùng listener sẵn có của Playe
 ### Còn dở / bị chặn
 
 - Không có mục checklist T-171 còn dở và không có blocker trong phạm vi Lane A. Các bước tích hợp trên thuộc core/B/D/E; chưa xác nhận trải nghiệm cuối trong toàn chương 2. Không có câu hỏi thiết kế mới.
+
+### Review (integrator, 2026-10-05)
+- **Đạt, đã merge.** Đúng phạm vi; 13 test; API rõ. Ghép:
+  - `carry_item` ở `RagSpot`, `TowelSpot`, `ShirtSpot` (ẩn model của B khi cầm);
+  - `gag_spot` ở `Gag1/2/4` (core nhận qua `CarryItem.held_by`);
+  - `stuck_door` dưới `Extension/BathroomDoor`;
+  - `shower_stall` dùng box của B;
+  - hai `shower_choice` ở `ShowerYes`/`ShowerNo`, core bật/tắt theo đếm ngược;
+  - `shower_screen` (lau) ở `ShowerScreen`.
