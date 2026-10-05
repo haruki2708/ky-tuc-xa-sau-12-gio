@@ -54,6 +54,8 @@ var _in_shower_override: int = -1
 var _minutes: int = 0
 var _steam: float = 0.0
 var _shower_lcd: Node3D
+var _shower_audio: Node3D
+var _ch2_music: Node
 var _chain_panel: Node
 
 
@@ -70,6 +72,7 @@ func _ready() -> void:
 	EventBus.shower_choice_made.connect(func(run_water: bool) -> void: _shower_choice = 1 if run_water else 0)
 	super._ready()
 	_place_ch2_props()
+	_place_ch2_audio()
 
 
 # --- Chapter definition ---------------------------------------------------------------
@@ -114,6 +117,8 @@ func _round_3() -> void:
 	_set_corpses_watching(false)
 	_place_player(Vector3(32.6, 0.05, -1.4))
 	_reset_chain()
+	if _ch2_music != null:
+		_ch2_music.set_round(&"chain")
 	await _announce(["SPK_CH2_R2_END"])
 	_survivors(28)
 	await _line("n_28")
@@ -202,7 +207,7 @@ func _corpse_says(bed: int, key: String) -> void:
 	_corpse_state(bed, &"talk")
 	_said(key)
 	EventBus.chain_word_spoken.emit(SPEAKERS[bed], key)
-	await _wait(CORPSE_SPEAK_SECONDS)
+	await _wait(_word_seconds(key))
 	_talking_bed = -1
 	_corpse_state(bed, &"gagged" if _gagged.get(bed, false) else &"sit")
 
@@ -387,6 +392,8 @@ func _round_4() -> void:
 	_rules_live = true
 	_minutes = 0
 	_set_steam(0.0)
+	if _ch2_music != null:
+		_ch2_music.set_round(&"shower")
 	await _announce(["SPK_CH2_R3_END"])
 	_survivors(5)
 	for bed in [1, 2, 4]:
@@ -413,6 +420,8 @@ func _round_4() -> void:
 			var room := _room()
 			if room != null and room.has_method("flash_reflection"):
 				room.flash_reflection()
+				if _shower_audio != null:
+					_shower_audio.play_cue("mirror_shiver")
 		if not await _shower_slot(int(temps[slot])):
 			return
 		if _minutes >= need:
@@ -475,6 +484,8 @@ func _save_ngu() -> bool:
 
 func _ending_2() -> void:
 	GameState.set_segment(&"end2")
+	if _ch2_music != null:
+		_ch2_music.set_round(&"")
 	_set_water(false, 0)
 	_set_clock("08:00")
 	await _announce(["SPK_CH2_R4_END"])
@@ -504,6 +515,8 @@ func _in_shower() -> bool:
 
 
 func _set_water(on: bool, temperature: int) -> void:
+	if _shower_audio != null:
+		_shower_audio.set_water(float(temperature), on)
 	var room := _room()
 	if room != null and room.has_method("set_water"):
 		room.set_water(on, temperature)
@@ -515,6 +528,8 @@ func _set_water(on: bool, temperature: int) -> void:
 
 func _set_steam(level: float) -> void:
 	_steam = level
+	if _shower_audio != null:
+		_shower_audio.set_steam(level)
 	var room := _room()
 	if room != null and room.has_method("set_steam"):
 		room.set_steam(level)
@@ -665,6 +680,43 @@ func _place_ch2_props() -> void:
 			_add_feed(&"hall_310", "CCTV_CH2_CAM_HALL_310", r310.get_node("Hall/Cam"))
 		if r310.get_node_or_null("Cam") is Camera3D:
 			_add_feed(&"cam_310", "CCTV_CH2_CAM_310", r310.get_node("Cam"))
+
+
+## Lane E's rigs (T-175): a voice at each corpse's mouth, the countdown,
+## the shower and the chapter music.
+func _place_ch2_audio() -> void:
+	for bed in [1, 2, 4]:
+		var mouth := _room_anchor("Gag%d" % bed)
+		if mouth != null:
+			var voice := CorpseVoice.new()
+			voice.name = "CorpseVoice"
+			voice.speaker = String(SPEAKERS[bed])
+			mouth.add_child(voice)
+	var countdown := Ch2Countdown.new()
+	countdown.name = "Ch2Countdown"
+	add_child(countdown)
+	_shower_audio = ShowerAudio.new()
+	_shower_audio.name = "ShowerAudio"
+	var stall := _room_anchor("ShowerStall")
+	if stall != null:
+		stall.add_child(_shower_audio)
+	else:
+		add_child(_shower_audio)
+	_ch2_music = Ch2Music.new()
+	_ch2_music.name = "Ch2Music"
+	add_child(_ch2_music)
+	var door := _room().get_node_or_null("Extension/BathroomDoor/StuckDoor") if _room() != null else null
+	if door != null:
+		door.bashed.connect(func(count: int) -> void: _shower_audio.play_door_push(clampi(count, 1, 3)))
+		door.opened.connect(func() -> void: _shower_audio.play_cue("door_burst"))
+
+
+## How long a corpse takes to say a word: lane E lowers the pitch (longest .72).
+func _word_seconds(key: String) -> float:
+	var path := "res://audio/voice/vi/%s.ogg" % key
+	if time_scale < 0.999 or not ResourceLoader.exists(path):
+		return CORPSE_SPEAK_SECONDS
+	return maxf(CORPSE_SPEAK_SECONDS, (load(path) as AudioStream).get_length() / 0.72 + 0.3)
 
 
 func _instance_on(parent: Node, scene_path: String, node_name: String) -> Node3D:
