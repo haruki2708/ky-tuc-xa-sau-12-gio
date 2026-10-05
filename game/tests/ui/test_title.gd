@@ -280,3 +280,18 @@ func test_saved_chapter_requires_confirmation_and_warning_describes_chapter_cont
 	_title.get_node("Chapters/Content/Chapter1").pressed.emit()
 	_title.get_node("Confirmation/Content/Buttons/Confirm").pressed.emit()
 	assert_eq(_app.chapters, [1])
+
+
+func test_chapter_three_unlock_uses_existing_warning_and_saved_confirmation() -> void:
+	assert_true(_title.get_node("Warning").visible)
+	_title.get_node("Warning/Content/Continue").pressed.emit()
+	_app.saved = true
+	Progress.unlock(3, _progress_path)
+	_title.show_chapters()
+	assert_false(_title.get_node("Chapters/Content/Chapter3").disabled)
+	assert_true(_title.get_node("Chapters/Content/Chapter4").disabled)
+	_title.get_node("Chapters/Content/Chapter3").pressed.emit()
+	assert_true(_title.get_node("Confirmation").visible)
+	assert_true(_app.chapters.is_empty())
+	_title.get_node("Confirmation/Content/Buttons/Confirm").pressed.emit()
+	assert_eq(_app.chapters, [3])
