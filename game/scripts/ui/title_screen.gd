@@ -2,7 +2,7 @@ extends Control
 ## First-run acknowledgement, title navigation and injectable core actions.
 
 const SettingsStore = preload("res://scripts/ui/settings.gd")
-const CREDIT_SECTIONS := ["KIT", "AUDIO", "FONT", "AI"]
+const CREDIT_SECTIONS := ["KIT", "AUDIO", "FONT", "AI", "DICTIONARY"]
 
 @export var settings_path: NodePath = ^"/root/Settings"
 @export var app_path: NodePath = ^"/root/App"

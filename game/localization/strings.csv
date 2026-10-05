@@ -802,3 +802,25 @@ PROMPT_CH2_BASH_DOOR,Đẩy cửa,Shove the door
 PROMPT_CH2_WIPE,Lau màn hình,Wipe the screen
 CCTV_CH2_CAM_310,CAM 310 · nhà B,CAM 310 · Bldg B
 CCTV_CH2_CAM_HALL_310,CAM T3 · hành lang 310,CAM F3 · corridor 310
+"UI_CHAIN_TYPE_OPEN","Enter: gõ từ","Enter: type a word"
+"UI_TEXT_ENTRY_CONTROLS","Enter: gửi · Esc: hủy","Enter: send · Esc: cancel"
+"UI_PREDICTION_RECIPIENT","Nhắn cho %s","Message to %s"
+"UI_PREDICTION_HISTORY","Ba nhiệt độ: %s · Còn %d giây","Last temperatures: %s · %d seconds left"
+"UI_PREDICTION_SENT","Đã gửi","Sent"
+"UI_CREDITS_DICTIONARY_TITLE","Từ điển nối từ","Word-chain dictionary"
+"UI_CREDITS_DICTIONARY_TEXT","Wiktionary tiếng Việt và tiếng Anh — các tác giả Wiktionary.
+https://vi.wiktionary.org · https://en.wiktionary.org
+Bản trích: kaikki.org (wiktextract)
+https://kaikki.org/viwiktionary/Tiếng Việt/
+https://kaikki.org/dictionary/Vietnamese/
+CC BY-SA 4.0
+https://creativecommons.org/licenses/by-sa/4.0/
+Đã chuyển thể: chỉ giữ từ hai tiếng; bỏ tên riêng, ký tự và phụ tố; thêm dạng chuẩn hóa, cờ xác biết và từ của game.","Vietnamese and English Wiktionary — Wiktionary contributors.
+https://vi.wiktionary.org · https://en.wiktionary.org
+Extracted by kaikki.org (wiktextract)
+https://kaikki.org/viwiktionary/Tiếng Việt/
+https://kaikki.org/dictionary/Vietnamese/
+CC BY-SA 4.0
+https://creativecommons.org/licenses/by-sa/4.0/
+Adapted: only two-syllable words retained; proper names, symbols and affixes removed; normalization, corpse vocabulary flags and game words added."
+"UI_PREDICTION_OPEN","Enter: gõ tin nhắn","Enter: type a message"

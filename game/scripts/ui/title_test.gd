@@ -31,7 +31,7 @@ func _ready() -> void:
 	match screen:
 		"vi", "en": title.show_menu()
 		"credits": title.show_credits()
-		"credits_end":
+		"credits_end", "credits_end_en":
 			title.show_credits()
 			await get_tree().process_frame
 			await get_tree().process_frame

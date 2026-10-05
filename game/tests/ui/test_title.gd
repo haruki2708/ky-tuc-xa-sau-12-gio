@@ -196,6 +196,17 @@ func test_keyboard_navigation_settings_live_locale_credits_and_quit() -> void:
 	assert_true(_app.starts.is_empty())
 
 
+func test_dictionary_credit_has_both_sources_extractor_license_and_adaptation() -> void:
+	_title.show_credits()
+	var body: Label = _title.get_node("Credits/Content/Scroll/Entries/DICTIONARYBody")
+	for locale: String in ["vi", "en"]:
+		TranslationServer.set_locale(locale)
+		var credit := body.tr(body.text)
+		for required: String in ["https://vi.wiktionary.org", "https://en.wiktionary.org", "kaikki.org", "wiktextract", "CC BY-SA 4.0", "https://creativecommons.org/licenses/by-sa/4.0/"]:
+			assert_true(credit.contains(required), "credit must include " + required)
+		assert_true(credit.contains("hai tiếng" if locale == "vi" else "two-syllable"))
+
+
 func test_pause_return_title_requires_confirmation_and_unpauses() -> void:
 	_title.hide()
 	var instance: CanvasLayer = PAUSE.instantiate()

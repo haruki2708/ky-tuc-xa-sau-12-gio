@@ -22,6 +22,8 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
+	if preload("res://scripts/ui/game_text_entry.gd").is_typing(get_tree()):
+		return
 	if event.is_echo():
 		return
 	if _open and (event.is_action_pressed("notebook") or event.is_action_pressed("pause")):

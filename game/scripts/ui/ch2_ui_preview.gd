@@ -20,7 +20,9 @@ func _ready() -> void:
 		EventBus.chain_word_spoken.emit(&"dat", "UI_CH2_PREVIEW_WORD_1")
 		if mode != "chain_corpse":
 			EventBus.chain_turn_started.emit(&"trung", 15.0)
-			EventBus.chain_choice_requested.emit(PackedStringArray(OPTIONS), 15.0)
+			EventBus.chain_input_requested.emit(15.0)
+			chain.open_entry()
+			chain.get_node("Root/Card/Content/Entry").text = "khuất bóng"
 			if mode == "chain_blocked":
 				EventBus.chain_choice_blocked.emit(true)
 			if mode == "chain_timeout":
@@ -47,6 +49,12 @@ func _ready() -> void:
 			EventBus.shower_steam_changed.emit(1.0)
 		if mode == "shower_wiped":
 			screen.wipe()
+		return
+	if mode.begins_with("prediction_"):
+		var phone: CanvasLayer = load("res://ui/phone/phone_screen.tscn").instantiate()
+		add_child(phone)
+		var member: StringName = &"ngu" if mode == "prediction_ngu" else &"minh_nhat"
+		EventBus.prediction_requested.emit(member, PackedInt32Array([74, 15, 62] if member == &"ngu" else [38, 16, 75]), 20.0)
 		return
 	if mode == "phone":
 		var phone: CanvasLayer = load("res://ui/phone/phone_screen.tscn").instantiate()
