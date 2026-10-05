@@ -12,6 +12,10 @@ const DEFAULT_MOUSE_SENSITIVITY: float = 0.002
 const MIN_MOUSE_SENSITIVITY: float = 0.0005
 const MAX_MOUSE_SENSITIVITY: float = 0.006
 const DEFAULT_HEAD_BOB: bool = true
+const GAMEPLAY_ACTIONS: Array[StringName] = [
+	&"move_forward", &"move_back", &"move_left", &"move_right", &"sprint",
+	&"crouch", &"hold_breath", &"interact", &"phone", &"flashlight",
+]
 
 @export var mouse_sensitivity: float = DEFAULT_MOUSE_SENSITIVITY
 @export var acceleration: float = 12.0
@@ -49,6 +53,7 @@ var _breath_cooldown: float = 0.0
 var _control_locks: Array[Node] = []
 var death_animation: PlayerDeath
 var _bash_elapsed: float = 0.22
+var _text_entry_active: bool = false
 
 
 func _ready() -> void:
@@ -57,6 +62,7 @@ func _ready() -> void:
 	GameState.set_flag(&"player_bed", 0)
 	EventBus.game_paused.connect(_on_game_paused)
 	EventBus.settings_changed.connect(_on_settings_changed)
+	EventBus.text_entry_changed.connect(_on_text_entry_changed)
 	_read_settings(true, true)
 	_set_mouse_captured(true)
 	_step_scale = _next_step_scale()
@@ -81,6 +87,24 @@ func _on_death_started(kind: StringName) -> void:
 
 func _on_game_paused(paused: bool) -> void:
 	_set_mouse_captured(not paused and not controls_locked())
+
+
+func _on_text_entry_changed(active: bool) -> void:
+	if _text_entry_active == active:
+		return
+	_text_entry_active = active
+	# Clear polled gameplay state at both boundaries, without swallowing text events.
+	# A new gameplay press is required after closing; Esc/Enter belong to the UI.
+	for action: StringName in GAMEPLAY_ACTIONS:
+		Input.action_release(action)
+	if active:
+		velocity = Vector3.ZERO
+		_set_holding_breath(false)
+
+
+func keyboard_input_blocked() -> bool:
+	# Typing owns the keyboard only; modal locks still own keyboard AND mouse.
+	return _text_entry_active or controls_locked()
 
 
 func _on_settings_changed(section: String, key: String) -> void:
@@ -145,11 +169,17 @@ func _physics_process(delta: float) -> void:
 			_restless_cooldown = 0.4
 		_look_distance = 0.0
 		_update_focus()
-		if not controls_locked() and Input.is_action_just_pressed("interact"):
+		if not keyboard_input_blocked() and Input.is_action_pressed("interact") and Input.is_action_just_pressed("interact"):
 			leave_hide_spot()
 		return
 	if controls_locked():
 		velocity = Vector3.ZERO
+		return
+	if _text_entry_active:
+		velocity = Vector3.ZERO
+		# Settle the existing bob without taking another locomotion step.
+		camera.position.y = move_toward(camera.position.y, 0.0, delta * 0.1)
+		_update_focus()
 		return
 	_update_crouch()
 	var input_vector: Vector2 = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
@@ -173,7 +203,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	_update_steps_and_bob(previous_position, was_grounded, delta)
 	_update_focus()
-	if Input.is_action_just_pressed("interact") and is_instance_valid(_target):
+	if Input.is_action_pressed("interact") and Input.is_action_just_pressed("interact") and is_instance_valid(_target):
 		_target.interact(self)
 
 
@@ -353,7 +383,7 @@ func leave_hide_spot(noisy: bool = true) -> void:
 
 
 func _update_breath(delta: float) -> void:
-	var wants_hold: bool = Input.is_action_pressed("hold_breath") and _breath_cooldown <= 0.0
+	var wants_hold: bool = not keyboard_input_blocked() and Input.is_action_pressed("hold_breath") and _breath_cooldown <= 0.0
 	if wants_hold:
 		_set_holding_breath(true)
 		_hold_elapsed += delta

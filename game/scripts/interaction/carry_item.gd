@@ -30,6 +30,7 @@ static func held_by(player: Node) -> CarryItem:
 static func player_can_use(player: Node) -> bool:
 	return is_instance_valid(player) and player.is_inside_tree() \
 		and not player.get_tree().paused \
+		and (not player.has_method("keyboard_input_blocked") or not player.call("keyboard_input_blocked")) \
 		and (not player.has_method("controls_locked") or not player.call("controls_locked"))
 
 
