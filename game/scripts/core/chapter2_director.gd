@@ -53,9 +53,16 @@ var _shower_choice: int = -1
 var _in_shower_override: int = -1
 var _minutes: int = 0
 var _steam: float = 0.0
+var _shower_lcd: Node3D
+var _chain_panel: Node
 
 
 func _ready() -> void:
+	# Lane D's word-chain panel (T-174).
+	if ResourceLoader.exists("res://ui/chain/chain_panel.tscn"):
+		_chain_panel = (load("res://ui/chain/chain_panel.tscn") as PackedScene).instantiate()
+		_chain_panel.name = "ChainPanel"
+		add_child(_chain_panel)
 	_bank = _load_json(WORD_BANK_PATH)
 	_shower = _load_json(SHOWER_PATH)
 	_rng.seed = 2026
@@ -127,6 +134,8 @@ func _round_3() -> void:
 		await _corpse_says([1, 2, 4][i], String(_bank.opening[i]))
 	_think("THINK_CH2_VO")
 	await _chain(R3_TURNS)
+	if _chain_panel != null and _chain_panel.has_method("close_panel"):
+		_chain_panel.close_panel()
 
 
 func _reset_chain() -> void:
@@ -632,6 +641,10 @@ func _place_ch2_props() -> void:
 		var shape := stall.get_node("CollisionShape3D") as CollisionShape3D
 		shape.shape = b_shape.shape
 		shape.global_transform = b_shape.global_transform
+	# Steam on the camera only inside the stall (lane D's overlay, T-174).
+	var overlay := get_parent().get_node_or_null("BloodOverlay") if get_parent() != null else null
+	if stall != null and overlay != null and overlay.has_method("set_shower_inside"):
+		stall.player_inside_changed.connect(overlay.set_shower_inside)
 	# Có / Không under the screen, and wiping the steam off it.
 	for entry: Array in [["ShowerYes", true], ["ShowerNo", false]]:
 		var button := _instance_on(_room_anchor(entry[0]), "res://scenes/interaction/shower_choice.tscn", "Choice")
@@ -639,6 +652,8 @@ func _place_ch2_props() -> void:
 			button.set("run_water", entry[1])
 			button.set("prompt_key", "PROMPT_CH2_SHOWER_YES" if entry[1] else "PROMPT_CH2_SHOWER_NO")
 			_hide_placeholder(button)
+	# Lane D's LCD (T-174) on lane B's screen; lane A's wipe zone in front of it.
+	_shower_lcd = _instance_on(_room_anchor("ShowerScreen"), "res://ui/shower/shower_screen.tscn", "Lcd")
 	var wipe := _instance_on(_room_anchor("ShowerScreen"), "res://scenes/interaction/shower_screen.tscn", "Wipe")
 	if wipe != null:
 		_hide_placeholder(wipe)
@@ -675,9 +690,8 @@ func _set_shower_buttons(enabled: bool) -> void:
 
 
 func _on_screen_wiped() -> void:
-	var screen := get_tree().get_first_node_in_group(&"shower_screen_ui")
-	if screen != null and screen.has_method("wipe"):
-		screen.wipe()
+	if _shower_lcd != null and _shower_lcd.has_method("wipe"):
+		_shower_lcd.wipe()
 
 
 func _load_json(path: String) -> Dictionary:
