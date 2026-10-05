@@ -1,0 +1,1785 @@
+[gd_scene format=3]
+
+
+[sub_resource type="BoxShape3D" id="s1"]
+size = Vector3(44, 19.8, 10)
+
+[sub_resource type="StandardMaterial3D" id="s2"]
+albedo_color = Color(0.47, 0.49, 0.4, 1)
+roughness = 0.85
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="s3"]
+size = Vector3(44, 19.8, 10)
+material = SubResource("s2")
+
+[sub_resource type="StandardMaterial3D" id="s4"]
+albedo_color = Color(0.18, 0.27, 0.28, 1)
+roughness = 0.18
+texture_filter = 0
+metallic = 0.65
+
+[sub_resource type="BoxMesh" id="s5"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s6"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s7"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s8"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s9"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s10"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s11"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s12"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s13"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s14"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s15"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s16"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s17"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s18"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s19"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s20"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s21"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s22"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s23"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s24"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s25"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s26"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s27"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s28"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s29"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s30"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s31"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s32"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s33"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s34"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s35"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s36"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s37"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s38"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s39"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s40"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s41"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s42"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s43"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s44"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s45"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s46"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s47"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s48"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s49"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s50"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s51"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s52"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="StandardMaterial3D" id="s53"]
+albedo_color = Color(0.1, 0.15, 0.15, 1)
+roughness = 0.85
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="s54"]
+size = Vector3(3, 2.8, 0.1)
+material = SubResource("s53")
+
+[sub_resource type="BoxShape3D" id="s55"]
+size = Vector3(80, 16.5, 20)
+
+[sub_resource type="BoxMesh" id="s56"]
+size = Vector3(80, 16.5, 20)
+material = SubResource("s2")
+
+[sub_resource type="BoxMesh" id="s57"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s58"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s59"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s60"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s61"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s62"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s63"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s64"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s65"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s66"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s67"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s68"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s69"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s70"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s71"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s72"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s73"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s74"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s75"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s76"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s77"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s78"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s79"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s80"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s81"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s82"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s83"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s84"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s85"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s86"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s87"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s88"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s89"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s90"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s91"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s92"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s93"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s94"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s95"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s96"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s97"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s98"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s99"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s100"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s101"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s102"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s103"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s104"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s105"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s106"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s107"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s108"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s109"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s110"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s111"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s112"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s113"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s114"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s115"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s116"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s117"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s118"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s119"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s120"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s121"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s122"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s123"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s124"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s125"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s126"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s127"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s128"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s129"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s130"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s131"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s132"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s133"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s134"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s135"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s136"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s137"]
+size = Vector3(3, 2.8, 0.1)
+material = SubResource("s53")
+
+[sub_resource type="BoxShape3D" id="s138"]
+size = Vector3(40, 9.9, 30)
+
+[sub_resource type="BoxMesh" id="s139"]
+size = Vector3(40, 9.9, 30)
+material = SubResource("s2")
+
+[sub_resource type="BoxMesh" id="s140"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s141"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s142"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s143"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s144"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s145"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s146"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s147"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s148"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s149"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s150"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s151"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s152"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s153"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s154"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s155"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s156"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s157"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s158"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s159"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s160"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s161"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s162"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s163"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s164"]
+size = Vector3(3, 2.8, 0.1)
+material = SubResource("s53")
+
+[sub_resource type="BoxShape3D" id="s165"]
+size = Vector3(60, 10, 40)
+
+[sub_resource type="BoxMesh" id="s166"]
+size = Vector3(60, 10, 40)
+material = SubResource("s2")
+
+[sub_resource type="BoxMesh" id="s167"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s168"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s169"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s170"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s171"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s172"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s173"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s174"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s175"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s176"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s177"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s178"]
+size = Vector3(2, 1.5, 0.05)
+material = SubResource("s4")
+
+[sub_resource type="BoxMesh" id="s179"]
+size = Vector3(3, 2.8, 0.1)
+material = SubResource("s53")
+
+[node name="Shells" type="Node3D"]
+
+
+[node name="BuildingA" type="Node3D" parent="."]
+
+
+[node name="Shell" type="StaticBody3D" parent="BuildingA"]
+position = Vector3(22.0, -0.0, 59.0)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="BuildingA/Shell"]
+shape = SubResource("s1")
+
+[node name="Mesh" type="MeshInstance3D" parent="BuildingA/Shell"]
+mesh = SubResource("s3")
+
+[node name="Window0_0" type="Node3D" parent="BuildingA"]
+position = Vector3(2.5, -8.1, 53.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="BuildingA/Window0_0"]
+mesh = SubResource("s5")
+
+[node name="Window0_1" type="Node3D" parent="BuildingA"]
+position = Vector3(7.5, -8.1, 53.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="BuildingA/Window0_1"]
+mesh = SubResource("s6")
+
+[node name="Window0_2" type="Node3D" parent="BuildingA"]
+position = Vector3(12.5, -8.1, 53.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="BuildingA/Window0_2"]
+mesh = SubResource("s7")
+
+[node name="Window0_3" type="Node3D" parent="BuildingA"]
+position = Vector3(17.5, -8.1, 53.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="BuildingA/Window0_3"]
+mesh = SubResource("s8")
+
+[node name="Window0_4" type="Node3D" parent="BuildingA"]
+position = Vector3(22.5, -8.1, 53.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="BuildingA/Window0_4"]
+mesh = SubResource("s9")
+
+[node name="Window0_5" type="Node3D" parent="BuildingA"]
+position = Vector3(27.5, -8.1, 53.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="BuildingA/Window0_5"]
+mesh = SubResource("s10")
+
+[node name="Window0_6" type="Node3D" parent="BuildingA"]
+position = Vector3(32.5, -8.1, 53.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="BuildingA/Window0_6"]
+mesh = SubResource("s11")
+
+[node name="Window0_7" type="Node3D" parent="BuildingA"]
+position = Vector3(37.5, -8.1, 53.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="BuildingA/Window0_7"]
+mesh = SubResource("s12")
+
+[node name="Window1_0" type="Node3D" parent="BuildingA"]
+position = Vector3(2.5, -4.8, 53.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="BuildingA/Window1_0"]
+mesh = SubResource("s13")
+
+[node name="Window1_1" type="Node3D" parent="BuildingA"]
+position = Vector3(7.5, -4.8, 53.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="BuildingA/Window1_1"]
+mesh = SubResource("s14")
+
+[node name="Window1_2" type="Node3D" parent="BuildingA"]
+position = Vector3(12.5, -4.8, 53.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="BuildingA/Window1_2"]
+mesh = SubResource("s15")
+
+[node name="Window1_3" type="Node3D" parent="BuildingA"]
+position = Vector3(17.5, -4.8, 53.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="BuildingA/Window1_3"]
+mesh = SubResource("s16")
+
+[node name="Window1_4" type="Node3D" parent="BuildingA"]
+position = Vector3(22.5, -4.8, 53.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="BuildingA/Window1_4"]
+mesh = SubResource("s17")
+
+[node name="Window1_5" type="Node3D" parent="BuildingA"]
+position = Vector3(27.5, -4.8, 53.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="BuildingA/Window1_5"]
+mesh = SubResource("s18")
+
+[node name="Window1_6" type="Node3D" parent="BuildingA"]
+position = Vector3(32.5, -4.8, 53.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="BuildingA/Window1_6"]
+mesh = SubResource("s19")
+
+[node name="Window1_7" type="Node3D" parent="BuildingA"]
+position = Vector3(37.5, -4.8, 53.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="BuildingA/Window1_7"]
+mesh = SubResource("s20")
+
+[node name="Window2_0" type="Node3D" parent="BuildingA"]
+position = Vector3(2.5, -1.5, 53.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="BuildingA/Window2_0"]
+mesh = SubResource("s21")
+
+[node name="Window2_1" type="Node3D" parent="BuildingA"]
+position = Vector3(7.5, -1.5, 53.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="BuildingA/Window2_1"]
+mesh = SubResource("s22")
+
+[node name="Window2_2" type="Node3D" parent="BuildingA"]
+position = Vector3(12.5, -1.5, 53.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="BuildingA/Window2_2"]
+mesh = SubResource("s23")
+
+[node name="Window2_3" type="Node3D" parent="BuildingA"]
+position = Vector3(17.5, -1.5, 53.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="BuildingA/Window2_3"]
+mesh = SubResource("s24")
+
+[node name="Window2_4" type="Node3D" parent="BuildingA"]
+position = Vector3(22.5, -1.5, 53.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="BuildingA/Window2_4"]
+mesh = SubResource("s25")
+
+[node name="Window2_5" type="Node3D" parent="BuildingA"]
+position = Vector3(27.5, -1.5, 53.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="BuildingA/Window2_5"]
+mesh = SubResource("s26")
+
+[node name="Window2_6" type="Node3D" parent="BuildingA"]
+position = Vector3(32.5, -1.5, 53.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="BuildingA/Window2_6"]
+mesh = SubResource("s27")
+
+[node name="Window2_7" type="Node3D" parent="BuildingA"]
+position = Vector3(37.5, -1.5, 53.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="BuildingA/Window2_7"]
+mesh = SubResource("s28")
+
+[node name="Window3_0" type="Node3D" parent="BuildingA"]
+position = Vector3(2.5, 1.8, 53.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="BuildingA/Window3_0"]
+mesh = SubResource("s29")
+
+[node name="Window3_1" type="Node3D" parent="BuildingA"]
+position = Vector3(7.5, 1.8, 53.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="BuildingA/Window3_1"]
+mesh = SubResource("s30")
+
+[node name="Window3_2" type="Node3D" parent="BuildingA"]
+position = Vector3(12.5, 1.8, 53.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="BuildingA/Window3_2"]
+mesh = SubResource("s31")
+
+[node name="Window3_3" type="Node3D" parent="BuildingA"]
+position = Vector3(17.5, 1.8, 53.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="BuildingA/Window3_3"]
+mesh = SubResource("s32")
+
+[node name="Window3_4" type="Node3D" parent="BuildingA"]
+position = Vector3(22.5, 1.8, 53.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="BuildingA/Window3_4"]
+mesh = SubResource("s33")
+
+[node name="Window3_5" type="Node3D" parent="BuildingA"]
+position = Vector3(27.5, 1.8, 53.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="BuildingA/Window3_5"]
+mesh = SubResource("s34")
+
+[node name="Window3_6" type="Node3D" parent="BuildingA"]
+position = Vector3(32.5, 1.8, 53.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="BuildingA/Window3_6"]
+mesh = SubResource("s35")
+
+[node name="Window3_7" type="Node3D" parent="BuildingA"]
+position = Vector3(37.5, 1.8, 53.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="BuildingA/Window3_7"]
+mesh = SubResource("s36")
+
+[node name="Window4_0" type="Node3D" parent="BuildingA"]
+position = Vector3(2.5, 5.1, 53.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="BuildingA/Window4_0"]
+mesh = SubResource("s37")
+
+[node name="Window4_1" type="Node3D" parent="BuildingA"]
+position = Vector3(7.5, 5.1, 53.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="BuildingA/Window4_1"]
+mesh = SubResource("s38")
+
+[node name="Window4_2" type="Node3D" parent="BuildingA"]
+position = Vector3(12.5, 5.1, 53.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="BuildingA/Window4_2"]
+mesh = SubResource("s39")
+
+[node name="Window4_3" type="Node3D" parent="BuildingA"]
+position = Vector3(17.5, 5.1, 53.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="BuildingA/Window4_3"]
+mesh = SubResource("s40")
+
+[node name="Window4_4" type="Node3D" parent="BuildingA"]
+position = Vector3(22.5, 5.1, 53.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="BuildingA/Window4_4"]
+mesh = SubResource("s41")
+
+[node name="Window4_5" type="Node3D" parent="BuildingA"]
+position = Vector3(27.5, 5.1, 53.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="BuildingA/Window4_5"]
+mesh = SubResource("s42")
+
+[node name="Window4_6" type="Node3D" parent="BuildingA"]
+position = Vector3(32.5, 5.1, 53.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="BuildingA/Window4_6"]
+mesh = SubResource("s43")
+
+[node name="Window4_7" type="Node3D" parent="BuildingA"]
+position = Vector3(37.5, 5.1, 53.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="BuildingA/Window4_7"]
+mesh = SubResource("s44")
+
+[node name="Window5_0" type="Node3D" parent="BuildingA"]
+position = Vector3(2.5, 8.4, 53.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="BuildingA/Window5_0"]
+mesh = SubResource("s45")
+
+[node name="Window5_1" type="Node3D" parent="BuildingA"]
+position = Vector3(7.5, 8.4, 53.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="BuildingA/Window5_1"]
+mesh = SubResource("s46")
+
+[node name="Window5_2" type="Node3D" parent="BuildingA"]
+position = Vector3(12.5, 8.4, 53.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="BuildingA/Window5_2"]
+mesh = SubResource("s47")
+
+[node name="Window5_3" type="Node3D" parent="BuildingA"]
+position = Vector3(17.5, 8.4, 53.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="BuildingA/Window5_3"]
+mesh = SubResource("s48")
+
+[node name="Window5_4" type="Node3D" parent="BuildingA"]
+position = Vector3(22.5, 8.4, 53.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="BuildingA/Window5_4"]
+mesh = SubResource("s49")
+
+[node name="Window5_5" type="Node3D" parent="BuildingA"]
+position = Vector3(27.5, 8.4, 53.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="BuildingA/Window5_5"]
+mesh = SubResource("s50")
+
+[node name="Window5_6" type="Node3D" parent="BuildingA"]
+position = Vector3(32.5, 8.4, 53.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="BuildingA/Window5_6"]
+mesh = SubResource("s51")
+
+[node name="Window5_7" type="Node3D" parent="BuildingA"]
+position = Vector3(37.5, 8.4, 53.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="BuildingA/Window5_7"]
+mesh = SubResource("s52")
+
+[node name="LockedDoor" type="Node3D" parent="BuildingA"]
+position = Vector3(22.0, -8.5, 53.84)
+
+[node name="Mesh" type="MeshInstance3D" parent="BuildingA/LockedDoor"]
+mesh = SubResource("s54")
+
+[node name="Lecture" type="Node3D" parent="."]
+
+
+[node name="Shell" type="StaticBody3D" parent="Lecture"]
+position = Vector3(-10.0, -1.65, 190.0)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Lecture/Shell"]
+shape = SubResource("s55")
+
+[node name="Mesh" type="MeshInstance3D" parent="Lecture/Shell"]
+mesh = SubResource("s56")
+
+[node name="Window0_0" type="Node3D" parent="Lecture"]
+position = Vector3(-47.5, -8.1, 179.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Lecture/Window0_0"]
+mesh = SubResource("s57")
+
+[node name="Window0_1" type="Node3D" parent="Lecture"]
+position = Vector3(-42.5, -8.1, 179.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Lecture/Window0_1"]
+mesh = SubResource("s58")
+
+[node name="Window0_2" type="Node3D" parent="Lecture"]
+position = Vector3(-37.5, -8.1, 179.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Lecture/Window0_2"]
+mesh = SubResource("s59")
+
+[node name="Window0_3" type="Node3D" parent="Lecture"]
+position = Vector3(-32.5, -8.1, 179.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Lecture/Window0_3"]
+mesh = SubResource("s60")
+
+[node name="Window0_4" type="Node3D" parent="Lecture"]
+position = Vector3(-27.5, -8.1, 179.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Lecture/Window0_4"]
+mesh = SubResource("s61")
+
+[node name="Window0_5" type="Node3D" parent="Lecture"]
+position = Vector3(-22.5, -8.1, 179.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Lecture/Window0_5"]
+mesh = SubResource("s62")
+
+[node name="Window0_6" type="Node3D" parent="Lecture"]
+position = Vector3(-17.5, -8.1, 179.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Lecture/Window0_6"]
+mesh = SubResource("s63")
+
+[node name="Window0_7" type="Node3D" parent="Lecture"]
+position = Vector3(-12.5, -8.1, 179.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Lecture/Window0_7"]
+mesh = SubResource("s64")
+
+[node name="Window0_8" type="Node3D" parent="Lecture"]
+position = Vector3(-7.5, -8.1, 179.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Lecture/Window0_8"]
+mesh = SubResource("s65")
+
+[node name="Window0_9" type="Node3D" parent="Lecture"]
+position = Vector3(-2.5, -8.1, 179.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Lecture/Window0_9"]
+mesh = SubResource("s66")
+
+[node name="Window0_10" type="Node3D" parent="Lecture"]
+position = Vector3(2.5, -8.1, 179.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Lecture/Window0_10"]
+mesh = SubResource("s67")
+
+[node name="Window0_11" type="Node3D" parent="Lecture"]
+position = Vector3(7.5, -8.1, 179.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Lecture/Window0_11"]
+mesh = SubResource("s68")
+
+[node name="Window0_12" type="Node3D" parent="Lecture"]
+position = Vector3(12.5, -8.1, 179.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Lecture/Window0_12"]
+mesh = SubResource("s69")
+
+[node name="Window0_13" type="Node3D" parent="Lecture"]
+position = Vector3(17.5, -8.1, 179.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Lecture/Window0_13"]
+mesh = SubResource("s70")
+
+[node name="Window0_14" type="Node3D" parent="Lecture"]
+position = Vector3(22.5, -8.1, 179.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Lecture/Window0_14"]
+mesh = SubResource("s71")
+
+[node name="Window0_15" type="Node3D" parent="Lecture"]
+position = Vector3(27.5, -8.1, 179.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Lecture/Window0_15"]
+mesh = SubResource("s72")
+
+[node name="Window1_0" type="Node3D" parent="Lecture"]
+position = Vector3(-47.5, -4.8, 179.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Lecture/Window1_0"]
+mesh = SubResource("s73")
+
+[node name="Window1_1" type="Node3D" parent="Lecture"]
+position = Vector3(-42.5, -4.8, 179.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Lecture/Window1_1"]
+mesh = SubResource("s74")
+
+[node name="Window1_2" type="Node3D" parent="Lecture"]
+position = Vector3(-37.5, -4.8, 179.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Lecture/Window1_2"]
+mesh = SubResource("s75")
+
+[node name="Window1_3" type="Node3D" parent="Lecture"]
+position = Vector3(-32.5, -4.8, 179.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Lecture/Window1_3"]
+mesh = SubResource("s76")
+
+[node name="Window1_4" type="Node3D" parent="Lecture"]
+position = Vector3(-27.5, -4.8, 179.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Lecture/Window1_4"]
+mesh = SubResource("s77")
+
+[node name="Window1_5" type="Node3D" parent="Lecture"]
+position = Vector3(-22.5, -4.8, 179.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Lecture/Window1_5"]
+mesh = SubResource("s78")
+
+[node name="Window1_6" type="Node3D" parent="Lecture"]
+position = Vector3(-17.5, -4.8, 179.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Lecture/Window1_6"]
+mesh = SubResource("s79")
+
+[node name="Window1_7" type="Node3D" parent="Lecture"]
+position = Vector3(-12.5, -4.8, 179.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Lecture/Window1_7"]
+mesh = SubResource("s80")
+
+[node name="Window1_8" type="Node3D" parent="Lecture"]
+position = Vector3(-7.5, -4.8, 179.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Lecture/Window1_8"]
+mesh = SubResource("s81")
+
+[node name="Window1_9" type="Node3D" parent="Lecture"]
+position = Vector3(-2.5, -4.8, 179.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Lecture/Window1_9"]
+mesh = SubResource("s82")
+
+[node name="Window1_10" type="Node3D" parent="Lecture"]
+position = Vector3(2.5, -4.8, 179.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Lecture/Window1_10"]
+mesh = SubResource("s83")
+
+[node name="Window1_11" type="Node3D" parent="Lecture"]
+position = Vector3(7.5, -4.8, 179.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Lecture/Window1_11"]
+mesh = SubResource("s84")
+
+[node name="Window1_12" type="Node3D" parent="Lecture"]
+position = Vector3(12.5, -4.8, 179.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Lecture/Window1_12"]
+mesh = SubResource("s85")
+
+[node name="Window1_13" type="Node3D" parent="Lecture"]
+position = Vector3(17.5, -4.8, 179.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Lecture/Window1_13"]
+mesh = SubResource("s86")
+
+[node name="Window1_14" type="Node3D" parent="Lecture"]
+position = Vector3(22.5, -4.8, 179.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Lecture/Window1_14"]
+mesh = SubResource("s87")
+
+[node name="Window1_15" type="Node3D" parent="Lecture"]
+position = Vector3(27.5, -4.8, 179.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Lecture/Window1_15"]
+mesh = SubResource("s88")
+
+[node name="Window2_0" type="Node3D" parent="Lecture"]
+position = Vector3(-47.5, -1.5, 179.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Lecture/Window2_0"]
+mesh = SubResource("s89")
+
+[node name="Window2_1" type="Node3D" parent="Lecture"]
+position = Vector3(-42.5, -1.5, 179.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Lecture/Window2_1"]
+mesh = SubResource("s90")
+
+[node name="Window2_2" type="Node3D" parent="Lecture"]
+position = Vector3(-37.5, -1.5, 179.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Lecture/Window2_2"]
+mesh = SubResource("s91")
+
+[node name="Window2_3" type="Node3D" parent="Lecture"]
+position = Vector3(-32.5, -1.5, 179.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Lecture/Window2_3"]
+mesh = SubResource("s92")
+
+[node name="Window2_4" type="Node3D" parent="Lecture"]
+position = Vector3(-27.5, -1.5, 179.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Lecture/Window2_4"]
+mesh = SubResource("s93")
+
+[node name="Window2_5" type="Node3D" parent="Lecture"]
+position = Vector3(-22.5, -1.5, 179.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Lecture/Window2_5"]
+mesh = SubResource("s94")
+
+[node name="Window2_6" type="Node3D" parent="Lecture"]
+position = Vector3(-17.5, -1.5, 179.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Lecture/Window2_6"]
+mesh = SubResource("s95")
+
+[node name="Window2_7" type="Node3D" parent="Lecture"]
+position = Vector3(-12.5, -1.5, 179.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Lecture/Window2_7"]
+mesh = SubResource("s96")
+
+[node name="Window2_8" type="Node3D" parent="Lecture"]
+position = Vector3(-7.5, -1.5, 179.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Lecture/Window2_8"]
+mesh = SubResource("s97")
+
+[node name="Window2_9" type="Node3D" parent="Lecture"]
+position = Vector3(-2.5, -1.5, 179.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Lecture/Window2_9"]
+mesh = SubResource("s98")
+
+[node name="Window2_10" type="Node3D" parent="Lecture"]
+position = Vector3(2.5, -1.5, 179.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Lecture/Window2_10"]
+mesh = SubResource("s99")
+
+[node name="Window2_11" type="Node3D" parent="Lecture"]
+position = Vector3(7.5, -1.5, 179.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Lecture/Window2_11"]
+mesh = SubResource("s100")
+
+[node name="Window2_12" type="Node3D" parent="Lecture"]
+position = Vector3(12.5, -1.5, 179.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Lecture/Window2_12"]
+mesh = SubResource("s101")
+
+[node name="Window2_13" type="Node3D" parent="Lecture"]
+position = Vector3(17.5, -1.5, 179.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Lecture/Window2_13"]
+mesh = SubResource("s102")
+
+[node name="Window2_14" type="Node3D" parent="Lecture"]
+position = Vector3(22.5, -1.5, 179.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Lecture/Window2_14"]
+mesh = SubResource("s103")
+
+[node name="Window2_15" type="Node3D" parent="Lecture"]
+position = Vector3(27.5, -1.5, 179.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Lecture/Window2_15"]
+mesh = SubResource("s104")
+
+[node name="Window3_0" type="Node3D" parent="Lecture"]
+position = Vector3(-47.5, 1.8, 179.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Lecture/Window3_0"]
+mesh = SubResource("s105")
+
+[node name="Window3_1" type="Node3D" parent="Lecture"]
+position = Vector3(-42.5, 1.8, 179.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Lecture/Window3_1"]
+mesh = SubResource("s106")
+
+[node name="Window3_2" type="Node3D" parent="Lecture"]
+position = Vector3(-37.5, 1.8, 179.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Lecture/Window3_2"]
+mesh = SubResource("s107")
+
+[node name="Window3_3" type="Node3D" parent="Lecture"]
+position = Vector3(-32.5, 1.8, 179.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Lecture/Window3_3"]
+mesh = SubResource("s108")
+
+[node name="Window3_4" type="Node3D" parent="Lecture"]
+position = Vector3(-27.5, 1.8, 179.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Lecture/Window3_4"]
+mesh = SubResource("s109")
+
+[node name="Window3_5" type="Node3D" parent="Lecture"]
+position = Vector3(-22.5, 1.8, 179.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Lecture/Window3_5"]
+mesh = SubResource("s110")
+
+[node name="Window3_6" type="Node3D" parent="Lecture"]
+position = Vector3(-17.5, 1.8, 179.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Lecture/Window3_6"]
+mesh = SubResource("s111")
+
+[node name="Window3_7" type="Node3D" parent="Lecture"]
+position = Vector3(-12.5, 1.8, 179.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Lecture/Window3_7"]
+mesh = SubResource("s112")
+
+[node name="Window3_8" type="Node3D" parent="Lecture"]
+position = Vector3(-7.5, 1.8, 179.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Lecture/Window3_8"]
+mesh = SubResource("s113")
+
+[node name="Window3_9" type="Node3D" parent="Lecture"]
+position = Vector3(-2.5, 1.8, 179.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Lecture/Window3_9"]
+mesh = SubResource("s114")
+
+[node name="Window3_10" type="Node3D" parent="Lecture"]
+position = Vector3(2.5, 1.8, 179.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Lecture/Window3_10"]
+mesh = SubResource("s115")
+
+[node name="Window3_11" type="Node3D" parent="Lecture"]
+position = Vector3(7.5, 1.8, 179.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Lecture/Window3_11"]
+mesh = SubResource("s116")
+
+[node name="Window3_12" type="Node3D" parent="Lecture"]
+position = Vector3(12.5, 1.8, 179.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Lecture/Window3_12"]
+mesh = SubResource("s117")
+
+[node name="Window3_13" type="Node3D" parent="Lecture"]
+position = Vector3(17.5, 1.8, 179.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Lecture/Window3_13"]
+mesh = SubResource("s118")
+
+[node name="Window3_14" type="Node3D" parent="Lecture"]
+position = Vector3(22.5, 1.8, 179.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Lecture/Window3_14"]
+mesh = SubResource("s119")
+
+[node name="Window3_15" type="Node3D" parent="Lecture"]
+position = Vector3(27.5, 1.8, 179.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Lecture/Window3_15"]
+mesh = SubResource("s120")
+
+[node name="Window4_0" type="Node3D" parent="Lecture"]
+position = Vector3(-47.5, 5.1, 179.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Lecture/Window4_0"]
+mesh = SubResource("s121")
+
+[node name="Window4_1" type="Node3D" parent="Lecture"]
+position = Vector3(-42.5, 5.1, 179.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Lecture/Window4_1"]
+mesh = SubResource("s122")
+
+[node name="Window4_2" type="Node3D" parent="Lecture"]
+position = Vector3(-37.5, 5.1, 179.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Lecture/Window4_2"]
+mesh = SubResource("s123")
+
+[node name="Window4_3" type="Node3D" parent="Lecture"]
+position = Vector3(-32.5, 5.1, 179.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Lecture/Window4_3"]
+mesh = SubResource("s124")
+
+[node name="Window4_4" type="Node3D" parent="Lecture"]
+position = Vector3(-27.5, 5.1, 179.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Lecture/Window4_4"]
+mesh = SubResource("s125")
+
+[node name="Window4_5" type="Node3D" parent="Lecture"]
+position = Vector3(-22.5, 5.1, 179.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Lecture/Window4_5"]
+mesh = SubResource("s126")
+
+[node name="Window4_6" type="Node3D" parent="Lecture"]
+position = Vector3(-17.5, 5.1, 179.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Lecture/Window4_6"]
+mesh = SubResource("s127")
+
+[node name="Window4_7" type="Node3D" parent="Lecture"]
+position = Vector3(-12.5, 5.1, 179.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Lecture/Window4_7"]
+mesh = SubResource("s128")
+
+[node name="Window4_8" type="Node3D" parent="Lecture"]
+position = Vector3(-7.5, 5.1, 179.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Lecture/Window4_8"]
+mesh = SubResource("s129")
+
+[node name="Window4_9" type="Node3D" parent="Lecture"]
+position = Vector3(-2.5, 5.1, 179.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Lecture/Window4_9"]
+mesh = SubResource("s130")
+
+[node name="Window4_10" type="Node3D" parent="Lecture"]
+position = Vector3(2.5, 5.1, 179.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Lecture/Window4_10"]
+mesh = SubResource("s131")
+
+[node name="Window4_11" type="Node3D" parent="Lecture"]
+position = Vector3(7.5, 5.1, 179.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Lecture/Window4_11"]
+mesh = SubResource("s132")
+
+[node name="Window4_12" type="Node3D" parent="Lecture"]
+position = Vector3(12.5, 5.1, 179.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Lecture/Window4_12"]
+mesh = SubResource("s133")
+
+[node name="Window4_13" type="Node3D" parent="Lecture"]
+position = Vector3(17.5, 5.1, 179.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Lecture/Window4_13"]
+mesh = SubResource("s134")
+
+[node name="Window4_14" type="Node3D" parent="Lecture"]
+position = Vector3(22.5, 5.1, 179.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Lecture/Window4_14"]
+mesh = SubResource("s135")
+
+[node name="Window4_15" type="Node3D" parent="Lecture"]
+position = Vector3(27.5, 5.1, 179.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Lecture/Window4_15"]
+mesh = SubResource("s136")
+
+[node name="LockedDoor" type="Node3D" parent="Lecture"]
+position = Vector3(-10.0, -8.5, 179.84)
+
+[node name="Mesh" type="MeshInstance3D" parent="Lecture/LockedDoor"]
+mesh = SubResource("s137")
+
+[node name="Library" type="Node3D" parent="."]
+
+
+[node name="Shell" type="StaticBody3D" parent="Library"]
+position = Vector3(65.0, -4.95, 210.0)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Library/Shell"]
+shape = SubResource("s138")
+
+[node name="Mesh" type="MeshInstance3D" parent="Library/Shell"]
+mesh = SubResource("s139")
+
+[node name="Window0_0" type="Node3D" parent="Library"]
+position = Vector3(47.5, -8.1, 194.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Library/Window0_0"]
+mesh = SubResource("s140")
+
+[node name="Window0_1" type="Node3D" parent="Library"]
+position = Vector3(52.5, -8.1, 194.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Library/Window0_1"]
+mesh = SubResource("s141")
+
+[node name="Window0_2" type="Node3D" parent="Library"]
+position = Vector3(57.5, -8.1, 194.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Library/Window0_2"]
+mesh = SubResource("s142")
+
+[node name="Window0_3" type="Node3D" parent="Library"]
+position = Vector3(62.5, -8.1, 194.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Library/Window0_3"]
+mesh = SubResource("s143")
+
+[node name="Window0_4" type="Node3D" parent="Library"]
+position = Vector3(67.5, -8.1, 194.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Library/Window0_4"]
+mesh = SubResource("s144")
+
+[node name="Window0_5" type="Node3D" parent="Library"]
+position = Vector3(72.5, -8.1, 194.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Library/Window0_5"]
+mesh = SubResource("s145")
+
+[node name="Window0_6" type="Node3D" parent="Library"]
+position = Vector3(77.5, -8.1, 194.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Library/Window0_6"]
+mesh = SubResource("s146")
+
+[node name="Window0_7" type="Node3D" parent="Library"]
+position = Vector3(82.5, -8.1, 194.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Library/Window0_7"]
+mesh = SubResource("s147")
+
+[node name="Window1_0" type="Node3D" parent="Library"]
+position = Vector3(47.5, -4.8, 194.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Library/Window1_0"]
+mesh = SubResource("s148")
+
+[node name="Window1_1" type="Node3D" parent="Library"]
+position = Vector3(52.5, -4.8, 194.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Library/Window1_1"]
+mesh = SubResource("s149")
+
+[node name="Window1_2" type="Node3D" parent="Library"]
+position = Vector3(57.5, -4.8, 194.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Library/Window1_2"]
+mesh = SubResource("s150")
+
+[node name="Window1_3" type="Node3D" parent="Library"]
+position = Vector3(62.5, -4.8, 194.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Library/Window1_3"]
+mesh = SubResource("s151")
+
+[node name="Window1_4" type="Node3D" parent="Library"]
+position = Vector3(67.5, -4.8, 194.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Library/Window1_4"]
+mesh = SubResource("s152")
+
+[node name="Window1_5" type="Node3D" parent="Library"]
+position = Vector3(72.5, -4.8, 194.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Library/Window1_5"]
+mesh = SubResource("s153")
+
+[node name="Window1_6" type="Node3D" parent="Library"]
+position = Vector3(77.5, -4.8, 194.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Library/Window1_6"]
+mesh = SubResource("s154")
+
+[node name="Window1_7" type="Node3D" parent="Library"]
+position = Vector3(82.5, -4.8, 194.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Library/Window1_7"]
+mesh = SubResource("s155")
+
+[node name="Window2_0" type="Node3D" parent="Library"]
+position = Vector3(47.5, -1.5, 194.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Library/Window2_0"]
+mesh = SubResource("s156")
+
+[node name="Window2_1" type="Node3D" parent="Library"]
+position = Vector3(52.5, -1.5, 194.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Library/Window2_1"]
+mesh = SubResource("s157")
+
+[node name="Window2_2" type="Node3D" parent="Library"]
+position = Vector3(57.5, -1.5, 194.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Library/Window2_2"]
+mesh = SubResource("s158")
+
+[node name="Window2_3" type="Node3D" parent="Library"]
+position = Vector3(62.5, -1.5, 194.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Library/Window2_3"]
+mesh = SubResource("s159")
+
+[node name="Window2_4" type="Node3D" parent="Library"]
+position = Vector3(67.5, -1.5, 194.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Library/Window2_4"]
+mesh = SubResource("s160")
+
+[node name="Window2_5" type="Node3D" parent="Library"]
+position = Vector3(72.5, -1.5, 194.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Library/Window2_5"]
+mesh = SubResource("s161")
+
+[node name="Window2_6" type="Node3D" parent="Library"]
+position = Vector3(77.5, -1.5, 194.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Library/Window2_6"]
+mesh = SubResource("s162")
+
+[node name="Window2_7" type="Node3D" parent="Library"]
+position = Vector3(82.5, -1.5, 194.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Library/Window2_7"]
+mesh = SubResource("s163")
+
+[node name="LockedDoor" type="Node3D" parent="Library"]
+position = Vector3(65.0, -8.5, 194.84)
+
+[node name="Mesh" type="MeshInstance3D" parent="Library/LockedDoor"]
+mesh = SubResource("s164")
+
+[node name="Gym" type="Node3D" parent="."]
+
+
+[node name="Shell" type="StaticBody3D" parent="Gym"]
+position = Vector3(-30.0, -4.9, 110.0)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Gym/Shell"]
+shape = SubResource("s165")
+
+[node name="Mesh" type="MeshInstance3D" parent="Gym/Shell"]
+mesh = SubResource("s166")
+
+[node name="Window0_0" type="Node3D" parent="Gym"]
+position = Vector3(-57.5, -8.1, 89.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Gym/Window0_0"]
+mesh = SubResource("s167")
+
+[node name="Window0_1" type="Node3D" parent="Gym"]
+position = Vector3(-52.5, -8.1, 89.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Gym/Window0_1"]
+mesh = SubResource("s168")
+
+[node name="Window0_2" type="Node3D" parent="Gym"]
+position = Vector3(-47.5, -8.1, 89.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Gym/Window0_2"]
+mesh = SubResource("s169")
+
+[node name="Window0_3" type="Node3D" parent="Gym"]
+position = Vector3(-42.5, -8.1, 89.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Gym/Window0_3"]
+mesh = SubResource("s170")
+
+[node name="Window0_4" type="Node3D" parent="Gym"]
+position = Vector3(-37.5, -8.1, 89.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Gym/Window0_4"]
+mesh = SubResource("s171")
+
+[node name="Window0_5" type="Node3D" parent="Gym"]
+position = Vector3(-32.5, -8.1, 89.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Gym/Window0_5"]
+mesh = SubResource("s172")
+
+[node name="Window0_6" type="Node3D" parent="Gym"]
+position = Vector3(-27.5, -8.1, 89.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Gym/Window0_6"]
+mesh = SubResource("s173")
+
+[node name="Window0_7" type="Node3D" parent="Gym"]
+position = Vector3(-22.5, -8.1, 89.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Gym/Window0_7"]
+mesh = SubResource("s174")
+
+[node name="Window0_8" type="Node3D" parent="Gym"]
+position = Vector3(-17.5, -8.1, 89.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Gym/Window0_8"]
+mesh = SubResource("s175")
+
+[node name="Window0_9" type="Node3D" parent="Gym"]
+position = Vector3(-12.5, -8.1, 89.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Gym/Window0_9"]
+mesh = SubResource("s176")
+
+[node name="Window0_10" type="Node3D" parent="Gym"]
+position = Vector3(-7.5, -8.1, 89.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Gym/Window0_10"]
+mesh = SubResource("s177")
+
+[node name="Window0_11" type="Node3D" parent="Gym"]
+position = Vector3(-2.5, -8.1, 89.89)
+
+[node name="Mesh" type="MeshInstance3D" parent="Gym/Window0_11"]
+mesh = SubResource("s178")
+
+[node name="LockedDoor" type="Node3D" parent="Gym"]
+position = Vector3(-30.0, -8.5, 89.84)
+
+[node name="Mesh" type="MeshInstance3D" parent="Gym/LockedDoor"]
+mesh = SubResource("s179")
