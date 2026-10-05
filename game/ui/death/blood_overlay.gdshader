@@ -2,6 +2,7 @@ shader_type canvas_item;
 uniform float elapsed = 0.0;
 uniform bool splash = false;
 uniform bool reduced = false;
+uniform bool scald = false;
 
 void fragment() {
 	float edge = max(abs(UV.x - 0.5), abs(UV.y - 0.5)) * 2.0;
@@ -12,4 +13,9 @@ void fragment() {
 	float full_splash = splash ? (1.0 - smoothstep(0.15, 1.5, elapsed)) : 0.0;
 	float alpha = max(full_splash, max(rim * 0.9, drip * 0.85));
 	COLOR = reduced ? vec4(0.005, 0.005, 0.008, rim * 0.9) : vec4(0.23 + bands * 0.09, 0.008, 0.01, alpha);
+	if (scald && !reduced) {
+		float blisters = 0.04 * sin(UV.x * 48.0 + sin(UV.y * 37.0));
+		float burn = smoothstep(0.72 + blisters, 1.0, edge);
+		COLOR = vec4(mix(vec3(0.97), vec3(0.65, 0.08, 0.06), burn), 0.93);
+	}
 }

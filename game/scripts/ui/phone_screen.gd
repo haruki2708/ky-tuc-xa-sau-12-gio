@@ -103,6 +103,15 @@ func _process(delta: float) -> void:
 func _input(event: InputEvent) -> void:
 	if _blocked() or not state.raised or state.battery <= 0.0 or event.is_echo():
 		return
+	# Word-chain answers own 1–4 and mouse selection while their turn is active.
+	for panel in get_tree().get_nodes_in_group("chain_panel"):
+		if panel.is_choosing():
+			if event is InputEventMouseButton:
+				return
+			if event is InputEventKey:
+				var key: int = event.physical_keycode if event.physical_keycode != 0 else event.keycode
+				if key >= KEY_1 and key <= KEY_4:
+					return
 	if not state.incoming.is_empty() and event.is_action_pressed("interact"):
 		_consume_interact()
 		EventBus.phone_call_answered.emit(StringName(state.incoming))

@@ -1,0 +1,273 @@
+extends TestCase
+
+const CHAIN = preload("res://ui/chain/chain_panel.tscn")
+const SHOWER = preload("res://ui/shower/shower_screen.tscn")
+const BLOOD = preload("res://ui/death/blood_overlay.tscn")
+const FIXTURE = preload("res://scripts/ui/ch2_ui_preview.gd")
+var host: Node
+var _locale: String
+var _mouse: Input.MouseMode
+var _reduce: bool
+var _answers: Array[int] = []
+var _shower_answers: Array[bool] = []
+var _subtitles: Array[String] = []
+
+class Stall:
+	extends Node
+	signal player_inside_changed(inside: bool)
+	var player_inside := true
+
+
+func before_each() -> void:
+	_locale = TranslationServer.get_locale()
+	_mouse = Input.mouse_mode
+	_reduce = Settings.get_value("accessibility", "reduce_scares")
+	TranslationServer.set_locale("vi")
+	tree.paused = false
+	host = Node.new()
+	tree.root.add_child(host)
+	_answers.clear()
+	_shower_answers.clear()
+	_subtitles.clear()
+	EventBus.chain_choice_made.connect(_answered)
+	EventBus.shower_choice_made.connect(_shower_answered)
+	EventBus.subtitle_requested.connect(_subtitle)
+
+
+func after_each() -> void:
+	host.queue_free()
+	await wait_frames(2)
+	EventBus.chain_choice_made.disconnect(_answered)
+	EventBus.shower_choice_made.disconnect(_shower_answered)
+	EventBus.subtitle_requested.disconnect(_subtitle)
+	TranslationServer.set_locale(_locale)
+	Input.mouse_mode = _mouse
+	Input.action_release("move_forward")
+	Input.action_release("interact")
+	Settings.set_value("accessibility", "reduce_scares", _reduce)
+	tree.paused = false
+
+
+func _answered(index: int) -> void:
+	_answers.append(index)
+
+
+func _shower_answered(ran: bool) -> void:
+	_shower_answers.append(ran)
+
+
+func _subtitle(key: String, _seconds: float) -> void:
+	_subtitles.append(key)
+
+
+func _mount(scene: PackedScene) -> Node:
+	var node := scene.instantiate()
+	host.add_child(node)
+	node.set_process(false)
+	if node is CanvasLayer:
+		node.get_node("Root").set_anchors_and_offsets_preset(Control.PRESET_TOP_LEFT)
+		node.get_node("Root").size = Vector2(1920, 1080)
+	return node
+
+
+func test_chain_last_three_words_speakers_mumbling_and_locale() -> void:
+	var panel := _mount(CHAIN)
+	assert_false(panel.get_node("Root").visible)
+	EventBus.chain_turn_started.emit(&"dat", 4.0)
+	for key in FIXTURE.OPTIONS:
+		EventBus.chain_word_spoken.emit(&"dat", key)
+	assert_eq(panel._history, [FIXTURE.OPTIONS[1], FIXTURE.OPTIONS[2], FIXTURE.OPTIONS[3]])
+	var content := panel.get_node("Root/Card/Content")
+	assert_eq(content.get_node("Word").text, tr(FIXTURE.OPTIONS[3]))
+	assert_true(content.get_node("WordSpeaker").text.contains("Đạt"))
+	EventBus.chain_turn_started.emit(&"phuc", 15.0)
+	EventBus.chain_word_spoken.emit(&"phuc", "")
+	assert_eq(panel._history.size(), 3)
+	assert_eq(content.get_node("Word").text, tr(FIXTURE.OPTIONS[3]))
+	assert_false(content.get_node("Options").visible)
+	TranslationServer.set_locale("en")
+	await wait_frames(2)
+	assert_eq(content.get_node("Speaker").text, "Turn: Phúc")
+	assert_true(content.get_node("History").text.begins_with("Last 3 words:"))
+	assert_true(_answers.is_empty())
+
+
+func test_chain_choice_once_movement_mouse_and_phone_input_priority() -> void:
+	var phone := _mount(load("res://ui/phone/phone_screen.tscn"))
+	var panel := _mount(CHAIN)
+	EventBus.chat_choice_requested.emit(&"test_call_choice", PackedStringArray(FIXTURE.OPTIONS))
+	EventBus.chain_choice_requested.emit(PackedStringArray(FIXTURE.OPTIONS), 15.0)
+	Input.action_press("move_forward")
+	Input.action_press("interact")
+	_key(KEY_3)
+	assert_eq(_answers, [2])
+	assert_eq(phone.state.choice, "test_call_choice", "one key cannot also answer the phone")
+	assert_false(Input.is_action_pressed("interact"))
+	assert_true(Input.is_action_pressed("move_forward"))
+	assert_eq(Input.mouse_mode, _mouse)
+	assert_false(tree.paused)
+	panel._choose(0)
+	panel._process(20.0)
+	assert_eq(_answers, [2])
+	EventBus.chain_choice_requested.emit(PackedStringArray(FIXTURE.OPTIONS), 15.0)
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	await wait_frames(3)
+	var button: Button = panel.get_node("Root/Card/Content/Options/Option4")
+	_mouse_click(button.get_global_rect().get_center())
+	assert_eq(_answers, [2, 3])
+	assert_eq(phone.state.choice, "test_call_choice")
+
+
+func test_chain_blocked_keeps_deadline_pause_waits_and_ticks_last_five_seconds() -> void:
+	var panel := _mount(CHAIN)
+	EventBus.chain_choice_requested.emit(PackedStringArray(FIXTURE.OPTIONS), 15.0)
+	EventBus.chain_choice_blocked.emit(true)
+	_key(KEY_1)
+	panel._choose(1)
+	assert_true(_answers.is_empty())
+	assert_true(panel.get_node("Root/Card/Content/Options/Option1").disabled)
+	assert_eq(panel.get_node("Root/Card/Content/Status").text, "Họ không nghe thấy bạn")
+	tree.paused = true
+	panel._process(20.0)
+	assert_eq(panel._remaining, 15.0)
+	tree.paused = false
+	panel._process(10.1)
+	assert_eq(panel._last_tick, 5)
+	assert_not_null(panel.get_node("Tick").stream)
+	panel._process(5.0)
+	panel._process(5.0)
+	assert_eq(_answers, [-1])
+	assert_eq(panel.get_node("Root/Card/Content/Status").text, tr("UI_CHAIN_TIMEOUT"))
+	EventBus.chain_choice_requested.emit(PackedStringArray(FIXTURE.OPTIONS), 15.0)
+	EventBus.chain_choice_blocked.emit(false)
+	_key(KEY_2)
+	assert_eq(_answers, [-1, 1])
+	EventBus.checkpoint_loaded.emit(&"ch2_r3")
+	assert_false(panel.get_node("Root").visible)
+	assert_true(panel._history.is_empty())
+
+
+func test_shower_choice_countdown_uses_core_result_and_never_guesses_timeout() -> void:
+	var screen := _mount(SHOWER)
+	var content := screen.get_node("Viewport/Root/Card/Content")
+	assert_not_null(screen.get_texture())
+	assert_eq(screen.get_node("Display").mesh.size, Vector2(0.4, 0.3))
+	EventBus.shower_choice_requested.emit(8.0)
+	screen._process(2.0)
+	assert_true(content.get_node("Countdown").text.contains("6"))
+	assert_true(content.get_node("Temperature").text.contains("—"))
+	EventBus.shower_choice_made.emit(false)
+	assert_eq(content.get_node("Choice").text, "Đã chọn: KHÔNG")
+	EventBus.shower_slot_finished.emit(67, false, 0)
+	assert_eq(screen.temperatures, [67])
+	assert_eq(screen.minutes_counted, 0)
+	EventBus.shower_choice_requested.emit(8.0)
+	screen._process(9.0)
+	assert_eq(_shower_answers, [false], "timeout must not synthesize a No answer")
+	assert_false(screen._choosing)
+	assert_eq(screen.temperatures, [67], "no future temperature is generated by UI")
+	EventBus.shower_choice_requested.emit(8.0)
+	EventBus.shower_choice_made.emit(true)
+	EventBus.shower_slot_finished.emit(37, true, 2)
+	assert_eq(screen.minutes_counted, 2)
+	assert_eq(content.get_node("Progress").value, 2.0)
+
+
+func test_shower_all_thirty_temperatures_fit_lcd_and_translate_without_hints() -> void:
+	var screen := _mount(SHOWER)
+	for value: int in FIXTURE.TEMPERATURES:
+		EventBus.shower_slot_finished.emit(value, false, 24)
+	assert_eq(screen.temperatures, FIXTURE.TEMPERATURES)
+	var content := screen.get_node("Viewport/Root/Card/Content")
+	var grid := content.get_node("HistoryScroll/History")
+	assert_eq(grid.get_child_count(), 30)
+	assert_eq(grid.get_child(0).text, "01 · 67°")
+	assert_eq(grid.get_child(29).text, "30 · 42°")
+	assert_eq(grid.get_child(0).get_theme_color("font_color"), grid.get_child(1).get_theme_color("font_color"), "UI does not color safe and unsafe temperatures")
+	TranslationServer.set_locale("en")
+	await wait_frames(4)
+	assert_eq(content.get_node("ProgressText").text, "Showered 24/25 minutes")
+	assert_true(grid.size.y <= content.get_node("HistoryScroll").size.y + 1.0, "all thirty entries fit without scrolling")
+	EventBus.checkpoint_loaded.emit(&"ch2_r4")
+	assert_true(screen.temperatures.is_empty())
+	assert_eq(grid.get_child_count(), 0)
+
+
+func test_steam_wipe_only_clears_lcd_and_camera_requires_stall_presence() -> void:
+	var stall := Stall.new()
+	stall.name = "Stall"
+	host.add_child(stall)
+	var screen := _mount(SHOWER)
+	var overlay: CanvasLayer = BLOOD.instantiate()
+	overlay.shower_stall_path = ^"../Stall"
+	host.add_child(overlay)
+	EventBus.shower_steam_changed.emit(1.0)
+	assert_eq(screen._fog, 1.0)
+	assert_true(overlay.get_node("CameraSteam").visible)
+	screen.wipe()
+	assert_eq(screen._fog, 0.0)
+	assert_true(overlay.get_node("CameraSteam").visible)
+	stall.player_inside_changed.emit(false)
+	assert_false(overlay.get_node("CameraSteam").visible)
+	EventBus.shower_steam_changed.emit(0.7)
+	assert_true(is_equal_approx(screen._fog, 0.7))
+	assert_false(overlay.get_node("CameraSteam").visible)
+	EventBus.chapter_started.emit(2)
+	assert_eq(screen._fog, 0.0)
+	assert_false(overlay.get_node("CameraSteam").visible)
+
+
+func test_new_deaths_reduce_scares_and_cleanup() -> void:
+	var overlay := _mount(BLOOD)
+	var chain := _mount(CHAIN)
+	Settings.set_value("accessibility", "reduce_scares", false)
+	EventBus.chain_choice_requested.emit(PackedStringArray(FIXTURE.OPTIONS), 15.0)
+	EventBus.player_death_started.emit(&"corpse_lunge")
+	assert_false(chain.is_choosing())
+	assert_true(overlay.get_node("Root").material.get_shader_parameter("splash"))
+	EventBus.player_death_started.emit(&"scald")
+	overlay._process(0.2)
+	assert_true(overlay.get_node("Root").material.get_shader_parameter("scald"))
+	assert_true(overlay.get_node("Root").position.length() > 0.0)
+	Settings.set_value("accessibility", "reduce_scares", true)
+	assert_true(overlay.get_node("Root").material.get_shader_parameter("reduced"))
+	assert_eq(overlay.get_node("Root").position, Vector2.ZERO)
+	EventBus.checkpoint_loaded.emit(&"ch2_r4")
+	assert_false(overlay.get_node("Root").visible)
+	assert_eq(overlay.get_node("Root").position, Vector2.ZERO)
+	assert_false(tree.paused)
+
+
+func test_loop_message_remains_in_phone_history_after_json_restore_and_locale_change() -> void:
+	var phone: CanvasLayer = load("res://ui/phone/phone_screen.tscn").instantiate()
+	phone.set_script(preload("res://scripts/ui/ch2_phone_preview.gd"))
+	host.add_child(phone)
+	EventBus.phone_message_received.emit(&"ch2_preview_loop")
+	assert_eq(phone.state.history.size(), 1)
+	assert_false(phone.state.history[0].spoken)
+	assert_true(_subtitles.is_empty())
+	phone.restore(JSON.parse_string(JSON.stringify(phone.snapshot())))
+	TranslationServer.set_locale("en")
+	await wait_frames(2)
+	assert_true(phone.get_node("Root/Phone/Content/Transcript").get_parsed_text().contains("học sinh → sinh viên"))
+	assert_eq(phone.state.history.size(), 1)
+	assert_true(_subtitles.is_empty())
+
+
+func _key(code: Key) -> void:
+	var event := InputEventKey.new()
+	event.physical_keycode = code
+	event.pressed = true
+	tree.root.push_input(event, true)
+	event.pressed = false
+	tree.root.push_input(event, true)
+
+
+func _mouse_click(position: Vector2) -> void:
+	var event := InputEventMouseButton.new()
+	event.button_index = MOUSE_BUTTON_LEFT
+	event.position = position
+	event.pressed = true
+	tree.root.push_input(event, true)
+	event.pressed = false
+	tree.root.push_input(event, true)
