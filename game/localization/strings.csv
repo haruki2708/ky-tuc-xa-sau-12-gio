@@ -776,3 +776,16 @@ CCTV_CAM_HALL_102,CAM T1 · hành lang 102,CAM F1 · corridor 102
 CCTV_CAM_HALL_306,CAM T3 · hành lang 306,CAM F3 · corridor 306
 CCTV_CAM_HALL_209,CAM T2 · hành lang 209,CAM F2 · corridor 209
 CCTV_CAM_HALL_106,CAM T1 · hành lang 106,CAM F1 · corridor 106
+PROMPT_CH2_CARRY_RAG,Cầm giẻ,Pick up rag
+PROMPT_CH2_CARRY_TOWEL,Cầm khăn,Pick up towel
+PROMPT_CH2_CARRY_SHIRT,Cầm áo,Pick up shirt
+PROMPT_CH2_GAG,Bịt miệng,Gag mouth
+PROMPT_CH2_DOOR_BASH,Đẩy vai vào cửa,Shoulder the door
+PROMPT_CH2_SHOWER_YES,Có,Yes
+PROMPT_CH2_SHOWER_NO,Không,No
+PROMPT_CH2_SHOWER_WIPE,Giữ E để lau màn hình,Hold E to wipe the screen
+UI_CH2_TEST_HELP,WASD: đi · E: tương tác · giữ E: lau · T: bật/tắt nút · 1/2: chết xác/nước nóng · R: làm lại · Esc: cài đặt,WASD: move · E: interact · hold E: wipe · T: toggle buttons · 1/2: corpse/scald death · R: reset · Esc: settings
+UI_CH2_TEST_STALL,Buồng tắm,Shower stall
+UI_CH2_TEST_WIPED,Đã lau màn hình,Screen wiped
+UI_CH2_TEST_ENABLED,Nút vòi sen đang bật,Shower buttons enabled
+UI_CH2_TEST_DISABLED,Nút vòi sen đang tắt,Shower buttons disabled

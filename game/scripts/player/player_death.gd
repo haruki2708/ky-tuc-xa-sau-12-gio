@@ -15,6 +15,7 @@ var _camera: Camera3D
 var _start: Transform3D
 var _end: Transform3D
 var _manager: Node3D
+var _corpse: Node3D
 var _bursts: int = 0
 var _look_basis: Basis
 
@@ -42,9 +43,17 @@ func start(player: CharacterBody3D, camera: Camera3D, death_kind: StringName) ->
 					_manager = node
 		_end.origin += _start.basis.x * 0.25
 		_end.basis = Basis.from_euler(Vector3(0.15, yaw, -PI * 0.5))
-	elif kind == &"fall_back":
+	elif kind == &"corpse_lunge" or kind == &"fall_back":
+		if kind == &"corpse_lunge":
+			for node: Node in get_tree().get_nodes_in_group(&"ch2_corpse"):
+				if node is Node3D and node.get_world_3d() == camera.get_world_3d():
+					if _corpse == null or node.global_position.distance_squared_to(camera.global_position) < _corpse.global_position.distance_squared_to(camera.global_position):
+						_corpse = node
 		_end.origin += player.global_basis.z * 0.35
 		_end.basis = Basis.from_euler(Vector3(PI * 0.5, yaw, 0))
+	elif kind == &"scald":
+		_end.origin += player.global_basis.z * 0.12
+		_end.basis = Basis.from_euler(Vector3(-1.1, yaw, 0.3))
 	else:
 		_end.origin.y -= 0.1
 		_end.basis = _start.basis * Basis(Vector3.RIGHT, 0.12)
@@ -54,7 +63,7 @@ func start(player: CharacterBody3D, camera: Camera3D, death_kind: StringName) ->
 		var hit: Dictionary = camera.get_world_3d().direct_space_state.intersect_ray(query)
 		_end.origin.y = float(hit.position.y) + 0.15 if not hit.is_empty() else player.global_position.y + 0.15
 	_create_blood()
-	if not reduced and kind != &"manager_kill":
+	if not reduced and kind not in [&"manager_kill", &"corpse_lunge", &"scald"]:
 		_burst()
 
 
@@ -63,7 +72,41 @@ func _physics_process(delta: float) -> void:
 		return
 	elapsed = minf(DURATION, elapsed + delta)
 	var desired: Transform3D = _start
-	if kind == &"manager_kill":
+	if kind == &"corpse_lunge":
+		if reduced:
+			desired = _start.interpolate_with(_end, smoothstep(0.0, 2.7, elapsed))
+			desired.basis = _start.basis.slerp(_end.basis, smoothstep(0.0, 0.3, elapsed))
+		else:
+			if elapsed <= 0.7 and is_instance_valid(_corpse):
+				# B can supply a moving GazeTarget; existing corpse rigs have a Head.
+				var anchor: Node3D = _corpse.get_node_or_null("GazeTarget") as Node3D
+				if anchor == null:
+					anchor = _corpse.find_child("Head", true, false) as Node3D
+				var target: Vector3 = anchor.global_position if anchor != null else _corpse.global_position
+				var direction: Vector3 = target - _start.origin
+				if direction.length() > 0.01 and absf(direction.normalized().dot(Vector3.UP)) < 0.999:
+					_look_basis = _start.basis.slerp(Basis.looking_at(direction), smoothstep(0.0, 0.25, elapsed))
+				desired.basis = _look_basis
+			else:
+				if _bursts == 0:
+					_burst()
+				var progress: float = smoothstep(0.7, 2.7, elapsed)
+				desired = _start.interpolate_with(_end, progress)
+				desired.basis = _look_basis.slerp(_end.basis, progress)
+				var impact: float = clampf(1.0 - (elapsed - 0.7) / 0.6, 0.0, 1.0)
+				desired.basis *= Basis(Vector3.RIGHT, sin(elapsed * 45.0) * 0.14 * impact)
+				desired.origin += _start.basis.x * sin(elapsed * 38.0) * 0.045 * impact
+	elif kind == &"scald":
+		var progress: float = smoothstep(0.45, 2.8, elapsed)
+		desired = _start.interpolate_with(_end, progress)
+		var hands: Basis = Basis.from_euler(Vector3(-0.9, _player.global_rotation.y, 0.12))
+		desired.basis = _start.basis.slerp(hands, smoothstep(0.1, 0.8, elapsed)).slerp(_end.basis, progress)
+		if not reduced:
+			var strength: float = (1.0 - elapsed / DURATION)
+			desired.origin += _start.basis.z * sin(minf(elapsed / 0.45, 1.0) * PI) * 0.08
+			desired.basis *= Basis(Vector3.RIGHT, sin(elapsed * 31.0) * 0.045 * strength)
+			desired.basis *= Basis(Vector3.FORWARD, sin(elapsed * 43.0) * 0.025 * strength)
+	elif kind == &"manager_kill":
 		if reduced:
 			# Look away before the lunge reaches the camera, even if initially facing him.
 			desired = _start.interpolate_with(_end, smoothstep(0.0, 2.7, elapsed))
@@ -162,7 +205,7 @@ func _create_blood() -> void:
 	blood.process_material = particles
 	_camera.add_child(blood)
 	blood.position = Vector3(0, -0.3, -0.45)
-	blood.visible = not reduced
+	blood.visible = not reduced and kind != &"scald"
 
 
 func _burst() -> void:

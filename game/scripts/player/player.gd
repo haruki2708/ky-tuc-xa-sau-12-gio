@@ -48,6 +48,7 @@ var _hold_elapsed: float = 0.0
 var _breath_cooldown: float = 0.0
 var _control_locks: Array[Node] = []
 var death_animation: PlayerDeath
+var _bash_elapsed: float = 0.22
 
 
 func _ready() -> void:
@@ -66,8 +67,11 @@ func _ready() -> void:
 
 
 func _on_death_started(kind: StringName) -> void:
-	if death_animation.active or kind not in [&"fall_back", &"manager_kill", &"bed_burst"]:
+	if death_animation.active or kind not in [&"fall_back", &"manager_kill", &"bed_burst", &"corpse_lunge", &"scald"]:
 		return
+	if _bash_elapsed < 0.22:
+		camera.rotation = Vector3.ZERO
+		_bash_elapsed = 0.22
 	if _climb != null and _climb.is_valid():
 		_climb.kill()
 	_set_holding_breath(false)
@@ -131,6 +135,7 @@ func _physics_process(delta: float) -> void:
 	if death_animation != null and death_animation.active:
 		velocity = Vector3.ZERO
 		return
+	_update_door_bash(delta)
 	_breath_cooldown = maxf(0.0, _breath_cooldown - delta)
 	if is_hidden():
 		_update_breath(delta)
@@ -178,6 +183,8 @@ func _update_focus() -> void:
 	var candidate: Interactable = _hide_spot if is_hidden() else collider as Interactable
 	if candidate != null and not candidate.enabled:
 		candidate = null
+	if candidate != null and candidate.has_method("can_interact") and not candidate.call("can_interact", self):
+		candidate = null
 	var next_id: int = candidate.get_instance_id() if candidate != null else 0
 	var next_key: String = candidate.prompt_key if candidate != null else ""
 	_target = candidate
@@ -185,6 +192,21 @@ func _update_focus() -> void:
 		_focus_id = next_id
 		_focus_key = next_key
 		EventBus.interaction_focus_changed.emit(next_key)
+
+
+func play_door_bash() -> void:
+	if not controls_locked():
+		_bash_elapsed = 0.0
+
+
+func _update_door_bash(delta: float) -> void:
+	if _bash_elapsed >= 0.22:
+		return
+	_bash_elapsed = minf(0.22, _bash_elapsed + delta)
+	var impulse: float = sin(PI * _bash_elapsed / 0.22)
+	camera.rotation = Vector3(-0.035 * impulse, 0, 0.01 * impulse)
+	if _bash_elapsed >= 0.22:
+		camera.rotation = Vector3.ZERO
 
 
 func _update_steps_and_bob(previous_position: Vector3, was_grounded: bool, delta: float) -> void:
