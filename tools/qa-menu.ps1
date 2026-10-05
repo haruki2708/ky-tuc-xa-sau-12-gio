@@ -1,12 +1,12 @@
 param(
     [string]$Stage,
-    [ValidateSet(1, 2)][int]$Chapter = 1,
+    [ValidateSet(1, 2, 3)][int]$Chapter = 1,
     [string]$Profile,
     [switch]$Smoke
 )
 $ErrorActionPreference = 'Stop'
-if (-not $Stage) { $Stage = if ($Chapter -eq 2) { 'r3' } else { 'prologue' } }
-if (-not $Profile) { $Profile = Join-Path $PSScriptRoot $(if ($Chapter -eq 2) { 'ch2-profile.json' } else { 'ch1v2-profile.json' }) }
+if (-not $Stage) { $Stage = if ($Chapter -eq 3) { 'b' } elseif ($Chapter -eq 2) { 'r3' } else { 'prologue' } }
+if (-not $Profile) { $Profile = Join-Path $PSScriptRoot $(if ($Chapter -eq 3) { 'ch3-profile.json' } elseif ($Chapter -eq 2) { 'ch2-profile.json' } else { 'ch1v2-profile.json' }) }
 . "$PSScriptRoot/godot-path.ps1"
 $root = Join-Path $RepoRoot ('build/qa-menu/' + [guid]::NewGuid().ToString('N'))
 New-Item -ItemType Directory -Path $root -Force | Out-Null
@@ -25,9 +25,9 @@ try {
     $env:APPDATA = Join-Path $root 'userdata'
     New-Item -ItemType Directory -Path $env:APPDATA -Force | Out-Null
     $env:QA_PLAYTHROUGH_ROOT = $env:APPDATA.Replace('\', '/')
-    $scene = if ($Smoke -and $Chapter -eq 2) { 'ch2_menu_smoke' } elseif ($Smoke) { 'qa_menu_smoke' } else { 'qa_preview' }
+    $scene = if ($Smoke -and $Chapter -eq 3) { 'ch3_menu_smoke' } elseif ($Smoke -and $Chapter -eq 2) { 'ch2_menu_smoke' } elseif ($Smoke) { 'qa_menu_smoke' } else { 'qa_preview' }
     $arguments = @('--path', ('"' + $GameDir + '"'), "res://scripts/debug/$scene.tscn", '--windowed', '--resolution', '1280x720', '--max-fps', '60', '--', '--qa-menu', ('"--chapter-profile=' + $Profile.Replace('\', '/') + '"'))
-    if ($Chapter -eq 2) { $arguments += '--qa-chapter=2' }; if (-not $Smoke) { $arguments += "--qa-stage=$Stage" }
+    if ($Chapter -ge 2) { $arguments += "--qa-chapter=$Chapter" }; if (-not $Smoke) { $arguments += "--qa-stage=$Stage" }
     $process = Start-Process -FilePath $Godot -ArgumentList $arguments -WindowStyle Hidden -PassThru -RedirectStandardOutput (Join-Path $root 'stdout.log') -RedirectStandardError (Join-Path $root 'stderr.log')
 } finally {
     $env:APPDATA = $previousData

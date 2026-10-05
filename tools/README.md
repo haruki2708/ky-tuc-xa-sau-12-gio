@@ -190,3 +190,43 @@ F9 trong scene chương 2 mở menu riêng (chỉ debug hoặc `--qa-menu`); cá
 ### Kiểm tra nhanh T-180 (headless)
 
 `pwsh tools/test.ps1 -Filter ch2_` bao gồm policy nhập chữ/dự đoán và test `test_ch2_menu.gd`: tạo scene thật, gọi handler F9 mở/đóng, nhảy r3 rồi r4, kiểm tra scene mới/chapter/segment/pause và đáp án. Đây là kiểm tra xử lý input/menu bằng headless; không xác nhận hình ảnh render, bàn phím vật lý hay Unikey/EVKey. Không chạy bot trọn chương, không đo FPS trong phiên T-180.
+
+## T-184: chương 3 — khung QA và benchmark ngoài trời
+
+```powershell
+pwsh tools/test.ps1 -Filter ch3_
+pwsh tools/playthrough.ps1 -Chapter 3 -Performance -RequireComplete
+pwsh tools/qa-menu.ps1 -Chapter 3 -Stage b
+pwsh tools/qa-menu.ps1 -Chapter 3 -Smoke
+```
+
+Benchmark ngắn được phép chạy; **không chạy bot cả chương khi chưa có bản ghép và yêu cầu của integrator**. Các lệnh bot sau chỉ dành cho bước đó:
+
+```powershell
+pwsh tools/playthrough.ps1 -Chapter 3 -Scenario ch3_good -RequireComplete
+pwsh tools/playthrough.ps1 -Chapter 3 -Scenario ch3_grabbed -RequireComplete
+pwsh tools/playthrough.ps1 -Chapter 3 -Scenario ch3_guard -RequireComplete
+```
+
+Profile mặc định `tools/ch3-profile.json`. Đường dẫn scene và ID b/garden/stadium/gate lấy từ card T-181…T-183; phần chưa công bố để `null`. Không dùng scene giả để thay kết quả đo trên Campus. Exit 2 với `-RequireComplete` nghĩa là còn SKIP; không phải PASS.
+
+### Profile bot và menu
+
+- `routes.b/garden/stadium/gate`: mảng waypoint theo đường thật của đồng đội, mỗi điểm `{ "anchor": "Campus/Anchors/...", "zone": "garden", "timeout": 180, "crouch": false }`. Có thể thêm `action` là tên thao tác trong `actions`. Phải có các waypoint và thao tác lấy chìa, mở cửa, gây tiếng động 203, thoát cửa sổ, gặp đồng đội, nhận sắt, sống qua sân và nhà ăn; integrator điền tuyến thật sau khi ghép. Không coi tên anchor là đã hoàn thành nhiệm vụ.
+- `bindings.key_taken/noise_203/stadium_survived`: postcondition `{ "flag": "ID_core_cong_bo", "equals": true }`; `death_ui`: NodePath thật. `grab_stage`: một trong b/garden/stadium/gate, điểm checkpoint mà đứng yên có xác tới tóm; `guard_target`: waypoint nằm trong hàng bảo vệ cho case âm tính. Checkpoint suy từ ID đã công bố `ch3_<stage>`, death kind `zombie_grab`/`guard_shock`.
+- `bindings.guard_paths`: NodePath của đủ các bảo vệ; bot good từ chối đường navmesh tiến vào khoảng 3,3 m (3 m cảnh báo + biên QA 0,3 m). `bar_head_path`: đường dẫn vùng đầu tương đối trong Zombie do lane A cung cấp, không tự đặt offset giả.
+- `actions`: `{ "key": { "path": "NodePath", "method": "API", "args": ["$player"], "verify": {"flag": "ID", "equals": true} } }`. Args có thể rỗng hoặc dùng tham số cụ thể. Verify cũng có thể dùng `property` trên target. Gọi API thật rồi chờ trạng thái tối đa 3 giây; không tự ghi cờ nhiệm vụ. Với cờ có sẵn cần đảm bảo postcondition đủ phân biệt trạng thái trước/sau; thêm adapter signal nếu API chỉ xác nhận bằng signal khi ghép.
+- `menu_actions`: cùng schema, bốn key `zombies_on`, `zombies_off`, `give_bar`, `refill`. Dùng API thật của core/horde/player; give_bar và refill là trợ giúp debug, không xuất hiện trong bot good. Menu khóa nút khi binding thiếu. Ngoài phiên QA tách userdata, thao tác mở phiên mới trước; chọn lại thao tác trong phiên mới.
+- `jumps` và `rule_set`: menu tạo scene mới, tắt auto_start, gọi run_from(stage); không dùng bất tử chương 1. Menu và bot dùng APPDATA riêng dưới build.
+
+Bot đi bằng InputMap của Player theo đường do NavigationServer3D trả về, kiểm tra endpoint đạt được; không teleport để qua nhiệm vụ. Khi có xác chắn ngay trước mặt, còn sắt/thể lực và chưa stunned: nhắm vùng đầu, kiểm tra ray đầu tiên trúng chính xác rồi phát chuột trái. Điện thoại được trả lời qua adapter chung khi di chuyển. Tốc độ mô phỏng giữ 1; watchdog bot 75 phút. Các tình huống chết phải có lý do đúng, vùng đúng, cảnh chết, màn chết và scene reload mới, không chỉ có một signal bắt người.
+
+### Profile benchmark 0/20/40 xác
+
+- Ghép `floor4_scene` và `campus_scene` cạnh nhau đúng tọa độ lane B; không bật director/story. Camera và một Node3D làm mục tiêu AI đi từ 407 qua nhà B, vườn hoa, sân vận động, cổng tới nhà ăn theo navmesh. Đây là benchmark renderer/AI, không mô phỏng người chơi và không đo toàn luồng truyện.
+- `performance.route`: waypoint `{ "anchor": "Floor4/... hoặc Campus/Anchors/...", "zone": "b|garden|stadium|gate|canteen" }`. Phải bắt đầu tại 407 (zone b), kết thúc nhà ăn, đủ năm zone; thêm waypoint ở nơi cần quan sát/tụt FPS. Navmesh không tới endpoint thì FAIL. Camera đi hết từng đoạn trong `-PerfFrames` frame (mặc định 240); đây là đường khảo sát nén thời gian, không phải tốc độ đi bộ trong game.
+- `performance.spawn_paths`: ít nhất 40 NodePath anchor khác nhau trong scene ghép; 20/40 dùng lần lượt 20/40 điểm đầu. Phải chọn và ghi rõ phân bố sau khi có greybox. Mỗi lần đo tạo lại thế giới và Zombie thật, gọi set_target()/wake(). Không dùng khối hộp thay mô hình xác.
+- `performance.active_property/active_value`: property/trạng thái thực tế của Zombie đang hoạt động do lane A cung cấp. Kiểm tra tất cả xác mỗi frame lấy mẫu; nếu số đang hoạt động thay đổi, FAIL và không ghi đoạn đó như phép đo đúng số xác. Mức 0 không cần Zombie.
+- 1280×720, VSync off, không khóa FPS, warmup mặc định 90 frame; JSON ghi GPU/CPU/Godot/renderer, mean FPS, min FPS = 1000 / frame tệ nhất, p95 frame ms, max frame ms, khu/anchor/số xác, tổng tuyến. Đạt khi mean ≥60 và min ≥30. Mỗi đoạn dưới ngưỡng phát `CH3_PERF_ALERT` ngay; launcher hiển thị trong lúc chạy. Chạy benchmark riêng, tránh Godot/editor khác để số đo có ý nghĩa. Watchdog benchmark 10 phút.
+
+`test_ch3_tools.gd` kiểm tra policy và menu bằng **fixture test**, không dùng fixture cho report FPS hoặc kết luận chương 3 đã chạy. Nếu scene thật thiếu, menu smoke chỉ render nút vô hiệu hóa rồi báo SKIP. Ngày 2026-10-06 trên base b9fcee5 chưa có Campus/Zombie/Chapter3Director; báo cáo preflight ở `tools/reports/T-184-main-performance.json` không có số FPS.

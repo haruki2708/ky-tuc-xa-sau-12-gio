@@ -1,0 +1,29 @@
+{
+  "chapter": 3,
+  "cpu": "AMD Ryzen 5 5600H with Radeon Graphics",
+  "failures": [],
+  "frames_per_leg": 240,
+  "godot": "4.7.2-stable (official)",
+  "gpu": "NVIDIA GeForce RTX 3050 Laptop GPU",
+  "max_fps": 0,
+  "measurements": [],
+  "minimum_fps": 30,
+  "real_seconds": 0.001,
+  "renderer": "forward_plus",
+  "resolution": [
+    1280,
+    720
+  ],
+  "scope": "Floor4 + Campus; moving camera/AI target; real active zombies; no chapter story or player simulation",
+  "skipped": [
+    "0 zombies: T-183 Campus missing; T-183 measured route anchors not bound",
+    "20 zombies: T-183 Campus missing; T-183 measured route anchors not bound; T-182 Zombie missing; T-182/T-183 performance binding missing: active_property; T-182/T-183 performance binding missing: active_value; T-182/T-183 performance binding missing: spawn_paths",
+    "40 zombies: T-183 Campus missing; T-183 measured route anchors not bound; T-182 Zombie missing; T-182/T-183 performance binding missing: active_property; T-182/T-183 performance binding missing: active_value; T-182/T-183 performance binding missing: spawn_paths"
+  ],
+  "status": "SKIP",
+  "target_fps": 60,
+  "vsync": false,
+  "warmup_frames": 90,
+  "base_commit": "b9fcee5",
+  "run_at": "2026-10-06"
+}
