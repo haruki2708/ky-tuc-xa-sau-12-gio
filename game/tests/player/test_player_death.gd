@@ -90,6 +90,87 @@ func test_fall_back_locks_controls_hits_floor_and_looks_up_once() -> void:
 	assert_true(player.controls_locked(), "death keeps controls locked until scene replacement")
 
 
+func test_ch2_corpse_faces_nearest_head_then_falls_with_blood() -> void:
+	for position: Vector3 in [Vector3(-4, 0, -4), Vector3(1, 0, -2)]:
+		var corpse: Node3D = Node3D.new()
+		world.add_child(corpse)
+		corpse.position = position
+		corpse.add_to_group(&"ch2_corpse")
+		var head: Marker3D = Marker3D.new()
+		head.name = "GazeTarget"
+		head.position.y = 1.4
+		corpse.add_child(head)
+	EventBus.player_death_started.emit(&"corpse_lunge")
+	_assert_locked()
+	player.death_animation.set_physics_process(false)
+	player.death_animation._physics_process(0.4)
+	var to_head: Vector3 = (Vector3(1, 1.4, -2) - player.camera.global_position).normalized()
+	assert_true((-player.camera.global_basis.z).dot(to_head) > 0.99)
+	assert_eq(player.death_animation._bursts, 0)
+	player.death_animation._physics_process(0.4)
+	assert_true(player.death_animation.blood.emitting)
+	_finish()
+	assert_eq(completions.size(), 1)
+	assert_true(player.camera.global_position.y < 0.2)
+	assert_true((-player.camera.global_basis.z).dot(Vector3.UP) > 0.99)
+
+
+func test_ch2_corpse_reduced_skips_face_and_blood_without_target() -> void:
+	player.death_animation.reduced = true
+	EventBus.player_death_started.emit(&"corpse_lunge")
+	player.death_animation.set_physics_process(false)
+	player.death_animation._physics_process(0.4)
+	assert_true((-player.camera.global_basis.z).dot(Vector3.UP) > 0.99)
+	_finish()
+	assert_eq(completions.size(), 1)
+	assert_eq(player.death_animation._bursts, 0)
+	assert_false(player.death_animation.blood.visible)
+
+
+func test_ch2_corpse_freed_during_turn_still_completes() -> void:
+	var corpse: Node3D = Node3D.new()
+	world.add_child(corpse)
+	corpse.position = Vector3(1, 1.4, -2)
+	corpse.add_to_group(&"ch2_corpse")
+	EventBus.player_death_started.emit(&"corpse_lunge")
+	player.death_animation.set_physics_process(false)
+	player.death_animation._physics_process(0.3)
+	corpse.queue_free()
+	await wait_frames(2)
+	_finish()
+	assert_eq(completions.size(), 1)
+
+
+func test_ch2_scald_looks_down_slumps_without_blood_and_finishes_once() -> void:
+	EventBus.player_death_started.emit(&"scald")
+	_assert_locked()
+	player.death_animation.set_physics_process(false)
+	player.death_animation._physics_process(1.0)
+	assert_true((-player.camera.global_basis.z).dot(Vector3.DOWN) > 0.7)
+	assert_false(player.death_animation.blood.visible)
+	assert_eq(player.death_animation._bursts, 0)
+	_finish()
+	assert_eq(completions.size(), 1)
+	assert_true(player.camera.global_position.y < 0.2)
+	assert_true((-player.camera.global_basis.z).dot(Vector3.DOWN) > 0.8)
+	player.death_animation._physics_process(5)
+	assert_eq(completions.size(), 1)
+
+
+func test_ch2_reduced_scald_pauses_and_has_no_contraction_shake() -> void:
+	player.death_animation.reduced = true
+	EventBus.player_death_started.emit(&"scald")
+	tree.paused = true
+	var elapsed: float = player.death_animation.elapsed
+	await tree.create_timer(0.08, true).timeout
+	assert_eq(player.death_animation.elapsed, elapsed)
+	tree.paused = false
+	_finish()
+	assert_false(player.death_animation.blood.visible)
+	assert_eq(player.death_animation._bursts, 0)
+	assert_eq(completions.size(), 1)
+
+
 func test_manager_camera_faces_actor_then_falls_sideways() -> void:
 	var manager: Node3D = Node3D.new()
 	world.add_child(manager)
