@@ -1693,9 +1693,9 @@
         {
           "path": "Floor4/Room407/Anchors/ShowerStall/ShowerStallArea",
           "position": [
-            35.6,
+            36.18,
             0.05,
-            -4.7
+            -5.2
           ],
           "verify": {
             "property": "player_inside",
