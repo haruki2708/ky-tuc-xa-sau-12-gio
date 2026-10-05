@@ -210,16 +210,17 @@ func _physics_process(_delta: float) -> void:
 
 ## Starts the chapter, or resumes from resume_checkpoint after a reload.
 func start() -> void:
-	var errors := RuleSystem.load_rule_set(load(RULE_SET_PATH))
+	var errors := RuleSystem.load_rule_set(load(_rule_set_path()))
 	if not errors.is_empty():
 		push_warning("Chapter1Director: rules invalid: %s" % ", ".join(errors))
 		return
-	var from := &"prologue"
+	var from: StringName = _stages()[0]
 	if not resume_checkpoint.is_empty():
 		var restored := Checkpoint.restore()
 		resume_checkpoint = &""
-		for stage: StringName in CHECKPOINTS:
-			if CHECKPOINTS[stage] == restored:
+		var checkpoints := _checkpoints()
+		for stage: StringName in checkpoints:
+			if checkpoints[stage] == restored:
 				from = stage
 		_restore_phone()
 		# Resume standing in the middle of 407 (the prologue lies down itself).
@@ -230,27 +231,23 @@ func start() -> void:
 	else:
 		manager_deaths = 0
 		GameState.reset()
-	GameState.chapter = 1
-	EventBus.chapter_started.emit(1)
+	GameState.chapter = _chapter()
+	EventBus.chapter_started.emit(_chapter())
 	await run_from(from)
 
 
 ## Runs the chapter from a stage in STAGES (tests start mid-chapter too).
 func run_from(stage: StringName) -> void:
-	var index := STAGES.find(stage)
+	var stages := _stages()
+	var index := stages.find(stage)
 	if index < 0:
-		push_warning("Chapter1Director: unknown stage '%s'" % stage)
+		push_warning("Chapter director: unknown stage '%s'" % stage)
 		return
-	for i in range(index, STAGES.size()):
+	for i in range(index, stages.size()):
 		if _dying or not is_inside_tree():
 			return
-		match STAGES[i]:
-			&"prologue": await _prologue()
-			&"r1": await _round_1()
-			&"r2": await _round_2()
-			&"r2_manager": await _manager_at_407()
-			&"end": await _ending()
-		if STAGES[i] == stop_after:
+		await _run_stage(stages[i])
+		if stages[i] == stop_after:
 			break
 	if not _dying and is_inside_tree():
 		finished = true
@@ -260,8 +257,48 @@ func run_from(stage: StringName) -> void:
 func _begin(stage: StringName, clock: String) -> void:
 	GameState.set_segment(stage)
 	_set_clock(clock)
-	if CHECKPOINTS.has(stage):
-		Checkpoint.save(CHECKPOINTS[stage])
+	if _checkpoints().has(stage):
+		Checkpoint.save(_checkpoints()[stage])
+
+
+# --- What a chapter defines (chapter 2 overrides these, T-170) -------------------
+
+func _chapter() -> int:
+	return 1
+
+
+func _rule_set_path() -> String:
+	return RULE_SET_PATH
+
+
+func _stages() -> Array[StringName]:
+	return STAGES
+
+
+func _run_stage(stage: StringName) -> void:
+	match stage:
+		&"prologue": await _prologue()
+		&"r1": await _round_1()
+		&"r2": await _round_2()
+		&"r2_manager": await _manager_at_407()
+		&"end": await _ending()
+
+
+func _checkpoints() -> Dictionary:
+	return CHECKPOINTS
+
+
+func _death_checkpoints() -> Dictionary:
+	return DEATH_CHECKPOINTS
+
+
+func _death_kinds() -> Dictionary:
+	return DEATH_KINDS
+
+
+## Message ids and string keys of this chapter's call ("chat_ch1_", "CHAT_CH1_"…).
+func _chapter_tag() -> String:
+	return "ch%d" % _chapter()
 
 
 # --- Prologue: 4:00 -------------------------------------------------------------
@@ -818,7 +855,7 @@ func _incoming_call() -> void:
 ## One spoken line of the group call (MessageData chat_ch1_<id>). Lane E plays
 ## its voice and lane D shows it; the wait estimates the spoken length.
 func _line(id: String) -> void:
-	var message_id := StringName("chat_ch1_" + id)
+	var message_id := StringName("chat_%s_%s" % [_chapter_tag(), id])
 	var data := MessageData.load_by_id(message_id)
 	if data == null:
 		push_warning("Chapter1Director: missing message " + message_id)
@@ -828,7 +865,7 @@ func _line(id: String) -> void:
 		await _wait(_spoken_seconds(data.text_key) * 0.5)
 		return
 	EventBus.phone_message_received.emit(message_id)
-	var seconds := _voice_seconds(data.text_key, "CHAT_CH1_")
+	var seconds := _voice_seconds(data.text_key, "CHAT_%s_" % _chapter_tag().to_upper())
 	# Lane D's phone screen (T-155) subtitles every spoken line itself.
 	if _phone_screen() == null:
 		_say(data.text_key, seconds)
@@ -840,7 +877,7 @@ func _line(id: String) -> void:
 func _choice(id: StringName, count: int, seconds: float = -1.0, timeout_index: int = 0) -> int:
 	var keys := PackedStringArray()
 	for n in range(1, count + 1):
-		keys.append("CHOICE_CH1_%s_%d" % [String(id).to_upper(), n])
+		keys.append("CHOICE_%s_%s_%d" % [_chapter_tag().to_upper(), String(id).to_upper(), n])
 	_choice_id = id
 	_choice_index = -2
 	EventBus.chat_choice_requested.emit(id, keys)
@@ -848,12 +885,12 @@ func _choice(id: StringName, count: int, seconds: float = -1.0, timeout_index: i
 	var picked := _choice_index if _choice_index >= 0 else timeout_index
 	_choice_id = &""
 	if picked < 0:
-		GameState.set_flag(StringName("ch1_choice_" + String(id)), -1)
+		GameState.set_flag(StringName("%s_choice_%s" % [_chapter_tag(), id]), -1)
 		await _wait(0.5)
 		return -1
 	picked = clampi(picked, 0, count - 1)
-	EventBus.phone_message_received.emit(StringName("choice_ch1_%s_%d" % [id, picked + 1]))
-	GameState.set_flag(StringName("ch1_choice_" + String(id)), picked)
+	EventBus.phone_message_received.emit(StringName("choice_%s_%s_%d" % [_chapter_tag(), id, picked + 1]))
+	GameState.set_flag(StringName("%s_choice_%s" % [_chapter_tag(), id]), picked)
 	await _wait(1.2)
 	return picked
 
@@ -1028,12 +1065,13 @@ func _die(reason_key: StringName) -> void:
 	if GameState.segment in [&"r2_manager", &"r2_listen"]:
 		manager_deaths += 1
 	EventBus.scare_triggered.emit(&"lost")
+	var kind: StringName = _death_kinds().get(reason_key, &"fall_back")
 	if not _death_scene_started:
 		_death_scene_started = true
-		EventBus.player_death_started.emit(DEATH_KINDS.get(reason_key, &"fall_back"))
-	if DEATH_KINDS.get(reason_key, &"fall_back") != &"none":
+		EventBus.player_death_started.emit(kind)
+	if kind != &"none":
 		await _death_scene()
-	var checkpoint: StringName = DEATH_CHECKPOINTS.get(GameState.segment, &"ch1_prologue")
+	var checkpoint: StringName = _death_checkpoints().get(GameState.segment, _checkpoints().values()[0])
 	var count := int(GameState.get_flag(&"survivors", SURVIVORS_START)) - 1
 	# Every chapter death is announced with its reason key (DEATH_*): lane D's
 	# death screen (T-156) and the QA bot (T-157) listen to it.

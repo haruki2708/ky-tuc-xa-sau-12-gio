@@ -14,6 +14,8 @@ const QUIT_AFTER_ARG := "--quit-after-frames="
 ## Chapter 1 (T-150). The old demo night lives in res://scenes/main/main.tscn
 ## until it is removed after chapter 1.
 const GAME_SCENE := "res://scenes/main/chapter1.tscn"
+## Chapter scenes (T-170); chapters without a scene yet start chapter 1.
+const CHAPTER_SCENES := {1: "res://scenes/main/chapter1.tscn", 2: "res://scenes/main/chapter2.tscn"}
 ## Lane D's title screen (wave 3). Until it exists, the game starts straight in.
 const TITLE_SCENE := "res://ui/title/title_screen.tscn"
 const STORY_DIRECTOR := preload("res://scripts/core/story_director.gd")
@@ -45,23 +47,27 @@ func has_saved_game() -> bool:
 
 
 ## Starts the night from the beginning, or from the last checkpoint.
-func start_game(continue_saved: bool = false) -> void:
+func start_game(continue_saved: bool = false, chapter: int = 1) -> void:
 	var saved := Checkpoint.peek_id() if continue_saved else &""
 	# Only chapter checkpoints resume; an old demo save starts chapter 1 afresh.
-	CHAPTER_1_DIRECTOR.resume_checkpoint = saved if String(saved).begins_with("ch1_") else &""
+	for n: int in CHAPTER_SCENES:
+		if String(saved).begins_with("ch%d_" % n):
+			chapter = n
+	# Chapter 2's director extends chapter 1's and shares its resume point.
+	CHAPTER_1_DIRECTOR.resume_checkpoint = saved if String(saved).begins_with("ch") else &""
 	STORY_DIRECTOR.resume_checkpoint = &""
 	STORY_DIRECTOR.carry_deviation = 0
 	get_tree().paused = false
-	get_tree().change_scene_to_file(GAME_SCENE)
+	get_tree().change_scene_to_file(CHAPTER_SCENES.get(chapter, GAME_SCENE))
 
 
 ## Starts a night from its beginning (title screen chapter select, T-155).
-## Chapters past 1 fall back to chapter 1 until their story exists (T-150).
+## Chapters without a scene yet fall back to chapter 1.
 func start_chapter(chapter: int) -> void:
 	GameState.reset()
 	GameState.chapter = clampi(chapter, 1, Progress.CHAPTER_COUNT)
 	Checkpoint.clear()
-	start_game(false)
+	start_game(false, GameState.chapter)
 
 
 ## Back to the title screen (pause menu, end card), or quit if there is none.

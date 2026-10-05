@@ -375,7 +375,8 @@ def main():
     # strings.csv: drop old rows of our prefixes, append fresh ones.
     path = os.path.join(ROOT, "game", "localization", "strings.csv")
     text = open(path, encoding="utf-8").read()
-    kept = [line for line in text.split("\n") if line and not line.startswith(PREFIXES)]
+    # DEATH_CH2_* belong to the chapter-2 script (docs/design/ch2/build_ch2_script.py).
+    kept = [line for line in text.split("\n") if line and (not line.startswith(PREFIXES) or line.startswith("DEATH_CH2_"))]
     buf = io.StringIO()
     writer = csv.writer(buf, lineterminator="\n")
     seen = set(line.split(",", 1)[0] for line in kept)

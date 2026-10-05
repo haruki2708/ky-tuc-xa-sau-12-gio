@@ -45,8 +45,15 @@ func _ready() -> void:
 	_wire_room()
 	for rotor in $Floor4.find_children("fan_rotor", "", true, false):
 		_fan_rotors.append(rotor as Node3D)
-	$Chapter1Director.restart_requested.connect(_on_restart_requested)
-	$Chapter1Director.chapter_done.connect(_on_chapter_done)
+	_director().restart_requested.connect(_on_restart_requested)
+	_director().chapter_done.connect(_on_chapter_done)
+
+
+## Chapter 1 and chapter 2 (T-170) share this scene script; the director node
+## is Chapter1Director or Chapter2Director.
+func _director() -> Chapter1Director:
+	var node := get_node_or_null("Chapter2Director")
+	return (node if node != null else $Chapter1Director) as Chapter1Director
 
 
 func _process(delta: float) -> void:
@@ -65,7 +72,7 @@ func _place_speaker() -> void:
 	speaker.set("chapter_profile", true)
 	add_child(speaker)
 	speaker.global_transform = anchor.global_transform
-	$Chapter1Director.speaker_path = $Chapter1Director.get_path_to(speaker)
+	_director().speaker_path = _director().get_path_to(speaker)
 
 
 ## Lane E's chapter 1 rigs (T-158). They must exist before the director

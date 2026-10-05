@@ -1,0 +1,1917 @@
+{
+ "words": {
+  "WORD_CH2_BAO_CHUA": {
+   "text": "bào chữa",
+   "first": "bào",
+   "last": "chữa",
+   "dead": false
+  },
+  "WORD_CH2_BEN_LUA": {
+   "text": "bén lửa",
+   "first": "bén",
+   "last": "lửa",
+   "dead": false
+  },
+  "WORD_CH2_BONG_TOI": {
+   "text": "bóng tối",
+   "first": "bóng",
+   "last": "tối",
+   "dead": false
+  },
+  "WORD_CH2_BAC_MENH": {
+   "text": "bạc mệnh",
+   "first": "bạc",
+   "last": "mệnh",
+   "dead": false
+  },
+  "WORD_CH2_BAO_LUC": {
+   "text": "bạo lực",
+   "first": "bạo",
+   "last": "lực",
+   "dead": false
+  },
+  "WORD_CH2_BAN_THAN": {
+   "text": "bản thân",
+   "first": "bản",
+   "last": "thân",
+   "dead": false
+  },
+  "WORD_CH2_BAN_AN": {
+   "text": "bản án",
+   "first": "bản",
+   "last": "án",
+   "dead": false
+  },
+  "WORD_CH2_BAN_DO": {
+   "text": "bản đồ",
+   "first": "bản",
+   "last": "đồ",
+   "dead": false
+  },
+  "WORD_CH2_CA_DEM": {
+   "text": "ca đêm",
+   "first": "ca",
+   "last": "đêm",
+   "dead": false
+  },
+  "WORD_CH2_CHAY_NHA": {
+   "text": "cháy nhà",
+   "first": "cháy",
+   "last": "nhà",
+   "dead": false
+  },
+  "WORD_CH2_CHAN_DUNG": {
+   "text": "chân dung",
+   "first": "chân",
+   "last": "dung",
+   "dead": false
+  },
+  "WORD_CH2_CHO_DU": {
+   "text": "chó dữ",
+   "first": "chó",
+   "last": "dữ",
+   "dead": false
+  },
+  "WORD_CH2_CHOI_DUA": {
+   "text": "chơi đùa",
+   "first": "chơi",
+   "last": "đùa",
+   "dead": false
+  },
+  "WORD_CH2_CHUONG_TRINH": {
+   "text": "chương trình",
+   "first": "chương",
+   "last": "trình",
+   "dead": false
+  },
+  "WORD_CH2_CHE_DO": {
+   "text": "chế độ",
+   "first": "chế",
+   "last": "độ",
+   "dead": false
+  },
+  "WORD_CH2_CHET_CHOC": {
+   "text": "chết chóc",
+   "first": "chết",
+   "last": "chóc",
+   "dead": true
+  },
+  "WORD_CH2_CHET_NGUOI": {
+   "text": "chết người",
+   "first": "chết",
+   "last": "người",
+   "dead": false
+  },
+  "WORD_CH2_CHET_DUOI": {
+   "text": "chết đuối",
+   "first": "chết",
+   "last": "đuối",
+   "dead": false
+  },
+  "WORD_CH2_CHI_HUY": {
+   "text": "chỉ huy",
+   "first": "chỉ",
+   "last": "huy",
+   "dead": false
+  },
+  "WORD_CH2_CHUNG_MUC": {
+   "text": "chừng mực",
+   "first": "chừng",
+   "last": "mực",
+   "dead": false
+  },
+  "WORD_CH2_CHUA_CHAY": {
+   "text": "chữa cháy",
+   "first": "chữa",
+   "last": "cháy",
+   "dead": false
+  },
+  "WORD_CH2_CUNG_CAP": {
+   "text": "cung cấp",
+   "first": "cung",
+   "last": "cấp",
+   "dead": false
+  },
+  "WORD_CH2_CAI_NHAU": {
+   "text": "cãi nhau",
+   "first": "cãi",
+   "last": "nhau",
+   "dead": false
+  },
+  "WORD_CH2_CON_SONG": {
+   "text": "còn sống",
+   "first": "còn",
+   "last": "sống",
+   "dead": false
+  },
+  "WORD_CH2_CONG_VIEN": {
+   "text": "công viên",
+   "first": "công",
+   "last": "viên",
+   "dead": false
+  },
+  "WORD_CH2_CONG_VAN": {
+   "text": "công văn",
+   "first": "công",
+   "last": "văn",
+   "dead": false
+  },
+  "WORD_CH2_CAM_KY": {
+   "text": "cấm kỵ",
+   "first": "cấm",
+   "last": "kỵ",
+   "dead": false
+  },
+  "WORD_CH2_CAP_CUU": {
+   "text": "cấp cứu",
+   "first": "cấp",
+   "last": "cứu",
+   "dead": false
+  },
+  "WORD_CH2_CUU_SONG": {
+   "text": "cứu sống",
+   "first": "cứu",
+   "last": "sống",
+   "dead": false
+  },
+  "WORD_CH2_CU_CHI": {
+   "text": "cử chỉ",
+   "first": "cử",
+   "last": "chỉ",
+   "dead": false
+  },
+  "WORD_CH2_DANH_SACH": {
+   "text": "danh sách",
+   "first": "danh",
+   "last": "sách",
+   "dead": false
+  },
+  "WORD_CH2_DAO_GAM": {
+   "text": "dao găm",
+   "first": "dao",
+   "last": "găm",
+   "dead": false
+  },
+  "WORD_CH2_DIEN_MAO": {
+   "text": "diện mạo",
+   "first": "diện",
+   "last": "mạo",
+   "dead": false
+  },
+  "WORD_CH2_DU_HOC": {
+   "text": "du học",
+   "first": "du",
+   "last": "học",
+   "dead": false
+  },
+  "WORD_CH2_DUNG_NHAN": {
+   "text": "dung nhan",
+   "first": "dung",
+   "last": "nhan",
+   "dead": false
+  },
+  "WORD_CH2_DONG_MAU": {
+   "text": "dòng máu",
+   "first": "dòng",
+   "last": "máu",
+   "dead": false
+  },
+  "WORD_CH2_DANG_NGUOI": {
+   "text": "dạng người",
+   "first": "dạng",
+   "last": "người",
+   "dead": false
+  },
+  "WORD_CH2_DI_DANG": {
+   "text": "dị dạng",
+   "first": "dị",
+   "last": "dạng",
+   "dead": false
+  },
+  "WORD_CH2_DOI_NUOC": {
+   "text": "dội nước",
+   "first": "dội",
+   "last": "nước",
+   "dead": false
+  },
+  "WORD_CH2_DU_DOI": {
+   "text": "dữ dội",
+   "first": "dữ",
+   "last": "dội",
+   "dead": false
+  },
+  "WORD_CH2_GIA_LANH": {
+   "text": "giá lạnh",
+   "first": "giá",
+   "last": "lạnh",
+   "dead": false
+  },
+  "WORD_CH2_GION_MAT": {
+   "text": "giỡn mặt",
+   "first": "giỡn",
+   "last": "mặt",
+   "dead": false
+  },
+  "WORD_CH2_GAM_VAO": {
+   "text": "găm vào",
+   "first": "găm",
+   "last": "vào",
+   "dead": false
+  },
+  "WORD_CH2_GACH_DA": {
+   "text": "gạch đá",
+   "first": "gạch",
+   "last": "đá",
+   "dead": false
+  },
+  "WORD_CH2_GAT_DAU": {
+   "text": "gật đầu",
+   "first": "gật",
+   "last": "đầu",
+   "dead": false
+  },
+  "WORD_CH2_HIEM_HOA": {
+   "text": "hiểm họa",
+   "first": "hiểm",
+   "last": "họa",
+   "dead": false
+  },
+  "WORD_CH2_HOANG_HON": {
+   "text": "hoàng hôn",
+   "first": "hoàng",
+   "last": "hôn",
+   "dead": false
+  },
+  "WORD_CH2_HOAT_DONG": {
+   "text": "hoạt động",
+   "first": "hoạt",
+   "last": "động",
+   "dead": false
+  },
+  "WORD_CH2_HUY_CHUONG": {
+   "text": "huy chương",
+   "first": "huy",
+   "last": "chương",
+   "dead": false
+  },
+  "WORD_CH2_HANH_LANG": {
+   "text": "hành lang",
+   "first": "hành",
+   "last": "lang",
+   "dead": false
+  },
+  "WORD_CH2_HINH_PHAT": {
+   "text": "hình phạt",
+   "first": "hình",
+   "last": "phạt",
+   "dead": false
+  },
+  "WORD_CH2_HOA_HOC": {
+   "text": "hóa học",
+   "first": "hóa",
+   "last": "học",
+   "dead": false
+  },
+  "WORD_CH2_HOA_TRANG": {
+   "text": "hóa trang",
+   "first": "hóa",
+   "last": "trang",
+   "dead": false
+  },
+  "WORD_CH2_HOA_DON": {
+   "text": "hóa đơn",
+   "first": "hóa",
+   "last": "đơn",
+   "dead": false
+  },
+  "WORD_CH2_HON_ME": {
+   "text": "hôn mê",
+   "first": "hôn",
+   "last": "mê",
+   "dead": false
+  },
+  "WORD_CH2_HON_NHAN": {
+   "text": "hôn nhân",
+   "first": "hôn",
+   "last": "nhân",
+   "dead": false
+  },
+  "WORD_CH2_HOA_SI": {
+   "text": "họa sĩ",
+   "first": "họa",
+   "last": "sĩ",
+   "dead": false
+  },
+  "WORD_CH2_HOC_KY": {
+   "text": "học kỳ",
+   "first": "học",
+   "last": "kỳ",
+   "dead": false
+  },
+  "WORD_CH2_HOC_PHI": {
+   "text": "học phí",
+   "first": "học",
+   "last": "phí",
+   "dead": false
+  },
+  "WORD_CH2_HOC_SINH": {
+   "text": "học sinh",
+   "first": "học",
+   "last": "sinh",
+   "dead": false
+  },
+  "WORD_CH2_HOC_TRO": {
+   "text": "học trò",
+   "first": "học",
+   "last": "trò",
+   "dead": false
+  },
+  "WORD_CH2_HOC_TAP": {
+   "text": "học tập",
+   "first": "học",
+   "last": "tập",
+   "dead": false
+  },
+  "WORD_CH2_HO_SO": {
+   "text": "hồ sơ",
+   "first": "hồ",
+   "last": "sơ",
+   "dead": false
+  },
+  "WORD_CH2_KHOI_DAU": {
+   "text": "khởi đầu",
+   "first": "khởi",
+   "last": "đầu",
+   "dead": false
+  },
+  "WORD_CH2_KHOI_DONG": {
+   "text": "khởi động",
+   "first": "khởi",
+   "last": "động",
+   "dead": false
+  },
+  "WORD_CH2_KINH_DI": {
+   "text": "kinh dị",
+   "first": "kinh",
+   "last": "dị",
+   "dead": false
+  },
+  "WORD_CH2_KINH_HOANG": {
+   "text": "kinh hoàng",
+   "first": "kinh",
+   "last": "hoàng",
+   "dead": false
+  },
+  "WORD_CH2_KINH_KHUNG": {
+   "text": "kinh khủng",
+   "first": "kinh",
+   "last": "khủng",
+   "dead": true
+  },
+  "WORD_CH2_KINH_TE": {
+   "text": "kinh tế",
+   "first": "kinh",
+   "last": "tế",
+   "dead": false
+  },
+  "WORD_CH2_KY_TEN": {
+   "text": "ký tên",
+   "first": "ký",
+   "last": "tên",
+   "dead": false
+  },
+  "WORD_CH2_KY_TUC": {
+   "text": "ký túc",
+   "first": "ký",
+   "last": "túc",
+   "dead": false
+  },
+  "WORD_CH2_KY_UC": {
+   "text": "ký ức",
+   "first": "ký",
+   "last": "ức",
+   "dead": false
+  },
+  "WORD_CH2_KICH_BAN": {
+   "text": "kịch bản",
+   "first": "kịch",
+   "last": "bản",
+   "dead": false
+  },
+  "WORD_CH2_KY_LA": {
+   "text": "kỳ lạ",
+   "first": "kỳ",
+   "last": "lạ",
+   "dead": false
+  },
+  "WORD_CH2_KY_THI": {
+   "text": "kỳ thi",
+   "first": "kỳ",
+   "last": "thi",
+   "dead": false
+  },
+  "WORD_CH2_KY_SI": {
+   "text": "kỵ sĩ",
+   "first": "kỵ",
+   "last": "sĩ",
+   "dead": false
+  },
+  "WORD_CH2_LANG_THANG": {
+   "text": "lang thang",
+   "first": "lang",
+   "last": "thang",
+   "dead": false
+  },
+  "WORD_CH2_LUAN_VAN": {
+   "text": "luận văn",
+   "first": "luận",
+   "last": "văn",
+   "dead": false
+  },
+  "WORD_CH2_LUAN_AN": {
+   "text": "luận án",
+   "first": "luận",
+   "last": "án",
+   "dead": false
+  },
+  "WORD_CH2_LUAN_DIEM": {
+   "text": "luận điểm",
+   "first": "luận",
+   "last": "điểm",
+   "dead": false
+  },
+  "WORD_CH2_LUNG_CHUNG": {
+   "text": "lưng chừng",
+   "first": "lưng",
+   "last": "chừng",
+   "dead": false
+  },
+  "WORD_CH2_LUOI_DIEN": {
+   "text": "lưới điện",
+   "first": "lưới",
+   "last": "điện",
+   "dead": false
+  },
+  "WORD_CH2_LUONG_SUC": {
+   "text": "lượng sức",
+   "first": "lượng",
+   "last": "sức",
+   "dead": false
+  },
+  "WORD_CH2_LA_MAT": {
+   "text": "lạ mặt",
+   "first": "lạ",
+   "last": "mặt",
+   "dead": false
+  },
+  "WORD_CH2_LANH_LEO": {
+   "text": "lạnh lẽo",
+   "first": "lạnh",
+   "last": "lẽo",
+   "dead": true
+  },
+  "WORD_CH2_LANH_NGUOI": {
+   "text": "lạnh người",
+   "first": "lạnh",
+   "last": "người",
+   "dead": false
+  },
+  "WORD_CH2_LENH_CAM": {
+   "text": "lệnh cấm",
+   "first": "lệnh",
+   "last": "cấm",
+   "dead": false
+  },
+  "WORD_CH2_LUA_DO": {
+   "text": "lửa đỏ",
+   "first": "lửa",
+   "last": "đỏ",
+   "dead": false
+  },
+  "WORD_CH2_LUC_HOC": {
+   "text": "lực học",
+   "first": "lực",
+   "last": "học",
+   "dead": false
+  },
+  "WORD_CH2_LUC_LUONG": {
+   "text": "lực lượng",
+   "first": "lực",
+   "last": "lượng",
+   "dead": false
+  },
+  "WORD_CH2_LUC_SI": {
+   "text": "lực sĩ",
+   "first": "lực",
+   "last": "sĩ",
+   "dead": false
+  },
+  "WORD_CH2_MAU_LANH": {
+   "text": "máu lạnh",
+   "first": "máu",
+   "last": "lạnh",
+   "dead": false
+  },
+  "WORD_CH2_MAU_THIT": {
+   "text": "máu thịt",
+   "first": "máu",
+   "last": "thịt",
+   "dead": false
+  },
+  "WORD_CH2_MAY_MOC": {
+   "text": "máy móc",
+   "first": "máy",
+   "last": "móc",
+   "dead": false
+  },
+  "WORD_CH2_MA_SO": {
+   "text": "mã số",
+   "first": "mã",
+   "last": "số",
+   "dead": false
+  },
+  "WORD_CH2_ME_CUNG": {
+   "text": "mê cung",
+   "first": "mê",
+   "last": "cung",
+   "dead": false
+  },
+  "WORD_CH2_ME_MAN": {
+   "text": "mê man",
+   "first": "mê",
+   "last": "man",
+   "dead": true
+  },
+  "WORD_CH2_MOC_TUI": {
+   "text": "móc túi",
+   "first": "móc",
+   "last": "túi",
+   "dead": false
+  },
+  "WORD_CH2_MUI_DAO": {
+   "text": "mũi dao",
+   "first": "mũi",
+   "last": "dao",
+   "dead": false
+  },
+  "WORD_CH2_MACH_MAU": {
+   "text": "mạch máu",
+   "first": "mạch",
+   "last": "máu",
+   "dead": false
+  },
+  "WORD_CH2_MANG_LUOI": {
+   "text": "mạng lưới",
+   "first": "mạng",
+   "last": "lưới",
+   "dead": false
+  },
+  "WORD_CH2_MANG_NGUOI": {
+   "text": "mạng người",
+   "first": "mạng",
+   "last": "người",
+   "dead": false
+  },
+  "WORD_CH2_MANG_NHEN": {
+   "text": "mạng nhện",
+   "first": "mạng",
+   "last": "nhện",
+   "dead": false
+  },
+  "WORD_CH2_MANG_SONG": {
+   "text": "mạng sống",
+   "first": "mạng",
+   "last": "sống",
+   "dead": false
+  },
+  "WORD_CH2_MAO_HIEM": {
+   "text": "mạo hiểm",
+   "first": "mạo",
+   "last": "hiểm",
+   "dead": false
+  },
+  "WORD_CH2_MAT_MA": {
+   "text": "mật mã",
+   "first": "mật",
+   "last": "mã",
+   "dead": false
+  },
+  "WORD_CH2_MAT_MUI": {
+   "text": "mặt mũi",
+   "first": "mặt",
+   "last": "mũi",
+   "dead": false
+  },
+  "WORD_CH2_MAT_NA": {
+   "text": "mặt nạ",
+   "first": "mặt",
+   "last": "nạ",
+   "dead": false
+  },
+  "WORD_CH2_MAT_TRAN": {
+   "text": "mặt trận",
+   "first": "mặt",
+   "last": "trận",
+   "dead": false
+  },
+  "WORD_CH2_MENH_LENH": {
+   "text": "mệnh lệnh",
+   "first": "mệnh",
+   "last": "lệnh",
+   "dead": false
+  },
+  "WORD_CH2_MONG_DU": {
+   "text": "mộng du",
+   "first": "mộng",
+   "last": "du",
+   "dead": false
+  },
+  "WORD_CH2_MUC_NUOC": {
+   "text": "mực nước",
+   "first": "mực",
+   "last": "nước",
+   "dead": false
+  },
+  "WORD_CH2_NGHEN_MACH": {
+   "text": "nghẽn mạch",
+   "first": "nghẽn",
+   "last": "mạch",
+   "dead": false
+  },
+  "WORD_CH2_NGUOI_CHET": {
+   "text": "người chết",
+   "first": "người",
+   "last": "chết",
+   "dead": false
+  },
+  "WORD_CH2_NGUOI_HOC": {
+   "text": "người học",
+   "first": "người",
+   "last": "học",
+   "dead": false
+  },
+  "WORD_CH2_NGUOI_LA": {
+   "text": "người lạ",
+   "first": "người",
+   "last": "lạ",
+   "dead": false
+  },
+  "WORD_CH2_NGUOI_NGOM": {
+   "text": "người ngợm",
+   "first": "người",
+   "last": "ngợm",
+   "dead": true
+  },
+  "WORD_CH2_NGUOI_THAN": {
+   "text": "người thân",
+   "first": "người",
+   "last": "thân",
+   "dead": false
+  },
+  "WORD_CH2_NGU_GAT": {
+   "text": "ngủ gật",
+   "first": "ngủ",
+   "last": "gật",
+   "dead": false
+  },
+  "WORD_CH2_NGU_DONG": {
+   "text": "ngủ đông",
+   "first": "ngủ",
+   "last": "đông",
+   "dead": false
+  },
+  "WORD_CH2_NHAN_SAC": {
+   "text": "nhan sắc",
+   "first": "nhan",
+   "last": "sắc",
+   "dead": false
+  },
+  "WORD_CH2_NHAU_THAI": {
+   "text": "nhau thai",
+   "first": "nhau",
+   "last": "thai",
+   "dead": false
+  },
+  "WORD_CH2_NHI_DONG": {
+   "text": "nhi đồng",
+   "first": "nhi",
+   "last": "đồng",
+   "dead": false
+  },
+  "WORD_CH2_NHA_TAM": {
+   "text": "nhà tắm",
+   "first": "nhà",
+   "last": "tắm",
+   "dead": false
+  },
+  "WORD_CH2_NHAN_CONG": {
+   "text": "nhân công",
+   "first": "nhân",
+   "last": "công",
+   "dead": false
+  },
+  "WORD_CH2_NHAN_VIEN": {
+   "text": "nhân viên",
+   "first": "nhân",
+   "last": "viên",
+   "dead": false
+  },
+  "WORD_CH2_NHAN_VAN": {
+   "text": "nhân văn",
+   "first": "nhân",
+   "last": "văn",
+   "dead": false
+  },
+  "WORD_CH2_NHAT_KY": {
+   "text": "nhật ký",
+   "first": "nhật",
+   "last": "ký",
+   "dead": false
+  },
+  "WORD_CH2_NHAT_THUC": {
+   "text": "nhật thực",
+   "first": "nhật",
+   "last": "thực",
+   "dead": false
+  },
+  "WORD_CH2_NHEN_DOC": {
+   "text": "nhện độc",
+   "first": "nhện",
+   "last": "độc",
+   "dead": false
+  },
+  "WORD_CH2_NHI_PHAN": {
+   "text": "nhị phân",
+   "first": "nhị",
+   "last": "phân",
+   "dead": false
+  },
+  "WORD_CH2_NUOC_DA": {
+   "text": "nước đá",
+   "first": "nước",
+   "last": "đá",
+   "dead": false
+  },
+  "WORD_CH2_NA_DONG": {
+   "text": "nạ dòng",
+   "first": "nạ",
+   "last": "dòng",
+   "dead": false
+  },
+  "WORD_CH2_PHAN_XAC": {
+   "text": "phân xác",
+   "first": "phân",
+   "last": "xác",
+   "dead": false
+  },
+  "WORD_CH2_PHI_TON": {
+   "text": "phí tổn",
+   "first": "phí",
+   "last": "tổn",
+   "dead": false
+  },
+  "WORD_CH2_PHONG_NGU": {
+   "text": "phòng ngủ",
+   "first": "phòng",
+   "last": "ngủ",
+   "dead": false
+  },
+  "WORD_CH2_PHONG_TAM": {
+   "text": "phòng tắm",
+   "first": "phòng",
+   "last": "tắm",
+   "dead": false
+  },
+  "WORD_CH2_PHAT_DEN": {
+   "text": "phạt đền",
+   "first": "phạt",
+   "last": "đền",
+   "dead": false
+  },
+  "WORD_CH2_PHAN_KHOI": {
+   "text": "phấn khởi",
+   "first": "phấn",
+   "last": "khởi",
+   "dead": false
+  },
+  "WORD_CH2_PHAN_DAU": {
+   "text": "phấn đấu",
+   "first": "phấn",
+   "last": "đấu",
+   "dead": false
+  },
+  "WORD_CH2_PHAN_BAC": {
+   "text": "phận bạc",
+   "first": "phận",
+   "last": "bạc",
+   "dead": false
+  },
+  "WORD_CH2_PHAN_SU": {
+   "text": "phận sự",
+   "first": "phận",
+   "last": "sự",
+   "dead": false
+  },
+  "WORD_CH2_PHO_XA": {
+   "text": "phố xá",
+   "first": "phố",
+   "last": "xá",
+   "dead": false
+  },
+  "WORD_CH2_PHUC_VU": {
+   "text": "phục vụ",
+   "first": "phục",
+   "last": "vụ",
+   "dead": false
+  },
+  "WORD_CH2_RUA_TAY": {
+   "text": "rửa tay",
+   "first": "rửa",
+   "last": "tay",
+   "dead": false
+  },
+  "WORD_CH2_SINH_HOAT": {
+   "text": "sinh hoạt",
+   "first": "sinh",
+   "last": "hoạt",
+   "dead": false
+  },
+  "WORD_CH2_SINH_HOC": {
+   "text": "sinh học",
+   "first": "sinh",
+   "last": "học",
+   "dead": false
+  },
+  "WORD_CH2_SINH_MANG": {
+   "text": "sinh mạng",
+   "first": "sinh",
+   "last": "mạng",
+   "dead": false
+  },
+  "WORD_CH2_SINH_NHAT": {
+   "text": "sinh nhật",
+   "first": "sinh",
+   "last": "nhật",
+   "dead": false
+  },
+  "WORD_CH2_SINH_TU": {
+   "text": "sinh tử",
+   "first": "sinh",
+   "last": "tử",
+   "dead": false
+  },
+  "WORD_CH2_SINH_VIEN": {
+   "text": "sinh viên",
+   "first": "sinh",
+   "last": "viên",
+   "dead": false
+  },
+  "WORD_CH2_SACH_VO": {
+   "text": "sách vở",
+   "first": "sách",
+   "last": "vở",
+   "dead": false
+  },
+  "WORD_CH2_SI_TU": {
+   "text": "sĩ tử",
+   "first": "sĩ",
+   "last": "tử",
+   "dead": false
+  },
+  "WORD_CH2_SUNG_NUOC": {
+   "text": "sũng nước",
+   "first": "sũng",
+   "last": "nước",
+   "dead": false
+  },
+  "WORD_CH2_SO_CUU": {
+   "text": "sơ cứu",
+   "first": "sơ",
+   "last": "cứu",
+   "dead": false
+  },
+  "WORD_CH2_SAC_BEN": {
+   "text": "sắc bén",
+   "first": "sắc",
+   "last": "bén",
+   "dead": false
+  },
+  "WORD_CH2_SO_HOC": {
+   "text": "số học",
+   "first": "số",
+   "last": "học",
+   "dead": false
+  },
+  "WORD_CH2_SO_PHAN": {
+   "text": "số phận",
+   "first": "số",
+   "last": "phận",
+   "dead": false
+  },
+  "WORD_CH2_SONG_CHET": {
+   "text": "sống chết",
+   "first": "sống",
+   "last": "chết",
+   "dead": false
+  },
+  "WORD_CH2_SONG_CON": {
+   "text": "sống còn",
+   "first": "sống",
+   "last": "còn",
+   "dead": false
+  },
+  "WORD_CH2_SONG_SOT": {
+   "text": "sống sót",
+   "first": "sống",
+   "last": "sót",
+   "dead": true
+  },
+  "WORD_CH2_SUC_LUC": {
+   "text": "sức lực",
+   "first": "sức",
+   "last": "lực",
+   "dead": false
+  },
+  "WORD_CH2_SU_SONG": {
+   "text": "sự sống",
+   "first": "sự",
+   "last": "sống",
+   "dead": false
+  },
+  "WORD_CH2_TAY_CHAN": {
+   "text": "tay chân",
+   "first": "tay",
+   "last": "chân",
+   "dead": false
+  },
+  "WORD_CH2_THAI_NHI": {
+   "text": "thai nhi",
+   "first": "thai",
+   "last": "nhi",
+   "dead": false
+  },
+  "WORD_CH2_THANG_MAY": {
+   "text": "thang máy",
+   "first": "thang",
+   "last": "máy",
+   "dead": false
+  },
+  "WORD_CH2_THAO_THUC": {
+   "text": "thao thức",
+   "first": "thao",
+   "last": "thức",
+   "dead": false
+  },
+  "WORD_CH2_THI_CU": {
+   "text": "thi cử",
+   "first": "thi",
+   "last": "cử",
+   "dead": false
+  },
+  "WORD_CH2_THI_DAU": {
+   "text": "thi đấu",
+   "first": "thi",
+   "last": "đấu",
+   "dead": false
+  },
+  "WORD_CH2_THOAI_BAN": {
+   "text": "thoại bản",
+   "first": "thoại",
+   "last": "bản",
+   "dead": false
+  },
+  "WORD_CH2_THUOC_NGU": {
+   "text": "thuốc ngủ",
+   "first": "thuốc",
+   "last": "ngủ",
+   "dead": false
+  },
+  "WORD_CH2_THUOC_DOC": {
+   "text": "thuốc độc",
+   "first": "thuốc",
+   "last": "độc",
+   "dead": false
+  },
+  "WORD_CH2_THANH_PHO": {
+   "text": "thành phố",
+   "first": "thành",
+   "last": "phố",
+   "dead": false
+  },
+  "WORD_CH2_THAN_NHAN": {
+   "text": "thân nhân",
+   "first": "thân",
+   "last": "nhân",
+   "dead": false
+  },
+  "WORD_CH2_THAN_PHAN": {
+   "text": "thân phận",
+   "first": "thân",
+   "last": "phận",
+   "dead": false
+  },
+  "WORD_CH2_THO_CA": {
+   "text": "thơ ca",
+   "first": "thơ",
+   "last": "ca",
+   "dead": false
+  },
+  "WORD_CH2_THUONG_NHAN": {
+   "text": "thương nhân",
+   "first": "thương",
+   "last": "nhân",
+   "dead": false
+  },
+  "WORD_CH2_THUONG_TICH": {
+   "text": "thương tích",
+   "first": "thương",
+   "last": "tích",
+   "dead": false
+  },
+  "WORD_CH2_THAN_CHET": {
+   "text": "thần chết",
+   "first": "thần",
+   "last": "chết",
+   "dead": false
+  },
+  "WORD_CH2_THAN_KINH": {
+   "text": "thần kinh",
+   "first": "thần",
+   "last": "kinh",
+   "dead": false
+  },
+  "WORD_CH2_THAN_THANH": {
+   "text": "thần thánh",
+   "first": "thần",
+   "last": "thánh",
+   "dead": true
+  },
+  "WORD_CH2_THE_THAO": {
+   "text": "thể thao",
+   "first": "thể",
+   "last": "thao",
+   "dead": false
+  },
+  "WORD_CH2_THIT_NGUOI": {
+   "text": "thịt người",
+   "first": "thịt",
+   "last": "người",
+   "dead": false
+  },
+  "WORD_CH2_THUC_TINH": {
+   "text": "thức tỉnh",
+   "first": "thức",
+   "last": "tỉnh",
+   "dead": false
+  },
+  "WORD_CH2_THUC_HANH": {
+   "text": "thực hành",
+   "first": "thực",
+   "last": "hành",
+   "dead": false
+  },
+  "WORD_CH2_THUC_TE": {
+   "text": "thực tế",
+   "first": "thực",
+   "last": "tế",
+   "dead": false
+  },
+  "WORD_CH2_TIEN_TRI": {
+   "text": "tiên tri",
+   "first": "tiên",
+   "last": "tri",
+   "dead": false
+  },
+  "WORD_CH2_TRANG_PHUC": {
+   "text": "trang phục",
+   "first": "trang",
+   "last": "phục",
+   "dead": false
+  },
+  "WORD_CH2_TRANH_CAI": {
+   "text": "tranh cãi",
+   "first": "tranh",
+   "last": "cãi",
+   "dead": false
+  },
+  "WORD_CH2_TRANH_LUAN": {
+   "text": "tranh luận",
+   "first": "tranh",
+   "last": "luận",
+   "dead": false
+  },
+  "WORD_CH2_TRI_THUC": {
+   "text": "tri thức",
+   "first": "tri",
+   "last": "thức",
+   "dead": false
+  },
+  "WORD_CH2_TRUNG_THANH": {
+   "text": "trung thành",
+   "first": "trung",
+   "last": "thành",
+   "dead": false
+  },
+  "WORD_CH2_TRINH_DIEN": {
+   "text": "trình diện",
+   "first": "trình",
+   "last": "diện",
+   "dead": false
+  },
+  "WORD_CH2_TRO_CHOI": {
+   "text": "trò chơi",
+   "first": "trò",
+   "last": "chơi",
+   "dead": false
+  },
+  "WORD_CH2_TRO_DUA": {
+   "text": "trò đùa",
+   "first": "trò",
+   "last": "đùa",
+   "dead": false
+  },
+  "WORD_CH2_TRUONG_HOC": {
+   "text": "trường học",
+   "first": "trường",
+   "last": "học",
+   "dead": false
+  },
+  "WORD_CH2_TRAN_DAU": {
+   "text": "trận đấu",
+   "first": "trận",
+   "last": "đấu",
+   "dead": false
+  },
+  "WORD_CH2_TRUC_DEM": {
+   "text": "trực đêm",
+   "first": "trực",
+   "last": "đêm",
+   "dead": false
+  },
+  "WORD_CH2_TUOI_THO": {
+   "text": "tuổi thơ",
+   "first": "tuổi",
+   "last": "thơ",
+   "dead": false
+  },
+  "WORD_CH2_TAO_BAO": {
+   "text": "táo bạo",
+   "first": "táo",
+   "last": "bạo",
+   "dead": false
+  },
+  "WORD_CH2_TEN_TUOI": {
+   "text": "tên tuổi",
+   "first": "tên",
+   "last": "tuổi",
+   "dead": false
+  },
+  "WORD_CH2_TICH_TAC": {
+   "text": "tích tắc",
+   "first": "tích",
+   "last": "tắc",
+   "dead": false
+  },
+  "WORD_CH2_TUC_TRUC": {
+   "text": "túc trực",
+   "first": "túc",
+   "last": "trực",
+   "dead": false
+  },
+  "WORD_CH2_TUI_XACH": {
+   "text": "túi xách",
+   "first": "túi",
+   "last": "xách",
+   "dead": false
+  },
+  "WORD_CH2_TAM_TOI": {
+   "text": "tăm tối",
+   "first": "tăm",
+   "last": "tối",
+   "dead": false
+  },
+  "WORD_CH2_TAP_THE": {
+   "text": "tập thể",
+   "first": "tập",
+   "last": "thể",
+   "dead": false
+  },
+  "WORD_CH2_TAP_TRUNG": {
+   "text": "tập trung",
+   "first": "tập",
+   "last": "trung",
+   "dead": false
+  },
+  "WORD_CH2_TAC_NGHEN": {
+   "text": "tắc nghẽn",
+   "first": "tắc",
+   "last": "nghẽn",
+   "dead": false
+  },
+  "WORD_CH2_TAM_MAU": {
+   "text": "tắm máu",
+   "first": "tắm",
+   "last": "máu",
+   "dead": false
+  },
+  "WORD_CH2_TAM_RUA": {
+   "text": "tắm rửa",
+   "first": "tắm",
+   "last": "rửa",
+   "dead": false
+  },
+  "WORD_CH2_TE_BAO": {
+   "text": "tế bào",
+   "first": "tế",
+   "last": "bào",
+   "dead": false
+  },
+  "WORD_CH2_TE_NHI": {
+   "text": "tế nhị",
+   "first": "tế",
+   "last": "nhị",
+   "dead": false
+  },
+  "WORD_CH2_TINH_TAO": {
+   "text": "tỉnh táo",
+   "first": "tỉnh",
+   "last": "táo",
+   "dead": false
+  },
+  "WORD_CH2_TOI_MAT": {
+   "text": "tối mật",
+   "first": "tối",
+   "last": "mật",
+   "dead": false
+  },
+  "WORD_CH2_TOI_TAM": {
+   "text": "tối tăm",
+   "first": "tối",
+   "last": "tăm",
+   "dead": false
+  },
+  "WORD_CH2_TON_THUONG": {
+   "text": "tổn thương",
+   "first": "tổn",
+   "last": "thương",
+   "dead": false
+  },
+  "WORD_CH2_TOI_AC": {
+   "text": "tội ác",
+   "first": "tội",
+   "last": "ác",
+   "dead": false
+  },
+  "WORD_CH2_TU_HINH": {
+   "text": "tử hình",
+   "first": "tử",
+   "last": "hình",
+   "dead": false
+  },
+  "WORD_CH2_TU_THAN": {
+   "text": "tử thần",
+   "first": "tử",
+   "last": "thần",
+   "dead": false
+  },
+  "WORD_CH2_TU_TE": {
+   "text": "tử tế",
+   "first": "tử",
+   "last": "tế",
+   "dead": false
+  },
+  "WORD_CH2_VIEN_GACH": {
+   "text": "viên gạch",
+   "first": "viên",
+   "last": "gạch",
+   "dead": false
+  },
+  "WORD_CH2_VIEN_PHAN": {
+   "text": "viên phấn",
+   "first": "viên",
+   "last": "phấn",
+   "dead": false
+  },
+  "WORD_CH2_VIEN_THUOC": {
+   "text": "viên thuốc",
+   "first": "viên",
+   "last": "thuốc",
+   "dead": false
+  },
+  "WORD_CH2_VAO_HOC": {
+   "text": "vào học",
+   "first": "vào",
+   "last": "học",
+   "dead": false
+  },
+  "WORD_CH2_VAN_BAN": {
+   "text": "văn bản",
+   "first": "văn",
+   "last": "bản",
+   "dead": false
+  },
+  "WORD_CH2_VAN_HOA": {
+   "text": "văn hóa",
+   "first": "văn",
+   "last": "hóa",
+   "dead": false
+  },
+  "WORD_CH2_VAN_HOC": {
+   "text": "văn học",
+   "first": "văn",
+   "last": "học",
+   "dead": false
+  },
+  "WORD_CH2_VAN_PHONG": {
+   "text": "văn phòng",
+   "first": "văn",
+   "last": "phòng",
+   "dead": false
+  },
+  "WORD_CH2_VO_KICH": {
+   "text": "vở kịch",
+   "first": "vở",
+   "last": "kịch",
+   "dead": false
+  },
+  "WORD_CH2_VU_AN": {
+   "text": "vụ án",
+   "first": "vụ",
+   "last": "án",
+   "dead": false
+  },
+  "WORD_CH2_XA_TOI": {
+   "text": "xá tội",
+   "first": "xá",
+   "last": "tội",
+   "dead": false
+  },
+  "WORD_CH2_XAC_CHET": {
+   "text": "xác chết",
+   "first": "xác",
+   "last": "chết",
+   "dead": false
+  },
+  "WORD_CH2_XACH_TAY": {
+   "text": "xách tay",
+   "first": "xách",
+   "last": "tay",
+   "dead": false
+  },
+  "WORD_CH2_AC_MONG": {
+   "text": "ác mộng",
+   "first": "ác",
+   "last": "mộng",
+   "dead": false
+  },
+  "WORD_CH2_AN_MANG": {
+   "text": "án mạng",
+   "first": "án",
+   "last": "mạng",
+   "dead": false
+  },
+  "WORD_CH2_AN_TU": {
+   "text": "án tử",
+   "first": "án",
+   "last": "tử",
+   "dead": false
+  },
+  "WORD_CH2_OC_CHO": {
+   "text": "óc chó",
+   "first": "óc",
+   "last": "chó",
+   "dead": false
+  },
+  "WORD_CH2_DAI_LUNG": {
+   "text": "đai lưng",
+   "first": "đai",
+   "last": "lưng",
+   "dead": false
+  },
+  "WORD_CH2_DIEN_VAO": {
+   "text": "điền vào",
+   "first": "điền",
+   "last": "vào",
+   "dead": false
+  },
+  "WORD_CH2_DIEM_DANH": {
+   "text": "điểm danh",
+   "first": "điểm",
+   "last": "danh",
+   "dead": false
+  },
+  "WORD_CH2_DIEM_SO": {
+   "text": "điểm số",
+   "first": "điểm",
+   "last": "số",
+   "dead": false
+  },
+  "WORD_CH2_DIEN_THOAI": {
+   "text": "điện thoại",
+   "first": "điện",
+   "last": "thoại",
+   "dead": false
+  },
+  "WORD_CH2_DUOI_SUC": {
+   "text": "đuối sức",
+   "first": "đuối",
+   "last": "sức",
+   "dead": false
+  },
+  "WORD_CH2_DA_BONG": {
+   "text": "đá bóng",
+   "first": "đá",
+   "last": "bóng",
+   "dead": false
+  },
+  "WORD_CH2_DEM_TRUONG": {
+   "text": "đêm trường",
+   "first": "đêm",
+   "last": "trường",
+   "dead": false
+  },
+  "WORD_CH2_DONG_NGUOI": {
+   "text": "đông người",
+   "first": "đông",
+   "last": "người",
+   "dead": false
+  },
+  "WORD_CH2_DUA_GION": {
+   "text": "đùa giỡn",
+   "first": "đùa",
+   "last": "giỡn",
+   "dead": false
+  },
+  "WORD_CH2_DON_DOC": {
+   "text": "đơn độc",
+   "first": "đơn",
+   "last": "độc",
+   "dead": false
+  },
+  "WORD_CH2_DAC_DIEN": {
+   "text": "đạc điền",
+   "first": "đạc",
+   "last": "điền",
+   "dead": false
+  },
+  "WORD_CH2_DAT_DAI": {
+   "text": "đất đai",
+   "first": "đất",
+   "last": "đai",
+   "dead": false
+  },
+  "WORD_CH2_DAU_GIA": {
+   "text": "đấu giá",
+   "first": "đấu",
+   "last": "giá",
+   "dead": false
+  },
+  "WORD_CH2_DAU_TRANH": {
+   "text": "đấu tranh",
+   "first": "đấu",
+   "last": "tranh",
+   "dead": false
+  },
+  "WORD_CH2_DAU_TRUONG": {
+   "text": "đấu trường",
+   "first": "đấu",
+   "last": "trường",
+   "dead": false
+  },
+  "WORD_CH2_DAU_TIEN": {
+   "text": "đầu tiên",
+   "first": "đầu",
+   "last": "tiên",
+   "dead": false
+  },
+  "WORD_CH2_DAU_OC": {
+   "text": "đầu óc",
+   "first": "đầu",
+   "last": "óc",
+   "dead": false
+  },
+  "WORD_CH2_DEN_MANG": {
+   "text": "đền mạng",
+   "first": "đền",
+   "last": "mạng",
+   "dead": false
+  },
+  "WORD_CH2_DO_MAT": {
+   "text": "đỏ mặt",
+   "first": "đỏ",
+   "last": "mặt",
+   "dead": false
+  },
+  "WORD_CH2_DO_AN": {
+   "text": "đồ án",
+   "first": "đồ",
+   "last": "án",
+   "dead": false
+  },
+  "WORD_CH2_DO_DAC": {
+   "text": "đồ đạc",
+   "first": "đồ",
+   "last": "đạc",
+   "dead": false
+  },
+  "WORD_CH2_DONG_HO": {
+   "text": "đồng hồ",
+   "first": "đồng",
+   "last": "hồ",
+   "dead": false
+  },
+  "WORD_CH2_DO_AM": {
+   "text": "độ ẩm",
+   "first": "độ",
+   "last": "ẩm",
+   "dead": false
+  },
+  "WORD_CH2_DOC_AC": {
+   "text": "độc ác",
+   "first": "độc",
+   "last": "ác",
+   "dead": false
+  },
+  "WORD_CH2_DONG_DAT": {
+   "text": "động đất",
+   "first": "động",
+   "last": "đất",
+   "dead": false
+  },
+  "WORD_CH2_UOT_SUNG": {
+   "text": "ướt sũng",
+   "first": "ướt",
+   "last": "sũng",
+   "dead": false
+  },
+  "WORD_CH2_AM_UOT": {
+   "text": "ẩm ướt",
+   "first": "ẩm",
+   "last": "ướt",
+   "dead": false
+  },
+  "WORD_CH2_UC_CHE": {
+   "text": "ức chế",
+   "first": "ức",
+   "last": "chế",
+   "dead": false
+  }
+ },
+ "traps": {
+  "WORD_CH2_CHANH_CHUA": {
+   "text": "chanh chua",
+   "first": "chanh",
+   "last": "chua"
+  },
+  "WORD_CH2_CHUC_NAM": {
+   "text": "chục năm",
+   "first": "chục",
+   "last": "năm"
+  },
+  "WORD_CH2_DANG_HIEN": {
+   "text": "dâng hiến",
+   "first": "dâng",
+   "last": "hiến"
+  },
+  "WORD_CH2_DAU_VET": {
+   "text": "dấu vết",
+   "first": "dấu",
+   "last": "vết"
+  },
+  "WORD_CH2_DE_DANG": {
+   "text": "dễ dàng",
+   "first": "dễ",
+   "last": "dàng"
+  },
+  "WORD_CH2_GIEU_COT": {
+   "text": "giễu cợt",
+   "first": "giễu",
+   "last": "cợt"
+  },
+  "WORD_CH2_HOC_TU": {
+   "text": "hộc tủ",
+   "first": "hộc",
+   "last": "tủ"
+  },
+  "WORD_CH2_KHUYET_DIEM": {
+   "text": "khuyết điểm",
+   "first": "khuyết",
+   "last": "điểm"
+  },
+  "WORD_CH2_KHUAT_PHUC": {
+   "text": "khuất phục",
+   "first": "khuất",
+   "last": "phục"
+  },
+  "WORD_CH2_LUAN_HOI": {
+   "text": "luân hồi",
+   "first": "luân",
+   "last": "hồi"
+  },
+  "WORD_CH2_PHAN_THUONG": {
+   "text": "phần thưởng",
+   "first": "phần",
+   "last": "thưởng"
+  },
+  "WORD_CH2_ROI_SAO": {
+   "text": "rồi sao",
+   "first": "rồi",
+   "last": "sao"
+  },
+  "WORD_CH2_SINH_LE": {
+   "text": "sính lễ",
+   "first": "sính",
+   "last": "lễ"
+  },
+  "WORD_CH2_THOM_THO": {
+   "text": "thơm tho",
+   "first": "thơm",
+   "last": "tho"
+  },
+  "WORD_CH2_TRUNG_PHAT": {
+   "text": "trừng phạt",
+   "first": "trừng",
+   "last": "phạt"
+  },
+  "WORD_CH2_VAN_CON": {
+   "text": "vẫn còn",
+   "first": "vẫn",
+   "last": "còn"
+  },
+  "WORD_CH2_VIN_TAY": {
+   "text": "vịn tay",
+   "first": "vịn",
+   "last": "tay"
+  },
+  "WORD_CH2_VO_NAT": {
+   "text": "vỡ nát",
+   "first": "vỡ",
+   "last": "nát"
+  },
+  "WORD_CH2_VO_CHONG": {
+   "text": "vợ chồng",
+   "first": "vợ",
+   "last": "chồng"
+  },
+  "WORD_CH2_XINH_XAN": {
+   "text": "xinh xắn",
+   "first": "xinh",
+   "last": "xắn"
+  },
+  "WORD_CH2_DEM_DEN": {
+   "text": "đêm đen",
+   "first": "đêm",
+   "last": "đen"
+  }
+ },
+ "loop": [
+  "WORD_CH2_HOC_SINH",
+  "WORD_CH2_SINH_VIEN",
+  "WORD_CH2_VIEN_PHAN",
+  "WORD_CH2_PHAN_DAU",
+  "WORD_CH2_DAU_TRANH",
+  "WORD_CH2_TRANH_LUAN",
+  "WORD_CH2_LUAN_VAN",
+  "WORD_CH2_VAN_HOC"
+ ],
+ "opening": [
+  "WORD_CH2_DIEM_DANH",
+  "WORD_CH2_DANH_SACH",
+  "WORD_CH2_SACH_VO"
+ ],
+ "steer": {
+  "bào": "WORD_CH2_BAO_CHUA",
+  "bén": "WORD_CH2_BEN_LUA",
+  "bóng": "WORD_CH2_BONG_TOI",
+  "bạc": "WORD_CH2_BAC_MENH",
+  "bạo": "WORD_CH2_BAO_LUC",
+  "bản": "WORD_CH2_BAN_THAN",
+  "ca": "WORD_CH2_CA_DEM",
+  "cháy": "WORD_CH2_CHAY_NHA",
+  "chân": "WORD_CH2_CHAN_DUNG",
+  "chó": "WORD_CH2_CHO_DU",
+  "chơi": "WORD_CH2_CHOI_DUA",
+  "chương": "WORD_CH2_CHUONG_TRINH",
+  "chế": "WORD_CH2_CHE_DO",
+  "chết": "WORD_CH2_CHET_NGUOI",
+  "chỉ": "WORD_CH2_CHI_HUY",
+  "chừng": "WORD_CH2_CHUNG_MUC",
+  "chữa": "WORD_CH2_CHUA_CHAY",
+  "cung": "WORD_CH2_CUNG_CAP",
+  "cãi": "WORD_CH2_CAI_NHAU",
+  "còn": "WORD_CH2_CON_SONG",
+  "công": "WORD_CH2_CONG_VIEN",
+  "cấm": "WORD_CH2_CAM_KY",
+  "cấp": "WORD_CH2_CAP_CUU",
+  "cứu": "WORD_CH2_CUU_SONG",
+  "cử": "WORD_CH2_CU_CHI",
+  "danh": "WORD_CH2_DANH_SACH",
+  "dao": "WORD_CH2_DAO_GAM",
+  "diện": "WORD_CH2_DIEN_MAO",
+  "du": "WORD_CH2_DU_HOC",
+  "dung": "WORD_CH2_DUNG_NHAN",
+  "dòng": "WORD_CH2_DONG_MAU",
+  "dạng": "WORD_CH2_DANG_NGUOI",
+  "dị": "WORD_CH2_DI_DANG",
+  "dội": "WORD_CH2_DOI_NUOC",
+  "dữ": "WORD_CH2_DU_DOI",
+  "giá": "WORD_CH2_GIA_LANH",
+  "giỡn": "WORD_CH2_GION_MAT",
+  "găm": "WORD_CH2_GAM_VAO",
+  "gạch": "WORD_CH2_GACH_DA",
+  "gật": "WORD_CH2_GAT_DAU",
+  "hiểm": "WORD_CH2_HIEM_HOA",
+  "hoàng": "WORD_CH2_HOANG_HON",
+  "hoạt": "WORD_CH2_HOAT_DONG",
+  "huy": "WORD_CH2_HUY_CHUONG",
+  "hành": "WORD_CH2_HANH_LANG",
+  "hình": "WORD_CH2_HINH_PHAT",
+  "hóa": "WORD_CH2_HOA_HOC",
+  "hôn": "WORD_CH2_HON_NHAN",
+  "họa": "WORD_CH2_HOA_SI",
+  "học": "WORD_CH2_HOC_SINH",
+  "hồ": "WORD_CH2_HO_SO",
+  "khởi": "WORD_CH2_KHOI_DAU",
+  "kinh": "WORD_CH2_KINH_DI",
+  "ký": "WORD_CH2_KY_TUC",
+  "kịch": "WORD_CH2_KICH_BAN",
+  "kỳ": "WORD_CH2_KY_THI",
+  "kỵ": "WORD_CH2_KY_SI",
+  "lang": "WORD_CH2_LANG_THANG",
+  "luận": "WORD_CH2_LUAN_VAN",
+  "lưng": "WORD_CH2_LUNG_CHUNG",
+  "lưới": "WORD_CH2_LUOI_DIEN",
+  "lượng": "WORD_CH2_LUONG_SUC",
+  "lạ": "WORD_CH2_LA_MAT",
+  "lạnh": "WORD_CH2_LANH_NGUOI",
+  "lệnh": "WORD_CH2_LENH_CAM",
+  "lửa": "WORD_CH2_LUA_DO",
+  "lực": "WORD_CH2_LUC_HOC",
+  "máu": "WORD_CH2_MAU_LANH",
+  "máy": "WORD_CH2_MAY_MOC",
+  "mã": "WORD_CH2_MA_SO",
+  "mê": "WORD_CH2_ME_CUNG",
+  "móc": "WORD_CH2_MOC_TUI",
+  "mũi": "WORD_CH2_MUI_DAO",
+  "mạch": "WORD_CH2_MACH_MAU",
+  "mạng": "WORD_CH2_MANG_NGUOI",
+  "mạo": "WORD_CH2_MAO_HIEM",
+  "mật": "WORD_CH2_MAT_MA",
+  "mặt": "WORD_CH2_MAT_TRAN",
+  "mệnh": "WORD_CH2_MENH_LENH",
+  "mộng": "WORD_CH2_MONG_DU",
+  "mực": "WORD_CH2_MUC_NUOC",
+  "nghẽn": "WORD_CH2_NGHEN_MACH",
+  "người": "WORD_CH2_NGUOI_HOC",
+  "ngủ": "WORD_CH2_NGU_DONG",
+  "nhan": "WORD_CH2_NHAN_SAC",
+  "nhau": "WORD_CH2_NHAU_THAI",
+  "nhi": "WORD_CH2_NHI_DONG",
+  "nhà": "WORD_CH2_NHA_TAM",
+  "nhân": "WORD_CH2_NHAN_VIEN",
+  "nhật": "WORD_CH2_NHAT_KY",
+  "nhện": "WORD_CH2_NHEN_DOC",
+  "nhị": "WORD_CH2_NHI_PHAN",
+  "nước": "WORD_CH2_NUOC_DA",
+  "nạ": "WORD_CH2_NA_DONG",
+  "phân": "WORD_CH2_PHAN_XAC",
+  "phí": "WORD_CH2_PHI_TON",
+  "phòng": "WORD_CH2_PHONG_NGU",
+  "phạt": "WORD_CH2_PHAT_DEN",
+  "phấn": "WORD_CH2_PHAN_DAU",
+  "phận": "WORD_CH2_PHAN_SU",
+  "phố": "WORD_CH2_PHO_XA",
+  "phục": "WORD_CH2_PHUC_VU",
+  "rửa": "WORD_CH2_RUA_TAY",
+  "sinh": "WORD_CH2_SINH_HOC",
+  "sách": "WORD_CH2_SACH_VO",
+  "sĩ": "WORD_CH2_SI_TU",
+  "sũng": "WORD_CH2_SUNG_NUOC",
+  "sơ": "WORD_CH2_SO_CUU",
+  "sắc": "WORD_CH2_SAC_BEN",
+  "số": "WORD_CH2_SO_HOC",
+  "sống": "WORD_CH2_SONG_CHET",
+  "sức": "WORD_CH2_SUC_LUC",
+  "sự": "WORD_CH2_SU_SONG",
+  "tay": "WORD_CH2_TAY_CHAN",
+  "thai": "WORD_CH2_THAI_NHI",
+  "thang": "WORD_CH2_THANG_MAY",
+  "thao": "WORD_CH2_THAO_THUC",
+  "thi": "WORD_CH2_THI_DAU",
+  "thoại": "WORD_CH2_THOAI_BAN",
+  "thuốc": "WORD_CH2_THUOC_NGU",
+  "thành": "WORD_CH2_THANH_PHO",
+  "thân": "WORD_CH2_THAN_NHAN",
+  "thơ": "WORD_CH2_THO_CA",
+  "thương": "WORD_CH2_THUONG_NHAN",
+  "thần": "WORD_CH2_THAN_CHET",
+  "thể": "WORD_CH2_THE_THAO",
+  "thịt": "WORD_CH2_THIT_NGUOI",
+  "thức": "WORD_CH2_THUC_TINH",
+  "thực": "WORD_CH2_THUC_TE",
+  "tiên": "WORD_CH2_TIEN_TRI",
+  "trang": "WORD_CH2_TRANG_PHUC",
+  "tranh": "WORD_CH2_TRANH_LUAN",
+  "tri": "WORD_CH2_TRI_THUC",
+  "trung": "WORD_CH2_TRUNG_THANH",
+  "trình": "WORD_CH2_TRINH_DIEN",
+  "trò": "WORD_CH2_TRO_DUA",
+  "trường": "WORD_CH2_TRUONG_HOC",
+  "trận": "WORD_CH2_TRAN_DAU",
+  "trực": "WORD_CH2_TRUC_DEM",
+  "tuổi": "WORD_CH2_TUOI_THO",
+  "táo": "WORD_CH2_TAO_BAO",
+  "tên": "WORD_CH2_TEN_TUOI",
+  "tích": "WORD_CH2_TICH_TAC",
+  "túc": "WORD_CH2_TUC_TRUC",
+  "túi": "WORD_CH2_TUI_XACH",
+  "tăm": "WORD_CH2_TAM_TOI",
+  "tập": "WORD_CH2_TAP_THE",
+  "tắc": "WORD_CH2_TAC_NGHEN",
+  "tắm": "WORD_CH2_TAM_MAU",
+  "tế": "WORD_CH2_TE_NHI",
+  "tỉnh": "WORD_CH2_TINH_TAO",
+  "tối": "WORD_CH2_TOI_MAT",
+  "tổn": "WORD_CH2_TON_THUONG",
+  "tội": "WORD_CH2_TOI_AC",
+  "tử": "WORD_CH2_TU_THAN",
+  "viên": "WORD_CH2_VIEN_PHAN",
+  "vào": "WORD_CH2_VAO_HOC",
+  "văn": "WORD_CH2_VAN_HOC",
+  "vở": "WORD_CH2_VO_KICH",
+  "vụ": "WORD_CH2_VU_AN",
+  "xá": "WORD_CH2_XA_TOI",
+  "xác": "WORD_CH2_XAC_CHET",
+  "xách": "WORD_CH2_XACH_TAY",
+  "ác": "WORD_CH2_AC_MONG",
+  "án": "WORD_CH2_AN_MANG",
+  "óc": "WORD_CH2_OC_CHO",
+  "đai": "WORD_CH2_DAI_LUNG",
+  "điền": "WORD_CH2_DIEN_VAO",
+  "điểm": "WORD_CH2_DIEM_SO",
+  "điện": "WORD_CH2_DIEN_THOAI",
+  "đuối": "WORD_CH2_DUOI_SUC",
+  "đá": "WORD_CH2_DA_BONG",
+  "đêm": "WORD_CH2_DEM_TRUONG",
+  "đông": "WORD_CH2_DONG_NGUOI",
+  "đùa": "WORD_CH2_DUA_GION",
+  "đơn": "WORD_CH2_DON_DOC",
+  "đạc": "WORD_CH2_DAC_DIEN",
+  "đất": "WORD_CH2_DAT_DAI",
+  "đấu": "WORD_CH2_DAU_TRANH",
+  "đầu": "WORD_CH2_DAU_TIEN",
+  "đền": "WORD_CH2_DEN_MANG",
+  "đỏ": "WORD_CH2_DO_MAT",
+  "đồ": "WORD_CH2_DO_AN",
+  "đồng": "WORD_CH2_DONG_HO",
+  "độ": "WORD_CH2_DO_AM",
+  "độc": "WORD_CH2_DOC_AC",
+  "động": "WORD_CH2_DONG_DAT",
+  "ướt": "WORD_CH2_UOT_SUNG",
+  "ẩm": "WORD_CH2_AM_UOT",
+  "ức": "WORD_CH2_UC_CHE"
+ },
+ "seconds": 15.0,
+ "options": 4,
+ "no_repeat_window": 3
+}

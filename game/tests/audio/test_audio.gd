@@ -37,7 +37,8 @@ func test_all_ogg_load_and_decode_with_correct_loop_flags() -> void:
 	# Chapter 1 voices (T-159): every voiced key of the chapter-1 script, Vietnamese only (D-006).
 	for line in FileAccess.get_file_as_string("res://localization/strings.csv").split("\n"):
 		var key := line.get_slice(",", 0)
-		for prefix in ["SPK_CH1_", "RULE_CH1_", "MGR_CH1_", "CHAT_CH1_", "ROOM_CH1_"]:
+		# Chapter 2 voices (T-170, integrator): speaker, call, and every chain word.
+		for prefix in ["SPK_CH1_", "RULE_CH1_", "MGR_CH1_", "CHAT_CH1_", "ROOM_CH1_", "SPK_CH2_", "RULE_CH2_", "CHAT_CH2_", "WORD_CH2_"]:
 			if key.begins_with(prefix):
 				expected.append("res://audio/voice/vi/%s.ogg" % key)
 	var actual := _find_ogg("res://audio")

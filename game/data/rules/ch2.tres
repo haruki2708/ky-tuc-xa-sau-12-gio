@@ -1,0 +1,116 @@
+[gd_resource type="Resource" script_class="RuleSet" load_steps=12 format=3]
+
+[ext_resource type="Script" path="res://scripts/core/rule_set.gd" id="1_set"]
+[ext_resource type="Script" path="res://scripts/core/rule_data.gd" id="2_rule"]
+
+[sub_resource type="Resource" id="Rule_ch1_general_1"]
+script = ExtResource("2_rule")
+id = &"ch1_general_1"
+text_key = "RULE_CH1_GENERAL_1"
+is_fake = false
+source = &"speaker"
+situation = &"rules_heard"
+action = &"obey"
+penalty = 0
+consequence = &""
+fatal = false
+
+[sub_resource type="Resource" id="Rule_ch1_general_2"]
+script = ExtResource("2_rule")
+id = &"ch1_general_2"
+text_key = "RULE_CH1_GENERAL_2"
+is_fake = false
+source = &"speaker"
+situation = &"new_rule"
+action = &"old_rule_expires"
+penalty = 0
+consequence = &""
+fatal = false
+
+[sub_resource type="Resource" id="Rule_ch1_general_3"]
+script = ExtResource("2_rule")
+id = &"ch1_general_3"
+text_key = "RULE_CH1_GENERAL_3"
+is_fake = false
+source = &"speaker"
+situation = &"leave_room"
+action = &"stay_in_room"
+penalty = 0
+consequence = &""
+fatal = false
+
+[sub_resource type="Resource" id="Rule_ch1_general_4"]
+script = ExtResource("2_rule")
+id = &"ch1_general_4"
+text_key = "RULE_CH1_GENERAL_4"
+is_fake = false
+source = &"speaker"
+situation = &"attack_staff"
+action = &"never_attack"
+penalty = 0
+consequence = &""
+fatal = false
+
+[sub_resource type="Resource" id="Rule_ch1_general_5"]
+script = ExtResource("2_rule")
+id = &"ch1_general_5"
+text_key = "RULE_CH1_GENERAL_5"
+is_fake = false
+source = &"speaker"
+situation = &"each_hour"
+action = &"survive_five_hours"
+penalty = 0
+consequence = &""
+fatal = false
+
+[sub_resource type="Resource" id="Rule_ch2_r3_1"]
+script = ExtResource("2_rule")
+id = &"ch2_r3_1"
+text_key = "RULE_CH2_R3_1"
+is_fake = false
+source = &"speaker"
+situation = &"word_chain"
+action = &"all_four_play"
+penalty = 0
+consequence = &""
+fatal = false
+
+[sub_resource type="Resource" id="Rule_ch2_r3_2"]
+script = ExtResource("2_rule")
+id = &"ch2_r3_2"
+text_key = "RULE_CH2_R3_2"
+is_fake = false
+source = &"speaker"
+situation = &"word_chain"
+action = &"match_syllable"
+penalty = 0
+consequence = &""
+fatal = false
+
+[sub_resource type="Resource" id="Rule_ch2_r3_3"]
+script = ExtResource("2_rule")
+id = &"ch2_r3_3"
+text_key = "RULE_CH2_R3_3"
+is_fake = false
+source = &"speaker"
+situation = &"word_chain"
+action = &"no_repeat"
+penalty = 0
+consequence = &""
+fatal = false
+
+[sub_resource type="Resource" id="Rule_ch2_r4_1"]
+script = ExtResource("2_rule")
+id = &"ch2_r4_1"
+text_key = "RULE_CH2_R4_1"
+is_fake = false
+source = &"speaker"
+situation = &"shower"
+action = &"run_25_minutes"
+penalty = 0
+consequence = &""
+fatal = false
+
+[resource]
+script = ExtResource("1_set")
+rules = Array[ExtResource("2_rule")]([SubResource("Rule_ch1_general_1"), SubResource("Rule_ch1_general_2"), SubResource("Rule_ch1_general_3"), SubResource("Rule_ch1_general_4"), SubResource("Rule_ch1_general_5"), SubResource("Rule_ch2_r3_1"), SubResource("Rule_ch2_r3_2"), SubResource("Rule_ch2_r3_3"), SubResource("Rule_ch2_r4_1")])

@@ -1,0 +1,3303 @@
+{
+  "engine": "eSpeak NG 1.52.0",
+  "voices": {
+    "loa": [
+      "vi+m1",
+      132,
+      30,
+      -26
+    ],
+    "mgr": [
+      "vi+m3",
+      112,
+      20,
+      -27
+    ],
+    "minh_nhat": [
+      "vi+m2",
+      150,
+      46,
+      -26
+    ],
+    "hung": [
+      "vi+m4",
+      172,
+      56,
+      -26
+    ],
+    "dang": [
+      "vi+m6",
+      178,
+      38,
+      -25
+    ],
+    "bao": [
+      "vi+m5",
+      140,
+      66,
+      -27
+    ],
+    "son": [
+      "vi+m1",
+      128,
+      34,
+      -27
+    ],
+    "kiet": [
+      "vi+m7",
+      162,
+      58,
+      -26
+    ],
+    "tung": [
+      "vi+m8",
+      176,
+      50,
+      -26
+    ],
+    "vinh": [
+      "vi+m2",
+      166,
+      40,
+      -26
+    ],
+    "ngu": [
+      "vi+f2",
+      150,
+      58,
+      -26
+    ],
+    "phuc": [
+      "vi+m4",
+      128,
+      44,
+      -32
+    ],
+    "dat": [
+      "vi+m5",
+      122,
+      40,
+      -32
+    ],
+    "viet": [
+      "vi+m3",
+      126,
+      48,
+      -32
+    ],
+    "viet_door": [
+      "vi+m3",
+      120,
+      48,
+      -33
+    ],
+    "corpse": [
+      "vi+m3",
+      104,
+      18,
+      -30
+    ]
+  },
+  "assets": [
+    {
+      "key": "SPK_CH2_R2_END",
+      "who": "loa",
+      "text": "Quy tắc vòng hai kết thúc. Số người sống sót hiện tại: hai mươi tám người.",
+      "file": "game/audio/voice/vi/SPK_CH2_R2_END.ogg",
+      "seconds": 6.147,
+      "lufs": -26.12,
+      "true_peak_db": -6.6,
+      "sha256": "8dcd7dd9b7485bcbdef1a4b7c2812a521fdd2d934be59868c913d27ef6caad74"
+    },
+    {
+      "key": "CHAT_CH2_N_28",
+      "who": "minh_nhat",
+      "text": "Hai mươi tám… Cả trường mấy nghìn người mà còn hai mươi tám.",
+      "file": "game/audio/voice/vi/CHAT_CH2_N_28.ogg",
+      "seconds": 4.014,
+      "lufs": -26.14,
+      "true_peak_db": -5.46,
+      "sha256": "d78b85ef1c90278dad6e13e73333fcba5dfa2df23a1ff69893b81188d97df989"
+    },
+    {
+      "key": "SPK_CH2_R3_INTRO",
+      "who": "loa",
+      "text": "Công việc kiểm tra phòng kết thúc. Đến giờ giải trí rồi. Chúng ta chơi nối từ nhé.",
+      "file": "game/audio/voice/vi/SPK_CH2_R3_INTRO.ogg",
+      "seconds": 7.142,
+      "lufs": -26.09,
+      "true_peak_db": -7.32,
+      "sha256": "fe055caa3813a715d5ad862d39e396a09d10b3ca1f9d7bdf0615134c5064efeb"
+    },
+    {
+      "key": "RULE_CH2_R3_1",
+      "who": "loa",
+      "text": "Bốn người trong mỗi phòng bắt buộc tham gia. Nối lần lượt theo chiều kim đồng hồ, mỗi lượt dưới mười lăm giây.",
+      "file": "game/audio/voice/vi/RULE_CH2_R3_1.ogg",
+      "seconds": 8.0,
+      "lufs": -26.11,
+      "true_peak_db": -5.77,
+      "sha256": "797e220605d5704d05548abe760f6fd4e53941b15cdfcc569e30fb122e7dec77"
+    },
+    {
+      "key": "RULE_CH2_R3_2",
+      "who": "loa",
+      "text": "Từ nối là từ hai tiếng. Tiếng đầu phải trùng tiếng cuối của từ trước, đúng cả dấu.",
+      "file": "game/audio/voice/vi/RULE_CH2_R3_2.ogg",
+      "seconds": 6.542,
+      "lufs": -26.13,
+      "true_peak_db": -7.05,
+      "sha256": "6f6f0cf259248f35dfc2513cad92c9525e53a8391b3b7c209ce7e358a9c329ca"
+    },
+    {
+      "key": "RULE_CH2_R3_3",
+      "who": "loa",
+      "text": "Trong ba lượt liền nhau không được lặp từ. Ai không nối được, chết.",
+      "file": "game/audio/voice/vi/RULE_CH2_R3_3.ogg",
+      "seconds": 5.141,
+      "lufs": -26.13,
+      "true_peak_db": -5.63,
+      "sha256": "3782e1841049d88cfd4607d0367416566ea5f628672c792f2c66645737c508ea"
+    },
+    {
+      "key": "CHAT_CH2_NGU_FOUR",
+      "who": "ngu",
+      "text": "Bốn người? Phòng mình chỉ còn mỗi mình sống mà…",
+      "file": "game/audio/voice/vi/CHAT_CH2_NGU_FOUR.ogg",
+      "seconds": 3.292,
+      "lufs": -26.05,
+      "true_peak_db": -6.24,
+      "sha256": "392a1a923c3593f3469038919493810b941ee35350d249036f2395be6c542d55"
+    },
+    {
+      "key": "CHAT_CH2_N_SAT_UP",
+      "who": "minh_nhat",
+      "text": "Bạn cùng phòng tôi… ngồi dậy rồi. Nó đang nhìn tôi.",
+      "file": "game/audio/voice/vi/CHAT_CH2_N_SAT_UP.ogg",
+      "seconds": 4.053,
+      "lufs": -26.09,
+      "true_peak_db": -3.81,
+      "sha256": "87276915ddbd2ab253240be7ab05f27f8e89b85786e91d1503b51098fbfe79b1"
+    },
+    {
+      "key": "CHAT_CH2_NGU_SAT_UP",
+      "who": "ngu",
+      "text": "Bên mình cũng vậy. Ba đứa. Mắt trắng dã.",
+      "file": "game/audio/voice/vi/CHAT_CH2_NGU_SAT_UP.ogg",
+      "seconds": 3.741,
+      "lufs": -26.03,
+      "true_peak_db": -8.74,
+      "sha256": "d0e4a61095b7d874d1e3c29ca7da2a7ba2875345a818f9989916dc1acd26a72a"
+    },
+    {
+      "key": "CHAT_CH2_N_KEEP_UP",
+      "who": "minh_nhat",
+      "text": "Đừng nghĩ lâu. Mười lăm giây trôi nhanh lắm.",
+      "file": "game/audio/voice/vi/CHAT_CH2_N_KEEP_UP.ogg",
+      "seconds": 3.004,
+      "lufs": -26.13,
+      "true_peak_db": -4.56,
+      "sha256": "d53fef9f37374b7b237dbc9f4a4c65393dd291cc439f5940a989b2107464860b"
+    },
+    {
+      "key": "CHAT_CH2_NGU_CHEAT",
+      "who": "ngu",
+      "text": "Nó gục rồi lại ngồi dậy… Chúng nó chết rồi thì sợ gì thua. Chỉ có tụi mình là không được sai.",
+      "file": "game/audio/voice/vi/CHAT_CH2_NGU_CHEAT.ogg",
+      "seconds": 7.041,
+      "lufs": -26.03,
+      "true_peak_db": -8.27,
+      "sha256": "a936bd58afb3d110859d0a9083dccc07bd4569ab1092f2676b6291dd1ba758df"
+    },
+    {
+      "key": "CHAT_CH2_N_HOUR",
+      "who": "minh_nhat",
+      "text": "Một tiếng. Tụi mình phải đúng suốt một tiếng.",
+      "file": "game/audio/voice/vi/CHAT_CH2_N_HOUR.ogg",
+      "seconds": 3.001,
+      "lufs": -26.11,
+      "true_peak_db": -4.81,
+      "sha256": "369ffe544cbb1f317644b7fbefcde937f674cbc3032c29a1e644938001b03acb"
+    },
+    {
+      "key": "CHAT_CH2_N_310",
+      "who": "minh_nhat",
+      "text": "Phòng 310… Cậu ấy không nói kịp. Đừng nhìn nữa.",
+      "file": "game/audio/voice/vi/CHAT_CH2_N_310.ogg",
+      "seconds": 4.118,
+      "lufs": -26.13,
+      "true_peak_db": -3.26,
+      "sha256": "7d989bf1fa1ec439e627c2df49e778bd12591991ba43985007e4e64d5d3dba32"
+    },
+    {
+      "key": "CHAT_CH2_NGU_CLUE",
+      "who": "ngu",
+      "text": "Mình vừa nối vừa kéo tay đứa cùng phòng. Nó chẳng phản ứng gì, chỉ lo nối từ.",
+      "file": "game/audio/voice/vi/CHAT_CH2_NGU_CLUE.ogg",
+      "seconds": 5.758,
+      "lufs": -26.03,
+      "true_peak_db": -7.93,
+      "sha256": "daf75b6c0c140d96b0b35afd1ee229d8b4e5f8a4b96dddc7468e4c4694f89f3b"
+    },
+    {
+      "key": "CHAT_CH2_N_BRAVE",
+      "who": "minh_nhat",
+      "text": "Cậu… gan thật đấy.",
+      "file": "game/audio/voice/vi/CHAT_CH2_N_BRAVE.ogg",
+      "seconds": 1.731,
+      "lufs": -26.12,
+      "true_peak_db": -4.34,
+      "sha256": "b86e93a7efe63f975a337735c0a68ce891b429cdfaf0d141fa0534f385f0624e"
+    },
+    {
+      "key": "CHAT_CH2_N_LOOP",
+      "who": "minh_nhat",
+      "text": "Tôi nghĩ ra một vòng không bao giờ hết: học sinh, sinh viên, viên phấn, phấn đấu, đấu tranh, tranh luận, luận văn, văn học… rồi lại học sinh. Lái về chữ \"học\" rồi cứ thế lặp.",
+      "file": "game/audio/voice/vi/CHAT_CH2_N_LOOP.ogg",
+      "seconds": 13.302,
+      "lufs": -26.21,
+      "true_peak_db": -4.84,
+      "sha256": "391b1dddc21983de8ff286c76203950914f33f92658b6588ad34e4360bf1175e"
+    },
+    {
+      "key": "CHAT_CH2_NGU_LOOP",
+      "who": "ngu",
+      "text": "Không cần nghĩ nữa. Cứ lặp thôi.",
+      "file": "game/audio/voice/vi/CHAT_CH2_NGU_LOOP.ogg",
+      "seconds": 2.729,
+      "lufs": -26.0,
+      "true_peak_db": -7.27,
+      "sha256": "157168d79ca6fc0d9ca53aef12d8c38045cba9fa82a70a239f7c80a5199efcc1"
+    },
+    {
+      "key": "CHAT_CH2_N_FEW",
+      "who": "minh_nhat",
+      "text": "Nhóm im hết rồi. Chỉ còn tín hiệu của ba đứa mình.",
+      "file": "game/audio/voice/vi/CHAT_CH2_N_FEW.ogg",
+      "seconds": 3.746,
+      "lufs": -26.19,
+      "true_peak_db": -4.57,
+      "sha256": "00fe5e2cd5251bc3213ba1eb2b7d6160249cebeb3541431a315a40b8f62ab2c6"
+    },
+    {
+      "key": "SPK_CH2_R3_END",
+      "who": "loa",
+      "text": "Quy tắc vòng ba kết thúc. Số người sống sót hiện tại: năm người.",
+      "file": "game/audio/voice/vi/SPK_CH2_R3_END.ogg",
+      "seconds": 5.496,
+      "lufs": -26.11,
+      "true_peak_db": -6.3,
+      "sha256": "b5cff4eb5ceecb50fd08373017aa260f6999ec7af36272c5467597ceead9b200"
+    },
+    {
+      "key": "CHAT_CH2_NGU_FIVE",
+      "who": "ngu",
+      "text": "Năm người… Cả trường còn năm người.",
+      "file": "game/audio/voice/vi/CHAT_CH2_NGU_FIVE.ogg",
+      "seconds": 2.566,
+      "lufs": -26.08,
+      "true_peak_db": -6.78,
+      "sha256": "183df9b511d55d577b1cccd22db066dca5dd6e4990f0ca23477b944b2e18ec74"
+    },
+    {
+      "key": "SPK_CH2_R4_INTRO",
+      "who": "loa",
+      "text": "Trò chơi gắn kết tình bạn kết thúc. Đến giờ tắm nước nóng cho thoải mái rồi.",
+      "file": "game/audio/voice/vi/SPK_CH2_R4_INTRO.ogg",
+      "seconds": 5.907,
+      "lufs": -26.13,
+      "true_peak_db": -6.58,
+      "sha256": "c6ac61553f47d9641421550bdb6528dd93df3e5ce9f1a2d6b7745465fa6a0212"
+    },
+    {
+      "key": "RULE_CH2_R4_1",
+      "who": "loa",
+      "text": "Mời mọi người vào nhà vệ sinh. Vòng này không có yêu cầu nào khác: chỉ cần thời gian xả nước vượt quá hai mươi lăm phút.",
+      "file": "game/audio/voice/vi/RULE_CH2_R4_1.ogg",
+      "seconds": 9.361,
+      "lufs": -26.15,
+      "true_peak_db": -7.72,
+      "sha256": "d48953703dc37e000091b8e74f929530776ec46920d04618436536ddc551fdcf"
+    },
+    {
+      "key": "SPK_CH2_R4_ENJOY",
+      "who": "loa",
+      "text": "Chúc các bạn tắm vui vẻ.",
+      "file": "game/audio/voice/vi/SPK_CH2_R4_ENJOY.ogg",
+      "seconds": 2.354,
+      "lufs": -26.09,
+      "true_peak_db": -7.74,
+      "sha256": "6fa2ba5a325f960411c7dc33cde58ee799c88ed4d9393324d3275926d4dd29b3"
+    },
+    {
+      "key": "CHAT_CH2_NGU_MUST",
+      "who": "ngu",
+      "text": "Nghĩa là nếu chọn xả, bao nhiêu độ cũng phải đứng chịu hai phút.",
+      "file": "game/audio/voice/vi/CHAT_CH2_NGU_MUST.ogg",
+      "seconds": 4.107,
+      "lufs": -26.04,
+      "true_peak_db": -7.97,
+      "sha256": "ee3978c9d4452eff5d79e724a1f702ce0dded48a2a3626a5b236ea375da5a215"
+    },
+    {
+      "key": "CHAT_CH2_N_WAIT",
+      "who": "minh_nhat",
+      "text": "Khoan xả đã. Xem nó ra số gì.",
+      "file": "game/audio/voice/vi/CHAT_CH2_N_WAIT.ogg",
+      "seconds": 3.218,
+      "lufs": -26.17,
+      "true_peak_db": -7.0,
+      "sha256": "38285fdb762b0eea86b522716a585d4ac49ca9842c919d6526f8c7e949a51480"
+    },
+    {
+      "key": "CHAT_CH2_N_SEVENTY",
+      "who": "minh_nhat",
+      "text": "Sáu mươi bảy độ… Chọn bừa là chín người.",
+      "file": "game/audio/voice/vi/CHAT_CH2_N_SEVENTY.ogg",
+      "seconds": 2.986,
+      "lufs": -26.12,
+      "true_peak_db": -3.64,
+      "sha256": "4a5a245e905e2b08881f70f43c5a5ed64159d27b4afd802e828a0c2d4429b0fe"
+    },
+    {
+      "key": "CHAT_CH2_NGU_PATTERN",
+      "who": "ngu",
+      "text": "Không thể là ngẫu nhiên. Luật nào cũng có kẽ hở, mấy vòng trước đều vậy.",
+      "file": "game/audio/voice/vi/CHAT_CH2_NGU_PATTERN.ogg",
+      "seconds": 5.431,
+      "lufs": -26.05,
+      "true_peak_db": -8.9,
+      "sha256": "f1ee98a26be562a87b83dbffc84ac87e0c99757238b1f4cd20392ce340514448"
+    },
+    {
+      "key": "CHAT_CH2_N_STEAM",
+      "who": "minh_nhat",
+      "text": "Hơi nước mù hết màn hình rồi. Lau đi mà đọc.",
+      "file": "game/audio/voice/vi/CHAT_CH2_N_STEAM.ogg",
+      "seconds": 3.428,
+      "lufs": -26.15,
+      "true_peak_db": -4.85,
+      "sha256": "878b9e2f51bc7b99c31ed2b8e5ed5f9d7ceaabb5771dae56caee8b7d89ac75fe"
+    },
+    {
+      "key": "CHAT_CH2_NGU_HELP",
+      "who": "ngu",
+      "text": "Loa điện thoại mình bị nước vào rồi… Trung! Ba lần gần nhất bên mình: bảy mươi tư, mười lăm, sáu mươi hai. Lượt tới chọn gì? Nhanh lên!",
+      "file": "game/audio/voice/vi/CHAT_CH2_NGU_HELP.ogg",
+      "seconds": 10.74,
+      "lufs": -26.03,
+      "true_peak_db": -7.19,
+      "sha256": "af1737de8de237b0b65c80aab75839fb4a79ca14bbb4d9239f44a5db4a837488"
+    },
+    {
+      "key": "CHAT_CH2_NGU_SAVED",
+      "who": "ngu",
+      "text": "…Tám mươi mốt độ. Cảm ơn… cảm ơn cậu, Trung.",
+      "file": "game/audio/voice/vi/CHAT_CH2_NGU_SAVED.ogg",
+      "seconds": 3.956,
+      "lufs": -26.04,
+      "true_peak_db": -7.14,
+      "sha256": "bc37aa74c105350f22b10851b850773ac5ba4bb4dcc2612fd0553234d2770332"
+    },
+    {
+      "key": "CHAT_CH2_NGU_SCREAM",
+      "who": "ngu",
+      "text": "Nóng! Nóng quá… Trung…!",
+      "file": "game/audio/voice/vi/CHAT_CH2_NGU_SCREAM.ogg",
+      "seconds": 2.47,
+      "lufs": -26.02,
+      "true_peak_db": -7.87,
+      "sha256": "685010d0cc8d60e5b8d1b443815df12be41887d82fa3454e4fe6c74daac22d48"
+    },
+    {
+      "key": "SPK_CH2_R4_END",
+      "who": "loa",
+      "text": "Quy tắc vòng bốn kết thúc. Số người sống sót hiện tại: ba người.",
+      "file": "game/audio/voice/vi/SPK_CH2_R4_END.ogg",
+      "seconds": 5.545,
+      "lufs": -26.1,
+      "true_peak_db": -6.82,
+      "sha256": "7a587687f25f64f8ce3be3694b97643bd0738a081ae960dc2435ed77d14d3bc2"
+    },
+    {
+      "key": "CHAT_CH2_N_THREE",
+      "who": "minh_nhat",
+      "text": "Ba người. Cả trường… chỉ còn ba đứa mình.",
+      "file": "game/audio/voice/vi/CHAT_CH2_N_THREE.ogg",
+      "seconds": 3.59,
+      "lufs": -26.13,
+      "true_peak_db": -5.12,
+      "sha256": "15938215b0b18ba25ce1b78f4dfac31544a35428e41dd6685737db7ed94a97c1"
+    },
+    {
+      "key": "WORD_CH2_AC_MONG",
+      "who": "corpse",
+      "text": "ác mộng",
+      "file": "game/audio/voice/vi/WORD_CH2_AC_MONG.ogg",
+      "seconds": 1.34,
+      "lufs": -30.13,
+      "true_peak_db": -5.6,
+      "sha256": "fe172b975dc1b22eac8d3b9fc95d45ae1538ad3069ef202353942039dac36bb5"
+    },
+    {
+      "key": "WORD_CH2_AM_UOT",
+      "who": "corpse",
+      "text": "ẩm ướt",
+      "file": "game/audio/voice/vi/WORD_CH2_AM_UOT.ogg",
+      "seconds": 1.137,
+      "lufs": -30.02,
+      "true_peak_db": -7.0,
+      "sha256": "a60c4d8f9300bf2335f2ace7a3b18b864e6daeed9bd2c311b4599060ff8b13ec"
+    },
+    {
+      "key": "WORD_CH2_AN_MANG",
+      "who": "corpse",
+      "text": "án mạng",
+      "file": "game/audio/voice/vi/WORD_CH2_AN_MANG.ogg",
+      "seconds": 1.483,
+      "lufs": -30.18,
+      "true_peak_db": -10.36,
+      "sha256": "9199f066d6074330fd9cf1762f624442c0d8f4ab9253764198975c9c64721361"
+    },
+    {
+      "key": "WORD_CH2_AN_TU",
+      "who": "corpse",
+      "text": "án tử",
+      "file": "game/audio/voice/vi/WORD_CH2_AN_TU.ogg",
+      "seconds": 1.466,
+      "lufs": -30.07,
+      "true_peak_db": -6.99,
+      "sha256": "cc62776b4845c98f1b0c2b8553f11fc52603e8501d556f8ce859db429288ab82"
+    },
+    {
+      "key": "WORD_CH2_BAC_MENH",
+      "who": "corpse",
+      "text": "bạc mệnh",
+      "file": "game/audio/voice/vi/WORD_CH2_BAC_MENH.ogg",
+      "seconds": 1.456,
+      "lufs": -30.25,
+      "true_peak_db": -7.29,
+      "sha256": "ff1d158aeaf7bc9f1d8476cdd0edb0c80ef103280e9755828bbb68c964df11bd"
+    },
+    {
+      "key": "WORD_CH2_BAN_AN",
+      "who": "corpse",
+      "text": "bản án",
+      "file": "game/audio/voice/vi/WORD_CH2_BAN_AN.ogg",
+      "seconds": 1.377,
+      "lufs": -30.14,
+      "true_peak_db": -10.73,
+      "sha256": "d3fad2d53d67727c646772ef97321d2263975445cecba24e02d4d42f5f70f837"
+    },
+    {
+      "key": "WORD_CH2_BAN_DO",
+      "who": "corpse",
+      "text": "bản đồ",
+      "file": "game/audio/voice/vi/WORD_CH2_BAN_DO.ogg",
+      "seconds": 1.508,
+      "lufs": -30.08,
+      "true_peak_db": -10.69,
+      "sha256": "1cecb97b6f51612b4a497584b2d94dd48d372a6ee548c105e8e3f58432969b7b"
+    },
+    {
+      "key": "WORD_CH2_BAN_THAN",
+      "who": "corpse",
+      "text": "bản thân",
+      "file": "game/audio/voice/vi/WORD_CH2_BAN_THAN.ogg",
+      "seconds": 1.451,
+      "lufs": -30.1,
+      "true_peak_db": -9.85,
+      "sha256": "2d6dd5eb3d14e3f9340222bae4840aebd765db75b65d4a71d28f8c9507fff65d"
+    },
+    {
+      "key": "WORD_CH2_BAO_CHUA",
+      "who": "corpse",
+      "text": "bào chữa",
+      "file": "game/audio/voice/vi/WORD_CH2_BAO_CHUA.ogg",
+      "seconds": 1.497,
+      "lufs": -30.11,
+      "true_peak_db": -9.44,
+      "sha256": "5861250074f56466df3cc8e7cedf7e1213388f788a942825b9378174556b36a7"
+    },
+    {
+      "key": "WORD_CH2_BAO_LUC",
+      "who": "corpse",
+      "text": "bạo lực",
+      "file": "game/audio/voice/vi/WORD_CH2_BAO_LUC.ogg",
+      "seconds": 1.364,
+      "lufs": -30.22,
+      "true_peak_db": -7.17,
+      "sha256": "4b7dcadf5bfe89340dd372df356175f753c381becdf05941f10651118439503b"
+    },
+    {
+      "key": "WORD_CH2_BEN_LUA",
+      "who": "corpse",
+      "text": "bén lửa",
+      "file": "game/audio/voice/vi/WORD_CH2_BEN_LUA.ogg",
+      "seconds": 1.474,
+      "lufs": -30.15,
+      "true_peak_db": -8.04,
+      "sha256": "b3259d3d171f313beb79bd56a3c7a433d52c6cd788dfb9b3bdef262039636750"
+    },
+    {
+      "key": "WORD_CH2_BONG_TOI",
+      "who": "corpse",
+      "text": "bóng tối",
+      "file": "game/audio/voice/vi/WORD_CH2_BONG_TOI.ogg",
+      "seconds": 1.442,
+      "lufs": -30.16,
+      "true_peak_db": -8.71,
+      "sha256": "cbc1ae1f99e31e69f330d97811779fefb3db0c3f377219126dbef6379f7086dd"
+    },
+    {
+      "key": "WORD_CH2_CAI_NHAU",
+      "who": "corpse",
+      "text": "cãi nhau",
+      "file": "game/audio/voice/vi/WORD_CH2_CAI_NHAU.ogg",
+      "seconds": 1.42,
+      "lufs": -30.09,
+      "true_peak_db": -9.52,
+      "sha256": "9472516c6f351dda9d68e218f08bf1fb70228f5cc169b478dc762736f3b8d56f"
+    },
+    {
+      "key": "WORD_CH2_CAM_KY",
+      "who": "corpse",
+      "text": "cấm kỵ",
+      "file": "game/audio/voice/vi/WORD_CH2_CAM_KY.ogg",
+      "seconds": 1.556,
+      "lufs": -30.13,
+      "true_peak_db": -10.2,
+      "sha256": "dcd590d6dd4235d0a88fbabe85af7ed6d1f8e2b15e561b0980f1a2333bb4e287"
+    },
+    {
+      "key": "WORD_CH2_CAP_CUU",
+      "who": "corpse",
+      "text": "cấp cứu",
+      "file": "game/audio/voice/vi/WORD_CH2_CAP_CUU.ogg",
+      "seconds": 1.389,
+      "lufs": -30.08,
+      "true_peak_db": -8.91,
+      "sha256": "836f75efd0bc1db57211d1af21b899ddca4dd62e576590b0c6e1cea0786d8a40"
+    },
+    {
+      "key": "WORD_CH2_CA_DEM",
+      "who": "corpse",
+      "text": "ca đêm",
+      "file": "game/audio/voice/vi/WORD_CH2_CA_DEM.ogg",
+      "seconds": 1.413,
+      "lufs": -30.15,
+      "true_peak_db": -12.6,
+      "sha256": "5d7885ef47a863909e708765b82df56717fe5001b808160e1820012589e6162e"
+    },
+    {
+      "key": "WORD_CH2_CHANH_CHUA",
+      "who": "corpse",
+      "text": "chanh chua",
+      "file": "game/audio/voice/vi/WORD_CH2_CHANH_CHUA.ogg",
+      "seconds": 1.638,
+      "lufs": -30.16,
+      "true_peak_db": -10.41,
+      "sha256": "fbe4bda2db96f8f979f175865709c14b0442144357844492258c53ea9cf39476"
+    },
+    {
+      "key": "WORD_CH2_CHAN_DUNG",
+      "who": "corpse",
+      "text": "chân dung",
+      "file": "game/audio/voice/vi/WORD_CH2_CHAN_DUNG.ogg",
+      "seconds": 1.435,
+      "lufs": -30.18,
+      "true_peak_db": -8.83,
+      "sha256": "37e70d2854d2eff6571dbe6acbde624a36d3bfb24f8602f12c21758937f06fd2"
+    },
+    {
+      "key": "WORD_CH2_CHAY_NHA",
+      "who": "corpse",
+      "text": "cháy nhà",
+      "file": "game/audio/voice/vi/WORD_CH2_CHAY_NHA.ogg",
+      "seconds": 1.616,
+      "lufs": -30.15,
+      "true_peak_db": -10.95,
+      "sha256": "4e701a3d1113d179fe33ecd79aff75f2b206de03f4aabe460a144fa6c48c2c37"
+    },
+    {
+      "key": "WORD_CH2_CHET_CHOC",
+      "who": "corpse",
+      "text": "chết chóc",
+      "file": "game/audio/voice/vi/WORD_CH2_CHET_CHOC.ogg",
+      "seconds": 1.456,
+      "lufs": -30.2,
+      "true_peak_db": -9.98,
+      "sha256": "7d48dc66e82859576f1ae3fc8365eceaf3db1ac57e52a05d84b6ad7bbeb753f0"
+    },
+    {
+      "key": "WORD_CH2_CHET_DUOI",
+      "who": "corpse",
+      "text": "chết đuối",
+      "file": "game/audio/voice/vi/WORD_CH2_CHET_DUOI.ogg",
+      "seconds": 1.447,
+      "lufs": -30.08,
+      "true_peak_db": -9.97,
+      "sha256": "2dbb34bec0733ec6e0c0be81d33f9b4b038fda106116ad2d9407967f153c5708"
+    },
+    {
+      "key": "WORD_CH2_CHET_NGUOI",
+      "who": "corpse",
+      "text": "chết người",
+      "file": "game/audio/voice/vi/WORD_CH2_CHET_NGUOI.ogg",
+      "seconds": 1.435,
+      "lufs": -30.11,
+      "true_peak_db": -7.74,
+      "sha256": "2b1ef6bae169392ba71367e8978eb168d63e7e0c437a2ab15b4025e2bf41243f"
+    },
+    {
+      "key": "WORD_CH2_CHE_DO",
+      "who": "corpse",
+      "text": "chế độ",
+      "file": "game/audio/voice/vi/WORD_CH2_CHE_DO.ogg",
+      "seconds": 1.58,
+      "lufs": -30.1,
+      "true_peak_db": -12.02,
+      "sha256": "5766175977beae81679e7c2fab5dd9e26e9c3188770a9c27f02edb1c694c51df"
+    },
+    {
+      "key": "WORD_CH2_CHI_HUY",
+      "who": "corpse",
+      "text": "chỉ huy",
+      "file": "game/audio/voice/vi/WORD_CH2_CHI_HUY.ogg",
+      "seconds": 1.741,
+      "lufs": -30.03,
+      "true_peak_db": -13.97,
+      "sha256": "8b865040f44f190692b0c77d2f35f402c54a08a2e9a293c5c902edce8bb98c58"
+    },
+    {
+      "key": "WORD_CH2_CHOI_DUA",
+      "who": "corpse",
+      "text": "chơi đùa",
+      "file": "game/audio/voice/vi/WORD_CH2_CHOI_DUA.ogg",
+      "seconds": 1.526,
+      "lufs": -30.07,
+      "true_peak_db": -10.99,
+      "sha256": "342caf111d5c7970ba72620baef22938ec6edbfd79afa80e36b9afafaca73bfc"
+    },
+    {
+      "key": "WORD_CH2_CHO_DU",
+      "who": "corpse",
+      "text": "chó dữ",
+      "file": "game/audio/voice/vi/WORD_CH2_CHO_DU.ogg",
+      "seconds": 1.677,
+      "lufs": -30.14,
+      "true_peak_db": -10.83,
+      "sha256": "4d83a6f21c6051f80218f8d733e7183a5e3e973e0d99bbf95c0b59d23067587a"
+    },
+    {
+      "key": "WORD_CH2_CHUA_CHAY",
+      "who": "corpse",
+      "text": "chữa cháy",
+      "file": "game/audio/voice/vi/WORD_CH2_CHUA_CHAY.ogg",
+      "seconds": 1.4,
+      "lufs": -30.15,
+      "true_peak_db": -9.89,
+      "sha256": "5a0f456a45a94a90f757f23968f79d6125708be976c9df510128e6b6b1681c65"
+    },
+    {
+      "key": "WORD_CH2_CHUC_NAM",
+      "who": "corpse",
+      "text": "chục năm",
+      "file": "game/audio/voice/vi/WORD_CH2_CHUC_NAM.ogg",
+      "seconds": 1.315,
+      "lufs": -30.1,
+      "true_peak_db": -7.32,
+      "sha256": "cb56d502d21a056b4de7ea02dce14c3cc4c0c4880655766cd1979fc19c240168"
+    },
+    {
+      "key": "WORD_CH2_CHUNG_MUC",
+      "who": "corpse",
+      "text": "chừng mực",
+      "file": "game/audio/voice/vi/WORD_CH2_CHUNG_MUC.ogg",
+      "seconds": 1.395,
+      "lufs": -30.05,
+      "true_peak_db": -9.84,
+      "sha256": "3619b042d65cfb4f976aa1fb6e4cc39a84fe8d388b964a00ef96dfa53ebee9bf"
+    },
+    {
+      "key": "WORD_CH2_CHUONG_TRINH",
+      "who": "corpse",
+      "text": "chương trình",
+      "file": "game/audio/voice/vi/WORD_CH2_CHUONG_TRINH.ogg",
+      "seconds": 1.493,
+      "lufs": -30.12,
+      "true_peak_db": -8.28,
+      "sha256": "63f26f91191ef519a5b0a1d71819bed114e767e87f7391f80f4e2ebead2135e2"
+    },
+    {
+      "key": "WORD_CH2_CONG_VAN",
+      "who": "corpse",
+      "text": "công văn",
+      "file": "game/audio/voice/vi/WORD_CH2_CONG_VAN.ogg",
+      "seconds": 1.371,
+      "lufs": -30.22,
+      "true_peak_db": -6.77,
+      "sha256": "d635d4df2b6c83bb1c938e106c296b00eb7562aa7146a6284cda136e79ecfc8f"
+    },
+    {
+      "key": "WORD_CH2_CONG_VIEN",
+      "who": "corpse",
+      "text": "công viên",
+      "file": "game/audio/voice/vi/WORD_CH2_CONG_VIEN.ogg",
+      "seconds": 1.452,
+      "lufs": -30.17,
+      "true_peak_db": -10.36,
+      "sha256": "7f03f9a4399320d7e341d763a4ad51add02c1138368611ec08dccfb9e5a0c7fb"
+    },
+    {
+      "key": "WORD_CH2_CON_SONG",
+      "who": "corpse",
+      "text": "còn sống",
+      "file": "game/audio/voice/vi/WORD_CH2_CON_SONG.ogg",
+      "seconds": 1.418,
+      "lufs": -30.11,
+      "true_peak_db": -8.66,
+      "sha256": "6fef58fb46686a9e31d988064521d92437e7da23b31b1718e218824c16180015"
+    },
+    {
+      "key": "WORD_CH2_CUNG_CAP",
+      "who": "corpse",
+      "text": "cung cấp",
+      "file": "game/audio/voice/vi/WORD_CH2_CUNG_CAP.ogg",
+      "seconds": 1.341,
+      "lufs": -30.23,
+      "true_peak_db": -8.75,
+      "sha256": "96b3118ff6cbd9bd23c06f486d5e5e92e499dfeac9bb4adc4d297090eae030d0"
+    },
+    {
+      "key": "WORD_CH2_CUU_SONG",
+      "who": "corpse",
+      "text": "cứu sống",
+      "file": "game/audio/voice/vi/WORD_CH2_CUU_SONG.ogg",
+      "seconds": 1.447,
+      "lufs": -30.16,
+      "true_peak_db": -11.0,
+      "sha256": "e009a8dbf76cea673ba61e21c66ab4e4ebaa891aed9ca0f7ad6e35514bfb370b"
+    },
+    {
+      "key": "WORD_CH2_CU_CHI",
+      "who": "corpse",
+      "text": "cử chỉ",
+      "file": "game/audio/voice/vi/WORD_CH2_CU_CHI.ogg",
+      "seconds": 1.665,
+      "lufs": -30.06,
+      "true_peak_db": -13.49,
+      "sha256": "d415271d5e7108eeb2acd1478c49b8804fc0bf75429172a66de909b91e8dab22"
+    },
+    {
+      "key": "WORD_CH2_DAC_DIEN",
+      "who": "corpse",
+      "text": "đạc điền",
+      "file": "game/audio/voice/vi/WORD_CH2_DAC_DIEN.ogg",
+      "seconds": 1.251,
+      "lufs": -30.04,
+      "true_peak_db": -8.11,
+      "sha256": "b249d9da87e24a0d4ac2ca83c2bd0097755c81924574494990439d7b3463f897"
+    },
+    {
+      "key": "WORD_CH2_DAI_LUNG",
+      "who": "corpse",
+      "text": "đai lưng",
+      "file": "game/audio/voice/vi/WORD_CH2_DAI_LUNG.ogg",
+      "seconds": 1.356,
+      "lufs": -30.06,
+      "true_peak_db": -5.35,
+      "sha256": "1899df3b8bac0a02b94c7fece4d6a41bb52e572ffd8b57c8557146cf29a49746"
+    },
+    {
+      "key": "WORD_CH2_DANG_HIEN",
+      "who": "corpse",
+      "text": "dâng hiến",
+      "file": "game/audio/voice/vi/WORD_CH2_DANG_HIEN.ogg",
+      "seconds": 1.459,
+      "lufs": -30.17,
+      "true_peak_db": -10.64,
+      "sha256": "76a7031b19fad78712b82ee19dc987ac512f3fb8d77d020b874610bda6ddbf5a"
+    },
+    {
+      "key": "WORD_CH2_DANG_NGUOI",
+      "who": "corpse",
+      "text": "dạng người",
+      "file": "game/audio/voice/vi/WORD_CH2_DANG_NGUOI.ogg",
+      "seconds": 1.55,
+      "lufs": -30.08,
+      "true_peak_db": -7.39,
+      "sha256": "6305474b1857a7a3a0e7bbe437922f5085e640b224469902feeb5d4ee2a90b8c"
+    },
+    {
+      "key": "WORD_CH2_DANH_SACH",
+      "who": "corpse",
+      "text": "danh sách",
+      "file": "game/audio/voice/vi/WORD_CH2_DANH_SACH.ogg",
+      "seconds": 1.487,
+      "lufs": -30.27,
+      "true_peak_db": -9.21,
+      "sha256": "9d7daaa6ce4c3f5b8e9bba44e36570f443465ea44c33b5768c24aec1b120e8ee"
+    },
+    {
+      "key": "WORD_CH2_DAO_GAM",
+      "who": "corpse",
+      "text": "dao găm",
+      "file": "game/audio/voice/vi/WORD_CH2_DAO_GAM.ogg",
+      "seconds": 1.362,
+      "lufs": -30.13,
+      "true_peak_db": -8.95,
+      "sha256": "94818cf795468bd75133a87dfcf24fd3716a888fd6e7fe473ee0fc97f9761fcc"
+    },
+    {
+      "key": "WORD_CH2_DAT_DAI",
+      "who": "corpse",
+      "text": "đất đai",
+      "file": "game/audio/voice/vi/WORD_CH2_DAT_DAI.ogg",
+      "seconds": 1.234,
+      "lufs": -30.19,
+      "true_peak_db": -10.48,
+      "sha256": "c70de00e4ba39e69a679c7d2fc5239d8758eb982db3859e89a671682588bd8e8"
+    },
+    {
+      "key": "WORD_CH2_DAU_GIA",
+      "who": "corpse",
+      "text": "đấu giá",
+      "file": "game/audio/voice/vi/WORD_CH2_DAU_GIA.ogg",
+      "seconds": 1.48,
+      "lufs": -30.18,
+      "true_peak_db": -12.14,
+      "sha256": "b1e074f966599353da28fffe73a8aa768fb522a5079a1915f8b94f0fbbc332a7"
+    },
+    {
+      "key": "WORD_CH2_DAU_OC",
+      "who": "corpse",
+      "text": "đầu óc",
+      "file": "game/audio/voice/vi/WORD_CH2_DAU_OC.ogg",
+      "seconds": 1.233,
+      "lufs": -30.12,
+      "true_peak_db": -11.3,
+      "sha256": "1995aab93b238505ea09c40af55c0519fdf5f1cb0da4df90b876d45d1c6a5b4d"
+    },
+    {
+      "key": "WORD_CH2_DAU_TIEN",
+      "who": "corpse",
+      "text": "đầu tiên",
+      "file": "game/audio/voice/vi/WORD_CH2_DAU_TIEN.ogg",
+      "seconds": 1.285,
+      "lufs": -30.13,
+      "true_peak_db": -9.71,
+      "sha256": "f9813f3133ec9b161ee2680931d3e195f2930641d82220c1becf9efa3119537e"
+    },
+    {
+      "key": "WORD_CH2_DAU_TRANH",
+      "who": "corpse",
+      "text": "đấu tranh",
+      "file": "game/audio/voice/vi/WORD_CH2_DAU_TRANH.ogg",
+      "seconds": 1.381,
+      "lufs": -30.29,
+      "true_peak_db": -10.23,
+      "sha256": "2e79938f181b41b58e0b2fd40bf9a437faf742379b77424bec72b1758973e873"
+    },
+    {
+      "key": "WORD_CH2_DAU_TRUONG",
+      "who": "corpse",
+      "text": "đấu trường",
+      "file": "game/audio/voice/vi/WORD_CH2_DAU_TRUONG.ogg",
+      "seconds": 1.415,
+      "lufs": -30.09,
+      "true_peak_db": -7.95,
+      "sha256": "a7352bf40a4c1bbe2a10f4bf505d20d744a74d1e7ddf2b9c6d3bbf48d81075c7"
+    },
+    {
+      "key": "WORD_CH2_DAU_VET",
+      "who": "corpse",
+      "text": "dấu vết",
+      "file": "game/audio/voice/vi/WORD_CH2_DAU_VET.ogg",
+      "seconds": 1.417,
+      "lufs": -30.2,
+      "true_peak_db": -10.53,
+      "sha256": "993ad49fff4a3b772eb9f76a632d2fe6e6b1fd53c176f63d0c0e4f9056fd2ea6"
+    },
+    {
+      "key": "WORD_CH2_DA_BONG",
+      "who": "corpse",
+      "text": "đá bóng",
+      "file": "game/audio/voice/vi/WORD_CH2_DA_BONG.ogg",
+      "seconds": 1.415,
+      "lufs": -30.14,
+      "true_peak_db": -10.89,
+      "sha256": "d82a5223ec9da1a458df724d8b6aa04c7320040a47149db6efad74d17158e6ce"
+    },
+    {
+      "key": "WORD_CH2_DEM_DEN",
+      "who": "corpse",
+      "text": "đêm đen",
+      "file": "game/audio/voice/vi/WORD_CH2_DEM_DEN.ogg",
+      "seconds": 1.231,
+      "lufs": -30.11,
+      "true_peak_db": -9.84,
+      "sha256": "609c0cdb89280d3a6f08cbd02981ddc42cc0a7aa15313c5a953bc60cf82656d0"
+    },
+    {
+      "key": "WORD_CH2_DEM_TRUONG",
+      "who": "corpse",
+      "text": "đêm trường",
+      "file": "game/audio/voice/vi/WORD_CH2_DEM_TRUONG.ogg",
+      "seconds": 1.411,
+      "lufs": -30.14,
+      "true_peak_db": -6.35,
+      "sha256": "03e19b1910a9f38bb793f25b1276157a50e5eea8c975d41d091e421cb3846f63"
+    },
+    {
+      "key": "WORD_CH2_DEN_MANG",
+      "who": "corpse",
+      "text": "đền mạng",
+      "file": "game/audio/voice/vi/WORD_CH2_DEN_MANG.ogg",
+      "seconds": 1.445,
+      "lufs": -30.11,
+      "true_peak_db": -9.59,
+      "sha256": "d8d520ebe765eb37e2a98d561fe9bb93fad1da093607384f926b369a30b6def6"
+    },
+    {
+      "key": "WORD_CH2_DE_DANG",
+      "who": "corpse",
+      "text": "dễ dàng",
+      "file": "game/audio/voice/vi/WORD_CH2_DE_DANG.ogg",
+      "seconds": 1.664,
+      "lufs": -30.14,
+      "true_peak_db": -12.21,
+      "sha256": "24901c4dd2e586ae61552f6d5aef61ebde71edb45e9ef7f5dc07abeeeb426605"
+    },
+    {
+      "key": "WORD_CH2_DIEM_DANH",
+      "who": "corpse",
+      "text": "điểm danh",
+      "file": "game/audio/voice/vi/WORD_CH2_DIEM_DANH.ogg",
+      "seconds": 1.399,
+      "lufs": -30.18,
+      "true_peak_db": -8.49,
+      "sha256": "5170b6ab782ce483821a23286baf0e02711935efe85e13e96966be137676865c"
+    },
+    {
+      "key": "WORD_CH2_DIEM_SO",
+      "who": "corpse",
+      "text": "điểm số",
+      "file": "game/audio/voice/vi/WORD_CH2_DIEM_SO.ogg",
+      "seconds": 1.501,
+      "lufs": -30.12,
+      "true_peak_db": -10.97,
+      "sha256": "d69639f9b11c32ddf8cacf86f2489b98f4640523e8a323e2a6d3b5166c5f2f1f"
+    },
+    {
+      "key": "WORD_CH2_DIEN_MAO",
+      "who": "corpse",
+      "text": "diện mạo",
+      "file": "game/audio/voice/vi/WORD_CH2_DIEN_MAO.ogg",
+      "seconds": 1.431,
+      "lufs": -30.14,
+      "true_peak_db": -8.88,
+      "sha256": "8ce3891a5acd5e6dd467dc405b3cb6657f4967f76f5e4e2a65f8c317a88b0681"
+    },
+    {
+      "key": "WORD_CH2_DIEN_THOAI",
+      "who": "corpse",
+      "text": "điện thoại",
+      "file": "game/audio/voice/vi/WORD_CH2_DIEN_THOAI.ogg",
+      "seconds": 1.424,
+      "lufs": -30.17,
+      "true_peak_db": -9.51,
+      "sha256": "b0aaf8d998c78e1da69e5e1478b14f4e031a4ee32232d28dfbcc4abc9e05484a"
+    },
+    {
+      "key": "WORD_CH2_DIEN_VAO",
+      "who": "corpse",
+      "text": "điền vào",
+      "file": "game/audio/voice/vi/WORD_CH2_DIEN_VAO.ogg",
+      "seconds": 1.347,
+      "lufs": -30.2,
+      "true_peak_db": -10.53,
+      "sha256": "ab4a93a8912bf59c1be6b7d97128f9b904e6ef3b466d00d6beaa8818b0d173b0"
+    },
+    {
+      "key": "WORD_CH2_DI_DANG",
+      "who": "corpse",
+      "text": "dị dạng",
+      "file": "game/audio/voice/vi/WORD_CH2_DI_DANG.ogg",
+      "seconds": 1.669,
+      "lufs": -30.07,
+      "true_peak_db": -9.53,
+      "sha256": "816a0964231cedb223d32343e21e567d7901d9133613e76abc5c8c43028cbbc4"
+    },
+    {
+      "key": "WORD_CH2_DOC_AC",
+      "who": "corpse",
+      "text": "độc ác",
+      "file": "game/audio/voice/vi/WORD_CH2_DOC_AC.ogg",
+      "seconds": 1.225,
+      "lufs": -30.13,
+      "true_peak_db": -10.78,
+      "sha256": "e25079a7c1cd3948ffaa7438a6216953381f61cce295c848755298cdb7333fd5"
+    },
+    {
+      "key": "WORD_CH2_DOI_NUOC",
+      "who": "corpse",
+      "text": "dội nước",
+      "file": "game/audio/voice/vi/WORD_CH2_DOI_NUOC.ogg",
+      "seconds": 1.48,
+      "lufs": -30.11,
+      "true_peak_db": -7.56,
+      "sha256": "b0f663322f7453711d7d34509bdd2827f7269cdd9972ce60ae4d6261185d7e84"
+    },
+    {
+      "key": "WORD_CH2_DONG_DAT",
+      "who": "corpse",
+      "text": "động đất",
+      "file": "game/audio/voice/vi/WORD_CH2_DONG_DAT.ogg",
+      "seconds": 1.177,
+      "lufs": -30.08,
+      "true_peak_db": -9.4,
+      "sha256": "cf70eb4da4161bb6f5d9dd8a6ff02282f0191d47f4703414dde3ab0853f60a42"
+    },
+    {
+      "key": "WORD_CH2_DONG_HO",
+      "who": "corpse",
+      "text": "đồng hồ",
+      "file": "game/audio/voice/vi/WORD_CH2_DONG_HO.ogg",
+      "seconds": 1.496,
+      "lufs": -30.15,
+      "true_peak_db": -10.91,
+      "sha256": "5c6f1f677cf0b5a4ed0e12cc2da9874dab1fcf7b42884554eda405288d8025b0"
+    },
+    {
+      "key": "WORD_CH2_DONG_MAU",
+      "who": "corpse",
+      "text": "dòng máu",
+      "file": "game/audio/voice/vi/WORD_CH2_DONG_MAU.ogg",
+      "seconds": 1.323,
+      "lufs": -30.11,
+      "true_peak_db": -7.94,
+      "sha256": "322644a511b1615473f1c137a77d85a4f560ea9e39e93f06197bb33f72180eba"
+    },
+    {
+      "key": "WORD_CH2_DONG_NGUOI",
+      "who": "corpse",
+      "text": "đông người",
+      "file": "game/audio/voice/vi/WORD_CH2_DONG_NGUOI.ogg",
+      "seconds": 1.338,
+      "lufs": -30.06,
+      "true_peak_db": -8.92,
+      "sha256": "09165814649c5dfbb599148faec616634a87e3b868cfc335b700914dec74118b"
+    },
+    {
+      "key": "WORD_CH2_DON_DOC",
+      "who": "corpse",
+      "text": "đơn độc",
+      "file": "game/audio/voice/vi/WORD_CH2_DON_DOC.ogg",
+      "seconds": 1.213,
+      "lufs": -29.15,
+      "true_peak_db": -9.76,
+      "sha256": "ec272f80a53dcfaf9099cc10e2b82280b9b95d8f7f61bb095bb4a238801bc712"
+    },
+    {
+      "key": "WORD_CH2_DO_AM",
+      "who": "corpse",
+      "text": "độ ẩm",
+      "file": "game/audio/voice/vi/WORD_CH2_DO_AM.ogg",
+      "seconds": 1.338,
+      "lufs": -30.07,
+      "true_peak_db": -11.05,
+      "sha256": "af508b78b4d618d9cda34662d5131953ce5a2538057aafa8e0443f2205d4e469"
+    },
+    {
+      "key": "WORD_CH2_DO_AN",
+      "who": "corpse",
+      "text": "đồ án",
+      "file": "game/audio/voice/vi/WORD_CH2_DO_AN.ogg",
+      "seconds": 1.396,
+      "lufs": -30.11,
+      "true_peak_db": -11.79,
+      "sha256": "489199e5cb766c572155636123bc191a703bcb2dd2cfdd5215d1d8390e715673"
+    },
+    {
+      "key": "WORD_CH2_DO_DAC",
+      "who": "corpse",
+      "text": "đồ đạc",
+      "file": "game/audio/voice/vi/WORD_CH2_DO_DAC.ogg",
+      "seconds": 1.305,
+      "lufs": -30.02,
+      "true_peak_db": -10.19,
+      "sha256": "7c9771a51ef1e6f169b812be73c7f06e39a40f23d51ba0a0874aa2d5d9bb2519"
+    },
+    {
+      "key": "WORD_CH2_DO_MAT",
+      "who": "corpse",
+      "text": "đỏ mặt",
+      "file": "game/audio/voice/vi/WORD_CH2_DO_MAT.ogg",
+      "seconds": 1.275,
+      "lufs": -30.07,
+      "true_peak_db": -9.96,
+      "sha256": "230ebda8bc8e0c9ae77e98c0b40e0b8987dece05377ab04738edcf4ec5985a1c"
+    },
+    {
+      "key": "WORD_CH2_DUA_GION",
+      "who": "corpse",
+      "text": "đùa giỡn",
+      "file": "game/audio/voice/vi/WORD_CH2_DUA_GION.ogg",
+      "seconds": 1.417,
+      "lufs": -30.04,
+      "true_peak_db": -9.67,
+      "sha256": "b303b433011df4690055e0e7884654ae358becae950e8d741ae475104ccc45ae"
+    },
+    {
+      "key": "WORD_CH2_DUNG_NHAN",
+      "who": "corpse",
+      "text": "dung nhan",
+      "file": "game/audio/voice/vi/WORD_CH2_DUNG_NHAN.ogg",
+      "seconds": 1.499,
+      "lufs": -30.08,
+      "true_peak_db": -9.13,
+      "sha256": "c849e27234eeeb428489607b290889dfd87bb8d4f3d14649fd131d63c0e40dde"
+    },
+    {
+      "key": "WORD_CH2_DUOI_SUC",
+      "who": "corpse",
+      "text": "đuối sức",
+      "file": "game/audio/voice/vi/WORD_CH2_DUOI_SUC.ogg",
+      "seconds": 1.349,
+      "lufs": -30.1,
+      "true_peak_db": -6.11,
+      "sha256": "0032b8bbc4c2ed7973a0bccac8576a565dc3831b3b589be261ae5a9468f3afc6"
+    },
+    {
+      "key": "WORD_CH2_DU_DOI",
+      "who": "corpse",
+      "text": "dữ dội",
+      "file": "game/audio/voice/vi/WORD_CH2_DU_DOI.ogg",
+      "seconds": 1.58,
+      "lufs": -30.11,
+      "true_peak_db": -9.19,
+      "sha256": "d6a653a09ba7b39d91e627f53d8af4508faac5b2865552a63fb4cf40a19de9f3"
+    },
+    {
+      "key": "WORD_CH2_DU_HOC",
+      "who": "corpse",
+      "text": "du học",
+      "file": "game/audio/voice/vi/WORD_CH2_DU_HOC.ogg",
+      "seconds": 1.541,
+      "lufs": -30.1,
+      "true_peak_db": -10.74,
+      "sha256": "a4277dcd750658411ab559cbe09cca642856ecdcc603ad31e862bfc2e95bb153"
+    },
+    {
+      "key": "WORD_CH2_GACH_DA",
+      "who": "corpse",
+      "text": "gạch đá",
+      "file": "game/audio/voice/vi/WORD_CH2_GACH_DA.ogg",
+      "seconds": 1.483,
+      "lufs": -30.17,
+      "true_peak_db": -11.94,
+      "sha256": "126debd10e247647596e02bfc6bbc22d317b7fd7187d957476dd5218a829b5bc"
+    },
+    {
+      "key": "WORD_CH2_GAM_VAO",
+      "who": "corpse",
+      "text": "găm vào",
+      "file": "game/audio/voice/vi/WORD_CH2_GAM_VAO.ogg",
+      "seconds": 1.395,
+      "lufs": -30.1,
+      "true_peak_db": -9.42,
+      "sha256": "66f8678cfebd62cd43479410e6d74aef9853481ff9b787eaa1075c69cc26db89"
+    },
+    {
+      "key": "WORD_CH2_GAT_DAU",
+      "who": "corpse",
+      "text": "gật đầu",
+      "file": "game/audio/voice/vi/WORD_CH2_GAT_DAU.ogg",
+      "seconds": 1.305,
+      "lufs": -30.1,
+      "true_peak_db": -10.21,
+      "sha256": "ae75365ea7e0fb3f9654390cac8ca37f7fa53a71f456d6de7f815f91c529e64e"
+    },
+    {
+      "key": "WORD_CH2_GIA_LANH",
+      "who": "corpse",
+      "text": "giá lạnh",
+      "file": "game/audio/voice/vi/WORD_CH2_GIA_LANH.ogg",
+      "seconds": 1.57,
+      "lufs": -30.09,
+      "true_peak_db": -11.64,
+      "sha256": "598de8cabcf122d97de037504a84e6bdaed7bcb3a52cb48b84ceb77db66b4c8c"
+    },
+    {
+      "key": "WORD_CH2_GIEU_COT",
+      "who": "corpse",
+      "text": "giễu cợt",
+      "file": "game/audio/voice/vi/WORD_CH2_GIEU_COT.ogg",
+      "seconds": 1.378,
+      "lufs": -30.23,
+      "true_peak_db": -9.21,
+      "sha256": "9584075e13dc9673ef074f99094eb2e735925858953b6658506f0898840b4462"
+    },
+    {
+      "key": "WORD_CH2_GION_MAT",
+      "who": "corpse",
+      "text": "giỡn mặt",
+      "file": "game/audio/voice/vi/WORD_CH2_GION_MAT.ogg",
+      "seconds": 1.326,
+      "lufs": -30.14,
+      "true_peak_db": -7.65,
+      "sha256": "a822063cc93b854c6c74a26c7adebb79971eb16d4df32ae3c3dfc9385dca62d0"
+    },
+    {
+      "key": "WORD_CH2_HANH_LANG",
+      "who": "corpse",
+      "text": "hành lang",
+      "file": "game/audio/voice/vi/WORD_CH2_HANH_LANG.ogg",
+      "seconds": 1.593,
+      "lufs": -30.15,
+      "true_peak_db": -9.3,
+      "sha256": "ce22274bb88c33a72546a9b601e825616def824a77a5a4f04ec9b74177e38f99"
+    },
+    {
+      "key": "WORD_CH2_HIEM_HOA",
+      "who": "corpse",
+      "text": "hiểm họa",
+      "file": "game/audio/voice/vi/WORD_CH2_HIEM_HOA.ogg",
+      "seconds": 1.474,
+      "lufs": -30.15,
+      "true_peak_db": -10.65,
+      "sha256": "3b1e0d7b35dabb5256733e4c34dd433e7e5d1e9690145d10bfb524292ba5b61f"
+    },
+    {
+      "key": "WORD_CH2_HINH_PHAT",
+      "who": "corpse",
+      "text": "hình phạt",
+      "file": "game/audio/voice/vi/WORD_CH2_HINH_PHAT.ogg",
+      "seconds": 1.328,
+      "lufs": -30.14,
+      "true_peak_db": -7.99,
+      "sha256": "441434483734f1c05e69ae6959f7e5001d8d8a50ef2180abcc3abd3983c90b97"
+    },
+    {
+      "key": "WORD_CH2_HOANG_HON",
+      "who": "corpse",
+      "text": "hoàng hôn",
+      "file": "game/audio/voice/vi/WORD_CH2_HOANG_HON.ogg",
+      "seconds": 1.578,
+      "lufs": -30.06,
+      "true_peak_db": -7.89,
+      "sha256": "964d6219c5058a24e830744798dbeb53cec960eba36515eda1a7a589ad31983a"
+    },
+    {
+      "key": "WORD_CH2_HOAT_DONG",
+      "who": "corpse",
+      "text": "hoạt động",
+      "file": "game/audio/voice/vi/WORD_CH2_HOAT_DONG.ogg",
+      "seconds": 1.351,
+      "lufs": -30.16,
+      "true_peak_db": -7.33,
+      "sha256": "1e3496ee2d58d6da48427f6f05e17aab338fe1c4ae9595b55ed88ad55094f459"
+    },
+    {
+      "key": "WORD_CH2_HOA_DON",
+      "who": "corpse",
+      "text": "hóa đơn",
+      "file": "game/audio/voice/vi/WORD_CH2_HOA_DON.ogg",
+      "seconds": 1.446,
+      "lufs": -30.19,
+      "true_peak_db": -11.62,
+      "sha256": "88d0fdaeef5e537f8387791c05552de9207b834d670122fede8b4287d8e1a119"
+    },
+    {
+      "key": "WORD_CH2_HOA_HOC",
+      "who": "corpse",
+      "text": "hóa học",
+      "file": "game/audio/voice/vi/WORD_CH2_HOA_HOC.ogg",
+      "seconds": 1.548,
+      "lufs": -30.27,
+      "true_peak_db": -11.47,
+      "sha256": "f4eb97c2fc6aad2c096adc20ed08a9c98ae3c71a0679b7c97e3cc38319e3ff6c"
+    },
+    {
+      "key": "WORD_CH2_HOA_SI",
+      "who": "corpse",
+      "text": "họa sĩ",
+      "file": "game/audio/voice/vi/WORD_CH2_HOA_SI.ogg",
+      "seconds": 1.694,
+      "lufs": -30.07,
+      "true_peak_db": -11.74,
+      "sha256": "4eb333e4a7f45f5865a9d3b807ae4e469254b3250195ff45eb678b1a6d0d11fc"
+    },
+    {
+      "key": "WORD_CH2_HOA_TRANG",
+      "who": "corpse",
+      "text": "hóa trang",
+      "file": "game/audio/voice/vi/WORD_CH2_HOA_TRANG.ogg",
+      "seconds": 1.674,
+      "lufs": -30.3,
+      "true_peak_db": -12.25,
+      "sha256": "118181cde0ca475c44e4192e903f58a04cc7152826e000f40ce64bb2bd7009ba"
+    },
+    {
+      "key": "WORD_CH2_HOC_KY",
+      "who": "corpse",
+      "text": "học kỳ",
+      "file": "game/audio/voice/vi/WORD_CH2_HOC_KY.ogg",
+      "seconds": 1.627,
+      "lufs": -30.09,
+      "true_peak_db": -8.95,
+      "sha256": "e7699eece34bbaad5808c885fbbe78725b6e91ffdc4cf1a2754e225ac1867e5c"
+    },
+    {
+      "key": "WORD_CH2_HOC_PHI",
+      "who": "corpse",
+      "text": "học phí",
+      "file": "game/audio/voice/vi/WORD_CH2_HOC_PHI.ogg",
+      "seconds": 1.666,
+      "lufs": -30.09,
+      "true_peak_db": -9.88,
+      "sha256": "f4fa634c0dd9e9a4328f0ddac863d7df6d10b06d847d2b70f4dbd4cee147a3ee"
+    },
+    {
+      "key": "WORD_CH2_HOC_SINH",
+      "who": "corpse",
+      "text": "học sinh",
+      "file": "game/audio/voice/vi/WORD_CH2_HOC_SINH.ogg",
+      "seconds": 1.45,
+      "lufs": -30.11,
+      "true_peak_db": -7.2,
+      "sha256": "4443b6a22a984d78fa1012f8e868cd8ecb5112458128814bc41ace464758d65f"
+    },
+    {
+      "key": "WORD_CH2_HOC_TAP",
+      "who": "corpse",
+      "text": "học tập",
+      "file": "game/audio/voice/vi/WORD_CH2_HOC_TAP.ogg",
+      "seconds": 1.398,
+      "lufs": -30.08,
+      "true_peak_db": -9.28,
+      "sha256": "53d7566cdfe14e2c09b01feeff92f4656a7a20b2baa3270912f92072af13334d"
+    },
+    {
+      "key": "WORD_CH2_HOC_TRO",
+      "who": "corpse",
+      "text": "học trò",
+      "file": "game/audio/voice/vi/WORD_CH2_HOC_TRO.ogg",
+      "seconds": 1.641,
+      "lufs": -30.2,
+      "true_peak_db": -10.04,
+      "sha256": "dafff8df3269e1d157251d73777df4580553888f6f7ec5190b9b442d79af7cb9"
+    },
+    {
+      "key": "WORD_CH2_HOC_TU",
+      "who": "corpse",
+      "text": "hộc tủ",
+      "file": "game/audio/voice/vi/WORD_CH2_HOC_TU.ogg",
+      "seconds": 1.557,
+      "lufs": -30.03,
+      "true_peak_db": -10.17,
+      "sha256": "1d8ecac49a6111746b766362ad413827e5d917e78f08a6e6c84eef3698dfd867"
+    },
+    {
+      "key": "WORD_CH2_HON_ME",
+      "who": "corpse",
+      "text": "hôn mê",
+      "file": "game/audio/voice/vi/WORD_CH2_HON_ME.ogg",
+      "seconds": 1.6,
+      "lufs": -30.25,
+      "true_peak_db": -12.46,
+      "sha256": "4e9f28c981592b1306347e744f64958b39af4a8230f03d44ed758f94a6b797eb"
+    },
+    {
+      "key": "WORD_CH2_HON_NHAN",
+      "who": "corpse",
+      "text": "hôn nhân",
+      "file": "game/audio/voice/vi/WORD_CH2_HON_NHAN.ogg",
+      "seconds": 1.505,
+      "lufs": -30.13,
+      "true_peak_db": -10.45,
+      "sha256": "0ef379d46c140fab84ccdf58aec39390c08c37dbe40cef068479801eeab39658"
+    },
+    {
+      "key": "WORD_CH2_HO_SO",
+      "who": "corpse",
+      "text": "hồ sơ",
+      "file": "game/audio/voice/vi/WORD_CH2_HO_SO.ogg",
+      "seconds": 1.687,
+      "lufs": -30.12,
+      "true_peak_db": -11.86,
+      "sha256": "c8e84dc772e9f6413e69c8bd81b6b4491e0fb340dd6b2bed1ed14f6dc23bc61e"
+    },
+    {
+      "key": "WORD_CH2_HUY_CHUONG",
+      "who": "corpse",
+      "text": "huy chương",
+      "file": "game/audio/voice/vi/WORD_CH2_HUY_CHUONG.ogg",
+      "seconds": 1.657,
+      "lufs": -30.08,
+      "true_peak_db": -13.83,
+      "sha256": "b3d83b75f0d968d0a27a77b00b413703cbcebfc120593b4696dd92b725a5dbe3"
+    },
+    {
+      "key": "WORD_CH2_KHOI_DAU",
+      "who": "corpse",
+      "text": "khởi đầu",
+      "file": "game/audio/voice/vi/WORD_CH2_KHOI_DAU.ogg",
+      "seconds": 1.414,
+      "lufs": -30.09,
+      "true_peak_db": -10.83,
+      "sha256": "13697f996533666d740f461b20749171c842c7985c76c176957029614fbc35a7"
+    },
+    {
+      "key": "WORD_CH2_KHOI_DONG",
+      "who": "corpse",
+      "text": "khởi động",
+      "file": "game/audio/voice/vi/WORD_CH2_KHOI_DONG.ogg",
+      "seconds": 1.423,
+      "lufs": -30.12,
+      "true_peak_db": -10.91,
+      "sha256": "53a39f19e3681a44822119de36c54bf2014486e6f5f5903c3ba5719b87197a68"
+    },
+    {
+      "key": "WORD_CH2_KHUAT_PHUC",
+      "who": "corpse",
+      "text": "khuất phục",
+      "file": "game/audio/voice/vi/WORD_CH2_KHUAT_PHUC.ogg",
+      "seconds": 1.431,
+      "lufs": -30.12,
+      "true_peak_db": -8.44,
+      "sha256": "1b0cecb0be72857120a32b7603e36438c1a2afddb5df612c3f5edfce3258b674"
+    },
+    {
+      "key": "WORD_CH2_KHUYET_DIEM",
+      "who": "corpse",
+      "text": "khuyết điểm",
+      "file": "game/audio/voice/vi/WORD_CH2_KHUYET_DIEM.ogg",
+      "seconds": 1.417,
+      "lufs": -30.12,
+      "true_peak_db": -9.67,
+      "sha256": "94a674febfcb387c029a023beedde509d204a64e68176da61e6748e1aa8ac926"
+    },
+    {
+      "key": "WORD_CH2_KICH_BAN",
+      "who": "corpse",
+      "text": "kịch bản",
+      "file": "game/audio/voice/vi/WORD_CH2_KICH_BAN.ogg",
+      "seconds": 1.413,
+      "lufs": -30.2,
+      "true_peak_db": -9.6,
+      "sha256": "f23c19c605656ad6cea852bd0c6da908aac0169deceeb053c18cee52e7a3f0bf"
+    },
+    {
+      "key": "WORD_CH2_KINH_DI",
+      "who": "corpse",
+      "text": "kinh dị",
+      "file": "game/audio/voice/vi/WORD_CH2_KINH_DI.ogg",
+      "seconds": 1.576,
+      "lufs": -30.09,
+      "true_peak_db": -11.92,
+      "sha256": "07b16b26ec2f38136f78647ca5dd13a99892b4ce41ab3ef6c958e0d27ef63fb5"
+    },
+    {
+      "key": "WORD_CH2_KINH_HOANG",
+      "who": "corpse",
+      "text": "kinh hoàng",
+      "file": "game/audio/voice/vi/WORD_CH2_KINH_HOANG.ogg",
+      "seconds": 1.547,
+      "lufs": -30.18,
+      "true_peak_db": -9.94,
+      "sha256": "0540e02d9c0176b86069b42a591903e56146cc36edd8647bc0b8a52425f0313a"
+    },
+    {
+      "key": "WORD_CH2_KINH_KHUNG",
+      "who": "corpse",
+      "text": "kinh khủng",
+      "file": "game/audio/voice/vi/WORD_CH2_KINH_KHUNG.ogg",
+      "seconds": 1.402,
+      "lufs": -30.14,
+      "true_peak_db": -5.65,
+      "sha256": "1b61fcf34a4a604493fd49a607c2cba65719c22a9c5ce811bea7b48bbe85fd97"
+    },
+    {
+      "key": "WORD_CH2_KINH_TE",
+      "who": "corpse",
+      "text": "kinh tế",
+      "file": "game/audio/voice/vi/WORD_CH2_KINH_TE.ogg",
+      "seconds": 1.49,
+      "lufs": -30.2,
+      "true_peak_db": -12.1,
+      "sha256": "b7ec662776d20e6d863c2affb9cdd61f3356d8ca63f33d20e9b0e4d7edf4ad3b"
+    },
+    {
+      "key": "WORD_CH2_KY_LA",
+      "who": "corpse",
+      "text": "kỳ lạ",
+      "file": "game/audio/voice/vi/WORD_CH2_KY_LA.ogg",
+      "seconds": 1.654,
+      "lufs": -30.18,
+      "true_peak_db": -10.77,
+      "sha256": "ab4ace78dad2734af68778a4a22a1c034ef6de2e7c377ebf1d4415baddb4d56b"
+    },
+    {
+      "key": "WORD_CH2_KY_SI",
+      "who": "corpse",
+      "text": "kỵ sĩ",
+      "file": "game/audio/voice/vi/WORD_CH2_KY_SI.ogg",
+      "seconds": 1.692,
+      "lufs": -30.09,
+      "true_peak_db": -14.03,
+      "sha256": "fb7af2db160039f3903481d85702c3f9f8c6ab82d0422f8fa11be5d88eddc519"
+    },
+    {
+      "key": "WORD_CH2_KY_TEN",
+      "who": "corpse",
+      "text": "ký tên",
+      "file": "game/audio/voice/vi/WORD_CH2_KY_TEN.ogg",
+      "seconds": 1.473,
+      "lufs": -30.2,
+      "true_peak_db": -11.27,
+      "sha256": "71521ed6399dcdc791c129cb43a4c2a24ca152330c1be7864db1893ecd8ada15"
+    },
+    {
+      "key": "WORD_CH2_KY_THI",
+      "who": "corpse",
+      "text": "kỳ thi",
+      "file": "game/audio/voice/vi/WORD_CH2_KY_THI.ogg",
+      "seconds": 1.639,
+      "lufs": -30.07,
+      "true_peak_db": -14.06,
+      "sha256": "8fc6704931b11d50ae9a1d31cfad4d84e204969c62ad96a47fb9999412173cd9"
+    },
+    {
+      "key": "WORD_CH2_KY_TUC",
+      "who": "corpse",
+      "text": "ký túc",
+      "file": "game/audio/voice/vi/WORD_CH2_KY_TUC.ogg",
+      "seconds": 1.391,
+      "lufs": -30.05,
+      "true_peak_db": -11.15,
+      "sha256": "0cb0b2db200bbe44050618bb05cb1e1fa09764e22236c579c1abdbcfab13f0ed"
+    },
+    {
+      "key": "WORD_CH2_KY_UC",
+      "who": "corpse",
+      "text": "ký ức",
+      "file": "game/audio/voice/vi/WORD_CH2_KY_UC.ogg",
+      "seconds": 1.39,
+      "lufs": -30.08,
+      "true_peak_db": -13.29,
+      "sha256": "165ff37a97dab27fdcd1d3579531963ecfdfd1886eca79ecf431353e1d66b247"
+    },
+    {
+      "key": "WORD_CH2_LANG_THANG",
+      "who": "corpse",
+      "text": "lang thang",
+      "file": "game/audio/voice/vi/WORD_CH2_LANG_THANG.ogg",
+      "seconds": 1.615,
+      "lufs": -30.17,
+      "true_peak_db": -9.6,
+      "sha256": "96d97240baa684ec96d83abad3cd8c073006c838552b2906bf208582c38c8790"
+    },
+    {
+      "key": "WORD_CH2_LANH_LEO",
+      "who": "corpse",
+      "text": "lạnh lẽo",
+      "file": "game/audio/voice/vi/WORD_CH2_LANH_LEO.ogg",
+      "seconds": 1.421,
+      "lufs": -30.17,
+      "true_peak_db": -9.68,
+      "sha256": "b899ba35b71d6f9bf9186e6822d172c85ed83e69c53c0a544fde4e91fddd1691"
+    },
+    {
+      "key": "WORD_CH2_LANH_NGUOI",
+      "who": "corpse",
+      "text": "lạnh người",
+      "file": "game/audio/voice/vi/WORD_CH2_LANH_NGUOI.ogg",
+      "seconds": 1.44,
+      "lufs": -30.13,
+      "true_peak_db": -6.75,
+      "sha256": "a6338d262db1e94188aebdc248fa82fadea2e84452631552ed7c0e2f0f201e45"
+    },
+    {
+      "key": "WORD_CH2_LA_MAT",
+      "who": "corpse",
+      "text": "lạ mặt",
+      "file": "game/audio/voice/vi/WORD_CH2_LA_MAT.ogg",
+      "seconds": 1.378,
+      "lufs": -30.23,
+      "true_peak_db": -10.21,
+      "sha256": "3f3a3adda4a0ba502eabe2aa9e9cc0dddd0429e681ef3a37d405686ee418fc71"
+    },
+    {
+      "key": "WORD_CH2_LENH_CAM",
+      "who": "corpse",
+      "text": "lệnh cấm",
+      "file": "game/audio/voice/vi/WORD_CH2_LENH_CAM.ogg",
+      "seconds": 1.388,
+      "lufs": -30.03,
+      "true_peak_db": -9.61,
+      "sha256": "e661ac4b9238a613a2d377fe5a2c9473885075ab824af0ec45c303486a003e92"
+    },
+    {
+      "key": "WORD_CH2_LUAN_AN",
+      "who": "corpse",
+      "text": "luận án",
+      "file": "game/audio/voice/vi/WORD_CH2_LUAN_AN.ogg",
+      "seconds": 1.4,
+      "lufs": -30.09,
+      "true_peak_db": -11.06,
+      "sha256": "589921f3e815656feeb8bd457f37821ae3504f1b81b8ad7cfb03362a93c06521"
+    },
+    {
+      "key": "WORD_CH2_LUAN_DIEM",
+      "who": "corpse",
+      "text": "luận điểm",
+      "file": "game/audio/voice/vi/WORD_CH2_LUAN_DIEM.ogg",
+      "seconds": 1.401,
+      "lufs": -30.09,
+      "true_peak_db": -10.22,
+      "sha256": "135b1d3fadfed719ba3e965572bd2bdc6bb295f10e2315f93b6b3bc18aafbc81"
+    },
+    {
+      "key": "WORD_CH2_LUAN_HOI",
+      "who": "corpse",
+      "text": "luân hồi",
+      "file": "game/audio/voice/vi/WORD_CH2_LUAN_HOI.ogg",
+      "seconds": 1.539,
+      "lufs": -30.07,
+      "true_peak_db": -9.14,
+      "sha256": "69056894d491b52779c4bcd5d19d46303027796af72ff68eae676539c4d3c372"
+    },
+    {
+      "key": "WORD_CH2_LUAN_VAN",
+      "who": "corpse",
+      "text": "luận văn",
+      "file": "game/audio/voice/vi/WORD_CH2_LUAN_VAN.ogg",
+      "seconds": 1.421,
+      "lufs": -30.09,
+      "true_peak_db": -7.73,
+      "sha256": "f2785f1109404798ad84019340e3746dcd6dcca4b3775ed02a7445ac7a3da062"
+    },
+    {
+      "key": "WORD_CH2_LUA_DO",
+      "who": "corpse",
+      "text": "lửa đỏ",
+      "file": "game/audio/voice/vi/WORD_CH2_LUA_DO.ogg",
+      "seconds": 1.445,
+      "lufs": -30.07,
+      "true_peak_db": -11.65,
+      "sha256": "cc735ad67cacd255090e492ff4c5a2cae3f73865417c338cdbf9494cfccb8c07"
+    },
+    {
+      "key": "WORD_CH2_LUC_HOC",
+      "who": "corpse",
+      "text": "lực học",
+      "file": "game/audio/voice/vi/WORD_CH2_LUC_HOC.ogg",
+      "seconds": 1.393,
+      "lufs": -30.07,
+      "true_peak_db": -8.06,
+      "sha256": "9bbe5f2ea1bc2a4813efee5b73f067d70795aae018c71051c25d32bd38e9e7da"
+    },
+    {
+      "key": "WORD_CH2_LUC_LUONG",
+      "who": "corpse",
+      "text": "lực lượng",
+      "file": "game/audio/voice/vi/WORD_CH2_LUC_LUONG.ogg",
+      "seconds": 1.443,
+      "lufs": -30.02,
+      "true_peak_db": -10.52,
+      "sha256": "37a41856e29e894f2f3b7de3b6ef459fc86ab5adcc82da1e1cb1a9a2779f6e06"
+    },
+    {
+      "key": "WORD_CH2_LUC_SI",
+      "who": "corpse",
+      "text": "lực sĩ",
+      "file": "game/audio/voice/vi/WORD_CH2_LUC_SI.ogg",
+      "seconds": 1.546,
+      "lufs": -30.08,
+      "true_peak_db": -12.78,
+      "sha256": "21cb287aecd3e14e0e268d491f655185ee5a0d9d7dddd01b89cf6f0f62d5e6d6"
+    },
+    {
+      "key": "WORD_CH2_LUNG_CHUNG",
+      "who": "corpse",
+      "text": "lưng chừng",
+      "file": "game/audio/voice/vi/WORD_CH2_LUNG_CHUNG.ogg",
+      "seconds": 1.445,
+      "lufs": -30.11,
+      "true_peak_db": -10.83,
+      "sha256": "746e8ffa376f0578001cbe6c95ba634a095f50cd51558acbd852f3abfe0913ca"
+    },
+    {
+      "key": "WORD_CH2_LUOI_DIEN",
+      "who": "corpse",
+      "text": "lưới điện",
+      "file": "game/audio/voice/vi/WORD_CH2_LUOI_DIEN.ogg",
+      "seconds": 1.389,
+      "lufs": -30.13,
+      "true_peak_db": -9.72,
+      "sha256": "8dcec475a7c40030d9666749ad0330f06639ab09a4714d862cb365bc48ac23f8"
+    },
+    {
+      "key": "WORD_CH2_LUONG_SUC",
+      "who": "corpse",
+      "text": "lượng sức",
+      "file": "game/audio/voice/vi/WORD_CH2_LUONG_SUC.ogg",
+      "seconds": 1.405,
+      "lufs": -30.09,
+      "true_peak_db": -9.3,
+      "sha256": "fd9e6f4618dc61e8d221ba6e9e8d36ee4cdcf456baa111542578bf84f84f4959"
+    },
+    {
+      "key": "WORD_CH2_MACH_MAU",
+      "who": "corpse",
+      "text": "mạch máu",
+      "file": "game/audio/voice/vi/WORD_CH2_MACH_MAU.ogg",
+      "seconds": 1.314,
+      "lufs": -30.14,
+      "true_peak_db": -8.96,
+      "sha256": "349b23b0a78f4478dd24f8b0358ee4cdebc44e6c47a34c1e2710368e422af484"
+    },
+    {
+      "key": "WORD_CH2_MANG_LUOI",
+      "who": "corpse",
+      "text": "mạng lưới",
+      "file": "game/audio/voice/vi/WORD_CH2_MANG_LUOI.ogg",
+      "seconds": 1.582,
+      "lufs": -30.06,
+      "true_peak_db": -6.97,
+      "sha256": "86def5f9d37522be8b5c576c484e2ae55143f794dbfd295784d98385b929db65"
+    },
+    {
+      "key": "WORD_CH2_MANG_NGUOI",
+      "who": "corpse",
+      "text": "mạng người",
+      "file": "game/audio/voice/vi/WORD_CH2_MANG_NGUOI.ogg",
+      "seconds": 1.529,
+      "lufs": -30.11,
+      "true_peak_db": -7.06,
+      "sha256": "76a3c058a72f1fec257a4a6e68bfc8e874c6c5bac33b4943b21a6ce42a03c026"
+    },
+    {
+      "key": "WORD_CH2_MANG_NHEN",
+      "who": "corpse",
+      "text": "mạng nhện",
+      "file": "game/audio/voice/vi/WORD_CH2_MANG_NHEN.ogg",
+      "seconds": 1.552,
+      "lufs": -30.15,
+      "true_peak_db": -8.59,
+      "sha256": "d0b8053e04ea86d27762e2dacd7e6af320f8d27239a51a50159a4ce62457c781"
+    },
+    {
+      "key": "WORD_CH2_MANG_SONG",
+      "who": "corpse",
+      "text": "mạng sống",
+      "file": "game/audio/voice/vi/WORD_CH2_MANG_SONG.ogg",
+      "seconds": 1.538,
+      "lufs": -30.13,
+      "true_peak_db": -7.41,
+      "sha256": "1be0029f18a7c8b18f75ee6e11c710164ef4b247d0028395ab56ee0bc77e28f5"
+    },
+    {
+      "key": "WORD_CH2_MAO_HIEM",
+      "who": "corpse",
+      "text": "mạo hiểm",
+      "file": "game/audio/voice/vi/WORD_CH2_MAO_HIEM.ogg",
+      "seconds": 1.387,
+      "lufs": -30.27,
+      "true_peak_db": -9.97,
+      "sha256": "57bb6b12b6049582ae92f679d9102225da82249e398234b8612fba6994af1604"
+    },
+    {
+      "key": "WORD_CH2_MAT_MA",
+      "who": "corpse",
+      "text": "mật mã",
+      "file": "game/audio/voice/vi/WORD_CH2_MAT_MA.ogg",
+      "seconds": 1.517,
+      "lufs": -30.22,
+      "true_peak_db": -11.97,
+      "sha256": "ac130d1447f9d14d35a6fc400007beb7017a6d1d185f1f041d3e4f730a0e7efd"
+    },
+    {
+      "key": "WORD_CH2_MAT_MUI",
+      "who": "corpse",
+      "text": "mặt mũi",
+      "file": "game/audio/voice/vi/WORD_CH2_MAT_MUI.ogg",
+      "seconds": 1.378,
+      "lufs": -30.17,
+      "true_peak_db": -8.25,
+      "sha256": "08222998d8cf1cb8897ba49c18b7e8c55340f90feb014e81a3ebd647301906ae"
+    },
+    {
+      "key": "WORD_CH2_MAT_NA",
+      "who": "corpse",
+      "text": "mặt nạ",
+      "file": "game/audio/voice/vi/WORD_CH2_MAT_NA.ogg",
+      "seconds": 1.484,
+      "lufs": -30.14,
+      "true_peak_db": -10.32,
+      "sha256": "e8fce17ab307768f706e3b021cafa0b46ebe4bf370a7f2f1d51205f7f4820b41"
+    },
+    {
+      "key": "WORD_CH2_MAT_TRAN",
+      "who": "corpse",
+      "text": "mặt trận",
+      "file": "game/audio/voice/vi/WORD_CH2_MAT_TRAN.ogg",
+      "seconds": 1.375,
+      "lufs": -30.11,
+      "true_peak_db": -9.07,
+      "sha256": "18fdd1171e55340e6b1e8fff5bcabb23e452249294ba1086c96c055d90d68ce1"
+    },
+    {
+      "key": "WORD_CH2_MAU_LANH",
+      "who": "corpse",
+      "text": "máu lạnh",
+      "file": "game/audio/voice/vi/WORD_CH2_MAU_LANH.ogg",
+      "seconds": 1.388,
+      "lufs": -30.16,
+      "true_peak_db": -8.01,
+      "sha256": "a3c9bf88391f0358c74554f554168d00763c6e2cf90dd243a65727954403fbaf"
+    },
+    {
+      "key": "WORD_CH2_MAU_THIT",
+      "who": "corpse",
+      "text": "máu thịt",
+      "file": "game/audio/voice/vi/WORD_CH2_MAU_THIT.ogg",
+      "seconds": 1.258,
+      "lufs": -30.09,
+      "true_peak_db": -5.91,
+      "sha256": "86719821dbbdaeb9a4e90bf0c122ceb0a7b57968651d6da8fd5ba1e2ef4d9c93"
+    },
+    {
+      "key": "WORD_CH2_MAY_MOC",
+      "who": "corpse",
+      "text": "máy móc",
+      "file": "game/audio/voice/vi/WORD_CH2_MAY_MOC.ogg",
+      "seconds": 1.369,
+      "lufs": -30.16,
+      "true_peak_db": -8.45,
+      "sha256": "63822648d4f958d172a3a07e40dfd344a16a56590753975d29e8fab06f07f67c"
+    },
+    {
+      "key": "WORD_CH2_MA_SO",
+      "who": "corpse",
+      "text": "mã số",
+      "file": "game/audio/voice/vi/WORD_CH2_MA_SO.ogg",
+      "seconds": 1.663,
+      "lufs": -30.2,
+      "true_peak_db": -11.57,
+      "sha256": "ef16f26c9ea0c74a2b8d964f208c667ca9a9168e6c694eaac95130aa46e88c8f"
+    },
+    {
+      "key": "WORD_CH2_MENH_LENH",
+      "who": "corpse",
+      "text": "mệnh lệnh",
+      "file": "game/audio/voice/vi/WORD_CH2_MENH_LENH.ogg",
+      "seconds": 1.429,
+      "lufs": -30.14,
+      "true_peak_db": -8.75,
+      "sha256": "319638012c60e055f7b5598c85816f91439e910bc16e3eb69f7fa979a30e2efb"
+    },
+    {
+      "key": "WORD_CH2_ME_CUNG",
+      "who": "corpse",
+      "text": "mê cung",
+      "file": "game/audio/voice/vi/WORD_CH2_ME_CUNG.ogg",
+      "seconds": 1.459,
+      "lufs": -30.23,
+      "true_peak_db": -11.88,
+      "sha256": "a2917cb2168d367f3df902691392fff4bbb35f3f6b0f7ae35408f793590530fc"
+    },
+    {
+      "key": "WORD_CH2_ME_MAN",
+      "who": "corpse",
+      "text": "mê man",
+      "file": "game/audio/voice/vi/WORD_CH2_ME_MAN.ogg",
+      "seconds": 1.515,
+      "lufs": -30.21,
+      "true_peak_db": -12.17,
+      "sha256": "ef9d308a7c11ef7171decdc499b6d757debe24827106d82d04b168f6329c2b11"
+    },
+    {
+      "key": "WORD_CH2_MOC_TUI",
+      "who": "corpse",
+      "text": "móc túi",
+      "file": "game/audio/voice/vi/WORD_CH2_MOC_TUI.ogg",
+      "seconds": 1.446,
+      "lufs": -30.06,
+      "true_peak_db": -9.1,
+      "sha256": "b003f7b6a3a77f63674535f88730cc3beb96f1b63935c436829a164132577f78"
+    },
+    {
+      "key": "WORD_CH2_MONG_DU",
+      "who": "corpse",
+      "text": "mộng du",
+      "file": "game/audio/voice/vi/WORD_CH2_MONG_DU.ogg",
+      "seconds": 1.602,
+      "lufs": -30.0,
+      "true_peak_db": -9.98,
+      "sha256": "4aec371509d8fd281d7ddf8767def83335e37170b6ce26ddcf480470885f1623"
+    },
+    {
+      "key": "WORD_CH2_MUC_NUOC",
+      "who": "corpse",
+      "text": "mực nước",
+      "file": "game/audio/voice/vi/WORD_CH2_MUC_NUOC.ogg",
+      "seconds": 1.366,
+      "lufs": -30.06,
+      "true_peak_db": -10.61,
+      "sha256": "ffa723c0fd1bed35fe95502a59c8fcb8b15d950a04a595bf5e2bc518b5d1466a"
+    },
+    {
+      "key": "WORD_CH2_MUI_DAO",
+      "who": "corpse",
+      "text": "mũi dao",
+      "file": "game/audio/voice/vi/WORD_CH2_MUI_DAO.ogg",
+      "seconds": 1.47,
+      "lufs": -30.1,
+      "true_peak_db": -10.45,
+      "sha256": "a942c48c52dc70671fb2a65fb0746b419b944be3281b706fedfec30bc178cb74"
+    },
+    {
+      "key": "WORD_CH2_NA_DONG",
+      "who": "corpse",
+      "text": "nạ dòng",
+      "file": "game/audio/voice/vi/WORD_CH2_NA_DONG.ogg",
+      "seconds": 1.508,
+      "lufs": -30.18,
+      "true_peak_db": -9.79,
+      "sha256": "82c4590ae3003f7e55b4b9262d7f4618e8a40ed4a8ec2f1e1137cfb4b44509fa"
+    },
+    {
+      "key": "WORD_CH2_NGHEN_MACH",
+      "who": "corpse",
+      "text": "nghẽn mạch",
+      "file": "game/audio/voice/vi/WORD_CH2_NGHEN_MACH.ogg",
+      "seconds": 1.351,
+      "lufs": -30.16,
+      "true_peak_db": -8.78,
+      "sha256": "2d8405dc722fbfaeaa5feea47d82b473e712f30bf4ba4a3ed55ff28bd416da39"
+    },
+    {
+      "key": "WORD_CH2_NGUOI_CHET",
+      "who": "corpse",
+      "text": "người chết",
+      "file": "game/audio/voice/vi/WORD_CH2_NGUOI_CHET.ogg",
+      "seconds": 1.41,
+      "lufs": -30.16,
+      "true_peak_db": -9.2,
+      "sha256": "f89fa2a8ac76e497268ce5c5ec4ebc72b841bfa4351d1b7c308f3593c067a580"
+    },
+    {
+      "key": "WORD_CH2_NGUOI_HOC",
+      "who": "corpse",
+      "text": "người học",
+      "file": "game/audio/voice/vi/WORD_CH2_NGUOI_HOC.ogg",
+      "seconds": 1.456,
+      "lufs": -30.16,
+      "true_peak_db": -8.12,
+      "sha256": "1c16a94cf812110404e10a41b41b31af50480458f2a9e2a7337a5a72e1f2c4a3"
+    },
+    {
+      "key": "WORD_CH2_NGUOI_LA",
+      "who": "corpse",
+      "text": "người lạ",
+      "file": "game/audio/voice/vi/WORD_CH2_NGUOI_LA.ogg",
+      "seconds": 1.579,
+      "lufs": -30.15,
+      "true_peak_db": -10.14,
+      "sha256": "2283ffb346f9b401317899adcc9dcf69333e4782e9b529672683b4d1ecdc972a"
+    },
+    {
+      "key": "WORD_CH2_NGUOI_NGOM",
+      "who": "corpse",
+      "text": "người ngợm",
+      "file": "game/audio/voice/vi/WORD_CH2_NGUOI_NGOM.ogg",
+      "seconds": 1.349,
+      "lufs": -30.13,
+      "true_peak_db": -10.42,
+      "sha256": "d652b2d0f1e8244d444560c23ef00ddcf6593f8709f204ec30447756d03a6c54"
+    },
+    {
+      "key": "WORD_CH2_NGUOI_THAN",
+      "who": "corpse",
+      "text": "người thân",
+      "file": "game/audio/voice/vi/WORD_CH2_NGUOI_THAN.ogg",
+      "seconds": 1.433,
+      "lufs": -30.18,
+      "true_peak_db": -8.86,
+      "sha256": "8f672f255295cd9c695bfb0d7f3d7130eddaaaf6803262df6f2eb526043cd2a0"
+    },
+    {
+      "key": "WORD_CH2_NGU_DONG",
+      "who": "corpse",
+      "text": "ngủ đông",
+      "file": "game/audio/voice/vi/WORD_CH2_NGU_DONG.ogg",
+      "seconds": 1.364,
+      "lufs": -30.08,
+      "true_peak_db": -10.4,
+      "sha256": "2d34b1994fea2181171aa36a50daab5b58a4e093025b85fae163c1eda6906488"
+    },
+    {
+      "key": "WORD_CH2_NGU_GAT",
+      "who": "corpse",
+      "text": "ngủ gật",
+      "file": "game/audio/voice/vi/WORD_CH2_NGU_GAT.ogg",
+      "seconds": 1.4,
+      "lufs": -30.1,
+      "true_peak_db": -10.37,
+      "sha256": "ab1df0746a0eb9d4e3a273275110779b968ccaccb19440c7327b813ddde7bc72"
+    },
+    {
+      "key": "WORD_CH2_NHAN_CONG",
+      "who": "corpse",
+      "text": "nhân công",
+      "file": "game/audio/voice/vi/WORD_CH2_NHAN_CONG.ogg",
+      "seconds": 1.444,
+      "lufs": -30.13,
+      "true_peak_db": -9.98,
+      "sha256": "ce32add4ffdf3b52d43bc6d3277ba8a9efdb9710791c6048d2162cb96a432b73"
+    },
+    {
+      "key": "WORD_CH2_NHAN_SAC",
+      "who": "corpse",
+      "text": "nhan sắc",
+      "file": "game/audio/voice/vi/WORD_CH2_NHAN_SAC.ogg",
+      "seconds": 1.43,
+      "lufs": -30.15,
+      "true_peak_db": -8.87,
+      "sha256": "549c4e3e5a21f2255eceeac0a220da5687203b4d866d9e8e7d8188d831946b7d"
+    },
+    {
+      "key": "WORD_CH2_NHAN_VAN",
+      "who": "corpse",
+      "text": "nhân văn",
+      "file": "game/audio/voice/vi/WORD_CH2_NHAN_VAN.ogg",
+      "seconds": 1.403,
+      "lufs": -30.19,
+      "true_peak_db": -8.94,
+      "sha256": "f01d0ef2914ae9c5a373e92eb52d44e0d5b4b61642807c8948a98df1a19afc7f"
+    },
+    {
+      "key": "WORD_CH2_NHAN_VIEN",
+      "who": "corpse",
+      "text": "nhân viên",
+      "file": "game/audio/voice/vi/WORD_CH2_NHAN_VIEN.ogg",
+      "seconds": 1.484,
+      "lufs": -30.16,
+      "true_peak_db": -10.66,
+      "sha256": "6a10909a28a58ed2204657ec07d8b499c8bde18d3a6b90bc8bc35cfe7ef17962"
+    },
+    {
+      "key": "WORD_CH2_NHAT_KY",
+      "who": "corpse",
+      "text": "nhật ký",
+      "file": "game/audio/voice/vi/WORD_CH2_NHAT_KY.ogg",
+      "seconds": 1.564,
+      "lufs": -30.14,
+      "true_peak_db": -10.25,
+      "sha256": "c3505444cbc8c5598a809a03c105e2e4a4c37733ec43f611b1e56ab9726f766e"
+    },
+    {
+      "key": "WORD_CH2_NHAT_THUC",
+      "who": "corpse",
+      "text": "nhật thực",
+      "file": "game/audio/voice/vi/WORD_CH2_NHAT_THUC.ogg",
+      "seconds": 1.347,
+      "lufs": -30.11,
+      "true_peak_db": -5.18,
+      "sha256": "e972b8fa803135f0eeaa4334f98194e8caab5e74c52b8257319cedb827c57bae"
+    },
+    {
+      "key": "WORD_CH2_NHAU_THAI",
+      "who": "corpse",
+      "text": "nhau thai",
+      "file": "game/audio/voice/vi/WORD_CH2_NHAU_THAI.ogg",
+      "seconds": 1.406,
+      "lufs": -30.1,
+      "true_peak_db": -9.7,
+      "sha256": "a178d3fbebee1bb00933c6ef72dfa53f5d4dd328586f443c8184d84ac11720d1"
+    },
+    {
+      "key": "WORD_CH2_NHA_TAM",
+      "who": "corpse",
+      "text": "nhà tắm",
+      "file": "game/audio/voice/vi/WORD_CH2_NHA_TAM.ogg",
+      "seconds": 1.429,
+      "lufs": -30.05,
+      "true_peak_db": -11.43,
+      "sha256": "b6c2741ed866d441b96b2a6b74e2c6c7592883f41f2f3afc738fd7296f032e5b"
+    },
+    {
+      "key": "WORD_CH2_NHEN_DOC",
+      "who": "corpse",
+      "text": "nhện độc",
+      "file": "game/audio/voice/vi/WORD_CH2_NHEN_DOC.ogg",
+      "seconds": 1.346,
+      "lufs": -30.83,
+      "true_peak_db": -10.61,
+      "sha256": "cbfea77fef849045df4528124582e9e3c19488c2c599a68d2c98cf656343815e"
+    },
+    {
+      "key": "WORD_CH2_NHI_DONG",
+      "who": "corpse",
+      "text": "nhi đồng",
+      "file": "game/audio/voice/vi/WORD_CH2_NHI_DONG.ogg",
+      "seconds": 1.448,
+      "lufs": -30.06,
+      "true_peak_db": -12.48,
+      "sha256": "738e3ebec4a22b568c7feb051055f668f817401590066df6f5021ba77312e3f1"
+    },
+    {
+      "key": "WORD_CH2_NHI_PHAN",
+      "who": "corpse",
+      "text": "nhị phân",
+      "file": "game/audio/voice/vi/WORD_CH2_NHI_PHAN.ogg",
+      "seconds": 1.569,
+      "lufs": -30.19,
+      "true_peak_db": -10.16,
+      "sha256": "59bb46c4305bb235a78a38ab951f6a2e6c22a1a83af0d575b3173aed6b929038"
+    },
+    {
+      "key": "WORD_CH2_NUOC_DA",
+      "who": "corpse",
+      "text": "nước đá",
+      "file": "game/audio/voice/vi/WORD_CH2_NUOC_DA.ogg",
+      "seconds": 1.46,
+      "lufs": -30.2,
+      "true_peak_db": -11.92,
+      "sha256": "3bc6c7b61d4484b2ec5f839e32e961a2c44b50dfc46f410bf94b36efd181f570"
+    },
+    {
+      "key": "WORD_CH2_OC_CHO",
+      "who": "corpse",
+      "text": "óc chó",
+      "file": "game/audio/voice/vi/WORD_CH2_OC_CHO.ogg",
+      "seconds": 1.513,
+      "lufs": -30.14,
+      "true_peak_db": -10.85,
+      "sha256": "283997dad718623fa1437de19064e2cce63f258528266d4486e3f4646f13879f"
+    },
+    {
+      "key": "WORD_CH2_PHAN_BAC",
+      "who": "corpse",
+      "text": "phận bạc",
+      "file": "game/audio/voice/vi/WORD_CH2_PHAN_BAC.ogg",
+      "seconds": 1.47,
+      "lufs": -30.19,
+      "true_peak_db": -8.84,
+      "sha256": "8ab76c547776d08c1f45d9cb37e7537ebac56125e01ed757d925601c92ba568f"
+    },
+    {
+      "key": "WORD_CH2_PHAN_DAU",
+      "who": "corpse",
+      "text": "phấn đấu",
+      "file": "game/audio/voice/vi/WORD_CH2_PHAN_DAU.ogg",
+      "seconds": 1.368,
+      "lufs": -30.07,
+      "true_peak_db": -11.18,
+      "sha256": "d5daae3c252fa47586c127a29cfafb4ccebedeccee8b440700c1ef758424e6e7"
+    },
+    {
+      "key": "WORD_CH2_PHAN_KHOI",
+      "who": "corpse",
+      "text": "phấn khởi",
+      "file": "game/audio/voice/vi/WORD_CH2_PHAN_KHOI.ogg",
+      "seconds": 1.557,
+      "lufs": -30.11,
+      "true_peak_db": -9.64,
+      "sha256": "b0b73d74d820b4c5e28bb272610da62cd5880790771ed36351e8d35654a3e8e5"
+    },
+    {
+      "key": "WORD_CH2_PHAN_SU",
+      "who": "corpse",
+      "text": "phận sự",
+      "file": "game/audio/voice/vi/WORD_CH2_PHAN_SU.ogg",
+      "seconds": 1.616,
+      "lufs": -30.1,
+      "true_peak_db": -6.66,
+      "sha256": "2fd03fe5705a2caae66835540a2cf9de62814486f8f98d17d19c1bc7b0ed9ee1"
+    },
+    {
+      "key": "WORD_CH2_PHAN_THUONG",
+      "who": "corpse",
+      "text": "phần thưởng",
+      "file": "game/audio/voice/vi/WORD_CH2_PHAN_THUONG.ogg",
+      "seconds": 1.547,
+      "lufs": -30.06,
+      "true_peak_db": -8.13,
+      "sha256": "9b9634e03a43602cf2bed0bc11a5b8c9c5218e04bbc66895766b77d4db690693"
+    },
+    {
+      "key": "WORD_CH2_PHAN_XAC",
+      "who": "corpse",
+      "text": "phân xác",
+      "file": "game/audio/voice/vi/WORD_CH2_PHAN_XAC.ogg",
+      "seconds": 1.476,
+      "lufs": -30.09,
+      "true_peak_db": -9.53,
+      "sha256": "d78cfaabb7680bec7d5a45a2ccc9b19281d102a8a372bdc2c42a8f174a6039a3"
+    },
+    {
+      "key": "WORD_CH2_PHAT_DEN",
+      "who": "corpse",
+      "text": "phạt đền",
+      "file": "game/audio/voice/vi/WORD_CH2_PHAT_DEN.ogg",
+      "seconds": 1.353,
+      "lufs": -30.21,
+      "true_peak_db": -9.54,
+      "sha256": "25bea6412be58731e37b5fb7cdbb4104d8277c5411f91e5b10dc67f0df3856d4"
+    },
+    {
+      "key": "WORD_CH2_PHI_TON",
+      "who": "corpse",
+      "text": "phí tổn",
+      "file": "game/audio/voice/vi/WORD_CH2_PHI_TON.ogg",
+      "seconds": 1.526,
+      "lufs": -30.1,
+      "true_peak_db": -12.08,
+      "sha256": "c0279bad60b3cd06a53aebdfbebf6c429a1a0b2361896bf42ba68b86b5749723"
+    },
+    {
+      "key": "WORD_CH2_PHONG_NGU",
+      "who": "corpse",
+      "text": "phòng ngủ",
+      "file": "game/audio/voice/vi/WORD_CH2_PHONG_NGU.ogg",
+      "seconds": 1.541,
+      "lufs": -30.05,
+      "true_peak_db": -9.62,
+      "sha256": "4db65979b9d27189977bf4422db7796eea3035a9d57637eebc6b982150368145"
+    },
+    {
+      "key": "WORD_CH2_PHONG_TAM",
+      "who": "corpse",
+      "text": "phòng tắm",
+      "file": "game/audio/voice/vi/WORD_CH2_PHONG_TAM.ogg",
+      "seconds": 1.347,
+      "lufs": -30.12,
+      "true_peak_db": -6.0,
+      "sha256": "39b2f3a1ee5bd1cb5b8fa135233547cad06cf558b5176f472560236a132cd058"
+    },
+    {
+      "key": "WORD_CH2_PHO_XA",
+      "who": "corpse",
+      "text": "phố xá",
+      "file": "game/audio/voice/vi/WORD_CH2_PHO_XA.ogg",
+      "seconds": 1.699,
+      "lufs": -30.16,
+      "true_peak_db": -12.62,
+      "sha256": "af0c28d2d3171f5632fc04864922f9529803e0278cd88b8210a7743b80fcbd7e"
+    },
+    {
+      "key": "WORD_CH2_PHUC_VU",
+      "who": "corpse",
+      "text": "phục vụ",
+      "file": "game/audio/voice/vi/WORD_CH2_PHUC_VU.ogg",
+      "seconds": 1.586,
+      "lufs": -30.15,
+      "true_peak_db": -8.89,
+      "sha256": "d7fc51e843278c65fd39f6bf4c5591124df16e452c5473e47ed7e266e53ba4fb"
+    },
+    {
+      "key": "WORD_CH2_ROI_SAO",
+      "who": "corpse",
+      "text": "rồi sao",
+      "file": "game/audio/voice/vi/WORD_CH2_ROI_SAO.ogg",
+      "seconds": 1.521,
+      "lufs": -30.23,
+      "true_peak_db": -10.05,
+      "sha256": "9cc27f2c5efc745842dacfb0b544bc12cdb612a9eaa2477e5521fc14ed249d00"
+    },
+    {
+      "key": "WORD_CH2_RUA_TAY",
+      "who": "corpse",
+      "text": "rửa tay",
+      "file": "game/audio/voice/vi/WORD_CH2_RUA_TAY.ogg",
+      "seconds": 1.331,
+      "lufs": -30.08,
+      "true_peak_db": -8.67,
+      "sha256": "c6127f785e15c76e1eb0f96462cb0ad13318473886184a8100ebfb6513fdde67"
+    },
+    {
+      "key": "WORD_CH2_SACH_VO",
+      "who": "corpse",
+      "text": "sách vở",
+      "file": "game/audio/voice/vi/WORD_CH2_SACH_VO.ogg",
+      "seconds": 1.646,
+      "lufs": -30.12,
+      "true_peak_db": -9.27,
+      "sha256": "b10ea126fc1057599da8b0bd4fb445f2c0234de4d7a4572caa1c2f71331949ff"
+    },
+    {
+      "key": "WORD_CH2_SAC_BEN",
+      "who": "corpse",
+      "text": "sắc bén",
+      "file": "game/audio/voice/vi/WORD_CH2_SAC_BEN.ogg",
+      "seconds": 1.408,
+      "lufs": -30.12,
+      "true_peak_db": -8.79,
+      "sha256": "a7171cd0ce2528d9108cdd5e658d7a260aae46d5900d8799f153e25d40719563"
+    },
+    {
+      "key": "WORD_CH2_SINH_HOAT",
+      "who": "corpse",
+      "text": "sinh hoạt",
+      "file": "game/audio/voice/vi/WORD_CH2_SINH_HOAT.ogg",
+      "seconds": 1.376,
+      "lufs": -30.11,
+      "true_peak_db": -7.98,
+      "sha256": "375487dd37a9fa778e2caafa72f4fd496ebf3c578b4581ffc1fe035b21c8ac33"
+    },
+    {
+      "key": "WORD_CH2_SINH_HOC",
+      "who": "corpse",
+      "text": "sinh học",
+      "file": "game/audio/voice/vi/WORD_CH2_SINH_HOC.ogg",
+      "seconds": 1.425,
+      "lufs": -30.08,
+      "true_peak_db": -8.59,
+      "sha256": "21915d1463c0405f9369c124a2a38b75fa289d2992b54f44368ad142523f45cf"
+    },
+    {
+      "key": "WORD_CH2_SINH_LE",
+      "who": "corpse",
+      "text": "sính lễ",
+      "file": "game/audio/voice/vi/WORD_CH2_SINH_LE.ogg",
+      "seconds": 1.545,
+      "lufs": -30.21,
+      "true_peak_db": -12.02,
+      "sha256": "7a20531a10a9d958d5489d254a93c2fa1cc4dc4d21247807583b83903858dbf4"
+    },
+    {
+      "key": "WORD_CH2_SINH_MANG",
+      "who": "corpse",
+      "text": "sinh mạng",
+      "file": "game/audio/voice/vi/WORD_CH2_SINH_MANG.ogg",
+      "seconds": 1.53,
+      "lufs": -30.18,
+      "true_peak_db": -8.45,
+      "sha256": "dc681b8e0d1f1a4a0b12c6fb76eb077c8d050c46befcb70351111fcd3a76cd2f"
+    },
+    {
+      "key": "WORD_CH2_SINH_NHAT",
+      "who": "corpse",
+      "text": "sinh nhật",
+      "file": "game/audio/voice/vi/WORD_CH2_SINH_NHAT.ogg",
+      "seconds": 1.404,
+      "lufs": -30.14,
+      "true_peak_db": -7.85,
+      "sha256": "03aa0c369f18fa9e1003eaa4ce88c4c2e301b38776ff157642866c30feaafd62"
+    },
+    {
+      "key": "WORD_CH2_SINH_TU",
+      "who": "corpse",
+      "text": "sinh tử",
+      "file": "game/audio/voice/vi/WORD_CH2_SINH_TU.ogg",
+      "seconds": 1.513,
+      "lufs": -30.06,
+      "true_peak_db": -10.12,
+      "sha256": "408426d59702cfaf0417a1764e36e8d8630c3517d62668c710c921984831237a"
+    },
+    {
+      "key": "WORD_CH2_SINH_VIEN",
+      "who": "corpse",
+      "text": "sinh viên",
+      "file": "game/audio/voice/vi/WORD_CH2_SINH_VIEN.ogg",
+      "seconds": 1.43,
+      "lufs": -30.09,
+      "true_peak_db": -9.63,
+      "sha256": "a174ddbe2c1b0db15bfb5c120c12cd0246329e61194cffa1c1046e4f7286db5a"
+    },
+    {
+      "key": "WORD_CH2_SI_TU",
+      "who": "corpse",
+      "text": "sĩ tử",
+      "file": "game/audio/voice/vi/WORD_CH2_SI_TU.ogg",
+      "seconds": 1.648,
+      "lufs": -30.06,
+      "true_peak_db": -12.43,
+      "sha256": "e2eaf0807e4dc0b791f318f781cae4a17e98bb3c4c900108f2ed9853bf4eaf2f"
+    },
+    {
+      "key": "WORD_CH2_SONG_CHET",
+      "who": "corpse",
+      "text": "sống chết",
+      "file": "game/audio/voice/vi/WORD_CH2_SONG_CHET.ogg",
+      "seconds": 1.429,
+      "lufs": -30.24,
+      "true_peak_db": -9.55,
+      "sha256": "e1aa10352ca18fb173e68ee313a38272a86821d3d6f08414bc5a0c3aabc20f57"
+    },
+    {
+      "key": "WORD_CH2_SONG_CON",
+      "who": "corpse",
+      "text": "sống còn",
+      "file": "game/audio/voice/vi/WORD_CH2_SONG_CON.ogg",
+      "seconds": 1.42,
+      "lufs": -30.17,
+      "true_peak_db": -6.44,
+      "sha256": "beb5a300548c485354903e5aeadbd47426fca49726f5ab094754291a14c4e2c6"
+    },
+    {
+      "key": "WORD_CH2_SONG_SOT",
+      "who": "corpse",
+      "text": "sống sót",
+      "file": "game/audio/voice/vi/WORD_CH2_SONG_SOT.ogg",
+      "seconds": 1.426,
+      "lufs": -30.11,
+      "true_peak_db": -8.25,
+      "sha256": "525ee740f5ad45ea9533a0a4b6bec11f7ae8c1b11c2ebeb1160af685050cb351"
+    },
+    {
+      "key": "WORD_CH2_SO_CUU",
+      "who": "corpse",
+      "text": "sơ cứu",
+      "file": "game/audio/voice/vi/WORD_CH2_SO_CUU.ogg",
+      "seconds": 1.53,
+      "lufs": -30.11,
+      "true_peak_db": -13.85,
+      "sha256": "ef4f85a3c5865f84789557dcc23014021e247c4b27639314992ce93d063ac9a9"
+    },
+    {
+      "key": "WORD_CH2_SO_HOC",
+      "who": "corpse",
+      "text": "số học",
+      "file": "game/audio/voice/vi/WORD_CH2_SO_HOC.ogg",
+      "seconds": 1.555,
+      "lufs": -30.14,
+      "true_peak_db": -10.85,
+      "sha256": "4a79c897f2f2a48ccc86043210efd6554d50ed342edace97ac9218ea004cd023"
+    },
+    {
+      "key": "WORD_CH2_SO_PHAN",
+      "who": "corpse",
+      "text": "số phận",
+      "file": "game/audio/voice/vi/WORD_CH2_SO_PHAN.ogg",
+      "seconds": 1.567,
+      "lufs": -30.15,
+      "true_peak_db": -10.6,
+      "sha256": "6c2377554a7b5ea947cb02b5b3d87d8b0f669dfff6e48258367715e1cd6497a5"
+    },
+    {
+      "key": "WORD_CH2_SUC_LUC",
+      "who": "corpse",
+      "text": "sức lực",
+      "file": "game/audio/voice/vi/WORD_CH2_SUC_LUC.ogg",
+      "seconds": 1.33,
+      "lufs": -30.1,
+      "true_peak_db": -11.04,
+      "sha256": "4f1c0b2941be7d4558553925c1e10db2aab7f53bb672fdac53282de42ba2052a"
+    },
+    {
+      "key": "WORD_CH2_SUNG_NUOC",
+      "who": "corpse",
+      "text": "sũng nước",
+      "file": "game/audio/voice/vi/WORD_CH2_SUNG_NUOC.ogg",
+      "seconds": 1.43,
+      "lufs": -30.13,
+      "true_peak_db": -8.01,
+      "sha256": "5f0a25fff1f2e24ccda7eab4d8b0353084ebcdc2c19d62f49210ebad823b0d72"
+    },
+    {
+      "key": "WORD_CH2_SU_SONG",
+      "who": "corpse",
+      "text": "sự sống",
+      "file": "game/audio/voice/vi/WORD_CH2_SU_SONG.ogg",
+      "seconds": 1.548,
+      "lufs": -30.16,
+      "true_peak_db": -8.31,
+      "sha256": "87dede120bf239ba67694301a26db20304aba92c2ed619f80a6471281500ca28"
+    },
+    {
+      "key": "WORD_CH2_TAC_NGHEN",
+      "who": "corpse",
+      "text": "tắc nghẽn",
+      "file": "game/audio/voice/vi/WORD_CH2_TAC_NGHEN.ogg",
+      "seconds": 1.273,
+      "lufs": -30.12,
+      "true_peak_db": -9.77,
+      "sha256": "cc244cd43fa711088942404b78b70db17ab8728fcb1f59a696fc651f51ad0d09"
+    },
+    {
+      "key": "WORD_CH2_TAM_MAU",
+      "who": "corpse",
+      "text": "tắm máu",
+      "file": "game/audio/voice/vi/WORD_CH2_TAM_MAU.ogg",
+      "seconds": 1.23,
+      "lufs": -30.1,
+      "true_peak_db": -8.13,
+      "sha256": "4450bb2ee5abdd5594693ea4c2e21ae6ee289539cd6380b9308b9813d25c6ce7"
+    },
+    {
+      "key": "WORD_CH2_TAM_RUA",
+      "who": "corpse",
+      "text": "tắm rửa",
+      "file": "game/audio/voice/vi/WORD_CH2_TAM_RUA.ogg",
+      "seconds": 1.413,
+      "lufs": -30.11,
+      "true_peak_db": -6.58,
+      "sha256": "7fd2e2fe848dfe5a7682f753a8448726c966eede8ad6c265a0a5ba40695ec713"
+    },
+    {
+      "key": "WORD_CH2_TAM_TOI",
+      "who": "corpse",
+      "text": "tăm tối",
+      "file": "game/audio/voice/vi/WORD_CH2_TAM_TOI.ogg",
+      "seconds": 1.342,
+      "lufs": -30.04,
+      "true_peak_db": -8.02,
+      "sha256": "70bdb17dada03f93abc1b2df5a7fbd475779821ef5b88020fab85c0731ec4f00"
+    },
+    {
+      "key": "WORD_CH2_TAO_BAO",
+      "who": "corpse",
+      "text": "táo bạo",
+      "file": "game/audio/voice/vi/WORD_CH2_TAO_BAO.ogg",
+      "seconds": 1.404,
+      "lufs": -30.18,
+      "true_peak_db": -11.19,
+      "sha256": "a4bd93e2902fcd1b3bf6ec2c882ad8c204af6bb8c58845fd284f84d9339abdef"
+    },
+    {
+      "key": "WORD_CH2_TAP_THE",
+      "who": "corpse",
+      "text": "tập thể",
+      "file": "game/audio/voice/vi/WORD_CH2_TAP_THE.ogg",
+      "seconds": 1.471,
+      "lufs": -30.22,
+      "true_peak_db": -11.45,
+      "sha256": "93e280f8ce4cb6cb32724952fcd315adbeff80de2f39a860f18465bcd1e4baef"
+    },
+    {
+      "key": "WORD_CH2_TAP_TRUNG",
+      "who": "corpse",
+      "text": "tập trung",
+      "file": "game/audio/voice/vi/WORD_CH2_TAP_TRUNG.ogg",
+      "seconds": 1.342,
+      "lufs": -30.09,
+      "true_peak_db": -6.34,
+      "sha256": "7c193409f0382a346e2ddfe05397e4447f94d8e444ec5a40de00cb1da3b45352"
+    },
+    {
+      "key": "WORD_CH2_TAY_CHAN",
+      "who": "corpse",
+      "text": "tay chân",
+      "file": "game/audio/voice/vi/WORD_CH2_TAY_CHAN.ogg",
+      "seconds": 1.356,
+      "lufs": -30.16,
+      "true_peak_db": -9.49,
+      "sha256": "8e08305dcb54a707b6f68eb46d05be8363f9333fbe3350021126d07735e3d10c"
+    },
+    {
+      "key": "WORD_CH2_TEN_TUOI",
+      "who": "corpse",
+      "text": "tên tuổi",
+      "file": "game/audio/voice/vi/WORD_CH2_TEN_TUOI.ogg",
+      "seconds": 1.497,
+      "lufs": -30.09,
+      "true_peak_db": -10.29,
+      "sha256": "b98e6aeaf8220f4a0534dac9252e332db344816fac1b71489cad00ef04f2f447"
+    },
+    {
+      "key": "WORD_CH2_TE_BAO",
+      "who": "corpse",
+      "text": "tế bào",
+      "file": "game/audio/voice/vi/WORD_CH2_TE_BAO.ogg",
+      "seconds": 1.51,
+      "lufs": -30.19,
+      "true_peak_db": -12.35,
+      "sha256": "bf9bcaa29b3c1a16cda2f4cc12d75691073fd47fcc7bb2fc1f2b7f475e869b4d"
+    },
+    {
+      "key": "WORD_CH2_TE_NHI",
+      "who": "corpse",
+      "text": "tế nhị",
+      "file": "game/audio/voice/vi/WORD_CH2_TE_NHI.ogg",
+      "seconds": 1.663,
+      "lufs": -30.19,
+      "true_peak_db": -10.59,
+      "sha256": "5ab96cece2b8a37491c0efb6b3ddcefd16ca341f005e47f28bed8ba5f3700c14"
+    },
+    {
+      "key": "WORD_CH2_THAI_NHI",
+      "who": "corpse",
+      "text": "thai nhi",
+      "file": "game/audio/voice/vi/WORD_CH2_THAI_NHI.ogg",
+      "seconds": 1.664,
+      "lufs": -30.11,
+      "true_peak_db": -9.36,
+      "sha256": "2e68fb02b976cff8a25827fd1ed6dcb217e6407d7c72126dfc7c9befaaceab6c"
+    },
+    {
+      "key": "WORD_CH2_THANG_MAY",
+      "who": "corpse",
+      "text": "thang máy",
+      "file": "game/audio/voice/vi/WORD_CH2_THANG_MAY.ogg",
+      "seconds": 1.473,
+      "lufs": -30.17,
+      "true_peak_db": -8.06,
+      "sha256": "8c5936a917493a3516e84966b5be5b3e1920777b03e1ab1bfe8a3c18dc205c38"
+    },
+    {
+      "key": "WORD_CH2_THANH_PHO",
+      "who": "corpse",
+      "text": "thành phố",
+      "file": "game/audio/voice/vi/WORD_CH2_THANH_PHO.ogg",
+      "seconds": 1.646,
+      "lufs": -30.11,
+      "true_peak_db": -10.26,
+      "sha256": "802cb5ef8e9deccfafe49094d3647d021744ef376f7c14b0b61d230b2819cdee"
+    },
+    {
+      "key": "WORD_CH2_THAN_CHET",
+      "who": "corpse",
+      "text": "thần chết",
+      "file": "game/audio/voice/vi/WORD_CH2_THAN_CHET.ogg",
+      "seconds": 1.403,
+      "lufs": -30.28,
+      "true_peak_db": -10.19,
+      "sha256": "c716f2723e02224f2fd4ffb7fd9e0272815de60ed927c717a1fc020c9807a722"
+    },
+    {
+      "key": "WORD_CH2_THAN_KINH",
+      "who": "corpse",
+      "text": "thần kinh",
+      "file": "game/audio/voice/vi/WORD_CH2_THAN_KINH.ogg",
+      "seconds": 1.383,
+      "lufs": -30.13,
+      "true_peak_db": -6.94,
+      "sha256": "2e746a6890253e9947c551b65864dcdfb11217150ae153c280e5f6a01f2f64af"
+    },
+    {
+      "key": "WORD_CH2_THAN_NHAN",
+      "who": "corpse",
+      "text": "thân nhân",
+      "file": "game/audio/voice/vi/WORD_CH2_THAN_NHAN.ogg",
+      "seconds": 1.467,
+      "lufs": -30.18,
+      "true_peak_db": -10.32,
+      "sha256": "e59bb20941c55b39cafa97a203eec81104215c89a487e19b0f4d0d0a47432ccf"
+    },
+    {
+      "key": "WORD_CH2_THAN_PHAN",
+      "who": "corpse",
+      "text": "thân phận",
+      "file": "game/audio/voice/vi/WORD_CH2_THAN_PHAN.ogg",
+      "seconds": 1.453,
+      "lufs": -30.11,
+      "true_peak_db": -9.18,
+      "sha256": "b42cbdb51f91f3761c14b83ce521e605961d9ef8afbef7d84167ce855ef4e000"
+    },
+    {
+      "key": "WORD_CH2_THAN_THANH",
+      "who": "corpse",
+      "text": "thần thánh",
+      "file": "game/audio/voice/vi/WORD_CH2_THAN_THANH.ogg",
+      "seconds": 1.464,
+      "lufs": -30.11,
+      "true_peak_db": -8.29,
+      "sha256": "754ac2c13969247796be63717cfd98864d7d8e75364875ac35cf7aef93e81249"
+    },
+    {
+      "key": "WORD_CH2_THAO_THUC",
+      "who": "corpse",
+      "text": "thao thức",
+      "file": "game/audio/voice/vi/WORD_CH2_THAO_THUC.ogg",
+      "seconds": 1.36,
+      "lufs": -30.17,
+      "true_peak_db": -6.91,
+      "sha256": "7d5a81b0b6874a6dea7463c9daee4ca9cd36a90f226d5736633e73fbd1522366"
+    },
+    {
+      "key": "WORD_CH2_THE_THAO",
+      "who": "corpse",
+      "text": "thể thao",
+      "file": "game/audio/voice/vi/WORD_CH2_THE_THAO.ogg",
+      "seconds": 1.469,
+      "lufs": -30.29,
+      "true_peak_db": -12.08,
+      "sha256": "8ec3e2478f6031bb13515d2f7e136f1f748a364141db6c6a3321bebdb3f804b9"
+    },
+    {
+      "key": "WORD_CH2_THIT_NGUOI",
+      "who": "corpse",
+      "text": "thịt người",
+      "file": "game/audio/voice/vi/WORD_CH2_THIT_NGUOI.ogg",
+      "seconds": 1.398,
+      "lufs": -30.08,
+      "true_peak_db": -10.44,
+      "sha256": "2445fa427e55f10fab25b3213b54a22e64536865d24d40cf2fe6b1108bdb7887"
+    },
+    {
+      "key": "WORD_CH2_THI_CU",
+      "who": "corpse",
+      "text": "thi cử",
+      "file": "game/audio/voice/vi/WORD_CH2_THI_CU.ogg",
+      "seconds": 1.624,
+      "lufs": -30.09,
+      "true_peak_db": -12.93,
+      "sha256": "eee7af10e0803671c26880a10d84bb1e0f17957245a35c648eb5c651b9a54107"
+    },
+    {
+      "key": "WORD_CH2_THI_DAU",
+      "who": "corpse",
+      "text": "thi đấu",
+      "file": "game/audio/voice/vi/WORD_CH2_THI_DAU.ogg",
+      "seconds": 1.413,
+      "lufs": -30.11,
+      "true_peak_db": -11.59,
+      "sha256": "58f08fdf66ccb77a90ecdecb292c95c128e2a6b3d86fa7441de186033ea00493"
+    },
+    {
+      "key": "WORD_CH2_THOAI_BAN",
+      "who": "corpse",
+      "text": "thoại bản",
+      "file": "game/audio/voice/vi/WORD_CH2_THOAI_BAN.ogg",
+      "seconds": 1.583,
+      "lufs": -30.18,
+      "true_peak_db": -10.46,
+      "sha256": "b866afed9a072153505e4cf822e212893c9c396efb6a367b5e213ba0f1cd6df7"
+    },
+    {
+      "key": "WORD_CH2_THOM_THO",
+      "who": "corpse",
+      "text": "thơm tho",
+      "file": "game/audio/voice/vi/WORD_CH2_THOM_THO.ogg",
+      "seconds": 1.515,
+      "lufs": -30.17,
+      "true_peak_db": -11.93,
+      "sha256": "e7eb79f28d1288b24502551f48539930411ae36d1c5c4970e76bc62976845f5d"
+    },
+    {
+      "key": "WORD_CH2_THO_CA",
+      "who": "corpse",
+      "text": "thơ ca",
+      "file": "game/audio/voice/vi/WORD_CH2_THO_CA.ogg",
+      "seconds": 1.621,
+      "lufs": -30.56,
+      "true_peak_db": -12.49,
+      "sha256": "c73a9ae040c6d93726a74c2b7032f96ad9f569f179c1a89c0a152d967ddaaccf"
+    },
+    {
+      "key": "WORD_CH2_THUC_HANH",
+      "who": "corpse",
+      "text": "thực hành",
+      "file": "game/audio/voice/vi/WORD_CH2_THUC_HANH.ogg",
+      "seconds": 1.461,
+      "lufs": -30.23,
+      "true_peak_db": -7.78,
+      "sha256": "eb6b41a62ee9fe85e736dda110d596ba69ae1605e8090ddf3015b26e6bc036d0"
+    },
+    {
+      "key": "WORD_CH2_THUC_TE",
+      "who": "corpse",
+      "text": "thực tế",
+      "file": "game/audio/voice/vi/WORD_CH2_THUC_TE.ogg",
+      "seconds": 1.496,
+      "lufs": -30.23,
+      "true_peak_db": -12.85,
+      "sha256": "a8152b017fbd3b22a550def8c963ab9d0de65e7fd68ed2ec07cbf7bd225a530c"
+    },
+    {
+      "key": "WORD_CH2_THUC_TINH",
+      "who": "corpse",
+      "text": "thức tỉnh",
+      "file": "game/audio/voice/vi/WORD_CH2_THUC_TINH.ogg",
+      "seconds": 1.295,
+      "lufs": -30.17,
+      "true_peak_db": -8.05,
+      "sha256": "32386661bfa6a0a9a3ae4dc0b0090b84b8a49a606dd4673daa36e2776c3df90d"
+    },
+    {
+      "key": "WORD_CH2_THUOC_DOC",
+      "who": "corpse",
+      "text": "thuốc độc",
+      "file": "game/audio/voice/vi/WORD_CH2_THUOC_DOC.ogg",
+      "seconds": 1.338,
+      "lufs": -30.12,
+      "true_peak_db": -7.46,
+      "sha256": "dec9207fe02b2524bbc678c27a4b124e16ebc392d4979cdc11ce8c1b6b0750b1"
+    },
+    {
+      "key": "WORD_CH2_THUOC_NGU",
+      "who": "corpse",
+      "text": "thuốc ngủ",
+      "file": "game/audio/voice/vi/WORD_CH2_THUOC_NGU.ogg",
+      "seconds": 1.508,
+      "lufs": -30.12,
+      "true_peak_db": -10.44,
+      "sha256": "f341f7548c5532bc9e7f11dcf43d0dc4f356b40624e20c890736ade198c4c3f4"
+    },
+    {
+      "key": "WORD_CH2_THUONG_NHAN",
+      "who": "corpse",
+      "text": "thương nhân",
+      "file": "game/audio/voice/vi/WORD_CH2_THUONG_NHAN.ogg",
+      "seconds": 1.535,
+      "lufs": -30.17,
+      "true_peak_db": -9.36,
+      "sha256": "b969ca516d32e2d6466ee57625adb32e2f6448d6d9fcb3ec599016aecfe3aa38"
+    },
+    {
+      "key": "WORD_CH2_THUONG_TICH",
+      "who": "corpse",
+      "text": "thương tích",
+      "file": "game/audio/voice/vi/WORD_CH2_THUONG_TICH.ogg",
+      "seconds": 1.346,
+      "lufs": -30.17,
+      "true_peak_db": -7.59,
+      "sha256": "c437f6da99b3900bcae4552cb12bafaef82d88f0075ddf7c2829619742358c1f"
+    },
+    {
+      "key": "WORD_CH2_TICH_TAC",
+      "who": "corpse",
+      "text": "tích tắc",
+      "file": "game/audio/voice/vi/WORD_CH2_TICH_TAC.ogg",
+      "seconds": 1.201,
+      "lufs": -30.01,
+      "true_peak_db": -7.36,
+      "sha256": "783c6b5aba3b7b210fa577aba33089c8b9efb4180cbf29cf221407d4bb650a03"
+    },
+    {
+      "key": "WORD_CH2_TIEN_TRI",
+      "who": "corpse",
+      "text": "tiên tri",
+      "file": "game/audio/voice/vi/WORD_CH2_TIEN_TRI.ogg",
+      "seconds": 1.569,
+      "lufs": -30.1,
+      "true_peak_db": -11.07,
+      "sha256": "1bdef29aa86038fa19059921a13374fba1d6d17e5180bbf9f08b7cbcb1496f04"
+    },
+    {
+      "key": "WORD_CH2_TINH_TAO",
+      "who": "corpse",
+      "text": "tỉnh táo",
+      "file": "game/audio/voice/vi/WORD_CH2_TINH_TAO.ogg",
+      "seconds": 1.307,
+      "lufs": -30.08,
+      "true_peak_db": -10.71,
+      "sha256": "0809bff4b614ef430f9e36e7f2d9a0e94542ff0c49a8ffac150342a4ac26fa77"
+    },
+    {
+      "key": "WORD_CH2_TOI_AC",
+      "who": "corpse",
+      "text": "tội ác",
+      "file": "game/audio/voice/vi/WORD_CH2_TOI_AC.ogg",
+      "seconds": 1.335,
+      "lufs": -30.15,
+      "true_peak_db": -9.77,
+      "sha256": "2ea1a197c3d1db337dd447d37c8aea0eb0817fa09df67acce6f918f26b0541d6"
+    },
+    {
+      "key": "WORD_CH2_TOI_MAT",
+      "who": "corpse",
+      "text": "tối mật",
+      "file": "game/audio/voice/vi/WORD_CH2_TOI_MAT.ogg",
+      "seconds": 1.386,
+      "lufs": -30.1,
+      "true_peak_db": -8.96,
+      "sha256": "1b9f6ad37820a6d3efb2bb2e22a145f9d2a2201d70155ecc97f2b219a3220d33"
+    },
+    {
+      "key": "WORD_CH2_TOI_TAM",
+      "who": "corpse",
+      "text": "tối tăm",
+      "file": "game/audio/voice/vi/WORD_CH2_TOI_TAM.ogg",
+      "seconds": 1.321,
+      "lufs": -30.12,
+      "true_peak_db": -9.76,
+      "sha256": "d96c919bcf49cc0f1a45184867b02def9c69a73fe68406dfde9da76bb163455e"
+    },
+    {
+      "key": "WORD_CH2_TON_THUONG",
+      "who": "corpse",
+      "text": "tổn thương",
+      "file": "game/audio/voice/vi/WORD_CH2_TON_THUONG.ogg",
+      "seconds": 1.466,
+      "lufs": -30.06,
+      "true_peak_db": -7.12,
+      "sha256": "651e7cb54eecd075d13c793747c03b4317647ab401a350c162cfd42fc55dd436"
+    },
+    {
+      "key": "WORD_CH2_TRANG_PHUC",
+      "who": "corpse",
+      "text": "trang phục",
+      "file": "game/audio/voice/vi/WORD_CH2_TRANG_PHUC.ogg",
+      "seconds": 1.498,
+      "lufs": -30.19,
+      "true_peak_db": -7.96,
+      "sha256": "9b2a83f4577a5a6395a98cd6231933baa6e37afbf4abfe83be929f6716af894e"
+    },
+    {
+      "key": "WORD_CH2_TRANH_CAI",
+      "who": "corpse",
+      "text": "tranh cãi",
+      "file": "game/audio/voice/vi/WORD_CH2_TRANH_CAI.ogg",
+      "seconds": 1.523,
+      "lufs": -30.07,
+      "true_peak_db": -10.0,
+      "sha256": "8a5e4426c046a9b84f95f59f70a3e67504f23c6259dd8f0702847b1613f45602"
+    },
+    {
+      "key": "WORD_CH2_TRANH_LUAN",
+      "who": "corpse",
+      "text": "tranh luận",
+      "file": "game/audio/voice/vi/WORD_CH2_TRANH_LUAN.ogg",
+      "seconds": 1.556,
+      "lufs": -30.14,
+      "true_peak_db": -8.35,
+      "sha256": "69a2d02153b46554a78af3b4017b22905a83d3b724eb98e8813480e7305b09c7"
+    },
+    {
+      "key": "WORD_CH2_TRAN_DAU",
+      "who": "corpse",
+      "text": "trận đấu",
+      "file": "game/audio/voice/vi/WORD_CH2_TRAN_DAU.ogg",
+      "seconds": 1.369,
+      "lufs": -30.16,
+      "true_peak_db": -10.62,
+      "sha256": "b46da7626b06dec361d9a753aeb87fc8bc3df835e5a655b9a4b2a292e7151609"
+    },
+    {
+      "key": "WORD_CH2_TRINH_DIEN",
+      "who": "corpse",
+      "text": "trình diện",
+      "file": "game/audio/voice/vi/WORD_CH2_TRINH_DIEN.ogg",
+      "seconds": 1.435,
+      "lufs": -30.07,
+      "true_peak_db": -9.04,
+      "sha256": "611c27c253fd004bedf2bf57d4a34f4828f0790535e83f98d11385169b0f5052"
+    },
+    {
+      "key": "WORD_CH2_TRI_THUC",
+      "who": "corpse",
+      "text": "tri thức",
+      "file": "game/audio/voice/vi/WORD_CH2_TRI_THUC.ogg",
+      "seconds": 1.464,
+      "lufs": -30.08,
+      "true_peak_db": -12.87,
+      "sha256": "149b6b4ab4246cb8985c1a40db01d2044f8799bd6e26c53cb1c1cb5e396d76f0"
+    },
+    {
+      "key": "WORD_CH2_TRO_CHOI",
+      "who": "corpse",
+      "text": "trò chơi",
+      "file": "game/audio/voice/vi/WORD_CH2_TRO_CHOI.ogg",
+      "seconds": 1.591,
+      "lufs": -29.71,
+      "true_peak_db": -12.49,
+      "sha256": "cca2a74e7753465fca3e3f5c5be32ccd9fe062ceb4218742e44210c49830b2ed"
+    },
+    {
+      "key": "WORD_CH2_TRO_DUA",
+      "who": "corpse",
+      "text": "trò đùa",
+      "file": "game/audio/voice/vi/WORD_CH2_TRO_DUA.ogg",
+      "seconds": 1.561,
+      "lufs": -30.14,
+      "true_peak_db": -11.26,
+      "sha256": "77ba72b80994fdd499fbb129b82c10d9753e41f9341f3619e9fb4deddc5221df"
+    },
+    {
+      "key": "WORD_CH2_TRUC_DEM",
+      "who": "corpse",
+      "text": "trực đêm",
+      "file": "game/audio/voice/vi/WORD_CH2_TRUC_DEM.ogg",
+      "seconds": 1.34,
+      "lufs": -30.08,
+      "true_peak_db": -8.12,
+      "sha256": "081cbe647fa313dc2dfbee80c1e1a2172c4829f4332b933a9d3516eb32ee5d86"
+    },
+    {
+      "key": "WORD_CH2_TRUNG_PHAT",
+      "who": "corpse",
+      "text": "trừng phạt",
+      "file": "game/audio/voice/vi/WORD_CH2_TRUNG_PHAT.ogg",
+      "seconds": 1.452,
+      "lufs": -30.23,
+      "true_peak_db": -7.95,
+      "sha256": "9cf3246a441285cbafd0aecc50f95b21c410df137b1f0fbe228acbf0c92ce142"
+    },
+    {
+      "key": "WORD_CH2_TRUNG_THANH",
+      "who": "corpse",
+      "text": "trung thành",
+      "file": "game/audio/voice/vi/WORD_CH2_TRUNG_THANH.ogg",
+      "seconds": 1.463,
+      "lufs": -30.08,
+      "true_peak_db": -6.54,
+      "sha256": "a65d99c21dbdefe4be0f2d1eeccd906a7a6ea86c0e36519b321d7c7b548b3ce0"
+    },
+    {
+      "key": "WORD_CH2_TRUONG_HOC",
+      "who": "corpse",
+      "text": "trường học",
+      "file": "game/audio/voice/vi/WORD_CH2_TRUONG_HOC.ogg",
+      "seconds": 1.547,
+      "lufs": -30.18,
+      "true_peak_db": -7.77,
+      "sha256": "23145d395fffb735c08981d6c46f3950ccf8ea3d142769ad921b2e0af2dfda8f"
+    },
+    {
+      "key": "WORD_CH2_TUC_TRUC",
+      "who": "corpse",
+      "text": "túc trực",
+      "file": "game/audio/voice/vi/WORD_CH2_TUC_TRUC.ogg",
+      "seconds": 1.29,
+      "lufs": -30.1,
+      "true_peak_db": -3.54,
+      "sha256": "6c1574b79b6f5f16cb7038632011a3108e28f65e8852b6a4c6eb0c3f5ec9e100"
+    },
+    {
+      "key": "WORD_CH2_TUI_XACH",
+      "who": "corpse",
+      "text": "túi xách",
+      "file": "game/audio/voice/vi/WORD_CH2_TUI_XACH.ogg",
+      "seconds": 1.465,
+      "lufs": -30.2,
+      "true_peak_db": -9.26,
+      "sha256": "68cfa4f6217887831196a7ec0d5dd9cbf340d166aa607f26f284aaf5e2f6dac5"
+    },
+    {
+      "key": "WORD_CH2_TUOI_THO",
+      "who": "corpse",
+      "text": "tuổi thơ",
+      "file": "game/audio/voice/vi/WORD_CH2_TUOI_THO.ogg",
+      "seconds": 1.614,
+      "lufs": -30.05,
+      "true_peak_db": -9.7,
+      "sha256": "99e9239781048e996320adbb93d1a192f64069899d6b8a464c341c05557fe3a0"
+    },
+    {
+      "key": "WORD_CH2_TU_HINH",
+      "who": "corpse",
+      "text": "tử hình",
+      "file": "game/audio/voice/vi/WORD_CH2_TU_HINH.ogg",
+      "seconds": 1.384,
+      "lufs": -30.1,
+      "true_peak_db": -11.01,
+      "sha256": "35b89e25b7edb39df6022f12e0121013a72cb1ce6054b9e2f652af48b76e081c"
+    },
+    {
+      "key": "WORD_CH2_TU_TE",
+      "who": "corpse",
+      "text": "tử tế",
+      "file": "game/audio/voice/vi/WORD_CH2_TU_TE.ogg",
+      "seconds": 1.58,
+      "lufs": -30.22,
+      "true_peak_db": -12.06,
+      "sha256": "cf54328e1c8157e425b96cbee244c496793a64f9cc2702459fcb4204c74aba0f"
+    },
+    {
+      "key": "WORD_CH2_TU_THAN",
+      "who": "corpse",
+      "text": "tử thần",
+      "file": "game/audio/voice/vi/WORD_CH2_TU_THAN.ogg",
+      "seconds": 1.467,
+      "lufs": -30.11,
+      "true_peak_db": -9.47,
+      "sha256": "0637867d6618179808e366d56fd13e2125e829f45f8ba13ed39511db721eba29"
+    },
+    {
+      "key": "WORD_CH2_UC_CHE",
+      "who": "corpse",
+      "text": "ức chế",
+      "file": "game/audio/voice/vi/WORD_CH2_UC_CHE.ogg",
+      "seconds": 1.427,
+      "lufs": -30.27,
+      "true_peak_db": -12.92,
+      "sha256": "4f0ef4a5c50c7db7cd39bace76bb51d936ba9a79e3b424f5a1857b8d183bc9ff"
+    },
+    {
+      "key": "WORD_CH2_UOT_SUNG",
+      "who": "corpse",
+      "text": "ướt sũng",
+      "file": "game/audio/voice/vi/WORD_CH2_UOT_SUNG.ogg",
+      "seconds": 1.279,
+      "lufs": -30.15,
+      "true_peak_db": -6.72,
+      "sha256": "d352d330005005f26bfa20f26ac3b50b923cc0990946ebe54eed962cccd2add3"
+    },
+    {
+      "key": "WORD_CH2_VAN_BAN",
+      "who": "corpse",
+      "text": "văn bản",
+      "file": "game/audio/voice/vi/WORD_CH2_VAN_BAN.ogg",
+      "seconds": 1.41,
+      "lufs": -30.19,
+      "true_peak_db": -9.9,
+      "sha256": "d7217d294f3aab083515b88deef85082f14a35a104e946f78382c4e6627a2501"
+    },
+    {
+      "key": "WORD_CH2_VAN_CON",
+      "who": "corpse",
+      "text": "vẫn còn",
+      "file": "game/audio/voice/vi/WORD_CH2_VAN_CON.ogg",
+      "seconds": 1.337,
+      "lufs": -30.16,
+      "true_peak_db": -8.51,
+      "sha256": "745e777211107d80ee278d06668abf55e945e1e6b84aaee6549bdec06302cd21"
+    },
+    {
+      "key": "WORD_CH2_VAN_HOA",
+      "who": "corpse",
+      "text": "văn hóa",
+      "file": "game/audio/voice/vi/WORD_CH2_VAN_HOA.ogg",
+      "seconds": 1.527,
+      "lufs": -30.19,
+      "true_peak_db": -11.59,
+      "sha256": "b986237317cb1fe382a6cf955e86da44b729d67fa4561698044c389b715fd0ad"
+    },
+    {
+      "key": "WORD_CH2_VAN_HOC",
+      "who": "corpse",
+      "text": "văn học",
+      "file": "game/audio/voice/vi/WORD_CH2_VAN_HOC.ogg",
+      "seconds": 1.39,
+      "lufs": -30.15,
+      "true_peak_db": -8.29,
+      "sha256": "0888743b617d6b63e460b276921083b180fbb6e2307e1c3d497c217c1d4092b5"
+    },
+    {
+      "key": "WORD_CH2_VAN_PHONG",
+      "who": "corpse",
+      "text": "văn phòng",
+      "file": "game/audio/voice/vi/WORD_CH2_VAN_PHONG.ogg",
+      "seconds": 1.394,
+      "lufs": -30.29,
+      "true_peak_db": -7.29,
+      "sha256": "7073424cf5344efb0641625194dbdedab91afa7d8957cd21b326a399ea386cc0"
+    },
+    {
+      "key": "WORD_CH2_VAO_HOC",
+      "who": "corpse",
+      "text": "vào học",
+      "file": "game/audio/voice/vi/WORD_CH2_VAO_HOC.ogg",
+      "seconds": 1.474,
+      "lufs": -30.17,
+      "true_peak_db": -10.3,
+      "sha256": "c5cef9e816bc528c24a68199925fd533b786012bb9addf04c49085ec43719944"
+    },
+    {
+      "key": "WORD_CH2_VIEN_GACH",
+      "who": "corpse",
+      "text": "viên gạch",
+      "file": "game/audio/voice/vi/WORD_CH2_VIEN_GACH.ogg",
+      "seconds": 1.437,
+      "lufs": -30.19,
+      "true_peak_db": -9.17,
+      "sha256": "9bde84e83a463c7b8dccec045295809424fd952b6200a71e65934df7e7cc6eb3"
+    },
+    {
+      "key": "WORD_CH2_VIEN_PHAN",
+      "who": "corpse",
+      "text": "viên phấn",
+      "file": "game/audio/voice/vi/WORD_CH2_VIEN_PHAN.ogg",
+      "seconds": 1.474,
+      "lufs": -30.14,
+      "true_peak_db": -11.18,
+      "sha256": "d98f1c2b2fb07306f2395c35e6800d7c8bff31a6e074e1d444ff6e8b4e4a1863"
+    },
+    {
+      "key": "WORD_CH2_VIEN_THUOC",
+      "who": "corpse",
+      "text": "viên thuốc",
+      "file": "game/audio/voice/vi/WORD_CH2_VIEN_THUOC.ogg",
+      "seconds": 1.407,
+      "lufs": -30.22,
+      "true_peak_db": -9.68,
+      "sha256": "a827b3673a0cf175d8a681c3e5dba1cdf107517ea3faefaa3a79b0886e722333"
+    },
+    {
+      "key": "WORD_CH2_VIN_TAY",
+      "who": "corpse",
+      "text": "vịn tay",
+      "file": "game/audio/voice/vi/WORD_CH2_VIN_TAY.ogg",
+      "seconds": 1.297,
+      "lufs": -30.04,
+      "true_peak_db": -7.54,
+      "sha256": "c47639e8fa375927311989956387703650480c4b27fc0cf42fb2e06d7a25e039"
+    },
+    {
+      "key": "WORD_CH2_VO_CHONG",
+      "who": "corpse",
+      "text": "vợ chồng",
+      "file": "game/audio/voice/vi/WORD_CH2_VO_CHONG.ogg",
+      "seconds": 1.547,
+      "lufs": -30.19,
+      "true_peak_db": -10.17,
+      "sha256": "c1a14a324c3f693f0ddf430a87baa543dc1005d90d2795fcdbac11365b4c817a"
+    },
+    {
+      "key": "WORD_CH2_VO_KICH",
+      "who": "corpse",
+      "text": "vở kịch",
+      "file": "game/audio/voice/vi/WORD_CH2_VO_KICH.ogg",
+      "seconds": 1.407,
+      "lufs": -30.17,
+      "true_peak_db": -12.91,
+      "sha256": "a821724cdbeca912352234303e61883af18918effbbce611d11ec3f44167a11d"
+    },
+    {
+      "key": "WORD_CH2_VO_NAT",
+      "who": "corpse",
+      "text": "vỡ nát",
+      "file": "game/audio/voice/vi/WORD_CH2_VO_NAT.ogg",
+      "seconds": 1.47,
+      "lufs": -30.18,
+      "true_peak_db": -12.41,
+      "sha256": "29930109297b70c7231acd1a2a647d8d64421f1fd9b61cf143396c377a17d5d4"
+    },
+    {
+      "key": "WORD_CH2_VU_AN",
+      "who": "corpse",
+      "text": "vụ án",
+      "file": "game/audio/voice/vi/WORD_CH2_VU_AN.ogg",
+      "seconds": 1.521,
+      "lufs": -30.11,
+      "true_peak_db": -11.05,
+      "sha256": "cbaeeb88bc26087d32ff7adbe10c2d97cb3623ee72bfbb63828cf6a9beff6b54"
+    },
+    {
+      "key": "WORD_CH2_XACH_TAY",
+      "who": "corpse",
+      "text": "xách tay",
+      "file": "game/audio/voice/vi/WORD_CH2_XACH_TAY.ogg",
+      "seconds": 1.353,
+      "lufs": -30.15,
+      "true_peak_db": -8.79,
+      "sha256": "b3c40386704594e9294efcfd2ec3ef05ffa1bf8c3e166b5f51b577d2346787da"
+    },
+    {
+      "key": "WORD_CH2_XAC_CHET",
+      "who": "corpse",
+      "text": "xác chết",
+      "file": "game/audio/voice/vi/WORD_CH2_XAC_CHET.ogg",
+      "seconds": 1.443,
+      "lufs": -30.14,
+      "true_peak_db": -9.16,
+      "sha256": "8f0672defff7a905b436af70f2faf00307a2632376434d2ab59a5ef3757f9657"
+    },
+    {
+      "key": "WORD_CH2_XA_TOI",
+      "who": "corpse",
+      "text": "xá tội",
+      "file": "game/audio/voice/vi/WORD_CH2_XA_TOI.ogg",
+      "seconds": 1.549,
+      "lufs": -30.21,
+      "true_peak_db": -12.12,
+      "sha256": "3e9018760b3efc10590c17fad92f76c48ca0cb41951915fc570e10db816cb9f3"
+    },
+    {
+      "key": "WORD_CH2_XINH_XAN",
+      "who": "corpse",
+      "text": "xinh xắn",
+      "file": "game/audio/voice/vi/WORD_CH2_XINH_XAN.ogg",
+      "seconds": 1.345,
+      "lufs": -30.09,
+      "true_peak_db": -6.62,
+      "sha256": "8f7e420a2be0d6c5e3a64b10acd08e1f37936ce4d69548edb82eb31300129f54"
+    }
+  ]
+}
