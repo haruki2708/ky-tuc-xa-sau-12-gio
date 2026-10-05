@@ -25,6 +25,8 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
+	if preload("res://scripts/ui/game_text_entry.gd").is_typing(get_tree()):
+		return
 	if event.is_action_pressed("pause") and not event.is_echo():
 		for reader in get_tree().get_nodes_in_group("reading_overlay"):
 			if reader.is_open():

@@ -16,6 +16,7 @@ var _hidden := false
 var _holding := false
 var _contraction := 0.0
 var tools_view: Control
+var prediction: VBoxContainer
 
 
 func _ready() -> void:
@@ -83,11 +84,16 @@ func _ready() -> void:
 	tools_view.phone = self
 	$Root/Phone/Content.add_child(tools_view)
 	$Root/Phone/Content.move_child(tools_view, 1)
+	prediction = preload("res://scripts/ui/phone_prediction.gd").new()
+	prediction.name = "Prediction"
+	prediction.phone = self
+	$Root/Phone/Content.add_child(prediction)
 	_render()
 
 
 func _process(delta: float) -> void:
 	_refresh_visibility()
+	prediction.advance(delta)
 	if _blocked():
 		return
 	tools_view.advance(delta)
@@ -103,15 +109,13 @@ func _process(delta: float) -> void:
 func _input(event: InputEvent) -> void:
 	if _blocked() or not state.raised or state.battery <= 0.0 or event.is_echo():
 		return
-	# Word-chain answers own 1–4 and mouse selection while their turn is active.
-	for panel in get_tree().get_nodes_in_group("chain_panel"):
-		if panel.is_choosing():
-			if event is InputEventMouseButton:
-				return
-			if event is InputEventKey:
-				var key: int = event.physical_keycode if event.physical_keycode != 0 else event.keycode
-				if key >= KEY_1 and key <= KEY_4:
-					return
+	if preload("res://scripts/ui/game_text_entry.gd").is_typing(get_tree()):
+		return
+	if not prediction.member.is_empty():
+		if event is InputEventKey and event.pressed and event.keycode in [KEY_ENTER, KEY_KP_ENTER]:
+			get_viewport().set_input_as_handled()
+			prediction.open_entry()
+		return
 	if not state.incoming.is_empty() and event.is_action_pressed("interact"):
 		_consume_interact()
 		EventBus.phone_call_answered.emit(StringName(state.incoming))
@@ -163,6 +167,16 @@ func _refresh_visibility() -> void:
 	if not is_inside_tree():
 		return
 	var blocked := _blocked()
+	var predicting: bool = is_instance_valid(prediction) and not prediction.member.is_empty()
+	$Root/Phone.anchor_top = 0.37 if predicting else 0.54
+	$Root/Phone/Content/MembersScroll.visible = not predicting and state.tab == 0
+	$Root/Phone/Content/ScrollHint.visible = not predicting and state.tab == 0
+	tools_view.visible = not predicting
+	if predicting:
+		state.tab = 0
+		$Root/Phone/Content/Transcript.show()
+		if blocked or not state.raised or state.battery <= 0.0:
+			prediction.cancel_entry()
 	$Root/Phone.visible = state.raised and not blocked
 	$Root/Phone/Content.visible = state.battery > 0.0
 	$Root/Phone/BlackScreen.visible = state.battery <= 0.0
@@ -308,6 +322,7 @@ func snapshot() -> Dictionary:
 
 
 func restore(data: Dictionary) -> void:
+	prediction.close_request()
 	state.restore(data)
 	_render() # No replay of speech, incoming calls or player-choice signals.
 
@@ -362,7 +377,7 @@ func _render_transcript() -> void:
 		var clock := "%02d:%02d" % [(minutes / 60) % 24, minutes % 60]
 		var sender: String = tr(entry["name_key"]) if not entry["name_key"].is_empty() else entry["sender"]
 		transcript.push_paragraph(HORIZONTAL_ALIGNMENT_RIGHT if entry["outgoing"] else HORIZONTAL_ALIGNMENT_LEFT)
-		transcript.add_text(tr("UI_PHONE_TRANSCRIPT_LINE") % [clock, sender, tr(entry["text_key"])])
+		transcript.add_text(tr("UI_PHONE_TRANSCRIPT_LINE") % [clock, sender, entry["text_key"] if entry.get("raw_text", false) else tr(entry["text_key"])])
 		transcript.add_text("\n")
 		transcript.pop()
 

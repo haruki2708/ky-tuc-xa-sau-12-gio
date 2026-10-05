@@ -8,7 +8,6 @@ var host: Node
 var _locale: String
 var _mouse: Input.MouseMode
 var _reduce: bool
-var _answers: Array[int] = []
 var _shower_answers: Array[bool] = []
 var _subtitles: Array[String] = []
 
@@ -26,10 +25,8 @@ func before_each() -> void:
 	tree.paused = false
 	host = Node.new()
 	tree.root.add_child(host)
-	_answers.clear()
 	_shower_answers.clear()
 	_subtitles.clear()
-	EventBus.chain_choice_made.connect(_answered)
 	EventBus.shower_choice_made.connect(_shower_answered)
 	EventBus.subtitle_requested.connect(_subtitle)
 
@@ -37,7 +34,6 @@ func before_each() -> void:
 func after_each() -> void:
 	host.queue_free()
 	await wait_frames(2)
-	EventBus.chain_choice_made.disconnect(_answered)
 	EventBus.shower_choice_made.disconnect(_shower_answered)
 	EventBus.subtitle_requested.disconnect(_subtitle)
 	TranslationServer.set_locale(_locale)
@@ -46,10 +42,6 @@ func after_each() -> void:
 	Input.action_release("interact")
 	Settings.set_value("accessibility", "reduce_scares", _reduce)
 	tree.paused = false
-
-
-func _answered(index: int) -> void:
-	_answers.append(index)
 
 
 func _shower_answered(ran: bool) -> void:
@@ -84,67 +76,11 @@ func test_chain_last_three_words_speakers_mumbling_and_locale() -> void:
 	EventBus.chain_word_spoken.emit(&"phuc", "")
 	assert_eq(panel._history.size(), 3)
 	assert_eq(content.get_node("Word").text, tr(FIXTURE.OPTIONS[3]))
-	assert_false(content.get_node("Options").visible)
+	assert_false(content.get_node("Entry").visible)
 	TranslationServer.set_locale("en")
 	await wait_frames(2)
 	assert_eq(content.get_node("Speaker").text, "Turn: Phúc")
 	assert_true(content.get_node("History").text.begins_with("Last 3 words:"))
-	assert_true(_answers.is_empty())
-
-
-func test_chain_choice_once_movement_mouse_and_phone_input_priority() -> void:
-	var phone := _mount(load("res://ui/phone/phone_screen.tscn"))
-	var panel := _mount(CHAIN)
-	EventBus.chat_choice_requested.emit(&"test_call_choice", PackedStringArray(FIXTURE.OPTIONS))
-	EventBus.chain_choice_requested.emit(PackedStringArray(FIXTURE.OPTIONS), 15.0)
-	Input.action_press("move_forward")
-	Input.action_press("interact")
-	_key(KEY_3)
-	assert_eq(_answers, [2])
-	assert_eq(phone.state.choice, "test_call_choice", "one key cannot also answer the phone")
-	assert_false(Input.is_action_pressed("interact"))
-	assert_true(Input.is_action_pressed("move_forward"))
-	assert_eq(Input.mouse_mode, _mouse)
-	assert_false(tree.paused)
-	panel._choose(0)
-	panel._process(20.0)
-	assert_eq(_answers, [2])
-	EventBus.chain_choice_requested.emit(PackedStringArray(FIXTURE.OPTIONS), 15.0)
-	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	await wait_frames(3)
-	var button: Button = panel.get_node("Root/Card/Content/Options/Option4")
-	_mouse_click(button.get_global_rect().get_center())
-	assert_eq(_answers, [2, 3])
-	assert_eq(phone.state.choice, "test_call_choice")
-
-
-func test_chain_blocked_keeps_deadline_pause_waits_and_ticks_last_five_seconds() -> void:
-	var panel := _mount(CHAIN)
-	EventBus.chain_choice_requested.emit(PackedStringArray(FIXTURE.OPTIONS), 15.0)
-	EventBus.chain_choice_blocked.emit(true)
-	_key(KEY_1)
-	panel._choose(1)
-	assert_true(_answers.is_empty())
-	assert_true(panel.get_node("Root/Card/Content/Options/Option1").disabled)
-	assert_eq(panel.get_node("Root/Card/Content/Status").text, "Họ không nghe thấy bạn")
-	tree.paused = true
-	panel._process(20.0)
-	assert_eq(panel._remaining, 15.0)
-	tree.paused = false
-	panel._process(10.1)
-	assert_eq(panel._last_tick, 5)
-	assert_not_null(panel.get_node("Tick").stream)
-	panel._process(5.0)
-	panel._process(5.0)
-	assert_eq(_answers, [-1])
-	assert_eq(panel.get_node("Root/Card/Content/Status").text, tr("UI_CHAIN_TIMEOUT"))
-	EventBus.chain_choice_requested.emit(PackedStringArray(FIXTURE.OPTIONS), 15.0)
-	EventBus.chain_choice_blocked.emit(false)
-	_key(KEY_2)
-	assert_eq(_answers, [-1, 1])
-	EventBus.checkpoint_loaded.emit(&"ch2_r3")
-	assert_false(panel.get_node("Root").visible)
-	assert_true(panel._history.is_empty())
 
 
 func test_shower_choice_countdown_uses_core_result_and_never_guesses_timeout() -> void:
@@ -221,7 +157,7 @@ func test_new_deaths_reduce_scares_and_cleanup() -> void:
 	var overlay := _mount(BLOOD)
 	var chain := _mount(CHAIN)
 	Settings.set_value("accessibility", "reduce_scares", false)
-	EventBus.chain_choice_requested.emit(PackedStringArray(FIXTURE.OPTIONS), 15.0)
+	EventBus.chain_input_requested.emit(15.0)
 	EventBus.player_death_started.emit(&"corpse_lunge")
 	assert_false(chain.is_choosing())
 	assert_true(overlay.get_node("Root").material.get_shader_parameter("splash"))

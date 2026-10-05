@@ -42,7 +42,8 @@ func restore(data: Dictionary) -> void:
 				history.append({"id": str(entry.get("id", "")), "sender": str(entry.get("sender", "")),
 					"name_key": str(entry.get("name_key", "")), "text_key": entry["text_key"],
 					"minutes": maxi(0, int(entry.get("minutes", 0))),
-					"outgoing": entry.get("outgoing", false) == true, "spoken": entry.get("spoken", false) == true})
+					"outgoing": entry.get("outgoing", false) == true, "spoken": entry.get("spoken", false) == true,
+					"raw_text": entry.get("raw_text", false) == true, "recipient": str(entry.get("recipient", ""))})
 	var saved_members: Variant = data.get("members", {})
 	if saved_members is Dictionary:
 		for id: Variant in saved_members:
