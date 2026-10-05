@@ -1,6 +1,6 @@
 # Chương 2 "Trò chơi" (6:00–8:00): thiết kế để duyệt
 
-> **Bản nháp chờ chủ dự án duyệt** (2026-10-05). Bổ sung cho `STORY.md` §6. Chuẩn chương 1 bản 2 áp dụng mặc định: nhiều nhiệm vụ, **chỉ một độ khó Insane** (D-039), **cắt thời gian trống** khi xong nhiệm vụ (D-040), **không giải thích luật** (D-038), **có cảnh chết** (D-042). Các mục **[cần chốt]** ở cuối. Con số là giá trị khởi đầu, chỉnh sau chơi thử.
+> **Bản nháp chờ chủ dự án duyệt** (2026-10-05). Đã chốt 4 điểm (D-046). Bổ sung cho `STORY.md` §6. Chuẩn chương 1 bản 2 áp dụng mặc định: nhiều nhiệm vụ, **chỉ một độ khó Insane** (D-039), **cắt thời gian trống** khi xong nhiệm vụ (D-040), **không giải thích luật** (D-038), **có cảnh chết** (D-042). Các mục **[cần chốt]** ở cuối. Con số là giá trị khởi đầu, chỉnh sau chơi thử.
 
 ## Tóm tắt
 - **Vòng 3 (6:00–7:00), nối từ:** ba xác bạn cùng phòng ngồi dậy, chơi nối từ tiếng Việt với Trung. Lời giải: bịt miệng cả ba xác bằng giẻ, rồi lặp vòng từ Minh Nhật đưa tới hết giờ. Hết vòng: còn **5** người.
@@ -36,7 +36,7 @@
 - Mỗi lần gài được thêm khoảng **25 giây rảnh** để đi lấy đồ.
 
 ### N3. Tìm 3 miếng giẻ
-- Ngư kể: *"Mình vừa vừa nối vừa kéo tay đứa cùng phòng. Nó chẳng phản ứng gì, chỉ lo nối từ."* **Không nói tiếp ý "bịt miệng"** (Insane): người chơi tự nghĩ ra.
+- Ngư kể: *"Mình vừa nối vừa kéo tay đứa cùng phòng. Nó chẳng phản ứng gì, chỉ lo nối từ."* **Không nói tiếp ý "bịt miệng"** (D-046): người chơi tự nghĩ ra.
 - Ba thứ bịt được miệng, ở ba chỗ xa nhau:
   - **giẻ lau** trên bồn rửa trong nhà vệ sinh (`rag.tscn` của T-154);
   - **khăn tắm** trên dây phơi ngoài ban công;
@@ -58,7 +58,7 @@
 
 ### Ngoài phòng 407 (nghe qua điện thoại)
 - Người trong nhóm chết dần. Minh Nhật đọc số người còn lại; tiếng hét vọng từ các tầng.
-- **[Claude đề xuất]:** camera an ninh cho thấy **một phòng khác thua** (phòng 102 đã có sẵn ở T-165, ba xác lao vào người còn sống), để người chơi biết thua là thế nào trước khi tự trải qua.
+- **Camera an ninh (D-046)** cho thấy **một phòng khác thua** (phòng 102 đã có sẵn ở T-165, ba xác lao vào người còn sống), để người chơi biết thua là thế nào trước khi tự trải qua.
 - **7:00:** loa: "Quy tắc vòng ba kết thúc. Số người sống sót hiện tại: 5 người." Ba xác gục xuống.
 
 ## Vòng 4: tắm nước nóng (7:00–8:00)
@@ -80,7 +80,7 @@
   - Dưới 50 độ: tính vào 25 phút. Dưới 10 độ là lạnh buốt, rung hình, vẫn tính.
   - **Từ 50 độ trở lên mà đang đứng dưới vòi thì chết bỏng** (`DEATH_SCALDED`).
 - **Tới 8:00 chưa đủ 25 phút thì chết.** Đủ 25 phút thì cắt thời gian trống, nhảy tới 8:00 (D-040).
-- Màn hình hiện **3 nhiệt độ gần nhất** và thanh "Đã tắm X/25 phút".
+- Màn hình hiện **toàn bộ lịch sử nhiệt độ** từ lượt đầu (dữ liệu để tự tìm quy luật, D-046) và thanh "Đã tắm X/25 phút".
 
 ### N8. Hơi nước che màn hình
 - Mỗi lượt xả nước nóng (từ 40 độ) làm **hơi nước phủ mờ màn hình**: không đọc được nhiệt độ cũ. Phải **lau màn hình** (giữ E 1 giây).
@@ -96,10 +96,11 @@
   - 16 lượt an toàn trên 30.
   - Từ lượt thứ 7, khi đã đủ dữ liệu đoán quy luật, còn **14 lượt an toàn, cần 13**: chỉ được bỏ lỡ một lượt.
   - Không có nhiệt độ 46–49.
-- **Manh mối:** cách Minh Nhật gợi ý **[cần chốt]**.
+- **Không có gợi ý** (D-046): Minh Nhật và Ngư cũng đang đoán, không ai nói quy luật. Người chơi tự tìm từ lịch sử nhiệt độ trên màn hình.
+- **Rủi ro:** đây là phần khó nhất chương. Nếu chơi thử thấy quá khó thì nới bằng cách thêm lượt an toàn, không thêm gợi ý.
 
 ### N10. Cứu Ngư (7:40)
-- Điện thoại của Ngư bị nước làm hỏng loa ngoài. Ngư đọc to 3 nhiệt độ gần nhất **của bên cô ấy** (dãy khác), hỏi lượt tới chọn gì.
+- Điện thoại của Ngư bị nước làm hỏng loa ngoài. Ngư đọc to 3 nhiệt độ gần nhất **của bên cô ấy** (dãy khác, cùng quy luật), hỏi lượt tới chọn gì.
 - Trung có **10 giây** để chọn "Có" hoặc "Không" trong cuộc gọi. Sai thì Ngư chết và **Trung thua** (`DEATH_LOST_NGU`): mất Ngư là mất người giải chương 4.
 
 ### Hết vòng (8:00)
@@ -118,7 +119,7 @@
 1. Ba xác ngồi dậy (6:00).
 2. Xác quay sang khi bị bịt miệng lúc đang nói.
 3. Xác bị gài bẫy gục xuống rồi bật dậy.
-4. Camera: phòng khác thua [Claude đề xuất].
+4. Camera: phòng khác thua (D-046).
 5. Cửa nhà vệ sinh bật mở ở lần đẩy thứ 3, hơi nóng phụt ra.
 6. Lượt 70–90 độ đầu tiên: nước sôi xối xuống, hơi nước trùm màn hình.
 7. Trong hơi nước, gương nhà vệ sinh thoáng hiện bóng quản lý (chỉ một khung hình).
@@ -142,8 +143,8 @@
 | D | Bảng nối từ 15 giây, màn hình vòi sen (Có/Không, 3 nhiệt độ gần nhất, X/25 phút), lớp hơi nước và bỏng |
 | E | Giọng xác đọc từ, tiếng ú ớ, tiếng nước (lạnh, ấm, sôi), đếm ngược, cảnh chết mới |
 
-## Cần chốt
-1. **Cách Minh Nhật gợi ý quy luật nhiệt độ** (N9).
-2. **Ngư kể manh mối bịt miệng tới đâu** (N3).
-3. **Mức khó của nối từ**: số phương án, thời gian mỗi lượt.
-4. **Camera cho thấy phòng khác thua** ở vòng 3: có hay không.
+## Đã chốt (D-046)
+1. Quy luật nhiệt độ: **không gợi ý**.
+2. Manh mối bịt miệng: Ngư **chỉ kể nửa đầu**.
+3. Nối từ: **4 phương án, 15 giây**.
+4. Camera cho thấy **một phòng khác thua** ở vòng 3: **có**.
