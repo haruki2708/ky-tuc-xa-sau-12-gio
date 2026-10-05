@@ -1,0 +1,142 @@
+{
+	"actors": {
+		"guard": 800,
+		"ngu": 664,
+		"nhat": 652,
+		"zombie_01": 652,
+		"zombie_02": 652,
+		"zombie_03": 652,
+		"zombie_04": 640,
+		"zombie_05": 644,
+		"zombie_06": 644,
+		"zombie_07": 668,
+		"zombie_08": 652,
+		"zombie_09": 652,
+		"zombie_10": 652
+	},
+	"engine": "4.7.2-stable (official)",
+	"gpu": "NVIDIA GeForce RTX 3050 Laptop GPU",
+	"resolution": "1280x720",
+	"views": {
+		"01_building_b": {
+			"draw_calls": 1551.0,
+			"mean_frame_ms": 5.05890833333333,
+			"p95_frame_ms": 6.579,
+			"rendered_primitives": 37089.0,
+			"sample_frames": 120,
+			"save_error": 0,
+			"stadium_lights_on": false
+		},
+		"02_stairs": {
+			"draw_calls": 150.0,
+			"mean_frame_ms": 4.99690833333333,
+			"p95_frame_ms": 5.217,
+			"rendered_primitives": 3827.0,
+			"sample_frames": 120,
+			"save_error": 0,
+			"stadium_lights_on": false
+		},
+		"03_manager_window": {
+			"draw_calls": 69.0,
+			"mean_frame_ms": 4.99781666666667,
+			"p95_frame_ms": 5.16,
+			"rendered_primitives": 2162.0,
+			"sample_frames": 120,
+			"save_error": 0,
+			"stadium_lights_on": false
+		},
+		"04_garden": {
+			"draw_calls": 971.0,
+			"mean_frame_ms": 4.99838333333333,
+			"p95_frame_ms": 5.192,
+			"rendered_primitives": 15826.0,
+			"sample_frames": 120,
+			"save_error": 0,
+			"stadium_lights_on": false
+		},
+		"05_stadium": {
+			"draw_calls": 448.0,
+			"mean_frame_ms": 4.99675,
+			"p95_frame_ms": 5.197,
+			"rendered_primitives": 6456.0,
+			"sample_frames": 120,
+			"save_error": 0,
+			"stadium_lights_on": true
+		},
+		"06_bleachers": {
+			"draw_calls": 276.0,
+			"mean_frame_ms": 4.99746666666667,
+			"p95_frame_ms": 5.222,
+			"rendered_primitives": 4885.0,
+			"sample_frames": 120,
+			"save_error": 0,
+			"stadium_lights_on": true
+		},
+		"07_road": {
+			"draw_calls": 832.0,
+			"mean_frame_ms": 4.996275,
+			"p95_frame_ms": 5.151,
+			"rendered_primitives": 18129.0,
+			"sample_frames": 120,
+			"save_error": 0,
+			"stadium_lights_on": false
+		},
+		"08_gate": {
+			"draw_calls": 75.0,
+			"mean_frame_ms": 4.994875,
+			"p95_frame_ms": 5.218,
+			"rendered_primitives": 1090.0,
+			"sample_frames": 120,
+			"save_error": 0,
+			"stadium_lights_on": false
+		},
+		"09_canteen": {
+			"draw_calls": 664.0,
+			"mean_frame_ms": 4.99604166666667,
+			"p95_frame_ms": 5.161,
+			"rendered_primitives": 9264.0,
+			"sample_frames": 120,
+			"save_error": 0,
+			"stadium_lights_on": false
+		},
+		"10_kitchen": {
+			"draw_calls": 599.0,
+			"mean_frame_ms": 4.99765,
+			"p95_frame_ms": 5.179,
+			"rendered_primitives": 8484.0,
+			"sample_frames": 120,
+			"save_error": 0,
+			"stadium_lights_on": false
+		},
+		"11_shells": {
+			"draw_calls": 164.0,
+			"mean_frame_ms": 4.9953,
+			"p95_frame_ms": 5.287,
+			"rendered_primitives": 2511.0,
+			"sample_frames": 120,
+			"save_error": 0,
+			"stadium_lights_on": false
+		},
+		"12_actors": {
+			"draw_calls": 368.0,
+			"mean_frame_ms": 4.99430833333333,
+			"p95_frame_ms": 5.302,
+			"rendered_primitives": 9340.0,
+			"sample_frames": 120,
+			"save_error": 0,
+			"stadium_lights_on": false
+		}
+	},
+	"zone_triangles": {
+		"BuildingB": 10980,
+		"Canteen": 1632,
+		"ExistingFloor4": 34088,
+		"Fence": 48,
+		"Garden": 6576,
+		"Gate": 816,
+		"Ground": 840,
+		"Road": 15256,
+		"Shells": 2256,
+		"Stadium": 6240
+	}
+}

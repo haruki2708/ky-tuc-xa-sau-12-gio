@@ -2,7 +2,7 @@
 The legacy Floor4 and Room407 files are never written by this generator.
 """
 from pathlib import Path
-import sys, math, json
+import sys, math, json, re
 sys.dont_write_bytecode = True
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT/'art_source/floor4'))
@@ -19,6 +19,20 @@ base.PALETTE.update(grass=(.13,.20,.13),track=(.32,.13,.10),concrete=(.38,.39,.3
 
 
 class Scene(base.Scene):
+    vec = staticmethod(V)
+
+    def save(self,filename,connections=''):
+        super().save(filename,connections)
+        path=OUT/filename
+        # Godot resource text requires a leading zero on decimal literals.
+        path.write_text(re.sub(r'(?<![\w./])(-?)\.(\d)',r'\g<1>0.\2',path.read_text(encoding='utf-8')),encoding='utf-8',newline='\n')
+
+    def material(self,name):
+        if not DETAIL: return super().material(name)
+        if name not in self.materials:
+            texture=self.resource('res://assets/textures/campus/'+name+'.png','Texture2D')
+            self.materials[name]=self.subresource('StandardMaterial3D','albedo_texture = '+texture+'\ntexture_filter = 0\nroughness = .9\nuv1_triplanar = true\nuv1_world_triplanar = true\nuv1_scale = Vector3(.5,.5,.5)')
+        return self.materials[name]
     def box(self, name, pos, size, material='wall', parent='.', solid=True, floor=False, visible=True):
         path=super().box(name,pos,size,material,parent,solid,floor,visible)
         return path
@@ -65,7 +79,10 @@ def ramp(s,name,x0,x1,z0,z1,y0,y1,parent='.'):
 
 def door(s,name,pos,width=1.6,yaw=0):
     p=s.node(name,properties=f'position = {V(pos)}\nrotation_degrees = Vector3(0,{yaw},0)\nscript = '+s.resource('res://scenes/levels/campus/door.gd','Script'))
-    s.box('Leaf',(0,1.2,0),(width,2.4,.12),'iron',p)
+    leaf=s.box('Leaf',(-width/2,1.2,0),(width,2.4,.12),'iron',p)
+    for i,n in enumerate(s.nodes):
+        if 'parent="'+leaf+'"' in n:
+            s.nodes[i]+='position = '+V((width/2,0,0))+'\n'
     return p
 
 
@@ -112,10 +129,10 @@ def building():
         s.box('Rail',(22,y+.65,2.42),(44,1.3,.15),'iron',p)
         # Manager window interrupts the ground-floor back wall.
         if floor==1:
-            for label,x,w in [('West',1,2),('East',26,36)]:
+            for label,x,w in [('West',1,2),('East',24.65,38.7)]:
                 s.box('Back'+label,(x,y+1.5,-7.6),(w,3,.2),'wall',p)
-            s.box('WindowSill',(5,y+.5,-7.6),(6,1,.22),'wall',p)
-            s.box('WindowHeader',(5,y+2.72,-7.6),(6,.56,.22),'wall',p)
+            s.box('WindowSill',(3.65,y+.5,-7.6),(3.3,1,.22),'wall',p)
+            s.box('WindowHeader',(3.65,y+2.72,-7.6),(3.3,.56,.22),'wall',p)
         else:
             s.box('Back',(22,y+1.5,-7.6),(44,3,.2),'wall',p)
         s.box('West',(0,y+1.5,-3.8),(.2,3,7.6),'wall',p)
@@ -138,7 +155,8 @@ def building():
                 s.box('Partition%d'%i,(x+2.75,y+1.5,-3.8),(.16,3,7.6),'wall',p)
         flat('Hall%d'%floor,.35,43.65,.5,1.95,y)
         if floor==2:
-            flat('Room203',11.4,16.1,-6.8,-.4,y)
+            flat('Room203',11.4,16.1,-2.1,-.4,y)
+            flat('Room203Aisle',13.15,14.05,-6.8,-2.1,y)
             link('Room203Link',(13.75,y,-1),(13.75,y,1.2))
             anchor('Room203Door',(13.75,y,0))
             anchor('Extinguisher2F',(20,y+1.1,.25))
@@ -154,7 +172,8 @@ def building():
     s.nodes=[n.replace('collision_layer = 1','collision_layer = 0')+'visible = false\n' if n.startswith('[node name="Rail"') and 'parent="Floor1"' in n else n for n in s.nodes]
     s.box('LobbyRailWest',(8.825,G+.65,2.42),(17.65,1.3,.15),'iron')
     s.box('LobbyRailEast',(32.325,G+.65,2.42),(23.35,1.3,.15),'iron')
-    flat('ManagerRoom',.6,5.05,-6.9,-.5,G)
+    flat('ManagerRoom',.6,5.05,-2,-.5,G)
+    flat('ManagerApproach',2.8,5.05,-4.5,-2,G)
     link('ManagerEntry',(2.75,G,1.2),(2.75,G,-1))
     ramp(s,'WindowApproach',3.1,4.9,-4.5,-7.2,G,G+1)
     ramp(s,'WindowExit',3.1,4.9,-8.0,-10.7,G+1,G)
@@ -167,6 +186,7 @@ def building():
     anchor('ManagerWindow',(4,G+1,-7.6))
     anchor('ManagerKnife',(1.4,G+.95,-3.2))
     s.prop('ManagerDesk','desk',(1.4,G,-3.2))
+    s.box('ManagerDeskBody',(1.4,G+.4,-3.2),(1.5,.8,.7),visible=False)
     stairs(s,'MainStairs',-5)
     stairs(s,'FireStairs',44)
     door(s,'FireDoor',(44,0,1.2),2.0,90)
@@ -182,6 +202,7 @@ def building():
             s.box('UpperWindow%d_%d'%(floor,i),(2+i*4,y+1.65,2.42),(1.8,1.5,.06),'glass',solid=False)
     for key,p in {'FireDoor':(44,0,1.2),'FireKey':(39.8,.66,.42),'Clues/Clock4F':(40,2.05,.18),'Clues/CrackStair':(49,-2,-3)}.items():
         anchor(key,p)
+    if DETAIL: detail.building(s,sys.modules[__name__])
     s.save('building_b.tscn')
     obstacle(22,-2.6,54,11)
 
@@ -198,6 +219,7 @@ def shells():
             for i in range(int(w/5)):
                 s.box('Window%d_%d'%(f,i),(x+2.5+i*5,G+f*3.3+1.8,z-.11),(2,1.5,.05),'glass',p,solid=False)
         s.box('LockedDoor',(x+w/2,G+1.4,z-.16),(3,2.8,.1),'iron',p,solid=False)
+    if DETAIL: detail.shells(s,sys.modules[__name__])
     s.save('shells.tscn')
 
 
@@ -214,8 +236,9 @@ def garden():
     obstacle(22,28,2.4,.7)
     anchor('NguBench',(22,G+.57,28))
     anchor('Start_garden',(22,G,8))
-    s.box('FallenBunk',(8,G+.45,37),(2,.9,1),'iron')
-    obstacle(8,37,2,1)
+    s.box('FallenBunk',(8,G+.45,37),(2,.9,2),'iron')
+    obstacle(8,37,2,2)
+    if DETAIL: detail.garden(s,sys.modules[__name__])
     s.save('garden.tscn')
 
 
@@ -223,29 +246,28 @@ def stadium():
     s=Scene('Stadium')
     s.box('TrackBounds',(198,G-.025,166),(176,.05,92),'track',floor=True)
     s.box('Grass',(198,G+.005,166),(100,.01,58),'grass',solid=False)
-    for side,x0,z0,width,steps in [('Main',158,214,80,10),('Secondary',168,108,60,4)]:
+    for side,x0,z0,width,steps in [('Main',158,216,80,10),('Secondary',168,108,60,4)]:
         p=s.node(side+'Bleachers')
         for i in range(steps):
             s.box('Tier%d'%i,(x0+width/2,G+.3*(i+1)-.09,z0+1.2*i),(width,.18,1.2),'concrete',p)
             flat(side+'Tier%d'%i,x0+.4,x0+width-.4,z0+1.2*i-.25,z0+1.2*i+.25,G+.3*(i+1))
-            if i:
-                link(side+'TierLink%d'%i,(x0+width/2,G+.3*i,z0+1.2*(i-1)),(x0+width/2,G+.3*(i+1),z0+1.2*i))
         # Wide continuous access ramp next to the seats, headroom below main stand.
-        ramp(s,side+'BleacherRamp',x0-3,x0-.4,z0-1,z0+(steps-1)*1.2,G,G+.3*steps)
+        ramp(s,side+'BleacherRamp',x0-3,x0+.4,z0-1.2,z0+(steps-1)*1.2,G,G+.3*steps)
         for i in range(steps):
-            t=(1+1.2*i)/(1+1.2*(steps-1))
+            t=(1.2+1.2*i)/(1.2*steps)
             link(side+'RampTier%d'%i,(x0-1.7,G+.3*steps*t,z0+1.2*i),(x0+.6,G+.3*(i+1),z0+1.2*i))
-        link(side+'RampGround',(x0-1.7,G,z0-2),(x0-1.7,G+.03,z0-.9))
+        link(side+'RampGround',(x0-1.7,G,z0-2),(x0-1.7,G+.025,z0-1.1))
         obstacle(x0+width/2,z0+(steps-1)*.6,width,steps*1.2)
-    anchor('Clues/SirenSpot',(198,G+3,224.8))
+    anchor('Clues/SirenSpot',(198,G+3,226.8))
     for side,x,z in [('W',110,166),('E',286,166),('S',198,120),('N',198,212)]:
         for offset in [-4,4]:
             s.box('GatePost'+side+str(offset),(x+(offset if side in ['S','N'] else 0),G+1.8,z+(offset if side in ['W','E'] else 0)),(.35,3.6,.35),'iron')
     s.node('Floodlights',properties='visible = false')
     for i,(x,z) in enumerate([(112,122),(284,122),(112,210),(284,210)]):
         s.box('Pole%d'%i,(x,G+9,z),(.3,18,.3),'iron')
-        s.node('Light%d'%i,'OmniLight3D','Floodlights',f'position = {V((x,G+15,z))}\nlight_energy = 6.0\nomni_range = 80.0\nshadow_enabled = false\nlight_color = Color(0.78,0.83,0.72,1)')
+        s.node('Light%d'%i,'OmniLight3D','Floodlights',f'position = {V((x,G+15,z))}\nlight_energy = 12.0\nomni_range = 145.0\nshadow_enabled = false\nlight_color = Color(0.78,0.83,0.72,1)')
     anchor('Start_stadium',(115,G,166))
+    if DETAIL: detail.stadium(s,sys.modules[__name__])
     s.save('stadium.tscn')
 
 
@@ -263,6 +285,7 @@ def gate():
     anchor('GuardBooth',(240,G,-51))
     anchor('Clues/GatePillar',(209,G,-58))
     anchor('Start_gate',(220,G,-25))
+    if DETAIL: detail.gate(s,sys.modules[__name__])
     s.save('gate.tscn')
 
 
@@ -283,9 +306,17 @@ def canteen():
     s.node('TV',properties='position = Vector3(170.2,%s,32)'%(G+2.4))
     s.box('Case',(0,0,0),(.16,.8,1.2),'iron','TV',solid=False)
     s.box('Screen',(.09,0,0),(.015,.66,1.04),'white','TV',solid=False)
-    flat('CanteenMain',170.5,209.5,20.5,43.5,G)
-    flat('Kitchen',186.5,197.5,44.5,51.5,G)
-    flat('Store',198.5,209.5,44.5,51.5,G)
+    if DETAIL:
+        # 1 m cells with clearance around table/chair footprints and counter.
+        # Exact shared edges retain connectivity around the furniture.
+        for x in range(171,209):
+            for z in range(21,43):
+                if any(x < tx+1.9 and x+1 > tx-1.9 and z < tz+1.6 and z+1 > tz-1.6 for tx in [174,181,199,206] for tz in [27,36]):continue
+                if x<182 and z>=40:continue
+                flat('Dining_%d_%d'%(x,z),x,x+1,z,z+1,G)
+    else: flat('CanteenMain',170.5,209.5,20.5,43.5,G)
+    flat('Kitchen',190,197.5,44.5,49.8,G)
+    flat('Store',200,208,44.5,51.5,G)
     link('CanteenEntry',(190,G,18),(190,G,21))
     link('KitchenEntry',(192,G,43),(192,G,45))
     link('StoreEntry',(202,G,43),(202,G,45))
@@ -295,6 +326,7 @@ def canteen():
     anchor('CanteenExit',(202,G,52))
     obstacle(190,32,40,24)
     obstacle(198,48,24,8)
+    if DETAIL: detail.canteen(s,sys.modules[__name__])
     s.save('canteen.tscn')
 
 
@@ -330,7 +362,7 @@ def navigation(s):
 
 def anchors(s):
     anchor('Start_garden',(22,G,8))
-    for i,p in enumerate([(8,G+.25,37),(154,G,221),(160,G,223),(64,G,-10),(228,G,-29),(194,G,40)]):anchor('BarSpawns/B%02d'%(i+1),p)
+    for i,p in enumerate([(8,G+.25,37),(154,G,221),(164,G+.08,225.5),(64,G,-10),(228,G,-29),(194,G,40)]):anchor('BarSpawns/B%02d'%(i+1),p)
     areas={'B4':(8,0,1.3),'B3':(8,-3.3,1.3),'B2':(8,-6.6,1.3),'B1':(8,G,1.3),'Road':(65,G,-12),'Garden':(18,G,18),'Stadium':(115,G,166),'Gate':(196,G,-30),'Canteen':(178,G,24)}
     for area,(x,y,z) in areas.items():
         for i in range(6):
@@ -339,10 +371,11 @@ def anchors(s):
             if area=='Garden':point=(12+(i%3)*16,G,17+(i//3)*10)
             anchor('ZombieSpawns/%s/S%02d'%(area,i+1),point)
             anchor('ZombieIdle/%s/I%02d'%(area,i+1),point if area.startswith('B') else (point[0],y,point[2]+1))
-    route=[(13.75,-6.6,-2),(13.75,-6.6,1.2),(-1.2,-6.6,1.2),(-3.8,-8.25,-5.3),(-1.2,G,1.2),(2.75,G,1.2),(2.75,G,-3),(4,G,-4),(4,G+1,-7.6),(4,G,-12),(-8,G,-12),(-8,G,8),(22,G,8),(22,G,24),(48,G,28),(80,G,28),(80,G,166),(115,G,166),(150,G,166),(198,G,135),(250,G,166),(198,G,195),(115,G,166),(80,G,166),(80,G,-15),(220,G,-15),(220,G,-30),(220,G,10),(190,G,18),(190,G,32),(202,G,43),(202,G,48),(202,G,54)]
+    route=[(13.75,-6.6,-2),(13.75,-6.6,1.2),(-1.2,-6.6,1.2),(-3.8,-8.25,-5.3),(-1.2,G,1.2),(2.75,G,1.2),(2.75,G,-3),(4,G,-4),(4,G+1,-7.6),(4,G,-12),(-8,G,-12),(-8,G,8),(22,G,8),(22,G,26),(48,G,28),(80,G,28),(80,G,166),(115,G,166),(150,G,166),(198,G,135),(250,G,166),(198,G,195),(115,G,166),(80,G,166),(80,G,-15),(220,G,-15),(220,G,-30),(220,G,10),(190,G,18),(190,G,32),(202,G,43),(202,G,48),(202,G,54)]
     for who,start in [('Nhat',0),('Ngu',13)]:
-        for i,p in enumerate(route[start:]):
-            suffix='_Wait_garden' if p==(22,G,24) else '_Wait_stadium' if p==(115,G,166) else '_Wait_gate' if p==(220,G,-30) else '_Wait_canteen' if p==(190,G,32) else ''
+        points=route[start:] if who=='Nhat' else [(22,G+.57,28),(23.8,G,28),(23.8,G,26)]+route[start:]
+        for i,p in enumerate(points):
+            suffix='_Wait_garden' if p==(22,G,26) else '_Wait_stadium' if p==(115,G,166) else '_Wait_gate' if p==(220,G,-30) else '_Wait_canteen' if p==(190,G,32) else ''
             anchor('Paths/%s/P%02d%s'%(who,i+1,suffix),p)
     parents={'.'}
     for path,point in ANCHORS.items():
@@ -356,7 +389,7 @@ def anchors(s):
 
 def zones(s):
     p=s.node('Zones')
-    data={'BuildingB':((22,-4,-2),(54,14,12)),'Road':((110,G+2,-15),(220,4,10)),'Garden':((22,G+2,28),(44,4,40)),'Stadium':((198,G+6,166),(176,12,120)),'Gate':((220,G+2,-40),(60,4,40)),'Canteen':((194,G+2,36),(48,4,32)),'GuardRadius':((220,G+1.5,-52.5),(22,3,3)),'Bleachers':((198,G+2,219.4),(86,5,14))}
+    data={'BuildingB':((22,-4,-2),(54,14,12)),'Road':((110,G+2,-15),(220,4,10)),'Garden':((22,G+2,28),(44,4,40)),'Stadium':((198,G+6,166),(176,12,120)),'Gate':((220,G+2,-40),(60,4,40)),'Canteen':((194,G+2,36),(48,4,32)),'GuardRadius':((220,G+1.5,-52.5),(22,3,3)),'Bleachers':((198,G+2,221.4),(86,5,16))}
     for name,(pos,size) in data.items():
         area=s.node(name,'Area3D',p,'position = '+V(pos)+'\ncollision_layer = 0\ncollision_mask = 2')
         shape=s.subresource('BoxShape3D','size = '+V(size))
@@ -369,9 +402,10 @@ def campus():
     for name,file in [('BuildingB','building_b'),('Shells','shells'),('Garden','garden'),('Stadium','stadium'),('Gate','gate'),('Canteen','canteen')]:s.inst(name,'scenes/levels/campus/'+file+'.tscn')
     terrain=s.node('Ground')
     for x in range(-80,420,50):
-        for z in range(-60,290,50):s.box('Tile_%d_%d'%(x,z),(x+25,G-.15,z+25),(50,.3,50),'grass',terrain,floor=True)
+        for z in range(-60,290,50):s.box('Tile_%d_%d'%(x,z),(x+25,G-.19,z+25),(50,.3,50),'grass',terrain,floor=True)
     road=s.node('Road')
-    for name,pos,size in [('Avenue',(110,G+.015,-15),(220,.03,8)),('WestBranch',(80,G+.015,77),(8,.03,184)),('EastBranch',(310,G+.015,68),(8,.03,196)),('StadiumAccess',(198,G+.015,166),(232,.03,6))]:s.box(name,pos,size,'concrete',road,solid=False)
+    for name,pos,size in [('Avenue',(110,G+.015,-15),(220,.03,8)),('WestBranch',(80,G+.015,77),(8,.03,184)),('EastBranch',(310,G+.015,68),(8,.03,196)),('StadiumWestAccess',(96,G+.015,166),(32,.03,6)),('StadiumEastAccess',(298,G+.015,166),(28,.03,6))]:s.box(name,pos,size,'concrete',road,solid=False)
+    if DETAIL: detail.outdoors(s,sys.modules[__name__])
     fence=s.node('Fence')
     for label,pos,size in [('W',(-80,G+1.5,115),(.3,3,350)),('E',(420,G+1.5,115),(.3,3,350)),('N',(170,G+1.5,290),(500,3,.3)),('S',(170,G+1.5,-60),(500,3,.3))]:s.box(label,pos,size,'wall',fence)
     anchors(s);zones(s);navigation(s)
@@ -385,5 +419,9 @@ def campus():
 if __name__=='__main__':
     OUT.mkdir(parents=True,exist_ok=True)
     base.OUT=OUT
+    if DETAIL:
+        import detail
+        detail.textures(ROOT,base.PALETTE)
+        detail.actors(sys.modules[__name__])
     building();shells();garden();stadium();gate();canteen();campus()
-    print('T183_BUILD: greybox campus, %d anchors, %d navigation surfaces, %d links'%(len(ANCHORS),len(NAV),len(LINKS)))
+    print('T183_BUILD: %s campus, %d anchors, %d navigation surfaces, %d links'%('detailed' if DETAIL else 'greybox',len(ANCHORS),len(NAV),len(LINKS)))

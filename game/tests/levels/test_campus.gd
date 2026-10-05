@@ -43,12 +43,15 @@ func test_contract_and_switches() -> void:
 	assert_false(campus.get_node("Navigation/FireDoorLink").enabled)
 	campus.set_fire_door_open(true)
 	assert_eq(campus.get_node("BuildingB/FireDoor/Leaf").collision_layer, 0)
+	assert_true(absf(campus.get_node("BuildingB/FireDoor/Leaf/Mesh").global_position.x - 44.0) > .8, "hinged leaf clears the opening visually")
 	assert_true(campus.get_node("Navigation/FireDoorLink").enabled)
 	campus.set_fire_door_open(false)
 	assert_eq(campus.get_node("BuildingB/FireDoor/Leaf").collision_layer, 1)
 	campus.set_main_door_chained(false)
 	assert_eq(campus.get_node("BuildingB/MainDoor/Leaf").collision_layer, 0)
 	assert_false(campus.get_node("BuildingB/MainDoor/Chains").visible)
+	assert_false(campus.get_node("BuildingB/MainDoor/Chains/ChainLink5").is_visible_in_tree(), "all detailed chain links hide together")
+	assert_true(absf(campus.get_node("BuildingB/MainDoor/Leaf/Mesh").global_position.x - 19.25) > 1.25, "main leaf swings to the jamb")
 	campus.set_main_door_chained(true)
 	assert_eq(campus.get_node("BuildingB/MainDoor/Leaf").collision_layer, 1)
 	campus.set_canteen_tv(true)
@@ -95,7 +98,7 @@ func test_navigation_connects_room407_stairs_window_and_canteen() -> void:
 		if NavigationServer3D.map_get_closest_point(map, Vector3(32, 0, 1.2)).distance_to(Vector3(32, 0, 1.2)) < .1:
 			break
 		await tree.physics_frame
-	var targets: Array[Vector3] = [Vector3(13.75, -6.6, -2), Vector3(4, -8.9, -7.6), Vector3(22, -9.9, 8), Vector3(115, -9.9, 166), Vector3(220, -9.9, -25), Vector3(190, -9.9, 32), Vector3(202, -9.9, 54), Vector3(198, -6.9, 224.8)]
+	var targets: Array[Vector3] = [Vector3(13.75, -6.6, -2), Vector3(4, -8.9, -7.6), Vector3(22, -9.9, 8), Vector3(115, -9.9, 166), Vector3(220, -9.9, -25), Vector3(190, -9.9, 32), Vector3(202, -9.9, 54), Vector3(198, -6.9, 226.8)]
 	for target in targets:
 		var path := NavigationServer3D.map_get_path(map, Vector3(32, .03, -2), target, true)
 		assert_true(path.size() > 1 and path[-1].distance_to(target) < .5, "connected route to %s, last=%s" % [target, path[-1] if not path.is_empty() else Vector3.INF])
@@ -105,3 +108,58 @@ func test_navigation_connects_room407_stairs_window_and_canteen() -> void:
 	await wait_frames(2)
 	assert_eq(floor4.get_node("Corridor/WestEnd").collision_layer, 1, "detach restores original Floor4")
 	assert_true(floor4.get_node("Corridor/WestEnd").visible)
+
+
+func test_actor_pose_library_reuse_and_triangle_budget() -> void:
+	var names: Array[String] = ["nhat", "ngu", "guard"]
+	for i in 10:
+		names.append("zombie_%02d" % (i + 1))
+	for label in names:
+		var actor := (load("res://assets/models/campus/%s.tscn" % label) as PackedScene).instantiate() as Node3D
+		fixture.add_child(actor)
+		actor.set_process(false)
+		for pose in [&"idle", &"walk", &"stunned", &"grab", &"sit", &"lie", &"wake"]:
+			assert_true(actor.set_pose(pose), label + " " + String(pose))
+			actor._process(.6)
+			assert_true(actor.get_node("Model/Rig").transform.is_finite())
+		assert_false(actor.set_pose(&"unknown"))
+		var count := 0
+		for mesh: MeshInstance3D in actor.find_children("*", "MeshInstance3D", true, false):
+			count += mesh.mesh.get_faces().size() / 3
+		assert_true(count < 1500, "%s: %d triangles including hidden source meshes" % [label, count])
+		if label.begins_with("zombie"):
+			var eye := actor.get_node("Model/Rig/Hips/Chest/Head/Eyes").get_child(0) as MeshInstance3D
+			assert_true((eye.material_override as StandardMaterial3D).emission_enabled)
+		actor.free()
+
+
+func test_nav_paths_clear_world_geometry_for_crouching_capsule() -> void:
+	# The crouched capsule is required at the window; elsewhere the standing
+	# capsule is checked. Sample continuous routes, not just anchor presence.
+	var map := campus.get_world_3d().navigation_map
+	for attempt in 180:
+		if NavigationServer3D.map_get_closest_point(map, Vector3(32, 0, 1.2)).distance_to(Vector3(32, 0, 1.2)) < .1:
+			break
+		await tree.physics_frame
+	var pairs: Array[Array] = [
+		[Vector3(32, 0, 1.2), Vector3(13.75, -6.6, -2)],
+		[Vector3(13.75, -6.6, -2), Vector3(4, -8.9, -7.6)],
+		[Vector3(4, -8.9, -7.6), Vector3(190, -9.9, 32)],
+		[Vector3(115, -9.9, 166), Vector3(198, -6.9, 226.8)],
+		[Vector3(190, -9.9, 32), Vector3(202, -9.9, 54)],
+	]
+	for pair in pairs:
+		var path := NavigationServer3D.map_get_path(map, pair[0], pair[1], true)
+		assert_true(path.size() > 1, "physical path exists")
+		var blocked := false
+		for i in range(path.size() - 1):
+			var steps := maxi(1, ceili(path[i].distance_to(path[i + 1]) / .2))
+			for j in range(steps + 1):
+				var point := path[i].lerp(path[i + 1], float(j) / steps)
+				var height := 1.15 if point.x > 3.0 and point.x < 5.0 and point.z < -6.0 and point.y < -7.5 else 1.75
+				if not _capsule_clear(point + Vector3(0, .06, 0), height):
+					assert_true(false, "nav capsule blocked at %s on %s -> %s" % [point, pair[0], pair[1]])
+					blocked = true
+					break
+			if blocked:
+				break
