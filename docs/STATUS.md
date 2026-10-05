@@ -1,7 +1,7 @@
 # STATUS — cập nhật bởi integrator
 
 **Cập nhật lần cuối:** 2026-10-04
-**Giai đoạn:** Chương 1 bản 2 (D-039, D-040): 8 nhiệm vụ, độ khó Insane, cắt thời gian trống. Đặc tả `docs/design/CH1_V2_MISSIONS.md`. Task T-160…T-164, bản chơi thử **2026-10-07**. Bản trước: `v0.2-ch1`.
+**Giai đoạn:** Chương 1 bản 2 **tạm chốt** (D-045, tag `v0.3-ch1`). Đang **thiết kế chương 2 "Trò chơi"**: bản nháp `docs/design/CH2_DESIGN.md` chờ chủ dự án duyệt.
 **Repo:** https://github.com/tuaanh666/ky-tuc-xa-sau-12-gio (private)
 
 ## Đã xong
