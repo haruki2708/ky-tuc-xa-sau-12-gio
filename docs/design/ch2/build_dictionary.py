@@ -134,14 +134,14 @@ def main():
         "# game's own words. License: CC BY-SA 4.0 https://creativecommons.org/licenses/by-sa/4.0/",
         "# Changes: two-syllable entries only, names and affixes removed, canonical form and corpse flag added.",
     ]
-    (OUT / "dictionary.txt").write_text("\n".join(header + lines) + "\n", encoding="utf-8")
+    (OUT / "dictionary.txt").write_text("\n".join(header + lines) + "\n", encoding="utf-8", newline=chr(10))
     # One spelling per canonical syllable, for the corpse voice bank.
     spelled = {}
     for c in sorted(corpse):
         for spelling, key in zip(every[c].split(" "), c.split(" ")):
             spelled.setdefault(key, spelling)
     syllables = sorted(spelled)
-    (OUT / "corpse_syllables.txt").write_text("\n".join(f"{spelled[k]}\t{k}" for k in syllables) + "\n", encoding="utf-8")
+    (OUT / "corpse_syllables.txt").write_text("\n".join(f"{spelled[k]}\t{k}" for k in syllables) + "\n", encoding="utf-8", newline=chr(10))
     report = {
         "words": len(every), "corpse_words": len(corpse), "corpse_syllables": len(syllables),
         "min_continuations": MIN_CONTINUATIONS,
@@ -149,13 +149,13 @@ def main():
                         "sha256": hashlib.sha256((CACHE / f"kaikki-{k}.jsonl").read_bytes()).hexdigest()}
                     for k, v in SOURCES.items()},
     }
-    (HERE / "dictionary_report.json").write_text(json.dumps(report, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+    (HERE / "dictionary_report.json").write_text(json.dumps(report, ensure_ascii=False, indent=1) + "\n", encoding="utf-8", newline=chr(10))
     # Samples the game's canon (viet_text.gd) must agree with.
     samples = ["hoà bình", "hòa bình", "HÒA BÌNH", "thuỷ thủ", "kỹ thuật", "kĩ thuật", "lý do", "quý giá",
                "khuất phục", "vở kịch", "vỡ nát", "đường đi", "nghiêng ngả", "Ứng dụng", "giữ gìn", "quyết định"]
     samples += [unicodedata.normalize("NFD", "khuất phục"), unicodedata.normalize("NFD", "Ứng dụng")]
     (HERE.parents[2] / "game/tests/core/canon_samples.json").write_text(
-        json.dumps({s: canon_word(s) for s in samples}, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+        json.dumps({s: canon_word(s) for s in samples}, ensure_ascii=False, indent=1) + "\n", encoding="utf-8", newline=chr(10))
     print(json.dumps(report, ensure_ascii=False, indent=1))
     # Fairness: every corpse word leaves the player at least MIN_CONTINUATIONS answers.
     assert all(starts.get(c.split(" ")[1], 0) >= MIN_CONTINUATIONS for c in corpse)

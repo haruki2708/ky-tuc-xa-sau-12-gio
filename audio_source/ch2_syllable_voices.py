@@ -95,7 +95,7 @@ def main() -> None:
             mapping["chunks"].append("res://audio/voice/vi/" + out.name)
             # The rate eSpeak used may differ from RATE; offsets are in seconds.
             print(f"chunk {chunk_index}: {min(CHUNK_SYLLABLES, len(entries) - begin)} syllables, {out.stat().st_size} bytes", flush=True)
-    MAP.write_text(json.dumps(mapping, ensure_ascii=False, indent=0) + "\n", encoding="utf-8")
+    MAP.write_text(json.dumps(mapping, ensure_ascii=False, indent=0) + "\n", encoding="utf-8", newline=chr(10))
     print(f"SYLLABLES RESULT: {len(mapping['syllables'])} syllables in {len(mapping['chunks'])} chunks")
 
 
