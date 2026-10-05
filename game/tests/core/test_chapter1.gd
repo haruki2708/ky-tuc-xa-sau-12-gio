@@ -367,3 +367,24 @@ func test_lamp_left_on_is_a_trace_even_without_the_flag() -> void:
 	assert_true(director._traces_visible(), "lamp on is seen;")
 	lamp.visible = false
 	assert_false(director._traces_visible(), "lamp off is not;")
+
+
+func test_player_can_aim_at_the_door_latch() -> void:
+	# N4: the latch must be on the leaf at hand height, reachable by the
+	# player's ray from inside 407 (the bot calls it directly and cannot tell).
+	var latch := scene.get_node_or_null("Floor4/Door407/Pivot/DoorLatch407") as Area3D
+	assert_not_null(latch, "latch placed")
+	if latch == null:
+		return
+	await wait_frames(2)
+	var shape := latch.get_node("CollisionShape3D") as Node3D
+	var at := shape.global_position
+	var pivot := scene.get_node("Floor4/Door407/Pivot") as Node3D
+	assert_true(at.y > 0.8 and at.y < 1.4, "hand height (%.2f)" % at.y)
+	assert_true(Vector2(at.x - pivot.global_position.x, at.z - pivot.global_position.z).length() < 1.0, "on the leaf")
+	var eye := at + Vector3(0, 0.55, -1.2)
+	var query := PhysicsRayQueryParameters3D.create(eye, at + (at - eye).normalized() * 0.5, 4)
+	query.collide_with_areas = true
+	query.collide_with_bodies = false
+	var hit: Dictionary = (scene as Node3D).get_world_3d().direct_space_state.intersect_ray(query)
+	assert_eq(hit.get("collider"), latch, "the ray from the room hits the latch first;")

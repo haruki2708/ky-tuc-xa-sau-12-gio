@@ -1169,10 +1169,8 @@ func _place_mission_props() -> void:
 		var latch := load(latch_scene).instantiate() as Node3D
 		latch.name = "DoorLatch407"
 		latch.set("door", door)
+		# The latch scene already sits on the leaf (its shape is offset inside it).
 		door.get_node("Pivot").add_child(latch)
-		var mount := _anchor("Door407")
-		if mount != null:
-			latch.position = Vector3(-0.85, 1.05, -0.06)
 
 
 ## QA (lane C bot, T-166): pick up a cable and plug it in with the player's
