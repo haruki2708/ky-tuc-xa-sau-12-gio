@@ -31,6 +31,10 @@ func _ready() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	var ancestor: Node = get_parent()
 	while ancestor != null:
+		if ancestor.has_method("keyboard_input_blocked"):
+			if ancestor.call("keyboard_input_blocked"):
+				return
+			break
 		if ancestor.has_method("controls_locked"):
 			if ancestor.call("controls_locked"):
 				return
