@@ -183,3 +183,22 @@ Mỗi basename dưới đây đại diện cả `audio_source/ch1v2/raw/<name>.w
 | cctv_static, cctv_switch | Noise band-pass khẽ, nhiễu điều biên khi đổi kênh |
 
 Dùng lại `call_disconnect`, `manager_kill`, `kill_soft` của **T-158**, cùng nguồn/CC0 đã ghi ở trên; không sửa các waveform đó. Chưa nghe/duyệt cảm nhận cho 20 âm mới. Mọi mức LUFS là trước bus/filter/khoảng cách, không khẳng định loudness tổng mix tại tai.
+
+## T-175 — chương 2 (2026-10-05)
+
+Tác giả: Lane E / OpenAI Codex, code tổng hợp có AI hỗ trợ (AI-assisted). **23 âm gốc CC0 1.0**, nguồn duy nhất là `audio_source/ch2_process.py` trong repo; giấy phép: https://creativecommons.org/publicdomain/zero/1.0/. Công cụ: Python stdlib và FFmpeg đã có trên máy, xử lý phát bằng Godot 4.7.2. Không dùng âm tải về, bản thu người, voice model, sample game/video hoặc melody có bản quyền. Raw: `audio_source/ch2/raw/<tên>.wav`; runtime: `game/audio/ch2/<tên>.ogg`; các tên dưới đây áp dụng cho cả hai định dạng.
+
+| Tên | Nguồn tổng hợp |
+|---|---|
+| corpse_mumble, corpse_gag | Dao động họa âm điều tần/biên, noise lọc cho cổ họng khàn/ú ớ; không có từ ngữ |
+| corpse_fall, corpse_revive | Xung noise khô, body trầm và nhiều crack ngắn mô phỏng xương |
+| chain_tick, shower_beep | Tín hiệu sin suy giảm ngắn |
+| door_push_01, door_push_02, door_push_03, door_burst | Gỗ trầm, rung bản lề điều tần, burst khí cho cửa mở |
+| water_cold, water_warm, water_boiling, steam_hiss | Noise nhiều dải, điều biên tia nước, xung trầm bọt nước; không thu nước thật |
+| mirror_shiver | Ba partial không hòa âm và transient noise |
+| death_corpse_lunge, camera_room_loss | Ba tiếng rít tổng hợp lệch tông, va chạm/noise xé; camera có band-pass |
+| death_scald | Nhiễu nước sôi, dao động cổ họng nghẹn và va đập trầm |
+| death_corpse_soft, death_scald_soft | Bớt lớp xé/cổ họng, giảm mức, LP700 |
+| music_chain, music_shower, music_turn | Drone partial trầm lệch hòa âm, noise thấp; pulse theo lượt |
+
+LUFS từng file và API: `audio_source/ch2/README.md`; hash/peak/seed: `audio_source/ch2/build_report.json`. Peak lớn nhất −15.96 dBTP trước bus/filter. **Chưa nghe bằng tai/chưa được duyệt mix.** Giọng nói `WORD_CH2_*` do core sinh và khai nguồn riêng qua pipeline eSpeak T-159; T-175 chỉ có rig xử lý, không sinh/copy lời thoại. Các asset chương 1 giữ nguyên nguồn/giấy phép bên trên.

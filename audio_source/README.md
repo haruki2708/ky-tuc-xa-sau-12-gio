@@ -1,5 +1,7 @@
 # Pipeline âm thanh T-105
 
+Âm chương 2 T-175: [ch2/README.md](ch2/README.md), `py -3 audio_source/ch2_process.py`; 23 âm riêng, không sinh lời thoại hoặc ghi đè bank cũ.
+
 Âm nhiệm vụ chương 1 bản 2 T-164: [ch1v2/README.md](ch1v2/README.md), `py -3 audio_source/ch1v2_process.py`; bank riêng, không ghi đè T-158/giọng.
 
 Bộ âm chương 1 T-158: [ch1/README.md](ch1/README.md), lệnh `py -3 audio_source/ch1_process.py`; ngân sách riêng 15 MB. Không ghi đè hai bank cũ bên dưới.

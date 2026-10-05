@@ -5,6 +5,7 @@ extends Node
 @export_dir var sound_directory: String = Ch1AudioBank.DIRECTORY
 @export var handle_player_caught: bool = true
 @export_dir var mission_directory: String = Ch1V2AudioBank.DIRECTORY
+@export_dir var chapter2_directory: String = Ch2AudioBank.DIRECTORY
 ## T-161 sets the gameplay limit; match that limit without deciding exhaustion here.
 @export var heartbeat_ramp_seconds: float = 6.0
 var _heart: AudioStreamPlayer
@@ -106,7 +107,7 @@ func _on_caught(_entity_id: StringName) -> void:
 
 
 func _on_death(kind: StringName) -> void:
-	if _stopped or not is_node_ready() or not _death_kind.is_empty() or kind not in [&"fall_back", &"bed_burst", &"manager_kill", &"none"]:
+	if _stopped or not is_node_ready() or not _death_kind.is_empty() or kind not in [&"fall_back", &"bed_burst", &"manager_kill", &"none", &"corpse_lunge", &"scald"]:
 		return
 	_death_kind = kind
 	_on_breath(false)
@@ -125,7 +126,9 @@ func _play_death_detail() -> void:
 		&"fall_back": clip_name = "death_fall_soft" if reduced else "death_fall_back"
 		&"bed_burst": clip_name = "death_bed_soft" if reduced else "death_bed_burst"
 		&"manager_kill": clip_name = "" if reduced else "death_flesh"
-	_death.stream = Ch1V2AudioBank.clip(clip_name, mission_directory)
+		&"corpse_lunge": clip_name = "death_corpse_soft" if reduced else "death_corpse_lunge"
+		&"scald": clip_name = "death_scald_soft" if reduced else "death_scald"
+	_death.stream = Ch2AudioBank.clip(clip_name, chapter2_directory) if _death_kind in [&"corpse_lunge", &"scald"] else Ch1V2AudioBank.clip(clip_name, mission_directory)
 	if _death.stream != null:
 		_death.play()
 
