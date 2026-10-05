@@ -1,6 +1,6 @@
 param(
-    [ValidateSet('correct', 'deviant', 'mirror', 'ch1_good', 'ch1_stay_in_bed', 'ch1_leave_room', 'ch1_own_bed', 'ch1v2_good', 'ch1v2_wrong_switch', 'ch1v2_door_late', 'ch1v2_lamp_on', 'ch1v2_wrong_advice', 'ch2_good', 'ch2_chain_timeout', 'ch2_chain_wrong', 'ch2_scald', 'ch2_leave_shower', 'ch2_wrong_prediction', 'all')][string]$Scenario = 'all',
-    [ValidateSet(0, 1, 2)][int]$Chapter = 0,
+    [ValidateSet('correct', 'deviant', 'mirror', 'ch1_good', 'ch1_stay_in_bed', 'ch1_leave_room', 'ch1_own_bed', 'ch1v2_good', 'ch1v2_wrong_switch', 'ch1v2_door_late', 'ch1v2_lamp_on', 'ch1v2_wrong_advice', 'ch2_good', 'ch2_chain_timeout', 'ch2_chain_wrong', 'ch2_scald', 'ch2_leave_shower', 'ch2_wrong_prediction', 'ch3_good', 'ch3_grabbed', 'ch3_guard', 'all')][string]$Scenario = 'all',
+    [ValidateSet(0, 1, 2, 3)][int]$Chapter = 0,
     [string]$ChapterProfile,
     [switch]$RequireComplete,
     [switch]$Performance,
@@ -16,7 +16,7 @@ $ErrorActionPreference = 'Stop'
 if ($Chapter -eq 1 -and -not $PSBoundParameters.ContainsKey('SegmentTimeout')) { $SegmentTimeout = 120 }
 $allowed = if ($Chapter -eq 1) { @('ch1_good', 'ch1_stay_in_bed', 'ch1_leave_room', 'ch1_own_bed') } else { @('correct', 'deviant', 'mirror') }
 if ($V2) {
-    if ($Chapter -eq 2) { throw '-V2 selects chapter 1; use -Chapter 2 alone.' }
+    if ($Chapter -ge 2) { throw '-V2 selects chapter 1; use -Chapter 2 alone.' }
     $Chapter = 1
     $allowed = @('ch1v2_good', 'ch1v2_wrong_switch', 'ch1v2_door_late', 'ch1v2_lamp_on', 'ch1v2_wrong_advice')
     if (-not $ChapterProfile) { $ChapterProfile = Join-Path $PSScriptRoot 'ch1v2-profile.json' }
@@ -29,7 +29,13 @@ if ($Chapter -eq 2) {
     if (-not $PSBoundParameters.ContainsKey('TimeScale')) { $TimeScale = 1.0 }
     if (-not $PSBoundParameters.ContainsKey('SegmentTimeout')) { $SegmentTimeout = 120 }
 }
-if (-not $Performance -and $Scenario -ne 'all' -and $Scenario -notin $allowed) { throw 'Scenario does not belong to selected Chapter (0 = legacy demo, 1 = chapter 1, 2 = chapter 2).' }
+if ($Chapter -eq 3) {
+    $allowed = @('ch3_good', 'ch3_grabbed', 'ch3_guard')
+    if (-not $ChapterProfile) { $ChapterProfile = Join-Path $PSScriptRoot 'ch3-profile.json' }
+    if (-not $PSBoundParameters.ContainsKey('TimeScale')) { $TimeScale = 1.0 }
+    if (-not $PSBoundParameters.ContainsKey('SegmentTimeout')) { $SegmentTimeout = 300 }
+}
+if (-not $Performance -and $Scenario -ne 'all' -and $Scenario -notin $allowed) { throw 'Scenario does not belong to selected Chapter (0 = legacy demo, 1 = chapter 1, 2 = chapter 2, 3 = chapter 3).' }
 if ($ChapterProfile) { $ChapterProfile = (Resolve-Path -LiteralPath $ChapterProfile).Path }
 $runRoot = Join-Path $RepoRoot ('build/playthrough/' + [guid]::NewGuid().ToString('N'))
 New-Item -ItemType Directory -Path $runRoot -Force | Out-Null
@@ -53,7 +59,7 @@ foreach ($case in $scenarios) {
     try {
         $env:APPDATA = $dataDir
         $env:QA_PLAYTHROUGH_ROOT = $dataDir.Replace('\', '/')
-        $scene = if ($Chapter -eq 2) { if ($Performance) { 'ch2_performance' } else { 'ch2_bot' } } elseif ($Performance) { 'performance_bot' } elseif ($V2) { 'ch1v2_bot' } elseif ($Chapter -eq 1) { 'chapter_bot' } else { 'playthrough_bot' }
+        $scene = if ($Chapter -eq 3) { if ($Performance) { 'ch3_performance' } else { 'ch3_bot' } } elseif ($Chapter -eq 2) { if ($Performance) { 'ch2_performance' } else { 'ch2_bot' } } elseif ($Performance) { 'performance_bot' } elseif ($V2) { 'ch1v2_bot' } elseif ($Chapter -eq 1) { 'chapter_bot' } else { 'playthrough_bot' }
         $arguments = @('--path', ('"' + $GameDir + '"'), "res://scripts/debug/$scene.tscn", '--max-fps', $(if ($Performance) { '0' } else { '60' }))
         $arguments += if ($Capture -or $Performance) { @('--windowed', '--resolution', '1280x720') } else { @('--headless') }
         $scale = $TimeScale.ToString([Globalization.CultureInfo]::InvariantCulture)
@@ -70,12 +76,21 @@ foreach ($case in $scenarios) {
         $watch = [Diagnostics.Stopwatch]::StartNew()
         $process = Start-Process -FilePath $Godot -ArgumentList $arguments -WorkingDirectory $RepoRoot -WindowStyle Hidden -PassThru -RedirectStandardOutput (Join-Path $caseDir 'stdout.log') -RedirectStandardError (Join-Path $caseDir 'stderr.log')
         $timeout = $false
+        $reportedPerfAlerts = @{}
         while (-not $process.WaitForExit(1000)) {
+            if ($Chapter -eq 3 -and $Performance) {
+                foreach ($alert in @(Select-String -LiteralPath (Join-Path $caseDir 'stdout.log') -Pattern '^CH3_PERF_ALERT:')) {
+                    if (-not $reportedPerfAlerts.ContainsKey($alert.Line)) {
+                        Write-Host $alert.Line
+                        $reportedPerfAlerts[$alert.Line] = $true
+                    }
+                }
+            }
             if (Select-String -LiteralPath (Join-Path $caseDir 'stderr.log') -Pattern '\bERROR\b' -Quiet) {
                 $process.Kill($true)
                 break
             }
-            if ($watch.Elapsed.TotalSeconds -gt $(if ($Chapter -eq 2 -and -not $Performance) { 3615 } elseif ($V2 -and -not $Performance) { 4515 } else { 6 * $SegmentTimeout + 15 })) {
+            if ($watch.Elapsed.TotalSeconds -gt $(if ($Chapter -eq 3) { if ($Performance) { 600 } else { 4515 } } elseif ($Chapter -eq 2 -and -not $Performance) { 3615 } elseif ($V2 -and -not $Performance) { 4515 } else { 6 * $SegmentTimeout + 15 })) {
                 $process.Kill($true)
                 $timeout = $true
                 break

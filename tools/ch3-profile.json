@@ -1,0 +1,44 @@
+{
+  "chapter": 3,
+  "scene": "res://scenes/main/chapter3.tscn",
+  "campus_scene": "res://scenes/levels/campus/campus.tscn",
+  "floor4_scene": "res://scenes/levels/floor4/floor4.tscn",
+  "zombie_scene": "res://scenes/entity/zombie.tscn",
+  "director": "Chapter3Director",
+  "rule_set": null,
+  "jumps": {
+    "b": "b",
+    "garden": "garden",
+    "stadium": "stadium",
+    "gate": "gate"
+  },
+  "routes": {
+    "b": null,
+    "garden": null,
+    "stadium": null,
+    "gate": null
+  },
+  "bindings": {
+    "key_taken": null,
+    "noise_203": null,
+    "stadium_survived": null,
+    "death_ui": null,
+    "bar_head_path": null,
+    "guard_paths": null,
+    "grab_stage": null
+  },
+  "actions": {},
+  "guard_target": null,
+  "menu_actions": {
+    "zombies_on": null,
+    "zombies_off": null,
+    "give_bar": null,
+    "refill": null
+  },
+  "performance": {
+    "route": null,
+    "spawn_paths": null,
+    "active_property": null,
+    "active_value": null
+  }
+}
