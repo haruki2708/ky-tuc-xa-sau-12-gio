@@ -1,7 +1,7 @@
 # STATUS — cập nhật bởi integrator
 
 **Cập nhật lần cuối:** 2026-10-04
-**Giai đoạn:** Chương 1 bản 2 **tạm chốt** (D-045, tag `v0.3-ch1`). Đang **thiết kế chương 2 "Trò chơi"**: bản nháp `docs/design/CH2_DESIGN.md` chờ chủ dự án duyệt.
+**Giai đoạn:** Chương 2 "Trò chơi" **đã duyệt thiết kế** (D-047, `docs/design/CH2_DESIGN.md`). Task T-170…T-175 đã giao; các lane xong 2026-10-07, ghép 2026-10-08, **bản chơi thử 2026-10-09**. Chương 1 bản 2 tạm chốt (D-045, `v0.3-ch1`).
 **Repo:** https://github.com/tuaanh666/ky-tuc-xa-sau-12-gio (private)
 
 ## Đã xong
@@ -47,8 +47,15 @@
 | T-134 Thực thể truy đuổi, phát hiện ánh nhìn | A | done (review 2026-10-03) |
 | T-135 Bóng người, gương phản chiếu chậm | B | done (review 2026-10-03) |
 | T-136 Đoạn 3–5 và cái kết | core | review: chờ chủ dự án chơi thử cả demo |
-| **Chương 1 bản 2 (2026-10-05 → 2026-10-07)** | | |
-| T-160 Luồng 8 nhiệm vụ, Insane, cắt thời gian trống, ghép | core | **doing** |
+| **Chương 2 "Trò chơi" (duyệt 2026-10-05, chơi thử 2026-10-09)** | | |
+| T-170 Kịch bản, kho từ nối, dãy nhiệt độ, luồng 2 vòng, ghép | core | **doing** |
+| T-171 Cầm giẻ, bịt miệng xác, cửa kẹt, buồng tắm, nút vòi sen, cảnh chết `corpse_lunge` và `scald` | A | **giao**, hạn 10-07 |
+| T-172 Xác chơi nối từ, đồ bịt miệng, nhà vệ sinh có vòi sen, hơi nước, phòng camera 310 | B | **giao**, hạn 10-07 |
+| T-173 Bot chương 2, menu nhảy, đo FPS hơi nước | C | **giao**, khung 10-07, chạy trên bản ghép 10-08 |
+| T-174 Bảng nối từ, màn hình vòi sen, lớp hơi nước và bỏng | D | **giao**, hạn 10-07 |
+| T-175 Giọng xác, nước tắm, cảnh chết mới, nhạc chương 2 | E | **giao**, hạn 10-07 |
+| **Chương 1 bản 2 (2026-10-05, tạm chốt `v0.3-ch1`)** | | |
+| T-160 Luồng 8 nhiệm vụ, Insane, cắt thời gian trống, ghép | core | **done** (tạm chốt D-045) |
 | T-161 Tương tác: gõ tường, chỗ lục đồ, ổ điện, dây mạng, nín thở 6 giây, quản lý nghe cử động | A | **done**, đã merge |
 | T-162 Phòng 407 to (chiếm chỗ 408, nhà vệ sinh, ban công) và đạo cụ nhiệm vụ | B | **done**, đã merge |
 | T-165 Khu camera: 4 phòng sinh viên, camera hành lang, 4 mô hình sinh viên | B | **done** (Claude làm thay) |

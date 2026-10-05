@@ -1,8 +1,5 @@
 # Prompt bàn giao — Lane B (Môi trường và 3D)
 
-> **Lane B đang rảnh (2026-10-05):** T-162 đã merge; T-165 do Claude làm thay theo yêu cầu chủ dự án. **Không chạy prompt T-165 bên dưới.** Chưa có task mới.
-
-
 ## 1. Prompt giao task (dán nguyên khối)
 ```
 Bạn là agent Lane B (Môi trường và 3D) trong dự án game "Ký túc xá sau 12 giờ" (Godot 4.7.2, GDScript).
@@ -13,13 +10,13 @@ TUYỆT ĐỐI không làm việc trong D:\GAME_DEMO (đó là bản tích hợp
 Bước 1. Chuẩn bị:
   - Nếu chưa có D:\GAME_WORK\lane-b: git clone https://github.com/tuaanh666/ky-tuc-xa-sau-12-gio.git D:\GAME_WORK\lane-b
   - cd D:\GAME_WORK\lane-b; git fetch origin
-  - Nếu nhánh lane-b/T-165-cctv-rooms-students đã có trên origin: git switch lane-b/T-165-cctv-rooms-students; git pull
-    Nếu chưa có: git switch -c lane-b/T-165-cctv-rooms-students origin/main
-Bước 2. Đọc kỹ, theo thứ tự: AGENTS.md, docs/STATUS.md, docs/tasks/T-165-cctv-rooms-students.md
+  - Nếu nhánh lane-b/T-172-ch2-props đã có trên origin: git switch lane-b/T-172-ch2-props; git pull
+    Nếu chưa có: git switch -c lane-b/T-172-ch2-props origin/main
+Bước 2. Đọc kỹ, theo thứ tự: AGENTS.md, docs/STATUS.md, docs/tasks/T-172-ch2-props.md
 Bước 3. Làm task trong card, CHỈ sửa file trong mục "Được phép sửa".
         Cần sửa file ngoài phạm vi thì ghi "Yêu cầu thay đổi" vào mục Handoff, không tự sửa.
-Bước 4. Trước khi kết thúc: chạy pwsh tools/test.ps1 (phải PASS); commit dạng "T-165: ...";
-        git push -u origin lane-b/T-165-cctv-rooms-students; điền mục Handoff trong card, commit và push lại.
+Bước 4. Trước khi kết thúc: chạy pwsh tools/test.ps1 (phải PASS); commit dạng "T-172: ...";
+        git push -u origin lane-b/T-172-ch2-props; điền mục Handoff trong card, commit và push lại.
 Bước 5. Trả lời tôi bằng tiếng Việt, ngắn gọn:
   (1) đã làm gì, (2) kết quả test (dán dòng RESULT), (3) checklist mục nào chưa đạt và vì sao,
   (4) yêu cầu thay đổi ngoài phạm vi, (5) có bị chặn ở đâu không.
@@ -29,14 +26,14 @@ luật chơi hay cốt truyện (ghi câu hỏi vào Handoff). Ghi trung thực:
 
 ## 2. Prompt tiếp tục (sau khi tắt máy, hoặc khi agent mất ngữ cảnh)
 ```
-Tiếp tục task T-165 của Lane B. cd D:\GAME_WORK\lane-b; git fetch origin; git switch lane-b/T-165-cctv-rooms-students; git pull.
-Đọc lại AGENTS.md, docs/STATUS.md và docs/tasks/T-165-cctv-rooms-students.md (đặc biệt mục Handoff để biết lần trước dừng ở đâu).
+Tiếp tục task T-172 của Lane B. cd D:\GAME_WORK\lane-b; git fetch origin; git switch lane-b/T-172-ch2-props; git pull.
+Đọc lại AGENTS.md, docs/STATUS.md và docs/tasks/T-172-ch2-props.md (đặc biệt mục Handoff để biết lần trước dừng ở đâu).
 Kiểm tra git status và git log -5. Tiếp tục các mục checklist chưa xong, rồi kết thúc phiên theo AGENTS.md §2.
 ```
 
 ## 3. Prompt yêu cầu sửa (khi integrator trả task về)
 ```
-Integrator đã review T-165 và yêu cầu sửa: xem mục "Review" trong docs/tasks/T-165-cctv-rooms-students.md trên origin/main
-(git fetch; git show origin/main:docs/tasks/T-165-cctv-rooms-students.md). Rebase nhánh lên origin/main, sửa từng ý, chạy test,
+Integrator đã review T-172 và yêu cầu sửa: xem mục "Review" trong docs/tasks/T-172-ch2-props.md trên origin/main
+(git fetch; git show origin/main:docs/tasks/T-172-ch2-props.md). Rebase nhánh lên origin/main, sửa từng ý, chạy test,
 push, cập nhật Handoff và báo lại theo 5 mục như trước.
 ```

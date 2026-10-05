@@ -193,8 +193,50 @@ signal entity_state_changed(entity_id: StringName, state: StringName)
 signal watcher_active(active: bool, position: Vector3)
 
 ## The player's death scene begins (D-042), before player_failed and the
-## death screen. kind: &"fall_back", &"manager_kill", &"bed_burst", &"none".
+## death screen. kind: &"fall_back", &"manager_kill", &"bed_burst", &"none";
+## chapter 2: &"corpse_lunge" (word chain lost), &"scald" (boiling shower).
 signal player_death_started(kind: StringName)
 
 ## An entity caught the player. Story adds deviation and reloads.
 signal player_caught(entity_id: StringName)
+
+# --- Chapter 2 "Trò chơi" (CH2_DESIGN.md, T-170…T-175) ---
+
+## Round 3 word chain: a turn starts. speaker: &"phuc" (bed 1), &"viet"
+## (bed 2), &"dat" (bed 4) or &"trung" (the player). seconds: time allowed.
+signal chain_turn_started(speaker: StringName, seconds: float)
+
+## A word was said in the chain. word_key: strings key (WORD_CH2_*); empty
+## when a gagged or stuck corpse only mumbles.
+signal chain_word_spoken(speaker: StringName, word_key: String)
+
+## The player's turn: four word keys (one right, three traps) and the time.
+## Lane D shows them with a countdown; the player answers by index.
+signal chain_choice_requested(option_keys: PackedStringArray, seconds: float)
+
+## The player picked an option (0-based) or ran out of time (-1).
+signal chain_choice_made(index: int)
+
+## The player is out of earshot (bathroom, balcony): the choice panel shows
+## "Họ không nghe thấy bạn" and does not accept answers while true.
+signal chain_choice_blocked(blocked: bool)
+
+## A corpse changed state (lane B poses, lane E sounds). bed: 1, 2 or 4.
+## state: &"sit" (playing), &"talk", &"gagged", &"mumble", &"fall",
+## &"revive", &"lunge", &"slump" (round over).
+signal corpse_state_changed(bed: int, state: StringName)
+
+## Round 4 shower: the screen asks "Có / Không" for the next 2 minutes.
+signal shower_choice_requested(seconds: float)
+
+## The player answered on the screen (true = run the water) or let the
+## countdown run out (no signal; core decides).
+signal shower_choice_made(run_water: bool)
+
+## A 2-minute slot ran: the temperature shown on the screen, whether the
+## water ran, and the minutes counted so far towards 25.
+signal shower_slot_finished(temperature: int, ran: bool, minutes_counted: int)
+
+## Steam in the bathroom, 0..1 (fog on the screen, haze on the camera).
+signal shower_steam_changed(level: float)
+
