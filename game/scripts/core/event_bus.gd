@@ -206,20 +206,35 @@ signal player_caught(entity_id: StringName)
 ## (bed 2), &"dat" (bed 4) or &"trung" (the player). seconds: time allowed.
 signal chain_turn_started(speaker: StringName, seconds: float)
 
-## A word was said in the chain. word_key: strings key (WORD_CH2_*); empty
-## when a gagged or stuck corpse only mumbles.
+## A word was said in the chain. word_key: strings key (WORD_CH2_*) for the
+## game's own words (voiced whole); otherwise the word itself in lower case
+## ("khuất bóng", from the dictionary; lane E stitches its syllables). tr()
+## shows either. Empty when a gagged or stuck corpse only mumbles.
 signal chain_word_spoken(speaker: StringName, word_key: String)
 
-## The player's turn: four word keys (one right, three traps) and the time.
-## Lane D shows them with a countdown; the player answers by index.
-signal chain_choice_requested(option_keys: PackedStringArray, seconds: float)
+## D-049: the player's turn. Lane D opens a text box (the system IME types
+## the tone marks) with a countdown; the answer comes back as chain_word_typed.
+signal chain_input_requested(seconds: float)
 
-## The player picked an option (0-based) or ran out of time (-1).
+## The player sent a word, as typed. Core normalizes and judges it.
+signal chain_word_typed(text: String)
+
+## Core closed the player's turn: &"accepted", &"wrong" or &"timeout".
+signal chain_input_closed(result: StringName)
+
+## Deprecated (D-049, four options gone): lane D's old panel. Core no longer
+## emits chain_choice_requested nor listens to chain_choice_made.
+signal chain_choice_requested(option_keys: PackedStringArray, seconds: float)
 signal chain_choice_made(index: int)
 
-## The player is out of earshot (bathroom, balcony): the choice panel shows
-## "Họ không nghe thấy bạn" and does not accept answers while true.
+## The player is out of earshot (bathroom, balcony): the panel shows
+## "Họ không nghe thấy bạn"; a word sent meanwhile is not heard.
 signal chain_choice_blocked(blocked: bool)
+
+## A text box took (true) or gave back (false) the keyboard. While true the
+## player stands still and does not interact (lane A), so typing "w" or "e"
+## does not walk or press. Lane D emits it.
+signal text_entry_changed(active: bool)
 
 ## A corpse changed state (lane B poses, lane E sounds). bed: 1, 2 or 4.
 ## state: &"sit" (playing), &"talk", &"gagged", &"mumble", &"fall",
@@ -239,4 +254,16 @@ signal shower_slot_finished(temperature: int, ran: bool, minutes_counted: int)
 
 ## Steam in the bathroom, 0..1 (fog on the screen, haze on the camera).
 signal shower_steam_changed(level: float)
+
+## D-050, D-051: a friend in the call asks what to pick next. member:
+## &"minh_nhat" or &"ngu"; history: their last three temperatures (also in
+## their chat line). Lane D shows a text box on the phone; the answer comes
+## back as prediction_sent. No hint: the player types "có", "không" or "3x".
+signal prediction_requested(member: StringName, history: PackedInt32Array, seconds: float)
+
+## The player texted a prediction, as typed.
+signal prediction_sent(member: StringName, text: String)
+
+## Core judged it. Wrong (or no answer) scalds that friend and loses round 4.
+signal prediction_result(member: StringName, correct: bool)
 

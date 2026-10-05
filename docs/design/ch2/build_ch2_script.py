@@ -54,14 +54,14 @@ SCRIPT = [
      "My roommates… they sat up. They're looking at me."),
     ("chat", "NGU_SAT_UP", "ngu", "06:02", "Bên mình cũng vậy. Ba đứa. Mắt trắng dã.",
      "Same here. All three. Their eyes are white."),
-    ("event", "", "", "06:02", "Lượt mở đầu cố định (N1). Phúc: \"điểm danh\". Việt: \"danh sách\". Đạt: \"sách vở\", rồi quay sang nhìn Trung. Trung có 15 giây, chỉ có một từ đúng: \"vở kịch\".", ""),
+    ("event", "", "", "06:02", "Lượt mở đầu cố định (N1). Phúc: \"điểm danh\". Việt: \"danh sách\". Đạt: \"sách vở\", rồi quay sang nhìn Trung. Trung có 15 giây để gõ một từ bắt đầu bằng \"vở\" (ví dụ \"vở kịch\").", ""),
     ("think", "VO", "trung", "06:02", "Vở… vở gì… nghĩ đi…", "Vở… vở what… think…"),
-    ("event", "", "", "06:03", "Từ đây trò chơi chạy liên tục tới 7:00. Mỗi lượt của Trung: 4 phương án, 15 giây. Chọn sai hoặc hết giờ thì chết (DEATH_CH2_CHAIN_WRONG / DEATH_CH2_CHAIN_TIMEOUT). Ở nhà vệ sinh hoặc ban công thì không trả lời được.", ""),
+    ("event", "", "", "06:03", "Từ đây trò chơi chạy liên tục tới 7:00. Mỗi lượt của Trung: gõ một từ bằng bàn phím (bộ gõ của máy), 15 giây; từ phải có trong từ điển (D-049, D-051). Gõ sai hoặc hết giờ thì chết (DEATH_CH2_CHAIN_WRONG / DEATH_CH2_CHAIN_TIMEOUT). Ở nhà vệ sinh hoặc ban công thì không trả lời được.", ""),
     ("chat", "N_KEEP_UP", "minh_nhat", "06:04", "Đừng nghĩ lâu. Mười lăm giây trôi nhanh lắm.",
      "Don't think too long. Fifteen seconds goes fast."),
 
     ("section", "Vòng 3 — 6:05 đến 7:00: nối từ", "", "", "", ""),
-    ("event", "", "", "06:06", "Lần đầu một xác bí lời (do Trung gài từ cụt hoặc do bị bịt miệng): xác ú ớ hết 15 giây, gục xuống, 10 giây sau bật dậy và bắt đầu chuỗi mới (jumpscare 3).", ""),
+    ("event", "", "", "06:06", "Lần đầu một xác bí lời (do Trung gõ một từ mà xác không biết từ nào nối tiếp, hoặc do bị bịt miệng): xác ú ớ hết 15 giây, gục xuống, 10 giây sau bật dậy và bắt đầu chuỗi mới (jumpscare 3).", ""),
     ("chat", "NGU_CHEAT", "ngu", "06:08", "Nó gục rồi lại ngồi dậy… Chúng nó chết rồi thì sợ gì thua. Chỉ có tụi mình là không được sai.",
      "It fell and sat right back up… They're already dead, losing means nothing to them. We're the only ones who can't slip."),
     ("chat", "N_HOUR", "minh_nhat", "06:09", "Một tiếng. Tụi mình phải đúng suốt một tiếng.",
@@ -105,14 +105,15 @@ SCRIPT = [
     ("chat", "NGU_PATTERN", "ngu", "07:10", "Không thể là ngẫu nhiên. Luật nào cũng có kẽ hở, mấy vòng trước đều vậy.",
      "It can't be random. Every rule had a way out so far."),
     ("chat", "N_STEAM", "minh_nhat", "07:20", "Hơi nước mù hết màn hình rồi. Lau đi mà đọc.", "Steam's all over the screen. Wipe it to read."),
-    ("event", "", "", "07:40", "N10: gọi cứu Ngư. Dãy của Ngư: 74, 15, 62. Lượt tới là 8x độ: phải chọn Không. Có 10 giây; sai thì Ngư chết và Trung thua (DEATH_CH2_LOST_NGU) (jumpscare 8).", ""),
-    ("chat", "NGU_HELP", "ngu", "07:40", "Loa điện thoại mình bị nước vào rồi… Trung! Ba lần gần nhất bên mình: bảy mươi tư, mười lăm, sáu mươi hai. Lượt tới chọn gì? Nhanh lên!",
-     "Water got into my phone… Trung! My last three: seventy-four, fifteen, sixty-two. What do I pick next? Hurry!"),
-    ("choice", "NGU", "trung", "07:40",
-     ["Đừng xả. Chọn Không.", "Xả đi. Chọn Có."],
-     ["Don't run it. Pick no.", "Run it. Pick yes."]),
-    ("chat", "NGU_SAVED", "ngu", "07:41", "…Tám mươi mốt độ. Cảm ơn… cảm ơn cậu, Trung.", "…Eighty-one degrees. Thank you… thank you, Trung."),
-    ("chat", "NGU_SCREAM", "ngu", "07:41", "Nóng! Nóng quá… Trung…!", "It burns! It burns… Trung…!"),
+    ("event", "", "", "07:18", "Nhắn dự đoán (D-050, D-051), thay cho đoạn cứu Ngư cũ: lần đầu Trung tắm an toàn 3 lượt liền nhau (dãy chuẩn: sau lượt 9, 7:18; chưa đạt thì lúc 7:40). Minh Nhật rồi Ngư gửi 3 nhiệt độ gần nhất bên họ; Trung gõ \"có\", \"không\" hoặc khoảng như \"3x\", mỗi người 20 giây. Sai hoặc hết giờ thì người đó bỏng và Trung thua (DEATH_CH2_LOST_NHAT / DEATH_CH2_LOST_NGU).", ""),
+    ("chat", "N_ASK", "minh_nhat", "07:18", "Trung, cậu tắm ba lượt liền mà không sao. Cậu tìm ra quy luật rồi phải không? Bên tôi ba lần gần nhất: 38, 16, 75. Lượt tới tôi chọn gì? Nhắn cho tôi.",
+     "Trung, three showers in a row and you're fine. You found the rule, didn't you? My last three: 38, 16, 75. What do I pick next? Text me."),
+    ("chat", "N_OK", "minh_nhat", "07:18", "…Hai mươi ba độ. Sống rồi. Cảm ơn cậu.", "…Twenty-three degrees. I'm alive. Thank you."),
+    ("chat", "N_SCREAM", "minh_nhat", "07:18", "Nóng! Trung, cậu nhắn sai rồi…!", "It burns! Trung, you got it wrong…!"),
+    ("chat", "NGU_ASK", "ngu", "07:19", "Loa điện thoại mình bị nước vào rồi… Trung! Bên mình: 74, 15, 62. Lượt tới chọn gì? Nhắn nhanh lên!",
+     "Water got into my phone… Trung! Mine: 74, 15, 62. What do I pick next? Text me, quick!"),
+    ("chat", "NGU_SAVED", "ngu", "07:19", "…Tám mươi mốt độ. May mà mình không xả. Cảm ơn cậu, Trung.", "…Eighty-one degrees. Good thing I didn't run it. Thank you, Trung."),
+    ("chat", "NGU_SCREAM", "ngu", "07:19", "Nóng! Nóng quá… Trung…!", "It burns! It burns… Trung…!"),
 
     ("section", "8:00 — hết chương 2", "", "", "", ""),
     ("spk", "R4_END", "loa", "08:00", "Quy tắc vòng bốn kết thúc. Số người sống sót hiện tại: ba người.",
@@ -127,7 +128,8 @@ SCRIPT = [
     ("death", "CH2_SHOWER_BROKEN", "", "", "Bạn đã chọn xả nước nhưng bước ra khỏi buồng tắm.", "You chose to run the water, then stepped out."),
     ("death", "CH2_NO_CHOICE", "", "", "Bạn không chọn khi đồng hồ đếm hết.", "You didn't choose before the countdown ended."),
     ("death", "CH2_SHORT_SHOWER", "", "", "Tới tám giờ, bạn vẫn chưa tắm đủ hai mươi lăm phút.", "At eight, you hadn't showered for twenty-five minutes."),
-    ("death", "CH2_LOST_NGU", "", "", "Ngọc Ngư đã chết vì lời khuyên của bạn.", "Ngọc Ngư died because of your advice."),
+    ("death", "CH2_LOST_NHAT", "", "", "Minh Nhật đã chết vì tin nhắn của bạn.", "Minh Nhật died because of your message."),
+    ("death", "CH2_LOST_NGU", "", "", "Ngọc Ngư đã chết vì tin nhắn của bạn.", "Ngọc Ngư died because of your message."),
 ]
 
 RULE_LINES = [
@@ -161,9 +163,14 @@ UI_ROWS = [
 ]
 SHOWER = {
     "player": [67, 37, 8, 81, 96, 58, 37, 1, 19, 4, 43, 74, 19, 9, 94, 35, 86, 41, 52, 79, 63, 94, 31, 45, 91, 7, 71, 83, 13, 42],
-    "ngu_history": [74, 15, 62], "ngu_next": 81, "ngu_slot": 20,
+    # D-050, D-051: one round of texted predictions, the first time Trung has
+    # three safe showers in a row (at the latest before slot predict_latest_slot).
+    "predict": {"minh_nhat": {"history": [38, 16, 75], "next": 23}, "ngu": {"history": [74, 15, 62], "next": 81}},
+    "predict_streak": 3, "predict_latest_slot": 20, "predict_seconds": 20.0,
     "lethal": 50, "cold": 10, "slot_minutes": 2, "need_minutes": 25,
 }
+# Keys this script made before D-049/D-050 (removed on the next run).
+RETIRED = {"CHOICE_CH2_NGU_1", "CHOICE_CH2_NGU_2", "CHAT_CH2_NGU_HELP"}
 PREFIXES = ("SPK_CH2_", "RULE_CH2_", "ROOM_CH2_", "THINK_CH2_", "CHAT_CH2_", "CHOICE_CH2_", "NAME_CH2_", "UI_CH2_",
             "PROMPT_CH2_", "WORD_CH2_", "DEATH_CH2_", "CCTV_CH2_")
 
@@ -181,7 +188,7 @@ def slug(word):
 
 def word_keys():
     keys, used = {}, {}
-    for word in sorted(set(wb.BANK) | set(wb.TRAPS)):
+    for word in sorted(wb.BANK):
         base = "WORD_CH2_" + slug(word)
         used[base] = used.get(base, 0) + 1
         keys[word] = base if used[base] == 1 else "%s_%d" % (base, used[base])
@@ -194,10 +201,14 @@ def check_shower():
     for a, b in zip(seq, seq[1:]):
         if b // 10 != (a // 10 + a % 10) % 10:
             problems.append("rule broken at %d -> %d" % (a, b))
-    h = SHOWER["ngu_history"] + [SHOWER["ngu_next"]]
-    for a, b in zip(h, h[1:]):
-        if b // 10 != (a // 10 + a % 10) % 10:
-            problems.append("Ngư rule broken at %d -> %d" % (a, b))
+    for who, p in SHOWER["predict"].items():
+        h = p["history"] + [p["next"]]
+        for a, b in zip(h, h[1:]):
+            if b // 10 != (a // 10 + a % 10) % 10:
+                problems.append("%s rule broken at %d -> %d" % (who, a, b))
+    nexts = [p["next"] < SHOWER["lethal"] for p in SHOWER["predict"].values()]
+    if len(set(nexts)) != 2:
+        problems.append("predictions should need one yes and one no")
     safe_after = sum(1 for t in seq[6:] if t < SHOWER["lethal"])
     if safe_after * SHOWER["slot_minutes"] < SHOWER["need_minutes"] + SHOWER["slot_minutes"]:
         problems.append("no spare slot after slot 6 (%d safe)" % safe_after)
@@ -239,7 +250,7 @@ def main():
             messages[key.lower()] = tres_message(key.lower(), who, key, minutes(clock), False, True)
     keys = word_keys()
     for word, key in keys.items():
-        gloss = wb.BANK.get(word) or wb.TRAPS.get(word)
+        gloss = wb.BANK[word]
         rows.append((key, word, "%s (%s)" % (word, gloss)))
     rows.extend(UI_ROWS)
 
@@ -249,7 +260,8 @@ def main():
     # (prompts, UI, previews) that must survive a rerun.
     generated = {row[0] for row in rows}
     kept = [line for line in text.split("\n")
-            if line and not (line.startswith(PREFIXES) and line.split(",", 1)[0] in generated)]
+            if line and not (line.startswith(PREFIXES) and line.split(",", 1)[0] in generated | RETIRED)
+            and not line.startswith("WORD_CH2_")]
     buf = io.StringIO()
     writer = csv.writer(buf, lineterminator="\n")
     seen = set(line.split(",", 1)[0] for line in kept)
@@ -278,12 +290,10 @@ def main():
     data = {
         "words": {keys[w]: {"text": w, "first": wb.syllables(w)[0], "last": wb.syllables(w)[1],
                             "dead": w in wb.DEAD} for w in sorted(wb.BANK)},
-        "traps": {keys[w]: {"text": w, "first": wb.syllables(w)[0], "last": wb.syllables(w)[1]} for w in sorted(wb.TRAPS)},
         "loop": [keys[w] for w in wb.LOOP],
         "opening": [keys[w] for w in wb.OPENING],
         "steer": steer,
         "seconds": 15.0,
-        "options": 4,
         "no_repeat_window": 3,
     }
     ddir = os.path.join(ROOT, "game", "data", "ch2")
@@ -305,13 +315,13 @@ def main():
     open(os.path.join(ROOT, "game", "data", "rules", "ch2.tres"), "w", encoding="utf-8", newline=nl).write(nl.join(body))
 
     out = ["# Kịch bản chương 2 \"Trò chơi\"", "",
-           "> **Tạm duyệt (D-048), góp ý thêm sau khi chơi thử.** Sinh tự động từ `docs/design/ch2/build_ch2_script.py` (từ nối ở `word_bank.py`). Thiết kế: `docs/design/CH2_DESIGN.md` (D-046, D-047).",
+           "> **Tạm duyệt (D-048), sửa theo góp ý chơi thử D-049…D-051** (gõ từ, từ điển lớn, nhắn dự đoán).** Sinh tự động từ `docs/design/ch2/build_ch2_script.py` (từ nối ở `word_bank.py`). Thiết kế: `docs/design/CH2_DESIGN.md` (D-046, D-047).",
            "",
            "Ký hiệu: **Loa** · *(trong phòng)* = giọng nghe trực tiếp · 📞 = trong cuộc gọi · 💭 = suy nghĩ của Trung (chỉ phụ đề) · ▶ = lựa chọn · `[…]` = diễn biến.",
            "", "## Nhân vật trong cuộc gọi",
            "| Tên | Ở đâu | Kết cục chương 2 |", "|---|---|---|",
-           "| Lý Minh Nhật | 203 nhà B | Sống |",
-           "| Khương Ngọc Ngư | 401 nhà A | Sống nếu Trung khuyên đúng lúc 7:40 |", ""]
+           "| Lý Minh Nhật | 203 nhà B | Sống nếu Trung nhắn đúng dự đoán |",
+           "| Khương Ngọc Ngư | 401 nhà A | Sống nếu Trung nhắn đúng dự đoán |", ""]
     for kind, ident, who, clock, vi, en in SCRIPT:
         if kind == "section":
             out += ["", "## " + ident, ""]
@@ -331,18 +341,23 @@ def main():
             out.append("- %s▶ **Trung chọn:** %s" % (t, " / ".join("(%d) %s" % (n, v) for n, v in enumerate(vi, 1))))
         elif kind == "death":
             out.append("- **%s:** %s" % (ident, vi))
-    out += ["", "## Kho từ nối (%d từ, %d từ cụt, %d từ bẫy)" % (len(wb.BANK), len(wb.DEAD), len(wb.TRAPS)), "",
+    out += ["", "## Từ điển nối từ (D-049, D-051)", "",
+            "- **Người chơi gõ** bất kỳ từ hai tiếng nào có trong từ điển: Wiktionary tiếng Việt và tiếng Anh (bản trích của kaikki.org, CC BY-SA) cộng kho từ của game; khoảng 31 nghìn từ (`game/data/ch2/dictionary.txt`, sinh từ `build_dictionary.py`).",
+            "- **Xác chỉ biết** khoảng 9,5 nghìn từ phổ biến (có trong cả hai bản Wiktionary, sau mỗi từ còn ít nhất 5 cách nối). Gõ từ mà xác không nối tiếp được thì xác bí, gục, rồi bắt đầu chuỗi mới (N2).",
+            "- So tiếng bỏ qua cách đặt dấu cũ/mới (\"hoà\" = \"hòa\") và \"y\"/\"i\" (\"kỹ\" = \"kĩ\"); phải đúng thanh điệu.",
+            "", "## Kho từ của game (%d từ; xác ưu tiên nói các từ này)" % len(wb.BANK), "",
             "- **Mở đầu:** " + " → ".join(wb.OPENING) + " → *(Trung)* vở kịch",
             "- **Vòng lặp của Minh Nhật:** " + " → ".join(wb.LOOP) + " → học sinh …",
             "- **Từ cụt (gài bẫy xác, N2):** " + ", ".join(sorted(wb.DEAD)),
-            "- **Từ bẫy (không bao giờ đúng):** " + ", ".join(sorted(wb.TRAPS)),
             "- **Kiểm tra tự động:** mọi từ (trừ từ cụt) đều nối tiếp được và lái về được vòng lặp; xa nhất %d lượt." % max(d for d in wb.steer_distances().values() if d is not None),
             "", "<details><summary>Toàn bộ kho từ</summary>", "",
             ", ".join(sorted(w for w in wb.BANK if w not in wb.DEAD)), "", "</details>", "",
             "## Vòng 4: nhiệt độ", "",
             "- **Quy luật (không ai nói ra, D-046):** hàng chục lần sau = hàng đơn vị của tổng hai chữ số lần trước.",
             "- **Dãy của Trung (30 lượt):** " + ", ".join(str(t) for t in SHOWER["player"]),
-            "- **Dãy của Ngư (7:40):** %s → lượt tới %d độ (phải khuyên Không)." % (", ".join(str(t) for t in SHOWER["ngu_history"]), SHOWER["ngu_next"]),
+            "- **Nhắn dự đoán:** Minh Nhật %s → lượt tới %d độ (đúng: \"có\" hoặc \"%dx\"); Ngư %s → lượt tới %d độ (đúng: \"không\" hoặc \"%dx\")." % (
+                ", ".join(str(t) for t in SHOWER["predict"]["minh_nhat"]["history"]), SHOWER["predict"]["minh_nhat"]["next"], SHOWER["predict"]["minh_nhat"]["next"] // 10,
+                ", ".join(str(t) for t in SHOWER["predict"]["ngu"]["history"]), SHOWER["predict"]["ngu"]["next"], SHOWER["predict"]["ngu"]["next"] // 10),
             "- Từ 50 độ là chết bỏng; cần 25 phút (13 lượt Có an toàn); sau lượt 6 còn %d lượt an toàn." % sum(1 for t in SHOWER["player"][6:] if t < SHOWER["lethal"])]
     open(os.path.join(ROOT, "docs", "design", "CH2_SCRIPT.md"), "w", encoding="utf-8", newline="\n").write("\n".join(out) + "\n")
     print("rows", len(rows), "messages", len(messages), "words", len(keys))

@@ -8,6 +8,6 @@ id = &"chat_ch2_ngu_scream"
 sender = &"ngu"
 sender_name_key = "NAME_CH2_NGU"
 text_key = "CHAT_CH2_NGU_SCREAM"
-minutes = 461
+minutes = 439
 outgoing = false
 spoken = true

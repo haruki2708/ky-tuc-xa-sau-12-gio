@@ -1,0 +1,18 @@
+{
+ "words": 30975,
+ "corpse_words": 9474,
+ "corpse_syllables": 2403,
+ "min_continuations": 5,
+ "sources": {
+  "vi": {
+   "url": "https://kaikki.org/viwiktionary/Ti%E1%BA%BFng%20Vi%E1%BB%87t/kaikki.org-dictionary-Ti%E1%BA%BFngVi%E1%BB%87t.jsonl",
+   "downloaded": "2026-10-06",
+   "sha256": "95fa51e4bc7339a4975c4e2505b88736ce56b1983f1345875bacc83140e45472"
+  },
+  "en": {
+   "url": "https://kaikki.org/dictionary/Vietnamese/kaikki.org-dictionary-Vietnamese.jsonl",
+   "downloaded": "2026-10-06",
+   "sha256": "ba64fae8301bf3f383a82bb178f2370309d31b3bcb3a92e9b0c9e04aeb6ecc16"
+  }
+ }
+}

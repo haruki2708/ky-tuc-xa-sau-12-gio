@@ -16,3 +16,6 @@ art_source/props/.scratch.tmp/
 
 # Office lock files (a doc open in Word)
 ~$*
+
+# Chapter 2 dictionary downloads (build_dictionary.py)
+docs/design/ch2/.cache/

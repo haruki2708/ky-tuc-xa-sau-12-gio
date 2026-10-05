@@ -12,7 +12,7 @@ const CH2_DEATH_CHECKPOINTS := {&"r3": &"ch2_r3", &"r4": &"ch2_r4", &"end2": &"c
 const CH2_DEATH_KINDS := {
 	&"DEATH_CH2_CHAIN_WRONG": &"corpse_lunge", &"DEATH_CH2_CHAIN_TIMEOUT": &"corpse_lunge",
 	&"DEATH_CH2_SCALDED": &"scald", &"DEATH_CH2_NO_CHOICE": &"scald", &"DEATH_CH2_SHORT_SHOWER": &"scald",
-	&"DEATH_CH2_SHOWER_BROKEN": &"fall_back", &"DEATH_CH2_LOST_NGU": &"none", &"DEATH_LEFT_ROOM": &"fall_back",
+	&"DEATH_CH2_SHOWER_BROKEN": &"fall_back", &"DEATH_CH2_LOST_NGU": &"none", &"DEATH_CH2_LOST_NHAT": &"none", &"DEATH_LEFT_ROOM": &"fall_back",
 }
 const WORD_BANK_PATH := "res://data/ch2/word_bank.json"
 const SHOWER_PATH := "res://data/ch2/shower.json"
@@ -28,8 +28,9 @@ const SHOWER_CHOICE_SECONDS := 8.0
 const SHOWER_SLOT_SECONDS := 20.0
 ## Seconds after "Có" to step into the stall before the water decides.
 const SHOWER_GRACE_SECONDS := 2.0
-const NGU_SECONDS := 10.0
-const NGU_CORRECT := 0
+## A corpse says one of the game's own words (horror flavour) this often
+## when one fits; otherwise any dictionary word it knows (D-051).
+const BANK_WORD_CHANCE := 0.6
 ## Story beats on Trung's turn count (CH2_SCRIPT.md).
 const R3_BEATS := {2: ["n_keep_up"], 5: ["cctv_310"], 9: ["ngu_clue", "n_brave"], 13: ["n_loop", "ngu_loop"], 20: ["n_few"]}
 const R4_BEATS := {1: ["n_seventy"], 5: ["ngu_pattern"], 10: ["n_steam"]}
@@ -37,7 +38,13 @@ const R4_BEATS := {1: ["n_seventy"], 5: ["ngu_pattern"], 10: ["n_steam"]}
 var _bank: Dictionary = {}
 var _shower: Dictionary = {}
 var _rng := RandomNumberGenerator.new()
-## Word chain state.
+var _dictionary: Ch2Dictionary
+## Bank words by canonical form (VietText.canon_word) -> strings key.
+var _bank_keys: Dictionary[String, String] = {}
+var _loop_canon: Array[String] = []
+## Canonical syllable -> canonical word that steers toward the loop (bot, tests).
+var _steer: Dictionary[String, String] = {}
+## Word chain state; words are canonical forms.
 var _last_word: String = ""
 var _recent: Array[String] = []
 var _gagged: Dictionary[int, bool] = {}
@@ -45,11 +52,19 @@ var _talking_bed: int = -1
 var _turns: int = 0
 var _loop_known: bool = false
 var _loop_run: int = 0
-var _chain_options: PackedStringArray = PackedStringArray()
-var _chain_answer: int = -2
+var _typed: String = ""
+var _typed_sent: bool = false
 var _first_stall_told: bool = false
+## Story lines play one at a time without holding up the game.
+var _chat_queue: Array[String] = []
+var _chat_running: bool = false
 ## Shower state.
 var _shower_choice: int = -1
+var _safe_streak: int = 0
+var _predicted: bool = false
+var _prediction_member: StringName = &""
+var _prediction_text: String = ""
+var _prediction_sent: bool = false
 var _in_shower_override: int = -1
 var _minutes: int = 0
 var _steam: float = 0.0
@@ -67,8 +82,16 @@ func _ready() -> void:
 		add_child(_chain_panel)
 	_bank = _load_json(WORD_BANK_PATH)
 	_shower = _load_json(SHOWER_PATH)
+	_dictionary = Ch2Dictionary.shared()
+	_index_bank()
 	_rng.seed = 2026
-	EventBus.chain_choice_made.connect(func(index: int) -> void: _chain_answer = index)
+	EventBus.chain_word_typed.connect(func(text: String) -> void:
+		_typed = text
+		_typed_sent = true)
+	EventBus.prediction_sent.connect(func(member: StringName, text: String) -> void:
+		if member == _prediction_member:
+			_prediction_text = text
+			_prediction_sent = true)
 	EventBus.shower_choice_made.connect(func(run_water: bool) -> void: _shower_choice = 1 if run_water else 0)
 	super._ready()
 	_place_ch2_props()
@@ -145,11 +168,25 @@ func _round_3() -> void:
 	_set_clock("06:02")
 	# Scripted opening (N1): Phúc, Việt, Đạt, then Trung on "vở".
 	for i in 3:
-		await _corpse_says([1, 2, 4][i], String(_bank.opening[i]))
+		var key := String(_bank.opening[i])
+		await _corpse_says([1, 2, 4][i], VietText.canon_word(String(_bank.words[key].text)))
 	_think("THINK_CH2_VO")
 	await _chain(R3_TURNS)
 	if _chain_panel != null and _chain_panel.has_method("close_panel"):
 		_chain_panel.close_panel()
+
+
+func _index_bank() -> void:
+	var words: Dictionary = _bank.get("words", {})
+	for key: String in words:
+		_bank_keys[VietText.canon_word(String(words[key].text))] = key
+	for key: String in _bank.get("loop", []):
+		_loop_canon.append(VietText.canon_word(String(words[key].text)))
+	var steer: Dictionary = _bank.get("steer", {})
+	for syllable: String in steer:
+		var key := String(steer[syllable])
+		if words.has(key):
+			_steer[VietText.canon_syllable(syllable)] = VietText.canon_word(String(words[key].text))
 
 
 func _reset_chain() -> void:
@@ -169,7 +206,7 @@ func _chain(turns: int) -> void:
 	while is_inside_tree() and not _dying:
 		if not await _trung_turn():
 			return
-		if _turns >= turns or _loop_run >= (_bank.get("loop", []) as Array).size():
+		if _turns >= turns or _loop_run >= _loop_canon.size():
 			break
 		for bed in [1, 2, 4]:
 			if _dying or not is_inside_tree():
@@ -177,8 +214,8 @@ func _chain(turns: int) -> void:
 			await _corpse_turn(bed)
 
 
-## A corpse's turn: says a word, or mumbles through the gag, or stalls on a
-## dead end (falls, revives and starts a new chain, N2).
+## A corpse's turn: says a word, or mumbles through the gag, or stalls when
+## it knows no word that follows (falls, revives and starts a new chain, N2).
 func _corpse_turn(bed: int) -> void:
 	var speaker: StringName = SPEAKERS[bed]
 	EventBus.chain_turn_started.emit(speaker, float(_bank.get("seconds", 15.0)))
@@ -190,7 +227,7 @@ func _corpse_turn(bed: int) -> void:
 		return
 	var word := _corpse_pick(_last_syllable())
 	if word.is_empty():
-		# Nothing in the bank follows: it stalls the whole turn, falls, comes back.
+		# Nothing it knows follows: it stalls the whole turn, falls, comes back.
 		_corpse_state(bed, &"mumble")
 		EventBus.chain_word_spoken.emit(speaker, "")
 		await _wait(float(_bank.get("seconds", 15.0)))
@@ -211,158 +248,150 @@ func _corpse_falls(bed: int, revive_seconds: float) -> void:
 	_corpse_state(bed, &"gagged" if _gagged.get(bed, false) else &"sit")
 
 
-func _corpse_says(bed: int, key: String) -> void:
+## word: canonical form.
+func _corpse_says(bed: int, word: String) -> void:
 	_talking_bed = bed
 	_corpse_state(bed, &"talk")
-	_said(key)
-	EventBus.chain_word_spoken.emit(SPEAKERS[bed], key)
-	await _wait(_word_seconds(key))
+	_said(word)
+	var shown := _shown(word)
+	EventBus.chain_word_spoken.emit(SPEAKERS[bed], shown)
+	await _wait(_word_seconds(shown))
 	_talking_bed = -1
 	_corpse_state(bed, &"gagged" if _gagged.get(bed, false) else &"sit")
 
 
-## Trung's turn: four options, 15 seconds, only from the bedroom. False = dead.
+## Trung's turn: type a word in 15 seconds, only from the bedroom (D-049).
+## False = dead.
 func _trung_turn() -> bool:
 	_turns += 1
 	_set_clock("%02d:%02d" % [6, mini(59, 2 + _turns * 2)])
 	_story(R3_BEATS.get(_turns, []))
 	var seconds := float(_bank.get("seconds", 15.0))
-	_chain_options = _options_for(_last_syllable())
-	_chain_answer = -2
+	_typed = ""
+	_typed_sent = false
 	EventBus.chain_turn_started.emit(&"trung", seconds)
-	EventBus.chain_choice_requested.emit(_chain_options, seconds)
+	EventBus.chain_input_requested.emit(seconds)
 	var blocked := [false]
 	await _wait_until(func() -> bool:
 		var deaf := not _in_bedroom()
 		if deaf != blocked[0]:
 			blocked[0] = deaf
 			EventBus.chain_choice_blocked.emit(deaf)
-		if deaf and _chain_answer != -2:
-			_chain_answer = -2
-		return _chain_answer != -2, seconds)
+		if deaf and _typed_sent:
+			# Nobody hears a word said from the bathroom or the balcony.
+			_typed_sent = false
+		return _typed_sent, seconds)
 	if blocked[0]:
 		EventBus.chain_choice_blocked.emit(false)
-	if _chain_answer < 0 or _chain_answer >= _chain_options.size():
-		EventBus.chain_choice_made.emit(-1)
+	if not _typed_sent:
+		EventBus.chain_input_closed.emit(&"timeout")
 		_die(&"DEATH_CH2_CHAIN_TIMEOUT")
 		return false
-	var key := _chain_options[_chain_answer]
-	if not is_valid_answer(key):
+	if not is_valid_word(_typed):
+		EventBus.chain_input_closed.emit(&"wrong")
 		_die(&"DEATH_CH2_CHAIN_WRONG")
 		return false
-	_said(key)
-	EventBus.chain_word_spoken.emit(&"trung", key)
-	_loop_run = _loop_run + 1 if _all_gagged() and key in _bank.loop else 0
+	var word := VietText.canon_word(_typed)
+	EventBus.chain_input_closed.emit(&"accepted")
+	_said(word)
+	EventBus.chain_word_spoken.emit(&"trung", _shown(word))
+	_loop_run = _loop_run + 1 if _all_gagged() and word in _loop_canon else 0
 	return true
 
 
-## The rule (CH2_DESIGN.md): a bank word starting with the last syllable,
-## tone included, not said in the last three turns.
-func is_valid_answer(key: String) -> bool:
-	var words: Dictionary = _bank.get("words", {})
-	if not words.has(key) or key in _recent:
-		return false
-	return _last_word.is_empty() or String(words[key].first) == _last_syllable()
+## The rule (CH2_DESIGN.md, D-049): two syllables found in the dictionary,
+## starting with the last syllable (tone included), not said in the last
+## three turns. text: as typed.
+func is_valid_word(text: String) -> bool:
+	return VietText.syllables(text).size() == 2 and _legal(VietText.canon_word(text))
 
 
-## One right word (two when a dead end is on offer, N2) and traps: wrong tone
-## or near-miss start, a recent repeat, anything else.
-func _options_for(syllable: String) -> PackedStringArray:
-	var words: Dictionary = _bank.get("words", {})
-	var traps: Dictionary = _bank.get("traps", {})
-	var right := _right_word(syllable)
-	var picked: Array[String] = [right]
-	var count := int(_bank.get("options", 4))
-	if not _all_gagged() and _rng.randf() < 0.4:
-		for key: String in words:
-			if words[key].dead and words[key].first == syllable and key not in _recent:
-				picked.append(key)
-				break
-	var near: Array[String] = []
-	var other: Array[String] = []
-	for source: Dictionary in [words, traps]:
-		for key: String in source:
-			if key in picked or (source == words and is_valid_answer(key)):
-				continue
-			var first := String(source[key].first)
-			if first != syllable and _toneless(first) == _toneless(syllable):
-				near.append(key)
-			else:
-				other.append(key)
-	for key in _recent:
-		if words.has(key) and String(words[key].first) == syllable and key not in picked:
-			near.push_front(key)
-	near.shuffle()
-	other.shuffle()
-	for key in near + other:
-		if picked.size() >= count:
-			break
-		if key not in picked:
-			picked.append(key)
-	var shuffled := picked.duplicate()
-	shuffled.shuffle()
-	return PackedStringArray(shuffled)
-
-
-func _right_word(syllable: String) -> String:
-	var words: Dictionary = _bank.get("words", {})
-	var steer: Dictionary = _bank.get("steer", {})
-	# Minh Nhật's loop (N5): once everyone is gagged, the steering word leads to it.
-	# Once everyone is gagged the chain is Trung's alone: the right word leads
-	# toward the loop (shortest path), told about or not.
+## A legal word for Trung now (the bot and tests type it): once everyone is
+## gagged it leads to Minh Nhật's loop (N5); otherwise a word the corpses can
+## follow. Empty when there is none.
+func suggest_word() -> String:
+	var syllable := _last_syllable()
 	if _all_gagged():
-		var loop: Array = _bank.loop
-		if _last_word in loop:
-			var next: String = loop[(loop.find(_last_word) + 1) % loop.size()]
-			if is_valid_answer(next):
-				return next
-		if steer.has(syllable) and is_valid_answer(String(steer[syllable])):
-			return String(steer[syllable])
+		if _last_word in _loop_canon:
+			var next := _loop_canon[(_loop_canon.find(_last_word) + 1) % _loop_canon.size()]
+			if _legal(next):
+				return _dictionary.spelling[next]
+		if _steer.has(syllable) and _legal(_steer[syllable]):
+			return _dictionary.spelling[_steer[syllable]]
 	var choices: Array[String] = []
-	for key: String in words:
-		if not words[key].dead and is_valid_answer(key):
-			choices.append(key)
+	for word in _bank_keys:
+		if _legal(word) and _bank_word_lives(word):
+			choices.append(word)
+	# Then words the corpses can follow, then any word at all.
+	var any: Array[String] = []
 	if choices.is_empty():
-		return ""
-	return choices[_rng.randi_range(0, choices.size() - 1)]
+		for word in _dictionary.by_first.get(syllable, PackedStringArray()):
+			if _legal(word):
+				any.append(word)
+				if _dictionary.corpse_by_first.has(Ch2Dictionary.last_of(word)):
+					choices.append(word)
+	var word := _pick(choices if not choices.is_empty() else any)
+	return _dictionary.spelling.get(word, "")
 
 
+## A legal word whose last syllable starts no word the corpses know: the next
+## corpse stalls (N2). Empty when there is none (bot, tests).
+func suggest_dead_end() -> String:
+	var words: Variant = _dictionary.spelling.keys() if _last_word.is_empty() \
+		else _dictionary.by_first.get(_last_syllable(), PackedStringArray())
+	for word: String in words:
+		if _legal(word) and not _dictionary.corpse_by_first.has(Ch2Dictionary.last_of(word)):
+			return _dictionary.spelling[word]
+	return ""
+
+
+func _legal(word: String) -> bool:
+	return _dictionary.has(word) and word not in _recent \
+		and (_last_word.is_empty() or Ch2Dictionary.first_of(word) == _last_syllable())
+
+
+func _bank_word_lives(word: String) -> bool:
+	var key: String = _bank_keys.get(word, "")
+	return not key.is_empty() and not bool(_bank.words[key].dead)
+
+
+## A word the corpse knows after `syllable` (canonical; empty = start a new
+## chain). Prefers the game's own words. Empty when it knows none.
 func _corpse_pick(syllable: String) -> String:
-	var words: Dictionary = _bank.get("words", {})
-	var choices: Array[String] = []
-	for key: String in words:
-		if words[key].dead or key in _recent:
-			continue
-		if syllable.is_empty() or String(words[key].first) == syllable:
-			choices.append(key)
-	if choices.is_empty():
-		return ""
-	return choices[_rng.randi_range(0, choices.size() - 1)]
+	var bank: Array[String] = []
+	for word in _bank_keys:
+		if _bank_word_lives(word) and word not in _recent and (syllable.is_empty() or Ch2Dictionary.first_of(word) == syllable):
+			bank.append(word)
+	if syllable.is_empty() or (not bank.is_empty() and _rng.randf() < BANK_WORD_CHANCE):
+		return _pick(bank)
+	var known: Array[String] = []
+	for word in _dictionary.corpse_by_first.get(syllable, PackedStringArray()):
+		if word not in _recent:
+			known.append(word)
+	return _pick(known if not known.is_empty() else bank)
 
 
-func _said(key: String) -> void:
-	_last_word = key
-	_recent.append(key)
+func _pick(words: Array[String]) -> String:
+	return words[_rng.randi_range(0, words.size() - 1)] if not words.is_empty() else ""
+
+
+func _said(word: String) -> void:
+	_last_word = word
+	_recent.append(word)
 	while _recent.size() > int(_bank.get("no_repeat_window", 3)):
 		_recent.pop_front()
 
 
 func _last_syllable() -> String:
-	var words: Dictionary = _bank.get("words", {})
-	return String(words[_last_word].last) if words.has(_last_word) else ""
+	return Ch2Dictionary.last_of(_last_word) if not _last_word.is_empty() else ""
 
 
-static func _toneless(syllable: String) -> String:
-	const MARKS := {"à": "a", "á": "a", "ả": "a", "ã": "a", "ạ": "a", "ằ": "ă", "ắ": "ă", "ẳ": "ă", "ẵ": "ă", "ặ": "ă",
-		"ầ": "â", "ấ": "â", "ẩ": "â", "ẫ": "â", "ậ": "â", "è": "e", "é": "e", "ẻ": "e", "ẽ": "e", "ẹ": "e",
-		"ề": "ê", "ế": "ê", "ể": "ê", "ễ": "ê", "ệ": "ê", "ì": "i", "í": "i", "ỉ": "i", "ĩ": "i", "ị": "i",
-		"ò": "o", "ó": "o", "ỏ": "o", "õ": "o", "ọ": "o", "ồ": "ô", "ố": "ô", "ổ": "ô", "ỗ": "ô", "ộ": "ô",
-		"ờ": "ơ", "ớ": "ơ", "ở": "ơ", "ỡ": "ơ", "ợ": "ơ", "ù": "u", "ú": "u", "ủ": "u", "ũ": "u", "ụ": "u",
-		"ừ": "ư", "ứ": "ư", "ử": "ư", "ữ": "ư", "ự": "ư", "ỳ": "y", "ý": "y", "ỷ": "y", "ỹ": "y", "ỵ": "y"}
-	var out := ""
-	for c in syllable:
-		out += MARKS.get(c, c)
-	return out
+## What the chain shows and voices: the strings key of a bank word (voiced
+## whole), otherwise the dictionary spelling (lane E stitches syllables).
+func _shown(word: String) -> String:
+	if _bank_keys.has(word):
+		return _bank_keys[word]
+	return _dictionary.spelling.get(word, word)
 
 
 func _all_gagged() -> bool:
@@ -402,6 +431,8 @@ func _round_4() -> void:
 	_begin(&"r4", "07:00")
 	_rules_live = true
 	_minutes = 0
+	_safe_streak = 0
+	_predicted = false
 	_bathroom_door(false)
 	_set_steam(0.0)
 	if _ch2_music != null:
@@ -415,16 +446,17 @@ func _round_4() -> void:
 	RuleSystem.mark_read(&"ch2_r4_1")
 	_set_clock("07:01")
 	_think("THINK_CH2_DOOR")
-	await _line("ngu_must")
-	await _line("n_wait")
+	# D-051: the call goes on while the shower runs; nothing waits for it.
+	_story(["ngu_must", "n_wait"])
 	var temps: Array = _shower.get("player", [])
 	var need := int(_shower.get("need_minutes", 25))
 	for slot in temps.size():
 		if _dying or not is_inside_tree():
 			return
 		_set_clock("07:%02d" % mini(59, 2 + slot * 2))
-		if slot == int(_shower.get("ngu_slot", 20)):
-			if not await _save_ngu():
+		# D-051: the predictions come at the latest before this slot.
+		if not _predicted and slot >= int(_shower.get("predict_latest_slot", 20)):
+			if not await _predictions():
 				return
 		_story(R4_BEATS.get(slot, []))
 		if slot == 12:
@@ -438,6 +470,10 @@ func _round_4() -> void:
 			return
 		if _minutes >= need:
 			break
+		# D-050, D-051: three safe showers in a row, and the friends ask.
+		if not _predicted and _safe_streak >= int(_shower.get("predict_streak", 3)):
+			if not await _predictions():
+				return
 	if _minutes < need and not _dying:
 		_die(&"DEATH_CH2_SHORT_SHOWER")
 
@@ -474,25 +510,63 @@ func _shower_slot(temperature: int) -> bool:
 		return false
 	if run:
 		_minutes += int(_shower.get("slot_minutes", 2))
+	_safe_streak = _safe_streak + 1 if run else 0
 	_set_water(false, temperature)
 	GameState.set_flag(&"ch2_shower_minutes", _minutes)
 	EventBus.shower_slot_finished.emit(temperature, run, _minutes)
 	return true
 
 
-## N10: Ngư asks what to pick next; ten seconds, the wrong advice loses her.
-func _save_ngu() -> bool:
-	await _line("ngu_help")
-	EventBus.scare_triggered.emit(&"ngu_water")
-	var picked := await _choice(&"ngu", 2, NGU_SECONDS, -1)
-	if picked != NGU_CORRECT:
-		await _line("ngu_scream")
-		_member_dies(&"ngu", Vector3(20.0, -6.6, -2.0))
-		await _wait(1.5)
-		_die(&"DEATH_CH2_LOST_NGU")
-		return false
-	await _line("ngu_saved")
+## D-050, D-051: Minh Nhật, then Ngư, text their last three temperatures and
+## ask what to pick next. Trung types an answer for each; wrong or no answer
+## scalds that friend and loses the round. False = lost.
+func _predictions() -> bool:
+	_predicted = true
+	GameState.set_flag(&"ch2_predicting", true)
+	var seconds := float(_shower.get("predict_seconds", 20.0))
+	var lethal := int(_shower.get("lethal", 50))
+	for member: String in ["minh_nhat", "ngu"]:
+		var data: Dictionary = _shower.predict[member]
+		var tag := "n" if member == "minh_nhat" else "ngu"
+		await _line(tag + "_ask")
+		if member == "ngu":
+			EventBus.scare_triggered.emit(&"ngu_water")
+		var history := PackedInt32Array()
+		for t in data.history:
+			history.append(int(t))
+		_prediction_member = StringName(member)
+		_prediction_text = ""
+		_prediction_sent = false
+		EventBus.prediction_requested.emit(_prediction_member, history, seconds)
+		await _wait_until(func() -> bool: return _prediction_sent, seconds)
+		var right := _prediction_sent and is_right_prediction(_prediction_text, int(data.next), lethal)
+		_prediction_member = &""
+		EventBus.prediction_result.emit(StringName(member), right)
+		if not right:
+			await _line(tag + "_scream")
+			_member_dies(StringName(member), Vector3(20.0, -6.6, -2.0) if member == "ngu" else Vector3(8.0, -6.6, 2.0))
+			await _wait(1.5)
+			_die(&"DEATH_CH2_LOST_NHAT" if member == "minh_nhat" else &"DEATH_CH2_LOST_NGU")
+			return false
+		if member == "minh_nhat":
+			await _line("n_ok")
+		else:
+			_story(["ngu_saved"])
+	GameState.set_flag(&"ch2_predicting", false)
 	return true
+
+
+## A texted prediction (D-049): "có" / "không" (with or without tone marks),
+## or the tens like "3x". next: the friend's next temperature.
+static func is_right_prediction(text: String, next: int, lethal: int = 50) -> bool:
+	var answer := VietText.plain(text).replace(" ", "").trim_suffix("do")
+	if answer in ["co"]:
+		return next < lethal
+	if answer in ["khong", "ko", "k", "hong"]:
+		return next >= lethal
+	if answer.length() == 2 and answer.ends_with("x") and answer[0].is_valid_int():
+		return int(answer[0]) == next / 10
+	return false
 
 
 func _ending_2() -> void:
@@ -551,11 +625,18 @@ func _set_steam(level: float) -> void:
 
 # --- Shared ----------------------------------------------------------------------------
 
-## Story lines fired on a turn without holding up the game (one after another).
+## Story lines on a turn, without holding up the game: queued, one at a time.
 func _story(beats: Array) -> void:
 	for beat: String in beats:
+		_chat_queue.append(beat)
+	if _chat_running:
+		return
+	_chat_running = true
+	while not _chat_queue.is_empty():
 		if _dying or not is_inside_tree():
-			return
+			_chat_queue.clear()
+			break
+		var beat: String = _chat_queue.pop_front()
 		match beat:
 			"cctv_310": _cctv_310()
 			"n_loop":
@@ -563,6 +644,7 @@ func _story(beats: Array) -> void:
 				GameState.set_flag(&"ch2_loop_known", true)
 				await _line(beat)
 			_: await _line(beat)
+	_chat_running = false
 
 
 ## D-046: the security camera shows room 310 losing the game (jumpscare 4).
@@ -741,9 +823,12 @@ func _place_ch2_audio() -> void:
 
 ## How long a corpse takes to say a word: lane E lowers the pitch (longest .72).
 func _word_seconds(key: String) -> float:
-	var path := "res://audio/voice/vi/%s.ogg" % key
-	if time_scale < 0.999 or not ResourceLoader.exists(path):
+	if time_scale < 0.999:
 		return CORPSE_SPEAK_SECONDS
+	var path := "res://audio/voice/vi/%s.ogg" % key
+	if not key.begins_with("WORD_CH2_") or not ResourceLoader.exists(path):
+		# A dictionary word: lane E plays its syllables one after the other.
+		return maxf(CORPSE_SPEAK_SECONDS, Ch2SyllableBank.seconds_for(key) / 0.72 + 0.3)
 	return maxf(CORPSE_SPEAK_SECONDS, (load(path) as AudioStream).get_length() / 0.72 + 0.3)
 
 

@@ -66,11 +66,11 @@ func _motion(from: Vector3,to: Vector3) -> float:
 
 
 func test_bathroom_balcony_routes_and_door_collision() -> void:
-	assert_true(_motion(Vector3(6.85,.03,-3.3),Vector3(6.85,.03,-4.7))<.9,"bath door closed blocks")
+	assert_true(_motion(Vector3(5.85,.03,-3.3),Vector3(5.85,.03,-4.7))<.9,"bath door closed blocks")
 	room.set_bathroom_door_open(true)
 	await tree.physics_frame
 	await tree.physics_frame
-	assert_true(_motion(Vector3(6.85,.03,-3.3),Vector3(6.85,.03,-5.5))>.999,"bathroom entry clear")
+	assert_true(_motion(Vector3(5.85,.03,-3.3),Vector3(5.85,.03,-5.5))>.999,"bathroom entry clear")
 	assert_true(_motion(Vector3(2.8,.03,-6.3),Vector3(2.8,.03,-7.8))>.999,"balcony reachable")
 	assert_true(_motion(Vector3(2.8,.03,-7.8),Vector3(2.8,.03,-9.0))<.9,"balcony rail blocks exit")
 	room.set_bathroom_door_open(false)

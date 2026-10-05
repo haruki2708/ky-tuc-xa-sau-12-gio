@@ -1,21 +1,20 @@
 # STATUS — cập nhật bởi integrator
 
-**Cập nhật lần cuối:** 2026-10-05 (tối)
-**Giai đoạn:** Chương 2 "Trò chơi" **đã ghép đủ 5 lane** (T-171…T-175 merged), kịch bản tạm duyệt (D-048), **bản chơi thử đã export** (`build/windows/KyTucXa.exe`, 2026-10-05 22:13). **Chủ dự án đang chơi thử chương 2** theo `docs/playtest/CH2_WALKTHROUGH.md`. Chương 1 bản 2 tạm chốt (D-045, tag `v0.3-ch1`). Test 472/472, check 0 lỗi.
+**Cập nhật lần cuối:** 2026-10-06
+**Giai đoạn:** Chương 2 "Trò chơi" **đang sửa theo góp ý chơi thử lần 1** (D-049, D-050, D-051). Phần core xong (T-176): từ điển Wiktionary khoảng 31 nghìn từ (CC BY-SA, ngoại lệ D-051), gõ từ ở vòng 3, nhắn dự đoán ở vòng 4, chat nhanh hơn. **Đã giao 4 lane:** T-177 (A), T-178 (E), T-179 (D), T-180 (C). Cho tới khi ghép T-179, **vòng 3 trên `main` chưa chơi tay được** (bảng nối từ cũ chưa có ô gõ); bản `build/windows/KyTucXa.exe` vẫn là bản 05/10. Chương 1 tạm chốt (`v0.3-ch1`).
 
 ## Việc tiếp theo (cho phiên integrator kế tiếp)
-1. **Làm theo góp ý chơi thử chương 2 (D-049):**
-   - vòng 3 gõ từ bằng bàn phím: lane D đổi bảng nối từ thành ô nhập (LineEdit nhận bộ gõ của máy, 15 giây); core kiểm tra luật trên một **từ điển tiếng Việt lớn** (tìm nguồn có giấy phép thương mại, ghi vào CREDITS; từ không có trong kho của xác thì xác gục); bot và test cập nhật;
-   - vòng 4 lời chat nhanh hơn;
-   - vòng 4 nhắn dự đoán cho Minh Nhật và Ngư sau 3 lượt an toàn liên tiếp: thêm dãy nhiệt độ cho hai người, UI ô nhập trong điện thoại, đúng thì họ sống, sai thì họ bỏng và **thua, làm lại vòng 4**; thay thế đoạn cứu Ngư lúc 7:40 (D-050);
-   - đã sửa: cửa nhà vệ sinh bị giường B che (dời ô cửa, commit `af52dde`).
-2. **Bot chương 2** (`pwsh tools/playthrough.ps1 -Chapter 2 -Scenario <case> -RequireComplete`, chạy từng case, thời gian thật 15–20 phút; máy hay hết RAM nên chỉ chạy khi chủ dự án đồng ý):
-   - `ch2_good` lần 2 qua trọn vòng 3, dừng ở bước lau màn hình; đã sửa chỗ đứng `leave_shower` (commit `3780c37`), **chưa chạy lại** (lần 3 bị dừng vì hết RAM);
-   - còn 5 case: `ch2_chain_timeout`, `ch2_chain_wrong`, `ch2_scald`, `ch2_leave_shower`, `ch2_lost_ngu`; đo FPS (`-Performance`, profile `performance` còn trống).
-3. **Chưa kiểm tra:** menu F9 nhảy vòng 3/4 của chương 2; `CctvAudio.play_room_loss` chưa nối (chưa có rig `CctvAudio` trong chương).
+1. **Ghép góp ý chương 2** khi lane giao (review theo card, merge, chạy test, check):
+   - T-177 A: đứng yên khi đang gõ chữ (`text_entry_changed`);
+   - T-178 E: xác đọc từ ngoài kho bằng cách ghép giọng từng tiếng (`Ch2SyllableBank`);
+   - T-179 D: ô gõ từ (Enter mở, Enter gửi, Esc hủy, bộ gõ của máy), ô nhắn dự đoán trong điện thoại, credits từ điển, bỏ 4 phương án;
+   - T-180 C: bot gõ từ và nhắn dự đoán, kịch bản `ch2_wrong_prediction` thay `ch2_lost_ngu`, kiểm tra F9.
+   Sau khi ghép: xóa `chain_choice_requested` và `chain_choice_made` khỏi EventBus; sửa `docs/playtest/CH2_WALKTHROUGH.md` (gõ từ, nhắn dự đoán); export; **nhờ chủ dự án thử gõ có dấu bằng Unikey/EVKey** (test tự động không kiểm được bộ gõ).
+2. **Bot chương 2:** chạy từng kịch bản sau khi ghép T-180, **chỉ khi chủ dự án đồng ý** (thời gian thật 15–20 phút, máy hay hết RAM). 6 kịch bản: `ch2_good`, `ch2_chain_timeout`, `ch2_chain_wrong`, `ch2_scald`, `ch2_leave_shower`, `ch2_wrong_prediction`; đo FPS (`-Performance`).
+3. **Chưa kiểm tra:** menu F9 nhảy vòng 3/4 (giao T-180); `CctvAudio.play_room_loss` chưa nối.
 4. **Lane B:** test `test_stuck_door_shakes_without_opening_then_cancels_on_open` chập chờn khi máy bận (bộ hẹn giờ 0,07 giây).
-5. **Để sau (D-045):** chương 1 đoạn gõ tường (A giữ nguyên / B thêm tiếng gõ chờ / C gõ to hơn); chủ dự án nghe âm thanh lane E (chương 1 và 2).
-6. **Sau khi chốt chương 2:** đề xuất T-180 (lane B) khung map chương 3 (nhà B 6 tầng, cầu thang, vườn hoa, sân vận động, cổng trường, nhà ăn); chủ dự án hoãn tới khi xong chương 2.
+5. **Để sau (D-045):** chương 1 đoạn gõ tường; chủ dự án nghe âm thanh lane E (chương 1 và 2), nghe giọng chat chương 2 mới (nhanh hơn 25%) và giọng xác ghép theo tiếng.
+6. **Sau khi chốt chương 2:** đề xuất T-181 (lane B) khung map chương 3 (nhà B 6 tầng, cầu thang, vườn hoa, sân vận động, cổng trường, nhà ăn).
 7. Máy chủ dự án: đã tạo `%APPDATA%/Godot/app_userdata/Ky Tuc Xa Sau 12 Gio/progress.json` = `{"unlocked": 2}` để chọn được chương 2.
 **Repo:** https://github.com/tuaanh666/ky-tuc-xa-sau-12-gio (private)
 
@@ -64,6 +63,12 @@
 | T-136 Đoạn 3–5 và cái kết | core | review: chờ chủ dự án chơi thử cả demo |
 | **Chương 2 "Trò chơi" (duyệt 2026-10-05, chơi thử 2026-10-09)** | | |
 | T-170 Kịch bản, kho từ nối, dãy nhiệt độ, luồng 2 vòng, ghép | core | **doing** |
+| **Chương 2 sau chơi thử lần 1 (D-049…D-051, 2026-10-06)** | | |
+| T-176 Từ điển, gõ từ, nhắn dự đoán, chat nhanh, giọng xác theo tiếng | core | **doing**: phần core xong, chờ ghép lane |
+| T-177 Đứng yên khi đang gõ chữ | A | todo |
+| T-178 Xác đọc từ điển bằng giọng ghép theo tiếng | E | todo |
+| T-179 Ô gõ từ nối, ô nhắn dự đoán, credits từ điển | D | todo |
+| T-180 Bot gõ từ và nhắn dự đoán, kiểm tra F9 | C | todo |
 | T-171 Cầm giẻ, bịt miệng xác, cửa kẹt, buồng tắm, nút vòi sen, cảnh chết `corpse_lunge` và `scald` | A | **done**, đã merge |
 | T-172 Xác chơi nối từ, đồ bịt miệng, nhà vệ sinh có vòi sen, hơi nước, phòng camera 310 | B | **done**, đã merge |
 | T-173 Bot chương 2, menu nhảy, đo FPS hơi nước | C | khung **đã merge**; bot chạy sau khi điền profile |

@@ -1597,113 +1597,6 @@
    "dead": false
   }
  },
- "traps": {
-  "WORD_CH2_CHANH_CHUA": {
-   "text": "chanh chua",
-   "first": "chanh",
-   "last": "chua"
-  },
-  "WORD_CH2_CHUC_NAM": {
-   "text": "chục năm",
-   "first": "chục",
-   "last": "năm"
-  },
-  "WORD_CH2_DANG_HIEN": {
-   "text": "dâng hiến",
-   "first": "dâng",
-   "last": "hiến"
-  },
-  "WORD_CH2_DAU_VET": {
-   "text": "dấu vết",
-   "first": "dấu",
-   "last": "vết"
-  },
-  "WORD_CH2_DE_DANG": {
-   "text": "dễ dàng",
-   "first": "dễ",
-   "last": "dàng"
-  },
-  "WORD_CH2_GIEU_COT": {
-   "text": "giễu cợt",
-   "first": "giễu",
-   "last": "cợt"
-  },
-  "WORD_CH2_HOC_TU": {
-   "text": "hộc tủ",
-   "first": "hộc",
-   "last": "tủ"
-  },
-  "WORD_CH2_KHUYET_DIEM": {
-   "text": "khuyết điểm",
-   "first": "khuyết",
-   "last": "điểm"
-  },
-  "WORD_CH2_KHUAT_PHUC": {
-   "text": "khuất phục",
-   "first": "khuất",
-   "last": "phục"
-  },
-  "WORD_CH2_LUAN_HOI": {
-   "text": "luân hồi",
-   "first": "luân",
-   "last": "hồi"
-  },
-  "WORD_CH2_PHAN_THUONG": {
-   "text": "phần thưởng",
-   "first": "phần",
-   "last": "thưởng"
-  },
-  "WORD_CH2_ROI_SAO": {
-   "text": "rồi sao",
-   "first": "rồi",
-   "last": "sao"
-  },
-  "WORD_CH2_SINH_LE": {
-   "text": "sính lễ",
-   "first": "sính",
-   "last": "lễ"
-  },
-  "WORD_CH2_THOM_THO": {
-   "text": "thơm tho",
-   "first": "thơm",
-   "last": "tho"
-  },
-  "WORD_CH2_TRUNG_PHAT": {
-   "text": "trừng phạt",
-   "first": "trừng",
-   "last": "phạt"
-  },
-  "WORD_CH2_VAN_CON": {
-   "text": "vẫn còn",
-   "first": "vẫn",
-   "last": "còn"
-  },
-  "WORD_CH2_VIN_TAY": {
-   "text": "vịn tay",
-   "first": "vịn",
-   "last": "tay"
-  },
-  "WORD_CH2_VO_NAT": {
-   "text": "vỡ nát",
-   "first": "vỡ",
-   "last": "nát"
-  },
-  "WORD_CH2_VO_CHONG": {
-   "text": "vợ chồng",
-   "first": "vợ",
-   "last": "chồng"
-  },
-  "WORD_CH2_XINH_XAN": {
-   "text": "xinh xắn",
-   "first": "xinh",
-   "last": "xắn"
-  },
-  "WORD_CH2_DEM_DEN": {
-   "text": "đêm đen",
-   "first": "đêm",
-   "last": "đen"
-  }
- },
  "loop": [
   "WORD_CH2_HOC_SINH",
   "WORD_CH2_SINH_VIEN",
@@ -1912,6 +1805,5 @@
   "ức": "WORD_CH2_UC_CHE"
  },
  "seconds": 15.0,
- "options": 4,
  "no_repeat_window": 3
 }

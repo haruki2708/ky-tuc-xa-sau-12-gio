@@ -31,13 +31,27 @@
   13,
   42
  ],
- "ngu_history": [
-  74,
-  15,
-  62
- ],
- "ngu_next": 81,
- "ngu_slot": 20,
+ "predict": {
+  "minh_nhat": {
+   "history": [
+    38,
+    16,
+    75
+   ],
+   "next": 23
+  },
+  "ngu": {
+   "history": [
+    74,
+    15,
+    62
+   ],
+   "next": 81
+  }
+ },
+ "predict_streak": 3,
+ "predict_latest_slot": 20,
+ "predict_seconds": 20.0,
  "lethal": 50,
  "cold": 10,
  "slot_minutes": 2,

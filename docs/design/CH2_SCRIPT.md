@@ -1,14 +1,14 @@
 # Kịch bản chương 2 "Trò chơi"
 
-> **Tạm duyệt (D-048), góp ý thêm sau khi chơi thử.** Sinh tự động từ `docs/design/ch2/build_ch2_script.py` (từ nối ở `word_bank.py`). Thiết kế: `docs/design/CH2_DESIGN.md` (D-046, D-047).
+> **Tạm duyệt (D-048), sửa theo góp ý chơi thử D-049…D-051** (gõ từ, từ điển lớn, nhắn dự đoán).** Sinh tự động từ `docs/design/ch2/build_ch2_script.py` (từ nối ở `word_bank.py`). Thiết kế: `docs/design/CH2_DESIGN.md` (D-046, D-047).
 
 Ký hiệu: **Loa** · *(trong phòng)* = giọng nghe trực tiếp · 📞 = trong cuộc gọi · 💭 = suy nghĩ của Trung (chỉ phụ đề) · ▶ = lựa chọn · `[…]` = diễn biến.
 
 ## Nhân vật trong cuộc gọi
 | Tên | Ở đâu | Kết cục chương 2 |
 |---|---|---|
-| Lý Minh Nhật | 203 nhà B | Sống |
-| Khương Ngọc Ngư | 401 nhà A | Sống nếu Trung khuyên đúng lúc 7:40 |
+| Lý Minh Nhật | 203 nhà B | Sống nếu Trung nhắn đúng dự đoán |
+| Khương Ngọc Ngư | 401 nhà A | Sống nếu Trung nhắn đúng dự đoán |
 
 
 ## Mở đầu chương 2 — 6:00
@@ -24,14 +24,14 @@ Ký hiệu: **Loa** · *(trong phòng)* = giọng nghe trực tiếp · 📞 = t
 - **06:02** `[Ba xác Phúc, Việt, Đạt cùng ngồi dậy trong vũng máu, mắt trống rỗng, quay về phía Trung (jumpscare 1). Lời của xác là giọng méo, không có trong cuộc gọi.]`
 - **06:02** 📞 **Minh Nhật · 203:** Bạn cùng phòng tôi… ngồi dậy rồi. Nó đang nhìn tôi.
 - **06:02** 📞 **Ngọc Ngư · 401 nhà A:** Bên mình cũng vậy. Ba đứa. Mắt trắng dã.
-- **06:02** `[Lượt mở đầu cố định (N1). Phúc: "điểm danh". Việt: "danh sách". Đạt: "sách vở", rồi quay sang nhìn Trung. Trung có 15 giây, chỉ có một từ đúng: "vở kịch".]`
+- **06:02** `[Lượt mở đầu cố định (N1). Phúc: "điểm danh". Việt: "danh sách". Đạt: "sách vở", rồi quay sang nhìn Trung. Trung có 15 giây để gõ một từ bắt đầu bằng "vở" (ví dụ "vở kịch").]`
 - **06:02** 💭 Vở… vở gì… nghĩ đi…
-- **06:03** `[Từ đây trò chơi chạy liên tục tới 7:00. Mỗi lượt của Trung: 4 phương án, 15 giây. Chọn sai hoặc hết giờ thì chết (DEATH_CH2_CHAIN_WRONG / DEATH_CH2_CHAIN_TIMEOUT). Ở nhà vệ sinh hoặc ban công thì không trả lời được.]`
+- **06:03** `[Từ đây trò chơi chạy liên tục tới 7:00. Mỗi lượt của Trung: gõ một từ bằng bàn phím (bộ gõ của máy), 15 giây; từ phải có trong từ điển (D-049, D-051). Gõ sai hoặc hết giờ thì chết (DEATH_CH2_CHAIN_WRONG / DEATH_CH2_CHAIN_TIMEOUT). Ở nhà vệ sinh hoặc ban công thì không trả lời được.]`
 - **06:04** 📞 **Minh Nhật · 203:** Đừng nghĩ lâu. Mười lăm giây trôi nhanh lắm.
 
 ## Vòng 3 — 6:05 đến 7:00: nối từ
 
-- **06:06** `[Lần đầu một xác bí lời (do Trung gài từ cụt hoặc do bị bịt miệng): xác ú ớ hết 15 giây, gục xuống, 10 giây sau bật dậy và bắt đầu chuỗi mới (jumpscare 3).]`
+- **06:06** `[Lần đầu một xác bí lời (do Trung gõ một từ mà xác không biết từ nào nối tiếp, hoặc do bị bịt miệng): xác ú ớ hết 15 giây, gục xuống, 10 giây sau bật dậy và bắt đầu chuỗi mới (jumpscare 3).]`
 - **06:08** 📞 **Ngọc Ngư · 401 nhà A:** Nó gục rồi lại ngồi dậy… Chúng nó chết rồi thì sợ gì thua. Chỉ có tụi mình là không được sai.
 - **06:09** 📞 **Minh Nhật · 203:** Một tiếng. Tụi mình phải đúng suốt một tiếng.
 - **06:12** `[Camera an ninh (D-046): điện thoại rung, CAM 310. Sinh viên phòng 310 im lặng quá 15 giây; ba xác cùng lao vào (jumpscare 4).]`
@@ -66,11 +66,13 @@ Ký hiệu: **Loa** · *(trong phòng)* = giọng nghe trực tiếp · 📞 = t
 - **07:04** 📞 **Minh Nhật · 203:** Sáu mươi bảy độ… Chọn bừa là chín người.
 - **07:10** 📞 **Ngọc Ngư · 401 nhà A:** Không thể là ngẫu nhiên. Luật nào cũng có kẽ hở, mấy vòng trước đều vậy.
 - **07:20** 📞 **Minh Nhật · 203:** Hơi nước mù hết màn hình rồi. Lau đi mà đọc.
-- **07:40** `[N10: gọi cứu Ngư. Dãy của Ngư: 74, 15, 62. Lượt tới là 8x độ: phải chọn Không. Có 10 giây; sai thì Ngư chết và Trung thua (DEATH_CH2_LOST_NGU) (jumpscare 8).]`
-- **07:40** 📞 **Ngọc Ngư · 401 nhà A:** Loa điện thoại mình bị nước vào rồi… Trung! Ba lần gần nhất bên mình: bảy mươi tư, mười lăm, sáu mươi hai. Lượt tới chọn gì? Nhanh lên!
-- **07:40** ▶ **Trung chọn:** (1) Đừng xả. Chọn Không. / (2) Xả đi. Chọn Có.
-- **07:41** 📞 **Ngọc Ngư · 401 nhà A:** …Tám mươi mốt độ. Cảm ơn… cảm ơn cậu, Trung.
-- **07:41** 📞 **Ngọc Ngư · 401 nhà A:** Nóng! Nóng quá… Trung…!
+- **07:18** `[Nhắn dự đoán (D-050, D-051), thay cho đoạn cứu Ngư cũ: lần đầu Trung tắm an toàn 3 lượt liền nhau (dãy chuẩn: sau lượt 9, 7:18; chưa đạt thì lúc 7:40). Minh Nhật rồi Ngư gửi 3 nhiệt độ gần nhất bên họ; Trung gõ "có", "không" hoặc khoảng như "3x", mỗi người 20 giây. Sai hoặc hết giờ thì người đó bỏng và Trung thua (DEATH_CH2_LOST_NHAT / DEATH_CH2_LOST_NGU).]`
+- **07:18** 📞 **Minh Nhật · 203:** Trung, cậu tắm ba lượt liền mà không sao. Cậu tìm ra quy luật rồi phải không? Bên tôi ba lần gần nhất: 38, 16, 75. Lượt tới tôi chọn gì? Nhắn cho tôi.
+- **07:18** 📞 **Minh Nhật · 203:** …Hai mươi ba độ. Sống rồi. Cảm ơn cậu.
+- **07:18** 📞 **Minh Nhật · 203:** Nóng! Trung, cậu nhắn sai rồi…!
+- **07:19** 📞 **Ngọc Ngư · 401 nhà A:** Loa điện thoại mình bị nước vào rồi… Trung! Bên mình: 74, 15, 62. Lượt tới chọn gì? Nhắn nhanh lên!
+- **07:19** 📞 **Ngọc Ngư · 401 nhà A:** …Tám mươi mốt độ. May mà mình không xả. Cảm ơn cậu, Trung.
+- **07:19** 📞 **Ngọc Ngư · 401 nhà A:** Nóng! Nóng quá… Trung…!
 
 ## 8:00 — hết chương 2
 
@@ -86,14 +88,20 @@ Ký hiệu: **Loa** · *(trong phòng)* = giọng nghe trực tiếp · 📞 = t
 - **CH2_SHOWER_BROKEN:** Bạn đã chọn xả nước nhưng bước ra khỏi buồng tắm.
 - **CH2_NO_CHOICE:** Bạn không chọn khi đồng hồ đếm hết.
 - **CH2_SHORT_SHOWER:** Tới tám giờ, bạn vẫn chưa tắm đủ hai mươi lăm phút.
-- **CH2_LOST_NGU:** Ngọc Ngư đã chết vì lời khuyên của bạn.
+- **CH2_LOST_NHAT:** Minh Nhật đã chết vì tin nhắn của bạn.
+- **CH2_LOST_NGU:** Ngọc Ngư đã chết vì tin nhắn của bạn.
 
-## Kho từ nối (266 từ, 7 từ cụt, 21 từ bẫy)
+## Từ điển nối từ (D-049, D-051)
+
+- **Người chơi gõ** bất kỳ từ hai tiếng nào có trong từ điển: Wiktionary tiếng Việt và tiếng Anh (bản trích của kaikki.org, CC BY-SA) cộng kho từ của game; khoảng 31 nghìn từ (`game/data/ch2/dictionary.txt`, sinh từ `build_dictionary.py`).
+- **Xác chỉ biết** khoảng 9,5 nghìn từ phổ biến (có trong cả hai bản Wiktionary, sau mỗi từ còn ít nhất 5 cách nối). Gõ từ mà xác không nối tiếp được thì xác bí, gục, rồi bắt đầu chuỗi mới (N2).
+- So tiếng bỏ qua cách đặt dấu cũ/mới ("hoà" = "hòa") và "y"/"i" ("kỹ" = "kĩ"); phải đúng thanh điệu.
+
+## Kho từ của game (266 từ; xác ưu tiên nói các từ này)
 
 - **Mở đầu:** điểm danh → danh sách → sách vở → *(Trung)* vở kịch
 - **Vòng lặp của Minh Nhật:** học sinh → sinh viên → viên phấn → phấn đấu → đấu tranh → tranh luận → luận văn → văn học → học sinh …
 - **Từ cụt (gài bẫy xác, N2):** chết chóc, kinh khủng, lạnh lẽo, mê man, người ngợm, sống sót, thần thánh
-- **Từ bẫy (không bao giờ đúng):** chanh chua, chục năm, dâng hiến, dấu vết, dễ dàng, giễu cợt, hộc tủ, khuyết điểm, khuất phục, luân hồi, phần thưởng, rồi sao, sính lễ, thơm tho, trừng phạt, vẫn còn, vịn tay, vỡ nát, vợ chồng, xinh xắn, đêm đen
 - **Kiểm tra tự động:** mọi từ (trừ từ cụt) đều nối tiếp được và lái về được vòng lặp; xa nhất 17 lượt.
 
 <details><summary>Toàn bộ kho từ</summary>
@@ -106,5 +114,5 @@ bào chữa, bén lửa, bóng tối, bạc mệnh, bạo lực, bản thân, b�
 
 - **Quy luật (không ai nói ra, D-046):** hàng chục lần sau = hàng đơn vị của tổng hai chữ số lần trước.
 - **Dãy của Trung (30 lượt):** 67, 37, 8, 81, 96, 58, 37, 1, 19, 4, 43, 74, 19, 9, 94, 35, 86, 41, 52, 79, 63, 94, 31, 45, 91, 7, 71, 83, 13, 42
-- **Dãy của Ngư (7:40):** 74, 15, 62 → lượt tới 81 độ (phải khuyên Không).
+- **Nhắn dự đoán:** Minh Nhật 38, 16, 75 → lượt tới 23 độ (đúng: "có" hoặc "2x"); Ngư 74, 15, 62 → lượt tới 81 độ (đúng: "không" hoặc "8x").
 - Từ 50 độ là chết bỏng; cần 25 phút (13 lượt Có an toàn); sau lượt 6 còn 14 lượt an toàn.

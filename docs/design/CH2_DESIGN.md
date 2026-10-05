@@ -1,6 +1,6 @@
 # Chương 2 "Trò chơi" (6:00–8:00): thiết kế để duyệt
 
-> **Bản nháp chờ chủ dự án duyệt** (2026-10-05). Đã chốt 4 điểm (D-046). Bổ sung cho `STORY.md` §6. Chuẩn chương 1 bản 2 áp dụng mặc định: nhiều nhiệm vụ, **chỉ một độ khó Insane** (D-039), **cắt thời gian trống** khi xong nhiệm vụ (D-040), **không giải thích luật** (D-038), **có cảnh chết** (D-042). Các điểm đã chốt ghi ở cuối. Con số là giá trị khởi đầu, chỉnh sau chơi thử.
+> **Đã duyệt (D-047), sửa sau chơi thử lần 1 (D-049, D-050, D-051, 2026-10-06):** vòng 3 gõ từ trên từ điển lớn, vòng 4 nhắn dự đoán thay đoạn cứu Ngư. Đã chốt 4 điểm (D-046). Bổ sung cho `STORY.md` §6. Chuẩn chương 1 bản 2 áp dụng mặc định: nhiều nhiệm vụ, **chỉ một độ khó Insane** (D-039), **cắt thời gian trống** khi xong nhiệm vụ (D-040), **không giải thích luật** (D-038), **có cảnh chết** (D-042). Các điểm đã chốt ghi ở cuối. Con số là giá trị khởi đầu, chỉnh sau chơi thử.
 
 ## Tóm tắt
 - **Vòng 3 (6:00–7:00), nối từ:** ba xác bạn cùng phòng ngồi dậy, chơi nối từ tiếng Việt với Trung. Lời giải: bịt miệng cả ba xác bằng giẻ, rồi lặp vòng từ Minh Nhật đưa tới hết giờ. Hết vòng: còn **5** người.
@@ -18,21 +18,18 @@
 ### Luật trong game
 - **Thứ tự theo chiều kim đồng hồ:** Phúc (giường 1) → Việt (giường 2) → Đạt (giường 4) → **Trung** → Phúc …
 - **Lượt của xác:** xác nói một từ (giọng eSpeak méo, môi giật), khoảng 3–5 giây.
-- **Lượt của Trung:** bảng chọn hiện trên màn hình với **4 phương án** và đồng hồ **15 giây**. Một từ đúng, ba từ bẫy:
-  - sai tiếng đầu: âm gần giống, ví dụ "khuyết điểm" thay cho "khuất …";
-  - **đúng tiếng nhưng sai dấu**, ví dụ "đà …" khi cần "đá …";
-  - từ đã xuất hiện trong 3 lượt gần nhất;
-  - từ không phải từ hai tiếng (ba tiếng, hoặc ghép bừa).
-- **Chọn sai hoặc hết 15 giây thì chết** (`DEATH_CHAIN_WRONG`, `DEATH_CHAIN_TIMEOUT`).
+- **Lượt của Trung (D-049):** người chơi **gõ một từ** bằng bàn phím trong **15 giây**, dấu do **bộ gõ của máy** (Unikey, EVKey, bàn phím Windows). Không có phương án gợi ý.
+  - Từ đúng: hai tiếng, có trong **từ điển** (Wiktionary tiếng Việt và tiếng Anh cộng kho từ game, khoảng 31 nghìn từ, CC BY-SA, D-051), tiếng đầu trùng tiếng cuối của từ trước **đúng cả dấu**, không lặp trong 3 lượt.
+  - So tiếng bỏ qua cách đặt dấu cũ/mới ("hoà" = "hòa") và "y"/"i" sau phụ âm ("kỹ" = "kĩ").
+- **Gõ sai hoặc hết 15 giây thì chết** (`DEATH_CHAIN_WRONG`, `DEATH_CHAIN_TIMEOUT`).
 - **Phải ở trong phòng ngủ để trả lời.** Ở nhà vệ sinh hoặc ban công thì bảng chọn mờ: "Họ không nghe thấy bạn". Đi lấy đồ xa phải canh giữa hai lượt của mình, khoảng 15–25 giây.
 
 ### N1. Sống sót những lượt đầu
 - Lượt đầu, xác cố tình ra từ khó, như video: Đạt nói **"oan khuất"**, Trung phải nối **"khuất …"** (khuất phục, khuất bóng, khuất mắt).
-- **Không có Minh Nhật nhắc** (Insane). Video có Nhất San cứu lượt đầu; ở game, người chơi tự chọn trong 4 phương án.
+- **Không có Minh Nhật nhắc** (Insane). Video có Nhất San cứu lượt đầu; ở game, người chơi tự nghĩ và gõ.
 
 ### N2. Gài bẫy xác (không bắt buộc, mua thời gian)
-- Trong 4 phương án đôi khi có **từ láy cụt**: tiếng cuối không nối được, như "lởm chởm", "khập khiễng", "nhõng nhẽo".
-- Chọn từ đó: xác kế tiếp ú ớ hết 15 giây, gục xuống rồi **sống lại** sau khoảng 10 giây, và bắt đầu chuỗi mới. Người chết không sợ thua; chỉ Trung là không được thua.
+- **Xác chỉ biết khoảng 9,5 nghìn từ phổ biến** (D-051). Người chơi gõ một từ mà xác không biết từ nào nối tiếp (từ lạ, từ láy cụt như "lởm chởm"): xác kế tiếp ú ớ hết 15 giây, gục xuống rồi **sống lại** sau khoảng 10 giây, và bắt đầu chuỗi mới. Người chết không sợ thua; chỉ Trung là không được thua.
 - Mỗi lần gài được thêm khoảng **25 giây rảnh** để đi lấy đồ.
 
 ### N3. Tìm 3 miếng giẻ
@@ -52,7 +49,7 @@
 ### N5. Vòng lặp từ của Minh Nhật
 - Minh Nhật gửi vào nhóm chat một **vòng 8 từ** và bảo "lái về chữ **học**":
   > học sinh → sinh viên → viên phấn → phấn đấu → đấu tranh → tranh luận → luận văn → văn học → học sinh …
-- Người chơi phải **tự lái chuỗi** từ tiếng đang có về "học", qua 1–3 từ trung gian có trong phương án, rồi chọn đúng từ trong vòng mỗi lượt.
+- Người chơi phải **tự lái chuỗi** từ tiếng đang có về "học", qua vài từ trung gian tự nghĩ, rồi gõ đúng từ trong vòng mỗi lượt.
 - Đi trọn **một vòng** (8 lượt) thì cắt thời gian trống, nhảy tới 7:00 (D-040).
 - Lặp sai vòng vẫn chết như thường.
 
@@ -99,9 +96,11 @@
 - **Không có gợi ý** (D-046): Minh Nhật và Ngư cũng đang đoán, không ai nói quy luật. Người chơi tự tìm từ lịch sử nhiệt độ trên màn hình.
 - **Rủi ro:** đây là phần khó nhất chương. Nếu chơi thử thấy quá khó thì nới bằng cách thêm lượt an toàn, không thêm gợi ý.
 
-### N10. Cứu Ngư (7:40)
-- Điện thoại của Ngư bị nước làm hỏng loa ngoài. Ngư đọc to 3 nhiệt độ gần nhất **của bên cô ấy** (dãy khác, cùng quy luật), hỏi lượt tới chọn gì.
-- Trung có **10 giây** để chọn "Có" hoặc "Không" trong cuộc gọi. Sai thì Ngư chết và **Trung thua** (`DEATH_LOST_NGU`): mất Ngư là mất người giải chương 4.
+### N10. Nhắn dự đoán cho Minh Nhật và Ngư (D-050, D-051; thay đoạn cứu Ngư cũ)
+- **Một lần**, khi Trung lần đầu tắm an toàn **3 lượt liên tiếp** (chọn Có, dưới 50 độ). Dãy chuẩn: sau lượt 9 (7:18). Chưa đạt thì vẫn diễn ra trước lượt 21 (7:40).
+- Minh Nhật gửi 3 nhiệt độ gần nhất bên cậu ấy (38, 16, 75 → lượt tới 23 độ), rồi tới Ngư (74, 15, 62 → 81 độ). Mỗi người **20 giây**.
+- Trung **gõ** "có", "không" hoặc khoảng như "3x". **Không gợi ý** cách trả lời.
+- Sai hoặc hết giờ: người đó bị bỏng và **Trung thua, làm lại vòng 4** (`DEATH_LOST_NHAT`, `DEATH_LOST_NGU`): mất họ là mất người giải chương 4.
 
 ### Hết vòng (8:00)
 - Loa: "Quy tắc vòng bốn kết thúc. Số người sống sót hiện tại: 3 người." Kết chương: màn tiêu đề, mở khóa chương 3.
@@ -112,7 +111,7 @@
 | `DEATH_CHAIN_WRONG`, `DEATH_CHAIN_TIMEOUT` | Ba xác cùng quay đầu, lao tới, cắn xé sát mặt (`corpse_lunge`) | A camera, B tư thế lao, D máu, E tiếng |
 | `DEATH_SCALDED`, `DEATH_NO_CHOICE` | Hơi nước trắng xóa, da phồng đỏ, ngã gục trong buồng tắm (`scald`) | A, D lớp bỏng/hơi nước, E tiếng nước sôi |
 | `DEATH_SHOWER_BROKEN` | Bước ra khỏi buồng: ngã ngửa, phụt máu như chương 1 (`fall_back`) | đã có |
-| `DEATH_LOST_NGU` | Không có cảnh chết; màn thua kiểu `DEATH_LOST_NHAT` | đã có |
+| `DEATH_LOST_NHAT`, `DEATH_LOST_NGU` (nhắn sai) | Không có cảnh chết; màn thua kiểu `DEATH_LOST_NHAT` chương 1 | đã có |
 | `DEATH_LEFT_ROOM` | Như chương 1 | đã có |
 
 ## Jumpscare (D-031: 8–10 mỗi chương)
@@ -123,7 +122,7 @@
 5. Cửa nhà vệ sinh bật mở ở lần đẩy thứ 3, hơi nóng phụt ra.
 6. Lượt 70–90 độ đầu tiên: nước sôi xối xuống, hơi nước trùm màn hình.
 7. Trong hơi nước, gương nhà vệ sinh thoáng hiện bóng quản lý (chỉ một khung hình).
-8. 7:40: Ngư hét khi điện thoại bị nước.
+8. Lúc nhắn dự đoán: Ngư hét khi điện thoại bị nước.
 9. Cảnh chết `corpse_lunge` và `scald`.
 
 ## Dùng lại từ chương 1
@@ -146,5 +145,5 @@
 ## Đã chốt (D-046)
 1. Quy luật nhiệt độ: **không gợi ý**.
 2. Manh mối bịt miệng: Ngư **chỉ kể nửa đầu**.
-3. Nối từ: **4 phương án, 15 giây**.
+3. Nối từ: ~~4 phương án~~, 15 giây. **Thay bằng gõ từ trên từ điển lớn (D-049, D-051).**
 4. Camera cho thấy **một phòng khác thua** ở vòng 3: **có**.

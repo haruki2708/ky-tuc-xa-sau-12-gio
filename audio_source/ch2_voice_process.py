@@ -30,6 +30,10 @@ SCRIPT = ROOT / "docs/design/ch2/build_ch2_script.py"
 VOICES = dict(ch1.VOICES)
 # The dead: slow, flat, low; quiet (owner likes quiet audio); lane E distorts.
 VOICES["corpse"] = ("vi+m3", 104, 18, "highpass=f=120,lowpass=f=4800", -30)
+# D-051: the call is about 25% faster in chapter 2 (owner: round-4 chat too slow).
+for _who in ("minh_nhat", "ngu"):
+    _voice, _wpm, _pitch, _chain, _target = VOICES[_who]
+    VOICES[_who] = (_voice, round(_wpm * 1.25), _pitch, _chain, _target)
 
 
 def load_lines() -> list:
@@ -94,6 +98,14 @@ def main() -> None:
                                      "sha256": hashlib.sha256(out.read_bytes()).hexdigest()})
             print(f"{key} [{who}]: {actual['input_i']} LUFS, {seconds:.2f} s", flush=True)
     (SOURCE / "build_report.json").write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    # Lines and words the script no longer has (D-049: traps, the old Ngư call).
+    made = {a["key"] for a in report["assets"]}
+    for prefix in ("SPK_CH2_", "RULE_CH2_", "ROOM_CH2_", "CHAT_CH2_", "WORD_CH2_"):
+        for old in list(DEST.glob(prefix + "*.ogg")) + list((SOURCE / "raw").glob(prefix + "*.wav")):
+            if old.stem not in made:
+                old.unlink()
+                Path(str(old) + ".import").unlink(missing_ok=True)
+                print("removed", old.name)
     total = sum((DEST / (a["key"] + ".ogg")).stat().st_size for a in report["assets"])
     print(f"VOICE CH2 RESULT: {len(report['assets'])} lines; OGG = {total} bytes")
 
