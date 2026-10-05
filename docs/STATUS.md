@@ -1,7 +1,18 @@
 # STATUS — cập nhật bởi integrator
 
-**Cập nhật lần cuối:** 2026-10-04
-**Giai đoạn:** Chương 2 "Trò chơi" **đã duyệt thiết kế** (D-047, `docs/design/CH2_DESIGN.md`). Task T-170…T-175 đã giao; các lane xong 2026-10-07, ghép 2026-10-08, **bản chơi thử 2026-10-09**. Chương 1 bản 2 tạm chốt (D-045, `v0.3-ch1`).
+**Cập nhật lần cuối:** 2026-10-05 (tối)
+**Giai đoạn:** Chương 2 "Trò chơi" **đã ghép đủ 5 lane** (T-171…T-175 merged), kịch bản tạm duyệt (D-048), **bản chơi thử đã export** (`build/windows/KyTucXa.exe`, 2026-10-05 22:13). **Chủ dự án đang chơi thử chương 2** theo `docs/playtest/CH2_WALKTHROUGH.md`. Chương 1 bản 2 tạm chốt (D-045, tag `v0.3-ch1`). Test 472/472, check 0 lỗi.
+
+## Việc tiếp theo (cho phiên integrator kế tiếp)
+1. **Nhận góp ý chơi thử chương 2** của chủ dự án → ghi D-049+, sửa hoặc giao task sửa.
+2. **Bot chương 2** (`pwsh tools/playthrough.ps1 -Chapter 2 -Scenario <case> -RequireComplete`, chạy từng case, thời gian thật 15–20 phút; máy hay hết RAM nên chỉ chạy khi chủ dự án đồng ý):
+   - `ch2_good` lần 2 qua trọn vòng 3, dừng ở bước lau màn hình; đã sửa chỗ đứng `leave_shower` (commit `3780c37`), **chưa chạy lại** (lần 3 bị dừng vì hết RAM);
+   - còn 5 case: `ch2_chain_timeout`, `ch2_chain_wrong`, `ch2_scald`, `ch2_leave_shower`, `ch2_lost_ngu`; đo FPS (`-Performance`, profile `performance` còn trống).
+3. **Chưa kiểm tra:** menu F9 nhảy vòng 3/4 của chương 2; `CctvAudio.play_room_loss` chưa nối (chưa có rig `CctvAudio` trong chương).
+4. **Lane B:** test `test_stuck_door_shakes_without_opening_then_cancels_on_open` chập chờn khi máy bận (bộ hẹn giờ 0,07 giây).
+5. **Để sau (D-045):** chương 1 đoạn gõ tường (A giữ nguyên / B thêm tiếng gõ chờ / C gõ to hơn); chủ dự án nghe âm thanh lane E (chương 1 và 2).
+6. **Sau khi chốt chương 2:** đề xuất T-180 (lane B) khung map chương 3 (nhà B 6 tầng, cầu thang, vườn hoa, sân vận động, cổng trường, nhà ăn); chủ dự án hoãn tới khi xong chương 2.
+7. Máy chủ dự án: đã tạo `%APPDATA%/Godot/app_userdata/Ky Tuc Xa Sau 12 Gio/progress.json` = `{"unlocked": 2}` để chọn được chương 2.
 **Repo:** https://github.com/tuaanh666/ky-tuc-xa-sau-12-gio (private)
 
 ## Đã xong

@@ -30,3 +30,14 @@
 - **Test:** `test_chapter2.gd` 10 test (dữ liệu, phương án luôn có từ đúng, sai dấu, lặp, im lặng, từ sai, bịt miệng và vòng lặp, tắm theo quy luật tới hết chương, bỏng, bước ra, khuyên sai Ngư). Toàn bộ 424/424.
 - **Chưa làm:** ghép thật với T-171…T-175 khi các lane giao; cửa nhà vệ sinh kẹt (chờ A); camera phòng 310 (chờ B); nút nhảy giữa vòng cho menu F9.
 
+### Phiên 2026-10-05 (tối, Claude): ghép 5 lane, sửa lỗi, export
+- Merge và ghép T-171…T-175 (xem Review trong từng card). Toàn bộ 472/472, `check` 0 lỗi.
+- **Sửa lỗi phát hiện khi ghép:**
+  - sổ quy tắc chương 2 có 3 dòng chung một tình huống, nên `RuleSystem` từ chối và `start()` dừng: chương không chạy khi mở từ game (đã thêm test);
+  - bộ sinh kịch bản cả hai chương xóa nhầm key của lane: giờ chỉ thay key do chính nó sinh;
+  - cửa nhà vệ sinh mở ở vòng 3 (lấy giẻ), kẹt ở vòng 4;
+  - lái về vòng lặp ngay khi bịt đủ 3 xác;
+  - JSON chương 2 phải có trong `include_filter` khi export.
+- **QA:** điền `tools/ch2-profile.json` (287 từ, đường dẫn, tọa độ, dữ liệu Ngư); thêm cờ `ch2_zone`, `ch2_water_temperature`, `ch2_gagged_N`, `ch2_bathroom_open`. Bot sửa nhỏ (integrator): trả từ hợp lệ khi vòng lặp xa hơn 3 bước.
+- **Export** bản chơi thử chương 2; hướng dẫn vượt màn `docs/playtest/CH2_WALKTHROUGH.md`. Việc còn lại: xem STATUS "Việc tiếp theo".
+
