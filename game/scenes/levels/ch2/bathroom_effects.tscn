@@ -1,0 +1,169 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scenes/levels/ch2/bathroom_effects.gd" id="e1"]
+[ext_resource type="Shader" path="res://scenes/levels/ch2/steam.gdshader" id="e2"]
+[ext_resource type="PackedScene" path="res://scenes/levels/ch1_models/manager_body.tscn" id="e3"]
+
+[sub_resource type="StandardMaterial3D" id="s1"]
+shading_mode = 0
+transparency = 1
+albedo_color = Color(0.62,0.78,0.83,0.48)
+
+[sub_resource type="BoxMesh" id="s2"]
+size = Vector3(0.008,0.11,0.008)
+material = SubResource("s1")
+
+[sub_resource type="QuadMesh" id="s3"]
+size = Vector2(2.5,2.5)
+
+[sub_resource type="ShaderMaterial" id="s4"]
+resource_local_to_scene = true
+shader = ExtResource("e2")
+shader_parameter/level = 0.0
+shader_parameter/phase = 0.0
+
+[sub_resource type="ShaderMaterial" id="s5"]
+resource_local_to_scene = true
+shader = ExtResource("e2")
+shader_parameter/level = 0.0
+shader_parameter/phase = 1.7
+
+[sub_resource type="ShaderMaterial" id="s6"]
+resource_local_to_scene = true
+shader = ExtResource("e2")
+shader_parameter/level = 0.0
+shader_parameter/phase = 3.4
+
+[sub_resource type="ShaderMaterial" id="s7"]
+resource_local_to_scene = true
+shader = ExtResource("e2")
+shader_parameter/level = 0.0
+shader_parameter/phase = 5.1
+
+[sub_resource type="ShaderMaterial" id="s8"]
+resource_local_to_scene = true
+shader = ExtResource("e2")
+shader_parameter/level = 0.0
+shader_parameter/phase = 6.8
+
+[sub_resource type="ShaderMaterial" id="s9"]
+resource_local_to_scene = true
+shader = ExtResource("e2")
+shader_parameter/level = 0.0
+shader_parameter/phase = 8.5
+
+[sub_resource type="ShaderMaterial" id="s10"]
+resource_local_to_scene = true
+shader = ExtResource("e2")
+shader_parameter/level = 0.0
+shader_parameter/phase = 10.2
+
+[sub_resource type="ShaderMaterial" id="s11"]
+resource_local_to_scene = true
+shader = ExtResource("e2")
+shader_parameter/level = 0.0
+shader_parameter/phase = 11.9
+
+[sub_resource type="StandardMaterial3D" id="s12"]
+resource_local_to_scene = true
+shading_mode = 0
+transparency = 1
+albedo_color = Color(0.75,0.8,0.78,0)
+cull_mode = 2
+
+[sub_resource type="QuadMesh" id="s13"]
+size = Vector2(0.5,0.65)
+
+[node name="Ch2Bathroom" type="Node3D"]
+
+script = ExtResource("e1")
+
+[node name="Water" type="CPUParticles3D" parent="."]
+position = Vector3(6.18,2.17,-6.65)
+visible = false
+emitting = false
+amount = 96
+lifetime = 0.48
+mesh = SubResource("s2")
+emission_shape = 3
+emission_box_extents = Vector3(0.075,0.008,0.09)
+direction = Vector3(0,-1,0)
+spread = 3.0
+gravity = Vector3(0,-3,0)
+initial_velocity_min = 3.6
+initial_velocity_max = 4.2
+
+[node name="Steam" type="Node3D" parent="."]
+visible = false
+
+[node name="Sheet0" type="MeshInstance3D" parent="Steam"]
+position = Vector3(6.65, 1.35, -4.6)
+rotation_degrees = Vector3(0,0,0)
+mesh = SubResource("s3")
+material_override = SubResource("s4")
+cast_shadow = 0
+
+[node name="Sheet1" type="MeshInstance3D" parent="Steam"]
+position = Vector3(6.65, 1.35, -4.89)
+rotation_degrees = Vector3(0,0,0)
+mesh = SubResource("s3")
+material_override = SubResource("s5")
+cast_shadow = 0
+
+[node name="Sheet2" type="MeshInstance3D" parent="Steam"]
+position = Vector3(6.65, 1.35, -5.18)
+rotation_degrees = Vector3(0,0,0)
+mesh = SubResource("s3")
+material_override = SubResource("s6")
+cast_shadow = 0
+
+[node name="Sheet3" type="MeshInstance3D" parent="Steam"]
+position = Vector3(6.65, 1.35, -5.47)
+rotation_degrees = Vector3(0,0,0)
+mesh = SubResource("s3")
+material_override = SubResource("s7")
+cast_shadow = 0
+
+[node name="Sheet4" type="MeshInstance3D" parent="Steam"]
+position = Vector3(5.65, 1.35, -5.55)
+rotation_degrees = Vector3(0,90,0)
+mesh = SubResource("s3")
+material_override = SubResource("s8")
+cast_shadow = 0
+
+[node name="Sheet5" type="MeshInstance3D" parent="Steam"]
+position = Vector3(6.21, 1.35, -5.55)
+rotation_degrees = Vector3(0,90,0)
+mesh = SubResource("s3")
+material_override = SubResource("s9")
+cast_shadow = 0
+
+[node name="Sheet6" type="MeshInstance3D" parent="Steam"]
+position = Vector3(6.77, 1.35, -5.55)
+rotation_degrees = Vector3(0,90,0)
+mesh = SubResource("s3")
+material_override = SubResource("s10")
+cast_shadow = 0
+
+[node name="Sheet7" type="MeshInstance3D" parent="Steam"]
+position = Vector3(7.33, 1.35, -5.55)
+rotation_degrees = Vector3(0,90,0)
+mesh = SubResource("s3")
+material_override = SubResource("s11")
+cast_shadow = 0
+
+[node name="MirrorFog" type="MeshInstance3D" parent="."]
+position = Vector3(5.423,1.55,-5)
+rotation_degrees = Vector3(0,90,0)
+mesh = SubResource("s13")
+material_override = SubResource("s12")
+visible = false
+cast_shadow = 0
+
+[node name="Reflection" type="Node3D" parent="."]
+visible = false
+position = Vector3(5.437,1.26,-5)
+rotation_degrees = Vector3(0,-90,0)
+scale = Vector3(0.26,0.26,0.025)
+
+[node name="Manager" parent="Reflection" instance=ExtResource("e3")]

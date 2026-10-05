@@ -1,0 +1,68 @@
+{
+	"cpu": "AMD Ryzen 5 5600H with Radeon Graphics",
+	"fixed_fps": false,
+	"godot": "4.7.2-stable (official)",
+	"gpu": "NVIDIA GeForce RTX 3050 Laptop GPU",
+	"renderer": "Forward+",
+	"resolution": "1280x720",
+	"sample_frames": 240,
+	"scenario": "Full floor4, Player physics/HUD/audio active, PS1 strength 1, static preview camera",
+	"views": [
+		{
+			"mean_fps": 434.084299170899,
+			"p95_ms": 3.451,
+			"steam": 0.0,
+			"view": "room_door"
+		},
+		{
+			"mean_fps": 407.700095809523,
+			"p95_ms": 3.873,
+			"steam": 0.0,
+			"view": "room_center"
+		},
+		{
+			"mean_fps": 485.633346823149,
+			"p95_ms": 2.593,
+			"steam": 0.0,
+			"view": "bathroom_steam_0"
+		},
+		{
+			"mean_fps": 328.983441166795,
+			"p95_ms": 3.237,
+			"steam": 1.0,
+			"view": "bathroom_steam_1"
+		},
+		{
+			"mean_fps": 470.844891921479,
+			"p95_ms": 2.867,
+			"steam": 0.0,
+			"view": "stall_steam_0"
+		},
+		{
+			"mean_fps": 486.350768332891,
+			"p95_ms": 2.396,
+			"steam": 1.0,
+			"view": "stall_steam_1"
+		},
+		{
+			"mean_fps": 522.945315172605,
+			"p95_ms": 2.764,
+			"steam": 0.0,
+			"view": "balcony"
+		},
+		{
+			"mean_fps": 466.401595093455,
+			"p95_ms": 3.011,
+			"steam": 0.0,
+			"view": "rag_sink"
+		},
+		{
+			"mean_fps": 459.906677270071,
+			"p95_ms": 3.481,
+			"steam": 0.0,
+			"view": "shirt_locker"
+		}
+	],
+	"vsync": false,
+	"warmup_frames": 90
+}
