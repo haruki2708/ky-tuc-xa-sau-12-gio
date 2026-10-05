@@ -7,7 +7,7 @@
 1. **Làm theo góp ý chơi thử chương 2 (D-049):**
    - vòng 3 gõ từ bằng bàn phím: lane D đổi bảng nối từ thành ô nhập (LineEdit nhận bộ gõ của máy, 15 giây); core kiểm tra luật trên một **từ điển tiếng Việt lớn** (tìm nguồn có giấy phép thương mại, ghi vào CREDITS; từ không có trong kho của xác thì xác gục); bot và test cập nhật;
    - vòng 4 lời chat nhanh hơn;
-   - vòng 4 nhắn dự đoán cho Minh Nhật và Ngư sau 3 lượt an toàn liên tiếp: thêm dãy nhiệt độ cho hai người, UI ô nhập trong điện thoại, đúng thì họ sống, sai thì họ bỏng (quyết định thua/thắng cần hỏi chủ dự án nếu chưa rõ);
+   - vòng 4 nhắn dự đoán cho Minh Nhật và Ngư sau 3 lượt an toàn liên tiếp: thêm dãy nhiệt độ cho hai người, UI ô nhập trong điện thoại, đúng thì họ sống, sai thì họ bỏng và **thua, làm lại vòng 4**; thay thế đoạn cứu Ngư lúc 7:40 (D-050);
    - đã sửa: cửa nhà vệ sinh bị giường B che (dời ô cửa, commit `af52dde`).
 2. **Bot chương 2** (`pwsh tools/playthrough.ps1 -Chapter 2 -Scenario <case> -RequireComplete`, chạy từng case, thời gian thật 15–20 phút; máy hay hết RAM nên chỉ chạy khi chủ dự án đồng ý):
    - `ch2_good` lần 2 qua trọn vòng 3, dừng ở bước lau màn hình; đã sửa chỗ đứng `leave_shower` (commit `3780c37`), **chưa chạy lại** (lần 3 bị dừng vì hết RAM);
