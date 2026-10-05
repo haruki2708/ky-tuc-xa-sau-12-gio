@@ -94,7 +94,9 @@ func test_typing_stops_existing_motion_blocks_w_e_then_restores_gameplay() -> vo
 	assert_false(player.controls_locked(), "typing does not acquire a modal lock")
 	EventBus.text_entry_changed.emit(false)
 	player._physics_process(1.0 / 60.0)
-	assert_true(player.position.is_equal_approx(stopped), "closing does not replay held gameplay actions")
+	# Gravity may finish settling vertically after the keyboard-only freeze.
+	assert_true(Vector2(player.position.x, player.position.z).is_equal_approx(Vector2(stopped.x, stopped.z)), "closing does not replay held gameplay actions")
+	assert_eq(target.uses, 0, "closing does not replay E in the same frame")
 	Input.action_press("move_forward")
 	Input.action_press("interact")
 	player._physics_process(0.05)
