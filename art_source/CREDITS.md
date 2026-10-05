@@ -101,3 +101,18 @@ Không tải asset ngoài, không thêm texture nhị phân mới; dùng lại t
 shader thủ tục và 8 mặt phẳng, nước dùng 96 hạt CPU; không plugin hoặc addon.
 **Khai báo AI:** Codex viết generator, GDScript, shader, test và script render;
 không dùng mô hình sinh ảnh. Ảnh preview là ảnh render scene game, lưu qua Git LFS.
+
+## Khuôn viên và model chương 3 — T-183
+
+| File / nhóm | Tác giả / công cụ | Nguồn | Giấy phép |
+|---|---|---|---|
+| `game/scenes/levels/campus/*`, hình học/navmesh khuôn viên | Lane B, Codex (OpenAI), Python stdlib, Godot 4.7.2 | [Generator](campus/build_campus.py), [chi tiết](campus/detail.py), [README](campus/README.md) | CC0-1.0 |
+| `game/assets/textures/campus/*.png` (64 px, nearest) | Codex, Python stdlib, seed theo tên T183 | Hàm `textures` trong [detail.py](campus/detail.py); không ảnh tải ngoài | CC0-1.0 |
+| `game/assets/models/campus/*.tscn`, rig/pose chương 3 | Codex, GDScript; tái dùng nguồn CC0 T-154 và T-165 đã ghi trên | [API](campus/README.md); 4 sinh viên CCTV, 3 xác phòng 407 và rig đồng phục quản lý | CC0-1.0 |
+| `campus/previews/*.png`, `campus/metrics.json` | Godot Forward+ trên RTX 3050 Laptop; Codex viết script đo | [Capture](campus/capture.gd) | CC0-1.0 |
+
+Các phần kit tường, cửa, giường và bàn dùng lại nguồn CC0 hiện có trong repo.
+Không sửa model/scene nguồn của tầng 4 hoặc phòng 407. Nhân vật hư cấu, vệt máu
+là hình học đỏ sẫm, không giải phẫu. Biển trường không thêm tên riêng vào truyện.
+**Khai báo AI:** Codex viết generator, texture thủ tục, GDScript, test và tài liệu;
+không dùng mô hình sinh ảnh, asset tải ngoài hoặc plugin. PNG đi qua Git LFS.

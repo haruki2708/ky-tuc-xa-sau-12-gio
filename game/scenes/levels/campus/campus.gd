@@ -44,7 +44,7 @@ func _exit_tree() -> void:
 
 func set_fire_door_open(open: bool) -> void:
 	fire_door_open = open
-	if not is_node_ready():
+	if not has_node("BuildingB/FireDoor"):
 		return
 	$BuildingB/FireDoor.set_open(open)
 	$Navigation/FireDoorLink.enabled = open
@@ -52,7 +52,7 @@ func set_fire_door_open(open: bool) -> void:
 
 func set_main_door_chained(value: bool) -> void:
 	main_door_chained = value
-	if not is_node_ready():
+	if not has_node("BuildingB/MainDoor"):
 		return
 	$BuildingB/MainDoor/Chains.visible = value
 	$BuildingB/MainDoor.set_open(not value)
@@ -60,12 +60,12 @@ func set_main_door_chained(value: bool) -> void:
 
 
 func set_canteen_tv(on: bool) -> void:
-	if is_node_ready():
+	if has_node("Canteen/TV/Screen"):
 		$Canteen/TV/Screen.visible = on
 
 
 func set_stadium_lights(on: bool) -> void:
-	if is_node_ready():
+	if has_node("Stadium/Floodlights"):
 		$Stadium/Floodlights.visible = on
 
 

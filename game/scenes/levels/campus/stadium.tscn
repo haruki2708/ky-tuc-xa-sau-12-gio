@@ -1,22 +1,36 @@
 [gd_scene format=3]
 
+[ext_resource type="Texture2D" path="res://assets/textures/campus/track.png" id="e1"]
+[ext_resource type="Texture2D" path="res://assets/textures/campus/grass.png" id="e2"]
+[ext_resource type="Texture2D" path="res://assets/textures/campus/concrete.png" id="e3"]
+[ext_resource type="Texture2D" path="res://assets/textures/campus/iron.png" id="e4"]
+[ext_resource type="Script" path="res://scenes/levels/campus/strip.gd" id="e5"]
+[ext_resource type="Texture2D" path="res://assets/textures/campus/paper.png" id="e6"]
+[ext_resource type="Texture2D" path="res://assets/textures/campus/white.png" id="e7"]
+[ext_resource type="Texture2D" path="res://assets/textures/campus/blue.png" id="e8"]
 
 [sub_resource type="BoxShape3D" id="s1"]
 size = Vector3(176, 0.05, 92)
 
 [sub_resource type="StandardMaterial3D" id="s2"]
-albedo_color = Color(0.32, 0.13, 0.1, 1)
-roughness = 0.85
+albedo_texture = ExtResource("e1")
 texture_filter = 0
+roughness = 0.9
+uv1_triplanar = true
+uv1_world_triplanar = true
+uv1_scale = Vector3(0.5,0.5,0.5)
 
 [sub_resource type="BoxMesh" id="s3"]
 size = Vector3(176, 0.05, 92)
 material = SubResource("s2")
 
 [sub_resource type="StandardMaterial3D" id="s4"]
-albedo_color = Color(0.13, 0.2, 0.13, 1)
-roughness = 0.85
+albedo_texture = ExtResource("e2")
 texture_filter = 0
+roughness = 0.9
+uv1_triplanar = true
+uv1_world_triplanar = true
+uv1_scale = Vector3(0.5,0.5,0.5)
 
 [sub_resource type="BoxMesh" id="s5"]
 size = Vector3(100, 0.01, 58)
@@ -26,9 +40,12 @@ material = SubResource("s4")
 size = Vector3(80, 0.18, 1.2)
 
 [sub_resource type="StandardMaterial3D" id="s7"]
-albedo_color = Color(0.38, 0.39, 0.35, 1)
-roughness = 0.85
+albedo_texture = ExtResource("e3")
 texture_filter = 0
+roughness = 0.9
+uv1_triplanar = true
+uv1_world_triplanar = true
+uv1_scale = Vector3(0.5,0.5,0.5)
 
 [sub_resource type="BoxMesh" id="s8"]
 size = Vector3(80, 0.18, 1.2)
@@ -98,86 +115,86 @@ size = Vector3(80, 0.18, 1.2)
 material = SubResource("s7")
 
 [sub_resource type="ConvexPolygonShape3D" id="s27"]
-points = PackedVector3Array(155,-9.9,213,155,-6.9,224.8,157.6,-6.9,224.8,157.6,-9.9,213,155,-10.14,213,155,-7.14,224.8,157.6,-7.14,224.8,157.6,-10.14,213)
+points = PackedVector3Array(155,-9.9,214.8,155,-6.9,226.8,158.4,-6.9,226.8,158.4,-9.9,214.8,155,-10.14,214.8,155,-7.14,226.8,158.4,-7.14,226.8,158.4,-10.14,214.8)
 
 [sub_resource type="BoxMesh" id="s28"]
-size = Vector3(2.6, 0.18, 0.6)
+size = Vector3(3.4, 0.18, 0.61)
 material = SubResource("s7")
 
 [sub_resource type="BoxMesh" id="s29"]
-size = Vector3(2.6, 0.18, 0.6)
+size = Vector3(3.4, 0.18, 0.61)
 material = SubResource("s7")
 
 [sub_resource type="BoxMesh" id="s30"]
-size = Vector3(2.6, 0.18, 0.6)
+size = Vector3(3.4, 0.18, 0.61)
 material = SubResource("s7")
 
 [sub_resource type="BoxMesh" id="s31"]
-size = Vector3(2.6, 0.18, 0.6)
+size = Vector3(3.4, 0.18, 0.61)
 material = SubResource("s7")
 
 [sub_resource type="BoxMesh" id="s32"]
-size = Vector3(2.6, 0.18, 0.6)
+size = Vector3(3.4, 0.18, 0.61)
 material = SubResource("s7")
 
 [sub_resource type="BoxMesh" id="s33"]
-size = Vector3(2.6, 0.18, 0.6)
+size = Vector3(3.4, 0.18, 0.61)
 material = SubResource("s7")
 
 [sub_resource type="BoxMesh" id="s34"]
-size = Vector3(2.6, 0.18, 0.6)
+size = Vector3(3.4, 0.18, 0.61)
 material = SubResource("s7")
 
 [sub_resource type="BoxMesh" id="s35"]
-size = Vector3(2.6, 0.18, 0.6)
+size = Vector3(3.4, 0.18, 0.61)
 material = SubResource("s7")
 
 [sub_resource type="BoxMesh" id="s36"]
-size = Vector3(2.6, 0.18, 0.6)
+size = Vector3(3.4, 0.18, 0.61)
 material = SubResource("s7")
 
 [sub_resource type="BoxMesh" id="s37"]
-size = Vector3(2.6, 0.18, 0.6)
+size = Vector3(3.4, 0.18, 0.61)
 material = SubResource("s7")
 
 [sub_resource type="BoxMesh" id="s38"]
-size = Vector3(2.6, 0.18, 0.6)
+size = Vector3(3.4, 0.18, 0.61)
 material = SubResource("s7")
 
 [sub_resource type="BoxMesh" id="s39"]
-size = Vector3(2.6, 0.18, 0.6)
+size = Vector3(3.4, 0.18, 0.61)
 material = SubResource("s7")
 
 [sub_resource type="BoxMesh" id="s40"]
-size = Vector3(2.6, 0.18, 0.6)
+size = Vector3(3.4, 0.18, 0.61)
 material = SubResource("s7")
 
 [sub_resource type="BoxMesh" id="s41"]
-size = Vector3(2.6, 0.18, 0.6)
+size = Vector3(3.4, 0.18, 0.61)
 material = SubResource("s7")
 
 [sub_resource type="BoxMesh" id="s42"]
-size = Vector3(2.6, 0.18, 0.6)
+size = Vector3(3.4, 0.18, 0.61)
 material = SubResource("s7")
 
 [sub_resource type="BoxMesh" id="s43"]
-size = Vector3(2.6, 0.18, 0.6)
+size = Vector3(3.4, 0.18, 0.61)
 material = SubResource("s7")
 
 [sub_resource type="BoxMesh" id="s44"]
-size = Vector3(2.6, 0.18, 0.6)
+size = Vector3(3.4, 0.18, 0.61)
 material = SubResource("s7")
 
 [sub_resource type="BoxMesh" id="s45"]
-size = Vector3(2.6, 0.18, 0.6)
+size = Vector3(3.4, 0.18, 0.61)
 material = SubResource("s7")
 
 [sub_resource type="BoxMesh" id="s46"]
-size = Vector3(2.6, 0.18, 0.6)
+size = Vector3(3.4, 0.18, 0.61)
 material = SubResource("s7")
 
 [sub_resource type="BoxMesh" id="s47"]
-size = Vector3(2.6, 0.18, 0.6)
+size = Vector3(3.4, 0.18, 0.61)
 material = SubResource("s7")
 
 [sub_resource type="BoxShape3D" id="s48"]
@@ -209,47 +226,50 @@ size = Vector3(60, 0.18, 1.2)
 material = SubResource("s7")
 
 [sub_resource type="ConvexPolygonShape3D" id="s56"]
-points = PackedVector3Array(165,-9.9,107,165,-8.7,111.6,167.6,-8.7,111.6,167.6,-9.9,107,165,-10.14,107,165,-8.94,111.6,167.6,-8.94,111.6,167.6,-10.14,107)
+points = PackedVector3Array(165,-9.9,106.8,165,-8.7,111.6,168.4,-8.7,111.6,168.4,-9.9,106.8,165,-10.14,106.8,165,-8.94,111.6,168.4,-8.94,111.6,168.4,-10.14,106.8)
 
 [sub_resource type="BoxMesh" id="s57"]
-size = Vector3(2.6, 0.18, 0.585)
+size = Vector3(3.4, 0.18, 0.61)
 material = SubResource("s7")
 
 [sub_resource type="BoxMesh" id="s58"]
-size = Vector3(2.6, 0.18, 0.585)
+size = Vector3(3.4, 0.18, 0.61)
 material = SubResource("s7")
 
 [sub_resource type="BoxMesh" id="s59"]
-size = Vector3(2.6, 0.18, 0.585)
+size = Vector3(3.4, 0.18, 0.61)
 material = SubResource("s7")
 
 [sub_resource type="BoxMesh" id="s60"]
-size = Vector3(2.6, 0.18, 0.585)
+size = Vector3(3.4, 0.18, 0.61)
 material = SubResource("s7")
 
 [sub_resource type="BoxMesh" id="s61"]
-size = Vector3(2.6, 0.18, 0.585)
+size = Vector3(3.4, 0.18, 0.61)
 material = SubResource("s7")
 
 [sub_resource type="BoxMesh" id="s62"]
-size = Vector3(2.6, 0.18, 0.585)
+size = Vector3(3.4, 0.18, 0.61)
 material = SubResource("s7")
 
 [sub_resource type="BoxMesh" id="s63"]
-size = Vector3(2.6, 0.18, 0.585)
+size = Vector3(3.4, 0.18, 0.61)
 material = SubResource("s7")
 
 [sub_resource type="BoxMesh" id="s64"]
-size = Vector3(2.6, 0.18, 0.585)
+size = Vector3(3.4, 0.18, 0.61)
 material = SubResource("s7")
 
 [sub_resource type="BoxShape3D" id="s65"]
 size = Vector3(0.35, 3.6, 0.35)
 
 [sub_resource type="StandardMaterial3D" id="s66"]
-albedo_color = Color(0.1, 0.15, 0.15, 1)
-roughness = 0.85
+albedo_texture = ExtResource("e4")
 texture_filter = 0
+roughness = 0.9
+uv1_triplanar = true
+uv1_world_triplanar = true
+uv1_scale = Vector3(0.5,0.5,0.5)
 
 [sub_resource type="BoxMesh" id="s67"]
 size = Vector3(0.35, 3.6, 0.35)
@@ -332,6 +352,1514 @@ size = Vector3(0.3, 18, 0.3)
 size = Vector3(0.3, 18, 0.3)
 material = SubResource("s66")
 
+[sub_resource type="StandardMaterial3D" id="s90"]
+albedo_texture = ExtResource("e6")
+texture_filter = 0
+roughness = 0.9
+uv1_triplanar = true
+uv1_world_triplanar = true
+uv1_scale = Vector3(0.5,0.5,0.5)
+
+[sub_resource type="StandardMaterial3D" id="s91"]
+albedo_texture = ExtResource("e7")
+texture_filter = 0
+roughness = 0.9
+uv1_triplanar = true
+uv1_world_triplanar = true
+uv1_scale = Vector3(0.5,0.5,0.5)
+
+[sub_resource type="BoxMesh" id="s92"]
+size = Vector3(0.08, 2.44, 7.32)
+material = SubResource("s91")
+
+[sub_resource type="BoxMesh" id="s93"]
+size = Vector3(0.09, 2.44, 0.09)
+material = SubResource("s91")
+
+[sub_resource type="BoxMesh" id="s94"]
+size = Vector3(0.09, 2.44, 0.09)
+material = SubResource("s91")
+
+[sub_resource type="BoxMesh" id="s95"]
+size = Vector3(0.09, 0.09, 7.32)
+material = SubResource("s91")
+
+[sub_resource type="BoxMesh" id="s96"]
+size = Vector3(0.08, 2.44, 7.32)
+material = SubResource("s91")
+
+[sub_resource type="BoxMesh" id="s97"]
+size = Vector3(0.09, 2.44, 0.09)
+material = SubResource("s91")
+
+[sub_resource type="BoxMesh" id="s98"]
+size = Vector3(0.09, 2.44, 0.09)
+material = SubResource("s91")
+
+[sub_resource type="BoxMesh" id="s99"]
+size = Vector3(0.09, 0.09, 7.32)
+material = SubResource("s91")
+
+[sub_resource type="BoxMesh" id="s100"]
+size = Vector3(0.08, 0.012, 58)
+material = SubResource("s90")
+
+[sub_resource type="BoxMesh" id="s101"]
+size = Vector3(0.08, 0.012, 58)
+material = SubResource("s90")
+
+[sub_resource type="BoxMesh" id="s102"]
+size = Vector3(0.08, 0.012, 58)
+material = SubResource("s90")
+
+[sub_resource type="BoxMesh" id="s103"]
+size = Vector3(96, 0.012, 0.08)
+material = SubResource("s90")
+
+[sub_resource type="BoxMesh" id="s104"]
+size = Vector3(96, 0.012, 0.08)
+material = SubResource("s90")
+
+[sub_resource type="BoxMesh" id="s105"]
+size = Vector3(0.13, 0.012, 1.1)
+material = SubResource("s90")
+
+[sub_resource type="BoxMesh" id="s106"]
+size = Vector3(0.13, 0.012, 1.1)
+material = SubResource("s90")
+
+[sub_resource type="BoxMesh" id="s107"]
+size = Vector3(0.13, 0.012, 1.1)
+material = SubResource("s90")
+
+[sub_resource type="BoxMesh" id="s108"]
+size = Vector3(0.13, 0.012, 1.1)
+material = SubResource("s90")
+
+[sub_resource type="BoxMesh" id="s109"]
+size = Vector3(0.13, 0.012, 1.1)
+material = SubResource("s90")
+
+[sub_resource type="BoxMesh" id="s110"]
+size = Vector3(0.13, 0.012, 1.1)
+material = SubResource("s90")
+
+[sub_resource type="BoxMesh" id="s111"]
+size = Vector3(0.13, 0.012, 1.1)
+material = SubResource("s90")
+
+[sub_resource type="BoxShape3D" id="s112"]
+size = Vector3(0.08, 1.3, 40)
+
+[sub_resource type="BoxMesh" id="s113"]
+size = Vector3(0.07, 0.07, 40)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s114"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s115"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s116"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s117"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s118"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s119"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s120"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s121"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s122"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s123"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s124"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s125"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s126"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s127"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s128"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s129"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s130"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s131"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s132"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s133"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxShape3D" id="s134"]
+size = Vector3(0.08, 1.3, 40)
+
+[sub_resource type="BoxMesh" id="s135"]
+size = Vector3(0.07, 0.07, 40)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s136"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s137"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s138"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s139"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s140"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s141"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s142"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s143"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s144"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s145"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s146"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s147"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s148"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s149"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s150"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s151"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s152"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s153"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s154"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s155"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxShape3D" id="s156"]
+size = Vector3(0.08, 1.3, 40)
+
+[sub_resource type="BoxMesh" id="s157"]
+size = Vector3(0.07, 0.07, 40)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s158"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s159"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s160"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s161"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s162"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s163"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s164"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s165"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s166"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s167"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s168"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s169"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s170"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s171"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s172"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s173"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s174"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s175"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s176"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s177"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxShape3D" id="s178"]
+size = Vector3(0.08, 1.3, 40)
+
+[sub_resource type="BoxMesh" id="s179"]
+size = Vector3(0.07, 0.07, 40)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s180"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s181"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s182"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s183"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s184"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s185"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s186"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s187"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s188"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s189"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s190"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s191"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s192"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s193"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s194"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s195"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s196"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s197"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s198"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s199"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxShape3D" id="s200"]
+size = Vector3(83, 1.3, 0.08)
+
+[sub_resource type="BoxMesh" id="s201"]
+size = Vector3(83, 0.07, 0.07)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s202"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s203"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s204"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s205"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s206"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s207"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s208"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s209"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s210"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s211"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s212"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s213"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s214"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s215"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s216"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s217"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s218"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s219"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s220"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s221"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s222"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s223"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s224"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s225"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s226"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s227"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s228"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s229"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s230"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s231"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s232"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s233"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s234"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s235"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s236"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s237"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s238"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s239"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s240"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s241"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s242"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s243"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxShape3D" id="s244"]
+size = Vector3(83, 1.3, 0.08)
+
+[sub_resource type="BoxMesh" id="s245"]
+size = Vector3(83, 0.07, 0.07)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s246"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s247"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s248"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s249"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s250"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s251"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s252"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s253"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s254"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s255"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s256"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s257"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s258"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s259"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s260"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s261"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s262"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s263"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s264"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s265"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s266"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s267"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s268"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s269"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s270"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s271"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s272"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s273"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s274"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s275"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s276"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s277"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s278"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s279"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s280"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s281"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s282"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s283"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s284"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s285"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s286"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s287"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxShape3D" id="s288"]
+size = Vector3(83, 1.3, 0.08)
+
+[sub_resource type="BoxMesh" id="s289"]
+size = Vector3(83, 0.07, 0.07)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s290"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s291"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s292"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s293"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s294"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s295"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s296"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s297"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s298"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s299"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s300"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s301"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s302"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s303"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s304"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s305"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s306"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s307"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s308"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s309"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s310"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s311"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s312"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s313"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s314"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s315"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s316"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s317"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s318"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s319"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s320"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s321"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s322"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s323"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s324"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s325"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s326"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s327"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s328"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s329"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s330"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s331"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxShape3D" id="s332"]
+size = Vector3(83, 1.3, 0.08)
+
+[sub_resource type="BoxMesh" id="s333"]
+size = Vector3(83, 0.07, 0.07)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s334"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s335"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s336"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s337"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s338"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s339"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s340"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s341"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s342"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s343"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s344"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s345"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s346"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s347"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s348"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s349"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s350"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s351"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s352"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s353"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s354"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s355"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s356"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s357"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s358"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s359"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s360"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s361"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s362"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s363"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s364"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s365"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s366"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s367"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s368"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s369"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s370"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s371"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s372"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s373"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s374"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s375"]
+size = Vector3(0.04, 1.3, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s376"]
+size = Vector3(0.24, 2.9, 0.24)
+material = SubResource("s7")
+
+[sub_resource type="BoxMesh" id="s377"]
+size = Vector3(0.04, 1.1, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s378"]
+size = Vector3(0.24, 2.9, 0.24)
+material = SubResource("s7")
+
+[sub_resource type="BoxMesh" id="s379"]
+size = Vector3(0.04, 1.1, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s380"]
+size = Vector3(0.24, 2.9, 0.24)
+material = SubResource("s7")
+
+[sub_resource type="BoxMesh" id="s381"]
+size = Vector3(0.04, 1.1, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s382"]
+size = Vector3(0.24, 2.9, 0.24)
+material = SubResource("s7")
+
+[sub_resource type="BoxMesh" id="s383"]
+size = Vector3(0.04, 1.1, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s384"]
+size = Vector3(0.24, 2.9, 0.24)
+material = SubResource("s7")
+
+[sub_resource type="BoxMesh" id="s385"]
+size = Vector3(0.04, 1.1, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s386"]
+size = Vector3(0.24, 2.9, 0.24)
+material = SubResource("s7")
+
+[sub_resource type="BoxMesh" id="s387"]
+size = Vector3(0.04, 1.1, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s388"]
+size = Vector3(0.24, 2.9, 0.24)
+material = SubResource("s7")
+
+[sub_resource type="BoxMesh" id="s389"]
+size = Vector3(0.04, 1.1, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s390"]
+size = Vector3(0.24, 2.9, 0.24)
+material = SubResource("s7")
+
+[sub_resource type="BoxMesh" id="s391"]
+size = Vector3(0.04, 1.1, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s392"]
+size = Vector3(0.24, 2.9, 0.24)
+material = SubResource("s7")
+
+[sub_resource type="BoxMesh" id="s393"]
+size = Vector3(0.04, 1.1, 0.04)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s394"]
+size = Vector3(80, 0.05, 0.05)
+material = SubResource("s66")
+
+[sub_resource type="StandardMaterial3D" id="s395"]
+albedo_texture = ExtResource("e8")
+texture_filter = 0
+roughness = 0.9
+uv1_triplanar = true
+uv1_world_triplanar = true
+uv1_scale = Vector3(0.5,0.5,0.5)
+
+[sub_resource type="BoxMesh" id="s396"]
+size = Vector3(11, 0.08, 0.5)
+material = SubResource("s395")
+
+[sub_resource type="BoxMesh" id="s397"]
+size = Vector3(11, 0.08, 0.5)
+material = SubResource("s395")
+
+[sub_resource type="BoxMesh" id="s398"]
+size = Vector3(11, 0.08, 0.5)
+material = SubResource("s395")
+
+[sub_resource type="BoxMesh" id="s399"]
+size = Vector3(11, 0.08, 0.5)
+material = SubResource("s395")
+
+[sub_resource type="BoxMesh" id="s400"]
+size = Vector3(11, 0.08, 0.5)
+material = SubResource("s395")
+
+[sub_resource type="BoxMesh" id="s401"]
+size = Vector3(11, 0.08, 0.5)
+material = SubResource("s395")
+
+[sub_resource type="BoxMesh" id="s402"]
+size = Vector3(11, 0.08, 0.5)
+material = SubResource("s395")
+
+[sub_resource type="BoxMesh" id="s403"]
+size = Vector3(11, 0.08, 0.5)
+material = SubResource("s395")
+
+[sub_resource type="BoxMesh" id="s404"]
+size = Vector3(11, 0.08, 0.5)
+material = SubResource("s395")
+
+[sub_resource type="BoxMesh" id="s405"]
+size = Vector3(11, 0.08, 0.5)
+material = SubResource("s395")
+
+[sub_resource type="BoxMesh" id="s406"]
+size = Vector3(11, 0.08, 0.5)
+material = SubResource("s395")
+
+[sub_resource type="BoxMesh" id="s407"]
+size = Vector3(11, 0.08, 0.5)
+material = SubResource("s395")
+
+[sub_resource type="BoxMesh" id="s408"]
+size = Vector3(11, 0.08, 0.5)
+material = SubResource("s395")
+
+[sub_resource type="BoxMesh" id="s409"]
+size = Vector3(11, 0.08, 0.5)
+material = SubResource("s395")
+
+[sub_resource type="BoxMesh" id="s410"]
+size = Vector3(11, 0.08, 0.5)
+material = SubResource("s395")
+
+[sub_resource type="BoxMesh" id="s411"]
+size = Vector3(11, 0.08, 0.5)
+material = SubResource("s395")
+
+[sub_resource type="BoxMesh" id="s412"]
+size = Vector3(11, 0.08, 0.5)
+material = SubResource("s395")
+
+[sub_resource type="BoxMesh" id="s413"]
+size = Vector3(11, 0.08, 0.5)
+material = SubResource("s395")
+
+[sub_resource type="BoxMesh" id="s414"]
+size = Vector3(11, 0.08, 0.5)
+material = SubResource("s395")
+
+[sub_resource type="BoxMesh" id="s415"]
+size = Vector3(11, 0.08, 0.5)
+material = SubResource("s395")
+
+[sub_resource type="BoxMesh" id="s416"]
+size = Vector3(11, 0.08, 0.5)
+material = SubResource("s395")
+
+[sub_resource type="BoxMesh" id="s417"]
+size = Vector3(11, 0.08, 0.5)
+material = SubResource("s395")
+
+[sub_resource type="BoxMesh" id="s418"]
+size = Vector3(11, 0.08, 0.5)
+material = SubResource("s395")
+
+[sub_resource type="BoxMesh" id="s419"]
+size = Vector3(11, 0.08, 0.5)
+material = SubResource("s395")
+
+[sub_resource type="BoxMesh" id="s420"]
+size = Vector3(11, 0.08, 0.5)
+material = SubResource("s395")
+
+[sub_resource type="BoxMesh" id="s421"]
+size = Vector3(11, 0.08, 0.5)
+material = SubResource("s395")
+
+[sub_resource type="BoxMesh" id="s422"]
+size = Vector3(11, 0.08, 0.5)
+material = SubResource("s395")
+
+[sub_resource type="BoxMesh" id="s423"]
+size = Vector3(11, 0.08, 0.5)
+material = SubResource("s395")
+
+[sub_resource type="BoxMesh" id="s424"]
+size = Vector3(11, 0.08, 0.5)
+material = SubResource("s395")
+
+[sub_resource type="BoxMesh" id="s425"]
+size = Vector3(11, 0.08, 0.5)
+material = SubResource("s395")
+
+[sub_resource type="BoxMesh" id="s426"]
+size = Vector3(11, 0.08, 0.5)
+material = SubResource("s395")
+
+[sub_resource type="BoxMesh" id="s427"]
+size = Vector3(11, 0.08, 0.5)
+material = SubResource("s395")
+
+[sub_resource type="BoxMesh" id="s428"]
+size = Vector3(11, 0.08, 0.5)
+material = SubResource("s395")
+
+[sub_resource type="BoxMesh" id="s429"]
+size = Vector3(11, 0.08, 0.5)
+material = SubResource("s395")
+
+[sub_resource type="BoxMesh" id="s430"]
+size = Vector3(11, 0.08, 0.5)
+material = SubResource("s395")
+
+[sub_resource type="BoxMesh" id="s431"]
+size = Vector3(11, 0.08, 0.5)
+material = SubResource("s395")
+
+[sub_resource type="BoxMesh" id="s432"]
+size = Vector3(11, 0.08, 0.5)
+material = SubResource("s395")
+
+[sub_resource type="BoxMesh" id="s433"]
+size = Vector3(11, 0.08, 0.5)
+material = SubResource("s395")
+
+[sub_resource type="BoxMesh" id="s434"]
+size = Vector3(11, 0.08, 0.5)
+material = SubResource("s395")
+
+[sub_resource type="BoxMesh" id="s435"]
+size = Vector3(11, 0.08, 0.5)
+material = SubResource("s395")
+
+[sub_resource type="BoxMesh" id="s436"]
+size = Vector3(11, 0.08, 0.5)
+material = SubResource("s395")
+
+[sub_resource type="BoxMesh" id="s437"]
+size = Vector3(11, 0.08, 0.5)
+material = SubResource("s395")
+
+[sub_resource type="BoxMesh" id="s438"]
+size = Vector3(11, 0.08, 0.5)
+material = SubResource("s395")
+
+[sub_resource type="BoxMesh" id="s439"]
+size = Vector3(11, 0.08, 0.5)
+material = SubResource("s395")
+
+[sub_resource type="BoxMesh" id="s440"]
+size = Vector3(11, 0.08, 0.5)
+material = SubResource("s395")
+
+[sub_resource type="BoxMesh" id="s441"]
+size = Vector3(11, 0.08, 0.5)
+material = SubResource("s395")
+
+[sub_resource type="BoxMesh" id="s442"]
+size = Vector3(11, 0.08, 0.5)
+material = SubResource("s395")
+
+[sub_resource type="BoxMesh" id="s443"]
+size = Vector3(11, 0.08, 0.5)
+material = SubResource("s395")
+
+[sub_resource type="BoxMesh" id="s444"]
+size = Vector3(11, 0.08, 0.5)
+material = SubResource("s395")
+
+[sub_resource type="BoxMesh" id="s445"]
+size = Vector3(11, 0.08, 0.5)
+material = SubResource("s395")
+
+[sub_resource type="BoxMesh" id="s446"]
+size = Vector3(0.045, 0.045, 1.7)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s447"]
+size = Vector3(0.045, 0.045, 1.7)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s448"]
+size = Vector3(0.045, 0.045, 1.7)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s449"]
+size = Vector3(0.045, 0.045, 1.7)
+material = SubResource("s66")
+
+[sub_resource type="BoxMesh" id="s450"]
+size = Vector3(0.56, 0.6, 0.22)
+material = SubResource("s90")
+
+[sub_resource type="BoxMesh" id="s451"]
+size = Vector3(0.56, 0.6, 0.22)
+material = SubResource("s90")
+
+[sub_resource type="BoxMesh" id="s452"]
+size = Vector3(0.56, 0.6, 0.22)
+material = SubResource("s90")
+
+[sub_resource type="BoxMesh" id="s453"]
+size = Vector3(0.56, 0.6, 0.22)
+material = SubResource("s90")
+
+[sub_resource type="BoxMesh" id="s454"]
+size = Vector3(0.56, 0.6, 0.22)
+material = SubResource("s90")
+
+[sub_resource type="BoxMesh" id="s455"]
+size = Vector3(0.56, 0.6, 0.22)
+material = SubResource("s90")
+
+[sub_resource type="BoxMesh" id="s456"]
+size = Vector3(0.56, 0.6, 0.22)
+material = SubResource("s90")
+
+[sub_resource type="BoxMesh" id="s457"]
+size = Vector3(0.56, 0.6, 0.22)
+material = SubResource("s90")
+
+[sub_resource type="BoxMesh" id="s458"]
+size = Vector3(0.56, 0.6, 0.22)
+material = SubResource("s90")
+
+[sub_resource type="BoxMesh" id="s459"]
+size = Vector3(0.56, 0.6, 0.22)
+material = SubResource("s90")
+
+[sub_resource type="BoxMesh" id="s460"]
+size = Vector3(0.56, 0.6, 0.22)
+material = SubResource("s90")
+
+[sub_resource type="BoxMesh" id="s461"]
+size = Vector3(0.56, 0.6, 0.22)
+material = SubResource("s90")
+
+[sub_resource type="BoxMesh" id="s462"]
+size = Vector3(0.56, 0.6, 0.22)
+material = SubResource("s90")
+
+[sub_resource type="BoxMesh" id="s463"]
+size = Vector3(0.56, 0.6, 0.22)
+material = SubResource("s90")
+
+[sub_resource type="BoxMesh" id="s464"]
+size = Vector3(0.56, 0.6, 0.22)
+material = SubResource("s90")
+
+[sub_resource type="BoxMesh" id="s465"]
+size = Vector3(0.56, 0.6, 0.22)
+material = SubResource("s90")
+
 [node name="Stadium" type="Node3D"]
 
 
@@ -347,6 +1875,7 @@ shape = SubResource("s1")
 
 [node name="Mesh" type="MeshInstance3D" parent="TrackBounds"]
 mesh = SubResource("s3")
+visible = false
 
 [node name="Grass" type="Node3D" parent="."]
 position = Vector3(198, -9.895, 166)
@@ -358,7 +1887,7 @@ mesh = SubResource("s5")
 
 
 [node name="Tier0" type="StaticBody3D" parent="MainBleachers"]
-position = Vector3(198.0, -9.69, 214.0)
+position = Vector3(198.0, -9.69, 216.0)
 collision_layer = 1
 collision_mask = 0
 
@@ -369,7 +1898,7 @@ shape = SubResource("s6")
 mesh = SubResource("s8")
 
 [node name="Tier1" type="StaticBody3D" parent="MainBleachers"]
-position = Vector3(198.0, -9.39, 215.2)
+position = Vector3(198.0, -9.39, 217.2)
 collision_layer = 1
 collision_mask = 0
 
@@ -380,7 +1909,7 @@ shape = SubResource("s9")
 mesh = SubResource("s10")
 
 [node name="Tier2" type="StaticBody3D" parent="MainBleachers"]
-position = Vector3(198.0, -9.09, 216.4)
+position = Vector3(198.0, -9.09, 218.4)
 collision_layer = 1
 collision_mask = 0
 
@@ -391,7 +1920,7 @@ shape = SubResource("s11")
 mesh = SubResource("s12")
 
 [node name="Tier3" type="StaticBody3D" parent="MainBleachers"]
-position = Vector3(198.0, -8.79, 217.6)
+position = Vector3(198.0, -8.79, 219.6)
 collision_layer = 1
 collision_mask = 0
 
@@ -402,7 +1931,7 @@ shape = SubResource("s13")
 mesh = SubResource("s14")
 
 [node name="Tier4" type="StaticBody3D" parent="MainBleachers"]
-position = Vector3(198.0, -8.49, 218.8)
+position = Vector3(198.0, -8.49, 220.8)
 collision_layer = 1
 collision_mask = 0
 
@@ -413,7 +1942,7 @@ shape = SubResource("s15")
 mesh = SubResource("s16")
 
 [node name="Tier5" type="StaticBody3D" parent="MainBleachers"]
-position = Vector3(198.0, -8.19, 220.0)
+position = Vector3(198.0, -8.19, 222.0)
 collision_layer = 1
 collision_mask = 0
 
@@ -424,7 +1953,7 @@ shape = SubResource("s17")
 mesh = SubResource("s18")
 
 [node name="Tier6" type="StaticBody3D" parent="MainBleachers"]
-position = Vector3(198.0, -7.89, 221.2)
+position = Vector3(198.0, -7.89, 223.2)
 collision_layer = 1
 collision_mask = 0
 
@@ -435,7 +1964,7 @@ shape = SubResource("s19")
 mesh = SubResource("s20")
 
 [node name="Tier7" type="StaticBody3D" parent="MainBleachers"]
-position = Vector3(198.0, -7.59, 222.4)
+position = Vector3(198.0, -7.59, 224.4)
 collision_layer = 1
 collision_mask = 0
 
@@ -446,7 +1975,7 @@ shape = SubResource("s21")
 mesh = SubResource("s22")
 
 [node name="Tier8" type="StaticBody3D" parent="MainBleachers"]
-position = Vector3(198.0, -7.29, 223.6)
+position = Vector3(198.0, -7.29, 225.6)
 collision_layer = 1
 collision_mask = 0
 
@@ -457,7 +1986,7 @@ shape = SubResource("s23")
 mesh = SubResource("s24")
 
 [node name="Tier9" type="StaticBody3D" parent="MainBleachers"]
-position = Vector3(198.0, -6.99, 224.8)
+position = Vector3(198.0, -6.99, 226.8)
 collision_layer = 1
 collision_mask = 0
 
@@ -476,121 +2005,121 @@ metadata/surface = &"tile"
 shape = SubResource("s27")
 
 [node name="Tread00" type="Node3D" parent="MainBleacherRamp"]
-position = Vector3(156.3, -9.915, 213.295)
+position = Vector3(156.7, -9.915, 215.1)
 
 [node name="Mesh" type="MeshInstance3D" parent="MainBleacherRamp/Tread00"]
 mesh = SubResource("s28")
 
 [node name="Tread01" type="Node3D" parent="MainBleacherRamp"]
-position = Vector3(156.3, -9.765, 213.885)
+position = Vector3(156.7, -9.765, 215.7)
 
 [node name="Mesh" type="MeshInstance3D" parent="MainBleacherRamp/Tread01"]
 mesh = SubResource("s29")
 
 [node name="Tread02" type="Node3D" parent="MainBleacherRamp"]
-position = Vector3(156.3, -9.615, 214.475)
+position = Vector3(156.7, -9.615, 216.3)
 
 [node name="Mesh" type="MeshInstance3D" parent="MainBleacherRamp/Tread02"]
 mesh = SubResource("s30")
 
 [node name="Tread03" type="Node3D" parent="MainBleacherRamp"]
-position = Vector3(156.3, -9.465, 215.065)
+position = Vector3(156.7, -9.465, 216.9)
 
 [node name="Mesh" type="MeshInstance3D" parent="MainBleacherRamp/Tread03"]
 mesh = SubResource("s31")
 
 [node name="Tread04" type="Node3D" parent="MainBleacherRamp"]
-position = Vector3(156.3, -9.315, 215.655)
+position = Vector3(156.7, -9.315, 217.5)
 
 [node name="Mesh" type="MeshInstance3D" parent="MainBleacherRamp/Tread04"]
 mesh = SubResource("s32")
 
 [node name="Tread05" type="Node3D" parent="MainBleacherRamp"]
-position = Vector3(156.3, -9.165, 216.245)
+position = Vector3(156.7, -9.165, 218.1)
 
 [node name="Mesh" type="MeshInstance3D" parent="MainBleacherRamp/Tread05"]
 mesh = SubResource("s33")
 
 [node name="Tread06" type="Node3D" parent="MainBleacherRamp"]
-position = Vector3(156.3, -9.015, 216.835)
+position = Vector3(156.7, -9.015, 218.7)
 
 [node name="Mesh" type="MeshInstance3D" parent="MainBleacherRamp/Tread06"]
 mesh = SubResource("s34")
 
 [node name="Tread07" type="Node3D" parent="MainBleacherRamp"]
-position = Vector3(156.3, -8.865, 217.425)
+position = Vector3(156.7, -8.865, 219.3)
 
 [node name="Mesh" type="MeshInstance3D" parent="MainBleacherRamp/Tread07"]
 mesh = SubResource("s35")
 
 [node name="Tread08" type="Node3D" parent="MainBleacherRamp"]
-position = Vector3(156.3, -8.715, 218.015)
+position = Vector3(156.7, -8.715, 219.9)
 
 [node name="Mesh" type="MeshInstance3D" parent="MainBleacherRamp/Tread08"]
 mesh = SubResource("s36")
 
 [node name="Tread09" type="Node3D" parent="MainBleacherRamp"]
-position = Vector3(156.3, -8.565, 218.605)
+position = Vector3(156.7, -8.565, 220.5)
 
 [node name="Mesh" type="MeshInstance3D" parent="MainBleacherRamp/Tread09"]
 mesh = SubResource("s37")
 
 [node name="Tread10" type="Node3D" parent="MainBleacherRamp"]
-position = Vector3(156.3, -8.415, 219.195)
+position = Vector3(156.7, -8.415, 221.1)
 
 [node name="Mesh" type="MeshInstance3D" parent="MainBleacherRamp/Tread10"]
 mesh = SubResource("s38")
 
 [node name="Tread11" type="Node3D" parent="MainBleacherRamp"]
-position = Vector3(156.3, -8.265, 219.785)
+position = Vector3(156.7, -8.265, 221.7)
 
 [node name="Mesh" type="MeshInstance3D" parent="MainBleacherRamp/Tread11"]
 mesh = SubResource("s39")
 
 [node name="Tread12" type="Node3D" parent="MainBleacherRamp"]
-position = Vector3(156.3, -8.115, 220.375)
+position = Vector3(156.7, -8.115, 222.3)
 
 [node name="Mesh" type="MeshInstance3D" parent="MainBleacherRamp/Tread12"]
 mesh = SubResource("s40")
 
 [node name="Tread13" type="Node3D" parent="MainBleacherRamp"]
-position = Vector3(156.3, -7.965, 220.965)
+position = Vector3(156.7, -7.965, 222.9)
 
 [node name="Mesh" type="MeshInstance3D" parent="MainBleacherRamp/Tread13"]
 mesh = SubResource("s41")
 
 [node name="Tread14" type="Node3D" parent="MainBleacherRamp"]
-position = Vector3(156.3, -7.815, 221.555)
+position = Vector3(156.7, -7.815, 223.5)
 
 [node name="Mesh" type="MeshInstance3D" parent="MainBleacherRamp/Tread14"]
 mesh = SubResource("s42")
 
 [node name="Tread15" type="Node3D" parent="MainBleacherRamp"]
-position = Vector3(156.3, -7.665, 222.145)
+position = Vector3(156.7, -7.665, 224.1)
 
 [node name="Mesh" type="MeshInstance3D" parent="MainBleacherRamp/Tread15"]
 mesh = SubResource("s43")
 
 [node name="Tread16" type="Node3D" parent="MainBleacherRamp"]
-position = Vector3(156.3, -7.515, 222.735)
+position = Vector3(156.7, -7.515, 224.7)
 
 [node name="Mesh" type="MeshInstance3D" parent="MainBleacherRamp/Tread16"]
 mesh = SubResource("s44")
 
 [node name="Tread17" type="Node3D" parent="MainBleacherRamp"]
-position = Vector3(156.3, -7.365, 223.325)
+position = Vector3(156.7, -7.365, 225.3)
 
 [node name="Mesh" type="MeshInstance3D" parent="MainBleacherRamp/Tread17"]
 mesh = SubResource("s45")
 
 [node name="Tread18" type="Node3D" parent="MainBleacherRamp"]
-position = Vector3(156.3, -7.215, 223.915)
+position = Vector3(156.7, -7.215, 225.9)
 
 [node name="Mesh" type="MeshInstance3D" parent="MainBleacherRamp/Tread18"]
 mesh = SubResource("s46")
 
 [node name="Tread19" type="Node3D" parent="MainBleacherRamp"]
-position = Vector3(156.3, -7.065, 224.505)
+position = Vector3(156.7, -7.065, 226.5)
 
 [node name="Mesh" type="MeshInstance3D" parent="MainBleacherRamp/Tread19"]
 mesh = SubResource("s47")
@@ -651,49 +2180,49 @@ metadata/surface = &"tile"
 shape = SubResource("s56")
 
 [node name="Tread00" type="Node3D" parent="SecondaryBleacherRamp"]
-position = Vector3(166.3, -9.915, 107.2875)
+position = Vector3(166.7, -9.915, 107.1)
 
 [node name="Mesh" type="MeshInstance3D" parent="SecondaryBleacherRamp/Tread00"]
 mesh = SubResource("s57")
 
 [node name="Tread01" type="Node3D" parent="SecondaryBleacherRamp"]
-position = Vector3(166.3, -9.765, 107.8625)
+position = Vector3(166.7, -9.765, 107.7)
 
 [node name="Mesh" type="MeshInstance3D" parent="SecondaryBleacherRamp/Tread01"]
 mesh = SubResource("s58")
 
 [node name="Tread02" type="Node3D" parent="SecondaryBleacherRamp"]
-position = Vector3(166.3, -9.615, 108.4375)
+position = Vector3(166.7, -9.615, 108.3)
 
 [node name="Mesh" type="MeshInstance3D" parent="SecondaryBleacherRamp/Tread02"]
 mesh = SubResource("s59")
 
 [node name="Tread03" type="Node3D" parent="SecondaryBleacherRamp"]
-position = Vector3(166.3, -9.465, 109.0125)
+position = Vector3(166.7, -9.465, 108.9)
 
 [node name="Mesh" type="MeshInstance3D" parent="SecondaryBleacherRamp/Tread03"]
 mesh = SubResource("s60")
 
 [node name="Tread04" type="Node3D" parent="SecondaryBleacherRamp"]
-position = Vector3(166.3, -9.315, 109.5875)
+position = Vector3(166.7, -9.315, 109.5)
 
 [node name="Mesh" type="MeshInstance3D" parent="SecondaryBleacherRamp/Tread04"]
 mesh = SubResource("s61")
 
 [node name="Tread05" type="Node3D" parent="SecondaryBleacherRamp"]
-position = Vector3(166.3, -9.165, 110.1625)
+position = Vector3(166.7, -9.165, 110.1)
 
 [node name="Mesh" type="MeshInstance3D" parent="SecondaryBleacherRamp/Tread05"]
 mesh = SubResource("s62")
 
 [node name="Tread06" type="Node3D" parent="SecondaryBleacherRamp"]
-position = Vector3(166.3, -9.015, 110.7375)
+position = Vector3(166.7, -9.015, 110.7)
 
 [node name="Mesh" type="MeshInstance3D" parent="SecondaryBleacherRamp/Tread06"]
 mesh = SubResource("s63")
 
 [node name="Tread07" type="Node3D" parent="SecondaryBleacherRamp"]
-position = Vector3(166.3, -8.865, 111.3125)
+position = Vector3(166.7, -8.865, 111.3)
 
 [node name="Mesh" type="MeshInstance3D" parent="SecondaryBleacherRamp/Tread07"]
 mesh = SubResource("s64")
@@ -802,8 +2331,8 @@ mesh = SubResource("s83")
 
 [node name="Light0" type="OmniLight3D" parent="Floodlights"]
 position = Vector3(112, 5.1, 122)
-light_energy = 6.0
-omni_range = 80.0
+light_energy = 12.0
+omni_range = 145.0
 shadow_enabled = false
 light_color = Color(0.78,0.83,0.72,1)
 
@@ -820,8 +2349,8 @@ mesh = SubResource("s85")
 
 [node name="Light1" type="OmniLight3D" parent="Floodlights"]
 position = Vector3(284, 5.1, 122)
-light_energy = 6.0
-omni_range = 80.0
+light_energy = 12.0
+omni_range = 145.0
 shadow_enabled = false
 light_color = Color(0.78,0.83,0.72,1)
 
@@ -838,8 +2367,8 @@ mesh = SubResource("s87")
 
 [node name="Light2" type="OmniLight3D" parent="Floodlights"]
 position = Vector3(112, 5.1, 210)
-light_energy = 6.0
-omni_range = 80.0
+light_energy = 12.0
+omni_range = 145.0
 shadow_enabled = false
 light_color = Color(0.78,0.83,0.72,1)
 
@@ -856,7 +2385,2321 @@ mesh = SubResource("s89")
 
 [node name="Light3" type="OmniLight3D" parent="Floodlights"]
 position = Vector3(284, 5.1, 210)
-light_energy = 6.0
-omni_range = 80.0
+light_energy = 12.0
+omni_range = 145.0
 shadow_enabled = false
 light_color = Color(0.78,0.83,0.72,1)
+
+[node name="RunningSurface" type="Node3D" parent="."]
+script = ExtResource("e5")
+vertices = PackedVector3Array(240.195,-9.873,129.81,240.195,-9.873,121.27,243.74224,-9.873,129.984265,244.579307,-9.873,121.485387,247.255319,-9.873,130.505381,248.92139,-9.873,122.129474,250.700402,-9.873,131.368329,253.179434,-9.873,123.196059,254.044313,-9.873,132.5648,257.31243,-9.873,124.674869,257.254848,-9.873,134.083269,261.280576,-9.873,126.551662,260.301087,-9.873,135.909115,265.045657,-9.873,128.808364,263.153693,-9.873,138.024752,268.571412,-9.873,131.423242,265.785194,-9.873,140.409806,271.823886,-9.873,134.371114,268.170248,-9.873,143.041307,274.771758,-9.873,137.623588,270.285885,-9.873,145.893913,277.386636,-9.873,141.149343,272.111731,-9.873,148.940152,279.643338,-9.873,144.914424,273.6302,-9.873,152.150687,281.520131,-9.873,148.88257,274.826671,-9.873,155.494598,282.998941,-9.873,153.015566,275.689619,-9.873,158.939681,284.065526,-9.873,157.27361,276.210735,-9.873,162.45276,284.709613,-9.873,161.615693,276.385,-9.873,166.0,284.925,-9.873,166.0,276.210735,-9.873,169.54724,284.709613,-9.873,170.384307,275.689619,-9.873,173.060319,284.065526,-9.873,174.72639,274.826671,-9.873,176.505402,282.998941,-9.873,178.984434,273.6302,-9.873,179.849313,281.520131,-9.873,183.11743,272.111731,-9.873,183.059848,279.643338,-9.873,187.085576,270.285885,-9.873,186.106087,277.386636,-9.873,190.850657,268.170248,-9.873,188.958693,274.771758,-9.873,194.376412,265.785194,-9.873,191.590194,271.823886,-9.873,197.628886,263.153693,-9.873,193.975248,268.571412,-9.873,200.576758,260.301087,-9.873,196.090885,265.045657,-9.873,203.191636,257.254848,-9.873,197.916731,261.280576,-9.873,205.448338,254.044313,-9.873,199.4352,257.31243,-9.873,207.325131,250.700402,-9.873,200.631671,253.179434,-9.873,208.803941,247.255319,-9.873,201.494619,248.92139,-9.873,209.870526,243.74224,-9.873,202.015735,244.579307,-9.873,210.514613,240.195,-9.873,202.19,240.195,-9.873,210.73,155.805,-9.873,202.19,155.805,-9.873,210.73,152.25776,-9.873,202.015735,151.420693,-9.873,210.514613,148.744681,-9.873,201.494619,147.07861,-9.873,209.870526,145.299598,-9.873,200.631671,142.820566,-9.873,208.803941,141.955687,-9.873,199.4352,138.68757,-9.873,207.325131,138.745152,-9.873,197.916731,134.719424,-9.873,205.448338,135.698913,-9.873,196.090885,130.954343,-9.873,203.191636,132.846307,-9.873,193.975248,127.428588,-9.873,200.576758,130.214806,-9.873,191.590194,124.176114,-9.873,197.628886,127.829752,-9.873,188.958693,121.228242,-9.873,194.376412,125.714115,-9.873,186.106087,118.613364,-9.873,190.850657,123.888269,-9.873,183.059848,116.356662,-9.873,187.085576,122.3698,-9.873,179.849313,114.479869,-9.873,183.11743,121.173329,-9.873,176.505402,113.001059,-9.873,178.984434,120.310381,-9.873,173.060319,111.934474,-9.873,174.72639,119.789265,-9.873,169.54724,111.290387,-9.873,170.384307,119.615,-9.873,166.0,111.075,-9.873,166.0,119.789265,-9.873,162.45276,111.290387,-9.873,161.615693,120.310381,-9.873,158.939681,111.934474,-9.873,157.27361,121.173329,-9.873,155.494598,113.001059,-9.873,153.015566,122.3698,-9.873,152.150687,114.479869,-9.873,148.88257,123.888269,-9.873,148.940152,116.356662,-9.873,144.914424,125.714115,-9.873,145.893913,118.613364,-9.873,141.149343,127.829752,-9.873,143.041307,121.228242,-9.873,137.623588,130.214806,-9.873,140.409806,124.176114,-9.873,134.371114,132.846307,-9.873,138.024752,127.428588,-9.873,131.423242,135.698913,-9.873,135.909115,130.954343,-9.873,128.808364,138.745152,-9.873,134.083269,134.719424,-9.873,126.551662,141.955687,-9.873,132.5648,138.68757,-9.873,124.674869,145.299598,-9.873,131.368329,142.820566,-9.873,123.196059,148.744681,-9.873,130.505381,147.07861,-9.873,122.129474,152.25776,-9.873,129.984265,151.420693,-9.873,121.485387,155.805,-9.873,129.81,155.805,-9.873,121.27)
+indices = PackedInt32Array(0,1,2,1,3,2,2,3,4,3,5,4,4,5,6,5,7,6,6,7,8,7,9,8,8,9,10,9,11,10,10,11,12,11,13,12,12,13,14,13,15,14,14,15,16,15,17,16,16,17,18,17,19,18,18,19,20,19,21,20,20,21,22,21,23,22,22,23,24,23,25,24,24,25,26,25,27,26,26,27,28,27,29,28,28,29,30,29,31,30,30,31,32,31,33,32,32,33,34,33,35,34,34,35,36,35,37,36,36,37,38,37,39,38,38,39,40,39,41,40,40,41,42,41,43,42,42,43,44,43,45,44,44,45,46,45,47,46,46,47,48,47,49,48,48,49,50,49,51,50,50,51,52,51,53,52,52,53,54,53,55,54,54,55,56,55,57,56,56,57,58,57,59,58,58,59,60,59,61,60,60,61,62,61,63,62,62,63,64,63,65,64,64,65,66,65,67,66,66,67,68,67,69,68,68,69,70,69,71,70,70,71,72,71,73,72,72,73,74,73,75,74,74,75,76,75,77,76,76,77,78,77,79,78,78,79,80,79,81,80,80,81,82,81,83,82,82,83,84,83,85,84,84,85,86,85,87,86,86,87,88,87,89,88,88,89,90,89,91,90,90,91,92,91,93,92,92,93,94,93,95,94,94,95,96,95,97,96,96,97,98,97,99,98,98,99,100,99,101,100,100,101,102,101,103,102,102,103,104,103,105,104,104,105,106,105,107,106,106,107,108,107,109,108,108,109,110,109,111,110,110,111,112,111,113,112,112,113,114,113,115,114,114,115,116,115,117,116,116,117,118,117,119,118,118,119,120,119,121,120,120,121,122,121,123,122,122,123,124,123,125,124,124,125,126,125,127,126,126,127,128,127,129,128,128,129,130,129,131,130,130,131,0,131,1,0)
+material = SubResource("s2")
+
+[node name="Lane0" type="Node3D" parent="."]
+script = ExtResource("e5")
+vertices = PackedVector3Array(240.195,-9.866,129.835,240.195,-9.866,129.785,243.73979,-9.866,130.009144,243.744691,-9.866,129.959385,247.250441,-9.866,130.5299,247.260196,-9.866,130.480861,250.693145,-9.866,131.392253,250.70766,-9.866,131.344406,254.034746,-9.866,132.587897,254.053881,-9.866,132.541703,257.243063,-9.866,134.105317,257.266633,-9.866,134.061221,260.287197,-9.866,135.929901,260.314976,-9.866,135.888328,263.137833,-9.866,138.044077,263.169553,-9.866,138.005426,265.767517,-9.866,140.427483,265.802872,-9.866,140.392128,268.150923,-9.866,143.057167,268.189574,-9.866,143.025447,270.265099,-9.866,145.907803,270.306672,-9.866,145.880024,272.089683,-9.866,148.951937,272.133779,-9.866,148.928367,273.607103,-9.866,152.160254,273.653297,-9.866,152.141119,274.802747,-9.866,155.501855,274.850594,-9.866,155.48734,275.6651,-9.866,158.944559,275.714139,-9.866,158.934804,276.185856,-9.866,162.45521,276.235615,-9.866,162.450309,276.36,-9.866,166.0,276.41,-9.866,166.0,276.185856,-9.866,169.54479,276.235615,-9.866,169.549691,275.6651,-9.866,173.055441,275.714139,-9.866,173.065196,274.802747,-9.866,176.498145,274.850594,-9.866,176.51266,273.607103,-9.866,179.839746,273.653297,-9.866,179.858881,272.089683,-9.866,183.048063,272.133779,-9.866,183.071633,270.265099,-9.866,186.092197,270.306672,-9.866,186.119976,268.150923,-9.866,188.942833,268.189574,-9.866,188.974553,265.767517,-9.866,191.572517,265.802872,-9.866,191.607872,263.137833,-9.866,193.955923,263.169553,-9.866,193.994574,260.287197,-9.866,196.070099,260.314976,-9.866,196.111672,257.243063,-9.866,197.894683,257.266633,-9.866,197.938779,254.034746,-9.866,199.412103,254.053881,-9.866,199.458297,250.693145,-9.866,200.607747,250.70766,-9.866,200.655594,247.250441,-9.866,201.4701,247.260196,-9.866,201.519139,243.73979,-9.866,201.990856,243.744691,-9.866,202.040615,240.195,-9.866,202.165,240.195,-9.866,202.215,155.805,-9.866,202.165,155.805,-9.866,202.215,152.26021,-9.866,201.990856,152.255309,-9.866,202.040615,148.749559,-9.866,201.4701,148.739804,-9.866,201.519139,145.306855,-9.866,200.607747,145.29234,-9.866,200.655594,141.965254,-9.866,199.412103,141.946119,-9.866,199.458297,138.756937,-9.866,197.894683,138.733367,-9.866,197.938779,135.712803,-9.866,196.070099,135.685024,-9.866,196.111672,132.862167,-9.866,193.955923,132.830447,-9.866,193.994574,130.232483,-9.866,191.572517,130.197128,-9.866,191.607872,127.849077,-9.866,188.942833,127.810426,-9.866,188.974553,125.734901,-9.866,186.092197,125.693328,-9.866,186.119976,123.910317,-9.866,183.048063,123.866221,-9.866,183.071633,122.392897,-9.866,179.839746,122.346703,-9.866,179.858881,121.197253,-9.866,176.498145,121.149406,-9.866,176.51266,120.3349,-9.866,173.055441,120.285861,-9.866,173.065196,119.814144,-9.866,169.54479,119.764385,-9.866,169.549691,119.64,-9.866,166.0,119.59,-9.866,166.0,119.814144,-9.866,162.45521,119.764385,-9.866,162.450309,120.3349,-9.866,158.944559,120.285861,-9.866,158.934804,121.197253,-9.866,155.501855,121.149406,-9.866,155.48734,122.392897,-9.866,152.160254,122.346703,-9.866,152.141119,123.910317,-9.866,148.951937,123.866221,-9.866,148.928367,125.734901,-9.866,145.907803,125.693328,-9.866,145.880024,127.849077,-9.866,143.057167,127.810426,-9.866,143.025447,130.232483,-9.866,140.427483,130.197128,-9.866,140.392128,132.862167,-9.866,138.044077,132.830447,-9.866,138.005426,135.712803,-9.866,135.929901,135.685024,-9.866,135.888328,138.756937,-9.866,134.105317,138.733367,-9.866,134.061221,141.965254,-9.866,132.587897,141.946119,-9.866,132.541703,145.306855,-9.866,131.392253,145.29234,-9.866,131.344406,148.749559,-9.866,130.5299,148.739804,-9.866,130.480861,152.26021,-9.866,130.009144,152.255309,-9.866,129.959385,155.805,-9.866,129.835,155.805,-9.866,129.785)
+indices = PackedInt32Array(0,1,2,1,3,2,2,3,4,3,5,4,4,5,6,5,7,6,6,7,8,7,9,8,8,9,10,9,11,10,10,11,12,11,13,12,12,13,14,13,15,14,14,15,16,15,17,16,16,17,18,17,19,18,18,19,20,19,21,20,20,21,22,21,23,22,22,23,24,23,25,24,24,25,26,25,27,26,26,27,28,27,29,28,28,29,30,29,31,30,30,31,32,31,33,32,32,33,34,33,35,34,34,35,36,35,37,36,36,37,38,37,39,38,38,39,40,39,41,40,40,41,42,41,43,42,42,43,44,43,45,44,44,45,46,45,47,46,46,47,48,47,49,48,48,49,50,49,51,50,50,51,52,51,53,52,52,53,54,53,55,54,54,55,56,55,57,56,56,57,58,57,59,58,58,59,60,59,61,60,60,61,62,61,63,62,62,63,64,63,65,64,64,65,66,65,67,66,66,67,68,67,69,68,68,69,70,69,71,70,70,71,72,71,73,72,72,73,74,73,75,74,74,75,76,75,77,76,76,77,78,77,79,78,78,79,80,79,81,80,80,81,82,81,83,82,82,83,84,83,85,84,84,85,86,85,87,86,86,87,88,87,89,88,88,89,90,89,91,90,90,91,92,91,93,92,92,93,94,93,95,94,94,95,96,95,97,96,96,97,98,97,99,98,98,99,100,99,101,100,100,101,102,101,103,102,102,103,104,103,105,104,104,105,106,105,107,106,106,107,108,107,109,108,108,109,110,109,111,110,110,111,112,111,113,112,112,113,114,113,115,114,114,115,116,115,117,116,116,117,118,117,119,118,118,119,120,119,121,120,120,121,122,121,123,122,122,123,124,123,125,124,124,125,126,125,127,126,126,127,128,127,129,128,128,129,130,129,131,130,130,131,0,131,1,0)
+material = SubResource("s90")
+
+[node name="Lane1" type="Node3D" parent="."]
+script = ExtResource("e5")
+vertices = PackedVector3Array(240.195,-9.866,128.615,240.195,-9.866,128.565,243.859371,-9.866,128.795019,243.864272,-9.866,128.74526,247.488452,-9.866,129.333342,247.498206,-9.866,129.284303,251.047293,-9.866,130.224786,251.061807,-9.866,130.176939,254.50162,-9.866,131.460764,254.520754,-9.866,131.41457,257.818167,-9.866,133.029374,257.841737,-9.866,132.985277,260.964993,-9.866,134.915509,260.992772,-9.866,134.873935,263.911793,-9.866,137.101004,263.943513,-9.866,137.062354,266.630187,-9.866,139.564813,266.665542,-9.866,139.529458,269.093996,-9.866,142.283207,269.132646,-9.866,142.251487,271.279491,-9.866,145.230007,271.321065,-9.866,145.202228,273.165626,-9.866,148.376833,273.209723,-9.866,148.353263,274.734236,-9.866,151.69338,274.78043,-9.866,151.674246,275.970214,-9.866,155.147707,276.018061,-9.866,155.133193,276.861658,-9.866,158.706548,276.910697,-9.866,158.696794,277.399981,-9.866,162.335629,277.44974,-9.866,162.330728,277.58,-9.866,166.0,277.63,-9.866,166.0,277.399981,-9.866,169.664371,277.44974,-9.866,169.669272,276.861658,-9.866,173.293452,276.910697,-9.866,173.303206,275.970214,-9.866,176.852293,276.018061,-9.866,176.866807,274.734236,-9.866,180.30662,274.78043,-9.866,180.325754,273.165626,-9.866,183.623167,273.209723,-9.866,183.646737,271.279491,-9.866,186.769993,271.321065,-9.866,186.797772,269.093996,-9.866,189.716793,269.132646,-9.866,189.748513,266.630187,-9.866,192.435187,266.665542,-9.866,192.470542,263.911793,-9.866,194.898996,263.943513,-9.866,194.937646,260.964993,-9.866,197.084491,260.992772,-9.866,197.126065,257.818167,-9.866,198.970626,257.841737,-9.866,199.014723,254.50162,-9.866,200.539236,254.520754,-9.866,200.58543,251.047293,-9.866,201.775214,251.061807,-9.866,201.823061,247.488452,-9.866,202.666658,247.498206,-9.866,202.715697,243.859371,-9.866,203.204981,243.864272,-9.866,203.25474,240.195,-9.866,203.385,240.195,-9.866,203.435,155.805,-9.866,203.385,155.805,-9.866,203.435,152.140629,-9.866,203.204981,152.135728,-9.866,203.25474,148.511548,-9.866,202.666658,148.501794,-9.866,202.715697,144.952707,-9.866,201.775214,144.938193,-9.866,201.823061,141.49838,-9.866,200.539236,141.479246,-9.866,200.58543,138.181833,-9.866,198.970626,138.158263,-9.866,199.014723,135.035007,-9.866,197.084491,135.007228,-9.866,197.126065,132.088207,-9.866,194.898996,132.056487,-9.866,194.937646,129.369813,-9.866,192.435187,129.334458,-9.866,192.470542,126.906004,-9.866,189.716793,126.867354,-9.866,189.748513,124.720509,-9.866,186.769993,124.678935,-9.866,186.797772,122.834374,-9.866,183.623167,122.790277,-9.866,183.646737,121.265764,-9.866,180.30662,121.21957,-9.866,180.325754,120.029786,-9.866,176.852293,119.981939,-9.866,176.866807,119.138342,-9.866,173.293452,119.089303,-9.866,173.303206,118.600019,-9.866,169.664371,118.55026,-9.866,169.669272,118.42,-9.866,166.0,118.37,-9.866,166.0,118.600019,-9.866,162.335629,118.55026,-9.866,162.330728,119.138342,-9.866,158.706548,119.089303,-9.866,158.696794,120.029786,-9.866,155.147707,119.981939,-9.866,155.133193,121.265764,-9.866,151.69338,121.21957,-9.866,151.674246,122.834374,-9.866,148.376833,122.790277,-9.866,148.353263,124.720509,-9.866,145.230007,124.678935,-9.866,145.202228,126.906004,-9.866,142.283207,126.867354,-9.866,142.251487,129.369813,-9.866,139.564813,129.334458,-9.866,139.529458,132.088207,-9.866,137.101004,132.056487,-9.866,137.062354,135.035007,-9.866,134.915509,135.007228,-9.866,134.873935,138.181833,-9.866,133.029374,138.158263,-9.866,132.985277,141.49838,-9.866,131.460764,141.479246,-9.866,131.41457,144.952707,-9.866,130.224786,144.938193,-9.866,130.176939,148.511548,-9.866,129.333342,148.501794,-9.866,129.284303,152.140629,-9.866,128.795019,152.135728,-9.866,128.74526,155.805,-9.866,128.615,155.805,-9.866,128.565)
+indices = PackedInt32Array(0,1,2,1,3,2,2,3,4,3,5,4,4,5,6,5,7,6,6,7,8,7,9,8,8,9,10,9,11,10,10,11,12,11,13,12,12,13,14,13,15,14,14,15,16,15,17,16,16,17,18,17,19,18,18,19,20,19,21,20,20,21,22,21,23,22,22,23,24,23,25,24,24,25,26,25,27,26,26,27,28,27,29,28,28,29,30,29,31,30,30,31,32,31,33,32,32,33,34,33,35,34,34,35,36,35,37,36,36,37,38,37,39,38,38,39,40,39,41,40,40,41,42,41,43,42,42,43,44,43,45,44,44,45,46,45,47,46,46,47,48,47,49,48,48,49,50,49,51,50,50,51,52,51,53,52,52,53,54,53,55,54,54,55,56,55,57,56,56,57,58,57,59,58,58,59,60,59,61,60,60,61,62,61,63,62,62,63,64,63,65,64,64,65,66,65,67,66,66,67,68,67,69,68,68,69,70,69,71,70,70,71,72,71,73,72,72,73,74,73,75,74,74,75,76,75,77,76,76,77,78,77,79,78,78,79,80,79,81,80,80,81,82,81,83,82,82,83,84,83,85,84,84,85,86,85,87,86,86,87,88,87,89,88,88,89,90,89,91,90,90,91,92,91,93,92,92,93,94,93,95,94,94,95,96,95,97,96,96,97,98,97,99,98,98,99,100,99,101,100,100,101,102,101,103,102,102,103,104,103,105,104,104,105,106,105,107,106,106,107,108,107,109,108,108,109,110,109,111,110,110,111,112,111,113,112,112,113,114,113,115,114,114,115,116,115,117,116,116,117,118,117,119,118,118,119,120,119,121,120,120,121,122,121,123,122,122,123,124,123,125,124,124,125,126,125,127,126,126,127,128,127,129,128,128,129,130,129,131,130,130,131,0,131,1,0)
+material = SubResource("s90")
+
+[node name="Lane2" type="Node3D" parent="."]
+script = ExtResource("e5")
+vertices = PackedVector3Array(240.195,-9.866,127.395,240.195,-9.866,127.345,243.978952,-9.866,127.580894,243.983853,-9.866,127.531134,247.726462,-9.866,128.136784,247.736216,-9.866,128.087745,251.40144,-9.866,129.057318,251.415954,-9.866,129.009471,254.968494,-9.866,130.333631,254.987628,-9.866,130.287437,258.393271,-9.866,131.95343,258.416841,-9.866,131.909334,261.642789,-9.866,133.901116,261.670567,-9.866,133.859542,264.685753,-9.866,136.157931,264.717472,-9.866,136.119281,267.492857,-9.866,138.702143,267.528213,-9.866,138.666787,270.037069,-9.866,141.509247,270.075719,-9.866,141.477528,272.293884,-9.866,144.552211,272.335458,-9.866,144.524433,274.24157,-9.866,147.801729,274.285666,-9.866,147.778159,275.861369,-9.866,151.226506,275.907563,-9.866,151.207372,277.137682,-9.866,154.79356,277.185529,-9.866,154.779046,278.058216,-9.866,158.468538,278.107255,-9.866,158.458784,278.614106,-9.866,162.216048,278.663866,-9.866,162.211147,278.8,-9.866,166.0,278.85,-9.866,166.0,278.614106,-9.866,169.783952,278.663866,-9.866,169.788853,278.058216,-9.866,173.531462,278.107255,-9.866,173.541216,277.137682,-9.866,177.20644,277.185529,-9.866,177.220954,275.861369,-9.866,180.773494,275.907563,-9.866,180.792628,274.24157,-9.866,184.198271,274.285666,-9.866,184.221841,272.293884,-9.866,187.447789,272.335458,-9.866,187.475567,270.037069,-9.866,190.490753,270.075719,-9.866,190.522472,267.492857,-9.866,193.297857,267.528213,-9.866,193.333213,264.685753,-9.866,195.842069,264.717472,-9.866,195.880719,261.642789,-9.866,198.098884,261.670567,-9.866,198.140458,258.393271,-9.866,200.04657,258.416841,-9.866,200.090666,254.968494,-9.866,201.666369,254.987628,-9.866,201.712563,251.40144,-9.866,202.942682,251.415954,-9.866,202.990529,247.726462,-9.866,203.863216,247.736216,-9.866,203.912255,243.978952,-9.866,204.419106,243.983853,-9.866,204.468866,240.195,-9.866,204.605,240.195,-9.866,204.655,155.805,-9.866,204.605,155.805,-9.866,204.655,152.021048,-9.866,204.419106,152.016147,-9.866,204.468866,148.273538,-9.866,203.863216,148.263784,-9.866,203.912255,144.59856,-9.866,202.942682,144.584046,-9.866,202.990529,141.031506,-9.866,201.666369,141.012372,-9.866,201.712563,137.606729,-9.866,200.04657,137.583159,-9.866,200.090666,134.357211,-9.866,198.098884,134.329433,-9.866,198.140458,131.314247,-9.866,195.842069,131.282528,-9.866,195.880719,128.507143,-9.866,193.297857,128.471787,-9.866,193.333213,125.962931,-9.866,190.490753,125.924281,-9.866,190.522472,123.706116,-9.866,187.447789,123.664542,-9.866,187.475567,121.75843,-9.866,184.198271,121.714334,-9.866,184.221841,120.138631,-9.866,180.773494,120.092437,-9.866,180.792628,118.862318,-9.866,177.20644,118.814471,-9.866,177.220954,117.941784,-9.866,173.531462,117.892745,-9.866,173.541216,117.385894,-9.866,169.783952,117.336134,-9.866,169.788853,117.2,-9.866,166.0,117.15,-9.866,166.0,117.385894,-9.866,162.216048,117.336134,-9.866,162.211147,117.941784,-9.866,158.468538,117.892745,-9.866,158.458784,118.862318,-9.866,154.79356,118.814471,-9.866,154.779046,120.138631,-9.866,151.226506,120.092437,-9.866,151.207372,121.75843,-9.866,147.801729,121.714334,-9.866,147.778159,123.706116,-9.866,144.552211,123.664542,-9.866,144.524433,125.962931,-9.866,141.509247,125.924281,-9.866,141.477528,128.507143,-9.866,138.702143,128.471787,-9.866,138.666787,131.314247,-9.866,136.157931,131.282528,-9.866,136.119281,134.357211,-9.866,133.901116,134.329433,-9.866,133.859542,137.606729,-9.866,131.95343,137.583159,-9.866,131.909334,141.031506,-9.866,130.333631,141.012372,-9.866,130.287437,144.59856,-9.866,129.057318,144.584046,-9.866,129.009471,148.273538,-9.866,128.136784,148.263784,-9.866,128.087745,152.021048,-9.866,127.580894,152.016147,-9.866,127.531134,155.805,-9.866,127.395,155.805,-9.866,127.345)
+indices = PackedInt32Array(0,1,2,1,3,2,2,3,4,3,5,4,4,5,6,5,7,6,6,7,8,7,9,8,8,9,10,9,11,10,10,11,12,11,13,12,12,13,14,13,15,14,14,15,16,15,17,16,16,17,18,17,19,18,18,19,20,19,21,20,20,21,22,21,23,22,22,23,24,23,25,24,24,25,26,25,27,26,26,27,28,27,29,28,28,29,30,29,31,30,30,31,32,31,33,32,32,33,34,33,35,34,34,35,36,35,37,36,36,37,38,37,39,38,38,39,40,39,41,40,40,41,42,41,43,42,42,43,44,43,45,44,44,45,46,45,47,46,46,47,48,47,49,48,48,49,50,49,51,50,50,51,52,51,53,52,52,53,54,53,55,54,54,55,56,55,57,56,56,57,58,57,59,58,58,59,60,59,61,60,60,61,62,61,63,62,62,63,64,63,65,64,64,65,66,65,67,66,66,67,68,67,69,68,68,69,70,69,71,70,70,71,72,71,73,72,72,73,74,73,75,74,74,75,76,75,77,76,76,77,78,77,79,78,78,79,80,79,81,80,80,81,82,81,83,82,82,83,84,83,85,84,84,85,86,85,87,86,86,87,88,87,89,88,88,89,90,89,91,90,90,91,92,91,93,92,92,93,94,93,95,94,94,95,96,95,97,96,96,97,98,97,99,98,98,99,100,99,101,100,100,101,102,101,103,102,102,103,104,103,105,104,104,105,106,105,107,106,106,107,108,107,109,108,108,109,110,109,111,110,110,111,112,111,113,112,112,113,114,113,115,114,114,115,116,115,117,116,116,117,118,117,119,118,118,119,120,119,121,120,120,121,122,121,123,122,122,123,124,123,125,124,124,125,126,125,127,126,126,127,128,127,129,128,128,129,130,129,131,130,130,131,0,131,1,0)
+material = SubResource("s90")
+
+[node name="Lane3" type="Node3D" parent="."]
+script = ExtResource("e5")
+vertices = PackedVector3Array(240.195,-9.866,126.175,240.195,-9.866,126.125,244.098533,-9.866,126.366768,244.103433,-9.866,126.317009,247.964472,-9.866,126.940226,247.974227,-9.866,126.891187,251.755587,-9.866,127.889851,251.770102,-9.866,127.842004,255.435368,-9.866,129.206498,255.454502,-9.866,129.160304,258.968375,-9.866,130.877486,258.991945,-9.866,130.83339,262.320585,-9.866,132.886723,262.348363,-9.866,132.845149,265.459713,-9.866,135.214859,265.491432,-9.866,135.176208,268.355528,-9.866,137.839472,268.390883,-9.866,137.804117,270.980141,-9.866,140.735287,271.018792,-9.866,140.703568,273.308277,-9.866,143.874415,273.349851,-9.866,143.846637,275.317514,-9.866,147.226625,275.36161,-9.866,147.203055,276.988502,-9.866,150.759632,277.034696,-9.866,150.740498,278.305149,-9.866,154.439413,278.352996,-9.866,154.424898,279.254774,-9.866,158.230528,279.303813,-9.866,158.220773,279.828232,-9.866,162.096467,279.877991,-9.866,162.091567,280.02,-9.866,166.0,280.07,-9.866,166.0,279.828232,-9.866,169.903533,279.877991,-9.866,169.908433,279.254774,-9.866,173.769472,279.303813,-9.866,173.779227,278.305149,-9.866,177.560587,278.352996,-9.866,177.575102,276.988502,-9.866,181.240368,277.034696,-9.866,181.259502,275.317514,-9.866,184.773375,275.36161,-9.866,184.796945,273.308277,-9.866,188.125585,273.349851,-9.866,188.153363,270.980141,-9.866,191.264713,271.018792,-9.866,191.296432,268.355528,-9.866,194.160528,268.390883,-9.866,194.195883,265.459713,-9.866,196.785141,265.491432,-9.866,196.823792,262.320585,-9.866,199.113277,262.348363,-9.866,199.154851,258.968375,-9.866,201.122514,258.991945,-9.866,201.16661,255.435368,-9.866,202.793502,255.454502,-9.866,202.839696,251.755587,-9.866,204.110149,251.770102,-9.866,204.157996,247.964472,-9.866,205.059774,247.974227,-9.866,205.108813,244.098533,-9.866,205.633232,244.103433,-9.866,205.682991,240.195,-9.866,205.825,240.195,-9.866,205.875,155.805,-9.866,205.825,155.805,-9.866,205.875,151.901467,-9.866,205.633232,151.896567,-9.866,205.682991,148.035528,-9.866,205.059774,148.025773,-9.866,205.108813,144.244413,-9.866,204.110149,144.229898,-9.866,204.157996,140.564632,-9.866,202.793502,140.545498,-9.866,202.839696,137.031625,-9.866,201.122514,137.008055,-9.866,201.16661,133.679415,-9.866,199.113277,133.651637,-9.866,199.154851,130.540287,-9.866,196.785141,130.508568,-9.866,196.823792,127.644472,-9.866,194.160528,127.609117,-9.866,194.195883,125.019859,-9.866,191.264713,124.981208,-9.866,191.296432,122.691723,-9.866,188.125585,122.650149,-9.866,188.153363,120.682486,-9.866,184.773375,120.63839,-9.866,184.796945,119.011498,-9.866,181.240368,118.965304,-9.866,181.259502,117.694851,-9.866,177.560587,117.647004,-9.866,177.575102,116.745226,-9.866,173.769472,116.696187,-9.866,173.779227,116.171768,-9.866,169.903533,116.122009,-9.866,169.908433,115.98,-9.866,166.0,115.93,-9.866,166.0,116.171768,-9.866,162.096467,116.122009,-9.866,162.091567,116.745226,-9.866,158.230528,116.696187,-9.866,158.220773,117.694851,-9.866,154.439413,117.647004,-9.866,154.424898,119.011498,-9.866,150.759632,118.965304,-9.866,150.740498,120.682486,-9.866,147.226625,120.63839,-9.866,147.203055,122.691723,-9.866,143.874415,122.650149,-9.866,143.846637,125.019859,-9.866,140.735287,124.981208,-9.866,140.703568,127.644472,-9.866,137.839472,127.609117,-9.866,137.804117,130.540287,-9.866,135.214859,130.508568,-9.866,135.176208,133.679415,-9.866,132.886723,133.651637,-9.866,132.845149,137.031625,-9.866,130.877486,137.008055,-9.866,130.83339,140.564632,-9.866,129.206498,140.545498,-9.866,129.160304,144.244413,-9.866,127.889851,144.229898,-9.866,127.842004,148.035528,-9.866,126.940226,148.025773,-9.866,126.891187,151.901467,-9.866,126.366768,151.896567,-9.866,126.317009,155.805,-9.866,126.175,155.805,-9.866,126.125)
+indices = PackedInt32Array(0,1,2,1,3,2,2,3,4,3,5,4,4,5,6,5,7,6,6,7,8,7,9,8,8,9,10,9,11,10,10,11,12,11,13,12,12,13,14,13,15,14,14,15,16,15,17,16,16,17,18,17,19,18,18,19,20,19,21,20,20,21,22,21,23,22,22,23,24,23,25,24,24,25,26,25,27,26,26,27,28,27,29,28,28,29,30,29,31,30,30,31,32,31,33,32,32,33,34,33,35,34,34,35,36,35,37,36,36,37,38,37,39,38,38,39,40,39,41,40,40,41,42,41,43,42,42,43,44,43,45,44,44,45,46,45,47,46,46,47,48,47,49,48,48,49,50,49,51,50,50,51,52,51,53,52,52,53,54,53,55,54,54,55,56,55,57,56,56,57,58,57,59,58,58,59,60,59,61,60,60,61,62,61,63,62,62,63,64,63,65,64,64,65,66,65,67,66,66,67,68,67,69,68,68,69,70,69,71,70,70,71,72,71,73,72,72,73,74,73,75,74,74,75,76,75,77,76,76,77,78,77,79,78,78,79,80,79,81,80,80,81,82,81,83,82,82,83,84,83,85,84,84,85,86,85,87,86,86,87,88,87,89,88,88,89,90,89,91,90,90,91,92,91,93,92,92,93,94,93,95,94,94,95,96,95,97,96,96,97,98,97,99,98,98,99,100,99,101,100,100,101,102,101,103,102,102,103,104,103,105,104,104,105,106,105,107,106,106,107,108,107,109,108,108,109,110,109,111,110,110,111,112,111,113,112,112,113,114,113,115,114,114,115,116,115,117,116,116,117,118,117,119,118,118,119,120,119,121,120,120,121,122,121,123,122,122,123,124,123,125,124,124,125,126,125,127,126,126,127,128,127,129,128,128,129,130,129,131,130,130,131,0,131,1,0)
+material = SubResource("s90")
+
+[node name="Lane4" type="Node3D" parent="."]
+script = ExtResource("e5")
+vertices = PackedVector3Array(240.195,-9.866,124.955,240.195,-9.866,124.905,244.218114,-9.866,125.152643,244.223014,-9.866,125.102884,248.202482,-9.866,125.743668,248.212237,-9.866,125.694629,252.109735,-9.866,126.722384,252.124249,-9.866,126.674537,255.902241,-9.866,128.079365,255.921376,-9.866,128.033171,259.543479,-9.866,129.801542,259.567049,-9.866,129.757446,262.99838,-9.866,131.87233,263.026159,-9.866,131.830756,266.233672,-9.866,134.271786,266.265392,-9.866,134.233135,269.218198,-9.866,136.976802,269.253553,-9.866,136.941447,271.923214,-9.866,139.961328,271.961865,-9.866,139.929608,274.32267,-9.866,143.19662,274.364244,-9.866,143.168841,276.393458,-9.866,146.651521,276.437554,-9.866,146.627951,278.115635,-9.866,150.292759,278.161829,-9.866,150.273624,279.472616,-9.866,154.085265,279.520463,-9.866,154.070751,280.451332,-9.866,157.992518,280.500371,-9.866,157.982763,281.042357,-9.866,161.976886,281.092116,-9.866,161.971986,281.24,-9.866,166.0,281.29,-9.866,166.0,281.042357,-9.866,170.023114,281.092116,-9.866,170.028014,280.451332,-9.866,174.007482,280.500371,-9.866,174.017237,279.472616,-9.866,177.914735,279.520463,-9.866,177.929249,278.115635,-9.866,181.707241,278.161829,-9.866,181.726376,276.393458,-9.866,185.348479,276.437554,-9.866,185.372049,274.32267,-9.866,188.80338,274.364244,-9.866,188.831159,271.923214,-9.866,192.038672,271.961865,-9.866,192.070392,269.218198,-9.866,195.023198,269.253553,-9.866,195.058553,266.233672,-9.866,197.728214,266.265392,-9.866,197.766865,262.99838,-9.866,200.12767,263.026159,-9.866,200.169244,259.543479,-9.866,202.198458,259.567049,-9.866,202.242554,255.902241,-9.866,203.920635,255.921376,-9.866,203.966829,252.109735,-9.866,205.277616,252.124249,-9.866,205.325463,248.202482,-9.866,206.256332,248.212237,-9.866,206.305371,244.218114,-9.866,206.847357,244.223014,-9.866,206.897116,240.195,-9.866,207.045,240.195,-9.866,207.095,155.805,-9.866,207.045,155.805,-9.866,207.095,151.781886,-9.866,206.847357,151.776986,-9.866,206.897116,147.797518,-9.866,206.256332,147.787763,-9.866,206.305371,143.890265,-9.866,205.277616,143.875751,-9.866,205.325463,140.097759,-9.866,203.920635,140.078624,-9.866,203.966829,136.456521,-9.866,202.198458,136.432951,-9.866,202.242554,133.00162,-9.866,200.12767,132.973841,-9.866,200.169244,129.766328,-9.866,197.728214,129.734608,-9.866,197.766865,126.781802,-9.866,195.023198,126.746447,-9.866,195.058553,124.076786,-9.866,192.038672,124.038135,-9.866,192.070392,121.67733,-9.866,188.80338,121.635756,-9.866,188.831159,119.606542,-9.866,185.348479,119.562446,-9.866,185.372049,117.884365,-9.866,181.707241,117.838171,-9.866,181.726376,116.527384,-9.866,177.914735,116.479537,-9.866,177.929249,115.548668,-9.866,174.007482,115.499629,-9.866,174.017237,114.957643,-9.866,170.023114,114.907884,-9.866,170.028014,114.76,-9.866,166.0,114.71,-9.866,166.0,114.957643,-9.866,161.976886,114.907884,-9.866,161.971986,115.548668,-9.866,157.992518,115.499629,-9.866,157.982763,116.527384,-9.866,154.085265,116.479537,-9.866,154.070751,117.884365,-9.866,150.292759,117.838171,-9.866,150.273624,119.606542,-9.866,146.651521,119.562446,-9.866,146.627951,121.67733,-9.866,143.19662,121.635756,-9.866,143.168841,124.076786,-9.866,139.961328,124.038135,-9.866,139.929608,126.781802,-9.866,136.976802,126.746447,-9.866,136.941447,129.766328,-9.866,134.271786,129.734608,-9.866,134.233135,133.00162,-9.866,131.87233,132.973841,-9.866,131.830756,136.456521,-9.866,129.801542,136.432951,-9.866,129.757446,140.097759,-9.866,128.079365,140.078624,-9.866,128.033171,143.890265,-9.866,126.722384,143.875751,-9.866,126.674537,147.797518,-9.866,125.743668,147.787763,-9.866,125.694629,151.781886,-9.866,125.152643,151.776986,-9.866,125.102884,155.805,-9.866,124.955,155.805,-9.866,124.905)
+indices = PackedInt32Array(0,1,2,1,3,2,2,3,4,3,5,4,4,5,6,5,7,6,6,7,8,7,9,8,8,9,10,9,11,10,10,11,12,11,13,12,12,13,14,13,15,14,14,15,16,15,17,16,16,17,18,17,19,18,18,19,20,19,21,20,20,21,22,21,23,22,22,23,24,23,25,24,24,25,26,25,27,26,26,27,28,27,29,28,28,29,30,29,31,30,30,31,32,31,33,32,32,33,34,33,35,34,34,35,36,35,37,36,36,37,38,37,39,38,38,39,40,39,41,40,40,41,42,41,43,42,42,43,44,43,45,44,44,45,46,45,47,46,46,47,48,47,49,48,48,49,50,49,51,50,50,51,52,51,53,52,52,53,54,53,55,54,54,55,56,55,57,56,56,57,58,57,59,58,58,59,60,59,61,60,60,61,62,61,63,62,62,63,64,63,65,64,64,65,66,65,67,66,66,67,68,67,69,68,68,69,70,69,71,70,70,71,72,71,73,72,72,73,74,73,75,74,74,75,76,75,77,76,76,77,78,77,79,78,78,79,80,79,81,80,80,81,82,81,83,82,82,83,84,83,85,84,84,85,86,85,87,86,86,87,88,87,89,88,88,89,90,89,91,90,90,91,92,91,93,92,92,93,94,93,95,94,94,95,96,95,97,96,96,97,98,97,99,98,98,99,100,99,101,100,100,101,102,101,103,102,102,103,104,103,105,104,104,105,106,105,107,106,106,107,108,107,109,108,108,109,110,109,111,110,110,111,112,111,113,112,112,113,114,113,115,114,114,115,116,115,117,116,116,117,118,117,119,118,118,119,120,119,121,120,120,121,122,121,123,122,122,123,124,123,125,124,124,125,126,125,127,126,126,127,128,127,129,128,128,129,130,129,131,130,130,131,0,131,1,0)
+material = SubResource("s90")
+
+[node name="Lane5" type="Node3D" parent="."]
+script = ExtResource("e5")
+vertices = PackedVector3Array(240.195,-9.866,123.735,240.195,-9.866,123.685,244.337694,-9.866,123.938518,244.342595,-9.866,123.888758,248.440492,-9.866,124.54711,248.450247,-9.866,124.498071,252.463882,-9.866,125.554917,252.478396,-9.866,125.50707,256.369115,-9.866,126.952232,256.388249,-9.866,126.906038,260.118583,-9.866,128.725598,260.142153,-9.866,128.681502,263.676176,-9.866,130.857937,263.703954,-9.866,130.816363,267.007632,-9.866,133.328713,267.039352,-9.866,133.290063,270.080868,-9.866,136.114132,270.116223,-9.866,136.078777,272.866287,-9.866,139.187368,272.904937,-9.866,139.155648,275.337063,-9.866,142.518824,275.378637,-9.866,142.491046,277.469402,-9.866,146.076417,277.513498,-9.866,146.052847,279.242768,-9.866,149.825885,279.288962,-9.866,149.806751,280.640083,-9.866,153.731118,280.68793,-9.866,153.716604,281.64789,-9.866,157.754508,281.696929,-9.866,157.744753,282.256482,-9.866,161.857306,282.306242,-9.866,161.852405,282.46,-9.866,166.0,282.51,-9.866,166.0,282.256482,-9.866,170.142694,282.306242,-9.866,170.147595,281.64789,-9.866,174.245492,281.696929,-9.866,174.255247,280.640083,-9.866,178.268882,280.68793,-9.866,178.283396,279.242768,-9.866,182.174115,279.288962,-9.866,182.193249,277.469402,-9.866,185.923583,277.513498,-9.866,185.947153,275.337063,-9.866,189.481176,275.378637,-9.866,189.508954,272.866287,-9.866,192.812632,272.904937,-9.866,192.844352,270.080868,-9.866,195.885868,270.116223,-9.866,195.921223,267.007632,-9.866,198.671287,267.039352,-9.866,198.709937,263.676176,-9.866,201.142063,263.703954,-9.866,201.183637,260.118583,-9.866,203.274402,260.142153,-9.866,203.318498,256.369115,-9.866,205.047768,256.388249,-9.866,205.093962,252.463882,-9.866,206.445083,252.478396,-9.866,206.49293,248.440492,-9.866,207.45289,248.450247,-9.866,207.501929,244.337694,-9.866,208.061482,244.342595,-9.866,208.111242,240.195,-9.866,208.265,240.195,-9.866,208.315,155.805,-9.866,208.265,155.805,-9.866,208.315,151.662306,-9.866,208.061482,151.657405,-9.866,208.111242,147.559508,-9.866,207.45289,147.549753,-9.866,207.501929,143.536118,-9.866,206.445083,143.521604,-9.866,206.49293,139.630885,-9.866,205.047768,139.611751,-9.866,205.093962,135.881417,-9.866,203.274402,135.857847,-9.866,203.318498,132.323824,-9.866,201.142063,132.296046,-9.866,201.183637,128.992368,-9.866,198.671287,128.960648,-9.866,198.709937,125.919132,-9.866,195.885868,125.883777,-9.866,195.921223,123.133713,-9.866,192.812632,123.095063,-9.866,192.844352,120.662937,-9.866,189.481176,120.621363,-9.866,189.508954,118.530598,-9.866,185.923583,118.486502,-9.866,185.947153,116.757232,-9.866,182.174115,116.711038,-9.866,182.193249,115.359917,-9.866,178.268882,115.31207,-9.866,178.283396,114.35211,-9.866,174.245492,114.303071,-9.866,174.255247,113.743518,-9.866,170.142694,113.693758,-9.866,170.147595,113.54,-9.866,166.0,113.49,-9.866,166.0,113.743518,-9.866,161.857306,113.693758,-9.866,161.852405,114.35211,-9.866,157.754508,114.303071,-9.866,157.744753,115.359917,-9.866,153.731118,115.31207,-9.866,153.716604,116.757232,-9.866,149.825885,116.711038,-9.866,149.806751,118.530598,-9.866,146.076417,118.486502,-9.866,146.052847,120.662937,-9.866,142.518824,120.621363,-9.866,142.491046,123.133713,-9.866,139.187368,123.095063,-9.866,139.155648,125.919132,-9.866,136.114132,125.883777,-9.866,136.078777,128.992368,-9.866,133.328713,128.960648,-9.866,133.290063,132.323824,-9.866,130.857937,132.296046,-9.866,130.816363,135.881417,-9.866,128.725598,135.857847,-9.866,128.681502,139.630885,-9.866,126.952232,139.611751,-9.866,126.906038,143.536118,-9.866,125.554917,143.521604,-9.866,125.50707,147.559508,-9.866,124.54711,147.549753,-9.866,124.498071,151.662306,-9.866,123.938518,151.657405,-9.866,123.888758,155.805,-9.866,123.735,155.805,-9.866,123.685)
+indices = PackedInt32Array(0,1,2,1,3,2,2,3,4,3,5,4,4,5,6,5,7,6,6,7,8,7,9,8,8,9,10,9,11,10,10,11,12,11,13,12,12,13,14,13,15,14,14,15,16,15,17,16,16,17,18,17,19,18,18,19,20,19,21,20,20,21,22,21,23,22,22,23,24,23,25,24,24,25,26,25,27,26,26,27,28,27,29,28,28,29,30,29,31,30,30,31,32,31,33,32,32,33,34,33,35,34,34,35,36,35,37,36,36,37,38,37,39,38,38,39,40,39,41,40,40,41,42,41,43,42,42,43,44,43,45,44,44,45,46,45,47,46,46,47,48,47,49,48,48,49,50,49,51,50,50,51,52,51,53,52,52,53,54,53,55,54,54,55,56,55,57,56,56,57,58,57,59,58,58,59,60,59,61,60,60,61,62,61,63,62,62,63,64,63,65,64,64,65,66,65,67,66,66,67,68,67,69,68,68,69,70,69,71,70,70,71,72,71,73,72,72,73,74,73,75,74,74,75,76,75,77,76,76,77,78,77,79,78,78,79,80,79,81,80,80,81,82,81,83,82,82,83,84,83,85,84,84,85,86,85,87,86,86,87,88,87,89,88,88,89,90,89,91,90,90,91,92,91,93,92,92,93,94,93,95,94,94,95,96,95,97,96,96,97,98,97,99,98,98,99,100,99,101,100,100,101,102,101,103,102,102,103,104,103,105,104,104,105,106,105,107,106,106,107,108,107,109,108,108,109,110,109,111,110,110,111,112,111,113,112,112,113,114,113,115,114,114,115,116,115,117,116,116,117,118,117,119,118,118,119,120,119,121,120,120,121,122,121,123,122,122,123,124,123,125,124,124,125,126,125,127,126,126,127,128,127,129,128,128,129,130,129,131,130,130,131,0,131,1,0)
+material = SubResource("s90")
+
+[node name="Lane6" type="Node3D" parent="."]
+script = ExtResource("e5")
+vertices = PackedVector3Array(240.195,-9.866,122.515,240.195,-9.866,122.465,244.457275,-9.866,122.724392,244.462176,-9.866,122.674633,248.678503,-9.866,123.350552,248.688257,-9.866,123.301513,252.818029,-9.866,124.38745,252.832543,-9.866,124.339602,256.835989,-9.866,125.825099,256.855123,-9.866,125.778905,260.693687,-9.866,127.649654,260.717257,-9.866,127.605558,264.353972,-9.866,129.843544,264.38175,-9.866,129.80197,267.781592,-9.866,132.38564,267.813312,-9.866,132.34699,270.943538,-9.866,135.251462,270.978894,-9.866,135.216106,273.80936,-9.866,138.413408,273.84801,-9.866,138.381688,276.351456,-9.866,141.841028,276.39303,-9.866,141.81325,278.545346,-9.866,145.501313,278.589442,-9.866,145.477743,280.369901,-9.866,149.359011,280.416095,-9.866,149.339877,281.80755,-9.866,153.376971,281.855398,-9.866,153.362457,282.844448,-9.866,157.516497,282.893487,-9.866,157.506743,283.470608,-9.866,161.737725,283.520367,-9.866,161.732824,283.68,-9.866,166.0,283.73,-9.866,166.0,283.470608,-9.866,170.262275,283.520367,-9.866,170.267176,282.844448,-9.866,174.483503,282.893487,-9.866,174.493257,281.80755,-9.866,178.623029,281.855398,-9.866,178.637543,280.369901,-9.866,182.640989,280.416095,-9.866,182.660123,278.545346,-9.866,186.498687,278.589442,-9.866,186.522257,276.351456,-9.866,190.158972,276.39303,-9.866,190.18675,273.80936,-9.866,193.586592,273.84801,-9.866,193.618312,270.943538,-9.866,196.748538,270.978894,-9.866,196.783894,267.781592,-9.866,199.61436,267.813312,-9.866,199.65301,264.353972,-9.866,202.156456,264.38175,-9.866,202.19803,260.693687,-9.866,204.350346,260.717257,-9.866,204.394442,256.835989,-9.866,206.174901,256.855123,-9.866,206.221095,252.818029,-9.866,207.61255,252.832543,-9.866,207.660398,248.678503,-9.866,208.649448,248.688257,-9.866,208.698487,244.457275,-9.866,209.275608,244.462176,-9.866,209.325367,240.195,-9.866,209.485,240.195,-9.866,209.535,155.805,-9.866,209.485,155.805,-9.866,209.535,151.542725,-9.866,209.275608,151.537824,-9.866,209.325367,147.321497,-9.866,208.649448,147.311743,-9.866,208.698487,143.181971,-9.866,207.61255,143.167457,-9.866,207.660398,139.164011,-9.866,206.174901,139.144877,-9.866,206.221095,135.306313,-9.866,204.350346,135.282743,-9.866,204.394442,131.646028,-9.866,202.156456,131.61825,-9.866,202.19803,128.218408,-9.866,199.61436,128.186688,-9.866,199.65301,125.056462,-9.866,196.748538,125.021106,-9.866,196.783894,122.19064,-9.866,193.586592,122.15199,-9.866,193.618312,119.648544,-9.866,190.158972,119.60697,-9.866,190.18675,117.454654,-9.866,186.498687,117.410558,-9.866,186.522257,115.630099,-9.866,182.640989,115.583905,-9.866,182.660123,114.19245,-9.866,178.623029,114.144602,-9.866,178.637543,113.155552,-9.866,174.483503,113.106513,-9.866,174.493257,112.529392,-9.866,170.262275,112.479633,-9.866,170.267176,112.32,-9.866,166.0,112.27,-9.866,166.0,112.529392,-9.866,161.737725,112.479633,-9.866,161.732824,113.155552,-9.866,157.516497,113.106513,-9.866,157.506743,114.19245,-9.866,153.376971,114.144602,-9.866,153.362457,115.630099,-9.866,149.359011,115.583905,-9.866,149.339877,117.454654,-9.866,145.501313,117.410558,-9.866,145.477743,119.648544,-9.866,141.841028,119.60697,-9.866,141.81325,122.19064,-9.866,138.413408,122.15199,-9.866,138.381688,125.056462,-9.866,135.251462,125.021106,-9.866,135.216106,128.218408,-9.866,132.38564,128.186688,-9.866,132.34699,131.646028,-9.866,129.843544,131.61825,-9.866,129.80197,135.306313,-9.866,127.649654,135.282743,-9.866,127.605558,139.164011,-9.866,125.825099,139.144877,-9.866,125.778905,143.181971,-9.866,124.38745,143.167457,-9.866,124.339602,147.321497,-9.866,123.350552,147.311743,-9.866,123.301513,151.542725,-9.866,122.724392,151.537824,-9.866,122.674633,155.805,-9.866,122.515,155.805,-9.866,122.465)
+indices = PackedInt32Array(0,1,2,1,3,2,2,3,4,3,5,4,4,5,6,5,7,6,6,7,8,7,9,8,8,9,10,9,11,10,10,11,12,11,13,12,12,13,14,13,15,14,14,15,16,15,17,16,16,17,18,17,19,18,18,19,20,19,21,20,20,21,22,21,23,22,22,23,24,23,25,24,24,25,26,25,27,26,26,27,28,27,29,28,28,29,30,29,31,30,30,31,32,31,33,32,32,33,34,33,35,34,34,35,36,35,37,36,36,37,38,37,39,38,38,39,40,39,41,40,40,41,42,41,43,42,42,43,44,43,45,44,44,45,46,45,47,46,46,47,48,47,49,48,48,49,50,49,51,50,50,51,52,51,53,52,52,53,54,53,55,54,54,55,56,55,57,56,56,57,58,57,59,58,58,59,60,59,61,60,60,61,62,61,63,62,62,63,64,63,65,64,64,65,66,65,67,66,66,67,68,67,69,68,68,69,70,69,71,70,70,71,72,71,73,72,72,73,74,73,75,74,74,75,76,75,77,76,76,77,78,77,79,78,78,79,80,79,81,80,80,81,82,81,83,82,82,83,84,83,85,84,84,85,86,85,87,86,86,87,88,87,89,88,88,89,90,89,91,90,90,91,92,91,93,92,92,93,94,93,95,94,94,95,96,95,97,96,96,97,98,97,99,98,98,99,100,99,101,100,100,101,102,101,103,102,102,103,104,103,105,104,104,105,106,105,107,106,106,107,108,107,109,108,108,109,110,109,111,110,110,111,112,111,113,112,112,113,114,113,115,114,114,115,116,115,117,116,116,117,118,117,119,118,118,119,120,119,121,120,120,121,122,121,123,122,122,123,124,123,125,124,124,125,126,125,127,126,126,127,128,127,129,128,128,129,130,129,131,130,130,131,0,131,1,0)
+material = SubResource("s90")
+
+[node name="Lane7" type="Node3D" parent="."]
+script = ExtResource("e5")
+vertices = PackedVector3Array(240.195,-9.866,121.295,240.195,-9.866,121.245,244.576856,-9.866,121.510267,244.581757,-9.866,121.460508,248.916513,-9.866,122.153994,248.926267,-9.866,122.104955,253.172176,-9.866,123.219982,253.186691,-9.866,123.172135,257.302863,-9.866,124.697965,257.321997,-9.866,124.651772,261.268791,-9.866,126.57371,261.292361,-9.866,126.529614,265.031767,-9.866,128.829151,265.059546,-9.866,128.787578,268.555552,-9.866,131.442568,268.587271,-9.866,131.403917,271.806209,-9.866,134.388791,271.841564,-9.866,134.353436,274.752432,-9.866,137.639448,274.791083,-9.866,137.607729,277.365849,-9.866,141.163233,277.407422,-9.866,141.135454,279.62129,-9.866,144.926209,279.665386,-9.866,144.902639,281.497035,-9.866,148.892137,281.543228,-9.866,148.873003,282.975018,-9.866,153.022824,283.022865,-9.866,153.008309,284.041006,-9.866,157.278487,284.090045,-9.866,157.268733,284.684733,-9.866,161.618144,284.734492,-9.866,161.613243,284.9,-9.866,166.0,284.95,-9.866,166.0,284.684733,-9.866,170.381856,284.734492,-9.866,170.386757,284.041006,-9.866,174.721513,284.090045,-9.866,174.731267,282.975018,-9.866,178.977176,283.022865,-9.866,178.991691,281.497035,-9.866,183.107863,281.543228,-9.866,183.126997,279.62129,-9.866,187.073791,279.665386,-9.866,187.097361,277.365849,-9.866,190.836767,277.407422,-9.866,190.864546,274.752432,-9.866,194.360552,274.791083,-9.866,194.392271,271.806209,-9.866,197.611209,271.841564,-9.866,197.646564,268.555552,-9.866,200.557432,268.587271,-9.866,200.596083,265.031767,-9.866,203.170849,265.059546,-9.866,203.212422,261.268791,-9.866,205.42629,261.292361,-9.866,205.470386,257.302863,-9.866,207.302035,257.321997,-9.866,207.348228,253.172176,-9.866,208.780018,253.186691,-9.866,208.827865,248.916513,-9.866,209.846006,248.926267,-9.866,209.895045,244.576856,-9.866,210.489733,244.581757,-9.866,210.539492,240.195,-9.866,210.705,240.195,-9.866,210.755,155.805,-9.866,210.705,155.805,-9.866,210.755,151.423144,-9.866,210.489733,151.418243,-9.866,210.539492,147.083487,-9.866,209.846006,147.073733,-9.866,209.895045,142.827824,-9.866,208.780018,142.813309,-9.866,208.827865,138.697137,-9.866,207.302035,138.678003,-9.866,207.348228,134.731209,-9.866,205.42629,134.707639,-9.866,205.470386,130.968233,-9.866,203.170849,130.940454,-9.866,203.212422,127.444448,-9.866,200.557432,127.412729,-9.866,200.596083,124.193791,-9.866,197.611209,124.158436,-9.866,197.646564,121.247568,-9.866,194.360552,121.208917,-9.866,194.392271,118.634151,-9.866,190.836767,118.592578,-9.866,190.864546,116.37871,-9.866,187.073791,116.334614,-9.866,187.097361,114.502965,-9.866,183.107863,114.456772,-9.866,183.126997,113.024982,-9.866,178.977176,112.977135,-9.866,178.991691,111.958994,-9.866,174.721513,111.909955,-9.866,174.731267,111.315267,-9.866,170.381856,111.265508,-9.866,170.386757,111.1,-9.866,166.0,111.05,-9.866,166.0,111.315267,-9.866,161.618144,111.265508,-9.866,161.613243,111.958994,-9.866,157.278487,111.909955,-9.866,157.268733,113.024982,-9.866,153.022824,112.977135,-9.866,153.008309,114.502965,-9.866,148.892137,114.456772,-9.866,148.873003,116.37871,-9.866,144.926209,116.334614,-9.866,144.902639,118.634151,-9.866,141.163233,118.592578,-9.866,141.135454,121.247568,-9.866,137.639448,121.208917,-9.866,137.607729,124.193791,-9.866,134.388791,124.158436,-9.866,134.353436,127.444448,-9.866,131.442568,127.412729,-9.866,131.403917,130.968233,-9.866,128.829151,130.940454,-9.866,128.787578,134.731209,-9.866,126.57371,134.707639,-9.866,126.529614,138.697137,-9.866,124.697965,138.678003,-9.866,124.651772,142.827824,-9.866,123.219982,142.813309,-9.866,123.172135,147.083487,-9.866,122.153994,147.073733,-9.866,122.104955,151.423144,-9.866,121.510267,151.418243,-9.866,121.460508,155.805,-9.866,121.295,155.805,-9.866,121.245)
+indices = PackedInt32Array(0,1,2,1,3,2,2,3,4,3,5,4,4,5,6,5,7,6,6,7,8,7,9,8,8,9,10,9,11,10,10,11,12,11,13,12,12,13,14,13,15,14,14,15,16,15,17,16,16,17,18,17,19,18,18,19,20,19,21,20,20,21,22,21,23,22,22,23,24,23,25,24,24,25,26,25,27,26,26,27,28,27,29,28,28,29,30,29,31,30,30,31,32,31,33,32,32,33,34,33,35,34,34,35,36,35,37,36,36,37,38,37,39,38,38,39,40,39,41,40,40,41,42,41,43,42,42,43,44,43,45,44,44,45,46,45,47,46,46,47,48,47,49,48,48,49,50,49,51,50,50,51,52,51,53,52,52,53,54,53,55,54,54,55,56,55,57,56,56,57,58,57,59,58,58,59,60,59,61,60,60,61,62,61,63,62,62,63,64,63,65,64,64,65,66,65,67,66,66,67,68,67,69,68,68,69,70,69,71,70,70,71,72,71,73,72,72,73,74,73,75,74,74,75,76,75,77,76,76,77,78,77,79,78,78,79,80,79,81,80,80,81,82,81,83,82,82,83,84,83,85,84,84,85,86,85,87,86,86,87,88,87,89,88,88,89,90,89,91,90,90,91,92,91,93,92,92,93,94,93,95,94,94,95,96,95,97,96,96,97,98,97,99,98,98,99,100,99,101,100,100,101,102,101,103,102,102,103,104,103,105,104,104,105,106,105,107,106,106,107,108,107,109,108,108,109,110,109,111,110,110,111,112,111,113,112,112,113,114,113,115,114,114,115,116,115,117,116,116,117,118,117,119,118,118,119,120,119,121,120,120,121,122,121,123,122,122,123,124,123,125,124,124,125,126,125,127,126,126,127,128,127,129,128,128,129,130,129,131,130,130,131,0,131,1,0)
+material = SubResource("s90")
+
+[node name="Goal-1" type="Node3D" parent="."]
+position = Vector3(150, -8.68, 166)
+
+[node name="Mesh" type="MeshInstance3D" parent="Goal-1"]
+mesh = SubResource("s92")
+visible = false
+
+[node name="GoalPost-1_162.34" type="Node3D" parent="."]
+position = Vector3(150, -8.68, 162.34)
+
+[node name="Mesh" type="MeshInstance3D" parent="GoalPost-1_162.34"]
+mesh = SubResource("s93")
+
+[node name="GoalPost-1_169.66" type="Node3D" parent="."]
+position = Vector3(150, -8.68, 169.66)
+
+[node name="Mesh" type="MeshInstance3D" parent="GoalPost-1_169.66"]
+mesh = SubResource("s94")
+
+[node name="GoalCross-1" type="Node3D" parent="."]
+position = Vector3(150, -7.46, 166)
+
+[node name="Mesh" type="MeshInstance3D" parent="GoalCross-1"]
+mesh = SubResource("s95")
+
+[node name="Goal1" type="Node3D" parent="."]
+position = Vector3(246, -8.68, 166)
+
+[node name="Mesh" type="MeshInstance3D" parent="Goal1"]
+mesh = SubResource("s96")
+visible = false
+
+[node name="GoalPost1_162.34" type="Node3D" parent="."]
+position = Vector3(246, -8.68, 162.34)
+
+[node name="Mesh" type="MeshInstance3D" parent="GoalPost1_162.34"]
+mesh = SubResource("s97")
+
+[node name="GoalPost1_169.66" type="Node3D" parent="."]
+position = Vector3(246, -8.68, 169.66)
+
+[node name="Mesh" type="MeshInstance3D" parent="GoalPost1_169.66"]
+mesh = SubResource("s98")
+
+[node name="GoalCross1" type="Node3D" parent="."]
+position = Vector3(246, -7.46, 166)
+
+[node name="Mesh" type="MeshInstance3D" parent="GoalCross1"]
+mesh = SubResource("s99")
+
+[node name="PitchLine150" type="Node3D" parent="."]
+position = Vector3(150, -9.879, 166)
+
+[node name="Mesh" type="MeshInstance3D" parent="PitchLine150"]
+mesh = SubResource("s100")
+
+[node name="PitchLine198" type="Node3D" parent="."]
+position = Vector3(198, -9.879, 166)
+
+[node name="Mesh" type="MeshInstance3D" parent="PitchLine198"]
+mesh = SubResource("s101")
+
+[node name="PitchLine246" type="Node3D" parent="."]
+position = Vector3(246, -9.879, 166)
+
+[node name="Mesh" type="MeshInstance3D" parent="PitchLine246"]
+mesh = SubResource("s102")
+
+[node name="PitchEdge137" type="Node3D" parent="."]
+position = Vector3(198, -9.879, 137)
+
+[node name="Mesh" type="MeshInstance3D" parent="PitchEdge137"]
+mesh = SubResource("s103")
+
+[node name="PitchEdge195" type="Node3D" parent="."]
+position = Vector3(198, -9.879, 195)
+
+[node name="Mesh" type="MeshInstance3D" parent="PitchEdge195"]
+mesh = SubResource("s104")
+
+[node name="StartLane0" type="Node3D" parent="."]
+position = Vector3(175.0, -9.855, 126.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="StartLane0"]
+mesh = SubResource("s105")
+
+[node name="StartLane1" type="Node3D" parent="."]
+position = Vector3(175.8, -9.855, 124.78)
+
+[node name="Mesh" type="MeshInstance3D" parent="StartLane1"]
+mesh = SubResource("s106")
+
+[node name="StartLane2" type="Node3D" parent="."]
+position = Vector3(176.6, -9.855, 123.56)
+
+[node name="Mesh" type="MeshInstance3D" parent="StartLane2"]
+mesh = SubResource("s107")
+
+[node name="StartLane3" type="Node3D" parent="."]
+position = Vector3(177.4, -9.855, 122.34)
+
+[node name="Mesh" type="MeshInstance3D" parent="StartLane3"]
+mesh = SubResource("s108")
+
+[node name="StartLane4" type="Node3D" parent="."]
+position = Vector3(178.2, -9.855, 121.12)
+
+[node name="Mesh" type="MeshInstance3D" parent="StartLane4"]
+mesh = SubResource("s109")
+
+[node name="StartLane5" type="Node3D" parent="."]
+position = Vector3(179.0, -9.855, 119.9)
+
+[node name="Mesh" type="MeshInstance3D" parent="StartLane5"]
+mesh = SubResource("s110")
+
+[node name="StartLane6" type="Node3D" parent="."]
+position = Vector3(179.8, -9.855, 118.68)
+
+[node name="Mesh" type="MeshInstance3D" parent="StartLane6"]
+mesh = SubResource("s111")
+
+[node name="Fence110_141" type="StaticBody3D" parent="."]
+position = Vector3(110, -9.25, 141)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Fence110_141"]
+shape = SubResource("s112")
+
+[node name="FenceTop110_141" type="Node3D" parent="."]
+position = Vector3(110, -8.6, 141)
+
+[node name="Mesh" type="MeshInstance3D" parent="FenceTop110_141"]
+mesh = SubResource("s113")
+
+[node name="Picket110_141_0" type="Node3D" parent="."]
+position = Vector3(110, -9.25, 121.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket110_141_0"]
+mesh = SubResource("s114")
+
+[node name="Picket110_141_1" type="Node3D" parent="."]
+position = Vector3(110, -9.25, 123.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket110_141_1"]
+mesh = SubResource("s115")
+
+[node name="Picket110_141_2" type="Node3D" parent="."]
+position = Vector3(110, -9.25, 125.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket110_141_2"]
+mesh = SubResource("s116")
+
+[node name="Picket110_141_3" type="Node3D" parent="."]
+position = Vector3(110, -9.25, 127.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket110_141_3"]
+mesh = SubResource("s117")
+
+[node name="Picket110_141_4" type="Node3D" parent="."]
+position = Vector3(110, -9.25, 129.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket110_141_4"]
+mesh = SubResource("s118")
+
+[node name="Picket110_141_5" type="Node3D" parent="."]
+position = Vector3(110, -9.25, 131.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket110_141_5"]
+mesh = SubResource("s119")
+
+[node name="Picket110_141_6" type="Node3D" parent="."]
+position = Vector3(110, -9.25, 133.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket110_141_6"]
+mesh = SubResource("s120")
+
+[node name="Picket110_141_7" type="Node3D" parent="."]
+position = Vector3(110, -9.25, 135.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket110_141_7"]
+mesh = SubResource("s121")
+
+[node name="Picket110_141_8" type="Node3D" parent="."]
+position = Vector3(110, -9.25, 137.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket110_141_8"]
+mesh = SubResource("s122")
+
+[node name="Picket110_141_9" type="Node3D" parent="."]
+position = Vector3(110, -9.25, 139.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket110_141_9"]
+mesh = SubResource("s123")
+
+[node name="Picket110_141_10" type="Node3D" parent="."]
+position = Vector3(110, -9.25, 141.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket110_141_10"]
+mesh = SubResource("s124")
+
+[node name="Picket110_141_11" type="Node3D" parent="."]
+position = Vector3(110, -9.25, 143.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket110_141_11"]
+mesh = SubResource("s125")
+
+[node name="Picket110_141_12" type="Node3D" parent="."]
+position = Vector3(110, -9.25, 145.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket110_141_12"]
+mesh = SubResource("s126")
+
+[node name="Picket110_141_13" type="Node3D" parent="."]
+position = Vector3(110, -9.25, 147.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket110_141_13"]
+mesh = SubResource("s127")
+
+[node name="Picket110_141_14" type="Node3D" parent="."]
+position = Vector3(110, -9.25, 149.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket110_141_14"]
+mesh = SubResource("s128")
+
+[node name="Picket110_141_15" type="Node3D" parent="."]
+position = Vector3(110, -9.25, 151.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket110_141_15"]
+mesh = SubResource("s129")
+
+[node name="Picket110_141_16" type="Node3D" parent="."]
+position = Vector3(110, -9.25, 153.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket110_141_16"]
+mesh = SubResource("s130")
+
+[node name="Picket110_141_17" type="Node3D" parent="."]
+position = Vector3(110, -9.25, 155.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket110_141_17"]
+mesh = SubResource("s131")
+
+[node name="Picket110_141_18" type="Node3D" parent="."]
+position = Vector3(110, -9.25, 157.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket110_141_18"]
+mesh = SubResource("s132")
+
+[node name="Picket110_141_19" type="Node3D" parent="."]
+position = Vector3(110, -9.25, 159.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket110_141_19"]
+mesh = SubResource("s133")
+
+[node name="Fence110_191" type="StaticBody3D" parent="."]
+position = Vector3(110, -9.25, 191)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Fence110_191"]
+shape = SubResource("s134")
+
+[node name="FenceTop110_191" type="Node3D" parent="."]
+position = Vector3(110, -8.6, 191)
+
+[node name="Mesh" type="MeshInstance3D" parent="FenceTop110_191"]
+mesh = SubResource("s135")
+
+[node name="Picket110_191_0" type="Node3D" parent="."]
+position = Vector3(110, -9.25, 171.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket110_191_0"]
+mesh = SubResource("s136")
+
+[node name="Picket110_191_1" type="Node3D" parent="."]
+position = Vector3(110, -9.25, 173.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket110_191_1"]
+mesh = SubResource("s137")
+
+[node name="Picket110_191_2" type="Node3D" parent="."]
+position = Vector3(110, -9.25, 175.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket110_191_2"]
+mesh = SubResource("s138")
+
+[node name="Picket110_191_3" type="Node3D" parent="."]
+position = Vector3(110, -9.25, 177.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket110_191_3"]
+mesh = SubResource("s139")
+
+[node name="Picket110_191_4" type="Node3D" parent="."]
+position = Vector3(110, -9.25, 179.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket110_191_4"]
+mesh = SubResource("s140")
+
+[node name="Picket110_191_5" type="Node3D" parent="."]
+position = Vector3(110, -9.25, 181.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket110_191_5"]
+mesh = SubResource("s141")
+
+[node name="Picket110_191_6" type="Node3D" parent="."]
+position = Vector3(110, -9.25, 183.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket110_191_6"]
+mesh = SubResource("s142")
+
+[node name="Picket110_191_7" type="Node3D" parent="."]
+position = Vector3(110, -9.25, 185.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket110_191_7"]
+mesh = SubResource("s143")
+
+[node name="Picket110_191_8" type="Node3D" parent="."]
+position = Vector3(110, -9.25, 187.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket110_191_8"]
+mesh = SubResource("s144")
+
+[node name="Picket110_191_9" type="Node3D" parent="."]
+position = Vector3(110, -9.25, 189.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket110_191_9"]
+mesh = SubResource("s145")
+
+[node name="Picket110_191_10" type="Node3D" parent="."]
+position = Vector3(110, -9.25, 191.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket110_191_10"]
+mesh = SubResource("s146")
+
+[node name="Picket110_191_11" type="Node3D" parent="."]
+position = Vector3(110, -9.25, 193.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket110_191_11"]
+mesh = SubResource("s147")
+
+[node name="Picket110_191_12" type="Node3D" parent="."]
+position = Vector3(110, -9.25, 195.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket110_191_12"]
+mesh = SubResource("s148")
+
+[node name="Picket110_191_13" type="Node3D" parent="."]
+position = Vector3(110, -9.25, 197.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket110_191_13"]
+mesh = SubResource("s149")
+
+[node name="Picket110_191_14" type="Node3D" parent="."]
+position = Vector3(110, -9.25, 199.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket110_191_14"]
+mesh = SubResource("s150")
+
+[node name="Picket110_191_15" type="Node3D" parent="."]
+position = Vector3(110, -9.25, 201.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket110_191_15"]
+mesh = SubResource("s151")
+
+[node name="Picket110_191_16" type="Node3D" parent="."]
+position = Vector3(110, -9.25, 203.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket110_191_16"]
+mesh = SubResource("s152")
+
+[node name="Picket110_191_17" type="Node3D" parent="."]
+position = Vector3(110, -9.25, 205.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket110_191_17"]
+mesh = SubResource("s153")
+
+[node name="Picket110_191_18" type="Node3D" parent="."]
+position = Vector3(110, -9.25, 207.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket110_191_18"]
+mesh = SubResource("s154")
+
+[node name="Picket110_191_19" type="Node3D" parent="."]
+position = Vector3(110, -9.25, 209.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket110_191_19"]
+mesh = SubResource("s155")
+
+[node name="Fence286_141" type="StaticBody3D" parent="."]
+position = Vector3(286, -9.25, 141)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Fence286_141"]
+shape = SubResource("s156")
+
+[node name="FenceTop286_141" type="Node3D" parent="."]
+position = Vector3(286, -8.6, 141)
+
+[node name="Mesh" type="MeshInstance3D" parent="FenceTop286_141"]
+mesh = SubResource("s157")
+
+[node name="Picket286_141_0" type="Node3D" parent="."]
+position = Vector3(286, -9.25, 121.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket286_141_0"]
+mesh = SubResource("s158")
+
+[node name="Picket286_141_1" type="Node3D" parent="."]
+position = Vector3(286, -9.25, 123.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket286_141_1"]
+mesh = SubResource("s159")
+
+[node name="Picket286_141_2" type="Node3D" parent="."]
+position = Vector3(286, -9.25, 125.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket286_141_2"]
+mesh = SubResource("s160")
+
+[node name="Picket286_141_3" type="Node3D" parent="."]
+position = Vector3(286, -9.25, 127.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket286_141_3"]
+mesh = SubResource("s161")
+
+[node name="Picket286_141_4" type="Node3D" parent="."]
+position = Vector3(286, -9.25, 129.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket286_141_4"]
+mesh = SubResource("s162")
+
+[node name="Picket286_141_5" type="Node3D" parent="."]
+position = Vector3(286, -9.25, 131.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket286_141_5"]
+mesh = SubResource("s163")
+
+[node name="Picket286_141_6" type="Node3D" parent="."]
+position = Vector3(286, -9.25, 133.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket286_141_6"]
+mesh = SubResource("s164")
+
+[node name="Picket286_141_7" type="Node3D" parent="."]
+position = Vector3(286, -9.25, 135.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket286_141_7"]
+mesh = SubResource("s165")
+
+[node name="Picket286_141_8" type="Node3D" parent="."]
+position = Vector3(286, -9.25, 137.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket286_141_8"]
+mesh = SubResource("s166")
+
+[node name="Picket286_141_9" type="Node3D" parent="."]
+position = Vector3(286, -9.25, 139.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket286_141_9"]
+mesh = SubResource("s167")
+
+[node name="Picket286_141_10" type="Node3D" parent="."]
+position = Vector3(286, -9.25, 141.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket286_141_10"]
+mesh = SubResource("s168")
+
+[node name="Picket286_141_11" type="Node3D" parent="."]
+position = Vector3(286, -9.25, 143.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket286_141_11"]
+mesh = SubResource("s169")
+
+[node name="Picket286_141_12" type="Node3D" parent="."]
+position = Vector3(286, -9.25, 145.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket286_141_12"]
+mesh = SubResource("s170")
+
+[node name="Picket286_141_13" type="Node3D" parent="."]
+position = Vector3(286, -9.25, 147.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket286_141_13"]
+mesh = SubResource("s171")
+
+[node name="Picket286_141_14" type="Node3D" parent="."]
+position = Vector3(286, -9.25, 149.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket286_141_14"]
+mesh = SubResource("s172")
+
+[node name="Picket286_141_15" type="Node3D" parent="."]
+position = Vector3(286, -9.25, 151.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket286_141_15"]
+mesh = SubResource("s173")
+
+[node name="Picket286_141_16" type="Node3D" parent="."]
+position = Vector3(286, -9.25, 153.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket286_141_16"]
+mesh = SubResource("s174")
+
+[node name="Picket286_141_17" type="Node3D" parent="."]
+position = Vector3(286, -9.25, 155.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket286_141_17"]
+mesh = SubResource("s175")
+
+[node name="Picket286_141_18" type="Node3D" parent="."]
+position = Vector3(286, -9.25, 157.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket286_141_18"]
+mesh = SubResource("s176")
+
+[node name="Picket286_141_19" type="Node3D" parent="."]
+position = Vector3(286, -9.25, 159.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket286_141_19"]
+mesh = SubResource("s177")
+
+[node name="Fence286_191" type="StaticBody3D" parent="."]
+position = Vector3(286, -9.25, 191)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Fence286_191"]
+shape = SubResource("s178")
+
+[node name="FenceTop286_191" type="Node3D" parent="."]
+position = Vector3(286, -8.6, 191)
+
+[node name="Mesh" type="MeshInstance3D" parent="FenceTop286_191"]
+mesh = SubResource("s179")
+
+[node name="Picket286_191_0" type="Node3D" parent="."]
+position = Vector3(286, -9.25, 171.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket286_191_0"]
+mesh = SubResource("s180")
+
+[node name="Picket286_191_1" type="Node3D" parent="."]
+position = Vector3(286, -9.25, 173.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket286_191_1"]
+mesh = SubResource("s181")
+
+[node name="Picket286_191_2" type="Node3D" parent="."]
+position = Vector3(286, -9.25, 175.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket286_191_2"]
+mesh = SubResource("s182")
+
+[node name="Picket286_191_3" type="Node3D" parent="."]
+position = Vector3(286, -9.25, 177.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket286_191_3"]
+mesh = SubResource("s183")
+
+[node name="Picket286_191_4" type="Node3D" parent="."]
+position = Vector3(286, -9.25, 179.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket286_191_4"]
+mesh = SubResource("s184")
+
+[node name="Picket286_191_5" type="Node3D" parent="."]
+position = Vector3(286, -9.25, 181.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket286_191_5"]
+mesh = SubResource("s185")
+
+[node name="Picket286_191_6" type="Node3D" parent="."]
+position = Vector3(286, -9.25, 183.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket286_191_6"]
+mesh = SubResource("s186")
+
+[node name="Picket286_191_7" type="Node3D" parent="."]
+position = Vector3(286, -9.25, 185.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket286_191_7"]
+mesh = SubResource("s187")
+
+[node name="Picket286_191_8" type="Node3D" parent="."]
+position = Vector3(286, -9.25, 187.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket286_191_8"]
+mesh = SubResource("s188")
+
+[node name="Picket286_191_9" type="Node3D" parent="."]
+position = Vector3(286, -9.25, 189.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket286_191_9"]
+mesh = SubResource("s189")
+
+[node name="Picket286_191_10" type="Node3D" parent="."]
+position = Vector3(286, -9.25, 191.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket286_191_10"]
+mesh = SubResource("s190")
+
+[node name="Picket286_191_11" type="Node3D" parent="."]
+position = Vector3(286, -9.25, 193.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket286_191_11"]
+mesh = SubResource("s191")
+
+[node name="Picket286_191_12" type="Node3D" parent="."]
+position = Vector3(286, -9.25, 195.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket286_191_12"]
+mesh = SubResource("s192")
+
+[node name="Picket286_191_13" type="Node3D" parent="."]
+position = Vector3(286, -9.25, 197.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket286_191_13"]
+mesh = SubResource("s193")
+
+[node name="Picket286_191_14" type="Node3D" parent="."]
+position = Vector3(286, -9.25, 199.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket286_191_14"]
+mesh = SubResource("s194")
+
+[node name="Picket286_191_15" type="Node3D" parent="."]
+position = Vector3(286, -9.25, 201.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket286_191_15"]
+mesh = SubResource("s195")
+
+[node name="Picket286_191_16" type="Node3D" parent="."]
+position = Vector3(286, -9.25, 203.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket286_191_16"]
+mesh = SubResource("s196")
+
+[node name="Picket286_191_17" type="Node3D" parent="."]
+position = Vector3(286, -9.25, 205.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket286_191_17"]
+mesh = SubResource("s197")
+
+[node name="Picket286_191_18" type="Node3D" parent="."]
+position = Vector3(286, -9.25, 207.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket286_191_18"]
+mesh = SubResource("s198")
+
+[node name="Picket286_191_19" type="Node3D" parent="."]
+position = Vector3(286, -9.25, 209.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket286_191_19"]
+mesh = SubResource("s199")
+
+[node name="Fence120_151.5" type="StaticBody3D" parent="."]
+position = Vector3(151.5, -9.25, 120)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Fence120_151.5"]
+shape = SubResource("s200")
+
+[node name="FenceTop120_151.5" type="Node3D" parent="."]
+position = Vector3(151.5, -8.6, 120)
+
+[node name="Mesh" type="MeshInstance3D" parent="FenceTop120_151.5"]
+mesh = SubResource("s201")
+
+[node name="Picket120_151.5_0" type="Node3D" parent="."]
+position = Vector3(110.0, -9.25, 120)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket120_151.5_0"]
+mesh = SubResource("s202")
+
+[node name="Picket120_151.5_1" type="Node3D" parent="."]
+position = Vector3(112.0, -9.25, 120)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket120_151.5_1"]
+mesh = SubResource("s203")
+
+[node name="Picket120_151.5_2" type="Node3D" parent="."]
+position = Vector3(114.0, -9.25, 120)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket120_151.5_2"]
+mesh = SubResource("s204")
+
+[node name="Picket120_151.5_3" type="Node3D" parent="."]
+position = Vector3(116.0, -9.25, 120)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket120_151.5_3"]
+mesh = SubResource("s205")
+
+[node name="Picket120_151.5_4" type="Node3D" parent="."]
+position = Vector3(118.0, -9.25, 120)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket120_151.5_4"]
+mesh = SubResource("s206")
+
+[node name="Picket120_151.5_5" type="Node3D" parent="."]
+position = Vector3(120.0, -9.25, 120)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket120_151.5_5"]
+mesh = SubResource("s207")
+
+[node name="Picket120_151.5_6" type="Node3D" parent="."]
+position = Vector3(122.0, -9.25, 120)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket120_151.5_6"]
+mesh = SubResource("s208")
+
+[node name="Picket120_151.5_7" type="Node3D" parent="."]
+position = Vector3(124.0, -9.25, 120)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket120_151.5_7"]
+mesh = SubResource("s209")
+
+[node name="Picket120_151.5_8" type="Node3D" parent="."]
+position = Vector3(126.0, -9.25, 120)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket120_151.5_8"]
+mesh = SubResource("s210")
+
+[node name="Picket120_151.5_9" type="Node3D" parent="."]
+position = Vector3(128.0, -9.25, 120)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket120_151.5_9"]
+mesh = SubResource("s211")
+
+[node name="Picket120_151.5_10" type="Node3D" parent="."]
+position = Vector3(130.0, -9.25, 120)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket120_151.5_10"]
+mesh = SubResource("s212")
+
+[node name="Picket120_151.5_11" type="Node3D" parent="."]
+position = Vector3(132.0, -9.25, 120)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket120_151.5_11"]
+mesh = SubResource("s213")
+
+[node name="Picket120_151.5_12" type="Node3D" parent="."]
+position = Vector3(134.0, -9.25, 120)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket120_151.5_12"]
+mesh = SubResource("s214")
+
+[node name="Picket120_151.5_13" type="Node3D" parent="."]
+position = Vector3(136.0, -9.25, 120)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket120_151.5_13"]
+mesh = SubResource("s215")
+
+[node name="Picket120_151.5_14" type="Node3D" parent="."]
+position = Vector3(138.0, -9.25, 120)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket120_151.5_14"]
+mesh = SubResource("s216")
+
+[node name="Picket120_151.5_15" type="Node3D" parent="."]
+position = Vector3(140.0, -9.25, 120)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket120_151.5_15"]
+mesh = SubResource("s217")
+
+[node name="Picket120_151.5_16" type="Node3D" parent="."]
+position = Vector3(142.0, -9.25, 120)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket120_151.5_16"]
+mesh = SubResource("s218")
+
+[node name="Picket120_151.5_17" type="Node3D" parent="."]
+position = Vector3(144.0, -9.25, 120)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket120_151.5_17"]
+mesh = SubResource("s219")
+
+[node name="Picket120_151.5_18" type="Node3D" parent="."]
+position = Vector3(146.0, -9.25, 120)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket120_151.5_18"]
+mesh = SubResource("s220")
+
+[node name="Picket120_151.5_19" type="Node3D" parent="."]
+position = Vector3(148.0, -9.25, 120)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket120_151.5_19"]
+mesh = SubResource("s221")
+
+[node name="Picket120_151.5_20" type="Node3D" parent="."]
+position = Vector3(150.0, -9.25, 120)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket120_151.5_20"]
+mesh = SubResource("s222")
+
+[node name="Picket120_151.5_21" type="Node3D" parent="."]
+position = Vector3(152.0, -9.25, 120)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket120_151.5_21"]
+mesh = SubResource("s223")
+
+[node name="Picket120_151.5_22" type="Node3D" parent="."]
+position = Vector3(154.0, -9.25, 120)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket120_151.5_22"]
+mesh = SubResource("s224")
+
+[node name="Picket120_151.5_23" type="Node3D" parent="."]
+position = Vector3(156.0, -9.25, 120)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket120_151.5_23"]
+mesh = SubResource("s225")
+
+[node name="Picket120_151.5_24" type="Node3D" parent="."]
+position = Vector3(158.0, -9.25, 120)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket120_151.5_24"]
+mesh = SubResource("s226")
+
+[node name="Picket120_151.5_25" type="Node3D" parent="."]
+position = Vector3(160.0, -9.25, 120)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket120_151.5_25"]
+mesh = SubResource("s227")
+
+[node name="Picket120_151.5_26" type="Node3D" parent="."]
+position = Vector3(162.0, -9.25, 120)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket120_151.5_26"]
+mesh = SubResource("s228")
+
+[node name="Picket120_151.5_27" type="Node3D" parent="."]
+position = Vector3(164.0, -9.25, 120)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket120_151.5_27"]
+mesh = SubResource("s229")
+
+[node name="Picket120_151.5_28" type="Node3D" parent="."]
+position = Vector3(166.0, -9.25, 120)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket120_151.5_28"]
+mesh = SubResource("s230")
+
+[node name="Picket120_151.5_29" type="Node3D" parent="."]
+position = Vector3(168.0, -9.25, 120)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket120_151.5_29"]
+mesh = SubResource("s231")
+
+[node name="Picket120_151.5_30" type="Node3D" parent="."]
+position = Vector3(170.0, -9.25, 120)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket120_151.5_30"]
+mesh = SubResource("s232")
+
+[node name="Picket120_151.5_31" type="Node3D" parent="."]
+position = Vector3(172.0, -9.25, 120)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket120_151.5_31"]
+mesh = SubResource("s233")
+
+[node name="Picket120_151.5_32" type="Node3D" parent="."]
+position = Vector3(174.0, -9.25, 120)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket120_151.5_32"]
+mesh = SubResource("s234")
+
+[node name="Picket120_151.5_33" type="Node3D" parent="."]
+position = Vector3(176.0, -9.25, 120)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket120_151.5_33"]
+mesh = SubResource("s235")
+
+[node name="Picket120_151.5_34" type="Node3D" parent="."]
+position = Vector3(178.0, -9.25, 120)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket120_151.5_34"]
+mesh = SubResource("s236")
+
+[node name="Picket120_151.5_35" type="Node3D" parent="."]
+position = Vector3(180.0, -9.25, 120)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket120_151.5_35"]
+mesh = SubResource("s237")
+
+[node name="Picket120_151.5_36" type="Node3D" parent="."]
+position = Vector3(182.0, -9.25, 120)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket120_151.5_36"]
+mesh = SubResource("s238")
+
+[node name="Picket120_151.5_37" type="Node3D" parent="."]
+position = Vector3(184.0, -9.25, 120)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket120_151.5_37"]
+mesh = SubResource("s239")
+
+[node name="Picket120_151.5_38" type="Node3D" parent="."]
+position = Vector3(186.0, -9.25, 120)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket120_151.5_38"]
+mesh = SubResource("s240")
+
+[node name="Picket120_151.5_39" type="Node3D" parent="."]
+position = Vector3(188.0, -9.25, 120)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket120_151.5_39"]
+mesh = SubResource("s241")
+
+[node name="Picket120_151.5_40" type="Node3D" parent="."]
+position = Vector3(190.0, -9.25, 120)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket120_151.5_40"]
+mesh = SubResource("s242")
+
+[node name="Picket120_151.5_41" type="Node3D" parent="."]
+position = Vector3(192.0, -9.25, 120)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket120_151.5_41"]
+mesh = SubResource("s243")
+
+[node name="Fence120_244.5" type="StaticBody3D" parent="."]
+position = Vector3(244.5, -9.25, 120)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Fence120_244.5"]
+shape = SubResource("s244")
+
+[node name="FenceTop120_244.5" type="Node3D" parent="."]
+position = Vector3(244.5, -8.6, 120)
+
+[node name="Mesh" type="MeshInstance3D" parent="FenceTop120_244.5"]
+mesh = SubResource("s245")
+
+[node name="Picket120_244.5_0" type="Node3D" parent="."]
+position = Vector3(203.0, -9.25, 120)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket120_244.5_0"]
+mesh = SubResource("s246")
+
+[node name="Picket120_244.5_1" type="Node3D" parent="."]
+position = Vector3(205.0, -9.25, 120)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket120_244.5_1"]
+mesh = SubResource("s247")
+
+[node name="Picket120_244.5_2" type="Node3D" parent="."]
+position = Vector3(207.0, -9.25, 120)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket120_244.5_2"]
+mesh = SubResource("s248")
+
+[node name="Picket120_244.5_3" type="Node3D" parent="."]
+position = Vector3(209.0, -9.25, 120)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket120_244.5_3"]
+mesh = SubResource("s249")
+
+[node name="Picket120_244.5_4" type="Node3D" parent="."]
+position = Vector3(211.0, -9.25, 120)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket120_244.5_4"]
+mesh = SubResource("s250")
+
+[node name="Picket120_244.5_5" type="Node3D" parent="."]
+position = Vector3(213.0, -9.25, 120)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket120_244.5_5"]
+mesh = SubResource("s251")
+
+[node name="Picket120_244.5_6" type="Node3D" parent="."]
+position = Vector3(215.0, -9.25, 120)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket120_244.5_6"]
+mesh = SubResource("s252")
+
+[node name="Picket120_244.5_7" type="Node3D" parent="."]
+position = Vector3(217.0, -9.25, 120)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket120_244.5_7"]
+mesh = SubResource("s253")
+
+[node name="Picket120_244.5_8" type="Node3D" parent="."]
+position = Vector3(219.0, -9.25, 120)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket120_244.5_8"]
+mesh = SubResource("s254")
+
+[node name="Picket120_244.5_9" type="Node3D" parent="."]
+position = Vector3(221.0, -9.25, 120)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket120_244.5_9"]
+mesh = SubResource("s255")
+
+[node name="Picket120_244.5_10" type="Node3D" parent="."]
+position = Vector3(223.0, -9.25, 120)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket120_244.5_10"]
+mesh = SubResource("s256")
+
+[node name="Picket120_244.5_11" type="Node3D" parent="."]
+position = Vector3(225.0, -9.25, 120)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket120_244.5_11"]
+mesh = SubResource("s257")
+
+[node name="Picket120_244.5_12" type="Node3D" parent="."]
+position = Vector3(227.0, -9.25, 120)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket120_244.5_12"]
+mesh = SubResource("s258")
+
+[node name="Picket120_244.5_13" type="Node3D" parent="."]
+position = Vector3(229.0, -9.25, 120)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket120_244.5_13"]
+mesh = SubResource("s259")
+
+[node name="Picket120_244.5_14" type="Node3D" parent="."]
+position = Vector3(231.0, -9.25, 120)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket120_244.5_14"]
+mesh = SubResource("s260")
+
+[node name="Picket120_244.5_15" type="Node3D" parent="."]
+position = Vector3(233.0, -9.25, 120)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket120_244.5_15"]
+mesh = SubResource("s261")
+
+[node name="Picket120_244.5_16" type="Node3D" parent="."]
+position = Vector3(235.0, -9.25, 120)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket120_244.5_16"]
+mesh = SubResource("s262")
+
+[node name="Picket120_244.5_17" type="Node3D" parent="."]
+position = Vector3(237.0, -9.25, 120)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket120_244.5_17"]
+mesh = SubResource("s263")
+
+[node name="Picket120_244.5_18" type="Node3D" parent="."]
+position = Vector3(239.0, -9.25, 120)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket120_244.5_18"]
+mesh = SubResource("s264")
+
+[node name="Picket120_244.5_19" type="Node3D" parent="."]
+position = Vector3(241.0, -9.25, 120)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket120_244.5_19"]
+mesh = SubResource("s265")
+
+[node name="Picket120_244.5_20" type="Node3D" parent="."]
+position = Vector3(243.0, -9.25, 120)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket120_244.5_20"]
+mesh = SubResource("s266")
+
+[node name="Picket120_244.5_21" type="Node3D" parent="."]
+position = Vector3(245.0, -9.25, 120)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket120_244.5_21"]
+mesh = SubResource("s267")
+
+[node name="Picket120_244.5_22" type="Node3D" parent="."]
+position = Vector3(247.0, -9.25, 120)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket120_244.5_22"]
+mesh = SubResource("s268")
+
+[node name="Picket120_244.5_23" type="Node3D" parent="."]
+position = Vector3(249.0, -9.25, 120)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket120_244.5_23"]
+mesh = SubResource("s269")
+
+[node name="Picket120_244.5_24" type="Node3D" parent="."]
+position = Vector3(251.0, -9.25, 120)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket120_244.5_24"]
+mesh = SubResource("s270")
+
+[node name="Picket120_244.5_25" type="Node3D" parent="."]
+position = Vector3(253.0, -9.25, 120)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket120_244.5_25"]
+mesh = SubResource("s271")
+
+[node name="Picket120_244.5_26" type="Node3D" parent="."]
+position = Vector3(255.0, -9.25, 120)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket120_244.5_26"]
+mesh = SubResource("s272")
+
+[node name="Picket120_244.5_27" type="Node3D" parent="."]
+position = Vector3(257.0, -9.25, 120)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket120_244.5_27"]
+mesh = SubResource("s273")
+
+[node name="Picket120_244.5_28" type="Node3D" parent="."]
+position = Vector3(259.0, -9.25, 120)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket120_244.5_28"]
+mesh = SubResource("s274")
+
+[node name="Picket120_244.5_29" type="Node3D" parent="."]
+position = Vector3(261.0, -9.25, 120)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket120_244.5_29"]
+mesh = SubResource("s275")
+
+[node name="Picket120_244.5_30" type="Node3D" parent="."]
+position = Vector3(263.0, -9.25, 120)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket120_244.5_30"]
+mesh = SubResource("s276")
+
+[node name="Picket120_244.5_31" type="Node3D" parent="."]
+position = Vector3(265.0, -9.25, 120)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket120_244.5_31"]
+mesh = SubResource("s277")
+
+[node name="Picket120_244.5_32" type="Node3D" parent="."]
+position = Vector3(267.0, -9.25, 120)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket120_244.5_32"]
+mesh = SubResource("s278")
+
+[node name="Picket120_244.5_33" type="Node3D" parent="."]
+position = Vector3(269.0, -9.25, 120)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket120_244.5_33"]
+mesh = SubResource("s279")
+
+[node name="Picket120_244.5_34" type="Node3D" parent="."]
+position = Vector3(271.0, -9.25, 120)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket120_244.5_34"]
+mesh = SubResource("s280")
+
+[node name="Picket120_244.5_35" type="Node3D" parent="."]
+position = Vector3(273.0, -9.25, 120)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket120_244.5_35"]
+mesh = SubResource("s281")
+
+[node name="Picket120_244.5_36" type="Node3D" parent="."]
+position = Vector3(275.0, -9.25, 120)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket120_244.5_36"]
+mesh = SubResource("s282")
+
+[node name="Picket120_244.5_37" type="Node3D" parent="."]
+position = Vector3(277.0, -9.25, 120)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket120_244.5_37"]
+mesh = SubResource("s283")
+
+[node name="Picket120_244.5_38" type="Node3D" parent="."]
+position = Vector3(279.0, -9.25, 120)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket120_244.5_38"]
+mesh = SubResource("s284")
+
+[node name="Picket120_244.5_39" type="Node3D" parent="."]
+position = Vector3(281.0, -9.25, 120)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket120_244.5_39"]
+mesh = SubResource("s285")
+
+[node name="Picket120_244.5_40" type="Node3D" parent="."]
+position = Vector3(283.0, -9.25, 120)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket120_244.5_40"]
+mesh = SubResource("s286")
+
+[node name="Picket120_244.5_41" type="Node3D" parent="."]
+position = Vector3(285.0, -9.25, 120)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket120_244.5_41"]
+mesh = SubResource("s287")
+
+[node name="Fence212_151.5" type="StaticBody3D" parent="."]
+position = Vector3(151.5, -9.25, 212)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Fence212_151.5"]
+shape = SubResource("s288")
+
+[node name="FenceTop212_151.5" type="Node3D" parent="."]
+position = Vector3(151.5, -8.6, 212)
+
+[node name="Mesh" type="MeshInstance3D" parent="FenceTop212_151.5"]
+mesh = SubResource("s289")
+
+[node name="Picket212_151.5_0" type="Node3D" parent="."]
+position = Vector3(110.0, -9.25, 212)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket212_151.5_0"]
+mesh = SubResource("s290")
+
+[node name="Picket212_151.5_1" type="Node3D" parent="."]
+position = Vector3(112.0, -9.25, 212)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket212_151.5_1"]
+mesh = SubResource("s291")
+
+[node name="Picket212_151.5_2" type="Node3D" parent="."]
+position = Vector3(114.0, -9.25, 212)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket212_151.5_2"]
+mesh = SubResource("s292")
+
+[node name="Picket212_151.5_3" type="Node3D" parent="."]
+position = Vector3(116.0, -9.25, 212)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket212_151.5_3"]
+mesh = SubResource("s293")
+
+[node name="Picket212_151.5_4" type="Node3D" parent="."]
+position = Vector3(118.0, -9.25, 212)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket212_151.5_4"]
+mesh = SubResource("s294")
+
+[node name="Picket212_151.5_5" type="Node3D" parent="."]
+position = Vector3(120.0, -9.25, 212)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket212_151.5_5"]
+mesh = SubResource("s295")
+
+[node name="Picket212_151.5_6" type="Node3D" parent="."]
+position = Vector3(122.0, -9.25, 212)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket212_151.5_6"]
+mesh = SubResource("s296")
+
+[node name="Picket212_151.5_7" type="Node3D" parent="."]
+position = Vector3(124.0, -9.25, 212)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket212_151.5_7"]
+mesh = SubResource("s297")
+
+[node name="Picket212_151.5_8" type="Node3D" parent="."]
+position = Vector3(126.0, -9.25, 212)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket212_151.5_8"]
+mesh = SubResource("s298")
+
+[node name="Picket212_151.5_9" type="Node3D" parent="."]
+position = Vector3(128.0, -9.25, 212)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket212_151.5_9"]
+mesh = SubResource("s299")
+
+[node name="Picket212_151.5_10" type="Node3D" parent="."]
+position = Vector3(130.0, -9.25, 212)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket212_151.5_10"]
+mesh = SubResource("s300")
+
+[node name="Picket212_151.5_11" type="Node3D" parent="."]
+position = Vector3(132.0, -9.25, 212)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket212_151.5_11"]
+mesh = SubResource("s301")
+
+[node name="Picket212_151.5_12" type="Node3D" parent="."]
+position = Vector3(134.0, -9.25, 212)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket212_151.5_12"]
+mesh = SubResource("s302")
+
+[node name="Picket212_151.5_13" type="Node3D" parent="."]
+position = Vector3(136.0, -9.25, 212)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket212_151.5_13"]
+mesh = SubResource("s303")
+
+[node name="Picket212_151.5_14" type="Node3D" parent="."]
+position = Vector3(138.0, -9.25, 212)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket212_151.5_14"]
+mesh = SubResource("s304")
+
+[node name="Picket212_151.5_15" type="Node3D" parent="."]
+position = Vector3(140.0, -9.25, 212)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket212_151.5_15"]
+mesh = SubResource("s305")
+
+[node name="Picket212_151.5_16" type="Node3D" parent="."]
+position = Vector3(142.0, -9.25, 212)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket212_151.5_16"]
+mesh = SubResource("s306")
+
+[node name="Picket212_151.5_17" type="Node3D" parent="."]
+position = Vector3(144.0, -9.25, 212)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket212_151.5_17"]
+mesh = SubResource("s307")
+
+[node name="Picket212_151.5_18" type="Node3D" parent="."]
+position = Vector3(146.0, -9.25, 212)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket212_151.5_18"]
+mesh = SubResource("s308")
+
+[node name="Picket212_151.5_19" type="Node3D" parent="."]
+position = Vector3(148.0, -9.25, 212)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket212_151.5_19"]
+mesh = SubResource("s309")
+
+[node name="Picket212_151.5_20" type="Node3D" parent="."]
+position = Vector3(150.0, -9.25, 212)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket212_151.5_20"]
+mesh = SubResource("s310")
+
+[node name="Picket212_151.5_21" type="Node3D" parent="."]
+position = Vector3(152.0, -9.25, 212)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket212_151.5_21"]
+mesh = SubResource("s311")
+
+[node name="Picket212_151.5_22" type="Node3D" parent="."]
+position = Vector3(154.0, -9.25, 212)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket212_151.5_22"]
+mesh = SubResource("s312")
+
+[node name="Picket212_151.5_23" type="Node3D" parent="."]
+position = Vector3(156.0, -9.25, 212)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket212_151.5_23"]
+mesh = SubResource("s313")
+
+[node name="Picket212_151.5_24" type="Node3D" parent="."]
+position = Vector3(158.0, -9.25, 212)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket212_151.5_24"]
+mesh = SubResource("s314")
+
+[node name="Picket212_151.5_25" type="Node3D" parent="."]
+position = Vector3(160.0, -9.25, 212)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket212_151.5_25"]
+mesh = SubResource("s315")
+
+[node name="Picket212_151.5_26" type="Node3D" parent="."]
+position = Vector3(162.0, -9.25, 212)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket212_151.5_26"]
+mesh = SubResource("s316")
+
+[node name="Picket212_151.5_27" type="Node3D" parent="."]
+position = Vector3(164.0, -9.25, 212)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket212_151.5_27"]
+mesh = SubResource("s317")
+
+[node name="Picket212_151.5_28" type="Node3D" parent="."]
+position = Vector3(166.0, -9.25, 212)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket212_151.5_28"]
+mesh = SubResource("s318")
+
+[node name="Picket212_151.5_29" type="Node3D" parent="."]
+position = Vector3(168.0, -9.25, 212)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket212_151.5_29"]
+mesh = SubResource("s319")
+
+[node name="Picket212_151.5_30" type="Node3D" parent="."]
+position = Vector3(170.0, -9.25, 212)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket212_151.5_30"]
+mesh = SubResource("s320")
+
+[node name="Picket212_151.5_31" type="Node3D" parent="."]
+position = Vector3(172.0, -9.25, 212)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket212_151.5_31"]
+mesh = SubResource("s321")
+
+[node name="Picket212_151.5_32" type="Node3D" parent="."]
+position = Vector3(174.0, -9.25, 212)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket212_151.5_32"]
+mesh = SubResource("s322")
+
+[node name="Picket212_151.5_33" type="Node3D" parent="."]
+position = Vector3(176.0, -9.25, 212)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket212_151.5_33"]
+mesh = SubResource("s323")
+
+[node name="Picket212_151.5_34" type="Node3D" parent="."]
+position = Vector3(178.0, -9.25, 212)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket212_151.5_34"]
+mesh = SubResource("s324")
+
+[node name="Picket212_151.5_35" type="Node3D" parent="."]
+position = Vector3(180.0, -9.25, 212)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket212_151.5_35"]
+mesh = SubResource("s325")
+
+[node name="Picket212_151.5_36" type="Node3D" parent="."]
+position = Vector3(182.0, -9.25, 212)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket212_151.5_36"]
+mesh = SubResource("s326")
+
+[node name="Picket212_151.5_37" type="Node3D" parent="."]
+position = Vector3(184.0, -9.25, 212)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket212_151.5_37"]
+mesh = SubResource("s327")
+
+[node name="Picket212_151.5_38" type="Node3D" parent="."]
+position = Vector3(186.0, -9.25, 212)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket212_151.5_38"]
+mesh = SubResource("s328")
+
+[node name="Picket212_151.5_39" type="Node3D" parent="."]
+position = Vector3(188.0, -9.25, 212)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket212_151.5_39"]
+mesh = SubResource("s329")
+
+[node name="Picket212_151.5_40" type="Node3D" parent="."]
+position = Vector3(190.0, -9.25, 212)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket212_151.5_40"]
+mesh = SubResource("s330")
+
+[node name="Picket212_151.5_41" type="Node3D" parent="."]
+position = Vector3(192.0, -9.25, 212)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket212_151.5_41"]
+mesh = SubResource("s331")
+
+[node name="Fence212_244.5" type="StaticBody3D" parent="."]
+position = Vector3(244.5, -9.25, 212)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Fence212_244.5"]
+shape = SubResource("s332")
+
+[node name="FenceTop212_244.5" type="Node3D" parent="."]
+position = Vector3(244.5, -8.6, 212)
+
+[node name="Mesh" type="MeshInstance3D" parent="FenceTop212_244.5"]
+mesh = SubResource("s333")
+
+[node name="Picket212_244.5_0" type="Node3D" parent="."]
+position = Vector3(203.0, -9.25, 212)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket212_244.5_0"]
+mesh = SubResource("s334")
+
+[node name="Picket212_244.5_1" type="Node3D" parent="."]
+position = Vector3(205.0, -9.25, 212)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket212_244.5_1"]
+mesh = SubResource("s335")
+
+[node name="Picket212_244.5_2" type="Node3D" parent="."]
+position = Vector3(207.0, -9.25, 212)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket212_244.5_2"]
+mesh = SubResource("s336")
+
+[node name="Picket212_244.5_3" type="Node3D" parent="."]
+position = Vector3(209.0, -9.25, 212)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket212_244.5_3"]
+mesh = SubResource("s337")
+
+[node name="Picket212_244.5_4" type="Node3D" parent="."]
+position = Vector3(211.0, -9.25, 212)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket212_244.5_4"]
+mesh = SubResource("s338")
+
+[node name="Picket212_244.5_5" type="Node3D" parent="."]
+position = Vector3(213.0, -9.25, 212)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket212_244.5_5"]
+mesh = SubResource("s339")
+
+[node name="Picket212_244.5_6" type="Node3D" parent="."]
+position = Vector3(215.0, -9.25, 212)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket212_244.5_6"]
+mesh = SubResource("s340")
+
+[node name="Picket212_244.5_7" type="Node3D" parent="."]
+position = Vector3(217.0, -9.25, 212)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket212_244.5_7"]
+mesh = SubResource("s341")
+
+[node name="Picket212_244.5_8" type="Node3D" parent="."]
+position = Vector3(219.0, -9.25, 212)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket212_244.5_8"]
+mesh = SubResource("s342")
+
+[node name="Picket212_244.5_9" type="Node3D" parent="."]
+position = Vector3(221.0, -9.25, 212)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket212_244.5_9"]
+mesh = SubResource("s343")
+
+[node name="Picket212_244.5_10" type="Node3D" parent="."]
+position = Vector3(223.0, -9.25, 212)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket212_244.5_10"]
+mesh = SubResource("s344")
+
+[node name="Picket212_244.5_11" type="Node3D" parent="."]
+position = Vector3(225.0, -9.25, 212)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket212_244.5_11"]
+mesh = SubResource("s345")
+
+[node name="Picket212_244.5_12" type="Node3D" parent="."]
+position = Vector3(227.0, -9.25, 212)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket212_244.5_12"]
+mesh = SubResource("s346")
+
+[node name="Picket212_244.5_13" type="Node3D" parent="."]
+position = Vector3(229.0, -9.25, 212)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket212_244.5_13"]
+mesh = SubResource("s347")
+
+[node name="Picket212_244.5_14" type="Node3D" parent="."]
+position = Vector3(231.0, -9.25, 212)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket212_244.5_14"]
+mesh = SubResource("s348")
+
+[node name="Picket212_244.5_15" type="Node3D" parent="."]
+position = Vector3(233.0, -9.25, 212)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket212_244.5_15"]
+mesh = SubResource("s349")
+
+[node name="Picket212_244.5_16" type="Node3D" parent="."]
+position = Vector3(235.0, -9.25, 212)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket212_244.5_16"]
+mesh = SubResource("s350")
+
+[node name="Picket212_244.5_17" type="Node3D" parent="."]
+position = Vector3(237.0, -9.25, 212)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket212_244.5_17"]
+mesh = SubResource("s351")
+
+[node name="Picket212_244.5_18" type="Node3D" parent="."]
+position = Vector3(239.0, -9.25, 212)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket212_244.5_18"]
+mesh = SubResource("s352")
+
+[node name="Picket212_244.5_19" type="Node3D" parent="."]
+position = Vector3(241.0, -9.25, 212)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket212_244.5_19"]
+mesh = SubResource("s353")
+
+[node name="Picket212_244.5_20" type="Node3D" parent="."]
+position = Vector3(243.0, -9.25, 212)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket212_244.5_20"]
+mesh = SubResource("s354")
+
+[node name="Picket212_244.5_21" type="Node3D" parent="."]
+position = Vector3(245.0, -9.25, 212)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket212_244.5_21"]
+mesh = SubResource("s355")
+
+[node name="Picket212_244.5_22" type="Node3D" parent="."]
+position = Vector3(247.0, -9.25, 212)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket212_244.5_22"]
+mesh = SubResource("s356")
+
+[node name="Picket212_244.5_23" type="Node3D" parent="."]
+position = Vector3(249.0, -9.25, 212)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket212_244.5_23"]
+mesh = SubResource("s357")
+
+[node name="Picket212_244.5_24" type="Node3D" parent="."]
+position = Vector3(251.0, -9.25, 212)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket212_244.5_24"]
+mesh = SubResource("s358")
+
+[node name="Picket212_244.5_25" type="Node3D" parent="."]
+position = Vector3(253.0, -9.25, 212)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket212_244.5_25"]
+mesh = SubResource("s359")
+
+[node name="Picket212_244.5_26" type="Node3D" parent="."]
+position = Vector3(255.0, -9.25, 212)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket212_244.5_26"]
+mesh = SubResource("s360")
+
+[node name="Picket212_244.5_27" type="Node3D" parent="."]
+position = Vector3(257.0, -9.25, 212)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket212_244.5_27"]
+mesh = SubResource("s361")
+
+[node name="Picket212_244.5_28" type="Node3D" parent="."]
+position = Vector3(259.0, -9.25, 212)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket212_244.5_28"]
+mesh = SubResource("s362")
+
+[node name="Picket212_244.5_29" type="Node3D" parent="."]
+position = Vector3(261.0, -9.25, 212)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket212_244.5_29"]
+mesh = SubResource("s363")
+
+[node name="Picket212_244.5_30" type="Node3D" parent="."]
+position = Vector3(263.0, -9.25, 212)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket212_244.5_30"]
+mesh = SubResource("s364")
+
+[node name="Picket212_244.5_31" type="Node3D" parent="."]
+position = Vector3(265.0, -9.25, 212)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket212_244.5_31"]
+mesh = SubResource("s365")
+
+[node name="Picket212_244.5_32" type="Node3D" parent="."]
+position = Vector3(267.0, -9.25, 212)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket212_244.5_32"]
+mesh = SubResource("s366")
+
+[node name="Picket212_244.5_33" type="Node3D" parent="."]
+position = Vector3(269.0, -9.25, 212)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket212_244.5_33"]
+mesh = SubResource("s367")
+
+[node name="Picket212_244.5_34" type="Node3D" parent="."]
+position = Vector3(271.0, -9.25, 212)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket212_244.5_34"]
+mesh = SubResource("s368")
+
+[node name="Picket212_244.5_35" type="Node3D" parent="."]
+position = Vector3(273.0, -9.25, 212)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket212_244.5_35"]
+mesh = SubResource("s369")
+
+[node name="Picket212_244.5_36" type="Node3D" parent="."]
+position = Vector3(275.0, -9.25, 212)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket212_244.5_36"]
+mesh = SubResource("s370")
+
+[node name="Picket212_244.5_37" type="Node3D" parent="."]
+position = Vector3(277.0, -9.25, 212)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket212_244.5_37"]
+mesh = SubResource("s371")
+
+[node name="Picket212_244.5_38" type="Node3D" parent="."]
+position = Vector3(279.0, -9.25, 212)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket212_244.5_38"]
+mesh = SubResource("s372")
+
+[node name="Picket212_244.5_39" type="Node3D" parent="."]
+position = Vector3(281.0, -9.25, 212)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket212_244.5_39"]
+mesh = SubResource("s373")
+
+[node name="Picket212_244.5_40" type="Node3D" parent="."]
+position = Vector3(283.0, -9.25, 212)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket212_244.5_40"]
+mesh = SubResource("s374")
+
+[node name="Picket212_244.5_41" type="Node3D" parent="."]
+position = Vector3(285.0, -9.25, 212)
+
+[node name="Mesh" type="MeshInstance3D" parent="Picket212_244.5_41"]
+mesh = SubResource("s375")
+
+[node name="StandPillar158" type="Node3D" parent="."]
+position = Vector3(158, -8.45, 226)
+
+[node name="Mesh" type="MeshInstance3D" parent="StandPillar158"]
+mesh = SubResource("s376")
+
+[node name="StandRail158" type="Node3D" parent="."]
+position = Vector3(158, -6.35, 227)
+
+[node name="Mesh" type="MeshInstance3D" parent="StandRail158"]
+mesh = SubResource("s377")
+
+[node name="StandPillar168" type="Node3D" parent="."]
+position = Vector3(168, -8.45, 226)
+
+[node name="Mesh" type="MeshInstance3D" parent="StandPillar168"]
+mesh = SubResource("s378")
+
+[node name="StandRail168" type="Node3D" parent="."]
+position = Vector3(168, -6.35, 227)
+
+[node name="Mesh" type="MeshInstance3D" parent="StandRail168"]
+mesh = SubResource("s379")
+
+[node name="StandPillar178" type="Node3D" parent="."]
+position = Vector3(178, -8.45, 226)
+
+[node name="Mesh" type="MeshInstance3D" parent="StandPillar178"]
+mesh = SubResource("s380")
+
+[node name="StandRail178" type="Node3D" parent="."]
+position = Vector3(178, -6.35, 227)
+
+[node name="Mesh" type="MeshInstance3D" parent="StandRail178"]
+mesh = SubResource("s381")
+
+[node name="StandPillar188" type="Node3D" parent="."]
+position = Vector3(188, -8.45, 226)
+
+[node name="Mesh" type="MeshInstance3D" parent="StandPillar188"]
+mesh = SubResource("s382")
+
+[node name="StandRail188" type="Node3D" parent="."]
+position = Vector3(188, -6.35, 227)
+
+[node name="Mesh" type="MeshInstance3D" parent="StandRail188"]
+mesh = SubResource("s383")
+
+[node name="StandPillar198" type="Node3D" parent="."]
+position = Vector3(198, -8.45, 226)
+
+[node name="Mesh" type="MeshInstance3D" parent="StandPillar198"]
+mesh = SubResource("s384")
+
+[node name="StandRail198" type="Node3D" parent="."]
+position = Vector3(198, -6.35, 227)
+
+[node name="Mesh" type="MeshInstance3D" parent="StandRail198"]
+mesh = SubResource("s385")
+
+[node name="StandPillar208" type="Node3D" parent="."]
+position = Vector3(208, -8.45, 226)
+
+[node name="Mesh" type="MeshInstance3D" parent="StandPillar208"]
+mesh = SubResource("s386")
+
+[node name="StandRail208" type="Node3D" parent="."]
+position = Vector3(208, -6.35, 227)
+
+[node name="Mesh" type="MeshInstance3D" parent="StandRail208"]
+mesh = SubResource("s387")
+
+[node name="StandPillar218" type="Node3D" parent="."]
+position = Vector3(218, -8.45, 226)
+
+[node name="Mesh" type="MeshInstance3D" parent="StandPillar218"]
+mesh = SubResource("s388")
+
+[node name="StandRail218" type="Node3D" parent="."]
+position = Vector3(218, -6.35, 227)
+
+[node name="Mesh" type="MeshInstance3D" parent="StandRail218"]
+mesh = SubResource("s389")
+
+[node name="StandPillar228" type="Node3D" parent="."]
+position = Vector3(228, -8.45, 226)
+
+[node name="Mesh" type="MeshInstance3D" parent="StandPillar228"]
+mesh = SubResource("s390")
+
+[node name="StandRail228" type="Node3D" parent="."]
+position = Vector3(228, -6.35, 227)
+
+[node name="Mesh" type="MeshInstance3D" parent="StandRail228"]
+mesh = SubResource("s391")
+
+[node name="StandPillar238" type="Node3D" parent="."]
+position = Vector3(238, -8.45, 226)
+
+[node name="Mesh" type="MeshInstance3D" parent="StandPillar238"]
+mesh = SubResource("s392")
+
+[node name="StandRail238" type="Node3D" parent="."]
+position = Vector3(238, -6.35, 227)
+
+[node name="Mesh" type="MeshInstance3D" parent="StandRail238"]
+mesh = SubResource("s393")
+
+[node name="StandTopRail" type="Node3D" parent="."]
+position = Vector3(198, -5.85, 227)
+
+[node name="Mesh" type="MeshInstance3D" parent="StandTopRail"]
+mesh = SubResource("s394")
+
+[node name="Seat0_170" type="Node3D" parent="."]
+position = Vector3(170, -9.56, 216.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Seat0_170"]
+mesh = SubResource("s396")
+
+[node name="Seat0_185" type="Node3D" parent="."]
+position = Vector3(185, -9.56, 216.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Seat0_185"]
+mesh = SubResource("s397")
+
+[node name="Seat0_200" type="Node3D" parent="."]
+position = Vector3(200, -9.56, 216.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Seat0_200"]
+mesh = SubResource("s398")
+
+[node name="Seat0_215" type="Node3D" parent="."]
+position = Vector3(215, -9.56, 216.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Seat0_215"]
+mesh = SubResource("s399")
+
+[node name="Seat0_230" type="Node3D" parent="."]
+position = Vector3(230, -9.56, 216.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Seat0_230"]
+mesh = SubResource("s400")
+
+[node name="Seat1_170" type="Node3D" parent="."]
+position = Vector3(170, -9.26, 217.2)
+
+[node name="Mesh" type="MeshInstance3D" parent="Seat1_170"]
+mesh = SubResource("s401")
+
+[node name="Seat1_185" type="Node3D" parent="."]
+position = Vector3(185, -9.26, 217.2)
+
+[node name="Mesh" type="MeshInstance3D" parent="Seat1_185"]
+mesh = SubResource("s402")
+
+[node name="Seat1_200" type="Node3D" parent="."]
+position = Vector3(200, -9.26, 217.2)
+
+[node name="Mesh" type="MeshInstance3D" parent="Seat1_200"]
+mesh = SubResource("s403")
+
+[node name="Seat1_215" type="Node3D" parent="."]
+position = Vector3(215, -9.26, 217.2)
+
+[node name="Mesh" type="MeshInstance3D" parent="Seat1_215"]
+mesh = SubResource("s404")
+
+[node name="Seat1_230" type="Node3D" parent="."]
+position = Vector3(230, -9.26, 217.2)
+
+[node name="Mesh" type="MeshInstance3D" parent="Seat1_230"]
+mesh = SubResource("s405")
+
+[node name="Seat2_170" type="Node3D" parent="."]
+position = Vector3(170, -8.96, 218.4)
+
+[node name="Mesh" type="MeshInstance3D" parent="Seat2_170"]
+mesh = SubResource("s406")
+
+[node name="Seat2_185" type="Node3D" parent="."]
+position = Vector3(185, -8.96, 218.4)
+
+[node name="Mesh" type="MeshInstance3D" parent="Seat2_185"]
+mesh = SubResource("s407")
+
+[node name="Seat2_200" type="Node3D" parent="."]
+position = Vector3(200, -8.96, 218.4)
+
+[node name="Mesh" type="MeshInstance3D" parent="Seat2_200"]
+mesh = SubResource("s408")
+
+[node name="Seat2_215" type="Node3D" parent="."]
+position = Vector3(215, -8.96, 218.4)
+
+[node name="Mesh" type="MeshInstance3D" parent="Seat2_215"]
+mesh = SubResource("s409")
+
+[node name="Seat2_230" type="Node3D" parent="."]
+position = Vector3(230, -8.96, 218.4)
+
+[node name="Mesh" type="MeshInstance3D" parent="Seat2_230"]
+mesh = SubResource("s410")
+
+[node name="Seat3_170" type="Node3D" parent="."]
+position = Vector3(170, -8.66, 219.6)
+
+[node name="Mesh" type="MeshInstance3D" parent="Seat3_170"]
+mesh = SubResource("s411")
+
+[node name="Seat3_185" type="Node3D" parent="."]
+position = Vector3(185, -8.66, 219.6)
+
+[node name="Mesh" type="MeshInstance3D" parent="Seat3_185"]
+mesh = SubResource("s412")
+
+[node name="Seat3_200" type="Node3D" parent="."]
+position = Vector3(200, -8.66, 219.6)
+
+[node name="Mesh" type="MeshInstance3D" parent="Seat3_200"]
+mesh = SubResource("s413")
+
+[node name="Seat3_215" type="Node3D" parent="."]
+position = Vector3(215, -8.66, 219.6)
+
+[node name="Mesh" type="MeshInstance3D" parent="Seat3_215"]
+mesh = SubResource("s414")
+
+[node name="Seat3_230" type="Node3D" parent="."]
+position = Vector3(230, -8.66, 219.6)
+
+[node name="Mesh" type="MeshInstance3D" parent="Seat3_230"]
+mesh = SubResource("s415")
+
+[node name="Seat4_170" type="Node3D" parent="."]
+position = Vector3(170, -8.36, 220.8)
+
+[node name="Mesh" type="MeshInstance3D" parent="Seat4_170"]
+mesh = SubResource("s416")
+
+[node name="Seat4_185" type="Node3D" parent="."]
+position = Vector3(185, -8.36, 220.8)
+
+[node name="Mesh" type="MeshInstance3D" parent="Seat4_185"]
+mesh = SubResource("s417")
+
+[node name="Seat4_200" type="Node3D" parent="."]
+position = Vector3(200, -8.36, 220.8)
+
+[node name="Mesh" type="MeshInstance3D" parent="Seat4_200"]
+mesh = SubResource("s418")
+
+[node name="Seat4_215" type="Node3D" parent="."]
+position = Vector3(215, -8.36, 220.8)
+
+[node name="Mesh" type="MeshInstance3D" parent="Seat4_215"]
+mesh = SubResource("s419")
+
+[node name="Seat4_230" type="Node3D" parent="."]
+position = Vector3(230, -8.36, 220.8)
+
+[node name="Mesh" type="MeshInstance3D" parent="Seat4_230"]
+mesh = SubResource("s420")
+
+[node name="Seat5_170" type="Node3D" parent="."]
+position = Vector3(170, -8.06, 222.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Seat5_170"]
+mesh = SubResource("s421")
+
+[node name="Seat5_185" type="Node3D" parent="."]
+position = Vector3(185, -8.06, 222.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Seat5_185"]
+mesh = SubResource("s422")
+
+[node name="Seat5_200" type="Node3D" parent="."]
+position = Vector3(200, -8.06, 222.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Seat5_200"]
+mesh = SubResource("s423")
+
+[node name="Seat5_215" type="Node3D" parent="."]
+position = Vector3(215, -8.06, 222.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Seat5_215"]
+mesh = SubResource("s424")
+
+[node name="Seat5_230" type="Node3D" parent="."]
+position = Vector3(230, -8.06, 222.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Seat5_230"]
+mesh = SubResource("s425")
+
+[node name="Seat6_170" type="Node3D" parent="."]
+position = Vector3(170, -7.76, 223.2)
+
+[node name="Mesh" type="MeshInstance3D" parent="Seat6_170"]
+mesh = SubResource("s426")
+
+[node name="Seat6_185" type="Node3D" parent="."]
+position = Vector3(185, -7.76, 223.2)
+
+[node name="Mesh" type="MeshInstance3D" parent="Seat6_185"]
+mesh = SubResource("s427")
+
+[node name="Seat6_200" type="Node3D" parent="."]
+position = Vector3(200, -7.76, 223.2)
+
+[node name="Mesh" type="MeshInstance3D" parent="Seat6_200"]
+mesh = SubResource("s428")
+
+[node name="Seat6_215" type="Node3D" parent="."]
+position = Vector3(215, -7.76, 223.2)
+
+[node name="Mesh" type="MeshInstance3D" parent="Seat6_215"]
+mesh = SubResource("s429")
+
+[node name="Seat6_230" type="Node3D" parent="."]
+position = Vector3(230, -7.76, 223.2)
+
+[node name="Mesh" type="MeshInstance3D" parent="Seat6_230"]
+mesh = SubResource("s430")
+
+[node name="Seat7_170" type="Node3D" parent="."]
+position = Vector3(170, -7.46, 224.4)
+
+[node name="Mesh" type="MeshInstance3D" parent="Seat7_170"]
+mesh = SubResource("s431")
+
+[node name="Seat7_185" type="Node3D" parent="."]
+position = Vector3(185, -7.46, 224.4)
+
+[node name="Mesh" type="MeshInstance3D" parent="Seat7_185"]
+mesh = SubResource("s432")
+
+[node name="Seat7_200" type="Node3D" parent="."]
+position = Vector3(200, -7.46, 224.4)
+
+[node name="Mesh" type="MeshInstance3D" parent="Seat7_200"]
+mesh = SubResource("s433")
+
+[node name="Seat7_215" type="Node3D" parent="."]
+position = Vector3(215, -7.46, 224.4)
+
+[node name="Mesh" type="MeshInstance3D" parent="Seat7_215"]
+mesh = SubResource("s434")
+
+[node name="Seat7_230" type="Node3D" parent="."]
+position = Vector3(230, -7.46, 224.4)
+
+[node name="Mesh" type="MeshInstance3D" parent="Seat7_230"]
+mesh = SubResource("s435")
+
+[node name="Seat8_170" type="Node3D" parent="."]
+position = Vector3(170, -7.16, 225.6)
+
+[node name="Mesh" type="MeshInstance3D" parent="Seat8_170"]
+mesh = SubResource("s436")
+
+[node name="Seat8_185" type="Node3D" parent="."]
+position = Vector3(185, -7.16, 225.6)
+
+[node name="Mesh" type="MeshInstance3D" parent="Seat8_185"]
+mesh = SubResource("s437")
+
+[node name="Seat8_200" type="Node3D" parent="."]
+position = Vector3(200, -7.16, 225.6)
+
+[node name="Mesh" type="MeshInstance3D" parent="Seat8_200"]
+mesh = SubResource("s438")
+
+[node name="Seat8_215" type="Node3D" parent="."]
+position = Vector3(215, -7.16, 225.6)
+
+[node name="Mesh" type="MeshInstance3D" parent="Seat8_215"]
+mesh = SubResource("s439")
+
+[node name="Seat8_230" type="Node3D" parent="."]
+position = Vector3(230, -7.16, 225.6)
+
+[node name="Mesh" type="MeshInstance3D" parent="Seat8_230"]
+mesh = SubResource("s440")
+
+[node name="Seat9_170" type="Node3D" parent="."]
+position = Vector3(170, -6.86, 226.8)
+
+[node name="Mesh" type="MeshInstance3D" parent="Seat9_170"]
+mesh = SubResource("s441")
+
+[node name="Seat9_185" type="Node3D" parent="."]
+position = Vector3(185, -6.86, 226.8)
+
+[node name="Mesh" type="MeshInstance3D" parent="Seat9_185"]
+mesh = SubResource("s442")
+
+[node name="Seat9_200" type="Node3D" parent="."]
+position = Vector3(200, -6.86, 226.8)
+
+[node name="Mesh" type="MeshInstance3D" parent="Seat9_200"]
+mesh = SubResource("s443")
+
+[node name="Seat9_215" type="Node3D" parent="."]
+position = Vector3(215, -6.86, 226.8)
+
+[node name="Mesh" type="MeshInstance3D" parent="Seat9_215"]
+mesh = SubResource("s444")
+
+[node name="Seat9_230" type="Node3D" parent="."]
+position = Vector3(230, -6.86, 226.8)
+
+[node name="Mesh" type="MeshInstance3D" parent="Seat9_230"]
+mesh = SubResource("s445")
+
+[node name="LoosePipe0" type="Node3D" parent="."]
+position = Vector3(163.0, -9.83, 225.5)
+rotation_degrees = Vector3(0,15,0)
+
+[node name="Mesh" type="MeshInstance3D" parent="LoosePipe0"]
+mesh = SubResource("s446")
+
+[node name="LoosePipe1" type="Node3D" parent="."]
+position = Vector3(163.25, -9.83, 225.5)
+rotation_degrees = Vector3(0,24,0)
+
+[node name="Mesh" type="MeshInstance3D" parent="LoosePipe1"]
+mesh = SubResource("s447")
+
+[node name="LoosePipe2" type="Node3D" parent="."]
+position = Vector3(163.5, -9.83, 225.5)
+rotation_degrees = Vector3(0,33,0)
+
+[node name="Mesh" type="MeshInstance3D" parent="LoosePipe2"]
+mesh = SubResource("s448")
+
+[node name="LoosePipe3" type="Node3D" parent="."]
+position = Vector3(163.75, -9.83, 225.5)
+rotation_degrees = Vector3(0,42,0)
+
+[node name="Mesh" type="MeshInstance3D" parent="LoosePipe3"]
+mesh = SubResource("s449")
+
+[node name="FloodHousing0_0" type="Node3D" parent="."]
+position = Vector3(111.025, 7.1, 122)
+
+[node name="Mesh" type="MeshInstance3D" parent="FloodHousing0_0"]
+mesh = SubResource("s450")
+
+[node name="FloodHousing0_1" type="Node3D" parent="."]
+position = Vector3(111.675, 7.1, 122)
+
+[node name="Mesh" type="MeshInstance3D" parent="FloodHousing0_1"]
+mesh = SubResource("s451")
+
+[node name="FloodHousing0_2" type="Node3D" parent="."]
+position = Vector3(112.325, 7.1, 122)
+
+[node name="Mesh" type="MeshInstance3D" parent="FloodHousing0_2"]
+mesh = SubResource("s452")
+
+[node name="FloodHousing0_3" type="Node3D" parent="."]
+position = Vector3(112.975, 7.1, 122)
+
+[node name="Mesh" type="MeshInstance3D" parent="FloodHousing0_3"]
+mesh = SubResource("s453")
+
+[node name="FloodHousing1_0" type="Node3D" parent="."]
+position = Vector3(283.025, 7.1, 122)
+
+[node name="Mesh" type="MeshInstance3D" parent="FloodHousing1_0"]
+mesh = SubResource("s454")
+
+[node name="FloodHousing1_1" type="Node3D" parent="."]
+position = Vector3(283.675, 7.1, 122)
+
+[node name="Mesh" type="MeshInstance3D" parent="FloodHousing1_1"]
+mesh = SubResource("s455")
+
+[node name="FloodHousing1_2" type="Node3D" parent="."]
+position = Vector3(284.325, 7.1, 122)
+
+[node name="Mesh" type="MeshInstance3D" parent="FloodHousing1_2"]
+mesh = SubResource("s456")
+
+[node name="FloodHousing1_3" type="Node3D" parent="."]
+position = Vector3(284.975, 7.1, 122)
+
+[node name="Mesh" type="MeshInstance3D" parent="FloodHousing1_3"]
+mesh = SubResource("s457")
+
+[node name="FloodHousing2_0" type="Node3D" parent="."]
+position = Vector3(111.025, 7.1, 210)
+
+[node name="Mesh" type="MeshInstance3D" parent="FloodHousing2_0"]
+mesh = SubResource("s458")
+
+[node name="FloodHousing2_1" type="Node3D" parent="."]
+position = Vector3(111.675, 7.1, 210)
+
+[node name="Mesh" type="MeshInstance3D" parent="FloodHousing2_1"]
+mesh = SubResource("s459")
+
+[node name="FloodHousing2_2" type="Node3D" parent="."]
+position = Vector3(112.325, 7.1, 210)
+
+[node name="Mesh" type="MeshInstance3D" parent="FloodHousing2_2"]
+mesh = SubResource("s460")
+
+[node name="FloodHousing2_3" type="Node3D" parent="."]
+position = Vector3(112.975, 7.1, 210)
+
+[node name="Mesh" type="MeshInstance3D" parent="FloodHousing2_3"]
+mesh = SubResource("s461")
+
+[node name="FloodHousing3_0" type="Node3D" parent="."]
+position = Vector3(283.025, 7.1, 210)
+
+[node name="Mesh" type="MeshInstance3D" parent="FloodHousing3_0"]
+mesh = SubResource("s462")
+
+[node name="FloodHousing3_1" type="Node3D" parent="."]
+position = Vector3(283.675, 7.1, 210)
+
+[node name="Mesh" type="MeshInstance3D" parent="FloodHousing3_1"]
+mesh = SubResource("s463")
+
+[node name="FloodHousing3_2" type="Node3D" parent="."]
+position = Vector3(284.325, 7.1, 210)
+
+[node name="Mesh" type="MeshInstance3D" parent="FloodHousing3_2"]
+mesh = SubResource("s464")
+
+[node name="FloodHousing3_3" type="Node3D" parent="."]
+position = Vector3(284.975, 7.1, 210)
+
+[node name="Mesh" type="MeshInstance3D" parent="FloodHousing3_3"]
+mesh = SubResource("s465")

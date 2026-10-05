@@ -1,0 +1,13 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scenes/levels/campus/actor.gd" id="script"]
+[ext_resource type="PackedScene" path="res://scenes/levels/ch1_models/corpse_dat.tscn" id="model"]
+
+[node name="Zombie_07" type="Node3D"]
+script = ExtResource("script")
+role = "student"
+zombie = true
+shirt_color = Color(0.7,0.75,1,1)
+hair_color = Color(0.7,0.8,1.1,1)
+
+[node name="Model" parent="." instance=ExtResource("model")]

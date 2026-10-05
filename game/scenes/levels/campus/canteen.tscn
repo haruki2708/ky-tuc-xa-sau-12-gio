@@ -1,13 +1,23 @@
 [gd_scene format=3]
 
+[ext_resource type="Texture2D" path="res://assets/textures/campus/tile.png" id="e1"]
+[ext_resource type="Texture2D" path="res://assets/textures/campus/wall.png" id="e2"]
+[ext_resource type="Texture2D" path="res://assets/textures/campus/iron.png" id="e3"]
+[ext_resource type="Texture2D" path="res://assets/textures/campus/white.png" id="e4"]
+[ext_resource type="Texture2D" path="res://assets/textures/campus/concrete.png" id="e5"]
+[ext_resource type="Texture2D" path="res://assets/textures/campus/wood.png" id="e6"]
+[ext_resource type="Texture2D" path="res://assets/textures/campus/paper.png" id="e7"]
 
 [sub_resource type="BoxShape3D" id="s1"]
 size = Vector3(40, 0.2, 24)
 
 [sub_resource type="StandardMaterial3D" id="s2"]
-albedo_color = Color(0.34, 0.38, 0.36, 1)
-roughness = 0.85
+albedo_texture = ExtResource("e1")
 texture_filter = 0
+roughness = 0.9
+uv1_triplanar = true
+uv1_world_triplanar = true
+uv1_scale = Vector3(0.5,0.5,0.5)
 
 [sub_resource type="BoxMesh" id="s3"]
 size = Vector3(40, 0.2, 24)
@@ -17,9 +27,12 @@ material = SubResource("s2")
 size = Vector3(40, 0.2, 24)
 
 [sub_resource type="StandardMaterial3D" id="s5"]
-albedo_color = Color(0.47, 0.49, 0.4, 1)
-roughness = 0.85
+albedo_texture = ExtResource("e2")
 texture_filter = 0
+roughness = 0.9
+uv1_triplanar = true
+uv1_world_triplanar = true
+uv1_scale = Vector3(0.5,0.5,0.5)
 
 [sub_resource type="BoxMesh" id="s6"]
 size = Vector3(40, 0.2, 24)
@@ -131,22 +144,502 @@ size = Vector3(6, 4, 0.2)
 material = SubResource("s5")
 
 [sub_resource type="StandardMaterial3D" id="s37"]
-albedo_color = Color(0.1, 0.15, 0.15, 1)
-roughness = 0.85
+albedo_texture = ExtResource("e3")
 texture_filter = 0
+roughness = 0.9
+uv1_triplanar = true
+uv1_world_triplanar = true
+uv1_scale = Vector3(0.5,0.5,0.5)
 
 [sub_resource type="BoxMesh" id="s38"]
 size = Vector3(0.16, 0.8, 1.2)
 material = SubResource("s37")
 
 [sub_resource type="StandardMaterial3D" id="s39"]
-albedo_color = Color(0.74, 0.79, 0.72, 1)
-roughness = 0.85
+albedo_texture = ExtResource("e4")
 texture_filter = 0
+roughness = 0.9
+uv1_triplanar = true
+uv1_world_triplanar = true
+uv1_scale = Vector3(0.5,0.5,0.5)
 
 [sub_resource type="BoxMesh" id="s40"]
 size = Vector3(0.015, 0.66, 1.04)
 material = SubResource("s39")
+
+[sub_resource type="StandardMaterial3D" id="s41"]
+albedo_texture = ExtResource("e5")
+texture_filter = 0
+roughness = 0.9
+uv1_triplanar = true
+uv1_world_triplanar = true
+uv1_scale = Vector3(0.5,0.5,0.5)
+
+[sub_resource type="BoxMesh" id="s42"]
+size = Vector3(2.2, 0.09, 0.8)
+material = SubResource("s41")
+
+[sub_resource type="BoxMesh" id="s43"]
+size = Vector3(0.07, 0.75, 0.6)
+material = SubResource("s37")
+
+[sub_resource type="BoxMesh" id="s44"]
+size = Vector3(0.07, 0.75, 0.6)
+material = SubResource("s37")
+
+[sub_resource type="BoxShape3D" id="s45"]
+size = Vector3(2.5, 0.9, 1.4)
+
+[sub_resource type="StandardMaterial3D" id="s46"]
+albedo_texture = ExtResource("e6")
+texture_filter = 0
+roughness = 0.9
+uv1_triplanar = true
+uv1_world_triplanar = true
+uv1_scale = Vector3(0.5,0.5,0.5)
+
+[sub_resource type="BoxMesh" id="s47"]
+size = Vector3(0.5, 0.09, 0.5)
+material = SubResource("s46")
+
+[sub_resource type="BoxMesh" id="s48"]
+size = Vector3(0.08, 0.5, 0.5)
+material = SubResource("s46")
+
+[sub_resource type="BoxMesh" id="s49"]
+size = Vector3(0.5, 0.09, 0.5)
+material = SubResource("s46")
+
+[sub_resource type="BoxMesh" id="s50"]
+size = Vector3(0.08, 0.5, 0.5)
+material = SubResource("s46")
+
+[sub_resource type="BoxMesh" id="s51"]
+size = Vector3(2.2, 0.09, 0.8)
+material = SubResource("s41")
+
+[sub_resource type="BoxMesh" id="s52"]
+size = Vector3(0.07, 0.75, 0.6)
+material = SubResource("s37")
+
+[sub_resource type="BoxMesh" id="s53"]
+size = Vector3(0.07, 0.75, 0.6)
+material = SubResource("s37")
+
+[sub_resource type="BoxShape3D" id="s54"]
+size = Vector3(2.5, 0.9, 1.4)
+
+[sub_resource type="BoxMesh" id="s55"]
+size = Vector3(0.5, 0.09, 0.5)
+material = SubResource("s46")
+
+[sub_resource type="BoxMesh" id="s56"]
+size = Vector3(0.08, 0.5, 0.5)
+material = SubResource("s46")
+
+[sub_resource type="BoxMesh" id="s57"]
+size = Vector3(0.5, 0.09, 0.5)
+material = SubResource("s46")
+
+[sub_resource type="BoxMesh" id="s58"]
+size = Vector3(0.08, 0.5, 0.5)
+material = SubResource("s46")
+
+[sub_resource type="BoxMesh" id="s59"]
+size = Vector3(2.2, 0.09, 0.8)
+material = SubResource("s41")
+
+[sub_resource type="BoxMesh" id="s60"]
+size = Vector3(0.07, 0.75, 0.6)
+material = SubResource("s37")
+
+[sub_resource type="BoxMesh" id="s61"]
+size = Vector3(0.07, 0.75, 0.6)
+material = SubResource("s37")
+
+[sub_resource type="BoxShape3D" id="s62"]
+size = Vector3(2.5, 0.9, 1.4)
+
+[sub_resource type="BoxMesh" id="s63"]
+size = Vector3(0.5, 0.09, 0.5)
+material = SubResource("s46")
+
+[sub_resource type="BoxMesh" id="s64"]
+size = Vector3(0.08, 0.5, 0.5)
+material = SubResource("s46")
+
+[sub_resource type="BoxMesh" id="s65"]
+size = Vector3(0.5, 0.09, 0.5)
+material = SubResource("s46")
+
+[sub_resource type="BoxMesh" id="s66"]
+size = Vector3(0.08, 0.5, 0.5)
+material = SubResource("s46")
+
+[sub_resource type="BoxMesh" id="s67"]
+size = Vector3(2.2, 0.09, 0.8)
+material = SubResource("s41")
+
+[sub_resource type="BoxMesh" id="s68"]
+size = Vector3(0.07, 0.75, 0.6)
+material = SubResource("s37")
+
+[sub_resource type="BoxMesh" id="s69"]
+size = Vector3(0.07, 0.75, 0.6)
+material = SubResource("s37")
+
+[sub_resource type="BoxShape3D" id="s70"]
+size = Vector3(2.5, 0.9, 1.4)
+
+[sub_resource type="BoxMesh" id="s71"]
+size = Vector3(0.5, 0.09, 0.5)
+material = SubResource("s46")
+
+[sub_resource type="BoxMesh" id="s72"]
+size = Vector3(0.08, 0.5, 0.5)
+material = SubResource("s46")
+
+[sub_resource type="BoxMesh" id="s73"]
+size = Vector3(0.5, 0.09, 0.5)
+material = SubResource("s46")
+
+[sub_resource type="BoxMesh" id="s74"]
+size = Vector3(0.08, 0.5, 0.5)
+material = SubResource("s46")
+
+[sub_resource type="BoxMesh" id="s75"]
+size = Vector3(2.2, 0.09, 0.8)
+material = SubResource("s41")
+
+[sub_resource type="BoxMesh" id="s76"]
+size = Vector3(0.07, 0.75, 0.6)
+material = SubResource("s37")
+
+[sub_resource type="BoxMesh" id="s77"]
+size = Vector3(0.07, 0.75, 0.6)
+material = SubResource("s37")
+
+[sub_resource type="BoxShape3D" id="s78"]
+size = Vector3(2.5, 0.9, 1.4)
+
+[sub_resource type="BoxMesh" id="s79"]
+size = Vector3(0.5, 0.09, 0.5)
+material = SubResource("s46")
+
+[sub_resource type="BoxMesh" id="s80"]
+size = Vector3(0.08, 0.5, 0.5)
+material = SubResource("s46")
+
+[sub_resource type="BoxMesh" id="s81"]
+size = Vector3(0.5, 0.09, 0.5)
+material = SubResource("s46")
+
+[sub_resource type="BoxMesh" id="s82"]
+size = Vector3(0.08, 0.5, 0.5)
+material = SubResource("s46")
+
+[sub_resource type="BoxMesh" id="s83"]
+size = Vector3(2.2, 0.09, 0.8)
+material = SubResource("s41")
+
+[sub_resource type="BoxMesh" id="s84"]
+size = Vector3(0.07, 0.75, 0.6)
+material = SubResource("s37")
+
+[sub_resource type="BoxMesh" id="s85"]
+size = Vector3(0.07, 0.75, 0.6)
+material = SubResource("s37")
+
+[sub_resource type="BoxShape3D" id="s86"]
+size = Vector3(2.5, 0.9, 1.4)
+
+[sub_resource type="BoxMesh" id="s87"]
+size = Vector3(0.5, 0.09, 0.5)
+material = SubResource("s46")
+
+[sub_resource type="BoxMesh" id="s88"]
+size = Vector3(0.08, 0.5, 0.5)
+material = SubResource("s46")
+
+[sub_resource type="BoxMesh" id="s89"]
+size = Vector3(0.5, 0.09, 0.5)
+material = SubResource("s46")
+
+[sub_resource type="BoxMesh" id="s90"]
+size = Vector3(0.08, 0.5, 0.5)
+material = SubResource("s46")
+
+[sub_resource type="BoxMesh" id="s91"]
+size = Vector3(2.2, 0.09, 0.8)
+material = SubResource("s41")
+
+[sub_resource type="BoxMesh" id="s92"]
+size = Vector3(0.07, 0.75, 0.6)
+material = SubResource("s37")
+
+[sub_resource type="BoxMesh" id="s93"]
+size = Vector3(0.07, 0.75, 0.6)
+material = SubResource("s37")
+
+[sub_resource type="BoxShape3D" id="s94"]
+size = Vector3(2.5, 0.9, 1.4)
+
+[sub_resource type="BoxMesh" id="s95"]
+size = Vector3(0.5, 0.09, 0.5)
+material = SubResource("s46")
+
+[sub_resource type="BoxMesh" id="s96"]
+size = Vector3(0.08, 0.5, 0.5)
+material = SubResource("s46")
+
+[sub_resource type="BoxMesh" id="s97"]
+size = Vector3(0.5, 0.09, 0.5)
+material = SubResource("s46")
+
+[sub_resource type="BoxMesh" id="s98"]
+size = Vector3(0.08, 0.5, 0.5)
+material = SubResource("s46")
+
+[sub_resource type="BoxMesh" id="s99"]
+size = Vector3(2.2, 0.09, 0.8)
+material = SubResource("s41")
+
+[sub_resource type="BoxMesh" id="s100"]
+size = Vector3(0.07, 0.75, 0.6)
+material = SubResource("s37")
+
+[sub_resource type="BoxMesh" id="s101"]
+size = Vector3(0.07, 0.75, 0.6)
+material = SubResource("s37")
+
+[sub_resource type="BoxShape3D" id="s102"]
+size = Vector3(2.5, 0.9, 1.4)
+
+[sub_resource type="BoxMesh" id="s103"]
+size = Vector3(0.5, 0.09, 0.5)
+material = SubResource("s46")
+
+[sub_resource type="BoxMesh" id="s104"]
+size = Vector3(0.08, 0.5, 0.5)
+material = SubResource("s46")
+
+[sub_resource type="BoxMesh" id="s105"]
+size = Vector3(0.5, 0.09, 0.5)
+material = SubResource("s46")
+
+[sub_resource type="BoxMesh" id="s106"]
+size = Vector3(0.08, 0.5, 0.5)
+material = SubResource("s46")
+
+[sub_resource type="BoxShape3D" id="s107"]
+size = Vector3(10, 0.96, 1.2)
+
+[sub_resource type="BoxMesh" id="s108"]
+size = Vector3(10, 0.96, 1.2)
+material = SubResource("s41")
+
+[sub_resource type="BoxMesh" id="s109"]
+size = Vector3(10.2, 0.1, 1.4)
+material = SubResource("s39")
+
+[sub_resource type="BoxMesh" id="s110"]
+size = Vector3(0.6, 0.025, 0.38)
+material = SubResource("s37")
+
+[sub_resource type="BoxMesh" id="s111"]
+size = Vector3(0.6, 0.025, 0.38)
+material = SubResource("s37")
+
+[sub_resource type="BoxMesh" id="s112"]
+size = Vector3(0.6, 0.025, 0.38)
+material = SubResource("s37")
+
+[sub_resource type="BoxMesh" id="s113"]
+size = Vector3(0.6, 0.025, 0.38)
+material = SubResource("s37")
+
+[sub_resource type="BoxMesh" id="s114"]
+size = Vector3(0.6, 0.025, 0.38)
+material = SubResource("s37")
+
+[sub_resource type="CylinderMesh" id="s115"]
+top_radius = 0.3
+bottom_radius = 0.3
+height = 0.5
+radial_segments = 8
+rings = 1
+material = SubResource("s37")
+
+[sub_resource type="CylinderMesh" id="s116"]
+top_radius = 0.32
+bottom_radius = 0.32
+height = 0.045
+radial_segments = 8
+rings = 1
+material = SubResource("s41")
+
+[sub_resource type="CylinderMesh" id="s117"]
+top_radius = 0.3
+bottom_radius = 0.3
+height = 0.5
+radial_segments = 8
+rings = 1
+material = SubResource("s37")
+
+[sub_resource type="CylinderMesh" id="s118"]
+top_radius = 0.32
+bottom_radius = 0.32
+height = 0.045
+radial_segments = 8
+rings = 1
+material = SubResource("s41")
+
+[sub_resource type="CylinderMesh" id="s119"]
+top_radius = 0.3
+bottom_radius = 0.3
+height = 0.5
+radial_segments = 8
+rings = 1
+material = SubResource("s37")
+
+[sub_resource type="CylinderMesh" id="s120"]
+top_radius = 0.32
+bottom_radius = 0.32
+height = 0.045
+radial_segments = 8
+rings = 1
+material = SubResource("s41")
+
+[sub_resource type="BoxShape3D" id="s121"]
+size = Vector3(8, 0.9, 1.1)
+
+[sub_resource type="BoxMesh" id="s122"]
+size = Vector3(8, 0.9, 1.1)
+material = SubResource("s37")
+
+[sub_resource type="BoxMesh" id="s123"]
+size = Vector3(24, 0.2, 8)
+material = SubResource("s5")
+
+[sub_resource type="BoxMesh" id="s124"]
+size = Vector3(0.56, 0.56, 0.08)
+material = SubResource("s37")
+
+[sub_resource type="StandardMaterial3D" id="s125"]
+albedo_texture = ExtResource("e7")
+texture_filter = 0
+roughness = 0.9
+uv1_triplanar = true
+uv1_world_triplanar = true
+uv1_scale = Vector3(0.5,0.5,0.5)
+
+[sub_resource type="BoxMesh" id="s126"]
+size = Vector3(0.48, 0.48, 0.012)
+material = SubResource("s125")
+
+[sub_resource type="BoxMesh" id="s127"]
+size = Vector3(0.018, 0.035, 0.012)
+material = SubResource("s37")
+
+[sub_resource type="BoxMesh" id="s128"]
+size = Vector3(0.018, 0.035, 0.012)
+material = SubResource("s37")
+
+[sub_resource type="BoxMesh" id="s129"]
+size = Vector3(0.018, 0.035, 0.012)
+material = SubResource("s37")
+
+[sub_resource type="BoxMesh" id="s130"]
+size = Vector3(0.018, 0.035, 0.012)
+material = SubResource("s37")
+
+[sub_resource type="BoxMesh" id="s131"]
+size = Vector3(0.018, 0.035, 0.012)
+material = SubResource("s37")
+
+[sub_resource type="BoxMesh" id="s132"]
+size = Vector3(0.018, 0.035, 0.012)
+material = SubResource("s37")
+
+[sub_resource type="BoxMesh" id="s133"]
+size = Vector3(0.018, 0.035, 0.012)
+material = SubResource("s37")
+
+[sub_resource type="BoxMesh" id="s134"]
+size = Vector3(0.018, 0.035, 0.012)
+material = SubResource("s37")
+
+[sub_resource type="BoxMesh" id="s135"]
+size = Vector3(0.018, 0.035, 0.012)
+material = SubResource("s37")
+
+[sub_resource type="BoxMesh" id="s136"]
+size = Vector3(0.018, 0.035, 0.012)
+material = SubResource("s37")
+
+[sub_resource type="BoxMesh" id="s137"]
+size = Vector3(0.018, 0.035, 0.012)
+material = SubResource("s37")
+
+[sub_resource type="BoxMesh" id="s138"]
+size = Vector3(0.018, 0.035, 0.012)
+material = SubResource("s37")
+
+[sub_resource type="BoxMesh" id="s139"]
+size = Vector3(0.014, 0.18, 0.014)
+material = SubResource("s37")
+
+[sub_resource type="BoxMesh" id="s140"]
+size = Vector3(0.018, 0.13, 0.018)
+material = SubResource("s37")
+
+[sub_resource type="BoxMesh" id="s141"]
+size = Vector3(0.6, 0.09, 5)
+material = SubResource("s46")
+
+[sub_resource type="BoxMesh" id="s142"]
+size = Vector3(0.6, 0.09, 5)
+material = SubResource("s46")
+
+[sub_resource type="BoxMesh" id="s143"]
+size = Vector3(0.6, 0.09, 5)
+material = SubResource("s46")
+
+[sub_resource type="BoxMesh" id="s144"]
+size = Vector3(0.6, 0.09, 5)
+material = SubResource("s46")
+
+[sub_resource type="BoxMesh" id="s145"]
+size = Vector3(0.6, 0.09, 5)
+material = SubResource("s46")
+
+[sub_resource type="BoxMesh" id="s146"]
+size = Vector3(0.6, 0.09, 5)
+material = SubResource("s46")
+
+[sub_resource type="BoxMesh" id="s147"]
+size = Vector3(0.5, 0.4, 0.5)
+material = SubResource("s125")
+
+[sub_resource type="BoxMesh" id="s148"]
+size = Vector3(0.5, 0.4, 0.5)
+material = SubResource("s125")
+
+[sub_resource type="BoxMesh" id="s149"]
+size = Vector3(0.5, 0.4, 0.5)
+material = SubResource("s125")
+
+[sub_resource type="BoxMesh" id="s150"]
+size = Vector3(0.5, 0.4, 0.5)
+material = SubResource("s125")
+
+[sub_resource type="BoxMesh" id="s151"]
+size = Vector3(0.5, 0.4, 0.5)
+material = SubResource("s125")
+
+[sub_resource type="BoxMesh" id="s152"]
+size = Vector3(0.5, 0.4, 0.5)
+material = SubResource("s125")
 
 [node name="Canteen" type="Node3D"]
 
@@ -358,3 +851,767 @@ position = Vector3(0.09, 0, 0)
 
 [node name="Mesh" type="MeshInstance3D" parent="TV/Screen"]
 mesh = SubResource("s40")
+
+[node name="Table174_27" type="Node3D" parent="."]
+position = Vector3(174, -9.9, 27)
+
+[node name="Top" type="Node3D" parent="Table174_27"]
+position = Vector3(0, 0.78, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Table174_27/Top"]
+mesh = SubResource("s42")
+
+[node name="Leg-0.8" type="Node3D" parent="Table174_27"]
+position = Vector3(-0.8, 0.4, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Table174_27/Leg-0.8"]
+mesh = SubResource("s43")
+
+[node name="Leg0.8" type="Node3D" parent="Table174_27"]
+position = Vector3(0.8, 0.4, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Table174_27/Leg0.8"]
+mesh = SubResource("s44")
+
+[node name="Collision" type="StaticBody3D" parent="Table174_27"]
+position = Vector3(0, 0.45, 0)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Table174_27/Collision"]
+shape = SubResource("s45")
+
+[node name="Chair-1" type="Node3D" parent="Table174_27"]
+position = Vector3(0, 0.25, -1)
+rotation_degrees = Vector3(0,0,80)
+
+[node name="Mesh" type="MeshInstance3D" parent="Table174_27/Chair-1"]
+mesh = SubResource("s47")
+
+[node name="ChairBack-1" type="Node3D" parent="Table174_27"]
+position = Vector3(0.2, 0.3, -1)
+rotation_degrees = Vector3(0,0,80)
+
+[node name="Mesh" type="MeshInstance3D" parent="Table174_27/ChairBack-1"]
+mesh = SubResource("s48")
+
+[node name="Chair1" type="Node3D" parent="Table174_27"]
+position = Vector3(0, 0.25, 1)
+rotation_degrees = Vector3(0,0,80)
+
+[node name="Mesh" type="MeshInstance3D" parent="Table174_27/Chair1"]
+mesh = SubResource("s49")
+
+[node name="ChairBack1" type="Node3D" parent="Table174_27"]
+position = Vector3(0.2, 0.3, 1)
+rotation_degrees = Vector3(0,0,80)
+
+[node name="Mesh" type="MeshInstance3D" parent="Table174_27/ChairBack1"]
+mesh = SubResource("s50")
+
+[node name="Table174_36" type="Node3D" parent="."]
+position = Vector3(174, -9.9, 36)
+
+[node name="Top" type="Node3D" parent="Table174_36"]
+position = Vector3(0, 0.4, 0)
+rotation_degrees = Vector3(0,0,65)
+
+[node name="Mesh" type="MeshInstance3D" parent="Table174_36/Top"]
+mesh = SubResource("s51")
+
+[node name="Leg-0.8" type="Node3D" parent="Table174_36"]
+position = Vector3(-0.8, 0.4, 0)
+rotation_degrees = Vector3(0,0,65)
+
+[node name="Mesh" type="MeshInstance3D" parent="Table174_36/Leg-0.8"]
+mesh = SubResource("s52")
+
+[node name="Leg0.8" type="Node3D" parent="Table174_36"]
+position = Vector3(0.8, 0.4, 0)
+rotation_degrees = Vector3(0,0,65)
+
+[node name="Mesh" type="MeshInstance3D" parent="Table174_36/Leg0.8"]
+mesh = SubResource("s53")
+
+[node name="Collision" type="StaticBody3D" parent="Table174_36"]
+position = Vector3(0, 0.45, 0)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Table174_36/Collision"]
+shape = SubResource("s54")
+
+[node name="Chair-1" type="Node3D" parent="Table174_36"]
+position = Vector3(0, 0.25, -1)
+rotation_degrees = Vector3(0,0,80)
+
+[node name="Mesh" type="MeshInstance3D" parent="Table174_36/Chair-1"]
+mesh = SubResource("s55")
+
+[node name="ChairBack-1" type="Node3D" parent="Table174_36"]
+position = Vector3(0.2, 0.3, -1)
+rotation_degrees = Vector3(0,0,80)
+
+[node name="Mesh" type="MeshInstance3D" parent="Table174_36/ChairBack-1"]
+mesh = SubResource("s56")
+
+[node name="Chair1" type="Node3D" parent="Table174_36"]
+position = Vector3(0, 0.25, 1)
+rotation_degrees = Vector3(0,0,80)
+
+[node name="Mesh" type="MeshInstance3D" parent="Table174_36/Chair1"]
+mesh = SubResource("s57")
+
+[node name="ChairBack1" type="Node3D" parent="Table174_36"]
+position = Vector3(0.2, 0.3, 1)
+rotation_degrees = Vector3(0,0,80)
+
+[node name="Mesh" type="MeshInstance3D" parent="Table174_36/ChairBack1"]
+mesh = SubResource("s58")
+
+[node name="Table181_27" type="Node3D" parent="."]
+position = Vector3(181, -9.9, 27)
+
+[node name="Top" type="Node3D" parent="Table181_27"]
+position = Vector3(0, 0.4, 0)
+rotation_degrees = Vector3(0,0,65)
+
+[node name="Mesh" type="MeshInstance3D" parent="Table181_27/Top"]
+mesh = SubResource("s59")
+
+[node name="Leg-0.8" type="Node3D" parent="Table181_27"]
+position = Vector3(-0.8, 0.4, 0)
+rotation_degrees = Vector3(0,0,65)
+
+[node name="Mesh" type="MeshInstance3D" parent="Table181_27/Leg-0.8"]
+mesh = SubResource("s60")
+
+[node name="Leg0.8" type="Node3D" parent="Table181_27"]
+position = Vector3(0.8, 0.4, 0)
+rotation_degrees = Vector3(0,0,65)
+
+[node name="Mesh" type="MeshInstance3D" parent="Table181_27/Leg0.8"]
+mesh = SubResource("s61")
+
+[node name="Collision" type="StaticBody3D" parent="Table181_27"]
+position = Vector3(0, 0.45, 0)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Table181_27/Collision"]
+shape = SubResource("s62")
+
+[node name="Chair-1" type="Node3D" parent="Table181_27"]
+position = Vector3(0, 0.25, -1)
+rotation_degrees = Vector3(0,0,80)
+
+[node name="Mesh" type="MeshInstance3D" parent="Table181_27/Chair-1"]
+mesh = SubResource("s63")
+
+[node name="ChairBack-1" type="Node3D" parent="Table181_27"]
+position = Vector3(0.2, 0.3, -1)
+rotation_degrees = Vector3(0,0,80)
+
+[node name="Mesh" type="MeshInstance3D" parent="Table181_27/ChairBack-1"]
+mesh = SubResource("s64")
+
+[node name="Chair1" type="Node3D" parent="Table181_27"]
+position = Vector3(0, 0.25, 1)
+rotation_degrees = Vector3(0,0,80)
+
+[node name="Mesh" type="MeshInstance3D" parent="Table181_27/Chair1"]
+mesh = SubResource("s65")
+
+[node name="ChairBack1" type="Node3D" parent="Table181_27"]
+position = Vector3(0.2, 0.3, 1)
+rotation_degrees = Vector3(0,0,80)
+
+[node name="Mesh" type="MeshInstance3D" parent="Table181_27/ChairBack1"]
+mesh = SubResource("s66")
+
+[node name="Table181_36" type="Node3D" parent="."]
+position = Vector3(181, -9.9, 36)
+
+[node name="Top" type="Node3D" parent="Table181_36"]
+position = Vector3(0, 0.78, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Table181_36/Top"]
+mesh = SubResource("s67")
+
+[node name="Leg-0.8" type="Node3D" parent="Table181_36"]
+position = Vector3(-0.8, 0.4, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Table181_36/Leg-0.8"]
+mesh = SubResource("s68")
+
+[node name="Leg0.8" type="Node3D" parent="Table181_36"]
+position = Vector3(0.8, 0.4, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Table181_36/Leg0.8"]
+mesh = SubResource("s69")
+
+[node name="Collision" type="StaticBody3D" parent="Table181_36"]
+position = Vector3(0, 0.45, 0)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Table181_36/Collision"]
+shape = SubResource("s70")
+
+[node name="Chair-1" type="Node3D" parent="Table181_36"]
+position = Vector3(0, 0.25, -1)
+rotation_degrees = Vector3(0,0,80)
+
+[node name="Mesh" type="MeshInstance3D" parent="Table181_36/Chair-1"]
+mesh = SubResource("s71")
+
+[node name="ChairBack-1" type="Node3D" parent="Table181_36"]
+position = Vector3(0.2, 0.3, -1)
+rotation_degrees = Vector3(0,0,80)
+
+[node name="Mesh" type="MeshInstance3D" parent="Table181_36/ChairBack-1"]
+mesh = SubResource("s72")
+
+[node name="Chair1" type="Node3D" parent="Table181_36"]
+position = Vector3(0, 0.25, 1)
+rotation_degrees = Vector3(0,0,80)
+
+[node name="Mesh" type="MeshInstance3D" parent="Table181_36/Chair1"]
+mesh = SubResource("s73")
+
+[node name="ChairBack1" type="Node3D" parent="Table181_36"]
+position = Vector3(0.2, 0.3, 1)
+rotation_degrees = Vector3(0,0,80)
+
+[node name="Mesh" type="MeshInstance3D" parent="Table181_36/ChairBack1"]
+mesh = SubResource("s74")
+
+[node name="Table199_27" type="Node3D" parent="."]
+position = Vector3(199, -9.9, 27)
+
+[node name="Top" type="Node3D" parent="Table199_27"]
+position = Vector3(0, 0.4, 0)
+rotation_degrees = Vector3(0,0,65)
+
+[node name="Mesh" type="MeshInstance3D" parent="Table199_27/Top"]
+mesh = SubResource("s75")
+
+[node name="Leg-0.8" type="Node3D" parent="Table199_27"]
+position = Vector3(-0.8, 0.4, 0)
+rotation_degrees = Vector3(0,0,65)
+
+[node name="Mesh" type="MeshInstance3D" parent="Table199_27/Leg-0.8"]
+mesh = SubResource("s76")
+
+[node name="Leg0.8" type="Node3D" parent="Table199_27"]
+position = Vector3(0.8, 0.4, 0)
+rotation_degrees = Vector3(0,0,65)
+
+[node name="Mesh" type="MeshInstance3D" parent="Table199_27/Leg0.8"]
+mesh = SubResource("s77")
+
+[node name="Collision" type="StaticBody3D" parent="Table199_27"]
+position = Vector3(0, 0.45, 0)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Table199_27/Collision"]
+shape = SubResource("s78")
+
+[node name="Chair-1" type="Node3D" parent="Table199_27"]
+position = Vector3(0, 0.25, -1)
+rotation_degrees = Vector3(0,0,80)
+
+[node name="Mesh" type="MeshInstance3D" parent="Table199_27/Chair-1"]
+mesh = SubResource("s79")
+
+[node name="ChairBack-1" type="Node3D" parent="Table199_27"]
+position = Vector3(0.2, 0.3, -1)
+rotation_degrees = Vector3(0,0,80)
+
+[node name="Mesh" type="MeshInstance3D" parent="Table199_27/ChairBack-1"]
+mesh = SubResource("s80")
+
+[node name="Chair1" type="Node3D" parent="Table199_27"]
+position = Vector3(0, 0.25, 1)
+rotation_degrees = Vector3(0,0,80)
+
+[node name="Mesh" type="MeshInstance3D" parent="Table199_27/Chair1"]
+mesh = SubResource("s81")
+
+[node name="ChairBack1" type="Node3D" parent="Table199_27"]
+position = Vector3(0.2, 0.3, 1)
+rotation_degrees = Vector3(0,0,80)
+
+[node name="Mesh" type="MeshInstance3D" parent="Table199_27/ChairBack1"]
+mesh = SubResource("s82")
+
+[node name="Table199_36" type="Node3D" parent="."]
+position = Vector3(199, -9.9, 36)
+
+[node name="Top" type="Node3D" parent="Table199_36"]
+position = Vector3(0, 0.78, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Table199_36/Top"]
+mesh = SubResource("s83")
+
+[node name="Leg-0.8" type="Node3D" parent="Table199_36"]
+position = Vector3(-0.8, 0.4, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Table199_36/Leg-0.8"]
+mesh = SubResource("s84")
+
+[node name="Leg0.8" type="Node3D" parent="Table199_36"]
+position = Vector3(0.8, 0.4, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Table199_36/Leg0.8"]
+mesh = SubResource("s85")
+
+[node name="Collision" type="StaticBody3D" parent="Table199_36"]
+position = Vector3(0, 0.45, 0)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Table199_36/Collision"]
+shape = SubResource("s86")
+
+[node name="Chair-1" type="Node3D" parent="Table199_36"]
+position = Vector3(0, 0.25, -1)
+rotation_degrees = Vector3(0,0,80)
+
+[node name="Mesh" type="MeshInstance3D" parent="Table199_36/Chair-1"]
+mesh = SubResource("s87")
+
+[node name="ChairBack-1" type="Node3D" parent="Table199_36"]
+position = Vector3(0.2, 0.3, -1)
+rotation_degrees = Vector3(0,0,80)
+
+[node name="Mesh" type="MeshInstance3D" parent="Table199_36/ChairBack-1"]
+mesh = SubResource("s88")
+
+[node name="Chair1" type="Node3D" parent="Table199_36"]
+position = Vector3(0, 0.25, 1)
+rotation_degrees = Vector3(0,0,80)
+
+[node name="Mesh" type="MeshInstance3D" parent="Table199_36/Chair1"]
+mesh = SubResource("s89")
+
+[node name="ChairBack1" type="Node3D" parent="Table199_36"]
+position = Vector3(0.2, 0.3, 1)
+rotation_degrees = Vector3(0,0,80)
+
+[node name="Mesh" type="MeshInstance3D" parent="Table199_36/ChairBack1"]
+mesh = SubResource("s90")
+
+[node name="Table206_27" type="Node3D" parent="."]
+position = Vector3(206, -9.9, 27)
+
+[node name="Top" type="Node3D" parent="Table206_27"]
+position = Vector3(0, 0.78, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Table206_27/Top"]
+mesh = SubResource("s91")
+
+[node name="Leg-0.8" type="Node3D" parent="Table206_27"]
+position = Vector3(-0.8, 0.4, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Table206_27/Leg-0.8"]
+mesh = SubResource("s92")
+
+[node name="Leg0.8" type="Node3D" parent="Table206_27"]
+position = Vector3(0.8, 0.4, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Table206_27/Leg0.8"]
+mesh = SubResource("s93")
+
+[node name="Collision" type="StaticBody3D" parent="Table206_27"]
+position = Vector3(0, 0.45, 0)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Table206_27/Collision"]
+shape = SubResource("s94")
+
+[node name="Chair-1" type="Node3D" parent="Table206_27"]
+position = Vector3(0, 0.25, -1)
+rotation_degrees = Vector3(0,0,80)
+
+[node name="Mesh" type="MeshInstance3D" parent="Table206_27/Chair-1"]
+mesh = SubResource("s95")
+
+[node name="ChairBack-1" type="Node3D" parent="Table206_27"]
+position = Vector3(0.2, 0.3, -1)
+rotation_degrees = Vector3(0,0,80)
+
+[node name="Mesh" type="MeshInstance3D" parent="Table206_27/ChairBack-1"]
+mesh = SubResource("s96")
+
+[node name="Chair1" type="Node3D" parent="Table206_27"]
+position = Vector3(0, 0.25, 1)
+rotation_degrees = Vector3(0,0,80)
+
+[node name="Mesh" type="MeshInstance3D" parent="Table206_27/Chair1"]
+mesh = SubResource("s97")
+
+[node name="ChairBack1" type="Node3D" parent="Table206_27"]
+position = Vector3(0.2, 0.3, 1)
+rotation_degrees = Vector3(0,0,80)
+
+[node name="Mesh" type="MeshInstance3D" parent="Table206_27/ChairBack1"]
+mesh = SubResource("s98")
+
+[node name="Table206_36" type="Node3D" parent="."]
+position = Vector3(206, -9.9, 36)
+
+[node name="Top" type="Node3D" parent="Table206_36"]
+position = Vector3(0, 0.4, 0)
+rotation_degrees = Vector3(0,0,65)
+
+[node name="Mesh" type="MeshInstance3D" parent="Table206_36/Top"]
+mesh = SubResource("s99")
+
+[node name="Leg-0.8" type="Node3D" parent="Table206_36"]
+position = Vector3(-0.8, 0.4, 0)
+rotation_degrees = Vector3(0,0,65)
+
+[node name="Mesh" type="MeshInstance3D" parent="Table206_36/Leg-0.8"]
+mesh = SubResource("s100")
+
+[node name="Leg0.8" type="Node3D" parent="Table206_36"]
+position = Vector3(0.8, 0.4, 0)
+rotation_degrees = Vector3(0,0,65)
+
+[node name="Mesh" type="MeshInstance3D" parent="Table206_36/Leg0.8"]
+mesh = SubResource("s101")
+
+[node name="Collision" type="StaticBody3D" parent="Table206_36"]
+position = Vector3(0, 0.45, 0)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Table206_36/Collision"]
+shape = SubResource("s102")
+
+[node name="Chair-1" type="Node3D" parent="Table206_36"]
+position = Vector3(0, 0.25, -1)
+rotation_degrees = Vector3(0,0,80)
+
+[node name="Mesh" type="MeshInstance3D" parent="Table206_36/Chair-1"]
+mesh = SubResource("s103")
+
+[node name="ChairBack-1" type="Node3D" parent="Table206_36"]
+position = Vector3(0.2, 0.3, -1)
+rotation_degrees = Vector3(0,0,80)
+
+[node name="Mesh" type="MeshInstance3D" parent="Table206_36/ChairBack-1"]
+mesh = SubResource("s104")
+
+[node name="Chair1" type="Node3D" parent="Table206_36"]
+position = Vector3(0, 0.25, 1)
+rotation_degrees = Vector3(0,0,80)
+
+[node name="Mesh" type="MeshInstance3D" parent="Table206_36/Chair1"]
+mesh = SubResource("s105")
+
+[node name="ChairBack1" type="Node3D" parent="Table206_36"]
+position = Vector3(0.2, 0.3, 1)
+rotation_degrees = Vector3(0,0,80)
+
+[node name="Mesh" type="MeshInstance3D" parent="Table206_36/ChairBack1"]
+mesh = SubResource("s106")
+
+[node name="Counter" type="StaticBody3D" parent="."]
+position = Vector3(176, -9.42, 42)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Counter"]
+shape = SubResource("s107")
+
+[node name="Mesh" type="MeshInstance3D" parent="Counter"]
+mesh = SubResource("s108")
+
+[node name="CounterTop" type="Node3D" parent="."]
+position = Vector3(176, -8.9, 42)
+
+[node name="Mesh" type="MeshInstance3D" parent="CounterTop"]
+mesh = SubResource("s109")
+
+[node name="Tray0" type="Node3D" parent="."]
+position = Vector3(174.0, -8.83, 42)
+rotation_degrees = Vector3(0,0,0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Tray0"]
+mesh = SubResource("s110")
+
+[node name="Tray1" type="Node3D" parent="."]
+position = Vector3(174.9, -8.83, 42)
+rotation_degrees = Vector3(0,15,0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Tray1"]
+mesh = SubResource("s111")
+
+[node name="Tray2" type="Node3D" parent="."]
+position = Vector3(175.8, -8.83, 42)
+rotation_degrees = Vector3(0,30,0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Tray2"]
+mesh = SubResource("s112")
+
+[node name="Tray3" type="Node3D" parent="."]
+position = Vector3(176.7, -8.83, 42)
+rotation_degrees = Vector3(0,45,0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Tray3"]
+mesh = SubResource("s113")
+
+[node name="Tray4" type="Node3D" parent="."]
+position = Vector3(177.6, -8.83, 42)
+rotation_degrees = Vector3(0,60,0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Tray4"]
+mesh = SubResource("s114")
+
+[node name="Pot0" type="MeshInstance3D" parent="."]
+position = Vector3(187.3, -9.65, 49)
+mesh = SubResource("s115")
+rotation_degrees = Vector3(0,0,90)
+
+[node name="PotLid0" type="MeshInstance3D" parent="."]
+position = Vector3(187.0, -9.87, 50)
+mesh = SubResource("s116")
+
+[node name="Pot1" type="MeshInstance3D" parent="."]
+position = Vector3(188.1, -9.65, 49)
+mesh = SubResource("s117")
+rotation_degrees = Vector3(0,0,90)
+
+[node name="PotLid1" type="MeshInstance3D" parent="."]
+position = Vector3(187.9, -9.87, 50)
+mesh = SubResource("s118")
+
+[node name="Pot2" type="MeshInstance3D" parent="."]
+position = Vector3(188.9, -9.65, 49)
+mesh = SubResource("s119")
+rotation_degrees = Vector3(0,0,90)
+
+[node name="PotLid2" type="MeshInstance3D" parent="."]
+position = Vector3(188.8, -9.87, 50)
+mesh = SubResource("s120")
+
+[node name="Cooktop" type="StaticBody3D" parent="."]
+position = Vector3(192, -9.45, 51)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Cooktop"]
+shape = SubResource("s121")
+
+[node name="Mesh" type="MeshInstance3D" parent="Cooktop"]
+mesh = SubResource("s122")
+
+[node name="KitchenRoof" type="Node3D" parent="."]
+position = Vector3(198, -5.8, 48)
+
+[node name="Mesh" type="MeshInstance3D" parent="KitchenRoof"]
+mesh = SubResource("s123")
+
+[node name="KitchenClock" type="Node3D" parent="."]
+position = Vector3(192, -7.4, 51.85)
+rotation_degrees = Vector3(0,180,0)
+metadata/stopped_hour = 4
+
+[node name="Case" type="Node3D" parent="KitchenClock"]
+position = Vector3(0, 0, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="KitchenClock/Case"]
+mesh = SubResource("s124")
+
+[node name="Dial" type="Node3D" parent="KitchenClock"]
+position = Vector3(0, 0, 0.047)
+
+[node name="Mesh" type="MeshInstance3D" parent="KitchenClock/Dial"]
+mesh = SubResource("s126")
+
+[node name="Tick0" type="Node3D" parent="KitchenClock"]
+position = Vector3(0.0, 0.19, 0.06)
+rotation_degrees = Vector3(0,0,0)
+
+[node name="Mesh" type="MeshInstance3D" parent="KitchenClock/Tick0"]
+mesh = SubResource("s127")
+
+[node name="Tick1" type="Node3D" parent="KitchenClock"]
+position = Vector3(0.095, 0.1645448, 0.06)
+rotation_degrees = Vector3(0,0,-30)
+
+[node name="Mesh" type="MeshInstance3D" parent="KitchenClock/Tick1"]
+mesh = SubResource("s128")
+
+[node name="Tick2" type="Node3D" parent="KitchenClock"]
+position = Vector3(0.1645448, 0.095, 0.06)
+rotation_degrees = Vector3(0,0,-60)
+
+[node name="Mesh" type="MeshInstance3D" parent="KitchenClock/Tick2"]
+mesh = SubResource("s129")
+
+[node name="Tick3" type="Node3D" parent="KitchenClock"]
+position = Vector3(0.19, 0.0, 0.06)
+rotation_degrees = Vector3(0,0,-90)
+
+[node name="Mesh" type="MeshInstance3D" parent="KitchenClock/Tick3"]
+mesh = SubResource("s130")
+
+[node name="Tick4" type="Node3D" parent="KitchenClock"]
+position = Vector3(0.1645448, -0.095, 0.06)
+rotation_degrees = Vector3(0,0,-120)
+
+[node name="Mesh" type="MeshInstance3D" parent="KitchenClock/Tick4"]
+mesh = SubResource("s131")
+
+[node name="Tick5" type="Node3D" parent="KitchenClock"]
+position = Vector3(0.095, -0.1645448, 0.06)
+rotation_degrees = Vector3(0,0,-150)
+
+[node name="Mesh" type="MeshInstance3D" parent="KitchenClock/Tick5"]
+mesh = SubResource("s132")
+
+[node name="Tick6" type="Node3D" parent="KitchenClock"]
+position = Vector3(0.0, -0.19, 0.06)
+rotation_degrees = Vector3(0,0,-180)
+
+[node name="Mesh" type="MeshInstance3D" parent="KitchenClock/Tick6"]
+mesh = SubResource("s133")
+
+[node name="Tick7" type="Node3D" parent="KitchenClock"]
+position = Vector3(-0.095, -0.1645448, 0.06)
+rotation_degrees = Vector3(0,0,-210)
+
+[node name="Mesh" type="MeshInstance3D" parent="KitchenClock/Tick7"]
+mesh = SubResource("s134")
+
+[node name="Tick8" type="Node3D" parent="KitchenClock"]
+position = Vector3(-0.1645448, -0.095, 0.06)
+rotation_degrees = Vector3(0,0,-240)
+
+[node name="Mesh" type="MeshInstance3D" parent="KitchenClock/Tick8"]
+mesh = SubResource("s135")
+
+[node name="Tick9" type="Node3D" parent="KitchenClock"]
+position = Vector3(-0.19, -0.0, 0.06)
+rotation_degrees = Vector3(0,0,-270)
+
+[node name="Mesh" type="MeshInstance3D" parent="KitchenClock/Tick9"]
+mesh = SubResource("s136")
+
+[node name="Tick10" type="Node3D" parent="KitchenClock"]
+position = Vector3(-0.1645448, 0.095, 0.06)
+rotation_degrees = Vector3(0,0,-300)
+
+[node name="Mesh" type="MeshInstance3D" parent="KitchenClock/Tick10"]
+mesh = SubResource("s137")
+
+[node name="Tick11" type="Node3D" parent="KitchenClock"]
+position = Vector3(-0.095, 0.1645448, 0.06)
+rotation_degrees = Vector3(0,0,-330)
+
+[node name="Mesh" type="MeshInstance3D" parent="KitchenClock/Tick11"]
+mesh = SubResource("s138")
+
+[node name="Minute" type="Node3D" parent="KitchenClock"]
+position = Vector3(0, 0.092, 0.077)
+
+[node name="Mesh" type="MeshInstance3D" parent="KitchenClock/Minute"]
+mesh = SubResource("s139")
+
+[node name="Hour" type="Node3D" parent="KitchenClock"]
+position = Vector3(0.057, -0.033, 0.08)
+rotation_degrees = Vector3(0,0,-120)
+
+[node name="Mesh" type="MeshInstance3D" parent="KitchenClock/Hour"]
+mesh = SubResource("s140")
+
+[node name="Shelf199_0.5" type="Node3D" parent="."]
+position = Vector3(199, -9.4, 48)
+
+[node name="Mesh" type="MeshInstance3D" parent="Shelf199_0.5"]
+mesh = SubResource("s141")
+
+[node name="Shelf199_1.4" type="Node3D" parent="."]
+position = Vector3(199, -8.5, 48)
+
+[node name="Mesh" type="MeshInstance3D" parent="Shelf199_1.4"]
+mesh = SubResource("s142")
+
+[node name="Shelf199_2.3" type="Node3D" parent="."]
+position = Vector3(199, -7.6, 48)
+
+[node name="Mesh" type="MeshInstance3D" parent="Shelf199_2.3"]
+mesh = SubResource("s143")
+
+[node name="Shelf209_0.5" type="Node3D" parent="."]
+position = Vector3(209, -9.4, 48)
+
+[node name="Mesh" type="MeshInstance3D" parent="Shelf209_0.5"]
+mesh = SubResource("s144")
+
+[node name="Shelf209_1.4" type="Node3D" parent="."]
+position = Vector3(209, -8.5, 48)
+
+[node name="Mesh" type="MeshInstance3D" parent="Shelf209_1.4"]
+mesh = SubResource("s145")
+
+[node name="Shelf209_2.3" type="Node3D" parent="."]
+position = Vector3(209, -7.6, 48)
+
+[node name="Mesh" type="MeshInstance3D" parent="Shelf209_2.3"]
+mesh = SubResource("s146")
+
+[node name="StoreBox0" type="Node3D" parent="."]
+position = Vector3(199, -9.2, 46.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="StoreBox0"]
+mesh = SubResource("s147")
+
+[node name="StoreBox1" type="Node3D" parent="."]
+position = Vector3(199, -8.3, 46.6)
+
+[node name="Mesh" type="MeshInstance3D" parent="StoreBox1"]
+mesh = SubResource("s148")
+
+[node name="StoreBox2" type="Node3D" parent="."]
+position = Vector3(199, -9.2, 47.2)
+
+[node name="Mesh" type="MeshInstance3D" parent="StoreBox2"]
+mesh = SubResource("s149")
+
+[node name="StoreBox3" type="Node3D" parent="."]
+position = Vector3(199, -8.3, 47.8)
+
+[node name="Mesh" type="MeshInstance3D" parent="StoreBox3"]
+mesh = SubResource("s150")
+
+[node name="StoreBox4" type="Node3D" parent="."]
+position = Vector3(199, -9.2, 48.4)
+
+[node name="Mesh" type="MeshInstance3D" parent="StoreBox4"]
+mesh = SubResource("s151")
+
+[node name="StoreBox5" type="Node3D" parent="."]
+position = Vector3(199, -8.3, 49.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="StoreBox5"]
+mesh = SubResource("s152")
+
+[node name="CeilingLight25" type="OmniLight3D" parent="."]
+position = Vector3(190, -6.3, 25)
+light_energy = 1.2
+omni_range = 19.0
+shadow_enabled = false
+light_color = Color(0.64,0.69,0.54,1)
+
+[node name="CeilingLight38" type="OmniLight3D" parent="."]
+position = Vector3(190, -6.3, 38)
+light_energy = 1.2
+omni_range = 19.0
+shadow_enabled = false
+light_color = Color(0.64,0.69,0.54,1)

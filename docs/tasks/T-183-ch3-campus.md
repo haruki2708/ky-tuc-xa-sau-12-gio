@@ -57,13 +57,67 @@ Dựng khuôn viên trường gần kích thước thật (khoảng 500 × 350 m
 12. **Test:** scene load được; mọi anchor và vùng có đủ tên; navmesh phủ từ phòng 407 (tầng 4) tới nhà ăn, đi được hết (lane A, C cần); cầu thang tầng 2 sập chặn đúng; cửa sổ phòng quản lý trèo qua được khi cúi; ảnh chụp từng khu.
 
 ## Checklist hoàn thành
-- [ ] Greybox cả khuôn viên push trước (ghi commit vào Handoff)
-- [ ] `pwsh tools/test.ps1` và `pwsh tools/check.ps1` PASS
-- [ ] Ảnh chụp từng khu, số tam giác
-- [ ] Handoff: anchor, vùng, API, tư thế mô hình
+- [x] Greybox cả khuôn viên push trước (ghi commit vào Handoff)
+- [x] `pwsh tools/test.ps1` và `pwsh tools/check.ps1` PASS
+- [x] Ảnh chụp từng khu, số tam giác
+- [x] Handoff: anchor, vùng, API, tư thế mô hình
 
 ## Handoff (agent điền)
 
+Lane B / Codex — sẵn sàng ghép, nhánh `lane-b/T-183-ch3-campus`.
+
+- Greybox đã push riêng **`18661fc`**, trước khi làm phần chi tiết; 3 test Campus PASS tại thời điểm đó.
+- Bản chi tiết đã push **`bc2cc72`**. Không sửa file Floor4/Room407, không push main, không cài thêm công cụ/plugin.
+- Dựng đủ nhà B/tầng 1–3, hai cầu thang, đoạn sập 2→1, phòng 203, sảnh/phòng quản lý/cửa sổ; nhà A, 12 bồn vườn, sân 176 × 92 m với vòng chạy 400,001 m, hai khán đài, đường 220 m, cổng, nhà ăn/bếp/kho, ba vỏ nhà chương 4, rào và sương mù. Tất cả khu đã có chi tiết PS1; không còn khu chỉ greybox.
+- [README tích hợp/tái tạo](../../art_source/campus/README.md), [202 marker và tọa độ](../../art_source/campus/layout.json), [12 ảnh render](../../art_source/campus/previews/), [số liệu đo](../../art_source/campus/metrics.json), [nguồn/giấy phép](../../art_source/CREDITS.md).
+
+### Hợp đồng cho core / Lane A
+
+- Scene `res://scenes/levels/campus/campus.tscn`, gốc `Campus`, đặt cạnh `Floor4`, cùng transform. Scene thử riêng: `res://scenes/levels/campus/campus_playtest.tscn`.
+- Campus chỉ mở hai end-cap **trên instance** `Floor4/Corridor/WestEnd` và `EastEnd`, tạm dùng WorldEnvironment Campus và ẩn cây sân giả cũ; tháo Campus sẽ phục hồi các thuộc tính cũ. Nếu tạo Floor4 sau, gọi `attach_floor4(floor4)`; mặc định tìm `../Floor4`.
+- Đủ anchor/vùng đúng tên card: 9 nhóm spawn/idle, mỗi nhóm 6 điểm; 12 `GuardLine`, 6 `BarSpawns`, checkpoint, manh mối, đường `Paths/Nhat`/`Paths/Ngu` và 8 vùng Area3D. Marker `Pxx_Wait_*` là chỗ chờ; core quyết định thời điểm tiếp tục. Dùng NavigationAgent giữa các waypoint xa, không nội suy xuyên vật cản.
+- API gốc giữ đúng tên: `set_fire_door_open(bool)`, `set_main_door_chained(bool)`, `set_canteen_tv(bool)`, `set_stadium_lights(bool)`, `get_anchor(String) -> Node3D`. Mặc định cửa thoát hiểm đóng, cửa chính có xích, TV/đèn sân tắt. Cửa đồng bộ collision/link navigation; cánh mở xoay quanh bản lề, toàn bộ mắt xích ẩn cùng nhau.
+- Navmesh nối 407 → cầu thang → tầng 2/203 → phòng quản lý → vườn → sân/cổng → nhà ăn/kho. Cầu thang có collision dốc dưới bậc; khán đài có dốc đầu tây. Đoạn sập không có navmesh. Đợi navigation map đồng bộ trước khi truy vấn.
+- **Cửa sổ cần capsule cúi 1,15 m**: bậu 1 m, khoảng trống 1,44 m, standing 1,75 m bị chặn. `Navigation/WindowCross` và `WindowCrossOut` có metadata `requires_crouch`; graph không tự đổi capsule. Lane A/core phải xử lý đoạn này cho actor được phép đi qua. Link 407 cần core mở cửa 407. B không thêm luật chơi, trigger truyện, AI, combat hoặc actor trùng với Lane A.
+- Model: `res://assets/models/campus/{nhat,ngu,guard,zombie_01…zombie_10}.tscn`. Gọi `set_pose(&"idle") -> bool`; đủ `idle`, `walk`, `stunned`, `grab`, `sit`, `lie`, `wake`. `initial_pose` đặt pose khi spawn; model không tự dịch chuyển root. `wake` chuyển hình ảnh nằm→đứng trong 1,5 giây, core quyết định thời điểm gọi. Tái dùng đủ 4 rig CCTV + 3 xác phòng 407, thêm mắt đỏ/máu/đổi màu; Nhật sơ mi trắng, Ngư đuôi ngựa/thanh sắt, bảo vệ đồng phục/dùi cui.
+
+### Kiểm chứng
+
+```text
+pwsh tools/test.ps1
+RESULT: 516 passed, 0 failed
+
+pwsh tools/test.ps1 -Filter campus
+RESULT: 5 passed, 0 failed
+
+pwsh tools/check.ps1
+RESULT: check 0 error(s)
+```
+
+Full suite PASS; sau các chỉnh hình ảnh/vị trí chân/bản lề cuối, đã chạy lại nhóm Campus PASS. Nhóm này kiểm tra hợp đồng/API, capsule cúi/đứng, đoạn sập, đường navigation từ 407, phục hồi Floor4, đủ pose/giới hạn tam giác, và lấy mẫu capsule tối đa mỗi 20 cm trên các tuyến cầu thang/cửa sổ/nhà ăn/khán đài. Không có test FAIL còn tồn tại. `git diff --check` sạch; Floor4/Room407 không có diff. Godot tự ghi lại `default_bus_layout.tres` khi import đã được hoàn tác, không đưa vào commit.
+
+Tam giác tài nguyên từng khu (tính cả mesh ẩn và số instance MultiMesh):
+
+| Khu | Tam giác |
+|---|---:|
+| Nhà B mới | 10.980 |
+| Vườn | 6.576 |
+| Sân vận động/khán đài | 6.240 |
+| Đường/cây/đèn | 15.256 |
+| Cổng/chốt | 816 |
+| Nhà ăn/bếp/kho | 1.632 |
+| Nhà A và ba vỏ chương 4 | 2.256 |
+| Nền/rào | 888 |
+| Tổng Campus mới | 44.644 |
+| Floor4 cũ, không sửa | 34.088 |
+
+Model: Nhật 652, Ngư 664, bảo vệ 800, từng zombie 640–668 tam giác (đều dưới 1.500). Texture mới 64 px, texture nguồn 128 px, nearest; cây/đèn MultiMesh chia cụm 40 m, cull 125 m. Ảnh/số liệu từ Godot 4.7.2 Forward+, RTX 3050 Laptop, 1280 × 720, 90 frame warm-up + 120 frame/view: mean 4,99–5,06 ms, P95 cao nhất 6,579 ms. Đây là đo render cảnh + 13 model pose tĩnh; **chưa chơi tay toàn chương, chưa benchmark 40 zombie AI**. Lane C cần đo bản gameplay tích hợp. Ảnh sân/khán đài bật đèn sân qua API; runtime mặc định tắt.
+
+### Chưa đạt / yêu cầu thay đổi / câu hỏi
+
+- Không còn checkbox chưa đạt; không bị chặn trong phạm vi Lane B.
+- **Yêu cầu thay đổi ngoài phạm vi:** không có sửa code ngoài phạm vi bắt buộc để load/test Campus. Nếu cần chữ tên trường đọc được, core/chủ dự án chốt nội dung và Lane D bổ sung localization; B chưa sửa `strings.csv`.
+- **Câu hỏi thiết kế:** tên trên biển trường là gì, hay giữ biển nghiêng với chữ mờ không đọc được như hiện tại? Không tự đặt tên trường hoặc thêm lore. Đây là câu hỏi nội dung còn mở, không chặn scene/đường đi/API.
+
 ### Ghi chú integrator (2026-10-06): khung khối hộp đã merge sớm
-- Commit khung `18661fc` merge vào `main` để lane A, C dùng. Kiểm headless: đủ mọi anchor và vùng trong hợp đồng, mỗi khu 6 điểm xác, 12 bảo vệ, 6 chỗ thanh sắt, đủ 5 hàm API, có navmesh; `test_campus` 3/3; cả bộ test 537/537.
-- Lane B làm tiếp mô hình thật trên cùng nhánh; integrator sẽ merge phần còn lại khi lane B báo xong.
+- Commit khung `18661fc` merge vào `main` trước để lane A, C dùng. Kiểm headless: đủ mọi anchor và vùng, mỗi khu 6 điểm xác, 12 bảo vệ, 6 chỗ thanh sắt, đủ 5 hàm API, có navmesh; cả bộ test 537/537.

@@ -70,12 +70,17 @@
     "Clues/SirenSpot": [
       198,
       -6.9,
-      224.8
+      226.8
     ],
     "Start_stadium": [
       115,
       -9.9,
       166
+    ],
+    "BarSpawns/B03": [
+      164,
+      -9.82,
+      225.5
     ],
     "GuardLine/G01": [
       210.0,
@@ -176,11 +181,6 @@
       154,
       -9.9,
       221
-    ],
-    "BarSpawns/B03": [
-      160,
-      -9.9,
-      223
     ],
     "BarSpawns/B04": [
       64,
@@ -805,7 +805,7 @@
     "Paths/Nhat/P14_Wait_garden": [
       22,
       -9.9,
-      24
+      26
     ],
     "Paths/Nhat/P15": [
       48,
@@ -902,107 +902,122 @@
       -9.9,
       54
     ],
-    "Paths/Ngu/P01_Wait_garden": [
+    "Paths/Ngu/P01": [
       22,
-      -9.9,
-      24
+      -9.33,
+      28
     ],
     "Paths/Ngu/P02": [
-      48,
+      23.8,
       -9.9,
       28
     ],
     "Paths/Ngu/P03": [
+      23.8,
+      -9.9,
+      26
+    ],
+    "Paths/Ngu/P04_Wait_garden": [
+      22,
+      -9.9,
+      26
+    ],
+    "Paths/Ngu/P05": [
+      48,
+      -9.9,
+      28
+    ],
+    "Paths/Ngu/P06": [
       80,
       -9.9,
       28
     ],
-    "Paths/Ngu/P04": [
+    "Paths/Ngu/P07": [
       80,
       -9.9,
       166
     ],
-    "Paths/Ngu/P05_Wait_stadium": [
+    "Paths/Ngu/P08_Wait_stadium": [
       115,
-      -9.9,
-      166
-    ],
-    "Paths/Ngu/P06": [
-      150,
-      -9.9,
-      166
-    ],
-    "Paths/Ngu/P07": [
-      198,
-      -9.9,
-      135
-    ],
-    "Paths/Ngu/P08": [
-      250,
       -9.9,
       166
     ],
     "Paths/Ngu/P09": [
-      198,
-      -9.9,
-      195
-    ],
-    "Paths/Ngu/P10_Wait_stadium": [
-      115,
+      150,
       -9.9,
       166
     ],
+    "Paths/Ngu/P10": [
+      198,
+      -9.9,
+      135
+    ],
     "Paths/Ngu/P11": [
-      80,
+      250,
       -9.9,
       166
     ],
     "Paths/Ngu/P12": [
+      198,
+      -9.9,
+      195
+    ],
+    "Paths/Ngu/P13_Wait_stadium": [
+      115,
+      -9.9,
+      166
+    ],
+    "Paths/Ngu/P14": [
+      80,
+      -9.9,
+      166
+    ],
+    "Paths/Ngu/P15": [
       80,
       -9.9,
       -15
     ],
-    "Paths/Ngu/P13": [
+    "Paths/Ngu/P16": [
       220,
       -9.9,
       -15
     ],
-    "Paths/Ngu/P14_Wait_gate": [
+    "Paths/Ngu/P17_Wait_gate": [
       220,
       -9.9,
       -30
     ],
-    "Paths/Ngu/P15": [
+    "Paths/Ngu/P18": [
       220,
       -9.9,
       10
     ],
-    "Paths/Ngu/P16": [
+    "Paths/Ngu/P19": [
       190,
       -9.9,
       18
     ],
-    "Paths/Ngu/P17_Wait_canteen": [
+    "Paths/Ngu/P20_Wait_canteen": [
       190,
       -9.9,
       32
     ],
-    "Paths/Ngu/P18": [
+    "Paths/Ngu/P21": [
       202,
       -9.9,
       43
     ],
-    "Paths/Ngu/P19": [
+    "Paths/Ngu/P22": [
       202,
       -9.9,
       48
     ],
-    "Paths/Ngu/P20": [
+    "Paths/Ngu/P23": [
       202,
       -9.9,
       54
     ]
   },
-  "navigation_surfaces": 60,
-  "navigation_links": 77
+  "navigation_surfaces": 737,
+  "navigation_links": 66
 }

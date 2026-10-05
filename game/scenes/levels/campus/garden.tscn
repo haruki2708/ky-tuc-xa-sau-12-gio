@@ -1,13 +1,26 @@
 [gd_scene format=3]
 
+[ext_resource type="Texture2D" path="res://assets/textures/campus/tile.png" id="e1"]
+[ext_resource type="Texture2D" path="res://assets/textures/campus/concrete.png" id="e2"]
+[ext_resource type="Texture2D" path="res://assets/textures/campus/grass.png" id="e3"]
+[ext_resource type="Texture2D" path="res://assets/textures/campus/iron.png" id="e4"]
+[ext_resource type="Texture2D" path="res://assets/textures/campus/tree.png" id="e5"]
+[ext_resource type="Texture2D" path="res://assets/textures/campus/paper.png" id="e6"]
+[ext_resource type="Texture2D" path="res://assets/textures/campus/wood.png" id="e7"]
+[ext_resource type="PackedScene" path="res://assets/models/kit/bunk_bed.glb" id="e8"]
+[ext_resource type="Script" path="res://scenes/levels/campus/foliage.gd" id="e9"]
+[ext_resource type="Script" path="res://scenes/levels/campus/flicker.gd" id="e10"]
 
 [sub_resource type="BoxShape3D" id="s1"]
 size = Vector3(44, 0.06, 40)
 
 [sub_resource type="StandardMaterial3D" id="s2"]
-albedo_color = Color(0.34, 0.38, 0.36, 1)
-roughness = 0.85
+albedo_texture = ExtResource("e1")
 texture_filter = 0
+roughness = 0.9
+uv1_triplanar = true
+uv1_world_triplanar = true
+uv1_scale = Vector3(0.5,0.5,0.5)
 
 [sub_resource type="BoxMesh" id="s3"]
 size = Vector3(44, 0.06, 40)
@@ -17,18 +30,24 @@ material = SubResource("s2")
 size = Vector3(6, 0.5, 4)
 
 [sub_resource type="StandardMaterial3D" id="s5"]
-albedo_color = Color(0.38, 0.39, 0.35, 1)
-roughness = 0.85
+albedo_texture = ExtResource("e2")
 texture_filter = 0
+roughness = 0.9
+uv1_triplanar = true
+uv1_world_triplanar = true
+uv1_scale = Vector3(0.5,0.5,0.5)
 
 [sub_resource type="BoxMesh" id="s6"]
 size = Vector3(6, 0.5, 4)
 material = SubResource("s5")
 
 [sub_resource type="StandardMaterial3D" id="s7"]
-albedo_color = Color(0.13, 0.2, 0.13, 1)
-roughness = 0.85
+albedo_texture = ExtResource("e3")
 texture_filter = 0
+roughness = 0.9
+uv1_triplanar = true
+uv1_world_triplanar = true
+uv1_scale = Vector3(0.5,0.5,0.5)
 
 [sub_resource type="BoxMesh" id="s8"]
 size = Vector3(5.7, 0.08, 3.7)
@@ -163,15 +182,1294 @@ size = Vector3(2.4, 0.18, 0.7)
 material = SubResource("s5")
 
 [sub_resource type="BoxShape3D" id="s44"]
-size = Vector3(2, 0.9, 1)
+size = Vector3(2, 0.9, 2)
 
 [sub_resource type="StandardMaterial3D" id="s45"]
-albedo_color = Color(0.1, 0.15, 0.15, 1)
-roughness = 0.85
+albedo_texture = ExtResource("e4")
 texture_filter = 0
+roughness = 0.9
+uv1_triplanar = true
+uv1_world_triplanar = true
+uv1_scale = Vector3(0.5,0.5,0.5)
 
 [sub_resource type="BoxMesh" id="s46"]
-size = Vector3(2, 0.9, 1)
+size = Vector3(2, 0.9, 2)
+material = SubResource("s45")
+
+[sub_resource type="StandardMaterial3D" id="s47"]
+albedo_texture = ExtResource("e5")
+texture_filter = 0
+roughness = 0.9
+uv1_triplanar = true
+uv1_world_triplanar = true
+uv1_scale = Vector3(0.5,0.5,0.5)
+
+[sub_resource type="CylinderMesh" id="s48"]
+top_radius = 0.45
+bottom_radius = 0.65
+height = 1.0
+radial_segments = 8
+rings = 1
+material = SubResource("s47")
+
+[sub_resource type="StandardMaterial3D" id="s49"]
+albedo_texture = ExtResource("e6")
+texture_filter = 0
+roughness = 0.9
+uv1_triplanar = true
+uv1_world_triplanar = true
+uv1_scale = Vector3(0.5,0.5,0.5)
+
+[sub_resource type="BoxMesh" id="s50"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s51"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s52"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="CylinderMesh" id="s53"]
+top_radius = 0.45
+bottom_radius = 0.65
+height = 1.0
+radial_segments = 8
+rings = 1
+material = SubResource("s47")
+
+[sub_resource type="BoxMesh" id="s54"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s55"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s56"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="CylinderMesh" id="s57"]
+top_radius = 0.45
+bottom_radius = 0.65
+height = 1.0
+radial_segments = 8
+rings = 1
+material = SubResource("s47")
+
+[sub_resource type="BoxMesh" id="s58"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s59"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s60"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="CylinderMesh" id="s61"]
+top_radius = 0.45
+bottom_radius = 0.65
+height = 1.0
+radial_segments = 8
+rings = 1
+material = SubResource("s47")
+
+[sub_resource type="BoxMesh" id="s62"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s63"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s64"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="StandardMaterial3D" id="s65"]
+albedo_texture = ExtResource("e7")
+texture_filter = 0
+roughness = 0.9
+uv1_triplanar = true
+uv1_world_triplanar = true
+uv1_scale = Vector3(0.5,0.5,0.5)
+
+[sub_resource type="CylinderMesh" id="s66"]
+top_radius = 0.08
+bottom_radius = 0.1
+height = 1.6
+radial_segments = 8
+rings = 1
+material = SubResource("s65")
+
+[sub_resource type="CylinderMesh" id="s67"]
+top_radius = 0.175
+bottom_radius = 1.1
+height = 1.6
+radial_segments = 8
+rings = 1
+material = SubResource("s47")
+
+[sub_resource type="CylinderMesh" id="s68"]
+top_radius = 0.45
+bottom_radius = 0.65
+height = 1.0
+radial_segments = 8
+rings = 1
+material = SubResource("s47")
+
+[sub_resource type="BoxMesh" id="s69"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s70"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s71"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="CylinderMesh" id="s72"]
+top_radius = 0.45
+bottom_radius = 0.65
+height = 1.0
+radial_segments = 8
+rings = 1
+material = SubResource("s47")
+
+[sub_resource type="BoxMesh" id="s73"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s74"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s75"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="CylinderMesh" id="s76"]
+top_radius = 0.45
+bottom_radius = 0.65
+height = 1.0
+radial_segments = 8
+rings = 1
+material = SubResource("s47")
+
+[sub_resource type="BoxMesh" id="s77"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s78"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s79"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="CylinderMesh" id="s80"]
+top_radius = 0.45
+bottom_radius = 0.65
+height = 1.0
+radial_segments = 8
+rings = 1
+material = SubResource("s47")
+
+[sub_resource type="BoxMesh" id="s81"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s82"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s83"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="CylinderMesh" id="s84"]
+top_radius = 0.08
+bottom_radius = 0.1
+height = 1.6
+radial_segments = 8
+rings = 1
+material = SubResource("s65")
+
+[sub_resource type="CylinderMesh" id="s85"]
+top_radius = 0.175
+bottom_radius = 1.1
+height = 1.6
+radial_segments = 8
+rings = 1
+material = SubResource("s47")
+
+[sub_resource type="CylinderMesh" id="s86"]
+top_radius = 0.45
+bottom_radius = 0.65
+height = 1.0
+radial_segments = 8
+rings = 1
+material = SubResource("s47")
+
+[sub_resource type="BoxMesh" id="s87"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s88"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s89"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="CylinderMesh" id="s90"]
+top_radius = 0.45
+bottom_radius = 0.65
+height = 1.0
+radial_segments = 8
+rings = 1
+material = SubResource("s47")
+
+[sub_resource type="BoxMesh" id="s91"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s92"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s93"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="CylinderMesh" id="s94"]
+top_radius = 0.45
+bottom_radius = 0.65
+height = 1.0
+radial_segments = 8
+rings = 1
+material = SubResource("s47")
+
+[sub_resource type="BoxMesh" id="s95"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s96"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s97"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="CylinderMesh" id="s98"]
+top_radius = 0.45
+bottom_radius = 0.65
+height = 1.0
+radial_segments = 8
+rings = 1
+material = SubResource("s47")
+
+[sub_resource type="BoxMesh" id="s99"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s100"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s101"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="CylinderMesh" id="s102"]
+top_radius = 0.08
+bottom_radius = 0.1
+height = 1.6
+radial_segments = 8
+rings = 1
+material = SubResource("s65")
+
+[sub_resource type="CylinderMesh" id="s103"]
+top_radius = 0.175
+bottom_radius = 1.1
+height = 1.6
+radial_segments = 8
+rings = 1
+material = SubResource("s47")
+
+[sub_resource type="CylinderMesh" id="s104"]
+top_radius = 0.45
+bottom_radius = 0.65
+height = 1.0
+radial_segments = 8
+rings = 1
+material = SubResource("s47")
+
+[sub_resource type="BoxMesh" id="s105"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s106"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s107"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="CylinderMesh" id="s108"]
+top_radius = 0.45
+bottom_radius = 0.65
+height = 1.0
+radial_segments = 8
+rings = 1
+material = SubResource("s47")
+
+[sub_resource type="BoxMesh" id="s109"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s110"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s111"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="CylinderMesh" id="s112"]
+top_radius = 0.45
+bottom_radius = 0.65
+height = 1.0
+radial_segments = 8
+rings = 1
+material = SubResource("s47")
+
+[sub_resource type="BoxMesh" id="s113"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s114"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s115"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="CylinderMesh" id="s116"]
+top_radius = 0.45
+bottom_radius = 0.65
+height = 1.0
+radial_segments = 8
+rings = 1
+material = SubResource("s47")
+
+[sub_resource type="BoxMesh" id="s117"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s118"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s119"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="CylinderMesh" id="s120"]
+top_radius = 0.08
+bottom_radius = 0.1
+height = 1.6
+radial_segments = 8
+rings = 1
+material = SubResource("s65")
+
+[sub_resource type="CylinderMesh" id="s121"]
+top_radius = 0.175
+bottom_radius = 1.1
+height = 1.6
+radial_segments = 8
+rings = 1
+material = SubResource("s47")
+
+[sub_resource type="CylinderMesh" id="s122"]
+top_radius = 0.45
+bottom_radius = 0.65
+height = 1.0
+radial_segments = 8
+rings = 1
+material = SubResource("s47")
+
+[sub_resource type="BoxMesh" id="s123"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s124"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s125"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="CylinderMesh" id="s126"]
+top_radius = 0.45
+bottom_radius = 0.65
+height = 1.0
+radial_segments = 8
+rings = 1
+material = SubResource("s47")
+
+[sub_resource type="BoxMesh" id="s127"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s128"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s129"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="CylinderMesh" id="s130"]
+top_radius = 0.45
+bottom_radius = 0.65
+height = 1.0
+radial_segments = 8
+rings = 1
+material = SubResource("s47")
+
+[sub_resource type="BoxMesh" id="s131"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s132"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s133"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="CylinderMesh" id="s134"]
+top_radius = 0.45
+bottom_radius = 0.65
+height = 1.0
+radial_segments = 8
+rings = 1
+material = SubResource("s47")
+
+[sub_resource type="BoxMesh" id="s135"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s136"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s137"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="CylinderMesh" id="s138"]
+top_radius = 0.08
+bottom_radius = 0.1
+height = 1.6
+radial_segments = 8
+rings = 1
+material = SubResource("s65")
+
+[sub_resource type="CylinderMesh" id="s139"]
+top_radius = 0.175
+bottom_radius = 1.1
+height = 1.6
+radial_segments = 8
+rings = 1
+material = SubResource("s47")
+
+[sub_resource type="CylinderMesh" id="s140"]
+top_radius = 0.45
+bottom_radius = 0.65
+height = 1.0
+radial_segments = 8
+rings = 1
+material = SubResource("s47")
+
+[sub_resource type="BoxMesh" id="s141"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s142"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s143"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="CylinderMesh" id="s144"]
+top_radius = 0.45
+bottom_radius = 0.65
+height = 1.0
+radial_segments = 8
+rings = 1
+material = SubResource("s47")
+
+[sub_resource type="BoxMesh" id="s145"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s146"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s147"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="CylinderMesh" id="s148"]
+top_radius = 0.45
+bottom_radius = 0.65
+height = 1.0
+radial_segments = 8
+rings = 1
+material = SubResource("s47")
+
+[sub_resource type="BoxMesh" id="s149"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s150"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s151"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="CylinderMesh" id="s152"]
+top_radius = 0.45
+bottom_radius = 0.65
+height = 1.0
+radial_segments = 8
+rings = 1
+material = SubResource("s47")
+
+[sub_resource type="BoxMesh" id="s153"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s154"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s155"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="CylinderMesh" id="s156"]
+top_radius = 0.08
+bottom_radius = 0.1
+height = 1.6
+radial_segments = 8
+rings = 1
+material = SubResource("s65")
+
+[sub_resource type="CylinderMesh" id="s157"]
+top_radius = 0.175
+bottom_radius = 1.1
+height = 1.6
+radial_segments = 8
+rings = 1
+material = SubResource("s47")
+
+[sub_resource type="CylinderMesh" id="s158"]
+top_radius = 0.45
+bottom_radius = 0.65
+height = 1.0
+radial_segments = 8
+rings = 1
+material = SubResource("s47")
+
+[sub_resource type="BoxMesh" id="s159"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s160"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s161"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="CylinderMesh" id="s162"]
+top_radius = 0.45
+bottom_radius = 0.65
+height = 1.0
+radial_segments = 8
+rings = 1
+material = SubResource("s47")
+
+[sub_resource type="BoxMesh" id="s163"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s164"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s165"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="CylinderMesh" id="s166"]
+top_radius = 0.45
+bottom_radius = 0.65
+height = 1.0
+radial_segments = 8
+rings = 1
+material = SubResource("s47")
+
+[sub_resource type="BoxMesh" id="s167"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s168"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s169"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="CylinderMesh" id="s170"]
+top_radius = 0.45
+bottom_radius = 0.65
+height = 1.0
+radial_segments = 8
+rings = 1
+material = SubResource("s47")
+
+[sub_resource type="BoxMesh" id="s171"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s172"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s173"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="CylinderMesh" id="s174"]
+top_radius = 0.08
+bottom_radius = 0.1
+height = 1.6
+radial_segments = 8
+rings = 1
+material = SubResource("s65")
+
+[sub_resource type="CylinderMesh" id="s175"]
+top_radius = 0.175
+bottom_radius = 1.1
+height = 1.6
+radial_segments = 8
+rings = 1
+material = SubResource("s47")
+
+[sub_resource type="CylinderMesh" id="s176"]
+top_radius = 0.45
+bottom_radius = 0.65
+height = 1.0
+radial_segments = 8
+rings = 1
+material = SubResource("s47")
+
+[sub_resource type="BoxMesh" id="s177"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s178"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s179"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="CylinderMesh" id="s180"]
+top_radius = 0.45
+bottom_radius = 0.65
+height = 1.0
+radial_segments = 8
+rings = 1
+material = SubResource("s47")
+
+[sub_resource type="BoxMesh" id="s181"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s182"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s183"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="CylinderMesh" id="s184"]
+top_radius = 0.45
+bottom_radius = 0.65
+height = 1.0
+radial_segments = 8
+rings = 1
+material = SubResource("s47")
+
+[sub_resource type="BoxMesh" id="s185"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s186"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s187"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="CylinderMesh" id="s188"]
+top_radius = 0.45
+bottom_radius = 0.65
+height = 1.0
+radial_segments = 8
+rings = 1
+material = SubResource("s47")
+
+[sub_resource type="BoxMesh" id="s189"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s190"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s191"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="CylinderMesh" id="s192"]
+top_radius = 0.08
+bottom_radius = 0.1
+height = 1.6
+radial_segments = 8
+rings = 1
+material = SubResource("s65")
+
+[sub_resource type="CylinderMesh" id="s193"]
+top_radius = 0.175
+bottom_radius = 1.1
+height = 1.6
+radial_segments = 8
+rings = 1
+material = SubResource("s47")
+
+[sub_resource type="CylinderMesh" id="s194"]
+top_radius = 0.45
+bottom_radius = 0.65
+height = 1.0
+radial_segments = 8
+rings = 1
+material = SubResource("s47")
+
+[sub_resource type="BoxMesh" id="s195"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s196"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s197"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="CylinderMesh" id="s198"]
+top_radius = 0.45
+bottom_radius = 0.65
+height = 1.0
+radial_segments = 8
+rings = 1
+material = SubResource("s47")
+
+[sub_resource type="BoxMesh" id="s199"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s200"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s201"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="CylinderMesh" id="s202"]
+top_radius = 0.45
+bottom_radius = 0.65
+height = 1.0
+radial_segments = 8
+rings = 1
+material = SubResource("s47")
+
+[sub_resource type="BoxMesh" id="s203"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s204"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s205"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="CylinderMesh" id="s206"]
+top_radius = 0.45
+bottom_radius = 0.65
+height = 1.0
+radial_segments = 8
+rings = 1
+material = SubResource("s47")
+
+[sub_resource type="BoxMesh" id="s207"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s208"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s209"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="CylinderMesh" id="s210"]
+top_radius = 0.08
+bottom_radius = 0.1
+height = 1.6
+radial_segments = 8
+rings = 1
+material = SubResource("s65")
+
+[sub_resource type="CylinderMesh" id="s211"]
+top_radius = 0.175
+bottom_radius = 1.1
+height = 1.6
+radial_segments = 8
+rings = 1
+material = SubResource("s47")
+
+[sub_resource type="CylinderMesh" id="s212"]
+top_radius = 0.45
+bottom_radius = 0.65
+height = 1.0
+radial_segments = 8
+rings = 1
+material = SubResource("s47")
+
+[sub_resource type="BoxMesh" id="s213"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s214"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s215"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="CylinderMesh" id="s216"]
+top_radius = 0.45
+bottom_radius = 0.65
+height = 1.0
+radial_segments = 8
+rings = 1
+material = SubResource("s47")
+
+[sub_resource type="BoxMesh" id="s217"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s218"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s219"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="CylinderMesh" id="s220"]
+top_radius = 0.45
+bottom_radius = 0.65
+height = 1.0
+radial_segments = 8
+rings = 1
+material = SubResource("s47")
+
+[sub_resource type="BoxMesh" id="s221"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s222"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s223"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="CylinderMesh" id="s224"]
+top_radius = 0.45
+bottom_radius = 0.65
+height = 1.0
+radial_segments = 8
+rings = 1
+material = SubResource("s47")
+
+[sub_resource type="BoxMesh" id="s225"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s226"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s227"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="CylinderMesh" id="s228"]
+top_radius = 0.08
+bottom_radius = 0.1
+height = 1.6
+radial_segments = 8
+rings = 1
+material = SubResource("s65")
+
+[sub_resource type="CylinderMesh" id="s229"]
+top_radius = 0.175
+bottom_radius = 1.1
+height = 1.6
+radial_segments = 8
+rings = 1
+material = SubResource("s47")
+
+[sub_resource type="CylinderMesh" id="s230"]
+top_radius = 0.45
+bottom_radius = 0.65
+height = 1.0
+radial_segments = 8
+rings = 1
+material = SubResource("s47")
+
+[sub_resource type="BoxMesh" id="s231"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s232"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s233"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="CylinderMesh" id="s234"]
+top_radius = 0.45
+bottom_radius = 0.65
+height = 1.0
+radial_segments = 8
+rings = 1
+material = SubResource("s47")
+
+[sub_resource type="BoxMesh" id="s235"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s236"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s237"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="CylinderMesh" id="s238"]
+top_radius = 0.45
+bottom_radius = 0.65
+height = 1.0
+radial_segments = 8
+rings = 1
+material = SubResource("s47")
+
+[sub_resource type="BoxMesh" id="s239"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s240"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s241"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="CylinderMesh" id="s242"]
+top_radius = 0.45
+bottom_radius = 0.65
+height = 1.0
+radial_segments = 8
+rings = 1
+material = SubResource("s47")
+
+[sub_resource type="BoxMesh" id="s243"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s244"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s245"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="CylinderMesh" id="s246"]
+top_radius = 0.08
+bottom_radius = 0.1
+height = 1.6
+radial_segments = 8
+rings = 1
+material = SubResource("s65")
+
+[sub_resource type="CylinderMesh" id="s247"]
+top_radius = 0.175
+bottom_radius = 1.1
+height = 1.6
+radial_segments = 8
+rings = 1
+material = SubResource("s47")
+
+[sub_resource type="CylinderMesh" id="s248"]
+top_radius = 0.45
+bottom_radius = 0.65
+height = 1.0
+radial_segments = 8
+rings = 1
+material = SubResource("s47")
+
+[sub_resource type="BoxMesh" id="s249"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s250"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s251"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="CylinderMesh" id="s252"]
+top_radius = 0.45
+bottom_radius = 0.65
+height = 1.0
+radial_segments = 8
+rings = 1
+material = SubResource("s47")
+
+[sub_resource type="BoxMesh" id="s253"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s254"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s255"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="CylinderMesh" id="s256"]
+top_radius = 0.45
+bottom_radius = 0.65
+height = 1.0
+radial_segments = 8
+rings = 1
+material = SubResource("s47")
+
+[sub_resource type="BoxMesh" id="s257"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s258"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s259"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="CylinderMesh" id="s260"]
+top_radius = 0.45
+bottom_radius = 0.65
+height = 1.0
+radial_segments = 8
+rings = 1
+material = SubResource("s47")
+
+[sub_resource type="BoxMesh" id="s261"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s262"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="BoxMesh" id="s263"]
+size = Vector3(0.1, 0.1, 0.1)
+material = SubResource("s49")
+
+[sub_resource type="CylinderMesh" id="s264"]
+top_radius = 0.08
+bottom_radius = 0.1
+height = 1.6
+radial_segments = 8
+rings = 1
+material = SubResource("s65")
+
+[sub_resource type="CylinderMesh" id="s265"]
+top_radius = 0.175
+bottom_radius = 1.1
+height = 1.6
+radial_segments = 8
+rings = 1
+material = SubResource("s47")
+
+[sub_resource type="BoxMesh" id="s266"]
+size = Vector3(0.15, 0.44, 0.5)
+material = SubResource("s5")
+
+[sub_resource type="BoxMesh" id="s267"]
+size = Vector3(0.15, 0.44, 0.5)
+material = SubResource("s5")
+
+[sub_resource type="BoxMesh" id="s268"]
+size = Vector3(2.4, 0.16, 0.6)
+material = SubResource("s5")
+
+[sub_resource type="BoxMesh" id="s269"]
+size = Vector3(0.15, 0.48, 0.5)
+material = SubResource("s5")
+
+[sub_resource type="BoxMesh" id="s270"]
+size = Vector3(0.15, 0.48, 0.5)
+material = SubResource("s5")
+
+[sub_resource type="BoxMesh" id="s271"]
+size = Vector3(2.4, 0.5, 0.12)
+material = SubResource("s5")
+
+[sub_resource type="BoxShape3D" id="s272"]
+size = Vector3(2.4, 0.8, 0.6)
+
+[sub_resource type="BoxMesh" id="s273"]
+size = Vector3(2.4, 0.16, 0.6)
+material = SubResource("s5")
+
+[sub_resource type="BoxMesh" id="s274"]
+size = Vector3(0.15, 0.48, 0.5)
+material = SubResource("s5")
+
+[sub_resource type="BoxMesh" id="s275"]
+size = Vector3(0.15, 0.48, 0.5)
+material = SubResource("s5")
+
+[sub_resource type="BoxMesh" id="s276"]
+size = Vector3(2.4, 0.5, 0.12)
+material = SubResource("s5")
+
+[sub_resource type="BoxShape3D" id="s277"]
+size = Vector3(2.4, 0.8, 0.6)
+
+[sub_resource type="BoxMesh" id="s278"]
+size = Vector3(2.4, 0.16, 0.6)
+material = SubResource("s5")
+
+[sub_resource type="BoxMesh" id="s279"]
+size = Vector3(0.15, 0.48, 0.5)
+material = SubResource("s5")
+
+[sub_resource type="BoxMesh" id="s280"]
+size = Vector3(0.15, 0.48, 0.5)
+material = SubResource("s5")
+
+[sub_resource type="BoxMesh" id="s281"]
+size = Vector3(2.4, 0.5, 0.12)
+material = SubResource("s5")
+
+[sub_resource type="BoxShape3D" id="s282"]
+size = Vector3(2.4, 0.8, 0.6)
+
+[sub_resource type="BoxMesh" id="s283"]
+size = Vector3(2.4, 0.16, 0.6)
+material = SubResource("s5")
+
+[sub_resource type="BoxMesh" id="s284"]
+size = Vector3(0.15, 0.48, 0.5)
+material = SubResource("s5")
+
+[sub_resource type="BoxMesh" id="s285"]
+size = Vector3(0.15, 0.48, 0.5)
+material = SubResource("s5")
+
+[sub_resource type="BoxMesh" id="s286"]
+size = Vector3(2.4, 0.5, 0.12)
+material = SubResource("s5")
+
+[sub_resource type="BoxShape3D" id="s287"]
+size = Vector3(2.4, 0.8, 0.6)
+
+[sub_resource type="BoxMesh" id="s288"]
+size = Vector3(0.035, 0.035, 1.2)
+material = SubResource("s45")
+
+[sub_resource type="BoxMesh" id="s289"]
+size = Vector3(0.035, 0.035, 1.2)
+material = SubResource("s45")
+
+[sub_resource type="BoxMesh" id="s290"]
+size = Vector3(0.035, 0.035, 1.2)
+material = SubResource("s45")
+
+[sub_resource type="BoxMesh" id="s291"]
+size = Vector3(0.035, 0.035, 1.2)
 material = SubResource("s45")
 
 [node name="Garden" type="Node3D"]
@@ -415,3 +1713,1409 @@ shape = SubResource("s44")
 
 [node name="Mesh" type="MeshInstance3D" parent="FallenBunk"]
 mesh = SubResource("s46")
+visible = false
+
+[node name="Bush0_0_0" type="MeshInstance3D" parent="."]
+position = Vector3(4.1, -9.2, 12)
+mesh = SubResource("s48")
+
+[node name="Flower0_0_0_0" type="Node3D" parent="."]
+position = Vector3(3.9, -8.8, 12.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower0_0_0_0"]
+mesh = SubResource("s50")
+
+[node name="Flower0_0_0_1" type="Node3D" parent="."]
+position = Vector3(4.1, -8.8, 12.1)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower0_0_0_1"]
+mesh = SubResource("s51")
+
+[node name="Flower0_0_0_2" type="Node3D" parent="."]
+position = Vector3(4.3, -8.8, 12.2)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower0_0_0_2"]
+mesh = SubResource("s52")
+
+[node name="Bush0_0_1" type="MeshInstance3D" parent="."]
+position = Vector3(5.4, -9.2, 12)
+mesh = SubResource("s53")
+
+[node name="Flower0_0_1_0" type="Node3D" parent="."]
+position = Vector3(5.2, -8.8, 12.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower0_0_1_0"]
+mesh = SubResource("s54")
+
+[node name="Flower0_0_1_1" type="Node3D" parent="."]
+position = Vector3(5.4, -8.8, 12.1)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower0_0_1_1"]
+mesh = SubResource("s55")
+
+[node name="Flower0_0_1_2" type="Node3D" parent="."]
+position = Vector3(5.6, -8.8, 12.2)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower0_0_1_2"]
+mesh = SubResource("s56")
+
+[node name="Bush0_0_2" type="MeshInstance3D" parent="."]
+position = Vector3(6.7, -9.2, 12)
+mesh = SubResource("s57")
+
+[node name="Flower0_0_2_0" type="Node3D" parent="."]
+position = Vector3(6.5, -8.8, 12.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower0_0_2_0"]
+mesh = SubResource("s58")
+
+[node name="Flower0_0_2_1" type="Node3D" parent="."]
+position = Vector3(6.7, -8.8, 12.1)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower0_0_2_1"]
+mesh = SubResource("s59")
+
+[node name="Flower0_0_2_2" type="Node3D" parent="."]
+position = Vector3(6.9, -8.8, 12.2)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower0_0_2_2"]
+mesh = SubResource("s60")
+
+[node name="Bush0_0_3" type="MeshInstance3D" parent="."]
+position = Vector3(8.0, -9.2, 12)
+mesh = SubResource("s61")
+
+[node name="Flower0_0_3_0" type="Node3D" parent="."]
+position = Vector3(7.8, -8.8, 12.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower0_0_3_0"]
+mesh = SubResource("s62")
+
+[node name="Flower0_0_3_1" type="Node3D" parent="."]
+position = Vector3(8.0, -8.8, 12.1)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower0_0_3_1"]
+mesh = SubResource("s63")
+
+[node name="Flower0_0_3_2" type="Node3D" parent="."]
+position = Vector3(8.2, -8.8, 12.2)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower0_0_3_2"]
+mesh = SubResource("s64")
+
+[node name="LowTrunk0_0" type="MeshInstance3D" parent="."]
+position = Vector3(6, -8.9, 12)
+mesh = SubResource("s66")
+
+[node name="LowCrown0_0" type="MeshInstance3D" parent="."]
+position = Vector3(6, -7.9, 12)
+mesh = SubResource("s67")
+
+[node name="Bush0_1_0" type="MeshInstance3D" parent="."]
+position = Vector3(20.1, -9.2, 12)
+mesh = SubResource("s68")
+
+[node name="Flower0_1_0_0" type="Node3D" parent="."]
+position = Vector3(19.9, -8.8, 12.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower0_1_0_0"]
+mesh = SubResource("s69")
+
+[node name="Flower0_1_0_1" type="Node3D" parent="."]
+position = Vector3(20.1, -8.8, 12.1)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower0_1_0_1"]
+mesh = SubResource("s70")
+
+[node name="Flower0_1_0_2" type="Node3D" parent="."]
+position = Vector3(20.3, -8.8, 12.2)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower0_1_0_2"]
+mesh = SubResource("s71")
+
+[node name="Bush0_1_1" type="MeshInstance3D" parent="."]
+position = Vector3(21.4, -9.2, 12)
+mesh = SubResource("s72")
+
+[node name="Flower0_1_1_0" type="Node3D" parent="."]
+position = Vector3(21.2, -8.8, 12.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower0_1_1_0"]
+mesh = SubResource("s73")
+
+[node name="Flower0_1_1_1" type="Node3D" parent="."]
+position = Vector3(21.4, -8.8, 12.1)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower0_1_1_1"]
+mesh = SubResource("s74")
+
+[node name="Flower0_1_1_2" type="Node3D" parent="."]
+position = Vector3(21.6, -8.8, 12.2)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower0_1_1_2"]
+mesh = SubResource("s75")
+
+[node name="Bush0_1_2" type="MeshInstance3D" parent="."]
+position = Vector3(22.7, -9.2, 12)
+mesh = SubResource("s76")
+
+[node name="Flower0_1_2_0" type="Node3D" parent="."]
+position = Vector3(22.5, -8.8, 12.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower0_1_2_0"]
+mesh = SubResource("s77")
+
+[node name="Flower0_1_2_1" type="Node3D" parent="."]
+position = Vector3(22.7, -8.8, 12.1)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower0_1_2_1"]
+mesh = SubResource("s78")
+
+[node name="Flower0_1_2_2" type="Node3D" parent="."]
+position = Vector3(22.9, -8.8, 12.2)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower0_1_2_2"]
+mesh = SubResource("s79")
+
+[node name="Bush0_1_3" type="MeshInstance3D" parent="."]
+position = Vector3(24.0, -9.2, 12)
+mesh = SubResource("s80")
+
+[node name="Flower0_1_3_0" type="Node3D" parent="."]
+position = Vector3(23.8, -8.8, 12.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower0_1_3_0"]
+mesh = SubResource("s81")
+
+[node name="Flower0_1_3_1" type="Node3D" parent="."]
+position = Vector3(24.0, -8.8, 12.1)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower0_1_3_1"]
+mesh = SubResource("s82")
+
+[node name="Flower0_1_3_2" type="Node3D" parent="."]
+position = Vector3(24.2, -8.8, 12.2)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower0_1_3_2"]
+mesh = SubResource("s83")
+
+[node name="LowTrunk0_1" type="MeshInstance3D" parent="."]
+position = Vector3(22, -8.9, 12)
+mesh = SubResource("s84")
+
+[node name="LowCrown0_1" type="MeshInstance3D" parent="."]
+position = Vector3(22, -7.9, 12)
+mesh = SubResource("s85")
+
+[node name="Bush0_2_0" type="MeshInstance3D" parent="."]
+position = Vector3(36.1, -9.2, 12)
+mesh = SubResource("s86")
+
+[node name="Flower0_2_0_0" type="Node3D" parent="."]
+position = Vector3(35.9, -8.8, 12.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower0_2_0_0"]
+mesh = SubResource("s87")
+
+[node name="Flower0_2_0_1" type="Node3D" parent="."]
+position = Vector3(36.1, -8.8, 12.1)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower0_2_0_1"]
+mesh = SubResource("s88")
+
+[node name="Flower0_2_0_2" type="Node3D" parent="."]
+position = Vector3(36.3, -8.8, 12.2)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower0_2_0_2"]
+mesh = SubResource("s89")
+
+[node name="Bush0_2_1" type="MeshInstance3D" parent="."]
+position = Vector3(37.4, -9.2, 12)
+mesh = SubResource("s90")
+
+[node name="Flower0_2_1_0" type="Node3D" parent="."]
+position = Vector3(37.2, -8.8, 12.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower0_2_1_0"]
+mesh = SubResource("s91")
+
+[node name="Flower0_2_1_1" type="Node3D" parent="."]
+position = Vector3(37.4, -8.8, 12.1)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower0_2_1_1"]
+mesh = SubResource("s92")
+
+[node name="Flower0_2_1_2" type="Node3D" parent="."]
+position = Vector3(37.6, -8.8, 12.2)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower0_2_1_2"]
+mesh = SubResource("s93")
+
+[node name="Bush0_2_2" type="MeshInstance3D" parent="."]
+position = Vector3(38.7, -9.2, 12)
+mesh = SubResource("s94")
+
+[node name="Flower0_2_2_0" type="Node3D" parent="."]
+position = Vector3(38.5, -8.8, 12.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower0_2_2_0"]
+mesh = SubResource("s95")
+
+[node name="Flower0_2_2_1" type="Node3D" parent="."]
+position = Vector3(38.7, -8.8, 12.1)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower0_2_2_1"]
+mesh = SubResource("s96")
+
+[node name="Flower0_2_2_2" type="Node3D" parent="."]
+position = Vector3(38.9, -8.8, 12.2)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower0_2_2_2"]
+mesh = SubResource("s97")
+
+[node name="Bush0_2_3" type="MeshInstance3D" parent="."]
+position = Vector3(40.0, -9.2, 12)
+mesh = SubResource("s98")
+
+[node name="Flower0_2_3_0" type="Node3D" parent="."]
+position = Vector3(39.8, -8.8, 12.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower0_2_3_0"]
+mesh = SubResource("s99")
+
+[node name="Flower0_2_3_1" type="Node3D" parent="."]
+position = Vector3(40.0, -8.8, 12.1)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower0_2_3_1"]
+mesh = SubResource("s100")
+
+[node name="Flower0_2_3_2" type="Node3D" parent="."]
+position = Vector3(40.2, -8.8, 12.2)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower0_2_3_2"]
+mesh = SubResource("s101")
+
+[node name="LowTrunk0_2" type="MeshInstance3D" parent="."]
+position = Vector3(38, -8.9, 12)
+mesh = SubResource("s102")
+
+[node name="LowCrown0_2" type="MeshInstance3D" parent="."]
+position = Vector3(38, -7.9, 12)
+mesh = SubResource("s103")
+
+[node name="Bush1_0_0" type="MeshInstance3D" parent="."]
+position = Vector3(4.1, -9.2, 22)
+mesh = SubResource("s104")
+
+[node name="Flower1_0_0_0" type="Node3D" parent="."]
+position = Vector3(3.9, -8.8, 22.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower1_0_0_0"]
+mesh = SubResource("s105")
+
+[node name="Flower1_0_0_1" type="Node3D" parent="."]
+position = Vector3(4.1, -8.8, 22.1)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower1_0_0_1"]
+mesh = SubResource("s106")
+
+[node name="Flower1_0_0_2" type="Node3D" parent="."]
+position = Vector3(4.3, -8.8, 22.2)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower1_0_0_2"]
+mesh = SubResource("s107")
+
+[node name="Bush1_0_1" type="MeshInstance3D" parent="."]
+position = Vector3(5.4, -9.2, 22)
+mesh = SubResource("s108")
+
+[node name="Flower1_0_1_0" type="Node3D" parent="."]
+position = Vector3(5.2, -8.8, 22.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower1_0_1_0"]
+mesh = SubResource("s109")
+
+[node name="Flower1_0_1_1" type="Node3D" parent="."]
+position = Vector3(5.4, -8.8, 22.1)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower1_0_1_1"]
+mesh = SubResource("s110")
+
+[node name="Flower1_0_1_2" type="Node3D" parent="."]
+position = Vector3(5.6, -8.8, 22.2)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower1_0_1_2"]
+mesh = SubResource("s111")
+
+[node name="Bush1_0_2" type="MeshInstance3D" parent="."]
+position = Vector3(6.7, -9.2, 22)
+mesh = SubResource("s112")
+
+[node name="Flower1_0_2_0" type="Node3D" parent="."]
+position = Vector3(6.5, -8.8, 22.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower1_0_2_0"]
+mesh = SubResource("s113")
+
+[node name="Flower1_0_2_1" type="Node3D" parent="."]
+position = Vector3(6.7, -8.8, 22.1)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower1_0_2_1"]
+mesh = SubResource("s114")
+
+[node name="Flower1_0_2_2" type="Node3D" parent="."]
+position = Vector3(6.9, -8.8, 22.2)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower1_0_2_2"]
+mesh = SubResource("s115")
+
+[node name="Bush1_0_3" type="MeshInstance3D" parent="."]
+position = Vector3(8.0, -9.2, 22)
+mesh = SubResource("s116")
+
+[node name="Flower1_0_3_0" type="Node3D" parent="."]
+position = Vector3(7.8, -8.8, 22.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower1_0_3_0"]
+mesh = SubResource("s117")
+
+[node name="Flower1_0_3_1" type="Node3D" parent="."]
+position = Vector3(8.0, -8.8, 22.1)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower1_0_3_1"]
+mesh = SubResource("s118")
+
+[node name="Flower1_0_3_2" type="Node3D" parent="."]
+position = Vector3(8.2, -8.8, 22.2)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower1_0_3_2"]
+mesh = SubResource("s119")
+
+[node name="LowTrunk1_0" type="MeshInstance3D" parent="."]
+position = Vector3(6, -8.9, 22)
+mesh = SubResource("s120")
+
+[node name="LowCrown1_0" type="MeshInstance3D" parent="."]
+position = Vector3(6, -7.9, 22)
+mesh = SubResource("s121")
+
+[node name="Bush1_1_0" type="MeshInstance3D" parent="."]
+position = Vector3(20.1, -9.2, 22)
+mesh = SubResource("s122")
+
+[node name="Flower1_1_0_0" type="Node3D" parent="."]
+position = Vector3(19.9, -8.8, 22.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower1_1_0_0"]
+mesh = SubResource("s123")
+
+[node name="Flower1_1_0_1" type="Node3D" parent="."]
+position = Vector3(20.1, -8.8, 22.1)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower1_1_0_1"]
+mesh = SubResource("s124")
+
+[node name="Flower1_1_0_2" type="Node3D" parent="."]
+position = Vector3(20.3, -8.8, 22.2)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower1_1_0_2"]
+mesh = SubResource("s125")
+
+[node name="Bush1_1_1" type="MeshInstance3D" parent="."]
+position = Vector3(21.4, -9.2, 22)
+mesh = SubResource("s126")
+
+[node name="Flower1_1_1_0" type="Node3D" parent="."]
+position = Vector3(21.2, -8.8, 22.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower1_1_1_0"]
+mesh = SubResource("s127")
+
+[node name="Flower1_1_1_1" type="Node3D" parent="."]
+position = Vector3(21.4, -8.8, 22.1)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower1_1_1_1"]
+mesh = SubResource("s128")
+
+[node name="Flower1_1_1_2" type="Node3D" parent="."]
+position = Vector3(21.6, -8.8, 22.2)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower1_1_1_2"]
+mesh = SubResource("s129")
+
+[node name="Bush1_1_2" type="MeshInstance3D" parent="."]
+position = Vector3(22.7, -9.2, 22)
+mesh = SubResource("s130")
+
+[node name="Flower1_1_2_0" type="Node3D" parent="."]
+position = Vector3(22.5, -8.8, 22.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower1_1_2_0"]
+mesh = SubResource("s131")
+
+[node name="Flower1_1_2_1" type="Node3D" parent="."]
+position = Vector3(22.7, -8.8, 22.1)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower1_1_2_1"]
+mesh = SubResource("s132")
+
+[node name="Flower1_1_2_2" type="Node3D" parent="."]
+position = Vector3(22.9, -8.8, 22.2)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower1_1_2_2"]
+mesh = SubResource("s133")
+
+[node name="Bush1_1_3" type="MeshInstance3D" parent="."]
+position = Vector3(24.0, -9.2, 22)
+mesh = SubResource("s134")
+
+[node name="Flower1_1_3_0" type="Node3D" parent="."]
+position = Vector3(23.8, -8.8, 22.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower1_1_3_0"]
+mesh = SubResource("s135")
+
+[node name="Flower1_1_3_1" type="Node3D" parent="."]
+position = Vector3(24.0, -8.8, 22.1)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower1_1_3_1"]
+mesh = SubResource("s136")
+
+[node name="Flower1_1_3_2" type="Node3D" parent="."]
+position = Vector3(24.2, -8.8, 22.2)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower1_1_3_2"]
+mesh = SubResource("s137")
+
+[node name="LowTrunk1_1" type="MeshInstance3D" parent="."]
+position = Vector3(22, -8.9, 22)
+mesh = SubResource("s138")
+
+[node name="LowCrown1_1" type="MeshInstance3D" parent="."]
+position = Vector3(22, -7.9, 22)
+mesh = SubResource("s139")
+
+[node name="Bush1_2_0" type="MeshInstance3D" parent="."]
+position = Vector3(36.1, -9.2, 22)
+mesh = SubResource("s140")
+
+[node name="Flower1_2_0_0" type="Node3D" parent="."]
+position = Vector3(35.9, -8.8, 22.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower1_2_0_0"]
+mesh = SubResource("s141")
+
+[node name="Flower1_2_0_1" type="Node3D" parent="."]
+position = Vector3(36.1, -8.8, 22.1)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower1_2_0_1"]
+mesh = SubResource("s142")
+
+[node name="Flower1_2_0_2" type="Node3D" parent="."]
+position = Vector3(36.3, -8.8, 22.2)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower1_2_0_2"]
+mesh = SubResource("s143")
+
+[node name="Bush1_2_1" type="MeshInstance3D" parent="."]
+position = Vector3(37.4, -9.2, 22)
+mesh = SubResource("s144")
+
+[node name="Flower1_2_1_0" type="Node3D" parent="."]
+position = Vector3(37.2, -8.8, 22.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower1_2_1_0"]
+mesh = SubResource("s145")
+
+[node name="Flower1_2_1_1" type="Node3D" parent="."]
+position = Vector3(37.4, -8.8, 22.1)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower1_2_1_1"]
+mesh = SubResource("s146")
+
+[node name="Flower1_2_1_2" type="Node3D" parent="."]
+position = Vector3(37.6, -8.8, 22.2)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower1_2_1_2"]
+mesh = SubResource("s147")
+
+[node name="Bush1_2_2" type="MeshInstance3D" parent="."]
+position = Vector3(38.7, -9.2, 22)
+mesh = SubResource("s148")
+
+[node name="Flower1_2_2_0" type="Node3D" parent="."]
+position = Vector3(38.5, -8.8, 22.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower1_2_2_0"]
+mesh = SubResource("s149")
+
+[node name="Flower1_2_2_1" type="Node3D" parent="."]
+position = Vector3(38.7, -8.8, 22.1)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower1_2_2_1"]
+mesh = SubResource("s150")
+
+[node name="Flower1_2_2_2" type="Node3D" parent="."]
+position = Vector3(38.9, -8.8, 22.2)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower1_2_2_2"]
+mesh = SubResource("s151")
+
+[node name="Bush1_2_3" type="MeshInstance3D" parent="."]
+position = Vector3(40.0, -9.2, 22)
+mesh = SubResource("s152")
+
+[node name="Flower1_2_3_0" type="Node3D" parent="."]
+position = Vector3(39.8, -8.8, 22.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower1_2_3_0"]
+mesh = SubResource("s153")
+
+[node name="Flower1_2_3_1" type="Node3D" parent="."]
+position = Vector3(40.0, -8.8, 22.1)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower1_2_3_1"]
+mesh = SubResource("s154")
+
+[node name="Flower1_2_3_2" type="Node3D" parent="."]
+position = Vector3(40.2, -8.8, 22.2)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower1_2_3_2"]
+mesh = SubResource("s155")
+
+[node name="LowTrunk1_2" type="MeshInstance3D" parent="."]
+position = Vector3(38, -8.9, 22)
+mesh = SubResource("s156")
+
+[node name="LowCrown1_2" type="MeshInstance3D" parent="."]
+position = Vector3(38, -7.9, 22)
+mesh = SubResource("s157")
+
+[node name="Bush2_0_0" type="MeshInstance3D" parent="."]
+position = Vector3(4.1, -9.2, 32)
+mesh = SubResource("s158")
+
+[node name="Flower2_0_0_0" type="Node3D" parent="."]
+position = Vector3(3.9, -8.8, 32.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower2_0_0_0"]
+mesh = SubResource("s159")
+
+[node name="Flower2_0_0_1" type="Node3D" parent="."]
+position = Vector3(4.1, -8.8, 32.1)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower2_0_0_1"]
+mesh = SubResource("s160")
+
+[node name="Flower2_0_0_2" type="Node3D" parent="."]
+position = Vector3(4.3, -8.8, 32.2)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower2_0_0_2"]
+mesh = SubResource("s161")
+
+[node name="Bush2_0_1" type="MeshInstance3D" parent="."]
+position = Vector3(5.4, -9.2, 32)
+mesh = SubResource("s162")
+
+[node name="Flower2_0_1_0" type="Node3D" parent="."]
+position = Vector3(5.2, -8.8, 32.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower2_0_1_0"]
+mesh = SubResource("s163")
+
+[node name="Flower2_0_1_1" type="Node3D" parent="."]
+position = Vector3(5.4, -8.8, 32.1)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower2_0_1_1"]
+mesh = SubResource("s164")
+
+[node name="Flower2_0_1_2" type="Node3D" parent="."]
+position = Vector3(5.6, -8.8, 32.2)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower2_0_1_2"]
+mesh = SubResource("s165")
+
+[node name="Bush2_0_2" type="MeshInstance3D" parent="."]
+position = Vector3(6.7, -9.2, 32)
+mesh = SubResource("s166")
+
+[node name="Flower2_0_2_0" type="Node3D" parent="."]
+position = Vector3(6.5, -8.8, 32.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower2_0_2_0"]
+mesh = SubResource("s167")
+
+[node name="Flower2_0_2_1" type="Node3D" parent="."]
+position = Vector3(6.7, -8.8, 32.1)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower2_0_2_1"]
+mesh = SubResource("s168")
+
+[node name="Flower2_0_2_2" type="Node3D" parent="."]
+position = Vector3(6.9, -8.8, 32.2)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower2_0_2_2"]
+mesh = SubResource("s169")
+
+[node name="Bush2_0_3" type="MeshInstance3D" parent="."]
+position = Vector3(8.0, -9.2, 32)
+mesh = SubResource("s170")
+
+[node name="Flower2_0_3_0" type="Node3D" parent="."]
+position = Vector3(7.8, -8.8, 32.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower2_0_3_0"]
+mesh = SubResource("s171")
+
+[node name="Flower2_0_3_1" type="Node3D" parent="."]
+position = Vector3(8.0, -8.8, 32.1)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower2_0_3_1"]
+mesh = SubResource("s172")
+
+[node name="Flower2_0_3_2" type="Node3D" parent="."]
+position = Vector3(8.2, -8.8, 32.2)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower2_0_3_2"]
+mesh = SubResource("s173")
+
+[node name="LowTrunk2_0" type="MeshInstance3D" parent="."]
+position = Vector3(6, -8.9, 32)
+mesh = SubResource("s174")
+
+[node name="LowCrown2_0" type="MeshInstance3D" parent="."]
+position = Vector3(6, -7.9, 32)
+mesh = SubResource("s175")
+
+[node name="Bush2_1_0" type="MeshInstance3D" parent="."]
+position = Vector3(20.1, -9.2, 32)
+mesh = SubResource("s176")
+
+[node name="Flower2_1_0_0" type="Node3D" parent="."]
+position = Vector3(19.9, -8.8, 32.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower2_1_0_0"]
+mesh = SubResource("s177")
+
+[node name="Flower2_1_0_1" type="Node3D" parent="."]
+position = Vector3(20.1, -8.8, 32.1)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower2_1_0_1"]
+mesh = SubResource("s178")
+
+[node name="Flower2_1_0_2" type="Node3D" parent="."]
+position = Vector3(20.3, -8.8, 32.2)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower2_1_0_2"]
+mesh = SubResource("s179")
+
+[node name="Bush2_1_1" type="MeshInstance3D" parent="."]
+position = Vector3(21.4, -9.2, 32)
+mesh = SubResource("s180")
+
+[node name="Flower2_1_1_0" type="Node3D" parent="."]
+position = Vector3(21.2, -8.8, 32.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower2_1_1_0"]
+mesh = SubResource("s181")
+
+[node name="Flower2_1_1_1" type="Node3D" parent="."]
+position = Vector3(21.4, -8.8, 32.1)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower2_1_1_1"]
+mesh = SubResource("s182")
+
+[node name="Flower2_1_1_2" type="Node3D" parent="."]
+position = Vector3(21.6, -8.8, 32.2)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower2_1_1_2"]
+mesh = SubResource("s183")
+
+[node name="Bush2_1_2" type="MeshInstance3D" parent="."]
+position = Vector3(22.7, -9.2, 32)
+mesh = SubResource("s184")
+
+[node name="Flower2_1_2_0" type="Node3D" parent="."]
+position = Vector3(22.5, -8.8, 32.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower2_1_2_0"]
+mesh = SubResource("s185")
+
+[node name="Flower2_1_2_1" type="Node3D" parent="."]
+position = Vector3(22.7, -8.8, 32.1)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower2_1_2_1"]
+mesh = SubResource("s186")
+
+[node name="Flower2_1_2_2" type="Node3D" parent="."]
+position = Vector3(22.9, -8.8, 32.2)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower2_1_2_2"]
+mesh = SubResource("s187")
+
+[node name="Bush2_1_3" type="MeshInstance3D" parent="."]
+position = Vector3(24.0, -9.2, 32)
+mesh = SubResource("s188")
+
+[node name="Flower2_1_3_0" type="Node3D" parent="."]
+position = Vector3(23.8, -8.8, 32.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower2_1_3_0"]
+mesh = SubResource("s189")
+
+[node name="Flower2_1_3_1" type="Node3D" parent="."]
+position = Vector3(24.0, -8.8, 32.1)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower2_1_3_1"]
+mesh = SubResource("s190")
+
+[node name="Flower2_1_3_2" type="Node3D" parent="."]
+position = Vector3(24.2, -8.8, 32.2)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower2_1_3_2"]
+mesh = SubResource("s191")
+
+[node name="LowTrunk2_1" type="MeshInstance3D" parent="."]
+position = Vector3(22, -8.9, 32)
+mesh = SubResource("s192")
+
+[node name="LowCrown2_1" type="MeshInstance3D" parent="."]
+position = Vector3(22, -7.9, 32)
+mesh = SubResource("s193")
+
+[node name="Bush2_2_0" type="MeshInstance3D" parent="."]
+position = Vector3(36.1, -9.2, 32)
+mesh = SubResource("s194")
+
+[node name="Flower2_2_0_0" type="Node3D" parent="."]
+position = Vector3(35.9, -8.8, 32.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower2_2_0_0"]
+mesh = SubResource("s195")
+
+[node name="Flower2_2_0_1" type="Node3D" parent="."]
+position = Vector3(36.1, -8.8, 32.1)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower2_2_0_1"]
+mesh = SubResource("s196")
+
+[node name="Flower2_2_0_2" type="Node3D" parent="."]
+position = Vector3(36.3, -8.8, 32.2)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower2_2_0_2"]
+mesh = SubResource("s197")
+
+[node name="Bush2_2_1" type="MeshInstance3D" parent="."]
+position = Vector3(37.4, -9.2, 32)
+mesh = SubResource("s198")
+
+[node name="Flower2_2_1_0" type="Node3D" parent="."]
+position = Vector3(37.2, -8.8, 32.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower2_2_1_0"]
+mesh = SubResource("s199")
+
+[node name="Flower2_2_1_1" type="Node3D" parent="."]
+position = Vector3(37.4, -8.8, 32.1)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower2_2_1_1"]
+mesh = SubResource("s200")
+
+[node name="Flower2_2_1_2" type="Node3D" parent="."]
+position = Vector3(37.6, -8.8, 32.2)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower2_2_1_2"]
+mesh = SubResource("s201")
+
+[node name="Bush2_2_2" type="MeshInstance3D" parent="."]
+position = Vector3(38.7, -9.2, 32)
+mesh = SubResource("s202")
+
+[node name="Flower2_2_2_0" type="Node3D" parent="."]
+position = Vector3(38.5, -8.8, 32.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower2_2_2_0"]
+mesh = SubResource("s203")
+
+[node name="Flower2_2_2_1" type="Node3D" parent="."]
+position = Vector3(38.7, -8.8, 32.1)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower2_2_2_1"]
+mesh = SubResource("s204")
+
+[node name="Flower2_2_2_2" type="Node3D" parent="."]
+position = Vector3(38.9, -8.8, 32.2)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower2_2_2_2"]
+mesh = SubResource("s205")
+
+[node name="Bush2_2_3" type="MeshInstance3D" parent="."]
+position = Vector3(40.0, -9.2, 32)
+mesh = SubResource("s206")
+
+[node name="Flower2_2_3_0" type="Node3D" parent="."]
+position = Vector3(39.8, -8.8, 32.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower2_2_3_0"]
+mesh = SubResource("s207")
+
+[node name="Flower2_2_3_1" type="Node3D" parent="."]
+position = Vector3(40.0, -8.8, 32.1)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower2_2_3_1"]
+mesh = SubResource("s208")
+
+[node name="Flower2_2_3_2" type="Node3D" parent="."]
+position = Vector3(40.2, -8.8, 32.2)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower2_2_3_2"]
+mesh = SubResource("s209")
+
+[node name="LowTrunk2_2" type="MeshInstance3D" parent="."]
+position = Vector3(38, -8.9, 32)
+mesh = SubResource("s210")
+
+[node name="LowCrown2_2" type="MeshInstance3D" parent="."]
+position = Vector3(38, -7.9, 32)
+mesh = SubResource("s211")
+
+[node name="Bush3_0_0" type="MeshInstance3D" parent="."]
+position = Vector3(4.1, -9.2, 42)
+mesh = SubResource("s212")
+
+[node name="Flower3_0_0_0" type="Node3D" parent="."]
+position = Vector3(3.9, -8.8, 42.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower3_0_0_0"]
+mesh = SubResource("s213")
+
+[node name="Flower3_0_0_1" type="Node3D" parent="."]
+position = Vector3(4.1, -8.8, 42.1)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower3_0_0_1"]
+mesh = SubResource("s214")
+
+[node name="Flower3_0_0_2" type="Node3D" parent="."]
+position = Vector3(4.3, -8.8, 42.2)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower3_0_0_2"]
+mesh = SubResource("s215")
+
+[node name="Bush3_0_1" type="MeshInstance3D" parent="."]
+position = Vector3(5.4, -9.2, 42)
+mesh = SubResource("s216")
+
+[node name="Flower3_0_1_0" type="Node3D" parent="."]
+position = Vector3(5.2, -8.8, 42.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower3_0_1_0"]
+mesh = SubResource("s217")
+
+[node name="Flower3_0_1_1" type="Node3D" parent="."]
+position = Vector3(5.4, -8.8, 42.1)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower3_0_1_1"]
+mesh = SubResource("s218")
+
+[node name="Flower3_0_1_2" type="Node3D" parent="."]
+position = Vector3(5.6, -8.8, 42.2)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower3_0_1_2"]
+mesh = SubResource("s219")
+
+[node name="Bush3_0_2" type="MeshInstance3D" parent="."]
+position = Vector3(6.7, -9.2, 42)
+mesh = SubResource("s220")
+
+[node name="Flower3_0_2_0" type="Node3D" parent="."]
+position = Vector3(6.5, -8.8, 42.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower3_0_2_0"]
+mesh = SubResource("s221")
+
+[node name="Flower3_0_2_1" type="Node3D" parent="."]
+position = Vector3(6.7, -8.8, 42.1)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower3_0_2_1"]
+mesh = SubResource("s222")
+
+[node name="Flower3_0_2_2" type="Node3D" parent="."]
+position = Vector3(6.9, -8.8, 42.2)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower3_0_2_2"]
+mesh = SubResource("s223")
+
+[node name="Bush3_0_3" type="MeshInstance3D" parent="."]
+position = Vector3(8.0, -9.2, 42)
+mesh = SubResource("s224")
+
+[node name="Flower3_0_3_0" type="Node3D" parent="."]
+position = Vector3(7.8, -8.8, 42.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower3_0_3_0"]
+mesh = SubResource("s225")
+
+[node name="Flower3_0_3_1" type="Node3D" parent="."]
+position = Vector3(8.0, -8.8, 42.1)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower3_0_3_1"]
+mesh = SubResource("s226")
+
+[node name="Flower3_0_3_2" type="Node3D" parent="."]
+position = Vector3(8.2, -8.8, 42.2)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower3_0_3_2"]
+mesh = SubResource("s227")
+
+[node name="LowTrunk3_0" type="MeshInstance3D" parent="."]
+position = Vector3(6, -8.9, 42)
+mesh = SubResource("s228")
+
+[node name="LowCrown3_0" type="MeshInstance3D" parent="."]
+position = Vector3(6, -7.9, 42)
+mesh = SubResource("s229")
+
+[node name="Bush3_1_0" type="MeshInstance3D" parent="."]
+position = Vector3(20.1, -9.2, 42)
+mesh = SubResource("s230")
+
+[node name="Flower3_1_0_0" type="Node3D" parent="."]
+position = Vector3(19.9, -8.8, 42.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower3_1_0_0"]
+mesh = SubResource("s231")
+
+[node name="Flower3_1_0_1" type="Node3D" parent="."]
+position = Vector3(20.1, -8.8, 42.1)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower3_1_0_1"]
+mesh = SubResource("s232")
+
+[node name="Flower3_1_0_2" type="Node3D" parent="."]
+position = Vector3(20.3, -8.8, 42.2)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower3_1_0_2"]
+mesh = SubResource("s233")
+
+[node name="Bush3_1_1" type="MeshInstance3D" parent="."]
+position = Vector3(21.4, -9.2, 42)
+mesh = SubResource("s234")
+
+[node name="Flower3_1_1_0" type="Node3D" parent="."]
+position = Vector3(21.2, -8.8, 42.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower3_1_1_0"]
+mesh = SubResource("s235")
+
+[node name="Flower3_1_1_1" type="Node3D" parent="."]
+position = Vector3(21.4, -8.8, 42.1)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower3_1_1_1"]
+mesh = SubResource("s236")
+
+[node name="Flower3_1_1_2" type="Node3D" parent="."]
+position = Vector3(21.6, -8.8, 42.2)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower3_1_1_2"]
+mesh = SubResource("s237")
+
+[node name="Bush3_1_2" type="MeshInstance3D" parent="."]
+position = Vector3(22.7, -9.2, 42)
+mesh = SubResource("s238")
+
+[node name="Flower3_1_2_0" type="Node3D" parent="."]
+position = Vector3(22.5, -8.8, 42.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower3_1_2_0"]
+mesh = SubResource("s239")
+
+[node name="Flower3_1_2_1" type="Node3D" parent="."]
+position = Vector3(22.7, -8.8, 42.1)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower3_1_2_1"]
+mesh = SubResource("s240")
+
+[node name="Flower3_1_2_2" type="Node3D" parent="."]
+position = Vector3(22.9, -8.8, 42.2)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower3_1_2_2"]
+mesh = SubResource("s241")
+
+[node name="Bush3_1_3" type="MeshInstance3D" parent="."]
+position = Vector3(24.0, -9.2, 42)
+mesh = SubResource("s242")
+
+[node name="Flower3_1_3_0" type="Node3D" parent="."]
+position = Vector3(23.8, -8.8, 42.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower3_1_3_0"]
+mesh = SubResource("s243")
+
+[node name="Flower3_1_3_1" type="Node3D" parent="."]
+position = Vector3(24.0, -8.8, 42.1)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower3_1_3_1"]
+mesh = SubResource("s244")
+
+[node name="Flower3_1_3_2" type="Node3D" parent="."]
+position = Vector3(24.2, -8.8, 42.2)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower3_1_3_2"]
+mesh = SubResource("s245")
+
+[node name="LowTrunk3_1" type="MeshInstance3D" parent="."]
+position = Vector3(22, -8.9, 42)
+mesh = SubResource("s246")
+
+[node name="LowCrown3_1" type="MeshInstance3D" parent="."]
+position = Vector3(22, -7.9, 42)
+mesh = SubResource("s247")
+
+[node name="Bush3_2_0" type="MeshInstance3D" parent="."]
+position = Vector3(36.1, -9.2, 42)
+mesh = SubResource("s248")
+
+[node name="Flower3_2_0_0" type="Node3D" parent="."]
+position = Vector3(35.9, -8.8, 42.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower3_2_0_0"]
+mesh = SubResource("s249")
+
+[node name="Flower3_2_0_1" type="Node3D" parent="."]
+position = Vector3(36.1, -8.8, 42.1)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower3_2_0_1"]
+mesh = SubResource("s250")
+
+[node name="Flower3_2_0_2" type="Node3D" parent="."]
+position = Vector3(36.3, -8.8, 42.2)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower3_2_0_2"]
+mesh = SubResource("s251")
+
+[node name="Bush3_2_1" type="MeshInstance3D" parent="."]
+position = Vector3(37.4, -9.2, 42)
+mesh = SubResource("s252")
+
+[node name="Flower3_2_1_0" type="Node3D" parent="."]
+position = Vector3(37.2, -8.8, 42.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower3_2_1_0"]
+mesh = SubResource("s253")
+
+[node name="Flower3_2_1_1" type="Node3D" parent="."]
+position = Vector3(37.4, -8.8, 42.1)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower3_2_1_1"]
+mesh = SubResource("s254")
+
+[node name="Flower3_2_1_2" type="Node3D" parent="."]
+position = Vector3(37.6, -8.8, 42.2)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower3_2_1_2"]
+mesh = SubResource("s255")
+
+[node name="Bush3_2_2" type="MeshInstance3D" parent="."]
+position = Vector3(38.7, -9.2, 42)
+mesh = SubResource("s256")
+
+[node name="Flower3_2_2_0" type="Node3D" parent="."]
+position = Vector3(38.5, -8.8, 42.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower3_2_2_0"]
+mesh = SubResource("s257")
+
+[node name="Flower3_2_2_1" type="Node3D" parent="."]
+position = Vector3(38.7, -8.8, 42.1)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower3_2_2_1"]
+mesh = SubResource("s258")
+
+[node name="Flower3_2_2_2" type="Node3D" parent="."]
+position = Vector3(38.9, -8.8, 42.2)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower3_2_2_2"]
+mesh = SubResource("s259")
+
+[node name="Bush3_2_3" type="MeshInstance3D" parent="."]
+position = Vector3(40.0, -9.2, 42)
+mesh = SubResource("s260")
+
+[node name="Flower3_2_3_0" type="Node3D" parent="."]
+position = Vector3(39.8, -8.8, 42.0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower3_2_3_0"]
+mesh = SubResource("s261")
+
+[node name="Flower3_2_3_1" type="Node3D" parent="."]
+position = Vector3(40.0, -8.8, 42.1)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower3_2_3_1"]
+mesh = SubResource("s262")
+
+[node name="Flower3_2_3_2" type="Node3D" parent="."]
+position = Vector3(40.2, -8.8, 42.2)
+
+[node name="Mesh" type="MeshInstance3D" parent="Flower3_2_3_2"]
+mesh = SubResource("s263")
+
+[node name="LowTrunk3_2" type="MeshInstance3D" parent="."]
+position = Vector3(38, -8.9, 42)
+mesh = SubResource("s264")
+
+[node name="LowCrown3_2" type="MeshInstance3D" parent="."]
+position = Vector3(38, -7.9, 42)
+mesh = SubResource("s265")
+
+[node name="NguBenchLeg21.15" type="Node3D" parent="."]
+position = Vector3(21.15, -9.68, 28)
+
+[node name="Mesh" type="MeshInstance3D" parent="NguBenchLeg21.15"]
+mesh = SubResource("s266")
+
+[node name="NguBenchLeg22.85" type="Node3D" parent="."]
+position = Vector3(22.85, -9.68, 28)
+
+[node name="Mesh" type="MeshInstance3D" parent="NguBenchLeg22.85"]
+mesh = SubResource("s267")
+
+[node name="Bench0" type="Node3D" parent="."]
+position = Vector3(2, -9.9, 22)
+
+[node name="Seat" type="Node3D" parent="Bench0"]
+position = Vector3(0, 0.5, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Bench0/Seat"]
+mesh = SubResource("s268")
+
+[node name="Leg-0.85" type="Node3D" parent="Bench0"]
+position = Vector3(-0.85, 0.24, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Bench0/Leg-0.85"]
+mesh = SubResource("s269")
+
+[node name="Leg0.85" type="Node3D" parent="Bench0"]
+position = Vector3(0.85, 0.24, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Bench0/Leg0.85"]
+mesh = SubResource("s270")
+
+[node name="Back" type="Node3D" parent="Bench0"]
+position = Vector3(0, 0.86, 0.24)
+
+[node name="Mesh" type="MeshInstance3D" parent="Bench0/Back"]
+mesh = SubResource("s271")
+
+[node name="BenchCollision0" type="StaticBody3D" parent="."]
+position = Vector3(2, -9.5, 22)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="BenchCollision0"]
+shape = SubResource("s272")
+
+[node name="Bench1" type="Node3D" parent="."]
+position = Vector3(42, -9.9, 22)
+
+[node name="Seat" type="Node3D" parent="Bench1"]
+position = Vector3(0, 0.5, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Bench1/Seat"]
+mesh = SubResource("s273")
+
+[node name="Leg-0.85" type="Node3D" parent="Bench1"]
+position = Vector3(-0.85, 0.24, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Bench1/Leg-0.85"]
+mesh = SubResource("s274")
+
+[node name="Leg0.85" type="Node3D" parent="Bench1"]
+position = Vector3(0.85, 0.24, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Bench1/Leg0.85"]
+mesh = SubResource("s275")
+
+[node name="Back" type="Node3D" parent="Bench1"]
+position = Vector3(0, 0.86, 0.24)
+
+[node name="Mesh" type="MeshInstance3D" parent="Bench1/Back"]
+mesh = SubResource("s276")
+
+[node name="BenchCollision1" type="StaticBody3D" parent="."]
+position = Vector3(42, -9.5, 22)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="BenchCollision1"]
+shape = SubResource("s277")
+
+[node name="Bench2" type="Node3D" parent="."]
+position = Vector3(6, -9.9, 47)
+
+[node name="Seat" type="Node3D" parent="Bench2"]
+position = Vector3(0, 0.5, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Bench2/Seat"]
+mesh = SubResource("s278")
+
+[node name="Leg-0.85" type="Node3D" parent="Bench2"]
+position = Vector3(-0.85, 0.24, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Bench2/Leg-0.85"]
+mesh = SubResource("s279")
+
+[node name="Leg0.85" type="Node3D" parent="Bench2"]
+position = Vector3(0.85, 0.24, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Bench2/Leg0.85"]
+mesh = SubResource("s280")
+
+[node name="Back" type="Node3D" parent="Bench2"]
+position = Vector3(0, 0.86, 0.24)
+
+[node name="Mesh" type="MeshInstance3D" parent="Bench2/Back"]
+mesh = SubResource("s281")
+
+[node name="BenchCollision2" type="StaticBody3D" parent="."]
+position = Vector3(6, -9.5, 47)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="BenchCollision2"]
+shape = SubResource("s282")
+
+[node name="Bench3" type="Node3D" parent="."]
+position = Vector3(38, -9.9, 47)
+
+[node name="Seat" type="Node3D" parent="Bench3"]
+position = Vector3(0, 0.5, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Bench3/Seat"]
+mesh = SubResource("s283")
+
+[node name="Leg-0.85" type="Node3D" parent="Bench3"]
+position = Vector3(-0.85, 0.24, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Bench3/Leg-0.85"]
+mesh = SubResource("s284")
+
+[node name="Leg0.85" type="Node3D" parent="Bench3"]
+position = Vector3(0.85, 0.24, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Bench3/Leg0.85"]
+mesh = SubResource("s285")
+
+[node name="Back" type="Node3D" parent="Bench3"]
+position = Vector3(0, 0.86, 0.24)
+
+[node name="Mesh" type="MeshInstance3D" parent="Bench3/Back"]
+mesh = SubResource("s286")
+
+[node name="BenchCollision3" type="StaticBody3D" parent="."]
+position = Vector3(38, -9.5, 47)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="BenchCollision3"]
+shape = SubResource("s287")
+
+[node name="BrokenBunk" parent="." instance=ExtResource("e8")]
+position = Vector3(8, -9.4, 37)
+rotation_degrees = Vector3(0, 0, 90)
+scale = Vector3(1, 1, 1)
+
+[node name="DetachedRail0" type="Node3D" parent="."]
+position = Vector3(7.6, -9.78, 36.8)
+rotation_degrees = Vector3(0,20,0)
+
+[node name="Mesh" type="MeshInstance3D" parent="DetachedRail0"]
+mesh = SubResource("s288")
+
+[node name="DetachedRail1" type="Node3D" parent="."]
+position = Vector3(7.9, -9.78, 36.8)
+rotation_degrees = Vector3(0,27,0)
+
+[node name="Mesh" type="MeshInstance3D" parent="DetachedRail1"]
+mesh = SubResource("s289")
+
+[node name="DetachedRail2" type="Node3D" parent="."]
+position = Vector3(8.2, -9.78, 36.8)
+rotation_degrees = Vector3(0,34,0)
+
+[node name="Mesh" type="MeshInstance3D" parent="DetachedRail2"]
+mesh = SubResource("s290")
+
+[node name="DetachedRail3" type="Node3D" parent="."]
+position = Vector3(8.5, -9.78, 36.8)
+rotation_degrees = Vector3(0,41,0)
+
+[node name="Mesh" type="MeshInstance3D" parent="DetachedRail3"]
+mesh = SubResource("s291")
+
+[node name="GardenLights_0_0" type="Node3D" parent="."]
+script = ExtResource("e9")
+kind = "garden"
+points = PackedVector3Array(1.0,-9.9,10,1.0,-9.9,24)
+
+[node name="GardenLights_0_1" type="Node3D" parent="."]
+script = ExtResource("e9")
+kind = "garden"
+points = PackedVector3Array(1.0,-9.9,40)
+
+[node name="GardenLights_1_0" type="Node3D" parent="."]
+script = ExtResource("e9")
+kind = "garden"
+points = PackedVector3Array(43.0,-9.9,10,43.0,-9.9,24)
+
+[node name="GardenLights_1_1" type="Node3D" parent="."]
+script = ExtResource("e9")
+kind = "garden"
+points = PackedVector3Array(43.0,-9.9,40)
+
+[node name="Flicker0" type="OmniLight3D" parent="."]
+position = Vector3(1.0, -7.0, 10)
+script = ExtResource("e10")
+phase = 0.0
+omni_range = 5.0
+shadow_enabled = false
+light_color = Color(0.7,0.72,0.45,1)
+
+[node name="Flicker1" type="OmniLight3D" parent="."]
+position = Vector3(1.0, -7.0, 24)
+script = ExtResource("e10")
+phase = 1.9
+omni_range = 5.0
+shadow_enabled = false
+light_color = Color(0.7,0.72,0.45,1)
+
+[node name="Flicker2" type="OmniLight3D" parent="."]
+position = Vector3(1.0, -7.0, 40)
+script = ExtResource("e10")
+phase = 3.8
+omni_range = 5.0
+shadow_enabled = false
+light_color = Color(0.7,0.72,0.45,1)
+
+[node name="Flicker3" type="OmniLight3D" parent="."]
+position = Vector3(43.0, -7.0, 10)
+script = ExtResource("e10")
+phase = 5.699999999999999
+omni_range = 5.0
+shadow_enabled = false
+light_color = Color(0.7,0.72,0.45,1)
+
+[node name="Flicker4" type="OmniLight3D" parent="."]
+position = Vector3(43.0, -7.0, 24)
+script = ExtResource("e10")
+phase = 7.6
+omni_range = 5.0
+shadow_enabled = false
+light_color = Color(0.7,0.72,0.45,1)
+
+[node name="Flicker5" type="OmniLight3D" parent="."]
+position = Vector3(43.0, -7.0, 40)
+script = ExtResource("e10")
+phase = 9.5
+omni_range = 5.0
+shadow_enabled = false
+light_color = Color(0.7,0.72,0.45,1)
