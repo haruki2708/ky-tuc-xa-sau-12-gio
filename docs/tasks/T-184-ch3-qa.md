@@ -1,5 +1,5 @@
 # T-184 — Chương 3: bot, menu nhảy 4 khu, đo FPS ngoài trời
-- Lane: C (QA và Tools) | Trạng thái: todo | Agent:
+- Lane: C (QA và Tools) | Trạng thái: done | Agent:
 - Nhánh: `lane-c/T-184-ch3-qa`
 - Phụ thuộc: T-166, T-173, T-180. **Đọc `docs/design/CH3_DESIGN.md`** (D-052, D-054).
 - **Hạn đề xuất:** đo FPS trên greybox của lane B ngay khi có (2026-10-07…08); khung bot hết ngày 2026-10-08; chạy trên bản ghép sau khi integrator ghép.
@@ -86,3 +86,7 @@ pwsh tools/playthrough.ps1 -Chapter 3 -Scenario ch3_guard -RequireComplete
 - Lane A/integrator: công bố node/property/value để xác nhận Zombie đang active, NodePath vùng đầu, đủ đường dẫn guard, target trao sắt và API refill thể lực. Cần API bật/tắt xác bao gồm kiểm soát đợt spawn mới, không chỉ xóa các xác hiện tại. Không tự thêm API vào core/player/horde.
 - Core/integrator: điền postcondition lấy chìa/gây tiếng động 203/sống qua sân, action API tại waypoint, death UI, điểm bắt đầu case grabbed và guard_target; scene/director/run_from theo card. Xác nhận profile với A/B rồi chạy ba case khi được yêu cầu.
 - Không có câu hỏi mới về luật/cốt truyện; không sửa STATUS, core/gameplay/map, không thêm plugin, không cài phần mềm. Khung và test đã bàn giao; FPS và xác nhận trên bản ghép còn dở.
+
+### Review (integrator, 2026-10-06)
+- **Đạt phần khung, đã merge.** Bot 3 kịch bản, menu F9 4 khu, công cụ đo FPS theo khu với 0/20/40 xác, 6 test công cụ.
+- **FPS chưa đo** (nhánh tạo trước khi có map). Map và xác đã có trên `main`; integrator điền `tools/ch3-profile.json` khi dựng `Chapter3Director` (T-181), rồi chạy `-Performance` khi chủ dự án đồng ý.

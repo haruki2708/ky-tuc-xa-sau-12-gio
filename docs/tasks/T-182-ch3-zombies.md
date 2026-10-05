@@ -1,5 +1,5 @@
 # T-182 — Chương 3: xác sống, thanh sắt, thể lực, đồng đội, bảo vệ, cảnh chết mới
-- Lane: A (Gameplay) | Trạng thái: todo | Agent:
+- Lane: A (Gameplay) | Trạng thái: done | Agent:
 - Nhánh: `lane-a/T-182-ch3-zombies`
 - Phụ thuộc: T-134 (`pursuer.gd`), T-161, T-171, T-177. **Đọc kỹ `docs/design/CH3_DESIGN.md`** (D-052, D-054).
 - **Hạn đề xuất: hết ngày 2026-10-08.** Lane B push greybox khuôn viên trong ngày 2026-10-07. Trước đó tự dựng cảnh thử nhỏ (sàn phẳng, một cầu thang, navmesh).
@@ -148,3 +148,8 @@ Cơ chế chơi của chương 3:
 3. **Lane D/E:** ghép UI/sound theo signal và `audio_enabled` trên đây; hiện A chỉ phát signal, chưa xác nhận lớp UI/âm thanh CH3 đã ghép.
 
 Không có câu hỏi mới về luật chơi/cốt truyện; không tự thêm tình tiết hay cơ chế ngoài card.
+
+### Review (integrator, 2026-10-06)
+- **Đạt, đã merge.** Xác (thức, nghe, tóm 1 m, tê liệt 5 giây, phá cửa gỗ không nhân theo bầy), quản lý 40 xác, thanh sắt (trúng đầu, cong, gãy sau 8 lần), thể lực (chỉ bật ở chương 3), đồng đội theo đường, bảo vệ, 2 cảnh chết; sửa test T-177 chập chờn (chỉ so X/Z).
+- Nhánh tạo trước khi có khung map và âm thanh, nên phần sau chuyển cho integrator (T-181) khi ghép luồng: gắn `ZombieAudio` và gọi `play_step` / `play_door_hit` / `set_hunting` / `set_eligible`; dùng mô hình lane B qua `set_body`; ray "aim" test trên map thật (FireKey, Extinguisher2F, BarSpawns, cửa sổ phòng quản lý, cần cúi).
+- Ghép thử headless với map lane B: 40 xác thức cùng lúc, khoảng 6,9 ms/frame logic.

@@ -1,5 +1,5 @@
 # T-183 — Chương 3: khuôn viên trường (nhà B tầng 1–4, vườn hoa, sân vận động, cổng, nhà ăn)
-- Lane: B (Môi trường và 3D) | Trạng thái: todo | Agent:
+- Lane: B (Môi trường và 3D) | Trạng thái: done | Agent:
 - Nhánh: `lane-b/T-183-ch3-campus`
 - Phụ thuộc: T-162, T-165, T-172. **Đọc kỹ `docs/design/CH3_DESIGN.md`**, nhất là mục "Quy mô map" (D-054).
 - **Hạn đề xuất:** greybox cả khuôn viên **hết ngày 2026-10-07** (push sớm để lane A, C thử); mô hình thật hết ngày 2026-10-08.
@@ -121,3 +121,9 @@ Model: Nhật 652, Ngư 664, bảo vệ 800, từng zombie 640–668 tam giác (
 
 ### Ghi chú integrator (2026-10-06): khung khối hộp đã merge sớm
 - Commit khung `18661fc` merge vào `main` trước để lane A, C dùng. Kiểm headless: đủ mọi anchor và vùng, mỗi khu 6 điểm xác, 12 bảo vệ, 6 chỗ thanh sắt, đủ 5 hàm API, có navmesh; cả bộ test 537/537.
+
+### Review (integrator, 2026-10-06)
+- **Đạt, đã merge.** Đủ các khu theo D-054 (sân thật 176 × 92 m, vòng 400 m), không khu nào còn là khối hộp; 13 mô hình nhân vật dưới 1500 tam giác, đủ tư thế; navmesh liên thông 407 → nhà ăn; tầng 4 cũ không bị sửa.
+- Ghép thử headless (integrator): Floor4 + Campus + player + 40 xác lane A trên anchor lane B + 2 đồng đội + 12 bảo vệ, khoảng 6,9 ms/frame logic, không lỗi.
+- **Câu hỏi nội dung chờ chủ dự án:** tên trường trên biển cổng (hiện chữ mờ không đọc được).
+- Quan sát: sân vận động trong sương đỏ khá tối; xem lại khi chơi thử.

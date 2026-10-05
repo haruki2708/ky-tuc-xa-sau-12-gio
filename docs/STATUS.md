@@ -66,9 +66,9 @@
 | T-180 Bot gõ từ và nhắn dự đoán, kiểm tra F9 | C | **done**, đã merge; bot thật chưa chạy |
 | **Chương 3 "Truy sát" (D-052…D-054, giao 2026-10-06)** | | |
 | T-181 Hợp đồng chung, kịch bản, luồng 4 khu, ghép | core | **doing**: hợp đồng EventBus xong |
-| T-182 Xác sống, thanh sắt, thể lực, đồng đội, bảo vệ, cảnh chết | A | todo |
-| T-183 Khuôn viên: nhà B tầng 1–4, vườn hoa, sân vận động, cổng, nhà ăn (greybox trước) | B | **doing**: khung khối hộp đã merge vào `main`; đang làm mô hình thật |
-| T-184 Bot, menu nhảy 4 khu, đo FPS ngoài trời | C | todo |
+| T-182 Xác sống, thanh sắt, thể lực, đồng đội, bảo vệ, cảnh chết | A | **done**, đã merge |
+| T-183 Khuôn viên: nhà B tầng 1–4, vườn hoa, sân vận động, cổng, nhà ăn (greybox trước) | B | **done**, đã merge; chờ chốt tên trường trên biển cổng |
+| T-184 Bot, menu nhảy 4 khu, đo FPS ngoài trời | C | **done** phần khung, đã merge; FPS chưa đo |
 | T-185 Thể lực, thanh sắt, lớp chết, thẻ hết chương | D | **done**, đã merge |
 | T-186 Tiếng xác, thanh sắt, thở dốc, ngoài trời, nhạc | E | **done**, đã merge; chờ nghe |
 | T-171 Cầm giẻ, bịt miệng xác, cửa kẹt, buồng tắm, nút vòi sen, cảnh chết `corpse_lunge` và `scald` | A | **done**, đã merge |
