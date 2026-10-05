@@ -5,11 +5,11 @@
 
 ## Việc tiếp theo (cho phiên integrator kế tiếp)
 1. **Chủ dự án chơi thử chương 2 lần 2** theo `docs/playtest/CH2_WALKTHROUGH.md`. Ghi lại: bộ gõ có chạy không; từ nào bị từ chối oan (thêm vào `SUPPLEMENT` trong `docs/design/ch2/build_dictionary.py`, chạy lại script); giọng xác ghép tiếng nghe rõ không; tốc độ chat mới.
-2. **Bot chương 2:** 6 kịch bản (`ch2_good`, `ch2_chain_timeout`, `ch2_chain_wrong`, `ch2_scald`, `ch2_leave_shower`, `ch2_wrong_prediction`) và `-Performance`, lệnh ở card T-180. **Chỉ chạy khi chủ dự án đồng ý**, từng kịch bản một (15–20 phút, tốn RAM).
+2. **Bot chương 2** (chủ dự án: chưa cần chạy, tự chơi thử 2026-10-07): 6 kịch bản (`ch2_good`, `ch2_chain_timeout`, `ch2_chain_wrong`, `ch2_scald`, `ch2_leave_shower`, `ch2_wrong_prediction`) và `-Performance`, lệnh ở card T-180. **Chỉ chạy khi chủ dự án đồng ý**, từng kịch bản một (15–20 phút, tốn RAM).
 3. **Chưa kiểm tra:** F9 bằng tay (đã có test headless); `CctvAudio.play_room_loss` chưa nối.
 4. **Test chập chờn khi chạy cả bộ (chạy riêng thì qua):** lane B `test_stuck_door_shakes_without_opening_then_cancels_on_open` (bộ hẹn giờ 0,07 giây); lane A `test_typing_stops_existing_motion_blocks_w_e_then_restores_gameplay` (đỏ 1 trong 2 lần chạy cả bộ ngày 06/10, có thể do test trước để lại trạng thái; cần lane A xem).
 5. **Để sau (D-045):** chương 1 đoạn gõ tường; chủ dự án nghe âm thanh lane E chương 1 và 2.
-6. **Sau khi chốt chương 2:** đề xuất T-181 (lane B) khung map chương 3 (nhà B 6 tầng, cầu thang, vườn hoa, sân vận động, cổng trường, nhà ăn).
+6. **Chương 3 "Truy sát": thiết kế đang chờ duyệt** (D-052, `docs/design/CH3_DESIGN.md`). Duyệt xong mới viết card T-181… cho các lane.
 7. Máy chủ dự án: đã tạo `%APPDATA%/Godot/app_userdata/Ky Tuc Xa Sau 12 Gio/progress.json` = `{"unlocked": 2}` để chọn được chương 2.
 **Repo:** https://github.com/tuaanh666/ky-tuc-xa-sau-12-gio (private)
 
