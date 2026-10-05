@@ -65,6 +65,9 @@ const TELL_CORRECT := 0
 ## Insane (D-039): in the enlarged room (T-162) he hears a breath or a move
 ## anywhere in 407, not just near Trung's bunk.
 const MANAGER_HEAR_RADIUS_INSANE := 7.5
+const STRIP_NUDGE := Vector3(0.4, 0.0, 0.0)
+## Where a search spot's E-zone goes relative to lane B's anchor (world).
+const SEARCH_OFFSETS := {"VietLocker": Vector3(0.32, 1.0, 0.0), "PhucMattress": Vector3(0.5, 0.1, 0.0)}
 ### N6: the real lamp, else the flag.
 func _desk_lamp_on() -> bool:
 	var room := _room()
@@ -1100,6 +1103,9 @@ func _place_mission_props() -> void:
 			spot.set("prompt_key", spots[anchor_name][1])
 			spot.set("document_id", spots[anchor_name][2])
 			anchor.add_child(spot)
+			# Lane B's anchors sit at the model's origin (locker foot, middle of
+			# the upper bunk); the player's ray must reach the front face.
+			spot.global_position = anchor.global_position + SEARCH_OFFSETS.get(anchor_name, Vector3.ZERO)
 			if spot.has_signal("searched"):
 				spot.searched.connect(_on_searched.bind(anchor_name))
 	# Shared wall with 406 (N3).
@@ -1112,6 +1118,10 @@ func _place_mission_props() -> void:
 		wall.add_child(knock)
 	# Power strip (N2): lane A's three switch areas over lane B's model.
 	var strip_anchor := _room_anchor("PowerStrip")
+	if strip_anchor != null:
+		# Lane B's strip sits half under bunk A: out from under it so every
+		# switch can be aimed at standing up.
+		strip_anchor.global_position += STRIP_NUDGE
 	if strip_anchor != null and ResourceLoader.exists("res://scenes/interaction/power_strip.tscn"):
 		var strip := load("res://scenes/interaction/power_strip.tscn").instantiate() as Node3D
 		strip.name = "PowerStripInteract"

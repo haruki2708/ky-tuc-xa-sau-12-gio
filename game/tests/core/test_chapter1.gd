@@ -388,3 +388,46 @@ func test_player_can_aim_at_the_door_latch() -> void:
 	query.collide_with_bodies = false
 	var hit: Dictionary = (scene as Node3D).get_world_3d().direct_space_state.intersect_ray(query)
 	assert_eq(hit.get("collider"), latch, "the ray from the room hits the latch first;")
+
+
+func test_player_can_aim_at_every_mission_prop() -> void:
+	# The bot calls these directly; a player has to hit them with the ray.
+	await wait_frames(2)
+	var anchors := "Floor4/Room407/Anchors/"
+	var targets := {
+		"switch 1": anchors + "PowerStrip/PowerStripInteract/Switch1",
+		"switch 2": anchors + "PowerStrip/PowerStripInteract/Switch2",
+		"switch 3": anchors + "PowerStrip/PowerStripInteract/Switch3",
+		"blue cable": anchors + "LanBlueEnd/Cable_blue",
+		"gray cable": anchors + "LanGrayEnd/Cable_gray",
+		"wall port": anchors + "LanWallPort/LanSocket",
+		"desk lamp": anchors + "DeskLampSwitch/DeskLampSwitch",
+		"Việt's locker": anchors + "VietLocker/SearchVietLocker",
+		"Phúc's mattress": anchors + "PhucMattress/SearchPhucMattress",
+		"bin": anchors + "TrashBin/SearchTrashBin",
+		"wall 406": anchors + "WallKnock406/WallKnock406",
+	}
+	var space := (scene as Node3D).get_world_3d().direct_space_state
+	for label: String in targets:
+		var area := scene.get_node_or_null(targets[label]) as Area3D
+		assert_not_null(area, label + " placed")
+		if area == null:
+			continue
+		var shape := area.find_children("*", "CollisionShape3D", true, false)
+		assert_false(shape.is_empty(), label + " has a shape")
+		if shape.is_empty():
+			continue
+		var at := (shape[0] as Node3D).global_position
+		# Try a few standing eye positions around the prop; one must hit it first.
+		var reachable := false
+		for offset: Vector3 in [Vector3(0, 1.0, 1.0), Vector3(0, 1.0, -1.0), Vector3(1.0, 1.0, 0), Vector3(-1.0, 1.0, 0), Vector3(0.7, 1.0, 0.7), Vector3(-0.7, 1.0, -0.7), Vector3(0.7, 1.0, -0.7), Vector3(-0.7, 1.0, 0.7)]:
+			var eye := Vector3(at.x + offset.x, 1.6, at.z + offset.z)
+			if eye.distance_to(at) > 2.2:
+				eye = at + (eye - at).normalized() * 2.0
+			var query := PhysicsRayQueryParameters3D.create(eye, at + (at - eye).normalized() * 0.3, 1 | 4)
+			query.collide_with_areas = true
+			var hit: Dictionary = space.intersect_ray(query)
+			if hit.get("collider") == area:
+				reachable = true
+				break
+		assert_true(reachable, label + " can be aimed at (%s)" % str(at))
