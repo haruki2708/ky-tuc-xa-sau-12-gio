@@ -137,3 +137,4 @@ feed nào dùng trong kịch bản, không tự thay lựa chọn này trong cor
 - Trả lời câu hỏi: camera vòng 3 dùng **Room310** đúng như card (số 102 trong thiết kế chỉ là ví dụ).
 - Core đổi trạng thái `sit` của hợp đồng sang `sit_play` của B.
 - **Cần sửa (lần sau):** `test_stuck_door_shakes_without_opening_then_cancels_on_open` chập chờn khi máy bận (chờ bộ hẹn giờ 0,07 giây); chạy riêng thì đạt.
+- **Integrator sửa sau chơi thử (2026-10-05):** giường tầng B che nửa ô cửa nhà vệ sinh (khe còn khoảng 0,5 m), người chơi không vào lấy giẻ được. Đã dời ô cửa sang trái 1 m trong `ch1v2/extension.tscn` (tường `BathFrontW`/`BathFrontE`, `BathLintel`, `BathroomDoor` tại x 5,35); đã thử đi bộ từ phòng ngủ vào nhà vệ sinh.
