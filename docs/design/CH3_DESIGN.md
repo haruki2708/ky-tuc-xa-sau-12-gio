@@ -17,47 +17,52 @@
   - **thanh sắt** đập đầu làm xác **tê liệt khoảng 5 giây**, cong dần và **gãy sau khoảng 8 lần**;
   - **bị tóm là chết ngay** (D-052).
 - **Đồng đội đi cùng theo kịch bản** (D-052): Minh Nhật nhập đoàn ở tầng 2 nhà B (phòng 203 của cậu ấy), Ngư ở vườn hoa. Họ chạy theo đường dựng sẵn, dừng chờ ở các điểm hẹn, có thoại. Không ai trong hai người chết ở chương 3.
-- **Dài khoảng 40–50 phút chơi.** Checkpoint ở đầu mỗi khu: `ch3_b` (nhà B), `ch3_garden` (vườn hoa), `ch3_stadium` (sân vận động), `ch3_gate` (cổng và nhà ăn).
-- **Map gọn** (D-052):
+- **Dài khoảng 50–60 phút chơi.** Checkpoint ở đầu mỗi khu: `ch3_b` (nhà B), `ch3_garden` (vườn hoa), `ch3_stadium` (sân vận động), `ch3_gate` (cổng và nhà ăn).
+- **Map to gần kích thước thật** (D-054), khoảng 500 × 350 m. **Phần chi tiết gọn** (D-052):
   - làm kỹ: nhà B từ tầng 4 xuống tầng 1, vườn hoa, sân vận động;
-  - làm nhỏ: cổng trường và nhà ăn.
+  - làm nhỏ: cổng trường và nhà ăn;
+  - giảng đường, thư viện, nhà thi đấu chỉ là vỏ ngoài, dành cho chương 4.
 - **Cài sẵn manh mối động đất** cho twist của chương 4, không ai nói ra: vết nứt, đồng hồ dừng lúc 4:00, đồ đổ, tiếng còi cứu hộ rất nhỏ.
 
-## Quy mô map [Claude đề xuất]
-Tính theo kích thước đã có: hành lang tầng 4 dài **44 m**, rộng 2,4 m, hành lang ngoài có lan can; mỗi tầng cao **3,3 m**; phòng 407 khoảng 8 × 7 m. Người chơi đi bộ **2,2 m/s**, chạy **3,6 m/s**. Xác đề xuất đi **khoảng 1,5 m/s**.
+## Quy mô map (D-054: to thật, trong hạn)
+Khuôn viên dựng **gần kích thước thật** để có cảm giác cả trường rộng lớn và trống trải. Phần chi tiết bên trong vẫn theo kế hoạch gọn (D-052). Mốc sẵn có: hành lang tầng 4 dài **44 m**, rộng 2,4 m; mỗi tầng cao **3,3 m**. Người chơi đi bộ **2,2 m/s**, chạy **3,6 m/s**; xác đề xuất đi **khoảng 1,5 m/s**.
 
 ```
-                        (sương mù, tường rào, cây)
-   ┌───────────── SÂN VẬN ĐỘNG ~90 × 55 m ─────────────┐
-   │  đường chạy vòng ~220 m (1 vòng chạy ≈ 60 giây)   │
-   │  khán đài 1 bên: dài 40 m, 6 bậc                  │
-   └─────────────┬─────────────────────────────────────┘
-                 │ lối đi ~70 m
-   NHÀ A (chỉ mặt tiền, 6 tầng)
-   ┌─────────────────────────────┐
-   └─────────────────────────────┘        NHÀ ĂN ~24 × 16 m
-        VƯỜN HOA ~44 × 25 m                + bếp 8 × 6 m
-   ┌─────────────────────────────┐        + kho 6 × 4 m
-   │ NHÀ B 44 × 10 m, tầng 1–4   │              │ ~60 m
-   │ chơi được; tầng 5–6 vỏ      │              │
-   └─────────────────────────────┘     CỔNG TRƯỜNG: sân ~30 × 20 m,
-        đường nội bộ ~100 m ─────────► cổng rộng 12 m, chốt bảo vệ,
-                                       8 bảo vệ đứng hàng
+ ┌──────────────────────── tường rào, hàng cây (khoảng 500 × 350 m) ───────────────────────┐
+ │                                                                                         │
+ │   GIẢNG ĐƯỜNG (vỏ)      THƯ VIỆN (vỏ)        ┌──────── SÂN VẬN ĐỘNG 176 × 92 m ───────┐  │
+ │   80 × 20 m, 5 tầng     40 × 30 m, 3 tầng    │ đường chạy 400 m, sân cỏ, khán đài     │  │
+ │                                              │ chính 80 m × 10 bậc, khán đài phụ      │  │
+ │   NHÀ THI ĐẤU (vỏ)                           └──────────────┬─────────────────────────┘  │
+ │   60 × 40 m                                                 │ ~120 m                     │
+ │          NHÀ A (vỏ, 6 tầng, 44 × 10 m)                                                   │
+ │          VƯỜN HOA 44 × 40 m              NHÀ ĂN 40 × 24 m + bếp + kho                    │
+ │          NHÀ B (chơi tầng 1–4, 6 tầng)        │ ~80 m                                    │
+ │               └──── đại lộ nội bộ ~200 m ─────┴──► CỔNG TRƯỜNG: sân 60 × 40 m,           │
+ │                                                    cổng 20 m, chốt bảo vệ, 12 bảo vệ     │
+ └─────────────────────────────────────────────────────────────────────────────────────────┘
 ```
 
-| Khu | Kích thước | Chơi được những gì | Làm mới hay dùng lại |
+| Khu | Kích thước | Chơi được | Ghi chú |
 |---|---|---|---|
-| **Nhà B** | 44 × 10 m, tầng 1–4 (cao 13,2 m) | Hành lang 4 tầng; cầu thang chính (một đầu) và cầu thang thoát hiểm (đầu kia); phòng 407; phòng 203; sảnh và phòng quản lý ở tầng 1. Các phòng khác đóng cửa (chỉ là cửa và lối xác tràn ra) | Tầng 4 dùng lại; tầng 3, 2, 1 nhân bản từ kit tầng 4 rồi sửa (sập, nứt, sảnh). Tầng 5–6 chỉ là vỏ ngoài |
-| **Vườn hoa** | 44 × 25 m, giữa nhà B và nhà A | Lối lát gạch, 6–8 bồn hoa, ghế đá, cây thấp, đèn vườn | Mới. Nhà A chỉ có mặt tiền, không vào được |
-| **Sân vận động** | ~90 × 55 m (nhỏ hơn sân thật 400 m, cho vừa mức PS1 và số xác) | Đường chạy vòng, sân cỏ, khán đài 6 bậc, 3 cổng xác tràn vào, cột đèn | Mới |
-| **Cổng trường** | Sân trước cổng 30 × 20 m | Cổng sắt, chốt bảo vệ, hàng bảo vệ, cột cổng nghiêng | Mới, nhỏ |
-| **Nhà ăn** | Sảnh 24 × 16 m, bếp, kho | Bàn ghế đổ, quầy, tivi, đồng hồ, cửa kho để thoát | Mới, nhỏ |
-| **Đường nối** | Tổng khoảng 250 m đường nội bộ | Chạy giữa các khu, xác lác đác | Mới; hai bên là cây, tường rào |
+| **Nhà B** | 44 × 10 m, đủ 6 tầng | Tầng 1–4: hành lang, hai cầu thang, phòng 407, phòng 203, sảnh, phòng quản lý. Các phòng khác đóng cửa | Tầng 4 dùng lại; tầng 3, 2, 1 nhân bản từ kit tầng 4 rồi sửa; tầng 5–6 chỉ là mặt ngoài, cầu thang lên bị đổ |
+| **Nhà A** | 44 × 10 m, 6 tầng | Không vào; cửa sổ có bóng xác | Mặt ngoài, đối diện nhà B qua vườn hoa |
+| **Vườn hoa** | 44 × 40 m | Lối lát gạch, 10–12 bồn hoa, ghế đá, cây, đèn vườn | Gặp Ngư |
+| **Sân vận động** | **176 × 92 m (sân thật, vòng chạy 400 m)** | Đường chạy, sân cỏ, khán đài chính 80 m × 10 bậc, khán đài phụ thấp, 4 cổng xác tràn vào, cột đèn | Chạy hết một vòng mất khoảng 110 giây: không thể chạy liên tục vì thể lực, phải cắt qua sân cỏ, lên khán đài |
+| **Cổng trường** | Sân trước cổng 60 × 40 m | Cổng sắt rộng 20 m, chốt bảo vệ, 12 bảo vệ đứng hàng, cột cổng nghiêng | |
+| **Nhà ăn** | 40 × 24 m + bếp 12 × 8 m + kho | Bàn ghế đổ, quầy, tivi, đồng hồ, cửa kho | |
+| **Giảng đường, thư viện, nhà thi đấu** | 80 × 20 m, 40 × 30 m, 60 × 40 m | **Không vào ở chương 3** (cửa khóa hoặc đổ chắn); chỉ là vỏ ngoài | Đặt sẵn đúng chỗ để chương 4 làm phần trong |
+| **Đường nội bộ** | Đại lộ chính khoảng 200 m, các lối nhánh | Đèn đường, hàng cây, xe máy đổ, xác lác đác | |
 
-- **Toàn bộ khuôn viên chơi được** khoảng **250 × 150 m**, bao bởi tường rào và cây. **Sương mù** che các tòa xa (giảng đường, thư viện, nhà thi đấu), những tòa này chỉ là khối mờ, để chương 4 làm tiếp. Sương mù cũng giữ FPS.
-- **Ước lượng thời gian di chuyển** (chạy liên tục): nhà B ra vườn hoa khoảng 10 giây; vườn hoa tới sân vận động khoảng 25 giây; sân vận động tới cổng khoảng 30 giây; cổng tới nhà ăn khoảng 20 giây. Phần lớn thời gian chương nằm ở việc né xác, tìm đồ, đợt xác, chứ không ở quãng đường.
-- **So với chương 1–2:** chương 1–2 chỉ là tầng 4 (khoảng 44 × 15 m). Chương 3 rộng hơn khoảng **30 lần** về diện tích, nhưng phần lớn là ngoài trời trống (dựng nhanh hơn trong nhà). Phần trong nhà mới chủ yếu là 3 tầng nhân bản từ kit tầng 4.
-- **Cách làm để kịp hạn:** lane B dựng **greybox cả khuôn viên trước** (khối hộp đúng kích thước, chơi thử được), rồi mới thay mô hình thật theo thứ tự nhà B → vườn hoa → sân vận động → cổng → nhà ăn.
+- **Toàn khuôn viên khoảng 500 × 350 m**: rộng gấp khoảng **250 lần** tầng 4 của chương 1–2.
+- **Quãng đường** (chạy xen đi bộ vì thể lực): nhà B → vườn hoa khoảng 10 giây; vườn hoa → sân vận động khoảng 200 m, **khoảng 1 phút**; sân vận động → cổng khoảng 300 m, **khoảng 1,5 phút**; cổng → nhà ăn khoảng 80 m.
+- **Xác trên đường:** ngoài các đợt ở từng khu, có **xác rải rác dọc đường** (đứng, ngồi, nằm). Chúng chỉ "thức dậy" khi người chơi tới gần khoảng 25 m, để đường dài không trống và vẫn nhẹ máy. Tối đa khoảng 40 xác hoạt động cùng lúc.
+- **Hiệu năng:** sương mù (đúng kiểu PS1) che xa khoảng 80–120 m; cây và đèn dùng MultiMesh; xác ở xa cập nhật thưa. Lane C đo FPS sớm trên greybox.
+- **Thời lượng:** quãng đường dài thêm khoảng 5–8 phút; cả chương khoảng **50–60 phút**.
+- **Cách làm để kịp hạn:**
+  1. Lane B dựng **greybox cả khuôn viên** trước: khối hộp đúng kích thước, đi lại và chơi thử được ngay, lane A thả xác vào.
+  2. Sau đó thay mô hình thật theo thứ tự: nhà B → vườn hoa → sân vận động → đường và cổng → nhà ăn.
+  3. Vỏ các tòa chương 4 để khối đơn giản có cửa sổ.
 
 ## Mở đầu (8:00)
 - Loa: "Quy tắc vòng bốn kết thúc. Số người sống sót hiện tại: 3 người." Rồi đọc **luật vòng 5** (viết lại, không chép nguyên văn video):
@@ -111,7 +116,7 @@ Tính theo kích thước đã có: hành lang tầng 4 dài **44 m**, rộng 2,
 
 ### N7. Chạy du kích
 - Đường chạy điền kinh quanh sân cỏ, khán đài một bên, cột đèn tắt nửa.
-- Xác **tràn vào theo đợt** từ ba cổng; số lượng tăng dần (khởi đầu 8, tối đa khoảng 30 cùng lúc, tùy FPS).
+- Xác **tràn vào theo đợt** từ bốn cổng; số lượng tăng dần (khởi đầu 8, tối đa khoảng 30 cùng lúc, tùy FPS).
 - **Mục tiêu:** sống đủ thời gian (khoảng 4 phút thật) trong lúc **thể lực cạn dần**. Minh Nhật và Ngư chạy theo vòng dựng sẵn.
 - **Thể lực:** chạy nhanh tốn; đi bộ hồi chậm; đứng yên hồi nhanh hơn. Cạn thể lực thì không chạy nhanh được vài giây, thở dốc to (xác nghe được, quay về phía mình).
 - **Khán đài:** chỗ đứng cao, xác leo chậm. Lên đó hồi thể lực được nhưng dễ bị vây ở bậc. **Cặp ống sắt** dưới khán đài thay thanh sắt.
@@ -153,7 +158,7 @@ Tính theo kích thước đã có: hành lang tầng 4 dài **44 m**, rộng 2,
   - không mở được cửa đã đóng, nhưng phá được cửa gỗ sau một lúc.
 - **Tóm:** chạm tầm khoảng 1 m là chết ngay (cảnh chết `zombie_grab`).
 - **Tê liệt:** đập đầu → gục 5 giây → đứng dậy.
-- **Hiệu năng:** tối đa khoảng 30 xác cùng lúc. Xác ở xa cập nhật thưa và dùng hoạt cảnh đơn giản. Lane C đo FPS.
+- **Hiệu năng:** tối đa khoảng 40 xác hoạt động cùng lúc; xác rải rác dọc đường chỉ thức khi người chơi tới gần. Xác ở xa cập nhật thưa và dùng hoạt cảnh đơn giản. Lane C đo FPS.
 
 ## Cảnh chết mới (D-042)
 | Lý do | Cảnh | Ai làm |
@@ -184,17 +189,17 @@ Tính theo kích thước đã có: hành lang tầng 4 dài **44 m**, rộng 2,
 |---|---|
 | Core (Claude) | Kịch bản và lời thoại (`build_ch3_script.py`), luồng 4 khu, checkpoint, đợt xác, đường chạy của đồng đội, ghép |
 | A | Xác sống (chậm, nghe tiếng, vây, phá cửa, tê liệt), thanh sắt (đập trúng đầu, cong, gãy, nhặt), thể lực, đồng đội chạy theo đường và chờ, bảo vệ giơ dùi cui, cảnh chết `zombie_grab`, `guard_shock` |
-| B | Cầu thang thoát hiểm và tầng 3, 2, 1 nhà B (dùng lại kit tầng 4), sảnh, phòng quản lý; vườn hoa và mặt tiền nhà A; sân vận động; cổng trường; nhà ăn nhỏ; manh mối động đất; mô hình Minh Nhật, Ngư, bảo vệ, biến thể xác sống |
-| C | Bot chương 3, menu nhảy tới 4 khu, **đo FPS với 30 xác** |
+| B | **Greybox cả khuôn viên trước** (D-054); cầu thang thoát hiểm và tầng 3, 2, 1 nhà B (dùng lại kit tầng 4), sảnh, phòng quản lý; vườn hoa và mặt tiền nhà A; sân vận động thật; đường nội bộ; cổng trường; nhà ăn; vỏ giảng đường, thư viện, nhà thi đấu; manh mối động đất; mô hình Minh Nhật, Ngư, bảo vệ, biến thể xác sống |
+| C | Bot chương 3, menu nhảy tới 4 khu, **đo FPS với 40 xác ngoài trời** |
 | D | Thanh thể lực, độ cong thanh sắt, lớp chết mới, thẻ hết chương |
 | E | Tiếng xác (gầm gừ, bước chân bầy), tiếng đập sắt, tiếng thở dốc theo thể lực, còi cứu hộ xa, nhạc chương 3, âm cảnh chết mới |
 
 ## Rủi ro
-- **Khối lượng lane B lớn nhất** (5 khu mới). Đã gọn theo D-052, nhưng vẫn là đợt dựng map nặng nhất từ trước tới giờ. Nếu trễ, cổng và nhà ăn có thể làm greybox trước.
+- **Khối lượng lane B lớn nhất:** khuôn viên thật khoảng 500 × 350 m (D-054). Chi tiết bên trong đã gọn (D-052), greybox làm trước. Nếu trễ, cổng, nhà ăn và vỏ các tòa chương 4 có thể giữ dạng greybox cho buổi chơi thử đầu.
 - **FPS** với nhiều xác ngoài trời. Lane C phải đo sớm trên bản ghép đầu tiên.
 - **Hạn (D-029, D-052):** 3–4 ngày tính từ lúc duyệt thiết kế. Nếu duyệt ngày 2026-10-07 thì các lane xong khoảng 10-09, ghép 10-10, chơi thử khoảng 10-11. Lịch chính xác do chủ dự án chốt.
 
 ## Cần chủ dự án duyệt
 1. Toàn bộ luồng N1–N9 và vị trí gặp đồng đội (Minh Nhật ở tầng 2, Ngư ở vườn hoa).
 2. Các phần **[Claude đề xuất]**: đóng cửa 407 giữ chân xác, gây tiếng động để cứu Minh Nhật, lối ra qua cửa sổ phòng quản lý, bẫy bảo vệ theo Tổng tắc điều 4, 5 manh mối động đất.
-3. Con số khởi đầu: 5 giây tê liệt, 8 lần gãy thanh sắt, tối đa 30 xác, sân vận động khoảng 4 phút.
+3. Con số khởi đầu: 5 giây tê liệt, 8 lần gãy thanh sắt, tối đa 40 xác hoạt động, sân vận động khoảng 4 phút.
