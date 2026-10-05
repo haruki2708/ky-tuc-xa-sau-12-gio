@@ -75,6 +75,14 @@ func _ready() -> void:
 	_place_ch2_audio()
 
 
+func _physics_process(delta: float) -> void:
+	super._physics_process(delta)
+	# Where the player is, for the QA bot and the menu (T-173).
+	var zone := _zone()
+	if GameState.get_flag(&"ch2_zone", "") != zone:
+		GameState.set_flag(&"ch2_zone", zone)
+
+
 # --- Chapter definition ---------------------------------------------------------------
 
 func _chapter() -> int:
@@ -117,6 +125,7 @@ func _round_3() -> void:
 	_set_corpses_watching(false)
 	_place_player(Vector3(32.6, 0.05, -1.4))
 	_reset_chain()
+	_bathroom_door(true)
 	if _ch2_music != null:
 		_ch2_music.set_round(&"chain")
 	await _announce(["SPK_CH2_R2_END"])
@@ -391,6 +400,7 @@ func _round_4() -> void:
 	_begin(&"r4", "07:00")
 	_rules_live = true
 	_minutes = 0
+	_bathroom_door(false)
 	_set_steam(0.0)
 	if _ch2_music != null:
 		_ch2_music.set_round(&"shower")
@@ -447,6 +457,7 @@ func _shower_slot(temperature: int) -> bool:
 			_die(&"DEATH_CH2_SHOWER_BROKEN")
 			return false
 	_set_water(run, temperature)
+	GameState.set_flag(&"ch2_water_temperature", temperature if run else 0)
 	if run and temperature >= int(_shower.get("lethal", 50)):
 		await _wait(1.2)
 		_die(&"DEATH_CH2_SCALDED")
@@ -592,6 +603,21 @@ func _in_bedroom() -> bool:
 	var zone := _room().get_node_or_null("Zones/Bedroom") as Area3D if _room() != null else null
 	if zone == null or _player == null:
 		return true
+	return _inside_zone(zone)
+
+
+## "bedroom", "bathroom", "balcony" or "" (lane B's zones, T-172).
+func _zone() -> String:
+	if _room() == null or _player == null:
+		return ""
+	for zone_name in ["Bathroom", "Balcony", "Bedroom"]:
+		var zone := _room().get_node_or_null("Zones/" + zone_name) as Area3D
+		if zone != null and _inside_zone(zone):
+			return zone_name.to_lower()
+	return ""
+
+
+func _inside_zone(zone: Area3D) -> bool:
 	for shape_node in zone.find_children("*", "CollisionShape3D", true, false):
 		var box := (shape_node as CollisionShape3D).shape as BoxShape3D
 		if box == null:
@@ -717,6 +743,22 @@ func _word_seconds(key: String) -> float:
 	if time_scale < 0.999 or not ResourceLoader.exists(path):
 		return CORPSE_SPEAK_SECONDS
 	return maxf(CORPSE_SPEAK_SECONDS, (load(path) as AudioStream).get_length() / 0.72 + 0.3)
+
+
+## Round 3 needs the rag from the bathroom: the door stands open. Round 4 the
+## steam has swollen it shut: three shoves (N6).
+func _bathroom_door(open: bool) -> void:
+	var room := _room()
+	if room != null and room.has_method("set_bathroom_door_open"):
+		room.set_bathroom_door_open(open)
+	var door := room.get_node_or_null("Extension/BathroomDoor/StuckDoor") if room != null else null
+	if door == null:
+		return
+	if open:
+		door.set("enabled", false)
+	elif door.has_method("reset"):
+		door.reset()
+	GameState.set_flag(&"ch2_bathroom_open", open)
 
 
 func _instance_on(parent: Node, scene_path: String, node_name: String) -> Node3D:

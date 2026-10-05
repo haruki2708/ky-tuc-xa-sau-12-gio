@@ -2,36 +2,1729 @@
   "chapter": 2,
   "scene": "res://scenes/main/chapter2.tscn",
   "director": "Chapter2Director",
-  "rule_set": null,
-  "lexicon": {},
+  "rule_set": "res://data/rules/ch2.tres",
+  "lexicon": {
+    "WORD_CH2_BAO_CHUA": {
+      "text": "bào chữa",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_BEN_LUA": {
+      "text": "bén lửa",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_BONG_TOI": {
+      "text": "bóng tối",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_BAC_MENH": {
+      "text": "bạc mệnh",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_BAO_LUC": {
+      "text": "bạo lực",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_BAN_THAN": {
+      "text": "bản thân",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_BAN_AN": {
+      "text": "bản án",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_BAN_DO": {
+      "text": "bản đồ",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_CA_DEM": {
+      "text": "ca đêm",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_CHAY_NHA": {
+      "text": "cháy nhà",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_CHAN_DUNG": {
+      "text": "chân dung",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_CHO_DU": {
+      "text": "chó dữ",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_CHOI_DUA": {
+      "text": "chơi đùa",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_CHUONG_TRINH": {
+      "text": "chương trình",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_CHE_DO": {
+      "text": "chế độ",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_CHET_CHOC": {
+      "text": "chết chóc",
+      "valid": true,
+      "dead_end": true
+    },
+    "WORD_CH2_CHET_NGUOI": {
+      "text": "chết người",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_CHET_DUOI": {
+      "text": "chết đuối",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_CHI_HUY": {
+      "text": "chỉ huy",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_CHUNG_MUC": {
+      "text": "chừng mực",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_CHUA_CHAY": {
+      "text": "chữa cháy",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_CUNG_CAP": {
+      "text": "cung cấp",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_CAI_NHAU": {
+      "text": "cãi nhau",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_CON_SONG": {
+      "text": "còn sống",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_CONG_VIEN": {
+      "text": "công viên",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_CONG_VAN": {
+      "text": "công văn",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_CAM_KY": {
+      "text": "cấm kỵ",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_CAP_CUU": {
+      "text": "cấp cứu",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_CUU_SONG": {
+      "text": "cứu sống",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_CU_CHI": {
+      "text": "cử chỉ",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_DANH_SACH": {
+      "text": "danh sách",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_DAO_GAM": {
+      "text": "dao găm",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_DIEN_MAO": {
+      "text": "diện mạo",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_DU_HOC": {
+      "text": "du học",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_DUNG_NHAN": {
+      "text": "dung nhan",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_DONG_MAU": {
+      "text": "dòng máu",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_DANG_NGUOI": {
+      "text": "dạng người",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_DI_DANG": {
+      "text": "dị dạng",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_DOI_NUOC": {
+      "text": "dội nước",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_DU_DOI": {
+      "text": "dữ dội",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_GIA_LANH": {
+      "text": "giá lạnh",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_GION_MAT": {
+      "text": "giỡn mặt",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_GAM_VAO": {
+      "text": "găm vào",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_GACH_DA": {
+      "text": "gạch đá",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_GAT_DAU": {
+      "text": "gật đầu",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_HIEM_HOA": {
+      "text": "hiểm họa",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_HOANG_HON": {
+      "text": "hoàng hôn",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_HOAT_DONG": {
+      "text": "hoạt động",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_HUY_CHUONG": {
+      "text": "huy chương",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_HANH_LANG": {
+      "text": "hành lang",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_HINH_PHAT": {
+      "text": "hình phạt",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_HOA_HOC": {
+      "text": "hóa học",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_HOA_TRANG": {
+      "text": "hóa trang",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_HOA_DON": {
+      "text": "hóa đơn",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_HON_ME": {
+      "text": "hôn mê",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_HON_NHAN": {
+      "text": "hôn nhân",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_HOA_SI": {
+      "text": "họa sĩ",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_HOC_KY": {
+      "text": "học kỳ",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_HOC_PHI": {
+      "text": "học phí",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_HOC_SINH": {
+      "text": "học sinh",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_HOC_TRO": {
+      "text": "học trò",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_HOC_TAP": {
+      "text": "học tập",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_HO_SO": {
+      "text": "hồ sơ",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_KHOI_DAU": {
+      "text": "khởi đầu",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_KHOI_DONG": {
+      "text": "khởi động",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_KINH_DI": {
+      "text": "kinh dị",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_KINH_HOANG": {
+      "text": "kinh hoàng",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_KINH_KHUNG": {
+      "text": "kinh khủng",
+      "valid": true,
+      "dead_end": true
+    },
+    "WORD_CH2_KINH_TE": {
+      "text": "kinh tế",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_KY_TEN": {
+      "text": "ký tên",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_KY_TUC": {
+      "text": "ký túc",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_KY_UC": {
+      "text": "ký ức",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_KICH_BAN": {
+      "text": "kịch bản",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_KY_LA": {
+      "text": "kỳ lạ",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_KY_THI": {
+      "text": "kỳ thi",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_KY_SI": {
+      "text": "kỵ sĩ",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_LANG_THANG": {
+      "text": "lang thang",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_LUAN_VAN": {
+      "text": "luận văn",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_LUAN_AN": {
+      "text": "luận án",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_LUAN_DIEM": {
+      "text": "luận điểm",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_LUNG_CHUNG": {
+      "text": "lưng chừng",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_LUOI_DIEN": {
+      "text": "lưới điện",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_LUONG_SUC": {
+      "text": "lượng sức",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_LA_MAT": {
+      "text": "lạ mặt",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_LANH_LEO": {
+      "text": "lạnh lẽo",
+      "valid": true,
+      "dead_end": true
+    },
+    "WORD_CH2_LANH_NGUOI": {
+      "text": "lạnh người",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_LENH_CAM": {
+      "text": "lệnh cấm",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_LUA_DO": {
+      "text": "lửa đỏ",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_LUC_HOC": {
+      "text": "lực học",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_LUC_LUONG": {
+      "text": "lực lượng",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_LUC_SI": {
+      "text": "lực sĩ",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_MAU_LANH": {
+      "text": "máu lạnh",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_MAU_THIT": {
+      "text": "máu thịt",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_MAY_MOC": {
+      "text": "máy móc",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_MA_SO": {
+      "text": "mã số",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_ME_CUNG": {
+      "text": "mê cung",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_ME_MAN": {
+      "text": "mê man",
+      "valid": true,
+      "dead_end": true
+    },
+    "WORD_CH2_MOC_TUI": {
+      "text": "móc túi",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_MUI_DAO": {
+      "text": "mũi dao",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_MACH_MAU": {
+      "text": "mạch máu",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_MANG_LUOI": {
+      "text": "mạng lưới",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_MANG_NGUOI": {
+      "text": "mạng người",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_MANG_NHEN": {
+      "text": "mạng nhện",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_MANG_SONG": {
+      "text": "mạng sống",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_MAO_HIEM": {
+      "text": "mạo hiểm",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_MAT_MA": {
+      "text": "mật mã",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_MAT_MUI": {
+      "text": "mặt mũi",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_MAT_NA": {
+      "text": "mặt nạ",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_MAT_TRAN": {
+      "text": "mặt trận",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_MENH_LENH": {
+      "text": "mệnh lệnh",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_MONG_DU": {
+      "text": "mộng du",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_MUC_NUOC": {
+      "text": "mực nước",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_NGHEN_MACH": {
+      "text": "nghẽn mạch",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_NGUOI_CHET": {
+      "text": "người chết",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_NGUOI_HOC": {
+      "text": "người học",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_NGUOI_LA": {
+      "text": "người lạ",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_NGUOI_NGOM": {
+      "text": "người ngợm",
+      "valid": true,
+      "dead_end": true
+    },
+    "WORD_CH2_NGUOI_THAN": {
+      "text": "người thân",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_NGU_GAT": {
+      "text": "ngủ gật",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_NGU_DONG": {
+      "text": "ngủ đông",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_NHAN_SAC": {
+      "text": "nhan sắc",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_NHAU_THAI": {
+      "text": "nhau thai",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_NHI_DONG": {
+      "text": "nhi đồng",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_NHA_TAM": {
+      "text": "nhà tắm",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_NHAN_CONG": {
+      "text": "nhân công",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_NHAN_VIEN": {
+      "text": "nhân viên",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_NHAN_VAN": {
+      "text": "nhân văn",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_NHAT_KY": {
+      "text": "nhật ký",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_NHAT_THUC": {
+      "text": "nhật thực",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_NHEN_DOC": {
+      "text": "nhện độc",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_NHI_PHAN": {
+      "text": "nhị phân",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_NUOC_DA": {
+      "text": "nước đá",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_NA_DONG": {
+      "text": "nạ dòng",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_PHAN_XAC": {
+      "text": "phân xác",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_PHI_TON": {
+      "text": "phí tổn",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_PHONG_NGU": {
+      "text": "phòng ngủ",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_PHONG_TAM": {
+      "text": "phòng tắm",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_PHAT_DEN": {
+      "text": "phạt đền",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_PHAN_KHOI": {
+      "text": "phấn khởi",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_PHAN_DAU": {
+      "text": "phấn đấu",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_PHAN_BAC": {
+      "text": "phận bạc",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_PHAN_SU": {
+      "text": "phận sự",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_PHO_XA": {
+      "text": "phố xá",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_PHUC_VU": {
+      "text": "phục vụ",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_RUA_TAY": {
+      "text": "rửa tay",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_SINH_HOAT": {
+      "text": "sinh hoạt",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_SINH_HOC": {
+      "text": "sinh học",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_SINH_MANG": {
+      "text": "sinh mạng",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_SINH_NHAT": {
+      "text": "sinh nhật",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_SINH_TU": {
+      "text": "sinh tử",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_SINH_VIEN": {
+      "text": "sinh viên",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_SACH_VO": {
+      "text": "sách vở",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_SI_TU": {
+      "text": "sĩ tử",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_SUNG_NUOC": {
+      "text": "sũng nước",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_SO_CUU": {
+      "text": "sơ cứu",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_SAC_BEN": {
+      "text": "sắc bén",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_SO_HOC": {
+      "text": "số học",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_SO_PHAN": {
+      "text": "số phận",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_SONG_CHET": {
+      "text": "sống chết",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_SONG_CON": {
+      "text": "sống còn",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_SONG_SOT": {
+      "text": "sống sót",
+      "valid": true,
+      "dead_end": true
+    },
+    "WORD_CH2_SUC_LUC": {
+      "text": "sức lực",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_SU_SONG": {
+      "text": "sự sống",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_TAY_CHAN": {
+      "text": "tay chân",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_THAI_NHI": {
+      "text": "thai nhi",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_THANG_MAY": {
+      "text": "thang máy",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_THAO_THUC": {
+      "text": "thao thức",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_THI_CU": {
+      "text": "thi cử",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_THI_DAU": {
+      "text": "thi đấu",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_THOAI_BAN": {
+      "text": "thoại bản",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_THUOC_NGU": {
+      "text": "thuốc ngủ",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_THUOC_DOC": {
+      "text": "thuốc độc",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_THANH_PHO": {
+      "text": "thành phố",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_THAN_NHAN": {
+      "text": "thân nhân",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_THAN_PHAN": {
+      "text": "thân phận",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_THO_CA": {
+      "text": "thơ ca",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_THUONG_NHAN": {
+      "text": "thương nhân",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_THUONG_TICH": {
+      "text": "thương tích",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_THAN_CHET": {
+      "text": "thần chết",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_THAN_KINH": {
+      "text": "thần kinh",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_THAN_THANH": {
+      "text": "thần thánh",
+      "valid": true,
+      "dead_end": true
+    },
+    "WORD_CH2_THE_THAO": {
+      "text": "thể thao",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_THIT_NGUOI": {
+      "text": "thịt người",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_THUC_TINH": {
+      "text": "thức tỉnh",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_THUC_HANH": {
+      "text": "thực hành",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_THUC_TE": {
+      "text": "thực tế",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_TIEN_TRI": {
+      "text": "tiên tri",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_TRANG_PHUC": {
+      "text": "trang phục",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_TRANH_CAI": {
+      "text": "tranh cãi",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_TRANH_LUAN": {
+      "text": "tranh luận",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_TRI_THUC": {
+      "text": "tri thức",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_TRUNG_THANH": {
+      "text": "trung thành",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_TRINH_DIEN": {
+      "text": "trình diện",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_TRO_CHOI": {
+      "text": "trò chơi",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_TRO_DUA": {
+      "text": "trò đùa",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_TRUONG_HOC": {
+      "text": "trường học",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_TRAN_DAU": {
+      "text": "trận đấu",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_TRUC_DEM": {
+      "text": "trực đêm",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_TUOI_THO": {
+      "text": "tuổi thơ",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_TAO_BAO": {
+      "text": "táo bạo",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_TEN_TUOI": {
+      "text": "tên tuổi",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_TICH_TAC": {
+      "text": "tích tắc",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_TUC_TRUC": {
+      "text": "túc trực",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_TUI_XACH": {
+      "text": "túi xách",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_TAM_TOI": {
+      "text": "tăm tối",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_TAP_THE": {
+      "text": "tập thể",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_TAP_TRUNG": {
+      "text": "tập trung",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_TAC_NGHEN": {
+      "text": "tắc nghẽn",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_TAM_MAU": {
+      "text": "tắm máu",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_TAM_RUA": {
+      "text": "tắm rửa",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_TE_BAO": {
+      "text": "tế bào",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_TE_NHI": {
+      "text": "tế nhị",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_TINH_TAO": {
+      "text": "tỉnh táo",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_TOI_MAT": {
+      "text": "tối mật",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_TOI_TAM": {
+      "text": "tối tăm",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_TON_THUONG": {
+      "text": "tổn thương",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_TOI_AC": {
+      "text": "tội ác",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_TU_HINH": {
+      "text": "tử hình",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_TU_THAN": {
+      "text": "tử thần",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_TU_TE": {
+      "text": "tử tế",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_VIEN_GACH": {
+      "text": "viên gạch",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_VIEN_PHAN": {
+      "text": "viên phấn",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_VIEN_THUOC": {
+      "text": "viên thuốc",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_VAO_HOC": {
+      "text": "vào học",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_VAN_BAN": {
+      "text": "văn bản",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_VAN_HOA": {
+      "text": "văn hóa",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_VAN_HOC": {
+      "text": "văn học",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_VAN_PHONG": {
+      "text": "văn phòng",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_VO_KICH": {
+      "text": "vở kịch",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_VU_AN": {
+      "text": "vụ án",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_XA_TOI": {
+      "text": "xá tội",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_XAC_CHET": {
+      "text": "xác chết",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_XACH_TAY": {
+      "text": "xách tay",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_AC_MONG": {
+      "text": "ác mộng",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_AN_MANG": {
+      "text": "án mạng",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_AN_TU": {
+      "text": "án tử",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_OC_CHO": {
+      "text": "óc chó",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_DAI_LUNG": {
+      "text": "đai lưng",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_DIEN_VAO": {
+      "text": "điền vào",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_DIEM_DANH": {
+      "text": "điểm danh",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_DIEM_SO": {
+      "text": "điểm số",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_DIEN_THOAI": {
+      "text": "điện thoại",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_DUOI_SUC": {
+      "text": "đuối sức",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_DA_BONG": {
+      "text": "đá bóng",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_DEM_TRUONG": {
+      "text": "đêm trường",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_DONG_NGUOI": {
+      "text": "đông người",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_DUA_GION": {
+      "text": "đùa giỡn",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_DON_DOC": {
+      "text": "đơn độc",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_DAC_DIEN": {
+      "text": "đạc điền",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_DAT_DAI": {
+      "text": "đất đai",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_DAU_GIA": {
+      "text": "đấu giá",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_DAU_TRANH": {
+      "text": "đấu tranh",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_DAU_TRUONG": {
+      "text": "đấu trường",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_DAU_TIEN": {
+      "text": "đầu tiên",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_DAU_OC": {
+      "text": "đầu óc",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_DEN_MANG": {
+      "text": "đền mạng",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_DO_MAT": {
+      "text": "đỏ mặt",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_DO_AN": {
+      "text": "đồ án",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_DO_DAC": {
+      "text": "đồ đạc",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_DONG_HO": {
+      "text": "đồng hồ",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_DO_AM": {
+      "text": "độ ẩm",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_DOC_AC": {
+      "text": "độc ác",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_DONG_DAT": {
+      "text": "động đất",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_UOT_SUNG": {
+      "text": "ướt sũng",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_AM_UOT": {
+      "text": "ẩm ướt",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_UC_CHE": {
+      "text": "ức chế",
+      "valid": true,
+      "dead_end": false
+    },
+    "WORD_CH2_CHANH_CHUA": {
+      "text": "chanh chua",
+      "valid": false,
+      "dead_end": false
+    },
+    "WORD_CH2_CHUC_NAM": {
+      "text": "chục năm",
+      "valid": false,
+      "dead_end": false
+    },
+    "WORD_CH2_DANG_HIEN": {
+      "text": "dâng hiến",
+      "valid": false,
+      "dead_end": false
+    },
+    "WORD_CH2_DAU_VET": {
+      "text": "dấu vết",
+      "valid": false,
+      "dead_end": false
+    },
+    "WORD_CH2_DE_DANG": {
+      "text": "dễ dàng",
+      "valid": false,
+      "dead_end": false
+    },
+    "WORD_CH2_GIEU_COT": {
+      "text": "giễu cợt",
+      "valid": false,
+      "dead_end": false
+    },
+    "WORD_CH2_HOC_TU": {
+      "text": "hộc tủ",
+      "valid": false,
+      "dead_end": false
+    },
+    "WORD_CH2_KHUYET_DIEM": {
+      "text": "khuyết điểm",
+      "valid": false,
+      "dead_end": false
+    },
+    "WORD_CH2_KHUAT_PHUC": {
+      "text": "khuất phục",
+      "valid": false,
+      "dead_end": false
+    },
+    "WORD_CH2_LUAN_HOI": {
+      "text": "luân hồi",
+      "valid": false,
+      "dead_end": false
+    },
+    "WORD_CH2_PHAN_THUONG": {
+      "text": "phần thưởng",
+      "valid": false,
+      "dead_end": false
+    },
+    "WORD_CH2_ROI_SAO": {
+      "text": "rồi sao",
+      "valid": false,
+      "dead_end": false
+    },
+    "WORD_CH2_SINH_LE": {
+      "text": "sính lễ",
+      "valid": false,
+      "dead_end": false
+    },
+    "WORD_CH2_THOM_THO": {
+      "text": "thơm tho",
+      "valid": false,
+      "dead_end": false
+    },
+    "WORD_CH2_TRUNG_PHAT": {
+      "text": "trừng phạt",
+      "valid": false,
+      "dead_end": false
+    },
+    "WORD_CH2_VAN_CON": {
+      "text": "vẫn còn",
+      "valid": false,
+      "dead_end": false
+    },
+    "WORD_CH2_VIN_TAY": {
+      "text": "vịn tay",
+      "valid": false,
+      "dead_end": false
+    },
+    "WORD_CH2_VO_NAT": {
+      "text": "vỡ nát",
+      "valid": false,
+      "dead_end": false
+    },
+    "WORD_CH2_VO_CHONG": {
+      "text": "vợ chồng",
+      "valid": false,
+      "dead_end": false
+    },
+    "WORD_CH2_XINH_XAN": {
+      "text": "xinh xắn",
+      "valid": false,
+      "dead_end": false
+    },
+    "WORD_CH2_DEM_DEN": {
+      "text": "đêm đen",
+      "valid": false,
+      "dead_end": false
+    }
+  },
   "bindings": {
-    "round3_segment": null,
-    "round4_segment": null,
-    "death_ui_path": null,
-    "ngu_choice_id": null,
-    "ngu_temperatures": null,
-    "ngu_yes_index": null,
-    "ngu_no_index": null,
-    "scald_temperature_flag": null
+    "round3_segment": "r3",
+    "round4_segment": "r4",
+    "death_ui_path": "DeathScreen/Root",
+    "ngu_choice_id": "ngu",
+    "ngu_temperatures": [
+      74,
+      15,
+      62
+    ],
+    "ngu_yes_index": 1,
+    "ngu_no_index": 0,
+    "scald_temperature_flag": "ch2_water_temperature"
   },
   "actions": {
-    "pickup_rag": null,
-    "pickup_towel": null,
-    "pickup_shirt": null,
-    "gag_1": null,
-    "gag_2": null,
-    "gag_4": null,
-    "bedroom": null,
-    "push_door_1": null,
-    "push_door_2": null,
-    "push_door_3": null,
-    "enter_shower": null,
-    "leave_shower": null,
-    "wipe": null
+    "pickup_rag": {
+      "steps": [
+        {
+          "path": "Chapter2Director",
+          "position": [
+            35.6,
+            0.05,
+            -4.7
+          ],
+          "verify": {
+            "flag": "ch2_zone",
+            "equals": "bathroom"
+          }
+        },
+        {
+          "path": "Floor4/Room407/Anchors/RagSpot/Carry_rag",
+          "method": "interact",
+          "args": [
+            "$player"
+          ],
+          "verify": {
+            "signal": "picked"
+          }
+        }
+      ]
+    },
+    "pickup_towel": {
+      "steps": [
+        {
+          "path": "Chapter2Director",
+          "position": [
+            32.8,
+            0.05,
+            -7.6
+          ],
+          "verify": {
+            "flag": "ch2_zone",
+            "equals": "balcony"
+          }
+        },
+        {
+          "path": "Floor4/Room407/Anchors/TowelSpot/Carry_towel",
+          "method": "interact",
+          "args": [
+            "$player"
+          ],
+          "verify": {
+            "signal": "picked"
+          }
+        }
+      ]
+    },
+    "pickup_shirt": {
+      "steps": [
+        {
+          "path": "Chapter2Director",
+          "position": [
+            31.0,
+            0.05,
+            -1.25
+          ],
+          "verify": {
+            "flag": "ch2_zone",
+            "equals": "bedroom"
+          }
+        },
+        {
+          "path": "Floor4/Room407/Anchors/ShirtSpot/Carry_shirt",
+          "method": "interact",
+          "args": [
+            "$player"
+          ],
+          "verify": {
+            "signal": "picked"
+          }
+        }
+      ]
+    },
+    "gag_1": {
+      "steps": [
+        {
+          "path": "Chapter2Director",
+          "position": [
+            31.4,
+            0.05,
+            -2.3
+          ],
+          "verify": {
+            "flag": "ch2_zone",
+            "equals": "bedroom"
+          }
+        },
+        {
+          "path": "Floor4/Room407/Anchors/Gag1/GagSpot",
+          "method": "interact",
+          "args": [
+            "$player"
+          ],
+          "verify": {
+            "flag": "ch2_gagged_1",
+            "equals": true
+          }
+        }
+      ]
+    },
+    "gag_2": {
+      "steps": [
+        {
+          "path": "Chapter2Director",
+          "position": [
+            31.4,
+            0.05,
+            -2.3
+          ],
+          "verify": {
+            "flag": "ch2_zone",
+            "equals": "bedroom"
+          }
+        },
+        {
+          "path": "Floor4/Room407/Anchors/Gag2/GagSpot",
+          "method": "interact",
+          "args": [
+            "$player"
+          ],
+          "verify": {
+            "flag": "ch2_gagged_2",
+            "equals": true
+          }
+        }
+      ]
+    },
+    "gag_4": {
+      "steps": [
+        {
+          "path": "Chapter2Director",
+          "position": [
+            36.6,
+            0.05,
+            -2.0
+          ],
+          "verify": {
+            "flag": "ch2_zone",
+            "equals": "bedroom"
+          }
+        },
+        {
+          "path": "Floor4/Room407/Anchors/Gag4/GagSpot",
+          "method": "interact",
+          "args": [
+            "$player"
+          ],
+          "verify": {
+            "flag": "ch2_gagged_4",
+            "equals": true
+          }
+        }
+      ]
+    },
+    "bedroom": {
+      "steps": [
+        {
+          "path": "Chapter2Director",
+          "position": [
+            33.5,
+            0.05,
+            -2.0
+          ],
+          "verify": {
+            "flag": "ch2_zone",
+            "equals": "bedroom"
+          }
+        }
+      ]
+    },
+    "push_door_1": {
+      "steps": [
+        {
+          "path": "Floor4/Room407/Extension/BathroomDoor/StuckDoor",
+          "method": "interact",
+          "args": [
+            "$player"
+          ],
+          "verify": {
+            "signal": "bashed"
+          }
+        }
+      ]
+    },
+    "push_door_2": {
+      "steps": [
+        {
+          "path": "Floor4/Room407/Extension/BathroomDoor/StuckDoor",
+          "method": "interact",
+          "args": [
+            "$player"
+          ],
+          "verify": {
+            "signal": "bashed"
+          }
+        }
+      ]
+    },
+    "push_door_3": {
+      "steps": [
+        {
+          "path": "Floor4/Room407/Extension/BathroomDoor/StuckDoor",
+          "method": "interact",
+          "args": [
+            "$player"
+          ],
+          "verify": {
+            "signal": "opened"
+          }
+        }
+      ]
+    },
+    "enter_shower": {
+      "steps": [
+        {
+          "path": "Floor4/Room407/Anchors/ShowerStall/ShowerStallArea",
+          "position": [
+            36.18,
+            0.05,
+            -6.32
+          ],
+          "verify": {
+            "property": "player_inside",
+            "equals": true
+          }
+        }
+      ]
+    },
+    "leave_shower": {
+      "steps": [
+        {
+          "path": "Floor4/Room407/Anchors/ShowerStall/ShowerStallArea",
+          "position": [
+            35.6,
+            0.05,
+            -4.7
+          ],
+          "verify": {
+            "property": "player_inside",
+            "equals": false
+          }
+        }
+      ]
+    },
+    "wipe": {
+      "steps": [
+        {
+          "path": "Floor4/Room407/Anchors/ShowerScreen/Wipe",
+          "hold_action": "interact",
+          "seconds": 1.1,
+          "aim": [
+            36.18,
+            1.45,
+            -6.78
+          ],
+          "verify": {
+            "signal": "wiped"
+          }
+        }
+      ]
+    }
   },
   "jumps": {
-    "r3": null,
-    "r4": null
+    "r3": "r3",
+    "r4": "r4"
   },
   "performance": {
     "view": null,
