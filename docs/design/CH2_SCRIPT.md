@@ -1,6 +1,6 @@
 # Kịch bản chương 2 "Trò chơi"
 
-> **Bản nháp chờ chủ dự án duyệt.** Sinh tự động từ `docs/design/ch2/build_ch2_script.py` (từ nối ở `word_bank.py`). Thiết kế: `docs/design/CH2_DESIGN.md` (D-046, D-047).
+> **Tạm duyệt (D-048), góp ý thêm sau khi chơi thử.** Sinh tự động từ `docs/design/ch2/build_ch2_script.py` (từ nối ở `word_bank.py`). Thiết kế: `docs/design/CH2_DESIGN.md` (D-046, D-047).
 
 Ký hiệu: **Loa** · *(trong phòng)* = giọng nghe trực tiếp · 📞 = trong cuộc gọi · 💭 = suy nghĩ của Trung (chỉ phụ đề) · ▶ = lựa chọn · `[…]` = diễn biến.
 
