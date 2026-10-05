@@ -1,5 +1,5 @@
 extends Node3D
-## Chapter 1 environment APIs only. No rules, damage, death or puzzle decisions.
+## Environment APIs only. No rules, damage, death or puzzle decisions.
 
 const SURFACE := preload("res://rendering/room407_surface.gdshader")
 var blood_stage: int = 0
@@ -9,6 +9,8 @@ var desk_lamp_on: bool = true
 
 
 func _ready() -> void:
+	# The chapter-2 screen replaces the mixer; the physical pipe stays in place.
+	$Extension/ShowerMixer.visible = false
 	_apply_surface($Floor/Mesh, preload("res://assets/textures/room407/room_tile.png"), Vector2(20, 12))
 	for node in [$WestWall/Mesh, $EastWall/Mesh]:
 		_apply_surface(node, preload("res://assets/textures/room407/room_wall.png"), Vector2(2, 1))
@@ -61,6 +63,22 @@ func set_flicker(value: bool) -> void:
 
 func set_bathroom_door_open(value: bool) -> void:
 	$Extension/BathroomDoor.set_open(value)
+
+
+func set_stuck_shake(strength: float) -> void:
+	$Extension/BathroomDoor.set_stuck_shake(strength)
+
+
+func set_water(on: bool, temperature: int) -> void:
+	$Ch2Bathroom.set_water(on, temperature)
+
+
+func set_steam(level: float) -> void:
+	$Ch2Bathroom.set_steam(level)
+
+
+func flash_reflection() -> void:
+	$Ch2Bathroom.flash_reflection()
 
 
 func set_desk_lamp(value: bool) -> void:

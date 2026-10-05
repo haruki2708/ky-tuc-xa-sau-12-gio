@@ -1,0 +1,68 @@
+[gd_scene format=3]
+
+[ext_resource type="Shader" path="res://rendering/ps1_surface.gdshader" id="e1"]
+[ext_resource type="Texture2D" path="res://assets/textures/ch1_models/paper.png" id="e2"]
+[ext_resource type="Texture2D" path="res://assets/textures/ch1_models/metal.png" id="e3"]
+[ext_resource type="Texture2D" path="res://assets/textures/ch1_models/wood.png" id="e4"]
+
+[sub_resource type="ShaderMaterial" id="s1"]
+shader = ExtResource("e1")
+shader_parameter/albedo_texture = ExtResource("e2")
+shader_parameter/roughness = 0.9
+
+[sub_resource type="BoxMesh" id="s2"]
+size = Vector3(3.8, 0.012, 0.012)
+material = SubResource("s1")
+
+[sub_resource type="ShaderMaterial" id="s3"]
+shader = ExtResource("e1")
+shader_parameter/albedo_texture = ExtResource("e3")
+shader_parameter/roughness = 0.9
+
+[sub_resource type="BoxMesh" id="s4"]
+size = Vector3(0.035, 1.8, 0.035)
+material = SubResource("s3")
+
+[sub_resource type="BoxMesh" id="s5"]
+size = Vector3(0.035, 1.8, 0.035)
+material = SubResource("s3")
+
+[sub_resource type="ShaderMaterial" id="s6"]
+shader = ExtResource("e1")
+shader_parameter/albedo_texture = ExtResource("e4")
+shader_parameter/roughness = 0.9
+
+[sub_resource type="BoxMesh" id="s7"]
+size = Vector3(0.018, 0.065, 0.015)
+material = SubResource("s6")
+
+[sub_resource type="BoxMesh" id="s8"]
+size = Vector3(0.018, 0.065, 0.015)
+material = SubResource("s6")
+
+[node name="Clothesline" type="Node3D"]
+
+
+[node name="Line" type="MeshInstance3D" parent="."]
+position = Vector3(0, 0, 0)
+mesh = SubResource("s2")
+
+
+[node name="Post-1.9" type="MeshInstance3D" parent="."]
+position = Vector3(-1.9, -0.9, 0)
+mesh = SubResource("s4")
+
+
+[node name="Post1.9" type="MeshInstance3D" parent="."]
+position = Vector3(1.9, -0.9, 0)
+mesh = SubResource("s5")
+
+
+[node name="Peg-0.19" type="MeshInstance3D" parent="."]
+position = Vector3(-0.19, -0.01, -0.025)
+mesh = SubResource("s7")
+
+
+[node name="Peg0.19" type="MeshInstance3D" parent="."]
+position = Vector3(0.19, -0.01, -0.025)
+mesh = SubResource("s8")

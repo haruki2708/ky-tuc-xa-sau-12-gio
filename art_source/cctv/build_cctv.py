@@ -162,7 +162,8 @@ def label(s, name, text, pos, yaw, parent, size=48):
 
 
 def cctv_room(s, number, x):
-    who = next(w for w, v in STUDENTS.items() if v[0] == number)
+    # T-172: reused student mesh only; Room310 does not assign a story identity.
+    who = 'kiet' if number == '310' else next(w for w, v in STUDENTS.items() if v[0] == number)
     room = s.node('Room' + number, properties=f'position = {V((x, 0, 0))}')
     s.box('Floor', (2, -.1, -2.5), (4, .2, 5), 'tile', parent=room, floor=True)
     # D-044: a stretch of corridor outside every door, with its own camera.
@@ -187,8 +188,10 @@ def cctv_room(s, number, x):
     for label_, bx in (('A', .65), ('B', 3.35)):
         bed = s.kit('Bunk' + label_, 'bunk_bed', (bx, 0, -3), parent=room)
         for tier in ('Lower', 'Upper'):
+            if number == '310':
+                continue  # Clear camera view of all four occupants in round 3.
             upper = tier == 'Upper'
-            victim_bed = label_ == 'A' and upper
+            victim_bed = (label_ == 'A' and upper) or number == '310'
             s.kit('Net' + tier, 'mosquito_net_open' if victim_bed else 'mosquito_net_closed',
                   (0, .8800379 if upper else 0, 0), parent=bed, scale=(1, .7348485 if upper else 1, 1))
     for i, (lx, lz, yaw) in enumerate(((.3, -.45, -90), (.3, -1.25, -90), (3.7, -.45, 90), (3.7, -1.25, 90))):
@@ -224,7 +227,13 @@ def cctv_room(s, number, x):
     s.node('VictimBed', 'Marker3D', room, 'position = Vector3(0.65, 1.2, -3)')
     s.node('Victim', parent=room, instance=s.resource(f'res://scenes/levels/cctv/student_{who}.tscn'),
            properties='position = Vector3(0.65, 1.2, -3)')
-    s.node('Cam', 'Camera3D', room, look((3.72, 2.78, -4.72), (1.45, .95, -1.7)) + '\nfov = 66.0\nfar = 30.0')
+    if number == '310':
+        for index, model, position in [(1,'phuc',(.65,.43,-3)), (2,'viet',(3.35,.43,-3)), (4,'dat',(3.35,1.2,-3))]:
+            s.node('Corpse'+str(index), parent=room,
+                   instance=s.resource(f'res://scenes/levels/ch1_models/corpse_{model}.tscn'),
+                   properties=f'position = {V(position)}\ninitial_state = &"sit_play"\nseat_side = {1.0 if index == 1 else -1.0}')
+    view = look((2,2.6,-.35), (2,.95,-3)) if number == '310' else look((3.72, 2.78, -4.72), (1.45, .95, -1.7))
+    s.node('Cam', 'Camera3D', room, view + '\nfov = 66.0\nfar = 30.0')
 
 
 def corridor(s, x):
@@ -250,6 +259,7 @@ def cctv_set():
     for i, number in enumerate(('102', '306', '209', '106')):
         cctv_room(s, number, i * 6.0)
     corridor(s, 26.0)
+    cctv_room(s, '310', 40.0)
     s.save('cctv_set.tscn')
 
 
@@ -268,4 +278,4 @@ if __name__ == '__main__':
     for who in STUDENTS:
         student(who)
     cctv_set()
-    print('CCTV_BUILD: 4 students, cctv_set (4 rooms + corridor), %d textures' % len(CLOTH))
+    print('CCTV_BUILD: 4 students, cctv_set (5 rooms + corridor), %d textures' % len(CLOTH))

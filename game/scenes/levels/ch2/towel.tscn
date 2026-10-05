@@ -1,0 +1,98 @@
+[gd_scene format=3]
+
+[ext_resource type="Shader" path="res://rendering/ps1_surface.gdshader" id="e1"]
+[ext_resource type="Texture2D" path="res://assets/textures/ch1_models/rag.png" id="e2"]
+[ext_resource type="Texture2D" path="res://assets/textures/ch1_models/paper.png" id="e3"]
+
+[sub_resource type="ShaderMaterial" id="s1"]
+shader = ExtResource("e1")
+shader_parameter/albedo_texture = ExtResource("e2")
+shader_parameter/roughness = 0.9
+
+[sub_resource type="BoxMesh" id="s2"]
+size = Vector3(0.09, 0.64, 0.02)
+material = SubResource("s1")
+
+[sub_resource type="BoxMesh" id="s3"]
+size = Vector3(0.09, 0.64, 0.02)
+material = SubResource("s1")
+
+[sub_resource type="BoxMesh" id="s4"]
+size = Vector3(0.09, 0.64, 0.02)
+material = SubResource("s1")
+
+[sub_resource type="BoxMesh" id="s5"]
+size = Vector3(0.09, 0.64, 0.02)
+material = SubResource("s1")
+
+[sub_resource type="BoxMesh" id="s6"]
+size = Vector3(0.09, 0.64, 0.02)
+material = SubResource("s1")
+
+[sub_resource type="BoxMesh" id="s7"]
+size = Vector3(0.09, 0.64, 0.02)
+material = SubResource("s1")
+
+[sub_resource type="BoxMesh" id="s8"]
+size = Vector3(0.09, 0.64, 0.02)
+material = SubResource("s1")
+
+[sub_resource type="ShaderMaterial" id="s9"]
+shader = ExtResource("e1")
+shader_parameter/albedo_texture = ExtResource("e3")
+shader_parameter/roughness = 0.9
+
+[sub_resource type="BoxMesh" id="s10"]
+size = Vector3(0.54, 0.023, 0.02)
+material = SubResource("s9")
+
+[sub_resource type="BoxMesh" id="s11"]
+size = Vector3(0.54, 0.023, 0.02)
+material = SubResource("s9")
+
+[node name="Towel" type="Node3D"]
+
+
+[node name="Fold0" type="MeshInstance3D" parent="."]
+position = Vector3(-0.225, -0.32, 0.0)
+mesh = SubResource("s2")
+
+
+[node name="Fold1" type="MeshInstance3D" parent="."]
+position = Vector3(-0.15, -0.32, 0.024)
+mesh = SubResource("s3")
+
+
+[node name="Fold2" type="MeshInstance3D" parent="."]
+position = Vector3(-0.075, -0.32, 0.0)
+mesh = SubResource("s4")
+
+
+[node name="Fold3" type="MeshInstance3D" parent="."]
+position = Vector3(0.0, -0.32, 0.024)
+mesh = SubResource("s5")
+
+
+[node name="Fold4" type="MeshInstance3D" parent="."]
+position = Vector3(0.075, -0.32, 0.0)
+mesh = SubResource("s6")
+
+
+[node name="Fold5" type="MeshInstance3D" parent="."]
+position = Vector3(0.15, -0.32, 0.024)
+mesh = SubResource("s7")
+
+
+[node name="Fold6" type="MeshInstance3D" parent="."]
+position = Vector3(0.225, -0.32, 0.0)
+mesh = SubResource("s8")
+
+
+[node name="Hem-0.06" type="MeshInstance3D" parent="."]
+position = Vector3(0, -0.06, -0.014)
+mesh = SubResource("s10")
+
+
+[node name="Hem-0.57" type="MeshInstance3D" parent="."]
+position = Vector3(0, -0.57, -0.014)
+mesh = SubResource("s11")

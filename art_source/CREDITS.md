@@ -85,3 +85,19 @@ mesh, runtime, test và preview; không dùng mô hình sinh ảnh hay plugin.
 
 Không tải asset ngoài. Máu là mảng đỏ sẫm hình học kiểu PS1, không giải phẫu.
 **Khai báo AI:** Claude viết mã tạo scene, mesh, texture, test và preview; không dùng mô hình sinh ảnh hay plugin.
+
+## Môi trường và đạo cụ chương 2 — T-172
+
+| File / nhóm | Tác giả / công cụ | Nguồn | Giấy phép |
+|---|---|---|---|
+| `game/scenes/levels/ch2/*`, mở rộng anchor/phòng 407/cửa gỗ | Lane B, Codex (OpenAI), Python stdlib và Godot 4.7.2 | [Generator](ch2_props/build_props.py), [API và cách dựng lại](ch2_props/README.md) | CC0-1.0 |
+| Trạng thái xác và giẻ ở miệng | Lane B, Codex, GDScript | `game/scenes/levels/ch1_models/corpse_body.gd`; tái dùng rig/giẻ/texture T-154 CC0 bên trên | CC0-1.0 |
+| `Room310` trong `cctv_set.tscn` | Lane B, Codex, Python | [Generator CCTV](cctv/build_cctv.py); xác T-154 và sinh viên T-165, không thêm danh tính cốt truyện | CC0-1.0 |
+| `ch2_props/previews/*.png`, `performance.json` | Codex, Godot Forward+ trên RTX 3050 Laptop | [Script chụp](ch2_props/capture_props.gd) | CC0-1.0 |
+
+Nguồn repo: [nhánh T-172](https://github.com/tuaanh666/ky-tuc-xa-sau-12-gio/tree/lane-b/T-172-ch2-props/art_source/ch2_props).
+Không tải asset ngoài, không thêm texture nhị phân mới; dùng lại texture thủ tục CC0
+128 px của T-154. Khăn, áo gấp và dây phơi là mesh hình học tự tạo. Hơi nước dùng
+shader thủ tục và 8 mặt phẳng, nước dùng 96 hạt CPU; không plugin hoặc addon.
+**Khai báo AI:** Codex viết generator, GDScript, shader, test và script render;
+không dùng mô hình sinh ảnh. Ảnh preview là ảnh render scene game, lưu qua Git LFS.

@@ -24,6 +24,12 @@
 
 [ext_resource type="PackedScene" path="res://scenes/levels/ch1v2/cables.tscn" id="v2_cables"]
 
+[ext_resource type="PackedScene" path="res://scenes/levels/ch2/bathroom_effects.tscn" id="t172_bath"]
+
+[ext_resource type="PackedScene" path="res://scenes/levels/ch2/zones.tscn" id="t172_zones"]
+
+[ext_resource type="PackedScene" path="res://scenes/levels/ch2/clothesline.tscn" id="t172_line"]
+
 [sub_resource type="BoxShape3D" id="s1"]
 size = Vector3(8, 0.2, 7)
 
@@ -426,3 +432,11 @@ shape = SubResource("v2_balcony")
 
 [node name="ManagerNavigation" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("v2_nav")
+
+; T172 additions
+[node name="Ch2Bathroom" parent="." instance=ExtResource("t172_bath")]
+
+[node name="Zones" parent="." instance=ExtResource("t172_zones")]
+
+[node name="Clothesline" parent="." instance=ExtResource("t172_line")]
+position = Vector3(2.8,1.8,-8.12)

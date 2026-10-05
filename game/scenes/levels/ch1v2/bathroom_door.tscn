@@ -1,8 +1,8 @@
 [gd_scene format=3]
 
-[ext_resource type="Script" path="res://scenes/levels/ch1v2/hinged.gd" id="e1"]
+[ext_resource type="Script" path="res://scenes/levels/ch2/bathroom_door.gd" id="e1"]
 [ext_resource type="Shader" path="res://rendering/ps1_surface.gdshader" id="e2"]
-[ext_resource type="Texture2D" path="res://assets/textures/ch1_models/paper.png" id="e3"]
+[ext_resource type="Texture2D" path="res://assets/textures/ch1_models/wood.png" id="e3"]
 [ext_resource type="Texture2D" path="res://assets/textures/ch1_models/metal.png" id="e4"]
 
 [sub_resource type="BoxShape3D" id="s1"]
@@ -50,3 +50,9 @@ mesh = SubResource("s3")
 [node name="Handle" type="MeshInstance3D" parent="Pivot"]
 position = Vector3(0.84, 1.0, 0.045)
 mesh = SubResource("s5")
+
+; T172 swelling: layered wood at the wet lower edge.
+[node name="SwollenEdge" type="MeshInstance3D" parent="Pivot/Leaf"]
+position = Vector3(0,-0.78,0.01)
+scale = Vector3(1.018,0.24,1.65)
+mesh = SubResource("s3")

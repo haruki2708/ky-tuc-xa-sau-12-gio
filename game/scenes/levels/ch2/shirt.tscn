@@ -1,0 +1,53 @@
+[gd_scene format=3]
+
+[ext_resource type="Shader" path="res://rendering/ps1_surface.gdshader" id="e1"]
+[ext_resource type="Texture2D" path="res://assets/textures/ch1_models/stripes.png" id="e2"]
+[ext_resource type="Texture2D" path="res://assets/textures/ch1_models/hair.png" id="e3"]
+
+[sub_resource type="ShaderMaterial" id="s1"]
+shader = ExtResource("e1")
+shader_parameter/albedo_texture = ExtResource("e2")
+shader_parameter/roughness = 0.9
+
+[sub_resource type="BoxMesh" id="s2"]
+size = Vector3(0.29, 0.04, 0.31)
+material = SubResource("s1")
+
+[sub_resource type="BoxMesh" id="s3"]
+size = Vector3(0.12, 0.036, 0.12)
+material = SubResource("s1")
+
+[sub_resource type="BoxMesh" id="s4"]
+size = Vector3(0.12, 0.036, 0.12)
+material = SubResource("s1")
+
+[sub_resource type="ShaderMaterial" id="s5"]
+shader = ExtResource("e1")
+shader_parameter/albedo_texture = ExtResource("e3")
+shader_parameter/roughness = 0.9
+
+[sub_resource type="BoxMesh" id="s6"]
+size = Vector3(0.1, 0.012, 0.05)
+material = SubResource("s5")
+
+[node name="Shirt" type="Node3D"]
+
+
+[node name="Torso" type="MeshInstance3D" parent="."]
+position = Vector3(0, 0.025, 0)
+mesh = SubResource("s2")
+
+
+[node name="Sleeve-1" type="MeshInstance3D" parent="."]
+position = Vector3(-0.18, 0.027, -0.08)
+mesh = SubResource("s3")
+rotation_degrees = Vector3(0,-20,0)
+
+[node name="Sleeve1" type="MeshInstance3D" parent="."]
+position = Vector3(0.18, 0.027, -0.08)
+mesh = SubResource("s4")
+rotation_degrees = Vector3(0,20,0)
+
+[node name="Collar" type="MeshInstance3D" parent="."]
+position = Vector3(0, 0.05, -0.13)
+mesh = SubResource("s6")
