@@ -23,7 +23,9 @@ func test_loop_bridge_uses_dictionary_and_avoids_recent_repeat() -> void:
 	assert_eq(POLICY.choose("tài liệu", ["bad", "a"], [], lexicon, "loop"), 1)
 	assert_eq(POLICY.choose("tài liệu", ["a"], ["liệu pháp"], lexicon, "loop"), -1)
 	lexicon.erase("c")
-	assert_eq(POLICY.choose("tài liệu", ["a"], [], lexicon, "loop"), -1)
+	# No route within three words: a legal word keeps the chain going (the
+	# director steers toward the loop; integrator, T-173 review).
+	assert_eq(POLICY.choose("tài liệu", ["a"], [], lexicon, "loop"), 0)
 
 
 func test_trap_and_wrong_tone_selection_are_deliberate() -> void:

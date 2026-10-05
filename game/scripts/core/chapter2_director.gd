@@ -308,7 +308,9 @@ func _right_word(syllable: String) -> String:
 	var words: Dictionary = _bank.get("words", {})
 	var steer: Dictionary = _bank.get("steer", {})
 	# Minh Nhật's loop (N5): once everyone is gagged, the steering word leads to it.
-	if _loop_known and _all_gagged():
+	# Once everyone is gagged the chain is Trung's alone: the right word leads
+	# toward the loop (shortest path), told about or not.
+	if _all_gagged():
 		var loop: Array = _bank.loop
 		if _last_word in loop:
 			var next: String = loop[(loop.find(_last_word) + 1) % loop.size()]

@@ -49,11 +49,13 @@ static func choose(previous: String, options: Array, recent: Array, lexicon: Dic
 			if entry.get("dead_end", false) == true: return i
 		elif mode == "loop":
 			var depth := _loop_distance(text, recent, lexicon, 3)
-			if depth < distance:
+			if depth < distance or best < 0:
 				distance = depth
 				best = i
 		else: return i
-	return best if distance < 99 else -1
+	# Far from the loop (more than 3 words): any legal word keeps the chain
+	# going; the director steers toward the loop (integrator, T-173 review).
+	return best
 
 
 static func _loop_distance(word: String, recent: Array, lexicon: Dictionary, remaining: int) -> int:
