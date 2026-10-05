@@ -13,6 +13,8 @@ Giao diện cho hai trò chơi của chương 2 và hiệu ứng màn hình cho 
 ## Hợp đồng có sẵn (core, không sửa)
 `EventBus.chain_turn_started`, `chain_word_spoken`, `chain_choice_requested`, `chain_choice_made`, `chain_choice_blocked`, `shower_choice_requested`, `shower_choice_made`, `shower_slot_finished`, `shower_steam_changed`, `player_death_started` (`corpse_lunge`, `scald`). Đọc chú thích trong `event_bus.gd`.
 
+**Chuỗi chữ core đã có (dùng lại, không tạo trùng):** `UI_CH2_SHOWER_RULE`, `UI_CH2_SHOWER_YES`, `UI_CH2_SHOWER_NO`, `UI_CH2_SHOWER_TEMP` (`%d`), `UI_CH2_SHOWER_PROGRESS` (`%d`), `UI_CH2_CHAIN_DEAF`. Từ nối là key `WORD_CH2_*` (tiếng Anh hiện "từ (nghĩa)"). Thử với dữ liệu thật: `res://data/ch2/word_bank.json`, `res://data/ch2/shower.json`; scene `res://scenes/main/chapter2.tscn` chạy được luồng (T-170).
+
 ## Yêu cầu
 1. **Bảng nối từ** (`ui/chain/chain_panel.tscn`):
    - hiện **từ vừa nói** (to), người nói, và **3 từ gần nhất** (để người chơi tự kiểm tra lặp);
