@@ -22,6 +22,19 @@ const GAMEPLAY_ACTIONS: Array[StringName] = [
 @export var deceleration: float = 16.0
 @export var head_bob_enabled: bool = DEFAULT_HEAD_BOB
 @export var head_bob_amplitude: float = 0.018
+@export var stamina_enabled: bool = false:
+	set(value):
+		var changed: bool = stamina_enabled != value
+		stamina_enabled = value
+		if value and changed and is_node_ready():
+			EventBus.stamina_changed.emit(stamina, exhausted)
+@export var sprint_drain: float = 1.0 / 12.0
+@export var walk_recovery: float = 0.05
+@export var idle_recovery: float = 0.12
+var stamina: float = 1.0
+var exhausted: bool = false
+var bar_weapon: IronBarWeapon
+var _pant_elapsed: float = 0.0
 @export_range(0.1, 3.0, 0.01) var walk_step_length: float = 1.1
 @export_range(0.1, 3.0, 0.01) var sprint_step_length: float = 1.4
 @export_range(0.0, 0.06, 0.001) var step_length_variation: float = 0.06
@@ -70,10 +83,12 @@ func _ready() -> void:
 	death_animation.name = "DeathAnimation"
 	add_child(death_animation)
 	EventBus.player_death_started.connect(_on_death_started)
+	if stamina_enabled:
+		EventBus.stamina_changed.emit(stamina, exhausted)
 
 
 func _on_death_started(kind: StringName) -> void:
-	if death_animation.active or kind not in [&"fall_back", &"manager_kill", &"bed_burst", &"corpse_lunge", &"scald"]:
+	if death_animation.active or kind not in [&"fall_back", &"manager_kill", &"bed_burst", &"corpse_lunge", &"scald", &"zombie_grab", &"guard_shock"]:
 		return
 	if _bash_elapsed < 0.22:
 		camera.rotation = Vector3.ZERO
@@ -141,6 +156,13 @@ func _set_mouse_captured(captured: bool) -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed \
+			and is_instance_valid(bar_weapon) and bar_weapon.hits_left > 0 \
+			and _mouse_captured and not keyboard_input_blocked() and not is_hidden():
+		Input.action_release("interact")
+		bar_weapon.swing()
+		get_viewport().set_input_as_handled()
+		return
 	if event is InputEventMouseMotion and _mouse_captured and not controls_locked():
 		if is_hidden():
 			var previous: Vector2 = Vector2(head.rotation.x, head.rotation.y)
@@ -162,6 +184,7 @@ func _physics_process(delta: float) -> void:
 	_update_door_bash(delta)
 	_breath_cooldown = maxf(0.0, _breath_cooldown - delta)
 	if is_hidden():
+		_update_stamina(delta, false, false)
 		_update_breath(delta)
 		_restless_cooldown = maxf(0.0, _restless_cooldown - delta)
 		if rad_to_deg(_look_distance) / maxf(delta, 0.000001) > restless_degrees_per_second and _restless_cooldown <= 0.0:
@@ -173,9 +196,11 @@ func _physics_process(delta: float) -> void:
 			leave_hide_spot()
 		return
 	if controls_locked():
+		_update_stamina(delta, false, false)
 		velocity = Vector3.ZERO
 		return
 	if _text_entry_active:
+		_update_stamina(delta, false, false)
 		velocity = Vector3.ZERO
 		# Settle the existing bob without taking another locomotion step.
 		camera.position.y = move_toward(camera.position.y, 0.0, delta * 0.1)
@@ -185,13 +210,16 @@ func _physics_process(delta: float) -> void:
 	var input_vector: Vector2 = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
 	var direction: Vector3 = global_basis * Vector3(input_vector.x, 0.0, input_vector.y)
 	direction.y = 0.0
-	var speed: float = SPRINT_SPEED if Input.is_action_pressed("sprint") else WALK_SPEED
+	var sprinting: bool = Input.is_action_pressed("sprint") and not (stamina_enabled and exhausted)
+	var speed: float = SPRINT_SPEED if sprinting else WALK_SPEED
 	if crouched:
 		speed = CROUCH_SPEED
 	var rate: float = acceleration if not input_vector.is_zero_approx() else deceleration
 	var horizontal: Vector3 = Vector3(velocity.x, 0.0, velocity.z).move_toward(direction * speed, rate * delta)
 	if crouched:
 		horizontal = horizontal.limit_length(CROUCH_SPEED)
+	elif stamina_enabled and exhausted:
+		horizontal = horizontal.limit_length(WALK_SPEED)
 	velocity.x = horizontal.x
 	velocity.z = horizontal.z
 	if not is_on_floor():
@@ -201,10 +229,54 @@ func _physics_process(delta: float) -> void:
 	var was_grounded: bool = is_on_floor()
 	var previous_position: Vector3 = global_position
 	move_and_slide()
+	var moved: bool = Vector2(global_position.x - previous_position.x, global_position.z - previous_position.z).length() > 0.0001
+	_update_stamina(delta, sprinting and not crouched, moved)
 	_update_steps_and_bob(previous_position, was_grounded, delta)
 	_update_focus()
 	if Input.is_action_pressed("interact") and Input.is_action_just_pressed("interact") and is_instance_valid(_target):
 		_target.interact(self)
+
+
+func give_bar(hits: int = 8) -> void:
+	if not is_instance_valid(bar_weapon):
+		bar_weapon = IronBarWeapon.new()
+		bar_weapon.name = "IronBar"
+		bar_weapon.player = self
+		camera.add_child(bar_weapon)
+	bar_weapon.give_bar(hits)
+
+
+func spend_stamina(amount: float) -> void:
+	if stamina_enabled and is_finite(amount):
+		_set_stamina(stamina - maxf(0, amount))
+
+
+func _set_stamina(value: float) -> void:
+	var before: float = stamina
+	var was_exhausted: bool = exhausted
+	stamina = clampf(value, 0, 1)
+	if stamina <= 0.000001:
+		stamina = 0.0
+		exhausted = true
+		if not was_exhausted:
+			_pant_elapsed = 1.5
+	elif stamina >= 0.3:
+		exhausted = false
+	if before != stamina or was_exhausted != exhausted:
+		EventBus.stamina_changed.emit(stamina, exhausted)
+
+
+func _update_stamina(delta: float, sprinting: bool, moving: bool) -> void:
+	if not stamina_enabled:
+		return
+	_set_stamina(stamina + (-sprint_drain if sprinting and moving and not exhausted else (walk_recovery if moving else idle_recovery)) * delta)
+	if exhausted:
+		_pant_elapsed += delta
+		if _pant_elapsed >= 1.5:
+			_pant_elapsed = fmod(_pant_elapsed, 1.5)
+			make_noise(8.0, &"pant")
+	else:
+		_pant_elapsed = 0.0
 
 
 func _update_focus() -> void:

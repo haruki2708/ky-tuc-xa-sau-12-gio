@@ -74,6 +74,65 @@ func _assert_locked() -> void:
 	assert_eq(player.velocity, Vector3.ZERO)
 
 
+func test_zombie_grab_pulls_towards_face_then_falls_and_finishes_once() -> void:
+	var zombie: Node3D = Node3D.new()
+	zombie.position = Vector3(0, 0, -1)
+	world.add_child(zombie)
+	zombie.add_to_group(&"ch3_zombie")
+	var head: Marker3D = Marker3D.new()
+	head.name = "Head"
+	head.position.y = 1.55
+	zombie.add_child(head)
+	var start: Vector3 = player.camera.global_position
+	EventBus.player_death_started.emit(&"zombie_grab")
+	_assert_locked()
+	player.death_animation.set_physics_process(false)
+	player.death_animation._physics_process(0.5)
+	assert_true(player.camera.global_position.z < start.z - 0.1)
+	player.death_animation._physics_process(0.19)
+	var pulled: Vector3 = player.camera.global_position
+	player.death_animation._physics_process(0.02)
+	assert_true(player.camera.global_position.distance_to(pulled) < 0.06, "fall starts from pulled position without snapping back")
+	_finish()
+	assert_eq(player.death_animation._bursts, 1)
+	assert_eq(completions.size(), 1)
+	assert_true(player.camera.global_position.y < 0.2)
+
+
+func test_guard_shock_falls_without_blood_and_finishes_once() -> void:
+	EventBus.player_death_started.emit(&"guard_shock")
+	_assert_locked()
+	_finish()
+	assert_eq(completions.size(), 1)
+	assert_eq(player.death_animation._bursts, 0)
+	assert_false(player.death_animation.blood.visible)
+	assert_true(player.camera.global_position.y < 0.2)
+
+
+func test_reduced_zombie_grab_looks_away_without_blood() -> void:
+	player.death_animation.reduced = true
+	EventBus.player_death_started.emit(&"zombie_grab")
+	player.death_animation.set_physics_process(false)
+	player.death_animation._physics_process(0.4)
+	assert_true((-player.camera.global_basis.z).dot(Vector3.UP) > 0.99)
+	_finish()
+	assert_eq(player.death_animation._bursts, 0)
+	assert_false(player.death_animation.blood.visible)
+	assert_eq(completions.size(), 1)
+
+
+func test_reduced_guard_shock_skips_initial_shake() -> void:
+	player.death_animation.reduced = true
+	var start: Transform3D = player.camera.global_transform
+	EventBus.player_death_started.emit(&"guard_shock")
+	player.death_animation.set_physics_process(false)
+	player.death_animation._physics_process(0.3)
+	assert_true(player.camera.global_transform.is_equal_approx(start))
+	_finish()
+	assert_false(player.death_animation.blood.visible)
+	assert_eq(completions.size(), 1)
+
+
 func test_fall_back_locks_controls_hits_floor_and_looks_up_once() -> void:
 	EventBus.player_death_started.emit(&"fall_back")
 	_assert_locked()

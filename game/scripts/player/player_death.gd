@@ -18,6 +18,7 @@ var _manager: Node3D
 var _corpse: Node3D
 var _bursts: int = 0
 var _look_basis: Basis
+var _grab_origin: Vector3
 
 
 func _ready() -> void:
@@ -33,6 +34,7 @@ func start(player: CharacterBody3D, camera: Camera3D, death_kind: StringName) ->
 	_camera = camera
 	kind = death_kind
 	_start = camera.global_transform.orthonormalized()
+	_grab_origin = _start.origin
 	_look_basis = _start.basis
 	_end = _start
 	var yaw: float = player.global_rotation.y
@@ -43,17 +45,22 @@ func start(player: CharacterBody3D, camera: Camera3D, death_kind: StringName) ->
 					_manager = node
 		_end.origin += _start.basis.x * 0.25
 		_end.basis = Basis.from_euler(Vector3(0.15, yaw, -PI * 0.5))
-	elif kind == &"corpse_lunge" or kind == &"fall_back":
-		if kind == &"corpse_lunge":
-			for node: Node in get_tree().get_nodes_in_group(&"ch2_corpse"):
+	elif kind in [&"corpse_lunge", &"fall_back", &"zombie_grab"]:
+		if kind in [&"corpse_lunge", &"zombie_grab"]:
+			for node: Node in get_tree().get_nodes_in_group(&"ch3_zombie" if kind == &"zombie_grab" else &"ch2_corpse"):
 				if node is Node3D and node.get_world_3d() == camera.get_world_3d():
 					if _corpse == null or node.global_position.distance_squared_to(camera.global_position) < _corpse.global_position.distance_squared_to(camera.global_position):
 						_corpse = node
 		_end.origin += player.global_basis.z * 0.35
 		_end.basis = Basis.from_euler(Vector3(PI * 0.5, yaw, 0))
+		if kind == &"zombie_grab" and is_instance_valid(_corpse):
+			_grab_origin += (_corpse_head_position() - _start.origin).normalized() * 0.3
 	elif kind == &"scald":
 		_end.origin += player.global_basis.z * 0.12
 		_end.basis = Basis.from_euler(Vector3(-1.1, yaw, 0.3))
+	elif kind == &"guard_shock":
+		_end.origin += player.global_basis.z * 0.3
+		_end.basis = Basis.from_euler(Vector3(1.2, yaw, 0.4))
 	else:
 		_end.origin.y -= 0.1
 		_end.basis = _start.basis * Basis(Vector3.RIGHT, 0.12)
@@ -63,7 +70,7 @@ func start(player: CharacterBody3D, camera: Camera3D, death_kind: StringName) ->
 		var hit: Dictionary = camera.get_world_3d().direct_space_state.intersect_ray(query)
 		_end.origin.y = float(hit.position.y) + 0.15 if not hit.is_empty() else player.global_position.y + 0.15
 	_create_blood()
-	if not reduced and kind not in [&"manager_kill", &"corpse_lunge", &"scald"]:
+	if not reduced and kind not in [&"manager_kill", &"corpse_lunge", &"scald", &"zombie_grab", &"guard_shock"]:
 		_burst()
 
 
@@ -72,17 +79,15 @@ func _physics_process(delta: float) -> void:
 		return
 	elapsed = minf(DURATION, elapsed + delta)
 	var desired: Transform3D = _start
-	if kind == &"corpse_lunge":
+	if kind in [&"corpse_lunge", &"zombie_grab"]:
 		if reduced:
 			desired = _start.interpolate_with(_end, smoothstep(0.0, 2.7, elapsed))
 			desired.basis = _start.basis.slerp(_end.basis, smoothstep(0.0, 0.3, elapsed))
 		else:
 			if elapsed <= 0.7 and is_instance_valid(_corpse):
-				# B can supply a moving GazeTarget; existing corpse rigs have a Head.
-				var anchor: Node3D = _corpse.get_node_or_null("GazeTarget") as Node3D
-				if anchor == null:
-					anchor = _corpse.find_child("Head", true, false) as Node3D
-				var target: Vector3 = anchor.global_position if anchor != null else _corpse.global_position
+				var target: Vector3 = _corpse_head_position()
+				if kind == &"zombie_grab":
+					desired.origin = _start.origin.lerp(_grab_origin, smoothstep(0.1, 0.6, elapsed))
 				var direction: Vector3 = target - _start.origin
 				if direction.length() > 0.01 and absf(direction.normalized().dot(Vector3.UP)) < 0.999:
 					_look_basis = _start.basis.slerp(Basis.looking_at(direction), smoothstep(0.0, 0.25, elapsed))
@@ -92,10 +97,18 @@ func _physics_process(delta: float) -> void:
 					_burst()
 				var progress: float = smoothstep(0.7, 2.7, elapsed)
 				desired = _start.interpolate_with(_end, progress)
+				if kind == &"zombie_grab":
+					desired.origin = _grab_origin.lerp(_end.origin, progress)
 				desired.basis = _look_basis.slerp(_end.basis, progress)
 				var impact: float = clampf(1.0 - (elapsed - 0.7) / 0.6, 0.0, 1.0)
 				desired.basis *= Basis(Vector3.RIGHT, sin(elapsed * 45.0) * 0.14 * impact)
 				desired.origin += _start.basis.x * sin(elapsed * 38.0) * 0.045 * impact
+	elif kind == &"guard_shock":
+		desired = _start.interpolate_with(_end, smoothstep(0.5, 2.7, elapsed))
+		if not reduced:
+			var strength: float = clampf(1.0 - elapsed / 1.3, 0, 1)
+			desired.basis *= Basis(Vector3.FORWARD, sin(elapsed * 55) * 0.09 * strength)
+			desired.origin += _start.basis.x * sin(elapsed * 43) * 0.035 * strength
 	elif kind == &"scald":
 		var progress: float = smoothstep(0.45, 2.8, elapsed)
 		desired = _start.interpolate_with(_end, progress)
@@ -143,6 +156,16 @@ func _physics_process(delta: float) -> void:
 			desired.origin.y += sin((elapsed - 2.5) * 6.0) * 0.015 * (DURATION - elapsed)
 	_move_camera(desired)
 	_finish_if_due()
+
+
+func _corpse_head_position() -> Vector3:
+	if _corpse.has_method("head_position"):
+		return _corpse.call("head_position")
+	# B can supply a moving GazeTarget; existing corpse rigs have a Head.
+	var anchor: Node3D = _corpse.get_node_or_null("GazeTarget") as Node3D
+	if anchor == null:
+		anchor = _corpse.find_child("Head", true, false) as Node3D
+	return anchor.global_position if anchor != null else _corpse.global_position
 
 
 func _finish_if_due() -> void:
@@ -205,7 +228,7 @@ func _create_blood() -> void:
 	blood.process_material = particles
 	_camera.add_child(blood)
 	blood.position = Vector3(0, -0.3, -0.45)
-	blood.visible = not reduced and kind != &"scald"
+	blood.visible = not reduced and kind not in [&"scald", &"guard_shock"]
 
 
 func _burst() -> void:
