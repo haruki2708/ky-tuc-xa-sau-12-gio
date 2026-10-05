@@ -42,7 +42,45 @@ Vòng 3 bỏ 4 phương án: người chơi gõ từ; core chấm trên từ đi
 7. **Không chạy bot thật cả chương** (rất tốn RAM, 15–20 phút mỗi kịch bản). Integrator chạy sau khi chủ dự án đồng ý. Chỉ chạy test headless.
 
 ## Checklist hoàn thành
-- [ ] `pwsh tools/test.ps1` và `pwsh tools/check.ps1` PASS
-- [ ] Handoff: lệnh chạy từng kịch bản, kết quả F9
+- [x] `pwsh tools/test.ps1` và `pwsh tools/check.ps1` PASS
+- [x] Handoff: lệnh chạy từng kịch bản, kết quả F9
 
 ## Handoff (agent điền)
+
+### Phiên 2026-10-06 — hoàn tất phạm vi T-180
+- Base `origin/main`: `e09451b`; commit triển khai `c85dd77`, đã push `lane-c/T-180-ch2-bot-typing` trước khi ghi Handoff.
+- Bot vòng 3 chuyển sang `chain_input_requested` → `chain_word_typed` → `chain_input_closed`. Không còn dùng hai signal chọn phương án cũ. Nhận cả key `WORD_CH2_*` lẫn chữ trực tiếp; policy tự chọn chữ bằng `Ch2Dictionary`, so dấu/lịch sử bằng `VietText`. Dùng `director.is_valid_word()` chỉ để đối chiếu, không lấy đáp án từ suggest của director.
+- Tính đường về vòng lặp bằng chỉ mục ngược của từ điển, tránh quét đệ quy kho 31 nghìn từ. Gài từ xác không biết nối; chỉ ghi nhận bẫy khi core nhận chữ và xác chưa bịt ngã. Chỉ ghi nhận vòng tám từ qua chữ Trung thật sự được core phát ra, không coi gửi input là hoàn thành.
+- Bot vòng 4 trả dự đoán từ ba nhiệt độ nhận qua signal; Minh Nhật nhận dạng khoảng hàng chục, Ngư nhận có/không. Good cần kết quả đúng được core xác nhận cho cả hai. Đổi case thành `ch2_wrong_prediction`, chỉ nhắn sai cho Ngư, kỳ vọng `DEATH_CH2_LOST_NGU` và reload `ch2_r4`. Đồng bộ các lý do chết còn lại sang tiền tố `DEATH_CH2_` thực tế.
+- Bỏ lexicon nhỏ và bốn binding Ngư cũ khỏi profile; giữ các binding vật lý do integrator đã ghép. Menu dùng observer nhập chữ và có đáp án dự đoán từ lịch sử đang nhận. README/launcher cập nhật kịch bản và giới hạn chạy.
+
+### Kiểm tra đã chạy
+| Lệnh | Kết quả | Log cục bộ |
+|---|---|---|
+| `pwsh tools/test.ps1 -Filter ch2_` | `RESULT: 45 passed, 0 failed` (exit 0; trước khi bổ sung test đối chiếu core/bẫy cuối cùng) | `build/T-180-focused.log` |
+| `pwsh tools/test.ps1` | `RESULT: 483 passed, 0 failed` (exit 0; bản triển khai cuối, gồm 9 test ch2_tools và 1 test ch2_menu) | `build/T-180-tests.log` |
+| `pwsh tools/check.ps1` | `RESULT: check 0 error(s)` (exit 0) | `build/T-180-check.log` |
+
+- **F9: PASS trong test headless** `test_f9_opens_closes_and_jumps_to_real_rounds`: gọi handler với InputEventKey F9, kiểm tra mở/đóng và pause; nhảy r3 rồi r4 bằng scene chương 2 thật, scene mới/chapter/segment đúng, đáp án lấy từ observer mới. Userdata tách riêng bởi test runner. Không chạy `qa-menu.ps1 -Smoke` dùng renderer trong phiên này.
+- Phạm vi bằng chứng F9 là handler và scene jump tự động; **chưa test bấm bàn phím thực tế, hình ảnh render hoặc bộ gõ Unikey/EVKey**. Không suy kết quả test headless thành trải nghiệm nhập chữ của bản ghép T-179.
+- Test đầu phát hiện dùng nhầm dạng canon nội bộ như chữ; đã sửa, các lần PASS ở trên là sau sửa. Không có lỗi test còn tồn đọng.
+
+### Lệnh từng kịch bản cho integrator — chưa chạy trong phiên này
+Chỉ chạy sau khi ghép T-177/T-179/T-178 và chủ dự án đồng ý, theo mục 7 của card (15–20 phút mỗi case, tốn RAM):
+
+```powershell
+pwsh tools/playthrough.ps1 -Chapter 2 -Scenario ch2_good -RequireComplete
+pwsh tools/playthrough.ps1 -Chapter 2 -Scenario ch2_chain_timeout -RequireComplete
+pwsh tools/playthrough.ps1 -Chapter 2 -Scenario ch2_chain_wrong -RequireComplete
+pwsh tools/playthrough.ps1 -Chapter 2 -Scenario ch2_scald -RequireComplete
+pwsh tools/playthrough.ps1 -Chapter 2 -Scenario ch2_leave_shower -RequireComplete
+pwsh tools/playthrough.ps1 -Chapter 2 -Scenario ch2_wrong_prediction -RequireComplete
+pwsh tools/playthrough.ps1 -Chapter 2 -Performance -RequireComplete
+```
+
+- **Chưa chạy bot thật cả chương, chưa đo FPS**, không có report end-to-end mới. Các report T-173 cũ vẫn là bằng chứng lịch sử, không phải kết quả T-180. `performance` trong profile vẫn chưa có binding thật.
+
+### Yêu cầu thay đổi ngoài phạm vi / chặn
+- Không có yêu cầu sửa core/UI mới để hoàn thành T-180; không sửa file ngoài phạm vi hoặc STATUS. Integrator tiếp tục ghép A/D/E, bỏ hai signal cũ khỏi EventBus theo kế hoạch T-176 và kiểm thử bản ghép sau khi được chủ dự án đồng ý.
+- **Không bị chặn trong phạm vi khung + test headless.** Xác nhận bot end-to-end, FPS và bộ gõ hệ điều hành vẫn là phần việc sau tích hợp, chưa đạt/chưa kiểm tra trong phiên này theo giới hạn card.
+- Git fetch/checkout ban đầu bị sandbox chặn mạng/LFS; đã phục hồi và chuyển nhánh thành công. Trạng thái checkout dở được giữ an toàn trong stash cục bộ có nhãn `T-180 recovery: partial checkout after sandbox LFS failure`; không áp lại vào nhánh task. Repo sạch trước lần checkout lỗi, không có chỉnh sửa người dùng bị bỏ.
