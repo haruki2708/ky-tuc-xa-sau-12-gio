@@ -11,6 +11,7 @@ const LABELS := {
 	"QA2_SHOW": ["Hiện đáp án từ dữ liệu đã thấy", "Show answers from observed data"],
 	"QA2_UNKNOWN": ["Chưa có từ/lịch sử nhiệt độ để tính đáp án.", "No word/temperature history to calculate an answer."],
 	"QA2_WORD": ["Nối từ: %s", "Word chain: %s"],
+	"QA2_PREDICTION": ["Dự đoán cho %s: %s", "Prediction for %s: %s"],
 	"QA2_WATER": ["Nước lượt tới: %s (theo nhiệt độ vừa hiện)", "Next water slot: %s (from the last revealed temperature)"],
 	"QA2_YES": ["Có", "Yes"], "QA2_NO": ["Không", "No"],
 	"QA2_SAVE": ["Nhảy mở phiên QA riêng; không dùng bản lưu thật.", "Jump opens an isolated QA session with separate saves."],
@@ -113,6 +114,8 @@ func _process(_delta: float) -> void:
 		if choice.status == "PASS": text.append(tr("QA2_WORD") % choice.word)
 	if not observer.temperatures.is_empty():
 		text.append(tr("QA2_WATER") % tr("QA2_YES" if POLICY.shower_yes(observer.temperatures) else "QA2_NO"))
+	for member: StringName in observer.prediction_pending:
+		text.append(tr("QA2_PREDICTION") % [str(member), POLICY.prediction(observer.prediction_pending[member], false, true)])
 	answers.text = "\n".join(text) if not text.is_empty() else tr("QA2_UNKNOWN")
 
 
@@ -143,7 +146,6 @@ func jump(destination: String) -> void:
 	GameState.reset()
 	GameState.chapter = 2
 	observer.recent.clear()
-	observer.options.clear()
 	observer.temperatures.clear()
 	observer.chain_pending = false
 	get_tree().paused = false

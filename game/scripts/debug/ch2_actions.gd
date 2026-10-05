@@ -5,7 +5,15 @@ extends "res://scripts/debug/chapter_actions.gd"
 const POLICY := preload("res://scripts/debug/ch2_policy.gd")
 const SAME := preload("res://scripts/debug/ch1v2_actions.gd")
 var profile: Dictionary = {}
-var options: Array = []
+var dictionary: Ch2Dictionary = Ch2Dictionary.shared()
+var bank: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://data/ch2/word_bank.json")).words
+var prediction_pending: Dictionary = {}
+var prediction_answers: Dictionary = {}
+var prediction_results: Dictionary = {}
+var chain_submitted: bool = false
+var trap_accepted: bool = false
+var trap_confirmed: bool = false
+var _submitted_mode: String = ""
 var recent: Array = []
 var chain_pending: bool = false
 var chain_blocked: bool = false
@@ -25,7 +33,12 @@ func _ready() -> void:
 	EventBus.chapter_started.connect(func(number: int) -> void:
 		if number == 2:
 			recent.clear()
-			options.clear()
+			prediction_pending.clear()
+			prediction_answers.clear()
+			prediction_results.clear()
+			chain_submitted = false
+			trap_accepted = false
+			trap_confirmed = false
 			temperatures.clear()
 			gagged.clear()
 			chain_pending = false
@@ -35,17 +48,24 @@ func _ready() -> void:
 			loop_streak = 0
 			loop_completed = false
 			_last_loop_index = -1)
-	EventBus.chain_choice_requested.connect(func(keys: PackedStringArray, seconds: float) -> void:
-		options = Array(keys)
+	EventBus.chain_input_requested.connect(func(seconds: float) -> void:
 		chain_pending = true
+		chain_submitted = false
 		chain_seconds = seconds
 		chain_requested_at = Time.get_ticks_msec())
-	EventBus.chain_choice_made.connect(func(_index: int) -> void: chain_pending = false)
+	EventBus.chain_input_closed.connect(func(outcome: StringName) -> void:
+		chain_pending = false
+		if outcome == &"accepted" and chain_submitted and _submitted_mode == "trap": trap_accepted = true)
 	EventBus.chain_choice_blocked.connect(func(value: bool) -> void: chain_blocked = value)
-	EventBus.chain_word_spoken.connect(func(_who: StringName, key: String) -> void:
-		if not key.is_empty(): recent.append(key))
+	EventBus.chain_word_spoken.connect(_word_spoken)
 	EventBus.corpse_state_changed.connect(func(bed_number: int, state: StringName) -> void:
+		if state == &"fall" and trap_accepted and bed_number not in gagged: trap_confirmed = true
 		if state == &"gagged" and bed_number not in gagged: gagged.append(bed_number))
+	EventBus.prediction_requested.connect(func(member: StringName, history: PackedInt32Array, _seconds: float) -> void:
+		prediction_pending[member] = Array(history))
+	EventBus.prediction_result.connect(func(member: StringName, correct: bool) -> void:
+		if prediction_answers.has(member): prediction_results[member] = correct
+		prediction_pending.erase(member))
 	EventBus.shower_choice_requested.connect(func(_seconds: float) -> void: shower_pending = true)
 	EventBus.shower_choice_made.connect(func(_yes: bool) -> void: shower_pending = false)
 	EventBus.shower_slot_finished.connect(func(temperature: int, _ran: bool, minutes: int) -> void:
@@ -54,31 +74,47 @@ func _ready() -> void:
 
 
 func recommendation(mode: String = "legal") -> Dictionary:
-	if options.size() != 4: return result("FAIL", "chapter 2 requires four word options")
-	var lexicon: Dictionary = profile.get("lexicon", {})
-	var history: Array = []
-	for key: String in recent.slice(maxi(0, recent.size() - 3)):
-		if not lexicon.has(key): return result("SKIP", "T-170 lexicon missing word: " + key)
-		history.append(lexicon[key].text)
-	for key: String in options:
-		if not lexicon.has(key): return result("SKIP", "T-170 lexicon missing option: " + key)
-	if history.is_empty(): return result("SKIP", "no observed chain word")
-	var index := POLICY.choose(history[-1], options, history, lexicon, mode)
-	return {"status": "PASS" if index >= 0 else "UNAVAILABLE", "index": index, "reason": mode, "word": lexicon[options[index]].text if index >= 0 else ""}
+	if recent.is_empty(): return result("SKIP", "no observed chain word")
+	var word := POLICY.choose_word(recent[-1], recent, mode)
+	return {"status": "PASS" if not word.is_empty() else "UNAVAILABLE", "reason": mode, "word": word}
 
 
 func answer_chain(mode: String = "legal") -> Dictionary:
-	if not chain_pending: return result("FAIL", "chain choice is not pending")
+	if not chain_pending or chain_submitted: return result("FAIL", "chain input is not pending or already submitted")
 	if chain_blocked: return result("FAIL", "cannot answer outside bedroom")
 	var answer := recommendation(mode)
 	if answer.status != "PASS": return answer
-	if mode == "loop":
-		var index := POLICY.LOOP.find(str(answer.word))
+	chain_submitted = true
+	_submitted_mode = mode
+	EventBus.chain_word_typed.emit(str(answer.word))
+	return answer
+
+
+func _word_spoken(who: StringName, key: String) -> void:
+	if key.is_empty(): return
+	var word := str(bank[key].text) if bank.has(key) else key
+	if who == &"trung" and gagged.size() == 3:
+		var index := POLICY.LOOP.find(word)
 		loop_streak = loop_streak + 1 if index >= 0 and index == (_last_loop_index + 1) % 8 else 1 if index >= 0 else 0
 		_last_loop_index = index
 		loop_completed = loop_completed or loop_streak >= 8
-	EventBus.chain_choice_made.emit(int(answer.index))
-	return answer
+	elif who != &"trung":
+		trap_accepted = false
+	recent.append(word)
+	if recent.size() > 3: recent.pop_front()
+
+
+func answer_prediction(member: StringName, wrong: bool = false, as_range: bool = false) -> Dictionary:
+	if not prediction_pending.has(member) or prediction_answers.has(member): return result("FAIL", "prediction not pending or already sent")
+	var text := POLICY.prediction(prediction_pending[member], wrong, as_range)
+	if text.is_empty(): return result("FAIL", "prediction requires three valid observed temperatures")
+	prediction_answers[member] = text
+	EventBus.prediction_sent.emit(member, text)
+	return result("PASS", "prediction sent to " + str(member) + ": " + text)
+
+
+func both_predictions_correct() -> bool:
+	return prediction_results.get(&"minh_nhat", false) == true and prediction_results.get(&"ngu", false) == true
 
 
 func physical(key: String) -> Dictionary:

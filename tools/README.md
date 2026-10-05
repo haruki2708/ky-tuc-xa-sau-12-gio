@@ -133,7 +133,7 @@ Bài đo chỉ tính case Camera khi tìm thấy ít nhất năm SubViewport có
 
 JSON ghi phần cứng, renderer, 1280×720, VSync off, không giới hạn FPS, warmup 90 frame/góc, sample 240 frame/góc, mean FPS, p95 frame ms, max frame ms và `target_met` (mean ≥60). Camera đo cuối sau các góc tĩnh. Scene vẫn có physics/HUD/audio, story tắt để so sánh góc cố định; không phải benchmark đầy đủ luồng truyện. Chạy riêng, không đồng thời chạy Godot/test khác. Mục chưa ghép trả SKIP và không sinh FPS. `-RequireComplete` giúp CI không nhận nhầm SKIP thành hoàn thành.
 
-## T-173: chương 2 (khung trước khi ghép T-170…T-175)
+## T-173 / T-180: chương 2 — gõ từ và nhắn dự đoán
 
 ```powershell
 pwsh tools/playthrough.ps1 -Chapter 2 -Scenario all
@@ -143,14 +143,16 @@ pwsh tools/qa-menu.ps1 -Chapter 2 -Stage r3
 pwsh tools/qa-menu.ps1 -Chapter 2 -Smoke
 ```
 
-Chương 2 tự chọn `tools/ch2-profile.json`, thời gian thật (`TimeScale=1`), watchdog toàn chương 60 phút. Các phép đợi reload dùng `-SegmentTimeout` (mặc định 120 giây). Không dùng `-V2` cùng `-Chapter 2`. Sáu case: good, chain_timeout, chain_wrong, scald, leave_shower, lost_ngu (đều có tiền tố `ch2_`). Exit 0 = không có FAIL; `-RequireComplete` trả 2 nếu còn SKIP, 1 nếu FAIL. Menu smoke cũng trả 2 nếu scene/mốc chưa ghép. Mỗi lượt chạy dùng APPDATA riêng dưới build, không dùng checkpoint/progress thật.
+**Không tự chạy bot cả chương:** theo T-180, integrator chỉ chạy các lệnh playthrough bên trên sau khi chủ dự án đồng ý (15–20 phút mỗi case, tốn RAM). Phiên T-180 chỉ chạy `pwsh tools/test.ps1` và `pwsh tools/check.ps1` headless.
+
+Chương 2 tự chọn `tools/ch2-profile.json`, thời gian thật (`TimeScale=1`), watchdog toàn chương 60 phút. Các phép đợi reload dùng `-SegmentTimeout` (mặc định 120 giây). Không dùng `-V2` cùng `-Chapter 2`. Sáu case: good, chain_timeout, chain_wrong, scald, leave_shower, wrong_prediction (đều có tiền tố `ch2_`). Exit 0 = không có FAIL; `-RequireComplete` trả 2 nếu còn SKIP, 1 nếu FAIL. Menu smoke cũng trả 2 nếu scene/mốc chưa ghép. Mỗi lượt chạy dùng APPDATA riêng dưới build, không dùng checkpoint/progress thật.
 
 ### Profile và dữ liệu cần core cung cấp
 
 - `scene`, `director`: scene chương 2 thật và node director có `auto_start`, `start()`. Các đường dẫn dự kiến từ T-170 có thể chưa tồn tại; bot kiểm tra trước khi load, trả SKIP có lý do.
 - `bindings.round3_segment`, `round4_segment`, `death_ui_path`: ID/path thật. Không đoán theo tên task. Checkpoint kỳ vọng `ch2_r3`/`ch2_r4` và lý do chết lấy từ thiết kế đã duyệt.
-- `lexicon`: map từ key `WORD_CH2_*` sang `{ "text": "từ tiếng Việt", "valid": true, "dead_end": false }`. Phải bao gồm cả phương án bẫy (valid=false khi không phải từ hợp lệ). Text chuẩn hóa theo dữ liệu core, giữ nguyên dấu; không dùng bản dịch tiếng Anh của UI để nối từ. Cần kho đầy đủ để tìm đường 1–3 từ trung gian vào vòng tám từ. Không tự tạo kho từ trong tool.
-- `ngu_choice_id`, `ngu_temperatures` (ba nhiệt độ đã nói trong cuộc gọi), `ngu_yes_index`, `ngu_no_index`: core điền theo dữ liệu lời thoại thật. Bot chỉ dùng chúng khi câu hỏi đó đang chờ. Case lost_ngu đảo đáp án dự đoán.
+- T-180 bỏ `lexicon` và bốn binding Ngư cũ. Bot đọc `Ch2Dictionary.shared()` và `VietText`; từ key `WORD_CH2_*` được tra text trong `word_bank.json`, còn chữ trực tiếp được giữ nguyên. Policy dùng chỉ mục từ điển, tính đường ngắn về vòng lặp và xác định từ xác không biết nối; không lấy đáp án từ `director.suggest_word()`.
+- Dự đoán chỉ dùng `history` nhận qua `prediction_requested`; không đọc trước `predict.next`. Gửi `prediction_sent` một lần/người, rồi chờ `prediction_result`. Minh Nhật nhận dạng hàng chục (ví dụ `2x`), Ngư nhận `có`/`không`; case `ch2_wrong_prediction` chỉ đảo đáp án Ngư.
 - `scald_temperature_flag`: cờ core công bố nhiệt độ thật tại lúc chết; case scald chọn Có ở lượt thứ tư (81°C trong dãy đã duyệt), nhưng chỉ PASS khi quan sát được đúng 81°C. Nếu nhiệt độ chưa được core công bố, SKIP binding; không suy 81 chỉ từ tên case.
 - `jumps`: r3/r4 và tùy ý thêm mốc giữa vòng do core cung cấp. Menu chương 2 gọi `run_from(stage)` trên scene mới. `rule_set` là resource luật nếu API run_from cần tool load trước. Không dùng bất tử của Chapter1Director cho chương 2.
 
@@ -175,12 +177,16 @@ Chương 2 tự chọn `tools/ch2-profile.json`, thời gian thật (`TimeScale=
 
 ### Hành vi bot và menu
 
-Bot nghe signal trước khi scene bắt đầu. Nối từ kiểm tra đúng hai tiếng, dấu chính xác và ba từ vừa nói; ưu tiên từ cụt có metadata khi còn cần lấy đồ. Sau ba signal xác đã bịt, chọn đường vào vòng học sinh…văn học và ghi nhận đủ tám lựa chọn liên tiếp. Không trả lời khi chain_choice_blocked; quay lại phòng ngủ bằng adapter. Case timeout không phát lựa chọn -1 giả, kiểm tra đã chờ ít nhất 15 giây thực. Case wrong chỉ chọn phương án sai dấu; nếu chưa có thì tiếp tục chọn hợp lệ.
+Bot nghe signal trước khi scene bắt đầu. `chain_input_requested` mở lượt gõ; bot phát `chain_word_typed`, chờ `chain_input_closed`. Không dùng hai signal chọn phương án đã bỏ. Nối từ kiểm tra hai tiếng, dấu và ba từ vừa nói; chữ dựng sẵn/tổ hợp, dấu kiểu cũ/mới dùng cùng chuẩn hóa với core. Gài từ làm xác bí ít nhất một lần và đợi core nhận từ rồi xác ngã trước khi lấy đồ/bịt xác. Sau ba xác đã bịt, chọn đường vào vòng học sinh…văn học; chỉ ghi đủ tám từ khi nghe core phát chữ Trung đã nói. Timeout không gõ, wrong gõ từ cùng âm nhưng sai dấu; không có từ sai dấu thì tiếp tục hợp lệ. Bot đối chiếu tính hợp lệ với director nhưng tự chọn chữ từ từ điển.
 
-Vòi sen: lượt đầu chưa có dữ liệu thì chọn Không; các lượt sau dùng `(hàng chục + hàng đơn vị) % 10 < 5` của nhiệt độ vừa hiện, không đọc trước dãy. Trước Có phải vào vùng buồng tắm thật; case leave_shower bước ra sau Có. Good chỉ PASS khi có ba xác bịt, đủ vòng tám từ, ≥25 phút nước, đã trả lời Ngư, chapter_finished(2) và unlock chương 3, không có chết. Case chết kiểm tra lý do, kind, UI và scene reload thật về đầu vòng.
+Vòi sen: lượt đầu chưa có dữ liệu thì chọn Không; các lượt sau dùng `(hàng chục + hàng đơn vị) % 10 < 5` của nhiệt độ vừa hiện, không đọc trước dãy. Trước Có phải vào vùng buồng tắm thật; case leave_shower bước ra sau Có. Good chỉ PASS khi có ba xác bịt, đủ vòng tám từ, ≥25 phút nước, đã xác nhận gài bẫy và nhận `prediction_result(correct=true)` cho cả Minh Nhật lẫn Ngư, chapter_finished(2) và unlock chương 3, không có chết. Case chết kiểm tra lý do, kind, UI và scene reload thật về đầu vòng.
 
 F9 trong scene chương 2 mở menu riêng (chỉ debug hoặc `--qa-menu`); các mốc thiếu bị khóa. Nhảy từ phiên thường mở tiến trình mới có userdata riêng. Bật đáp án chỉ hiển thị từ hợp lệ và dự đoán Có/Không từ dữ liệu đã quan sát; chưa có dữ liệu thì báo chưa có. Catalog vi/en nằm trong debug như T-166 để giữ phạm vi file; tên mốc bổ sung hiển thị ID do core cung cấp.
 
 ### FPS hơi nước
 
 `performance.view` = eye/target XYZ trong nhà vệ sinh thật. `setup`, `hot_water`, `steam_0`, `steam_1` dùng cùng schema action/acknowledgement, gọi API fixture của cơ chế thật khi director auto_start=false. Đo hai trạng thái **nước nóng đang chảy** ở hơi nước 0 và 1, 1280×720, VSync off, không giới hạn FPS, 90 frame warmup + 240 frame mẫu/trạng thái. `hot_water` và `steam_*` phải có state acknowledgement, không chỉ signal; kiểm tra state mỗi frame lấy mẫu. State đổi trong lúc đo thì FAIL, không gán số đo nhầm trạng thái. JSON có mean FPS, p95/max frame ms, steam level, hot_water_running, ngưỡng mean ≥60 và thời gian. Không có scene/fixture thì SKIP, views rỗng. Đo riêng, không chạy đồng thời Godot/test khác; không lấy FPS phòng chương 1 để thay thế.
+
+### Kiểm tra nhanh T-180 (headless)
+
+`pwsh tools/test.ps1 -Filter ch2_` bao gồm policy nhập chữ/dự đoán và test `test_ch2_menu.gd`: tạo scene thật, gọi handler F9 mở/đóng, nhảy r3 rồi r4, kiểm tra scene mới/chapter/segment/pause và đáp án. Đây là kiểm tra xử lý input/menu bằng headless; không xác nhận hình ảnh render, bàn phím vật lý hay Unikey/EVKey. Không chạy bot trọn chương, không đo FPS trong phiên T-180.
