@@ -9,7 +9,7 @@
 3. **Chưa kiểm tra:** F9 bằng tay (đã có test headless); `CctvAudio.play_room_loss` chưa nối.
 4. **Test chập chờn khi chạy cả bộ (chạy riêng thì qua):** lane B `test_stuck_door_shakes_without_opening_then_cancels_on_open` (bộ hẹn giờ 0,07 giây); lane A `test_typing_stops_existing_motion_blocks_w_e_then_restores_gameplay` (đỏ 1 trong 2 lần chạy cả bộ ngày 06/10, có thể do test trước để lại trạng thái; cần lane A xem).
 5. **Để sau (D-045):** chương 1 đoạn gõ tường; chủ dự án nghe âm thanh lane E chương 1 và 2.
-6. **Chương 3 "Truy sát": thiết kế đang chờ duyệt** (D-052, `docs/design/CH3_DESIGN.md`). Duyệt xong mới viết card T-181… cho các lane.
+6. **Chương 3 "Truy sát" đang sản xuất** (thiết kế tạm duyệt D-053, map gần kích thước thật D-054). Card T-181 (core), T-182 A, T-183 B, T-184 C, T-185 D, T-186 E. Lane B push greybox khuôn viên trước (2026-10-07) để A, C thử; lane C đo FPS sớm. Các lane hạn đề xuất 2026-10-08; integrator ghép 10-09; chơi thử khoảng 10-10.
 7. Máy chủ dự án: đã tạo `%APPDATA%/Godot/app_userdata/Ky Tuc Xa Sau 12 Gio/progress.json` = `{"unlocked": 2}` để chọn được chương 2.
 **Repo:** https://github.com/tuaanh666/ky-tuc-xa-sau-12-gio (private)
 
@@ -64,6 +64,13 @@
 | T-178 Xác đọc từ điển bằng giọng ghép theo tiếng | E | **done**, đã merge; chờ nghe |
 | T-179 Ô gõ từ nối, ô nhắn dự đoán, credits từ điển | D | **done**, đã merge; chờ thử bộ gõ |
 | T-180 Bot gõ từ và nhắn dự đoán, kiểm tra F9 | C | **done**, đã merge; bot thật chưa chạy |
+| **Chương 3 "Truy sát" (D-052…D-054, giao 2026-10-06)** | | |
+| T-181 Hợp đồng chung, kịch bản, luồng 4 khu, ghép | core | **doing**: hợp đồng EventBus xong |
+| T-182 Xác sống, thanh sắt, thể lực, đồng đội, bảo vệ, cảnh chết | A | todo |
+| T-183 Khuôn viên: nhà B tầng 1–4, vườn hoa, sân vận động, cổng, nhà ăn (greybox trước) | B | todo |
+| T-184 Bot, menu nhảy 4 khu, đo FPS ngoài trời | C | todo |
+| T-185 Thể lực, thanh sắt, lớp chết, thẻ hết chương | D | todo |
+| T-186 Tiếng xác, thanh sắt, thở dốc, ngoài trời, nhạc | E | todo |
 | T-171 Cầm giẻ, bịt miệng xác, cửa kẹt, buồng tắm, nút vòi sen, cảnh chết `corpse_lunge` và `scald` | A | **done**, đã merge |
 | T-172 Xác chơi nối từ, đồ bịt miệng, nhà vệ sinh có vòi sen, hơi nước, phòng camera 310 | B | **done**, đã merge |
 | T-173 Bot chương 2, menu nhảy, đo FPS hơi nước | C | khung **đã merge**; bot chạy sau khi điền profile |

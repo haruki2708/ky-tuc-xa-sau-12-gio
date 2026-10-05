@@ -262,3 +262,33 @@ signal prediction_sent(member: StringName, text: String)
 ## Core judged it. Wrong (or no answer) scalds that friend and loses round 4.
 signal prediction_result(member: StringName, correct: bool)
 
+
+# --- Chapter 3 "Truy sát" (CH3_DESIGN.md, D-052…D-054, T-181…T-186) ---
+# Reused: noise_emitted (zombies hear steps, panting, bar hits, the
+# extinguisher), player_caught(&"zombie" / &"guard") then core kills,
+# player_death_started(&"zombie_grab" / &"guard_shock"), scare_triggered.
+
+## A zombie woke up and hunts. zombie: the Zombie node (lane A).
+signal zombie_woke(zombie: Node3D)
+
+## The player's bar hit a zombie's head: it is down for `seconds`.
+signal zombie_stunned(zombie: Node3D, seconds: float)
+
+## The player picked up an iron bar (hits it can still take).
+signal bar_picked(hits_left: int)
+
+## A swing: hit = struck a head; hits_left after this swing (0 = broken).
+signal bar_swung(hit: bool, hits_left: int)
+
+## The bar broke (hits_left reached 0). The player is unarmed again.
+signal bar_broken()
+
+## Stamina 0..1 changed; exhausted = cannot sprint until it recovers.
+signal stamina_changed(value: float, exhausted: bool)
+
+## A companion (&"minh_nhat" / &"ngu") changed state: &"joined", &"running",
+## &"waiting" (at a meeting point), &"calling" (player too far), &"left".
+signal companion_state_changed(member: StringName, state: StringName)
+
+## A guard raised the baton: the player is inside its warning radius.
+signal guard_warned(guard: Node3D, warned: bool)

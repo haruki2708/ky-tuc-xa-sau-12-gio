@@ -1,7 +1,7 @@
 # AGENTS.md — Luật chung cho mọi agent
 
 Dự án: **"Ký túc xá sau 12 giờ"**. Game kinh dị và giải đố 3D, góc nhìn thứ nhất, phong cách low-poly kiểu PS1, làm bằng **Godot 4.7.2 (GDScript)**.
-Mục tiêu hiện tại là game đầy đủ khoảng 3–4 tiếng, phát hành theo 4 chương (D-029); đang làm **chương 1 "Tổng tắc"**. **Thiết kế duy nhất còn hiệu lực là `docs/design/STORY.md` (v2, D-034, D-035).** Các tài liệu trong `docs/design/archive/` là phần chơi cũ của bản demo, chỉ để tham khảo hệ thống có sẵn; đừng làm theo cốt truyện hay luật trong đó.
+Mục tiêu hiện tại là game đầy đủ khoảng 3–4 tiếng, phát hành theo 4 chương (D-029); chương 1–2 đã có bản chơi thử, đang làm **chương 3 "Truy sát"** (`docs/design/CH3_DESIGN.md`). **Thiết kế duy nhất còn hiệu lực là `docs/design/STORY.md` (v2, D-034, D-035).** Các tài liệu trong `docs/design/archive/` là phần chơi cũ của bản demo, chỉ để tham khảo hệ thống có sẵn; đừng làm theo cốt truyện hay luật trong đó.
 
 Có 6 người làm việc trên dự án:
 - **Integrator (Claude):** giữ kiến trúc, review và merge mọi nhánh vào `main`.
