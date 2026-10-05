@@ -399,6 +399,11 @@ func _round_4() -> void:
 			if not await _save_ngu():
 				return
 		_story(R4_BEATS.get(slot, []))
+		if slot == 12:
+			# Jumpscare 7: the manager in the steamed-up mirror, one frame.
+			var room := _room()
+			if room != null and room.has_method("flash_reflection"):
+				room.flash_reflection()
 		if not await _shower_slot(int(temps[slot])):
 			return
 		if _minutes >= need:
@@ -410,8 +415,10 @@ func _round_4() -> void:
 ## One 2-minute slot: choose, then the water decides. False = dead.
 func _shower_slot(temperature: int) -> bool:
 	_shower_choice = -1
+	_set_shower_buttons(true)
 	EventBus.shower_choice_requested.emit(SHOWER_CHOICE_SECONDS)
 	await _wait_until(func() -> bool: return _shower_choice != -1, SHOWER_CHOICE_SECONDS)
+	_set_shower_buttons(false)
 	if _shower_choice == -1:
 		_die(&"DEATH_CH2_NO_CHOICE")
 		return false
@@ -544,7 +551,8 @@ func _corpse_state(bed: int, state: StringName) -> void:
 	if body == null:
 		return
 	if body.has_method("set_state"):
-		body.set_state(state)
+		# The contract says "sit"; lane B's pose is "sit_play" (T-172).
+		body.set_state(&"sit_play" if state == &"sit" else state)
 	elif body.has_method("set_pose"):
 		# Before lane B's states (T-172): sitting up is the closest pose.
 		body.set_pose(&"sit_up" if state in [&"sit", &"talk", &"gagged", &"mumble", &"revive", &"lunge"] else &"dead_a")
@@ -576,34 +584,100 @@ func _place_ch2_props() -> void:
 	var room := _room()
 	if room == null:
 		return
-	var carry_scene := "res://scenes/interaction/carry_item.tscn"
+	# Things to gag with (N3): lane B's model stays put until lane A's item is taken.
 	for entry: Array in [["RagSpot", &"rag", "PROMPT_CH2_TAKE_RAG"], ["TowelSpot", &"towel", "PROMPT_CH2_TAKE_TOWEL"],
 			["ShirtSpot", &"shirt", "PROMPT_CH2_TAKE_SHIRT"]]:
 		var anchor := _room_anchor(entry[0])
-		if anchor != null and ResourceLoader.exists(carry_scene):
-			var item := load(carry_scene).instantiate() as Node3D
-			item.name = "Carry_" + String(entry[1])
-			item.set("item_id", entry[1])
-			item.set("prompt_key", entry[2])
-			anchor.add_child(item)
-	var gag_scene := "res://scenes/interaction/gag_spot.tscn"
+		var item := _instance_on(anchor, "res://scenes/interaction/carry_item.tscn", "Carry_" + String(entry[1]))
+		if item == null:
+			continue
+		item.set("item_id", entry[1])
+		item.set("prompt_key", entry[2])
+		var model := anchor.get_node_or_null("Model") as Node3D
+		var placeholder := item.get_node_or_null("Placeholder") as Node3D
+		if model != null and placeholder != null:
+			placeholder.visible = false
+			item.picked.connect(func(_id: StringName) -> void:
+				model.visible = false
+				placeholder.visible = true)
+			item.dropped.connect(func(_id: StringName) -> void:
+				model.visible = true
+				placeholder.visible = false)
+	# Gag spots at the corpses' mouths (N4).
 	for bed in [1, 2, 4]:
-		var anchor := _room_anchor("Gag%d" % bed)
-		if anchor != null and ResourceLoader.exists(gag_scene):
-			var spot := load(gag_scene).instantiate() as Node3D
-			spot.name = "GagSpot"
-			spot.set("bed", bed)
-			anchor.add_child(spot)
-			if spot.has_signal("gag_requested"):
-				spot.gag_requested.connect(func(b: int, item_id: StringName) -> void:
-					_on_gag_requested(b, item_id, spot, _held_item()))
+		var spot := _instance_on(_room_anchor("Gag%d" % bed), "res://scenes/interaction/gag_spot.tscn", "GagSpot")
+		if spot == null:
+			continue
+		spot.set("bed", bed)
+		_hide_placeholder(spot)
+		spot.gag_requested.connect(func(b: int, item_id: StringName) -> void:
+			_on_gag_requested(b, item_id, spot, CarryItem.held_by(_player)))
+	# The swollen bathroom door (N6): three shoves.
+	var door_model := room.get_node_or_null("Extension/BathroomDoor") as Node3D
+	var door := _instance_on(door_model, "res://scenes/interaction/stuck_door.tscn", "StuckDoor")
+	if door != null:
+		door.set("room", room)
+		_hide_placeholder(door)
+		door.bashed.connect(func(count: int) -> void:
+			if room.has_method("set_stuck_shake"):
+				room.set_stuck_shake(0.35 * count))
+		door.opened.connect(func() -> void:
+			GameState.set_flag(&"ch2_bathroom_open", true)
+			EventBus.scare_triggered.emit(&"bathroom_steam"))
+	# Standing under the shower: lane A's area with lane B's box.
+	var stall_anchor := _room_anchor("ShowerStall")
+	var stall := _instance_on(stall_anchor, "res://scenes/interaction/shower_stall.tscn", "ShowerStallArea")
+	var b_shape := stall_anchor.get_node_or_null("Collision") as CollisionShape3D if stall_anchor != null else null
+	if stall != null and b_shape != null:
+		var shape := stall.get_node("CollisionShape3D") as CollisionShape3D
+		shape.shape = b_shape.shape
+		shape.global_transform = b_shape.global_transform
+	# Có / Không under the screen, and wiping the steam off it.
+	for entry: Array in [["ShowerYes", true], ["ShowerNo", false]]:
+		var button := _instance_on(_room_anchor(entry[0]), "res://scenes/interaction/shower_choice.tscn", "Choice")
+		if button != null:
+			button.set("run_water", entry[1])
+			button.set("prompt_key", "PROMPT_CH2_SHOWER_YES" if entry[1] else "PROMPT_CH2_SHOWER_NO")
+			_hide_placeholder(button)
+	var wipe := _instance_on(_room_anchor("ShowerScreen"), "res://scenes/interaction/shower_screen.tscn", "Wipe")
+	if wipe != null:
+		_hide_placeholder(wipe)
+		wipe.wiped.connect(_on_screen_wiped)
+	# Room 310 on the security cameras (D-046).
+	if _cctv_set != null and _cctv_set.get_node_or_null("Room310") != null:
+		var r310 := _cctv_set.get_node("Room310")
+		if r310.get_node_or_null("Hall/Cam") is Camera3D:
+			_add_feed(&"hall_310", "CCTV_CH2_CAM_HALL_310", r310.get_node("Hall/Cam"))
+		if r310.get_node_or_null("Cam") is Camera3D:
+			_add_feed(&"cam_310", "CCTV_CH2_CAM_310", r310.get_node("Cam"))
 
 
-func _held_item() -> Node:
-	for item in _find_components("carry_item.gd"):
-		if item.get("is_held") == true or item.get("held") == true:
-			return item
-	return null
+func _instance_on(parent: Node, scene_path: String, node_name: String) -> Node3D:
+	if parent == null or not ResourceLoader.exists(scene_path):
+		return null
+	var node := (load(scene_path) as PackedScene).instantiate() as Node3D
+	node.name = node_name
+	parent.add_child(node)
+	return node
+
+
+func _hide_placeholder(node: Node) -> void:
+	var placeholder := node.get_node_or_null("Placeholder") as Node3D
+	if placeholder != null:
+		placeholder.visible = false
+
+
+func _set_shower_buttons(enabled: bool) -> void:
+	for anchor_name in ["ShowerYes", "ShowerNo"]:
+		var button := _room_anchor(anchor_name + "/Choice") if _room() != null else null
+		if button != null and button.has_method("set_enabled"):
+			button.set_enabled(enabled)
+
+
+func _on_screen_wiped() -> void:
+	var screen := get_tree().get_first_node_in_group(&"shower_screen_ui")
+	if screen != null and screen.has_method("wipe"):
+		screen.wipe()
 
 
 func _load_json(path: String) -> Dictionary:
