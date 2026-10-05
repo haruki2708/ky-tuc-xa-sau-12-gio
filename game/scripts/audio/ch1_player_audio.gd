@@ -6,6 +6,7 @@ extends Node
 @export var handle_player_caught: bool = true
 @export_dir var mission_directory: String = Ch1V2AudioBank.DIRECTORY
 @export_dir var chapter2_directory: String = Ch2AudioBank.DIRECTORY
+@export_dir var chapter3_directory: String = Ch3AudioBank.DIRECTORY
 ## T-161 sets the gameplay limit; match that limit without deciding exhaustion here.
 @export var heartbeat_ramp_seconds: float = 6.0
 var _heart: AudioStreamPlayer
@@ -102,12 +103,14 @@ func _on_hidden(hidden: bool, kind: StringName) -> void:
 
 func _on_caught(_entity_id: StringName) -> void:
 	_on_breath(false)
+	if _entity_id in [&"zombie", &"guard"]:
+		return # Chapter 3 detail follows player_death_started, in either signal order.
 	if handle_player_caught and not _manager_kill_played and _death_kind in [&"", &"manager_kill"]:
 		play_action(&"manager_kill")
 
 
 func _on_death(kind: StringName) -> void:
-	if _stopped or not is_node_ready() or not _death_kind.is_empty() or kind not in [&"fall_back", &"bed_burst", &"manager_kill", &"none", &"corpse_lunge", &"scald"]:
+	if _stopped or not is_node_ready() or not _death_kind.is_empty() or kind not in [&"fall_back", &"bed_burst", &"manager_kill", &"none", &"corpse_lunge", &"scald", &"zombie_grab", &"guard_shock"]:
 		return
 	_death_kind = kind
 	_on_breath(false)
@@ -128,7 +131,11 @@ func _play_death_detail() -> void:
 		&"manager_kill": clip_name = "" if reduced else "death_flesh"
 		&"corpse_lunge": clip_name = "death_corpse_soft" if reduced else "death_corpse_lunge"
 		&"scald": clip_name = "death_scald_soft" if reduced else "death_scald"
+		&"zombie_grab": clip_name = "death_zombie_soft" if reduced else "death_zombie_grab"
+		&"guard_shock": clip_name = "death_guard_soft" if reduced else "death_guard_shock"
 	_death.stream = Ch2AudioBank.clip(clip_name, chapter2_directory) if _death_kind in [&"corpse_lunge", &"scald"] else Ch1V2AudioBank.clip(clip_name, mission_directory)
+	if _death_kind in [&"zombie_grab", &"guard_shock"]:
+		_death.stream = Ch3AudioBank.clip(clip_name, chapter3_directory)
 	if _death.stream != null:
 		_death.play()
 

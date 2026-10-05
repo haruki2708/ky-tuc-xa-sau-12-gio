@@ -37,12 +37,17 @@ func _ready() -> void:
 
 
 func play_footstep(surface: StringName, intensity: float = 0.5) -> void:
-	if surface != &"tile":
+	if surface not in [&"tile", &"grass", &"concrete"]:
 		return
 	intensity = clampf(intensity, 0.0, 1.0)
 	var running := intensity >= RUN_THRESHOLD
 	var bank: Array[AudioStream] = tile_run_variants if running else tile_variants
 	var bank_id := 1 if running else 0
+	if surface != &"tile":
+		bank = []
+		bank_id = 2 if surface == &"grass" else 3
+		for variant in range(1, 5):
+			bank.append(Ch3AudioBank.clip("run_%s_%02d" % [surface, variant]))
 	var candidates: Array[AudioStream] = []
 	for clip in bank:
 		if clip != null and clip != _previous.get(bank_id) and not candidates.has(clip):
