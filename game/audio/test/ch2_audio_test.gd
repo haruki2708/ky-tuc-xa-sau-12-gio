@@ -11,6 +11,8 @@ var preview: AudioStreamPlayer
 var selected: int = 0
 var word_keys: Array[String] = []
 var word_index: int = 0
+const SYLLABLE_WORDS: Array[String] = ["khuất bóng", "bóng đèn", "đèn dầu"]
+var syllable_word_index: int = 0
 
 
 func _ready() -> void:
@@ -42,6 +44,8 @@ func _ready() -> void:
 	word_keys.sort()
 	if "--ch2-audio-preview" in OS.get_cmdline_user_args():
 		audition(0)
+	if "--ch2-syllable-preview" in OS.get_cmdline_user_args():
+		audition_syllables(0)
 
 
 func reset_preview() -> void:
@@ -65,6 +69,16 @@ func audition(index: int) -> void:
 	print("CH2 audition: ", selected + 1, "/", Ch2AudioBank.NAMES.size(), " ", clip_name, " -> ", preview.bus)
 
 
+func audition_syllables(index: int) -> void:
+	reset_preview()
+	var corpus_index := posmod(index, SYLLABLE_WORDS.size() * corpses.size())
+	var corpse := corpses[posmod(corpus_index, corpses.size())]
+	var text := SYLLABLE_WORDS[floori(float(corpus_index) / corpses.size())]
+	var seconds := corpse.play_word(text)
+	print("CH2 syllables: ", corpse.speaker, " / ", text, " / ", seconds, " seconds")
+	syllable_word_index = corpus_index + 1
+
+
 func _unhandled_key_input(event: InputEvent) -> void:
 	if not event is InputEventKey or not event.pressed or event.echo:
 		return
@@ -85,6 +99,7 @@ func _unhandled_key_input(event: InputEvent) -> void:
 				var key := word_keys[posmod(floori(float(word_index) / 3.0), word_keys.size())]
 				print("CH2 voice: ", corpse.speaker, " ", key, " ", corpse.play_word(key), " seconds")
 				word_index += 1
+		KEY_B: audition_syllables(syllable_word_index)
 		KEY_T: EventBus.chain_turn_started.emit(&"trung", 15.0)
 		KEY_F1: shower.set_water(5.0, true)
 		KEY_F2: shower.set_water(37.0, true)

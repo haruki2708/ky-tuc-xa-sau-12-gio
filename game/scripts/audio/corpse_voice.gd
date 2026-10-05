@@ -56,14 +56,16 @@ func play_word(key: String) -> float:
 	if key.is_empty() or _gagged or _state == &"mumble":
 		set_mumbling(true)
 		return 0.0
-	if not key.begins_with("WORD_CH2_"):
-		return 0.0
-	for character in key:
-		if not character in "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_":
-			return 0.0
 	_voice.stop()
 	_filter.cutoff_hz = 3800.0
-	_voice.stream = null if voice_directory.is_empty() else Ch1AudioBank.load_if_present(voice_directory.path_join(key + ".ogg"))
+	_voice.stream = null
+	if key.begins_with("WORD_CH2_"):
+		for character in key:
+			if not character in "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_":
+				return 0.0
+		_voice.stream = null if voice_directory.is_empty() else Ch1AudioBank.load_if_present(voice_directory.path_join(key + ".ogg"))
+	elif VietText.syllables(key).size() == 2:
+		_voice.stream = CorpseSyllablePhrase.build(Ch2SyllableBank.clips_for(key), _voice.pitch_scale)
 	if _voice.stream == null:
 		return 0.0
 	_voice.play()

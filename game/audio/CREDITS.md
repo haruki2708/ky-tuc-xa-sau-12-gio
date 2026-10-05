@@ -202,3 +202,7 @@ Tác giả: Lane E / OpenAI Codex, code tổng hợp có AI hỗ trợ (AI-assis
 | music_chain, music_shower, music_turn | Drone partial trầm lệch hòa âm, noise thấp; pulse theo lượt |
 
 LUFS từng file và API: `audio_source/ch2/README.md`; hash/peak/seed: `audio_source/ch2/build_report.json`. Peak lớn nhất −15.96 dBTP trước bus/filter. **Chưa nghe bằng tai/chưa được duyệt mix.** Giọng nói `WORD_CH2_*` do core sinh và khai nguồn riêng qua pipeline eSpeak T-159; T-175 chỉ có rig xử lý, không sinh/copy lời thoại. Các asset chương 1 giữ nguyên nguồn/giấy phép bên trên.
+
+## T-178 — phát giọng ghép theo tiếng (2026-10-06)
+
+Chỉ bổ sung code cắt/ghép PCM tạm và fade trong RAM, có OpenAI Codex hỗ trợ; không tạo hoặc chỉnh file giọng. Nguồn vẫn là bốn `game/audio/voice/vi/ch2_syllables_0..3.ogg` do core sinh bằng eSpeak NG (pipeline `audio_source/ch2_syllable_voices.py`); giữ nguồn/giấy phép eSpeak của chương 2 đã ghi ở trên. Không nhập thêm nội dung từ điển hoặc sinh lời thoại. Báo cáo so sánh âm lượng: `audio_source/ch2/syllable_audit.json`; cách nghe phím B/V: `audio_source/ch2/syllable_playback.md`. **Chưa nghe/duyệt cảm nhận.**

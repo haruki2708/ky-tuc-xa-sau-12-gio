@@ -1,0 +1,80 @@
+{
+  "note": "Independent FFmpeg cut/fade comparison before shared runtime distortion; not a listening test.",
+  "pitch": 0.72,
+  "player_gain_db": -6,
+  "gap_seconds": 0.08,
+  "fade_seconds": 0.005,
+  "source_sha256": {
+    "game/audio/voice/vi/ch2_syllables_0.ogg": "4f3bf6c26b00f7688619d540df8e8bc9fcaa740bf385be6599b203fe29232248",
+    "game/audio/voice/vi/ch2_syllables_1.ogg": "00471c4730c7cae481e32f25941cd568964b0b52aeae6b4b4c01b2ec7838f855",
+    "game/audio/voice/vi/ch2_syllables_2.ogg": "95653ab436105d65d897b4745f509997f666297bb787ef1d7400b5e4abfb6200",
+    "game/audio/voice/vi/ch2_syllables_3.ogg": "c17bcaf83baa99b49ea37ca7cd32dce503ed37747c1433489e803d35bb395e14"
+  },
+  "words": [
+    {
+      "text": "học sinh",
+      "whole_key": "WORD_CH2_HOC_SINH",
+      "syllable_lufs": -36.76,
+      "whole_lufs": -35.74,
+      "syllable_peak_db": -15.02,
+      "delta_lu": -1.02
+    },
+    {
+      "text": "sinh viên",
+      "whole_key": "WORD_CH2_SINH_VIEN",
+      "syllable_lufs": -37.33,
+      "whole_lufs": -36.3,
+      "syllable_peak_db": -16.45,
+      "delta_lu": -1.03
+    },
+    {
+      "text": "viên phấn",
+      "whole_key": "WORD_CH2_VIEN_PHAN",
+      "syllable_lufs": -34.56,
+      "whole_lufs": -36.18,
+      "syllable_peak_db": -15.66,
+      "delta_lu": 1.62
+    },
+    {
+      "text": "phấn đấu",
+      "whole_key": "WORD_CH2_PHAN_DAU",
+      "syllable_lufs": -33.54,
+      "whole_lufs": -35.59,
+      "syllable_peak_db": -15.32,
+      "delta_lu": 2.05
+    },
+    {
+      "text": "đấu tranh",
+      "whole_key": "WORD_CH2_DAU_TRANH",
+      "syllable_lufs": -34.3,
+      "whole_lufs": -36.52,
+      "syllable_peak_db": -14.81,
+      "delta_lu": 2.22
+    },
+    {
+      "text": "tranh luận",
+      "whole_key": "WORD_CH2_TRANH_LUAN",
+      "syllable_lufs": -36.09,
+      "whole_lufs": -35.83,
+      "syllable_peak_db": -14.81,
+      "delta_lu": -0.26
+    },
+    {
+      "text": "luận văn",
+      "whole_key": "WORD_CH2_LUAN_VAN",
+      "syllable_lufs": -36.6,
+      "whole_lufs": -35.96,
+      "syllable_peak_db": -15.36,
+      "delta_lu": -0.64
+    },
+    {
+      "text": "văn học",
+      "whole_key": "WORD_CH2_VAN_HOC",
+      "syllable_lufs": -36.1,
+      "whole_lufs": -35.98,
+      "syllable_peak_db": -15.02,
+      "delta_lu": -0.12
+    }
+  ],
+  "mean_delta_lu": 0.35
+}

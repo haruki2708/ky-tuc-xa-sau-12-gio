@@ -1,5 +1,7 @@
 # T-175 — âm thanh chương 2
 
+**Cập nhật T-178:** đọc từ điển bằng ghép tiếng, phím B và báo cáo âm lượng ở [syllable_playback.md](syllable_playback.md). Ghi chú thiếu voice bank bên dưới là tình trạng bàn giao T-175; main đã có giọng nguyên từ và bốn bank tiếng do core tạo.
+
 23 âm tổng hợp gốc CC0 bằng Python/FFmpeg có sẵn, code có OpenAI Codex hỗ trợ. Không dùng bản thu, model giọng, âm game/video hoặc lời thoại tự bịa. Giọng eSpeak đọc từ `WORD_CH2_*` thuộc core/T-170; **chưa có trong main tại c68888b**. Không sinh lời thay thế. **Chưa nghe bằng tai**; test headless và LUFS không thay duyệt chất âm.
 
 ## Pipeline và số đo
