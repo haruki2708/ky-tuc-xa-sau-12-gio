@@ -312,6 +312,10 @@ UI_ROWS = [
     ("CCTV_CAM_209", "CAM 209 · nhà B", "CAM 209 · Bldg B"),
     ("CCTV_CAM_106", "CAM 106 · nhà B", "CAM 106 · Bldg B"),
     ("CCTV_CAM_CORRIDOR", "CAM T4 · hành lang", "CAM F4 · corridor"),
+    ("CCTV_CAM_HALL_102", "CAM T1 · hành lang 102", "CAM F1 · corridor 102"),
+    ("CCTV_CAM_HALL_306", "CAM T3 · hành lang 306", "CAM F3 · corridor 306"),
+    ("CCTV_CAM_HALL_209", "CAM T2 · hành lang 209", "CAM F2 · corridor 209"),
+    ("CCTV_CAM_HALL_106", "CAM T1 · hành lang 106", "CAM F1 · corridor 106"),
 ]
 PUZZLES = {"locker_combo_dat": ("PUZZLE_LOCKER_DAT_TITLE", ("Tủ của Đạt", "Đạt's locker"), "2109", "")}
 PUZZLE_MAX_ATTEMPTS = 3

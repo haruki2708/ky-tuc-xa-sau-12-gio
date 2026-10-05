@@ -81,6 +81,10 @@ func _desk_lamp_on() -> bool:
 # Security cameras (D-041): camera id → label key and lane B's room number.
 const CCTV_ROOMS := {&"cam_102": "102", &"cam_306": "306", &"cam_209": "209", &"cam_106": "106"}
 const CCTV_CORRIDOR := &"cam_corridor"
+## D-044: the corridor camera outside each victim's door.
+const CCTV_HALLS := {&"cam_102": &"hall_102", &"cam_306": &"hall_306", &"cam_209": &"hall_209", &"cam_106": &"hall_106"}
+## On camera he walks a little faster than in 407, so he is in before the kill.
+const CCTV_MANAGER_SPEED := 1.3
 const CCTV_SET_SCENE := "res://scenes/levels/cctv/cctv_set.tscn"
 const STUDENT_SCENES := {
 	"102": "res://scenes/levels/cctv/student_hung.tscn", "306": "res://scenes/levels/cctv/student_kiet.tscn",
@@ -1501,6 +1505,11 @@ func _build_cctv() -> void:
 	_cctv_set.name = "CctvSet"
 	add_child(_cctv_set)
 	for camera_id: StringName in CCTV_ROOMS:
+		var room := _cctv_room(CCTV_ROOMS[camera_id])
+		var hall := room.get_node_or_null("Hall/Cam") as Camera3D if room != null else null
+		if hall != null:
+			var hall_id: StringName = CCTV_HALLS[camera_id]
+			_add_feed(hall_id, "CCTV_CAM_" + String(hall_id).to_upper(), hall)
 		var cam := _cctv_camera(CCTV_ROOMS[camera_id])
 		if cam != null:
 			_add_feed(camera_id, "CCTV_" + String(camera_id).to_upper(), cam)
@@ -1520,7 +1529,8 @@ func _cctv_room(number: String) -> Node3D:
 
 func _cctv_camera(number: String) -> Camera3D:
 	var room := _cctv_room(number)
-	return room.find_child("Cam", true, false) as Camera3D if room != null else null
+	# The room's own camera; Hall/Cam is the corridor outside (D-044).
+	return room.get_node_or_null("Cam") as Camera3D if room != null else null
 
 
 func _add_feed(camera_id: StringName, label_key: String, source: Camera3D) -> void:
@@ -1539,12 +1549,18 @@ func _add_feed(camera_id: StringName, label_key: String, source: Camera3D) -> vo
 	camera.current = true
 
 
-## Puts the victim in a room on camera and the manager at the door (D-041).
+## Puts the victim in a room on camera; the manager comes down the corridor
+## (hall camera), opens the door and walks in (room camera) (D-041, D-044).
 func _cctv_scene(camera_id: StringName, victim_pose: StringName) -> void:
-	EventBus.cctv_focus_requested.emit(camera_id)
 	var room := _cctv_room(CCTV_ROOMS.get(camera_id, ""))
 	if room == null:
+		EventBus.cctv_focus_requested.emit(camera_id)
 		return
+	# He is in one place at a time: nobody left standing in an earlier room.
+	for other_id: StringName in CCTV_ROOMS:
+		var other := _cctv_room(CCTV_ROOMS[other_id])
+		if other != null and other != room and other.get_node_or_null("Manager") != null:
+			other.get_node("Manager").queue_free()
 	var number: String = CCTV_ROOMS[camera_id]
 	var victim := room.get_node_or_null("Victim") as Node3D
 	if victim == null and STUDENT_SCENES.has(number) and ResourceLoader.exists(STUDENT_SCENES[number]):
@@ -1563,7 +1579,11 @@ func _cctv_scene(camera_id: StringName, victim_pose: StringName) -> void:
 	if ResourceLoader.exists(MANAGER_BODY):
 		manager.set("body_scene", load(MANAGER_BODY))
 	manager.set("look_target", victim)
-	manager.set("audio_rig", Node3D.new())
+	# A silent stand-in rig, owned by the manager so it goes when he goes.
+	var rig := Node3D.new()
+	rig.name = "SilentRig"
+	manager.add_child(rig)
+	manager.set("audio_rig", rig)
 	room.add_child(manager)
 	# The world's navmesh is room 407's: on camera he walks straight instead.
 	var agent := manager.get_node_or_null("NavigationAgent3D") as NavigationAgent3D
@@ -1571,13 +1591,36 @@ func _cctv_scene(camera_id: StringName, victim_pose: StringName) -> void:
 		if not _cctv_nav_map.is_valid():
 			_cctv_nav_map = NavigationServer3D.map_create()
 		agent.set_navigation_map(_cctv_nav_map)
-	var door := room.find_child("Door", true, false) as Node3D
-	var spot := room.find_child("ManagerSpot", true, false) as Node3D
-	if door != null:
-		manager.global_position = door.global_position
+	manager.set("speed", CCTV_MANAGER_SPEED)
+	var start := room.get_node_or_null("Hall/Start") as Node3D
+	var door := room.get_node_or_null("Door") as Node3D
+	var spot := room.get_node_or_null("ManagerSpot") as Node3D
+	manager.global_position = (start if start != null else door).global_position if (start != null or door != null) else room.global_position
 	if spot != null and manager.has_method("walk_to"):
-		# Straight in: without a via the actor falls back to its floor-4 route.
-		manager.walk_to(spot.global_position, PackedVector3Array([spot.global_position]))
+		# Explicit route: without one the actor falls back to its floor-4 route.
+		var route := PackedVector3Array()
+		if door != null:
+			route.append(door.global_position)
+			route.append(Vector3(door.global_position.x, door.global_position.y, room.global_position.z - 0.6))
+		route.append(spot.global_position)
+		manager.walk_to(spot.global_position, route)
+	var hall_id: StringName = CCTV_HALLS.get(camera_id, &"")
+	if room.get_node_or_null("Hall/Cam") != null and not hall_id.is_empty():
+		EventBus.cctv_focus_requested.emit(hall_id)
+		_cctv_follow(manager, room, camera_id)
+	else:
+		EventBus.cctv_focus_requested.emit(camera_id)
+
+
+## Switches the phone from the corridor to the room once he is through the door.
+func _cctv_follow(manager: Node3D, room: Node3D, camera_id: StringName) -> void:
+	var deadline := Time.get_ticks_msec() + 20000
+	while is_inside_tree() and is_instance_valid(manager) and Time.get_ticks_msec() < deadline:
+		if manager.global_position.z < room.global_position.z - 0.15:
+			break
+		await get_tree().process_frame
+	if is_inside_tree():
+		EventBus.cctv_focus_requested.emit(camera_id)
 
 
 func _cctv_kill(camera_id: StringName) -> void:
@@ -1590,9 +1633,40 @@ func _cctv_kill(camera_id: StringName) -> void:
 	if manager != null and victim != null and manager.has_method("slash"):
 		manager.slash(victim)
 	if victim != null and victim.has_method("set_pose"):
-		get_tree().create_timer(0.8 * time_scale, false).timeout.connect(func() -> void:
-			if is_instance_valid(victim):
-				victim.set_pose(&"dead"))
+		get_tree().create_timer(0.8 * time_scale, false).timeout.connect(_set_pose_ref.bind(weakref(victim), &"dead"))
+	# Then he leaves the way he came and is gone from this room (D-044).
+	if manager != null:
+		get_tree().create_timer(2.5 * time_scale, false).timeout.connect(_cctv_leave.bind(weakref(manager), weakref(room)))
+
+
+func _cctv_leave(manager_ref: WeakRef, room_ref: WeakRef) -> void:
+	var manager := manager_ref.get_ref() as Node3D
+	var room := room_ref.get_ref() as Node3D
+	if manager == null or room == null:
+		return
+	var start := room.get_node_or_null("Hall/Start") as Node3D
+	var door := room.get_node_or_null("Door") as Node3D
+	if start == null or door == null or not manager.has_method("walk_to"):
+		manager.queue_free()
+		return
+	var route := PackedVector3Array([Vector3(door.global_position.x, door.global_position.y, room.global_position.z - 0.6), door.global_position, start.global_position])
+	manager.walk_to(start.global_position, route)
+	if manager.has_signal("arrived"):
+		manager.arrived.connect(manager.queue_free, CONNECT_ONE_SHOT)
+	# Safety: gone in any case before the next room.
+	get_tree().create_timer(12.0, false).timeout.connect(_free_ref.bind(manager_ref))
+
+
+func _set_pose_ref(ref: WeakRef, pose: StringName) -> void:
+	var node := ref.get_ref() as Node
+	if node != null and node.has_method("set_pose"):
+		node.set_pose(pose)
+
+
+func _free_ref(ref: WeakRef) -> void:
+	var node := ref.get_ref() as Node
+	if node != null:
+		node.queue_free()
 
 
 # Death scene (D-042): lane A's camera, lane D's blood, lane E's sound.

@@ -20,6 +20,8 @@ Mỗi phòng có:
 - `Victim`: sinh viên của phòng, sẵn tư thế `lie_awake`;
 - `NightLight` xanh mờ, để ảnh camera đen trắng vẫn đọc được.
 
+Ngoài cửa mỗi phòng có `Hall` (D-044), gồm `Hall/Start` (chỗ quản lý xuất hiện) và `Hall/Cam` (camera hành lang của phòng đó).
+
 `Corridor`: đoạn hành lang tầng 4 giả với cửa 405, 406, 407; có `Cam` nhìn dọc hành lang.
 
 ## Sinh viên `student_{hung,kiet,bao,dang}.tscn`

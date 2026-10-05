@@ -30,6 +30,8 @@ func test_set_has_rooms_cameras_and_anchors() -> void:
 		if room == null:
 			continue
 		assert_true(room.get_node_or_null("Cam") is Camera3D, number + " Cam")
+		assert_true(room.get_node_or_null("Hall/Cam") is Camera3D, number + " hall Cam")
+		assert_true(room.get_node_or_null("Hall/Start") is Marker3D, number + " hall Start")
 		for anchor in ["Door", "VictimBed", "ManagerSpot"]:
 			assert_true(room.get_node_or_null(anchor) is Marker3D, number + " " + anchor)
 		var victim := room.get_node_or_null("Victim")
@@ -88,4 +90,30 @@ func test_chapter_builds_five_feeds() -> void:
 			assert_true(feed is SubViewport, "feed is a viewport")
 			assert_true(tr(String(feed.get("label_key"))) != String(feed.get("label_key")), "label translated")
 	ids.sort()
-	assert_eq(ids, ["cam_102", "cam_106", "cam_209", "cam_306", "cam_corridor"], "five feeds;")
+	assert_eq(ids, ["cam_102", "cam_106", "cam_209", "cam_306", "cam_corridor", "hall_102", "hall_106", "hall_209", "hall_306"], "room, hall and floor-4 feeds (D-044);")
+
+
+func test_manager_comes_down_the_hall_and_leaves_no_one_behind() -> void:
+	var scene := spawn("res://scenes/main/chapter1.tscn")
+	var director := scene.get_node("Chapter1Director")
+	director.set("auto_start", false)
+	await wait_frames(3)
+	var focused: Array[StringName] = []
+	var listen := func(id: StringName) -> void: focused.append(id)
+	EventBus.cctv_focus_requested.connect(listen)
+	director._cctv_scene(&"cam_102", &"answer")
+	var room102 := director.get_node("CctvSet/Room102") as Node3D
+	var manager := room102.get_node_or_null("Manager") as Node3D
+	assert_not_null(manager, "manager staged")
+	if manager != null:
+		assert_true(manager.global_position.z > room102.global_position.z + 0.5, "starts in the corridor")
+	assert_eq(focused, [&"hall_102"] as Array[StringName], "phone shows the corridor first;")
+	var deadline := Time.get_ticks_msec() + 8000
+	while focused.size() < 2 and Time.get_ticks_msec() < deadline:
+		await wait_frames(1)
+	assert_eq(focused, [&"hall_102", &"cam_102"] as Array[StringName], "then the room once he is through the door;")
+	# Next room: nobody left standing in 102.
+	director._cctv_scene(&"cam_306", &"phone_lit")
+	await wait_frames(2)
+	assert_true(room102.get_node_or_null("Manager") == null, "102 empty once he goes to 306")
+	EventBus.cctv_focus_requested.disconnect(listen)

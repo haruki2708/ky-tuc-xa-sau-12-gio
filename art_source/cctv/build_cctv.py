@@ -165,7 +165,18 @@ def cctv_room(s, number, x):
     who = next(w for w, v in STUDENTS.items() if v[0] == number)
     room = s.node('Room' + number, properties=f'position = {V((x, 0, 0))}')
     s.box('Floor', (2, -.1, -2.5), (4, .2, 5), 'tile', parent=room, floor=True)
-    s.box('DoorStep', (2.45, -.1, 1.0), (2.2, .2, 2.0), 'tile', parent=room, floor=True)
+    # D-044: a stretch of corridor outside every door, with its own camera.
+    hall = s.node('Hall', parent=room)
+    s.box('Floor', (2, -.1, 1.25), (5.8, .2, 2.3), 'tile', parent=hall, floor=True)
+    s.box('OuterWall', (2, 1.5, 2.45), (5.8, 3, .2), parent=hall)
+    s.box('Ceiling', (2, 3.075, 1.25), (5.8, .15, 2.3), parent=hall)
+    for name, ex in (('EndWest', -.95), ('EndEast', 4.95)):
+        s.box(name, (ex, 1.5, 1.25), (.2, 3, 2.5), parent=hall)
+    for name, wx in (('RoomWallWest', -.45), ('RoomWallEast', 4.45)):
+        s.box(name, (wx, 1.5, 0), (.9, 3, .2), parent=hall)
+    s.node('Tube', 'OmniLight3D', hall, 'position = Vector3(2.8, 2.8, 1.25)\nlight_color = Color(0.82, 0.9, 0.76, 1)\nlight_energy = 0.6\nomni_range = 5.0\nshadow_enabled = false')
+    s.node('Start', 'Marker3D', hall, 'position = Vector3(4.45, 0.05, 1.3)')
+    s.node('Cam', 'Camera3D', hall, look((-.7, 2.65, 2.2), (3.0, .9, .5)) + '\nfov = 70.0\nfar = 30.0')
     for name, wx in (('WestWall', 0), ('EastWall', 4)):
         s.box(name, (wx, 1.5, -2.5), (.2, 3, 5), parent=room)
     s.box('BackWall', (2, 1.5, -5), (4, 3, .2), parent=room)

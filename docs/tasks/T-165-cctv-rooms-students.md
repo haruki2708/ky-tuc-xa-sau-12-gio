@@ -45,3 +45,15 @@
   - ảnh từ từng camera và ảnh tab Camera thật trên điện thoại (quản lý vào và giết ở phòng 102) trong `art_source/cctv/previews/`.
 - **Chưa làm:** đo FPS lúc mở tab Camera (bot hiệu năng của C cần feed `UPDATE_ALWAYS`; core để `UPDATE_WHEN_VISIBLE`, tức chỉ feed đang xem mới render).
 
+### Bổ sung D-044 (Claude làm thay, 2026-10-05)
+- **Hành lang:** mỗi phòng có `Hall`, gồm sàn, tường, trần, đèn tuýp, `Hall/Start` (chỗ quản lý xuất hiện) và `Hall/Cam`.
+- **Feed:** 4 feed mới `hall_102`, `hall_306`, `hall_209`, `hall_106`, nhãn `CCTV_CAM_HALL_*`.
+- **Core:**
+  - quản lý đi từ `Hall/Start` qua `Door` vào `ManagerSpot`, tốc độ 1,3;
+  - điện thoại báo camera hành lang trước, tới camera phòng khi quản lý bước qua cửa;
+  - giết xong 2,5 giây thì quản lý đi ra và bị xóa khỏi phòng; khi sang phòng mới thì xóa mọi quản lý còn ở phòng khác.
+- **Sửa:** `_cctv_camera` lấy `Cam` trực tiếp của phòng, không tìm đệ quy (sẽ lấy nhầm `Hall/Cam`).
+- **Kiểm chứng:**
+  - `test_cctv.gd` 5 test, thêm test hành lang trước, phòng sau, phòng cũ trống;
+  - ảnh tab Camera thật `previews/phone_hall_102.png`, `phone_cam_102_kill.png`, `phone_cam_102_after.png` (phòng 102 trống sau khi quản lý đi).
+
