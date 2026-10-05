@@ -110,6 +110,25 @@ func test_typed_words_follow_the_rule() -> void:
 	assert_true(director.is_valid_word("học kì"), "kì = kỳ")
 
 
+func test_the_first_turn_accepts_common_vo_words() -> void:
+	director._reset_chain()
+	director._said(VietText.canon_word("sách vở"))
+	for word in ["vở kịch", "vở ghi", "vở nháp", "vở tuồng"]:
+		assert_true(director.is_valid_word(word), word)
+
+
+func test_every_corpse_word_leaves_five_ways_on() -> void:
+	var dictionary := director._dictionary
+	for word in director._bank_keys:
+		if director._bank_word_lives(word):
+			var ways: int = dictionary.by_first.get(Ch2Dictionary.last_of(word), PackedStringArray()).size()
+			assert_true(ways >= 5, "%s leaves %d ways" % [dictionary.spelling[word], ways])
+	for first: String in dictionary.corpse_by_first:
+		for word in dictionary.corpse_by_first[first]:
+			if dictionary.by_first.get(Ch2Dictionary.last_of(word), PackedStringArray()).size() < 5:
+				assert_true(false, "%s strands the player" % dictionary.spelling[word])
+
+
 func test_a_dictionary_word_the_corpses_do_not_know_makes_them_stall() -> void:
 	director._reset_chain()
 	director._said(VietText.canon_word("sách vở"))

@@ -1,19 +1,14 @@
 # STATUS — cập nhật bởi integrator
 
 **Cập nhật lần cuối:** 2026-10-06
-**Giai đoạn:** Chương 2 "Trò chơi" **đang sửa theo góp ý chơi thử lần 1** (D-049, D-050, D-051). Phần core xong (T-176): từ điển Wiktionary khoảng 31 nghìn từ (CC BY-SA, ngoại lệ D-051), gõ từ ở vòng 3, nhắn dự đoán ở vòng 4, chat nhanh hơn. **Đã giao 4 lane:** T-177 (A), T-178 (E), T-179 (D), T-180 (C). Cho tới khi ghép T-179, **vòng 3 trên `main` chưa chơi tay được** (bảng nối từ cũ chưa có ô gõ); bản `build/windows/KyTucXa.exe` vẫn là bản 05/10. Chương 1 tạm chốt (`v0.3-ch1`).
+**Giai đoạn:** Chương 2 **đã sửa theo góp ý chơi thử lần 1** (D-049, D-050, D-051) và **đã ghép đủ** T-176 (core), T-177 (A), T-178 (E), T-179 (D), T-180 (C). Bản chơi thử mới export 2026-10-06 (`build/windows/KyTucXa.exe`). **Chờ chủ dự án chơi thử lần 2**: gõ từ bằng Unikey/EVKey, nhắn dự đoán, nghe giọng chat mới và giọng xác ghép theo tiếng. Chương 1 tạm chốt (`v0.3-ch1`).
 
 ## Việc tiếp theo (cho phiên integrator kế tiếp)
-1. **Ghép góp ý chương 2** khi lane giao (review theo card, merge, chạy test, check):
-   - T-177 A: đứng yên khi đang gõ chữ (`text_entry_changed`);
-   - T-178 E: xác đọc từ ngoài kho bằng cách ghép giọng từng tiếng (`Ch2SyllableBank`);
-   - T-179 D: ô gõ từ (Enter mở, Enter gửi, Esc hủy, bộ gõ của máy), ô nhắn dự đoán trong điện thoại, credits từ điển, bỏ 4 phương án;
-   - T-180 C: bot gõ từ và nhắn dự đoán, kịch bản `ch2_wrong_prediction` thay `ch2_lost_ngu`, kiểm tra F9.
-   Sau khi ghép: xóa `chain_choice_requested` và `chain_choice_made` khỏi EventBus; sửa `docs/playtest/CH2_WALKTHROUGH.md` (gõ từ, nhắn dự đoán); export; **nhờ chủ dự án thử gõ có dấu bằng Unikey/EVKey** (test tự động không kiểm được bộ gõ).
-2. **Bot chương 2:** chạy từng kịch bản sau khi ghép T-180, **chỉ khi chủ dự án đồng ý** (thời gian thật 15–20 phút, máy hay hết RAM). 6 kịch bản: `ch2_good`, `ch2_chain_timeout`, `ch2_chain_wrong`, `ch2_scald`, `ch2_leave_shower`, `ch2_wrong_prediction`; đo FPS (`-Performance`).
-3. **Chưa kiểm tra:** menu F9 nhảy vòng 3/4 (giao T-180); `CctvAudio.play_room_loss` chưa nối.
-4. **Lane B:** test `test_stuck_door_shakes_without_opening_then_cancels_on_open` chập chờn khi máy bận (bộ hẹn giờ 0,07 giây).
-5. **Để sau (D-045):** chương 1 đoạn gõ tường; chủ dự án nghe âm thanh lane E (chương 1 và 2), nghe giọng chat chương 2 mới (nhanh hơn 25%) và giọng xác ghép theo tiếng.
+1. **Chủ dự án chơi thử chương 2 lần 2** theo `docs/playtest/CH2_WALKTHROUGH.md`. Ghi lại: bộ gõ có chạy không; từ nào bị từ chối oan (thêm vào `SUPPLEMENT` trong `docs/design/ch2/build_dictionary.py`, chạy lại script); giọng xác ghép tiếng nghe rõ không; tốc độ chat mới.
+2. **Bot chương 2:** 6 kịch bản (`ch2_good`, `ch2_chain_timeout`, `ch2_chain_wrong`, `ch2_scald`, `ch2_leave_shower`, `ch2_wrong_prediction`) và `-Performance`, lệnh ở card T-180. **Chỉ chạy khi chủ dự án đồng ý**, từng kịch bản một (15–20 phút, tốn RAM).
+3. **Chưa kiểm tra:** F9 bằng tay (đã có test headless); `CctvAudio.play_room_loss` chưa nối.
+4. **Test chập chờn khi chạy cả bộ (chạy riêng thì qua):** lane B `test_stuck_door_shakes_without_opening_then_cancels_on_open` (bộ hẹn giờ 0,07 giây); lane A `test_typing_stops_existing_motion_blocks_w_e_then_restores_gameplay` (đỏ 1 trong 2 lần chạy cả bộ ngày 06/10, có thể do test trước để lại trạng thái; cần lane A xem).
+5. **Để sau (D-045):** chương 1 đoạn gõ tường; chủ dự án nghe âm thanh lane E chương 1 và 2.
 6. **Sau khi chốt chương 2:** đề xuất T-181 (lane B) khung map chương 3 (nhà B 6 tầng, cầu thang, vườn hoa, sân vận động, cổng trường, nhà ăn).
 7. Máy chủ dự án: đã tạo `%APPDATA%/Godot/app_userdata/Ky Tuc Xa Sau 12 Gio/progress.json` = `{"unlocked": 2}` để chọn được chương 2.
 **Repo:** https://github.com/tuaanh666/ky-tuc-xa-sau-12-gio (private)
@@ -64,11 +59,11 @@
 | **Chương 2 "Trò chơi" (duyệt 2026-10-05, chơi thử 2026-10-09)** | | |
 | T-170 Kịch bản, kho từ nối, dãy nhiệt độ, luồng 2 vòng, ghép | core | **doing** |
 | **Chương 2 sau chơi thử lần 1 (D-049…D-051, 2026-10-06)** | | |
-| T-176 Từ điển, gõ từ, nhắn dự đoán, chat nhanh, giọng xác theo tiếng | core | **doing**: phần core xong, chờ ghép lane |
-| T-177 Đứng yên khi đang gõ chữ | A | todo |
-| T-178 Xác đọc từ điển bằng giọng ghép theo tiếng | E | todo |
-| T-179 Ô gõ từ nối, ô nhắn dự đoán, credits từ điển | D | todo |
-| T-180 Bot gõ từ và nhắn dự đoán, kiểm tra F9 | C | todo |
+| T-176 Từ điển, gõ từ, nhắn dự đoán, chat nhanh, giọng xác theo tiếng | core | **done**: đã ghép 4 lane, export bản chơi thử |
+| T-177 Đứng yên khi đang gõ chữ | A | **done**, đã merge |
+| T-178 Xác đọc từ điển bằng giọng ghép theo tiếng | E | **done**, đã merge; chờ nghe |
+| T-179 Ô gõ từ nối, ô nhắn dự đoán, credits từ điển | D | **done**, đã merge; chờ thử bộ gõ |
+| T-180 Bot gõ từ và nhắn dự đoán, kiểm tra F9 | C | **done**, đã merge; bot thật chưa chạy |
 | T-171 Cầm giẻ, bịt miệng xác, cửa kẹt, buồng tắm, nút vòi sen, cảnh chết `corpse_lunge` và `scald` | A | **done**, đã merge |
 | T-172 Xác chơi nối từ, đồ bịt miệng, nhà vệ sinh có vòi sen, hơi nước, phòng camera 310 | B | **done**, đã merge |
 | T-173 Bot chương 2, menu nhảy, đo FPS hơi nước | C | khung **đã merge**; bot chạy sau khi điền profile |

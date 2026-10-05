@@ -27,3 +27,12 @@
 - **Sửa test cũ:** `test_ch1v2` đo cửa nhà vệ sinh ở chỗ cũ (commit `af52dde` dời cửa nhưng không sửa test).
 - **Test:** `test_chapter2.gd` 19 test, `test_ch2_syllables.gd` 2 test.
 - **Còn lại:** ghép T-177…T-180 khi lane giao; chạy bot ch2 (hỏi chủ dự án trước); export.
+
+### Phiên 2026-10-06 (tiếp, Claude): ghép T-177…T-180
+- Merge D → A → E → C, không xung đột. Xóa `chain_choice_requested` và `chain_choice_made`; `Ch2Countdown` reset theo `chain_input_closed`; export loại `ui/ch2_typing_previews/*`.
+- **Test ghép** `tests/core/test_ch2_typing_flow.gd`: gõ trong ô thật của bảng nối từ (dấu tổ hợp) và trong điện thoại; nhân vật khóa và mở bàn phím.
+- **Lỗ hổng từ điển tìm thấy khi ghép:**
+  - lượt đầu sau "sách vở" chỉ có đúng "vở kịch" trong Wiktionary: thêm `SUPPLEMENT` (từ dự án tự soạn, chỉ người chơi dùng): vở ghi, vở nháp, vở viết, vở tuồng, vở chèo, vở diễn, vở tập;
+  - xác có thể nói từ kho để lại ít hơn 5 cách nối (ví dụ "điện thoại" → chỉ "thoại bản"): giờ xác chỉ nói từ kho cũng đạt ngưỡng 5 như từ điển (test `test_every_corpse_word_leaves_five_ways_on`).
+- Chạy thử headless scene chương 2 thật 900 frame: không lỗi.
+- Hướng dẫn chơi thử `docs/playtest/CH2_WALKTHROUGH.md` sửa theo gõ từ và nhắn dự đoán.

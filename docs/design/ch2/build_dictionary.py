@@ -46,6 +46,13 @@ LETTERS = set("abcdeghiklmnopqrstuvxyđ")
 CORPSE_BLOCK = {"địt", "đụ", "đéo", "lồn", "buồi", "cặc", "đĩ", "cứt", "đái", "ỉa", "mọi", "khựa"}
 # A corpse never leaves the player on a syllable with fewer continuations than this.
 MIN_CONTINUATIONS = 5
+# Common words Wiktionary lacks, written by the project (no third-party
+# source); the player may type them, the corpses never say them. Add words
+# the owner reports as unfairly refused.
+SUPPLEMENT = [
+    # Trung's first turn follows "sách vở" (N1): Wiktionary has only "vở kịch".
+    "vở ghi", "vở nháp", "vở viết", "vở tuồng", "vở chèo", "vở diễn", "vở tập",
+]
 
 TONE_MARKS = {"̀": 1, "́": 2, "̉": 3, "̃": 4, "̣": 5}
 ONSETS = {"b", "c", "ch", "d", "đ", "g", "gh", "h", "k", "kh", "l", "m", "n", "ng", "ngh", "nh", "p", "ph",
@@ -110,6 +117,8 @@ def build():
     every = dict(en)
     every.update(vi)
     every.update(bank)  # the bank's spelling wins
+    for word in SUPPLEMENT:
+        every.setdefault(canon_word(word), word)
     starts = {}
     for c in every:
         starts.setdefault(c.split(" ")[0], 0)

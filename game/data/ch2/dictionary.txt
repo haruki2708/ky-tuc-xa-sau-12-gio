@@ -639,7 +639,7 @@ bài tập	bai1 tâp5	1
 bài viết	bai1 viêt2	1
 bài văn	bai1 văn0	0
 bài vị	bai1 vi5	1
-bài vở	bai1 vơ3	0
+bài vở	bai1 vơ3	1
 bài xuất	bai1 xuât2	0
 bài xích	bai1 xich2	1
 bài đăng	bai1 đăng0	0
@@ -19776,7 +19776,7 @@ sách nhiễu	sach2 nhiêu4	0
 sách phong	sach2 phong0	0
 sách son	sach2 son0	0
 sách trắng	sach2 trăng2	0
-sách vở	sach2 vơ3	0
+sách vở	sach2 vơ3	1
 sám chi	sam2 chi0	0
 sám hối	sam2 hôi2	1
 sán dây	san2 dây0	1
@@ -27463,7 +27463,14 @@ với nhau	vơi2 nhau0	0
 vờ vĩnh	vơ1 vinh4	1
 vờ vịt	vơ1 vit5	1
 vời vợi	vơi1 vơi5	0
+vở chèo	vơ3 cheo1	0
+vở diễn	vơ3 diên4	0
+vở ghi	vơ3 ghi0	0
 vở kịch	vơ3 kich5	1
+vở nháp	vơ3 nhap2	0
+vở tuồng	vơ3 tuông1	0
+vở tập	vơ3 tâp5	0
+vở viết	vơ3 viêt2	0
 vỡ chợ	vơ4 chơ5	0
 vỡ giọng	vơ4 giong5	0
 vỡ lòng	vơ4 long1	1

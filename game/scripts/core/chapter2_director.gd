@@ -350,9 +350,11 @@ func _legal(word: String) -> bool:
 		and (_last_word.is_empty() or Ch2Dictionary.first_of(word) == _last_syllable())
 
 
+## A bank word a corpse may say: not a dead end, and (like every corpse word)
+## leaving the player enough ways on (build_dictionary.py MIN_CONTINUATIONS).
 func _bank_word_lives(word: String) -> bool:
 	var key: String = _bank_keys.get(word, "")
-	return not key.is_empty() and not bool(_bank.words[key].dead)
+	return not key.is_empty() and not bool(_bank.words[key].dead) and _dictionary.corpse_knows(word)
 
 
 ## A word the corpse knows after `syllable` (canonical; empty = start a new

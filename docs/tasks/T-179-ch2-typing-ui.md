@@ -1,5 +1,5 @@
 # T-179 — Chương 2: ô gõ từ nối, ô nhắn dự đoán, credits từ điển
-- Lane: D (UI) | Trạng thái: todo | Agent:
+- Lane: D (UI) | Trạng thái: done | Agent:
 - Nhánh: `lane-d/T-179-ch2-typing-ui`
 - Phụ thuộc: T-174. **Đọc D-049, D-050, D-051 trong `docs/DECISIONS.md`** và `docs/design/CH2_SCRIPT.md` (đã sửa).
 - **Hạn đề xuất: hết ngày 2026-10-07.**
@@ -101,3 +101,9 @@ Bot nên mở bằng Enter, đưa Unicode vào LineEdit đang focus rồi Enter 
 
 1. **Core / lane A / lane C:** ghép T-177 để khóa di chuyển/tương tác theo `text_entry_changed`, cập nhật bot T-180 sang hai Entry ở trên. Sau khi tất cả consumer cũ được chuyển, core xóa `chain_choice_requested` và `chain_choice_made` khỏi EventBus như kế hoạch STATUS; lane D đã bỏ phụ thuộc nhưng không tự sửa EventBus.
 2. **Core (`game/export_presets.cfg`):** thêm `ui/ch2_typing_previews/*` vào `exclude_filter` để 10 ảnh bằng chứng không vào bản phát hành. Bộ lọc hiện có đã loại fixture `ch2_ui_preview` và `title_test`, nhưng chưa có thư mục ảnh mới này.
+
+### Review (integrator, 2026-10-06)
+- **Đạt, đã merge** (`7df3e1b`). Bỏ hẳn 4 phương án; Enter/Esc/rỗng/bị chặn đúng card; `text_entry_changed` theo focus; ô dự đoán không gợi ý; tin nhắn đã gửi giữ trong lịch sử; Credits có Wiktionary/kaikki.org/CC BY-SA.
+- Yêu cầu ngoài phạm vi đã làm: thêm `ui/ch2_typing_previews/*` vào `exclude_filter`; xóa `chain_choice_requested`/`chain_choice_made` khỏi EventBus (integrator chuyển `Ch2Countdown` của lane E sang `chain_input_closed`).
+- Integrator thêm test ghép `test_ch2_typing_flow.gd`: chữ có dấu tổ hợp (như bộ gõ có thể gửi) qua ô thật được core nhận; điện thoại gửi đúng người, cả hai đúng.
+- **Còn mở:** thử Unikey/EVKey/bàn phím Windows bằng tay (chủ dự án).

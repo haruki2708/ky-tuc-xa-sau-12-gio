@@ -1,5 +1,5 @@
 # T-180 — Chương 2: bot gõ từ và nhắn dự đoán
-- Lane: C (QA và Tools) | Trạng thái: todo | Agent:
+- Lane: C (QA và Tools) | Trạng thái: done | Agent:
 - Nhánh: `lane-c/T-180-ch2-bot-typing`
 - Phụ thuộc: T-173. **Đọc D-049, D-050, D-051 trong `docs/DECISIONS.md`**, `docs/tasks/T-176-ch2-feedback-core.md` (Handoff). Bản thật cần T-177 (A), T-179 (D) đã ghép; phần bot làm được ngay trên `main`.
 - **Hạn đề xuất:** khung hết ngày 2026-10-07; chạy trên bản ghép sau khi integrator ghép A, D, E.
@@ -84,3 +84,8 @@ pwsh tools/playthrough.ps1 -Chapter 2 -Performance -RequireComplete
 - Không có yêu cầu sửa core/UI mới để hoàn thành T-180; không sửa file ngoài phạm vi hoặc STATUS. Integrator tiếp tục ghép A/D/E, bỏ hai signal cũ khỏi EventBus theo kế hoạch T-176 và kiểm thử bản ghép sau khi được chủ dự án đồng ý.
 - **Không bị chặn trong phạm vi khung + test headless.** Xác nhận bot end-to-end, FPS và bộ gõ hệ điều hành vẫn là phần việc sau tích hợp, chưa đạt/chưa kiểm tra trong phiên này theo giới hạn card.
 - Git fetch/checkout ban đầu bị sandbox chặn mạng/LFS; đã phục hồi và chuyển nhánh thành công. Trạng thái checkout dở được giữ an toàn trong stash cục bộ có nhãn `T-180 recovery: partial checkout after sandbox LFS failure`; không áp lại vào nhánh task. Repo sạch trước lần checkout lỗi, không có chỉnh sửa người dùng bị bỏ.
+
+### Review (integrator, 2026-10-06)
+- **Đạt, đã merge** (`c73ca3a`). Policy tự tính từ `Ch2Dictionary`, chỉ đối chiếu với `director.is_valid_word`; bẫy và vòng lặp chỉ ghi nhận khi core xác nhận; `ch2_wrong_prediction` thay `ch2_lost_ngu`; F9 có test headless.
+- Bot phát signal trực tiếp, không đi qua ô gõ của lane D; đường ô gõ thật được test ghép `test_ch2_typing_flow.gd` của integrator phủ.
+- **Chưa chạy bot thật** (6 kịch bản, 15–20 phút mỗi kịch bản): chờ chủ dự án đồng ý.

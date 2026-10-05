@@ -222,11 +222,6 @@ signal chain_word_typed(text: String)
 ## Core closed the player's turn: &"accepted", &"wrong" or &"timeout".
 signal chain_input_closed(result: StringName)
 
-## Deprecated (D-049, four options gone): lane D's old panel. Core no longer
-## emits chain_choice_requested nor listens to chain_choice_made.
-signal chain_choice_requested(option_keys: PackedStringArray, seconds: float)
-signal chain_choice_made(index: int)
-
 ## The player is out of earshot (bathroom, balcony): the panel shows
 ## "Họ không nghe thấy bạn"; a word sent meanwhile is not heard.
 signal chain_choice_blocked(blocked: bool)

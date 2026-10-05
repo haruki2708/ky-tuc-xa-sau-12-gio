@@ -6,7 +6,7 @@
   - https://kaikki.org/dictionary/Vietnamese/
   - Ngày tải và mã SHA-256: `docs/design/ch2/dictionary_report.json`.
 - **Giấy phép:** Wiktionary phát hành theo CC BY-SA 3.0 (nội dung cũ) và CC BY-SA 4.0 (nội dung thêm từ giữa năm 2023). Danh sách từ chuyển thể ở đây phát hành theo **CC BY-SA 4.0**: https://creativecommons.org/licenses/by-sa/4.0/
-- **Đã thay đổi:** chỉ giữ mục từ thường có đúng hai tiếng; bỏ tên riêng, ký tự, phụ tố; thêm dạng chuẩn hóa để so tiếng và cờ "xác biết"; thêm các từ của game (`docs/design/ch2/word_bank.py`).
+- **Đã thay đổi:** chỉ giữ mục từ thường có đúng hai tiếng; bỏ tên riêng, ký tự, phụ tố; thêm dạng chuẩn hóa để so tiếng và cờ "xác biết"; thêm các từ của game (`docs/design/ch2/word_bank.py`) và vài từ thông dụng Wiktionary thiếu do dự án tự soạn (`SUPPLEMENT` trong `build_dictionary.py`).
 - **Ngoại lệ D-051:** CC BY-SA nằm ngoài quy tắc CC0/CC-BY của dự án; chủ dự án cho phép riêng cho danh sách từ này. Phần ShareAlike áp dụng cho chính danh sách từ, không áp dụng cho mã nguồn hay tài nguyên khác của game.
 - **Ghi công trong game:** mục Credits ở màn hình chính (lane D, T-179).
 - **Tạo lại:** `py -3 docs/design/ch2/build_dictionary.py`.

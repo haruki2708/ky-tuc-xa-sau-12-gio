@@ -23,7 +23,7 @@ func _ready() -> void:
 	if listen_chain:
 		EventBus.chain_turn_started.connect(_on_turn)
 		EventBus.chain_word_spoken.connect(_on_word)
-		EventBus.chain_choice_made.connect(_reset)
+		EventBus.chain_input_closed.connect(_reset)
 	EventBus.chapter_started.connect(_reset)
 	EventBus.chapter_finished.connect(_reset)
 	EventBus.checkpoint_loaded.connect(_reset)

@@ -15,23 +15,22 @@ Chết thì làm lại từ **đầu vòng** đang chơi (đầu vòng 3 hoặc 
 
 ## Vòng 3: nối từ (6:00–7:00)
 
-### Luật
+### Luật (bản gõ từ, D-049, D-051)
 - Lượt theo thứ tự **Phúc → Việt → Đạt → Trung (bạn)** → Phúc …
-- Đến lượt bạn: bảng hiện **4 từ**, bấm **1–4** trong **15 giây**.
-- Từ đúng phải **bắt đầu bằng tiếng cuối của từ trước, đúng cả dấu**, và **không trùng 3 từ gần nhất** (bảng có hiện 3 từ gần nhất).
-- Chỉ trả lời được khi đứng **trong phòng ngủ**. Ở nhà vệ sinh hoặc ban công, bảng mờ đi với dòng "Họ không nghe thấy bạn", nhưng đồng hồ vẫn chạy.
-- **Ba bẫy thường gặp:**
-  - đúng tiếng nhưng **sai dấu**, ví dụ cần "vở …" mà gặp "vỡ nát";
-  - âm gần giống nhưng khác tiếng, ví dụ "sính lễ" khi cần "sinh …";
-  - lặp lại một từ vừa nói.
+- Đến lượt bạn: bấm **Enter** để mở ô gõ, gõ từ bằng **bộ gõ của máy** (Unikey, EVKey hoặc bàn phím tiếng Việt của Windows), **Enter** để gửi; **Esc** đóng ô mà không gửi (đồng hồ vẫn chạy). Có **15 giây**.
+- Trong lúc ô gõ đang mở, nhân vật đứng yên (W/A/S/D/E không có tác dụng), chuột vẫn nhìn được.
+- Từ đúng: **hai tiếng**, có trong từ điển (khoảng 31 nghìn từ), **bắt đầu bằng tiếng cuối của từ trước, đúng cả dấu**, không trùng 3 từ gần nhất (bảng có hiện).
+- Dấu đặt kiểu cũ hay mới đều được ("hoà" = "hòa"); "kỹ" = "kĩ"; hoa hay thường đều được.
+- Gõ sai (sai dấu, không có trong từ điển, không phải hai tiếng, lặp) là chết. Hết 15 giây chưa gửi cũng chết.
+- Chỉ gửi được khi đứng **trong phòng ngủ**. Ở nhà vệ sinh hoặc ban công vẫn gõ được nhưng dòng "Họ không nghe thấy bạn" hiện ra và không gửi được.
 
 ### N1. Lượt đầu
-Phúc "điểm danh" → Việt "danh sách" → Đạt "sách vở" → bạn chọn **"vở kịch"**. Đây là từ duy nhất đúng.
+Phúc "điểm danh" → Việt "danh sách" → Đạt "sách vở" → bạn gõ một từ bắt đầu bằng **"vở"**, ví dụ **"vở kịch"**, "vở ghi", "vở tuồng".
 
 ### N2. Gài bẫy xác (mua thời gian)
-Thỉnh thoảng trong 4 từ có **từ cụt**: từ đúng luật, nhưng không có từ nào nối tiếp được. Chọn từ đó thì xác kế tiếp ú ớ hết 15 giây, gục xuống, 10 giây sau bật dậy rồi bắt đầu chuỗi mới. Bạn có khoảng **25 giây rảnh**.
+Xác chỉ biết khoảng 9,5 nghìn từ phổ biến. Gõ một từ đúng luật mà **xác không biết từ nào nối tiếp** thì xác kế tiếp ú ớ hết 15 giây, gục xuống, 10 giây sau bật dậy rồi bắt đầu chuỗi mới. Bạn có khoảng **25 giây rảnh**.
 
-Danh sách từ cụt: **sống sót, chết chóc, người ngợm, thần thánh, kinh khủng, mê man, lạnh lẽo**.
+Ví dụ thường làm xác bí: từ láy cụt như **"lởm chởm", "khập khiễng"**, hoặc các từ kho của game **sống sót, chết chóc, người ngợm, thần thánh, kinh khủng, mê man, lạnh lẽo** (khi tiếng đầu khớp).
 
 ### N3. Lấy 3 miếng giẻ (mỗi lần cầm một món)
 | Món | Ở đâu | Gợi ý đường đi |
@@ -50,10 +49,10 @@ Nhìn vào món đồ, bấm **E** để cầm. Cầm món khác thì món cũ t
 Thử: bịt cả 3 xác (Phúc, Việt, Đạt).
 
 ### N5. Vòng lặp "học"
-- Bịt đủ 3 xác thì chỉ còn bạn nối, và mỗi lượt luôn có một từ dẫn dần về vòng lặp.
+- Bịt đủ 3 xác thì chỉ còn bạn nối: tự gõ các từ dẫn dần về chữ "học".
 - Khoảng 6:35 Minh Nhật gửi vòng lặp vào chat:
   > **học sinh → sinh viên → viên phấn → phấn đấu → đấu tranh → tranh luận → luận văn → văn học** → học sinh …
-- Lái chuỗi về chữ "học", rồi chọn đúng 8 từ của vòng **liên tiếp**: vòng 3 kết thúc sớm và nhảy tới 7:00.
+- Lái chuỗi về chữ "học", rồi gõ đúng 8 từ của vòng **liên tiếp**: vòng 3 kết thúc sớm và nhảy tới 7:00.
 
 ### Các mốc khác của vòng 3 (chỉ xem)
 - **6:02:** ba xác ngồi dậy (jumpscare).
@@ -82,7 +81,7 @@ Nước nóng (từ 40 độ) làm màn hình mờ. Nhìn vào màn hình, **gi�
 **Chữ số hàng chục của lần sau = chữ số hàng đơn vị của (tổng hai chữ số lần trước).**
 Ví dụ: 67 → 6+7 = 13 → lần sau 3x độ (an toàn); 81 → 9 → 9x độ (chết).
 
-Chọn đúng từng lượt (bảng đã tính sẵn, đủ 26 phút ở lượt 24):
+Chọn đúng từng lượt (bảng đã tính sẵn, đủ 26 phút ở lượt 24). Lời chat của Minh Nhật và Ngư giờ nhanh hơn và không bắt chờ.
 
 | Lượt | Giờ | Nhiệt độ | Chọn | Đã tắm |
 |---|---|---|---|---|
@@ -95,6 +94,7 @@ Chọn đúng từng lượt (bảng đã tính sẵn, đủ 26 phút ở lượ
 | 7 | 7:14 | 37 | **CÓ** | 6 |
 | 8 | 7:16 | 1 | **CÓ** | 8 |
 | 9 | 7:18 | 19 | **CÓ** | 10 |
+| *(nhắn dự đoán, N10)* | | | | |
 | 10 | 7:20 | 4 | **CÓ** | 12 |
 | 11 | 7:22 | 43 | **CÓ** | 14 |
 | 12 | 7:24 | 74 | KHÔNG | 14 |
@@ -106,7 +106,6 @@ Chọn đúng từng lượt (bảng đã tính sẵn, đủ 26 phút ở lượ
 | 18 | 7:36 | 41 | **CÓ** | 22 |
 | 19 | 7:38 | 52 | KHÔNG | 22 |
 | 20 | 7:40 | 79 | KHÔNG | 22 |
-| *(Ngư gọi, N10)* | | | | |
 | 21 | 7:42 | 63 | KHÔNG | 22 |
 | 22 | 7:44 | 94 | KHÔNG | 22 |
 | 23 | 7:46 | 31 | **CÓ** | 24 |
@@ -114,10 +113,13 @@ Chọn đúng từng lượt (bảng đã tính sẵn, đủ 26 phút ở lượ
 
 Lượt 13 (7:26) gương thoáng hiện bóng quản lý (jumpscare).
 
-### N10. Cứu Ngư (sau lượt 20)
-- Ngư gọi: ba lần gần nhất bên cô ấy là **74, 15, 62**, hỏi lượt tới chọn gì. Có **10 giây**.
-- Đáp án: **câu 1, "Đừng xả. Chọn Không."** (62 → 8 → lượt tới 8x độ).
-- Chọn câu 2 thì Ngư chết và bạn **thua**.
+### N10. Nhắn dự đoán cho Minh Nhật và Ngư (sau lượt 9)
+- Lần đầu bạn tắm an toàn **3 lượt liền nhau** (lượt 7, 8, 9), Minh Nhật rồi Ngư nhắn 3 nhiệt độ gần nhất bên họ. Nếu bạn chưa đạt 3 lượt liền thì việc nhắn vẫn diễn ra trước lượt 21 (7:40).
+- Điện thoại tự giơ lên, ô nhập mở sẵn (Esc đóng, Enter mở lại). Mỗi người **20 giây**. Gõ **"có"**, **"không"** hoặc khoảng như **"3x"**, Enter gửi.
+- Đáp án:
+  - **Minh Nhật** 38, 16, 75 → 7+5 = 12 → lượt tới **2x độ** (23): gõ **"có"** hoặc **"2x"**;
+  - **Ngư** 74, 15, 62 → 6+2 = 8 → lượt tới **8x độ** (81): gõ **"không"** hoặc **"8x"**.
+- Gõ sai hoặc hết giờ: người đó bị bỏng và bạn **thua**, làm lại vòng 4.
 
 ### Hết chương (8:00)
 Loa báo còn 3 người, hiện thẻ "Hết chương 2", mở khóa chương 3.
@@ -127,14 +129,14 @@ Loa báo còn 3 người, hiện thẻ "Hết chương 2", mở khóa chương 3
 ## Thử từng cách chết
 | Muốn thử | Làm thế nào | Về lại |
 |---|---|---|
-| Hết giờ nối từ | Không bấm gì khi tới lượt | Đầu vòng 3 |
-| Nối sai | Chọn từ sai dấu, ví dụ "vỡ nát" ở lượt đầu | Đầu vòng 3 |
+| Hết giờ nối từ | Không gửi gì khi tới lượt | Đầu vòng 3 |
+| Nối sai | Gõ từ sai dấu, ví dụ "vỡ nát" ở lượt đầu | Đầu vòng 3 |
 | Ra khỏi phòng | Bước qua cửa 407 | Đầu vòng đang chơi |
 | Bỏng | Chọn **CÓ** ở lượt 1 (67 độ) | Đầu vòng 4 |
 | Bước ra khi đã chọn CÓ | Chọn CÓ ở lượt 2, rồi bước ra khỏi buồng | Đầu vòng 4 |
 | Không chọn | Để đếm ngược hết ở bất kỳ lượt nào | Đầu vòng 4 |
 | Thiếu 25 phút | Chọn KHÔNG hết các lượt | Đầu vòng 4 |
-| Mất Ngư | Ở N10 chọn câu 2 | Đầu vòng 4 |
+| Mất Minh Nhật / Ngư | Ở N10 gõ sai (ví dụ "không" cho Minh Nhật) hoặc để hết 20 giây | Đầu vòng 4 |
 
 ## Nhảy thẳng tới vòng 4 (đỡ chơi lại vòng 3)
 Mở game từ thư mục dự án (bản `.exe` không có menu này):
@@ -145,7 +147,9 @@ Vào chương 2, bấm **F9**, chọn **vòng 3** hoặc **vòng 4**.
 
 ## Ghi lại giúp
 - Âm thanh: giọng xác đọc từ có nghe rõ chữ không; tiếng ú ớ, nước sôi, đếm ngược; to hay nhỏ.
-- Bảng nối từ: đọc kịp trong 15 giây không; có thấy rõ 3 từ gần nhất.
+- **Bộ gõ:** gõ dấu bằng Unikey/EVKey trong ô có chạy không (kiểu gõ, bảng mã Unicode); Enter/Esc khi đang gõ dở dấu.
+- Bảng nối từ: nghĩ và gõ kịp trong 15 giây không; có thấy rõ 3 từ gần nhất; từ của bạn có bị từ chối oan không (ghi lại từ đó).
+- Giọng xác đọc từ ngoài kho (ghép từng tiếng): có nghe ra chữ không, có tiếng lách cách không.
 - Màn hình vòi sen: đọc được không khi đứng trong buồng tắm.
 - Độ khó: tự đoán được quy luật nhiệt độ không (thiết kế D-046 là **không gợi ý**).
 - Lỗi: kẹt, không bấm được, chữ sai. Ghi giờ trong game.

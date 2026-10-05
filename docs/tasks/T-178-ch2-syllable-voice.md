@@ -1,5 +1,5 @@
 # T-178 — Chương 2: xác đọc từ trong từ điển (ghép giọng theo tiếng)
-- Lane: E (Âm thanh) | Trạng thái: todo | Agent:
+- Lane: E (Âm thanh) | Trạng thái: done | Agent:
 - Nhánh: `lane-e/T-178-ch2-syllable-voice`
 - Phụ thuộc: T-175. **Đọc D-049, D-051 trong `docs/DECISIONS.md`.**
 - **Hạn đề xuất: hết ngày 2026-10-07.**
@@ -68,3 +68,8 @@ Scene `res://audio/test/ch2_audio_test.tscn` đã smoke headless 180 frame với
 Không cần sửa file ngoài phạm vi: core đã gửi chữ và tính thời gian chờ đủ, API/signal giữ nguyên. Không yêu cầu sửa giọng nguồn. Nếu nghe duyệt thấy phát âm/chất giọng chưa đạt, gửi ví dụ từ và profile để core/Lane E xử lý đúng nguồn.
 
 **Blocked:** không bị chặn triển khai hoặc test; còn bước xác nhận bằng tai từ người nghe. Không có câu hỏi mới về luật chơi/cốt truyện.
+
+### Review (integrator, 2026-10-06)
+- **Đạt, đã merge** (`9d3531b`). Ghép hai tiếng vào PCM trong RAM thay cho cắt bằng timer theo frame: hợp lý, không lộ tiếng bên cạnh trong file ghép khi FPS thấp; dừng được giữa hai tiếng.
+- Ngân sách thời gian khớp core (`seconds_for / 0.72 + 0.3`).
+- **Còn mở:** mục nghe thử. Integrator chưa nghe; chờ chủ dự án nghe phím B/V trong `audio/test/ch2_audio_test.tscn` hoặc trong bản export.

@@ -1,5 +1,5 @@
 # T-177 — Chương 2: đứng yên khi đang gõ chữ
-- Lane: A (Gameplay) | Trạng thái: todo | Agent:
+- Lane: A (Gameplay) | Trạng thái: done | Agent:
 - Nhánh: `lane-a/T-177-ch2-typing`
 - Phụ thuộc: T-171. **Đọc D-049, D-051 trong `docs/DECISIONS.md`.**
 - **Hạn đề xuất: hết ngày 2026-10-07.**
@@ -57,3 +57,9 @@ Từ D-049, vòng 3 người chơi **gõ từ bằng bàn phím** và vòng 4 **
 ### Trạng thái bàn giao
 
 - Hai mục checklist đã đạt; các hành vi trong phạm vi A đã qua test. **Blocked ở phần tích hợp phím camera UI ngoài phạm vi:** cần thay đổi của lane D nêu trên trước khi xác nhận toàn bộ yêu cầu T-177 trong bản ghép. Không có blocker còn lại trong code Gameplay A; không có câu hỏi luật chơi/cốt truyện mới.
+
+### Review (integrator, 2026-10-06)
+- **Đạt, đã merge** (`fb53070`). `keyboard_input_blocked()` tách đúng bàn phím và chuột; nhả phím ở cả hai chiều; E thêm `is_action_pressed` để tránh tương tác ngay lúc đóng ô.
+- Yêu cầu ngoài phạm vi (phím tắt điện thoại và camera khi đang gõ): T-179 đã chặn bằng `GameTextEntry.is_typing()` ở đầu `phone_screen._input`, trước `tools_view.handle_input`. Đã kiểm sau khi ghép.
+- Integrator thêm `tests/core/test_ch2_typing_flow.gd`: ô gõ thật trong scene chương 2 → nhân vật bị khóa bàn phím → gửi → mở khóa.
+- Chưa thử tay (chờ chủ dự án chơi bản export).

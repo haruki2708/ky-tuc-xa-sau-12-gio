@@ -161,7 +161,7 @@ func test_chain_clock_fifteen_seconds_last_five_accelerate_and_cancel() -> void:
 	EventBus.chain_word_spoken.emit(&"phuc", "WORD_CH2_TEST")
 	assert_eq(clock.remaining, 0.0)
 	clock.start(15.0)
-	EventBus.chain_choice_made.emit(0)
+	EventBus.chain_input_closed.emit(&"accepted")
 	assert_eq(clock.remaining, 0.0)
 	clock.start(NAN)
 	assert_eq(clock.remaining, 0.0)
