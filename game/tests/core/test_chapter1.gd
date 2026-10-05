@@ -356,3 +356,14 @@ func test_door_flicker_keeps_the_desk_lamp_off() -> void:
 	await wait_frames(3)
 	assert_eq(GameState.get_flag(&"desk_lamp_on", null), false, "still off while the ceiling light flickers;")
 	director._set_flicker(false)
+
+
+func test_lamp_left_on_is_a_trace_even_without_the_flag() -> void:
+	# A reloaded checkpoint may not carry desk_lamp_on: the lamp itself counts.
+	var lamp := scene.get_node("Floor4/Room407/Room407DeskLamp") as Light3D
+	lamp.visible = true
+	lamp.light_energy = 0.5
+	GameState._flags.erase(&"desk_lamp_on")
+	assert_true(director._traces_visible(), "lamp on is seen;")
+	lamp.visible = false
+	assert_false(director._traces_visible(), "lamp off is not;")

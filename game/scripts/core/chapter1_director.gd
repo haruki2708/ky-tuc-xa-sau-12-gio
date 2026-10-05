@@ -65,7 +65,17 @@ const TELL_CORRECT := 0
 ## Insane (D-039): in the enlarged room (T-162) he hears a breath or a move
 ## anywhere in 407, not just near Trung's bunk.
 const MANAGER_HEAR_RADIUS_INSANE := 7.5
-## Security cameras (D-041): camera id → label key and lane B's room number.
+### N6: the real lamp, else the flag.
+func _desk_lamp_on() -> bool:
+	var room := _room()
+	# Lane A's switch hides it; lane B's set_desk_lamp dims it to 0.
+	var lamp := room.get_node_or_null("Room407DeskLamp") as Light3D if room != null else null
+	if lamp != null:
+		return lamp.visible and lamp.light_energy > 0.01
+	return GameState.get_flag(&"desk_lamp_on", false) == true
+
+
+# Security cameras (D-041): camera id → label key and lane B's room number.
 const CCTV_ROOMS := {&"cam_102": "102", &"cam_306": "306", &"cam_209": "209", &"cam_106": "106"}
 const CCTV_CORRIDOR := &"cam_corridor"
 const CCTV_SET_SCENE := "res://scenes/levels/cctv/cctv_set.tscn"
@@ -402,6 +412,8 @@ func _round_2() -> void:
 	_missions[&"form"] = false
 	_missions[&"ready"] = false
 	GameState.set_flag(&"cctv_unlocked", false)
+	# A reloaded checkpoint may not carry the flag; the lamp itself is the truth.
+	GameState.set_flag(&"desk_lamp_on", _desk_lamp_on())
 	await _announce(["RULE_CH1_R2"])
 	RuleSystem.mark_read(&"ch1_r2")
 	await _line("n_beds")
@@ -1449,7 +1461,7 @@ func _on_document_closed(document_id: StringName) -> void:
 
 # N6: what the manager sees when the door opens.
 func _traces_visible() -> bool:
-	if GameState.get_flag(&"desk_lamp_on", false) == true:
+	if _desk_lamp_on():
 		return true
 	var phone := _phone_item()
 	if phone != null:
