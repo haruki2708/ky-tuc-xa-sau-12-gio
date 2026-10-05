@@ -72,6 +72,15 @@ Cơ chế chơi của chương 3:
    - bảo vệ cảnh báo rồi giết;
    - chương 1–2 không bị ảnh hưởng (thể lực tắt).
 
+10. **Nối với âm thanh lane E (T-186, đã merge):** đọc mục "Rig và API chính" trong `docs/tasks/T-186-ch3-audio.md` và `audio_source/ch3/README.md`.
+    - Mỗi xác có một `ZombieAudio` con (core gắn). Lane A gọi:
+      - `play_step()` theo bước thật;
+      - `play_door_hit()` mỗi cú đập cửa;
+      - `set_hunting(false)` khi xác ngủ, `set_hunting(true)` khi hồi tê liệt (nếu không phát lại `zombie_woke`);
+      - `set_eligible(false)` khi xác khuất hoặc đang cập nhật thưa.
+    - Bước chân người chơi: `FootstepPlayer.play_footstep(surface, intensity)` đã có thêm mặt `grass` và `concrete` (lane B gắn `surface` cho sàn).
+    - Thở dốc khi cạn thể lực: `Ch3PlayerAudio` tự phát âm; lane A chỉ phát `noise_emitted` (8 m) cho xác nghe. Không để tiếng thở hụt hơi cũ của chương 1 (`breath`) phát chồng lên.
+
 ## Checklist hoàn thành
 - [ ] `pwsh tools/test.ps1` và `pwsh tools/check.ps1` PASS
 - [ ] Cảnh thử (scene test) cho xác, thanh sắt, đồng đội, bảo vệ

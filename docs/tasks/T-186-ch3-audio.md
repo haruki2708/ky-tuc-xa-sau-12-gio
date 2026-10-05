@@ -1,5 +1,5 @@
 # T-186 — Chương 3: tiếng xác sống, thanh sắt, thở dốc, ngoài trời, nhạc chương 3
-- Lane: E (Âm thanh) | Trạng thái: todo | Agent:
+- Lane: E (Âm thanh) | Trạng thái: done | Agent:
 - Nhánh: `lane-e/T-186-ch3-audio`
 - Phụ thuộc: T-164, T-175, T-178. **Đọc `docs/design/CH3_DESIGN.md`** (D-052, D-054).
 - **Hạn đề xuất: hết ngày 2026-10-08.**
@@ -94,3 +94,9 @@ RESULT: check 0 error(s)
 4. **Câu hỏi không chặn rig:** core có cần gọi cue theo ID `scare_triggered` cụ thể ngoài bước/đập cửa/death đã có không? Chưa có ID thống nhất trong hợp đồng nên Lane E không tự ánh xạ. `companion_state_changed` không được dùng để tự sinh lời thoại.
 
 **Blocked:** Không có chặn kỹ thuật trong phạm vi Lane E. Tích hợp core/Lane A/B và nghe bằng tai còn chờ các bước ngoài phạm vi nêu trên.
+
+### Review (integrator, 2026-10-06)
+- **Đạt, đã merge.** 35 âm tự tổng hợp CC0, tối đa 8 xác phát tiếng, thở dốc theo thể lực, còi chỉ nghe ở chỗ cao khi đứng yên, cảnh chết có bản nhẹ.
+- Yêu cầu cho lane A đã chép vào card T-182 (mục 10). Yêu cầu cho core (gắn rig, đặt khu, bật còi) làm trong T-181.
+- Câu hỏi về `scare_triggered`: core sẽ phát ID jumpscare theo `CH3_DESIGN.md` (ví dụ `&"roommates_rise"`, `&"stadium_lights"`) và ghi danh sách vào Handoff T-181; lane E nối sau nếu cần âm riêng.
+- **Còn mở:** nghe bằng tai (chủ dự án hoặc integrator).

@@ -1,5 +1,5 @@
 # T-185 — Chương 3: thanh thể lực, thanh sắt, lớp chết mới, thẻ hết chương
-- Lane: D (UI) | Trạng thái: todo | Agent:
+- Lane: D (UI) | Trạng thái: done | Agent:
 - Nhánh: `lane-d/T-185-ch3-ui`
 - Phụ thuộc: T-163, T-174, T-179. **Đọc `docs/design/CH3_DESIGN.md`** (D-052).
 - **Hạn đề xuất: hết ngày 2026-10-08.**
@@ -71,3 +71,8 @@ Giao diện ít và kín đáo, kiểu kinh dị (D-038: không giải thích lu
 - Core cung cấp bản dịch VI/EN thật cho `DEATH_CH3_GRABBED` và `DEATH_CH3_GUARD`; UI đã route key generic nhưng không tự đặt lời thoại cốt truyện.
 - Core cập nhật `export_presets.cfg` loại `ui/ch3/previews/*`, `ui/ch3/ch3_ui_preview*`, `scripts/ui/ch3_ui_preview.gd*` khỏi export nếu đây chỉ là fixture.
 - Lane C/integrator kiểm tra full scene, FPS, camera và death flow sau khi tích hợp; chưa thực hiện gameplay/export tích hợp trong phạm vi UI.
+
+### Review (integrator, 2026-10-06)
+- **Đạt, đã merge.** Viền thể lực, biểu tượng thanh sắt cong theo `hits_left`, hai lớp chết, nhiễu cảnh báo bảo vệ, thẻ hết chương; không hiện số, không giải thích luật (đúng D-038).
+- Cả bộ test sau khi ghép: 537/537 (test cửa kẹt lần này qua). Export đã loại `ui/ch3/previews/*` và fixture preview.
+- Yêu cầu cho core (`App.CHAPTER_SCENES[3]`, gắn `ch3_status`, chữ `DEATH_CH3_*`, phát lại trạng thái sau checkpoint): làm trong T-181 khi dựng `chapter3.tscn`.

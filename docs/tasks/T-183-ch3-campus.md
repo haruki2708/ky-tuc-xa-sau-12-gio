@@ -63,3 +63,7 @@ Dựng khuôn viên trường gần kích thước thật (khoảng 500 × 350 m
 - [ ] Handoff: anchor, vùng, API, tư thế mô hình
 
 ## Handoff (agent điền)
+
+### Ghi chú integrator (2026-10-06): khung khối hộp đã merge sớm
+- Commit khung `18661fc` merge vào `main` để lane A, C dùng. Kiểm headless: đủ mọi anchor và vùng trong hợp đồng, mỗi khu 6 điểm xác, 12 bảo vệ, 6 chỗ thanh sắt, đủ 5 hàm API, có navmesh; `test_campus` 3/3; cả bộ test 537/537.
+- Lane B làm tiếp mô hình thật trên cùng nhánh; integrator sẽ merge phần còn lại khi lane B báo xong.
