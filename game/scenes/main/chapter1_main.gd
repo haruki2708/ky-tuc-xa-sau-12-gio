@@ -49,11 +49,14 @@ func _ready() -> void:
 	_director().chapter_done.connect(_on_chapter_done)
 
 
-## Chapter 1 and chapter 2 (T-170) share this scene script; the director node
-## is Chapter1Director or Chapter2Director.
+## Chapters 1–3 (T-170, T-181) share this scene script; the director node
+## is Chapter1Director, Chapter2Director or Chapter3Director.
 func _director() -> Chapter1Director:
-	var node := get_node_or_null("Chapter2Director")
-	return (node if node != null else $Chapter1Director) as Chapter1Director
+	for director_name in ["Chapter3Director", "Chapter2Director"]:
+		var node := get_node_or_null(director_name)
+		if node != null:
+			return node as Chapter1Director
+	return $Chapter1Director as Chapter1Director
 
 
 func _process(delta: float) -> void:

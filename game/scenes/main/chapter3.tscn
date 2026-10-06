@@ -1,0 +1,54 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scenes/main/chapter1_main.gd" id="1_main"]
+[ext_resource type="PackedScene" path="res://scenes/levels/floor4/floor4.tscn" id="2_floor"]
+[ext_resource type="PackedScene" path="res://scenes/player/player.tscn" id="3_player"]
+[ext_resource type="Script" path="res://scripts/audio/footstep_player.gd" id="4_steps"]
+[ext_resource type="PackedScene" path="res://ui/hud/hud.tscn" id="5_hud"]
+[ext_resource type="PackedScene" path="res://ui/pause/pause_menu.tscn" id="6_pause"]
+[ext_resource type="PackedScene" path="res://rendering/ps1_filter.tscn" id="7_ps1"]
+[ext_resource type="Script" path="res://scripts/core/chapter3_director.gd" id="8_director"]
+[ext_resource type="PackedScene" path="res://scenes/levels/campus/campus.tscn" id="15_campus"]
+[ext_resource type="PackedScene" path="res://ui/document/document_view.tscn" id="9_document"]
+[ext_resource type="PackedScene" path="res://ui/notebook/notebook.tscn" id="10_notebook"]
+[ext_resource type="PackedScene" path="res://ui/phone/phone_screen.tscn" id="11_phone"]
+[ext_resource type="PackedScene" path="res://ui/survivors/survivor_notice.tscn" id="12_survivors"]
+[ext_resource type="PackedScene" path="res://ui/death/death_screen.tscn" id="13_death"]
+[ext_resource type="PackedScene" path="res://ui/puzzle/puzzle_panel.tscn" id="14_puzzle"]
+
+[node name="Chapter3" type="Node3D"]
+script = ExtResource("1_main")
+
+[node name="Floor4" parent="." instance=ExtResource("2_floor")]
+
+[node name="Campus" parent="." instance=ExtResource("15_campus")]
+
+[node name="Player" parent="." instance=ExtResource("3_player")]
+position = Vector3(32, 0.05, -2.2)
+
+[node name="Footsteps" type="AudioStreamPlayer3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+script = ExtResource("4_steps")
+
+[node name="PS1Filter" parent="." instance=ExtResource("7_ps1")]
+
+[node name="HUD" parent="." instance=ExtResource("5_hud")]
+
+[node name="DocumentView" parent="." instance=ExtResource("9_document")]
+
+[node name="Notebook" parent="." instance=ExtResource("10_notebook")]
+
+[node name="PhoneScreen" parent="." instance=ExtResource("11_phone")]
+
+[node name="SurvivorNotice" parent="." instance=ExtResource("12_survivors")]
+
+[node name="PuzzlePanel" parent="." instance=ExtResource("14_puzzle")]
+
+[node name="DeathScreen" parent="." instance=ExtResource("13_death")]
+
+[node name="PauseMenu" parent="." instance=ExtResource("6_pause")]
+
+[node name="Chapter3Director" type="Node" parent="."]
+script = ExtResource("8_director")
+
+[connection signal="footstep" from="Player" to="Player/Footsteps" method="play_footstep"]

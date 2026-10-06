@@ -65,7 +65,7 @@
 | T-179 Ô gõ từ nối, ô nhắn dự đoán, credits từ điển | D | **done**, đã merge; chờ thử bộ gõ |
 | T-180 Bot gõ từ và nhắn dự đoán, kiểm tra F9 | C | **done**, đã merge; bot thật chưa chạy |
 | **Chương 3 "Truy sát" (D-052…D-054, giao 2026-10-06)** | | |
-| T-181 Hợp đồng chung, kịch bản, luồng 4 khu, ghép | core | **doing**: hợp đồng EventBus xong |
+| T-181 Hợp đồng chung, kịch bản, luồng 4 khu, ghép | core | **doing**: kịch bản (D-055), luồng 4 khu và ghép 5 lane xong; còn đo FPS, profile bot, hướng dẫn chơi thử, export |
 | T-182 Xác sống, thanh sắt, thể lực, đồng đội, bảo vệ, cảnh chết | A | **done**, đã merge |
 | T-183 Khuôn viên: nhà B tầng 1–4, vườn hoa, sân vận động, cổng, nhà ăn (greybox trước) | B | **done**, đã merge; chờ chốt tên trường trên biển cổng |
 | T-184 Bot, menu nhảy 4 khu, đo FPS ngoài trời | C | **done** phần khung, đã merge; FPS chưa đo |

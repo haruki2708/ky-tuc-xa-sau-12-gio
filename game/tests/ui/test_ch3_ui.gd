@@ -192,19 +192,14 @@ func test_end_card_only_chapter_three_translates_and_does_not_unlock_progress() 
 
 
 func test_ch3_death_reasons_use_core_translation_keys_without_local_story() -> void:
-	# Core text is not on this base yet. Inject a temporary catalog to verify routing.
-	var catalog := Translation.new()
-	catalog.locale = "vi"
-	catalog.add_message("DEATH_CH3_GRABBED", "fixture grabbed")
-	catalog.add_message("DEATH_CH3_GUARD", "fixture guard")
-	TranslationServer.add_translation(catalog)
+	# Core's script (T-181) supplies the text; the death screen shows tr(key).
 	TranslationServer.set_locale("vi")
 	var death := _mount(load("res://ui/death/death_screen.tscn"))
 	for key: StringName in [&"DEATH_CH3_GRABBED", &"DEATH_CH3_GUARD"]:
+		assert_true(tr(key) != String(key), "core text for " + key)
 		EventBus.player_failed.emit(key)
-		assert_eq(death.get_node("Root/Card/Content/Reason").text, String(catalog.get_message(key)))
+		assert_eq(death.get_node("Root/Card/Content/Reason").text, tr(key))
 		EventBus.checkpoint_loaded.emit(&"ch3_b")
-	TranslationServer.remove_translation(catalog)
 
 
 func test_status_is_passive_and_all_controls_ignore_mouse() -> void:

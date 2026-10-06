@@ -15,7 +15,8 @@ const QUIT_AFTER_ARG := "--quit-after-frames="
 ## until it is removed after chapter 1.
 const GAME_SCENE := "res://scenes/main/chapter1.tscn"
 ## Chapter scenes (T-170); chapters without a scene yet start chapter 1.
-const CHAPTER_SCENES := {1: "res://scenes/main/chapter1.tscn", 2: "res://scenes/main/chapter2.tscn"}
+const CHAPTER_SCENES := {1: "res://scenes/main/chapter1.tscn", 2: "res://scenes/main/chapter2.tscn",
+	3: "res://scenes/main/chapter3.tscn"}
 ## Lane D's title screen (wave 3). Until it exists, the game starts straight in.
 const TITLE_SCENE := "res://ui/title/title_screen.tscn"
 const STORY_DIRECTOR := preload("res://scripts/core/story_director.gd")
@@ -53,7 +54,7 @@ func start_game(continue_saved: bool = false, chapter: int = 1) -> void:
 	for n: int in CHAPTER_SCENES:
 		if String(saved).begins_with("ch%d_" % n):
 			chapter = n
-	# Chapter 2's director extends chapter 1's and shares its resume point.
+	# Chapters 2 and 3 extend chapter 1's director and share its resume point.
 	CHAPTER_1_DIRECTOR.resume_checkpoint = saved if String(saved).begins_with("ch") else &""
 	STORY_DIRECTOR.resume_checkpoint = &""
 	STORY_DIRECTOR.carry_deviation = 0

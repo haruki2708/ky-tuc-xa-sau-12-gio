@@ -1,0 +1,353 @@
+{
+  "engine": "eSpeak NG 1.52.0",
+  "voices": {
+    "loa": [
+      "vi+m1",
+      132,
+      30,
+      -26
+    ],
+    "mgr": [
+      "vi+m3",
+      112,
+      20,
+      -27
+    ],
+    "minh_nhat": [
+      "vi+m2",
+      188,
+      46,
+      -26
+    ],
+    "hung": [
+      "vi+m4",
+      172,
+      56,
+      -26
+    ],
+    "dang": [
+      "vi+m6",
+      178,
+      38,
+      -25
+    ],
+    "bao": [
+      "vi+m5",
+      140,
+      66,
+      -27
+    ],
+    "son": [
+      "vi+m1",
+      128,
+      34,
+      -27
+    ],
+    "kiet": [
+      "vi+m7",
+      162,
+      58,
+      -26
+    ],
+    "tung": [
+      "vi+m8",
+      176,
+      50,
+      -26
+    ],
+    "vinh": [
+      "vi+m2",
+      166,
+      40,
+      -26
+    ],
+    "ngu": [
+      "vi+f2",
+      188,
+      58,
+      -26
+    ],
+    "phuc": [
+      "vi+m4",
+      128,
+      44,
+      -32
+    ],
+    "dat": [
+      "vi+m5",
+      122,
+      40,
+      -32
+    ],
+    "viet": [
+      "vi+m3",
+      126,
+      48,
+      -32
+    ],
+    "viet_door": [
+      "vi+m3",
+      120,
+      48,
+      -33
+    ],
+    "tv": [
+      "vi+f3",
+      150,
+      52,
+      -29
+    ]
+  },
+  "assets": [
+    {
+      "key": "SPK_CH3_R5_INTRO",
+      "who": "loa",
+      "text": "Vòng cuối cùng bắt đầu. Nhà trường quyết định nới lỏng yêu cầu.",
+      "file": "game/audio/voice/vi/SPK_CH3_R5_INTRO.ogg",
+      "seconds": 4.63,
+      "lufs": -26.11,
+      "true_peak_db": -7.08,
+      "sha256": "a069cef3c3d4873213257c364b36d81fdc9d7a053e03abd1e4eea73827805dbb"
+    },
+    {
+      "key": "RULE_CH3_R5_1",
+      "who": "loa",
+      "text": "Các bạn được phép rời phòng, đi lại ở mọi khu vực trong trường.",
+      "file": "game/audio/voice/vi/RULE_CH3_R5_1.ogg",
+      "seconds": 4.957,
+      "lufs": -26.14,
+      "true_peak_db": -6.5,
+      "sha256": "82d558b9f97f90e31040454ebbd1975b468f5b7d771378fb9764a38454d82b75"
+    },
+    {
+      "key": "RULE_CH3_R5_2",
+      "who": "loa",
+      "text": "Hãy mau chạy khỏi góc khuất nguy hiểm này.",
+      "file": "game/audio/voice/vi/RULE_CH3_R5_2.ogg",
+      "seconds": 3.038,
+      "lufs": -26.14,
+      "true_peak_db": -6.54,
+      "sha256": "6c17e0ee76018dc281408c109c74945261ac42ef14b0dbc4023808cb91d39bab"
+    },
+    {
+      "key": "RULE_CH3_R5_3",
+      "who": "loa",
+      "text": "Nhiệm vụ rất đơn giản: trong một giờ cuối cùng, tránh mọi sự truy sát và sống sót.",
+      "file": "game/audio/voice/vi/RULE_CH3_R5_3.ogg",
+      "seconds": 6.753,
+      "lufs": -26.13,
+      "true_peak_db": -6.16,
+      "sha256": "1813b224781dca51a39d8e388f0825749808cb77a3f8af65f931fab236fe20d8"
+    },
+    {
+      "key": "CHAT_CH3_N_ALL_UP",
+      "who": "minh_nhat",
+      "text": "Chúng nó đứng dậy hết rồi! Cả tòa… hành lang chỗ tôi toàn người, mắt đỏ lòm.",
+      "file": "game/audio/voice/vi/CHAT_CH3_N_ALL_UP.ogg",
+      "seconds": 4.65,
+      "lufs": -26.15,
+      "true_peak_db": -4.81,
+      "sha256": "d70cdb05d2cbebb078aad0309ece73e22f33d46fbab6faa242f75916826fe449"
+    },
+    {
+      "key": "CHAT_CH3_N_OUT",
+      "who": "minh_nhat",
+      "text": "Luật cấm rời phòng bị bỏ rồi. Ba đứa mình phải ra ngoài, gặp nhau.",
+      "file": "game/audio/voice/vi/CHAT_CH3_N_OUT.ogg",
+      "seconds": 3.89,
+      "lufs": -26.12,
+      "true_peak_db": -4.82,
+      "sha256": "2bf17253000143c4d9f5dae08800d71bcbe91e0e28de432728f484da12ff5a80"
+    },
+    {
+      "key": "CHAT_CH3_NGU_GARDEN",
+      "who": "ngu",
+      "text": "Vườn hoa giữa nhà A với nhà B. Gặp ở đó. Chúng nó chậm lắm, đừng để bị dồn vào chỗ hẹp là được.",
+      "file": "game/audio/voice/vi/CHAT_CH3_NGU_GARDEN.ogg",
+      "seconds": 5.843,
+      "lufs": -26.01,
+      "true_peak_db": -8.52,
+      "sha256": "26ce4fd1dc511cd91d44e84a5f2c3afffdffc253f4e76bb4d89188225caae691"
+    },
+    {
+      "key": "CHAT_CH3_N_TRAPPED",
+      "who": "minh_nhat",
+      "text": "Trung, cậu đang ở đâu? Tôi kẹt trong 203, chúng nó đang đập cửa!",
+      "file": "game/audio/voice/vi/CHAT_CH3_N_TRAPPED.ogg",
+      "seconds": 4.316,
+      "lufs": -26.14,
+      "true_peak_db": -4.02,
+      "sha256": "eba5b264de8419672400b67c7623c223d56de98cdcb0fd2852768d384cf9c037"
+    },
+    {
+      "key": "NEAR_CH3_N_JOIN",
+      "who": "minh_nhat",
+      "text": "Cảm ơn… Cầu thang chính, bên trái. Lúc nãy tôi thấy chỗ đó vãn rồi.",
+      "file": "game/audio/voice/vi/NEAR_CH3_N_JOIN.ogg",
+      "seconds": 4.065,
+      "lufs": -26.14,
+      "true_peak_db": -4.4,
+      "sha256": "697980a9809e86535cff0207104aa98ea4ad873051bccd4f0ec1a9d52443cb4a"
+    },
+    {
+      "key": "NEAR_CH3_N_CHAINED",
+      "who": "minh_nhat",
+      "text": "Xích từ bên ngoài… Ai khóa chứ?",
+      "file": "game/audio/voice/vi/NEAR_CH3_N_CHAINED.ogg",
+      "seconds": 2.044,
+      "lufs": -26.15,
+      "true_peak_db": -5.43,
+      "sha256": "c1ea18d38bf9873bfb667ee9f9ceacf9ab1d4d0279eaeabed13a60aa6f183c56"
+    },
+    {
+      "key": "NEAR_CH3_NGU_HERE",
+      "who": "ngu",
+      "text": "Trung! Minh Nhật! Bên này!",
+      "file": "game/audio/voice/vi/NEAR_CH3_NGU_HERE.ogg",
+      "seconds": 2.018,
+      "lufs": -26.07,
+      "true_peak_db": -5.45,
+      "sha256": "da5150dde611fa307e132484e8d1246415e194d7e43bff96073c1eab1e05f7c1"
+    },
+    {
+      "key": "NEAR_CH3_NGU_BARS",
+      "who": "ngu",
+      "text": "Cầm lấy, tháo từ thang giường đấy. Chúng nó chết rồi, không giết lại được đâu. Nhưng đập vào đầu thì nó đứng im một lúc.",
+      "file": "game/audio/voice/vi/NEAR_CH3_NGU_BARS.ogg",
+      "seconds": 6.357,
+      "lufs": -26.06,
+      "true_peak_db": -6.69,
+      "sha256": "7579b021807d9f8cca7f6ccc73ef1c6eb590c4037c5a34fce4e442018875cb8b"
+    },
+    {
+      "key": "NEAR_CH3_N_STADIUM",
+      "who": "minh_nhat",
+      "text": "Ra sân vận động. Chỗ đó thoáng nhất, khó bị vây.",
+      "file": "game/audio/voice/vi/NEAR_CH3_N_STADIUM.ogg",
+      "seconds": 3.221,
+      "lufs": -26.12,
+      "true_peak_db": -4.82,
+      "sha256": "619f1c79f890aafe1264f21dca4b9efc5032c3b5631a920e5bc6671b0bad8a64"
+    },
+    {
+      "key": "NEAR_CH3_NGU_GO",
+      "who": "ngu",
+      "text": "Đi!",
+      "file": "game/audio/voice/vi/NEAR_CH3_NGU_GO.ogg",
+      "seconds": 0.561,
+      "lufs": -26.03,
+      "true_peak_db": -12.04,
+      "sha256": "35df4829ba2085c80a62b4266658507f6904cf6796e4be5568cbd987c10b6b46"
+    },
+    {
+      "key": "NEAR_CH3_NGU_KEEP",
+      "who": "ngu",
+      "text": "Đừng đứng một chỗ! Chạy vòng, cắt qua sân!",
+      "file": "game/audio/voice/vi/NEAR_CH3_NGU_KEEP.ogg",
+      "seconds": 2.829,
+      "lufs": -26.04,
+      "true_peak_db": -7.55,
+      "sha256": "22d820ae132ec9598271a1e343790bac430890fb4f1573d4b23a3f5430c23947"
+    },
+    {
+      "key": "NEAR_CH3_N_BREATH",
+      "who": "minh_nhat",
+      "text": "Tôi… sắp hết hơi rồi.",
+      "file": "game/audio/voice/vi/NEAR_CH3_N_BREATH.ogg",
+      "seconds": 1.572,
+      "lufs": -26.15,
+      "true_peak_db": -4.26,
+      "sha256": "6a32315a6811a349c4cb5757a42cd2ea31787b14006e445ec42b1dcd51ffd713"
+    },
+    {
+      "key": "NEAR_CH3_N_NO_DEAD_END",
+      "who": "minh_nhat",
+      "text": "Khoan. Vòng nào luật cũng chừa một đường sống. Không thể bắt mình chạy mãi thế này được. Đường sống phải ở đâu đó trong trường.",
+      "file": "game/audio/voice/vi/NEAR_CH3_N_NO_DEAD_END.ogg",
+      "seconds": 6.531,
+      "lufs": -26.15,
+      "true_peak_db": -4.1,
+      "sha256": "14f61f68ab67f6930bf9057b24be789c6ac1b2578e6f3c62d5cc7609d933ded0"
+    },
+    {
+      "key": "NEAR_CH3_NGU_GATE",
+      "who": "ngu",
+      "text": "Thì đi tìm. Ra cổng trường trước.",
+      "file": "game/audio/voice/vi/NEAR_CH3_NGU_GATE.ogg",
+      "seconds": 2.11,
+      "lufs": -26.01,
+      "true_peak_db": -7.02,
+      "sha256": "a2726a82fe43ee3c611bef28bd9c39e785a2f8f20840f2115ac7504da9ba8ef1"
+    },
+    {
+      "key": "NEAR_CH3_NGU_DONT",
+      "who": "ngu",
+      "text": "Đừng đụng vào họ.",
+      "file": "game/audio/voice/vi/NEAR_CH3_NGU_DONT.ogg",
+      "seconds": 1.135,
+      "lufs": -26.07,
+      "true_peak_db": -8.47,
+      "sha256": "0ef13edf52784a4a829f281cf01c81857a3421245c5a97d71cef0d53cc013c84"
+    },
+    {
+      "key": "NEAR_CH3_N_NO_WAY",
+      "who": "minh_nhat",
+      "text": "Họ chặn kín cổng rồi. Lối này không ra được.",
+      "file": "game/audio/voice/vi/NEAR_CH3_N_NO_WAY.ogg",
+      "seconds": 2.684,
+      "lufs": -26.12,
+      "true_peak_db": -3.67,
+      "sha256": "98ec47b9538240b5185ca6c9624f4be2f043a5f5aad3b18ad56f21032d47edf4"
+    },
+    {
+      "key": "NEAR_CH3_NGU_CANTEEN",
+      "who": "ngu",
+      "text": "Nhà ăn. Biết đâu trong đó có gì.",
+      "file": "game/audio/voice/vi/NEAR_CH3_NGU_CANTEEN.ogg",
+      "seconds": 2.271,
+      "lufs": -26.03,
+      "true_peak_db": -9.01,
+      "sha256": "db2c573868f16a88ab5d0e15a7c1136535a5ade725019103ffae33c0a2b46f1d"
+    },
+    {
+      "key": "ROOM_CH3_TV_NEWS",
+      "who": "tv",
+      "text": "Tin khẩn. Lúc bốn giờ sáng nay, một trận động đất mạnh đã xảy ra. Các tòa ký túc xá của trường đổ sập hoàn toàn. Lực lượng cứu hộ đang đào bới, tìm người còn sống dưới đống đổ nát.",
+      "file": "game/audio/voice/vi/ROOM_CH3_TV_NEWS.ogg",
+      "seconds": 12.455,
+      "lufs": -29.09,
+      "true_peak_db": -11.05,
+      "sha256": "4f9a2d3cc4c2f480dc859ee4eb437cb41eba90c9d04bd7024ac93fdc8bbe05bf"
+    },
+    {
+      "key": "NEAR_CH3_N_NOTHING",
+      "who": "minh_nhat",
+      "text": "Không có gì cả. Cứ tụ một chỗ thế này thì chậm quá.",
+      "file": "game/audio/voice/vi/NEAR_CH3_N_NOTHING.ogg",
+      "seconds": 3.451,
+      "lufs": -26.16,
+      "true_peak_db": -5.79,
+      "sha256": "af1c1ad8bb5bc0196f4adfbb5d3c29e94cef7553c1f7d155940d20d573bc2f4e"
+    },
+    {
+      "key": "NEAR_CH3_N_SPLIT",
+      "who": "minh_nhat",
+      "text": "Chia nhau ra. Ngư qua khu giảng đường, tôi qua nhà thi đấu, Trung qua thư viện. Thấy gì lạ thì gọi ngay.",
+      "file": "game/audio/voice/vi/NEAR_CH3_N_SPLIT.ogg",
+      "seconds": 6.19,
+      "lufs": -26.12,
+      "true_peak_db": -4.99,
+      "sha256": "0cafd4a2e2f6ea8c0ae6db5ca120fab25ec6c547048edfbb4c17ebbd1bc85c7e"
+    },
+    {
+      "key": "NEAR_CH3_NGU_OK",
+      "who": "ngu",
+      "text": "Được. Đừng có chết đấy.",
+      "file": "game/audio/voice/vi/NEAR_CH3_NGU_OK.ogg",
+      "seconds": 1.45,
+      "lufs": -26.08,
+      "true_peak_db": -9.04,
+      "sha256": "2fa2fb7eaddf0bc7637c8a43a90a6e73e22b9d3547a77892055e4b9ca4b5f01a"
+    }
+  ]
+}

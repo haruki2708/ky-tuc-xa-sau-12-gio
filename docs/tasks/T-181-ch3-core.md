@@ -14,3 +14,22 @@
 - **Ghép** T-182…T-186, test, export.
 
 ## Handoff
+### Phiên 2026-10-06 (Claude): kịch bản, luồng 4 khu, ghép 5 lane
+- **Kịch bản** `docs/design/ch3/build_ch3_script.py` → `CH3_SCRIPT.md`, `data/rules/ch3.tres`, 4 tin nhắn gọi, 44 chuỗi; lời Minh Nhật và Ngư nói trực tiếp có key `NEAR_CH3_*` (giọng phát tại chỗ nhân vật). D-055: bỏ 2 câu gợi ý, tivi nói rõ chuyện động đất. Giọng: `audio_source/ch3_voice_process.py`, 25 câu (Minh Nhật, Ngư ×1,25; tivi qua loa nhỏ rè).
+- **Luồng** `scripts/core/chapter3_director.gd` (`Chapter3Director extends Chapter1Director`), `scenes/main/chapter3.tscn` (Floor4 + Campus + UI); `App.CHAPTER_SCENES[3]`; `chapter1_main._director()` nhận cả director chương 3.
+  - Khu `b`: loa vòng 5 → ba bạn cùng phòng thành xác (mô hình lane B) → ra hành lang (`corridor_turn`) → chìa khóa và cửa thoát hiểm (`Ch3Use`) → tầng 3, tầng 2 → bình cứu hỏa phát tiếng 25 m → Minh Nhật đi cùng → tầng 1 → vườn hoa.
+  - Khu `garden`: Ngư ở ghế đá, tới gần thì trao thanh sắt (`give_bar(8)`, trừ khi đã nhặt); đợt xác; ra sân vận động.
+  - Khu `stadium`: đèn sân chớp một lần; mỗi 25 giây một đợt 6 xác trong 240 giây (theo `time_scale`); còi chỉ bật ở khán đài; ra cổng.
+  - Khu `gate`: bảo vệ quay đầu khi tới gần 12 m; nhà ăn: tivi bật và đọc bản tin; chia nhau ra; `end3` mở khóa chương 4, `chapter_finished(3)` (thẻ của lane D).
+  - Nạp checkpoint giữa chương: đứng ở `Start_<khu>`, đồng đội bắt đầu từ điểm chờ của khu (bản sao đường từ điểm đó).
+- **Nối lane:**
+  - mô hình lane B cho từng xác (`zombie_01…10`), đồng đội, bảo vệ;
+  - `ZombieAudio` và `Ch3ZombieLink` (core) trên mỗi xác: săn, đủ điều kiện phát tiếng, bước chân theo quãng đường;
+  - `Ch3HordeAudio`, `Ch3PlayerAudio`, `Ch3Environment`, `Ch3Music`, `Ch3SirenAudio`, `Ch3GuardAudio`;
+  - `ch3_status` và `ch3_end_card` (lane D);
+  - thể lực bật khi vào chương 3;
+  - `player_caught(&"zombie")` → `DEATH_CH3_GRABBED`, `&"guard"` → `DEATH_CH3_GUARD`.
+- **Lỗi tìm thấy khi ghép:** điểm thanh sắt `BarSpawns/B01` (vườn hoa) nằm **trong** khối va chạm của giường tầng đổ, không nhặt được. Core đặt mọi thanh sắt lên bề mặt đầu tiên phía trên điểm đánh dấu (`_settle_bars`). Lane B nên sửa điểm B01 khi có dịp.
+- **Test:** `test_chapter3.gd` (8): đủ thành phần; khu B tới vườn hoa; bị tóm thì chết và nạp lại; Ngư trao thanh sắt; đợt xác ở sân và đèn chớp; cổng, nhà ăn, hết chương; bảo vệ giết; **tia "aim" tới được** chìa khóa, cửa, bình cứu hỏa và 6 thanh sắt (đứng hoặc cúi). `test_chapter3_data.gd` (3).
+- **Chưa làm:** đo FPS có vẽ hình (cần chủ dự án cho phép), điền `tools/ch3-profile.json` cho bot, hướng dẫn chơi thử chương 3, chơi tay toàn chương, nghe âm thanh.
+- Integrator sửa `test_ch3_ui.gd::test_ch3_death_reasons…`: core đã có chữ thật cho `DEATH_CH3_*` nên test kiểm chữ thật thay cho bảng dịch tạm.
