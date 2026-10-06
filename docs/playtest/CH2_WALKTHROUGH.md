@@ -13,6 +13,25 @@ Chết thì làm lại từ **đầu vòng** đang chơi (đầu vòng 3 hoặc 
 
 ---
 
+## Vượt nhanh (tóm tắt, khoảng 15 phút)
+
+**Vòng 3 (nối từ):**
+1. Lượt đầu gõ **vở kịch** (Enter mở ô, Enter gửi).
+2. Mỗi lượt sau: gõ một từ hai tiếng bắt đầu bằng tiếng cuối của từ trước, đúng dấu, không lặp 3 từ gần nhất.
+3. Giữa các lượt, lấy đồ bịt miệng: **áo của Việt** (tủ Việt, gần cửa) → **giẻ lau** (bồn rửa nhà vệ sinh) → **khăn tắm** (dây phơi ban công). Chỉ trả lời được khi đứng trong phòng ngủ.
+4. Cầm đồ, nhìn miệng xác, bấm **E**: bịt cả 3 xác (Phúc, Việt, Đạt).
+5. Lái chuỗi về chữ **học**, rồi gõ liền 8 từ: **học sinh → sinh viên → viên phấn → phấn đấu → đấu tranh → tranh luận → luận văn → văn học**. Vòng 3 kết thúc sớm.
+
+**Vòng 4 (tắm):**
+1. Đẩy cửa nhà vệ sinh 3 lần (E).
+2. Chọn **CÓ** ở các lượt 2, 3, 7, 8, 9, 10, 11, 13, 14, 16, 18, 23, 24; các lượt còn lại chọn **KHÔNG**. Chọn CÓ thì đứng yên trong buồng tắm.
+3. Sau lượt 9, nhắn **"có"** cho Minh Nhật và **"không"** cho Ngư.
+4. Hết lượt 24 là đủ 26 phút, hết chương.
+
+**Nhảy thẳng tới vòng 4:** xem mục cuối ("Nhảy thẳng tới vòng 4").
+
+---
+
 ## Vòng 3: nối từ (6:00–7:00)
 
 ### Luật (bản gõ từ, D-049, D-051)
