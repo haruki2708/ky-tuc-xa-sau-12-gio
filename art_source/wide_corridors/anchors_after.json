@@ -1,0 +1,1132 @@
+{
+	"Campus/Anchors/BarSpawns/B01": [
+		8.0,
+		-9.65,
+		37.0
+	],
+	"Campus/Anchors/BarSpawns/B02": [
+		154.0,
+		-9.9,
+		221.0
+	],
+	"Campus/Anchors/BarSpawns/B03": [
+		164.0,
+		-9.82,
+		225.5
+	],
+	"Campus/Anchors/BarSpawns/B04": [
+		64.0,
+		-9.9,
+		-10.0
+	],
+	"Campus/Anchors/BarSpawns/B05": [
+		228.0,
+		-9.9,
+		-29.0
+	],
+	"Campus/Anchors/BarSpawns/B06": [
+		194.0,
+		-9.9,
+		40.0
+	],
+	"Campus/Anchors/CanteenClock": [
+		192.0,
+		-7.4,
+		51.85
+	],
+	"Campus/Anchors/CanteenExit": [
+		202.0,
+		-9.9,
+		52.0
+	],
+	"Campus/Anchors/CanteenTV": [
+		170.3,
+		-7.5,
+		32.0
+	],
+	"Campus/Anchors/Clues/Clock4F": [
+		40.0,
+		2.05,
+		0.18
+	],
+	"Campus/Anchors/Clues/CrackStair": [
+		49.0,
+		-2.0,
+		-3.0
+	],
+	"Campus/Anchors/Clues/GatePillar": [
+		209.0,
+		-9.9,
+		-58.0
+	],
+	"Campus/Anchors/Clues/SirenSpot": [
+		198.0,
+		-6.9,
+		226.8
+	],
+	"Campus/Anchors/Collapse2F": [
+		46.5,
+		-6.6,
+		-1.0
+	],
+	"Campus/Anchors/Extinguisher2F": [
+		20.0,
+		-5.5,
+		0.25
+	],
+	"Campus/Anchors/FireDoor": [
+		44.0,
+		0.0,
+		2.0
+	],
+	"Campus/Anchors/FireKey": [
+		39.8,
+		0.66,
+		0.42
+	],
+	"Campus/Anchors/GuardBooth": [
+		240.0,
+		-9.9,
+		-51.0
+	],
+	"Campus/Anchors/GuardLine/G01": [
+		210.0,
+		-9.9,
+		-54.0
+	],
+	"Campus/Anchors/GuardLine/G02": [
+		211.8182,
+		-9.9,
+		-54.0
+	],
+	"Campus/Anchors/GuardLine/G03": [
+		213.6364,
+		-9.9,
+		-54.0
+	],
+	"Campus/Anchors/GuardLine/G04": [
+		215.4545,
+		-9.9,
+		-54.0
+	],
+	"Campus/Anchors/GuardLine/G05": [
+		217.2727,
+		-9.9,
+		-54.0
+	],
+	"Campus/Anchors/GuardLine/G06": [
+		219.0909,
+		-9.9,
+		-54.0
+	],
+	"Campus/Anchors/GuardLine/G07": [
+		220.9091,
+		-9.9,
+		-54.0
+	],
+	"Campus/Anchors/GuardLine/G08": [
+		222.7273,
+		-9.9,
+		-54.0
+	],
+	"Campus/Anchors/GuardLine/G09": [
+		224.5455,
+		-9.9,
+		-54.0
+	],
+	"Campus/Anchors/GuardLine/G10": [
+		226.3636,
+		-9.9,
+		-54.0
+	],
+	"Campus/Anchors/GuardLine/G11": [
+		228.1818,
+		-9.9,
+		-54.0
+	],
+	"Campus/Anchors/GuardLine/G12": [
+		230.0,
+		-9.9,
+		-54.0
+	],
+	"Campus/Anchors/MainDoor1F": [
+		19.25,
+		-9.9,
+		4.1
+	],
+	"Campus/Anchors/ManagerKnife": [
+		1.4,
+		-8.95,
+		-3.2
+	],
+	"Campus/Anchors/ManagerWindow": [
+		4.0,
+		-8.9,
+		-7.6
+	],
+	"Campus/Anchors/NguBench": [
+		22.0,
+		-9.33,
+		28.0
+	],
+	"Campus/Anchors/Paths/Ngu/P01": [
+		22.0,
+		-9.33,
+		28.0
+	],
+	"Campus/Anchors/Paths/Ngu/P02": [
+		23.8,
+		-9.9,
+		28.0
+	],
+	"Campus/Anchors/Paths/Ngu/P03": [
+		23.8,
+		-9.9,
+		26.0
+	],
+	"Campus/Anchors/Paths/Ngu/P04_Wait_garden": [
+		22.0,
+		-9.9,
+		26.0
+	],
+	"Campus/Anchors/Paths/Ngu/P05": [
+		48.0,
+		-9.9,
+		28.0
+	],
+	"Campus/Anchors/Paths/Ngu/P06": [
+		80.0,
+		-9.9,
+		28.0
+	],
+	"Campus/Anchors/Paths/Ngu/P07": [
+		80.0,
+		-9.9,
+		166.0
+	],
+	"Campus/Anchors/Paths/Ngu/P08_Wait_stadium": [
+		115.0,
+		-9.9,
+		166.0
+	],
+	"Campus/Anchors/Paths/Ngu/P09": [
+		150.0,
+		-9.9,
+		166.0
+	],
+	"Campus/Anchors/Paths/Ngu/P10": [
+		198.0,
+		-9.9,
+		135.0
+	],
+	"Campus/Anchors/Paths/Ngu/P11": [
+		250.0,
+		-9.9,
+		166.0
+	],
+	"Campus/Anchors/Paths/Ngu/P12": [
+		198.0,
+		-9.9,
+		195.0
+	],
+	"Campus/Anchors/Paths/Ngu/P13_Wait_stadium": [
+		115.0,
+		-9.9,
+		166.0
+	],
+	"Campus/Anchors/Paths/Ngu/P14": [
+		80.0,
+		-9.9,
+		166.0
+	],
+	"Campus/Anchors/Paths/Ngu/P15": [
+		80.0,
+		-9.9,
+		-15.0
+	],
+	"Campus/Anchors/Paths/Ngu/P16": [
+		220.0,
+		-9.9,
+		-15.0
+	],
+	"Campus/Anchors/Paths/Ngu/P17_Wait_gate": [
+		220.0,
+		-9.9,
+		-30.0
+	],
+	"Campus/Anchors/Paths/Ngu/P18": [
+		220.0,
+		-9.9,
+		10.0
+	],
+	"Campus/Anchors/Paths/Ngu/P19": [
+		190.0,
+		-9.9,
+		18.0
+	],
+	"Campus/Anchors/Paths/Ngu/P20_Wait_canteen": [
+		190.0,
+		-9.9,
+		32.0
+	],
+	"Campus/Anchors/Paths/Ngu/P21": [
+		202.0,
+		-9.9,
+		43.0
+	],
+	"Campus/Anchors/Paths/Ngu/P22": [
+		202.0,
+		-9.9,
+		48.0
+	],
+	"Campus/Anchors/Paths/Ngu/P23": [
+		202.0,
+		-9.9,
+		54.0
+	],
+	"Campus/Anchors/Paths/Nhat/P01": [
+		13.75,
+		-6.6,
+		-2.0
+	],
+	"Campus/Anchors/Paths/Nhat/P02": [
+		13.75,
+		-6.6,
+		2.0
+	],
+	"Campus/Anchors/Paths/Nhat/P03": [
+		-1.2,
+		-6.6,
+		2.0
+	],
+	"Campus/Anchors/Paths/Nhat/P04": [
+		-3.8,
+		-8.25,
+		-5.3
+	],
+	"Campus/Anchors/Paths/Nhat/P05": [
+		-1.2,
+		-9.9,
+		2.0
+	],
+	"Campus/Anchors/Paths/Nhat/P06": [
+		2.75,
+		-9.9,
+		2.0
+	],
+	"Campus/Anchors/Paths/Nhat/P07": [
+		2.75,
+		-9.9,
+		-3.0
+	],
+	"Campus/Anchors/Paths/Nhat/P08": [
+		4.0,
+		-9.9,
+		-4.0
+	],
+	"Campus/Anchors/Paths/Nhat/P09": [
+		4.0,
+		-8.9,
+		-7.6
+	],
+	"Campus/Anchors/Paths/Nhat/P10": [
+		4.0,
+		-9.9,
+		-12.0
+	],
+	"Campus/Anchors/Paths/Nhat/P11": [
+		-8.0,
+		-9.9,
+		-12.0
+	],
+	"Campus/Anchors/Paths/Nhat/P12": [
+		-8.0,
+		-9.9,
+		8.0
+	],
+	"Campus/Anchors/Paths/Nhat/P13": [
+		22.0,
+		-9.9,
+		8.0
+	],
+	"Campus/Anchors/Paths/Nhat/P14_Wait_garden": [
+		22.0,
+		-9.9,
+		26.0
+	],
+	"Campus/Anchors/Paths/Nhat/P15": [
+		48.0,
+		-9.9,
+		28.0
+	],
+	"Campus/Anchors/Paths/Nhat/P16": [
+		80.0,
+		-9.9,
+		28.0
+	],
+	"Campus/Anchors/Paths/Nhat/P17": [
+		80.0,
+		-9.9,
+		166.0
+	],
+	"Campus/Anchors/Paths/Nhat/P18_Wait_stadium": [
+		115.0,
+		-9.9,
+		166.0
+	],
+	"Campus/Anchors/Paths/Nhat/P19": [
+		150.0,
+		-9.9,
+		166.0
+	],
+	"Campus/Anchors/Paths/Nhat/P20": [
+		198.0,
+		-9.9,
+		135.0
+	],
+	"Campus/Anchors/Paths/Nhat/P21": [
+		250.0,
+		-9.9,
+		166.0
+	],
+	"Campus/Anchors/Paths/Nhat/P22": [
+		198.0,
+		-9.9,
+		195.0
+	],
+	"Campus/Anchors/Paths/Nhat/P23_Wait_stadium": [
+		115.0,
+		-9.9,
+		166.0
+	],
+	"Campus/Anchors/Paths/Nhat/P24": [
+		80.0,
+		-9.9,
+		166.0
+	],
+	"Campus/Anchors/Paths/Nhat/P25": [
+		80.0,
+		-9.9,
+		-15.0
+	],
+	"Campus/Anchors/Paths/Nhat/P26": [
+		220.0,
+		-9.9,
+		-15.0
+	],
+	"Campus/Anchors/Paths/Nhat/P27_Wait_gate": [
+		220.0,
+		-9.9,
+		-30.0
+	],
+	"Campus/Anchors/Paths/Nhat/P28": [
+		220.0,
+		-9.9,
+		10.0
+	],
+	"Campus/Anchors/Paths/Nhat/P29": [
+		190.0,
+		-9.9,
+		18.0
+	],
+	"Campus/Anchors/Paths/Nhat/P30_Wait_canteen": [
+		190.0,
+		-9.9,
+		32.0
+	],
+	"Campus/Anchors/Paths/Nhat/P31": [
+		202.0,
+		-9.9,
+		43.0
+	],
+	"Campus/Anchors/Paths/Nhat/P32": [
+		202.0,
+		-9.9,
+		48.0
+	],
+	"Campus/Anchors/Paths/Nhat/P33": [
+		202.0,
+		-9.9,
+		54.0
+	],
+	"Campus/Anchors/Room203Door": [
+		13.75,
+		-6.6,
+		0.0
+	],
+	"Campus/Anchors/Start_garden": [
+		22.0,
+		-9.9,
+		8.0
+	],
+	"Campus/Anchors/Start_gate": [
+		220.0,
+		-9.9,
+		-25.0
+	],
+	"Campus/Anchors/Start_stadium": [
+		115.0,
+		-9.9,
+		166.0
+	],
+	"Campus/Anchors/ZombieIdle/B1/I01": [
+		8.0,
+		-9.9,
+		2.1
+	],
+	"Campus/Anchors/ZombieIdle/B1/I02": [
+		12.0,
+		-9.9,
+		2.1
+	],
+	"Campus/Anchors/ZombieIdle/B1/I03": [
+		16.0,
+		-9.9,
+		2.1
+	],
+	"Campus/Anchors/ZombieIdle/B1/I04": [
+		20.0,
+		-9.9,
+		2.1
+	],
+	"Campus/Anchors/ZombieIdle/B1/I05": [
+		24.0,
+		-9.9,
+		2.1
+	],
+	"Campus/Anchors/ZombieIdle/B1/I06": [
+		28.0,
+		-9.9,
+		2.1
+	],
+	"Campus/Anchors/ZombieIdle/B2/I01": [
+		8.0,
+		-6.6,
+		2.1
+	],
+	"Campus/Anchors/ZombieIdle/B2/I02": [
+		12.0,
+		-6.6,
+		2.1
+	],
+	"Campus/Anchors/ZombieIdle/B2/I03": [
+		16.0,
+		-6.6,
+		2.1
+	],
+	"Campus/Anchors/ZombieIdle/B2/I04": [
+		20.0,
+		-6.6,
+		2.1
+	],
+	"Campus/Anchors/ZombieIdle/B2/I05": [
+		24.0,
+		-6.6,
+		2.1
+	],
+	"Campus/Anchors/ZombieIdle/B2/I06": [
+		28.0,
+		-6.6,
+		2.1
+	],
+	"Campus/Anchors/ZombieIdle/B3/I01": [
+		8.0,
+		-3.3,
+		2.1
+	],
+	"Campus/Anchors/ZombieIdle/B3/I02": [
+		12.0,
+		-3.3,
+		2.1
+	],
+	"Campus/Anchors/ZombieIdle/B3/I03": [
+		16.0,
+		-3.3,
+		2.1
+	],
+	"Campus/Anchors/ZombieIdle/B3/I04": [
+		20.0,
+		-3.3,
+		2.1
+	],
+	"Campus/Anchors/ZombieIdle/B3/I05": [
+		24.0,
+		-3.3,
+		2.1
+	],
+	"Campus/Anchors/ZombieIdle/B3/I06": [
+		28.0,
+		-3.3,
+		2.1
+	],
+	"Campus/Anchors/ZombieIdle/B4/I01": [
+		8.0,
+		0.0,
+		2.1
+	],
+	"Campus/Anchors/ZombieIdle/B4/I02": [
+		12.0,
+		0.0,
+		2.1
+	],
+	"Campus/Anchors/ZombieIdle/B4/I03": [
+		16.0,
+		0.0,
+		2.1
+	],
+	"Campus/Anchors/ZombieIdle/B4/I04": [
+		20.0,
+		0.0,
+		2.1
+	],
+	"Campus/Anchors/ZombieIdle/B4/I05": [
+		24.0,
+		0.0,
+		2.1
+	],
+	"Campus/Anchors/ZombieIdle/B4/I06": [
+		28.0,
+		0.0,
+		2.1
+	],
+	"Campus/Anchors/ZombieIdle/Canteen/I01": [
+		178.0,
+		-9.9,
+		25.0
+	],
+	"Campus/Anchors/ZombieIdle/Canteen/I02": [
+		182.0,
+		-9.9,
+		25.0
+	],
+	"Campus/Anchors/ZombieIdle/Canteen/I03": [
+		186.0,
+		-9.9,
+		25.0
+	],
+	"Campus/Anchors/ZombieIdle/Canteen/I04": [
+		178.0,
+		-9.9,
+		30.0
+	],
+	"Campus/Anchors/ZombieIdle/Canteen/I05": [
+		182.0,
+		-9.9,
+		30.0
+	],
+	"Campus/Anchors/ZombieIdle/Canteen/I06": [
+		186.0,
+		-9.9,
+		30.0
+	],
+	"Campus/Anchors/ZombieIdle/Garden/I01": [
+		12.0,
+		-9.9,
+		18.0
+	],
+	"Campus/Anchors/ZombieIdle/Garden/I02": [
+		28.0,
+		-9.9,
+		18.0
+	],
+	"Campus/Anchors/ZombieIdle/Garden/I03": [
+		44.0,
+		-9.9,
+		18.0
+	],
+	"Campus/Anchors/ZombieIdle/Garden/I04": [
+		12.0,
+		-9.9,
+		28.0
+	],
+	"Campus/Anchors/ZombieIdle/Garden/I05": [
+		28.0,
+		-9.9,
+		28.0
+	],
+	"Campus/Anchors/ZombieIdle/Garden/I06": [
+		44.0,
+		-9.9,
+		28.0
+	],
+	"Campus/Anchors/ZombieIdle/Gate/I01": [
+		196.0,
+		-9.9,
+		-29.0
+	],
+	"Campus/Anchors/ZombieIdle/Gate/I02": [
+		200.0,
+		-9.9,
+		-29.0
+	],
+	"Campus/Anchors/ZombieIdle/Gate/I03": [
+		204.0,
+		-9.9,
+		-29.0
+	],
+	"Campus/Anchors/ZombieIdle/Gate/I04": [
+		196.0,
+		-9.9,
+		-24.0
+	],
+	"Campus/Anchors/ZombieIdle/Gate/I05": [
+		200.0,
+		-9.9,
+		-24.0
+	],
+	"Campus/Anchors/ZombieIdle/Gate/I06": [
+		204.0,
+		-9.9,
+		-24.0
+	],
+	"Campus/Anchors/ZombieIdle/Road/I01": [
+		65.0,
+		-9.9,
+		-11.0
+	],
+	"Campus/Anchors/ZombieIdle/Road/I02": [
+		69.0,
+		-9.9,
+		-11.0
+	],
+	"Campus/Anchors/ZombieIdle/Road/I03": [
+		73.0,
+		-9.9,
+		-11.0
+	],
+	"Campus/Anchors/ZombieIdle/Road/I04": [
+		77.0,
+		-9.9,
+		-11.0
+	],
+	"Campus/Anchors/ZombieIdle/Road/I05": [
+		81.0,
+		-9.9,
+		-11.0
+	],
+	"Campus/Anchors/ZombieIdle/Road/I06": [
+		85.0,
+		-9.9,
+		-11.0
+	],
+	"Campus/Anchors/ZombieIdle/Stadium/I01": [
+		112.0,
+		-9.9,
+		167.0
+	],
+	"Campus/Anchors/ZombieIdle/Stadium/I02": [
+		284.0,
+		-9.9,
+		167.0
+	],
+	"Campus/Anchors/ZombieIdle/Stadium/I03": [
+		198.0,
+		-9.9,
+		123.0
+	],
+	"Campus/Anchors/ZombieIdle/Stadium/I04": [
+		198.0,
+		-9.9,
+		211.0
+	],
+	"Campus/Anchors/ZombieIdle/Stadium/I05": [
+		112.0,
+		-9.9,
+		171.0
+	],
+	"Campus/Anchors/ZombieIdle/Stadium/I06": [
+		284.0,
+		-9.9,
+		171.0
+	],
+	"Campus/Anchors/ZombieSpawns/B1/S01": [
+		8.0,
+		-9.9,
+		2.1
+	],
+	"Campus/Anchors/ZombieSpawns/B1/S02": [
+		12.0,
+		-9.9,
+		2.1
+	],
+	"Campus/Anchors/ZombieSpawns/B1/S03": [
+		16.0,
+		-9.9,
+		2.1
+	],
+	"Campus/Anchors/ZombieSpawns/B1/S04": [
+		20.0,
+		-9.9,
+		2.1
+	],
+	"Campus/Anchors/ZombieSpawns/B1/S05": [
+		24.0,
+		-9.9,
+		2.1
+	],
+	"Campus/Anchors/ZombieSpawns/B1/S06": [
+		28.0,
+		-9.9,
+		2.1
+	],
+	"Campus/Anchors/ZombieSpawns/B2/S01": [
+		8.0,
+		-6.6,
+		2.1
+	],
+	"Campus/Anchors/ZombieSpawns/B2/S02": [
+		12.0,
+		-6.6,
+		2.1
+	],
+	"Campus/Anchors/ZombieSpawns/B2/S03": [
+		16.0,
+		-6.6,
+		2.1
+	],
+	"Campus/Anchors/ZombieSpawns/B2/S04": [
+		20.0,
+		-6.6,
+		2.1
+	],
+	"Campus/Anchors/ZombieSpawns/B2/S05": [
+		24.0,
+		-6.6,
+		2.1
+	],
+	"Campus/Anchors/ZombieSpawns/B2/S06": [
+		28.0,
+		-6.6,
+		2.1
+	],
+	"Campus/Anchors/ZombieSpawns/B3/S01": [
+		8.0,
+		-3.3,
+		2.1
+	],
+	"Campus/Anchors/ZombieSpawns/B3/S02": [
+		12.0,
+		-3.3,
+		2.1
+	],
+	"Campus/Anchors/ZombieSpawns/B3/S03": [
+		16.0,
+		-3.3,
+		2.1
+	],
+	"Campus/Anchors/ZombieSpawns/B3/S04": [
+		20.0,
+		-3.3,
+		2.1
+	],
+	"Campus/Anchors/ZombieSpawns/B3/S05": [
+		24.0,
+		-3.3,
+		2.1
+	],
+	"Campus/Anchors/ZombieSpawns/B3/S06": [
+		28.0,
+		-3.3,
+		2.1
+	],
+	"Campus/Anchors/ZombieSpawns/B4/S01": [
+		8.0,
+		0.0,
+		2.1
+	],
+	"Campus/Anchors/ZombieSpawns/B4/S02": [
+		12.0,
+		0.0,
+		2.1
+	],
+	"Campus/Anchors/ZombieSpawns/B4/S03": [
+		16.0,
+		0.0,
+		2.1
+	],
+	"Campus/Anchors/ZombieSpawns/B4/S04": [
+		20.0,
+		0.0,
+		2.1
+	],
+	"Campus/Anchors/ZombieSpawns/B4/S05": [
+		24.0,
+		0.0,
+		2.1
+	],
+	"Campus/Anchors/ZombieSpawns/B4/S06": [
+		28.0,
+		0.0,
+		2.1
+	],
+	"Campus/Anchors/ZombieSpawns/Canteen/S01": [
+		178.0,
+		-9.9,
+		24.0
+	],
+	"Campus/Anchors/ZombieSpawns/Canteen/S02": [
+		182.0,
+		-9.9,
+		24.0
+	],
+	"Campus/Anchors/ZombieSpawns/Canteen/S03": [
+		186.0,
+		-9.9,
+		24.0
+	],
+	"Campus/Anchors/ZombieSpawns/Canteen/S04": [
+		178.0,
+		-9.9,
+		29.0
+	],
+	"Campus/Anchors/ZombieSpawns/Canteen/S05": [
+		182.0,
+		-9.9,
+		29.0
+	],
+	"Campus/Anchors/ZombieSpawns/Canteen/S06": [
+		186.0,
+		-9.9,
+		29.0
+	],
+	"Campus/Anchors/ZombieSpawns/Garden/S01": [
+		12.0,
+		-9.9,
+		17.0
+	],
+	"Campus/Anchors/ZombieSpawns/Garden/S02": [
+		28.0,
+		-9.9,
+		17.0
+	],
+	"Campus/Anchors/ZombieSpawns/Garden/S03": [
+		44.0,
+		-9.9,
+		17.0
+	],
+	"Campus/Anchors/ZombieSpawns/Garden/S04": [
+		12.0,
+		-9.9,
+		27.0
+	],
+	"Campus/Anchors/ZombieSpawns/Garden/S05": [
+		28.0,
+		-9.9,
+		27.0
+	],
+	"Campus/Anchors/ZombieSpawns/Garden/S06": [
+		44.0,
+		-9.9,
+		27.0
+	],
+	"Campus/Anchors/ZombieSpawns/Gate/S01": [
+		196.0,
+		-9.9,
+		-30.0
+	],
+	"Campus/Anchors/ZombieSpawns/Gate/S02": [
+		200.0,
+		-9.9,
+		-30.0
+	],
+	"Campus/Anchors/ZombieSpawns/Gate/S03": [
+		204.0,
+		-9.9,
+		-30.0
+	],
+	"Campus/Anchors/ZombieSpawns/Gate/S04": [
+		196.0,
+		-9.9,
+		-25.0
+	],
+	"Campus/Anchors/ZombieSpawns/Gate/S05": [
+		200.0,
+		-9.9,
+		-25.0
+	],
+	"Campus/Anchors/ZombieSpawns/Gate/S06": [
+		204.0,
+		-9.9,
+		-25.0
+	],
+	"Campus/Anchors/ZombieSpawns/Road/S01": [
+		65.0,
+		-9.9,
+		-12.0
+	],
+	"Campus/Anchors/ZombieSpawns/Road/S02": [
+		69.0,
+		-9.9,
+		-12.0
+	],
+	"Campus/Anchors/ZombieSpawns/Road/S03": [
+		73.0,
+		-9.9,
+		-12.0
+	],
+	"Campus/Anchors/ZombieSpawns/Road/S04": [
+		77.0,
+		-9.9,
+		-12.0
+	],
+	"Campus/Anchors/ZombieSpawns/Road/S05": [
+		81.0,
+		-9.9,
+		-12.0
+	],
+	"Campus/Anchors/ZombieSpawns/Road/S06": [
+		85.0,
+		-9.9,
+		-12.0
+	],
+	"Campus/Anchors/ZombieSpawns/Stadium/S01": [
+		112.0,
+		-9.9,
+		166.0
+	],
+	"Campus/Anchors/ZombieSpawns/Stadium/S02": [
+		284.0,
+		-9.9,
+		166.0
+	],
+	"Campus/Anchors/ZombieSpawns/Stadium/S03": [
+		198.0,
+		-9.9,
+		122.0
+	],
+	"Campus/Anchors/ZombieSpawns/Stadium/S04": [
+		198.0,
+		-9.9,
+		210.0
+	],
+	"Campus/Anchors/ZombieSpawns/Stadium/S05": [
+		112.0,
+		-9.9,
+		170.0
+	],
+	"Campus/Anchors/ZombieSpawns/Stadium/S06": [
+		284.0,
+		-9.9,
+		170.0
+	],
+	"Floor4/Anchors/Bed_Dat": [
+		37.35,
+		1.2,
+		-2.7
+	],
+	"Floor4/Anchors/Bed_Phuc": [
+		30.65,
+		1.2,
+		-3.0
+	],
+	"Floor4/Anchors/Bed_Trung": [
+		37.35,
+		0.43,
+		-2.7
+	],
+	"Floor4/Anchors/Bed_Viet": [
+		30.65,
+		0.43,
+		-3.0
+	],
+	"Floor4/Anchors/ClotheslineExtraShirt": [
+		25.5,
+		1.76,
+		3.87
+	],
+	"Floor4/Anchors/DarkSection": [
+		16.0,
+		1.5,
+		2.0
+	],
+	"Floor4/Anchors/Door407": [
+		32.44,
+		0.01,
+		0.0
+	],
+	"Floor4/Anchors/DutyLog": [
+		39.8,
+		0.85,
+		0.42
+	],
+	"Floor4/Anchors/HallBoard": [
+		38.5,
+		1.6,
+		0.19
+	],
+	"Floor4/Anchors/HallBoardNote": [
+		38.7,
+		1.9,
+		0.205
+	],
+	"Floor4/Anchors/Locker_Trung": [
+		37.7,
+		0.0,
+		-1.25
+	],
+	"Floor4/Anchors/Phone_Trung": [
+		37.35,
+		0.46,
+		-2.15
+	],
+	"Floor4/Anchors/Room407LightSwitch": [
+		32.72,
+		1.35,
+		-0.16
+	],
+	"Floor4/Anchors/RulesPaper407": [
+		32.0,
+		1.4,
+		-0.025
+	],
+	"Floor4/Anchors/Slippers407": [
+		31.025,
+		0.05,
+		0.35
+	],
+	"Floor4/Anchors/Speaker": [
+		40.0,
+		2.45,
+		0.37
+	],
+	"Floor4/Anchors/WashroomMirror": [
+		0.15,
+		1.62,
+		-1.85
+	],
+	"Floor4/Anchors/WashroomNotice": [
+		0.15,
+		1.55,
+		-3.25
+	],
+	"Floor4/Anchors/WashroomTapRunning": [
+		0.24,
+		1.0,
+		-2.85
+	],
+	"Floor4/Anchors/seg1_start": [
+		32.0,
+		0.03,
+		1.6
+	],
+	"Floor4/Anchors/seg2_start": [
+		32.95,
+		0.03,
+		-0.75
+	],
+	"Floor4/Anchors/seg3_start": [
+		32.0,
+		0.03,
+		-1.2
+	],
+	"Floor4/Anchors/seg4_start": [
+		32.9,
+		0.03,
+		-1.25
+	],
+	"Floor4/Anchors/seg5_start": [
+		32.0,
+		0.03,
+		2.0
+	]
+}

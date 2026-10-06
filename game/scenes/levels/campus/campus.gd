@@ -18,6 +18,13 @@ func attach_floor4(floor4: Node3D) -> void:
 	# Open only the two end caps on this live instance; legacy scenes stay intact.
 	if floor4 == null or not _restores.is_empty():
 		return
+	# Floor4 also works without Campus in chapters 1-2. Avoid overlapping
+	# navigation regions when the complete campus supplies the same corridor.
+	for path in ["Corridor/Navigation", "Corridor/Room407Link"]:
+		var navigation := floor4.get_node_or_null(path)
+		if navigation:
+			_restores.append({"node": weakref(navigation), "property": &"enabled", "value": navigation.enabled})
+			navigation.enabled = false
 	for path in ["Corridor/WestEnd", "Corridor/EastEnd"]:
 		var cap := floor4.get_node_or_null(path) as StaticBody3D
 		if cap:

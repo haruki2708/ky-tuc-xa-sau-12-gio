@@ -86,11 +86,11 @@ def building(s,c):
             s.kit('Frame%d'%i,'wall_door',(x,y,0),parent=p)
             plaque=part(s,'Plate%d'%i,(x,y+2.6,.12),(.42,.22,.035),'blue',p)
             s.node('Number','Label3D',plaque,f'text = "{floor*100+i+1}"\nfont_size = 32\npixel_size = 0.004\noutline_size = 0\nposition = Vector3(0,0,.025)\ntexture_filter = 0')
-            part(s,'RailingTop%d'%i,(x,y+1.3,2.42),(5.5,.055,.06),'iron',p)
-            for j in range(11):part(s,'Railing%d_%d'%(i,j),(x-2.5+j*.5,y+.65,2.42),(.04,1.3,.04),'iron',p)
-            part(s,'Tube%d'%i,(x,y+2.85,1.2),(1.15,.08,.13),'paper',p)
+            part(s,'RailingTop%d'%i,(x,y+1.3,4.02),(5.5,.055,.06),'iron',p)
+            for j in range(11):part(s,'Railing%d_%d'%(i,j),(x-2.5+j*.5,y+.65,4.02),(.04,1.3,.04),'iron',p)
+            part(s,'Tube%d'%i,(x,y+2.85,2.0),(1.15,.08,.13),'paper',p)
         for x in [1,10,21,32,43]:
-            s.node('Light'+str(x),'OmniLight3D',p,'position = '+s.vec((x,y+2.65,1.2))+'\nlight_energy = .6\nomni_range = 7\nshadow_enabled = false\nlight_color = Color(.65,.7,.52,1)')
+            s.node('Light'+str(x),'OmniLight3D',p,'position = '+s.vec((x,y+2.65,2.0))+'\nlight_energy = .6\nomni_range = 7\nshadow_enabled = false\nlight_color = Color(.65,.7,.52,1)')
         # Thin collision rails were greybox solids; maintain a transparent barrier.
         for i,n in enumerate(s.nodes):
             if n.startswith('[node name="Mesh"') and 'parent="Floor%d/Rail"'%floor in n:s.nodes[i]+='visible = false\n'

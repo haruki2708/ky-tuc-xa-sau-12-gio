@@ -131,15 +131,15 @@ class Scene:
 
 def corridor():
     s = Scene("Corridor")
-    s.box("Floor", (22, -.1, 1.2), (44, .2, 2.4), "tile", floor=True)
-    s.box("Roof", (22, 3.075, 1.2), (44, .15, 2.4))
-    s.box("WestEnd", (-.1, 1.5, 1.2), (.2, 3, 2.4))
-    s.box("EastEnd", (44.1, 1.5, 1.2), (.2, 3, 2.4))
-    s.box("RailingBarrier", (22, 1, 2.45), (44, 2, .1), visible=False)
-    s.box("RailingTop", (22, 1.07, 2.39), (44, .06, .06), "iron")
-    s.box("RailingLow", (22, .18, 2.39), (44, .06, .06), "iron")
+    s.box("Floor", (22, -.1, 2.0), (44, .2, 4.0), "tile", floor=True)
+    s.box("Roof", (22, 3.075, 2.0), (44, .15, 4.0))
+    s.box("WestEnd", (-.1, 1.5, 2.0), (.2, 3, 4.0))
+    s.box("EastEnd", (44.1, 1.5, 2.0), (.2, 3, 4.0))
+    s.box("RailingBarrier", (22, 1, 4.05), (44, 2, .1), visible=False)
+    s.box("RailingTop", (22, 1.07, 3.99), (44, .06, .06), "iron")
+    s.box("RailingLow", (22, .18, 3.99), (44, .06, .06), "iron")
     for i in range(89):
-        s.box(f"RailBar_{i:02}", (i * .5, .62, 2.39), (.035, .95, .035), "iron", solid=False)
+        s.box(f"RailBar_{i:02}", (i * .5, .62, 3.99), (.035, .95, .035), "iron", solid=False)
     emitters = []
     for i in range(8):
         number, x = 401 + i, 8 + i * 4
@@ -153,20 +153,20 @@ def corridor():
             s.box(f"Ceiling_{number}", (x, 3.075, -2.5), (4, .15, 5))
         plaque = s.box(f"RoomPlate_{number}", (x, 2.42, .13), (.40, .20, .035), "blue", solid=False)
         s.nodes[-1] += f"metadata/room_number = {number}\n"
-        s.lamp(f"CorridorLight_{number}", (x, 2.80, 1.2), radius=4.7)
+        s.lamp(f"CorridorLight_{number}", (x, 2.80, 2.0), radius=4.7)
         emitters.append(f"CorridorLight_{number}/LightHum")
     for x in (6, 10, 14, 18, 22, 26, 38):
         s.box(f"RoomPartition_{x}", (x, 1.5, -2.5), (.2, 3, 5))
-    s.lamp("CorridorLight_Desk", (40, 2.80, 1.2), radius=4.7)
+    s.lamp("CorridorLight_Desk", (40, 2.80, 2.0), radius=4.7)
     emitters.append("CorridorLight_Desk/LightHum")
-    s.box("Clothesline", (24, 2.15, 2.27), (16, .018, .018), "iron", solid=False)
+    s.box("Clothesline", (24, 2.15, 3.87), (16, .018, .018), "iron", solid=False)
     # Laundry on the line (origin on the line). Slot 25.5 stays free for the
     # story's extra white shirt (anchor ClotheslineExtraShirt).
     cloths = ((17, "shirt", "Color(0.62, 0.72, 0.82, 1)"), (20, "towel", "Color(0.9, 0.62, 0.62, 1)"),
               (23, "shirt", "Color(0.45, 0.47, 0.5, 1)"), (27, "towel", "Color(1, 1, 1, 1)"),
               (30, "shirt", "Color(0.3, 0.42, 0.33, 1)"))
     for i, (x, kind, color) in enumerate(cloths):
-        s.scene(f"HangingCloth_{i}", f"{kind}_hanging", (x, 2.15, 2.27), extra=f"\ncolor = {color}")
+        s.scene(f"HangingCloth_{i}", f"{kind}_hanging", (x, 2.15, 3.87), extra=f"\ncolor = {color}")
     # Four pairs of slippers outside room 407: four students live there.
     for i, color in enumerate(("Color(0.16, 0.3, 0.45, 1)", "Color(0.5, 0.5, 0.47, 1)",
                                "Color(0.2, 0.34, 0.24, 1)", "Color(0.12, 0.12, 0.13, 1)")):
@@ -177,10 +177,13 @@ def corridor():
         s.prop("Model", "bucket", (0, -.18, 0), x * 37 % 90, parent=f"Bucket_{x}")
     s.emitter("YardInsects", (23, -1, 9), "ambience/night_insects_motorbike.ogg", -5)
     emitters.append("YardInsects")
-    s.zones((22, 1.5, 1.2), (44, 3, 2.4), 1, emitters)
+    s.zones((22, 1.5, 2.0), (44, 3, 4.0), 1, emitters)
     for i, x in enumerate((5, 18, 31, 43)):
         s.box(f"YardTree_{i}", (x, -3.0, 12 + i % 2 * 3), (5, 5, 4), "tree", solid=False)
     s.lamp("DistantStreetLamp", (15, -1, 19), tube=False, energy=.5, radius=7)
+    nav = s.subresource('NavigationMesh', 'vertices = PackedVector3Array(0.35,0,1.1, 0.35,0,3.55, 43.65,0,3.55, 43.65,0,1.1)\npolygons = [PackedInt32Array(0,1,2,3)]\nagent_radius = 0.3\nagent_height = 1.75')
+    s.node('Navigation', 'NavigationRegion3D', properties='navigation_mesh = ' + nav)
+    s.node('Room407Link', 'NavigationLink3D', properties='start_position = Vector3(32,0.03,-0.7)\nend_position = Vector3(32,0,1.2)\nmetadata/requires_open_door = true')
     s.save("corridor.tscn")
 
 
@@ -277,14 +280,14 @@ def duty_desk():
     s.lamp("DutyDeskLamp", (1.5, 1.06, .42), tube=False, energy=.6, radius=2, desk_lamp=True)
     # Existing electrical crackle is a quiet temporary idle-speaker cue.
     s.emitter("SpeakerIdle", (2, 2.45, .3), "sfx/fluorescent_flicker.ogg", -28, random=True)
-    s.zones((3, 1.5, 1.2), (6, 3, 2.4), 1, ["SpeakerIdle"])
+    s.zones((3, 1.5, 2.0), (6, 3, 4.0), 1, ["SpeakerIdle"])
     s.save("duty_desk.tscn")
 
 
 ANCHORS = {
-    "seg1_start": ((32, .03, 1.15), 0), "seg2_start": ((32.95, .03, -.75), 0),
+    "seg1_start": ((32, .03, 1.6), 0), "seg2_start": ((32.95, .03, -.75), 0),
     "seg3_start": ((32, .03, -1.2), 180), "seg4_start": ((32.9, .03, -1.25), -90),
-    "seg5_start": ((32, .03, 1.15), 90), "Door407": ((32.44, .01, 0), 0),
+    "seg5_start": ((32, .03, 2.0), 90), "Door407": ((32.44, .01, 0), 0),
     "Room407LightSwitch": ((32.72, 1.35, -.16), 180), "RulesPaper407": ((32, 1.40, -.023), 180),
     "Locker_Trung": ((33.7, 0, -1.25), 90), "Phone_Trung": ((33.35, .46, -2.45), 0),
     "Bed_Phuc": ((30.65, 1.20, -3), 0), "Bed_Viet": ((30.65, .43, -3), 0),
@@ -293,7 +296,7 @@ ANCHORS = {
     "HallBoardNote": ((38.7, 1.9, .205), 0), "DutyLog": ((39.8, .85, .42), 0),
     "Speaker": ((40, 2.45, .37), 0), "WashroomTapRunning": ((.24, 1.0, -2.85), 0),
     "WashroomMirror": ((.15, 1.62, -1.85), -90), "WashroomNotice": ((.15, 1.55, -3.25), -90),
-    "ClotheslineExtraShirt": ((25.5, 1.76, 2.27), 0), "DarkSection": ((16, 1.5, 1.2), 0),
+    "ClotheslineExtraShirt": ((25.5, 1.76, 3.87), 0), "DarkSection": ((16, 1.5, 2.0), 0),
 }
 
 

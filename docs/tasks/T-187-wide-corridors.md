@@ -39,7 +39,99 @@ Chủ dự án chơi thử chương 3 thấy hành lang quá hẹp (2,4 m): đô
 
 ## Checklist hoàn thành
 - [ ] `pwsh tools/test.ps1` và `pwsh tools/check.ps1` PASS
-- [ ] Ảnh trước/sau
-- [ ] Handoff: anchor nào đã dời (tên, tọa độ cũ, tọa độ mới) để core và lane C kiểm bot
+- [x] Ảnh trước/sau
+- [x] Handoff: anchor nào đã dời (tên, tọa độ cũ, tọa độ mới) để core và lane C kiểm bot
 
 ## Handoff (agent điền)
+
+### 2026-10-06 — Lane B
+
+**Đã làm:** commit `927d23b`, đã push lên `lane-b/T-187-wide-corridors`.
+Hành lang tầng 1–4 rộng 4 m về +z; đồng bộ sàn/trần, lan can, dây phơi,
+đèn, chiếu nghỉ, sảnh và vỏ 6 tầng. Giữ x=0..44, cao độ tầng, tường/cửa
+phía −z, phòng 407 bản 2 và nội thất. Bàn trực/nhà vệ sinh/đồ sát tường
+giữ vị trí; vùng âm thanh mở theo hành lang. CCTV Corridor nới tương ứng,
+camera vẫn nhìn cửa phòng. Vườn bắt đầu z=8, không đè mép hành lang z=4.
+
+Navmesh phủ chiều rộng mới, vẫn nối 407 → nhà ăn. Floor4 có nav riêng cho
+chương 1–2; Campus tạm tắt vùng/link trùng khi gắn vào và khôi phục khi rời
+cây. Cửa thoát hiểm rộng theo chiếu nghỉ để không lách qua khi đóng; API,
+chốt cửa và tên node giữ nguyên. Không thay đổi luật chơi/cốt truyện.
+
+**Ảnh:** sáu PNG, cùng camera trước/sau; bản trước là scene `8110f4b`.
+
+| Góc nhìn | Trước | Sau |
+|---|---|---|
+| Tầng 4 | [Ảnh](../../art_source/wide_corridors/previews/floor4_before.png) | [Ảnh](../../art_source/wide_corridors/previews/floor4_after.png) |
+| Tầng 2 | [Ảnh](../../art_source/wide_corridors/previews/floor2_before.png) | [Ảnh](../../art_source/wide_corridors/previews/floor2_after.png) |
+| Mặt ngoài nhà B | [Ảnh](../../art_source/wide_corridors/previews/building_b_before.png) | [Ảnh](../../art_source/wide_corridors/previews/building_b_after.png) |
+
+**Anchor:** 58 dời, 168 giữ nguyên, không thêm/xóa/đổi tên trong hai cây
+`Floor4/Anchors` và `Campus/Anchors`. Tọa độ global, đơn vị mét.
+[Bảng đủ 58 tên và tọa độ cũ/mới](../../art_source/wide_corridors/anchor_changes.md)
+kèm snapshot JSON trước/sau để core và Lane C dùng kiểm bot.
+
+| Anchor (dưới `Anchors`) | Cũ (x, y, z) | Mới (x, y, z) |
+|---|---|---|
+| Floor4 `seg1_start` | (32, 0.03, 1.15) | (32, 0.03, 1.6) |
+| Floor4 `seg5_start` | (32, 0.03, 1.15) | (32, 0.03, 2) |
+| Floor4 `DarkSection` | (16, 1.5, 1.2) | (16, 1.5, 2) |
+| Floor4 `ClotheslineExtraShirt` | (25.5, 1.76, 2.27) | (25.5, 1.76, 3.87) |
+| Campus `FireDoor` | (44, 0, 1.2) | (44, 0, 2) |
+| Campus `MainDoor1F` | (19.25, -9.9, 2.5) | (19.25, -9.9, 4.1) |
+| Campus `Paths/Nhat/P02` | (13.75, -6.6, 1.2) | (13.75, -6.6, 2) |
+| Campus `Paths/Nhat/P03` | (-1.2, -6.6, 1.2) | (-1.2, -6.6, 2) |
+| Campus `Paths/Nhat/P05` | (-1.2, -9.9, 1.2) | (-1.2, -9.9, 2) |
+| Campus `Paths/Nhat/P06` | (2.75, -9.9, 1.2) | (2.75, -9.9, 2) |
+
+48 anchor còn lại là Campus `ZombieSpawns/B1..B4/S01..S06` và
+`ZombieIdle/B1..B4/I01..I06`: z=1.3 → 2.1; x lần lượt 8,12,16,20,24,28;
+y B1=-9.9, B2=-6.6, B3=-3.3, B4=0 giữ nguyên. `Extinguisher2F`,
+`Collapse2F`, `Room203Door`, `FireKey`, `HallBoard`, `Slippers407`,
+`Speaker` và các anchor phía phòng không dời.
+
+**Kiểm tra thực tế:** Godot 4.7.2, ngày 2026-10-06.
+
+```text
+pwsh tools/test.ps1 -Filter levels (trước khi thêm file test mới)
+RESULT: 71 passed, 0 failed
+pwsh tools/test.ps1 -Filter wide_corridors
+RESULT: 4 passed, 0 failed
+pwsh tools/check.ps1
+RESULT: check 0 error(s)
+pwsh tools/test.ps1
+RESULT: 579 passed, 1 failed
+RESULT: test FAIL (engine error or missing successful runner result)
+pwsh tools/test.ps1 -Filter ch3_tools (chạy riêng xác nhận lỗi)
+RESULT: 5 passed, 1 failed
+RESULT: test FAIL (engine error or missing successful runner result)
+```
+
+Lượt full đã PASS cả bốn test mới, các test Lane B hiện có, nav 407 → nhà
+ăn và capsule dọc đường nav. Không có `SCRIPT ERROR`/`ERROR`; runner trả
+FAIL do một test QA bên dưới. Log cục bộ: `build/t187/test-full.log`,
+`check.log`, `test-levels.log`, `test-wide.log`, `test-ch3-tools.log`.
+Đã xem ảnh trước/sau. Chưa chơi thủ công xuyên suốt chương 1–3, chưa chạy
+bot playthrough/performance. Không chạy bot chương 2.
+
+### Yêu cầu thay đổi ngoài phạm vi
+
+**Lane C/core:** sửa
+`game/tests/tools/test_ch3_tools.gd::test_preflight_never_claims_unbound_profile_is_complete`
+(dòng 33–36). Test đọc profile thật `tools/ch3-profile.json`, rồi đòi
+`POLICY.preflight(profile, true, count)` luôn báo thiếu với count=0,20,40.
+Phần performance của profile hiện đã có đủ binding nên cả ba assertion
+`expected false` thất bại. Chạy riêng tái hiện đúng lỗi; test, profile và
+`game/scripts/debug/ch3_policy.gd` đều không đổi so với `8110f4b`.
+
+Đề nghị dùng fixture cố ý thiếu binding cho test “unbound”, và kiểm tra
+profile performance hiện tại bằng expectation phù hợp. Không xóa test
+hoặc bỏ binding thật để làm xanh. Lane B không sửa các file ngoài phạm vi.
+
+**Blocked:** chưa đạt checklist “full test PASS” vì lỗi QA trên; cần Lane
+C/core sửa rồi chạy lại `pwsh tools/test.ps1`. Hai checklist còn lại đạt.
+Không còn phần hình học dở hoặc câu hỏi thiết kế/cốt truyện.
+
+[Hướng dẫn dựng lại và test](../../art_source/wide_corridors/README.md).
+Dùng patch hẹp `widen_existing.py`; không dựng lại toàn bộ generator tầng 4
+cũ lên phòng 407 bản 2. Nhánh không sửa `docs/STATUS.md`, không push main.

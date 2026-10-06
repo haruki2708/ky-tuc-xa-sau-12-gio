@@ -61,7 +61,7 @@ func test_floor4_structure_dimensions_and_anchors() -> void:
 	assert_eq(floor_scene.get_node("Anchors").get_child_count(), ANCHORS.size(), "anchor inventory")
 	for name in ANCHORS:
 		assert_true(floor_scene.get_node_or_null("Anchors/" + name) is Marker3D, "marker " + name)
-	var sizes := {"Corridor": Vector3(44, 0.2, 2.4), "Room407": Vector3(8, 0.2, 7), "Washroom": Vector3(6, 0.2, 5)}
+	var sizes := {"Corridor": Vector3(44, 0.2, 4.0), "Room407": Vector3(8, 0.2, 7), "Washroom": Vector3(6, 0.2, 5)}
 	for name: String in sizes:
 		var collider := floor_scene.get_node(name + "/Floor/Collision") as CollisionShape3D
 		assert_true((collider.shape as BoxShape3D).size.is_equal_approx(sizes[name]), name + " floor dimensions")
@@ -125,7 +125,7 @@ func test_railing_and_locked_exits_block_capsule() -> void:
 	var space := floor_scene.get_world_3d().direct_space_state
 	for x in [0.5, 8.0, 20.0, 32.0, 43.5]:
 		for height in [.03, 1.0]:
-			assert_true(space.cast_motion(_query(Vector3(x, height, 1.2), Vector3(0, 0, 2)))[0] < 0.9,
+			assert_true(space.cast_motion(_query(Vector3(x, height, 3.0), Vector3(0, 0, 2)))[0] < 0.9,
 				"cannot cross railing at %s, feet Y=%s" % [x, height])
 	for x in [8.0, 12.0, 16.0, 20.0, 24.0, 28.0, 36.0, 41.95]:
 		assert_true(space.cast_motion(_query(Vector3(x, .03, 1.2), Vector3(0, 0, -2)))[0] < 0.9,
