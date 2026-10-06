@@ -7403,7 +7403,7 @@ mesh = SubResource("s310")
 position = Vector3(13.75, -6.6, 0)
 
 [node name="Extinguisher2F" type="Marker3D" parent="Anchors"]
-position = Vector3(39.5, -5.5, 0.25)
+position = Vector3(48.83, -5.5, 2.4)
 
 [node name="MainDoor1F" type="Marker3D" parent="Anchors"]
 position = Vector3(19.25, -9.9, 4.1)

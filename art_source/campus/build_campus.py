@@ -161,8 +161,9 @@ def building():
             flat('Room203Aisle',13.15,14.05,-6.8,-2.1,y)
             link('Room203Link',(13.75,y,-1),(13.75,y,1.2))
             anchor('Room203Door',(13.75,y,0))
-            # D-062 (Claude for lane B): near the fire stairs, so its bang drags the 203 crowd away.
-            anchor('Extinguisher2F',(39.5,y+1.1,.25))
+            # D-062 (Claude for lane B): on the far wall of the fire-stair landing, so its
+            # bang drags the 203 crowd into the stairwell, well away from room 207.
+            anchor('Extinguisher2F',(48.83,y+1.1,2.4))
     # A free-standing ground-floor lobby lies on the corridor's north face.
     # Its sill window provides the only initially available outdoor route.
     door(s,'MainDoor',(19.25,G,4.1),3)

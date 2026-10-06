@@ -95,7 +95,9 @@ func navigate_to(point: Vector3, speed: float, delta: float, avoid_guards: bool 
 	if not motion.is_zero_approx():
 		face(global_position + motion)
 		var contact: KinematicCollision3D = KinematicCollision3D.new()
-		if test_move(global_transform, motion, contact) and absf(contact.get_normal().y) < 0.7:
+		# Step up only onto the world, never onto another actor (a bumped
+		# zombie used to wedge itself into the floor and stop for good).
+		if test_move(global_transform, motion, contact) and absf(contact.get_normal().y) < 0.7 				and not (contact.get_collider() is Ch3Actor):
 			var raised: Transform3D = global_transform.translated(Vector3.UP * step_height)
 			if not test_move(global_transform, Vector3.UP * step_height) and not test_move(raised, motion):
 				move_and_collide(Vector3.UP * step_height)
@@ -105,6 +107,15 @@ func navigate_to(point: Vector3, speed: float, delta: float, avoid_guards: bool 
 	velocity = motion / maxf(delta, 0.00001)
 	# Snap down after steps; world collision prevents falling through stairs/floors.
 	move_and_collide(Vector3.DOWN * maxf(step_height + 0.04, 9.8 * delta * delta))
+	_lift_out_of_floor()
+
+
+## Back onto the walkable surface if a shove left the feet inside the floor.
+func _lift_out_of_floor() -> void:
+	var surface: Vector3 = NavigationServer3D.map_get_closest_point(navigation.get_navigation_map(), global_position)
+	var sunk: float = surface.y - global_position.y
+	if sunk > 0.02 and sunk < 0.3 and Vector2(surface.x - global_position.x, surface.z - global_position.z).length() < 0.5:
+		global_position.y = surface.y
 
 
 func _guard_motion(motion: Vector3) -> Vector3:

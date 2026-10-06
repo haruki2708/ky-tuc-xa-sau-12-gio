@@ -107,15 +107,31 @@ func test_floor_two_crowd_leaves_203_for_the_extinguisher() -> void:
 		if actor is Zombie:
 			var at: Vector3 = (actor as Zombie).global_position
 			assert_false(absf(at.y - door.y) < 1.0 and at.x > 30.0, "nothing between the fire stairs and the extinguisher: %s" % at)
-	# Bang it, then hide deep in the open room 207 while they come.
-	_put(Vector3(39.5, -6.55, 1.5))
+	# Bang it on the fire-stair landing, hide deep in the open room 207, wait
+	# until the whole crowd stands in the stairwell, then walk west unseen.
+	_put(extinguisher + Vector3(-1.3, -1.05, 0.0))
 	await wait_frames(3)
 	director._uses["Extinguisher2F"].interact(player)
-	_put(Vector3(35.75, -6.55, -5.5))
-	await _until(director._crowd_203_gone, 12.0)
+	_put(Vector3(35.75, -6.55, -4.5))
+	var gathered := func() -> bool:
+		for zombie in director._crowd_203:
+			if zombie.global_position.distance_to(extinguisher) > 3.5:
+				return false
+		return true
+	await _until(gathered, 30.0)
+	for zombie in director._crowd_203:
+		assert_true(zombie.global_position.distance_to(extinguisher) < 3.5, "in the stairwell: %s" % zombie.global_position)
 	assert_true(director._crowd_203_gone(), "the crowd left 203's door")
 	await _until(func() -> bool: return director._companions.has(&"minh_nhat"), 15.0)
 	assert_true(director._companions.has(&"minh_nhat"), "Minh Nhật comes out")
+	var at := Vector3(35.75, -6.55, -1.0)
+	for goal in [Vector3(35.75, -6.55, 2.0), Vector3(2.0, -6.55, 2.0)]:
+		while at.distance_to(goal) > 0.2:
+			at = at.move_toward(goal, 0.035)
+			_put(at)
+			await wait_frames(1)
+	for zombie in director._crowd_203:
+		assert_true(zombie.global_position.distance_to(extinguisher) < 3.5, "still in the stairwell after Trung slipped away")
 	assert_eq(failed, [] as Array[StringName], "alive;")
 
 

@@ -23,7 +23,7 @@ Hiện trạng:
 
 ## Yêu cầu
 ### 1. Cửa phòng mở được (hợp đồng cho core và lane A)
-Áp dụng cho **mọi phòng** ở tầng 4 (401–406, 408), tầng 3 (301–308), tầng 2 (201, 202, 204–206, 208). **Không** áp dụng cho 407 (đã có cửa riêng), 203 (đã có `Room203Door`) và **207** (D-062: giữ là phòng để mở, không cửa, làm chỗ nấp cạnh bình cứu hỏa mới ở x = 39,5).
+Áp dụng cho **mọi phòng** ở tầng 4 (401–406, 408), tầng 3 (301–308), tầng 2 (201, 202, 204–206, 208). **Không** áp dụng cho 407 (đã có cửa riêng), 203 (đã có `Room203Door`) và **207** (D-062: giữ là phòng để mở, không cửa, làm chỗ nấp; bình cứu hỏa mới ở chiếu nghỉ cầu thang thoát hiểm tầng 2).
 - Mỗi cửa là một node `Node3D` dùng script mới (ví dụ `RoomDoor`), có:
   - `@export var room: StringName` (ví dụ `&"401"`, `&"305"`),
   - `var is_open: bool` (mặc định `false`), `func set_open(open: bool) -> void` (quay cánh cửa ra phía hành lang khoảng 0,3 giây; mở thì tắt va chạm của `Blocker`),
@@ -32,7 +32,7 @@ Hiện trạng:
   Hợp đồng này khớp `ZombieDoor` của lane A (`scripts/interaction/zombie_door.gd`: cần `is_open`, `set_open(bool)` và collider `blocker`); core sẽ gắn `ZombieDoor` lúc chạy.
 - Người chơi **không** mở được các cửa này (không phải `Interactable`). Ở chương 1–2 cửa luôn đóng: nhìn và va chạm như hiện nay.
 - Tầng 3: cửa phòng i = 1, 4, 6 **hiện lại** (thôi ẩn), dùng cùng hợp đồng. Tầng 2: cửa i = 1, 4 hiện lại; **i = 6 (phòng 207) giữ mở** như bây giờ (D-062).
-- **Đã đổi trước card này (D-062, Claude làm thay):** bình cứu hỏa tầng 2 (`Extinguisher2F`, `FireExtinguisher`, `ExtinguisherHandle`) dời từ x = 20 về x = 39,5, sửa cả `build_campus.py` và `detail.py`. `ZombieIdle/B2` core không dùng nữa (core tự đặt 4 xác ở cửa 203). Màu trời (D-065) đã đổi trong `build_campus.py` và `campus.tscn`. Giữ các thay đổi này khi dựng lại.
+- **Đã đổi trước card này (D-062, Claude làm thay):** bình cứu hỏa tầng 2 (`Extinguisher2F`, `FireExtinguisher`, `ExtinguisherHandle`) dời từ x = 20 vào tường trong cùng chiếu nghỉ cầu thang thoát hiểm tầng 2 (48,83; −5,5; 2,4), sửa cả `build_campus.py` và `detail.py`. `ZombieIdle/B2` core không dùng nữa (core tự đặt 4 xác ở cửa 203). Màu trời (D-065) đã đổi trong `build_campus.py` và `campus.tscn`. Giữ các thay đổi này khi dựng lại.
 
 ### 2. Bên trong phòng và đường đi
 - Mỗi phòng nêu trên kín (tường hai bên, tường sau, trần) để khi cửa mở không thấy khoảng trống và xác không đi xuyên sang phòng bên. Bên trong **tối**, vài khối giường tầng hoặc tủ đơn giản là đủ (không cần chi tiết).

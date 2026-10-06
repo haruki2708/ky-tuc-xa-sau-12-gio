@@ -19,7 +19,7 @@
 | 2 | Đi **phía bàn trực**, nhìn ngăn kéo bàn trực, **E** lấy chìa. | Có suy nghĩ "Chìa cửa thoát hiểm."; đồng hồ bàn trực dừng 4:00 | 30 giây |
 | 3 | Đi tiếp tới **cuối hành lang**, **E** vào cửa thoát hiểm. | Không có chìa thì báo khóa; có chìa thì mở | 15 giây |
 | 4 | Xuống cầu thang thoát hiểm **2 tầng** (tới tầng 2). Đoạn xuống tầng 1 bị **sập**. | Tường nứt; một xác trên bậc tầng 3 bật dậy | 1 phút |
-| 5 | Ở tầng 2, **bình cứu hỏa** treo tường ngay gần cửa cầu thang thoát hiểm (khoảng 5 m). **E** đập, rồi **nấp vào phòng 207** (phòng không cửa ngay cạnh, đi sâu vào trong). Chờ đám xác ở cửa 203 kéo về phía bình, rồi đi vòng sau lưng chúng. | Minh Nhật gọi khi tới tầng 2; đám 4 xác bỏ cửa 203; cậu ấy ra và đi theo sau bạn | 1 phút |
+| 5 | Ở tầng 2, **bình cứu hỏa** treo ở tường trong cùng **chiếu nghỉ cầu thang thoát hiểm** (chỗ vừa xuống). **E** đập, rồi đi ra hành lang, **nấp sâu vào phòng 207** (đi từ chiếu nghỉ ra, phòng thứ hai bên tay phải, không có cửa). Chờ cả đám xác ở cửa 203 đi qua vào chiếu nghỉ, rồi đi về phía cầu thang chính. | Minh Nhật gọi khi tới tầng 2; đám 4 xác bỏ cửa 203; cậu ấy ra và đi theo sau bạn | 1 phút |
 | 6 | Đi tiếp tới **cầu thang chính** (cuối hành lang), xuống **tầng 1**. | Minh Nhật nói "Xích từ bên ngoài…" ở sảnh | 30 giây |
 | 7 | Vào **phòng quản lý** (cuối sảnh, phía cầu thang chính). **Ctrl cúi**, chui qua **cửa sổ vỡ** ở tường sau. | Nhìn con dao trên bàn thì có tiếng kéo dao | 30 giây |
 | 8 | Ra ngoài, **vòng qua đầu nhà B** ra **vườn hoa** phía trước (giữa nhà B và nhà A). | Checkpoint vườn hoa | 30 giây |

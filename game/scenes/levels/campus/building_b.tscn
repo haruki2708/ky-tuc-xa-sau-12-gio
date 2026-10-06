@@ -9356,11 +9356,11 @@ rotation_degrees = Vector3(0,0,312)
 mesh = SubResource("s893")
 
 [node name="FireExtinguisher" type="MeshInstance3D" parent="."]
-position = Vector3(39.5, -5.8, 0.22)
+position = Vector3(48.86, -5.8, 2.4)
 mesh = SubResource("s895")
 
 [node name="ExtinguisherHandle" type="Node3D" parent="."]
-position = Vector3(39.5, -5.5, 0.22)
+position = Vector3(48.86, -5.5, 2.4)
 
 [node name="Mesh" type="MeshInstance3D" parent="ExtinguisherHandle"]
 mesh = SubResource("s896")
