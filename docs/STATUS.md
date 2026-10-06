@@ -4,7 +4,7 @@
 **Giai đoạn:** Chương 2 **đã sửa theo góp ý chơi thử lần 1** (D-049, D-050, D-051) và **đã ghép đủ** T-176 (core), T-177 (A), T-178 (E), T-179 (D), T-180 (C). Bản chơi thử mới export 2026-10-06 (`build/windows/KyTucXa.exe`). **Chờ chủ dự án chơi thử lần 2**: gõ từ bằng Unikey/EVKey, nhắn dự đoán, nghe giọng chat mới và giọng xác ghép theo tiếng. Chương 1 tạm chốt (`v0.3-ch1`).
 
 ## Việc tiếp theo (cho phiên integrator kế tiếp)
-1. **Chủ dự án chơi thử chương 2 lần 2** theo `docs/playtest/CH2_WALKTHROUGH.md`. Ghi lại: bộ gõ có chạy không; từ nào bị từ chối oan (thêm vào `SUPPLEMENT` trong `docs/design/ch2/build_dictionary.py`, chạy lại script); giọng xác ghép tiếng nghe rõ không; tốc độ chat mới.
+1. **Chương 2: chơi thử lần 2 đạt (D-056)**, không còn góp ý. Chờ chủ dự án chốt (đề xuất tag `v0.4-ch2`).
 2. **Bot chương 2** (chủ dự án: chưa cần chạy, tự chơi thử 2026-10-07): 6 kịch bản (`ch2_good`, `ch2_chain_timeout`, `ch2_chain_wrong`, `ch2_scald`, `ch2_leave_shower`, `ch2_wrong_prediction`) và `-Performance`, lệnh ở card T-180. **Chỉ chạy khi chủ dự án đồng ý**, từng kịch bản một (15–20 phút, tốn RAM).
 3. **Chưa kiểm tra:** F9 bằng tay (đã có test headless); `CctvAudio.play_room_loss` chưa nối.
 4. **Test chập chờn khi chạy cả bộ (chạy riêng thì qua):** lane B `test_stuck_door_shakes_without_opening_then_cancels_on_open` (bộ hẹn giờ 0,07 giây); lane A `test_typing_stops_existing_motion_blocks_w_e_then_restores_gameplay` (đỏ 1 trong 2 lần chạy cả bộ ngày 06/10, có thể do test trước để lại trạng thái; cần lane A xem).
