@@ -4,7 +4,7 @@
 **Giai đoạn:** Chương 2 **tạm chốt** (D-057, `v0.4-ch2`). Chương 3 "Truy sát" **đã ghép đủ** T-181…T-186, FPS đo đạt (trung bình ≥117 với 40 xác), **bản chơi thử export 2026-10-06** (`build/windows/KyTucXa.exe`, có chương 2 và 3). **Chờ chủ dự án chơi thử chương 3** theo `docs/playtest/CH3_WALKTHROUGH.md`. Máy chủ dự án: `progress.json` đã mở khóa tới chương 3.
 
 ## Việc tiếp theo (cho phiên integrator kế tiếp)
-1. **Chương 3: chủ dự án đang chơi thử** bản 2026-10-06 16:02 (`docs/playtest/CH3_QUICKTEST.md`, bản chi tiết `CH3_WALKTHROUGH.md`). Đã sửa: cửa thoát hiểm không mở khi nhìn ở tầm mắt (`c79806d`). Góp ý thêm: sửa lỗi bằng test, export lại; góp ý thiết kế thì hỏi chủ dự án.
+1. **Chương 3: chủ dự án đang chơi thử.** Lỗi mới: cầu thang thoát hiểm không xuống được tầng 2 (khối sập của lane B đè lên đoạn 3 → 2), giao lane E làm thay (T-188, D-060). bản 2026-10-06 16:02 (`docs/playtest/CH3_QUICKTEST.md`, bản chi tiết `CH3_WALKTHROUGH.md`). Đã sửa: cửa thoát hiểm không mở khi nhìn ở tầm mắt (`c79806d`). Góp ý thêm: sửa lỗi bằng test, export lại; góp ý thiết kế thì hỏi chủ dự án.
 2. **T-187 đã merge** (D-058): hành lang 4 m ở cả 4 tầng; bản export mới có hành lang rộng.
 3. **Chương 3 còn lại:** điền `tools/ch3-profile.json` phần `routes`, `bindings` cho bot; chạy bot chỉ khi chủ dự án đồng ý. Lane B nên sửa điểm thanh sắt `BarSpawns/B01` nằm trong giường đổ (core đã tự nâng thanh sắt lên mặt vật). Câu hỏi còn mở: tên trường trên biển cổng (đề xuất giữ chữ mờ).
 4. **Chương 2 tạm chốt** (D-057, tag `v0.4-ch2`). Bot chương 2 chưa cần chạy (chủ dự án tự chơi).
@@ -76,6 +76,7 @@
 | T-185 Thể lực, thanh sắt, lớp chết, thẻ hết chương | D | **done**, đã merge |
 | T-186 Tiếng xác, thanh sắt, thở dốc, ngoài trời, nhạc | E | **done**, đã merge; chờ nghe |
 | T-187 Hành lang nhà B rộng khoảng 4 m ở cả 4 tầng (D-058) | B | **done**, đã merge |
+| T-188 Sửa khối sập chặn cầu thang thoát hiểm tầng 3 → 2 | E (làm thay lane B, D-060) | todo |
 | T-171 Cầm giẻ, bịt miệng xác, cửa kẹt, buồng tắm, nút vòi sen, cảnh chết `corpse_lunge` và `scald` | A | **done**, đã merge |
 | T-172 Xác chơi nối từ, đồ bịt miệng, nhà vệ sinh có vòi sen, hơi nước, phòng camera 310 | B | **done**, đã merge |
 | T-173 Bot chương 2, menu nhảy, đo FPS hơi nước | C | khung **đã merge**; bot chạy sau khi điền profile |

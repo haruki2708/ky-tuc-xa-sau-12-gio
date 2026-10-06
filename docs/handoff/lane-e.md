@@ -10,13 +10,13 @@ TUYỆT ĐỐI không làm việc trong D:\GAME_DEMO (đó là bản tích hợp
 Bước 1. Chuẩn bị:
   - Nếu chưa có D:\GAME_WORK\lane-e: git clone https://github.com/tuaanh666/ky-tuc-xa-sau-12-gio.git D:\GAME_WORK\lane-e
   - cd D:\GAME_WORK\lane-e; git fetch origin
-  - Nếu nhánh lane-e/T-186-ch3-audio đã có trên origin: git switch lane-e/T-186-ch3-audio; git pull
-    Nếu chưa có: git switch -c lane-e/T-186-ch3-audio origin/main
-Bước 2. Đọc kỹ, theo thứ tự: AGENTS.md, docs/STATUS.md, docs/tasks/T-186-ch3-audio.md
-Bước 3. Làm task trong card, CHỈ sửa file trong mục "Được phép sửa".
+  - Nếu nhánh lane-e/T-188-fire-stairs-fix đã có trên origin: git switch lane-e/T-188-fire-stairs-fix; git pull
+    Nếu chưa có: git switch -c lane-e/T-188-fire-stairs-fix origin/main
+Bước 2. Đọc kỹ, theo thứ tự: AGENTS.md, docs/STATUS.md, docs/tasks/T-188-fire-stairs-fix.md
+Bước 3. Làm task trong card, CHỈ sửa file trong mục "Được phép sửa" (task này là ngoại lệ D-060: lane E làm thay lane B, được sửa đúng các file card ghi).
         Cần sửa file ngoài phạm vi thì ghi "Yêu cầu thay đổi" vào mục Handoff, không tự sửa.
-Bước 4. Trước khi kết thúc: chạy pwsh tools/test.ps1 (phải PASS); commit dạng "T-186: ...";
-        git push -u origin lane-e/T-186-ch3-audio; điền mục Handoff trong card, commit và push lại.
+Bước 4. Trước khi kết thúc: chạy pwsh tools/test.ps1 (phải PASS); commit dạng "T-188: ...";
+        git push -u origin lane-e/T-188-fire-stairs-fix; điền mục Handoff trong card, commit và push lại.
 Bước 5. Trả lời tôi bằng tiếng Việt, ngắn gọn:
   (1) đã làm gì, (2) kết quả test (dán dòng RESULT), (3) checklist mục nào chưa đạt và vì sao,
   (4) yêu cầu thay đổi ngoài phạm vi, (5) có bị chặn ở đâu không.
@@ -26,14 +26,14 @@ luật chơi hay cốt truyện (ghi câu hỏi vào Handoff). Ghi trung thực:
 
 ## 2. Prompt tiếp tục (sau khi tắt máy, hoặc khi agent mất ngữ cảnh)
 ```
-Tiếp tục task T-186 của Lane E. cd D:\GAME_WORK\lane-e; git fetch origin; git switch lane-e/T-186-ch3-audio; git pull.
-Đọc lại AGENTS.md, docs/STATUS.md và docs/tasks/T-186-ch3-audio.md (đặc biệt mục Handoff để biết lần trước dừng ở đâu).
+Tiếp tục task T-188 của Lane E. cd D:\GAME_WORK\lane-e; git fetch origin; git switch lane-e/T-188-fire-stairs-fix; git pull.
+Đọc lại AGENTS.md, docs/STATUS.md và docs/tasks/T-188-fire-stairs-fix.md (đặc biệt mục Handoff để biết lần trước dừng ở đâu).
 Kiểm tra git status và git log -5. Tiếp tục các mục checklist chưa xong, rồi kết thúc phiên theo AGENTS.md §2.
 ```
 
 ## 3. Prompt yêu cầu sửa (khi integrator trả task về)
 ```
-Integrator đã review T-186 và yêu cầu sửa: xem mục "Review" trong docs/tasks/T-186-ch3-audio.md trên origin/main
-(git fetch; git show origin/main:docs/tasks/T-186-ch3-audio.md). Rebase nhánh lên origin/main, sửa từng ý, chạy test,
+Integrator đã review T-188 và yêu cầu sửa: xem mục "Review" trong docs/tasks/T-188-fire-stairs-fix.md trên origin/main
+(git fetch; git show origin/main:docs/tasks/T-188-fire-stairs-fix.md). Rebase nhánh lên origin/main, sửa từng ý, chạy test,
 push, cập nhật Handoff và báo lại theo 5 mục như trước.
 ```
