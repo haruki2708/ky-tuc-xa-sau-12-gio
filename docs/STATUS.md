@@ -1,7 +1,7 @@
 # STATUS — cập nhật bởi integrator
 
 **Cập nhật lần cuối:** 2026-10-06
-**Giai đoạn:** Chương 2 **đã sửa theo góp ý chơi thử lần 1** (D-049, D-050, D-051) và **đã ghép đủ** T-176 (core), T-177 (A), T-178 (E), T-179 (D), T-180 (C). Bản chơi thử mới export 2026-10-06 (`build/windows/KyTucXa.exe`). **Chờ chủ dự án chơi thử lần 2**: gõ từ bằng Unikey/EVKey, nhắn dự đoán, nghe giọng chat mới và giọng xác ghép theo tiếng. Chương 1 tạm chốt (`v0.3-ch1`).
+**Giai đoạn:** Chương 2 **tạm chốt** (D-057, `v0.4-ch2`). Chương 3 "Truy sát" **đã ghép đủ** T-181…T-186, FPS đo đạt (trung bình ≥117 với 40 xác), **bản chơi thử export 2026-10-06** (`build/windows/KyTucXa.exe`, có chương 2 và 3). **Chờ chủ dự án chơi thử chương 3** theo `docs/playtest/CH3_WALKTHROUGH.md`. Máy chủ dự án: `progress.json` đã mở khóa tới chương 3.
 
 ## Việc tiếp theo (cho phiên integrator kế tiếp)
 1. **Chương 2 tạm chốt** (D-057, tag `v0.4-ch2`). Hướng dẫn vượt nhanh: `docs/playtest/CH2_WALKTHROUGH.md`.
@@ -65,7 +65,7 @@
 | T-179 Ô gõ từ nối, ô nhắn dự đoán, credits từ điển | D | **done**, đã merge; chờ thử bộ gõ |
 | T-180 Bot gõ từ và nhắn dự đoán, kiểm tra F9 | C | **done**, đã merge; bot thật chưa chạy |
 | **Chương 3 "Truy sát" (D-052…D-054, giao 2026-10-06)** | | |
-| T-181 Hợp đồng chung, kịch bản, luồng 4 khu, ghép | core | **doing**: kịch bản (D-055), luồng 4 khu và ghép 5 lane xong; còn đo FPS, profile bot, hướng dẫn chơi thử, export |
+| T-181 Hợp đồng chung, kịch bản, luồng 4 khu, ghép | core | **review**: ghép xong, FPS đạt, đã export; chờ chơi thử. Còn: profile bot (`routes`, `bindings`), chạy bot khi được phép |
 | T-182 Xác sống, thanh sắt, thể lực, đồng đội, bảo vệ, cảnh chết | A | **done**, đã merge |
 | T-183 Khuôn viên: nhà B tầng 1–4, vườn hoa, sân vận động, cổng, nhà ăn (greybox trước) | B | **done**, đã merge; chờ chốt tên trường trên biển cổng |
 | T-184 Bot, menu nhảy 4 khu, đo FPS ngoài trời | C | **done** phần khung, đã merge; FPS chưa đo |
