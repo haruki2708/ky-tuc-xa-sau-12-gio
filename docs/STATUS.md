@@ -10,6 +10,7 @@
 4. **Test chập chờn khi chạy cả bộ (chạy riêng thì qua):** lane B `test_stuck_door_shakes_without_opening_then_cancels_on_open` (bộ hẹn giờ 0,07 giây); lane A `test_typing_stops_existing_motion_blocks_w_e_then_restores_gameplay` (đỏ 1 trong 2 lần chạy cả bộ ngày 06/10, có thể do test trước để lại trạng thái; cần lane A xem).
 5. **Để sau (D-045):** chương 1 đoạn gõ tường; chủ dự án nghe âm thanh lane E chương 1 và 2.
 6. **Chương 3 "Truy sát" đang sản xuất** (thiết kế tạm duyệt D-053, map gần kích thước thật D-054). Card T-181 (core), T-182 A, T-183 B, T-184 C, T-185 D, T-186 E. Lane B push greybox khuôn viên trước (2026-10-07) để A, C thử; lane C đo FPS sớm. Các lane hạn đề xuất 2026-10-08; integrator ghép 10-09; chơi thử khoảng 10-10.
+8. **Sau chương 4: giai đoạn "Ghép bản hoàn chỉnh"** (D-059, khoảng 4–6 ngày): chơi liền mạch, đồng bộ đồ họa, ánh sáng theo giờ, rà soát liền mạch, một tiến trình lưu, bot và chơi tay trọn game. Khi làm chương mới: giữ chung hệ tọa độ, tên anchor, hệ thống chung.
 7. Máy chủ dự án: đã tạo `%APPDATA%/Godot/app_userdata/Ky Tuc Xa Sau 12 Gio/progress.json` = `{"unlocked": 2}` để chọn được chương 2.
 **Repo:** https://github.com/tuaanh666/ky-tuc-xa-sau-12-gio (private)
 
