@@ -18,6 +18,8 @@
 [ext_resource type="Script" path="res://scenes/levels/campus_room_navigation.gd" id="t190_e1"]
 
 
+[ext_resource type="PackedScene" path="res://scenes/levels/campus/props.tscn" id="t192_e1"]
+
 [sub_resource type="BoxShape3D" id="s1"]
 size = Vector3(50, 0.3, 50)
 
@@ -1128,7 +1130,7 @@ size = Vector3(48, 4, 32)
 size = Vector3(22, 3, 3)
 
 [sub_resource type="BoxShape3D" id="s318"]
-size = Vector3(86, 5, 16)
+size = Vector3(86.0, 9.5, 18.5)
 
 [sub_resource type="NavigationMesh" id="s319"]
 vertices = PackedVector3Array(7.6,-9.9,-2,7.6,-9.9,0.9,8.9,-9.9,0.9,8.9,-9.9,-2)
@@ -1384,108 +1386,6 @@ agent_height = 1.75
 
 [sub_resource type="NavigationMesh" id="s361"]
 vertices = PackedVector3Array(0.35,0,1.1,0.35,0,3.55,43.65,0,3.55,43.65,0,1.1)
-polygons = [PackedInt32Array(0,1,2,3)]
-agent_radius = 0.3
-agent_height = 1.75
-
-[sub_resource type="NavigationMesh" id="s362"]
-vertices = PackedVector3Array(158.4,-9.6,215.75,158.4,-9.6,216.25,237.6,-9.6,216.25,237.6,-9.6,215.75)
-polygons = [PackedInt32Array(0,1,2,3)]
-agent_radius = 0.3
-agent_height = 1.75
-
-[sub_resource type="NavigationMesh" id="s363"]
-vertices = PackedVector3Array(158.4,-9.3,216.95,158.4,-9.3,217.45,237.6,-9.3,217.45,237.6,-9.3,216.95)
-polygons = [PackedInt32Array(0,1,2,3)]
-agent_radius = 0.3
-agent_height = 1.75
-
-[sub_resource type="NavigationMesh" id="s364"]
-vertices = PackedVector3Array(158.4,-9.0,218.15,158.4,-9.0,218.65,237.6,-9.0,218.65,237.6,-9.0,218.15)
-polygons = [PackedInt32Array(0,1,2,3)]
-agent_radius = 0.3
-agent_height = 1.75
-
-[sub_resource type="NavigationMesh" id="s365"]
-vertices = PackedVector3Array(158.4,-8.7,219.35,158.4,-8.7,219.85,237.6,-8.7,219.85,237.6,-8.7,219.35)
-polygons = [PackedInt32Array(0,1,2,3)]
-agent_radius = 0.3
-agent_height = 1.75
-
-[sub_resource type="NavigationMesh" id="s366"]
-vertices = PackedVector3Array(158.4,-8.4,220.55,158.4,-8.4,221.05,237.6,-8.4,221.05,237.6,-8.4,220.55)
-polygons = [PackedInt32Array(0,1,2,3)]
-agent_radius = 0.3
-agent_height = 1.75
-
-[sub_resource type="NavigationMesh" id="s367"]
-vertices = PackedVector3Array(158.4,-8.1,221.75,158.4,-8.1,222.25,237.6,-8.1,222.25,237.6,-8.1,221.75)
-polygons = [PackedInt32Array(0,1,2,3)]
-agent_radius = 0.3
-agent_height = 1.75
-
-[sub_resource type="NavigationMesh" id="s368"]
-vertices = PackedVector3Array(158.4,-7.8,222.95,158.4,-7.8,223.45,237.6,-7.8,223.45,237.6,-7.8,222.95)
-polygons = [PackedInt32Array(0,1,2,3)]
-agent_radius = 0.3
-agent_height = 1.75
-
-[sub_resource type="NavigationMesh" id="s369"]
-vertices = PackedVector3Array(158.4,-7.5,224.15,158.4,-7.5,224.65,237.6,-7.5,224.65,237.6,-7.5,224.15)
-polygons = [PackedInt32Array(0,1,2,3)]
-agent_radius = 0.3
-agent_height = 1.75
-
-[sub_resource type="NavigationMesh" id="s370"]
-vertices = PackedVector3Array(158.4,-7.2,225.35,158.4,-7.2,225.85,237.6,-7.2,225.85,237.6,-7.2,225.35)
-polygons = [PackedInt32Array(0,1,2,3)]
-agent_radius = 0.3
-agent_height = 1.75
-
-[sub_resource type="NavigationMesh" id="s371"]
-vertices = PackedVector3Array(158.4,-6.9,226.55,158.4,-6.9,227.05,237.6,-6.9,227.05,237.6,-6.9,226.55)
-polygons = [PackedInt32Array(0,1,2,3)]
-agent_radius = 0.3
-agent_height = 1.75
-
-[sub_resource type="NavigationMesh" id="s372"]
-vertices = PackedVector3Array(155.32,-9.9,214.8,155.32,-6.9,226.8,158.08,-6.9,226.8,158.08,-9.9,214.8)
-polygons = [PackedInt32Array(0,1,2,3)]
-agent_radius = 0.3
-agent_height = 1.75
-
-[sub_resource type="NavigationMesh" id="s373"]
-vertices = PackedVector3Array(168.4,-9.6,107.75,168.4,-9.6,108.25,227.6,-9.6,108.25,227.6,-9.6,107.75)
-polygons = [PackedInt32Array(0,1,2,3)]
-agent_radius = 0.3
-agent_height = 1.75
-
-[sub_resource type="NavigationMesh" id="s374"]
-vertices = PackedVector3Array(168.4,-9.3,108.95,168.4,-9.3,109.45,227.6,-9.3,109.45,227.6,-9.3,108.95)
-polygons = [PackedInt32Array(0,1,2,3)]
-agent_radius = 0.3
-agent_height = 1.75
-
-[sub_resource type="NavigationMesh" id="s375"]
-vertices = PackedVector3Array(168.4,-9.0,110.15,168.4,-9.0,110.65,227.6,-9.0,110.65,227.6,-9.0,110.15)
-polygons = [PackedInt32Array(0,1,2,3)]
-agent_radius = 0.3
-agent_height = 1.75
-
-[sub_resource type="NavigationMesh" id="s376"]
-vertices = PackedVector3Array(168.4,-8.7,111.35,168.4,-8.7,111.85,227.6,-8.7,111.85,227.6,-8.7,111.35)
-polygons = [PackedInt32Array(0,1,2,3)]
-agent_radius = 0.3
-agent_height = 1.75
-
-[sub_resource type="NavigationMesh" id="s377"]
-vertices = PackedVector3Array(165.32,-9.9,106.8,165.32,-8.7,111.6,168.08,-8.7,111.6,168.08,-9.9,106.8)
-polygons = [PackedInt32Array(0,1,2,3)]
-agent_radius = 0.3
-agent_height = 1.75
-
-[sub_resource type="NavigationMesh" id="s378"]
-vertices = PackedVector3Array(160,-9.9,225,160,-9.9,227.4,236,-9.9,227.4,236,-9.9,225)
 polygons = [PackedInt32Array(0,1,2,3)]
 agent_radius = 0.3
 agent_height = 1.75
@@ -5042,6 +4942,24 @@ polygons = [PackedInt32Array(0,1,2,3)]
 agent_radius = 0.3
 agent_height = 1.6
 
+[sub_resource type="NavigationMesh" id="t192_s1"]
+vertices = PackedVector3Array(158.5,-9.676471,213.2,158.5,-3.261176,227.55,237.5,-3.261176,227.55,237.5,-9.676471,213.2)
+polygons = [PackedInt32Array(0,1,2,3)]
+agent_radius = 0.3
+agent_height = 1.75
+
+[sub_resource type="NavigationMesh" id="t192_s2"]
+vertices = PackedVector3Array(159.0,-9.9,217.932895,159.0,-9.9,227.8,237.0,-9.9,227.8,237.0,-9.9,217.932895)
+polygons = [PackedInt32Array(0,1,2,3)]
+agent_radius = 0.3
+agent_height = 1.75
+
+[sub_resource type="NavigationMesh" id="t192_s3"]
+vertices = PackedVector3Array(168.5,-9.677778,119.0,168.5,-7.3,113.65,227.5,-7.3,113.65,227.5,-9.677778,119.0)
+polygons = [PackedInt32Array(0,1,2,3)]
+agent_radius = 0.3
+agent_height = 1.75
+
 [node name="Campus" type="Node3D"]
 
 script = ExtResource("e1")
@@ -7574,7 +7492,7 @@ position = Vector3(22, -9.33, 28)
 position = Vector3(22, -9.9, 8)
 
 [node name="SirenSpot" type="Marker3D" parent="Anchors/Clues"]
-position = Vector3(198, -6.9, 226.8)
+position = Vector3(198, -3.25, 227.575)
 
 [node name="Start_stadium" type="Marker3D" parent="Anchors"]
 position = Vector3(115, -9.9, 166)
@@ -7916,16 +7834,16 @@ position = Vector3(284, -9.9, 166)
 position = Vector3(284, -9.9, 167)
 
 [node name="S03" type="Marker3D" parent="Anchors/ZombieSpawns/Stadium"]
-position = Vector3(198, -9.9, 122)
+position = Vector3(249.0, -9.9, 123.0)
 
 [node name="I03" type="Marker3D" parent="Anchors/ZombieIdle/Stadium"]
-position = Vector3(198, -9.9, 123)
+position = Vector3(249.0, -9.9, 124.0)
 
 [node name="S04" type="Marker3D" parent="Anchors/ZombieSpawns/Stadium"]
-position = Vector3(198, -9.9, 210)
+position = Vector3(149.0, -9.9, 210.0)
 
 [node name="I04" type="Marker3D" parent="Anchors/ZombieIdle/Stadium"]
-position = Vector3(198, -9.9, 211)
+position = Vector3(149.0, -9.9, 211.0)
 
 [node name="S05" type="Marker3D" parent="Anchors/ZombieSpawns/Stadium"]
 position = Vector3(112, -9.9, 170)
@@ -8260,7 +8178,7 @@ collision_mask = 2
 shape = SubResource("s317")
 
 [node name="Bleachers" type="Area3D" parent="Zones"]
-position = Vector3(198, -7.9, 221.4)
+position = Vector3(198.0, -5.65, 220.75)
 collision_layer = 0
 collision_mask = 2
 
@@ -10080,57 +9998,6 @@ navigation_mesh = SubResource("s360")
 [node name="Hall4" type="NavigationRegion3D" parent="Navigation"]
 navigation_mesh = SubResource("s361")
 
-[node name="MainTier0" type="NavigationRegion3D" parent="Navigation"]
-navigation_mesh = SubResource("s362")
-
-[node name="MainTier1" type="NavigationRegion3D" parent="Navigation"]
-navigation_mesh = SubResource("s363")
-
-[node name="MainTier2" type="NavigationRegion3D" parent="Navigation"]
-navigation_mesh = SubResource("s364")
-
-[node name="MainTier3" type="NavigationRegion3D" parent="Navigation"]
-navigation_mesh = SubResource("s365")
-
-[node name="MainTier4" type="NavigationRegion3D" parent="Navigation"]
-navigation_mesh = SubResource("s366")
-
-[node name="MainTier5" type="NavigationRegion3D" parent="Navigation"]
-navigation_mesh = SubResource("s367")
-
-[node name="MainTier6" type="NavigationRegion3D" parent="Navigation"]
-navigation_mesh = SubResource("s368")
-
-[node name="MainTier7" type="NavigationRegion3D" parent="Navigation"]
-navigation_mesh = SubResource("s369")
-
-[node name="MainTier8" type="NavigationRegion3D" parent="Navigation"]
-navigation_mesh = SubResource("s370")
-
-[node name="MainTier9" type="NavigationRegion3D" parent="Navigation"]
-navigation_mesh = SubResource("s371")
-
-[node name="MainBleacherRamp" type="NavigationRegion3D" parent="Navigation"]
-navigation_mesh = SubResource("s372")
-
-[node name="SecondaryTier0" type="NavigationRegion3D" parent="Navigation"]
-navigation_mesh = SubResource("s373")
-
-[node name="SecondaryTier1" type="NavigationRegion3D" parent="Navigation"]
-navigation_mesh = SubResource("s374")
-
-[node name="SecondaryTier2" type="NavigationRegion3D" parent="Navigation"]
-navigation_mesh = SubResource("s375")
-
-[node name="SecondaryTier3" type="NavigationRegion3D" parent="Navigation"]
-navigation_mesh = SubResource("s376")
-
-[node name="SecondaryBleacherRamp" type="NavigationRegion3D" parent="Navigation"]
-navigation_mesh = SubResource("s377")
-
-[node name="UnderBleachers" type="NavigationRegion3D" parent="Navigation"]
-navigation_mesh = SubResource("s378")
-
 [node name="Kitchen" type="NavigationRegion3D" parent="Navigation"]
 navigation_mesh = SubResource("s1054")
 
@@ -10373,108 +10240,6 @@ start_position = Vector3(32, 0.03, -0.7)
 end_position = Vector3(32, 0, 1.2)
 bidirectional = true
 metadata/requires_open_door = true
-
-[node name="MainRampTier0" type="NavigationLink3D" parent="Navigation"]
-start_position = Vector3(156.3, -9.6, 216.0)
-end_position = Vector3(158.6, -9.6, 216.0)
-bidirectional = true
-
-
-[node name="MainRampTier1" type="NavigationLink3D" parent="Navigation"]
-start_position = Vector3(156.3, -9.3, 217.2)
-end_position = Vector3(158.6, -9.3, 217.2)
-bidirectional = true
-
-
-[node name="MainRampTier2" type="NavigationLink3D" parent="Navigation"]
-start_position = Vector3(156.3, -9.0, 218.4)
-end_position = Vector3(158.6, -9.0, 218.4)
-bidirectional = true
-
-
-[node name="MainRampTier3" type="NavigationLink3D" parent="Navigation"]
-start_position = Vector3(156.3, -8.7, 219.6)
-end_position = Vector3(158.6, -8.7, 219.6)
-bidirectional = true
-
-
-[node name="MainRampTier4" type="NavigationLink3D" parent="Navigation"]
-start_position = Vector3(156.3, -8.4, 220.8)
-end_position = Vector3(158.6, -8.4, 220.8)
-bidirectional = true
-
-
-[node name="MainRampTier5" type="NavigationLink3D" parent="Navigation"]
-start_position = Vector3(156.3, -8.1, 222.0)
-end_position = Vector3(158.6, -8.1, 222.0)
-bidirectional = true
-
-
-[node name="MainRampTier6" type="NavigationLink3D" parent="Navigation"]
-start_position = Vector3(156.3, -7.8, 223.2)
-end_position = Vector3(158.6, -7.8, 223.2)
-bidirectional = true
-
-
-[node name="MainRampTier7" type="NavigationLink3D" parent="Navigation"]
-start_position = Vector3(156.3, -7.5, 224.4)
-end_position = Vector3(158.6, -7.5, 224.4)
-bidirectional = true
-
-
-[node name="MainRampTier8" type="NavigationLink3D" parent="Navigation"]
-start_position = Vector3(156.3, -7.2, 225.6)
-end_position = Vector3(158.6, -7.2, 225.6)
-bidirectional = true
-
-
-[node name="MainRampTier9" type="NavigationLink3D" parent="Navigation"]
-start_position = Vector3(156.3, -6.9, 226.8)
-end_position = Vector3(158.6, -6.9, 226.8)
-bidirectional = true
-
-
-[node name="MainRampGround" type="NavigationLink3D" parent="Navigation"]
-start_position = Vector3(156.3, -9.9, 214)
-end_position = Vector3(156.3, -9.875, 214.9)
-bidirectional = true
-
-
-[node name="SecondaryRampTier0" type="NavigationLink3D" parent="Navigation"]
-start_position = Vector3(166.3, -9.6, 108.0)
-end_position = Vector3(168.6, -9.6, 108.0)
-bidirectional = true
-
-
-[node name="SecondaryRampTier1" type="NavigationLink3D" parent="Navigation"]
-start_position = Vector3(166.3, -9.3, 109.2)
-end_position = Vector3(168.6, -9.3, 109.2)
-bidirectional = true
-
-
-[node name="SecondaryRampTier2" type="NavigationLink3D" parent="Navigation"]
-start_position = Vector3(166.3, -9.0, 110.4)
-end_position = Vector3(168.6, -9.0, 110.4)
-bidirectional = true
-
-
-[node name="SecondaryRampTier3" type="NavigationLink3D" parent="Navigation"]
-start_position = Vector3(166.3, -8.7, 111.6)
-end_position = Vector3(168.6, -8.7, 111.6)
-bidirectional = true
-
-
-[node name="SecondaryRampGround" type="NavigationLink3D" parent="Navigation"]
-start_position = Vector3(166.3, -9.9, 106)
-end_position = Vector3(166.3, -9.875, 106.9)
-bidirectional = true
-
-
-[node name="UnderBleachersEntry" type="NavigationLink3D" parent="Navigation"]
-start_position = Vector3(198, -9.9, 230)
-end_position = Vector3(198, -9.9, 227)
-bidirectional = true
-
 
 [node name="CanteenEntry" type="NavigationLink3D" parent="Navigation"]
 start_position = Vector3(190, -9.9, 18)
@@ -10879,3 +10644,65 @@ metadata/t190 = true
 position = Vector3(4.2, 0, 2.7)
 rotation_degrees = Vector3(0,-90,0)
 metadata/t190 = true
+[node name="MainStandSeats" type="NavigationRegion3D" parent="Navigation"]
+navigation_mesh = SubResource("t192_s1")
+metadata/t192 = true
+
+[node name="MainStandUnder" type="NavigationRegion3D" parent="Navigation"]
+navigation_mesh = SubResource("t192_s2")
+metadata/t192 = true
+
+[node name="SouthStandSeats" type="NavigationRegion3D" parent="Navigation"]
+navigation_mesh = SubResource("t192_s3")
+metadata/t192 = true
+
+[node name="MainStandAisle0" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(173.0, -9.9, 211.5)
+end_position = Vector3(173.0, -9.6317647, 213.3)
+bidirectional = true
+metadata/t192 = true
+
+[node name="MainStandAisle1" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(198.0, -9.9, 211.5)
+end_position = Vector3(198.0, -9.6317647, 213.3)
+bidirectional = true
+metadata/t192 = true
+
+[node name="MainStandAisle2" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(223.0, -9.9, 211.5)
+end_position = Vector3(223.0, -9.6317647, 213.3)
+bidirectional = true
+metadata/t192 = true
+
+[node name="MainStandUnderEntry0" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(171.0, -9.9, 231.0)
+end_position = Vector3(171.0, -9.9, 227.5)
+bidirectional = true
+metadata/t192 = true
+
+[node name="MainStandUnderEntry1" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(199.0, -9.9, 231.0)
+end_position = Vector3(199.0, -9.9, 227.5)
+bidirectional = true
+metadata/t192 = true
+
+[node name="MainStandUnderEntry2" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(225.0, -9.9, 231.0)
+end_position = Vector3(225.0, -9.9, 227.5)
+bidirectional = true
+metadata/t192 = true
+
+[node name="SouthStandAisle0" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(183.0, -9.9, 120.7)
+end_position = Vector3(183.0, -9.6333333, 118.9)
+bidirectional = true
+metadata/t192 = true
+
+[node name="SouthStandAisle1" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(213.0, -9.9, 120.7)
+end_position = Vector3(213.0, -9.6333333, 118.9)
+bidirectional = true
+metadata/t192 = true
+
+[node name="Props" parent="." instance=ExtResource("t192_e1")]
+metadata/t192 = true

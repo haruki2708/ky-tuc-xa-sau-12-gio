@@ -98,7 +98,7 @@ func test_navigation_connects_room407_stairs_window_and_canteen() -> void:
 		if NavigationServer3D.map_get_closest_point(map, Vector3(32, 0, 1.2)).distance_to(Vector3(32, 0, 1.2)) < .1:
 			break
 		await tree.physics_frame
-	var targets: Array[Vector3] = [Vector3(13.75, -6.6, -2), Vector3(4, -8.9, -7.6), Vector3(22, -9.9, 8), Vector3(115, -9.9, 166), Vector3(220, -9.9, -25), Vector3(190, -9.9, 32), Vector3(202, -9.9, 54), Vector3(198, -6.9, 226.8)]
+	var targets: Array[Vector3] = [Vector3(13.75, -6.6, -2), Vector3(4, -8.9, -7.6), Vector3(22, -9.9, 8), Vector3(115, -9.9, 166), Vector3(220, -9.9, -25), Vector3(190, -9.9, 32), Vector3(202, -9.9, 54), campus.get_anchor("Clues/SirenSpot").global_position]
 	for target in targets:
 		var path := NavigationServer3D.map_get_path(map, Vector3(32, .03, -2), target, true)
 		assert_true(path.size() > 1 and path[-1].distance_to(target) < .5, "connected route to %s, last=%s" % [target, path[-1] if not path.is_empty() else Vector3.INF])
@@ -145,7 +145,7 @@ func test_nav_paths_clear_world_geometry_for_crouching_capsule() -> void:
 		[Vector3(32, 0, 1.2), Vector3(13.75, -6.6, -2)],
 		[Vector3(13.75, -6.6, -2), Vector3(4, -8.9, -7.6)],
 		[Vector3(4, -8.9, -7.6), Vector3(190, -9.9, 32)],
-		[Vector3(115, -9.9, 166), Vector3(198, -6.9, 226.8)],
+		[Vector3(115, -9.9, 166), campus.get_anchor("Clues/SirenSpot").global_position],
 		[Vector3(190, -9.9, 32), Vector3(202, -9.9, 54)],
 	]
 	for pair in pairs:
