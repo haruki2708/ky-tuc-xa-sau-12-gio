@@ -19,15 +19,15 @@
 | 2 | Đi **phía bàn trực**, nhìn ngăn kéo bàn trực, **E** lấy chìa. | Có suy nghĩ "Chìa cửa thoát hiểm."; đồng hồ bàn trực dừng 4:00 | 30 giây |
 | 3 | Đi tiếp tới **cuối hành lang**, **E** vào cửa thoát hiểm. | Không có chìa thì báo khóa; có chìa thì mở | 15 giây |
 | 4 | Xuống cầu thang thoát hiểm **2 tầng** (tới tầng 2). Đoạn xuống tầng 1 bị **sập**. | Tường nứt; một xác trên bậc tầng 3 bật dậy | 1 phút |
-| 5 | Ở tầng 2, đi về **phía xa** khoảng 24 m, gặp **bình cứu hỏa** treo tường, **E** đập. | Minh Nhật gọi khi tới tầng 2; sau tiếng đập vài giây cậu ấy ra khỏi 203 và đi cùng | 1 phút |
+| 5 | Ở tầng 2, **bình cứu hỏa** treo tường ngay gần cửa cầu thang thoát hiểm (khoảng 5 m). **E** đập, rồi **nấp vào phòng 207** (phòng không cửa ngay cạnh, đi sâu vào trong). Chờ đám xác ở cửa 203 kéo về phía bình, rồi đi vòng sau lưng chúng. | Minh Nhật gọi khi tới tầng 2; đám 4 xác bỏ cửa 203; cậu ấy ra và đi theo sau bạn | 1 phút |
 | 6 | Đi tiếp tới **cầu thang chính** (cuối hành lang), xuống **tầng 1**. | Minh Nhật nói "Xích từ bên ngoài…" ở sảnh | 30 giây |
 | 7 | Vào **phòng quản lý** (cuối sảnh, phía cầu thang chính). **Ctrl cúi**, chui qua **cửa sổ vỡ** ở tường sau. | Nhìn con dao trên bàn thì có tiếng kéo dao | 30 giây |
 | 8 | Ra ngoài, **vòng qua đầu nhà B** ra **vườn hoa** phía trước (giữa nhà B và nhà A). | Checkpoint vườn hoa | 30 giây |
-| 9 | Tới **Ngư** đứng trên ghế đá giữa vườn. | Ngư đưa **thanh sắt** (biểu tượng góc dưới); xác bò ra từ bồn hoa: **đập đầu** thử | 1 phút |
-| 10 | Đi theo hai bạn tới **sân vận động** (khoảng 1 phút đường). | Đèn sân chớp một lần; xác tràn vào theo đợt | 1 phút |
+| 9 | Tới **Ngư** đứng trên ghế đá giữa vườn. | Ngư đưa **thanh sắt** (biểu tượng góc dưới); xác bò ra từ bồn hoa: **đập đầu** thử. Từ đây hai bạn **đi theo sau bạn** | 1 phút |
+| 10 | Tự đi tới **sân vận động** (khoảng 1 phút đường), hai bạn theo sau. | Đèn sân chớp một lần; xác tràn vào theo đợt | 1 phút |
 | 11 | **Sống khoảng 4 phút** trong sân: đi vòng, cắt qua sân cỏ; lên **khán đài** đứng yên ở chỗ cao nhất để nghe **còi rất nhỏ**; ống sắt dự phòng ở gầm khán đài. | Viền màn hình tối khi mệt; thanh sắt cong dần, gãy sau 8 lần trúng | 4 phút |
-| 12 | Theo hai bạn ra **cổng trường**. **Không lại gần bảo vệ** quá 3 m. | Bảo vệ gần nhất quay đầu nhìn; lại gần thì nhiễu điện ở mép màn hình | 2 phút |
-| 13 | Theo hai bạn vào **nhà ăn**. | Tivi bật, đọc bản tin động đất; ba người chia nhau ra; **"Hết chương 3"** | 2 phút |
+| 12 | Ra **cổng trường** (hai bạn theo sau). **Không lại gần bảo vệ** quá 3 m. | Bảo vệ gần nhất quay đầu nhìn; lại gần thì nhiễu điện ở mép màn hình | 2 phút |
+| 13 | Vào **nhà ăn**. | Tivi bật, đọc bản tin động đất; ba người chia nhau ra; **"Hết chương 3"** | 2 phút |
 
 ## Thử nhanh 2 cách chết (tùy chọn, 1 phút)
 - **Bị xác tóm:** đứng yên cho một xác tới → cảnh bị vồ, màn chết, chơi lại đầu khu.

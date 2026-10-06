@@ -28,6 +28,10 @@ const ROOMMATES := {1: "zombie_01", 2: "zombie_02", 4: "zombie_03"}
 const ROOMMATE_RISE_SECONDS := 4.0
 const NGU_MEET_RADIUS := 4.0
 const KNIFE_RADIUS := 2.2
+## Floor 2 (D-062): the crowd hammering on 203's door, and how far it must
+## drift off before Minh Nhật dares to come out.
+const CROWD_203 := [Vector3(-1.1, 0.0, 0.9), Vector3(0.0, 0.0, 0.8), Vector3(1.1, 0.0, 0.9), Vector3(0.5, 0.0, 1.8)]
+const CROWD_CLEAR_RADIUS := 6.0
 const GUARD_TURN_RADIUS := 12.0
 ## Floors of building B by height (floor 4 at y = 0, 3.3 m per floor).
 const FLOOR_3_Y := -2.0
@@ -46,6 +50,7 @@ var _uses: Dictionary[String, Ch3Use] = {}
 var _model_index: int = 0
 var _has_key: bool = false
 var _alarm_sounded: bool = false
+var _crowd_203: Array[Zombie] = []
 var _scared: Dictionary[StringName, bool] = {}
 var _chat_queue: Array[String] = []
 var _chat_running: bool = false
@@ -124,6 +129,7 @@ func _building_b() -> void:
 	_begin(&"b", "08:00")
 	_survivors(3)
 	_set_area(&"stairs")
+	_place_crowd_203()
 	await _announce(["SPK_CH3_R5_INTRO", "RULE_CH3_R5_1", "RULE_CH3_R5_2", "RULE_CH3_R5_3"])
 	for key in ["ch3_r5_1", "ch3_r5_2", "ch3_r5_3"]:
 		RuleSystem.mark_read(StringName(key))
@@ -132,7 +138,7 @@ func _building_b() -> void:
 	_roommates_rise()
 	_story(["chat:n_all_up", "chat:n_out", "chat:ngu_garden", "think:THINK_CH3_RUN"])
 	if _horde != null:
-		for zone in [&"B4", &"B3", &"B2", &"B1"]:
+		for zone in [&"B4", &"B3", &"B1"]:
 			_horde.place_idle(zone)
 	# Out of 407: the corridor turns its heads (jumpscare 2), then the stairs.
 	await _wait_until(func() -> bool: return not _player_in_room(), 600.0, false)
@@ -160,8 +166,10 @@ func _building_b() -> void:
 	await _wait_until(func() -> bool: return _alarm_sounded or _player.global_position.y < FLOOR_1_Y, 900.0, false)
 	if _dying:
 		return
-	await _wait(3.0)
-	_join(&"minh_nhat", "Room203Door", 0)
+	await _wait_until(_crowd_203_gone, 12.0)
+	if _dying:
+		return
+	_join(&"minh_nhat", "Room203Door")
 	_story(["near:n_join"])
 	await _wait_until(func() -> bool: return _player.global_position.y < FLOOR_1_Y, 900.0, false)
 	if _dying:
@@ -201,9 +209,9 @@ func _garden() -> void:
 	_arrive("garden", "Start_garden")
 	_set_area(&"garden")
 	if not _companions.has(&"minh_nhat"):
-		_join(&"minh_nhat", "Start_garden", _wait_index(&"minh_nhat", "garden"))
+		_join(&"minh_nhat", "Start_garden")
 	var bench := _anchor("NguBench")
-	_join(&"ngu", "NguBench", 0)
+	_join(&"ngu", "NguBench", false)
 	_story(["near:ngu_here"])
 	if _horde != null:
 		_horde.place_idle(&"Garden")
@@ -211,6 +219,9 @@ func _garden() -> void:
 		return bench == null or _player.global_position.distance_to(bench.global_position) < NGU_MEET_RADIUS, 600.0, false)
 	if _dying:
 		return
+	# From here both walk behind Trung until the split in the canteen (D-063).
+	if _companions.has(&"ngu"):
+		_companions[&"ngu"].follow_player()
 	await _near("ngu_bars")
 	# Ngư hands Trung a bar unless he already picked one up.
 	var weapon: Variant = _player.get("bar_weapon") if _player != null else null
@@ -286,6 +297,7 @@ func _gate() -> void:
 	_set_clock("08:28")
 	await _near("n_nothing")
 	await _near("n_split")
+	_split_companions()
 	await _near("ngu_ok")
 	_think("THINK_CH3_LIBRARY")
 
@@ -427,7 +439,8 @@ func _place_uses() -> void:
 		extinguisher.used.connect(func() -> void:
 			_alarm_sounded = true
 			GameState.set_flag(&"ch3_alarm", true)
-			EventBus.noise_emitted.emit(extinguisher.global_position, 25.0, &"extinguisher"))
+			EventBus.noise_emitted.emit(extinguisher.global_position, 25.0, &"extinguisher")
+			_pull_crowd_203(extinguisher.global_position))
 
 
 func _use(anchor_name: String, prompt: String, size: Vector3, lift: float = 0.0) -> Ch3Use:
@@ -473,12 +486,12 @@ func _settle_bars(bars: Array[Node3D]) -> void:
 			bar.global_position = Vector3(at.x, hit.position.y + 0.05, at.z)
 
 
-## A companion joins at an anchor and runs lane B's path from point `from`.
-func _join(member: StringName, anchor_name: String, from: int) -> void:
+## A companion joins at an anchor and walks behind Trung (D-063); with
+## `follow` off they stand still until told (Ngư on her bench).
+func _join(member: StringName, anchor_name: String, follow: bool = true) -> void:
 	if _companions.has(member) or not ResourceLoader.exists(COMPANION_SCENE):
 		return
 	var start := _anchor(anchor_name)
-	var path := _anchor("Paths/" + ("Nhat" if member == &"minh_nhat" else "Ngu"))
 	var companion := (load(COMPANION_SCENE) as PackedScene).instantiate() as Node3D
 	companion.set("member", member)
 	companion.set("player", _player)
@@ -489,9 +502,18 @@ func _join(member: StringName, anchor_name: String, from: int) -> void:
 	if companion.has_method("set_body") and ResourceLoader.exists(model):
 		companion.set_body(load(model))
 	_companions[member] = companion
-	if path != null and companion.has_method("follow_path"):
-		companion.follow_path(_path_from(path, from))
+	if follow and companion.has_method("follow_player"):
+		companion.follow_player()
 	EventBus.companion_state_changed.emit(member, &"joined")
+
+
+## The split (8:29): each runs the tail of lane B's path out past the store.
+func _split_companions() -> void:
+	for member: StringName in _companions:
+		var path := _anchor("Paths/" + ("Nhat" if member == &"minh_nhat" else "Ngu"))
+		var companion: Node3D = _companions[member]
+		if path != null and is_instance_valid(companion) and companion.has_method("follow_path"):
+			companion.follow_path(_path_from(path, _wait_index(member, "canteen") + 1))
 
 
 ## Lane A's companion runs a path from its first point: a copy that starts
@@ -527,7 +549,7 @@ func _wait_index(member: StringName, zone: String) -> int:
 func _ensure_companions(zone: String) -> void:
 	for member: StringName in [&"minh_nhat", &"ngu"]:
 		if not _companions.has(member):
-			_join(member, "Start_" + zone, _wait_index(member, zone))
+			_join(member, "Start_" + zone)
 
 
 ## Resuming at a zone's checkpoint: stand at its start marker.
@@ -544,6 +566,42 @@ func _arrive(zone: String, anchor_name: String) -> void:
 func _spawn(zone: StringName, count: int) -> void:
 	if _horde != null:
 		_horde.spawn(zone, count)
+
+
+## Floor 2 (D-062): four zombies hammer on 203's door, backs to the hall.
+func _place_crowd_203() -> void:
+	_crowd_203.clear()
+	var door := _anchor("Room203Door")
+	if door == null:
+		return
+	for offset: Vector3 in CROWD_203:
+		var zombie := _make_zombie("zombie_%02d" % (_crowd_203.size() + 4))
+		if zombie == null:
+			return
+		add_child(zombie)
+		zombie.global_position = door.global_position + offset
+		zombie.set_target(_player)
+		zombie.face(door.global_position + Vector3(offset.x, 0.0, -2.0))
+		zombie.sleep_pose(&"idle")
+		_crowd_203.append(zombie)
+
+
+## The extinguisher's bang drags the whole crowd off the door, however far.
+func _pull_crowd_203(at: Vector3) -> void:
+	for zombie in _crowd_203:
+		if is_instance_valid(zombie) and not zombie.is_stunned():
+			zombie.wake()
+			zombie.set("_goal", at)
+
+
+func _crowd_203_gone() -> bool:
+	var door := _anchor("Room203Door")
+	if door == null:
+		return true
+	for zombie in _crowd_203:
+		if is_instance_valid(zombie) and zombie.global_position.distance_to(door.global_position) < CROWD_CLEAR_RADIUS:
+			return false
+	return true
 
 
 ## Wake the sleeping zombies near the player (the corridor turning, the 203 crowd).

@@ -116,8 +116,8 @@ def building(s,c):
         if n.startswith('[node name="GlassShard'):
             index=int(n.split('GlassShard')[1].split('"')[0])
             if 1<=index<=4:s.nodes[i]+='visible = false\n'
-    part(s,'FireExtinguisher',(20,-5.8,.22),(.2,.55,.2),'red',shape='cone')
-    part(s,'ExtinguisherHandle',(20,-5.5,.22),(.17,.055,.07),'iron')
+    part(s,'FireExtinguisher',(39.5,-5.8,.22),(.2,.55,.2),'red',shape='cone')
+    part(s,'ExtinguisherHandle',(39.5,-5.5,.22),(.17,.055,.07),'iron')
     clock(s,'DeskClock',(40,2.05,.18))
     # Key is visual only; ownership and interaction stay with core.
     part(s,'KeyStem',(39.8,.66,.42),(.13,.018,.023),'white')

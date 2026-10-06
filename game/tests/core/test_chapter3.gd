@@ -92,6 +92,60 @@ func test_building_b_to_the_garden() -> void:
 	assert_eq(failed, [] as Array[StringName], "alive;")
 
 
+## D-062: floor 2 holds only the crowd at 203's door; the walk from the fire
+## stairs to the extinguisher is clear, and its bang drags the crowd away.
+func test_floor_two_crowd_leaves_203_for_the_extinguisher() -> void:
+	director.run_from(&"b")
+	await _until(func() -> bool: return director._crowd_203.size() == 4, 10.0)
+	assert_eq(director._crowd_203.size(), 4, "four at 203's door;")
+	var door := _anchor("Room203Door").global_position
+	var extinguisher := _anchor("Extinguisher2F").global_position
+	assert_true(extinguisher.x > 36.0, "extinguisher near the fire stairs")
+	for zombie in director._crowd_203:
+		assert_true(zombie.global_position.distance_to(door) < 2.5, "crowd at the door")
+	for actor in director._horde.get_children():
+		if actor is Zombie:
+			var at: Vector3 = (actor as Zombie).global_position
+			assert_false(absf(at.y - door.y) < 1.0 and at.x > 30.0, "nothing between the fire stairs and the extinguisher: %s" % at)
+	# Bang it, then hide deep in the open room 207 while they come.
+	_put(Vector3(39.5, -6.55, 1.5))
+	await wait_frames(3)
+	director._uses["Extinguisher2F"].interact(player)
+	_put(Vector3(35.75, -6.55, -5.5))
+	await _until(director._crowd_203_gone, 12.0)
+	assert_true(director._crowd_203_gone(), "the crowd left 203's door")
+	await _until(func() -> bool: return director._companions.has(&"minh_nhat"), 15.0)
+	assert_true(director._companions.has(&"minh_nhat"), "Minh Nhật comes out")
+	assert_eq(failed, [] as Array[StringName], "alive;")
+
+
+## D-063: Minh Nhật and Ngư walk behind Trung from the garden to the stadium.
+func test_companions_follow_the_player_to_the_stadium() -> void:
+	director.time_scale = 1.0
+	director.stop_after = &"garden"
+	director.run_from(&"garden")
+	await _until(func() -> bool: return director._companions.has(&"ngu"), 10.0)
+	_put(_anchor("NguBench").global_position + Vector3(0.0, 0.0, -1.5))
+	await _until(func() -> bool: return bool(director._companions[&"ngu"].following), 10.0)
+	assert_true(director._companions[&"ngu"].following, "Ngư follows after the meeting")
+	var at: Vector3 = player.global_position
+	for goal in [Vector3(48, -9.85, 28), Vector3(80, -9.85, 28), Vector3(80, -9.85, 90)]:
+		while at.distance_to(goal) > 0.3:
+			at = at.move_toward(goal, 0.12)
+			_put(at)
+			director._horde.clear_all()
+			await wait_frames(1)
+	await _until(func() -> bool:
+		for member in director._companions:
+			if director._companions[member].global_position.distance_to(player.global_position) > 8.0:
+				return false
+		return true, 10.0)
+	for member in director._companions:
+		var companion: Node3D = director._companions[member]
+		assert_true(companion.global_position.distance_to(player.global_position) < 8.0,
+			"%s kept up: %s vs %s" % [member, companion.global_position, player.global_position])
+
+
 func test_a_zombie_grab_kills_and_reloads_the_zone() -> void:
 	director.run_from(&"b")
 	await wait_frames(5)

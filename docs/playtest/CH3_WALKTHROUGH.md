@@ -18,11 +18,11 @@
 1. **Phòng 407:** nghe loa xong, ba bạn cùng phòng bật dậy. **Chạy ngay ra cửa.**
 2. **Hành lang tầng 4:** cầu thang chính (đầu xa phòng 407) đầy xác. Đi về phía **bàn trực** (gần phòng 407), mở ngăn kéo lấy **chìa khóa** (E), rồi mở **cửa cầu thang thoát hiểm** ở cuối hành lang cùng phía (E).
 3. **Cầu thang thoát hiểm:** xuống tầng 3, rồi tầng 2. Đoạn xuống tầng 1 **đã sập**.
-4. **Tầng 2:** Minh Nhật gọi, cậu ấy kẹt trong **phòng 203**, xác đang đập cửa. Tới **bình cứu hỏa** giữa hành lang, bấm **E** để đập vào tường. Tiếng động kéo xác đi, Minh Nhật chạy ra và đi cùng.
+4. **Tầng 2:** Minh Nhật gọi, cậu ấy kẹt trong **phòng 203**, 4 xác đang đập cửa. **Bình cứu hỏa** treo ngay gần cửa cầu thang thoát hiểm: bấm **E** để đập vào tường, rồi **nấp sâu trong phòng 207** (phòng không cửa ngay cạnh). Tiếng động kéo cả đám về phía bình; đi vòng sau lưng chúng. Minh Nhật ra khi đám xác rời cửa và đi theo sau bạn.
 5. Băng qua hành lang tầng 2 tới **cầu thang chính** (đầu kia), xuống tầng 1.
 6. **Tầng 1:** cửa chính bị xích. Vào **phòng quản lý** ở cuối sảnh, **cúi (Ctrl)** và chui qua **cửa sổ vỡ**. Đi vòng ra **vườn hoa** trước nhà B.
 7. **Vườn hoa:** tới gần **Ngư** (đứng trên ghế đá). Cô ấy đưa thanh sắt. Thử đập xác bò ra từ bồn hoa.
-8. **Sân vận động:** đi theo hai bạn. Sống sót khoảng **4 phút**: chạy vòng, cắt qua sân cỏ, lên khán đài để thở; đập đầu xác chắn đường. Thanh sắt mới ở **gầm khán đài**.
+8. **Sân vận động:** hai bạn đi theo sau bạn tới đây. Sống sót khoảng **4 phút**: chạy vòng, cắt qua sân cỏ, lên khán đài để thở; đập đầu xác chắn đường. Thanh sắt mới ở **gầm khán đài**.
 9. **Cổng trường:** **đừng lại gần bảo vệ** (khoảng 3 m thì họ giơ dùi cui; tiến thêm hoặc đập trúng họ là chết).
 10. **Nhà ăn:** tivi bật và đọc bản tin. Ba người chia nhau ra, hết chương 3.
 

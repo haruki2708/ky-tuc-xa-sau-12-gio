@@ -161,7 +161,8 @@ def building():
             flat('Room203Aisle',13.15,14.05,-6.8,-2.1,y)
             link('Room203Link',(13.75,y,-1),(13.75,y,1.2))
             anchor('Room203Door',(13.75,y,0))
-            anchor('Extinguisher2F',(20,y+1.1,.25))
+            # D-062 (Claude for lane B): near the fire stairs, so its bang drags the 203 crowd away.
+            anchor('Extinguisher2F',(39.5,y+1.1,.25))
     # A free-standing ground-floor lobby lies on the corridor's north face.
     # Its sill window provides the only initially available outdoor route.
     door(s,'MainDoor',(19.25,G,4.1),3)
@@ -411,9 +412,9 @@ def campus():
     fence=s.node('Fence')
     for label,pos,size in [('W',(-80,G+1.5,115),(.3,3,350)),('E',(420,G+1.5,115),(.3,3,350)),('N',(170,G+1.5,290),(500,3,.3)),('S',(170,G+1.5,-60),(500,3,.3))]:s.box(label,pos,size,'wall',fence)
     anchors(s);zones(s);navigation(s)
-    env=s.subresource('Environment','background_mode = 1\nbackground_color = Color(0.13,0.055,0.06,1)\nambient_light_source = 2\nambient_light_color = Color(0.48,0.43,0.45,1)\nambient_light_energy = 0.65\ntonemap_mode = 2\nfog_enabled = true\nfog_light_color = Color(0.18,0.10,0.11,1)\nfog_density = 0.018\nfog_sky_affect = 1.0')
+    env=s.subresource('Environment','background_mode = 1\nbackground_color = Color(0.018,0.022,0.035,1)\nambient_light_source = 2\nambient_light_color = Color(0.42,0.45,0.52,1)\nambient_light_energy = 0.65\ntonemap_mode = 2\nfog_enabled = true\nfog_light_color = Color(0.035,0.042,0.06,1)\nfog_density = 0.018\nfog_sky_affect = 1.0')
     s.node('Environment','WorldEnvironment',properties='environment = '+env)
-    s.node('Dawn','DirectionalLight3D',properties='rotation_degrees = Vector3(-22,-35,0)\nlight_color = Color(0.70,0.39,0.32,1)\nlight_energy = 0.65\nshadow_enabled = false')
+    s.node('Dawn','DirectionalLight3D',properties='rotation_degrees = Vector3(-22,-35,0)\nlight_color = Color(0.52,0.58,0.72,1)\nlight_energy = 0.65\nshadow_enabled = false')
     s.save('campus.tscn')
     (ROOT/'art_source/campus/layout.json').write_text(json.dumps({'ground_y':G,'bounds':[-80,420,-60,290],'anchors':ANCHORS,'navigation_surfaces':len(NAV),'navigation_links':len(LINKS)},indent=2)+'\n',encoding='utf-8')
 
