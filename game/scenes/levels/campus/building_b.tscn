@@ -16,7 +16,7 @@
 [ext_resource type="PackedScene" path="res://assets/models/kit/bunk_bed.glb" id="e14"]
 
 [sub_resource type="BoxShape3D" id="s1"]
-size = Vector3(44, 0.24, 10)
+size = Vector3(44, 0.24, 11.6)
 
 [sub_resource type="StandardMaterial3D" id="s2"]
 albedo_texture = ExtResource("e1")
@@ -27,11 +27,11 @@ uv1_world_triplanar = true
 uv1_scale = Vector3(0.5,0.5,0.5)
 
 [sub_resource type="BoxMesh" id="s3"]
-size = Vector3(44, 0.24, 10)
+size = Vector3(44, 0.24, 11.6)
 material = SubResource("s2")
 
 [sub_resource type="BoxShape3D" id="s4"]
-size = Vector3(44, 0.18, 10)
+size = Vector3(44, 0.18, 11.6)
 
 [sub_resource type="StandardMaterial3D" id="s5"]
 albedo_texture = ExtResource("e2")
@@ -42,7 +42,7 @@ uv1_world_triplanar = true
 uv1_scale = Vector3(0.5,0.5,0.5)
 
 [sub_resource type="BoxMesh" id="s6"]
-size = Vector3(44, 0.18, 10)
+size = Vector3(44, 0.18, 11.6)
 material = SubResource("s5")
 
 [sub_resource type="BoxShape3D" id="s7"]
@@ -370,17 +370,17 @@ size = Vector3(1.7, 2.4, 0.1)
 material = SubResource("s37")
 
 [sub_resource type="BoxShape3D" id="s97"]
-size = Vector3(44, 0.24, 10)
+size = Vector3(44, 0.24, 11.6)
 
 [sub_resource type="BoxMesh" id="s98"]
-size = Vector3(44, 0.24, 10)
+size = Vector3(44, 0.24, 11.6)
 material = SubResource("s2")
 
 [sub_resource type="BoxShape3D" id="s99"]
-size = Vector3(44, 0.18, 10)
+size = Vector3(44, 0.18, 11.6)
 
 [sub_resource type="BoxMesh" id="s100"]
-size = Vector3(44, 0.18, 10)
+size = Vector3(44, 0.18, 11.6)
 material = SubResource("s5")
 
 [sub_resource type="BoxShape3D" id="s101"]
@@ -678,17 +678,17 @@ size = Vector3(1.7, 2.4, 0.1)
 material = SubResource("s37")
 
 [sub_resource type="BoxShape3D" id="s185"]
-size = Vector3(44, 0.24, 10)
+size = Vector3(44, 0.24, 11.6)
 
 [sub_resource type="BoxMesh" id="s186"]
-size = Vector3(44, 0.24, 10)
+size = Vector3(44, 0.24, 11.6)
 material = SubResource("s2")
 
 [sub_resource type="BoxShape3D" id="s187"]
-size = Vector3(44, 0.18, 10)
+size = Vector3(44, 0.18, 11.6)
 
 [sub_resource type="BoxMesh" id="s188"]
-size = Vector3(44, 0.18, 10)
+size = Vector3(44, 0.18, 11.6)
 material = SubResource("s5")
 
 [sub_resource type="BoxShape3D" id="s189"]
@@ -1102,31 +1102,31 @@ material = SubResource("s284")
 size = Vector3(1.5, 0.8, 0.7)
 
 [sub_resource type="BoxShape3D" id="s303"]
-size = Vector3(5, 0.24, 2.4)
+size = Vector3(5, 0.24, 4.0)
 
 [sub_resource type="BoxMesh" id="s304"]
-size = Vector3(5, 0.24, 2.4)
+size = Vector3(5, 0.24, 4.0)
 material = SubResource("s284")
 
 [sub_resource type="BoxShape3D" id="s305"]
-size = Vector3(5, 0.24, 2.4)
+size = Vector3(5, 0.24, 4.0)
 
 [sub_resource type="BoxMesh" id="s306"]
-size = Vector3(5, 0.24, 2.4)
+size = Vector3(5, 0.24, 4.0)
 material = SubResource("s284")
 
 [sub_resource type="BoxShape3D" id="s307"]
-size = Vector3(5, 0.24, 2.4)
+size = Vector3(5, 0.24, 4.0)
 
 [sub_resource type="BoxMesh" id="s308"]
-size = Vector3(5, 0.24, 2.4)
+size = Vector3(5, 0.24, 4.0)
 material = SubResource("s284")
 
 [sub_resource type="BoxShape3D" id="s309"]
-size = Vector3(5, 0.24, 2.4)
+size = Vector3(5, 0.24, 4.0)
 
 [sub_resource type="BoxMesh" id="s310"]
-size = Vector3(5, 0.24, 2.4)
+size = Vector3(5, 0.24, 4.0)
 material = SubResource("s284")
 
 [sub_resource type="ConvexPolygonShape3D" id="s311"]
@@ -1441,10 +1441,10 @@ size = Vector3(2.16, 0.18, 0.4463636)
 material = SubResource("s284")
 
 [sub_resource type="BoxShape3D" id="s391"]
-size = Vector3(0.16, 13.5, 8.4)
+size = Vector3(0.16, 13.5, 10.0)
 
 [sub_resource type="BoxMesh" id="s392"]
-size = Vector3(0.16, 13.5, 8.4)
+size = Vector3(0.16, 13.5, 10.0)
 material = SubResource("s5")
 
 [sub_resource type="BoxShape3D" id="s393"]
@@ -1476,31 +1476,31 @@ size = Vector3(5, 2, 2.4)
 material = SubResource("s284")
 
 [sub_resource type="BoxShape3D" id="s401"]
-size = Vector3(5, 0.24, 2.4)
+size = Vector3(5, 0.24, 4.0)
 
 [sub_resource type="BoxMesh" id="s402"]
-size = Vector3(5, 0.24, 2.4)
+size = Vector3(5, 0.24, 4.0)
 material = SubResource("s284")
 
 [sub_resource type="BoxShape3D" id="s403"]
-size = Vector3(5, 0.24, 2.4)
+size = Vector3(5, 0.24, 4.0)
 
 [sub_resource type="BoxMesh" id="s404"]
-size = Vector3(5, 0.24, 2.4)
+size = Vector3(5, 0.24, 4.0)
 material = SubResource("s284")
 
 [sub_resource type="BoxShape3D" id="s405"]
-size = Vector3(5, 0.24, 2.4)
+size = Vector3(5, 0.24, 4.0)
 
 [sub_resource type="BoxMesh" id="s406"]
-size = Vector3(5, 0.24, 2.4)
+size = Vector3(5, 0.24, 4.0)
 material = SubResource("s284")
 
 [sub_resource type="BoxShape3D" id="s407"]
-size = Vector3(5, 0.24, 2.4)
+size = Vector3(5, 0.24, 4.0)
 
 [sub_resource type="BoxMesh" id="s408"]
-size = Vector3(5, 0.24, 2.4)
+size = Vector3(5, 0.24, 4.0)
 material = SubResource("s284")
 
 [sub_resource type="ConvexPolygonShape3D" id="s409"]
@@ -1724,10 +1724,10 @@ size = Vector3(0.16, 13.5, 6)
 material = SubResource("s5")
 
 [sub_resource type="BoxShape3D" id="s466"]
-size = Vector3(0.16, 13.5, 8.4)
+size = Vector3(0.16, 13.5, 10.0)
 
 [sub_resource type="BoxMesh" id="s467"]
-size = Vector3(0.16, 13.5, 8.4)
+size = Vector3(0.16, 13.5, 10.0)
 material = SubResource("s5")
 
 [sub_resource type="BoxShape3D" id="s468"]
@@ -1752,17 +1752,17 @@ size = Vector3(5, 2, 2.4)
 material = SubResource("s284")
 
 [sub_resource type="BoxShape3D" id="s474"]
-size = Vector3(2.0, 2.4, 0.12)
+size = Vector3(3.8, 2.4, 0.12)
 
 [sub_resource type="BoxMesh" id="s475"]
-size = Vector3(2.0, 2.4, 0.12)
+size = Vector3(3.8, 2.4, 0.12)
 material = SubResource("s8")
 
 [sub_resource type="BoxShape3D" id="s476"]
-size = Vector3(44, 3, 10)
+size = Vector3(44, 3, 11.6)
 
 [sub_resource type="BoxMesh" id="s477"]
-size = Vector3(44, 3, 10)
+size = Vector3(44, 3, 11.6)
 material = SubResource("s5")
 
 [sub_resource type="StandardMaterial3D" id="s478"]
@@ -1818,10 +1818,10 @@ size = Vector3(1.8, 1.5, 0.06)
 material = SubResource("s478")
 
 [sub_resource type="BoxShape3D" id="s490"]
-size = Vector3(44, 3, 10)
+size = Vector3(44, 3, 11.6)
 
 [sub_resource type="BoxMesh" id="s491"]
-size = Vector3(44, 3, 10)
+size = Vector3(44, 3, 11.6)
 material = SubResource("s5")
 
 [sub_resource type="BoxMesh" id="s492"]
@@ -3605,7 +3605,7 @@ size = Vector3(1.5, 0.8, 0.7)
 
 
 [node name="Slab" type="StaticBody3D" parent="Floor1"]
-position = Vector3(22, -10.02, -2.6)
+position = Vector3(22, -10.02, -1.8)
 metadata/surface = &"tile"
 metadata/is_floor = true
 collision_layer = 1
@@ -3618,7 +3618,7 @@ shape = SubResource("s1")
 mesh = SubResource("s3")
 
 [node name="Ceiling" type="StaticBody3D" parent="Floor1"]
-position = Vector3(22, -6.78, -2.6)
+position = Vector3(22, -6.78, -1.8)
 collision_layer = 1
 collision_mask = 0
 
@@ -3629,7 +3629,7 @@ shape = SubResource("s4")
 mesh = SubResource("s6")
 
 [node name="Rail" type="StaticBody3D" parent="Floor1"]
-position = Vector3(22, -9.25, 2.42)
+position = Vector3(22, -9.25, 4.02)
 collision_layer = 0
 collision_mask = 0
 visible = false
@@ -4127,7 +4127,7 @@ mesh = SubResource("s96")
 
 
 [node name="Slab" type="StaticBody3D" parent="Floor2"]
-position = Vector3(22, -6.72, -2.6)
+position = Vector3(22, -6.72, -1.8)
 metadata/surface = &"tile"
 metadata/is_floor = true
 collision_layer = 1
@@ -4140,7 +4140,7 @@ shape = SubResource("s97")
 mesh = SubResource("s98")
 
 [node name="Ceiling" type="StaticBody3D" parent="Floor2"]
-position = Vector3(22, -3.48, -2.6)
+position = Vector3(22, -3.48, -1.8)
 collision_layer = 1
 collision_mask = 0
 
@@ -4151,7 +4151,7 @@ shape = SubResource("s99")
 mesh = SubResource("s100")
 
 [node name="Rail" type="StaticBody3D" parent="Floor2"]
-position = Vector3(22, -5.95, 2.42)
+position = Vector3(22, -5.95, 4.02)
 collision_layer = 1
 collision_mask = 0
 
@@ -4623,7 +4623,7 @@ mesh = SubResource("s184")
 
 
 [node name="Slab" type="StaticBody3D" parent="Floor3"]
-position = Vector3(22, -3.42, -2.6)
+position = Vector3(22, -3.42, -1.8)
 metadata/surface = &"tile"
 metadata/is_floor = true
 collision_layer = 1
@@ -4636,7 +4636,7 @@ shape = SubResource("s185")
 mesh = SubResource("s186")
 
 [node name="Ceiling" type="StaticBody3D" parent="Floor3"]
-position = Vector3(22, -0.18, -2.6)
+position = Vector3(22, -0.18, -1.8)
 collision_layer = 1
 collision_mask = 0
 
@@ -4647,7 +4647,7 @@ shape = SubResource("s187")
 mesh = SubResource("s188")
 
 [node name="Rail" type="StaticBody3D" parent="Floor3"]
-position = Vector3(22, -2.65, 2.42)
+position = Vector3(22, -2.65, 4.02)
 collision_layer = 1
 collision_mask = 0
 
@@ -5124,7 +5124,7 @@ shape = SubResource("s273")
 mesh = SubResource("s274")
 
 [node name="MainDoor" type="Node3D" parent="."]
-position = Vector3(19.25, -9.9, 2.5)
+position = Vector3(19.25, -9.9, 4.1)
 rotation_degrees = Vector3(0,0,0)
 script = ExtResource("e5")
 
@@ -5159,7 +5159,7 @@ rotation_degrees = Vector3(0,0,30)
 mesh = SubResource("s278")
 
 [node name="LobbyRailWest" type="StaticBody3D" parent="."]
-position = Vector3(8.825, -9.25, 2.42)
+position = Vector3(8.825, -9.25, 4.02)
 collision_layer = 1
 collision_mask = 0
 
@@ -5170,7 +5170,7 @@ shape = SubResource("s279")
 mesh = SubResource("s280")
 
 [node name="LobbyRailEast" type="StaticBody3D" parent="."]
-position = Vector3(32.325, -9.25, 2.42)
+position = Vector3(32.325, -9.25, 4.02)
 collision_layer = 1
 collision_mask = 0
 
@@ -5310,7 +5310,7 @@ shape = SubResource("s302")
 
 
 [node name="Landing1" type="StaticBody3D" parent="MainStairs"]
-position = Vector3(-2.5, -10.02, 1.2)
+position = Vector3(-2.5, -10.02, 2.0)
 metadata/surface = &"tile"
 metadata/is_floor = true
 collision_layer = 1
@@ -5323,7 +5323,7 @@ shape = SubResource("s303")
 mesh = SubResource("s304")
 
 [node name="Landing2" type="StaticBody3D" parent="MainStairs"]
-position = Vector3(-2.5, -6.72, 1.2)
+position = Vector3(-2.5, -6.72, 2.0)
 metadata/surface = &"tile"
 metadata/is_floor = true
 collision_layer = 1
@@ -5336,7 +5336,7 @@ shape = SubResource("s305")
 mesh = SubResource("s306")
 
 [node name="Landing3" type="StaticBody3D" parent="MainStairs"]
-position = Vector3(-2.5, -3.42, 1.2)
+position = Vector3(-2.5, -3.42, 2.0)
 metadata/surface = &"tile"
 metadata/is_floor = true
 collision_layer = 1
@@ -5349,7 +5349,7 @@ shape = SubResource("s307")
 mesh = SubResource("s308")
 
 [node name="Landing4" type="StaticBody3D" parent="MainStairs"]
-position = Vector3(-2.5, -0.12, 1.2)
+position = Vector3(-2.5, -0.12, 2.0)
 metadata/surface = &"tile"
 metadata/is_floor = true
 collision_layer = 1
@@ -5857,7 +5857,7 @@ position = Vector3(-1.2, -9.915, -0.2181818)
 mesh = SubResource("s390")
 
 [node name="Wall-5.08" type="StaticBody3D" parent="MainStairs"]
-position = Vector3(-5.08, -4, -2)
+position = Vector3(-5.08, -4, -1.2)
 collision_layer = 1
 collision_mask = 0
 
@@ -5890,7 +5890,7 @@ shape = SubResource("s395")
 mesh = SubResource("s396")
 
 [node name="FrontRail" type="StaticBody3D" parent="MainStairs"]
-position = Vector3(-2.5, -4, 2.5)
+position = Vector3(-2.5, -4, 4.1)
 collision_layer = 1
 collision_mask = 0
 
@@ -5915,7 +5915,7 @@ mesh = SubResource("s400")
 
 
 [node name="Landing1" type="StaticBody3D" parent="FireStairs"]
-position = Vector3(46.5, -10.02, 1.2)
+position = Vector3(46.5, -10.02, 2.0)
 metadata/surface = &"tile"
 metadata/is_floor = true
 collision_layer = 1
@@ -5928,7 +5928,7 @@ shape = SubResource("s401")
 mesh = SubResource("s402")
 
 [node name="Landing2" type="StaticBody3D" parent="FireStairs"]
-position = Vector3(46.5, -6.72, 1.2)
+position = Vector3(46.5, -6.72, 2.0)
 metadata/surface = &"tile"
 metadata/is_floor = true
 collision_layer = 1
@@ -5941,7 +5941,7 @@ shape = SubResource("s403")
 mesh = SubResource("s404")
 
 [node name="Landing3" type="StaticBody3D" parent="FireStairs"]
-position = Vector3(46.5, -3.42, 1.2)
+position = Vector3(46.5, -3.42, 2.0)
 metadata/surface = &"tile"
 metadata/is_floor = true
 collision_layer = 1
@@ -5954,7 +5954,7 @@ shape = SubResource("s405")
 mesh = SubResource("s406")
 
 [node name="Landing4" type="StaticBody3D" parent="FireStairs"]
-position = Vector3(46.5, -0.12, 1.2)
+position = Vector3(46.5, -0.12, 2.0)
 metadata/surface = &"tile"
 metadata/is_floor = true
 collision_layer = 1
@@ -6317,7 +6317,7 @@ shape = SubResource("s464")
 mesh = SubResource("s465")
 
 [node name="Wall49.08" type="StaticBody3D" parent="FireStairs"]
-position = Vector3(49.08, -4, -2)
+position = Vector3(49.08, -4, -1.2)
 collision_layer = 1
 collision_mask = 0
 
@@ -6339,7 +6339,7 @@ shape = SubResource("s468")
 mesh = SubResource("s469")
 
 [node name="FrontRail" type="StaticBody3D" parent="FireStairs"]
-position = Vector3(46.5, -4, 2.5)
+position = Vector3(46.5, -4, 4.1)
 collision_layer = 1
 collision_mask = 0
 
@@ -6361,25 +6361,25 @@ shape = SubResource("s472")
 mesh = SubResource("s473")
 
 [node name="FireDoor" type="Node3D" parent="."]
-position = Vector3(44, 0, 1.2)
+position = Vector3(44, 0, 2.0)
 rotation_degrees = Vector3(0,90,0)
 script = ExtResource("e5")
 
 [node name="Leaf" type="StaticBody3D" parent="FireDoor"]
-position = Vector3(-1.0, 1.2, 0)
+position = Vector3(-1.9, 1.2, 0)
 collision_layer = 1
 collision_mask = 0
 
 [node name="Collision" type="CollisionShape3D" parent="FireDoor/Leaf"]
 shape = SubResource("s474")
-position = Vector3(1.0, 0, 0)
+position = Vector3(1.9, 0, 0)
 
 [node name="Mesh" type="MeshInstance3D" parent="FireDoor/Leaf"]
 mesh = SubResource("s475")
-position = Vector3(1.0, 0, 0)
+position = Vector3(1.9, 0, 0)
 
 [node name="UpperFloor5" type="StaticBody3D" parent="."]
-position = Vector3(22, 4.8, -2.6)
+position = Vector3(22, 4.8, -1.8)
 collision_layer = 1
 collision_mask = 0
 
@@ -6390,73 +6390,73 @@ shape = SubResource("s476")
 mesh = SubResource("s477")
 
 [node name="UpperWindow5_0" type="Node3D" parent="."]
-position = Vector3(2, 4.95, 2.42)
+position = Vector3(2, 4.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="UpperWindow5_0"]
 mesh = SubResource("s479")
 
 [node name="UpperWindow5_1" type="Node3D" parent="."]
-position = Vector3(6, 4.95, 2.42)
+position = Vector3(6, 4.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="UpperWindow5_1"]
 mesh = SubResource("s480")
 
 [node name="UpperWindow5_2" type="Node3D" parent="."]
-position = Vector3(10, 4.95, 2.42)
+position = Vector3(10, 4.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="UpperWindow5_2"]
 mesh = SubResource("s481")
 
 [node name="UpperWindow5_3" type="Node3D" parent="."]
-position = Vector3(14, 4.95, 2.42)
+position = Vector3(14, 4.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="UpperWindow5_3"]
 mesh = SubResource("s482")
 
 [node name="UpperWindow5_4" type="Node3D" parent="."]
-position = Vector3(18, 4.95, 2.42)
+position = Vector3(18, 4.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="UpperWindow5_4"]
 mesh = SubResource("s483")
 
 [node name="UpperWindow5_5" type="Node3D" parent="."]
-position = Vector3(22, 4.95, 2.42)
+position = Vector3(22, 4.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="UpperWindow5_5"]
 mesh = SubResource("s484")
 
 [node name="UpperWindow5_6" type="Node3D" parent="."]
-position = Vector3(26, 4.95, 2.42)
+position = Vector3(26, 4.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="UpperWindow5_6"]
 mesh = SubResource("s485")
 
 [node name="UpperWindow5_7" type="Node3D" parent="."]
-position = Vector3(30, 4.95, 2.42)
+position = Vector3(30, 4.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="UpperWindow5_7"]
 mesh = SubResource("s486")
 
 [node name="UpperWindow5_8" type="Node3D" parent="."]
-position = Vector3(34, 4.95, 2.42)
+position = Vector3(34, 4.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="UpperWindow5_8"]
 mesh = SubResource("s487")
 
 [node name="UpperWindow5_9" type="Node3D" parent="."]
-position = Vector3(38, 4.95, 2.42)
+position = Vector3(38, 4.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="UpperWindow5_9"]
 mesh = SubResource("s488")
 
 [node name="UpperWindow5_10" type="Node3D" parent="."]
-position = Vector3(42, 4.95, 2.42)
+position = Vector3(42, 4.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="UpperWindow5_10"]
 mesh = SubResource("s489")
 
 [node name="UpperFloor6" type="StaticBody3D" parent="."]
-position = Vector3(22, 8.1, -2.6)
+position = Vector3(22, 8.1, -1.8)
 collision_layer = 1
 collision_mask = 0
 
@@ -6467,67 +6467,67 @@ shape = SubResource("s490")
 mesh = SubResource("s491")
 
 [node name="UpperWindow6_0" type="Node3D" parent="."]
-position = Vector3(2, 8.25, 2.42)
+position = Vector3(2, 8.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="UpperWindow6_0"]
 mesh = SubResource("s492")
 
 [node name="UpperWindow6_1" type="Node3D" parent="."]
-position = Vector3(6, 8.25, 2.42)
+position = Vector3(6, 8.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="UpperWindow6_1"]
 mesh = SubResource("s493")
 
 [node name="UpperWindow6_2" type="Node3D" parent="."]
-position = Vector3(10, 8.25, 2.42)
+position = Vector3(10, 8.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="UpperWindow6_2"]
 mesh = SubResource("s494")
 
 [node name="UpperWindow6_3" type="Node3D" parent="."]
-position = Vector3(14, 8.25, 2.42)
+position = Vector3(14, 8.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="UpperWindow6_3"]
 mesh = SubResource("s495")
 
 [node name="UpperWindow6_4" type="Node3D" parent="."]
-position = Vector3(18, 8.25, 2.42)
+position = Vector3(18, 8.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="UpperWindow6_4"]
 mesh = SubResource("s496")
 
 [node name="UpperWindow6_5" type="Node3D" parent="."]
-position = Vector3(22, 8.25, 2.42)
+position = Vector3(22, 8.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="UpperWindow6_5"]
 mesh = SubResource("s497")
 
 [node name="UpperWindow6_6" type="Node3D" parent="."]
-position = Vector3(26, 8.25, 2.42)
+position = Vector3(26, 8.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="UpperWindow6_6"]
 mesh = SubResource("s498")
 
 [node name="UpperWindow6_7" type="Node3D" parent="."]
-position = Vector3(30, 8.25, 2.42)
+position = Vector3(30, 8.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="UpperWindow6_7"]
 mesh = SubResource("s499")
 
 [node name="UpperWindow6_8" type="Node3D" parent="."]
-position = Vector3(34, 8.25, 2.42)
+position = Vector3(34, 8.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="UpperWindow6_8"]
 mesh = SubResource("s500")
 
 [node name="UpperWindow6_9" type="Node3D" parent="."]
-position = Vector3(38, 8.25, 2.42)
+position = Vector3(38, 8.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="UpperWindow6_9"]
 mesh = SubResource("s501")
 
 [node name="UpperWindow6_10" type="Node3D" parent="."]
-position = Vector3(42, 8.25, 2.42)
+position = Vector3(42, 8.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="UpperWindow6_10"]
 mesh = SubResource("s502")
@@ -6555,79 +6555,79 @@ position = Vector3(0,0,0.025)
 texture_filter = 0
 
 [node name="RailingTop0" type="Node3D" parent="KitDetail1"]
-position = Vector3(2.75, -8.6, 2.42)
+position = Vector3(2.75, -8.6, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/RailingTop0"]
 mesh = SubResource("s505")
 
 [node name="Railing0_0" type="Node3D" parent="KitDetail1"]
-position = Vector3(0.25, -9.25, 2.42)
+position = Vector3(0.25, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing0_0"]
 mesh = SubResource("s506")
 
 [node name="Railing0_1" type="Node3D" parent="KitDetail1"]
-position = Vector3(0.75, -9.25, 2.42)
+position = Vector3(0.75, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing0_1"]
 mesh = SubResource("s507")
 
 [node name="Railing0_2" type="Node3D" parent="KitDetail1"]
-position = Vector3(1.25, -9.25, 2.42)
+position = Vector3(1.25, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing0_2"]
 mesh = SubResource("s508")
 
 [node name="Railing0_3" type="Node3D" parent="KitDetail1"]
-position = Vector3(1.75, -9.25, 2.42)
+position = Vector3(1.75, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing0_3"]
 mesh = SubResource("s509")
 
 [node name="Railing0_4" type="Node3D" parent="KitDetail1"]
-position = Vector3(2.25, -9.25, 2.42)
+position = Vector3(2.25, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing0_4"]
 mesh = SubResource("s510")
 
 [node name="Railing0_5" type="Node3D" parent="KitDetail1"]
-position = Vector3(2.75, -9.25, 2.42)
+position = Vector3(2.75, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing0_5"]
 mesh = SubResource("s511")
 
 [node name="Railing0_6" type="Node3D" parent="KitDetail1"]
-position = Vector3(3.25, -9.25, 2.42)
+position = Vector3(3.25, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing0_6"]
 mesh = SubResource("s512")
 
 [node name="Railing0_7" type="Node3D" parent="KitDetail1"]
-position = Vector3(3.75, -9.25, 2.42)
+position = Vector3(3.75, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing0_7"]
 mesh = SubResource("s513")
 
 [node name="Railing0_8" type="Node3D" parent="KitDetail1"]
-position = Vector3(4.25, -9.25, 2.42)
+position = Vector3(4.25, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing0_8"]
 mesh = SubResource("s514")
 
 [node name="Railing0_9" type="Node3D" parent="KitDetail1"]
-position = Vector3(4.75, -9.25, 2.42)
+position = Vector3(4.75, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing0_9"]
 mesh = SubResource("s515")
 
 [node name="Railing0_10" type="Node3D" parent="KitDetail1"]
-position = Vector3(5.25, -9.25, 2.42)
+position = Vector3(5.25, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing0_10"]
 mesh = SubResource("s516")
 
 [node name="Tube0" type="Node3D" parent="KitDetail1"]
-position = Vector3(2.75, -7.05, 1.2)
+position = Vector3(2.75, -7.05, 2.0)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Tube0"]
 mesh = SubResource("s518")
@@ -6652,79 +6652,79 @@ position = Vector3(0,0,0.025)
 texture_filter = 0
 
 [node name="RailingTop1" type="Node3D" parent="KitDetail1"]
-position = Vector3(8.25, -8.6, 2.42)
+position = Vector3(8.25, -8.6, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/RailingTop1"]
 mesh = SubResource("s520")
 
 [node name="Railing1_0" type="Node3D" parent="KitDetail1"]
-position = Vector3(5.75, -9.25, 2.42)
+position = Vector3(5.75, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing1_0"]
 mesh = SubResource("s521")
 
 [node name="Railing1_1" type="Node3D" parent="KitDetail1"]
-position = Vector3(6.25, -9.25, 2.42)
+position = Vector3(6.25, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing1_1"]
 mesh = SubResource("s522")
 
 [node name="Railing1_2" type="Node3D" parent="KitDetail1"]
-position = Vector3(6.75, -9.25, 2.42)
+position = Vector3(6.75, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing1_2"]
 mesh = SubResource("s523")
 
 [node name="Railing1_3" type="Node3D" parent="KitDetail1"]
-position = Vector3(7.25, -9.25, 2.42)
+position = Vector3(7.25, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing1_3"]
 mesh = SubResource("s524")
 
 [node name="Railing1_4" type="Node3D" parent="KitDetail1"]
-position = Vector3(7.75, -9.25, 2.42)
+position = Vector3(7.75, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing1_4"]
 mesh = SubResource("s525")
 
 [node name="Railing1_5" type="Node3D" parent="KitDetail1"]
-position = Vector3(8.25, -9.25, 2.42)
+position = Vector3(8.25, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing1_5"]
 mesh = SubResource("s526")
 
 [node name="Railing1_6" type="Node3D" parent="KitDetail1"]
-position = Vector3(8.75, -9.25, 2.42)
+position = Vector3(8.75, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing1_6"]
 mesh = SubResource("s527")
 
 [node name="Railing1_7" type="Node3D" parent="KitDetail1"]
-position = Vector3(9.25, -9.25, 2.42)
+position = Vector3(9.25, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing1_7"]
 mesh = SubResource("s528")
 
 [node name="Railing1_8" type="Node3D" parent="KitDetail1"]
-position = Vector3(9.75, -9.25, 2.42)
+position = Vector3(9.75, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing1_8"]
 mesh = SubResource("s529")
 
 [node name="Railing1_9" type="Node3D" parent="KitDetail1"]
-position = Vector3(10.25, -9.25, 2.42)
+position = Vector3(10.25, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing1_9"]
 mesh = SubResource("s530")
 
 [node name="Railing1_10" type="Node3D" parent="KitDetail1"]
-position = Vector3(10.75, -9.25, 2.42)
+position = Vector3(10.75, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing1_10"]
 mesh = SubResource("s531")
 
 [node name="Tube1" type="Node3D" parent="KitDetail1"]
-position = Vector3(8.25, -7.05, 1.2)
+position = Vector3(8.25, -7.05, 2.0)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Tube1"]
 mesh = SubResource("s532")
@@ -6749,79 +6749,79 @@ position = Vector3(0,0,0.025)
 texture_filter = 0
 
 [node name="RailingTop2" type="Node3D" parent="KitDetail1"]
-position = Vector3(13.75, -8.6, 2.42)
+position = Vector3(13.75, -8.6, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/RailingTop2"]
 mesh = SubResource("s534")
 
 [node name="Railing2_0" type="Node3D" parent="KitDetail1"]
-position = Vector3(11.25, -9.25, 2.42)
+position = Vector3(11.25, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing2_0"]
 mesh = SubResource("s535")
 
 [node name="Railing2_1" type="Node3D" parent="KitDetail1"]
-position = Vector3(11.75, -9.25, 2.42)
+position = Vector3(11.75, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing2_1"]
 mesh = SubResource("s536")
 
 [node name="Railing2_2" type="Node3D" parent="KitDetail1"]
-position = Vector3(12.25, -9.25, 2.42)
+position = Vector3(12.25, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing2_2"]
 mesh = SubResource("s537")
 
 [node name="Railing2_3" type="Node3D" parent="KitDetail1"]
-position = Vector3(12.75, -9.25, 2.42)
+position = Vector3(12.75, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing2_3"]
 mesh = SubResource("s538")
 
 [node name="Railing2_4" type="Node3D" parent="KitDetail1"]
-position = Vector3(13.25, -9.25, 2.42)
+position = Vector3(13.25, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing2_4"]
 mesh = SubResource("s539")
 
 [node name="Railing2_5" type="Node3D" parent="KitDetail1"]
-position = Vector3(13.75, -9.25, 2.42)
+position = Vector3(13.75, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing2_5"]
 mesh = SubResource("s540")
 
 [node name="Railing2_6" type="Node3D" parent="KitDetail1"]
-position = Vector3(14.25, -9.25, 2.42)
+position = Vector3(14.25, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing2_6"]
 mesh = SubResource("s541")
 
 [node name="Railing2_7" type="Node3D" parent="KitDetail1"]
-position = Vector3(14.75, -9.25, 2.42)
+position = Vector3(14.75, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing2_7"]
 mesh = SubResource("s542")
 
 [node name="Railing2_8" type="Node3D" parent="KitDetail1"]
-position = Vector3(15.25, -9.25, 2.42)
+position = Vector3(15.25, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing2_8"]
 mesh = SubResource("s543")
 
 [node name="Railing2_9" type="Node3D" parent="KitDetail1"]
-position = Vector3(15.75, -9.25, 2.42)
+position = Vector3(15.75, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing2_9"]
 mesh = SubResource("s544")
 
 [node name="Railing2_10" type="Node3D" parent="KitDetail1"]
-position = Vector3(16.25, -9.25, 2.42)
+position = Vector3(16.25, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing2_10"]
 mesh = SubResource("s545")
 
 [node name="Tube2" type="Node3D" parent="KitDetail1"]
-position = Vector3(13.75, -7.05, 1.2)
+position = Vector3(13.75, -7.05, 2.0)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Tube2"]
 mesh = SubResource("s546")
@@ -6846,79 +6846,79 @@ position = Vector3(0,0,0.025)
 texture_filter = 0
 
 [node name="RailingTop3" type="Node3D" parent="KitDetail1"]
-position = Vector3(19.25, -8.6, 2.42)
+position = Vector3(19.25, -8.6, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/RailingTop3"]
 mesh = SubResource("s548")
 
 [node name="Railing3_0" type="Node3D" parent="KitDetail1"]
-position = Vector3(16.75, -9.25, 2.42)
+position = Vector3(16.75, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing3_0"]
 mesh = SubResource("s549")
 
 [node name="Railing3_1" type="Node3D" parent="KitDetail1"]
-position = Vector3(17.25, -9.25, 2.42)
+position = Vector3(17.25, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing3_1"]
 mesh = SubResource("s550")
 
 [node name="Railing3_2" type="Node3D" parent="KitDetail1"]
-position = Vector3(17.75, -9.25, 2.42)
+position = Vector3(17.75, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing3_2"]
 mesh = SubResource("s551")
 
 [node name="Railing3_3" type="Node3D" parent="KitDetail1"]
-position = Vector3(18.25, -9.25, 2.42)
+position = Vector3(18.25, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing3_3"]
 mesh = SubResource("s552")
 
 [node name="Railing3_4" type="Node3D" parent="KitDetail1"]
-position = Vector3(18.75, -9.25, 2.42)
+position = Vector3(18.75, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing3_4"]
 mesh = SubResource("s553")
 
 [node name="Railing3_5" type="Node3D" parent="KitDetail1"]
-position = Vector3(19.25, -9.25, 2.42)
+position = Vector3(19.25, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing3_5"]
 mesh = SubResource("s554")
 
 [node name="Railing3_6" type="Node3D" parent="KitDetail1"]
-position = Vector3(19.75, -9.25, 2.42)
+position = Vector3(19.75, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing3_6"]
 mesh = SubResource("s555")
 
 [node name="Railing3_7" type="Node3D" parent="KitDetail1"]
-position = Vector3(20.25, -9.25, 2.42)
+position = Vector3(20.25, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing3_7"]
 mesh = SubResource("s556")
 
 [node name="Railing3_8" type="Node3D" parent="KitDetail1"]
-position = Vector3(20.75, -9.25, 2.42)
+position = Vector3(20.75, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing3_8"]
 mesh = SubResource("s557")
 
 [node name="Railing3_9" type="Node3D" parent="KitDetail1"]
-position = Vector3(21.25, -9.25, 2.42)
+position = Vector3(21.25, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing3_9"]
 mesh = SubResource("s558")
 
 [node name="Railing3_10" type="Node3D" parent="KitDetail1"]
-position = Vector3(21.75, -9.25, 2.42)
+position = Vector3(21.75, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing3_10"]
 mesh = SubResource("s559")
 
 [node name="Tube3" type="Node3D" parent="KitDetail1"]
-position = Vector3(19.25, -7.05, 1.2)
+position = Vector3(19.25, -7.05, 2.0)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Tube3"]
 mesh = SubResource("s560")
@@ -6943,79 +6943,79 @@ position = Vector3(0,0,0.025)
 texture_filter = 0
 
 [node name="RailingTop4" type="Node3D" parent="KitDetail1"]
-position = Vector3(24.75, -8.6, 2.42)
+position = Vector3(24.75, -8.6, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/RailingTop4"]
 mesh = SubResource("s562")
 
 [node name="Railing4_0" type="Node3D" parent="KitDetail1"]
-position = Vector3(22.25, -9.25, 2.42)
+position = Vector3(22.25, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing4_0"]
 mesh = SubResource("s563")
 
 [node name="Railing4_1" type="Node3D" parent="KitDetail1"]
-position = Vector3(22.75, -9.25, 2.42)
+position = Vector3(22.75, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing4_1"]
 mesh = SubResource("s564")
 
 [node name="Railing4_2" type="Node3D" parent="KitDetail1"]
-position = Vector3(23.25, -9.25, 2.42)
+position = Vector3(23.25, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing4_2"]
 mesh = SubResource("s565")
 
 [node name="Railing4_3" type="Node3D" parent="KitDetail1"]
-position = Vector3(23.75, -9.25, 2.42)
+position = Vector3(23.75, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing4_3"]
 mesh = SubResource("s566")
 
 [node name="Railing4_4" type="Node3D" parent="KitDetail1"]
-position = Vector3(24.25, -9.25, 2.42)
+position = Vector3(24.25, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing4_4"]
 mesh = SubResource("s567")
 
 [node name="Railing4_5" type="Node3D" parent="KitDetail1"]
-position = Vector3(24.75, -9.25, 2.42)
+position = Vector3(24.75, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing4_5"]
 mesh = SubResource("s568")
 
 [node name="Railing4_6" type="Node3D" parent="KitDetail1"]
-position = Vector3(25.25, -9.25, 2.42)
+position = Vector3(25.25, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing4_6"]
 mesh = SubResource("s569")
 
 [node name="Railing4_7" type="Node3D" parent="KitDetail1"]
-position = Vector3(25.75, -9.25, 2.42)
+position = Vector3(25.75, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing4_7"]
 mesh = SubResource("s570")
 
 [node name="Railing4_8" type="Node3D" parent="KitDetail1"]
-position = Vector3(26.25, -9.25, 2.42)
+position = Vector3(26.25, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing4_8"]
 mesh = SubResource("s571")
 
 [node name="Railing4_9" type="Node3D" parent="KitDetail1"]
-position = Vector3(26.75, -9.25, 2.42)
+position = Vector3(26.75, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing4_9"]
 mesh = SubResource("s572")
 
 [node name="Railing4_10" type="Node3D" parent="KitDetail1"]
-position = Vector3(27.25, -9.25, 2.42)
+position = Vector3(27.25, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing4_10"]
 mesh = SubResource("s573")
 
 [node name="Tube4" type="Node3D" parent="KitDetail1"]
-position = Vector3(24.75, -7.05, 1.2)
+position = Vector3(24.75, -7.05, 2.0)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Tube4"]
 mesh = SubResource("s574")
@@ -7040,79 +7040,79 @@ position = Vector3(0,0,0.025)
 texture_filter = 0
 
 [node name="RailingTop5" type="Node3D" parent="KitDetail1"]
-position = Vector3(30.25, -8.6, 2.42)
+position = Vector3(30.25, -8.6, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/RailingTop5"]
 mesh = SubResource("s576")
 
 [node name="Railing5_0" type="Node3D" parent="KitDetail1"]
-position = Vector3(27.75, -9.25, 2.42)
+position = Vector3(27.75, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing5_0"]
 mesh = SubResource("s577")
 
 [node name="Railing5_1" type="Node3D" parent="KitDetail1"]
-position = Vector3(28.25, -9.25, 2.42)
+position = Vector3(28.25, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing5_1"]
 mesh = SubResource("s578")
 
 [node name="Railing5_2" type="Node3D" parent="KitDetail1"]
-position = Vector3(28.75, -9.25, 2.42)
+position = Vector3(28.75, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing5_2"]
 mesh = SubResource("s579")
 
 [node name="Railing5_3" type="Node3D" parent="KitDetail1"]
-position = Vector3(29.25, -9.25, 2.42)
+position = Vector3(29.25, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing5_3"]
 mesh = SubResource("s580")
 
 [node name="Railing5_4" type="Node3D" parent="KitDetail1"]
-position = Vector3(29.75, -9.25, 2.42)
+position = Vector3(29.75, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing5_4"]
 mesh = SubResource("s581")
 
 [node name="Railing5_5" type="Node3D" parent="KitDetail1"]
-position = Vector3(30.25, -9.25, 2.42)
+position = Vector3(30.25, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing5_5"]
 mesh = SubResource("s582")
 
 [node name="Railing5_6" type="Node3D" parent="KitDetail1"]
-position = Vector3(30.75, -9.25, 2.42)
+position = Vector3(30.75, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing5_6"]
 mesh = SubResource("s583")
 
 [node name="Railing5_7" type="Node3D" parent="KitDetail1"]
-position = Vector3(31.25, -9.25, 2.42)
+position = Vector3(31.25, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing5_7"]
 mesh = SubResource("s584")
 
 [node name="Railing5_8" type="Node3D" parent="KitDetail1"]
-position = Vector3(31.75, -9.25, 2.42)
+position = Vector3(31.75, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing5_8"]
 mesh = SubResource("s585")
 
 [node name="Railing5_9" type="Node3D" parent="KitDetail1"]
-position = Vector3(32.25, -9.25, 2.42)
+position = Vector3(32.25, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing5_9"]
 mesh = SubResource("s586")
 
 [node name="Railing5_10" type="Node3D" parent="KitDetail1"]
-position = Vector3(32.75, -9.25, 2.42)
+position = Vector3(32.75, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing5_10"]
 mesh = SubResource("s587")
 
 [node name="Tube5" type="Node3D" parent="KitDetail1"]
-position = Vector3(30.25, -7.05, 1.2)
+position = Vector3(30.25, -7.05, 2.0)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Tube5"]
 mesh = SubResource("s588")
@@ -7137,79 +7137,79 @@ position = Vector3(0,0,0.025)
 texture_filter = 0
 
 [node name="RailingTop6" type="Node3D" parent="KitDetail1"]
-position = Vector3(35.75, -8.6, 2.42)
+position = Vector3(35.75, -8.6, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/RailingTop6"]
 mesh = SubResource("s590")
 
 [node name="Railing6_0" type="Node3D" parent="KitDetail1"]
-position = Vector3(33.25, -9.25, 2.42)
+position = Vector3(33.25, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing6_0"]
 mesh = SubResource("s591")
 
 [node name="Railing6_1" type="Node3D" parent="KitDetail1"]
-position = Vector3(33.75, -9.25, 2.42)
+position = Vector3(33.75, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing6_1"]
 mesh = SubResource("s592")
 
 [node name="Railing6_2" type="Node3D" parent="KitDetail1"]
-position = Vector3(34.25, -9.25, 2.42)
+position = Vector3(34.25, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing6_2"]
 mesh = SubResource("s593")
 
 [node name="Railing6_3" type="Node3D" parent="KitDetail1"]
-position = Vector3(34.75, -9.25, 2.42)
+position = Vector3(34.75, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing6_3"]
 mesh = SubResource("s594")
 
 [node name="Railing6_4" type="Node3D" parent="KitDetail1"]
-position = Vector3(35.25, -9.25, 2.42)
+position = Vector3(35.25, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing6_4"]
 mesh = SubResource("s595")
 
 [node name="Railing6_5" type="Node3D" parent="KitDetail1"]
-position = Vector3(35.75, -9.25, 2.42)
+position = Vector3(35.75, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing6_5"]
 mesh = SubResource("s596")
 
 [node name="Railing6_6" type="Node3D" parent="KitDetail1"]
-position = Vector3(36.25, -9.25, 2.42)
+position = Vector3(36.25, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing6_6"]
 mesh = SubResource("s597")
 
 [node name="Railing6_7" type="Node3D" parent="KitDetail1"]
-position = Vector3(36.75, -9.25, 2.42)
+position = Vector3(36.75, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing6_7"]
 mesh = SubResource("s598")
 
 [node name="Railing6_8" type="Node3D" parent="KitDetail1"]
-position = Vector3(37.25, -9.25, 2.42)
+position = Vector3(37.25, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing6_8"]
 mesh = SubResource("s599")
 
 [node name="Railing6_9" type="Node3D" parent="KitDetail1"]
-position = Vector3(37.75, -9.25, 2.42)
+position = Vector3(37.75, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing6_9"]
 mesh = SubResource("s600")
 
 [node name="Railing6_10" type="Node3D" parent="KitDetail1"]
-position = Vector3(38.25, -9.25, 2.42)
+position = Vector3(38.25, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing6_10"]
 mesh = SubResource("s601")
 
 [node name="Tube6" type="Node3D" parent="KitDetail1"]
-position = Vector3(35.75, -7.05, 1.2)
+position = Vector3(35.75, -7.05, 2.0)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Tube6"]
 mesh = SubResource("s602")
@@ -7234,113 +7234,113 @@ position = Vector3(0,0,0.025)
 texture_filter = 0
 
 [node name="RailingTop7" type="Node3D" parent="KitDetail1"]
-position = Vector3(41.25, -8.6, 2.42)
+position = Vector3(41.25, -8.6, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/RailingTop7"]
 mesh = SubResource("s604")
 
 [node name="Railing7_0" type="Node3D" parent="KitDetail1"]
-position = Vector3(38.75, -9.25, 2.42)
+position = Vector3(38.75, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing7_0"]
 mesh = SubResource("s605")
 
 [node name="Railing7_1" type="Node3D" parent="KitDetail1"]
-position = Vector3(39.25, -9.25, 2.42)
+position = Vector3(39.25, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing7_1"]
 mesh = SubResource("s606")
 
 [node name="Railing7_2" type="Node3D" parent="KitDetail1"]
-position = Vector3(39.75, -9.25, 2.42)
+position = Vector3(39.75, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing7_2"]
 mesh = SubResource("s607")
 
 [node name="Railing7_3" type="Node3D" parent="KitDetail1"]
-position = Vector3(40.25, -9.25, 2.42)
+position = Vector3(40.25, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing7_3"]
 mesh = SubResource("s608")
 
 [node name="Railing7_4" type="Node3D" parent="KitDetail1"]
-position = Vector3(40.75, -9.25, 2.42)
+position = Vector3(40.75, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing7_4"]
 mesh = SubResource("s609")
 
 [node name="Railing7_5" type="Node3D" parent="KitDetail1"]
-position = Vector3(41.25, -9.25, 2.42)
+position = Vector3(41.25, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing7_5"]
 mesh = SubResource("s610")
 
 [node name="Railing7_6" type="Node3D" parent="KitDetail1"]
-position = Vector3(41.75, -9.25, 2.42)
+position = Vector3(41.75, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing7_6"]
 mesh = SubResource("s611")
 
 [node name="Railing7_7" type="Node3D" parent="KitDetail1"]
-position = Vector3(42.25, -9.25, 2.42)
+position = Vector3(42.25, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing7_7"]
 mesh = SubResource("s612")
 
 [node name="Railing7_8" type="Node3D" parent="KitDetail1"]
-position = Vector3(42.75, -9.25, 2.42)
+position = Vector3(42.75, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing7_8"]
 mesh = SubResource("s613")
 
 [node name="Railing7_9" type="Node3D" parent="KitDetail1"]
-position = Vector3(43.25, -9.25, 2.42)
+position = Vector3(43.25, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing7_9"]
 mesh = SubResource("s614")
 
 [node name="Railing7_10" type="Node3D" parent="KitDetail1"]
-position = Vector3(43.75, -9.25, 2.42)
+position = Vector3(43.75, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing7_10"]
 mesh = SubResource("s615")
 
 [node name="Tube7" type="Node3D" parent="KitDetail1"]
-position = Vector3(41.25, -7.05, 1.2)
+position = Vector3(41.25, -7.05, 2.0)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Tube7"]
 mesh = SubResource("s616")
 
 [node name="Light1" type="OmniLight3D" parent="KitDetail1"]
-position = Vector3(1, -7.25, 1.2)
+position = Vector3(1, -7.25, 2.0)
 light_energy = 0.6
 omni_range = 7
 shadow_enabled = false
 light_color = Color(0.65,0.7,0.52,1)
 
 [node name="Light10" type="OmniLight3D" parent="KitDetail1"]
-position = Vector3(10, -7.25, 1.2)
+position = Vector3(10, -7.25, 2.0)
 light_energy = 0.6
 omni_range = 7
 shadow_enabled = false
 light_color = Color(0.65,0.7,0.52,1)
 
 [node name="Light21" type="OmniLight3D" parent="KitDetail1"]
-position = Vector3(21, -7.25, 1.2)
+position = Vector3(21, -7.25, 2.0)
 light_energy = 0.6
 omni_range = 7
 shadow_enabled = false
 light_color = Color(0.65,0.7,0.52,1)
 
 [node name="Light32" type="OmniLight3D" parent="KitDetail1"]
-position = Vector3(32, -7.25, 1.2)
+position = Vector3(32, -7.25, 2.0)
 light_energy = 0.6
 omni_range = 7
 shadow_enabled = false
 light_color = Color(0.65,0.7,0.52,1)
 
 [node name="Light43" type="OmniLight3D" parent="KitDetail1"]
-position = Vector3(43, -7.25, 1.2)
+position = Vector3(43, -7.25, 2.0)
 light_energy = 0.6
 omni_range = 7
 shadow_enabled = false
@@ -7369,79 +7369,79 @@ position = Vector3(0,0,0.025)
 texture_filter = 0
 
 [node name="RailingTop0" type="Node3D" parent="KitDetail2"]
-position = Vector3(2.75, -5.3, 2.42)
+position = Vector3(2.75, -5.3, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/RailingTop0"]
 mesh = SubResource("s618")
 
 [node name="Railing0_0" type="Node3D" parent="KitDetail2"]
-position = Vector3(0.25, -5.95, 2.42)
+position = Vector3(0.25, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing0_0"]
 mesh = SubResource("s619")
 
 [node name="Railing0_1" type="Node3D" parent="KitDetail2"]
-position = Vector3(0.75, -5.95, 2.42)
+position = Vector3(0.75, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing0_1"]
 mesh = SubResource("s620")
 
 [node name="Railing0_2" type="Node3D" parent="KitDetail2"]
-position = Vector3(1.25, -5.95, 2.42)
+position = Vector3(1.25, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing0_2"]
 mesh = SubResource("s621")
 
 [node name="Railing0_3" type="Node3D" parent="KitDetail2"]
-position = Vector3(1.75, -5.95, 2.42)
+position = Vector3(1.75, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing0_3"]
 mesh = SubResource("s622")
 
 [node name="Railing0_4" type="Node3D" parent="KitDetail2"]
-position = Vector3(2.25, -5.95, 2.42)
+position = Vector3(2.25, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing0_4"]
 mesh = SubResource("s623")
 
 [node name="Railing0_5" type="Node3D" parent="KitDetail2"]
-position = Vector3(2.75, -5.95, 2.42)
+position = Vector3(2.75, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing0_5"]
 mesh = SubResource("s624")
 
 [node name="Railing0_6" type="Node3D" parent="KitDetail2"]
-position = Vector3(3.25, -5.95, 2.42)
+position = Vector3(3.25, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing0_6"]
 mesh = SubResource("s625")
 
 [node name="Railing0_7" type="Node3D" parent="KitDetail2"]
-position = Vector3(3.75, -5.95, 2.42)
+position = Vector3(3.75, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing0_7"]
 mesh = SubResource("s626")
 
 [node name="Railing0_8" type="Node3D" parent="KitDetail2"]
-position = Vector3(4.25, -5.95, 2.42)
+position = Vector3(4.25, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing0_8"]
 mesh = SubResource("s627")
 
 [node name="Railing0_9" type="Node3D" parent="KitDetail2"]
-position = Vector3(4.75, -5.95, 2.42)
+position = Vector3(4.75, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing0_9"]
 mesh = SubResource("s628")
 
 [node name="Railing0_10" type="Node3D" parent="KitDetail2"]
-position = Vector3(5.25, -5.95, 2.42)
+position = Vector3(5.25, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing0_10"]
 mesh = SubResource("s629")
 
 [node name="Tube0" type="Node3D" parent="KitDetail2"]
-position = Vector3(2.75, -3.75, 1.2)
+position = Vector3(2.75, -3.75, 2.0)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Tube0"]
 mesh = SubResource("s630")
@@ -7466,79 +7466,79 @@ position = Vector3(0,0,0.025)
 texture_filter = 0
 
 [node name="RailingTop1" type="Node3D" parent="KitDetail2"]
-position = Vector3(8.25, -5.3, 2.42)
+position = Vector3(8.25, -5.3, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/RailingTop1"]
 mesh = SubResource("s632")
 
 [node name="Railing1_0" type="Node3D" parent="KitDetail2"]
-position = Vector3(5.75, -5.95, 2.42)
+position = Vector3(5.75, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing1_0"]
 mesh = SubResource("s633")
 
 [node name="Railing1_1" type="Node3D" parent="KitDetail2"]
-position = Vector3(6.25, -5.95, 2.42)
+position = Vector3(6.25, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing1_1"]
 mesh = SubResource("s634")
 
 [node name="Railing1_2" type="Node3D" parent="KitDetail2"]
-position = Vector3(6.75, -5.95, 2.42)
+position = Vector3(6.75, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing1_2"]
 mesh = SubResource("s635")
 
 [node name="Railing1_3" type="Node3D" parent="KitDetail2"]
-position = Vector3(7.25, -5.95, 2.42)
+position = Vector3(7.25, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing1_3"]
 mesh = SubResource("s636")
 
 [node name="Railing1_4" type="Node3D" parent="KitDetail2"]
-position = Vector3(7.75, -5.95, 2.42)
+position = Vector3(7.75, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing1_4"]
 mesh = SubResource("s637")
 
 [node name="Railing1_5" type="Node3D" parent="KitDetail2"]
-position = Vector3(8.25, -5.95, 2.42)
+position = Vector3(8.25, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing1_5"]
 mesh = SubResource("s638")
 
 [node name="Railing1_6" type="Node3D" parent="KitDetail2"]
-position = Vector3(8.75, -5.95, 2.42)
+position = Vector3(8.75, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing1_6"]
 mesh = SubResource("s639")
 
 [node name="Railing1_7" type="Node3D" parent="KitDetail2"]
-position = Vector3(9.25, -5.95, 2.42)
+position = Vector3(9.25, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing1_7"]
 mesh = SubResource("s640")
 
 [node name="Railing1_8" type="Node3D" parent="KitDetail2"]
-position = Vector3(9.75, -5.95, 2.42)
+position = Vector3(9.75, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing1_8"]
 mesh = SubResource("s641")
 
 [node name="Railing1_9" type="Node3D" parent="KitDetail2"]
-position = Vector3(10.25, -5.95, 2.42)
+position = Vector3(10.25, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing1_9"]
 mesh = SubResource("s642")
 
 [node name="Railing1_10" type="Node3D" parent="KitDetail2"]
-position = Vector3(10.75, -5.95, 2.42)
+position = Vector3(10.75, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing1_10"]
 mesh = SubResource("s643")
 
 [node name="Tube1" type="Node3D" parent="KitDetail2"]
-position = Vector3(8.25, -3.75, 1.2)
+position = Vector3(8.25, -3.75, 2.0)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Tube1"]
 mesh = SubResource("s644")
@@ -7563,79 +7563,79 @@ position = Vector3(0,0,0.025)
 texture_filter = 0
 
 [node name="RailingTop2" type="Node3D" parent="KitDetail2"]
-position = Vector3(13.75, -5.3, 2.42)
+position = Vector3(13.75, -5.3, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/RailingTop2"]
 mesh = SubResource("s646")
 
 [node name="Railing2_0" type="Node3D" parent="KitDetail2"]
-position = Vector3(11.25, -5.95, 2.42)
+position = Vector3(11.25, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing2_0"]
 mesh = SubResource("s647")
 
 [node name="Railing2_1" type="Node3D" parent="KitDetail2"]
-position = Vector3(11.75, -5.95, 2.42)
+position = Vector3(11.75, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing2_1"]
 mesh = SubResource("s648")
 
 [node name="Railing2_2" type="Node3D" parent="KitDetail2"]
-position = Vector3(12.25, -5.95, 2.42)
+position = Vector3(12.25, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing2_2"]
 mesh = SubResource("s649")
 
 [node name="Railing2_3" type="Node3D" parent="KitDetail2"]
-position = Vector3(12.75, -5.95, 2.42)
+position = Vector3(12.75, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing2_3"]
 mesh = SubResource("s650")
 
 [node name="Railing2_4" type="Node3D" parent="KitDetail2"]
-position = Vector3(13.25, -5.95, 2.42)
+position = Vector3(13.25, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing2_4"]
 mesh = SubResource("s651")
 
 [node name="Railing2_5" type="Node3D" parent="KitDetail2"]
-position = Vector3(13.75, -5.95, 2.42)
+position = Vector3(13.75, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing2_5"]
 mesh = SubResource("s652")
 
 [node name="Railing2_6" type="Node3D" parent="KitDetail2"]
-position = Vector3(14.25, -5.95, 2.42)
+position = Vector3(14.25, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing2_6"]
 mesh = SubResource("s653")
 
 [node name="Railing2_7" type="Node3D" parent="KitDetail2"]
-position = Vector3(14.75, -5.95, 2.42)
+position = Vector3(14.75, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing2_7"]
 mesh = SubResource("s654")
 
 [node name="Railing2_8" type="Node3D" parent="KitDetail2"]
-position = Vector3(15.25, -5.95, 2.42)
+position = Vector3(15.25, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing2_8"]
 mesh = SubResource("s655")
 
 [node name="Railing2_9" type="Node3D" parent="KitDetail2"]
-position = Vector3(15.75, -5.95, 2.42)
+position = Vector3(15.75, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing2_9"]
 mesh = SubResource("s656")
 
 [node name="Railing2_10" type="Node3D" parent="KitDetail2"]
-position = Vector3(16.25, -5.95, 2.42)
+position = Vector3(16.25, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing2_10"]
 mesh = SubResource("s657")
 
 [node name="Tube2" type="Node3D" parent="KitDetail2"]
-position = Vector3(13.75, -3.75, 1.2)
+position = Vector3(13.75, -3.75, 2.0)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Tube2"]
 mesh = SubResource("s658")
@@ -7660,79 +7660,79 @@ position = Vector3(0,0,0.025)
 texture_filter = 0
 
 [node name="RailingTop3" type="Node3D" parent="KitDetail2"]
-position = Vector3(19.25, -5.3, 2.42)
+position = Vector3(19.25, -5.3, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/RailingTop3"]
 mesh = SubResource("s660")
 
 [node name="Railing3_0" type="Node3D" parent="KitDetail2"]
-position = Vector3(16.75, -5.95, 2.42)
+position = Vector3(16.75, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing3_0"]
 mesh = SubResource("s661")
 
 [node name="Railing3_1" type="Node3D" parent="KitDetail2"]
-position = Vector3(17.25, -5.95, 2.42)
+position = Vector3(17.25, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing3_1"]
 mesh = SubResource("s662")
 
 [node name="Railing3_2" type="Node3D" parent="KitDetail2"]
-position = Vector3(17.75, -5.95, 2.42)
+position = Vector3(17.75, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing3_2"]
 mesh = SubResource("s663")
 
 [node name="Railing3_3" type="Node3D" parent="KitDetail2"]
-position = Vector3(18.25, -5.95, 2.42)
+position = Vector3(18.25, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing3_3"]
 mesh = SubResource("s664")
 
 [node name="Railing3_4" type="Node3D" parent="KitDetail2"]
-position = Vector3(18.75, -5.95, 2.42)
+position = Vector3(18.75, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing3_4"]
 mesh = SubResource("s665")
 
 [node name="Railing3_5" type="Node3D" parent="KitDetail2"]
-position = Vector3(19.25, -5.95, 2.42)
+position = Vector3(19.25, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing3_5"]
 mesh = SubResource("s666")
 
 [node name="Railing3_6" type="Node3D" parent="KitDetail2"]
-position = Vector3(19.75, -5.95, 2.42)
+position = Vector3(19.75, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing3_6"]
 mesh = SubResource("s667")
 
 [node name="Railing3_7" type="Node3D" parent="KitDetail2"]
-position = Vector3(20.25, -5.95, 2.42)
+position = Vector3(20.25, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing3_7"]
 mesh = SubResource("s668")
 
 [node name="Railing3_8" type="Node3D" parent="KitDetail2"]
-position = Vector3(20.75, -5.95, 2.42)
+position = Vector3(20.75, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing3_8"]
 mesh = SubResource("s669")
 
 [node name="Railing3_9" type="Node3D" parent="KitDetail2"]
-position = Vector3(21.25, -5.95, 2.42)
+position = Vector3(21.25, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing3_9"]
 mesh = SubResource("s670")
 
 [node name="Railing3_10" type="Node3D" parent="KitDetail2"]
-position = Vector3(21.75, -5.95, 2.42)
+position = Vector3(21.75, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing3_10"]
 mesh = SubResource("s671")
 
 [node name="Tube3" type="Node3D" parent="KitDetail2"]
-position = Vector3(19.25, -3.75, 1.2)
+position = Vector3(19.25, -3.75, 2.0)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Tube3"]
 mesh = SubResource("s672")
@@ -7757,79 +7757,79 @@ position = Vector3(0,0,0.025)
 texture_filter = 0
 
 [node name="RailingTop4" type="Node3D" parent="KitDetail2"]
-position = Vector3(24.75, -5.3, 2.42)
+position = Vector3(24.75, -5.3, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/RailingTop4"]
 mesh = SubResource("s674")
 
 [node name="Railing4_0" type="Node3D" parent="KitDetail2"]
-position = Vector3(22.25, -5.95, 2.42)
+position = Vector3(22.25, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing4_0"]
 mesh = SubResource("s675")
 
 [node name="Railing4_1" type="Node3D" parent="KitDetail2"]
-position = Vector3(22.75, -5.95, 2.42)
+position = Vector3(22.75, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing4_1"]
 mesh = SubResource("s676")
 
 [node name="Railing4_2" type="Node3D" parent="KitDetail2"]
-position = Vector3(23.25, -5.95, 2.42)
+position = Vector3(23.25, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing4_2"]
 mesh = SubResource("s677")
 
 [node name="Railing4_3" type="Node3D" parent="KitDetail2"]
-position = Vector3(23.75, -5.95, 2.42)
+position = Vector3(23.75, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing4_3"]
 mesh = SubResource("s678")
 
 [node name="Railing4_4" type="Node3D" parent="KitDetail2"]
-position = Vector3(24.25, -5.95, 2.42)
+position = Vector3(24.25, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing4_4"]
 mesh = SubResource("s679")
 
 [node name="Railing4_5" type="Node3D" parent="KitDetail2"]
-position = Vector3(24.75, -5.95, 2.42)
+position = Vector3(24.75, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing4_5"]
 mesh = SubResource("s680")
 
 [node name="Railing4_6" type="Node3D" parent="KitDetail2"]
-position = Vector3(25.25, -5.95, 2.42)
+position = Vector3(25.25, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing4_6"]
 mesh = SubResource("s681")
 
 [node name="Railing4_7" type="Node3D" parent="KitDetail2"]
-position = Vector3(25.75, -5.95, 2.42)
+position = Vector3(25.75, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing4_7"]
 mesh = SubResource("s682")
 
 [node name="Railing4_8" type="Node3D" parent="KitDetail2"]
-position = Vector3(26.25, -5.95, 2.42)
+position = Vector3(26.25, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing4_8"]
 mesh = SubResource("s683")
 
 [node name="Railing4_9" type="Node3D" parent="KitDetail2"]
-position = Vector3(26.75, -5.95, 2.42)
+position = Vector3(26.75, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing4_9"]
 mesh = SubResource("s684")
 
 [node name="Railing4_10" type="Node3D" parent="KitDetail2"]
-position = Vector3(27.25, -5.95, 2.42)
+position = Vector3(27.25, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing4_10"]
 mesh = SubResource("s685")
 
 [node name="Tube4" type="Node3D" parent="KitDetail2"]
-position = Vector3(24.75, -3.75, 1.2)
+position = Vector3(24.75, -3.75, 2.0)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Tube4"]
 mesh = SubResource("s686")
@@ -7854,79 +7854,79 @@ position = Vector3(0,0,0.025)
 texture_filter = 0
 
 [node name="RailingTop5" type="Node3D" parent="KitDetail2"]
-position = Vector3(30.25, -5.3, 2.42)
+position = Vector3(30.25, -5.3, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/RailingTop5"]
 mesh = SubResource("s688")
 
 [node name="Railing5_0" type="Node3D" parent="KitDetail2"]
-position = Vector3(27.75, -5.95, 2.42)
+position = Vector3(27.75, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing5_0"]
 mesh = SubResource("s689")
 
 [node name="Railing5_1" type="Node3D" parent="KitDetail2"]
-position = Vector3(28.25, -5.95, 2.42)
+position = Vector3(28.25, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing5_1"]
 mesh = SubResource("s690")
 
 [node name="Railing5_2" type="Node3D" parent="KitDetail2"]
-position = Vector3(28.75, -5.95, 2.42)
+position = Vector3(28.75, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing5_2"]
 mesh = SubResource("s691")
 
 [node name="Railing5_3" type="Node3D" parent="KitDetail2"]
-position = Vector3(29.25, -5.95, 2.42)
+position = Vector3(29.25, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing5_3"]
 mesh = SubResource("s692")
 
 [node name="Railing5_4" type="Node3D" parent="KitDetail2"]
-position = Vector3(29.75, -5.95, 2.42)
+position = Vector3(29.75, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing5_4"]
 mesh = SubResource("s693")
 
 [node name="Railing5_5" type="Node3D" parent="KitDetail2"]
-position = Vector3(30.25, -5.95, 2.42)
+position = Vector3(30.25, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing5_5"]
 mesh = SubResource("s694")
 
 [node name="Railing5_6" type="Node3D" parent="KitDetail2"]
-position = Vector3(30.75, -5.95, 2.42)
+position = Vector3(30.75, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing5_6"]
 mesh = SubResource("s695")
 
 [node name="Railing5_7" type="Node3D" parent="KitDetail2"]
-position = Vector3(31.25, -5.95, 2.42)
+position = Vector3(31.25, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing5_7"]
 mesh = SubResource("s696")
 
 [node name="Railing5_8" type="Node3D" parent="KitDetail2"]
-position = Vector3(31.75, -5.95, 2.42)
+position = Vector3(31.75, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing5_8"]
 mesh = SubResource("s697")
 
 [node name="Railing5_9" type="Node3D" parent="KitDetail2"]
-position = Vector3(32.25, -5.95, 2.42)
+position = Vector3(32.25, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing5_9"]
 mesh = SubResource("s698")
 
 [node name="Railing5_10" type="Node3D" parent="KitDetail2"]
-position = Vector3(32.75, -5.95, 2.42)
+position = Vector3(32.75, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing5_10"]
 mesh = SubResource("s699")
 
 [node name="Tube5" type="Node3D" parent="KitDetail2"]
-position = Vector3(30.25, -3.75, 1.2)
+position = Vector3(30.25, -3.75, 2.0)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Tube5"]
 mesh = SubResource("s700")
@@ -7951,79 +7951,79 @@ position = Vector3(0,0,0.025)
 texture_filter = 0
 
 [node name="RailingTop6" type="Node3D" parent="KitDetail2"]
-position = Vector3(35.75, -5.3, 2.42)
+position = Vector3(35.75, -5.3, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/RailingTop6"]
 mesh = SubResource("s702")
 
 [node name="Railing6_0" type="Node3D" parent="KitDetail2"]
-position = Vector3(33.25, -5.95, 2.42)
+position = Vector3(33.25, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing6_0"]
 mesh = SubResource("s703")
 
 [node name="Railing6_1" type="Node3D" parent="KitDetail2"]
-position = Vector3(33.75, -5.95, 2.42)
+position = Vector3(33.75, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing6_1"]
 mesh = SubResource("s704")
 
 [node name="Railing6_2" type="Node3D" parent="KitDetail2"]
-position = Vector3(34.25, -5.95, 2.42)
+position = Vector3(34.25, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing6_2"]
 mesh = SubResource("s705")
 
 [node name="Railing6_3" type="Node3D" parent="KitDetail2"]
-position = Vector3(34.75, -5.95, 2.42)
+position = Vector3(34.75, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing6_3"]
 mesh = SubResource("s706")
 
 [node name="Railing6_4" type="Node3D" parent="KitDetail2"]
-position = Vector3(35.25, -5.95, 2.42)
+position = Vector3(35.25, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing6_4"]
 mesh = SubResource("s707")
 
 [node name="Railing6_5" type="Node3D" parent="KitDetail2"]
-position = Vector3(35.75, -5.95, 2.42)
+position = Vector3(35.75, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing6_5"]
 mesh = SubResource("s708")
 
 [node name="Railing6_6" type="Node3D" parent="KitDetail2"]
-position = Vector3(36.25, -5.95, 2.42)
+position = Vector3(36.25, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing6_6"]
 mesh = SubResource("s709")
 
 [node name="Railing6_7" type="Node3D" parent="KitDetail2"]
-position = Vector3(36.75, -5.95, 2.42)
+position = Vector3(36.75, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing6_7"]
 mesh = SubResource("s710")
 
 [node name="Railing6_8" type="Node3D" parent="KitDetail2"]
-position = Vector3(37.25, -5.95, 2.42)
+position = Vector3(37.25, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing6_8"]
 mesh = SubResource("s711")
 
 [node name="Railing6_9" type="Node3D" parent="KitDetail2"]
-position = Vector3(37.75, -5.95, 2.42)
+position = Vector3(37.75, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing6_9"]
 mesh = SubResource("s712")
 
 [node name="Railing6_10" type="Node3D" parent="KitDetail2"]
-position = Vector3(38.25, -5.95, 2.42)
+position = Vector3(38.25, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing6_10"]
 mesh = SubResource("s713")
 
 [node name="Tube6" type="Node3D" parent="KitDetail2"]
-position = Vector3(35.75, -3.75, 1.2)
+position = Vector3(35.75, -3.75, 2.0)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Tube6"]
 mesh = SubResource("s714")
@@ -8048,113 +8048,113 @@ position = Vector3(0,0,0.025)
 texture_filter = 0
 
 [node name="RailingTop7" type="Node3D" parent="KitDetail2"]
-position = Vector3(41.25, -5.3, 2.42)
+position = Vector3(41.25, -5.3, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/RailingTop7"]
 mesh = SubResource("s716")
 
 [node name="Railing7_0" type="Node3D" parent="KitDetail2"]
-position = Vector3(38.75, -5.95, 2.42)
+position = Vector3(38.75, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing7_0"]
 mesh = SubResource("s717")
 
 [node name="Railing7_1" type="Node3D" parent="KitDetail2"]
-position = Vector3(39.25, -5.95, 2.42)
+position = Vector3(39.25, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing7_1"]
 mesh = SubResource("s718")
 
 [node name="Railing7_2" type="Node3D" parent="KitDetail2"]
-position = Vector3(39.75, -5.95, 2.42)
+position = Vector3(39.75, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing7_2"]
 mesh = SubResource("s719")
 
 [node name="Railing7_3" type="Node3D" parent="KitDetail2"]
-position = Vector3(40.25, -5.95, 2.42)
+position = Vector3(40.25, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing7_3"]
 mesh = SubResource("s720")
 
 [node name="Railing7_4" type="Node3D" parent="KitDetail2"]
-position = Vector3(40.75, -5.95, 2.42)
+position = Vector3(40.75, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing7_4"]
 mesh = SubResource("s721")
 
 [node name="Railing7_5" type="Node3D" parent="KitDetail2"]
-position = Vector3(41.25, -5.95, 2.42)
+position = Vector3(41.25, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing7_5"]
 mesh = SubResource("s722")
 
 [node name="Railing7_6" type="Node3D" parent="KitDetail2"]
-position = Vector3(41.75, -5.95, 2.42)
+position = Vector3(41.75, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing7_6"]
 mesh = SubResource("s723")
 
 [node name="Railing7_7" type="Node3D" parent="KitDetail2"]
-position = Vector3(42.25, -5.95, 2.42)
+position = Vector3(42.25, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing7_7"]
 mesh = SubResource("s724")
 
 [node name="Railing7_8" type="Node3D" parent="KitDetail2"]
-position = Vector3(42.75, -5.95, 2.42)
+position = Vector3(42.75, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing7_8"]
 mesh = SubResource("s725")
 
 [node name="Railing7_9" type="Node3D" parent="KitDetail2"]
-position = Vector3(43.25, -5.95, 2.42)
+position = Vector3(43.25, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing7_9"]
 mesh = SubResource("s726")
 
 [node name="Railing7_10" type="Node3D" parent="KitDetail2"]
-position = Vector3(43.75, -5.95, 2.42)
+position = Vector3(43.75, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing7_10"]
 mesh = SubResource("s727")
 
 [node name="Tube7" type="Node3D" parent="KitDetail2"]
-position = Vector3(41.25, -3.75, 1.2)
+position = Vector3(41.25, -3.75, 2.0)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Tube7"]
 mesh = SubResource("s728")
 
 [node name="Light1" type="OmniLight3D" parent="KitDetail2"]
-position = Vector3(1, -3.95, 1.2)
+position = Vector3(1, -3.95, 2.0)
 light_energy = 0.6
 omni_range = 7
 shadow_enabled = false
 light_color = Color(0.65,0.7,0.52,1)
 
 [node name="Light10" type="OmniLight3D" parent="KitDetail2"]
-position = Vector3(10, -3.95, 1.2)
+position = Vector3(10, -3.95, 2.0)
 light_energy = 0.6
 omni_range = 7
 shadow_enabled = false
 light_color = Color(0.65,0.7,0.52,1)
 
 [node name="Light21" type="OmniLight3D" parent="KitDetail2"]
-position = Vector3(21, -3.95, 1.2)
+position = Vector3(21, -3.95, 2.0)
 light_energy = 0.6
 omni_range = 7
 shadow_enabled = false
 light_color = Color(0.65,0.7,0.52,1)
 
 [node name="Light32" type="OmniLight3D" parent="KitDetail2"]
-position = Vector3(32, -3.95, 1.2)
+position = Vector3(32, -3.95, 2.0)
 light_energy = 0.6
 omni_range = 7
 shadow_enabled = false
 light_color = Color(0.65,0.7,0.52,1)
 
 [node name="Light43" type="OmniLight3D" parent="KitDetail2"]
-position = Vector3(43, -3.95, 1.2)
+position = Vector3(43, -3.95, 2.0)
 light_energy = 0.6
 omni_range = 7
 shadow_enabled = false
@@ -8183,79 +8183,79 @@ position = Vector3(0,0,0.025)
 texture_filter = 0
 
 [node name="RailingTop0" type="Node3D" parent="KitDetail3"]
-position = Vector3(2.75, -2.0, 2.42)
+position = Vector3(2.75, -2.0, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/RailingTop0"]
 mesh = SubResource("s730")
 
 [node name="Railing0_0" type="Node3D" parent="KitDetail3"]
-position = Vector3(0.25, -2.65, 2.42)
+position = Vector3(0.25, -2.65, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Railing0_0"]
 mesh = SubResource("s731")
 
 [node name="Railing0_1" type="Node3D" parent="KitDetail3"]
-position = Vector3(0.75, -2.65, 2.42)
+position = Vector3(0.75, -2.65, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Railing0_1"]
 mesh = SubResource("s732")
 
 [node name="Railing0_2" type="Node3D" parent="KitDetail3"]
-position = Vector3(1.25, -2.65, 2.42)
+position = Vector3(1.25, -2.65, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Railing0_2"]
 mesh = SubResource("s733")
 
 [node name="Railing0_3" type="Node3D" parent="KitDetail3"]
-position = Vector3(1.75, -2.65, 2.42)
+position = Vector3(1.75, -2.65, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Railing0_3"]
 mesh = SubResource("s734")
 
 [node name="Railing0_4" type="Node3D" parent="KitDetail3"]
-position = Vector3(2.25, -2.65, 2.42)
+position = Vector3(2.25, -2.65, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Railing0_4"]
 mesh = SubResource("s735")
 
 [node name="Railing0_5" type="Node3D" parent="KitDetail3"]
-position = Vector3(2.75, -2.65, 2.42)
+position = Vector3(2.75, -2.65, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Railing0_5"]
 mesh = SubResource("s736")
 
 [node name="Railing0_6" type="Node3D" parent="KitDetail3"]
-position = Vector3(3.25, -2.65, 2.42)
+position = Vector3(3.25, -2.65, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Railing0_6"]
 mesh = SubResource("s737")
 
 [node name="Railing0_7" type="Node3D" parent="KitDetail3"]
-position = Vector3(3.75, -2.65, 2.42)
+position = Vector3(3.75, -2.65, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Railing0_7"]
 mesh = SubResource("s738")
 
 [node name="Railing0_8" type="Node3D" parent="KitDetail3"]
-position = Vector3(4.25, -2.65, 2.42)
+position = Vector3(4.25, -2.65, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Railing0_8"]
 mesh = SubResource("s739")
 
 [node name="Railing0_9" type="Node3D" parent="KitDetail3"]
-position = Vector3(4.75, -2.65, 2.42)
+position = Vector3(4.75, -2.65, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Railing0_9"]
 mesh = SubResource("s740")
 
 [node name="Railing0_10" type="Node3D" parent="KitDetail3"]
-position = Vector3(5.25, -2.65, 2.42)
+position = Vector3(5.25, -2.65, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Railing0_10"]
 mesh = SubResource("s741")
 
 [node name="Tube0" type="Node3D" parent="KitDetail3"]
-position = Vector3(2.75, -0.45, 1.2)
+position = Vector3(2.75, -0.45, 2.0)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Tube0"]
 mesh = SubResource("s742")
@@ -8280,79 +8280,79 @@ position = Vector3(0,0,0.025)
 texture_filter = 0
 
 [node name="RailingTop1" type="Node3D" parent="KitDetail3"]
-position = Vector3(8.25, -2.0, 2.42)
+position = Vector3(8.25, -2.0, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/RailingTop1"]
 mesh = SubResource("s744")
 
 [node name="Railing1_0" type="Node3D" parent="KitDetail3"]
-position = Vector3(5.75, -2.65, 2.42)
+position = Vector3(5.75, -2.65, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Railing1_0"]
 mesh = SubResource("s745")
 
 [node name="Railing1_1" type="Node3D" parent="KitDetail3"]
-position = Vector3(6.25, -2.65, 2.42)
+position = Vector3(6.25, -2.65, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Railing1_1"]
 mesh = SubResource("s746")
 
 [node name="Railing1_2" type="Node3D" parent="KitDetail3"]
-position = Vector3(6.75, -2.65, 2.42)
+position = Vector3(6.75, -2.65, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Railing1_2"]
 mesh = SubResource("s747")
 
 [node name="Railing1_3" type="Node3D" parent="KitDetail3"]
-position = Vector3(7.25, -2.65, 2.42)
+position = Vector3(7.25, -2.65, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Railing1_3"]
 mesh = SubResource("s748")
 
 [node name="Railing1_4" type="Node3D" parent="KitDetail3"]
-position = Vector3(7.75, -2.65, 2.42)
+position = Vector3(7.75, -2.65, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Railing1_4"]
 mesh = SubResource("s749")
 
 [node name="Railing1_5" type="Node3D" parent="KitDetail3"]
-position = Vector3(8.25, -2.65, 2.42)
+position = Vector3(8.25, -2.65, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Railing1_5"]
 mesh = SubResource("s750")
 
 [node name="Railing1_6" type="Node3D" parent="KitDetail3"]
-position = Vector3(8.75, -2.65, 2.42)
+position = Vector3(8.75, -2.65, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Railing1_6"]
 mesh = SubResource("s751")
 
 [node name="Railing1_7" type="Node3D" parent="KitDetail3"]
-position = Vector3(9.25, -2.65, 2.42)
+position = Vector3(9.25, -2.65, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Railing1_7"]
 mesh = SubResource("s752")
 
 [node name="Railing1_8" type="Node3D" parent="KitDetail3"]
-position = Vector3(9.75, -2.65, 2.42)
+position = Vector3(9.75, -2.65, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Railing1_8"]
 mesh = SubResource("s753")
 
 [node name="Railing1_9" type="Node3D" parent="KitDetail3"]
-position = Vector3(10.25, -2.65, 2.42)
+position = Vector3(10.25, -2.65, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Railing1_9"]
 mesh = SubResource("s754")
 
 [node name="Railing1_10" type="Node3D" parent="KitDetail3"]
-position = Vector3(10.75, -2.65, 2.42)
+position = Vector3(10.75, -2.65, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Railing1_10"]
 mesh = SubResource("s755")
 
 [node name="Tube1" type="Node3D" parent="KitDetail3"]
-position = Vector3(8.25, -0.45, 1.2)
+position = Vector3(8.25, -0.45, 2.0)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Tube1"]
 mesh = SubResource("s756")
@@ -8377,79 +8377,79 @@ position = Vector3(0,0,0.025)
 texture_filter = 0
 
 [node name="RailingTop2" type="Node3D" parent="KitDetail3"]
-position = Vector3(13.75, -2.0, 2.42)
+position = Vector3(13.75, -2.0, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/RailingTop2"]
 mesh = SubResource("s758")
 
 [node name="Railing2_0" type="Node3D" parent="KitDetail3"]
-position = Vector3(11.25, -2.65, 2.42)
+position = Vector3(11.25, -2.65, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Railing2_0"]
 mesh = SubResource("s759")
 
 [node name="Railing2_1" type="Node3D" parent="KitDetail3"]
-position = Vector3(11.75, -2.65, 2.42)
+position = Vector3(11.75, -2.65, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Railing2_1"]
 mesh = SubResource("s760")
 
 [node name="Railing2_2" type="Node3D" parent="KitDetail3"]
-position = Vector3(12.25, -2.65, 2.42)
+position = Vector3(12.25, -2.65, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Railing2_2"]
 mesh = SubResource("s761")
 
 [node name="Railing2_3" type="Node3D" parent="KitDetail3"]
-position = Vector3(12.75, -2.65, 2.42)
+position = Vector3(12.75, -2.65, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Railing2_3"]
 mesh = SubResource("s762")
 
 [node name="Railing2_4" type="Node3D" parent="KitDetail3"]
-position = Vector3(13.25, -2.65, 2.42)
+position = Vector3(13.25, -2.65, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Railing2_4"]
 mesh = SubResource("s763")
 
 [node name="Railing2_5" type="Node3D" parent="KitDetail3"]
-position = Vector3(13.75, -2.65, 2.42)
+position = Vector3(13.75, -2.65, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Railing2_5"]
 mesh = SubResource("s764")
 
 [node name="Railing2_6" type="Node3D" parent="KitDetail3"]
-position = Vector3(14.25, -2.65, 2.42)
+position = Vector3(14.25, -2.65, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Railing2_6"]
 mesh = SubResource("s765")
 
 [node name="Railing2_7" type="Node3D" parent="KitDetail3"]
-position = Vector3(14.75, -2.65, 2.42)
+position = Vector3(14.75, -2.65, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Railing2_7"]
 mesh = SubResource("s766")
 
 [node name="Railing2_8" type="Node3D" parent="KitDetail3"]
-position = Vector3(15.25, -2.65, 2.42)
+position = Vector3(15.25, -2.65, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Railing2_8"]
 mesh = SubResource("s767")
 
 [node name="Railing2_9" type="Node3D" parent="KitDetail3"]
-position = Vector3(15.75, -2.65, 2.42)
+position = Vector3(15.75, -2.65, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Railing2_9"]
 mesh = SubResource("s768")
 
 [node name="Railing2_10" type="Node3D" parent="KitDetail3"]
-position = Vector3(16.25, -2.65, 2.42)
+position = Vector3(16.25, -2.65, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Railing2_10"]
 mesh = SubResource("s769")
 
 [node name="Tube2" type="Node3D" parent="KitDetail3"]
-position = Vector3(13.75, -0.45, 1.2)
+position = Vector3(13.75, -0.45, 2.0)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Tube2"]
 mesh = SubResource("s770")
@@ -8474,79 +8474,79 @@ position = Vector3(0,0,0.025)
 texture_filter = 0
 
 [node name="RailingTop3" type="Node3D" parent="KitDetail3"]
-position = Vector3(19.25, -2.0, 2.42)
+position = Vector3(19.25, -2.0, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/RailingTop3"]
 mesh = SubResource("s772")
 
 [node name="Railing3_0" type="Node3D" parent="KitDetail3"]
-position = Vector3(16.75, -2.65, 2.42)
+position = Vector3(16.75, -2.65, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Railing3_0"]
 mesh = SubResource("s773")
 
 [node name="Railing3_1" type="Node3D" parent="KitDetail3"]
-position = Vector3(17.25, -2.65, 2.42)
+position = Vector3(17.25, -2.65, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Railing3_1"]
 mesh = SubResource("s774")
 
 [node name="Railing3_2" type="Node3D" parent="KitDetail3"]
-position = Vector3(17.75, -2.65, 2.42)
+position = Vector3(17.75, -2.65, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Railing3_2"]
 mesh = SubResource("s775")
 
 [node name="Railing3_3" type="Node3D" parent="KitDetail3"]
-position = Vector3(18.25, -2.65, 2.42)
+position = Vector3(18.25, -2.65, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Railing3_3"]
 mesh = SubResource("s776")
 
 [node name="Railing3_4" type="Node3D" parent="KitDetail3"]
-position = Vector3(18.75, -2.65, 2.42)
+position = Vector3(18.75, -2.65, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Railing3_4"]
 mesh = SubResource("s777")
 
 [node name="Railing3_5" type="Node3D" parent="KitDetail3"]
-position = Vector3(19.25, -2.65, 2.42)
+position = Vector3(19.25, -2.65, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Railing3_5"]
 mesh = SubResource("s778")
 
 [node name="Railing3_6" type="Node3D" parent="KitDetail3"]
-position = Vector3(19.75, -2.65, 2.42)
+position = Vector3(19.75, -2.65, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Railing3_6"]
 mesh = SubResource("s779")
 
 [node name="Railing3_7" type="Node3D" parent="KitDetail3"]
-position = Vector3(20.25, -2.65, 2.42)
+position = Vector3(20.25, -2.65, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Railing3_7"]
 mesh = SubResource("s780")
 
 [node name="Railing3_8" type="Node3D" parent="KitDetail3"]
-position = Vector3(20.75, -2.65, 2.42)
+position = Vector3(20.75, -2.65, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Railing3_8"]
 mesh = SubResource("s781")
 
 [node name="Railing3_9" type="Node3D" parent="KitDetail3"]
-position = Vector3(21.25, -2.65, 2.42)
+position = Vector3(21.25, -2.65, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Railing3_9"]
 mesh = SubResource("s782")
 
 [node name="Railing3_10" type="Node3D" parent="KitDetail3"]
-position = Vector3(21.75, -2.65, 2.42)
+position = Vector3(21.75, -2.65, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Railing3_10"]
 mesh = SubResource("s783")
 
 [node name="Tube3" type="Node3D" parent="KitDetail3"]
-position = Vector3(19.25, -0.45, 1.2)
+position = Vector3(19.25, -0.45, 2.0)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Tube3"]
 mesh = SubResource("s784")
@@ -8571,79 +8571,79 @@ position = Vector3(0,0,0.025)
 texture_filter = 0
 
 [node name="RailingTop4" type="Node3D" parent="KitDetail3"]
-position = Vector3(24.75, -2.0, 2.42)
+position = Vector3(24.75, -2.0, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/RailingTop4"]
 mesh = SubResource("s786")
 
 [node name="Railing4_0" type="Node3D" parent="KitDetail3"]
-position = Vector3(22.25, -2.65, 2.42)
+position = Vector3(22.25, -2.65, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Railing4_0"]
 mesh = SubResource("s787")
 
 [node name="Railing4_1" type="Node3D" parent="KitDetail3"]
-position = Vector3(22.75, -2.65, 2.42)
+position = Vector3(22.75, -2.65, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Railing4_1"]
 mesh = SubResource("s788")
 
 [node name="Railing4_2" type="Node3D" parent="KitDetail3"]
-position = Vector3(23.25, -2.65, 2.42)
+position = Vector3(23.25, -2.65, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Railing4_2"]
 mesh = SubResource("s789")
 
 [node name="Railing4_3" type="Node3D" parent="KitDetail3"]
-position = Vector3(23.75, -2.65, 2.42)
+position = Vector3(23.75, -2.65, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Railing4_3"]
 mesh = SubResource("s790")
 
 [node name="Railing4_4" type="Node3D" parent="KitDetail3"]
-position = Vector3(24.25, -2.65, 2.42)
+position = Vector3(24.25, -2.65, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Railing4_4"]
 mesh = SubResource("s791")
 
 [node name="Railing4_5" type="Node3D" parent="KitDetail3"]
-position = Vector3(24.75, -2.65, 2.42)
+position = Vector3(24.75, -2.65, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Railing4_5"]
 mesh = SubResource("s792")
 
 [node name="Railing4_6" type="Node3D" parent="KitDetail3"]
-position = Vector3(25.25, -2.65, 2.42)
+position = Vector3(25.25, -2.65, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Railing4_6"]
 mesh = SubResource("s793")
 
 [node name="Railing4_7" type="Node3D" parent="KitDetail3"]
-position = Vector3(25.75, -2.65, 2.42)
+position = Vector3(25.75, -2.65, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Railing4_7"]
 mesh = SubResource("s794")
 
 [node name="Railing4_8" type="Node3D" parent="KitDetail3"]
-position = Vector3(26.25, -2.65, 2.42)
+position = Vector3(26.25, -2.65, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Railing4_8"]
 mesh = SubResource("s795")
 
 [node name="Railing4_9" type="Node3D" parent="KitDetail3"]
-position = Vector3(26.75, -2.65, 2.42)
+position = Vector3(26.75, -2.65, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Railing4_9"]
 mesh = SubResource("s796")
 
 [node name="Railing4_10" type="Node3D" parent="KitDetail3"]
-position = Vector3(27.25, -2.65, 2.42)
+position = Vector3(27.25, -2.65, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Railing4_10"]
 mesh = SubResource("s797")
 
 [node name="Tube4" type="Node3D" parent="KitDetail3"]
-position = Vector3(24.75, -0.45, 1.2)
+position = Vector3(24.75, -0.45, 2.0)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Tube4"]
 mesh = SubResource("s798")
@@ -8668,79 +8668,79 @@ position = Vector3(0,0,0.025)
 texture_filter = 0
 
 [node name="RailingTop5" type="Node3D" parent="KitDetail3"]
-position = Vector3(30.25, -2.0, 2.42)
+position = Vector3(30.25, -2.0, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/RailingTop5"]
 mesh = SubResource("s800")
 
 [node name="Railing5_0" type="Node3D" parent="KitDetail3"]
-position = Vector3(27.75, -2.65, 2.42)
+position = Vector3(27.75, -2.65, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Railing5_0"]
 mesh = SubResource("s801")
 
 [node name="Railing5_1" type="Node3D" parent="KitDetail3"]
-position = Vector3(28.25, -2.65, 2.42)
+position = Vector3(28.25, -2.65, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Railing5_1"]
 mesh = SubResource("s802")
 
 [node name="Railing5_2" type="Node3D" parent="KitDetail3"]
-position = Vector3(28.75, -2.65, 2.42)
+position = Vector3(28.75, -2.65, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Railing5_2"]
 mesh = SubResource("s803")
 
 [node name="Railing5_3" type="Node3D" parent="KitDetail3"]
-position = Vector3(29.25, -2.65, 2.42)
+position = Vector3(29.25, -2.65, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Railing5_3"]
 mesh = SubResource("s804")
 
 [node name="Railing5_4" type="Node3D" parent="KitDetail3"]
-position = Vector3(29.75, -2.65, 2.42)
+position = Vector3(29.75, -2.65, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Railing5_4"]
 mesh = SubResource("s805")
 
 [node name="Railing5_5" type="Node3D" parent="KitDetail3"]
-position = Vector3(30.25, -2.65, 2.42)
+position = Vector3(30.25, -2.65, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Railing5_5"]
 mesh = SubResource("s806")
 
 [node name="Railing5_6" type="Node3D" parent="KitDetail3"]
-position = Vector3(30.75, -2.65, 2.42)
+position = Vector3(30.75, -2.65, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Railing5_6"]
 mesh = SubResource("s807")
 
 [node name="Railing5_7" type="Node3D" parent="KitDetail3"]
-position = Vector3(31.25, -2.65, 2.42)
+position = Vector3(31.25, -2.65, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Railing5_7"]
 mesh = SubResource("s808")
 
 [node name="Railing5_8" type="Node3D" parent="KitDetail3"]
-position = Vector3(31.75, -2.65, 2.42)
+position = Vector3(31.75, -2.65, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Railing5_8"]
 mesh = SubResource("s809")
 
 [node name="Railing5_9" type="Node3D" parent="KitDetail3"]
-position = Vector3(32.25, -2.65, 2.42)
+position = Vector3(32.25, -2.65, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Railing5_9"]
 mesh = SubResource("s810")
 
 [node name="Railing5_10" type="Node3D" parent="KitDetail3"]
-position = Vector3(32.75, -2.65, 2.42)
+position = Vector3(32.75, -2.65, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Railing5_10"]
 mesh = SubResource("s811")
 
 [node name="Tube5" type="Node3D" parent="KitDetail3"]
-position = Vector3(30.25, -0.45, 1.2)
+position = Vector3(30.25, -0.45, 2.0)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Tube5"]
 mesh = SubResource("s812")
@@ -8765,79 +8765,79 @@ position = Vector3(0,0,0.025)
 texture_filter = 0
 
 [node name="RailingTop6" type="Node3D" parent="KitDetail3"]
-position = Vector3(35.75, -2.0, 2.42)
+position = Vector3(35.75, -2.0, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/RailingTop6"]
 mesh = SubResource("s814")
 
 [node name="Railing6_0" type="Node3D" parent="KitDetail3"]
-position = Vector3(33.25, -2.65, 2.42)
+position = Vector3(33.25, -2.65, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Railing6_0"]
 mesh = SubResource("s815")
 
 [node name="Railing6_1" type="Node3D" parent="KitDetail3"]
-position = Vector3(33.75, -2.65, 2.42)
+position = Vector3(33.75, -2.65, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Railing6_1"]
 mesh = SubResource("s816")
 
 [node name="Railing6_2" type="Node3D" parent="KitDetail3"]
-position = Vector3(34.25, -2.65, 2.42)
+position = Vector3(34.25, -2.65, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Railing6_2"]
 mesh = SubResource("s817")
 
 [node name="Railing6_3" type="Node3D" parent="KitDetail3"]
-position = Vector3(34.75, -2.65, 2.42)
+position = Vector3(34.75, -2.65, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Railing6_3"]
 mesh = SubResource("s818")
 
 [node name="Railing6_4" type="Node3D" parent="KitDetail3"]
-position = Vector3(35.25, -2.65, 2.42)
+position = Vector3(35.25, -2.65, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Railing6_4"]
 mesh = SubResource("s819")
 
 [node name="Railing6_5" type="Node3D" parent="KitDetail3"]
-position = Vector3(35.75, -2.65, 2.42)
+position = Vector3(35.75, -2.65, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Railing6_5"]
 mesh = SubResource("s820")
 
 [node name="Railing6_6" type="Node3D" parent="KitDetail3"]
-position = Vector3(36.25, -2.65, 2.42)
+position = Vector3(36.25, -2.65, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Railing6_6"]
 mesh = SubResource("s821")
 
 [node name="Railing6_7" type="Node3D" parent="KitDetail3"]
-position = Vector3(36.75, -2.65, 2.42)
+position = Vector3(36.75, -2.65, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Railing6_7"]
 mesh = SubResource("s822")
 
 [node name="Railing6_8" type="Node3D" parent="KitDetail3"]
-position = Vector3(37.25, -2.65, 2.42)
+position = Vector3(37.25, -2.65, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Railing6_8"]
 mesh = SubResource("s823")
 
 [node name="Railing6_9" type="Node3D" parent="KitDetail3"]
-position = Vector3(37.75, -2.65, 2.42)
+position = Vector3(37.75, -2.65, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Railing6_9"]
 mesh = SubResource("s824")
 
 [node name="Railing6_10" type="Node3D" parent="KitDetail3"]
-position = Vector3(38.25, -2.65, 2.42)
+position = Vector3(38.25, -2.65, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Railing6_10"]
 mesh = SubResource("s825")
 
 [node name="Tube6" type="Node3D" parent="KitDetail3"]
-position = Vector3(35.75, -0.45, 1.2)
+position = Vector3(35.75, -0.45, 2.0)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Tube6"]
 mesh = SubResource("s826")
@@ -8862,113 +8862,113 @@ position = Vector3(0,0,0.025)
 texture_filter = 0
 
 [node name="RailingTop7" type="Node3D" parent="KitDetail3"]
-position = Vector3(41.25, -2.0, 2.42)
+position = Vector3(41.25, -2.0, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/RailingTop7"]
 mesh = SubResource("s828")
 
 [node name="Railing7_0" type="Node3D" parent="KitDetail3"]
-position = Vector3(38.75, -2.65, 2.42)
+position = Vector3(38.75, -2.65, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Railing7_0"]
 mesh = SubResource("s829")
 
 [node name="Railing7_1" type="Node3D" parent="KitDetail3"]
-position = Vector3(39.25, -2.65, 2.42)
+position = Vector3(39.25, -2.65, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Railing7_1"]
 mesh = SubResource("s830")
 
 [node name="Railing7_2" type="Node3D" parent="KitDetail3"]
-position = Vector3(39.75, -2.65, 2.42)
+position = Vector3(39.75, -2.65, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Railing7_2"]
 mesh = SubResource("s831")
 
 [node name="Railing7_3" type="Node3D" parent="KitDetail3"]
-position = Vector3(40.25, -2.65, 2.42)
+position = Vector3(40.25, -2.65, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Railing7_3"]
 mesh = SubResource("s832")
 
 [node name="Railing7_4" type="Node3D" parent="KitDetail3"]
-position = Vector3(40.75, -2.65, 2.42)
+position = Vector3(40.75, -2.65, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Railing7_4"]
 mesh = SubResource("s833")
 
 [node name="Railing7_5" type="Node3D" parent="KitDetail3"]
-position = Vector3(41.25, -2.65, 2.42)
+position = Vector3(41.25, -2.65, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Railing7_5"]
 mesh = SubResource("s834")
 
 [node name="Railing7_6" type="Node3D" parent="KitDetail3"]
-position = Vector3(41.75, -2.65, 2.42)
+position = Vector3(41.75, -2.65, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Railing7_6"]
 mesh = SubResource("s835")
 
 [node name="Railing7_7" type="Node3D" parent="KitDetail3"]
-position = Vector3(42.25, -2.65, 2.42)
+position = Vector3(42.25, -2.65, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Railing7_7"]
 mesh = SubResource("s836")
 
 [node name="Railing7_8" type="Node3D" parent="KitDetail3"]
-position = Vector3(42.75, -2.65, 2.42)
+position = Vector3(42.75, -2.65, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Railing7_8"]
 mesh = SubResource("s837")
 
 [node name="Railing7_9" type="Node3D" parent="KitDetail3"]
-position = Vector3(43.25, -2.65, 2.42)
+position = Vector3(43.25, -2.65, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Railing7_9"]
 mesh = SubResource("s838")
 
 [node name="Railing7_10" type="Node3D" parent="KitDetail3"]
-position = Vector3(43.75, -2.65, 2.42)
+position = Vector3(43.75, -2.65, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Railing7_10"]
 mesh = SubResource("s839")
 
 [node name="Tube7" type="Node3D" parent="KitDetail3"]
-position = Vector3(41.25, -0.45, 1.2)
+position = Vector3(41.25, -0.45, 2.0)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail3/Tube7"]
 mesh = SubResource("s840")
 
 [node name="Light1" type="OmniLight3D" parent="KitDetail3"]
-position = Vector3(1, -0.65, 1.2)
+position = Vector3(1, -0.65, 2.0)
 light_energy = 0.6
 omni_range = 7
 shadow_enabled = false
 light_color = Color(0.65,0.7,0.52,1)
 
 [node name="Light10" type="OmniLight3D" parent="KitDetail3"]
-position = Vector3(10, -0.65, 1.2)
+position = Vector3(10, -0.65, 2.0)
 light_energy = 0.6
 omni_range = 7
 shadow_enabled = false
 light_color = Color(0.65,0.7,0.52,1)
 
 [node name="Light21" type="OmniLight3D" parent="KitDetail3"]
-position = Vector3(21, -0.65, 1.2)
+position = Vector3(21, -0.65, 2.0)
 light_energy = 0.6
 omni_range = 7
 shadow_enabled = false
 light_color = Color(0.65,0.7,0.52,1)
 
 [node name="Light32" type="OmniLight3D" parent="KitDetail3"]
-position = Vector3(32, -0.65, 1.2)
+position = Vector3(32, -0.65, 2.0)
 light_energy = 0.6
 omni_range = 7
 shadow_enabled = false
 light_color = Color(0.65,0.7,0.52,1)
 
 [node name="Light43" type="OmniLight3D" parent="KitDetail3"]
-position = Vector3(43, -0.65, 1.2)
+position = Vector3(43, -0.65, 2.0)
 light_energy = 0.6
 omni_range = 7
 shadow_enabled = false

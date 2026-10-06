@@ -1104,7 +1104,7 @@ size = Vector3(500, 3, 0.3)
 material = SubResource("s303")
 
 [sub_resource type="BoxShape3D" id="s311"]
-size = Vector3(54, 14, 12)
+size = Vector3(54, 14, 13.6)
 
 [sub_resource type="BoxShape3D" id="s312"]
 size = Vector3(220, 4, 10)
@@ -1146,7 +1146,7 @@ agent_radius = 0.3
 agent_height = 1.75
 
 [sub_resource type="NavigationMesh" id="s322"]
-vertices = PackedVector3Array(0.35,-9.9,0.5,0.35,-9.9,1.95,43.65,-9.9,1.95,43.65,-9.9,0.5)
+vertices = PackedVector3Array(0.35,-9.9,0.5,0.35,-9.9,3.55,43.65,-9.9,3.55,43.65,-9.9,0.5)
 polygons = [PackedInt32Array(0,1,2,3)]
 agent_radius = 0.3
 agent_height = 1.75
@@ -1170,7 +1170,7 @@ agent_radius = 0.3
 agent_height = 1.75
 
 [sub_resource type="NavigationMesh" id="s326"]
-vertices = PackedVector3Array(0.35,-6.6,0.5,0.35,-6.6,1.95,43.65,-6.6,1.95,43.65,-6.6,0.5)
+vertices = PackedVector3Array(0.35,-6.6,0.5,0.35,-6.6,3.55,43.65,-6.6,3.55,43.65,-6.6,0.5)
 polygons = [PackedInt32Array(0,1,2,3)]
 agent_radius = 0.3
 agent_height = 1.75
@@ -1206,7 +1206,7 @@ agent_radius = 0.3
 agent_height = 1.75
 
 [sub_resource type="NavigationMesh" id="s332"]
-vertices = PackedVector3Array(0.35,-3.3,0.5,0.35,-3.3,1.95,43.65,-3.3,1.95,43.65,-3.3,0.5)
+vertices = PackedVector3Array(0.35,-3.3,0.5,0.35,-3.3,3.55,43.65,-3.3,3.55,43.65,-3.3,0.5)
 polygons = [PackedInt32Array(0,1,2,3)]
 agent_radius = 0.3
 agent_height = 1.75
@@ -1242,25 +1242,25 @@ agent_radius = 0.3
 agent_height = 1.75
 
 [sub_resource type="NavigationMesh" id="s338"]
-vertices = PackedVector3Array(-4.68,-9.9,0.32,-4.68,-9.9,2.08,-0.32,-9.9,2.08,-0.32,-9.9,0.32)
+vertices = PackedVector3Array(-4.68,-9.9,0.32,-4.68,-9.9,3.68,-0.32,-9.9,3.68,-0.32,-9.9,0.32)
 polygons = [PackedInt32Array(0,1,2,3)]
 agent_radius = 0.3
 agent_height = 1.75
 
 [sub_resource type="NavigationMesh" id="s339"]
-vertices = PackedVector3Array(-4.68,-6.6,0.32,-4.68,-6.6,2.08,-0.32,-6.6,2.08,-0.32,-6.6,0.32)
+vertices = PackedVector3Array(-4.68,-6.6,0.32,-4.68,-6.6,3.68,-0.32,-6.6,3.68,-0.32,-6.6,0.32)
 polygons = [PackedInt32Array(0,1,2,3)]
 agent_radius = 0.3
 agent_height = 1.75
 
 [sub_resource type="NavigationMesh" id="s340"]
-vertices = PackedVector3Array(-4.68,-3.3,0.32,-4.68,-3.3,2.08,-0.32,-3.3,2.08,-0.32,-3.3,0.32)
+vertices = PackedVector3Array(-4.68,-3.3,0.32,-4.68,-3.3,3.68,-0.32,-3.3,3.68,-0.32,-3.3,0.32)
 polygons = [PackedInt32Array(0,1,2,3)]
 agent_radius = 0.3
 agent_height = 1.75
 
 [sub_resource type="NavigationMesh" id="s341"]
-vertices = PackedVector3Array(-4.68,0.0,0.32,-4.68,0.0,2.08,-0.32,0.0,2.08,-0.32,0.0,0.32)
+vertices = PackedVector3Array(-4.68,0.0,0.32,-4.68,0.0,3.68,-0.32,0.0,3.68,-0.32,0.0,0.32)
 polygons = [PackedInt32Array(0,1,2,3)]
 agent_radius = 0.3
 agent_height = 1.75
@@ -1320,25 +1320,25 @@ agent_radius = 0.3
 agent_height = 1.75
 
 [sub_resource type="NavigationMesh" id="s351"]
-vertices = PackedVector3Array(44.32,-9.9,0.32,44.32,-9.9,2.08,48.68,-9.9,2.08,48.68,-9.9,0.32)
+vertices = PackedVector3Array(44.32,-9.9,0.32,44.32,-9.9,3.68,48.68,-9.9,3.68,48.68,-9.9,0.32)
 polygons = [PackedInt32Array(0,1,2,3)]
 agent_radius = 0.3
 agent_height = 1.75
 
 [sub_resource type="NavigationMesh" id="s352"]
-vertices = PackedVector3Array(44.32,-6.6,0.32,44.32,-6.6,2.08,48.68,-6.6,2.08,48.68,-6.6,0.32)
+vertices = PackedVector3Array(44.32,-6.6,0.32,44.32,-6.6,3.68,48.68,-6.6,3.68,48.68,-6.6,0.32)
 polygons = [PackedInt32Array(0,1,2,3)]
 agent_radius = 0.3
 agent_height = 1.75
 
 [sub_resource type="NavigationMesh" id="s353"]
-vertices = PackedVector3Array(44.32,-3.3,0.32,44.32,-3.3,2.08,48.68,-3.3,2.08,48.68,-3.3,0.32)
+vertices = PackedVector3Array(44.32,-3.3,0.32,44.32,-3.3,3.68,48.68,-3.3,3.68,48.68,-3.3,0.32)
 polygons = [PackedInt32Array(0,1,2,3)]
 agent_radius = 0.3
 agent_height = 1.75
 
 [sub_resource type="NavigationMesh" id="s354"]
-vertices = PackedVector3Array(44.32,0.0,0.32,44.32,0.0,2.08,48.68,0.0,2.08,48.68,0.0,0.32)
+vertices = PackedVector3Array(44.32,0.0,0.32,44.32,0.0,3.68,48.68,0.0,3.68,48.68,0.0,0.32)
 polygons = [PackedInt32Array(0,1,2,3)]
 agent_radius = 0.3
 agent_height = 1.75
@@ -1380,7 +1380,7 @@ agent_radius = 0.3
 agent_height = 1.75
 
 [sub_resource type="NavigationMesh" id="s361"]
-vertices = PackedVector3Array(0.35,0,0.6,0.35,0,1.95,43.65,0,1.95,43.65,0,0.6)
+vertices = PackedVector3Array(0.35,0,1.1,0.35,0,3.55,43.65,0,3.55,43.65,0,1.1)
 polygons = [PackedInt32Array(0,1,2,3)]
 agent_radius = 0.3
 agent_height = 1.75
@@ -8060,7 +8060,7 @@ position = Vector3(13.75, -6.6, 0)
 position = Vector3(20, -5.5, 0.25)
 
 [node name="MainDoor1F" type="Marker3D" parent="Anchors"]
-position = Vector3(19.25, -9.9, 2.5)
+position = Vector3(19.25, -9.9, 4.1)
 
 [node name="ManagerWindow" type="Marker3D" parent="Anchors"]
 position = Vector3(4, -8.9, -7.6)
@@ -8072,7 +8072,7 @@ position = Vector3(1.4, -8.95, -3.2)
 position = Vector3(46.5, -6.6, -1.0)
 
 [node name="FireDoor" type="Marker3D" parent="Anchors"]
-position = Vector3(44, 0, 1.2)
+position = Vector3(44, 0, 2.0)
 
 [node name="FireKey" type="Marker3D" parent="Anchors"]
 position = Vector3(39.8, 0.66, 0.42)
@@ -8183,7 +8183,7 @@ position = Vector3(194, -9.9, 40)
 
 
 [node name="S01" type="Marker3D" parent="Anchors/ZombieSpawns/B4"]
-position = Vector3(8, 0, 1.3)
+position = Vector3(8, 0, 2.1)
 
 [node name="ZombieIdle" type="Node3D" parent="Anchors"]
 
@@ -8192,163 +8192,163 @@ position = Vector3(8, 0, 1.3)
 
 
 [node name="I01" type="Marker3D" parent="Anchors/ZombieIdle/B4"]
-position = Vector3(8, 0, 1.3)
+position = Vector3(8, 0, 2.1)
 
 [node name="S02" type="Marker3D" parent="Anchors/ZombieSpawns/B4"]
-position = Vector3(12, 0, 1.3)
+position = Vector3(12, 0, 2.1)
 
 [node name="I02" type="Marker3D" parent="Anchors/ZombieIdle/B4"]
-position = Vector3(12, 0, 1.3)
+position = Vector3(12, 0, 2.1)
 
 [node name="S03" type="Marker3D" parent="Anchors/ZombieSpawns/B4"]
-position = Vector3(16, 0, 1.3)
+position = Vector3(16, 0, 2.1)
 
 [node name="I03" type="Marker3D" parent="Anchors/ZombieIdle/B4"]
-position = Vector3(16, 0, 1.3)
+position = Vector3(16, 0, 2.1)
 
 [node name="S04" type="Marker3D" parent="Anchors/ZombieSpawns/B4"]
-position = Vector3(20, 0, 1.3)
+position = Vector3(20, 0, 2.1)
 
 [node name="I04" type="Marker3D" parent="Anchors/ZombieIdle/B4"]
-position = Vector3(20, 0, 1.3)
+position = Vector3(20, 0, 2.1)
 
 [node name="S05" type="Marker3D" parent="Anchors/ZombieSpawns/B4"]
-position = Vector3(24, 0, 1.3)
+position = Vector3(24, 0, 2.1)
 
 [node name="I05" type="Marker3D" parent="Anchors/ZombieIdle/B4"]
-position = Vector3(24, 0, 1.3)
+position = Vector3(24, 0, 2.1)
 
 [node name="S06" type="Marker3D" parent="Anchors/ZombieSpawns/B4"]
-position = Vector3(28, 0, 1.3)
+position = Vector3(28, 0, 2.1)
 
 [node name="I06" type="Marker3D" parent="Anchors/ZombieIdle/B4"]
-position = Vector3(28, 0, 1.3)
+position = Vector3(28, 0, 2.1)
 
 [node name="B3" type="Node3D" parent="Anchors/ZombieSpawns"]
 
 
 [node name="S01" type="Marker3D" parent="Anchors/ZombieSpawns/B3"]
-position = Vector3(8, -3.3, 1.3)
+position = Vector3(8, -3.3, 2.1)
 
 [node name="B3" type="Node3D" parent="Anchors/ZombieIdle"]
 
 
 [node name="I01" type="Marker3D" parent="Anchors/ZombieIdle/B3"]
-position = Vector3(8, -3.3, 1.3)
+position = Vector3(8, -3.3, 2.1)
 
 [node name="S02" type="Marker3D" parent="Anchors/ZombieSpawns/B3"]
-position = Vector3(12, -3.3, 1.3)
+position = Vector3(12, -3.3, 2.1)
 
 [node name="I02" type="Marker3D" parent="Anchors/ZombieIdle/B3"]
-position = Vector3(12, -3.3, 1.3)
+position = Vector3(12, -3.3, 2.1)
 
 [node name="S03" type="Marker3D" parent="Anchors/ZombieSpawns/B3"]
-position = Vector3(16, -3.3, 1.3)
+position = Vector3(16, -3.3, 2.1)
 
 [node name="I03" type="Marker3D" parent="Anchors/ZombieIdle/B3"]
-position = Vector3(16, -3.3, 1.3)
+position = Vector3(16, -3.3, 2.1)
 
 [node name="S04" type="Marker3D" parent="Anchors/ZombieSpawns/B3"]
-position = Vector3(20, -3.3, 1.3)
+position = Vector3(20, -3.3, 2.1)
 
 [node name="I04" type="Marker3D" parent="Anchors/ZombieIdle/B3"]
-position = Vector3(20, -3.3, 1.3)
+position = Vector3(20, -3.3, 2.1)
 
 [node name="S05" type="Marker3D" parent="Anchors/ZombieSpawns/B3"]
-position = Vector3(24, -3.3, 1.3)
+position = Vector3(24, -3.3, 2.1)
 
 [node name="I05" type="Marker3D" parent="Anchors/ZombieIdle/B3"]
-position = Vector3(24, -3.3, 1.3)
+position = Vector3(24, -3.3, 2.1)
 
 [node name="S06" type="Marker3D" parent="Anchors/ZombieSpawns/B3"]
-position = Vector3(28, -3.3, 1.3)
+position = Vector3(28, -3.3, 2.1)
 
 [node name="I06" type="Marker3D" parent="Anchors/ZombieIdle/B3"]
-position = Vector3(28, -3.3, 1.3)
+position = Vector3(28, -3.3, 2.1)
 
 [node name="B2" type="Node3D" parent="Anchors/ZombieSpawns"]
 
 
 [node name="S01" type="Marker3D" parent="Anchors/ZombieSpawns/B2"]
-position = Vector3(8, -6.6, 1.3)
+position = Vector3(8, -6.6, 2.1)
 
 [node name="B2" type="Node3D" parent="Anchors/ZombieIdle"]
 
 
 [node name="I01" type="Marker3D" parent="Anchors/ZombieIdle/B2"]
-position = Vector3(8, -6.6, 1.3)
+position = Vector3(8, -6.6, 2.1)
 
 [node name="S02" type="Marker3D" parent="Anchors/ZombieSpawns/B2"]
-position = Vector3(12, -6.6, 1.3)
+position = Vector3(12, -6.6, 2.1)
 
 [node name="I02" type="Marker3D" parent="Anchors/ZombieIdle/B2"]
-position = Vector3(12, -6.6, 1.3)
+position = Vector3(12, -6.6, 2.1)
 
 [node name="S03" type="Marker3D" parent="Anchors/ZombieSpawns/B2"]
-position = Vector3(16, -6.6, 1.3)
+position = Vector3(16, -6.6, 2.1)
 
 [node name="I03" type="Marker3D" parent="Anchors/ZombieIdle/B2"]
-position = Vector3(16, -6.6, 1.3)
+position = Vector3(16, -6.6, 2.1)
 
 [node name="S04" type="Marker3D" parent="Anchors/ZombieSpawns/B2"]
-position = Vector3(20, -6.6, 1.3)
+position = Vector3(20, -6.6, 2.1)
 
 [node name="I04" type="Marker3D" parent="Anchors/ZombieIdle/B2"]
-position = Vector3(20, -6.6, 1.3)
+position = Vector3(20, -6.6, 2.1)
 
 [node name="S05" type="Marker3D" parent="Anchors/ZombieSpawns/B2"]
-position = Vector3(24, -6.6, 1.3)
+position = Vector3(24, -6.6, 2.1)
 
 [node name="I05" type="Marker3D" parent="Anchors/ZombieIdle/B2"]
-position = Vector3(24, -6.6, 1.3)
+position = Vector3(24, -6.6, 2.1)
 
 [node name="S06" type="Marker3D" parent="Anchors/ZombieSpawns/B2"]
-position = Vector3(28, -6.6, 1.3)
+position = Vector3(28, -6.6, 2.1)
 
 [node name="I06" type="Marker3D" parent="Anchors/ZombieIdle/B2"]
-position = Vector3(28, -6.6, 1.3)
+position = Vector3(28, -6.6, 2.1)
 
 [node name="B1" type="Node3D" parent="Anchors/ZombieSpawns"]
 
 
 [node name="S01" type="Marker3D" parent="Anchors/ZombieSpawns/B1"]
-position = Vector3(8, -9.9, 1.3)
+position = Vector3(8, -9.9, 2.1)
 
 [node name="B1" type="Node3D" parent="Anchors/ZombieIdle"]
 
 
 [node name="I01" type="Marker3D" parent="Anchors/ZombieIdle/B1"]
-position = Vector3(8, -9.9, 1.3)
+position = Vector3(8, -9.9, 2.1)
 
 [node name="S02" type="Marker3D" parent="Anchors/ZombieSpawns/B1"]
-position = Vector3(12, -9.9, 1.3)
+position = Vector3(12, -9.9, 2.1)
 
 [node name="I02" type="Marker3D" parent="Anchors/ZombieIdle/B1"]
-position = Vector3(12, -9.9, 1.3)
+position = Vector3(12, -9.9, 2.1)
 
 [node name="S03" type="Marker3D" parent="Anchors/ZombieSpawns/B1"]
-position = Vector3(16, -9.9, 1.3)
+position = Vector3(16, -9.9, 2.1)
 
 [node name="I03" type="Marker3D" parent="Anchors/ZombieIdle/B1"]
-position = Vector3(16, -9.9, 1.3)
+position = Vector3(16, -9.9, 2.1)
 
 [node name="S04" type="Marker3D" parent="Anchors/ZombieSpawns/B1"]
-position = Vector3(20, -9.9, 1.3)
+position = Vector3(20, -9.9, 2.1)
 
 [node name="I04" type="Marker3D" parent="Anchors/ZombieIdle/B1"]
-position = Vector3(20, -9.9, 1.3)
+position = Vector3(20, -9.9, 2.1)
 
 [node name="S05" type="Marker3D" parent="Anchors/ZombieSpawns/B1"]
-position = Vector3(24, -9.9, 1.3)
+position = Vector3(24, -9.9, 2.1)
 
 [node name="I05" type="Marker3D" parent="Anchors/ZombieIdle/B1"]
-position = Vector3(24, -9.9, 1.3)
+position = Vector3(24, -9.9, 2.1)
 
 [node name="S06" type="Marker3D" parent="Anchors/ZombieSpawns/B1"]
-position = Vector3(28, -9.9, 1.3)
+position = Vector3(28, -9.9, 2.1)
 
 [node name="I06" type="Marker3D" parent="Anchors/ZombieIdle/B1"]
-position = Vector3(28, -9.9, 1.3)
+position = Vector3(28, -9.9, 2.1)
 
 [node name="Road" type="Node3D" parent="Anchors/ZombieSpawns"]
 
@@ -8570,19 +8570,19 @@ position = Vector3(186, -9.9, 30)
 position = Vector3(13.75, -6.6, -2)
 
 [node name="P02" type="Marker3D" parent="Anchors/Paths/Nhat"]
-position = Vector3(13.75, -6.6, 1.2)
+position = Vector3(13.75, -6.6, 2.0)
 
 [node name="P03" type="Marker3D" parent="Anchors/Paths/Nhat"]
-position = Vector3(-1.2, -6.6, 1.2)
+position = Vector3(-1.2, -6.6, 2.0)
 
 [node name="P04" type="Marker3D" parent="Anchors/Paths/Nhat"]
 position = Vector3(-3.8, -8.25, -5.3)
 
 [node name="P05" type="Marker3D" parent="Anchors/Paths/Nhat"]
-position = Vector3(-1.2, -9.9, 1.2)
+position = Vector3(-1.2, -9.9, 2.0)
 
 [node name="P06" type="Marker3D" parent="Anchors/Paths/Nhat"]
-position = Vector3(2.75, -9.9, 1.2)
+position = Vector3(2.75, -9.9, 2.0)
 
 [node name="P07" type="Marker3D" parent="Anchors/Paths/Nhat"]
 position = Vector3(2.75, -9.9, -3)
@@ -8741,7 +8741,7 @@ position = Vector3(202, -9.9, 54)
 
 
 [node name="BuildingB" type="Area3D" parent="Zones"]
-position = Vector3(22, -4, -2)
+position = Vector3(22, -4, -1.2)
 collision_layer = 0
 collision_mask = 2
 
@@ -11112,20 +11112,20 @@ bidirectional = true
 
 
 [node name="MainStairsHall1" type="NavigationLink3D" parent="Navigation"]
-start_position = Vector3(-0.4, -9.9, 1.2)
-end_position = Vector3(0.5, -9.9, 1.2)
+start_position = Vector3(-0.4, -9.9, 2.0)
+end_position = Vector3(0.5, -9.9, 2.0)
 bidirectional = true
 
 
 [node name="MainStairsHall2" type="NavigationLink3D" parent="Navigation"]
-start_position = Vector3(-0.4, -6.6, 1.2)
-end_position = Vector3(0.5, -6.6, 1.2)
+start_position = Vector3(-0.4, -6.6, 2.0)
+end_position = Vector3(0.5, -6.6, 2.0)
 bidirectional = true
 
 
 [node name="MainStairsHall3" type="NavigationLink3D" parent="Navigation"]
-start_position = Vector3(-0.4, -3.3, 1.2)
-end_position = Vector3(0.5, -3.3, 1.2)
+start_position = Vector3(-0.4, -3.3, 2.0)
+end_position = Vector3(0.5, -3.3, 2.0)
 bidirectional = true
 
 
@@ -11202,20 +11202,20 @@ bidirectional = true
 
 
 [node name="FireStairsHall1" type="NavigationLink3D" parent="Navigation"]
-start_position = Vector3(44.4, -9.9, 1.2)
-end_position = Vector3(43.5, -9.9, 1.2)
+start_position = Vector3(44.4, -9.9, 2.0)
+end_position = Vector3(43.5, -9.9, 2.0)
 bidirectional = true
 
 
 [node name="FireStairsHall2" type="NavigationLink3D" parent="Navigation"]
-start_position = Vector3(44.4, -6.6, 1.2)
-end_position = Vector3(43.5, -6.6, 1.2)
+start_position = Vector3(44.4, -6.6, 2.0)
+end_position = Vector3(43.5, -6.6, 2.0)
 bidirectional = true
 
 
 [node name="FireStairsHall3" type="NavigationLink3D" parent="Navigation"]
-start_position = Vector3(44.4, -3.3, 1.2)
-end_position = Vector3(43.5, -3.3, 1.2)
+start_position = Vector3(44.4, -3.3, 2.0)
+end_position = Vector3(43.5, -3.3, 2.0)
 bidirectional = true
 
 
@@ -11268,20 +11268,20 @@ bidirectional = true
 
 
 [node name="FireDoorLink" type="NavigationLink3D" parent="Navigation"]
-start_position = Vector3(43.5, 0, 1.2)
-end_position = Vector3(44.5, 0, 1.2)
+start_position = Vector3(43.5, 0, 2.0)
+end_position = Vector3(44.5, 0, 2.0)
 bidirectional = true
 enabled = false
 
 [node name="MainStairsHall4" type="NavigationLink3D" parent="Navigation"]
-start_position = Vector3(0.5, 0, 1.2)
-end_position = Vector3(-0.5, 0, 1.2)
+start_position = Vector3(0.5, 0, 2.0)
+end_position = Vector3(-0.5, 0, 2.0)
 bidirectional = true
 
 
 [node name="MainDoorLink" type="NavigationLink3D" parent="Navigation"]
-start_position = Vector3(19.25, -9.9, 1.6)
-end_position = Vector3(19.25, -9.9, 4)
+start_position = Vector3(19.25, -9.9, 3.5)
+end_position = Vector3(19.25, -9.9, 6)
 bidirectional = true
 enabled = false
 

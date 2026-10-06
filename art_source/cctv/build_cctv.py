@@ -238,18 +238,18 @@ def cctv_room(s, number, x):
 
 def corridor(s, x):
     path = s.node('Corridor', properties=f'position = {V((x, 0, 0))}')
-    s.box('Floor', (5, -.1, 1.0), (10, .2, 2.4), 'tile', parent=path, floor=True)
+    s.box('Floor', (5, -.1, 2.0), (10, .2, 4.0), 'tile', parent=path, floor=True)
     s.box('RoomWall', (5, 1.5, -.1), (10, 3, .2), parent=path)
-    s.box('OuterWall', (5, 1.5, 2.3), (10, 3, .2), parent=path)
-    s.box('Ceiling', (5, 3.075, 1.0), (10, .15, 2.4), parent=path)
+    s.box('OuterWall', (5, 1.5, 4.1), (10, 3, .2), parent=path)
+    s.box('Ceiling', (5, 3.075, 2.0), (10, .15, 4.0), parent=path)
     for name, ex in (('EndWest', -.1), ('EndEast', 10.1)):
-        s.box(name, (ex, 1.5, 1.0), (.2, 3, 2.6), parent=path)
+        s.box(name, (ex, 1.5, 2.0), (.2, 3, 4.2), parent=path)
     for i, number in enumerate(('405', '406', '407')):
         dx = 1.5 + i * 3.2
         s.kit('Door' + number, 'door', (dx, .01, 0), 0, parent=path)
         label(s, 'Number' + number, number, (dx + .44, 2.3, .02), 0, path, 40)
-    s.node('Tube', 'OmniLight3D', path, 'position = Vector3(5, 2.8, 1.0)\nlight_color = Color(0.82, 0.9, 0.76, 1)\nlight_energy = 0.55\nomni_range = 7.0\nshadow_enabled = false')
-    s.node('Cam', 'Camera3D', path, look((.3, 2.75, 2.0), (8.0, .9, .2)) + '\nfov = 75.0\nfar = 30.0')
+    s.node('Tube', 'OmniLight3D', path, 'position = Vector3(5, 2.8, 2.0)\nlight_color = Color(0.82, 0.9, 0.76, 1)\nlight_energy = 0.55\nomni_range = 7.0\nshadow_enabled = false')
+    s.node('Cam', 'Camera3D', path, look((.3, 2.75, 3.7), (8.0, .9, .2)) + '\nfov = 75.0\nfar = 30.0')
 
 
 def cctv_set():

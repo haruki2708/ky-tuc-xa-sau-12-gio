@@ -14,7 +14,7 @@
 [ext_resource type="Script" path="res://scripts/audio/ambient_zone.gd" id="e12"]
 
 [sub_resource type="BoxShape3D" id="s1"]
-size = Vector3(44, 0.2, 2.4)
+size = Vector3(44, 0.2, 4)
 
 [sub_resource type="StandardMaterial3D" id="s2"]
 albedo_color = Color(0.34, 0.38, 0.36, 1)
@@ -22,11 +22,11 @@ roughness = 0.85
 texture_filter = 0
 
 [sub_resource type="BoxMesh" id="s3"]
-size = Vector3(44, 0.2, 2.4)
+size = Vector3(44, 0.2, 4)
 material = SubResource("s2")
 
 [sub_resource type="BoxShape3D" id="s4"]
-size = Vector3(44, 0.15, 2.4)
+size = Vector3(44, 0.15, 4)
 
 [sub_resource type="StandardMaterial3D" id="s5"]
 albedo_color = Color(0.47, 0.49, 0.4, 1)
@@ -34,21 +34,21 @@ roughness = 0.85
 texture_filter = 0
 
 [sub_resource type="BoxMesh" id="s6"]
-size = Vector3(44, 0.15, 2.4)
+size = Vector3(44, 0.15, 4)
 material = SubResource("s5")
 
 [sub_resource type="BoxShape3D" id="s7"]
-size = Vector3(0.2, 3, 2.4)
+size = Vector3(0.2, 3, 4)
 
 [sub_resource type="BoxMesh" id="s8"]
-size = Vector3(0.2, 3, 2.4)
+size = Vector3(0.2, 3, 4)
 material = SubResource("s5")
 
 [sub_resource type="BoxShape3D" id="s9"]
-size = Vector3(0.2, 3, 2.4)
+size = Vector3(0.2, 3, 4)
 
 [sub_resource type="BoxMesh" id="s10"]
-size = Vector3(0.2, 3, 2.4)
+size = Vector3(0.2, 3, 4)
 material = SubResource("s5")
 
 [sub_resource type="BoxShape3D" id="s11"]
@@ -717,7 +717,7 @@ size = Vector3(0.3, 0.36, 0.3)
 size = Vector3(0.3, 0.36, 0.3)
 
 [sub_resource type="BoxShape3D" id="s185"]
-size = Vector3(44, 3, 2.4)
+size = Vector3(44, 3, 4)
 
 [sub_resource type="StandardMaterial3D" id="s186"]
 albedo_color = Color(0.035, 0.065, 0.045, 1)
@@ -755,11 +755,17 @@ material = SubResource("s13")
 [sub_resource type="BoxMesh" id="v2_seal"]
 size = Vector3(0.85,1.7,0.05)
 
+[sub_resource type="NavigationMesh" id="t187_hall_nav"]
+vertices = PackedVector3Array(0.35,0,1.1, 0.35,0,3.55, 43.65,0,3.55, 43.65,0,1.1)
+polygons = [PackedInt32Array(0,1,2,3)]
+agent_radius = 0.3
+agent_height = 1.75
+
 [node name="Corridor" type="Node3D"]
 
 
 [node name="Floor" type="StaticBody3D" parent="."]
-position = Vector3(22, -0.1, 1.2)
+position = Vector3(22, -0.1, 2.0)
 metadata/surface = &"tile"
 metadata/is_floor = true
 collision_layer = 1
@@ -772,7 +778,7 @@ shape = SubResource("s1")
 mesh = SubResource("s3")
 
 [node name="Roof" type="StaticBody3D" parent="."]
-position = Vector3(22, 3.075, 1.2)
+position = Vector3(22, 3.075, 2.0)
 collision_layer = 1
 collision_mask = 0
 
@@ -783,7 +789,7 @@ shape = SubResource("s4")
 mesh = SubResource("s6")
 
 [node name="WestEnd" type="StaticBody3D" parent="."]
-position = Vector3(-0.1, 1.5, 1.2)
+position = Vector3(-0.1, 1.5, 2.0)
 collision_layer = 1
 collision_mask = 0
 
@@ -794,7 +800,7 @@ shape = SubResource("s7")
 mesh = SubResource("s8")
 
 [node name="EastEnd" type="StaticBody3D" parent="."]
-position = Vector3(44.1, 1.5, 1.2)
+position = Vector3(44.1, 1.5, 2.0)
 collision_layer = 1
 collision_mask = 0
 
@@ -805,7 +811,7 @@ shape = SubResource("s9")
 mesh = SubResource("s10")
 
 [node name="RailingBarrier" type="StaticBody3D" parent="."]
-position = Vector3(22, 1, 2.45)
+position = Vector3(22, 1, 4.05)
 collision_layer = 1
 collision_mask = 0
 
@@ -813,7 +819,7 @@ collision_mask = 0
 shape = SubResource("s11")
 
 [node name="RailingTop" type="StaticBody3D" parent="."]
-position = Vector3(22, 1.07, 2.39)
+position = Vector3(22, 1.07, 3.99)
 collision_layer = 1
 collision_mask = 0
 
@@ -824,7 +830,7 @@ shape = SubResource("s12")
 mesh = SubResource("s14")
 
 [node name="RailingLow" type="StaticBody3D" parent="."]
-position = Vector3(22, 0.18, 2.39)
+position = Vector3(22, 0.18, 3.99)
 collision_layer = 1
 collision_mask = 0
 
@@ -835,535 +841,535 @@ shape = SubResource("s15")
 mesh = SubResource("s16")
 
 [node name="RailBar_00" type="Node3D" parent="."]
-position = Vector3(0.0, 0.62, 2.39)
+position = Vector3(0.0, 0.62, 3.99)
 
 [node name="Mesh" type="MeshInstance3D" parent="RailBar_00"]
 mesh = SubResource("s17")
 
 [node name="RailBar_01" type="Node3D" parent="."]
-position = Vector3(0.5, 0.62, 2.39)
+position = Vector3(0.5, 0.62, 3.99)
 
 [node name="Mesh" type="MeshInstance3D" parent="RailBar_01"]
 mesh = SubResource("s18")
 
 [node name="RailBar_02" type="Node3D" parent="."]
-position = Vector3(1.0, 0.62, 2.39)
+position = Vector3(1.0, 0.62, 3.99)
 
 [node name="Mesh" type="MeshInstance3D" parent="RailBar_02"]
 mesh = SubResource("s19")
 
 [node name="RailBar_03" type="Node3D" parent="."]
-position = Vector3(1.5, 0.62, 2.39)
+position = Vector3(1.5, 0.62, 3.99)
 
 [node name="Mesh" type="MeshInstance3D" parent="RailBar_03"]
 mesh = SubResource("s20")
 
 [node name="RailBar_04" type="Node3D" parent="."]
-position = Vector3(2.0, 0.62, 2.39)
+position = Vector3(2.0, 0.62, 3.99)
 
 [node name="Mesh" type="MeshInstance3D" parent="RailBar_04"]
 mesh = SubResource("s21")
 
 [node name="RailBar_05" type="Node3D" parent="."]
-position = Vector3(2.5, 0.62, 2.39)
+position = Vector3(2.5, 0.62, 3.99)
 
 [node name="Mesh" type="MeshInstance3D" parent="RailBar_05"]
 mesh = SubResource("s22")
 
 [node name="RailBar_06" type="Node3D" parent="."]
-position = Vector3(3.0, 0.62, 2.39)
+position = Vector3(3.0, 0.62, 3.99)
 
 [node name="Mesh" type="MeshInstance3D" parent="RailBar_06"]
 mesh = SubResource("s23")
 
 [node name="RailBar_07" type="Node3D" parent="."]
-position = Vector3(3.5, 0.62, 2.39)
+position = Vector3(3.5, 0.62, 3.99)
 
 [node name="Mesh" type="MeshInstance3D" parent="RailBar_07"]
 mesh = SubResource("s24")
 
 [node name="RailBar_08" type="Node3D" parent="."]
-position = Vector3(4.0, 0.62, 2.39)
+position = Vector3(4.0, 0.62, 3.99)
 
 [node name="Mesh" type="MeshInstance3D" parent="RailBar_08"]
 mesh = SubResource("s25")
 
 [node name="RailBar_09" type="Node3D" parent="."]
-position = Vector3(4.5, 0.62, 2.39)
+position = Vector3(4.5, 0.62, 3.99)
 
 [node name="Mesh" type="MeshInstance3D" parent="RailBar_09"]
 mesh = SubResource("s26")
 
 [node name="RailBar_10" type="Node3D" parent="."]
-position = Vector3(5.0, 0.62, 2.39)
+position = Vector3(5.0, 0.62, 3.99)
 
 [node name="Mesh" type="MeshInstance3D" parent="RailBar_10"]
 mesh = SubResource("s27")
 
 [node name="RailBar_11" type="Node3D" parent="."]
-position = Vector3(5.5, 0.62, 2.39)
+position = Vector3(5.5, 0.62, 3.99)
 
 [node name="Mesh" type="MeshInstance3D" parent="RailBar_11"]
 mesh = SubResource("s28")
 
 [node name="RailBar_12" type="Node3D" parent="."]
-position = Vector3(6.0, 0.62, 2.39)
+position = Vector3(6.0, 0.62, 3.99)
 
 [node name="Mesh" type="MeshInstance3D" parent="RailBar_12"]
 mesh = SubResource("s29")
 
 [node name="RailBar_13" type="Node3D" parent="."]
-position = Vector3(6.5, 0.62, 2.39)
+position = Vector3(6.5, 0.62, 3.99)
 
 [node name="Mesh" type="MeshInstance3D" parent="RailBar_13"]
 mesh = SubResource("s30")
 
 [node name="RailBar_14" type="Node3D" parent="."]
-position = Vector3(7.0, 0.62, 2.39)
+position = Vector3(7.0, 0.62, 3.99)
 
 [node name="Mesh" type="MeshInstance3D" parent="RailBar_14"]
 mesh = SubResource("s31")
 
 [node name="RailBar_15" type="Node3D" parent="."]
-position = Vector3(7.5, 0.62, 2.39)
+position = Vector3(7.5, 0.62, 3.99)
 
 [node name="Mesh" type="MeshInstance3D" parent="RailBar_15"]
 mesh = SubResource("s32")
 
 [node name="RailBar_16" type="Node3D" parent="."]
-position = Vector3(8.0, 0.62, 2.39)
+position = Vector3(8.0, 0.62, 3.99)
 
 [node name="Mesh" type="MeshInstance3D" parent="RailBar_16"]
 mesh = SubResource("s33")
 
 [node name="RailBar_17" type="Node3D" parent="."]
-position = Vector3(8.5, 0.62, 2.39)
+position = Vector3(8.5, 0.62, 3.99)
 
 [node name="Mesh" type="MeshInstance3D" parent="RailBar_17"]
 mesh = SubResource("s34")
 
 [node name="RailBar_18" type="Node3D" parent="."]
-position = Vector3(9.0, 0.62, 2.39)
+position = Vector3(9.0, 0.62, 3.99)
 
 [node name="Mesh" type="MeshInstance3D" parent="RailBar_18"]
 mesh = SubResource("s35")
 
 [node name="RailBar_19" type="Node3D" parent="."]
-position = Vector3(9.5, 0.62, 2.39)
+position = Vector3(9.5, 0.62, 3.99)
 
 [node name="Mesh" type="MeshInstance3D" parent="RailBar_19"]
 mesh = SubResource("s36")
 
 [node name="RailBar_20" type="Node3D" parent="."]
-position = Vector3(10.0, 0.62, 2.39)
+position = Vector3(10.0, 0.62, 3.99)
 
 [node name="Mesh" type="MeshInstance3D" parent="RailBar_20"]
 mesh = SubResource("s37")
 
 [node name="RailBar_21" type="Node3D" parent="."]
-position = Vector3(10.5, 0.62, 2.39)
+position = Vector3(10.5, 0.62, 3.99)
 
 [node name="Mesh" type="MeshInstance3D" parent="RailBar_21"]
 mesh = SubResource("s38")
 
 [node name="RailBar_22" type="Node3D" parent="."]
-position = Vector3(11.0, 0.62, 2.39)
+position = Vector3(11.0, 0.62, 3.99)
 
 [node name="Mesh" type="MeshInstance3D" parent="RailBar_22"]
 mesh = SubResource("s39")
 
 [node name="RailBar_23" type="Node3D" parent="."]
-position = Vector3(11.5, 0.62, 2.39)
+position = Vector3(11.5, 0.62, 3.99)
 
 [node name="Mesh" type="MeshInstance3D" parent="RailBar_23"]
 mesh = SubResource("s40")
 
 [node name="RailBar_24" type="Node3D" parent="."]
-position = Vector3(12.0, 0.62, 2.39)
+position = Vector3(12.0, 0.62, 3.99)
 
 [node name="Mesh" type="MeshInstance3D" parent="RailBar_24"]
 mesh = SubResource("s41")
 
 [node name="RailBar_25" type="Node3D" parent="."]
-position = Vector3(12.5, 0.62, 2.39)
+position = Vector3(12.5, 0.62, 3.99)
 
 [node name="Mesh" type="MeshInstance3D" parent="RailBar_25"]
 mesh = SubResource("s42")
 
 [node name="RailBar_26" type="Node3D" parent="."]
-position = Vector3(13.0, 0.62, 2.39)
+position = Vector3(13.0, 0.62, 3.99)
 
 [node name="Mesh" type="MeshInstance3D" parent="RailBar_26"]
 mesh = SubResource("s43")
 
 [node name="RailBar_27" type="Node3D" parent="."]
-position = Vector3(13.5, 0.62, 2.39)
+position = Vector3(13.5, 0.62, 3.99)
 
 [node name="Mesh" type="MeshInstance3D" parent="RailBar_27"]
 mesh = SubResource("s44")
 
 [node name="RailBar_28" type="Node3D" parent="."]
-position = Vector3(14.0, 0.62, 2.39)
+position = Vector3(14.0, 0.62, 3.99)
 
 [node name="Mesh" type="MeshInstance3D" parent="RailBar_28"]
 mesh = SubResource("s45")
 
 [node name="RailBar_29" type="Node3D" parent="."]
-position = Vector3(14.5, 0.62, 2.39)
+position = Vector3(14.5, 0.62, 3.99)
 
 [node name="Mesh" type="MeshInstance3D" parent="RailBar_29"]
 mesh = SubResource("s46")
 
 [node name="RailBar_30" type="Node3D" parent="."]
-position = Vector3(15.0, 0.62, 2.39)
+position = Vector3(15.0, 0.62, 3.99)
 
 [node name="Mesh" type="MeshInstance3D" parent="RailBar_30"]
 mesh = SubResource("s47")
 
 [node name="RailBar_31" type="Node3D" parent="."]
-position = Vector3(15.5, 0.62, 2.39)
+position = Vector3(15.5, 0.62, 3.99)
 
 [node name="Mesh" type="MeshInstance3D" parent="RailBar_31"]
 mesh = SubResource("s48")
 
 [node name="RailBar_32" type="Node3D" parent="."]
-position = Vector3(16.0, 0.62, 2.39)
+position = Vector3(16.0, 0.62, 3.99)
 
 [node name="Mesh" type="MeshInstance3D" parent="RailBar_32"]
 mesh = SubResource("s49")
 
 [node name="RailBar_33" type="Node3D" parent="."]
-position = Vector3(16.5, 0.62, 2.39)
+position = Vector3(16.5, 0.62, 3.99)
 
 [node name="Mesh" type="MeshInstance3D" parent="RailBar_33"]
 mesh = SubResource("s50")
 
 [node name="RailBar_34" type="Node3D" parent="."]
-position = Vector3(17.0, 0.62, 2.39)
+position = Vector3(17.0, 0.62, 3.99)
 
 [node name="Mesh" type="MeshInstance3D" parent="RailBar_34"]
 mesh = SubResource("s51")
 
 [node name="RailBar_35" type="Node3D" parent="."]
-position = Vector3(17.5, 0.62, 2.39)
+position = Vector3(17.5, 0.62, 3.99)
 
 [node name="Mesh" type="MeshInstance3D" parent="RailBar_35"]
 mesh = SubResource("s52")
 
 [node name="RailBar_36" type="Node3D" parent="."]
-position = Vector3(18.0, 0.62, 2.39)
+position = Vector3(18.0, 0.62, 3.99)
 
 [node name="Mesh" type="MeshInstance3D" parent="RailBar_36"]
 mesh = SubResource("s53")
 
 [node name="RailBar_37" type="Node3D" parent="."]
-position = Vector3(18.5, 0.62, 2.39)
+position = Vector3(18.5, 0.62, 3.99)
 
 [node name="Mesh" type="MeshInstance3D" parent="RailBar_37"]
 mesh = SubResource("s54")
 
 [node name="RailBar_38" type="Node3D" parent="."]
-position = Vector3(19.0, 0.62, 2.39)
+position = Vector3(19.0, 0.62, 3.99)
 
 [node name="Mesh" type="MeshInstance3D" parent="RailBar_38"]
 mesh = SubResource("s55")
 
 [node name="RailBar_39" type="Node3D" parent="."]
-position = Vector3(19.5, 0.62, 2.39)
+position = Vector3(19.5, 0.62, 3.99)
 
 [node name="Mesh" type="MeshInstance3D" parent="RailBar_39"]
 mesh = SubResource("s56")
 
 [node name="RailBar_40" type="Node3D" parent="."]
-position = Vector3(20.0, 0.62, 2.39)
+position = Vector3(20.0, 0.62, 3.99)
 
 [node name="Mesh" type="MeshInstance3D" parent="RailBar_40"]
 mesh = SubResource("s57")
 
 [node name="RailBar_41" type="Node3D" parent="."]
-position = Vector3(20.5, 0.62, 2.39)
+position = Vector3(20.5, 0.62, 3.99)
 
 [node name="Mesh" type="MeshInstance3D" parent="RailBar_41"]
 mesh = SubResource("s58")
 
 [node name="RailBar_42" type="Node3D" parent="."]
-position = Vector3(21.0, 0.62, 2.39)
+position = Vector3(21.0, 0.62, 3.99)
 
 [node name="Mesh" type="MeshInstance3D" parent="RailBar_42"]
 mesh = SubResource("s59")
 
 [node name="RailBar_43" type="Node3D" parent="."]
-position = Vector3(21.5, 0.62, 2.39)
+position = Vector3(21.5, 0.62, 3.99)
 
 [node name="Mesh" type="MeshInstance3D" parent="RailBar_43"]
 mesh = SubResource("s60")
 
 [node name="RailBar_44" type="Node3D" parent="."]
-position = Vector3(22.0, 0.62, 2.39)
+position = Vector3(22.0, 0.62, 3.99)
 
 [node name="Mesh" type="MeshInstance3D" parent="RailBar_44"]
 mesh = SubResource("s61")
 
 [node name="RailBar_45" type="Node3D" parent="."]
-position = Vector3(22.5, 0.62, 2.39)
+position = Vector3(22.5, 0.62, 3.99)
 
 [node name="Mesh" type="MeshInstance3D" parent="RailBar_45"]
 mesh = SubResource("s62")
 
 [node name="RailBar_46" type="Node3D" parent="."]
-position = Vector3(23.0, 0.62, 2.39)
+position = Vector3(23.0, 0.62, 3.99)
 
 [node name="Mesh" type="MeshInstance3D" parent="RailBar_46"]
 mesh = SubResource("s63")
 
 [node name="RailBar_47" type="Node3D" parent="."]
-position = Vector3(23.5, 0.62, 2.39)
+position = Vector3(23.5, 0.62, 3.99)
 
 [node name="Mesh" type="MeshInstance3D" parent="RailBar_47"]
 mesh = SubResource("s64")
 
 [node name="RailBar_48" type="Node3D" parent="."]
-position = Vector3(24.0, 0.62, 2.39)
+position = Vector3(24.0, 0.62, 3.99)
 
 [node name="Mesh" type="MeshInstance3D" parent="RailBar_48"]
 mesh = SubResource("s65")
 
 [node name="RailBar_49" type="Node3D" parent="."]
-position = Vector3(24.5, 0.62, 2.39)
+position = Vector3(24.5, 0.62, 3.99)
 
 [node name="Mesh" type="MeshInstance3D" parent="RailBar_49"]
 mesh = SubResource("s66")
 
 [node name="RailBar_50" type="Node3D" parent="."]
-position = Vector3(25.0, 0.62, 2.39)
+position = Vector3(25.0, 0.62, 3.99)
 
 [node name="Mesh" type="MeshInstance3D" parent="RailBar_50"]
 mesh = SubResource("s67")
 
 [node name="RailBar_51" type="Node3D" parent="."]
-position = Vector3(25.5, 0.62, 2.39)
+position = Vector3(25.5, 0.62, 3.99)
 
 [node name="Mesh" type="MeshInstance3D" parent="RailBar_51"]
 mesh = SubResource("s68")
 
 [node name="RailBar_52" type="Node3D" parent="."]
-position = Vector3(26.0, 0.62, 2.39)
+position = Vector3(26.0, 0.62, 3.99)
 
 [node name="Mesh" type="MeshInstance3D" parent="RailBar_52"]
 mesh = SubResource("s69")
 
 [node name="RailBar_53" type="Node3D" parent="."]
-position = Vector3(26.5, 0.62, 2.39)
+position = Vector3(26.5, 0.62, 3.99)
 
 [node name="Mesh" type="MeshInstance3D" parent="RailBar_53"]
 mesh = SubResource("s70")
 
 [node name="RailBar_54" type="Node3D" parent="."]
-position = Vector3(27.0, 0.62, 2.39)
+position = Vector3(27.0, 0.62, 3.99)
 
 [node name="Mesh" type="MeshInstance3D" parent="RailBar_54"]
 mesh = SubResource("s71")
 
 [node name="RailBar_55" type="Node3D" parent="."]
-position = Vector3(27.5, 0.62, 2.39)
+position = Vector3(27.5, 0.62, 3.99)
 
 [node name="Mesh" type="MeshInstance3D" parent="RailBar_55"]
 mesh = SubResource("s72")
 
 [node name="RailBar_56" type="Node3D" parent="."]
-position = Vector3(28.0, 0.62, 2.39)
+position = Vector3(28.0, 0.62, 3.99)
 
 [node name="Mesh" type="MeshInstance3D" parent="RailBar_56"]
 mesh = SubResource("s73")
 
 [node name="RailBar_57" type="Node3D" parent="."]
-position = Vector3(28.5, 0.62, 2.39)
+position = Vector3(28.5, 0.62, 3.99)
 
 [node name="Mesh" type="MeshInstance3D" parent="RailBar_57"]
 mesh = SubResource("s74")
 
 [node name="RailBar_58" type="Node3D" parent="."]
-position = Vector3(29.0, 0.62, 2.39)
+position = Vector3(29.0, 0.62, 3.99)
 
 [node name="Mesh" type="MeshInstance3D" parent="RailBar_58"]
 mesh = SubResource("s75")
 
 [node name="RailBar_59" type="Node3D" parent="."]
-position = Vector3(29.5, 0.62, 2.39)
+position = Vector3(29.5, 0.62, 3.99)
 
 [node name="Mesh" type="MeshInstance3D" parent="RailBar_59"]
 mesh = SubResource("s76")
 
 [node name="RailBar_60" type="Node3D" parent="."]
-position = Vector3(30.0, 0.62, 2.39)
+position = Vector3(30.0, 0.62, 3.99)
 
 [node name="Mesh" type="MeshInstance3D" parent="RailBar_60"]
 mesh = SubResource("s77")
 
 [node name="RailBar_61" type="Node3D" parent="."]
-position = Vector3(30.5, 0.62, 2.39)
+position = Vector3(30.5, 0.62, 3.99)
 
 [node name="Mesh" type="MeshInstance3D" parent="RailBar_61"]
 mesh = SubResource("s78")
 
 [node name="RailBar_62" type="Node3D" parent="."]
-position = Vector3(31.0, 0.62, 2.39)
+position = Vector3(31.0, 0.62, 3.99)
 
 [node name="Mesh" type="MeshInstance3D" parent="RailBar_62"]
 mesh = SubResource("s79")
 
 [node name="RailBar_63" type="Node3D" parent="."]
-position = Vector3(31.5, 0.62, 2.39)
+position = Vector3(31.5, 0.62, 3.99)
 
 [node name="Mesh" type="MeshInstance3D" parent="RailBar_63"]
 mesh = SubResource("s80")
 
 [node name="RailBar_64" type="Node3D" parent="."]
-position = Vector3(32.0, 0.62, 2.39)
+position = Vector3(32.0, 0.62, 3.99)
 
 [node name="Mesh" type="MeshInstance3D" parent="RailBar_64"]
 mesh = SubResource("s81")
 
 [node name="RailBar_65" type="Node3D" parent="."]
-position = Vector3(32.5, 0.62, 2.39)
+position = Vector3(32.5, 0.62, 3.99)
 
 [node name="Mesh" type="MeshInstance3D" parent="RailBar_65"]
 mesh = SubResource("s82")
 
 [node name="RailBar_66" type="Node3D" parent="."]
-position = Vector3(33.0, 0.62, 2.39)
+position = Vector3(33.0, 0.62, 3.99)
 
 [node name="Mesh" type="MeshInstance3D" parent="RailBar_66"]
 mesh = SubResource("s83")
 
 [node name="RailBar_67" type="Node3D" parent="."]
-position = Vector3(33.5, 0.62, 2.39)
+position = Vector3(33.5, 0.62, 3.99)
 
 [node name="Mesh" type="MeshInstance3D" parent="RailBar_67"]
 mesh = SubResource("s84")
 
 [node name="RailBar_68" type="Node3D" parent="."]
-position = Vector3(34.0, 0.62, 2.39)
+position = Vector3(34.0, 0.62, 3.99)
 
 [node name="Mesh" type="MeshInstance3D" parent="RailBar_68"]
 mesh = SubResource("s85")
 
 [node name="RailBar_69" type="Node3D" parent="."]
-position = Vector3(34.5, 0.62, 2.39)
+position = Vector3(34.5, 0.62, 3.99)
 
 [node name="Mesh" type="MeshInstance3D" parent="RailBar_69"]
 mesh = SubResource("s86")
 
 [node name="RailBar_70" type="Node3D" parent="."]
-position = Vector3(35.0, 0.62, 2.39)
+position = Vector3(35.0, 0.62, 3.99)
 
 [node name="Mesh" type="MeshInstance3D" parent="RailBar_70"]
 mesh = SubResource("s87")
 
 [node name="RailBar_71" type="Node3D" parent="."]
-position = Vector3(35.5, 0.62, 2.39)
+position = Vector3(35.5, 0.62, 3.99)
 
 [node name="Mesh" type="MeshInstance3D" parent="RailBar_71"]
 mesh = SubResource("s88")
 
 [node name="RailBar_72" type="Node3D" parent="."]
-position = Vector3(36.0, 0.62, 2.39)
+position = Vector3(36.0, 0.62, 3.99)
 
 [node name="Mesh" type="MeshInstance3D" parent="RailBar_72"]
 mesh = SubResource("s89")
 
 [node name="RailBar_73" type="Node3D" parent="."]
-position = Vector3(36.5, 0.62, 2.39)
+position = Vector3(36.5, 0.62, 3.99)
 
 [node name="Mesh" type="MeshInstance3D" parent="RailBar_73"]
 mesh = SubResource("s90")
 
 [node name="RailBar_74" type="Node3D" parent="."]
-position = Vector3(37.0, 0.62, 2.39)
+position = Vector3(37.0, 0.62, 3.99)
 
 [node name="Mesh" type="MeshInstance3D" parent="RailBar_74"]
 mesh = SubResource("s91")
 
 [node name="RailBar_75" type="Node3D" parent="."]
-position = Vector3(37.5, 0.62, 2.39)
+position = Vector3(37.5, 0.62, 3.99)
 
 [node name="Mesh" type="MeshInstance3D" parent="RailBar_75"]
 mesh = SubResource("s92")
 
 [node name="RailBar_76" type="Node3D" parent="."]
-position = Vector3(38.0, 0.62, 2.39)
+position = Vector3(38.0, 0.62, 3.99)
 
 [node name="Mesh" type="MeshInstance3D" parent="RailBar_76"]
 mesh = SubResource("s93")
 
 [node name="RailBar_77" type="Node3D" parent="."]
-position = Vector3(38.5, 0.62, 2.39)
+position = Vector3(38.5, 0.62, 3.99)
 
 [node name="Mesh" type="MeshInstance3D" parent="RailBar_77"]
 mesh = SubResource("s94")
 
 [node name="RailBar_78" type="Node3D" parent="."]
-position = Vector3(39.0, 0.62, 2.39)
+position = Vector3(39.0, 0.62, 3.99)
 
 [node name="Mesh" type="MeshInstance3D" parent="RailBar_78"]
 mesh = SubResource("s95")
 
 [node name="RailBar_79" type="Node3D" parent="."]
-position = Vector3(39.5, 0.62, 2.39)
+position = Vector3(39.5, 0.62, 3.99)
 
 [node name="Mesh" type="MeshInstance3D" parent="RailBar_79"]
 mesh = SubResource("s96")
 
 [node name="RailBar_80" type="Node3D" parent="."]
-position = Vector3(40.0, 0.62, 2.39)
+position = Vector3(40.0, 0.62, 3.99)
 
 [node name="Mesh" type="MeshInstance3D" parent="RailBar_80"]
 mesh = SubResource("s97")
 
 [node name="RailBar_81" type="Node3D" parent="."]
-position = Vector3(40.5, 0.62, 2.39)
+position = Vector3(40.5, 0.62, 3.99)
 
 [node name="Mesh" type="MeshInstance3D" parent="RailBar_81"]
 mesh = SubResource("s98")
 
 [node name="RailBar_82" type="Node3D" parent="."]
-position = Vector3(41.0, 0.62, 2.39)
+position = Vector3(41.0, 0.62, 3.99)
 
 [node name="Mesh" type="MeshInstance3D" parent="RailBar_82"]
 mesh = SubResource("s99")
 
 [node name="RailBar_83" type="Node3D" parent="."]
-position = Vector3(41.5, 0.62, 2.39)
+position = Vector3(41.5, 0.62, 3.99)
 
 [node name="Mesh" type="MeshInstance3D" parent="RailBar_83"]
 mesh = SubResource("s100")
 
 [node name="RailBar_84" type="Node3D" parent="."]
-position = Vector3(42.0, 0.62, 2.39)
+position = Vector3(42.0, 0.62, 3.99)
 
 [node name="Mesh" type="MeshInstance3D" parent="RailBar_84"]
 mesh = SubResource("s101")
 
 [node name="RailBar_85" type="Node3D" parent="."]
-position = Vector3(42.5, 0.62, 2.39)
+position = Vector3(42.5, 0.62, 3.99)
 
 [node name="Mesh" type="MeshInstance3D" parent="RailBar_85"]
 mesh = SubResource("s102")
 
 [node name="RailBar_86" type="Node3D" parent="."]
-position = Vector3(43.0, 0.62, 2.39)
+position = Vector3(43.0, 0.62, 3.99)
 
 [node name="Mesh" type="MeshInstance3D" parent="RailBar_86"]
 mesh = SubResource("s103")
 
 [node name="RailBar_87" type="Node3D" parent="."]
-position = Vector3(43.5, 0.62, 2.39)
+position = Vector3(43.5, 0.62, 3.99)
 
 [node name="Mesh" type="MeshInstance3D" parent="RailBar_87"]
 mesh = SubResource("s104")
 
 [node name="RailBar_88" type="Node3D" parent="."]
-position = Vector3(44.0, 0.62, 2.39)
+position = Vector3(44.0, 0.62, 3.99)
 
 [node name="Mesh" type="MeshInstance3D" parent="RailBar_88"]
 mesh = SubResource("s105")
@@ -1431,7 +1437,7 @@ mesh = SubResource("s113")
 metadata/room_number = 401
 
 [node name="CorridorLight_401" type="OmniLight3D" parent="."]
-position = Vector3(8, 2.8, 1.2)
+position = Vector3(8, 2.8, 2.0)
 light_energy = 1.0
 light_color = Color(0.82, 0.90, 0.76, 1)
 omni_range = 4.7
@@ -1516,7 +1522,7 @@ mesh = SubResource("s122")
 metadata/room_number = 402
 
 [node name="CorridorLight_402" type="OmniLight3D" parent="."]
-position = Vector3(12, 2.8, 1.2)
+position = Vector3(12, 2.8, 2.0)
 light_energy = 1.0
 light_color = Color(0.82, 0.90, 0.76, 1)
 omni_range = 4.7
@@ -1601,7 +1607,7 @@ mesh = SubResource("s130")
 metadata/room_number = 403
 
 [node name="CorridorLight_403" type="OmniLight3D" parent="."]
-position = Vector3(16, 2.8, 1.2)
+position = Vector3(16, 2.8, 2.0)
 light_energy = 1.0
 light_color = Color(0.82, 0.90, 0.76, 1)
 omni_range = 4.7
@@ -1686,7 +1692,7 @@ mesh = SubResource("s138")
 metadata/room_number = 404
 
 [node name="CorridorLight_404" type="OmniLight3D" parent="."]
-position = Vector3(20, 2.8, 1.2)
+position = Vector3(20, 2.8, 2.0)
 light_energy = 1.0
 light_color = Color(0.82, 0.90, 0.76, 1)
 omni_range = 4.7
@@ -1771,7 +1777,7 @@ mesh = SubResource("s146")
 metadata/room_number = 405
 
 [node name="CorridorLight_405" type="OmniLight3D" parent="."]
-position = Vector3(24, 2.8, 1.2)
+position = Vector3(24, 2.8, 2.0)
 light_energy = 1.0
 light_color = Color(0.82, 0.90, 0.76, 1)
 omni_range = 4.7
@@ -1856,7 +1862,7 @@ mesh = SubResource("s154")
 metadata/room_number = 406
 
 [node name="CorridorLight_406" type="OmniLight3D" parent="."]
-position = Vector3(28, 2.8, 1.2)
+position = Vector3(28, 2.8, 2.0)
 light_energy = 1.0
 light_color = Color(0.82, 0.90, 0.76, 1)
 omni_range = 4.7
@@ -1901,7 +1907,7 @@ mesh = SubResource("s156")
 metadata/room_number = 407
 
 [node name="CorridorLight_407" type="OmniLight3D" parent="."]
-position = Vector3(32, 2.8, 1.2)
+position = Vector3(32, 2.8, 2.0)
 light_energy = 1.0
 light_color = Color(0.82, 0.90, 0.76, 1)
 omni_range = 4.7
@@ -1951,7 +1957,7 @@ mesh = SubResource("s164")
 metadata/room_number = 408
 
 [node name="CorridorLight_408" type="OmniLight3D" parent="."]
-position = Vector3(36, 2.8, 1.2)
+position = Vector3(36, 2.8, 2.0)
 light_energy = 1.0
 light_color = Color(0.82, 0.90, 0.76, 1)
 omni_range = 4.7
@@ -2051,7 +2057,7 @@ shape = SubResource("s178")
 mesh = SubResource("s179")
 
 [node name="CorridorLight_Desk" type="OmniLight3D" parent="."]
-position = Vector3(40, 2.8, 1.2)
+position = Vector3(40, 2.8, 2.0)
 light_energy = 1.0
 light_color = Color(0.82, 0.90, 0.76, 1)
 omni_range = 4.7
@@ -2074,33 +2080,33 @@ pitch_variation = 0.0
 volume_variation_db = 0.0
 
 [node name="Clothesline" type="Node3D" parent="."]
-position = Vector3(24, 2.15, 2.27)
+position = Vector3(24, 2.15, 3.87)
 
 [node name="Mesh" type="MeshInstance3D" parent="Clothesline"]
 mesh = SubResource("s181")
 
 [node name="HangingCloth_0" parent="." instance=ExtResource("e5")]
-position = Vector3(17, 2.15, 2.27)
+position = Vector3(17, 2.15, 3.87)
 rotation_degrees = Vector3(0, 0, 0)
 color = Color(0.62, 0.72, 0.82, 1)
 
 [node name="HangingCloth_1" parent="." instance=ExtResource("e6")]
-position = Vector3(20, 2.15, 2.27)
+position = Vector3(20, 2.15, 3.87)
 rotation_degrees = Vector3(0, 0, 0)
 color = Color(0.9, 0.62, 0.62, 1)
 
 [node name="HangingCloth_2" parent="." instance=ExtResource("e5")]
-position = Vector3(23, 2.15, 2.27)
+position = Vector3(23, 2.15, 3.87)
 rotation_degrees = Vector3(0, 0, 0)
 color = Color(0.45, 0.47, 0.5, 1)
 
 [node name="HangingCloth_3" parent="." instance=ExtResource("e6")]
-position = Vector3(27, 2.15, 2.27)
+position = Vector3(27, 2.15, 3.87)
 rotation_degrees = Vector3(0, 0, 0)
 color = Color(1, 1, 1, 1)
 
 [node name="HangingCloth_4" parent="." instance=ExtResource("e5")]
-position = Vector3(30, 2.15, 2.27)
+position = Vector3(30, 2.15, 3.87)
 rotation_degrees = Vector3(0, 0, 0)
 color = Color(0.3, 0.42, 0.33, 1)
 
@@ -2178,7 +2184,7 @@ max_distance = 22.0
 
 
 [node name="ReverbZone" type="Area3D" parent="."]
-position = Vector3(22, 1.5, 1.2)
+position = Vector3(22, 1.5, 2.0)
 script = ExtResource("e11")
 collision_layer = 0
 collision_mask = 2
@@ -2189,7 +2195,7 @@ mix_priority = 1
 shape = SubResource("s185")
 
 [node name="AmbientZone" type="Area3D" parent="."]
-position = Vector3(22, 1.5, 1.2)
+position = Vector3(22, 1.5, 2.0)
 script = ExtResource("e12")
 collision_layer = 0
 collision_mask = 2
@@ -2250,3 +2256,11 @@ mesh = SubResource("s193")
 [node name="Sealed408" type="MeshInstance3D" parent="."]
 position = Vector3(36,1.02,0.075)
 mesh = SubResource("v2_seal")
+
+[node name="Navigation" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("t187_hall_nav")
+
+[node name="Room407Link" type="NavigationLink3D" parent="."]
+start_position = Vector3(32,0.03,-0.7)
+end_position = Vector3(32,0,1.2)
+metadata/requires_open_door = true

@@ -492,10 +492,10 @@ size = Vector3(4, 0.15, 5)
 material = SubResource("s7")
 
 [sub_resource type="BoxShape3D" id="s132"]
-size = Vector3(10, 0.2, 2.4)
+size = Vector3(10, 0.2, 4)
 
 [sub_resource type="BoxMesh" id="s133"]
-size = Vector3(10, 0.2, 2.4)
+size = Vector3(10, 0.2, 4)
 material = SubResource("s2")
 
 [sub_resource type="BoxShape3D" id="s134"]
@@ -513,24 +513,24 @@ size = Vector3(10, 3, 0.2)
 material = SubResource("s7")
 
 [sub_resource type="BoxShape3D" id="s138"]
-size = Vector3(10, 0.15, 2.4)
+size = Vector3(10, 0.15, 4)
 
 [sub_resource type="BoxMesh" id="s139"]
-size = Vector3(10, 0.15, 2.4)
+size = Vector3(10, 0.15, 4)
 material = SubResource("s7")
 
 [sub_resource type="BoxShape3D" id="s140"]
-size = Vector3(0.2, 3, 2.6)
+size = Vector3(0.2, 3, 4.2)
 
 [sub_resource type="BoxMesh" id="s141"]
-size = Vector3(0.2, 3, 2.6)
+size = Vector3(0.2, 3, 4.2)
 material = SubResource("s7")
 
 [sub_resource type="BoxShape3D" id="s142"]
-size = Vector3(0.2, 3, 2.6)
+size = Vector3(0.2, 3, 4.2)
 
 [sub_resource type="BoxMesh" id="s143"]
-size = Vector3(0.2, 3, 2.6)
+size = Vector3(0.2, 3, 4.2)
 material = SubResource("s7")
 
 [sub_resource type="BoxShape3D" id="s144"]
@@ -1932,7 +1932,7 @@ far = 30.0
 position = Vector3(26.0, 0, 0)
 
 [node name="Floor" type="StaticBody3D" parent="Corridor"]
-position = Vector3(5, -0.1, 1.0)
+position = Vector3(5, -0.1, 2)
 metadata/surface = &"tile"
 metadata/is_floor = true
 collision_layer = 1
@@ -1956,7 +1956,7 @@ shape = SubResource("s134")
 mesh = SubResource("s135")
 
 [node name="OuterWall" type="StaticBody3D" parent="Corridor"]
-position = Vector3(5, 1.5, 2.3)
+position = Vector3(5, 1.5, 4.1)
 collision_layer = 1
 collision_mask = 0
 
@@ -1967,7 +1967,7 @@ shape = SubResource("s136")
 mesh = SubResource("s137")
 
 [node name="Ceiling" type="StaticBody3D" parent="Corridor"]
-position = Vector3(5, 3.075, 1.0)
+position = Vector3(5, 3.075, 2)
 collision_layer = 1
 collision_mask = 0
 
@@ -1978,7 +1978,7 @@ shape = SubResource("s138")
 mesh = SubResource("s139")
 
 [node name="EndWest" type="StaticBody3D" parent="Corridor"]
-position = Vector3(-0.1, 1.5, 1.0)
+position = Vector3(-0.1, 1.5, 2)
 collision_layer = 1
 collision_mask = 0
 
@@ -1989,7 +1989,7 @@ shape = SubResource("s140")
 mesh = SubResource("s141")
 
 [node name="EndEast" type="StaticBody3D" parent="Corridor"]
-position = Vector3(10.1, 1.5, 1.0)
+position = Vector3(10.1, 1.5, 2)
 collision_layer = 1
 collision_mask = 0
 
@@ -2045,15 +2045,15 @@ outline_size = 0
 shaded = true
 
 [node name="Tube" type="OmniLight3D" parent="Corridor"]
-position = Vector3(5, 2.8, 1.0)
+position = Vector3(5, 2.8, 2.0)
 light_color = Color(0.82, 0.9, 0.76, 1)
 light_energy = 0.55
 omni_range = 7.0
 shadow_enabled = false
 
 [node name="Cam" type="Camera3D" parent="Corridor"]
-position = Vector3(0.3, 2.75, 2.0)
-rotation_degrees = Vector3(-13.1676564, -76.8424573, 0)
+position = Vector3(0.3, 2.75, 3.7)
+rotation_degrees = Vector3(-12.337688214624146, -65.55604521958347, 0)
 fov = 75.0
 far = 30.0
 

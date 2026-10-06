@@ -81,7 +81,7 @@ shape = SubResource("s3")
 
 
 [node name="seg1_start" type="Marker3D" parent="Anchors"]
-position = Vector3(32, 0.03, 1.15)
+position = Vector3(32, 0.03, 1.6)
 rotation_degrees = Vector3(0, 0, 0)
 
 [node name="seg2_start" type="Marker3D" parent="Anchors"]
@@ -97,7 +97,7 @@ position = Vector3(32.9, 0.03, -1.25)
 rotation_degrees = Vector3(0, -90, 0)
 
 [node name="seg5_start" type="Marker3D" parent="Anchors"]
-position = Vector3(32, 0.03, 1.15)
+position = Vector3(32, 0.03, 2.0)
 rotation_degrees = Vector3(0, 90, 0)
 
 [node name="Door407" type="Marker3D" parent="Anchors"]
@@ -169,11 +169,11 @@ position = Vector3(0.15, 1.55, -3.25)
 rotation_degrees = Vector3(0, -90, 0)
 
 [node name="ClotheslineExtraShirt" type="Marker3D" parent="Anchors"]
-position = Vector3(25.5, 1.76, 2.27)
+position = Vector3(25.5, 1.76, 3.87)
 rotation_degrees = Vector3(0, 0, 0)
 
 [node name="DarkSection" type="Marker3D" parent="Anchors"]
-position = Vector3(16, 1.5, 1.2)
+position = Vector3(16, 1.5, 2.0)
 rotation_degrees = Vector3(0, 0, 0)
 
 [node name="Environment" type="WorldEnvironment" parent="."]

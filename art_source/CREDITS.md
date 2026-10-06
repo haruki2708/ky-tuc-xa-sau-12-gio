@@ -116,3 +116,14 @@ Không sửa model/scene nguồn của tầng 4 hoặc phòng 407. Nhân vật h
 là hình học đỏ sẫm, không giải phẫu. Biển trường không thêm tên riêng vào truyện.
 **Khai báo AI:** Codex viết generator, texture thủ tục, GDScript, test và tài liệu;
 không dùng mô hình sinh ảnh, asset tải ngoài hoặc plugin. PNG đi qua Git LFS.
+
+## Mở rộng hành lang nhà B — T-187
+
+| File / nhóm | Tác giả / công cụ | Nguồn | Giấy phép |
+|---|---|---|---|
+| Hình học và nav hành lang tầng 1–4, vỏ nhà B, Corridor CCTV | Lane B, Codex (OpenAI), Python stdlib và Godot 4.7.2 | [Patch và cách dựng lại](wide_corridors/README.md), [generator Campus](campus/build_campus.py); mở rộng hình học CC0 sẵn có | CC0-1.0 |
+| `wide_corridors/previews/*.png`, snapshot anchor | Codex, Godot Forward+ | [Capture](wide_corridors/capture.gd); render trước/sau cùng camera, không ảnh sinh bằng AI | CC0-1.0 |
+
+Nguồn repo: [nhánh T-187](https://github.com/tuaanh666/ky-tuc-xa-sau-12-gio/tree/lane-b/T-187-wide-corridors/art_source/wide_corridors).
+**Khai báo AI:** Codex viết patch, cập nhật generator/GDScript và test; không
+thêm texture, asset ngoài hoặc plugin. Sáu PNG preview đi qua Git LFS.
