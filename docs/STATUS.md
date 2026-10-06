@@ -4,14 +4,17 @@
 **Giai đoạn:** Chương 2 **tạm chốt** (D-057, `v0.4-ch2`). Chương 3 "Truy sát" **đã ghép đủ** T-181…T-186, FPS đo đạt (trung bình ≥117 với 40 xác), **bản chơi thử export 2026-10-06** (`build/windows/KyTucXa.exe`, có chương 2 và 3). **Chờ chủ dự án chơi thử chương 3** theo `docs/playtest/CH3_WALKTHROUGH.md`. Máy chủ dự án: `progress.json` đã mở khóa tới chương 3.
 
 ## Việc tiếp theo (cho phiên integrator kế tiếp)
-1. **Chương 2 tạm chốt** (D-057, tag `v0.4-ch2`). Hướng dẫn vượt nhanh: `docs/playtest/CH2_WALKTHROUGH.md`.
-2. **Bot chương 2** (chủ dự án: chưa cần chạy, tự chơi thử 2026-10-07): 6 kịch bản (`ch2_good`, `ch2_chain_timeout`, `ch2_chain_wrong`, `ch2_scald`, `ch2_leave_shower`, `ch2_wrong_prediction`) và `-Performance`, lệnh ở card T-180. **Chỉ chạy khi chủ dự án đồng ý**, từng kịch bản một (15–20 phút, tốn RAM).
-3. **Chưa kiểm tra:** F9 bằng tay (đã có test headless); `CctvAudio.play_room_loss` chưa nối.
-4. **Test chập chờn khi chạy cả bộ (chạy riêng thì qua):** lane B `test_stuck_door_shakes_without_opening_then_cancels_on_open` (bộ hẹn giờ 0,07 giây); lane A `test_typing_stops_existing_motion_blocks_w_e_then_restores_gameplay` (đỏ 1 trong 2 lần chạy cả bộ ngày 06/10, có thể do test trước để lại trạng thái; cần lane A xem).
-5. **Để sau (D-045):** chương 1 đoạn gõ tường; chủ dự án nghe âm thanh lane E chương 1 và 2.
-6. **Chương 3 "Truy sát" đang sản xuất** (thiết kế tạm duyệt D-053, map gần kích thước thật D-054). Card T-181 (core), T-182 A, T-183 B, T-184 C, T-185 D, T-186 E. Lane B push greybox khuôn viên trước (2026-10-07) để A, C thử; lane C đo FPS sớm. Các lane hạn đề xuất 2026-10-08; integrator ghép 10-09; chơi thử khoảng 10-10.
-8. **Sau chương 4: giai đoạn "Ghép bản hoàn chỉnh"** (D-059, khoảng 4–6 ngày): chơi liền mạch, đồng bộ đồ họa, ánh sáng theo giờ, rà soát liền mạch, một tiến trình lưu, bot và chơi tay trọn game. Khi làm chương mới: giữ chung hệ tọa độ, tên anchor, hệ thống chung.
-7. Máy chủ dự án: đã tạo `%APPDATA%/Godot/app_userdata/Ky Tuc Xa Sau 12 Gio/progress.json` = `{"unlocked": 2}` để chọn được chương 2.
+1. **Chương 3: chủ dự án đang chơi thử** bản 2026-10-06 16:02 (`docs/playtest/CH3_QUICKTEST.md`, bản chi tiết `CH3_WALKTHROUGH.md`). Đã sửa: cửa thoát hiểm không mở khi nhìn ở tầm mắt (`c79806d`). Góp ý thêm: sửa lỗi bằng test, export lại; góp ý thiết kế thì hỏi chủ dự án.
+2. **Lane B T-187** (D-058): hành lang nhà B rộng khoảng 4 m ở cả 4 tầng, kể cả tầng 4 của chương 1–2. Khi merge: chạy cả bộ test, chạy thử headless chương 1, 2, 3; xem lane B dời anchor nào để báo lane C nếu bot dùng; export lại.
+3. **Chương 3 còn lại:** điền `tools/ch3-profile.json` phần `routes`, `bindings` cho bot; chạy bot chỉ khi chủ dự án đồng ý. Lane B nên sửa điểm thanh sắt `BarSpawns/B01` nằm trong giường đổ (core đã tự nâng thanh sắt lên mặt vật). Câu hỏi còn mở: tên trường trên biển cổng (đề xuất giữ chữ mờ).
+4. **Chương 2 tạm chốt** (D-057, tag `v0.4-ch2`). Bot chương 2 chưa cần chạy (chủ dự án tự chơi).
+5. **Chưa kiểm tra:** F9 bằng tay (có test headless); `CctvAudio.play_room_loss` chưa nối; âm thanh chương 3 chưa ai nghe bằng tai.
+6. **Test chập chờn khi chạy cả bộ (chạy riêng thì qua):** lane B `test_stuck_door_shakes_without_opening_then_cancels_on_open`; lane A `test_typing_stops_existing_motion_blocks_w_e_then_restores_gameplay` (lane A đã sửa trong T-182, theo dõi tiếp).
+7. **Để sau (D-045):** chương 1 đoạn gõ tường; chủ dự án nghe âm thanh lane E chương 1–3.
+8. **Sau khi chốt chương 3:** thiết kế chương 4 "Người sống sót" (giảng đường, nhà thi đấu, thư viện, quay về 407, phiếu điều tra, kết).
+9. **Sau chương 4: giai đoạn "Ghép bản hoàn chỉnh"** (D-059, khoảng 4–6 ngày): chơi liền mạch, đồng bộ đồ họa, ánh sáng theo giờ, rà soát liền mạch, một tiến trình lưu, bot và chơi tay trọn game. Khi làm chương mới: giữ chung hệ tọa độ (tầng 4 ở y = 0, mặt đất y = −9,9), tên anchor, hệ thống chung.
+10. Máy chủ dự án: `%APPDATA%/Godot/app_userdata/Ky Tuc Xa Sau 12 Gio/progress.json` = `{"version": 1, "unlocked": 3}`.
+
 **Repo:** https://github.com/tuaanh666/ky-tuc-xa-sau-12-gio (private)
 
 ## Đã xong
