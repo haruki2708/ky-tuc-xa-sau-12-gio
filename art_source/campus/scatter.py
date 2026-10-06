@@ -14,7 +14,7 @@ from pathlib import Path
 sys.dont_write_bytecode = True
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import detail  # noqa: E402
-from prims import Batch, IDENTITY, euler, rot_x, rot_y, rot_z, mvec  # noqa: E402
+from prims import Batch, euler, rot_x, rot_y, rot_z, mvec  # noqa: E402
 
 G = -9.9
 LANE = 3.0            # a solid prop keeps this far from a route centre line (+ its radius)

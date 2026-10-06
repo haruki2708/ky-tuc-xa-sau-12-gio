@@ -181,7 +181,6 @@ def build_fence(s, c, batch, visuals):
         c.obstacle(pos[0], pos[2], size[0], size[2])
         if not visuals:
             continue
-        along = (1, 0, 0) if axis == 'x' else (0, 0, 1)
         batch.add('iron', 'box', (pos[0], G + 1.3, pos[2]), (length if axis == 'x' else .07, .07, .07 if axis == 'x' else length))
         batch.add('iron', 'box', (pos[0], G + .4, pos[2]), (length if axis == 'x' else .05, .05, .05 if axis == 'x' else length))
         count = max(2, int(length // 2.0))
