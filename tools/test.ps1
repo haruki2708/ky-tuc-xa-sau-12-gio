@@ -1,6 +1,6 @@
 # Runs all headless tests. Usage: pwsh tools/test.ps1 [-Filter player]
 param([string]$Filter = "")
-. "$PSScriptRoot\godot-path.ps1"
+. "$PSScriptRoot/godot-path.ps1"
 
 # Import pass so new assets/scripts (class_name) are registered before running.
 & $Godot --headless --path $GameDir --import 2>&1 | Out-Null
