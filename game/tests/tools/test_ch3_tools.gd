@@ -32,8 +32,14 @@ func test_bar_policy_saves_hits_and_never_targets_guards() -> void:
 
 func test_preflight_never_claims_unbound_profile_is_complete() -> void:
 	var profile: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://../tools/ch3-profile.json"))
+	# The real profile's bot routes are still unbound (T-181); its performance
+	# block is bound (integrator, FPS measured 2026-10-06).
 	assert_false(POLICY.preflight(profile).is_empty())
-	for count in [0, 20, 40]: assert_false(POLICY.preflight(profile, true, count).is_empty())
+	for count in [0, 20, 40]: assert_true(POLICY.preflight(profile, true, count).is_empty(), "performance bound for %d" % count)
+	# A profile with the performance block left empty is never complete.
+	var unbound := profile.duplicate(true)
+	unbound.performance = {"route": null, "spawn_paths": null, "active_property": null, "active_value": null}
+	for count in [0, 20, 40]: assert_false(POLICY.preflight(unbound, true, count).is_empty())
 	assert_false(POLICY.valid_route(null))
 	assert_false(POLICY.valid_route([]))
 	assert_false(POLICY.valid_route([{"anchor": "", "zone": "b"}]))
