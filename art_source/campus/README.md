@@ -96,3 +96,11 @@ test/check cuối ghi trong Handoff task card.
 
 Biển trường có tấm biển nghiêng và vết chữ mờ, không tự đặt tên trường. Nội
 dung tên/localization cần core/chủ dự án chốt nếu muốn chữ đọc được.
+
+## Cập nhật T-190 — cửa phòng
+
+[Hợp đồng cửa, bảng node/anchor và cách áp dụng patch hẹp](room_doors.md).
+Phòng 408 đã chuyển sang x=38…44 theo phép của chủ dự án; phòng 407 giữ
+nguyên. Dùng `python art_source/campus/room_doors.py` để áp dụng riêng
+T-190; không chạy lại toàn bộ generator Campus lên nhà ăn T-189 chỉ để
+cập nhật cửa. [Credits bổ sung](CREDITS.md).

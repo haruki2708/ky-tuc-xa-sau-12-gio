@@ -98,6 +98,8 @@ func test_floor_two_crowd_leaves_203_for_the_extinguisher() -> void:
 	director.run_from(&"b")
 	await _until(func() -> bool: return director._crowd_203.size() == 4, 10.0)
 	assert_eq(director._crowd_203.size(), 4, "four at 203's door;")
+	var hideout: Node3D = director._room_door(&"207")
+	assert_true(hideout != null and bool(hideout.get("is_open")), "room 207 stands open to hide in")
 	var door := _anchor("Room203Door").global_position
 	var extinguisher := _anchor("Extinguisher2F").global_position
 	assert_true(extinguisher.x > 36.0, "extinguisher near the fire stairs")

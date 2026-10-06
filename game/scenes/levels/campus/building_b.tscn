@@ -15,6 +15,9 @@
 [ext_resource type="Texture2D" path="res://assets/textures/campus/red.png" id="e13"]
 [ext_resource type="PackedScene" path="res://assets/models/kit/bunk_bed.glb" id="e14"]
 
+[ext_resource type="Script" path="res://scenes/levels/room_door.gd" id="t190_e1"]
+
+
 [sub_resource type="BoxShape3D" id="s1"]
 size = Vector3(44, 0.24, 11.6)
 
@@ -3598,6 +3601,646 @@ size = Vector3(1.1, 1.7, 2.0)
 [sub_resource type="BoxShape3D" id="s930"]
 size = Vector3(1.5, 0.8, 0.7)
 
+[sub_resource type="BoxShape3D" id="t190_s1"]
+size = Vector3(1.7, 2.4, 0.12)
+
+[sub_resource type="StandardMaterial3D" id="t190_s2"]
+albedo_color = Color(0.25, 0.15, 0.085, 1)
+roughness = 0.85
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="t190_s3"]
+size = Vector3(1.7, 2.4, 0.1)
+material = SubResource("t190_s2")
+
+[sub_resource type="BoxShape3D" id="t190_s4"]
+size = Vector3(0.85, 0.16, 1.95)
+
+[sub_resource type="StandardMaterial3D" id="t190_s5"]
+albedo_color = Color(0.1, 0.15, 0.15, 1)
+roughness = 0.85
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="t190_s6"]
+size = Vector3(0.85, 0.16, 1.95)
+material = SubResource("t190_s5")
+
+[sub_resource type="BoxShape3D" id="t190_s7"]
+size = Vector3(0.85, 0.16, 1.95)
+
+[sub_resource type="BoxMesh" id="t190_s8"]
+size = Vector3(0.85, 0.16, 1.95)
+material = SubResource("t190_s5")
+
+[sub_resource type="BoxShape3D" id="t190_s9"]
+size = Vector3(0.08, 1.8, 0.08)
+
+[sub_resource type="BoxMesh" id="t190_s10"]
+size = Vector3(0.08, 1.8, 0.08)
+material = SubResource("t190_s5")
+
+[sub_resource type="BoxShape3D" id="t190_s11"]
+size = Vector3(0.08, 1.8, 0.08)
+
+[sub_resource type="BoxMesh" id="t190_s12"]
+size = Vector3(0.08, 1.8, 0.08)
+material = SubResource("t190_s5")
+
+[sub_resource type="BoxShape3D" id="t190_s13"]
+size = Vector3(0.7, 1.7, 0.65)
+
+[sub_resource type="BoxMesh" id="t190_s14"]
+size = Vector3(0.7, 1.7, 0.65)
+material = SubResource("t190_s2")
+
+[sub_resource type="BoxShape3D" id="t190_s15"]
+size = Vector3(1.7, 2.4, 0.12)
+
+[sub_resource type="BoxMesh" id="t190_s16"]
+size = Vector3(1.7, 2.4, 0.1)
+material = SubResource("t190_s2")
+
+[sub_resource type="BoxShape3D" id="t190_s17"]
+size = Vector3(0.85, 0.16, 1.95)
+
+[sub_resource type="BoxMesh" id="t190_s18"]
+size = Vector3(0.85, 0.16, 1.95)
+material = SubResource("t190_s5")
+
+[sub_resource type="BoxShape3D" id="t190_s19"]
+size = Vector3(0.85, 0.16, 1.95)
+
+[sub_resource type="BoxMesh" id="t190_s20"]
+size = Vector3(0.85, 0.16, 1.95)
+material = SubResource("t190_s5")
+
+[sub_resource type="BoxShape3D" id="t190_s21"]
+size = Vector3(0.08, 1.8, 0.08)
+
+[sub_resource type="BoxMesh" id="t190_s22"]
+size = Vector3(0.08, 1.8, 0.08)
+material = SubResource("t190_s5")
+
+[sub_resource type="BoxShape3D" id="t190_s23"]
+size = Vector3(0.08, 1.8, 0.08)
+
+[sub_resource type="BoxMesh" id="t190_s24"]
+size = Vector3(0.08, 1.8, 0.08)
+material = SubResource("t190_s5")
+
+[sub_resource type="BoxShape3D" id="t190_s25"]
+size = Vector3(0.7, 1.7, 0.65)
+
+[sub_resource type="BoxMesh" id="t190_s26"]
+size = Vector3(0.7, 1.7, 0.65)
+material = SubResource("t190_s2")
+
+[sub_resource type="BoxShape3D" id="t190_s27"]
+size = Vector3(1.7, 2.4, 0.12)
+
+[sub_resource type="BoxMesh" id="t190_s28"]
+size = Vector3(1.7, 2.4, 0.1)
+material = SubResource("t190_s2")
+
+[sub_resource type="BoxShape3D" id="t190_s29"]
+size = Vector3(0.85, 0.16, 1.95)
+
+[sub_resource type="BoxMesh" id="t190_s30"]
+size = Vector3(0.85, 0.16, 1.95)
+material = SubResource("t190_s5")
+
+[sub_resource type="BoxShape3D" id="t190_s31"]
+size = Vector3(0.85, 0.16, 1.95)
+
+[sub_resource type="BoxMesh" id="t190_s32"]
+size = Vector3(0.85, 0.16, 1.95)
+material = SubResource("t190_s5")
+
+[sub_resource type="BoxShape3D" id="t190_s33"]
+size = Vector3(0.08, 1.8, 0.08)
+
+[sub_resource type="BoxMesh" id="t190_s34"]
+size = Vector3(0.08, 1.8, 0.08)
+material = SubResource("t190_s5")
+
+[sub_resource type="BoxShape3D" id="t190_s35"]
+size = Vector3(0.08, 1.8, 0.08)
+
+[sub_resource type="BoxMesh" id="t190_s36"]
+size = Vector3(0.08, 1.8, 0.08)
+material = SubResource("t190_s5")
+
+[sub_resource type="BoxShape3D" id="t190_s37"]
+size = Vector3(0.7, 1.7, 0.65)
+
+[sub_resource type="BoxMesh" id="t190_s38"]
+size = Vector3(0.7, 1.7, 0.65)
+material = SubResource("t190_s2")
+
+[sub_resource type="BoxShape3D" id="t190_s39"]
+size = Vector3(1.7, 2.4, 0.12)
+
+[sub_resource type="BoxMesh" id="t190_s40"]
+size = Vector3(1.7, 2.4, 0.1)
+material = SubResource("t190_s2")
+
+[sub_resource type="BoxShape3D" id="t190_s41"]
+size = Vector3(0.85, 0.16, 1.95)
+
+[sub_resource type="BoxMesh" id="t190_s42"]
+size = Vector3(0.85, 0.16, 1.95)
+material = SubResource("t190_s5")
+
+[sub_resource type="BoxShape3D" id="t190_s43"]
+size = Vector3(0.85, 0.16, 1.95)
+
+[sub_resource type="BoxMesh" id="t190_s44"]
+size = Vector3(0.85, 0.16, 1.95)
+material = SubResource("t190_s5")
+
+[sub_resource type="BoxShape3D" id="t190_s45"]
+size = Vector3(0.08, 1.8, 0.08)
+
+[sub_resource type="BoxMesh" id="t190_s46"]
+size = Vector3(0.08, 1.8, 0.08)
+material = SubResource("t190_s5")
+
+[sub_resource type="BoxShape3D" id="t190_s47"]
+size = Vector3(0.08, 1.8, 0.08)
+
+[sub_resource type="BoxMesh" id="t190_s48"]
+size = Vector3(0.08, 1.8, 0.08)
+material = SubResource("t190_s5")
+
+[sub_resource type="BoxShape3D" id="t190_s49"]
+size = Vector3(0.7, 1.7, 0.65)
+
+[sub_resource type="BoxMesh" id="t190_s50"]
+size = Vector3(0.7, 1.7, 0.65)
+material = SubResource("t190_s2")
+
+[sub_resource type="BoxShape3D" id="t190_s51"]
+size = Vector3(1.7, 2.4, 0.12)
+
+[sub_resource type="BoxMesh" id="t190_s52"]
+size = Vector3(1.7, 2.4, 0.1)
+material = SubResource("t190_s2")
+
+[sub_resource type="BoxShape3D" id="t190_s53"]
+size = Vector3(0.85, 0.16, 1.95)
+
+[sub_resource type="BoxMesh" id="t190_s54"]
+size = Vector3(0.85, 0.16, 1.95)
+material = SubResource("t190_s5")
+
+[sub_resource type="BoxShape3D" id="t190_s55"]
+size = Vector3(0.85, 0.16, 1.95)
+
+[sub_resource type="BoxMesh" id="t190_s56"]
+size = Vector3(0.85, 0.16, 1.95)
+material = SubResource("t190_s5")
+
+[sub_resource type="BoxShape3D" id="t190_s57"]
+size = Vector3(0.08, 1.8, 0.08)
+
+[sub_resource type="BoxMesh" id="t190_s58"]
+size = Vector3(0.08, 1.8, 0.08)
+material = SubResource("t190_s5")
+
+[sub_resource type="BoxShape3D" id="t190_s59"]
+size = Vector3(0.08, 1.8, 0.08)
+
+[sub_resource type="BoxMesh" id="t190_s60"]
+size = Vector3(0.08, 1.8, 0.08)
+material = SubResource("t190_s5")
+
+[sub_resource type="BoxShape3D" id="t190_s61"]
+size = Vector3(0.7, 1.7, 0.65)
+
+[sub_resource type="BoxMesh" id="t190_s62"]
+size = Vector3(0.7, 1.7, 0.65)
+material = SubResource("t190_s2")
+
+[sub_resource type="BoxShape3D" id="t190_s63"]
+size = Vector3(1.7, 2.4, 0.12)
+
+[sub_resource type="BoxMesh" id="t190_s64"]
+size = Vector3(1.7, 2.4, 0.1)
+material = SubResource("t190_s2")
+
+[sub_resource type="BoxShape3D" id="t190_s65"]
+size = Vector3(0.85, 0.16, 1.95)
+
+[sub_resource type="BoxMesh" id="t190_s66"]
+size = Vector3(0.85, 0.16, 1.95)
+material = SubResource("t190_s5")
+
+[sub_resource type="BoxShape3D" id="t190_s67"]
+size = Vector3(0.85, 0.16, 1.95)
+
+[sub_resource type="BoxMesh" id="t190_s68"]
+size = Vector3(0.85, 0.16, 1.95)
+material = SubResource("t190_s5")
+
+[sub_resource type="BoxShape3D" id="t190_s69"]
+size = Vector3(0.08, 1.8, 0.08)
+
+[sub_resource type="BoxMesh" id="t190_s70"]
+size = Vector3(0.08, 1.8, 0.08)
+material = SubResource("t190_s5")
+
+[sub_resource type="BoxShape3D" id="t190_s71"]
+size = Vector3(0.08, 1.8, 0.08)
+
+[sub_resource type="BoxMesh" id="t190_s72"]
+size = Vector3(0.08, 1.8, 0.08)
+material = SubResource("t190_s5")
+
+[sub_resource type="BoxShape3D" id="t190_s73"]
+size = Vector3(0.7, 1.7, 0.65)
+
+[sub_resource type="BoxMesh" id="t190_s74"]
+size = Vector3(0.7, 1.7, 0.65)
+material = SubResource("t190_s2")
+
+[sub_resource type="BoxShape3D" id="t190_s75"]
+size = Vector3(1.7, 2.4, 0.12)
+
+[sub_resource type="BoxMesh" id="t190_s76"]
+size = Vector3(1.7, 2.4, 0.1)
+material = SubResource("t190_s2")
+
+[sub_resource type="BoxShape3D" id="t190_s77"]
+size = Vector3(0.85, 0.16, 1.95)
+
+[sub_resource type="BoxMesh" id="t190_s78"]
+size = Vector3(0.85, 0.16, 1.95)
+material = SubResource("t190_s5")
+
+[sub_resource type="BoxShape3D" id="t190_s79"]
+size = Vector3(0.85, 0.16, 1.95)
+
+[sub_resource type="BoxMesh" id="t190_s80"]
+size = Vector3(0.85, 0.16, 1.95)
+material = SubResource("t190_s5")
+
+[sub_resource type="BoxShape3D" id="t190_s81"]
+size = Vector3(0.08, 1.8, 0.08)
+
+[sub_resource type="BoxMesh" id="t190_s82"]
+size = Vector3(0.08, 1.8, 0.08)
+material = SubResource("t190_s5")
+
+[sub_resource type="BoxShape3D" id="t190_s83"]
+size = Vector3(0.08, 1.8, 0.08)
+
+[sub_resource type="BoxMesh" id="t190_s84"]
+size = Vector3(0.08, 1.8, 0.08)
+material = SubResource("t190_s5")
+
+[sub_resource type="BoxShape3D" id="t190_s85"]
+size = Vector3(0.7, 1.7, 0.65)
+
+[sub_resource type="BoxMesh" id="t190_s86"]
+size = Vector3(0.7, 1.7, 0.65)
+material = SubResource("t190_s2")
+
+[sub_resource type="BoxShape3D" id="t190_s87"]
+size = Vector3(1.7, 2.4, 0.12)
+
+[sub_resource type="BoxMesh" id="t190_s88"]
+size = Vector3(1.7, 2.4, 0.1)
+material = SubResource("t190_s2")
+
+[sub_resource type="BoxShape3D" id="t190_s89"]
+size = Vector3(0.85, 0.16, 1.95)
+
+[sub_resource type="BoxMesh" id="t190_s90"]
+size = Vector3(0.85, 0.16, 1.95)
+material = SubResource("t190_s5")
+
+[sub_resource type="BoxShape3D" id="t190_s91"]
+size = Vector3(0.85, 0.16, 1.95)
+
+[sub_resource type="BoxMesh" id="t190_s92"]
+size = Vector3(0.85, 0.16, 1.95)
+material = SubResource("t190_s5")
+
+[sub_resource type="BoxShape3D" id="t190_s93"]
+size = Vector3(0.08, 1.8, 0.08)
+
+[sub_resource type="BoxMesh" id="t190_s94"]
+size = Vector3(0.08, 1.8, 0.08)
+material = SubResource("t190_s5")
+
+[sub_resource type="BoxShape3D" id="t190_s95"]
+size = Vector3(0.08, 1.8, 0.08)
+
+[sub_resource type="BoxMesh" id="t190_s96"]
+size = Vector3(0.08, 1.8, 0.08)
+material = SubResource("t190_s5")
+
+[sub_resource type="BoxShape3D" id="t190_s97"]
+size = Vector3(0.7, 1.7, 0.65)
+
+[sub_resource type="BoxMesh" id="t190_s98"]
+size = Vector3(0.7, 1.7, 0.65)
+material = SubResource("t190_s2")
+
+[sub_resource type="BoxShape3D" id="t190_s99"]
+size = Vector3(1.7, 2.4, 0.12)
+
+[sub_resource type="BoxMesh" id="t190_s100"]
+size = Vector3(1.7, 2.4, 0.1)
+material = SubResource("t190_s2")
+
+[sub_resource type="BoxShape3D" id="t190_s101"]
+size = Vector3(0.85, 0.16, 1.95)
+
+[sub_resource type="BoxMesh" id="t190_s102"]
+size = Vector3(0.85, 0.16, 1.95)
+material = SubResource("t190_s5")
+
+[sub_resource type="BoxShape3D" id="t190_s103"]
+size = Vector3(0.85, 0.16, 1.95)
+
+[sub_resource type="BoxMesh" id="t190_s104"]
+size = Vector3(0.85, 0.16, 1.95)
+material = SubResource("t190_s5")
+
+[sub_resource type="BoxShape3D" id="t190_s105"]
+size = Vector3(0.08, 1.8, 0.08)
+
+[sub_resource type="BoxMesh" id="t190_s106"]
+size = Vector3(0.08, 1.8, 0.08)
+material = SubResource("t190_s5")
+
+[sub_resource type="BoxShape3D" id="t190_s107"]
+size = Vector3(0.08, 1.8, 0.08)
+
+[sub_resource type="BoxMesh" id="t190_s108"]
+size = Vector3(0.08, 1.8, 0.08)
+material = SubResource("t190_s5")
+
+[sub_resource type="BoxShape3D" id="t190_s109"]
+size = Vector3(0.7, 1.7, 0.65)
+
+[sub_resource type="BoxMesh" id="t190_s110"]
+size = Vector3(0.7, 1.7, 0.65)
+material = SubResource("t190_s2")
+
+[sub_resource type="BoxShape3D" id="t190_s111"]
+size = Vector3(1.7, 2.4, 0.12)
+
+[sub_resource type="BoxMesh" id="t190_s112"]
+size = Vector3(1.7, 2.4, 0.1)
+material = SubResource("t190_s2")
+
+[sub_resource type="BoxShape3D" id="t190_s113"]
+size = Vector3(0.85, 0.16, 1.95)
+
+[sub_resource type="BoxMesh" id="t190_s114"]
+size = Vector3(0.85, 0.16, 1.95)
+material = SubResource("t190_s5")
+
+[sub_resource type="BoxShape3D" id="t190_s115"]
+size = Vector3(0.85, 0.16, 1.95)
+
+[sub_resource type="BoxMesh" id="t190_s116"]
+size = Vector3(0.85, 0.16, 1.95)
+material = SubResource("t190_s5")
+
+[sub_resource type="BoxShape3D" id="t190_s117"]
+size = Vector3(0.08, 1.8, 0.08)
+
+[sub_resource type="BoxMesh" id="t190_s118"]
+size = Vector3(0.08, 1.8, 0.08)
+material = SubResource("t190_s5")
+
+[sub_resource type="BoxShape3D" id="t190_s119"]
+size = Vector3(0.08, 1.8, 0.08)
+
+[sub_resource type="BoxMesh" id="t190_s120"]
+size = Vector3(0.08, 1.8, 0.08)
+material = SubResource("t190_s5")
+
+[sub_resource type="BoxShape3D" id="t190_s121"]
+size = Vector3(0.7, 1.7, 0.65)
+
+[sub_resource type="BoxMesh" id="t190_s122"]
+size = Vector3(0.7, 1.7, 0.65)
+material = SubResource("t190_s2")
+
+[sub_resource type="BoxShape3D" id="t190_s123"]
+size = Vector3(1.7, 2.4, 0.12)
+
+[sub_resource type="BoxMesh" id="t190_s124"]
+size = Vector3(1.7, 2.4, 0.1)
+material = SubResource("t190_s2")
+
+[sub_resource type="BoxShape3D" id="t190_s125"]
+size = Vector3(0.85, 0.16, 1.95)
+
+[sub_resource type="BoxMesh" id="t190_s126"]
+size = Vector3(0.85, 0.16, 1.95)
+material = SubResource("t190_s5")
+
+[sub_resource type="BoxShape3D" id="t190_s127"]
+size = Vector3(0.85, 0.16, 1.95)
+
+[sub_resource type="BoxMesh" id="t190_s128"]
+size = Vector3(0.85, 0.16, 1.95)
+material = SubResource("t190_s5")
+
+[sub_resource type="BoxShape3D" id="t190_s129"]
+size = Vector3(0.08, 1.8, 0.08)
+
+[sub_resource type="BoxMesh" id="t190_s130"]
+size = Vector3(0.08, 1.8, 0.08)
+material = SubResource("t190_s5")
+
+[sub_resource type="BoxShape3D" id="t190_s131"]
+size = Vector3(0.08, 1.8, 0.08)
+
+[sub_resource type="BoxMesh" id="t190_s132"]
+size = Vector3(0.08, 1.8, 0.08)
+material = SubResource("t190_s5")
+
+[sub_resource type="BoxShape3D" id="t190_s133"]
+size = Vector3(0.7, 1.7, 0.65)
+
+[sub_resource type="BoxMesh" id="t190_s134"]
+size = Vector3(0.7, 1.7, 0.65)
+material = SubResource("t190_s2")
+
+[sub_resource type="BoxShape3D" id="t190_s135"]
+size = Vector3(1.7, 2.4, 0.12)
+
+[sub_resource type="BoxMesh" id="t190_s136"]
+size = Vector3(1.7, 2.4, 0.1)
+material = SubResource("t190_s2")
+
+[sub_resource type="BoxShape3D" id="t190_s137"]
+size = Vector3(0.85, 0.16, 1.95)
+
+[sub_resource type="BoxMesh" id="t190_s138"]
+size = Vector3(0.85, 0.16, 1.95)
+material = SubResource("t190_s5")
+
+[sub_resource type="BoxShape3D" id="t190_s139"]
+size = Vector3(0.85, 0.16, 1.95)
+
+[sub_resource type="BoxMesh" id="t190_s140"]
+size = Vector3(0.85, 0.16, 1.95)
+material = SubResource("t190_s5")
+
+[sub_resource type="BoxShape3D" id="t190_s141"]
+size = Vector3(0.08, 1.8, 0.08)
+
+[sub_resource type="BoxMesh" id="t190_s142"]
+size = Vector3(0.08, 1.8, 0.08)
+material = SubResource("t190_s5")
+
+[sub_resource type="BoxShape3D" id="t190_s143"]
+size = Vector3(0.08, 1.8, 0.08)
+
+[sub_resource type="BoxMesh" id="t190_s144"]
+size = Vector3(0.08, 1.8, 0.08)
+material = SubResource("t190_s5")
+
+[sub_resource type="BoxShape3D" id="t190_s145"]
+size = Vector3(0.7, 1.7, 0.65)
+
+[sub_resource type="BoxMesh" id="t190_s146"]
+size = Vector3(0.7, 1.7, 0.65)
+material = SubResource("t190_s2")
+
+[sub_resource type="BoxShape3D" id="t190_s147"]
+size = Vector3(1.7, 2.4, 0.12)
+
+[sub_resource type="BoxMesh" id="t190_s148"]
+size = Vector3(1.7, 2.4, 0.1)
+material = SubResource("t190_s2")
+
+[sub_resource type="BoxShape3D" id="t190_s149"]
+size = Vector3(0.85, 0.16, 1.95)
+
+[sub_resource type="BoxMesh" id="t190_s150"]
+size = Vector3(0.85, 0.16, 1.95)
+material = SubResource("t190_s5")
+
+[sub_resource type="BoxShape3D" id="t190_s151"]
+size = Vector3(0.85, 0.16, 1.95)
+
+[sub_resource type="BoxMesh" id="t190_s152"]
+size = Vector3(0.85, 0.16, 1.95)
+material = SubResource("t190_s5")
+
+[sub_resource type="BoxShape3D" id="t190_s153"]
+size = Vector3(0.08, 1.8, 0.08)
+
+[sub_resource type="BoxMesh" id="t190_s154"]
+size = Vector3(0.08, 1.8, 0.08)
+material = SubResource("t190_s5")
+
+[sub_resource type="BoxShape3D" id="t190_s155"]
+size = Vector3(0.08, 1.8, 0.08)
+
+[sub_resource type="BoxMesh" id="t190_s156"]
+size = Vector3(0.08, 1.8, 0.08)
+material = SubResource("t190_s5")
+
+[sub_resource type="BoxShape3D" id="t190_s157"]
+size = Vector3(0.7, 1.7, 0.65)
+
+[sub_resource type="BoxMesh" id="t190_s158"]
+size = Vector3(0.7, 1.7, 0.65)
+material = SubResource("t190_s2")
+
+[sub_resource type="BoxShape3D" id="t190_s159"]
+size = Vector3(1.7, 2.4, 0.12)
+
+[sub_resource type="BoxMesh" id="t190_s160"]
+size = Vector3(1.7, 2.4, 0.1)
+material = SubResource("t190_s2")
+
+[sub_resource type="BoxShape3D" id="t190_s161"]
+size = Vector3(0.85, 0.16, 1.95)
+
+[sub_resource type="BoxMesh" id="t190_s162"]
+size = Vector3(0.85, 0.16, 1.95)
+material = SubResource("t190_s5")
+
+[sub_resource type="BoxShape3D" id="t190_s163"]
+size = Vector3(0.85, 0.16, 1.95)
+
+[sub_resource type="BoxMesh" id="t190_s164"]
+size = Vector3(0.85, 0.16, 1.95)
+material = SubResource("t190_s5")
+
+[sub_resource type="BoxShape3D" id="t190_s165"]
+size = Vector3(0.08, 1.8, 0.08)
+
+[sub_resource type="BoxMesh" id="t190_s166"]
+size = Vector3(0.08, 1.8, 0.08)
+material = SubResource("t190_s5")
+
+[sub_resource type="BoxShape3D" id="t190_s167"]
+size = Vector3(0.08, 1.8, 0.08)
+
+[sub_resource type="BoxMesh" id="t190_s168"]
+size = Vector3(0.08, 1.8, 0.08)
+material = SubResource("t190_s5")
+
+[sub_resource type="BoxShape3D" id="t190_s169"]
+size = Vector3(0.7, 1.7, 0.65)
+
+[sub_resource type="BoxMesh" id="t190_s170"]
+size = Vector3(0.7, 1.7, 0.65)
+material = SubResource("t190_s2")
+
+[sub_resource type="BoxShape3D" id="t190_s171"]
+size = Vector3(1.7, 2.4, 0.12)
+
+[sub_resource type="BoxMesh" id="t190_s172"]
+size = Vector3(1.7, 2.4, 0.1)
+material = SubResource("t190_s2")
+
+[sub_resource type="BoxShape3D" id="t190_s173"]
+size = Vector3(0.85, 0.16, 1.95)
+
+[sub_resource type="BoxMesh" id="t190_s174"]
+size = Vector3(0.85, 0.16, 1.95)
+material = SubResource("t190_s5")
+
+[sub_resource type="BoxShape3D" id="t190_s175"]
+size = Vector3(0.85, 0.16, 1.95)
+
+[sub_resource type="BoxMesh" id="t190_s176"]
+size = Vector3(0.85, 0.16, 1.95)
+material = SubResource("t190_s5")
+
+[sub_resource type="BoxShape3D" id="t190_s177"]
+size = Vector3(0.08, 1.8, 0.08)
+
+[sub_resource type="BoxMesh" id="t190_s178"]
+size = Vector3(0.08, 1.8, 0.08)
+material = SubResource("t190_s5")
+
+[sub_resource type="BoxShape3D" id="t190_s179"]
+size = Vector3(0.08, 1.8, 0.08)
+
+[sub_resource type="BoxMesh" id="t190_s180"]
+size = Vector3(0.08, 1.8, 0.08)
+material = SubResource("t190_s5")
+
+[sub_resource type="BoxShape3D" id="t190_s181"]
+size = Vector3(0.7, 1.7, 0.65)
+
+[sub_resource type="BoxMesh" id="t190_s182"]
+size = Vector3(0.7, 1.7, 0.65)
+material = SubResource("t190_s2")
+
 [node name="BuildingB" type="Node3D"]
 
 
@@ -4228,17 +4871,6 @@ shape = SubResource("s113")
 [node name="Mesh" type="MeshInstance3D" parent="Floor2/Lintel0"]
 mesh = SubResource("s114")
 
-[node name="Door0" type="StaticBody3D" parent="Floor2"]
-position = Vector3(2.75, -5.4, 0)
-collision_layer = 1
-collision_mask = 0
-
-[node name="Collision" type="CollisionShape3D" parent="Floor2/Door0"]
-shape = SubResource("s115")
-
-[node name="Mesh" type="MeshInstance3D" parent="Floor2/Door0"]
-mesh = SubResource("s116")
-
 [node name="Partition0" type="StaticBody3D" parent="Floor2"]
 position = Vector3(5.5, -5.1, -3.8)
 collision_layer = 1
@@ -4282,19 +4914,6 @@ shape = SubResource("s123")
 
 [node name="Mesh" type="MeshInstance3D" parent="Floor2/Lintel1"]
 mesh = SubResource("s124")
-
-[node name="Door1" type="StaticBody3D" parent="Floor2"]
-position = Vector3(8.25, -5.4, 0)
-collision_layer = 0
-collision_mask = 0
-visible = false
-visible = false
-
-[node name="Collision" type="CollisionShape3D" parent="Floor2/Door1"]
-shape = SubResource("s125")
-
-[node name="Mesh" type="MeshInstance3D" parent="Floor2/Door1"]
-mesh = SubResource("s126")
 
 [node name="Partition1" type="StaticBody3D" parent="Floor2"]
 position = Vector3(11.0, -5.1, -3.8)
@@ -4384,17 +5003,6 @@ shape = SubResource("s141")
 [node name="Mesh" type="MeshInstance3D" parent="Floor2/Lintel3"]
 mesh = SubResource("s142")
 
-[node name="Door3" type="StaticBody3D" parent="Floor2"]
-position = Vector3(19.25, -5.4, 0)
-collision_layer = 1
-collision_mask = 0
-
-[node name="Collision" type="CollisionShape3D" parent="Floor2/Door3"]
-shape = SubResource("s143")
-
-[node name="Mesh" type="MeshInstance3D" parent="Floor2/Door3"]
-mesh = SubResource("s144")
-
 [node name="Partition3" type="StaticBody3D" parent="Floor2"]
 position = Vector3(22.0, -5.1, -3.8)
 collision_layer = 1
@@ -4438,19 +5046,6 @@ shape = SubResource("s151")
 
 [node name="Mesh" type="MeshInstance3D" parent="Floor2/Lintel4"]
 mesh = SubResource("s152")
-
-[node name="Door4" type="StaticBody3D" parent="Floor2"]
-position = Vector3(24.75, -5.4, 0)
-collision_layer = 0
-collision_mask = 0
-visible = false
-visible = false
-
-[node name="Collision" type="CollisionShape3D" parent="Floor2/Door4"]
-shape = SubResource("s153")
-
-[node name="Mesh" type="MeshInstance3D" parent="Floor2/Door4"]
-mesh = SubResource("s154")
 
 [node name="Partition4" type="StaticBody3D" parent="Floor2"]
 position = Vector3(27.5, -5.1, -3.8)
@@ -4496,17 +5091,6 @@ shape = SubResource("s161")
 [node name="Mesh" type="MeshInstance3D" parent="Floor2/Lintel5"]
 mesh = SubResource("s162")
 
-[node name="Door5" type="StaticBody3D" parent="Floor2"]
-position = Vector3(30.25, -5.4, 0)
-collision_layer = 1
-collision_mask = 0
-
-[node name="Collision" type="CollisionShape3D" parent="Floor2/Door5"]
-shape = SubResource("s163")
-
-[node name="Mesh" type="MeshInstance3D" parent="Floor2/Door5"]
-mesh = SubResource("s164")
-
 [node name="Partition5" type="StaticBody3D" parent="Floor2"]
 position = Vector3(33.0, -5.1, -3.8)
 collision_layer = 1
@@ -4551,19 +5135,6 @@ shape = SubResource("s171")
 [node name="Mesh" type="MeshInstance3D" parent="Floor2/Lintel6"]
 mesh = SubResource("s172")
 
-[node name="Door6" type="StaticBody3D" parent="Floor2"]
-position = Vector3(35.75, -5.4, 0)
-collision_layer = 0
-collision_mask = 0
-visible = false
-visible = false
-
-[node name="Collision" type="CollisionShape3D" parent="Floor2/Door6"]
-shape = SubResource("s173")
-
-[node name="Mesh" type="MeshInstance3D" parent="Floor2/Door6"]
-mesh = SubResource("s174")
-
 [node name="Partition6" type="StaticBody3D" parent="Floor2"]
 position = Vector3(38.5, -5.1, -3.8)
 collision_layer = 1
@@ -4607,17 +5178,6 @@ shape = SubResource("s181")
 
 [node name="Mesh" type="MeshInstance3D" parent="Floor2/Lintel7"]
 mesh = SubResource("s182")
-
-[node name="Door7" type="StaticBody3D" parent="Floor2"]
-position = Vector3(41.25, -5.4, 0)
-collision_layer = 1
-collision_mask = 0
-
-[node name="Collision" type="CollisionShape3D" parent="Floor2/Door7"]
-shape = SubResource("s183")
-
-[node name="Mesh" type="MeshInstance3D" parent="Floor2/Door7"]
-mesh = SubResource("s184")
 
 [node name="Floor3" type="Node3D" parent="."]
 
@@ -4724,17 +5284,6 @@ shape = SubResource("s201")
 [node name="Mesh" type="MeshInstance3D" parent="Floor3/Lintel0"]
 mesh = SubResource("s202")
 
-[node name="Door0" type="StaticBody3D" parent="Floor3"]
-position = Vector3(2.75, -2.1, 0)
-collision_layer = 1
-collision_mask = 0
-
-[node name="Collision" type="CollisionShape3D" parent="Floor3/Door0"]
-shape = SubResource("s203")
-
-[node name="Mesh" type="MeshInstance3D" parent="Floor3/Door0"]
-mesh = SubResource("s204")
-
 [node name="Partition0" type="StaticBody3D" parent="Floor3"]
 position = Vector3(5.5, -1.8, -3.8)
 collision_layer = 1
@@ -4778,18 +5327,6 @@ shape = SubResource("s211")
 
 [node name="Mesh" type="MeshInstance3D" parent="Floor3/Lintel1"]
 mesh = SubResource("s212")
-
-[node name="Door1" type="StaticBody3D" parent="Floor3"]
-position = Vector3(8.25, -2.1, 0)
-collision_layer = 0
-collision_mask = 0
-visible = false
-
-[node name="Collision" type="CollisionShape3D" parent="Floor3/Door1"]
-shape = SubResource("s213")
-
-[node name="Mesh" type="MeshInstance3D" parent="Floor3/Door1"]
-mesh = SubResource("s214")
 
 [node name="Partition1" type="StaticBody3D" parent="Floor3"]
 position = Vector3(11.0, -1.8, -3.8)
@@ -4835,17 +5372,6 @@ shape = SubResource("s221")
 [node name="Mesh" type="MeshInstance3D" parent="Floor3/Lintel2"]
 mesh = SubResource("s222")
 
-[node name="Door2" type="StaticBody3D" parent="Floor3"]
-position = Vector3(13.75, -2.1, 0)
-collision_layer = 1
-collision_mask = 0
-
-[node name="Collision" type="CollisionShape3D" parent="Floor3/Door2"]
-shape = SubResource("s223")
-
-[node name="Mesh" type="MeshInstance3D" parent="Floor3/Door2"]
-mesh = SubResource("s224")
-
 [node name="Partition2" type="StaticBody3D" parent="Floor3"]
 position = Vector3(16.5, -1.8, -3.8)
 collision_layer = 1
@@ -4889,17 +5415,6 @@ shape = SubResource("s231")
 
 [node name="Mesh" type="MeshInstance3D" parent="Floor3/Lintel3"]
 mesh = SubResource("s232")
-
-[node name="Door3" type="StaticBody3D" parent="Floor3"]
-position = Vector3(19.25, -2.1, 0)
-collision_layer = 1
-collision_mask = 0
-
-[node name="Collision" type="CollisionShape3D" parent="Floor3/Door3"]
-shape = SubResource("s233")
-
-[node name="Mesh" type="MeshInstance3D" parent="Floor3/Door3"]
-mesh = SubResource("s234")
 
 [node name="Partition3" type="StaticBody3D" parent="Floor3"]
 position = Vector3(22.0, -1.8, -3.8)
@@ -4945,18 +5460,6 @@ shape = SubResource("s241")
 [node name="Mesh" type="MeshInstance3D" parent="Floor3/Lintel4"]
 mesh = SubResource("s242")
 
-[node name="Door4" type="StaticBody3D" parent="Floor3"]
-position = Vector3(24.75, -2.1, 0)
-collision_layer = 0
-collision_mask = 0
-visible = false
-
-[node name="Collision" type="CollisionShape3D" parent="Floor3/Door4"]
-shape = SubResource("s243")
-
-[node name="Mesh" type="MeshInstance3D" parent="Floor3/Door4"]
-mesh = SubResource("s244")
-
 [node name="Partition4" type="StaticBody3D" parent="Floor3"]
 position = Vector3(27.5, -1.8, -3.8)
 collision_layer = 1
@@ -5000,17 +5503,6 @@ shape = SubResource("s251")
 
 [node name="Mesh" type="MeshInstance3D" parent="Floor3/Lintel5"]
 mesh = SubResource("s252")
-
-[node name="Door5" type="StaticBody3D" parent="Floor3"]
-position = Vector3(30.25, -2.1, 0)
-collision_layer = 1
-collision_mask = 0
-
-[node name="Collision" type="CollisionShape3D" parent="Floor3/Door5"]
-shape = SubResource("s253")
-
-[node name="Mesh" type="MeshInstance3D" parent="Floor3/Door5"]
-mesh = SubResource("s254")
 
 [node name="Partition5" type="StaticBody3D" parent="Floor3"]
 position = Vector3(33.0, -1.8, -3.8)
@@ -5056,18 +5548,6 @@ shape = SubResource("s261")
 [node name="Mesh" type="MeshInstance3D" parent="Floor3/Lintel6"]
 mesh = SubResource("s262")
 
-[node name="Door6" type="StaticBody3D" parent="Floor3"]
-position = Vector3(35.75, -2.1, 0)
-collision_layer = 0
-collision_mask = 0
-visible = false
-
-[node name="Collision" type="CollisionShape3D" parent="Floor3/Door6"]
-shape = SubResource("s263")
-
-[node name="Mesh" type="MeshInstance3D" parent="Floor3/Door6"]
-mesh = SubResource("s264")
-
 [node name="Partition6" type="StaticBody3D" parent="Floor3"]
 position = Vector3(38.5, -1.8, -3.8)
 collision_layer = 1
@@ -5111,17 +5591,6 @@ shape = SubResource("s271")
 
 [node name="Mesh" type="MeshInstance3D" parent="Floor3/Lintel7"]
 mesh = SubResource("s272")
-
-[node name="Door7" type="StaticBody3D" parent="Floor3"]
-position = Vector3(41.25, -2.1, 0)
-collision_layer = 1
-collision_mask = 0
-
-[node name="Collision" type="CollisionShape3D" parent="Floor3/Door7"]
-shape = SubResource("s273")
-
-[node name="Mesh" type="MeshInstance3D" parent="Floor3/Door7"]
-mesh = SubResource("s274")
 
 [node name="MainDoor" type="Node3D" parent="."]
 position = Vector3(19.25, -9.9, 4.1)
@@ -9614,3 +10083,1517 @@ collision_mask = 0
 
 [node name="Collision" type="CollisionShape3D" parent="Room203DeskBody"]
 shape = SubResource("s930")
+[node name="Door0" type="Node3D" parent="Floor3"]
+position = Vector3(2.75, -3.3, 0)
+script = ExtResource("t190_e1")
+room = &"301"
+metadata/t190 = true
+
+[node name="Blocker" type="StaticBody3D" parent="Floor3/Door0"]
+position = Vector3(0, 1.2, 0)
+collision_layer = 1
+collision_mask = 0
+metadata/t190 = true
+
+[node name="Collision" type="CollisionShape3D" parent="Floor3/Door0/Blocker"]
+shape = SubResource("t190_s1")
+metadata/t190 = true
+
+[node name="Hinge" type="Node3D" parent="Floor3/Door0"]
+position = Vector3(0.85, 0.01, 0)
+metadata/t190 = true
+
+[node name="Leaf" type="Node3D" parent="Floor3/Door0/Hinge"]
+position = Vector3(-0.85, 1.19, 0)
+metadata/t190 = true
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor3/Door0/Hinge/Leaf"]
+mesh = SubResource("t190_s3")
+metadata/t190 = true
+
+[node name="RoomInterior_301" type="Node3D" parent="Floor3"]
+metadata/t190 = true
+
+[node name="Bunk0.4" type="StaticBody3D" parent="Floor3/RoomInterior_301"]
+position = Vector3(0.95, -2.9, -3.45)
+collision_layer = 1
+collision_mask = 0
+metadata/t190 = true
+
+[node name="Collision" type="CollisionShape3D" parent="Floor3/RoomInterior_301/Bunk0.4"]
+shape = SubResource("t190_s4")
+metadata/t190 = true
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor3/RoomInterior_301/Bunk0.4"]
+mesh = SubResource("t190_s6")
+metadata/t190 = true
+
+[node name="Bunk1.45" type="StaticBody3D" parent="Floor3/RoomInterior_301"]
+position = Vector3(0.95, -1.85, -3.45)
+collision_layer = 1
+collision_mask = 0
+metadata/t190 = true
+
+[node name="Collision" type="CollisionShape3D" parent="Floor3/RoomInterior_301/Bunk1.45"]
+shape = SubResource("t190_s7")
+metadata/t190 = true
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor3/RoomInterior_301/Bunk1.45"]
+mesh = SubResource("t190_s8")
+metadata/t190 = true
+
+[node name="Post-4.35" type="StaticBody3D" parent="Floor3/RoomInterior_301"]
+position = Vector3(0.95, -2.4, -4.35)
+collision_layer = 1
+collision_mask = 0
+metadata/t190 = true
+
+[node name="Collision" type="CollisionShape3D" parent="Floor3/RoomInterior_301/Post-4.35"]
+shape = SubResource("t190_s9")
+metadata/t190 = true
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor3/RoomInterior_301/Post-4.35"]
+mesh = SubResource("t190_s10")
+metadata/t190 = true
+
+[node name="Post-2.55" type="StaticBody3D" parent="Floor3/RoomInterior_301"]
+position = Vector3(0.95, -2.4, -2.55)
+collision_layer = 1
+collision_mask = 0
+metadata/t190 = true
+
+[node name="Collision" type="CollisionShape3D" parent="Floor3/RoomInterior_301/Post-2.55"]
+shape = SubResource("t190_s11")
+metadata/t190 = true
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor3/RoomInterior_301/Post-2.55"]
+mesh = SubResource("t190_s12")
+metadata/t190 = true
+
+[node name="Locker" type="StaticBody3D" parent="Floor3/RoomInterior_301"]
+position = Vector3(4.55, -2.45, -3.9)
+collision_layer = 1
+collision_mask = 0
+metadata/t190 = true
+
+[node name="Collision" type="CollisionShape3D" parent="Floor3/RoomInterior_301/Locker"]
+shape = SubResource("t190_s13")
+metadata/t190 = true
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor3/RoomInterior_301/Locker"]
+mesh = SubResource("t190_s14")
+metadata/t190 = true
+
+[node name="Door1" type="Node3D" parent="Floor3"]
+position = Vector3(8.25, -3.3, 0)
+script = ExtResource("t190_e1")
+room = &"302"
+metadata/t190 = true
+
+[node name="Blocker" type="StaticBody3D" parent="Floor3/Door1"]
+position = Vector3(0, 1.2, 0)
+collision_layer = 1
+collision_mask = 0
+metadata/t190 = true
+
+[node name="Collision" type="CollisionShape3D" parent="Floor3/Door1/Blocker"]
+shape = SubResource("t190_s15")
+metadata/t190 = true
+
+[node name="Hinge" type="Node3D" parent="Floor3/Door1"]
+position = Vector3(0.85, 0.01, 0)
+metadata/t190 = true
+
+[node name="Leaf" type="Node3D" parent="Floor3/Door1/Hinge"]
+position = Vector3(-0.85, 1.19, 0)
+metadata/t190 = true
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor3/Door1/Hinge/Leaf"]
+mesh = SubResource("t190_s16")
+metadata/t190 = true
+
+[node name="RoomInterior_302" type="Node3D" parent="Floor3"]
+metadata/t190 = true
+
+[node name="Bunk0.4" type="StaticBody3D" parent="Floor3/RoomInterior_302"]
+position = Vector3(6.45, -2.9, -3.45)
+collision_layer = 1
+collision_mask = 0
+metadata/t190 = true
+
+[node name="Collision" type="CollisionShape3D" parent="Floor3/RoomInterior_302/Bunk0.4"]
+shape = SubResource("t190_s17")
+metadata/t190 = true
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor3/RoomInterior_302/Bunk0.4"]
+mesh = SubResource("t190_s18")
+metadata/t190 = true
+
+[node name="Bunk1.45" type="StaticBody3D" parent="Floor3/RoomInterior_302"]
+position = Vector3(6.45, -1.85, -3.45)
+collision_layer = 1
+collision_mask = 0
+metadata/t190 = true
+
+[node name="Collision" type="CollisionShape3D" parent="Floor3/RoomInterior_302/Bunk1.45"]
+shape = SubResource("t190_s19")
+metadata/t190 = true
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor3/RoomInterior_302/Bunk1.45"]
+mesh = SubResource("t190_s20")
+metadata/t190 = true
+
+[node name="Post-4.35" type="StaticBody3D" parent="Floor3/RoomInterior_302"]
+position = Vector3(6.45, -2.4, -4.35)
+collision_layer = 1
+collision_mask = 0
+metadata/t190 = true
+
+[node name="Collision" type="CollisionShape3D" parent="Floor3/RoomInterior_302/Post-4.35"]
+shape = SubResource("t190_s21")
+metadata/t190 = true
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor3/RoomInterior_302/Post-4.35"]
+mesh = SubResource("t190_s22")
+metadata/t190 = true
+
+[node name="Post-2.55" type="StaticBody3D" parent="Floor3/RoomInterior_302"]
+position = Vector3(6.45, -2.4, -2.55)
+collision_layer = 1
+collision_mask = 0
+metadata/t190 = true
+
+[node name="Collision" type="CollisionShape3D" parent="Floor3/RoomInterior_302/Post-2.55"]
+shape = SubResource("t190_s23")
+metadata/t190 = true
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor3/RoomInterior_302/Post-2.55"]
+mesh = SubResource("t190_s24")
+metadata/t190 = true
+
+[node name="Locker" type="StaticBody3D" parent="Floor3/RoomInterior_302"]
+position = Vector3(10.05, -2.45, -3.9)
+collision_layer = 1
+collision_mask = 0
+metadata/t190 = true
+
+[node name="Collision" type="CollisionShape3D" parent="Floor3/RoomInterior_302/Locker"]
+shape = SubResource("t190_s25")
+metadata/t190 = true
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor3/RoomInterior_302/Locker"]
+mesh = SubResource("t190_s26")
+metadata/t190 = true
+
+[node name="Door2" type="Node3D" parent="Floor3"]
+position = Vector3(13.75, -3.3, 0)
+script = ExtResource("t190_e1")
+room = &"303"
+metadata/t190 = true
+
+[node name="Blocker" type="StaticBody3D" parent="Floor3/Door2"]
+position = Vector3(0, 1.2, 0)
+collision_layer = 1
+collision_mask = 0
+metadata/t190 = true
+
+[node name="Collision" type="CollisionShape3D" parent="Floor3/Door2/Blocker"]
+shape = SubResource("t190_s27")
+metadata/t190 = true
+
+[node name="Hinge" type="Node3D" parent="Floor3/Door2"]
+position = Vector3(0.85, 0.01, 0)
+metadata/t190 = true
+
+[node name="Leaf" type="Node3D" parent="Floor3/Door2/Hinge"]
+position = Vector3(-0.85, 1.19, 0)
+metadata/t190 = true
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor3/Door2/Hinge/Leaf"]
+mesh = SubResource("t190_s28")
+metadata/t190 = true
+
+[node name="RoomInterior_303" type="Node3D" parent="Floor3"]
+metadata/t190 = true
+
+[node name="Bunk0.4" type="StaticBody3D" parent="Floor3/RoomInterior_303"]
+position = Vector3(11.95, -2.9, -3.45)
+collision_layer = 1
+collision_mask = 0
+metadata/t190 = true
+
+[node name="Collision" type="CollisionShape3D" parent="Floor3/RoomInterior_303/Bunk0.4"]
+shape = SubResource("t190_s29")
+metadata/t190 = true
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor3/RoomInterior_303/Bunk0.4"]
+mesh = SubResource("t190_s30")
+metadata/t190 = true
+
+[node name="Bunk1.45" type="StaticBody3D" parent="Floor3/RoomInterior_303"]
+position = Vector3(11.95, -1.85, -3.45)
+collision_layer = 1
+collision_mask = 0
+metadata/t190 = true
+
+[node name="Collision" type="CollisionShape3D" parent="Floor3/RoomInterior_303/Bunk1.45"]
+shape = SubResource("t190_s31")
+metadata/t190 = true
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor3/RoomInterior_303/Bunk1.45"]
+mesh = SubResource("t190_s32")
+metadata/t190 = true
+
+[node name="Post-4.35" type="StaticBody3D" parent="Floor3/RoomInterior_303"]
+position = Vector3(11.95, -2.4, -4.35)
+collision_layer = 1
+collision_mask = 0
+metadata/t190 = true
+
+[node name="Collision" type="CollisionShape3D" parent="Floor3/RoomInterior_303/Post-4.35"]
+shape = SubResource("t190_s33")
+metadata/t190 = true
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor3/RoomInterior_303/Post-4.35"]
+mesh = SubResource("t190_s34")
+metadata/t190 = true
+
+[node name="Post-2.55" type="StaticBody3D" parent="Floor3/RoomInterior_303"]
+position = Vector3(11.95, -2.4, -2.55)
+collision_layer = 1
+collision_mask = 0
+metadata/t190 = true
+
+[node name="Collision" type="CollisionShape3D" parent="Floor3/RoomInterior_303/Post-2.55"]
+shape = SubResource("t190_s35")
+metadata/t190 = true
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor3/RoomInterior_303/Post-2.55"]
+mesh = SubResource("t190_s36")
+metadata/t190 = true
+
+[node name="Locker" type="StaticBody3D" parent="Floor3/RoomInterior_303"]
+position = Vector3(15.55, -2.45, -3.9)
+collision_layer = 1
+collision_mask = 0
+metadata/t190 = true
+
+[node name="Collision" type="CollisionShape3D" parent="Floor3/RoomInterior_303/Locker"]
+shape = SubResource("t190_s37")
+metadata/t190 = true
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor3/RoomInterior_303/Locker"]
+mesh = SubResource("t190_s38")
+metadata/t190 = true
+
+[node name="Door3" type="Node3D" parent="Floor3"]
+position = Vector3(19.25, -3.3, 0)
+script = ExtResource("t190_e1")
+room = &"304"
+metadata/t190 = true
+
+[node name="Blocker" type="StaticBody3D" parent="Floor3/Door3"]
+position = Vector3(0, 1.2, 0)
+collision_layer = 1
+collision_mask = 0
+metadata/t190 = true
+
+[node name="Collision" type="CollisionShape3D" parent="Floor3/Door3/Blocker"]
+shape = SubResource("t190_s39")
+metadata/t190 = true
+
+[node name="Hinge" type="Node3D" parent="Floor3/Door3"]
+position = Vector3(0.85, 0.01, 0)
+metadata/t190 = true
+
+[node name="Leaf" type="Node3D" parent="Floor3/Door3/Hinge"]
+position = Vector3(-0.85, 1.19, 0)
+metadata/t190 = true
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor3/Door3/Hinge/Leaf"]
+mesh = SubResource("t190_s40")
+metadata/t190 = true
+
+[node name="RoomInterior_304" type="Node3D" parent="Floor3"]
+metadata/t190 = true
+
+[node name="Bunk0.4" type="StaticBody3D" parent="Floor3/RoomInterior_304"]
+position = Vector3(17.45, -2.9, -3.45)
+collision_layer = 1
+collision_mask = 0
+metadata/t190 = true
+
+[node name="Collision" type="CollisionShape3D" parent="Floor3/RoomInterior_304/Bunk0.4"]
+shape = SubResource("t190_s41")
+metadata/t190 = true
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor3/RoomInterior_304/Bunk0.4"]
+mesh = SubResource("t190_s42")
+metadata/t190 = true
+
+[node name="Bunk1.45" type="StaticBody3D" parent="Floor3/RoomInterior_304"]
+position = Vector3(17.45, -1.85, -3.45)
+collision_layer = 1
+collision_mask = 0
+metadata/t190 = true
+
+[node name="Collision" type="CollisionShape3D" parent="Floor3/RoomInterior_304/Bunk1.45"]
+shape = SubResource("t190_s43")
+metadata/t190 = true
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor3/RoomInterior_304/Bunk1.45"]
+mesh = SubResource("t190_s44")
+metadata/t190 = true
+
+[node name="Post-4.35" type="StaticBody3D" parent="Floor3/RoomInterior_304"]
+position = Vector3(17.45, -2.4, -4.35)
+collision_layer = 1
+collision_mask = 0
+metadata/t190 = true
+
+[node name="Collision" type="CollisionShape3D" parent="Floor3/RoomInterior_304/Post-4.35"]
+shape = SubResource("t190_s45")
+metadata/t190 = true
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor3/RoomInterior_304/Post-4.35"]
+mesh = SubResource("t190_s46")
+metadata/t190 = true
+
+[node name="Post-2.55" type="StaticBody3D" parent="Floor3/RoomInterior_304"]
+position = Vector3(17.45, -2.4, -2.55)
+collision_layer = 1
+collision_mask = 0
+metadata/t190 = true
+
+[node name="Collision" type="CollisionShape3D" parent="Floor3/RoomInterior_304/Post-2.55"]
+shape = SubResource("t190_s47")
+metadata/t190 = true
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor3/RoomInterior_304/Post-2.55"]
+mesh = SubResource("t190_s48")
+metadata/t190 = true
+
+[node name="Locker" type="StaticBody3D" parent="Floor3/RoomInterior_304"]
+position = Vector3(21.05, -2.45, -3.9)
+collision_layer = 1
+collision_mask = 0
+metadata/t190 = true
+
+[node name="Collision" type="CollisionShape3D" parent="Floor3/RoomInterior_304/Locker"]
+shape = SubResource("t190_s49")
+metadata/t190 = true
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor3/RoomInterior_304/Locker"]
+mesh = SubResource("t190_s50")
+metadata/t190 = true
+
+[node name="Door4" type="Node3D" parent="Floor3"]
+position = Vector3(24.75, -3.3, 0)
+script = ExtResource("t190_e1")
+room = &"305"
+metadata/t190 = true
+
+[node name="Blocker" type="StaticBody3D" parent="Floor3/Door4"]
+position = Vector3(0, 1.2, 0)
+collision_layer = 1
+collision_mask = 0
+metadata/t190 = true
+
+[node name="Collision" type="CollisionShape3D" parent="Floor3/Door4/Blocker"]
+shape = SubResource("t190_s51")
+metadata/t190 = true
+
+[node name="Hinge" type="Node3D" parent="Floor3/Door4"]
+position = Vector3(0.85, 0.01, 0)
+metadata/t190 = true
+
+[node name="Leaf" type="Node3D" parent="Floor3/Door4/Hinge"]
+position = Vector3(-0.85, 1.19, 0)
+metadata/t190 = true
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor3/Door4/Hinge/Leaf"]
+mesh = SubResource("t190_s52")
+metadata/t190 = true
+
+[node name="RoomInterior_305" type="Node3D" parent="Floor3"]
+metadata/t190 = true
+
+[node name="Bunk0.4" type="StaticBody3D" parent="Floor3/RoomInterior_305"]
+position = Vector3(22.95, -2.9, -3.45)
+collision_layer = 1
+collision_mask = 0
+metadata/t190 = true
+
+[node name="Collision" type="CollisionShape3D" parent="Floor3/RoomInterior_305/Bunk0.4"]
+shape = SubResource("t190_s53")
+metadata/t190 = true
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor3/RoomInterior_305/Bunk0.4"]
+mesh = SubResource("t190_s54")
+metadata/t190 = true
+
+[node name="Bunk1.45" type="StaticBody3D" parent="Floor3/RoomInterior_305"]
+position = Vector3(22.95, -1.85, -3.45)
+collision_layer = 1
+collision_mask = 0
+metadata/t190 = true
+
+[node name="Collision" type="CollisionShape3D" parent="Floor3/RoomInterior_305/Bunk1.45"]
+shape = SubResource("t190_s55")
+metadata/t190 = true
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor3/RoomInterior_305/Bunk1.45"]
+mesh = SubResource("t190_s56")
+metadata/t190 = true
+
+[node name="Post-4.35" type="StaticBody3D" parent="Floor3/RoomInterior_305"]
+position = Vector3(22.95, -2.4, -4.35)
+collision_layer = 1
+collision_mask = 0
+metadata/t190 = true
+
+[node name="Collision" type="CollisionShape3D" parent="Floor3/RoomInterior_305/Post-4.35"]
+shape = SubResource("t190_s57")
+metadata/t190 = true
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor3/RoomInterior_305/Post-4.35"]
+mesh = SubResource("t190_s58")
+metadata/t190 = true
+
+[node name="Post-2.55" type="StaticBody3D" parent="Floor3/RoomInterior_305"]
+position = Vector3(22.95, -2.4, -2.55)
+collision_layer = 1
+collision_mask = 0
+metadata/t190 = true
+
+[node name="Collision" type="CollisionShape3D" parent="Floor3/RoomInterior_305/Post-2.55"]
+shape = SubResource("t190_s59")
+metadata/t190 = true
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor3/RoomInterior_305/Post-2.55"]
+mesh = SubResource("t190_s60")
+metadata/t190 = true
+
+[node name="Locker" type="StaticBody3D" parent="Floor3/RoomInterior_305"]
+position = Vector3(26.55, -2.45, -3.9)
+collision_layer = 1
+collision_mask = 0
+metadata/t190 = true
+
+[node name="Collision" type="CollisionShape3D" parent="Floor3/RoomInterior_305/Locker"]
+shape = SubResource("t190_s61")
+metadata/t190 = true
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor3/RoomInterior_305/Locker"]
+mesh = SubResource("t190_s62")
+metadata/t190 = true
+
+[node name="Door5" type="Node3D" parent="Floor3"]
+position = Vector3(30.25, -3.3, 0)
+script = ExtResource("t190_e1")
+room = &"306"
+metadata/t190 = true
+
+[node name="Blocker" type="StaticBody3D" parent="Floor3/Door5"]
+position = Vector3(0, 1.2, 0)
+collision_layer = 1
+collision_mask = 0
+metadata/t190 = true
+
+[node name="Collision" type="CollisionShape3D" parent="Floor3/Door5/Blocker"]
+shape = SubResource("t190_s63")
+metadata/t190 = true
+
+[node name="Hinge" type="Node3D" parent="Floor3/Door5"]
+position = Vector3(0.85, 0.01, 0)
+metadata/t190 = true
+
+[node name="Leaf" type="Node3D" parent="Floor3/Door5/Hinge"]
+position = Vector3(-0.85, 1.19, 0)
+metadata/t190 = true
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor3/Door5/Hinge/Leaf"]
+mesh = SubResource("t190_s64")
+metadata/t190 = true
+
+[node name="RoomInterior_306" type="Node3D" parent="Floor3"]
+metadata/t190 = true
+
+[node name="Bunk0.4" type="StaticBody3D" parent="Floor3/RoomInterior_306"]
+position = Vector3(28.45, -2.9, -3.45)
+collision_layer = 1
+collision_mask = 0
+metadata/t190 = true
+
+[node name="Collision" type="CollisionShape3D" parent="Floor3/RoomInterior_306/Bunk0.4"]
+shape = SubResource("t190_s65")
+metadata/t190 = true
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor3/RoomInterior_306/Bunk0.4"]
+mesh = SubResource("t190_s66")
+metadata/t190 = true
+
+[node name="Bunk1.45" type="StaticBody3D" parent="Floor3/RoomInterior_306"]
+position = Vector3(28.45, -1.85, -3.45)
+collision_layer = 1
+collision_mask = 0
+metadata/t190 = true
+
+[node name="Collision" type="CollisionShape3D" parent="Floor3/RoomInterior_306/Bunk1.45"]
+shape = SubResource("t190_s67")
+metadata/t190 = true
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor3/RoomInterior_306/Bunk1.45"]
+mesh = SubResource("t190_s68")
+metadata/t190 = true
+
+[node name="Post-4.35" type="StaticBody3D" parent="Floor3/RoomInterior_306"]
+position = Vector3(28.45, -2.4, -4.35)
+collision_layer = 1
+collision_mask = 0
+metadata/t190 = true
+
+[node name="Collision" type="CollisionShape3D" parent="Floor3/RoomInterior_306/Post-4.35"]
+shape = SubResource("t190_s69")
+metadata/t190 = true
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor3/RoomInterior_306/Post-4.35"]
+mesh = SubResource("t190_s70")
+metadata/t190 = true
+
+[node name="Post-2.55" type="StaticBody3D" parent="Floor3/RoomInterior_306"]
+position = Vector3(28.45, -2.4, -2.55)
+collision_layer = 1
+collision_mask = 0
+metadata/t190 = true
+
+[node name="Collision" type="CollisionShape3D" parent="Floor3/RoomInterior_306/Post-2.55"]
+shape = SubResource("t190_s71")
+metadata/t190 = true
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor3/RoomInterior_306/Post-2.55"]
+mesh = SubResource("t190_s72")
+metadata/t190 = true
+
+[node name="Locker" type="StaticBody3D" parent="Floor3/RoomInterior_306"]
+position = Vector3(32.05, -2.45, -3.9)
+collision_layer = 1
+collision_mask = 0
+metadata/t190 = true
+
+[node name="Collision" type="CollisionShape3D" parent="Floor3/RoomInterior_306/Locker"]
+shape = SubResource("t190_s73")
+metadata/t190 = true
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor3/RoomInterior_306/Locker"]
+mesh = SubResource("t190_s74")
+metadata/t190 = true
+
+[node name="Door6" type="Node3D" parent="Floor3"]
+position = Vector3(35.75, -3.3, 0)
+script = ExtResource("t190_e1")
+room = &"307"
+metadata/t190 = true
+
+[node name="Blocker" type="StaticBody3D" parent="Floor3/Door6"]
+position = Vector3(0, 1.2, 0)
+collision_layer = 1
+collision_mask = 0
+metadata/t190 = true
+
+[node name="Collision" type="CollisionShape3D" parent="Floor3/Door6/Blocker"]
+shape = SubResource("t190_s75")
+metadata/t190 = true
+
+[node name="Hinge" type="Node3D" parent="Floor3/Door6"]
+position = Vector3(0.85, 0.01, 0)
+metadata/t190 = true
+
+[node name="Leaf" type="Node3D" parent="Floor3/Door6/Hinge"]
+position = Vector3(-0.85, 1.19, 0)
+metadata/t190 = true
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor3/Door6/Hinge/Leaf"]
+mesh = SubResource("t190_s76")
+metadata/t190 = true
+
+[node name="RoomInterior_307" type="Node3D" parent="Floor3"]
+metadata/t190 = true
+
+[node name="Bunk0.4" type="StaticBody3D" parent="Floor3/RoomInterior_307"]
+position = Vector3(33.95, -2.9, -3.45)
+collision_layer = 1
+collision_mask = 0
+metadata/t190 = true
+
+[node name="Collision" type="CollisionShape3D" parent="Floor3/RoomInterior_307/Bunk0.4"]
+shape = SubResource("t190_s77")
+metadata/t190 = true
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor3/RoomInterior_307/Bunk0.4"]
+mesh = SubResource("t190_s78")
+metadata/t190 = true
+
+[node name="Bunk1.45" type="StaticBody3D" parent="Floor3/RoomInterior_307"]
+position = Vector3(33.95, -1.85, -3.45)
+collision_layer = 1
+collision_mask = 0
+metadata/t190 = true
+
+[node name="Collision" type="CollisionShape3D" parent="Floor3/RoomInterior_307/Bunk1.45"]
+shape = SubResource("t190_s79")
+metadata/t190 = true
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor3/RoomInterior_307/Bunk1.45"]
+mesh = SubResource("t190_s80")
+metadata/t190 = true
+
+[node name="Post-4.35" type="StaticBody3D" parent="Floor3/RoomInterior_307"]
+position = Vector3(33.95, -2.4, -4.35)
+collision_layer = 1
+collision_mask = 0
+metadata/t190 = true
+
+[node name="Collision" type="CollisionShape3D" parent="Floor3/RoomInterior_307/Post-4.35"]
+shape = SubResource("t190_s81")
+metadata/t190 = true
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor3/RoomInterior_307/Post-4.35"]
+mesh = SubResource("t190_s82")
+metadata/t190 = true
+
+[node name="Post-2.55" type="StaticBody3D" parent="Floor3/RoomInterior_307"]
+position = Vector3(33.95, -2.4, -2.55)
+collision_layer = 1
+collision_mask = 0
+metadata/t190 = true
+
+[node name="Collision" type="CollisionShape3D" parent="Floor3/RoomInterior_307/Post-2.55"]
+shape = SubResource("t190_s83")
+metadata/t190 = true
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor3/RoomInterior_307/Post-2.55"]
+mesh = SubResource("t190_s84")
+metadata/t190 = true
+
+[node name="Locker" type="StaticBody3D" parent="Floor3/RoomInterior_307"]
+position = Vector3(37.55, -2.45, -3.9)
+collision_layer = 1
+collision_mask = 0
+metadata/t190 = true
+
+[node name="Collision" type="CollisionShape3D" parent="Floor3/RoomInterior_307/Locker"]
+shape = SubResource("t190_s85")
+metadata/t190 = true
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor3/RoomInterior_307/Locker"]
+mesh = SubResource("t190_s86")
+metadata/t190 = true
+
+[node name="Door7" type="Node3D" parent="Floor3"]
+position = Vector3(41.25, -3.3, 0)
+script = ExtResource("t190_e1")
+room = &"308"
+metadata/t190 = true
+
+[node name="Blocker" type="StaticBody3D" parent="Floor3/Door7"]
+position = Vector3(0, 1.2, 0)
+collision_layer = 1
+collision_mask = 0
+metadata/t190 = true
+
+[node name="Collision" type="CollisionShape3D" parent="Floor3/Door7/Blocker"]
+shape = SubResource("t190_s87")
+metadata/t190 = true
+
+[node name="Hinge" type="Node3D" parent="Floor3/Door7"]
+position = Vector3(0.85, 0.01, 0)
+metadata/t190 = true
+
+[node name="Leaf" type="Node3D" parent="Floor3/Door7/Hinge"]
+position = Vector3(-0.85, 1.19, 0)
+metadata/t190 = true
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor3/Door7/Hinge/Leaf"]
+mesh = SubResource("t190_s88")
+metadata/t190 = true
+
+[node name="RoomInterior_308" type="Node3D" parent="Floor3"]
+metadata/t190 = true
+
+[node name="Bunk0.4" type="StaticBody3D" parent="Floor3/RoomInterior_308"]
+position = Vector3(39.45, -2.9, -3.45)
+collision_layer = 1
+collision_mask = 0
+metadata/t190 = true
+
+[node name="Collision" type="CollisionShape3D" parent="Floor3/RoomInterior_308/Bunk0.4"]
+shape = SubResource("t190_s89")
+metadata/t190 = true
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor3/RoomInterior_308/Bunk0.4"]
+mesh = SubResource("t190_s90")
+metadata/t190 = true
+
+[node name="Bunk1.45" type="StaticBody3D" parent="Floor3/RoomInterior_308"]
+position = Vector3(39.45, -1.85, -3.45)
+collision_layer = 1
+collision_mask = 0
+metadata/t190 = true
+
+[node name="Collision" type="CollisionShape3D" parent="Floor3/RoomInterior_308/Bunk1.45"]
+shape = SubResource("t190_s91")
+metadata/t190 = true
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor3/RoomInterior_308/Bunk1.45"]
+mesh = SubResource("t190_s92")
+metadata/t190 = true
+
+[node name="Post-4.35" type="StaticBody3D" parent="Floor3/RoomInterior_308"]
+position = Vector3(39.45, -2.4, -4.35)
+collision_layer = 1
+collision_mask = 0
+metadata/t190 = true
+
+[node name="Collision" type="CollisionShape3D" parent="Floor3/RoomInterior_308/Post-4.35"]
+shape = SubResource("t190_s93")
+metadata/t190 = true
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor3/RoomInterior_308/Post-4.35"]
+mesh = SubResource("t190_s94")
+metadata/t190 = true
+
+[node name="Post-2.55" type="StaticBody3D" parent="Floor3/RoomInterior_308"]
+position = Vector3(39.45, -2.4, -2.55)
+collision_layer = 1
+collision_mask = 0
+metadata/t190 = true
+
+[node name="Collision" type="CollisionShape3D" parent="Floor3/RoomInterior_308/Post-2.55"]
+shape = SubResource("t190_s95")
+metadata/t190 = true
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor3/RoomInterior_308/Post-2.55"]
+mesh = SubResource("t190_s96")
+metadata/t190 = true
+
+[node name="Locker" type="StaticBody3D" parent="Floor3/RoomInterior_308"]
+position = Vector3(43.05, -2.45, -3.9)
+collision_layer = 1
+collision_mask = 0
+metadata/t190 = true
+
+[node name="Collision" type="CollisionShape3D" parent="Floor3/RoomInterior_308/Locker"]
+shape = SubResource("t190_s97")
+metadata/t190 = true
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor3/RoomInterior_308/Locker"]
+mesh = SubResource("t190_s98")
+metadata/t190 = true
+
+[node name="Door0" type="Node3D" parent="Floor2"]
+position = Vector3(2.75, -6.6, 0)
+script = ExtResource("t190_e1")
+room = &"201"
+metadata/t190 = true
+
+[node name="Blocker" type="StaticBody3D" parent="Floor2/Door0"]
+position = Vector3(0, 1.2, 0)
+collision_layer = 1
+collision_mask = 0
+metadata/t190 = true
+
+[node name="Collision" type="CollisionShape3D" parent="Floor2/Door0/Blocker"]
+shape = SubResource("t190_s99")
+metadata/t190 = true
+
+[node name="Hinge" type="Node3D" parent="Floor2/Door0"]
+position = Vector3(0.85, 0.01, 0)
+metadata/t190 = true
+
+[node name="Leaf" type="Node3D" parent="Floor2/Door0/Hinge"]
+position = Vector3(-0.85, 1.19, 0)
+metadata/t190 = true
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor2/Door0/Hinge/Leaf"]
+mesh = SubResource("t190_s100")
+metadata/t190 = true
+
+[node name="RoomInterior_201" type="Node3D" parent="Floor2"]
+metadata/t190 = true
+
+[node name="Bunk0.4" type="StaticBody3D" parent="Floor2/RoomInterior_201"]
+position = Vector3(0.95, -6.2, -3.45)
+collision_layer = 1
+collision_mask = 0
+metadata/t190 = true
+
+[node name="Collision" type="CollisionShape3D" parent="Floor2/RoomInterior_201/Bunk0.4"]
+shape = SubResource("t190_s101")
+metadata/t190 = true
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor2/RoomInterior_201/Bunk0.4"]
+mesh = SubResource("t190_s102")
+metadata/t190 = true
+
+[node name="Bunk1.45" type="StaticBody3D" parent="Floor2/RoomInterior_201"]
+position = Vector3(0.95, -5.15, -3.45)
+collision_layer = 1
+collision_mask = 0
+metadata/t190 = true
+
+[node name="Collision" type="CollisionShape3D" parent="Floor2/RoomInterior_201/Bunk1.45"]
+shape = SubResource("t190_s103")
+metadata/t190 = true
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor2/RoomInterior_201/Bunk1.45"]
+mesh = SubResource("t190_s104")
+metadata/t190 = true
+
+[node name="Post-4.35" type="StaticBody3D" parent="Floor2/RoomInterior_201"]
+position = Vector3(0.95, -5.7, -4.35)
+collision_layer = 1
+collision_mask = 0
+metadata/t190 = true
+
+[node name="Collision" type="CollisionShape3D" parent="Floor2/RoomInterior_201/Post-4.35"]
+shape = SubResource("t190_s105")
+metadata/t190 = true
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor2/RoomInterior_201/Post-4.35"]
+mesh = SubResource("t190_s106")
+metadata/t190 = true
+
+[node name="Post-2.55" type="StaticBody3D" parent="Floor2/RoomInterior_201"]
+position = Vector3(0.95, -5.7, -2.55)
+collision_layer = 1
+collision_mask = 0
+metadata/t190 = true
+
+[node name="Collision" type="CollisionShape3D" parent="Floor2/RoomInterior_201/Post-2.55"]
+shape = SubResource("t190_s107")
+metadata/t190 = true
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor2/RoomInterior_201/Post-2.55"]
+mesh = SubResource("t190_s108")
+metadata/t190 = true
+
+[node name="Locker" type="StaticBody3D" parent="Floor2/RoomInterior_201"]
+position = Vector3(4.55, -5.75, -3.9)
+collision_layer = 1
+collision_mask = 0
+metadata/t190 = true
+
+[node name="Collision" type="CollisionShape3D" parent="Floor2/RoomInterior_201/Locker"]
+shape = SubResource("t190_s109")
+metadata/t190 = true
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor2/RoomInterior_201/Locker"]
+mesh = SubResource("t190_s110")
+metadata/t190 = true
+
+[node name="Door1" type="Node3D" parent="Floor2"]
+position = Vector3(8.25, -6.6, 0)
+script = ExtResource("t190_e1")
+room = &"202"
+metadata/t190 = true
+
+[node name="Blocker" type="StaticBody3D" parent="Floor2/Door1"]
+position = Vector3(0, 1.2, 0)
+collision_layer = 1
+collision_mask = 0
+metadata/t190 = true
+
+[node name="Collision" type="CollisionShape3D" parent="Floor2/Door1/Blocker"]
+shape = SubResource("t190_s111")
+metadata/t190 = true
+
+[node name="Hinge" type="Node3D" parent="Floor2/Door1"]
+position = Vector3(0.85, 0.01, 0)
+metadata/t190 = true
+
+[node name="Leaf" type="Node3D" parent="Floor2/Door1/Hinge"]
+position = Vector3(-0.85, 1.19, 0)
+metadata/t190 = true
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor2/Door1/Hinge/Leaf"]
+mesh = SubResource("t190_s112")
+metadata/t190 = true
+
+[node name="RoomInterior_202" type="Node3D" parent="Floor2"]
+metadata/t190 = true
+
+[node name="Bunk0.4" type="StaticBody3D" parent="Floor2/RoomInterior_202"]
+position = Vector3(6.45, -6.2, -3.45)
+collision_layer = 1
+collision_mask = 0
+metadata/t190 = true
+
+[node name="Collision" type="CollisionShape3D" parent="Floor2/RoomInterior_202/Bunk0.4"]
+shape = SubResource("t190_s113")
+metadata/t190 = true
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor2/RoomInterior_202/Bunk0.4"]
+mesh = SubResource("t190_s114")
+metadata/t190 = true
+
+[node name="Bunk1.45" type="StaticBody3D" parent="Floor2/RoomInterior_202"]
+position = Vector3(6.45, -5.15, -3.45)
+collision_layer = 1
+collision_mask = 0
+metadata/t190 = true
+
+[node name="Collision" type="CollisionShape3D" parent="Floor2/RoomInterior_202/Bunk1.45"]
+shape = SubResource("t190_s115")
+metadata/t190 = true
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor2/RoomInterior_202/Bunk1.45"]
+mesh = SubResource("t190_s116")
+metadata/t190 = true
+
+[node name="Post-4.35" type="StaticBody3D" parent="Floor2/RoomInterior_202"]
+position = Vector3(6.45, -5.7, -4.35)
+collision_layer = 1
+collision_mask = 0
+metadata/t190 = true
+
+[node name="Collision" type="CollisionShape3D" parent="Floor2/RoomInterior_202/Post-4.35"]
+shape = SubResource("t190_s117")
+metadata/t190 = true
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor2/RoomInterior_202/Post-4.35"]
+mesh = SubResource("t190_s118")
+metadata/t190 = true
+
+[node name="Post-2.55" type="StaticBody3D" parent="Floor2/RoomInterior_202"]
+position = Vector3(6.45, -5.7, -2.55)
+collision_layer = 1
+collision_mask = 0
+metadata/t190 = true
+
+[node name="Collision" type="CollisionShape3D" parent="Floor2/RoomInterior_202/Post-2.55"]
+shape = SubResource("t190_s119")
+metadata/t190 = true
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor2/RoomInterior_202/Post-2.55"]
+mesh = SubResource("t190_s120")
+metadata/t190 = true
+
+[node name="Locker" type="StaticBody3D" parent="Floor2/RoomInterior_202"]
+position = Vector3(10.05, -5.75, -3.9)
+collision_layer = 1
+collision_mask = 0
+metadata/t190 = true
+
+[node name="Collision" type="CollisionShape3D" parent="Floor2/RoomInterior_202/Locker"]
+shape = SubResource("t190_s121")
+metadata/t190 = true
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor2/RoomInterior_202/Locker"]
+mesh = SubResource("t190_s122")
+metadata/t190 = true
+
+[node name="Door3" type="Node3D" parent="Floor2"]
+position = Vector3(19.25, -6.6, 0)
+script = ExtResource("t190_e1")
+room = &"204"
+metadata/t190 = true
+
+[node name="Blocker" type="StaticBody3D" parent="Floor2/Door3"]
+position = Vector3(0, 1.2, 0)
+collision_layer = 1
+collision_mask = 0
+metadata/t190 = true
+
+[node name="Collision" type="CollisionShape3D" parent="Floor2/Door3/Blocker"]
+shape = SubResource("t190_s123")
+metadata/t190 = true
+
+[node name="Hinge" type="Node3D" parent="Floor2/Door3"]
+position = Vector3(0.85, 0.01, 0)
+metadata/t190 = true
+
+[node name="Leaf" type="Node3D" parent="Floor2/Door3/Hinge"]
+position = Vector3(-0.85, 1.19, 0)
+metadata/t190 = true
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor2/Door3/Hinge/Leaf"]
+mesh = SubResource("t190_s124")
+metadata/t190 = true
+
+[node name="RoomInterior_204" type="Node3D" parent="Floor2"]
+metadata/t190 = true
+
+[node name="Bunk0.4" type="StaticBody3D" parent="Floor2/RoomInterior_204"]
+position = Vector3(17.45, -6.2, -3.45)
+collision_layer = 1
+collision_mask = 0
+metadata/t190 = true
+
+[node name="Collision" type="CollisionShape3D" parent="Floor2/RoomInterior_204/Bunk0.4"]
+shape = SubResource("t190_s125")
+metadata/t190 = true
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor2/RoomInterior_204/Bunk0.4"]
+mesh = SubResource("t190_s126")
+metadata/t190 = true
+
+[node name="Bunk1.45" type="StaticBody3D" parent="Floor2/RoomInterior_204"]
+position = Vector3(17.45, -5.15, -3.45)
+collision_layer = 1
+collision_mask = 0
+metadata/t190 = true
+
+[node name="Collision" type="CollisionShape3D" parent="Floor2/RoomInterior_204/Bunk1.45"]
+shape = SubResource("t190_s127")
+metadata/t190 = true
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor2/RoomInterior_204/Bunk1.45"]
+mesh = SubResource("t190_s128")
+metadata/t190 = true
+
+[node name="Post-4.35" type="StaticBody3D" parent="Floor2/RoomInterior_204"]
+position = Vector3(17.45, -5.7, -4.35)
+collision_layer = 1
+collision_mask = 0
+metadata/t190 = true
+
+[node name="Collision" type="CollisionShape3D" parent="Floor2/RoomInterior_204/Post-4.35"]
+shape = SubResource("t190_s129")
+metadata/t190 = true
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor2/RoomInterior_204/Post-4.35"]
+mesh = SubResource("t190_s130")
+metadata/t190 = true
+
+[node name="Post-2.55" type="StaticBody3D" parent="Floor2/RoomInterior_204"]
+position = Vector3(17.45, -5.7, -2.55)
+collision_layer = 1
+collision_mask = 0
+metadata/t190 = true
+
+[node name="Collision" type="CollisionShape3D" parent="Floor2/RoomInterior_204/Post-2.55"]
+shape = SubResource("t190_s131")
+metadata/t190 = true
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor2/RoomInterior_204/Post-2.55"]
+mesh = SubResource("t190_s132")
+metadata/t190 = true
+
+[node name="Locker" type="StaticBody3D" parent="Floor2/RoomInterior_204"]
+position = Vector3(21.05, -5.75, -3.9)
+collision_layer = 1
+collision_mask = 0
+metadata/t190 = true
+
+[node name="Collision" type="CollisionShape3D" parent="Floor2/RoomInterior_204/Locker"]
+shape = SubResource("t190_s133")
+metadata/t190 = true
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor2/RoomInterior_204/Locker"]
+mesh = SubResource("t190_s134")
+metadata/t190 = true
+
+[node name="Door4" type="Node3D" parent="Floor2"]
+position = Vector3(24.75, -6.6, 0)
+script = ExtResource("t190_e1")
+room = &"205"
+metadata/t190 = true
+
+[node name="Blocker" type="StaticBody3D" parent="Floor2/Door4"]
+position = Vector3(0, 1.2, 0)
+collision_layer = 1
+collision_mask = 0
+metadata/t190 = true
+
+[node name="Collision" type="CollisionShape3D" parent="Floor2/Door4/Blocker"]
+shape = SubResource("t190_s135")
+metadata/t190 = true
+
+[node name="Hinge" type="Node3D" parent="Floor2/Door4"]
+position = Vector3(0.85, 0.01, 0)
+metadata/t190 = true
+
+[node name="Leaf" type="Node3D" parent="Floor2/Door4/Hinge"]
+position = Vector3(-0.85, 1.19, 0)
+metadata/t190 = true
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor2/Door4/Hinge/Leaf"]
+mesh = SubResource("t190_s136")
+metadata/t190 = true
+
+[node name="RoomInterior_205" type="Node3D" parent="Floor2"]
+metadata/t190 = true
+
+[node name="Bunk0.4" type="StaticBody3D" parent="Floor2/RoomInterior_205"]
+position = Vector3(22.95, -6.2, -3.45)
+collision_layer = 1
+collision_mask = 0
+metadata/t190 = true
+
+[node name="Collision" type="CollisionShape3D" parent="Floor2/RoomInterior_205/Bunk0.4"]
+shape = SubResource("t190_s137")
+metadata/t190 = true
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor2/RoomInterior_205/Bunk0.4"]
+mesh = SubResource("t190_s138")
+metadata/t190 = true
+
+[node name="Bunk1.45" type="StaticBody3D" parent="Floor2/RoomInterior_205"]
+position = Vector3(22.95, -5.15, -3.45)
+collision_layer = 1
+collision_mask = 0
+metadata/t190 = true
+
+[node name="Collision" type="CollisionShape3D" parent="Floor2/RoomInterior_205/Bunk1.45"]
+shape = SubResource("t190_s139")
+metadata/t190 = true
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor2/RoomInterior_205/Bunk1.45"]
+mesh = SubResource("t190_s140")
+metadata/t190 = true
+
+[node name="Post-4.35" type="StaticBody3D" parent="Floor2/RoomInterior_205"]
+position = Vector3(22.95, -5.7, -4.35)
+collision_layer = 1
+collision_mask = 0
+metadata/t190 = true
+
+[node name="Collision" type="CollisionShape3D" parent="Floor2/RoomInterior_205/Post-4.35"]
+shape = SubResource("t190_s141")
+metadata/t190 = true
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor2/RoomInterior_205/Post-4.35"]
+mesh = SubResource("t190_s142")
+metadata/t190 = true
+
+[node name="Post-2.55" type="StaticBody3D" parent="Floor2/RoomInterior_205"]
+position = Vector3(22.95, -5.7, -2.55)
+collision_layer = 1
+collision_mask = 0
+metadata/t190 = true
+
+[node name="Collision" type="CollisionShape3D" parent="Floor2/RoomInterior_205/Post-2.55"]
+shape = SubResource("t190_s143")
+metadata/t190 = true
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor2/RoomInterior_205/Post-2.55"]
+mesh = SubResource("t190_s144")
+metadata/t190 = true
+
+[node name="Locker" type="StaticBody3D" parent="Floor2/RoomInterior_205"]
+position = Vector3(26.55, -5.75, -3.9)
+collision_layer = 1
+collision_mask = 0
+metadata/t190 = true
+
+[node name="Collision" type="CollisionShape3D" parent="Floor2/RoomInterior_205/Locker"]
+shape = SubResource("t190_s145")
+metadata/t190 = true
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor2/RoomInterior_205/Locker"]
+mesh = SubResource("t190_s146")
+metadata/t190 = true
+
+[node name="Door5" type="Node3D" parent="Floor2"]
+position = Vector3(30.25, -6.6, 0)
+script = ExtResource("t190_e1")
+room = &"206"
+metadata/t190 = true
+
+[node name="Blocker" type="StaticBody3D" parent="Floor2/Door5"]
+position = Vector3(0, 1.2, 0)
+collision_layer = 1
+collision_mask = 0
+metadata/t190 = true
+
+[node name="Collision" type="CollisionShape3D" parent="Floor2/Door5/Blocker"]
+shape = SubResource("t190_s147")
+metadata/t190 = true
+
+[node name="Hinge" type="Node3D" parent="Floor2/Door5"]
+position = Vector3(0.85, 0.01, 0)
+metadata/t190 = true
+
+[node name="Leaf" type="Node3D" parent="Floor2/Door5/Hinge"]
+position = Vector3(-0.85, 1.19, 0)
+metadata/t190 = true
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor2/Door5/Hinge/Leaf"]
+mesh = SubResource("t190_s148")
+metadata/t190 = true
+
+[node name="RoomInterior_206" type="Node3D" parent="Floor2"]
+metadata/t190 = true
+
+[node name="Bunk0.4" type="StaticBody3D" parent="Floor2/RoomInterior_206"]
+position = Vector3(28.45, -6.2, -3.45)
+collision_layer = 1
+collision_mask = 0
+metadata/t190 = true
+
+[node name="Collision" type="CollisionShape3D" parent="Floor2/RoomInterior_206/Bunk0.4"]
+shape = SubResource("t190_s149")
+metadata/t190 = true
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor2/RoomInterior_206/Bunk0.4"]
+mesh = SubResource("t190_s150")
+metadata/t190 = true
+
+[node name="Bunk1.45" type="StaticBody3D" parent="Floor2/RoomInterior_206"]
+position = Vector3(28.45, -5.15, -3.45)
+collision_layer = 1
+collision_mask = 0
+metadata/t190 = true
+
+[node name="Collision" type="CollisionShape3D" parent="Floor2/RoomInterior_206/Bunk1.45"]
+shape = SubResource("t190_s151")
+metadata/t190 = true
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor2/RoomInterior_206/Bunk1.45"]
+mesh = SubResource("t190_s152")
+metadata/t190 = true
+
+[node name="Post-4.35" type="StaticBody3D" parent="Floor2/RoomInterior_206"]
+position = Vector3(28.45, -5.7, -4.35)
+collision_layer = 1
+collision_mask = 0
+metadata/t190 = true
+
+[node name="Collision" type="CollisionShape3D" parent="Floor2/RoomInterior_206/Post-4.35"]
+shape = SubResource("t190_s153")
+metadata/t190 = true
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor2/RoomInterior_206/Post-4.35"]
+mesh = SubResource("t190_s154")
+metadata/t190 = true
+
+[node name="Post-2.55" type="StaticBody3D" parent="Floor2/RoomInterior_206"]
+position = Vector3(28.45, -5.7, -2.55)
+collision_layer = 1
+collision_mask = 0
+metadata/t190 = true
+
+[node name="Collision" type="CollisionShape3D" parent="Floor2/RoomInterior_206/Post-2.55"]
+shape = SubResource("t190_s155")
+metadata/t190 = true
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor2/RoomInterior_206/Post-2.55"]
+mesh = SubResource("t190_s156")
+metadata/t190 = true
+
+[node name="Locker" type="StaticBody3D" parent="Floor2/RoomInterior_206"]
+position = Vector3(32.05, -5.75, -3.9)
+collision_layer = 1
+collision_mask = 0
+metadata/t190 = true
+
+[node name="Collision" type="CollisionShape3D" parent="Floor2/RoomInterior_206/Locker"]
+shape = SubResource("t190_s157")
+metadata/t190 = true
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor2/RoomInterior_206/Locker"]
+mesh = SubResource("t190_s158")
+metadata/t190 = true
+
+[node name="Door6" type="Node3D" parent="Floor2"]
+position = Vector3(35.75, -6.6, 0)
+script = ExtResource("t190_e1")
+room = &"207"
+metadata/t190 = true
+
+[node name="Blocker" type="StaticBody3D" parent="Floor2/Door6"]
+position = Vector3(0, 1.2, 0)
+collision_layer = 1
+collision_mask = 0
+metadata/t190 = true
+
+[node name="Collision" type="CollisionShape3D" parent="Floor2/Door6/Blocker"]
+shape = SubResource("t190_s159")
+metadata/t190 = true
+
+[node name="Hinge" type="Node3D" parent="Floor2/Door6"]
+position = Vector3(0.85, 0.01, 0)
+metadata/t190 = true
+
+[node name="Leaf" type="Node3D" parent="Floor2/Door6/Hinge"]
+position = Vector3(-0.85, 1.19, 0)
+metadata/t190 = true
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor2/Door6/Hinge/Leaf"]
+mesh = SubResource("t190_s160")
+metadata/t190 = true
+
+[node name="RoomInterior_207" type="Node3D" parent="Floor2"]
+metadata/t190 = true
+
+[node name="Bunk0.4" type="StaticBody3D" parent="Floor2/RoomInterior_207"]
+position = Vector3(33.95, -6.2, -3.45)
+collision_layer = 1
+collision_mask = 0
+metadata/t190 = true
+
+[node name="Collision" type="CollisionShape3D" parent="Floor2/RoomInterior_207/Bunk0.4"]
+shape = SubResource("t190_s161")
+metadata/t190 = true
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor2/RoomInterior_207/Bunk0.4"]
+mesh = SubResource("t190_s162")
+metadata/t190 = true
+
+[node name="Bunk1.45" type="StaticBody3D" parent="Floor2/RoomInterior_207"]
+position = Vector3(33.95, -5.15, -3.45)
+collision_layer = 1
+collision_mask = 0
+metadata/t190 = true
+
+[node name="Collision" type="CollisionShape3D" parent="Floor2/RoomInterior_207/Bunk1.45"]
+shape = SubResource("t190_s163")
+metadata/t190 = true
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor2/RoomInterior_207/Bunk1.45"]
+mesh = SubResource("t190_s164")
+metadata/t190 = true
+
+[node name="Post-4.35" type="StaticBody3D" parent="Floor2/RoomInterior_207"]
+position = Vector3(33.95, -5.7, -4.35)
+collision_layer = 1
+collision_mask = 0
+metadata/t190 = true
+
+[node name="Collision" type="CollisionShape3D" parent="Floor2/RoomInterior_207/Post-4.35"]
+shape = SubResource("t190_s165")
+metadata/t190 = true
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor2/RoomInterior_207/Post-4.35"]
+mesh = SubResource("t190_s166")
+metadata/t190 = true
+
+[node name="Post-2.55" type="StaticBody3D" parent="Floor2/RoomInterior_207"]
+position = Vector3(33.95, -5.7, -2.55)
+collision_layer = 1
+collision_mask = 0
+metadata/t190 = true
+
+[node name="Collision" type="CollisionShape3D" parent="Floor2/RoomInterior_207/Post-2.55"]
+shape = SubResource("t190_s167")
+metadata/t190 = true
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor2/RoomInterior_207/Post-2.55"]
+mesh = SubResource("t190_s168")
+metadata/t190 = true
+
+[node name="Locker" type="StaticBody3D" parent="Floor2/RoomInterior_207"]
+position = Vector3(37.55, -5.75, -3.9)
+collision_layer = 1
+collision_mask = 0
+metadata/t190 = true
+
+[node name="Collision" type="CollisionShape3D" parent="Floor2/RoomInterior_207/Locker"]
+shape = SubResource("t190_s169")
+metadata/t190 = true
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor2/RoomInterior_207/Locker"]
+mesh = SubResource("t190_s170")
+metadata/t190 = true
+
+[node name="Door7" type="Node3D" parent="Floor2"]
+position = Vector3(41.25, -6.6, 0)
+script = ExtResource("t190_e1")
+room = &"208"
+metadata/t190 = true
+
+[node name="Blocker" type="StaticBody3D" parent="Floor2/Door7"]
+position = Vector3(0, 1.2, 0)
+collision_layer = 1
+collision_mask = 0
+metadata/t190 = true
+
+[node name="Collision" type="CollisionShape3D" parent="Floor2/Door7/Blocker"]
+shape = SubResource("t190_s171")
+metadata/t190 = true
+
+[node name="Hinge" type="Node3D" parent="Floor2/Door7"]
+position = Vector3(0.85, 0.01, 0)
+metadata/t190 = true
+
+[node name="Leaf" type="Node3D" parent="Floor2/Door7/Hinge"]
+position = Vector3(-0.85, 1.19, 0)
+metadata/t190 = true
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor2/Door7/Hinge/Leaf"]
+mesh = SubResource("t190_s172")
+metadata/t190 = true
+
+[node name="RoomInterior_208" type="Node3D" parent="Floor2"]
+metadata/t190 = true
+
+[node name="Bunk0.4" type="StaticBody3D" parent="Floor2/RoomInterior_208"]
+position = Vector3(39.45, -6.2, -3.45)
+collision_layer = 1
+collision_mask = 0
+metadata/t190 = true
+
+[node name="Collision" type="CollisionShape3D" parent="Floor2/RoomInterior_208/Bunk0.4"]
+shape = SubResource("t190_s173")
+metadata/t190 = true
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor2/RoomInterior_208/Bunk0.4"]
+mesh = SubResource("t190_s174")
+metadata/t190 = true
+
+[node name="Bunk1.45" type="StaticBody3D" parent="Floor2/RoomInterior_208"]
+position = Vector3(39.45, -5.15, -3.45)
+collision_layer = 1
+collision_mask = 0
+metadata/t190 = true
+
+[node name="Collision" type="CollisionShape3D" parent="Floor2/RoomInterior_208/Bunk1.45"]
+shape = SubResource("t190_s175")
+metadata/t190 = true
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor2/RoomInterior_208/Bunk1.45"]
+mesh = SubResource("t190_s176")
+metadata/t190 = true
+
+[node name="Post-4.35" type="StaticBody3D" parent="Floor2/RoomInterior_208"]
+position = Vector3(39.45, -5.7, -4.35)
+collision_layer = 1
+collision_mask = 0
+metadata/t190 = true
+
+[node name="Collision" type="CollisionShape3D" parent="Floor2/RoomInterior_208/Post-4.35"]
+shape = SubResource("t190_s177")
+metadata/t190 = true
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor2/RoomInterior_208/Post-4.35"]
+mesh = SubResource("t190_s178")
+metadata/t190 = true
+
+[node name="Post-2.55" type="StaticBody3D" parent="Floor2/RoomInterior_208"]
+position = Vector3(39.45, -5.7, -2.55)
+collision_layer = 1
+collision_mask = 0
+metadata/t190 = true
+
+[node name="Collision" type="CollisionShape3D" parent="Floor2/RoomInterior_208/Post-2.55"]
+shape = SubResource("t190_s179")
+metadata/t190 = true
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor2/RoomInterior_208/Post-2.55"]
+mesh = SubResource("t190_s180")
+metadata/t190 = true
+
+[node name="Locker" type="StaticBody3D" parent="Floor2/RoomInterior_208"]
+position = Vector3(43.05, -5.75, -3.9)
+collision_layer = 1
+collision_mask = 0
+metadata/t190 = true
+
+[node name="Collision" type="CollisionShape3D" parent="Floor2/RoomInterior_208/Locker"]
+shape = SubResource("t190_s181")
+metadata/t190 = true
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor2/RoomInterior_208/Locker"]
+mesh = SubResource("t190_s182")
+metadata/t190 = true

@@ -130,6 +130,10 @@ func _building_b() -> void:
 	_survivors(3)
 	_set_area(&"stairs")
 	_place_crowd_203()
+	# D-062: 207 stays open as the hiding place next to the stairwell.
+	var hideout := _room_door(&"207")
+	if hideout != null:
+		hideout.set_open(true)
 	await _announce(["SPK_CH3_R5_INTRO", "RULE_CH3_R5_1", "RULE_CH3_R5_2", "RULE_CH3_R5_3"])
 	for key in ["ch3_r5_1", "ch3_r5_2", "ch3_r5_3"]:
 		RuleSystem.mark_read(StringName(key))
@@ -584,6 +588,14 @@ func _place_crowd_203() -> void:
 		zombie.face(door.global_position + Vector3(offset.x, 0.0, -2.0))
 		zombie.sleep_pose(&"idle")
 		_crowd_203.append(zombie)
+
+
+## Lane B's room door for a room number (T-190), or null.
+func _room_door(room: StringName) -> Node3D:
+	for door: Node in get_tree().get_nodes_in_group(&"room_doors"):
+		if door.get("room") == room and get_parent() != null and get_parent().is_ancestor_of(door):
+			return door as Node3D
+	return null
 
 
 ## The extinguisher's bang drags the whole crowd off the door, however far.

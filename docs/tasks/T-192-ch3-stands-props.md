@@ -1,5 +1,6 @@
 # T-192 — Chương 3: khán đài sân vận động làm lại, rải đồ cho khuôn viên bớt trống
-- Lane: B | Trạng thái: todo (làm **sau T-190**) | Agent:
+- Lane: B (**Claude Code trên web làm thay**, D-066; lane B hết token) | Trạng thái: todo | Agent: Claude Code web
+- **Prompt:** `docs/handoff/web.md` §1 (cài Godot Linux, chạy test hai lượt, không chụp ảnh).
 - Nhánh: `lane-b/T-192-stands-props`
 - Phụ thuộc: T-183, T-189, T-190. **Đọc D-054, D-064, D-065 trong `docs/DECISIONS.md`**, card T-183 (Handoff), `art_source/campus/README.md`.
 
@@ -33,14 +34,14 @@ Dọc mọi đường người chơi đi (nhà B → vườn hoa → đường x
 ### 3. Test và ảnh
 - Người chơi đi bộ (như test T-188): từ đường chạy lên tới bậc cao nhất khán đài chính; tới được `BarSpawns/B03`.
 - Navigation: có đường từ `Start_garden` → `Start_stadium` → `Start_gate` → cửa nhà ăn; xác trong sân tới được bậc khán đài.
-- `pwsh tools/test.ps1`, `pwsh tools/check.ps1` PASS; ảnh: sân nhìn từ cổng tây, khán đài chính từ giữa sân, hai đoạn đường.
+- `pwsh tools/test.ps1`, `pwsh tools/check.ps1` PASS (trên máy cloud: không có test FAIL mới so với lượt chạy trên `origin/main`). Ảnh: integrator chụp khi review (máy cloud không có card đồ họa).
 - FPS: integrator đo lại sau khi merge (cần chủ dự án cho phép).
 
 ## Checklist hoàn thành
 - [ ] Khán đài chính to, sát đường chạy, có mái, lên được; khán đài phụ phía nam sát sân; bỏ khán đài nhỏ cũ
 - [ ] 4 lối xác vào, `ZombieSpawns/Stadium` cập nhật; `SirenSpot`, `B03`, ống sắt đúng chỗ
 - [ ] Rải đồ dọc mọi tuyến, dấu động đất, không chặn đường
-- [ ] Test đi bộ, test navigation PASS; test.ps1, check.ps1 PASS; ảnh
+- [ ] Test đi bộ, test navigation PASS; không có test FAIL mới (hai lượt)
 - [ ] Handoff: tọa độ mới của khán đài, cổng, anchor đã dời; số tam giác
 
 ## Handoff (agent điền)

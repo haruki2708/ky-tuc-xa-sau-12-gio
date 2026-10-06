@@ -1,0 +1,258 @@
+{
+  "base_commit": "bc0e770",
+  "layout_authorization": "Owner approved adjusting 407/408 on 2026-10-07; 408 moved to x=38..44, door x=42; Room407 unchanged",
+  "rooms": [
+    {
+      "room": "401",
+      "door": "Floor4/Corridor/LockedDoor_401",
+      "anchor": "Campus/Anchors/RoomSpawns/B4/R401",
+      "position": [
+        8,
+        0,
+        -1.5
+      ]
+    },
+    {
+      "room": "402",
+      "door": "Floor4/Corridor/LockedDoor_402",
+      "anchor": "Campus/Anchors/RoomSpawns/B4/R402",
+      "position": [
+        12,
+        0,
+        -1.5
+      ]
+    },
+    {
+      "room": "403",
+      "door": "Floor4/Corridor/LockedDoor_403",
+      "anchor": "Campus/Anchors/RoomSpawns/B4/R403",
+      "position": [
+        16,
+        0,
+        -1.5
+      ]
+    },
+    {
+      "room": "404",
+      "door": "Floor4/Corridor/LockedDoor_404",
+      "anchor": "Campus/Anchors/RoomSpawns/B4/R404",
+      "position": [
+        20,
+        0,
+        -1.5
+      ]
+    },
+    {
+      "room": "405",
+      "door": "Floor4/Corridor/LockedDoor_405",
+      "anchor": "Campus/Anchors/RoomSpawns/B4/R405",
+      "position": [
+        24,
+        0,
+        -1.5
+      ]
+    },
+    {
+      "room": "406",
+      "door": "Floor4/Corridor/LockedDoor_406",
+      "anchor": "Campus/Anchors/RoomSpawns/B4/R406",
+      "position": [
+        28,
+        0,
+        -1.5
+      ]
+    },
+    {
+      "room": "408",
+      "door": "Floor4/Corridor/LockedDoor_408",
+      "anchor": "Campus/Anchors/RoomSpawns/B4/R408",
+      "position": [
+        42,
+        0,
+        -1.5
+      ]
+    },
+    {
+      "room": "301",
+      "door": "Campus/BuildingB/Floor3/Door0",
+      "anchor": "Campus/Anchors/RoomSpawns/B3/R301",
+      "position": [
+        2.75,
+        -3.3,
+        -1.5
+      ]
+    },
+    {
+      "room": "302",
+      "door": "Campus/BuildingB/Floor3/Door1",
+      "anchor": "Campus/Anchors/RoomSpawns/B3/R302",
+      "position": [
+        8.25,
+        -3.3,
+        -1.5
+      ]
+    },
+    {
+      "room": "303",
+      "door": "Campus/BuildingB/Floor3/Door2",
+      "anchor": "Campus/Anchors/RoomSpawns/B3/R303",
+      "position": [
+        13.75,
+        -3.3,
+        -1.5
+      ]
+    },
+    {
+      "room": "304",
+      "door": "Campus/BuildingB/Floor3/Door3",
+      "anchor": "Campus/Anchors/RoomSpawns/B3/R304",
+      "position": [
+        19.25,
+        -3.3,
+        -1.5
+      ]
+    },
+    {
+      "room": "305",
+      "door": "Campus/BuildingB/Floor3/Door4",
+      "anchor": "Campus/Anchors/RoomSpawns/B3/R305",
+      "position": [
+        24.75,
+        -3.3,
+        -1.5
+      ]
+    },
+    {
+      "room": "306",
+      "door": "Campus/BuildingB/Floor3/Door5",
+      "anchor": "Campus/Anchors/RoomSpawns/B3/R306",
+      "position": [
+        30.25,
+        -3.3,
+        -1.5
+      ]
+    },
+    {
+      "room": "307",
+      "door": "Campus/BuildingB/Floor3/Door6",
+      "anchor": "Campus/Anchors/RoomSpawns/B3/R307",
+      "position": [
+        35.75,
+        -3.3,
+        -1.5
+      ]
+    },
+    {
+      "room": "308",
+      "door": "Campus/BuildingB/Floor3/Door7",
+      "anchor": "Campus/Anchors/RoomSpawns/B3/R308",
+      "position": [
+        41.25,
+        -3.3,
+        -1.5
+      ]
+    },
+    {
+      "room": "201",
+      "door": "Campus/BuildingB/Floor2/Door0",
+      "anchor": "Campus/Anchors/RoomSpawns/B2/R201",
+      "position": [
+        2.75,
+        -6.6,
+        -1.5
+      ]
+    },
+    {
+      "room": "202",
+      "door": "Campus/BuildingB/Floor2/Door1",
+      "anchor": "Campus/Anchors/RoomSpawns/B2/R202",
+      "position": [
+        8.25,
+        -6.6,
+        -1.5
+      ]
+    },
+    {
+      "room": "204",
+      "door": "Campus/BuildingB/Floor2/Door3",
+      "anchor": "Campus/Anchors/RoomSpawns/B2/R204",
+      "position": [
+        19.25,
+        -6.6,
+        -1.5
+      ]
+    },
+    {
+      "room": "205",
+      "door": "Campus/BuildingB/Floor2/Door4",
+      "anchor": "Campus/Anchors/RoomSpawns/B2/R205",
+      "position": [
+        24.75,
+        -6.6,
+        -1.5
+      ]
+    },
+    {
+      "room": "206",
+      "door": "Campus/BuildingB/Floor2/Door5",
+      "anchor": "Campus/Anchors/RoomSpawns/B2/R206",
+      "position": [
+        30.25,
+        -6.6,
+        -1.5
+      ]
+    },
+    {
+      "room": "207",
+      "door": "Campus/BuildingB/Floor2/Door6",
+      "anchor": "Campus/Anchors/RoomSpawns/B2/R207",
+      "position": [
+        35.75,
+        -6.6,
+        -1.5
+      ]
+    },
+    {
+      "room": "208",
+      "door": "Campus/BuildingB/Floor2/Door7",
+      "anchor": "Campus/Anchors/RoomSpawns/B2/R208",
+      "position": [
+        41.25,
+        -6.6,
+        -1.5
+      ]
+    }
+  ],
+  "idle_b4": {
+    "I01": [
+      1.0,
+      0,
+      1.6
+    ],
+    "I02": [
+      2.6,
+      0,
+      1.6
+    ],
+    "I03": [
+      4.2,
+      0,
+      1.6
+    ],
+    "I04": [
+      1.0,
+      0,
+      2.7
+    ],
+    "I05": [
+      2.6,
+      0,
+      2.7
+    ],
+    "I06": [
+      4.2,
+      0,
+      2.7
+    ]
+  }
+}
