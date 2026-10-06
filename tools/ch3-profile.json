@@ -5,7 +5,7 @@
   "floor4_scene": "res://scenes/levels/floor4/floor4.tscn",
   "zombie_scene": "res://scenes/entity/zombie.tscn",
   "director": "Chapter3Director",
-  "rule_set": null,
+  "rule_set": "res://data/rules/ch3.tres",
   "jumps": {
     "b": "b",
     "garden": "garden",
@@ -36,9 +36,95 @@
     "refill": null
   },
   "performance": {
-    "route": null,
-    "spawn_paths": null,
-    "active_property": null,
-    "active_value": null
+    "route": [
+      {
+        "anchor": "Floor4/Anchors/Bed_Trung",
+        "zone": "b"
+      },
+      {
+        "anchor": "Floor4/Anchors/Door407",
+        "zone": "b"
+      },
+      {
+        "anchor": "Campus/Anchors/FireDoor",
+        "zone": "b"
+      },
+      {
+        "anchor": "Campus/Anchors/Room203Door",
+        "zone": "b"
+      },
+      {
+        "anchor": "Campus/Anchors/ManagerWindow",
+        "zone": "b"
+      },
+      {
+        "anchor": "Campus/Anchors/Start_garden",
+        "zone": "garden"
+      },
+      {
+        "anchor": "Campus/Anchors/ZombieSpawns/Garden/S03",
+        "zone": "garden"
+      },
+      {
+        "anchor": "Campus/Anchors/Start_stadium",
+        "zone": "stadium"
+      },
+      {
+        "anchor": "Campus/Anchors/ZombieSpawns/Stadium/S03",
+        "zone": "stadium"
+      },
+      {
+        "anchor": "Campus/Anchors/Start_gate",
+        "zone": "gate"
+      },
+      {
+        "anchor": "Campus/Anchors/ZombieSpawns/Canteen/S01",
+        "zone": "canteen"
+      }
+    ],
+    "spawn_paths": [
+      "Campus/Anchors/ZombieSpawns/Garden/S01",
+      "Campus/Anchors/ZombieSpawns/Garden/S02",
+      "Campus/Anchors/ZombieSpawns/Garden/S03",
+      "Campus/Anchors/ZombieSpawns/Garden/S04",
+      "Campus/Anchors/ZombieSpawns/Garden/S05",
+      "Campus/Anchors/ZombieSpawns/Garden/S06",
+      "Campus/Anchors/ZombieSpawns/Road/S01",
+      "Campus/Anchors/ZombieSpawns/Road/S02",
+      "Campus/Anchors/ZombieSpawns/Road/S03",
+      "Campus/Anchors/ZombieSpawns/Road/S04",
+      "Campus/Anchors/ZombieSpawns/Road/S05",
+      "Campus/Anchors/ZombieSpawns/Road/S06",
+      "Campus/Anchors/ZombieSpawns/Stadium/S01",
+      "Campus/Anchors/ZombieSpawns/Stadium/S02",
+      "Campus/Anchors/ZombieSpawns/Stadium/S03",
+      "Campus/Anchors/ZombieSpawns/Stadium/S04",
+      "Campus/Anchors/ZombieSpawns/Stadium/S05",
+      "Campus/Anchors/ZombieSpawns/Stadium/S06",
+      "Campus/Anchors/ZombieSpawns/Gate/S01",
+      "Campus/Anchors/ZombieSpawns/Gate/S02",
+      "Campus/Anchors/ZombieSpawns/Gate/S03",
+      "Campus/Anchors/ZombieSpawns/Gate/S04",
+      "Campus/Anchors/ZombieSpawns/Gate/S05",
+      "Campus/Anchors/ZombieSpawns/Gate/S06",
+      "Campus/Anchors/ZombieSpawns/Canteen/S01",
+      "Campus/Anchors/ZombieSpawns/Canteen/S02",
+      "Campus/Anchors/ZombieSpawns/Canteen/S03",
+      "Campus/Anchors/ZombieSpawns/Canteen/S04",
+      "Campus/Anchors/ZombieSpawns/Canteen/S05",
+      "Campus/Anchors/ZombieSpawns/Canteen/S06",
+      "Campus/Anchors/ZombieSpawns/B1/S01",
+      "Campus/Anchors/ZombieSpawns/B1/S02",
+      "Campus/Anchors/ZombieSpawns/B1/S03",
+      "Campus/Anchors/ZombieSpawns/B1/S04",
+      "Campus/Anchors/ZombieSpawns/B1/S05",
+      "Campus/Anchors/ZombieSpawns/B1/S06",
+      "Campus/Anchors/ZombieSpawns/B2/S01",
+      "Campus/Anchors/ZombieSpawns/B2/S02",
+      "Campus/Anchors/ZombieSpawns/B2/S03",
+      "Campus/Anchors/ZombieSpawns/B2/S04"
+    ],
+    "active_property": "state",
+    "active_value": "hunting"
   }
 }
