@@ -180,3 +180,22 @@ func test_things_to_use_can_be_reached() -> void:
 func _floor_below(space: PhysicsDirectSpaceState3D, from: Vector3) -> float:
 	var hit := space.intersect_ray(PhysicsRayQueryParameters3D.create(from, from + Vector3.DOWN * 4.0, 1))
 	return hit.position.y if not hit.is_empty() else from.y - 0.8
+
+
+## Owner playtest 2026-10-06: with the key, E on the fire door did nothing. A
+## look straight at the door at eye height hit lane B's leaf, not the use
+## (whose box sat on the floor). Look like a player does: level, from the
+## corridor, standing and crouched.
+func test_fire_door_answers_a_straight_look() -> void:
+	await wait_frames(4)
+	var space := (scene as Node3D).get_world_3d().direct_space_state
+	var use: Ch3Use = director._uses["FireDoor"]
+	var door := _anchor("FireDoor").global_position
+	for eye_height: float in [1.0, 1.6]:
+		for back: float in [1.0, 1.8]:
+			var eye := Vector3(door.x - back, door.y + eye_height, door.z)
+			var query := PhysicsRayQueryParameters3D.create(eye, eye + Vector3(back + 1.0, 0.0, 0.0), 1 | (1 << 2))
+			query.collide_with_areas = true
+			var hit := space.intersect_ray(query)
+			assert_true(not hit.is_empty() and hit.collider == use,
+				"eye %.1f m, %.1f m back hits the use (got %s)" % [eye_height, back, hit.get("collider")])

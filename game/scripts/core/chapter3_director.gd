@@ -409,7 +409,9 @@ func _place_uses() -> void:
 			_has_key = true
 			GameState.set_flag(&"ch3_has_key", true)
 			_think("THINK_CH3_KEY"))
-	var door := _use("FireDoor", "PROMPT_CH3_UNLOCK", Vector3(1.2, 2.0, 0.4))
+	# Lane B's door marker sits on the floor: the use covers the whole leaf,
+	# from the floor to 2.2 m, or a look at eye height hits the leaf instead.
+	var door := _use("FireDoor", "PROMPT_CH3_UNLOCK", Vector3(1.4, 2.2, 1.4), 1.1)
 	if door != null:
 		door.once = false
 		door.used.connect(func() -> void:
@@ -428,7 +430,7 @@ func _place_uses() -> void:
 			EventBus.noise_emitted.emit(extinguisher.global_position, 25.0, &"extinguisher"))
 
 
-func _use(anchor_name: String, prompt: String, size: Vector3) -> Ch3Use:
+func _use(anchor_name: String, prompt: String, size: Vector3, lift: float = 0.0) -> Ch3Use:
 	var anchor := _anchor(anchor_name)
 	if anchor == null:
 		return null
@@ -437,6 +439,7 @@ func _use(anchor_name: String, prompt: String, size: Vector3) -> Ch3Use:
 	use.prompt_key = prompt
 	use.size = size
 	anchor.add_child(use)
+	use.position = Vector3(0.0, lift, 0.0)
 	_uses[anchor_name] = use
 	return use
 
