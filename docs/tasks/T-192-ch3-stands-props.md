@@ -72,9 +72,9 @@ Props thêm vào Campus 30 nghìn (T-183: đường/cây/đèn 15.256). Ngân s�
 ### Kiểm chứng (Linux, chạy trực tiếp Godot; `tools/test.ps1` không chạy được trên Linux vì dùng `"$PSScriptRoot\godot-path.ps1"`)
 ```
 Lượt 1, origin/main (trước khi sửa, bước 3):   RESULT: 589 passed, 0 failed
-Lượt 2, nhánh này (sau khi sửa, bước 5):        <<RESULT2>>
+Lượt 2, nhánh này (sau khi sửa, bước 5):        RESULT: 597 passed, 0 failed  (589 + 8 test mới)
 pwsh tools/check.ps1, origin/main:              RESULT: check 0 error(s)  (292 script)
-pwsh tools/check.ps1, nhánh này:                <<CHECK2>>
+pwsh tools/check.ps1, nhánh này:                RESULT: check 0 error(s)  (294 script)
 ```
 Không có test FAIL ở lượt 1, nên không có lỗi nào cần ghi là "do môi trường Linux". `test_stands_props.gd` (8 test mới): kích thước/bậc/mái khán đài; khán đài cũ đã bỏ, cổng mở, tường kín; SirenSpot ở chỗ cao nhất, B03 và ống sắt dưới gầm; **người chơi thật** (CharacterBody3D, trọng lực, `move_and_slide`) đi từ đường chạy lên hàng trên cùng và vào gầm tới B03; nav vườn → sân → cổng → nhà ăn, từ cả sáu điểm xác tới khán đài và hàng trên cùng, đường vào gầm phải vòng qua cổng; mật độ và lối trống ở 635 điểm mẫu; ngân sách tam giác. Các test cũ không bị xóa hay nới (`test_campus.gd` chỉ đổi đích SirenSpot).
 
