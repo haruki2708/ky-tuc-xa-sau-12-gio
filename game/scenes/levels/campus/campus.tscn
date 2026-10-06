@@ -15,6 +15,9 @@
 [ext_resource type="Texture2D" path="res://assets/textures/campus/wall.png" id="e13"]
 [ext_resource type="NavigationMesh" path="res://scenes/levels/campus/outdoor_navigation.tres" id="e14"]
 
+[ext_resource type="Script" path="res://scenes/levels/campus_room_navigation.gd" id="t190_e1"]
+
+
 [sub_resource type="BoxShape3D" id="s1"]
 size = Vector3(50, 0.3, 50)
 
@@ -4907,6 +4910,138 @@ polygons = [PackedInt32Array(0, 1, 2, 3)]
 agent_height = 1.75
 agent_radius = 0.3
 
+[sub_resource type="NavigationMesh" id="t190_s1"]
+vertices = PackedVector3Array(7.35,0,-2.5,7.35,0,-0.5,8.65,0,-0.5,8.65,0,-2.5)
+polygons = [PackedInt32Array(0,1,2,3)]
+agent_radius = 0.3
+agent_height = 1.6
+
+[sub_resource type="NavigationMesh" id="t190_s2"]
+vertices = PackedVector3Array(11.35,0,-2.5,11.35,0,-0.5,12.65,0,-0.5,12.65,0,-2.5)
+polygons = [PackedInt32Array(0,1,2,3)]
+agent_radius = 0.3
+agent_height = 1.6
+
+[sub_resource type="NavigationMesh" id="t190_s3"]
+vertices = PackedVector3Array(15.35,0,-2.5,15.35,0,-0.5,16.65,0,-0.5,16.65,0,-2.5)
+polygons = [PackedInt32Array(0,1,2,3)]
+agent_radius = 0.3
+agent_height = 1.6
+
+[sub_resource type="NavigationMesh" id="t190_s4"]
+vertices = PackedVector3Array(19.35,0,-2.5,19.35,0,-0.5,20.65,0,-0.5,20.65,0,-2.5)
+polygons = [PackedInt32Array(0,1,2,3)]
+agent_radius = 0.3
+agent_height = 1.6
+
+[sub_resource type="NavigationMesh" id="t190_s5"]
+vertices = PackedVector3Array(23.35,0,-2.5,23.35,0,-0.5,24.65,0,-0.5,24.65,0,-2.5)
+polygons = [PackedInt32Array(0,1,2,3)]
+agent_radius = 0.3
+agent_height = 1.6
+
+[sub_resource type="NavigationMesh" id="t190_s6"]
+vertices = PackedVector3Array(27.35,0,-2.5,27.35,0,-0.5,28.65,0,-0.5,28.65,0,-2.5)
+polygons = [PackedInt32Array(0,1,2,3)]
+agent_radius = 0.3
+agent_height = 1.6
+
+[sub_resource type="NavigationMesh" id="t190_s7"]
+vertices = PackedVector3Array(41.35,0,-2.5,41.35,0,-0.5,42.65,0,-0.5,42.65,0,-2.5)
+polygons = [PackedInt32Array(0,1,2,3)]
+agent_radius = 0.3
+agent_height = 1.6
+
+[sub_resource type="NavigationMesh" id="t190_s8"]
+vertices = PackedVector3Array(2.1,-3.3,-2.5,2.1,-3.3,-0.5,3.4,-3.3,-0.5,3.4,-3.3,-2.5)
+polygons = [PackedInt32Array(0,1,2,3)]
+agent_radius = 0.3
+agent_height = 1.6
+
+[sub_resource type="NavigationMesh" id="t190_s9"]
+vertices = PackedVector3Array(7.6,-3.3,-2.5,7.6,-3.3,-0.5,8.9,-3.3,-0.5,8.9,-3.3,-2.5)
+polygons = [PackedInt32Array(0,1,2,3)]
+agent_radius = 0.3
+agent_height = 1.6
+
+[sub_resource type="NavigationMesh" id="t190_s10"]
+vertices = PackedVector3Array(13.1,-3.3,-2.5,13.1,-3.3,-0.5,14.4,-3.3,-0.5,14.4,-3.3,-2.5)
+polygons = [PackedInt32Array(0,1,2,3)]
+agent_radius = 0.3
+agent_height = 1.6
+
+[sub_resource type="NavigationMesh" id="t190_s11"]
+vertices = PackedVector3Array(18.6,-3.3,-2.5,18.6,-3.3,-0.5,19.9,-3.3,-0.5,19.9,-3.3,-2.5)
+polygons = [PackedInt32Array(0,1,2,3)]
+agent_radius = 0.3
+agent_height = 1.6
+
+[sub_resource type="NavigationMesh" id="t190_s12"]
+vertices = PackedVector3Array(24.1,-3.3,-2.5,24.1,-3.3,-0.5,25.4,-3.3,-0.5,25.4,-3.3,-2.5)
+polygons = [PackedInt32Array(0,1,2,3)]
+agent_radius = 0.3
+agent_height = 1.6
+
+[sub_resource type="NavigationMesh" id="t190_s13"]
+vertices = PackedVector3Array(29.6,-3.3,-2.5,29.6,-3.3,-0.5,30.9,-3.3,-0.5,30.9,-3.3,-2.5)
+polygons = [PackedInt32Array(0,1,2,3)]
+agent_radius = 0.3
+agent_height = 1.6
+
+[sub_resource type="NavigationMesh" id="t190_s14"]
+vertices = PackedVector3Array(35.1,-3.3,-2.5,35.1,-3.3,-0.5,36.4,-3.3,-0.5,36.4,-3.3,-2.5)
+polygons = [PackedInt32Array(0,1,2,3)]
+agent_radius = 0.3
+agent_height = 1.6
+
+[sub_resource type="NavigationMesh" id="t190_s15"]
+vertices = PackedVector3Array(40.6,-3.3,-2.5,40.6,-3.3,-0.5,41.9,-3.3,-0.5,41.9,-3.3,-2.5)
+polygons = [PackedInt32Array(0,1,2,3)]
+agent_radius = 0.3
+agent_height = 1.6
+
+[sub_resource type="NavigationMesh" id="t190_s16"]
+vertices = PackedVector3Array(2.1,-6.6,-2.5,2.1,-6.6,-0.5,3.4,-6.6,-0.5,3.4,-6.6,-2.5)
+polygons = [PackedInt32Array(0,1,2,3)]
+agent_radius = 0.3
+agent_height = 1.6
+
+[sub_resource type="NavigationMesh" id="t190_s17"]
+vertices = PackedVector3Array(7.6,-6.6,-2.5,7.6,-6.6,-0.5,8.9,-6.6,-0.5,8.9,-6.6,-2.5)
+polygons = [PackedInt32Array(0,1,2,3)]
+agent_radius = 0.3
+agent_height = 1.6
+
+[sub_resource type="NavigationMesh" id="t190_s18"]
+vertices = PackedVector3Array(18.6,-6.6,-2.5,18.6,-6.6,-0.5,19.9,-6.6,-0.5,19.9,-6.6,-2.5)
+polygons = [PackedInt32Array(0,1,2,3)]
+agent_radius = 0.3
+agent_height = 1.6
+
+[sub_resource type="NavigationMesh" id="t190_s19"]
+vertices = PackedVector3Array(24.1,-6.6,-2.5,24.1,-6.6,-0.5,25.4,-6.6,-0.5,25.4,-6.6,-2.5)
+polygons = [PackedInt32Array(0,1,2,3)]
+agent_radius = 0.3
+agent_height = 1.6
+
+[sub_resource type="NavigationMesh" id="t190_s20"]
+vertices = PackedVector3Array(29.6,-6.6,-2.5,29.6,-6.6,-0.5,30.9,-6.6,-0.5,30.9,-6.6,-2.5)
+polygons = [PackedInt32Array(0,1,2,3)]
+agent_radius = 0.3
+agent_height = 1.6
+
+[sub_resource type="NavigationMesh" id="t190_s21"]
+vertices = PackedVector3Array(35.1,-6.6,-2.5,35.1,-6.6,-0.5,36.4,-6.6,-0.5,36.4,-6.6,-2.5)
+polygons = [PackedInt32Array(0,1,2,3)]
+agent_radius = 0.3
+agent_height = 1.6
+
+[sub_resource type="NavigationMesh" id="t190_s22"]
+vertices = PackedVector3Array(40.6,-6.6,-2.5,40.6,-6.6,-0.5,41.9,-6.6,-0.5,41.9,-6.6,-2.5)
+polygons = [PackedInt32Array(0,1,2,3)]
+agent_radius = 0.3
+agent_height = 1.6
+
 [node name="Campus" type="Node3D"]
 
 script = ExtResource("e1")
@@ -7537,37 +7672,19 @@ position = Vector3(8, 0, 2.1)
 [node name="B4" type="Node3D" parent="Anchors/ZombieIdle"]
 
 
-[node name="I01" type="Marker3D" parent="Anchors/ZombieIdle/B4"]
-position = Vector3(8, 0, 2.1)
-
 [node name="S02" type="Marker3D" parent="Anchors/ZombieSpawns/B4"]
-position = Vector3(12, 0, 2.1)
-
-[node name="I02" type="Marker3D" parent="Anchors/ZombieIdle/B4"]
 position = Vector3(12, 0, 2.1)
 
 [node name="S03" type="Marker3D" parent="Anchors/ZombieSpawns/B4"]
 position = Vector3(16, 0, 2.1)
 
-[node name="I03" type="Marker3D" parent="Anchors/ZombieIdle/B4"]
-position = Vector3(16, 0, 2.1)
-
 [node name="S04" type="Marker3D" parent="Anchors/ZombieSpawns/B4"]
-position = Vector3(20, 0, 2.1)
-
-[node name="I04" type="Marker3D" parent="Anchors/ZombieIdle/B4"]
 position = Vector3(20, 0, 2.1)
 
 [node name="S05" type="Marker3D" parent="Anchors/ZombieSpawns/B4"]
 position = Vector3(24, 0, 2.1)
 
-[node name="I05" type="Marker3D" parent="Anchors/ZombieIdle/B4"]
-position = Vector3(24, 0, 2.1)
-
 [node name="S06" type="Marker3D" parent="Anchors/ZombieSpawns/B4"]
-position = Vector3(28, 0, 2.1)
-
-[node name="I06" type="Marker3D" parent="Anchors/ZombieIdle/B4"]
 position = Vector3(28, 0, 2.1)
 
 [node name="B3" type="Node3D" parent="Anchors/ZombieSpawns"]
@@ -8151,6 +8268,7 @@ collision_mask = 2
 shape = SubResource("s318")
 
 [node name="Navigation" type="Node3D" parent="."]
+script = ExtResource("t190_e1")
 
 [node name="Dining_171_21" type="NavigationRegion3D" parent="Navigation"]
 navigation_mesh = SubResource("cn_171_21")
@@ -9863,15 +9981,6 @@ navigation_mesh = SubResource("s321")
 [node name="Hall1" type="NavigationRegion3D" parent="Navigation"]
 navigation_mesh = SubResource("s322")
 
-[node name="Alcove2_1" type="NavigationRegion3D" parent="Navigation"]
-navigation_mesh = SubResource("s323")
-
-[node name="Alcove2_4" type="NavigationRegion3D" parent="Navigation"]
-navigation_mesh = SubResource("s324")
-
-[node name="Alcove2_6" type="NavigationRegion3D" parent="Navigation"]
-navigation_mesh = SubResource("s325")
-
 [node name="Hall2" type="NavigationRegion3D" parent="Navigation"]
 navigation_mesh = SubResource("s326")
 
@@ -9880,15 +9989,6 @@ navigation_mesh = SubResource("s327")
 
 [node name="Room203Aisle" type="NavigationRegion3D" parent="Navigation"]
 navigation_mesh = SubResource("s328")
-
-[node name="Alcove3_1" type="NavigationRegion3D" parent="Navigation"]
-navigation_mesh = SubResource("s329")
-
-[node name="Alcove3_4" type="NavigationRegion3D" parent="Navigation"]
-navigation_mesh = SubResource("s330")
-
-[node name="Alcove3_6" type="NavigationRegion3D" parent="Navigation"]
-navigation_mesh = SubResource("s331")
 
 [node name="Hall3" type="NavigationRegion3D" parent="Navigation"]
 navigation_mesh = SubResource("s332")
@@ -10058,45 +10158,9 @@ end_position = Vector3(35.75, -9.9, 1.2)
 bidirectional = true
 
 
-[node name="AlcoveLink2_1" type="NavigationLink3D" parent="Navigation"]
-start_position = Vector3(8.25, -6.6, -0.5)
-end_position = Vector3(8.25, -6.6, 1.2)
-bidirectional = true
-
-
-[node name="AlcoveLink2_4" type="NavigationLink3D" parent="Navigation"]
-start_position = Vector3(24.75, -6.6, -0.5)
-end_position = Vector3(24.75, -6.6, 1.2)
-bidirectional = true
-
-
-[node name="AlcoveLink2_6" type="NavigationLink3D" parent="Navigation"]
-start_position = Vector3(35.75, -6.6, -0.5)
-end_position = Vector3(35.75, -6.6, 1.2)
-bidirectional = true
-
-
 [node name="Room203Link" type="NavigationLink3D" parent="Navigation"]
 start_position = Vector3(13.75, -6.6, -1)
 end_position = Vector3(13.75, -6.6, 1.2)
-bidirectional = true
-
-
-[node name="AlcoveLink3_1" type="NavigationLink3D" parent="Navigation"]
-start_position = Vector3(8.25, -3.3, -0.5)
-end_position = Vector3(8.25, -3.3, 1.2)
-bidirectional = true
-
-
-[node name="AlcoveLink3_4" type="NavigationLink3D" parent="Navigation"]
-start_position = Vector3(24.75, -3.3, -0.5)
-end_position = Vector3(24.75, -3.3, 1.2)
-bidirectional = true
-
-
-[node name="AlcoveLink3_6" type="NavigationLink3D" parent="Navigation"]
-start_position = Vector3(35.75, -3.3, -0.5)
-end_position = Vector3(35.75, -3.3, 1.2)
 bidirectional = true
 
 
@@ -10444,3 +10508,374 @@ rotation_degrees = Vector3(-22,-35,0)
 light_color = Color(0.70,0.39,0.32,1)
 light_energy = 0.65
 shadow_enabled = false
+[node name="Room401" type="NavigationRegion3D" parent="Navigation"]
+navigation_mesh = SubResource("t190_s1")
+metadata/t190 = true
+
+[node name="Room401Link" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(8, 0, -0.6)
+end_position = Vector3(8, 0, 1.2)
+bidirectional = true
+enabled = true
+metadata/t190 = true
+
+[node name="Room402" type="NavigationRegion3D" parent="Navigation"]
+navigation_mesh = SubResource("t190_s2")
+metadata/t190 = true
+
+[node name="Room402Link" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(12, 0, -0.6)
+end_position = Vector3(12, 0, 1.2)
+bidirectional = true
+enabled = true
+metadata/t190 = true
+
+[node name="Room403" type="NavigationRegion3D" parent="Navigation"]
+navigation_mesh = SubResource("t190_s3")
+metadata/t190 = true
+
+[node name="Room403Link" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(16, 0, -0.6)
+end_position = Vector3(16, 0, 1.2)
+bidirectional = true
+enabled = true
+metadata/t190 = true
+
+[node name="Room404" type="NavigationRegion3D" parent="Navigation"]
+navigation_mesh = SubResource("t190_s4")
+metadata/t190 = true
+
+[node name="Room404Link" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(20, 0, -0.6)
+end_position = Vector3(20, 0, 1.2)
+bidirectional = true
+enabled = true
+metadata/t190 = true
+
+[node name="Room405" type="NavigationRegion3D" parent="Navigation"]
+navigation_mesh = SubResource("t190_s5")
+metadata/t190 = true
+
+[node name="Room405Link" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(24, 0, -0.6)
+end_position = Vector3(24, 0, 1.2)
+bidirectional = true
+enabled = true
+metadata/t190 = true
+
+[node name="Room406" type="NavigationRegion3D" parent="Navigation"]
+navigation_mesh = SubResource("t190_s6")
+metadata/t190 = true
+
+[node name="Room406Link" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(28, 0, -0.6)
+end_position = Vector3(28, 0, 1.2)
+bidirectional = true
+enabled = true
+metadata/t190 = true
+
+[node name="Room408" type="NavigationRegion3D" parent="Navigation"]
+navigation_mesh = SubResource("t190_s7")
+metadata/t190 = true
+
+[node name="Room408Link" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(42, 0, -0.6)
+end_position = Vector3(42, 0, 1.2)
+bidirectional = true
+enabled = true
+metadata/t190 = true
+
+[node name="Room301" type="NavigationRegion3D" parent="Navigation"]
+navigation_mesh = SubResource("t190_s8")
+metadata/t190 = true
+
+[node name="Room301Link" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(2.75, -3.3, -0.6)
+end_position = Vector3(2.75, -3.3, 1.2)
+bidirectional = true
+enabled = true
+metadata/t190 = true
+
+[node name="Alcove3_1" type="NavigationRegion3D" parent="Navigation"]
+navigation_mesh = SubResource("t190_s9")
+metadata/t190 = true
+
+[node name="AlcoveLink3_1" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(8.25, -3.3, -0.6)
+end_position = Vector3(8.25, -3.3, 1.2)
+bidirectional = true
+enabled = true
+metadata/t190 = true
+
+[node name="Room303" type="NavigationRegion3D" parent="Navigation"]
+navigation_mesh = SubResource("t190_s10")
+metadata/t190 = true
+
+[node name="Room303Link" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(13.75, -3.3, -0.6)
+end_position = Vector3(13.75, -3.3, 1.2)
+bidirectional = true
+enabled = true
+metadata/t190 = true
+
+[node name="Room304" type="NavigationRegion3D" parent="Navigation"]
+navigation_mesh = SubResource("t190_s11")
+metadata/t190 = true
+
+[node name="Room304Link" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(19.25, -3.3, -0.6)
+end_position = Vector3(19.25, -3.3, 1.2)
+bidirectional = true
+enabled = true
+metadata/t190 = true
+
+[node name="Alcove3_4" type="NavigationRegion3D" parent="Navigation"]
+navigation_mesh = SubResource("t190_s12")
+metadata/t190 = true
+
+[node name="AlcoveLink3_4" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(24.75, -3.3, -0.6)
+end_position = Vector3(24.75, -3.3, 1.2)
+bidirectional = true
+enabled = true
+metadata/t190 = true
+
+[node name="Room306" type="NavigationRegion3D" parent="Navigation"]
+navigation_mesh = SubResource("t190_s13")
+metadata/t190 = true
+
+[node name="Room306Link" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(30.25, -3.3, -0.6)
+end_position = Vector3(30.25, -3.3, 1.2)
+bidirectional = true
+enabled = true
+metadata/t190 = true
+
+[node name="Alcove3_6" type="NavigationRegion3D" parent="Navigation"]
+navigation_mesh = SubResource("t190_s14")
+metadata/t190 = true
+
+[node name="AlcoveLink3_6" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(35.75, -3.3, -0.6)
+end_position = Vector3(35.75, -3.3, 1.2)
+bidirectional = true
+enabled = true
+metadata/t190 = true
+
+[node name="Room308" type="NavigationRegion3D" parent="Navigation"]
+navigation_mesh = SubResource("t190_s15")
+metadata/t190 = true
+
+[node name="Room308Link" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(41.25, -3.3, -0.6)
+end_position = Vector3(41.25, -3.3, 1.2)
+bidirectional = true
+enabled = true
+metadata/t190 = true
+
+[node name="Room201" type="NavigationRegion3D" parent="Navigation"]
+navigation_mesh = SubResource("t190_s16")
+metadata/t190 = true
+
+[node name="Room201Link" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(2.75, -6.6, -0.6)
+end_position = Vector3(2.75, -6.6, 1.2)
+bidirectional = true
+enabled = true
+metadata/t190 = true
+
+[node name="Alcove2_1" type="NavigationRegion3D" parent="Navigation"]
+navigation_mesh = SubResource("t190_s17")
+metadata/t190 = true
+
+[node name="AlcoveLink2_1" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(8.25, -6.6, -0.6)
+end_position = Vector3(8.25, -6.6, 1.2)
+bidirectional = true
+enabled = true
+metadata/t190 = true
+
+[node name="Room204" type="NavigationRegion3D" parent="Navigation"]
+navigation_mesh = SubResource("t190_s18")
+metadata/t190 = true
+
+[node name="Room204Link" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(19.25, -6.6, -0.6)
+end_position = Vector3(19.25, -6.6, 1.2)
+bidirectional = true
+enabled = true
+metadata/t190 = true
+
+[node name="Alcove2_4" type="NavigationRegion3D" parent="Navigation"]
+navigation_mesh = SubResource("t190_s19")
+metadata/t190 = true
+
+[node name="AlcoveLink2_4" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(24.75, -6.6, -0.6)
+end_position = Vector3(24.75, -6.6, 1.2)
+bidirectional = true
+enabled = true
+metadata/t190 = true
+
+[node name="Room206" type="NavigationRegion3D" parent="Navigation"]
+navigation_mesh = SubResource("t190_s20")
+metadata/t190 = true
+
+[node name="Room206Link" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(30.25, -6.6, -0.6)
+end_position = Vector3(30.25, -6.6, 1.2)
+bidirectional = true
+enabled = true
+metadata/t190 = true
+
+[node name="Alcove2_6" type="NavigationRegion3D" parent="Navigation"]
+navigation_mesh = SubResource("t190_s21")
+metadata/t190 = true
+
+[node name="AlcoveLink2_6" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(35.75, -6.6, -0.6)
+end_position = Vector3(35.75, -6.6, 1.2)
+bidirectional = true
+enabled = true
+metadata/t190 = true
+
+[node name="Room208" type="NavigationRegion3D" parent="Navigation"]
+navigation_mesh = SubResource("t190_s22")
+metadata/t190 = true
+
+[node name="Room208Link" type="NavigationLink3D" parent="Navigation"]
+start_position = Vector3(41.25, -6.6, -0.6)
+end_position = Vector3(41.25, -6.6, 1.2)
+bidirectional = true
+enabled = true
+metadata/t190 = true
+
+[node name="RoomSpawns" type="Node3D" parent="Anchors"]
+metadata/t190 = true
+
+[node name="B4" type="Node3D" parent="Anchors/RoomSpawns"]
+metadata/t190 = true
+
+[node name="B3" type="Node3D" parent="Anchors/RoomSpawns"]
+metadata/t190 = true
+
+[node name="B2" type="Node3D" parent="Anchors/RoomSpawns"]
+metadata/t190 = true
+
+[node name="R401" type="Marker3D" parent="Anchors/RoomSpawns/B4"]
+position = Vector3(8, 0, -1.5)
+metadata/t190 = true
+
+[node name="R402" type="Marker3D" parent="Anchors/RoomSpawns/B4"]
+position = Vector3(12, 0, -1.5)
+metadata/t190 = true
+
+[node name="R403" type="Marker3D" parent="Anchors/RoomSpawns/B4"]
+position = Vector3(16, 0, -1.5)
+metadata/t190 = true
+
+[node name="R404" type="Marker3D" parent="Anchors/RoomSpawns/B4"]
+position = Vector3(20, 0, -1.5)
+metadata/t190 = true
+
+[node name="R405" type="Marker3D" parent="Anchors/RoomSpawns/B4"]
+position = Vector3(24, 0, -1.5)
+metadata/t190 = true
+
+[node name="R406" type="Marker3D" parent="Anchors/RoomSpawns/B4"]
+position = Vector3(28, 0, -1.5)
+metadata/t190 = true
+
+[node name="R408" type="Marker3D" parent="Anchors/RoomSpawns/B4"]
+position = Vector3(42, 0, -1.5)
+metadata/t190 = true
+
+[node name="R301" type="Marker3D" parent="Anchors/RoomSpawns/B3"]
+position = Vector3(2.75, -3.3, -1.5)
+metadata/t190 = true
+
+[node name="R302" type="Marker3D" parent="Anchors/RoomSpawns/B3"]
+position = Vector3(8.25, -3.3, -1.5)
+metadata/t190 = true
+
+[node name="R303" type="Marker3D" parent="Anchors/RoomSpawns/B3"]
+position = Vector3(13.75, -3.3, -1.5)
+metadata/t190 = true
+
+[node name="R304" type="Marker3D" parent="Anchors/RoomSpawns/B3"]
+position = Vector3(19.25, -3.3, -1.5)
+metadata/t190 = true
+
+[node name="R305" type="Marker3D" parent="Anchors/RoomSpawns/B3"]
+position = Vector3(24.75, -3.3, -1.5)
+metadata/t190 = true
+
+[node name="R306" type="Marker3D" parent="Anchors/RoomSpawns/B3"]
+position = Vector3(30.25, -3.3, -1.5)
+metadata/t190 = true
+
+[node name="R307" type="Marker3D" parent="Anchors/RoomSpawns/B3"]
+position = Vector3(35.75, -3.3, -1.5)
+metadata/t190 = true
+
+[node name="R308" type="Marker3D" parent="Anchors/RoomSpawns/B3"]
+position = Vector3(41.25, -3.3, -1.5)
+metadata/t190 = true
+
+[node name="R201" type="Marker3D" parent="Anchors/RoomSpawns/B2"]
+position = Vector3(2.75, -6.6, -1.5)
+metadata/t190 = true
+
+[node name="R202" type="Marker3D" parent="Anchors/RoomSpawns/B2"]
+position = Vector3(8.25, -6.6, -1.5)
+metadata/t190 = true
+
+[node name="R204" type="Marker3D" parent="Anchors/RoomSpawns/B2"]
+position = Vector3(19.25, -6.6, -1.5)
+metadata/t190 = true
+
+[node name="R205" type="Marker3D" parent="Anchors/RoomSpawns/B2"]
+position = Vector3(24.75, -6.6, -1.5)
+metadata/t190 = true
+
+[node name="R206" type="Marker3D" parent="Anchors/RoomSpawns/B2"]
+position = Vector3(30.25, -6.6, -1.5)
+metadata/t190 = true
+
+[node name="R207" type="Marker3D" parent="Anchors/RoomSpawns/B2"]
+position = Vector3(35.75, -6.6, -1.5)
+metadata/t190 = true
+
+[node name="R208" type="Marker3D" parent="Anchors/RoomSpawns/B2"]
+position = Vector3(41.25, -6.6, -1.5)
+metadata/t190 = true
+
+[node name="I01" type="Marker3D" parent="Anchors/ZombieIdle/B4"]
+position = Vector3(1.0, 0, 1.6)
+rotation_degrees = Vector3(0,-90,0)
+metadata/t190 = true
+
+[node name="I02" type="Marker3D" parent="Anchors/ZombieIdle/B4"]
+position = Vector3(2.6, 0, 1.6)
+rotation_degrees = Vector3(0,-90,0)
+metadata/t190 = true
+
+[node name="I03" type="Marker3D" parent="Anchors/ZombieIdle/B4"]
+position = Vector3(4.2, 0, 1.6)
+rotation_degrees = Vector3(0,-90,0)
+metadata/t190 = true
+
+[node name="I04" type="Marker3D" parent="Anchors/ZombieIdle/B4"]
+position = Vector3(1.0, 0, 2.7)
+rotation_degrees = Vector3(0,-90,0)
+metadata/t190 = true
+
+[node name="I05" type="Marker3D" parent="Anchors/ZombieIdle/B4"]
+position = Vector3(2.6, 0, 2.7)
+rotation_degrees = Vector3(0,-90,0)
+metadata/t190 = true
+
+[node name="I06" type="Marker3D" parent="Anchors/ZombieIdle/B4"]
+position = Vector3(4.2, 0, 2.7)
+rotation_degrees = Vector3(0,-90,0)
+metadata/t190 = true

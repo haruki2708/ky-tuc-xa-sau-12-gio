@@ -3,6 +3,7 @@ The legacy Floor4 and Room407 files are never written by this generator.
 """
 from pathlib import Path
 import sys, math, json, re
+import room_doors
 sys.dont_write_bytecode = True
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT/'art_source/floor4'))
@@ -145,10 +146,13 @@ def building():
             for label,xx in [('L',x-1.8),('R',x+1.8)]:
                 s.box('Facade%d%s'%(i,label),(xx,y+1.5,0),(1.9,3,.16),'wall',p)
             s.box('Lintel%d'%i,(x,y+2.75,0),(1.7,.5,.16),'wall',p)
-            if not opening:
+            if floor in [2,3] and not (floor==2 and i==2):
+                room_doors.room_door(s,'Door%d'%i,floor*100+i+1,x,y,p)
+                room_doors.interior(s,'RoomInterior_%d'%(floor*100+i+1),x,y,p)
+            elif not opening:
                 s.box('Door%d'%i,(x,y+1.2,0),(1.7,2.4,.10),'wood',p)
             # Spawn alcoves open to the hall; actors/core can stage door breaking.
-            if i in [1,4,6]:
+            if floor==1 and i in [1,4,6]:
                 s.nodes=[n.replace('collision_layer = 1','collision_layer = 0') if n.startswith('[node name="Door%d"'%i) else n for n in s.nodes]
                 s.nodes=[n+'visible = false\n' if n.startswith('[node name="Door%d"'%i) else n for n in s.nodes]
                 flat('Alcove%d_%d'%(floor,i),x-.65,x+.65,-2,.9,y)
@@ -196,6 +200,7 @@ def building():
     link('MainStairsHall4',(.5,0,2.0),(-.5,0,2.0))
     link('MainDoorLink',(19.25,G,3.5),(19.25,G,6),'enabled = false')
     flat('Hall4',.35,43.65,1.1,3.55,0)
+    room_doors.register_navigation(sys.modules[__name__])
     link('Room407Link',(32,.03,-.7),(32,0,1.2),'metadata/requires_open_door = true')
     for floor in [5,6]:
         y=(floor-4)*3.3
@@ -334,6 +339,7 @@ def canteen():
 
 def navigation(s):
     p=s.node('Navigation')
+    s.nodes[-1]+='script = '+s.resource('res://scenes/levels/campus_room_navigation.gd','Script')+'\n'
     for name,points in NAV:
         mesh=s.subresource('NavigationMesh','vertices = PackedVector3Array('+','.join(str(round(n,6)) for point in points for n in point)+')\npolygons = [PackedInt32Array(0,1,2,3)]\nagent_radius = 0.3\nagent_height = 1.75')
         s.node(name,'NavigationRegion3D',p,'navigation_mesh = '+mesh)
@@ -372,7 +378,8 @@ def anchors(s):
             if area=='Stadium':point=[(112,G,166),(284,G,166),(198,G,122),(198,G,210),(112,G,170),(284,G,170)][i]
             if area=='Garden':point=(12+(i%3)*16,G,17+(i//3)*10)
             anchor('ZombieSpawns/%s/S%02d'%(area,i+1),point)
-            anchor('ZombieIdle/%s/I%02d'%(area,i+1),point if area.startswith('B') else (point[0],y,point[2]+1))
+            idle = room_doors.IDLE[i] if area=='B4' else point if area.startswith('B') else (point[0],y,point[2]+1)
+            anchor('ZombieIdle/%s/I%02d'%(area,i+1),idle)
     route=[(13.75,-6.6,-2),(13.75,-6.6,2.0),(-1.2,-6.6,2.0),(-3.8,-8.25,-5.3),(-1.2,G,2.0),(2.75,G,2.0),(2.75,G,-3),(4,G,-4),(4,G+1,-7.6),(4,G,-12),(-8,G,-12),(-8,G,8),(22,G,8),(22,G,26),(48,G,28),(80,G,28),(80,G,166),(115,G,166),(150,G,166),(198,G,135),(250,G,166),(198,G,195),(115,G,166),(80,G,166),(80,G,-15),(220,G,-15),(220,G,-30),(220,G,10),(190,G,18),(190,G,32),(202,G,43),(202,G,48),(202,G,54)]
     for who,start in [('Nhat',0),('Ngu',13)]:
         points=route[start:] if who=='Nhat' else [(22,G+.57,28),(23.8,G,28),(23.8,G,26)]+route[start:]
@@ -387,6 +394,8 @@ def anchors(s):
             if prefix not in parents:
                 s.node(parts[i-1],parent='/'.join(parts[:i-1]) or '.');parents.add(prefix)
         s.node(parts[-1],'Marker3D','/'.join(parts[:-1]),'position = '+V(point))
+        if path.startswith('ZombieIdle/B4/'):
+            s.nodes[-1]+='rotation_degrees = Vector3(0,-90,0)\n'
 
 
 def zones(s):

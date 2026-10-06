@@ -203,9 +203,9 @@
       2.1
     ],
     "ZombieIdle/B4/I01": [
-      8,
+      1.0,
       0,
-      2.1
+      1.6
     ],
     "ZombieSpawns/B4/S02": [
       12,
@@ -213,9 +213,9 @@
       2.1
     ],
     "ZombieIdle/B4/I02": [
-      12,
+      2.6,
       0,
-      2.1
+      1.6
     ],
     "ZombieSpawns/B4/S03": [
       16,
@@ -223,9 +223,9 @@
       2.1
     ],
     "ZombieIdle/B4/I03": [
-      16,
+      4.2,
       0,
-      2.1
+      1.6
     ],
     "ZombieSpawns/B4/S04": [
       20,
@@ -233,9 +233,9 @@
       2.1
     ],
     "ZombieIdle/B4/I04": [
-      20,
+      1.0,
       0,
-      2.1
+      2.7
     ],
     "ZombieSpawns/B4/S05": [
       24,
@@ -243,9 +243,9 @@
       2.1
     ],
     "ZombieIdle/B4/I05": [
-      24,
+      2.6,
       0,
-      2.1
+      2.7
     ],
     "ZombieSpawns/B4/S06": [
       28,
@@ -253,9 +253,9 @@
       2.1
     ],
     "ZombieIdle/B4/I06": [
-      28,
+      4.2,
       0,
-      2.1
+      2.7
     ],
     "ZombieSpawns/B3/S01": [
       8,
@@ -1016,8 +1016,118 @@
       202,
       -9.9,
       54
+    ],
+    "RoomSpawns/B4/R401": [
+      8,
+      0,
+      -1.5
+    ],
+    "RoomSpawns/B4/R402": [
+      12,
+      0,
+      -1.5
+    ],
+    "RoomSpawns/B4/R403": [
+      16,
+      0,
+      -1.5
+    ],
+    "RoomSpawns/B4/R404": [
+      20,
+      0,
+      -1.5
+    ],
+    "RoomSpawns/B4/R405": [
+      24,
+      0,
+      -1.5
+    ],
+    "RoomSpawns/B4/R406": [
+      28,
+      0,
+      -1.5
+    ],
+    "RoomSpawns/B4/R408": [
+      42,
+      0,
+      -1.5
+    ],
+    "RoomSpawns/B3/R301": [
+      2.75,
+      -3.3,
+      -1.5
+    ],
+    "RoomSpawns/B3/R302": [
+      8.25,
+      -3.3,
+      -1.5
+    ],
+    "RoomSpawns/B3/R303": [
+      13.75,
+      -3.3,
+      -1.5
+    ],
+    "RoomSpawns/B3/R304": [
+      19.25,
+      -3.3,
+      -1.5
+    ],
+    "RoomSpawns/B3/R305": [
+      24.75,
+      -3.3,
+      -1.5
+    ],
+    "RoomSpawns/B3/R306": [
+      30.25,
+      -3.3,
+      -1.5
+    ],
+    "RoomSpawns/B3/R307": [
+      35.75,
+      -3.3,
+      -1.5
+    ],
+    "RoomSpawns/B3/R308": [
+      41.25,
+      -3.3,
+      -1.5
+    ],
+    "RoomSpawns/B2/R201": [
+      2.75,
+      -6.6,
+      -1.5
+    ],
+    "RoomSpawns/B2/R202": [
+      8.25,
+      -6.6,
+      -1.5
+    ],
+    "RoomSpawns/B2/R204": [
+      19.25,
+      -6.6,
+      -1.5
+    ],
+    "RoomSpawns/B2/R205": [
+      24.75,
+      -6.6,
+      -1.5
+    ],
+    "RoomSpawns/B2/R206": [
+      30.25,
+      -6.6,
+      -1.5
+    ],
+    "RoomSpawns/B2/R207": [
+      35.75,
+      -6.6,
+      -1.5
+    ],
+    "RoomSpawns/B2/R208": [
+      41.25,
+      -6.6,
+      -1.5
     ]
   },
-  "navigation_surfaces": 737,
-  "navigation_links": 66
+  "navigation_surfaces": 753,
+  "navigation_links": 82
 }
