@@ -50,13 +50,121 @@ Hiện trạng:
 - Chạy `pwsh tools/test.ps1` và `pwsh tools/check.ps1`; chụp ảnh hành lang tầng 4 với một cửa đang mở.
 
 ## Checklist hoàn thành
-- [ ] Cửa 401–406, 408, 301–308, 201–208 (trừ 203) theo hợp đồng mục 1, group `room_doors`
-- [ ] Trong phòng kín, có đường đi và link ra hành lang
-- [ ] Anchor `RoomSpawns/*`, `ZombieIdle/B4` dời về đầu cầu thang chính
-- [ ] Test cửa và đường đi PASS; `pwsh tools/test.ps1`, `pwsh tools/check.ps1` PASS
-- [ ] Ảnh hành lang tầng 4 có cửa mở
-- [ ] Handoff: tên script, đường dẫn node cửa của từng tầng, tọa độ anchor
+- [x] Cửa 401–406, 408, 301–308, 201–208 (trừ 203) theo hợp đồng mục 1, group `room_doors`
+- [x] Trong phòng kín, có đường đi và link ra hành lang
+- [x] Anchor `RoomSpawns/*`, `ZombieIdle/B4` dời về đầu cầu thang chính
+- [x] Test cửa và đường đi PASS; `pwsh tools/test.ps1`, `pwsh tools/check.ps1` PASS
+- [x] Ảnh hành lang tầng 4 có cửa mở
+- [x] Handoff: tên script, đường dẫn node cửa của từng tầng, tọa độ anchor
 
 ## Handoff (agent điền)
+
+### 2026-10-07 — Lane B
+
+**Đã làm:** commit `b3ab952`, đã push code và ảnh lên
+`lane-b/T-190-room-zombie-doors`. Đủ 22 cửa đóng/mở, trong phòng kín có
+giường/tủ đơn giản, 22 vùng nav/link luôn bật và 22 điểm `RoomSpawns`.
+Sáu idle tầng 4 chuyển về đầu cầu thang chính. Giữ nguyên tên/vị trí mọi
+anchor khác, phòng 407, cửa 203, cầu thang T-188 và nhà ăn T-189.
+
+**Hợp đồng cho core T-191:**
+
+- Script `res://scenes/levels/room_door.gd`, class `RoomDoor`: `room`,
+  `is_open=false`, `set_open(bool)`, con `Blocker` (`StaticBody3D`, lớp 1),
+  biến `blocker` trỏ tới con đó. Group `room_doors` được đăng ký khi ready.
+  Không phải `Interactable`; core gắn `ZombieDoor`, gán `door` và `blocker`.
+  Mở quay `Hinge` ra +z trong 0,3 giây, collider tắt qua deferred update;
+  đóng phục hồi collider, đảo hướng hủy tween cũ.
+- Tầng 4: `Floor4/Corridor/LockedDoor_401`…`LockedDoor_406`,
+  `Floor4/Corridor/LockedDoor_408`.
+- Tầng 3: `Campus/BuildingB/Floor3/Door0`…`Door7` ứng với 301…308.
+- Tầng 2: `Campus/BuildingB/Floor2/Door0`, `Door1`, `Door3`…`Door7`
+  ứng với 201,202,204…208. 407 và 203 vẫn dùng cửa riêng cũ.
+- `room_door_visual.gd` bỏ collider GLB dư khỏi cánh cửa tầng 4; chỉ
+  `Blocker` điều khiển va chạm. Cửa hốc tầng 2–3 từng bị ẩn nay hiện lại.
+- Navigation nằm trong `Campus/Navigation`: `Room<phòng>` và
+  `Room<phòng>Link`; các hốc cũ giữ `Alcove2_1/4/6`, `Alcove3_1/4/6` và
+  tên `AlcoveLink...`. Link luôn bật, xác có đường tới cửa để đập.
+- `campus_room_navigation.gd` trên `Campus/Navigation` tạm đưa nav/link
+  Floor4 độc lập sang map riêng để chúng không hút đầu link của phòng mới.
+  Tháo Campus sẽ phục hồi map và giải phóng RID tạm. Test nav chương 1–2
+  độc lập vẫn PASS; không sửa `campus.gd` hoặc logic core/Lane A.
+
+**Tọa độ anchor mới:** global, mét; mọi `R*` có z=-1,5; chừa đủ chỗ cho
+xác thứ hai lệch +0,6 m theo x. Vùng nav x±0,65, z=-2,5…-0,5, cao độ tầng.
+
+| Nhóm dưới `Campus/Anchors/RoomSpawns` | Tên theo thứ tự | x theo thứ tự | y |
+|---|---|---|---|
+| B4 | R401,R402,R403,R404,R405,R406,R408 | 8,12,16,20,24,28,42 | 0 |
+| B3 | R301,R302,R303,R304,R305,R306,R307,R308 | 2.75,8.25,13.75,19.25,24.75,30.25,35.75,41.25 | -3.3 |
+| B2 | R201,R202,R204,R205,R206,R207,R208 | 2.75,8.25,19.25,24.75,30.25,35.75,41.25 | -6.6 |
+
+`Campus/Anchors/ZombieIdle/B4` giữ nguyên I01…I06, quay y=-90° để nhìn
+về +X/phòng 407:
+
+| Anchor | Cũ (x,y,z) | Mới (x,y,z) |
+|---|---|---|
+| I01 | (8,0,2.1) | (1,0,1.6) |
+| I02 | (12,0,2.1) | (2.6,0,1.6) |
+| I03 | (16,0,2.1) | (4.2,0,1.6) |
+| I04 | (20,0,2.1) | (1,0,2.7) |
+| I05 | (24,0,2.1) | (2.6,0,2.7) |
+| I06 | (28,0,2.1) | (4.2,0,2.7) |
+
+[Bảng đầy đủ từng cửa/anchor và hướng dẫn dựng lại](../../art_source/campus/room_doors.md),
+[JSON cho core/tools](../../art_source/campus/room_doors.json).
+
+### Điều chỉnh bố trí và phạm vi đã được chủ dự án duyệt
+
+Phát hiện phòng 407 bản 2 chiếm x=30…38; phía sau cửa 408 cũ tại x=36
+thuộc 407, đã bị bỏ sàn/tường riêng. Chủ dự án trả lời trực tiếp:
+**“Cho phép điều chỉnh bố trí 407/408”**, sau đó
+**“Cho phép sửa phần hốc cũ”** trong `floor4/duty_desk.tscn`.
+
+Đã đặt 408 độc lập tại x=38…44, z=-5…0, cửa x=42; bịt mặt cửa cũ bằng
+tường và giữ node `Sealed408` tương thích chương 1–2. Dỡ riêng cổng sắt,
+vách/sàn của hốc cầu thang trang trí cũ sau bàn trực trong file được mở
+phạm vi; thay bằng phòng 408. Bàn trực, đồ/chìa trên bàn, cửa thoát hiểm
+thật, phòng 407 và nội thất giữ nguyên. `Room408BackWall` ở vị trí mới,
+không cắt phòng tắm 407. Không chỉnh luật chơi/cốt truyện.
+
+### Kiểm tra
+
+```text
+pwsh tools/test.ps1 -Filter levels
+RESULT: 82 passed, 0 failed
+pwsh tools/test.ps1
+RESULT: 587 passed, 0 failed
+pwsh tools/check.ps1
+RESULT: check 0 error(s)
+```
+
+Không có `SCRIPT ERROR`/`ERROR` trong lượt cuối. Test mới kiểm tra cả 22
+cửa với capsule bán kính 0,3 m/cao 1,6 m: đóng chặn, mở thông, đóng lại
+chặn; điểm spawn thứ hai; đường nav bắt đầu đúng trong từng phòng và tới
+hành lang, cast liên tục dọc đường; phòng kín; tách 408/407; hướng idle;
+gắn `ZombieDoor` thật, đập mở và đảo chiều tween. Test cũ không bị sửa,
+xóa hoặc nới expectation. Lỗi trong các lượt phát triển đã sửa và kiểm
+tra lại bằng lượt full PASS trên.
+
+Đã kiểm patch chạy lặp cho kết quả byte-identical; so với `bc0e770`, chỉ
+22 anchor mới và 6 idle B4 thay đổi. Các node nhà B ngoài 15 cây cửa tầng
+2–3 giữ nguyên; phần bàn trực còn lại giữ nguyên; room407 và canteen
+không có diff. Log cục bộ ở `build/t190/`.
+
+**Ảnh đã render/xem ở bản cuối:** [401 mở](../../art_source/campus/previews/room401_open.png),
+[408 mở cạnh bàn trực](../../art_source/campus/previews/room408_open.png).
+[Script chụp](../../art_source/campus/capture_room_doors.gd),
+[credits](../../art_source/campus/CREDITS.md). Chưa chơi tay xuyên suốt
+chương 1–3, chưa chạy bot playthrough/performance; không cài phần mềm,
+không thêm plugin, không làm việc trong bản tích hợp.
+
+### Yêu cầu thay đổi / còn lại / blocked
+
+- Không còn yêu cầu sửa ngoài phạm vi chờ duyệt; mở rộng `duty_desk.tscn`
+  đã được chủ dự án cho phép như trên.
+- Core tiếp tục T-191: gắn AI, nhịp đập, sinh 1–2 xác, chốt 408 sau khi
+  lấy chìa và reset checkpoint. T-190 chỉ cung cấp map/API, chưa bật luồng.
+- Checklist 6/6 đạt; không còn phần map dở, không bị chặn.
 
 ## Review (integrator)
