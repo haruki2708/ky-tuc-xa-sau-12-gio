@@ -98,7 +98,8 @@ def stairs(s,side,x0):
     for upper in [4,3,2]:
         y=(upper-4)*3.3
         if side=='FireStairs' and upper==2:
-            s.box('Collapse',(x0+2.5,y+1,-2.1),(5,2,4.2),'concrete',p)
+            # Block only the missing 2->1 flight A; keep the returning 3B clear.
+            s.box('Collapse',(x0+1.25,y+1,-2.1),(2.5,2,4.2),'concrete',p)
             anchor('Collapse2F',(x0+2.5,y,-1.0))
             continue
         a=side+'Down%dA'%upper

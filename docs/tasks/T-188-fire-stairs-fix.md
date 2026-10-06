@@ -32,9 +32,45 @@ Không sửa phần khác của map, không đổi tên node hay anchor, không 
 5. Chạy `pwsh tools/test.ps1` và `pwsh tools/check.ps1`; chụp ảnh chiếu nghỉ tầng 2 nhìn xuống đoạn sập.
 
 ## Checklist hoàn thành
-- [ ] `pwsh tools/test.ps1` và `pwsh tools/check.ps1` PASS
-- [ ] Test đi bộ 4 → 2 PASS, test chặn 2 → 1 PASS
-- [ ] Ảnh chiếu nghỉ tầng 2
-- [ ] Handoff: đã sửa gì (kích thước, tọa độ), ghi rõ "lane E làm thay lane B (D-060)"
+- [x] `pwsh tools/test.ps1` và `pwsh tools/check.ps1` PASS
+- [x] Test đi bộ 4 → 2 PASS, test chặn 2 → 1 PASS
+- [x] Ảnh chiếu nghỉ tầng 2
+- [x] Handoff: đã sửa gì (kích thước, tọa độ), ghi rõ "lane E làm thay lane B (D-060)"
 
 ## Handoff (agent điền)
+
+### 2026-10-06 — lane E làm thay lane B (D-060)
+
+**Đã sửa và push:** `3deae70` — `T-188: unblock floor three to two fire stairs and test player traversal`, nhánh `lane-e/T-188-fire-stairs-fix`. Commit triển khai và ảnh LFS đã push trước khi điền Handoff này.
+
+- Thu `FireStairs/Collapse`: tâm **(46,5; −5,6; −2,1) → (45,25; −5,6; −2,1)**; cả collision `s462` và mesh `s463` từ **(5; 2; 4,2) → (2,5; 2; 4,2)**. Khối sập chỉ phủ x=44…46,5 phía vế A; vế 3B trở lại chiếu nghỉ tầng 2 được thông.
+- `FireRubbleDetail`: position **(22; 0; 0)**, scale **(0,5; 1; 1)**, tương đương `x_mới = 44 + (x_cũ − 44)/2`. Gom chunk/rebar về nửa sập; các chi tiết này vốn không có collision. Không sửa UpperRubble hoặc đồ trang trí khác.
+- Đồng bộ đúng phần khối sập trong `build_campus.py` và phần Fire trong `detail.py`; **không chạy dựng lại toàn bộ map**. Không đổi tên/tọa độ anchor, không sửa gameplay, hành lang hay phần khác của scene.
+- Không thêm rào hoặc collision mới: các test người thật kiểm tra bảy hướng tiếp cận trên chiếu nghỉ, ba mép trên 3B × đi/nhảy đều không xuống tầng 1. Không suy diễn thêm luật chơi hoặc cơ chế nhảy; xung nhảy chỉ dùng trong test để thử khe hở.
+
+**Kiểm chứng bằng player thật:** `game/tests/levels/test_fire_stairs.gd` dùng Floor4 + Campus, gọi `Campus.set_fire_door_open(true)`, instance `scenes/player/player.tscn` (capsule 1,75 m, bán kính 0,3 m). Test tự cấp velocity/trọng lực và gọi `move_and_slide`, không dịch chuyển trực tiếp giữa các waypoint của tuyến 4 → 2. Tốc độ đi 2,2 m/s, mỗi waypoint tối đa 360 physics frame (~6 giây ở 60 Hz).
+
+- Trên hình học cũ, test đi bộ tái hiện FAIL: chân player **(47,678; −5,031; −4,513)**, collider **`Collapse`** chặn trước chiếu nghỉ tầng 2. Lượt baseline sandbox cũng có lỗi kho chứng chỉ Windows của Godot; lượt xác nhận sau sửa chạy ngoài sandbox, không còn lỗi đó.
+- Sau sửa, tuyến đủ cửa → 4A → turn → 4B → 3A → turn → 3B → chiếu nghỉ → hành lang tầng 2 PASS, chân player **(42,118; −6,600; 1,997)**, đang đứng trên sàn.
+- Test chặn: bảy vị trí x=44,35/45,25/46,35/46,6/46,9/47,8/48,65 trên chiếu nghỉ tầng 2 thử chạy vào vế sập; thêm đi ngược lên 3B rồi đi/nhảy ngang trái tại z=−0,6/−2,4/−4,5. Không lượt nào xuống dưới y=−6,9 (tầng 1 ở −9,9). Xung nhảy thử 4,5 m/s (~1 m); không sửa input/gameplay. Đây là các probe xác định, không phải tuyên bố đã thử mọi quỹ đạo.
+
+```text
+pwsh tools/test.ps1 -Filter fire_stairs
+RESULT: 3 passed, 0 failed
+
+pwsh tools/test.ps1
+RESULT: 583 passed, 0 failed
+
+pwsh tools/check.ps1
+RESULT: check 0 error(s)
+```
+
+Cả ba test mới cũng PASS trong lượt full. Hai file Python qua kiểm tra cú pháp AST. `git diff --check` sạch; đã hoàn tác `default_bus_layout.tres` do Godot tự ghi lại, không đưa thay đổi ngoài phạm vi vào commit.
+
+**Ảnh:** [chiếu nghỉ tầng 2 nhìn vào đoạn sập](../../art_source/campus/previews/fire_stairs_floor2_fixed.png), 1280×720, đã mở xem. Camera cao 1,6 m trên sàn tầng 2; khối sập bên trái, lối 3B bên phải thông. Ảnh render Godot thật, không sửa ảnh. Script tái chụp: `art_source/campus/fire_stairs_capture.gd`; [hướng dẫn/thông số đầy đủ](../../art_source/campus/fire_stairs_fix.md).
+
+**Còn gì dở / checklist:** không còn mục checklist chưa đạt. **Chưa chơi thủ công chương 3 trong bản tích hợp, chưa export lại Windows**; đã kiểm tra tự động và xem ảnh. Không chạy bot playthrough chương 2/3.
+
+**Yêu cầu thay đổi ngoài phạm vi:** không có yêu cầu sửa file ngoài phạm vi. Integrator merge nhánh và export lại để chủ dự án thử bản sửa; Lane E không làm trong bản tích hợp và không push main.
+
+**Blocked:** không có. Không có câu hỏi luật chơi/cốt truyện mới.

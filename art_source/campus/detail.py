@@ -97,6 +97,9 @@ def building(s,c):
     # Bars protruding from the collapsed slab, chipped rubble chunks, cracks.
     for side,x,y in [('Fire',46.5,-6.6),('Upper',-2.5,3.2)]:
         p=s.node(side+'RubbleDetail')
+        if side == 'Fire':
+            # Match the narrowed collapse without moving the usable flight B.
+            s.nodes[-1] += 'position = Vector3(22,0,0)\nscale = Vector3(.5,1,1)\n'
         for i in range(7):
             part(s,'Chunk%d'%i,(x+(i%3-1)*1.25,y+.3+(i%2)*.4,-.6-i*.43),(1.4,.45,1),'concrete',p,angles=(i*13,i*29,17))
             part(s,'Rebar%d'%i,(x+(i%3-1)*.8,y+1.25,-.8-i*.31),(.035,1.5,.035),'iron',p,angles=(35,i*31,22))

@@ -1710,10 +1710,10 @@ size = Vector3(2.16, 0.18, 0.41)
 material = SubResource("s284")
 
 [sub_resource type="BoxShape3D" id="s462"]
-size = Vector3(5, 2, 4.2)
+size = Vector3(2.5, 2, 4.2)
 
 [sub_resource type="BoxMesh" id="s463"]
-size = Vector3(5, 2, 4.2)
+size = Vector3(2.5, 2, 4.2)
 material = SubResource("s284")
 
 [sub_resource type="BoxShape3D" id="s464"]
@@ -6295,7 +6295,7 @@ position = Vector3(47.8, -6.62125, -0.2)
 mesh = SubResource("s461")
 
 [node name="Collapse" type="StaticBody3D" parent="FireStairs"]
-position = Vector3(46.5, -5.6, -2.1)
+position = Vector3(45.25, -5.6, -2.1)
 collision_layer = 1
 collision_mask = 0
 
@@ -8975,7 +8975,8 @@ shadow_enabled = false
 light_color = Color(0.65,0.7,0.52,1)
 
 [node name="FireRubbleDetail" type="Node3D" parent="."]
-
+position = Vector3(22, 0, 0)
+scale = Vector3(0.5, 1, 1)
 
 [node name="Chunk0" type="Node3D" parent="FireRubbleDetail"]
 position = Vector3(45.25, -6.3, -0.6)
