@@ -5,7 +5,7 @@
 
 ## Việc tiếp theo (cho phiên integrator kế tiếp)
 1. **Chương 3, góp ý chơi thử 2026-10-07 (D-062…D-065):** Claude đã làm: tầng 2 chỉ còn 4 xác ở cửa 203, bình cứu hỏa dời vào chiếu nghỉ cầu thang thoát hiểm tầng 2 (D-062), sửa lỗi xác lún sàn đứng im; Minh Nhật và Ngư đi theo sau người chơi tới lúc chia nhau ở nhà ăn, sửa lỗi kẹt ở vườn hoa (D-063, làm thay lane A); trời đêm tối thường (D-065). Lane B: **T-192** khán đài và rải đồ (D-064), làm sau T-190.
-1. **Chương 3, D-061 (2026-10-07):** xác nhà B phải đi ra từ các phòng theo bước chân người chơi (tầng 4, 3, 2; phòng 408 bật sau khi lấy chìa). **T-190 đã merge**; Claude làm luồng **T-191** rồi export. **T-192 đã merge** (Claude Code trên web làm thay lane B, D-066); còn đo FPS khi chủ dự án cho phép.
+1. **Chương 3, D-061 (2026-10-07):** xác nhà B phải đi ra từ các phòng theo bước chân người chơi (tầng 4, 3, 2; phòng 408 bật sau khi lấy chìa). **T-190 đã merge**; Claude làm luồng **T-191** rồi export. **T-192 đã merge** (Claude Code trên web làm thay lane B, D-066); FPS đo lại 2026-10-07 PASS (sau khi làm nhẹ phần kiểm xác lún sàn).
 1. **Chương 3: chủ dự án đang chơi thử.** Đã sửa: cầu thang thoát hiểm không xuống được tầng 2 (T-188, lane E làm thay, D-060); nhà ăn làm lại (T-189, Claude làm thay). bản 2026-10-06 16:02 (`docs/playtest/CH3_QUICKTEST.md`, bản chi tiết `CH3_WALKTHROUGH.md`). Đã sửa: cửa thoát hiểm không mở khi nhìn ở tầm mắt (`c79806d`). Góp ý thêm: sửa lỗi bằng test, export lại; góp ý thiết kế thì hỏi chủ dự án.
 2. **T-187 đã merge** (D-058): hành lang 4 m ở cả 4 tầng; bản export mới có hành lang rộng.
 3. **Chương 3 còn lại:** điền `tools/ch3-profile.json` phần `routes`, `bindings` cho bot; chạy bot chỉ khi chủ dự án đồng ý. Lane B nên sửa điểm thanh sắt `BarSpawns/B01` nằm trong giường đổ (core đã tự nâng thanh sắt lên mặt vật). Câu hỏi còn mở: tên trường trên biển cổng (đề xuất giữ chữ mờ).
@@ -82,7 +82,7 @@
 | T-189 Nhà ăn kiểu nhà ăn trường học Trung Quốc | B (**Claude làm thay**) | review: đã dựng, chờ chủ dự án xem |
 | T-190 Cửa phòng mở được, xác đi ra từ trong phòng (tầng 4, 3, 2; D-061) | B | **done**, đã merge (207 core mở sẵn, D-062) |
 | T-191 Xác ra từ phòng theo bước chân người chơi | core | **doing** (T-190 đã merge) |
-| T-192 Khán đài sân vận động làm lại, rải đồ khuôn viên (D-064) | B (**Claude Code web làm thay**, D-066) | **done**, đã merge; FPS chưa đo |
+| T-192 Khán đài sân vận động làm lại, rải đồ khuôn viên (D-064) | B (**Claude Code web làm thay**, D-066) | **done**, đã merge; FPS đo lại PASS (40 xác, trung bình ≥107) |
 | T-171 Cầm giẻ, bịt miệng xác, cửa kẹt, buồng tắm, nút vòi sen, cảnh chết `corpse_lunge` và `scald` | A | **done**, đã merge |
 | T-172 Xác chơi nối từ, đồ bịt miệng, nhà vệ sinh có vòi sen, hơi nước, phòng camera 310 | B | **done**, đã merge |
 | T-173 Bot chương 2, menu nhảy, đo FPS hơi nước | C | khung **đã merge**; bot chạy sau khi điền profile |
