@@ -1,5 +1,5 @@
 # T-188 — Sửa cầu thang thoát hiểm: khối sập chặn đoạn tầng 3 → tầng 2 (lane E làm thay lane B)
-- Lane: E (làm thay lane B, D-060) | Trạng thái: todo | Agent:
+- Lane: E (làm thay lane B, D-060) | Trạng thái: done | Agent:
 - Nhánh: `lane-e/T-188-fire-stairs-fix`
 - Phụ thuộc: T-183, T-187. **Đọc D-058, D-060 trong `docs/DECISIONS.md`**, card T-183 và T-187 (mục Handoff), `art_source/campus/README.md`, `art_source/wide_corridors/README.md`.
 - **Hạn: càng sớm càng tốt** (chủ dự án đang chơi thử chương 3).
@@ -74,3 +74,7 @@ Cả ba test mới cũng PASS trong lượt full. Hai file Python qua kiểm tra
 **Yêu cầu thay đổi ngoài phạm vi:** không có yêu cầu sửa file ngoài phạm vi. Integrator merge nhánh và export lại để chủ dự án thử bản sửa; Lane E không làm trong bản tích hợp và không push main.
 
 **Blocked:** không có. Không có câu hỏi luật chơi/cốt truyện mới.
+
+### Review (integrator, 2026-10-06)
+- **Đạt, đã merge.** Thu khối sập về x 44–46,5, đồng bộ bộ dựng, không đụng phần khác; test người chơi thật đi từ tầng 4 xuống hành lang tầng 2 (trước sửa tái hiện đúng lỗi), 7 hướng thử không xuống được tầng 1; ảnh chiếu nghỉ tầng 2 đã xem.
+- Sau merge (cùng T-189 nhà ăn): cả bộ 583/583, check 0 lỗi; export lại cho chủ dự án.
