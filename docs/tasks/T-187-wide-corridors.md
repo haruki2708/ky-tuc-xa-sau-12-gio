@@ -1,5 +1,5 @@
 # T-187 — Hành lang nhà B rộng khoảng 4 m ở cả 4 tầng
-- Lane: B (Môi trường và 3D) | Trạng thái: todo | Agent:
+- Lane: B (Môi trường và 3D) | Trạng thái: done | Agent:
 - Nhánh: `lane-b/T-187-wide-corridors`
 - Phụ thuộc: T-112 (tầng 4), T-162, T-183. **Đọc D-058 trong `docs/DECISIONS.md`.**
 - **Hạn đề xuất: hết ngày 2026-10-07.**
@@ -135,3 +135,8 @@ Không còn phần hình học dở hoặc câu hỏi thiết kế/cốt truyệ
 [Hướng dẫn dựng lại và test](../../art_source/wide_corridors/README.md).
 Dùng patch hẹp `widen_existing.py`; không dựng lại toàn bộ generator tầng 4
 cũ lên phòng 407 bản 2. Nhánh không sửa `docs/STATUS.md`, không push main.
+
+### Review (integrator, 2026-10-06)
+- **Đạt, đã merge.** Hành lang tầng 1–4 rộng 4 m về phía lan can; phòng, cửa phòng, phòng 407 giữ nguyên; 58 anchor dời có bảng cũ/mới, không đổi tên; navmesh vẫn nối 407 → nhà ăn; ảnh trước/sau đã xem.
+- Test đỏ lane B báo (`test_ch3_tools`) là do integrator điền phần đo FPS của `tools/ch3-profile.json` mà không chạy lại cả bộ; đã sửa test (`a56716d`): profile thật kiểm là đủ, trường hợp "chưa điền" kiểm trên bản sao để trống.
+- Sau merge: cả bộ 580/580, check 0 lỗi; chạy headless chương 1, 2, 3 không lỗi. Bot chương 1–2 dùng vị trí trong phòng 407 hoặc trong hành lang cũ (vẫn nằm trong hành lang mới) nên không cần sửa profile.
