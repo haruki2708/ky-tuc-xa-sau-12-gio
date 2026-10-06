@@ -63,15 +63,11 @@ SCRIPT = [
     ("chat", "N_TRAPPED", "minh_nhat", "08:06", "Trung, cậu đang ở đâu? Tôi kẹt trong 203, chúng nó đang đập cửa!",
      "Trung, where are you? I'm stuck in 203, they're hammering the door!"),
     ("event", "", "", "08:06", "Tiếng đập cửa 203 vọng trong điện thoại (jumpscare 5, `door_203`).", ""),
-    ("chat", "N_SOUND", "minh_nhat", "08:07", "Lúc nãy có cái chậu rơi ngoài hành lang, cả đám quay hết sang đó…",
-     "Earlier a basin fell in the corridor and the whole lot of them turned toward it…"),
-    ("event", "", "", "08:07", "Trung đập bình cứu hỏa vào tường cuối hành lang (tiếng vang 25 m): đám xác bỏ cửa 203 kéo về phía tiếng động. Minh Nhật chạy ra, từ đây đi cùng.", ""),
+    ("event", "", "", "08:07", "Trung đập bình cứu hỏa vào tường cuối hành lang (tiếng vang 25 m): đám xác bỏ cửa 203 kéo về phía tiếng động. Không ai gợi ý cách này (D-055). Minh Nhật chạy ra, từ đây đi cùng.", ""),
     ("near", "N_JOIN", "minh_nhat", "08:08", "Cảm ơn… Cầu thang chính, bên trái. Lúc nãy tôi thấy chỗ đó vãn rồi.",
      "Thanks… The main stairs, on the left. It looked clear a minute ago."),
-    ("event", "", "", "08:09", "N5: tầng 1, cửa chính nhà B bị xích từ bên ngoài.", ""),
+    ("event", "", "", "08:09", "N5: tầng 1, cửa chính nhà B bị xích từ bên ngoài. Lối ra là cửa sổ vỡ trong phòng quản lý, phải cúi để chui qua; không ai gợi ý (D-055).", ""),
     ("near", "N_CHAINED", "minh_nhat", "08:09", "Xích từ bên ngoài… Ai khóa chứ?", "Chained from outside… Who locked it?"),
-    ("near", "N_WINDOW", "minh_nhat", "08:09", "Phòng quản lý. Cửa sổ trong đó vỡ rồi, chui qua được.",
-     "The manager's office. The window in there is broken, we can squeeze through."),
     ("event", "", "", "08:10", "Con dao của quản lý cắm trên bàn. Nhìn vào là có tiếng kéo lê dao vọng lại (jumpscare 3, `knife_drag`).", ""),
     ("think", "KNIFE", "trung", "08:10", "Dao của ông ta…", "His knife…"),
 
@@ -100,9 +96,9 @@ SCRIPT = [
     ("near", "NGU_DONT", "ngu", "08:23", "Đừng đụng vào họ.", "Don't touch them."),
     ("near", "N_NO_WAY", "minh_nhat", "08:24", "Họ chặn kín cổng rồi. Lối này không ra được.", "They've sealed the gate. There's no way out here."),
     ("near", "NGU_CANTEEN", "ngu", "08:24", "Nhà ăn. Biết đâu trong đó có gì.", "The canteen. Maybe there's something in there."),
-    ("event", "", "", "08:26", "Nhà ăn: bàn ghế đổ, nồi canh lạnh tanh, đồng hồ bếp dừng lúc 4:00. Tivi bật lên rè rè khi Trung đi ngang (jumpscare 9, `canteen_tv`).", ""),
-    ("room", "TV_NEWS", "tv", "08:26", "…tin khẩn… lúc bốn giờ sáng… các tòa nhà… lực lượng…",
-     "…breaking news… at four this morning… the buildings… teams are…"),
+    ("event", "", "", "08:26", "Nhà ăn: bàn ghế đổ, nồi canh lạnh tanh, đồng hồ bếp dừng lúc 4:00. Tivi bật lên rè rè khi Trung đi ngang (jumpscare 9, `canteen_tv`) và đọc rõ bản tin động đất (D-055).", ""),
+    ("room", "TV_NEWS", "tv", "08:26", "Tin khẩn. Lúc bốn giờ sáng nay, một trận động đất mạnh đã xảy ra. Các tòa ký túc xá của trường đổ sập hoàn toàn. Lực lượng cứu hộ đang đào bới, tìm người còn sống dưới đống đổ nát.",
+     "Breaking news. At four o'clock this morning, a strong earthquake struck. The university's dormitory buildings collapsed completely. Rescue teams are digging through the rubble for survivors."),
     ("near", "N_NOTHING", "minh_nhat", "08:28", "Không có gì cả. Cứ tụ một chỗ thế này thì chậm quá.",
      "Nothing. Sticking together like this is too slow."),
     ("near", "N_SPLIT", "minh_nhat", "08:29", "Chia nhau ra. Ngư qua khu giảng đường, tôi qua nhà thi đấu, Trung qua thư viện. Thấy gì lạ thì gọi ngay.",
@@ -136,6 +132,8 @@ UI_ROWS = [
 # Jumpscare ids core emits through EventBus.scare_triggered (lane E may add cues).
 SCARES = ["roommates_rise", "corridor_turn", "knife_drag", "stair_corpse", "door_203", "flowerbed_crawl",
           "stadium_lights", "guard_turn", "canteen_tv"]
+# Keys this script made before (removed on the next run): D-055 dropped the hints.
+RETIRED = {"CHAT_CH3_N_SOUND", "NEAR_CH3_N_WINDOW"}
 PREFIXES = ("SPK_CH3_", "RULE_CH3_", "ROOM_CH3_", "THINK_CH3_", "CHAT_CH3_", "NEAR_CH3_", "NAME_CH3_",
             "PROMPT_CH3_", "DEATH_CH3_")
 
@@ -175,7 +173,7 @@ def main():
     text = open(path, encoding="utf-8").read()
     generated = {row[0] for row in rows}
     kept = [line for line in text.split("\n")
-            if line and not (line.startswith(PREFIXES) and line.split(",", 1)[0] in generated)]
+            if line and not (line.startswith(PREFIXES) and line.split(",", 1)[0] in generated | RETIRED)]
     buf = io.StringIO()
     writer = csv.writer(buf, lineterminator="\n")
     seen = set(line.split(",", 1)[0] for line in kept)

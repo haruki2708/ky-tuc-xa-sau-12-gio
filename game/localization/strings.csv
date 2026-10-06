@@ -842,10 +842,8 @@ THINK_CH3_FIRE_LOCKED,Khóa rồi. Chìa… bàn trực.,Locked. The key… the 
 THINK_CH3_KEY,Chìa cửa thoát hiểm.,The fire door key.
 THINK_CH3_COLLAPSE,Sập mất rồi… phải qua hành lang tầng hai.,It's collapsed… I'll have to cross the second floor.
 CHAT_CH3_N_TRAPPED,"Trung, cậu đang ở đâu? Tôi kẹt trong 203, chúng nó đang đập cửa!","Trung, where are you? I'm stuck in 203, they're hammering the door!"
-CHAT_CH3_N_SOUND,"Lúc nãy có cái chậu rơi ngoài hành lang, cả đám quay hết sang đó…",Earlier a basin fell in the corridor and the whole lot of them turned toward it…
 NEAR_CH3_N_JOIN,"Cảm ơn… Cầu thang chính, bên trái. Lúc nãy tôi thấy chỗ đó vãn rồi.","Thanks… The main stairs, on the left. It looked clear a minute ago."
 NEAR_CH3_N_CHAINED,Xích từ bên ngoài… Ai khóa chứ?,Chained from outside… Who locked it?
-NEAR_CH3_N_WINDOW,"Phòng quản lý. Cửa sổ trong đó vỡ rồi, chui qua được.","The manager's office. The window in there is broken, we can squeeze through."
 THINK_CH3_KNIFE,Dao của ông ta…,His knife…
 NEAR_CH3_NGU_HERE,Trung! Minh Nhật! Bên này!,Trung! Minh Nhật! Over here!
 NEAR_CH3_NGU_BARS,"Cầm lấy, tháo từ thang giường đấy. Chúng nó chết rồi, không giết lại được đâu. Nhưng đập vào đầu thì nó đứng im một lúc.","Take one, I pulled them off a bunk ladder. They're already dead, you can't kill them again. But hit the head and they freeze for a bit."
@@ -859,7 +857,7 @@ NEAR_CH3_NGU_GATE,Thì đi tìm. Ra cổng trường trước.,Then let's find i
 NEAR_CH3_NGU_DONT,Đừng đụng vào họ.,Don't touch them.
 NEAR_CH3_N_NO_WAY,Họ chặn kín cổng rồi. Lối này không ra được.,They've sealed the gate. There's no way out here.
 NEAR_CH3_NGU_CANTEEN,Nhà ăn. Biết đâu trong đó có gì.,The canteen. Maybe there's something in there.
-ROOM_CH3_TV_NEWS,…tin khẩn… lúc bốn giờ sáng… các tòa nhà… lực lượng…,…breaking news… at four this morning… the buildings… teams are…
+ROOM_CH3_TV_NEWS,"Tin khẩn. Lúc bốn giờ sáng nay, một trận động đất mạnh đã xảy ra. Các tòa ký túc xá của trường đổ sập hoàn toàn. Lực lượng cứu hộ đang đào bới, tìm người còn sống dưới đống đổ nát.","Breaking news. At four o'clock this morning, a strong earthquake struck. The university's dormitory buildings collapsed completely. Rescue teams are digging through the rubble for survivors."
 NEAR_CH3_N_NOTHING,Không có gì cả. Cứ tụ một chỗ thế này thì chậm quá.,Nothing. Sticking together like this is too slow.
 NEAR_CH3_N_SPLIT,"Chia nhau ra. Ngư qua khu giảng đường, tôi qua nhà thi đấu, Trung qua thư viện. Thấy gì lạ thì gọi ngay.","Let's split up. Ngư takes the lecture halls, I take the sports hall, Trung the library. Call the moment you see anything odd."
 NEAR_CH3_NGU_OK,Được. Đừng có chết đấy.,Fine. Don't you dare die.

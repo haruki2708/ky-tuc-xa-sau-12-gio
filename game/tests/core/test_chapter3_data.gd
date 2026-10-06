@@ -12,7 +12,7 @@ func test_rule_book_is_valid() -> void:
 
 
 func test_call_lines_load_and_are_translated() -> void:
-	for id in ["n_all_up", "n_out", "ngu_garden", "n_trapped", "n_sound"]:
+	for id in ["n_all_up", "n_out", "ngu_garden", "n_trapped"]:
 		var data := MessageData.load_by_id(StringName("chat_ch3_" + id))
 		assert_not_null(data, id)
 		if data != null:

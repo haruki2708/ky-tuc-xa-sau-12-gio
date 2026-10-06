@@ -38,12 +38,10 @@ Ký hiệu: **Loa** · 📞 = trong cuộc gọi · 🗣 = nói trực tiếp kh
 - **08:06** 💭 Sập mất rồi… phải qua hành lang tầng hai.
 - **08:06** 📞 **Minh Nhật · 203:** Trung, cậu đang ở đâu? Tôi kẹt trong 203, chúng nó đang đập cửa!
 - **08:06** `[Tiếng đập cửa 203 vọng trong điện thoại (jumpscare 5, `door_203`).]`
-- **08:07** 📞 **Minh Nhật · 203:** Lúc nãy có cái chậu rơi ngoài hành lang, cả đám quay hết sang đó…
-- **08:07** `[Trung đập bình cứu hỏa vào tường cuối hành lang (tiếng vang 25 m): đám xác bỏ cửa 203 kéo về phía tiếng động. Minh Nhật chạy ra, từ đây đi cùng.]`
+- **08:07** `[Trung đập bình cứu hỏa vào tường cuối hành lang (tiếng vang 25 m): đám xác bỏ cửa 203 kéo về phía tiếng động. Không ai gợi ý cách này (D-055). Minh Nhật chạy ra, từ đây đi cùng.]`
 - **08:08** 🗣 **Minh Nhật:** Cảm ơn… Cầu thang chính, bên trái. Lúc nãy tôi thấy chỗ đó vãn rồi.
-- **08:09** `[N5: tầng 1, cửa chính nhà B bị xích từ bên ngoài.]`
+- **08:09** `[N5: tầng 1, cửa chính nhà B bị xích từ bên ngoài. Lối ra là cửa sổ vỡ trong phòng quản lý, phải cúi để chui qua; không ai gợi ý (D-055).]`
 - **08:09** 🗣 **Minh Nhật:** Xích từ bên ngoài… Ai khóa chứ?
-- **08:09** 🗣 **Minh Nhật:** Phòng quản lý. Cửa sổ trong đó vỡ rồi, chui qua được.
 - **08:10** `[Con dao của quản lý cắm trên bàn. Nhìn vào là có tiếng kéo lê dao vọng lại (jumpscare 3, `knife_drag`).]`
 - **08:10** 💭 Dao của ông ta…
 
@@ -72,8 +70,8 @@ Ký hiệu: **Loa** · 📞 = trong cuộc gọi · 🗣 = nói trực tiếp kh
 - **08:23** 🗣 **Ngọc Ngư:** Đừng đụng vào họ.
 - **08:24** 🗣 **Minh Nhật:** Họ chặn kín cổng rồi. Lối này không ra được.
 - **08:24** 🗣 **Ngọc Ngư:** Nhà ăn. Biết đâu trong đó có gì.
-- **08:26** `[Nhà ăn: bàn ghế đổ, nồi canh lạnh tanh, đồng hồ bếp dừng lúc 4:00. Tivi bật lên rè rè khi Trung đi ngang (jumpscare 9, `canteen_tv`).]`
-- **08:26** 📺 **Tivi nhà ăn:** …tin khẩn… lúc bốn giờ sáng… các tòa nhà… lực lượng…
+- **08:26** `[Nhà ăn: bàn ghế đổ, nồi canh lạnh tanh, đồng hồ bếp dừng lúc 4:00. Tivi bật lên rè rè khi Trung đi ngang (jumpscare 9, `canteen_tv`) và đọc rõ bản tin động đất (D-055).]`
+- **08:26** 📺 **Tivi nhà ăn:** Tin khẩn. Lúc bốn giờ sáng nay, một trận động đất mạnh đã xảy ra. Các tòa ký túc xá của trường đổ sập hoàn toàn. Lực lượng cứu hộ đang đào bới, tìm người còn sống dưới đống đổ nát.
 - **08:28** 🗣 **Minh Nhật:** Không có gì cả. Cứ tụ một chỗ thế này thì chậm quá.
 - **08:29** 🗣 **Minh Nhật:** Chia nhau ra. Ngư qua khu giảng đường, tôi qua nhà thi đấu, Trung qua thư viện. Thấy gì lạ thì gọi ngay.
 - **08:29** 🗣 **Ngọc Ngư:** Được. Đừng có chết đấy.

@@ -90,12 +90,12 @@ Khuôn viên dựng **gần kích thước thật** để có cảm giác cả t
 
 ### N4. Tầng 2: lối thoát hiểm bị chặn, gặp Minh Nhật
 - Đoạn cầu thang từ tầng 2 xuống tầng 1 **sập** (bê tông đổ, thanh thép lòi ra). Phải băng qua hành lang tầng 2 tới cầu thang chính, vốn đã vãn xác vì xác dồn lên trên.
-- Minh Nhật gọi: cậu ấy kẹt trong phòng 203, cửa bị xác chặn. Trung **gây tiếng động** để kéo xác đi, ví dụ đập bình cứu hỏa vào tường **[Claude đề xuất]**. Minh Nhật chạy ra, từ đây **đi cùng**.
+- Minh Nhật gọi: cậu ấy kẹt trong phòng 203, cửa bị xác chặn. Trung **gây tiếng động** để kéo xác đi, ví dụ đập bình cứu hỏa vào tường **[Claude đề xuất]**. **Không ai gợi ý cách này** (D-055). Minh Nhật chạy ra, từ đây **đi cùng**.
 - Minh Nhật chưa có vũ khí; cậu ấy chỉ đường ("cầu thang chính, bên trái").
 
 ### N5. Tầng 1: sảnh và lối ra
 - Cửa chính nhà B **xích khóa** từ ngoài (không ai giải thích).
-- Lối ra: **cửa sổ phòng quản lý** ở sảnh. Vào phòng quản lý, trèo qua khung cửa sổ vỡ.
+- Lối ra: **cửa sổ phòng quản lý** ở sảnh. Vào phòng quản lý, cúi để chui qua khung cửa sổ vỡ. **Không ai chỉ lối này** (D-055).
 - Phòng quản lý có **con dao của quản lý cắm trên bàn**, không lấy được. Nhìn vào là có tiếng kéo lê dao vọng lại (jumpscare 3).
 
 ## Khu 2: vườn hoa (8:10–8:13, khoảng 5 phút)
@@ -135,7 +135,7 @@ Khuôn viên dựng **gần kích thước thật** để có cảm giác cả t
 - Nhà ăn một tầng: bàn ghế đổ, khay cơm, quầy bếp.
 - **Lục nhà ăn** tìm "điều bất thường":
   - **lịch đồng hồ của bếp dừng lúc 4:00**;
-  - **tivi** chạy dòng chữ khẩn cấp đứt quãng: "…động đất… các tòa nhà…", rồi tắt (manh mối động đất 5, chưa nói rõ);
+  - **tivi** bật lên rè rè rồi **đọc rõ bản tin** (D-055): động đất mạnh lúc 4 giờ sáng, các tòa ký túc xá đổ sập, cứu hộ đang đào tìm người sống sót. Người chơi biết twist từ đây;
   - nồi canh đổ, lạnh tanh như bỏ từ lâu.
 - Xác vào từ bếp sau; đường thoát qua cửa kho.
 - **Hết chương (8:30):** Minh Nhật: "Tụ một chỗ an toàn hơn nhưng chậm quá. Chia nhau ra. Thấy gì lạ thì gọi ngay." Ngư chạy về khu giảng đường, Minh Nhật về nhà thi đấu, Trung về thư viện. Màn hình tối, thẻ "Hết chương 3", mở khóa chương 4.
