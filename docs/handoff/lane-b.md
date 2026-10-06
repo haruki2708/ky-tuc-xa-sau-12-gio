@@ -10,13 +10,13 @@ TUYỆT ĐỐI không làm việc trong D:\GAME_DEMO (đó là bản tích hợp
 Bước 1. Chuẩn bị:
   - Nếu chưa có D:\GAME_WORK\lane-b: git clone https://github.com/tuaanh666/ky-tuc-xa-sau-12-gio.git D:\GAME_WORK\lane-b
   - cd D:\GAME_WORK\lane-b; git fetch origin
-  - Nếu nhánh lane-b/T-187-wide-corridors đã có trên origin: git switch lane-b/T-187-wide-corridors; git pull
-    Nếu chưa có: git switch -c lane-b/T-187-wide-corridors origin/main
-Bước 2. Đọc kỹ, theo thứ tự: AGENTS.md, docs/STATUS.md, docs/tasks/T-187-wide-corridors.md
+  - Nếu nhánh lane-b/T-190-room-zombie-doors đã có trên origin: git switch lane-b/T-190-room-zombie-doors; git pull
+    Nếu chưa có: git switch -c lane-b/T-190-room-zombie-doors origin/main
+Bước 2. Đọc kỹ, theo thứ tự: AGENTS.md, docs/STATUS.md, docs/tasks/T-190-room-zombie-doors.md
 Bước 3. Làm task trong card, CHỈ sửa file trong mục "Được phép sửa".
         Cần sửa file ngoài phạm vi thì ghi "Yêu cầu thay đổi" vào mục Handoff, không tự sửa.
-Bước 4. Trước khi kết thúc: chạy pwsh tools/test.ps1 (phải PASS); commit dạng "T-187: ...";
-        git push -u origin lane-b/T-187-wide-corridors; điền mục Handoff trong card, commit và push lại.
+Bước 4. Trước khi kết thúc: chạy pwsh tools/test.ps1 (phải PASS); commit dạng "T-190: ...";
+        git push -u origin lane-b/T-190-room-zombie-doors; điền mục Handoff trong card, commit và push lại.
 Bước 5. Trả lời tôi bằng tiếng Việt, ngắn gọn:
   (1) đã làm gì, (2) kết quả test (dán dòng RESULT), (3) checklist mục nào chưa đạt và vì sao,
   (4) yêu cầu thay đổi ngoài phạm vi, (5) có bị chặn ở đâu không.
@@ -26,14 +26,14 @@ luật chơi hay cốt truyện (ghi câu hỏi vào Handoff). Ghi trung thực:
 
 ## 2. Prompt tiếp tục (sau khi tắt máy, hoặc khi agent mất ngữ cảnh)
 ```
-Tiếp tục task T-187 của Lane B. cd D:\GAME_WORK\lane-b; git fetch origin; git switch lane-b/T-187-wide-corridors; git pull.
-Đọc lại AGENTS.md, docs/STATUS.md và docs/tasks/T-187-wide-corridors.md (đặc biệt mục Handoff để biết lần trước dừng ở đâu).
+Tiếp tục task T-190 của Lane B. cd D:\GAME_WORK\lane-b; git fetch origin; git switch lane-b/T-190-room-zombie-doors; git pull.
+Đọc lại AGENTS.md, docs/STATUS.md và docs/tasks/T-190-room-zombie-doors.md (đặc biệt mục Handoff để biết lần trước dừng ở đâu).
 Kiểm tra git status và git log -5. Tiếp tục các mục checklist chưa xong, rồi kết thúc phiên theo AGENTS.md §2.
 ```
 
 ## 3. Prompt yêu cầu sửa (khi integrator trả task về)
 ```
-Integrator đã review T-187 và yêu cầu sửa: xem mục "Review" trong docs/tasks/T-187-wide-corridors.md trên origin/main
-(git fetch; git show origin/main:docs/tasks/T-187-wide-corridors.md). Rebase nhánh lên origin/main, sửa từng ý, chạy test,
+Integrator đã review T-190 và yêu cầu sửa: xem mục "Review" trong docs/tasks/T-190-room-zombie-doors.md trên origin/main
+(git fetch; git show origin/main:docs/tasks/T-190-room-zombie-doors.md). Rebase nhánh lên origin/main, sửa từng ý, chạy test,
 push, cập nhật Handoff và báo lại theo 5 mục như trước.
 ```
