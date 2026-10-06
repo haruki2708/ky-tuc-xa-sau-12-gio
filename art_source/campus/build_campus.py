@@ -3,7 +3,11 @@ The legacy Floor4 and Room407 files are never written by this generator.
 """
 from pathlib import Path
 import sys, math, json, re
+sys.dont_write_bytecode = True
 import room_doors
+import stands
+import detail
+import scatter
 sys.dont_write_bytecode = True
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT/'art_source/floor4'))
@@ -17,6 +21,8 @@ NAV = []
 LINKS = []
 BLOCKS = []
 ANCHORS = {}
+# Player route (also Nhat/Ngu paths): the lane that props must leave free.
+ROUTE = [(13.75,-6.6,-2),(13.75,-6.6,2.0),(-1.2,-6.6,2.0),(-3.8,-8.25,-5.3),(-1.2,G,2.0),(2.75,G,2.0),(2.75,G,-3),(4,G,-4),(4,G+1,-7.6),(4,G,-12),(-8,G,-12),(-8,G,8),(22,G,8),(22,G,26),(48,G,28),(80,G,28),(80,G,166),(115,G,166),(150,G,166),(198,G,135),(250,G,166),(198,G,195),(115,G,166),(80,G,166),(80,G,-15),(220,G,-15),(220,G,-30),(220,G,10),(190,G,18),(190,G,32),(202,G,43),(202,G,48),(202,G,54)]
 base.PALETTE.update(grass=(.13,.20,.13),track=(.32,.13,.10),concrete=(.38,.39,.35),red=(.40,.055,.04))
 
 
@@ -255,28 +261,18 @@ def stadium():
     s=Scene('Stadium')
     s.box('TrackBounds',(198,G-.025,166),(176,.05,92),'track',floor=True)
     s.box('Grass',(198,G+.005,166),(100,.01,58),'grass',solid=False)
-    for side,x0,z0,width,steps in [('Main',158,216,80,10),('Secondary',168,108,60,4)]:
-        p=s.node(side+'Bleachers')
-        for i in range(steps):
-            s.box('Tier%d'%i,(x0+width/2,G+.3*(i+1)-.09,z0+1.2*i),(width,.18,1.2),'concrete',p)
-            flat(side+'Tier%d'%i,x0+.4,x0+width-.4,z0+1.2*i-.25,z0+1.2*i+.25,G+.3*(i+1))
-        # Wide continuous access ramp next to the seats, headroom below main stand.
-        ramp(s,side+'BleacherRamp',x0-3,x0+.4,z0-1.2,z0+(steps-1)*1.2,G,G+.3*steps)
-        for i in range(steps):
-            t=(1.2+1.2*i)/(1.2*steps)
-            link(side+'RampTier%d'%i,(x0-1.7,G+.3*steps*t,z0+1.2*i),(x0+.6,G+.3*(i+1),z0+1.2*i))
-        link(side+'RampGround',(x0-1.7,G,z0-2),(x0-1.7,G+.025,z0-1.1))
-        obstacle(x0+width/2,z0+(steps-1)*.6,width,steps*1.2)
-    anchor('Clues/SirenSpot',(198,G+3,226.8))
-    for side,x,z in [('W',110,166),('E',286,166),('S',198,120),('N',198,212)]:
-        for offset in [-4,4]:
-            s.box('GatePost'+side+str(offset),(x+(offset if side in ['S','N'] else 0),G+1.8,z+(offset if side in ['W','E'] else 0)),(.35,3.6,.35),'iron')
+    # T-192: stands, low walls, fence and gates live in stands.py.
+    batch=stands.build(s,sys.modules[__name__],DETAIL)
+    main=stands.INFO['MainBleachers']
+    anchor('Clues/SirenSpot',(198,main['top_y'],main['top_z']))
     s.node('Floodlights',properties='visible = false')
     for i,(x,z) in enumerate([(112,122),(284,122),(112,210),(284,210)]):
         s.box('Pole%d'%i,(x,G+9,z),(.3,18,.3),'iron')
         s.node('Light%d'%i,'OmniLight3D','Floodlights',f'position = {V((x,G+15,z))}\nlight_energy = 12.0\nomni_range = 145.0\nshadow_enabled = false\nlight_color = Color(0.78,0.83,0.72,1)')
     anchor('Start_stadium',(115,G,166))
-    if DETAIL: detail.stadium(s,sys.modules[__name__])
+    if DETAIL:
+        detail.stadium(s,sys.modules[__name__])
+        batch.emit(s,'.',s.resource('res://scenes/levels/campus/boxes.gd','Script'),'Stand',cull=220.0)
     s.save('stadium.tscn')
 
 
@@ -377,12 +373,12 @@ def anchors(s):
     for area,(x,y,z) in areas.items():
         for i in range(6):
             point=(x+i*4,y,z) if area.startswith('B') or area=='Road' else (x+(i%3)*4,y,z+(i//3)*5)
-            if area=='Stadium':point=[(112,G,166),(284,G,166),(198,G,122),(198,G,210),(112,G,170),(284,G,170)][i]
+            if area=='Stadium':point=[(112,G,166),(284,G,166),stands.SPAWN_SOUTH,stands.SPAWN_NORTH,(112,G,170),(284,G,170)][i]
             if area=='Garden':point=(12+(i%3)*16,G,17+(i//3)*10)
             anchor('ZombieSpawns/%s/S%02d'%(area,i+1),point)
             idle = room_doors.IDLE[i] if area=='B4' else point if area.startswith('B') else (point[0],y,point[2]+1)
             anchor('ZombieIdle/%s/I%02d'%(area,i+1),idle)
-    route=[(13.75,-6.6,-2),(13.75,-6.6,2.0),(-1.2,-6.6,2.0),(-3.8,-8.25,-5.3),(-1.2,G,2.0),(2.75,G,2.0),(2.75,G,-3),(4,G,-4),(4,G+1,-7.6),(4,G,-12),(-8,G,-12),(-8,G,8),(22,G,8),(22,G,26),(48,G,28),(80,G,28),(80,G,166),(115,G,166),(150,G,166),(198,G,135),(250,G,166),(198,G,195),(115,G,166),(80,G,166),(80,G,-15),(220,G,-15),(220,G,-30),(220,G,10),(190,G,18),(190,G,32),(202,G,43),(202,G,48),(202,G,54)]
+    route=ROUTE
     for who,start in [('Nhat',0),('Ngu',13)]:
         points=route[start:] if who=='Nhat' else [(22,G+.57,28),(23.8,G,28),(23.8,G,26)]+route[start:]
         for i,p in enumerate(points):
@@ -402,7 +398,7 @@ def anchors(s):
 
 def zones(s):
     p=s.node('Zones')
-    data={'BuildingB':((22,-4,-1.2),(54,14,13.6)),'Road':((110,G+2,-15),(220,4,10)),'Garden':((22,G+2,28),(44,4,40)),'Stadium':((198,G+6,166),(176,12,120)),'Gate':((220,G+2,-40),(60,4,40)),'Canteen':((194,G+2,36),(48,4,32)),'GuardRadius':((220,G+1.5,-52.5),(22,3,3)),'Bleachers':((198,G+2,221.4),(86,5,16))}
+    data={'BuildingB':((22,-4,-1.2),(54,14,13.6)),'Road':((110,G+2,-15),(220,4,10)),'Garden':((22,G+2,28),(44,4,40)),'Stadium':((198,G+6,166),(176,12,120)),'Gate':((220,G+2,-40),(60,4,40)),'Canteen':((194,G+2,36),(48,4,32)),'GuardRadius':((220,G+1.5,-52.5),(22,3,3)),'Bleachers':stands.BLEACHERS_ZONE}
     for name,(pos,size) in data.items():
         area=s.node(name,'Area3D',p,'position = '+V(pos)+'\ncollision_layer = 0\ncollision_mask = 2')
         shape=s.subresource('BoxShape3D','size = '+V(size))
@@ -421,7 +417,14 @@ def campus():
     if DETAIL: detail.outdoors(s,sys.modules[__name__])
     fence=s.node('Fence')
     for label,pos,size in [('W',(-80,G+1.5,115),(.3,3,350)),('E',(420,G+1.5,115),(.3,3,350)),('N',(170,G+1.5,290),(500,3,.3)),('S',(170,G+1.5,-60),(500,3,.3))]:s.box(label,pos,size,'wall',fence)
-    anchors(s);zones(s);navigation(s)
+    anchors(s)
+    if DETAIL:
+        # T-192: street props. Needs the anchors (spawn discs) and must register its
+        # obstacles before the outdoor lattice is written by navigation().
+        props,trees=scatter.build(sys.modules[__name__])
+        scatter.emit(sys.modules[__name__],props,trees)
+        s.inst('Props','scenes/levels/campus/props.tscn')
+    zones(s);navigation(s)
     env=s.subresource('Environment','background_mode = 1\nbackground_color = Color(0.018,0.022,0.035,1)\nambient_light_source = 2\nambient_light_color = Color(0.42,0.45,0.52,1)\nambient_light_energy = 0.65\ntonemap_mode = 2\nfog_enabled = true\nfog_light_color = Color(0.035,0.042,0.06,1)\nfog_density = 0.018\nfog_sky_affect = 1.0')
     s.node('Environment','WorldEnvironment',properties='environment = '+env)
     s.node('Dawn','DirectionalLight3D',properties='rotation_degrees = Vector3(-22,-35,0)\nlight_color = Color(0.52,0.58,0.72,1)\nlight_energy = 0.65\nshadow_enabled = false')
@@ -429,12 +432,15 @@ def campus():
     (ROOT/'art_source/campus/layout.json').write_text(json.dumps({'ground_y':G,'bounds':[-80,420,-60,290],'anchors':ANCHORS,'navigation_surfaces':len(NAV),'navigation_links':len(LINKS)},indent=2)+'\n',encoding='utf-8')
 
 
-if __name__=='__main__':
+def main():
     OUT.mkdir(parents=True,exist_ok=True)
     base.OUT=OUT
     if DETAIL:
-        import detail
         detail.textures(ROOT,base.PALETTE)
         detail.actors(sys.modules[__name__])
     building();shells();garden();stadium();gate();canteen();campus()
     print('T183_BUILD: %s campus, %d anchors, %d navigation surfaces, %d links'%('detailed' if DETAIL else 'greybox',len(ANCHORS),len(NAV),len(LINKS)))
+
+
+if __name__=='__main__':
+    main()

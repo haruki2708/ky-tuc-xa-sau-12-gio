@@ -192,32 +192,7 @@ def stadium(s,c):
     for x in [150,198,246]:part(s,'PitchLine'+str(x),(x,g+.021,166),(.08,.012,58),'paper')
     for z in [137,195]:part(s,'PitchEdge'+str(z),(198,g+.021,z),(96,.012,.08),'paper')
     for i in range(7):part(s,'StartLane%d'%i,(175+i*.8,g+.045,126-i*1.22),(.13,.012,1.1),'paper')
-    for x in [110,286]:
-        for z,d in [(141,40),(191,40)]:
-            s.box('Fence%s_%s'%(x,z),(x,g+.65,z),(.08,1.3,d),'iron',visible=False)
-            part(s,'FenceTop%s_%s'%(x,z),(x,g+1.3,z),(.07,.07,d),'iron')
-            for i in range(20):part(s,'Picket%s_%s_%s'%(x,z,i),(x,g+.65,z-d/2+i*2),(.04,1.3,.04),'iron')
-    for z in [120,212]:
-        for x,w in [(151.5,83),(244.5,83)]:
-            # Leave four 10 m openings; navigation obstacles registered below.
-            s.box('Fence%s_%s'%(z,x),(x,g+.65,z),(w,1.3,.08),'iron',visible=False)
-            part(s,'FenceTop%s_%s'%(z,x),(x,g+1.3,z),(w,.07,.07),'iron')
-            for i in range(42):part(s,'Picket%s_%s_%s'%(z,x,i),(x-w/2+i*2,g+.65,z),(.04,1.3,.04),'iron')
-    for x in [110,286]:
-        for z in [141,191]:c.obstacle(x,z,.08,40)
-    for z in [120,212]:
-        for x in [151.5,244.5]:c.obstacle(x,z,83,.08)
-    for x in range(158,239,10):
-        part(s,'StandPillar'+str(x),(x,g+1.45,226),(.24,2.9,.24),'concrete')
-        part(s,'StandRail'+str(x),(x,g+3.55,227),(.04,1.1,.04),'iron')
-    part(s,'StandTopRail',(198,g+4.05,227),(80,.05,.05),'iron')
-    for i in range(10):
-        for x in [170,185,200,215,230]:part(s,'Seat%d_%d'%(i,x),(x,g+.3*(i+1)+.04,216+i*1.2),(11,.08,.5),'blue')
-    for i in range(4):part(s,'LoosePipe%d'%i,(163+i*.25,g+.07,225.5),(.045,.045,1.7),'iron',angles=(0,15+i*9,0))
-    # Under the rear rows is a separate walkable ground strip, open at the back.
-    c.flat('UnderBleachers',160,236,225,227.4,g)
-    c.link('UnderBleachersEntry',(198,g,230),(198,g,227))
-    c.ANCHORS['BarSpawns/B03']=(164,g+.08,225.5)
+    # T-192: fences, gate posts, stands, seats and the pipes under the stand are in stands.py.
     for i,(x,z) in enumerate([(112,122),(284,122),(112,210),(284,210)]):
         for j in range(4):part(s,'FloodHousing%d_%d'%(i,j),(x+(j-1.5)*.65,g+17,z),(.56,.6,.22),'paper')
 
@@ -277,6 +252,9 @@ def canteen(s,c):
     for z in [25,38]:s.node('CeilingLight'+str(z),'OmniLight3D',properties='position = '+s.vec((190,g+3.6,z))+'\nlight_energy = 1.2\nomni_range = 19.0\nshadow_enabled = false\nlight_color = Color(.64,.69,.54,1)')
 
 
+SKIP_LAMPS=[(60,-20),(120,-20),(180,-20),(86,45),(86,125)]  # T-192: these lamps fell or lean (scatter.py)
+
+
 def outdoors(s,c):
     g=c.G
     trees=[]
@@ -292,7 +270,8 @@ def outdoors(s,c):
     for i,(x,y,z) in enumerate(trees):
         s.box('TreeTrunk%d'%i,(x,y+1.5,z),(.5,3,.5),parent='Road',visible=False)
         c.obstacle(x,z,.5,.5)
-    cluster(s,'StreetLights',[(x,g,-20) for x in range(0,221,20)]+[(86,g,z) for z in range(5,166,20)],'lamp','Road')
+    lamps=[(x,g,-20) for x in range(0,221,20)]+[(86,g,z) for z in range(5,166,20)]
+    cluster(s,'StreetLights',[l for l in lamps if (l[0],l[2]) not in SKIP_LAMPS],'lamp','Road')
     for i,x in enumerate([62,102,148]):
         bench(s,'RoadBench%d'%i,(x,g,-22),'Road');c.obstacle(x,-22,2.4,.6)
         s.box('BenchBody%d'%i,(x,g+.4,-22),(2.4,.8,.6),parent='Road',visible=False)
