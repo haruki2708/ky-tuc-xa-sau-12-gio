@@ -825,3 +825,49 @@ https://creativecommons.org/licenses/by-sa/4.0/
 Adapted: only two-syllable words retained; proper names, symbols and affixes removed; normalization, corpse vocabulary flags and game words added."
 "UI_PREDICTION_OPEN","Enter: gõ tin nhắn","Enter: type a message"
 UI_CH3_END,Hết chương 3,End of chapter 3
+NAME_CH3_MINH_NHAT,Minh Nhật · 203,Minh Nhật · 203
+NAME_CH3_NGU,Ngọc Ngư · 401 nhà A,Ngọc Ngư · A-401
+NAME_CH3_TRUNG,Tôi,Me
+SPK_CH3_R5_INTRO,Vòng cuối cùng bắt đầu. Nhà trường quyết định nới lỏng yêu cầu.,The final round begins. The school has decided to relax its requirements.
+RULE_CH3_R5_1,"Các bạn được phép rời phòng, đi lại ở mọi khu vực trong trường.",You may leave your rooms and go anywhere on campus.
+RULE_CH3_R5_2,Hãy mau chạy khỏi góc khuất nguy hiểm này.,Hurry and run from this dangerous corner.
+RULE_CH3_R5_3,"Nhiệm vụ rất đơn giản: trong một giờ cuối cùng, tránh mọi sự truy sát và sống sót.","Your task is simple: for this last hour, avoid every pursuit and stay alive."
+THINK_CH3_WHO,Truy sát…? Ai truy sát?,Pursuit…? Who's pursuing?
+CHAT_CH3_N_ALL_UP,"Chúng nó đứng dậy hết rồi! Cả tòa… hành lang chỗ tôi toàn người, mắt đỏ lòm.","They're all up! The whole building… my corridor is full of them, red eyes."
+CHAT_CH3_N_OUT,"Luật cấm rời phòng bị bỏ rồi. Ba đứa mình phải ra ngoài, gặp nhau.",The rule about staying in is gone. The three of us have to get out and meet.
+CHAT_CH3_NGU_GARDEN,"Vườn hoa giữa nhà A với nhà B. Gặp ở đó. Chúng nó chậm lắm, đừng để bị dồn vào chỗ hẹp là được.","The garden between building A and B. Meet there. They're slow, just don't get cornered somewhere narrow."
+THINK_CH3_RUN,Ra khỏi đây. Ngay.,Get out. Now.
+THINK_CH3_STAIRS_FULL,Cầu thang chính kín rồi… Đầu kia còn cầu thang thoát hiểm.,The main stairs are packed… There's the fire stairs at the other end.
+THINK_CH3_FIRE_LOCKED,Khóa rồi. Chìa… bàn trực.,Locked. The key… the duty desk.
+THINK_CH3_KEY,Chìa cửa thoát hiểm.,The fire door key.
+THINK_CH3_COLLAPSE,Sập mất rồi… phải qua hành lang tầng hai.,It's collapsed… I'll have to cross the second floor.
+CHAT_CH3_N_TRAPPED,"Trung, cậu đang ở đâu? Tôi kẹt trong 203, chúng nó đang đập cửa!","Trung, where are you? I'm stuck in 203, they're hammering the door!"
+CHAT_CH3_N_SOUND,"Lúc nãy có cái chậu rơi ngoài hành lang, cả đám quay hết sang đó…",Earlier a basin fell in the corridor and the whole lot of them turned toward it…
+NEAR_CH3_N_JOIN,"Cảm ơn… Cầu thang chính, bên trái. Lúc nãy tôi thấy chỗ đó vãn rồi.","Thanks… The main stairs, on the left. It looked clear a minute ago."
+NEAR_CH3_N_CHAINED,Xích từ bên ngoài… Ai khóa chứ?,Chained from outside… Who locked it?
+NEAR_CH3_N_WINDOW,"Phòng quản lý. Cửa sổ trong đó vỡ rồi, chui qua được.","The manager's office. The window in there is broken, we can squeeze through."
+THINK_CH3_KNIFE,Dao của ông ta…,His knife…
+NEAR_CH3_NGU_HERE,Trung! Minh Nhật! Bên này!,Trung! Minh Nhật! Over here!
+NEAR_CH3_NGU_BARS,"Cầm lấy, tháo từ thang giường đấy. Chúng nó chết rồi, không giết lại được đâu. Nhưng đập vào đầu thì nó đứng im một lúc.","Take one, I pulled them off a bunk ladder. They're already dead, you can't kill them again. But hit the head and they freeze for a bit."
+NEAR_CH3_N_STADIUM,"Ra sân vận động. Chỗ đó thoáng nhất, khó bị vây.","To the stadium. It's the most open place, hard to get surrounded."
+NEAR_CH3_NGU_GO,Đi!,Go!
+NEAR_CH3_NGU_KEEP,"Đừng đứng một chỗ! Chạy vòng, cắt qua sân!","Don't stand still! Run the track, cut across the field!"
+THINK_CH3_LEGS,Chân nặng quá…,My legs are so heavy…
+NEAR_CH3_N_BREATH,Tôi… sắp hết hơi rồi.,I'm… almost out of breath.
+NEAR_CH3_N_NO_DEAD_END,Khoan. Vòng nào luật cũng chừa một đường sống. Không thể bắt mình chạy mãi thế này được. Đường sống phải ở đâu đó trong trường.,"Wait. Every round, the rules left a way out. They can't make us run forever. The way out has to be somewhere on campus."
+NEAR_CH3_NGU_GATE,Thì đi tìm. Ra cổng trường trước.,Then let's find it. The front gate first.
+NEAR_CH3_NGU_DONT,Đừng đụng vào họ.,Don't touch them.
+NEAR_CH3_N_NO_WAY,Họ chặn kín cổng rồi. Lối này không ra được.,They've sealed the gate. There's no way out here.
+NEAR_CH3_NGU_CANTEEN,Nhà ăn. Biết đâu trong đó có gì.,The canteen. Maybe there's something in there.
+ROOM_CH3_TV_NEWS,…tin khẩn… lúc bốn giờ sáng… các tòa nhà… lực lượng…,…breaking news… at four this morning… the buildings… teams are…
+NEAR_CH3_N_NOTHING,Không có gì cả. Cứ tụ một chỗ thế này thì chậm quá.,Nothing. Sticking together like this is too slow.
+NEAR_CH3_N_SPLIT,"Chia nhau ra. Ngư qua khu giảng đường, tôi qua nhà thi đấu, Trung qua thư viện. Thấy gì lạ thì gọi ngay.","Let's split up. Ngư takes the lecture halls, I take the sports hall, Trung the library. Call the moment you see anything odd."
+NEAR_CH3_NGU_OK,Được. Đừng có chết đấy.,Fine. Don't you dare die.
+THINK_CH3_LIBRARY,Thư viện…,The library…
+DEATH_CH3_GRABBED,Xác sống đã tóm được bạn.,The dead caught you.
+DEATH_CH3_SURROUNDED,Bạn bị dồn vào giữa đám xác.,You were cornered by the dead.
+DEATH_CH3_GUARD,Dùi cui điện giáng xuống người bạn.,The stun baton came down on you.
+PROMPT_CH3_TAKE_KEY,Lấy chìa khóa,Take the key
+PROMPT_CH3_UNLOCK,Mở khóa cửa,Unlock the door
+PROMPT_CH3_EXTINGUISHER,Đập bình cứu hỏa,Bang the extinguisher
+PROMPT_CH3_CLIMB,Trèo qua cửa sổ (cúi),Climb through the window (crouch)
