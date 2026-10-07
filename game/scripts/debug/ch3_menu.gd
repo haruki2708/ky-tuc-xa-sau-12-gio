@@ -137,14 +137,15 @@ func set_open(value: bool) -> void:
 	panel.visible = value
 
 
-func apply_action(key: String) -> void:
+func apply_action(key: String) -> Dictionary:
 	if not SESSION.isolated():
 		_launch("b")
-		return
+		return {"status": "SKIP", "reason": "isolated session launched"}
 	observer.world = get_tree().current_scene
 	observer.profile = {"actions": profile.get("menu_actions", {})}
 	var outcome: Dictionary = await observer.perform(key)
 	print("QA_CH3_ACTION: ", outcome.status, " ", outcome.reason)
+	return outcome
 
 
 func jump(destination: String) -> void:

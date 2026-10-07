@@ -5,7 +5,7 @@
 
 ## Việc tiếp theo (cho phiên integrator kế tiếp)
 1. **Chương 4: thiết kế tạm duyệt (D-067), đã giao lane (2026-10-07):** T-194 core (hợp đồng chung, đang làm), T-195 A, T-196 B (prompt `docs/handoff/lane-b.md`; phiên web `web.md` là dự phòng), T-197 D, T-198 E; lane C làm bot sau khi các lane merge (T-199). Prompt lane A, D, E đã trỏ sang task mới.
-1. **Lane C: T-193** điền profile bot chương 3 (không chạy bot; chủ dự án cho phép riêng). **Chương 3 đang chờ chủ dự án chơi thử bản 14:52** (xác ra từ phòng, tầng 2 nấp 207, đồng đội, khán đài).
+1. **Profile bot chương 3 xong (T-193)**; bot cả chương chỉ chạy khi chủ dự án cho phép. **Chương 3 đang chờ chủ dự án chơi thử bản 14:52** (xác ra từ phòng, tầng 2 nấp 207, đồng đội, khán đài).
 1. **Chương 3, góp ý chơi thử 2026-10-07 (D-062…D-065):** Claude đã làm: tầng 2 chỉ còn 4 xác ở cửa 203, bình cứu hỏa dời vào chiếu nghỉ cầu thang thoát hiểm tầng 2 (D-062), sửa lỗi xác lún sàn đứng im; Minh Nhật và Ngư đi theo sau người chơi tới lúc chia nhau ở nhà ăn, sửa lỗi kẹt ở vườn hoa (D-063, làm thay lane A); trời đêm tối thường (D-065). Lane B: **T-192** khán đài và rải đồ (D-064), làm sau T-190.
 1. **Chương 3, D-061 (2026-10-07):** xác nhà B phải đi ra từ các phòng theo bước chân người chơi (tầng 4, 3, 2; phòng 408 bật sau khi lấy chìa). **T-190 đã merge**; Claude làm luồng **T-191** rồi export. **T-192 đã merge** (Claude Code trên web làm thay lane B, D-066); FPS đo lại 2026-10-07 PASS (sau khi làm nhẹ phần kiểm xác lún sàn).
 1. **Chương 3: chủ dự án đang chơi thử.** Đã sửa: cầu thang thoát hiểm không xuống được tầng 2 (T-188, lane E làm thay, D-060); nhà ăn làm lại (T-189, Claude làm thay). bản 2026-10-06 16:02 (`docs/playtest/CH3_QUICKTEST.md`, bản chi tiết `CH3_WALKTHROUGH.md`). Đã sửa: cửa thoát hiểm không mở khi nhìn ở tầm mắt (`c79806d`). Góp ý thêm: sửa lỗi bằng test, export lại; góp ý thiết kế thì hỏi chủ dự án.
@@ -85,7 +85,7 @@
 | T-190 Cửa phòng mở được, xác đi ra từ trong phòng (tầng 4, 3, 2; D-061) | B | **done**, đã merge (207 core mở sẵn, D-062) |
 | T-191 Xác ra từ phòng theo bước chân người chơi | core | **done** (Sonnet 5.5); chờ chủ dự án chơi thử nhà B |
 | T-192 Khán đài sân vận động làm lại, rải đồ khuôn viên (D-064) | B (**Claude Code web làm thay**, D-066) | **done**, đã merge; FPS đo lại PASS (40 xác, trung bình ≥107) |
-| T-193 Điền profile bot chương 3, menu F9 dùng được | C | todo, đã giao (prompt `docs/handoff/lane-c.md` §1); core đã thêm `debug_*`, cờ `ch3_stadium_survived`, tên `Guard01…12` |
+| T-193 Điền profile bot chương 3, menu F9 dùng được | C | **done**, đã merge (3 sửa nhỏ của integrator); bot cả chương chưa chạy |
 | **Chương 4 "Người sống sót" (D-067, giao 2026-10-07)** | | |
 | T-194 Hợp đồng chung, kịch bản, luồng 5 khu, ghép | core | **doing**: hợp đồng xong, kịch bản và luồng chưa |
 | T-195 Điện thoại mồi, lật vạt giường, độ bền cửa phá, cảnh chết `door_burst` | A | todo, đã giao |

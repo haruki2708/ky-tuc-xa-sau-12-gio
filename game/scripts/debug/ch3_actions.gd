@@ -44,12 +44,20 @@ func guard_positions() -> Array[Vector3]:
 
 func walk(point: Dictionary, allow_guard: bool = false) -> Dictionary:
 	var actor := player_node() as CharacterBody3D
-	var target := world.get_node_or_null(str(point.anchor)) as Node3D
-	if actor == null or target == null: return result("SKIP", "Player/route anchor missing: " + str(point.anchor))
+	var label := str(point.get("anchor", point.get("position", [])))
+	if actor == null: return result("FAIL", "Player missing")
+	var target_position: Vector3
+	if point.has("anchor"):
+		var target := world.get_node_or_null(str(point.anchor)) as Node3D
+		if target == null: return result("FAIL", "Route anchor missing: " + label)
+		target_position = target.global_position
+	else:
+		var xyz: Array = point.position
+		target_position = Vector3(xyz[0], xyz[1], xyz[2])
 	var map := actor.get_world_3d().navigation_map
 	if NavigationServer3D.map_get_iteration_id(map) == 0: return result("SKIP", "T-183 navigation map not synchronized")
-	var path := NavigationServer3D.map_get_path(map, actor.global_position, target.global_position, true)
-	if not POLICY.path_reaches(path, target.global_position): return result("FAIL", "navmesh cannot reach " + str(point.anchor))
+	var path := NavigationServer3D.map_get_path(map, actor.global_position, target_position, true)
+	if not POLICY.path_reaches(path, target_position): return result("FAIL", "navmesh cannot reach " + label)
 	for guard_path: String in profile.get("bindings", {}).get("guard_paths", []):
 		if world.get_node_or_null(guard_path) == null: return result("SKIP", "guard binding missing: " + guard_path)
 	if not allow_guard and not POLICY.avoids_guards(path, guard_positions()): return result("FAIL", "route enters guard warning radius")
@@ -58,7 +66,7 @@ func walk(point: Dictionary, allow_guard: bool = false) -> Dictionary:
 		while is_instance_valid(actor) and actor.global_position.distance_to(next) > 0.6:
 			if _cancelled or Time.get_ticks_msec() >= deadline:
 				release_movement()
-				return result("FAIL", "walk cancelled/timed out: " + str(point.anchor))
+				return result("FAIL", "walk cancelled/timed out: " + label)
 			if incoming != &"":
 				await super.execute({"op": "answer_call"})
 				incoming = &""
@@ -76,7 +84,35 @@ func walk(point: Dictionary, allow_guard: bool = false) -> Dictionary:
 			await get_tree().physics_frame
 	release_movement()
 	if not is_instance_valid(actor): return result("FAIL", "player freed during walk")
-	return result("PASS", "navmesh reached " + str(point.anchor))
+	return result("PASS", "navmesh reached " + label)
+
+
+## Each loop and wait is bounded, observes real state, and never changes it.
+func step(point: Dictionary) -> Dictionary:
+	if point.has("loop"):
+		var deadline := Time.get_ticks_msec() + int(float(point.timeout) * 1000.0)
+		while not acknowledged(point.until, null, world):
+			for leg: Dictionary in point.loop:
+				if _cancelled or Time.get_ticks_msec() >= deadline: return result("FAIL", "route loop cancelled/timed out")
+				var outcome := await step(leg)
+				if outcome.status != "PASS": return outcome
+				if acknowledged(point.until, null, world): break
+		return result("PASS", "route loop acknowledged")
+	var outcome := await walk(point)
+	if outcome.status != "PASS": return outcome
+	if point.has("action"):
+		outcome = await perform(point.action)
+		if outcome.status != "PASS": return outcome
+	var started := Time.get_ticks_msec()
+	var seconds := float(point.get("wait_seconds", 0.0))
+	var limit := float(point.get("wait_timeout", seconds + 3.0))
+	while true:
+		if _cancelled: return result("FAIL", "waypoint wait cancelled")
+		var elapsed := (Time.get_ticks_msec() - started) / 1000.0
+		if elapsed >= seconds and (not point.has("wait_for") or acknowledged(point.wait_for, null, world)): break
+		if elapsed > limit: return result("FAIL", "waypoint acknowledgement timed out")
+		await get_tree().process_frame
+	return outcome
 
 
 func strike_blocker() -> void:
@@ -111,18 +147,33 @@ func strike_blocker() -> void:
 func perform(key: String) -> Dictionary:
 	var spec: Variant = profile.get("actions", {}).get(key)
 	if not spec is Dictionary: return result("SKIP", "action not bound: " + key)
+	if _cancelled or not is_instance_valid(world): return result("FAIL", "action cancelled/world missing: " + key)
 	var target := world.get_node_or_null(str(spec.get("path", "")))
 	if target == null or not target.has_method(str(spec.get("method", ""))): return result("SKIP", "action API unavailable: " + key)
 	if not spec.get("verify") is Dictionary: return result("FAIL", "action requires state acknowledgement: " + key)
+	if spec.has("max_distance"):
+		var actor := player_node()
+		if actor == null or not target is Node3D or actor.global_position.distance_to(target.global_position) > float(spec.max_distance):
+			return result("FAIL", "action out of reach: " + key)
 	var args: Array = []
 	for value: Variant in spec.get("args", []): args.append(player_node() if value is String and value == "$player" else value)
 	target.callv(spec.method, args)
 	var until := Time.get_ticks_msec() + 3000
-	while not acknowledged(spec.verify, target) and Time.get_ticks_msec() < until and not _cancelled: await get_tree().process_frame
-	return result("PASS" if acknowledged(spec.verify, target) else "FAIL", "action acknowledgement: " + key)
+	while not acknowledged(spec.verify, target, world) and Time.get_ticks_msec() < until and not _cancelled: await get_tree().process_frame
+	return result("PASS" if acknowledged(spec.verify, target, world) else "FAIL", "action acknowledgement: " + key)
 
 
-static func acknowledged(check: Dictionary, target: Node = null) -> bool:
+static func acknowledged(check: Dictionary, target: Node = null, root: Node = null) -> bool:
 	if not check.has("equals"): return false
-	var value: Variant = GameState.get_flag(StringName(check.flag), null) if check.has("flag") else target.get(str(check.get("property", ""))) if is_instance_valid(target) else null
+	if check.has("path"):
+		if not is_instance_valid(root): return false
+		target = root.get_node_or_null(str(check.path))
+	var value: Variant
+	if check.has("flag"):
+		value = GameState.get_flag(StringName(check.flag), null)
+	else:
+		value = target
+		for property: String in str(check.get("property", "")).split(":"):
+			if not value is Object or not is_instance_valid(value) or property.is_empty(): return false
+			value = value.get(property)
 	return preload("res://scripts/debug/ch1v2_actions.gd")._same(value, check.equals)
