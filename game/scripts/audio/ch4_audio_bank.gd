@@ -2,7 +2,7 @@ class_name Ch4AudioBank
 extends RefCounted
 
 const DIRECTORY := "res://audio/ch4"
-const VOICE_DIRECTORY := "res://audio/ch4_voice"
+const VOICE_DIRECTORY := "res://audio/voice/vi"
 const NAMES: Array[String] = [
 	"decoy_ring", "phone_land", "battery_empty", "door_pound", "wood_crack",
 	"wood_splinters", "door_burst", "door_burst_soft", "library", "drizzle",
@@ -12,7 +12,11 @@ const NAMES: Array[String] = [
 	"hospital_door", "music_sparse", "music_hospital", "music_end",
 ]
 const LOOPS: Array[String] = ["decoy_ring", "library", "drizzle", "music_sparse", "music_hospital"]
-const VOICES: Array[String] = ["pa_signed", "nurse1_wake", "nurse2_quake", "nurse1_all", "nurse2_all", "nurse1_alone", "nurse2_alone"]
+const VOICES: Array[String] = [
+	"SPK_CH4_REGISTERED", "CHAT_CH4_NGU_GO", "CHAT_CH4_NGU_LECTURE", "CHAT_CH4_NGU_NO_EXIT", "CHAT_CH4_NGU_TRUNG",
+	"CHAT_CH4_N_GO", "CHAT_CH4_N_GYM", "CHAT_CH4_N_LINE", "CHAT_CH4_N_WHERE", "CHAT_CH4_N_LOST", "CHAT_CH4_N_GOT",
+	"NEAR_CH4_NURSE1_AWAKE", "NEAR_CH4_NURSE1_LUCKY", "NEAR_CH4_NURSE2_QUAKE", "NEAR_CH4_NURSE2_ALL", "NEAR_CH4_NURSE2_ALONE",
+]
 const SCARES: Array[StringName] = [
 	&"librarian_rise", &"books_fall", &"shelf_corpse", &"back_door_hit", &"knife_pull",
 	&"stairs_turn", &"hall_lights", &"door_hand", &"neck_hand", &"monitor_skip",

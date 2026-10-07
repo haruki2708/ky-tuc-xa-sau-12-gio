@@ -29,8 +29,8 @@ func _ready() -> void:
 		rig.stair_points.append(point)
 	preview = AudioStreamPlayer.new()
 	add_child(preview)
-	print("CH4 AUDIO: arrows/Space audition 29 sounds + 7 voices; 1 decoy; 2 door damage; 3 library; 4 stairs; 5 room407; 6 neck; 7 fade; 8 hospital; 9 monitor skip; E end; 0 reset; Esc quit.")
-	print("See audio_source/ch4/README.md for measured levels and pending core integration.")
+	print("CH4 AUDIO: arrows/Space audition 29 sounds + 16 voices; 1 decoy; 2 door damage; 3 library; 4 stairs; 5 room407; 6 neck; 7 fade; 8 hospital; 9 monitor skip; E end; 0 reset; Esc quit.")
+	print("See audio_source/ch4/README.md and audio_source/voice_ch4/README.md for measured levels.")
 
 
 func audition(index: int) -> void:
@@ -43,7 +43,7 @@ func audition(index: int) -> void:
 		print("CH4 clip: ", id)
 	else:
 		var id := Ch4AudioBank.VOICES[selected - Ch4AudioBank.NAMES.size()]
-		preview.bus = &"Voice"
+		preview.bus = &"PhoneVoice" if id.begins_with("CHAT_CH4_") else &"Voice"
 		preview.stream = Ch4AudioBank.voice(id)
 		print("CH4 voice: ", id)
 	if preview.stream != null:

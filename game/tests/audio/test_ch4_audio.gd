@@ -57,7 +57,7 @@ func after_each() -> void:
 	assert_eq(AudioServer.bus_count, _buses)
 
 
-func test_ch4_banks_decode_match_hashes_lufs_loops_and_exact_design_voices() -> void:
+func test_ch4_banks_decode_match_hashes_lufs_loops_and_approved_voices() -> void:
 	var report: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://../audio_source/ch4/build_report.json"))
 	assert_eq(report.assets.size(), Ch4AudioBank.NAMES.size())
 	for entry: Dictionary in report.assets:
@@ -74,16 +74,24 @@ func test_ch4_banks_decode_match_hashes_lufs_loops_and_exact_design_voices() -> 
 			assert_true(entry.boundary_delta < 0.01)
 		_decode(clip)
 	var voices: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://../audio_source/voice_ch4/build_report.json"))
-	var design := FileAccess.get_file_as_string("res://../docs/design/CH4_DESIGN.md")
-	assert_eq(voices.assets.size(), 7)
+	var texts: Dictionary[String, String] = {}
+	var csv := FileAccess.open("res://localization/strings.csv", FileAccess.READ)
+	while not csv.eof_reached():
+		var row := csv.get_csv_line()
+		if row.size() >= 2:
+			texts[row[0]] = row[1]
+	csv.close()
+	assert_eq(voices.assets.size(), 16)
 	assert_true(voices.voices.nurse1[0] != voices.voices.nurse2[0])
 	for entry: Dictionary in voices.assets:
-		var clip := Ch4AudioBank.voice(entry.id) as AudioStreamOggVorbis
+		var clip := Ch4AudioBank.voice(entry.key) as AudioStreamOggVorbis
 		assert_not_null(clip)
 		assert_eq(FileAccess.get_sha256(clip.resource_path), entry.sha256)
-		assert_eq(FileAccess.get_sha256("res://../audio_source/voice_ch4/raw/%s.wav" % entry.id), entry.raw_sha256)
-		assert_true(design.contains(entry.text), "verbatim supplied design, not invented dialogue")
-		assert_true(entry.lufs <= -32 and entry.true_peak_db <= -2)
+		assert_eq(FileAccess.get_sha256("res://../audio_source/voice_ch4/raw/%s.wav" % entry.key), entry.raw_sha256)
+		assert_eq(entry.text, texts[entry.key], "verbatim Vietnamese CSV, including ellipses")
+		assert_true(Ch4AudioBank.VOICES.has(entry.key))
+		assert_true(absf(entry.lufs - entry.target_lufs) <= 1.0)
+		assert_true(entry.lufs <= -25 and entry.true_peak_db <= -2)
 		assert_false(clip.loop)
 		_decode(clip)
 	assert_eq(Ch4AudioBank.clip("../door_burst"), null)
@@ -346,12 +354,12 @@ func _source_refs(node: Node) -> Array[WeakRef]:
 	return found
 
 
-func test_ch4_audition_loads_all_36_assets_and_reset() -> void:
+func test_ch4_audition_loads_all_assets_and_reset() -> void:
 	var packed := load("res://audio/test/ch4_audio_test.tscn") as PackedScene
 	assert_not_null(packed)
 	var fixture := packed.instantiate()
 	_add(fixture)
-	for index in 36:
+	for index in Ch4AudioBank.NAMES.size() + Ch4AudioBank.VOICES.size():
 		fixture.audition(index)
 		assert_true(fixture.preview.playing)
 		assert_true(fixture.preview.volume_db <= 0.0)

@@ -11,7 +11,10 @@ const KEYS: Array[String] = [
 
 
 static func load_clip(directory: String, locale: String, key: String) -> AudioStream:
-	var chapter_key := key.begins_with("SPK_CH1_") or key.begins_with("RULE_CH1_")
+	var chapter_key := false
+	for chapter in range(1, 5):
+		if key.begins_with("SPK_CH%d_" % chapter) or key.begins_with("RULE_CH%d_" % chapter):
+			chapter_key = true
 	for character in key:
 		if not character in "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_":
 			chapter_key = false

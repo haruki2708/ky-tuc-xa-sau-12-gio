@@ -79,7 +79,12 @@ func _on_message(message_id: StringName) -> void:
 func play_message(message: MessageData) -> float:
 	if _stopped or not _in_call or _connection_lost or message == null or not message.spoken or _dead_members.has(message.sender):
 		return 0.0
-	var clip := Ch1AudioBank.voice(message.text_key, "CHAT_CH1_", voice_directory)
+	var clip: AudioStream
+	for chapter in range(1, 5):
+		var prefix := "CHAT_CH%d_" % chapter
+		if message.text_key.begins_with(prefix):
+			clip = Ch1AudioBank.voice(message.text_key, prefix, voice_directory)
+			break
 	if clip == null or _queue.size() >= 64:
 		# Text still arrives through phone_message_received; never invent spoken text.
 		return 0.0
@@ -140,12 +145,17 @@ func end_call(with_tone: bool = true) -> void:
 		_play(_effect, Ch1AudioBank.clip("call_disconnect", sound_directory))
 
 
-func _on_chapter(_chapter: int) -> void:
+func _on_chapter(chapter: int) -> void:
 	end_call(false)
+	# Chapters 2-4 continue the group call; only chapter 1 rings and is answered.
+	if not _stopped and chapter in [2, 3, 4]:
+		_call_id = StringName("ch%d_group" % chapter)
+		_in_call = true
 
 
 func _on_checkpoint(_checkpoint: StringName) -> void:
-	end_call(false)
+	# Checkpoint.restore restores GameState before emitting this signal.
+	_on_chapter(GameState.chapter)
 
 
 func _on_lost(call_id: StringName) -> void:
