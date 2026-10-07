@@ -17,6 +17,8 @@ const KEY_ACTIONS := {
 	"phone": [KEY_Q],
 	"flashlight": [KEY_F],
 	"hold_breath": [KEY_SPACE],
+	# Chapter 4 (T-194, D-067): throw the phone as a ringing decoy (lane A, T-195).
+	"throw_phone": [KEY_G],
 }
 
 const MOUSE_ACTIONS := {

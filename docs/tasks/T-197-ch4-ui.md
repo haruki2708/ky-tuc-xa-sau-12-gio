@@ -6,7 +6,7 @@
 
 ## Việc
 ### 1. Tab "Đối chiếu" trong sổ quy tắc (thư viện)
-- Sổ quy tắc (T-156) có thêm tab **Đối chiếu**, **chỉ hiện ở chương 4** (khi `GameState.get_flag(&"ch4_compare_enabled", false)`, core đặt ở thư viện). Phát `EventBus.ch4_compare_opened()` khi mở.
+- Sổ quy tắc (T-156) có thêm tab **Đối chiếu**, **chỉ hiện ở chương 4** khi `GameState.get_flag(&"ch4_compare_enabled", false)` là true. Core đặt cờ này khi người chơi dùng **bàn đọc** ở thư viện, rồi gọi `Notebook.open_notebook()`; tab Đối chiếu nên được chọn sẵn khi sổ mở theo cách này. Phát `EventBus.ch4_compare_opened()` khi tab mở.
 - Nội dung: **nguyên văn 5 vòng luật** (đọc từ `RuleSystem`/sổ, mỗi vòng một khối) và cạnh mỗi vòng **cách người chơi đã qua** (một dòng ngắn từ `GameState`; core cung cấp các key `UI_CH4_SOLVED_R2…R4`; vòng 1 và 5 không có dòng này). **Không chú thích gì thêm.**
 - **Luật vòng 5 gồm 3 dòng** (`RULE_CH3_R5_1…3`, id `ch3_r5_1…3`). Người chơi **gạch chân một dòng** (chọn dòng rồi bấm nút "Gạch chân"): phát `EventBus.ch4_sentence_marked(rule_key)`. Core trả lời `ch4_compare_result(rule_key, matched)`: `matched` thì dòng đó **giữ gạch chân** và hiện ghi chú do người chơi "viết" (`UI_CH4_NOTE_REDUNDANT`, một dòng ngắn, ví dụ "Câu này thừa."); sai thì gạch chân tắt và hiện "Chưa khớp." (`UI_CH4_NOT_YET`), **không phạt, không gợi ý**.
 
@@ -15,7 +15,7 @@
 - Nhận `survivor_form_assembled()`: **ghép 3 mảnh** thành **Phiếu điều tra người sống sót sau thảm họa động đất**: tiêu đề, các cột giới tính, tuổi, ngày sinh, phòng, tòa (đã điền khớp Trung, chữ loang), cột **"Họ và tên" để trống**. Chữ qua `UI_CH4_FORM_*` (D thêm key).
 
 ### 3. Viết tên bằng máu
-- Trên phiếu có nút **"Cắn ngón tay"** (`UI_CH4_BITE`). Bấm thì hiện **ô gõ tên** (cùng khung với ô nối từ chương 2: bộ gõ của máy, không gợi ý; chữ đỏ sẫm như máu) và phát `EventBus.blood_name_requested(seconds)` (core đặt `seconds` theo thời gian cửa 407 còn lại). **Phát `text_entry_changed(true)`** khi nhận bàn phím, `false` khi trả (lane A đứng yên).
+- **Core** phát `EventBus.blood_name_requested(seconds)` ngay sau `survivor_form_assembled()` (`seconds` = thời gian cửa 407 còn chịu được). Khi nhận tín hiệu này, phiếu hiện nút **"Cắn ngón tay"** (`UI_CH4_BITE`); bấm thì mở **ô gõ tên** (cùng khung với ô nối từ chương 2: bộ gõ của máy, không gợi ý; chữ đỏ sẫm như máu) với đồng hồ đếm từ `seconds`. **Phát `text_entry_changed(true)`** khi nhận bàn phím, `false` khi trả (lane A đứng yên).
 - Gửi tên: `EventBus.blood_name_typed(text)`. Core trả `blood_name_closed(result)`: `accepted` thì tên **hiện bằng máu** trên phiếu (hiệu ứng viết); `wrong` thì **không** xóa, cho gõ lại tới hết giờ (cửa vỡ); `timeout` đóng ô.
 - Có **đồng hồ** theo dõi cửa (thanh nhỏ), không số.
 

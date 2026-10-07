@@ -55,9 +55,18 @@ func walk(point: Dictionary, allow_guard: bool = false) -> Dictionary:
 		var xyz: Array = point.position
 		target_position = Vector3(xyz[0], xyz[1], xyz[2])
 	var map := actor.get_world_3d().navigation_map
-	if NavigationServer3D.map_get_iteration_id(map) == 0: return result("SKIP", "T-183 navigation map not synchronized")
-	var path := NavigationServer3D.map_get_path(map, actor.global_position, target_position, true)
-	if not POLICY.path_reaches(path, target_position): return result("FAIL", "navmesh cannot reach " + label)
+	# The outdoor mesh has hundreds of regions that register over several
+	# physics frames after a scene (re)load: wait for them, bounded.
+	var path := PackedVector3Array()
+	var sync_deadline := Time.get_ticks_msec() + 10000
+	while true:
+		if NavigationServer3D.map_get_iteration_id(map) != 0:
+			path = NavigationServer3D.map_get_path(map, actor.global_position, target_position, true)
+			if POLICY.path_reaches(path, target_position): break
+		if Time.get_ticks_msec() >= sync_deadline:
+			if NavigationServer3D.map_get_iteration_id(map) == 0: return result("SKIP", "T-183 navigation map not synchronized")
+			return result("FAIL", "navmesh cannot reach " + label)
+		await get_tree().physics_frame
 	for guard_path: String in profile.get("bindings", {}).get("guard_paths", []):
 		if world.get_node_or_null(guard_path) == null: return result("SKIP", "guard binding missing: " + guard_path)
 	if not allow_guard and not POLICY.avoids_guards(path, guard_positions()): return result("FAIL", "route enters guard warning radius")

@@ -869,3 +869,39 @@ PROMPT_CH3_TAKE_KEY,Lấy chìa khóa,Take the key
 PROMPT_CH3_UNLOCK,Mở khóa cửa,Unlock the door
 PROMPT_CH3_EXTINGUISHER,Đập bình cứu hỏa,Bang the extinguisher
 PROMPT_CH3_CLIMB,Trèo qua cửa sổ (cúi),Climb through the window (crouch)
+NAME_CH4_MINH_NHAT,Minh Nhật,Minh Nhật
+NAME_CH4_NGU,Ngọc Ngư,Ngọc Ngư
+NAME_CH4_TRUNG,Tôi,Me
+DOC_CH4_MAP_TITLE,SƠ ĐỒ KHUÔN VIÊN,CAMPUS MAP
+DOC_CH4_MAP_1,Giảng đường · Thư viện · Nhà thi đấu · Sân vận động · Nhà ăn · Cổng trường · Ký túc xá A · Ký túc xá B,Lecture halls · Library · Gym · Stadium · Canteen · Main gate · Dormitory A · Dormitory B
+DOC_CH4_MAP_2,(Hai ô ký túc xá bị khoanh bút đỏ. Mực đã phai.),(The two dormitories are circled in red pen. The ink has faded.)
+DOC_CH4_DIARY_TITLE,SỔ TRỰC THƯ VIỆN — ca đêm,LIBRARY NIGHT LOG
+DOC_CH4_DIARY_1,3:52. Nước trong cốc gợn thành vòng. Chó ngoài cổng sủa mãi không thôi.,3:52. The water in my cup rippled in rings. The dogs by the gate won't stop barking.
+DOC_CH4_DIARY_2,"3:57. Đèn chớp hai lần. Ghi lại, sáng mai báo bảo trì.","3:57. The lights flickered twice. Noted, report to maintenance in the morning."
+CHAT_CH4_NGU_GO,Giữ máy nhé. Có chuyện gì thì la lên.,Keep the line open. Shout if anything happens.
+CHAT_CH4_N_GO,"Thư viện nằm giữa giảng đường với sân vận động. Đi đường lớn, đừng chui vào lối hẹp.","The library is between the lecture halls and the stadium. Stick to the main road, stay out of the narrow paths."
+CHAT_CH4_NGU_LECTURE,"Tới giảng đường rồi. Nhiều cửa, nhiều dãy ghế, mình dụ chúng chạy vòng được.","I'm at the lecture halls. Lots of doors, lots of rows of seats, I can lead them around in circles."
+CHAT_CH4_N_GYM,Nhà thi đấu rộng mà trống trơn. Toàn xác. Tôi đang núp sau khán đài.,The gym is huge and empty. Nothing but them. I'm hiding behind the bleachers.
+UI_CH4_SOLVED_R2,"Nằm lên giường của người đã chết, tắt hết đèn, nín thở. Ông ta chém nát giường trống.","Lay on a dead roommate's bed, all lights off, held my breath. He hacked my empty bed apart."
+UI_CH4_SOLVED_R3,Bịt miệng cả ba. Lặp một vòng từ cho tới hết giờ.,Gagged all three. Looped one chain of words until time ran out.
+UI_CH4_SOLVED_R4,Tìm ra quy luật nhiệt độ. Chỉ chọn Có ở những lượt an toàn.,Worked out the temperature pattern. Said Yes only on the safe turns.
+CHAT_CH4_NGU_NO_EXIT,"Lạ thật. Cửa nào ở đây cũng thông ra ngoài, mà ra ngoài thì toàn xác. Chạy mãi chẳng thấy lối nào gọi là thoát.","This is weird. Every door here leads outside, and outside it's all of them. I keep running and there's nothing you could call a way out."
+CHAT_CH4_N_LINE,Tôi đọc lại luật trong sổ. Có một câu cứ lấn cấn… mà nghĩ mãi chưa ra.,I read the rules again. One line keeps bugging me… and I can't work out why.
+CHAT_CH4_NGU_TRUNG,Trung? Cậu tới thư viện chưa? Còn nghe được không?,Trung? Did you make it to the library? Can you still hear me?
+CHAT_CH4_N_WHERE,"Trung, chỗ cậu sao rồi? Bên tôi bắt đầu đông lên.","Trung, how's it going there? It's getting crowded on my side."
+CHAT_CH4_N_LOST,Trung? Trung ơi? Cậu đang ở…,Trung? Trung? Where are y—
+SPK_CH4_REGISTERED,Trần Trung đã đăng ký thành công. Bạn là người sống sót.,Trần Trung has been registered. You are a survivor.
+CHAT_CH4_N_GOT,Vạt giường…? Trung? Trung!,Bed slats…? Trung? Trung!
+NEAR_CH4_NURSE1_AWAKE,"Tỉnh rồi! Cậu nằm yên, đừng cử động.","He's awake! Lie still, don't move."
+NEAR_CH4_NURSE2_QUAKE,"Động đất đó cậu. Trường cậu gần tâm chấn lắm, mấy tòa ký túc xá sập ngay lúc bốn giờ sáng.",It was an earthquake. Your school was right by the epicentre. Several dormitories went down at four in the morning.
+NEAR_CH4_NURSE1_LUCKY,"Lúc đào được cậu ra, cậu vẫn còn thở. Coi như nhặt lại được cái mạng.",When they dug you out you were still breathing. You got your life back.
+SAY_CH4_TRUNG_ASK,Còn… ai nữa không?,Is there… anyone else?
+NEAR_CH4_NURSE2_ALL,"Hai bạn bên cạnh được đưa ra cùng đợt với cậu. Vẫn đang hôn mê, nhưng qua cơn nguy rồi.","The two next to you came out with you. Still unconscious, but out of danger."
+NEAR_CH4_NURSE2_ALONE,Tòa của cậu… chỉ có mình cậu ra được.,Your building… you were the only one who made it out.
+DEATH_CH4_GRABBED,Xác sống đã tóm được bạn.,A zombie got hold of you.
+DEATH_CH4_STAIRS,Bạn bị kẹt giữa đám xác trên cầu thang.,You were caught in the crowd on the stairs.
+DEATH_CH4_LIBRARY,Cửa thư viện vỡ. Chúng tràn vào.,The library door gave way. They poured in.
+DEATH_CH4_DOOR,Cánh cửa không trụ được nữa.,The door couldn't hold any longer.
+PROMPT_CH4_DESK,Mở sổ quy tắc,Open the rule book
+PROMPT_CH4_MAP,Xem sơ đồ,Look at the map
+PROMPT_CH4_DIARY,Đọc sổ trực,Read the night log

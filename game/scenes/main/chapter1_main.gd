@@ -50,9 +50,9 @@ func _ready() -> void:
 
 
 ## Chapters 1–3 (T-170, T-181) share this scene script; the director node
-## is Chapter1Director, Chapter2Director or Chapter3Director.
+## is Chapter1Director, Chapter2Director, Chapter3Director or Chapter4Director.
 func _director() -> Chapter1Director:
-	for director_name in ["Chapter3Director", "Chapter2Director"]:
+	for director_name in ["Chapter4Director", "Chapter3Director", "Chapter2Director"]:
 		var node := get_node_or_null(director_name)
 		if node != null:
 			return node as Chapter1Director

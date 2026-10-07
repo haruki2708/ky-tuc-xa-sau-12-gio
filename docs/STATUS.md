@@ -87,7 +87,7 @@
 | T-192 Khán đài sân vận động làm lại, rải đồ khuôn viên (D-064) | B (**Claude Code web làm thay**, D-066) | **done**, đã merge; FPS đo lại PASS (40 xác, trung bình ≥107) |
 | T-193 Điền profile bot chương 3, menu F9 dùng được | C | **done**, đã merge (3 sửa nhỏ của integrator); bot cả chương chưa chạy |
 | **Chương 4 "Người sống sót" (D-067, giao 2026-10-07)** | | |
-| T-194 Hợp đồng chung, kịch bản, luồng 5 khu, ghép | core | **doing**: hợp đồng xong, kịch bản và luồng chưa |
+| T-194 Hợp đồng chung, kịch bản, luồng 5 khu, ghép | core | **doing**: hợp đồng, kịch bản (`CH4_SCRIPT.md`, chờ duyệt lời) và khung luồng xong; chờ ghép lane, lồng giọng |
 | T-195 Điện thoại mồi, lật vạt giường, độ bền cửa phá, cảnh chết `door_burst` | A | todo, đã giao |
 | T-196 Thư viện 3 tầng, đường về, phòng 407 cuối, bệnh viện | B (lane B đã có lại token; phiên web dự phòng, D-066) | todo, đã giao (prompt `lane-b.md` §1) |
 | T-197 Tab Đối chiếu, phiếu điều tra, tên bằng máu, mờ dần, thẻ bệnh viện, thẻ hết chương | D | todo, đã giao |

@@ -1,5 +1,5 @@
 # T-194 — Chương 4: hợp đồng chung, kịch bản, luồng 5 khu, ghép (core)
-- Lane: core (Claude) | Trạng thái: doing | Agent: Claude
+- Lane: core (Claude) | Trạng thái: doing (kịch bản, khung luồng xong; chờ ghép lane) | Agent: Claude
 - Phụ thuộc: `docs/design/CH4_DESIGN.md` (D-067). Các lane xem **mục "Hợp đồng chung" dưới đây** trước khi làm card của mình (T-195 A, T-196 B, T-197 D, T-198 E).
 - **Hạn đề xuất:** hợp đồng 2026-10-07 (xong); các lane xong 2026-10-10; ghép 2026-10-11; chơi thử khoảng 2026-10-12.
 
@@ -59,4 +59,17 @@ Mọi chữ qua `game/localization/strings.csv` (vi và en). **Core** thêm `SPK
 ## Handoff
 ### Phiên 2026-10-07 (Claude): hợp đồng chung, thiết kế duyệt
 - Thiết kế `CH4_DESIGN.md` tạm duyệt (D-067), EventBus mục "Chapter 4", card T-195…T-198 giao các lane. Chưa viết kịch bản, luồng.
-- **Chưa làm:** `build_ch4_script.py`, `chapter4_director.gd`, `chapter4.tscn`, input `throw_phone`, ghép.
+- **Chưa làm (lúc đó):** kịch bản, luồng, cảnh, phím.
+
+### Phiên 2026-10-07 (Claude, Opus): kịch bản và khung luồng
+- **Kịch bản** `docs/design/ch4/build_ch4_script.py` → `CH4_SCRIPT.md` (chờ chủ dự án duyệt lời), 36 key chữ, 10 tin nhắn gọi (`chat_ch4_*`), giấy tờ `ch4_map`, `ch4_diary` (`DocumentData`), sổ quy tắc `data/rules/ch4.tres` gộp Tổng tắc và luật cả 5 vòng (cho tab Đối chiếu), các dòng "cách đã qua" `UI_CH4_SOLVED_R2…R4`. Chữ xuống dòng trong `strings.csv` viết `
+` (không xuống dòng thật).
+- **Luồng** `scripts/core/chapter4_director.gd` (`Chapter4Director extends Chapter3Director`, dùng lại xác, thanh sắt, thể lực, vùng, giọng của chương 3), `scenes/main/chapter4.tscn`, `App.CHAPTER_SCENES[4]`, `chapter1_main._director()` nhận director chương 4, phím **`throw_phone` (G)** trong `GameInput`.
+  - Khu `split`: chuẩn bị chương (cửa thoát hiểm mở, 3 lần đổ chuông, thanh sắt mới), cuộc gọi theo mốc thời gian, tới thư viện.
+  - Khu `library`: cửa phụ `library_back` gắn `ZombieDoor` (75 giây) và xác ở `LibraryZombieSpawn`; bàn đọc bật `ch4_compare_enabled` và mở `Notebook`; phán quyết `ch4_sentence_marked` (chỉ `ch3_r5_2` đúng, sai không phạt); ra khỏi thư viện sau khi gạch đúng.
+  - Khu `return`: về nhà B, đám xác cầu thang (`StairCrowd`, chậm, giữ hướng của điểm đặt), `stairs_turn` đánh thức cả đám; lên tầng 2 thì mất sóng (`n_lost`), tầng 4 `hall_lights`, vào 407.
+  - Khu `room407`: cửa 407 gắn `ZombieDoor` (90 giây), 4 xác từ cuối hành lang (có thời gian chốt cửa); 3 vạt giường (1, 2, 4) → `survivor_form_assembled` và `blood_name_requested(giây còn lại)`; tên so bằng `VietText.plain` ("tran trung"); cửa vỡ trước khi ký → `DEATH_CH4_DOOR`; ký xong thì mọi xác ngồi xổm, loa đọc.
+  - Kết: `fade_message_requested(12)`; tin chứa "vat giuong" (bỏ dấu) → `all`, không thì `alone`; `n_got` ở kết thật; phòng bệnh viện (nếu có) và lời y tá; `chapter_finished(4)`.
+  - **Điểm thay tạm** khi lane B chưa có anchor `Ch4/*`: `FALLBACK_STARTS` cho 4 checkpoint; thiếu cửa, đám xác, bệnh viện thì luồng vẫn chạy (bỏ qua phần đó).
+- **Test:** `test_chapter4.gd` (7: bắt đầu ở nhà ăn, chỉ dòng thừa được nhận, đường về tới 407, vạt giường → phiếu → tên → kết thật, hết giờ và sai tin → kết một mình, chết ở thư viện → checkpoint thư viện), `test_chapter4_data.gd` (4).
+- **Chưa làm:** lồng giọng (sau khi chủ dự án duyệt lời), ghép T-195…T-198 khi lane xong, bot T-199.
