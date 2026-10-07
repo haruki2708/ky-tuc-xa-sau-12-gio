@@ -869,3 +869,4 @@ PROMPT_CH3_TAKE_KEY,Lấy chìa khóa,Take the key
 PROMPT_CH3_UNLOCK,Mở khóa cửa,Unlock the door
 PROMPT_CH3_EXTINGUISHER,Đập bình cứu hỏa,Bang the extinguisher
 PROMPT_CH3_CLIMB,Trèo qua cửa sổ (cúi),Climb through the window (crouch)
+PROMPT_CH4_FLIP_SLAT,Lật vạt giường (giữ E),Flip bed slats (hold E)

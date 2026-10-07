@@ -64,6 +64,7 @@ var _breath_elapsed: float = 0.0
 var _hold_elapsed: float = 0.0
 var _breath_cooldown: float = 0.0
 var _control_locks: Array[Node] = []
+var _movement_locks: Array[Node] = []
 var death_animation: PlayerDeath
 var _bash_elapsed: float = 0.22
 var _text_entry_active: bool = false
@@ -88,7 +89,7 @@ func _ready() -> void:
 
 
 func _on_death_started(kind: StringName) -> void:
-	if death_animation.active or kind not in [&"fall_back", &"manager_kill", &"bed_burst", &"corpse_lunge", &"scald", &"zombie_grab", &"guard_shock"]:
+	if death_animation.active or kind not in [&"fall_back", &"manager_kill", &"bed_burst", &"corpse_lunge", &"scald", &"zombie_grab", &"guard_shock", &"door_burst"]:
 		return
 	if _bash_elapsed < 0.22:
 		camera.rotation = Vector3.ZERO
@@ -112,6 +113,8 @@ func _on_text_entry_changed(active: bool) -> void:
 	# A new gameplay press is required after closing; Esc/Enter belong to the UI.
 	for action: StringName in GAMEPLAY_ACTIONS:
 		Input.action_release(action)
+	if InputMap.has_action("throw_phone"):
+		Input.action_release("throw_phone")
 	if active:
 		velocity = Vector3.ZERO
 		_set_holding_breath(false)
@@ -204,6 +207,11 @@ func _physics_process(delta: float) -> void:
 		velocity = Vector3.ZERO
 		# Settle the existing bob without taking another locomotion step.
 		camera.position.y = move_toward(camera.position.y, 0.0, delta * 0.1)
+		_update_focus()
+		return
+	if movement_locked():
+		velocity = Vector3.ZERO
+		_update_stamina(delta, false, false)
 		_update_focus()
 		return
 	_update_crouch()
@@ -370,6 +378,21 @@ func _exit_tree() -> void:
 
 func make_noise(radius: float, source: StringName) -> void:
 	EventBus.noise_emitted.emit(global_position, maxf(0.0, radius), source)
+
+
+func movement_locked() -> bool:
+	_movement_locks = _movement_locks.filter(func(owner: Node) -> bool: return is_instance_valid(owner))
+	return not _movement_locks.is_empty()
+
+
+func acquire_movement_lock(owner: Node) -> void:
+	if not _movement_locks.has(owner):
+		_movement_locks.append(owner)
+	velocity = Vector3.ZERO
+
+
+func release_movement_lock(owner: Node) -> void:
+	_movement_locks.erase(owner)
 
 
 func controls_locked() -> bool:
