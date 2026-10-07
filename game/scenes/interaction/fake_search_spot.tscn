@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3]
+[ext_resource type="PackedScene" path="res://scenes/interaction/search_spot.tscn" id="1"]
+[node name="FakeSearchSpot" instance=ExtResource("1")]
+hold_seconds = 8.0
+empty_result = true

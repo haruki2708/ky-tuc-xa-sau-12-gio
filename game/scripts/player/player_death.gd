@@ -19,6 +19,7 @@ var _corpse: Node3D
 var _bursts: int = 0
 var _look_basis: Basis
 var _grab_origin: Vector3
+var door_burst: DoorBurst
 
 
 func _ready() -> void:
@@ -38,7 +39,15 @@ func start(player: CharacterBody3D, camera: Camera3D, death_kind: StringName) ->
 	_look_basis = _start.basis
 	_end = _start
 	var yaw: float = player.global_rotation.y
-	if kind == &"manager_kill":
+	if kind == &"door_burst":
+		door_burst = DoorBurst.new()
+		add_child(door_burst)
+		door_burst.setup(player, camera)
+		door_burst.advance(0, reduced)
+		var away: Vector3 = _start.origin - door_burst.focus_point
+		away.y = 0
+		_end.origin += away.normalized() * 0.5
+	elif kind == &"manager_kill":
 		for node: Node in get_tree().get_nodes_in_group(&"dorm_manager"):
 			if node is Node3D and node.get_world_3d() == camera.get_world_3d():
 				if _manager == null or node.global_position.distance_squared_to(camera.global_position) < _manager.global_position.distance_squared_to(camera.global_position):
@@ -70,7 +79,7 @@ func start(player: CharacterBody3D, camera: Camera3D, death_kind: StringName) ->
 		var hit: Dictionary = camera.get_world_3d().direct_space_state.intersect_ray(query)
 		_end.origin.y = float(hit.position.y) + 0.15 if not hit.is_empty() else player.global_position.y + 0.15
 	_create_blood()
-	if not reduced and kind not in [&"manager_kill", &"corpse_lunge", &"scald", &"zombie_grab", &"guard_shock"]:
+	if not reduced and kind not in [&"manager_kill", &"corpse_lunge", &"scald", &"zombie_grab", &"guard_shock", &"door_burst"]:
 		_burst()
 
 
@@ -79,7 +88,15 @@ func _physics_process(delta: float) -> void:
 		return
 	elapsed = minf(DURATION, elapsed + delta)
 	var desired: Transform3D = _start
-	if kind in [&"corpse_lunge", &"zombie_grab"]:
+	if kind == &"door_burst":
+		door_burst.advance(elapsed, reduced)
+		desired.origin = _start.origin.lerp(_end.origin, smoothstep(0.45, 2.7, elapsed))
+		var direction: Vector3 = door_burst.focus_point - desired.origin
+		if direction.length() > 0.01 and absf(direction.normalized().dot(Vector3.UP)) < 0.999:
+			desired.basis = _start.basis.slerp(Basis.looking_at(direction), smoothstep(0, 0.4 if not reduced else 0.9, elapsed))
+		if not reduced:
+			desired.basis *= Basis(Vector3.FORWARD, sin(elapsed * 32) * 0.035 * maxf(0, 1 - elapsed))
+	elif kind in [&"corpse_lunge", &"zombie_grab"]:
 		if reduced:
 			desired = _start.interpolate_with(_end, smoothstep(0.0, 2.7, elapsed))
 			desired.basis = _start.basis.slerp(_end.basis, smoothstep(0.0, 0.3, elapsed))
@@ -228,7 +245,7 @@ func _create_blood() -> void:
 	blood.process_material = particles
 	_camera.add_child(blood)
 	blood.position = Vector3(0, -0.3, -0.45)
-	blood.visible = not reduced and kind not in [&"scald", &"guard_shock"]
+	blood.visible = not reduced and kind not in [&"scald", &"guard_shock", &"door_burst"]
 
 
 func _burst() -> void:

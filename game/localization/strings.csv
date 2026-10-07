@@ -905,3 +905,4 @@ DEATH_CH4_DOOR,Cánh cửa không trụ được nữa.,The door couldn't hold a
 PROMPT_CH4_DESK,Mở sổ quy tắc,Open the rule book
 PROMPT_CH4_MAP,Xem sơ đồ,Look at the map
 PROMPT_CH4_DIARY,Đọc sổ trực,Read the night log
+PROMPT_CH4_FLIP_SLAT,Lật vạt giường (giữ E),Flip bed slats (hold E)

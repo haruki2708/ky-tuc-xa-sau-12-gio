@@ -19,6 +19,10 @@ var in_call: bool = false
 var _charge_rate: float = 0.0
 var _reported_percent: int = -1
 var _empty: bool = false
+var decoy: PhoneDecoy
+var away: bool = false
+var _return_raised: bool = false
+var _return_flashlight: bool = false
 
 
 func _ready() -> void:
@@ -42,7 +46,10 @@ func _unhandled_input(event: InputEvent) -> void:
 		ancestor = ancestor.get_parent()
 	if event.is_echo():
 		return
-	if event.is_action_pressed("phone"):
+	if InputMap.has_action("throw_phone") and event.is_action_pressed("throw_phone"):
+		if throw_decoy():
+			get_viewport().set_input_as_handled()
+	elif event.is_action_pressed("phone"):
 		set_raised(not raised)
 		get_viewport().set_input_as_handled()
 	elif event.is_action_pressed("flashlight"):
@@ -58,6 +65,7 @@ func _physics_process(delta: float) -> void:
 
 
 func set_raised(value: bool) -> void:
+	value = value and not away
 	if raised == value:
 		return
 	raised = value
@@ -66,11 +74,54 @@ func set_raised(value: bool) -> void:
 
 
 func set_flashlight(value: bool) -> void:
-	value = value and battery > 0.0
+	value = value and battery > 0.0 and not away
 	if flashlight.visible == value:
 		return
 	flashlight.visible = value
 	EventBus.flashlight_toggled.emit(value)
+
+
+func throw_decoy() -> bool:
+	var player: Node = _player()
+	var count: int = clampi(int(GameState.get_flag(&"ch4_phone_charges", 0)), 0, 3)
+	if away or GameState.chapter != 4 or count <= 0 or not CarryItem.player_can_use(player):
+		return false
+	if player.has_method("is_hidden") and player.call("is_hidden"):
+		return false
+	var camera: Camera3D = get_parent() as Camera3D
+	if camera == null:
+		return false
+	var destination: Dictionary = PhoneDecoy.landing_point(camera)
+	if destination.is_empty():
+		return false
+	_return_raised = raised
+	_return_flashlight = flashlight.visible
+	away = true
+	set_raised(false)
+	set_flashlight(false)
+	GameState.set_flag(&"ch4_phone_charges", count - 1)
+	decoy = PhoneDecoy.new()
+	decoy.charges_left = count - 1
+	add_child(decoy)
+	decoy.launch(camera.global_position, destination.position, model)
+	decoy.returned.connect(_return_phone)
+	return true
+
+
+func _player() -> Node:
+	var node: Node = get_parent()
+	while node != null and not node.has_method("keyboard_input_blocked"):
+		node = node.get_parent()
+	return node
+
+
+func _return_phone() -> void:
+	away = false
+	decoy = null
+	var player: Node = _player()
+	if CarryItem.player_can_use(player):
+		set_raised(_return_raised)
+		set_flashlight(_return_flashlight)
 
 
 func set_in_call(value: bool) -> void:
