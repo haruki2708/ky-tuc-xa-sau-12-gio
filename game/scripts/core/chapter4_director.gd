@@ -21,8 +21,8 @@ const BED_SLAT_SCENE := "res://scenes/interaction/bed_slat.tscn"
 const FAKE_SEARCH_SCENE := "res://scenes/interaction/fake_search_spot.tscn"
 const BED_CARD_SCENE := "res://ui/ch4/bed_card.tscn"
 ## The survivor form already matches Trung (D-067: only the name is blank).
-## Lane D shows these; the date of birth waits for the owner's choice.
-const FORM_FIELDS := {&"ch4_form_sex": "Nam", &"ch4_form_age": "20"}
+## Lane D shows these on the survivor form (owner's choice, D-068).
+const FORM_FIELDS := {&"ch4_form_sex": "Nam", &"ch4_form_age": "20", &"ch4_form_dob": "11/03/2006"}
 const CH4_END_CARD_UI := "res://ui/ch4/ch4_end_card.tscn"
 ## D-067 numbers (CH4_DESIGN.md): how long the doors hold, the decoy phone, the last message.
 const LIBRARY_DOOR_SECONDS := 75.0

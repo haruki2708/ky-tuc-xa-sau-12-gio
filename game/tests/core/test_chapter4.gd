@@ -90,6 +90,8 @@ func test_the_split_starts_outside_the_canteen_and_ends_in_the_library() -> void
 	assert_eq(int(GameState.get_flag(&"ch4_phone_charges", 0)), 3, "three decoy rings;")
 	assert_eq(player.bar_weapon.hits_left, 8, "a fresh bar;")
 	assert_true(GameState.get_flag(&"ch3_fire_door_open", false), "the fire door stays open")
+	assert_eq(String(GameState.get_flag(&"ch4_form_dob", "")), "11/03/2006", "Trung's birth date on the form (D-068);")
+	assert_eq(String(GameState.get_flag(&"ch4_form_age", "")), "20", "age 20;")
 	# The library is still lane B's solid shell (T-196 builds the inside): hold
 	# the player still so physics does not push them back out.
 	player.set_physics_process(false)

@@ -248,7 +248,7 @@ def main():
     open(os.path.join(ROOT, "game", "data", "rules", "ch4.tres"), "w", encoding="utf-8", newline=nl).write(nl.join(body))
 
     out = ["# Kịch bản chương 4 \"Người sống sót\"", "",
-           "> **Chờ chủ dự án duyệt lời.** Sinh tự động từ `docs/design/ch4/build_ch4_script.py`. Thiết kế: `docs/design/CH4_DESIGN.md` (D-067). Lời viết mới cho game, không chép nguyên văn video (D-034). Không có câu gợi ý (D-038, D-055).",
+           "> **Đã duyệt lời (D-068, 2026-10-07).** Sinh tự động từ `docs/design/ch4/build_ch4_script.py`. Thiết kế: `docs/design/CH4_DESIGN.md` (D-067). Lời viết mới cho game, không chép nguyên văn video (D-034). Không có câu gợi ý (D-038, D-055).",
            "",
            "Ký hiệu: **Loa** · 📞 = trong cuộc gọi · 🗣 = nói tại chỗ (y tá) · 💬 = Trung nói (chỉ phụ đề) · 📄 = giấy đọc được · ✔ = dòng trong tab Đối chiếu · `[…]` = diễn biến.",
            "", "## Nhân vật",

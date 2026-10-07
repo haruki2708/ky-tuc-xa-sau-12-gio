@@ -73,3 +73,8 @@ Mọi chữ qua `game/localization/strings.csv` (vi và en). **Core** thêm `SPK
   - **Điểm thay tạm** khi lane B chưa có anchor `Ch4/*`: `FALLBACK_STARTS` cho 4 checkpoint; thiếu cửa, đám xác, bệnh viện thì luồng vẫn chạy (bỏ qua phần đó).
 - **Test:** `test_chapter4.gd` (7: bắt đầu ở nhà ăn, chỉ dòng thừa được nhận, đường về tới 407, vạt giường → phiếu → tên → kết thật, hết giờ và sai tin → kết một mình, chết ở thư viện → checkpoint thư viện), `test_chapter4_data.gd` (4).
 - **Chưa làm:** lồng giọng (sau khi chủ dự án duyệt lời), ghép T-195…T-198 khi lane xong, bot T-199.
+
+### Phiên 2026-10-07 (Claude): lời đã duyệt, phiếu (D-068)
+- Chủ dự án duyệt lời `CH4_SCRIPT.md`; trạng thái trong `build_ch4_script.py` đổi thành "Đã duyệt lời".
+- Phiếu điều tra: `FORM_FIELDS` thêm `ch4_form_dob = "11/03/2006"` (Nam, 20 tuổi); `test_chapter4.gd` kiểm ngày sinh và tuổi.
+- Phát hiện (chạy cảnh thật chương 2 và 3): `PhoneCallAudio` bỏ qua mọi lời gọi không phải `CHAT_CH1_*` và chỉ phát khi đã nhấc máy (chỉ chương 1 có), nên cuộc gọi chương 2–4 không có giọng. Chủ dự án giao lane E cả việc thu giọng và sửa lỗi này: **T-200**.

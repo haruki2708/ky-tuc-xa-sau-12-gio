@@ -5,9 +5,9 @@
 
 ## Việc tiếp theo (cho phiên integrator kế tiếp)
 1. **Chủ dự án chơi kiểm tra chương 1 → 4** bản 19:51 (`docs/playtest/`: `CH1_V2_PLAYTEST.md`, `CH2_WALKTHROUGH.md`, `CH3_QUICKTEST.md`, `CH4_QUICKTEST.md`). Mỗi lỗi: tái hiện bằng test hoặc cảnh thật, sửa, chạy cả bộ test, export lại. Góp ý thiết kế: đưa phương án kèm đề xuất, ghi D-xxx.
-2. **Chương 4 còn chờ chủ dự án:** (a) duyệt lời `docs/design/CH4_SCRIPT.md` (sinh từ `docs/design/ch4/build_ch4_script.py`, sửa ở file sinh); (b) ngày sinh của Trung trên phiếu điều tra (đang đặt tạm `ch4_form_sex = "Nam"`, `ch4_form_age = "20"` trong `chapter4_director.gd`, ngày sinh trống).
-3. **Sau khi duyệt lời:** lane E thu lại giọng chương 4 từ đúng lời đã chốt (bản hiện có thu theo nháp cũ trong `CH4_DESIGN.md`; y tá 2 đọc câu kết); core nối `Ch4AudioRig.play_line` cho loa ký tên và y tá (hiện chỉ có phụ đề).
-4. **Bot:** chương 3 có profile (T-193) nhưng bot cả chương chưa chạy trọn (lần thử dừng vì người chơi chết ngay sau khi lấy chìa, nghi do 2 xác phòng 408); chương 4 cần T-199 (lane C, chưa viết card). Bot chỉ chạy khi chủ dự án cho phép.
+2. **Chương 4 (D-068):** lời `CH4_SCRIPT.md` **đã duyệt**; phiếu điều tra: Nam, 20 tuổi, sinh 11/03/2006 (`FORM_FIELDS` trong `chapter4_director.gd`).
+3. **Giọng chương 4:** lane E thu từ đúng lời đã duyệt, đặt tên theo key trong `game/audio/voice/vi/` như chương 3 (`CHAT_CH4_*`, `SPK_CH4_REGISTERED`, `NEAR_CH4_NURSE*`); core đã phát sẵn theo tên key (`_announce`, `_voice_at`). **Lỗi phát hiện 2026-10-07:** `PhoneCallAudio` chỉ phát giọng `CHAT_CH1_*` và chỉ khi cuộc gọi đã "nhấc máy" (chỉ chương 1 có), nên cuộc gọi chương 2, 3 (và 4) **không có tiếng**, chỉ có chữ, dù file `CHAT_CH2_*`, `CHAT_CH3_*` đã có. **Giao lane E cả hai việc: T-200** (chủ dự án chọn; prompt `docs/handoff/lane-e.md` §1).
+4. **Bot:** không chạy bot chương 3 và 4 (D-068); T-199 chưa viết card.
 5. **Chưa ai nghe bằng tai:** âm thanh chương 3 và 4 (fixture `res://audio/test/ch4_audio_test.tscn`).
 6. **Sau khi chốt chương 4:** giai đoạn "Ghép bản hoàn chỉnh" (D-059).
 7. Máy chủ dự án: `%APPDATA%/Godot/app_userdata/Ky Tuc Xa Sau 12 Gio/progress.json` = `{"version": 1, "unlocked": 4}` (bản cũ ở `progress.json.bak`).
@@ -81,12 +81,13 @@
 | T-192 Khán đài sân vận động làm lại, rải đồ khuôn viên (D-064) | B (**Claude Code web làm thay**, D-066) | **done**, đã merge; FPS đo lại PASS (40 xác, trung bình ≥107) |
 | T-193 Điền profile bot chương 3, menu F9 dùng được | C | **done**, đã merge (3 sửa nhỏ của integrator); bot cả chương chưa chạy |
 | **Chương 4 "Người sống sót" (D-067, giao 2026-10-07)** | | |
-| T-194 Hợp đồng chung, kịch bản, luồng 5 khu, ghép | core | **review**: đã ghép A, B, D, E; chờ chủ dự án duyệt lời (`CH4_SCRIPT.md`) để thu giọng, chốt ngày sinh trên phiếu, chơi thử |
+| T-194 Hợp đồng chung, kịch bản, luồng 5 khu, ghép | core | **review**: đã ghép A, B, D, E; lời và phiếu đã chốt (D-068); chờ giọng chương 4 của lane E, chơi thử |
 | T-195 Điện thoại mồi, lật vạt giường, độ bền cửa phá, cảnh chết `door_burst` | A | **done**, đã merge và nối |
 | T-196 Thư viện 3 tầng, đường về, phòng 407 cuối, bệnh viện | B (lane B đã có lại token; phiên web dự phòng, D-066) | **done**, đã merge và nối |
 | T-197 Tab Đối chiếu, phiếu điều tra, tên bằng máu, mờ dần, thẻ bệnh viện, thẻ hết chương | D | **done**, đã merge và nối |
 | T-198 Chuông mồi, đập cửa, thư viện, bệnh viện, giọng y tá, nhạc kết | E | **done**, đã merge và nối vào luồng; giọng thoại chờ lời được duyệt, chưa ai nghe |
-| T-199 Bot chương 4, menu F9 nhảy 5 khu | C | chưa viết card (sau khi A, B, D, E merge) |
+| T-199 Bot chương 4, menu F9 nhảy 5 khu | C | chưa viết card; chủ dự án không cần chạy bot chương 3, 4 (D-068) |
+| T-200 Giọng chương 4 theo lời đã duyệt; cuộc gọi chương 2–4 có tiếng | E | **todo** (giao 2026-10-07) |
 | T-171 Cầm giẻ, bịt miệng xác, cửa kẹt, buồng tắm, nút vòi sen, cảnh chết `corpse_lunge` và `scald` | A | **done**, đã merge |
 | T-172 Xác chơi nối từ, đồ bịt miệng, nhà vệ sinh có vòi sen, hơi nước, phòng camera 310 | B | **done**, đã merge |
 | T-173 Bot chương 2, menu nhảy, đo FPS hơi nước | C | khung **đã merge**; bot chạy sau khi điền profile |
