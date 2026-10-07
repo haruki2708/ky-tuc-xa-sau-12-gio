@@ -224,6 +224,25 @@ func test_floor_three_rooms_next_to_the_stairs_open() -> void:
 	assert_false(director._rooms_opened.has(&"406"), "floor 4 rooms do not open from floor 3")
 
 
+## The QA menu and the bot reach the horde and the player through these hooks.
+func test_debug_hooks_for_the_qa_menu() -> void:
+	director.stop_after = &"garden"
+	director.run_from(&"garden")
+	await _until(func() -> bool: return director._companions.has(&"ngu"), 10.0)
+	director.debug_zombies_off()
+	assert_eq(director._horde.max_active, 0, "zombies off;")
+	director.debug_zombies_on()
+	assert_eq(director._horde.max_active, 40, "zombies on;")
+	player.spend_stamina(0.8)
+	assert_true(player.stamina < 0.3, "stamina spent")
+	director.debug_refill()
+	assert_eq(player.stamina, 1.0, "stamina refilled;")
+	director.debug_give_bar()
+	assert_eq(player.bar_weapon.hits_left, 8, "a bar with 8 hits;")
+	assert_eq(director._guards.size(), 12, "twelve guards;")
+	assert_eq(String(director._guards[0].name), "Guard01", "guards have stable names;")
+
+
 func test_a_zombie_grab_kills_and_reloads_the_zone() -> void:
 	director.run_from(&"b")
 	await wait_frames(5)

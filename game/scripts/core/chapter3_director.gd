@@ -44,6 +44,7 @@ const ROOM_BASH_SECONDS := 2.5
 const ROOM_408_BASH_SECONDS := 3.5
 const ROOM_ALERT_SECONDS := 6.0
 const ROOM_SIDE_OFFSET := 0.6
+const HORDE_MAX := 40
 const GUARD_TURN_RADIUS := 12.0
 ## Floors of building B by height (floor 4 at y = 0, 3.3 m per floor).
 const FLOOR_3_Y := -2.0
@@ -290,6 +291,7 @@ func _stadium() -> void:
 		return
 	if _ch3_music != null:
 		_ch3_music.set_wave(false)
+	GameState.set_flag(&"ch3_stadium_survived", true)
 	_set_clock("08:21")
 	_story(["near:n_no_dead_end", "near:ngu_gate"])
 	await _wait_until(func() -> bool: return _zone() == "gate", 1200.0, false)
@@ -423,6 +425,7 @@ func _place_guards() -> void:
 	for point in line.get_children():
 		var guard := (load(GUARD_SCENE) as PackedScene).instantiate() as Node3D
 		guard.set("player", _player)
+		guard.name = "Guard%02d" % (_guards.size() + 1)
 		add_child(guard)
 		guard.global_transform = (point as Node3D).global_transform
 		if guard.has_method("set_body") and ResourceLoader.exists(MODELS % "guard"):
@@ -726,6 +729,49 @@ func _track_tick() -> void:
 				zombie.set("_goal", _player.global_position)
 			else:
 				_room_tracks.remove_at(i)
+
+
+## QA hooks (tools/ch3-profile.json menu_actions): the F9 menu and the bot call
+## these instead of reaching into the horde and the player.
+func debug_zombies_on() -> void:
+	if _horde == null or _player == null:
+		return
+	_horde.max_active = HORDE_MAX
+	_spawn(_spawn_zone_here(), WAVE_SIZE)
+
+
+func debug_zombies_off() -> void:
+	if _horde == null:
+		return
+	_horde.max_active = 0
+	_horde.clear_all()
+
+
+func debug_give_bar() -> void:
+	if _player != null:
+		_player.give_bar(8)
+
+
+func debug_refill() -> void:
+	if _player != null:
+		_player.call("_set_stamina", 1.0)
+
+
+## The horde zone nearest the player (for the QA "zombies on" hook).
+func _spawn_zone_here() -> StringName:
+	match _zone():
+		"garden": return &"Garden"
+		"stadium": return &"Stadium"
+		"gate": return &"Gate"
+		"canteen": return &"Canteen"
+	var y := _player.global_position.y
+	if y > -1.0:
+		return &"B4"
+	if y > -4.5:
+		return &"B3"
+	if y > -8.0:
+		return &"B2"
+	return &"B1" if _zone() == "building_b" else &"Road"
 
 
 ## The hall point straight out from a room door.
