@@ -7,6 +7,7 @@ const SOURCE_KEYS := {
 }
 var _hint_sent := false
 var _refresh_pending := false
+var ch4: VBoxContainer
 
 
 func _ready() -> void:
@@ -18,6 +19,15 @@ func _ready() -> void:
 	EventBus.rule_evidence_changed.connect(func(_id: StringName) -> void: _queue_refresh())
 	EventBus.segment_changed.connect(func(_id: StringName) -> void: _queue_refresh())
 	$Root/Book/Content/Close.pressed.connect(close_view)
+	ch4 = preload("res://scripts/ui/ch4_notebook.gd").new()
+	ch4.name = "Chapter4"
+	ch4.book = self
+	$Root/Book/Content.add_child(ch4)
+	$Root/Book/Content.move_child(ch4, 1)
+	EventBus.player_death_started.connect(func(_kind: StringName) -> void: close_view())
+	EventBus.player_failed.connect(func(_reason: StringName) -> void: close_view())
+	EventBus.chapter_started.connect(func(_chapter: int) -> void: close_view())
+	EventBus.checkpoint_loaded.connect(func(_id: StringName) -> void: close_view())
 	_render()
 
 
@@ -35,9 +45,12 @@ func _input(event: InputEvent) -> void:
 
 
 func open_notebook() -> void:
+	pause_gameplay = GameState.chapter != 4
 	if _begin_reading():
 		_render()
 		$Root/Book/Content/Scroll.scroll_vertical = 0
+		ch4.refresh()
+		ch4.announce_open()
 
 
 func _notification(what: int) -> void:
@@ -101,6 +114,8 @@ func _render() -> void:
 			section.add_child(heading)
 			sources[group_key] = section
 		_add_entry(sources[group_key], entry)
+	if is_instance_valid(ch4):
+		ch4.refresh()
 
 
 func _round_for(entry: Dictionary) -> int:

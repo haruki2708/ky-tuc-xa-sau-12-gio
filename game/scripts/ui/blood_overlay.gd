@@ -40,7 +40,7 @@ func _ready() -> void:
 func _start(kind: StringName) -> void:
 	_kind = kind
 	_elapsed = 0.0
-	$Root.visible = kind in [&"fall_back", &"bed_burst", &"manager_kill", &"corpse_lunge", &"scald", &"zombie_grab", &"guard_shock"]
+	$Root.visible = kind in [&"fall_back", &"bed_burst", &"manager_kill", &"corpse_lunge", &"scald", &"zombie_grab", &"guard_shock", &"door_burst"]
 	_refresh() # The manager's full splash is visible in the very first rendered frame.
 
 
@@ -62,9 +62,9 @@ func _process(delta: float) -> void:
 
 func _refresh() -> void:
 	$Root.material.set_shader_parameter("elapsed", _elapsed)
-	$Root.material.set_shader_parameter("splash", _kind in [&"manager_kill", &"corpse_lunge", &"zombie_grab"])
+	$Root.material.set_shader_parameter("splash", _kind in [&"manager_kill", &"corpse_lunge", &"zombie_grab", &"door_burst"])
 	$Root.material.set_shader_parameter("scald", _kind == &"scald")
-	$Root.material.set_shader_parameter("handprints", _kind == &"zombie_grab")
+	$Root.material.set_shader_parameter("handprints", _kind in [&"zombie_grab", &"door_burst"])
 	$Root.material.set_shader_parameter("guard_shock", _kind == &"guard_shock")
 	var reduced := bool(Settings.get_value("accessibility", "reduce_scares"))
 	$Root.material.set_shader_parameter("reduced", reduced)
