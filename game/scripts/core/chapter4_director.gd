@@ -17,6 +17,12 @@ const CH4_DEATH_CHECKPOINTS := {&"split": &"ch4_split", &"library": &"ch4_librar
 const CH4_DEATH_KINDS := {&"DEATH_CH4_GRABBED": &"zombie_grab", &"DEATH_CH4_STAIRS": &"zombie_grab",
 	&"DEATH_CH4_LIBRARY": &"zombie_grab", &"DEATH_CH4_DOOR": &"door_burst", &"DEATH_CH3_GUARD": &"guard_shock"}
 const HOSPITAL_SCENE := "res://scenes/levels/hospital/hospital_room.tscn"
+const BED_SLAT_SCENE := "res://scenes/interaction/bed_slat.tscn"
+const FAKE_SEARCH_SCENE := "res://scenes/interaction/fake_search_spot.tscn"
+const BED_CARD_SCENE := "res://ui/ch4/bed_card.tscn"
+## The survivor form already matches Trung (D-067: only the name is blank).
+## Lane D shows these; the date of birth waits for the owner's choice.
+const FORM_FIELDS := {&"ch4_form_sex": "Nam", &"ch4_form_age": "20"}
 const CH4_END_CARD_UI := "res://ui/ch4/ch4_end_card.tscn"
 ## D-067 numbers (CH4_DESIGN.md): how long the doors hold, the decoy phone, the last message.
 const LIBRARY_DOOR_SECONDS := 75.0
@@ -58,6 +64,7 @@ var _door_seconds: Dictionary[StringName, float] = {}
 var _stair_crowd: Array[Zombie] = []
 var _hospital: Node3D
 var _audio: Ch4AudioRig
+var _room_props_placed: bool = false
 
 
 func _ready() -> void:
@@ -139,6 +146,9 @@ func _split() -> void:
 ## Round 5 still holds; the fire door is open since chapter 3 (key used); a new
 ## bar (D-067) and three rings of the decoy phone (T-195 reads the flag).
 func _prepare_chapter() -> void:
+	GameState.chapter = _chapter()
+	for field: StringName in FORM_FIELDS:
+		GameState.set_flag(field, FORM_FIELDS[field])
 	_has_key = true
 	GameState.set_flag(&"ch3_has_key", true)
 	GameState.set_flag(&"ch3_fire_door_open", true)
@@ -230,6 +240,7 @@ func _place_ch4_uses() -> void:
 	if desk != null:
 		desk.once = false
 		desk.used.connect(_open_compare)
+	_place_back_door_use()
 	for spot: Array in [["Ch4/MapBoard", "PROMPT_CH4_MAP", &"ch4_map"], ["Ch4/LibrarianSeat", "PROMPT_CH4_DIARY", &"ch4_diary"]]:
 		var use := _ch4_use(spot[0], spot[1], Vector3(1.0, 1.2, 0.6))
 		if use == null:
@@ -252,6 +263,27 @@ func _ch4_use(anchor_name: String, prompt: String, size: Vector3) -> Ch3Use:
 	anchor.add_child(use)
 	_uses[anchor_name] = use
 	return use
+
+
+## The library's back door is the only way in (T-196): E opens and shuts it, so
+## Trung can get in and close it behind him; once broken it stays open.
+func _place_back_door_use() -> void:
+	var door := _room_door(&"library_back")
+	if door == null:
+		return
+	var use := Ch3Use.new()
+	use.name = "Use_BackDoor"
+	use.prompt_key = "PROMPT_CH4_BACK_DOOR"
+	use.size = Vector3(1.6, 2.2, 0.8)
+	use.once = false
+	door.add_child(use)
+	use.position = Vector3(0.0, 1.1, 0.0)
+	_uses["LibraryBackDoor"] = use
+	use.used.connect(func() -> void:
+		var adapter: ZombieDoor = _doors.get(&"library_back")
+		if adapter != null and adapter.is_broken:
+			return
+		door.set_open(not bool(door.get("is_open"))))
 
 
 func _open_compare() -> void:
@@ -327,6 +359,7 @@ func _room407() -> void:
 	_begin(&"room407", "08:58")
 	_arrive_at("Ch4/Start_407", &"room407")
 	_audio_area(&"407")
+	_place_room_props()
 	_slats.clear()
 	_form_ready = false
 	_signed = false
@@ -350,6 +383,34 @@ func _room407() -> void:
 	if _audio != null and _player != null:
 		_audio.play_pa_laugh(_player.global_position + Vector3(0.0, 2.0, 0.0))
 	await _announce(["SPK_CH4_REGISTERED"])
+
+
+## Lane A's hold-E slats (beds 1, 2, 4) and the three empty search spots on lane
+## B's Room407 markers. Lane B flips its own slat models on bed_slat_flipped,
+## so lane A's stand-in plank stays hidden.
+func _place_room_props() -> void:
+	if _room_props_placed:
+		return
+	_room_props_placed = true
+	if ResourceLoader.exists(BED_SLAT_SCENE):
+		for bed in SLAT_BEDS:
+			var anchor := _anchor("Ch4/Room407/Slat%d" % bed)
+			if anchor == null:
+				continue
+			var slat := (load(BED_SLAT_SCENE) as PackedScene).instantiate()
+			slat.set("bed", bed)
+			slat.name = "BedSlat%d" % bed
+			anchor.add_child(slat)
+			var plank := slat.get_node_or_null("SlatPivot") as Node3D
+			if plank != null:
+				plank.visible = false
+	if ResourceLoader.exists(FAKE_SEARCH_SCENE):
+		for spot in ["FakeLocker", "FakeCeiling", "FakeVent"]:
+			var anchor := _anchor("Ch4/Room407/" + spot)
+			if anchor != null:
+				var search := (load(FAKE_SEARCH_SCENE) as PackedScene).instantiate()
+				search.name = "Search" + spot.trim_prefix("Fake")
+				anchor.add_child(search)
 
 
 func _on_407_broken() -> void:
@@ -428,6 +489,9 @@ func _ending_4() -> void:
 	await _wait(2.0)
 	await _fade_to_black(2.0)
 	finished = true
+	# Lane D's end card takes over; gameplay stops under it.
+	if _player != null and _player.has_method("acquire_control_lock"):
+		_player.acquire_control_lock(self)
 	EventBus.chapter_finished.emit(4)
 
 
@@ -453,6 +517,14 @@ func _show_hospital() -> void:
 		camera.make_current()
 	if _audio != null:
 		_audio.monitor_marker = _hospital.get_node_or_null("MonitorAudio") as Node3D
+	if _hospital.has_method("set_companions_visible"):
+		_hospital.set_companions_visible(_ending_kind == &"all")
+	# Lane D's bed cards on lane B's Card markers; they answer ch4_ending themselves.
+	if ResourceLoader.exists(BED_CARD_SCENE):
+		for bed in ["Bed_Trung", "Bed_Nhat", "Bed_Ngu"]:
+			var mark := _hospital.get_node_or_null(bed + "/Card")
+			if mark != null:
+				mark.add_child((load(BED_CARD_SCENE) as PackedScene).instantiate())
 
 
 func _hospital_voice(key: String, where: String) -> void:
@@ -483,6 +555,8 @@ func _arm_door(room: StringName, seconds: float, spots: Array, through: Vector3)
 		adapter = ZombieDoor.new()
 		adapter.door = door
 		adapter.blocker = door.get("blocker") as CollisionObject3D
+		# Lane A (T-195): a fixed hold time, not each zombie's own bash time.
+		adapter.set("durability_seconds", seconds)
 		door.add_child(adapter)
 		_doors[room] = adapter
 		if _audio != null:

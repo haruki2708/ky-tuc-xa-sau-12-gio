@@ -1,5 +1,5 @@
 # T-197 — Chương 4: tab "Đối chiếu", phiếu điều tra, tên bằng máu, mờ dần và nhắn cuối, thẻ bệnh viện, thẻ hết chương
-- Lane: D (UI và Đa ngôn ngữ) | Trạng thái: todo | Agent:
+- Lane: D (UI và Đa ngôn ngữ) | Trạng thái: done | Agent:
 - Nhánh: `lane-d/T-197-ch4-ui`
 - Phụ thuộc: T-111, T-156, T-179 (ô gõ chữ chương 2), T-194 (**hợp đồng chung**), `docs/design/CH4_DESIGN.md`, D-067.
 - **Hạn đề xuất:** 2026-10-10.
@@ -77,3 +77,9 @@
 - Chưa thực hiện gameplay integration, OS-level Vietnamese IME composition, controller feel, FPS/export và playtest bệnh viện; cần Lane C/integrator kiểm tra sau khi các lane Chương 4 ghép.
 
 ## Review (integrator)
+
+### 2026-10-07 — Claude (integrator): **duyệt, đã merge**
+- Đúng card: tab Đối chiếu trong sổ (chỉ chương 4, gạch chân, kết quả đúng/sai không phạt), mảnh phiếu theo từng vạt, phiếu ghép, nút "Cắn ngón tay" và ô tên bằng máu (bộ gõ của máy, giữ bản nháp khi sai), lớp mờ dần và ô nhắn 12 giây, biểu tượng số lần đổ chuông, thẻ giường bệnh viện, thẻ "Hết chương 4". Sổ không dừng game ở chương 4 để cửa vẫn đếm. 12 test mới, 24 ảnh xem trước.
+- **Core đã nối:** `blood_name_requested` do core phát sau khi ghép phiếu; bàn đọc bật `ch4_compare_enabled` rồi mở sổ; `UI_CH4_SOLVED_R2…R4` có từ kịch bản; thẻ giường gắn khi dựng bệnh viện; khóa điều khiển khi hết chương; loại ảnh và cảnh xem trước khỏi bản phát hành (`export_presets.cfg`).
+- **Thông tin trên phiếu:** core đặt tạm `ch4_form_sex = "Nam"`, `ch4_form_age = "20"` (cùng lứa bạn cùng phòng, sinh 2006); **ngày sinh của Trung chờ chủ dự án chốt**.
+- Merge xung đột `strings.csv`: giữ cả hai. Test chập chờn `test_ch3_tools::test_preflight…` lane D báo: theo dõi ở lượt chạy đầy đủ.

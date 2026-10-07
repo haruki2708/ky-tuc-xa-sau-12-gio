@@ -71,6 +71,12 @@ func _until(condition: Callable, seconds: float = 20.0) -> void:
 		await wait_frames(1)
 
 
+## Lane B's start marker for a stage, or the director's fallback before T-196.
+func _start(stage: StringName, marker: String) -> Vector3:
+	var anchor := director._anchor("Ch4/" + marker)
+	return anchor.global_position if anchor != null else Chapter4Director.FALLBACK_STARTS[stage]
+
+
 func _put(where: Vector3) -> void:
 	player.global_position = where
 	player.velocity = Vector3.ZERO
@@ -80,7 +86,7 @@ func test_the_split_starts_outside_the_canteen_and_ends_in_the_library() -> void
 	director.stop_after = &"split"
 	director.run_from(&"split")
 	await wait_frames(5)
-	assert_true(player.global_position.distance_to(Chapter4Director.FALLBACK_STARTS[&"split"]) < 1.5, "starts by the canteen: %s" % player.global_position)
+	assert_true(player.global_position.distance_to(_start(&"split", "Start_split")) < 1.5, "starts by the canteen: %s" % player.global_position)
 	assert_eq(int(GameState.get_flag(&"ch4_phone_charges", 0)), 3, "three decoy rings;")
 	assert_eq(player.bar_weapon.hits_left, 8, "a fresh bar;")
 	assert_true(GameState.get_flag(&"ch3_fire_door_open", false), "the fire door stays open")
@@ -113,7 +119,7 @@ func test_the_way_back_up_to_room_407() -> void:
 	director.stop_after = &"return"
 	director.run_from(&"return")
 	await wait_frames(5)
-	assert_true(player.global_position.distance_to(Chapter4Director.FALLBACK_STARTS[&"return"]) < 1.5, "starts in the lobby")
+	assert_true(player.global_position.distance_to(_start(&"return", "Start_return")) < 1.5, "starts in the lobby: %s" % player.global_position)
 	_put(Vector3(30.0, -6.55, 2.0))
 	await _until(func() -> bool: return not director._network_up, 10.0)
 	assert_false(director._network_up, "the call drops on the way up")
@@ -171,6 +177,57 @@ func test_lane_e_audio_rig_follows_the_stages() -> void:
 	assert_eq(rig.listener, player, "listens from Trung;")
 	assert_eq(director._scare_position(&"neck_hand"), player.global_position, "a scare without a place sounds at Trung;")
 	assert_true(not rig.doors.has(&"407"), "no door registered before the 407 stage")
+
+
+## Lane A's slats and empty search spots sit on lane B's Room407 markers and the
+## interact ray reaches each slat (lesson from chapter 1: bots call props
+## directly, players have to aim at them).
+func test_407_slats_are_placed_and_reachable() -> void:
+	director.run_from(&"room407")
+	await wait_frames(6)
+	var space := (scene as Node3D).get_world_3d().direct_space_state
+	for bed in [1, 2, 4]:
+		var anchor := director._anchor("Ch4/Room407/Slat%d" % bed)
+		assert_not_null(anchor, "Slat%d marker" % bed)
+		if anchor == null:
+			continue
+		var slat := anchor.get_node_or_null("BedSlat%d" % bed)
+		assert_not_null(slat, "BedSlat on bed %d" % bed)
+		if slat == null:
+			continue
+		assert_eq(int(slat.get("bed")), bed, "bed number;")
+		var shape := slat.get_node("CollisionShape3D") as Node3D
+		var target := shape.global_position
+		var reached := false
+		for dir: Vector3 in [Vector3.RIGHT, Vector3.LEFT, Vector3.FORWARD, Vector3.BACK]:
+			for distance: float in [0.8, 1.2]:
+				for eye_y: float in [1.6, 1.0]:
+					var eye := target + dir * distance
+					eye.y = eye_y
+					var query := PhysicsRayQueryParameters3D.create(eye, target + (target - eye).normalized() * 0.3, 1 | (1 << 2))
+					query.collide_with_areas = true
+					var hit := space.intersect_ray(query)
+					if not hit.is_empty() and hit.collider == slat:
+						reached = true
+		assert_true(reached, "bed %d slat reachable by the interact ray (at %s)" % [bed, target])
+	for spot in ["Locker", "Ceiling", "Vent"]:
+		assert_not_null(director._anchor("Ch4/Room407/Fake" + spot).get_node_or_null("Search" + spot), "empty search spot " + spot)
+
+
+## The back door is the only way into the library: E opens it, E shuts it.
+func test_library_back_door_opens_and_shuts_by_hand() -> void:
+	await wait_frames(4)
+	var door := director._room_door(&"library_back")
+	assert_not_null(door, "lane B's back door")
+	if door == null:
+		return
+	var use: Ch3Use = director._uses.get("LibraryBackDoor")
+	assert_not_null(use, "a use on the back door")
+	assert_false(bool(door.get("is_open")), "shut at first")
+	use.interact(player)
+	assert_true(bool(door.get("is_open")), "E opens it")
+	use.interact(player)
+	assert_false(bool(door.get("is_open")), "E shuts it again")
 
 
 func test_deaths_name_the_place() -> void:

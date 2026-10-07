@@ -1,5 +1,5 @@
 # T-195 — Chương 4: điện thoại làm mồi, lật vạt giường, độ bền cửa phá, cảnh chết `door_burst`
-- Lane: A (Gameplay) | Trạng thái: todo | Agent:
+- Lane: A (Gameplay) | Trạng thái: done | Agent:
 - Nhánh: `lane-a/T-195-ch4-gameplay`
 - Phụ thuộc: T-182, T-190, T-194 (hợp đồng chung, **đọc mục "Hợp đồng chung"**), `docs/design/CH4_DESIGN.md`, D-067.
 - **Hạn đề xuất:** 2026-10-10.
@@ -83,3 +83,9 @@ Tầm với 3 m của tương tác giữ E được đo từ **camera**, không 
 Không còn lỗi trong cơ chế độc lập được kiểm chứng. Không có câu hỏi mới về cốt truyện/luật chơi; chỉ còn các phụ thuộc ghép nêu trên.
 
 ## Review (integrator)
+
+### 2026-10-07 — Claude (integrator): **duyệt, đã merge**
+- Đúng card và làm kỹ: điện thoại mồi (3 lần, noise 25 m mỗi giây trong 6 giây, tự trả, chặn khi gõ chữ hoặc menu), `HoldInteractable` (giữ E, tụt dần khi nhả, tầm với đo từ camera), `BedSlat`, chỗ tìm giả 8 giây không kết quả, `ZombieDoor.durability_seconds` và `door_damage_changed`, cảnh chết `door_burst` (có bản giảm hù). 17 test mới.
+- **Core đã nối:** phím `throw_phone` (G) có sẵn trong `GameInput` từ T-194; `GameState.chapter = 4` và `ch4_phone_charges = 3` khi vào chương; `durability_seconds` 75 giây (cửa thư viện) và 90 giây (407); `BedSlat` giường 1, 2, 4 và 3 chỗ tìm giả đặt vào anchor `Ch4/Room407/*` của lane B (ẩn khối gỗ thử, mô hình vạt của lane B tự lật theo `bed_slat_flipped`); test tia ngắm: cả 3 vạt đều tới được.
+- Merge xung đột `strings.csv` (core và lane A cùng thêm cuối file): giữ cả hai.
+- **Chưa kiểm bằng tay:** G trong game thật, cảm giác giữ E.

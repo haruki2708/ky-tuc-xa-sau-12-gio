@@ -154,6 +154,7 @@ UI_ROWS = [
     ("PROMPT_CH4_DESK", "Mở sổ quy tắc", "Open the rule book"),
     ("PROMPT_CH4_MAP", "Xem sơ đồ", "Look at the map"),
     ("PROMPT_CH4_DIARY", "Đọc sổ trực", "Read the night log"),
+    ("PROMPT_CH4_BACK_DOOR", "Mở / đóng cửa", "Open / close the door"),
 ]
 # Jumpscare ids core emits through EventBus.scare_triggered (lane E cues them).
 SCARES = ["librarian_rise", "books_fall", "shelf_corpse", "back_door_hit", "knife_pull", "stairs_turn",

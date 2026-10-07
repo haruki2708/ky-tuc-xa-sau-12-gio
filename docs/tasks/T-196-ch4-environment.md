@@ -1,5 +1,5 @@
 # T-196 — Chương 4: thư viện 3 tầng, đường về nhà B, phòng 407 cuối, phòng bệnh viện
-- Lane: B (Môi trường và 3D; lane B đã có lại token 2026-10-07, prompt `docs/handoff/lane-b.md` §1; nếu lại hết token thì phiên Claude Code web làm thay theo `docs/handoff/web.md`) | Trạng thái: todo | Agent:
+- Lane: B (Môi trường và 3D; lane B đã có lại token 2026-10-07, prompt `docs/handoff/lane-b.md` §1; nếu lại hết token thì phiên Claude Code web làm thay theo `docs/handoff/web.md`) | Trạng thái: done | Agent:
 - Nhánh: `lane-b/T-196-ch4-environment`
 - Phụ thuộc: T-183, T-189, T-190, T-192, T-194 (**đọc "Hợp đồng chung" và bảng anchor**), `docs/design/CH4_DESIGN.md`, D-054, D-067, `art_source/campus/README.md`.
 - **Hạn đề xuất:** 2026-10-10. Làm theo thứ tự ưu tiên ở mục "Thứ tự", phần thấp có thể giữ đơn giản.
@@ -107,3 +107,9 @@ Cửa phụ thư viện và cửa 407 đóng thì chặn capsule, mở thì thô
 - Phần ghép đã thuộc T-194/195/197/198: core tạo scene/director và điều khiển hai cửa/đợt xác/checkpoint/kết; A gắn BedSlat/SearchSpot/ZombieDoor theo anchor; D gắn giấy và thẻ giường; E gắn âm thanh. Không tự sửa các file của các lane đó, không thêm luật hay lời truyện.
 
 ## Review (integrator)
+
+### 2026-10-07 — Claude (integrator): **duyệt, đã merge**
+- Đúng card: thư viện 3 tầng trong vỏ cũ (quầy có thanh sắt, bàn đọc, kho sách, bản đồ khoanh đỏ mờ, cửa phụ phá được), lối ra phía tây nhà ăn, anchor `Ch4/*` đủ bảng T-194 (manifest), 3 vạt giường và cửa 407 có 3 mức hư hại (lớp trung gian điều khiển cửa cũ, không làm hỏng chương 1–3), phòng bệnh viện đủ node. 6 test mới; ngân sách tam giác ổn.
+- **Core đã nối:** đọc anchor thật thay cho điểm thay tạm; gắn `ZombieDoor` vào lớp trung gian 407 và cửa phụ thư viện; xác ở `LibraryZombieSpawn` và `StairCrowd`; thẻ giường của lane D gắn vào `Bed_*/Card` và `set_companions_visible` theo kết.
+- **Lỗ hổng của card core (không phải lỗi lane B):** cửa phụ là lối vào duy nhất của thư viện nhưng hợp đồng "cửa phá được" không cho người chơi mở. Core thêm chỗ dùng E mở/đóng cửa phụ (`PROMPT_CH4_BACK_DOOR`), vỡ rồi thì thôi.
+- **Ảnh:** chưa chụp lại sau khi ghép; sẽ xem khi chủ dự án chơi thử.
