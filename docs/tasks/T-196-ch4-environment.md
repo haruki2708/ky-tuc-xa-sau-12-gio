@@ -42,13 +42,68 @@
 Cửa phụ thư viện và cửa 407 đóng thì chặn capsule, mở thì thông; có đường đi từ `Start_split` → thư viện (cửa phụ) → `Start_return` → `Start_407`; mỗi `StairCrowd/*` trên cầu thang đi được; `Slat1/2/4` đủ gần giường; `hospital_room.tscn` nạp được và có đủ node tên ở trên; ngân sách tam giác.
 
 ## Checklist hoàn thành
-- [ ] 407: vạt giường, 3 chỗ giả, cửa phá với 3 mức hư hại, `Start_407`
-- [ ] Thư viện: quầy, bàn đọc, bản đồ khoanh mờ, cửa phụ phá được, 3 chỗ hù dọa; vào được từ ngoài
-- [ ] `Start_*` đủ 4, `StairCrowd/*` đủ 10, `LibraryZombieSpawn/S01…S06`
-- [ ] Phòng bệnh viện đủ node theo hợp đồng
-- [ ] `pwsh tools/test.ps1` và `pwsh tools/check.ps1` PASS (hoặc "không có test FAIL mới" trên Linux); ảnh: integrator chụp khi review
-- [ ] Handoff: tọa độ anchor, đường dẫn node, số tam giác
+- [x] 407: vạt giường, 3 chỗ giả, cửa phá với 3 mức hư hại, `Start_407`
+- [x] Thư viện: quầy, bàn đọc, bản đồ khoanh mờ, cửa phụ phá được, 3 chỗ hù dọa; vào được từ ngoài
+- [x] `Start_*` đủ 4, `StairCrowd/*` đủ 10, `LibraryZombieSpawn/S01…S06`
+- [x] Phòng bệnh viện đủ node theo hợp đồng
+- [x] `pwsh tools/test.ps1` và `pwsh tools/check.ps1` PASS (hoặc "không có test FAIL mới" trên Linux); ảnh: integrator chụp khi review
+- [x] Handoff: tọa độ anchor, đường dẫn node, số tam giác
 
 ## Handoff (agent điền)
+
+### 2026-10-07 — Lane B / Codex
+
+- Commit triển khai **`2efc64f`**, đã push `lane-b/T-196-ch4-environment`; gốc `origin/main` tại `ff17fb4`.
+- Đã dựng thư viện đủ 3 tầng trong đúng footprint x45–85, z195–225; sàn y−9,9/−6,6/−3,3. Có cầu thang đi được, quầy và `Counter/IronBar` dùng scene sẵn có, bàn đọc/sách, kho sách, bản đồ hai vòng bút đỏ mờ không tên trường, bàn ghế chặn cửa chính và cửa phụ. Chỉ thay subtree vỏ Library cũ; giữ các vỏ khác.
+- Nhà ăn trước đó chưa có lối tây: thay riêng `Canteen/Side170` bằng `Canteen/WestExit`, mở khoảng z39,5–41,5 tại x170, nối navigation ngoài trời. Giữ đồ đạc T-192 và lối kho cũ. Không chạy generator campus cũ, không sửa BuildingB/Floor4 hay cấu hình đêm D-065.
+- 407 có ba vạt lật, texture chữ loang 128px, ba điểm giả/tấm trần/ô gió; cửa có lớp nứt/lỗ thủng/tay. Phòng bệnh viện 5×6 m sáng trắng, đủ hợp đồng; người nằm dùng khối có chăn theo phương án đơn giản được card cho phép.
+- Nguồn dựng, cách chạy lại và API chi tiết: [README](../../art_source/ch4_environment/README.md). Tất cả tọa độ anchor: [manifest](../../art_source/ch4_environment/manifest.json). Texture mới qua LFS; nguồn/CC0 và khai báo Codex trong `game/assets/textures/ch4/CREDITS.md`.
+
+### Đường dẫn và tọa độ ghép
+
+**Gốc anchor là `Campus/Anchors/Ch4/`, kể cả nhánh `Room407/`**, theo bảng T-194. Tọa độ dưới đây là world khi Campus/Floor4 ở transform mặc định; đơn vị m.
+
+| Anchor | (x, y, z) |
+|---|---|
+| `Start_split` | (167, −9.9, 40.5) |
+| `Start_library` | (65, −9.9, 223) |
+| `Start_return` | (4, −9.9, 2) |
+| `Start_407` | (32, 0.03, −0.85) |
+| `Counter` | (58, −9, 206) |
+| `MapBoard` | (45.25, −8.1, 211) |
+| `ReadingDesk` | (58, −5.71, 216) |
+| `LibrarianSeat` | (57, −9.44, 207.5) |
+| `ScareShelf3F` | (57, −3.3, 218) |
+| `ThrownBook3F` | (73, −1.1, 218) |
+| `Room407/Slat1`, `Slat2`, `Slat4` | (30.65, 1.18, −3); (30.65, 0.41, −3); (37.35, 1.18, −2.7) |
+| `Room407/FakeLocker`, `FakeCeiling`, `FakeVent` | (30.65, 1.1, −0.45); (33, 2.92, −2); (37.8, 2.35, −1) |
+
+- `LibraryZombieSpawn/S01…S03`: x=62/65/68, y=−9.9, z=228; `S04…S06` cùng x/y, z=231.
+- `StairCrowd/L1_01…03`, `L2_01…03`, `L3_01…03`: (x,z) lần lượt (−4,2.8), (−2.5,1.4), (−1,2.8); y lần lượt −9.9/−6.6/−3.3 theo tầng. `L4_01`=(−4,0,2.8). Giữ chiếu nghỉ 4 m hiện có, không thu về kích thước cũ trong mô tả card.
+- Cửa thư viện thật: **`Campus/Library/BackDoor`**, (65,−9.9,225), `room=&"library_back"`. Cửa 407 adapter: **`Campus/Anchors/Ch4/Room407/Door`**, bản lề (32.44,0.01,0), `room=&"407"`. Cả hai có `is_open`, `set_open(bool)`, `Blocker`, `blocker`, group `room_doors`.
+- Campus và Floor4 là hai node anh em; giữ `Campus.floor4_path=../Floor4` hoặc gán đường dẫn đúng. **Đợi một lượt deferred sau khi thêm Campus** rồi core gắn ZombieDoor cho adapter 407. Khi mở riêng subscene không có Campus/Floor4, adapter không kích hoạt collider/group.
+- Adapter 407 điều khiển cửa cũ `Floor4/Door407`; giữ tương tác/chốt/khe cửa/anchor tờ luật. Không gắn ZombieDoor đồng thời vào cả adapter và cửa cũ. Khi tháo Campus, collider và hiển thị cửa cũ được trả lại.
+- `EventBus.door_damage_changed(&"407", fraction)`: nứt ≥0.3, lỗ thật trên mô hình ≥0.6, tay ≥0.8. `set_damage_fraction(0)` reset; collider vẫn chặn đến khi `set_open(true)`. Không có đếm độ bền/luật chết trong Lane B.
+- `bed_slat_flipped(1/2/4)` lật đúng vạt, hé mặt chữ bằng cách ẩn riêng màn giường tương ứng. `Slat*/set_flipped(false)` hoặc tháo scene khôi phục màn; Lane A gắn tương tác giữ E, Lane D hiển thị giấy đọc được.
+- Bệnh viện: `res://scenes/levels/hospital/hospital_room.tscn`, root `HospitalRoom`. Bed_Trung/Nhat/Ngu ở x=0/−1.65/1.65, y=z=0; mỗi `Card` local=(0,0.88,1.08). Nurse1/2=(−0.72/0.72,0,1.9); MonitorAudio=(0,1.2,−1.85); Camera_Wake=(0,0.94,−0.64), góc (24°,180°,0°). `set_companions_visible(bool)` chỉ đổi hai node Patient của Nhật/Ngư, không quyết định kết.
+
+### Kiểm tra và số tam giác
+
+- Windows / Godot 4.7.2, bản cuối:
+  ```text
+  pwsh tools/test.ps1
+  RESULT: 607 passed, 0 failed
+  pwsh tools/check.ps1
+  RESULT: check 0 error(s)
+  ```
+- 6 test mới kiểm tra capsule đóng/mở/phá cửa, đường từ cả bốn Start và ba tầng thư viện, cửa tây nhà ăn/quầy/bàn đọc, sáu điểm xác tới ngoài cửa đóng, 10 điểm cầu thang, vị trí vạt, tín hiệu/reset, tháo adapter trả lại 407 cũ, bệnh viện và ngân sách. Test T-190 vẫn kiểm tra đủ 22 cửa cũ, lọc riêng hai cửa mới.
+- Lần full đầu có 607 assertion PASS nhưng wrapper FAIL do subscene anchor thiếu Campus. Đã sửa kiểm tra null; smoke test riêng `RESULT: 1 passed, 0 failed`, sau đó chạy lại **toàn bộ** suite đạt kết quả cuối ở trên. Log local: `build/t196/test-full.log`, `check.log`, `test-smoke.log`.
+- Đếm mesh kể cả lớp ẩn, không tính polygon navigation: Library **8016**, Ch4 anchors/visual **342**, HospitalRoom **828**, WestExit **60** tam giác. Mỗi kệ **516**, bản đồ **708**, quầy gồm thanh sắt **84**, cửa hư hại **204**, vạt **14**, giường bệnh gồm người/chăn **132**; đều trong ngân sách từng đồ vật.
+- Đã xem 9 ảnh dựng tĩnh, lần chụp cuối không lỗi engine: `build/t196/review/`. Scene tái chụp: `res://scenes/levels/ch4/review.tscn` (chỉ chạy trực tiếp có renderer, không tự chạy trong smoke/headless). Ảnh chương 4 đã ghép do integrator chụp khi review theo card. Chưa chạy bot/chơi trọn chương 4, vì scene/director chương 4 chưa có trong base này.
+
+### Còn lại / yêu cầu thay đổi / bị chặn
+
+- Không còn hạng mục môi trường của Lane B bỏ dở; không cần mở rộng phạm vi file, không có blocker.
+- Phần ghép đã thuộc T-194/195/197/198: core tạo scene/director và điều khiển hai cửa/đợt xác/checkpoint/kết; A gắn BedSlat/SearchSpot/ZombieDoor theo anchor; D gắn giấy và thẻ giường; E gắn âm thanh. Không tự sửa các file của các lane đó, không thêm luật hay lời truyện.
 
 ## Review (integrator)

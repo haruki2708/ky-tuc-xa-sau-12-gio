@@ -24,7 +24,10 @@ func after_each() -> void:
 
 
 func _doors() -> Array[Node]:
-	return tree.get_nodes_in_group(&"room_doors")
+	# This regression suite covers the 22 T-190 room waves. T-196 adds two
+	# chapter-4 doors, verified independently in test_ch4_environment.gd.
+	return tree.get_nodes_in_group(&"room_doors").filter(func(door: Node) -> bool:
+		return door.room != &"407" and door.room != &"library_back")
 
 
 func _spawn(door: Node3D) -> Vector3:

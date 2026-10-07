@@ -1,0 +1,170 @@
+{
+  "box_triangles": {
+    "library/library.tscn": 8004,
+    "ch4/ch4_anchors.tscn": 336,
+    "hospital/hospital_room.tscn": 828,
+    "ch4/canteen_west_exit.tscn": 60
+  },
+  "world_anchors": {
+    "Start_split": [
+      167,
+      -9.9,
+      40.5
+    ],
+    "Start_library": [
+      65,
+      -9.9,
+      223
+    ],
+    "Start_return": [
+      4,
+      -9.9,
+      2
+    ],
+    "Start_407": [
+      32,
+      0.03,
+      -0.85
+    ],
+    "Counter": [
+      58,
+      -9.0,
+      206
+    ],
+    "MapBoard": [
+      45.25,
+      -8.1,
+      211
+    ],
+    "ReadingDesk": [
+      58,
+      -5.71,
+      216
+    ],
+    "LibrarianSeat": [
+      57,
+      -9.44,
+      207.5
+    ],
+    "ScareShelf3F": [
+      57,
+      -3.3,
+      218
+    ],
+    "ThrownBook3F": [
+      73,
+      -1.1,
+      218
+    ],
+    "LibraryZombieSpawn/S01": [
+      62,
+      -9.9,
+      228
+    ],
+    "LibraryZombieSpawn/S02": [
+      65,
+      -9.9,
+      228
+    ],
+    "LibraryZombieSpawn/S03": [
+      68,
+      -9.9,
+      228
+    ],
+    "LibraryZombieSpawn/S04": [
+      62,
+      -9.9,
+      231
+    ],
+    "LibraryZombieSpawn/S05": [
+      65,
+      -9.9,
+      231
+    ],
+    "LibraryZombieSpawn/S06": [
+      68,
+      -9.9,
+      231
+    ],
+    "StairCrowd/L1_01": [
+      -4.0,
+      -9.899999999999999,
+      2.8
+    ],
+    "StairCrowd/L1_02": [
+      -2.5,
+      -9.899999999999999,
+      1.4
+    ],
+    "StairCrowd/L1_03": [
+      -1.0,
+      -9.899999999999999,
+      2.8
+    ],
+    "StairCrowd/L2_01": [
+      -4.0,
+      -6.6,
+      2.8
+    ],
+    "StairCrowd/L2_02": [
+      -2.5,
+      -6.6,
+      1.4
+    ],
+    "StairCrowd/L2_03": [
+      -1.0,
+      -6.6,
+      2.8
+    ],
+    "StairCrowd/L3_01": [
+      -4.0,
+      -3.3,
+      2.8
+    ],
+    "StairCrowd/L3_02": [
+      -2.5,
+      -3.3,
+      1.4
+    ],
+    "StairCrowd/L3_03": [
+      -1.0,
+      -3.3,
+      2.8
+    ],
+    "StairCrowd/L4_01": [
+      -4.0,
+      0.0,
+      2.8
+    ],
+    "Room407/Slat1": [
+      30.65,
+      1.18,
+      -3
+    ],
+    "Room407/Slat2": [
+      30.65,
+      0.41,
+      -3
+    ],
+    "Room407/Slat4": [
+      37.35,
+      1.18,
+      -2.7
+    ],
+    "Room407/FakeLocker": [
+      30.65,
+      1.1,
+      -0.45
+    ],
+    "Room407/FakeCeiling": [
+      33,
+      2.92,
+      -2
+    ],
+    "Room407/FakeVent": [
+      37.8,
+      2.35,
+      -1
+    ]
+  }
+}
