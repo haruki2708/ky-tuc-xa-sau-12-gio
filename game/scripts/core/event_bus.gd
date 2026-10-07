@@ -292,3 +292,58 @@ signal companion_state_changed(member: StringName, state: StringName)
 
 ## A guard raised the baton: the player is inside its warning radius.
 signal guard_warned(guard: Node3D, warned: bool)
+
+
+# --- Chapter 4 "Người sống sót" (CH4_DESIGN.md, D-067, T-194…T-199) ---
+# Reused: noise_emitted (zombies turn to a noise and hunt it), zombie_woke,
+# bar_*, stamina_changed, scare_triggered, text_entry_changed (keyboard
+# taken by a text box), player_caught(&"zombie") then core kills,
+# player_death_started(&"zombie_grab" or the new &"door_burst").
+
+## Library: the rule book's "Đối chiếu" tab is open (lane D). Core answers the
+## underline with ch4_compare_result; a wrong pick costs nothing.
+signal ch4_compare_opened()
+
+## The player underlined a line of the round-5 rule. rule_key: the RuleSystem
+## id, &"ch3_r5_1", &"ch3_r5_2" or &"ch3_r5_3".
+signal ch4_sentence_marked(rule_key: StringName)
+
+## Core's answer to ch4_sentence_marked. matched = it is the redundant line.
+signal ch4_compare_result(rule_key: StringName, matched: bool)
+
+## The decoy phone was thrown and will ring at `at` (lane A emits, lane E plays
+## the ring there). charges_left: 3 at the start of the chapter, 0 = battery
+## dead. The ring also emits noise_emitted(at, 25, &"phone_decoy") so zombies
+## turn to it with the existing noise code.
+signal phone_decoy_thrown(at: Vector3, charges_left: int)
+
+## A door under attack (ZombieDoor, lane A) is damaged: fraction 0..1 of the
+## time it holds. id is the door's `room` or node name (&"407", &"library_back").
+## Lane B swaps cracks, the hole and the hand at fractions; lane E hits.
+signal door_damage_changed(id: StringName, fraction: float)
+
+## A bunk's slats were flipped over (lane A, hold E). bed: 1, 2 or 4. Lane D
+## shows that bed's scrap of the form.
+signal bed_slat_flipped(bed: int)
+
+## All three scraps found: lane D lays the form out ("Phiếu điều tra người sống sót").
+signal survivor_form_assembled()
+
+## The player bites a finger to write in blood: lane D opens the name box
+## (system IME, same contract as chain input) with a countdown that follows the
+## door; core judges the name. Lane D emits text_entry_changed too.
+signal blood_name_requested(seconds: float)
+signal blood_name_typed(text: String)
+
+## Core closed the name box: &"accepted", &"wrong" or &"timeout".
+signal blood_name_closed(result: StringName)
+
+## The body fades (lane D effect): the chat box asks for a last message.
+signal fade_message_requested(seconds: float)
+signal fade_message_typed(text: String)
+
+## Core closed the message box: &"sent" or &"timeout".
+signal fade_message_closed(result: StringName)
+
+## The hospital: &"all" (Minh Nhật and Ngư in the next beds) or &"alone".
+signal ch4_ending(kind: StringName)
