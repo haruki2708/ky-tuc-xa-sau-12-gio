@@ -40,11 +40,43 @@ Bảo vệ có tên ổn định `Chapter3Director/Guard01` … `Guard12` (hàng
 
 ## Checklist hoàn thành
 - [ ] `routes` 4 khu có action đủ (chìa, cửa, bình, nấp 207, cửa sổ, nhận sắt, sân, bảo vệ, nhà ăn)
-- [ ] `bindings`, `menu_actions`, `guard_target` điền thật, không còn `null`
+- [x] `bindings`, `menu_actions`, `guard_target` điền thật, không còn `null`
 - [ ] Test mới PASS; `pwsh tools/test.ps1`, `pwsh tools/check.ps1` PASS
-- [ ] `qa-menu -Smoke` chạy thật, ghi kết quả
-- [ ] Handoff: những gì chưa chắc (đường đi bot có thể sai chỗ nào), yêu cầu ngoài phạm vi
+- [x] `qa-menu -Smoke` chạy thật, ghi kết quả
+- [x] Handoff: những gì chưa chắc (đường đi bot có thể sai chỗ nào), yêu cầu ngoài phạm vi
 
 ## Handoff (agent điền)
+
+### 2026-10-07 — Lane C, T-193
+
+**Blocked: tuyến navmesh thật không tới điểm nấp 207 và nhiều waypoint ngoài trời; cần lane B/integrator sửa map. Không bỏ test lỗi hoặc sửa file ngoài phạm vi để tạo PASS.**
+
+- Base: `origin/main` tại `61af631`; nhánh `lane-c/T-193-ch3-bot-profile`. Commit thực hiện `132459b` đã push trước khi điền Handoff này. Chỉ làm tại `D:\GAME_WORK\lane-c`.
+- Điền cả bốn tuyến: mở cửa 407, chìa, cửa thoát hiểm, hai tầng cầu thang, bình cứu hỏa, nấp 207 chờ 20 giây, cầu thang chính, cửa sổ có cúi, gặp Ngư và đợi sắt, vòng sân tới cờ sống sót, tránh bảo vệ, tới nhà ăn. Tuyến dùng các điểm Nhat theo card và tọa độ thật; **đã điền nhưng chưa coi tuyến dùng được** vì audit navmesh FAIL.
+- Điền cờ milestone, DeathScreen/Root, HeadHitbox, 12 Guard, grab_stage=garden và GuardLine/G06. Không thay phần performance đã có.
+- Adapter đi bằng navmesh/input hỗ trợ tọa độ tuyệt đối, chờ có giới hạn và lặp tuyến tới postcondition; không teleport hoặc tự đặt cờ. Tương tác thường kiểm khoảng cách 2,5 m. Verify đọc node riêng và thuộc tính lồng (`Player.bar_weapon:hits_left`) để xác nhận đủ 8 lượt đánh, không chỉ khác null. Bot khởi tạo rule set và sự kiện bắt đầu chương như menu.
+- F9 gọi bốn debug API thật và trả kết quả kiểm chứng. Smoke kiểm cả bốn API ở **mỗi** khu, nạp stamina từ 0,2 lên 1,0, kiểm F9 pause/mở/đóng. Test fixture cũ được giữ làm regression; test mới `test_ch3_profile.gd` dùng **chapter3.tscn thật**, kiểm node/anchor, chìa/cửa/bình, không tương tác từ xa, debug API và navmesh nối từng chặng/cả vòng sân.
+
+**Kiểm tra đã chạy**
+
+| Lệnh | Kết quả |
+|---|---|
+| `pwsh tools/test.ps1 -Filter ch3` (trước khi thêm audit nối navmesh) | `RESULT: 44 passed, 0 failed`; không dùng kết quả này để tuyên bố bản cuối PASS |
+| `pwsh tools/test.ps1 -Filter ch3_profile` (có audit, đợi 5 physics frame đồng bộ) | `RESULT: 0 passed, 1 failed` |
+| `pwsh tools/test.ps1` (bản cuối) | **`RESULT: 601 passed, 1 failed`**; exit 1, bài FAIL duy nhất là `test_real_profile_nodes_actions_and_navigation_endpoints` |
+| `pwsh tools/check.ps1` | `RESULT: check 0 error(s)`; exit 0 |
+| `pwsh tools/qa-menu.ps1 -Chapter 3 -Smoke` | `RESULT: qa-menu PASS chapter3 (four area jumps, four debug actions per area, F9)`; exit 0, không SKIP |
+
+- Log đã commit: `tools/reports/T-193-test.txt`, `T-193-check.txt`, `T-193-navmesh.txt`, `T-193-menu-smoke.txt`. Log test chỉ bỏ khoảng trắng cuối dòng khi lưu; không thay kết quả. Không có SCRIPT ERROR/ERROR trong lượt full test.
+- Smoke dùng renderer Forward+ / RTX 3050 Laptop GPU và userdata riêng tại `build/qa-menu/060ad9ec7e2b48dc8f415a416f23f411/`. Đã xem ảnh `userdata/Godot/app_userdata/Ky Tuc Xa Sau 12 Gio/ch3-menu.png`: đủ tám nút, chữ tiếng Việt rõ.
+- Checklist tuyến và toàn bộ test còn để trống do lỗi dưới đây. Không chạy bot cả chương, hai case chết hay FPS theo giới hạn card. Chưa kiểm chứng khả năng sống sót, thời điểm nấp 207, né xác/đánh đầu, cửa sổ với input bot, nhận đủ đồng đội hay kết thúc chương bằng bot. Các phép đặt vị trí trong test chỉ là setup kiểm API, không phải bằng chứng bot đi được.
+
+**Yêu cầu thay đổi ngoài phạm vi — lane B/integrator**
+
+1. Mở rộng/nối navmesh vào sâu phòng 207 trong `game/scenes/levels/campus/campus.tscn`: từ `(35.75,-6.6,2)` tới điểm card `(35.75,-6.6,-4.5)`, `map_get_path` dừng tại `(35.75,-6.6,-2.5)`, cách đích 2 m. Resource `t190_s21` của `Navigation/Alcove2_6` chỉ phủ tới z=-2,5. Không tự đổi điểm nấp nông hơn vì chưa chứng minh an toàn theo luồng yêu cầu.
+2. Kiểm tra navmesh ngoài trời/khả năng đăng ký vùng `Campus/Navigation/Outdoor` và kết nối cửa sổ → vườn → đường → sân → cổng → nhà ăn (`campus.tscn`, `outdoor_navigation.tres` và script liên quan nếu cần). Sau đồng bộ, điểm `(4,-9.9,-12)` chỉ tìm được endpoint `(4,-9.9,-10.7)`; Start_garden `(22,-9.9,8)` có closest/endpoint `(22,-9.9,3.55)`; Start_stadium `(115,-9.9,166)` closest `(158.5,-9.676471,213.2)`. Chưa kết luận nguyên nhân của vùng Outdoor; không sửa resource hoặc runtime map trong lane C. Danh sách đầy đủ trong `T-193-navmesh.txt`.
+3. Sau khi lane B sửa, chạy lại `pwsh tools/test.ps1 -Filter ch3_profile`, rồi full test/check. Giữ ngưỡng endpoint 0,8 m và tránh bảo vệ 3,3 m; không nới ngưỡng hay teleport để bỏ qua. Bot cả chương vẫn chờ chủ dự án cho phép.
+
+Không có câu hỏi mới về luật chơi/cốt truyện; các giá trị thời gian và điểm nấp lấy từ card/core, chưa tự suy diễn thiết kế.
 
 ## Review (integrator)
