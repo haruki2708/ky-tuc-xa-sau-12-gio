@@ -1,5 +1,5 @@
 # T-198 — Chương 4: âm thanh (chuông mồi, đập cửa, thư viện, bệnh viện, giọng y tá, nhạc kết)
-- Lane: E (Âm thanh) | Trạng thái: todo | Agent:
+- Lane: E (Âm thanh) | Trạng thái: done (giọng chờ lời được duyệt) | Agent:
 - Nhánh: `lane-e/T-198-ch4-audio`
 - Phụ thuộc: T-186, T-194 (**hợp đồng chung**, mã jumpscare), `docs/design/CH4_DESIGN.md`, D-067. Quy tắc cũ: **âm lượng nhỏ** (chủ dự án thích yên; chưa ai nghe âm chương 3, nên giữ ngưỡng của chương 3).
 - **Hạn đề xuất:** 2026-10-10.
@@ -21,14 +21,67 @@
 `audio_source/`, `game/audio/`, `game/scripts/audio/`, `game/default_bus_layout.tres`, `game/tests/audio/`, card này (Handoff). Ghi nguồn asset vào `CREDITS.md` của lane (CC0/CC-BY; âm tạo bằng công cụ thì ghi rõ).
 
 ## Checklist hoàn thành
-- [ ] Chuông mồi 3D 6 giây, hết pin báo hiệu
-- [ ] Đập cửa theo `door_damage_changed`, nứt, vỡ, gầm
-- [ ] 10 mã jumpscare của chương 4 có tiếng
+- [x] Chuông mồi 3D 6 giây, hết pin báo hiệu
+- [x] Đập cửa theo `door_damage_changed`, nứt, vỡ, gầm
+- [x] 10 mã jumpscare của chương 4 có tiếng
 - [ ] Giọng loa ký tên, giọng 2 y tá, nhạc kết, máy theo dõi
-- [ ] Nhạc chương 4, còi cứu hộ to dần, im ở phòng 407
-- [ ] `pwsh tools/test.ps1`, `pwsh tools/check.ps1` PASS
-- [ ] Handoff: bảng âm và âm lượng, **nhờ chủ dự án nghe**
+- [x] Nhạc chương 4, còi cứu hộ to dần, im ở phòng 407
+- [x] `pwsh tools/test.ps1`, `pwsh tools/check.ps1` PASS
+- [x] Handoff: bảng âm và âm lượng, **nhờ chủ dự án nghe**
 
 ## Handoff (agent điền)
 
+### Lane E — 2026-10-07
+
+- Commit triển khai **`a36b97a`**, đã push lên `origin/lane-e/T-198-ch4-audio`; base `origin/main` **`ff17fb4`**. Chỉ sửa trong phạm vi audio và checklist/Handoff card. Không sửa `STATUS.md`, core, gameplay, scene môi trường hoặc CSV; không thêm plugin/cài công cụ.
+- Tạo **29 âm/nhạc** + **7 bản giọng** (5 câu nguyên văn `CH4_DESIGN.md`; mỗi câu kết có hai giọng để core chọn). Pipeline offline tái tạo được, report SHA256/LUFS/peak/seed, raw/OGG qua LFS, `.import` và `.uid` kèm đủ. Raw + OGG mới 9.668.830 byte, file lớn nhất 864.044 byte. Nguồn/CC0/công cụ/AI-assisted đã ghi ở `game/audio/CREDITS.md`, giọng theo quy trình eSpeak T-137.
+- `Ch4AudioRig` là root âm theo scene: chuông 3D 6 giây không gửi gameplay noise lần hai; cửa đập 0,7 giây, các ngưỡng lớp, burst chống trùng giữa fraction=1/API/death; 10 mã scare (monitor_skip là bỏ nhịp, không thêm tiếng hù); khoảng lặng 0,8 giây trước neck_hand; StairCrowd reuse T-186 giảm gain, tối đa 3 nguồn gần nhất; còi theo 510→540 phút, phòng 407 tắt nền; fade/tim chậm, bíp bệnh viện, Foley y tá/cửa, nhạc kết một lần.
+- Thêm 9 test có decode/hash/loop/âm lượng, bus, tín hiệu lặp, kiểm tra 6 giây theo clock thật và pause, ngưỡng cửa, khoảng lặng, skip đúng một nhịp, death/reset, missing bank, free player theo scene và không thêm bus. Fixture nghe riêng `res://audio/test/ch4_audio_test.tscn`.
+
+### Kết quả kiểm tra
+
+```text
+pwsh tools/test.ps1 -Filter ch4_audio
+RESULT: 9 passed, 0 failed
+pwsh tools/test.ps1
+RESULT: 610 passed, 0 failed
+pwsh tools/check.ps1
+RESULT: check 0 error(s)
+```
+
+Các lượt PASS chạy Godot 4.7.2 ngoài sandbox: trong sandbox Godot báo không đọc được kho chứng chỉ Windows. `git diff --check` sạch; 132 file triển khai đều trong allowlist. Chưa nghe bằng tai, chưa chạy/chơi xuyên chương 4; không chạy bot dài. Các checkbox đã đánh dấu là mức **bank/rig/fixture**, chưa khẳng định tích hợp vào game thật.
+
+### Bảng âm và âm lượng
+
+Mức dưới là LUFS mục tiêu trước bus; đo OGG sai lệch ≤1 LU và peak ≤−2 dBTP. Gain runtime ≤0 dB. Chi tiết từng tên/mức đo, source report và API trong [audio_source/ch4/README.md](../../audio_source/ch4/README.md).
+
+| Nhóm | LUFS mục tiêu | Bus / gain |
+|---|---|---|
+| Chuông / chạm sàn / pin hết | −42 / −41 / −49 | SFX, 3D 30 m |
+| Đập / nứt / mảnh gỗ | −39 / −43 / −42 | SFX; đập −12→−2 dB, lớp −6 dB |
+| Cửa vỡ / giảm hù | −33 / −44 | SFX, 0 dB |
+| 9 clip scare | −38…−44 | SFX, 0 dB; giảm hù −10 dB |
+| Thư viện / mưa | −54 / −56 | Ambience |
+| StairCrowd T-186 | gốc −46/−43 | Ambience, −18 dB mỗi nguồn, tối đa 3 |
+| Còi T-186 | gốc −57 | Ambience, −18→0 dB từ 8:30→9:00 |
+| Cười PA / lời ký tên / y tá | −39 / −33 / −34 | Voice |
+| Fade / tim / monitor | −49 / −47 / −49 | Music / SFX / SFX |
+| Bước y tá / cửa viện | −46 / −46 | Footsteps / SFX |
+| Nhạc thưa / viện / kết | −53 / −56 / −51 | Music |
+
+### Còn dở, yêu cầu thay đổi ngoài phạm vi
+
+- **Mục checklist giọng thoại giữ chưa đạt trọn vẹn:** đã có 7 clip, hai giọng nữ `vi+f1`/`vi+f3`, PA preset hiện có, nhạc kết và monitor chạy trong fixture. Tuy nhiên main cơ sở chưa có `SPK_CH4_*`, `NEAR_CH4_NURSE_*`, director/script CH4. Report voice ghi `core_keys=[]`; chưa thể kiểm chứng câu/khóa/phụ đề đúng nhịp game thật. Không tự đặt khóa hoặc viết nội dung mới.
+- **Yêu cầu core/T-194:** cấp khóa thoại và nối `Ch4AudioRig.play_line(asset_id, at)` cùng subtitle/chờ thời lượng; gọi `play_pa_laugh(at)` đúng vòng 5. `pa_signed`, `nurse1_wake`, `nurse2_quake` tương ứng nguyên văn thiết kế. **Câu hỏi:** y tá 1 hay 2 đọc câu kết? Đã xuất `nurse1_all`/`nurse2_all` và `nurse1_alone`/`nurse2_alone`; core chọn một giọng theo thiết kế chốt, không phát cả hai.
+- **Yêu cầu core/A/B:** instance đúng một rig làm con scene CH4, gán listener, các vị trí scare, StairCrowd và MonitorAudioMarker; đăng ký cửa 407/library_back/T-190, gửi fraction 0 khi hủy đập/mở cửa, gọi `play_door_burst(id)` nếu burst không đi qua fraction=1. Gọi area theo beat, bước/cửa y tá theo animation; tắt emitter chương trước để khoảng lặng thực sự chỉ còn âm yêu cầu. Nếu đổi hẳn scene campus→hospital, dựng rig hospital mới rồi gán marker/area. API/mẫu code đã có trong README; không tự sửa file ngoài lane.
+- **Nhờ chủ dự án nghe duyệt** fixture F6: mũi tên chọn 36 asset, Space nghe lại, 0 reset; 1 chuông; 2 tăng damage; 3 thư viện; 4 crowd; 5 phòng407; 6 neck; 7 fade; 8 viện; 9 skip; E nhạc kết. Cần nghe độ nhỏ, độ xa chuông, cửa vỡ, phát âm Trần Trung, độ rõ/khác nhau của hai y tá và nhạc viện/kết. Chưa có xác nhận cảm nhận.
+- **Blocked (tích hợp):** chờ khóa thoại/director/scene CH4 ngoài phạm vi Lane E. Phần bank/rig/test/fixture của Lane E đã xong và push; không có lỗi test hoặc chặn công cụ còn tồn tại.
+
 ## Review (integrator)
+
+### 2026-10-07 — Claude (Sonnet 5.5): **duyệt, đã merge; giọng thoại chưa nối**
+- **Bank, rig, test:** đúng card; 29 âm/nhạc và 7 giọng, đo LUFS/peak, API `Ch4AudioRig` rõ ràng, 9 test (decode, vòng lặp, ngưỡng cửa, 6 giây chuông theo clock thật, khoảng lặng, skip một nhịp, free theo scene). Merge không xung đột.
+- **Core đã nối** (`chapter4_director.gd`): một `Ch4AudioRig` làm con cảnh (thêm sau khi cảnh dựng xong), `set_area` theo khu (`road`, `library`, `return_b`, `stairs`, `407`), `stair_points` từ `StairCrowd`, `register_door` cho `407` và `library_back`, vị trí 10 mã jumpscare (anchor hoặc vị trí Trung), tiếng cười loa lúc ký tên, `monitor_marker` khi dựng bệnh viện; nhạc chương 3 tắt trong chương 4.
+- **Giọng chưa nối:** lane E thu 5 câu theo bản nháp trong `CH4_DESIGN.md`, nhưng lời trong `CH4_SCRIPT.md` (đang chờ chủ dự án duyệt) khác và tách câu y tá thành ba (`NURSE1_AWAKE`, `NURSE2_QUAKE`, `NURSE1_LUCKY`, `NURSE2_ALL/ALONE`). Chờ duyệt lời, rồi lane E thu lại từ đúng lời đã chốt. Trả lời câu hỏi của lane E: **y tá 2 đọc câu kết** (cả hai kết).
+- **Chưa nghe bằng tai** (fixture F6 `res://audio/test/ch4_audio_test.tscn`): nhờ chủ dự án nghe.
+

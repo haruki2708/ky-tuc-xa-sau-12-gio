@@ -161,6 +161,18 @@ func test_a_wrong_last_message_is_the_lonely_ending() -> void:
 	assert_true(events.has("ending:alone"), "not the bed slats: alone")
 
 
+func test_lane_e_audio_rig_follows_the_stages() -> void:
+	director.run_from(&"split")
+	await wait_frames(6)
+	var rig := scene.get_node_or_null("Ch4AudioRig") as Ch4AudioRig
+	assert_not_null(rig, "lane E's rig is in the scene")
+	if rig == null:
+		return
+	assert_eq(rig.listener, player, "listens from Trung;")
+	assert_eq(director._scare_position(&"neck_hand"), player.global_position, "a scare without a place sounds at Trung;")
+	assert_true(not rig.doors.has(&"407"), "no door registered before the 407 stage")
+
+
 func test_deaths_name_the_place() -> void:
 	director.run_from(&"library")
 	await wait_frames(5)

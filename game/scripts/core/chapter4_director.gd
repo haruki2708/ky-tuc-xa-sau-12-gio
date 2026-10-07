@@ -57,6 +57,7 @@ var _doors: Dictionary[StringName, ZombieDoor] = {}
 var _door_seconds: Dictionary[StringName, float] = {}
 var _stair_crowd: Array[Zombie] = []
 var _hospital: Node3D
+var _audio: Ch4AudioRig
 
 
 func _ready() -> void:
@@ -66,6 +67,7 @@ func _ready() -> void:
 	EventBus.blood_name_typed.connect(_on_blood_name_typed)
 	EventBus.fade_message_typed.connect(_on_fade_message_typed)
 	_place_ch4_uses()
+	_place_ch4_audio()
 
 
 func run_from(stage: StringName) -> void:
@@ -126,6 +128,7 @@ func _split() -> void:
 	_survivors(3)
 	_prepare_chapter()
 	_arrive_at("Ch4/Start_split", &"split")
+	_audio_area(&"road")
 	if _horde != null:
 		_horde.place_idle(&"Road")
 	_story(["chat:ngu_go", "chat:n_go"])
@@ -156,6 +159,7 @@ func _prepare_chapter() -> void:
 func _library() -> void:
 	_begin(&"library", "08:40")
 	_arrive_at("Ch4/Start_library", &"library")
+	_audio_area(&"library")
 	_compare_done = bool(GameState.get_flag(&"ch4_compare_done", false))
 	_arm_door(&"library_back", LIBRARY_DOOR_SECONDS, _markers("Ch4/LibraryZombieSpawn", LIBRARY_WAVE), Vector3.ZERO)
 	_door_loop(&"library")
@@ -168,6 +172,59 @@ func _library() -> void:
 
 
 ## The reading desk opens the rule book with its "Đối chiếu" tab (lane D).
+## Lane E's chapter rig (T-198): decoy ring, door hits, scares, stair crowd, hospital,
+## music. It does the voices too once the script is approved and recorded.
+func _place_ch4_audio() -> void:
+	if get_parent() == null:
+		return
+	_audio = Ch4AudioRig.new()
+	_audio.name = "Ch4AudioRig"
+	_audio.listener = _player
+	# The scene is still setting up its children: add the rig right after.
+	get_parent().add_child.call_deferred(_audio)
+	_audio.set_area.call_deferred(&"road")
+
+
+## Chapter 3's music stays quiet here; the ambience still follows the zone.
+func _set_area(area: StringName) -> void:
+	if _environment != null:
+		_environment.set_area(area)
+
+
+func _scare(id: StringName) -> void:
+	if _audio != null and not _scared.get(id, false):
+		_audio.scare_positions[id] = _scare_position(id)
+	super._scare(id)
+
+
+## Where a jumpscare sounds: its place when it has one, else at Trung.
+func _scare_position(id: StringName) -> Vector3:
+	var here := _player.global_position if _player != null else Vector3.ZERO
+	var anchors := {&"librarian_rise": "Ch4/LibrarianSeat", &"books_fall": "Ch4/ScareShelf3F",
+		&"shelf_corpse": "Ch4/ThrownBook3F", &"knife_pull": "ManagerKnife", &"stairs_turn": "Ch4/StairCrowd/L1_01"}
+	if anchors.has(id):
+		var anchor := _anchor(anchors[id])
+		if anchor != null:
+			return anchor.global_position
+	if id == &"back_door_hit" or id == &"door_hand":
+		var door := _room_door(&"library_back" if id == &"back_door_hit" else &"407")
+		if door != null:
+			return door.global_position
+	if id == &"monitor_skip" and _audio != null and is_instance_valid(_audio.monitor_marker):
+		return _audio.monitor_marker.global_position
+	return here
+
+
+func _audio_area(area: StringName) -> void:
+	if _audio == null:
+		return
+	# The rig joins the scene deferred: until it is ready, set the area after.
+	if _audio.is_node_ready():
+		_audio.set_area(area)
+	else:
+		_audio.set_area.call_deferred(area)
+
+
 func _place_ch4_uses() -> void:
 	var desk := _ch4_use("Ch4/ReadingDesk", "PROMPT_CH4_DESK", Vector3(1.2, 0.8, 0.8))
 	if desk != null:
@@ -219,6 +276,7 @@ func _on_sentence_marked(rule_key: StringName) -> void:
 func _return() -> void:
 	_begin(&"return", "08:50")
 	_arrive_at("Ch4/Start_return", &"return")
+	_audio_area(&"return_b")
 	if _horde != null:
 		_horde.place_idle(&"Road")
 	_calls_after([[120.0, "chat:n_where"]], &"return")
@@ -226,6 +284,7 @@ func _return() -> void:
 	if _dying:
 		return
 	_place_stair_crowd()
+	_audio_area(&"stairs")
 	# Up one floor (chapter 3's FLOOR_*_Y mark the way down; floor 2 is above floor 1's).
 	await _wait_until(func() -> bool: return _player.global_position.y > FLOOR_1_Y + 0.5, 1800.0, false)
 	if _dying:
@@ -246,6 +305,8 @@ func _return() -> void:
 ## the decoy phone, the bar, or the floor-2 corridor to the fire stairs).
 func _place_stair_crowd() -> void:
 	_stair_crowd.clear()
+	if _audio != null:
+		_audio.stair_points.assign(_markers("Ch4/StairCrowd", 16))
 	for marker in _markers("Ch4/StairCrowd", 16):
 		var zombie := _make_zombie("zombie_%02d" % (_stair_crowd.size() % ZOMBIE_MODELS + 1))
 		if zombie == null:
@@ -265,6 +326,7 @@ func _place_stair_crowd() -> void:
 func _room407() -> void:
 	_begin(&"room407", "08:58")
 	_arrive_at("Ch4/Start_407", &"room407")
+	_audio_area(&"407")
 	_slats.clear()
 	_form_ready = false
 	_signed = false
@@ -285,6 +347,8 @@ func _room407() -> void:
 	_freeze_zombies()
 	_scare(&"neck_hand")
 	_set_clock("09:00")
+	if _audio != null and _player != null:
+		_audio.play_pa_laugh(_player.global_position + Vector3(0.0, 2.0, 0.0))
 	await _announce(["SPK_CH4_REGISTERED"])
 
 
@@ -387,6 +451,8 @@ func _show_hospital() -> void:
 	var camera := _hospital.get_node_or_null("Camera_Wake") as Camera3D
 	if camera != null:
 		camera.make_current()
+	if _audio != null:
+		_audio.monitor_marker = _hospital.get_node_or_null("MonitorAudio") as Node3D
 
 
 func _hospital_voice(key: String, where: String) -> void:
@@ -419,6 +485,8 @@ func _arm_door(room: StringName, seconds: float, spots: Array, through: Vector3)
 		adapter.blocker = door.get("blocker") as CollisionObject3D
 		door.add_child(adapter)
 		_doors[room] = adapter
+		if _audio != null:
+			_audio.register_door(room, door)
 	_door_seconds[room] = seconds
 	for spot in spots:
 		var at: Vector3 = (spot as Node3D).global_position if spot is Node3D else spot

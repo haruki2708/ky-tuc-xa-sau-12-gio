@@ -1,0 +1,110 @@
+{
+  "engine": "eSpeak NG 1.52.0",
+  "source": "docs/design/CH4_DESIGN.md",
+  "voices": {
+    "pa": [
+      "vi+m1",
+      132,
+      30,
+      -33
+    ],
+    "nurse1": [
+      "vi+f1",
+      145,
+      54,
+      -34
+    ],
+    "nurse2": [
+      "vi+f3",
+      150,
+      62,
+      -34
+    ]
+  },
+  "assets": [
+    {
+      "id": "pa_signed",
+      "who": "pa",
+      "text": "Trần Trung đã đăng ký thành công. Bạn là người sống sót.",
+      "core_keys": [],
+      "file": "game/audio/ch4_voice/pa_signed.ogg",
+      "target_lufs": -33,
+      "lufs": -33.11,
+      "true_peak_db": -12.87,
+      "sha256": "5e8eed49e4bda8ab576efe29aa2e2e48940b94f0b8c97f6912497a3f493147a0",
+      "raw_sha256": "ef1c1096fa9ce81035eab7deb571ebffac3261e5ab5975baf461c7865c54f2d7"
+    },
+    {
+      "id": "nurse1_wake",
+      "who": "nurse1",
+      "text": "Tỉnh rồi! Cậu nằm yên, đừng cử động.",
+      "core_keys": [],
+      "file": "game/audio/ch4_voice/nurse1_wake.ogg",
+      "target_lufs": -34,
+      "lufs": -34.09,
+      "true_peak_db": -14.1,
+      "sha256": "578f211753d709100bcba630801581842b9ec71efa677d29804be642c6d9ad57",
+      "raw_sha256": "c69aad48c2da5e39d22e994edfc00b4da822801dd5a792415584182e2e0c1eae"
+    },
+    {
+      "id": "nurse2_quake",
+      "who": "nurse2",
+      "text": "Động đất đó cậu. Trường cậu gần tâm chấn lắm. Lúc cứu ra cậu còn thở, coi như mạng lớn.",
+      "core_keys": [],
+      "file": "game/audio/ch4_voice/nurse2_quake.ogg",
+      "target_lufs": -34,
+      "lufs": -34.04,
+      "true_peak_db": -14.27,
+      "sha256": "b1f284d1f0598327723605c70c55d41b2798eb4b6a399499cdba8680f35d2055",
+      "raw_sha256": "0a192a4d142742eca6b66c2a6089e6dbcb2778fade89b03fe648942a8cbd7d81"
+    },
+    {
+      "id": "nurse1_all",
+      "who": "nurse1",
+      "text": "Hai bạn kia vẫn đang hôn mê. Nhưng ổn rồi.",
+      "core_keys": [],
+      "file": "game/audio/ch4_voice/nurse1_all.ogg",
+      "target_lufs": -34,
+      "lufs": -34.12,
+      "true_peak_db": -15.99,
+      "sha256": "add0f991a0a8fef6c37a4a7b9169f38bca8f93554e8cfe98f715800ea27b4160",
+      "raw_sha256": "d2edfdce89f9dc9edddd9ff5af5ce6c9f7c0d7e1939145549cb0cfc84d21875a"
+    },
+    {
+      "id": "nurse2_all",
+      "who": "nurse2",
+      "text": "Hai bạn kia vẫn đang hôn mê. Nhưng ổn rồi.",
+      "core_keys": [],
+      "file": "game/audio/ch4_voice/nurse2_all.ogg",
+      "target_lufs": -34,
+      "lufs": -34.05,
+      "true_peak_db": -15.68,
+      "sha256": "e315bdbc6b8603b845e6fa003dd762015f6ae13fd38071b357f88407737117c1",
+      "raw_sha256": "35ce84d8243d0998446c4252ae9fa7fb1d5bc8fbdaaa0644eb4f5d99b6dc0ef7"
+    },
+    {
+      "id": "nurse1_alone",
+      "who": "nurse1",
+      "text": "Chỉ có cậu được cứu ra từ tòa đó.",
+      "core_keys": [],
+      "file": "game/audio/ch4_voice/nurse1_alone.ogg",
+      "target_lufs": -34,
+      "lufs": -34.12,
+      "true_peak_db": -17.29,
+      "sha256": "88cf6ea41f776dbe793ac4984bf7d401a8095a4aacb3e1c932d7e8591ec82682",
+      "raw_sha256": "b97b9e90dc0e4ac43f3d0b6bae4f9d166d61a1da498b7b6134e7b8ce1f78d1d1"
+    },
+    {
+      "id": "nurse2_alone",
+      "who": "nurse2",
+      "text": "Chỉ có cậu được cứu ra từ tòa đó.",
+      "core_keys": [],
+      "file": "game/audio/ch4_voice/nurse2_alone.ogg",
+      "target_lufs": -34,
+      "lufs": -34.05,
+      "true_peak_db": -16.23,
+      "sha256": "8e6336aad8e0649adb26df3c8fe6ae445b4d559546cb5b87dc0aa2e0a73a03ff",
+      "raw_sha256": "4c47436b9bb0f2f3bf66ad53c501fe0e164e1ac7a91d645d2a95fe17c849a907"
+    }
+  ]
+}

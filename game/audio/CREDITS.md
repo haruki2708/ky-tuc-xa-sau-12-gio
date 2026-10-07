@@ -230,3 +230,22 @@ Mỗi basename áp dụng cho `audio_source/ch3/raw/<name>.wav` và `game/audio/
 | music_run, music_wave, music_end | Drone trầm không giai điệu, pulse nhịp chạy/đợt xác và nốt sin dài |
 
 Dùng lại heartbeat T-158 và bước gạch T-105/T-126 theo nguồn CC0 đã ghi ở trên. Không sửa waveform cũ. LUFS/hash/peak/seed: `audio_source/ch3/build_report.json`; API và bảng mức đo: `audio_source/ch3/README.md`. **Chưa nghe bằng tai/chưa duyệt mix thực tế.**
+
+## T-198 — chương 4 (2026-10-07)
+
+**29 âm tự tổng hợp, CC0 1.0**, tác giả Lane E/dự án, code/công thức có **OpenAI Codex hỗ trợ (AI-assisted)**. Nguồn mọi cặp `audio_source/ch4/raw/<name>.wav` / `game/audio/ch4/<name>.ogg`: [ch4_process.py](https://github.com/tuaanh666/ky-tuc-xa-sau-12-gio/blob/lane-e/T-198-ch4-audio/audio_source/ch4_process.py); [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/). Dùng [Python](https://www.python.org/) stdlib, [FFmpeg](https://ffmpeg.org/) 9.0.2/libvorbis, Godot 4.7.2 có sẵn. Không bản thu người, sample tải về hoặc âm từ game/video.
+
+| Basename | Nguồn tổng hợp |
+|---|---|
+| decoy_ring, phone_land, battery_empty | Sin kép ngắt nhịp + noise rè; xung trầm/kim loại; bíp yếu |
+| door_pound, wood_crack, wood_splinters, door_burst, door_burst_soft | Noise nhiều dải, cộng hưởng gỗ trầm, burst và partial kim loại; soft bỏ lớp gắt/LP700 |
+| library, drizzle | Hum 100 Hz, noise giấy và chạm kim loại thưa; noise mưa lọc |
+| librarian_rise, books_fall, shelf_corpse, back_door_hit | Ma sát ghế + hơi; chuỗi vật rơi; va trầm; cửa/partial kính |
+| knife_pull, stairs_turn, hall_lights, door_hand, neck_hand | Kim loại trượt, áo/throat, transient điện và hum tắt, ma sát gỗ, hơi thở noise |
+| pa_laugh | Họa âm throat ngắt thành ba nhịp, lọc PA/vang; cười vô ngôn, không lời thêm |
+| body_fade, heartbeat, monitor, nurse_step_01, nurse_step_02, hospital_door | Noise/drone giảm dần, xung tim đôi, bíp sin, hai seed bước chân, bản lề/va cửa |
+| music_sparse, music_hospital, music_end | Partial sin trầm 55/82,5/110 Hz và envelope thưa; không giai điệu vay mượn |
+
+**7 bản thoại tổng hợp eSpeak NG 1.52.0** (`audio_source/voice_ch4/raw/*.wav`, `game/audio/ch4_voice/*.ogg`): `pa_signed`, `nurse1_wake`, `nurse2_quake`, `nurse1_all`, `nurse2_all`, `nurse1_alone`, `nurse2_alone`. Nguồn văn bản nguyên văn `docs/design/CH4_DESIGN.md`, không sáng tác thêm trong task. Nguồn tạo: [ch4_voice_process.py](https://github.com/tuaanh666/ky-tuc-xa-sau-12-gio/blob/lane-e/T-198-ch4-audio/audio_source/ch4_voice_process.py). Công cụ/dữ liệu [eSpeak NG](https://github.com/espeak-ng/espeak-ng) GPL-3.0-or-later chỉ dùng offline dưới D:\Tools, không phân phối engine/data; quy trình/đầu ra giữ cùng chính sách nguồn và giấy phép T-137 đã ghi ở trên. Đầu ra âm do dự án tạo phát hành CC0 1.0; không dùng MBROLA, neural voice hoặc bản ghi người thật. Biến thể `vi+m1` (PA), `vi+f1` và `vi+f3` (hai y tá). Khai báo AI-assisted cho code/âm tổng hợp khi phát hành; không tuyên bố là thu giọng người.
+
+Dùng lại `horde`, `zombie_growl`, `rescue_siren` T-186, cùng tác giả/CC0 ở mục trên, không sửa file cũ. Danh mục/mức đo/API: `audio_source/ch4/README.md`; SHA256/LUFS/peak/seed trong hai report `audio_source/ch4/build_report.json` và `audio_source/voice_ch4/build_report.json`. **Chưa nghe/duyệt giọng và mix; cần chủ dự án nghe fixture T-198.**
