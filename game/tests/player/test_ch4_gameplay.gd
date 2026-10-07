@@ -274,6 +274,22 @@ func test_phone_is_cleaned_up_with_player_during_flight() -> void:
 	assert_true(thrown.is_empty())
 
 
+func test_fake_ceiling_within_eye_ray_can_be_searched_above_three_meters() -> void:
+	var spot: HoldInteractable = FAKE.instantiate()
+	spot.position = Vector3(0, 3.3, -0.15)
+	world.add_child(spot)
+	spot.set_physics_process(false)
+	player.head.rotation.x = 1.45
+	await _ticks()
+	Input.action_press("interact")
+	player._physics_process(0.01)
+	assert_eq(player._target, spot)
+	assert_true(player.movement_locked(), "reachable ceiling must use eye distance")
+	spot._physics_process(8)
+	assert_true(spot.completed)
+	assert_true(flipped.is_empty())
+
+
 func test_bed_holds_movement_keeps_look_and_release_decays_then_resumes() -> void:
 	var slat: BedSlat = _slat()
 	Input.action_press("interact")

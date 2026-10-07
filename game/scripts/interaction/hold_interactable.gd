@@ -29,7 +29,7 @@ func interact(user: Node) -> void:
 		return
 	if not CarryItem.player_can_use(user) or user is not Node3D or not user.has_method("acquire_movement_lock"):
 		return
-	if user.global_position.distance_to(global_position) > 3.0:
+	if not _within_reach(user):
 		return
 	_release()
 	_player = user
@@ -62,7 +62,7 @@ func _physics_process(delta: float) -> void:
 	if get_tree().paused or completed:
 		return
 	if _holding and (not enabled or not CarryItem.player_can_use(_player) \
-			or not Input.is_action_pressed("interact") or _player.global_position.distance_to(global_position) > 3.0):
+			or not Input.is_action_pressed("interact") or not _within_reach(_player)):
 		_release()
 	var previous: float = progress
 	progress = minf(hold_seconds, progress + delta) if _holding else maxf(0, progress - delta * maxf(0, decay_per_second))
@@ -71,6 +71,13 @@ func _physics_process(delta: float) -> void:
 	_update_bar()
 	if _holding and progress >= hold_seconds - 0.000001:
 		_finish()
+
+
+func _within_reach(user: Node3D) -> bool:
+	# Ceiling/vent targets are aimed at from eye height, not from the feet.
+	var camera: Node3D = user.get_node_or_null("Head/Camera3D") as Node3D
+	var origin: Vector3 = camera.global_position if camera != null else user.global_position
+	return origin.distance_to(global_position) <= 3.0
 
 
 func _update_bar() -> void:
