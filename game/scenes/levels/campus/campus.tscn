@@ -20,6 +20,9 @@
 
 [ext_resource type="PackedScene" path="res://scenes/levels/campus/props.tscn" id="t192_e1"]
 
+[ext_resource type="PackedScene" path="res://scenes/levels/library/library.tscn" id="t196_library"]
+[ext_resource type="PackedScene" path="res://scenes/levels/ch4/ch4_anchors.tscn" id="t196_anchors"]
+
 [sub_resource type="BoxShape3D" id="s1"]
 size = Vector3(50, 0.3, 50)
 
@@ -10706,3 +10709,7 @@ metadata/t192 = true
 
 [node name="Props" parent="." instance=ExtResource("t192_e1")]
 metadata/t192 = true
+
+[node name="Library" parent="." instance=ExtResource("t196_library")]
+
+[node name="Ch4" parent="Anchors" instance=ExtResource("t196_anchors")]
