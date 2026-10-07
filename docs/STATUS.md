@@ -4,7 +4,7 @@
 **Giai đoạn:** Chương 2 **tạm chốt** (D-057, `v0.4-ch2`). Chương 3 "Truy sát" **đã ghép đủ** T-181…T-186, FPS đo đạt (trung bình ≥117 với 40 xác), **bản chơi thử export 2026-10-06** (`build/windows/KyTucXa.exe`, có chương 2 và 3). **Chờ chủ dự án chơi thử chương 3** theo `docs/playtest/CH3_WALKTHROUGH.md`. Máy chủ dự án: `progress.json` đã mở khóa tới chương 3.
 
 ## Việc tiếp theo (cho phiên integrator kế tiếp)
-1. **Chương 4: thiết kế tạm duyệt (D-067), đã giao lane (2026-10-07):** T-194 core (hợp đồng chung, đang làm), T-195 A, T-196 B (Claude Code web làm thay, prompt `docs/handoff/web.md`), T-197 D, T-198 E; lane C làm bot sau khi các lane merge (T-199). Prompt lane A, D, E đã trỏ sang task mới.
+1. **Chương 4: thiết kế tạm duyệt (D-067), đã giao lane (2026-10-07):** T-194 core (hợp đồng chung, đang làm), T-195 A, T-196 B (prompt `docs/handoff/lane-b.md`; phiên web `web.md` là dự phòng), T-197 D, T-198 E; lane C làm bot sau khi các lane merge (T-199). Prompt lane A, D, E đã trỏ sang task mới.
 1. **Lane C: T-193** điền profile bot chương 3 (không chạy bot; chủ dự án cho phép riêng). **Chương 3 đang chờ chủ dự án chơi thử bản 14:52** (xác ra từ phòng, tầng 2 nấp 207, đồng đội, khán đài).
 1. **Chương 3, góp ý chơi thử 2026-10-07 (D-062…D-065):** Claude đã làm: tầng 2 chỉ còn 4 xác ở cửa 203, bình cứu hỏa dời vào chiếu nghỉ cầu thang thoát hiểm tầng 2 (D-062), sửa lỗi xác lún sàn đứng im; Minh Nhật và Ngư đi theo sau người chơi tới lúc chia nhau ở nhà ăn, sửa lỗi kẹt ở vườn hoa (D-063, làm thay lane A); trời đêm tối thường (D-065). Lane B: **T-192** khán đài và rải đồ (D-064), làm sau T-190.
 1. **Chương 3, D-061 (2026-10-07):** xác nhà B phải đi ra từ các phòng theo bước chân người chơi (tầng 4, 3, 2; phòng 408 bật sau khi lấy chìa). **T-190 đã merge**; Claude làm luồng **T-191** rồi export. **T-192 đã merge** (Claude Code trên web làm thay lane B, D-066); FPS đo lại 2026-10-07 PASS (sau khi làm nhẹ phần kiểm xác lún sàn).
@@ -89,7 +89,7 @@
 | **Chương 4 "Người sống sót" (D-067, giao 2026-10-07)** | | |
 | T-194 Hợp đồng chung, kịch bản, luồng 5 khu, ghép | core | **doing**: hợp đồng xong, kịch bản và luồng chưa |
 | T-195 Điện thoại mồi, lật vạt giường, độ bền cửa phá, cảnh chết `door_burst` | A | todo, đã giao |
-| T-196 Thư viện 3 tầng, đường về, phòng 407 cuối, bệnh viện | B (Claude Code web làm thay, D-066) | todo, đã giao |
+| T-196 Thư viện 3 tầng, đường về, phòng 407 cuối, bệnh viện | B (lane B đã có lại token; phiên web dự phòng, D-066) | todo, đã giao (prompt `lane-b.md` §1) |
 | T-197 Tab Đối chiếu, phiếu điều tra, tên bằng máu, mờ dần, thẻ bệnh viện, thẻ hết chương | D | todo, đã giao |
 | T-198 Chuông mồi, đập cửa, thư viện, bệnh viện, giọng y tá, nhạc kết | E | todo, đã giao |
 | T-199 Bot chương 4, menu F9 nhảy 5 khu | C | chưa viết card (sau khi A, B, D, E merge) |

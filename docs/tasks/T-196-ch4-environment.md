@@ -1,5 +1,5 @@
 # T-196 — Chương 4: thư viện 3 tầng, đường về nhà B, phòng 407 cuối, phòng bệnh viện
-- Lane: B (Môi trường và 3D) — **Claude Code trên web làm thay** (D-066, lane B hết token; prompt `docs/handoff/web.md`, đổi tên task thành T-196) | Trạng thái: todo | Agent: Claude Code web
+- Lane: B (Môi trường và 3D; lane B đã có lại token 2026-10-07, prompt `docs/handoff/lane-b.md` §1; nếu lại hết token thì phiên Claude Code web làm thay theo `docs/handoff/web.md`) | Trạng thái: todo | Agent:
 - Nhánh: `lane-b/T-196-ch4-environment`
 - Phụ thuộc: T-183, T-189, T-190, T-192, T-194 (**đọc "Hợp đồng chung" và bảng anchor**), `docs/design/CH4_DESIGN.md`, D-054, D-067, `art_source/campus/README.md`.
 - **Hạn đề xuất:** 2026-10-10. Làm theo thứ tự ưu tiên ở mục "Thứ tự", phần thấp có thể giữ đơn giản.

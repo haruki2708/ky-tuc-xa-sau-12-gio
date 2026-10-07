@@ -1,6 +1,6 @@
 # Prompt bàn giao — Lane B (Môi trường và 3D)
 
-> **2026-10-07:** lane B hết token; T-192 đang do **Claude Code trên web** làm thay (D-066, prompt `docs/handoff/web.md`). Không dán prompt dưới đây cho lane B khi chưa hỏi integrator.
+> **2026-10-07:** lane B đã có lại token, nhận **T-196** (chương 4). T-192 (khán đài, rải đồ) đã xong, do Claude Code trên web làm thay (D-066).
 
 ## 1. Prompt giao task (dán nguyên khối)
 ```
@@ -12,13 +12,13 @@ TUYỆT ĐỐI không làm việc trong D:\GAME_DEMO (đó là bản tích hợp
 Bước 1. Chuẩn bị:
   - Nếu chưa có D:\GAME_WORK\lane-b: git clone https://github.com/tuaanh666/ky-tuc-xa-sau-12-gio.git D:\GAME_WORK\lane-b
   - cd D:\GAME_WORK\lane-b; git fetch origin
-  - Nếu nhánh lane-b/T-192-stands-props đã có trên origin: git switch lane-b/T-192-stands-props; git pull
-    Nếu chưa có: git switch -c lane-b/T-192-stands-props origin/main
-Bước 2. Đọc kỹ, theo thứ tự: AGENTS.md, docs/STATUS.md, docs/tasks/T-192-ch3-stands-props.md
+  - Nếu nhánh lane-b/T-196-ch4-environment đã có trên origin: git switch lane-b/T-196-ch4-environment; git pull
+    Nếu chưa có: git switch -c lane-b/T-196-ch4-environment origin/main
+Bước 2. Đọc kỹ, theo thứ tự: AGENTS.md, docs/STATUS.md, docs/tasks/T-196-ch4-environment.md
 Bước 3. Làm task trong card, CHỈ sửa file trong mục "Được phép sửa".
         Cần sửa file ngoài phạm vi thì ghi "Yêu cầu thay đổi" vào mục Handoff, không tự sửa.
-Bước 4. Trước khi kết thúc: chạy pwsh tools/test.ps1 (phải PASS); commit dạng "T-192: ...";
-        git push -u origin lane-b/T-192-stands-props; điền mục Handoff trong card, commit và push lại.
+Bước 4. Trước khi kết thúc: chạy pwsh tools/test.ps1 (phải PASS); commit dạng "T-196: ...";
+        git push -u origin lane-b/T-196-ch4-environment; điền mục Handoff trong card, commit và push lại.
 Bước 5. Trả lời tôi bằng tiếng Việt, ngắn gọn:
   (1) đã làm gì, (2) kết quả test (dán dòng RESULT), (3) checklist mục nào chưa đạt và vì sao,
   (4) yêu cầu thay đổi ngoài phạm vi, (5) có bị chặn ở đâu không.
@@ -28,14 +28,14 @@ luật chơi hay cốt truyện (ghi câu hỏi vào Handoff). Ghi trung thực:
 
 ## 2. Prompt tiếp tục (sau khi tắt máy, hoặc khi agent mất ngữ cảnh)
 ```
-Tiếp tục task T-192 của Lane B. cd D:\GAME_WORK\lane-b; git fetch origin; git switch lane-b/T-192-stands-props; git pull.
-Đọc lại AGENTS.md, docs/STATUS.md và docs/tasks/T-192-ch3-stands-props.md (đặc biệt mục Handoff để biết lần trước dừng ở đâu).
+Tiếp tục task T-196 của Lane B. cd D:\GAME_WORK\lane-b; git fetch origin; git switch lane-b/T-196-ch4-environment; git pull.
+Đọc lại AGENTS.md, docs/STATUS.md và docs/tasks/T-196-ch4-environment.md (đặc biệt mục Handoff để biết lần trước dừng ở đâu).
 Kiểm tra git status và git log -5. Tiếp tục các mục checklist chưa xong, rồi kết thúc phiên theo AGENTS.md §2.
 ```
 
 ## 3. Prompt yêu cầu sửa (khi integrator trả task về)
 ```
-Integrator đã review T-192 và yêu cầu sửa: xem mục "Review" trong docs/tasks/T-192-ch3-stands-props.md trên origin/main
-(git fetch; git show origin/main:docs/tasks/T-192-ch3-stands-props.md). Rebase nhánh lên origin/main, sửa từng ý, chạy test,
+Integrator đã review T-196 và yêu cầu sửa: xem mục "Review" trong docs/tasks/T-196-ch4-environment.md trên origin/main
+(git fetch; git show origin/main:docs/tasks/T-196-ch4-environment.md). Rebase nhánh lên origin/main, sửa từng ý, chạy test,
 push, cập nhật Handoff và báo lại theo 5 mục như trước.
 ```
