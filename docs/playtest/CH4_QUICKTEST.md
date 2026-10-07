@@ -5,7 +5,7 @@
 **Vào:** `D:\GAME_DEMO\build\windows\KyTucXa.exe` → Chọn chương → **Chương 4** (đã mở khóa trên máy anh/chị).
 **Phím:** Shift chạy · Ctrl cúi · E dùng (một số chỗ **giữ E**) · chuột trái đập sắt · **G ném điện thoại làm mồi** (3 lần) · Q điện thoại · Tab sổ.
 **Chết** thì làm lại từ đầu khu: nhà ăn, thư viện, sảnh nhà B, phòng 407.
-**Chưa có giọng nói** của loa và y tá (chỉ phụ đề); chờ duyệt lời.
+**Đã có giọng** loa, cuộc gọi và y tá (T-200); nhờ anh/chị nghe độ to và độ rõ.
 
 | # | Làm | Kiểm tra | Khoảng |
 |---|---|---|---|

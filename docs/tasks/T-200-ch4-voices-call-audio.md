@@ -1,5 +1,5 @@
 # T-200 — Giọng chương 4 theo lời đã duyệt; cuộc gọi chương 2–4 có tiếng
-- Lane: E (Âm thanh) | Trạng thái: todo | Agent:
+- Lane: E (Âm thanh) | Trạng thái: done | Agent: lane E
 - Nhánh: `lane-e/T-200-ch4-voices-call-audio`
 - Phụ thuộc: T-198 (đã merge), D-068 (lời `docs/design/CH4_SCRIPT.md` **đã duyệt**), T-137/T-186 (giọng eSpeak, loa, Minh Nhật, Ngư). Quy tắc cũ: **âm lượng nhỏ**, giữ ngưỡng của chương 3.
 - **Hạn đề xuất:** 2026-10-08.
@@ -95,3 +95,10 @@ Tên rút gọn dùng cùng tiền tố đầu hàng. Chat trên PhoneVoice, PA/
 - **Blocked (một câu ở kết thật):** N_GOT chờ core bổ sung tín hiệu restored như trên. Phần triển khai Lane E đã xong, test/check PASS và đã push; lỗi máy chủ LFS đã hết. Chưa có duyệt nghe của chủ dự án.
 
 ## Review (integrator)
+
+### 2026-10-08 — Claude (integrator, Opus): **duyệt, đã merge**
+- **Đúng card, làm kỹ:** 16 giọng đặt tên theo key trong `game/audio/voice/vi/`, lời lấy đúng cột `vi` (report so khớp từng chữ, kể cả "…"), Minh Nhật và Ngư dùng preset chương 3 nhanh ×1,25, hai y tá khác giọng, y tá 2 đọc cả hai kết; bỏ 7 bản nháp cũ, `Ch4AudioBank` và fixture nghe chuyển sang key mới.
+- **`PhoneCallAudio`:** nhận `CHAT_CH1_`…`CHAT_CH4_`; chương 2–4 coi như đang trong cuộc gọi `ch<n>_group` khi `chapter_started`; nạp lại điểm lưu dùng `GameState.chapter`. Integrator kiểm: mỗi lần chết cảnh được nạp lại và director luôn đặt `GameState.chapter` rồi phát `chapter_started`, nên cuộc gọi mở lại đúng. Chương 1 không đổi (test cũ giữ nguyên).
+- **Lane E sửa thêm, đúng:** `SpeakerVoiceBank` trước đây cũng chỉ nhận `SPK_CH1_`/`RULE_CH1_`, nghĩa là **giọng loa chương 2 và 3 cũng chưa từng phát** (chỉ có phụ đề). Nay nhận chương 1–4.
+- **Yêu cầu core của lane E (đúng, integrator đã làm):** `chapter4_director.gd` phát `phone_call_restored(&"ch4_group")` trước câu cuối `n_got` ở kết thật (trước đó câu này im vì cuộc gọi còn ở trạng thái mất sóng từ tầng 2). `test_chapter4.gd::test_slats_form_name_and_the_true_ending` kiểm trên cảnh thật: mất sóng rồi kết thật thì `PhoneCallAudio` phát `CHAT_CH4_N_GOT`; bỏ dòng sửa thì test hỏng.
+- **Chưa nghe bằng tai:** nhờ chủ dự án nghe trong game (cuộc gọi chương 2–4, loa chương 2–4, y tá) hoặc fixture F6 `res://audio/test/ch4_audio_test.tscn`.

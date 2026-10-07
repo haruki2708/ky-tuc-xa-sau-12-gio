@@ -134,8 +134,14 @@ func test_the_way_back_up_to_room_407() -> void:
 
 
 func test_slats_form_name_and_the_true_ending() -> void:
+	var spoken: Array[String] = []
+	var call_audio: PhoneCallAudio = scene.get_node("PhoneCallAudio")
+	call_audio.line_started.connect(func(key: String, _seconds: float) -> void: spoken.append(key))
+	EventBus.chapter_started.emit(4)
 	director.run_from(&"room407")
 	await wait_frames(5)
+	# The signal was lost on the stairs (floor 2); the last line must still be heard.
+	EventBus.phone_call_lost.emit(&"ch4_group")
 	EventBus.bed_slat_flipped.emit(1)
 	EventBus.bed_slat_flipped.emit(2)
 	EventBus.bed_slat_flipped.emit(3)
@@ -151,6 +157,7 @@ func test_slats_form_name_and_the_true_ending() -> void:
 	assert_eq(events, ["form", "name_requested:90", "name:wrong", "name:accepted", "message_requested:12",
 		"message:sent", "ending:all", "finished:4"] as Array[String], "the whole ending;")
 	assert_eq(String(GameState.get_flag(&"ch4_ending", "")), "all", "both friends saved")
+	assert_true(spoken.has("CHAT_CH4_N_GOT"), "Minh Nhật's last line is voiced after the lost signal: %s" % [spoken])
 	assert_eq(failed, [] as Array[StringName], "alive;")
 
 

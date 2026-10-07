@@ -472,8 +472,10 @@ func _ending_4() -> void:
 	_ending_kind = &"all" if _message_ok else &"alone"
 	GameState.set_flag(&"ch4_ending", String(_ending_kind))
 	if _message_ok:
-		# One last line gets through before the call is gone for good.
+		# One last line gets through before the call is gone for good: the call
+		# audio (lane E) stays silent until the signal comes back (T-200).
 		_network_up = true
+		EventBus.phone_call_restored.emit(&"ch4_group")
 		await _line("n_got")
 	await _fade_to_black(2.0)
 	_show_hospital()

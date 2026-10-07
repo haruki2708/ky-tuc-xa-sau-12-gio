@@ -6,9 +6,9 @@
 ## Việc tiếp theo (cho phiên integrator kế tiếp)
 1. **Chủ dự án chơi kiểm tra chương 1 → 4** bản 19:51 (`docs/playtest/`: `CH1_V2_PLAYTEST.md`, `CH2_WALKTHROUGH.md`, `CH3_QUICKTEST.md`, `CH4_QUICKTEST.md`). Mỗi lỗi: tái hiện bằng test hoặc cảnh thật, sửa, chạy cả bộ test, export lại. Góp ý thiết kế: đưa phương án kèm đề xuất, ghi D-xxx.
 2. **Chương 4 (D-068):** lời `CH4_SCRIPT.md` **đã duyệt**; phiếu điều tra: Nam, 20 tuổi, sinh 11/03/2006 (`FORM_FIELDS` trong `chapter4_director.gd`).
-3. **Giọng chương 4:** lane E thu từ đúng lời đã duyệt, đặt tên theo key trong `game/audio/voice/vi/` như chương 3 (`CHAT_CH4_*`, `SPK_CH4_REGISTERED`, `NEAR_CH4_NURSE*`); core đã phát sẵn theo tên key (`_announce`, `_voice_at`). **Lỗi phát hiện 2026-10-07:** `PhoneCallAudio` chỉ phát giọng `CHAT_CH1_*` và chỉ khi cuộc gọi đã "nhấc máy" (chỉ chương 1 có), nên cuộc gọi chương 2, 3 (và 4) **không có tiếng**, chỉ có chữ, dù file `CHAT_CH2_*`, `CHAT_CH3_*` đã có. **Giao lane E cả hai việc: T-200** (chủ dự án chọn; prompt `docs/handoff/lane-e.md` §1).
+3. **Giọng (T-200, đã merge 2026-10-08):** chương 4 có đủ 16 giọng theo lời đã duyệt; cuộc gọi chương 2–4 và loa chương 2–4 **nay mới có tiếng** (trước đó chỉ có phụ đề do bộ phát chỉ nhận chương 1). Chờ chủ dự án nghe.
 4. **Bot:** không chạy bot chương 3 và 4 (D-068); T-199 chưa viết card.
-5. **Chưa ai nghe bằng tai:** âm thanh chương 3 và 4 (fixture `res://audio/test/ch4_audio_test.tscn`).
+5. **Chưa ai nghe bằng tai:** âm thanh chương 3 và 4, giọng cuộc gọi và loa chương 2–4 (fixture `res://audio/test/ch4_audio_test.tscn`).
 6. **Sau khi chốt chương 4:** giai đoạn "Ghép bản hoàn chỉnh" (D-059).
 7. Máy chủ dự án: `%APPDATA%/Godot/app_userdata/Ky Tuc Xa Sau 12 Gio/progress.json` = `{"version": 1, "unlocked": 4}` (bản cũ ở `progress.json.bak`).
 8. **Phân công model** (chủ dự án tự đổi bằng `/model`): Opus cho kịch bản, kiến trúc, review nhánh lane, gỡ lỗi khó; Sonnet cho ghép có card rõ, sửa nhỏ, thêm test. Tới đoạn đổi thì dừng và nhắc chủ dự án.
@@ -81,13 +81,13 @@
 | T-192 Khán đài sân vận động làm lại, rải đồ khuôn viên (D-064) | B (**Claude Code web làm thay**, D-066) | **done**, đã merge; FPS đo lại PASS (40 xác, trung bình ≥107) |
 | T-193 Điền profile bot chương 3, menu F9 dùng được | C | **done**, đã merge (3 sửa nhỏ của integrator); bot cả chương chưa chạy |
 | **Chương 4 "Người sống sót" (D-067, giao 2026-10-07)** | | |
-| T-194 Hợp đồng chung, kịch bản, luồng 5 khu, ghép | core | **review**: đã ghép A, B, D, E; lời và phiếu đã chốt (D-068); chờ giọng chương 4 của lane E, chơi thử |
+| T-194 Hợp đồng chung, kịch bản, luồng 5 khu, ghép | core | **review**: đã ghép A, B, D, E và giọng T-200; lời và phiếu đã chốt (D-068); chờ chơi thử |
 | T-195 Điện thoại mồi, lật vạt giường, độ bền cửa phá, cảnh chết `door_burst` | A | **done**, đã merge và nối |
 | T-196 Thư viện 3 tầng, đường về, phòng 407 cuối, bệnh viện | B (lane B đã có lại token; phiên web dự phòng, D-066) | **done**, đã merge và nối |
 | T-197 Tab Đối chiếu, phiếu điều tra, tên bằng máu, mờ dần, thẻ bệnh viện, thẻ hết chương | D | **done**, đã merge và nối |
 | T-198 Chuông mồi, đập cửa, thư viện, bệnh viện, giọng y tá, nhạc kết | E | **done**, đã merge và nối vào luồng; giọng thoại chờ lời được duyệt, chưa ai nghe |
 | T-199 Bot chương 4, menu F9 nhảy 5 khu | C | chưa viết card; chủ dự án không cần chạy bot chương 3, 4 (D-068) |
-| T-200 Giọng chương 4 theo lời đã duyệt; cuộc gọi chương 2–4 có tiếng | E | **todo** (giao 2026-10-07) |
+| T-200 Giọng chương 4 theo lời đã duyệt; cuộc gọi chương 2–4 có tiếng | E | **done**, đã merge (core thêm tín hiệu có sóng lại trước câu cuối); chờ nghe |
 | T-171 Cầm giẻ, bịt miệng xác, cửa kẹt, buồng tắm, nút vòi sen, cảnh chết `corpse_lunge` và `scald` | A | **done**, đã merge |
 | T-172 Xác chơi nối từ, đồ bịt miệng, nhà vệ sinh có vòi sen, hơi nước, phòng camera 310 | B | **done**, đã merge |
 | T-173 Bot chương 2, menu nhảy, đo FPS hơi nước | C | khung **đã merge**; bot chạy sau khi điền profile |
