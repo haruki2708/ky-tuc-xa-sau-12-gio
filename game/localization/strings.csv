@@ -906,3 +906,29 @@ PROMPT_CH4_DESK,Mở sổ quy tắc,Open the rule book
 PROMPT_CH4_MAP,Xem sơ đồ,Look at the map
 PROMPT_CH4_DIARY,Đọc sổ trực,Read the night log
 PROMPT_CH4_FLIP_SLAT,Lật vạt giường (giữ E),Flip bed slats (hold E)
+UI_CH4_COMPARE,Đối chiếu,Compare
+UI_CH4_DOCUMENTS,Tài liệu đã nhặt,Collected papers
+UI_CH4_UNDERLINE,Gạch chân,Underline
+UI_CH4_NOTE_REDUNDANT,Câu này thừa.,This sentence is redundant.
+UI_CH4_NOT_YET,Chưa khớp.,Not a match.
+UI_CH4_FORM,Phiếu điều tra,Survey form
+UI_CH4_FORM_TITLE,Phiếu điều tra người sống sót sau thảm họa động đất,Earthquake disaster survivor survey
+UI_CH4_FORM_SCRAP,Mảnh phiếu · %d,Form scrap · %d
+UI_CH4_FORM_SCRAP_1,Phiếu điều tra…,…survivor survey
+UI_CH4_FORM_SCRAP_2,…người sống sót…,…earthquake…
+UI_CH4_FORM_SCRAP_4,…sau thảm họa động đất,…disaster
+UI_CH4_FORM_NAME,Họ và tên,Full name
+UI_CH4_FORM_SEX,Giới tính,Sex
+UI_CH4_FORM_AGE,Tuổi,Age
+UI_CH4_FORM_DOB,Ngày sinh,Date of birth
+UI_CH4_FORM_ROOM,Phòng,Room
+UI_CH4_FORM_BUILDING,Tòa,Building
+UI_CH4_BITE,Cắn ngón tay,Bite finger
+UI_CH4_LAST_MESSAGE,Nhắn vào nhóm,Message the group
+UI_CH4_RING_CHARGES,%d,%d
+UI_CH4_PATIENT_TRUNG,Trần Trung,Trần Trung
+UI_CH4_PATIENT_NHAT,Lý Minh Nhật,Lý Minh Nhật
+UI_CH4_PATIENT_NGU,Khương Ngọc Ngư,Khương Ngọc Ngư
+UI_CH4_COMA,Hôn mê,Comatose
+UI_CH4_END,Hết chương 4,End of chapter 4
+UI_CH4_THANKS,Cảm ơn bạn đã chơi,Thank you for playing

@@ -23,7 +23,7 @@ func _ready() -> void:
 	EventBus.guard_warned.connect(_on_guard)
 	EventBus.checkpoint_loaded.connect(func(_id: StringName) -> void: reset_display())
 	EventBus.chapter_started.connect(func(chapter: int) -> void:
-		_enabled = chapter == 3
+		_enabled = chapter in [3, 4]
 		reset_display())
 	EventBus.player_death_started.connect(func(_kind: StringName) -> void: _suspend())
 	EventBus.player_failed.connect(func(_reason: StringName) -> void: _suspend())

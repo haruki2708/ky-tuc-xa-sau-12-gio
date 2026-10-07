@@ -17,6 +17,7 @@ var _holding := false
 var _contraction := 0.0
 var tools_view: Control
 var prediction: VBoxContainer
+var ch4: VBoxContainer
 
 
 func _ready() -> void:
@@ -88,12 +89,17 @@ func _ready() -> void:
 	prediction.name = "Prediction"
 	prediction.phone = self
 	$Root/Phone/Content.add_child(prediction)
+	ch4 = preload("res://scripts/ui/ch4_phone.gd").new()
+	ch4.name = "Chapter4"
+	ch4.phone = self
+	$Root/Phone/Content.add_child(ch4)
 	_render()
 
 
 func _process(delta: float) -> void:
 	_refresh_visibility()
 	prediction.advance(delta)
+	ch4.advance(delta)
 	if _blocked():
 		return
 	tools_view.advance(delta)
@@ -110,6 +116,8 @@ func _input(event: InputEvent) -> void:
 	if _blocked() or not state.raised or state.battery <= 0.0 or event.is_echo():
 		return
 	if preload("res://scripts/ui/game_text_entry.gd").is_typing(get_tree()):
+		return
+	if ch4.is_active():
 		return
 	if not prediction.member.is_empty():
 		if event is InputEventKey and event.pressed and event.keycode in [KEY_ENTER, KEY_KP_ENTER]:
@@ -168,6 +176,7 @@ func _refresh_visibility() -> void:
 		return
 	var blocked := _blocked()
 	var predicting: bool = is_instance_valid(prediction) and not prediction.member.is_empty()
+	predicting = predicting or (is_instance_valid(ch4) and ch4.is_active())
 	$Root/Phone.anchor_top = 0.37 if predicting else 0.54
 	$Root/Phone/Content/MembersScroll.visible = not predicting and state.tab == 0
 	$Root/Phone/Content/ScrollHint.visible = not predicting and state.tab == 0
@@ -177,6 +186,8 @@ func _refresh_visibility() -> void:
 		$Root/Phone/Content/Transcript.show()
 		if blocked or not state.raised or state.battery <= 0.0:
 			prediction.cancel_entry()
+			if is_instance_valid(ch4):
+				ch4.editor.cancel_entry()
 	$Root/Phone.visible = state.raised and not blocked
 	$Root/Phone/Content.visible = state.battery > 0.0
 	$Root/Phone/BlackScreen.visible = state.battery <= 0.0
@@ -323,6 +334,7 @@ func snapshot() -> Dictionary:
 
 func restore(data: Dictionary) -> void:
 	prediction.close_request()
+	ch4.reset_view()
 	state.restore(data)
 	_render() # No replay of speech, incoming calls or player-choice signals.
 
