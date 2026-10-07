@@ -92,7 +92,7 @@ func _process(delta: float) -> void:
 
 
 func play_line(id: String, at: Vector3) -> float:
-	# Core owns line selection, localization keys and subtitles. IDs are asset IDs.
+	# Preview helper: keys now load approved T-200 files, with no draft aliases.
 	if _disabled or _said.has(id) or not at.is_finite():
 		return 0.0
 	var stream := Ch4AudioBank.voice(id, voice_directory)

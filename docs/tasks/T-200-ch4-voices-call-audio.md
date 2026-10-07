@@ -42,13 +42,56 @@ Lời lấy từ `game/localization/strings.csv` (cột `vi`), đúng từng ch�
 `audio_source/`, `game/audio/`, `game/scripts/audio/`, `game/tests/audio/`, card này (Handoff). Không sửa `strings.csv`, core, scene chính.
 
 ## Checklist hoàn thành
-- [ ] 16 giọng chương 4 đúng lời đã duyệt, đặt tên theo key trong `game/audio/voice/vi/`
-- [ ] Bản nháp cũ `ch4_voice/` đã xử lý (bỏ hoặc thay), ghi lý do
+- [x] 16 giọng chương 4 đúng lời đã duyệt, đặt tên theo key trong `game/audio/voice/vi/`
+- [x] Bản nháp cũ `ch4_voice/` đã xử lý (bỏ hoặc thay), ghi lý do
 - [ ] Cuộc gọi chương 2–4 có tiếng; chương 1 không đổi
-- [ ] Test trên cảnh thật chương 2, 3, 4
-- [ ] `pwsh tools/test.ps1`, `pwsh tools/check.ps1` PASS
-- [ ] Handoff: bảng giọng và âm lượng, **nhờ chủ dự án nghe**
+- [x] Test trên cảnh thật chương 2, 3, 4
+- [x] `pwsh tools/test.ps1`, `pwsh tools/check.ps1` PASS
+- [x] Handoff: bảng giọng và âm lượng, **nhờ chủ dự án nghe**
 
 ## Handoff (agent điền)
+
+### Lane E — 2026-10-08 (triển khai/kiểm tra 2026-10-07)
+
+- Commit triển khai **`dee725c`**, Handoff ban đầu `c07034a`, nhánh `lane-e/T-200-ch4-voices-call-audio`, base main `9d31e11`. **Đã push thành công lên origin**, LFS upload đủ 28/28 object mới (~3,0 MB). Các lượt trước gặp lỗi máy chủ HTTP 502 ở `/info/lfs/objects/batch` và `Unable to verify locks`; sau khi máy chủ phục hồi, lệnh `git push -u origin lane-e/T-200-ch4-voices-call-audio` bình thường đã thành công. Không đổi cấu hình repo và không bỏ bước upload asset. Commit Handoff tiếp theo chỉ cập nhật trạng thái push đã phục hồi.
+- Tái tạo **16 câu nguyên cột vi CSV**, đúng người đọc D-068, đúng tên key tại `game/audio/voice/vi/`. Minh Nhật/Ngư dùng chính preset Ch3, 188 WPM (×1,25); hai y tá khác giọng, **y tá 2 đọc cả hai kết**. Không thu Trung, không sửa CSV/lời kịch bản. `audio_source/ch4_voice_process.py` tái tạo offline bằng công cụ D:\Tools có sẵn; report text/params/thời lượng/LUFS/peak/hash và CREDITS đã cập nhật.
+- **Bỏ cả 7 bản nháp** raw/OGG/import T-198 vì có lời/người nói đã thay đổi. Không giữ alias nháp. `Ch4AudioBank.voice`/helper `play_line` và fixture chuyển sang 16 key mới; core vẫn dùng Speaker, `_voice_at`, PhoneCallAudio như có sẵn. 32 file raw/OGG hiện tại tổng 3.376.444 byte, file lớn nhất 275.414 byte, qua LFS.
+- `PhoneCallAudio` nhận an toàn `CHAT_CH1_`…`CHAT_CH4_`; Ch2–4 tự ở trong cuộc gọi khi `chapter_started`, không chuông/nhấc máy. Checkpoint dùng `GameState.chapter` đã restore. Giữ loss/restore theo đúng call id, queue, member death/left, missing asset, lọc ký tự và stop vĩnh viễn. Ch1 giữ incoming/answer, các test Ch1 cũ không sửa.
+- Sửa thêm trong phạm vi audio: `SpeakerVoiceBank` trước đây cũng chỉ nhận SPK/RULE Ch1, nên chỉ tạo file PA Ch4 chưa đủ. Nay nhận SPK/RULE Ch1…4, giữ kiểm ký tự, fallback vi khi UI en và chặn `RULE_3` chưa che.
+- Chỉ thay 79 file triển khai trong allowlist; không sửa core, scene chính, CSV hoặc bus. Khi chuẩn bị, checkout LFS trong sandbox bị ngắt; trạng thái checkout dở được bảo toàn bằng stash `T-200: preserve partial checkout after sandbox LFS failure`, không áp lại vào nhánh T-200.
+
+### Kiểm tra
+
+```text
+pwsh tools/test.ps1 -Filter ch4
+RESULT: 52 passed, 0 failed
+pwsh tools/test.ps1 -Filter audio
+RESULT: 110 passed, 0 failed
+pwsh tools/test.ps1
+RESULT: 668 passed, 0 failed
+pwsh tools/check.ps1
+RESULT: check 0 error(s)
+```
+
+Godot 4.7.2, chạy ngoài sandbox vì Godot trong sandbox không đọc được kho chứng chỉ Windows. `git diff --check` sạch. Test mới tải scene thật Ch1…4 với `auto_start=false`, gửi giao thức start/checkpoint và message, kiểm `PhoneCallAudio/Speech` phát đúng file/bus; Ch1 vẫn phải nhấc máy. Kiểm cả PA và 5 câu y tá qua Speaker/director tại Nurse1/Nurse2 thật, fallback và khóa sai. Bank decode đủ 16, SHA256 khớp, văn bản report bằng đúng CSV kể cả dấu “…”. Không chạy bot Ch3/Ch4; chưa chơi xuyên chương, **chưa nghe bằng tai**.
+
+### Bảng giọng và âm lượng
+
+| Key/nhóm | Người đọc / WPM / pitch | LUFS đo OGG | Peak lớn nhất nhóm |
+|---|---|---|---|
+| SPK_CH4_REGISTERED | vi+m1 / 132 / 30 | −33,11 | −12,87 dBTP |
+| CHAT_CH4_NGU_GO, NGU_LECTURE, NGU_NO_EXIT, NGU_TRUNG | Ngư vi+f2 / 188 / 58 | −26,08…−26,03 | −5,94 dBTP |
+| CHAT_CH4_N_GO, N_GYM, N_LINE, N_WHERE, N_LOST, N_GOT | Minh Nhật vi+m2 / 188 / 46 | −26,17…−26,05 | −3,77 dBTP |
+| NEAR_CH4_NURSE1_AWAKE, NURSE1_LUCKY | vi+f1 / 145 / 54 | −34,09 | −14,10 dBTP |
+| NEAR_CH4_NURSE2_QUAKE, NURSE2_ALL, NURSE2_ALONE | vi+f3 / 150 / 62 | −34,07…−34,05 | −15,02 dBTP |
+
+Tên rút gọn dùng cùng tiền tố đầu hàng. Chat trên PhoneVoice, PA/y tá trên Voice. Mục tiêu chat −26 LUFS như Ch3, PA −33/y tá −34 như ngưỡng nhỏ T-198. Limiter chặn transient trước Vorbis; đo lại mọi OGG, sai số mục tiêu ≤1 LU, peak ≤−2 dBTP. Không khẳng định mức tổng tại tai sau bus.
+
+### Yêu cầu thay đổi ngoài phạm vi / còn dở
+
+- **Checklist cuộc gọi giữ chưa đạt trọn vẹn vì câu kết thật N_GOT:** đường phát cuộc gọi thường Ch2–4 và start/checkpoint đã sửa, test scene thật PASS. Tuy nhiên `game/scripts/core/chapter4_director.gd` phát `phone_call_lost(&"ch4_group")` ở cầu thang (dòng 328), rồi `_ending_4` chỉ đặt `_network_up = true` trước `_line("n_got")` (dòng 476–477), **không phát `phone_call_restored`**. Theo hợp đồng loss/restore của card, audio vẫn đang mất sóng và câu cuối sẽ im dù file mới đã có.
+- **Yêu cầu core:** thêm `EventBus.phone_call_restored.emit(&"ch4_group")` sau `_network_up = true`, trước `await _line("n_got")`; kiểm lại kết thật. Không tự sửa core, không cho một key thoại vượt qua trạng thái mất sóng. Test audio đã xác nhận `N_GOT` phát khi có đúng tín hiệu restored.
+- **Nhờ chủ dự án nghe duyệt:** F6 `res://audio/test/ch4_audio_test.tscn`; mũi tên đi qua 29 SFX/nhạc rồi 16 câu mới, Space nghe lại, 0 dừng. Chat preview đi qua PhoneVoice. Cần nghe phát âm tên Trần Trung, độ nhanh/rõ của hai bạn, câu N_LOST dừng giữa câu, hai giọng y tá, cả hai kết và độ nhỏ. Chi tiết trong [README voice](../../audio_source/voice_ch4/README.md).
+- **Blocked (một câu ở kết thật):** N_GOT chờ core bổ sung tín hiệu restored như trên. Phần triển khai Lane E đã xong, test/check PASS và đã push; lỗi máy chủ LFS đã hết. Chưa có duyệt nghe của chủ dự án.
 
 ## Review (integrator)

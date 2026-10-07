@@ -249,3 +249,21 @@ Dùng lại heartbeat T-158 và bước gạch T-105/T-126 theo nguồn CC0 đã
 **7 bản thoại tổng hợp eSpeak NG 1.52.0** (`audio_source/voice_ch4/raw/*.wav`, `game/audio/ch4_voice/*.ogg`): `pa_signed`, `nurse1_wake`, `nurse2_quake`, `nurse1_all`, `nurse2_all`, `nurse1_alone`, `nurse2_alone`. Nguồn văn bản nguyên văn `docs/design/CH4_DESIGN.md`, không sáng tác thêm trong task. Nguồn tạo: [ch4_voice_process.py](https://github.com/tuaanh666/ky-tuc-xa-sau-12-gio/blob/lane-e/T-198-ch4-audio/audio_source/ch4_voice_process.py). Công cụ/dữ liệu [eSpeak NG](https://github.com/espeak-ng/espeak-ng) GPL-3.0-or-later chỉ dùng offline dưới D:\Tools, không phân phối engine/data; quy trình/đầu ra giữ cùng chính sách nguồn và giấy phép T-137 đã ghi ở trên. Đầu ra âm do dự án tạo phát hành CC0 1.0; không dùng MBROLA, neural voice hoặc bản ghi người thật. Biến thể `vi+m1` (PA), `vi+f1` và `vi+f3` (hai y tá). Khai báo AI-assisted cho code/âm tổng hợp khi phát hành; không tuyên bố là thu giọng người.
 
 Dùng lại `horde`, `zombie_growl`, `rescue_siren` T-186, cùng tác giả/CC0 ở mục trên, không sửa file cũ. Danh mục/mức đo/API: `audio_source/ch4/README.md`; SHA256/LUFS/peak/seed trong hai report `audio_source/ch4/build_report.json` và `audio_source/voice_ch4/build_report.json`. **Chưa nghe/duyệt giọng và mix; cần chủ dự án nghe fixture T-198.**
+
+## T-200 — giọng Chương 4 đã duyệt, thay bản nháp T-198 (2026-10-07)
+
+**16 câu giọng máy tổng hợp offline**, thay toàn bộ 7 bản nháp `game/audio/ch4_voice/` và raw tương ứng đã xóa. Nội dung **nguyên cột vi của `game/localization/strings.csv`**, kịch bản `CH4_SCRIPT.md` được chủ dự án duyệt D-068; không sửa lời, không thu Trung. Tác giả đầu ra: dự án/Lane E; code xử lý có **OpenAI Codex hỗ trợ (AI-assisted)**, cần khai báo khi phát hành. Đầu ra âm phát hành **[CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/)** theo quy trình T-137/T-198.
+
+Nguồn tái tạo: [audio_source/ch4_voice_process.py](https://github.com/tuaanh666/ky-tuc-xa-sau-12-gio/blob/lane-e/T-200-ch4-voices-call-audio/audio_source/ch4_voice_process.py). Công cụ có sẵn: [eSpeak NG 1.52.0](https://github.com/espeak-ng/espeak-ng) (formant/quy tắc, không neural/MBROLA/giọng người thật), [FFmpeg 9.0.2](https://ffmpeg.org/) / libvorbis, Python stdlib. Engine/data eSpeak GPL-3.0-or-later chỉ phục vụ build ở D:\Tools, không đóng gói vào game; giữ chính sách nguồn/công cụ của T-137. Không tải sample hoặc sao âm từ game/video khác.
+
+Mọi tên dưới đại diện `audio_source/voice_ch4/raw/<KEY>.wav` và `game/audio/voice/vi/<KEY>.ogg`:
+
+| Key | Người đọc / nguồn giọng |
+|---|---|
+| SPK_CH4_REGISTERED | Loa `vi+m1`, preset Ch1–3, −33 LUFS |
+| CHAT_CH4_NGU_GO, CHAT_CH4_NGU_LECTURE, CHAT_CH4_NGU_NO_EXIT, CHAT_CH4_NGU_TRUNG | Ngư `vi+f2`, Ch3 ×1,25 (188 WPM), −26 LUFS |
+| CHAT_CH4_N_GO, CHAT_CH4_N_GYM, CHAT_CH4_N_LINE, CHAT_CH4_N_WHERE, CHAT_CH4_N_LOST, CHAT_CH4_N_GOT | Minh Nhật `vi+m2`, Ch3 ×1,25 (188 WPM), −26 LUFS |
+| NEAR_CH4_NURSE1_AWAKE, NEAR_CH4_NURSE1_LUCKY | Y tá 1 `vi+f1`, −34 LUFS |
+| NEAR_CH4_NURSE2_QUAKE, NEAR_CH4_NURSE2_ALL, NEAR_CH4_NURSE2_ALONE | Y tá 2 `vi+f3`, đọc cả hai kết, −34 LUFS |
+
+SHA256 raw/OGG, văn bản, thời lượng và mức đo: `audio_source/voice_ch4/build_report.json`; hướng dẫn: `audio_source/voice_ch4/README.md`. Các file voice Ch2/Ch3 được dùng lại qua PhoneCallAudio, không thay waveform/nguồn. **Chưa nghe bằng tai, chưa duyệt phát âm/nhịp/độ nhỏ; cần chủ dự án nghe fixture cập nhật.**

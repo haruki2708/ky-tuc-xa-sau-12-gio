@@ -1,6 +1,7 @@
 {
   "engine": "eSpeak NG 1.52.0",
-  "source": "docs/design/CH4_DESIGN.md",
+  "source": "game/localization/strings.csv",
+  "approval": "D-068 / CH4_SCRIPT.md",
   "voices": {
     "pa": [
       "vi+m1",
@@ -19,15 +20,27 @@
       150,
       62,
       -34
+    ],
+    "minh_nhat": [
+      "vi+m2",
+      188,
+      46,
+      -26
+    ],
+    "ngu": [
+      "vi+f2",
+      188,
+      58,
+      -26
     ]
   },
   "assets": [
     {
-      "id": "pa_signed",
+      "key": "SPK_CH4_REGISTERED",
       "who": "pa",
       "text": "Trần Trung đã đăng ký thành công. Bạn là người sống sót.",
-      "core_keys": [],
-      "file": "game/audio/ch4_voice/pa_signed.ogg",
+      "seconds": 4.446,
+      "file": "game/audio/voice/vi/SPK_CH4_REGISTERED.ogg",
       "target_lufs": -33,
       "lufs": -33.11,
       "true_peak_db": -12.87,
@@ -35,11 +48,131 @@
       "raw_sha256": "ef1c1096fa9ce81035eab7deb571ebffac3261e5ab5975baf461c7865c54f2d7"
     },
     {
-      "id": "nurse1_wake",
+      "key": "CHAT_CH4_NGU_GO",
+      "who": "ngu",
+      "text": "Giữ máy nhé. Có chuyện gì thì la lên.",
+      "seconds": 2.612,
+      "file": "game/audio/voice/vi/CHAT_CH4_NGU_GO.ogg",
+      "target_lufs": -26,
+      "lufs": -26.03,
+      "true_peak_db": -8.7,
+      "sha256": "ccd20a833dd199d198c06b578d985f79b3e86225f5a02684903b6369da480e88",
+      "raw_sha256": "f84a748fad8ec7e87aec64806b0f61d03b148e0ebb37864e0593df0aed737358"
+    },
+    {
+      "key": "CHAT_CH4_NGU_LECTURE",
+      "who": "ngu",
+      "text": "Tới giảng đường rồi. Nhiều cửa, nhiều dãy ghế, mình dụ chúng chạy vòng được.",
+      "seconds": 4.185,
+      "file": "game/audio/voice/vi/CHAT_CH4_NGU_LECTURE.ogg",
+      "target_lufs": -26,
+      "lufs": -26.06,
+      "true_peak_db": -7.6,
+      "sha256": "c6a88a7af7424ae517bd5f3f01224ee098245a22122ac99f5587c56007b626ac",
+      "raw_sha256": "cbbad90e086c20e60f7aca4dea7f44a3d90f69f90f48d37060982f73a2d9bc5a"
+    },
+    {
+      "key": "CHAT_CH4_NGU_NO_EXIT",
+      "who": "ngu",
+      "text": "Lạ thật. Cửa nào ở đây cũng thông ra ngoài, mà ra ngoài thì toàn xác. Chạy mãi chẳng thấy lối nào gọi là thoát.",
+      "seconds": 6.035,
+      "file": "game/audio/voice/vi/CHAT_CH4_NGU_NO_EXIT.ogg",
+      "target_lufs": -26,
+      "lufs": -26.08,
+      "true_peak_db": -7.83,
+      "sha256": "50a6e15f6101c34eeddfd2e6fdd1ac7fe95e1e072d821304b6e7c56efea7d7de",
+      "raw_sha256": "0c5b9e6dda67417d54416b296124c1f40d56266ddafaee7213e1ac2688c5ca54"
+    },
+    {
+      "key": "CHAT_CH4_NGU_TRUNG",
+      "who": "ngu",
+      "text": "Trung? Cậu tới thư viện chưa? Còn nghe được không?",
+      "seconds": 2.982,
+      "file": "game/audio/voice/vi/CHAT_CH4_NGU_TRUNG.ogg",
+      "target_lufs": -26,
+      "lufs": -26.03,
+      "true_peak_db": -5.94,
+      "sha256": "87d4e4b4d767249de7bf9f287b680b718d49f5c746ae4fb5c23432d96d34ecd5",
+      "raw_sha256": "5c2f6879b6ba36966a58b646746eeb303fe0cd31cf6d234b266bc6bfaed9522a"
+    },
+    {
+      "key": "CHAT_CH4_N_GO",
+      "who": "minh_nhat",
+      "text": "Thư viện nằm giữa giảng đường với sân vận động. Đi đường lớn, đừng chui vào lối hẹp.",
+      "seconds": 4.375,
+      "file": "game/audio/voice/vi/CHAT_CH4_N_GO.ogg",
+      "target_lufs": -26,
+      "lufs": -26.17,
+      "true_peak_db": -3.99,
+      "sha256": "275619540957b703e77b211e7cc4f36941eef0443e70ae647a9a3260524122a7",
+      "raw_sha256": "62e666350d4198cf182629e856d7f56b618953e782f19c7e84257f1722acf092"
+    },
+    {
+      "key": "CHAT_CH4_N_GYM",
+      "who": "minh_nhat",
+      "text": "Nhà thi đấu rộng mà trống trơn. Toàn xác. Tôi đang núp sau khán đài.",
+      "seconds": 4.0,
+      "file": "game/audio/voice/vi/CHAT_CH4_N_GYM.ogg",
+      "target_lufs": -26,
+      "lufs": -26.17,
+      "true_peak_db": -3.77,
+      "sha256": "649ac33d8a082d0de3850bdd865cb285a30d89ca1bc04129cf08c70acf46bb64",
+      "raw_sha256": "d0aede02e3cb4f54c2aee43573bea8baa8fed6692ca836a66536afb3c201967a"
+    },
+    {
+      "key": "CHAT_CH4_N_LINE",
+      "who": "minh_nhat",
+      "text": "Tôi đọc lại luật trong sổ. Có một câu cứ lấn cấn… mà nghĩ mãi chưa ra.",
+      "seconds": 4.409,
+      "file": "game/audio/voice/vi/CHAT_CH4_N_LINE.ogg",
+      "target_lufs": -26,
+      "lufs": -26.13,
+      "true_peak_db": -4.86,
+      "sha256": "9d0294cbafafb4c90a8fe11b862e2c146b9df1e8dded142d4178784fd47d8793",
+      "raw_sha256": "e4c8294e94f651c2dec78f587ed76507d5ad770575f708b3980d354f478463f0"
+    },
+    {
+      "key": "CHAT_CH4_N_WHERE",
+      "who": "minh_nhat",
+      "text": "Trung, chỗ cậu sao rồi? Bên tôi bắt đầu đông lên.",
+      "seconds": 3.012,
+      "file": "game/audio/voice/vi/CHAT_CH4_N_WHERE.ogg",
+      "target_lufs": -26,
+      "lufs": -26.12,
+      "true_peak_db": -4.61,
+      "sha256": "1bd267fead4746e079a095964b336d3ed4b9d3eaa029cde9228e5000389bd5e2",
+      "raw_sha256": "ad46baddb87c351fa2137b4b2898364f95b7562e63b22d4655e564ef231b971a"
+    },
+    {
+      "key": "CHAT_CH4_N_LOST",
+      "who": "minh_nhat",
+      "text": "Trung? Trung ơi? Cậu đang ở…",
+      "seconds": 2.126,
+      "file": "game/audio/voice/vi/CHAT_CH4_N_LOST.ogg",
+      "target_lufs": -26,
+      "lufs": -26.05,
+      "true_peak_db": -4.13,
+      "sha256": "e2635b10ab80c2f52f8d0af68dcfe164ad968cb38eabdb9851e265d359341ab2",
+      "raw_sha256": "27f2fa29826ca39c5bf80f1000e18439a4f7f6532d166938bb7fdfbda50c6d31"
+    },
+    {
+      "key": "CHAT_CH4_N_GOT",
+      "who": "minh_nhat",
+      "text": "Vạt giường…? Trung? Trung!",
+      "seconds": 1.859,
+      "file": "game/audio/voice/vi/CHAT_CH4_N_GOT.ogg",
+      "target_lufs": -26,
+      "lufs": -26.16,
+      "true_peak_db": -3.86,
+      "sha256": "a3184210595a5263e5cbeb6c9c25d30f40e892d023976fea9d2da30e1a564dfa",
+      "raw_sha256": "2937308d00f3ce360409167e7cf18aa0dfb56b76e8cab25814ca47b4534758c6"
+    },
+    {
+      "key": "NEAR_CH4_NURSE1_AWAKE",
       "who": "nurse1",
       "text": "Tỉnh rồi! Cậu nằm yên, đừng cử động.",
-      "core_keys": [],
-      "file": "game/audio/ch4_voice/nurse1_wake.ogg",
+      "seconds": 3.229,
+      "file": "game/audio/voice/vi/NEAR_CH4_NURSE1_AWAKE.ogg",
       "target_lufs": -34,
       "lufs": -34.09,
       "true_peak_db": -14.1,
@@ -47,64 +180,52 @@
       "raw_sha256": "c69aad48c2da5e39d22e994edfc00b4da822801dd5a792415584182e2e0c1eae"
     },
     {
-      "id": "nurse2_quake",
-      "who": "nurse2",
-      "text": "Động đất đó cậu. Trường cậu gần tâm chấn lắm. Lúc cứu ra cậu còn thở, coi như mạng lớn.",
-      "core_keys": [],
-      "file": "game/audio/ch4_voice/nurse2_quake.ogg",
-      "target_lufs": -34,
-      "lufs": -34.04,
-      "true_peak_db": -14.27,
-      "sha256": "b1f284d1f0598327723605c70c55d41b2798eb4b6a399499cdba8680f35d2055",
-      "raw_sha256": "0a192a4d142742eca6b66c2a6089e6dbcb2778fade89b03fe648942a8cbd7d81"
-    },
-    {
-      "id": "nurse1_all",
+      "key": "NEAR_CH4_NURSE1_LUCKY",
       "who": "nurse1",
-      "text": "Hai bạn kia vẫn đang hôn mê. Nhưng ổn rồi.",
-      "core_keys": [],
-      "file": "game/audio/ch4_voice/nurse1_all.ogg",
+      "text": "Lúc đào được cậu ra, cậu vẫn còn thở. Coi như nhặt lại được cái mạng.",
+      "seconds": 5.532,
+      "file": "game/audio/voice/vi/NEAR_CH4_NURSE1_LUCKY.ogg",
       "target_lufs": -34,
-      "lufs": -34.12,
-      "true_peak_db": -15.99,
-      "sha256": "add0f991a0a8fef6c37a4a7b9169f38bca8f93554e8cfe98f715800ea27b4160",
-      "raw_sha256": "d2edfdce89f9dc9edddd9ff5af5ce6c9f7c0d7e1939145549cb0cfc84d21875a"
+      "lufs": -34.09,
+      "true_peak_db": -14.88,
+      "sha256": "b652fdfadd8cfdeb29b29fa18df42372db544c4028acd3acec40dfb8bc444e27",
+      "raw_sha256": "b5899c725803b9971e7c4319e285a04f35abed0dfb18a2dd2a6d18b7d124347f"
     },
     {
-      "id": "nurse2_all",
+      "key": "NEAR_CH4_NURSE2_QUAKE",
       "who": "nurse2",
-      "text": "Hai bạn kia vẫn đang hôn mê. Nhưng ổn rồi.",
-      "core_keys": [],
-      "file": "game/audio/ch4_voice/nurse2_all.ogg",
+      "text": "Động đất đó cậu. Trường cậu gần tâm chấn lắm, mấy tòa ký túc xá sập ngay lúc bốn giờ sáng.",
+      "seconds": 6.244,
+      "file": "game/audio/voice/vi/NEAR_CH4_NURSE2_QUAKE.ogg",
       "target_lufs": -34,
       "lufs": -34.05,
-      "true_peak_db": -15.68,
-      "sha256": "e315bdbc6b8603b845e6fa003dd762015f6ae13fd38071b357f88407737117c1",
-      "raw_sha256": "35ce84d8243d0998446c4252ae9fa7fb1d5bc8fbdaaa0644eb4f5d99b6dc0ef7"
+      "true_peak_db": -15.36,
+      "sha256": "a3a239bdd45728307bd22e9c1ad9c58020d7bdafccf128afc0e12dd8f1b4ee6a",
+      "raw_sha256": "a698c7b4c8730eb1ea3ab514a6ce77c71f8fa69e7a7455440bd0bd13414849f4"
     },
     {
-      "id": "nurse1_alone",
-      "who": "nurse1",
-      "text": "Chỉ có cậu được cứu ra từ tòa đó.",
-      "core_keys": [],
-      "file": "game/audio/ch4_voice/nurse1_alone.ogg",
-      "target_lufs": -34,
-      "lufs": -34.12,
-      "true_peak_db": -17.29,
-      "sha256": "88cf6ea41f776dbe793ac4984bf7d401a8095a4aacb3e1c932d7e8591ec82682",
-      "raw_sha256": "b97b9e90dc0e4ac43f3d0b6bae4f9d166d61a1da498b7b6134e7b8ce1f78d1d1"
-    },
-    {
-      "id": "nurse2_alone",
+      "key": "NEAR_CH4_NURSE2_ALL",
       "who": "nurse2",
-      "text": "Chỉ có cậu được cứu ra từ tòa đó.",
-      "core_keys": [],
-      "file": "game/audio/ch4_voice/nurse2_alone.ogg",
+      "text": "Hai bạn bên cạnh được đưa ra cùng đợt với cậu. Vẫn đang hôn mê, nhưng qua cơn nguy rồi.",
+      "seconds": 6.208,
+      "file": "game/audio/voice/vi/NEAR_CH4_NURSE2_ALL.ogg",
       "target_lufs": -34,
       "lufs": -34.05,
-      "true_peak_db": -16.23,
-      "sha256": "8e6336aad8e0649adb26df3c8fe6ae445b4d559546cb5b87dc0aa2e0a73a03ff",
-      "raw_sha256": "4c47436b9bb0f2f3bf66ad53c501fe0e164e1ac7a91d645d2a95fe17c849a907"
+      "true_peak_db": -15.02,
+      "sha256": "ea5da66a4912ed22f7dabe6bbbeaa03d95d96d5f3bc97faf6b50ff1cd82008cf",
+      "raw_sha256": "da16c1cc5d43418b70117b2a4cef386e4dffab861a4246fbc58b50caa40d0b08"
+    },
+    {
+      "key": "NEAR_CH4_NURSE2_ALONE",
+      "who": "nurse2",
+      "text": "Tòa của cậu… chỉ có mình cậu ra được.",
+      "seconds": 3.127,
+      "file": "game/audio/voice/vi/NEAR_CH4_NURSE2_ALONE.ogg",
+      "target_lufs": -34,
+      "lufs": -34.07,
+      "true_peak_db": -15.65,
+      "sha256": "34649706fc0f183575abfc7c585485fb1e310272bd55f30daf7074fbbffe0ec4",
+      "raw_sha256": "14c173b39b1a530a8b123e8e8b6aed6d46f3c40068e1618f65b82f68b8b8764c"
     }
   ]
 }

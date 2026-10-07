@@ -1,6 +1,6 @@
 # T-198 — Âm thanh chương 4
 
-29 âm mới tự tổng hợp CC0, 7 bản thoại eSpeak (5 câu nguyên văn thiết kế; 2 câu kết có cả hai giọng nữ). Chưa nghe bằng tai, chưa được chủ dự án duyệt. Không suy ra diễn biến/luật mới từ âm thanh.
+29 âm mới tự tổng hợp CC0. **T-200 thay 7 bản thoại nháp bằng 16 câu theo key đã duyệt D-068**; xem `audio_source/voice_ch4/README.md`. Chưa nghe bằng tai, chưa được chủ dự án duyệt âm thanh. Không suy ra diễn biến/luật mới từ âm thanh.
 
 ## Tạo lại và đo
 
@@ -10,7 +10,7 @@
 pwsh tools/test.ps1 -Filter ch4_audio
 ```
 
-Dùng Python stdlib, FFmpeg 9.0.2 và eSpeak NG 1.52.0 có sẵn dưới `D:\Tools`; không cài gì. SFX 48 kHz mono, raw PCM16 và Vorbis q4. Report `build_report.json` ghi seed, SHA256 raw/OGG, độ dài, LUFS, true peak, biên nối loop. Giọng: `audio_source/voice_ch4/build_report.json`. Script giọng xác nhận từng câu còn nguyên văn trong `CH4_DESIGN.md`, tìm khóa core khớp văn bản nếu đã có; hiện `core_keys=[]` vì main chưa cung cấp khóa CH4. Script không tạo khóa dịch hoặc sửa CSV.
+Dùng Python stdlib, FFmpeg 9.0.2 và eSpeak NG 1.52.0 có sẵn dưới `D:\Tools`; không cài gì. SFX 48 kHz mono, raw PCM16 và Vorbis q4. Report `build_report.json` ghi seed, SHA256 raw/OGG, độ dài, LUFS, true peak, biên nối loop. Giọng: `audio_source/voice_ch4/build_report.json`, nguyên cột vi của CSV, đặt tên theo key. Script không tạo khóa dịch hoặc sửa CSV.
 
 | Âm/nhóm | Mục tiêu LUFS trước bus | Bus / gain runtime tối đa |
 |---|---:|---|
@@ -21,8 +21,9 @@ Dùng Python stdlib, FFmpeg 9.0.2 và eSpeak NG 1.52.0 có sẵn dưới `D:\Too
 | library / drizzle | −54 / −56 | Ambience / 0 dB |
 | librarian_rise / books_fall / shelf_corpse / back_door_hit | −40 / −39 / −38 / −38 | SFX / 0 dB; giảm hù −10 dB |
 | knife_pull / stairs_turn / hall_lights / door_hand / neck_hand | −42 / −43 / −44 / −42 / −44 | SFX / 0 dB; giảm hù −10 dB |
-| pa_laugh / pa_signed | −39 / −33 | Voice / 0 dB |
-| Hai giọng y tá, cả hai biến thể câu kết | −34 | Voice / 0 dB |
+| pa_laugh / SPK_CH4_REGISTERED | −39 / −33 | Voice / 0 dB |
+| Hai giọng y tá, y tá 2 đọc cả hai kết | −34 | Voice / 0 dB |
+| Minh Nhật / Ngư trong cuộc gọi T-200 | −26 | PhoneVoice / 0 dB |
 | body_fade / heartbeat | −49 / −47 | Music / 0→−36; SFX / 0→−24 dB |
 | monitor / nurse_step_01,02 / hospital_door | −49 / −46 / −46 | SFX / Footsteps / SFX, 0 dB |
 | music_sparse / music_hospital / music_end | −53 / −56 / −51 | Music / 0 dB |
@@ -55,19 +56,19 @@ audio.set_area(&"road")
 - 10 mã `scare_triggered` đúng T-194, dedupe từng mã đến checkpoint. `neck_hand`: tắt âm thuộc rig ngay, chờ 0,8 giây rồi thở; giữ nền im đến khi core đổi area. Những emitter thuộc scene/lane khác phải được core tắt riêng, rig không mute bus chung.
 - `StairCrowd`: tối đa 3 nguồn gần listener nhất trong 24 m, T-186 giảm −18 dB; không instantiate zombie hoặc sửa giới hạn đám đông.
 - Còi nghe `time_changed`: clamped 510→540 phút; không chạy đồng hồ gameplay. Phòng 407 tắt nhạc, nền/còi/crowd/chuông; giữ cửa và scare/hơi thở. Không tự phát heartbeat ở phòng 407.
-- `play_pa_laugh(at)` một lần/checkpoint, core chọn lúc vòng 5. `play_line(asset_id, at)` trả số giây của clip hoặc 0 nếu thiếu/trùng; phát trên Voice, **core phát subtitle bằng khóa thật và chờ thời lượng**. Không dùng Speaker đồng thời cho cùng câu.
-- Asset `pa_signed` là nguyên văn lời ký tên. `nurse1_wake` / `nurse2_quake` đúng người nói trong thiết kế. `nurse1_all` / `nurse2_all` và `nurse1_alone` / `nurse2_alone` là các lựa chọn cho **cùng câu**, chỉ chọn một theo người nói core/chủ dự án chốt. Asset ID không phải khóa localization. Giọng `vi+f1` và `vi+f3`; PA giữ preset `loa` chương 1/3, mastering nhỏ hơn. Giọng Việt như pipeline hiện có; không tự tạo bản dịch.
+- `play_pa_laugh(at)` một lần/checkpoint. Core đã dùng `Speaker` cho PA, `_voice_at` cho y tá, `PhoneCallAudio` cho cuộc gọi; **không gọi thêm `play_line` cho cùng câu**. Helper `play_line(key, at)` nay đọc file theo key T-200, chỉ còn dùng thử; transcript/thời lượng do core quản lý.
+- 16 key và người đọc đã chốt D-068: xem `audio_source/voice_ch4/README.md`. Không còn alias `pa_signed`, `nurse1_all` hoặc lựa chọn y tá đọc câu kết. Y tá 1 `vi+f1`, y tá 2 `vi+f3`; cả hai câu kết do y tá 2 đọc. File nháp đã bỏ.
 - `fade_message_requested(seconds)` làm body fade giảm gain + tim thưa 0,8→2,4 giây trong cửa sổ do core truyền (12 giây theo thiết kế); không gửi lại chữ hoặc quyết định ending. Clip body dài 8 giây, đuôi tim tiếp tục đến hết cửa sổ.
 - `ch4_ending` chuyển audio sang hospital; cần gán `monitor_marker` trước, hoặc gọi `hospital.enter_hospital(at)` khi marker sẵn sàng. Máy bíp mỗi 1 giây; `monitor_skip` bỏ đúng lần kế tiếp rồi trở lại, lặp signal không bỏ thêm. `hospital.play_nurse_step(at)` bus Footsteps luân phiên hai mẫu, `hospital.play_door(at)` SFX; core gọi theo animation. `chapter_finished(4)` phát đúng một nhạc kết.
 - Checkpoint dừng tất cả, xóa dedupe; core gọi lại area/đăng ký anchor nếu thay node. Death chặn tín hiệu đến muộn. `stop_emitting()` là dừng vĩnh viễn rig trước khi queue_free; scene free ngắt kết nối EventBus tự động.
 
-**Chưa tích hợp vào director/scene thật:** nhánh main cơ sở `ff17fb4` mới có hợp đồng T-194; chưa có director CH4 hoặc các khóa `SPK_CH4_*`, `NEAR_CH4_NURSE_*`. Yêu cầu core/A/B nối các API trên, chốt người đọc câu kết và khóa chữ. Không sửa file của lane khác trong T-198.
+**Cập nhật T-200:** T-198 đã được core ghép vào scene/director ở main `9d31e11`. Khóa thoại/người đọc đã chốt; T-200 cung cấp file đúng key và sửa loader/cuộc gọi. Còn yêu cầu core phát lại `phone_call_restored("ch4_group")` trước câu N_GOT ở kết thật (chi tiết trong README voice).
 
 ## Nghe thử (nhờ chủ dự án)
 
 Godot F6 `res://audio/test/ch4_audio_test.tscn`. Đây là fixture riêng, không diễn kịch bản hoặc ghi save. Xem tên âm ở Output:
 
-- Mũi tên trái/phải: chọn và nghe lần lượt 29 âm + 7 giọng; Space phát lại. 0 dừng/reset.
+- Mũi tên trái/phải: chọn và nghe lần lượt 29 âm + 16 giọng đã duyệt; Space phát lại. 0 dừng/reset.
 - 1: chuông 6 giây + beep hết pin ở 4 m. 2: tăng fraction cửa 0,2 mỗi lần, đến vỡ.
 - 3: thư viện/còi 8:30; 4: StairCrowd; 5: im ở 407; 6: neck_hand có khoảng lặng.
 - 7: fade 12 giây; 8: hospital/bíp đều; 9: bỏ một bíp; E: nhạc kết; Esc thoát.
