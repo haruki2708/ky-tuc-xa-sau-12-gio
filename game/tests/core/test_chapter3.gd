@@ -6,6 +6,7 @@ extends TestCase
 var scene: Node
 var director: Chapter3Director
 var player: Node3D
+const ROOM_BASH_SLOW := 3.0
 var restarts: Array[StringName] = []
 var failed: Array[StringName] = []
 
@@ -162,6 +163,65 @@ func test_companions_follow_the_player_to_the_stadium() -> void:
 		var companion: Node3D = director._companions[member]
 		assert_true(companion.global_position.distance_to(player.global_position) < 8.0,
 			"%s kept up: %s vs %s" % [member, companion.global_position, player.global_position])
+
+
+## D-061 / T-191: leaving 407 shows no zombie in the hall at once. A room's
+## zombies wait behind its shut door, hammer on it, and only then come out.
+func test_zombies_come_out_of_the_rooms_not_the_hall() -> void:
+	director.stop_after = &"b"
+	director.run_from(&"b")
+	await _until(func() -> bool: return director._scared.get(&"roommates_rise", false), 10.0)
+	_put(Vector3(37.0, 0.05, 2.5))
+	await _until(func() -> bool: return director._scared.get(&"corridor_turn", false), 10.0)
+	for actor in director._horde.get_children():
+		if actor is Zombie and (actor as Zombie).global_position.y > -1.0:
+			assert_true((actor as Zombie).global_position.x < 10.0, "idle crowd waits at the main stairs: %s" % (actor as Zombie).global_position)
+	await _until(func() -> bool: return not director._room_tracks.is_empty(), 5.0)
+	assert_false(director._room_tracks.is_empty(), "a near room starts hammering on its door")
+	var first: Dictionary = director._room_tracks[0]
+	var zombie: Zombie = first["zombie"]
+	var adapter: ZombieDoor = first["door"]
+	assert_true(zombie.global_position.z < -0.4, "still inside the room: %s" % zombie.global_position)
+	assert_true(adapter.is_closed(), "the door holds at first")
+	assert_false(director._rooms_opened.has(&"401"), "far rooms stay quiet")
+	await _until(func() -> bool: return not adapter.is_closed(), 10.0)
+	assert_false(adapter.is_closed(), "the door bursts open after the bashing")
+	await _until(func() -> bool: return zombie.global_position.z > 0.6, 8.0)
+	assert_true(zombie.global_position.z > 0.6, "the zombie walks out into the hall: %s" % zombie.global_position)
+	assert_eq(failed, [] as Array[StringName], "alive;")
+
+
+## Room 408 is quiet on the way to the desk and bursts open after the key.
+func test_room_408_opens_after_the_key() -> void:
+	director.stop_after = &"b"
+	director.run_from(&"b")
+	await _until(func() -> bool: return director._scared.get(&"roommates_rise", false), 10.0)
+	_put(Vector3(38.5, 0.05, 2.5))
+	await _until(func() -> bool: return director._scared.get(&"corridor_turn", false), 10.0)
+	await wait_frames(30)
+	assert_false(director._rooms_opened.has(&"408"), "408 quiet before the key")
+	director._uses["FireKey"].interact(player)
+	await _until(func() -> bool: return director._rooms_opened.has(&"408"), 5.0)
+	assert_true(director._rooms_opened.has(&"408"), "408 opens after the key")
+	var count := 0
+	for track: Dictionary in director._room_tracks:
+		if (track["zombie"] as Zombie).door_bash_seconds > ROOM_BASH_SLOW:
+			count += 1
+	assert_eq(count, 2, "two zombies in 408;")
+
+
+## Floor 3: the rooms next to the fire stairs wake as Trung comes down.
+func test_floor_three_rooms_next_to_the_stairs_open() -> void:
+	director.stop_after = &"b"
+	director.run_from(&"b")
+	await _until(func() -> bool: return director._scared.get(&"roommates_rise", false), 10.0)
+	_put(Vector3(44.0, 0.05, 2.5))
+	await _until(func() -> bool: return director._scared.get(&"corridor_turn", false), 10.0)
+	_put(Vector3(46.0, -3.25, 2.0))
+	await _until(func() -> bool: return director._rooms_opened.has(&"308"), 5.0)
+	assert_true(director._rooms_opened.has(&"308"), "308 beside the landing opens")
+	assert_false(director._rooms_opened.has(&"301"), "far floor-3 rooms stay quiet")
+	assert_false(director._rooms_opened.has(&"406"), "floor 4 rooms do not open from floor 3")
 
 
 func test_a_zombie_grab_kills_and_reloads_the_zone() -> void:

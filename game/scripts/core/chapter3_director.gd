@@ -32,6 +32,18 @@ const KNIFE_RADIUS := 2.2
 ## drift off before Minh Nhật dares to come out.
 const CROWD_203 := [Vector3(-1.1, 0.0, 0.9), Vector3(0.0, 0.0, 0.8), Vector3(1.1, 0.0, 0.9), Vector3(0.5, 0.0, 1.8)]
 const CROWD_CLEAR_RADIUS := 6.0
+## Rooms of building B (D-061, T-191): zombies come out of the rooms Trung walks
+## past. Per floor: room number -> zombies inside. Floor 2 keeps only the 203
+## crowd (D-062); room 408 opens after the key (_wave_408).
+const ROOM_PLAN := {
+	&"B4": {&"406": 2, &"405": 2, &"404": 1, &"403": 1, &"402": 1, &"401": 1},
+	&"B3": {&"308": 2, &"307": 1, &"306": 1},
+}
+const ROOM_TRIGGER_RADIUS := 10.0
+const ROOM_BASH_SECONDS := 2.5
+const ROOM_408_BASH_SECONDS := 3.5
+const ROOM_ALERT_SECONDS := 6.0
+const ROOM_SIDE_OFFSET := 0.6
 const GUARD_TURN_RADIUS := 12.0
 ## Floors of building B by height (floor 4 at y = 0, 3.3 m per floor).
 const FLOOR_3_Y := -2.0
@@ -51,6 +63,10 @@ var _model_index: int = 0
 var _has_key: bool = false
 var _alarm_sounded: bool = false
 var _crowd_203: Array[Zombie] = []
+var _waves_on: bool = false
+var _rooms_opened: Dictionary = {}
+var _room_tracks: Array[Dictionary] = []
+var _room_zombie_count: int = 0
 var _scared: Dictionary[StringName, bool] = {}
 var _chat_queue: Array[String] = []
 var _chat_running: bool = false
@@ -142,15 +158,15 @@ func _building_b() -> void:
 	_roommates_rise()
 	_story(["chat:n_all_up", "chat:n_out", "chat:ngu_garden", "think:THINK_CH3_RUN"])
 	if _horde != null:
-		for zone in [&"B4", &"B3", &"B1"]:
+		for zone in [&"B4", &"B1"]:
 			_horde.place_idle(zone)
 	# Out of 407: the corridor turns its heads (jumpscare 2), then the stairs.
 	await _wait_until(func() -> bool: return not _player_in_room(), 600.0, false)
 	if _dying:
 		return
 	_scare(&"corridor_turn")
-	_wake_near(20.0)
-	_spawn(&"B4", WAVE_SIZE)
+	_face_idle_crowd()
+	_room_wave_loop()
 	_set_clock("08:03")
 	_think("THINK_CH3_STAIRS_FULL")
 	# Down the fire stairs to floor 2 (the stretch to floor 1 has collapsed).
@@ -158,7 +174,6 @@ func _building_b() -> void:
 	if _dying:
 		return
 	_set_clock("08:05")
-	_spawn(&"B3", 4)
 	await _wait_until(func() -> bool: return _player.global_position.y < FLOOR_2_Y, 900.0, false)
 	if _dying:
 		return
@@ -209,6 +224,7 @@ func _roommates_rise() -> void:
 # --- Zone 2: the garden (8:10–8:13) --------------------------------------------------
 
 func _garden() -> void:
+	_waves_on = false
 	_begin(&"garden", "08:10")
 	_arrive("garden", "Start_garden")
 	_set_area(&"garden")
@@ -424,7 +440,8 @@ func _place_uses() -> void:
 		key.used.connect(func() -> void:
 			_has_key = true
 			GameState.set_flag(&"ch3_has_key", true)
-			_think("THINK_CH3_KEY"))
+			_think("THINK_CH3_KEY")
+			_wave_408())
 	# Lane B's door marker sits on the floor: the use covers the whole leaf,
 	# from the floor to 2.2 m, or a look at eye height hits the leaf instead.
 	var door := _use("FireDoor", "PROMPT_CH3_UNLOCK", Vector3(1.4, 2.2, 1.4), 1.1)
@@ -616,13 +633,112 @@ func _crowd_203_gone() -> bool:
 	return true
 
 
-## Wake the sleeping zombies near the player (the corridor turning, the 203 crowd).
-func _wake_near(radius: float) -> void:
+## The far crowd at the main stairs turns to face Trung (jumpscare 2). They stay
+## put: the 44 m of corridor between is the player's head start.
+func _face_idle_crowd() -> void:
 	if _horde == null or _player == null:
 		return
 	for actor in _horde.get_children():
-		if actor is Zombie and actor.state == &"asleep" and actor.global_position.distance_to(_player.global_position) < radius:
-			actor.wake()
+		if actor is Zombie and actor.state == &"asleep" and actor.global_position.y > -1.0:
+			actor.face(_player.global_position)
+
+
+## Room by room, as Trung passes (D-061): the room's zombies are put inside
+## behind the shut door, hammer on it for a few seconds, then it bursts open.
+func _room_wave_loop() -> void:
+	_waves_on = true
+	while _waves_on and not _dying and is_inside_tree():
+		await get_tree().process_frame
+		if get_tree().paused or _player == null:
+			continue
+		_room_tick()
+
+
+func _room_tick() -> void:
+	var pos := _player.global_position
+	for floor_key: StringName in ROOM_PLAN:
+		var rooms: Dictionary = ROOM_PLAN[floor_key]
+		for room: StringName in rooms:
+			if _rooms_opened.has(room):
+				continue
+			var door := _room_door(room)
+			if door == null or absf(door.global_position.y - pos.y) > 2.0:
+				continue
+			if Vector2(door.global_position.x - pos.x, door.global_position.z - pos.z).length() <= ROOM_TRIGGER_RADIUS:
+				_open_room(room, floor_key, int(rooms[room]), ROOM_BASH_SECONDS)
+	_track_tick()
+
+
+## Put `count` zombies in a room and set them on its door.
+func _open_room(room: StringName, floor_key: StringName, count: int, bash_seconds: float) -> void:
+	if _rooms_opened.has(room):
+		return
+	_rooms_opened[room] = true
+	var door := _room_door(room)
+	var anchor := _anchor("RoomSpawns/%s/R%s" % [floor_key, room])
+	if door == null or anchor == null:
+		return
+	var adapter := ZombieDoor.new()
+	adapter.door = door
+	adapter.blocker = door.get("blocker") as CollisionObject3D
+	door.add_child(adapter)
+	for i in count:
+		var zombie := _make_zombie("zombie_%02d" % (_room_zombie_count % ZOMBIE_MODELS + 1))
+		_room_zombie_count += 1
+		if zombie == null:
+			continue
+		zombie.door_bash_seconds = bash_seconds
+		add_child(zombie)
+		zombie.global_position = anchor.global_position + Vector3(ROOM_SIDE_OFFSET * i, 0.05, 0.0)
+		zombie.set_target(_player)
+		zombie.wake()
+		zombie.set("_goal", _hall_point(door))
+		_room_tracks.append({"zombie": zombie, "door": adapter, "damage": 0.0, "alert_left": -1.0, "hit_left": 0.0})
+
+
+## Bash sounds while a door holds; once it bursts, the zombie knows where Trung
+## is for a few seconds (it walks out facing the railing, not him).
+func _track_tick() -> void:
+	var delta := get_process_delta_time()
+	for i in range(_room_tracks.size() - 1, -1, -1):
+		var track: Dictionary = _room_tracks[i]
+		var zombie := track["zombie"] as Zombie
+		var adapter := track["door"] as ZombieDoor
+		if not is_instance_valid(zombie) or not is_instance_valid(adapter):
+			_room_tracks.remove_at(i)
+			continue
+		track["hit_left"] = maxf(0.0, float(track["hit_left"]) - delta)
+		if adapter.is_closed():
+			# Aim straight through the door: a zombie that heads for Trung at an
+			# angle slides along the shut leaf and never bashes it.
+			zombie.set("_goal", _hall_point(adapter.door))
+			if adapter.damage_seconds > float(track["damage"]) and float(track["hit_left"]) <= 0.0:
+				track["hit_left"] = 0.7
+				var rig := zombie.get_node_or_null("ZombieAudio")
+				if rig != null and rig.has_method("play_door_hit"):
+					rig.play_door_hit()
+			track["damage"] = adapter.damage_seconds
+		else:
+			if float(track["alert_left"]) < 0.0:
+				track["alert_left"] = ROOM_ALERT_SECONDS
+			track["alert_left"] = float(track["alert_left"]) - delta
+			if float(track["alert_left"]) > 0.0:
+				zombie.set("_goal", _player.global_position)
+			else:
+				_room_tracks.remove_at(i)
+
+
+## The hall point straight out from a room door.
+func _hall_point(door: Node3D) -> Vector3:
+	return door.global_position + Vector3(0.0, 0.0, 1.8)
+
+
+## After the key (D-061): room 408, beside the duty desk, bursts open behind Trung.
+func _wave_408() -> void:
+	await _wait(1.5)
+	if _dying or not is_inside_tree() or _player == null:
+		return
+	_open_room(&"408", &"B4", 2, ROOM_408_BASH_SECONDS)
 
 
 # --- Speech, scares, zones --------------------------------------------------------------

@@ -81,7 +81,7 @@
 | T-188 Sửa khối sập chặn cầu thang thoát hiểm tầng 3 → 2 | E (làm thay lane B, D-060) | **done**, đã merge |
 | T-189 Nhà ăn kiểu nhà ăn trường học Trung Quốc | B (**Claude làm thay**) | review: đã dựng, chờ chủ dự án xem |
 | T-190 Cửa phòng mở được, xác đi ra từ trong phòng (tầng 4, 3, 2; D-061) | B | **done**, đã merge (207 core mở sẵn, D-062) |
-| T-191 Xác ra từ phòng theo bước chân người chơi | core | **doing** (T-190 đã merge) |
+| T-191 Xác ra từ phòng theo bước chân người chơi | core | **done** (Sonnet 5.5); chờ chủ dự án chơi thử nhà B |
 | T-192 Khán đài sân vận động làm lại, rải đồ khuôn viên (D-064) | B (**Claude Code web làm thay**, D-066) | **done**, đã merge; FPS đo lại PASS (40 xác, trung bình ≥107) |
 | T-171 Cầm giẻ, bịt miệng xác, cửa kẹt, buồng tắm, nút vòi sen, cảnh chết `corpse_lunge` và `scald` | A | **done**, đã merge |
 | T-172 Xác chơi nối từ, đồ bịt miệng, nhà vệ sinh có vòi sen, hơi nước, phòng camera 310 | B | **done**, đã merge |

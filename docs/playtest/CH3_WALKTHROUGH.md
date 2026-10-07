@@ -16,7 +16,7 @@
 ## Vượt nhanh (tóm tắt)
 
 1. **Phòng 407:** nghe loa xong, ba bạn cùng phòng bật dậy. **Chạy ngay ra cửa.**
-2. **Hành lang tầng 4:** cầu thang chính (đầu xa phòng 407) đầy xác. Đi về phía **bàn trực** (gần phòng 407), mở ngăn kéo lấy **chìa khóa** (E), rồi mở **cửa cầu thang thoát hiểm** ở cuối hành lang cùng phía (E).
+2. **Hành lang tầng 4:** cầu thang chính (đầu xa phòng 407) đầy xác, nhưng ở **xa**; hành lang gần bạn trống. Các phòng 406, 405… phía sau bị đập cửa rồi xác bước ra khi bạn đi ngang (nghe tiếng đập là biết); lấy chìa xong thì phòng 408 cạnh bàn trực cũng bật mở. Đi về phía **bàn trực** (gần phòng 407), mở ngăn kéo lấy **chìa khóa** (E), rồi mở **cửa cầu thang thoát hiểm** ở cuối hành lang cùng phía (E).
 3. **Cầu thang thoát hiểm:** xuống tầng 3, rồi tầng 2. Đoạn xuống tầng 1 **đã sập**.
 4. **Tầng 2:** Minh Nhật gọi, cậu ấy kẹt trong **phòng 203**, 4 xác đang đập cửa. **Bình cứu hỏa** treo ở tường trong cùng chiếu nghỉ cầu thang thoát hiểm tầng 2: bấm **E** để đập, rồi **nấp sâu trong phòng 207** (phòng không cửa gần đó). Tiếng động kéo cả đám đi hết hành lang vào chiếu nghỉ; ra khỏi 207 rồi đi về phía cầu thang chính. Minh Nhật ra khi đám xác rời cửa và đi theo sau bạn.
 5. Băng qua hành lang tầng 2 tới **cầu thang chính** (đầu kia), xuống tầng 1.
