@@ -13,27 +13,356 @@
     "gate": "gate"
   },
   "routes": {
-    "b": null,
-    "garden": null,
-    "stadium": null,
-    "gate": null
+    "b": [
+      {
+        "position": [
+          32,
+          0,
+          -1.3
+        ],
+        "zone": "b",
+        "action": "open_407"
+      },
+      {
+        "position": [
+          35.75,
+          0,
+          2
+        ],
+        "zone": "b"
+      },
+      {
+        "position": [
+          39.8,
+          0,
+          1.6
+        ],
+        "zone": "b",
+        "action": "take_key"
+      },
+      {
+        "position": [
+          42.8,
+          0,
+          2
+        ],
+        "zone": "b",
+        "action": "open_fire_door"
+      },
+      {
+        "position": [
+          45.5,
+          0,
+          2
+        ],
+        "zone": "b"
+      },
+      {
+        "position": [
+          45.5,
+          -3.3,
+          2
+        ],
+        "zone": "b"
+      },
+      {
+        "position": [
+          47.8,
+          -6.6,
+          2.4
+        ],
+        "zone": "b",
+        "action": "sound_extinguisher"
+      },
+      {
+        "position": [
+          35.75,
+          -6.6,
+          2
+        ],
+        "zone": "b"
+      },
+      {
+        "position": [
+          35.75,
+          -6.6,
+          -4.5
+        ],
+        "zone": "b",
+        "wait_seconds": 20
+      },
+      {
+        "position": [
+          35.75,
+          -6.6,
+          2
+        ],
+        "zone": "b"
+      },
+      {
+        "anchor": "Campus/Anchors/Paths/Nhat/P02",
+        "zone": "b"
+      },
+      {
+        "anchor": "Campus/Anchors/Paths/Nhat/P03",
+        "zone": "b"
+      },
+      {
+        "anchor": "Campus/Anchors/Paths/Nhat/P04",
+        "zone": "b"
+      },
+      {
+        "anchor": "Campus/Anchors/Paths/Nhat/P05",
+        "zone": "b"
+      },
+      {
+        "anchor": "Campus/Anchors/Paths/Nhat/P06",
+        "zone": "b"
+      },
+      {
+        "anchor": "Campus/Anchors/Paths/Nhat/P07",
+        "zone": "b"
+      },
+      {
+        "anchor": "Campus/Anchors/Paths/Nhat/P08",
+        "zone": "b"
+      },
+      {
+        "anchor": "Campus/Anchors/Paths/Nhat/P09",
+        "zone": "b",
+        "crouch": true
+      },
+      {
+        "anchor": "Campus/Anchors/Paths/Nhat/P10",
+        "zone": "b",
+        "crouch": true
+      },
+      {
+        "anchor": "Campus/Anchors/Paths/Nhat/P11",
+        "zone": "b"
+      },
+      {
+        "anchor": "Campus/Anchors/Paths/Nhat/P12",
+        "zone": "b"
+      },
+      {
+        "anchor": "Campus/Anchors/Paths/Nhat/P13",
+        "zone": "garden"
+      }
+    ],
+    "garden": [
+      {
+        "anchor": "Campus/Anchors/Paths/Nhat/P14_Wait_garden",
+        "zone": "garden",
+        "wait_for": {
+          "path": "Player",
+          "property": "bar_weapon:hits_left",
+          "equals": 8
+        },
+        "wait_timeout": 60
+      },
+      {
+        "anchor": "Campus/Anchors/Paths/Nhat/P15",
+        "zone": "garden"
+      },
+      {
+        "anchor": "Campus/Anchors/Paths/Nhat/P16",
+        "zone": "road"
+      },
+      {
+        "anchor": "Campus/Anchors/Paths/Nhat/P17",
+        "zone": "road"
+      },
+      {
+        "anchor": "Campus/Anchors/Paths/Nhat/P18_Wait_stadium",
+        "zone": "stadium"
+      }
+    ],
+    "stadium": [
+      {
+        "zone": "stadium",
+        "loop": [
+          {
+            "anchor": "Campus/Anchors/Paths/Nhat/P19",
+            "zone": "stadium"
+          },
+          {
+            "anchor": "Campus/Anchors/Paths/Nhat/P20",
+            "zone": "stadium"
+          },
+          {
+            "anchor": "Campus/Anchors/Paths/Nhat/P21",
+            "zone": "stadium"
+          },
+          {
+            "anchor": "Campus/Anchors/Paths/Nhat/P22",
+            "zone": "stadium"
+          },
+          {
+            "anchor": "Campus/Anchors/Paths/Nhat/P23_Wait_stadium",
+            "zone": "stadium"
+          }
+        ],
+        "until": {
+          "flag": "ch3_stadium_survived",
+          "equals": true
+        },
+        "timeout": 360
+      },
+      {
+        "anchor": "Campus/Anchors/Paths/Nhat/P24",
+        "zone": "road"
+      },
+      {
+        "anchor": "Campus/Anchors/Paths/Nhat/P25",
+        "zone": "road"
+      },
+      {
+        "anchor": "Campus/Anchors/Paths/Nhat/P26",
+        "zone": "gate"
+      },
+      {
+        "anchor": "Campus/Anchors/Start_gate",
+        "zone": "gate"
+      }
+    ],
+    "gate": [
+      {
+        "anchor": "Campus/Anchors/Paths/Nhat/P28",
+        "zone": "gate"
+      },
+      {
+        "anchor": "Campus/Anchors/Paths/Nhat/P29",
+        "zone": "canteen"
+      },
+      {
+        "anchor": "Campus/Anchors/Paths/Nhat/P30_Wait_canteen",
+        "zone": "canteen"
+      }
+    ]
   },
   "bindings": {
-    "key_taken": null,
-    "noise_203": null,
-    "stadium_survived": null,
-    "death_ui": null,
-    "bar_head_path": null,
-    "guard_paths": null,
-    "grab_stage": null
+    "key_taken": {
+      "flag": "ch3_has_key",
+      "equals": true
+    },
+    "noise_203": {
+      "flag": "ch3_alarm",
+      "equals": true
+    },
+    "stadium_survived": {
+      "flag": "ch3_stadium_survived",
+      "equals": true
+    },
+    "death_ui": "DeathScreen/Root",
+    "bar_head_path": "HeadHitbox",
+    "guard_paths": [
+      "Chapter3Director/Guard01",
+      "Chapter3Director/Guard02",
+      "Chapter3Director/Guard03",
+      "Chapter3Director/Guard04",
+      "Chapter3Director/Guard05",
+      "Chapter3Director/Guard06",
+      "Chapter3Director/Guard07",
+      "Chapter3Director/Guard08",
+      "Chapter3Director/Guard09",
+      "Chapter3Director/Guard10",
+      "Chapter3Director/Guard11",
+      "Chapter3Director/Guard12"
+    ],
+    "grab_stage": "garden"
   },
-  "actions": {},
-  "guard_target": null,
+  "actions": {
+    "take_key": {
+      "path": "Campus/Anchors/FireKey/Use_FireKey",
+      "method": "interact",
+      "args": [
+        "$player"
+      ],
+      "max_distance": 2.5,
+      "verify": {
+        "flag": "ch3_has_key",
+        "equals": true
+      }
+    },
+    "open_fire_door": {
+      "path": "Campus/Anchors/FireDoor/Use_FireDoor",
+      "method": "interact",
+      "args": [
+        "$player"
+      ],
+      "max_distance": 2.5,
+      "verify": {
+        "flag": "ch3_fire_door_open",
+        "equals": true
+      }
+    },
+    "sound_extinguisher": {
+      "path": "Campus/Anchors/Extinguisher2F/Use_Extinguisher2F",
+      "method": "interact",
+      "args": [
+        "$player"
+      ],
+      "max_distance": 2.5,
+      "verify": {
+        "flag": "ch3_alarm",
+        "equals": true
+      }
+    },
+    "open_407": {
+      "path": "Floor4/Door407",
+      "method": "interact",
+      "args": [
+        "$player"
+      ],
+      "max_distance": 2.5,
+      "verify": {
+        "property": "is_open",
+        "equals": true
+      }
+    }
+  },
+  "guard_target": {
+    "anchor": "Campus/Anchors/GuardLine/G06",
+    "zone": "gate"
+  },
   "menu_actions": {
-    "zombies_on": null,
-    "zombies_off": null,
-    "give_bar": null,
-    "refill": null
+    "zombies_on": {
+      "path": "Chapter3Director",
+      "method": "debug_zombies_on",
+      "verify": {
+        "path": "Chapter3Director/Horde",
+        "property": "max_active",
+        "equals": 40
+      }
+    },
+    "zombies_off": {
+      "path": "Chapter3Director",
+      "method": "debug_zombies_off",
+      "verify": {
+        "path": "Chapter3Director/Horde",
+        "property": "max_active",
+        "equals": 0
+      }
+    },
+    "give_bar": {
+      "path": "Chapter3Director",
+      "method": "debug_give_bar",
+      "verify": {
+        "path": "Player",
+        "property": "bar_weapon:hits_left",
+        "equals": 8
+      }
+    },
+    "refill": {
+      "path": "Chapter3Director",
+      "method": "debug_refill",
+      "verify": {
+        "path": "Player",
+        "property": "stamina",
+        "equals": 1
+      }
+    }
   },
   "performance": {
     "route": [

@@ -58,6 +58,8 @@ func _run() -> void:
 	GameState.chapter = 3
 	get_tree().root.add_child(main)
 	get_tree().current_scene = main
+	if profile.get("rule_set") is String: RuleSystem.load_rule_set(load(profile.rule_set))
+	EventBus.chapter_started.emit(3)
 	player = actions.player_node()
 	original_main_id = main.get_instance_id()
 	var first := "gate" if scenario == "ch3_guard" else str(profile.bindings.grab_stage) if scenario == "ch3_grabbed" else "b"
@@ -69,8 +71,7 @@ func _run() -> void:
 			if not await _until(func() -> bool: return str(GameState.segment) == stage or not failed_rules.is_empty(), stage): break
 			for point: Dictionary in profile.routes[stage]:
 				if not failed_rules.is_empty() or not failure.is_empty() or not skipped.is_empty(): break
-				_record(await actions.walk(point))
-				if point.has("action") and failure.is_empty(): _record(await actions.perform(point.action))
+				_record(await actions.step(point))
 		await _until(func() -> bool: return 3 in completed_chapters or not failed_rules.is_empty(), "chapter 3 completion")
 		if not failed_rules.is_empty(): failure = "unexpected death " + str(failed_rules)
 		for key in ["key_taken", "noise_203", "stadium_survived"]:

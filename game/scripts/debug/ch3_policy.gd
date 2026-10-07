@@ -32,14 +32,37 @@ static func preflight(profile: Dictionary, performance: bool = false, count: int
 			if not valid_route(profile.get("routes", {}).get(stage)): missing.append("T-181/T-183 route missing: " + stage)
 		for key in ["key_taken", "noise_203", "stadium_survived", "death_ui", "bar_head_path", "guard_paths", "grab_stage"]:
 			if profile.get("bindings", {}).get(key) == null: missing.append("T-181/T-182 binding missing: " + key)
+		if not valid_route([profile.get("guard_target")]): missing.append("guard target missing")
+		for key in ["zombies_on", "zombies_off", "give_bar", "refill"]:
+			if not valid_action(profile.get("menu_actions", {}).get(key)): missing.append("menu action missing: " + key)
+		for stage: String in STAGES:
+			if valid_route(profile.get("routes", {}).get(stage)):
+				check_actions(profile.routes[stage], profile.get("actions", {}), missing)
 	return missing
 
 
 static func valid_route(value: Variant) -> bool:
 	if not value is Array or value.is_empty(): return false
 	for point: Variant in value:
-		if not point is Dictionary or not point.get("anchor") is String or point.anchor.is_empty() or not point.get("zone") is String: return false
+		if not point is Dictionary or not point.get("zone") is String: return false
+		if point.has("loop"):
+			if not valid_route(point.loop) or not point.get("until") is Dictionary or not point.until.has("equals") or float(point.get("timeout", 0)) <= 0: return false
+		elif point.has("position"):
+			if not point.position is Array or point.position.size() != 3: return false
+			for coordinate: Variant in point.position:
+				if not (coordinate is float or coordinate is int) or not is_finite(float(coordinate)): return false
+		elif not point.get("anchor") is String or point.anchor.is_empty(): return false
 	return true
+
+
+static func valid_action(value: Variant) -> bool:
+	return value is Dictionary and value.get("path") is String and not value.path.is_empty() and value.get("method") is String and not value.method.is_empty() and value.get("verify") is Dictionary and value.verify.has("equals")
+
+
+static func check_actions(route: Array, actions: Dictionary, missing: Array[String]) -> void:
+	for point: Dictionary in route:
+		if point.has("loop"): check_actions(point.loop, actions, missing)
+		if point.has("action") and not valid_action(actions.get(point.action)): missing.append("route action missing: " + str(point.action))
 
 
 static func path_reaches(path: PackedVector3Array, target: Vector3, tolerance: float = 0.8) -> bool:

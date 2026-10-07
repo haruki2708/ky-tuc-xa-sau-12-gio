@@ -1,0 +1,57 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+QA_CH3_NAV: from=(35.75, -6.6, 2.0) target=(35.75, -6.6, -4.5) closest=(35.75, -6.6, -2.5) end=(35.75, -6.6, -2.5)
+QA_CH3_NAV: from=(4.0, -8.9, -7.6) target=(4.0, -9.9, -12.0) closest=(4.0, -9.9, -10.7) end=(4.0, -9.9, -10.7)
+QA_CH3_NAV: from=(4.0, -9.9, -12.0) target=(-8.0, -9.9, -12.0) closest=(-4.68, -8.25, -5.85) end=(-4.68, -8.25, -5.85)
+QA_CH3_NAV: from=(-8.0, -9.9, -12.0) target=(-8.0, -9.9, 8.0) closest=(-4.68, -9.9, 3.68) end=(-4.68, -9.9, 3.68)
+QA_CH3_NAV: from=(-8.0, -9.9, 8.0) target=(22.0, -9.9, 8.0) closest=(22.0, -9.9, 3.55) end=(22.0, -9.9, 3.55)
+QA_CH3_NAV: from=(22.0, -9.9, 8.0) target=(22.0, -9.9, 26.0) closest=(22.0, -9.9, 3.55) end=(22.0, -9.9, 3.55)
+QA_CH3_NAV: from=(22.0, -9.9, 26.0) target=(48.0, -9.9, 28.0) closest=(48.0, -9.9, 3.68) end=(48.0, -9.9, 3.68)
+QA_CH3_NAV: from=(48.0, -9.9, 28.0) target=(80.0, -9.9, 28.0) closest=(48.68, -9.9, 3.68) end=(48.68, -9.9, 3.68)
+QA_CH3_NAV: from=(80.0, -9.9, 28.0) target=(80.0, -9.9, 166.0) closest=(158.5, -9.676471, 213.2) end=(48.68, -9.9, 3.68)
+QA_CH3_NAV: from=(80.0, -9.9, 166.0) target=(115.0, -9.9, 166.0) closest=(158.5, -9.676471, 213.2) end=(158.5, -9.676471, 213.2)
+QA_CH3_NAV: from=(115.0, -9.9, 166.0) target=(150.0, -9.9, 166.0) closest=(158.5, -9.676471, 213.2) end=(158.5, -9.676471, 213.2)
+QA_CH3_NAV: from=(150.0, -9.9, 166.0) target=(198.0, -9.9, 135.0) closest=(198.0, -9.677778, 119.0) end=(198.0, -9.676471, 213.2)
+QA_CH3_NAV: from=(198.0, -9.9, 135.0) target=(250.0, -9.9, 166.0) closest=(237.5, -9.676471, 213.2) end=(227.5, -9.677778, 119.0)
+QA_CH3_NAV: from=(250.0, -9.9, 166.0) target=(198.0, -9.9, 195.0) closest=(198.0, -9.676471, 213.2) end=(198.0, -9.676471, 213.2)
+QA_CH3_NAV: from=(198.0, -9.9, 195.0) target=(115.0, -9.9, 166.0) closest=(158.5, -9.676471, 213.2) end=(158.5, -9.676471, 213.2)
+QA_CH3_NAV: from=(115.0, -9.9, 166.0) target=(150.0, -9.9, 166.0) closest=(158.5, -9.676471, 213.2) end=(158.5, -9.676471, 213.2)
+QA_CH3_NAV: from=(150.0, -9.9, 166.0) target=(198.0, -9.9, 135.0) closest=(198.0, -9.677778, 119.0) end=(198.0, -9.676471, 213.2)
+QA_CH3_NAV: from=(198.0, -9.9, 135.0) target=(250.0, -9.9, 166.0) closest=(237.5, -9.676471, 213.2) end=(227.5, -9.677778, 119.0)
+QA_CH3_NAV: from=(250.0, -9.9, 166.0) target=(198.0, -9.9, 195.0) closest=(198.0, -9.676471, 213.2) end=(198.0, -9.676471, 213.2)
+QA_CH3_NAV: from=(198.0, -9.9, 195.0) target=(115.0, -9.9, 166.0) closest=(158.5, -9.676471, 213.2) end=(158.5, -9.676471, 213.2)
+QA_CH3_NAV: from=(115.0, -9.9, 166.0) target=(80.0, -9.9, 166.0) closest=(158.5, -9.676471, 213.2) end=(158.5, -9.676471, 213.2)
+QA_CH3_NAV: from=(80.0, -9.9, 166.0) target=(80.0, -9.9, -15.0) closest=(48.68, -4.95, -5.85) end=(158.5, -9.676471, 213.2)
+QA_CH3_NAV: from=(80.0, -9.9, -15.0) target=(220.0, -9.9, -15.0) closest=(204.0, -9.9, 21.0) end=(48.68, -4.95, -5.85)
+QA_CH3_NAV: from=(220.0, -9.9, -15.0) target=(220.0, -9.9, -25.0) closest=(204.0, -9.9, 21.0) end=(204.0, -9.9, 21.0)
+QA_CH3_NAV: from=(220.0, -9.9, -25.0) target=(220.0, -9.9, 10.0) closest=(208.0, -9.9, 24.0) end=(208.0, -9.9, 24.0)
+QA_CH3_NAV: from=(220.0, -9.9, 10.0) target=(190.0, -9.9, 18.0) closest=(190.0, -9.9, 21.0) end=(190.0, -9.9, 21.0)
+  FAIL test_ch3_profile.gd::test_real_profile_nodes_actions_and_navigation_endpoints
+       - navmesh endpoint: { "position": [35.75, -6.6, -4.5], "zone": "b", "wait_seconds": 20.0 }
+       - navmesh endpoint: { "anchor": "Campus/Anchors/Paths/Nhat/P10", "zone": "b", "crouch": true }
+       - navmesh endpoint: { "anchor": "Campus/Anchors/Paths/Nhat/P11", "zone": "b" }
+       - navmesh endpoint: { "anchor": "Campus/Anchors/Paths/Nhat/P12", "zone": "b" }
+       - navmesh endpoint: { "anchor": "Campus/Anchors/Paths/Nhat/P13", "zone": "garden" }
+       - navmesh endpoint: { "anchor": "Campus/Anchors/Paths/Nhat/P14_Wait_garden", "zone": "garden", "wait_for": { "path": "Player", "property": "bar_weapon:hits_left", "equals": 8.0 }, "wait_timeout": 60.0 }
+       - navmesh endpoint: { "anchor": "Campus/Anchors/Paths/Nhat/P15", "zone": "garden" }
+       - navmesh endpoint: { "anchor": "Campus/Anchors/Paths/Nhat/P16", "zone": "road" }
+       - navmesh endpoint: { "anchor": "Campus/Anchors/Paths/Nhat/P17", "zone": "road" }
+       - navmesh endpoint: { "anchor": "Campus/Anchors/Paths/Nhat/P18_Wait_stadium", "zone": "stadium" }
+       - navmesh endpoint: { "anchor": "Campus/Anchors/Paths/Nhat/P19", "zone": "stadium" }
+       - navmesh endpoint: { "anchor": "Campus/Anchors/Paths/Nhat/P20", "zone": "stadium" }
+       - navmesh endpoint: { "anchor": "Campus/Anchors/Paths/Nhat/P21", "zone": "stadium" }
+       - navmesh endpoint: { "anchor": "Campus/Anchors/Paths/Nhat/P22", "zone": "stadium" }
+       - navmesh endpoint: { "anchor": "Campus/Anchors/Paths/Nhat/P23_Wait_stadium", "zone": "stadium" }
+       - navmesh endpoint: { "anchor": "Campus/Anchors/Paths/Nhat/P19", "zone": "stadium" }
+       - navmesh endpoint: { "anchor": "Campus/Anchors/Paths/Nhat/P20", "zone": "stadium" }
+       - navmesh endpoint: { "anchor": "Campus/Anchors/Paths/Nhat/P21", "zone": "stadium" }
+       - navmesh endpoint: { "anchor": "Campus/Anchors/Paths/Nhat/P22", "zone": "stadium" }
+       - navmesh endpoint: { "anchor": "Campus/Anchors/Paths/Nhat/P23_Wait_stadium", "zone": "stadium" }
+       - navmesh endpoint: { "anchor": "Campus/Anchors/Paths/Nhat/P24", "zone": "road" }
+       - navmesh endpoint: { "anchor": "Campus/Anchors/Paths/Nhat/P25", "zone": "road" }
+       - navmesh endpoint: { "anchor": "Campus/Anchors/Paths/Nhat/P26", "zone": "gate" }
+       - navmesh endpoint: { "anchor": "Campus/Anchors/Start_gate", "zone": "gate" }
+       - navmesh endpoint: { "anchor": "Campus/Anchors/Paths/Nhat/P28", "zone": "gate" }
+       - navmesh endpoint: { "anchor": "Campus/Anchors/Paths/Nhat/P29", "zone": "canteen" }
+RESULT: 0 passed, 1 failed
+RESULT: test FAIL (engine error or missing successful runner result)

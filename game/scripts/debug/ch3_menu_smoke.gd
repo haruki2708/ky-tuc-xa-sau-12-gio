@@ -25,5 +25,23 @@ func _run() -> void:
 			print("RESULT: qa-menu FAIL chapter3 jump ", destination)
 			App.quit(1)
 			return
-	print("RESULT: qa-menu PASS chapter3 (four area jumps)")
+		# Exercise the same signal handlers as the four visible debug buttons.
+		var player := get_tree().current_scene.get_node("Player")
+		player.call("_set_stamina", 0.2)
+		for action in ["zombies_off", "zombies_on", "give_bar", "refill"]:
+			var outcome: Dictionary = await menu.apply_action(action)
+			if outcome.status != "PASS":
+				print("RESULT: qa-menu FAIL chapter3 ", destination, " ", action)
+				App.quit(1)
+				return
+		var key := InputEventKey.new()
+		key.keycode = KEY_F9
+		key.pressed = true
+		menu._input(key)
+		if not menu.panel.visible or not get_tree().paused:
+			print("RESULT: qa-menu FAIL chapter3 F9")
+			App.quit(1)
+			return
+		menu._input(key)
+	print("RESULT: qa-menu PASS chapter3 (four area jumps, four debug actions per area, F9)")
 	App.quit()
