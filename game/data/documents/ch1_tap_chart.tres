@@ -9,4 +9,4 @@ title_key = "DOC_CH1_TAP_CHART_TITLE"
 style = &"handwritten"
 source = &"ch1_tap_chart"
 rule_ids = Array[StringName]([])
-text_keys = Array[String](["DOC_CH1_TAP_CHART_1", "DOC_CH1_TAP_CHART_2", "DOC_CH1_TAP_CHART_3", "DOC_CH1_TAP_CHART_4", "DOC_CH1_TAP_CHART_5", "DOC_CH1_TAP_CHART_6"])
+text_keys = Array[String](["DOC_CH1_TAP_CHART_1", "DOC_CH1_TAP_CHART_2"])

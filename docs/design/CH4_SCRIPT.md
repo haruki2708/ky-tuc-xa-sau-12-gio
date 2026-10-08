@@ -33,7 +33,7 @@ Ký hiệu: **Loa** · 📞 = trong cuộc gọi · 🗣 = nói tại chỗ (y t
 - **08:41** 📄 **SƠ ĐỒ KHUÔN VIÊN:** Giảng đường · Thư viện · Nhà thi đấu · Sân vận động · Nhà ăn · Cổng trường · Ký túc xá A · Ký túc xá B / (Hai ô ký túc xá bị khoanh bút đỏ. Mực đã phai.)
 - **08:42** 📄 **SỔ TRỰC THƯ VIỆN — ca đêm:** 3:52. Nước trong cốc gợn thành vòng. Chó ngoài cổng sủa mãi không thôi. / 3:57. Đèn chớp hai lần. Ghi lại, sáng mai báo bảo trì.
 - **08:42** `[Tầng 2: bàn đọc có sổ quy tắc mở sẵn. Tab Đối chiếu hiện luật cả 5 vòng và cạnh mỗi vòng là cách Trung đã qua. Gạch chân một dòng của luật vòng 5; sai không phạt, không gợi ý.]`
-- ✔ **Đối chiếu, vòng 2:** Nằm lên giường của người đã chết, tắt hết đèn, nín thở. Ông ta chém nát giường trống.
+- ✔ **Đối chiếu, vòng 2:** Nằm lên giường của người đã chết, tắt hết đèn, nằm im. Ông ta chém nát giường trống.
 - ✔ **Đối chiếu, vòng 3:** Bịt miệng cả ba. Lặp một vòng từ cho tới hết giờ.
 - ✔ **Đối chiếu, vòng 4:** Tìm ra quy luật nhiệt độ. Chỉ chọn Có ở những lượt an toàn.
 - **08:41** 📞 **Ngọc Ngư:** Lạ thật. Cửa nào ở đây cũng thông ra ngoài, mà ra ngoài thì toàn xác. Chạy mãi chẳng thấy lối nào gọi là thoát.

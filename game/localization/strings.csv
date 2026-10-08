@@ -295,182 +295,6 @@ UI_CH2_PREVIEW_WORD_3,khuyết điểm,khuyết điểm
 UI_CH2_PREVIEW_WORD_4,khuất bóng,khuất bóng
 UI_CH2_PREVIEW_WORD_5,khuất mắt,khuất mắt
 UI_CH2_PREVIEW_LOOP,học sinh → sinh viên → viên phấn → phấn đấu → đấu tranh → tranh luận → luận văn → văn học → học sinh…,học sinh → sinh viên → viên phấn → phấn đấu → đấu tranh → tranh luận → luận văn → văn học → học sinh…
-NAME_CH1_UNKNOWN,Người lạ,Unknown caller
-NAME_CH1_MINH_NHAT,Minh Nhật · 203,Minh Nhật · 203
-NAME_CH1_HUNG,Hùng · 102,Hùng · 102
-NAME_CH1_KIET,Kiệt · 306,Kiệt · 306
-NAME_CH1_BAO,Bảo · 209,Bảo · 209
-NAME_CH1_DANG,Đăng · 106,Đăng · 106
-NAME_CH1_SON,Sơn · 504,Sơn · 504
-NAME_CH1_VINH,Vinh · 311,Vinh · 311
-NAME_CH1_TUNG,Tùng · 110,Tùng · 110
-NAME_CH1_NGU,Ngọc Ngư · 401 nhà A,Ngọc Ngư · A-401
-NAME_CH1_TRUNG,Tôi,Me
-SPK_CH1_WARN,"Chú ý. Một phút nữa, người nào còn nằm trên giường sẽ chết.","Attention. In one minute, anyone still lying in bed will die."
-ROOM_CH1_PHUC_GRUMBLE,Ai mở loa giờ này vậy trời…,Who turns the speaker on at this hour…
-ROOM_CH1_DAT_GRUMBLE,Bốn giờ sáng đó. Để người ta ngủ với.,It's four in the morning. Let people sleep.
-ROOM_CH1_VIET_GRUMBLE,Kệ nó. Ngủ tiếp đi.,Ignore it. Go back to sleep.
-THINK_CH1_RETURN,Sao im lặng quá vậy…,Why is it so quiet…
-THINK_CH1_BLOOD,Máu… Phúc? Việt? Đạt?,Blood… Phúc? Việt? Đạt?
-THINK_CH1_NO_SIGNAL,Không có sóng. Gọi cấp cứu cũng không được.,No signal. I can't even call for help.
-SPK_CH1_GENERAL_INTRO,Toàn thể sinh viên chú ý. Sau đây là Tổng tắc của ký túc xá.,"Attention, all students. These are the General Rules of the dormitory."
-RULE_CH1_GENERAL_1,Mọi quy tắc phải được nghe rõ và làm đúng. Ai vi phạm sẽ chết ngay tại chỗ.,Every rule must be heard and obeyed. Anyone who breaks one dies on the spot.
-RULE_CH1_GENERAL_2,"Khi quy tắc mới được công bố, quy tắc cũ hết hiệu lực. Không có quy tắc nào lặp lại.","When a new rule is announced, the old one expires. No rule is ever repeated."
-RULE_CH1_GENERAL_3,Không sinh viên nào được rời khỏi phòng của mình. Ai rời phòng sẽ chết.,No student may leave their own room. Anyone who leaves will die.
-RULE_CH1_GENERAL_4,"Không được tấn công quản lý ký túc xá, bảo vệ hay bất kỳ nhân viên nào.","Do not attack the dorm manager, the guards or any staff."
-RULE_CH1_GENERAL_5,"Mỗi giờ sẽ có một quy tắc mới, trong năm giờ. Ai còn sống đến cuối cùng sẽ được rời đi an toàn.","Every hour brings a new rule, for five hours. Whoever is still alive at the end may leave safely."
-THINK_CH1_HAND_OFF,Suýt nữa thì… Tay mình vẫn còn trên nắm cửa.,That was close… My hand was still on the handle.
-THINK_CH1_WALL,Phòng bên cạnh không ai trả lời. Không một tiếng động.,No one answers next door. Not a sound.
-CHAT_CH1_N_HELLO,"Alo? Nghe được không? Tôi là Minh Nhật, phòng 203 nhà B.","Hello? Can you hear me? I'm Minh Nhật, room 203, building B."
-CHAT_CH1_N_HOW,"Hồi trước rảnh quá, tôi dựng một nhóm gọi qua mạng nội bộ của ký túc xá. Không cần sóng, chỉ cần còn wifi trong tòa nhà.","I got bored once and set up a group call over the dorm's local network. No signal needed, just the building's wifi."
-CHOICE_CH1_INTRO_1,"Tôi là Trung, phòng 407. Phòng tôi… chết hết rồi.","I'm Trung, room 407. Everyone in my room… is dead."
-CHOICE_CH1_INTRO_2,Cậu gọi được thật à? Ngoài kia còn ai không?,You can actually call? Is anyone else out there?
-CHAT_CH1_N_TOGETHER,Tôi đang mời mọi máy còn kết nối. Phải bám vào nhau mà sống.,I'm inviting every phone still connected. We have to hold on to each other to survive.
-CHAT_CH1_HUNG_JOKE,"Hùng đây, 102. Chắc trường bày trò diễn tập thôi, ai lại làm thật.","Hùng here, 102. Must be some school drill. Nobody would do this for real."
-CHAT_CH1_DANG_ANGRY,Diễn tập cái đầu mày! Ba thằng phòng tao nằm chết trên giường kìa!,Drill my ass! Three guys in my room are lying dead in their beds!
-CHAT_CH1_BAO_CRY,"Bảo, phòng 209… tôi sợ lắm… máu chảy xuống tận sàn…","Bảo, room 209… I'm so scared… the blood is dripping onto the floor…"
-CHAT_CH1_SON_QUIET,"Sơn, 504. Hai phòng bên cạnh tôi không còn tiếng gì nữa.","Sơn, 504. The two rooms next to mine have gone completely silent."
-CHAT_CH1_KIET_ASK,Có ai thử ra ngoài chưa? Biết đâu xuống được tới cổng?,Has anyone tried going outside? Maybe we can reach the gate?
-CHAT_CH1_TUNG_GO,"Tùng, 110. Phòng tao ở tầng một, sát cổng. Để tao chạy ra gọi người.","Tùng, 110. I'm on the ground floor, right by the gate. I'll run out and get help."
-CHAT_CH1_N_STOP,"Đừng! Tổng tắc điều ba, rời phòng là chết!",Don't! General Rule three: leave your room and you die!
-CHAT_CH1_TUNG_OUT,"Tao mở cửa rồi. Hành lang không có ai cả. Thấy chưa, có gì đâ…","Door's open. The corridor's empty. See, there's noth—"
-CHAT_CH1_HUNG_SHAKEN,Tùng? Tùng ơi?,Tùng? Tùng?
-THINK_CH1_RULE_REAL,Loa không đùa. Không được ra khỏi phòng.,The speaker isn't joking. I can't leave the room.
-CHAT_CH1_N_BATTERY,Mọi người để ý pin. Cuộc gọi này ngốn pin lắm. Mất kết nối là coi như một mình.,"Watch your battery, everyone. This call eats power. Lose the connection and you're on your own."
-THINK_CH1_LOW_BATTERY,"Pin còn ít quá. Dây sạc của mình còn đây, nhưng cục sạc đâu…","My battery's almost gone. My cable's here, but where's the charger…"
-THINK_CH1_CHARGING,Đang sạc rồi. Phải ở gần ổ điện.,It's charging. I have to stay near the socket.
-CHAT_CH1_N_BACK,"Trung? Trung! Cậu vừa mất tín hiệu. Mạng nội bộ chập chờn lắm, cố giữ máy.","Trung? Trung! You just dropped out. The local network is shaky, try to stay on."
-CHAT_CH1_N_MISSED,"Lúc cậu mất kết nối, thêm hai người trong nhóm im lặng luôn. Không ai biết họ làm gì.","While you were gone, two more people in the group went silent. Nobody knows what they did."
-CHAT_CH1_N_BACK_REMOTE,"Tôi khởi động lại mạng từ phía tôi rồi… Trung, nghe được không? Cậu bỏ lỡ nhiều lắm.","I restarted the network from my side… Trung, can you hear me? You missed a lot."
-ROOM_CH1_KNOCK_VIET,"Trung ơi, mở cửa cho tao. Tao ra ngoài đi vệ sinh, giờ không vào được…","Trung, open the door for me. I went to the toilet and now I can't get back in…"
-ROOM_CH1_KNOCK_VIET_2,Ra đây với tao đi. Ngoài này không có ai đâu.,Come out here with me. There's nobody out here.
-CHAT_CH1_VINH_ASK,"Vinh, 311. Có ai nghe tiếng bạn cùng phòng gọi ngoài cửa không? Tôi vừa nghe…","Vinh, 311. Has anyone heard their roommate calling from outside the door? I just did…"
-CHAT_CH1_N_DONT_OPEN,"Đừng ra. Mở cửa thì chưa sao, nhưng bước qua ngưỡng cửa là hết.","Don't go out. Opening the door may be fine, but step over the threshold and it's over."
-CHAT_CH1_N_THEORY,Loa nói mỗi giờ một quy tắc mới. Năm giờ sẽ có quy tắc thứ hai. Phải nghe thật kỹ từng chữ.,The speaker said a new rule every hour. At five there'll be a second one. We have to listen to every single word.
-CHOICE_CH1_WORDS_1,Ừ. Tôi sẽ ghi lại từng chữ.,Okay. I'll write down every word.
-CHOICE_CH1_WORDS_2,Nghe kỹ thì được gì? Nó muốn giết thì giết thôi.,"What's the point? If it wants to kill us, it will."
-CHAT_CH1_N_WORDS_REPLY,"Quy tắc chưa nói dối lần nào. Nếu có đường sống, nó nằm trong câu chữ.","The rules haven't lied once. If there's a way out, it's in the wording."
-SPK_CH1_R1_END,Vòng một kết thúc. Số sinh viên còn sống: ba trăm năm mươi hai.,Round one is over. Students still alive: three hundred and fifty-two.
-CHAT_CH1_SON_352,Ba trăm năm mươi hai… cả trường mấy nghìn người mà…,Three hundred fifty-two… there were thousands of us…
-RULE_CH1_R2,"Vòng hai. Trong một giờ tới, nhà trường kiểm tra phòng. Mỗi tòa nhà có một quản lý. Sinh viên hãy nằm yên trên giường và hợp tác với công việc của quản lý.",Round two. Over the next hour the school will inspect the rooms. Each building has one manager. Students must stay still in bed and cooperate with the manager's work.
-CHAT_CH1_N_BEDS,Lên giường hết đi. Nhanh lên.,"Everyone, get in bed. Now."
-CHAT_CH1_N_CCTV,Tôi vào được hệ thống camera của ký túc xá rồi. Mở tab Camera trên điện thoại đi. Ông ta vào phòng nào… mình thấy hết.,I'm into the dorm's camera system. Open the Camera tab on your phone. Whichever room he walks into… we'll see it all.
-CHAT_CH1_HUNG_KNOCK,Có người gõ cửa phòng tao… Quản lý tới rồi.,Someone's knocking on my door… The manager's here.
-MGR_CH1_ASK_HUNG,Đinh Xuân Hùng. Có ở đây không?,Đinh Xuân Hùng. Are you here?
-CHAT_CH1_HUNG_YES,Dạ… dạ có. Em đây ạ.,"Y-yes. I'm here, sir."
-MGR_CH1_GOOD,Tốt. Vậy thì đến lượt cậu.,Good. Then it's your turn.
-CHAT_CH1_N_ANALYZE,"Quy tắc bảo nằm yên trên giường và hợp tác. Hùng trả lời thật mà vẫn chết. Hay là chữ ""hợp tác"" có vấn đề?","The rule says stay in bed and cooperate. Hùng told the truth and still died. Could the word ""cooperate"" be the catch?"
-CHOICE_CH1_THEORY_1,Hay là đừng trả lời gì cả?,Maybe don't answer at all?
-CHOICE_CH1_THEORY_2,Hay là phải nói mình không có ở đây?,Maybe you have to say you're not here?
-CHOICE_CH1_THEORY_3,Tôi không biết. Chưa đủ thông tin.,I don't know. Not enough to go on.
-CHAT_CH1_N_UNKNOWN,Chưa biết được. Ai đó… sẽ phải thử.,No way to know yet. Someone… will have to try.
-CHAT_CH1_KIET_306,Sao ông ta lên 306 rồi? Không đi theo số phòng à?,Why is he at 306 now? He's not going in order?
-MGR_CH1_ASK_BED_3,Giường số ba. Có ở đây không?,Bed three. Is anyone here?
-CHAT_CH1_KIET_NO,Không… không có ai ở đây hết.,N-no… there's nobody here.
-MGR_CH1_WHY_NOT,"Nằm ngoan trên giường thế kia, sao lại nói không có?","Lying so nicely in bed, and you say nobody's here?"
-CHAT_CH1_N_KIET_LIT,"Lúc ông ta vào, điện thoại Kiệt còn sáng… cậu ấy đang gọi với tụi mình.","When he walked in, Kiệt's phone was still lit… he was on the call with us."
-CHAT_CH1_BAO_209,Ông ta tới 209 rồi… tôi phải làm sao… làm sao bây giờ…,He's at 209… what do I do… what do I do…
-CHAT_CH1_N_TRY_SILENT,"Bảo, thử im lặng. Ông ta hỏi gì cũng đừng trả lời.","Bảo, try staying silent. Whatever he asks, don't answer."
-MGR_CH1_ASK_BED_4,Giường số bốn. Có ở đây không?,Bed four. Is anyone here?
-MGR_CH1_LAUGH,(cười khàn khàn),(a hoarse chuckle)
-CHAT_CH1_DANG_CURSE,Im lặng cũng chết! Thế này thì làm cái quái gì mới đúng!,Silence gets you killed too! What the hell are we supposed to do?!
-CHAT_CH1_DANG_LAMP,"Đèn phòng tao còn sáng, kệ. Tối quá tao chịu không nổi.","My light's still on, whatever. I can't stand the dark."
-CHAT_CH1_DANG_HERE,"106… ông ta tới 106 rồi. Phòng tao. Nói gì đi, tao phải làm gì?","106… he's at 106. My room. Say something, what do I do?"
-CHOICE_CH1_ADVISE_1,Trùm chăn kín người lại!,Pull the blanket over your whole body!
-CHOICE_CH1_ADVISE_2,Hô to tên mày với số giường!,Shout your name and bed number!
-CHOICE_CH1_ADVISE_3,"Chạm vào ông ta, cho ông ta biết mày còn sống!","Touch him, show him you're alive!"
-MGR_CH1_ASK_BED_2,Giường số hai. Có ở đây không?,Bed two. Is anyone here?
-CHAT_CH1_N_ALL_FAIL,"Sơn trùm chăn, Vinh hô tên, có người còn chạm vào ông ta… Không cách nào được cả.","Sơn hid under his blanket, Vinh shouted his name, someone even touched him… Nothing works."
-CHAT_CH1_N_JUST_US,Trong nhóm… chỉ còn tôi với cậu.,In the group… it's just you and me now.
-THINK_CH1_DRAG,Tiếng kéo dao… ở ngay tầng này.,That dragging blade… it's on this floor.
-THINK_CH1_SURVIVED,Ông ta chém nát giường của mình… rồi bỏ đi.,He hacked my bed to pieces… and walked away.
-THINK_CH1_WHY,"Việc của quản lý không phải kiểm tra phòng. Mà là dọn sạch người sống. ""Hợp tác""… là nằm như người chết.","The manager's job isn't inspecting rooms. It's clearing out the living. ""Cooperate""… means lying there like the dead."
-CHOICE_CH1_TELL_1,"Nằm giường của người đã chết, tắt hết đèn, nín thở khi ông ta hỏi xong.","Lie on a dead roommate's bed, kill every light, hold your breath after he asks."
-CHOICE_CH1_TELL_2,"Nằm yên trên giường của mình, nín thở thật lâu.",Lie still in your own bed and hold your breath as long as you can.
-CHOICE_CH1_TELL_3,"Chui xuống gầm giường, tắt điện thoại.",Crawl under the bed and switch your phone off.
-CHOICE_CH1_TELL_4,"Nằm giường của người đã chết, trả lời ""không có"" khi ông ta hỏi.","Lie on a dead roommate's bed and answer ""nobody"" when he asks."
-CHAT_CH1_N_DYING,Trung… ông ta đang mở cửa phòng tôi… tôi làm đúng như cậu nói mà…,Trung… he's opening my door… I did exactly what you said…
-MGR_CH1_ASK_BED_1,Giường số một. Có ở đây không?,Bed one. Is anyone here?
-CHAT_CH1_N_THANKS,"Ông ta vừa chém nát giường tôi… Tôi còn sống. Cảm ơn cậu, Trung.","He just shredded my bed… I'm alive. Thank you, Trung."
-CHAT_CH1_N_NETWORK,"Để tôi thử mở rộng mạng… Được rồi, bắt được nhà A bên kia vườn hoa.","Let me try widening the network… Got it, I've reached building A across the garden."
-CHAT_CH1_NGU_HELLO,"Các cậu là… ai vậy? Nhà A, phòng 401, Khương Ngọc Ngư.","Who… are you? Building A, room 401, Khương Ngọc Ngư."
-CHAT_CH1_NGU_LUCK,"Lúc quản lý tới, tôi đang ở cửa sổ gọi người. Không kịp về giường mình nên nằm đại lên giường bạn… Chắc nhờ vậy mà sống.","When the manager came I was at the window calling for help. I couldn't get back to my bed, so I lay on my roommate's… That must be why I'm alive."
-CHAT_CH1_NGU_ALONE,Hình như cả nhà A… chỉ còn mình tôi.,I think in all of building A… I'm the only one left.
-SPK_CH1_R2_END,Vòng hai kết thúc. Số sinh viên còn sống: hai mươi tám.,Round two is over. Students still alive: twenty-eight.
-THINK_CH1_END,Hai mươi tám người. Còn ba vòng nữa.,Twenty-eight people. Three rounds to go.
-DEATH_STAYED_IN_BED,Bạn vẫn nằm trên giường khi hết một phút.,You were still in bed when the minute ran out.
-DEATH_LEFT_ROOM,Bạn đã bước ra khỏi phòng.,You stepped out of your room.
-DEATH_NOT_IN_BED,Bạn không nằm trên giường khi quản lý vào phòng.,You weren't in bed when the manager came in.
-DEATH_OWN_BED,Quản lý tìm thấy bạn trên giường của chính mình.,The manager found you in your own bed.
-DEATH_HEARD,Quản lý nghe thấy bạn.,The manager heard you.
-DEATH_DRAGGED_OUT,Một bàn tay lôi bạn ra khỏi phòng.,A hand dragged you out of the room.
-DEATH_SEEN,Quản lý thấy ánh sáng trong phòng.,The manager saw light in the room.
-DEATH_LOST_NHAT,Minh Nhật đã chết. Không còn ai giữ mạng nội bộ.,Minh Nhật is dead. No one is left to keep the network alive.
-DOC_CH1_DAT_NOTE_TITLE,Sổ tay của Đạt,Đạt's notebook
-DOC_CH1_DAT_NOTE_1,Mật khẩu tủ: sinh nhật thằng thân nhất phòng. Đứa nào mở trộm là chết với tao.,Locker code: my best mate's birthday. Whoever opens it behind my back is dead meat.
-DOC_CH1_DAT_NOTE_2,Thứ hai: trả cục sạc cho Trung.,Monday: give Trung his charger back.
-DOC_CH1_DAT_CARD_TITLE,Thẻ sinh viên,Student ID card
-DOC_CH1_DAT_CARD_1,Họ tên: Phạm Thành Đạt,Name: Phạm Thành Đạt
-DOC_CH1_DAT_CARD_2,Ngày sinh: 14/07/2006,Date of birth: 14/07/2006
-DOC_CH1_DAT_CARD_3,"Ký túc xá: phòng 407, nhà B","Dormitory: room 407, building B"
-DOC_CH1_PHUC_CARD_TITLE,Thẻ sinh viên,Student ID card
-DOC_CH1_PHUC_CARD_1,Họ tên: Lê Hoàng Phúc,Name: Lê Hoàng Phúc
-DOC_CH1_PHUC_CARD_2,Ngày sinh: 21/09/2006,Date of birth: 21/09/2006
-DOC_CH1_PHUC_CARD_3,"Ký túc xá: phòng 407, nhà B","Dormitory: room 407, building B"
-DOC_CH1_VIET_CARD_TITLE,Thẻ sinh viên,Student ID card
-DOC_CH1_VIET_CARD_1,Họ tên: Đặng Quốc Việt,Name: Đặng Quốc Việt
-DOC_CH1_VIET_CARD_2,Ngày sinh: 03/03/2006,Date of birth: 03/03/2006
-DOC_CH1_VIET_CARD_3,"Ký túc xá: phòng 407, nhà B","Dormitory: room 407, building B"
-DOC_CH1_TEAM_PHOTO_TITLE,Ảnh đội bóng khoa,Faculty football team photo
-DOC_CH1_TEAM_PHOTO_1,"Mặt trước: Đạt khoác vai Phúc, hai đứa cười toe, mặc áo đội.","Front: Đạt has his arm around Phúc, both grinning in team shirts."
-DOC_CH1_TEAM_PHOTO_2,"Mặt sau, chữ của Đạt: ""Anh em cây khế. Phúc & Đạt, mùa giải 2025.""","Back, in Đạt's hand: ""Brothers for life. Phúc & Đạt, 2025 season."""
-DOC_CH1_TAP_CHART_TITLE,Sổ hợp âm của Việt (trang cuối),Việt's chord book (last page)
-DOC_CH1_TAP_CHART_1,A   B   C   D   E,A   B   C   D   E
-DOC_CH1_TAP_CHART_2,F   G   H   I   K,F   G   H   I   K
-DOC_CH1_TAP_CHART_3,L   M   N   O   P,L   M   N   O   P
-DOC_CH1_TAP_CHART_4,Q   R   S   T   U,Q   R   S   T   U
-DOC_CH1_TAP_CHART_5,V   W   X   Y   Z,V   W   X   Y   Z
-DOC_CH1_TAP_CHART_6,"Hồi nhỏ ngủ chung với thằng em, cách vách thì gõ: hàng trước, cột sau.","When my little brother and I slept on either side of the wall, we knocked: row first, then column."
-DOC_CH1_FORM_PIECE_1_TITLE,Mảnh giấy xé (1),Torn scrap (1)
-DOC_CH1_FORM_PIECE_1_1,Biên bản kiểm tra phòng ban đêm (mẫu c…,Night room inspection form (old ver…
-DOC_CH1_FORM_PIECE_1_2,Cán bộ kiểm tra hỏi theo số giư…,The inspector asks by the regist…
-DOC_CH1_FORM_PIECE_1_3,"Giường trống: ghi ""v…","Empty bed: mark ""ab…"
-DOC_CH1_FORM_PIECE_2_TITLE,"Mảnh giấy xé (2), đẫm máu","Torn scrap (2), soaked in blood"
-DOC_CH1_FORM_PIECE_2_1,"…ờng đã đăng ký, không hỏi theo người.","…ered bed number, not by the person."
-DOC_CH1_FORM_PIECE_2_2,"…ắng"". Giường có người nằm im: ghi ""đã kiểm tra"".","…sent"". A bed with someone lying still: mark ""checked""."
-DOC_CH1_FORM_PIECE_3_TITLE,"Mảnh giấy xé (3), bị vo tròn","Torn scrap (3), crumpled"
-DOC_CH1_FORM_PIECE_3_1,Phòng còn đèn sáng: kiểm tra kỹ từng giường.,A room with a light on: check every bed closely.
-DOC_CH1_FORM_PIECE_3_2,Sinh viên không được tự ý đổi giường đã đăng ký.,Students may not swap their registered bed.
-DOC_CH1_INSPECTION_FORM_TITLE,Biên bản kiểm tra phòng ban đêm (mẫu cũ),Night room inspection form (old version)
-DOC_CH1_INSPECTION_FORM_1,"Cán bộ kiểm tra hỏi theo số giường đã đăng ký, không hỏi theo người.","The inspector asks by the registered bed number, not by the person."
-DOC_CH1_INSPECTION_FORM_2,"Giường trống: ghi ""vắng"". Giường có người nằm im: ghi ""đã kiểm tra"".","Empty bed: mark ""absent"". A bed with someone lying still: mark ""checked""."
-DOC_CH1_INSPECTION_FORM_3,Phòng còn đèn sáng: kiểm tra kỹ từng giường.,A room with a light on: check every bed closely.
-DOC_CH1_INSPECTION_FORM_4,Sinh viên không được tự ý đổi giường đã đăng ký.,Students may not swap their registered bed.
-DOC_CH1_PHUC_SCHEDULE_TITLE,Lịch thi của Phúc,Phúc's exam schedule
-DOC_CH1_PHUC_SCHEDULE_1,"Giải tích 2: thứ hai, 7 giờ 30. KHÔNG ĐƯỢC NGỦ QUÊN.","Calculus 2: Monday, 7:30. DO NOT OVERSLEEP."
-DOC_CH1_PHUC_SCHEDULE_2,Hứa với mẹ kỳ này qua hết các môn.,Promised Mom I'd pass everything this term.
-DOC_CH1_VIET_PHOTO_TITLE,Mặt sau tấm ảnh gia đình,Back of a family photo
-DOC_CH1_VIET_PHOTO_1,Học xong thì về quê làm thầy giáo nghe con. Ba mẹ.,"Finish school and come home to teach, son. Mom and Dad."
-PUZZLE_LOCKER_DAT_TITLE,Tủ của Đạt,Đạt's locker
-PROMPT_CH1_LIE,Nằm lên giường,Lie down on the bed
-PROMPT_CH1_GET_UP,Rời giường,Get up
-PROMPT_CH1_CHARGE,Cắm sạc điện thoại,Plug in the phone
-PROMPT_CH1_LOCKER,Mở tủ của Đạt,Open Đạt's locker
-UI_CH1_DEATH_TITLE,Bạn đã chết,You died
-UI_CH1_SURVIVORS,Số sinh viên còn sống: %d,Students still alive: %d
-UI_CH1_END,Hết chương 1,End of chapter 1
-PROMPT_CH1_SEARCH_LOCKER,Mở tủ của Việt,Open Việt's locker
-PROMPT_CH1_LIFT_MATTRESS,Lật nệm,Lift the mattress
-PROMPT_CH1_SEARCH_TRASH,Lục sọt rác,Search the bin
-CCTV_CAM_102,CAM 102 · nhà B,CAM 102 · Bldg B
-CCTV_CAM_306,CAM 306 · nhà B,CAM 306 · Bldg B
-CCTV_CAM_209,CAM 209 · nhà B,CAM 209 · Bldg B
-CCTV_CAM_106,CAM 106 · nhà B,CAM 106 · Bldg B
-CCTV_CAM_CORRIDOR,CAM T4 · hành lang,CAM F4 · corridor
-CCTV_CAM_HALL_102,CAM T1 · hành lang 102,CAM F1 · corridor 102
-CCTV_CAM_HALL_306,CAM T3 · hành lang 306,CAM F3 · corridor 306
-CCTV_CAM_HALL_209,CAM T2 · hành lang 209,CAM F2 · corridor 209
-CCTV_CAM_HALL_106,CAM T1 · hành lang 106,CAM F1 · corridor 106
 NAME_CH2_MINH_NHAT,Minh Nhật · 203,Minh Nhật · 203
 NAME_CH2_NGU,Ngọc Ngư · 401 nhà A,Ngọc Ngư · A-401
 NAME_CH2_TRUNG,Tôi,Me
@@ -896,6 +720,180 @@ UI_CH4_PATIENT_NGU,Khương Ngọc Ngư,Khương Ngọc Ngư
 UI_CH4_COMA,Hôn mê,Comatose
 UI_CH4_END,Hết chương 4,End of chapter 4
 UI_CH4_THANKS,Cảm ơn bạn đã chơi,Thank you for playing
+NAME_CH1_UNKNOWN,Người lạ,Unknown caller
+NAME_CH1_MINH_NHAT,Minh Nhật · 203,Minh Nhật · 203
+NAME_CH1_HUNG,Hùng · 102,Hùng · 102
+NAME_CH1_KIET,Kiệt · 306,Kiệt · 306
+NAME_CH1_BAO,Bảo · 209,Bảo · 209
+NAME_CH1_DANG,Đăng · 106,Đăng · 106
+NAME_CH1_SON,Sơn · 504,Sơn · 504
+NAME_CH1_VINH,Vinh · 311,Vinh · 311
+NAME_CH1_TUNG,Tùng · 110,Tùng · 110
+NAME_CH1_NGU,Ngọc Ngư · 401 nhà A,Ngọc Ngư · A-401
+NAME_CH1_TRUNG,Tôi,Me
+SPK_CH1_WARN,"Chú ý. Một phút nữa, người nào còn nằm trên giường sẽ chết.","Attention. In one minute, anyone still lying in bed will die."
+ROOM_CH1_PHUC_GRUMBLE,Ai mở loa giờ này vậy trời…,Who turns the speaker on at this hour…
+ROOM_CH1_DAT_GRUMBLE,Bốn giờ sáng đó. Để người ta ngủ với.,It's four in the morning. Let people sleep.
+ROOM_CH1_VIET_GRUMBLE,Kệ nó. Ngủ tiếp đi.,Ignore it. Go back to sleep.
+THINK_CH1_RETURN,Sao im lặng quá vậy…,Why is it so quiet…
+THINK_CH1_BLOOD,Máu… Phúc? Việt? Đạt?,Blood… Phúc? Việt? Đạt?
+THINK_CH1_NO_SIGNAL,Không có sóng. Gọi cấp cứu cũng không được.,No signal. I can't even call for help.
+SPK_CH1_GENERAL_INTRO,Toàn thể sinh viên chú ý. Sau đây là Tổng tắc của ký túc xá.,"Attention, all students. These are the General Rules of the dormitory."
+RULE_CH1_GENERAL_1,Mọi quy tắc phải được nghe rõ và làm đúng. Ai vi phạm sẽ chết ngay tại chỗ.,Every rule must be heard and obeyed. Anyone who breaks one dies on the spot.
+RULE_CH1_GENERAL_2,"Khi quy tắc mới được công bố, quy tắc cũ hết hiệu lực. Không có quy tắc nào lặp lại.","When a new rule is announced, the old one expires. No rule is ever repeated."
+RULE_CH1_GENERAL_3,Không sinh viên nào được rời khỏi phòng của mình. Ai rời phòng sẽ chết.,No student may leave their own room. Anyone who leaves will die.
+RULE_CH1_GENERAL_4,"Không được tấn công quản lý ký túc xá, bảo vệ hay bất kỳ nhân viên nào.","Do not attack the dorm manager, the guards or any staff."
+RULE_CH1_GENERAL_5,"Mỗi giờ sẽ có một quy tắc mới, trong năm giờ. Ai còn sống đến cuối cùng sẽ được rời đi an toàn.","Every hour brings a new rule, for five hours. Whoever is still alive at the end may leave safely."
+THINK_CH1_HAND_OFF,Suýt nữa thì… Tay mình vẫn còn trên nắm cửa.,That was close… My hand was still on the handle.
+THINK_CH1_WALL,Phòng bên cạnh không ai trả lời. Không một tiếng động.,No one answers next door. Not a sound.
+CHAT_CH1_N_HELLO,"Alo? Nghe được không? Tôi là Minh Nhật, phòng 203 nhà B.","Hello? Can you hear me? I'm Minh Nhật, room 203, building B."
+CHAT_CH1_N_HOW,"Hồi trước rảnh quá, tôi dựng một nhóm gọi qua mạng nội bộ của ký túc xá. Không cần sóng, chỉ cần còn wifi trong tòa nhà.","I got bored once and set up a group call over the dorm's local network. No signal needed, just the building's wifi."
+CHOICE_CH1_INTRO_1,"Tôi là Trung, phòng 407. Phòng tôi… chết hết rồi.","I'm Trung, room 407. Everyone in my room… is dead."
+CHOICE_CH1_INTRO_2,Cậu gọi được thật à? Ngoài kia còn ai không?,You can actually call? Is anyone else out there?
+CHAT_CH1_N_TOGETHER,Tôi đang mời mọi máy còn kết nối. Phải bám vào nhau mà sống.,I'm inviting every phone still connected. We have to hold on to each other to survive.
+CHAT_CH1_HUNG_JOKE,"Hùng đây, 102. Chắc trường bày trò diễn tập thôi, ai lại làm thật.","Hùng here, 102. Must be some school drill. Nobody would do this for real."
+CHAT_CH1_DANG_ANGRY,Diễn tập cái đầu mày! Ba thằng phòng tao nằm chết trên giường kìa!,Drill my ass! Three guys in my room are lying dead in their beds!
+CHAT_CH1_BAO_CRY,"Bảo, phòng 209… tôi sợ lắm… máu chảy xuống tận sàn…","Bảo, room 209… I'm so scared… the blood is dripping onto the floor…"
+CHAT_CH1_SON_QUIET,"Sơn, 504. Hai phòng bên cạnh tôi không còn tiếng gì nữa.","Sơn, 504. The two rooms next to mine have gone completely silent."
+CHAT_CH1_KIET_ASK,Có ai thử ra ngoài chưa? Biết đâu xuống được tới cổng?,Has anyone tried going outside? Maybe we can reach the gate?
+CHAT_CH1_TUNG_GO,"Tùng, 110. Phòng tao ở tầng một, sát cổng. Để tao chạy ra gọi người.","Tùng, 110. I'm on the ground floor, right by the gate. I'll run out and get help."
+CHAT_CH1_N_STOP,"Đừng! Tổng tắc điều ba, rời phòng là chết!",Don't! General Rule three: leave your room and you die!
+CHAT_CH1_TUNG_OUT,"Tao mở cửa rồi. Hành lang không có ai cả. Thấy chưa, có gì đâ…","Door's open. The corridor's empty. See, there's noth—"
+CHAT_CH1_HUNG_SHAKEN,Tùng? Tùng ơi?,Tùng? Tùng?
+THINK_CH1_RULE_REAL,Loa không đùa. Không được ra khỏi phòng.,The speaker isn't joking. I can't leave the room.
+CHAT_CH1_N_BATTERY,Mọi người để ý pin. Cuộc gọi này ngốn pin lắm. Mất kết nối là coi như một mình.,"Watch your battery, everyone. This call eats power. Lose the connection and you're on your own."
+THINK_CH1_LOW_BATTERY,"Pin còn ít quá. Dây sạc của mình còn đây, nhưng cục sạc đâu…","My battery's almost gone. My cable's here, but where's the charger…"
+THINK_CH1_CHARGING,Đang sạc rồi. Phải ở gần ổ điện.,It's charging. I have to stay near the socket.
+CHAT_CH1_N_BACK,"Trung? Trung! Cậu vừa mất tín hiệu. Mạng nội bộ chập chờn lắm, cố giữ máy.","Trung? Trung! You just dropped out. The local network is shaky, try to stay on."
+CHAT_CH1_N_MISSED,"Lúc cậu mất kết nối, thêm hai người trong nhóm im lặng luôn. Không ai biết họ làm gì.","While you were gone, two more people in the group went silent. Nobody knows what they did."
+CHAT_CH1_N_BACK_REMOTE,"Tôi khởi động lại mạng từ phía tôi rồi… Trung, nghe được không? Cậu bỏ lỡ nhiều lắm.","I restarted the network from my side… Trung, can you hear me? You missed a lot."
+ROOM_CH1_KNOCK_VIET,"Trung ơi, mở cửa cho tao. Tao ra ngoài đi vệ sinh, giờ không vào được…","Trung, open the door for me. I went to the toilet and now I can't get back in…"
+ROOM_CH1_KNOCK_VIET_2,Ra đây với tao đi. Ngoài này không có ai đâu.,Come out here with me. There's nobody out here.
+CHAT_CH1_VINH_ASK,"Vinh, 311. Có ai nghe tiếng bạn cùng phòng gọi ngoài cửa không? Tôi vừa nghe…","Vinh, 311. Has anyone heard their roommate calling from outside the door? I just did…"
+CHAT_CH1_N_DONT_OPEN,"Đừng ra. Mở cửa thì chưa sao, nhưng bước qua ngưỡng cửa là hết.","Don't go out. Opening the door may be fine, but step over the threshold and it's over."
+CHAT_CH1_N_THEORY,Loa nói mỗi giờ một quy tắc mới. Năm giờ sẽ có quy tắc thứ hai. Phải nghe thật kỹ từng chữ.,The speaker said a new rule every hour. At five there'll be a second one. We have to listen to every single word.
+CHOICE_CH1_WORDS_1,Ừ. Tôi sẽ ghi lại từng chữ.,Okay. I'll write down every word.
+CHOICE_CH1_WORDS_2,Nghe kỹ thì được gì? Nó muốn giết thì giết thôi.,"What's the point? If it wants to kill us, it will."
+CHAT_CH1_N_WORDS_REPLY,"Quy tắc chưa nói dối lần nào. Nếu có đường sống, nó nằm trong câu chữ.","The rules haven't lied once. If there's a way out, it's in the wording."
+SPK_CH1_R1_END,Vòng một kết thúc. Số sinh viên còn sống: ba trăm năm mươi hai.,Round one is over. Students still alive: three hundred and fifty-two.
+CHAT_CH1_SON_352,Ba trăm năm mươi hai… cả trường mấy nghìn người mà…,Three hundred fifty-two… there were thousands of us…
+RULE_CH1_R2,"Vòng hai. Trong một giờ tới, nhà trường kiểm tra phòng. Mỗi tòa nhà có một quản lý. Sinh viên hãy nằm yên trên giường và hợp tác với công việc của quản lý.",Round two. Over the next hour the school will inspect the rooms. Each building has one manager. Students must stay still in bed and cooperate with the manager's work.
+CHAT_CH1_N_BEDS,Lên giường hết đi. Nhanh lên.,"Everyone, get in bed. Now."
+CHAT_CH1_N_CCTV,Tôi vào được hệ thống camera của ký túc xá rồi. Mở tab Camera trên điện thoại đi. Ông ta vào phòng nào… mình thấy hết.,I'm into the dorm's camera system. Open the Camera tab on your phone. Whichever room he walks into… we'll see it all.
+CHAT_CH1_HUNG_KNOCK,Có người gõ cửa phòng tao… Quản lý tới rồi.,Someone's knocking on my door… The manager's here.
+MGR_CH1_ASK_HUNG,Đinh Xuân Hùng. Có ở đây không?,Đinh Xuân Hùng. Are you here?
+CHAT_CH1_HUNG_YES,Dạ… dạ có. Em đây ạ.,"Y-yes. I'm here, sir."
+MGR_CH1_GOOD,Tốt. Vậy thì đến lượt cậu.,Good. Then it's your turn.
+CHAT_CH1_N_ANALYZE,"Quy tắc bảo nằm yên trên giường và hợp tác. Hùng trả lời thật mà vẫn chết. Hay là chữ ""hợp tác"" có vấn đề?","The rule says stay in bed and cooperate. Hùng told the truth and still died. Could the word ""cooperate"" be the catch?"
+CHOICE_CH1_THEORY_1,Hay là đừng trả lời gì cả?,Maybe don't answer at all?
+CHOICE_CH1_THEORY_2,Hay là phải nói mình không có ở đây?,Maybe you have to say you're not here?
+CHOICE_CH1_THEORY_3,Tôi không biết. Chưa đủ thông tin.,I don't know. Not enough to go on.
+CHAT_CH1_N_UNKNOWN,Chưa biết được. Ai đó… sẽ phải thử.,No way to know yet. Someone… will have to try.
+CHAT_CH1_KIET_306,Sao ông ta lên 306 rồi? Không đi theo số phòng à?,Why is he at 306 now? He's not going in order?
+MGR_CH1_ASK_BED_3,Giường số ba. Có ở đây không?,Bed three. Is anyone here?
+CHAT_CH1_KIET_NO,Không… không có ai ở đây hết.,N-no… there's nobody here.
+MGR_CH1_WHY_NOT,"Nằm ngoan trên giường thế kia, sao lại nói không có?","Lying so nicely in bed, and you say nobody's here?"
+CHAT_CH1_N_KIET_LIT,"Lúc ông ta vào, điện thoại Kiệt còn sáng… cậu ấy đang gọi với tụi mình.","When he walked in, Kiệt's phone was still lit… he was on the call with us."
+CHAT_CH1_BAO_209,Ông ta tới 209 rồi… tôi phải làm sao… làm sao bây giờ…,He's at 209… what do I do… what do I do…
+CHAT_CH1_N_TRY_SILENT,"Bảo, thử im lặng. Ông ta hỏi gì cũng đừng trả lời.","Bảo, try staying silent. Whatever he asks, don't answer."
+MGR_CH1_ASK_BED_4,Giường số bốn. Có ở đây không?,Bed four. Is anyone here?
+MGR_CH1_LAUGH,(cười khàn khàn),(a hoarse chuckle)
+CHAT_CH1_DANG_CURSE,Im lặng cũng chết! Thế này thì làm cái quái gì mới đúng!,Silence gets you killed too! What the hell are we supposed to do?!
+CHAT_CH1_DANG_LAMP,"Đèn phòng tao còn sáng, kệ. Tối quá tao chịu không nổi.","My light's still on, whatever. I can't stand the dark."
+CHAT_CH1_DANG_HERE,"106… ông ta tới 106 rồi. Phòng tao. Nói gì đi, tao phải làm gì?","106… he's at 106. My room. Say something, what do I do?"
+CHOICE_CH1_ADVISE_1,Trùm chăn kín người lại!,Pull the blanket over your whole body!
+CHOICE_CH1_ADVISE_2,Hô to tên mày với số giường!,Shout your name and bed number!
+CHOICE_CH1_ADVISE_3,"Chạm vào ông ta, cho ông ta biết mày còn sống!","Touch him, show him you're alive!"
+MGR_CH1_ASK_BED_2,Giường số hai. Có ở đây không?,Bed two. Is anyone here?
+CHAT_CH1_N_ALL_FAIL,"Sơn trùm chăn, Vinh hô tên, có người còn chạm vào ông ta… Không cách nào được cả.","Sơn hid under his blanket, Vinh shouted his name, someone even touched him… Nothing works."
+CHAT_CH1_N_JUST_US,Trong nhóm… chỉ còn tôi với cậu.,In the group… it's just you and me now.
+THINK_CH1_DRAG,Tiếng kéo dao… ở ngay tầng này.,That dragging blade… it's on this floor.
+THINK_CH1_SURVIVED,Ông ta chém nát giường của mình… rồi bỏ đi.,He hacked my bed to pieces… and walked away.
+THINK_CH1_WHY,"Việc của quản lý không phải kiểm tra phòng. Mà là dọn sạch người sống. ""Hợp tác""… là nằm như người chết.","The manager's job isn't inspecting rooms. It's clearing out the living. ""Cooperate""… means lying there like the dead."
+CHOICE_CH1_TELL_1,"Nằm giường của người đã chết, tắt hết đèn, nằm im đừng dậy.","Lie on a dead roommate's bed, kill every light, and don't get up."
+CHOICE_CH1_TELL_2,"Nằm yên trên giường của mình, nín thở thật lâu.",Lie still in your own bed and hold your breath as long as you can.
+CHOICE_CH1_TELL_3,"Chui xuống gầm giường, tắt điện thoại.",Crawl under the bed and switch your phone off.
+CHOICE_CH1_TELL_4,"Nằm giường của người đã chết, trả lời ""không có"" khi ông ta hỏi.","Lie on a dead roommate's bed and answer ""nobody"" when he asks."
+CHAT_CH1_N_DYING,Trung… ông ta đang mở cửa phòng tôi… tôi làm đúng như cậu nói mà…,Trung… he's opening my door… I did exactly what you said…
+MGR_CH1_ASK_BED_1,Giường số một. Có ở đây không?,Bed one. Is anyone here?
+CHAT_CH1_N_THANKS,"Ông ta vừa chém nát giường tôi… Tôi còn sống. Cảm ơn cậu, Trung.","He just shredded my bed… I'm alive. Thank you, Trung."
+CHAT_CH1_N_NETWORK,"Để tôi thử mở rộng mạng… Được rồi, bắt được nhà A bên kia vườn hoa.","Let me try widening the network… Got it, I've reached building A across the garden."
+CHAT_CH1_NGU_HELLO,"Các cậu là… ai vậy? Nhà A, phòng 401, Khương Ngọc Ngư.","Who… are you? Building A, room 401, Khương Ngọc Ngư."
+CHAT_CH1_NGU_LUCK,"Lúc quản lý tới, tôi đang ở cửa sổ gọi người. Không kịp về giường mình nên nằm đại lên giường bạn… Chắc nhờ vậy mà sống.","When the manager came I was at the window calling for help. I couldn't get back to my bed, so I lay on my roommate's… That must be why I'm alive."
+CHAT_CH1_NGU_ALONE,Hình như cả nhà A… chỉ còn mình tôi.,I think in all of building A… I'm the only one left.
+SPK_CH1_R2_END,Vòng hai kết thúc. Số sinh viên còn sống: hai mươi tám.,Round two is over. Students still alive: twenty-eight.
+THINK_CH1_END,Hai mươi tám người. Còn ba vòng nữa.,Twenty-eight people. Three rounds to go.
+DEATH_STAYED_IN_BED,Bạn vẫn nằm trên giường khi hết một phút.,You were still in bed when the minute ran out.
+DEATH_LEFT_ROOM,Bạn đã bước ra khỏi phòng.,You stepped out of your room.
+DEATH_NOT_IN_BED,Bạn không nằm trên giường khi quản lý vào phòng.,You weren't in bed when the manager came in.
+DEATH_OWN_BED,Quản lý tìm thấy bạn trên giường của chính mình.,The manager found you in your own bed.
+DEATH_HEARD,Quản lý nghe thấy bạn.,The manager heard you.
+DEATH_DRAGGED_OUT,Một bàn tay lôi bạn ra khỏi phòng.,A hand dragged you out of the room.
+DEATH_SEEN,Quản lý thấy ánh sáng trong phòng.,The manager saw light in the room.
+DEATH_LOST_NHAT,Minh Nhật đã chết. Không còn ai giữ mạng nội bộ.,Minh Nhật is dead. No one is left to keep the network alive.
+DOC_CH1_DAT_NOTE_TITLE,Sổ tay của Đạt,Đạt's notebook
+DOC_CH1_DAT_NOTE_1,Mật khẩu tủ: sinh nhật thằng thân nhất phòng. Đứa nào mở trộm là chết với tao.,Locker code: my best mate's birthday. Whoever opens it behind my back is dead meat.
+DOC_CH1_DAT_NOTE_2,Thứ hai: trả cục sạc cho Trung.,Monday: give Trung his charger back.
+DOC_CH1_DAT_CARD_TITLE,Thẻ sinh viên,Student ID card
+DOC_CH1_DAT_CARD_1,Họ tên: Phạm Thành Đạt,Name: Phạm Thành Đạt
+DOC_CH1_DAT_CARD_2,Ngày sinh: 14/07/2006,Date of birth: 14/07/2006
+DOC_CH1_DAT_CARD_3,"Ký túc xá: phòng 407, nhà B","Dormitory: room 407, building B"
+DOC_CH1_PHUC_CARD_TITLE,Thẻ sinh viên,Student ID card
+DOC_CH1_PHUC_CARD_1,Họ tên: Lê Hoàng Phúc,Name: Lê Hoàng Phúc
+DOC_CH1_PHUC_CARD_2,Ngày sinh: 21/09/2006,Date of birth: 21/09/2006
+DOC_CH1_PHUC_CARD_3,"Ký túc xá: phòng 407, nhà B","Dormitory: room 407, building B"
+DOC_CH1_VIET_CARD_TITLE,Thẻ sinh viên,Student ID card
+DOC_CH1_VIET_CARD_1,Họ tên: Đặng Quốc Việt,Name: Đặng Quốc Việt
+DOC_CH1_VIET_CARD_2,Ngày sinh: 03/03/2006,Date of birth: 03/03/2006
+DOC_CH1_VIET_CARD_3,"Ký túc xá: phòng 407, nhà B","Dormitory: room 407, building B"
+DOC_CH1_TEAM_PHOTO_TITLE,Ảnh đội bóng khoa,Faculty football team photo
+DOC_CH1_TEAM_PHOTO_1,"Mặt trước: Đạt khoác vai Phúc, hai đứa cười toe, mặc áo đội.","Front: Đạt has his arm around Phúc, both grinning in team shirts."
+DOC_CH1_TEAM_PHOTO_2,"Mặt sau, chữ của Đạt: ""Anh em cây khế. Phúc & Đạt, mùa giải 2025.""","Back, in Đạt's hand: ""Brothers for life. Phúc & Đạt, 2025 season."""
+DOC_CH1_TAP_CHART_TITLE,Sổ hợp âm của Việt (trang cuối),Việt's chord book (last page)
+DOC_CH1_TAP_CHART_1,Bài tập tuần này: C   Am   F   G (đảo phách),This week's practice: C   Am   F   G (syncopated)
+DOC_CH1_TAP_CHART_2,Hát mừng sinh nhật Phúc 21/9: nhớ tập trước!!,Phúc's birthday song on 21/9: practise first!!
+DOC_CH1_KHOA_NOTE_TITLE,Mẩu giấy từ phòng 406,A scrap from room 406
+DOC_CH1_KHOA_NOTE_1,Nó hỏi số giường.,He asks for bed numbers.
+DOC_CH1_FORM_PIECE_1_TITLE,Mảnh giấy xé (1),Torn scrap (1)
+DOC_CH1_FORM_PIECE_1_1,Biên bản kiểm tra phòng ban đêm (mẫu c…,Night room inspection form (old ver…
+DOC_CH1_FORM_PIECE_1_2,Cán bộ kiểm tra hỏi theo số giư…,The inspector asks by the regist…
+DOC_CH1_FORM_PIECE_1_3,"Giường trống: ghi ""v…","Empty bed: mark ""ab…"
+DOC_CH1_FORM_PIECE_2_TITLE,"Mảnh giấy xé (2), đẫm máu","Torn scrap (2), soaked in blood"
+DOC_CH1_FORM_PIECE_2_1,"…ờng đã đăng ký, không hỏi theo người.","…ered bed number, not by the person."
+DOC_CH1_FORM_PIECE_2_2,"…ắng"". Giường có người nằm im: ghi ""đã kiểm tra"".","…sent"". A bed with someone lying still: mark ""checked""."
+DOC_CH1_FORM_PIECE_3_TITLE,"Mảnh giấy xé (3), bị vo tròn","Torn scrap (3), crumpled"
+DOC_CH1_FORM_PIECE_3_1,Phòng còn đèn sáng: kiểm tra kỹ từng giường.,A room with a light on: check every bed closely.
+DOC_CH1_FORM_PIECE_3_2,Sinh viên không được tự ý đổi giường đã đăng ký.,Students may not swap their registered bed.
+DOC_CH1_INSPECTION_FORM_TITLE,Biên bản kiểm tra phòng ban đêm (mẫu cũ),Night room inspection form (old version)
+DOC_CH1_INSPECTION_FORM_1,"Cán bộ kiểm tra hỏi theo số giường đã đăng ký, không hỏi theo người.","The inspector asks by the registered bed number, not by the person."
+DOC_CH1_INSPECTION_FORM_2,"Giường trống: ghi ""vắng"". Giường có người nằm im: ghi ""đã kiểm tra"".","Empty bed: mark ""absent"". A bed with someone lying still: mark ""checked""."
+DOC_CH1_INSPECTION_FORM_3,Phòng còn đèn sáng: kiểm tra kỹ từng giường.,A room with a light on: check every bed closely.
+DOC_CH1_INSPECTION_FORM_4,Sinh viên không được tự ý đổi giường đã đăng ký.,Students may not swap their registered bed.
+DOC_CH1_PHUC_SCHEDULE_TITLE,Lịch thi của Phúc,Phúc's exam schedule
+DOC_CH1_PHUC_SCHEDULE_1,"Giải tích 2: thứ hai, 7 giờ 30. KHÔNG ĐƯỢC NGỦ QUÊN.","Calculus 2: Monday, 7:30. DO NOT OVERSLEEP."
+DOC_CH1_PHUC_SCHEDULE_2,Hứa với mẹ kỳ này qua hết các môn.,Promised Mom I'd pass everything this term.
+DOC_CH1_VIET_PHOTO_TITLE,Mặt sau tấm ảnh gia đình,Back of a family photo
+DOC_CH1_VIET_PHOTO_1,Học xong thì về quê làm thầy giáo nghe con. Ba mẹ.,"Finish school and come home to teach, son. Mom and Dad."
+PUZZLE_LOCKER_DAT_TITLE,Tủ của Đạt,Đạt's locker
+PROMPT_CH1_LIE,Nằm lên giường,Lie down on the bed
+PROMPT_CH1_GET_UP,Rời giường,Get up
+PROMPT_CH1_CHARGE,Cắm sạc điện thoại,Plug in the phone
+PROMPT_CH1_LOCKER,Mở tủ của Đạt,Open Đạt's locker
+UI_CH1_DEATH_TITLE,Bạn đã chết,You died
+UI_CH1_SURVIVORS,Số sinh viên còn sống: %d,Students still alive: %d
+UI_CH1_END,Hết chương 1,End of chapter 1
+PROMPT_CH1_SEARCH_LOCKER,Mở tủ của Việt,Open Việt's locker
+PROMPT_CH1_LIFT_MATTRESS,Lật nệm,Lift the mattress
+PROMPT_CH1_SEARCH_TRASH,Lục sọt rác,Search the bin
+CCTV_CAM_102,CAM 102 · nhà B,CAM 102 · Bldg B
+CCTV_CAM_306,CAM 306 · nhà B,CAM 306 · Bldg B
+CCTV_CAM_209,CAM 209 · nhà B,CAM 209 · Bldg B
+CCTV_CAM_106,CAM 106 · nhà B,CAM 106 · Bldg B
+CCTV_CAM_CORRIDOR,CAM T4 · hành lang,CAM F4 · corridor
+CCTV_CAM_HALL_102,CAM T1 · hành lang 102,CAM F1 · corridor 102
+CCTV_CAM_HALL_306,CAM T3 · hành lang 306,CAM F3 · corridor 306
+CCTV_CAM_HALL_209,CAM T2 · hành lang 209,CAM F2 · corridor 209
+CCTV_CAM_HALL_106,CAM T1 · hành lang 106,CAM F1 · corridor 106
 NAME_CH4_MINH_NHAT,Minh Nhật,Minh Nhật
 NAME_CH4_NGU,Ngọc Ngư,Ngọc Ngư
 NAME_CH4_TRUNG,Tôi,Me
@@ -909,7 +907,7 @@ CHAT_CH4_NGU_GO,Giữ máy nhé. Có chuyện gì thì la lên.,Keep the line op
 CHAT_CH4_N_GO,"Thư viện nằm giữa giảng đường với sân vận động. Đi đường lớn, đừng chui vào lối hẹp.","The library is between the lecture halls and the stadium. Stick to the main road, stay out of the narrow paths."
 CHAT_CH4_NGU_LECTURE,"Tới giảng đường rồi. Nhiều cửa, nhiều dãy ghế, mình dụ chúng chạy vòng được.","I'm at the lecture halls. Lots of doors, lots of rows of seats, I can lead them around in circles."
 CHAT_CH4_N_GYM,Nhà thi đấu rộng mà trống trơn. Toàn xác. Tôi đang núp sau khán đài.,The gym is huge and empty. Nothing but them. I'm hiding behind the bleachers.
-UI_CH4_SOLVED_R2,"Nằm lên giường của người đã chết, tắt hết đèn, nín thở. Ông ta chém nát giường trống.","Lay on a dead roommate's bed, all lights off, held my breath. He hacked my empty bed apart."
+UI_CH4_SOLVED_R2,"Nằm lên giường của người đã chết, tắt hết đèn, nằm im. Ông ta chém nát giường trống.","Lay on a dead roommate's bed, all lights off, kept still. He hacked my empty bed apart."
 UI_CH4_SOLVED_R3,Bịt miệng cả ba. Lặp một vòng từ cho tới hết giờ.,Gagged all three. Looped one chain of words until time ran out.
 UI_CH4_SOLVED_R4,Tìm ra quy luật nhiệt độ. Chỉ chọn Có ở những lượt an toàn.,Worked out the temperature pattern. Said Yes only on the safe turns.
 CHAT_CH4_NGU_NO_EXIT,"Lạ thật. Cửa nào ở đây cũng thông ra ngoài, mà ra ngoài thì toàn xác. Chạy mãi chẳng thấy lối nào gọi là thoát.","This is weird. Every door here leads outside, and outside it's all of them. I keep running and there's nothing you could call a way out."

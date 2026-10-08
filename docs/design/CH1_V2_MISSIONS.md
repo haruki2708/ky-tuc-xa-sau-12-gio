@@ -1,14 +1,16 @@
 # Chương 1 bản 2: 8 nhiệm vụ, độ khó Insane (D-039, D-040)
 
+> **Sửa theo D-069 (2026-10-08):** bỏ nín thở ở cảnh quản lý (nằm giường người đã chết, tắt đèn, không đứng dậy là sống); trốn ngoài giường thì quản lý đi tới tận nơi; quản lý mở cửa rồi bước vào; N3 đổi từ mã 5×5 sang **gõ lại theo nhịp**. Các mục bên dưới đã cập nhật; chỗ nào còn nói "nín thở" hay "mã 5×5" là bản cũ.
+
 > **Đã chốt hướng** (chủ dự án, 2026-10-05). Bổ sung cho `STORY.md` §5 và `CH1_SCRIPT.md`. Lời thoại mới thêm vào `docs/design/ch1/build_ch1_script.py`. Con số là giá trị khởi đầu, chỉnh khi chơi thử.
 
 ## Nguyên tắc
 - **Không giải thích luật, không có suy nghĩ gợi ý** (D-038, Insane). Manh mối chỉ nằm trong phòng, trong cuộc gọi, và trong cái chết của người khác.
 - **Insane:**
   - checkpoint **chỉ ở đầu mỗi vòng** (`ch1_prologue`, `ch1_r1`, `ch1_r2`); chết ở cảnh quản lý thì làm lại cả vòng 2;
-  - nín thở tối đa **6 giây**;
+  - nín thở tối đa **6 giây** (không còn dùng ở cảnh quản lý, D-069);
   - **bỏ** các suy nghĩ gợi ý: `GET_UP`, `DAT_CHARGER`, `VIET_BED`, `HINT_1`, `HINT_2`;
-  - quản lý **nghe cả tiếng cử động** (`move`, `step`) từ lúc mở cửa tới lúc rời phòng; **tiếng thở** chỉ bị nghe trong 5 giây im lặng sau câu hỏi.
+  - quản lý vào phòng thì **đứng dậy khỏi giường** là chết; **không nghe tiếng thở**, xoay nhìn không sao (D-069).
 - **Bỏ thời gian trống (D-040):** mỗi khoảng chờ trong vòng là "chờ tối đa N giây, hoặc tới khi xong hết nhiệm vụ của vòng". Xong hết thì diễn biến kế tiếp đến ngay.
 
 ## Vòng 1 (4:05–5:00)
@@ -30,22 +32,11 @@
 - Có mạng lại: cuộc gọi nối lại (`phone_call_restored`). Minh Nhật nói hai câu `N_BACK` và `N_MISSED`. Các câu thoại phát ra trong lúc mất mạng **không** hiện trong bản chép lời.
 - **Tới 4:48 chưa sửa xong:** Minh Nhật tự nối lại từ phía cậu ấy (`N_BACK_REMOTE`).
 
-### N3. Gõ tường với phòng 406
-- **Khoa** (phòng 406, không có điện thoại) gõ tường theo **mã gõ tù nhân 5×5** (bỏ chữ J), không dấu:
-
-  | | 1 | 2 | 3 | 4 | 5 |
-  |---|---|---|---|---|---|
-  | **1** | A | B | C | D | E |
-  | **2** | F | G | H | I | K |
-  | **3** | L | M | N | O | P |
-  | **4** | Q | R | S | T | U |
-  | **5** | V | W | X | Y | Z |
-
-- Bảng mã kẹp trong **sổ hợp âm guitar của Việt** (giấy đọc được, không ghi tên bảng).
-- **Diễn biến:**
-  - 4:38: Khoa gõ **`CON SONG`** ("còn sống?"), lặp lại 2 lần.
-  - Người chơi gõ lại **`CO`** ở tường 406: gõ N lần liền nhau cho mỗi số, ngừng khoảng 1 giây giữa hai số, khoảng 2,5 giây giữa hai chữ.
-  - Đúng thì Khoa gõ **`SO GIUONG`** ("số giường"), gợi ý cho vòng 2. Sai hoặc 90 giây không trả lời thì Khoa im luôn.
+### N3. Gõ tường với phòng 406 (D-069: gõ lại theo nhịp)
+- **Khoa** (phòng 406, không có điện thoại) gõ tường một **nhịp**: **3 cái, nghỉ khoảng 1 giây, 1 cái**; nghỉ dài rồi **lặp lại lần nữa**.
+- Người chơi gõ lại **đúng nhịp đó** ở tường 406 (3 cái liền, nghỉ, 1 cái) trong **90 giây**. Không có bảng mã, không có chữ giải thích.
+- Đúng: Khoa gõ đáp một tràng ngắn, rồi **một mẩu giấy được đẩy qua khe ổ điện chung tường** (`ch1_khoa_note`): *"Nó hỏi số giường."* Gợi ý cho vòng 2, như câu "SO GIUONG" cũ.
+- Sai hoặc hết giờ: Khoa im luôn.
 - **Vòng 2, khoảng 5:40:** nghe qua tường quản lý vào phòng 406: "Giường số hai…", tiếng chém, rồi im lặng.
 
 ### N4. Giữ cửa (4:35)
@@ -78,7 +69,7 @@
 
 ### N7. Cứu Minh Nhật (sau khi quản lý rời 407)
 - Lựa chọn `TELL` có 4 câu, **10 giây**:
-  1. *"Nằm giường của người đã chết, tắt hết đèn, nín thở khi ông ta hỏi xong."* **(đúng)**
+  1. *"Nằm giường của người đã chết, tắt hết đèn, nằm im đừng dậy."* **(đúng)**
   2. *"Nằm yên trên giường của mình, nín thở thật lâu."*
   3. *"Chui xuống gầm giường, tắt điện thoại."*
   4. *"Nằm giường của người đã chết, trả lời 'không có' khi ông ta hỏi."*
