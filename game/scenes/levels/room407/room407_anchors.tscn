@@ -1,6 +1,7 @@
 [gd_scene format=3]
 
 [ext_resource type="Script" path="res://scenes/levels/room407/dat_locker.gd" id="e1"]
+[ext_resource type="PackedScene" path="res://scenes/levels/room407/khoa_outlet.tscn" id="t203_outlet"]
 [ext_resource type="Shader" path="res://rendering/ps1_surface.gdshader" id="e2"]
 [ext_resource type="Texture2D" path="res://assets/textures/room407/ink.png" id="e3"]
 [ext_resource type="Texture2D" path="res://assets/textures/room407/paper.png" id="e4"]
@@ -181,6 +182,12 @@ position = Vector3(4.6, 1.5, -0.18)
 
 [node name="WallKnock406" type="Marker3D" parent="."]
 position = Vector3(0.12, 1.3, -1.65)
+
+[node name="KhoaOutlet" parent="." instance=ExtResource("t203_outlet")]
+position = Vector3(0, 0.3, -1.8)
+
+[node name="KhoaNoteSlot" type="Marker3D" parent="."]
+position = Vector3(0.2, 0.015, -1.8)
 
 [node name="WallKnock408" type="Marker3D" parent="."]
 position = Vector3(7.88, 1.3, -1.65)

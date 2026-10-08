@@ -25,13 +25,46 @@
 `art_source/`, `game/assets/models/`, `game/assets/textures/`, `game/scenes/levels/`, `game/tests/levels/`, card này (Handoff).
 
 ## Checklist hoàn thành
-- [ ] Giường tầng chỉ va chạm ở khung; giường 3, 4 ngắm được
-- [ ] Cửa 407 `set_open(value, seconds)`
-- [ ] Lưới đường đi tới ban công và nhà vệ sinh
-- [ ] Ổ điện có khe và anchor `KhoaNoteSlot`
-- [ ] `pwsh tools/test.ps1`, `pwsh tools/check.ps1` PASS
-- [ ] Handoff: đường dẫn node, tọa độ anchor, ảnh chụp giường và ổ điện
+- [x] Giường tầng chỉ va chạm ở khung; giường 3, 4 ngắm được
+- [x] Cửa 407 `set_open(value, seconds)`
+- [x] Lưới đường đi tới ban công và nhà vệ sinh
+- [x] Ổ điện có khe và anchor `KhoaNoteSlot`
+- [x] `pwsh tools/test.ps1`, `pwsh tools/check.ps1` PASS
+- [x] Handoff: đường dẫn node, tọa độ anchor, ảnh chụp giường và ổ điện
 
 ## Handoff (agent điền)
+
+### 2026-10-08 — Lane B / Codex, sẵn sàng review
+
+**Đã làm:** commit `9a9843b`, đã push lên `origin/lane-b/T-203-ch1-room407-fixes` trước khi ghi Handoff này.
+
+- `Floor4/Room407/BunkB/WorldCollision`: thay hộp kín bằng 14 hộp theo cột, thanh hai đầu/hai bên và ván giường, bám kích thước nguồn `build_kit.py`. Giữ nguyên GLB, vị trí giường, anchor giường và các chỗ lục đồ. BunkA đã có va chạm khung, test đạt nên không sửa. `.import` đặt tên root tường minh `bunk_trung` để Godot import lại khi nhận thay đổi post-import script, tránh dùng cache hộp cũ.
+- `Floor4/Door407.set_open(value: bool, seconds: float = 0.0)`: tween theo physics frame, có easing; va chạm cánh cửa và `Anchors/RulesPaper407` theo góc xoay. Gọi một tham số vẫn tức thì. Đảo chiều tiếp tục từ góc hiện tại; lệnh tức thì hủy tween; giữ `rattle`, `stop_rattle`, chốt cửa và `sync_door_anchor`. `is_open` phản ánh trạng thái đích ngay khi gọi, không phải tín hiệu mở xong; lane A dùng thời lượng để phát `door_opened`.
+- `Floor4/Room407/ManagerNavigation`: lưới nối từ cửa qua lối giữa phòng đến ban công và bên trong nhà vệ sinh; khoảng hở kiểm bằng capsule bán kính 0,35 m, cao 1,9 m. Cửa trên tuyến phải mở. Generator: `art_source/room407_fixes/build_fixes.py`.
+- `Floor4/Room407/Anchors/KhoaOutlet`: ổ điện thủ tục 108 tam giác, khe hở dưới nắp. Mặt ổ điện khoảng tọa độ thế giới `(30.12, 0.3, -1.8)`; dịch 20 cm theo z so với điểm gợi ý để tủ Việt không che, không dịch tủ.
+- `Floor4/Room407/Anchors/KhoaNoteSlot`: **Marker3D**, tọa độ local **`(0.2, 0.015, -1.8)`**, thế giới **`(30.2, 0.015, -1.8)`**, nằm trên sàn trước ổ điện. Core đặt `ch1_khoa_note` tại đây.
+
+**Kiểm tra đã chạy:**
+
+```text
+pwsh tools/test.ps1
+RESULT: 674 passed, 0 failed
+
+pwsh tools/check.ps1
+RESULT: check 0 error(s)
+
+res://scenes/levels/room407/room407_fixes_capture.tscn
+RESULT: room407 capture 3 images PASS
+```
+
+- Sáu test mới trong `game/tests/levels/test_room407_fixes.gd`: **36/36 tia world** từ lối đi đến giữa mặt nệm của cả bốn giường thông; Player thật đứng/cúi bị khung chặn; cửa đổi góc giữa chừng và hoàn tất sau khoảng 1,5 giây, va chạm/anchor theo cửa; đảo chiều/reset/rattle; đường đi đến ba điểm ban công và hai điểm nhà vệ sinh có đích đúng, capsule quét từng đoạn không chạm vật cản; anchor giấy và khe ổ điện hợp lệ. Đây không phải phép đo tỉ lệ trúng `BunkSpot` của T-202.
+- Log cục bộ: `build/t203-tests-final.log`, `build/t203-check.log`, `build/t203-capture.log`. Lượt test tổng trước đó có 673 PASS/1 FAIL do scene đã được cache trước khi dịch ổ điện trong lúc test đang chạy; đã chạy lại toàn bộ trên phiên bản cuối, không còn lỗi.
+- Đã mở và xem ba ảnh render: [BunkA](../../art_source/room407_fixes/previews/bunk_a.png), [BunkB](../../art_source/room407_fixes/previews/bunk_b.png), [ổ điện](../../art_source/room407_fixes/previews/khoa_outlet.png). Fixture có ánh sáng kiểm tra bổ sung, không thay ánh sáng game; ảnh đi qua Git LFS. Nguồn/CC0 và cách dựng lại: [CREDITS](../../art_source/room407_fixes/CREDITS.md).
+
+**Còn dở / giới hạn:** không còn việc triển khai trong phạm vi T-203. Chưa chơi tay bản ghép T-201/T-202, chưa xác nhận chuỗi quản lý mở cửa → `hunt` → giết trên bản tích hợp; các phần đó thuộc core/lane A.
+
+**Yêu cầu thay đổi ngoài phạm vi:** integrator/T-201/T-202 cần xử lý mở cửa nhà vệ sinh trước khi quản lý đi qua khi `hunt` mục tiêu bên trong. `Room407/Extension/BathroomDoor` mặc định đóng; mã chương 1 hiện chưa gọi mở (chương 2 có gọi riêng). API sẵn có: `Room407.set_bathroom_door_open(true)`. Test đường đi của T-203 mở cả cửa 407 và cửa nhà vệ sinh trước khi quét capsule. Không tự đổi trạng thái cửa mặc định vì đây là hành vi gameplay dùng chung chương 1–2; core/lane A quyết định thời điểm mở. Các điểm ghép đã giao sẵn: core đặt giấy vào `KhoaNoteSlot`, lane A gọi API cửa hai tham số và kiểm `hunt`/`BunkSpot` sau ghép.
+
+**Chặn:** không bị chặn trong phạm vi lane B. Fetch/checkout LFS, test và render đã chạy được sau khi cấp quyền ngoài sandbox. Có stash `Recovery: partial T-203 checkout after LFS credential failure` lưu checkout dở từ bước chuẩn bị; giữ nguyên để có thể kiểm tra, không áp lại vào nhánh task.
 
 ## Review (integrator)

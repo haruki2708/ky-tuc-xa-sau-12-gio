@@ -1,0 +1,85 @@
+[gd_scene format=3]
+
+[ext_resource type="Shader" path="res://rendering/ps1_surface.gdshader" id="shader"]
+
+[sub_resource type="ShaderMaterial" id="ivory"]
+shader = ExtResource("shader")
+shader_parameter/albedo_color = Color(0.65, 0.64, 0.51, 1)
+
+[sub_resource type="ShaderMaterial" id="dark"]
+shader = ExtResource("shader")
+shader_parameter/albedo_color = Color(0.035, 0.031, 0.025, 1)
+
+[sub_resource type="BoxMesh" id="Recess"]
+size = Vector3(0.004, 0.15, 0.13)
+material = SubResource("dark")
+
+[sub_resource type="BoxMesh" id="TopTrim"]
+size = Vector3(0.024, 0.022, 0.174)
+material = SubResource("ivory")
+
+[sub_resource type="BoxMesh" id="BottomTrim"]
+size = Vector3(0.024, 0.022, 0.174)
+material = SubResource("ivory")
+
+[sub_resource type="BoxMesh" id="LeftTrim"]
+size = Vector3(0.024, 0.15, 0.022)
+material = SubResource("ivory")
+
+[sub_resource type="BoxMesh" id="RightTrim"]
+size = Vector3(0.024, 0.15, 0.022)
+material = SubResource("ivory")
+
+[sub_resource type="BoxMesh" id="Cover"]
+size = Vector3(0.018, 0.12, 0.12)
+material = SubResource("ivory")
+
+[sub_resource type="BoxMesh" id="ContactLeft"]
+size = Vector3(0.003, 0.031, 0.009)
+material = SubResource("dark")
+
+[sub_resource type="BoxMesh" id="ContactRight"]
+size = Vector3(0.003, 0.031, 0.009)
+material = SubResource("dark")
+
+[sub_resource type="BoxMesh" id="ScrewTop"]
+size = Vector3(0.003, 0.007, 0.007)
+material = SubResource("dark")
+
+[node name="KhoaOutlet" type="Node3D"]
+
+[node name="Recess" type="MeshInstance3D" parent="."]
+position = Vector3(0.102, 0, 0)
+mesh = SubResource("Recess")
+
+[node name="TopTrim" type="MeshInstance3D" parent="."]
+position = Vector3(0.112, 0.086, 0)
+mesh = SubResource("TopTrim")
+
+[node name="BottomTrim" type="MeshInstance3D" parent="."]
+position = Vector3(0.112, -0.086, 0)
+mesh = SubResource("BottomTrim")
+
+[node name="LeftTrim" type="MeshInstance3D" parent="."]
+position = Vector3(0.112, 0, -0.076)
+mesh = SubResource("LeftTrim")
+
+[node name="RightTrim" type="MeshInstance3D" parent="."]
+position = Vector3(0.112, 0, 0.076)
+mesh = SubResource("RightTrim")
+
+[node name="Cover" type="MeshInstance3D" parent="."]
+position = Vector3(0.119, 0.008, 0)
+mesh = SubResource("Cover")
+
+[node name="ContactLeft" type="MeshInstance3D" parent="."]
+position = Vector3(0.129, 0.02, -0.025)
+mesh = SubResource("ContactLeft")
+
+[node name="ContactRight" type="MeshInstance3D" parent="."]
+position = Vector3(0.129, 0.02, 0.025)
+mesh = SubResource("ContactRight")
+
+[node name="ScrewTop" type="MeshInstance3D" parent="."]
+position = Vector3(0.129, 0.056, 0)
+mesh = SubResource("ScrewTop")
