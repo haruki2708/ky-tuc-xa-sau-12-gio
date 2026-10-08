@@ -149,42 +149,34 @@ func _manager_scene(bed: int) -> void:
 
 func test_manager_kills_on_your_own_bed() -> void:
 	await _manager_scene(3)
-	await _until(func() -> bool: return not restarts.is_empty(), 40.0)
+	await _until(func() -> bool: return not restarts.is_empty(), 60.0)
 	assert_eq(restarts, [&"ch1_r2"] as Array[StringName], "Insane: reload at the start of round 2;")
 	assert_eq(Chapter1Director.manager_deaths, 1, "death counted for hints;")
 
 
 func test_manager_kills_when_not_in_bed() -> void:
 	await _manager_scene(0)
-	await _until(func() -> bool: return not restarts.is_empty(), 20.0)
-	assert_eq(restarts, [&"ch1_r2"] as Array[StringName], "standing up dies;")
+	await _until(func() -> bool: return not restarts.is_empty(), 60.0)
+	assert_eq(restarts, [&"ch1_r2"] as Array[StringName], "no bed: he walks up and kills;")
 
 
-func test_manager_hears_a_breath() -> void:
+func test_breath_and_moves_are_no_longer_heard() -> void:
+	# D-069 (1): lying on a dead roommate's bed, a breath or a turn of the head is fine.
+	_play_well()
 	await _manager_scene(4)
-	await _until(func() -> bool: return GameState.segment == &"r2_listen", 40.0)
+	await _until(func() -> bool: return GameState.segment == &"r2_listen", 60.0)
 	EventBus.noise_emitted.emit(Vector3(33.35, 1.2, -3.0), 1.5, &"breath")
-	await _until(func() -> bool: return not restarts.is_empty(), 20.0)
-	assert_eq(restarts, [&"ch1_r2"] as Array[StringName], "a breath near him kills;")
-
-
-func test_breathing_on_any_bed_is_heard_in_the_silence() -> void:
-	await _manager_scene(2)
-	await _until(func() -> bool: return GameState.segment == &"r2_listen", 40.0)
-	EventBus.noise_emitted.emit(Vector3(30.65, 0.43, -3.0), 1.5, &"breath")
-	await _until(func() -> bool: return not restarts.is_empty(), 20.0)
-	assert_eq(restarts, [&"ch1_r2"] as Array[StringName], "within four metres of his head;")
+	EventBus.noise_emitted.emit(Vector3(33.35, 1.2, -3.0), 1.5, &"move")
+	await wait_frames(20)
+	assert_true(restarts.is_empty(), "nothing heard;")
 
 
 func test_dead_roommates_bed_and_silence_survive() -> void:
 	_play_well()
 	await _manager_scene(2)
 	_latch_in_round_1(&"r2_manager")
-	await _until(func() -> bool: return GameState.segment == &"r2_listen", 40.0)
-	Input.action_press("hold_breath")
-	await _until(func() -> bool: return GameState.segment != &"r2_listen", 20.0)
-	Input.action_release("hold_breath")
-	await _until(func() -> bool: return director.finished or not restarts.is_empty(), 60.0)
+	await _until(func() -> bool: return GameState.segment == &"r2_listen", 60.0)
+	await _until(func() -> bool: return director.finished or not restarts.is_empty(), 90.0)
 	assert_true(director.finished, "the manager leaves;")
 	assert_true(restarts.is_empty(), "alive;")
 	assert_eq(GameState.get_flag(&"ch1_choice_tell", -1), 0, "Trung tells Minh Nhật the trick;")
@@ -231,10 +223,7 @@ func test_whole_chapter_runs_to_the_end() -> void:
 	await _until(func() -> bool: return GameState.segment == &"r2_manager", 90.0)
 	director.lie_on(2)
 	await _until(func() -> bool: return GameState.segment == &"r2_listen", 60.0)
-	Input.action_press("hold_breath")
-	await _until(func() -> bool: return GameState.segment != &"r2_listen", 20.0)
-	Input.action_release("hold_breath")
-	await _until(func() -> bool: return director.finished, 90.0)
+	await _until(func() -> bool: return director.finished, 120.0)
 	assert_true(director.finished, "chapter 1 plays to its end;")
 	assert_true(restarts.is_empty(), "no death on the good path;")
 	assert_eq(Progress.unlocked_chapter(), 2, "chapter 2 unlocked;")
@@ -256,20 +245,14 @@ func test_every_chapter_1_line_has_a_voice() -> void:
 	assert_eq(missing, [] as Array[String], "voiced lines;")
 
 
-func test_tap_code_round_trip() -> void:
-	var groups := Chapter1Director.encode_taps("CO")
-	assert_eq(groups, [[1, 3], [3, 4]], "C = row 1 col 3, O = row 3 col 4;")
-	var times: Array[float] = []
-	var t := 0.0
-	for pair: Array in groups:
-		for digit: int in pair:
-			for knock in digit:
-				times.append(t)
-				t += 0.3
-			t += 1.0
-		t += 1.5
-	assert_eq(Chapter1Director.decode_taps(times), "CO", "decodes the reply;")
-	assert_eq(Chapter1Director.decode_taps([] as Array[float]), "", "no taps;")
+func test_tap_groups_split_on_the_pauses() -> void:
+	# D-069 (5): under 0.7 s keeps a group, a longer pause starts the next one.
+	assert_eq(Chapter1Director.tap_groups([0.0, 0.3, 0.6, 1.8] as Array[float]), [3, 1] as Array[int], "3, pause, 1;")
+	assert_eq(Chapter1Director.tap_groups([0.0, 0.3, 1.4] as Array[float]), [2, 1] as Array[int], "2, 1;")
+	assert_eq(Chapter1Director.tap_groups([0.0, 0.3, 0.6, 1.8, 2.1] as Array[float]), [3, 2] as Array[int], "3, 2;")
+	assert_eq(Chapter1Director.tap_groups([0.0, 0.5, 1.0, 1.5] as Array[float]), [4] as Array[int], "one steady run;")
+	assert_eq(Chapter1Director.tap_groups([] as Array[float]), [] as Array[int], "no taps;")
+	assert_eq(Chapter1Director.tap_groups([0.0, 0.003, 0.006, 0.018] as Array[float], 0.01), [3, 1] as Array[int], "scaled with the clock;")
 
 
 func test_late_latch_drags_you_out() -> void:
@@ -288,11 +271,7 @@ func test_wrong_advice_loses_minh_nhat() -> void:
 		(func() -> void: EventBus.chat_choice_made.emit(choice_id, 2 if choice_id == &"tell" else 0)).call_deferred()
 	EventBus.chat_choice_requested.connect(on_choice)
 	await _manager_scene(2)
-	await _until(func() -> bool: return GameState.segment == &"r2_listen", 40.0)
-	Input.action_press("hold_breath")
-	await _until(func() -> bool: return GameState.segment != &"r2_listen", 20.0)
-	Input.action_release("hold_breath")
-	await _until(func() -> bool: return not restarts.is_empty(), 60.0)
+	await _until(func() -> bool: return not restarts.is_empty(), 120.0)
 	EventBus.chat_choice_requested.disconnect(on_choice)
 	assert_eq(restarts, [&"ch1_r2"] as Array[StringName], "Minh Nhật dies, round 2 again;")
 
@@ -300,7 +279,7 @@ func test_wrong_advice_loses_minh_nhat() -> void:
 func test_desk_lamp_gives_you_away() -> void:
 	GameState.set_flag(&"desk_lamp_on", true)
 	await _manager_scene(2)
-	await _until(func() -> bool: return not restarts.is_empty(), 30.0)
+	await _until(func() -> bool: return not restarts.is_empty(), 60.0)
 	assert_eq(restarts, [&"ch1_r2"] as Array[StringName], "the manager sees the light;")
 
 

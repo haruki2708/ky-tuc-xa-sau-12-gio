@@ -5,11 +5,15 @@ extends Node
 ##   prologue 4:00 get out of bed within a minute → General Rules →
 ##   round 1 4:05 locked in, group call, Đạt's locker, a voice at the door →
 ##   round 2 5:00 the manager checks the rooms → 407: lie on a dead roommate's
-##   bed and hold your breath → 6:00 end.
+##   bed (1, 2 or 4) with every light off and stay down → 6:00 end.
 ## Chapter 1 v2 (docs/design/CH1_V2_MISSIONS.md, D-039…D-042): eight missions,
-## Insane only (checkpoints at round starts, 6 s breath, no hint thoughts, the
-## manager hears movement), idle waits cut once a round's missions are done,
-## kills seen on the phone's security cameras, a death scene before every death.
+## Insane only (checkpoints at round starts, no hint thoughts), idle waits cut
+## once a round's missions are done, kills seen on the phone's security cameras,
+## a death scene before every death.
+## D-069 (2026-10-08): the manager comes down the corridor, knocks, opens the door
+## slowly and steps in; lying on bed 1, 2 or 4 with no light is enough (no breath
+## hold, turning your head is fine, only getting up kills); anyone not in a bed is
+## hunted down; N3 is a rhythm (3 taps, a pause, 1 tap) instead of the 5×5 code.
 ## Lane pieces are optional. Missing bunks (T-151), manager (T-152), room API
 ## (T-153), phone screen (T-155), death screen (T-156) or voices (T-158/159)
 ## fall back to stubs, subtitles and timers, so the chapter always runs.
@@ -39,21 +43,27 @@ const DEATH_KINDS := {
 	&"DEATH_SEEN": &"manager_kill", &"DEATH_LOST_NHAT": &"none",
 }
 const DEATH_SCENE_SECONDS := 3.2
-## Insane breath hold (D-039).
+## Insane breath hold (D-039). The manager no longer listens for it (D-069 1).
 const MAX_BREATH_SECONDS := 6.0
-## Tap code (D-039 N3): 5×5 without J, row first then column.
-const TAP_ROWS: Array[String] = ["ABCDE", "FGHIK", "LMNOP", "QRSTU", "VWXYZ"]
-## Gaps between taps of one digit / between digits / between letters (seconds).
+## N3 (D-069 5): Khoa knocks 3 taps, a pause, 1 tap, a longer pause, and once more.
+const KHOA_RHYTHM: Array[int] = [3, 1]
 const TAP_BEAT := 0.32
-const TAP_DIGIT_GAP := 0.9
-const TAP_LETTER_GAP := 2.0
-const TAP_WORD_GAP := 3.2
-## Player taps: a pause longer than this ends a digit; longer than the next ends a letter.
-const TAP_READ_DIGIT := 0.7
-const TAP_READ_LETTER := 1.8
-const TAP_READ_DONE := 4.0
+## Pause between the two groups and between the two repeats (seconds).
+const TAP_GROUP_GAP := 1.0
+const TAP_REPEAT_GAP := 3.0
+## Reply: a short run of quick knocks, then the note slides through the socket.
+const KHOA_REPLY_TAPS := 5
+const KHOA_REPLY_BEAT := 0.16
+## Player taps: a gap under this keeps a group together, up to TAP_TURN_END starts
+## the next group, and a longer silence ends the try.
+const TAP_GROUP_BREAK := 0.7
+const TAP_TURN_END := 2.5
 const TAP_REPLY_SECONDS := 90.0
-## N2: how long the network stays down before Minh Nhật restarts it himself.
+## Where Khoa's note lands when lane B's KhoaNoteSlot anchor (T-203) is missing:
+## on the floor in front of the wall socket (offset from WallKnock406).
+const KHOA_NOTE_FALLBACK := Vector3(0.45, -1.25, 0.0)
+const KHOA_NOTE_SIZE := Vector2(0.09, 0.12)
+const READABLE_SCENE := "res://scenes/interaction/readable.tscn"
 const OUTAGE_SECONDS := 150.0
 const ROUTER_BOOT_SECONDS := 8.0
 const STRIP_COOLDOWN_SECONDS := 20.0
@@ -62,9 +72,6 @@ const DOOR_HOLD_SECONDS := 10.0
 ## N7: seconds to choose the advice for Minh Nhật.
 const TELL_SECONDS := 10.0
 const TELL_CORRECT := 0
-## Insane (D-039): in the enlarged room (T-162) he hears a breath or a move
-## anywhere in 407, not just near Trung's bunk.
-const MANAGER_HEAR_RADIUS_INSANE := 7.5
 const STRIP_NUDGE := Vector3(0.4, 0.0, 0.0)
 ## Where a search spot's E-zone goes relative to lane B's anchor (world).
 const SEARCH_OFFSETS := {"VietLocker": Vector3(0.32, 1.0, 0.0), "PhucMattress": Vector3(0.5, 0.1, 0.0)}
@@ -104,12 +111,23 @@ const BED_EXIT := {1: Vector3(31.4, 0.05, -2.2), 2: Vector3(31.4, 0.05, -2.2),
 	3: Vector3(32.6, 0.05, -2.2), 4: Vector3(32.6, 0.05, -2.2)}
 ## Spot in front of Trung's bunk where the manager stands and listens.
 const MANAGER_SPOT := Vector3(33.0, 0.05, -1.9)
-## Without lane A's manager: he hears anything within this distance of his head
-## while he waits for an answer (same rule as T-152).
-const MANAGER_HEAR_RADIUS := 4.0
-## Silence he waits for after the question; shorter than the 8 s breath hold.
-const MANAGER_LISTEN_SECONDS := 5.0
+## The short silence after the question, before he laughs and cuts bed 3 (D-069 1).
+const MANAGER_LISTEN_SECONDS := 2.5
 const DOOR_SPOT := Vector3(32.0, 0.05, 0.6)
+## D-069 (4): he comes along the corridor from the 406 side, 6.5 m from the door,
+## knocks, tries the handle, opens the door slowly and stops on the threshold.
+const CORRIDOR_SPOT := Vector3(25.5, 0.05, 2.0)
+const CORRIDOR_VIA: PackedVector3Array = [Vector3(32.0, 0.05, 2.0)]
+const APPROACH_SPEED := 1.3
+const ROOM_SPEED := 0.9
+const DOOR_OPEN_SECONDS := 1.5
+const DOOR_THRESHOLD_SECONDS := 1.0
+const HANDLE_RATTLE_SECONDS := 1.2
+## D-069 (1): lying on any dead roommate's bed with every light off is enough.
+const SAFE_BEDS: Array[int] = [1, 2, 4]
+## D-069 (2): hunting a Trung who is not in a bed gives up walking after this long
+## and strikes where he stands.
+const HUNT_SECONDS := 15.0
 const BUNK_SCENE := "res://scenes/interaction/bunk_spot.tscn"
 const PUZZLE_STATION_SCENE := "res://scenes/interaction/puzzle_station.tscn"
 const MANAGER_SCENE := "res://scenes/entity/manager.tscn"
@@ -134,7 +152,7 @@ static var manager_deaths: int = 0
 @export var line_seconds: float = 4.5
 @export var get_up_seconds: float = 60.0
 @export var choice_seconds: float = 12.0
-@export var manager_listen_seconds: float = 5.0
+@export var manager_listen_seconds: float = MANAGER_LISTEN_SECONDS
 ## Stop after this stage (tests run one stretch). Empty = to the end.
 @export var stop_after: StringName = &""
 
@@ -151,8 +169,6 @@ var _bunks: Dictionary[int, Node] = {}
 var _call_answered: bool = false
 var _choice_id: StringName = &""
 var _choice_index: int = -2
-var _manager_listening: bool = false
-var _manager_heard: bool = false
 var _pending_death: StringName = &""
 var _charging: bool = false
 ## Mission state of the current round (D-040): id → true when done.
@@ -168,7 +184,6 @@ var _form_pieces: Dictionary[StringName, bool] = {}
 var _death_scene_started: bool = false
 var _death_animation_done: bool = false
 var _cctv_nav_map: RID
-var _manager_moved: bool = false
 var _cctv_set: Node3D
 var _overlay: ColorRect
 var _overlay_label: Label
@@ -181,7 +196,6 @@ func _ready() -> void:
 	_floor = get_node_or_null(floor_path) as Node3D
 	EventBus.phone_call_answered.connect(func(_id: StringName) -> void: _call_answered = true)
 	EventBus.chat_choice_made.connect(_on_choice_made)
-	EventBus.noise_emitted.connect(_on_noise)
 	EventBus.flag_changed.connect(_on_flag_changed)
 	EventBus.puzzle_solved.connect(_on_puzzle_solved)
 	EventBus.player_caught.connect(_on_player_caught)
@@ -558,29 +572,35 @@ func _manager_at_407() -> void:
 	_music(&"set_tension", 1.0)
 	await _gap(12.0)
 	_music(&"silence_before_door", true)
-	_play_knock()
-	await _wait(2.0)
-	_open_door()
-	_set_flicker(true)
+	# D-069 (4): he comes down the corridor, knocks, tries the handle, opens the
+	# door slowly and stops on the threshold; he does not appear in the doorway.
 	var manager := _spawn_manager()
-	await _wait(1.5)
-	# N6: any light or a raised phone gives the room away.
+	await _manager_walk(manager, DOOR_SPOT, CORRIDOR_VIA)
+	_play_knock()
+	await _wait(1.2)
+	await _try_handle()
+	await _open_door_slowly(manager)
+	_set_flicker(true)
+	await _wait(DOOR_THRESHOLD_SECONDS)
+	# N6: any light or a raised phone gives the room away, seen from the threshold.
 	if _traces_visible():
 		await _manager_kills(manager, &"DEATH_SEEN")
 		return
+	# D-069 (2): nobody in a bed (standing in the room, on the balcony, in the
+	# bathroom): he walks up to Trung and kills him, even if Trung lies down on
+	# the way.
+	if _bed == 0:
+		await _manager_hunts(manager)
+		return
+	if manager != null:
+		manager.set("speed", ROOM_SPEED)
+	await _manager_walk(manager, _manager_spot(), MANAGER_VIA, true)
 	if _bed == 0:
 		await _manager_kills(manager, &"DEATH_NOT_IN_BED")
 		return
-	await _manager_walk(manager, _manager_spot(), MANAGER_VIA)
-	if _manager_moved:
-		await _manager_kills(manager, &"DEATH_HEARD")
-		return
-	if _bed == 0:
-		await _manager_kills(manager, &"DEATH_NOT_IN_BED")
-		return
-	# The question, then silence: the only moment he listens (breath, a quick
-	# turn of the head, getting up).
-	var heard := await _manager_ask(manager, "MGR_CH1_ASK_BED_3")
+	# The question, then a short silence. He no longer listens for breath or for a
+	# turn of the head (D-069 1); only getting up gives Trung away.
+	await _manager_ask(manager, "MGR_CH1_ASK_BED_3")
 	GameState.set_segment(&"r2_manager")
 	if _bed == TRUNG_BED:
 		await _manager_kills(manager, &"DEATH_OWN_BED")
@@ -588,23 +608,18 @@ func _manager_at_407() -> void:
 	if _bed == 0:
 		await _manager_kills(manager, &"DEATH_NOT_IN_BED")
 		return
-	if heard or _manager_moved:
-		await _manager_kills(manager, &"DEATH_HEARD")
-		return
 	await _manager_line("MGR_CH1_LAUGH")
 	await _slash_trung_bed(manager)
-	if _manager_moved:
-		await _manager_kills(manager, &"DEATH_HEARD")
+	if _bed == 0:
+		await _manager_kills(manager, &"DEATH_NOT_IN_BED")
 		return
-	await _manager_walk(manager, DOOR_SPOT, MANAGER_OUT_VIA)
-	if _manager_moved:
-		await _manager_kills(manager, &"DEATH_HEARD")
+	await _manager_walk(manager, DOOR_SPOT, MANAGER_OUT_VIA, true)
+	if _bed == 0:
+		await _manager_kills(manager, &"DEATH_NOT_IN_BED")
 		return
-	if manager != null:
-		manager.set("hear_movement_while_present", false)
 	if manager != null:
 		manager.queue_free()
-	_close_door()
+	_close_door_slowly()
 	_set_flicker(false)
 	_music(&"silence_before_door", false)
 	_music(&"set_tension", 0.2)
@@ -625,6 +640,87 @@ func _manager_at_407() -> void:
 		EventBus.phone_call_lost.emit(&"stranger_call")
 		await _wait(2.0)
 		_die(&"DEATH_LOST_NHAT")
+
+
+## He tries the handle: a short rattle of the leaf, then the latch (if Trung set
+## it) gives way. The rattle is lane A/B's door API; without it the knock is all.
+func _try_handle() -> void:
+	var door := _door()
+	if door != null and door.has_method("rattle") and not door.get("is_open"):
+		door.rattle(HANDLE_RATTLE_SECONDS)
+	await _wait(HANDLE_RATTLE_SECONDS)
+	if GameState.get_flag(&"door_locked", false) == true:
+		_set_door_latched(false)
+		await _wait(0.4)
+
+
+## Opens the door over DOOR_OPEN_SECONDS with whichever API exists: lane A's
+## `manager.open_door(door, seconds)` (T-202, emits `door_opened`), else lane B's
+## `door.set_open(true, seconds)` (T-203), else the old instant `set_open(true)`.
+func _open_door_slowly(manager: Node3D) -> void:
+	var door := _door()
+	if door == null:
+		return
+	if manager != null and _arg_count(manager, &"open_door") >= 2:
+		var opened := [false]
+		var has_signal := manager.has_signal("door_opened")
+		if has_signal:
+			manager.connect("door_opened", func() -> void: opened[0] = true, CONNECT_ONE_SHOT)
+		manager.call("open_door", door, DOOR_OPEN_SECONDS)
+		if has_signal:
+			await _wait_until(func() -> bool: return opened[0], DOOR_OPEN_SECONDS + 3.0, false)
+		else:
+			await _wait_until(func() -> bool: return false, DOOR_OPEN_SECONDS, false)
+		if door.get("is_open") != true:
+			door.set_open(true)
+		return
+	if door.has_method("set_open") and _arg_count(door, &"set_open") >= 2:
+		door.set_open(true, DOOR_OPEN_SECONDS)
+		await _wait_until(func() -> bool: return false, DOOR_OPEN_SECONDS, false)
+		return
+	_open_door()
+
+
+func _close_door_slowly() -> void:
+	var door := _door()
+	if door != null and door.has_method("set_open") and _arg_count(door, &"set_open") >= 2:
+		door.set_open(false, DOOR_OPEN_SECONDS)
+	else:
+		_close_door()
+
+
+## How many parameters a method declares (-1 when the object lacks it): lane
+## APIs grow optional arguments, and core calls them only when they exist.
+func _arg_count(object: Object, method: StringName) -> int:
+	for info: Dictionary in object.get_method_list():
+		if info.name == method:
+			return (info.args as Array).size()
+	return -1
+
+
+## He walks to Trung (lane A's `hunt`, T-202) or, without it, to where Trung
+## stands now, then kills. Giving up after HUNT_SECONDS strikes in place.
+func _manager_hunts(manager: Node3D) -> void:
+	_pending_death = &"DEATH_NOT_IN_BED"
+	if manager != null and manager.has_method("hunt") and _player != null:
+		manager.call("hunt", _player)
+		await _with_timeout(manager.arrived, HUNT_SECONDS, false)
+	elif manager != null and manager.has_method("walk_to") and _player != null:
+		# Without `hunt`: follow the navigation mesh to Trung (lane B's room mesh,
+		# T-203, reaches the balcony and the bathroom); straight lines if it is empty.
+		var goal := _player.global_position
+		var path := NavigationServer3D.map_get_path(get_viewport().world_3d.navigation_map, manager.global_position, goal, true)
+		var via := PackedVector3Array()
+		if path.size() > 2:
+			for index in range(1, path.size() - 1):
+				via.append(Vector3(path[index].x, 0.05, path[index].z))
+		else:
+			via = PackedVector3Array([Vector3(32.0, 0.05, -0.8), Vector3(_room_center().x, 0.05, _room_center().z)])
+		manager.walk_to(goal, via)
+		await _with_timeout(manager.arrived, HUNT_SECONDS, false)
+	else:
+		await _wait(2.5)
+	await _manager_kills(manager, &"DEATH_NOT_IN_BED")
 
 
 # --- End: 5:47–6:00 ----------------------------------------------------------------
@@ -936,7 +1032,7 @@ func _manager_audio() -> Node3D:
 func _spawn_manager() -> Node3D:
 	var audio := _manager_audio()
 	if audio != null:
-		audio.place_at(DOOR_SPOT)
+		audio.place_at(CORRIDOR_SPOT)
 	if not ResourceLoader.exists(MANAGER_SCENE):
 		return null
 	var manager := load(MANAGER_SCENE).instantiate() as Node3D
@@ -945,17 +1041,14 @@ func _spawn_manager() -> Node3D:
 	manager.name = "Manager"
 	manager.set("player", _player)
 	manager.set("listen_seconds", MANAGER_LISTEN_SECONDS)
-	# Insane (D-039): from the door to the door, a move or a step gives you away.
-	manager.set("hear_movement_while_present", true)
-	manager.set("hear_radius", MANAGER_HEAR_RADIUS_INSANE)
-	_manager_moved = false
-	if manager.has_signal("heard_movement"):
-		manager.heard_movement.connect(func() -> void: _manager_moved = true)
+	# D-069 (1): no listening for movement or breath; only getting up gives Trung away.
+	manager.set("hear_movement_while_present", false)
+	manager.set("speed", APPROACH_SPEED)
 	manager.set("look_target", _bunks.get(TRUNG_BED))
 	if ResourceLoader.exists(MANAGER_BODY):
 		manager.set("body_scene", load(MANAGER_BODY))
 	add_child(manager)
-	manager.global_position = DOOR_SPOT
+	manager.global_position = CORRIDOR_SPOT
 	if manager.has_signal("slashed"):
 		manager.slashed.connect(func(_target: Node3D) -> void: _slash_progress())
 	return manager
@@ -970,42 +1063,37 @@ func _slash_progress() -> void:
 
 
 ## The actor moves in real time; its waits are not scaled (tests speed up only
-## the director's own beats).
-func _manager_walk(manager: Node3D, to: Vector3, via: PackedVector3Array = PackedVector3Array()) -> void:
+## the director's own beats). With `stop_on_stand` the walk is cut short when
+## Trung gets out of bed (D-069 1: getting up is the one thing that gives him away).
+func _manager_walk(manager: Node3D, to: Vector3, via: PackedVector3Array = PackedVector3Array(), stop_on_stand: bool = false) -> void:
 	if manager == null or not manager.has_method("walk_to"):
 		var audio := _manager_audio()
 		if audio != null:
 			audio.place_at(to)
 		await _wait(2.5)
 		return
+	var arrived := [false]
+	manager.arrived.connect(func() -> void: arrived[0] = true, CONNECT_ONE_SHOT)
 	manager.walk_to(to, via)
-	await _with_timeout(manager.arrived, 15.0, false)
+	await _wait_until(func() -> bool: return arrived[0] or (stop_on_stand and _bed == 0), 15.0, false)
 
 
-## Asks one line and returns whether he heard anything in the silence after.
-func _manager_ask(manager: Node3D, key: String) -> bool:
+## Asks one line and waits out the short silence after it. D-069 (1): he no
+## longer listens, so the result is only "Trung got up" (the caller checks `_bed`).
+func _manager_ask(manager: Node3D, key: String) -> void:
 	if manager != null and manager.has_method("ask") and manager.has_signal("answered"):
-		var result := [false, false]
-		var on_answer := func(heard: bool) -> void:
-			result[0] = true
-			result[1] = heard
-		manager.answered.connect(on_answer, CONNECT_ONE_SHOT)
+		var answered := [false]
+		manager.answered.connect(func(_heard: bool) -> void: answered[0] = true, CONNECT_ONE_SHOT)
 		manager.ask(key)
-		# He listens once the question is out (T-152): mark that moment.
-		await _wait_until(func() -> bool: return result[0], _voice_seconds(key, "MGR_CH1_"), false)
+		# He is silent once the question is out (T-152): mark that moment.
+		await _wait_until(func() -> bool: return answered[0] or _bed == 0, _voice_seconds(key, "MGR_CH1_"), false)
 		GameState.set_segment(&"r2_listen")
-		await _wait_until(func() -> bool: return result[0] or _bed == 0 or _manager_moved, 30.0, false)
-		if manager.answered.is_connected(on_answer):
-			manager.answered.disconnect(on_answer)
-		return result[1]
-	# Core stand-in: the rig speaks, then the director listens.
+		await _wait_until(func() -> bool: return answered[0] or _bed == 0, 30.0, false)
+		return
+	# Core stand-in: the rig speaks, then a short silence.
 	await _manager_line(key)
 	GameState.set_segment(&"r2_listen")
-	_manager_heard = false
-	_manager_listening = true
 	await _wait(manager_listen_seconds)
-	_manager_listening = false
-	return _manager_heard
 
 
 ## Lane A's actor lunges and finishes the player first (it emits player_caught),
@@ -1025,8 +1113,10 @@ func _slash_trung_bed(manager: Node3D) -> void:
 	var bed := _bunks.get(TRUNG_BED) as Node3D
 	_slash_cuts = 0
 	if manager != null and manager.has_method("slash") and bed != null:
+		var finished := [false]
+		manager.slash_finished.connect(func() -> void: finished[0] = true, CONNECT_ONE_SHOT)
 		manager.slash(bed)
-		await _with_timeout(manager.slash_finished, 10.0, false)
+		await _wait_until(func() -> bool: return finished[0] or _bed == 0, 10.0, false)
 	else:
 		var audio := _manager_audio()
 		for cut in 6:
@@ -1035,16 +1125,6 @@ func _slash_trung_bed(manager: Node3D) -> void:
 			_set_bed_slashed(float(cut + 1) / 6.0)
 			await _wait(0.45)
 	_set_bed_slashed(1.0)
-
-
-func _on_noise(position: Vector3, radius: float, _source: StringName) -> void:
-	if not _manager_listening:
-		return
-	var manager := get_node_or_null("Manager") as Node3D
-	# He listens at head height: breathing on the bunk above Trung's carries.
-	var ear := (manager.global_position if manager != null else _manager_spot()) + Vector3(0, 1.6, 0)
-	if position.distance_to(ear) <= MANAGER_HEAR_RADIUS:
-		_manager_heard = true
 
 
 func _on_player_caught(entity_id: StringName) -> void:
@@ -1061,7 +1141,6 @@ func _die(reason_key: StringName) -> void:
 		return
 	_dying = true
 	_rules_live = false
-	_manager_listening = false
 	if GameState.segment in [&"r2_manager", &"r2_listen"]:
 		manager_deaths += 1
 	EventBus.scare_triggered.emit(&"lost")
@@ -1383,36 +1462,49 @@ func _set_door_latched(latched: bool) -> void:
 		latch.set_locked(latched)
 
 
-# N3: tap code with Khoa in 406.
+# N3 (D-069 5): knock a rhythm back to Khoa in 406.
 func _wall_taps() -> void:
 	_missions[&"wall"] = false
 	var wall := _room_anchor("WallKnock406")
 	var where := wall.global_position if wall != null else Vector3(30.1, 1.3, -1.65)
 	for repeat in 2:
-		await _play_taps(where, "CON SONG")
-		await _wait(2.5)
+		await _play_khoa_rhythm(where)
+		if repeat == 0:
+			await _wait(TAP_REPEAT_GAP)
+	await _answer_rhythm(await _listen_for_rhythm(), where, wall)
+	_missions[&"wall"] = true
+
+
+## Khoa answers only the right rhythm: a quick run of knocks, then the note. Any
+## other try (or none) and he stays silent for good, as before.
+func _answer_rhythm(rhythm: Array[int], where: Vector3, wall: Node3D) -> void:
+	GameState.set_flag(&"khoa_reply", str(rhythm))
+	if rhythm != KHOA_RHYTHM:
+		return
+	await _wait(2.0)
+	await _play_khoa_reply(where)
+	_place_khoa_note(wall)
+	GameState.set_flag(&"khoa_hint", true)
+
+
+## Listens at wall_406 for TAP_REPLY_SECONDS. A try ends after TAP_TURN_END of
+## silence (or when the time runs out); returns the group sizes tapped.
+func _listen_for_rhythm() -> Array[int]:
 	_taps.clear()
 	_tap_listening = true
 	GameState.set_flag(&"wall_prompt", true)
+	var scale := maxf(time_scale, 0.0001)
 	var started := Time.get_ticks_msec()
-	var reply := ""
 	while _tap_listening and is_inside_tree():
 		await _wait(0.25)
 		if _taps.is_empty():
-			if float(Time.get_ticks_msec() - started) / 1000.0 > TAP_REPLY_SECONDS * maxf(time_scale, 0.0001):
+			if float(Time.get_ticks_msec() - started) / 1000.0 > TAP_REPLY_SECONDS * scale:
 				break
 			continue
-		var quiet := float(Time.get_ticks_msec()) / 1000.0 - _taps[-1]
-		if quiet >= TAP_READ_DONE * maxf(time_scale, 0.0001):
-			reply = decode_taps(_taps, maxf(time_scale, 0.0001))
+		if float(Time.get_ticks_msec()) / 1000.0 - _taps[-1] >= TAP_TURN_END * scale:
 			break
 	_tap_listening = false
-	GameState.set_flag(&"khoa_reply", reply)
-	if reply == "CO":
-		await _wait(2.0)
-		await _play_taps(where, "SO GIUONG")
-		GameState.set_flag(&"khoa_hint", true)
-	_missions[&"wall"] = true
+	return tap_groups(_taps, scale)
 
 
 func _on_wall_tapped(wall_id: StringName) -> void:
@@ -1420,72 +1512,73 @@ func _on_wall_tapped(wall_id: StringName) -> void:
 		_taps.append(float(Time.get_ticks_msec()) / 1000.0)
 
 
-## Turns tap times (seconds) into letters: pauses split digits and letters.
-static func decode_taps(times: Array[float], scale: float = 1.0) -> String:
-	if times.is_empty():
-		return ""
-	var digits: Array[int] = [1]
-	var letters: Array = []
-	for i in range(1, times.size()):
-		var gap := (times[i] - times[i - 1]) / scale
-		if gap < TAP_READ_DIGIT:
-			digits[-1] += 1
-		elif gap < TAP_READ_LETTER:
-			digits.append(1)
+## Splits tap times (seconds) into groups: a gap under TAP_GROUP_BREAK keeps a
+## tap in its group; anything longer starts the next one.
+static func tap_groups(times: Array[float], scale: float = 1.0) -> Array[int]:
+	var groups: Array[int] = []
+	for i in times.size():
+		if i == 0 or (times[i] - times[i - 1]) / scale >= TAP_GROUP_BREAK:
+			groups.append(1)
 		else:
-			letters.append(digits)
-			digits = [1]
-	letters.append(digits)
-	var text := ""
-	for pair: Array in letters:
-		if pair.size() != 2 or pair[0] < 1 or pair[0] > 5 or pair[1] < 1 or pair[1] > 5:
-			text += "?"
-		else:
-			text += TAP_ROWS[pair[0] - 1][pair[1] - 1]
-	return text
-
-
-## Row/column tap counts for a message (spaces are a longer pause).
-static func encode_taps(message: String) -> Array:
-	var groups: Array = []
-	for character in message.to_upper():
-		if character == " ":
-			groups.append(0)
-			continue
-		var letter := "C" if character == "K" and false else character
-		for row in TAP_ROWS.size():
-			var column := TAP_ROWS[row].find(letter)
-			if column >= 0:
-				groups.append([row + 1, column + 1])
+			groups[-1] += 1
 	return groups
 
 
-func _play_taps(where: Vector3, message: String) -> void:
+## Khoa's knock: KHOA_RHYTHM, one tap per beat inside a group, TAP_GROUP_GAP
+## between the groups.
+func _play_khoa_rhythm(where: Vector3) -> void:
 	var rig := get_parent().get_node_or_null("KhoaTaps") if get_parent() else null
 	if rig != null and rig.has_method("play_sequence") and time_scale >= 0.999:
-		for word in message.split(" ", false):
-			var flat: Array[int] = []
-			for pair: Variant in encode_taps(word):
-				if pair is Array:
-					flat.append_array(pair)
-			if rig.play_sequence(where, flat, TAP_DIGIT_GAP, TAP_LETTER_GAP):
-				await _with_timeout(rig.sequence_finished, 60.0, false)
-			await _wait(TAP_WORD_GAP)
-		return
-	var taps := rig if rig != null and rig.has_method("play_tap") else null
-	for group: Variant in encode_taps(message):
-		if group is int:
-			await _wait(TAP_WORD_GAP)
-			continue
-		for digit: int in group:
-			for knock in digit:
-				if taps != null and taps.has_method("play_tap"):
-					taps.play_tap(where)
-				else:
-					_play_sfx_at(&"wall_knock", where)
-				await _wait(TAP_BEAT)
-			await _wait(TAP_DIGIT_GAP)
-		await _wait(TAP_LETTER_GAP - TAP_DIGIT_GAP)
+		# play_sequence: gap after an even group is the first gap, after an odd one the second.
+		if rig.play_sequence(where, KHOA_RHYTHM, TAP_GROUP_GAP, TAP_GROUP_GAP):
+			await _with_timeout(rig.sequence_finished, 30.0, false)
+			return
+	for group in KHOA_RHYTHM.size():
+		await _play_taps(where, KHOA_RHYTHM[group], TAP_BEAT)
+		if group < KHOA_RHYTHM.size() - 1:
+			await _wait(TAP_GROUP_GAP)
+
+
+## A quick run of knocks: Khoa heard the answer.
+func _play_khoa_reply(where: Vector3) -> void:
+	await _play_taps(where, KHOA_REPLY_TAPS, KHOA_REPLY_BEAT)
+
+
+func _play_taps(where: Vector3, count: int, beat: float) -> void:
+	var rig := get_parent().get_node_or_null("KhoaTaps") if get_parent() else null
+	for knock in count:
+		if rig != null and rig.has_method("play_tap"):
+			rig.play_tap(where)
+		else:
+			_play_sfx_at(&"wall_knock", where)
+		await _wait(beat)
+
+
+## Khoa's note comes through the wall socket: on lane B's KhoaNoteSlot (T-203) if
+## it exists, else on the floor in front of the socket under WallKnock406.
+func _place_khoa_note(wall: Node3D) -> Node3D:
+	if not ResourceLoader.exists(READABLE_SCENE) or get_parent() == null:
+		return null
+	var existing := get_parent().get_node_or_null("Ch1KhoaNote") as Node3D
+	if existing != null:
+		return existing
+	var slot := _room_anchor("KhoaNoteSlot")
+	var at: Vector3
+	if slot != null:
+		at = slot.global_position + Vector3(0.0, 0.03, 0.0)
+	elif wall != null:
+		at = wall.global_position + KHOA_NOTE_FALLBACK
+	else:
+		at = Vector3(30.45, 0.06, -1.65)
+	var paper := (load(READABLE_SCENE) as PackedScene).instantiate()
+	paper.name = "Ch1KhoaNote"
+	paper.set("document_id", &"ch1_khoa_note")
+	paper.set("size", KHOA_NOTE_SIZE)
+	paper.set("pick_depth", 0.15)
+	get_parent().add_child(paper)
+	(paper as Node3D).global_position = at
+	(paper as Node3D).rotation_degrees = Vector3(-90, 20, 0)
+	return paper as Node3D
 
 
 # N5: the torn inspection form.
