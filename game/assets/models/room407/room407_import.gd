@@ -17,6 +17,11 @@ func _post_import(scene: Node) -> Object:
 				_add_box(scene, body, "Post_%s_%s" % [x, z], Vector3(x, .85, z), Vector3(.04, 1.7, .04))
 		for y: float in [0.34, 1.11]:
 			_add_box(scene, body, "Board_%s" % y, Vector3(0, y + .028, 0), Vector3(.82, .025, 1.90))
+			# The upper bunk's side rails stay visual only: at 1.11 m the aisle-side
+			# rail blocked the aim at Trung's mattress (D-069, T-203 review); the
+			# posts and the lower rails still keep the player out of the bunk.
+			if y > 1.0:
+				continue
 			for x: float in [-0.43, 0.43]:
 				_add_box(scene, body, "Side_%s_%s" % [y, x], Vector3(x, y, 0), Vector3(.04, .07, 1.96))
 			for z: float in [-0.96, 0.96]:

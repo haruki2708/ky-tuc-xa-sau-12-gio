@@ -7,7 +7,7 @@
 1. **Chủ dự án chơi kiểm tra chương 1 → 4** bản 2026-10-08 00:31 (`docs/playtest/`: `CH1_QUICKTEST.md` (nhanh) hoặc `CH1_V2_PLAYTEST.md`, `CH2_WALKTHROUGH.md`, `CH3_QUICKTEST.md`, `CH4_QUICKTEST.md`). Mỗi lỗi: tái hiện bằng test hoặc cảnh thật, sửa, chạy cả bộ test, export lại. Góp ý thiết kế: đưa phương án kèm đề xuất, ghi D-xxx.
 2. **Chương 4 (D-068):** lời `CH4_SCRIPT.md` **đã duyệt**; phiếu điều tra: Nam, 20 tuổi, sinh 11/03/2006 (`FORM_FIELDS` trong `chapter4_director.gd`).
 3. **Giọng (T-200, đã merge 2026-10-08):** chương 4 có đủ 16 giọng theo lời đã duyệt; cuộc gọi chương 2–4 và loa chương 2–4 **nay mới có tiếng** (trước đó chỉ có phụ đề do bộ phát chỉ nhận chương 1). Chờ chủ dự án nghe.
-4. **Chương 1 sau chơi thử lại (D-069, 2026-10-08):** lời đã sửa (câu cứu Minh Nhật, mẩu giấy của Khoa, sổ hợp âm không còn bảng mã). Giao song song: **T-202** lane A (vùng nằm giường, quản lý `hunt`, `open_door`), **T-203** lane B (va chạm giường tầng, cửa 407 mở chậm, đường đi tới ban công và nhà vệ sinh, khe ổ điện `KhoaNoteSlot`), **T-201** core do **Claude Code trên web** làm (luật sống, quản lý bước vào, gõ theo nhịp, test). Prompt: `docs/handoff/lane-a.md`, `lane-b.md`, `web.md` §1. Ghép theo thứ tự A, B rồi T-201; sau đó export.
+4. **Chương 1 sau chơi thử lại (D-069, D-070):** T-201, T-202, T-203 đã merge; cả 4 giường ngắm trúng 36/36 (thanh chắn giường tầng trên: Claude làm thay lane B). Gõ sai được gõ lại trong 90 giây. Lane C còn phải đổi `"code":"13 34"` thành `"31"` trong `game/scripts/debug/ch1v2_scenarios.json` trước khi chạy lại bot chương 1.
 4b. **Bot:** không chạy bot chương 3 và 4 (D-068); T-199 chưa viết card.
 5. **Chưa ai nghe bằng tai:** âm thanh chương 3 và 4, giọng cuộc gọi và loa chương 2–4 (fixture `res://audio/test/ch4_audio_test.tscn`).
 6. **Sau khi chốt chương 4:** giai đoạn "Ghép bản hoàn chỉnh" (D-059).
@@ -90,9 +90,9 @@
 | T-199 Bot chương 4, menu F9 nhảy 5 khu | C | chưa viết card; chủ dự án không cần chạy bot chương 3, 4 (D-068) |
 | T-200 Giọng chương 4 theo lời đã duyệt; cuộc gọi chương 2–4 có tiếng | E | **done**, đã merge (core thêm tín hiệu có sóng lại trước câu cuối); chờ nghe |
 | **Chương 1 sau chơi thử lại (D-069, giao 2026-10-08)** | | |
-| T-201 Luật sống mới, quản lý bước vào và đi tới chỗ trốn, gõ tường theo nhịp | core (**Claude Code web làm thay**, D-069) | **todo** |
-| T-202 Vùng nằm giường dễ bấm, quản lý `hunt` và `open_door` | A | **todo** |
-| T-203 Va chạm giường tầng, cửa 407 mở chậm, đường đi ban công và nhà vệ sinh, khe ổ điện | B | **todo** |
+| T-201 Luật sống mới, quản lý bước vào và đi tới chỗ trốn, gõ tường theo nhịp | core (**Claude Code web làm thay**, D-069) | **done**, đã merge (integrator sửa săn trong nhà vệ sinh, 2 test; gõ lại theo D-070) |
+| T-202 Vùng nằm giường dễ bấm, quản lý `hunt` và `open_door` | A | **done**, đã merge |
+| T-203 Va chạm giường tầng, cửa 407 mở chậm, đường đi ban công và nhà vệ sinh, khe ổ điện | B | **done**, đã merge (thanh chắn tầng trên: **Claude làm thay**) |
 | T-171 Cầm giẻ, bịt miệng xác, cửa kẹt, buồng tắm, nút vòi sen, cảnh chết `corpse_lunge` và `scald` | A | **done**, đã merge |
 | T-172 Xác chơi nối từ, đồ bịt miệng, nhà vệ sinh có vòi sen, hơi nước, phòng camera 310 | B | **done**, đã merge |
 | T-173 Bot chương 2, menu nhảy, đo FPS hơi nước | C | khung **đã merge**; bot chạy sau khi điền profile |

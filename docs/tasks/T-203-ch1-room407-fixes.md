@@ -1,5 +1,5 @@
 # T-203 — Chương 1: giường tầng ngắm được, cửa 407 mở chậm, đường tới ban công, khe ổ điện tường 406
-- Lane: B (Môi trường và 3D) | Trạng thái: todo | Agent:
+- Lane: B (Môi trường và 3D) | Trạng thái: done | Agent: lane B (1 sửa: Claude làm thay)
 - Nhánh: `lane-b/T-203-ch1-room407-fixes`
 - Phụ thuộc: D-069 (góp ý chương 1, 2026-10-08). Làm song song với T-202 (lane A) và T-201 (core, Claude Code trên web).
 - **Hạn đề xuất:** 2026-10-09.
@@ -68,3 +68,9 @@ RESULT: room407 capture 3 images PASS
 **Chặn:** không bị chặn trong phạm vi lane B. Fetch/checkout LFS, test và render đã chạy được sau khi cấp quyền ngoài sandbox. Có stash `Recovery: partial T-203 checkout after LFS credential failure` lưu checkout dở từ bước chuẩn bị; giữ nguyên để có thể kiểm tra, không áp lại vào nhánh task.
 
 ## Review (integrator)
+
+### 2026-10-09 — Claude (integrator, Opus): **đã merge, yêu cầu sửa 1 ý**
+- Tốt: va chạm khung 14 hộp thay hộp kín, cửa 407 `set_open(value, seconds)` có tween và đảo chiều, lưới đường đi tới ban công và trong nhà vệ sinh, ổ điện có khe và `KhoaNoteSlot` tại (30,2; 0,015; −1,8). Ảnh xem trước rõ. Core đã mở cửa nhà vệ sinh khi quản lý săn tới sát cửa (theo yêu cầu ngoài phạm vi của lane B).
+- **Yêu cầu sửa (chủ dự án chọn trả về lane B):** đứng ở lối đi cách giường Trung 0,9 m, tia ngắm vào nệm giường 3 bị **thanh chắn bên của giường tầng trên** chặn: `Floor4/Room407/BunkB/WorldCollision`, hộp `Side_1_11_-0_43` (0,04 × 0,07 × 1,96 m, tâm (36,92; 1,11; −2,7)). Chế độ bắt buộc của lane A: giường 3 trúng **18/36** (cần ≥ 80%). Sửa: bỏ va chạm của thanh chắn này (người chơi không với tới độ cao đó; khung dưới vẫn chặn người đi xuyên), hoặc hạ/thu nhỏ sao cho tia từ mắt 1,63 m ở cách 0,9 m tới mặt nệm không chạm. Kiểm lại bằng:
+  `godot --headless --path game res://tests/run_tests.tscn -- --filter=ch1_bunks_manager --t202-integration` (đặt APPDATA tạm dưới `build/` như `tools/test.ps1`): giường 3 phải ≥ 29/36. Giữ test "không đi xuyên giường" của T-203.
+- **Cập nhật cùng ngày: Claude làm thay lane B** (chủ dự án chọn, vì sau khi ghép test tia ngắm của lane A làm cả bộ test FAIL): `room407_import.gd` không tạo va chạm cho hai thanh chắn bên của giường tầng trên (chỉ còn hình); cột, ván và thanh dưới giữ nguyên. `bunk_trung.glb.import` đổi `root_name` thành `bunk_trung_frame` để mọi máy import lại (cùng mẹo lane B đã dùng). Kết quả chế độ bắt buộc: giường 1–4 đều **36/36**; test "không đi xuyên giường" của T-203 PASS. Không còn yêu cầu sửa cho lane B.

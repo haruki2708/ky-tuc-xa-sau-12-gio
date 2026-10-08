@@ -128,6 +128,8 @@ const SAFE_BEDS: Array[int] = [1, 2, 4]
 ## D-069 (2): hunting a Trung who is not in a bed gives up walking after this long
 ## and strikes where he stands.
 const HUNT_SECONDS := 15.0
+## He opens the shut bathroom door when this close to it while hunting.
+const BATHROOM_DOOR_REACH := 1.4
 const BUNK_SCENE := "res://scenes/interaction/bunk_spot.tscn"
 const PUZZLE_STATION_SCENE := "res://scenes/interaction/puzzle_station.tscn"
 const MANAGER_SCENE := "res://scenes/entity/manager.tscn"
@@ -700,11 +702,32 @@ func _arg_count(object: Object, method: StringName) -> int:
 
 ## He walks to Trung (lane A's `hunt`, T-202) or, without it, to where Trung
 ## stands now, then kills. Giving up after HUNT_SECONDS strikes in place.
+## The shut bathroom door when Trung is on its far side from the room, else null.
+func _bathroom_door_between(manager: Node3D) -> Node3D:
+	var room := _room()
+	var door := room.get_node_or_null("Extension/BathroomDoor") as Node3D if room != null else null
+	if door == null or door.get("is_open") == true or not room.has_method("set_bathroom_door_open") or _player == null:
+		return null
+	# Sides of the door's plane (its local z): Trung against the manager.
+	var player_side := (door.global_transform.affine_inverse() * _player.global_position).z
+	var manager_side := (door.global_transform.affine_inverse() * manager.global_position).z
+	return door if signf(player_side) != signf(manager_side) else null
+
+
 func _manager_hunts(manager: Node3D) -> void:
 	_pending_death = &"DEATH_NOT_IN_BED"
 	if manager != null and manager.has_method("hunt") and _player != null:
+		var arrived := [false]
+		manager.arrived.connect(func() -> void: arrived[0] = true, CONNECT_ONE_SHOT)
 		manager.call("hunt", _player)
-		await _with_timeout(manager.arrived, HUNT_SECONDS, false)
+		# Hiding behind the shut bathroom door: he walks up to it and opens it
+		# (lane B's room mesh runs through the doorway, the leaf blocks him).
+		var bathroom_door := _bathroom_door_between(manager)
+		if bathroom_door != null:
+			await _wait_until(func() -> bool: return arrived[0] or _dying or manager.global_position.distance_to(bathroom_door.global_position) < BATHROOM_DOOR_REACH, HUNT_SECONDS, false)
+			if not arrived[0] and not _dying:
+				_room().set_bathroom_door_open(true)
+		await _wait_until(func() -> bool: return arrived[0] or _dying, HUNT_SECONDS, false)
 	elif manager != null and manager.has_method("walk_to") and _player != null:
 		# Without `hunt`: follow the navigation mesh to Trung (lane B's room mesh,
 		# T-203, reaches the balcony and the bathroom); straight lines if it is empty.
@@ -1488,23 +1511,31 @@ func _answer_rhythm(rhythm: Array[int], where: Vector3, wall: Node3D) -> void:
 
 
 ## Listens at wall_406 for TAP_REPLY_SECONDS. A try ends after TAP_TURN_END of
-## silence (or when the time runs out); returns the group sizes tapped.
+## silence; wrong tries are dropped (D-070). Returns the right rhythm, or the
+## last try when the time runs out.
 func _listen_for_rhythm() -> Array[int]:
 	_taps.clear()
 	_tap_listening = true
 	GameState.set_flag(&"wall_prompt", true)
 	var scale := maxf(time_scale, 0.0001)
 	var started := Time.get_ticks_msec()
+	var heard: Array[int] = []
+	# D-070: a wrong turn is forgotten and Trung may knock again until the
+	# 90 s are up; only the right rhythm ends the wait early.
 	while _tap_listening and is_inside_tree():
 		await _wait(0.25)
+		var timed_out := float(Time.get_ticks_msec() - started) / 1000.0 > TAP_REPLY_SECONDS * scale
 		if _taps.is_empty():
-			if float(Time.get_ticks_msec() - started) / 1000.0 > TAP_REPLY_SECONDS * scale:
+			if timed_out:
 				break
 			continue
 		if float(Time.get_ticks_msec()) / 1000.0 - _taps[-1] >= TAP_TURN_END * scale:
-			break
+			heard = tap_groups(_taps, scale)
+			_taps.clear()
+			if heard == KHOA_RHYTHM or timed_out:
+				break
 	_tap_listening = false
-	return tap_groups(_taps, scale)
+	return heard
 
 
 func _on_wall_tapped(wall_id: StringName) -> void:

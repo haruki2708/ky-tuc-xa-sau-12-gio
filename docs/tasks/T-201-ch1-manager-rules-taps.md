@@ -1,5 +1,5 @@
 # T-201 — Chương 1: luật sống mới ở cảnh quản lý, quản lý bước vào và đi tới chỗ trốn, gõ tường theo nhịp (core)
-- Lane: core, **Claude Code trên web (Sonnet 5.5) làm thay** (D-069) | Trạng thái: todo | Agent:
+- Lane: core, **Claude Code trên web (Sonnet 5.5) làm thay** (D-069) | Trạng thái: done | Agent:
 - Nhánh: `core/T-201-ch1-manager-rules-taps`
 - Phụ thuộc: D-069. Lời thoại đã sửa sẵn (integrator, commit cùng card này): `CHOICE_CH1_TELL_1`, `ch1_khoa_note`, trang sổ hợp âm. Làm **song song** với T-202 (lane A) và T-203 (lane B): mọi API mới của hai lane gọi qua `has_method` và có cách thay tạm như code hiện có.
 - **Hạn đề xuất:** 2026-10-09.
@@ -81,3 +81,12 @@ Chạy trực tiếp Godot trên Linux (`tools/test.ps1` dùng `\` trong đườ
 - Một điểm trình bày: lượt gõ đầu tiên (xong sau 2,5 giây im) quyết định luôn, đúng như card ("sai thì Khoa im luôn"). Người chơi lỡ gõ một cái rồi dừng quá 2,5 giây là mất mẩu giấy. Nếu muốn dễ hơn (cho gõ lại tới hết 90 giây) thì sửa `_listen_for_rhythm`: chỉ thoát khi đúng nhịp hoặc hết giờ.
 
 ## Review (integrator)
+
+### 2026-10-09 — Claude (integrator, Opus): **duyệt, đã merge, integrator sửa thêm 3 chỗ**
+- Đúng card, làm cẩn thận: luật sống mới (giường 1, 2, 4, không đèn, chỉ đứng dậy là chết), quản lý từ hành lang tới, gõ cửa, rung tay nắm, mở chốt, mở cửa chậm, đứng ngưỡng cửa rồi kiểm ánh sáng, săn người trốn, nhịp [3, 1] và mẩu giấy ở `KhoaNoteSlot`; chọn API theo số tham số để chạy được trước và sau khi ghép A, B; 19 test trên cảnh thật; hướng dẫn chơi thử và menu F9 đã sửa.
+- **Sau khi ghép A, B**, 3 test của chính nhánh này FAIL; integrator sửa:
+  1. **Săn trong nhà vệ sinh** (lỗi thật): cửa nhà vệ sinh đóng nên quản lý dừng cách 1,98 m. `_manager_hunts` nay mở cửa (`Room407.set_bathroom_door_open(true)`) khi Trung ở phía bên kia cửa và quản lý tới cách cửa dưới 1,4 m. Sau sửa: vồ từ cách 1,18 m (ban công cũng 1,18 m).
+  2. **Test cửa mở chậm**: cửa của lane B đặt `is_open = true` ngay lúc bắt đầu xoay, test chỉ đo khi `is_open` còn false nên không có mẫu. Test nay đo trong lúc xoay (349 mẫu góc giữa chừng).
+  3. **Test "lên giường lúc đang bị săn"**: test cho Trung nằm xuống lúc cánh cửa mới bắt đầu mở (trước khi quản lý nhìn vào từ ngưỡng cửa), nên Trung sống là đúng luật. Test nay chờ tới khi quản lý đã bắt đầu săn.
+- **D-070 (chủ dự án chọn):** gõ sai thì được gõ lại tới hết 90 giây (`_listen_for_rhythm` bỏ lượt sai, chỉ thoát khi đúng nhịp hoặc hết giờ); test `test_a_wrong_turn_can_be_knocked_again`; hai hướng dẫn chơi thử sửa theo.
+- **Yêu cầu ngoài phạm vi còn để ngỏ:** `game/scripts/debug/ch1v2_scenarios.json` (lane C) còn `"code":"13 34"` ở 4 chỗ, cần đổi thành `"31"` khi chạy lại bot chương 1 (chưa chạy bot nên chưa ảnh hưởng).

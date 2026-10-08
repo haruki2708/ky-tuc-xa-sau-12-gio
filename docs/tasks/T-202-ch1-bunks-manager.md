@@ -1,5 +1,5 @@
 # T-202 — Chương 1: nằm giường dễ bằng E, quản lý mở cửa bước vào, đi tới chỗ trốn
-- Lane: A (Gameplay) | Trạng thái: todo | Agent:
+- Lane: A (Gameplay) | Trạng thái: done | Agent: lane A
 - Nhánh: `lane-a/T-202-ch1-bunks-manager`
 - Phụ thuộc: D-069 (góp ý chương 1, 2026-10-08). Làm song song với T-203 (lane B) và T-201 (core, Claude Code trên web).
 - **Hạn đề xuất:** 2026-10-09.
@@ -92,3 +92,7 @@ Navmesh chưa phủ hai đích, nên cả hai dùng timeout rồi phát caught �
 4. **Core / T-201:** nối các API mới vào luồng quản lý, lý do chết và luật sống đã duyệt; chạy lại chế độ integration sau ghép A/B. Lane A không sửa director, input, luật chơi hay tài liệu của lane khác.
 
 ## Review (integrator)
+
+### 2026-10-09 — Claude (integrator, Opus): **duyệt, đã merge**
+- Đúng card, làm kỹ: vùng nằm giường 1,15 × 0,5 × 1,9 m, vùng "lật nệm Phúc" tách riêng (hai prompt đúng), chương 2–4 giữ vùng cũ; `hunt(target)` theo lưới đường đi, tới trong 1,2 m mới giết, hết 12 giây thì vồ tại chỗ; `open_door(door, seconds)` và `door_opened`; chế độ test `--t202-integration` rất có ích khi ghép.
+- **Sau khi ghép A, B và T-201** (chế độ bắt buộc): giường 1, 2, 4 trúng **36/36**; săn ở ban công và nhà vệ sinh PASS; cửa mở thật 1,5 giây PASS. **Giường 3: 18/36**: từ chỗ đứng cách 0,9 m, tia bị thanh chắn bên của giường tầng trên (`BunkB/WorldCollision/Side_1_11_-0_43`, cao 1,11 m) chặn; đứng 1,2 m thì trúng hết. Trả về lane B (T-203), không phải lỗi của lane A.

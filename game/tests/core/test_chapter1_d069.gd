@@ -215,7 +215,8 @@ func test_hiding_in_the_bathroom_is_hunted() -> void:
 
 func test_lying_down_while_hunted_does_not_save_him() -> void:
 	await _manager_scene(0)
-	await _until(func() -> bool: return _manager() != null and bool(_door().get("is_open")), 90.0)
+	# Once he has looked in from the threshold and set off after Trung.
+	await _until(func() -> bool: return _manager() != null and director._pending_death == &"DEATH_NOT_IN_BED", 90.0)
 	await wait_frames(5)
 	director.lie_on(2)
 	await _until(func() -> bool: return not restarts.is_empty(), 90.0)
@@ -240,9 +241,14 @@ func test_he_comes_down_the_corridor_and_opens_the_door_slowly() -> void:
 	var deadline := Time.get_ticks_msec() + 60000
 	while not bool(door.get("is_open")) and restarts.is_empty() and Time.get_ticks_msec() < deadline:
 		await tree.process_frame
+	at_open[0] = _manager().global_position if _manager() != null else Vector3.INF
+	# Lane B's door reports is_open as soon as the swing starts (T-203): sample the
+	# leaf through the swing itself.
+	var swing_end := Time.get_ticks_msec() + 2500
+	while Time.get_ticks_msec() < swing_end and restarts.is_empty():
+		await tree.process_frame
 		if absf(pivot.rotation.y) > 0.02:
 			angles.append(pivot.rotation.y)
-	at_open[0] = _manager().global_position if _manager() != null else Vector3.INF
 	assert_true(bool(door.get("is_open")), "the door opens;")
 	assert_true(Vector2(at_open[0].x - 32.0, at_open[0].z - 0.6).length() < 1.5, "he stands at the door when it opens (%s);" % at_open[0])
 	var slow := manager.has_method("open_door") and director._arg_count(manager, &"open_door") >= 2 \
@@ -279,6 +285,22 @@ func _listen_and_knock(groups: Array[int]) -> Array[int]:
 func test_rhythm_listener_hears_the_groups() -> void:
 	var rhythm := await _listen_and_knock([3, 1] as Array[int])
 	assert_eq(rhythm, [3, 1] as Array[int], "3, pause, 1;")
+
+
+## D-070: a wrong turn does not end the wait; the right rhythm after it still counts.
+func test_a_wrong_turn_can_be_knocked_again() -> void:
+	director.time_scale = 1.0
+	var heard: Array = [[] as Array[int]]
+	var run := func() -> void: heard[0] = await director._listen_for_rhythm()
+	run.call()
+	await wait_frames(3)
+	await _knock([2] as Array[int])
+	await tree.create_timer(Chapter1Director.TAP_TURN_END + 0.6).timeout
+	assert_true(director._tap_listening, "still listening after a wrong turn;")
+	await _knock([3, 1] as Array[int])
+	await _until(func() -> bool: return not director._tap_listening, 8.0)
+	await wait_frames(2)
+	assert_eq(heard[0], [3, 1] as Array[int], "the second, right turn counts;")
 
 
 func test_wrong_rhythms_get_no_answer_and_no_note() -> void:
