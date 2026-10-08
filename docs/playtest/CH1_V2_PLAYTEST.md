@@ -13,7 +13,7 @@ Mở game, bấm **Chơi mới**, đọc màn cảnh báo nội dung. Một lư�
 | Shift | Chạy |
 | C hoặc Ctrl | Cúi |
 | E (hoặc chuột trái) | Tương tác: giường, tủ, giấy, công tắc, dây mạng, chốt cửa, tường, đèn bàn, bắt máy |
-| Space (giữ) | Nín thở khi đang nằm. **Tối đa 6 giây**; quá thì thở hắt ra thành tiếng |
+| Space (giữ) | Nín thở khi đang nằm. **Tối đa 6 giây**; quá thì thở hắt ra thành tiếng. Cảnh quản lý không còn cần nín thở (D-069) |
 | Q | Giơ hoặc hạ điện thoại |
 | F | Đèn pin |
 | 1–4, hoặc lăn chuột rồi nhấp trái | Chọn câu trả lời trong cuộc gọi |
@@ -27,7 +27,7 @@ Khóa số: xoay từng vòng số rồi bấm **Thử mở**. Sai 3 lần thì 
 
 ## Diễn biến (không lộ đáp án)
 - **4:00, mở đầu:** loa báo nằm trên giường sẽ chết. Có 60 giây để rời giường; ra nhà vệ sinh cuối hành lang rồi về phòng.
-- **4:05, vòng 1:** không được ra khỏi phòng. Có cuộc gọi nhóm, pin điện thoại yếu, rồi lần lượt: mất mạng, có người gõ cửa, tiếng gõ lạ từ tường phòng bên.
+- **4:05, vòng 1:** không được ra khỏi phòng. Có cuộc gọi nhóm, pin điện thoại yếu, rồi lần lượt: mất mạng, có người gõ cửa, tiếng gõ nhịp từ tường phòng bên.
 - **5:00, vòng 2:** người trong nhóm chết lần lượt, xem được qua camera an ninh trên điện thoại. Có biên bản kiểm tra bị xé thành 3 mảnh trong phòng. Rồi quản lý tới kiểm tra phòng 407.
 - Sau đó còn một lựa chọn quan trọng, chỉ có 10 giây.
 - Hết chương thì mở khóa chương 2 ở mục **Chọn chương**.
@@ -67,10 +67,10 @@ Menu F9 không ghi vào bản lưu thật.
 - **Pin yếu:** tủ Đạt khóa số. Mã là **2109**, ngày sinh của Phúc trên thẻ sinh viên. Lấy cục sạc, cắm ở chỗ dây sạc trên bàn.
 - **Mất mạng 4:28:** bật **công tắc 2** của ổ điện (cục phát mạng khởi động 8 giây), cắm **dây xanh** vào ổ mạng trên tường. Công tắc 3 là ấm đun: ổ chập, khóa 20 giây. Không sửa thì 4:48 mạng tự có lại nhưng lỡ mất các câu nói trong lúc mất mạng.
 - **4:35, Việt gõ cửa:** **chốt cửa trong 10 giây**, không thì bị lôi ra ngoài.
-- **4:38, tiếng gõ tường (Khoa phòng 406):** mã gõ 5×5 không có chữ J, gõ hàng trước, cột sau. Khoa gõ "CON SONG". Trả lời **"CO"**: gõ tường 1 cái, nghỉ, 3 cái, nghỉ dài, 3 cái, nghỉ, 4 cái. Khoa gõ lại "SO GIUONG".
+- **4:38, tiếng gõ tường (Khoa phòng 406):** Khoa gõ một nhịp: **3 cái, nghỉ khoảng 1 giây, 1 cái**, nghỉ dài, lặp lại một lần. Gõ lại **đúng nhịp đó** ở tường trái (gần tủ Việt) trong 90 giây (3 cái liền, nghỉ khoảng 1 giây, 1 cái, rồi dừng khoảng 3 giây). Khoa gõ đáp một tràng ngắn và một mẩu giấy "Nó hỏi số giường." hiện trên sàn dưới chỗ gõ. Gõ sai nhịp thì Khoa im luôn.
 - **Vòng 2:** lục **tủ Việt**, **lật nệm Phúc**, **sọt rác**, đủ 3 mảnh thì biên bản tự ghép.
-- **Trước khi quản lý tới:** **tắt đèn bàn**, **hạ điện thoại**, **tắt đèn pin**, **nằm lên giường của một bạn đã chết** (giường Phúc, Việt hoặc Đạt; không phải giường Trung).
-- **Khi quản lý trong phòng:** không cử động, không xoay nhìn nhanh. Ông ta hỏi xong thì **giữ Space nín thở** (dưới 6 giây).
-- **Cứu Minh Nhật (10 giây):** chọn câu **1**: "Nằm giường của người đã chết, tắt hết đèn, nín thở khi ông ta hỏi xong."
+- **Trước khi quản lý tới:** **tắt đèn bàn**, **hạ điện thoại**, **tắt đèn pin**, **nằm lên giường của một bạn đã chết** (giường 1 Phúc, 2 Việt hoặc 4 Đạt; không phải giường 3 của Trung).
+- **Khi quản lý tới 407:** ông ta đi từ phía 406 dọc hành lang, gõ cửa, rung tay nắm, mở cửa chậm và đứng ở ngưỡng cửa rồi mới vào. **Nằm im**, xoay nhìn không sao, **không cần nín thở**; chỉ **đứng dậy khỏi giường** lúc ông ta còn trong phòng là chết. Không nằm giường nào (đứng trong phòng, ban công, nhà vệ sinh) thì ông ta **đi tới tận chỗ bạn** rồi giết.
+- **Cứu Minh Nhật (10 giây):** chọn câu **1**: "Nằm giường của người đã chết, tắt hết đèn, nằm im đừng dậy."
 
 </details>

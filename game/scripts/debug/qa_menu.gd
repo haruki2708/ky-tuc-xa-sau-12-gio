@@ -17,7 +17,7 @@ const LABELS := {
 	"QA_ANSWERS": ["Hiện đáp án bản 2", "Show v2 answers"],
 	"QA_SPEED": ["Tua nhanh x4", "Fast forward x4"],
 	"QA_MISSING": ["Chưa có API/mốc trong profile T-160", "T-160 API/stage not bound in profile"],
-	"QA_SOLUTION": ["Bản 2: tủ 2109; công tắc 2; dây xanh; CO = 13 34.\nKhoa: CON SONG → SO GIUONG. Main cũ có thể dùng đáp án khác.", "V2: locker 2109; switch 2; blue cable; CO = 13 34.\nKhoa: CON SONG → SO GIUONG. Older main may use other answers."],
+	"QA_SOLUTION": ["Bản 2: tủ 2109; công tắc 2; dây xanh.\nKhoa: gõ 3 cái, nghỉ 1 giây, 1 cái ở tường 406 → mẩu giấy \"Nó hỏi số giường.\"\nQuản lý: nằm giường 1, 2 hoặc 4, tắt đèn bàn và điện thoại, không đứng dậy.", "V2: locker 2109; switch 2; blue cable.\nKhoa: knock 3, pause 1 s, 1 on wall 406 → the note \"He asks for bed numbers.\"\nManager: lie on bed 1, 2 or 4, lamp and phone off, do not get up."],
 }
 const DESTINATIONS := ["prologue", "r1", "network", "wall", "door", "r2", "manager", "advice"]
 const KEYS := ["QA_PROLOGUE", "QA_R1", "QA_NETWORK", "QA_WALL", "QA_DOOR", "QA_R2", "QA_MANAGER", "QA_ADVICE"]

@@ -5,7 +5,7 @@
 **Vào:** `D:\GAME_DEMO\build\windows\KyTucXa.exe` → **Chơi mới** (hoặc Chọn chương → **Chương 1**).
 **Phím:**
 - E: dùng, nhặt, nằm, đứng dậy; nhấc máy khi đang giơ điện thoại.
-- Q: giơ hoặc hạ điện thoại. F: đèn pin. Giữ Space: nín thở khi đang nằm (tối đa 6 giây).
+- Q: giơ hoặc hạ điện thoại. F: đèn pin. Giữ Space: nín thở khi đang nằm (tối đa 6 giây; **cảnh quản lý không còn cần nín thở**, D-069).
 - 1–4: chọn câu trả lời trong cuộc gọi. `[` và `]`: đổi tab điện thoại. Tab: sổ quy tắc. Esc: đóng giấy.
 
 **Chết** thì làm lại từ **đầu vòng**: mở đầu, vòng 1 hoặc vòng 2.
@@ -31,19 +31,20 @@ Tính khi **đứng ở cửa nhìn vào phòng**:
 | 4 | **Pin yếu.** Đọc **sổ của Đạt** trên bàn (mật khẩu là sinh nhật bạn thân nhất), **ảnh đội bóng** (Phúc và Đạt), **thẻ sinh viên của Phúc** (21/09/2006). Mở **tủ Đạt**, xoay số **2109**, bấm **Thử mở**. Lấy cục sạc, **E** ở **dây sạc trên bàn** (chỗ đèn bàn). | Sai 3 lần thì khóa kẹt 60 giây và kêu báo động. Cắm sạc thì pin lên | 3 phút |
 | 5 | **4:28, mất mạng.** Bật **công tắc 2** của ổ điện dưới gầm giường trái (có vệt đỏ). Chờ cục phát khởi động khoảng 8 giây. Nhặt **dây xanh** dưới gầm bàn giữa, **E** vào **ổ mạng** ở chân tường cửa. | Điện thoại báo "Mất kết nối" rồi nối lại; Minh Nhật nói lại. Công tắc 3 là ấm đun: ổ chập, khóa 20 giây | 2 phút |
 | 6 | **4:35, Việt gõ cửa.** Trong **10 giây**, **E** vào **chốt cửa**. | Tay nắm bị vặn mạnh; chốt kịp thì tiếng dép đi xa. Không kịp thì bị lôi ra và chết | 30 giây |
-| 7 | **4:38, tiếng gõ từ tường phòng 406.** Bảng mã nằm trong **sổ hợp âm guitar** của Việt. Đứng sát **tường trái gần tủ Việt**, gõ **"CO"**: **1** cái, nghỉ khoảng 1 giây, **3** cái, nghỉ khoảng 2,5 giây, **3** cái, nghỉ khoảng 1 giây, **4** cái. | Khoa gõ "CON SONG" (lặp 2 lần). Đúng thì Khoa gõ lại "SO GIUONG"; sai hoặc quá 90 giây thì Khoa im luôn | 2 phút |
+| 7 | **4:38, tiếng gõ từ tường phòng 406.** Khoa gõ một nhịp: **3 cái, nghỉ khoảng 1 giây, 1 cái**, nghỉ dài rồi lặp lại một lần (không còn bảng mã). Đứng sát **tường trái gần tủ Việt**, gõ lại **đúng nhịp đó** (3 cái liền, nghỉ khoảng 1 giây, 1 cái), rồi đứng yên chừng 3 giây. | Đúng thì Khoa gõ đáp một tràng ngắn và **một mẩu giấy "Nó hỏi số giường." hiện trên sàn dưới chỗ gõ**: nhặt bằng **E**. Sai (ví dụ 2+1 hoặc 3+2) hoặc quá 90 giây thì Khoa im luôn | 2 phút |
 | 8 | **5:00, vòng 2.** Minh Nhật mở camera: dùng `[` `]` sang **tab Camera**. | Xem 4 người chết qua camera: Hùng (trả lời "có"), Kiệt (màn hình điện thoại sáng), Bảo (thở run), Đăng (đèn bàn sáng) | 3 phút |
 | 9 | Tìm 3 mảnh biên bản: **E** ở **tủ Việt**, **lật nệm Phúc** (giường trái, tầng trên), **sọt rác**. | Đủ 3 mảnh thì biên bản **tự mở** và game tạm dừng; **Esc** để đóng | 2 phút |
 | 10 | (Tùy chọn) **Tab Sơ đồ**: mũi tên và Enter để đánh dấu X các phòng quản lý đã tới. | Nghe tiếng dao kéo lê qua các tầng | — |
-| 11 | **Trước khi quản lý tới:** **E** tắt **đèn bàn**, **Q** hạ điện thoại, **F** tắt đèn pin (nếu đang bật), rồi **nằm lên giường của một bạn đã chết** (dễ nhất: **giường Việt**, trái, tầng dưới). | Đèn hoặc điện thoại còn sáng lúc cửa mở là chết. Nằm giường của Trung cũng chết | 1 phút |
-| 12 | **Quản lý vào phòng:** không di chuyển, không xoay nhìn nhanh. Ông ta hỏi xong thì **giữ Space** nín thở (dưới 6 giây). | Quản lý chém nát giường trống của Trung rồi đi | 1 phút |
-| 13 | **Cứu Minh Nhật (10 giây):** **Q** giơ điện thoại, bấm **1**: "Nằm giường của người đã chết, tắt hết đèn, nín thở khi ông ta hỏi xong." | Minh Nhật sống; Ngư vào nhóm; **6:00, còn 28 người**; **"Hết chương 1"**, mở khóa chương 2 | 1 phút |
+| 11 | **Trước khi quản lý tới:** **E** tắt **đèn bàn**, **Q** hạ điện thoại, **F** tắt đèn pin (nếu đang bật), rồi **nằm lên giường của một bạn đã chết**: **giường 1, 2 hoặc 4** (dễ nhất: **giường Việt**, trái, tầng dưới). | Đèn hoặc điện thoại còn sáng lúc cửa mở là chết. Nằm giường của Trung (3) cũng chết | 1 phút |
+| 12 | **Quản lý tới:** nghe bước chân và tiếng gõ cửa ngoài hành lang (camera hành lang thấy ông ta đi từ phía 406), tay nắm cửa rung, cửa **mở chậm**, ông ta đứng ở ngưỡng cửa rồi bước vào. **Nằm im**: xoay nhìn thoải mái, không cần nín thở. Chỉ **đứng dậy khỏi giường** là chết. | Ông ta hỏi số giường, im một lúc rồi cười, chém nát giường trống của Trung, rồi ra và đóng cửa | 1 phút |
+| 13 | **Cứu Minh Nhật (10 giây):** **Q** giơ điện thoại, bấm **1**: "Nằm giường của người đã chết, tắt hết đèn, nằm im đừng dậy." | Minh Nhật sống; Ngư vào nhóm; **6:00, còn 28 người**; **"Hết chương 1"**, mở khóa chương 2 | 1 phút |
 
 ## Thử nhanh các cách chết (tùy chọn, mỗi cách khoảng 1 phút)
 - **Nằm lì trên giường** lúc 4:00: cảnh máu trào lên từ dưới.
 - **Bước ra hành lang** sau khi loa đọc Tổng tắc: ngã ngửa, máu phụt.
 - **Không chốt cửa** lúc Việt gõ: bị lôi ra ngoài.
-- **Để đèn bàn sáng** hoặc **nằm giường của Trung** khi quản lý tới: quản lý lao tới chém.
+- **Để đèn bàn sáng**, **giơ điện thoại** hoặc **nằm giường của Trung** khi quản lý tới: quản lý lao tới chém.
+- **Không nằm giường nào** (đứng giữa phòng, ra **ban công**, vào **nhà vệ sinh**): quản lý mở cửa, **đi tới tận chỗ bạn** rồi chém (lên giường giữa chừng cũng không kịp). **Đứng dậy** khi ông ta đã ở trong phòng: chết.
 - Ở bước 13, **chọn sai** hoặc để hết 10 giây: Minh Nhật chết, làm lại vòng 2.
 
 ## Đỡ phải chơi lại từ đầu
