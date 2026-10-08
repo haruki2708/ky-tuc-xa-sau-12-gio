@@ -4,7 +4,7 @@
 **Giai đoạn:** Chương 1 (`v0.3-ch1`) và chương 2 (`v0.4-ch2`) tạm chốt. Chương 3 đã sửa theo góp ý chơi thử (D-061…D-066). **Chương 4 "Người sống sót" đã ghép đủ 4 lane** (T-194…T-198, D-067). **Bản chơi thử 2026-10-07 19:51** (`build/windows/KyTucXa.exe`) có đủ chương 1–4; máy chủ dự án đã mở khóa tới chương 4. **Kế hoạch tiếp: chủ dự án kiểm tra lại trọn chương 1 → 4.**
 
 ## Việc tiếp theo (cho phiên integrator kế tiếp)
-1. **Chủ dự án chơi kiểm tra chương 1 → 4** bản 19:51 (`docs/playtest/`: `CH1_V2_PLAYTEST.md`, `CH2_WALKTHROUGH.md`, `CH3_QUICKTEST.md`, `CH4_QUICKTEST.md`). Mỗi lỗi: tái hiện bằng test hoặc cảnh thật, sửa, chạy cả bộ test, export lại. Góp ý thiết kế: đưa phương án kèm đề xuất, ghi D-xxx.
+1. **Chủ dự án chơi kiểm tra chương 1 → 4** bản 2026-10-08 00:31 (`docs/playtest/`: `CH1_QUICKTEST.md` (nhanh) hoặc `CH1_V2_PLAYTEST.md`, `CH2_WALKTHROUGH.md`, `CH3_QUICKTEST.md`, `CH4_QUICKTEST.md`). Mỗi lỗi: tái hiện bằng test hoặc cảnh thật, sửa, chạy cả bộ test, export lại. Góp ý thiết kế: đưa phương án kèm đề xuất, ghi D-xxx.
 2. **Chương 4 (D-068):** lời `CH4_SCRIPT.md` **đã duyệt**; phiếu điều tra: Nam, 20 tuổi, sinh 11/03/2006 (`FORM_FIELDS` trong `chapter4_director.gd`).
 3. **Giọng (T-200, đã merge 2026-10-08):** chương 4 có đủ 16 giọng theo lời đã duyệt; cuộc gọi chương 2–4 và loa chương 2–4 **nay mới có tiếng** (trước đó chỉ có phụ đề do bộ phát chỉ nhận chương 1). Chờ chủ dự án nghe.
 4. **Bot:** không chạy bot chương 3 và 4 (D-068); T-199 chưa viết card.
