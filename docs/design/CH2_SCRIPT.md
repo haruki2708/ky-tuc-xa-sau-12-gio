@@ -43,7 +43,13 @@ Ký hiệu: **Loa** · *(trong phòng)* = giọng nghe trực tiếp · 📞 = t
 - **06:35** `[N5: Minh Nhật gửi vòng lặp vào nhóm (giữ trong lịch sử chat). Chỉ có ích khi cả ba xác đã bị bịt: khi đó chuỗi chỉ còn từ của Trung.]`
 - **06:35** 📞 **Minh Nhật · 203:** Tôi nghĩ ra một vòng không bao giờ hết: học sinh, sinh viên, viên phấn, phấn đấu, đấu tranh, tranh luận, luận văn, văn học… rồi lại học sinh. Lái về chữ "học" rồi cứ thế lặp.
 - **06:36** 📞 **Ngọc Ngư · 401 nhà A:** Không cần nghĩ nữa. Cứ lặp thôi.
-- **06:40** `[Đi trọn một vòng 8 từ (cả ba xác đã bị bịt) thì cắt thời gian trống, nhảy tới 7:00 (D-040).]`
+- **06:40** `[D-072: cả ba xác đã bị bịt, Trung gõ đúng 2 từ liên tiếp của vòng lặp thì Minh Nhật và Ngư hỏi (N_HOW, NGU_HOW), Trung có 10 giây chọn câu nhắn (TELL). Đúng (1): hai bạn làm theo (N_TOLD, NGU_TOLD). Sai hoặc hết giờ: hai bạn chết (N_CAUGHT), Trung thua, làm lại vòng 3 (DEATH_CH2_LOST_FRIENDS). Gõ đúng từ thứ 4 liên tiếp của vòng lặp thì cắt thời gian trống, nhảy tới 7:00 (D-040).]`
+- **06:40** 📞 **Minh Nhật · 203:** Trung? Bên cậu sao im thế? Tôi lặp vòng của tôi mà tụi nó vẫn nối theo được…
+- **06:40** 📞 **Ngọc Ngư · 401 nhà A:** Bên mình cũng vậy. Nó nối còn nhanh hơn mình. Cậu làm cách nào?
+- **06:40** ▶ **Trung chọn:** (1) Bịt miệng cả ba đứa lại, giẻ, khăn hay áo gì cũng được. Rồi cứ lặp vòng từ. / (2) Lặp vòng từ nhanh hơn tụi nó, đừng để tụi nó kịp nối. / (3) Bịt miệng một đứa thôi, rồi gõ từ thật khó cho hai đứa kia. / (4) Đừng nối nữa. Im lặng cho tới hết giờ.
+- **06:41** 📞 **Minh Nhật · 203:** Bịt… được rồi. Nó chỉ còn ú ớ. Tôi lặp tiếp đây.
+- **06:41** 📞 **Ngọc Ngư · 401 nhà A:** Xong rồi. Cái khăn ướt sũng… Cảm ơn nhé, Trung.
+- **06:41** 📞 **Minh Nhật · 203:** Trung… không được… tụi nó đứng dậy hết rồi…
 - **06:50** 📞 **Minh Nhật · 203:** Nhóm im hết rồi. Chỉ còn tín hiệu của ba đứa mình.
 
 ## 7:00 — hết vòng 3
@@ -90,6 +96,7 @@ Ký hiệu: **Loa** · *(trong phòng)* = giọng nghe trực tiếp · 📞 = t
 - **CH2_SHORT_SHOWER:** Tới tám giờ, bạn vẫn chưa tắm đủ hai mươi lăm phút.
 - **CH2_LOST_NHAT:** Minh Nhật đã chết vì tin nhắn của bạn.
 - **CH2_LOST_NGU:** Ngọc Ngư đã chết vì tin nhắn của bạn.
+- **CH2_LOST_FRIENDS:** Minh Nhật và Ngọc Ngư đã chết vì tin nhắn của bạn.
 
 ## Từ điển nối từ (D-049, D-051)
 

@@ -295,337 +295,6 @@ UI_CH2_PREVIEW_WORD_3,khuyết điểm,khuyết điểm
 UI_CH2_PREVIEW_WORD_4,khuất bóng,khuất bóng
 UI_CH2_PREVIEW_WORD_5,khuất mắt,khuất mắt
 UI_CH2_PREVIEW_LOOP,học sinh → sinh viên → viên phấn → phấn đấu → đấu tranh → tranh luận → luận văn → văn học → học sinh…,học sinh → sinh viên → viên phấn → phấn đấu → đấu tranh → tranh luận → luận văn → văn học → học sinh…
-NAME_CH2_MINH_NHAT,Minh Nhật · 203,Minh Nhật · 203
-NAME_CH2_NGU,Ngọc Ngư · 401 nhà A,Ngọc Ngư · A-401
-NAME_CH2_TRUNG,Tôi,Me
-SPK_CH2_R2_END,Quy tắc vòng hai kết thúc. Số người sống sót hiện tại: hai mươi tám người.,Round two is over. Students still alive: twenty-eight.
-CHAT_CH2_N_28,Hai mươi tám… Cả trường mấy nghìn người mà còn hai mươi tám.,"Twenty-eight… Thousands of students, and twenty-eight left."
-SPK_CH2_R3_INTRO,Công việc kiểm tra phòng kết thúc. Đến giờ giải trí rồi. Chúng ta chơi nối từ nhé.,The room check is over. Time for some fun. Let's play a word chain.
-RULE_CH2_R3_1,"Bốn người trong mỗi phòng bắt buộc tham gia. Nối lần lượt theo chiều kim đồng hồ, mỗi lượt dưới mười lăm giây.","All four people in each room must play. Take turns clockwise, under fifteen seconds a turn."
-RULE_CH2_R3_2,"Từ nối là từ hai tiếng. Tiếng đầu phải trùng tiếng cuối của từ trước, đúng cả dấu.","Each word has two syllables. Its first syllable must match the last syllable of the word before, tone and all."
-RULE_CH2_R3_3,"Trong ba lượt liền nhau không được lặp từ. Ai không nối được, chết.","No word may repeat within three turns in a row. Whoever cannot go on, dies."
-CHAT_CH2_NGU_FOUR,Bốn người? Phòng mình chỉ còn mỗi mình sống mà…,Four people? I'm the only one alive in my room…
-CHAT_CH2_N_SAT_UP,Bạn cùng phòng tôi… ngồi dậy rồi. Nó đang nhìn tôi.,My roommates… they sat up. They're looking at me.
-CHAT_CH2_NGU_SAT_UP,Bên mình cũng vậy. Ba đứa. Mắt trắng dã.,Same here. All three. Their eyes are white.
-THINK_CH2_VO,Vở… vở gì… nghĩ đi…,Vở… vở what… think…
-CHAT_CH2_N_KEEP_UP,Đừng nghĩ lâu. Mười lăm giây trôi nhanh lắm.,Don't think too long. Fifteen seconds goes fast.
-CHAT_CH2_NGU_CHEAT,Nó gục rồi lại ngồi dậy… Chúng nó chết rồi thì sợ gì thua. Chỉ có tụi mình là không được sai.,"It fell and sat right back up… They're already dead, losing means nothing to them. We're the only ones who can't slip."
-CHAT_CH2_N_HOUR,Một tiếng. Tụi mình phải đúng suốt một tiếng.,An hour. We have to be right for a whole hour.
-CHAT_CH2_N_310,Phòng 310… Cậu ấy không nói kịp. Đừng nhìn nữa.,Room 310… He didn't answer in time. Don't watch.
-CHAT_CH2_NGU_CLUE,"Mình vừa nối vừa kéo tay đứa cùng phòng. Nó chẳng phản ứng gì, chỉ lo nối từ.","I tugged my roommate's arm while we played. It didn't react at all, it just kept chaining words."
-CHAT_CH2_N_BRAVE,Cậu… gan thật đấy.,You're… really brave.
-CHAT_CH2_N_LOOP,"Tôi nghĩ ra một vòng không bao giờ hết: học sinh, sinh viên, viên phấn, phấn đấu, đấu tranh, tranh luận, luận văn, văn học… rồi lại học sinh. Lái về chữ ""học"" rồi cứ thế lặp.","I found a loop that never ends: học sinh, sinh viên, viên phấn, phấn đấu, đấu tranh, tranh luận, luận văn, văn học… and back to học sinh. Steer to ""học"" and repeat."
-CHAT_CH2_NGU_LOOP,Không cần nghĩ nữa. Cứ lặp thôi.,No more thinking. Just repeat it.
-CHAT_CH2_N_FEW,Nhóm im hết rồi. Chỉ còn tín hiệu của ba đứa mình.,The group's gone quiet. Only our three signals left.
-SPK_CH2_R3_END,Quy tắc vòng ba kết thúc. Số người sống sót hiện tại: năm người.,Round three is over. Students still alive: five.
-CHAT_CH2_NGU_FIVE,Năm người… Cả trường còn năm người.,"Five… The whole school, five people."
-SPK_CH2_R4_INTRO,Trò chơi gắn kết tình bạn kết thúc. Đến giờ tắm nước nóng cho thoải mái rồi.,The friendship game is over. Time for a nice hot shower.
-RULE_CH2_R4_1,Mời mọi người vào nhà vệ sinh. Vòng này không có yêu cầu nào khác: chỉ cần thời gian xả nước vượt quá hai mươi lăm phút.,"Everyone, please go to your bathroom. No other requirement this round: the water must run for more than twenty-five minutes."
-SPK_CH2_R4_ENJOY,Chúc các bạn tắm vui vẻ.,Enjoy your shower.
-THINK_CH2_DOOR,Kẹt rồi… cửa phồng hết lên.,It's stuck… the door's all swollen.
-CHAT_CH2_NGU_MUST,"Nghĩa là nếu chọn xả, bao nhiêu độ cũng phải đứng chịu hai phút.","So if we pick yes, we stand under it for two minutes whatever the temperature."
-CHAT_CH2_N_WAIT,Khoan xả đã. Xem nó ra số gì.,Don't run it yet. Let's see what numbers it gives.
-CHAT_CH2_N_SEVENTY,Sáu mươi bảy độ… Chọn bừa là chín người.,Sixty-seven degrees… Pick at random and you're cooked.
-CHAT_CH2_NGU_PATTERN,"Không thể là ngẫu nhiên. Luật nào cũng có kẽ hở, mấy vòng trước đều vậy.",It can't be random. Every rule had a way out so far.
-CHAT_CH2_N_STEAM,Hơi nước mù hết màn hình rồi. Lau đi mà đọc.,Steam's all over the screen. Wipe it to read.
-CHAT_CH2_N_ASK,"Trung, cậu tắm ba lượt liền mà không sao. Cậu tìm ra quy luật rồi phải không? Bên tôi ba lần gần nhất: 38, 16, 75. Lượt tới tôi chọn gì? Nhắn cho tôi.","Trung, three showers in a row and you're fine. You found the rule, didn't you? My last three: 38, 16, 75. What do I pick next? Text me."
-CHAT_CH2_N_OK,…Hai mươi ba độ. Sống rồi. Cảm ơn cậu.,…Twenty-three degrees. I'm alive. Thank you.
-CHAT_CH2_N_SCREAM,"Nóng! Trung, cậu nhắn sai rồi…!","It burns! Trung, you got it wrong…!"
-CHAT_CH2_NGU_ASK,"Loa điện thoại mình bị nước vào rồi… Trung! Bên mình: 74, 15, 62. Lượt tới chọn gì? Nhắn nhanh lên!","Water got into my phone… Trung! Mine: 74, 15, 62. What do I pick next? Text me, quick!"
-CHAT_CH2_NGU_SAVED,"…Tám mươi mốt độ. May mà mình không xả. Cảm ơn cậu, Trung.","…Eighty-one degrees. Good thing I didn't run it. Thank you, Trung."
-CHAT_CH2_NGU_SCREAM,Nóng! Nóng quá… Trung…!,It burns! It burns… Trung…!
-SPK_CH2_R4_END,Quy tắc vòng bốn kết thúc. Số người sống sót hiện tại: ba người.,Round four is over. Students still alive: three.
-CHAT_CH2_N_THREE,Ba người. Cả trường… chỉ còn ba đứa mình.,Three. The whole school… just the three of us.
-THINK_CH2_END,Còn một giờ nữa.,One more hour.
-DEATH_CH2_CHAIN_WRONG,Bạn đã nối sai.,You chained the wrong word.
-DEATH_CH2_CHAIN_TIMEOUT,Bạn không nối kịp trong mười lăm giây.,You didn't answer within fifteen seconds.
-DEATH_CH2_SCALDED,Nước sôi xối xuống người bạn.,Boiling water poured over you.
-DEATH_CH2_SHOWER_BROKEN,Bạn đã chọn xả nước nhưng bước ra khỏi buồng tắm.,"You chose to run the water, then stepped out."
-DEATH_CH2_NO_CHOICE,Bạn không chọn khi đồng hồ đếm hết.,You didn't choose before the countdown ended.
-DEATH_CH2_SHORT_SHOWER,"Tới tám giờ, bạn vẫn chưa tắm đủ hai mươi lăm phút.","At eight, you hadn't showered for twenty-five minutes."
-DEATH_CH2_LOST_NHAT,Minh Nhật đã chết vì tin nhắn của bạn.,Minh Nhật died because of your message.
-DEATH_CH2_LOST_NGU,Ngọc Ngư đã chết vì tin nhắn của bạn.,Ngọc Ngư died because of your message.
-WORD_CH2_BAO_CHUA,bào chữa,bào chữa (defend)
-WORD_CH2_BEN_LUA,bén lửa,bén lửa (catch fire)
-WORD_CH2_BONG_TOI,bóng tối,bóng tối (darkness)
-WORD_CH2_BAC_MENH,bạc mệnh,bạc mệnh (ill-fated)
-WORD_CH2_BAO_LUC,bạo lực,bạo lực (violence)
-WORD_CH2_BAN_THAN,bản thân,bản thân (oneself)
-WORD_CH2_BAN_AN,bản án,bản án (sentence (court))
-WORD_CH2_BAN_DO,bản đồ,bản đồ (map)
-WORD_CH2_CA_DEM,ca đêm,ca đêm (night shift)
-WORD_CH2_CHAY_NHA,cháy nhà,cháy nhà (house fire)
-WORD_CH2_CHAN_DUNG,chân dung,chân dung (portrait)
-WORD_CH2_CHO_DU,chó dữ,chó dữ (fierce dog)
-WORD_CH2_CHOI_DUA,chơi đùa,chơi đùa (play around)
-WORD_CH2_CHUONG_TRINH,chương trình,chương trình (programme)
-WORD_CH2_CHE_DO,chế độ,chế độ (regime)
-WORD_CH2_CHET_CHOC,chết chóc,chết chóc (carnage)
-WORD_CH2_CHET_NGUOI,chết người,chết người (deadly)
-WORD_CH2_CHET_DUOI,chết đuối,chết đuối (drown)
-WORD_CH2_CHI_HUY,chỉ huy,chỉ huy (command)
-WORD_CH2_CHUNG_MUC,chừng mực,chừng mực (moderation)
-WORD_CH2_CHUA_CHAY,chữa cháy,chữa cháy (firefighting)
-WORD_CH2_CUNG_CAP,cung cấp,cung cấp (supply)
-WORD_CH2_CAI_NHAU,cãi nhau,cãi nhau (quarrel)
-WORD_CH2_CON_SONG,còn sống,còn sống (still alive)
-WORD_CH2_CONG_VIEN,công viên,công viên (park)
-WORD_CH2_CONG_VAN,công văn,công văn (official letter)
-WORD_CH2_CAM_KY,cấm kỵ,cấm kỵ (taboo)
-WORD_CH2_CAP_CUU,cấp cứu,cấp cứu (emergency)
-WORD_CH2_CUU_SONG,cứu sống,cứu sống (save a life)
-WORD_CH2_CU_CHI,cử chỉ,cử chỉ (gesture)
-WORD_CH2_DANH_SACH,danh sách,danh sách (list)
-WORD_CH2_DAO_GAM,dao găm,dao găm (dagger)
-WORD_CH2_DIEN_MAO,diện mạo,diện mạo (appearance)
-WORD_CH2_DU_HOC,du học,du học (study abroad)
-WORD_CH2_DUNG_NHAN,dung nhan,dung nhan (looks)
-WORD_CH2_DONG_MAU,dòng máu,dòng máu (bloodline)
-WORD_CH2_DANG_NGUOI,dạng người,dạng người (human-shaped)
-WORD_CH2_DI_DANG,dị dạng,dị dạng (deformed)
-WORD_CH2_DOI_NUOC,dội nước,dội nước (pour water)
-WORD_CH2_DU_DOI,dữ dội,dữ dội (violent)
-WORD_CH2_GIA_LANH,giá lạnh,giá lạnh (freezing)
-WORD_CH2_GION_MAT,giỡn mặt,giỡn mặt (mock)
-WORD_CH2_GAM_VAO,găm vào,găm vào (stab into)
-WORD_CH2_GACH_DA,gạch đá,gạch đá (bricks and stones)
-WORD_CH2_GAT_DAU,gật đầu,gật đầu (nod)
-WORD_CH2_HIEM_HOA,hiểm họa,hiểm họa (danger)
-WORD_CH2_HOANG_HON,hoàng hôn,hoàng hôn (dusk)
-WORD_CH2_HOAT_DONG,hoạt động,hoạt động (activity)
-WORD_CH2_HUY_CHUONG,huy chương,huy chương (medal)
-WORD_CH2_HANH_LANG,hành lang,hành lang (corridor)
-WORD_CH2_HINH_PHAT,hình phạt,hình phạt (punishment)
-WORD_CH2_HOA_HOC,hóa học,hóa học (chemistry)
-WORD_CH2_HOA_TRANG,hóa trang,hóa trang (costume make-up)
-WORD_CH2_HOA_DON,hóa đơn,hóa đơn (bill)
-WORD_CH2_HON_ME,hôn mê,hôn mê (coma)
-WORD_CH2_HON_NHAN,hôn nhân,hôn nhân (marriage)
-WORD_CH2_HOA_SI,họa sĩ,họa sĩ (painter)
-WORD_CH2_HOC_KY,học kỳ,học kỳ (semester)
-WORD_CH2_HOC_PHI,học phí,học phí (tuition)
-WORD_CH2_HOC_SINH,học sinh,học sinh (pupil)
-WORD_CH2_HOC_TRO,học trò,học trò (pupil)
-WORD_CH2_HOC_TAP,học tập,học tập (study)
-WORD_CH2_HO_SO,hồ sơ,hồ sơ (file)
-WORD_CH2_KHOI_DAU,khởi đầu,khởi đầu (beginning)
-WORD_CH2_KHOI_DONG,khởi động,khởi động (warm up)
-WORD_CH2_KINH_DI,kinh dị,kinh dị (horror)
-WORD_CH2_KINH_HOANG,kinh hoàng,kinh hoàng (terror)
-WORD_CH2_KINH_KHUNG,kinh khủng,kinh khủng (horrible)
-WORD_CH2_KINH_TE,kinh tế,kinh tế (economy)
-WORD_CH2_KY_TEN,ký tên,ký tên (sign)
-WORD_CH2_KY_TUC,ký túc,ký túc (dormitory)
-WORD_CH2_KY_UC,ký ức,ký ức (memory)
-WORD_CH2_KICH_BAN,kịch bản,kịch bản (screenplay)
-WORD_CH2_KY_LA,kỳ lạ,kỳ lạ (strange)
-WORD_CH2_KY_THI,kỳ thi,kỳ thi (exam)
-WORD_CH2_KY_SI,kỵ sĩ,kỵ sĩ (knight)
-WORD_CH2_LANG_THANG,lang thang,lang thang (wander)
-WORD_CH2_LUAN_VAN,luận văn,luận văn (thesis)
-WORD_CH2_LUAN_AN,luận án,luận án (dissertation)
-WORD_CH2_LUAN_DIEM,luận điểm,luận điểm (argument)
-WORD_CH2_LUNG_CHUNG,lưng chừng,lưng chừng (halfway)
-WORD_CH2_LUOI_DIEN,lưới điện,lưới điện (power grid)
-WORD_CH2_LUONG_SUC,lượng sức,lượng sức (know one's strength)
-WORD_CH2_LA_MAT,lạ mặt,lạ mặt (unfamiliar)
-WORD_CH2_LANH_LEO,lạnh lẽo,lạnh lẽo (chilly)
-WORD_CH2_LANH_NGUOI,lạnh người,lạnh người (chilled to the bone)
-WORD_CH2_LENH_CAM,lệnh cấm,lệnh cấm (ban)
-WORD_CH2_LUA_DO,lửa đỏ,lửa đỏ (red flames)
-WORD_CH2_LUC_HOC,lực học,lực học (mechanics)
-WORD_CH2_LUC_LUONG,lực lượng,lực lượng (force)
-WORD_CH2_LUC_SI,lực sĩ,lực sĩ (strongman)
-WORD_CH2_MAU_LANH,máu lạnh,máu lạnh (cold-blooded)
-WORD_CH2_MAU_THIT,máu thịt,máu thịt (flesh and blood)
-WORD_CH2_MAY_MOC,máy móc,máy móc (machinery)
-WORD_CH2_MA_SO,mã số,mã số (code number)
-WORD_CH2_ME_CUNG,mê cung,mê cung (maze)
-WORD_CH2_ME_MAN,mê man,mê man (unconscious)
-WORD_CH2_MOC_TUI,móc túi,móc túi (pickpocket)
-WORD_CH2_MUI_DAO,mũi dao,mũi dao (knife tip)
-WORD_CH2_MACH_MAU,mạch máu,mạch máu (blood vessel)
-WORD_CH2_MANG_LUOI,mạng lưới,mạng lưới (network)
-WORD_CH2_MANG_NGUOI,mạng người,mạng người (a human life)
-WORD_CH2_MANG_NHEN,mạng nhện,mạng nhện (cobweb)
-WORD_CH2_MANG_SONG,mạng sống,mạng sống (life)
-WORD_CH2_MAO_HIEM,mạo hiểm,mạo hiểm (risky)
-WORD_CH2_MAT_MA,mật mã,mật mã (code)
-WORD_CH2_MAT_MUI,mặt mũi,mặt mũi (face)
-WORD_CH2_MAT_NA,mặt nạ,mặt nạ (mask)
-WORD_CH2_MAT_TRAN,mặt trận,mặt trận (front line)
-WORD_CH2_MENH_LENH,mệnh lệnh,mệnh lệnh (order)
-WORD_CH2_MONG_DU,mộng du,mộng du (sleepwalk)
-WORD_CH2_MUC_NUOC,mực nước,mực nước (water level)
-WORD_CH2_NGHEN_MACH,nghẽn mạch,nghẽn mạch (clogged artery)
-WORD_CH2_NGUOI_CHET,người chết,người chết (the dead)
-WORD_CH2_NGUOI_HOC,người học,người học (learner)
-WORD_CH2_NGUOI_LA,người lạ,người lạ (stranger)
-WORD_CH2_NGUOI_NGOM,người ngợm,người ngợm (body (and all))
-WORD_CH2_NGUOI_THAN,người thân,người thân (relative)
-WORD_CH2_NGU_GAT,ngủ gật,ngủ gật (doze off)
-WORD_CH2_NGU_DONG,ngủ đông,ngủ đông (hibernate)
-WORD_CH2_NHAN_SAC,nhan sắc,nhan sắc (beauty)
-WORD_CH2_NHAU_THAI,nhau thai,nhau thai (placenta)
-WORD_CH2_NHI_DONG,nhi đồng,nhi đồng (children)
-WORD_CH2_NHA_TAM,nhà tắm,nhà tắm (bathroom)
-WORD_CH2_NHAN_CONG,nhân công,nhân công (labour)
-WORD_CH2_NHAN_VIEN,nhân viên,nhân viên (employee)
-WORD_CH2_NHAN_VAN,nhân văn,nhân văn (humane)
-WORD_CH2_NHAT_KY,nhật ký,nhật ký (diary)
-WORD_CH2_NHAT_THUC,nhật thực,nhật thực (solar eclipse)
-WORD_CH2_NHEN_DOC,nhện độc,nhện độc (poisonous spider)
-WORD_CH2_NHI_PHAN,nhị phân,nhị phân (binary)
-WORD_CH2_NUOC_DA,nước đá,nước đá (ice water)
-WORD_CH2_NA_DONG,nạ dòng,nạ dòng (middle-aged woman)
-WORD_CH2_PHAN_XAC,phân xác,phân xác (dismember)
-WORD_CH2_PHI_TON,phí tổn,phí tổn (expense)
-WORD_CH2_PHONG_NGU,phòng ngủ,phòng ngủ (bedroom)
-WORD_CH2_PHONG_TAM,phòng tắm,phòng tắm (bathroom)
-WORD_CH2_PHAT_DEN,phạt đền,phạt đền (penalty kick)
-WORD_CH2_PHAN_KHOI,phấn khởi,phấn khởi (elated)
-WORD_CH2_PHAN_DAU,phấn đấu,phấn đấu (strive)
-WORD_CH2_PHAN_BAC,phận bạc,phận bạc (ill-fated)
-WORD_CH2_PHAN_SU,phận sự,phận sự (duty)
-WORD_CH2_PHO_XA,phố xá,phố xá (streets)
-WORD_CH2_PHUC_VU,phục vụ,phục vụ (serve)
-WORD_CH2_RUA_TAY,rửa tay,rửa tay (wash hands)
-WORD_CH2_SINH_HOAT,sinh hoạt,sinh hoạt (daily life)
-WORD_CH2_SINH_HOC,sinh học,sinh học (biology)
-WORD_CH2_SINH_MANG,sinh mạng,sinh mạng (a life)
-WORD_CH2_SINH_NHAT,sinh nhật,sinh nhật (birthday)
-WORD_CH2_SINH_TU,sinh tử,sinh tử (life and death)
-WORD_CH2_SINH_VIEN,sinh viên,sinh viên (student)
-WORD_CH2_SACH_VO,sách vở,sách vở (books)
-WORD_CH2_SI_TU,sĩ tử,sĩ tử (exam candidate)
-WORD_CH2_SUNG_NUOC,sũng nước,sũng nước (waterlogged)
-WORD_CH2_SO_CUU,sơ cứu,sơ cứu (first aid)
-WORD_CH2_SAC_BEN,sắc bén,sắc bén (sharp)
-WORD_CH2_SO_HOC,số học,số học (arithmetic)
-WORD_CH2_SO_PHAN,số phận,số phận (fate)
-WORD_CH2_SONG_CHET,sống chết,sống chết (life or death)
-WORD_CH2_SONG_CON,sống còn,sống còn (life-or-death)
-WORD_CH2_SONG_SOT,sống sót,sống sót (survive)
-WORD_CH2_SUC_LUC,sức lực,sức lực (strength)
-WORD_CH2_SU_SONG,sự sống,sự sống (life)
-WORD_CH2_TAY_CHAN,tay chân,tay chân (hands and feet)
-WORD_CH2_THAI_NHI,thai nhi,thai nhi (fetus)
-WORD_CH2_THANG_MAY,thang máy,thang máy (lift)
-WORD_CH2_THAO_THUC,thao thức,thao thức (sleepless)
-WORD_CH2_THI_CU,thi cử,thi cử (exams)
-WORD_CH2_THI_DAU,thi đấu,thi đấu (compete)
-WORD_CH2_THOAI_BAN,thoại bản,thoại bản (script)
-WORD_CH2_THUOC_NGU,thuốc ngủ,thuốc ngủ (sleeping pill)
-WORD_CH2_THUOC_DOC,thuốc độc,thuốc độc (poison)
-WORD_CH2_THANH_PHO,thành phố,thành phố (city)
-WORD_CH2_THAN_NHAN,thân nhân,thân nhân (next of kin)
-WORD_CH2_THAN_PHAN,thân phận,thân phận (status)
-WORD_CH2_THO_CA,thơ ca,thơ ca (poetry)
-WORD_CH2_THUONG_NHAN,thương nhân,thương nhân (merchant)
-WORD_CH2_THUONG_TICH,thương tích,thương tích (injury)
-WORD_CH2_THAN_CHET,thần chết,thần chết (Death)
-WORD_CH2_THAN_KINH,thần kinh,thần kinh (nerves)
-WORD_CH2_THAN_THANH,thần thánh,thần thánh (divine)
-WORD_CH2_THE_THAO,thể thao,thể thao (sport)
-WORD_CH2_THIT_NGUOI,thịt người,thịt người (human flesh)
-WORD_CH2_THUC_TINH,thức tỉnh,thức tỉnh (awaken)
-WORD_CH2_THUC_HANH,thực hành,thực hành (practice)
-WORD_CH2_THUC_TE,thực tế,thực tế (reality)
-WORD_CH2_TIEN_TRI,tiên tri,tiên tri (prophet)
-WORD_CH2_TRANG_PHUC,trang phục,trang phục (clothing)
-WORD_CH2_TRANH_CAI,tranh cãi,tranh cãi (argue)
-WORD_CH2_TRANH_LUAN,tranh luận,tranh luận (debate)
-WORD_CH2_TRI_THUC,tri thức,tri thức (knowledge)
-WORD_CH2_TRUNG_THANH,trung thành,trung thành (loyal)
-WORD_CH2_TRINH_DIEN,trình diện,trình diện (report in)
-WORD_CH2_TRO_CHOI,trò chơi,trò chơi (game)
-WORD_CH2_TRO_DUA,trò đùa,trò đùa (joke)
-WORD_CH2_TRUONG_HOC,trường học,trường học (school)
-WORD_CH2_TRAN_DAU,trận đấu,trận đấu (match)
-WORD_CH2_TRUC_DEM,trực đêm,trực đêm (night duty)
-WORD_CH2_TUOI_THO,tuổi thơ,tuổi thơ (childhood)
-WORD_CH2_TAO_BAO,táo bạo,táo bạo (daring)
-WORD_CH2_TEN_TUOI,tên tuổi,tên tuổi (name)
-WORD_CH2_TICH_TAC,tích tắc,tích tắc (tick-tock)
-WORD_CH2_TUC_TRUC,túc trực,túc trực (keep watch)
-WORD_CH2_TUI_XACH,túi xách,túi xách (handbag)
-WORD_CH2_TAM_TOI,tăm tối,tăm tối (dark)
-WORD_CH2_TAP_THE,tập thể,tập thể (collective)
-WORD_CH2_TAP_TRUNG,tập trung,tập trung (focus)
-WORD_CH2_TAC_NGHEN,tắc nghẽn,tắc nghẽn (blocked)
-WORD_CH2_TAM_MAU,tắm máu,tắm máu (bloodbath)
-WORD_CH2_TAM_RUA,tắm rửa,tắm rửa (wash)
-WORD_CH2_TE_BAO,tế bào,tế bào (cell)
-WORD_CH2_TE_NHI,tế nhị,tế nhị (tactful)
-WORD_CH2_TINH_TAO,tỉnh táo,tỉnh táo (alert)
-WORD_CH2_TOI_MAT,tối mật,tối mật (top secret)
-WORD_CH2_TOI_TAM,tối tăm,tối tăm (gloomy)
-WORD_CH2_TON_THUONG,tổn thương,tổn thương (hurt)
-WORD_CH2_TOI_AC,tội ác,tội ác (crime)
-WORD_CH2_TU_HINH,tử hình,tử hình (execution)
-WORD_CH2_TU_THAN,tử thần,tử thần (death (reaper))
-WORD_CH2_TU_TE,tử tế,tử tế (kind)
-WORD_CH2_VIEN_GACH,viên gạch,viên gạch (brick)
-WORD_CH2_VIEN_PHAN,viên phấn,viên phấn (chalk stick)
-WORD_CH2_VIEN_THUOC,viên thuốc,viên thuốc (pill)
-WORD_CH2_VAO_HOC,vào học,vào học (class starts)
-WORD_CH2_VAN_BAN,văn bản,văn bản (document)
-WORD_CH2_VAN_HOA,văn hóa,văn hóa (culture)
-WORD_CH2_VAN_HOC,văn học,văn học (literature)
-WORD_CH2_VAN_PHONG,văn phòng,văn phòng (office)
-WORD_CH2_VO_KICH,vở kịch,vở kịch (play (drama))
-WORD_CH2_VU_AN,vụ án,vụ án (case)
-WORD_CH2_XA_TOI,xá tội,xá tội (pardon)
-WORD_CH2_XAC_CHET,xác chết,xác chết (corpse)
-WORD_CH2_XACH_TAY,xách tay,xách tay (carry by hand)
-WORD_CH2_AC_MONG,ác mộng,ác mộng (nightmare)
-WORD_CH2_AN_MANG,án mạng,án mạng (murder case)
-WORD_CH2_AN_TU,án tử,án tử (death sentence)
-WORD_CH2_OC_CHO,óc chó,óc chó (walnut)
-WORD_CH2_DAI_LUNG,đai lưng,đai lưng (belt)
-WORD_CH2_DIEN_VAO,điền vào,điền vào (fill in)
-WORD_CH2_DIEM_DANH,điểm danh,điểm danh (roll call)
-WORD_CH2_DIEM_SO,điểm số,điểm số (score)
-WORD_CH2_DIEN_THOAI,điện thoại,điện thoại (phone)
-WORD_CH2_DUOI_SUC,đuối sức,đuối sức (exhausted)
-WORD_CH2_DA_BONG,đá bóng,đá bóng (football)
-WORD_CH2_DEM_TRUONG,đêm trường,đêm trường (long night)
-WORD_CH2_DONG_NGUOI,đông người,đông người (crowded)
-WORD_CH2_DUA_GION,đùa giỡn,đùa giỡn (joke around)
-WORD_CH2_DON_DOC,đơn độc,đơn độc (alone)
-WORD_CH2_DAC_DIEN,đạc điền,đạc điền (land survey)
-WORD_CH2_DAT_DAI,đất đai,đất đai (land)
-WORD_CH2_DAU_GIA,đấu giá,đấu giá (auction)
-WORD_CH2_DAU_TRANH,đấu tranh,đấu tranh (struggle)
-WORD_CH2_DAU_TRUONG,đấu trường,đấu trường (arena)
-WORD_CH2_DAU_TIEN,đầu tiên,đầu tiên (first)
-WORD_CH2_DAU_OC,đầu óc,đầu óc (mind)
-WORD_CH2_DEN_MANG,đền mạng,đền mạng (pay with one's life)
-WORD_CH2_DO_MAT,đỏ mặt,đỏ mặt (blush)
-WORD_CH2_DO_AN,đồ án,đồ án (project)
-WORD_CH2_DO_DAC,đồ đạc,đồ đạc (belongings)
-WORD_CH2_DONG_HO,đồng hồ,đồng hồ (clock)
-WORD_CH2_DO_AM,độ ẩm,độ ẩm (humidity)
-WORD_CH2_DOC_AC,độc ác,độc ác (cruel)
-WORD_CH2_DONG_DAT,động đất,động đất (earthquake)
-WORD_CH2_UOT_SUNG,ướt sũng,ướt sũng (soaked)
-WORD_CH2_AM_UOT,ẩm ướt,ẩm ướt (damp)
-WORD_CH2_UC_CHE,ức chế,ức chế (frustrated)
-UI_CH2_END,Hết chương 2,End of chapter 2
-UI_CH2_SHOWER_RULE,"Chọn có xả nước trong 2 phút tới hay không. Đã chọn thì bắt buộc làm theo. Nếu không, chết.","Run the water for the next 2 minutes? Whatever you choose, you must do it. Otherwise, you die."
-UI_CH2_SHOWER_YES,CÓ,YES
-UI_CH2_SHOWER_NO,KHÔNG,NO
-UI_CH2_SHOWER_TEMP,Nhiệt độ: %d °C,Temperature: %d °C
-UI_CH2_SHOWER_PROGRESS,Đã tắm %d/25 phút,Showered %d/25 min
-UI_CH2_CHAIN_DEAF,Họ không nghe thấy bạn,They can't hear you
-PROMPT_CH2_TAKE_RAG,Lấy giẻ lau,Take the rag
-PROMPT_CH2_TAKE_TOWEL,Lấy khăn tắm,Take the towel
-PROMPT_CH2_TAKE_SHIRT,Lấy áo của Việt,Take Việt's shirt
-PROMPT_CH2_GAG,Bịt miệng,Gag
-PROMPT_CH2_BASH_DOOR,Đẩy cửa,Shove the door
-PROMPT_CH2_WIPE,Lau màn hình,Wipe the screen
-CCTV_CH2_CAM_310,CAM 310 · nhà B,CAM 310 · Bldg B
-CCTV_CH2_CAM_HALL_310,CAM T3 · hành lang 310,CAM F3 · corridor 310
 "UI_CHAIN_TYPE_OPEN","Enter: gõ từ","Enter: type a word"
 "UI_TEXT_ENTRY_CONTROLS","Enter: gửi · Esc: hủy","Enter: send · Esc: cancel"
 "UI_PREDICTION_RECIPIENT","Nhắn cho %s","Message to %s"
@@ -931,3 +600,344 @@ PROMPT_CH4_DESK,Mở sổ quy tắc,Open the rule book
 PROMPT_CH4_MAP,Xem sơ đồ,Look at the map
 PROMPT_CH4_DIARY,Đọc sổ trực,Read the night log
 PROMPT_CH4_BACK_DOOR,Mở / đóng cửa,Open / close the door
+NAME_CH2_MINH_NHAT,Minh Nhật · 203,Minh Nhật · 203
+NAME_CH2_NGU,Ngọc Ngư · 401 nhà A,Ngọc Ngư · A-401
+NAME_CH2_TRUNG,Tôi,Me
+SPK_CH2_R2_END,Quy tắc vòng hai kết thúc. Số người sống sót hiện tại: hai mươi tám người.,Round two is over. Students still alive: twenty-eight.
+CHAT_CH2_N_28,Hai mươi tám… Cả trường mấy nghìn người mà còn hai mươi tám.,"Twenty-eight… Thousands of students, and twenty-eight left."
+SPK_CH2_R3_INTRO,Công việc kiểm tra phòng kết thúc. Đến giờ giải trí rồi. Chúng ta chơi nối từ nhé.,The room check is over. Time for some fun. Let's play a word chain.
+RULE_CH2_R3_1,"Bốn người trong mỗi phòng bắt buộc tham gia. Nối lần lượt theo chiều kim đồng hồ, mỗi lượt dưới mười lăm giây.","All four people in each room must play. Take turns clockwise, under fifteen seconds a turn."
+RULE_CH2_R3_2,"Từ nối là từ hai tiếng. Tiếng đầu phải trùng tiếng cuối của từ trước, đúng cả dấu.","Each word has two syllables. Its first syllable must match the last syllable of the word before, tone and all."
+RULE_CH2_R3_3,"Trong ba lượt liền nhau không được lặp từ. Ai không nối được, chết.","No word may repeat within three turns in a row. Whoever cannot go on, dies."
+CHAT_CH2_NGU_FOUR,Bốn người? Phòng mình chỉ còn mỗi mình sống mà…,Four people? I'm the only one alive in my room…
+CHAT_CH2_N_SAT_UP,Bạn cùng phòng tôi… ngồi dậy rồi. Nó đang nhìn tôi.,My roommates… they sat up. They're looking at me.
+CHAT_CH2_NGU_SAT_UP,Bên mình cũng vậy. Ba đứa. Mắt trắng dã.,Same here. All three. Their eyes are white.
+THINK_CH2_VO,Vở… vở gì… nghĩ đi…,Vở… vở what… think…
+CHAT_CH2_N_KEEP_UP,Đừng nghĩ lâu. Mười lăm giây trôi nhanh lắm.,Don't think too long. Fifteen seconds goes fast.
+CHAT_CH2_NGU_CHEAT,Nó gục rồi lại ngồi dậy… Chúng nó chết rồi thì sợ gì thua. Chỉ có tụi mình là không được sai.,"It fell and sat right back up… They're already dead, losing means nothing to them. We're the only ones who can't slip."
+CHAT_CH2_N_HOUR,Một tiếng. Tụi mình phải đúng suốt một tiếng.,An hour. We have to be right for a whole hour.
+CHAT_CH2_N_310,Phòng 310… Cậu ấy không nói kịp. Đừng nhìn nữa.,Room 310… He didn't answer in time. Don't watch.
+CHAT_CH2_NGU_CLUE,"Mình vừa nối vừa kéo tay đứa cùng phòng. Nó chẳng phản ứng gì, chỉ lo nối từ.","I tugged my roommate's arm while we played. It didn't react at all, it just kept chaining words."
+CHAT_CH2_N_BRAVE,Cậu… gan thật đấy.,You're… really brave.
+CHAT_CH2_N_LOOP,"Tôi nghĩ ra một vòng không bao giờ hết: học sinh, sinh viên, viên phấn, phấn đấu, đấu tranh, tranh luận, luận văn, văn học… rồi lại học sinh. Lái về chữ ""học"" rồi cứ thế lặp.","I found a loop that never ends: học sinh, sinh viên, viên phấn, phấn đấu, đấu tranh, tranh luận, luận văn, văn học… and back to học sinh. Steer to ""học"" and repeat."
+CHAT_CH2_NGU_LOOP,Không cần nghĩ nữa. Cứ lặp thôi.,No more thinking. Just repeat it.
+CHAT_CH2_N_HOW,Trung? Bên cậu sao im thế? Tôi lặp vòng của tôi mà tụi nó vẫn nối theo được…,Trung? Why is it so quiet on your end? I'm repeating my loop and they just keep following it…
+CHAT_CH2_NGU_HOW,Bên mình cũng vậy. Nó nối còn nhanh hơn mình. Cậu làm cách nào?,Same here. It chains even faster than I do. How are you doing it?
+CHOICE_CH2_TELL_1,"Bịt miệng cả ba đứa lại, giẻ, khăn hay áo gì cũng được. Rồi cứ lặp vòng từ.","Gag all three of them, a rag, a towel, a shirt, anything. Then just repeat the loop."
+CHOICE_CH2_TELL_2,"Lặp vòng từ nhanh hơn tụi nó, đừng để tụi nó kịp nối.","Repeat the loop faster than they can, don't give them time to chain."
+CHOICE_CH2_TELL_3,"Bịt miệng một đứa thôi, rồi gõ từ thật khó cho hai đứa kia.","Gag just one, then throw really hard words at the other two."
+CHOICE_CH2_TELL_4,Đừng nối nữa. Im lặng cho tới hết giờ.,Stop chaining. Stay silent until time runs out.
+CHAT_CH2_N_TOLD,Bịt… được rồi. Nó chỉ còn ú ớ. Tôi lặp tiếp đây.,Gagged… okay. It can only mumble now. Back to the loop.
+CHAT_CH2_NGU_TOLD,"Xong rồi. Cái khăn ướt sũng… Cảm ơn nhé, Trung.","Done. The towel's soaked through… Thanks, Trung."
+CHAT_CH2_N_CAUGHT,Trung… không được… tụi nó đứng dậy hết rồi…,Trung… it's not working… they're all standing up…
+CHAT_CH2_N_FEW,Nhóm im hết rồi. Chỉ còn tín hiệu của ba đứa mình.,The group's gone quiet. Only our three signals left.
+SPK_CH2_R3_END,Quy tắc vòng ba kết thúc. Số người sống sót hiện tại: năm người.,Round three is over. Students still alive: five.
+CHAT_CH2_NGU_FIVE,Năm người… Cả trường còn năm người.,"Five… The whole school, five people."
+SPK_CH2_R4_INTRO,Trò chơi gắn kết tình bạn kết thúc. Đến giờ tắm nước nóng cho thoải mái rồi.,The friendship game is over. Time for a nice hot shower.
+RULE_CH2_R4_1,Mời mọi người vào nhà vệ sinh. Vòng này không có yêu cầu nào khác: chỉ cần thời gian xả nước vượt quá hai mươi lăm phút.,"Everyone, please go to your bathroom. No other requirement this round: the water must run for more than twenty-five minutes."
+SPK_CH2_R4_ENJOY,Chúc các bạn tắm vui vẻ.,Enjoy your shower.
+THINK_CH2_DOOR,Kẹt rồi… cửa phồng hết lên.,It's stuck… the door's all swollen.
+CHAT_CH2_NGU_MUST,"Nghĩa là nếu chọn xả, bao nhiêu độ cũng phải đứng chịu hai phút.","So if we pick yes, we stand under it for two minutes whatever the temperature."
+CHAT_CH2_N_WAIT,Khoan xả đã. Xem nó ra số gì.,Don't run it yet. Let's see what numbers it gives.
+CHAT_CH2_N_SEVENTY,Sáu mươi bảy độ… Chọn bừa là chín người.,Sixty-seven degrees… Pick at random and you're cooked.
+CHAT_CH2_NGU_PATTERN,"Không thể là ngẫu nhiên. Luật nào cũng có kẽ hở, mấy vòng trước đều vậy.",It can't be random. Every rule had a way out so far.
+CHAT_CH2_N_STEAM,Hơi nước mù hết màn hình rồi. Lau đi mà đọc.,Steam's all over the screen. Wipe it to read.
+CHAT_CH2_N_ASK,"Trung, cậu tắm ba lượt liền mà không sao. Cậu tìm ra quy luật rồi phải không? Bên tôi ba lần gần nhất: 38, 16, 75. Lượt tới tôi chọn gì? Nhắn cho tôi.","Trung, three showers in a row and you're fine. You found the rule, didn't you? My last three: 38, 16, 75. What do I pick next? Text me."
+CHAT_CH2_N_OK,…Hai mươi ba độ. Sống rồi. Cảm ơn cậu.,…Twenty-three degrees. I'm alive. Thank you.
+CHAT_CH2_N_SCREAM,"Nóng! Trung, cậu nhắn sai rồi…!","It burns! Trung, you got it wrong…!"
+CHAT_CH2_NGU_ASK,"Loa điện thoại mình bị nước vào rồi… Trung! Bên mình: 74, 15, 62. Lượt tới chọn gì? Nhắn nhanh lên!","Water got into my phone… Trung! Mine: 74, 15, 62. What do I pick next? Text me, quick!"
+CHAT_CH2_NGU_SAVED,"…Tám mươi mốt độ. May mà mình không xả. Cảm ơn cậu, Trung.","…Eighty-one degrees. Good thing I didn't run it. Thank you, Trung."
+CHAT_CH2_NGU_SCREAM,Nóng! Nóng quá… Trung…!,It burns! It burns… Trung…!
+SPK_CH2_R4_END,Quy tắc vòng bốn kết thúc. Số người sống sót hiện tại: ba người.,Round four is over. Students still alive: three.
+CHAT_CH2_N_THREE,Ba người. Cả trường… chỉ còn ba đứa mình.,Three. The whole school… just the three of us.
+THINK_CH2_END,Còn một giờ nữa.,One more hour.
+DEATH_CH2_CHAIN_WRONG,Bạn đã nối sai.,You chained the wrong word.
+DEATH_CH2_CHAIN_TIMEOUT,Bạn không nối kịp trong mười lăm giây.,You didn't answer within fifteen seconds.
+DEATH_CH2_SCALDED,Nước sôi xối xuống người bạn.,Boiling water poured over you.
+DEATH_CH2_SHOWER_BROKEN,Bạn đã chọn xả nước nhưng bước ra khỏi buồng tắm.,"You chose to run the water, then stepped out."
+DEATH_CH2_NO_CHOICE,Bạn không chọn khi đồng hồ đếm hết.,You didn't choose before the countdown ended.
+DEATH_CH2_SHORT_SHOWER,"Tới tám giờ, bạn vẫn chưa tắm đủ hai mươi lăm phút.","At eight, you hadn't showered for twenty-five minutes."
+DEATH_CH2_LOST_NHAT,Minh Nhật đã chết vì tin nhắn của bạn.,Minh Nhật died because of your message.
+DEATH_CH2_LOST_NGU,Ngọc Ngư đã chết vì tin nhắn của bạn.,Ngọc Ngư died because of your message.
+DEATH_CH2_LOST_FRIENDS,Minh Nhật và Ngọc Ngư đã chết vì tin nhắn của bạn.,Minh Nhật and Ngọc Ngư died because of your message.
+WORD_CH2_BAO_CHUA,bào chữa,bào chữa (defend)
+WORD_CH2_BEN_LUA,bén lửa,bén lửa (catch fire)
+WORD_CH2_BONG_TOI,bóng tối,bóng tối (darkness)
+WORD_CH2_BAC_MENH,bạc mệnh,bạc mệnh (ill-fated)
+WORD_CH2_BAO_LUC,bạo lực,bạo lực (violence)
+WORD_CH2_BAN_THAN,bản thân,bản thân (oneself)
+WORD_CH2_BAN_AN,bản án,bản án (sentence (court))
+WORD_CH2_BAN_DO,bản đồ,bản đồ (map)
+WORD_CH2_CA_DEM,ca đêm,ca đêm (night shift)
+WORD_CH2_CHAY_NHA,cháy nhà,cháy nhà (house fire)
+WORD_CH2_CHAN_DUNG,chân dung,chân dung (portrait)
+WORD_CH2_CHO_DU,chó dữ,chó dữ (fierce dog)
+WORD_CH2_CHOI_DUA,chơi đùa,chơi đùa (play around)
+WORD_CH2_CHUONG_TRINH,chương trình,chương trình (programme)
+WORD_CH2_CHE_DO,chế độ,chế độ (regime)
+WORD_CH2_CHET_CHOC,chết chóc,chết chóc (carnage)
+WORD_CH2_CHET_NGUOI,chết người,chết người (deadly)
+WORD_CH2_CHET_DUOI,chết đuối,chết đuối (drown)
+WORD_CH2_CHI_HUY,chỉ huy,chỉ huy (command)
+WORD_CH2_CHUNG_MUC,chừng mực,chừng mực (moderation)
+WORD_CH2_CHUA_CHAY,chữa cháy,chữa cháy (firefighting)
+WORD_CH2_CUNG_CAP,cung cấp,cung cấp (supply)
+WORD_CH2_CAI_NHAU,cãi nhau,cãi nhau (quarrel)
+WORD_CH2_CON_SONG,còn sống,còn sống (still alive)
+WORD_CH2_CONG_VIEN,công viên,công viên (park)
+WORD_CH2_CONG_VAN,công văn,công văn (official letter)
+WORD_CH2_CAM_KY,cấm kỵ,cấm kỵ (taboo)
+WORD_CH2_CAP_CUU,cấp cứu,cấp cứu (emergency)
+WORD_CH2_CUU_SONG,cứu sống,cứu sống (save a life)
+WORD_CH2_CU_CHI,cử chỉ,cử chỉ (gesture)
+WORD_CH2_DANH_SACH,danh sách,danh sách (list)
+WORD_CH2_DAO_GAM,dao găm,dao găm (dagger)
+WORD_CH2_DIEN_MAO,diện mạo,diện mạo (appearance)
+WORD_CH2_DU_HOC,du học,du học (study abroad)
+WORD_CH2_DUNG_NHAN,dung nhan,dung nhan (looks)
+WORD_CH2_DONG_MAU,dòng máu,dòng máu (bloodline)
+WORD_CH2_DANG_NGUOI,dạng người,dạng người (human-shaped)
+WORD_CH2_DI_DANG,dị dạng,dị dạng (deformed)
+WORD_CH2_DOI_NUOC,dội nước,dội nước (pour water)
+WORD_CH2_DU_DOI,dữ dội,dữ dội (violent)
+WORD_CH2_GIA_LANH,giá lạnh,giá lạnh (freezing)
+WORD_CH2_GION_MAT,giỡn mặt,giỡn mặt (mock)
+WORD_CH2_GAM_VAO,găm vào,găm vào (stab into)
+WORD_CH2_GACH_DA,gạch đá,gạch đá (bricks and stones)
+WORD_CH2_GAT_DAU,gật đầu,gật đầu (nod)
+WORD_CH2_HIEM_HOA,hiểm họa,hiểm họa (danger)
+WORD_CH2_HOANG_HON,hoàng hôn,hoàng hôn (dusk)
+WORD_CH2_HOAT_DONG,hoạt động,hoạt động (activity)
+WORD_CH2_HUY_CHUONG,huy chương,huy chương (medal)
+WORD_CH2_HANH_LANG,hành lang,hành lang (corridor)
+WORD_CH2_HINH_PHAT,hình phạt,hình phạt (punishment)
+WORD_CH2_HOA_HOC,hóa học,hóa học (chemistry)
+WORD_CH2_HOA_TRANG,hóa trang,hóa trang (costume make-up)
+WORD_CH2_HOA_DON,hóa đơn,hóa đơn (bill)
+WORD_CH2_HON_ME,hôn mê,hôn mê (coma)
+WORD_CH2_HON_NHAN,hôn nhân,hôn nhân (marriage)
+WORD_CH2_HOA_SI,họa sĩ,họa sĩ (painter)
+WORD_CH2_HOC_KY,học kỳ,học kỳ (semester)
+WORD_CH2_HOC_PHI,học phí,học phí (tuition)
+WORD_CH2_HOC_SINH,học sinh,học sinh (pupil)
+WORD_CH2_HOC_TRO,học trò,học trò (pupil)
+WORD_CH2_HOC_TAP,học tập,học tập (study)
+WORD_CH2_HO_SO,hồ sơ,hồ sơ (file)
+WORD_CH2_KHOI_DAU,khởi đầu,khởi đầu (beginning)
+WORD_CH2_KHOI_DONG,khởi động,khởi động (warm up)
+WORD_CH2_KINH_DI,kinh dị,kinh dị (horror)
+WORD_CH2_KINH_HOANG,kinh hoàng,kinh hoàng (terror)
+WORD_CH2_KINH_KHUNG,kinh khủng,kinh khủng (horrible)
+WORD_CH2_KINH_TE,kinh tế,kinh tế (economy)
+WORD_CH2_KY_TEN,ký tên,ký tên (sign)
+WORD_CH2_KY_TUC,ký túc,ký túc (dormitory)
+WORD_CH2_KY_UC,ký ức,ký ức (memory)
+WORD_CH2_KICH_BAN,kịch bản,kịch bản (screenplay)
+WORD_CH2_KY_LA,kỳ lạ,kỳ lạ (strange)
+WORD_CH2_KY_THI,kỳ thi,kỳ thi (exam)
+WORD_CH2_KY_SI,kỵ sĩ,kỵ sĩ (knight)
+WORD_CH2_LANG_THANG,lang thang,lang thang (wander)
+WORD_CH2_LUAN_VAN,luận văn,luận văn (thesis)
+WORD_CH2_LUAN_AN,luận án,luận án (dissertation)
+WORD_CH2_LUAN_DIEM,luận điểm,luận điểm (argument)
+WORD_CH2_LUNG_CHUNG,lưng chừng,lưng chừng (halfway)
+WORD_CH2_LUOI_DIEN,lưới điện,lưới điện (power grid)
+WORD_CH2_LUONG_SUC,lượng sức,lượng sức (know one's strength)
+WORD_CH2_LA_MAT,lạ mặt,lạ mặt (unfamiliar)
+WORD_CH2_LANH_LEO,lạnh lẽo,lạnh lẽo (chilly)
+WORD_CH2_LANH_NGUOI,lạnh người,lạnh người (chilled to the bone)
+WORD_CH2_LENH_CAM,lệnh cấm,lệnh cấm (ban)
+WORD_CH2_LUA_DO,lửa đỏ,lửa đỏ (red flames)
+WORD_CH2_LUC_HOC,lực học,lực học (mechanics)
+WORD_CH2_LUC_LUONG,lực lượng,lực lượng (force)
+WORD_CH2_LUC_SI,lực sĩ,lực sĩ (strongman)
+WORD_CH2_MAU_LANH,máu lạnh,máu lạnh (cold-blooded)
+WORD_CH2_MAU_THIT,máu thịt,máu thịt (flesh and blood)
+WORD_CH2_MAY_MOC,máy móc,máy móc (machinery)
+WORD_CH2_MA_SO,mã số,mã số (code number)
+WORD_CH2_ME_CUNG,mê cung,mê cung (maze)
+WORD_CH2_ME_MAN,mê man,mê man (unconscious)
+WORD_CH2_MOC_TUI,móc túi,móc túi (pickpocket)
+WORD_CH2_MUI_DAO,mũi dao,mũi dao (knife tip)
+WORD_CH2_MACH_MAU,mạch máu,mạch máu (blood vessel)
+WORD_CH2_MANG_LUOI,mạng lưới,mạng lưới (network)
+WORD_CH2_MANG_NGUOI,mạng người,mạng người (a human life)
+WORD_CH2_MANG_NHEN,mạng nhện,mạng nhện (cobweb)
+WORD_CH2_MANG_SONG,mạng sống,mạng sống (life)
+WORD_CH2_MAO_HIEM,mạo hiểm,mạo hiểm (risky)
+WORD_CH2_MAT_MA,mật mã,mật mã (code)
+WORD_CH2_MAT_MUI,mặt mũi,mặt mũi (face)
+WORD_CH2_MAT_NA,mặt nạ,mặt nạ (mask)
+WORD_CH2_MAT_TRAN,mặt trận,mặt trận (front line)
+WORD_CH2_MENH_LENH,mệnh lệnh,mệnh lệnh (order)
+WORD_CH2_MONG_DU,mộng du,mộng du (sleepwalk)
+WORD_CH2_MUC_NUOC,mực nước,mực nước (water level)
+WORD_CH2_NGHEN_MACH,nghẽn mạch,nghẽn mạch (clogged artery)
+WORD_CH2_NGUOI_CHET,người chết,người chết (the dead)
+WORD_CH2_NGUOI_HOC,người học,người học (learner)
+WORD_CH2_NGUOI_LA,người lạ,người lạ (stranger)
+WORD_CH2_NGUOI_NGOM,người ngợm,người ngợm (body (and all))
+WORD_CH2_NGUOI_THAN,người thân,người thân (relative)
+WORD_CH2_NGU_GAT,ngủ gật,ngủ gật (doze off)
+WORD_CH2_NGU_DONG,ngủ đông,ngủ đông (hibernate)
+WORD_CH2_NHAN_SAC,nhan sắc,nhan sắc (beauty)
+WORD_CH2_NHAU_THAI,nhau thai,nhau thai (placenta)
+WORD_CH2_NHI_DONG,nhi đồng,nhi đồng (children)
+WORD_CH2_NHA_TAM,nhà tắm,nhà tắm (bathroom)
+WORD_CH2_NHAN_CONG,nhân công,nhân công (labour)
+WORD_CH2_NHAN_VIEN,nhân viên,nhân viên (employee)
+WORD_CH2_NHAN_VAN,nhân văn,nhân văn (humane)
+WORD_CH2_NHAT_KY,nhật ký,nhật ký (diary)
+WORD_CH2_NHAT_THUC,nhật thực,nhật thực (solar eclipse)
+WORD_CH2_NHEN_DOC,nhện độc,nhện độc (poisonous spider)
+WORD_CH2_NHI_PHAN,nhị phân,nhị phân (binary)
+WORD_CH2_NUOC_DA,nước đá,nước đá (ice water)
+WORD_CH2_NA_DONG,nạ dòng,nạ dòng (middle-aged woman)
+WORD_CH2_PHAN_XAC,phân xác,phân xác (dismember)
+WORD_CH2_PHI_TON,phí tổn,phí tổn (expense)
+WORD_CH2_PHONG_NGU,phòng ngủ,phòng ngủ (bedroom)
+WORD_CH2_PHONG_TAM,phòng tắm,phòng tắm (bathroom)
+WORD_CH2_PHAT_DEN,phạt đền,phạt đền (penalty kick)
+WORD_CH2_PHAN_KHOI,phấn khởi,phấn khởi (elated)
+WORD_CH2_PHAN_DAU,phấn đấu,phấn đấu (strive)
+WORD_CH2_PHAN_BAC,phận bạc,phận bạc (ill-fated)
+WORD_CH2_PHAN_SU,phận sự,phận sự (duty)
+WORD_CH2_PHO_XA,phố xá,phố xá (streets)
+WORD_CH2_PHUC_VU,phục vụ,phục vụ (serve)
+WORD_CH2_RUA_TAY,rửa tay,rửa tay (wash hands)
+WORD_CH2_SINH_HOAT,sinh hoạt,sinh hoạt (daily life)
+WORD_CH2_SINH_HOC,sinh học,sinh học (biology)
+WORD_CH2_SINH_MANG,sinh mạng,sinh mạng (a life)
+WORD_CH2_SINH_NHAT,sinh nhật,sinh nhật (birthday)
+WORD_CH2_SINH_TU,sinh tử,sinh tử (life and death)
+WORD_CH2_SINH_VIEN,sinh viên,sinh viên (student)
+WORD_CH2_SACH_VO,sách vở,sách vở (books)
+WORD_CH2_SI_TU,sĩ tử,sĩ tử (exam candidate)
+WORD_CH2_SUNG_NUOC,sũng nước,sũng nước (waterlogged)
+WORD_CH2_SO_CUU,sơ cứu,sơ cứu (first aid)
+WORD_CH2_SAC_BEN,sắc bén,sắc bén (sharp)
+WORD_CH2_SO_HOC,số học,số học (arithmetic)
+WORD_CH2_SO_PHAN,số phận,số phận (fate)
+WORD_CH2_SONG_CHET,sống chết,sống chết (life or death)
+WORD_CH2_SONG_CON,sống còn,sống còn (life-or-death)
+WORD_CH2_SONG_SOT,sống sót,sống sót (survive)
+WORD_CH2_SUC_LUC,sức lực,sức lực (strength)
+WORD_CH2_SU_SONG,sự sống,sự sống (life)
+WORD_CH2_TAY_CHAN,tay chân,tay chân (hands and feet)
+WORD_CH2_THAI_NHI,thai nhi,thai nhi (fetus)
+WORD_CH2_THANG_MAY,thang máy,thang máy (lift)
+WORD_CH2_THAO_THUC,thao thức,thao thức (sleepless)
+WORD_CH2_THI_CU,thi cử,thi cử (exams)
+WORD_CH2_THI_DAU,thi đấu,thi đấu (compete)
+WORD_CH2_THOAI_BAN,thoại bản,thoại bản (script)
+WORD_CH2_THUOC_NGU,thuốc ngủ,thuốc ngủ (sleeping pill)
+WORD_CH2_THUOC_DOC,thuốc độc,thuốc độc (poison)
+WORD_CH2_THANH_PHO,thành phố,thành phố (city)
+WORD_CH2_THAN_NHAN,thân nhân,thân nhân (next of kin)
+WORD_CH2_THAN_PHAN,thân phận,thân phận (status)
+WORD_CH2_THO_CA,thơ ca,thơ ca (poetry)
+WORD_CH2_THUONG_NHAN,thương nhân,thương nhân (merchant)
+WORD_CH2_THUONG_TICH,thương tích,thương tích (injury)
+WORD_CH2_THAN_CHET,thần chết,thần chết (Death)
+WORD_CH2_THAN_KINH,thần kinh,thần kinh (nerves)
+WORD_CH2_THAN_THANH,thần thánh,thần thánh (divine)
+WORD_CH2_THE_THAO,thể thao,thể thao (sport)
+WORD_CH2_THIT_NGUOI,thịt người,thịt người (human flesh)
+WORD_CH2_THUC_TINH,thức tỉnh,thức tỉnh (awaken)
+WORD_CH2_THUC_HANH,thực hành,thực hành (practice)
+WORD_CH2_THUC_TE,thực tế,thực tế (reality)
+WORD_CH2_TIEN_TRI,tiên tri,tiên tri (prophet)
+WORD_CH2_TRANG_PHUC,trang phục,trang phục (clothing)
+WORD_CH2_TRANH_CAI,tranh cãi,tranh cãi (argue)
+WORD_CH2_TRANH_LUAN,tranh luận,tranh luận (debate)
+WORD_CH2_TRI_THUC,tri thức,tri thức (knowledge)
+WORD_CH2_TRUNG_THANH,trung thành,trung thành (loyal)
+WORD_CH2_TRINH_DIEN,trình diện,trình diện (report in)
+WORD_CH2_TRO_CHOI,trò chơi,trò chơi (game)
+WORD_CH2_TRO_DUA,trò đùa,trò đùa (joke)
+WORD_CH2_TRUONG_HOC,trường học,trường học (school)
+WORD_CH2_TRAN_DAU,trận đấu,trận đấu (match)
+WORD_CH2_TRUC_DEM,trực đêm,trực đêm (night duty)
+WORD_CH2_TUOI_THO,tuổi thơ,tuổi thơ (childhood)
+WORD_CH2_TAO_BAO,táo bạo,táo bạo (daring)
+WORD_CH2_TEN_TUOI,tên tuổi,tên tuổi (name)
+WORD_CH2_TICH_TAC,tích tắc,tích tắc (tick-tock)
+WORD_CH2_TUC_TRUC,túc trực,túc trực (keep watch)
+WORD_CH2_TUI_XACH,túi xách,túi xách (handbag)
+WORD_CH2_TAM_TOI,tăm tối,tăm tối (dark)
+WORD_CH2_TAP_THE,tập thể,tập thể (collective)
+WORD_CH2_TAP_TRUNG,tập trung,tập trung (focus)
+WORD_CH2_TAC_NGHEN,tắc nghẽn,tắc nghẽn (blocked)
+WORD_CH2_TAM_MAU,tắm máu,tắm máu (bloodbath)
+WORD_CH2_TAM_RUA,tắm rửa,tắm rửa (wash)
+WORD_CH2_TE_BAO,tế bào,tế bào (cell)
+WORD_CH2_TE_NHI,tế nhị,tế nhị (tactful)
+WORD_CH2_TINH_TAO,tỉnh táo,tỉnh táo (alert)
+WORD_CH2_TOI_MAT,tối mật,tối mật (top secret)
+WORD_CH2_TOI_TAM,tối tăm,tối tăm (gloomy)
+WORD_CH2_TON_THUONG,tổn thương,tổn thương (hurt)
+WORD_CH2_TOI_AC,tội ác,tội ác (crime)
+WORD_CH2_TU_HINH,tử hình,tử hình (execution)
+WORD_CH2_TU_THAN,tử thần,tử thần (death (reaper))
+WORD_CH2_TU_TE,tử tế,tử tế (kind)
+WORD_CH2_VIEN_GACH,viên gạch,viên gạch (brick)
+WORD_CH2_VIEN_PHAN,viên phấn,viên phấn (chalk stick)
+WORD_CH2_VIEN_THUOC,viên thuốc,viên thuốc (pill)
+WORD_CH2_VAO_HOC,vào học,vào học (class starts)
+WORD_CH2_VAN_BAN,văn bản,văn bản (document)
+WORD_CH2_VAN_HOA,văn hóa,văn hóa (culture)
+WORD_CH2_VAN_HOC,văn học,văn học (literature)
+WORD_CH2_VAN_PHONG,văn phòng,văn phòng (office)
+WORD_CH2_VO_KICH,vở kịch,vở kịch (play (drama))
+WORD_CH2_VU_AN,vụ án,vụ án (case)
+WORD_CH2_XA_TOI,xá tội,xá tội (pardon)
+WORD_CH2_XAC_CHET,xác chết,xác chết (corpse)
+WORD_CH2_XACH_TAY,xách tay,xách tay (carry by hand)
+WORD_CH2_AC_MONG,ác mộng,ác mộng (nightmare)
+WORD_CH2_AN_MANG,án mạng,án mạng (murder case)
+WORD_CH2_AN_TU,án tử,án tử (death sentence)
+WORD_CH2_OC_CHO,óc chó,óc chó (walnut)
+WORD_CH2_DAI_LUNG,đai lưng,đai lưng (belt)
+WORD_CH2_DIEN_VAO,điền vào,điền vào (fill in)
+WORD_CH2_DIEM_DANH,điểm danh,điểm danh (roll call)
+WORD_CH2_DIEM_SO,điểm số,điểm số (score)
+WORD_CH2_DIEN_THOAI,điện thoại,điện thoại (phone)
+WORD_CH2_DUOI_SUC,đuối sức,đuối sức (exhausted)
+WORD_CH2_DA_BONG,đá bóng,đá bóng (football)
+WORD_CH2_DEM_TRUONG,đêm trường,đêm trường (long night)
+WORD_CH2_DONG_NGUOI,đông người,đông người (crowded)
+WORD_CH2_DUA_GION,đùa giỡn,đùa giỡn (joke around)
+WORD_CH2_DON_DOC,đơn độc,đơn độc (alone)
+WORD_CH2_DAC_DIEN,đạc điền,đạc điền (land survey)
+WORD_CH2_DAT_DAI,đất đai,đất đai (land)
+WORD_CH2_DAU_GIA,đấu giá,đấu giá (auction)
+WORD_CH2_DAU_TRANH,đấu tranh,đấu tranh (struggle)
+WORD_CH2_DAU_TRUONG,đấu trường,đấu trường (arena)
+WORD_CH2_DAU_TIEN,đầu tiên,đầu tiên (first)
+WORD_CH2_DAU_OC,đầu óc,đầu óc (mind)
+WORD_CH2_DEN_MANG,đền mạng,đền mạng (pay with one's life)
+WORD_CH2_DO_MAT,đỏ mặt,đỏ mặt (blush)
+WORD_CH2_DO_AN,đồ án,đồ án (project)
+WORD_CH2_DO_DAC,đồ đạc,đồ đạc (belongings)
+WORD_CH2_DONG_HO,đồng hồ,đồng hồ (clock)
+WORD_CH2_DO_AM,độ ẩm,độ ẩm (humidity)
+WORD_CH2_DOC_AC,độc ác,độc ác (cruel)
+WORD_CH2_DONG_DAT,động đất,động đất (earthquake)
+WORD_CH2_UOT_SUNG,ướt sũng,ướt sũng (soaked)
+WORD_CH2_AM_UOT,ẩm ướt,ẩm ướt (damp)
+WORD_CH2_UC_CHE,ức chế,ức chế (frustrated)
+UI_CH2_END,Hết chương 2,End of chapter 2
+UI_CH2_SHOWER_RULE,"Chọn có xả nước trong 2 phút tới hay không. Đã chọn thì bắt buộc làm theo. Nếu không, chết.","Run the water for the next 2 minutes? Whatever you choose, you must do it. Otherwise, you die."
+UI_CH2_SHOWER_YES,CÓ,YES
+UI_CH2_SHOWER_NO,KHÔNG,NO
+UI_CH2_SHOWER_TEMP,Nhiệt độ: %d °C,Temperature: %d °C
+UI_CH2_SHOWER_PROGRESS,Đã tắm %d/25 phút,Showered %d/25 min
+UI_CH2_CHAIN_DEAF,Họ không nghe thấy bạn,They can't hear you
+PROMPT_CH2_TAKE_RAG,Lấy giẻ lau,Take the rag
+PROMPT_CH2_TAKE_TOWEL,Lấy khăn tắm,Take the towel
+PROMPT_CH2_TAKE_SHIRT,Lấy áo của Việt,Take Việt's shirt
+PROMPT_CH2_GAG,Bịt miệng,Gag
+PROMPT_CH2_BASH_DOOR,Đẩy cửa,Shove the door
+PROMPT_CH2_WIPE,Lau màn hình,Wipe the screen
+CCTV_CH2_CAM_310,CAM 310 · nhà B,CAM 310 · Bldg B
+CCTV_CH2_CAM_HALL_310,CAM T3 · hành lang 310,CAM F3 · corridor 310
