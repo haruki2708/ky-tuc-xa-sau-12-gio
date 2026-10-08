@@ -18,6 +18,21 @@ class AudioSpy extends Node3D:
 		lines.append(key)
 		return 0.1
 
+class TimedDoor extends Node3D:
+	var is_open: bool = false
+	var received_seconds: float = -1.0
+	var tween: Tween
+	func set_open(value: bool, seconds: float = 0.0) -> void:
+		is_open = value
+		received_seconds = seconds
+		tween = create_tween()
+		tween.tween_property(self, "rotation:y", -PI / 2.0 if value else 0.0, seconds)
+
+class LegacyDoor extends Node:
+	var is_open: bool = false
+	func set_open(value: bool) -> void:
+		is_open = value
+
 var world: Node3D
 var manager: DormManager
 var audio: AudioSpy
@@ -389,3 +404,156 @@ func test_sample_scene_runs_quiet_and_heard_branches_and_leaves_room() -> void:
 		assert_false(fixture.door.get("is_open"))
 		assert_eq(fixture._cuts, 0 if heard else 6)
 	assert_eq(caught, [&"manager"])
+
+
+func _hunt_region() -> void:
+	var region: NavigationRegion3D = NavigationRegion3D.new()
+	var mesh: NavigationMesh = NavigationMesh.new()
+	var vertices: PackedVector3Array = PackedVector3Array()
+	for z: float in [1.0, -1.0, -3.0, -6.0]:
+		for x: float in [-3.0, -1.5, 1.5, 3.0]:
+			vertices.append(Vector3(x, 0, z))
+	mesh.vertices = vertices
+	for row: int in 3:
+		for column: int in 3:
+			if row == 1 and column == 1:
+				continue
+			var top: int = row * 4 + column
+			mesh.add_polygon(PackedInt32Array([top, top + 1, top + 5, top + 4]))
+	region.navigation_mesh = mesh
+	world.add_child(region)
+	await _ticks(5)
+
+
+func test_hunt_routes_around_wall_tracks_target_and_kills_after_arrival() -> void:
+	_wall(Vector3(2, 3, 0.2), Vector3(0, 1.5, -2))
+	await _hunt_region()
+	target.position = Vector3(0, 0.02, -4)
+	manager.speed = 2.0
+	manager.hunt(target)
+	assert_eq(arrivals, 0)
+	var detoured: bool = false
+	for tick: int in 400:
+		if tick == 50:
+			target.position.z = -5.0
+		await _ticks(1)
+		detoured = detoured or absf(manager.position.x) > 1.2
+		if arrivals > 0:
+			break
+	assert_true(detoured, "hunt follows navigation around the wall")
+	assert_eq(arrivals, 1)
+	assert_true(manager._flat_offset(target.position).length() <= 1.2)
+	assert_true(caught.is_empty(), "kill sequence starts only after arrival")
+	await _ticks(90)
+	assert_eq(caught, [&"manager"])
+	assert_eq(arrivals, 1)
+
+
+func test_hunt_timeout_stop_freed_target_and_reentrant_arrival() -> void:
+	await _hunt_region()
+	target.position.z = -30.0
+	manager.speed = 0.0
+	manager.set_physics_process(false)
+	manager.hunt(target)
+	manager._physics_process(11.9)
+	assert_eq(manager.state, DormManager.State.HUNTING)
+	manager._physics_process(0.11)
+	assert_eq(manager.state, DormManager.State.LUNGING)
+	assert_eq(arrivals, 0, "timeout does not claim arrival")
+	manager.stop()
+	manager._physics_process(20.0)
+	assert_true(caught.is_empty())
+	target.position = manager.position + Vector3(0, 0, -0.8)
+	manager.arrived.connect(func() -> void: manager.stop(), CONNECT_ONE_SHOT)
+	manager.hunt(target)
+	manager._physics_process(0.01)
+	assert_eq(arrivals, 1)
+	assert_eq(manager.state, DormManager.State.IDLE, "arrival callback may cancel kill")
+	manager.hunt(target)
+	target.free()
+	manager._physics_process(0.01)
+	assert_eq(manager.state, DormManager.State.IDLE)
+	assert_true(caught.is_empty())
+
+
+func test_open_door_duration_pose_completion_pause_and_legacy_api() -> void:
+	var door: TimedDoor = TimedDoor.new()
+	world.add_child(door)
+	var openings: Array[float] = []
+	manager.door_opened.connect(func() -> void: openings.append(door.rotation.y))
+	manager.open_door(door, 1.5)
+	assert_eq(door.received_seconds, 1.5)
+	assert_true(openings.is_empty(), "safe to await immediately after open_door")
+	await _ticks(30)
+	assert_true(door.rotation.y < -0.2 and door.rotation.y > -1.2, "door opens gradually")
+	assert_true(manager._reach_arm.rotation.x > 0.8, "free hand reaches forward")
+	assert_eq(manager.velocity, Vector3.ZERO)
+	tree.paused = true
+	var angle: float = door.rotation.y
+	await tree.create_timer(0.2, true).timeout
+	assert_eq(door.rotation.y, angle)
+	assert_true(openings.is_empty())
+	tree.paused = false
+	await _ticks(55)
+	assert_true(openings.is_empty(), "no signal before the 1.5-second duration")
+	await _ticks(15)
+	assert_eq(openings.size(), 1)
+	assert_true(absf(openings[0] + PI / 2.0) < 0.01, "door is fully open at completion")
+	assert_eq(manager.state, DormManager.State.IDLE)
+	assert_eq(manager._reach_arm.rotation, manager._arm_rest)
+	var legacy: LegacyDoor = LegacyDoor.new()
+	world.add_child(legacy)
+	manager.open_door(legacy, 1.5)
+	assert_true(legacy.is_open)
+	await _ticks(3)
+	assert_eq(openings.size(), 2, "one-argument door completes asynchronously")
+
+
+func test_open_door_cancel_free_and_real_model_arm() -> void:
+	var model_actor: DormManager = SCENE.instantiate()
+	model_actor.body_scene = load("res://scenes/levels/ch1_models/manager_body.tscn")
+	model_actor.audio_rig = audio
+	world.add_child(model_actor)
+	var door: TimedDoor = TimedDoor.new()
+	world.add_child(door)
+	var openings: Array[bool] = []
+	model_actor.door_opened.connect(func() -> void: openings.append(true))
+	model_actor.open_door(door, 1.5)
+	await _ticks(25)
+	assert_eq(model_actor._reach_arm.name, &"LeftArm")
+	assert_true(model_actor._reach_arm.rotation.x > 0.8)
+	model_actor.stop()
+	await _ticks(80)
+	assert_true(openings.is_empty(), "stop cancels stale door completion")
+	model_actor.open_door(door, 1.5)
+	door.queue_free()
+	await _ticks(3)
+	assert_eq(model_actor.state, DormManager.State.IDLE)
+	assert_true(openings.is_empty())
+
+
+func test_hunt_pause_freezes_deadline_and_position() -> void:
+	await _hunt_region()
+	target.position.z = -5.0
+	manager.hunt(target)
+	await _ticks(15)
+	tree.paused = true
+	var remaining: float = manager._remaining
+	var at: Vector3 = manager.position
+	await tree.create_timer(0.2, true).timeout
+	assert_eq(manager._remaining, remaining)
+	assert_eq(manager.position, at)
+	tree.paused = false
+	manager.stop()
+
+
+func test_hunt_does_not_arrive_through_a_nearby_wall() -> void:
+	await _hunt_region()
+	_wall(Vector3(4, 3, 0.1), Vector3(0, 1.5, -0.4))
+	target.position = Vector3(0, 0.02, -0.9)
+	await _ticks(2)
+	manager.hunt(target)
+	await _ticks(20)
+	assert_eq(arrivals, 0, "near target behind a wall has not been reached")
+	assert_eq(manager.state, DormManager.State.HUNTING)
+	manager.stop()

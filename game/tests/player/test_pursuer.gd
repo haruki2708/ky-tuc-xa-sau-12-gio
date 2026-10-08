@@ -256,17 +256,25 @@ func test_entering_safe_zone_during_chase_and_plain_node_target() -> void:
 func test_reduce_scares_changes_speed_live_and_validates_settings() -> void:
 	target.position.x = 30.0
 	pursuer.start_chase(target, Vector3(0, 0.02, 0))
+	var first_frame: int = Engine.get_physics_frames()
 	await _ticks(60)
 	var normal_distance: float = pursuer.position.x
-	assert_true(absf(normal_distance - 2.9) < 0.1, "normal speed 2.9m/s")
+	# _ticks also yields to rendering; a busy frame can contain several physics
+	# steps. Measure simulated time instead of assuming 60 waits mean one second.
+	var normal_seconds: float = float(Engine.get_physics_frames() - first_frame) / Engine.physics_ticks_per_second
+	var normal_speed: float = normal_distance / normal_seconds
+	assert_true(absf(normal_speed - 2.9) < 0.1, "normal speed 2.9m/s, got %.3f over %.3fs" % [normal_speed, normal_seconds])
 	_save_setting(true)
 	var saved: PackedByteArray = FileAccess.get_file_as_bytes(SETTINGS_PATH)
 	EventBus.settings_changed.emit("video", "reduce_scares")
 	assert_false(pursuer._reduce_scares, "ignore wrong section")
 	EventBus.settings_changed.emit("accessibility", "reduce_scares")
 	pursuer.start_chase(target, Vector3(0, 0.02, 0))
+	first_frame = Engine.get_physics_frames()
 	await _ticks(60)
-	assert_true(absf(pursuer.position.x / normal_distance - 0.85) < 0.02, "reduced speed multiplier")
+	var reduced_seconds: float = float(Engine.get_physics_frames() - first_frame) / Engine.physics_ticks_per_second
+	var reduced_speed: float = pursuer.position.x / reduced_seconds
+	assert_true(absf(reduced_speed / normal_speed - 0.85) < 0.02, "reduced speed multiplier, got %.3f over %.3fs" % [reduced_speed / normal_speed, reduced_seconds])
 	assert_eq(FileAccess.get_file_as_bytes(SETTINGS_PATH), saved, "reader never writes settings")
 	for value: Variant in ["true", 1, 0.0, []]:
 		_save_setting(value)

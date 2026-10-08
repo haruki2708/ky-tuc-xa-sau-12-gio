@@ -7,8 +7,12 @@ signal answered(heard: bool)
 signal slashed(target: Node3D)
 signal slash_finished
 signal heard_movement
+signal door_opened
 
-enum State { IDLE, WALKING, SPEAKING, LISTENING, SLASHING, LUNGING, KILLING }
+enum State { IDLE, WALKING, SPEAKING, LISTENING, SLASHING, LUNGING, KILLING, HUNTING, OPENING }
+
+const HUNT_REACH: float = 1.2
+const HUNT_TIMEOUT: float = 12.0
 
 @export var body_scene: PackedScene
 @export var player: Node3D
@@ -46,6 +50,12 @@ var _model_animation: AnimationPlayer
 var _blade_tip: Node3D
 var _stand_marker: Node3D
 var _serial: int = 0
+var _hunt_target: Node3D
+var _repath_left: float = 0.0
+var _door_tween: Tween
+var _opening_door: Node
+var _reach_arm: Node3D
+var _arm_rest: Vector3
 
 
 func _ready() -> void:
@@ -63,9 +73,14 @@ func _ready() -> void:
 			if not animations.is_empty():
 				_model_animation = animations[0] as AnimationPlayer
 			_blade_tip = model.find_child("BladeTip", true, false) as Node3D
+			_reach_arm = model.find_child("LeftArm", true, false) as Node3D
 		else:
 			model.free()
 			push_warning("Manager body_scene needs a Node3D root; using fallback.")
+	if _reach_arm == null:
+		_reach_arm = get_node_or_null("Visual/Fallback/LeftArm") as Node3D
+	if _reach_arm != null:
+		_arm_rest = _reach_arm.rotation
 	if audio_rig == null:
 		audio_rig = get_tree().get_first_node_in_group(&"manager_audio") as Node3D
 	if audio_rig == null and ResourceLoader.exists("res://audio/entities/manager_audio.tscn"):
@@ -101,9 +116,62 @@ func stand_at(marker: Node3D) -> void:
 	_stand_marker = marker
 
 
-func open_door(door: Node) -> void:
-	if is_instance_valid(door) and door.has_method("set_open"):
+## Follow the live target, without teleporting or bypassing world collision.
+## Timeout kills from the nearest reached position; only real arrival emits arrived.
+func hunt(target: Node3D) -> void:
+	stop()
+	if not is_instance_valid(target) or not target.is_inside_tree():
+		return
+	_hunt_target = target
+	player = target
+	_remaining = HUNT_TIMEOUT
+	_repath_left = 0.0
+	state = State.HUNTING
+	navigation.target_position = target.global_position
+	_play_animation(&"walk")
+
+
+## New doors accept a tween duration; legacy doors keep their one-argument API.
+## Completion is asynchronous, so callers can await door_opened even for seconds=0.
+func open_door(door: Node, seconds: float = 0.0) -> void:
+	stop()
+	if not is_instance_valid(door) or not door.has_method("set_open"):
+		return
+	var duration: float = maxf(0.0, seconds) if is_finite(seconds) else 0.0
+	var accepts_duration: bool = false
+	for method: Dictionary in door.get_method_list():
+		if method.name == "set_open":
+			accepts_duration = method.args.size() >= 2
+			break
+	state = State.OPENING
+	_opening_door = door
+	if door is Node3D:
+		_face((door as Node3D).global_position)
+	if is_instance_valid(_model_animation):
+		_model_animation.stop()
+	if accepts_duration:
+		door.call("set_open", true, duration)
+	else:
 		door.call("set_open", true)
+		duration = 0.0
+	var serial: int = _serial
+	_door_tween = create_tween()
+	if is_instance_valid(_reach_arm):
+		_door_tween.tween_property(_reach_arm, "rotation:x", _arm_rest.x + PI * 0.45, duration * 0.2)
+		_door_tween.tween_interval(duration * 0.6)
+		_door_tween.tween_property(_reach_arm, "rotation", _arm_rest, duration * 0.2)
+	else:
+		_door_tween.tween_interval(duration)
+	_door_tween.tween_callback(func() -> void:
+		if serial != _serial or state != State.OPENING:
+			return
+		if not is_instance_valid(_opening_door):
+			stop()
+			return
+		_opening_door = null
+		state = State.IDLE
+		_play_animation(&"stand")
+		door_opened.emit())
 
 
 func ask(line_key: String) -> void:
@@ -168,6 +236,13 @@ func kill_player() -> void:
 
 func stop() -> void:
 	_serial += 1
+	if _door_tween != null and _door_tween.is_valid():
+		_door_tween.kill()
+	_door_tween = null
+	_opening_door = null
+	_hunt_target = null
+	if is_instance_valid(_reach_arm):
+		_reach_arm.rotation = _arm_rest
 	state = State.IDLE
 	velocity = Vector3.ZERO
 	_path.clear()
@@ -186,6 +261,11 @@ func stop() -> void:
 func _physics_process(delta: float) -> void:
 	_sync_audio()
 	match state:
+		State.HUNTING:
+			_hunt(delta)
+		State.OPENING:
+			if not is_instance_valid(_opening_door):
+				stop()
 		State.WALKING:
 			_walk(delta)
 		State.SPEAKING:
@@ -228,6 +308,49 @@ func _physics_process(delta: float) -> void:
 				stop()
 				# Core/death overlay owns the blackout; player audio already handles this event.
 				EventBus.player_caught.emit(&"manager")
+
+
+func _hunt(delta: float) -> void:
+	if not is_instance_valid(_hunt_target) or not _hunt_target.is_inside_tree():
+		stop()
+		return
+	var target_position: Vector3 = _hunt_target.global_position
+	_remaining -= delta
+	if _hunt_in_reach(target_position):
+		_face(target_position)
+		velocity = Vector3.ZERO
+		var serial: int = _serial
+		arrived.emit()
+		if serial == _serial and state == State.HUNTING:
+			kill_player()
+		return
+	if _remaining <= 0.0:
+		_face(target_position)
+		kill_player()
+		return
+	_repath_left -= delta
+	if _repath_left <= 0.0:
+		_repath_left = 0.25
+		if navigation.target_position.distance_to(target_position) > 0.1:
+			navigation.target_position = target_position
+	var map: RID = navigation.get_navigation_map()
+	if map.is_valid() and NavigationServer3D.map_get_iteration_id(map) > 0 and not NavigationServer3D.map_get_regions(map).is_empty():
+		_move(_flat_offset(navigation.get_next_path_position()), speed, delta)
+	else:
+		# Wait for navigation to synchronize; the twelve-second deadline still applies.
+		_move(Vector3.ZERO, 0.0, delta)
+
+
+func _hunt_in_reach(target_position: Vector3) -> bool:
+	if _flat_offset(target_position).length() > HUNT_REACH or absf(target_position.y - global_position.y) > 1.5:
+		return false
+	# Nearby on the other side of a bathroom wall is not arrival.
+	var ray: PhysicsRayQueryParameters3D = PhysicsRayQueryParameters3D.create(
+		global_position + Vector3.UP, target_position + Vector3.UP, 1)
+	ray.exclude = [get_rid()]
+	if _hunt_target is CollisionObject3D:
+		ray.exclude = [get_rid(), (_hunt_target as CollisionObject3D).get_rid()]
+	return get_world_3d().direct_space_state.intersect_ray(ray).is_empty()
 
 
 func _walk(delta: float) -> void:

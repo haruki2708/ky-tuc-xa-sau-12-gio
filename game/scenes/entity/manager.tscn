@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3]
+[gd_scene load_steps=7 format=3]
 [ext_resource type="Script" path="res://scripts/entity/manager.gd" id="1"]
 [sub_resource type="CapsuleShape3D" id="Shape"]
 radius = 0.3
@@ -13,6 +13,8 @@ albedo_color = Color(0.12, 0.15, 0.13, 1)
 roughness = 1.0
 [sub_resource type="BoxMesh" id="Blade"]
 size = Vector3(0.12, 1.15, 0.035)
+[sub_resource type="BoxMesh" id="Arm"]
+size = Vector3(0.14, 0.6, 0.14)
 [node name="Manager" type="CharacterBody3D"]
 process_mode = 1
 collision_layer = 0
@@ -27,6 +29,12 @@ shape = SubResource("Shape")
 [node name="Body" type="MeshInstance3D" parent="Visual/Fallback"]
 position = Vector3(0, 1, 0)
 mesh = SubResource("Body")
+material_override = SubResource("Dark")
+[node name="LeftArm" type="Node3D" parent="Visual/Fallback"]
+position = Vector3(-0.32, 1.5, 0)
+[node name="Arm" type="MeshInstance3D" parent="Visual/Fallback/LeftArm"]
+position = Vector3(0, -0.3, 0)
+mesh = SubResource("Arm")
 material_override = SubResource("Dark")
 [node name="BladePivot" type="Node3D" parent="Visual/Fallback"]
 position = Vector3(0.45, 1.15, 0)
