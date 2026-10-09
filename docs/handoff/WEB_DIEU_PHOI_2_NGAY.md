@@ -1,6 +1,6 @@
 # Bàn giao điều phối dự án cho Claude Code trên web (thứ 7 10/10 – chủ nhật 11/10/2026)
 
-> Viết bởi integrator (Claude Code ở máy chủ dự án, Opus 5.5) lúc 2026-10-10 01:30, trước khi tạm dừng 1–2 ngày vì hết hạn mức.
+> Viết bởi integrator (Claude Code ở máy chủ dự án, Opus 5.5) lúc 2026-10-10 01:30, cập nhật lúc 04:00 sau D-075, trước khi tạm dừng 1–2 ngày vì hết hạn mức.
 > Trong hai ngày này **bạn (phiên Claude Code trên web) là integrator/điều phối**, thay cho phiên ở máy. Đọc hết file này trước khi làm gì.
 > Model: **Sonnet 5.5 (effort high)** cho việc thường; **Opus 5.5 (effort medium)** khi viết lời thoại/kịch bản, thiết kế, gỡ lỗi khó. Chủ dự án tự đổi model; tới đoạn cần đổi thì dừng và nhắc.
 
@@ -38,7 +38,7 @@ Sau đó chờ tôi gửi góp ý chơi thử hoặc yêu cầu review nhánh la
 | Thiết kế v2 (STORY, D-034, D-035) | Xong, đã duyệt |
 | Chương 1 "Tổng tắc" | Làm xong, đã sửa 2 đợt góp ý, **tạm chốt** (D-045, lại D-071) |
 | Chương 2 "Trò chơi" | Làm xong, đã sửa 2 đợt góp ý, **tạm chốt** (D-057, lại D-073) |
-| Chương 3 "Truy sát" | Làm xong, **đang chơi kiểm tra đợt 3**; đợt này đã sửa 3 lỗi (D-074, T-206) |
+| Chương 3 "Truy sát" | Làm xong, **đang chơi kiểm tra**; đợt 3 sửa 3 lỗi (D-074, T-206), đợt 4 sửa tầng 1 và Minh Nhật (D-075) |
 | Chương 4 "Người sống sót" | Làm xong, lời đã duyệt, có giọng; **chưa chơi kiểm tra lần nào** |
 | Ghép bản hoàn chỉnh (D-059) | Chưa bắt đầu; làm sau khi cả 4 chương tạm chốt |
 | Phát hành (bản quyền, nhãn nội dung, Steam/itch) | Chưa bắt đầu |
@@ -50,17 +50,18 @@ Sau đó chờ tôi gửi góp ý chơi thử hoặc yêu cầu review nhánh la
 | Lời thoại đã duyệt | Có | Có (D-072 duyệt 09/10) | Có | Có (D-068) |
 | Các lane đã ghép | Đủ | Đủ | Đủ | Đủ (T-195…T-198, T-200) |
 | Test tự động | Đạt | Đạt | Đạt | Đạt (cả bộ 719/719) |
-| Chủ dự án chơi tay bản mới nhất | Đạt (D-071) | Đạt, **trừ đoạn nhắn tin mới D-072 chưa chơi** | **Đang chơi**: tới tầng 2 thì gặp lỗi, đã sửa, chưa chơi lại | Chưa |
+| Chủ dự án chơi tay bản mới nhất | Đạt (D-071) | Đạt, **trừ đoạn nhắn tin mới D-072 chưa chơi** | **Đang chơi**: đã qua tầng 2 (lừa xác bằng bình cứu hỏa, nấp 207), kẹt ở tầng 1; tầng 1 đã sửa (D-075), chưa chơi lại | Chưa |
 | Âm thanh đã nghe bằng tai | Một phần (chương 1 cũ) | Chưa nghe giọng cuộc gọi/loa (mới có tiếng từ T-200) | Chưa | Chưa |
 | Bot chơi trọn | Có (bản cũ) | Khung có | Chưa chạy (D-068: không chạy) | Chưa có (T-199 chưa viết, không cần) |
 
 ### Đang sửa tới đâu (ngay lúc bàn giao)
-- **Chủ dự án đang ở chương 3, bước 5 của `docs/playtest/CH3_QUICKTEST.md` (tầng 2 nhà B).** Đợt chơi gần nhất (bản 17:27 ngày 09/10) báo 3 lỗi, **cả 3 đã sửa và có trong bản 01:28**:
-  1. Cửa sáng nhấp nháy cạnh phòng 407 → tấm bịt cửa 408 cũ trùng mặt tường; lane B sửa (T-206), đúng ở cả 4 chương.
-  2. Đập bình cứu hỏa nhưng xác vẫn tới chặn cửa phòng 207 → xác thấy người chơi trên đường đi bộ về 207; core sửa: bị tiếng bình kéo đi thì chỉ để ý người chơi dưới 2 m, tới chiếu nghỉ khoảng 3 giây mới nhìn quanh lại (`_pull_crowd_203`, `_watch_crowd_pull` trong `chapter3_director.gd`).
-  3. Minh Nhật tự hiện trong phòng 207 → cơ chế đuổi kịp ở chỗ khuất; core sửa: Minh Nhật chờ ở cửa 203 tới khi đám xác về chiếu nghỉ, rồi đi bộ ra (`_walk_out_nhat`).
-- **Việc tiếp theo ngay:** chủ dự án chơi lại tầng 2 bằng bản 01:28 để xác nhận 3 sửa trên, rồi chơi tiếp các bước 6–13 (tầng 1 và cửa sổ phòng quản lý, vườn hoa và Ngư, sân vận động 4 phút, cổng và bảo vệ, nhà ăn và hết chương). Phần sau tầng 2 **chưa được chơi lại** từ các sửa D-061…D-065 (xác ra từ phòng, đồng đội đi theo, khán đài mới, trời đêm), nên có thể còn lỗi.
-- **Không có việc nào đang làm dở trong code**, không có nhánh lane nào chờ review. `main` sạch, 719/719 test.
+- **Chủ dự án đang ở chương 3, bước 6 của `docs/playtest/CH3_QUICKTEST.md` (xuống tầng 1 nhà B).** Đã chơi qua tầng 2 thành công với các sửa D-074 (đập bình cứu hỏa, nấp sâu trong 207, lách sang 203). Hai góp ý mới nhất, **đã sửa trong core và có trong bản 03:57**:
+  1. **Tầng 1 bị xác vây ở chân cầu thang** (khoảng 10 xác cách 6–26 m) → D-075: bỏ xác đứng sẵn và đợt sinh thêm; 4 xác ở nửa xa hành lang (x 18–30) quay lưng, 6 giây sau mới săn; **nút chuông báo cháy** đỏ trên tường ngay chân cầu thang chính (x 0,9; y −8,5; z 0,12), bấm E thì chuông reo ở cuối hành lang (x 42) khoảng 20 giây, kéo cả 4 xác về đó. Code: `_floor1_crowd`, `_place_fire_alarm`, `_on_fire_alarm`, `_pull_crowd` trong `chapter3_director.gd`. Chuông chỉ có ở chương 3.
+  2. **Ra khỏi 207 sớm thì Minh Nhật đứng chờ** → D-075: Trung tới gần (dưới 14 m, cùng tầng) thì cậu ấy đi theo ngay (`_walk_out_nhat`, `_player_near`).
+- **Hình và tiếng chuông báo cháy là bản tạm của core** (khối đỏ phát sáng nhẹ, tiếng `res://audio/ch1v2/lock_alarm.ogg` lặp lại, âm lượng −4 dB). Nếu chủ dự án muốn đẹp hơn: card cho lane B (mô hình nút báo cháy + chuông ở cuối hành lang) và lane E (tiếng chuông báo cháy, nhỏ); core giữ nguyên tên `FireAlarm1F` và hằng `FIRE_BELL_STREAM`.
+- **Việc tiếp theo ngay:** chủ dự án chơi lại từ tầng 1 bằng bản 03:57: chuông báo cháy, phòng quản lý và cửa sổ (cúi), rồi các bước 7–13 (vườn hoa và Ngư, sân vận động 4 phút, cổng và bảo vệ, nhà ăn, hết chương). Phần sau tầng 1 **chưa được chơi lại** từ các sửa D-061…D-065, có thể còn lỗi.
+- Kèm theo (Claude làm thay lane B): `game/tests/levels/test_room_doors.gd` từng chập chờn (lỗi "nonempty route for 401…" lúc có lúc không) vì chỉ chờ 12 khung cho lưới đường đi; nay chờ tới khi lưới sẵn sàng. Nếu thấy test nào khác chập chờn kiểu này: đó là bài học số 3 ở mục 8.
+- **Không có việc nào đang làm dở trong code**, không có nhánh lane nào chờ review. `main` sạch, 722/722 test.
 
 ### Nhật ký gần đây (để hiểu nhịp làm việc)
 | Ngày | Việc |
@@ -68,7 +69,8 @@ Sau đó chờ tôi gửi góp ý chơi thử hoặc yêu cầu review nhánh la
 | 07/10 | Chương 4 thiết kế (D-067), giao 4 lane, ghép xong (T-194…T-198); chủ dự án duyệt lời (D-068); phát hiện cuộc gọi chương 2–4 chưa từng có tiếng → T-200 (lane E) |
 | 08/10 | Ghép T-200; chủ dự án chơi chương 1 → 5 góp ý (D-069) → T-201 (Claude Code web, core), T-202 (lane A), T-203 (lane B) |
 | 09/10 | Ghép T-201…T-203 (integrator sửa thêm 3 chỗ sau ghép, D-070); chương 1 tạm chốt (D-071); chương 2 góp ý nhắn tin (D-072) → T-204 (web), T-205 (lane E), ghép; chương 2 tạm chốt (D-073); chương 3 báo 3 lỗi → D-074 sửa core, T-206 lane B |
-| 10/10 01:28 | Ghép T-206, export bản 01:28, bàn giao cho phiên web |
+| 10/10 01:28 | Ghép T-206, export bản 01:28 |
+| 10/10 sáng sớm | Chủ dự án báo tầng 1 quá khó và Minh Nhật chờ lâu → D-075 (core): 4 xác nửa xa hành lang + chuông báo cháy; Minh Nhật đi theo ngay; export bản 03:57; bàn giao cho phiên web |
 
 ## 2. Chuẩn bị máy (Linux cloud, không cần sudo; cài vào ~/tools)
 ```
@@ -82,7 +84,7 @@ cd <repo>; $GODOT --headless --path game --import
 ```
 - **Chạy test:** `GODOT=$GODOT ~/tools/pwsh/pwsh tools/test.ps1` (lọc: `-Filter chapter3`) và `~/tools/pwsh/pwsh tools/check.ps1`. Nếu `test.ps1` hỏng trên Linux, chạy thẳng:
   `XDG_DATA_HOME=$(mktemp -d) $GODOT --headless --path game res://tests/run_tests.tscn` (thêm `-- --filter=chapter3` để lọc). Dòng cuối phải là `RESULT: N passed, 0 failed`.
-- **Mốc hiện tại trên Windows:** `RESULT: 719 passed, 0 failed`, `RESULT: check 0 error(s)` (commit `b4a6a06`). Bộ test đầy đủ chạy khoảng 10–12 phút.
+- **Mốc hiện tại trên Windows:** `RESULT: 722 passed, 0 failed`, `RESULT: check 0 error(s)` (commit `add6d5f`). Bộ test đầy đủ chạy khoảng 10–12 phút.
 - **Chạy thử cảnh thật:** tạo scene tạm `game/_tmp/probe.tscn` + `probe.gd` (Node, `_ready` dựng cảnh chương, `director.auto_start = false`, in ra `print("PROBE ...")`, cuối cùng `App.quit()`), chạy `$GODOT --headless --path game res://_tmp/probe.tscn`, **xóa `game/_tmp` trước khi commit**. **Không dùng `godot -s script.gd`**: chế độ `-s` không nạp autoload `EventBus` nên báo lỗi giả. Nếu script trong probe lỗi cú pháp thì Godot treo (không tới `App.quit()`): luôn chạy kèm `timeout 280`.
 
 ### Máy cloud KHÔNG làm được (và cách xử lý)
@@ -102,13 +104,13 @@ cd <repo>; $GODOT --headless --path game --import
 7. Các prompt giao việc: `docs/handoff/lane-a.md` … `lane-e.md`, `web.md` (mục 1 = giao task, 2 = tiếp tục, 3 = yêu cầu sửa).
 
 ## 4. Trạng thái lúc bàn giao (2026-10-10 01:30)
-- **Bản build chủ dự án đang chơi:** `build/windows/KyTucXa.exe` **2026-10-10 01:28** (commit `b4a6a06`, có đủ mọi sửa tới T-206). Máy chủ dự án đã mở khóa tới chương 4.
+- **Bản build chủ dự án đang chơi:** `build/windows/KyTucXa.exe` **2026-10-10 03:57** (commit `add6d5f`, có đủ mọi sửa tới D-075). Máy chủ dự án đã mở khóa tới chương 4.
 - **Chương 1:** tạm chốt lại (D-071) sau D-069, D-070: nằm giường người chết (1, 2, 4) + tắt đèn là sống, không cần nín thở; quản lý từ hành lang tới, mở cửa chậm, săn người trốn ngoài giường; gõ tường nhịp 3–1, gõ sai được gõ lại trong 90 giây.
 - **Chương 2:** tạm chốt lại (D-073). D-072 (Trung nhắn cách qua vòng 3 cho hai bạn; qua vòng 3 ở từ lặp thứ 4) **chỉ kiểm bằng test, chủ dự án chưa chơi tay đoạn này**.
-- **Chương 3:** **đang chơi kiểm tra.** Lần chơi gần nhất báo 3 lỗi, đã sửa (D-074): xác tầng 2 bám theo tiếng bình cứu hỏa, Minh Nhật đi bộ ra từ 203, tấm bịt 408 nhấp nháy (T-206, đúng ở cả 4 chương). Chờ chủ dự án chơi tiếp từ tầng 2 trở đi (vườn hoa, sân vận động, cổng, nhà ăn) và gửi góp ý.
+- **Chương 3:** **đang chơi kiểm tra.** Đợt 3 báo 3 lỗi, đã sửa (D-074): xác tầng 2 bám theo tiếng bình cứu hỏa, Minh Nhật đi bộ ra từ 203, tấm bịt 408 nhấp nháy (T-206). Đợt 4 (10/10 sáng sớm) báo tầng 1 quá khó và Minh Nhật chờ lâu, đã sửa (D-075): tầng 1 còn 4 xác ở nửa xa hành lang + chuông báo cháy; Minh Nhật đi theo ngay khi Trung quay lại sớm. Chờ chủ dự án chơi tiếp từ tầng 1 trở đi.
 - **Chương 4:** đã ghép đủ (T-194…T-198, T-200 giọng); lời đã duyệt (D-068); chủ dự án **chưa chơi kiểm tra**.
 - **Âm thanh chưa ai nghe bằng tai:** giọng cuộc gọi và loa chương 2–4 (lần đầu có tiếng từ T-200), giọng chương 4 (loa, y tá), âm thanh chương 3–4.
-- **Không có nhánh lane nào đang chờ review.** Số tiếp theo: **T-207**, **D-075**.
+- **Không có nhánh lane nào đang chờ review.** Số tiếp theo: **T-207**, **D-076**.
 - **Việc treo nhỏ:** tên trường trên biển cổng (STORY nói trường không tên); nhà ăn T-189 (Claude dựng thay lane B) chờ chủ dự án xem.
 - **Sau khi cả 4 chương tạm chốt:** giai đoạn "Ghép bản hoàn chỉnh" (D-059, 4–6 ngày): chơi liền mạch, đồng bộ đồ họa, ánh sáng 4h→9h, rà soát liền mạch, một tiến trình lưu, bot cả 4 chương. **Chưa bắt đầu; không tự bắt đầu trong 2 ngày này** trừ khi chủ dự án yêu cầu (lúc đó chỉ viết kế hoạch để duyệt).
 
