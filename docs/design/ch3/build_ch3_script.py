@@ -127,6 +127,7 @@ UI_ROWS = [
     ("PROMPT_CH3_TAKE_KEY", "Lấy chìa khóa", "Take the key"),
     ("PROMPT_CH3_UNLOCK", "Mở khóa cửa", "Unlock the door"),
     ("PROMPT_CH3_EXTINGUISHER", "Đập bình cứu hỏa", "Bang the extinguisher"),
+    ("PROMPT_CH3_FIRE_ALARM", "Bấm chuông báo cháy", "Press the fire alarm"),
     ("PROMPT_CH3_CLIMB", "Trèo qua cửa sổ (cúi)", "Climb through the window (crouch)"),
 ]
 # Jumpscare ids core emits through EventBus.scare_triggered (lane E may add cues).

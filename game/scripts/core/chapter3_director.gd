@@ -40,6 +40,20 @@ const CROWD_AT_LANDING := 4.0
 const CROWD_PULL_MAX_SECONDS := 45.0
 ## Minh Nhật walks out of 203 along the corridor (z) before he follows (D-074).
 const CORRIDOR_2F_Z := 1.8
+## He comes along straight away once Trung is this close on his floor (D-075).
+const NHAT_SEE_RADIUS := 14.0
+const NHAT_FOLLOW_RADIUS := 12.0
+## Floor 1 (D-075): four zombies stand in the far half of the hall with their
+## backs to the main stairs and turn on Trung a few seconds after he arrives.
+## The fire alarm by the stairs rings a bell at the far end that drags them
+## there (the floor 2 extinguisher's rule).
+const FLOOR1_Y := -9.9
+const FLOOR1_CROWD := [Vector3(18.0, 0.0, 2.1), Vector3(22.0, 0.0, 1.4), Vector3(26.0, 0.0, 2.7), Vector3(30.0, 0.0, 2.0)]
+const FLOOR1_CROWD_DELAY := 6.0
+const FIRE_ALARM_AT := Vector3(0.9, -8.5, 0.12)
+const FIRE_BELL_AT := Vector3(42.0, -9.9, 2.0)
+const FIRE_BELL_SECONDS := 20.0
+const FIRE_BELL_STREAM := "res://audio/ch1v2/lock_alarm.ogg"
 ## Rooms of building B (D-061, T-191): zombies come out of the rooms Trung walks
 ## past. Per floor: room number -> zombies inside. Floor 2 keeps only the 203
 ## crowd (D-062); room 408 opens after the key (_wave_408).
@@ -74,6 +88,8 @@ var _alarm_sounded: bool = false
 var _crowd_203: Array[Zombie] = []
 ## The bang is still dragging the 203 crowd to the landing (D-074).
 var _crowd_pull_active: bool = false
+var _crowd_1f: Array[Zombie] = []
+var _bell_rung: bool = false
 var _waves_on: bool = false
 var _rooms_opened: Dictionary = {}
 var _room_tracks: Array[Dictionary] = []
@@ -169,8 +185,8 @@ func _building_b() -> void:
 	_roommates_rise()
 	_story(["chat:n_all_up", "chat:n_out", "chat:ngu_garden", "think:THINK_CH3_RUN"])
 	if _horde != null:
-		for zone in [&"B4", &"B1"]:
-			_horde.place_idle(zone)
+		# Floor 1 no longer starts packed (D-075): see _floor1_crowd().
+		_horde.place_idle(&"B4")
 	# Out of 407: the corridor turns its heads (jumpscare 2), then the stairs.
 	await _wait_until(func() -> bool: return not _player_in_room(), 600.0, false)
 	if _dying:
@@ -208,7 +224,7 @@ func _building_b() -> void:
 	if _dying:
 		return
 	_set_clock("08:09")
-	_spawn(&"B1", 4)
+	_floor1_crowd()
 	_story(["near:n_chained"])
 	# Out through the manager's window to the garden.
 	await _wait_until(func() -> bool: return _zone() == "garden", 1200.0, false)
@@ -478,6 +494,7 @@ func _place_uses() -> void:
 			GameState.set_flag(&"ch3_alarm", true)
 			EventBus.noise_emitted.emit(extinguisher.global_position, 25.0, &"extinguisher")
 			_pull_crowd_203(extinguisher.global_position))
+	_place_fire_alarm()
 
 
 func _use(anchor_name: String, prompt: String, size: Vector3, lift: float = 0.0) -> Ch3Use:
@@ -639,22 +656,28 @@ func _room_door(room: StringName) -> Node3D:
 ## the landing or Trung comes within CROWD_NOTICE_RADIUS.
 func _pull_crowd_203(at: Vector3) -> void:
 	var stand := Vector3(at.x - 0.6, _player.global_position.y if _player != null else at.y, at.z)
-	var decoy := Node3D.new()
-	decoy.name = "CrowdDecoy203"
-	add_child(decoy)
-	decoy.global_position = Vector3(at.x + 1.5, stand.y, at.z)
-	var pulled: Array[Zombie] = []
 	_crowd_pull_active = true
-	for zombie in _crowd_203:
+	_pull_crowd(_crowd_203, stand, true)
+
+
+## Sends a crowd to `stand` for a noise; see _pull_crowd_203. The decoy target
+## sits under the floor there, so it is never seen and never "caught".
+func _pull_crowd(crowd: Array[Zombie], stand: Vector3, is_203: bool) -> void:
+	var decoy := Node3D.new()
+	decoy.name = "CrowdDecoy"
+	add_child(decoy)
+	decoy.global_position = stand + Vector3(0.0, -3.0, 0.0)
+	var pulled: Array[Zombie] = []
+	for zombie in crowd:
 		if is_instance_valid(zombie) and not zombie.is_stunned():
 			zombie.wake()
 			zombie.set_target(decoy)
 			zombie.set("_goal", stand)
 			pulled.append(zombie)
-	_watch_crowd_pull(pulled, stand, decoy)
+	_watch_crowd_pull(pulled, stand, decoy, is_203)
 
 
-func _watch_crowd_pull(pulled: Array[Zombie], stand: Vector3, decoy: Node3D) -> void:
+func _watch_crowd_pull(pulled: Array[Zombie], stand: Vector3, decoy: Node3D, is_203: bool) -> void:
 	var settled: Dictionary = {}
 	var started := Time.get_ticks_msec()
 	while not pulled.is_empty() and is_inside_tree() and not _dying:
@@ -676,9 +699,99 @@ func _watch_crowd_pull(pulled: Array[Zombie], stand: Vector3, decoy: Node3D) -> 
 				if not near_player:
 					zombie.set("_goal", zombie.global_position)
 				pulled.erase(zombie)
-	_crowd_pull_active = false
+	if is_203:
+		_crowd_pull_active = false
 	if is_instance_valid(decoy):
 		decoy.queue_free()
+
+
+## Trung within `radius` of `node` on the same floor.
+func _player_near(node: Node3D, radius: float) -> bool:
+	if _player == null or not is_instance_valid(node):
+		return false
+	var a := _player.global_position
+	var b := node.global_position
+	return absf(a.y - b.y) < 1.5 and Vector2(a.x - b.x, a.z - b.z).length() < radius
+
+
+## Floor 1 (D-075): four zombies in the far half of the hall, backs to the
+## stairs; they turn on Trung FLOOR1_CROWD_DELAY s after he reaches the floor
+## unless the fire bell has already drawn them away.
+func _floor1_crowd() -> void:
+	_crowd_1f.clear()
+	for offset: Vector3 in FLOOR1_CROWD:
+		var zombie := _make_zombie("zombie_%02d" % (8 + _crowd_1f.size()))
+		if zombie == null:
+			return
+		add_child(zombie)
+		zombie.global_position = Vector3(offset.x, FLOOR1_Y, offset.z)
+		zombie.set_target(_player)
+		zombie.face(zombie.global_position + Vector3(10.0, 0.0, 0.0))
+		zombie.sleep_pose(&"idle")
+		_crowd_1f.append(zombie)
+	await _wait_until(func() -> bool: return _bell_rung, FLOOR1_CROWD_DELAY, false)
+	if _bell_rung or _dying or not is_inside_tree():
+		return
+	for zombie in _crowd_1f:
+		if is_instance_valid(zombie) and zombie.state == &"asleep":
+			zombie.set_target(_player)
+			zombie.wake()
+
+
+## A red fire alarm on the hall wall at the foot of the main stairs (D-075).
+## Core greybox until lane B models one; the bell is lane E's alarm for now.
+func _place_fire_alarm() -> void:
+	# Chapter 3 only: chapter 4 (which inherits this director) has its own stairs plan.
+	if _chapter() != 3:
+		return
+	var anchors := _campus.get_node_or_null("Anchors") if _campus != null else null
+	if anchors == null:
+		return
+	var marker := Marker3D.new()
+	marker.name = "FireAlarm1F"
+	anchors.add_child(marker)
+	marker.global_position = FIRE_ALARM_AT
+	var box := MeshInstance3D.new()
+	var mesh := BoxMesh.new()
+	mesh.size = Vector3(0.22, 0.28, 0.06)
+	var material := StandardMaterial3D.new()
+	material.albedo_color = Color(0.72, 0.06, 0.05)
+	material.emission_enabled = true
+	material.emission = Color(0.35, 0.02, 0.02)
+	mesh.material = material
+	box.mesh = mesh
+	marker.add_child(box)
+	var alarm := _use("FireAlarm1F", "PROMPT_CH3_FIRE_ALARM", Vector3(0.5, 0.6, 0.5))
+	if alarm != null:
+		alarm.used.connect(_on_fire_alarm)
+
+
+func _on_fire_alarm() -> void:
+	if _bell_rung:
+		return
+	_bell_rung = true
+	GameState.set_flag(&"ch3_fire_alarm", true)
+	EventBus.noise_emitted.emit(FIRE_BELL_AT, 45.0, &"fire_alarm")
+	_pull_crowd(_crowd_1f, Vector3(FIRE_BELL_AT.x - 0.6, FLOOR1_Y, FIRE_BELL_AT.z), false)
+	_ring_bell(FIRE_BELL_AT + Vector3(0.0, 2.2, -1.8), FIRE_BELL_SECONDS)
+
+
+func _ring_bell(at: Vector3, seconds: float) -> void:
+	if not ResourceLoader.exists(FIRE_BELL_STREAM):
+		return
+	var bell := AudioStreamPlayer3D.new()
+	bell.name = "FireBell"
+	bell.stream = load(FIRE_BELL_STREAM)
+	bell.bus = &"SFX"
+	bell.unit_size = 8.0
+	bell.volume_db = -4.0
+	add_child(bell)
+	bell.global_position = at
+	var until := Time.get_ticks_msec() + int(seconds * 1000.0)
+	while Time.get_ticks_msec() < until and is_inside_tree() and not _dying:
+		bell.play()
+		await bell.finished
+	bell.queue_free()
 
 
 ## Minh Nhật leaves 203 along the floor 2 corridor to a few metres short of
@@ -692,8 +805,12 @@ func _walk_out_nhat() -> void:
 		return
 	# He waits in his doorway until the crowd has gone past to the landing,
 	# rather than squeezing through it down the corridor.
-	await _wait_until(func() -> bool: return not _crowd_pull_active, 30.0, false)
+	await _wait_until(func() -> bool: return not _crowd_pull_active or _player_near(nhat, NHAT_SEE_RADIUS), 30.0, false)
 	if not is_instance_valid(nhat) or _dying:
+		return
+	# Trung came back for him early (D-075): he follows at once.
+	if _player_near(nhat, NHAT_SEE_RADIUS):
+		nhat.follow_player()
 		return
 	var route := Node3D.new()
 	route.name = "NhatWalkOut"
@@ -707,7 +824,7 @@ func _walk_out_nhat() -> void:
 		marker.global_position = point
 	nhat.follow_path(route)
 	await _wait_until(func() -> bool: return not is_instance_valid(nhat) or nhat.get("state") == &"left" \
-			or nhat.global_position.distance_to(_player.global_position) < 6.0, 60.0, false)
+			or _player_near(nhat, NHAT_FOLLOW_RADIUS), 60.0, false)
 	if is_instance_valid(nhat) and nhat.has_method("follow_player"):
 		nhat.follow_player()
 	route.queue_free()

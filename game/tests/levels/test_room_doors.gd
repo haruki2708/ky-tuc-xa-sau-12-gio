@@ -91,6 +91,14 @@ func test_all_spawns_connect_to_hall_even_while_doors_are_closed() -> void:
 	NavigationServer3D.map_force_update(map)
 	for frame in 12:
 		await tree.physics_frame
+	# The campus mesh registers over many physics frames (as in test_campus.gd):
+	# wait until the first room has a route before judging any of them.
+	var first: Node3D = _doors()[0]
+	for frame in 600:
+		var probe := NavigationServer3D.map_get_path(map, _spawn(first), Vector3(22, _spawn(first).y, 2), true)
+		if probe.size() >= 2:
+			break
+		await tree.physics_frame
 	NavigationServer3D.map_force_update(map)
 	for door: Node3D in _doors():
 		var from := _spawn(door)

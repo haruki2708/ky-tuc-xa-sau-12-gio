@@ -20,7 +20,7 @@
 | 3 | Đi tiếp tới **cuối hành lang**, **E** vào cửa thoát hiểm. | Không có chìa thì báo khóa; có chìa thì mở | 15 giây |
 | 4 | Xuống cầu thang thoát hiểm **2 tầng** (tới tầng 2). Đoạn xuống tầng 1 bị **sập**. | Tường nứt; một xác trên bậc tầng 3 bật dậy | 1 phút |
 | 5 | Ở tầng 2, **bình cứu hỏa** treo ở tường trong cùng **chiếu nghỉ cầu thang thoát hiểm** (chỗ vừa xuống). **E** đập, rồi đi ra hành lang, **nấp sâu vào phòng 207** (đi từ chiếu nghỉ ra, phòng thứ hai bên tay phải, không có cửa). Chờ cả đám xác ở cửa 203 đi qua vào chiếu nghỉ, rồi đi về phía cầu thang chính. | Minh Nhật gọi khi tới tầng 2; đám 4 xác bỏ cửa 203; cậu ấy ra và đi theo sau bạn | 1 phút |
-| 6 | Đi tiếp tới **cầu thang chính** (cuối hành lang), xuống **tầng 1**. | Minh Nhật nói "Xích từ bên ngoài…" ở sảnh | 30 giây |
+| 6 | Đi tiếp tới **cầu thang chính** (cuối hành lang), xuống **tầng 1**. Tầng 1 có 4 xác ở nửa xa hành lang, quay lưng lại; khoảng 6 giây sau chúng quay lại săn. Muốn chắc ăn: **E vào nút chuông báo cháy đỏ** trên tường ngay chân cầu thang, chuông reo ở cuối hành lang kéo cả đám đi. | Minh Nhật nói "Xích từ bên ngoài…" ở sảnh; chuông reo, xác đi về cuối hành lang | 30 giây |
 | 7 | Vào **phòng quản lý** (cuối sảnh, phía cầu thang chính). **Ctrl cúi**, chui qua **cửa sổ vỡ** ở tường sau. | Nhìn con dao trên bàn thì có tiếng kéo dao | 30 giây |
 | 8 | Ra ngoài, **vòng qua đầu nhà B** ra **vườn hoa** phía trước (giữa nhà B và nhà A). | Checkpoint vườn hoa | 30 giây |
 | 9 | Tới **Ngư** đứng trên ghế đá giữa vườn. | Ngư đưa **thanh sắt** (biểu tượng góc dưới); xác bò ra từ bồn hoa: **đập đầu** thử. Từ đây hai bạn **đi theo sau bạn** | 1 phút |

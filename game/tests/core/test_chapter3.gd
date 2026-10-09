@@ -182,6 +182,76 @@ func test_floor_two_walk_back_to_207_stays_unseen() -> void:
 	assert_true(nhat_max_x > door.x + 10.0, "he walked down the corridor toward Trung (reached x %.1f);" % nhat_max_x)
 
 
+## D-075: floor 1 is no longer packed: four zombies stand in the far half with
+## their backs to the stairs and turn on Trung only after a few seconds.
+func test_floor_one_crowd_waits_in_the_far_half() -> void:
+	director.run_from(&"b")
+	await _until(func() -> bool: return director._crowd_203.size() == 4, 10.0)
+	player.set_physics_process(false)
+	_put(Vector3(-1.0, -9.85, 2.0))
+	await _until(func() -> bool: return director._crowd_1f.size() == 4, 10.0)
+	assert_eq(director._crowd_1f.size(), 4, "four on floor 1;")
+	for actor in director._horde.get_children():
+		if actor is Zombie:
+			assert_false((actor as Zombie).global_position.y < -9.0 and (actor as Zombie).global_position.x < 40.0, "no horde idle on floor 1: %s" % (actor as Zombie).global_position)
+	for zombie in director._crowd_1f:
+		assert_true(zombie.global_position.x >= 16.0, "far half: %s" % zombie.global_position)
+	await tree.create_timer(Chapter3Director.FLOOR1_CROWD_DELAY - 1.0).timeout
+	for zombie in director._crowd_1f:
+		assert_eq(zombie.state, &"asleep", "still turned away before the delay;")
+	await tree.create_timer(2.0).timeout
+	var awake := 0
+	for zombie in director._crowd_1f:
+		if zombie.state == &"hunting":
+			awake += 1
+	assert_eq(awake, 4, "they turn on Trung after the delay;")
+
+
+## D-075: the fire alarm at the foot of the main stairs drags the floor 1 crowd
+## to the bell at the far end; Trung at the stairs stays alive.
+func test_fire_alarm_pulls_the_floor_one_crowd_away() -> void:
+	director.run_from(&"b")
+	await _until(func() -> bool: return director._crowd_203.size() == 4, 10.0)
+	player.set_physics_process(false)
+	_put(Vector3(-1.0, -9.85, 2.0))
+	await _until(func() -> bool: return director._crowd_1f.size() == 4, 10.0)
+	var alarm: Ch3Use = director._uses.get("FireAlarm1F")
+	assert_not_null(alarm, "the fire alarm is placed;")
+	if alarm == null:
+		return
+	assert_true(alarm.global_position.distance_to(Chapter3Director.FIRE_ALARM_AT) < 0.05, "on the wall by the stairs;")
+	_put(Vector3(0.9, -9.85, 1.2))
+	await tree.create_timer(0.2).timeout
+	alarm.interact(player)
+	var bell := Vector3(Chapter3Director.FIRE_BELL_AT.x, -9.9, Chapter3Director.FIRE_BELL_AT.z)
+	await _until(func() -> bool:
+		for zombie in director._crowd_1f:
+			if zombie.global_position.distance_to(bell) > 4.5:
+				return false
+		return true, 30.0)
+	for zombie in director._crowd_1f:
+		assert_true(zombie.global_position.distance_to(bell) < 4.5, "at the bell: %s" % zombie.global_position)
+	assert_eq(failed, [] as Array[StringName], "alive at the stairs;")
+
+
+## D-075: leaving 207 early and walking toward 203, Minh Nhật comes along at
+## once instead of waiting for the crowd to reach the landing.
+func test_minh_nhat_follows_at_once_when_trung_comes_back() -> void:
+	director.run_from(&"b")
+	await _until(func() -> bool: return director._crowd_203.size() == 4, 10.0)
+	var extinguisher := _anchor("Extinguisher2F").global_position
+	_put(extinguisher + Vector3(-1.3, -1.05, 0.0))
+	await wait_frames(3)
+	director._uses["Extinguisher2F"].interact(player)
+	await _until(func() -> bool: return director._companions.has(&"minh_nhat"), 10.0)
+	var nhat: Node3D = director._companions[&"minh_nhat"]
+	assert_true(director._crowd_pull_active, "the crowd is still on its way;")
+	# Trung slips back west to 203 at once (behind the crowd's line of travel).
+	_put(_anchor("Room203Door").global_position + Vector3(6.0, 0.05, 2.0))
+	await _until(func() -> bool: return bool(nhat.get("following")), 5.0)
+	assert_true(nhat.get("following"), "he follows as soon as Trung is near;")
+
+
 ## D-063: Minh Nhật and Ngư walk behind Trung from the garden to the stadium.
 func test_companions_follow_the_player_to_the_stadium() -> void:
 	director.time_scale = 1.0
