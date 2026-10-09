@@ -1,5 +1,5 @@
 # T-205 — Chương 2: giọng 5 câu gọi mới (nhắn cách qua vòng 3)
-- Lane: E (Âm thanh) | Trạng thái: todo (thu sau khi chủ dự án duyệt lời) | Agent:
+- Lane: E (Âm thanh) | Trạng thái: done | Agent:
 - Nhánh: `lane-e/T-205-ch2-tell-voices`, **tạo từ `origin/core/T-204-ch2-tell-friends-loop`** (lời mới chỉ có trên nhánh đó, chưa vào `main`)
 - Phụ thuộc: D-072. Làm song song với T-204 (core, phiên web). **Chỉ thu khi lời đã được duyệt** (D-072 ghi "đã duyệt lời").
 - **Hạn đề xuất:** 2026-10-10.
@@ -60,3 +60,8 @@ RESULT: check 0 error(s)
 **Blocked:** không. Giọng và test đã hoàn thành; phần ghép/chơi thử luồng thuộc T-204.
 
 ## Review (integrator)
+
+### 2026-10-09 — Claude (integrator, Opus): **duyệt, đã merge**
+- Đúng card: 5 giọng đúng lời đã duyệt (test đối chiếu từng chữ với `strings.csv`), đúng preset Minh Nhật/Ngư chương 2 (188 WPM), −26 LUFS, có raw, report, CREDITS; tái tạo được riêng từng key mà không đổi 302 mục cũ. Test cảnh thật chương 2 phát đủ 5 câu qua `PhoneVoice`. `test_all_ogg_load_and_decode_with_correct_loop_flags` PASS sau khi ghép.
+- D-072 đã cập nhật "đã duyệt lời" theo xác nhận của chủ dự án trong phiên lane E.
+- **Chưa nghe bằng tai:** nhờ chủ dự án nghe khi chơi lại vòng 3 (nhất là câu `N_CAUGHT` khi chọn sai).

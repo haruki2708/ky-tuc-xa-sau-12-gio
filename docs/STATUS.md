@@ -8,7 +8,7 @@
 2. **Chương 4 (D-068):** lời `CH4_SCRIPT.md` **đã duyệt**; phiếu điều tra: Nam, 20 tuổi, sinh 11/03/2006 (`FORM_FIELDS` trong `chapter4_director.gd`).
 3. **Giọng (T-200, đã merge 2026-10-08):** chương 4 có đủ 16 giọng theo lời đã duyệt; cuộc gọi chương 2–4 và loa chương 2–4 **nay mới có tiếng** (trước đó chỉ có phụ đề do bộ phát chỉ nhận chương 1). Chờ chủ dự án nghe.
 4. **Chương 1 sau chơi thử lại (D-069, D-070):** T-201, T-202, T-203 đã merge; cả 4 giường ngắm trúng 36/36 (thanh chắn giường tầng trên: Claude làm thay lane B). Gõ sai được gõ lại trong 90 giây. Lane C còn phải đổi `"code":"13 34"` thành `"31"` trong `game/scripts/debug/ch1v2_scenarios.json` trước khi chạy lại bot chương 1.
-4a. **Chương 2 (D-072):** chủ dự án chơi kiểm tra "về cơ bản ok"; thêm đoạn Trung nhắn cách qua vòng 3 và qua màn ở từ lặp thứ 4. Lời đã viết (chờ duyệt), **nằm trên nhánh `core/T-204-ch2-tell-friends-loop`** (vào `main` cùng giọng của T-205, để test âm thanh luôn đủ). Giao **T-204** (Claude Code web, luồng) và **T-205** (lane E, 5 giọng, thu sau khi duyệt lời). Prompt `docs/handoff/web.md`, `lane-e.md` §1.
+4a. **Chương 2 (D-072):** đã ghép T-204 (luồng nhắn cho hai bạn, qua vòng 3 ở từ lặp thứ 4) và T-205 (5 giọng). Chờ chủ dự án chơi lại vòng 3 và nghe 5 câu mới. Lane C (khi chạy lại bot chương 2): sửa `tools/README.md` ("đủ vòng tám từ").
 4b. **Bot:** không chạy bot chương 3 và 4 (D-068); T-199 chưa viết card.
 5. **Chưa ai nghe bằng tai:** âm thanh chương 3 và 4, giọng cuộc gọi và loa chương 2–4 (fixture `res://audio/test/ch4_audio_test.tscn`).
 6. **Sau khi chốt chương 4:** giai đoạn "Ghép bản hoàn chỉnh" (D-059).
@@ -95,8 +95,8 @@
 | T-202 Vùng nằm giường dễ bấm, quản lý `hunt` và `open_door` | A | **done**, đã merge |
 | T-203 Va chạm giường tầng, cửa 407 mở chậm, đường đi ban công và nhà vệ sinh, khe ổ điện | B | **done**, đã merge (thanh chắn tầng trên: **Claude làm thay**) |
 | **Chương 2 sau chơi thử lại (D-072, giao 2026-10-09)** | | |
-| T-204 Nhắn cho hai bạn cách qua vòng 3, qua màn ở từ lặp thứ 4 | core (**Claude Code web làm thay**, D-072) | **todo** |
-| T-205 Giọng 5 câu gọi mới | E | **todo** (sau khi duyệt lời) |
+| T-204 Nhắn cho hai bạn cách qua vòng 3, qua màn ở từ lặp thứ 4 | core (**Claude Code web làm thay**, D-072) | **done**, đã merge |
+| T-205 Giọng 5 câu gọi mới | E | **done**, đã merge; chờ nghe |
 | T-171 Cầm giẻ, bịt miệng xác, cửa kẹt, buồng tắm, nút vòi sen, cảnh chết `corpse_lunge` và `scald` | A | **done**, đã merge |
 | T-172 Xác chơi nối từ, đồ bịt miệng, nhà vệ sinh có vòi sen, hơi nước, phòng camera 310 | B | **done**, đã merge |
 | T-173 Bot chương 2, menu nhảy, đo FPS hơi nước | C | khung **đã merge**; bot chạy sau khi điền profile |

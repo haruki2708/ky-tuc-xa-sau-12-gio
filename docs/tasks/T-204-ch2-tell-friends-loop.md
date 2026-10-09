@@ -63,3 +63,9 @@
 
 
 ## Review (integrator)
+
+### 2026-10-09 — Claude (integrator, Opus): **duyệt, đã merge**
+- Đúng card: lựa chọn `tell` bật đúng một lần khi `_loop_run` đạt 2 (chỉ khi cả ba xác đã bị bịt), chuỗi dừng trong lúc chờ (chưa mở lượt gõ, đồng hồ 15 giây chưa chạy), câu 1 chơi tiếp, câu khác hoặc hết giờ thì hai bạn chết và về `ch2_r3`; qua vòng 3 ở từ lặp thứ 4; `n_loop` không phát lại nếu đã phát sớm. Điện thoại tự giơ khi có lựa chọn (`phone_screen._on_choice`), nên phím 1–4 dùng được ngay. 9 test trên cảnh thật, có thử phá (6/9 FAIL khi tắt bước nhắn).
+- **Ngoài phạm vi, chấp nhận:** `game/tests/tools/test_ch2_tools.gd` (lane C) đổi vòng lặp 8 → 4 từ cho khớp bot; cần thiết để bộ test không hỏng.
+- **Còn để ngỏ (lane C, khi chạy lại bot chương 2):** `tools/README.md` mục "Hành vi bot và menu" còn ghi "đủ vòng tám từ"; chưa có case bot chọn sai câu `tell`.
+- Câu hỏi thiết kế của phiên web (gõ lệch vòng lặp giữa chừng thì đếm lại 4 từ, không hỏi lại hai bạn): giữ như vậy, đúng luật cũ.
