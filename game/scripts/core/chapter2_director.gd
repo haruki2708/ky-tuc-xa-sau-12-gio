@@ -13,6 +13,7 @@ const CH2_DEATH_KINDS := {
 	&"DEATH_CH2_CHAIN_WRONG": &"corpse_lunge", &"DEATH_CH2_CHAIN_TIMEOUT": &"corpse_lunge",
 	&"DEATH_CH2_SCALDED": &"scald", &"DEATH_CH2_NO_CHOICE": &"scald", &"DEATH_CH2_SHORT_SHOWER": &"scald",
 	&"DEATH_CH2_SHOWER_BROKEN": &"fall_back", &"DEATH_CH2_LOST_NGU": &"none", &"DEATH_CH2_LOST_NHAT": &"none", &"DEATH_LEFT_ROOM": &"fall_back",
+	&"DEATH_CH2_LOST_FRIENDS": &"none",
 }
 const WORD_BANK_PATH := "res://data/ch2/word_bank.json"
 const SHOWER_PATH := "res://data/ch2/shower.json"
@@ -24,6 +25,12 @@ const CORPSE_MUMBLE_SECONDS := 4.0
 const CORPSE_REVIVE_SECONDS := 10.0
 ## Round 3 lasts this many of Trung's turns unless the loop ends it early (D-040).
 const R3_TURNS := 28
+## D-072: after this many loop words in a row (all three gagged) Minh Nhật and
+## Ngư ask how to pass and Trung texts them; the round ends at the second count.
+const R3_TELL_LOOP_RUN := 2
+const R3_LOOP_PASS := 4
+## Wait for the story queue to go quiet before the friends speak, at most this long.
+const TELL_QUEUE_SECONDS := 40.0
 const SHOWER_CHOICE_SECONDS := 8.0
 const SHOWER_SLOT_SECONDS := 20.0
 ## Seconds after "Có" to step into the stall before the water decides.
@@ -52,6 +59,8 @@ var _talking_bed: int = -1
 var _turns: int = 0
 var _loop_known: bool = false
 var _loop_run: int = 0
+## The friends have been asked once in this attempt at round 3 (D-072).
+var _tell_done: bool = false
 var _typed: String = ""
 var _typed_sent: bool = false
 var _first_stall_told: bool = false
@@ -196,22 +205,62 @@ func _reset_chain() -> void:
 	_turns = 0
 	_loop_known = false
 	_loop_run = 0
+	_tell_done = false
 	_first_stall_told = false
 	for bed in [1, 2, 4]:
 		_gagged[bed] = false
 
 
-## Turns go round until Trung has answered `turns` times, or the loop is done.
+## Turns go round until Trung has answered `turns` times, or the loop is done
+## (R3_LOOP_PASS loop words in a row, D-072).
 func _chain(turns: int) -> void:
 	while is_inside_tree() and not _dying:
 		if not await _trung_turn():
 			return
-		if _turns >= turns or _loop_run >= _loop_canon.size():
+		if _loop_run >= R3_TELL_LOOP_RUN and not _tell_done:
+			# No turn is open here: the chain waits (and its clock) until he has chosen.
+			if not await _tell_friends():
+				return
+		if _turns >= turns or _loop_run >= R3_LOOP_PASS:
 			break
 		for bed in [1, 2, 4]:
 			if _dying or not is_inside_tree():
 				return
 			await _corpse_turn(bed)
+
+
+## D-072: with all three gagged and two loop words said, Minh Nhật and Ngư ask
+## how to pass; Trung has TELL_SECONDS to text them the right way (choice 1:
+## gag all three, then repeat the loop). Wrong or too late: both die and he
+## loses. False = dead.
+func _tell_friends() -> bool:
+	_tell_done = true
+	# Earlier story lines finish first so the friends never talk over each other.
+	await _wait_until(func() -> bool: return not _chat_running and _chat_queue.is_empty(), TELL_QUEUE_SECONDS)
+	if _dying or not is_inside_tree():
+		return false
+	if not _loop_known:
+		_loop_known = true
+		GameState.set_flag(&"ch2_loop_known", true)
+		await _line("n_loop")
+		await _line("ngu_loop")
+	await _line("n_how")
+	await _line("ngu_how")
+	if _dying or not is_inside_tree():
+		return false
+	var picked := await _choice(&"tell", 4, TELL_SECONDS, -1)
+	if _dying:
+		return false
+	if picked == TELL_CORRECT:
+		await _line("n_told")
+		await _line("ngu_told")
+		return true
+	await _line("n_caught")
+	_member_dies(&"minh_nhat", Vector3(8.0, -6.6, 2.0))
+	_member_dies(&"ngu", Vector3(20.0, -6.6, -2.0))
+	await _wait(1.5)
+	_die(&"DEATH_CH2_LOST_FRIENDS")
+	return false
 
 
 ## A corpse's turn: says a word, or mumbles through the gag, or stalls when
@@ -265,7 +314,11 @@ func _corpse_says(bed: int, word: String) -> void:
 func _trung_turn() -> bool:
 	_turns += 1
 	_set_clock("%02d:%02d" % [6, mini(59, 2 + _turns * 2)])
-	_story(R3_BEATS.get(_turns, []))
+	var beats: Array = R3_BEATS.get(_turns, [])
+	if _loop_known:
+		# The friends already read the loop to him when they asked how to pass (D-072).
+		beats = beats.filter(func(beat: String) -> bool: return beat != "n_loop" and beat != "ngu_loop")
+	_story(beats)
 	var seconds := float(_bank.get("seconds", 15.0))
 	_typed = ""
 	_typed_sent = false

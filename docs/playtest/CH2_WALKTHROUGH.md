@@ -20,7 +20,9 @@ Chết thì làm lại từ **đầu vòng** đang chơi (đầu vòng 3 hoặc 
 2. Mỗi lượt sau: gõ một từ hai tiếng bắt đầu bằng tiếng cuối của từ trước, đúng dấu, không lặp 3 từ gần nhất.
 3. Giữa các lượt, lấy đồ bịt miệng: **áo của Việt** (tủ Việt, gần cửa) → **giẻ lau** (bồn rửa nhà vệ sinh) → **khăn tắm** (dây phơi ban công). Chỉ trả lời được khi đứng trong phòng ngủ.
 4. Cầm đồ, nhìn miệng xác, bấm **E**: bịt cả 3 xác (Phúc, Việt, Đạt).
-5. Lái chuỗi về chữ **học**, rồi gõ liền 8 từ: **học sinh → sinh viên → viên phấn → phấn đấu → đấu tranh → tranh luận → luận văn → văn học**. Vòng 3 kết thúc sớm.
+5. Lái chuỗi về chữ **học**, rồi gõ liền các từ của vòng: **học sinh → sinh viên → viên phấn → phấn đấu**.
+6. Sau 2 từ đầu (học sinh, sinh viên), Minh Nhật và Ngư hỏi cách qua; điện thoại tự giơ lên và có 10 giây. Bấm **1** ("Bịt miệng cả ba đứa lại, giẻ, khăn hay áo gì cũng được. Rồi cứ lặp vòng từ."). Chuỗi nối từ dừng trong lúc chọn.
+7. Gõ tiếp 2 từ (viên phấn, phấn đấu) là từ thứ 4: vòng 3 kết thúc sớm. Chọn câu khác hoặc để hết 10 giây thì hai bạn chết, bạn thua và làm lại vòng 3.
 
 **Vòng 4 (tắm):**
 1. Đẩy cửa nhà vệ sinh 3 lần (E).
@@ -71,7 +73,12 @@ Thử: bịt cả 3 xác (Phúc, Việt, Đạt).
 - Bịt đủ 3 xác thì chỉ còn bạn nối: tự gõ các từ dẫn dần về chữ "học".
 - Khoảng 6:35 Minh Nhật gửi vòng lặp vào chat:
   > **học sinh → sinh viên → viên phấn → phấn đấu → đấu tranh → tranh luận → luận văn → văn học** → học sinh …
-- Lái chuỗi về chữ "học", rồi gõ đúng 8 từ của vòng **liên tiếp**: vòng 3 kết thúc sớm và nhảy tới 7:00.
+- Lái chuỗi về chữ "học", rồi gõ các từ của vòng **liên tiếp** (D-072):
+  - sau **2 từ**, Minh Nhật và Ngư hỏi cách qua vòng 3; điện thoại tự giơ lên, bạn có **10 giây** chọn câu nhắn (phím 1–4). Chuỗi nối từ dừng, đồng hồ 15 giây chưa chạy trong lúc chọn;
+  - **câu 1** ("Bịt miệng cả ba đứa lại… Rồi cứ lặp vòng từ.") là đúng: hai bạn làm theo, chơi tiếp;
+  - câu 2, 3, 4 hoặc hết 10 giây: hai bạn chết trong cuộc gọi, bạn thua (DEATH_CH2_LOST_FRIENDS) và làm lại vòng 3 từ checkpoint `ch2_r3`;
+  - lựa chọn chỉ hiện **một lần** trong mỗi lượt chơi vòng 3, và chỉ khi cả ba xác đã bị bịt;
+  - gõ đúng **từ thứ 4** liên tiếp của vòng: vòng 3 kết thúc sớm và nhảy tới 7:00.
 
 ### Các mốc khác của vòng 3 (chỉ xem)
 - **6:02:** ba xác ngồi dậy (jumpscare).

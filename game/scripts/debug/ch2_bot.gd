@@ -21,6 +21,7 @@ var timeout_limit: float = 0.0
 var door_opened: bool = false
 var scald_verified: bool = false
 var last_wipe_slot: int = -1
+var friends_told: bool = false
 
 
 func valid_scenarios() -> Array[String]:
@@ -81,8 +82,8 @@ func _run() -> void:
 	director.start()
 	while failure.is_empty() and skipped.is_empty():
 		if scenario == "ch2_good" and 2 in completed_chapters:
-			if Progress.unlocked_chapter() < 3 or not failed_rules.is_empty() or actions.gagged.size() != 3 or not actions.loop_completed or actions.counted_minutes < 25 or not actions.both_predictions_correct() or not actions.trap_confirmed:
-				failure = "chapter completion did not verify gags, trap, eight-word loop, shower minutes, both predictions and unlock 3"
+			if Progress.unlocked_chapter() < 3 or not failed_rules.is_empty() or actions.gagged.size() != 3 or not actions.loop_completed or not friends_told or actions.counted_minutes < 25 or not actions.both_predictions_correct() or not actions.trap_confirmed:
+				failure = "chapter completion did not verify gags, trap, four-word loop, friends told, shower minutes, both predictions and unlock 3"
 			break
 		if not failed_rules.is_empty():
 			await _verify_death()
@@ -139,6 +140,12 @@ func _tick_actions() -> void:
 		_record(outcome)
 		if wrong and outcome.status == "PASS": negative_action_done = true
 	if negative_action_done: return
+	# D-072: after two loop words the friends ask how to pass; answer 1 (gag all three, repeat the loop).
+	if actions.choices.has(&"tell"):
+		var told: Dictionary = await actions.execute({"op": "choice", "id": "tell", "index": 0})
+		_record(told)
+		friends_told = friends_told or told.status == "PASS"
+		return
 	if actions.chain_pending:
 		if actions.chain_submitted: return
 		if actions.chain_blocked:
@@ -163,7 +170,7 @@ func _tick_actions() -> void:
 				failure = "independent word policy disagrees with core validity"
 				return
 		answer = actions.answer_chain(mode)
-		if answer.status == "UNAVAILABLE": answer = ACTIONS.result("FAIL", "no legal word/route to the eight-word loop")
+		if answer.status == "UNAVAILABLE": answer = ACTIONS.result("FAIL", "no legal word/route to the four-word loop")
 		_record(answer)
 		if mode == "wrong_tone" and answer.status == "PASS": negative_action_done = true
 		return

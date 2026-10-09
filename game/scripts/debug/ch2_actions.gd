@@ -4,6 +4,8 @@ extends "res://scripts/debug/chapter_actions.gd"
 
 const POLICY := preload("res://scripts/debug/ch2_policy.gd")
 const SAME := preload("res://scripts/debug/ch1v2_actions.gd")
+## D-072: round 3 ends at the fourth loop word in a row.
+const LOOP_PASS := 4
 var profile: Dictionary = {}
 var dictionary: Ch2Dictionary = Ch2Dictionary.shared()
 var bank: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://data/ch2/word_bank.json")).words
@@ -97,7 +99,7 @@ func _word_spoken(who: StringName, key: String) -> void:
 		var index := POLICY.LOOP.find(word)
 		loop_streak = loop_streak + 1 if index >= 0 and index == (_last_loop_index + 1) % 8 else 1 if index >= 0 else 0
 		_last_loop_index = index
-		loop_completed = loop_completed or loop_streak >= 8
+		loop_completed = loop_completed or loop_streak >= LOOP_PASS
 	elif who != &"trung":
 		trap_accepted = false
 	recent.append(word)

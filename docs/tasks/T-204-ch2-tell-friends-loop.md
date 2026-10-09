@@ -1,5 +1,5 @@
 # T-204 — Chương 2: nhắn cho hai bạn cách qua vòng 3, qua màn ở từ lặp thứ 4 (core)
-- Lane: core, **Claude Code trên web (Sonnet 5.5) làm thay** (D-072) | Trạng thái: todo | Agent:
+- Lane: core, **Claude Code trên web (Sonnet 5.5) làm thay** (D-072) | Trạng thái: review | Agent: Claude Code web (Sonnet 5.5), làm thay core (D-072)
 - Nhánh: `core/T-204-ch2-tell-friends-loop`
 - Phụ thuộc: D-072. **Lời thoại đã có sẵn trên nhánh này** (commit đầu của `core/T-204-ch2-tell-friends-loop`, integrator viết): `strings.csv`, `game/data/messages/`, sinh từ `docs/design/ch2/build_ch2_script.py`; xem `docs/design/CH2_SCRIPT.md` mục 06:40. Không tạo nhánh mới từ `main`: dùng nhánh có sẵn. Trên nhánh này `test_audio.gd::test_all_ogg_load_and_decode_with_correct_loop_flags` FAIL cho tới khi lane E thêm 5 giọng (T-205); đó là lỗi đã biết, ghi vào Handoff, không sửa test. Giọng các câu mới do lane E thu ở T-205, làm song song; core phát giọng theo tên key nên không phải chờ.
 - **Hạn đề xuất:** 2026-10-10.
@@ -31,13 +31,35 @@
 `game/scripts/core/`, `game/scenes/main/`, `game/tests/core/`, `game/scripts/debug/` (phần chương 2 và `qa_menu.gd`), `tools/ch2-profile.json`, `docs/playtest/CH2_WALKTHROUGH.md`, card này (Handoff). **Không** sửa `strings.csv`, `game/data/messages/` (lời do integrator viết), file của lane A, B, D, E. Cần gì ngoài phạm vi thì ghi "Yêu cầu thay đổi".
 
 ## Checklist hoàn thành
-- [ ] Lựa chọn nhắn sau 2 từ lặp, chuỗi dừng khi chờ, đúng/sai/hết giờ
-- [ ] Qua màn ở từ lặp thứ 4
-- [ ] Bot và F9 khớp
-- [ ] Test trên cảnh thật; chương 2–4 không hỏng
+- [x] Lựa chọn nhắn sau 2 từ lặp, chuỗi dừng khi chờ, đúng/sai/hết giờ
+- [x] Qua màn ở từ lặp thứ 4
+- [x] Bot và F9 khớp (F9 không nhắc "8 từ" nên không phải sửa; xem ghi chú)
+- [x] Test trên cảnh thật; chương 2–4 không hỏng
 - [ ] Test hai lượt (trước và sau); `tools/check.ps1` PASS
-- [ ] Hướng dẫn `CH2_WALKTHROUGH.md` cập nhật
+- [x] Hướng dẫn `CH2_WALKTHROUGH.md` cập nhật
 
 ## Handoff (agent điền)
+**Claude Code web làm thay core (D-072).** Nhánh `core/T-204-ch2-tell-friends-loop` (dùng nhánh có sẵn, không tạo từ `main`).
+
+**Đã làm**
+- `chapter2_director.gd`: thêm `R3_TELL_LOOP_RUN := 2`, `R3_LOOP_PASS := 4`, `_tell_done` (reset trong `_reset_chain`, nên mỗi lượt chơi vòng 3 chỉ hỏi một lần) và `_tell_friends()`. `_chain` gọi nó ngay sau lượt gõ được chấp nhận làm `_loop_run` đạt 2: lúc đó chưa mở lượt gõ nào nên chuỗi và đồng hồ 15 giây dừng tới khi chọn xong. Thứ tự: chờ hàng đợi `_story` rảnh; nếu `_loop_known` false thì phát `n_loop`, `ngu_loop`; rồi `n_how`, `ngu_how`; `_choice(&"tell", 4, 10.0, -1)`. Câu 1 (chỉ số 0): `n_told`, `ngu_told`, chơi tiếp. Câu 2–4 hoặc hết giờ: `n_caught`, `chat_member_changed(minh_nhat|ngu, dead)` (kèm tiếng hét như chỗ khác), `_die(&"DEATH_CH2_LOST_FRIENDS")`, làm lại vòng 3 từ `ch2_r3`. Thêm `DEATH_CH2_LOST_FRIENDS: none` vào `CH2_DEATH_KINDS`.
+- Vòng 3 kết thúc khi `_loop_run >= 4` (bỏ ngưỡng 8). Nếu lựa chọn đã phát `n_loop`/`ngu_loop` thì lượt 13 không phát lại hai câu đó.
+- Bot: `ch2_bot.gd` trả lời lựa chọn `tell` bằng câu 1 qua op `choice`, `ch2_good` chỉ PASS khi đã nhắn đúng; `ch2_actions.gd` coi vòng lặp xong ở từ thứ 4 (`LOOP_PASS`). `ch2_policy.gd`, `tools/ch2-profile.json`, F9 (`ch2_menu.gd`/`qa_menu.gd`) không có chỗ nào nhắc "8 từ" nên không sửa.
+- Test: file mới `game/tests/core/test_ch2_tell_friends.gd` (9 test, trên `chapter2.tscn`): hiện lựa chọn `tell` với 4 key và chuỗi dừng trong lúc chờ; câu 1 chơi tiếp và sang `r4` ở từ lặp thứ 4; câu 2, 3, 4 và hết giờ chết `DEATH_CH2_LOST_FRIENDS` và về `ch2_r3`; mới bịt 2 xác thì không hiện lựa chọn; từ lặp chỉ tính khi bịt đủ ba; hỏi một lần. Đã thử phá (tắt bước nhắn): 6/9 test FAIL như mong đợi. `test_chapter2.gd::test_gagged_corpses_and_the_loop_end_round_3_early` được sửa để chọn câu 1. `game/tests/tools/test_ch2_tools.gd` (loop 8 từ → 4 từ) sửa cho khớp bot; file này ngoài danh sách được phép sửa nhưng bắt buộc để không làm hỏng test, mời integrator xem lại.
+- Tài liệu: `docs/playtest/CH2_WALKTHROUGH.md` (vượt nhanh và mục N5).
+
+**Giơ điện thoại:** không cần giơ tay. `phone_screen.gd` (`_on_choice`) tự phát `phone_raised(true)` khi có `chat_choice_requested`, nên phím 1–4 dùng được ngay; test xác nhận có `phone_raised(true)`.
+
+**Hai lượt test** (chạy trực tiếp bằng Godot Linux, userdata cô lập qua `XDG_DATA_HOME` + `QA_EXPECTED_USER_ROOT` vì `tools/test.ps1` lỗi trên Linux):
+- Trước khi sửa (commit 13b5d68): **702 passed, 2 failed**: `test_audio.gd::test_all_ogg_load_and_decode_with_correct_loop_flags` (lỗi đã biết, chờ T-205) và `test_room407_fixes.gd::test_navigation_reaches_balcony_and_bathroom_without_crossing_solids` (môi trường Linux, thuộc điều hướng, không liên quan).
+- Sau khi sửa: **712 passed, 1 failed**: chỉ còn `test_audio` (đã biết). Test nav ở trên PASS lần này, nên là test không ổn định chứ không phải do thay đổi này. Không FAIL mới. `tools/check.ps1` (pwsh Linux, `GODOT` đặt tay): **0 error**.
+
+**Chưa kiểm chứng được** (không có card đồ họa/người chơi thật): cảm giác 10 giây chọn và hiển thị bảng chọn/điện thoại trên màn hình thật; giọng của 5 câu mới (chờ T-205, hiện phát bằng phụ đề và thời lượng ước lượng); bot `ch2_good` chạy đầy đủ (chưa chạy bot trên Linux, chỉ test đơn vị và test cảnh thật). Chưa test trên Windows.
+
+**Câu hỏi / yêu cầu thay đổi ngoài phạm vi**
+- `tools/README.md` (lane C), đoạn "Hành vi bot và menu", còn ghi "đủ vòng tám từ" và chưa nhắc bước chọn `tell`; mời lane C/integrator sửa.
+- Chưa thêm case bot âm (chọn sai câu `tell`) vì ngoài yêu cầu; nếu cần thì lane C thêm vào `ch2_bot.gd`/profile.
+- Thiết kế: nếu người chơi gõ một từ khác vòng lặp giữa chừng sau khi đã chọn đúng thì `_loop_run` về 0 và phải gõ lại 4 từ liên tiếp từ đầu (giữ nguyên luật cũ); không hỏi lại hai bạn. Nếu muốn khác thì chủ dự án quyết.
+
 
 ## Review (integrator)
