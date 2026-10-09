@@ -14,6 +14,14 @@ func test_tap_code_timing_has_coordinate_and_letter_boundaries() -> void:
 		assert_true(ACTIONS.tap_schedule(invalid).is_empty(), invalid)
 
 
+## D-069: the scenarios knock Khoa's rhythm back as "31"; core must hear 3, then 1.
+func test_scenario_rhythm_matches_core_groups() -> void:
+	var times := ACTIONS.tap_schedule("31")
+	assert_eq(Chapter1Director.tap_groups(times), Chapter1Director.KHOA_RHYTHM, "the bot's knocks are Khoa's rhythm;")
+	var text := FileAccess.get_file_as_string("res://scripts/debug/ch1v2_scenarios.json")
+	assert_false(text.contains("13 34"), "no scenario still knocks the old 5x5 code;")
+
+
 func test_missing_v2_actions_skip_and_invalid_commands_fail() -> void:
 	var helper := ACTIONS.new()
 	tree.root.add_child(helper)

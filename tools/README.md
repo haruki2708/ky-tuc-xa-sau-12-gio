@@ -95,7 +95,7 @@ Không bỏ qua ERROR, exit code hoặc timeout của package. Để giữ snaps
 - Trong phiên QA, mỗi lần nhảy tạo scene mới rồi gọi `Chapter1Director.run_from(stage)`, không chạy chồng coroutine của mốc trước. Menu giữ nguyên trạng thái pause có từ trước.
 - Mốc chưa có trong profile hoặc `Chapter1Director.STAGES` bị vô hiệu hóa. Hiện có prologue/r1/r2/r2_manager. Mất mạng/gõ tường/giữ cửa/cứu Nhật cần T-160 thêm entry point rồi điền `jumps`.
 - Bất tử dùng subclass debug `qa_director.gd` chặn `_die` và `_manager_kills`, ghi `QA_DEATH_SUPPRESSED` (mỗi lý do một lần mỗi scene). Không áp dụng vào scene chơi thường. Khi core đổi pipeline chết, cần kiểm tra lại hai hook này. Chặn chết không tự giải nhiệm vụ; một nhánh truyện có thể kết thúc sớm, dùng F9 nhảy lại để tiếp tục thử.
-- Đáp án lấy từ D-039: 2109, công tắc 2, dây xanh, CO = 13 34. Menu ghi rõ đây là đáp án **bản 2**, không phải xác nhận dữ liệu trên main cũ. Catalog vi/en dành riêng QA được đăng ký lúc chạy, trong phạm vi `scripts/debug/`.
+- Đáp án lấy từ D-039, D-069: 2109, công tắc 2, dây xanh, gõ lại nhịp của Khoa 3–1 (code `31`). Menu ghi rõ đây là đáp án **bản 2**, không phải xác nhận dữ liệu trên main cũ. Catalog vi/en dành riêng QA được đăng ký lúc chạy, trong phạm vi `scripts/debug/`.
 
 ```powershell
 pwsh tools/qa-menu.ps1 -Stage r1
@@ -121,7 +121,7 @@ Bot bản 2 mặc định chạy thời gian thật (`TimeScale=1`), timeout m�
 ```
 
 - Key adapter: `power_switch_1..3`, `cable_blue/gray`, `latch`, `search_viet_locker/phuc_mattress/trash`, `desk_lamp`, `camera_tab`, `map_tab`, `charge`. Dây mạng cần bind API thao tác cầm/cắm thật do T-161 cung cấp; nếu API gồm hai đối tượng, cập nhật adapter sau ghép. Không tự set cờ đã cắm. Switch 3 phải xác nhận cờ **đã chập**, không đòi công tắc còn bật sau `trip()`.
-- `wall_taps`: chuỗi số 1..5, hai số/chữ, ví dụ `13 34`; cách nhau 0,18 giây trong nhóm, 1 giây giữa tọa độ, 2,5 giây giữa chữ, theo đồng hồ thực. Đổi nhịp chỉ sau khi đối chiếu bộ giải mã T-160.
+- `wall_taps`: chuỗi số 1..5, mỗi số là một nhóm gõ, số lượng số chẵn, ví dụ `31` (nhịp 3–1 của D-069); cách nhau 0,18 giây trong nhóm, 1 giây giữa hai số trong cặp, 2,5 giây giữa các cặp, theo đồng hồ thực. Core (`Chapter1Director.tap_groups`, T-201) tách nhóm ở khoảng nghỉ từ 0,7 giây; đổi nhịp thì đối chiếu với hàm đó.
 - Bot đóng giấy sau lục, kiểm tra cờ ghép đủ ba mảnh, mở Sơ đồ/Camera, tắt đèn/điện thoại, nằm giường Việt và nín 5,5 giây ở mốc nghe. Cần xác nhận lịch nhiệm vụ thật: sửa mạng/gõ tường không được khiến bot lỡ cửa 10 giây. Case sai công tắc đợi 20,5 giây trước sửa lại. Case chết kiểm tra lý do, UI và reload scene thật về đầu vòng 1/2.
 - Chưa có binding không có nghĩa là đã chơi hết tám nhiệm vụ. `report.json` ghi status, checks, skipped, thời gian thật và phút game.
 
@@ -177,7 +177,7 @@ Chương 2 tự chọn `tools/ch2-profile.json`, thời gian thật (`TimeScale=
 
 ### Hành vi bot và menu
 
-Bot nghe signal trước khi scene bắt đầu. `chain_input_requested` mở lượt gõ; bot phát `chain_word_typed`, chờ `chain_input_closed`. Không dùng hai signal chọn phương án đã bỏ. Nối từ kiểm tra hai tiếng, dấu và ba từ vừa nói; chữ dựng sẵn/tổ hợp, dấu kiểu cũ/mới dùng cùng chuẩn hóa với core. Gài từ làm xác bí ít nhất một lần và đợi core nhận từ rồi xác ngã trước khi lấy đồ/bịt xác. Sau ba xác đã bịt, chọn đường vào vòng học sinh…văn học; chỉ ghi đủ tám từ khi nghe core phát chữ Trung đã nói. Timeout không gõ, wrong gõ từ cùng âm nhưng sai dấu; không có từ sai dấu thì tiếp tục hợp lệ. Bot đối chiếu tính hợp lệ với director nhưng tự chọn chữ từ từ điển.
+Bot nghe signal trước khi scene bắt đầu. `chain_input_requested` mở lượt gõ; bot phát `chain_word_typed`, chờ `chain_input_closed`. Không dùng hai signal chọn phương án đã bỏ. Nối từ kiểm tra hai tiếng, dấu và ba từ vừa nói; chữ dựng sẵn/tổ hợp, dấu kiểu cũ/mới dùng cùng chuẩn hóa với core. Gài từ làm xác bí ít nhất một lần và đợi core nhận từ rồi xác ngã trước khi lấy đồ/bịt xác. Sau ba xác đã bịt, chọn đường vào vòng học sinh…văn học; sau 2 từ lặp, core hỏi `tell` và bot chọn câu 1 (D-072); vòng 3 qua ở từ lặp thứ 4, chỉ tính khi nghe core phát chữ Trung đã nói. Timeout không gõ, wrong gõ từ cùng âm nhưng sai dấu; không có từ sai dấu thì tiếp tục hợp lệ. Bot đối chiếu tính hợp lệ với director nhưng tự chọn chữ từ từ điển.
 
 Vòi sen: lượt đầu chưa có dữ liệu thì chọn Không; các lượt sau dùng `(hàng chục + hàng đơn vị) % 10 < 5` của nhiệt độ vừa hiện, không đọc trước dãy. Trước Có phải vào vùng buồng tắm thật; case leave_shower bước ra sau Có. Good chỉ PASS khi có ba xác bịt, đủ vòng tám từ, ≥25 phút nước, đã xác nhận gài bẫy và nhận `prediction_result(correct=true)` cho cả Minh Nhật lẫn Ngư, chapter_finished(2) và unlock chương 3, không có chết. Case chết kiểm tra lý do, kind, UI và scene reload thật về đầu vòng.
 
