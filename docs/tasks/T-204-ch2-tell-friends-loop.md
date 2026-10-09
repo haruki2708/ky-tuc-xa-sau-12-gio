@@ -1,5 +1,5 @@
 # T-204 — Chương 2: nhắn cho hai bạn cách qua vòng 3, qua màn ở từ lặp thứ 4 (core)
-- Lane: core, **Claude Code trên web (Sonnet 5.5) làm thay** (D-072) | Trạng thái: todo | Agent:
+- Lane: core, **Claude Code trên web (Sonnet 5.5) làm thay** (D-072) | Trạng thái: review | Agent: Claude Code web (Sonnet 5.5), làm thay core (D-072)
 - Nhánh: `core/T-204-ch2-tell-friends-loop`
 - Phụ thuộc: D-072. **Lời thoại đã có sẵn trên nhánh này** (commit đầu của `core/T-204-ch2-tell-friends-loop`, integrator viết): `strings.csv`, `game/data/messages/`, sinh từ `docs/design/ch2/build_ch2_script.py`; xem `docs/design/CH2_SCRIPT.md` mục 06:40. Không tạo nhánh mới từ `main`: dùng nhánh có sẵn. Trên nhánh này `test_audio.gd::test_all_ogg_load_and_decode_with_correct_loop_flags` FAIL cho tới khi lane E thêm 5 giọng (T-205); đó là lỗi đã biết, ghi vào Handoff, không sửa test. Giọng các câu mới do lane E thu ở T-205, làm song song; core phát giọng theo tên key nên không phải chờ.
 - **Hạn đề xuất:** 2026-10-10.
@@ -31,12 +31,12 @@
 `game/scripts/core/`, `game/scenes/main/`, `game/tests/core/`, `game/scripts/debug/` (phần chương 2 và `qa_menu.gd`), `tools/ch2-profile.json`, `docs/playtest/CH2_WALKTHROUGH.md`, card này (Handoff). **Không** sửa `strings.csv`, `game/data/messages/` (lời do integrator viết), file của lane A, B, D, E. Cần gì ngoài phạm vi thì ghi "Yêu cầu thay đổi".
 
 ## Checklist hoàn thành
-- [ ] Lựa chọn nhắn sau 2 từ lặp, chuỗi dừng khi chờ, đúng/sai/hết giờ
-- [ ] Qua màn ở từ lặp thứ 4
-- [ ] Bot và F9 khớp
-- [ ] Test trên cảnh thật; chương 2–4 không hỏng
+- [x] Lựa chọn nhắn sau 2 từ lặp, chuỗi dừng khi chờ, đúng/sai/hết giờ
+- [x] Qua màn ở từ lặp thứ 4
+- [x] Bot và F9 khớp (F9 không nhắc "8 từ" nên không phải sửa; xem ghi chú)
+- [x] Test trên cảnh thật; chương 2–4 không hỏng
 - [ ] Test hai lượt (trước và sau); `tools/check.ps1` PASS
-- [ ] Hướng dẫn `CH2_WALKTHROUGH.md` cập nhật
+- [x] Hướng dẫn `CH2_WALKTHROUGH.md` cập nhật
 
 ## Handoff (agent điền)
 
