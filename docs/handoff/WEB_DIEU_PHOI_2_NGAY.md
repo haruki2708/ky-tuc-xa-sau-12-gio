@@ -15,7 +15,8 @@ Repo: tuaanh666/ky-tuc-xa-sau-12-gio, nhánh main. Trả lời tôi bằng tiế
 Bước 1. Đọc kỹ docs/handoff/WEB_DIEU_PHOI_2_NGAY.md (toàn bộ), rồi làm mục 2 "Chuẩn bị máy" trong đó.
 Bước 2. Đọc theo thứ tự ở mục 3 của file đó.
 Bước 3. Chạy cả bộ test một lần trên main, ghi lại kết quả (đây là mốc; test FAIL ở lượt này là do môi trường Linux).
-Bước 4. Tóm tắt ngắn cho tôi: dự án đang ở đâu, việc gì đang mở, bạn sẽ làm gì khi tôi gửi góp ý.
+Bước 4. Tóm tắt ngắn cho tôi (dựa vào mục 1b): tiến độ từng chương, tôi đang chơi tới đâu, vừa sửa gì,
+        việc tiếp theo là gì, và bạn sẽ làm gì khi tôi gửi góp ý.
 Sau đó chờ tôi gửi góp ý chơi thử hoặc yêu cầu review nhánh lane.
 ```
 
@@ -27,6 +28,47 @@ Sau đó chờ tôi gửi góp ý chơi thử hoặc yêu cầu review nhánh la
 - Chỉ một độ khó **Insane** (D-039); **không giải thích luật, không gợi ý** (D-038, D-055); có cảnh chết góc nhìn thứ nhất (D-042); bỏ thời gian trống khi xong việc (D-040).
 - Người làm: **chủ dự án** (quyết thiết kế, chơi thử, dán prompt cho các agent), **integrator** (bạn, trong 2 ngày này), **5 lane agent A–E** (GPT/Codex, chạy ở máy chủ dự án trong `D:\GAME_WORK\lane-<x>`): A gameplay, B môi trường 3D, C QA và công cụ, D UI và đa ngôn ngữ, E âm thanh. Phạm vi file mỗi lane: `AGENTS.md` §3.
 - **Sự thật nằm trong repo:** `docs/STATUS.md` (bảng task, "Việc tiếp theo"), `docs/DECISIONS.md` (D-001…D-074), `docs/tasks/T-*.md` (card có Handoff và Review), `docs/design/*` (thiết kế, kịch bản).
+
+## 1b. Tiến độ dự án và đang sửa tới đâu (đọc kỹ nhất)
+
+### Lộ trình tổng
+| Giai đoạn | Trạng thái |
+|---|---|
+| Demo cũ (bỏ, tag `demo-v1`) | Xong, chỉ để tham khảo |
+| Thiết kế v2 (STORY, D-034, D-035) | Xong, đã duyệt |
+| Chương 1 "Tổng tắc" | Làm xong, đã sửa 2 đợt góp ý, **tạm chốt** (D-045, lại D-071) |
+| Chương 2 "Trò chơi" | Làm xong, đã sửa 2 đợt góp ý, **tạm chốt** (D-057, lại D-073) |
+| Chương 3 "Truy sát" | Làm xong, **đang chơi kiểm tra đợt 3**; đợt này đã sửa 3 lỗi (D-074, T-206) |
+| Chương 4 "Người sống sót" | Làm xong, lời đã duyệt, có giọng; **chưa chơi kiểm tra lần nào** |
+| Ghép bản hoàn chỉnh (D-059) | Chưa bắt đầu; làm sau khi cả 4 chương tạm chốt |
+| Phát hành (bản quyền, nhãn nội dung, Steam/itch) | Chưa bắt đầu |
+
+### Bảng từng chương
+| | Chương 1 | Chương 2 | Chương 3 | Chương 4 |
+|---|---|---|---|---|
+| Thiết kế đã duyệt | Có (`CH1_V2_MISSIONS.md`) | Có (`CH2_DESIGN.md`) | Có (`CH3_DESIGN.md`) | Có (`CH4_DESIGN.md`, D-067) |
+| Lời thoại đã duyệt | Có | Có (D-072 duyệt 09/10) | Có | Có (D-068) |
+| Các lane đã ghép | Đủ | Đủ | Đủ | Đủ (T-195…T-198, T-200) |
+| Test tự động | Đạt | Đạt | Đạt | Đạt (cả bộ 719/719) |
+| Chủ dự án chơi tay bản mới nhất | Đạt (D-071) | Đạt, **trừ đoạn nhắn tin mới D-072 chưa chơi** | **Đang chơi**: tới tầng 2 thì gặp lỗi, đã sửa, chưa chơi lại | Chưa |
+| Âm thanh đã nghe bằng tai | Một phần (chương 1 cũ) | Chưa nghe giọng cuộc gọi/loa (mới có tiếng từ T-200) | Chưa | Chưa |
+| Bot chơi trọn | Có (bản cũ) | Khung có | Chưa chạy (D-068: không chạy) | Chưa có (T-199 chưa viết, không cần) |
+
+### Đang sửa tới đâu (ngay lúc bàn giao)
+- **Chủ dự án đang ở chương 3, bước 5 của `docs/playtest/CH3_QUICKTEST.md` (tầng 2 nhà B).** Đợt chơi gần nhất (bản 17:27 ngày 09/10) báo 3 lỗi, **cả 3 đã sửa và có trong bản 01:28**:
+  1. Cửa sáng nhấp nháy cạnh phòng 407 → tấm bịt cửa 408 cũ trùng mặt tường; lane B sửa (T-206), đúng ở cả 4 chương.
+  2. Đập bình cứu hỏa nhưng xác vẫn tới chặn cửa phòng 207 → xác thấy người chơi trên đường đi bộ về 207; core sửa: bị tiếng bình kéo đi thì chỉ để ý người chơi dưới 2 m, tới chiếu nghỉ khoảng 3 giây mới nhìn quanh lại (`_pull_crowd_203`, `_watch_crowd_pull` trong `chapter3_director.gd`).
+  3. Minh Nhật tự hiện trong phòng 207 → cơ chế đuổi kịp ở chỗ khuất; core sửa: Minh Nhật chờ ở cửa 203 tới khi đám xác về chiếu nghỉ, rồi đi bộ ra (`_walk_out_nhat`).
+- **Việc tiếp theo ngay:** chủ dự án chơi lại tầng 2 bằng bản 01:28 để xác nhận 3 sửa trên, rồi chơi tiếp các bước 6–13 (tầng 1 và cửa sổ phòng quản lý, vườn hoa và Ngư, sân vận động 4 phút, cổng và bảo vệ, nhà ăn và hết chương). Phần sau tầng 2 **chưa được chơi lại** từ các sửa D-061…D-065 (xác ra từ phòng, đồng đội đi theo, khán đài mới, trời đêm), nên có thể còn lỗi.
+- **Không có việc nào đang làm dở trong code**, không có nhánh lane nào chờ review. `main` sạch, 719/719 test.
+
+### Nhật ký gần đây (để hiểu nhịp làm việc)
+| Ngày | Việc |
+|---|---|
+| 07/10 | Chương 4 thiết kế (D-067), giao 4 lane, ghép xong (T-194…T-198); chủ dự án duyệt lời (D-068); phát hiện cuộc gọi chương 2–4 chưa từng có tiếng → T-200 (lane E) |
+| 08/10 | Ghép T-200; chủ dự án chơi chương 1 → 5 góp ý (D-069) → T-201 (Claude Code web, core), T-202 (lane A), T-203 (lane B) |
+| 09/10 | Ghép T-201…T-203 (integrator sửa thêm 3 chỗ sau ghép, D-070); chương 1 tạm chốt (D-071); chương 2 góp ý nhắn tin (D-072) → T-204 (web), T-205 (lane E), ghép; chương 2 tạm chốt (D-073); chương 3 báo 3 lỗi → D-074 sửa core, T-206 lane B |
+| 10/10 01:28 | Ghép T-206, export bản 01:28, bàn giao cho phiên web |
 
 ## 2. Chuẩn bị máy (Linux cloud, không cần sudo; cài vào ~/tools)
 ```
