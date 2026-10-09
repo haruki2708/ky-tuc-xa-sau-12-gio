@@ -29,7 +29,7 @@ func before_each() -> void:
 func after_each() -> void:
 	EventBus.player_failed.disconnect(_on_failed)
 	for pair: Array in [[EventBus.chain_input_requested, _type_right], [EventBus.shower_choice_requested, _shower_by_rule],
-			[EventBus.prediction_requested, _predict]]:
+			[EventBus.prediction_requested, _predict], [EventBus.chat_choice_requested, _pick_first]]:
 		if (pair[0] as Signal).is_connected(pair[1]):
 			(pair[0] as Signal).disconnect(pair[1])
 	scene.queue_free()
@@ -48,6 +48,11 @@ func _until(condition: Callable, seconds: float = 20.0) -> void:
 
 func _type(text: String) -> void:
 	(func() -> void: EventBus.chain_word_typed.emit(text)).call_deferred()
+
+
+## D-072: the friends ask how to pass after two loop words; choice 1 is right.
+func _pick_first(id: StringName, _keys: PackedStringArray) -> void:
+	(func() -> void: EventBus.chat_choice_made.emit(id, 0)).call_deferred()
 
 
 func _type_right(_seconds: float) -> void:
@@ -180,6 +185,7 @@ func test_a_wrong_word_kills() -> void:
 
 func test_gagged_corpses_and_the_loop_end_round_3_early() -> void:
 	EventBus.chain_input_requested.connect(_type_right)
+	EventBus.chat_choice_requested.connect(_pick_first)
 	director.stop_after = &"r3"
 	director.run_from(&"r3")
 	await _until(func() -> bool: return director._turns >= 2, 30.0)

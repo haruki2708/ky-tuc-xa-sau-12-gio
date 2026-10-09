@@ -118,18 +118,18 @@ func test_missing_chapter_and_physical_bindings_skip_instead_of_faking_progress(
 	assert_eq(BOT.CASES.ch2_scald.checkpoint, "ch2_r4")
 
 
-func test_complete_eight_word_loop_is_observed_not_assumed() -> void:
+func test_four_word_loop_run_is_observed_not_assumed() -> void:
 	var helper := ACTIONS.new()
 	tree.root.add_child(helper)
 	for bed in [1, 2, 4]: EventBus.corpse_state_changed.emit(bed, &"gagged")
 	EventBus.chain_word_spoken.emit(&"dat", "văn học")
-	for i in 8:
+	for i in 4:
 		EventBus.chain_input_requested.emit(15.0)
 		assert_eq(helper.answer_chain("loop").word, POLICY.LOOP[i])
 		assert_false(helper.loop_completed, "sending is not completing")
 		EventBus.chain_input_closed.emit(&"accepted")
 		EventBus.chain_word_spoken.emit(&"trung", POLICY.LOOP[i])
-		assert_eq(helper.loop_completed, i == 7)
+		assert_eq(helper.loop_completed, i == 3)
 	helper.free()
 
 
