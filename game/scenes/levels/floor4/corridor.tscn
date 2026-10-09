@@ -2628,7 +2628,7 @@ mesh = SubResource("t190_s10")
 metadata/t190 = true
 
 [node name="Sealed408" type="MeshInstance3D" parent="."]
-position = Vector3(36,1.02,0.075)
+position = Vector3(36,1.02,0.13)
 mesh = SubResource("v2_seal")
 metadata/t190 = true
 
