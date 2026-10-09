@@ -52,6 +52,7 @@ def load_lines() -> list:
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--tts", type=Path, default=DEFAULT_TTS)
+    parser.add_argument("--keys", nargs="+", help="Render only these script keys and merge their report entries")
     parser.add_argument("--ffmpeg", default="D:/Tools/ffmpeg/ffmpeg-9.0.2-essentials_build/bin/ffmpeg.exe")
     args = parser.parse_args()
     if not Path(args.ffmpeg).is_file():
@@ -60,14 +61,30 @@ def main() -> None:
     if not args.tts.is_file():
         parser.error("Extract eSpeak NG 1.52.0 under D:/Tools first (see voice/README.md)")
     texts = read_lines()
+    lines = load_lines()
+    if args.keys:
+        unknown = set(args.keys) - {key for key, _who in lines}
+        if unknown:
+            parser.error("Unknown voiced script keys: " + ", ".join(sorted(unknown)))
+        lines = [(key, who) for key, who in lines if key in args.keys]
     (SOURCE / "raw").mkdir(parents=True, exist_ok=True)
     DEST.mkdir(parents=True, exist_ok=True)
     report = {"engine": "eSpeak NG 1.52.0", "voices": {k: list(v[:3]) + [v[4]] for k, v in VOICES.items()}, "assets": []}
+    report_path = SOURCE / "build_report.json"
+    if args.keys and report_path.is_file():
+        report = json.loads(report_path.read_text(encoding="utf-8"))
+        report["assets"] = [entry for entry in report["assets"] if entry["key"] not in args.keys]
     with tempfile.TemporaryDirectory(prefix="processing_", dir=SOURCE) as scratch:
         temp = Path(scratch)
-        for key, who in load_lines():
+        for key, who in lines:
             voice, wpm, pitch, chain, target = VOICES[who]
-            text = ch1.clean(texts[key]["vi"])
+            # T-205 lines are verbatim CSV, including their broken ellipses.
+            text = texts[key]["vi"] if args.keys else ch1.clean(texts[key]["vi"])
+            if not text.strip():
+                raise ValueError("Missing Vietnamese line: " + key)
+            if key == "CHAT_CH2_N_CAUGHT":
+                # A slight tremor keeps the established voice while conveying panic.
+                chain += ",vibrato=f=7:d=0.08"
             raw_tts = ch1.synthesize(args.tts, text, voice, wpm, pitch, temp)
             raw = SOURCE / "raw" / f"{key}.wav"
             raw.write_bytes(raw_tts.read_bytes())
@@ -95,19 +112,21 @@ def main() -> None:
             report["assets"].append({"key": key, "who": who, "text": text, "file": out.relative_to(ROOT).as_posix(),
                                      "seconds": round(seconds, 3), "lufs": float(actual["input_i"]),
                                      "true_peak_db": float(actual["input_tp"]),
+                                     "target_lufs": target, "processing": chain,
+                                     "raw_sha256": hashlib.sha256(raw.read_bytes()).hexdigest(),
                                      "sha256": hashlib.sha256(out.read_bytes()).hexdigest()})
             print(f"{key} [{who}]: {actual['input_i']} LUFS, {seconds:.2f} s", flush=True)
-    (SOURCE / "build_report.json").write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    report_path.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     # Lines and words the script no longer has (D-049: traps, the old Ngư call).
     made = {a["key"] for a in report["assets"]}
     for prefix in ("SPK_CH2_", "RULE_CH2_", "ROOM_CH2_", "CHAT_CH2_", "WORD_CH2_"):
         for old in list(DEST.glob(prefix + "*.ogg")) + list((SOURCE / "raw").glob(prefix + "*.wav")):
-            if old.stem not in made:
+            if not args.keys and old.stem not in made:
                 old.unlink()
                 Path(str(old) + ".import").unlink(missing_ok=True)
                 print("removed", old.name)
     total = sum((DEST / (a["key"] + ".ogg")).stat().st_size for a in report["assets"])
-    print(f"VOICE CH2 RESULT: {len(report['assets'])} lines; OGG = {total} bytes")
+    print(f"VOICE CH2 RESULT: {len(lines)} rendered; {len(report['assets'])} reported; OGG = {total} bytes")
 
 
 if __name__ == "__main__":
