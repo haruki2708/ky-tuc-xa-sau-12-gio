@@ -100,6 +100,18 @@ func test_real_chapter2_phone_speaks_without_answer_and_after_checkpoint() -> vo
 	await _real_call(2, &"chat_ch2_n_28")
 
 
+func test_real_chapter2_phone_speaks_five_tell_friends_lines() -> void:
+	var scene := _scene(2)
+	await wait_frames(3)
+	var phone := scene.get_node("PhoneCallAudio") as PhoneCallAudio
+	GameState.chapter = 2
+	EventBus.chapter_started.emit(2)
+	for message_id: StringName in [&"chat_ch2_n_how", &"chat_ch2_ngu_how", &"chat_ch2_n_told", &"chat_ch2_ngu_told", &"chat_ch2_n_caught"]:
+		# Restore the group call between independent lines, clearing its queue.
+		EventBus.checkpoint_loaded.emit(&"ch2_r3")
+		_assert_message(phone, message_id)
+
+
 func test_real_chapter3_phone_speaks_without_answer_and_after_checkpoint() -> void:
 	await _real_call(3, &"chat_ch3_n_all_up")
 

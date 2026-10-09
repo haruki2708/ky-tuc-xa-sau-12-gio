@@ -3118,6 +3118,71 @@
       "lufs": -30.21,
       "true_peak_db": -12.12,
       "sha256": "3e9018760b3efc10590c17fad92f76c48ca0cb41951915fc570e10db816cb9f3"
+    },
+    {
+      "key": "CHAT_CH2_N_HOW",
+      "who": "minh_nhat",
+      "text": "Trung? Bên cậu sao im thế? Tôi lặp vòng của tôi mà tụi nó vẫn nối theo được…",
+      "file": "game/audio/voice/vi/CHAT_CH2_N_HOW.ogg",
+      "seconds": 4.338,
+      "lufs": -26.15,
+      "true_peak_db": -5.02,
+      "target_lufs": -26,
+      "processing": "highpass=f=90,lowpass=f=7000",
+      "raw_sha256": "c732be512c831ea9fe06ee122125cfedcf07311cd4d5ad024e5ed9115ea35e85",
+      "sha256": "a3bcab915065eeb79b63d628d56a1e4b301d6f35dfe40eeb22f9b07b64d2cc8f"
+    },
+    {
+      "key": "CHAT_CH2_NGU_HOW",
+      "who": "ngu",
+      "text": "Bên mình cũng vậy. Nó nối còn nhanh hơn mình. Cậu làm cách nào?",
+      "file": "game/audio/voice/vi/CHAT_CH2_NGU_HOW.ogg",
+      "seconds": 3.807,
+      "lufs": -26.06,
+      "true_peak_db": -6.97,
+      "target_lufs": -26,
+      "processing": "highpass=f=90,lowpass=f=7000",
+      "raw_sha256": "ac524523eb7448a072a6601e8dc014835ee8d583f1d80ec8f8df7d09bed09ccb",
+      "sha256": "f6f6acbf3fae8952b62aec8a431d4679dd72c7a9609db191c54423c16d5b96be"
+    },
+    {
+      "key": "CHAT_CH2_N_TOLD",
+      "who": "minh_nhat",
+      "text": "Bịt… được rồi. Nó chỉ còn ú ớ. Tôi lặp tiếp đây.",
+      "file": "game/audio/voice/vi/CHAT_CH2_N_TOLD.ogg",
+      "seconds": 3.358,
+      "lufs": -26.1,
+      "true_peak_db": -5.07,
+      "target_lufs": -26,
+      "processing": "highpass=f=90,lowpass=f=7000",
+      "raw_sha256": "df4692a012017eeca2bf398489202b1a111dc4d53182718840a3c956a62f5c51",
+      "sha256": "9e738c1d2994a0796f121d75f70cb4c7028c6070e87ddc7689704254e53311b6"
+    },
+    {
+      "key": "CHAT_CH2_NGU_TOLD",
+      "who": "ngu",
+      "text": "Xong rồi. Cái khăn ướt sũng… Cảm ơn nhé, Trung.",
+      "file": "game/audio/voice/vi/CHAT_CH2_NGU_TOLD.ogg",
+      "seconds": 3.231,
+      "lufs": -26.08,
+      "true_peak_db": -6.96,
+      "target_lufs": -26,
+      "processing": "highpass=f=90,lowpass=f=7000",
+      "raw_sha256": "1645e62b1b5efb4e9e4d4d5cdac6f200504934dcc2a0365ba4170246e8b4a775",
+      "sha256": "92a979d8669cdcf9ec457b5840db629692dc951a9e423f1f1c754071a257ce5d"
+    },
+    {
+      "key": "CHAT_CH2_N_CAUGHT",
+      "who": "minh_nhat",
+      "text": "Trung… không được… tụi nó đứng dậy hết rồi…",
+      "file": "game/audio/voice/vi/CHAT_CH2_N_CAUGHT.ogg",
+      "seconds": 2.488,
+      "lufs": -26.21,
+      "true_peak_db": -3.49,
+      "target_lufs": -26,
+      "processing": "highpass=f=90,lowpass=f=7000,vibrato=f=7:d=0.08",
+      "raw_sha256": "755cb4c1913ae4d34ce2ad411efa13dd949e8fb97df663ed086b131193da6e83",
+      "sha256": "9422dcbaf857de6c3b7f220b50c60d6622f9aab3d9d72a0705e1d4728e50f9ae"
     }
   ]
 }

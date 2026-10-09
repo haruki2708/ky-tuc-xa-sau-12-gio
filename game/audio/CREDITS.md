@@ -267,3 +267,23 @@ Mọi tên dưới đại diện `audio_source/voice_ch4/raw/<KEY>.wav` và `gam
 | NEAR_CH4_NURSE2_QUAKE, NEAR_CH4_NURSE2_ALL, NEAR_CH4_NURSE2_ALONE | Y tá 2 `vi+f3`, đọc cả hai kết, −34 LUFS |
 
 SHA256 raw/OGG, văn bản, thời lượng và mức đo: `audio_source/voice_ch4/build_report.json`; hướng dẫn: `audio_source/voice_ch4/README.md`. Các file voice Ch2/Ch3 được dùng lại qua PhoneCallAudio, không thay waveform/nguồn. **Chưa nghe bằng tai, chưa duyệt phát âm/nhịp/độ nhỏ; cần chủ dự án nghe fixture cập nhật.**
+
+## T-205 — năm câu gọi chương 2, vòng 3 (2026-10-09)
+
+Giọng máy tổng hợp offline, nguyên cột `vi` của `game/localization/strings.csv`,
+5 câu được chủ dự án duyệt trong phiên Lane E ngày 2026-10-09.
+Các file `audio_source/voice_ch2/raw/<KEY>.wav` và `game/audio/voice/vi/<KEY>.ogg`:
+`CHAT_CH2_N_HOW`, `CHAT_CH2_N_TOLD`, `CHAT_CH2_N_CAUGHT` (Minh Nhật, `vi+m2`);
+`CHAT_CH2_NGU_HOW`, `CHAT_CH2_NGU_TOLD` (Ngư, `vi+f2`). Cả hai dùng preset
+chương 2, 188 WPM, −26 LUFS; không thu Trung.
+
+Tác giả đầu ra: dự án/Lane E, phát hành [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/)
+theo chính sách pipeline T-137/T-200. Nguồn tái tạo:
+[ch2_voice_process.py](https://github.com/tuaanh666/ky-tuc-xa-sau-12-gio/blob/lane-e/T-205-ch2-tell-voices/audio_source/ch2_voice_process.py).
+Công cụ có sẵn: [eSpeak NG 1.52.0](https://github.com/espeak-ng/espeak-ng),
+[FFmpeg 9.0.2](https://ffmpeg.org/), Python stdlib. Engine/data eSpeak
+GPL-3.0-or-later chỉ dùng offline ở D:\Tools, không phân phối trong game;
+không dùng giọng người thật, MBROLA, neural voice hoặc sample tải về.
+Code có **OpenAI Codex hỗ trợ (AI-assisted)**; giữ khai báo khi phát hành.
+SHA256/LUFS/peak/lời trong `audio_source/voice_ch2/build_report.json`,
+hướng dẫn/bảng đo trong `audio_source/voice_ch2/README.md`. **Chưa nghe bằng tai.**
