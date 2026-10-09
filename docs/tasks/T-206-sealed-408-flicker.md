@@ -1,5 +1,5 @@
 # T-206 — Tầng 4: tấm bịt cửa 408 cũ nhấp nháy cạnh phòng 407
-- Lane: B (Môi trường và 3D) | Trạng thái: todo | Agent:
+- Lane: B (Môi trường và 3D) | Trạng thái: done | Agent:
 - Nhánh: `lane-b/T-206-sealed-408-flicker`
 - Phụ thuộc: D-074 (chủ dự án chơi thử chương 3: "bên cạnh phòng 407 có 1 cửa sáng nhấp nháy").
 - **Hạn đề xuất:** 2026-10-10.
@@ -66,3 +66,7 @@ Test mới: `game/tests/levels/test_sealed_408.gd`, đo bounds mesh với transf
 **Chặn:** không bị chặn. Các lệnh GitHub, Godot test và renderer đã chạy được với quyền ngoài sandbox.
 
 ## Review (integrator)
+
+### 2026-10-10 — Claude (integrator, Opus): **duyệt, đã merge**
+- Đúng card: `Sealed408` z 0,075 → 0,13 (mặt sau 0,105, trước mặt tường 0,10), sửa cả hai bộ dựng (`room_doors.py`, `build_room.py`) để không tái tạo lỗi; rà 24 biển phòng và 16 khung cửa tầng 2–3, không có chỗ trùng mặt khác; 2 test mới (FAIL trước khi sửa); ảnh trước/sau rõ: trước chỉ thấy một mẩu tam giác, sau thấy đủ tấm.
+- **Integrator kiểm thêm trên cả 4 cảnh** `chapter1.tscn` … `chapter4.tscn` (chủ dự án thấy lỗi ở cả 4 chương): tấm bịt z 0,105…0,155, mặt tường 0,100, hiện bình thường ở cả 4.

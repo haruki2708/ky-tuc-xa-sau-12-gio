@@ -9,7 +9,7 @@
 3. **Giọng (T-200, đã merge 2026-10-08):** chương 4 có đủ 16 giọng theo lời đã duyệt; cuộc gọi chương 2–4 và loa chương 2–4 **nay mới có tiếng** (trước đó chỉ có phụ đề do bộ phát chỉ nhận chương 1). Chờ chủ dự án nghe.
 4. **Chương 1 sau chơi thử lại (D-069, D-070):** T-201, T-202, T-203 đã merge; cả 4 giường ngắm trúng 36/36 (thanh chắn giường tầng trên: Claude làm thay lane B). Gõ sai được gõ lại trong 90 giây. Kịch bản bot chương 1 đã đổi sang nhịp `31` (Claude làm thay lane C, 2026-10-09).
 4a. **Chương 2 (D-072):** đã ghép T-204 (luồng nhắn cho hai bạn, qua vòng 3 ở từ lặp thứ 4) và T-205 (5 giọng). Chờ chủ dự án chơi lại vòng 3 và nghe 5 câu mới. `tools/README.md` đã cập nhật (Claude làm thay lane C).
-4c. **Chương 3 (D-074):** đã sửa (core) xác tầng 2 bám tiếng bình cứu hỏa và Minh Nhật đi bộ ra từ 203; giao **T-206** lane B (tấm bịt 408 nhấp nháy, prompt `docs/handoff/lane-b.md` §1). Chủ dự án chơi tiếp chương 3.
+4c. **Chương 3 (D-074):** đã sửa (core) xác tầng 2 bám tiếng bình cứu hỏa và Minh Nhật đi bộ ra từ 203; T-206 lane B (tấm bịt 408 nhấp nháy, cả 4 chương) đã merge. Chủ dự án chơi tiếp chương 3.
 4b. **Bot:** không chạy bot chương 3 và 4 (D-068); T-199 chưa viết card.
 5. **Chưa ai nghe bằng tai:** âm thanh chương 3 và 4, giọng cuộc gọi và loa chương 2–4 (fixture `res://audio/test/ch4_audio_test.tscn`).
 6. **Sau khi chốt chương 4:** giai đoạn "Ghép bản hoàn chỉnh" (D-059).
@@ -99,7 +99,7 @@
 | T-204 Nhắn cho hai bạn cách qua vòng 3, qua màn ở từ lặp thứ 4 | core (**Claude Code web làm thay**, D-072) | **done**, đã merge |
 | T-205 Giọng 5 câu gọi mới | E | **done**, đã merge; chờ nghe |
 | **Chương 3 sau chơi thử lại (D-074, 2026-10-09)** | | |
-| T-206 Tấm bịt cửa 408 cũ nhấp nháy cạnh phòng 407 | B | **todo** |
+| T-206 Tấm bịt cửa 408 cũ nhấp nháy cạnh phòng 407 | B | **done**, đã merge (đúng ở cả 4 chương) |
 | T-171 Cầm giẻ, bịt miệng xác, cửa kẹt, buồng tắm, nút vòi sen, cảnh chết `corpse_lunge` và `scald` | A | **done**, đã merge |
 | T-172 Xác chơi nối từ, đồ bịt miệng, nhà vệ sinh có vòi sen, hơi nước, phòng camera 310 | B | **done**, đã merge |
 | T-173 Bot chương 2, menu nhảy, đo FPS hơi nước | C | khung **đã merge**; bot chạy sau khi điền profile |
