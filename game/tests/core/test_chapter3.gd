@@ -138,6 +138,50 @@ func test_floor_two_crowd_leaves_203_for_the_extinguisher() -> void:
 	assert_eq(failed, [] as Array[StringName], "alive;")
 
 
+## D-074 (chapter 3 playtest): Trung walks back from the extinguisher to 207
+## at walking pace, toward the crowd. The bang must keep them going to the
+## landing (they used to see him and stop in 207's doorway), and Minh Nhật
+## walks out of 203 instead of popping up beside Trung.
+func test_floor_two_walk_back_to_207_stays_unseen() -> void:
+	director.run_from(&"b")
+	await _until(func() -> bool: return director._crowd_203.size() == 4, 10.0)
+	var extinguisher := _anchor("Extinguisher2F").global_position
+	var door := _anchor("Room203Door").global_position
+	player.set_physics_process(false)
+	var at := extinguisher + Vector3(-1.3, -1.05, 0.0)
+	_put(at)
+	for i in 3:
+		await tree.physics_frame
+	director._uses["Extinguisher2F"].interact(player)
+	var route: Array[Vector3] = [Vector3(44.0, -6.55, 2.0), Vector3(35.75, -6.55, 2.0), Vector3(35.75, -6.55, -2.3)]
+	var jumps: Array[String] = []
+	var nhat_last := Vector3.INF
+	var nhat_max_x := -INF
+	var deadline := Time.get_ticks_msec() + 45000
+	while Time.get_ticks_msec() < deadline and failed.is_empty():
+		if not route.is_empty():
+			at = at.move_toward(route[0], 2.2 / 60.0)
+			if at.distance_to(route[0]) < 0.05:
+				route.pop_front()
+			_put(at)
+		await tree.physics_frame
+		for zombie in director._crowd_203:
+			var goal: Vector3 = zombie.get("_goal")
+			assert_false(route.is_empty() and goal.distance_to(player.global_position) < 1.5, "a crowd zombie went for the hidden Trung at %s" % zombie.global_position)
+		var nhat: Node3D = director._companions.get(&"minh_nhat")
+		if nhat != null:
+			if nhat_last != Vector3.INF and nhat.global_position.distance_to(nhat_last) > 2.0:
+				jumps.append("%s -> %s" % [nhat_last, nhat.global_position])
+			nhat_last = nhat.global_position
+			nhat_max_x = maxf(nhat_max_x, nhat.global_position.x)
+	assert_eq(failed, [] as Array[StringName], "hidden in 207, never caught;")
+	for zombie in director._crowd_203:
+		assert_true(zombie.global_position.distance_to(extinguisher) < 4.0, "the crowd stands in the stairwell: %s" % zombie.global_position)
+	assert_true(director._companions.has(&"minh_nhat"), "Minh Nhật came out;")
+	assert_eq(jumps, [] as Array[String], "Minh Nhật walked, no jump;")
+	assert_true(nhat_max_x > door.x + 10.0, "he walked down the corridor toward Trung (reached x %.1f);" % nhat_max_x)
+
+
 ## D-063: Minh Nhật and Ngư walk behind Trung from the garden to the stadium.
 func test_companions_follow_the_player_to_the_stadium() -> void:
 	director.time_scale = 1.0

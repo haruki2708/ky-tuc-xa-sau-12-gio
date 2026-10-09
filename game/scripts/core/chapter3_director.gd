@@ -32,6 +32,14 @@ const KNIFE_RADIUS := 2.2
 ## drift off before Minh Nhật dares to come out.
 const CROWD_203 := [Vector3(-1.1, 0.0, 0.9), Vector3(0.0, 0.0, 0.8), Vector3(1.1, 0.0, 0.9), Vector3(0.5, 0.0, 1.8)]
 const CROWD_CLEAR_RADIUS := 6.0
+## While the extinguisher's bang drags the crowd (D-074): they only notice Trung
+## this close; at the landing they settle this long before looking around again.
+const CROWD_NOTICE_RADIUS := 2.0
+const CROWD_SETTLE_SECONDS := 3.0
+const CROWD_AT_LANDING := 4.0
+const CROWD_PULL_MAX_SECONDS := 45.0
+## Minh Nhật walks out of 203 along the corridor (z) before he follows (D-074).
+const CORRIDOR_2F_Z := 1.8
 ## Rooms of building B (D-061, T-191): zombies come out of the rooms Trung walks
 ## past. Per floor: room number -> zombies inside. Floor 2 keeps only the 203
 ## crowd (D-062); room 408 opens after the key (_wave_408).
@@ -64,6 +72,8 @@ var _model_index: int = 0
 var _has_key: bool = false
 var _alarm_sounded: bool = false
 var _crowd_203: Array[Zombie] = []
+## The bang is still dragging the 203 crowd to the landing (D-074).
+var _crowd_pull_active: bool = false
 var _waves_on: bool = false
 var _rooms_opened: Dictionary = {}
 var _room_tracks: Array[Dictionary] = []
@@ -189,7 +199,10 @@ func _building_b() -> void:
 	await _wait_until(_crowd_203_gone, 12.0)
 	if _dying:
 		return
-	_join(&"minh_nhat", "Room203Door")
+	# He walks out along the corridor to Trung, in plain sight; following (and
+	# its unseen catch-up) only starts once he is close (D-074).
+	_join(&"minh_nhat", "Room203Door", false)
+	_walk_out_nhat()
 	_story(["near:n_join"])
 	await _wait_until(func() -> bool: return _player.global_position.y < FLOOR_1_Y, 900.0, false)
 	if _dying:
@@ -619,11 +632,85 @@ func _room_door(room: StringName) -> Node3D:
 
 
 ## The extinguisher's bang drags the whole crowd off the door, however far.
+## On the way they only have ears for the bang (D-074): Trung walking back
+## toward 207 down the same corridor used to be seen from 25 m, and the crowd
+## then stopped at 207's doorway. A decoy past the landing wall stands in as
+## their target (never reachable, never "caught") until each one settles at
+## the landing or Trung comes within CROWD_NOTICE_RADIUS.
 func _pull_crowd_203(at: Vector3) -> void:
+	var stand := Vector3(at.x - 0.6, _player.global_position.y if _player != null else at.y, at.z)
+	var decoy := Node3D.new()
+	decoy.name = "CrowdDecoy203"
+	add_child(decoy)
+	decoy.global_position = Vector3(at.x + 1.5, stand.y, at.z)
+	var pulled: Array[Zombie] = []
+	_crowd_pull_active = true
 	for zombie in _crowd_203:
 		if is_instance_valid(zombie) and not zombie.is_stunned():
 			zombie.wake()
-			zombie.set("_goal", at)
+			zombie.set_target(decoy)
+			zombie.set("_goal", stand)
+			pulled.append(zombie)
+	_watch_crowd_pull(pulled, stand, decoy)
+
+
+func _watch_crowd_pull(pulled: Array[Zombie], stand: Vector3, decoy: Node3D) -> void:
+	var settled: Dictionary = {}
+	var started := Time.get_ticks_msec()
+	while not pulled.is_empty() and is_inside_tree() and not _dying:
+		await get_tree().physics_frame
+		var timed_out := float(Time.get_ticks_msec() - started) / 1000.0 > CROWD_PULL_MAX_SECONDS
+		for zombie: Zombie in pulled.duplicate():
+			if not is_instance_valid(zombie):
+				pulled.erase(zombie)
+				continue
+			var near_player := _player != null and absf(zombie.global_position.y - _player.global_position.y) < 1.5 \
+					and Vector2(zombie.global_position.x - _player.global_position.x, zombie.global_position.z - _player.global_position.z).length() < CROWD_NOTICE_RADIUS
+			if zombie.global_position.distance_to(stand) < CROWD_AT_LANDING and not settled.has(zombie):
+				settled[zombie] = Time.get_ticks_msec()
+			var rested := settled.has(zombie) and float(Time.get_ticks_msec() - int(settled[zombie])) / 1000.0 >= CROWD_SETTLE_SECONDS
+			if near_player or rested or timed_out:
+				# Back to hunting Trung, but standing where it is: it looks
+				# around only with its own eyes and ears from here.
+				zombie.set_target(_player)
+				if not near_player:
+					zombie.set("_goal", zombie.global_position)
+				pulled.erase(zombie)
+	_crowd_pull_active = false
+	if is_instance_valid(decoy):
+		decoy.queue_free()
+
+
+## Minh Nhật leaves 203 along the floor 2 corridor to a few metres short of
+## Trung, then walks behind him like Ngư does later (D-063).
+func _walk_out_nhat() -> void:
+	var nhat: Node3D = _companions.get(&"minh_nhat")
+	var door := _anchor("Room203Door")
+	if nhat == null or door == null or not nhat.has_method("follow_path"):
+		if nhat != null and nhat.has_method("follow_player"):
+			nhat.follow_player()
+		return
+	# He waits in his doorway until the crowd has gone past to the landing,
+	# rather than squeezing through it down the corridor.
+	await _wait_until(func() -> bool: return not _crowd_pull_active, 30.0, false)
+	if not is_instance_valid(nhat) or _dying:
+		return
+	var route := Node3D.new()
+	route.name = "NhatWalkOut"
+	add_child(route)
+	var goal_x := clampf(_player.global_position.x - 3.0, door.global_position.x + 2.0, 41.0)
+	for point in [Vector3(door.global_position.x, door.global_position.y, CORRIDOR_2F_Z),
+			Vector3(goal_x, door.global_position.y, CORRIDOR_2F_Z)]:
+		var marker := Marker3D.new()
+		marker.name = "P%d" % route.get_child_count()
+		route.add_child(marker)
+		marker.global_position = point
+	nhat.follow_path(route)
+	await _wait_until(func() -> bool: return not is_instance_valid(nhat) or nhat.get("state") == &"left" \
+			or nhat.global_position.distance_to(_player.global_position) < 6.0, 60.0, false)
+	if is_instance_valid(nhat) and nhat.has_method("follow_player"):
+		nhat.follow_player()
+	route.queue_free()
 
 
 func _crowd_203_gone() -> bool:
