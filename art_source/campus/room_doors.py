@@ -127,7 +127,8 @@ def patch():
             for name in ['Doorway_408', 'Facade_408_W', 'Facade_408_E', 'Sealed408']:
                 target.remove(name)
             room408(s)
-            s.node('Sealed408', 'MeshInstance3D', properties='position = Vector3(36,1.02,0.075)\nmesh = SubResource("v2_seal")')
+            # T-206: panel back at z=.105 clears Former408Wall's front at z=.10.
+            s.node('Sealed408', 'MeshInstance3D', properties='position = Vector3(36,1.02,0.13)\nmesh = SubResource("v2_seal")')
             for i, block in enumerate(target.blocks):
                 if key(block) == 'RoomPlate_408':
                     target.blocks[i] = re.sub(r'^position = .*', 'position = Vector3(42, 2.42, 0.13)', block, flags=re.M)

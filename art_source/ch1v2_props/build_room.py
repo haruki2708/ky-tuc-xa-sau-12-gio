@@ -228,7 +228,7 @@ def patch():
     # Retain facade and static locked door; opaque panel makes the former entrance visibly sealed.
     if 'id="v2_seal"' not in text:
         at=text.index('[node name="Corridor"');text=text[:at]+'[sub_resource type="BoxMesh" id="v2_seal"]\nsize = Vector3(0.85,1.7,0.05)\n\n'+text[at:]
-        text+='\n[node name="Sealed408" type="MeshInstance3D" parent="."]\nposition = Vector3(36,1.02,0.075)\nmesh = SubResource("v2_seal")\n'
+        text+='\n[node name="Sealed408" type="MeshInstance3D" parent="."]\nposition = Vector3(36,1.02,0.13)\nmesh = SubResource("v2_seal")\n'
     write(path,text)
     path=ROOT/'game/scenes/levels/room407/room407_anchors.tscn';text=path.read_text(encoding='utf-8')
     positions={'Bunk3':(7.35,.43,-2.7),'Bunk4':(7.35,1.2,-2.7),'Corpse4':(7.35,1.2,-2.7),'DatLocker':(7.41,1.24,-.45),'WallKnock408':(7.88,1.3,-1.65),'Router':(4.6,1.5,-.18),'VietLaptop':(4.45,.91,-.65),'VietPhoto':(4.05,.93,-.60)}
