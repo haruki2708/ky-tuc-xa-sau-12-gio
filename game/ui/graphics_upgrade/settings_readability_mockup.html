@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="vi">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>T-211 — Bản mẫu G0 để review</title>
+<style>
+@font-face { font-family: BeVietnam; src: url('../../assets/fonts/be_vietnam_pro_regular.ttf'); }
+* { box-sizing: border-box; }
+body { margin: 24px; background: #171d26; color: #f2f7ff; font: 16px/1.55 BeVietnam, sans-serif; }
+h1 { font-size: 26px; }
+header { max-width: 1100px; }
+label { margin-right: 24px; display: inline-block; }
+select { font: inherit; padding: 6px; }
+select:focus-visible { outline: 3px solid #bfe0ff; outline-offset: 3px; }
+.viewport { margin-top: 20px; overflow: auto; border: 1px solid #8290a1; }
+.frame { position: relative; overflow: hidden; }
+.canvas { width: 1920px; height: 1080px; position: relative; transform-origin: top left; font-size: 28px; line-height: 1.45; }
+.canvas.dark { background: #080d14; }
+.canvas.light { background: #f5f2e9; }
+.panel { position: absolute; background: rgba(4,5,8,.92); border-radius: 6px; padding: 36px; }
+.settings { left: 180px; top: 120px; width: 1560px; height: 840px; }
+.heading { font-size: 40px; margin-bottom: 28px; }
+.columns { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; }
+.section-title { font-size: 30px; margin-bottom: 18px; }
+dl { margin: 0; }
+.row { border-bottom: 1px solid #647181; padding: 18px 0; display: flex; gap: 28px; justify-content: space-between; }
+dt { max-width: 68%; }
+dd { margin: 0; text-align: right; }
+.note { font-size: 24px; color: #d5dfed; margin-top: 32px; }
+.footer { position: absolute; bottom: 36px; left: 36px; right: 36px; display: flex; justify-content: space-between; font-size: 24px; }
+.crosshair { position: absolute; left: 956px; top: 536px; width: 8px; height: 8px; background: #c6d0df; border: 1px solid #050505; }
+.phone { left: 1171.2px; top: 583.2px; width: 710.4px; height: 378px; background: #060a0e; padding: 24px; }
+.phone-status { font-size: 20px; }
+.phone-call { font-size: 24px; margin: 10px 0; }
+.phone-tabs { font-size: 19px; border-block: 1px solid #647181; padding: 8px 0; }
+.phone-text { font-size: 23px; margin-top: 18px; }
+.phone-small { font-size: 18px; margin-top: 20px; }
+.subtitle { left: 192px; bottom: 48px; width: 1536px; padding: 14px 24px; text-align: center; background: rgba(3.825,5.1,7.65,.82); }
+.paper { left: 120px; top: 100px; width: 900px; height: 340px; padding: 38px 56px; background: #d5d3c9; color: #24231f; font-size: 29px; }
+.paper-title { font-size: 36px; margin-bottom: 22px; }
+.annotation { position: absolute; left: 120px; top: 465px; width: 820px; padding: 20px; background: #171d26; color: #f2f7ff; font-size: 24px; }
+.caption { margin: 8px 0; }
+</style>
+<header>
+  <h1>T-211 · G0 — Bản mẫu cài đặt và khả năng đọc</h1>
+  <p>Tài liệu review cục bộ, chưa nối vào Godot. Các hàng cài đặt là chữ tĩnh, không thể thay đổi cấu hình.
+    Bố cục đề xuất sau G1/G3; bản chơi hiện hành vẫn giữ PS1. Low/Medium chưa có backend hoặc kết quả FPS.</p>
+  <p>Bảng dưới dùng font của game, màu nền mẫu và kích thước lấy từ mã nguồn; không phải ảnh chụp game.
+    Mẫu giấy được đặt cạnh điện thoại để đối chiếu chữ, không mô phỏng việc mở đồng thời trong gameplay.</p>
+  <label>Ngôn ngữ bản mẫu <select id="locale"><option value="vi">Tiếng Việt</option><option value="en">English</option></select></label>
+  <label>Nền mẫu <select id="background"><option value="dark">Tối</option><option value="light">Sáng</option></select></label>
+  <label>Kích thước bản mẫu <select id="resolution"><option value="1920">1920 × 1080</option><option value="1280">1280 × 720</option></select></label>
+  <p>Đổi kích thước ở đây chỉ thu nhỏ bản mẫu 2D. Chưa mô phỏng render scale 3D, ánh sáng pilot hoặc bộ lọc PS1.
+    Xem ở zoom trình duyệt 100%; có thanh cuộn ngang nếu màn hình hẹp. Các lựa chọn trên chỉ phục vụ review.</p>
+</header>
+<p class="caption">A · Bố cục đề xuất: chữ 28 px, tiêu đề 40/30 px, hai cột cách 64 px. Chưa thay menu đang chơi.</p>
+<div class="viewport"><div class="frame"><section class="canvas dark" id="settingsCanvas" aria-label="Bản mẫu menu">
+  <div class="panel settings">
+    <div class="heading" data-copy="title"></div>
+    <div class="columns">
+      <div><div class="section-title" data-copy="video"></div><dl>
+        <div class="row"><dt data-copy="quality"></dt><dd data-copy="qualityValues"></dd></div>
+        <div class="row"><dt data-copy="brightness"></dt><dd>1.00</dd></div>
+        <div class="row"><dt data-copy="headBob"></dt><dd data-copy="on"></dd></div>
+      </dl><p class="note" data-copy="qualityNote"></p></div>
+      <div><div class="section-title" data-copy="readability"></div>
+        <p data-copy="readabilityNote"></p>
+        <p class="note" data-copy="brightnessNote"></p>
+        <p class="note" data-copy="resetNote"></p>
+      </div>
+    </div>
+    <div class="footer"><span data-copy="resetVideo"></span><span data-copy="back"></span></div>
+  </div>
+</section></div></div>
+<p class="caption">B · Mẫu chữ: giấy 29 px; phụ đề 28 px; điện thoại 18–24 px. Giữ tâm ngắm trống. Dữ liệu minh họa đã có trong CSV, không thêm luật hoặc lời thoại.</p>
+<div class="viewport"><div class="frame"><section class="canvas dark" id="readingCanvas" aria-label="Bản mẫu chữ">
+  <div class="paper panel"><div class="paper-title" data-copy="paperTitle"></div><div data-copy="sampleA"></div><p data-copy="sampleB"></p></div>
+  <div class="annotation">Mẫu tĩnh G0 · Giấy và điện thoại cần kiểm riêng trong scene thật. Chữ 18 px sẽ tương đương 12 px khi cả UI thu từ 1080 xuống 720.</div>
+  <div class="crosshair"></div>
+  <div class="phone panel"><div class="phone-status">04:05 · 100%</div><div class="phone-call" data-copy="member"></div>
+    <div class="phone-tabs" data-copy="tabs"></div><div class="phone-text" data-copy="sampleA"></div><div class="phone-small" data-copy="sampleB"></div>
+  </div>
+  <div class="subtitle panel" data-copy="sampleA"></div>
+</section></div></div>
+<script>
+// Review-only copy. Existing UI strings are copied from strings.csv at e3ed54a.
+// Proposed labels are not runtime localization keys and never write settings.cfg.
+const copy = {
+  vi: {
+    title: 'Cài đặt', video: 'Hình ảnh', quality: 'Chất lượng hình ảnh', qualityValues: 'Thấp / Trung bình',
+    brightness: 'Độ sáng', headBob: 'Nhún đầu', on: 'Bật', readability: 'Khả năng đọc',
+    qualityNote: 'G0: hai mức đề xuất, chưa chọn mặc định. Chờ pilot xác định tác dụng và chi phí.',
+    readabilityNote: 'Giữ chữ giao diện rõ khi thay đổi chất lượng hình ảnh.',
+    brightnessNote: 'Độ sáng mẫu: 1.00. Khoảng hiện hành: 0.50–1.50. Cần giữ tác dụng khi thay filter.',
+    resetNote: 'Đề xuất khôi phục riêng hình ảnh để giữ ngôn ngữ, âm lượng và điều khiển.',
+    resetVideo: 'Khôi phục hình ảnh · chữ minh họa', back: 'Quay lại · chữ minh họa',
+    paperTitle: 'Ký túc xá – Tầng 4', member: 'Người thử A', tabs: 'Cuộc gọi [ ] · Sơ đồ · Camera',
+    sampleA: 'Đây là câu nói dùng để kiểm tra bản chép lời.', sampleB: 'Dòng mới được thêm ở cuối lịch sử.'
+  },
+  en: {
+    title: 'Settings', video: 'Video', quality: 'Graphics quality', qualityValues: 'Low / Medium',
+    brightness: 'Brightness', headBob: 'Head bob', on: 'On', readability: 'Readability',
+    qualityNote: 'G0: two proposed levels; no default selected. Their effects and cost depend on the pilot.',
+    readabilityNote: 'Keep interface text clear when graphics quality changes.',
+    brightnessNote: 'Sample brightness: 1.00. Current range: 0.50–1.50. Preserve its effect when replacing the filter.',
+    resetNote: 'Proposed video-only reset preserves language, volume and controls.',
+    resetVideo: 'Reset video · static sample', back: 'Back · static sample',
+    paperTitle: 'Dormitory – Floor 4', member: 'Test member A', tabs: 'Call [ ] · Map · Camera',
+    sampleA: 'This sample line tests the live transcript.', sampleB: 'New lines are added at the end of the history.'
+  }
+};
+function refresh() {
+  const locale = document.getElementById('locale').value;
+  const width = Number(document.getElementById('resolution').value);
+  const background = document.getElementById('background').value;
+  for (const element of document.querySelectorAll('[data-copy]')) {
+    element.textContent = copy[locale][element.dataset.copy];
+    element.lang = locale;
+  }
+  for (const canvas of document.querySelectorAll('.canvas')) {
+    canvas.className = `canvas ${background}`;
+    canvas.style.transform = `scale(${width / 1920})`;
+    canvas.parentElement.style.width = `${width}px`;
+    canvas.parentElement.style.height = `${width * 9 / 16}px`;
+  }
+}
+const params = new URLSearchParams(window.location.search);
+for (const select of document.querySelectorAll('select')) {
+  const requested = params.get(select.id);
+  if ([...select.options].some(option => option.value === requested)) select.value = requested;
+  select.addEventListener('change', refresh);
+}
+refresh();
+</script>
+</html>

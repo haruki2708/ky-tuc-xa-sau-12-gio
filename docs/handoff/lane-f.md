@@ -1,5 +1,7 @@
 # Prompt bàn giao — Lane F (Âm thanh, tiếp nhận Lane E)
 
+> **D-079, 11/10:** G0 đã review/ghép. Khi tiếp tục, fetch/rebase main chứa D-079 rồi đọc Review của card và [yêu cầu G1](REVIEW_G0_2026-10-11.md); không làm lại G0 theo đoạn prompt cũ. Đây là phần tiếp của gói đã giao, chưa mở Meshy trả phí hoặc production.
+
 **10/10/2026, D-078:** chủ dự án cho lane E nghỉ vô thời hạn và chỉ định tài khoản GPT Plus mới làm lane F, tiếp nhận toàn bộ vai trò âm thanh của E. Task hiện tại **T-212**, giữ nguyên nội dung và trạng thái ready/G0. Astra điều phối tạm 10–11/10, Opus 5.5 ở máy nhận lại sau đó.
 
 F sở hữu `audio_source/`, `game/audio/`, `game/scripts/audio/`, `game/default_bus_layout.tres`, `game/tests/audio/`. Bao gồm bảo trì pipeline, SFX/âm môi trường/nhạc/giọng, bus và nguồn âm gắn model, test âm thanh, nguồn/license. Công việc trước mắt theo T-212; góp ý khác nhận card/phạm vi từ integrator. Không tự thu lại lời đã duyệt hoặc tái tạo toàn bộ âm đã có.

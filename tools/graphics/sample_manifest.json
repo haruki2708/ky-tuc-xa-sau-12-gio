@@ -1,0 +1,39 @@
+{
+  "schema_version": "t210-g0-proposal-1",
+  "assets": [
+    {
+      "asset_id": "g0-kit-door",
+      "scope": "prototype",
+      "file": "game/assets/models/kit/door.glb",
+      "source": {
+        "uri": "repo:art_source/kit/build_kit.py",
+        "author": "Lane B",
+        "license": "CC0-1.0",
+        "credits_file": "art_source/CREDITS.md",
+        "ai_tool": "Codex (OpenAI), procedural Blender script",
+        "input_rights": "Original procedural geometry; no external image input"
+      },
+      "geometry": {
+        "dimensions_m": [0.88, 2.08, 0.10],
+        "bounds_min_m": [-0.88, 0.0, -0.08],
+        "root_scale": [1, 1, 1],
+        "tolerance_m": 0.001,
+        "markers": {}
+      },
+      "generation": {
+        "tool": "Blender 5.2.2 LTS",
+        "model_id": null,
+        "task_id": null,
+        "created_on": null,
+        "parameters": {"generator": "art_source/kit/build_kit.py"}
+      },
+      "budget": {
+        "estimated_credits": 0,
+        "consumed_credits": 0,
+        "triangle_limit_exclusive": 1500,
+        "basis": "Existing production PS1 large-prop limit; no G1 budget increase"
+      },
+      "approval": {"status": "pending", "reviewer": null}
+    }
+  ]
+}

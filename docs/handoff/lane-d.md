@@ -1,5 +1,7 @@
 # Prompt bàn giao — Lane D (UI và Đa ngôn ngữ)
 
+> **D-079, 11/10:** G0 đã review/ghép. Khi tiếp tục, fetch/rebase main chứa D-079 rồi đọc Review của card và [yêu cầu G1](REVIEW_G0_2026-10-11.md); không làm lại G0 theo đoạn prompt cũ. Đây là phần tiếp của gói đã giao, chưa mở Meshy trả phí hoặc production.
+
 **10/10/2026:** T-211, D-076/D-077; chủ dự án xác nhận lane còn hạn mức. Astra chỉ điều phối tạm 10–11/10, Opus 5.5 ở máy nhận lại sau đó. Card đã phân công; trạng thái thực xem Handoff.
 
 ## 1. Prompt giao task (dán nguyên khối)

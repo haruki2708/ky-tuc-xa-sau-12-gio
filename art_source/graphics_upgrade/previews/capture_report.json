@@ -1,0 +1,257 @@
+{
+	"adapter": "NVIDIA GeForce RTX 3050 Laptop GPU",
+	"brightness": 1.0,
+	"godot": "4.7.2-stable (official)",
+	"images": [
+		{
+			"eye": [
+				34.2000007629395,
+				1.64999997615814,
+				-0.649999976158142
+			],
+			"file": "room_neutral_before.png",
+			"fov": 65.0,
+			"image_size": [
+				1280,
+				720
+			],
+			"target": [
+				36.5999984741211,
+				0.949999988079071,
+				-3.15000009536743
+			]
+		},
+		{
+			"eye": [
+				34.2000007629395,
+				1.64999997615814,
+				-0.649999976158142
+			],
+			"file": "room_neutral_after.png",
+			"fov": 65.0,
+			"image_size": [
+				1280,
+				720
+			],
+			"target": [
+				36.5999984741211,
+				0.949999988079071,
+				-3.15000009536743
+			]
+		},
+		{
+			"eye": [
+				34.2000007629395,
+				1.64999997615814,
+				-0.649999976158142
+			],
+			"file": "room_game_before.png",
+			"fov": 65.0,
+			"image_size": [
+				1280,
+				720
+			],
+			"target": [
+				36.5999984741211,
+				0.949999988079071,
+				-3.15000009536743
+			]
+		},
+		{
+			"eye": [
+				34.2000007629395,
+				1.64999997615814,
+				-0.649999976158142
+			],
+			"file": "room_game_after.png",
+			"fov": 65.0,
+			"image_size": [
+				1280,
+				720
+			],
+			"target": [
+				36.5999984741211,
+				0.949999988079071,
+				-3.15000009536743
+			]
+		},
+		{
+			"eye": [
+				35.75,
+				1.35000002384186,
+				-1.70000004768372
+			],
+			"file": "materials_neutral_before.png",
+			"fov": 65.0,
+			"image_size": [
+				1280,
+				720
+			],
+			"target": [
+				37.4000015258789,
+				0.649999976158142,
+				-2.84999990463257
+			]
+		},
+		{
+			"eye": [
+				35.75,
+				1.35000002384186,
+				-1.70000004768372
+			],
+			"file": "materials_neutral_after.png",
+			"fov": 65.0,
+			"image_size": [
+				1280,
+				720
+			],
+			"target": [
+				37.4000015258789,
+				0.649999976158142,
+				-2.84999990463257
+			]
+		},
+		{
+			"eye": [
+				35.75,
+				1.35000002384186,
+				-1.70000004768372
+			],
+			"file": "materials_game_before.png",
+			"fov": 65.0,
+			"image_size": [
+				1280,
+				720
+			],
+			"target": [
+				37.4000015258789,
+				0.649999976158142,
+				-2.84999990463257
+			]
+		},
+		{
+			"eye": [
+				35.75,
+				1.35000002384186,
+				-1.70000004768372
+			],
+			"file": "materials_game_after.png",
+			"fov": 65.0,
+			"image_size": [
+				1280,
+				720
+			],
+			"target": [
+				37.4000015258789,
+				0.649999976158142,
+				-2.84999990463257
+			]
+		},
+		{
+			"eye": [
+				28.0,
+				1.64999997615814,
+				2.5
+			],
+			"file": "corridor_neutral_before.png",
+			"fov": 65.0,
+			"image_size": [
+				1280,
+				720
+			],
+			"target": [
+				40.0,
+				1.45000004768372,
+				0.899999976158142
+			]
+		},
+		{
+			"eye": [
+				28.0,
+				1.64999997615814,
+				2.5
+			],
+			"file": "corridor_neutral_after.png",
+			"fov": 65.0,
+			"image_size": [
+				1280,
+				720
+			],
+			"target": [
+				40.0,
+				1.45000004768372,
+				0.899999976158142
+			]
+		},
+		{
+			"eye": [
+				28.0,
+				1.64999997615814,
+				2.5
+			],
+			"file": "corridor_game_before.png",
+			"fov": 65.0,
+			"image_size": [
+				1280,
+				720
+			],
+			"target": [
+				40.0,
+				1.45000004768372,
+				0.899999976158142
+			]
+		},
+		{
+			"eye": [
+				28.0,
+				1.64999997615814,
+				2.5
+			],
+			"file": "corridor_game_after.png",
+			"fov": 65.0,
+			"image_size": [
+				1280,
+				720
+			],
+			"target": [
+				40.0,
+				1.45000004768372,
+				0.899999976158142
+			]
+		}
+	],
+	"material_bindings": {
+		"Room407/BunkA/Post-0_43-0_98/Mesh": "iron",
+		"Room407/BunkA/Post-0_430_98/Mesh": "iron",
+		"Room407/BunkA/Post0_43-0_98/Mesh": "iron",
+		"Room407/BunkA/Post0_430_98/Mesh": "iron",
+		"Room407/BunkB/bunk_trung/bunk_trung_mesh": "iron",
+		"Room407/Ceiling/Mesh": "wall",
+		"Room407/Details/TrungBedding/Section0/Mattress/Mesh": "cloth",
+		"Room407/Details/TrungBedding/Section0/Quilt/Mesh": "cloth",
+		"Room407/Details/TrungBedding/Section1/Mattress/Mesh": "cloth",
+		"Room407/Details/TrungBedding/Section1/Quilt/Mesh": "cloth",
+		"Room407/Details/TrungBedding/Section2/Mattress/Mesh": "cloth",
+		"Room407/Details/TrungBedding/Section2/Quilt/Mesh": "cloth",
+		"Room407/Details/TrungBedding/Section3/Mattress/Mesh": "cloth",
+		"Room407/Details/TrungBedding/Section3/Quilt/Mesh": "cloth",
+		"Room407/Details/TrungBedding/Section4/Mattress/Mesh": "cloth",
+		"Room407/Details/TrungBedding/Section4/Quilt/Mesh": "cloth",
+		"Room407/Details/TrungBedding/Section5/Mattress/Mesh": "cloth",
+		"Room407/Details/TrungBedding/Section5/Quilt/Mesh": "cloth",
+		"Room407/Details/TrungBedding/Section6/Mattress/Mesh": "cloth",
+		"Room407/Details/TrungBedding/Section6/Quilt/Mesh": "cloth",
+		"Room407/Details/TrungBedding/Section7/Mattress/Mesh": "cloth",
+		"Room407/Details/TrungBedding/Section7/Quilt/Mesh": "cloth",
+		"Room407/Details/TrungPillow/Mesh": "cloth",
+		"Room407/EastWall/Mesh": "wall",
+		"Room407/Floor/Mesh": "tile",
+		"Room407/WestWall/Mesh": "wall"
+	},
+	"renderer": "forward_plus",
+	"scope": "Static visual fixture, no chapter gameplay, no FPS measurement",
+	"viewport": [
+		1280.0,
+		720.0
+	]
+}

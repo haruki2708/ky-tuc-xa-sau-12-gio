@@ -1,5 +1,7 @@
 # Kế hoạch nâng đồ họa gần chân thực — D-076, D-077, D-078
 
+> **11/10, D-079:** đã nhận G0 cả sáu lane. Đọc [Review và bước G1](../handoff/REVIEW_G0_2026-10-11.md) cùng STATUS mới; G1 đạo cụ tĩnh ưu tiên balo, rig/settings còn pending. Chưa có Meshy asset hoặc đổi bản chơi; kết quả kiểm bản ghép nằm trong commit D-079.
+
 Ngày: 10/10/2026. Người lập: Astra, integrator tạm thời 10–11/10; người tiếp nhận: **Claude Code ở máy, Opus 5.5**. Chủ dự án vẫn là người dùng, quyết định mỹ thuật và chơi thử.
 
 ## 1. Đã được chủ dự án xác nhận

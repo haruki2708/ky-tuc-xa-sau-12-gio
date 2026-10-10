@@ -1,12 +1,14 @@
 # Opus 5.5 nhận lại điều phối sau Astra
 
+> **11/10, D-079:** đã nhận G0 cả sáu lane. Đọc [Review và bước G1](REVIEW_G0_2026-10-11.md) cùng STATUS mới; G1 đạo cụ tĩnh ưu tiên balo, rig/settings còn pending. Chưa có Meshy asset hoặc đổi bản chơi; kết quả kiểm bản ghép nằm trong commit D-079.
+
 Viết ngày 10/10/2026. Đây là điểm vào cho **phiên Claude Code ở máy dùng Opus 5.5**; chủ dự án là người dùng. Astra chỉ thay điều phối trong 10–11/10/2026.
 
 ## Đọc theo thứ tự
 
 1. `AGENTS.md`, `CLAUDE.md`, `docs/STATUS.md`.
 2. `docs/handoff/NHAT_KY_ASTRA_2026-10-10_11.md` — kết quả thực hiện, commit/build, giới hạn kiểm tra.
-3. `docs/DECISIONS.md` D-076…D-078 và `docs/design/GRAPHICS_UPGRADE_PLAN.md`.
+3. `docs/DECISIONS.md` D-076…D-079 và `docs/design/GRAPHICS_UPGRADE_PLAN.md`.
 4. T-207…T-212 cùng Handoff/Review; dùng `git fetch` rồi kiểm nhánh thực, không suy ra agent đã chạy chỉ vì có card.
 5. `docs/handoff/ASTRA_DIEU_PHOI_2_NGAY.md` là ảnh chụp trạng thái trước giai đoạn mới; các điểm thay đổi ưu tiên xem D-076/D-077 và nhật ký.
 
@@ -21,7 +23,7 @@ Sáu gói: web T-207 core/contract; A T-208 adapter gameplay–visual; B T-209 a
 - Làm trong `D:\GAME_DEMO` trên main, kiểm sạch rồi pull; không sửa workspace lane.
 - Review G0 và chốt G1 trước khi các lane phụ thuộc API/settings mới. Cảnh mẫu trước, thay toàn game sau; giữ logic, nav/collision và sự kiện.
 - A không sửa visual scene vùng B; B không sửa gameplay A; D không tự đổi hợp đồng settings; web chỉ được sửa core/docs ghi trong card, không có quyền làm B thay.
-- Meshy operator ở máy: chỉ chạy khi có key cục bộ, giấy phép hợp lệ và trần chi do chủ dự án giao; tránh nhiều lane tạo trùng một asset.
+- Meshy operator ở máy: API chỉ chạy khi có key cục bộ, giấy phép hợp lệ và trần chi do chủ dự án giao; tạo thủ công trên web không cần key, vẫn cần license/trần chi; tránh nhiều lane tạo trùng một asset.
 - Bot chương 3–4 chưa được phép; đo FPS vẫn cần chủ dự án cho theo bàn giao. Test/check bắt buộc trước commit. Máy cloud không chứng minh hình ảnh hoặc FPS.
 - Chương 1–2 tạm chốt, D-072 còn đoạn chưa chơi tay. Chương 3 lần cuối người dùng dừng ở tầng 1; chương 4 chưa có xác nhận chơi tay. Ưu tiên đồ họa không xóa các khoản kiểm tra này.
 - D-059 vẫn chưa bắt đầu. Không thêm story/save/cơ chế mới dưới nhãn nâng đồ họa.

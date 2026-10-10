@@ -49,6 +49,11 @@ Git trước commit tài liệu là `6cda009`; tìm commit bàn giao bằng `git
 - Cần xác nhận khi thực hiện: tài khoản Meshy đã mua chưa, license CC-BY hay ngoại lệ Private, key cục bộ và ngân sách, mẫu mỹ thuật, số đo FPS khi được phép. D-059 chưa mở.
 - Sau mỗi nhánh ghép, cập nhật card/STATUS/nhật ký và build nếu thay game. Cuối 11/10 hoặc khi người dùng yêu cầu bàn giao, bổ sung phần dưới.
 
-## 11/10 — dành cho cập nhật tiếp
+## 11/10 — review G0, D-079
 
-Chưa có hoạt động được ghi tại thời điểm lập kế hoạch ngày 10/10. Không coi đây là báo cáo đã hoàn tất hai ngày.
+- Người dùng báo A/B/C/D/F và Claude web hoàn tất. Lỗi khởi tạo terminal hết sau khi người dùng khởi động lại; xác minh main sạch tại e3ed54a, pull/fetch thành công, không có Godot giữ lượt trước ghép. Không suy lỗi terminal thành lỗi game.
+- Nhận web 4fc4999, A e27fe28, B 87e99a6, C c434343, D aef26cb, F 2dcd25a. Đọc code, Handoff, nguồn/license; ghép sáu nhánh bằng `--no-ff --no-commit` không xung đột, giữ commit cuối tới khi test/check đạt. Không sửa workspace lane hoặc code lane.
+- Review tại [REVIEW_G0_2026-10-11.md](REVIEW_G0_2026-10-11.md). Python offline 28/28 đạt; xem ba ảnh B (cặp phòng trung tính trước/sau và cận vật liệu game sau). Chưa nghe/chơi tay/FPS, chưa duyệt hình gần chân thực. Full Windows/check/kiểm T-202 bắt buộc chạy sau tài liệu, kết quả và thời điểm ghi trong message commit D-079; log `build/graphics-g0-review/20261011/`.
+- Web có một test nav Linux chập chờn, giữ thông tin lỗi; Windows đạt không chứng minh đã sửa. Các đề xuất B/C chưa cùng schema/hệ đo root, D/web chưa cùng preset; trả yêu cầu G1 rõ trong Review. G1 đạo cụ tĩnh tách khỏi rig/settings để không giữ balo chờ cả đợt lớn.
+- Prototype balo tối đa 3.000 tris/2 material/map 1024²; số đo/pivot giữ B. Chưa xác nhận mua/license/budget Meshy, chưa chi credit. Tạo thủ công trên web không cần API key; API live chưa triển khai.
+- G0 đã nhận; toàn bộ T-207…T-212 vẫn mở. EXE giữ bản 10/10 03:57:18 vì chưa nối prototype vào chương; không export. Opus nhận lại theo STATUS/Review mới, số tiếp theo D-080/T-213. Đây là tiến độ sáng 11/10, không tự nhận đã kết thúc hai ngày.

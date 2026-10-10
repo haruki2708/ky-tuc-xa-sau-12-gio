@@ -1,5 +1,7 @@
 # Prompt bàn giao — Claude Code web, T-207
 
+> **D-079, 11/10:** G0 đã review/ghép. Khi tiếp tục, fetch/rebase main chứa D-079 rồi đọc Review của card và [yêu cầu G1](REVIEW_G0_2026-10-11.md); không làm lại G0 theo đoạn prompt cũ. Đây là phần tiếp của gói đã giao, chưa mở Meshy trả phí hoặc production.
+
 Claude web là lane core được giao theo D-077, làm trong checkout Linux cloud riêng. Integrator là Astra trong 10–11/10 rồi Claude Code ở máy dùng Opus 5.5. Không phải phiên web thay vai trò chủ dự án/integrator.
 
 Task mới: **T-207**. T-192/T-201/T-204 là lịch sử đã ghép. Máy web không có GPU: không báo đã nhìn hình, đạt FPS, nghe âm hoặc export Windows.

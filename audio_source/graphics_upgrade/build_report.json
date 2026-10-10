@@ -1,0 +1,21 @@
+{
+  "ffmpeg": "ffmpeg version 9.0.2-full_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers",
+  "assets": [
+    {
+      "file": "game/audio/graphics_upgrade/fire_bell_soft.ogg",
+      "seconds": 4.0,
+      "sample_rate": 48000,
+      "channels": 1,
+      "loop": false,
+      "target_lufs": -36,
+      "lufs": -35.97,
+      "true_peak_db": -22.14,
+      "boundary_delta": 0.0015162240015342832,
+      "bytes": 17756,
+      "raw_bytes": 384044,
+      "sha256": "5784f0c25de27f719444760f13eaa5d4435263c3bf826d89287488a8b70abcf4",
+      "raw_sha256": "d4971420f6539b64059762acbfecd8c40e67316c07bcd59b7ba87113369fd6fe"
+    }
+  ],
+  "listening_status": "pending_owner_listening"
+}

@@ -1,0 +1,587 @@
+{
+	"assets": [
+		{
+			"albedo_textures": [],
+			"bounds_local_min_m": [
+				-4.0,
+				-0.1,
+				-3.5
+			],
+			"bounds_local_size_m": [
+				8.0,
+				0.2,
+				7.0
+			],
+			"id": "room407_floor",
+			"local_rotation_degrees": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"local_scale": [
+				1.0,
+				1.0,
+				1.0
+			],
+			"mesh_instances": 1,
+			"node": "Room407/Floor",
+			"position_in_scene_m": [
+				34.0,
+				-0.1,
+				-3.5
+			],
+			"scene": "res://scenes/levels/floor4/floor4.tscn",
+			"triangles": 12,
+			"unique_materials": 1
+		},
+		{
+			"albedo_textures": [],
+			"bounds_local_min_m": [
+				-0.1,
+				-1.5,
+				-3.5
+			],
+			"bounds_local_size_m": [
+				0.2,
+				3.0,
+				7.0
+			],
+			"id": "room407_wall",
+			"local_rotation_degrees": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"local_scale": [
+				1.0,
+				1.0,
+				1.0
+			],
+			"mesh_instances": 1,
+			"node": "Room407/WestWall",
+			"position_in_scene_m": [
+				30.0,
+				1.5,
+				-3.5
+			],
+			"scene": "res://scenes/levels/floor4/floor4.tscn",
+			"triangles": 12,
+			"unique_materials": 1
+		},
+		{
+			"albedo_textures": [
+				{
+					"height": 128,
+					"path": "res://assets/textures/ch1_models/metal.png",
+					"width": 128
+				},
+				{
+					"height": 128,
+					"path": "res://assets/textures/ch1_models/wood.png",
+					"width": 128
+				},
+				{
+					"height": 128,
+					"path": "res://assets/textures/ch1_models/paper.png",
+					"width": 128
+				},
+				{
+					"height": 128,
+					"path": "res://assets/textures/ch1_models/stripes.png",
+					"width": 128
+				},
+				{
+					"height": 128,
+					"path": "res://assets/textures/kit/net_weave.png",
+					"width": 128
+				}
+			],
+			"bounds_local_min_m": [
+				-0.45,
+				0.0,
+				-1.0
+			],
+			"bounds_local_size_m": [
+				0.9,
+				1.7,
+				2.0
+			],
+			"id": "room407_bunk_a",
+			"local_rotation_degrees": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"local_scale": [
+				1.0,
+				1.0,
+				1.0
+			],
+			"mesh_instances": 13,
+			"node": "Room407/BunkA",
+			"position_in_scene_m": [
+				30.65,
+				0.0,
+				-3.0
+			],
+			"scene": "res://scenes/levels/floor4/floor4.tscn",
+			"triangles": 7740,
+			"unique_materials": 6
+		},
+		{
+			"albedo_textures": [
+				{
+					"height": 128,
+					"path": "res://assets/textures/room407/ink.png",
+					"width": 128
+				},
+				{
+					"height": 128,
+					"path": "res://assets/textures/room407/wood.png",
+					"width": 128
+				},
+				{
+					"height": 128,
+					"path": "res://assets/textures/room407/cloth.png",
+					"width": 128
+				},
+				{
+					"height": 128,
+					"path": "res://assets/textures/kit/cloth.png",
+					"width": 128
+				},
+				{
+					"height": 128,
+					"path": "res://assets/textures/kit/net_weave.png",
+					"width": 128
+				}
+			],
+			"bounds_local_min_m": [
+				-0.45,
+				0.0,
+				-1.0
+			],
+			"bounds_local_size_m": [
+				0.9,
+				1.7,
+				2.0
+			],
+			"id": "room407_bunk_b",
+			"local_rotation_degrees": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"local_scale": [
+				1.0,
+				1.0,
+				1.0
+			],
+			"mesh_instances": 4,
+			"node": "Room407/BunkB",
+			"position_in_scene_m": [
+				37.35,
+				0.0,
+				-2.7
+			],
+			"scene": "res://scenes/levels/floor4/floor4.tscn",
+			"triangles": 4536,
+			"unique_materials": 7
+		},
+		{
+			"albedo_textures": [
+				{
+					"height": 128,
+					"path": "res://assets/textures/kit/cloth.png",
+					"width": 128
+				},
+				{
+					"height": 128,
+					"path": "res://assets/textures/kit/iron.png",
+					"width": 128
+				},
+				{
+					"height": 128,
+					"path": "res://assets/textures/kit/locker_paint.png",
+					"width": 128
+				}
+			],
+			"bounds_local_min_m": [
+				-0.38,
+				0.0,
+				-0.3
+			],
+			"bounds_local_size_m": [
+				0.76,
+				1.77,
+				0.56
+			],
+			"id": "room407_locker",
+			"local_rotation_degrees": [
+				0.0,
+				90.0,
+				0.0
+			],
+			"local_scale": [
+				1.0,
+				1.0,
+				1.0
+			],
+			"mesh_instances": 1,
+			"node": "Room407/Locker_Dat",
+			"position_in_scene_m": [
+				37.7,
+				0.0,
+				-0.45
+			],
+			"scene": "res://scenes/levels/floor4/floor4.tscn",
+			"triangles": 228,
+			"unique_materials": 3
+		},
+		{
+			"albedo_textures": [
+				{
+					"height": 128,
+					"path": "res://assets/textures/kit/old_wood.png",
+					"width": 128
+				},
+				{
+					"height": 128,
+					"path": "res://assets/textures/kit/iron.png",
+					"width": 128
+				}
+			],
+			"bounds_local_min_m": [
+				-0.75,
+				-0.38,
+				-0.325
+			],
+			"bounds_local_size_m": [
+				1.5,
+				0.76,
+				0.65
+			],
+			"id": "room407_desk",
+			"local_rotation_degrees": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"local_scale": [
+				1.0,
+				1.0,
+				1.0
+			],
+			"mesh_instances": 1,
+			"node": "Room407/StudyDesk",
+			"position_in_scene_m": [
+				31.8,
+				0.38,
+				-4.55
+			],
+			"scene": "res://scenes/levels/floor4/floor4.tscn",
+			"triangles": 132,
+			"unique_materials": 2
+		},
+		{
+			"albedo_textures": [
+				{
+					"height": 128,
+					"path": "res://assets/textures/kit/iron.png",
+					"width": 128
+				},
+				{
+					"height": 128,
+					"path": "res://assets/textures/kit/fan_paint.png",
+					"width": 128
+				}
+			],
+			"bounds_local_min_m": [
+				-0.645,
+				0.0,
+				-0.59109
+			],
+			"bounds_local_size_m": [
+				1.02379,
+				0.62,
+				1.18217
+			],
+			"id": "room407_fan",
+			"local_rotation_degrees": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"local_scale": [
+				1.0,
+				1.0,
+				1.0
+			],
+			"mesh_instances": 2,
+			"node": "Room407/CeilingFan",
+			"position_in_scene_m": [
+				32.0,
+				2.28,
+				-2.5
+			],
+			"scene": "res://scenes/levels/floor4/floor4.tscn",
+			"triangles": 180,
+			"unique_materials": 3
+		},
+		{
+			"albedo_textures": [
+				{
+					"height": 128,
+					"path": "res://assets/textures/room407/moss.png",
+					"width": 128
+				},
+				{
+					"height": 128,
+					"path": "res://assets/textures/room407/cloth.png",
+					"width": 128
+				},
+				{
+					"height": 128,
+					"path": "res://assets/textures/room407/ink.png",
+					"width": 128
+				}
+			],
+			"bounds_local_min_m": [
+				-0.145,
+				0.01,
+				-0.1325
+			],
+			"bounds_local_size_m": [
+				0.29,
+				0.45636,
+				0.30274
+			],
+			"id": "room407_backpack",
+			"local_rotation_degrees": [
+				0.0,
+				90.0,
+				0.0
+			],
+			"local_scale": [
+				1.0,
+				1.0,
+				1.0
+			],
+			"mesh_instances": 1,
+			"node": "Room407/Details/Trung/Backpack",
+			"position_in_scene_m": [
+				33.78,
+				0.02,
+				-4.52
+			],
+			"scene": "res://scenes/levels/floor4/floor4.tscn",
+			"triangles": 96,
+			"unique_materials": 3
+		},
+		{
+			"albedo_textures": [
+				{
+					"height": 128,
+					"path": "res://assets/textures/room407/paper.png",
+					"width": 128
+				},
+				{
+					"height": 128,
+					"path": "res://assets/textures/room407/moss.png",
+					"width": 128
+				}
+			],
+			"bounds_local_min_m": [
+				2.95,
+				0.38,
+				-3.955
+			],
+			"bounds_local_size_m": [
+				0.8,
+				0.065,
+				1.875
+			],
+			"id": "room407_cloth",
+			"local_rotation_degrees": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"local_scale": [
+				1.0,
+				1.0,
+				1.0
+			],
+			"mesh_instances": 16,
+			"node": "Room407/Details/TrungBedding",
+			"position_in_scene_m": [
+				34.0,
+				0.0,
+				0.3
+			],
+			"scene": "res://scenes/levels/floor4/floor4.tscn",
+			"triangles": 192,
+			"unique_materials": 2
+		},
+		{
+			"albedo_textures": [
+				{
+					"height": 128,
+					"path": "res://assets/textures/kit/iron.png",
+					"width": 128
+				},
+				{
+					"height": 128,
+					"path": "res://assets/textures/kit/old_wood.png",
+					"width": 128
+				}
+			],
+			"bounds_local_min_m": [
+				-0.88,
+				0.0,
+				-0.08
+			],
+			"bounds_local_size_m": [
+				0.88,
+				2.08,
+				0.1
+			],
+			"id": "door407_leaf",
+			"local_rotation_degrees": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"local_scale": [
+				1.0,
+				1.0,
+				1.0
+			],
+			"mesh_instances": 1,
+			"node": "Door407/Pivot/Leaf",
+			"position_in_scene_m": [
+				32.44,
+				0.01,
+				0.0
+			],
+			"scene": "res://scenes/levels/floor4/floor4.tscn",
+			"triangles": 120,
+			"unique_materials": 2
+		},
+		{
+			"albedo_textures": [],
+			"bounds_local_min_m": [
+				-22.0,
+				-0.1,
+				-2.0
+			],
+			"bounds_local_size_m": [
+				44.0,
+				0.2,
+				4.0
+			],
+			"id": "corridor_floor",
+			"local_rotation_degrees": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"local_scale": [
+				1.0,
+				1.0,
+				1.0
+			],
+			"mesh_instances": 1,
+			"node": "Corridor/Floor",
+			"position_in_scene_m": [
+				22.0,
+				-0.1,
+				2.0
+			],
+			"scene": "res://scenes/levels/floor4/floor4.tscn",
+			"triangles": 12,
+			"unique_materials": 1
+		},
+		{
+			"albedo_textures": [
+				{
+					"height": 64,
+					"path": "res://assets/textures/campus/red.png",
+					"width": 64
+				}
+			],
+			"bounds_local_min_m": [
+				-0.1,
+				-0.275,
+				-0.1
+			],
+			"bounds_local_size_m": [
+				0.2,
+				0.55,
+				0.2
+			],
+			"id": "extinguisher_body",
+			"local_rotation_degrees": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"local_scale": [
+				1.0,
+				1.0,
+				1.0
+			],
+			"mesh_instances": 1,
+			"node": "FireExtinguisher",
+			"position_in_scene_m": [
+				48.86,
+				-5.8,
+				2.4
+			],
+			"scene": "res://scenes/levels/campus/building_b.tscn",
+			"triangles": 48,
+			"unique_materials": 1
+		},
+		{
+			"albedo_textures": [
+				{
+					"height": 64,
+					"path": "res://assets/textures/campus/iron.png",
+					"width": 64
+				}
+			],
+			"bounds_local_min_m": [
+				-0.085,
+				-0.0275,
+				-0.035
+			],
+			"bounds_local_size_m": [
+				0.17,
+				0.055,
+				0.07
+			],
+			"id": "extinguisher_handle",
+			"local_rotation_degrees": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"local_scale": [
+				1.0,
+				1.0,
+				1.0
+			],
+			"mesh_instances": 1,
+			"node": "ExtinguisherHandle",
+			"position_in_scene_m": [
+				48.86,
+				-5.5,
+				2.4
+			],
+			"scene": "res://scenes/levels/campus/building_b.tscn",
+			"triangles": 12,
+			"unique_materials": 1
+		}
+	],
+	"method": "PackedScene instantiated off-tree; all descendant meshes including hidden variants; root-local AABB; no runtime-generated content"
+}
