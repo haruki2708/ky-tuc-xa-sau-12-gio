@@ -1,0 +1,424 @@
+{
+  "schema_status": "B draft for T-207/T-210 G1; not the approved C schema",
+  "task": "T-209",
+  "source_commit": "e3ed54a",
+  "units": "meters",
+  "coordinate_system": "Godot +Y up; giữ transform nguồn, không suy hướng front chung cho mọi model",
+  "asset_count": 15,
+  "measurements_status": "Đã đo 13 mục bằng Godot 4.7.2, scene chạy probe riêng; nút/chuông ghi căn cứ code. Xem measured_assets.json.",
+  "assets": [
+    {
+      "id": "room407_floor",
+      "current_scene": "res://scenes/levels/floor4/floor4.tscn",
+      "measurement_node": "Room407/Floor",
+      "measurement_ref": "measured_assets.json#room407_floor",
+      "pivot": "Gốc node hiện hành; AABB đo trong hệ cục bộ node, không tự recenter.",
+      "orientation": "Giữ transform/basis hiện hành; chưa chuẩn hóa hướng model mới.",
+      "review_distance_m": {
+        "range": [
+          0.5,
+          3
+        ],
+        "status": "Đề xuất khoảng kiểm hình; chưa đo đường đi người chơi."
+      },
+      "preserve": [
+        "Collider 8 x 0.2 x 7 m; mặt đi y=0",
+        "metadata/surface=tile; không đổi nav"
+      ],
+      "source": {
+        "kind": "existing_project_CC0",
+        "credits": "art_source/CREDITS.md",
+        "license": "CC0-1.0"
+      },
+      "planned_route": "self_authored",
+      "status": "G0 draft; chưa duyệt G1"
+    },
+    {
+      "id": "room407_wall",
+      "current_scene": "res://scenes/levels/floor4/floor4.tscn",
+      "measurement_node": "Room407/WestWall",
+      "measurement_ref": "measured_assets.json#room407_wall",
+      "pivot": "Gốc node hiện hành; AABB đo trong hệ cục bộ node, không tự recenter.",
+      "orientation": "Giữ transform/basis hiện hành; chưa chuẩn hóa hướng model mới.",
+      "review_distance_m": {
+        "range": [
+          0.5,
+          3
+        ],
+        "status": "Đề xuất khoảng kiểm hình; chưa đo đường đi người chơi."
+      },
+      "preserve": [
+        "Collider 0.2 x 3 x 7 m",
+        "KhoaOutlet; WallKnock406; không che tia ngắm"
+      ],
+      "source": {
+        "kind": "existing_project_CC0",
+        "credits": "art_source/CREDITS.md",
+        "license": "CC0-1.0"
+      },
+      "planned_route": "self_authored",
+      "status": "G0 draft; chưa duyệt G1"
+    },
+    {
+      "id": "room407_bunk_a",
+      "current_scene": "res://scenes/levels/floor4/floor4.tscn",
+      "measurement_node": "Room407/BunkA",
+      "measurement_ref": "measured_assets.json#room407_bunk_a",
+      "pivot": "Gốc node hiện hành; AABB đo trong hệ cục bộ node, không tự recenter.",
+      "orientation": "Giữ transform/basis hiện hành; chưa chuẩn hóa hướng model mới.",
+      "review_distance_m": {
+        "range": [
+          0.5,
+          3
+        ],
+        "status": "Đề xuất khoảng kiểm hình; chưa đo đường đi người chơi."
+      },
+      "preserve": [
+        "Anchors/Bunks/Bunk1, Bunk2, View, Exit",
+        "Corpse1/2; Net_Phuc/Net_Viet",
+        "Collider và độ cao nệm 1.20/0.43 m; không đổi timing"
+      ],
+      "source": {
+        "kind": "existing_project_CC0",
+        "credits": "art_source/CREDITS.md",
+        "license": "CC0-1.0"
+      },
+      "planned_route": "self_authored",
+      "status": "G0 draft; chưa duyệt G1"
+    },
+    {
+      "id": "room407_bunk_b",
+      "current_scene": "res://scenes/levels/floor4/floor4.tscn",
+      "measurement_node": "Room407/BunkB",
+      "measurement_ref": "measured_assets.json#room407_bunk_b",
+      "pivot": "Gốc node hiện hành; AABB đo trong hệ cục bộ node, không tự recenter.",
+      "orientation": "Giữ transform/basis hiện hành; chưa chuẩn hóa hướng model mới.",
+      "review_distance_m": {
+        "range": [
+          0.5,
+          3
+        ],
+        "status": "Đề xuất khoảng kiểm hình; chưa đo đường đi người chơi."
+      },
+      "preserve": [
+        "Anchors/Bunks/Bunk3, Bunk4, View, Exit",
+        "Corpse4; không tạo Corpse3",
+        "Details/TrungBedding/Section0..7, SlashRips, Debris, TrungPillow"
+      ],
+      "source": {
+        "kind": "existing_project_CC0",
+        "credits": "art_source/CREDITS.md",
+        "license": "CC0-1.0"
+      },
+      "planned_route": "self_authored",
+      "status": "G0 draft; chưa duyệt G1"
+    },
+    {
+      "id": "room407_locker",
+      "current_scene": "res://scenes/levels/floor4/floor4.tscn",
+      "measurement_node": "Room407/Locker_Dat",
+      "measurement_ref": "measured_assets.json#room407_locker",
+      "pivot": "Gốc node hiện hành; AABB đo trong hệ cục bộ node, không tự recenter.",
+      "orientation": "Giữ transform/basis hiện hành; chưa chuẩn hóa hướng model mới.",
+      "review_distance_m": {
+        "range": [
+          0.5,
+          3
+        ],
+        "status": "Đề xuất khoảng kiểm hình; chưa đo đường đi người chơi."
+      },
+      "preserve": [
+        "Anchors/DatLocker; CombinationLock/Wheel0..2/Shackle",
+        "Không thêm số/chữ hoặc đáp án lên texture"
+      ],
+      "source": {
+        "kind": "existing_project_CC0",
+        "credits": "art_source/CREDITS.md",
+        "license": "CC0-1.0"
+      },
+      "planned_route": "self_authored",
+      "status": "G0 draft; chưa duyệt G1"
+    },
+    {
+      "id": "room407_desk",
+      "current_scene": "res://scenes/levels/floor4/floor4.tscn",
+      "measurement_node": "Room407/StudyDesk",
+      "measurement_ref": "measured_assets.json#room407_desk",
+      "pivot": "Gốc node hiện hành; AABB đo trong hệ cục bộ node, không tự recenter.",
+      "orientation": "Giữ transform/basis hiện hành; chưa chuẩn hóa hướng model mới.",
+      "review_distance_m": {
+        "range": [
+          0.5,
+          3
+        ],
+        "status": "Đề xuất khoảng kiểm hình; chưa đo đường đi người chơi."
+      },
+      "preserve": [
+        "TrungChargingCable; DatNote; DeskLampSwitch",
+        "Collider hiện tại; đèn bật/tắt theo room API"
+      ],
+      "source": {
+        "kind": "existing_project_CC0",
+        "credits": "art_source/CREDITS.md",
+        "license": "CC0-1.0"
+      },
+      "planned_route": "self_authored",
+      "status": "G0 draft; chưa duyệt G1"
+    },
+    {
+      "id": "room407_fan",
+      "current_scene": "res://scenes/levels/floor4/floor4.tscn",
+      "measurement_node": "Room407/CeilingFan",
+      "measurement_ref": "measured_assets.json#room407_fan",
+      "pivot": "Gốc node hiện hành; AABB đo trong hệ cục bộ node, không tự recenter.",
+      "orientation": "Giữ transform/basis hiện hành; chưa chuẩn hóa hướng model mới.",
+      "review_distance_m": {
+        "range": [
+          0.5,
+          3
+        ],
+        "status": "Đề xuất khoảng kiểm hình; chưa đo đường đi người chơi."
+      },
+      "preserve": [
+        "FanAmbience; pivot model cũ không phải trần"
+      ],
+      "source": {
+        "kind": "existing_project_CC0",
+        "credits": "art_source/CREDITS.md",
+        "license": "CC0-1.0"
+      },
+      "planned_route": "self_authored_preferred_or_meshy_after_G2",
+      "status": "G0 draft; chưa duyệt G1"
+    },
+    {
+      "id": "room407_backpack",
+      "current_scene": "res://scenes/levels/floor4/floor4.tscn",
+      "measurement_node": "Room407/Details/Trung/Backpack",
+      "measurement_ref": "measured_assets.json#room407_backpack",
+      "pivot": "Gốc node hiện hành; AABB đo trong hệ cục bộ node, không tự recenter.",
+      "orientation": "Giữ transform/basis hiện hành; chưa chuẩn hóa hướng model mới.",
+      "review_distance_m": {
+        "range": [
+          0.7,
+          2
+        ],
+        "status": "Đề xuất khoảng kiểm hình; chưa đo đường đi người chơi."
+      },
+      "preserve": [
+        "Không lấn lối đi/đè collider bàn"
+      ],
+      "source": {
+        "kind": "existing_project_CC0",
+        "credits": "art_source/CREDITS.md",
+        "license": "CC0-1.0"
+      },
+      "planned_route": "meshy_candidate_only_after_budget_license",
+      "status": "G0 draft; chưa duyệt G1"
+    },
+    {
+      "id": "room407_cloth",
+      "current_scene": "res://scenes/levels/floor4/floor4.tscn",
+      "measurement_node": "Room407/Details/TrungBedding",
+      "measurement_ref": "measured_assets.json#room407_cloth",
+      "pivot": "Gốc node hiện hành; AABB đo trong hệ cục bộ node, không tự recenter.",
+      "orientation": "Giữ transform/basis hiện hành; chưa chuẩn hóa hướng model mới.",
+      "review_distance_m": {
+        "range": [
+          0.5,
+          3
+        ],
+        "status": "Đề xuất khoảng kiểm hình; chưa đo đường đi người chơi."
+      },
+      "preserve": [
+        "8 Section; set_slashed và mảnh rách giữ nguyên",
+        "Không gộp geometry phá trạng thái"
+      ],
+      "source": {
+        "kind": "existing_project_CC0",
+        "credits": "art_source/CREDITS.md",
+        "license": "CC0-1.0"
+      },
+      "planned_route": "self_authored",
+      "status": "G0 draft; chưa duyệt G1"
+    },
+    {
+      "id": "door407_leaf",
+      "current_scene": "res://scenes/levels/floor4/floor4.tscn",
+      "measurement_node": "Door407/Pivot/Leaf",
+      "measurement_ref": "measured_assets.json#door407_leaf",
+      "pivot": "Gốc node hiện hành; AABB đo trong hệ cục bộ node, không tự recenter.",
+      "orientation": "Bản lề là gốc Leaf/Pivot; cánh kéo dài theo -X khi đóng; +Y lên. Không đưa pivot về tâm.",
+      "review_distance_m": {
+        "range": [
+          0.5,
+          3
+        ],
+        "status": "Đề xuất khoảng kiểm hình; chưa đo đường đi người chơi."
+      },
+      "preserve": [
+        "Door407 root=(32.44,0.01,0)",
+        "Pivot yaw đóng 0, mở -PI/2; RulesPaper/HandlePivot",
+        "InteractShape 1.1 x 2.2 x .25; không đổi timing"
+      ],
+      "source": {
+        "kind": "existing_project_CC0",
+        "credits": "art_source/CREDITS.md",
+        "license": "CC0-1.0"
+      },
+      "planned_route": "self_authored",
+      "status": "G0 draft; chưa duyệt G1"
+    },
+    {
+      "id": "corridor_floor",
+      "current_scene": "res://scenes/levels/floor4/floor4.tscn",
+      "measurement_node": "Corridor/Floor",
+      "measurement_ref": "measured_assets.json#corridor_floor",
+      "pivot": "Gốc node hiện hành; AABB đo trong hệ cục bộ node, không tự recenter.",
+      "orientation": "Giữ transform/basis hiện hành; chưa chuẩn hóa hướng model mới.",
+      "review_distance_m": {
+        "range": [
+          1,
+          12
+        ],
+        "status": "Đề xuất khoảng kiểm hình; chưa đo đường đi người chơi."
+      },
+      "preserve": [
+        "Hành lang 44 x 4 m; pilot xét góc x=28..40",
+        "Không tái sinh scene; giữ tấm bịt 408 T-206 và khoảng thông"
+      ],
+      "source": {
+        "kind": "existing_project_CC0",
+        "credits": "art_source/CREDITS.md",
+        "license": "CC0-1.0"
+      },
+      "planned_route": "self_authored",
+      "status": "G0 draft; chưa duyệt G1"
+    },
+    {
+      "id": "extinguisher_body",
+      "current_scene": "res://scenes/levels/campus/building_b.tscn",
+      "measurement_node": "FireExtinguisher",
+      "measurement_ref": "measured_assets.json#extinguisher_body",
+      "pivot": "Gốc node hiện hành; AABB đo trong hệ cục bộ node, không tự recenter.",
+      "orientation": "Cylinder +Y; mặt hướng vào chiếu nghỉ cần web xác nhận G1, không tự đổi basis.",
+      "review_distance_m": {
+        "range": [
+          0.5,
+          3
+        ],
+        "status": "Đề xuất khoảng kiểm hình; chưa đo đường đi người chơi."
+      },
+      "preserve": [
+        "Campus/Anchors/Extinguisher2F=(48.83,-5.5,2.4)",
+        "Body=(48.86,-5.8,2.4), không ép marker vào tâm mesh",
+        "Ch3Use collider .5 x .8 x .5; noise 25 m và D-074 thuộc core"
+      ],
+      "source": {
+        "kind": "existing_project_CC0",
+        "credits": "art_source/campus/CREDITS.md",
+        "license": "CC0-1.0"
+      },
+      "planned_route": "meshy_candidate_only_after_budget_license",
+      "status": "G0 draft; chưa duyệt G1"
+    },
+    {
+      "id": "extinguisher_handle",
+      "current_scene": "res://scenes/levels/campus/building_b.tscn",
+      "measurement_node": "ExtinguisherHandle",
+      "measurement_ref": "measured_assets.json#extinguisher_handle",
+      "pivot": "Gốc node hiện hành; AABB đo trong hệ cục bộ node, không tự recenter.",
+      "orientation": "Giữ transform/basis hiện hành; chưa chuẩn hóa hướng model mới.",
+      "review_distance_m": {
+        "range": [
+          0.5,
+          3
+        ],
+        "status": "Đề xuất khoảng kiểm hình; chưa đo đường đi người chơi."
+      },
+      "preserve": [
+        "Giữ quan hệ với FireExtinguisher và marker lệch 0.03 m theo X"
+      ],
+      "source": {
+        "kind": "existing_project_CC0",
+        "credits": "art_source/campus/CREDITS.md",
+        "license": "CC0-1.0"
+      },
+      "planned_route": "self_authored",
+      "status": "G0 draft; chưa duyệt G1"
+    },
+    {
+      "id": "fire_alarm_button",
+      "current_scene": "res://scenes/main/chapter3.tscn",
+      "measurement_node": "",
+      "measurement_method": "Đọc constants và _place_fire_alarm trong chapter3_director.gd; node sinh runtime, chưa chạy chương 3.",
+      "position_world_m": [
+        0.9,
+        -8.5,
+        0.12
+      ],
+      "visual_size_m": [
+        0.22,
+        0.28,
+        0.06
+      ],
+      "collider_size_m": [
+        0.5,
+        0.6,
+        0.5
+      ],
+      "pivot": "Tâm hộp hiện hành",
+      "orientation": "+Y lên; hộp song song XY; mặt về +Z theo vị trí tường, cần chốt G1.",
+      "review_distance_m": {
+        "range": [
+          0.4,
+          2
+        ],
+        "status": "Đề xuất kiểm"
+      },
+      "preserve": [
+        "Campus/Anchors/FireAlarm1F",
+        "Ch3Use.used, _bell_rung, ch3_fire_alarm, FIRE_BELL_SECONDS=20",
+        "Không thêm cơ chế bấm hay ánh sáng ảnh hưởng luật"
+      ],
+      "source": {
+        "kind": "core_primitive",
+        "file": "game/scripts/core/chapter3_director.gd",
+        "license": "Không nhập asset bên ngoài; giữ quyền nguồn repo"
+      },
+      "planned_route": "self_authored",
+      "status": "G0 draft; web sở hữu wiring"
+    },
+    {
+      "id": "fire_alarm_bell",
+      "current_scene": "res://scenes/main/chapter3.tscn",
+      "measurement_node": "",
+      "measurement_method": "Đọc FIRE_BELL_AT + offset _ring_bell; chưa có mesh hoặc bounds để đo.",
+      "position_world_m": [
+        42,
+        -7.7,
+        0.2
+      ],
+      "visual_size_m": null,
+      "pivot": "Đề xuất tâm treo chuông tại vị trí nguồn âm hiện hành; chờ F/web G1",
+      "orientation": "Chưa có visual/basis; chờ G1",
+      "review_distance_m": {
+        "range": [
+          2,
+          12
+        ],
+        "status": "Đề xuất kiểm"
+      },
+      "preserve": [
+        "FIRE_BELL_AT=(42,-9.9,2) là điểm noise/crowd",
+        "Nguồn âm thực FIRE_BELL_AT+(0,2.2,-1.8)=(42,-7.7,.2)",
+        "Không kéo chuông về nút tại (.9,-8.5,.12)"
+      ],
+      "source": {
+        "kind": "not_created",
+        "license": null
+      },
+      "planned_route": "self_authored_after_G1",
+      "status": "Blocked G1 kích thước/mount/basis; không tự đặt API"
+    }
+  ]
+}
