@@ -1,5 +1,7 @@
 # Bàn giao điều phối dự án cho Claude Code trên web (thứ 7 10/10 – chủ nhật 11/10/2026)
 
+> **KHÔNG DÙNG:** chủ dự án đổi ý, giao điều phối cho Astra trên máy Windows. Bản đang dùng: `docs/handoff/ASTRA_DIEU_PHOI_2_NGAY.md`.
+
 > Viết bởi integrator (Claude Code ở máy chủ dự án, Opus 5.5) lúc 2026-10-10 01:30, cập nhật lúc 04:00 sau D-075, trước khi tạm dừng 1–2 ngày vì hết hạn mức.
 > Trong hai ngày này **bạn (phiên Claude Code trên web) là integrator/điều phối**, thay cho phiên ở máy. Đọc hết file này trước khi làm gì.
 > Model: **Sonnet 5.5 (effort high)** cho việc thường; **Opus 5.5 (effort medium)** khi viết lời thoại/kịch bản, thiết kế, gỡ lỗi khó. Chủ dự án tự đổi model; tới đoạn cần đổi thì dừng và nhắc.
