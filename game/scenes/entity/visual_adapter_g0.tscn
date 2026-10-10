@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/entity/visual_adapter_g0.gd" id="1"]
+[ext_resource type="PackedScene" path="res://assets/models/campus/nhat.tscn" id="2"]
+
+[node name="VisualAdapterG0" type="Node3D"]
+script = ExtResource("1")
+
+[node name="Body" parent="." instance=ExtResource("2")]
