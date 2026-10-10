@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://audio/graphics_upgrade/fire_bell_preview.gd" id="1"]
+
+[node name="FireBellPreview" type="Node3D"]
+script = ExtResource("1")
+
+[node name="Listener" type="Camera3D" parent="."]
+current = true
