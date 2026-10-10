@@ -34,6 +34,14 @@ Kiểm tra cho commit kế hoạch: chạy `tools/test.ps1` rồi `tools/check.p
 
 Git trước commit tài liệu là `6cda009`; tìm commit bàn giao bằng `git log --grep="D-077"`. Đây là mốc bàn giao tài liệu, không phải build mới.
 
+## 10/10 — lane F tiếp nhận âm thanh từ lane E (D-078)
+
+- Chủ dự án cho E nghỉ vô thời hạn, đã tạo tài khoản GPT Plus mới và yêu cầu đặt tên lane F, nhận toàn bộ vai trò trước đây của E. Đây là cập nhật nhân sự sau bảng trạng thái tại commit D-077 ở trên.
+- T-212 chuyển nguyên gói sang F; workspace dự kiến `D:\GAME_WORK\lane-f`, nhánh `lane-f/T-212-graphics-audio-anchors` từ main có D-078. Đội hiện tại A/B/C/D/F + Claude web; số tiếp theo D-079, T-213.
+- Cập nhật quyền sở hữu file, kế hoạch, STATUS, task liên quan, SETTINGS (chỉ đổi tên bên áp dụng), prompt F/web và bàn giao Opus. Prompt E chuyển thành thông báo nghỉ và liên kết sang F; lịch sử task/nguồn asset E giữ nguyên.
+- Chưa khởi chạy phiên F hoặc tạo/sửa workspace lane; chưa có kết quả triển khai T-212. F dùng main đã ghép làm nền và báo integrator nếu phát hiện nhánh E còn thay đổi chưa ghép.
+- Chỉ sửa tài liệu; không đổi game/asset, không export. Chạy full `tools/test.ps1` rồi `tools/check.ps1` trước commit; kết quả và thời điểm lượt mới được ghi trong commit message D-078, không thay bằng baseline cũ.
+
 ## Build và việc còn mở
 
 - EXE hiện có: `build/windows/KyTucXa.exe`, **10/10/2026 03:57:18**, theo handoff từ code `add6d5f`, gồm D-075. Không export vì phiên này chỉ thay tài liệu.

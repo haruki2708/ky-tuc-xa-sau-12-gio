@@ -6,6 +6,7 @@ Game kinh dị và giải đố 3D, góc nhìn thứ nhất, bối cảnh ký t�
 - Tiến độ hiện tại: `docs/STATUS.md`
 - Luật cho agent: `AGENTS.md`
 - Prompt gửi agent: `docs/handoff/lane-*.md`
+- Lane hiện hoạt động: A, B, C, D, **F** và Claude web. F tiếp nhận âm thanh từ E đang nghỉ vô thời hạn (D-078); dùng [prompt lane F](docs/handoff/lane-f.md).
 
 ## Chủ dự án: cách làm hằng ngày
 1. Xem `docs/STATUS.md` để biết đang ở đâu.

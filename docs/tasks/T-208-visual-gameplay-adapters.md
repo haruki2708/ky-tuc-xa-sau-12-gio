@@ -24,7 +24,7 @@ Vùng A trong AGENTS §3: `game/scenes/player/`, `interaction/`, `entity/`, `gam
 
 ## Checklist hoàn thành
 - [ ] G0: bảng ràng buộc và prototype adapter
-- [ ] G1: API thống nhất với web/B/E
+- [ ] G1: API thống nhất với web/B/F (F tiếp nhận E theo D-078)
 - [ ] Pilot nhân vật/đạo cụ kiểm trong scene thật
 - [ ] Không đổi hành vi AI/collision/timing và có fallback
 - [ ] Full test/check PASS, Handoff phân biệt mẫu thử và production

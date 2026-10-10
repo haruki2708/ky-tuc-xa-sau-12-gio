@@ -4,6 +4,8 @@ Claude web là lane core được giao theo D-077, làm trong checkout Linux clo
 
 Task mới: **T-207**. T-192/T-201/T-204 là lịch sử đã ghép. Máy web không có GPU: không báo đã nhìn hình, đạt FPS, nghe âm hoặc export Windows.
 
+**D-078:** lane F (tài khoản GPT Plus mới) tiếp nhận toàn bộ âm thanh và T-212 từ E nghỉ vô thời hạn. Contract dùng A/B/C/D/F; đối tác âm thanh và nhánh là `lane-f/T-212-graphics-audio-anchors`.
+
 ## 1. Prompt giao task (dán vào phiên web, chọn repo tuaanh666/ky-tuc-xa-sau-12-gio)
 ```text
 Bạn là Claude Code web làm phần core theo D-077, task T-207: hợp đồng và tích hợp đồ họa gần chân thực.
@@ -12,8 +14,9 @@ Tiếng Việt cho trả lời/tài liệu, tiếng Anh cho code. Bạn làm tr�
 1. Kiểm git status; giữ mọi thay đổi đang có. git fetch origin; git lfs install; git lfs pull.
    Nhánh core/T-207-graphics-core-contract: nếu có local thì switch/pull --ff-only;
    nếu có remote thì tạo tracking branch; nếu chưa có thì tạo từ origin/main có D-077.
-2. Đọc AGENTS.md, STATUS, D-076/D-077, docs/design/GRAPHICS_UPGRADE_PLAN.md,
+2. Đọc AGENTS.md, STATUS, D-076/D-077/D-078, docs/design/GRAPHICS_UPGRADE_PLAN.md,
    docs/tasks/T-207-graphics-core-contract.md và phạm vi/dependency T-208…T-212.
+   F tiếp nhận vai trò âm thanh từ E; ghi owner F trong contract mới và phối hợp T-212 với F.
 3. Dùng Godot 4.7.2 Linux; nếu thiếu, tải bản chính thức từ
    https://github.com/godotengine/godot/releases/download/4.7.2-stable/Godot_v4.7.2-stable_linux.x86_64.zip
    vào ~/tools, giải nén, đặt biến GODOT tới executable. Dùng PowerShell 7 nếu có.

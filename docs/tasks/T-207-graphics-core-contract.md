@@ -9,13 +9,13 @@ Tầng 4/phòng 407 dùng chung bốn chương. Director chương 2–4 kế th�
 
 ## Việc theo từng phần bàn giao
 1. **G0 — khảo sát và hợp đồng:** tạo `docs/design/graphics/ASSET_BINDINGS.md`: scene/chương, root/NodePath thật, collider, marker, API/signal, clip/timing và bên sở hữu. Bắt đầu với cửa/giường 407, ba xác, quản lý, đồng đội, bình cứu hỏa, chuông tầng 1. Ghi transform thật từ scene/mã nguồn; không bịa số đo. Kiểm các nơi core đang dựng visual hoặc hardcode đường dẫn.
-2. Tạo `docs/design/graphics/INTEGRATION_CONTRACT.md`: cách giữ root, chuẩn hóa visual, gọi adapter, nhận marker, fallback khi model thiếu, trách nhiệm A/B/C/D/E. Tiếp nhận đề xuất schema/asset ID/settings của các lane qua Handoff; chỉ ghi thay đổi tối thiểu cần cho pilot. Ghi riêng đề xuất key/default/ai ghi/ai đọc để integrator cập nhật `docs/SETTINGS.md` ở G1.
+2. Tạo `docs/design/graphics/INTEGRATION_CONTRACT.md`: cách giữ root, chuẩn hóa visual, gọi adapter, nhận marker, fallback khi model thiếu, trách nhiệm A/B/C/D/F (F tiếp nhận âm thanh từ E theo D-078). Tiếp nhận đề xuất schema/asset ID/settings của các lane qua Handoff; chỉ ghi thay đổi tối thiểu cần cho pilot. Ghi riêng đề xuất key/default/ai ghi/ai đọc để integrator cập nhật `docs/SETTINGS.md` ở G1.
 3. **Sau G1:** chuẩn bị điểm nối core nhỏ, có test hành vi thật, model cũ vẫn hoạt động. Không thêm hệ thống registry/autoload tổng quát nếu không có nhu cầu cụ thể. Chưa đổi main scene, mặc định hình ảnh hay luật chơi.
-4. **G2/G3:** khi asset B/âm E và adapter A đã có, nối từng phần vào core. Với chuông, chỉ thay phần nhìn/nguồn âm; giữ tọa độ mồi, bán kính tiếng động, số xác, thời lượng và điều kiện chỉ chương 3. Không gọi cùng sự kiện từ cả animation mới lẫn director gây kích hoạt hai lần.
+4. **G2/G3:** khi asset B/âm F và adapter A đã có, nối từng phần vào core. Với chuông, chỉ thay phần nhìn/nguồn âm; giữ tọa độ mồi, bán kính tiếng động, số xác, thời lượng và điều kiện chỉ chương 3. Không gọi cùng sự kiện từ cả animation mới lẫn director gây kích hoạt hai lần.
 5. Ghi bảng đầu ra đã sẵn sàng/chờ dependency, cách quay lại bản trước, lệnh kiểm trên Windows cho integrator. Phần đồ họa thực phải được máy có GPU kiểm sau.
 
 ## Được phép sửa — ngoại lệ cho web D-077
-Chỉ `docs/design/graphics/INTEGRATION_CONTRACT.md`, `docs/design/graphics/ASSET_BINDINGS.md`, `game/scripts/core/` và `game/scenes/main/` **ở các điểm nối visual của card**, `game/tests/core/`, Handoff/checklist card này. Đổi `game/project.godot`, `docs/SETTINGS.md`, `game/data/` hay file lane phải ghi yêu cầu cho integrator, chưa tự sửa. Không sửa STATUS/DECISIONS, lời thoại, save/checkpoint, AI hay file B/A/D/E/C.
+Chỉ `docs/design/graphics/INTEGRATION_CONTRACT.md`, `docs/design/graphics/ASSET_BINDINGS.md`, `game/scripts/core/` và `game/scenes/main/` **ở các điểm nối visual của card**, `game/tests/core/`, Handoff/checklist card này. Đổi `game/project.godot`, `docs/SETTINGS.md`, `game/data/` hay file lane phải ghi yêu cầu cho integrator, chưa tự sửa. Không sửa STATUS/DECISIONS, lời thoại, save/checkpoint, AI hay file B/A/D/F/C.
 
 ## Test và bằng chứng
 - Linux cloud: chạy toàn bộ test baseline trước sửa, sau sửa và check; ghi lỗi nền nếu có, không tự quy lỗi là do Linux khi chưa có bằng chứng. Không được thêm lỗi mới. Nếu launcher không chạy được, dùng Godot 4.7.2 headless trực tiếp và ghi lệnh/giới hạn check.

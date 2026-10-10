@@ -1,20 +1,20 @@
 # STATUS — cập nhật bởi integrator
 
-**Cập nhật lần cuối:** 2026-10-10, Astra — kế hoạch đồ họa D-076/D-077.
-**Giai đoạn:** Chủ dự án đã chọn **gần chân thực** và chuyển ưu tiên sang đồ họa. Đã phân công **T-207…T-212 cho A–E và Claude web**, trạng thái ready/G0; chưa có triển khai của các card mới. Giữ logic và cơ chế hiện hành. Kế hoạch: [GRAPHICS_UPGRADE_PLAN.md](design/GRAPHICS_UPGRADE_PLAN.md).
+**Cập nhật lần cuối:** 2026-10-10, Astra — D-078, lane F tiếp nhận toàn bộ vai trò âm thanh của E.
+**Giai đoạn:** Chủ dự án đã chọn **gần chân thực** và chuyển ưu tiên sang đồ họa. Đã phân công **T-207…T-212 cho A, B, C, D, F và Claude web**, trạng thái ready/G0; chưa có kết quả triển khai của các card mới được ghi nhận. **Lane E nghỉ vô thời hạn; lane F dùng tài khoản GPT Plus mới do chủ dự án chỉ định**, nhận nguyên T-212 và bảo trì âm thanh đã ghép. Giữ logic và cơ chế hiện hành. Kế hoạch: [GRAPHICS_UPGRADE_PLAN.md](design/GRAPHICS_UPGRADE_PLAN.md).
 
 **Điều phối:** Astra tạm thay ngày 10–11/10; Claude Code ở máy, **Opus 5.5**, nhận lại theo [hướng dẫn](handoff/OPUS_5_5_NHAN_LAI_DIEU_PHOI.md) và [nhật ký Astra](handoff/NHAT_KY_ASTRA_2026-10-10_11.md). Chủ dự án là người dùng; Claude web là lane core, không phải integrator.
 
 ## Việc tiếp theo (cho phiên integrator kế tiếp)
-1. **Gửi sáu prompt §1:** [web](handoff/web.md), [A](handoff/lane-a.md), [B](handoff/lane-b.md), [C](handoff/lane-c.md), [D](handoff/lane-d.md), [E](handoff/lane-e.md). Chủ dự án đã xác nhận cả sáu còn hạn mức. Tất cả làm G0 không cần Meshy; chưa có bằng chứng các phiên bên ngoài đã nhận/chạy chỉ từ việc viết card.
-2. **Review hợp đồng G1 T-207 trước khi ghép phần phụ thuộc:** web/core lập bảng visual–logic, A adapter, B art/pilot, C asset QA/công cụ, D settings/readability, E âm thanh/marker. Từng card có phạm vi và điểm bàn giao; không sửa chồng file hoặc làm thay lane ngoài phân công.
+1. **Gửi sáu prompt §1:** [web](handoff/web.md), [A](handoff/lane-a.md), [B](handoff/lane-b.md), [C](handoff/lane-c.md), [D](handoff/lane-d.md), [F](handoff/lane-f.md). Chủ dự án đã xác nhận hạn mức trước khi giao và chỉ định tài khoản mới cho F thay E (D-078). F dùng `D:\GAME_WORK\lane-f`, nhánh `lane-f/T-212-graphics-audio-anchors` từ main có D-078; không đổi/sửa workspace E. Tất cả làm G0 không cần Meshy; chưa có bằng chứng các phiên bên ngoài đã nhận/chạy chỉ từ việc viết card.
+2. **Review hợp đồng G1 T-207 trước khi ghép phần phụ thuộc:** web/core lập bảng visual–logic, A adapter, B art/pilot, C asset QA/công cụ, D settings/readability, F âm thanh/marker. Từng card có phạm vi và điểm bàn giao; không sửa chồng file hoặc làm thay lane ngoài phân công.
 3. **Tối 10/10:** người dùng dự định mua Meshy Pro, chưa xác nhận đã mua/kết nối hoặc cấp ngân sách chi. G2 chỉ mở sau khi có tài khoản, key cục bộ, license hợp lệ và trần credit cụ thể. Chưa duyệt ngoại lệ Private, chưa cài MCP và chưa gọi API trả phí.
 4. **Phòng mẫu:** phòng 407 + 10–15 m hành lang, một đạo cụ và một nhân vật mẫu; gần chân thực, RTX 3050 Laptop 4 GB/16 GB RAM. 1080p/60 FPS Medium là mục tiêu cần đo, không phải kết quả. Prototype trước, giữ bản chơi hiện hành tới mốc G3.
 5. **Trạng thái chơi thử vẫn còn:** chương 1 D-071 và chương 2 D-073 tạm chốt; đoạn nhắn tin D-072 chưa chơi lại. Chương 3 lần cuối ở bước 6/tầng 1; D-074/T-206/D-075 đã sửa, chờ chơi tiếp qua vườn/sân/cổng/nhà ăn. Chương 4 đã triển khai/duyệt lời, chưa có xác nhận chơi tay. Giọng cuộc gọi/loa chương 2–4 và âm thanh chương 3–4 còn chờ nghe.
-6. **Baseline main đã xác nhận:** `6cda009`, 10/10 16:25–16:52: **722 passed, 0 failed; check 0, 334 script parse PASS**. Commit kế hoạch phải chạy lại toàn bộ test/check; xem kết quả của lượt đó trong commit D-077 và nhật ký, không lấy baseline thay kiểm tra sau sửa.
+6. **Kiểm tra đã xác nhận:** baseline `6cda009` và commit kế hoạch `2a91198` (D-077) đều **722 passed, 0 failed; check 0, 334 script parse PASS**. Lượt D-077: 10/10 17:39–18:06. Cập nhật D-078 phải chạy lại toàn bộ test/check trước commit; kết quả lượt mới ghi trong commit message, không lấy lượt cũ thay kiểm tra sau sửa.
 7. **Build hiện hành:** `build/windows/KyTucXa.exe`, **2026-10-10 03:57:18**, code `add6d5f` theo handoff, có D-075. Phiên kế hoạch chỉ đổi tài liệu, không export mới. Chưa có nhánh mới được Astra báo review/merge; kiểm remote/Handoff thật khi tiếp nhận.
 8. **D-059 chưa bắt đầu.** Không tự nối story/save/liền chương dưới nhãn nâng đồ họa. Không chạy bot chương 3–4 (D-068), FPS cần chủ dự án cho theo handoff. Test Windows các lane phải xếp lượt để tránh tranh RAM/GPU; web test Linux riêng rồi integrator kiểm Windows.
-9. Số đã cấp: **D-076/D-077, T-207…T-212**. Số tiếp theo **D-078, T-213**; integrator cấp card con khi cần. T-199 vẫn chưa viết, không kéo bot vào đợt này.
+9. Số đã cấp: **D-076…D-078, T-207…T-212**. Số tiếp theo **D-079, T-213**; đổi người phụ trách T-212 không tạo task trùng. Integrator cấp card con khi cần. T-199 vẫn chưa viết, không kéo bot vào đợt này.
 
 **Repo:** https://github.com/tuaanh666/ky-tuc-xa-sau-12-gio (private)
 
@@ -41,7 +41,7 @@
 | [T-209 Art pipeline và phòng mẫu](tasks/T-209-realistic-art-pilot.md) | B | **ready — G0**, prototype riêng; Meshy chờ kết nối/ngân sách |
 | [T-210 Asset QA và công cụ Meshy](tasks/T-210-graphics-asset-qa.md) | C | **ready — G0**, dry-run; chưa được chạy FPS/bot |
 | [T-211 Cài đặt và khả năng đọc](tasks/T-211-graphics-settings-readability.md) | D | **ready — G0**, settings mới chờ G1 |
-| [T-212 Audio/marker và chuông báo cháy](tasks/T-212-graphics-audio-anchors.md) | E | **ready — G0**, mẫu âm chờ nghe |
+| [T-212 Audio/marker và chuông báo cháy](tasks/T-212-graphics-audio-anchors.md) | F (tiếp nhận E, D-078) | **ready — G0**, mẫu âm chờ nghe |
 | **Lịch sử triển khai trước đợt đồ họa** | | |
 | T-101 Điều khiển người chơi và tương tác | A | **done**, đã merge |
 | T-102 Bộ module 3D bằng script Blender | B | **done**, đã merge; chủ dự án đã duyệt (D-012) |

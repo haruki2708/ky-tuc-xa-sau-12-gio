@@ -1,5 +1,7 @@
 # Bàn giao điều phối dự án cho Astra (thứ 7 10/10 – chủ nhật 11/10/2026)
 
+> **Cập nhật D-078 ngày 10/10:** lane E nghỉ vô thời hạn; tài khoản GPT Plus mới làm **lane F**, nhận toàn bộ vai trò âm thanh và T-212. Các hướng dẫn giao việc/giọng/âm thanh cho E bên dưới là bối cảnh cũ; từ nay dùng F và `docs/handoff/lane-f.md`. Đội hiện tại A/B/C/D/F + Claude web. Giữ nguyên workspace E, không sửa workspace F từ repo tích hợp; lịch sử task và credits của E không đổi.
+
 > **Cập nhật chiều 10/10 bởi Astra:** chủ dự án chuyển ưu tiên sang đồ họa gần chân thực và giao sáu gói T-207…T-212 (D-076/D-077). Xem `docs/design/GRAPHICS_UPGRADE_PLAN.md`, `docs/STATUS.md` và `docs/handoff/NHAT_KY_ASTRA_2026-10-10_11.md`. Nội dung dưới là mốc bàn giao ban đầu; số task/quyết định và mục “việc tiếp theo” cũ không thay thế cập nhật mới. Opus nhận lại qua `docs/handoff/OPUS_5_5_NHAN_LAI_DIEU_PHOI.md`. Quy định test/check, quyền sở hữu file, bot/FPS và vai trò hai ngày vẫn áp dụng.
 
 > Viết bởi integrator (Claude Code ở máy chủ dự án, Opus 5.5) lúc 2026-10-10 01:30, cập nhật lúc 04:00 sau D-075, trước khi tạm dừng 1–2 ngày vì hết hạn mức.
