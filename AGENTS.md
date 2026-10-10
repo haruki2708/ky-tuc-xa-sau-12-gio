@@ -1,10 +1,11 @@
 # AGENTS.md — Luật chung cho mọi agent
 
-Dự án: **"Ký túc xá sau 12 giờ"**. Game kinh dị và giải đố 3D, góc nhìn thứ nhất, phong cách low-poly kiểu PS1, làm bằng **Godot 4.7.2 (GDScript)**.
-Mục tiêu hiện tại là game đầy đủ khoảng 3–4 tiếng, phát hành theo 4 chương (D-029); chương 1–2 đã có bản chơi thử, đang làm **chương 3 "Truy sát"** (`docs/design/CH3_DESIGN.md`). **Thiết kế duy nhất còn hiệu lực là `docs/design/STORY.md` (v2, D-034, D-035).** Các tài liệu trong `docs/design/archive/` là phần chơi cũ của bản demo, chỉ để tham khảo hệ thống có sẵn; đừng làm theo cốt truyện hay luật trong đó.
+Dự án: **"Ký túc xá sau 12 giờ"**. Game kinh dị và giải đố 3D, góc nhìn thứ nhất, làm bằng **Godot 4.7.2 (GDScript)**. Bản hiện hành dùng đồ họa PS1; chủ dự án đã chọn nâng sang **gần chân thực** (D-076), triển khai từng mốc theo `docs/design/GRAPHICS_UPGRADE_PLAN.md`.
+Mục tiêu là game đầy đủ khoảng 3–4 tiếng, phát hành theo 4 chương (D-029); cả bốn chương đã có phần triển khai, tình trạng chơi thử xem `docs/STATUS.md`. Đợt tiếp theo T-207…T-212 chuẩn bị/nâng đồ họa, giữ cơ chế và logic đã chốt. **Thiết kế cốt truyện duy nhất còn hiệu lực là `docs/design/STORY.md` (v2, D-034, D-035).** Các tài liệu trong `docs/design/archive/` là phần chơi cũ của bản demo, chỉ để tham khảo hệ thống có sẵn; đừng làm theo cốt truyện hay luật trong đó.
 
-Có 6 người làm việc trên dự án:
+Các vai trò và phiên làm việc trong dự án:
 - **Integrator (Claude):** giữ kiến trúc, review và merge mọi nhánh vào `main`.
+- **10–11/10/2026:** Astra thay điều phối tạm thời; sau đó Claude Code ở máy (Opus 5.5) nhận lại qua `docs/handoff/OPUS_5_5_NHAN_LAI_DIEU_PHOI.md`. Claude web là lane core T-207 theo phạm vi card, không là integrator.
 - **Năm agent lane A–E:** mỗi agent một lane, mỗi lane sở hữu một vùng file riêng.
 - **Chủ dự án (người dùng):** ra quyết định thiết kế, chơi thử, gửi prompt cho agent.
 
@@ -79,9 +80,11 @@ Mọi lane đều được sửa: task card của mình (`docs/tasks/T-xxx*.md`,
   - Ngoại lệ duy nhất: danh sách từ nối chương 2 (`game/data/ch2/dictionary.txt`, Wiktionary, CC BY-SA, D-051). Ngoại lệ khác phải hỏi chủ dự án.
   - Ghi nguồn của mọi asset vào `CREDITS.md` trong thư mục asset của lane: URL, tác giả, giấy phép, file nào.
   - Asset tạo bằng AI phải ghi rõ công cụ. Steam yêu cầu khai báo nội dung AI.
-- **Phong cách PS1:**
+- **Ngưỡng PS1 của asset hiện hành:**
   - Texture 64–256 px, lọc nearest.
   - Mô hình ít đa giác: đồ lớn dưới 1500 tam giác, đồ nhỏ dưới 500.
+  - D-076 chuyển hướng mỹ thuật sang gần chân thực. Prototype riêng T-209 được khảo sát ngân sách mới theo kế hoạch, không tự thay mặc định cảnh chơi hoặc nới test production. G1/G2 chốt hợp đồng và số đo trước khi integrator áp dụng tiêu chuẩn mới. Các kiểm tra gameplay/collision vẫn giữ hiệu lực.
+- **Meshy (D-077):** G0 làm không cần tài khoản. Chỉ chạy tác vụ trả phí sau khi chủ dự án đã cấp kết nối và ngân sách; một operator cục bộ, có log credit/task ID, không đặt khóa trong Git/chat. Pro Private không tự động là CC0/CC-BY; ngoại lệ license vẫn cần quyết định riêng. Không cài MCP/plugin theo suy diễn từ việc giao card.
 - **File nhị phân:** đi qua Git LFS (xem `.gitattributes`), mỗi file tối đa 10 MB. Commit cả các file `.import` và `.uid` do Godot sinh ra.
 - **Không được:**
   - thêm plugin hoặc addon,

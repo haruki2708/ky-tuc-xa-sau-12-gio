@@ -1,41 +1,42 @@
 # Prompt bàn giao — Lane B (Môi trường và 3D)
 
-> **2026-10-09:** lane B nhận **T-206** (chương 3, D-074: tấm bịt cửa 408 cũ nhấp nháy).
+**10/10/2026:** T-209, D-076/D-077; chủ dự án xác nhận lane còn hạn mức. Astra chỉ điều phối tạm 10–11/10, Opus 5.5 ở máy nhận lại sau đó. Card đã phân công; trạng thái thực xem Handoff.
 
 ## 1. Prompt giao task (dán nguyên khối)
-```
-Bạn là agent Lane B (Môi trường và 3D) trong dự án game "Ký túc xá sau 12 giờ" (Godot 4.7.2, GDScript).
-Repo GitHub (private): https://github.com/tuaanh666/ky-tuc-xa-sau-12-gio.git
-Thư mục làm việc của bạn: D:\GAME_WORK\lane-b
-TUYỆT ĐỐI không làm việc trong D:\GAME_DEMO (đó là bản tích hợp).
+```text
+Bạn là agent Lane B (Môi trường và 3D) của game Ký túc xá sau 12 giờ, Godot 4.7.2/GDScript.
+Task T-209: art pipeline và phòng 407 gần chân thực. Trả lời/tài liệu tiếng Việt, code tiếng Anh.
+Repo: https://github.com/tuaanh666/ky-tuc-xa-sau-12-gio.git
+Chỉ làm trong D:\GAME_WORK\lane-b; không sửa D:\GAME_DEMO hoặc workspace lane khác.
 
-Bước 1. Chuẩn bị:
-  - Nếu chưa có D:\GAME_WORK\lane-b: git clone https://github.com/tuaanh666/ky-tuc-xa-sau-12-gio.git D:\GAME_WORK\lane-b
-  - cd D:\GAME_WORK\lane-b; git fetch origin
-  - Nếu nhánh lane-b/T-206-sealed-408-flicker đã có trên origin: git switch lane-b/T-206-sealed-408-flicker; git pull
-    Nếu chưa có: git switch -c lane-b/T-206-sealed-408-flicker origin/main
-Bước 2. Đọc kỹ, theo thứ tự: AGENTS.md, docs/STATUS.md, docs/tasks/T-206-sealed-408-flicker.md
-Bước 3. Làm task trong card, CHỈ sửa file trong mục "Được phép sửa".
-        Cần sửa file ngoài phạm vi thì ghi "Yêu cầu thay đổi" vào mục Handoff, không tự sửa.
-Bước 4. Trước khi kết thúc: chạy pwsh tools/test.ps1 (phải PASS); commit dạng "T-206: ...";
-        git push -u origin lane-b/T-206-sealed-408-flicker; điền mục Handoff trong card, commit và push lại.
-Bước 5. Trả lời tôi bằng tiếng Việt, ngắn gọn:
-  (1) đã làm gì, (2) kết quả test (dán dòng RESULT), (3) checklist mục nào chưa đạt và vì sao,
-  (4) yêu cầu thay đổi ngoài phạm vi, (5) có bị chặn ở đâu không.
-Quy tắc: không push lên main, không thêm plugin, không cài gì vào ổ C:, không đoán về
-luật chơi hay cốt truyện (ghi câu hỏi vào Handoff). Ghi trung thực: chưa test thì nói chưa test.
-```
-
-## 2. Prompt tiếp tục (sau khi tắt máy, hoặc khi agent mất ngữ cảnh)
-```
-Tiếp tục task T-206 của Lane B. cd D:\GAME_WORK\lane-b; git fetch origin; git switch lane-b/T-206-sealed-408-flicker; git pull.
-Đọc lại AGENTS.md, docs/STATUS.md và docs/tasks/T-206-sealed-408-flicker.md (đặc biệt mục Handoff để biết lần trước dừng ở đâu).
-Kiểm tra git status và git log -5. Tiếp tục các mục checklist chưa xong, rồi kết thúc phiên theo AGENTS.md §2.
+1. Kiểm git status ở workspace của bạn; không ghi đè công việc đang có. git fetch origin.
+   Nhánh: lane-b/T-209-realistic-art-pilot. Nếu local đã có thì switch và pull --ff-only.
+   Nếu chỉ origin có thì tạo tracking branch. Nếu chưa có thì tạo từ origin/main có D-077.
+2. Đọc AGENTS.md, docs/STATUS.md, docs/design/GRAPHICS_UPGRADE_PLAN.md và docs/tasks/T-209-realistic-art-pilot.md.
+3. Làm G0 ngay, gửi đầu ra cụ thể vào Handoff để integrator/web chốt G1.
+   Những bước sau phụ thuộc G1/G2 làm khi điều kiện trong card đủ; không tự đoán API/setting.
+   Chỉ sửa đúng vùng của card. Giữ logic, collision, nav, timing; không sửa luật hoặc lời thoại.
+4. Meshy chưa được xác nhận mua/kết nối/ngân sách: không tiêu credit, không cài MCP/plugin.
+   Không chạy bot chương 3–4 hoặc FPS. Phần chuẩn bị/công cụ không cần chờ các quyền này.
+5. Bàn giao từng phần bằng commit nhỏ “T-209: ...”; không đánh dấu cả gói done khi mới xong G0.
+   Trước commit: full pwsh tools/test.ps1 và pwsh tools/check.ps1; ghi RESULT và những gì chưa kiểm.
+   Phối hợp integrator xếp lượt full test/render trên Windows, tránh nhiều lượt Godot tranh tài nguyên.
+   git push -u origin lane-b/T-209-realistic-art-pilot. Không push main, không mở PR nếu chưa được yêu cầu.
+6. Cập nhật Handoff/checklist card của bạn, báo: đã làm; test/check; dependency/mục chưa đạt;
+   yêu cầu ngoài phạm vi; commit/nhánh; có chặn gì không. Không sửa STATUS/DECISIONS/Review.
 ```
 
-## 3. Prompt yêu cầu sửa (khi integrator trả task về)
+## 2. Prompt tiếp tục
+```text
+Tiếp tục T-209 ở D:\GAME_WORK\lane-b, nhánh lane-b/T-209-realistic-art-pilot.
+Kiểm git status, fetch, switch/pull --ff-only an toàn; đọc Handoff tại docs/tasks/T-209-realistic-art-pilot.md.
+Đọc STATUS và kế hoạch đồ họa để biết mốc G1/G2 đã đủ chưa. Rebase origin/main nếu cần, không mất thay đổi cục bộ.
+Làm các phần còn được mở trong card và bàn giao theo mục 1; không tạo lại asset/tác vụ Meshy đã có task ID.
 ```
-Integrator đã review T-206 và yêu cầu sửa: xem mục "Review" trong docs/tasks/T-206-sealed-408-flicker.md trên origin/main
-(git fetch; git show origin/main:docs/tasks/T-206-sealed-408-flicker.md). Rebase nhánh lên origin/main, sửa từng ý, chạy test,
-push, cập nhật Handoff và báo lại theo 5 mục như trước.
+
+## 3. Prompt yêu cầu sửa
+```text
+Integrator trả T-209: git fetch origin; đọc Review trên origin/main:docs/tasks/T-209-realistic-art-pilot.md.
+Rebase nhánh lane-b/T-209-realistic-art-pilot lên origin/main, sửa đúng từng ý trong phạm vi.
+Chạy full test/check, cập nhật Handoff và push nhánh; nêu rõ phần chưa kiểm/đang chờ.
 ```

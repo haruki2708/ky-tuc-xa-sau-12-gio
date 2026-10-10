@@ -1,59 +1,52 @@
-# Prompt bàn giao — Claude Code trên web (lane dự phòng, D-066, D-069)
+# Prompt bàn giao — Claude Code web, T-207
 
-Chủ dự án dùng tín dụng Claude Code trên web (claude.ai/code) như một **lane dự phòng**. Phiên web chạy trên máy Linux trên cloud, clone repo từ GitHub, làm trên nhánh riêng rồi push. Integrator (Claude ở máy chủ dự án) review, chụp ảnh, chạy test trên Windows và merge.
+Claude web là lane core được giao theo D-077, làm trong checkout Linux cloud riêng. Integrator là Astra trong 10–11/10 rồi Claude Code ở máy dùng Opus 5.5. Không phải phiên web thay vai trò chủ dự án/integrator.
 
-**Giới hạn của máy cloud:** không có Godot sẵn (phải tải), **không có card đồ họa** (không chụp ảnh, không đo FPS, không export `.exe`), không chơi thử được. Test chạy headless được.
+Task mới: **T-207**. T-192/T-201/T-204 là lịch sử đã ghép. Máy web không có GPU: không báo đã nhìn hình, đạt FPS, nghe âm hoặc export Windows.
 
-**Task hiện tại: T-204** (chương 2, phần core, D-072). Trước đó: T-201 (chương 1, core), T-192 (làm thay lane B), đã xong.
+## 1. Prompt giao task (dán vào phiên web, chọn repo tuaanh666/ky-tuc-xa-sau-12-gio)
+```text
+Bạn là Claude Code web làm phần core theo D-077, task T-207: hợp đồng và tích hợp đồ họa gần chân thực.
+Tiếng Việt cho trả lời/tài liệu, tiếng Anh cho code. Bạn làm trên nhánh riêng, integrator ở máy review/merge.
 
-## 1. Prompt giao task (dán nguyên khối vào phiên web, chọn repo `tuaanh666/ky-tuc-xa-sau-12-gio`, model Sonnet 5.5)
-```
-Bạn làm phần core (thay integrator) trong dự án game "Ký túc xá sau 12 giờ" (Godot 4.7.2, GDScript), theo quyết định D-072. Task: T-204 (chương 2).
-Trả lời tôi bằng tiếng Việt. Tài liệu viết tiếng Việt, code viết tiếng Anh.
-
-Bước 1. Chuẩn bị máy (Linux, không cần sudo; mọi thứ cài vào ~/tools):
-  - git lfs install; git lfs pull
-  - Nhánh đã có sẵn trên origin (có lời thoại mới): git fetch origin; git switch core/T-204-ch2-tell-friends-loop; git pull
-    (không tạo nhánh mới từ origin/main)
-  - Tải Godot 4.7.2 bản Linux:
-      mkdir -p ~/tools && cd ~/tools
-      curl -LO https://github.com/godotengine/godot/releases/download/4.7.2-stable/Godot_v4.7.2-stable_linux.x86_64.zip
-      unzip -o Godot_v4.7.2-stable_linux.x86_64.zip && chmod +x Godot_v4.7.2-stable_linux.x86_64
-      export GODOT=~/tools/Godot_v4.7.2-stable_linux.x86_64
-  - Cài PowerShell 7 bản tar.gz cho Linux x64 (bản 7.x mới nhất ở github.com/PowerShell/PowerShell/releases) vào ~/tools/pwsh, chạy bằng ~/tools/pwsh/pwsh.
-    Nếu không cài được, chạy test trực tiếp:
-      $GODOT --headless --path game --import
-      $GODOT --headless --path game res://tests/run_tests.tscn            (cả bộ)
-      $GODOT --headless --path game res://tests/run_tests.tscn -- --filter=chapter2
-  - Chạy thử cảnh thật: tạo một scene tạm .tscn trong game/_tmp (xóa trước khi commit). KHÔNG dùng `godot -s script.gd`
-    (chế độ -s không nạp autoload EventBus nên báo lỗi giả).
-Bước 2. Đọc kỹ, theo thứ tự: AGENTS.md, docs/STATUS.md, docs/DECISIONS.md (D-046…D-051, D-072),
-        docs/design/CH2_DESIGN.md, docs/design/CH2_SCRIPT.md (vòng 3, mục 06:40), docs/tasks/T-204-ch2-tell-friends-loop.md.
-Bước 3. TRƯỚC KHI SỬA GÌ: chạy cả bộ test một lần trên origin/main và lưu kết quả (dòng RESULT và tên test FAIL).
-        Test nào đã FAIL sẵn ở lượt này là do môi trường Linux, KHÔNG sửa chúng, chỉ ghi vào Handoff.
-Bước 4. Làm task trong card, CHỈ sửa file trong mục "Được phép sửa" của card.
-        Cần sửa file ngoài phạm vi thì ghi "Yêu cầu thay đổi" vào Handoff, không tự sửa.
-Bước 5. Trước khi kết thúc: chạy lại cả bộ test; không được có test FAIL mới so với lượt ở Bước 3.
-        Commit nhỏ, message dạng "T-204: ..."; git push -u origin core/T-204-ch2-tell-friends-loop.
-        Điền mục Handoff trong card (ghi rõ "Claude Code web làm thay core, D-072", kết quả test hai lượt,
-        những gì chưa kiểm được trên máy không có card đồ họa), commit và push lại.
-Bước 6. Trả lời tôi ngắn gọn: (1) đã làm gì, (2) kết quả test hai lượt, (3) checklist mục nào chưa đạt và vì sao,
-        (4) yêu cầu thay đổi ngoài phạm vi, (5) có bị chặn ở đâu không.
-Quy tắc: KHÔNG push lên main, không mở pull request vào main trừ khi tôi bảo, không thêm plugin hay addon,
-không đổi phiên bản Godot, không sửa lời thoại hay strings.csv, không đoán về luật chơi hay cốt truyện
-(ghi câu hỏi vào Handoff). Ghi trung thực: chưa test thì nói chưa test.
+1. Kiểm git status; giữ mọi thay đổi đang có. git fetch origin; git lfs install; git lfs pull.
+   Nhánh core/T-207-graphics-core-contract: nếu có local thì switch/pull --ff-only;
+   nếu có remote thì tạo tracking branch; nếu chưa có thì tạo từ origin/main có D-077.
+2. Đọc AGENTS.md, STATUS, D-076/D-077, docs/design/GRAPHICS_UPGRADE_PLAN.md,
+   docs/tasks/T-207-graphics-core-contract.md và phạm vi/dependency T-208…T-212.
+3. Dùng Godot 4.7.2 Linux; nếu thiếu, tải bản chính thức từ
+   https://github.com/godotengine/godot/releases/download/4.7.2-stable/Godot_v4.7.2-stable_linux.x86_64.zip
+   vào ~/tools, giải nén, đặt biến GODOT tới executable. Dùng PowerShell 7 nếu có.
+   Chạy baseline toàn bộ test trước sửa. Có thể chạy trực tiếp:
+   $GODOT --headless --path game --import
+   $GODOT --headless --path game res://tests/run_tests.tscn
+   Nếu dùng pwsh, export GODOT rồi chạy tools/test.ps1 và tools/check.ps1.
+   Thiếu công cụ/check không chạy được thì ghi rõ; không ghi PASS giả và không sửa launcher của C.
+4. G0 trước: ASSET_BINDINGS.md và INTEGRATION_CONTRACT.md trong docs/design/graphics/.
+   Đo/đọc root, collider, marker, API/clip/timing thật; gửi contract sớm để các lane làm tiếp.
+   Đề xuất settings/schema cho integrator, không tự ghi SETTINGS hoặc đổi project.godot.
+   Wiring core chỉ khi G1 và dependency trong card đủ. Giữ logic, luật, save và tọa độ thế giới.
+5. Không có Meshy key/ngân sách trên cloud; không gọi API trả phí/cài plugin/MCP, không làm asset B thay.
+   Không chạy FPS, bot chương 3–4, chụp ảnh hay export Windows trên máy này.
+6. Full test sau sửa + check nếu công cụ hỗ trợ; không có lỗi mới so với baseline.
+   Lỗi nền ghi đúng tên/lệnh, không tự quy cho Linux nếu chưa chứng minh.
+   Commit nhỏ “T-207: ...”, git push -u origin core/T-207-graphics-core-contract.
+   Điền Handoff/checklist, ghi “Claude Code web làm phần core, D-077”, hai lượt test và phần chưa kiểm.
+   Không push main, không sửa STATUS/DECISIONS/Review, không mở PR nếu chưa được yêu cầu.
+7. Báo đã làm; test/check; phần thiếu/dependency; yêu cầu ngoài phạm vi; commit/nhánh và chặn.
+   Mới xong G0 thì bàn giao G0, chưa đánh dấu toàn bộ T-207 done.
 ```
 
-## 2. Prompt tiếp tục (phiên mới hoặc phiên cũ mất ngữ cảnh)
-```
-Tiếp tục T-204 (làm thay core, D-072) theo docs/handoff/web.md mục 1. Làm lại Bước 1 (máy cloud có thể đã mất ~/tools),
-git switch core/T-204-ch2-tell-friends-loop; git pull. Đọc mục Handoff trong docs/tasks/T-204-ch2-tell-friends-loop.md để biết lần trước dừng ở đâu,
-kiểm tra git status và git log -5, làm tiếp các mục checklist chưa xong, kết thúc theo Bước 5–6.
+## 2. Prompt tiếp tục
+```text
+Tiếp tục T-207 theo docs/handoff/web.md mục 1 trên nhánh core/T-207-graphics-core-contract.
+Kiểm máy cloud còn Godot/tools không, git status và git log -5; fetch/pull an toàn.
+Đọc Handoff T-207 và STATUS/kế hoạch để biết G1/dependency đã ghép chưa, rồi làm phần được mở.
 ```
 
-## 3. Prompt yêu cầu sửa (khi integrator trả task về)
-```
-Integrator đã review T-204 và yêu cầu sửa: xem mục "Review" trong docs/tasks/T-204-ch2-tell-friends-loop.md trên origin/main
-(git fetch; git show origin/main:docs/tasks/T-204-ch2-tell-friends-loop.md). Làm lại Bước 1 của docs/handoff/web.md nếu cần,
-rebase nhánh lên origin/main, sửa từng ý, chạy test hai lượt như trước, push, cập nhật Handoff và báo lại theo 5 mục.
+## 3. Prompt yêu cầu sửa
+```text
+Integrator trả T-207: fetch và đọc Review tại origin/main:docs/tasks/T-207-graphics-core-contract.md.
+Rebase nhánh lên origin/main, sửa từng ý đúng phạm vi, chạy test/check, cập nhật Handoff và push.
+Ghi rõ phần chưa kiểm được vì cloud không có GPU; integrator sẽ xác minh trên Windows.
 ```

@@ -1,5 +1,7 @@
 # Bàn giao điều phối dự án cho Astra (thứ 7 10/10 – chủ nhật 11/10/2026)
 
+> **Cập nhật chiều 10/10 bởi Astra:** chủ dự án chuyển ưu tiên sang đồ họa gần chân thực và giao sáu gói T-207…T-212 (D-076/D-077). Xem `docs/design/GRAPHICS_UPGRADE_PLAN.md`, `docs/STATUS.md` và `docs/handoff/NHAT_KY_ASTRA_2026-10-10_11.md`. Nội dung dưới là mốc bàn giao ban đầu; số task/quyết định và mục “việc tiếp theo” cũ không thay thế cập nhật mới. Opus nhận lại qua `docs/handoff/OPUS_5_5_NHAN_LAI_DIEU_PHOI.md`. Quy định test/check, quyền sở hữu file, bot/FPS và vai trò hai ngày vẫn áp dụng.
+
 > Viết bởi integrator (Claude Code ở máy chủ dự án, Opus 5.5) lúc 2026-10-10 01:30, cập nhật lúc 04:00 sau D-075, trước khi tạm dừng 1–2 ngày vì hết hạn mức.
 > Trong hai ngày này **bạn (Astra, effort xhigh) là integrator/điều phối**, thay cho phiên Claude Code ở máy (đang tạm dừng: **không có ai khác sửa `D:\GAME_DEMO` trong lúc này**). Bạn chạy **ngay trên máy Windows của chủ dự án**, làm trong `D:\GAME_DEMO`. Đọc hết file này trước khi làm gì.
 > File này viết lại từ bản cho Claude Code web (`WEB_DIEU_PHOI_2_NGAY.md`, không dùng nữa); nội dung dự án giống hệt, chỉ khác phần máy và công cụ.

@@ -1,22 +1,20 @@
 # STATUS — cập nhật bởi integrator
 
-**Cập nhật lần cuối:** 2026-10-10
-**Giai đoạn:** Chương 1 (`v0.3-ch1`) và chương 2 (`v0.4-ch2`) tạm chốt. Chương 3 đã sửa theo góp ý chơi thử (D-061…D-066). **Chương 4 "Người sống sót" đã ghép đủ 4 lane** (T-194…T-198, D-067). **Bản chơi thử 2026-10-07 19:51** (`build/windows/KyTucXa.exe`) có đủ chương 1–4; máy chủ dự án đã mở khóa tới chương 4. **Kế hoạch tiếp: chủ dự án kiểm tra lại trọn chương 1 → 4.**
+**Cập nhật lần cuối:** 2026-10-10, Astra — kế hoạch đồ họa D-076/D-077.
+**Giai đoạn:** Chủ dự án đã chọn **gần chân thực** và chuyển ưu tiên sang đồ họa. Đã phân công **T-207…T-212 cho A–E và Claude web**, trạng thái ready/G0; chưa có triển khai của các card mới. Giữ logic và cơ chế hiện hành. Kế hoạch: [GRAPHICS_UPGRADE_PLAN.md](design/GRAPHICS_UPGRADE_PLAN.md).
+
+**Điều phối:** Astra tạm thay ngày 10–11/10; Claude Code ở máy, **Opus 5.5**, nhận lại theo [hướng dẫn](handoff/OPUS_5_5_NHAN_LAI_DIEU_PHOI.md) và [nhật ký Astra](handoff/NHAT_KY_ASTRA_2026-10-10_11.md). Chủ dự án là người dùng; Claude web là lane core, không phải integrator.
 
 ## Việc tiếp theo (cho phiên integrator kế tiếp)
-0. **10–11/10/2026: Astra (xhigh, trên máy chủ dự án) làm integrator tạm thời** (phiên Claude ở máy tạm dừng vì hết hạn mức). Bàn giao đầy đủ: `docs/handoff/ASTRA_DIEU_PHOI_2_NGAY.md`; khi xong ghi nhật ký `docs/handoff/NHAT_KY_ASTRA_2026-10-10_11.md`. Build hiện tại: 2026-10-10 03:57 (`add6d5f`, có D-075).
-1. **Chương 1 tạm chốt lại (D-071), chương 2 tạm chốt lại (D-073; đoạn nhắn tin vòng 3 chưa chơi tay, chỉ kiểm bằng test). Đang chơi kiểm tra chương 3** (`docs/playtest/CH3_QUICKTEST.md`, bản 2026-10-09 17:27), rồi chương 4. **Chủ dự án chơi kiểm tra chương 1 → 4** bản 2026-10-08 00:31 (`docs/playtest/`: `CH1_QUICKTEST.md` (nhanh) hoặc `CH1_V2_PLAYTEST.md`, `CH2_WALKTHROUGH.md`, `CH3_QUICKTEST.md`, `CH4_QUICKTEST.md`). Mỗi lỗi: tái hiện bằng test hoặc cảnh thật, sửa, chạy cả bộ test, export lại. Góp ý thiết kế: đưa phương án kèm đề xuất, ghi D-xxx.
-2. **Chương 4 (D-068):** lời `CH4_SCRIPT.md` **đã duyệt**; phiếu điều tra: Nam, 20 tuổi, sinh 11/03/2006 (`FORM_FIELDS` trong `chapter4_director.gd`).
-3. **Giọng (T-200, đã merge 2026-10-08):** chương 4 có đủ 16 giọng theo lời đã duyệt; cuộc gọi chương 2–4 và loa chương 2–4 **nay mới có tiếng** (trước đó chỉ có phụ đề do bộ phát chỉ nhận chương 1). Chờ chủ dự án nghe.
-4. **Chương 1 sau chơi thử lại (D-069, D-070):** T-201, T-202, T-203 đã merge; cả 4 giường ngắm trúng 36/36 (thanh chắn giường tầng trên: Claude làm thay lane B). Gõ sai được gõ lại trong 90 giây. Kịch bản bot chương 1 đã đổi sang nhịp `31` (Claude làm thay lane C, 2026-10-09).
-4a. **Chương 2 (D-072):** đã ghép T-204 (luồng nhắn cho hai bạn, qua vòng 3 ở từ lặp thứ 4) và T-205 (5 giọng). Chờ chủ dự án chơi lại vòng 3 và nghe 5 câu mới. `tools/README.md` đã cập nhật (Claude làm thay lane C).
-4d. **Chương 3 (D-075):** tầng 1 nhà B chỉ còn 4 xác ở nửa xa hành lang, quay lại sau 6 giây; chuông báo cháy ở chân cầu thang chính kéo chúng đi; Minh Nhật đi theo ngay khi Trung quay lại sớm. Hình/tiếng chuông là bản tạm của core.
-4c. **Chương 3 (D-074):** đã sửa (core) xác tầng 2 bám tiếng bình cứu hỏa và Minh Nhật đi bộ ra từ 203; T-206 lane B (tấm bịt 408 nhấp nháy, cả 4 chương) đã merge. Chủ dự án chơi tiếp chương 3.
-4b. **Bot:** không chạy bot chương 3 và 4 (D-068); T-199 chưa viết card.
-5. **Chưa ai nghe bằng tai:** âm thanh chương 3 và 4, giọng cuộc gọi và loa chương 2–4 (fixture `res://audio/test/ch4_audio_test.tscn`).
-6. **Sau khi chốt chương 4:** giai đoạn "Ghép bản hoàn chỉnh" (D-059).
-7. Máy chủ dự án: `%APPDATA%/Godot/app_userdata/Ky Tuc Xa Sau 12 Gio/progress.json` = `{"version": 1, "unlocked": 4}` (bản cũ ở `progress.json.bak`).
-8. **Phân công model** (chủ dự án tự đổi bằng `/model`): Opus cho kịch bản, kiến trúc, review nhánh lane, gỡ lỗi khó; Sonnet cho ghép có card rõ, sửa nhỏ, thêm test. Tới đoạn đổi thì dừng và nhắc chủ dự án.
+1. **Gửi sáu prompt §1:** [web](handoff/web.md), [A](handoff/lane-a.md), [B](handoff/lane-b.md), [C](handoff/lane-c.md), [D](handoff/lane-d.md), [E](handoff/lane-e.md). Chủ dự án đã xác nhận cả sáu còn hạn mức. Tất cả làm G0 không cần Meshy; chưa có bằng chứng các phiên bên ngoài đã nhận/chạy chỉ từ việc viết card.
+2. **Review hợp đồng G1 T-207 trước khi ghép phần phụ thuộc:** web/core lập bảng visual–logic, A adapter, B art/pilot, C asset QA/công cụ, D settings/readability, E âm thanh/marker. Từng card có phạm vi và điểm bàn giao; không sửa chồng file hoặc làm thay lane ngoài phân công.
+3. **Tối 10/10:** người dùng dự định mua Meshy Pro, chưa xác nhận đã mua/kết nối hoặc cấp ngân sách chi. G2 chỉ mở sau khi có tài khoản, key cục bộ, license hợp lệ và trần credit cụ thể. Chưa duyệt ngoại lệ Private, chưa cài MCP và chưa gọi API trả phí.
+4. **Phòng mẫu:** phòng 407 + 10–15 m hành lang, một đạo cụ và một nhân vật mẫu; gần chân thực, RTX 3050 Laptop 4 GB/16 GB RAM. 1080p/60 FPS Medium là mục tiêu cần đo, không phải kết quả. Prototype trước, giữ bản chơi hiện hành tới mốc G3.
+5. **Trạng thái chơi thử vẫn còn:** chương 1 D-071 và chương 2 D-073 tạm chốt; đoạn nhắn tin D-072 chưa chơi lại. Chương 3 lần cuối ở bước 6/tầng 1; D-074/T-206/D-075 đã sửa, chờ chơi tiếp qua vườn/sân/cổng/nhà ăn. Chương 4 đã triển khai/duyệt lời, chưa có xác nhận chơi tay. Giọng cuộc gọi/loa chương 2–4 và âm thanh chương 3–4 còn chờ nghe.
+6. **Baseline main đã xác nhận:** `6cda009`, 10/10 16:25–16:52: **722 passed, 0 failed; check 0, 334 script parse PASS**. Commit kế hoạch phải chạy lại toàn bộ test/check; xem kết quả của lượt đó trong commit D-077 và nhật ký, không lấy baseline thay kiểm tra sau sửa.
+7. **Build hiện hành:** `build/windows/KyTucXa.exe`, **2026-10-10 03:57:18**, code `add6d5f` theo handoff, có D-075. Phiên kế hoạch chỉ đổi tài liệu, không export mới. Chưa có nhánh mới được Astra báo review/merge; kiểm remote/Handoff thật khi tiếp nhận.
+8. **D-059 chưa bắt đầu.** Không tự nối story/save/liền chương dưới nhãn nâng đồ họa. Không chạy bot chương 3–4 (D-068), FPS cần chủ dự án cho theo handoff. Test Windows các lane phải xếp lượt để tránh tranh RAM/GPU; web test Linux riêng rồi integrator kiểm Windows.
+9. Số đã cấp: **D-076/D-077, T-207…T-212**. Số tiếp theo **D-078, T-213**; integrator cấp card con khi cần. T-199 vẫn chưa viết, không kéo bot vào đợt này.
 
 **Repo:** https://github.com/tuaanh666/ky-tuc-xa-sau-12-gio (private)
 
@@ -37,6 +35,14 @@
 ## Đang làm / tiếp theo
 | Task | Lane | Trạng thái |
 |---|---|---|
+| **Đồ họa gần chân thực (D-076/D-077, 10/10/2026)** | | |
+| [T-207 Hợp đồng và tích hợp core](tasks/T-207-graphics-core-contract.md) | Claude web / core | **ready — G0**, contract trước, wiring sau dependency |
+| [T-208 Adapter gameplay–visual](tasks/T-208-visual-gameplay-adapters.md) | A | **ready — G0**, giữ AI/collision/timing |
+| [T-209 Art pipeline và phòng mẫu](tasks/T-209-realistic-art-pilot.md) | B | **ready — G0**, prototype riêng; Meshy chờ kết nối/ngân sách |
+| [T-210 Asset QA và công cụ Meshy](tasks/T-210-graphics-asset-qa.md) | C | **ready — G0**, dry-run; chưa được chạy FPS/bot |
+| [T-211 Cài đặt và khả năng đọc](tasks/T-211-graphics-settings-readability.md) | D | **ready — G0**, settings mới chờ G1 |
+| [T-212 Audio/marker và chuông báo cháy](tasks/T-212-graphics-audio-anchors.md) | E | **ready — G0**, mẫu âm chờ nghe |
+| **Lịch sử triển khai trước đợt đồ họa** | | |
 | T-101 Điều khiển người chơi và tương tác | A | **done**, đã merge |
 | T-102 Bộ module 3D bằng script Blender | B | **done**, đã merge; chủ dự án đã duyệt (D-012) |
 | T-103 Công cụ capture, package, check | C | **done**, đã merge |
@@ -142,7 +148,7 @@
 - Editor có thể tự lưu lại một số file (`default_bus_layout.tres`, `.import`) khi mở. Đừng commit các thay đổi đó; integrator sẽ dọn.
 
 ## Đang vướng
-- Không có gì chặn. Ảnh tham khảo đồ họa chủ dự án gửi sau.
+- G0 không bị chặn. G2 chờ Meshy/key/ngân sách/license; settings chung và budget mới chờ G1; hình ảnh/âm thanh chờ người dùng duyệt. Đây là điều kiện của mốc sau, không phải lý do dừng công việc chuẩn bị.
 
 ## Ghi chú cho người chơi thử
 - Game chính chạy trên **tầng 4** (T-112): bắt đầu trước cửa phòng 407; E mở và đóng cửa 407; đi được khắp hành lang, phòng 407, nhà vệ sinh, bàn trực. WASD đi, Shift chạy, chuột nhìn, Esc mở menu. Có filter PS1 (chỉnh cường độ và độ sáng trong Cài đặt). Có HUD (tâm ngắm, gợi ý, phụ đề), font tiếng Việt, tiếng bước chân dép lê, tiếng ù đèn tuýp và côn trùng đêm. Đồ vật tương tác hiện chỉ có cửa 407; giấy tờ, công tắc, sổ trực chờ T-111 và T-117.
