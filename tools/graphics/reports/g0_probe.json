@@ -1,0 +1,223 @@
+{
+  "task": "T-210",
+  "stage": "G0",
+  "baseline": "e3ed54a",
+  "measured_at": "2026-10-11",
+  "method": "Full headless test suite; imported kit assets, rest pose; no render or FPS",
+  "assets": [
+    {
+      "bounds_min_m": [
+        -0.879999995231628,
+        0.0,
+        -0.0799999535083771
+      ],
+      "dimensions_m": [
+        0.879999995231628,
+        2.07999992370605,
+        0.100000031292439
+      ],
+      "engine": "4.7.2-stable (official)",
+      "file": "game/assets/models/kit/door.glb",
+      "material_count": 2,
+      "method": "Godot imported Mesh.get_faces; rest pose; root-local transforms",
+      "nodes": {
+        ".": {
+          "position_m": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "WorldCollision": {
+          "position_m": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "WorldCollision/Bounds": {
+          "position_m": [
+            -0.439999997615814,
+            1.03999996185303,
+            -0.0299999378621578
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "door": {
+          "position_m": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "door/door_mesh": {
+          "position_m": [
+            -0.708000004291534,
+            1.05499994754791,
+            -0.0639999434351921
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        }
+      },
+      "root_scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "sha256": "da7cd121c8f4cab5f48b44a08800ec83b6d546d13e12e463b2a42e47609ac8fb",
+      "surfaces": 2,
+      "texture_count": 2,
+      "textures": {
+        "res://assets/textures/kit/iron.png": {
+          "height": 128,
+          "width": 128
+        },
+        "res://assets/textures/kit/old_wood.png": {
+          "height": 128,
+          "width": 128
+        }
+      },
+      "triangles": 120,
+      "unavailable": [
+        "animated_bounds",
+        "gpu_texture_memory",
+        "gameplay_collision_nav",
+        "visual_approval"
+      ]
+    },
+    {
+      "bounds_min_m": [
+        -0.449999988079071,
+        0.0,
+        -1.0
+      ],
+      "dimensions_m": [
+        0.900000274181366,
+        1.70000004768372,
+        2.0
+      ],
+      "engine": "4.7.2-stable (official)",
+      "file": "game/assets/models/kit/bunk_bed.glb",
+      "material_count": 4,
+      "method": "Godot imported Mesh.get_faces; rest pose; root-local transforms",
+      "nodes": {
+        ".": {
+          "position_m": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "WorldCollision": {
+          "position_m": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "WorldCollision/Bounds": {
+          "position_m": [
+            1.49011611938477E-07,
+            0.850000023841858,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "bunk_bed": {
+          "position_m": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "bunk_bed/bunk_bed_mesh": {
+          "position_m": [
+            0.0,
+            0.340000003576279,
+            -0.959999978542328
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        }
+      },
+      "root_scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "sha256": "fbc1710c50d13abee0fcbd2810ad77cb28c92506f24c304ceb8b6c3a1a87b82a",
+      "surfaces": 4,
+      "texture_count": 4,
+      "textures": {
+        "res://assets/textures/kit/cloth.png": {
+          "height": 128,
+          "width": 128
+        },
+        "res://assets/textures/kit/iron.png": {
+          "height": 128,
+          "width": 128
+        },
+        "res://assets/textures/kit/old_wood.png": {
+          "height": 128,
+          "width": 128
+        },
+        "res://assets/textures/kit/striped_mat.png": {
+          "height": 128,
+          "width": 128
+        }
+      },
+      "triangles": 372,
+      "unavailable": [
+        "animated_bounds",
+        "gpu_texture_memory",
+        "gameplay_collision_nav",
+        "visual_approval"
+      ]
+    }
+  ]
+}
