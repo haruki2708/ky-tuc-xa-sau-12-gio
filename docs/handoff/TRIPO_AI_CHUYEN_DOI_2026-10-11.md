@@ -1,5 +1,7 @@
 # D-080 — chuyển kế hoạch asset từ Meshy sang Tripo AI
 
+> **D-081, 11/10:** Astra làm thay Claude web ở T-207 theo yêu cầu chủ dự án. Đầu mối core/contract chuyển về integrator; web tạm dừng. Đọc [bàn giao G1](T207_G1_ASTRA_2026-10-11.md); giữ G0 và task/nhánh hiện có.
+
 Ngày 11/10/2026, chủ dự án: “tôi sẽ đổi sang mua tripo AI thay vì meshy AI”. Nhà cung cấp hiện hành là **Tripo AI**. Chưa xác nhận gói cụ thể/đã mua; không kế thừa số credit, giá, API hoặc license Meshy. Đọc [nghiên cứu Tripo](../research/TRIPO_AI_2026-10-11.md).
 
 ## Phạm vi chuyển đổi
@@ -19,14 +21,16 @@ Ngày 11/10/2026, chủ dự án: “tôi sẽ đổi sang mua tripo AI thay vì
 | **A / T-208** | Dùng GLB/rig đã được B chuẩn hóa; tiếp tục adapter Head/pose/lifecycle. Không giả định rig Tripo tương thích NodePath cũ hoặc tự đổi AI/timing. |
 | **D / T-211** | Tiếp tục settings/readability; chỉ thêm credits Tripo khi asset thật đã nhập và có hồ sơ. Không ghi Tripo là tác giả của asset CC0 cũ. |
 | **F / T-212** | Tiếp tục marker/chuông, nhận attachment từ B/A. Đổi dịch vụ tạo 3D không yêu cầu tạo lại âm G0. |
-| **Web / T-207** | Tổng hợp contract G1; dữ liệu model/manifest ghi provider rõ, runtime không phụ thuộc API Tripo. Không giữ key/gọi dịch vụ trả phí trên cloud. |
+| **Core / T-207 — Astra làm thay web từ D-081** | Tổng hợp contract G1; dữ liệu model/manifest ghi provider rõ, runtime không phụ thuộc API Tripo. Không giữ key/gọi dịch vụ trả phí trên cloud. |
 
 ## Prompt cập nhật chung
 
 ```text
 Chủ dự án đã đổi từ Meshy sang Tripo AI theo D-080.
+D-081: Astra làm thay web ở T-207; prompt này gửi A/B/C/D/F.
+Đọc docs/handoff/T207_G1_ASTRA_2026-10-11.md; gửi yêu cầu core về Astra.
 Tiếp tục task hiện có, không làm lại G0 hoặc đổi nhánh/task ID.
-Fetch và rebase an toàn lên origin/main có D-080; giữ thay đổi cục bộ đang có.
+Fetch và rebase an toàn lên origin/main có D-081; giữ thay đổi cục bộ đang có.
 Đọc docs/handoff/TRIPO_AI_CHUYEN_DOI_2026-10-11.md,
 docs/handoff/REVIEW_G0_2026-10-11.md và Review card của bạn.
 Ưu tiên quy trình Tripo Studio thủ công → GLB → Blender → Godot.

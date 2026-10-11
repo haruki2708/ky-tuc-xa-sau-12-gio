@@ -1,144 +1,127 @@
-# Hợp đồng tích hợp đồ họa gần chân thực — core (T-207, G0)
+# Hợp đồng tích hợp đồ họa — T-207, G1 từng phần
 
-> **Cập nhật D-080 ngày 11/10:** chủ dự án chọn **Tripo AI thay Meshy**; xem [hướng hiện hành](../../handoff/TRIPO_AI_CHUYEN_DOI_2026-10-11.md). Các chi tiết Meshy trong bản ghi cũ chỉ còn là lịch sử, không áp dụng giá/credit/API/license sang Tripo. G0 đã nhận vẫn giữ hiệu lực.
+**11/10/2026, D-081 — Astra làm thay Claude web theo yêu cầu chủ dự án.** G0 của sáu lane đã ghép ở D-079; provider hiện hành là Tripo AI (D-080). Claude web tạm dừng T-207; đầu mối core là Astra trong hai ngày điều phối, sau đó bàn giao Opus. Giữ tác giả và số đo G0 của web trong [ASSET_BINDINGS.md](ASSET_BINDINGS.md).
 
-> **Review integrator 11/10, D-079:** nhận tài liệu khảo sát G0; chưa là contract G1 đã chốt. Xem [kết luận và yêu cầu tổng hợp](../../handoff/REVIEW_G0_2026-10-11.md). Các mục chờ Handoff bên dưới là ảnh chụp lúc web lập bản nháp; cả năm lane đã bàn giao và cần được tổng hợp.
+**Hiệu lực:** quy ước đạo cụ tĩnh ở §2–3 là quyết định kỹ thuật để B/C triển khai sau khi D-081 lên main. Đây không phải xác nhận validator đã hỗ trợ schema mới, asset đã đạt hoặc G2 đã mở. Các điều kiện đóng G1 ở §9 còn phải có bằng chứng B/C. Rig/settings/chuông có trạng thái riêng; không giữ balo chờ chúng.
 
-Người lập: Claude Code web làm phần core theo D-077, 10/10/2026. **Bản đề xuất G0 cho integrator.** Chưa có hiệu lực chung cho tới khi G1 ghép vào `main`; các lane có thể đọc để làm G0 độc lập nhưng chưa nối API chung. Số liệu thật nằm ở [ASSET_BINDINGS.md](ASSET_BINDINGS.md). Kế hoạch gốc: [GRAPHICS_UPGRADE_PLAN.md](../GRAPHICS_UPGRADE_PLAN.md). Âm thanh: **lane F** tiếp nhận toàn bộ vai trò của E (D-078).
+Nguồn đối chiếu: main `acbf771`, Review [D-079](../../handoff/REVIEW_G0_2026-10-11.md), [D-080](../../handoff/TRIPO_AI_CHUYEN_DOI_2026-10-11.md), Handoff T-208…T-212. Đợt D-081 chỉ sửa tài liệu; không đổi runtime, asset, SETTINGS hoặc công cụ lane.
 
-## 1. Nguyên tắc (không thương lượng)
+## 1. Ràng buộc chung
 
-1. **Root gameplay giữ nguyên.** Root của vật/nhân vật (vị trí thế giới, `CharacterBody3D`, collider, `Interactable`, marker neo) là của gameplay; visual chỉ là con thay được. Không dịch root, không đổi tọa độ thế giới đã chốt (D-069…D-075), không đổi số xác, thời lượng, bán kính tiếng, luật chết/checkpoint.
-2. **Một nguồn sự kiện.** Sự kiện gameplay (`EventBus.noise_emitted`, `slashed`, `corpse_state_changed`, `door_opened`, `player_failed`, `door_damage_changed`, cờ `GameState`…) do **director/AI** phát. Animation, `AnimationPlayer`, marker và rig mới **chỉ trình diễn**, không phát hoặc gọi lại các sự kiện này. Tránh kích hoạt hai lần từ cả clip lẫn mã.
-3. **Visual mới không chạm vào va chạm.** Mesh mới không được thêm collider layer 1 trước vùng tương tác (tia `InteractRay` dài 2.0 m, mask 5 gồm world và interactable), không dịch collider, không làm hẹp đường đi đã kiểm (khoảng thông D-058/D-062/D-075).
-4. **Model cũ vẫn chạy.** Mọi điểm nối có đường lui về model hiện tại; thiếu model/marker mới thì dùng cái cũ và ghi cảnh báo, không dừng game.
-5. **Không có hệ thống tổng quát khi chưa cần.** Chưa thêm registry/autoload/manifest-loader vào core. Core chỉ giữ hằng đường dẫn và `ResourceLoader.exists`, như hiện nay.
-6. **Hình ảnh chưa là mặc định.** Chưa đổi main scene, mặc định hình ảnh hay luật chơi trước G3 được duyệt. Hình mới chỉ vào cảnh chương khi integrator ghép.
+1. Giữ root gameplay, vị trí thế giới, collider/nav, vùng tương tác, luật, AI, save và timing. Chuẩn hóa model dưới visual; không dịch root để sửa model sai kích thước.
+2. Director/AI giữ một nguồn sự kiện. Clip không phát lại `noise_emitted`, chém, bắt/chết hoặc hoàn tất luật. Model mới không có root motion kéo nhân vật thêm lần nữa.
+3. Giữ model hiện hành cho tới khi phần thay được kiểm và duyệt. Model không hợp lệ phải bị chặn ở QA; fallback runtime là dự phòng, không biến asset lỗi thành đạt.
+4. Core không đọc manifest, không thêm registry/autoload/signal tổng quát. Chỉ mở điểm nối cụ thể khi dependency của nó đã ghép và có test.
+5. Pilot riêng trước; chưa đổi scene chương hoặc mặc định hình ảnh. Tia `InteractRay` dài 2 m, mask 5 vẫn giữ; visual không tự thêm va chạm hoặc che vùng dùng.
 
-## 2. Chuẩn hóa visual (cho B, kiểm bởi C)
+## 2. G1 đạo cụ tĩnh — balo `room407_backpack`
 
-| Mục | Quy định |
+### 2.1 Binding và số đo đã có
+
+| Thuộc tính | Giá trị / căn cứ |
 |---|---|
-| Đơn vị / trục | Mét; trước = **−Z**; lên = +Y. Model nhân vật có pivot ở **chân** (y = 0), tâm giữa hai bàn chân |
-| Root visual | Một `Node3D` gốc, không có `CharacterBody3D`/`StaticBody3D`/`Area3D` layer 1 hoặc 3 bên trong. Collider thế giới (nếu cần) tách riêng và nhỏ gọn, không lấy từ mesh chi tiết |
-| Không root motion | Clip không dịch root; di chuyển do gameplay. Hips/Chest được phép chuyển động tương đối bên trong |
-| Tỉ lệ | Học sinh/zombie ≈ 1.72 m, guard ≈ 1.91 m, quản lý ≈ 1.92 m (xem ASSET_BINDINGS §4–5); lá cửa 0.88 × 2.08 m; mặt nệm 0.43 / 1.20 m. Sai khác lớn hơn ±5% phải ghi vào manifest và báo A |
-| Vị trí đầu | `Head` (Node3D) có mặt ở đúng chỗ đầu thật; A dùng nó cho `head_position()`, B dùng cho `look_at_point`. Chênh lệch với fallback 1.55 m được chấp nhận khi ghi rõ |
-| Vật tương tác thay hình | Bounds visual phủ khớp vùng `Interactable` hiện có (không nhỏ hơn quá 30%, không lớn hơn khiến che các vùng bên cạnh); điểm ngắm ở độ cao cũ |
-| Đèn có bật/tắt | Giữ `OmniLight3D`/`SpotLight3D` có `visible` + `light_energy` (core đọc `Room407DeskLamp`); ánh sáng bake chỉ cho phần tĩnh |
-| Vật liệu | `StandardMaterial3D`/`ORMMaterial3D` được thử trong cảnh pilot; chưa tắt shader PS1 trong cảnh chương |
-| Tên node | Giữ các tên trong ASSET_BINDINGS §7.3; đổi tên phải đi kèm bản sửa chỗ hardcode và cập nhật bảng này |
+| Scene nguồn | `res://scenes/levels/floor4/floor4.tscn` |
+| Root chọn để đo / thay visual | `Room407/Details/Trung/Backpack`, thuộc B |
+| Bounds trong hệ root | min `(-0.145, 0.01, -0.1325)` m; size `(0.29, 0.45636, 0.30274)` m |
+| Đặt trong floor4 | position `(33.78, 0.02, -4.52)` m; rotation `(0,90,0)` độ; scale `(1,1,1)` |
+| Phép đo G0 | 96 tam giác, 3 material của balo cũ; `art_source/graphics_upgrade/measured_assets.json#room407_backpack` |
+| Phạm vi mẫu mới | Đạo cụ tĩnh, không rig/clip hoặc marker gameplay mới; không lấn đường đi/va chạm bàn |
+| Trần prototype D-079 | **≤3.000 tam giác, ≤2 material, mỗi chiều texture ≤1024 px; ≤10 MiB/file, Git LFS** |
+| Mục tiêu mới so với mốc cũ | 3 material của mẫu cũ không là ngoại lệ cho trần 2 material của mẫu mới. Không áp trần mới ngược lên tất cả asset PS1 |
 
-## 3. Cách nối visual vào core
+Đơn vị mét, +Y lên. Giữ yaw/điểm đặt nguồn; không áp hướng −Z của nhân vật một cách máy móc cho mọi đạo cụ. B phải minh họa mặt trước của balo theo basis nguồn trong brief. Wrapper/pivot chuẩn hóa thuộc B; phép đo nghiệm thu tính cả các transform chuẩn hóa bên trong root, không tính transform đặt root trong cảnh. Prompt Tripo không bảo đảm đơn vị/pivot; B sửa ở Blender và C đo artifact xuất cuối.
 
-### 3.1 Điểm nối hiện có (không cần API mới)
+### 2.2 Cách đo và bằng chứng C cần cung cấp
 
-| Đối tượng | Cách nối | Người gọi | Ghi chú |
+- **Root-local:** nếu root được đặt dịch/xoay/scale bất kỳ, bounds và marker tương đối root vẫn không đổi. Root transform được ghi riêng. Có thể tính `inverse(root_global) * child_global * vertex`, hoặc duyệt bỏ transform của chính root rồi tích transform con. Không bỏ transform con hoặc so AABB world với AABB local.
+- Với wrapper, `measurement_root` phải chỉ đúng node đã được quy ước, không tùy chọn root thuận tiện để vượt kiểm. B/C ghi rõ file GLB thuần hay scene wrapper được đo; wrapper có offset thì phải được kiểm cùng artifact, không chỉ đo GLB riêng.
+- C thêm fixture root dịch/xoay/scale khác identity, child transform khác identity và marker; fixture phải phát hiện cách nhân root hiện tại. Không đổi gameplay root để làm báo cáo khớp.
+- `tolerance_m` áp riêng phép so vị trí/bounds. Với mẫu balo, chuẩn hóa về bounds trên; **sai số kỹ thuật tối đa 0.001 m cho mỗi thành phần** khi xuất/import, không là quyền nới collider/marker. Scale không có đơn vị mét: C kiểm riêng root scale `(1,1,1)` với sai số số thực đã ghi rõ trong công cụ. B báo nếu mục tiêu này không thể đạt mà vẫn giữ hình; không tự mở dung sai ±5% hoặc 30% của draft G0.
+- Báo mesh/surface/material/texture thật sau import; tham chiếu geometry thiếu phải là INCOMPLETE/FAIL phù hợp. Các biến thể ẩn, rest pose, skin/animation/LOD chưa hỗ trợ phải được ghi rõ; không cộng số khảo sát cả cụm thành số một asset.
+- B/C thống nhất hash theo **tập dependency**: nguồn GLB/scene, wrapper/script liên quan, material/texture ngoài, cấu hình `.import`, phiên bản Godot và probe. Báo cáo cũ phải bị coi stale khi một dependency đổi. Không bắt mọi máy có cùng byte của cache `.godot`; C định nghĩa cách ghi dấu artifact import cục bộ và bằng chứng tái import. Dependency chưa liệt kê hết → chưa đủ chứng cứ.
+- G0 của C hiện nhân transform root và chỉ so hash file nguồn; chưa đạt các mục trên. D-081 không tự sửa hoặc nhận các kiểm đó đã PASS.
+
+## 3. Manifest — C sở hữu schema, B sở hữu dữ liệu
+
+Đích dữ liệu vẫn `art_source/graphics_upgrade/asset_manifest.json`; schema/validator/mẫu thuộc `tools/graphics/`. Giữ ID B, đặc biệt `room407_backpack`. C đề xuất version G1 tách `t210-g0-proposal-1`; không nhận dữ liệu G1 bằng parser G0 chỉ vì đổi chuỗi version. C bàn giao schema và fixture trước, B chuyển dữ liệu sau khi schema được integrator ghép. C không sửa manifest B; B không sửa validator C.
+
+| Nguồn G0 B / yêu cầu core | Ánh xạ cần có trong schema G1 C | Điều cần phân biệt |
+|---|---|---|
+| `id` | `asset_id` | Giữ giá trị, không tạo ID thứ hai cho cùng balo |
+| `current_scene`, `measurement_node` | Binding scene + node nguồn, measurement root | Scene dùng vật thể khác với file model được QA |
+| `file` của mẫu C | Artifact model/wrapper thực, đường tương đối repo | Chưa có asset Tripo thì để pending; không gán file cũ thành đầu ra Tripo |
+| Core | `binding`, `root_class`, `required_markers`, `collider_policy` | Balo là `prop`; không thêm collider. Class/path thật lấy từ artifact B, không bịa trước |
+| `measurement_ref`, số đo B | `geometry.dimensions_m`, `bounds_min_m`, root scale; placement riêng | Ghi coordinate space/root, tolerance có đơn vị; marker map theo cùng root |
+| `source.kind/credits/license` | `source.uri/author/license/credits_file/ai_tool/input_rights` | Dữ liệu nguồn cũ giữ riêng với nguồn asset thay; CC0 cũ không thành license Tripo |
+| Tripo thủ công hoặc API | `generation`: provider, channel, model version/ID, task ID nếu có, ngày, parameters | Provider `tripo`, channel `studio`/`api`; tên trường chính xác C công bố. Không yêu cầu task API cho mẫu Studio |
+| Trần thử và chi phí | `budget`: geometry limits và credit ghi riêng từng ví | Nếu giữ exclusive: `triangle_limit_exclusive=3001`; 0 credit chỉ khi thực sự không chi, chưa biết thì null/pending |
+| Phép đo và duyệt | Report, dependency hash và `approval` | Tách schema hợp lệ, QA kỹ thuật và duyệt hình/license. Không dùng một chữ approved để suy cả ba |
+
+Các tên trường G0 nêu trong bảng là đầu vào để C thiết kế schema thật; không phải file JSON G1 đã tồn tại. Contract này chốt ý nghĩa/owner/ràng buộc, C công bố tên/version cuối và bảng mapping; integrator kiểm trước khi B chuyển dữ liệu.
+
+**Tripo:** ưu tiên Studio thủ công → GLB → Blender → Godot. Studio/API dùng ví riêng theo D-080; client API không là dependency của mẫu thủ công. Ghi nguồn đầu vào và điều khoản/gói tại lúc tạo; không gắn nhãn CC0/CC-BY bằng suy đoán từ quyền thương mại. Chưa cấp ngoại lệ license, trần credit hoặc đặt tác vụ trả phí. Công cụ `meshy_dry_run.py` vẫn là fixture G0, không chứng minh đã có transport Tripo.
+
+## 4. Nhân vật và attachment — phần độc lập còn cần A/B/F
+
+| Consumer | Quy ước giữ / việc cần bàn giao | Owner |
+|---|---|---|
+| `Ch3Actor` | Giữ `set_body`, `play_pose`, `head_position`; A đề xuất acknowledgement khi pose bị từ chối, xử lý model cũ cùng frame và cache. Test G0 chỉ chứng minh sau deferred free; chưa sửa production | A; B cung cấp wrapper |
+| Model campus / guard | Bảng pose gồm `idle/walk/stunned/grab/sit/lie/wake` và `warn`; guard có đường `turn_head_to`. Không im lặng ánh xạ `warn` sang idle; chưa có skeleton contract hoàn chỉnh | A/B |
+| Xác | Giữ `set_pose` khác `set_state`, gag/máu/look-at độc lập; phạm vi cả 3 xác 407 và 3 xác CCTV 310. B wrapper, A `UnseenPoser`; không gắn GLB skeleton vào Rig Node3D cũ | B/A/core |
+| Head / Gag | Head đã cập nhật khi hitbox/LOS/death camera/âm đọc; `gag_anchor.gd` hiện bám Head mỗi frame, không là anchor cố định trong phòng. Giữ pick volume/offset và timing; B công bố đường attachment mới nếu đổi rig | B/A/F/core |
+| Quản lý | `BladeTip`, `LeftArm`, clip `stand/walk/ask/slash/lunge/kill`; animation không phát `slashed` lần hai. Chốt ai ghi transform khi procedural và animation cùng dùng khớp | B/A |
+| Audio quản lý / zombie | Hiện Speech của quản lý và Voice/Foley zombie ở root; chỉ Drag bám BladeTip. Không tự chuyển tất cả âm sang Head. Marker thiếu: không phát ở world origin; F/A đề xuất fallback cụ thể | F/A/core |
+| `UnseenPoser`, `door_burst` | Snapshot pose đang seek/pause và consumer zombie ngoài Ch3Actor cần adapter riêng. Giữ timing cửa, camera và reduce_scares | A/B/core |
+
+Chưa tạo API chung/signal mới. A/B gửi bảng path, return/failure, owner transform, thứ tự cập nhật, pause/reset cho từng consumer; core chỉ nối khi đã ghép dependency. Giữ fallback đang có; thiếu marker bắt buộc phải bị test hợp đồng bắt, không chấp nhận root bất kỳ làm điểm đầu/miệng.
+
+## 5. Nút và chuông — phần độc lập còn cần B/F/core
+
+- **Nút `FireAlarm1F` chỉ chương 3**, core tạo tại `(0.9,-8.5,0.12)`, vùng dùng `(0.5,0.6,0.5)`. B cung cấp scene **visual riêng**, core instance sau điều kiện chương. Không đặt sẵn nút tương tác trong campus dùng chung chương 4.
+- **Mồi AI:** `(42,-9.9,2)`, bán kính 45 m, phát một lần; giữ số xác và nơi kéo crowd.
+- **Nguồn âm:** `(42,-7.7,0.2)`, tên dự kiến `Campus/Anchors/FireBellMount`. B xác minh mặt tường/basis/kích thước bằng renderer trước khi marker thành dependency; không nhập vị trí âm vào vị trí mồi.
+- F đã có `res://audio/graphics_upgrade/fire_bell_soft.ogg`: mẫu riêng 4 s, `loop=false`, preview và test; chưa được nghe/duyệt, chưa thay stream core. Giữ stream finite cho tới W2.
+- W2 sẽ dùng deadline dừng 20 s độc lập `finished`, dọn khi chết/reset và xử lý pause theo contract được kiểm; chưa triển khai hoặc tuyên bố đã sửa production. F preview không là bằng chứng `_ring_bell` đã đổi. Không phát thêm noise từ stream/animation.
+
+## 6. Settings/readability — giữ hợp đồng hiện hành
+
+`docs/SETTINGS.md` chưa thêm key. Hợp nhất đề xuất D/web về **một tên ứng viên `graphics_preset`**, ưu tiên Low/Medium; default, bảng tham số, migration G3 còn pending. `quality_preset`, High, `visual_style` và `render_scale` tách riêng trong draft cũ không được coi đã duyệt; D chưa bật control không có backend.
+
+- Consumer hiện hành: `game/rendering/ps1_filter.gd` dưới CanvasLayer đọc brightness/ps1_strength ở ready và khi signal; Screen nằm dưới HUD/menu. Brightness `1.0`, range `0.5–1.5`; ps1_strength `1.0`, range `0–1`, chưa đổi.
+- Pilot B: `game/scenes/levels/graphics_pilot/material_pilot.gd` đọc Settings và thay global `ps1_strength`; B cần khôi phục global khi rời pilot. B/D chốt một consumer brightness mỗi viewport, áp dụng cả khi bỏ PS1, không làm tối UI hoặc áp hai lần.
+- D giữ writer lưu trước signal. Migration/reset video không xóa locale/audio/input/head_bob/reduce_scares; không gọi reset toàn bộ. F/A tiếp tục consumer hiện có.
+- B đưa backend/tham số có tác dụng thật, D đề xuất missing/invalid fallback và reset, C kiểm bằng cảnh phù hợp. Chỉ sau đó integrator cập nhật SETTINGS. 1080p/60 FPS trên RTX 3050 vẫn là mục tiêu chưa đo; HTML mockup không thay ảnh Godot.
+
+## 7. Đầu vào đã nhận và việc tiếp theo
+
+| Lane / G0 đã ghép | Đầu ra có thật | Làm tiếp ngay | Điều kiện nghiệm thu phần tương ứng |
 |---|---|---|---|
-| Quản lý | `DormManager.body_scene` (PackedScene) trước `add_child`; manager tự tìm `AnimationPlayer`, `BladeTip`, `LeftArm` | core (`_spawn_manager`), A (`manager.gd`) | Model mới phải có `BladeTip` (xem §4) |
-| Học sinh/zombie/guard/đồng đội | `Ch3Actor.set_body(PackedScene)` | core (`_dress`, `_join`, guard) | `set_body` liên tiếp không nhân đôi model (A phải giữ) |
-| Xác 407 | Scene `Corpse*/Body` do B, core chỉ gọi `set_state/set_pose` qua `_corpse_state` | core | Wrapper B giữ API `set_pose/set_state/set_gagged/set_blood_visible/look_at_point` |
-| Cửa 407 | Core gọi `Door407.set_open(open, seconds)` / `rattle` / `stop_rattle` | core, manager | Proxy chương 3–4 (B) giữ layer: xem ASSET_BINDINGS §2.1 |
-| Phòng 407 | `Room407` API `set_*` (ASSET_BINDINGS §2.3) | core | Core luôn `has_method` trước khi gọi |
-| Nút báo cháy | core tạo marker `FireAlarm1F` + `Ch3Use` (chỉ chương 3) | core | Điểm nối dự kiến W1, §6 |
-| Chuông | core tạo `AudioStreamPlayer3D` + mồi `noise_emitted` | core, F | Điểm nối dự kiến W2, §6 |
+| A `e27fe28` | `visual_adapter_g0.gd/.tscn`, 5 test, bảng consumer trong T-208 | Hoàn thiện đề xuất lifecycle/pose/Head và phối hợp wrapper B theo §4 | Dependency/code mới có test, không tự nhận skeleton đã tương thích |
+| B `87e99a6` | 15 mục manifest, 13 mục đo, brief, pilot và 12 ảnh | Brief balo chứa số đo §2; mặt trước/pivot, mapping với C; cleanup pilot | Chuyển manifest sau schema C được ghép; QA và ảnh model mới còn chờ |
+| C `c434343` | `asset_qa.py`, sample manifest, probe, 28 fixture offline | Schema/version và mapping §3, sửa root-local, kiểm dependency/giới hạn theo §2 | Fixture dương/âm + report khớp B; không đổi dữ liệu B thay lane |
+| D `aef26cb` | Đề xuất contract và mockup HTML vi/en | Chuẩn bị reset/migration/readability theo §6 với consumer B | Chờ backend/default/SETTINGS; chưa thêm control |
+| F `2dcd25a` | Mẫu chuông CC0, preview, 3 test | Chốt attachment/finite stream với A/B; cung cấp lệnh nghe có sẵn | Chủ dự án nghe; marker/W2 production còn chờ |
+| Web `4fc4999` → Astra | Bindings, contract G0, 8 test core | Astra tổng hợp tài liệu G1 D-081 và nhận yêu cầu từ năm lane | Không khởi chạy web song song T-207; G0 giữ tác giả |
 
-### 3.2 Điều **không** làm trước G1
+Thời điểm fetch D-081: chưa có commit G1 mới trên sáu nhánh remote. Khi lane đẩy mới, integrator review commit thực trước khi đổi trạng thái; bảng này không thay Handoff của lane.
 
-Không thêm callback `set_visual_adapter`, signal mới trên `EventBus` hay autoload mới trong core. Nếu A đề xuất giao diện adapter dùng chung (T-208) thì core chỉ nối **sau khi** nó được ghép vào `main` và đã có test; core không đoán chữ ký.
+## 8. W1–W4 sau dependency (chưa thực hiện)
 
-## 4. Marker và API cần có (đề xuất tối thiểu cho pilot)
-
-| Marker / API | Loại | Nơi | Cung cấp | Dùng | Khi thiếu |
-|---|---|---|---|---|---|
-| `Head` | Node3D | model nhân vật/xác/quản lý | B | A (`head_position`, `look_at_point`), core (xác nhìn người chơi) | A dùng `Visual/Fallback/Head` (nhân vật); xác không quay đầu |
-| `BladeTip` | Node3D (bám tay cầm dao) | model quản lý | B | A (`manager.gd` `_sync_audio` kéo `Drag`), F | dùng `BladePivot/BladeTip` của fallback; cảnh báo |
-| `LeftArm` | Node3D | model quản lý | B | A (cánh tay mở cửa) | fallback `Visual/Fallback/LeftArm` |
-| `Rig/Hips/Chest/Head`, `Head/Mouth`, `Head/Eyes`, `Chest/Blood`, `Chest/LeftArm|RightArm`, `LeftLeg|RightLeg/Knee` | Node3D | model xác | B | `corpse_body.gd`, `gag_anchor.gd`, `UnseenPoser` (A) | model xác không đi qua wrapper này; cần adapter A giữ API trong §3.1 |
-| Điểm miệng (gắn `GagN`) | Marker/Node3D theo đầu, offset `(0, 0.005, -0.14)` | xác | B | `gag_anchor.gd`, `GagSpot` (A) | `GagN` đứng yên ở vị trí scene; **phải có test bắt** |
-| `FireBellMount` (mới, đề xuất) | Marker3D | `Campus/Anchors` | B (vị trí treo chuông) | core `_ring_bell`, F | core dùng `FIRE_BELL_AT + (0, 2.2, -1.8)` như hiện nay |
-| `FireAlarm1F` hình (mới, đề xuất) | Node3D con của `Campus/Anchors/FireAlarm1F` hoặc scene B | `Campus` | B | core `_place_fire_alarm` | core vẫn dựng hộp đỏ tạm |
-| Điểm dùng bình cứu hỏa | Marker3D `Extinguisher2F` (đã có, `(48.83, -5.50, 2.40)`) | `Campus/Anchors` | B | core `_use` | — |
-
-Marker mới chỉ tồn tại khi B/A đã bàn giao; tên là **đề xuất**, G1 chốt.
-
-## 5. Fallback và kiểm tra bắt buộc
-
-- Core: `ResourceLoader.exists(path)` + `has_method(...)` trước khi gọi API tùy chọn (đã là kiểu hiện nay); thiếu → hành vi cũ.
-- Thiếu **marker bắt buộc** (bảng §4): không crash; ghi `push_warning` một lần; dùng fallback. Mỗi marker bắt buộc phải có **test hợp đồng** trên scene chương thật khiến test **FAIL** nếu marker bị bỏ hoặc đổi tên (card T-207 yêu cầu: "gỡ wiring hoặc bỏ marker bắt buộc phải khiến test hợp đồng thất bại").
-- Không dùng mock thay cho scene thật; không ghi giá trị mong đợi chỉ để khớp con số tự đặt.
-- Cảnh chương 1–4 đều phải được kiểm khi đổi bất cứ thứ gì thuộc phòng 407/hành lang (§7).
-
-## 6. Điểm nối core dự kiến sau G1 (chưa viết, chờ dependency)
-
-| Mã | Việc | Phụ thuộc | Giữ nguyên | Test dự kiến (scene thật) |
-|---|---|---|---|---|
-| W1 | `_place_fire_alarm`: nếu campus đã có hình nút của B tại `Anchors/FireAlarm1F`, dùng nó và bỏ hộp đỏ tạm; vẫn chỉ tạo ở chương 3, cùng `FIRE_ALARM_AT`, cùng `Ch3Use` `(0.5, 0.6, 0.5)` | G1 + T-209 model nút | tọa độ, vùng dùng, `_bell_rung` một lần, cờ `ch3_fire_alarm` | có/không model mới; chương 4 không có `FireAlarm1F`; bấm hai lần chỉ một mồi |
-| W2 | `_ring_bell`: dùng `Anchors/FireBellMount` nếu có; **dừng bằng bộ đếm 20 s thay vì chỉ dựa `await finished`** để chạy được cả stream lặp lẫn không lặp | G1 + T-212 (F) + T-209 vị trí treo | `FIRE_BELL_SECONDS = 20.0`, `noise_emitted(FIRE_BELL_AT, 45.0, &"fire_alarm")`, bus `SFX`, chỉ chương 3 | stream không lặp 1.5 s và stream lặp đều dừng sau 20 s; không phát đôi |
-| W3 | Xác, quản lý, nhân vật, cửa, phòng 407: **không đổi core** nếu B giữ API/đường dẫn ở §3.1; chỉ thêm test hợp đồng | G1 + T-208/T-209 | mọi điều ở ASSET_BINDINGS §3–5 | marker/NodePath bắt buộc còn đủ; `set_state` đủ 8 state; `Head` đúng; `BladeTip` có |
-| W4 | Hằng `MODELS`/`MANAGER_BODY`: chỉ đổi đường dẫn khi có asset ghép | G2/G3 | `ResourceLoader.exists` giữ | model cũ còn dùng được khi file mới thiếu |
-
-Mỗi mục W đi kèm đường quay lại bằng `git revert` của đúng commit wiring; model/scene cũ được giữ trong repo cho tới khi G3 duyệt.
-
-## 7. Phân vai và quyền sở hữu
-
-| Bên | Sở hữu | Cung cấp cho core |
+| Phần | Điều kiện mở | Kiểm phải giữ |
 |---|---|---|
-| **Core (Claude web, T-207)** | `docs/design/graphics/*`, các điểm nối trong `game/scripts/core/` & `game/scenes/main/` đã nêu, test `game/tests/core/` | hợp đồng này, bảng binding, wiring W1–W4 theo mốc |
-| **A (T-208)** | `game/scripts/entity|player|interaction`, `scenes/entity|interaction`, `tests/player/` | adapter cho quản lý/đồng đội/zombie, `UnseenPoser`, `GagSpot`, `Ch3Use`-kiểu vùng tương tác; giao diện adapter ở G1 |
-| **B (T-209)** | `art_source/`, `assets/models|textures`, `scenes/levels/`, `rendering/`, `tests/levels/` | model, scene phòng/hành lang, `corpse_body.gd`/`actor.gd`/proxy cửa, marker §4, manifest asset |
-| **C (T-210)** | `tools/graphics/`, `scripts/debug/`, `tests/tools|smoke` | kiểm bounds/marker/tam giác/license; công cụ Meshy dry-run; không chạy FPS khi chưa được phép |
-| **D (T-211)** | `game/ui/`, `scripts/ui/`, `assets/fonts/`, key trong `strings.csv`, `tests/ui/` | menu và lưu setting (xem §8); chữ trên biển/giấy/phone đọc được; credits hiển thị |
-| **F (T-212)** | `audio_source/`, `game/audio/`, `scripts/audio/`, `default_bus_layout.tres`, `tests/audio/` — toàn bộ vùng âm thanh cũ của E (D-078) | stream chuông (đường dẫn, độ dài, có/không lặp), rig âm thanh bám `BladeTip`/`Head`, marker âm; phối hợp W2 |
-| **Integrator** | `STATUS`, `DECISIONS`, `SETTINGS`, `project.godot`, review/merge | chốt G1; cập nhật `docs/SETTINGS.md` trước khi D/B dùng key mới |
+| W1 hình nút | Scene visual B và binding được review | Chỉ chương 3, vùng dùng/collider không đổi; dùng hai lần vẫn một mồi |
+| W2 chuông | Stream được duyệt, mount B và contract vòng đời | Deadline độc lập finished; finite/loop, pause/death/reset; không thêm noise |
+| W3 wrapper/adapter | A/B bàn giao từng loại, gồm CCTV/UnseenPoser/door_burst | Pose/state/Head/BladeTip, fallback, giữ timer/collision/sự kiện |
+| W4 đường dẫn asset | Mẫu B qua QA và duyệt hình cho phần đưa vào chương | File thật có nguồn/license, fallback và hồi quy bốn chương |
 
-Nếu hai lane cùng cần sửa một file (ví dụ `campus/actor.gd`), chỉ B sửa; A gửi yêu cầu qua Handoff.
+Giữ API cửa/phòng trong ASSET_BINDINGS; cửa 407 chương 3–4 dùng proxy/Blocker khác chương 1–2. Không đổi core chỉ để thêm một balo vào scene thử B. Không đổi toàn trường trong một commit.
 
-## 8. Đề xuất settings cho integrator (chưa ghi `SETTINGS.md`, chưa đổi `project.godot`)
+## 9. Điều kiện đóng G1 balo và chuyển sang mẫu Tripo
 
-Chỉ là đề xuất để integrator cân nhắc ở G1. Theo quy tắc `docs/SETTINGS.md`: D ghi `user://settings.cfg` rồi phát `settings_changed`; lane khác chỉ đọc; thiếu/sai kiểu → mặc định. **Không thêm key vào file người dùng trước khi `SETTINGS.md` được cập nhật**, và không thêm nút không có tác dụng.
+1. **Quy ước:** §2–3 và số đo/budget được ghi trên main D-081. Đây là đầu vào làm tiếp cho B/C, không phải PASS công cụ.
+2. **C bàn giao:** schema/version chính thức, fixture root-local/marker, hash dependency, giới hạn tam giác/material/texture/file và report có phân biệt FAIL/INCOMPLETE. Integrator review/ghép.
+3. **B bàn giao:** brief cụ thể và manifest chuyển sang schema C, placement/measurement root/facing rõ. B/C chứng minh kiểm cùng một artifact mẫu cũ/hợp lệ; dữ liệu sai bị phát hiện. Chưa cần trả tiền để kiểm quy trình này.
+4. **Integrator ghi kết quả G1:** chỉ khi 2–3 đạt mới mở kiểm tạo mẫu. Nếu thiếu dữ liệu, ghi đúng trường/owner; không quay về trạng thái “chờ Handoff cả năm lane”.
+5. **Trước đặt mẫu:** gói Tripo, quyền nguồn/license và trần credit thực được xác nhận. Sau tạo, B chuẩn hóa/lưu nguồn bền vững, C kiểm, chụp Godot để chủ dự án duyệt. Rig/settings/chuông không là điều kiện của balo tĩnh.
 
-| Mục đề xuất | Kiểu | Mặc định | Khoảng | Ai ghi | Ai đọc/áp dụng | Điều kiện dùng |
-|---|---|---|---|---|---|---|
-| `[video] visual_style` | String | `"classic"` | `classic`, `realistic` | D | B (chọn shader/material, áp dụng ngay khi `settings_changed`); core chỉ **đọc** nếu cần chọn biến thể scene pilot | Chỉ khi B có hình pilot dùng được trong chương; mặc định giữ `classic` tới G3 duyệt (kế hoạch §9) |
-| `[video] graphics_preset` | String | `"medium"` | `low`, `medium`, `high` | D | B (đặt bóng, SSAO, độ phân giải render…) | Chỉ khi có backend thật và số đo; giá trị chi tiết do pilot quyết, **chưa tuyên bố đạt FPS** |
-| `[video] render_scale` | float | `1.0` | 0.5…1.0 | D | B (scaling 3D) | Chỉ khi B/C xác nhận có tác dụng trong Forward+ |
-| `[video] brightness` (đã có) | float | `1.0` | 0.5…1.5 | D | B | Giữ nguyên; cần áp dụng cả khi `visual_style = realistic` |
-| `[video] ps1_strength` (đã có) | float | `1.0` | 0…1 | D | B | Giữ nguyên; `realistic` có thể bỏ qua (D xác nhận UI) |
-
-Migration: file cũ không có `visual_style`/`graphics_preset` phải chạy như mặc định, không mất ngôn ngữ/âm lượng/input. Core hiện chỉ đọc `[accessibility] reduce_scares`; hợp đồng này **không** thêm key core ghi.
-
-## 9. Đề xuất cho schema/asset ID (gửi C và B, theo góc nhìn core)
-
-Không gắn core với manifest. Core chỉ cần mỗi asset có bản ghi cho phép kiểm tự động: `asset_id` ổn định, `scene_path`, `binding` (một trong: `door407`, `bunk`, `corpse`, `manager`, `actor`, `fire_alarm`, `fire_extinguisher`, `fire_bell_mount`, `prop`), `root_class`, các `required_markers`, `collider_policy` (`none`/`keep_gameplay`), kích thước thật (bounds, mét), số tam giác/material/texture đo được, license, công cụ AI, tình trạng duyệt. Schema chính thức do C đề xuất, B giữ dữ liệu, thống nhất ở G1.
-
-## 10. Tình trạng đầu ra (cập nhật theo từng đợt)
-
-| Đầu ra | Chủ | Trạng thái G0 (10/10) |
-|---|---|---|
-| Bảng binding thật | core | **Có**: `ASSET_BINDINGS.md` (số đo từ scene thật, headless) |
-| Hợp đồng tích hợp | core | **Có**: tài liệu này; chờ review G1 |
-| Giao diện adapter A | A (T-208) | Chờ Handoff của A; core chưa nối |
-| Manifest/marker B | B (T-209) | Chờ Handoff của B |
-| Schema/công cụ kiểm | C (T-210) | Chờ Handoff của C |
-| Settings/UI | D (T-211) | Chờ Handoff của D và cập nhật `SETTINGS.md` của integrator |
-| Stream chuông/marker âm | F (T-212) | Chờ Handoff của F |
-| Wiring W1–W4 | core | **Chưa làm** (cần G1 + dependency ở §6) |
-| Hình ảnh thật, FPS, nghe âm | máy có GPU/người dùng | **Chưa kiểm** (cloud không có GPU) |
-
-## 11. Lệnh kiểm trên Windows cho integrator
-
-Từ gốc repo, trên máy có Godot 4.7.2:
-
-- `pwsh tools/test.ps1` và `pwsh tools/check.ps1` (toàn bộ).
-- Lọc phần phòng 407/chương: `pwsh tools/test.ps1 -Filter test_chapter` (chương 1–4), `-Filter test_room407`, `-Filter test_ch3`, `-Filter test_ch4`.
-- Khi có wiring W1/W2: `-Filter test_chapter3` cộng tay: bấm nút báo cháy hai lần chỉ một mồi; chương 4 không có nút; chuông dừng sau 20 s; nghe chuông bằng tai.
-- Đi bộ thật tới cửa 407, giường, bình cứu hỏa, `FireAlarm1F`, đường 207→203, đường khuôn viên và thanh chắn chương 4; ngắm bằng `InteractRay` để chắc visual mới không chắn tia.
-
-## 12. Điểm cần integrator quyết (không tự đoán)
-
-1. Chọn `visual_style` hay chỉ `graphics_preset` cho pilot (§8), và ai quyết tên khóa.
-2. Giao diện adapter chung do A đề xuất, hay giữ mỗi loại một cách nối như §3.1.
-3. Tên marker mới `FireBellMount` và vị trí hình nút `FireAlarm1F` trong `Campus.tscn` (B) — chốt ở G1.
-4. Có cho phép W2 đổi `_ring_bell` thành bộ đếm thời gian hay giữ stream không lặp 1.5 s (sửa nhỏ, không đổi hành vi nghe thấy).
-5. Có gom nhóm `ch2_corpse` của phòng 310 CCTV vào hợp đồng hay giữ riêng (phát hiện ở ASSET_BINDINGS §8.2).
+Full test/check sau mọi chỉnh sửa theo handoff; D-081 ghi giờ/kết quả/log trong message commit, không dùng lượt D-080 thay. Không chạy FPS/bot chương 3–4, chưa nghe/chơi tay và chưa có Tripo asset. EXE hiện hành không đổi vì đợt này chỉ cập nhật tài liệu.

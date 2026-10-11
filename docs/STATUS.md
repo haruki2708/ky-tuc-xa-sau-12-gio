@@ -1,20 +1,20 @@
 # STATUS — cập nhật bởi integrator
 
-**Cập nhật lần cuối:** 2026-10-11, Astra — D-080, chuyển nhà cung cấp asset sang Tripo AI; G0 đã ghép ở D-079.
+**Cập nhật lần cuối:** 2026-10-11, Astra — D-081, Astra làm thay Claude web ở T-207; tổng hợp G1 từng phần, ưu tiên balo.
 **Giai đoạn:** Đồ họa gần chân thực, **Tripo AI thay Meshy (D-080)**. **G0 A/B/C/D/F + Claude web đã nhận**, T-207…T-212 còn làm tiếp G1/G2/G3. Các đầu ra mới là khảo sát/prototype/công cụ riêng, chưa thay đồ họa các chương. E nghỉ vô thời hạn, F tiếp nhận âm thanh theo D-078. Kế hoạch: [GRAPHICS_UPGRADE_PLAN.md](design/GRAPHICS_UPGRADE_PLAN.md).
 
-**Điều phối:** Astra tạm thay 10–11/10; Claude Code ở máy, **Opus 5.5**, nhận lại theo [hướng dẫn](handoff/OPUS_5_5_NHAN_LAI_DIEU_PHOI.md) và [nhật ký](handoff/NHAT_KY_ASTRA_2026-10-10_11.md). Chủ dự án là người dùng; Claude web là lane core.
+**Điều phối:** Astra tạm thay 10–11/10; Claude Code ở máy, **Opus 5.5**, nhận lại theo [hướng dẫn](handoff/OPUS_5_5_NHAN_LAI_DIEU_PHOI.md) và [nhật ký](handoff/NHAT_KY_ASTRA_2026-10-10_11.md). Chủ dự án là người dùng. **Astra làm thay Claude web ở T-207 (D-081)**; web tạm dừng, năm lane A/B/C/D/F tiếp tục. [Đầu mối và prompt G1](handoff/T207_G1_ASTRA_2026-10-11.md).
 
 ## Việc tiếp theo (cho phiên integrator kế tiếp)
 1. Đọc [Review G0 11/10](handoff/REVIEW_G0_2026-10-11.md) và Review sáu card. Đầu vào: web `4fc4999`, A `e27fe28`, B `87e99a6`, C `c434343`, D `aef26cb`, F `2dcd25a`. G0 ghép không đồng nghĩa G1 hoàn tất hoặc cả gói done.
-2. **Web tổng hợp G1 đạo cụ tĩnh trước:** B bổ sung brief balo chính xác, C thống nhất schema/root-local/dependency hash; integrator review contract rồi mới chuyển dữ liệu. Không bắt balo chờ toàn bộ rig/settings/chuông. A/D/F hoàn thiện đề xuất theo Review trong phạm vi gói cũ; chưa caller production.
+2. **T-207 do Astra làm thay:** đã tổng hợp [contract G1](design/graphics/INTEGRATION_CONTRACT.md), chốt quy ước balo để B/C triển khai. **C bàn giao schema/root-local/dependency hash → integrator review/ghép → B chuyển manifest**, brief B làm song song. G1 nghiệm thu còn mở tới khi có bằng chứng B/C; không bắt balo chờ rig/settings/chuông. A/D/F tiếp tục phần độc lập. Chưa wiring W1–W4.
 3. **Tripo AI (D-080):** chủ dự án chọn thay Meshy; chưa xác nhận gói/đã mua/ngân sách. Ưu tiên **Studio thủ công → GLB → Blender → Godot**. API dùng ví riêng; không coi thuê bao Studio cấp credit API. [Hướng chuyển đổi và prompt](handoff/TRIPO_AI_CHUYEN_DOI_2026-10-11.md); [nguồn chính thức](research/TRIPO_AI_2026-10-11.md). Chưa gọi dịch vụ/chi credit hoặc cấp ngoại lệ license.
 4. **Mẫu đầu:** balo theo số đo B; prototype tối đa 3.000 tam giác, 2 material, map 1024², file 10 MiB. Sau đó phòng 407 + 10–15 m hành lang, đạo cụ tương tác và một nhân vật. RTX 3050 Laptop 4 GB/16 GB RAM; 1080p/60 FPS Medium còn là mục tiêu. Ảnh G0 chưa đạt nghiệm thu gần chân thực; không chuyển mặc định trước G3.
-5. **Kiểm tra D-080:** chạy lại full test/check sau cập nhật; kết quả, giờ và log trong message commit (`git log -1 --format=full --grep='D-080:'`), không lấy lượt cũ thay. **D-079 đã xác nhận:** 743/743, check 0 (344 script), kiểm tích hợp 5/5 và offline 28/28. Mốc D-077/D-078 trước đó là 722/0, check 0. Web báo một test nav chập chờn trên Linux; không coi đã sửa chỉ vì Windows đạt.
+5. **Kiểm tra D-081:** full test/check sau cập nhật trước commit; kết quả/giờ/log trong message commit (`git log -1 --format=full --grep="D-081:"`). D-080 đã đạt 743/0, check 0 (344 script); D-079 còn có kiểm tích hợp 5/5 và offline 28/28. Lỗi nav chập chờn web báo chưa được chẩn đoán; Windows đạt không chứng minh đã sửa.
 6. **Build:** `build/windows/KyTucXa.exe`, **2026-10-10 03:57:18**, code `add6d5f` theo handoff, có D-075. Không export đợt G0 vì không đổi nội dung cảnh chơi. Chưa nghe chuông mới/chơi tay các prototype hoặc đo FPS.
 7. **Chơi thử còn mở:** chương 1 D-071/chương 2 D-073 tạm chốt; đoạn nhắn tin D-072 chưa chơi lại. Chương 3 lần cuối bước 6/tầng 1; D-074/T-206/D-075 đã sửa, chờ chơi tiếp. Chương 4/giọng và âm chương 2–4 còn chờ chủ dự án kiểm. D-059 chưa bắt đầu.
-8. **Lượt Windows:** A/B/C/D/F đã nhả lượt G0. Integrator giữ độc quyền trong kiểm tích hợp rồi báo nhả; không khởi chạy chuỗi khác chỉ vì một tiến trình Godot vừa thoát. Soạn code/tài liệu vẫn song song được. Chưa chạy bot chương 3–4 hoặc FPS; Linux web là máy riêng.
-9. Số đã cấp **D-076…D-080, T-207…T-212**. Số tiếp theo **D-081, T-213**. Không tự tạo task trùng hoặc kéo T-199/bot vào đợt đồ họa.
+8. **Lượt Windows:** A/B/C/D/F đã nhả lượt G0. Integrator giữ độc quyền trong kiểm tích hợp rồi báo nhả; không khởi chạy chuỗi khác chỉ vì một tiến trình Godot vừa thoát. Soạn code/tài liệu vẫn song song được. Chưa chạy bot chương 3–4 hoặc FPS; web đã tạm dừng T-207 theo D-081.
+9. Số đã cấp **D-076…D-081, T-207…T-212**. Số tiếp theo **D-082, T-213**. Không tự tạo task trùng hoặc kéo T-199/bot vào đợt đồ họa.
 
 **Repo:** https://github.com/tuaanh666/ky-tuc-xa-sau-12-gio (private)
 
@@ -36,7 +36,7 @@
 | Task | Lane | Trạng thái |
 |---|---|---|
 | **Đồ họa gần chân thực (D-076/D-077, 10/10/2026)** | | |
-| [T-207 Hợp đồng và tích hợp core](tasks/T-207-graphics-core-contract.md) | Claude web / core | **G0 đã review/ghép D-079; G1 tiếp tục; chưa done toàn gói** |
+| [T-207 Hợp đồng và tích hợp core](tasks/T-207-graphics-core-contract.md) | core — **Astra làm thay web (D-081)** | **Quy ước G1 balo đã tổng hợp; chờ triển khai/bằng chứng B/C; chưa done** |
 | [T-208 Adapter gameplay–visual](tasks/T-208-visual-gameplay-adapters.md) | A | **G0 đã review/ghép D-079; G1 tiếp tục; chưa done toàn gói** |
 | [T-209 Art pipeline và phòng mẫu](tasks/T-209-realistic-art-pilot.md) | B | **G0 đã review/ghép D-079; G1 tiếp tục; chưa done toàn gói** |
 | [T-210 Asset QA và công cụ tạo asset (Tripo)](tasks/T-210-graphics-asset-qa.md) | C | **G0 đã review/ghép D-079; G1 tiếp tục; chưa done toàn gói** |

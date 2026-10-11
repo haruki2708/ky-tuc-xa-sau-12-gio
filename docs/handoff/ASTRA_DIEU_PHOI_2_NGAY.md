@@ -1,5 +1,7 @@
 # Bàn giao điều phối dự án cho Astra (thứ 7 10/10 – chủ nhật 11/10/2026)
 
+> **D-081, 11/10:** Astra làm thay Claude web ở T-207 theo yêu cầu chủ dự án. Đầu mối core/contract chuyển về integrator; web tạm dừng. Đọc [bàn giao G1](T207_G1_ASTRA_2026-10-11.md); giữ G0 và task/nhánh hiện có.
+
 > **Cập nhật D-080 ngày 11/10:** chủ dự án chọn **Tripo AI thay Meshy**; xem [hướng hiện hành](TRIPO_AI_CHUYEN_DOI_2026-10-11.md). Các chi tiết Meshy trong bản ghi cũ chỉ còn là lịch sử, không áp dụng giá/credit/API/license sang Tripo. G0 đã nhận vẫn giữ hiệu lực.
 
 > **Cập nhật D-078 ngày 10/10:** lane E nghỉ vô thời hạn; tài khoản GPT Plus mới làm **lane F**, nhận toàn bộ vai trò âm thanh và T-212. Các hướng dẫn giao việc/giọng/âm thanh cho E bên dưới là bối cảnh cũ; từ nay dùng F và `docs/handoff/lane-f.md`. Đội hiện tại A/B/C/D/F + Claude web. Giữ nguyên workspace E, không sửa workspace F từ repo tích hợp; lịch sử task và credits của E không đổi.

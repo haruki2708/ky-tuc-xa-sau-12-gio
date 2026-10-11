@@ -1,8 +1,8 @@
-# Bảng ràng buộc visual–logic (T-207, G0)
+# Bảng ràng buộc visual–logic (T-207, G0 và tổng hợp G1)
 
-> **Review integrator 11/10, D-079:** nhận tài liệu khảo sát G0; chưa là contract G1 đã chốt. Xem [kết luận và yêu cầu tổng hợp](../../handoff/REVIEW_G0_2026-10-11.md). Các mục chờ Handoff bên dưới là ảnh chụp lúc web lập bản nháp; cả năm lane đã bàn giao và cần được tổng hợp.
+> **D-081, 11/10:** Astra làm thay Claude web, tổng hợp Handoff A/B/C/D/F vào G1. Quy ước balo và các phần còn pending nằm trong [contract hiện hành](INTEGRATION_CONTRACT.md). Số đo G0 dưới đây giữ nguồn của web; bổ sung G1 dựa trên dữ liệu B và code tại `acbf771`, không phải lượt đo/render mới.
 
-Người lập: Claude Code web làm phần core theo D-077, 10/10/2026. Trạng thái: **bản G0 để integrator review**, chưa là chuẩn bắt buộc cho tới khi G1 ghép vào `main`. Hợp đồng sử dụng bảng này nằm ở [INTEGRATION_CONTRACT.md](INTEGRATION_CONTRACT.md).
+Người lập G0: Claude Code web theo D-077, 10/10/2026; G0 đã nhận/ghép D-079. Astra bổ sung G1 theo D-081. Bảng phân biệt hành vi hiện có với yêu cầu chưa triển khai; không dùng nó để tuyên bố model Tripo hoặc adapter mới đã đạt.
 
 ## 0. Cách đo và giới hạn
 
@@ -64,6 +64,14 @@ Người lập: Claude Code web làm phần core theo D-077, 10/10/2026. Trạng
 
 `Zones/Bedroom`: Box `(7.8, 3.0, 4.0)` tại `(34.0, 1.5, -2.0)` + `Rear` `(5.2, 3.0, 3.0)` tại `(32.65, 1.5, -5.5)`; `Zones/Bathroom` `(2.65, 3.0, 3.0)` tại `(36.65, 1.5, -5.5)`; `Zones/Balcony` `(5.2, 3.0, 1.5)` tại `(32.6, 1.5, -7.75)`; `Bounds/Main` `(8.0, 3.2, 7.0)`, `Bounds/Balcony`. Luật chương 2 ("chỉ trả lời được trong phòng ngủ") và chương 1 (rời phòng) dựa vào các vùng này. **Không đổi tọa độ/kích cỡ khi thay phòng.**
 
+### 2.5 Balo — mẫu đạo cụ tĩnh đầu tiên, bổ sung D-081
+
+Nguồn B: `art_source/graphics_upgrade/asset_manifest.json` và `measured_assets.json`, ID `room407_backpack`. Trong `res://scenes/levels/floor4/floor4.tscn`: node `Room407/Details/Trung/Backpack`. `room407_details.tscn` đặt root local `(3.78,0.02,-4.52)`, yaw 90°, scale `(1,1,1)`; Room407 cộng x=30, thành vị trí trong floor4 `(33.78,0.02,-4.52)`.
+
+Bounds **trước transform đặt root**: min `(-0.145,0.01,-0.1325)`, size `(0.29,0.45636,0.30274)` m. G0: 96 tam giác, 3 material; số này không là trần của mẫu mới. Trần prototype D-079: ≤3.000 tam giác, ≤2 material, texture ≤1024², file ≤10 MiB. Chuẩn hóa dưới visual, không recenter gameplay root hoặc tạo collider mới. Mặt trước/basis và artifact wrapper cụ thể B phải đưa vào brief; C đo trong cùng hệ root-local theo contract §2.
+
+Mẫu này không cần rig/clip, preset mới hoặc điểm nối W1–W4. Brief B và schema/probe C chưa đủ bằng chứng nghiệm thu G1; không lấy số đo asset cũ làm kết quả Tripo.
+
 ## 3. Ba xác (Phúc, Việt, Đạt) — chương 1–4
 
 | Thuộc tính | Giá trị đo |
@@ -81,7 +89,7 @@ Người lập: Claude Code web làm phần core theo D-077, 10/10/2026. Trạng
 | Hiển thị phụ | `Room407.set_blood_stage` gọi `Corpse*/Body.set_blood_visible` khi `stage > 0` |
 | Owner | B (scene/rig/wrapper), A (`UnseenPoser`, `GagSpot`), core (gọi state) |
 
-**Ràng buộc:** model xác mới **không thể** thay thẳng scene `corpse_*.tscn` nếu nó có `Skeleton3D`/`AnimationPlayer` khác tên: `corpse_body.gd`, `gag_anchor.gd` và `UnseenPoser` chạm trực tiếp vào các NodePath ở trên. Cần adapter giữ API `set_pose/set_state/set_gagged/set_blood_visible/look_at_point` và marker `Head` (hoặc nhận `Gag`/`Mouth` marker tương đương); xem hợp đồng §5.
+**Ràng buộc:** model xác mới **không thể** thay thẳng scene `corpse_*.tscn` nếu nó có `Skeleton3D`/`AnimationPlayer` khác tên: `corpse_body.gd`, `gag_anchor.gd` và `UnseenPoser` chạm trực tiếp vào các NodePath ở trên. Cần adapter giữ API `set_pose/set_state/set_gagged/set_blood_visible/look_at_point` và marker `Head` (hoặc nhận `Gag`/`Mouth` marker tương đương); xem hợp đồng §4.
 
 ## 4. Người quản lý
 
@@ -109,8 +117,8 @@ Người lập: Claude Code web làm phần core theo D-077, 10/10/2026. Trạng
 |---|---|
 | Lớp cơ sở | `Ch3Actor extends CharacterBody3D` (A): `set_body(PackedScene)`, `play_pose(StringName)`, `head_position()`, `face(point)` |
 | Cấu trúc scene (companion/zombie/guard) | root `CharacterBody3D`; `CollisionShape3D` Capsule **r 0.25, h 1.70** tại `(0, 0.85, 0)`, layer 1, mask 1; `Visual/Fallback` (đầu tại `(0, 1.55, 0)`); `NavigationAgent3D`; zombie còn `HeadHitbox` Sphere r 0.31 tại `(0, 1.55, 0)` layer 3 |
-| `set_body` | `queue_free` model cũ, ẩn/hiện `Visual/Fallback`, thêm model làm con của `Visual`, đặt lại `_played_pose` và gọi lại `play_pose(pose)` |
-| `play_pose` | thử theo thứ tự `model.set_pose(value)` → `model.set_state(value)` → `AnimationPlayer` có clip tên đúng `value`; fallback xoay X π/2 khi `lie`/`stunned`. Tên pose dùng: `idle, walk, stunned, grab, sit, lie, wake` |
+| `set_body` | `queue_free` model cũ; model cũ còn trong cây tới deferred free. Thêm model hợp lệ mới dưới `Visual` rồi mới xóa cache `_played_pose` và gọi lại pose; nhánh null/root không hợp lệ trở về fallback trước bước này. A cần xử lý lifecycle/cache theo Review; G0 chưa sửa production |
+| `play_pose` | chọn method theo thứ tự có `set_pose` → có `set_state` → clip, hiện không kiểm bool trả về và cache trước khi biết pose được nhận. Fallback xoay X π/2 khi `lie`/`stunned`. Các pose gồm `idle, walk, stunned, grab, sit, lie, wake`; guard còn yêu cầu `warn`, wrapper campus chưa hỗ trợ |
 | `head_position` | `model.find_child("Head")` nếu có, nếu không thì `Visual/Fallback/Head` |
 | Model hiện tại (B) | `res://assets/models/campus/%s.tscn` với `guard`, `nhat`, `ngu`, `zombie_01…10`, script `scenes/levels/campus/actor.gd`; cao 1.72 m (học sinh/zombie), 1.906 m (guard); 640–800 tam giác; `Head` tại `(0, 1.48, 0)` (guard `(0, 1.63, 0)`) cục bộ — **thấp hơn 7 cm so với fallback 1.55**, ảnh hưởng chỗ đặt `head_position` |
 | Core gắn | `ZOMBIE_MODELS = 10`; `_dress`/`_make_zombie`/`_join` gọi `set_body(load(MODELS % name))` chỉ khi `ResourceLoader.exists` (`chapter3_director.gd:409-435, 554-558`) |
@@ -171,9 +179,24 @@ Không có `CSG`, `QuadMesh`, `Label3D`, `Decal`, `Sprite3D` hay particle do cor
 2. **Nhóm `ch2_corpse` có 6 phần tử**, trong đó 3 là xác phòng 310 của CCTV. Mã nào duyệt nhóm này theo nghĩa "ba xác phòng 407" sẽ sai nếu model đổi chỉ ở 407.
 3. **`head_position()` sai lệch ~7 cm** giữa fallback (1.55 m) và model campus (1.48 m). Không phải lỗi, nhưng model mới cần chốt chiều cao đầu cho A.
 4. **Chuông:** stream 1.5 s không lặp được phát lại trong vòng 20 s bằng `await finished`; đổi sang stream lặp mà không đổi `_ring_bell` sẽ làm chuông không dừng.
-5. **Nút báo cháy chỉ tồn tại ở chương 3** vì core tạo bằng mã; B có thể đặt sẵn model nhưng core phải tiếp tục từ chối tạo ở chương 4.
+5. **Nút báo cháy chỉ tồn tại ở chương 3** vì core tạo bằng mã. D-079/D-081: B cung cấp scene visual riêng để core instance sau điều kiện chương; không đặt sẵn nút tương tác trong campus dùng chung chương 4.
 6. **Corpse sống nhờ mã, không nhờ clip:** `corpse_body.gd` đặt `rig.position = (side × 1.25, 0.145, 0)` và xoay Rig bằng mã mỗi frame khi có state. Một model xác có animation sẵn sẽ phải tắt phần này, hoặc thay hẳn script.
 
 ## 9. Việc chưa đo (để lại cho Windows/GPU)
 
-Triangle budget đề xuất §6 của kế hoạch chưa so được với model thật; số mesh/material/texture của phòng 407 và hành lang chưa thống kê (đang ở lane B/C); độ che tia của model mới, FPS, bóng và hình ảnh trước/sau cần máy có GPU.
+B đã có 13 mục đo G0 và 12 ảnh pilot tại `art_source/graphics_upgrade/`, không còn chờ kiểm kê ban đầu. Đây chưa là thống kê toàn phòng/hành lang sau nâng đồ họa, không là số tam giác mỗi frame/VRAM. Trần mẫu balo có trong contract; độ che tia của model mới, ảnh trong game, bộ nhớ và FPS vẫn chưa được nghiệm thu. FPS chưa được phép chạy.
+
+## 10. Consumer bổ sung từ Handoff A/F — D-081
+
+| Consumer | Căn cứ hiện có / ràng buộc | Phần cần G1 tiếp |
+|---|---|---|
+| Guard | `game/scripts/entity/guard.gd` yêu cầu `warn` và `turn_head_to`; B `campus/actor.gd` chưa cung cấp tương ứng | A/B chốt mapping có chủ đích; không đổi `warn` sang idle im lặng |
+| `UnseenPoser` | Seek/pause AnimationPlayer hoặc chọn child pose; không gọi `set_pose` như Ch3Actor. Visibility còn phụ thuộc bounds mesh | A/B giữ snapshot và thời điểm nhìn thấy; chưa là adapter skeleton |
+| `door_burst` | Consumer model zombie riêng ngoài Ch3Actor, gọi `grab/walk`; staging theo camera/cửa | A/B/core giữ timing mở cửa và reduce_scares khi đổi visual |
+| Xác CCTV 310 | Cùng group `ch2_corpse`, thêm 3 xác ngoài 407 | Contract bao gồm cả 6 xác; không chỉ sửa 3 model trong phòng 407 |
+| Gag / Voice | `gag_anchor.gd` của B bám Head mỗi frame, priority 10; GagSpot và CorpseVoice là con nên theo anchor | Giữ cùng nguồn Head/offset, chốt attachment và thứ tự cập nhật nếu đổi rig. Mô tả G0 A nói chưa bám bone không phủ định script bám Head hiện có |
+| Âm quản lý | F xác nhận Speech/Step/Knock/Slash/Kill hiện ở root rig; chỉ Drag bám BladeTip qua A `_sync_audio` | Chưa có API âm bám miệng mới; F/A/B phải thống nhất trước khi chuyển |
+| Âm zombie | Voice/Foley hiện local zero; `Ch3ZombieLink` và horde quản cadence/số nguồn | Không suy `head_position()` là API audio đã có hoặc chuyển clock sang animation |
+| Death camera / HeadHitbox | Đọc Head qua các nhánh hiện có; Head thay đổi ảnh hưởng LOS, ngắm và camera | A/B bảo đảm marker cập nhật cùng frame; fallback/test riêng trước consumer mới |
+
+Đây là tổng hợp code/Handoff, không có thay đổi runtime trong D-081. Các bảng node/clip của G0 tiếp tục là mốc hiện hành; contract nêu rõ phần đã chốt quy ước và phần còn chờ triển khai/kiểm.

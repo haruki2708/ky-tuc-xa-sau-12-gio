@@ -1,5 +1,7 @@
 # Prompt bàn giao — Lane F (Âm thanh, tiếp nhận Lane E)
 
+> **D-081, 11/10:** Astra làm thay Claude web ở T-207 theo yêu cầu chủ dự án. Đầu mối core/contract chuyển về integrator; web tạm dừng. Đọc [bàn giao G1](T207_G1_ASTRA_2026-10-11.md); giữ G0 và task/nhánh hiện có.
+
 > **D-080, 11/10:** dùng **Tripo AI thay Meshy**. Studio thủ công ưu tiên cho mẫu đầu; API dùng ví riêng. Đọc [cập nhật provider](TRIPO_AI_CHUYEN_DOI_2026-10-11.md), tiếp tục gói hiện có và giữ kết quả G0.
 
 > **D-079, 11/10:** G0 đã review/ghép. Khi tiếp tục, fetch/rebase main chứa D-079 rồi đọc Review của card và [yêu cầu G1](REVIEW_G0_2026-10-11.md); không làm lại G0 theo đoạn prompt cũ. Đây là phần tiếp của gói đã giao, chưa mở Tripo AI trả phí hoặc production.
@@ -17,7 +19,9 @@ Bạn là agent Lane F (Âm thanh) của game Ký túc xá sau 12 giờ, Godot 4
 Theo D-078, lane E nghỉ vô thời hạn; bạn tiếp nhận toàn bộ vai trò âm thanh của E.
 Task hiện tại T-212: marker âm thanh và mẫu chuông báo cháy.
 Trả lời/tài liệu tiếng Việt, code tiếng Anh. Integrator tạm là Astra ngày 10–11/10;
-sau đó Claude Code ở máy dùng Opus 5.5 nhận lại. Claude web là lane core T-207.
+sau đó Claude Code ở máy dùng Opus 5.5 nhận lại. Astra nhận phần core T-207 thay Claude web theo D-081.
+D-081: Astra làm thay Claude web ở T-207. Gửi yêu cầu core/contract về Astra.
+Đọc docs/handoff/T207_G1_ASTRA_2026-10-11.md và contract G1 cập nhật.
 Repo: https://github.com/tuaanh666/ky-tuc-xa-sau-12-gio.git
 Chỉ làm trong D:\GAME_WORK\lane-f; không sửa D:\GAME_DEMO hoặc workspace lane khác, kể cả lane-e.
 
@@ -25,8 +29,8 @@ Chỉ làm trong D:\GAME_WORK\lane-f; không sửa D:\GAME_DEMO hoặc workspace
    Nếu đã có thư mục, kiểm đúng repo và git status; giữ mọi thay đổi đang có, không clone đè.
    git fetch origin. Nhánh: lane-f/T-212-graphics-audio-anchors.
    Nếu local đã có thì switch và pull --ff-only; nếu chỉ origin có thì tạo tracking branch.
-   Nếu chưa có thì tạo từ origin/main có D-080; không tạo/sửa nhánh lane-e/T-212.
-   Rebase an toàn lên origin/main có D-080, giữ mọi thay đổi cục bộ.
+   Nếu chưa có thì tạo từ origin/main có D-081; không tạo/sửa nhánh lane-e/T-212.
+   Rebase an toàn lên origin/main có D-081, giữ mọi thay đổi cục bộ.
    Nếu thấy remote E có thay đổi T-212 chưa ghép, báo integrator review trước để tránh làm trùng.
    Không tự sao chép workspace E hoặc cherry-pick thay đổi chưa review.
 2. Đọc AGENTS.md, docs/STATUS.md, D-078/D-080 trong docs/DECISIONS.md,

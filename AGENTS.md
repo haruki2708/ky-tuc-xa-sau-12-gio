@@ -5,7 +5,7 @@ Mục tiêu là game đầy đủ khoảng 3–4 tiếng, phát hành theo 4 ch�
 
 Các vai trò và phiên làm việc trong dự án:
 - **Integrator (Claude):** giữ kiến trúc, review và merge mọi nhánh vào `main`.
-- **10–11/10/2026:** Astra thay điều phối tạm thời; sau đó Claude Code ở máy (Opus 5.5) nhận lại qua `docs/handoff/OPUS_5_5_NHAN_LAI_DIEU_PHOI.md`. Claude web là lane core T-207 theo phạm vi card, không là integrator.
+- **10–11/10/2026:** Astra thay điều phối tạm thời; sau đó Claude Code ở máy (Opus 5.5) nhận lại qua `docs/handoff/OPUS_5_5_NHAN_LAI_DIEU_PHOI.md`. **D-081:** Astra làm thay Claude web ở T-207 theo yêu cầu chủ dự án; Claude web tạm dừng task này. A/B/C/D/F gửi yêu cầu core/contract về Astra, sau đó Opus tiếp nhận. Giữ lịch sử G0 của web; xem `docs/handoff/T207_G1_ASTRA_2026-10-11.md`.
 - **Năm agent lane A, B, C, D, F:** mỗi agent một lane, mỗi lane sở hữu một vùng file riêng. **D-078:** lane E tạm nghỉ vô thời hạn; lane F (tài khoản GPT Plus mới do chủ dự án chỉ định) tiếp nhận toàn bộ vai trò âm thanh trước đây của E, gồm T-212 và bảo trì âm thanh đã ghép. E không nhận việc mới; tên E trong lịch sử/credits vẫn giữ nguyên.
 - **Chủ dự án (người dùng):** ra quyết định thiết kế, chơi thử, gửi prompt cho agent.
 

@@ -65,3 +65,11 @@ Git trước commit tài liệu là `6cda009`; tìm commit bàn giao bằng `git
 - Cập nhật AGENTS/CLAUDE, STATUS, kế hoạch, sáu card/prompt, bàn giao Opus, ghi chú nghiên cứu và planned_route của manifest B. Giữ task/nhánh/owner và G0 đã kiểm, giữ Handoff/credits lịch sử; helper `meshy_dry_run.py` vẫn là fixture offline G0, chưa client Tripo. C xử lý adapter/tên công cụ ở G1 theo phạm vi card.
 - Nguồn và hướng dẫn: [nghiên cứu](../research/TRIPO_AI_2026-10-11.md), [chuyển đổi](TRIPO_AI_CHUYEN_DOI_2026-10-11.md). Chưa gọi dịch vụ hoặc chi credit; chưa nhập asset, sửa runtime hoặc export. Không sửa workspace lane.
 - Full test/check sau cập nhật là điều kiện commit D-080; kết quả/giờ/log ghi trong message commit. Lượt D-079 trước đó là 743/743, check 0 (344 script), không dùng thay lượt sau chỉnh tài liệu. Số tiếp theo D-081/T-213.
+
+## 11/10 — Astra tiếp nhận T-207 thay Claude web, D-081
+
+- Chủ dự án yêu cầu Astra đảm nhiệm phần web; ghi “Astra làm thay” trong card/STATUS. Web tạm dừng; giữ nhánh `4fc4999` và lịch sử G0. Opus nhận phần còn dở sau hai ngày.
+- Main sạch `acbf771`, pull/fetch không có commit mới của các lane. Đọc Handoff A/B/C/D/F và nguồn thật; tổng hợp lại contract/bindings, chốt quy ước balo và tách phần rig/settings/chuông còn pending. Đối chiếu B root-local với probe C đang nhân root; C phải sửa/kiểm, chưa nhận là đã sửa.
+- Cần C schema/fixture/dependency hash, sau ghép B chuyển manifest; B làm brief song song. Quy ước G1 không đồng nghĩa nghiệm thu công cụ/model. Không chặn balo theo toàn bộ nhân vật/settings/chuông, không đổi API/settings/runtime/asset.
+- Cập nhật prompt năm lane, thay prompt web bằng thông báo chuyển người; bàn giao tại `T207_G1_ASTRA_2026-10-11.md`. Không khởi chạy/gửi tin tới phiên ngoài và không sửa workspace lane.
+- Full test/check sau tài liệu trước commit D-081; giờ/kết quả/log nằm trong message commit. Chưa render/FPS/nghe/chơi tay/Tripo; không export, EXE giữ bản 10/10 03:57:18. Số tiếp theo D-082/T-213.

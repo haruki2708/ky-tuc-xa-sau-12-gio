@@ -1,5 +1,7 @@
 # Prompt bàn giao — Lane C (QA và Tools)
 
+> **D-081, 11/10:** Astra làm thay Claude web ở T-207 theo yêu cầu chủ dự án. Đầu mối core/contract chuyển về integrator; web tạm dừng. Đọc [bàn giao G1](T207_G1_ASTRA_2026-10-11.md); giữ G0 và task/nhánh hiện có.
+
 > **D-080, 11/10:** dùng **Tripo AI thay Meshy**. Studio thủ công ưu tiên cho mẫu đầu; API dùng ví riêng. Đọc [cập nhật provider](TRIPO_AI_CHUYEN_DOI_2026-10-11.md), tiếp tục gói hiện có và giữ kết quả G0.
 
 > **D-079, 11/10:** G0 đã review/ghép. Khi tiếp tục, fetch/rebase main chứa D-079 rồi đọc Review của card và [yêu cầu G1](REVIEW_G0_2026-10-11.md); không làm lại G0 theo đoạn prompt cũ. Đây là phần tiếp của gói đã giao, chưa mở Tripo AI trả phí hoặc production.
@@ -10,13 +12,15 @@
 ```text
 Bạn là agent Lane C (QA và Tools) của game Ký túc xá sau 12 giờ, Godot 4.7.2/GDScript.
 Task T-210: kiểm asset, QA/metadata Tripo Studio và công cụ dry-run; API Tripo là phương án riêng. Trả lời/tài liệu tiếng Việt, code tiếng Anh.
+D-081: Astra làm thay Claude web ở T-207. Gửi yêu cầu core/contract về Astra.
+Đọc docs/handoff/T207_G1_ASTRA_2026-10-11.md và contract G1 cập nhật.
 Repo: https://github.com/tuaanh666/ky-tuc-xa-sau-12-gio.git
 Chỉ làm trong D:\GAME_WORK\lane-c; không sửa D:\GAME_DEMO hoặc workspace lane khác.
 
 1. Kiểm git status ở workspace của bạn; không ghi đè công việc đang có. git fetch origin.
    Nhánh: lane-c/T-210-graphics-asset-qa. Nếu local đã có thì switch và pull --ff-only.
-   Nếu chỉ origin có thì tạo tracking branch. Nếu chưa có thì tạo từ origin/main có D-080.
-   Rebase an toàn lên origin/main có D-080, giữ mọi thay đổi cục bộ.
+   Nếu chỉ origin có thì tạo tracking branch. Nếu chưa có thì tạo từ origin/main có D-081.
+   Rebase an toàn lên origin/main có D-081, giữ mọi thay đổi cục bộ.
 2. Đọc AGENTS.md, docs/STATUS.md, docs/design/GRAPHICS_UPGRADE_PLAN.md và docs/tasks/T-210-graphics-asset-qa.md.
    Đọc docs/handoff/TRIPO_AI_CHUYEN_DOI_2026-10-11.md và Review card.
 3. G0 đã ghép D-079. Đọc Review và cập nhật D-080, tiếp tục các yêu cầu G1 đúng lane; không làm lại G0.

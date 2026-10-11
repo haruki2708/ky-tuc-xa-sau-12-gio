@@ -1,4 +1,6 @@
-# Kế hoạch nâng đồ họa gần chân thực — D-076…D-080
+# Kế hoạch nâng đồ họa gần chân thực — D-076…D-081
+
+> **D-081, 11/10:** Astra làm thay Claude web ở T-207 theo yêu cầu chủ dự án. Đầu mối core/contract chuyển về integrator; web tạm dừng. Đọc [bàn giao G1](../handoff/T207_G1_ASTRA_2026-10-11.md); giữ G0 và task/nhánh hiện có.
 
 > **11/10, D-080:** chủ dự án chọn **Tripo AI thay Meshy**. Đọc [hướng chuyển đổi](../handoff/TRIPO_AI_CHUYEN_DOI_2026-10-11.md). Giữ G0 đã ghép; Studio thủ công là hướng mẫu đầu, API dùng ví riêng. Chưa xác nhận gói đã mua/ngân sách.
 
@@ -11,7 +13,7 @@ Ngày: 10/10/2026. Người lập: Astra, integrator tạm thời 10–11/10; ng
 - Logic hiện tại về cơ bản đã ổn; ưu tiên tiếp theo là đồ họa. Hướng chọn: **gần chân thực, chấp nhận nặng và lâu hơn**.
 - Máy tham chiếu: **RTX 3050 Laptop**; máy hiện tại báo 4 GB VRAM và khoảng 16 GB RAM. 1080p/60 FPS Medium là **mục tiêu thử**, chưa đo hoặc cam kết đạt.
 - **D-080 ngày 11/10:** chủ dự án đổi sang **Tripo AI**. Chưa xác nhận tên gói, đã mua hoặc trần chi. Ưu tiên Studio thủ công cho mẫu balo; API là phương án riêng. Không áp dụng dự toán 100 credit Meshy cũ; chỉ lập trần Tripo sau khi biết đúng ví và công đoạn.
-- Chủ dự án yêu cầu lập kế hoạch và giao sáu gói lớn, lưu Git để Opus tiếp nhận. **D-078:** lane E nghỉ vô thời hạn; tài khoản GPT Plus mới đảm nhiệm **lane F**, nhận toàn bộ vai trò âm thanh của E và T-212. Đội hiện tại: **A, B, C, D, F và Claude web**. Chủ dự án đã xác nhận hạn mức trước khi giao và trực tiếp chỉ định F thay E.
+- Chủ dự án yêu cầu lập kế hoạch và giao sáu gói lớn, lưu Git để Opus tiếp nhận. **D-078:** lane E nghỉ vô thời hạn; tài khoản GPT Plus mới đảm nhiệm **lane F**, nhận toàn bộ vai trò âm thanh của E và T-212. Đội G0: **A, B, C, D, F và Claude web**. **D-081:** Astra tiếp nhận T-207 thay web; năm lane còn lại tiếp tục, Opus nhận lại core khi Astra bàn giao. Chủ dự án đã xác nhận hạn mức trước khi giao và trực tiếp chỉ định F thay E.
 - Gói việc này chuẩn bị và thực hiện nâng hình ảnh theo từng mốc. Không suy ra chương 3–4 đã được chơi tay hoàn chỉnh, không mở giai đoạn nối game/lưu xuyên chương D-059.
 
 ## 2. Mục tiêu và giới hạn
@@ -29,7 +31,7 @@ Toàn bộ game dự kiến 35–60 ngày công 3D/kỹ thuật; đây là ướ
 | Mốc | Việc được làm | Điều kiện đi tiếp |
 |---|---|---|
 | **G0 — Chuẩn bị ngay** | Sáu lane khảo sát, kiểm kê, đề xuất hợp đồng, tạo fixture/công cụ cục bộ; dùng model đang có hoặc nguồn hợp lệ. | Handoff có đường dẫn cụ thể, số đo và đề xuất, không chỉ ý tưởng. Không cần Tripo AI để hoàn thành phần này. |
-| **G1 — Chốt hợp đồng kỹ thuật** | Web tổng hợp đầu ra A/B/C/D/F; integrator review node/API/manifest/settings, quyền sở hữu file và ngân sách thử. | Contract được ghép `main`, lane phụ thuộc rebase; phần chưa thống nhất được ghi rõ, không đoán. |
+| **G1 — Chốt hợp đồng kỹ thuật** | Astra làm thay web, tổng hợp đầu ra A/B/C/D/F; integrator review node/API/manifest/settings, quyền sở hữu file và ngân sách thử. | Contract được ghép `main`, lane phụ thuộc rebase; phần chưa thống nhất được ghi rõ, không đoán. |
 | **G2 — Thử Tripo AI và phòng mẫu** | Khi có tài khoản phù hợp + ngân sách + giấy phép rõ: một người vận hành tạo model, B chuẩn hóa và dựng cảnh, A nối visual, C kiểm, D/F phối hợp. | Mẫu trong Godot có ảnh cùng camera, test đạt; người dùng xem và chọn hướng. FPS cần được phép chạy riêng. |
 | **G3 — Đưa mẫu vào cảnh chơi thật** | Thay từng nhóm nhỏ; tích hợp core theo contract, thử tương tác/đường đi/âm thanh. | Đạt chất lượng đã chọn, hồi quy bốn chương, dữ liệu hiệu năng khi được phép. Integrator mới duyệt chuyển mặc định. |
 | **G4 — Mở rộng** | Nhà B → nhân vật → khuôn viên → thư viện/bệnh viện, bằng các đợt nhỏ trong card hoặc card con mới. | Mỗi đợt có ngân sách, phạm vi, bằng chứng và review; không thay toàn trường một lần. |
@@ -40,7 +42,7 @@ Hợp đồng là điểm đồng bộ, không là lý do để mọi lane ngồ
 
 | Task | Chủ trì | Làm ngay trong G0 | Phần lớn tiếp theo |
 |---|---|---|---|
-| [T-207](../tasks/T-207-graphics-core-contract.md) | **Claude web / core** | Lập bảng ràng buộc visual–logic, hợp đồng với A/B/C/D/F, danh sách chỗ core đang tự tạo hình. | Tích hợp model/âm thanh mới vào core theo hợp đồng, giữ hành vi; không tự làm asset B. |
+| [T-207](../tasks/T-207-graphics-core-contract.md) | **Core: Astra làm thay web (D-081)** | Lập bảng ràng buộc visual–logic, hợp đồng với A/B/C/D/F, danh sách chỗ core đang tự tạo hình. | Tích hợp model/âm thanh mới vào core theo hợp đồng, giữ hành vi; không tự làm asset B. |
 | [T-208](../tasks/T-208-visual-gameplay-adapters.md) | **Lane A** | Kiểm root/collider/pose/marker và làm adapter mẫu với asset sẵn có. | Nối rig/animation mới, kiểm đồ tương tác và nhân vật; không đổi AI/độ khó. |
 | [T-209](../tasks/T-209-realistic-art-pilot.md) | **Lane B** | Kiểm kê, bảng tham chiếu, kích thước/pivot; cảnh mẫu vật liệu/ánh sáng riêng. | Pipeline Tripo AI–Blender, phòng 407/hành lang, bộ nhân vật, các khu còn lại. |
 | [T-210](../tasks/T-210-graphics-asset-qa.md) | **Lane C** | Kiểm asset/manifest và công cụ Tripo AI mặc định dry-run; chuẩn bị góc chụp/checklist. | Ghi credit, kiểm kết quả tải, hồi quy và báo cáo hiệu năng khi được phép. |
@@ -51,10 +53,10 @@ Các card là gói lớn có điểm dừng G0/G1/G2/G3. Mỗi điểm bàn giao
 
 ## 5. Hợp đồng và ranh giới file
 
-- **Web/core** sở hữu `docs/design/graphics/INTEGRATION_CONTRACT.md`, `ASSET_BINDINGS.md` (tạo ở T-207), và các chỗ nối trong core được card cho phép. Web chỉ đề xuất đổi `docs/SETTINGS.md`; integrator cập nhật hợp đồng chính trước khi D/B dùng key mới.
+- **Core T-207 — Astra làm thay web từ D-081** sở hữu `docs/design/graphics/INTEGRATION_CONTRACT.md`, `ASSET_BINDINGS.md` và các chỗ nối core trong card. Integrator chỉ cập nhật `docs/SETTINGS.md` khi backend/default/consumer đã đủ; việc tiếp nhận T-207 chưa mở quyền thêm key tùy ý.
 - **A** sở hữu adapter ở `game/scripts/entity/`, logic tương tác trong vùng A và test `game/tests/player/`. **B** sở hữu scene model/rig, animation visual trong `game/scenes/levels/`, material/rendering và test levels. Hai lane không cùng sửa `campus/actor.gd`.
 - **B** sở hữu dữ liệu asset và hồ sơ tại `art_source/graphics_upgrade/`; **C** sở hữu công cụ/schema dưới `tools/graphics/` và test tools. Schema/ID/pivot thống nhất ở G1 trước khi sinh hàng loạt dữ liệu.
-- **D** là bên ghi `user://settings.cfg`; B áp dụng rendering trong vùng B. Core/project setting thuộc integrator/web theo card. Không thêm nút menu không có tác dụng.
+- **D** là bên ghi `user://settings.cfg`; B áp dụng rendering trong vùng B. Core/project setting thuộc integrator theo card. Không thêm nút menu không có tác dụng.
 - **F** tiếp nhận toàn bộ vùng âm thanh cũ của E, tạo asset/scene âm thanh; core nối `FIRE_BELL_STREAM`, B cung cấp vị trí treo chuông, A/B thống nhất marker trên rig. Dùng [prompt lane F](../handoff/lane-f.md); E nghỉ vô thời hạn, lịch sử/nguồn asset cũ giữ nguyên.
 - Chỉ integrator sửa `STATUS`, `DECISIONS`, quy tắc và review/merge lên `main`. Các lane cập nhật Handoff/checklist của card mình. Prompt riêng tại [handoff](../handoff/).
 
