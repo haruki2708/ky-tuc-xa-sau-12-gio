@@ -1,5 +1,7 @@
 # T-209 — G0 kiểm kê và thử vật liệu
 
+**Sau D-083:** bản khai G1 đang dùng để kiểm `room407_backpack` là [backpack_g1_manifest.json](backpack_g1_manifest.json), schema `t210-g1-static-1`. `asset_manifest.json` bên dưới được giữ nguyên làm kiểm kê G0 lịch sử (15 mục), không phải đầu vào validator G1. [Brief balo](TRIPO_BACKPACK.md#hướng-mặt-trước) ghi basis ngoài schema. Đầu mối core/contract và lượt Godot hiện hành: **Claude Code (Opus 5.5), integrator**; các ghi chú Astra bên dưới thuộc lịch sử đã nhận D-082.
+
 Tiếp sau Review/D-080: [brief balo Tripo Studio](TRIPO_BACKPACK.md), [mapping/mount chuông/cleanup và yêu cầu gửi Astra](REVIEW_D080.md). G0 dưới đây giữ làm mốc lịch sử; không tái tạo bộ ảnh. Astra đã nhận T-207, là đầu mối core/contract hiện hành.
 
 > **D-080 ngày 11/10:** nhà cung cấp mới là **Tripo AI**; đọc [hướng chuyển đổi](../../docs/handoff/TRIPO_AI_CHUYEN_DOI_2026-10-11.md). Nội dung G0 dưới đây ghi công cụ/kết quả trước khi đổi provider; không áp dụng giá/quyền/API Meshy sang Tripo. Studio thủ công không cần key; API dùng ví riêng. Chưa có Tripo asset hoặc transport live.
