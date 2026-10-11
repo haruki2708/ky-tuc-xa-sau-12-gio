@@ -1,6 +1,8 @@
 # Prompt bàn giao — Lane F (Âm thanh, tiếp nhận Lane E)
 
-> **D-079, 11/10:** G0 đã review/ghép. Khi tiếp tục, fetch/rebase main chứa D-079 rồi đọc Review của card và [yêu cầu G1](REVIEW_G0_2026-10-11.md); không làm lại G0 theo đoạn prompt cũ. Đây là phần tiếp của gói đã giao, chưa mở Meshy trả phí hoặc production.
+> **D-080, 11/10:** dùng **Tripo AI thay Meshy**. Studio thủ công ưu tiên cho mẫu đầu; API dùng ví riêng. Đọc [cập nhật provider](TRIPO_AI_CHUYEN_DOI_2026-10-11.md), tiếp tục gói hiện có và giữ kết quả G0.
+
+> **D-079, 11/10:** G0 đã review/ghép. Khi tiếp tục, fetch/rebase main chứa D-079 rồi đọc Review của card và [yêu cầu G1](REVIEW_G0_2026-10-11.md); không làm lại G0 theo đoạn prompt cũ. Đây là phần tiếp của gói đã giao, chưa mở Tripo AI trả phí hoặc production.
 
 **10/10/2026, D-078:** chủ dự án cho lane E nghỉ vô thời hạn và chỉ định tài khoản GPT Plus mới làm lane F, tiếp nhận toàn bộ vai trò âm thanh của E. Task hiện tại **T-212**, giữ nguyên nội dung và trạng thái ready/G0. Astra điều phối tạm 10–11/10, Opus 5.5 ở máy nhận lại sau đó.
 
@@ -23,18 +25,20 @@ Chỉ làm trong D:\GAME_WORK\lane-f; không sửa D:\GAME_DEMO hoặc workspace
    Nếu đã có thư mục, kiểm đúng repo và git status; giữ mọi thay đổi đang có, không clone đè.
    git fetch origin. Nhánh: lane-f/T-212-graphics-audio-anchors.
    Nếu local đã có thì switch và pull --ff-only; nếu chỉ origin có thì tạo tracking branch.
-   Nếu chưa có thì tạo từ origin/main có D-078; không tạo/sửa nhánh lane-e/T-212.
+   Nếu chưa có thì tạo từ origin/main có D-080; không tạo/sửa nhánh lane-e/T-212.
+   Rebase an toàn lên origin/main có D-080, giữ mọi thay đổi cục bộ.
    Nếu thấy remote E có thay đổi T-212 chưa ghép, báo integrator review trước để tránh làm trùng.
    Không tự sao chép workspace E hoặc cherry-pick thay đổi chưa review.
-2. Đọc AGENTS.md, docs/STATUS.md, D-078 trong docs/DECISIONS.md,
+2. Đọc AGENTS.md, docs/STATUS.md, D-078/D-080 trong docs/DECISIONS.md,
    docs/design/GRAPHICS_UPGRADE_PLAN.md, docs/tasks/T-212-graphics-audio-anchors.md,
+   docs/handoff/TRIPO_AI_CHUYEN_DOI_2026-10-11.md,
    docs/SETTINGS.md và mục 4 của docs/handoff/lane-f.md để tiếp nhận âm thanh cũ.
-3. Làm G0 ngay: khảo sát nguồn âm/marker, chuẩn bị mẫu chuông và fixture nghe;
-   gửi đầu ra cụ thể vào Handoff để integrator/web chốt G1.
+3. G0 đã ghép D-079. Đọc Review card và REVIEW_G0_2026-10-11.md; tiếp tục G1.
+   Giữ mẫu âm đã bàn giao, không làm lại G0 khi đổi dịch vụ tạo model.
    Những bước sau phụ thuộc G1/G2 chỉ làm khi điều kiện trong card đủ; không tự đoán API/setting.
    Chỉ sửa đúng vùng âm thanh và Handoff/checklist T-212. Giữ luật, timing và lời thoại.
    Core nối stream/sự kiện, A/B cung cấp marker; gửi yêu cầu ngoài phạm vi qua Handoff.
-4. Meshy chưa được xác nhận mua/kết nối/ngân sách: không tiêu credit, không cài MCP/plugin.
+4. Tripo AI chưa được xác nhận gói/đã mua/ngân sách; Studio/API tách credit: không tiêu credit, không cài MCP/plugin.
    Không chạy bot chương 3–4 hoặc FPS. Phần chuẩn bị không cần chờ các quyền này.
    Không đổi tác giả/nguồn/license asset cũ từ E sang F; chỉ ghi F cho đóng góp mới của bạn.
 5. Bàn giao từng phần bằng commit nhỏ “T-212: ...”; chưa ghi cả gói done khi mới xong G0.
@@ -72,4 +76,4 @@ Chạy full test/check, cập nhật Handoff và push nhánh; nêu rõ phần ch
 - `docs/SETTINGS.md`: D ghi cấu hình; F đọc và áp dụng phần âm thanh thuộc phạm vi. Không tự sửa key/default chung.
 - Phần nghe thử còn mở xem STATUS: âm lượng/giọng chưa được chủ dự án nghe không coi là đã nghiệm thu. Chủ dự án thích âm nhỏ; gửi fixture và hướng dẫn nghe cụ thể.
 
-Việc tạo prompt này chưa khởi chạy phiên F, chưa clone workspace và chưa triển khai T-212. F tự ghi kết quả thật sau khi nhận việc.
+D-079 đã nhận G0 của F; trạng thái hiện hành xem Handoff/Review T-212 và STATUS. D-080 chỉ cập nhật prompt, chưa khởi chạy lượt G1 thay cho F.

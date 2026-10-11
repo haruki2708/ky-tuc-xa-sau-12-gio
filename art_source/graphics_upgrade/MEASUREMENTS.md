@@ -1,5 +1,7 @@
 # Số đo G0 — T-209
 
+> **D-080 ngày 11/10:** nhà cung cấp mới là **Tripo AI**; đọc [hướng chuyển đổi](../../docs/handoff/TRIPO_AI_CHUYEN_DOI_2026-10-11.md). Nội dung G0 dưới đây ghi công cụ/kết quả trước khi đổi provider; không áp dụng giá/quyền/API Meshy sang Tripo. Studio thủ công không cần key; API dùng ví riêng. Chưa có Tripo asset hoặc transport live.
+
 Nguồn scene ở `e3ed54a`. `measure_assets.gd` đo các PackedScene ngoài cây gameplay bằng Godot 4.7.2; RESULT: graphics inventory 13 assets measured PASS. Báo cáo máy: [measured_assets.json](measured_assets.json).
 
 | ID | Bounds cục bộ (m) | Tam giác gộp | Material riêng |
@@ -22,7 +24,7 @@ Nguồn scene ở `e3ed54a`. `measure_assets.gd` đo các PackedScene ngoài câ
 
 Bounds lấy trong hệ cục bộ root mục kiểm kê, trước khi áp transform của root; vị trí cộng dồn, scale, rotation và kích thước texture albedo nằm trong JSON. Đây là số đo serialized/off-tree: vật liệu sàn/tường do room407.gd gán trong _ready không được tính vào danh sách texture của probe. Fixture khôi phục riêng ba binding này khi render.
 
-Balo hiện hành chỉ 96 tam giác, bounds 0.29 × 0.45636 × 0.30274 m. Đây là mẫu đề xuất cho một lượt Meshy sau khi được cấp quyền; không có GLB mới hoặc tác vụ Meshy nào trong G0.
+Balo hiện hành chỉ 96 tam giác, bounds 0.29 × 0.45636 × 0.30274 m. Đây là mẫu đề xuất cho Tripo từ D-080 sau khi được cấp quyền; không có GLB mới hoặc tác vụ Meshy nào trong G0.
 
 Pilot thêm bốn vật liệu dùng 12 map 256², tổng file PNG 540.202 byte; không thêm mesh. Chưa tuyên bố budget gần chân thực đạt, chưa đo bộ nhớ GPU/FPS. Cần C/web thống nhất phép đếm surface/material và biến thể ở G1.
 

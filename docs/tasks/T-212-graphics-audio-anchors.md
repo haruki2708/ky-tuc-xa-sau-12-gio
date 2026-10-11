@@ -1,4 +1,7 @@
 # T-212 — Âm thanh theo model mới và chuông báo cháy
+
+> **D-080, 11/10:** chuyển sang **Tripo AI**; giữ G0 đã ghép và task/nhánh hiện có. Đọc [hướng chuyển đổi](../handoff/TRIPO_AI_CHUYEN_DOI_2026-10-11.md). Handoff/checklist G0 bên dưới là lịch sử; chưa có Tripo asset hoặc client live.
+
 - Lane: F | Trạng thái: **G0 đã review/ghép (D-079); G1 tiếp tục, toàn gói chưa done** | Agent: lane F, tài khoản GPT Plus mới do chủ dự án chỉ định (D-078)
 - Nhánh: `lane-f/T-212-graphics-audio-anchors`, từ `origin/main` có D-078; workspace riêng `D:\GAME_WORK\lane-f`.
 - Phụ thuộc: D-076/D-077/D-078; G0 độc lập, marker G1 với A/B/web, nối core sau T-207/T-209.
@@ -99,3 +102,8 @@ Ba test Godot mới đều PASS; đã giữ metadata `.uid`/`.import` do Godot s
 - Phạm vi diff đạt; không nới test, không đổi gameplay/default. Không sửa code lane trong lượt review này.
 - Full Windows test/check bản ghép và kiểm `--t202-integration` là điều kiện trước commit. Kết quả thực/thời điểm/log ở message commit `D-079`; không dùng số test lane riêng thay kết quả tích hợp.
 - Đọc [báo cáo chung và yêu cầu G1](../handoff/REVIEW_G0_2026-10-11.md), làm phần Review của lane trên nhánh hiện có sau fetch/rebase; không tự dùng contract G0 như API production đã chốt. Chưa chạy Meshy trả phí hoặc FPS/bot.
+
+### 11/10/2026 — cập nhật D-080, Astra
+
+- Nhà cung cấp hiện hành: **Tripo AI**. Tiếp tục phần việc trong [hướng chuyển đổi](../handoff/TRIPO_AI_CHUYEN_DOI_2026-10-11.md); không làm lại G0 hoặc đổi source/credits lịch sử.
+- Tripo Studio/API tách ví; đường thủ công không cần client API. B/C cập nhật brief/metadata/QA đúng dịch vụ; A/D/F/web giữ ràng buộc gameplay đã review. Chưa cấp ngân sách/ngoại lệ license hoặc triển khai API live.

@@ -1,6 +1,7 @@
 @AGENTS.md
 
 ## Integrator notes (Claude)
+- D-080: chủ dự án chọn **Tripo AI thay Meshy**. Đọc `docs/handoff/TRIPO_AI_CHUYEN_DOI_2026-10-11.md`; Studio/API tách credit, ưu tiên Studio thủ công cho mẫu đầu. Chưa xác nhận gói/mua/ngân sách hoặc ngoại lệ license.
 - Hướng đồ họa và phân công hiện tại: D-076/D-077, `docs/design/GRAPHICS_UPGRADE_PLAN.md`, T-207 đến T-212. Giữ gameplay khi thay phần hiển thị.
 - D-078: lane E nghỉ vô thời hạn; lane F dùng tài khoản GPT Plus mới nhận toàn bộ vai trò âm thanh và T-212. Dùng `docs/handoff/lane-f.md`, workspace `D:\GAME_WORK\lane-f`, nhánh `lane-f/T-212-graphics-audio-anchors`; giữ nguyên lịch sử E.
 - Astra điều phối tạm 10–11/10/2026. Claude Code ở máy (Opus 5.5) nhận lại qua `docs/handoff/OPUS_5_5_NHAN_LAI_DIEU_PHOI.md` và nhật ký Astra. Claude web chỉ làm phạm vi được giao của T-207.

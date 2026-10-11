@@ -1,14 +1,17 @@
 # T-208 — Adapter model, animation và tương tác giữ nguyên gameplay
+
+> **D-080, 11/10:** chuyển sang **Tripo AI**; giữ G0 đã ghép và task/nhánh hiện có. Đọc [hướng chuyển đổi](../handoff/TRIPO_AI_CHUYEN_DOI_2026-10-11.md). Handoff/checklist G0 bên dưới là lịch sử; chưa có Tripo asset hoặc client live.
+
 - Lane: A | Trạng thái: **G0 đã review/ghép (D-079); G1 tiếp tục, toàn gói chưa done** | Agent: lane A
 - Nhánh: `lane-a/T-208-visual-gameplay-adapters`, từ `origin/main` có D-077.
 - Phụ thuộc: D-076/D-077; G0 độc lập, API chung sau G1 T-207; model mẫu T-209 cho G2/G3.
 - Hạn đề xuất: gửi bản khảo sát/adapter mẫu trong phiên đầu; bàn giao nhân vật theo nhóm sau đó.
 
 ## Bối cảnh
-`game/scripts/entity/ch3_actor.gd` đã có `set_body`, `play_pose`, `head_position`; `$Visual/Fallback` và node `Head` cần giữ hoạt động. `manager.gd` tìm `BladeTip`/AnimationPlayer. Các wrapper `campus/actor.gd`, `ch1_models/corpse_body.gd` thuộc B đang dựa vào khớp Node3D; model Meshy có skeleton cần đường nối khác. Game có giường, cửa, bịt miệng, vạt giường và thanh sắt; model đẹp không được che tia ngắm hoặc thay khoảng cách gameplay.
+`game/scripts/entity/ch3_actor.gd` đã có `set_body`, `play_pose`, `head_position`; `$Visual/Fallback` và node `Head` cần giữ hoạt động. `manager.gd` tìm `BladeTip`/AnimationPlayer. Các wrapper `campus/actor.gd`, `ch1_models/corpse_body.gd` thuộc B đang dựa vào khớp Node3D; model Tripo AI có skeleton cần đường nối khác. Game có giường, cửa, bịt miệng, vạt giường và thanh sắt; model đẹp không được che tia ngắm hoặc thay khoảng cách gameplay.
 
 ## Việc
-1. **G0:** khảo sát consumer của visual trong vùng A: root/collider, pose, Head/BladeTip, điểm tay/miệng, timeline tấn công và death camera. Ghi bảng trong Handoff cho T-207/T-209. Dùng model hiện có để dựng thử adapter nhỏ; chưa cần Meshy.
+1. **G0:** khảo sát consumer của visual trong vùng A: root/collider, pose, Head/BladeTip, điểm tay/miệng, timeline tấn công và death camera. Ghi bảng trong Handoff cho T-207/T-209. Dùng model hiện có để dựng thử adapter nhỏ; chưa cần Tripo AI.
 2. **Sau G1:** triển khai giao diện adapter trong vùng A, chấp nhận visual cũ và visual rig mới; hỗ trợ thay thân nhiều lần, null/fallback, pause, reset scene/checkpoint. Movement/collision do root gameplay giữ, tránh root motion mới gây đi hai lần.
 3. **G2:** phối hợp B kiểm một sinh viên trước: đứng/đi/nằm/ngồi/quay đầu; sau đó quản lý và xác. Các pose đặc thù bịt miệng, máu, thức dậy, chém/vồ phải được ánh xạ rõ; không âm thầm bỏ pose thiếu. B tự sửa wrapper/clip vùng B theo hợp đồng.
 4. **G3/G4:** kiểm vật tương tác và toàn bộ nhân vật theo từng nhóm. Chỉnh offset hoặc attachment phục vụ model, giữ tầm ngắm, va chạm, tốc độ, AI, sát thương, cooldown và thời điểm luật. Thấy vấn đề do kích thước model thì báo B, không đổi bố cục để che lỗi.
@@ -20,7 +23,7 @@ Vùng A trong AGENTS §3: `game/scenes/player/`, `interaction/`, `entity/`, `gam
 - Test thay visual trên actor thật: root transform/collider không dịch ngoài chủ đích; `set_body` liên tiếp không nhân đôi model; Head theo đầu mới, fallback hợp lệ; pose/pause/reset đúng.
 - Với nhân vật có rig: marker theo bone khi chuyển động; timing sự kiện không nhân đôi, animation không chiếm movement AI. Có fixture lỗi marker/pose để chứng minh kiểm tra bắt đúng lỗi.
 - Kiểm `InteractRay` thật cho giường/cửa/đồ được thay; đi bộ đến vị trí tương tác. Chạy các test D-069…D-075 liên quan trên scene thật khi ghép dependency B.
-- Chạy toàn bộ `pwsh tools/test.ps1` và `pwsh tools/check.ps1`; chưa có model mới thì ghi rõ giới hạn, không báo đã tương thích Meshy.
+- Chạy toàn bộ `pwsh tools/test.ps1` và `pwsh tools/check.ps1`; chưa có model mới thì ghi rõ giới hạn, không báo đã tương thích Tripo AI.
 
 ## Checklist hoàn thành
 - [x] G0: bảng ràng buộc và prototype adapter (model hiện có, 5 test; chưa nối production)
@@ -96,3 +99,8 @@ Các đường dẫn bên dưới tính từ `game/`; kích thước là mét, t
 - Phạm vi diff đạt; không nới test, không đổi gameplay/default. Không sửa code lane trong lượt review này.
 - Full Windows test/check bản ghép và kiểm `--t202-integration` là điều kiện trước commit. Kết quả thực/thời điểm/log ở message commit `D-079`; không dùng số test lane riêng thay kết quả tích hợp.
 - Đọc [báo cáo chung và yêu cầu G1](../handoff/REVIEW_G0_2026-10-11.md), làm phần Review của lane trên nhánh hiện có sau fetch/rebase; không tự dùng contract G0 như API production đã chốt. Chưa chạy Meshy trả phí hoặc FPS/bot.
+
+### 11/10/2026 — cập nhật D-080, Astra
+
+- Nhà cung cấp hiện hành: **Tripo AI**. Tiếp tục phần việc trong [hướng chuyển đổi](../handoff/TRIPO_AI_CHUYEN_DOI_2026-10-11.md); không làm lại G0 hoặc đổi source/credits lịch sử.
+- Tripo Studio/API tách ví; đường thủ công không cần client API. B/C cập nhật brief/metadata/QA đúng dịch vụ; A/D/F/web giữ ràng buộc gameplay đã review. Chưa cấp ngân sách/ngoại lệ license hoặc triển khai API live.

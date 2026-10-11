@@ -1,5 +1,7 @@
 # T-210 — Công cụ G0, đề xuất chờ G1
 
+> **D-080 ngày 11/10:** nhà cung cấp mới là **Tripo AI**; đọc [hướng chuyển đổi](../../docs/handoff/TRIPO_AI_CHUYEN_DOI_2026-10-11.md). Nội dung G0 dưới đây ghi công cụ/kết quả trước khi đổi provider; không áp dụng giá/quyền/API Meshy sang Tripo. Studio thủ công không cần key; API dùng ví riêng. Chưa có Tripo asset hoặc transport live.
+
 Chỉ đọc asset có sẵn; không sửa model/scene, logic hoặc budget production. Python 3 dùng thư viện chuẩn; probe dùng Godot 4.7.2 đã cài. Không cần Meshy/key/plugin. Không có đường gọi mạng hoặc chế độ live trong công cụ Meshy này.
 
 ## Kiểm asset
@@ -39,7 +41,7 @@ Probe load GLB đã import, không thêm model vào SceneTree: không chạy `_r
 
 Exit: **1 FAIL**, **2 INCOMPLETE**, **0 chỉ khi mọi kiểm cần thiết đã xác minh**. Hiện G0 luôn giữ các mục chưa xác minh: quyền nguồn kiểm tay, animation bounds, texture GPU memory, tương tác/collision/nav và duyệt hình. Không dùng exit 2 làm PASS; các trường kiểm được nằm trong `measured`, sai kích thước/marker/budget là FAIL. Bounds là rest pose; chưa đo skin/animation, LOD, MultiMesh, VRAM hay FPS. Danh sách texture không là cam kết toàn bộ shader dependency.
 
-## Meshy offline: dự toán và mô phỏng resume
+## Ledger offline G0: tên file Meshy lịch sử
 
 ```powershell
 python -B tools/graphics/meshy_dry_run.py tools/graphics/sample_request.json
@@ -62,7 +64,7 @@ python -B tools/graphics/meshy_dry_run.py $request --fixture-ledger $ledger --ev
 
 State ghi atomic sau mỗi bước, lock độc quyền trên file; không reset ledger đã tồn tại. Có task ID thì resume tối đa 3 lần; timeout chưa có ID giữ `submission_unknown`, chặn submit lại và yêu cầu operator đối soát. Task failed vẫn có thể ghi credit đã tiêu. Số dư trước–sau lệch `consumed_credits` hoặc vượt khoản dự trù đưa vào `reconciliation_required`. Không tự chạy lượt thứ hai; trần lượt là giới hạn tối đa, không là quyền retry. Nếu tiến trình chết để lại `.lock`, operator kiểm không còn tiến trình giữ ledger trước khi bỏ lock; không tự bỏ lock.
 
-**Phần live chưa triển khai/chưa nghiệm thu:** trước G2 cần integrator chỉ định một operator, G1 chốt schema, chủ dự án cấp kết nối/trần chi/license. Sau đó mới đối chiếu tài liệu API chính thức và giá trong tài khoản, thêm transport/auth/balance/submit/poll/download. Đọc key từ `MESHY_API_KEY` chỉ tại adapter live; không đưa vào request/ledger/log. Lưu reservation trước POST; không retry POST khi mất response; lưu ID ngay khi nhận. Đối soát task/credit/số dư thật trước mọi lượt mới. Fixture không chứng minh Meshy đã kết nối hoặc resume API thật hoạt động.
+**Phần live chưa triển khai/chưa nghiệm thu:** trước G2 cần integrator chỉ định một operator, G1 chốt schema, chủ dự án cấp kết nối/trần chi/license. Sau đó mới đối chiếu tài liệu Tripo API/phiên bản và giá trong đúng ví API, thêm transport/auth/balance/submit/poll/download. Adapter live sau D-080 dùng quy ước dự kiến `TRIPO_API_KEY`; không dùng key Meshy cho Tripo, chưa có client live đọc key; không đưa vào request/ledger/log. Lưu reservation trước POST; không retry POST khi mất response; lưu ID ngay khi nhận. Đối soát task/credit/số dư thật trước mọi lượt mới. Fixture không chứng minh Meshy đã kết nối hoặc resume API thật hoạt động.
 
 ## Staging và lưu bền vững — quy trình chờ G2
 

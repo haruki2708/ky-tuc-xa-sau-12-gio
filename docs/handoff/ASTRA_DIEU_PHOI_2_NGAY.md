@@ -1,5 +1,7 @@
 # Bàn giao điều phối dự án cho Astra (thứ 7 10/10 – chủ nhật 11/10/2026)
 
+> **Cập nhật D-080 ngày 11/10:** chủ dự án chọn **Tripo AI thay Meshy**; xem [hướng hiện hành](TRIPO_AI_CHUYEN_DOI_2026-10-11.md). Các chi tiết Meshy trong bản ghi cũ chỉ còn là lịch sử, không áp dụng giá/credit/API/license sang Tripo. G0 đã nhận vẫn giữ hiệu lực.
+
 > **Cập nhật D-078 ngày 10/10:** lane E nghỉ vô thời hạn; tài khoản GPT Plus mới làm **lane F**, nhận toàn bộ vai trò âm thanh và T-212. Các hướng dẫn giao việc/giọng/âm thanh cho E bên dưới là bối cảnh cũ; từ nay dùng F và `docs/handoff/lane-f.md`. Đội hiện tại A/B/C/D/F + Claude web. Giữ nguyên workspace E, không sửa workspace F từ repo tích hợp; lịch sử task và credits của E không đổi.
 
 > **Cập nhật chiều 10/10 bởi Astra:** chủ dự án chuyển ưu tiên sang đồ họa gần chân thực và giao sáu gói T-207…T-212 (D-076/D-077). Xem `docs/design/GRAPHICS_UPGRADE_PLAN.md`, `docs/STATUS.md` và `docs/handoff/NHAT_KY_ASTRA_2026-10-10_11.md`. Nội dung dưới là mốc bàn giao ban đầu; số task/quyết định và mục “việc tiếp theo” cũ không thay thế cập nhật mới. Opus nhận lại qua `docs/handoff/OPUS_5_5_NHAN_LAI_DIEU_PHOI.md`. Quy định test/check, quyền sở hữu file, bot/FPS và vai trò hai ngày vẫn áp dụng.

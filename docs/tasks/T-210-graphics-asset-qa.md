@@ -1,16 +1,19 @@
-# T-210 — Công cụ asset/Meshy và QA đồ họa
+# T-210 — Công cụ asset/Tripo AI và QA đồ họa
+
+> **D-080, 11/10:** chuyển sang **Tripo AI**; giữ G0 đã ghép và task/nhánh hiện có. Đọc [hướng chuyển đổi](../handoff/TRIPO_AI_CHUYEN_DOI_2026-10-11.md). Handoff/checklist G0 bên dưới là lịch sử; chưa có Tripo asset hoặc client live.
+
 - Lane: C | Trạng thái: **G0 đã review/ghép (D-079); G1 tiếp tục, toàn gói chưa done** | Agent: lane C
 - Nhánh: `lane-c/T-210-graphics-asset-qa`, từ `origin/main` có D-077.
 - Phụ thuộc: D-076/D-077; G0 độc lập; schema G1 phối hợp web/B, cảnh mẫu G2 từ B.
 - Hạn đề xuất: phiên đầu có công cụ kiểm/dry-run dùng được; báo cáo hình ảnh/hiệu năng theo mốc sau.
 
 ## Bối cảnh
-Baseline main: 722 passed, check 0. Hình mới cần kiểm transform/marker/triangles/material/texture và tương tác; test logic không chứng minh hình ảnh đẹp/FPS. Meshy chưa mua/kết nối trong lúc giao card; không có quyền chi credit. B sở hữu dữ liệu asset, C sở hữu công cụ đọc/kiểm và quy trình tải.
+Mốc giao G0: 722 passed; main sau ghép D-079: 743 passed, check 0. Hình mới cần kiểm transform/marker/triangles/material/texture và tương tác; test logic không chứng minh hình ảnh đẹp/FPS. D-080 chọn Tripo AI; chưa xác nhận gói/đã mua hoặc cấp trần credit. B sở hữu dữ liệu asset, C sở hữu công cụ đọc/kiểm và quy trình tải.
 
 ## Việc
 1. **G0:** tạo công cụ và README dưới `tools/graphics/`; schema manifest đề xuất gồm asset ID, nguồn/license/AI, kích thước/pivot, file, task ID, budget, số đo, tình trạng duyệt. Cung cấp mẫu nhỏ trong tools; không sửa manifest production B. Gửi schema cho G1 trước khi dùng làm chuẩn bắt buộc.
 2. Công cụ kiểm đọc file thật: file tồn tại/định dạng, provenance bắt buộc, giới hạn file 10 MB, số tam giác sau import/triangulate, material/texture, scale và marker theo contract. Không gán PASS khi chưa đo được; thống kê cái nào unavailable. Giữ phân biệt cảnh prototype và production.
-3. Chuẩn bị client Meshy bằng REST hoặc mô tả kết nối đã có, **dry-run mặc định**. Không cài plugin/MCP, không gửi tác vụ trả phí. Đọc `MESHY_API_KEY` khi thật sự chạy; không log secret. Trước submit: ước tính công đoạn/trần, kiểm số dư; lưu task ID và trạng thái để resume; timeout không tự POST trùng. Giới hạn số retry/lượt và có sổ credit, cách kiểm chênh số dư/consumed_credits.
+3. Chuẩn bị schema/QA cho **Tripo Studio thủ công** trước; client **Tripo API** là phương án riêng, **dry-run mặc định**. Studio và API dùng ví riêng; C đối chiếu v3/model/giá chính thức trước triển khai transport. Giữ fixture G0 cũ và chuyển công cụ sang tên/cấu trúc không gắn Meshy; chưa tự nhận hỗ trợ Tripo live. Không cài plugin/MCP, không gửi tác vụ trả phí. `TRIPO_API_KEY` là tên biến dự kiến của dự án; chỉ đọc khi thật sự chạy adapter Tripo được giao; không log secret. Trước submit: ước tính công đoạn/trần, kiểm số dư; lưu task ID và trạng thái để resume; timeout không tự POST trùng. Giới hạn số retry/lượt và có sổ credit, cách kiểm chênh số dư/consumed_credits.
 4. Tải vào thư mục staging ngoài nguồn, kiểm file/đường dẫn và giữ metadata; artifact có thể là link tạm nên tải đủ file đã duyệt và hướng dẫn lưu bền vững. Không tự publish asset, không đặt file vào cảnh production; B xử lý và nhập.
 5. **G1/G2:** chuẩn bị góc chụp cố định, bảng hồi quy bốn chương và kiểm tia ngắm/đường đi trên scene thật. Kiểm công cụ bằng fixture cả thành công/thất bại/timeout/duplicate, không cần trả tiền để test client.
 6. **Khi chủ dự án cho phép riêng:** đo GPU thật 1080p Medium theo cấu hình chốt, ghi CPU/GPU/VRAM, mean/p95/max frame time, bộ nhớ và điều kiện. Giữ phép so 720p cũ tách riêng. Xem 0/20/40 xác khi công cụ/cảnh hỗ trợ, không tự chạy bot chương 3/4.
@@ -61,3 +64,8 @@ Checklist riêng G0 (không thay nghiệm thu toàn gói):
 - Phạm vi diff đạt; không nới test, không đổi gameplay/default. Không sửa code lane trong lượt review này.
 - Full Windows test/check bản ghép và kiểm `--t202-integration` là điều kiện trước commit. Kết quả thực/thời điểm/log ở message commit `D-079`; không dùng số test lane riêng thay kết quả tích hợp.
 - Đọc [báo cáo chung và yêu cầu G1](../handoff/REVIEW_G0_2026-10-11.md), làm phần Review của lane trên nhánh hiện có sau fetch/rebase; không tự dùng contract G0 như API production đã chốt. Chưa chạy Meshy trả phí hoặc FPS/bot.
+
+### 11/10/2026 — cập nhật D-080, Astra
+
+- Nhà cung cấp hiện hành: **Tripo AI**. Tiếp tục phần việc trong [hướng chuyển đổi](../handoff/TRIPO_AI_CHUYEN_DOI_2026-10-11.md); không làm lại G0 hoặc đổi source/credits lịch sử.
+- Tripo Studio/API tách ví; đường thủ công không cần client API. B/C cập nhật brief/metadata/QA đúng dịch vụ; A/D/F/web giữ ràng buộc gameplay đã review. Chưa cấp ngân sách/ngoại lệ license hoặc triển khai API live.

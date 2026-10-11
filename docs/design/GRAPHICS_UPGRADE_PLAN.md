@@ -1,6 +1,8 @@
-# Kế hoạch nâng đồ họa gần chân thực — D-076, D-077, D-078
+# Kế hoạch nâng đồ họa gần chân thực — D-076…D-080
 
-> **11/10, D-079:** đã nhận G0 cả sáu lane. Đọc [Review và bước G1](../handoff/REVIEW_G0_2026-10-11.md) cùng STATUS mới; G1 đạo cụ tĩnh ưu tiên balo, rig/settings còn pending. Chưa có Meshy asset hoặc đổi bản chơi; kết quả kiểm bản ghép nằm trong commit D-079.
+> **11/10, D-080:** chủ dự án chọn **Tripo AI thay Meshy**. Đọc [hướng chuyển đổi](../handoff/TRIPO_AI_CHUYEN_DOI_2026-10-11.md). Giữ G0 đã ghép; Studio thủ công là hướng mẫu đầu, API dùng ví riêng. Chưa xác nhận gói đã mua/ngân sách.
+
+> **11/10, D-079:** đã nhận G0 cả sáu lane. Đọc [Review và bước G1](../handoff/REVIEW_G0_2026-10-11.md) cùng STATUS mới; G1 đạo cụ tĩnh ưu tiên balo, rig/settings còn pending. Chưa có Tripo AI asset hoặc đổi bản chơi; kết quả kiểm bản ghép nằm trong commit D-079.
 
 Ngày: 10/10/2026. Người lập: Astra, integrator tạm thời 10–11/10; người tiếp nhận: **Claude Code ở máy, Opus 5.5**. Chủ dự án vẫn là người dùng, quyết định mỹ thuật và chơi thử.
 
@@ -8,7 +10,7 @@ Ngày: 10/10/2026. Người lập: Astra, integrator tạm thời 10–11/10; ng
 
 - Logic hiện tại về cơ bản đã ổn; ưu tiên tiếp theo là đồ họa. Hướng chọn: **gần chân thực, chấp nhận nặng và lâu hơn**.
 - Máy tham chiếu: **RTX 3050 Laptop**; máy hiện tại báo 4 GB VRAM và khoảng 16 GB RAM. 1080p/60 FPS Medium là **mục tiêu thử**, chưa đo hoặc cam kết đạt.
-- Chủ dự án dự định mua **Meshy Pro tối 10/10**. Chưa xác nhận đã mua/kết nối; chưa cấp ngân sách gọi API. Đề xuất thử 100 credit cho một asset cần được giao cụ thể trước khi chi.
+- **D-080 ngày 11/10:** chủ dự án đổi sang **Tripo AI**. Chưa xác nhận tên gói, đã mua hoặc trần chi. Ưu tiên Studio thủ công cho mẫu balo; API là phương án riêng. Không áp dụng dự toán 100 credit Meshy cũ; chỉ lập trần Tripo sau khi biết đúng ví và công đoạn.
 - Chủ dự án yêu cầu lập kế hoạch và giao sáu gói lớn, lưu Git để Opus tiếp nhận. **D-078:** lane E nghỉ vô thời hạn; tài khoản GPT Plus mới đảm nhiệm **lane F**, nhận toàn bộ vai trò âm thanh của E và T-212. Đội hiện tại: **A, B, C, D, F và Claude web**. Chủ dự án đã xác nhận hạn mức trước khi giao và trực tiếp chỉ định F thay E.
 - Gói việc này chuẩn bị và thực hiện nâng hình ảnh theo từng mốc. Không suy ra chương 3–4 đã được chơi tay hoàn chỉnh, không mở giai đoạn nối game/lưu xuyên chương D-059.
 
@@ -26,9 +28,9 @@ Toàn bộ game dự kiến 35–60 ngày công 3D/kỹ thuật; đây là ướ
 
 | Mốc | Việc được làm | Điều kiện đi tiếp |
 |---|---|---|
-| **G0 — Chuẩn bị ngay** | Sáu lane khảo sát, kiểm kê, đề xuất hợp đồng, tạo fixture/công cụ cục bộ; dùng model đang có hoặc nguồn hợp lệ. | Handoff có đường dẫn cụ thể, số đo và đề xuất, không chỉ ý tưởng. Không cần Meshy để hoàn thành phần này. |
+| **G0 — Chuẩn bị ngay** | Sáu lane khảo sát, kiểm kê, đề xuất hợp đồng, tạo fixture/công cụ cục bộ; dùng model đang có hoặc nguồn hợp lệ. | Handoff có đường dẫn cụ thể, số đo và đề xuất, không chỉ ý tưởng. Không cần Tripo AI để hoàn thành phần này. |
 | **G1 — Chốt hợp đồng kỹ thuật** | Web tổng hợp đầu ra A/B/C/D/F; integrator review node/API/manifest/settings, quyền sở hữu file và ngân sách thử. | Contract được ghép `main`, lane phụ thuộc rebase; phần chưa thống nhất được ghi rõ, không đoán. |
-| **G2 — Thử Meshy và phòng mẫu** | Khi có kết nối + ngân sách + giấy phép rõ: một người vận hành tạo model, B chuẩn hóa và dựng cảnh, A nối visual, C kiểm, D/F phối hợp. | Mẫu trong Godot có ảnh cùng camera, test đạt; người dùng xem và chọn hướng. FPS cần được phép chạy riêng. |
+| **G2 — Thử Tripo AI và phòng mẫu** | Khi có tài khoản phù hợp + ngân sách + giấy phép rõ: một người vận hành tạo model, B chuẩn hóa và dựng cảnh, A nối visual, C kiểm, D/F phối hợp. | Mẫu trong Godot có ảnh cùng camera, test đạt; người dùng xem và chọn hướng. FPS cần được phép chạy riêng. |
 | **G3 — Đưa mẫu vào cảnh chơi thật** | Thay từng nhóm nhỏ; tích hợp core theo contract, thử tương tác/đường đi/âm thanh. | Đạt chất lượng đã chọn, hồi quy bốn chương, dữ liệu hiệu năng khi được phép. Integrator mới duyệt chuyển mặc định. |
 | **G4 — Mở rộng** | Nhà B → nhân vật → khuôn viên → thư viện/bệnh viện, bằng các đợt nhỏ trong card hoặc card con mới. | Mỗi đợt có ngân sách, phạm vi, bằng chứng và review; không thay toàn trường một lần. |
 
@@ -40,8 +42,8 @@ Hợp đồng là điểm đồng bộ, không là lý do để mọi lane ngồ
 |---|---|---|---|
 | [T-207](../tasks/T-207-graphics-core-contract.md) | **Claude web / core** | Lập bảng ràng buộc visual–logic, hợp đồng với A/B/C/D/F, danh sách chỗ core đang tự tạo hình. | Tích hợp model/âm thanh mới vào core theo hợp đồng, giữ hành vi; không tự làm asset B. |
 | [T-208](../tasks/T-208-visual-gameplay-adapters.md) | **Lane A** | Kiểm root/collider/pose/marker và làm adapter mẫu với asset sẵn có. | Nối rig/animation mới, kiểm đồ tương tác và nhân vật; không đổi AI/độ khó. |
-| [T-209](../tasks/T-209-realistic-art-pilot.md) | **Lane B** | Kiểm kê, bảng tham chiếu, kích thước/pivot; cảnh mẫu vật liệu/ánh sáng riêng. | Pipeline Meshy–Blender, phòng 407/hành lang, bộ nhân vật, các khu còn lại. |
-| [T-210](../tasks/T-210-graphics-asset-qa.md) | **Lane C** | Kiểm asset/manifest và công cụ Meshy mặc định dry-run; chuẩn bị góc chụp/checklist. | Ghi credit, kiểm kết quả tải, hồi quy và báo cáo hiệu năng khi được phép. |
+| [T-209](../tasks/T-209-realistic-art-pilot.md) | **Lane B** | Kiểm kê, bảng tham chiếu, kích thước/pivot; cảnh mẫu vật liệu/ánh sáng riêng. | Pipeline Tripo AI–Blender, phòng 407/hành lang, bộ nhân vật, các khu còn lại. |
+| [T-210](../tasks/T-210-graphics-asset-qa.md) | **Lane C** | Kiểm asset/manifest và công cụ Tripo AI mặc định dry-run; chuẩn bị góc chụp/checklist. | Ghi credit, kiểm kết quả tải, hồi quy và báo cáo hiệu năng khi được phép. |
 | [T-211](../tasks/T-211-graphics-settings-readability.md) | **Lane D** | Khảo sát menu/settings, độ sáng, UI/giấy/biển đọc được; đề xuất contract setting. | Áp dụng preset đã chốt, chuyển trải nghiệm cài đặt khỏi PS1, kiểm vi/en. |
 | [T-212](../tasks/T-212-graphics-audio-anchors.md) | **Lane F** (tiếp nhận E) | Kiểm marker âm thanh và làm mẫu chuông báo cháy riêng, âm lượng nhỏ. | Gắn âm theo model/rig mới, kiểm tiếng đúng vật liệu và người dùng nghe thử. |
 
@@ -75,21 +77,21 @@ Godot đang dùng Forward+. Shader PS1 hiện chưa nhận bộ PBR đầy đủ
 
 Mục tiêu thử 1080p/60 FPS Medium trên RTX 3050 Laptop 4 GB. Báo cáo phải ghi CPU/GPU, renderer, độ phân giải render thật, FPS trung bình/p95 và bộ nhớ. Các báo cáo 720p cũ không chứng minh 1080p đạt. Chưa được phép chạy FPS/bot trong gói lập kế hoạch này; C chỉ chuẩn bị công cụ và quy trình.
 
-## 7. Meshy, giấy phép và ngân sách
+## 7. Tripo AI, giấy phép và ngân sách
 
-- Hướng vận hành: B viết brief theo tình huống game; một operator cục bộ do integrator chỉ định chạy Meshy bằng công cụ C hoặc MCP đã cấu hình. Web không giữ khóa và không tiêu credit.
-- Pro có API; MCP/API vẫn tiêu credit, còn phần AI điều phối dùng hạn mức Codex/Claude đang đăng nhập. Dịch vụ chưa được kết nối trong phiên lập kế hoạch này.
-- C phải có chế độ **dry-run mặc định**, ước tính từng công đoạn, giới hạn tổng và số lần thử; lưu task ID để tiếp tục thay vì gửi lại tác vụ đang chạy. Timeout không đồng nghĩa chưa bị tính tiền; không tự thử lại POST tạo tác vụ khi chưa biết trạng thái.
-- Dùng biến môi trường/secret cục bộ `MESHY_API_KEY`, không in, không commit, không gửi qua chat/cloud. Không cài thêm MCP/plugin trong task này; có thể chuẩn bị client REST. Tác vụ trả phí chỉ chạy sau khi chủ dự án đã cấp kết nối và trần chi cụ thể.
-- Chính sách repo vẫn CC0/CC-BY. Pro Private **không tự động** thuộc hai loại này; nếu muốn dùng Private, cần quyết định ngoại lệ riêng. Trước đó dùng nguồn CC0 hoặc model có giấy phép CC-BY rõ ràng. Không coi việc dự định mua Pro là duyệt ngoại lệ.
-- Lưu tác giả/công cụ AI, quyền ảnh đầu vào, model ID, ngày tạo, license, thông số, credit, số tam giác/material/texture và người duyệt; ghi `CREDITS.md`. Model tải từ API cần lưu cục bộ bền vững; không coi link tạm hoặc `build/` là kho duy nhất.
+- **Studio thủ công:** B cung cấp brief và số đo, chủ dự án tạo trên web trong trần đã giao, tải GLB/texture. B chuẩn hóa bằng Blender; C kiểm file/metadata. Không cần API key hoặc plugin để đi đường này.
+- **API riêng:** Studio và API không dùng chung credit. Chỉ chuẩn bị/chạy adapter Tripo khi được giao phương án API, ví và trần chi; không dùng quyền mua Studio để suy ra ngân sách API. Một operator cục bộ; web không giữ key hoặc tiêu credit.
+- C giữ dry-run, reservation trước submit, task ID để resume, giới hạn lượt và đối soát credit. Metadata phải phân biệt provider, Studio/API, model version, task/model ID, ngày, thông số, credit thực và giấy phép. Timeout chưa biết trạng thái không được tự POST lại.
+- `tools/graphics/meshy_dry_run.py` là fixture G0 lịch sử, chưa có transport cho bất kỳ dịch vụ nào. C chuyển công cụ sang tên/cấu trúc phù hợp trong T-210; không đổi tên rồi tự nhận Tripo API đã chạy. `TRIPO_API_KEY` là quy ước biến môi trường dự kiến, chưa có client đọc; không in/commit/gửi chat hoặc cloud. Không cài MCP/plugin trong đợt chuyển kế hoạch.
+- Chính sách repo giữ CC0/CC-BY; quyền thương mại Paid không tự gắn nhãn này. Lưu điều khoản/gói tại lúc tạo và quyền ảnh đầu vào, rồi chốt hồ sơ license trước nhập. Không dùng model Free làm asset thương mại theo suy diễn từ bài quảng cáo cũ; D-080 chưa cấp ngoại lệ.
+- Lưu nguồn bền vững trong vùng B, CREDITS và metadata; `build/`/URL tạm không phải kho bàn giao. Giữ tác giả/license của asset CC0 cũ, chưa ghi credits Tripo khi chưa nhập asset thực.
 
-Nguồn khảo sát ngày 10/10: [gói Pro](https://help.meshy.ai/en/articles/12062933-which-meshy-plan-is-right-for-you-free-vs-pro-vs-premium-vs-ultra), [credit API](https://help.meshy.ai/en/articles/16815622-how-many-credits-does-each-meshy-api-task-cost), [kết nối agent](https://docs.meshy.ai/en/api/ai), [MCP và credit](https://www.meshy.ai/tutorials/meshy-mcp-guide), [quyền thương mại](https://help.meshy.ai/en/articles/9992001-can-i-use-meshy-assets-commercially-license-copyright-explained), [Poly Haven CC0](https://polyhaven.com/license). Giá/tính năng phải đối chiếu lại trong tài khoản trước khi đặt tác vụ. Bản nghiên cứu trước phân công: [MESHY_PRO_2026-10-10.md](../research/MESHY_PRO_2026-10-10.md).
+Nguồn đã kiểm ngày 11/10: [Studio và API](https://www.tripo3d.ai/help/api-plugins/tripo-studiotripo-api), [giá Studio](https://www.tripo3d.ai/pricing), [API pricing](https://developers.tripo3d.ai/en/pricing), [quyền thương mại](https://www.tripo3d.ai/help/privacy-policy/how-to-use-tripo-models-commercially), [điều khoản](https://www.tripo3d.ai/terms). Xem [nghiên cứu Tripo](../research/TRIPO_AI_2026-10-11.md); giá cuối cùng theo đúng tài khoản/model/công đoạn tại lúc chạy. Nghiên cứu Meshy 10/10 chỉ còn là lịch sử.
 
 ## 8. Thứ tự thực hiện, review và bàn giao
 
-1. **Trước tối 10/10:** gửi sáu prompt §1. Tất cả làm G0; web ưu tiên đề xuất contract sớm, chưa viết lại director hàng loạt. Không cần chờ mua Meshy.
-2. **Tối 10/10 khi chủ dự án sẵn sàng:** xác nhận tài khoản và cơ chế license; kết nối cục bộ, kiểm số dư, giao trần credit. Chạy một đạo cụ rồi nhập Godot; chưa tạo toàn bộ nhân vật/trường học.
+1. **G0 đã ghép D-079:** sáu lane đọc Review; không làm lại G0. Cập nhật provider Tripo theo D-080 và tiếp tục G1 trong card/nhánh hiện có.
+2. **Khi chủ dự án sẵn sàng:** xác nhận gói Tripo, license, ví Studio/API và trần credit. Sau G1 đạo cụ tĩnh, thử một balo rồi nhập Godot; không bắt mẫu thủ công chờ API, chưa tạo hàng loạt.
 3. **Trong 11/10:** nhận Handoff, review contract trước; sau đó công cụ C, adapter A, mẫu B, phần D/F và cuối cùng wiring core. Những phần làm độc lập có thể review trước; không ghép caller trước dependency bắt buộc.
 4. Mỗi lần tích hợp: kiểm diff theo phạm vi, test trên cảnh thật, toàn bộ `tools/test.ps1` + `tools/check.ps1`; thêm kiểm ngược cho lỗi/hợp đồng mới khi phù hợp. Không viết test chỉ để xác nhận con số tự đặt.
 5. Asset/model mới phải được ngắm và tiếp cận bằng `InteractRay`/đi bộ thật. Kiểm cửa 407/giường, bình cứu hỏa, `FireAlarm1F`, đường 207→203, đường khuôn viên và thanh chắn chương 4. Âm thanh cần người dùng nghe.
@@ -98,7 +100,7 @@ Nguồn khảo sát ngày 10/10: [gói Pro](https://help.meshy.ai/en/articles/12
 
 ## 9. Điều kiện nghiệm thu từng đợt
 
-- Hình ảnh trong game được duyệt; có ảnh cùng góc trước/sau, không chỉ screenshot từ Meshy.
+- Hình ảnh trong game được duyệt; có ảnh cùng góc trước/sau, không chỉ screenshot từ Tripo.
 - Transform, collider, marker, API và timing khớp; không thay kết quả luật/chết/checkpoint.
 - Nguồn/license rõ, số đo asset có báo cáo; full test/check đạt, lỗi sẵn có ghi riêng.
 - Performance chỉ ghi đạt khi đo đúng điều kiện được phép. Chưa đo/chưa nghe/chưa chơi tay phải ghi rõ.

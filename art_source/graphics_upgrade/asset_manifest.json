@@ -187,7 +187,7 @@
         "credits": "art_source/CREDITS.md",
         "license": "CC0-1.0"
       },
-      "planned_route": "self_authored_preferred_or_meshy_after_G2",
+      "planned_route": "self_authored_preferred_or_tripo_after_G2",
       "status": "G0 draft; chưa duyệt G1"
     },
     {
@@ -212,7 +212,7 @@
         "credits": "art_source/CREDITS.md",
         "license": "CC0-1.0"
       },
-      "planned_route": "meshy_candidate_only_after_budget_license",
+      "planned_route": "tripo_candidate_only_after_budget_license",
       "status": "G0 draft; chưa duyệt G1"
     },
     {
@@ -318,7 +318,7 @@
         "credits": "art_source/campus/CREDITS.md",
         "license": "CC0-1.0"
       },
-      "planned_route": "meshy_candidate_only_after_budget_license",
+      "planned_route": "tripo_candidate_only_after_budget_license",
       "status": "G0 draft; chưa duyệt G1"
     },
     {

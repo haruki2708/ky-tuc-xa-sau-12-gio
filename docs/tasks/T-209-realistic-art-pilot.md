@@ -1,16 +1,19 @@
 # T-209 — Pipeline mỹ thuật và phòng 407 gần chân thực
+
+> **D-080, 11/10:** chuyển sang **Tripo AI**; giữ G0 đã ghép và task/nhánh hiện có. Đọc [hướng chuyển đổi](../handoff/TRIPO_AI_CHUYEN_DOI_2026-10-11.md). Handoff/checklist G0 bên dưới là lịch sử; chưa có Tripo asset hoặc client live.
+
 - Lane: B | Trạng thái: **G0 đã review/ghép (D-079); G1 tiếp tục, toàn gói chưa done** | Agent: lane B
 - Nhánh: `lane-b/T-209-realistic-art-pilot`, từ `origin/main` có D-077.
-- Phụ thuộc: D-076/D-077; G0 không cần Meshy. G1 theo T-207, rig theo T-208, manifest/công cụ T-210, settings T-211, marker âm T-212.
+- Phụ thuộc: D-076/D-077; G0 không cần Tripo AI. G1 theo T-207, rig theo T-208, manifest/công cụ T-210, settings T-211, marker âm T-212.
 - Hạn đề xuất: phiên đầu gửi kiểm kê/ảnh tham chiếu/pilot vật liệu; mở rộng sau khi phòng mẫu được duyệt.
 
 ## Bối cảnh
 Tầng 4/phòng 407 dùng chung cả bốn chương; map và đường đi đã sửa qua T-203/T-206, D-058/D-062/D-075. Godot dùng Forward+, shader PS1 chủ yếu albedo nearest. Khuôn viên đã chia cụm/giới hạn hiển thị; không chạy generator cũ làm mất sửa chữa. Nhân vật B đang tự dựng khớp, cần phối hợp adapter A.
 
 ## Việc và các phần có thể chia nhỏ
-1. **G0 — kiểm kê và mẫu nhìn:** tạo `art_source/graphics_upgrade/README.md`, `asset_manifest.json` (bản nháp tới G1), `CREDITS.md` và brief/prompt tiếng Anh cho asset. Ghi mỗi món: scene đang dùng, kích thước/pivot/hướng đo được, khoảng cách nhìn, tương tác/marker phải giữ, nguồn/license, tự dựng hay Meshy. Ưu tiên phòng 407/hành lang và bình cứu hỏa/nút+chuông báo cháy.
+1. **G0 — kiểm kê và mẫu nhìn:** tạo `art_source/graphics_upgrade/README.md`, `asset_manifest.json` (bản nháp tới G1), `CREDITS.md` và brief/prompt tiếng Anh cho asset. Ghi mỗi món: scene đang dùng, kích thước/pivot/hướng đo được, khoảng cách nhìn, tương tác/marker phải giữ, nguồn/license, tự dựng hay Tripo AI. Ưu tiên phòng 407/hành lang và bình cứu hỏa/nút+chuông báo cháy.
 2. Tạo cảnh thử riêng `game/scenes/levels/graphics_pilot/` dùng mesh hiện có/CC0 để so vật liệu và ánh sáng. Thử tường, gạch, sắt, vải; tắt PS1 trong cảnh thử nhưng giữ độ sáng hoạt động. Chụp trước/sau cùng góc bằng renderer thật; không đổi mặc định bốn chương trước G3.
-3. **G2 — pipeline Meshy/Blender:** sau khi operator nhận ngân sách, thử một đạo cụ; kiểm mặt sau, normals, UV, texture, kích thước, pivot, vật liệu, LOD, import GLB. Mẫu thử đề xuất: balo, giày, bình cứu hỏa, quạt; không cần tạo cả bốn trong một lần hoặc vượt trần được giao. Ghi credit và công sửa từ log C, đánh giá giá trị trước khi tạo thêm.
+3. **G2 — pipeline Tripo AI/Blender:** sau khi operator nhận ngân sách, thử một đạo cụ; kiểm mặt sau, normals, UV, texture, kích thước, pivot, vật liệu, LOD, import GLB. Mẫu thử đề xuất: balo, giày, bình cứu hỏa, quạt; không cần tạo cả bốn trong một lần hoặc vượt trần được giao. Ghi credit và công sửa từ log C, đánh giá giá trị trước khi tạo thêm.
 4. **G2 — phòng mẫu và một nhân vật:** hoàn thiện module giường/cửa/tủ đúng kích thước bằng Blender, ánh sáng phòng 407 + 10–15 m hành lang. Dựng một sinh viên với rig/clip/marker theo contract A; kiểm đứng/đi/nằm/ngồi/quay đầu. Dùng shader PBR phù hợp, không đưa texture 4K/8K hàng loạt vào game.
 5. **G3/G4 — sản xuất theo đợt:** phòng/tầng 4 → phần còn lại nhà B → quản lý/ba bạn/đồng đội/xác → vườn/sân/cổng/nhà ăn → thư viện/bệnh viện. Cùng bộ vật liệu và tỉ lệ; biến thể dùng lại mesh. Mỗi nhóm có ảnh và test rồi mới merge.
 
@@ -60,3 +63,8 @@ Vùng B: `art_source/`, `game/assets/models/`, `game/assets/textures/`, `game/sc
 - Phạm vi diff đạt; không nới test, không đổi gameplay/default. Không sửa code lane trong lượt review này.
 - Full Windows test/check bản ghép và kiểm `--t202-integration` là điều kiện trước commit. Kết quả thực/thời điểm/log ở message commit `D-079`; không dùng số test lane riêng thay kết quả tích hợp.
 - Đọc [báo cáo chung và yêu cầu G1](../handoff/REVIEW_G0_2026-10-11.md), làm phần Review của lane trên nhánh hiện có sau fetch/rebase; không tự dùng contract G0 như API production đã chốt. Chưa chạy Meshy trả phí hoặc FPS/bot.
+
+### 11/10/2026 — cập nhật D-080, Astra
+
+- Nhà cung cấp hiện hành: **Tripo AI**. Tiếp tục phần việc trong [hướng chuyển đổi](../handoff/TRIPO_AI_CHUYEN_DOI_2026-10-11.md); không làm lại G0 hoặc đổi source/credits lịch sử.
+- Tripo Studio/API tách ví; đường thủ công không cần client API. B/C cập nhật brief/metadata/QA đúng dịch vụ; A/D/F/web giữ ràng buộc gameplay đã review. Chưa cấp ngân sách/ngoại lệ license hoặc triển khai API live.

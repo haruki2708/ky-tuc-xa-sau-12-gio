@@ -86,7 +86,7 @@ Mọi lane đều được sửa: task card của mình (`docs/tasks/T-xxx*.md`,
   - Texture 64–256 px, lọc nearest.
   - Mô hình ít đa giác: đồ lớn dưới 1500 tam giác, đồ nhỏ dưới 500.
   - D-076 chuyển hướng mỹ thuật sang gần chân thực. Prototype riêng T-209 được khảo sát ngân sách mới theo kế hoạch, không tự thay mặc định cảnh chơi hoặc nới test production. G1/G2 chốt hợp đồng và số đo trước khi integrator áp dụng tiêu chuẩn mới. Các kiểm tra gameplay/collision vẫn giữ hiệu lực.
-- **Meshy (D-077):** G0 làm không cần tài khoản. Chỉ chạy tác vụ trả phí sau khi chủ dự án đã cấp kết nối và ngân sách; một operator cục bộ, có log credit/task ID, không đặt khóa trong Git/chat. Pro Private không tự động là CC0/CC-BY; ngoại lệ license vẫn cần quyết định riêng. Không cài MCP/plugin theo suy diễn từ việc giao card.
+- **Tripo AI (D-080, thay Meshy):** G0 giữ nguyên; ưu tiên tạo mẫu trên Tripo Studio rồi B xử lý GLB/Blender/Godot. Studio và API dùng credit riêng, thuê bao Studio không cấp ngân sách API. Chỉ chạy tác vụ trả phí khi có tài khoản/ví phù hợp và trần chi cụ thể; một operator, ghi credit/task ID, không đặt khóa trong Git/chat. Quyền thương mại Paid không tự là CC0/CC-BY; giữ chính sách license hiện hành. Không cài MCP/plugin theo suy diễn từ việc đổi dịch vụ. Xem `docs/handoff/TRIPO_AI_CHUYEN_DOI_2026-10-11.md`.
 - **File nhị phân:** đi qua Git LFS (xem `.gitattributes`), mỗi file tối đa 10 MB. Commit cả các file `.import` và `.uid` do Godot sinh ra.
 - **Không được:**
   - thêm plugin hoặc addon,

@@ -1,6 +1,8 @@
 # Brief và prompt T-209 — G0
 
-Các đoạn tiếng Anh dưới đây là brief theo card, **chưa gửi Meshy**. Không phải lệnh/API hoặc cam kết budget. Dùng số đo của `measured_assets.json` và transform `asset_manifest.json`; nếu chưa có kết quả đo thì không tạo asset phụ thuộc. Mẫu đầu đề xuất balo vì không có bản lề/rig; bình cứu hỏa là mẫu thứ hai có tương tác để kiểm contract khi G1/G2 đủ.
+> **D-080:** provider cho mẫu tiếp theo là Tripo AI; dùng Studio thủ công trước, API là phương án ví riêng. Các số đo/ràng buộc G0 và trần balo D-079 giữ nguyên. Xem [hướng chuyển đổi](../../docs/handoff/TRIPO_AI_CHUYEN_DOI_2026-10-11.md).
+
+Các đoạn tiếng Anh dưới đây là brief theo card, **chưa gửi dịch vụ; từ D-080 dùng Tripo Studio**. Không phải lệnh/API hoặc cam kết budget. Dùng số đo của `measured_assets.json` và transform `asset_manifest.json`; nếu chưa có kết quả đo thì không tạo asset phụ thuộc. Mẫu đầu đề xuất balo vì không có bản lề/rig; bình cứu hỏa là mẫu thứ hai có tương tác để kiểm contract khi G1/G2 đủ.
 
 ## Quy ước chung (English)
 

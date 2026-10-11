@@ -1,6 +1,8 @@
 # Prompt bàn giao — Claude Code web, T-207
 
-> **D-079, 11/10:** G0 đã review/ghép. Khi tiếp tục, fetch/rebase main chứa D-079 rồi đọc Review của card và [yêu cầu G1](REVIEW_G0_2026-10-11.md); không làm lại G0 theo đoạn prompt cũ. Đây là phần tiếp của gói đã giao, chưa mở Meshy trả phí hoặc production.
+> **D-080, 11/10:** dùng **Tripo AI thay Meshy**. Studio thủ công ưu tiên cho mẫu đầu; API dùng ví riêng. Đọc [cập nhật provider](TRIPO_AI_CHUYEN_DOI_2026-10-11.md), tiếp tục gói hiện có và giữ kết quả G0.
+
+> **D-079, 11/10:** G0 đã review/ghép. Khi tiếp tục, fetch/rebase main chứa D-079 rồi đọc Review của card và [yêu cầu G1](REVIEW_G0_2026-10-11.md); không làm lại G0 theo đoạn prompt cũ. Đây là phần tiếp của gói đã giao, chưa mở Tripo AI trả phí hoặc production.
 
 Claude web là lane core được giao theo D-077, làm trong checkout Linux cloud riêng. Integrator là Astra trong 10–11/10 rồi Claude Code ở máy dùng Opus 5.5. Không phải phiên web thay vai trò chủ dự án/integrator.
 
@@ -15,10 +17,12 @@ Tiếng Việt cho trả lời/tài liệu, tiếng Anh cho code. Bạn làm tr�
 
 1. Kiểm git status; giữ mọi thay đổi đang có. git fetch origin; git lfs install; git lfs pull.
    Nhánh core/T-207-graphics-core-contract: nếu có local thì switch/pull --ff-only;
-   nếu có remote thì tạo tracking branch; nếu chưa có thì tạo từ origin/main có D-077.
-2. Đọc AGENTS.md, STATUS, D-076/D-077/D-078, docs/design/GRAPHICS_UPGRADE_PLAN.md,
+   nếu có remote thì tạo tracking branch; nếu chưa có thì tạo từ origin/main có D-080.
+   Rebase an toàn lên origin/main có D-080, giữ mọi thay đổi cục bộ.
+2. Đọc AGENTS.md, STATUS, D-076/D-077/D-078/D-079/D-080, docs/design/GRAPHICS_UPGRADE_PLAN.md,
    docs/tasks/T-207-graphics-core-contract.md và phạm vi/dependency T-208…T-212.
    F tiếp nhận vai trò âm thanh từ E; ghi owner F trong contract mới và phối hợp T-212 với F.
+   Đọc docs/handoff/TRIPO_AI_CHUYEN_DOI_2026-10-11.md và Review card.
 3. Dùng Godot 4.7.2 Linux; nếu thiếu, tải bản chính thức từ
    https://github.com/godotengine/godot/releases/download/4.7.2-stable/Godot_v4.7.2-stable_linux.x86_64.zip
    vào ~/tools, giải nén, đặt biến GODOT tới executable. Dùng PowerShell 7 nếu có.
@@ -27,11 +31,11 @@ Tiếng Việt cho trả lời/tài liệu, tiếng Anh cho code. Bạn làm tr�
    $GODOT --headless --path game res://tests/run_tests.tscn
    Nếu dùng pwsh, export GODOT rồi chạy tools/test.ps1 và tools/check.ps1.
    Thiếu công cụ/check không chạy được thì ghi rõ; không ghi PASS giả và không sửa launcher của C.
-4. G0 trước: ASSET_BINDINGS.md và INTEGRATION_CONTRACT.md trong docs/design/graphics/.
+4. G0 đã ghép D-079. Tổng hợp G1 theo Review/D-080 trong ASSET_BINDINGS.md và INTEGRATION_CONTRACT.md.
    Đo/đọc root, collider, marker, API/clip/timing thật; gửi contract sớm để các lane làm tiếp.
    Đề xuất settings/schema cho integrator, không tự ghi SETTINGS hoặc đổi project.godot.
    Wiring core chỉ khi G1 và dependency trong card đủ. Giữ logic, luật, save và tọa độ thế giới.
-5. Không có Meshy key/ngân sách trên cloud; không gọi API trả phí/cài plugin/MCP, không làm asset B thay.
+5. Không có Tripo AI key/ngân sách trên cloud; không gọi API trả phí/cài plugin/MCP, không làm asset B thay.
    Không chạy FPS, bot chương 3–4, chụp ảnh hay export Windows trên máy này.
 6. Full test sau sửa + check nếu công cụ hỗ trợ; không có lỗi mới so với baseline.
    Lỗi nền ghi đúng tên/lệnh, không tự quy cho Linux nếu chưa chứng minh.

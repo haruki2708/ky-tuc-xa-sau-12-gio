@@ -1,5 +1,7 @@
 # T-209 — G0 kiểm kê và thử vật liệu
 
+> **D-080 ngày 11/10:** nhà cung cấp mới là **Tripo AI**; đọc [hướng chuyển đổi](../../docs/handoff/TRIPO_AI_CHUYEN_DOI_2026-10-11.md). Nội dung G0 dưới đây ghi công cụ/kết quả trước khi đổi provider; không áp dụng giá/quyền/API Meshy sang Tripo. Studio thủ công không cần key; API dùng ví riêng. Chưa có Tripo asset hoặc transport live.
+
 **Bản nháp gửi G1; không phải bản thay phòng chơi.** Nguồn `origin/main` ở `e3ed54a`, có D-077/D-078. Chỉ sửa vùng B và Handoff/checklist T-209. G1/G2 chưa đủ; Meshy chưa gọi, credit 0.
 
 ## Đầu ra để web/integrator review
@@ -70,7 +72,7 @@ pwsh tools/check.ps1
 2. Web/A chốt visual root, rig/clip và marker. B giữ các path hiện hành; không tự nối model vào director hoặc adapter.
 3. Web/F chốt visual chuông tại nguồn âm xa nút, kích thước/mount/basis, tránh thay đổi điểm noise/crowd.
 4. D/web chốt contract settings; G0 chỉ dùng brightness hiện hành, không đề xuất key giả định trong code.
-5. Integrator duyệt budget thử dựa số đo; người dùng/operator cấp kết nối, trần credit, license trước một asset Meshy. Dự kiến chọn balo đầu tiên, chưa đặt tác vụ.
+5. Integrator đã ghi trần prototype balo ở D-079; trước mẫu **Tripo AI** đầu tiên vẫn cần chốt gói/ví, trần credit và license. Ưu tiên Studio thủ công, không cần API key; ví API riêng nếu chọn tự động hóa. Chưa đặt tác vụ.
 6. Người dùng review ảnh thực trước khi G2/G3; test ray/collision/nav/đèn trong cả bốn chương và nhân vật có ảnh biến dạng còn chưa đạt. G0 không đồng nghĩa T-209 done.
 
 Đối chiếu ngày 11/10 với draft T-207 `4fc4999` trên nhánh `core/T-207-graphics-core-contract`: đề xuất `FireBellMount` khớp vị trí âm nêu trên, nhưng chưa được ghép main. Schema `asset_id/scene_path/binding/...` của web là đầu vào cho C/B ở G1; dữ liệu nháp hiện tại chưa tự nhận tương thích schema đó. Các key video mới chưa được dùng. Cửa chương 3–4 có proxy/Blocker khác chương 1–2; fixture tĩnh này không chứng minh tương tác của cả hai cơ chế.

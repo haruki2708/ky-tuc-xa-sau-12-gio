@@ -1,5 +1,7 @@
 # Hợp đồng tích hợp đồ họa gần chân thực — core (T-207, G0)
 
+> **Cập nhật D-080 ngày 11/10:** chủ dự án chọn **Tripo AI thay Meshy**; xem [hướng hiện hành](../../handoff/TRIPO_AI_CHUYEN_DOI_2026-10-11.md). Các chi tiết Meshy trong bản ghi cũ chỉ còn là lịch sử, không áp dụng giá/credit/API/license sang Tripo. G0 đã nhận vẫn giữ hiệu lực.
+
 > **Review integrator 11/10, D-079:** nhận tài liệu khảo sát G0; chưa là contract G1 đã chốt. Xem [kết luận và yêu cầu tổng hợp](../../handoff/REVIEW_G0_2026-10-11.md). Các mục chờ Handoff bên dưới là ảnh chụp lúc web lập bản nháp; cả năm lane đã bàn giao và cần được tổng hợp.
 
 Người lập: Claude Code web làm phần core theo D-077, 10/10/2026. **Bản đề xuất G0 cho integrator.** Chưa có hiệu lực chung cho tới khi G1 ghép vào `main`; các lane có thể đọc để làm G0 độc lập nhưng chưa nối API chung. Số liệu thật nằm ở [ASSET_BINDINGS.md](ASSET_BINDINGS.md). Kế hoạch gốc: [GRAPHICS_UPGRADE_PLAN.md](../GRAPHICS_UPGRADE_PLAN.md). Âm thanh: **lane F** tiếp nhận toàn bộ vai trò của E (D-078).

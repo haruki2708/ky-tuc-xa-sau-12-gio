@@ -57,3 +57,11 @@ Git trước commit tài liệu là `6cda009`; tìm commit bàn giao bằng `git
 - Web có một test nav Linux chập chờn, giữ thông tin lỗi; Windows đạt không chứng minh đã sửa. Các đề xuất B/C chưa cùng schema/hệ đo root, D/web chưa cùng preset; trả yêu cầu G1 rõ trong Review. G1 đạo cụ tĩnh tách khỏi rig/settings để không giữ balo chờ cả đợt lớn.
 - Prototype balo tối đa 3.000 tris/2 material/map 1024²; số đo/pivot giữ B. Chưa xác nhận mua/license/budget Meshy, chưa chi credit. Tạo thủ công trên web không cần API key; API live chưa triển khai.
 - G0 đã nhận; toàn bộ T-207…T-212 vẫn mở. EXE giữ bản 10/10 03:57:18 vì chưa nối prototype vào chương; không export. Opus nhận lại theo STATUS/Review mới, số tiếp theo D-080/T-213. Đây là tiến độ sáng 11/10, không tự nhận đã kết thúc hai ngày.
+
+## 11/10 — đổi nhà cung cấp sang Tripo AI, D-080
+
+- Chủ dự án đổi dự định mua Meshy sang Tripo AI; chưa xác nhận gói hoặc thanh toán. Bắt đầu từ main sạch `7dd9f8e`, pull không có cập nhật khác.
+- Tra cứu trang giá/Help/điều khoản/Developers chính thức: Studio và API dùng ví riêng. Ưu tiên tạo mẫu thủ công trên Studio; không coi mua Studio là có API credit, không chuyển giá/budget/license Meshy sang Tripo.
+- Cập nhật AGENTS/CLAUDE, STATUS, kế hoạch, sáu card/prompt, bàn giao Opus, ghi chú nghiên cứu và planned_route của manifest B. Giữ task/nhánh/owner và G0 đã kiểm, giữ Handoff/credits lịch sử; helper `meshy_dry_run.py` vẫn là fixture offline G0, chưa client Tripo. C xử lý adapter/tên công cụ ở G1 theo phạm vi card.
+- Nguồn và hướng dẫn: [nghiên cứu](../research/TRIPO_AI_2026-10-11.md), [chuyển đổi](TRIPO_AI_CHUYEN_DOI_2026-10-11.md). Chưa gọi dịch vụ hoặc chi credit; chưa nhập asset, sửa runtime hoặc export. Không sửa workspace lane.
+- Full test/check sau cập nhật là điều kiện commit D-080; kết quả/giờ/log ghi trong message commit. Lượt D-079 trước đó là 743/743, check 0 (344 script), không dùng thay lượt sau chỉnh tài liệu. Số tiếp theo D-081/T-213.
