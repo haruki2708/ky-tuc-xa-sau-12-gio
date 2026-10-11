@@ -1,5 +1,7 @@
 # T-210 — Công cụ G0, đề xuất chờ G1
 
+> **Hiện hành D-080/G1:** Tripo Studio thủ công → GLB → Blender → Godot. Đọc [G1_SCHEMA.md](G1_SCHEMA.md), `manifest.schema.json` và `sample_g1_manifest.json`. Công cụ mới là `asset_dry_run.py`, tách provider/channel/wallet. Phần G0 bên dưới cùng `meshy_dry_run.py`, `sample_request.json`, báo cáo G0 chỉ giữ để đối chiếu và tương thích lịch sử; không chuyển giá/quyền/license Meshy sang Tripo. Chưa có transport API hoặc ngân sách được cấp.
+
 > **D-080 ngày 11/10:** nhà cung cấp mới là **Tripo AI**; đọc [hướng chuyển đổi](../../docs/handoff/TRIPO_AI_CHUYEN_DOI_2026-10-11.md). Nội dung G0 dưới đây ghi công cụ/kết quả trước khi đổi provider; không áp dụng giá/quyền/API Meshy sang Tripo. Studio thủ công không cần key; API dùng ví riêng. Chưa có Tripo asset hoặc transport live.
 
 Chỉ đọc asset có sẵn; không sửa model/scene, logic hoặc budget production. Python 3 dùng thư viện chuẩn; probe dùng Godot 4.7.2 đã cài. Không cần Meshy/key/plugin. Không có đường gọi mạng hoặc chế độ live trong công cụ Meshy này.

@@ -1,12 +1,12 @@
 # STATUS — cập nhật bởi integrator
 
-**Cập nhật lần cuối:** 2026-10-11, Claude Code ở máy (Opus 5.5) **đã nhận lại vai trò integrator** từ Astra tại `0ef05a6` (D-082); đã đọc bàn giao, kiểm nhánh thật (chỉ còn C `7af1075` chưa ghép, không có commit lane mới sau D-082) và chạy lại full test/check. Trước đó: Astra — D-082, review A/B/C/D/F.
+**Cập nhật lần cuối:** 2026-10-11, Claude Code ở máy (Opus 5.5, integrator) — **D-083: ghép schema/validator G1 của C sau sửa R1–R4.** Việc tiếp: B chuyển manifest balo và bổ sung hướng mặt trước → nghiệm thu G1. Trước đó: nhận lại vai trò integrator từ Astra tại `0ef05a6` (D-082).
 **Giai đoạn:** Đồ họa gần chân thực, **Tripo AI thay Meshy (D-080)**. **G0 A/B/C/D/F + Claude web đã nhận**, T-207…T-212 còn làm tiếp G1/G2/G3. Các đầu ra mới là khảo sát/prototype/công cụ riêng, chưa thay đồ họa các chương. E nghỉ vô thời hạn, F tiếp nhận âm thanh theo D-078. Kế hoạch: [GRAPHICS_UPGRADE_PLAN.md](design/GRAPHICS_UPGRADE_PLAN.md).
 
 **Điều phối:** Astra tạm thay 10–11/10; Claude Code ở máy, **Opus 5.5**, nhận lại theo [hướng dẫn](handoff/OPUS_5_5_NHAN_LAI_DIEU_PHOI.md) và [nhật ký](handoff/NHAT_KY_ASTRA_2026-10-10_11.md). Chủ dự án là người dùng. **Astra làm thay Claude web ở T-207 (D-081)**; web tạm dừng, năm lane A/B/C/D/F tiếp tục. [Đầu mối và prompt G1](handoff/T207_G1_ASTRA_2026-10-11.md).
 
 ## Việc tiếp theo (cho phiên integrator kế tiếp)
-1. Đọc [Review D-082](handoff/REVIEW_G1_2026-10-11.md) và Review từng card. Đã nhận A `0bb6f9a`, B `21f2f9b`, D `2a3c56c`, F `89a9445`; C **chỉ nhận probe `b86a77d`**, giữ `7af1075` trên nhánh để sửa validator/schema. Không coi năm task đã done.
+1. Đọc [Review D-082](handoff/REVIEW_G1_2026-10-11.md) và Review từng card. Đã nhận A `0bb6f9a`, B `21f2f9b`, D `2a3c56c`, F `89a9445`; C nhận probe `b86a77d`; **D-083 ghép schema/validator (`7af1075` + sửa R1–R4 `d91606e`)**. Không coi năm task đã done.
 2. **C sửa R1–R4 → integrator review/ghép schema → B chuyển manifest.** Probe root-local đã sửa; validator G1 vẫn bỏ sót unit scale/dung sai, trần được duyệt, dependency thiếu và kiểu metadata. 42 fixture nhánh C đạt nhưng ca review bổ sung phát hiện thiếu kiểm. Main vẫn dùng validator G0; không bảo B chuyển dữ liệu trước khi schema được nhận. B bổ sung facing nguồn balo song song; rig/settings/chuông độc lập.
 3. **T-207 do Astra làm thay web, sau đó Opus nhận:** contract D-081 có quy ước balo; G1 nghiệm thu còn mở. Nhận đề xuất A/D/F và phần sửa pilot B, chưa thêm SETTINGS, stream hoặc nối W1–W4. Chuông còn chờ nghe thật/pause/mount; preset chưa có backend/default.
 4. **Tripo AI (D-080):** ưu tiên Studio thủ công → GLB → Blender → Godot. Studio/API tách ví; chưa xác nhận gói đã mua, nguồn/license và trần chi. Một mẫu đầu `room407_backpack`: ≤3.000 tam giác, ≤2 material, map ≤1024², ≤10 MiB/file. Chưa tạo/nhập asset Tripo; 1080p/60 FPS trên RTX 3050 Laptop vẫn là mục tiêu chưa đo.
@@ -14,7 +14,7 @@
 6. **Build chơi thử:** `build/windows/KyTucXa.exe`, 2026-10-10 03:57:18, code `add6d5f` có D-075. D-082 nhận prototype/QA/tài liệu, chưa đổi nội dung cảnh chơi nên không export. Đã xem hai ảnh mount B; chưa duyệt chất lượng đồ họa cuối, nghe/chơi tay hoặc đo FPS.
 7. **Chơi thử còn mở:** chương 1 D-071/chương 2 D-073 tạm chốt; đoạn nhắn tin D-072 chưa chơi lại. Chương 3 lần cuối bước 6/tầng 1; D-074/T-206/D-075 đã sửa, chờ chơi tiếp. Chương 4/giọng và âm chương 2–4 còn chờ chủ dự án kiểm. D-059 chưa bắt đầu.
 8. **Lượt Windows:** chủ dự án xác nhận A/B/C/D/F xong, integrator nhận lượt kiểm D-082 rồi báo nhả sau khi kết thúc. Code/tài liệu/offline vẫn song song; các phiên không tự biết nhau nhả lượt. Import/check cũng dùng APPDATA riêng; không tự mở bot/FPS.
-9. Số đã cấp **D-076…D-082, T-207…T-212**. Số tiếp theo **D-083, T-213**.
+9. Số đã cấp **D-076…D-082, T-207…T-212**. Số tiếp theo **D-084, T-213**.
 
 **Repo:** https://github.com/tuaanh666/ky-tuc-xa-sau-12-gio (private)
 
@@ -36,10 +36,10 @@
 | Task | Lane | Trạng thái |
 |---|---|---|
 | **Đồ họa gần chân thực (D-076/D-077, 10/10/2026)** | | |
-| [T-207 Hợp đồng và tích hợp core](tasks/T-207-graphics-core-contract.md) | core — **Astra làm thay web (D-081)** | **D-082 đã review tiếp; schema C cần sửa, G1 balo/W1–W4 chưa đóng** |
+| [T-207 Hợp đồng và tích hợp core](tasks/T-207-graphics-core-contract.md) | core — **Astra làm thay web (D-081)** | **D-083 schema C đã ghép; G1 balo chờ B chuyển manifest; W1–W4 chưa đóng** |
 | [T-208 Adapter gameplay–visual](tasks/T-208-visual-gameplay-adapters.md) | A | **D-082 nhận đề xuất lifecycle/pose/marker; rig và implementation còn chờ** |
 | [T-209 Art pipeline và phòng mẫu](tasks/T-209-realistic-art-pilot.md) | B | **D-082 nhận brief/pilot/mount survey; manifest/facing/asset mới còn chờ** |
-| [T-210 Asset QA và công cụ tạo asset (Tripo)](tasks/T-210-graphics-asset-qa.md) | C | **D-082 nhận b86a77d; giữ 7af1075 để sửa R1–R4 trước schema G1** |
+| [T-210 Asset QA và công cụ tạo asset (Tripo)](tasks/T-210-graphics-asset-qa.md) | C | **D-083 ghép schema/validator G1 (R1–R4 đã sửa); chờ nghiệm thu G1 cùng manifest B** |
 | [T-211 Cài đặt và khả năng đọc](tasks/T-211-graphics-settings-readability.md) | D | **D-082 nhận migration/readability; chưa mở key/control mới** |
 | [T-212 Audio/marker và chuông báo cháy](tasks/T-212-graphics-audio-anchors.md) | F (tiếp nhận E, D-078) | **D-082 nhận attachment/W2 đề xuất; chưa nghe hoặc đổi core** |
 | **Lịch sử triển khai trước đợt đồ họa** | | |

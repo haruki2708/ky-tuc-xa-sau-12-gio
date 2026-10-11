@@ -11,6 +11,7 @@ from unittest.mock import patch
 
 from asset_qa import validate, validate_document, validate_measurements
 from meshy_dry_run import new_ledger, plan, save_event, transition
+from asset_dry_run import plan as routed_plan
 
 HERE = Path(__file__).resolve().parent
 
@@ -237,6 +238,142 @@ class LedgerFileTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             save_event(HERE / "forbidden-ledger.json", self.proposal, "init")
         self.assertFalse((HERE / "forbidden-ledger.json").exists())
+
+
+class G1Tests(unittest.TestCase):
+    def setUp(self):
+        AssetTests.setUp(self)
+        proposal = json.loads((HERE / "sample_g1_manifest.json").read_text())["assets"][0]
+        for key in ("binding", "placement", "generation"):
+            self.asset[key] = copy.deepcopy(proposal[key])
+        self.asset["geometry"].update(coordinate_space="selected_root_local", pose="rest", visibility_policy="include_hidden")
+        self.asset["budget"].update(material_limit=2, texture_edge_limit=1024, wallet_id=None,
+                                     balance_before=None, balance_after=None)
+        self.measurement.update(coordinate_space="selected_root_local", pose="rest", visibility_policy="include_hidden",
+                                textures={}, engine="4.7.2-stable", dependency_unavailable=[])
+        paths = ["door.glb", "door.glb.import", "game/project.godot", "game/scripts/debug/graphics_asset_probe.gd",
+                 "game/.godot/imported/fixture.scn", "game/importer.gd", "game/base_importer.gd",
+                 "game/surface.gdshaderinc", "game/texture.png"]
+        hashes = {}
+        for name in paths:
+            path = self.root / name
+            path.parent.mkdir(parents=True, exist_ok=True)
+            if not path.exists():
+                path.write_bytes(b"fixture evidence")
+            hashes[name] = hashlib.sha256(path.read_bytes()).hexdigest()
+        self.measurement["dependency_hashes"] = hashes
+
+    def check_g1(self):
+        return validate(self.asset, self.root, [self.measurement], "t210-g1-static-1")
+
+    def test_g1_reference_evidence_has_no_errors_but_needs_review(self):
+        result = self.check_g1()
+        self.assertEqual(result["errors"], [])
+        self.assertEqual(result["status"], "INCOMPLETE")
+
+    def test_dependency_import_texture_or_importer_change_invalidates_report(self):
+        for name in ("door.glb.import", "game/importer.gd", "game/base_importer.gd", "game/surface.gdshaderinc",
+                     "game/texture.png", "game/.godot/imported/fixture.scn"):
+            with self.subTest(name=name):
+                path = self.root / name
+                original = path.read_bytes()
+                path.write_bytes(original + b"changed")
+                self.assertIn("stale dependency:" + name, self.check_g1()["errors"])
+                path.write_bytes(original)
+
+    def test_missing_dependency_evidence_stays_incomplete(self):
+        del self.measurement["dependency_hashes"]
+        result = self.check_g1()
+        self.assertEqual(result["errors"], [])
+        self.assertIn("dependency_and_import_hashes", result["unavailable"])
+
+    def test_old_coordinate_system_is_rejected(self):
+        self.measurement["coordinate_space"] = "root_transform_included"
+        self.assertIn("measurement policy mismatch:coordinate_space", self.check_g1()["errors"])
+
+    def test_backpack_prototype_limits_are_enforced(self):
+        self.asset["budget"]["triangle_limit_exclusive"] = 3001
+        self.measurement.update(triangles=3000, material_count=2, texture_count=1, textures={"map": {"width":1024,"height":1024}})
+        self.assertEqual(self.check_g1()["errors"], [])
+        self.measurement.update(triangles=3001, material_count=3, textures={"map": {"width":2048,"height":1024}})
+        errors = self.check_g1()["errors"]
+        for error in ("triangle budget exceeded", "material budget exceeded", "texture budget exceeded"):
+            self.assertIn(error, errors)
+
+    def set_tripo(self):
+        self.asset["generation"].update(provider="tripo", channel="studio", wallet_id="tripo:studio:fixture", tier="paid")
+        self.asset["budget"].update(wallet_id="tripo:studio:fixture", balance_before=100, balance_after=90, consumed_credits=10)
+
+    def test_studio_manual_does_not_require_api_task_or_key(self):
+        self.set_tripo()
+        result = self.check_g1()
+        self.assertEqual(result["errors"], [])
+        self.assertNotIn("generation:task_id", result["unavailable"])
+        self.assertIn("paid_plan_and_input_rights_evidence", result["unavailable"])
+
+    def test_paid_is_not_a_license_exception(self):
+        self.set_tripo()
+        self.asset["source"]["license"] = "Tripo Paid"
+        self.assertEqual(self.check_g1()["status"], "FAIL")
+
+    def test_mixed_wallet_and_credit_discrepancy_fail(self):
+        self.set_tripo()
+        self.asset["budget"].update(wallet_id="tripo:api:fixture", balance_after=80)
+        errors = self.check_g1()["errors"]
+        self.assertIn("budget and generation wallets differ", errors)
+        self.assertIn("credit reconciliation mismatch; operator review required", errors)
+
+    def test_sample_mapping_keeps_B_id_and_placement(self):
+        document = json.loads((HERE / "sample_g1_manifest.json").read_text())
+        assets = validate_document(document)
+        self.assertEqual(assets[0]["asset_id"], "room407_backpack")
+        self.assertEqual(assets[0]["placement"]["position_m"], [33.78, 0.02, -4.52])
+        self.assertEqual(assets[0]["generation"]["provider"], "self_authored")
+        reference = json.loads((HERE.parents[1] / "art_source/graphics_upgrade/measured_assets.json").read_text())
+        backpack = next(asset for asset in reference["assets"] if asset["id"] == "room407_backpack")
+        for field, target in (("bounds_local_size_m", "dimensions_m"), ("bounds_local_min_m", "bounds_min_m")):
+            self.assertEqual(assets[0]["geometry"][target], backpack[field])
+        self.assertEqual(assets[0]["binding"]["node_path"], backpack["node"])
+        self.assertEqual(assets[0]["placement"]["position_m"], backpack["position_in_scene_m"])
+        self.assertEqual(assets[0]["placement"]["rotation_degrees"], backpack["local_rotation_degrees"])
+
+    def test_malformed_dependency_evidence_fails_cleanly(self):
+        self.measurement["dependency_hashes"] = {42: None}
+        self.assertIn("malformed dependency hashes", self.check_g1()["errors"])
+
+
+class RoutedLedgerTests(unittest.TestCase):
+    def setUp(self):
+        self.request = json.loads((HERE / "tripo_studio_request.json").read_text())
+
+    def test_provider_and_wallet_are_part_of_resume_identity(self):
+        studio = routed_plan(self.request)
+        ledger = new_ledger(studio, 100)
+        self.request.update(channel="api", wallet_id="tripo:api:fixture")
+        with self.assertRaises(ValueError):
+            transition(ledger, routed_plan(self.request), "reserve_submit")
+        self.request.update(provider="meshy", wallet_id="meshy:api:fixture")
+        with self.assertRaises(ValueError):
+            transition(ledger, routed_plan(self.request), "reserve_submit")
+
+    def test_api_cannot_claim_studio_wallet(self):
+        self.request["channel"] = "api"
+        with self.assertRaises(ValueError):
+            routed_plan(self.request)
+
+    def test_tripo_offline_does_not_read_key_or_network(self):
+        with patch("socket.socket", side_effect=AssertionError("Network forbidden")):
+            with patch.dict(os.environ, {"TRIPO_API_KEY":"fixture-secret"}):
+                output = json.dumps(routed_plan(self.request))
+        self.assertNotIn("fixture-secret", output)
+        self.assertIn("manual_export_glb_blender_godot", output)
+
+    def test_legacy_unscoped_ledger_is_not_silently_migrated(self):
+        proposal = plan(json.loads((HERE / "sample_request.json").read_text()))
+        ledger = new_ledger(proposal, 100)
+        del ledger["wallet_id"]
+        with self.assertRaises(ValueError):
+            transition(ledger, proposal, "reserve_submit")
 
 
 if __name__ == "__main__":
