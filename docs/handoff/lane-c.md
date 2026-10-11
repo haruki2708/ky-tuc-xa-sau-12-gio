@@ -1,5 +1,7 @@
 # Prompt bàn giao — Lane C (QA và Tools)
 
+> **11/10, sau D-082:** Astra đã bàn giao lại; integrator là Claude (Opus 5.5) ở máy. Câu hỏi core/contract và xin lượt Godot gửi về integrator. Prompt đang dùng: **mục 4**.
+
 > **D-082:** đã review phần mới; đọc Review card và [kết luận chung](REVIEW_G1_2026-10-11.md), giữ công việc đã nhận. C chỉ được nhận probe b86a77d; sửa R1–R4 trên phần schema còn lại 7af1075 trước bàn giao lại.
 
 > **D-081, 11/10:** Astra làm thay Claude web ở T-207 theo yêu cầu chủ dự án. Đầu mối core/contract chuyển về integrator; web tạm dừng. Đọc [bàn giao G1](T207_G1_ASTRA_2026-10-11.md); giữ G0 và task/nhánh hiện có.
@@ -53,15 +55,39 @@ Rebase nhánh lane-c/T-210-graphics-asset-qa lên origin/main, sửa đúng từ
 Chạy full test/check, cập nhật Handoff và push nhánh; nêu rõ phần chưa kiểm/đang chờ.
 ```
 
-## 4. Prompt sửa sau review D-082
+## 4. Prompt sửa sau review D-082 (bản đầy đủ, 11/10 integrator viết lại)
+
+Dán nguyên khối, dùng được cho cả phiên lane C cũ lẫn phiên mới. Chỉ gửi khi chủ dự án xác nhận lane C còn hạn mức.
 
 ```text
-Tiếp tục T-210 trên nhánh hiện có. Fetch/rebase an toàn lên origin/main có D-082, bảo toàn thay đổi cục bộ.
-Integrator đã nhận b86a77d; 7af1075 chưa ghép. Giữ cả lịch sử và phần chuẩn bị, không làm lại G0.
-Đọc Review T-210 và docs/handoff/REVIEW_G1_2026-10-11.md.
-Sửa R1–R4 trong vùng C; thêm fixture âm tính tương ứng, đồng bộ schema/validator/tài liệu.
-Theo D-081: root scale unit có epsilon riêng, tolerance balo tối đa 0.001 m; trần D-079 từ hợp đồng được duyệt.
-Thiếu dependency phải có lý do cụ thể; metadata sai kiểu phải FAIL sạch. Không nới ngưỡng, không sửa manifest B.
-Chạy fixture offline trước. Khi sẵn sàng full test/check Windows, báo integrator xếp lượt.
-Sau hai lệnh đạt, cập nhật Handoff, commit/push nhánh và báo nhả lượt Godot. Không render/FPS/bot/Tripo trả phí.
+Bạn là agent Lane C (QA và Tools), game "Ký túc xá sau 12 giờ" (Godot 4.7.2). Trả lời/tài liệu tiếng Việt, code tiếng Anh.
+Chỉ làm trong D:\GAME_WORK\lane-c. Không sửa D:\GAME_DEMO hay workspace lane khác.
+Từ 11/10 integrator là Claude (Opus 5.5) ở máy, thay Astra. Mọi câu hỏi core/contract và việc xin lượt chạy Godot đều gửi về integrator.
+
+VIỆC: T-210, sửa R1–R4 trên commit 7af1075 (schema/validator/dry-run), nhánh lane-c/T-210-graphics-asset-qa.
+Integrator đã ghép b86a77d (probe). Không làm lại probe/G0, không sửa manifest của lane B, không nới bất kỳ ngưỡng nào.
+
+1. git status (không ghi đè việc đang dở) → git fetch origin → rebase an toàn nhánh lên origin/main (có D-082), giữ 7af1075.
+2. Đọc: docs/handoff/REVIEW_G1_2026-10-11.md (bảng R1–R4), mục Review trong docs/tasks/T-210-graphics-asset-qa.md, D-079 và D-081 trong docs/DECISIONS.md.
+3. Sửa, mỗi lỗi kèm ít nhất một fixture âm tính dựng lại đúng ca trong review:
+   R1: root_scale phải là (1,1,1), kiểm bằng epsilon riêng, không dùng chung tolerance vị trí.
+       Tolerance của balo phải hữu hạn, không âm, tối đa 0.001 m.
+       Ca phải FAIL: root_scale [2,2,2] kèm số đo nhân đôi; tolerance_m=100 kèm kích thước [99,99,99].
+   R2: trần tam giác/material/texture của room407_backpack lấy từ hợp đồng D-079 đã duyệt, không lấy từ chính manifest tự khai.
+       Asset khác vẫn được khai ngân sách riêng khi có contract.
+       Ca phải FAIL: tự khai limit 100001 tam giác / 999 material / 8192 px, số đo 99999 / 999 / 8192.
+   R3: phát hiện dependency bị thiếu hoặc đã cũ (stale). Chưa chứng minh đủ closure thì kết quả là INCOMPLETE, kèm tên dependency cụ thể.
+       Ca phải FAIL/INCOMPLETE: xóa riêng hash game/importer.gd rồi sửa importer;
+       mất riêng importer, material, texture, include, wrapper (mỗi thứ một fixture).
+   R4: kiểm kiểu (type/const/range) đúng schema đã công bố, cho mọi provider; công bố rõ kiểu của parameters.
+       Ca phải FAIL sạch (thông báo lỗi rõ ràng, không crash): generation.rights_evidence=42 khi provider self_authored.
+   Đồng bộ schema, validator, test và tài liệu. Toàn bộ fixture dương tính cũ vẫn PASS.
+4. Chạy fixture offline trước. Khi đạt, NHẮN integrator xin lượt rồi mới chạy: pwsh tools/test.ps1, sau đó pwsh tools/check.ps1.
+   Không render, đo FPS, chạy bot hay dùng Tripo (trả phí hoặc MCP).
+5. Hai lệnh đạt → commit nhỏ "T-210: fix R1–R4 ..." → git push origin lane-c/T-210-graphics-asset-qa (không push main, không mở PR) → báo nhả lượt Godot.
+6. Cập nhật Handoff trong card (không sửa STATUS, DECISIONS hay mục Review) và báo lại, gồm:
+   - Bảng R1–R4: đã sửa gì; tên fixture; kết quả trước sửa (lọt) và sau sửa (FAIL/INCOMPLETE).
+   - Số fixture âm/dương và kết quả.
+   - Dòng RESULT của test.ps1 và check.ps1; commit hash.
+   - Phần chưa kiểm, câu hỏi về contract (nếu có), có bị chặn gì không.
 ```
