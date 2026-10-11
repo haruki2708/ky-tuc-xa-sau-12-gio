@@ -1,6 +1,6 @@
 # STATUS — cập nhật bởi integrator
 
-**Cập nhật lần cuối:** 2026-10-11, Astra — D-082, review A/B/C/D/F; nhận A/B/D/F và probe C, giữ schema C để sửa.
+**Cập nhật lần cuối:** 2026-10-11, Claude Code ở máy (Opus 5.5) **đã nhận lại vai trò integrator** từ Astra tại `0ef05a6` (D-082); đã đọc bàn giao, kiểm nhánh thật (chỉ còn C `7af1075` chưa ghép, không có commit lane mới sau D-082) và chạy lại full test/check. Trước đó: Astra — D-082, review A/B/C/D/F.
 **Giai đoạn:** Đồ họa gần chân thực, **Tripo AI thay Meshy (D-080)**. **G0 A/B/C/D/F + Claude web đã nhận**, T-207…T-212 còn làm tiếp G1/G2/G3. Các đầu ra mới là khảo sát/prototype/công cụ riêng, chưa thay đồ họa các chương. E nghỉ vô thời hạn, F tiếp nhận âm thanh theo D-078. Kế hoạch: [GRAPHICS_UPGRADE_PLAN.md](design/GRAPHICS_UPGRADE_PLAN.md).
 
 **Điều phối:** Astra tạm thay 10–11/10; Claude Code ở máy, **Opus 5.5**, nhận lại theo [hướng dẫn](handoff/OPUS_5_5_NHAN_LAI_DIEU_PHOI.md) và [nhật ký](handoff/NHAT_KY_ASTRA_2026-10-10_11.md). Chủ dự án là người dùng. **Astra làm thay Claude web ở T-207 (D-081)**; web tạm dừng, năm lane A/B/C/D/F tiếp tục. [Đầu mối và prompt G1](handoff/T207_G1_ASTRA_2026-10-11.md).
