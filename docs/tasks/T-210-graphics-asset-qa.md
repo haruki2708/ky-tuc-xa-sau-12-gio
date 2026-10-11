@@ -75,3 +75,9 @@ Checklist riêng G0 (không thay nghiệm thu toàn gói):
 ### 11/10/2026 — D-081, đổi đầu mối core
 
 Astra làm thay Claude web ở T-207; gửi yêu cầu core/contract về Astra. Đọc contract G1 cập nhật và [bảng việc từng lane](../handoff/T207_G1_ASTRA_2026-10-11.md), tiếp tục task/nhánh hiện có. Giữ lịch sử G0; không sửa file lane khác hoặc coi quy ước mới là bằng chứng validator/asset đã đạt.
+
+### 11/10/2026 — Astra, D-082, review tiếp G1
+
+**Nhận một phần:** ghép `b86a77d` (probe root-local, hash và test Godot); **chưa ghép `7af1075`** (schema/validator/dry-run/report). Đã đọc Handoff trên nhánh C và chạy lại 42 fixture trên bản sao, đều đạt; ca review bổ sung vẫn bỏ sót unit scale/dung sai, trần balo, dependency bị bỏ và type rights_evidence. Chi tiết/tái hiện/yêu cầu sửa **R1–R4** tại [Review D-082](../handoff/REVIEW_G1_2026-10-11.md). Giữ nhánh và hai commit, rebase an toàn D-082 rồi sửa phần còn lại; không làm lại probe/G0, không sửa manifest B. Main chưa có schema G1; B chưa được chuyển dữ liệu. Full test/check bản ghép ghi trong commit integrator, không lấy 745/0 của C thay. T-210 chưa done.
+
+Full test/check sau cập nhật là điều kiện commit/push; kết quả, giờ và log ở message D-082. Các phần runtime prototype/QA được nhận không đổi cảnh chơi mặc định.

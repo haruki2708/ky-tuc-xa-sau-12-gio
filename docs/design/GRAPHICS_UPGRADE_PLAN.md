@@ -1,5 +1,7 @@
 # Kế hoạch nâng đồ họa gần chân thực — D-076…D-081
 
+> **D-082:** review tiếp A/B/C/D/F; nhận phần đạt và probe C, giữ schema C để sửa. Xem [kết luận và dependency hiện hành](../handoff/REVIEW_G1_2026-10-11.md). G1 balo chưa nghiệm thu, chưa mở tạo Tripo trả phí.
+
 > **D-081, 11/10:** Astra làm thay Claude web ở T-207 theo yêu cầu chủ dự án. Đầu mối core/contract chuyển về integrator; web tạm dừng. Đọc [bàn giao G1](../handoff/T207_G1_ASTRA_2026-10-11.md); giữ G0 và task/nhánh hiện có.
 
 > **11/10, D-080:** chủ dự án chọn **Tripo AI thay Meshy**. Đọc [hướng chuyển đổi](../handoff/TRIPO_AI_CHUYEN_DOI_2026-10-11.md). Giữ G0 đã ghép; Studio thủ công là hướng mẫu đầu, API dùng ví riêng. Chưa xác nhận gói đã mua/ngân sách.

@@ -73,3 +73,12 @@ Git trước commit tài liệu là `6cda009`; tìm commit bàn giao bằng `git
 - Cần C schema/fixture/dependency hash, sau ghép B chuyển manifest; B làm brief song song. Quy ước G1 không đồng nghĩa nghiệm thu công cụ/model. Không chặn balo theo toàn bộ nhân vật/settings/chuông, không đổi API/settings/runtime/asset.
 - Cập nhật prompt năm lane, thay prompt web bằng thông báo chuyển người; bàn giao tại `T207_G1_ASTRA_2026-10-11.md`. Không khởi chạy/gửi tin tới phiên ngoài và không sửa workspace lane.
 - Full test/check sau tài liệu trước commit D-081; giờ/kết quả/log nằm trong message commit. Chưa render/FPS/nghe/chơi tay/Tripo; không export, EXE giữ bản 10/10 03:57:18. Số tiếp theo D-082/T-213.
+
+### 11/10 — D-082, review tiếp A/B/C/D/F
+
+- Chủ dự án xác nhận cả năm lane xong và yêu cầu review/kiểm tra. Base main d6d76f3 sạch, pull/fetch; không còn Godot, integrator nhận lượt.
+- Nhận A 0bb6f9a, B 21f2f9b, D 2a3c56c, F 89a9445; C chỉ ghép b86a77d, giữ 7af1075 để sửa R1–R4. Không sửa workspace/code thay lane hoặc mất lịch sử Handoff.
+- 42 fixture nhánh C đạt trong snapshot riêng nhưng review âm tính phát hiện kiểm thiếu; báo cáo/tái hiện ở REVIEW_G1_2026-10-11.md. Main vẫn validator G0, B chưa chuyển manifest.
+- Renderer B 3/3 trên Forward+/RTX 3050; xem hai ảnh mount; T-202 integration 5/5. Dùng APPDATA riêng. Full test/check sau mọi cập nhật trước commit, số liệu/giờ/hash/log trong message D-082.
+- Godot tuần tự hóa lại bus trong kiểm; đối chiếu và khôi phục bản gốc, không bàn giao thay đổi âm thanh. Không bot/FPS/nghe/chơi tay/tạo Tripo/export; bản chơi vẫn 10/10 03:57:18.
+- Tiếp theo C sửa → review/ghép schema → B chuyển manifest/bổ sung facing → nghiệm thu G1 balo. Rig/settings/W2 còn pending độc lập. Số tiếp theo D-083/T-213; Opus nhận T-207 và các dependency chưa xong.

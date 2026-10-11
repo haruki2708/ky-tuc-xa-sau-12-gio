@@ -1,5 +1,7 @@
 # Opus 5.5 nhận lại điều phối sau Astra
 
+> **D-082, 11/10:** đã review năm lane. Nhận A/B/D/F và C `b86a77d`; giữ `7af1075` để sửa validator/schema. Đọc [Review hiện hành](REVIEW_G1_2026-10-11.md) trước khi bảo B chuyển manifest. Kết quả full test/check ở message commit D-082. Chưa có Tripo asset; số tiếp theo D-083/T-213.
+
 > **D-081, 11/10:** Astra làm thay Claude web ở T-207 theo yêu cầu chủ dự án. Đầu mối core/contract chuyển về integrator; web tạm dừng. Đọc [bàn giao G1](T207_G1_ASTRA_2026-10-11.md); giữ G0 và task/nhánh hiện có. Opus tiếp nhận cả phần T-207 còn dở; số tiếp theo D-082/T-213.
 
 > **D-080, 11/10:** chủ dự án chuyển sang **Tripo AI thay Meshy**. Đọc [cập nhật provider](TRIPO_AI_CHUYEN_DOI_2026-10-11.md); Studio/API tách credit, ưu tiên mẫu thủ công. Số tiếp theo D-081/T-213.
@@ -12,7 +14,7 @@ Viết ngày 10/10/2026. Đây là điểm vào cho **phiên Claude Code ở má
 
 1. `AGENTS.md`, `CLAUDE.md`, `docs/STATUS.md`.
 2. `docs/handoff/NHAT_KY_ASTRA_2026-10-10_11.md` — kết quả thực hiện, commit/build, giới hạn kiểm tra.
-3. `docs/DECISIONS.md` D-076…D-081 và `docs/design/GRAPHICS_UPGRADE_PLAN.md`.
+3. `docs/DECISIONS.md` D-076…D-082 và `docs/design/GRAPHICS_UPGRADE_PLAN.md`.
 4. T-207…T-212 cùng Handoff/Review; dùng `git fetch` rồi kiểm nhánh thực, không suy ra agent đã chạy chỉ vì có card.
 5. `docs/handoff/ASTRA_DIEU_PHOI_2_NGAY.md` là ảnh chụp trạng thái trước giai đoạn mới; các điểm thay đổi ưu tiên xem D-076/D-077 và nhật ký.
 

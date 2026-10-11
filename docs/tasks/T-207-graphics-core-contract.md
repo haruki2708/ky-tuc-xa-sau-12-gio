@@ -105,3 +105,9 @@ Phần kỹ thuật T-207: `docs/design/graphics/INTEGRATION_CONTRACT.md`, `docs
 ### 11/10/2026 — D-081, Astra tiếp nhận
 
 Astra làm thay phần T-207 theo yêu cầu chủ dự án; contract mới thay đề xuất G0 ở các mục đã ghi. Nhận G0 không đồng nghĩa G1/G2 nghiệm thu. Năm lane tiếp tục theo [bàn giao D-081](../handoff/T207_G1_ASTRA_2026-10-11.md); web tạm dừng để tránh trùng người sửa.
+
+### 11/10/2026 — Astra, D-082, review tiếp G1
+
+Đã review tiếp A/B/C/D/F theo [D-082](../handoff/REVIEW_G1_2026-10-11.md). Nhận probe C trước; schema `7af1075` cần sửa R1–R4. Contract balo giữ D-081, B chưa chuyển manifest, G1 nghiệm thu và W1–W4 chưa đóng. Astra làm thay web trong hai ngày; Opus nhận phần còn dở.
+
+Full test/check sau cập nhật là điều kiện commit/push; kết quả, giờ và log ở message D-082. Các phần runtime prototype/QA được nhận không đổi cảnh chơi mặc định.

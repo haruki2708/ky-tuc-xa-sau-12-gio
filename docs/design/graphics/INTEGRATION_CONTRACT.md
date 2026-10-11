@@ -1,5 +1,7 @@
 # Hợp đồng tích hợp đồ họa — T-207, G1 từng phần
 
+> **D-082, review tiếp:** đã nhận A/B/D/F và probe C `b86a77d`; schema/validator `7af1075` chưa được nhận vì R1–R4. Đọc [kết luận hiện hành](../../handoff/REVIEW_G1_2026-10-11.md). B chưa chuyển manifest; các mốc/commit G0 bên dưới là căn cứ lịch sử, không thay kết quả D-082.
+
 **11/10/2026, D-081 — Astra làm thay Claude web theo yêu cầu chủ dự án.** G0 của sáu lane đã ghép ở D-079; provider hiện hành là Tripo AI (D-080). Claude web tạm dừng T-207; đầu mối core là Astra trong hai ngày điều phối, sau đó bàn giao Opus. Giữ tác giả và số đo G0 của web trong [ASSET_BINDINGS.md](ASSET_BINDINGS.md).
 
 **Hiệu lực:** quy ước đạo cụ tĩnh ở §2–3 là quyết định kỹ thuật để B/C triển khai sau khi D-081 lên main. Đây không phải xác nhận validator đã hỗ trợ schema mới, asset đã đạt hoặc G2 đã mở. Các điều kiện đóng G1 ở §9 còn phải có bằng chứng B/C. Rig/settings/chuông có trạng thái riêng; không giữ balo chờ chúng.
@@ -39,7 +41,7 @@ Nguồn đối chiếu: main `acbf771`, Review [D-079](../../handoff/REVIEW_G0_2
 - `tolerance_m` áp riêng phép so vị trí/bounds. Với mẫu balo, chuẩn hóa về bounds trên; **sai số kỹ thuật tối đa 0.001 m cho mỗi thành phần** khi xuất/import, không là quyền nới collider/marker. Scale không có đơn vị mét: C kiểm riêng root scale `(1,1,1)` với sai số số thực đã ghi rõ trong công cụ. B báo nếu mục tiêu này không thể đạt mà vẫn giữ hình; không tự mở dung sai ±5% hoặc 30% của draft G0.
 - Báo mesh/surface/material/texture thật sau import; tham chiếu geometry thiếu phải là INCOMPLETE/FAIL phù hợp. Các biến thể ẩn, rest pose, skin/animation/LOD chưa hỗ trợ phải được ghi rõ; không cộng số khảo sát cả cụm thành số một asset.
 - B/C thống nhất hash theo **tập dependency**: nguồn GLB/scene, wrapper/script liên quan, material/texture ngoài, cấu hình `.import`, phiên bản Godot và probe. Báo cáo cũ phải bị coi stale khi một dependency đổi. Không bắt mọi máy có cùng byte của cache `.godot`; C định nghĩa cách ghi dấu artifact import cục bộ và bằng chứng tái import. Dependency chưa liệt kê hết → chưa đủ chứng cứ.
-- G0 của C hiện nhân transform root và chỉ so hash file nguồn; chưa đạt các mục trên. D-081 không tự sửa hoặc nhận các kiểm đó đã PASS.
+- D-082 nhận probe C `b86a77d`: đã bỏ root placement khỏi bounds/marker và bổ sung dependency hash/fixture. Validator G1 vẫn chưa được nhận; R1–R4 phải sửa trước khi dùng làm cổng kiểm schema. Bằng chứng probe không thay nghiệm thu wrapper/closure/asset.
 
 ## 3. Manifest — C sở hữu schema, B sở hữu dữ liệu
 
@@ -79,7 +81,7 @@ Chưa tạo API chung/signal mới. A/B gửi bảng path, return/failure, owner
 
 - **Nút `FireAlarm1F` chỉ chương 3**, core tạo tại `(0.9,-8.5,0.12)`, vùng dùng `(0.5,0.6,0.5)`. B cung cấp scene **visual riêng**, core instance sau điều kiện chương. Không đặt sẵn nút tương tác trong campus dùng chung chương 4.
 - **Mồi AI:** `(42,-9.9,2)`, bán kính 45 m, phát một lần; giữ số xác và nơi kéo crowd.
-- **Nguồn âm:** `(42,-7.7,0.2)`, tên dự kiến `Campus/Anchors/FireBellMount`. B xác minh mặt tường/basis/kích thước bằng renderer trước khi marker thành dependency; không nhập vị trí âm vào vị trí mồi.
+- **Nguồn âm:** `(42,-7.7,0.2)`, tên dự kiến `Campus/Anchors/FireBellMount`. D-082 đã xem ảnh khảo sát B: giá đỡ bám facade, basis đề xuất identity/+Z ra hành lang, envelope đĩa 0.28×0.28×0.12 m. Nhận làm căn cứ kỹ thuật, chưa phải marker production; không nhập vị trí âm vào vị trí mồi.
 - F đã có `res://audio/graphics_upgrade/fire_bell_soft.ogg`: mẫu riêng 4 s, `loop=false`, preview và test; chưa được nghe/duyệt, chưa thay stream core. Giữ stream finite cho tới W2.
 - W2 sẽ dùng deadline dừng 20 s độc lập `finished`, dọn khi chết/reset và xử lý pause theo contract được kiểm; chưa triển khai hoặc tuyên bố đã sửa production. F preview không là bằng chứng `_ring_bell` đã đổi. Không phát thêm noise từ stream/animation.
 
@@ -88,7 +90,7 @@ Chưa tạo API chung/signal mới. A/B gửi bảng path, return/failure, owner
 `docs/SETTINGS.md` chưa thêm key. Hợp nhất đề xuất D/web về **một tên ứng viên `graphics_preset`**, ưu tiên Low/Medium; default, bảng tham số, migration G3 còn pending. `quality_preset`, High, `visual_style` và `render_scale` tách riêng trong draft cũ không được coi đã duyệt; D chưa bật control không có backend.
 
 - Consumer hiện hành: `game/rendering/ps1_filter.gd` dưới CanvasLayer đọc brightness/ps1_strength ở ready và khi signal; Screen nằm dưới HUD/menu. Brightness `1.0`, range `0.5–1.5`; ps1_strength `1.0`, range `0–1`, chưa đổi.
-- Pilot B: `game/scenes/levels/graphics_pilot/material_pilot.gd` đọc Settings và thay global `ps1_strength`; B cần khôi phục global khi rời pilot. B/D chốt một consumer brightness mỗi viewport, áp dụng cả khi bỏ PS1, không làm tối UI hoặc áp hai lần.
+- D-082 nhận pilot B dùng `ShaderGlobalsOverride` theo vòng đời; integrator kiểm pixel Forward+ 3/3, gồm base đổi trong lúc override và được trả lại sau thoát. Brightness pilot có một screen consumer; đây chưa phải backend Low/Medium. B/D tiếp tục contract consumer cho cảnh production, không làm tối UI hoặc áp hai lần.
 - D giữ writer lưu trước signal. Migration/reset video không xóa locale/audio/input/head_bob/reduce_scares; không gọi reset toàn bộ. F/A tiếp tục consumer hiện có.
 - B đưa backend/tham số có tác dụng thật, D đề xuất missing/invalid fallback và reset, C kiểm bằng cảnh phù hợp. Chỉ sau đó integrator cập nhật SETTINGS. 1080p/60 FPS trên RTX 3050 vẫn là mục tiêu chưa đo; HTML mockup không thay ảnh Godot.
 

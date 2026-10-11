@@ -1,5 +1,7 @@
 # Prompt bàn giao — Lane C (QA và Tools)
 
+> **D-082:** đã review phần mới; đọc Review card và [kết luận chung](REVIEW_G1_2026-10-11.md), giữ công việc đã nhận. C chỉ được nhận probe b86a77d; sửa R1–R4 trên phần schema còn lại 7af1075 trước bàn giao lại.
+
 > **D-081, 11/10:** Astra làm thay Claude web ở T-207 theo yêu cầu chủ dự án. Đầu mối core/contract chuyển về integrator; web tạm dừng. Đọc [bàn giao G1](T207_G1_ASTRA_2026-10-11.md); giữ G0 và task/nhánh hiện có.
 
 > **D-080, 11/10:** dùng **Tripo AI thay Meshy**. Studio thủ công ưu tiên cho mẫu đầu; API dùng ví riêng. Đọc [cập nhật provider](TRIPO_AI_CHUYEN_DOI_2026-10-11.md), tiếp tục gói hiện có và giữ kết quả G0.
@@ -49,4 +51,17 @@ Làm các phần còn được mở trong card và bàn giao theo mục 1; khôn
 Integrator trả T-210: git fetch origin; đọc Review trên origin/main:docs/tasks/T-210-graphics-asset-qa.md.
 Rebase nhánh lane-c/T-210-graphics-asset-qa lên origin/main, sửa đúng từng ý trong phạm vi.
 Chạy full test/check, cập nhật Handoff và push nhánh; nêu rõ phần chưa kiểm/đang chờ.
+```
+
+## 4. Prompt sửa sau review D-082
+
+```text
+Tiếp tục T-210 trên nhánh hiện có. Fetch/rebase an toàn lên origin/main có D-082, bảo toàn thay đổi cục bộ.
+Integrator đã nhận b86a77d; 7af1075 chưa ghép. Giữ cả lịch sử và phần chuẩn bị, không làm lại G0.
+Đọc Review T-210 và docs/handoff/REVIEW_G1_2026-10-11.md.
+Sửa R1–R4 trong vùng C; thêm fixture âm tính tương ứng, đồng bộ schema/validator/tài liệu.
+Theo D-081: root scale unit có epsilon riêng, tolerance balo tối đa 0.001 m; trần D-079 từ hợp đồng được duyệt.
+Thiếu dependency phải có lý do cụ thể; metadata sai kiểu phải FAIL sạch. Không nới ngưỡng, không sửa manifest B.
+Chạy fixture offline trước. Khi sẵn sàng full test/check Windows, báo integrator xếp lượt.
+Sau hai lệnh đạt, cập nhật Handoff, commit/push nhánh và báo nhả lượt Godot. Không render/FPS/bot/Tripo trả phí.
 ```

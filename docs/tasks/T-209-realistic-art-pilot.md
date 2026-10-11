@@ -35,11 +35,28 @@ Vùng B: `art_source/`, `game/assets/models/`, `game/assets/textures/`, `game/sc
   - [x] Đo 13 mục bằng Godot, chụp 12 ảnh renderer cùng góc và kiểm tra metadata/ảnh.
   - [x] Full test/check đạt; bàn giao phần G0 trên nhánh task bằng commit chứa Handoff này.
 - [ ] G1: manifest/marker/budget thử thống nhất
+  - [x] Sau D-080: brief balo Tripo Studio có bounds/pivot/trục, trần prototype và hồ sơ ví/nguồn/license.
+  - [x] Gửi đề xuất mapping schema và ảnh khảo sát giá đỡ chuông cho Astra/C/F; chưa chuyển manifest hoặc tạo mount production.
+  - [x] Pilot dùng override theo vòng đời; kiểm pixel Forward+ sau thoát đạt, không ghi settings.
+  - [x] Full test/check bản tiếp Review đạt; bàn giao bằng commit chứa Handoff này. Schema/mount vẫn chờ Astra duyệt.
 - [ ] G2: một asset đi hết pipeline và phòng mẫu có ảnh
 - [ ] Nhân vật mẫu hoạt động với adapter A
 - [ ] Các đợt G3/G4 có review riêng, test/check và người dùng duyệt hình
 
 ## Handoff (agent điền)
+### Tiếp Review G0 / D-080 — Lane B, 11/10/2026
+
+- Giữ nhánh `lane-b/T-209-realistic-art-pilot`; workspace sạch đầu phiên, fetch/rebase an toàn lên `origin/main` `acbf771` có D-080, không làm lại G0 hoặc đổi task ID. **Astra đã nhận T-207 thay Claude web**, đầu mối core/contract của bàn giao mới; các mục G0 bên dưới là lịch sử.
+- Đầu ra mới: `art_source/graphics_upgrade/TRIPO_BACKPACK.md` (Studio thủ công → GLB → Blender → Godot; số đo/pivot/placement/trần thử và hồ sơ operator); `REVIEW_D080.md` (mapping đề xuất cho C/Astra, khảo sát mount, brightness/lifetime, rà UID); cập nhật brief tiếng Anh và credits cho nội dung mới, giữ tác giả/license asset cũ.
+- Cleanup: pilot chuyển sang `ShaderGlobalsOverride` với `params/ps1_strength`; khi rời fixture engine bỏ override và dùng lại base hiện hành, không ghi config. Đã kiểm pixel trên Forward+ với base đổi trong lúc pilot mở. Brightness trong pilot có một consumer screen shader; không thêm preset/key hoặc consumer gameplay.
+- Mount: đã chụp/xem `review_d080/bell_front.png`, `bell_side.png`, metadata `capture_report.json`. `bell_mount_probe.tscn` chỉ chạy với `--bell-mount-capture`, dùng snapshot render không script gameplay/collision/audio. Đĩa đỏ 0.28×0.28×0.12 m là envelope đề xuất, có giá đỡ bám facade; giữ âm `(42,-7.7,0.2)` và noise `(42,-9.9,2)`. Khối Door7 gốc và khung `KitDetail1/Frame7` nhìn thấy khác nhau; ảnh/số đo để Astra/F chốt chứ chưa tạo `FireBellMount` production.
+- UID: nguồn green_paint hiện là `uid://ib3fwalyl3p2`; rà tĩnh chưa thấy tham chiếu UID khác trong file nguồn, GLB dùng URI texture. Không tái hiện warning green_paint/invalid UID trong log full check/test, render test và capture mới; chưa sửa UID/asset khi không có bằng chứng, không coi đã sửa cache máy khác.
+- Kiểm đã chạy theo lượt mới được người dùng bàn giao khi Godot trống: focused headless `RESULT: 3 passed, 0 failed` (pixel ghi SKIP ở headless); **Forward+ thực `RESULT: 3 passed, 0 failed`**, gồm pixel restoration; mount `RESULT: bell mount survey 2 images PASS`, RTX 3050 Laptop, 1280×720. Lỗi thử property/group và suy luận kiểu đã sửa trước lượt đạt cuối. Log cục bộ `build/t209-d080-{focused,render-test,bell-capture}.log`.
+- **Full Windows cuối ngày 11/10:** `pwsh tools/check.ps1` từ **11:09:44–11:17:24**, **`RESULT: check 0 error(s)`**, 345 script; `pwsh tools/test.ps1` từ **11:17:24–11:38:32**, **`RESULT: 744 passed, 0 failed`**. Pixel test ghi SKIP trong suite headless, đã được chạy thật ở lượt Forward+ riêng nêu trên. Log ignored `build/t209-d080-full-{check,test}.log`. Test nav tầng 4 từng được báo lỗi trên Linux đạt ở lượt Windows này, chưa tái hiện và không sửa/nới test. `git diff --check` đạt; kiểm Review/header card giữ nguyên, 2 PNG 1280×720 qua LFS và dưới 10 MiB đạt.
+- Yêu cầu ngoài phạm vi gửi **Astra/C**: review/ghép schema G1 đạo cụ tĩnh, root-local và dependency hash trước khi B chuyển manifest. **Astra/F**: review giá đỡ/basis/kích thước chuông; **Astra/D**: nhận consumer brightness/lifetime hiện hành. A/B tiếp tục rig khi contract riêng đủ; balo không bị buộc chờ rig/settings/chuông.
+- Tripo: chưa tài khoản/gói xác nhận, chưa ngân sách/key/license exception; không tạo tác vụ hoặc cài plugin/MCP. Studio/API tách ví, API không là dependency nhập thủ công. Credit thực chi B **0**; không có model/task ID/asset Tripo mới. Chưa bot 3–4/FPS, export hoặc thay đồ họa production; chưa duyệt hình cuối.
+- Bàn giao: commit `T-209: prepare Tripo Studio handoff and address G0 review` (commit chứa mục này), push nhánh hiện có `origin/lane-b/T-209-realistic-art-pilot`; không PR/main push. Lượt Windows của B **đã nhả lúc 11:38:32 ngày 11/10**. Phần chuẩn bị/sửa Review không còn chặn kỹ thuật. **Blocked cho bước tạo/nhập Tripo:** schema G1 đã duyệt và hồ sơ quyền/ngân sách/nguồn chưa đủ. Mount chờ Astra/F review phương án; không đánh dấu toàn T-209 done.
+
 ### T-209 G0 — Lane B, 10–11/10/2026
 
 - Nhánh `lane-b/T-209-realistic-art-pilot`, tạo từ `origin/main` `e3ed54a` có D-077/D-078; workspace sạch trước khi làm. Chỉ `D:\GAME_WORK\lane-b`. Commit bàn giao: `T-209: add G0 asset inventory and isolated material pilot` (commit chứa Handoff này); đích push `origin/lane-b/T-209-realistic-art-pilot`. Không sửa STATUS/DECISIONS/Review, không mở PR.
@@ -74,3 +91,9 @@ Vùng B: `art_source/`, `game/assets/models/`, `game/assets/textures/`, `game/sc
 ### 11/10/2026 — D-081, đổi đầu mối core
 
 Astra làm thay Claude web ở T-207; gửi yêu cầu core/contract về Astra. Đọc contract G1 cập nhật và [bảng việc từng lane](../handoff/T207_G1_ASTRA_2026-10-11.md), tiếp tục task/nhánh hiện có. Giữ lịch sử G0; không sửa file lane khác hoặc coi quy ước mới là bằng chứng validator/asset đã đạt.
+
+### 11/10/2026 — Astra, D-082, review tiếp G1
+
+Nhận `21f2f9b` — brief Tripo, cleanup override pilot và khảo sát mount. Integrator chạy Forward+ RTX 3050: 3/3, gồm pixel restoration; đã xem hai ảnh mount B. Phương án giá đỡ đủ làm căn cứ kỹ thuật, chưa marker production/duyệt chất lượng cuối. B bổ sung facing/basis từ model balo cũ; chờ schema C sửa được ghép rồi mới chuyển manifest. Không cần làm lại brief/G0 hoặc chờ rig/settings.
+
+Full test/check sau cập nhật là điều kiện commit/push; kết quả, giờ và log ở message D-082. Các phần runtime prototype/QA được nhận không đổi cảnh chơi mặc định.
