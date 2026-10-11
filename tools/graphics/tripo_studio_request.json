@@ -1,0 +1,10 @@
+{
+  "provider": "tripo",
+  "channel": "studio",
+  "wallet_id": "tripo:studio:fixture",
+  "asset_id": "room407_backpack",
+  "license": "CC0-1.0",
+  "steps": [{"name": "preview", "estimated_credits": 1}],
+  "ceiling_credits": 1,
+  "max_attempts": 1
+}

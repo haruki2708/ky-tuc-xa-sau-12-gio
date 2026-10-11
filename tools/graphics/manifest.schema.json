@@ -1,0 +1,240 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "T-210 static asset G1 proposal",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "assets"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "t210-g1-static-1"
+    },
+    "assets": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/asset"
+      }
+    }
+  },
+  "$defs": {
+    "asset": {
+      "type": "object",
+      "required": [
+        "asset_id",
+        "scope",
+        "file",
+        "source",
+        "geometry",
+        "generation",
+        "budget",
+        "approval",
+        "binding",
+        "placement"
+      ],
+      "properties": {
+        "asset_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "scope": {
+          "enum": [
+            "prototype",
+            "production"
+          ]
+        },
+        "file": {
+          "type": "string",
+          "minLength": 1
+        },
+        "planned_route": {
+          "type": "string"
+        },
+        "source": {
+          "type": "object",
+          "required": [
+            "uri",
+            "author",
+            "license",
+            "credits_file",
+            "ai_tool",
+            "input_rights"
+          ]
+        },
+        "geometry": {
+          "type": "object",
+          "required": [
+            "dimensions_m",
+            "bounds_min_m",
+            "root_scale",
+            "markers",
+            "coordinate_space",
+            "pose",
+            "visibility_policy"
+          ],
+          "properties": {
+            "dimensions_m": {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 3,
+              "maxItems": 3
+            },
+            "bounds_min_m": {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 3,
+              "maxItems": 3
+            },
+            "root_scale": {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 3,
+              "maxItems": 3
+            },
+            "markers": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "array",
+                "items": {
+                  "type": "number"
+                },
+                "minItems": 3,
+                "maxItems": 3
+              }
+            },
+            "coordinate_space": {
+              "const": "selected_root_local"
+            },
+            "pose": {
+              "const": "rest"
+            },
+            "visibility_policy": {
+              "const": "include_hidden"
+            }
+          }
+        },
+        "generation": {
+          "type": "object",
+          "required": [
+            "tool",
+            "provider",
+            "channel",
+            "wallet_id",
+            "tier",
+            "model_version",
+            "model_id",
+            "task_id",
+            "created_on",
+            "parameters",
+            "rights_evidence"
+          ],
+          "properties": {
+            "provider": {
+              "enum": [
+                "self_authored",
+                "tripo",
+                "meshy"
+              ]
+            },
+            "channel": {
+              "enum": [
+                "local",
+                "studio",
+                "api"
+              ]
+            },
+            "rights_evidence": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "budget": {
+          "type": "object",
+          "required": [
+            "estimated_credits",
+            "consumed_credits",
+            "wallet_id",
+            "balance_before",
+            "balance_after",
+            "triangle_limit_exclusive",
+            "material_limit",
+            "texture_edge_limit",
+            "basis"
+          ]
+        },
+        "approval": {
+          "type": "object",
+          "required": [
+            "status",
+            "reviewer"
+          ]
+        },
+        "binding": {
+          "type": "object",
+          "required": [
+            "scene_path",
+            "node_path",
+            "root_class",
+            "required_markers",
+            "collider_policy"
+          ],
+          "properties": {
+            "collider_policy": {
+              "const": "preserve_gameplay"
+            },
+            "required_markers": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "placement": {
+          "type": "object",
+          "required": [
+            "position_m",
+            "rotation_degrees",
+            "scale"
+          ],
+          "properties": {
+            "position_m": {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 3,
+              "maxItems": 3
+            },
+            "rotation_degrees": {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 3,
+              "maxItems": 3
+            },
+            "scale": {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 3,
+              "maxItems": 3
+            }
+          }
+        }
+      }
+    }
+  }
+}

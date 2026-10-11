@@ -1,0 +1,430 @@
+{
+  "task": "T-210",
+  "stage": "G1 review",
+  "baseline": "acbf771",
+  "measured_at": "2026-10-11",
+  "method": "Full Windows headless test suite; selected root local; rest pose; includes hidden meshes; no render or FPS",
+  "assets": [
+    {
+      "bounds_min_m": [
+        -0.879999995231628,
+        0.0,
+        -0.0799999535083771
+      ],
+      "coordinate_space": "selected_root_local",
+      "dependency_hashes": {
+        "game/.godot/imported/door.glb-a81bc8a9179a0677cddf7653ea35df74.scn": "8d254ed00195d6a7fe4a7dfb6576db8f7e4b69cd65fbd2f5202dbe0d2309d07d",
+        "game/.godot/imported/iron.png-d9e7333594f3600a48686e3dfb8ad631.ctex": "3addd19af983def1983698b0e81fda838ee7ae291c98449519be270edde04fe0",
+        "game/.godot/imported/old_wood.png-40d993fe646f219510b4fc3572d2e495.ctex": "12fdc12b6926c9b6102c9f36420334a21243be04f40b4a478031fd2e321b0054",
+        "game/assets/models/kit/door.glb": "da7cd121c8f4cab5f48b44a08800ec83b6d546d13e12e463b2a42e47609ac8fb",
+        "game/assets/models/kit/door.glb.import": "aa9f268ca9c310b600aab31d4ed0d6994d4130934500e579ebfa021f1771d272",
+        "game/assets/models/kit/kit_import.gd": "eed00f91ac7a6d7a1394e29f14ba0b768d6de573e3012e4d6a663747d801d355",
+        "game/assets/textures/kit/iron.png": "ab099daeafb612a9e44c6e8eb1f0c613f716f2025e1b7dfe38f11a59770d9b83",
+        "game/assets/textures/kit/iron.png.import": "ad12d73168f9279fd4279242839e5b26629a8480ecf0d2d502bbe37b15651151",
+        "game/assets/textures/kit/old_wood.png": "dced583c873fdcc2579f1ac77f9697e37312c5c3fffabddd8f9efff93924ab72",
+        "game/assets/textures/kit/old_wood.png.import": "b46001f0f92c546b504551e2ba60cea22f86ea93e586fa18524feb1c2d157aa5",
+        "game/project.godot": "faa247cc0aef94bdd940b9175b14e002c0254449258210fefcf35ba83ce99611",
+        "game/rendering/ps1_surface.gdshader": "77bc389246e81ded54370fcc6bb7deb6099213052ffa2e6be36bb04643504e71",
+        "game/rendering/ps1_surface.gdshaderinc": "eb32593a53be72d35ebb2cf049d38f55837ff09593c7a3747664f0ef25fd2e63",
+        "game/rendering/ps1_surface_cutout.gdshader": "c5644929ef912844ce7e6b51f3ef51be73c9b8b0ce1becc2ed08254456c7a402",
+        "game/scripts/debug/graphics_asset_probe.gd": "736fecd7271b58cc53a04dad59bc0a150af39289219ce65fc1db0ad14ec321b8"
+      },
+      "dependency_unavailable": [],
+      "dimensions_m": [
+        0.879999995231628,
+        2.07999992370605,
+        0.100000031292439
+      ],
+      "engine": "4.7.2-stable (official)",
+      "file": "game/assets/models/kit/door.glb",
+      "material_count": 2,
+      "method": "Godot imported Mesh.get_faces; selected root local; rest pose; includes hidden meshes",
+      "nodes": {
+        ".": {
+          "position_m": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "WorldCollision": {
+          "position_m": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "WorldCollision/Bounds": {
+          "position_m": [
+            -0.439999997615814,
+            1.03999996185303,
+            -0.0299999378621578
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "door": {
+          "position_m": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "door/door_mesh": {
+          "position_m": [
+            -0.708000004291534,
+            1.05499994754791,
+            -0.0639999434351921
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        }
+      },
+      "pose": "rest",
+      "root_placement": {
+        "position_m": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rotation_degrees": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "root_scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "sha256": "da7cd121c8f4cab5f48b44a08800ec83b6d546d13e12e463b2a42e47609ac8fb",
+      "surfaces": 2,
+      "texture_count": 2,
+      "textures": {
+        "res://assets/textures/kit/iron.png": {
+          "height": 128,
+          "width": 128
+        },
+        "res://assets/textures/kit/old_wood.png": {
+          "height": 128,
+          "width": 128
+        }
+      },
+      "triangles": 120,
+      "unavailable": [
+        "animated_bounds",
+        "gpu_texture_memory",
+        "gameplay_collision_nav",
+        "visual_approval"
+      ],
+      "visibility_policy": "include_hidden"
+    },
+    {
+      "bounds_min_m": [
+        -0.449999988079071,
+        0.0,
+        -1.0
+      ],
+      "coordinate_space": "selected_root_local",
+      "dependency_hashes": {
+        "game/.godot/imported/bunk_bed.glb-88bed90cdde9422e13f03cf8efea07f9.scn": "b6d903136217efc22b4a67d2c3ccd24a58eba4fd08527ae63d153362719d5f84",
+        "game/.godot/imported/cloth.png-39e9f1710fae1d0230c004e7a0cad252.ctex": "2fe338d9853e630d33c046dfe71525126a21deedfee05925b08f5b01cf655eb7",
+        "game/.godot/imported/iron.png-d9e7333594f3600a48686e3dfb8ad631.ctex": "3addd19af983def1983698b0e81fda838ee7ae291c98449519be270edde04fe0",
+        "game/.godot/imported/old_wood.png-40d993fe646f219510b4fc3572d2e495.ctex": "12fdc12b6926c9b6102c9f36420334a21243be04f40b4a478031fd2e321b0054",
+        "game/.godot/imported/striped_mat.png-0b2b4e9d184600b79c702e16f44351c1.ctex": "c9523c54548131b355a1e5fa7694f4c348743962036e076851c07b4f7cac59c7",
+        "game/assets/models/kit/bunk_bed.glb": "fbc1710c50d13abee0fcbd2810ad77cb28c92506f24c304ceb8b6c3a1a87b82a",
+        "game/assets/models/kit/bunk_bed.glb.import": "b1184e8540dd9275363a443da5e8d09b58996ecf150c1b55c404a83eb7c926b7",
+        "game/assets/models/kit/kit_import.gd": "eed00f91ac7a6d7a1394e29f14ba0b768d6de573e3012e4d6a663747d801d355",
+        "game/assets/textures/kit/cloth.png": "6fe0fc6423fff7dd7dadc4a842c28de703af3a5264aa4cd281121b8ea5bc6798",
+        "game/assets/textures/kit/cloth.png.import": "77a62e159b919fbab7344f239458f399bf04d04f12b526e2c984e4030e117d64",
+        "game/assets/textures/kit/iron.png": "ab099daeafb612a9e44c6e8eb1f0c613f716f2025e1b7dfe38f11a59770d9b83",
+        "game/assets/textures/kit/iron.png.import": "ad12d73168f9279fd4279242839e5b26629a8480ecf0d2d502bbe37b15651151",
+        "game/assets/textures/kit/old_wood.png": "dced583c873fdcc2579f1ac77f9697e37312c5c3fffabddd8f9efff93924ab72",
+        "game/assets/textures/kit/old_wood.png.import": "b46001f0f92c546b504551e2ba60cea22f86ea93e586fa18524feb1c2d157aa5",
+        "game/assets/textures/kit/striped_mat.png": "ab9d24db98419e3c6c4aaf428352dec51818065d066f426cc1d7a8b02b725810",
+        "game/assets/textures/kit/striped_mat.png.import": "d9b0067d0b3f79efa30283eb2cee68715c328d07781a195f8c277835085c2aba",
+        "game/project.godot": "faa247cc0aef94bdd940b9175b14e002c0254449258210fefcf35ba83ce99611",
+        "game/rendering/ps1_surface.gdshader": "77bc389246e81ded54370fcc6bb7deb6099213052ffa2e6be36bb04643504e71",
+        "game/rendering/ps1_surface.gdshaderinc": "eb32593a53be72d35ebb2cf049d38f55837ff09593c7a3747664f0ef25fd2e63",
+        "game/rendering/ps1_surface_cutout.gdshader": "c5644929ef912844ce7e6b51f3ef51be73c9b8b0ce1becc2ed08254456c7a402",
+        "game/scripts/debug/graphics_asset_probe.gd": "736fecd7271b58cc53a04dad59bc0a150af39289219ce65fc1db0ad14ec321b8"
+      },
+      "dependency_unavailable": [],
+      "dimensions_m": [
+        0.900000274181366,
+        1.70000004768372,
+        2.0
+      ],
+      "engine": "4.7.2-stable (official)",
+      "file": "game/assets/models/kit/bunk_bed.glb",
+      "material_count": 4,
+      "method": "Godot imported Mesh.get_faces; selected root local; rest pose; includes hidden meshes",
+      "nodes": {
+        ".": {
+          "position_m": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "WorldCollision": {
+          "position_m": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "WorldCollision/Bounds": {
+          "position_m": [
+            1.49011611938477e-07,
+            0.850000023841858,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "bunk_bed": {
+          "position_m": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "bunk_bed/bunk_bed_mesh": {
+          "position_m": [
+            0.0,
+            0.340000003576279,
+            -0.959999978542328
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        }
+      },
+      "pose": "rest",
+      "root_placement": {
+        "position_m": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rotation_degrees": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "root_scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "sha256": "fbc1710c50d13abee0fcbd2810ad77cb28c92506f24c304ceb8b6c3a1a87b82a",
+      "surfaces": 4,
+      "texture_count": 4,
+      "textures": {
+        "res://assets/textures/kit/cloth.png": {
+          "height": 128,
+          "width": 128
+        },
+        "res://assets/textures/kit/iron.png": {
+          "height": 128,
+          "width": 128
+        },
+        "res://assets/textures/kit/old_wood.png": {
+          "height": 128,
+          "width": 128
+        },
+        "res://assets/textures/kit/striped_mat.png": {
+          "height": 128,
+          "width": 128
+        }
+      },
+      "triangles": 372,
+      "unavailable": [
+        "animated_bounds",
+        "gpu_texture_memory",
+        "gameplay_collision_nav",
+        "visual_approval"
+      ],
+      "visibility_policy": "include_hidden"
+    },
+    {
+      "bounds_min_m": [
+        -0.145000010728836,
+        0.010000005364418,
+        -0.132500007748604
+      ],
+      "coordinate_space": "selected_root_local",
+      "dependency_hashes": {
+        "game/.godot/imported/backpack.glb-8d254d9a9c16d29f984fc93e972d2df9.scn": "baf3f2e207ea996e7218661299ac7217a22d9e0712c8e018f760703004084d57",
+        "game/.godot/imported/cloth.png-1dd44f1729372c3ae898a4dab2fd4830.ctex": "b15fec6e74ce5aa1166cab9d66e9dd0c36016f592e019194aba5a33040571da5",
+        "game/.godot/imported/ink.png-9917ac908fc4079d598afd4203139a70.ctex": "bdb4a321886f2b25157569d8ddb98ed36078da333af89f7d799bf32953caccde",
+        "game/.godot/imported/moss.png-62b5bf30a3559644ee5a77e4330f6cc7.ctex": "904615f62753597ed8ff35d8dbd4c996b2f2990d91648de5729ee68e17e0ffb6",
+        "game/assets/models/kit/kit_import.gd": "eed00f91ac7a6d7a1394e29f14ba0b768d6de573e3012e4d6a663747d801d355",
+        "game/assets/models/room407/backpack.glb": "b92f6faf3b94df368ecfbca3495bdbeb7880226ecf08c576050495863f848be0",
+        "game/assets/models/room407/backpack.glb.import": "ed9b6116fc3bd2bed84e5817ea278b8f4f1c9b6913cc957715e8c2994d6c18c8",
+        "game/assets/models/room407/room407_import.gd": "b580e8a6ce088f7163c7d7417e4fe7e5ddd716f782cf500d514ddf94760c3b7a",
+        "game/assets/textures/room407/cloth.png": "ab65cb9920a8147dcde179e615ba1a86d5e5b8335d299cf713810fd58d3640c8",
+        "game/assets/textures/room407/cloth.png.import": "7ef2af80d2bb63396e6f6320b8e490aa768f2737323606e392bb16c0f6631828",
+        "game/assets/textures/room407/ink.png": "30c828b37a9ebeed6fc1da939b6761b0e8065bb6785731c2e62710fb720b2b65",
+        "game/assets/textures/room407/ink.png.import": "56e491d623dad52f7ccbb32fe49d05816dae47e03169fcb22a7581941b13177e",
+        "game/assets/textures/room407/moss.png": "1e09a4cdbf7c19dd5107089ab2e87de9eeead7c00c45d1108d23b8145737e71b",
+        "game/assets/textures/room407/moss.png.import": "fab497a5b18c60284f59c52c0539969c4f7c6f5117bf102740eb284e50096aa1",
+        "game/project.godot": "faa247cc0aef94bdd940b9175b14e002c0254449258210fefcf35ba83ce99611",
+        "game/rendering/ps1_surface.gdshader": "77bc389246e81ded54370fcc6bb7deb6099213052ffa2e6be36bb04643504e71",
+        "game/rendering/ps1_surface.gdshaderinc": "eb32593a53be72d35ebb2cf049d38f55837ff09593c7a3747664f0ef25fd2e63",
+        "game/rendering/ps1_surface_cutout.gdshader": "c5644929ef912844ce7e6b51f3ef51be73c9b8b0ce1becc2ed08254456c7a402",
+        "game/scripts/debug/graphics_asset_probe.gd": "736fecd7271b58cc53a04dad59bc0a150af39289219ce65fc1db0ad14ec321b8"
+      },
+      "dependency_unavailable": [],
+      "dimensions_m": [
+        0.290000021457672,
+        0.456399977207184,
+        0.302700012922287
+      ],
+      "engine": "4.7.2-stable (official)",
+      "file": "game/assets/models/room407/backpack.glb",
+      "material_count": 3,
+      "method": "Godot imported Mesh.get_faces; selected root local; rest pose; includes hidden meshes",
+      "nodes": {
+        ".": {
+          "position_m": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "backpack": {
+          "position_m": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "backpack/backpack_mesh": {
+          "position_m": [
+            0.0,
+            0.209999993443489,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        }
+      },
+      "pose": "rest",
+      "root_placement": {
+        "position_m": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rotation_degrees": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "root_scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "sha256": "b92f6faf3b94df368ecfbca3495bdbeb7880226ecf08c576050495863f848be0",
+      "surfaces": 3,
+      "texture_count": 3,
+      "textures": {
+        "res://assets/textures/room407/cloth.png": {
+          "height": 128,
+          "width": 128
+        },
+        "res://assets/textures/room407/ink.png": {
+          "height": 128,
+          "width": 128
+        },
+        "res://assets/textures/room407/moss.png": {
+          "height": 128,
+          "width": 128
+        }
+      },
+      "triangles": 96,
+      "unavailable": [
+        "animated_bounds",
+        "gpu_texture_memory",
+        "gameplay_collision_nav",
+        "visual_approval"
+      ],
+      "visibility_policy": "include_hidden"
+    }
+  ]
+}
