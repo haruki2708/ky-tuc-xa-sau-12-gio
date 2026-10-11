@@ -1,5 +1,7 @@
 # Prompt bàn giao — Lane B (Môi trường và 3D)
 
+> **11/10, D-083:** schema/validator G1 của C đã ghép; integrator là Claude (Opus 5.5) ở máy. Prompt đang dùng: **mục 4** (chuyển manifest balo + hướng mặt trước).
+
 > **D-082:** đã review phần mới; đọc Review card và [kết luận chung](REVIEW_G1_2026-10-11.md), giữ công việc đã nhận. Không làm lại G0 hoặc tự chạy một vòng test mới chỉ vì nhận thông báo; tiếp tục đúng phần còn thiếu trong Review.
 
 > **D-081, 11/10:** Astra làm thay Claude web ở T-207 theo yêu cầu chủ dự án. Đầu mối core/contract chuyển về integrator; web tạm dừng. Đọc [bàn giao G1](T207_G1_ASTRA_2026-10-11.md); giữ G0 và task/nhánh hiện có.
@@ -51,4 +53,47 @@ Làm các phần còn được mở trong card và bàn giao theo mục 1; khôn
 Integrator trả T-209: git fetch origin; đọc Review trên origin/main:docs/tasks/T-209-realistic-art-pilot.md.
 Rebase nhánh lane-b/T-209-realistic-art-pilot lên origin/main, sửa đúng từng ý trong phạm vi.
 Chạy full test/check, cập nhật Handoff và push nhánh; nêu rõ phần chưa kiểm/đang chờ.
+```
+
+## 4. Prompt sau D-083: chuyển manifest balo và chốt hướng mặt trước (bản đầy đủ, 11/10 integrator viết)
+
+Dán nguyên khối, dùng được cho cả phiên lane B cũ lẫn phiên mới. Chỉ gửi khi chủ dự án xác nhận lane B còn hạn mức.
+
+```text
+Bạn là agent Lane B (Môi trường và 3D), game "Ký túc xá sau 12 giờ" (Godot 4.7.2). Trả lời/tài liệu tiếng Việt, code tiếng Anh.
+Chỉ làm trong D:\GAME_WORK\lane-b. Không sửa D:\GAME_DEMO hay workspace lane khác.
+Từ 11/10 integrator là Claude (Opus 5.5) ở máy, thay Astra. Mọi câu hỏi core/contract và việc xin lượt chạy Godot đều gửi về integrator.
+
+VIỆC: T-209, phần G1 cho balo room407_backpack, nhánh lane-b/T-209-realistic-art-pilot.
+D-083 đã ghép schema/validator G1 của lane C vào main. Không làm lại G0/brief/pilot/mount survey đã nhận (D-082).
+Không sửa tools/graphics/ (vùng C), core, collision/nav/timing, cảnh chơi mặc định. Không nới trần D-079 hay sai số D-081.
+
+1. git status (không ghi đè việc đang dở) → git fetch origin → rebase an toàn nhánh lên origin/main (có D-083).
+2. Đọc: docs/handoff/REVIEW_G1_2026-10-11.md (mục B), Review trong docs/tasks/T-209-realistic-art-pilot.md,
+   D-079/D-081/D-083 trong docs/DECISIONS.md, tools/graphics/G1_SCHEMA.md, tools/graphics/sample_g1_manifest.json,
+   art_source/graphics_upgrade/TRIPO_BACKPACK.md.
+3. Chuyển manifest: tạo bản khai G1 cho room407_backpack trong art_source/graphics_upgrade/ (schema_version "t210-g1-static-1").
+   Số đo lấy từ đo thật root-local (measured_assets.json / probe), không chép số của file mẫu C.
+   Giữ asset_id đúng chữ thường "room407_backpack". Xác nhận node path, root_class, placement, owner theo contract T-207.
+   Giữ manifest G0 cũ làm lịch sử, ghi rõ bản nào đang có hiệu lực.
+4. Chốt hướng mặt trước (facing) của balo hiện hành, TRƯỚC khi có mẫu Tripo:
+   - Mở model hiện hành, xác định mặt trước (mặt có túi/khóa nhìn ra người chơi) theo trục root-local (ví dụ +X/-Z), kèm hướng lên.
+   - Chụp 4 ảnh cùng ánh sáng: trước, sau, cạnh, dưới; ghi trục lên ảnh hoặc tên file.
+   - Ghi basis đã chọn vào TRIPO_BACKPACK.md (mục "Hướng mặt trước"): trục trước, trục lên, pivot, ảnh tham chiếu,
+     và quy tắc xoay GLB Tripo về đúng basis này trong Blender trước khi nhập.
+   - Schema G1 chưa có field facing: KHÔNG tự thêm field vào schema. Ghi trong brief; nếu thấy cần field, nêu đề xuất trong Handoff.
+5. Chạy công cụ C trên manifest mới:
+   python -B tools/graphics/asset_qa.py <manifest G1 của B> --probe-log <log probe/full test mới nhất>
+   Kết quả mong đợi: balo CŨ FAIL đúng lỗi "material budget exceeded" (3 > 2); không có lỗi schema/kiểu/scale/tolerance nào khác.
+   Lỗi khác ngoài material: sửa dữ liệu của B; nếu do công cụ C sai, ghi vào Handoff, không sửa tools/graphics/.
+   Không gọi balo cũ là asset Tripo, không hạ yêu cầu để nó PASS.
+6. Khi sẵn sàng full test/check Windows: NHẮN integrator xin lượt rồi mới chạy pwsh tools/test.ps1, sau đó pwsh tools/check.ps1.
+   Render ảnh facing cũng là lượt Godot: xin lượt cùng lúc. Không đo FPS, chạy bot hay dùng Tripo (trả phí hoặc MCP).
+7. Hai lệnh đạt → commit nhỏ "T-209: ..." → git push origin lane-b/T-209-realistic-art-pilot (không push main, không mở PR) → báo nhả lượt Godot.
+8. Cập nhật Handoff trong card (không sửa STATUS, DECISIONS hay mục Review) và báo lại, gồm:
+   - Đường dẫn manifest G1; bảng số đo (kích thước, bounds_min, tam giác, vật liệu, texture) và nguồn đo.
+   - Basis mặt trước/lên/pivot đã chọn, 4 ảnh tham chiếu.
+   - Lệnh asset_qa đã chạy và nguyên văn errors/status.
+   - Dòng RESULT của test.ps1 và check.ps1; commit hash.
+   - Phần chưa kiểm, đề xuất contract (nếu có), có bị chặn gì không.
 ```

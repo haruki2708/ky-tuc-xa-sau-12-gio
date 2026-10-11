@@ -111,3 +111,6 @@ Astra làm thay phần T-207 theo yêu cầu chủ dự án; contract mới thay
 Đã review tiếp A/B/C/D/F theo [D-082](../handoff/REVIEW_G1_2026-10-11.md). Nhận probe C trước; schema `7af1075` cần sửa R1–R4. Contract balo giữ D-081, B chưa chuyển manifest, G1 nghiệm thu và W1–W4 chưa đóng. Astra làm thay web trong hai ngày; Opus nhận phần còn dở.
 
 Full test/check sau cập nhật là điều kiện commit/push; kết quả, giờ và log ở message D-082. Các phần runtime prototype/QA được nhận không đổi cảnh chơi mặc định.
+
+### 12/10/2026 — Claude (integrator, Opus 5.5), D-083…D-085
+Nhận lại T-207 từ Astra. D-083 ghép schema/validator C; D-084 ngoại lệ license Tripo trả phí (mua Pro sau G1, tối đa 5 lượt); D-085 **đóng G1 đạo cụ tĩnh cho balo**, tiêu chí G2 ở `docs/handoff/G1_NGHIEM_THU_BALO_2026-10-12.md`. Rig, settings, chuông (W1–W4) chưa bắt đầu, không chặn mẫu balo.

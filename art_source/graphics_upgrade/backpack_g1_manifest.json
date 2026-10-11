@@ -1,0 +1,95 @@
+{
+  "schema_version": "t210-g1-static-1",
+  "assets": [
+    {
+      "asset_id": "room407_backpack",
+      "scope": "prototype",
+      "file": "game/assets/models/room407/backpack.glb",
+      "source": {
+        "uri": "repo:art_source/room407/build_assets.py",
+        "author": "Lane B",
+        "license": "CC0-1.0",
+        "credits_file": "art_source/CREDITS.md",
+        "ai_tool": "Codex (OpenAI), procedural Blender script",
+        "input_rights": "Original procedural geometry and textures; no external image input"
+      },
+      "binding": {
+        "scene_path": "res://scenes/levels/floor4/floor4.tscn",
+        "node_path": "Room407/Details/Trung/Backpack",
+        "root_class": "Node3D",
+        "required_markers": [],
+        "collider_policy": "preserve_gameplay"
+      },
+      "geometry": {
+        "dimensions_m": [
+          0.29,
+          0.45636,
+          0.30274
+        ],
+        "bounds_min_m": [
+          -0.145,
+          0.01,
+          -0.1325
+        ],
+        "root_scale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "tolerance_m": 0.0001,
+        "markers": {},
+        "coordinate_space": "selected_root_local",
+        "pose": "rest",
+        "visibility_policy": "include_hidden"
+      },
+      "placement": {
+        "position_m": [
+          33.78,
+          0.02,
+          -4.52
+        ],
+        "rotation_degrees": [
+          0.0,
+          90.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "generation": {
+        "provider": "self_authored",
+        "channel": "local",
+        "tool": "Blender 5.2.2 LTS",
+        "wallet_id": null,
+        "tier": null,
+        "model_version": null,
+        "model_id": null,
+        "task_id": null,
+        "created_on": null,
+        "parameters": {
+          "generator": "art_source/room407/build_assets.py"
+        },
+        "rights_evidence": []
+      },
+      "budget": {
+        "triangle_limit_exclusive": 3001,
+        "material_limit": 2,
+        "texture_edge_limit": 1024,
+        "basis": "D-079 prototype target; D-081 and D-083 root-local validation. Existing CC0 backpack must fail 3 materials > 2; no production budget change.",
+        "wallet_id": null,
+        "estimated_credits": 0,
+        "consumed_credits": 0,
+        "balance_before": null,
+        "balance_after": null
+      },
+      "approval": {
+        "status": "pending",
+        "reviewer": null
+      },
+      "planned_route": "tripo_studio_manual"
+    }
+  ]
+}

@@ -1,5 +1,7 @@
 # Kế hoạch nâng đồ họa gần chân thực — D-076…D-081
 
+> **12/10, D-085:** G1 đạo cụ tĩnh (balo) đã nghiệm thu; chủ dự án mua Tripo Studio Pro rồi tạo mẫu theo `docs/handoff/TRIPO_STUDIO_HUONG_DAN_BALO.md` (G2). D-084: ngoại lệ license cho model Tripo trả phí.
+
 > **D-082:** review tiếp A/B/C/D/F; nhận phần đạt và probe C, giữ schema C để sửa. Xem [kết luận và dependency hiện hành](../handoff/REVIEW_G1_2026-10-11.md). G1 balo chưa nghiệm thu, chưa mở tạo Tripo trả phí.
 
 > **D-081, 11/10:** Astra làm thay Claude web ở T-207 theo yêu cầu chủ dự án. Đầu mối core/contract chuyển về integrator; web tạm dừng. Đọc [bàn giao G1](../handoff/T207_G1_ASTRA_2026-10-11.md); giữ G0 và task/nhánh hiện có.
@@ -87,7 +89,7 @@ Mục tiêu thử 1080p/60 FPS Medium trên RTX 3050 Laptop 4 GB. Báo cáo ph�
 - **API riêng:** Studio và API không dùng chung credit. Chỉ chuẩn bị/chạy adapter Tripo khi được giao phương án API, ví và trần chi; không dùng quyền mua Studio để suy ra ngân sách API. Một operator cục bộ; web không giữ key hoặc tiêu credit.
 - C giữ dry-run, reservation trước submit, task ID để resume, giới hạn lượt và đối soát credit. Metadata phải phân biệt provider, Studio/API, model version, task/model ID, ngày, thông số, credit thực và giấy phép. Timeout chưa biết trạng thái không được tự POST lại.
 - `tools/graphics/meshy_dry_run.py` là fixture G0 lịch sử, chưa có transport cho bất kỳ dịch vụ nào. C chuyển công cụ sang tên/cấu trúc phù hợp trong T-210; không đổi tên rồi tự nhận Tripo API đã chạy. `TRIPO_API_KEY` là quy ước biến môi trường dự kiến, chưa có client đọc; không in/commit/gửi chat hoặc cloud. Không cài MCP/plugin trong đợt chuyển kế hoạch.
-- Chính sách repo giữ CC0/CC-BY; quyền thương mại Paid không tự gắn nhãn này. Lưu điều khoản/gói tại lúc tạo và quyền ảnh đầu vào, rồi chốt hồ sơ license trước nhập. Không dùng model Free làm asset thương mại theo suy diễn từ bài quảng cáo cũ; D-080 chưa cấp ngoại lệ.
+- Chính sách repo giữ CC0/CC-BY; quyền thương mại Paid không tự gắn nhãn này. Lưu điều khoản/gói tại lúc tạo và quyền ảnh đầu vào, rồi chốt hồ sơ license trước nhập. Không dùng model Free làm asset thương mại theo suy diễn từ bài quảng cáo cũ. **D-084 cấp ngoại lệ cho model gói Tripo trả phí** (dự kiến Studio Pro, mua sau G1), kèm hồ sơ gói/ngày/task ID/điều khoản lúc tạo/nguồn đầu vào; mẫu balo tối đa 5 lần tạo.
 - Lưu nguồn bền vững trong vùng B, CREDITS và metadata; `build/`/URL tạm không phải kho bàn giao. Giữ tác giả/license của asset CC0 cũ, chưa ghi credits Tripo khi chưa nhập asset thực.
 
 Nguồn đã kiểm ngày 11/10: [Studio và API](https://www.tripo3d.ai/help/api-plugins/tripo-studiotripo-api), [giá Studio](https://www.tripo3d.ai/pricing), [API pricing](https://developers.tripo3d.ai/en/pricing), [quyền thương mại](https://www.tripo3d.ai/help/privacy-policy/how-to-use-tripo-models-commercially), [điều khoản](https://www.tripo3d.ai/terms). Xem [nghiên cứu Tripo](../research/TRIPO_AI_2026-10-11.md); giá cuối cùng theo đúng tài khoản/model/công đoạn tại lúc chạy. Nghiên cứu Meshy 10/10 chỉ còn là lịch sử.

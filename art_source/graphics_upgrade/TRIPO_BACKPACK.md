@@ -15,7 +15,26 @@ ID giữ nguyên `room407_backpack`. Nguồn đo: `measured_assets.json`, scene 
 | Prototype | ≤3.000 tam giác; ≤2 material; mỗi map ≤1024×1024; mỗi file ≤10 MiB; nhị phân Git LFS |
 | Số đo cũ để đối chiếu | 96 tam giác, 3 material; không lấy 3 material cũ làm quyền vượt trần mẫu mới |
 
-Không suy ra mặt trước balo chỉ từ yaw: operator/B đối chiếu mặt túi với model hiện hành trong Blender/Godot rồi ghi basis đã chọn. Cần ảnh chính diện, sau, dưới và cạnh; chưa có asset mới nên chưa ký xác nhận hướng. Khoảng nhìn 0.7–2 m là khoảng review đề xuất, không phải số đo người chơi. Bảo toàn root đặt cảnh và đường đi; chỉ chuẩn hóa visual bên dưới root. Không thêm collider/nav/animation vào GLB.
+Khoảng nhìn 0.7–2 m là khoảng review đề xuất, không phải số đo người chơi. Bảo toàn root đặt cảnh và đường đi; chỉ chuẩn hóa visual bên dưới root. Không thêm collider/nav/animation vào GLB.
+
+## Hướng mặt trước
+
+Basis đích của **balo CC0 hiện hành** trong hệ root-local: **mặt trước −Z `(0,0,-1)`**, **lên +Y `(0,1,0)`**, ngang +X. Pivot giữ `(0,0,0)`, không phải tâm bounds `(0,0.23818,0.01887)`; đáy hình học cách pivot +0.01 m. Placement yaw +90° trong floor4 biến mặt trước thành world −X, không áp yaw đó lần nữa vào GLB.
+
+Căn cứ hình học: `backpack.glb` có child `backpack_mesh` quay khoảng 180° quanh Y, nên không lấy dấu Z của accessor chưa nhân transform child. Surface vải `cloth` là túi trước: Z accessor `[0.0775,0.1325]` trở thành root-local khoảng `[-0.1325,-0.0775]`. Quai lưng thuộc `ink` nằm về +Z sau transform. Generator T-153 xác định riêng `pocket` và `strap`; hướng cuối phải đối chiếu GLB đã export/import, không suy chỉ từ tọa độ Blender trong generator.
+
+Đã chụp và xem đủ bốn ảnh ngày 11/10/2026 bằng Godot 4.7.2 Forward+/RTX 3050 Laptop, 1280×720. Fixture giữ model ở root identity, ánh sáng trung tính cố định; chỉ đổi camera. Ảnh dưới nhìn từ −Y, chọn −Z làm hướng lên màn hình để thấy mặt túi ở phía trên ảnh. [facing_report.json](backpack_g1/facing_report.json) ghi camera, ánh sáng, hash GLB, phép đo imported GLB và node thực trong floor4; không đổi root hoặc importer để chụp.
+
+| Góc, hướng lên màn hình | Ảnh | Dấu hiệu xác nhận |
+|---|---|---|
+| Trước −Z, lên +Y | [front_neg_z_up_pos_y.png](backpack_g1/front_neg_z_up_pos_y.png) | Túi phụ vải xanh xám nằm trước thân xanh |
+| Sau +Z, lên +Y | [back_pos_z_up_pos_y.png](backpack_g1/back_pos_z_up_pos_y.png) | Hai quai đen ở lưng, không có túi phụ |
+| Cạnh +X, lên +Y | [side_pos_x_up_pos_y.png](backpack_g1/side_pos_x_up_pos_y.png) | Túi lồi về −Z, quai lùi về +Z |
+| Dưới −Y, lên màn hình −Z | [underside_neg_y_screen_up_neg_z.png](backpack_g1/underside_neg_y_screen_up_neg_z.png) | Túi ở phía trên ảnh, quai ở phía dưới; đáy kín |
+
+**Quy tắc Tripo → Blender:** nhận diện mặt có túi/khóa và mặt quai của model mới; chỉ xoay hình học visual sao cho GLB sau xuất có túi hướng −Z và đỉnh hướng +Y. Với xuất glTF Y-up tiêu chuẩn, điều này tương ứng túi hướng +Y Blender, lên +Z Blender; kiểm round-trip thay vì sao chép góc xoay 180° của child model cũ. Apply rotation/scale trên visual, giữ root/pivot và chuẩn hóa bounds đã chốt. Kiểm lại cả bốn hướng trong Godot trước khi đặt root ở world/yaw cũ; không recenter pivot, sửa scene/collider hoặc dùng âm scale để lật mặt. Không có model Tripo trong bước chốt hướng nguồn này.
+
+Manifest G1 cho balo hiện hành: `backpack_g1_manifest.json`, version `t210-g1-static-1` đã được D-083 nhận. Schema chưa có `facing`; basis chỉ ghi tại brief này và ảnh/báo cáo tham chiếu, không tự thêm field. Manifest G0 `asset_manifest.json` giữ nguyên làm lịch sử 15 mục; chỉ balo chuyển sang bản G1 riêng. Balo cũ vẫn là `self_authored/local`, không đổi thành provider Tripo.
 
 ## Các bước khi đủ điều kiện
 

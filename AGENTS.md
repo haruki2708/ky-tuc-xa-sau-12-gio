@@ -79,6 +79,7 @@ Mọi lane đều được sửa: task card của mình (`docs/tasks/T-xxx*.md`,
 - **Collision layer:** 1 = world, 2 = player, 3 = interactable.
 - **Asset:**
   - Chỉ dùng giấy phép **CC0** hoặc **CC-BY**. **Cấm** NC (phi thương mại), cấm asset không rõ nguồn, cấm asset lấy từ game khác.
+  - Ngoại lệ: danh sách từ chương 2 CC BY-SA (D-051); **model tạo bằng gói Tripo AI trả phí** (D-084), phải lưu gói, ngày, task ID, bản điều khoản lúc tạo và nguồn đầu vào hợp lệ. Không dùng model gói Free.
   - Ngoại lệ duy nhất: danh sách từ nối chương 2 (`game/data/ch2/dictionary.txt`, Wiktionary, CC BY-SA, D-051). Ngoại lệ khác phải hỏi chủ dự án.
   - Ghi nguồn của mọi asset vào `CREDITS.md` trong thư mục asset của lane: URL, tác giả, giấy phép, file nào.
   - Asset tạo bằng AI phải ghi rõ công cụ. Steam yêu cầu khai báo nội dung AI.
@@ -86,7 +87,7 @@ Mọi lane đều được sửa: task card của mình (`docs/tasks/T-xxx*.md`,
   - Texture 64–256 px, lọc nearest.
   - Mô hình ít đa giác: đồ lớn dưới 1500 tam giác, đồ nhỏ dưới 500.
   - D-076 chuyển hướng mỹ thuật sang gần chân thực. Prototype riêng T-209 được khảo sát ngân sách mới theo kế hoạch, không tự thay mặc định cảnh chơi hoặc nới test production. G1/G2 chốt hợp đồng và số đo trước khi integrator áp dụng tiêu chuẩn mới. Các kiểm tra gameplay/collision vẫn giữ hiệu lực.
-- **Tripo AI (D-080, thay Meshy):** G0 giữ nguyên; ưu tiên tạo mẫu trên Tripo Studio rồi B xử lý GLB/Blender/Godot. Studio và API dùng credit riêng, thuê bao Studio không cấp ngân sách API. Chỉ chạy tác vụ trả phí khi có tài khoản/ví phù hợp và trần chi cụ thể; một operator, ghi credit/task ID, không đặt khóa trong Git/chat. Quyền thương mại Paid không tự là CC0/CC-BY; giữ chính sách license hiện hành. Không cài MCP/plugin theo suy diễn từ việc đổi dịch vụ. Xem `docs/handoff/TRIPO_AI_CHUYEN_DOI_2026-10-11.md`.
+- **Tripo AI (D-080, thay Meshy):** G0 giữ nguyên; ưu tiên tạo mẫu trên Tripo Studio rồi B xử lý GLB/Blender/Godot. Studio và API dùng credit riêng, thuê bao Studio không cấp ngân sách API. Chỉ chạy tác vụ trả phí khi có tài khoản/ví phù hợp và trần chi cụ thể; một operator, ghi credit/task ID, không đặt khóa trong Git/chat. Quyền thương mại Paid không tự là CC0/CC-BY; ngoại lệ license và hồ sơ bắt buộc theo D-084 (mua Pro sau G1, mẫu balo tối đa 5 lần tạo). Không cài MCP/plugin theo suy diễn từ việc đổi dịch vụ. Xem `docs/handoff/TRIPO_AI_CHUYEN_DOI_2026-10-11.md`.
 - **File nhị phân:** đi qua Git LFS (xem `.gitattributes`), mỗi file tối đa 10 MB. Commit cả các file `.import` và `.uid` do Godot sinh ra.
 - **Không được:**
   - thêm plugin hoặc addon,

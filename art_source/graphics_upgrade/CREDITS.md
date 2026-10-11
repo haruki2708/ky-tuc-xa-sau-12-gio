@@ -13,3 +13,5 @@ Nguồn giấy phép: [CC0-1.0](https://creativecommons.org/publicdomain/zero/1.
 **Khai báo AI:** Codex viết code tạo texture/fixture, brief và tài liệu. Không dùng mô hình sinh ảnh, không gọi Meshy, không mua hoặc tiêu credit. Không có model ID/task ID Meshy; credit thực chi **0**. Ảnh preview phải là ảnh renderer thật, không thay bằng ảnh minh họa AI. Nhị phân mới đi qua Git LFS, mỗi file dưới 10 MB.
 
 **Bổ sung D-080:** chưa có asset Tripo được tạo/nhập; Studio và API đều chưa phát sinh chi phí trong phần việc B. Không gán Tripo là tác giả của asset CC0 cũ. Hồ sơ nguồn Tripo mới chỉ lập khi có file thật và quyền được duyệt.
+
+**Bổ sung G1 balo sau D-083:** `backpack_g1/*.png` là bốn ảnh renderer thật của balo CC0 T-153, giữ nguồn/tác giả tại [credits gốc](../CREDITS.md#phòng-407-chương-1--t-153). Fixture `backpack_facing_probe.*` do Lane B/Codex viết, Godot 4.7.2 chụp ảnh; CC0-1.0 cho code/ảnh mới. Không sinh model/texture mới, không dùng Tripo/MCP hoặc thay giấy phép nguồn cũ.

@@ -1,0 +1,363 @@
+{
+	"asset_id": "room407_backpack",
+	"binding": "Room407/Details/Trung/Backpack",
+	"bound_node_measurement": {
+		"bounds_min_m": [
+			-0.145000010728836,
+			0.010000005364418,
+			-0.132500007748604
+		],
+		"coordinate_space": "selected_root_local",
+		"dimensions_m": [
+			0.290000021457672,
+			0.456399977207184,
+			0.302700012922287
+		],
+		"material_count": 3,
+		"nodes": {
+			".": {
+				"position_m": [
+					0.0,
+					0.0,
+					0.0
+				],
+				"scale": [
+					1.0,
+					1.0,
+					1.0
+				]
+			},
+			"backpack": {
+				"position_m": [
+					0.0,
+					0.0,
+					0.0
+				],
+				"scale": [
+					1.0,
+					1.0,
+					1.0
+				]
+			},
+			"backpack/backpack_mesh": {
+				"position_m": [
+					0.0,
+					0.209999993443489,
+					0.0
+				],
+				"scale": [
+					1.0,
+					1.0,
+					1.0
+				]
+			}
+		},
+		"pose": "rest",
+		"resource_paths": {
+			"res://assets/textures/room407/cloth.png": true,
+			"res://assets/textures/room407/ink.png": true,
+			"res://assets/textures/room407/moss.png": true,
+			"res://rendering/ps1_surface.gdshader": true
+		},
+		"root_placement": {
+			"position_m": [
+				3.77999997138977,
+				0.0199999995529652,
+				-4.51999998092651
+			],
+			"rotation_degrees": [
+				0.0,
+				90.0,
+				0.0
+			],
+			"scale": [
+				1.0,
+				1.0,
+				1.0
+			]
+		},
+		"root_scale": [
+			1.0,
+			1.0,
+			1.0
+		],
+		"surfaces": 3,
+		"texture_count": 3,
+		"textures": {
+			"res://assets/textures/room407/cloth.png": {
+				"height": 128,
+				"width": 128
+			},
+			"res://assets/textures/room407/ink.png": {
+				"height": 128,
+				"width": 128
+			},
+			"res://assets/textures/room407/moss.png": {
+				"height": 128,
+				"width": 128
+			}
+		},
+		"triangles": 96,
+		"unavailable": [
+			"animated_bounds",
+			"gpu_texture_memory",
+			"gameplay_collision_nav",
+			"visual_approval"
+		],
+		"visibility_policy": "include_hidden"
+	},
+	"front": [
+		0,
+		0,
+		-1
+	],
+	"glb_measurement": {
+		"bounds_min_m": [
+			-0.145000010728836,
+			0.010000005364418,
+			-0.132500007748604
+		],
+		"coordinate_space": "selected_root_local",
+		"dimensions_m": [
+			0.290000021457672,
+			0.456399977207184,
+			0.302700012922287
+		],
+		"material_count": 3,
+		"nodes": {
+			".": {
+				"position_m": [
+					0.0,
+					0.0,
+					0.0
+				],
+				"scale": [
+					1.0,
+					1.0,
+					1.0
+				]
+			},
+			"backpack": {
+				"position_m": [
+					0.0,
+					0.0,
+					0.0
+				],
+				"scale": [
+					1.0,
+					1.0,
+					1.0
+				]
+			},
+			"backpack/backpack_mesh": {
+				"position_m": [
+					0.0,
+					0.209999993443489,
+					0.0
+				],
+				"scale": [
+					1.0,
+					1.0,
+					1.0
+				]
+			}
+		},
+		"pose": "rest",
+		"resource_paths": {
+			"res://assets/textures/room407/cloth.png": true,
+			"res://assets/textures/room407/ink.png": true,
+			"res://assets/textures/room407/moss.png": true,
+			"res://rendering/ps1_surface.gdshader": true
+		},
+		"root_placement": {
+			"position_m": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"rotation_degrees": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale": [
+				1.0,
+				1.0,
+				1.0
+			]
+		},
+		"root_scale": [
+			1.0,
+			1.0,
+			1.0
+		],
+		"surfaces": 3,
+		"texture_count": 3,
+		"textures": {
+			"res://assets/textures/room407/cloth.png": {
+				"height": 128,
+				"width": 128
+			},
+			"res://assets/textures/room407/ink.png": {
+				"height": 128,
+				"width": 128
+			},
+			"res://assets/textures/room407/moss.png": {
+				"height": 128,
+				"width": 128
+			}
+		},
+		"triangles": 96,
+		"unavailable": [
+			"animated_bounds",
+			"gpu_texture_memory",
+			"gameplay_collision_nav",
+			"visual_approval"
+		],
+		"visibility_policy": "include_hidden"
+	},
+	"godot": "4.7.2-stable (official)",
+	"gpu": "NVIDIA GeForce RTX 3050 Laptop GPU",
+	"images": [
+		{
+			"camera_up": [
+				0.0,
+				1.0,
+				0.0
+			],
+			"eye": [
+				0.0,
+				0.238179996609688,
+				-1.18113005161285
+			],
+			"file": "front_neg_z_up_pos_y.png",
+			"orthographic_size": 0.699999988079071,
+			"size": [
+				1280,
+				720
+			],
+			"target": [
+				0.0,
+				0.238179996609688,
+				0.0188699997961521
+			]
+		},
+		{
+			"camera_up": [
+				0.0,
+				1.0,
+				0.0
+			],
+			"eye": [
+				0.0,
+				0.238179996609688,
+				1.21887004375458
+			],
+			"file": "back_pos_z_up_pos_y.png",
+			"orthographic_size": 0.699999988079071,
+			"size": [
+				1280,
+				720
+			],
+			"target": [
+				0.0,
+				0.238179996609688,
+				0.0188699997961521
+			]
+		},
+		{
+			"camera_up": [
+				0.0,
+				1.0,
+				0.0
+			],
+			"eye": [
+				1.20000004768372,
+				0.238179996609688,
+				0.0188699997961521
+			],
+			"file": "side_pos_x_up_pos_y.png",
+			"orthographic_size": 0.699999988079071,
+			"size": [
+				1280,
+				720
+			],
+			"target": [
+				0.0,
+				0.238179996609688,
+				0.0188699997961521
+			]
+		},
+		{
+			"camera_up": [
+				0.0,
+				0.0,
+				-1.0
+			],
+			"eye": [
+				0.0,
+				-0.961820065975189,
+				0.0188699997961521
+			],
+			"file": "underside_neg_y_screen_up_neg_z.png",
+			"orthographic_size": 0.699999988079071,
+			"size": [
+				1280,
+				720
+			],
+			"target": [
+				0.0,
+				0.238179996609688,
+				0.0188699997961521
+			]
+		}
+	],
+	"lighting": {
+		"ambient_energy": 0.8,
+		"color": "white",
+		"fixed_across_views": true,
+		"omni_energy_each": 0.6,
+		"omni_positions": [
+			[
+				-1,
+				1,
+				-1
+			],
+			[
+				1,
+				-1,
+				1
+			]
+		]
+	},
+	"owner": "B (T-207 contract section 2.1)",
+	"pivot": [
+		0,
+		0,
+		0
+	],
+	"placement_position_m": [
+		33.7799987792969,
+		0.0199999995529652,
+		-4.51999998092651
+	],
+	"placement_rotation_degrees": [
+		0.0,
+		90.0,
+		0.0
+	],
+	"placement_scale": [
+		1.0,
+		1.0,
+		1.0
+	],
+	"renderer": "forward_plus",
+	"root_class": "Node3D",
+	"scene_file_path": "res://assets/models/room407/backpack.glb",
+	"source_sha256": "b92f6faf3b94df368ecfbca3495bdbeb7880226ecf08c576050495863f848be0",
+	"up": [
+		0,
+		1,
+		0
+	]
+}
