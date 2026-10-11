@@ -32,7 +32,7 @@ def count(value):
 
 
 def validate_document(document):
-    if not isinstance(document, dict) or document.get("schema_version") != "t210-g0-proposal-1":
+    if not isinstance(document, dict) or document.get("schema_version") not in ("t210-g0-proposal-1", "t210-g1-static-1"):
         raise ValueError("Unsupported proposal document/version")
     assets = document.get("assets")
     if not isinstance(assets, list) or not assets or not all(isinstance(asset, dict) for asset in assets):
@@ -58,7 +58,7 @@ def validate_measurements(measurements):
     return measurements
 
 
-def validate(asset, root=ROOT, measurements=()):
+def validate(asset, root=ROOT, measurements=(), schema_version="t210-g0-proposal-1"):
     errors, unavailable = [], []
     if not isinstance(asset, dict):
         return {"status": "FAIL", "errors": ["asset must be an object"], "unavailable": []}
@@ -115,7 +115,9 @@ def validate(asset, root=ROOT, measurements=()):
         errors.append("invalid triangle limit")
     for key in ("estimated_credits", "consumed_credits"):
         value = budget.get(key)
-        if type(value) not in (int, float) or not math.isfinite(value) or value < 0:
+        if value is None and schema_version == "t210-g1-static-1":
+            unavailable.append("budget:" + key)
+        elif type(value) not in (int, float) or not math.isfinite(value) or value < 0:
             errors.append("invalid budget:" + key)
     approval = asset.get("approval", {})
     if approval.get("status") not in ("pending", "approved", "rejected"):
@@ -177,6 +179,11 @@ def validate(asset, root=ROOT, measurements=()):
     unavailable.append("provenance_manual_verification")
     if asset.get("scope") == "prototype":
         unavailable.append("G1_contract_and_G3_production_approval")
+    if schema_version == "t210-g1-static-1":
+        from manifest_g1 import inspect_g1
+        new_errors, new_unavailable = inspect_g1(asset, measured, root)
+        errors.extend(new_errors)
+        unavailable.extend(new_unavailable)
     result.update(errors=errors, unavailable=sorted(set(unavailable)),
                   status="FAIL" if errors else "INCOMPLETE" if unavailable else "PASS")
     return result
@@ -196,7 +203,7 @@ def main():
         if len(payloads) != 1 or any("ERROR:" in line for line in lines):
             raise ValueError("Probe log must contain one result and no engine errors")
         measurements = validate_measurements(json.loads(payloads[0]))
-    results = [validate(asset, measurements=measurements) for asset in assets]
+    results = [validate(asset, measurements=measurements, schema_version=document["schema_version"]) for asset in assets]
     print(json.dumps({"schema_version": document["schema_version"], "assets": results}, indent=2))
     return 1 if any(r["errors"] for r in results) else 2 if any(r["unavailable"] for r in results) else 0
 
