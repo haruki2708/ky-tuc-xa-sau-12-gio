@@ -1,5 +1,7 @@
 # T-209 — G0 kiểm kê và thử vật liệu
 
+Tiếp sau Review/D-080: [brief balo Tripo Studio](TRIPO_BACKPACK.md), [mapping/mount chuông/cleanup và yêu cầu gửi Astra](REVIEW_D080.md). G0 dưới đây giữ làm mốc lịch sử; không tái tạo bộ ảnh. Astra đã nhận T-207, là đầu mối core/contract hiện hành.
+
 > **D-080 ngày 11/10:** nhà cung cấp mới là **Tripo AI**; đọc [hướng chuyển đổi](../../docs/handoff/TRIPO_AI_CHUYEN_DOI_2026-10-11.md). Nội dung G0 dưới đây ghi công cụ/kết quả trước khi đổi provider; không áp dụng giá/quyền/API Meshy sang Tripo. Studio thủ công không cần key; API dùng ví riêng. Chưa có Tripo asset hoặc transport live.
 
 **Bản nháp gửi G1; không phải bản thay phòng chơi.** Nguồn `origin/main` ở `e3ed54a`, có D-077/D-078. Chỉ sửa vùng B và Handoff/checklist T-209. G1/G2 chưa đủ; Meshy chưa gọi, credit 0.
@@ -34,7 +36,7 @@ Lấy bản sao MeshInstance3D, Light3D, WorldEnvironment và hệ transform t�
 
 After chỉ thay vật liệu tường, gạch, thanh sắt giường và vải giường Trung. Sắt được gán từng surface, giữ gỗ/vải của GLB nhiều vật liệu; `bunk_trung` dùng alias iron→ink theo `build_assets.py`, không coi mọi texture ink là sắt. Bốn `StandardMaterial3D` dùng 12 map 256² (albedo, roughness, tangent normal), triplanar theo mét, lọc linear+mipmap. Không tăng mesh hoặc đổi ngưỡng production; chất liệu thủ tục là mẫu so sánh, **chưa đạt cam kết gần chân thực cuối**. Normal lấy từ height thủ tục, không có bake ánh sáng. Triplanar giúp thử tỉ lệ; UV cuối phải xử lý theo GLB ở G2.
 
-Before bật filter PS1; after strength và global snap=0 trong tiến trình fixture. Brightness vẫn lấy `[video] brightness` qua API `Settings.get_value` đã có, chỉ đọc. Không thêm setting/key mới và không lưu `settings.cfg`.
+Before bật filter PS1; after strength và global snap=0 qua `ShaderGlobalsOverride` có vòng đời cùng fixture. Khi thoát, override được bỏ và giá trị base hiện hành hoạt động lại. Brightness vẫn lấy `[video] brightness` qua API `Settings.get_value` đã có, chỉ đọc và chỉ áp qua screen shader của pilot. Không thêm setting/key mới và không lưu `settings.cfg`.
 
 Hai bộ ánh sáng: `game` sao môi trường/đèn khai báo trong scene (đèn chính phòng đang 0, đèn bàn .5; không giả lập flicker); `neutral` tạm ẩn đèn màu game, thêm đèn kiểm và ambient trung tính, tắt fog. Chuyển về game phục hồi trạng thái hiện ban đầu của đèn. Cặp before/after giữ camera/đèn giống nhau. Không LightmapGI/bake nguồn chuyển trạng thái. Cần kiểm đèn bật/tắt, máu/nệm rách và bốn chương khi G3 có wiring thật.
 

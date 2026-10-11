@@ -20,9 +20,14 @@ var originals: Dictionary = {}
 var pbr_materials: Dictionary = {}
 var scene_lights: Dictionary = {}
 var brightness: float = 1.0
+var shader_override: ShaderGlobalsOverride
 
 
 func _ready() -> void:
+	# Engine-owned lifetime restores the base value when this fixture leaves.
+	shader_override = ShaderGlobalsOverride.new()
+	shader_override.name = "PilotShaderOverride"
+	add_child(shader_override)
 	# Copy render nodes only; no source node ever enters the running scene tree.
 	var source := FLOOR.instantiate()
 	visual = snapshot(source) as Node3D
@@ -157,7 +162,7 @@ func set_mode(pbr: bool) -> void:
 			mesh.material_override = pbr_materials[row.kind] if pbr else row.material
 	screen.set_shader_parameter("strength", 0.0 if pbr else 1.0)
 	screen.set_shader_parameter("brightness", brightness)
-	RenderingServer.global_shader_parameter_set(&"ps1_strength", 0.0 if pbr else 1.0)
+	shader_override.set("params/ps1_strength", 0.0 if pbr else 1.0)
 
 
 func _settings_changed(section: String, key: String) -> void:
