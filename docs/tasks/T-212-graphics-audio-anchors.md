@@ -95,6 +95,83 @@ Ba test Godot mới đều PASS; đã giữ metadata `.uid`/`.import` do Godot s
 
 **Commit G0:** `T-212: prepare audio anchor survey and fire bell audition` (commit chứa Handoff này). Nhánh bàn giao/push `lane-f/T-212-graphics-audio-anchors`, base `e3ed54a`; chỉ thay vùng audio và Handoff/checklist card. Không push main, không mở PR. **Blocked:** không còn chặn kiểm tra G0. Phần nối phụ thuộc G1 được ghép main, còn chờ nghe thật; không tự triển khai G2/G3, không ghi toàn bộ T-212 done.
 
+### Lane F — phản hồi Review G0 và D-080, 11/10/2026
+
+**Đã fetch/rebase sạch lên `origin/main` `acbf771` có D-080**, giữ nhánh `lane-f/T-212-graphics-audio-anchors`. Trước rebase working tree sạch, không có thay đổi cục bộ cần stash. G0 `2dcd25a` đã được ghép cùng các lane; không tạo lại âm/fixture, không đổi mã task. Đã đọc bàn giao Tripo, Review G0 chung, Review T-212 và contract/bindings trên main. Đây là phản hồi tài liệu cho Astra/A/B tổng hợp G1, **không phải xác nhận G1 đã chốt**.
+
+**D-080:** nhận hướng Tripo Studio thủ công → GLB → Blender → Godot. F nhận attachment trên model đã được B chuẩn hóa, không tiêu thụ GLB/rig thô theo suy đoán tên bone. Studio/API tách ví; không có ngân sách/key/ngoại lệ license được cấp. Không dùng API, không tạo tác vụ trả phí, không cài plugin/MCP. Asset âm CC0 của F và nguồn/credits lịch sử của E giữ nguyên, không đổi tác giả sang Tripo. Balo tĩnh không phải chờ chuông/rig âm thanh để chốt G1 riêng.
+
+**Đầu mối hiện hành theo thông báo chủ dự án:** Astra điều phối (Integrator) đã nhận T-207 thay Claude web. Mọi yêu cầu core/hợp đồng kỹ thuật của F dưới đây gửi Astra; các tên web trong Handoff G0/Review cũ là lịch sử, không còn là tuyến giao việc hiện tại.
+
+#### Xác nhận attachment gửi Astra T-207, A T-208, B T-209
+
+| Mục | F xác nhận để tổng hợp | Còn cần owner bàn giao trước khi F dùng |
+|---|---|---|
+| Mount chuông | Đồng ý tên **dự kiến** `Campus/Anchors/FireBellMount`; nguồn âm world **(42.0, -7.7, 0.2)**. Giữ riêng mồi/noise tại **(42.0, -9.9, 2.0)**, bán kính 45 m. Tọa độ world không được ghi thẳng thành local nếu root campus đổi transform. | B kiểm mặt tường, basis, kích thước trong renderer rồi giao scene/NodePath; Astra (integrator/core) ghép contract. Đối chiếu source `acbf771`: `campus.tscn` chưa có node này; F chưa coi mount là dependency tồn tại. |
+| Nút bấm | `FireAlarm1F` vẫn do core tạo **chỉ chương 3**. Chuông không phát tại nút bấm, không phát noise theo từng nhát âm. | B giao visual riêng, core instance; không thêm nút tương tác sẵn vào campus dùng chung chương 4. |
+| Dao quản lý | Giữ `_sync_audio()` do A quản lý: `Drag` theo `BladeTip`; các nguồn khác hiện tại theo body/root. Không biến marker phát âm thành điểm nghe AI. | B/A giao đường dẫn BladeTip tường minh và thứ tự cập nhật sau animation; xử lý model bị thay/xóa trong cùng frame, tránh cache node cũ. F không tự chuyển Speech sang Head trước G1. |
+| Xác/miệng | **Gag1/2/4 hiện bám Head mỗi frame**, priority 10, offset `(0, 0.005, -0.14)` qua `gag_anchor.gd`; `CorpseVoice` và `GagSpot` dưới anchor cũng đi theo. Giữ cơ chế này, không tạo thêm một nguồn theo Mouth. | B/A giữ nguồn Head đã cập nhật, phân quyền transform giữa procedural và animation; Astra xác định binding cho cả 3 xác 407 và 3 xác CCTV 310, không suy rằng mỗi xác CCTV có cùng rig audio. |
+| Đầu/chân/thân nhân vật | F đọc attachment đã thống nhất; cadence bước, trạng thái, limiter horde và timer vẫn thuộc caller hiện hành. Không phát âm hoặc sự kiện AI lần hai từ animation. | A/B chốt Head/pose/lifecycle và fallback, gồm warn/quay đầu guard, UnseenPoser, door_burst. Chưa có API consumer mới để F nối. |
+| Marker thiếu hoặc model bị thay | Theo hướng Review: giữ model/hành vi cũ và báo thiếu, không vô tình phát tại world origin; chỉ dùng fallback đã được contract chấp nhận. | Astra/A/B chốt đường fallback cụ thể và owner cảnh báo một lần. F không thêm fallback mới hoặc đoán attachment. |
+
+#### Stream và deadline W2 gửi Astra/core
+
+- Ứng viên tiếp tục là `res://audio/graphics_upgrade/fire_bell_soft.ogg`, **4.0 s, mono 48 kHz, `loop=false`**, −35.97 LUFS; không sửa OGG/import/gain từ G0. SHA256 `5784f0c25de27f719444760f13eaa5d4435263c3bf826d89287488a8b70abcf4`. Stream production vẫn `res://audio/ch1v2/lock_alarm.ogg` (1.5 s), SFX −4 dB, unit_size 8 m.
+- F đồng ý yêu cầu **W2 dùng deadline 20 giây độc lập `finished`**; clip finite có thể phát lại, clip loop phải bị stop bằng deadline/lifecycle của core. Không sửa shared resource để bật loop; nếu cần thì dùng bản sao riêng. Không thêm timer gameplay ở rig F và không phát lại noise từ audio.
+- **Chưa chốt cách tính thời gian khi pause:** core hiện dùng `Time.get_ticks_msec()` và chỉ kiểm lại sau `finished`; fixture F dùng 20 giây hoạt động, pause dừng Timer. Hai cách này không được coi là tương đương. Astra (integrator/core) cần ghi semantics pause trong G1 trước wiring W2; F không lấy hành vi fixture làm quyết định thiết kế production.
+- Death/reset/unload phải hủy player và mọi lịch phát lại, không để callback cũ tạo âm sau reload; bấm lần hai không có nguồn hoặc mồi thứ hai. Đây là điều kiện kiểm W2 của core sau contract, chưa phải kết quả đã đạt.
+
+| Ca kiểm cần có khi W2 được phép nối | Bằng chứng cần từ core / F phối hợp |
+|---|---|
+| Stream cũ finite 1.5 s, mẫu F finite 4 s, bản sao bật loop | Đều bị cắt bởi deadline 20 s, không đợi clip kết thúc để vượt hạn; báo thời điểm thực và sai số frame đo được. |
+| Pause trước hạn rồi resume | Âm pause đúng; đồng hồ theo semantics đã được integrator chốt, không suy từ fixture. |
+| Chết/reset/reload/chuyển cảnh giữa clip | Không còn player/lịch phát lại; không nguồn trùng sau dựng lại. |
+| Bấm lặp/chương 4 | Một noise 45 m và một nguồn cho lượt hợp lệ chương 3; chương 4 không được dựng nút chỉ vì campus có visual/mount. |
+| Mount bị bỏ/đổi tên; model thay cùng frame | Cảnh báo/fallback đúng contract, không phát tại gốc thế giới hoặc giữ attachment đã free. |
+
+#### Nghe mẫu hiện có — chỉ chạy trong lượt Godot được bàn giao
+
+Từ `D:\GAME_WORK\lane-f` (không tự mở fixture trong phiên tài liệu này):
+
+```powershell
+& 'D:\Tools\Godot\Godot_v4.7.2-stable_win64_console.exe' --path game res://audio/graphics_upgrade/fire_bell_preview.tscn --windowed --resolution 960x540
+```
+
+Mở cảnh im lặng. `1` mẫu mới một lượt; `2` loop để nghe ít nhất 60 giây; `3` âm cũ; `4` deadline fixture 20 giây; `P` pause/resume; `0` stop; `R` reload; `Esc` thoát. Nguồn mặc định trước listener 8 m; lên/xuống thử 2/20 m, trái/phải thử hướng, `C` về giữa 8 m. Hướng dẫn đầy đủ: `audio_source/graphics_upgrade/README.md`. **Chưa được chủ dự án nghe; chưa nghiệm thu chất âm/âm lượng hoặc mix cảnh thật.**
+
+#### Kiểm tra và trạng thái bàn giao sau D-080
+
+- Đợt này chỉ thêm phản hồi trong Handoff T-212; không sửa Review/STATUS/DECISIONS, runtime, audio asset hoặc scene.
+- Đối chiếu với G0 `2dcd25a`: toàn bộ `audio_source/graphics_upgrade/`, `game/audio/graphics_upgrade/` và test fixture giữ nguyên; SHA256 ứng viên khớp report, import vẫn finite. Không chạy lại generator.
+- `git diff --check`: PASS. Full `pwsh tools/test.ps1` / `pwsh tools/check.ps1`: **NOT RUN cho phản hồi mới — chờ integrator bàn giao lượt Windows**. Không lấy 725/0 G0 hoặc 743/0 trong commit D-080 của integrator làm kết quả của phiên F này. Không render/FPS/bot.
+- Commit/push phản hồi mới: chưa thực hiện, chờ full test/check trước commit. Nhánh giữ `lane-f/T-212-graphics-audio-anchors`, base mới `acbf771`. Đã gửi yêu cầu xếp lượt; F hiện không giữ tiến trình/lượt Godot.
+- **Chờ:** B xác nhận mount/render; A/B chốt attachment/lifecycle; Astra (integrator/core) ghép G1 và chốt pause W2; chủ dự án nghe. Không bị chặn do chưa có Tripo API. G1 đạo cụ tĩnh có thể tiếp tục độc lập; T-212 chưa done.
+
+### Lane F — đối chiếu D-081 và nhận lượt Windows, 11/10/2026
+
+**Bản cập nhật này thay trạng thái chờ lượt ở phản hồi D-080 phía trên.** Đã bảo toàn Handoff chưa commit bằng stash `T-212: preserve pending D-080 handoff before D-081 rebase`, fetch và rebase sạch lên `origin/main` **`d6d76f3`**; apply stash không xung đột. Giữ nhánh T-212 và G0 đã nhận; không tạo lại âm/fixture. Đã đọc `T207_G1_ASTRA_2026-10-11.md`, contract đặc biệt **§4–5**, và Review D-081 trong card. Astra là đầu mối core/T-207; Review và lịch sử tác giả giữ nguyên.
+
+#### Đối chiếu contract và đề xuất fallback cụ thể gửi Astra/A/B
+
+| Điểm | F xác nhận theo D-081 | F đề xuất cho dependency còn thiếu — chưa triển khai |
+|---|---|---|
+| Head/Gag (§4) | Head phải cập nhật trước consumer âm/hitbox/LOS/camera đọc; Gag đang theo Head mỗi frame, không là tọa độ cố định. Giữ pick volume/offset, pose/state riêng và scope xác 407/CCTV 310. | B/A công bố NodePath và thứ tự cập nhật khi animation/procedural cùng chạy. Nếu model mới thiếu Head bắt buộc, QA phải FAIL; ưu tiên giữ model cũ còn hợp lệ. Nếu cả attachment cũ không còn hợp lệ, dừng nguồn phụ thuộc attachment và cảnh báo một lần theo đối tượng/marker; không nhận root tùy ý làm miệng. Astra/A/B chốt owner fallback trước nối. |
+| Dao quản lý (§4) | Chỉ `Drag` theo `BladeTip`; Speech và các kênh hiện ở body/root không được tự chuyển sang Head. Giữ cadence/noise và caller A. | A ưu tiên tip hợp lệ của model; khi thiếu dùng marker sẵn có `Visual/Fallback/BladePivot/BladeTip` nếu node còn hợp lệ. Nếu cả hai thiếu, dừng riêng Drag và báo thiếu, không phát tại world origin. A quản lý resolve lại khi thay model; F không tự cache bone hoặc tạo marker khác. |
+| Voice/Foley zombie (§4) | Giữ nguồn tại root ZombieAudio như hiện hành. Đây là binding có chủ đích, không phải fallback cho miệng/đầu. | Nếu rig bị gỡ hoặc model đổi trong frame, A/core quản lý lifecycle và một rig hợp lệ; F không nối hai nguồn cũ/mới hoặc chuyển âm sang Head khi chưa có dependency. |
+| FireBellMount (§5) | Tên **dự kiến** `Campus/Anchors/FireBellMount`, world `(42,-7.7,0.2)`; phải qua B kiểm mặt tường/basis/kích thước bằng renderer. Marker chưa thành dependency được duyệt chỉ từ tên trong contract. | Đề nghị Astra giữ vị trí nguồn âm hằng hiện hành `(42,-7.7,0.2)` làm fallback tương thích nếu marker vắng; báo một lần, QA marker vẫn FAIL khi đã trở thành bắt buộc. Đây là đề xuất chờ Astra/B, không tự áp code hoặc lấy `(0,0,0)`. |
+| Nút và mồi (§5) | Core tạo nút chỉ chương 3 tại `(0.9,-8.5,0.12)`, vùng dùng `(0.5,0.6,0.5)`; B cấp visual riêng. Noise một lần tại `(42,-9.9,2)`, 45 m, không đổi nơi kéo crowd. | W1/core do Astra nối sau visual B; không gắn nút tương tác sẵn vào campus chung chương 4. Nguồn âm/marker không được phát lại noise. |
+| Stream và W2 (§5, §8) | Giữ file F 4 s finite, `loop=false`, source/hash/license G0. Chưa được nghe/duyệt, chưa thay `FIRE_BELL_STREAM`. Deadline 20 s độc lập `finished`, dọn khi chết/reset. | W2 còn cần **stream được duyệt + mount B + contract vòng đời**. Contract mới chưa ghi pause tiêu hao wall time hay chỉ thời gian hoạt động; Astra cần chốt và kiểm. Fixture pause Timer không là quyết định production. Ma trận finite/loop/pause/death/reset ở phản hồi trên tiếp tục là đầu vào kiểm W2. |
+
+F đồng ý các ràng buộc §4–5; **các đề xuất fallback trên không tự trở thành API/contract đã duyệt**. Giữ fallback đang có đến khi Astra/A/B chốt; không dùng fallback để cho asset thiếu marker vượt QA. Không cần thay code/asset F trong lượt đối chiếu này. G1 balo theo §2–3 tiến hành độc lập, không chờ chuông/rig/settings.
+
+**Yêu cầu gửi Astra:** chốt semantics pause W2 và owner cắt/hủy player khi death/reset/reload; review fallback mount/BladeTip/Head cùng A/B; chỉ mở W2 sau đủ ba dependency §8. F cung cấp stream finite và lệnh nghe ở Handoff trên, chờ chủ dự án nghe thật. Tripo tiếp tục Studio thủ công → GLB → Blender → Godot; không chi credit, không dùng API/key hoặc cài plugin/MCP trong phần âm thanh.
+
+#### Lượt kiểm mới và bàn giao
+
+- Integrator đã bàn giao lượt Windows cho F sau D. Trước rebase đã kiểm tiến trình: không còn Godot lane khác. Chạy tuần tự full `pwsh tools/test.ps1` rồi `pwsh tools/check.ps1` sau cập nhật; không render/FPS/bot, không mở fixture nghe trong lượt này.
+- **Kết quả mới trên base D-081, 11/10/2026 (UTC+7):** `pwsh tools/test.ps1` → **RESULT: 743 passed, 0 failed**, exit 0; 14:53:02–15:13:57. Sau đó `pwsh tools/check.ps1` → **RESULT: check 0 error(s)**, exit 0, **344 script parse PASS**; 15:14:08–15:21:37. Log cục bộ `build/t212-d081/full-test.log`, `build/t212-d081/full-check.log`. Không lấy kết quả G0/D-080 thay lượt này. `git diff --check` PASS; diff mới chỉ trong Handoff T-212, không sửa Review hoặc code/asset.
+- **Commit phản hồi:** `T-212: align audio handoff with D-081 contract` (commit chứa mục này), nhánh bàn giao/push `lane-f/T-212-graphics-audio-anchors`, base `d6d76f3`. Nội dung Handoff chưa commit từ trước đã được giữ và ghép vào bản này; stash bảo toàn vẫn được giữ để đối chiếu. Không push main hoặc mở PR. **Không còn chặn kiểm tra/bàn giao tài liệu.** T-212 chưa done; còn dependency A/B/Astra và nghe thật. Kiểm tiến trình lúc 15:21:38 không còn Godot: **F đã nhả lượt Godot.**
+
 ## Review (integrator)
 
 ### 11/10/2026 — Astra, D-079
