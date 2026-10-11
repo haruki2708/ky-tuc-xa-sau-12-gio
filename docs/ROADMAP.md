@@ -4,44 +4,11 @@
 > Chi tiết từng ngày: `docs/STATUS.md`. Lý do từng quyết định: `docs/DECISIONS.md` (D-001…D-085).
 > Ký hiệu: ✅ xong · 🔶 đang làm · ⬜ chưa bắt đầu · 📍 **đang ở đây**
 
-## 1. Bản đồ tổng (xem đẹp nhất trên GitHub)
+## 1. Bản đồ tổng
 
-```mermaid
-flowchart LR
-    classDef done fill:#d1f0d1,stroke:#2e7d32,color:#1b3d1b
-    classDef doing fill:#fff1c2,stroke:#b8860b,color:#4a3700
-    classDef todo fill:#eeeeee,stroke:#888,color:#333
-    classDef here fill:#ffd6a5,stroke:#d9480f,stroke-width:3px,color:#4a1d00
+![Bản đồ lộ trình](roadmap.svg)
 
-    subgraph P0["Giai đoạn 0 · 02–03/10"]
-        A0["Demo PS1 15–20 phút<br/>nội quy bị sửa<br/>tag demo-v1 ✅"]:::done
-    end
-    subgraph P1["Giai đoạn 1 · 04/10"]
-        A1["Đổi hướng: game 3–4 tiếng, 4 chương<br/>cốt truyện v2 theo video<br/>D-029, D-034, D-035 ✅"]:::done
-    end
-    subgraph P2["Giai đoạn 2 · 04–10/10 · làm 4 chương"]
-        C1["Chương 1 Tổng tắc<br/>tạm chốt D-071 ✅"]:::done
-        C2["Chương 2 Trò chơi<br/>tạm chốt D-073 ✅"]:::done
-        C3["Chương 3 Truy sát<br/>chơi thử dừng ở tầng 1 🔶"]:::doing
-        C4["Chương 4 Người sống sót<br/>chưa chơi tay ⬜"]:::todo
-        C1 --> C2 --> C3 --> C4
-    end
-    subgraph P3["Giai đoạn 3 · từ 10/10 · đồ họa gần chân thực (D-076)"]
-        G0["G0 chuẩn bị<br/>D-079 ✅"]:::done
-        G1["G1 hợp đồng kỹ thuật<br/>balo D-085 ✅"]:::done
-        G2["G2 mua Tripo Pro<br/>tạo mẫu balo 📍"]:::here
-        G3["G3 đưa mẫu vào<br/>cảnh chơi thật ⬜"]:::todo
-        G4["G4 mở rộng: nhà B → nhân vật<br/>→ khuôn viên → thư viện/bệnh viện ⬜"]:::todo
-        G0 --> G1 --> G2 --> G3 --> G4
-    end
-    subgraph P4["Giai đoạn 4 · ghép bản hoàn chỉnh (D-059)"]
-        H["Chơi liền 4 chương, 1 file lưu<br/>ánh sáng 4h→9h, bot + FPS<br/>chơi tay trọn game ⬜"]:::todo
-    end
-    subgraph P5["Giai đoạn 5 · phát hành"]
-        R["Phát hành theo chương<br/>(D-029) ⬜"]:::todo
-    end
-    P0 --> P1 --> P2 --> P3 --> P4 --> P5
-```
+(Ảnh `docs/roadmap.svg` sinh bằng `python docs/build_roadmap_svg.py`: sửa danh sách `phases` trong script rồi chạy lại khi cập nhật file này. Script cũng ghi lại mục 1 của file này.)
 
 Bản chữ (xem được trong terminal / Notepad):
 
