@@ -102,7 +102,7 @@ Mục tiêu: hình gần thật, chạy 1080p/60 FPS Medium trên RTX 3050 Lapto
 Chạy song song, không chặn G2: khung xương nhân vật, cài đặt đồ họa, chuông báo cháy thật (T-207 W1–W4, integrator); adapter hình–gameplay (A, T-208); cài đặt/dễ đọc (D, T-211); âm thanh gắn vật (F, T-212).
 
 ### Giai đoạn 4 — Ghép bản hoàn chỉnh (D-059) ⬜
-Khoảng 4–6 ngày: hết chương tự sang chương sau, **một file lưu xuyên suốt**, đồng bộ đồ họa giữa các chương, ánh sáng 4 giờ → 9 giờ, rà chi tiết liền mạch (đồ đạc, xác, chat, ai sống), bot cả 4 chương, đo FPS, chơi tay trọn game. Chưa mở (D-076). Thứ tự so với G4 do chủ dự án chốt khi tới.
+Khoảng 4–6 ngày: hết chương tự sang chương sau, **một file lưu xuyên suốt**, đồng bộ đồ họa giữa các chương, ánh sáng 4 giờ → 9 giờ, rà chi tiết liền mạch (đồ đạc, xác, chat, ai sống), bot cả 4 chương, đo FPS, chơi tay trọn game. Chưa mở (D-076). Thứ tự so với G4 do chủ dự án chốt khi tới
 
 ### Giai đoạn 5 — Phát hành ⬜
 Phát hành theo chương (D-029). Nền tảng, giá, ngày: chưa quyết. Lưu ý Steam yêu cầu khai báo nội dung AI (`AGENTS.md` §5).
