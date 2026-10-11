@@ -1,6 +1,9 @@
 # STATUS — cập nhật bởi integrator
 
 **Cập nhật lần cuối:** 2026-10-12, Claude Code ở máy (Opus 5.5, integrator) — **D-085: G1 balo đã nghiệm thu.** Việc tiếp theo là của chủ dự án: mua Tripo Studio **Pro** và tạo mẫu balo theo `docs/handoff/TRIPO_STUDIO_HUONG_DAN_BALO.md` (tối đa 5 lượt, D-084), rồi gửi file + phiếu cho integrator; tiêu chí đạt G2 ở `docs/handoff/G1_NGHIEM_THU_BALO_2026-10-12.md` §3. Trước đó: D-084 ngoại lệ license Tripo trả phí; D-083 ghép schema C.
+
+**Bản đồ lộ trình tổng quan:** [`docs/ROADMAP.md`](ROADMAP.md) (từ demo tới phát hành, đang ở đâu).
+
 **Giai đoạn:** Đồ họa gần chân thực, **Tripo AI thay Meshy (D-080)**. **G0 A/B/C/D/F + Claude web đã nhận**, T-207…T-212 còn làm tiếp G1/G2/G3. Các đầu ra mới là khảo sát/prototype/công cụ riêng, chưa thay đồ họa các chương. E nghỉ vô thời hạn, F tiếp nhận âm thanh theo D-078. Kế hoạch: [GRAPHICS_UPGRADE_PLAN.md](design/GRAPHICS_UPGRADE_PLAN.md).
 
 **Điều phối:** Astra tạm thay 10–11/10; Claude Code ở máy, **Opus 5.5**, nhận lại theo [hướng dẫn](handoff/OPUS_5_5_NHAN_LAI_DIEU_PHOI.md) và [nhật ký](handoff/NHAT_KY_ASTRA_2026-10-10_11.md). Chủ dự án là người dùng. **Astra làm thay Claude web ở T-207 (D-081)**; web tạm dừng, năm lane A/B/C/D/F tiếp tục. [Đầu mối và prompt G1](handoff/T207_G1_ASTRA_2026-10-11.md).
