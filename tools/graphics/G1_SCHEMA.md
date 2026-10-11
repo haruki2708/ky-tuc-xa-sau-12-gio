@@ -1,6 +1,6 @@
-# T-210 — G1 đạo cụ tĩnh và Tripo, gửi Astra review
+# T-210 — G1 đạo cụ tĩnh và Tripo, gửi integrator review
 
-Nền `acbf771` có D-079/D-080. G0 đã ghép, không làm lại. Đây là đề xuất triển khai tiếp trong T-210; **Astra điều phối tiếp nhận T-207**, là đầu mối core/hợp đồng. B giữ dữ liệu/asset, C giữ schema/công cụ; runtime không đọc manifest hoặc gọi Tripo.
+Sửa R1–R4 sau D-082 trên nền `1b63c61`, giữ phần schema của `7af1075`; probe `b86a77d` đã ghép và không đổi. **Claude Code (Opus 5.5) là integrator hiện hành**, nhận core/hợp đồng và điều phối lượt Godot. B giữ dữ liệu/asset, C giữ schema/công cụ; runtime không đọc manifest hoặc gọi Tripo. Schema vẫn chờ integrator review/ghép trước khi B chuyển manifest.
 
 ## File và cách đọc
 
@@ -11,6 +11,7 @@ Nền `acbf771` có D-079/D-080. G0 đã ghép, không làm lại. Đây là đ�
 
 ```powershell
 python -B -m unittest discover -s tools/graphics -p test_offline.py -v
+python -B -m unittest discover -s tools/graphics -p 'test_*.py' -v
 python -B tools/graphics/asset_qa.py tools/graphics/sample_g1_manifest.json
 python -B tools/graphics/asset_dry_run.py tools/graphics/tripo_studio_request.json
 # Chỉ sau lượt full test Windows được integrator bàn giao:
@@ -40,6 +41,10 @@ Mẫu balo: local size **0,29 × 0,45636 × 0,30274 m**, min **(-0,145; 0,01; -0
 
 Trần D-079 cho **prototype balo mới**: `triangle_limit_exclusive=3001` (chấp nhận đúng 3.000), `material_limit=2`, `texture_edge_limit=1024`, 10 MiB/file và LFS giữ nguyên. B đã đo balo cũ **96 tris/3 material**: nếu đưa số đo hiện hành qua trần mẫu mới thì **phải FAIL material**, không sửa số đo hoặc nới limit để qua. Mẫu hiện tại không phải asset Tripo được nghiệm thu.
 
+**R1/R2:** `room407_backpack` không được tự khai trần cao hơn D-079; schema kiểm maximum và validator giữ profile D-079 độc lập ở `BACKPACK_LIMITS`. Cho phép trần khai thấp hơn; số đo phải qua trần chặt hơn. Asset khác được khai budget/basis riêng, vẫn cần integrator duyệt contract, không tự coi metadata là quyết định đã duyệt. Mọi root G1 phải là `(1,1,1)` trong epsilon **0,00001 không đơn vị**, áp dụng cả manifest và measurement. Không dùng `tolerance_m` để kiểm scale. Dung sai vị trí của balo theo D-081 phải hữu hạn, trong **[0; 0,001] m**; mặc định 0,001 m, mẫu đối chiếu B vẫn giữ 0,0001 m. Đây là sai số xuất/import, không cấp quyền đổi gameplay transform.
+
+**R4:** `schema_rules.py` thực thi toàn bộ keyword đang dùng trong `manifest.schema.json`: type/const/enum/required/properties/additionalProperties, giới hạn chuỗi/mảng/số, ref/anyOf/allOf/if/then. Schema thêm keyword chưa hỗ trợ sẽ báo lỗi, không lặng lẽ bỏ qua; đây không phải thư viện thực thi mọi tính năng JSON Schema. `generation.parameters` luôn là **object**, giá trị có thể là JSON lồng nhau (object/array/string/number hữu hạn/boolean/null). `rights_evidence` luôn là array các đường dẫn string, kể cả provider `self_authored`. Metadata sai kiểu trả FAIL với đường field; missing/null chỉ hợp lệ nơi schema cho phép. Kiểu/range số dư vẫn được kiểm cho nguồn local dù không có giao dịch dịch vụ. Không đọc key hoặc cài dependency Python.
+
 ## Root-local, rest pose và chứng cứ import
 
 Probe bỏ transform của root được chọn khi tính bounds/marker, vẫn nhân transform của con. `root_placement` ghi riêng position/rotation/scale của root; `root_scale` vẫn được báo để kiểm scale import. Chưa áp các giá trị placement vào scene. Fixture mới đặt root có dịch chuyển, xoay cả ba trục và scale không đều, xác nhận bounds/marker không đổi.
@@ -52,6 +57,8 @@ Phải import/probe lại sau thay source/importer/material/texture/setting/engi
 
 Đối chiếu lượt Windows phát hiện `ResourceLoader.get_dependencies()` bỏ sót `extends/preload` của importer GDScript. Probe bổ sung quét các literal `res://` trong `.gd/.gdshader/.gdshaderinc`, nên hash cả importer cha, shader biến thể và include shader; fixture asset thật bắt buộc các đường này. Đây là phép quét bảo thủ, có thể lấy cả tham chiếu trong comment/nhánh chưa chạy; đường động hoặc đường tương đối ngoài tập dependency do loader trả về vẫn cần kiểm riêng, không coi đây là parser GDScript hoàn chỉnh.
 
+**R3, validator offline sau D-082:** `dependency_evidence.py` tự dựng tập đường cần có từ source GLB, `.import` và `binding.scene_path`; thêm project/probe. Quét reference tĩnh của importer/material/texture/include/wrapper, relative include/load/extends và URI trong JSON GLB; không dùng danh sách hash làm tập dependency kỳ vọng. Mất một hash → `INCOMPLETE: missing_dependency_hash:<path>`; hash còn có nhưng khác file → `FAIL: stale dependency:<path>`. Mất file, import metadata không đọc đủ, dependency ghép động hoặc cache PackedScene nhị phân chưa chứng minh được closure đều có INCOMPLETE kèm đường cụ thể. Phép quét scene có thể lấy thêm nhánh ngoài node được chọn; chưa là parser đủ mọi biểu thức Godot hoặc bằng chứng đã đo wrapper/gameplay. GLB probe riêng không bao phủ wrapper scene, nên báo cáo lịch sử có thể thiếu thêm hash khi kiểm lại theo R3; không sửa probe hay làm giả chứng cứ để bỏ trạng thái này.
+
 ## Tripo Studio thủ công trước
 
 1. B đưa brief balo và đầu vào có quyền cho chủ dự án. Chỉ tạo có phí sau khi đã có ví Studio/trần chi/license phù hợp; D-080 chưa cấp các điều kiện này.
@@ -61,6 +68,6 @@ Phải import/probe lại sau thay source/importer/material/texture/setting/engi
 
 API là phương án riêng, provider `tripo`, channel `api`, ví `tripo:api:<alias>` và task ID thật. Không mượn số dư Studio. CLI generic mặc định chỉ dry-run; fingerprint/ledger giữ provider + channel + wallet, chặn resume qua ví/dịch vụ khác. Ledger cũ chưa ghi phạm vi ví phải được operator đối soát; không tự đổi fingerprint hoặc POST lại. Ledger fixture chỉ mô phỏng reservation/timeout/resume, không điều khiển Studio hoặc chứng minh API Tripo hoạt động. Tên biến `TRIPO_API_KEY` vẫn là dự kiến, không có code đọc nó.
 
-## Cần Astra/B xác nhận khi review
+## Cần integrator/B xác nhận khi review
 
-Astra chốt field/path/default ở T-207 và điều kiện nghiệm thu đạo cụ tĩnh, B xác nhận mapping/root_class/node path và chuyển dữ liệu sau schema được ghép. Cần giữ phần pending rig/settings/chuông tách riêng. Không sửa core, renderer mặc định, collision/nav/timing hoặc settings trong gói C này. Full Windows test/check vẫn phải nhận bàn giao lượt; các fixture Python không thay kết quả Godot.
+Claude (Opus 5.5) chốt field/path/default ở T-207 và điều kiện nghiệm thu đạo cụ tĩnh, B xác nhận mapping/root_class/node path và chuyển dữ liệu sau schema được ghép. Cần giữ phần pending rig/settings/chuông tách riêng. Không sửa core, renderer mặc định, collision/nav/timing hoặc settings trong gói C này. Full Windows test/check vẫn phải nhận bàn giao lượt; các fixture Python không thay kết quả Godot. Bằng chứng R1–R4 tại [reports/r1r4_fixtures.json](reports/r1r4_fixtures.json).

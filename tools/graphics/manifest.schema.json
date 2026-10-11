@@ -60,7 +60,33 @@
             "credits_file",
             "ai_tool",
             "input_rights"
-          ]
+          ],
+          "properties": {
+            "uri": {
+              "type": "string",
+              "minLength": 1
+            },
+            "author": {
+              "type": "string",
+              "minLength": 1
+            },
+            "license": {
+              "type": "string",
+              "minLength": 1
+            },
+            "credits_file": {
+              "type": "string",
+              "minLength": 1
+            },
+            "ai_tool": {
+              "type": "string",
+              "minLength": 1
+            },
+            "input_rights": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
         },
         "geometry": {
           "type": "object",
@@ -93,7 +119,9 @@
             "root_scale": {
               "type": "array",
               "items": {
-                "type": "number"
+                "type": "number",
+                "minimum": 0.99999,
+                "maximum": 1.00001
               },
               "minItems": 3,
               "maxItems": 3
@@ -117,6 +145,11 @@
             },
             "visibility_policy": {
               "const": "include_hidden"
+            },
+            "tolerance_m": {
+              "type": "number",
+              "minimum": 0,
+              "default": 0.001
             }
           }
         },
@@ -153,7 +186,56 @@
             "rights_evidence": {
               "type": "array",
               "items": {
-                "type": "string"
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "tool": {
+              "type": "string",
+              "minLength": 1
+            },
+            "wallet_id": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "model_version": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "model_id": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "task_id": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "created_on": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "tier": {
+              "enum": [
+                null,
+                "unknown",
+                "free",
+                "paid"
+              ]
+            },
+            "parameters": {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/$defs/jsonValue"
               }
             }
           }
@@ -170,14 +252,84 @@
             "material_limit",
             "texture_edge_limit",
             "basis"
-          ]
+          ],
+          "properties": {
+            "estimated_credits": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "consumed_credits": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "balance_before": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "balance_after": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "wallet_id": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "basis": {
+              "type": "string",
+              "minLength": 1
+            },
+            "triangle_limit_exclusive": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 1
+            },
+            "material_limit": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "texture_edge_limit": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
         },
         "approval": {
           "type": "object",
           "required": [
             "status",
             "reviewer"
-          ]
+          ],
+          "properties": {
+            "status": {
+              "enum": [
+                "pending",
+                "approved",
+                "rejected"
+              ]
+            },
+            "reviewer": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
         },
         "binding": {
           "type": "object",
@@ -195,8 +347,21 @@
             "required_markers": {
               "type": "array",
               "items": {
-                "type": "string"
+                "type": "string",
+                "minLength": 1
               }
+            },
+            "scene_path": {
+              "type": "string",
+              "minLength": 1
+            },
+            "node_path": {
+              "type": "string",
+              "minLength": 1
+            },
+            "root_class": {
+              "type": "string",
+              "minLength": 1
             }
           }
         },
@@ -234,7 +399,70 @@
             }
           }
         }
-      }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "asset_id": {
+                "const": "room407_backpack"
+              }
+            },
+            "required": [
+              "asset_id"
+            ]
+          },
+          "then": {
+            "properties": {
+              "geometry": {
+                "properties": {
+                  "tolerance_m": {
+                    "maximum": 0.001
+                  }
+                }
+              },
+              "budget": {
+                "properties": {
+                  "triangle_limit_exclusive": {
+                    "type": "integer",
+                    "maximum": 3001
+                  },
+                  "material_limit": {
+                    "maximum": 2
+                  },
+                  "texture_edge_limit": {
+                    "maximum": 1024
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "jsonValue": {
+      "anyOf": [
+        {
+          "type": [
+            "string",
+            "number",
+            "boolean",
+            "null"
+          ]
+        },
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/jsonValue"
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/jsonValue"
+          }
+        }
+      ]
     }
   }
 }

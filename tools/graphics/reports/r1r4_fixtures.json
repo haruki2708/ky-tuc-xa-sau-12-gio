@@ -1,0 +1,1194 @@
+{
+  "task": "T-210",
+  "review": "D-082 R1-R4",
+  "before_commit": "7af1075",
+  "base": "1b63c61",
+  "negative_cases": 33,
+  "positive_cases": 7,
+  "before": [
+    {
+      "fixture": "r1_double_root_and_dimensions",
+      "expected": "FAIL",
+      "detail": "root_scale",
+      "status": "INCOMPLETE",
+      "errors": [],
+      "unavailable": [
+        "G1_contract_and_G3_production_approval",
+        "approval_reviewer",
+        "asset_approval",
+        "generation_date",
+        "provenance_manual_verification",
+        "scene_placement_requires_integration_check"
+      ]
+    },
+    {
+      "fixture": "r1_tolerance_100_and_size_99",
+      "expected": "FAIL",
+      "detail": "tolerance_m",
+      "status": "INCOMPLETE",
+      "errors": [],
+      "unavailable": [
+        "G1_contract_and_G3_production_approval",
+        "approval_reviewer",
+        "asset_approval",
+        "generation_date",
+        "provenance_manual_verification",
+        "scene_placement_requires_integration_check"
+      ]
+    },
+    {
+      "fixture": "r1_scale_cannot_borrow_position_tolerance",
+      "expected": "FAIL",
+      "detail": "root_scale",
+      "status": "INCOMPLETE",
+      "errors": [],
+      "unavailable": [
+        "G1_contract_and_G3_production_approval",
+        "approval_reviewer",
+        "asset_approval",
+        "generation_date",
+        "provenance_manual_verification",
+        "scene_placement_requires_integration_check"
+      ]
+    },
+    {
+      "fixture": "r1_tolerance_negative",
+      "expected": "FAIL",
+      "detail": "tolerance_m",
+      "status": "FAIL",
+      "errors": [
+        "invalid tolerance"
+      ],
+      "unavailable": [
+        "G1_contract_and_G3_production_approval",
+        "approval_reviewer",
+        "asset_approval",
+        "generation_date",
+        "provenance_manual_verification",
+        "scene_placement_requires_integration_check"
+      ]
+    },
+    {
+      "fixture": "r1_tolerance_nan",
+      "expected": "FAIL",
+      "detail": "tolerance_m",
+      "status": "FAIL",
+      "errors": [
+        "invalid tolerance"
+      ],
+      "unavailable": [
+        "G1_contract_and_G3_production_approval",
+        "approval_reviewer",
+        "asset_approval",
+        "generation_date",
+        "provenance_manual_verification",
+        "scene_placement_requires_integration_check"
+      ]
+    },
+    {
+      "fixture": "r1_tolerance_infinite",
+      "expected": "FAIL",
+      "detail": "tolerance_m",
+      "status": "FAIL",
+      "errors": [
+        "invalid tolerance"
+      ],
+      "unavailable": [
+        "G1_contract_and_G3_production_approval",
+        "approval_reviewer",
+        "asset_approval",
+        "generation_date",
+        "provenance_manual_verification",
+        "scene_placement_requires_integration_check"
+      ]
+    },
+    {
+      "fixture": "r2_self_declared_inflated_limits",
+      "expected": "FAIL",
+      "detail": "budget",
+      "status": "INCOMPLETE",
+      "errors": [],
+      "unavailable": [
+        "G1_contract_and_G3_production_approval",
+        "approval_reviewer",
+        "asset_approval",
+        "generation_date",
+        "provenance_manual_verification",
+        "scene_placement_requires_integration_check"
+      ]
+    },
+    {
+      "fixture": "r2_inflated_triangle_limit_exclusive",
+      "expected": "FAIL",
+      "detail": "triangle_limit_exclusive",
+      "status": "INCOMPLETE",
+      "errors": [],
+      "unavailable": [
+        "G1_contract_and_G3_production_approval",
+        "approval_reviewer",
+        "asset_approval",
+        "generation_date",
+        "provenance_manual_verification",
+        "scene_placement_requires_integration_check"
+      ]
+    },
+    {
+      "fixture": "r2_inflated_material_limit",
+      "expected": "FAIL",
+      "detail": "material_limit",
+      "status": "INCOMPLETE",
+      "errors": [],
+      "unavailable": [
+        "G1_contract_and_G3_production_approval",
+        "approval_reviewer",
+        "asset_approval",
+        "generation_date",
+        "provenance_manual_verification",
+        "scene_placement_requires_integration_check"
+      ]
+    },
+    {
+      "fixture": "r2_inflated_texture_edge_limit",
+      "expected": "FAIL",
+      "detail": "texture_edge_limit",
+      "status": "INCOMPLETE",
+      "errors": [],
+      "unavailable": [
+        "G1_contract_and_G3_production_approval",
+        "approval_reviewer",
+        "asset_approval",
+        "generation_date",
+        "provenance_manual_verification",
+        "scene_placement_requires_integration_check"
+      ]
+    },
+    {
+      "fixture": "r3_missing_importer",
+      "expected": "INCOMPLETE",
+      "detail": "game/importer.gd",
+      "status": "INCOMPLETE",
+      "errors": [],
+      "unavailable": [
+        "G1_contract_and_G3_production_approval",
+        "approval_reviewer",
+        "asset_approval",
+        "generation_date",
+        "provenance_manual_verification",
+        "scene_placement_requires_integration_check"
+      ]
+    },
+    {
+      "fixture": "r3_stale_importer",
+      "expected": "FAIL",
+      "detail": "game/importer.gd",
+      "status": "FAIL",
+      "errors": [
+        "stale dependency:game/importer.gd"
+      ],
+      "unavailable": [
+        "G1_contract_and_G3_production_approval",
+        "approval_reviewer",
+        "asset_approval",
+        "generation_date",
+        "provenance_manual_verification",
+        "scene_placement_requires_integration_check"
+      ]
+    },
+    {
+      "fixture": "r3_missing_material",
+      "expected": "INCOMPLETE",
+      "detail": "game/material.tres",
+      "status": "INCOMPLETE",
+      "errors": [],
+      "unavailable": [
+        "G1_contract_and_G3_production_approval",
+        "approval_reviewer",
+        "asset_approval",
+        "generation_date",
+        "provenance_manual_verification",
+        "scene_placement_requires_integration_check"
+      ]
+    },
+    {
+      "fixture": "r3_stale_material",
+      "expected": "FAIL",
+      "detail": "game/material.tres",
+      "status": "FAIL",
+      "errors": [
+        "stale dependency:game/material.tres"
+      ],
+      "unavailable": [
+        "G1_contract_and_G3_production_approval",
+        "approval_reviewer",
+        "asset_approval",
+        "generation_date",
+        "provenance_manual_verification",
+        "scene_placement_requires_integration_check"
+      ]
+    },
+    {
+      "fixture": "r3_missing_texture",
+      "expected": "INCOMPLETE",
+      "detail": "game/texture.png",
+      "status": "INCOMPLETE",
+      "errors": [],
+      "unavailable": [
+        "G1_contract_and_G3_production_approval",
+        "approval_reviewer",
+        "asset_approval",
+        "generation_date",
+        "provenance_manual_verification",
+        "scene_placement_requires_integration_check"
+      ]
+    },
+    {
+      "fixture": "r3_stale_texture",
+      "expected": "FAIL",
+      "detail": "game/texture.png",
+      "status": "FAIL",
+      "errors": [
+        "stale dependency:game/texture.png"
+      ],
+      "unavailable": [
+        "G1_contract_and_G3_production_approval",
+        "approval_reviewer",
+        "asset_approval",
+        "generation_date",
+        "provenance_manual_verification",
+        "scene_placement_requires_integration_check"
+      ]
+    },
+    {
+      "fixture": "r3_missing_include",
+      "expected": "INCOMPLETE",
+      "detail": "game/surface.gdshaderinc",
+      "status": "INCOMPLETE",
+      "errors": [],
+      "unavailable": [
+        "G1_contract_and_G3_production_approval",
+        "approval_reviewer",
+        "asset_approval",
+        "generation_date",
+        "provenance_manual_verification",
+        "scene_placement_requires_integration_check"
+      ]
+    },
+    {
+      "fixture": "r3_stale_include",
+      "expected": "FAIL",
+      "detail": "game/surface.gdshaderinc",
+      "status": "FAIL",
+      "errors": [
+        "stale dependency:game/surface.gdshaderinc"
+      ],
+      "unavailable": [
+        "G1_contract_and_G3_production_approval",
+        "approval_reviewer",
+        "asset_approval",
+        "generation_date",
+        "provenance_manual_verification",
+        "scene_placement_requires_integration_check"
+      ]
+    },
+    {
+      "fixture": "r3_missing_wrapper",
+      "expected": "INCOMPLETE",
+      "detail": "game/wrapper.gd",
+      "status": "INCOMPLETE",
+      "errors": [],
+      "unavailable": [
+        "G1_contract_and_G3_production_approval",
+        "approval_reviewer",
+        "asset_approval",
+        "generation_date",
+        "provenance_manual_verification",
+        "scene_placement_requires_integration_check"
+      ]
+    },
+    {
+      "fixture": "r3_stale_wrapper",
+      "expected": "FAIL",
+      "detail": "game/wrapper.gd",
+      "status": "FAIL",
+      "errors": [
+        "stale dependency:game/wrapper.gd"
+      ],
+      "unavailable": [
+        "G1_contract_and_G3_production_approval",
+        "approval_reviewer",
+        "asset_approval",
+        "generation_date",
+        "provenance_manual_verification",
+        "scene_placement_requires_integration_check"
+      ]
+    },
+    {
+      "fixture": "r3_removed_importer_then_changed",
+      "expected": "INCOMPLETE",
+      "detail": "game/importer.gd",
+      "status": "INCOMPLETE",
+      "errors": [],
+      "unavailable": [
+        "G1_contract_and_G3_production_approval",
+        "approval_reviewer",
+        "asset_approval",
+        "generation_date",
+        "provenance_manual_verification",
+        "scene_placement_requires_integration_check"
+      ]
+    },
+    {
+      "fixture": "r3_opaque_cache_closure",
+      "expected": "INCOMPLETE",
+      "detail": "game/.godot/imported/fixture.scn",
+      "status": "INCOMPLETE",
+      "errors": [],
+      "unavailable": [
+        "G1_contract_and_G3_production_approval",
+        "approval_reviewer",
+        "asset_approval",
+        "generation_date",
+        "provenance_manual_verification",
+        "scene_placement_requires_integration_check"
+      ]
+    },
+    {
+      "fixture": "r4_rights_evidence_42_self_authored",
+      "expected": "FAIL",
+      "detail": "generation.rights_evidence",
+      "status": "INCOMPLETE",
+      "errors": [],
+      "unavailable": [
+        "G1_contract_and_G3_production_approval",
+        "approval_reviewer",
+        "asset_approval",
+        "generation_date",
+        "provenance_manual_verification",
+        "scene_placement_requires_integration_check"
+      ]
+    },
+    {
+      "fixture": "r4_parameters_array_self_authored",
+      "expected": "FAIL",
+      "detail": "generation.parameters",
+      "status": "INCOMPLETE",
+      "errors": [],
+      "unavailable": [
+        "G1_contract_and_G3_production_approval",
+        "approval_reviewer",
+        "asset_approval",
+        "generation_date",
+        "provenance_manual_verification",
+        "scene_placement_requires_integration_check"
+      ]
+    },
+    {
+      "fixture": "r4_rights_evidence_42_tripo",
+      "expected": "FAIL",
+      "detail": "generation.rights_evidence",
+      "status": "INCOMPLETE",
+      "errors": [],
+      "unavailable": [
+        "G1_contract_and_G3_production_approval",
+        "approval_reviewer",
+        "asset_approval",
+        "generation:created_on",
+        "generation:model_id",
+        "generation:model_version",
+        "generation_date",
+        "paid_plan_and_input_rights_evidence",
+        "provenance_manual_verification",
+        "scene_placement_requires_integration_check"
+      ]
+    },
+    {
+      "fixture": "r4_parameters_array_tripo",
+      "expected": "FAIL",
+      "detail": "generation.parameters",
+      "status": "INCOMPLETE",
+      "errors": [],
+      "unavailable": [
+        "G1_contract_and_G3_production_approval",
+        "approval_reviewer",
+        "asset_approval",
+        "generation:created_on",
+        "generation:model_id",
+        "generation:model_version",
+        "generation_date",
+        "paid_plan_and_input_rights_evidence",
+        "provenance_manual_verification",
+        "scene_placement_requires_integration_check"
+      ]
+    },
+    {
+      "fixture": "r4_rights_evidence_42_meshy",
+      "expected": "FAIL",
+      "detail": "generation.rights_evidence",
+      "status": "INCOMPLETE",
+      "errors": [],
+      "unavailable": [
+        "G1_contract_and_G3_production_approval",
+        "approval_reviewer",
+        "asset_approval",
+        "generation:created_on",
+        "generation:model_id",
+        "generation:model_version",
+        "generation_date",
+        "paid_plan_and_input_rights_evidence",
+        "provenance_manual_verification",
+        "scene_placement_requires_integration_check"
+      ]
+    },
+    {
+      "fixture": "r4_parameters_array_meshy",
+      "expected": "FAIL",
+      "detail": "generation.parameters",
+      "status": "INCOMPLETE",
+      "errors": [],
+      "unavailable": [
+        "G1_contract_and_G3_production_approval",
+        "approval_reviewer",
+        "asset_approval",
+        "generation:created_on",
+        "generation:model_id",
+        "generation:model_version",
+        "generation_date",
+        "paid_plan_and_input_rights_evidence",
+        "provenance_manual_verification",
+        "scene_placement_requires_integration_check"
+      ]
+    },
+    {
+      "fixture": "r4_schema_const",
+      "expected": "FAIL",
+      "detail": "geometry.pose",
+      "status": "FAIL",
+      "errors": [
+        "G1 probe requires explicit rest pose and include_hidden policy",
+        "measurement policy mismatch:pose"
+      ],
+      "unavailable": [
+        "G1_contract_and_G3_production_approval",
+        "approval_reviewer",
+        "asset_approval",
+        "generation_date",
+        "provenance_manual_verification",
+        "scene_placement_requires_integration_check"
+      ]
+    },
+    {
+      "fixture": "r4_schema_range",
+      "expected": "FAIL",
+      "detail": "budget.balance_before",
+      "status": "INCOMPLETE",
+      "errors": [],
+      "unavailable": [
+        "G1_contract_and_G3_production_approval",
+        "approval_reviewer",
+        "asset_approval",
+        "generation_date",
+        "provenance_manual_verification",
+        "scene_placement_requires_integration_check"
+      ]
+    },
+    {
+      "fixture": "r4_schema_bool_number",
+      "expected": "FAIL",
+      "detail": "placement.position_m",
+      "status": "FAIL",
+      "errors": [
+        "placement invalid:position_m"
+      ],
+      "unavailable": [
+        "G1_contract_and_G3_production_approval",
+        "approval_reviewer",
+        "asset_approval",
+        "generation_date",
+        "provenance_manual_verification",
+        "scene_placement_requires_integration_check"
+      ]
+    },
+    {
+      "fixture": "r4_schema_array_length",
+      "expected": "FAIL",
+      "detail": "placement.scale",
+      "status": "FAIL",
+      "errors": [
+        "placement invalid:scale"
+      ],
+      "unavailable": [
+        "G1_contract_and_G3_production_approval",
+        "approval_reviewer",
+        "asset_approval",
+        "generation_date",
+        "provenance_manual_verification",
+        "scene_placement_requires_integration_check"
+      ]
+    },
+    {
+      "fixture": "r4_schema_nested_parameters",
+      "expected": "FAIL",
+      "detail": "generation.parameters",
+      "status": "INCOMPLETE",
+      "errors": [],
+      "unavailable": [
+        "G1_contract_and_G3_production_approval",
+        "approval_reviewer",
+        "asset_approval",
+        "generation_date",
+        "provenance_manual_verification",
+        "scene_placement_requires_integration_check"
+      ]
+    },
+    {
+      "fixture": "positive_complete_static_graph",
+      "expected": "VALID",
+      "detail": null,
+      "status": "INCOMPLETE",
+      "errors": [],
+      "unavailable": [
+        "G1_contract_and_G3_production_approval",
+        "approval_reviewer",
+        "asset_approval",
+        "generation_date",
+        "provenance_manual_verification",
+        "scene_placement_requires_integration_check"
+      ]
+    },
+    {
+      "fixture": "positive_unit_scale_epsilon",
+      "expected": "VALID",
+      "detail": null,
+      "status": "INCOMPLETE",
+      "errors": [],
+      "unavailable": [
+        "G1_contract_and_G3_production_approval",
+        "approval_reviewer",
+        "asset_approval",
+        "generation_date",
+        "provenance_manual_verification",
+        "scene_placement_requires_integration_check"
+      ]
+    },
+    {
+      "fixture": "positive_tolerance_boundary",
+      "expected": "VALID",
+      "detail": null,
+      "status": "INCOMPLETE",
+      "errors": [],
+      "unavailable": [
+        "G1_contract_and_G3_production_approval",
+        "approval_reviewer",
+        "asset_approval",
+        "generation_date",
+        "provenance_manual_verification",
+        "scene_placement_requires_integration_check"
+      ]
+    },
+    {
+      "fixture": "positive_other_asset_own_budget",
+      "expected": "VALID",
+      "detail": null,
+      "status": "INCOMPLETE",
+      "errors": [],
+      "unavailable": [
+        "G1_contract_and_G3_production_approval",
+        "approval_reviewer",
+        "asset_approval",
+        "generation_date",
+        "provenance_manual_verification",
+        "scene_placement_requires_integration_check"
+      ]
+    },
+    {
+      "fixture": "positive_metadata_self_authored",
+      "expected": "VALID",
+      "detail": null,
+      "status": "INCOMPLETE",
+      "errors": [],
+      "unavailable": [
+        "G1_contract_and_G3_production_approval",
+        "approval_reviewer",
+        "asset_approval",
+        "generation_date",
+        "provenance_manual_verification",
+        "scene_placement_requires_integration_check"
+      ]
+    },
+    {
+      "fixture": "positive_metadata_tripo",
+      "expected": "VALID",
+      "detail": null,
+      "status": "INCOMPLETE",
+      "errors": [],
+      "unavailable": [
+        "G1_contract_and_G3_production_approval",
+        "approval_reviewer",
+        "asset_approval",
+        "generation:created_on",
+        "generation:model_id",
+        "generation:model_version",
+        "generation_date",
+        "paid_plan_and_input_rights_evidence",
+        "provenance_manual_verification",
+        "scene_placement_requires_integration_check"
+      ]
+    },
+    {
+      "fixture": "positive_metadata_meshy",
+      "expected": "VALID",
+      "detail": null,
+      "status": "INCOMPLETE",
+      "errors": [],
+      "unavailable": [
+        "G1_contract_and_G3_production_approval",
+        "approval_reviewer",
+        "asset_approval",
+        "generation:created_on",
+        "generation:model_id",
+        "generation:model_version",
+        "generation_date",
+        "paid_plan_and_input_rights_evidence",
+        "provenance_manual_verification",
+        "scene_placement_requires_integration_check"
+      ]
+    }
+  ],
+  "after": [
+    {
+      "fixture": "r1_double_root_and_dimensions",
+      "expected": "FAIL",
+      "detail": "root_scale",
+      "status": "FAIL",
+      "errors": [
+        "asset.geometry.root_scale[0]: maximum 1.00001 violated",
+        "asset.geometry.root_scale[1]: maximum 1.00001 violated",
+        "asset.geometry.root_scale[2]: maximum 1.00001 violated"
+      ],
+      "unavailable": []
+    },
+    {
+      "fixture": "r1_tolerance_100_and_size_99",
+      "expected": "FAIL",
+      "detail": "tolerance_m",
+      "status": "FAIL",
+      "errors": [
+        "asset.geometry.tolerance_m: maximum 0.001 violated"
+      ],
+      "unavailable": []
+    },
+    {
+      "fixture": "r1_scale_cannot_borrow_position_tolerance",
+      "expected": "FAIL",
+      "detail": "root_scale",
+      "status": "FAIL",
+      "errors": [
+        "measurement.root_scale must be unit scale"
+      ],
+      "unavailable": [
+        "G1_contract_and_G3_production_approval",
+        "approval_reviewer",
+        "asset_approval",
+        "generation_date",
+        "provenance_manual_verification",
+        "scene_placement_requires_integration_check"
+      ]
+    },
+    {
+      "fixture": "r1_tolerance_negative",
+      "expected": "FAIL",
+      "detail": "tolerance_m",
+      "status": "FAIL",
+      "errors": [
+        "asset.geometry.tolerance_m: minimum 0 violated"
+      ],
+      "unavailable": []
+    },
+    {
+      "fixture": "r1_tolerance_nan",
+      "expected": "FAIL",
+      "detail": "tolerance_m",
+      "status": "FAIL",
+      "errors": [
+        "asset.geometry.tolerance_m: number must be finite",
+        "asset.geometry.tolerance_m: expected type number"
+      ],
+      "unavailable": []
+    },
+    {
+      "fixture": "r1_tolerance_infinite",
+      "expected": "FAIL",
+      "detail": "tolerance_m",
+      "status": "FAIL",
+      "errors": [
+        "asset.geometry.tolerance_m: number must be finite",
+        "asset.geometry.tolerance_m: expected type number"
+      ],
+      "unavailable": []
+    },
+    {
+      "fixture": "r2_self_declared_inflated_limits",
+      "expected": "FAIL",
+      "detail": "budget",
+      "status": "FAIL",
+      "errors": [
+        "asset.budget.triangle_limit_exclusive: maximum 3001 violated",
+        "asset.budget.material_limit: maximum 2 violated",
+        "asset.budget.texture_edge_limit: maximum 1024 violated"
+      ],
+      "unavailable": []
+    },
+    {
+      "fixture": "r2_inflated_triangle_limit_exclusive",
+      "expected": "FAIL",
+      "detail": "triangle_limit_exclusive",
+      "status": "FAIL",
+      "errors": [
+        "asset.budget.triangle_limit_exclusive: maximum 3001 violated"
+      ],
+      "unavailable": []
+    },
+    {
+      "fixture": "r2_inflated_material_limit",
+      "expected": "FAIL",
+      "detail": "material_limit",
+      "status": "FAIL",
+      "errors": [
+        "asset.budget.material_limit: maximum 2 violated"
+      ],
+      "unavailable": []
+    },
+    {
+      "fixture": "r2_inflated_texture_edge_limit",
+      "expected": "FAIL",
+      "detail": "texture_edge_limit",
+      "status": "FAIL",
+      "errors": [
+        "asset.budget.texture_edge_limit: maximum 1024 violated"
+      ],
+      "unavailable": []
+    },
+    {
+      "fixture": "r3_missing_importer",
+      "expected": "INCOMPLETE",
+      "detail": "game/importer.gd",
+      "status": "INCOMPLETE",
+      "errors": [],
+      "unavailable": [
+        "G1_contract_and_G3_production_approval",
+        "approval_reviewer",
+        "asset_approval",
+        "generation_date",
+        "missing_dependency_hash:game/importer.gd",
+        "provenance_manual_verification",
+        "scene_placement_requires_integration_check"
+      ]
+    },
+    {
+      "fixture": "r3_stale_importer",
+      "expected": "FAIL",
+      "detail": "game/importer.gd",
+      "status": "FAIL",
+      "errors": [
+        "stale dependency:game/importer.gd"
+      ],
+      "unavailable": [
+        "G1_contract_and_G3_production_approval",
+        "approval_reviewer",
+        "asset_approval",
+        "generation_date",
+        "provenance_manual_verification",
+        "scene_placement_requires_integration_check"
+      ]
+    },
+    {
+      "fixture": "r3_missing_material",
+      "expected": "INCOMPLETE",
+      "detail": "game/material.tres",
+      "status": "INCOMPLETE",
+      "errors": [],
+      "unavailable": [
+        "G1_contract_and_G3_production_approval",
+        "approval_reviewer",
+        "asset_approval",
+        "generation_date",
+        "missing_dependency_hash:game/material.tres",
+        "provenance_manual_verification",
+        "scene_placement_requires_integration_check"
+      ]
+    },
+    {
+      "fixture": "r3_stale_material",
+      "expected": "FAIL",
+      "detail": "game/material.tres",
+      "status": "FAIL",
+      "errors": [
+        "stale dependency:game/material.tres"
+      ],
+      "unavailable": [
+        "G1_contract_and_G3_production_approval",
+        "approval_reviewer",
+        "asset_approval",
+        "generation_date",
+        "provenance_manual_verification",
+        "scene_placement_requires_integration_check"
+      ]
+    },
+    {
+      "fixture": "r3_missing_texture",
+      "expected": "INCOMPLETE",
+      "detail": "game/texture.png",
+      "status": "INCOMPLETE",
+      "errors": [],
+      "unavailable": [
+        "G1_contract_and_G3_production_approval",
+        "approval_reviewer",
+        "asset_approval",
+        "generation_date",
+        "missing_dependency_hash:game/texture.png",
+        "provenance_manual_verification",
+        "scene_placement_requires_integration_check"
+      ]
+    },
+    {
+      "fixture": "r3_stale_texture",
+      "expected": "FAIL",
+      "detail": "game/texture.png",
+      "status": "FAIL",
+      "errors": [
+        "stale dependency:game/texture.png"
+      ],
+      "unavailable": [
+        "G1_contract_and_G3_production_approval",
+        "approval_reviewer",
+        "asset_approval",
+        "generation_date",
+        "provenance_manual_verification",
+        "scene_placement_requires_integration_check"
+      ]
+    },
+    {
+      "fixture": "r3_missing_include",
+      "expected": "INCOMPLETE",
+      "detail": "game/surface.gdshaderinc",
+      "status": "INCOMPLETE",
+      "errors": [],
+      "unavailable": [
+        "G1_contract_and_G3_production_approval",
+        "approval_reviewer",
+        "asset_approval",
+        "generation_date",
+        "missing_dependency_hash:game/surface.gdshaderinc",
+        "provenance_manual_verification",
+        "scene_placement_requires_integration_check"
+      ]
+    },
+    {
+      "fixture": "r3_stale_include",
+      "expected": "FAIL",
+      "detail": "game/surface.gdshaderinc",
+      "status": "FAIL",
+      "errors": [
+        "stale dependency:game/surface.gdshaderinc"
+      ],
+      "unavailable": [
+        "G1_contract_and_G3_production_approval",
+        "approval_reviewer",
+        "asset_approval",
+        "generation_date",
+        "provenance_manual_verification",
+        "scene_placement_requires_integration_check"
+      ]
+    },
+    {
+      "fixture": "r3_missing_wrapper",
+      "expected": "INCOMPLETE",
+      "detail": "game/wrapper.gd",
+      "status": "INCOMPLETE",
+      "errors": [],
+      "unavailable": [
+        "G1_contract_and_G3_production_approval",
+        "approval_reviewer",
+        "asset_approval",
+        "generation_date",
+        "missing_dependency_hash:game/wrapper.gd",
+        "provenance_manual_verification",
+        "scene_placement_requires_integration_check"
+      ]
+    },
+    {
+      "fixture": "r3_stale_wrapper",
+      "expected": "FAIL",
+      "detail": "game/wrapper.gd",
+      "status": "FAIL",
+      "errors": [
+        "stale dependency:game/wrapper.gd"
+      ],
+      "unavailable": [
+        "G1_contract_and_G3_production_approval",
+        "approval_reviewer",
+        "asset_approval",
+        "generation_date",
+        "provenance_manual_verification",
+        "scene_placement_requires_integration_check"
+      ]
+    },
+    {
+      "fixture": "r3_removed_importer_then_changed",
+      "expected": "INCOMPLETE",
+      "detail": "game/importer.gd",
+      "status": "INCOMPLETE",
+      "errors": [],
+      "unavailable": [
+        "G1_contract_and_G3_production_approval",
+        "approval_reviewer",
+        "asset_approval",
+        "generation_date",
+        "missing_dependency_hash:game/importer.gd",
+        "provenance_manual_verification",
+        "scene_placement_requires_integration_check"
+      ]
+    },
+    {
+      "fixture": "r3_opaque_cache_closure",
+      "expected": "INCOMPLETE",
+      "detail": "game/.godot/imported/fixture.scn",
+      "status": "INCOMPLETE",
+      "errors": [],
+      "unavailable": [
+        "G1_contract_and_G3_production_approval",
+        "approval_reviewer",
+        "asset_approval",
+        "dependency_closure_unproven:game/.godot/imported/fixture.scn",
+        "generation_date",
+        "provenance_manual_verification",
+        "scene_placement_requires_integration_check"
+      ]
+    },
+    {
+      "fixture": "r4_rights_evidence_42_self_authored",
+      "expected": "FAIL",
+      "detail": "generation.rights_evidence",
+      "status": "FAIL",
+      "errors": [
+        "asset.generation.rights_evidence: expected type array"
+      ],
+      "unavailable": []
+    },
+    {
+      "fixture": "r4_parameters_array_self_authored",
+      "expected": "FAIL",
+      "detail": "generation.parameters",
+      "status": "FAIL",
+      "errors": [
+        "asset.generation.parameters: expected type object"
+      ],
+      "unavailable": []
+    },
+    {
+      "fixture": "r4_rights_evidence_42_tripo",
+      "expected": "FAIL",
+      "detail": "generation.rights_evidence",
+      "status": "FAIL",
+      "errors": [
+        "asset.generation.rights_evidence: expected type array"
+      ],
+      "unavailable": []
+    },
+    {
+      "fixture": "r4_parameters_array_tripo",
+      "expected": "FAIL",
+      "detail": "generation.parameters",
+      "status": "FAIL",
+      "errors": [
+        "asset.generation.parameters: expected type object"
+      ],
+      "unavailable": []
+    },
+    {
+      "fixture": "r4_rights_evidence_42_meshy",
+      "expected": "FAIL",
+      "detail": "generation.rights_evidence",
+      "status": "FAIL",
+      "errors": [
+        "asset.generation.rights_evidence: expected type array"
+      ],
+      "unavailable": []
+    },
+    {
+      "fixture": "r4_parameters_array_meshy",
+      "expected": "FAIL",
+      "detail": "generation.parameters",
+      "status": "FAIL",
+      "errors": [
+        "asset.generation.parameters: expected type object"
+      ],
+      "unavailable": []
+    },
+    {
+      "fixture": "r4_schema_const",
+      "expected": "FAIL",
+      "detail": "geometry.pose",
+      "status": "FAIL",
+      "errors": [
+        "asset.geometry.pose: must equal 'rest'"
+      ],
+      "unavailable": []
+    },
+    {
+      "fixture": "r4_schema_range",
+      "expected": "FAIL",
+      "detail": "budget.balance_before",
+      "status": "FAIL",
+      "errors": [
+        "asset.budget.balance_before: minimum 0 violated"
+      ],
+      "unavailable": []
+    },
+    {
+      "fixture": "r4_schema_bool_number",
+      "expected": "FAIL",
+      "detail": "placement.position_m",
+      "status": "FAIL",
+      "errors": [
+        "asset.placement.position_m[0]: expected type number"
+      ],
+      "unavailable": []
+    },
+    {
+      "fixture": "r4_schema_array_length",
+      "expected": "FAIL",
+      "detail": "placement.scale",
+      "status": "FAIL",
+      "errors": [
+        "asset.placement.scale: invalid array length"
+      ],
+      "unavailable": []
+    },
+    {
+      "fixture": "r4_schema_nested_parameters",
+      "expected": "FAIL",
+      "detail": "generation.parameters",
+      "status": "FAIL",
+      "errors": [
+        "asset.generation.parameters.nested: no allowed type/shape matched",
+        "asset.generation.parameters.nested[0]: number must be finite",
+        "asset.generation.parameters.nested[0]: number must be finite"
+      ],
+      "unavailable": []
+    },
+    {
+      "fixture": "positive_complete_static_graph",
+      "expected": "VALID",
+      "detail": null,
+      "status": "INCOMPLETE",
+      "errors": [],
+      "unavailable": [
+        "G1_contract_and_G3_production_approval",
+        "approval_reviewer",
+        "asset_approval",
+        "generation_date",
+        "provenance_manual_verification",
+        "scene_placement_requires_integration_check"
+      ]
+    },
+    {
+      "fixture": "positive_unit_scale_epsilon",
+      "expected": "VALID",
+      "detail": null,
+      "status": "INCOMPLETE",
+      "errors": [],
+      "unavailable": [
+        "G1_contract_and_G3_production_approval",
+        "approval_reviewer",
+        "asset_approval",
+        "generation_date",
+        "provenance_manual_verification",
+        "scene_placement_requires_integration_check"
+      ]
+    },
+    {
+      "fixture": "positive_tolerance_boundary",
+      "expected": "VALID",
+      "detail": null,
+      "status": "INCOMPLETE",
+      "errors": [],
+      "unavailable": [
+        "G1_contract_and_G3_production_approval",
+        "approval_reviewer",
+        "asset_approval",
+        "generation_date",
+        "provenance_manual_verification",
+        "scene_placement_requires_integration_check"
+      ]
+    },
+    {
+      "fixture": "positive_other_asset_own_budget",
+      "expected": "VALID",
+      "detail": null,
+      "status": "INCOMPLETE",
+      "errors": [],
+      "unavailable": [
+        "G1_contract_and_G3_production_approval",
+        "approval_reviewer",
+        "asset_approval",
+        "generation_date",
+        "provenance_manual_verification",
+        "scene_placement_requires_integration_check"
+      ]
+    },
+    {
+      "fixture": "positive_metadata_self_authored",
+      "expected": "VALID",
+      "detail": null,
+      "status": "INCOMPLETE",
+      "errors": [],
+      "unavailable": [
+        "G1_contract_and_G3_production_approval",
+        "approval_reviewer",
+        "asset_approval",
+        "generation_date",
+        "provenance_manual_verification",
+        "scene_placement_requires_integration_check"
+      ]
+    },
+    {
+      "fixture": "positive_metadata_tripo",
+      "expected": "VALID",
+      "detail": null,
+      "status": "INCOMPLETE",
+      "errors": [],
+      "unavailable": [
+        "G1_contract_and_G3_production_approval",
+        "approval_reviewer",
+        "asset_approval",
+        "generation:created_on",
+        "generation:model_id",
+        "generation:model_version",
+        "generation_date",
+        "paid_plan_and_input_rights_evidence",
+        "provenance_manual_verification",
+        "scene_placement_requires_integration_check"
+      ]
+    },
+    {
+      "fixture": "positive_metadata_meshy",
+      "expected": "VALID",
+      "detail": null,
+      "status": "INCOMPLETE",
+      "errors": [],
+      "unavailable": [
+        "G1_contract_and_G3_production_approval",
+        "approval_reviewer",
+        "asset_approval",
+        "generation:created_on",
+        "generation:model_id",
+        "generation:model_version",
+        "generation_date",
+        "paid_plan_and_input_rights_evidence",
+        "provenance_manual_verification",
+        "scene_placement_requires_integration_check"
+      ]
+    }
+  ]
+}

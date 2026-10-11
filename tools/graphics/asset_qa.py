@@ -63,6 +63,11 @@ def validate(asset, root=ROOT, measurements=(), schema_version="t210-g0-proposal
     if not isinstance(asset, dict):
         return {"status": "FAIL", "errors": ["asset must be an object"], "unavailable": []}
     result = {"asset_id": asset.get("asset_id"), "scope": asset.get("scope")}
+    if schema_version == "t210-g1-static-1":
+        from schema_rules import schema_errors
+        errors.extend(schema_errors(asset))
+        if errors:
+            return dict(result, status="FAIL", errors=errors, unavailable=[])
     for key in ("asset_id", "file", "source", "geometry", "generation", "budget", "approval"):
         if not asset.get(key):
             errors.append("missing:" + key)
@@ -155,7 +160,8 @@ def validate(asset, root=ROOT, measurements=(), schema_version="t210-g0-proposal
         result["measured"] = measured
         unavailable.extend(measured.get("unavailable", []))
         if not errors:
-            for key in ("dimensions_m", "bounds_min_m", "root_scale"):
+            fields = ("dimensions_m", "bounds_min_m") if schema_version == "t210-g1-static-1" else ("dimensions_m", "bounds_min_m", "root_scale")
+            for key in fields:
                 actual = measured.get(key)
                 if not vector(actual):
                     unavailable.append(key)

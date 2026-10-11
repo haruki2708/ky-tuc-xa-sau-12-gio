@@ -1,26 +1,16 @@
 """Static-asset G1 metadata and evidence checks; no service calls or scene writes."""
-import hashlib
-import json
 import math
-from pathlib import Path
 
 from asset_qa import repo_file, vector, count
+from dependency_evidence import inspect_dependencies
+from schema_rules import schema_errors
+
+SCALE_EPSILON = 0.00001  # Dimensionless float/import comparison; never a position tolerance.
+BACKPACK_LIMITS = {"triangle_limit_exclusive": 3001, "material_limit": 2, "texture_edge_limit": 1024}
 
 
 def inspect_g1(asset, measured, root):
-    errors, unavailable = [], []
-    definition = json.loads(Path(__file__).with_name("manifest.schema.json").read_text())["$defs"]["asset"]
-    for section in definition["required"]:
-        if section not in asset:
-            errors.append("G1 missing:" + section)
-        requirements = definition["properties"][section].get("required", [])
-        if requirements:
-            if not isinstance(asset.get(section), dict):
-                errors.append("G1 object required:" + section)
-            else:
-                for field in requirements:
-                    if field not in asset[section]:
-                        errors.append("G1 missing:" + section + "." + field)
+    errors, unavailable = schema_errors(asset), []
     if errors:
         return errors, unavailable
     binding = asset.get("binding")
@@ -38,6 +28,8 @@ def inspect_g1(asset, measured, root):
             errors.append("placement invalid:" + field)
     unavailable.append("scene_placement_requires_integration_check")
     geometry = asset.get("geometry", {})
+    if any(not 1.0 - SCALE_EPSILON <= value <= 1.0 + SCALE_EPSILON for value in geometry["root_scale"]):
+        errors.append("geometry.root_scale must be unit scale")
     if geometry.get("coordinate_space") != "selected_root_local":
         errors.append("geometry must use selected_root_local")
     if geometry.get("pose") != "rest" or geometry.get("visibility_policy") != "include_hidden":
@@ -78,6 +70,11 @@ def inspect_g1(asset, measured, root):
     else:
         errors.append("generation provider must be explicit")
     budget = asset.get("budget", {})
+    # D-079 limits come from the approved contract, not from the asset's claims.
+    limits = dict(budget)
+    if asset['asset_id'] == 'room407_backpack':
+        for key, approved in BACKPACK_LIMITS.items():
+            limits[key] = min(budget[key], approved)
     if budget.get("wallet_id") != wallet:
         errors.append("budget and generation wallets differ")
     before, after, consumed = (budget.get(key) for key in ("balance_before", "balance_after", "consumed_credits"))
@@ -94,42 +91,33 @@ def inspect_g1(asset, measured, root):
     if not isinstance(measured, dict):
         unavailable.append("G1_measurement_and_dependency_hashes")
         return errors, unavailable
+    scale = measured.get('root_scale')
+    if not vector(scale):
+        unavailable.append('measurement:root_scale')
+    elif any(not 1.0 - SCALE_EPSILON <= value <= 1.0 + SCALE_EPSILON for value in scale):
+        errors.append('measurement.root_scale must be unit scale')
+    if asset['asset_id'] == 'room407_backpack' and count(measured.get('triangles')) and measured['triangles'] >= limits['triangle_limit_exclusive']:
+        errors.append('triangle budget exceeded (D-079)')
     for key in ("coordinate_space", "pose", "visibility_policy"):
         if key not in measured:
             unavailable.append("measurement:" + key)
         elif measured[key] != geometry.get(key):
             errors.append("measurement policy mismatch:" + key)
-    hashes = measured.get("dependency_hashes")
-    if not isinstance(hashes, dict) or not hashes:
-        unavailable.append("dependency_and_import_hashes")
-    elif not all(isinstance(path, str) and isinstance(value, str) for path, value in hashes.items()):
-        errors.append("malformed dependency hashes")
-    else:
-        mandatory = {asset["file"], asset["file"] + ".import", "game/project.godot",
-                     "game/scripts/debug/graphics_asset_probe.gd"}
-        if not mandatory <= hashes.keys() or not any(path.startswith("game/.godot/imported/") for path in hashes):
-            unavailable.append("incomplete_dependency_and_import_hashes")
-        for path, expected in hashes.items():
-            try:
-                actual = hashlib.sha256(repo_file(root, path).read_bytes()).hexdigest()
-                if actual != expected:
-                    errors.append("stale dependency:" + path)
-            except ValueError as exc:
-                errors.append("dependency:" + str(exc))
-    if measured.get("dependency_unavailable"):
-        unavailable.append("unresolved_dependency_closure")
+    dependency_errors, dependency_unavailable = inspect_dependencies(asset, measured, root)
+    errors.extend(dependency_errors)
+    unavailable.extend(dependency_unavailable)
     if not isinstance(measured.get("engine"), str) or not measured["engine"].startswith("4.7.2"):
         unavailable.append("pinned_engine_evidence")
     materials = measured.get("material_count")
-    if count(materials) and type(budget.get("material_limit")) is int and materials > budget["material_limit"]:
+    if count(materials) and materials > limits["material_limit"]:
         errors.append("material budget exceeded")
     textures = measured.get("textures")
     if not isinstance(textures, dict) or not count(measured.get("texture_count")) or len(textures) != measured["texture_count"]:
         unavailable.append("texture_dimensions")
-    elif type(budget.get("texture_edge_limit")) is int:
+    else:
         for texture in textures.values():
             if not isinstance(texture, dict) or not all(count(texture.get(v)) and texture[v] > 0 for v in ("width", "height")):
                 unavailable.append("texture_dimensions")
-            elif max(texture["width"], texture["height"]) > budget["texture_edge_limit"]:
+            elif max(texture["width"], texture["height"]) > limits["texture_edge_limit"]:
                 errors.append("texture budget exceeded")
     return errors, unavailable

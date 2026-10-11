@@ -36,6 +36,30 @@ Mốc giao G0: 722 passed; main sau ghép D-079: 743 passed, check 0. Hình mớ
 - [x] Full test/check PASS, ghi rõ phần đã đo/chưa đo
 
 ## Handoff (agent điền)
+### Sửa R1–R4 sau D-082 — Lane C, 11/10/2026
+
+- Đầu mối hiện tại **Claude Code (Opus 5.5)**, thay Astra. Workspace sạch trước fetch; đã rebase lên `origin/main` `1b63c61` có D-082. Nội dung `7af1075` giữ qua `7255b40` (patch tương đương); không làm lại probe `b86a77d`/G0, không sửa manifest B hoặc ngưỡng production.
+- Bằng chứng và cách tái kiểm: `tools/graphics/reports/r1r4_validation.md`, `r1r4_fixtures.json`; fixture `tools/graphics/test_review_r1r4.py` chạy trực tiếp trên bản cũ `7af1075` để lưu trước sửa, rồi chạy cùng ca trên bản sửa. INCOMPLETE cũ không được gọi là PASS; “lọt” là thiếu lỗi kỹ thuật/lý do dependency cụ thể.
+
+| Review | Sửa và fixture | Trước → sau |
+|---|---|---|
+| R1 | Unit scale với epsilon 0,00001 riêng; tolerance balo [0; 0,001] m. `r1_double_root_and_dimensions`, `r1_tolerance_100_and_size_99`, `r1_scale_cannot_borrow_position_tolerance` | Lọt (`errors=[]`) → **FAIL**, đúng field |
+| R2 | Profile D-079 độc lập với manifest, chặn tự tăng 100001/999/8192; giữ budget/basis riêng cho asset khác chờ contract. `r2_self_declared_inflated_limits` và ba ca `r2_inflated_*` | Lọt → **FAIL** budget |
+| R3 | Tái dựng đường cần hash từ source/import/scene; kiểm riêng importer/material/texture/include/wrapper. `r3_removed_importer_then_changed`, năm `r3_missing_*`, `r3_opaque_cache_closure` | INCOMPLETE không nêu thiếu → **INCOMPLETE có đúng tên dependency**; năm `r3_stale_*` tiếp tục FAIL |
+| R4 | Thực thi schema type/const/range cho mọi provider; parameters là object JSON hữu hạn. `r4_rights_evidence_42_*`, `r4_parameters_array_*`, `r4_schema_range`, `r4_schema_nested_parameters` | Lọt → **FAIL sạch**, đúng đường field |
+
+- **RESULT offline: 82 tests OK, exit 0**: 42 test cũ còn đạt + **33 fixture âm tính/7 fixture dương tính mới**. Các fixture vốn đã bắt được lỗi ở bản cũ vẫn giữ FAIL, không nhận là lỗi mới. Log `build/graphics/r1r4-tests.log`. Mẫu tĩnh dương tính không có lỗi kỹ thuật, vẫn INCOMPLETE ở cổng duyệt thủ công; không suy thành nghiệm thu production.
+- Nhận xác nhận bàn giao lượt từ **Opus 5.5** qua chủ dự án. **RESULT Windows R1–R4, 11/10 UTC+7:** `pwsh tools/test.ps1` **22:28:20–22:48:31: RESULT: 746 passed, 0 failed**, exit 0 → `pwsh tools/check.ps1` **22:48:50–22:55:41: RESULT: check 0 error(s)**, **345 script parse PASS**, exit 0. APPDATA import/check tách riêng trong build của C. **C đã nhả lượt Godot lúc 22:55:41**, xác nhận không còn tiến trình Godot. Không render/FPS/bot/Tripo hoặc cài MCP/plugin. Log `build/graphics/r1r4-full-test.log`, `r1r4-full-check.log`.
+- Validator mẫu với probe trong full test mới: **FAIL, exit 1**, lỗi duy nhất `material budget exceeded` (balo cũ 3 > 2 material); không nới trần. Dependency scene/cache chưa đủ được liệt kê cụ thể, chưa nhận GLB probe là đã kiểm wrapper/scene. Không có diff game/âm thanh trong gói sửa.
+- Gói sửa `T-210: fix R1R4 schema validation and dependency evidence`, nhánh `lane-c/T-210-graphics-asset-qa`; hash/push đối chiếu Git và thông báo cuối. Giữ quan hệ lịch sử với `7af1075` sau rebase để push thường, không force-push; không push main/mở PR. **Không còn chặn kiểm/bàn giao R1–R4.** Câu hỏi contract mới: không có; áp đúng D-079/D-081. Yêu cầu ngoài phạm vi: Claude review/ghép schema rồi B chuyển manifest; closure động/cache nhị phân/wrapper và G2 asset/license/ví/ngân sách/operator còn cần chứng cứ riêng. T-210 chưa done toàn gói.
+
+Checklist R1–R4:
+- [x] Tái hiện ca review trước sửa, lưu kết quả thực.
+- [x] Đồng bộ schema/validator/fixture/tài liệu, 82 test offline đạt.
+- [x] Nhận lượt Windows, chạy tuần tự full test/check và ghi RESULT thực; đã nhả lượt.
+- [x] Đủ điều kiện bàn giao commit/push gói sửa theo kết quả Windows cuối.
+- [ ] Integrator review/ghép R1–R4 trước khi B dùng schema.
+
 ### G1 theo D-079/D-080 — 11/10/2026, công cụ đã kiểm Windows; chờ review hợp đồng
 
 - Đã kiểm workspace sạch, fetch và rebase an toàn nhánh hiện có lên `origin/main` **`acbf771` (D-080)**. G0 `c434343` đã nằm trong main, không làm lại, không đổi task/nhánh. Đầu mối core/T-207 hiện là **Astra điều phối**, theo chỉ định mới của chủ dự án.
