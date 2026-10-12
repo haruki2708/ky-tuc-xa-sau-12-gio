@@ -1,0 +1,104 @@
+{
+	"locale": "en",
+	"logical_resolution": [
+		1920,
+		1080
+	],
+	"resolution": [
+		1280,
+		720
+	],
+	"text": [
+		{
+			"font_size": 20,
+			"output_px": 13.3333333333333,
+			"path": "/root/T214Capture/@Control@1662/PhoneScreen/Root/Phone/Content/Status",
+			"rect": [
+				0.0,
+				0.0,
+				674.0,
+				26.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "04:06   ·   64%   ·   No signal"
+		},
+		{
+			"font_size": 24,
+			"output_px": 16.0,
+			"path": "/root/T214Capture/@Control@1662/PhoneScreen/Root/Phone/Content/Call",
+			"rect": [
+				0.0,
+				31.0,
+				674.0,
+				31.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Group call"
+		},
+		{
+			"font_size": 23,
+			"output_px": 15.3333333333333,
+			"path": "/root/T214Capture/@Control@1662/PhoneScreen/Root/Phone/Content/Transcript",
+			"rect": [
+				0.0,
+				67.0,
+				674.0,
+				332.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "04:05  Test member A: This sample line tests the live transcript.\n04:06  Test member B: New lines are added at the end of the history.\n"
+		},
+		{
+			"font_size": 23,
+			"output_px": 15.3333333333333,
+			"path": "/root/T214Capture/@Control@1662/PhoneScreen/Root/Phone/Content/Prediction/Recipient",
+			"rect": [
+				0.0,
+				0.0,
+				674.0,
+				30.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Message to Minh Nhật · 203"
+		},
+		{
+			"font_size": 21,
+			"output_px": 14.0,
+			"path": "/root/T214Capture/@Control@1662/PhoneScreen/Root/Phone/Content/Prediction/Countdown",
+			"rect": [
+				0.0,
+				34.0,
+				674.0,
+				27.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Last temperatures: 4, 7, 1 · 20 seconds left"
+		},
+		{
+			"font_size": 26,
+			"output_px": 17.3333333333333,
+			"path": "/root/T214Capture/@Control@1662/PhoneScreen/Root/Phone/Content/Prediction/Entry",
+			"rect": [
+				0.0,
+				65.0,
+				674.0,
+				41.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": ""
+		},
+		{
+			"font_size": 18,
+			"output_px": 12.0,
+			"path": "/root/T214Capture/@Control@1662/PhoneScreen/Root/Phone/Content/Prediction/Help",
+			"rect": [
+				0.0,
+				110.0,
+				674.0,
+				23.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Enter: send · Esc: cancel"
+		}
+	]
+}

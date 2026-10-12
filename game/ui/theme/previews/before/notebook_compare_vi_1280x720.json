@@ -1,0 +1,364 @@
+{
+	"locale": "vi",
+	"logical_resolution": [
+		1920,
+		1080
+	],
+	"resolution": [
+		1280,
+		720
+	],
+	"text": [
+		{
+			"font_size": 40,
+			"output_px": 26.6666666666667,
+			"path": "/root/T214Capture/@Control@915/Notebook/Root/Book/Content/Title",
+			"rect": [
+				0.0,
+				0.0,
+				1564.0,
+				51.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Sổ quy tắc"
+		},
+		{
+			"font_size": 28,
+			"output_px": 18.6666666666667,
+			"path": "/root/T214Capture/@Control@915/Notebook/Root/Book/Content/Chapter4/Tabs/Rules",
+			"rect": [
+				0.0,
+				0.0,
+				186.0,
+				60.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Sổ quy tắc"
+		},
+		{
+			"font_size": 28,
+			"output_px": 18.6666666666667,
+			"path": "/root/T214Capture/@Control@915/Notebook/Root/Book/Content/Chapter4/Tabs/Compare",
+			"rect": [
+				190.0,
+				0.0,
+				168.0,
+				60.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Đối chiếu"
+		},
+		{
+			"font_size": 28,
+			"output_px": 18.6666666666667,
+			"path": "/root/T214Capture/@Control@915/Notebook/Root/Book/Content/Chapter4/Tabs/Documents",
+			"rect": [
+				362.0,
+				0.0,
+				248.0,
+				60.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Tài liệu đã nhặt"
+		},
+		{
+			"font_size": 28,
+			"output_px": 18.6666666666667,
+			"path": "/root/T214Capture/@Control@915/Notebook/Root/Book/Content/Chapter4/CompareScroll/@VBoxContainer@921/Round1/@VBoxContainer@937/Heading",
+			"rect": [
+				0.0,
+				0.0,
+				1556.0,
+				36.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Vòng 1"
+		},
+		{
+			"font_size": 25,
+			"output_px": 16.6666666666667,
+			"path": "/root/T214Capture/@Control@915/Notebook/Root/Book/Content/Chapter4/CompareScroll/@VBoxContainer@921/Round1/@VBoxContainer@937/ch1_general_3",
+			"rect": [
+				0.0,
+				40.0,
+				1556.0,
+				32.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Không sinh viên nào được rời khỏi phòng của mình. Ai rời phòng sẽ chết."
+		},
+		{
+			"font_size": 28,
+			"output_px": 18.6666666666667,
+			"path": "/root/T214Capture/@Control@915/Notebook/Root/Book/Content/Chapter4/CompareScroll/@VBoxContainer@921/Round2/@VBoxContainer@938/Heading",
+			"rect": [
+				0.0,
+				0.0,
+				1144.0,
+				36.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Vòng 2"
+		},
+		{
+			"font_size": 25,
+			"output_px": 16.6666666666667,
+			"path": "/root/T214Capture/@Control@915/Notebook/Root/Book/Content/Chapter4/CompareScroll/@VBoxContainer@921/Round2/@VBoxContainer@938/ch1_r2",
+			"rect": [
+				0.0,
+				40.0,
+				1144.0,
+				67.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Vòng hai. Trong một giờ tới, nhà trường kiểm tra phòng. Mỗi tòa nhà có một quản lý. Sinh viên hãy nằm yên trên giường và hợp tác với công việc của quản lý."
+		},
+		{
+			"font_size": 24,
+			"output_px": 16.0,
+			"path": "/root/T214Capture/@Control@915/Notebook/Root/Book/Content/Chapter4/CompareScroll/@VBoxContainer@921/Round2/Solved",
+			"rect": [
+				1174.0,
+				38.0,
+				382.0,
+				31.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": ""
+		},
+		{
+			"font_size": 28,
+			"output_px": 18.6666666666667,
+			"path": "/root/T214Capture/@Control@915/Notebook/Root/Book/Content/Chapter4/CompareScroll/@VBoxContainer@921/Round3/@VBoxContainer@939/Heading",
+			"rect": [
+				0.0,
+				0.0,
+				1144.0,
+				36.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Vòng 3"
+		},
+		{
+			"font_size": 25,
+			"output_px": 16.6666666666667,
+			"path": "/root/T214Capture/@Control@915/Notebook/Root/Book/Content/Chapter4/CompareScroll/@VBoxContainer@921/Round3/@VBoxContainer@939/ch2_r3_1",
+			"rect": [
+				0.0,
+				40.0,
+				1144.0,
+				67.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Bốn người trong mỗi phòng bắt buộc tham gia. Nối lần lượt theo chiều kim đồng hồ, mỗi lượt dưới mười lăm giây."
+		},
+		{
+			"font_size": 25,
+			"output_px": 16.6666666666667,
+			"path": "/root/T214Capture/@Control@915/Notebook/Root/Book/Content/Chapter4/CompareScroll/@VBoxContainer@921/Round3/@VBoxContainer@939/ch2_r3_2",
+			"rect": [
+				0.0,
+				111.0,
+				1144.0,
+				32.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Từ nối là từ hai tiếng. Tiếng đầu phải trùng tiếng cuối của từ trước, đúng cả dấu."
+		},
+		{
+			"font_size": 25,
+			"output_px": 16.6666666666667,
+			"path": "/root/T214Capture/@Control@915/Notebook/Root/Book/Content/Chapter4/CompareScroll/@VBoxContainer@921/Round3/@VBoxContainer@939/ch2_r3_3",
+			"rect": [
+				0.0,
+				147.0,
+				1144.0,
+				32.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Trong ba lượt liền nhau không được lặp từ. Ai không nối được, chết."
+		},
+		{
+			"font_size": 24,
+			"output_px": 16.0,
+			"path": "/root/T214Capture/@Control@915/Notebook/Root/Book/Content/Chapter4/CompareScroll/@VBoxContainer@921/Round3/Solved",
+			"rect": [
+				1174.0,
+				74.0,
+				382.0,
+				31.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": ""
+		},
+		{
+			"font_size": 28,
+			"output_px": 18.6666666666667,
+			"path": "/root/T214Capture/@Control@915/Notebook/Root/Book/Content/Chapter4/CompareScroll/@VBoxContainer@921/Round4/@VBoxContainer@940/Heading",
+			"rect": [
+				0.0,
+				0.0,
+				1144.0,
+				36.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Vòng 4"
+		},
+		{
+			"font_size": 25,
+			"output_px": 16.6666666666667,
+			"path": "/root/T214Capture/@Control@915/Notebook/Root/Book/Content/Chapter4/CompareScroll/@VBoxContainer@921/Round4/@VBoxContainer@940/ch2_r4_1",
+			"rect": [
+				0.0,
+				40.0,
+				1144.0,
+				67.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Mời mọi người vào nhà vệ sinh. Vòng này không có yêu cầu nào khác: chỉ cần thời gian xả nước vượt quá hai mươi lăm phút."
+		},
+		{
+			"font_size": 24,
+			"output_px": 16.0,
+			"path": "/root/T214Capture/@Control@915/Notebook/Root/Book/Content/Chapter4/CompareScroll/@VBoxContainer@921/Round4/Solved",
+			"rect": [
+				1174.0,
+				38.0,
+				382.0,
+				31.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": ""
+		},
+		{
+			"font_size": 28,
+			"output_px": 18.6666666666667,
+			"path": "/root/T214Capture/@Control@915/Notebook/Root/Book/Content/Chapter4/CompareScroll/@VBoxContainer@921/Round5/@VBoxContainer@941/Heading",
+			"rect": [
+				0.0,
+				0.0,
+				1556.0,
+				36.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Vòng 5"
+		},
+		{
+			"font_size": 28,
+			"output_px": 18.6666666666667,
+			"path": "/root/T214Capture/@Control@915/Notebook/Root/Book/Content/Chapter4/CompareScroll/@VBoxContainer@921/Round5/@VBoxContainer@941/ch3_r5_1",
+			"rect": [
+				0.0,
+				40.0,
+				1556.0,
+				60.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Các bạn được phép rời phòng, đi lại ở mọi khu vực trong trường."
+		},
+		{
+			"font_size": 25,
+			"output_px": 16.6666666666667,
+			"path": "/root/T214Capture/@Control@915/Notebook/Root/Book/Content/Chapter4/CompareScroll/@VBoxContainer@921/Round5/@VBoxContainer@941/ch3_r5_1/@RichTextLabel@944",
+			"rect": [
+				16.0,
+				8.0,
+				1524.0,
+				44.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Các bạn được phép rời phòng, đi lại ở mọi khu vực trong trường."
+		},
+		{
+			"font_size": 28,
+			"output_px": 18.6666666666667,
+			"path": "/root/T214Capture/@Control@915/Notebook/Root/Book/Content/Chapter4/CompareScroll/@VBoxContainer@921/Round5/@VBoxContainer@941/ch3_r5_2",
+			"rect": [
+				0.0,
+				104.0,
+				1556.0,
+				60.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Hãy mau chạy khỏi góc khuất nguy hiểm này."
+		},
+		{
+			"font_size": 25,
+			"output_px": 16.6666666666667,
+			"path": "/root/T214Capture/@Control@915/Notebook/Root/Book/Content/Chapter4/CompareScroll/@VBoxContainer@921/Round5/@VBoxContainer@941/ch3_r5_2/@RichTextLabel@947",
+			"rect": [
+				16.0,
+				8.0,
+				1524.0,
+				44.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Hãy mau chạy khỏi góc khuất nguy hiểm này."
+		},
+		{
+			"font_size": 28,
+			"output_px": 18.6666666666667,
+			"path": "/root/T214Capture/@Control@915/Notebook/Root/Book/Content/Chapter4/CompareScroll/@VBoxContainer@921/Round5/@VBoxContainer@941/ch3_r5_3",
+			"rect": [
+				0.0,
+				168.0,
+				1556.0,
+				60.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Nhiệm vụ rất đơn giản: trong một giờ cuối cùng, tránh mọi sự truy sát và sống sót."
+		},
+		{
+			"font_size": 25,
+			"output_px": 16.6666666666667,
+			"path": "/root/T214Capture/@Control@915/Notebook/Root/Book/Content/Chapter4/CompareScroll/@VBoxContainer@921/Round5/@VBoxContainer@941/ch3_r5_3/@RichTextLabel@950",
+			"rect": [
+				16.0,
+				8.0,
+				1524.0,
+				44.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Nhiệm vụ rất đơn giản: trong một giờ cuối cùng, tránh mọi sự truy sát và sống sót."
+		},
+		{
+			"font_size": 28,
+			"output_px": 18.6666666666667,
+			"path": "/root/T214Capture/@Control@915/Notebook/Root/Book/Content/Chapter4/CompareScroll/@VBoxContainer@921/Round5/@VBoxContainer@941/Underline",
+			"rect": [
+				0.0,
+				232.0,
+				1556.0,
+				44.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Gạch chân"
+		},
+		{
+			"font_size": 25,
+			"output_px": 16.6666666666667,
+			"path": "/root/T214Capture/@Control@915/Notebook/Root/Book/Content/Chapter4/CompareScroll/@VBoxContainer@921/Round5/@VBoxContainer@941/Feedback",
+			"rect": [
+				0.0,
+				280.0,
+				1556.0,
+				32.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": ""
+		},
+		{
+			"font_size": 28,
+			"output_px": 18.6666666666667,
+			"path": "/root/T214Capture/@Control@915/Notebook/Root/Book/Content/Close",
+			"rect": [
+				1291.0,
+				884.0,
+				273.0,
+				60.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Đóng (Tab / Esc)"
+		}
+	]
+}

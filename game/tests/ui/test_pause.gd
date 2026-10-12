@@ -234,7 +234,9 @@ func test_reset_video_requires_confirmation_and_keeps_nonvideo_preferences() -> 
 	assert_eq(dialog.title, "Reset video")
 	assert_eq(settings.get_value("video", "brightness"), 1.4)
 	dialog.get_cancel_button().pressed.emit()
-	assert_false(dialog.visible)
+	await wait_frames(2)
+	assert_false(dialog.visible, "cancel closes the confirmation without a reset")
+	assert_true(panel.get_node("Footer/ResetVideo").has_focus(), "cancel returns keyboard focus")
 	assert_eq(settings.get_value("video", "brightness"), 1.4)
 	panel.get_node("Footer/ResetVideo").pressed.emit()
 	dialog.get_ok_button().pressed.emit()
@@ -246,7 +248,7 @@ func test_reset_video_requires_confirmation_and_keeps_nonvideo_preferences() -> 
 	assert_eq(settings.get_value("input", "mouse_sensitivity"), 0.004)
 	assert_eq(settings.get_value("accessibility", "reduce_scares"), true)
 	assert_true(tree.paused)
-	assert_false(panel.get_node("SaveError").visible)
+	assert_false(panel.get_node("SaveError").visible, "successful video reset hides the save error")
 
 
 func _click(position: Vector2) -> void:

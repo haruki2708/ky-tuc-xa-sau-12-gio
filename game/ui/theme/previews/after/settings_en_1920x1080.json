@@ -1,0 +1,455 @@
+{
+	"locale": "en",
+	"logical_resolution": [
+		1920,
+		1080
+	],
+	"resolution": [
+		1920,
+		1080
+	],
+	"text": [
+		{
+			"font_size": 40,
+			"output_px": 40.0,
+			"path": "/root/T214Capture/@Control@3464/PauseMenu/Root/SettingsCard/SettingsPanel/Title",
+			"rect": [
+				0.0,
+				0.0,
+				1472.0,
+				51.0
+			],
+			"screen_scale": 1.0,
+			"text": "Settings"
+		},
+		{
+			"font_size": 28,
+			"output_px": 28.0,
+			"path": "/root/T214Capture/@Control@3464/PauseMenu/Root/SettingsCard/SettingsPanel/Tabs/@Button@3476",
+			"rect": [
+				0.0,
+				0.0,
+				482.0,
+				60.0
+			],
+			"screen_scale": 1.0,
+			"text": "All"
+		},
+		{
+			"font_size": 28,
+			"output_px": 28.0,
+			"path": "/root/T214Capture/@Control@3464/PauseMenu/Root/SettingsCard/SettingsPanel/Tabs/@Button@3477",
+			"rect": [
+				494.0,
+				0.0,
+				483.0,
+				60.0
+			],
+			"screen_scale": 1.0,
+			"text": "Audio"
+		},
+		{
+			"font_size": 28,
+			"output_px": 28.0,
+			"path": "/root/T214Capture/@Control@3464/PauseMenu/Root/SettingsCard/SettingsPanel/Tabs/@Button@3478",
+			"rect": [
+				989.0,
+				0.0,
+				483.0,
+				60.0
+			],
+			"screen_scale": 1.0,
+			"text": "Controls and interface"
+		},
+		{
+			"font_size": 30,
+			"output_px": 30.0,
+			"path": "/root/T214Capture/@Control@3464/PauseMenu/Root/SettingsCard/SettingsPanel/Scroll/Columns/Audio/Title",
+			"rect": [
+				0.0,
+				0.0,
+				704.0,
+				38.0
+			],
+			"screen_scale": 1.0,
+			"text": "Audio"
+		},
+		{
+			"font_size": 28,
+			"output_px": 28.0,
+			"path": "/root/T214Capture/@Control@3464/PauseMenu/Root/SettingsCard/SettingsPanel/Scroll/Columns/Audio/master_db/@HBoxContainer@3479/@Label@3480",
+			"rect": [
+				0.0,
+				0.0,
+				575.0,
+				36.0
+			],
+			"screen_scale": 1.0,
+			"text": "Master"
+		},
+		{
+			"font_size": 28,
+			"output_px": 28.0,
+			"path": "/root/T214Capture/@Control@3464/PauseMenu/Root/SettingsCard/SettingsPanel/Scroll/Columns/Audio/master_db/@HBoxContainer@3479/@Label@3481",
+			"rect": [
+				579.0,
+				0.0,
+				125.0,
+				36.0
+			],
+			"screen_scale": 1.0,
+			"text": "0.0 dB"
+		},
+		{
+			"font_size": 28,
+			"output_px": 28.0,
+			"path": "/root/T214Capture/@Control@3464/PauseMenu/Root/SettingsCard/SettingsPanel/Scroll/Columns/Audio/ambience_db/@HBoxContainer@3482/@Label@3483",
+			"rect": [
+				0.0,
+				0.0,
+				575.0,
+				36.0
+			],
+			"screen_scale": 1.0,
+			"text": "Ambience"
+		},
+		{
+			"font_size": 28,
+			"output_px": 28.0,
+			"path": "/root/T214Capture/@Control@3464/PauseMenu/Root/SettingsCard/SettingsPanel/Scroll/Columns/Audio/ambience_db/@HBoxContainer@3482/@Label@3484",
+			"rect": [
+				579.0,
+				0.0,
+				125.0,
+				36.0
+			],
+			"screen_scale": 1.0,
+			"text": "0.0 dB"
+		},
+		{
+			"font_size": 28,
+			"output_px": 28.0,
+			"path": "/root/T214Capture/@Control@3464/PauseMenu/Root/SettingsCard/SettingsPanel/Scroll/Columns/Audio/sfx_db/@HBoxContainer@3485/@Label@3486",
+			"rect": [
+				0.0,
+				0.0,
+				575.0,
+				36.0
+			],
+			"screen_scale": 1.0,
+			"text": "Sound effects"
+		},
+		{
+			"font_size": 28,
+			"output_px": 28.0,
+			"path": "/root/T214Capture/@Control@3464/PauseMenu/Root/SettingsCard/SettingsPanel/Scroll/Columns/Audio/sfx_db/@HBoxContainer@3485/@Label@3487",
+			"rect": [
+				579.0,
+				0.0,
+				125.0,
+				36.0
+			],
+			"screen_scale": 1.0,
+			"text": "0.0 dB"
+		},
+		{
+			"font_size": 28,
+			"output_px": 28.0,
+			"path": "/root/T214Capture/@Control@3464/PauseMenu/Root/SettingsCard/SettingsPanel/Scroll/Columns/Audio/footsteps_db/@HBoxContainer@3488/@Label@3489",
+			"rect": [
+				0.0,
+				0.0,
+				575.0,
+				36.0
+			],
+			"screen_scale": 1.0,
+			"text": "Footsteps"
+		},
+		{
+			"font_size": 28,
+			"output_px": 28.0,
+			"path": "/root/T214Capture/@Control@3464/PauseMenu/Root/SettingsCard/SettingsPanel/Scroll/Columns/Audio/footsteps_db/@HBoxContainer@3488/@Label@3490",
+			"rect": [
+				579.0,
+				0.0,
+				125.0,
+				36.0
+			],
+			"screen_scale": 1.0,
+			"text": "0.0 dB"
+		},
+		{
+			"font_size": 28,
+			"output_px": 28.0,
+			"path": "/root/T214Capture/@Control@3464/PauseMenu/Root/SettingsCard/SettingsPanel/Scroll/Columns/Audio/voice_db/@HBoxContainer@3491/@Label@3492",
+			"rect": [
+				0.0,
+				0.0,
+				575.0,
+				36.0
+			],
+			"screen_scale": 1.0,
+			"text": "Voice"
+		},
+		{
+			"font_size": 28,
+			"output_px": 28.0,
+			"path": "/root/T214Capture/@Control@3464/PauseMenu/Root/SettingsCard/SettingsPanel/Scroll/Columns/Audio/voice_db/@HBoxContainer@3491/@Label@3493",
+			"rect": [
+				579.0,
+				0.0,
+				125.0,
+				36.0
+			],
+			"screen_scale": 1.0,
+			"text": "0.0 dB"
+		},
+		{
+			"font_size": 28,
+			"output_px": 28.0,
+			"path": "/root/T214Capture/@Control@3464/PauseMenu/Root/SettingsCard/SettingsPanel/Scroll/Columns/Audio/music_db/@HBoxContainer@3494/@Label@3495",
+			"rect": [
+				0.0,
+				0.0,
+				575.0,
+				36.0
+			],
+			"screen_scale": 1.0,
+			"text": "Music"
+		},
+		{
+			"font_size": 28,
+			"output_px": 28.0,
+			"path": "/root/T214Capture/@Control@3464/PauseMenu/Root/SettingsCard/SettingsPanel/Scroll/Columns/Audio/music_db/@HBoxContainer@3494/@Label@3496",
+			"rect": [
+				579.0,
+				0.0,
+				125.0,
+				36.0
+			],
+			"screen_scale": 1.0,
+			"text": "0.0 dB"
+		},
+		{
+			"font_size": 30,
+			"output_px": 30.0,
+			"path": "/root/T214Capture/@Control@3464/PauseMenu/Root/SettingsCard/SettingsPanel/Scroll/Columns/Other/@Label@3497",
+			"rect": [
+				0.0,
+				0.0,
+				704.0,
+				38.0
+			],
+			"screen_scale": 1.0,
+			"text": "Controls"
+		},
+		{
+			"font_size": 28,
+			"output_px": 28.0,
+			"path": "/root/T214Capture/@Control@3464/PauseMenu/Root/SettingsCard/SettingsPanel/Scroll/Columns/Other/mouse_sensitivity/@HBoxContainer@3498/@Label@3499",
+			"rect": [
+				0.0,
+				0.0,
+				575.0,
+				36.0
+			],
+			"screen_scale": 1.0,
+			"text": "Mouse sensitivity"
+		},
+		{
+			"font_size": 28,
+			"output_px": 28.0,
+			"path": "/root/T214Capture/@Control@3464/PauseMenu/Root/SettingsCard/SettingsPanel/Scroll/Columns/Other/mouse_sensitivity/@HBoxContainer@3498/@Label@3500",
+			"rect": [
+				579.0,
+				0.0,
+				125.0,
+				36.0
+			],
+			"screen_scale": 1.0,
+			"text": "0.0020"
+		},
+		{
+			"font_size": 30,
+			"output_px": 30.0,
+			"path": "/root/T214Capture/@Control@3464/PauseMenu/Root/SettingsCard/SettingsPanel/Scroll/Columns/Other/@Label@3501",
+			"rect": [
+				0.0,
+				134.0,
+				704.0,
+				38.0
+			],
+			"screen_scale": 1.0,
+			"text": "Video"
+		},
+		{
+			"font_size": 28,
+			"output_px": 28.0,
+			"path": "/root/T214Capture/@Control@3464/PauseMenu/Root/SettingsCard/SettingsPanel/Scroll/Columns/Other/HeadBob",
+			"rect": [
+				0.0,
+				186.0,
+				704.0,
+				60.0
+			],
+			"screen_scale": 1.0,
+			"text": "Head bob"
+		},
+		{
+			"font_size": 28,
+			"output_px": 28.0,
+			"path": "/root/T214Capture/@Control@3464/PauseMenu/Root/SettingsCard/SettingsPanel/Scroll/Columns/Other/brightness/@HBoxContainer@3502/@Label@3503",
+			"rect": [
+				0.0,
+				0.0,
+				575.0,
+				36.0
+			],
+			"screen_scale": 1.0,
+			"text": "Brightness"
+		},
+		{
+			"font_size": 28,
+			"output_px": 28.0,
+			"path": "/root/T214Capture/@Control@3464/PauseMenu/Root/SettingsCard/SettingsPanel/Scroll/Columns/Other/brightness/@HBoxContainer@3502/@Label@3504",
+			"rect": [
+				579.0,
+				0.0,
+				125.0,
+				36.0
+			],
+			"screen_scale": 1.0,
+			"text": "1.00"
+		},
+		{
+			"font_size": 28,
+			"output_px": 28.0,
+			"path": "/root/T214Capture/@Control@3464/PauseMenu/Root/SettingsCard/SettingsPanel/Scroll/Columns/Other/ps1_strength/@HBoxContainer@3505/@Label@3506",
+			"rect": [
+				0.0,
+				0.0,
+				575.0,
+				36.0
+			],
+			"screen_scale": 1.0,
+			"text": "PS1 filter strength"
+		},
+		{
+			"font_size": 28,
+			"output_px": 28.0,
+			"path": "/root/T214Capture/@Control@3464/PauseMenu/Root/SettingsCard/SettingsPanel/Scroll/Columns/Other/ps1_strength/@HBoxContainer@3505/@Label@3507",
+			"rect": [
+				579.0,
+				0.0,
+				125.0,
+				36.0
+			],
+			"screen_scale": 1.0,
+			"text": "1.00"
+		},
+		{
+			"font_size": 30,
+			"output_px": 30.0,
+			"path": "/root/T214Capture/@Control@3464/PauseMenu/Root/SettingsCard/SettingsPanel/Scroll/Columns/Other/@Label@3508",
+			"rect": [
+				0.0,
+				424.0,
+				704.0,
+				38.0
+			],
+			"screen_scale": 1.0,
+			"text": "Language"
+		},
+		{
+			"font_size": 28,
+			"output_px": 28.0,
+			"path": "/root/T214Capture/@Control@3464/PauseMenu/Root/SettingsCard/SettingsPanel/Scroll/Columns/Other/Locale",
+			"rect": [
+				0.0,
+				476.0,
+				704.0,
+				60.0
+			],
+			"screen_scale": 1.0,
+			"text": "English"
+		},
+		{
+			"font_size": 30,
+			"output_px": 30.0,
+			"path": "/root/T214Capture/@Control@3464/PauseMenu/Root/SettingsCard/SettingsPanel/Scroll/Columns/Other/Accessibility/@Label@3519",
+			"rect": [
+				0.0,
+				0.0,
+				704.0,
+				38.0
+			],
+			"screen_scale": 1.0,
+			"text": "Accessibility"
+		},
+		{
+			"font_size": 28,
+			"output_px": 28.0,
+			"path": "/root/T214Capture/@Control@3464/PauseMenu/Root/SettingsCard/SettingsPanel/Scroll/Columns/Other/Accessibility/ReduceScares",
+			"rect": [
+				0.0,
+				42.0,
+				704.0,
+				60.0
+			],
+			"screen_scale": 1.0,
+			"text": "Reduce scares"
+		},
+		{
+			"font_size": 24,
+			"output_px": 24.0,
+			"path": "/root/T214Capture/@Control@3464/PauseMenu/Root/SettingsCard/SettingsPanel/Scroll/Columns/Other/Accessibility/Description",
+			"rect": [
+				0.0,
+				106.0,
+				704.0,
+				31.0
+			],
+			"screen_scale": 1.0,
+			"text": "Remove sudden startling visuals and sounds. Slower chases."
+		},
+		{
+			"font_size": 28,
+			"output_px": 28.0,
+			"path": "/root/T214Capture/@Control@3464/PauseMenu/Root/SettingsCard/SettingsPanel/Footer/Reset",
+			"rect": [
+				0.0,
+				0.0,
+				278.0,
+				60.0
+			],
+			"screen_scale": 1.0,
+			"text": "Restore defaults"
+		},
+		{
+			"font_size": 28,
+			"output_px": 28.0,
+			"path": "/root/T214Capture/@Control@3464/PauseMenu/Root/SettingsCard/SettingsPanel/Footer/ResetVideo",
+			"rect": [
+				302.0,
+				0.0,
+				212.0,
+				60.0
+			],
+			"screen_scale": 1.0,
+			"text": "Reset video"
+		},
+		{
+			"font_size": 28,
+			"output_px": 28.0,
+			"path": "/root/T214Capture/@Control@3464/PauseMenu/Root/SettingsCard/SettingsPanel/Footer/Back",
+			"rect": [
+				1352.0,
+				0.0,
+				120.0,
+				60.0
+			],
+			"screen_scale": 1.0,
+			"text": "Back"
+		}
+	]
+}

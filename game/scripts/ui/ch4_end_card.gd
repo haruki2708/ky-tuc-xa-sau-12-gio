@@ -10,6 +10,7 @@ var elapsed := 0.0
 
 func _ready() -> void:
 	var content := Layout.card($Root, Rect2(0.16, 0.10, 0.68, 0.8))
+	Layout.cinematic_style($Root/Card)
 	Layout.label(content, "End", "UI_CH4_END", 46).horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	Layout.label(content, "Thanks", "UI_CH4_THANKS", 36).horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	var scroll := ScrollContainer.new()

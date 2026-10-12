@@ -1,0 +1,91 @@
+{
+	"locale": "vi",
+	"logical_resolution": [
+		1920,
+		1080
+	],
+	"resolution": [
+		1920,
+		1080
+	],
+	"text": [
+		{
+			"font_size": 40,
+			"output_px": 40.0,
+			"path": "/root/T214Capture/@Control@2056/TitleScreen/Chapters/Content/Heading",
+			"rect": [
+				0.0,
+				0.0,
+				988.0,
+				51.0
+			],
+			"screen_scale": 1.0,
+			"text": "Chọn chương"
+		},
+		{
+			"font_size": 28,
+			"output_px": 28.0,
+			"path": "/root/T214Capture/@Control@2056/TitleScreen/Chapters/Content/Chapter1",
+			"rect": [
+				0.0,
+				75.0,
+				988.0,
+				60.0
+			],
+			"screen_scale": 1.0,
+			"text": "Chương 1 — Tổng tắc"
+		},
+		{
+			"font_size": 28,
+			"output_px": 28.0,
+			"path": "/root/T214Capture/@Control@2056/TitleScreen/Chapters/Content/Chapter2",
+			"rect": [
+				0.0,
+				159.0,
+				988.0,
+				44.0
+			],
+			"screen_scale": 1.0,
+			"text": "Chương 2 — Trò chơi — Chưa mở"
+		},
+		{
+			"font_size": 28,
+			"output_px": 28.0,
+			"path": "/root/T214Capture/@Control@2056/TitleScreen/Chapters/Content/Chapter3",
+			"rect": [
+				0.0,
+				227.0,
+				988.0,
+				44.0
+			],
+			"screen_scale": 1.0,
+			"text": "Chương 3 — Truy sát — Chưa mở"
+		},
+		{
+			"font_size": 28,
+			"output_px": 28.0,
+			"path": "/root/T214Capture/@Control@2056/TitleScreen/Chapters/Content/Chapter4",
+			"rect": [
+				0.0,
+				295.0,
+				988.0,
+				44.0
+			],
+			"screen_scale": 1.0,
+			"text": "Chương 4 — Người sống sót — Chưa mở"
+		},
+		{
+			"font_size": 28,
+			"output_px": 28.0,
+			"path": "/root/T214Capture/@Control@2056/TitleScreen/Chapters/Content/Back",
+			"rect": [
+				0.0,
+				363.0,
+				988.0,
+				60.0
+			],
+			"screen_scale": 1.0,
+			"text": "Quay lại"
+		}
+	]
+}

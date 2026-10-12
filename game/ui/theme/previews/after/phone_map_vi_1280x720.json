@@ -1,0 +1,702 @@
+{
+	"locale": "vi",
+	"logical_resolution": [
+		1920,
+		1080
+	],
+	"resolution": [
+		1280,
+		720
+	],
+	"text": [
+		{
+			"font_size": 24,
+			"output_px": 16.0,
+			"path": "/root/T214Capture/@Control@571/PhoneScreen/Root/Phone/Content/Status",
+			"rect": [
+				0.0,
+				0.0,
+				662.0,
+				31.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "04:06   ·   64%   ·   Không có sóng"
+		},
+		{
+			"font_size": 24,
+			"output_px": 16.0,
+			"path": "/root/T214Capture/@Control@571/PhoneScreen/Root/Phone/Content/Tools/@HBoxContainer@577/@Button@578",
+			"rect": [
+				0.0,
+				0.0,
+				206.0,
+				37.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Cuộc gọi [ ]"
+		},
+		{
+			"font_size": 24,
+			"output_px": 16.0,
+			"path": "/root/T214Capture/@Control@571/PhoneScreen/Root/Phone/Content/Tools/@HBoxContainer@577/@Button@579",
+			"rect": [
+				212.0,
+				0.0,
+				207.0,
+				37.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Sơ đồ"
+		},
+		{
+			"font_size": 24,
+			"output_px": 16.0,
+			"path": "/root/T214Capture/@Control@571/PhoneScreen/Root/Phone/Content/Tools/@HBoxContainer@577/@Button@580",
+			"rect": [
+				425.0,
+				0.0,
+				207.0,
+				37.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Camera"
+		},
+		{
+			"font_size": 24,
+			"output_px": 16.0,
+			"path": "/root/T214Capture/@Control@571/PhoneScreen/Root/Phone/Content/Tools/@VBoxContainer@582/@ScrollContainer@585/@GridContainer@586/@Button@587",
+			"rect": [
+				0.0,
+				0.0,
+				80.0,
+				37.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "101"
+		},
+		{
+			"font_size": 24,
+			"output_px": 16.0,
+			"path": "/root/T214Capture/@Control@571/PhoneScreen/Root/Phone/Content/Tools/@VBoxContainer@582/@ScrollContainer@585/@GridContainer@586/@Button@588",
+			"rect": [
+				84.0,
+				0.0,
+				80.0,
+				37.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "102"
+		},
+		{
+			"font_size": 24,
+			"output_px": 16.0,
+			"path": "/root/T214Capture/@Control@571/PhoneScreen/Root/Phone/Content/Tools/@VBoxContainer@582/@ScrollContainer@585/@GridContainer@586/@Button@589",
+			"rect": [
+				168.0,
+				0.0,
+				79.0,
+				37.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "103"
+		},
+		{
+			"font_size": 24,
+			"output_px": 16.0,
+			"path": "/root/T214Capture/@Control@571/PhoneScreen/Root/Phone/Content/Tools/@VBoxContainer@582/@ScrollContainer@585/@GridContainer@586/@Button@590",
+			"rect": [
+				251.0,
+				0.0,
+				79.0,
+				37.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "104"
+		},
+		{
+			"font_size": 24,
+			"output_px": 16.0,
+			"path": "/root/T214Capture/@Control@571/PhoneScreen/Root/Phone/Content/Tools/@VBoxContainer@582/@ScrollContainer@585/@GridContainer@586/@Button@591",
+			"rect": [
+				334.0,
+				0.0,
+				79.0,
+				37.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "105"
+		},
+		{
+			"font_size": 24,
+			"output_px": 16.0,
+			"path": "/root/T214Capture/@Control@571/PhoneScreen/Root/Phone/Content/Tools/@VBoxContainer@582/@ScrollContainer@585/@GridContainer@586/@Button@592",
+			"rect": [
+				417.0,
+				0.0,
+				79.0,
+				37.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "106"
+		},
+		{
+			"font_size": 24,
+			"output_px": 16.0,
+			"path": "/root/T214Capture/@Control@571/PhoneScreen/Root/Phone/Content/Tools/@VBoxContainer@582/@ScrollContainer@585/@GridContainer@586/@Button@593",
+			"rect": [
+				500.0,
+				0.0,
+				79.0,
+				37.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "107"
+		},
+		{
+			"font_size": 24,
+			"output_px": 16.0,
+			"path": "/root/T214Capture/@Control@571/PhoneScreen/Root/Phone/Content/Tools/@VBoxContainer@582/@ScrollContainer@585/@GridContainer@586/@Button@594",
+			"rect": [
+				583.0,
+				0.0,
+				79.0,
+				37.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "108"
+		},
+		{
+			"font_size": 24,
+			"output_px": 16.0,
+			"path": "/root/T214Capture/@Control@571/PhoneScreen/Root/Phone/Content/Tools/@VBoxContainer@582/@ScrollContainer@585/@GridContainer@586/@Button@595",
+			"rect": [
+				0.0,
+				38.0,
+				80.0,
+				37.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "201"
+		},
+		{
+			"font_size": 24,
+			"output_px": 16.0,
+			"path": "/root/T214Capture/@Control@571/PhoneScreen/Root/Phone/Content/Tools/@VBoxContainer@582/@ScrollContainer@585/@GridContainer@586/@Button@596",
+			"rect": [
+				84.0,
+				38.0,
+				80.0,
+				37.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "202"
+		},
+		{
+			"font_size": 24,
+			"output_px": 16.0,
+			"path": "/root/T214Capture/@Control@571/PhoneScreen/Root/Phone/Content/Tools/@VBoxContainer@582/@ScrollContainer@585/@GridContainer@586/@Button@597",
+			"rect": [
+				168.0,
+				38.0,
+				79.0,
+				37.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "203"
+		},
+		{
+			"font_size": 24,
+			"output_px": 16.0,
+			"path": "/root/T214Capture/@Control@571/PhoneScreen/Root/Phone/Content/Tools/@VBoxContainer@582/@ScrollContainer@585/@GridContainer@586/@Button@598",
+			"rect": [
+				251.0,
+				38.0,
+				79.0,
+				37.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "204"
+		},
+		{
+			"font_size": 24,
+			"output_px": 16.0,
+			"path": "/root/T214Capture/@Control@571/PhoneScreen/Root/Phone/Content/Tools/@VBoxContainer@582/@ScrollContainer@585/@GridContainer@586/@Button@599",
+			"rect": [
+				334.0,
+				38.0,
+				79.0,
+				37.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "205"
+		},
+		{
+			"font_size": 24,
+			"output_px": 16.0,
+			"path": "/root/T214Capture/@Control@571/PhoneScreen/Root/Phone/Content/Tools/@VBoxContainer@582/@ScrollContainer@585/@GridContainer@586/@Button@600",
+			"rect": [
+				417.0,
+				38.0,
+				79.0,
+				37.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "206"
+		},
+		{
+			"font_size": 24,
+			"output_px": 16.0,
+			"path": "/root/T214Capture/@Control@571/PhoneScreen/Root/Phone/Content/Tools/@VBoxContainer@582/@ScrollContainer@585/@GridContainer@586/@Button@601",
+			"rect": [
+				500.0,
+				38.0,
+				79.0,
+				37.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "207"
+		},
+		{
+			"font_size": 24,
+			"output_px": 16.0,
+			"path": "/root/T214Capture/@Control@571/PhoneScreen/Root/Phone/Content/Tools/@VBoxContainer@582/@ScrollContainer@585/@GridContainer@586/@Button@602",
+			"rect": [
+				583.0,
+				38.0,
+				79.0,
+				37.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "208"
+		},
+		{
+			"font_size": 24,
+			"output_px": 16.0,
+			"path": "/root/T214Capture/@Control@571/PhoneScreen/Root/Phone/Content/Tools/@VBoxContainer@582/@ScrollContainer@585/@GridContainer@586/@Button@603",
+			"rect": [
+				0.0,
+				76.0,
+				80.0,
+				37.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "301"
+		},
+		{
+			"font_size": 24,
+			"output_px": 16.0,
+			"path": "/root/T214Capture/@Control@571/PhoneScreen/Root/Phone/Content/Tools/@VBoxContainer@582/@ScrollContainer@585/@GridContainer@586/@Button@604",
+			"rect": [
+				84.0,
+				76.0,
+				80.0,
+				37.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "302"
+		},
+		{
+			"font_size": 24,
+			"output_px": 16.0,
+			"path": "/root/T214Capture/@Control@571/PhoneScreen/Root/Phone/Content/Tools/@VBoxContainer@582/@ScrollContainer@585/@GridContainer@586/@Button@605",
+			"rect": [
+				168.0,
+				76.0,
+				79.0,
+				37.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "303"
+		},
+		{
+			"font_size": 24,
+			"output_px": 16.0,
+			"path": "/root/T214Capture/@Control@571/PhoneScreen/Root/Phone/Content/Tools/@VBoxContainer@582/@ScrollContainer@585/@GridContainer@586/@Button@606",
+			"rect": [
+				251.0,
+				76.0,
+				79.0,
+				37.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "304"
+		},
+		{
+			"font_size": 24,
+			"output_px": 16.0,
+			"path": "/root/T214Capture/@Control@571/PhoneScreen/Root/Phone/Content/Tools/@VBoxContainer@582/@ScrollContainer@585/@GridContainer@586/@Button@607",
+			"rect": [
+				334.0,
+				76.0,
+				79.0,
+				37.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "305"
+		},
+		{
+			"font_size": 24,
+			"output_px": 16.0,
+			"path": "/root/T214Capture/@Control@571/PhoneScreen/Root/Phone/Content/Tools/@VBoxContainer@582/@ScrollContainer@585/@GridContainer@586/@Button@608",
+			"rect": [
+				417.0,
+				76.0,
+				79.0,
+				37.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "306"
+		},
+		{
+			"font_size": 24,
+			"output_px": 16.0,
+			"path": "/root/T214Capture/@Control@571/PhoneScreen/Root/Phone/Content/Tools/@VBoxContainer@582/@ScrollContainer@585/@GridContainer@586/@Button@609",
+			"rect": [
+				500.0,
+				76.0,
+				79.0,
+				37.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "307"
+		},
+		{
+			"font_size": 24,
+			"output_px": 16.0,
+			"path": "/root/T214Capture/@Control@571/PhoneScreen/Root/Phone/Content/Tools/@VBoxContainer@582/@ScrollContainer@585/@GridContainer@586/@Button@610",
+			"rect": [
+				583.0,
+				76.0,
+				79.0,
+				37.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "308"
+		},
+		{
+			"font_size": 24,
+			"output_px": 16.0,
+			"path": "/root/T214Capture/@Control@571/PhoneScreen/Root/Phone/Content/Tools/@VBoxContainer@582/@ScrollContainer@585/@GridContainer@586/@Button@611",
+			"rect": [
+				0.0,
+				114.0,
+				80.0,
+				37.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "401"
+		},
+		{
+			"font_size": 24,
+			"output_px": 16.0,
+			"path": "/root/T214Capture/@Control@571/PhoneScreen/Root/Phone/Content/Tools/@VBoxContainer@582/@ScrollContainer@585/@GridContainer@586/@Button@612",
+			"rect": [
+				84.0,
+				114.0,
+				80.0,
+				37.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "402"
+		},
+		{
+			"font_size": 24,
+			"output_px": 16.0,
+			"path": "/root/T214Capture/@Control@571/PhoneScreen/Root/Phone/Content/Tools/@VBoxContainer@582/@ScrollContainer@585/@GridContainer@586/@Button@613",
+			"rect": [
+				168.0,
+				114.0,
+				79.0,
+				37.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "403"
+		},
+		{
+			"font_size": 24,
+			"output_px": 16.0,
+			"path": "/root/T214Capture/@Control@571/PhoneScreen/Root/Phone/Content/Tools/@VBoxContainer@582/@ScrollContainer@585/@GridContainer@586/@Button@614",
+			"rect": [
+				251.0,
+				114.0,
+				79.0,
+				37.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "404"
+		},
+		{
+			"font_size": 24,
+			"output_px": 16.0,
+			"path": "/root/T214Capture/@Control@571/PhoneScreen/Root/Phone/Content/Tools/@VBoxContainer@582/@ScrollContainer@585/@GridContainer@586/@Button@615",
+			"rect": [
+				334.0,
+				114.0,
+				79.0,
+				37.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "405"
+		},
+		{
+			"font_size": 24,
+			"output_px": 16.0,
+			"path": "/root/T214Capture/@Control@571/PhoneScreen/Root/Phone/Content/Tools/@VBoxContainer@582/@ScrollContainer@585/@GridContainer@586/@Button@616",
+			"rect": [
+				417.0,
+				114.0,
+				79.0,
+				37.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "406"
+		},
+		{
+			"font_size": 24,
+			"output_px": 16.0,
+			"path": "/root/T214Capture/@Control@571/PhoneScreen/Root/Phone/Content/Tools/@VBoxContainer@582/@ScrollContainer@585/@GridContainer@586/@Button@617",
+			"rect": [
+				500.0,
+				114.0,
+				79.0,
+				37.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "407 *"
+		},
+		{
+			"font_size": 24,
+			"output_px": 16.0,
+			"path": "/root/T214Capture/@Control@571/PhoneScreen/Root/Phone/Content/Tools/@VBoxContainer@582/@ScrollContainer@585/@GridContainer@586/@Button@618",
+			"rect": [
+				583.0,
+				114.0,
+				79.0,
+				37.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "408"
+		},
+		{
+			"font_size": 24,
+			"output_px": 16.0,
+			"path": "/root/T214Capture/@Control@571/PhoneScreen/Root/Phone/Content/Tools/@VBoxContainer@582/@ScrollContainer@585/@GridContainer@586/@Button@619",
+			"rect": [
+				0.0,
+				152.0,
+				80.0,
+				37.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "501"
+		},
+		{
+			"font_size": 24,
+			"output_px": 16.0,
+			"path": "/root/T214Capture/@Control@571/PhoneScreen/Root/Phone/Content/Tools/@VBoxContainer@582/@ScrollContainer@585/@GridContainer@586/@Button@620",
+			"rect": [
+				84.0,
+				152.0,
+				80.0,
+				37.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "502"
+		},
+		{
+			"font_size": 24,
+			"output_px": 16.0,
+			"path": "/root/T214Capture/@Control@571/PhoneScreen/Root/Phone/Content/Tools/@VBoxContainer@582/@ScrollContainer@585/@GridContainer@586/@Button@621",
+			"rect": [
+				168.0,
+				152.0,
+				79.0,
+				37.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "503"
+		},
+		{
+			"font_size": 24,
+			"output_px": 16.0,
+			"path": "/root/T214Capture/@Control@571/PhoneScreen/Root/Phone/Content/Tools/@VBoxContainer@582/@ScrollContainer@585/@GridContainer@586/@Button@622",
+			"rect": [
+				251.0,
+				152.0,
+				79.0,
+				37.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "504"
+		},
+		{
+			"font_size": 24,
+			"output_px": 16.0,
+			"path": "/root/T214Capture/@Control@571/PhoneScreen/Root/Phone/Content/Tools/@VBoxContainer@582/@ScrollContainer@585/@GridContainer@586/@Button@623",
+			"rect": [
+				334.0,
+				152.0,
+				79.0,
+				37.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "505"
+		},
+		{
+			"font_size": 24,
+			"output_px": 16.0,
+			"path": "/root/T214Capture/@Control@571/PhoneScreen/Root/Phone/Content/Tools/@VBoxContainer@582/@ScrollContainer@585/@GridContainer@586/@Button@624",
+			"rect": [
+				417.0,
+				152.0,
+				79.0,
+				37.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "506"
+		},
+		{
+			"font_size": 24,
+			"output_px": 16.0,
+			"path": "/root/T214Capture/@Control@571/PhoneScreen/Root/Phone/Content/Tools/@VBoxContainer@582/@ScrollContainer@585/@GridContainer@586/@Button@625",
+			"rect": [
+				500.0,
+				152.0,
+				79.0,
+				37.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "507"
+		},
+		{
+			"font_size": 24,
+			"output_px": 16.0,
+			"path": "/root/T214Capture/@Control@571/PhoneScreen/Root/Phone/Content/Tools/@VBoxContainer@582/@ScrollContainer@585/@GridContainer@586/@Button@626",
+			"rect": [
+				583.0,
+				152.0,
+				79.0,
+				37.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "508"
+		},
+		{
+			"font_size": 24,
+			"output_px": 16.0,
+			"path": "/root/T214Capture/@Control@571/PhoneScreen/Root/Phone/Content/Tools/@VBoxContainer@582/@ScrollContainer@585/@GridContainer@586/@Button@627",
+			"rect": [
+				0.0,
+				190.0,
+				80.0,
+				37.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "601"
+		},
+		{
+			"font_size": 24,
+			"output_px": 16.0,
+			"path": "/root/T214Capture/@Control@571/PhoneScreen/Root/Phone/Content/Tools/@VBoxContainer@582/@ScrollContainer@585/@GridContainer@586/@Button@628",
+			"rect": [
+				84.0,
+				190.0,
+				80.0,
+				37.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "602"
+		},
+		{
+			"font_size": 24,
+			"output_px": 16.0,
+			"path": "/root/T214Capture/@Control@571/PhoneScreen/Root/Phone/Content/Tools/@VBoxContainer@582/@ScrollContainer@585/@GridContainer@586/@Button@629",
+			"rect": [
+				168.0,
+				190.0,
+				79.0,
+				37.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "603"
+		},
+		{
+			"font_size": 24,
+			"output_px": 16.0,
+			"path": "/root/T214Capture/@Control@571/PhoneScreen/Root/Phone/Content/Tools/@VBoxContainer@582/@ScrollContainer@585/@GridContainer@586/@Button@630",
+			"rect": [
+				251.0,
+				190.0,
+				79.0,
+				37.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "604"
+		},
+		{
+			"font_size": 24,
+			"output_px": 16.0,
+			"path": "/root/T214Capture/@Control@571/PhoneScreen/Root/Phone/Content/Tools/@VBoxContainer@582/@ScrollContainer@585/@GridContainer@586/@Button@631",
+			"rect": [
+				334.0,
+				190.0,
+				79.0,
+				37.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "605"
+		},
+		{
+			"font_size": 24,
+			"output_px": 16.0,
+			"path": "/root/T214Capture/@Control@571/PhoneScreen/Root/Phone/Content/Tools/@VBoxContainer@582/@ScrollContainer@585/@GridContainer@586/@Button@632",
+			"rect": [
+				417.0,
+				190.0,
+				79.0,
+				37.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "606"
+		},
+		{
+			"font_size": 24,
+			"output_px": 16.0,
+			"path": "/root/T214Capture/@Control@571/PhoneScreen/Root/Phone/Content/Tools/@VBoxContainer@582/@ScrollContainer@585/@GridContainer@586/@Button@633",
+			"rect": [
+				500.0,
+				190.0,
+				79.0,
+				37.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "607"
+		},
+		{
+			"font_size": 24,
+			"output_px": 16.0,
+			"path": "/root/T214Capture/@Control@571/PhoneScreen/Root/Phone/Content/Tools/@VBoxContainer@582/@ScrollContainer@585/@GridContainer@586/@Button@634",
+			"rect": [
+				583.0,
+				190.0,
+				79.0,
+				37.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "608"
+		},
+		{
+			"font_size": 24,
+			"output_px": 16.0,
+			"path": "/root/T214Capture/@Control@571/PhoneScreen/Root/Phone/Content/Tools/@VBoxContainer@582/@Label@635",
+			"rect": [
+				0.0,
+				233.0,
+				662.0,
+				33.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "* 407: Phòng mình · ↑↓←→ chọn · Enter đánh dấu"
+		}
+	]
+}

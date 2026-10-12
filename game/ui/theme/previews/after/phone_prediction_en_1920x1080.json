@@ -1,0 +1,104 @@
+{
+	"locale": "en",
+	"logical_resolution": [
+		1920,
+		1080
+	],
+	"resolution": [
+		1920,
+		1080
+	],
+	"text": [
+		{
+			"font_size": 24,
+			"output_px": 24.0,
+			"path": "/root/T214Capture/@Control@3964/PhoneScreen/Root/Phone/Content/Status",
+			"rect": [
+				0.0,
+				0.0,
+				662.0,
+				31.0
+			],
+			"screen_scale": 1.0,
+			"text": "04:06   ·   64%   ·   No signal"
+		},
+		{
+			"font_size": 24,
+			"output_px": 24.0,
+			"path": "/root/T214Capture/@Control@3964/PhoneScreen/Root/Phone/Content/Call",
+			"rect": [
+				0.0,
+				35.0,
+				662.0,
+				31.0
+			],
+			"screen_scale": 1.0,
+			"text": "Group call"
+		},
+		{
+			"font_size": 24,
+			"output_px": 24.0,
+			"path": "/root/T214Capture/@Control@3964/PhoneScreen/Root/Phone/Content/Transcript",
+			"rect": [
+				0.0,
+				70.0,
+				662.0,
+				289.0
+			],
+			"screen_scale": 1.0,
+			"text": "04:05  Test member A: This sample line tests the live transcript.\n04:06  Test member B: New lines are added at the end of the history.\n"
+		},
+		{
+			"font_size": 24,
+			"output_px": 24.0,
+			"path": "/root/T214Capture/@Control@3964/PhoneScreen/Root/Phone/Content/Prediction/Recipient",
+			"rect": [
+				0.0,
+				0.0,
+				662.0,
+				31.0
+			],
+			"screen_scale": 1.0,
+			"text": "Message to Minh Nhật · 203"
+		},
+		{
+			"font_size": 24,
+			"output_px": 24.0,
+			"path": "/root/T214Capture/@Control@3964/PhoneScreen/Root/Phone/Content/Prediction/Countdown",
+			"rect": [
+				0.0,
+				35.0,
+				662.0,
+				31.0
+			],
+			"screen_scale": 1.0,
+			"text": "Last temperatures: 4, 7, 1 · 20 seconds left"
+		},
+		{
+			"font_size": 26,
+			"output_px": 26.0,
+			"path": "/root/T214Capture/@Control@3964/PhoneScreen/Root/Phone/Content/Prediction/Entry",
+			"rect": [
+				0.0,
+				70.0,
+				662.0,
+				57.0
+			],
+			"screen_scale": 1.0,
+			"text": ""
+		},
+		{
+			"font_size": 24,
+			"output_px": 24.0,
+			"path": "/root/T214Capture/@Control@3964/PhoneScreen/Root/Phone/Content/Prediction/Help",
+			"rect": [
+				0.0,
+				131.0,
+				662.0,
+				31.0
+			],
+			"screen_scale": 1.0,
+			"text": "Enter: send · Esc: cancel"
+		}
+	]
+}

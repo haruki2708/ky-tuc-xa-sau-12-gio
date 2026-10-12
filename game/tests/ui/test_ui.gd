@@ -56,6 +56,13 @@ func test_font_has_vietnamese_glyphs() -> void:
 	assert_eq(theme.default_font, FONT, "theme uses bundled font;")
 
 
+func test_title_and_typewriter_fonts_have_all_vietnamese_diacritics() -> void:
+	var characters := "ăâđêôơưĂÂĐÊÔƠƯáàảãạấầẩẫậắằẳẵặéèẻẽẹếềểễệíìỉĩịóòỏõọốồổỗộớờởỡợúùủũụứừửữựýỳỷỹỵÁÀẢÃẠẤẦẨẪẬẮẰẲẴẶÉÈẺẼẸẾỀỂỄỆÍÌỈĨỊÓÒỎÕỌỐỒỔỖỘỚỜỞỠỢÚÙỦŨỤỨỪỬỮỰÝỲỶỸỴ"
+	for font: Font in [preload("res://assets/fonts/be_vietnam_pro_semibold.ttf"), preload("res://assets/fonts/ibm_plex_mono_regular.ttf")]:
+		for index in characters.length():
+			assert_true(font.has_char(characters.unicode_at(index)), font.resource_path + " missing " + characters[index])
+
+
 func test_focus_signal_updates_prompt_and_crosshair() -> void:
 	var prompt: Label = _hud.get_node("Root/Prompt")
 	var crosshair: ColorRect = _hud.get_node("Root/Crosshair")

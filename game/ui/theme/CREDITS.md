@@ -1,0 +1,6 @@
+# Nguồn giao diện chung T-214
+
+- `textures/paper001_color.jpg`: bản gốc `Paper001_1K-JPG_Color.jpg` (1024×1024, 398.173 byte) của **ambientCG / Lennart Demes**, [Paper 001](https://ambientcg.com/a/Paper001). Tải ngày 12/10/2026 từ [gói 1K JPG](https://ambientcg.com/get?file=Paper001_1K-JPG.zip). **CC0 1.0** theo [giấy phép của nguồn](https://docs.ambientcg.com/license/), bản pháp lý đầy đủ tại `textures/CC0-1.0.txt`. SHA-256 `e8db6f5b91f7882f4711ab5b2dc5c2e91f822d4f80a7d0081991532cf5cd9b9a`. Không chỉnh file ảnh; UI nhuộm màu giấy ố khi vẽ, đường kẻ/con dấu là các lớp độc lập.
+- `textures/metal_panel.svg` và `icons/*.svg`: đồ họa vector nguyên gốc của lane D, viết bằng mã với hỗ trợ OpenAI Codex cho T-214. CC0 1.0 (`textures/CC0-1.0.txt`). Không dùng ảnh/icon bên thứ ba; khung sơn kim loại có dải sáng và vết xước nhẹ, icon nét 32 px, toggle/grip đồng bộ.
+- Font: Be Vietnam Pro Regular/SemiBold và IBM Plex Mono Regular, SIL OFL 1.1; nguồn/hash/giấy phép đầy đủ ở [fonts/CREDITS.md](../../assets/fonts/CREDITS.md). Không cài font lên Windows.
+- Nền hành lang và ảnh trước/sau: render từ cảnh của dự án; nguồn lịch sử ở [title/CREDITS.md](../title/CREDITS.md). Không có tác vụ Tripo, Meshy, mô hình sinh ảnh hoặc credit trả phí trong T-214.

@@ -1,0 +1,403 @@
+{
+	"locale": "vi",
+	"logical_resolution": [
+		1920,
+		1080
+	],
+	"resolution": [
+		1920,
+		1080
+	],
+	"text": [
+		{
+			"font_size": 40,
+			"output_px": 40.0,
+			"path": "/root/T214Capture/@Control@2149/PauseMenu/Root/SettingsCard/SettingsPanel/Title",
+			"rect": [
+				0.0,
+				0.0,
+				1488.0,
+				51.0
+			],
+			"screen_scale": 1.0,
+			"text": "Cài đặt"
+		},
+		{
+			"font_size": 30,
+			"output_px": 30.0,
+			"path": "/root/T214Capture/@Control@2149/PauseMenu/Root/SettingsCard/SettingsPanel/Scroll/Columns/Audio/Title",
+			"rect": [
+				0.0,
+				0.0,
+				712.0,
+				38.0
+			],
+			"screen_scale": 1.0,
+			"text": "Âm thanh"
+		},
+		{
+			"font_size": 28,
+			"output_px": 28.0,
+			"path": "/root/T214Capture/@Control@2149/PauseMenu/Root/SettingsCard/SettingsPanel/Scroll/Columns/Audio/master_db/@HBoxContainer@2153/@Label@2154",
+			"rect": [
+				0.0,
+				0.0,
+				583.0,
+				36.0
+			],
+			"screen_scale": 1.0,
+			"text": "Âm lượng tổng"
+		},
+		{
+			"font_size": 28,
+			"output_px": 28.0,
+			"path": "/root/T214Capture/@Control@2149/PauseMenu/Root/SettingsCard/SettingsPanel/Scroll/Columns/Audio/master_db/@HBoxContainer@2153/@Label@2155",
+			"rect": [
+				587.0,
+				0.0,
+				125.0,
+				36.0
+			],
+			"screen_scale": 1.0,
+			"text": "0.0 dB"
+		},
+		{
+			"font_size": 28,
+			"output_px": 28.0,
+			"path": "/root/T214Capture/@Control@2149/PauseMenu/Root/SettingsCard/SettingsPanel/Scroll/Columns/Audio/ambience_db/@HBoxContainer@2156/@Label@2157",
+			"rect": [
+				0.0,
+				0.0,
+				583.0,
+				36.0
+			],
+			"screen_scale": 1.0,
+			"text": "Âm môi trường"
+		},
+		{
+			"font_size": 28,
+			"output_px": 28.0,
+			"path": "/root/T214Capture/@Control@2149/PauseMenu/Root/SettingsCard/SettingsPanel/Scroll/Columns/Audio/ambience_db/@HBoxContainer@2156/@Label@2158",
+			"rect": [
+				587.0,
+				0.0,
+				125.0,
+				36.0
+			],
+			"screen_scale": 1.0,
+			"text": "0.0 dB"
+		},
+		{
+			"font_size": 28,
+			"output_px": 28.0,
+			"path": "/root/T214Capture/@Control@2149/PauseMenu/Root/SettingsCard/SettingsPanel/Scroll/Columns/Audio/sfx_db/@HBoxContainer@2159/@Label@2160",
+			"rect": [
+				0.0,
+				0.0,
+				583.0,
+				36.0
+			],
+			"screen_scale": 1.0,
+			"text": "Hiệu ứng"
+		},
+		{
+			"font_size": 28,
+			"output_px": 28.0,
+			"path": "/root/T214Capture/@Control@2149/PauseMenu/Root/SettingsCard/SettingsPanel/Scroll/Columns/Audio/sfx_db/@HBoxContainer@2159/@Label@2161",
+			"rect": [
+				587.0,
+				0.0,
+				125.0,
+				36.0
+			],
+			"screen_scale": 1.0,
+			"text": "0.0 dB"
+		},
+		{
+			"font_size": 28,
+			"output_px": 28.0,
+			"path": "/root/T214Capture/@Control@2149/PauseMenu/Root/SettingsCard/SettingsPanel/Scroll/Columns/Audio/footsteps_db/@HBoxContainer@2162/@Label@2163",
+			"rect": [
+				0.0,
+				0.0,
+				583.0,
+				36.0
+			],
+			"screen_scale": 1.0,
+			"text": "Bước chân"
+		},
+		{
+			"font_size": 28,
+			"output_px": 28.0,
+			"path": "/root/T214Capture/@Control@2149/PauseMenu/Root/SettingsCard/SettingsPanel/Scroll/Columns/Audio/footsteps_db/@HBoxContainer@2162/@Label@2164",
+			"rect": [
+				587.0,
+				0.0,
+				125.0,
+				36.0
+			],
+			"screen_scale": 1.0,
+			"text": "0.0 dB"
+		},
+		{
+			"font_size": 28,
+			"output_px": 28.0,
+			"path": "/root/T214Capture/@Control@2149/PauseMenu/Root/SettingsCard/SettingsPanel/Scroll/Columns/Audio/voice_db/@HBoxContainer@2165/@Label@2166",
+			"rect": [
+				0.0,
+				0.0,
+				583.0,
+				36.0
+			],
+			"screen_scale": 1.0,
+			"text": "Giọng đọc"
+		},
+		{
+			"font_size": 28,
+			"output_px": 28.0,
+			"path": "/root/T214Capture/@Control@2149/PauseMenu/Root/SettingsCard/SettingsPanel/Scroll/Columns/Audio/voice_db/@HBoxContainer@2165/@Label@2167",
+			"rect": [
+				587.0,
+				0.0,
+				125.0,
+				36.0
+			],
+			"screen_scale": 1.0,
+			"text": "0.0 dB"
+		},
+		{
+			"font_size": 28,
+			"output_px": 28.0,
+			"path": "/root/T214Capture/@Control@2149/PauseMenu/Root/SettingsCard/SettingsPanel/Scroll/Columns/Audio/music_db/@HBoxContainer@2168/@Label@2169",
+			"rect": [
+				0.0,
+				0.0,
+				583.0,
+				36.0
+			],
+			"screen_scale": 1.0,
+			"text": "Nhạc"
+		},
+		{
+			"font_size": 28,
+			"output_px": 28.0,
+			"path": "/root/T214Capture/@Control@2149/PauseMenu/Root/SettingsCard/SettingsPanel/Scroll/Columns/Audio/music_db/@HBoxContainer@2168/@Label@2170",
+			"rect": [
+				587.0,
+				0.0,
+				125.0,
+				36.0
+			],
+			"screen_scale": 1.0,
+			"text": "0.0 dB"
+		},
+		{
+			"font_size": 30,
+			"output_px": 30.0,
+			"path": "/root/T214Capture/@Control@2149/PauseMenu/Root/SettingsCard/SettingsPanel/Scroll/Columns/Other/@Label@2171",
+			"rect": [
+				0.0,
+				0.0,
+				712.0,
+				38.0
+			],
+			"screen_scale": 1.0,
+			"text": "Điều khiển"
+		},
+		{
+			"font_size": 28,
+			"output_px": 28.0,
+			"path": "/root/T214Capture/@Control@2149/PauseMenu/Root/SettingsCard/SettingsPanel/Scroll/Columns/Other/mouse_sensitivity/@HBoxContainer@2172/@Label@2173",
+			"rect": [
+				0.0,
+				0.0,
+				583.0,
+				36.0
+			],
+			"screen_scale": 1.0,
+			"text": "Độ nhạy chuột"
+		},
+		{
+			"font_size": 28,
+			"output_px": 28.0,
+			"path": "/root/T214Capture/@Control@2149/PauseMenu/Root/SettingsCard/SettingsPanel/Scroll/Columns/Other/mouse_sensitivity/@HBoxContainer@2172/@Label@2174",
+			"rect": [
+				587.0,
+				0.0,
+				125.0,
+				36.0
+			],
+			"screen_scale": 1.0,
+			"text": "0.0020"
+		},
+		{
+			"font_size": 30,
+			"output_px": 30.0,
+			"path": "/root/T214Capture/@Control@2149/PauseMenu/Root/SettingsCard/SettingsPanel/Scroll/Columns/Other/@Label@2175",
+			"rect": [
+				0.0,
+				134.0,
+				712.0,
+				38.0
+			],
+			"screen_scale": 1.0,
+			"text": "Hình ảnh"
+		},
+		{
+			"font_size": 28,
+			"output_px": 28.0,
+			"path": "/root/T214Capture/@Control@2149/PauseMenu/Root/SettingsCard/SettingsPanel/Scroll/Columns/Other/HeadBob",
+			"rect": [
+				0.0,
+				186.0,
+				712.0,
+				60.0
+			],
+			"screen_scale": 1.0,
+			"text": "Nhún đầu"
+		},
+		{
+			"font_size": 28,
+			"output_px": 28.0,
+			"path": "/root/T214Capture/@Control@2149/PauseMenu/Root/SettingsCard/SettingsPanel/Scroll/Columns/Other/brightness/@HBoxContainer@2176/@Label@2177",
+			"rect": [
+				0.0,
+				0.0,
+				583.0,
+				36.0
+			],
+			"screen_scale": 1.0,
+			"text": "Độ sáng"
+		},
+		{
+			"font_size": 28,
+			"output_px": 28.0,
+			"path": "/root/T214Capture/@Control@2149/PauseMenu/Root/SettingsCard/SettingsPanel/Scroll/Columns/Other/brightness/@HBoxContainer@2176/@Label@2178",
+			"rect": [
+				587.0,
+				0.0,
+				125.0,
+				36.0
+			],
+			"screen_scale": 1.0,
+			"text": "1.00"
+		},
+		{
+			"font_size": 28,
+			"output_px": 28.0,
+			"path": "/root/T214Capture/@Control@2149/PauseMenu/Root/SettingsCard/SettingsPanel/Scroll/Columns/Other/ps1_strength/@HBoxContainer@2179/@Label@2180",
+			"rect": [
+				0.0,
+				0.0,
+				583.0,
+				36.0
+			],
+			"screen_scale": 1.0,
+			"text": "Cường độ filter PS1"
+		},
+		{
+			"font_size": 28,
+			"output_px": 28.0,
+			"path": "/root/T214Capture/@Control@2149/PauseMenu/Root/SettingsCard/SettingsPanel/Scroll/Columns/Other/ps1_strength/@HBoxContainer@2179/@Label@2181",
+			"rect": [
+				587.0,
+				0.0,
+				125.0,
+				36.0
+			],
+			"screen_scale": 1.0,
+			"text": "1.00"
+		},
+		{
+			"font_size": 30,
+			"output_px": 30.0,
+			"path": "/root/T214Capture/@Control@2149/PauseMenu/Root/SettingsCard/SettingsPanel/Scroll/Columns/Other/@Label@2182",
+			"rect": [
+				0.0,
+				424.0,
+				712.0,
+				38.0
+			],
+			"screen_scale": 1.0,
+			"text": "Ngôn ngữ"
+		},
+		{
+			"font_size": 28,
+			"output_px": 28.0,
+			"path": "/root/T214Capture/@Control@2149/PauseMenu/Root/SettingsCard/SettingsPanel/Scroll/Columns/Other/Locale",
+			"rect": [
+				0.0,
+				476.0,
+				712.0,
+				60.0
+			],
+			"screen_scale": 1.0,
+			"text": "Tiếng Việt"
+		},
+		{
+			"font_size": 30,
+			"output_px": 30.0,
+			"path": "/root/T214Capture/@Control@2149/PauseMenu/Root/SettingsCard/SettingsPanel/Scroll/Columns/Other/Accessibility/@Label@2193",
+			"rect": [
+				0.0,
+				0.0,
+				712.0,
+				38.0
+			],
+			"screen_scale": 1.0,
+			"text": "Trợ năng"
+		},
+		{
+			"font_size": 28,
+			"output_px": 28.0,
+			"path": "/root/T214Capture/@Control@2149/PauseMenu/Root/SettingsCard/SettingsPanel/Scroll/Columns/Other/Accessibility/ReduceScares",
+			"rect": [
+				0.0,
+				42.0,
+				712.0,
+				60.0
+			],
+			"screen_scale": 1.0,
+			"text": "Giảm hù dọa"
+		},
+		{
+			"font_size": 22,
+			"output_px": 22.0,
+			"path": "/root/T214Capture/@Control@2149/PauseMenu/Root/SettingsCard/SettingsPanel/Scroll/Columns/Other/Accessibility/Description",
+			"rect": [
+				0.0,
+				106.0,
+				712.0,
+				28.0
+			],
+			"screen_scale": 1.0,
+			"text": "Bỏ hình ảnh và âm thanh giật mình đột ngột. Truy đuổi chậm hơn."
+		},
+		{
+			"font_size": 28,
+			"output_px": 28.0,
+			"path": "/root/T214Capture/@Control@2149/PauseMenu/Root/SettingsCard/SettingsPanel/Footer/Reset",
+			"rect": [
+				0.0,
+				0.0,
+				309.0,
+				60.0
+			],
+			"screen_scale": 1.0,
+			"text": "Khôi phục mặc định"
+		},
+		{
+			"font_size": 28,
+			"output_px": 28.0,
+			"path": "/root/T214Capture/@Control@2149/PauseMenu/Root/SettingsCard/SettingsPanel/Footer/Back",
+			"rect": [
+				1336.0,
+				0.0,
+				152.0,
+				60.0
+			],
+			"screen_scale": 1.0,
+			"text": "Quay lại"
+		}
+	]
+}

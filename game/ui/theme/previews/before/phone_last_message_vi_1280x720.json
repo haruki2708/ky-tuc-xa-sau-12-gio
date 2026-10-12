@@ -1,0 +1,104 @@
+{
+	"locale": "vi",
+	"logical_resolution": [
+		1920,
+		1080
+	],
+	"resolution": [
+		1280,
+		720
+	],
+	"text": [
+		{
+			"font_size": 20,
+			"output_px": 13.3333333333333,
+			"path": "/root/T214Capture/@Control@800/PhoneScreen/Root/Phone/Content/Status",
+			"rect": [
+				0.0,
+				0.0,
+				674.0,
+				26.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "04:06   ·   64%   ·   Không có sóng"
+		},
+		{
+			"font_size": 20,
+			"output_px": 13.3333333333333,
+			"path": "/root/T214Capture/@Control@800/PhoneScreen/Root/Phone/Content/Status/DecoyCharges",
+			"rect": [
+				558.0,
+				0.0,
+				72.0,
+				26.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "3"
+		},
+		{
+			"font_size": 24,
+			"output_px": 16.0,
+			"path": "/root/T214Capture/@Control@800/PhoneScreen/Root/Phone/Content/Call",
+			"rect": [
+				0.0,
+				31.0,
+				674.0,
+				31.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Cuộc gọi nhóm"
+		},
+		{
+			"font_size": 23,
+			"output_px": 15.3333333333333,
+			"path": "/root/T214Capture/@Control@800/PhoneScreen/Root/Phone/Content/Transcript",
+			"rect": [
+				0.0,
+				67.0,
+				674.0,
+				351.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "04:05  Người thử A: Đây là câu nói dùng để kiểm tra bản chép lời.\n04:06  Người thử B: Dòng mới được thêm ở cuối lịch sử.\n"
+		},
+		{
+			"font_size": 24,
+			"output_px": 16.0,
+			"path": "/root/T214Capture/@Control@800/PhoneScreen/Root/Phone/Content/Chapter4/@Label@869",
+			"rect": [
+				0.0,
+				0.0,
+				674.0,
+				31.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Nhắn vào nhóm"
+		},
+		{
+			"font_size": 26,
+			"output_px": 17.3333333333333,
+			"path": "/root/T214Capture/@Control@800/PhoneScreen/Root/Phone/Content/Chapter4/Message/Entry",
+			"rect": [
+				0.0,
+				0.0,
+				674.0,
+				41.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Lựa chọn thử thứ nhất"
+		},
+		{
+			"font_size": 18,
+			"output_px": 12.0,
+			"path": "/root/T214Capture/@Control@800/PhoneScreen/Root/Phone/Content/Chapter4/Message/@Label@870",
+			"rect": [
+				0.0,
+				56.0,
+				674.0,
+				23.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Enter: gửi · Esc: hủy"
+		}
+	]
+}

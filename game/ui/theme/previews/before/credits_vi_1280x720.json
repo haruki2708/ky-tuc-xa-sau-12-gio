@@ -1,0 +1,169 @@
+{
+	"locale": "vi",
+	"logical_resolution": [
+		1920,
+		1080
+	],
+	"resolution": [
+		1280,
+		720
+	],
+	"text": [
+		{
+			"font_size": 40,
+			"output_px": 26.6666666666667,
+			"path": "/root/T214Capture/@Control@124/TitleScreen/Credits/Content/Heading",
+			"rect": [
+				0.0,
+				0.0,
+				1104.0,
+				51.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Ghi công"
+		},
+		{
+			"font_size": 30,
+			"output_px": 20.0,
+			"path": "/root/T214Capture/@Control@124/TitleScreen/Credits/Content/Scroll/Entries/KITHeading",
+			"rect": [
+				0.0,
+				0.0,
+				1096.0,
+				38.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Môi trường và mô hình"
+		},
+		{
+			"font_size": 26,
+			"output_px": 17.3333333333333,
+			"path": "/root/T214Capture/@Control@124/TitleScreen/Credits/Content/Scroll/Entries/KITBody",
+			"rect": [
+				0.0,
+				64.0,
+				1096.0,
+				105.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Lane B — bộ kit ký túc xá, tầng 4, bóng người và gương. Mô hình và texture được tạo bằng script với Blender 5.2.2 LTS và Godot. Asset: CC0 1.0 — https://creativecommons.org/publicdomain/zero/1.0/"
+		},
+		{
+			"font_size": 30,
+			"output_px": 20.0,
+			"path": "/root/T214Capture/@Control@124/TitleScreen/Credits/Content/Scroll/Entries/AUDIOHeading",
+			"rect": [
+				0.0,
+				195.0,
+				1096.0,
+				38.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Âm thanh"
+		},
+		{
+			"font_size": 26,
+			"output_px": 17.3333333333333,
+			"path": "/root/T214Capture/@Control@124/TitleScreen/Credits/Content/Scroll/Entries/AUDIOBody",
+			"rect": [
+				0.0,
+				259.0,
+				1096.0,
+				177.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Lane E — âm môi trường, bước chân, hiệu ứng đoạn 1–2 và hù dọa/truy đuổi. Tự tổng hợp bằng Python 3, xử lý bằng FFmpeg 9.0.2; không dùng mẫu âm bên ngoài. Waveform và OGG: CC0 1.0. Nhạc nền tự tổng hợp (CC0). Giọng loa phát thanh tạo offline bằng eSpeak NG 1.52.0 (công cụ GPL-3.0-or-later, không đóng gói trong game)."
+		},
+		{
+			"font_size": 30,
+			"output_px": 20.0,
+			"path": "/root/T214Capture/@Control@124/TitleScreen/Credits/Content/Scroll/Entries/FONTHeading",
+			"rect": [
+				0.0,
+				462.0,
+				1096.0,
+				38.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Phông chữ"
+		},
+		{
+			"font_size": 26,
+			"output_px": 17.3333333333333,
+			"path": "/root/T214Capture/@Control@124/TitleScreen/Credits/Content/Scroll/Entries/FONTBody",
+			"rect": [
+				0.0,
+				526.0,
+				1096.0,
+				69.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Be Vietnam Pro Regular — The Be Vietnam Pro Project Authors. SIL Open Font License 1.1. https://github.com/bettergui/BeVietnamPro"
+		},
+		{
+			"font_size": 30,
+			"output_px": 20.0,
+			"path": "/root/T214Capture/@Control@124/TitleScreen/Credits/Content/Scroll/Entries/AIHeading",
+			"rect": [
+				0.0,
+				621.0,
+				1096.0,
+				38.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Nội dung có hỗ trợ AI"
+		},
+		{
+			"font_size": 26,
+			"output_px": 17.3333333333333,
+			"path": "/root/T214Capture/@Control@124/TitleScreen/Credits/Content/Scroll/Entries/AIBody",
+			"rect": [
+				0.0,
+				685.0,
+				1096.0,
+				141.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "OpenAI Codex hỗ trợ viết mã tạo mô hình, texture, scene, shader và tổng hợp âm thanh. Anthropic Claude viết kiến trúc lõi, luồng cốt truyện, filter PS1, mã âm bước chân và mô hình đạo cụ tầng 4. Ảnh nền là ảnh chụp hành lang trong game qua Godot; không dùng mô hình sinh ảnh hoặc asset lấy từ game khác."
+		},
+		{
+			"font_size": 30,
+			"output_px": 20.0,
+			"path": "/root/T214Capture/@Control@124/TitleScreen/Credits/Content/Scroll/Entries/DICTIONARYHeading",
+			"rect": [
+				0.0,
+				852.0,
+				1096.0,
+				38.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Từ điển nối từ"
+		},
+		{
+			"font_size": 26,
+			"output_px": 17.3333333333333,
+			"path": "/root/T214Capture/@Control@124/TitleScreen/Credits/Content/Scroll/Entries/DICTIONARYBody",
+			"rect": [
+				0.0,
+				916.0,
+				1096.0,
+				321.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Wiktionary tiếng Việt và tiếng Anh — các tác giả Wiktionary.\nhttps://vi.wiktionary.org · https://en.wiktionary.org\nBản trích: kaikki.org (wiktextract)\nhttps://kaikki.org/viwiktionary/Tiếng Việt/\nhttps://kaikki.org/dictionary/Vietnamese/\nCC BY-SA 4.0\nhttps://creativecommons.org/licenses/by-sa/4.0/\nĐã chuyển thể: chỉ giữ từ hai tiếng; bỏ tên riêng, ký tự và phụ tố; thêm dạng chuẩn hóa, cờ xác biết và từ của game."
+		},
+		{
+			"font_size": 28,
+			"output_px": 18.6666666666667,
+			"path": "/root/T214Capture/@Control@124/TitleScreen/Credits/Content/Back",
+			"rect": [
+				0.0,
+				732.0,
+				1104.0,
+				60.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Quay lại"
+		}
+	]
+}

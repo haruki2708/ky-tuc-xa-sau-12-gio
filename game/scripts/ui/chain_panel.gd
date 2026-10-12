@@ -25,11 +25,11 @@ func _ready() -> void:
 	content.add_theme_constant_override("separation", 10)
 	content.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	$Root/Card.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	Layout.label(content, "Title", "UI_CHAIN_TITLE", 22)
+	Layout.label(content, "Title", "UI_CHAIN_TITLE", 24)
 	Layout.label(content, "Speaker", "", 26)
 	Layout.label(content, "Word", "", 46)
-	Layout.label(content, "WordSpeaker", "", 20)
-	Layout.label(content, "History", "", 22)
+	Layout.label(content, "WordSpeaker", "", 24)
+	Layout.label(content, "History", "", 24)
 	Layout.label(content, "Status", "", 24)
 	var timer := ProgressBar.new()
 	timer.name = "Timer"
@@ -46,7 +46,7 @@ func _ready() -> void:
 	content.add_child(_entry)
 	_entry.text_submitted.connect(_submit)
 	_entry.cancelled.connect(_close_entry)
-	Layout.label(content, "Help", "UI_CHAIN_TYPE_OPEN", 19)
+	Layout.label(content, "Help", "UI_CHAIN_TYPE_OPEN", 24)
 	EventBus.chain_turn_started.connect(_on_turn)
 	EventBus.chain_word_spoken.connect(_on_word)
 	EventBus.chain_input_requested.connect(_on_request)

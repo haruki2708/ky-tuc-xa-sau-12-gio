@@ -23,7 +23,7 @@ func _ready() -> void:
 	editor.submitted.connect(func(text: String) -> void: EventBus.fade_message_typed.emit(text))
 	badge = Label.new()
 	badge.name = "DecoyCharges"
-	badge.add_theme_font_size_override("font_size", 20)
+	badge.add_theme_font_size_override("font_size", 24)
 	phone.get_node("Root/Phone/Content/Status").add_child(badge)
 	badge.set_anchors_and_offsets_preset(Control.PRESET_TOP_RIGHT)
 	badge.position.x = -115

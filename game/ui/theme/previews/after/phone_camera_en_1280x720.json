@@ -1,0 +1,104 @@
+{
+	"locale": "en",
+	"logical_resolution": [
+		1920,
+		1080
+	],
+	"resolution": [
+		1280,
+		720
+	],
+	"text": [
+		{
+			"font_size": 24,
+			"output_px": 16.0,
+			"path": "/root/T214Capture/@Control@1702/PhoneScreen/Root/Phone/Content/Status",
+			"rect": [
+				0.0,
+				0.0,
+				662.0,
+				31.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "04:06   ·   64%   ·   No signal"
+		},
+		{
+			"font_size": 24,
+			"output_px": 16.0,
+			"path": "/root/T214Capture/@Control@1702/PhoneScreen/Root/Phone/Content/Tools/@HBoxContainer@1708/@Button@1709",
+			"rect": [
+				0.0,
+				0.0,
+				206.0,
+				37.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Call [ ]"
+		},
+		{
+			"font_size": 24,
+			"output_px": 16.0,
+			"path": "/root/T214Capture/@Control@1702/PhoneScreen/Root/Phone/Content/Tools/@HBoxContainer@1708/@Button@1710",
+			"rect": [
+				212.0,
+				0.0,
+				207.0,
+				37.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Map"
+		},
+		{
+			"font_size": 24,
+			"output_px": 16.0,
+			"path": "/root/T214Capture/@Control@1702/PhoneScreen/Root/Phone/Content/Tools/@HBoxContainer@1708/@Button@1711",
+			"rect": [
+				425.0,
+				0.0,
+				207.0,
+				37.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Camera"
+		},
+		{
+			"font_size": 24,
+			"output_px": 16.0,
+			"path": "/root/T214Capture/@Control@1702/PhoneScreen/Root/Phone/Content/Tools/@VBoxContainer@1767/@HBoxContainer@1768/@Button@1769",
+			"rect": [
+				0.0,
+				0.0,
+				35.0,
+				37.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "‹ ,"
+		},
+		{
+			"font_size": 24,
+			"output_px": 16.0,
+			"path": "/root/T214Capture/@Control@1702/PhoneScreen/Root/Phone/Content/Tools/@VBoxContainer@1767/@HBoxContainer@1768/@Label@1770",
+			"rect": [
+				39.0,
+				3.0,
+				583.0,
+				31.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Camera feed unavailable"
+		},
+		{
+			"font_size": 24,
+			"output_px": 16.0,
+			"path": "/root/T214Capture/@Control@1702/PhoneScreen/Root/Phone/Content/Tools/@VBoxContainer@1767/@HBoxContainer@1768/@Button@1771",
+			"rect": [
+				626.0,
+				0.0,
+				36.0,
+				37.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": ". ›"
+		}
+	]
+}

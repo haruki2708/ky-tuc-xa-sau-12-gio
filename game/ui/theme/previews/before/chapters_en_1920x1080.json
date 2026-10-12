@@ -1,0 +1,91 @@
+{
+	"locale": "en",
+	"logical_resolution": [
+		1920,
+		1080
+	],
+	"resolution": [
+		1920,
+		1080
+	],
+	"text": [
+		{
+			"font_size": 40,
+			"output_px": 40.0,
+			"path": "/root/T214Capture/@Control@2998/TitleScreen/Chapters/Content/Heading",
+			"rect": [
+				0.0,
+				0.0,
+				988.0,
+				51.0
+			],
+			"screen_scale": 1.0,
+			"text": "Select chapter"
+		},
+		{
+			"font_size": 28,
+			"output_px": 28.0,
+			"path": "/root/T214Capture/@Control@2998/TitleScreen/Chapters/Content/Chapter1",
+			"rect": [
+				0.0,
+				75.0,
+				988.0,
+				60.0
+			],
+			"screen_scale": 1.0,
+			"text": "Chapter 1 — The General Rules"
+		},
+		{
+			"font_size": 28,
+			"output_px": 28.0,
+			"path": "/root/T214Capture/@Control@2998/TitleScreen/Chapters/Content/Chapter2",
+			"rect": [
+				0.0,
+				159.0,
+				988.0,
+				44.0
+			],
+			"screen_scale": 1.0,
+			"text": "Chapter 2 — The Games — Locked"
+		},
+		{
+			"font_size": 28,
+			"output_px": 28.0,
+			"path": "/root/T214Capture/@Control@2998/TitleScreen/Chapters/Content/Chapter3",
+			"rect": [
+				0.0,
+				227.0,
+				988.0,
+				44.0
+			],
+			"screen_scale": 1.0,
+			"text": "Chapter 3 — The Hunt — Locked"
+		},
+		{
+			"font_size": 28,
+			"output_px": 28.0,
+			"path": "/root/T214Capture/@Control@2998/TitleScreen/Chapters/Content/Chapter4",
+			"rect": [
+				0.0,
+				295.0,
+				988.0,
+				44.0
+			],
+			"screen_scale": 1.0,
+			"text": "Chapter 4 — The Survivor — Locked"
+		},
+		{
+			"font_size": 28,
+			"output_px": 28.0,
+			"path": "/root/T214Capture/@Control@2998/TitleScreen/Chapters/Content/Back",
+			"rect": [
+				0.0,
+				363.0,
+				988.0,
+				60.0
+			],
+			"screen_scale": 1.0,
+			"text": "Back"
+		}
+	]
+}

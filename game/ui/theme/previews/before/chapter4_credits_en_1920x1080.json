@@ -1,0 +1,182 @@
+{
+	"locale": "en",
+	"logical_resolution": [
+		1920,
+		1080
+	],
+	"resolution": [
+		1920,
+		1080
+	],
+	"text": [
+		{
+			"font_size": 46,
+			"output_px": 46.0,
+			"path": "/root/T214Capture/@Control@3791/Chapter4EndCard/Root/Card/Content/End",
+			"rect": [
+				0.0,
+				0.0,
+				1257.0,
+				59.0
+			],
+			"screen_scale": 1.0,
+			"text": "End of chapter 4"
+		},
+		{
+			"font_size": 36,
+			"output_px": 36.0,
+			"path": "/root/T214Capture/@Control@3791/Chapter4EndCard/Root/Card/Content/Thanks",
+			"rect": [
+				0.0,
+				79.0,
+				1257.0,
+				46.0
+			],
+			"screen_scale": 1.0,
+			"text": "Thank you for playing"
+		},
+		{
+			"font_size": 28,
+			"output_px": 28.0,
+			"path": "/root/T214Capture/@Control@3791/Chapter4EndCard/Root/Card/Content/Credits/@VBoxContainer@3795/KITTitle",
+			"rect": [
+				0.0,
+				0.0,
+				1249.0,
+				36.0
+			],
+			"screen_scale": 1.0,
+			"text": "Environment and models"
+		},
+		{
+			"font_size": 24,
+			"output_px": 24.0,
+			"path": "/root/T214Capture/@Control@3791/Chapter4EndCard/Root/Card/Content/Credits/@VBoxContainer@3795/KITText",
+			"rect": [
+				0.0,
+				60.0,
+				1249.0,
+				65.0
+			],
+			"screen_scale": 1.0,
+			"text": "Lane B — dormitory kit, floor 4, silhouette and mirror. Models and textures created with scripts using Blender 5.2.2 LTS and Godot. Assets: CC0 1.0 — https://creativecommons.org/publicdomain/zero/1.0/"
+		},
+		{
+			"font_size": 28,
+			"output_px": 28.0,
+			"path": "/root/T214Capture/@Control@3791/Chapter4EndCard/Root/Card/Content/Credits/@VBoxContainer@3795/AUDIOTitle",
+			"rect": [
+				0.0,
+				149.0,
+				1249.0,
+				36.0
+			],
+			"screen_scale": 1.0,
+			"text": "Audio"
+		},
+		{
+			"font_size": 24,
+			"output_px": 24.0,
+			"path": "/root/T214Capture/@Control@3791/Chapter4EndCard/Root/Card/Content/Credits/@VBoxContainer@3795/AUDIOText",
+			"rect": [
+				0.0,
+				209.0,
+				1249.0,
+				133.0
+			],
+			"screen_scale": 1.0,
+			"text": "Lane E — ambience, footsteps, segment 1–2 effects and scare/chase sounds. Synthesized with Python 3 and processed with FFmpeg 9.0.2; no external samples. Waveforms and OGG: CC0 1.0. Background music synthesized for the project (CC0). PA voice generated offline with eSpeak NG 1.52.0 (GPL-3.0-or-later tool, not shipped with the game)."
+		},
+		{
+			"font_size": 28,
+			"output_px": 28.0,
+			"path": "/root/T214Capture/@Control@3791/Chapter4EndCard/Root/Card/Content/Credits/@VBoxContainer@3795/FONTTitle",
+			"rect": [
+				0.0,
+				366.0,
+				1249.0,
+				36.0
+			],
+			"screen_scale": 1.0,
+			"text": "Font"
+		},
+		{
+			"font_size": 24,
+			"output_px": 24.0,
+			"path": "/root/T214Capture/@Control@3791/Chapter4EndCard/Root/Card/Content/Credits/@VBoxContainer@3795/FONTText",
+			"rect": [
+				0.0,
+				426.0,
+				1249.0,
+				65.0
+			],
+			"screen_scale": 1.0,
+			"text": "Be Vietnam Pro Regular — The Be Vietnam Pro Project Authors. SIL Open Font License 1.1. https://github.com/bettergui/BeVietnamPro"
+		},
+		{
+			"font_size": 28,
+			"output_px": 28.0,
+			"path": "/root/T214Capture/@Control@3791/Chapter4EndCard/Root/Card/Content/Credits/@VBoxContainer@3795/AITitle",
+			"rect": [
+				0.0,
+				515.0,
+				1249.0,
+				36.0
+			],
+			"screen_scale": 1.0,
+			"text": "AI-assisted content"
+		},
+		{
+			"font_size": 24,
+			"output_px": 24.0,
+			"path": "/root/T214Capture/@Control@3791/Chapter4EndCard/Root/Card/Content/Credits/@VBoxContainer@3795/AIText",
+			"rect": [
+				0.0,
+				575.0,
+				1249.0,
+				133.0
+			],
+			"screen_scale": 1.0,
+			"text": "OpenAI Codex helped write the code that generates models, textures, scenes, shaders and synthesized audio. Anthropic Claude wrote the core architecture, story flow, PS1 filter, footstep audio code and the floor 4 prop models. The background is an in-game capture made with Godot; no image-generation models or assets from other games were used."
+		},
+		{
+			"font_size": 28,
+			"output_px": 28.0,
+			"path": "/root/T214Capture/@Control@3791/Chapter4EndCard/Root/Card/Content/Credits/@VBoxContainer@3795/DICTIONARYTitle",
+			"rect": [
+				0.0,
+				732.0,
+				1249.0,
+				36.0
+			],
+			"screen_scale": 1.0,
+			"text": "Word-chain dictionary"
+		},
+		{
+			"font_size": 24,
+			"output_px": 24.0,
+			"path": "/root/T214Capture/@Control@3791/Chapter4EndCard/Root/Card/Content/Credits/@VBoxContainer@3795/DICTIONARYText",
+			"rect": [
+				0.0,
+				792.0,
+				1249.0,
+				303.0
+			],
+			"screen_scale": 1.0,
+			"text": "Vietnamese and English Wiktionary — Wiktionary contributors.\nhttps://vi.wiktionary.org · https://en.wiktionary.org\nExtracted by kaikki.org (wiktextract)\nhttps://kaikki.org/viwiktionary/Tiếng Việt/\nhttps://kaikki.org/dictionary/Vietnamese/\nCC BY-SA 4.0\nhttps://creativecommons.org/licenses/by-sa/4.0/\nAdapted: only two-syllable words retained; proper names, symbols and affixes removed; normalization, corpse vocabulary flags and game words added."
+		},
+		{
+			"font_size": 28,
+			"output_px": 28.0,
+			"path": "/root/T214Capture/@Control@3791/Chapter4EndCard/Root/Card/Content/Return",
+			"rect": [
+				0.0,
+				776.0,
+				1257.0,
+				60.0
+			],
+			"screen_scale": 1.0,
+			"text": "Return to title"
+		}
+	]
+}

@@ -1,0 +1,156 @@
+{
+	"locale": "en",
+	"logical_resolution": [
+		1920,
+		1080
+	],
+	"resolution": [
+		1280,
+		720
+	],
+	"text": [
+		{
+			"font_size": 40,
+			"output_px": 26.6666666666667,
+			"path": "/root/T214Capture/@Control@1835/Notebook/Root/Book/Content/Title",
+			"rect": [
+				0.0,
+				0.0,
+				1564.0,
+				51.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Rulebook"
+		},
+		{
+			"font_size": 32,
+			"output_px": 21.3333333333333,
+			"path": "/root/T214Capture/@Control@1835/Notebook/Root/Book/Content/Scroll/Groups/@VBoxContainer@1851/@Label@1852",
+			"rect": [
+				0.0,
+				0.0,
+				1564.0,
+				41.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Paper behind room 407's door"
+		},
+		{
+			"font_size": 26,
+			"output_px": 17.3333333333333,
+			"path": "/root/T214Capture/@Control@1835/Notebook/Root/Book/Content/Scroll/Groups/@VBoxContainer@1851/@HBoxContainer@1853/Text",
+			"rect": [
+				0.0,
+				13.0,
+				1284.0,
+				33.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "After midnight, turn off the main light in your room."
+		},
+		{
+			"font_size": 28,
+			"output_px": 18.6666666666667,
+			"path": "/root/T214Capture/@Control@1835/Notebook/Root/Book/Content/Scroll/Groups/@VBoxContainer@1851/@HBoxContainer@1853/Suspect",
+			"rect": [
+				1308.0,
+				0.0,
+				256.0,
+				60.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Noteworthy"
+		},
+		{
+			"font_size": 26,
+			"output_px": 17.3333333333333,
+			"path": "/root/T214Capture/@Control@1835/Notebook/Root/Book/Content/Scroll/Groups/@VBoxContainer@1851/@HBoxContainer@1854/Text",
+			"rect": [
+				0.0,
+				0.0,
+				1284.0,
+				69.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "If someone knocks after midnight, do not open and do not answer. Dorm staff always call the room number before knocking."
+		},
+		{
+			"font_size": 28,
+			"output_px": 18.6666666666667,
+			"path": "/root/T214Capture/@Control@1835/Notebook/Root/Book/Content/Scroll/Groups/@VBoxContainer@1851/@HBoxContainer@1854/Suspect",
+			"rect": [
+				1308.0,
+				4.0,
+				256.0,
+				60.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Noteworthy"
+		},
+		{
+			"font_size": 26,
+			"output_px": 17.3333333333333,
+			"path": "/root/T214Capture/@Control@1835/Notebook/Root/Book/Content/Scroll/Groups/@VBoxContainer@1851/@HBoxContainer@1855/Text",
+			"rect": [
+				0.0,
+				13.0,
+				1284.0,
+				33.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "If you hear slippers walking behind you in the corridor, stop, turn around and greet them."
+		},
+		{
+			"font_size": 28,
+			"output_px": 18.6666666666667,
+			"path": "/root/T214Capture/@Control@1835/Notebook/Root/Book/Content/Scroll/Groups/@VBoxContainer@1851/@HBoxContainer@1855/Suspect",
+			"rect": [
+				1308.0,
+				0.0,
+				256.0,
+				60.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Noteworthy"
+		},
+		{
+			"font_size": 26,
+			"output_px": 17.3333333333333,
+			"path": "/root/T214Capture/@Control@1835/Notebook/Root/Book/Content/Scroll/Groups/@VBoxContainer@1851/@HBoxContainer@1856/Text",
+			"rect": [
+				0.0,
+				13.0,
+				1284.0,
+				33.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "At roll call, answer \"Here\" only to your own name."
+		},
+		{
+			"font_size": 28,
+			"output_px": 18.6666666666667,
+			"path": "/root/T214Capture/@Control@1835/Notebook/Root/Book/Content/Scroll/Groups/@VBoxContainer@1851/@HBoxContainer@1856/Suspect",
+			"rect": [
+				1308.0,
+				0.0,
+				256.0,
+				60.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Noteworthy"
+		},
+		{
+			"font_size": 28,
+			"output_px": 18.6666666666667,
+			"path": "/root/T214Capture/@Control@1835/Notebook/Root/Book/Content/Close",
+			"rect": [
+				1287.0,
+				884.0,
+				277.0,
+				60.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Close (Tab / Esc)"
+		}
+	]
+}

@@ -1,0 +1,78 @@
+{
+	"locale": "en",
+	"logical_resolution": [
+		1920,
+		1080
+	],
+	"resolution": [
+		1920,
+		1080
+	],
+	"text": [
+		{
+			"font_size": 40,
+			"output_px": 40.0,
+			"path": "/root/T214Capture/@Control@3046/PauseMenu/Root/PauseCard/Buttons/Title",
+			"rect": [
+				0.0,
+				0.0,
+				512.0,
+				51.0
+			],
+			"screen_scale": 1.0,
+			"text": "Paused"
+		},
+		{
+			"font_size": 28,
+			"output_px": 28.0,
+			"path": "/root/T214Capture/@Control@3046/PauseMenu/Root/PauseCard/Buttons/Resume",
+			"rect": [
+				0.0,
+				79.0,
+				512.0,
+				60.0
+			],
+			"screen_scale": 1.0,
+			"text": "Resume"
+		},
+		{
+			"font_size": 28,
+			"output_px": 28.0,
+			"path": "/root/T214Capture/@Control@3046/PauseMenu/Root/PauseCard/Buttons/Settings",
+			"rect": [
+				0.0,
+				167.0,
+				512.0,
+				60.0
+			],
+			"screen_scale": 1.0,
+			"text": "Settings"
+		},
+		{
+			"font_size": 28,
+			"output_px": 28.0,
+			"path": "/root/T214Capture/@Control@3046/PauseMenu/Root/PauseCard/Buttons/ReturnTitle",
+			"rect": [
+				0.0,
+				255.0,
+				512.0,
+				60.0
+			],
+			"screen_scale": 1.0,
+			"text": "Return to title"
+		},
+		{
+			"font_size": 28,
+			"output_px": 28.0,
+			"path": "/root/T214Capture/@Control@3046/PauseMenu/Root/PauseCard/Buttons/Quit",
+			"rect": [
+				0.0,
+				343.0,
+				512.0,
+				60.0
+			],
+			"screen_scale": 1.0,
+			"text": "Quit game"
+		}
+	]
+}

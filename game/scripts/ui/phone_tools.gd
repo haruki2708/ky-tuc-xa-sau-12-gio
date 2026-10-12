@@ -7,6 +7,7 @@ var _tabs: HBoxContainer
 var _map: VBoxContainer
 var _camera: VBoxContainer
 var _grid: GridContainer
+var _map_scroll: ScrollContainer
 var _feed: TextureRect
 var _caption: Label
 var _notice: Label
@@ -23,25 +24,36 @@ var current_tab: int:
 func _ready() -> void:
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
 	_tabs = HBoxContainer.new()
+	_tabs.add_theme_constant_override("separation", 6)
 	add_child(_tabs)
 	for index in 3:
 		var button := _button(_tabs, ["UI_PHONE_TAB_CALL", "UI_PHONE_TAB_MAP", "UI_PHONE_TAB_CAMERA"][index], select_tab.bind(index))
 		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		button.icon = load("res://ui/theme/icons/%s.svg" % ["phone", "map", "camera"][index])
+		button.add_theme_constant_override("icon_max_width", 24)
+		button.add_theme_constant_override("h_separation", 8)
 	_notice = _label(self, "")
 	_notice.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	_notice.hide()
 	_map = VBoxContainer.new()
+	_map.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	add_child(_map)
+	_map_scroll = ScrollContainer.new()
+	_map_scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	_map_scroll.custom_minimum_size.y = 128
+	_map_scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	_map.add_child(_map_scroll)
 	_grid = GridContainer.new()
 	_grid.columns = 8
 	_grid.add_theme_constant_override("h_separation", 4)
 	_grid.add_theme_constant_override("v_separation", 1)
-	_map.add_child(_grid)
+	_grid.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_map_scroll.add_child(_grid)
 	for index in 48:
 		var room := (index / 8 + 1) * 100 + index % 8 + 1
 		var button := _button(_grid, str(room), toggle_room.bind(room))
 		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		button.add_theme_font_size_override("font_size", 18)
+		button.add_theme_font_size_override("font_size", 24)
 	_label(_map, "UI_PHONE_MAP_HELP")
 	_camera = VBoxContainer.new()
 	_camera.size_flags_vertical = Control.SIZE_EXPAND_FILL
@@ -57,7 +69,7 @@ func _ready() -> void:
 	_feed.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	_feed.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 	_feed.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	_feed.custom_minimum_size.y = 175
+	_feed.custom_minimum_size.y = 110
 	_feed.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	var material := ShaderMaterial.new()
 	material.shader = preload("res://ui/phone/cctv.gdshader")
@@ -84,11 +96,13 @@ func _button(parent: Node, key: String, callback: Callable) -> Button:
 	var button := Button.new()
 	button.text = key
 	button.focus_mode = Control.FOCUS_NONE
-	button.add_theme_font_size_override("font_size", 19)
+	button.add_theme_font_size_override("font_size", 24)
 	# Compact phone controls must fit above the HUD subtitle strip.
 	for state_name in ["normal", "hover", "pressed", "disabled"]:
 		var style := StyleBoxFlat.new()
-		style.bg_color = Color(0.12, 0.16, 0.21) if state_name == "normal" else Color(0.2, 0.28, 0.35)
+		style.bg_color = Color(0.055, 0.105, 0.11) if state_name == "normal" else Color(0.16, 0.25, 0.22)
+		style.border_width_bottom = 1
+		style.border_color = Color(0.44, 0.62, 0.55, 0.7)
 		style.content_margin_left = 6
 		style.content_margin_right = 6
 		style.content_margin_top = 3
@@ -103,7 +117,8 @@ func _button(parent: Node, key: String, callback: Callable) -> Button:
 func _label(parent: Node, key: String) -> Label:
 	var label := Label.new()
 	label.text = key
-	label.add_theme_font_size_override("font_size", 18)
+	label.add_theme_font_size_override("font_size", 24)
+	label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	label.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	parent.add_child(label)
 	return label
@@ -238,6 +253,8 @@ func refresh() -> void:
 		button.text = str(room) + (" ×" if marked else " *" if room == 407 else "")
 		button.modulate = Color(1, 0.4, 0.35) if marked else Color(1, 0.85, 0.5) if index == _room_index else Color.WHITE
 		button.tooltip_text = tr("UI_PHONE_MY_ROOM") if room == 407 else str(room)
+	if tab == 1:
+		_map_scroll.ensure_control_visible(_grid.get_child(_room_index))
 	if _notice_left > 0.0:
 		var key: String = _notice.get_meta("camera_label", "")
 		_notice.text = tr("UI_CCTV_MOVEMENT") % (tr(key) if not key.is_empty() else str(_notice.get_meta("camera_id", "")))

@@ -1,0 +1,91 @@
+{
+	"locale": "en",
+	"logical_resolution": [
+		1920,
+		1080
+	],
+	"resolution": [
+		1280,
+		720
+	],
+	"text": [
+		{
+			"font_size": 36,
+			"output_px": 24.0,
+			"path": "/root/T214Capture/@Control@2034/DocumentView/Root/Paper/Content/Title",
+			"rect": [
+				0.0,
+				0.0,
+				1155.0,
+				46.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Holiday night rules"
+		},
+		{
+			"font_size": 29,
+			"output_px": 19.3333333333333,
+			"path": "/root/T214Capture/@Control@2034/DocumentView/Root/Paper/Content/Scroll/Lines/@Label@2038",
+			"rect": [
+				0.0,
+				0.0,
+				1155.0,
+				38.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "1. After midnight, turn off the main light in your room."
+		},
+		{
+			"font_size": 29,
+			"output_px": 19.3333333333333,
+			"path": "/root/T214Capture/@Control@2034/DocumentView/Root/Paper/Content/Scroll/Lines/@Label@2039",
+			"rect": [
+				0.0,
+				62.0,
+				1155.0,
+				79.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "2. If someone knocks after midnight, do not open and do not answer. Dorm staff always call the room number before knocking."
+		},
+		{
+			"font_size": 29,
+			"output_px": 19.3333333333333,
+			"path": "/root/T214Capture/@Control@2034/DocumentView/Root/Paper/Content/Scroll/Lines/@Label@2040",
+			"rect": [
+				0.0,
+				165.0,
+				1155.0,
+				79.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "3. If you hear slippers walking behind you in the corridor, stop, turn around and greet them."
+		},
+		{
+			"font_size": 29,
+			"output_px": 19.3333333333333,
+			"path": "/root/T214Capture/@Control@2034/DocumentView/Root/Paper/Content/Scroll/Lines/@Label@2041",
+			"rect": [
+				0.0,
+				268.0,
+				1155.0,
+				38.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "4. At roll call, answer \"Here\" only to your own name."
+		},
+		{
+			"font_size": 28,
+			"output_px": 18.6666666666667,
+			"path": "/root/T214Capture/@Control@2034/DocumentView/Root/Hint",
+			"rect": [
+				192.0,
+				1004.40002441406,
+				1536.0,
+				36.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "E / Left click / Esc / Tab — Close · Scroll to read more"
+		}
+	]
+}

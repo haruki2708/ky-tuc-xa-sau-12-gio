@@ -1,0 +1,65 @@
+{
+	"locale": "vi",
+	"logical_resolution": [
+		1920,
+		1080
+	],
+	"resolution": [
+		1920,
+		1080
+	],
+	"text": [
+		{
+			"font_size": 40,
+			"output_px": 40.0,
+			"path": "/root/T214Capture/@Control@1960/TitleScreen/Warning/Content/Heading",
+			"rect": [
+				0.0,
+				0.0,
+				1104.0,
+				51.0
+			],
+			"screen_scale": 1.0,
+			"text": "Cảnh báo nội dung"
+		},
+		{
+			"font_size": 30,
+			"output_px": 30.0,
+			"path": "/root/T214Capture/@Control@1960/TitleScreen/Warning/Content/Description",
+			"rect": [
+				0.0,
+				75.0,
+				1104.0,
+				290.0
+			],
+			"screen_scale": 1.0,
+			"text": "Game có máu, cảnh chết bạo lực, xác người, cảnh hù và âm thanh lớn đột ngột; có nhắc tới thảm họa động đất. Bật Giảm hù dọa trong Cài đặt để giảm hù dọa và máu me."
+		},
+		{
+			"font_size": 28,
+			"output_px": 28.0,
+			"path": "/root/T214Capture/@Control@1960/TitleScreen/Warning/Content/Continue",
+			"rect": [
+				0.0,
+				389.0,
+				1104.0,
+				60.0
+			],
+			"screen_scale": 1.0,
+			"text": "Tiếp tục"
+		},
+		{
+			"font_size": 28,
+			"output_px": 28.0,
+			"path": "/root/T214Capture/@Control@1960/TitleScreen/Warning/Content/ReduceScares",
+			"rect": [
+				0.0,
+				473.0,
+				1104.0,
+				60.0
+			],
+			"screen_scale": 1.0,
+			"text": "Bật Giảm hù dọa rồi tiếp tục"
+		}
+	]
+}

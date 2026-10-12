@@ -116,6 +116,7 @@ func _render_compare() -> void:
 				label.fit_content = true
 				label.mouse_filter = Control.MOUSE_FILTER_IGNORE
 				label.add_theme_font_size_override("normal_font_size", 25)
+				label.add_theme_color_override("default_color", Color("f0eee0"))
 				label.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 				label.offset_left = 16
 				label.offset_top = 8

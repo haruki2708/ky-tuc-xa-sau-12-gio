@@ -25,7 +25,7 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color(0.015, 0.02, 0.03, 0.9)
+color = Color(0.008, 0.017, 0.018, 0.78)
 
 [node name="PauseCard" type="PanelContainer" parent="Root"]
 layout_mode = 0
@@ -33,10 +33,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -280.0
-offset_top = -260.0
-offset_right = 280.0
-offset_bottom = 260.0
+offset_left = -304.0
+offset_top = -280.0
+offset_right = 304.0
+offset_bottom = 280.0
 
 [node name="Buttons" type="VBoxContainer" parent="Root/PauseCard"]
 layout_mode = 2
@@ -45,23 +45,28 @@ theme_override_constants/separation = 28
 [node name="Title" type="Label" parent="Root/PauseCard/Buttons"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
+theme_type_variation = &"HeadingLabel"
 text = "UI_PAUSE_TITLE"
 horizontal_alignment = 1
 
 [node name="Resume" type="Button" parent="Root/PauseCard/Buttons"]
 layout_mode = 2
+theme_type_variation = &"TitleButton"
 text = "UI_PAUSE_RESUME"
 
 [node name="Settings" type="Button" parent="Root/PauseCard/Buttons"]
 layout_mode = 2
+theme_type_variation = &"TitleButton"
 text = "UI_SETTINGS_TITLE"
 
 [node name="ReturnTitle" type="Button" parent="Root/PauseCard/Buttons"]
 layout_mode = 2
+theme_type_variation = &"TitleButton"
 text = "UI_RETURN_TITLE"
 
 [node name="Quit" type="Button" parent="Root/PauseCard/Buttons"]
 layout_mode = 2
+theme_type_variation = &"TitleButton"
 text = "UI_PAUSE_QUIT"
 
 [node name="SettingsCard" type="PanelContainer" parent="Root"]
