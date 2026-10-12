@@ -1,0 +1,225 @@
+[
+  {
+    "asset": "plastered_wall_04",
+    "url": "https://polyhaven.com/a/plastered_wall_04",
+    "authors": {
+      "Rob Tuytel": "All"
+    },
+    "license": "CC0-1.0",
+    "license_url": "https://polyhaven.com/license",
+    "resolution": "2k",
+    "source_width_mm": [
+      3199.9998092651367,
+      3199.9998092651367
+    ],
+    "maps": [
+      {
+        "channel": "Diffuse",
+        "file": "game/assets/models/graphics_pilot/room407_corner/textures/plastered_wall_04_color.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/plastered_wall_04/plastered_wall_04_diff_2k.jpg",
+        "sha256": "aaf0e693291d51d13531480625a942f950fed23f6b1d1008ee0e91f2a23a7b1e",
+        "bytes": 1465312
+      },
+      {
+        "channel": "nor_gl",
+        "file": "game/assets/models/graphics_pilot/room407_corner/textures/plastered_wall_04_normal.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/plastered_wall_04/plastered_wall_04_nor_gl_2k.jpg",
+        "sha256": "904f6ca0b569754502675b8891b5d6aad1d8a07f938e8a43cf385170a21a12dc",
+        "bytes": 1760685
+      },
+      {
+        "channel": "arm",
+        "file": "game/assets/models/graphics_pilot/room407_corner/textures/plastered_wall_04_arm.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/plastered_wall_04/plastered_wall_04_arm_2k.jpg",
+        "sha256": "01034a617bb4ecf42da38bfa5abe70b3e8f5b76f73f783f43b68ffd06865e205",
+        "bytes": 1079967
+      }
+    ]
+  },
+  {
+    "asset": "interior_tiles",
+    "url": "https://polyhaven.com/a/interior_tiles",
+    "authors": {
+      "Charlotte Baglioni": "All"
+    },
+    "license": "CC0-1.0",
+    "license_url": "https://polyhaven.com/license",
+    "resolution": "2k",
+    "source_width_mm": [
+      1899.9998569488525,
+      1899.9998569488525
+    ],
+    "maps": [
+      {
+        "channel": "Diffuse",
+        "file": "game/assets/models/graphics_pilot/room407_corner/textures/interior_tiles_color.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/interior_tiles/interior_tiles_diff_2k.jpg",
+        "sha256": "57d3ce95255500e7b0fa677b99b258427a1b1676bd452e90f710eb4ac41f531f",
+        "bytes": 2879908
+      },
+      {
+        "channel": "nor_gl",
+        "file": "game/assets/models/graphics_pilot/room407_corner/textures/interior_tiles_normal.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/interior_tiles/interior_tiles_nor_gl_2k.jpg",
+        "sha256": "67dc47321ca45fc71123eb3c285f7859ca47147d2a93655ee53d44f6a284bffe",
+        "bytes": 1924372
+      },
+      {
+        "channel": "arm",
+        "file": "game/assets/models/graphics_pilot/room407_corner/textures/interior_tiles_arm.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/interior_tiles/interior_tiles_arm_2k.jpg",
+        "sha256": "a0c9e96712f5184f569537b3efaf7179d15d4a6398c1fa69ededefc8227e30e1",
+        "bytes": 2472830
+      }
+    ]
+  },
+  {
+    "asset": "rusty_painted_metal",
+    "url": "https://polyhaven.com/a/rusty_painted_metal",
+    "authors": {
+      "Amal Kumar": "All"
+    },
+    "license": "CC0-1.0",
+    "license_url": "https://polyhaven.com/license",
+    "resolution": "1k",
+    "source_width_mm": [
+      2200.000047683716,
+      2200.000047683716
+    ],
+    "maps": [
+      {
+        "channel": "Diffuse",
+        "file": "game/assets/models/graphics_pilot/room407_corner/textures/rusty_painted_metal_color.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/rusty_painted_metal/rusty_painted_metal_diff_1k.jpg",
+        "sha256": "b086937b45c3628116a838363364a29bd3c5d2542cff906ec1d92d681ee80e15",
+        "bytes": 471866
+      },
+      {
+        "channel": "nor_gl",
+        "file": "game/assets/models/graphics_pilot/room407_corner/textures/rusty_painted_metal_normal.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/rusty_painted_metal/rusty_painted_metal_nor_gl_1k.jpg",
+        "sha256": "f3372e2f60517df2d0e02c1472eb24071d95182d771c30b7ecd8e1b5142768bb",
+        "bytes": 484158
+      },
+      {
+        "channel": "arm",
+        "file": "game/assets/models/graphics_pilot/room407_corner/textures/rusty_painted_metal_arm.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/rusty_painted_metal/rusty_painted_metal_arm_1k.jpg",
+        "sha256": "cd3ef3750348bd8afa552ac41120310f740cd4bfd3c303d81e68e3100bdf7fdd",
+        "bytes": 372615
+      }
+    ]
+  },
+  {
+    "asset": "denim_fabric",
+    "url": "https://polyhaven.com/a/denim_fabric",
+    "authors": {
+      "Rob Tuytel": "All"
+    },
+    "license": "CC0-1.0",
+    "license_url": "https://polyhaven.com/license",
+    "resolution": "1k",
+    "source_width_mm": [
+      100.00000149011612,
+      99.99999403953552
+    ],
+    "maps": [
+      {
+        "channel": "Diffuse",
+        "file": "game/assets/models/graphics_pilot/room407_corner/textures/denim_fabric_color.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/denim_fabric/denim_fabric_diff_1k.jpg",
+        "sha256": "d6d0254e2c90768482b0be8cfdc16e18117acc92bad00d406fd4b9be24facdec",
+        "bytes": 886486
+      },
+      {
+        "channel": "nor_gl",
+        "file": "game/assets/models/graphics_pilot/room407_corner/textures/denim_fabric_normal.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/denim_fabric/denim_fabric_nor_gl_1k.jpg",
+        "sha256": "de0e9c5ed5cce7dacd50a67be16c6d8b8dc036907638e3702729c2f60296094e",
+        "bytes": 474669
+      },
+      {
+        "channel": "arm",
+        "file": "game/assets/models/graphics_pilot/room407_corner/textures/denim_fabric_arm.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/denim_fabric/denim_fabric_arm_1k.jpg",
+        "sha256": "2f46deb1894bff05a9416f89ecdc42a33d8f879f5152d18b2e2dc3b6b675eb8e",
+        "bytes": 223457
+      }
+    ]
+  },
+  {
+    "asset": "wood_table_worn",
+    "url": "https://polyhaven.com/a/wood_table_worn",
+    "authors": {
+      "Dimitrios Savva": "Photography",
+      "Rico Cilliers": "Processing"
+    },
+    "license": "CC0-1.0",
+    "license_url": "https://polyhaven.com/license",
+    "resolution": "1k",
+    "source_width_mm": [
+      549.9999523162842,
+      550.0000715255737
+    ],
+    "maps": [
+      {
+        "channel": "Diffuse",
+        "file": "game/assets/models/graphics_pilot/room407_corner/textures/wood_table_worn_color.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/wood_table_worn/wood_table_worn_diff_1k.jpg",
+        "sha256": "092ab3465a6a24b24d092ea86865f332c3bd239b8eb2fd664b70357082031a3f",
+        "bytes": 761543
+      },
+      {
+        "channel": "nor_gl",
+        "file": "game/assets/models/graphics_pilot/room407_corner/textures/wood_table_worn_normal.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/wood_table_worn/wood_table_worn_nor_gl_1k.jpg",
+        "sha256": "0d494f3fe08320a05f0f966a7a3ca3c4cd6e3f7cde5b176b9bc167b5593fd00d",
+        "bytes": 747433
+      },
+      {
+        "channel": "arm",
+        "file": "game/assets/models/graphics_pilot/room407_corner/textures/wood_table_worn_arm.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/wood_table_worn/wood_table_worn_arm_1k.jpg",
+        "sha256": "b4f07c36a701bfd8dfe95e1fa836b32ae9dd5c0b4b73346cfdf5e1bacbb98435",
+        "bytes": 739348
+      }
+    ]
+  },
+  {
+    "asset": "plastered_wall_04",
+    "url": "https://polyhaven.com/a/plastered_wall_04",
+    "authors": {
+      "Rob Tuytel": "All"
+    },
+    "license": "CC0-1.0",
+    "license_url": "https://polyhaven.com/license",
+    "resolution": "1k",
+    "source_width_mm": [
+      3199.9998092651367,
+      3199.9998092651367
+    ],
+    "maps": [
+      {
+        "channel": "Diffuse",
+        "file": "game/assets/models/graphics_pilot/room407_corner/textures/plastered_wall_04_small_color.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/plastered_wall_04/plastered_wall_04_diff_1k.jpg",
+        "sha256": "52d789111bbe93d311c22e49d28b56256593c8f84c75742642403da857a36503",
+        "bytes": 299230
+      },
+      {
+        "channel": "nor_gl",
+        "file": "game/assets/models/graphics_pilot/room407_corner/textures/plastered_wall_04_small_normal.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/plastered_wall_04/plastered_wall_04_nor_gl_1k.jpg",
+        "sha256": "c0a41dc06e33072ec1156d89f3bd4b481a479616791d4e9df6c5ee7b3283db82",
+        "bytes": 427268
+      },
+      {
+        "channel": "arm",
+        "file": "game/assets/models/graphics_pilot/room407_corner/textures/plastered_wall_04_small_arm.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/plastered_wall_04/plastered_wall_04_arm_1k.jpg",
+        "sha256": "9ffc6cc7b58f95972361ac887df92fdf3e6d86b96ecadcac17cbc2676cb8617d",
+        "bytes": 212525
+      }
+    ]
+  }
+]

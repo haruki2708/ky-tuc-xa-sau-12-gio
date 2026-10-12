@@ -58,4 +58,12 @@ Không Tripo, không đo FPS, không chạy bot, không sửa core/cảnh chươ
 
 ## Handoff (agent điền)
 
+### 12/10/2026 — Lane B, đang thực hiện
+
+- Workspace `D:\GAME_WORK\lane-b` sạch khi bắt đầu; fetch, tạo `lane-b/T-213-room407-corner-pilot` từ `origin/main` **25e3bfe**, có D-089/D-090. Giữ stash T-209 lịch sử; không làm lại G1.
+- Đã dựng script Blender `art_source/graphics_upgrade/room407_corner/build_corner.py`, file `room407_corner.blend` có đủ tám đồ Tripo và texture tương đối; mở lại offline không thiếu ảnh. Pilot `game/scenes/levels/graphics_pilot/room407_corner_pilot.tscn`, nguồn CC0/URL/hash tại `CREDITS.md` + `texture_sources.json`, số đo/basis tại README + placements.json. GLB mới tách 5 phần để từng file <10 MiB; giường 7.016 tris, bàn 1.400, phần dựng mới 11.392; tổng cùng Tripo 49.029.
+- Có test riêng `game/tests/levels/test_room407_corner.gd`: cô lập gameplay/capture, mặt sàn/tường/trần/nệm, placement/basis/đỡ khăn và nồi cơm. **Chưa có RESULT test/check T-213**, không dùng kết quả T-209 thay thế. Chất lượng và ưu/nhược GI chờ ảnh renderer.
+- Chủ dự án đã chuyển yêu cầu và **bàn giao lượt kế tiếp khi Godot trống**. Lane B đang chờ chuỗi full test/check của integrator hoàn tất trước khi chạy test riêng/render/full test/check của mình. Không Tripo mới, FPS hoặc bot. Cảnh chương/default/core không sửa.
+- Chưa xong: chụp/xem 21 ảnh (4 góc bắt buộc + 1 góc so Tripo, hai trạng thái, trước/sau; thêm đối chứng GI), chỉnh nếu cần, full test/check, commit/push. Không đánh dấu chất lượng hoặc toàn task done.
+
 ## Review (integrator)

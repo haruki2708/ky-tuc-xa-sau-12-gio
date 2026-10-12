@@ -1,0 +1,45 @@
+"""Download selected CC0 surface maps from Poly Haven's public asset API."""
+import hashlib
+import json
+import urllib.request
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[3]
+HERE = Path(__file__).resolve().parent
+DEST = ROOT / "game/assets/models/graphics_pilot/room407_corner/textures"
+SETS = {"plastered_wall_04": "2k", "interior_tiles": "2k",
+        "rusty_painted_metal": "1k", "denim_fabric": "1k", "wood_table_worn": "1k"}
+
+
+def fetch(url):
+    request = urllib.request.Request(url, headers={"User-Agent": "Room407-art-pilot/1.0"})
+    with urllib.request.urlopen(request, timeout=90) as response:
+        return response.read()
+
+
+def main():
+    DEST.mkdir(parents=True, exist_ok=True)
+    records = []
+    for asset, size in [*SETS.items(), ("plastered_wall_04", "1k")]:
+        info = json.loads(fetch("https://api.polyhaven.com/info/" + asset))
+        files = json.loads(fetch("https://api.polyhaven.com/files/" + asset))
+        row = {"asset": asset, "url": "https://polyhaven.com/a/" + asset,
+               "authors": info["authors"], "license": "CC0-1.0",
+               "license_url": "https://polyhaven.com/license", "resolution": size,
+               "source_width_mm": info.get("dimensions"), "maps": []}
+        for channel, suffix in [("Diffuse", "color"), ("nor_gl", "normal"), ("arm", "arm")]:
+            entry = files[channel][size]["jpg"]
+            stem = asset + ("_small" if asset == "plastered_wall_04" and size == "1k" else "")
+            target = DEST / (stem + "_" + suffix + ".jpg")
+            data = target.read_bytes() if target.exists() else fetch(entry["url"])
+            assert hashlib.md5(data).hexdigest() == entry["md5"], target
+            target.write_bytes(data)
+            row["maps"].append({"channel": channel, "file": str(target.relative_to(ROOT)).replace("\\", "/"),
+                                "url": entry["url"], "sha256": hashlib.sha256(data).hexdigest(), "bytes": len(data)})
+        records.append(row)
+        print("Downloaded", asset, flush=True)
+    (HERE / "texture_sources.json").write_text(json.dumps(records, indent=2) + "\n", encoding="utf-8")
+
+
+if __name__ == "__main__":
+    main()
