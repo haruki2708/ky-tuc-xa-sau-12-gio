@@ -1,0 +1,37 @@
+{
+  "basis": "Godot room-local metres: x, y up, z; room world origin (30,0,0)",
+  "groups": {
+    "floor": {
+      "triangles": 432,
+      "mesh_count": 4,
+      "file_bytes": 7303020
+    },
+    "architecture": {
+      "triangles": 1512,
+      "mesh_count": 14,
+      "file_bytes": 7707872
+    },
+    "fixtures": {
+      "triangles": 2220,
+      "mesh_count": 21,
+      "file_bytes": 1510288
+    },
+    "bunk_a": {
+      "triangles": 4784,
+      "mesh_count": 54,
+      "file_bytes": 1914828
+    },
+    "bunk_a_bedding": {
+      "triangles": 7124,
+      "mesh_count": 6,
+      "file_bytes": 4479724
+    },
+    "study_desk": {
+      "triangles": 1400,
+      "mesh_count": 14,
+      "file_bytes": 2774184
+    }
+  },
+  "generated_triangles": 17472,
+  "tripo_triangles": 37637
+}

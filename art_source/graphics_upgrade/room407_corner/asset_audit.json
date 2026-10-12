@@ -1,0 +1,590 @@
+{
+  "method": "GLB indexed triangle counts; embedded image decode; SHA256 dedup",
+  "assets": [
+    {
+      "file": "game/assets/models/graphics_pilot/room407_corner/floor.glb",
+      "triangles": 432,
+      "materials": 1,
+      "bytes": 7303020,
+      "sha256": "4f8e8687c40ca7bccd237d8bc07ada034618f3a4cbc063d48c02bf3dfba6640d",
+      "textures": [
+        {
+          "name": "interior_tiles_normal",
+          "size": [
+            2048,
+            2048
+          ],
+          "sha256": "67dc47321ca45fc71123eb3c285f7859ca47147d2a93655ee53d44f6a284bffe"
+        },
+        {
+          "name": "interior_tiles_arm",
+          "size": [
+            2048,
+            2048
+          ],
+          "sha256": "a0c9e96712f5184f569537b3efaf7179d15d4a6398c1fa69ededefc8227e30e1"
+        },
+        {
+          "name": "interior_tiles_color",
+          "size": [
+            2048,
+            2048
+          ],
+          "sha256": "57d3ce95255500e7b0fa677b99b258427a1b1676bd452e90f710eb4ac41f531f"
+        }
+      ]
+    },
+    {
+      "file": "game/assets/models/graphics_pilot/room407_corner/architecture.glb",
+      "triangles": 1512,
+      "materials": 1,
+      "bytes": 7707872,
+      "sha256": "e140208391b5dc36fd4b752cc753f0a7ab471084db032ae17bcc0dc1d22961c3",
+      "textures": [
+        {
+          "name": "painted_plaster_wall_normal",
+          "size": [
+            2048,
+            2048
+          ],
+          "sha256": "2d601a46ed5ce2af866741c53cafa3cba472620c272e633b6484d4de16a80eb1"
+        },
+        {
+          "name": "painted_plaster_wall_arm",
+          "size": [
+            2048,
+            2048
+          ],
+          "sha256": "8d6a2e391e87130aabb1dc6fea23e6ebcc80aca6559a0aa82e57b75729055be5"
+        },
+        {
+          "name": "painted_plaster_wall_cream_color",
+          "size": [
+            2048,
+            2048
+          ],
+          "sha256": "431354c9daefbdbb5de5d0224a3617fd0a934c1bc8116659cc80b95c0e39a350"
+        }
+      ]
+    },
+    {
+      "file": "game/assets/models/graphics_pilot/room407_corner/bunk_a.glb",
+      "triangles": 4784,
+      "materials": 2,
+      "bytes": 1914828,
+      "sha256": "bd18211f793d345e88895852fa9ef5138f066afa491fa12b0c97b50b747be401",
+      "textures": [
+        {
+          "name": "green_metal_rust_normal",
+          "size": [
+            1024,
+            1024
+          ],
+          "sha256": "8ecb28b0ea4026b740ce492e3f606f61a76bdce1f78cb2e29287bf9a56c54a80"
+        },
+        {
+          "name": "green_metal_rust_arm",
+          "size": [
+            1024,
+            1024
+          ],
+          "sha256": "c1a48da0c5bba8f490497bbedadf4cb21d5387de8b3d49988c065e4b16805434"
+        },
+        {
+          "name": "green_metal_rust_color",
+          "size": [
+            1024,
+            1024
+          ],
+          "sha256": "4509ab0cb1cf6bf9b9f970450a41f83ebd9bff178006deae568ff34b404856fc"
+        },
+        {
+          "name": "rough_linen_square_normal",
+          "size": [
+            1024,
+            1024
+          ],
+          "sha256": "4aa75e517e010b4cb017f8abd137c28628104e2a8630171e9e05843bbaaaa439"
+        },
+        {
+          "name": "rough_linen_square_arm",
+          "size": [
+            1024,
+            1024
+          ],
+          "sha256": "1127feec3d513e988286746d77dcbc1f14e58363ef57db3aaf42f62d27d80679"
+        },
+        {
+          "name": "rough_linen_square_color",
+          "size": [
+            1024,
+            1024
+          ],
+          "sha256": "6033592db09a0f90429f4cd2fafa35c8e82350fa4bf7de941310682b5fa448fe"
+        }
+      ]
+    },
+    {
+      "file": "game/assets/models/graphics_pilot/room407_corner/bunk_a_bedding.glb",
+      "triangles": 7124,
+      "materials": 3,
+      "bytes": 4479724,
+      "sha256": "cee03221ac8b807adc84f50530d7b5e3d1b48bec175a2ac7c58aafd9bdff98c8",
+      "textures": [
+        {
+          "name": "polar_fleece_square_normal",
+          "size": [
+            1024,
+            1024
+          ],
+          "sha256": "052b39af22c13b301ceda8922fc3793f0aa269d3d7fa0e98e922cc8381966db5"
+        },
+        {
+          "name": "polar_fleece_square_arm",
+          "size": [
+            1024,
+            1024
+          ],
+          "sha256": "1edd7f67ebb3c2bc7659197ea931892b05061938aaf217904cca58af5feb543e"
+        },
+        {
+          "name": "polar_fleece_square_color",
+          "size": [
+            1024,
+            1024
+          ],
+          "sha256": "c449bb9406fedf3faf776a868e3c1cf5c54a21baff2bc11346b004386d685885"
+        },
+        {
+          "name": "fabric_pattern_05_normal",
+          "size": [
+            1024,
+            1024
+          ],
+          "sha256": "caa5a948c768c7173b1d8647aa2618d39b4ec5ba4575820e02fb500dac54596d"
+        },
+        {
+          "name": "fabric_pattern_05_arm",
+          "size": [
+            1024,
+            1024
+          ],
+          "sha256": "51e0a39d7b9e9a293217dc80a702d2c022111d1eaefd83116e038baaa383af24"
+        },
+        {
+          "name": "fabric_pattern_05_color",
+          "size": [
+            1024,
+            1024
+          ],
+          "sha256": "b9ece89a45044945ce4d1402672cfd605f1f074b313cb3cc12b7b2ea66fad7fe"
+        },
+        {
+          "name": "tatami_mat_normal",
+          "size": [
+            1024,
+            1024
+          ],
+          "sha256": "b2fe809bf3c263ee0b33afdee597dabeb7848422f080b8c95cf0eb67e7d7adbe"
+        },
+        {
+          "name": "tatami_mat_arm",
+          "size": [
+            1024,
+            1024
+          ],
+          "sha256": "0fad694515a36b253426d5dcb19fb274fb192c692930738a7db5f69cb5b3a8ae"
+        },
+        {
+          "name": "tatami_mat_color",
+          "size": [
+            1024,
+            1024
+          ],
+          "sha256": "0e2b114ffed34f6235c8a4d58fd2488f117a64484ffa3acffdc24390f07be2a9"
+        }
+      ]
+    },
+    {
+      "file": "game/assets/models/graphics_pilot/room407_corner/study_desk.glb",
+      "triangles": 1400,
+      "materials": 2,
+      "bytes": 2774184,
+      "sha256": "d5964b045107d7a087b712e51a756e30903e3142e2b6aeedf5299ff1423add36",
+      "textures": [
+        {
+          "name": "wood_table_worn_normal",
+          "size": [
+            1024,
+            1024
+          ],
+          "sha256": "0d494f3fe08320a05f0f966a7a3ca3c4cd6e3f7cde5b176b9bc167b5593fd00d"
+        },
+        {
+          "name": "wood_table_worn_arm",
+          "size": [
+            1024,
+            1024
+          ],
+          "sha256": "b4f07c36a701bfd8dfe95e1fa836b32ae9dd5c0b4b73346cfdf5e1bacbb98435"
+        },
+        {
+          "name": "wood_table_worn_color",
+          "size": [
+            1024,
+            1024
+          ],
+          "sha256": "092ab3465a6a24b24d092ea86865f332c3bd239b8eb2fd664b70357082031a3f"
+        },
+        {
+          "name": "green_metal_rust_normal",
+          "size": [
+            1024,
+            1024
+          ],
+          "sha256": "8ecb28b0ea4026b740ce492e3f606f61a76bdce1f78cb2e29287bf9a56c54a80"
+        },
+        {
+          "name": "green_metal_rust_arm",
+          "size": [
+            1024,
+            1024
+          ],
+          "sha256": "c1a48da0c5bba8f490497bbedadf4cb21d5387de8b3d49988c065e4b16805434"
+        },
+        {
+          "name": "green_metal_rust_color",
+          "size": [
+            1024,
+            1024
+          ],
+          "sha256": "4509ab0cb1cf6bf9b9f970450a41f83ebd9bff178006deae568ff34b404856fc"
+        }
+      ]
+    },
+    {
+      "file": "game/assets/models/graphics_pilot/room407_corner/fixtures.glb",
+      "triangles": 2220,
+      "materials": 2,
+      "bytes": 1510288,
+      "sha256": "cf98611cef2799d48ec672049e458f38056fb624e7314ead93bc4912974526c9",
+      "textures": [
+        {
+          "name": "green_metal_rust_normal",
+          "size": [
+            1024,
+            1024
+          ],
+          "sha256": "8ecb28b0ea4026b740ce492e3f606f61a76bdce1f78cb2e29287bf9a56c54a80"
+        },
+        {
+          "name": "green_metal_rust_arm",
+          "size": [
+            1024,
+            1024
+          ],
+          "sha256": "c1a48da0c5bba8f490497bbedadf4cb21d5387de8b3d49988c065e4b16805434"
+        },
+        {
+          "name": "green_metal_rust_color",
+          "size": [
+            1024,
+            1024
+          ],
+          "sha256": "4509ab0cb1cf6bf9b9f970450a41f83ebd9bff178006deae568ff34b404856fc"
+        },
+        {
+          "name": "plastered_wall_04_small_normal",
+          "size": [
+            1024,
+            1024
+          ],
+          "sha256": "c0a41dc06e33072ec1156d89f3bd4b481a479616791d4e9df6c5ee7b3283db82"
+        },
+        {
+          "name": "plastered_wall_04_small_arm",
+          "size": [
+            1024,
+            1024
+          ],
+          "sha256": "9ffc6cc7b58f95972361ac887df92fdf3e6d86b96ecadcac17cbc2676cb8617d"
+        },
+        {
+          "name": "plastered_wall_04_small_color",
+          "size": [
+            1024,
+            1024
+          ],
+          "sha256": "52d789111bbe93d311c22e49d28b56256593c8f84c75742642403da857a36503"
+        }
+      ]
+    },
+    {
+      "file": "game/assets/models/graphics_pilot/room407_backpack_tripo_r2.glb",
+      "triangles": 2359,
+      "materials": 1,
+      "bytes": 3042096,
+      "sha256": "461e0d159409ef71096be0e39eb69d003f6ac721d2c46953c6d8ce5652747489",
+      "textures": [
+        {
+          "name": "backpack_tripo_normal",
+          "size": [
+            1024,
+            1024
+          ],
+          "sha256": "477fcce0daf30c370d9d6459295f625a539b0330a3992c81be96585d4546abaa"
+        },
+        {
+          "name": "backpack_tripo_basecolor",
+          "size": [
+            1024,
+            1024
+          ],
+          "sha256": "deb6cb262dd786e2d0f4f0c984dfbf1e6cec7b26dac96449aa5dd756a3f21a4e"
+        },
+        {
+          "name": "backpack_tripo_rm",
+          "size": [
+            1024,
+            1024
+          ],
+          "sha256": "4b53ab19b97b4ad81cef94e6cc6adf2b1d8743cf5c63bf136883ca24fda527a5"
+        }
+      ]
+    },
+    {
+      "file": "game/assets/models/graphics_pilot/room407_batch1/stool.glb",
+      "triangles": 4900,
+      "materials": 1,
+      "bytes": 2844476,
+      "sha256": "ee0dafd5360eea29f5afc006dbea8bea0dc7b7ba9c9bdbafcb545a5905349e41",
+      "textures": [
+        {
+          "name": "stool_normal",
+          "size": [
+            1024,
+            1024
+          ],
+          "sha256": "c3205722895181177bb2bce3586cb770c64f95739060aaf950a1ccf48a3d55fb"
+        },
+        {
+          "name": "stool_basecolor",
+          "size": [
+            1024,
+            1024
+          ],
+          "sha256": "1efbedb0e319c4f20310c4c0d00cc639d942b51801f4ceb8a0878049756bff58"
+        },
+        {
+          "name": "stool_rm",
+          "size": [
+            1024,
+            1024
+          ],
+          "sha256": "a77fe1394d4ddbe2fa79579f6dc0b2f75f519368b33a5ceafec066abad8ec278"
+        }
+      ]
+    },
+    {
+      "file": "game/assets/models/graphics_pilot/room407_batch1/fridge.glb",
+      "triangles": 7840,
+      "materials": 1,
+      "bytes": 1490812,
+      "sha256": "344f9b4d258736126342e3ba6b7cc345655dd0a9ac422b91b24f8b6fe373053e",
+      "textures": [
+        {
+          "name": "fridge_normal",
+          "size": [
+            2048,
+            2048
+          ],
+          "sha256": "4240720ee46debea6585e3dd0dfc390c406af6978c36e3d06dab9905b4178330"
+        },
+        {
+          "name": "fridge_basecolor",
+          "size": [
+            2048,
+            2048
+          ],
+          "sha256": "a8a4e77191fd990b21c2f505d75821468cc855c90e68a6c793a2dccfbc3c6aad"
+        },
+        {
+          "name": "fridge_rm",
+          "size": [
+            2048,
+            2048
+          ],
+          "sha256": "4c97cce4a4a90d6d41d001b0583b889285363a2aaa25a25302b82dafa5226e8d"
+        }
+      ]
+    },
+    {
+      "file": "game/assets/models/graphics_pilot/room407_batch1/rice_cooker.glb",
+      "triangles": 4900,
+      "materials": 1,
+      "bytes": 3333564,
+      "sha256": "6ae9ab0437873be7d1cfebd87fe76d60ae9ce9ed87ae9ced5fcfe7dd84caef02",
+      "textures": [
+        {
+          "name": "rice_cooker_normal",
+          "size": [
+            1024,
+            1024
+          ],
+          "sha256": "b6b87cd2b70a38547718c98665024d169b61e32cc288ed08575ed00799b0d4cf"
+        },
+        {
+          "name": "rice_cooker_basecolor",
+          "size": [
+            1024,
+            1024
+          ],
+          "sha256": "acfec6c5c295442d8ee6e04225cee3358ca622a3dcdc59a2cdd8756a94f21541"
+        },
+        {
+          "name": "rice_cooker_rm",
+          "size": [
+            1024,
+            1024
+          ],
+          "sha256": "deea790f35cc476dba3369235ca83e9f70f47bc2807dedb75b4a7234de730c8e"
+        }
+      ]
+    },
+    {
+      "file": "game/assets/models/graphics_pilot/room407_batch1/bucket.glb",
+      "triangles": 4899,
+      "materials": 1,
+      "bytes": 2861164,
+      "sha256": "c0065bfb1f9c6ee00c7f4676c7032851c532761cab4892ebcb7c1798d0eac6df",
+      "textures": [
+        {
+          "name": "bucket_normal",
+          "size": [
+            1024,
+            1024
+          ],
+          "sha256": "a17a3e2a4b7d03fdc4f3240b8866e0c2692bafab603fb10090ad37990ad346cd"
+        },
+        {
+          "name": "bucket_basecolor",
+          "size": [
+            1024,
+            1024
+          ],
+          "sha256": "d613758ee09a9f23d64de27433517fafaa6e8067830629e49555901dce7ab738"
+        },
+        {
+          "name": "bucket_rm",
+          "size": [
+            1024,
+            1024
+          ],
+          "sha256": "416783f53c771f3a17e1d364ba0586cbee5b06a0e2c3d45b76d2891a69f7994f"
+        }
+      ]
+    },
+    {
+      "file": "game/assets/models/graphics_pilot/room407_batch1/towel.glb",
+      "triangles": 2940,
+      "materials": 1,
+      "bytes": 4779040,
+      "sha256": "2ab180d970937445de90019ab8b94df3813b68adbeb2eeb5ab8466242aff0ab4",
+      "textures": [
+        {
+          "name": "towel_normal",
+          "size": [
+            1024,
+            1024
+          ],
+          "sha256": "295055b50f3667baa9da99f5e43da2ad9e8253f8989b217fdeb44f1f2f27b90a"
+        },
+        {
+          "name": "towel_basecolor",
+          "size": [
+            1024,
+            1024
+          ],
+          "sha256": "47a39d0532e63692db38454201ef205fbf9400bad6b28086e951311386aff238"
+        },
+        {
+          "name": "towel_rm",
+          "size": [
+            1024,
+            1024
+          ],
+          "sha256": "164d69cd594d1087f1ad561812325a03123bace2d86a6257c9b617b129a11fdc"
+        }
+      ]
+    },
+    {
+      "file": "game/assets/models/graphics_pilot/room407_batch1/slippers.glb",
+      "triangles": 4900,
+      "materials": 1,
+      "bytes": 4347440,
+      "sha256": "f0bf8c816ffacd6e83b1e3c03fd41b7f85172f66255eb7f8b9f4481feb199584",
+      "textures": [
+        {
+          "name": "slippers_normal",
+          "size": [
+            1024,
+            1024
+          ],
+          "sha256": "12e56120bae2f46f3d6b38898cfbc10f217526cdbaea2bbf8a766c0ef7445615"
+        },
+        {
+          "name": "slippers_basecolor",
+          "size": [
+            1024,
+            1024
+          ],
+          "sha256": "91d9f2a825794334ad3b41e4f83fa8aad938b88fa8bd318474014b5da25b33bb"
+        },
+        {
+          "name": "slippers_rm",
+          "size": [
+            1024,
+            1024
+          ],
+          "sha256": "fb9d35fc8df8cb8b039820db84176988c329f10dd22012b0dd12d5ea7bc68936"
+        }
+      ]
+    },
+    {
+      "file": "game/assets/models/graphics_pilot/room407_batch1/trainers.glb",
+      "triangles": 4899,
+      "materials": 1,
+      "bytes": 4772628,
+      "sha256": "90f209cf04ab4a511db1a3821d97c4387ee9060bcea4db5e86cd964baf6745da",
+      "textures": [
+        {
+          "name": "trainers_normal",
+          "size": [
+            1024,
+            1024
+          ],
+          "sha256": "7ca5e3dcd0ff5cf82afb554454ac9ad1f89c1346340d4dc98fb42e8a4123ca7a"
+        },
+        {
+          "name": "trainers_basecolor",
+          "size": [
+            1024,
+            1024
+          ],
+          "sha256": "26fa0d479e932e6769c7308fcb8155c083f8f34250252337d98df4c49ce53ed4"
+        },
+        {
+          "name": "trainers_rm",
+          "size": [
+            1024,
+            1024
+          ],
+          "sha256": "5861a32edfe1574e7518f3bfb09b2cc09f86a33599190e47c13f33f380af31a2"
+        }
+      ]
+    }
+  ],
+  "total_triangles": 55109,
+  "unique_embedded_textures": 51,
+  "additional_decal_textures": 1
+}

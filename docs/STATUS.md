@@ -1,6 +1,6 @@
 # STATUS — cập nhật bởi integrator
 
-**Cập nhật lần cuối:** 2026-10-12, Claude Code ở máy (Opus 5.5, integrator) — **D-091: ghép giao diện mới T-214** (lane D hết hạn mức, Claude làm thay commit/push; ảnh trước/sau `game/ui/theme/previews/index.html`). **T-213:** B hết hạn mức, Claude làm tiếp. **D-089: Tripo đợt 1 xong 7 đồ phòng 407** (ghế, tủ lạnh, nồi cơm, xô, khăn, dép, giày) theo quy trình AAA D-088 (Tripo chi tiết → bản nhẹ + normal nướng, `art_source/graphics_upgrade/tripo/bake_prop.py`); bản game ở `game/assets/models/graphics_pilot/room407_batch1/`, balo D-086 ở `graphics_pilot/`. **Bản chơi chưa đổi.** **D-090:** G3 hoãn; **lane B làm thử góc phòng 407** (T-213, prompt `docs/handoff/lane-b.md` mục 5): kiến trúc Blender + texture CC0 + ánh sáng, đặt sẵn đồ Tripo; sau đó Tripo đợt 2 và thay cả cụm. Hồ sơ: `docs/handoff/TRIPO_DOT1_PHONG407.md`, `TRIPO_PHIEU_BALO.md`.
+**Cập nhật lần cuối:** 2026-10-12, Claude Code ở máy (Opus 5.5, integrator) — **D-091: ghép giao diện mới T-214** (lane D hết hạn mức, Claude làm thay commit/push; ảnh trước/sau `game/ui/theme/previews/index.html`). **D-092: ghép góc phòng 407 làm thử T-213** (B hết hạn mức, Claude làm tiếp: vật liệu CC0, chăn mô phỏng vải, 21 ảnh Forward+). **Chờ chủ dự án chấm hai việc này.** **D-089: Tripo đợt 1 xong 7 đồ phòng 407** (ghế, tủ lạnh, nồi cơm, xô, khăn, dép, giày) theo quy trình AAA D-088 (Tripo chi tiết → bản nhẹ + normal nướng, `art_source/graphics_upgrade/tripo/bake_prop.py`); bản game ở `game/assets/models/graphics_pilot/room407_batch1/`, balo D-086 ở `graphics_pilot/`. **Bản chơi chưa đổi.** **D-090:** G3 hoãn; **lane B làm thử góc phòng 407** (T-213, prompt `docs/handoff/lane-b.md` mục 5): kiến trúc Blender + texture CC0 + ánh sáng, đặt sẵn đồ Tripo; sau đó Tripo đợt 2 và thay cả cụm. Hồ sơ: `docs/handoff/TRIPO_DOT1_PHONG407.md`, `TRIPO_PHIEU_BALO.md`.
 
 **Bản đồ lộ trình tổng quan:** [`docs/ROADMAP.md`](ROADMAP.md) (từ demo tới phát hành, đang ở đâu).
 
@@ -17,7 +17,7 @@
 6. **Build chơi thử:** `build/windows/KyTucXa.exe`, 2026-10-10 03:57:18, code `add6d5f` có D-075. D-082 nhận prototype/QA/tài liệu, chưa đổi nội dung cảnh chơi nên không export. Đã xem hai ảnh mount B; chưa duyệt chất lượng đồ họa cuối, nghe/chơi tay hoặc đo FPS.
 7. **Chơi thử còn mở:** chương 1 D-071/chương 2 D-073 tạm chốt; đoạn nhắn tin D-072 chưa chơi lại. Chương 3 lần cuối bước 6/tầng 1; D-074/T-206/D-075 đã sửa, chờ chơi tiếp. Chương 4/giọng và âm chương 2–4 còn chờ chủ dự án kiểm. D-059 chưa bắt đầu.
 8. **Lượt Windows:** chủ dự án xác nhận A/B/C/D/F xong, integrator nhận lượt kiểm D-082 rồi báo nhả sau khi kết thúc. Code/tài liệu/offline vẫn song song; các phiên không tự biết nhau nhả lượt. Import/check cũng dùng APPDATA riêng; không tự mở bot/FPS.
-9. Số đã cấp **D-076…D-091, T-207…T-214**. Số tiếp theo **D-092, T-215**.
+9. Số đã cấp **D-076…D-092, T-207…T-214**. Số tiếp theo **D-093, T-215**.
 
 **Repo:** https://github.com/tuaanh666/ky-tuc-xa-sau-12-gio (private)
 
@@ -42,7 +42,7 @@
 | [T-207 Hợp đồng và tích hợp core](tasks/T-207-graphics-core-contract.md) | core — **Astra làm thay web (D-081)** | **D-085 đóng G1 đạo cụ tĩnh (balo); W1–W4 chưa đóng** |
 | [T-208 Adapter gameplay–visual](tasks/T-208-visual-gameplay-adapters.md) | A | **D-082 nhận đề xuất lifecycle/pose/marker; rig và implementation còn chờ** |
 | [T-209 Art pipeline và phòng mẫu](tasks/T-209-realistic-art-pilot.md) | B | **D-085: manifest G1 + hướng mặt trước balo đã ghép (Claude làm thay commit). Còn: nhập mẫu Tripo G2** |
-| [T-213 Làm thử góc phòng 407](tasks/T-213-room407-corner-pilot.md) | B | **Claude làm thay (B hết hạn mức):** WIP `95d21ea` trên nhánh lane B; còn test, ảnh, review chất lượng |
+| [T-213 Làm thử góc phòng 407](tasks/T-213-room407-corner-pilot.md) | B | **D-092 đã ghép** (B dựng khung, Claude làm thay phần còn lại). Chờ chủ dự án chấm ảnh `art_source/graphics_upgrade/room407_corner/previews/summary_before_after.jpg` |
 | [T-214 Giao diện đẹp + đặt lại riêng Hình ảnh + chữ 720p](tasks/T-214-video-reset-readability.md) | D | **D-091 đã ghép** (Claude làm thay commit/push). Chờ chủ dự án xem ảnh `game/ui/theme/previews/index.html` và quyết có làm vòng 2 |
 | [T-210 Asset QA và công cụ tạo asset (Tripo)](tasks/T-210-graphics-asset-qa.md) | C | **D-083 ghép schema/validator; D-085 G1 balo đạt. Còn: asset_id hoa/thường (không chặn), QA mẫu Tripo G2** |
 | [T-211 Cài đặt và khả năng đọc](tasks/T-211-graphics-settings-readability.md) | D | **D-082 nhận migration/readability; chưa mở key/control mới** |

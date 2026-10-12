@@ -1,0 +1,565 @@
+{
+  "blender": "5.2.2 LTS",
+  "missing_textures": [],
+  "blend_bytes": 1905953,
+  "images": [
+    {
+      "name": "backpack_tripo_basecolor",
+      "relative_path": "//blender_textures\\tripo_00.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "packed": false
+    },
+    {
+      "name": "backpack_tripo_normal",
+      "relative_path": "//blender_textures\\tripo_01.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "packed": false
+    },
+    {
+      "name": "backpack_tripo_rm",
+      "relative_path": "//blender_textures\\tripo_02.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "packed": false
+    },
+    {
+      "name": "bucket_basecolor",
+      "relative_path": "//blender_textures\\tripo_03.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "packed": false
+    },
+    {
+      "name": "bucket_normal",
+      "relative_path": "//blender_textures\\tripo_04.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "packed": false
+    },
+    {
+      "name": "bucket_rm",
+      "relative_path": "//blender_textures\\tripo_05.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "packed": false
+    },
+    {
+      "name": "fabric_pattern_05_arm.jpg",
+      "relative_path": "//textures\\fabric_pattern_05_arm.jpg",
+      "size": [
+        1024,
+        1024
+      ],
+      "packed": false
+    },
+    {
+      "name": "fabric_pattern_05_color.jpg",
+      "relative_path": "//textures\\fabric_pattern_05_color.jpg",
+      "size": [
+        1024,
+        1024
+      ],
+      "packed": false
+    },
+    {
+      "name": "fabric_pattern_05_normal.jpg",
+      "relative_path": "//textures\\fabric_pattern_05_normal.jpg",
+      "size": [
+        1024,
+        1024
+      ],
+      "packed": false
+    },
+    {
+      "name": "fridge_basecolor",
+      "relative_path": "//blender_textures\\tripo_09.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": false
+    },
+    {
+      "name": "fridge_normal",
+      "relative_path": "//blender_textures\\tripo_10.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": false
+    },
+    {
+      "name": "fridge_rm",
+      "relative_path": "//blender_textures\\tripo_11.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": false
+    },
+    {
+      "name": "green_metal_rust_arm.jpg",
+      "relative_path": "//textures\\green_metal_rust_arm.jpg",
+      "size": [
+        1024,
+        1024
+      ],
+      "packed": false
+    },
+    {
+      "name": "green_metal_rust_color.jpg",
+      "relative_path": "//textures\\green_metal_rust_color.jpg",
+      "size": [
+        1024,
+        1024
+      ],
+      "packed": false
+    },
+    {
+      "name": "green_metal_rust_normal.jpg",
+      "relative_path": "//textures\\green_metal_rust_normal.jpg",
+      "size": [
+        1024,
+        1024
+      ],
+      "packed": false
+    },
+    {
+      "name": "interior_tiles_arm.jpg",
+      "relative_path": "//textures\\interior_tiles_arm.jpg",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": false
+    },
+    {
+      "name": "interior_tiles_color.jpg",
+      "relative_path": "//textures\\interior_tiles_color.jpg",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": false
+    },
+    {
+      "name": "interior_tiles_normal.jpg",
+      "relative_path": "//textures\\interior_tiles_normal.jpg",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": false
+    },
+    {
+      "name": "painted_plaster_wall_arm.jpg",
+      "relative_path": "//textures\\painted_plaster_wall_arm.jpg",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": false
+    },
+    {
+      "name": "painted_plaster_wall_cream_color.jpg",
+      "relative_path": "//textures\\painted_plaster_wall_cream_color.jpg",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": false
+    },
+    {
+      "name": "painted_plaster_wall_normal.jpg",
+      "relative_path": "//textures\\painted_plaster_wall_normal.jpg",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": false
+    },
+    {
+      "name": "plastered_wall_04_small_arm.jpg",
+      "relative_path": "//textures\\plastered_wall_04_small_arm.jpg",
+      "size": [
+        1024,
+        1024
+      ],
+      "packed": false
+    },
+    {
+      "name": "plastered_wall_04_small_color.jpg",
+      "relative_path": "//textures\\plastered_wall_04_small_color.jpg",
+      "size": [
+        1024,
+        1024
+      ],
+      "packed": false
+    },
+    {
+      "name": "plastered_wall_04_small_normal.jpg",
+      "relative_path": "//textures\\plastered_wall_04_small_normal.jpg",
+      "size": [
+        1024,
+        1024
+      ],
+      "packed": false
+    },
+    {
+      "name": "polar_fleece_square_arm.jpg",
+      "relative_path": "//textures\\polar_fleece_square_arm.jpg",
+      "size": [
+        1024,
+        1024
+      ],
+      "packed": false
+    },
+    {
+      "name": "polar_fleece_square_color.jpg",
+      "relative_path": "//textures\\polar_fleece_square_color.jpg",
+      "size": [
+        1024,
+        1024
+      ],
+      "packed": false
+    },
+    {
+      "name": "polar_fleece_square_normal.jpg",
+      "relative_path": "//textures\\polar_fleece_square_normal.jpg",
+      "size": [
+        1024,
+        1024
+      ],
+      "packed": false
+    },
+    {
+      "name": "rice_cooker_basecolor",
+      "relative_path": "//blender_textures\\tripo_27.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "packed": false
+    },
+    {
+      "name": "rice_cooker_normal",
+      "relative_path": "//blender_textures\\tripo_28.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "packed": false
+    },
+    {
+      "name": "rice_cooker_rm",
+      "relative_path": "//blender_textures\\tripo_29.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "packed": false
+    },
+    {
+      "name": "rough_linen_square_arm.jpg",
+      "relative_path": "//textures\\rough_linen_square_arm.jpg",
+      "size": [
+        1024,
+        1024
+      ],
+      "packed": false
+    },
+    {
+      "name": "rough_linen_square_color.jpg",
+      "relative_path": "//textures\\rough_linen_square_color.jpg",
+      "size": [
+        1024,
+        1024
+      ],
+      "packed": false
+    },
+    {
+      "name": "rough_linen_square_normal.jpg",
+      "relative_path": "//textures\\rough_linen_square_normal.jpg",
+      "size": [
+        1024,
+        1024
+      ],
+      "packed": false
+    },
+    {
+      "name": "slippers_basecolor",
+      "relative_path": "//blender_textures\\tripo_33.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "packed": false
+    },
+    {
+      "name": "slippers_normal",
+      "relative_path": "//blender_textures\\tripo_34.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "packed": false
+    },
+    {
+      "name": "slippers_rm",
+      "relative_path": "//blender_textures\\tripo_35.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "packed": false
+    },
+    {
+      "name": "stool_basecolor",
+      "relative_path": "//blender_textures\\tripo_36.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "packed": false
+    },
+    {
+      "name": "stool_normal",
+      "relative_path": "//blender_textures\\tripo_37.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "packed": false
+    },
+    {
+      "name": "stool_rm",
+      "relative_path": "//blender_textures\\tripo_38.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "packed": false
+    },
+    {
+      "name": "tatami_mat_arm.jpg",
+      "relative_path": "//textures\\tatami_mat_arm.jpg",
+      "size": [
+        1024,
+        1024
+      ],
+      "packed": false
+    },
+    {
+      "name": "tatami_mat_color.jpg",
+      "relative_path": "//textures\\tatami_mat_color.jpg",
+      "size": [
+        1024,
+        1024
+      ],
+      "packed": false
+    },
+    {
+      "name": "tatami_mat_normal.jpg",
+      "relative_path": "//textures\\tatami_mat_normal.jpg",
+      "size": [
+        1024,
+        1024
+      ],
+      "packed": false
+    },
+    {
+      "name": "towel_basecolor",
+      "relative_path": "//blender_textures\\tripo_42.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "packed": false
+    },
+    {
+      "name": "towel_normal",
+      "relative_path": "//blender_textures\\tripo_43.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "packed": false
+    },
+    {
+      "name": "towel_rm",
+      "relative_path": "//blender_textures\\tripo_44.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "packed": false
+    },
+    {
+      "name": "trainers_basecolor",
+      "relative_path": "//blender_textures\\tripo_45.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "packed": false
+    },
+    {
+      "name": "trainers_normal",
+      "relative_path": "//blender_textures\\tripo_46.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "packed": false
+    },
+    {
+      "name": "trainers_rm",
+      "relative_path": "//blender_textures\\tripo_47.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "packed": false
+    },
+    {
+      "name": "wood_table_worn_arm.jpg",
+      "relative_path": "//textures\\wood_table_worn_arm.jpg",
+      "size": [
+        1024,
+        1024
+      ],
+      "packed": false
+    },
+    {
+      "name": "wood_table_worn_color.jpg",
+      "relative_path": "//textures\\wood_table_worn_color.jpg",
+      "size": [
+        1024,
+        1024
+      ],
+      "packed": false
+    },
+    {
+      "name": "wood_table_worn_normal.jpg",
+      "relative_path": "//textures\\wood_table_worn_normal.jpg",
+      "size": [
+        1024,
+        1024
+      ],
+      "packed": false
+    }
+  ],
+  "mesh_objects": 121,
+  "props_room_local_bounds": {
+    "Backpack": {
+      "min": [
+        3.6475000381469727,
+        0.029999999329447746,
+        -4.664999961853027
+      ],
+      "max": [
+        3.950239896774292,
+        0.48636001348495483,
+        -4.375
+      ]
+    },
+    "Stool": {
+      "min": [
+        2.802626848220825,
+        9.602596401236951e-05,
+        -4.647732257843018
+      ],
+      "max": [
+        3.0974278450012207,
+        0.29990890622138977,
+        -4.352304458618164
+      ]
+    },
+    "Fridge": {
+      "min": [
+        4.670989990234375,
+        -0.0005028937011957169,
+        -3.5696959495544434
+      ],
+      "max": [
+        5.229051113128662,
+        0.8396983742713928,
+        -3.029661178588867
+      ]
+    },
+    "RiceCooker": {
+      "min": [
+        4.719931125640869,
+        0.8399475812911987,
+        -3.5027668476104736
+      ],
+      "max": [
+        5.1795430183410645,
+        1.1899707317352295,
+        -3.0968501567840576
+      ]
+    },
+    "Bucket": {
+      "min": [
+        0.3381267189979553,
+        0.014918503351509571,
+        -4.761723041534424
+      ],
+      "max": [
+        0.6623654365539551,
+        0.27923691272735596,
+        -4.438650608062744
+      ]
+    },
+    "Towel": {
+      "min": [
+        0.38496190309524536,
+        0.2792232632637024,
+        -4.746213912963867
+      ],
+      "max": [
+        0.5951311588287354,
+        0.3725205361843109,
+        -4.45383882522583
+      ]
+    },
+    "Slippers": {
+      "min": [
+        2.8833932876586914,
+        0.0048307557590305805,
+        -0.3083288371562958
+      ],
+      "max": [
+        3.1164746284484863,
+        0.09452438354492188,
+        -0.05151103809475899
+      ]
+    },
+    "Trainers": {
+      "min": [
+        7.453622341156006,
+        0.015051654540002346,
+        -1.7570346593856812
+      ],
+      "max": [
+        7.8064961433410645,
+        0.14884649217128754,
+        -1.3824241161346436
+      ]
+    }
+  }
+}
