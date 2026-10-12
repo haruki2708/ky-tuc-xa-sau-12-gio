@@ -12,7 +12,7 @@ phases = [
     ("GĐ 3 · từ 10/10", "Đồ họa gần chân thực (D-076)", DOING, [
         ("G0 Chuẩn bị — D-079", DONE),
         ("G1 Hợp đồng kỹ thuật, balo — D-085", DONE),
-        ("G2 Mua Tripo Pro, tạo mẫu balo — ĐANG Ở ĐÂY", HERE),
+        ("G2 Đã mua Tripo Pro (12/10), tạo mẫu balo — ĐANG Ở ĐÂY", HERE),
         ("G3 Đưa mẫu vào cảnh chơi thật", TODO),
         ("G4 Nhà B → nhân vật → khuôn viên → thư viện/bệnh viện", TODO)]),
     ("GĐ 4", "Ghép bản hoàn chỉnh (D-059)", TODO, [("Chơi liền 4 chương, 1 file lưu, bot + FPS, chơi tay trọn game", TODO)]),

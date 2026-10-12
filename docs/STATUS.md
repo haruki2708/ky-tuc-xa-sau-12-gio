@@ -1,6 +1,6 @@
 # STATUS — cập nhật bởi integrator
 
-**Cập nhật lần cuối:** 2026-10-12, Claude Code ở máy (Opus 5.5, integrator) — **D-085: G1 balo đã nghiệm thu.** Việc tiếp theo là của chủ dự án: mua Tripo Studio **Pro** và tạo mẫu balo theo `docs/handoff/TRIPO_STUDIO_HUONG_DAN_BALO.md` (tối đa 5 lượt, D-084), rồi gửi file + phiếu cho integrator; tiêu chí đạt G2 ở `docs/handoff/G1_NGHIEM_THU_BALO_2026-10-12.md` §3. Trước đó: D-084 ngoại lệ license Tripo trả phí; D-083 ghép schema C.
+**Cập nhật lần cuối:** 2026-10-12, Claude Code ở máy (Opus 5.5, integrator) — **D-085: G1 balo đã nghiệm thu.** **Chủ dự án đã mua Tripo Studio Pro 12/10 (tháng, 263.000 đồng; phiếu `docs/handoff/TRIPO_PHIEU_BALO.md`).** Việc tiếp theo của chủ dự án: tạo mẫu balo theo `docs/handoff/TRIPO_STUDIO_HUONG_DAN_BALO.md` (tối đa 5 lượt, D-084), rồi gửi file + phiếu cho integrator; tiêu chí đạt G2 ở `docs/handoff/G1_NGHIEM_THU_BALO_2026-10-12.md` §3. Trước đó: D-084 ngoại lệ license Tripo trả phí; D-083 ghép schema C.
 
 **Bản đồ lộ trình tổng quan:** [`docs/ROADMAP.md`](ROADMAP.md) (từ demo tới phát hành, đang ở đâu).
 

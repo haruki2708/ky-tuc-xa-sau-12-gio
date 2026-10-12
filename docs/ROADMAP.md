@@ -1,6 +1,6 @@
 # Bản đồ lộ trình — "Ký túc xá sau 12 giờ"
 
-> **Cập nhật:** 2026-10-12 (sau D-085). Integrator cập nhật file này **mỗi khi qua một mốc** (chốt chương, đóng cổng G, đổi hướng lớn).
+> **Cập nhật:** 2026-10-12 (sau D-085; đã mua Tripo Studio Pro). Integrator cập nhật file này **mỗi khi qua một mốc** (chốt chương, đóng cổng G, đổi hướng lớn).
 > Chi tiết từng ngày: `docs/STATUS.md`. Lý do từng quyết định: `docs/DECISIONS.md` (D-001…D-085).
 > Ký hiệu: ✅ xong · 🔶 đang làm · ⬜ chưa bắt đầu · 📍 **đang ở đây**
 
@@ -26,7 +26,7 @@ Bản chữ (xem được trong terminal / Notepad):
 [🔶] GĐ 3  Đồ họa gần chân thực (từ 10/10, D-076)
   │     ├─ [✅] G0 Chuẩn bị .............................. D-079
   │     ├─ [✅] G1 Hợp đồng kỹ thuật (balo) .............. D-085
-  │     ├─ [📍] G2 Mua Tripo Pro, tạo mẫu balo ........... ĐANG Ở ĐÂY
+  │     ├─ [📍] G2 Đã mua Tripo Pro, tạo mẫu balo ........ ĐANG Ở ĐÂY
   │     ├─ [⬜] G3 Đưa mẫu vào cảnh chơi thật
   │     └─ [⬜] G4 Nhà B → nhân vật → khuôn viên → thư viện/bệnh viện
   │
@@ -62,7 +62,7 @@ Mục tiêu: hình gần thật, chạy 1080p/60 FPS Medium trên RTX 3050 Lapto
 |---|---|---|
 | G0 Chuẩn bị | 6 gói việc T-207…T-212 khảo sát, đo, công cụ | ✅ D-079 |
 | G1 Hợp đồng kỹ thuật | Công cụ kiểm asset (C), hồ sơ + hướng mặt trước balo (B), giấy phép Tripo (D-084) | ✅ D-085 (đạo cụ tĩnh) |
-| **G2 Thử Tripo** | **Chủ dự án mua Tripo Studio Pro, tạo balo ≤ 5 lượt** → B chuẩn hóa → C kiểm → ảnh trước/sau → chủ dự án duyệt | 📍 **bước tiếp theo** — `docs/handoff/TRIPO_STUDIO_HUONG_DAN_BALO.md` |
+| **G2 Thử Tripo** | **Đã mua Tripo Studio Pro (12/10, tháng, 263.000 đồng)**; chủ dự án tạo balo ≤ 5 lượt → B chuẩn hóa → C kiểm → ảnh trước/sau → chủ dự án duyệt | 📍 **bước tiếp theo** — `docs/handoff/TRIPO_STUDIO_HUONG_DAN_BALO.md` |
 | G3 Vào cảnh chơi | Thay balo (rồi từng nhóm nhỏ) trong bản chơi, test 4 chương | ⬜ |
 | G4 Mở rộng | Phòng 407 → nhà B → nhân vật/xác sống → khuôn viên → thư viện/bệnh viện | ⬜ |
 
@@ -75,7 +75,7 @@ Khoảng 4–6 ngày: hết chương tự sang chương sau, **một file lưu x
 Phát hành theo chương (D-029). Nền tảng, giá, ngày: chưa quyết. Lưu ý Steam yêu cầu khai báo nội dung AI (`AGENTS.md` §5).
 
 ## 3. Việc đang chờ chủ dự án
-1. 📍 **Mua Tripo Studio Pro và tạo mẫu balo** theo hướng dẫn (D-084: tối đa 5 lượt, lưu điều khoản).
+1. 📍 ~~Mua Tripo Studio Pro~~ (xong 12/10). **Lưu điều khoản, tạo mẫu balo** theo hướng dẫn (D-084: tối đa 5 lượt), ghi phiếu `docs/handoff/TRIPO_PHIEU_BALO.md`.
 2. Chơi tiếp **chương 3 từ tầng 1** và chơi **chương 4** lần đầu (độc lập với đồ họa).
 3. Kiểm hạn mức lane trước khi giao việc mới (C còn một sửa nhỏ: ID balo chữ hoa).
 
