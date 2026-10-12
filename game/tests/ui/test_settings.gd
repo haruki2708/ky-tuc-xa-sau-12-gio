@@ -1,5 +1,110 @@
 extends "res://tests/ui/settings_test_case.gd"
 
+class ResetStoreSpy:
+	extends "res://scripts/ui/settings.gd"
+	var writes := 0
+	var fail_save := false
+
+	func _save_reset_config(config: ConfigFile) -> Error:
+		writes += 1
+		return ERR_FILE_CANT_WRITE if fail_save else super._save_reset_config(config)
+
+
+func test_reset_video_saves_once_before_all_signals_and_preserves_every_other_key() -> void:
+	var config := ConfigFile.new()
+	var original := {
+		"ui": {"locale": "en", "content_warning_seen": true},
+		"audio": {"sfx_db": -13.0, "music_db": -40.0},
+		"input": {"mouse_sensitivity": 0.004},
+		"accessibility": {"reduce_scares": true},
+		"other": {"sentinel": [7, "keep", false]},
+		"video": {"head_bob": false, "brightness": 1.4, "ps1_strength": 0.0, "unknown": 42},
+	}
+	for section: String in original:
+		for key: String in original[section]:
+			config.set_value(section, key, original[section][key])
+	assert_eq(config.save(SettingsStore.SETTINGS_PATH), OK)
+	settings.apply_startup()
+	var spy := ResetStoreSpy.new()
+	var observed: Array = []
+	var callback := func(section: String, key: String) -> void:
+		var saved := ConfigFile.new()
+		assert_eq(saved.load(SettingsStore.SETTINGS_PATH), OK)
+		assert_eq(saved.get_value("video", "head_bob"), true)
+		assert_eq(saved.get_value("video", "brightness"), 1.0)
+		assert_eq(saved.get_value("video", "ps1_strength"), 1.0)
+		observed.append(section + "/" + key)
+	EventBus.settings_changed.connect(callback)
+	assert_eq(spy.reset_section("video"), OK)
+	EventBus.settings_changed.disconnect(callback)
+	assert_eq(spy.writes, 1)
+	assert_eq(observed, ["video/head_bob", "video/brightness", "video/ps1_strength"])
+	assert_eq(config.load(SettingsStore.SETTINGS_PATH), OK)
+	for section: String in original:
+		for key: String in original[section]:
+			if section == "video" and key != "unknown":
+				continue
+			assert_eq(config.get_value(section, key), original[section][key])
+			assert_eq(typeof(config.get_value(section, key)), typeof(original[section][key]))
+	assert_eq(TranslationServer.get_locale(), "en")
+	assert_eq(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("SFX")), -13.0)
+	spy.free()
+
+
+func test_reset_section_missing_file_creates_only_requested_schema_section() -> void:
+	assert_eq(settings.reset_section("video"), OK)
+	var saved := ConfigFile.new()
+	assert_eq(saved.load(SettingsStore.SETTINGS_PATH), OK)
+	assert_eq(saved.get_sections(), PackedStringArray(["video"]))
+	assert_eq(saved.get_value("video", "head_bob"), true)
+	assert_eq(saved.get_value("video", "brightness"), 1.0)
+	assert_eq(saved.get_value("video", "ps1_strength"), 1.0)
+	assert_eq(typeof(saved.get_value("video", "brightness")), TYPE_FLOAT)
+
+
+func test_reset_unknown_section_never_creates_or_notifies() -> void:
+	var observed: Array = []
+	var callback := func(section: String, key: String) -> void: observed.append([section, key])
+	EventBus.settings_changed.connect(callback)
+	assert_eq(settings.reset_section("unknown"), ERR_INVALID_PARAMETER)
+	assert_eq(settings.reset_section(""), ERR_INVALID_PARAMETER)
+	EventBus.settings_changed.disconnect(callback)
+	assert_true(observed.is_empty())
+	assert_false(FileAccess.file_exists(SettingsStore.SETTINGS_PATH))
+
+
+func test_reset_save_failure_does_not_apply_emit_or_change_existing_file() -> void:
+	assert_eq(settings.set_value("video", "brightness", 1.25), OK)
+	var before := FileAccess.get_file_as_bytes(SettingsStore.SETTINGS_PATH)
+	var spy := ResetStoreSpy.new()
+	spy.fail_save = true
+	var observed: Array = []
+	var callback := func(section: String, key: String) -> void: observed.append([section, key])
+	EventBus.settings_changed.connect(callback)
+	assert_eq(spy.reset_section("video"), ERR_FILE_CANT_WRITE)
+	EventBus.settings_changed.disconnect(callback)
+	assert_eq(spy.writes, 1)
+	assert_true(observed.is_empty())
+	assert_eq(FileAccess.get_file_as_bytes(SettingsStore.SETTINGS_PATH), before)
+	assert_eq(settings.get_value("video", "brightness"), 1.25)
+	spy.free()
+
+
+func test_reset_section_replaces_invalid_video_types_but_keeps_unknown_entries() -> void:
+	var config := ConfigFile.new()
+	config.set_value("video", "head_bob", "invalid")
+	config.set_value("video", "brightness", 200)
+	config.set_value("video", "ps1_strength", -2.0)
+	config.set_value("video", "external", "keep")
+	assert_eq(config.save(SettingsStore.SETTINGS_PATH), OK)
+	assert_eq(settings.reset_section("video"), OK)
+	assert_eq(config.load(SettingsStore.SETTINGS_PATH), OK)
+	assert_eq(config.get_value("video", "head_bob"), true)
+	assert_eq(config.get_value("video", "brightness"), 1.0)
+	assert_eq(typeof(config.get_value("video", "brightness")), TYPE_FLOAT)
+	assert_eq(config.get_value("video", "ps1_strength"), 1.0)
+	assert_eq(config.get_value("video", "external"), "keep")
+
 
 func test_defaults_without_file_and_missing_keys() -> void:
 	assert_false(FileAccess.file_exists(SettingsStore.SETTINGS_PATH), "startup must not write settings")

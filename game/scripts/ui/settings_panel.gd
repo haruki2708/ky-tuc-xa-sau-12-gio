@@ -55,6 +55,12 @@ func _ready() -> void:
 	description.add_theme_font_size_override("font_size", 22)
 	accessibility.add_child(description)
 	$Footer/Reset.pressed.connect(_on_reset_pressed)
+	$Footer/ResetVideo.pressed.connect(_on_reset_video_pressed)
+	$ResetVideoConfirmation.confirmed.connect(_confirm_reset_video)
+	$ResetVideoConfirmation.canceled.connect(func() -> void: $Footer/ResetVideo.grab_focus())
+	visibility_changed.connect(func() -> void:
+		if not is_visible_in_tree():
+			$ResetVideoConfirmation.hide())
 	$Footer/Back.pressed.connect(func() -> void: back_requested.emit())
 	EventBus.settings_changed.connect(_on_settings_changed)
 	AudioServer.bus_layout_changed.connect(refresh)
@@ -156,6 +162,24 @@ func _on_reduce_scares_changed(enabled: bool) -> void:
 func _on_reset_pressed() -> void:
 	if _settings != null:
 		_show_save_result(_settings.reset_defaults())
+
+
+func _on_reset_video_pressed() -> void:
+	if _settings == null:
+		return
+	var dialog: ConfirmationDialog = $ResetVideoConfirmation
+	dialog.title = tr("UI_RESET_VIDEO")
+	dialog.dialog_text = tr("UI_RESET_VIDEO_CONFIRM")
+	dialog.ok_button_text = tr("UI_CONFIRM_ACCEPT")
+	dialog.cancel_button_text = tr("UI_CONFIRM_CANCEL")
+	dialog.popup_centered(Vector2i(760, 260))
+	dialog.get_cancel_button().grab_focus()
+
+
+func _confirm_reset_video() -> void:
+	if _settings != null:
+		_show_save_result(_settings.reset_section("video"))
+	$Footer/ResetVideo.grab_focus()
 
 
 func _on_settings_changed(_section: String, _key: String) -> void:
