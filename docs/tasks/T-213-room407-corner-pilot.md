@@ -1,5 +1,5 @@
 # T-213 — Làm thử góc phòng 407 gần chân thực (kiến trúc + vật liệu + ánh sáng)
-- Lane: B (Môi trường và 3D) | Trạng thái: done (D-092), chờ chủ dự án chấm chất lượng | Agent: lane B (khung, WIP `95d21ea`); Claude làm thay (B hết hạn mức 12/10): vật liệu, đồ vải, vỏ phòng, test, ảnh
+- Lane: B (Môi trường và 3D) | Trạng thái: done (D-092, D-093) | Agent: lane B (khung, WIP `95d21ea`); Claude làm thay (B hết hạn mức 12/10): vật liệu, đồ vải, vỏ phòng, test, ảnh
 - Nhánh: `lane-b/T-213-room407-corner-pilot`
 - Phụ thuộc: D-076 (đồ họa gần chân thực), D-086 (balo Tripo), D-088/D-089 (7 đồ phòng 407 bằng Tripo, quy trình AAA), **D-090** (làm thử góc phòng trước khi thay cả cụm vào bản chơi).
 - Prompt: `docs/handoff/lane-b.md` mục 5.
@@ -70,3 +70,4 @@ Lane B dựng khung (WIP `95d21ea`: kiến trúc, giường, bàn, đèn, đặt
 
 ## Review (integrator)
 2026-10-13 (Claude, integrator): **ghép vào main (D-092).** Phần của B và phần làm thay đã review trong phiên; phạm vi đúng vùng B, không sửa cảnh chơi/core. Chất lượng: xem nhận xét ở Handoff; mục "Tiêu chí chất lượng" để chủ dự án chấm.
+2026-10-13: **chủ dự án duyệt hướng phòng (D-093)**; giường, bàn và mọi đồ trong phòng sẽ làm bằng Tripo, bản Blender giữ làm dự phòng.
