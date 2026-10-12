@@ -12,7 +12,7 @@ from mathutils import Vector
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[2]
 OUT = ROOT / "game/assets/models/graphics_pilot/room407_corner"
-TEXTURES = OUT / "textures"
+TEXTURES = HERE / "textures"
 GROUPS = {}
 GROUP = "architecture"
 
@@ -21,21 +21,22 @@ def point(v):
     return Vector((v[0], -v[2], v[1]))
 
 
-def material(name, asset, color=(1, 1, 1, 1)):
+def material(name, asset, color=(1, 1, 1, 1), color_asset=None, strength=0.45):
     mat = bpy.data.materials.new(name)
     mat.use_nodes = True
     nodes, links = mat.node_tree.nodes, mat.node_tree.links
     bsdf = nodes.get("Principled BSDF")
     for suffix in ("color", "normal", "arm"):
         tex = nodes.new("ShaderNodeTexImage")
-        tex.image = bpy.data.images.load(str(TEXTURES / f"{asset}_{suffix}.jpg"), check_existing=True)
+        stem = color_asset if suffix == "color" and color_asset else asset
+        tex.image = bpy.data.images.load(str(TEXTURES / f"{stem}_{suffix}.jpg"), check_existing=True)
         if suffix != "color":
             tex.image.colorspace_settings.name = "Non-Color"
         if suffix == "color":
             links.new(tex.outputs["Color"], bsdf.inputs["Base Color"])
         elif suffix == "normal":
             normal = nodes.new("ShaderNodeNormalMap")
-            normal.inputs["Strength"].default_value = 0.45
+            normal.inputs["Strength"].default_value = strength
             links.new(tex.outputs["Color"], normal.inputs["Color"])
             links.new(normal.outputs["Normal"], bsdf.inputs["Normal"])
         else:
@@ -83,14 +84,24 @@ def box(name, pos, size, mat, bevel=0.006, period=1.0):
     return finish(obj, name, mat)
 
 
-def tube(name, a, b, radius, mat, sides=12):
+def tube(name, a, b, radius, mat, sides=12, period=0.5):
     start, end = point(a), point(b)
     bpy.ops.mesh.primitive_cylinder_add(vertices=sides, radius=radius, depth=(end-start).length,
                                       location=(start+end)/2)
     obj = bpy.context.object
     obj.rotation_euler = (end-start).to_track_quat("Z", "Y").to_euler()
+    # Metric UVs (circumference x length) so paint chips are not squeezed 8x around thin tubes.
+    uv = obj.data.uv_layers.active.data
     for face in obj.data.polygons:
         face.use_smooth = len(face.vertices) == 4
+        angles = [math.atan2(obj.data.vertices[obj.data.loops[li].vertex_index].co.y,
+                             obj.data.vertices[obj.data.loops[li].vertex_index].co.x) for li in face.loop_indices]
+        wrap = max(angles) - min(angles) > math.pi
+        for li, angle in zip(face.loop_indices, angles):
+            co = obj.data.vertices[obj.data.loops[li].vertex_index].co
+            if wrap and angle < 0:
+                angle += 2 * math.pi
+            uv[li].uv = (angle * radius / period, co.z / period) if face.use_smooth else (co.x / period, co.y / period)
     edge = obj.modifiers.new("Soft tube end", "BEVEL")
     edge.width, edge.segments = min(.001, radius*.12), 1
     edge.limit_method, edge.angle_limit = "ANGLE", .6
@@ -149,29 +160,145 @@ def quilt(name, level, mat):
         seam(name+"_hem", coords, mat)
 
 
+def metric_uv(obj, period):
+    """Box-project UVs in metres (object space) after deformation."""
+    uv = obj.data.uv_layers.active or obj.data.uv_layers.new()
+    for face in obj.data.polygons:
+        axis = max(range(3), key=lambda i: abs(face.normal[i]))
+        axes = [i for i in range(3) if i != axis]
+        for li in face.loop_indices:
+            v = obj.data.vertices[obj.data.loops[li].vertex_index].co
+            uv.data[li].uv = (v[axes[0]] / period, v[axes[1]] / period)
+
+
+def soft_block(name, centre, size, mat, cuts, shape, period):
+    """Subdivided unit cube reshaped by shape(x, y, z) -> (x, y, z), in Godot axes."""
+    bpy.ops.mesh.primitive_cube_add(size=2, location=(0, 0, 0))
+    obj = bpy.context.object
+    bpy.ops.object.mode_set(mode="EDIT")
+    bpy.ops.mesh.subdivide(number_cuts=cuts)
+    bpy.ops.object.mode_set(mode="OBJECT")
+    for v in obj.data.vertices:
+        gx, gy, gz = shape(v.co.x, v.co.z, -v.co.y)
+        v.co = Vector((gx * size[0] / 2, -gz * size[2] / 2, gy * size[1] / 2))
+    metric_uv(obj, period)
+    obj.location = point(centre)
+    for face in obj.data.polygons:
+        face.use_smooth = True
+    return finish(obj, name, mat)
+
+
+def pillow_shape(x, y, z):
+    # Puffy centre, pinched seams and corners, a little sag where the head rests.
+    puff = ((1 - abs(x) ** 4) * (1 - abs(z) ** 4)) ** 0.42
+    dent = 0.18 * math.exp(-((x + 0.15) ** 2 / 0.18 + z ** 2 / 0.25)) if y > 0 else 0.0
+    wrinkle = 0.05 * math.sin(7 * x + 3 * z) * (1 - puff)
+    if y > 0:
+        return x * (1 + 0.03 * math.sin(9 * z)), y * max(puff - dent, 0.06) + wrinkle, z
+    # Resting underside: nearly flat, seams sit ~2 cm above the mattress.
+    return x * (1 + 0.03 * math.sin(9 * z)), y * min(max(puff, 0.06), 0.35), z
+
+
+def grid(name, x_range, z_range, height, nx, nz, mat, period, lift):
+    """Cloth sheet in Godot axes; lift(u, v) gives extra height so rest length exceeds footprint."""
+    verts, faces, uvs = [], [], []
+    for j in range(nz + 1):
+        for i in range(nx + 1):
+            u, v = i / nx, j / nz
+            x = x_range[0] + u * (x_range[1] - x_range[0])
+            z = z_range[0] + v * (z_range[1] - z_range[0])
+            verts.append(point((x, height + lift(u, v), z)))
+    for j in range(nz):
+        for i in range(nx):
+            k = j * (nx + 1) + i
+            faces.append((k, k + nx + 1, k + nx + 2, k + 1))
+    mesh = bpy.data.meshes.new(name)
+    mesh.from_pydata(verts, [], faces)
+    obj = bpy.data.objects.new(name, mesh)
+    bpy.context.collection.objects.link(obj)
+    uv = mesh.uv_layers.new()
+    # UVs follow the sheet's own arc length so the weave is not stretched by the folds.
+    arc = [0.0]
+    for j in range(1, nz + 1):
+        arc.append(arc[-1] + (verts[j * (nx + 1)] - verts[(j - 1) * (nx + 1)]).length)
+    for face in mesh.polygons:
+        face.use_smooth = True
+        for li in face.loop_indices:
+            k = mesh.loops[li].vertex_index
+            i, j = k % (nx + 1), k // (nx + 1)
+            uv.data[li].uv = (i / nx * (x_range[1] - x_range[0]) / period, arc[j] / period)
+    return finish(obj, name, mat)
+
+
+def drape(obj, frames, colliders, grow=0.0, bending=0.6):
+    """Run Blender cloth on obj against colliders, then bake the result into the mesh."""
+    added = []
+    for other in colliders:
+        if not any(m.type == "COLLISION" for m in other.modifiers):
+            other.modifiers.new("Collision", "COLLISION")
+            other.collision.thickness_outer = 0.004
+            other.collision.cloth_friction = 20
+            added.append(other)
+    cloth = obj.modifiers.new("Cloth", "CLOTH")
+    st, col = cloth.settings, cloth.collision_settings
+    st.quality, st.mass, st.air_damping = 8, 0.35, 2
+    st.tension_stiffness = st.compression_stiffness = 40
+    st.shear_stiffness, st.bending_stiffness = 10, bending
+    st.shrink_min = -grow  # negative shrink: the sheet wants more area than it has, so it buckles into folds
+    col.distance_min, col.use_self_collision, col.self_distance_min = 0.004, True, 0.004
+    col.collision_quality = 3
+    scene = bpy.context.scene
+    scene.frame_start, scene.frame_end = 1, frames
+    cloth.point_cache.frame_start, cloth.point_cache.frame_end = 1, frames
+    for frame in range(1, frames + 1):
+        scene.frame_set(frame)
+    bpy.ops.object.select_all(action="DESELECT")
+    bpy.context.view_layer.objects.active = obj
+    obj.select_set(True)
+    bpy.ops.object.modifier_apply(modifier=cloth.name)
+    for other in added:
+        for m in [m for m in other.modifiers if m.type == "COLLISION"]:
+            other.modifiers.remove(m)
+    scene.frame_set(1)
+
+
 def main():
     global GROUP
     bpy.ops.wm.read_factory_settings(use_empty=True)
     bpy.context.preferences.filepaths.save_version = 0
     bpy.context.scene.unit_settings.system = "METRIC"
-    plaster = material("Lime plaster | scanned CC0", "plastered_wall_04")
+    plaster = material("Aged cream paint | scanned CC0", "painted_plaster_wall",
+                       color_asset="painted_plaster_wall_cream", strength=0.8)
     ceramic = material("Small ceramic | CC0 1K", "plastered_wall_04_small")
     tile = material("Ceramic tile | scanned CC0", "interior_tiles")
-    steel = material("Painted steel | scanned CC0", "rusty_painted_metal")
-    fabric = material("Woven bedding | scanned CC0", "denim_fabric")
+    steel = material("Green painted steel | scanned CC0", "green_metal_rust", strength=0.7)
+    fabric = material("Mattress cover | scanned CC0", "rough_linen_square", strength=0.8)
     wood = material("Worn desk veneer | scanned CC0", "wood_table_worn")
+    mat_rush = material("Sleeping mat (chieu) | scanned CC0", "tatami_mat", strength=0.9)
+    check = material("Checked pillowcase | scanned CC0", "fabric_pattern_05", strength=0.8)
+    fleece = material("Fleece blanket | scanned CC0", "polar_fleece_square", strength=1.0)
     GROUP = "floor"
-    box("Floor", (2.75,-.1,-3.5), (5.5,.2,7), tile, .003, 2.0)
+    box("Floor", (4,-.1,-3.5), (8,.2,7), tile, .003, 1.9)
     GROUP = "architecture"
-    box("WestWall", (0,1.5,-3.5), (.2,3,7), plaster, .003, 3.2)
-    box("BackWest", (1.15,1.5,-7), (2.3,3,.15), plaster, .003, 3.2)
-    box("BackEast", (4.25,1.5,-7), (1.9,3,.15), plaster, .003, 3.2)
-    box("BalconyLintel", (2.8,2.65,-7), (1,.7,.15), plaster, .003, 3.2)
-    box("Ceiling", (2.75,3.075,-3.5), (5.5,.15,7), plaster, .003, 3.2)
+    box("WestWall", (0,1.5,-3.5), (.2,3,7), plaster, .003, 2.0)
+    box("BackWest", (1.15,1.5,-7), (2.3,3,.15), plaster, .003, 2.0)
+    box("BackEast", (4.25,1.5,-7), (1.9,3,.15), plaster, .003, 2.0)
+    box("BalconyLintel", (2.8,2.65,-7), (1,.7,.15), plaster, .003, 2.0)
+    box("Ceiling", (4,3.075,-3.5), (8,.15,7), plaster, .003, 2.0)
+    # Close the shell so wide views show walls, not the void (room_407 / extension / floor4 door 407).
+    box("EastWall", (8,1.5,-3.5), (.2,3,7), plaster, .003, 2.0)
+    box("FrontWallWest", (.75,1.5,.075), (1.5,3,.15), plaster, .003, 2.0)
+    box("FrontWallEast", (5.225,1.5,.075), (5.55,3,.15), plaster, .003, 2.0)
+    box("DoorLintel", (1.975,2.55,.075), (.95,.9,.15), plaster, .003, 2.0)
+    box("BathroomBack", (6.65,1.5,-7), (2.7,3,.15), plaster, .003, 2.0)
+    box("BathroomSide", (5.3,1.5,-5.5), (.15,3,3), plaster, .003, 2.0)
+    box("BathFrontW", (5.3125,1.5,-4), (.075,3,.15), plaster, .003, 2.0)
+    box("BathFrontE", (7.175,1.5,-4), (1.65,3,.15), plaster, .003, 2.0)
+    box("BathLintel", (5.85,2.6,-4), (1,.8,.15), plaster, .003, 2.0)
     GROUP = "floor"
-    box("WestSkirting", (.118,.06,-3.5), (.036,.12,7), tile, .005, 2.0)
+    box("WestSkirting", (.118,.06,-3.5), (.036,.12,7), tile, .005, 1.9)
     for x, width in [(1.2,2.2),(4.25,1.9)]:
-        box("BackSkirting", (x,.06,-6.907), (width,.12,.035), tile,.005,2)
+        box("BackSkirting", (x,.06,-6.907), (width,.12,.035), tile,.005,1.9)
     GROUP = "fixtures"
     # Existing balcony aperture: x=2.3..3.3, y=0..2.3, NOT a new wall/window.
     for x in [2.315,3.285]:
@@ -185,6 +312,9 @@ def main():
     for z in [-4.445,-4.405]:
         box("SocketHole", (.154,1.04,z), (.003,.035,.008), steel,.002,.25)
     tube("WallConduit", (.126,1.11,-4.42), (.126,2.87,-4.42), .008, ceramic)
+    # Closed doors (room door leaf hinges at x=2.44; bathroom door 5.35..6.35).
+    box("RoomDoor", (1.995,1.05,.02), (.89,2.1,.04), steel, .006)
+    box("BathroomDoor", (5.85,1.1,-4), (.98,2.2,.04), steel, .006)
     box("TubeHousing", (2,2.88,-1.2), (1.15,.065,.13), steel,.014)
     for z in [-1.235,-1.165]:
         tube("FluorescentTube", (1.46,2.84,z), (2.54,2.84,z), .016, ceramic,16)
@@ -214,16 +344,49 @@ def main():
         tube("LadderStile",(1.078,.025,z),(1.078,1.4,z),.017,steel)
     for y in [.22,.49,.76,1.03,1.3]:
         tube("LadderRung",(1.078,y,-3.8),(1.078,y,-3.45),.013,steel)
+    mattresses, rails = {}, [o for o in GROUPS["bunk_a"] if o.name.startswith(("SideRail", "EndRail"))]
     for tag, top in [("Lower",.43),("Upper",1.20)]:
-        mattress = box(tag+"Mattress",(.65,top-.025,-3),(.8,.05,1.9),fabric,.018,.35)
-        # Subtle compression, preserving the measured outer envelope and top datum.
+        # Foam mattress in a linen cover; a 2 mm rush sleeping mat (chieu) lies on top.
+        mattress = box(tag+"Mattress",(.65,top-.026,-3),(.8,.048,1.9),fabric,.016,.27)
         for vertex in mattress.data.vertices:
             if vertex.co.z > .005:
                 vertex.co.z -= .003*math.exp(-((vertex.co.x/.26)**2+(vertex.co.y/.65)**2))
-        seam(tag+"Piping",[(.265,top-.012,-3.92),(1.035,top-.012,-3.92),
-                           (1.035,top-.012,-2.08),(.265,top-.012,-2.08),(.265,top-.012,-3.92)],fabric)
-        box(tag+"Pillow",(.65,top+.04,-2.3),(.54,.075,.3),fabric,.035,.35)
-        quilt(tag+"Quilt",top,fabric)
+        seam(tag+"Piping",[(.255,top-.004,-3.94),(1.045,top-.004,-3.94),
+                           (1.045,top-.004,-2.06),(.255,top-.004,-2.06),(.255,top-.004,-3.94)],fabric)
+        mattresses[tag] = mattress
+    GROUP = "bunk_a_bedding"
+    for tag, top in [("Lower",.43),("Upper",1.20)]:
+        # One woven panel between the mat's binding strips: 1.8 m repeat along the bed.
+        sleeping_mat = grid(tag+"SleepingMat", (.27,1.03), (-3.93,-2.07), top-.001, 1, 1, mat_rush, 1.8, lambda u, v: 0)
+        for li, loop in enumerate(sleeping_mat.data.loops):
+            u, v = sleeping_mat.data.uv_layers.active.data[li].uv
+            sleeping_mat.data.uv_layers.active.data[li].uv = (v, .03 + u * .42 / (.76/1.8))
+        pillow = soft_block(tag+"Pillow", (.65, top+.024, -2.33), (.52, .17, .34), check, 7, pillow_shape, .5)
+        pillow.rotation_euler.z = math.radians(4 if tag == "Lower" else -6)
+    # Lower bed: blanket thrown back in folds (Blender cloth).
+    blanket = grid("LowerBlanket", (.2,1.1), (-3.92,-2.62), .43+.07, 26, 36, fleece, .27,
+                   lambda u, v: .04*math.sin(v*math.pi*3+.8*math.sin(u*4)) + .02*math.sin(u*math.pi*2.5+v*5))
+    ladder = [o for o in GROUPS["bunk_a"] if o.name.startswith(("Ladder", "RoundPost"))]
+    drape(blanket, 90, [mattresses["Lower"], *[o for o in GROUPS["bunk_a_bedding"] if o.name == "LowerPillow"], *rails, *ladder],
+          grow=.16, bending=.3)
+    # Upper bed: the same fleece pushed into a heap at the foot.
+    heap = grid("UpperBlanket", (.36,.96), (-3.9,-3.3), 1.20+.15, 20, 18, fleece, .27,
+                lambda u, v: .08*math.sin(v*math.pi*2.5+u*2) + .04*math.sin(u*math.pi*3))
+    drape(heap, 60, [mattresses["Upper"], *rails, *ladder], grow=.18, bending=.3)
+    for sheet in (blanket, heap):
+        zs = [v.co.z for v in sheet.data.vertices]
+        print("DRAPE", sheet.name, "blender z range", round(min(zs), 3), round(max(zs), 3))
+    for sheet in (blanket, heap):
+        # Keep the big folds, drop cell-sized buckles that shade as a sawtooth.
+        calm = sheet.modifiers.new("Calm cell buckles", "SMOOTH")
+        calm.factor, calm.iterations = .5, 4
+        # Fleece is about a centimetre thick: give the sheet a body and a soft rim instead of a paper edge.
+        thick = sheet.modifiers.new("Fleece thickness", "SOLIDIFY")
+        thick.thickness, thick.offset, thick.use_rim = .012, 1.0, True
+        bpy.context.view_layer.objects.active = sheet
+        bpy.ops.object.modifier_apply(modifier=calm.name)
+        bpy.ops.object.modifier_apply(modifier=thick.name)
+        sheet.modifiers.new("Smooth folds", "WEIGHTED_NORMAL")
     GROUP = "study_desk"
     box("DeskTop",(1.8,.735,-4.55),(1.5,.05,.65),wood,.012,.55)
     for x in [1.13,2.47]:

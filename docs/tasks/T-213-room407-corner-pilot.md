@@ -1,5 +1,5 @@
 # T-213 — Làm thử góc phòng 407 gần chân thực (kiến trúc + vật liệu + ánh sáng)
-- Lane: B (Môi trường và 3D) | Trạng thái: todo | Agent:
+- Lane: B (Môi trường và 3D) | Trạng thái: review | Agent: lane B (khung, WIP `95d21ea`); Claude làm thay (B hết hạn mức 12/10): vật liệu, đồ vải, vỏ phòng, test, ảnh
 - Nhánh: `lane-b/T-213-room407-corner-pilot`
 - Phụ thuộc: D-076 (đồ họa gần chân thực), D-086 (balo Tripo), D-088/D-089 (7 đồ phòng 407 bằng Tripo, quy trình AAA), **D-090** (làm thử góc phòng trước khi thay cả cụm vào bản chơi).
 - Prompt: `docs/handoff/lane-b.md` mục 5.
@@ -45,25 +45,27 @@ Không Tripo, không đo FPS, không chạy bot, không sửa core/cảnh chươ
 `art_source/`, `game/assets/models/`, `game/assets/textures/`, `game/scenes/levels/graphics_pilot/`, `game/tests/levels/`, card này (Handoff).
 
 ## Checklist hoàn thành
-- [ ] Hình khối góc phòng + giường A (+ bàn) bằng script Blender (hoặc Tripo cho phần nhìn giường/bàn), đúng số đo
-- [ ] Đạt mục "Tiêu chí chất lượng" (ảnh so sánh cạnh đồ Tripo)
-- [ ] Vật liệu CC0 chụp thật, credits đầy đủ
-- [ ] Decal, ánh sáng 2 trạng thái, thử GI
-- [ ] Đặt đủ balo + 7 đồ Tripo đúng chỗ
-- [ ] File `.blend` để xem trực tiếp
-- [ ] Ảnh trước/sau ≥ 4 góc × 2 ánh sáng + `capture_report.json`
-- [ ] Test
-- [ ] `pwsh tools/test.ps1`, `pwsh tools/check.ps1` PASS (xin lượt integrator)
-- [ ] Handoff
+- [x] Hình khối góc phòng + giường A (+ bàn) bằng script Blender, đúng số đo (test 1 cm đạt)
+- [ ] Đạt mục "Tiêu chí chất lượng" (ảnh so sánh cạnh đồ Tripo): **chờ chủ dự án chấm**, xem nhận xét dưới
+- [x] Vật liệu CC0 chụp thật, credits đầy đủ
+- [x] Decal, ánh sáng 2 trạng thái, thử GI (SDFGI có/không)
+- [x] Đặt đủ balo + 7 đồ Tripo đúng chỗ
+- [x] File `.blend` để xem trực tiếp
+- [x] Ảnh trước/sau 5 góc × 2 ánh sáng + đối chứng SDFGI + `capture_report.json`
+- [x] Test
+- [x] `pwsh tools/test.ps1`, `pwsh tools/check.ps1` PASS (ghi trong commit ghép)
+- [x] Handoff
 
 ## Handoff (agent điền)
 
-### 12/10/2026 — Lane B, đang thực hiện
-
-- Workspace `D:\GAME_WORK\lane-b` sạch khi bắt đầu; fetch, tạo `lane-b/T-213-room407-corner-pilot` từ `origin/main` **25e3bfe**, có D-089/D-090. Giữ stash T-209 lịch sử; không làm lại G1.
-- Đã dựng script Blender `art_source/graphics_upgrade/room407_corner/build_corner.py`, file `room407_corner.blend` có đủ tám đồ Tripo và texture tương đối; mở lại offline không thiếu ảnh. Pilot `game/scenes/levels/graphics_pilot/room407_corner_pilot.tscn`, nguồn CC0/URL/hash tại `CREDITS.md` + `texture_sources.json`, số đo/basis tại README + placements.json. GLB mới tách 5 phần để từng file <10 MiB; giường 7.016 tris, bàn 1.400, phần dựng mới 11.392; tổng cùng Tripo 49.029.
-- Có test riêng `game/tests/levels/test_room407_corner.gd`: cô lập gameplay/capture, mặt sàn/tường/trần/nệm, placement/basis/đỡ khăn và nồi cơm. **Chưa có RESULT test/check T-213**, không dùng kết quả T-209 thay thế. Chất lượng và ưu/nhược GI chờ ảnh renderer.
-- Chủ dự án đã chuyển yêu cầu và **bàn giao lượt kế tiếp khi Godot trống**. Lane B đang chờ chuỗi full test/check của integrator hoàn tất trước khi chạy test riêng/render/full test/check của mình. Không Tripo mới, FPS hoặc bot. Cảnh chương/default/core không sửa.
-- Chưa xong: chụp/xem 21 ảnh (4 góc bắt buộc + 1 góc so Tripo, hai trạng thái, trước/sau; thêm đối chứng GI), chỉnh nếu cần, full test/check, commit/push. Không đánh dấu chất lượng hoặc toàn task done.
+### 12/10/2026 — Claude làm thay lane B
+Lane B dựng khung (WIP `95d21ea`: kiến trúc, giường, bàn, đèn, đặt 8 đồ Tripo, cảnh pilot, test) rồi hết hạn mức trước khi chạy Godot. Chủ dự án nhờ integrator làm tiếp. Render thử bản của B thấy nệm/gối/chăn còn "khối" (hộp + lưới gợn sóng, vải jean phóng to ~3,5 lần), khung giường màu gỉ hồng, tường xám trơn. Đã làm:
+- **Vật liệu (Poly Haven CC0):** tường/trần Painted Plaster Wall đổi tông kem; khung giường, chân bàn, đèn: Green Metal Rust; nệm: Rough Linen; chiếu: Tatami Mat; gối: Fabric Pattern 05; chăn: Polar Fleece. UV theo mét đúng kích thước thật của ảnh, kể cả quanh ống sắt.
+- **Đồ vải:** nệm + chiếu 2 mm; gối từ khối chia lưới (phồng, mép chụm, đáy phẳng); chăn lông bằng mô phỏng vải Blender (va chạm nệm/gối/thanh giường/thang, vải nở 16–18 % để tự gợn nếp, dày 12 mm). Giường dưới chăn bị tung, giường trên chăn nhàu cuối giường. Tách `bunk_a.glb` (khung + nệm, 4.784 tam giác) và `bunk_a_bedding.glb` (7.124, 3 vật liệu).
+- **Sửa lỗi của bản B:** giày đặt thiếu offset node `Dat` (test vị trí từng fail); tỉ lệ gạch 2 m → 1,9 m; tác giả Interior Tiles là Charlotte Baglioni; map nguồn ~34 MB chuyển từ `game/` sang `art_source/.../textures/` (không bị đóng gói vào bản xuất); hai bộ vải 1024×1017/1026 đưa về 1024².
+- **Vỏ phòng kín** (tường đông, tường cửa + lỗ cửa + cánh cửa đóng, vách nhà tắm, trần 8 m, sàn 8 m) để góc rộng không lộ khoảng trống; đèn tuýp 3,8 → 2,6 (trần quanh đèn cháy sáng); sương mù không phủ nền.
+- **Kiểm tra:** test riêng `room407_corner` 3/3; capture Forward+ thật 21 ảnh PASS, không ERROR; `audit_assets.py` (55.109 tam giác gồm Tripo 37.637, 51 texture nhúng), `audit_blend.py` đạt. Ảnh tổng hợp: `art_source/graphics_upgrade/room407_corner/previews/summary_before_after.jpg`.
+- **Nhận xét chất lượng (integrator):** đạt: không còn mặt màu trơn, cạnh vát, giường/chăn/gối/chiếu và bàn đứng được cạnh đồ Tripo, đèn pin cho không khí đêm tốt, SDFGI làm góc khuất sáng hơn ~8 %. Chưa đạt mức game AAA: phòng trông "sạch và trống" vì chưa dựng lại tủ, giường B, quạt trần, quần áo, mùng, dây điện, đồ lặt vặt, vết bẩn; ánh sáng đèn tuýp vẫn khá phẳng. Bản PS1 hiện hành có cảm giác "có người ở" hơn. Fridge nhìn từ sau thấy giàn nóng màu đen (đúng model Tripo đã duyệt).
+- **Chưa làm:** VoxelGI/LightmapGI, FPS, 1920×1080, mùng. Không sửa cảnh chơi.
 
 ## Review (integrator)

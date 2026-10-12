@@ -6,9 +6,11 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
 HERE = Path(__file__).resolve().parent
-DEST = ROOT / "game/assets/models/graphics_pilot/room407_corner/textures"
-SETS = {"plastered_wall_04": "2k", "interior_tiles": "2k",
-        "rusty_painted_metal": "1k", "denim_fabric": "1k", "wood_table_worn": "1k"}
+DEST = HERE / "textures"  # source maps; the GLBs embed what Godot needs
+SETS = {"plastered_wall_04": "2k", "interior_tiles": "2k", "wood_table_worn": "1k",
+        # Integrator rework: aged paint, painted bed steel, sleeping mat and bedding.
+        "painted_plaster_wall": "2k", "green_metal_rust": "1k", "tatami_mat": "1k",
+        "rough_linen": "1k", "fabric_pattern_05": "1k", "polar_fleece": "1k"}
 
 
 def fetch(url):
@@ -28,6 +30,8 @@ def main():
                "license_url": "https://polyhaven.com/license", "resolution": size,
                "source_width_mm": info.get("dimensions"), "maps": []}
         for channel, suffix in [("Diffuse", "color"), ("nor_gl", "normal"), ("arm", "arm")]:
+            if channel not in files:  # colour variants, e.g. fabric_pattern_05 col_01
+                channel = sorted(k for k in files if k.startswith("col_"))[0]
             entry = files[channel][size]["jpg"]
             stem = asset + ("_small" if asset == "plastered_wall_04" and size == "1k" else "")
             target = DEST / (stem + "_" + suffix + ".jpg")

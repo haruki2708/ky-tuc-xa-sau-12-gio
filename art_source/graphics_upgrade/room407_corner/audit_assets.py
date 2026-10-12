@@ -21,14 +21,14 @@ def inspect(path, triangle_limit, texture_limit):
     triangles = sum(doc["accessors"][primitive["indices"]]["count"] // 3
                     for mesh in doc["meshes"] for primitive in mesh["primitives"])
     assert triangles <= triangle_limit, (path, triangles)
-    assert len(doc["materials"]) <= 2, path
+    assert len(doc["materials"]) <= (3 if path.stem == "bunk_a_bedding" else 2), path
     images = []
     for image in doc.get("images", []):
         view = doc["bufferViews"][image["bufferView"]]
         offset = view.get("byteOffset", 0)
         data = binary[offset:offset+view["byteLength"]]
         size = Image.open(io.BytesIO(data)).size
-        assert max(size) <= texture_limit, (path, image["name"], size)
+        assert max(size) <= texture_limit and size[0] == size[1], (path, image["name"], size)
         images.append({"name": image["name"], "size": list(size), "sha256": hashlib.sha256(data).hexdigest()})
     return {"file": path.relative_to(ROOT).as_posix(), "triangles": triangles,
             "materials": len(doc["materials"]), "bytes": len(raw),
@@ -37,7 +37,7 @@ def inspect(path, triangle_limit, texture_limit):
 
 def main():
     rows = []
-    for name in ["floor", "architecture", "bunk_a", "study_desk", "fixtures"]:
+    for name in ["floor", "architecture", "bunk_a", "bunk_a_bedding", "study_desk", "fixtures"]:
         rows.append(inspect(OUT / (name+".glb"), 8000 if name != "fixtures" else 5000,
                             2048 if name in ["floor", "architecture"] else 1024))
     for placement in json.loads((HERE / "placements.json").read_text()):

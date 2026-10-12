@@ -4,29 +4,34 @@
     "floor": {
       "triangles": 432,
       "mesh_count": 4,
-      "file_bytes": 7302900
+      "file_bytes": 7303020
     },
     "architecture": {
-      "triangles": 540,
-      "mesh_count": 5,
-      "file_bytes": 4334160
+      "triangles": 1512,
+      "mesh_count": 14,
+      "file_bytes": 7707872
     },
     "fixtures": {
-      "triangles": 2004,
-      "mesh_count": 19,
-      "file_bytes": 2385100
+      "triangles": 2220,
+      "mesh_count": 21,
+      "file_bytes": 1510288
     },
     "bunk_a": {
-      "triangles": 7016,
-      "mesh_count": 62,
-      "file_bytes": 3261044
+      "triangles": 4784,
+      "mesh_count": 54,
+      "file_bytes": 1914828
+    },
+    "bunk_a_bedding": {
+      "triangles": 7124,
+      "mesh_count": 6,
+      "file_bytes": 4479724
     },
     "study_desk": {
       "triangles": 1400,
       "mesh_count": 14,
-      "file_bytes": 3660692
+      "file_bytes": 2774184
     }
   },
-  "generated_triangles": 11392,
+  "generated_triangles": 17472,
   "tripo_triangles": 37637
 }

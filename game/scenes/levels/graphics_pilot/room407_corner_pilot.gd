@@ -54,7 +54,7 @@ func _ready() -> void:
 	after.name = "AfterCorner"
 	after.position = Vector3(30, 0, 0)
 	add_child(after)
-	for part: String in ["floor", "architecture", "bunk_a", "study_desk", "fixtures"]:
+	for part: String in ["floor", "architecture", "bunk_a", "bunk_a_bedding", "study_desk", "fixtures"]:
 		var model := (load(ROOT + part + ".glb") as PackedScene).instantiate() as Node3D
 		model.name = part
 		after.add_child(model)
@@ -101,12 +101,13 @@ func _ready() -> void:
 	environment.fog_enabled = true
 	environment.fog_light_color = Color(0.25, 0.30, 0.36)
 	environment.fog_density = 0.004
+	environment.fog_sky_affect = 0.0  # night outside the balcony stays dark, not fog-blue
 	environment.glow_enabled = true
 	environment.glow_intensity = 0.25
 	camera = Camera3D.new()
 	add_child(camera)
 	camera.make_current()
-	tube_light = _light(Vector3(32, 2.76, -1.2), Color(0.88, 0.94, 0.80), 3.8, 8.0, 0.25)
+	tube_light = _light(Vector3(32, 2.76, -1.2), Color(0.88, 0.94, 0.80), 2.6, 9.0, 0.25)
 	desk_light = _light(Vector3(31.85, 1.00, -4.52), Color(1, 0.78, 0.53), 0.55, 2.1, 0.07)
 	torch = SpotLight3D.new()
 	torch.position = Vector3(0.09, -0.12, 0)
@@ -176,7 +177,7 @@ func set_mode(improved: bool, lit: bool) -> void:
 	desk_light.visible = lit
 	torch.visible = not lit
 	for material in tube_materials:
-		material.emission_energy_multiplier = 2.0 if lit else 0.0
+		material.emission_energy_multiplier = 1.2 if lit else 0.0
 	environment.sdfgi_enabled = improved and DisplayServer.get_name() != "headless"
 	environment.ssao_enabled = improved
 	environment.ssil_enabled = improved
@@ -211,7 +212,7 @@ func _capture() -> void:
 		"environment": {"tonemap": "Filmic", "exposure": 1.0, "ambient": 0.12, "fog_density": 0.004,
 			"sdfgi_cascades": 4, "sdfgi_cell_m": 0.1, "sdfgi_occlusion": true, "sdfgi_bounce": 0.5,
 			"ssao_radius": 0.35, "ssil_radius": 2.0, "ssil_intensity": 0.6,
-			"tube_position": [32, 2.76, -1.2], "tube_energy": 3.8, "tube_range": 8.0,
+			"tube_position": [32, 2.76, -1.2], "tube_energy": 2.6, "tube_range": 9.0,
 			"desk_energy": 0.55, "torch_energy": 5.0, "torch_angle": 38.0},
 		"comparison_policy": "Source PS1 render-only snapshot; identical cameras/direct lights/exposure. After adds SDFGI/SSIL/SSAO, PBR geometry and approved props. No gameplay runs."}
 	for view: Dictionary in VIEWS:
