@@ -1,7 +1,7 @@
 # Bản đồ lộ trình — "Ký túc xá sau 12 giờ"
 
-> **Cập nhật:** 2026-10-12 (sau D-086: G2 balo Tripo đạt). Integrator cập nhật file này **mỗi khi qua một mốc** (chốt chương, đóng cổng G, đổi hướng lớn).
-> Chi tiết từng ngày: `docs/STATUS.md`. Lý do từng quyết định: `docs/DECISIONS.md` (D-001…D-086).
+> **Cập nhật:** 2026-10-12 (sau D-090: làm thử góc phòng 407). Integrator cập nhật file này **mỗi khi qua một mốc** (chốt chương, đóng cổng G, đổi hướng lớn).
+> Chi tiết từng ngày: `docs/STATUS.md`. Lý do từng quyết định: `docs/DECISIONS.md` (D-001…D-090).
 > Ký hiệu: ✅ xong · 🔶 đang làm · ⬜ chưa bắt đầu · 📍 **đang ở đây**
 
 ## 1. Bản đồ tổng
@@ -75,7 +75,7 @@ Khoảng 4–6 ngày: hết chương tự sang chương sau, **một file lưu x
 Phát hành theo chương (D-029). Nền tảng, giá, ngày: chưa quyết. Lưu ý Steam yêu cầu khai báo nội dung AI (`AGENTS.md` §5).
 
 ## 3. Việc đang chờ chủ dự án
-1. 📍 **Tripo đợt 1** (D-087): tạo 7 đồ phòng 407 theo `docs/handoff/TRIPO_DOT1_PHONG407.md`; xong thì thay cả nhóm vào bản chơi (G3).
+1. 📍 **Lane B làm thử góc phòng 407** (T-213, D-090): tường, sàn, giường, ánh sáng gần chân thực + đồ Tripo; anh/chị xem ảnh và file Blender. Sau đó Tripo đợt 2 rồi thay cả cụm (G3).
 2. Chơi tiếp **chương 3 từ tầng 1** và chơi **chương 4** lần đầu (độc lập với đồ họa).
 3. Kiểm hạn mức lane trước khi giao việc mới (C còn một sửa nhỏ: ID balo chữ hoa).
 

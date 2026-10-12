@@ -97,3 +97,35 @@ Không sửa tools/graphics/ (vùng C), core, collision/nav/timing, cảnh chơi
    - Dòng RESULT của test.ps1 và check.ps1; commit hash.
    - Phần chưa kiểm, đề xuất contract (nếu có), có bị chặn gì không.
 ```
+
+## 5. Prompt T-213: làm thử góc phòng 407 gần chân thực (D-090, 12/10)
+
+Dán nguyên khối, dùng được cho phiên cũ lẫn phiên mới. Chỉ gửi khi chủ dự án xác nhận lane B còn hạn mức.
+
+```text
+Bạn là agent Lane B (Môi trường và 3D), game "Ký túc xá sau 12 giờ" (Godot 4.7.2). Trả lời/tài liệu tiếng Việt, code tiếng Anh.
+Chỉ làm trong D:\GAME_WORK\lane-b. Không sửa D:\GAME_DEMO hay workspace lane khác.
+Integrator là Claude (Opus 5.5) ở máy. Câu hỏi core/contract và việc xin lượt chạy Godot đều gửi về integrator qua chủ dự án.
+
+VIỆC: T-213 — làm thử "góc phòng 407" gần chân thực bằng Blender theo số đo + texture CC0 chụp thật + ánh sáng tốt, đặt sẵn đồ Tripo đã duyệt, trong một cảnh pilot riêng. Bản chơi không đổi.
+
+1. git status (không ghi đè việc đang dở) → git fetch origin → tạo nhánh lane-b/T-213-room407-corner-pilot từ origin/main mới nhất (có D-089, D-090).
+2. Đọc: AGENTS.md, docs/STATUS.md, docs/tasks/T-213-room407-corner-pilot.md (toàn bộ), D-076/D-086/D-088/D-089/D-090 trong docs/DECISIONS.md,
+   art_source/graphics_upgrade/MEASUREMENTS.md và measured_assets.json, docs/handoff/TRIPO_DOT1_PHONG407.md (vị trí/kích thước đồ Tripo).
+3. Làm đúng mục "Cách làm" và đạt mục "Tiêu chí chất lượng" của card (không còn khối hộp như ảnh G0; giường/bàn ngang tầm đồ Tripo, nếu không đạt thì đề xuất prompt Tripo cho phần nhìn). Cách làm: hình khối bằng script Blender theo số đo (D:\Tools\Blender\5.2.2\blender.exe), vật liệu CC0 từ ambientCG/Poly Haven (ghi URL + giấy phép vào CREDITS.md),
+   decal, ánh sáng 2 trạng thái (đèn tuýp bật; đèn tắt + đèn pin), thử ít nhất một cách ánh sáng gián tiếp và ghi ưu/nhược.
+   Cài đặt ánh sáng/môi trường chỉ trong cảnh pilot; không đổi project.godot, renderer mặc định, cảnh chương hay floor4/room_407/room407_details/extension.
+4. Đặt balo graphics_pilot/room407_backpack_tripo_r2.glb và 7 món graphics_pilot/room407_batch1/ đúng vị trí/hướng đồ cũ (khăn hạ theo xô mới cao ≈ 0,26 m).
+5. Lưu file .blend của góc phòng trong art_source/graphics_upgrade/room407_corner/ (≤ 10 MiB/file) để chủ dự án mở Blender xem trực tiếp.
+6. Chụp ảnh trước/sau cùng camera, ≥ 4 góc × 2 trạng thái ánh sáng như card ghi, kèm capture_report.json; viết test trong game/tests/levels/ như card.
+7. Chạy offline/headless trước. Khi cần renderer thật (chụp ảnh) hoặc full test/check: NHẮN integrator xin lượt rồi mới chạy
+   pwsh tools/test.ps1, sau đó pwsh tools/check.ps1. Không Tripo, không đo FPS, không chạy bot.
+8. Hai lệnh đạt → commit nhỏ "T-213: ..." → git push origin lane-b/T-213-room407-corner-pilot (không push main, không mở PR) → báo nhả lượt Godot.
+   Sắp hết hạn mức thì dừng ở bước đang làm, commit phần đã có ("T-213 WIP: ..."), push, ghi Handoff rõ còn dở gì.
+9. Cập nhật Handoff trong card (không sửa STATUS, DECISIONS hay mục Review) và báo lại, gồm:
+   - Đường dẫn cảnh pilot, file .blend, ảnh trước/sau (liệt kê từng ảnh), capture_report.json.
+   - Bảng nguồn texture (bộ, URL, giấy phép, kích thước) và tổng tam giác/texture của góc phòng.
+   - Cách ánh sáng gián tiếp đã thử, ưu/nhược; cài đặt môi trường.
+   - Dòng RESULT của test.ps1 và check.ps1; commit hash.
+   - Phần chưa làm, đề xuất cho bước dựng cả phòng/tòa nhà, có bị chặn gì không.
+```

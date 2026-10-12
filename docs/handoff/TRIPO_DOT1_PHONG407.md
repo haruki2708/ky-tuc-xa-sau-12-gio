@@ -62,3 +62,31 @@ A pair of worn canvas sneakers placed side by side, toes pointing forward, black
 | Món | Lượt | Credit trước → sau | File | Ghi chú |
 |---|---|---|---|---|
 | | | | | |
+
+## Lượt 1 (12/10, 7 món): đánh giá và lưu
+File gốc ở `build/graphics/staging/room407_batch1/r1_cu/` (hash trong `art_source/graphics_upgrade/tripo/room407_batch1/source/SHA256SUMS.txt`). 650–1.340 tam giác mỗi món, texture 2048. Chủ dự án: "nhìn sơ sài lắm". Integrator: hình mềm và chảy (ghế), mất chi tiết (xô mất quai), khăn có gai lỗi, tủ lạnh và nồi cơm trắng phẳng; giày đẹp nhất. Nguyên nhân: polycount thấp, Ultra mesh tắt, prompt thiếu chi tiết bề mặt → D-088.
+
+## Lượt 2 theo D-088 (quy trình AAA)
+Tùy chọn: H3.1, Triangle, **Ultra mesh bật**, polycount cao (ghế/xô khoảng 27.800; 5 món sau để **cao nhất**, khoảng 1,9–2 triệu tam giác, file 64–71 MB), **texture 4K**, PBR bật, Remove lighting bật. Integrator xử lý bằng `art_source/graphics_upgrade/tripo/bake_prop.py` (giảm đa giác giữ UV, nướng normal từ bản chi tiết, thu texture). Kết quả ở `game/assets/models/graphics_pilot/room407_batch1/`; bản chơi chưa đổi.
+
+| Món | Tripo (bản chi tiết) | Bản game | Khớp kích thước | Kết quả |
+|---|---|---|---|---|
+| Ghế nhựa đỏ | 27.824 tam giác | 4.900, texture 1024 | theo chiều cao 0,30 m (rộng ≈ 0,30 m) | **Đạt** (chủ dự án) |
+| Xô nhựa | 27.734 | 4.899, 1024 | theo **độ rộng 0,324 m** → cao ≈ 0,26 m (chủ dự án chọn; khăn trên xô hạ theo khi thay ở G3) | **Đạt** (chủ dự án) |
+| Tủ lạnh mini | 1.944.612 | 7.840, **2048 (JPEG, file 1,5 MB)** | theo chiều cao 0,84 m | Tốt (integrator); chờ chủ dự án xem |
+| Nồi cơm | 1.990.748 | 4.900, 1024 | theo chiều cao 0,35 m | Tốt; bảng điều khiển có vài nét giống chữ không đọc được, **chủ dự án để nguyên** |
+| Dép | 1.886.072 | 4.900, 1024 | **ép khung 0,233 × 0,09 × 0,257 m** (Tripo làm dép quá dày) | Tốt |
+| Giày | 1.924.012 | 4.899, 1024 | theo chiều cao 0,134 m | Rất tốt |
+| Khăn gấp | lượt 2: 1.968.566 (hỏng, khối nhàu như đá); **lượt 3: 1.896.200** | 2.940, 1024 | xoay 90° (Tripo đặt chiều dài theo X), khớp theo độ rộng 0,21 m → 0,21 × 0,29 × 0,09 m | **Tốt** (lượt 3) |
+
+Ảnh: `art_source/graphics_upgrade/tripo/room407_batch1/previews/`. Nguồn: ghế và xô (5,8 MB) lưu ở `source/`; 5 món còn lại quá 10 MiB nên **chỉ lưu hash**, file gốc giữ ở `build/` và trong tài khoản Tripo.
+Credit: lượt 2 của 5 món 3.840 → 3.565 (275). Lượt 1 và lượt 2 ghế/xô: chủ dự án không nhớ; chủ dự án cho biết **không cần theo dõi credit chặt**, dùng thoải mái (12/10).
+
+## Lượt 3: khăn gấp
+**Khăn gấp** → `towel_r3.glb` (tùy chọn như lượt 2)
+```text
+Photorealistic thick cotton bath towel folded neatly into a flat rectangular bundle, like a towel on a hotel shelf: a rectangular block about 33 cm long, 21 cm wide and 5 cm high with rounded folded edges and clean straight sides, soft terry loop texture on all faces, light beige with a woven blue stripe band near one end, slight wear. Single solid object resting flat on a surface, no hanging flaps, no loose parts. High detail, realistic materials, PBR.
+```
+Nếu vẫn hỏng: integrator dựng khăn bằng Blender.
+
+Kết quả lượt 3: chồng khăn bông gấp gọn, sọc xanh, sợi bông rõ (`previews/towel_r3_high_low.png`). **Đợt 1 đủ 7 món** (D-089); thay vào bản chơi ở G3 cùng balo.

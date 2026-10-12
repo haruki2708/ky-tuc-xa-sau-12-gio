@@ -80,7 +80,7 @@ Mọi lane đều được sửa: task card của mình (`docs/tasks/T-xxx*.md`,
 - **Asset:**
   - Chỉ dùng giấy phép **CC0** hoặc **CC-BY**. **Cấm** NC (phi thương mại), cấm asset không rõ nguồn, cấm asset lấy từ game khác.
   - Ngoại lệ: danh sách từ chương 2 CC BY-SA (D-051); **model tạo bằng gói Tripo AI trả phí** (D-084), phải lưu gói, ngày, task ID, bản điều khoản lúc tạo và nguồn đầu vào hợp lệ. Không dùng model gói Free.
-  - Ngoại lệ duy nhất: danh sách từ nối chương 2 (`game/data/ch2/dictionary.txt`, Wiktionary, CC BY-SA, D-051). Ngoại lệ khác phải hỏi chủ dự án.
+  - Ngoại lệ khác phải hỏi chủ dự án.
   - Ghi nguồn của mọi asset vào `CREDITS.md` trong thư mục asset của lane: URL, tác giả, giấy phép, file nào.
   - Asset tạo bằng AI phải ghi rõ công cụ. Steam yêu cầu khai báo nội dung AI.
 - **Ngưỡng PS1 của asset hiện hành:**
