@@ -316,6 +316,39 @@ class G1Tests(unittest.TestCase):
         self.asset["source"]["license"] = "Tripo Paid"
         self.assertEqual(self.check_g1()["status"], "FAIL")
 
+    def set_d084(self):
+        self.set_tripo()
+        evidence = self.root / "evidence" / "terms.pdf"
+        evidence.parent.mkdir(parents=True, exist_ok=True)
+        evidence.write_bytes(b"terms snapshot")
+        self.asset["source"]["license"] = "LicenseRef-Tripo-Paid-D-084"
+        self.asset["generation"]["rights_evidence"] = ["evidence/terms.pdf"]
+
+    def test_d084_paid_tripo_exception_accepted_with_evidence(self):
+        self.set_d084()
+        result = self.check_g1()
+        self.assertEqual(result["errors"], [])
+        self.assertNotIn("paid_plan_and_input_rights_evidence", result["unavailable"])
+
+    def test_d084_exception_rejected_without_paid_tripo_evidence(self):
+        cases = {
+            "free tier": lambda g: g.update(tier="free"),
+            "unknown tier": lambda g: g.update(tier="unknown"),
+            "no evidence": lambda g: g.update(rights_evidence=[]),
+            "missing evidence file": lambda g: g.update(rights_evidence=["evidence/absent.pdf"]),
+        }
+        for name, mutate in cases.items():
+            with self.subTest(name):
+                self.set_d084()
+                mutate(self.asset["generation"])
+                self.assertEqual(self.check_g1()["status"], "FAIL")
+
+    def test_d084_label_rejected_for_other_providers(self):
+        self.set_d084()
+        self.asset["generation"].update(provider="meshy", channel="studio", wallet_id="meshy:studio:fixture")
+        self.asset["budget"].update(wallet_id="meshy:studio:fixture")
+        self.assertIn("D-084 license exception requires provider tripo", self.check_g1()["errors"])
+
     def test_mixed_wallet_and_credit_discrepancy_fail(self):
         self.set_tripo()
         self.asset["budget"].update(wallet_id="tripo:api:fixture", balance_after=80)

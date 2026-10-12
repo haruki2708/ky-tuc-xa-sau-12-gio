@@ -1,6 +1,6 @@
 # STATUS — cập nhật bởi integrator
 
-**Cập nhật lần cuối:** 2026-10-12, Claude Code ở máy (Opus 5.5, integrator) — **D-085: G1 balo đã nghiệm thu.** **Chủ dự án đã mua Tripo Studio Pro 12/10 (tháng, 263.000 đồng; phiếu `docs/handoff/TRIPO_PHIEU_BALO.md`).** Việc tiếp theo của chủ dự án: tạo mẫu balo theo `docs/handoff/TRIPO_STUDIO_HUONG_DAN_BALO.md` (tối đa 5 lượt, D-084), rồi gửi file + phiếu cho integrator; tiêu chí đạt G2 ở `docs/handoff/G1_NGHIEM_THU_BALO_2026-10-12.md` §3. Trước đó: D-084 ngoại lệ license Tripo trả phí; D-083 ghép schema C.
+**Cập nhật lần cuối:** 2026-10-12, Claude Code ở máy (Opus 5.5, integrator) — **G2 balo Tripo: đã tạo và chuẩn hóa.** Chủ dự án mua Tripo Studio Pro 12/10 và tạo balo (H3.1); Claude làm thay lane B: xoay túi về −Z, khớp khung balo cũ, texture 1024, nhập `game/assets/models/graphics_pilot/` (bản chơi chưa đổi), ảnh 4 góc + trước/sau phòng 407 ở `art_source/graphics_upgrade/tripo/room407_backpack/g2/`. Công cụ C (Claude làm thay: thêm nhãn ngoại lệ `LicenseRef-Tripo-Paid-D-084`): **`errors: []`**, số đo đạt (2.300 tam giác, 1 vật liệu, 1024). Chờ chủ dự án: số lượt/credit sau, mã model, duyệt hình (`g2/compare_room_before_after.png`). Phiếu: `docs/handoff/TRIPO_PHIEU_BALO.md`.
 
 **Bản đồ lộ trình tổng quan:** [`docs/ROADMAP.md`](ROADMAP.md) (từ demo tới phát hành, đang ở đâu).
 

@@ -113,3 +113,9 @@ Full test/check sau cập nhật là điều kiện commit/push; kết quả, gi
 - Lane B hết hạn mức sau khi `git add` đủ 15 file nhưng trước khi commit. **Claude làm thay** phần commit/push: chép nguyên 15 file đã stage từ workspace B (không sửa nội dung, không sửa workspace B) thành commit `a178500` trên `lane-b/T-209-realistic-art-pilot`. Full test/check của B chạy trên workspace B lúc 23:46: 746 passed, 0 failed; check 0 error(s).
 - Review: manifest G1 đúng schema `t210-g1-static-1`, số đo từ probe thật; binding/placement khớp floor4; 4 ảnh hướng đã xem (trước: túi phụ; sau: hai quai; cạnh: túi −Z, quai +Z). `asset_qa` trên balo cũ: chỉ `material budget exceeded` (đúng). Phạm vi: `art_source/`, `game/scenes/levels/graphics_pilot/` (probe chụp ảnh, không vào cảnh chơi), card.
 - Kết luận và tiêu chí G2 cho mẫu Tripo: `docs/handoff/G1_NGHIEM_THU_BALO_2026-10-12.md`. Việc tiếp theo của B (khi có mẫu Tripo): chuẩn hóa hướng/kích thước trong Blender, nhập thư mục prototype, chạy công cụ C, ảnh trước/sau.
+
+### 12/10/2026 — Claude (integrator), **Claude làm thay** lane B: G2 balo Tripo
+- Lưu nguồn Tripo nguyên vẹn + 2 PDF điều khoản (`art_source/graphics_upgrade/tripo/room407_backpack/source|evidence/`, LFS), CREDITS, manifest G2.
+- `normalize_backpack.py` (Blender 5.2.2): xoay 180° (túi về −Z), khớp khung balo cũ, texture 2048 → 1024, đổi tên texture; kết quả `game/assets/models/graphics_pilot/room407_backpack_tripo.glb` (import mặc định Godot, không dùng importer PS1).
+- `game/scenes/levels/graphics_pilot/backpack_g2_capture.tscn` (`-- --backpack-g2-capture`, cần renderer thật): 4 góc giống bộ ảnh G1 + trước/sau phòng 407 cùng camera; bản chơi không đổi.
+- QA C: `errors: []`; chờ credit/mã model từ chủ dự án và duyệt hình. Chi tiết `docs/handoff/TRIPO_PHIEU_BALO.md`.

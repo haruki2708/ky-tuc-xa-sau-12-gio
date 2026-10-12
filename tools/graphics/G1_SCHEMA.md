@@ -71,3 +71,5 @@ API là phương án riêng, provider `tripo`, channel `api`, ví `tripo:api:<al
 ## Cần integrator/B xác nhận khi review
 
 Claude (Opus 5.5) chốt field/path/default ở T-207 và điều kiện nghiệm thu đạo cụ tĩnh, B xác nhận mapping/root_class/node path và chuyển dữ liệu sau schema được ghép. Cần giữ phần pending rig/settings/chuông tách riêng. Không sửa core, renderer mặc định, collision/nav/timing hoặc settings trong gói C này. Full Windows test/check vẫn phải nhận bàn giao lượt; các fixture Python không thay kết quả Godot. Bằng chứng R1–R4 tại [reports/r1r4_fixtures.json](reports/r1r4_fixtures.json).
+
+**D-084 (12/10/2026, Claude làm thay lane C):** `source.license` chỉ nhận `CC0-1.0`, `CC-BY-4.0`, `CC-BY-3.0`, hoặc nhãn ngoại lệ **`LicenseRef-Tripo-Paid-D-084`**. Nhãn ngoại lệ chỉ hợp lệ khi `generation.provider = tripo`, `tier = paid` và `rights_evidence` có ít nhất một file trong repo (bản lưu điều khoản lúc tạo); thiếu điều kiện nào là FAIL. Ghi “Tripo Paid” hay tên gói khác vẫn FAIL như trước: gói trả phí tự nó không phải giấy phép.

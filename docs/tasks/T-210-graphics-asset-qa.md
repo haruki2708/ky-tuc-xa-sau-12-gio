@@ -134,3 +134,7 @@ Full test/check sau cập nhật là điều kiện commit/push; kết quả, gi
 - Kiểm độc lập bằng script riêng trên bản sao nhánh (không dùng fixture C): R1 scale [2,2,2] và 1,0001 → FAIL; tolerance 100 m, 0,0011 m, kiểu chuỗi → FAIL. R2 trần tự khai 100001/999/8192 → FAIL; 3001 tam giác → FAIL. R3 gỡ hash importer rồi sửa → INCOMPLETE có đường cụ thể (với GLB giả: `dependency_closure_unproven:door.glb`; fixture GLB thật của C nêu đúng `game/importer.gd`); texture stale → FAIL. R4 `rights_evidence` 42 và `['ok',5]`, `parameters` [] và NaN → FAIL sạch, không crash. Mẫu cơ sở không lỗi kỹ thuật. `unittest`: 82 OK.
 - **Còn lại cho lượt sau của C (không chặn ghép):** `asset_id` khác chữ hoa/thường (`Room407_Backpack`) không bị áp profile balo; nên ràng buộc mẫu ID chữ thường trong schema hoặc so sánh không phân biệt hoa thường.
 - Full test/check của bản ghép ghi trong commit merge. T-210 **chưa done**: còn nghiệm thu G1 cùng manifest B, phần Tripo G2.
+
+### 12/10/2026 — Claude (integrator), **Claude làm thay** lane C theo yêu cầu chủ dự án
+- `asset_qa.py` nhận nhãn giấy phép ngoại lệ D-084 `LicenseRef-Tripo-Paid-D-084`, chỉ khi provider `tripo`, tier `paid` và có `rights_evidence` (file phải tồn tại, kiểm ở `manifest_g1.py`). "Tripo Paid" vẫn FAIL như test cũ. Thêm 3 test (`test_offline.py`): chấp nhận khi đủ hồ sơ; FAIL khi free/unknown/không có hoặc mất file bằng chứng; FAIL khi provider khác. 85 test offline OK. Ghi chú trong `G1_SCHEMA.md`.
+- Việc còn của C: ID balo chữ hoa (`Room407_Backpack`) không bị áp profile (D-083).

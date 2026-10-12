@@ -1,0 +1,255 @@
+{
+	"asset_id": "room407_backpack",
+	"facing_images": [
+		{
+			"camera_up": [
+				0.0,
+				1.0,
+				0.0
+			],
+			"eye": [
+				0.0,
+				0.238179996609688,
+				-1.18113005161285
+			],
+			"file": "front_neg_z_up_pos_y.png",
+			"orthographic_size": 0.699999988079071,
+			"target": [
+				0.0,
+				0.238179996609688,
+				0.0188699997961521
+			]
+		},
+		{
+			"camera_up": [
+				0.0,
+				1.0,
+				0.0
+			],
+			"eye": [
+				0.0,
+				0.238179996609688,
+				1.21887004375458
+			],
+			"file": "back_pos_z_up_pos_y.png",
+			"orthographic_size": 0.699999988079071,
+			"target": [
+				0.0,
+				0.238179996609688,
+				0.0188699997961521
+			]
+		},
+		{
+			"camera_up": [
+				0.0,
+				1.0,
+				0.0
+			],
+			"eye": [
+				1.20000004768372,
+				0.238179996609688,
+				0.0188699997961521
+			],
+			"file": "side_pos_x_up_pos_y.png",
+			"orthographic_size": 0.699999988079071,
+			"target": [
+				0.0,
+				0.238179996609688,
+				0.0188699997961521
+			]
+		},
+		{
+			"camera_up": [
+				0.0,
+				0.0,
+				-1.0
+			],
+			"eye": [
+				0.0,
+				-0.961820065975189,
+				0.0188699997961521
+			],
+			"file": "underside_neg_y_screen_up_neg_z.png",
+			"orthographic_size": 0.699999988079071,
+			"target": [
+				0.0,
+				0.238179996609688,
+				0.0188699997961521
+			]
+		}
+	],
+	"file": "res://assets/models/graphics_pilot/room407_backpack_tripo.glb",
+	"front": [
+		0,
+		0,
+		-1
+	],
+	"glb_measurement": {
+		"bounds_min_m": [
+			-0.144999995827675,
+			0.00999999977648258,
+			-0.132499992847443
+		],
+		"coordinate_space": "selected_root_local",
+		"dimensions_m": [
+			0.289999961853027,
+			0.456400007009506,
+			0.302699983119965
+		],
+		"material_count": 1,
+		"nodes": {
+			".": {
+				"position_m": [
+					0.0,
+					0.0,
+					0.0
+				],
+				"scale": [
+					1.0,
+					1.0,
+					1.0
+				]
+			},
+			"backpack_tripo": {
+				"position_m": [
+					0.0,
+					0.0,
+					0.0
+				],
+				"scale": [
+					1.0,
+					1.0,
+					1.0
+				]
+			}
+		},
+		"pose": "rest",
+		"resource_paths": {
+			"res://assets/models/graphics_pilot/room407_backpack_tripo_backpack_tripo_basecolor.png": true,
+			"res://assets/models/graphics_pilot/room407_backpack_tripo_backpack_tripo_normal.png": true,
+			"res://assets/models/graphics_pilot/room407_backpack_tripo_backpack_tripo_rm.png": true
+		},
+		"root_placement": {
+			"position_m": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"rotation_degrees": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale": [
+				1.0,
+				1.0,
+				1.0
+			]
+		},
+		"root_scale": [
+			1.0,
+			1.0,
+			1.0
+		],
+		"surfaces": 1,
+		"texture_count": 3,
+		"textures": {
+			"res://assets/models/graphics_pilot/room407_backpack_tripo_backpack_tripo_basecolor.png": {
+				"height": 1024,
+				"width": 1024
+			},
+			"res://assets/models/graphics_pilot/room407_backpack_tripo_backpack_tripo_normal.png": {
+				"height": 1024,
+				"width": 1024
+			},
+			"res://assets/models/graphics_pilot/room407_backpack_tripo_backpack_tripo_rm.png": {
+				"height": 1024,
+				"width": 1024
+			}
+		},
+		"triangles": 2300,
+		"unavailable": [
+			"animated_bounds",
+			"gpu_texture_memory",
+			"gameplay_collision_nav",
+			"visual_approval"
+		],
+		"visibility_policy": "include_hidden"
+	},
+	"godot": "4.7.2-stable (official)",
+	"gpu": "NVIDIA GeForce RTX 3050 Laptop GPU",
+	"pivot": [
+		0,
+		0,
+		0
+	],
+	"renderer": "forward_plus",
+	"room_images": [
+		{
+			"eye": [
+				32.1800003051758,
+				1.5699999332428,
+				-4.01999998092651
+			],
+			"file": "room_far_before_cc0.png",
+			"fov": 70.0,
+			"target": [
+				33.7799987792969,
+				0.239999994635582,
+				-4.51999998092651
+			],
+			"visual": "before_cc0"
+		},
+		{
+			"eye": [
+				32.1800003051758,
+				1.5699999332428,
+				-4.01999998092651
+			],
+			"file": "room_far_after_tripo.png",
+			"fov": 70.0,
+			"target": [
+				33.7799987792969,
+				0.239999994635582,
+				-4.51999998092651
+			],
+			"visual": "after_tripo"
+		},
+		{
+			"eye": [
+				33.0299987792969,
+				0.969999969005585,
+				-4.26999998092651
+			],
+			"file": "room_near_before_cc0.png",
+			"fov": 70.0,
+			"target": [
+				33.7799987792969,
+				0.239999994635582,
+				-4.51999998092651
+			],
+			"visual": "before_cc0"
+		},
+		{
+			"eye": [
+				33.0299987792969,
+				0.969999969005585,
+				-4.26999998092651
+			],
+			"file": "room_near_after_tripo.png",
+			"fov": 70.0,
+			"target": [
+				33.7799987792969,
+				0.239999994635582,
+				-4.51999998092651
+			],
+			"visual": "after_tripo"
+		}
+	],
+	"source_sha256": "325519ebcd78e6fa83dad84669315736cc5b5fbc56cdbd0508885f1ed182808e",
+	"up": [
+		0,
+		1,
+		0
+	]
+}

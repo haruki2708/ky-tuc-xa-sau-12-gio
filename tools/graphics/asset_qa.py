@@ -58,6 +58,23 @@ def validate_measurements(measurements):
     return measurements
 
 
+# D-084: paid Tripo output is a named project exception, never implied by "paid".
+TRIPO_PAID_LICENSE = "LicenseRef-Tripo-Paid-D-084"
+
+
+def tripo_paid_exception_errors(asset):
+    generation = asset.get("generation") if isinstance(asset.get("generation"), dict) else {}
+    errors = []
+    if generation.get("provider") != "tripo":
+        errors.append("D-084 license exception requires provider tripo")
+    if generation.get("tier") != "paid":
+        errors.append("D-084 license exception requires a paid tier")
+    evidence = generation.get("rights_evidence")
+    if not isinstance(evidence, list) or not evidence:
+        errors.append("D-084 license exception requires saved terms evidence")
+    return errors
+
+
 def validate(asset, root=ROOT, measurements=(), schema_version="t210-g0-proposal-1"):
     errors, unavailable = [], []
     if not isinstance(asset, dict):
@@ -84,7 +101,9 @@ def validate(asset, root=ROOT, measurements=(), schema_version="t210-g0-proposal
     for key in ("uri", "author", "license", "credits_file", "ai_tool", "input_rights"):
         if not isinstance(source.get(key), str) or not source[key].strip():
             errors.append("source missing:" + key)
-    if source.get("license") not in ("CC0-1.0", "CC-BY-4.0", "CC-BY-3.0"):
+    if source.get("license") == TRIPO_PAID_LICENSE:
+        errors.extend(tripo_paid_exception_errors(asset))
+    elif source.get("license") not in ("CC0-1.0", "CC-BY-4.0", "CC-BY-3.0"):
         errors.append("license not allowlisted; integrator review required")
     try:
         repo_file(root, source.get("credits_file"))

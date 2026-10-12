@@ -1,0 +1,83 @@
+{
+  "schema_version": "t210-g1-static-1",
+  "assets": [
+    {
+      "asset_id": "room407_backpack",
+      "scope": "prototype",
+      "file": "game/assets/models/graphics_pilot/room407_backpack_tripo.glb",
+      "source": {
+        "uri": "repo:art_source/graphics_upgrade/tripo/room407_backpack/source/tripo_original_r1.glb",
+        "author": "Tripo AI Studio; operator: project owner",
+        "license": "LicenseRef-Tripo-Paid-D-084",
+        "credits_file": "art_source/graphics_upgrade/tripo/room407_backpack/CREDITS.md",
+        "ai_tool": "Tripo AI Studio (Text to 3D); normalized with Blender 5.2.2 by normalize_backpack.py",
+        "input_rights": "Text prompt written for the project (BRIEFS.md); no image input"
+      },
+      "binding": {
+        "scene_path": "res://scenes/levels/floor4/floor4.tscn",
+        "node_path": "Room407/Details/Trung/Backpack",
+        "root_class": "Node3D",
+        "required_markers": [],
+        "collider_policy": "preserve_gameplay"
+      },
+      "geometry": {
+        "dimensions_m": [0.29, 0.45636, 0.30274],
+        "bounds_min_m": [-0.145, 0.01, -0.1325],
+        "root_scale": [1.0, 1.0, 1.0],
+        "tolerance_m": 0.001,
+        "markers": {},
+        "coordinate_space": "selected_root_local",
+        "pose": "rest",
+        "visibility_policy": "include_hidden"
+      },
+      "placement": {
+        "position_m": [33.78, 0.02, -4.52],
+        "rotation_degrees": [0.0, 90.0, 0.0],
+        "scale": [1.0, 1.0, 1.0]
+      },
+      "generation": {
+        "provider": "tripo",
+        "channel": "studio",
+        "tool": "Tripo AI Studio",
+        "wallet_id": "tripo:studio:owner",
+        "tier": "paid",
+        "model_version": "H3.1",
+        "model_id": null,
+        "task_id": null,
+        "created_on": "2026-10-12",
+        "parameters": {
+          "mode": "text_to_3d",
+          "prompt": "A worn, inexpensive student backpack resting upright on the floor. Faded olive-gray fabric, two black shoulder straps on the back, a small carry loop on top, one flat front pocket. Subtle seams and wear. Closed bottom, straps attached. No logos, no text, no items sticking out. Realistic, game-ready, PBR textures.",
+          "topology": "triangle",
+          "polycount": 2500,
+          "pbr": true,
+          "remove_lighting": true,
+          "ultra_mesh_quality": false,
+          "texture_8k": false,
+          "generate_in_parts": false,
+          "credits_per_generation_shown": 30
+        },
+        "rights_evidence": [
+          "art_source/graphics_upgrade/tripo/room407_backpack/evidence/tripo_terms_2026-10-12.pdf",
+          "art_source/graphics_upgrade/tripo/room407_backpack/evidence/tripo_commercial_2026-10-12.pdf"
+        ]
+      },
+      "budget": {
+        "triangle_limit_exclusive": 3001,
+        "material_limit": 2,
+        "texture_edge_limit": 1024,
+        "basis": "D-079 prototype target; D-084 at most 5 generations; D-085 G2 criteria.",
+        "wallet_id": "tripo:studio:owner",
+        "estimated_credits": 30,
+        "consumed_credits": null,
+        "balance_before": 3800,
+        "balance_after": null
+      },
+      "approval": {
+        "status": "pending",
+        "reviewer": null
+      },
+      "planned_route": "tripo_studio_manual"
+    }
+  ]
+}
