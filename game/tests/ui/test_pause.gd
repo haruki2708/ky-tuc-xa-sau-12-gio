@@ -217,6 +217,40 @@ func test_removing_open_menu_resumes_tree() -> void:
 	assert_false(tree.paused)
 
 
+func test_reset_video_requires_confirmation_and_keeps_nonvideo_preferences() -> void:
+	settings.set_value("ui", "locale", "en")
+	settings.set_value("audio", "sfx_db", -12.0)
+	settings.set_value("input", "mouse_sensitivity", 0.004)
+	settings.set_value("accessibility", "reduce_scares", true)
+	settings.set_value("video", "brightness", 1.4)
+	settings.set_value("video", "head_bob", false)
+	settings.set_value("video", "ps1_strength", 0.0)
+	_menu.open_menu()
+	_menu.show_settings()
+	var panel := _menu.get_node("Root/SettingsCard/SettingsPanel")
+	var dialog: ConfirmationDialog = panel.get_node("ResetVideoConfirmation")
+	panel.get_node("Footer/ResetVideo").pressed.emit()
+	assert_true(dialog.visible)
+	assert_eq(dialog.title, "Reset video")
+	assert_eq(settings.get_value("video", "brightness"), 1.4)
+	dialog.get_cancel_button().pressed.emit()
+	await wait_frames(2)
+	assert_false(dialog.visible, "cancel closes the confirmation without a reset")
+	assert_true(panel.get_node("Footer/ResetVideo").has_focus(), "cancel returns keyboard focus")
+	assert_eq(settings.get_value("video", "brightness"), 1.4)
+	panel.get_node("Footer/ResetVideo").pressed.emit()
+	dialog.get_ok_button().pressed.emit()
+	assert_eq(settings.get_value("video", "brightness"), 1.0)
+	assert_eq(settings.get_value("video", "head_bob"), true)
+	assert_eq(settings.get_value("video", "ps1_strength"), 1.0)
+	assert_eq(settings.get_value("ui", "locale"), "en")
+	assert_eq(settings.get_value("audio", "sfx_db"), -12.0)
+	assert_eq(settings.get_value("input", "mouse_sensitivity"), 0.004)
+	assert_eq(settings.get_value("accessibility", "reduce_scares"), true)
+	assert_true(tree.paused)
+	assert_false(panel.get_node("SaveError").visible, "successful video reset hides the save error")
+
+
 func _click(position: Vector2) -> void:
 	var motion := InputEventMouseMotion.new()
 	motion.position = position

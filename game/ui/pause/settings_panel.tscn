@@ -3,18 +3,24 @@
 [ext_resource type="Script" path="res://scripts/ui/settings_panel.gd" id="1_script"]
 
 [node name="SettingsPanel" type="VBoxContainer"]
-theme_override_constants/separation = 24
+theme_override_constants/separation = 18
 script = ExtResource("1_script")
 
 [node name="Title" type="Label" parent="."]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
+theme_type_variation = &"HeadingLabel"
 text = "UI_SETTINGS_TITLE"
+
+[node name="Tabs" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 12
 
 [node name="Scroll" type="ScrollContainer" parent="."]
 layout_mode = 2
 size_flags_vertical = 3
 horizontal_scroll_mode = 0
+follow_focus = true
 
 [node name="Columns" type="HBoxContainer" parent="Scroll"]
 layout_mode = 2
@@ -30,6 +36,7 @@ theme_override_constants/separation = 18
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "UI_SETTINGS_AUDIO"
+theme_type_variation = &"HeadingLabel"
 
 [node name="Other" type="VBoxContainer" parent="Scroll/Columns"]
 layout_mode = 2
@@ -50,6 +57,10 @@ theme_override_constants/separation = 24
 layout_mode = 2
 text = "UI_SETTINGS_RESET"
 
+[node name="ResetVideo" type="Button" parent="Footer"]
+layout_mode = 2
+text = "UI_RESET_VIDEO"
+
 [node name="Spacer" type="Control" parent="Footer"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -58,3 +69,8 @@ mouse_filter = 2
 [node name="Back" type="Button" parent="Footer"]
 layout_mode = 2
 text = "UI_SETTINGS_BACK"
+
+[node name="ResetVideoConfirmation" type="ConfirmationDialog" parent="."]
+process_mode = 3
+exclusive = true
+dialog_autowrap = true

@@ -10,3 +10,10 @@
 Chụp lại nền: `pwsh tools/capture.ps1 -Scene res://ui/title/background_test.tscn -Frames 5 -Resolution 1920x1080 -Out build/T-139/background`. Dùng user data riêng để filter lấy mặc định cường độ/độ sáng 1.0. Ảnh bằng chứng UI nằm trong `previews/`, chụp qua `title_test.tscn`.
 
 T-155 bổ sung `previews/chapters_vi.png`, `chapters_en.png`, `warning_ch1_vi.png` và `warning_ch1_en.png`: ảnh render UI bằng Godot 4.7.2, 1920×1080, cùng nền/font nêu trên. Mã chọn chương và cảnh báo được viết với hỗ trợ của OpenAI Codex; không thêm nguồn artwork bên ngoài.
+
+## T-214 — 12/10/2026
+
+- `corridor_night.png`: ảnh gốc 1920×1080 từ `corridor_still.tscn`, instance tầng 4 của dự án ở base `25e3bfe`; Godot 4.7.2, Forward+, RTX 3050 Laptop. Camera `(32, 1.65, 1.1)`, hướng −X, FOV 68; thêm một đèn bù xanh lạnh trong scene chụp riêng. Không gắn filter PS1 vào camera chụp, không sửa cảnh tầng 4 hoặc cấu hình game. Không chỉnh ảnh sau render. Nguồn kit và CC0 1.0 giữ như trên; bản giấy phép ở `../theme/textures/CC0-1.0.txt`. SHA-256 `42e8582503e047fc222e636767410a0c254756f06336603944eeb6906a61c8ed`.
+- Bản title dùng ảnh này với shader trôi UV rất chậm, dao động sáng nhẹ, grain và viền tối; `reduce_scares` tắt chuyển động/dao động. Đây là phương án ảnh chụp được prompt T-214 cho phép; chưa phải bản nâng vật liệu hành lang của lane B và chưa có số đo FPS để so với nền 3D sống.
+- Logo dùng chữ dịch `UI_GAME_TITLE` và Be Vietnam Pro SemiBold OFL; chỉ thay cách dàn trang, không đổi nội dung/key. Nguồn ở [fonts/CREDITS.md](../../assets/fonts/CREDITS.md).
+- Bộ ảnh trước/sau và nguồn giấy/icon/theme tại [theme/CREDITS.md](../theme/CREDITS.md), [trang đối chiếu](../theme/previews/index.html).

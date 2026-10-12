@@ -83,6 +83,7 @@ func _add_line(parent: VBoxContainer, text: String) -> void:
 	label.add_theme_color_override("font_color", Color("24231f"))
 	label.add_theme_constant_override("outline_size", 0)
 	label.add_theme_font_size_override("font_size", 29)
+	label.add_theme_font_override("font", preload("res://assets/fonts/ibm_plex_mono_regular.ttf"))
 	if _document.style == &"handwritten":
 		var italic := FontVariation.new()
 		italic.base_font = preload("res://assets/fonts/be_vietnam_pro_regular.ttf")

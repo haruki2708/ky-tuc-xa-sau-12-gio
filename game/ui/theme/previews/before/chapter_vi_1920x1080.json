@@ -1,0 +1,39 @@
+{
+	"locale": "vi",
+	"logical_resolution": [
+		1920,
+		1080
+	],
+	"resolution": [
+		1920,
+		1080
+	],
+	"text": [
+		{
+			"font_size": 48,
+			"output_px": 48.0,
+			"path": "/root/T214Capture/@Control@2842/Chapter3EndCard/Root/Center/Lines/Title",
+			"rect": [
+				0.0,
+				0.0,
+				312.0,
+				61.0
+			],
+			"screen_scale": 1.0,
+			"text": "Hết chương 3"
+		},
+		{
+			"font_size": 26,
+			"output_px": 26.0,
+			"path": "/root/T214Capture/@Control@2842/Chapter3EndCard/Root/Center/Lines/Chapter",
+			"rect": [
+				0.0,
+				81.0,
+				312.0,
+				33.0
+			],
+			"screen_scale": 1.0,
+			"text": "Chương 3 — Truy sát"
+		}
+	]
+}

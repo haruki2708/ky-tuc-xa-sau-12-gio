@@ -1,0 +1,65 @@
+{
+	"locale": "en",
+	"logical_resolution": [
+		1920,
+		1080
+	],
+	"resolution": [
+		1280,
+		720
+	],
+	"text": [
+		{
+			"font_size": 60,
+			"output_px": 40.0,
+			"path": "/root/T214Capture/@Control@1897/DeathScreen/Root/Card/Content/Title",
+			"rect": [
+				0.0,
+				0.0,
+				1296.0,
+				102.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "You died"
+		},
+		{
+			"font_size": 32,
+			"output_px": 21.3333333333333,
+			"path": "/root/T214Capture/@Control@1897/DeathScreen/Root/Card/Content/Reason",
+			"rect": [
+				0.0,
+				122.0,
+				1296.0,
+				102.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "You did not survive."
+		},
+		{
+			"font_size": 38,
+			"output_px": 25.3333333333333,
+			"path": "/root/T214Capture/@Control@1897/DeathScreen/Root/Card/Content/Count",
+			"rect": [
+				0.0,
+				244.0,
+				1296.0,
+				102.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Survivors: unknown"
+		},
+		{
+			"font_size": 26,
+			"output_px": 17.3333333333333,
+			"path": "/root/T214Capture/@Control@1897/DeathScreen/Root/Card/Content/Retry",
+			"rect": [
+				0.0,
+				366.0,
+				1296.0,
+				102.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Returning to the checkpoint…"
+		}
+	]
+}

@@ -34,3 +34,16 @@ static func card(root: Control, area: Rect2) -> VBoxContainer:
 	content.add_theme_constant_override("separation", 20)
 	panel.add_child(content)
 	return content
+
+
+static func cinematic_style(panel: PanelContainer, warning: bool = false) -> void:
+	var box := StyleBoxFlat.new()
+	box.bg_color = Color(0.02, 0.034, 0.03, 0.78)
+	box.border_width_top = 2
+	box.border_width_bottom = 1
+	box.border_color = Color("8f5349") if warning else Color("788776")
+	box.content_margin_left = 48
+	box.content_margin_right = 48
+	box.content_margin_top = 38
+	box.content_margin_bottom = 38
+	panel.add_theme_stylebox_override("panel", box)

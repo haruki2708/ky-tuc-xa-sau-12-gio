@@ -16,14 +16,14 @@ var entry: LineEdit
 
 func _ready() -> void:
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
-	_recipient = _label("Recipient", 23)
-	_clock = _label("Countdown", 21)
+	_recipient = _label("Recipient", 24)
+	_clock = _label("Countdown", 24)
 	entry = TextEntry.new()
 	entry.name = "Entry"
 	add_child(entry)
 	entry.text_submitted.connect(_submit)
 	entry.cancelled.connect(cancel_entry)
-	_help = _label("Help", 18)
+	_help = _label("Help", 24)
 	EventBus.prediction_requested.connect(_request)
 	EventBus.prediction_result.connect(func(id: StringName, _correct: bool) -> void:
 		if id == member:

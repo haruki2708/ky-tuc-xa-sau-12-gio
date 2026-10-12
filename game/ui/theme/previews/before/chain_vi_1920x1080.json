@@ -1,0 +1,117 @@
+{
+	"locale": "vi",
+	"logical_resolution": [
+		1920,
+		1080
+	],
+	"resolution": [
+		1920,
+		1080
+	],
+	"text": [
+		{
+			"font_size": 22,
+			"output_px": 22.0,
+			"path": "/root/T214Capture/@Control@2837/ChainPanel/Root/Card/Content/Title",
+			"rect": [
+				0.0,
+				0.0,
+				662.0,
+				28.0
+			],
+			"screen_scale": 1.0,
+			"text": "NỐI TỪ"
+		},
+		{
+			"font_size": 26,
+			"output_px": 26.0,
+			"path": "/root/T214Capture/@Control@2837/ChainPanel/Root/Card/Content/Speaker",
+			"rect": [
+				0.0,
+				38.0,
+				662.0,
+				33.0
+			],
+			"screen_scale": 1.0,
+			"text": "Lượt: Trung"
+		},
+		{
+			"font_size": 46,
+			"output_px": 46.0,
+			"path": "/root/T214Capture/@Control@2837/ChainPanel/Root/Card/Content/Word",
+			"rect": [
+				0.0,
+				81.0,
+				662.0,
+				59.0
+			],
+			"screen_scale": 1.0,
+			"text": "danh sách"
+		},
+		{
+			"font_size": 20,
+			"output_px": 20.0,
+			"path": "/root/T214Capture/@Control@2837/ChainPanel/Root/Card/Content/WordSpeaker",
+			"rect": [
+				0.0,
+				150.0,
+				662.0,
+				26.0
+			],
+			"screen_scale": 1.0,
+			"text": "Người vừa nói: Việt"
+		},
+		{
+			"font_size": 22,
+			"output_px": 22.0,
+			"path": "/root/T214Capture/@Control@2837/ChainPanel/Root/Card/Content/History",
+			"rect": [
+				0.0,
+				186.0,
+				662.0,
+				30.0
+			],
+			"screen_scale": 1.0,
+			"text": "3 từ gần nhất: điểm danh → danh sách"
+		},
+		{
+			"font_size": 24,
+			"output_px": 24.0,
+			"path": "/root/T214Capture/@Control@2837/ChainPanel/Root/Card/Content/Status",
+			"rect": [
+				0.0,
+				226.0,
+				662.0,
+				31.0
+			],
+			"screen_scale": 1.0,
+			"text": "Còn 15 giây"
+		},
+		{
+			"font_size": 26,
+			"output_px": 26.0,
+			"path": "/root/T214Capture/@Control@2837/ChainPanel/Root/Card/Content/Entry",
+			"rect": [
+				0.0,
+				289.0,
+				662.0,
+				41.0
+			],
+			"screen_scale": 1.0,
+			"text": ""
+		},
+		{
+			"font_size": 19,
+			"output_px": 19.0,
+			"path": "/root/T214Capture/@Control@2837/ChainPanel/Root/Card/Content/Help",
+			"rect": [
+				0.0,
+				340.0,
+				662.0,
+				25.0
+			],
+			"screen_scale": 1.0,
+			"text": "Enter: gửi · Esc: hủy"
+		}
+	]
+}

@@ -1,0 +1,104 @@
+{
+	"locale": "en",
+	"logical_resolution": [
+		1920,
+		1080
+	],
+	"resolution": [
+		1280,
+		720
+	],
+	"text": [
+		{
+			"font_size": 24,
+			"output_px": 16.0,
+			"path": "/root/T214Capture/@Control@1951/PhoneScreen/Root/Phone/Content/Status",
+			"rect": [
+				0.0,
+				0.0,
+				662.0,
+				31.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "04:06   ·   64%   ·   No signal"
+		},
+		{
+			"font_size": 24,
+			"output_px": 16.0,
+			"path": "/root/T214Capture/@Control@1951/PhoneScreen/Root/Phone/Content/Status/DecoyCharges",
+			"rect": [
+				546.0,
+				0.0,
+				72.0,
+				31.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "3"
+		},
+		{
+			"font_size": 24,
+			"output_px": 16.0,
+			"path": "/root/T214Capture/@Control@1951/PhoneScreen/Root/Phone/Content/Call",
+			"rect": [
+				0.0,
+				35.0,
+				662.0,
+				31.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Group call"
+		},
+		{
+			"font_size": 24,
+			"output_px": 16.0,
+			"path": "/root/T214Capture/@Control@1951/PhoneScreen/Root/Phone/Content/Transcript",
+			"rect": [
+				0.0,
+				70.0,
+				662.0,
+				310.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "04:05  Test member A: This sample line tests the live transcript.\n04:06  Test member B: New lines are added at the end of the history.\n"
+		},
+		{
+			"font_size": 24,
+			"output_px": 16.0,
+			"path": "/root/T214Capture/@Control@1951/PhoneScreen/Root/Phone/Content/Chapter4/@Label@2023",
+			"rect": [
+				0.0,
+				0.0,
+				662.0,
+				31.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Message the group"
+		},
+		{
+			"font_size": 26,
+			"output_px": 17.3333333333333,
+			"path": "/root/T214Capture/@Control@1951/PhoneScreen/Root/Phone/Content/Chapter4/Message/Entry",
+			"rect": [
+				0.0,
+				0.0,
+				662.0,
+				57.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "First test option"
+		},
+		{
+			"font_size": 24,
+			"output_px": 16.0,
+			"path": "/root/T214Capture/@Control@1951/PhoneScreen/Root/Phone/Content/Chapter4/Message/@Label@2024",
+			"rect": [
+				0.0,
+				75.0,
+				662.0,
+				31.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Enter: send · Esc: cancel"
+		}
+	]
+}

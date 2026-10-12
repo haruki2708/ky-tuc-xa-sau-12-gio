@@ -26,7 +26,8 @@ func _ready() -> void:
 	add_child(clock)
 	var help := Label.new()
 	help.text = "UI_TEXT_ENTRY_CONTROLS"
-	help.add_theme_font_size_override("font_size", 18)
+	help.add_theme_font_size_override("font_size", 24)
+	help.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	add_child(help)
 	close_request()
 

@@ -1,0 +1,91 @@
+{
+	"locale": "vi",
+	"logical_resolution": [
+		1920,
+		1080
+	],
+	"resolution": [
+		1920,
+		1080
+	],
+	"text": [
+		{
+			"font_size": 36,
+			"output_px": 36.0,
+			"path": "/root/T214Capture/@Control@2764/DocumentView/Root/Paper/Content/Title",
+			"rect": [
+				0.0,
+				0.0,
+				1155.0,
+				46.0
+			],
+			"screen_scale": 1.0,
+			"text": "Nội quy ban đêm dịp lễ"
+		},
+		{
+			"font_size": 29,
+			"output_px": 29.0,
+			"path": "/root/T214Capture/@Control@2764/DocumentView/Root/Paper/Content/Scroll/Lines/@Label@2768",
+			"rect": [
+				0.0,
+				0.0,
+				1155.0,
+				37.0
+			],
+			"screen_scale": 1.0,
+			"text": "1. Sau 0 giờ, tắt đèn chính trong phòng."
+		},
+		{
+			"font_size": 29,
+			"output_px": 29.0,
+			"path": "/root/T214Capture/@Control@2764/DocumentView/Root/Paper/Content/Scroll/Lines/@Label@2769",
+			"rect": [
+				0.0,
+				61.0,
+				1155.0,
+				77.0
+			],
+			"screen_scale": 1.0,
+			"text": "2. Có tiếng gõ cửa sau 0 giờ: không mở, không trả lời. Người của ký túc xá luôn gọi số phòng trước khi gõ."
+		},
+		{
+			"font_size": 29,
+			"output_px": 29.0,
+			"path": "/root/T214Capture/@Control@2764/DocumentView/Root/Paper/Content/Scroll/Lines/@Label@2770",
+			"rect": [
+				0.0,
+				162.0,
+				1155.0,
+				37.0
+			],
+			"screen_scale": 1.0,
+			"text": "3. Nghe tiếng dép đi sau lưng ở hành lang: dừng lại, quay lại chào."
+		},
+		{
+			"font_size": 29,
+			"output_px": 29.0,
+			"path": "/root/T214Capture/@Control@2764/DocumentView/Root/Paper/Content/Scroll/Lines/@Label@2771",
+			"rect": [
+				0.0,
+				223.0,
+				1155.0,
+				37.0
+			],
+			"screen_scale": 1.0,
+			"text": "4. Khi điểm danh, chỉ trả lời \"Có\" khi nghe đúng tên mình."
+		},
+		{
+			"font_size": 28,
+			"output_px": 28.0,
+			"path": "/root/T214Capture/@Control@2764/DocumentView/Root/Hint",
+			"rect": [
+				192.0,
+				1004.40002441406,
+				1536.0,
+				36.0
+			],
+			"screen_scale": 1.0,
+			"text": "E / Chuột trái / Esc / Tab — Đóng · Cuộn để đọc tiếp"
+		}
+	]
+}

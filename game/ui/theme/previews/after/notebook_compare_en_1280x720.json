@@ -1,0 +1,364 @@
+{
+	"locale": "en",
+	"logical_resolution": [
+		1920,
+		1080
+	],
+	"resolution": [
+		1280,
+		720
+	],
+	"text": [
+		{
+			"font_size": 40,
+			"output_px": 26.6666666666667,
+			"path": "/root/T214Capture/@Control@2069/Notebook/Root/Book/Content/Title",
+			"rect": [
+				0.0,
+				0.0,
+				1500.0,
+				52.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Rulebook"
+		},
+		{
+			"font_size": 28,
+			"output_px": 18.6666666666667,
+			"path": "/root/T214Capture/@Control@2069/Notebook/Root/Book/Content/Chapter4/Tabs/Rules",
+			"rect": [
+				0.0,
+				0.0,
+				178.0,
+				60.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Rulebook"
+		},
+		{
+			"font_size": 28,
+			"output_px": 18.6666666666667,
+			"path": "/root/T214Capture/@Control@2069/Notebook/Root/Book/Content/Chapter4/Tabs/Compare",
+			"rect": [
+				182.0,
+				0.0,
+				178.0,
+				60.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Compare"
+		},
+		{
+			"font_size": 28,
+			"output_px": 18.6666666666667,
+			"path": "/root/T214Capture/@Control@2069/Notebook/Root/Book/Content/Chapter4/Tabs/Documents",
+			"rect": [
+				364.0,
+				0.0,
+				290.0,
+				60.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Collected papers"
+		},
+		{
+			"font_size": 28,
+			"output_px": 18.6666666666667,
+			"path": "/root/T214Capture/@Control@2069/Notebook/Root/Book/Content/Chapter4/CompareScroll/@VBoxContainer@2075/Round1/@VBoxContainer@2091/Heading",
+			"rect": [
+				0.0,
+				0.0,
+				1500.0,
+				36.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Round 1"
+		},
+		{
+			"font_size": 25,
+			"output_px": 16.6666666666667,
+			"path": "/root/T214Capture/@Control@2069/Notebook/Root/Book/Content/Chapter4/CompareScroll/@VBoxContainer@2075/Round1/@VBoxContainer@2091/ch1_general_3",
+			"rect": [
+				0.0,
+				40.0,
+				1500.0,
+				32.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "No student may leave their own room. Anyone who leaves will die."
+		},
+		{
+			"font_size": 28,
+			"output_px": 18.6666666666667,
+			"path": "/root/T214Capture/@Control@2069/Notebook/Root/Book/Content/Chapter4/CompareScroll/@VBoxContainer@2075/Round2/@VBoxContainer@2092/Heading",
+			"rect": [
+				0.0,
+				0.0,
+				1102.0,
+				36.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Round 2"
+		},
+		{
+			"font_size": 25,
+			"output_px": 16.6666666666667,
+			"path": "/root/T214Capture/@Control@2069/Notebook/Root/Book/Content/Chapter4/CompareScroll/@VBoxContainer@2075/Round2/@VBoxContainer@2092/ch1_r2",
+			"rect": [
+				0.0,
+				40.0,
+				1102.0,
+				67.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Round two. Over the next hour the school will inspect the rooms. Each building has one manager. Students must stay still in bed and cooperate with the manager's work."
+		},
+		{
+			"font_size": 24,
+			"output_px": 16.0,
+			"path": "/root/T214Capture/@Control@2069/Notebook/Root/Book/Content/Chapter4/CompareScroll/@VBoxContainer@2075/Round2/Solved",
+			"rect": [
+				1132.0,
+				38.0,
+				368.0,
+				31.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": ""
+		},
+		{
+			"font_size": 28,
+			"output_px": 18.6666666666667,
+			"path": "/root/T214Capture/@Control@2069/Notebook/Root/Book/Content/Chapter4/CompareScroll/@VBoxContainer@2075/Round3/@VBoxContainer@2093/Heading",
+			"rect": [
+				0.0,
+				0.0,
+				1102.0,
+				36.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Round 3"
+		},
+		{
+			"font_size": 25,
+			"output_px": 16.6666666666667,
+			"path": "/root/T214Capture/@Control@2069/Notebook/Root/Book/Content/Chapter4/CompareScroll/@VBoxContainer@2075/Round3/@VBoxContainer@2093/ch2_r3_1",
+			"rect": [
+				0.0,
+				40.0,
+				1102.0,
+				32.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "All four people in each room must play. Take turns clockwise, under fifteen seconds a turn."
+		},
+		{
+			"font_size": 25,
+			"output_px": 16.6666666666667,
+			"path": "/root/T214Capture/@Control@2069/Notebook/Root/Book/Content/Chapter4/CompareScroll/@VBoxContainer@2075/Round3/@VBoxContainer@2093/ch2_r3_2",
+			"rect": [
+				0.0,
+				76.0,
+				1102.0,
+				67.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Each word has two syllables. Its first syllable must match the last syllable of the word before, tone and all."
+		},
+		{
+			"font_size": 25,
+			"output_px": 16.6666666666667,
+			"path": "/root/T214Capture/@Control@2069/Notebook/Root/Book/Content/Chapter4/CompareScroll/@VBoxContainer@2075/Round3/@VBoxContainer@2093/ch2_r3_3",
+			"rect": [
+				0.0,
+				147.0,
+				1102.0,
+				32.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "No word may repeat within three turns in a row. Whoever cannot go on, dies."
+		},
+		{
+			"font_size": 24,
+			"output_px": 16.0,
+			"path": "/root/T214Capture/@Control@2069/Notebook/Root/Book/Content/Chapter4/CompareScroll/@VBoxContainer@2075/Round3/Solved",
+			"rect": [
+				1132.0,
+				74.0,
+				368.0,
+				31.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": ""
+		},
+		{
+			"font_size": 28,
+			"output_px": 18.6666666666667,
+			"path": "/root/T214Capture/@Control@2069/Notebook/Root/Book/Content/Chapter4/CompareScroll/@VBoxContainer@2075/Round4/@VBoxContainer@2094/Heading",
+			"rect": [
+				0.0,
+				0.0,
+				1102.0,
+				36.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Round 4"
+		},
+		{
+			"font_size": 25,
+			"output_px": 16.6666666666667,
+			"path": "/root/T214Capture/@Control@2069/Notebook/Root/Book/Content/Chapter4/CompareScroll/@VBoxContainer@2075/Round4/@VBoxContainer@2094/ch2_r4_1",
+			"rect": [
+				0.0,
+				40.0,
+				1102.0,
+				67.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Everyone, please go to your bathroom. No other requirement this round: the water must run for more than twenty-five minutes."
+		},
+		{
+			"font_size": 24,
+			"output_px": 16.0,
+			"path": "/root/T214Capture/@Control@2069/Notebook/Root/Book/Content/Chapter4/CompareScroll/@VBoxContainer@2075/Round4/Solved",
+			"rect": [
+				1132.0,
+				38.0,
+				368.0,
+				31.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": ""
+		},
+		{
+			"font_size": 28,
+			"output_px": 18.6666666666667,
+			"path": "/root/T214Capture/@Control@2069/Notebook/Root/Book/Content/Chapter4/CompareScroll/@VBoxContainer@2075/Round5/@VBoxContainer@2095/Heading",
+			"rect": [
+				0.0,
+				0.0,
+				1500.0,
+				36.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Round 5"
+		},
+		{
+			"font_size": 28,
+			"output_px": 18.6666666666667,
+			"path": "/root/T214Capture/@Control@2069/Notebook/Root/Book/Content/Chapter4/CompareScroll/@VBoxContainer@2075/Round5/@VBoxContainer@2095/ch3_r5_1",
+			"rect": [
+				0.0,
+				40.0,
+				1500.0,
+				60.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "You may leave your rooms and go anywhere on campus."
+		},
+		{
+			"font_size": 25,
+			"output_px": 16.6666666666667,
+			"path": "/root/T214Capture/@Control@2069/Notebook/Root/Book/Content/Chapter4/CompareScroll/@VBoxContainer@2075/Round5/@VBoxContainer@2095/ch3_r5_1/@RichTextLabel@2098",
+			"rect": [
+				16.0,
+				8.0,
+				1468.0,
+				44.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "You may leave your rooms and go anywhere on campus."
+		},
+		{
+			"font_size": 28,
+			"output_px": 18.6666666666667,
+			"path": "/root/T214Capture/@Control@2069/Notebook/Root/Book/Content/Chapter4/CompareScroll/@VBoxContainer@2075/Round5/@VBoxContainer@2095/ch3_r5_2",
+			"rect": [
+				0.0,
+				104.0,
+				1500.0,
+				60.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Hurry and run from this dangerous corner."
+		},
+		{
+			"font_size": 25,
+			"output_px": 16.6666666666667,
+			"path": "/root/T214Capture/@Control@2069/Notebook/Root/Book/Content/Chapter4/CompareScroll/@VBoxContainer@2075/Round5/@VBoxContainer@2095/ch3_r5_2/@RichTextLabel@2101",
+			"rect": [
+				16.0,
+				8.0,
+				1468.0,
+				44.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Hurry and run from this dangerous corner."
+		},
+		{
+			"font_size": 28,
+			"output_px": 18.6666666666667,
+			"path": "/root/T214Capture/@Control@2069/Notebook/Root/Book/Content/Chapter4/CompareScroll/@VBoxContainer@2075/Round5/@VBoxContainer@2095/ch3_r5_3",
+			"rect": [
+				0.0,
+				168.0,
+				1500.0,
+				60.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Your task is simple: for this last hour, avoid every pursuit and stay alive."
+		},
+		{
+			"font_size": 25,
+			"output_px": 16.6666666666667,
+			"path": "/root/T214Capture/@Control@2069/Notebook/Root/Book/Content/Chapter4/CompareScroll/@VBoxContainer@2075/Round5/@VBoxContainer@2095/ch3_r5_3/@RichTextLabel@2104",
+			"rect": [
+				16.0,
+				8.0,
+				1468.0,
+				44.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Your task is simple: for this last hour, avoid every pursuit and stay alive."
+		},
+		{
+			"font_size": 28,
+			"output_px": 18.6666666666667,
+			"path": "/root/T214Capture/@Control@2069/Notebook/Root/Book/Content/Chapter4/CompareScroll/@VBoxContainer@2075/Round5/@VBoxContainer@2095/Underline",
+			"rect": [
+				0.0,
+				232.0,
+				1500.0,
+				44.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Underline"
+		},
+		{
+			"font_size": 25,
+			"output_px": 16.6666666666667,
+			"path": "/root/T214Capture/@Control@2069/Notebook/Root/Book/Content/Chapter4/CompareScroll/@VBoxContainer@2075/Round5/@VBoxContainer@2095/Feedback",
+			"rect": [
+				0.0,
+				280.0,
+				1500.0,
+				32.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": ""
+		},
+		{
+			"font_size": 28,
+			"output_px": 18.6666666666667,
+			"path": "/root/T214Capture/@Control@2069/Notebook/Root/Book/Content/Close",
+			"rect": [
+				1211.0,
+				836.0,
+				289.0,
+				60.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Close (Tab / Esc)"
+		}
+	]
+}

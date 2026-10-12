@@ -110,7 +110,8 @@ func _render() -> void:
 					heading.text += " — " + tr("UI_RULEBOOK_EXPIRED")
 					section.modulate = Color(0.68, 0.68, 0.68)
 			heading.add_theme_font_size_override("font_size", 32)
-			heading.add_theme_color_override("font_color", Color("bcd4db"))
+			heading.add_theme_color_override("font_color", Color("31443b"))
+			heading.add_theme_font_override("font", preload("res://assets/fonts/ibm_plex_mono_regular.ttf"))
 			section.add_child(heading)
 			sources[group_key] = section
 		_add_entry(sources[group_key], entry)
@@ -154,7 +155,9 @@ func _add_entry(parent: VBoxContainer, entry: Dictionary) -> void:
 	# Keep text/icon spacing stable when the shared theme switches button states.
 	for state: String in ["normal", "hover", "pressed", "hover_pressed"]:
 		var box := StyleBoxFlat.new()
-		box.bg_color = Color("472e30") if suspected else Color("202d38")
+		box.bg_color = Color("573a32") if suspected else Color("263b32")
+		box.border_width_bottom = 2
+		box.border_color = Color("967d59")
 		box.content_margin_left = 16
 		box.content_margin_right = 42
 		box.content_margin_top = 10
@@ -164,10 +167,10 @@ func _add_entry(parent: VBoxContainer, entry: Dictionary) -> void:
 	button.toggled.connect(_set_suspected.bind(entry["rule_id"]))
 	row.add_child(button)
 	if suspected:
-		label.add_theme_color_override("font_color", Color("ff9b91"))
+		label.add_theme_color_override("font_color", Color("782f28"))
 		var marker := Label.new()
 		marker.text = "UI_NOTEBOOK_MARK"
-		marker.add_theme_color_override("font_color", Color("ff9b91"))
+		marker.add_theme_color_override("font_color", Color("782f28"))
 		row.add_child(marker)
 	for document_id in RuleSystem.evidence_for(entry["rule_id"]):
 		var document := DocumentData.load_by_id(document_id)
@@ -176,7 +179,8 @@ func _add_entry(parent: VBoxContainer, entry: Dictionary) -> void:
 		var evidence := Label.new()
 		evidence.text = tr("UI_RULEBOOK_EVIDENCE") % tr(document.title_key)
 		evidence.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-		evidence.add_theme_font_size_override("font_size", 22)
+		evidence.add_theme_font_size_override("font_size", 24)
+		evidence.add_theme_color_override("font_color", Color("414436"))
 		parent.add_child(evidence)
 
 

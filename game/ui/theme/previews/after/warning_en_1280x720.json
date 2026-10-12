@@ -1,0 +1,65 @@
+{
+	"locale": "en",
+	"logical_resolution": [
+		1920,
+		1080
+	],
+	"resolution": [
+		1280,
+		720
+	],
+	"text": [
+		{
+			"font_size": 40,
+			"output_px": 26.6666666666667,
+			"path": "/root/T214Capture/@Control@1135/TitleScreen/Warning/Content/Heading",
+			"rect": [
+				0.0,
+				0.0,
+				1088.0,
+				51.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Content warning"
+		},
+		{
+			"font_size": 30,
+			"output_px": 20.0,
+			"path": "/root/T214Capture/@Control@1135/TitleScreen/Warning/Content/Description",
+			"rect": [
+				0.0,
+				75.0,
+				1088.0,
+				270.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "This game contains blood, violent deaths, human corpses, sudden scares and loud sounds, and references to an earthquake disaster. Enable Reduce scares in Settings to reduce scares and gore."
+		},
+		{
+			"font_size": 28,
+			"output_px": 18.6666666666667,
+			"path": "/root/T214Capture/@Control@1135/TitleScreen/Warning/Content/Continue",
+			"rect": [
+				0.0,
+				369.0,
+				1088.0,
+				60.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Continue"
+		},
+		{
+			"font_size": 28,
+			"output_px": 18.6666666666667,
+			"path": "/root/T214Capture/@Control@1135/TitleScreen/Warning/Content/ReduceScares",
+			"rect": [
+				0.0,
+				453.0,
+				1088.0,
+				60.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Enable Reduce scares and continue"
+		}
+	]
+}

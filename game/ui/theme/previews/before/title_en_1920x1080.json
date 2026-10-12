@@ -1,0 +1,104 @@
+{
+	"locale": "en",
+	"logical_resolution": [
+		1920,
+		1080
+	],
+	"resolution": [
+		1920,
+		1080
+	],
+	"text": [
+		{
+			"font_size": 64,
+			"output_px": 64.0,
+			"path": "/root/T214Capture/@Control@2854/TitleScreen/Menu/GameTitle",
+			"rect": [
+				0.0,
+				0.0,
+				825.0,
+				81.0
+			],
+			"screen_scale": 1.0,
+			"text": "The Dorm After Midnight"
+		},
+		{
+			"font_size": 28,
+			"output_px": 28.0,
+			"path": "/root/T214Capture/@Control@2854/TitleScreen/Menu/Buttons/Continue",
+			"rect": [
+				0.0,
+				0.0,
+				440.0,
+				60.0
+			],
+			"screen_scale": 1.0,
+			"text": "Continue"
+		},
+		{
+			"font_size": 28,
+			"output_px": 28.0,
+			"path": "/root/T214Capture/@Control@2854/TitleScreen/Menu/Buttons/NewGame",
+			"rect": [
+				0.0,
+				74.0,
+				440.0,
+				60.0
+			],
+			"screen_scale": 1.0,
+			"text": "New game"
+		},
+		{
+			"font_size": 28,
+			"output_px": 28.0,
+			"path": "/root/T214Capture/@Control@2854/TitleScreen/Menu/Buttons/Settings",
+			"rect": [
+				0.0,
+				148.0,
+				440.0,
+				60.0
+			],
+			"screen_scale": 1.0,
+			"text": "Settings"
+		},
+		{
+			"font_size": 28,
+			"output_px": 28.0,
+			"path": "/root/T214Capture/@Control@2854/TitleScreen/Menu/Buttons/Credits",
+			"rect": [
+				0.0,
+				222.0,
+				440.0,
+				60.0
+			],
+			"screen_scale": 1.0,
+			"text": "Credits"
+		},
+		{
+			"font_size": 28,
+			"output_px": 28.0,
+			"path": "/root/T214Capture/@Control@2854/TitleScreen/Menu/Buttons/Chapters",
+			"rect": [
+				0.0,
+				296.0,
+				440.0,
+				60.0
+			],
+			"screen_scale": 1.0,
+			"text": "Select chapter"
+		},
+		{
+			"font_size": 28,
+			"output_px": 28.0,
+			"path": "/root/T214Capture/@Control@2854/TitleScreen/Menu/Buttons/Quit",
+			"rect": [
+				0.0,
+				370.0,
+				440.0,
+				60.0
+			],
+			"screen_scale": 1.0,
+			"text": "Quit game"
+		}
+	]
+}

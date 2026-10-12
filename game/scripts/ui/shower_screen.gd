@@ -26,14 +26,14 @@ func _ready() -> void:
 	paper.content_margin_top = 12
 	paper.content_margin_bottom = 12
 	$Viewport/Root/Card.add_theme_stylebox_override("panel", paper)
-	for spec in [["Title", "UI_SHOWER_TITLE", 20], ["Rule", "UI_SHOWER_RULE", 24], ["Countdown", "", 26], ["Choice", "", 32], ["Temperature", "", 32]]:
+	for spec in [["Title", "UI_SHOWER_TITLE", 24], ["Rule", "UI_SHOWER_RULE", 24], ["Countdown", "", 26], ["Choice", "", 32], ["Temperature", "", 32]]:
 		_lcd_label(content, spec[0], spec[1], spec[2])
 	var timer := ProgressBar.new()
 	timer.name = "Timer"
 	timer.show_percentage = false
 	timer.custom_minimum_size.y = 12
 	content.add_child(timer)
-	_lcd_label(content, "HistoryTitle", "UI_SHOWER_HISTORY", 20)
+	_lcd_label(content, "HistoryTitle", "UI_SHOWER_HISTORY", 24)
 	var scroll := ScrollContainer.new()
 	scroll.name = "HistoryScroll"
 	scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
@@ -114,7 +114,7 @@ func _on_slot(temperature: int, _ran: bool, counted: int) -> void:
 	_choosing = false
 	temperatures.append(temperature)
 	minutes_counted = maxi(0, counted)
-	var cell := _lcd_label($Viewport/Root/Card/Content/HistoryScroll/History, "Slot%d" % temperatures.size(), "", 23)
+	var cell := _lcd_label($Viewport/Root/Card/Content/HistoryScroll/History, "Slot%d" % temperatures.size(), "", 24)
 	cell.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	_refresh()
 

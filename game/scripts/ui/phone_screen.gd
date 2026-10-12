@@ -58,15 +58,30 @@ func _ready() -> void:
 		_refresh_visibility())
 	EventBus.breath_held.connect(func(holding: bool) -> void: _holding = holding and _hidden)
 	var paper := StyleBoxFlat.new()
-	paper.bg_color = Color(0.025, 0.04, 0.055, 1)
-	paper.set_border_width_all(8)
-	paper.border_color = Color(0.008, 0.012, 0.016, 1)
-	paper.set_corner_radius_all(20)
-	paper.content_margin_left = 18
-	paper.content_margin_right = 18
-	paper.content_margin_top = 12
-	paper.content_margin_bottom = 12
+	paper.bg_color = Color(0.018, 0.037, 0.041, 1)
+	paper.set_border_width_all(10)
+	paper.border_color = Color(0.07, 0.085, 0.086, 1)
+	paper.set_corner_radius_all(30)
+	paper.shadow_color = Color(0, 0, 0, 0.7)
+	paper.shadow_size = 12
+	paper.content_margin_left = 24
+	paper.content_margin_right = 24
+	paper.content_margin_top = 18
+	paper.content_margin_bottom = 18
 	$Root/Phone.add_theme_stylebox_override("panel", paper)
+	$Root/Phone.draw.connect(_draw_phone_shell)
+	var battery := Control.new()
+	battery.name = "BatteryIcon"
+	battery.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	$Root/Phone/Content/Status.add_child(battery)
+	battery.set_anchors_and_offsets_preset(Control.PRESET_TOP_RIGHT)
+	battery.position = Vector2(-162, 6)
+	battery.size = Vector2(36, 22)
+	battery.draw.connect(func() -> void:
+		var ink := Color("c8d9c9") if state.battery > 15.0 else Color("ebaa85")
+		battery.draw_rect(Rect2(0, 1, 29, 16), ink, false, 1.5)
+		battery.draw_rect(Rect2(30, 5, 3, 8), ink)
+		battery.draw_rect(Rect2(3, 4, 23.0 * clampf(state.battery / 100.0, 0, 1), 10), ink))
 	var light := Control.new()
 	light.name = "Flashlight"
 	light.mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -94,6 +109,20 @@ func _ready() -> void:
 	ch4.phone = self
 	$Root/Phone/Content.add_child(ch4)
 	_render()
+
+
+func _draw_phone_shell() -> void:
+	var panel: PanelContainer = $Root/Phone
+	var edge := StyleBoxFlat.new()
+	edge.bg_color = Color(0, 0, 0, 0)
+	edge.set_border_width_all(1)
+	edge.border_color = Color(0.48, 0.58, 0.57, 0.65)
+	edge.set_corner_radius_all(27)
+	panel.draw_style_box(edge, Rect2(Vector2(3, 3), panel.size - Vector2(6, 6)))
+	panel.draw_line(Vector2(panel.size.x * 0.43, 9), Vector2(panel.size.x * 0.57, 9), Color("03080a"), 4, true)
+	panel.draw_circle(Vector2(panel.size.x * 0.6, 9), 2.5, Color("263c40"))
+	panel.draw_line(Vector2(panel.size.x * 0.42, panel.size.y - 9), Vector2(panel.size.x * 0.58, panel.size.y - 9), Color(0.7, 0.8, 0.76, 0.4), 3, true)
+	panel.draw_colored_polygon(PackedVector2Array([Vector2(14, 25), Vector2(panel.size.x * 0.7, 14), Vector2(14, panel.size.y * 0.75)]), Color(0.62, 0.82, 0.82, 0.025))
 
 
 func _process(delta: float) -> void:
@@ -358,6 +387,7 @@ func _refresh_status() -> void:
 	$Root/Phone/Content/Status.text = tr("UI_PHONE_STATUS") % [clock, int(state.battery), tr("UI_PHONE_NO_SIGNAL")]
 	$Root/Phone/Content/Status/Flashlight.tooltip_text = tr("UI_PHONE_LIGHT_ON" if state.flashlight else "UI_PHONE_LIGHT_OFF")
 	$Root/Phone/Content/Status/Flashlight.queue_redraw()
+	$Root/Phone/Content/Status/BatteryIcon.queue_redraw()
 	$Root/Phone/Content/Call.text = tr("UI_PHONE_GROUP_CALL" if not state.call.is_empty() else "UI_PHONE_HISTORY")
 	if state.connection_lost:
 		$Root/Phone/Content/Call.text = tr("UI_PHONE_CONNECTION_LOST")
@@ -403,7 +433,7 @@ func _render_choices() -> void:
 		var button := Button.new()
 		button.name = "Option%d" % (index + 1)
 		button.text = tr("UI_PHONE_OPTION") % [index + 1, tr(state.options[index])]
-		button.add_theme_font_size_override("font_size", 22)
+		button.add_theme_font_size_override("font_size", 24)
 		button.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		button.focus_mode = Control.FOCUS_NONE
 		button.modulate = Color(1, 0.88, 0.58) if index == state.selected else Color.WHITE

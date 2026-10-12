@@ -942,3 +942,7 @@ PROMPT_CH3_UNLOCK,Mở khóa cửa,Unlock the door
 PROMPT_CH3_EXTINGUISHER,Đập bình cứu hỏa,Bang the extinguisher
 PROMPT_CH3_FIRE_ALARM,Bấm chuông báo cháy,Press the fire alarm
 PROMPT_CH3_CLIMB,Trèo qua cửa sổ (cúi),Climb through the window (crouch)
+UI_RESET_VIDEO,Đặt lại hình ảnh,Reset video
+UI_RESET_VIDEO_CONFIRM,Đặt lại rung đầu và độ sáng cùng hiệu ứng PS1 về mặc định? Các cài đặt khác được giữ nguyên.,Reset head bob and brightness along with the PS1 effect to their defaults? Other settings will stay unchanged.
+UI_SETTINGS_ALL,Tất cả,All
+UI_SETTINGS_PREFERENCES,Điều khiển và giao diện,Controls and interface

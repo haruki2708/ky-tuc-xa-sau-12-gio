@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=5 format=3]
 
 [ext_resource type="Script" path="res://scripts/ui/ch3_end_card.gd" id="1"]
 [ext_resource type="Theme" path="res://ui/theme/main_theme.tres" id="2"]
+[ext_resource type="FontFile" path="res://assets/fonts/be_vietnam_pro_semibold.ttf" id="3_title"]
+[ext_resource type="FontFile" path="res://assets/fonts/ibm_plex_mono_regular.ttf" id="4_mono"]
 
 [node name="Chapter3EndCard" type="CanvasLayer"]
 layer = 19
@@ -19,7 +21,7 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
-color = Color(0, 0, 0, 0)
+color = Color(0.012, 0.022, 0.018, 0)
 
 [node name="Center" type="CenterContainer" parent="Root"]
 anchors_preset = 15
@@ -30,15 +32,23 @@ mouse_filter = 2
 [node name="Lines" type="VBoxContainer" parent="Root/Center"]
 layout_mode = 2
 mouse_filter = 2
-theme_override_constants/separation = 20
+theme_override_constants/separation = 28
+
+[node name="Rule" type="ColorRect" parent="Root/Center/Lines"]
+custom_minimum_size = Vector2(120, 3)
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_filter = 2
+color = Color(0.55, 0.31, 0.26, 1)
 
 [node name="Title" type="Label" parent="Root/Center/Lines"]
 layout_mode = 2
 mouse_filter = 2
 text = "UI_CH3_END"
 horizontal_alignment = 1
-theme_override_font_sizes/font_size = 48
-theme_override_colors/font_color = Color(0.75, 0.08, 0.06, 1)
+theme_override_font_sizes/font_size = 56
+theme_override_fonts/font = ExtResource("3_title")
+theme_override_colors/font_color = Color(0.9, 0.85, 0.75, 1)
 
 [node name="Chapter" type="Label" parent="Root/Center/Lines"]
 layout_mode = 2
@@ -46,3 +56,5 @@ mouse_filter = 2
 text = "CH_3_TITLE"
 horizontal_alignment = 1
 theme_override_font_sizes/font_size = 26
+theme_override_fonts/font = ExtResource("4_mono")
+theme_override_colors/font_color = Color(0.7, 0.76, 0.67, 1)

@@ -2,6 +2,7 @@ extends CanvasLayer
 ## Receives Esc before gameplay's unhandled input, including while paused.
 
 const SettingsStore = preload("res://scripts/ui/settings.gd")
+const Motion = preload("res://scripts/ui/ui_motion.gd")
 
 @export var settings_path: NodePath = ^"/root/Settings"
 var _open := false
@@ -56,11 +57,13 @@ func open_menu() -> void:
 	EventBus.game_paused.emit(true)
 
 
-func close_menu() -> void:
+func close_menu(animate: bool = true) -> void:
 	if not _open:
 		return
 	_open = false
 	$Root/Confirmation.hide()
+	if animate:
+		Motion.closing_copy($Root, self)
 	$Root.hide()
 	get_tree().paused = false
 	Input.mouse_mode = _previous_mouse_mode
@@ -70,6 +73,7 @@ func close_menu() -> void:
 func show_settings() -> void:
 	$Root/PauseCard.hide()
 	$Root/SettingsCard.show()
+	Motion.reveal($Root/SettingsCard)
 	$Root/SettingsCard/SettingsPanel.refresh()
 	$Root/SettingsCard/SettingsPanel/Footer/Back.grab_focus()
 
@@ -78,6 +82,7 @@ func _show_pause_buttons() -> void:
 	$Root/Confirmation.hide()
 	$Root/SettingsCard.hide()
 	$Root/PauseCard.show()
+	Motion.reveal($Root/PauseCard)
 	$Root/PauseCard/Buttons/Resume.grab_focus()
 
 
@@ -114,4 +119,4 @@ func _quit_tree() -> void:
 func _exit_tree() -> void:
 	# Removing an open menu must not leave a permanently paused SceneTree.
 	if _open:
-		close_menu()
+		close_menu(false)

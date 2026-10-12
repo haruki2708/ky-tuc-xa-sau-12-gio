@@ -1,0 +1,156 @@
+{
+	"locale": "en",
+	"logical_resolution": [
+		1920,
+		1080
+	],
+	"resolution": [
+		1280,
+		720
+	],
+	"text": [
+		{
+			"font_size": 20,
+			"output_px": 13.3333333333333,
+			"path": "/root/T214Capture/@Control@1342/PhoneScreen/Root/Phone/Content/Status",
+			"rect": [
+				0.0,
+				0.0,
+				674.0,
+				26.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "04:06   ·   64%   ·   No signal"
+		},
+		{
+			"font_size": 19,
+			"output_px": 12.6666666666667,
+			"path": "/root/T214Capture/@Control@1342/PhoneScreen/Root/Phone/Content/Tools/@HBoxContainer@1348/@Button@1349",
+			"rect": [
+				0.0,
+				0.0,
+				212.0,
+				31.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Call [ ]"
+		},
+		{
+			"font_size": 19,
+			"output_px": 12.6666666666667,
+			"path": "/root/T214Capture/@Control@1342/PhoneScreen/Root/Phone/Content/Tools/@HBoxContainer@1348/@Button@1350",
+			"rect": [
+				216.0,
+				0.0,
+				213.0,
+				31.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Map"
+		},
+		{
+			"font_size": 19,
+			"output_px": 12.6666666666667,
+			"path": "/root/T214Capture/@Control@1342/PhoneScreen/Root/Phone/Content/Tools/@HBoxContainer@1348/@Button@1351",
+			"rect": [
+				433.0,
+				0.0,
+				213.0,
+				31.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Camera"
+		},
+		{
+			"font_size": 24,
+			"output_px": 16.0,
+			"path": "/root/T214Capture/@Control@1342/PhoneScreen/Root/Phone/Content/Call",
+			"rect": [
+				0.0,
+				67.0,
+				674.0,
+				31.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Group call"
+		},
+		{
+			"font_size": 21,
+			"output_px": 14.0,
+			"path": "/root/T214Capture/@Control@1342/PhoneScreen/Root/Phone/Content/MembersScroll/Members/@HBoxContainer@1418/Name",
+			"rect": [
+				28.0,
+				6.0,
+				153.0,
+				27.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Test member A"
+		},
+		{
+			"font_size": 28,
+			"output_px": 18.6666666666667,
+			"path": "/root/T214Capture/@Control@1342/PhoneScreen/Root/Phone/Content/MembersScroll/Members/@HBoxContainer@1418/@Label@1417",
+			"rect": [
+				185.0,
+				0.0,
+				17.0,
+				39.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "●"
+		},
+		{
+			"font_size": 21,
+			"output_px": 14.0,
+			"path": "/root/T214Capture/@Control@1342/PhoneScreen/Root/Phone/Content/MembersScroll/Members/@HBoxContainer@1421/Name",
+			"rect": [
+				28.0,
+				6.0,
+				152.0,
+				27.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Test member B"
+		},
+		{
+			"font_size": 28,
+			"output_px": 18.6666666666667,
+			"path": "/root/T214Capture/@Control@1342/PhoneScreen/Root/Phone/Content/MembersScroll/Members/@HBoxContainer@1421/@Label@1420",
+			"rect": [
+				184.0,
+				0.0,
+				17.0,
+				39.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "●"
+		},
+		{
+			"font_size": 23,
+			"output_px": 15.3333333333333,
+			"path": "/root/T214Capture/@Control@1342/PhoneScreen/Root/Phone/Content/Transcript",
+			"rect": [
+				0.0,
+				162.0,
+				674.0,
+				164.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "04:05  Test member A: This sample line tests the live transcript.\n04:06  Test member B: New lines are added at the end of the history.\n"
+		},
+		{
+			"font_size": 18,
+			"output_px": 12.0,
+			"path": "/root/T214Capture/@Control@1342/PhoneScreen/Root/Phone/Content/ScrollHint",
+			"rect": [
+				0.0,
+				331.0,
+				674.0,
+				23.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Scroll: transcript · Shift + scroll: members"
+		}
+	]
+}

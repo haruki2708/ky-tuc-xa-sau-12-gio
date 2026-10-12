@@ -1,0 +1,156 @@
+{
+	"locale": "vi",
+	"logical_resolution": [
+		1920,
+		1080
+	],
+	"resolution": [
+		1280,
+		720
+	],
+	"text": [
+		{
+			"font_size": 20,
+			"output_px": 13.3333333333333,
+			"path": "/root/T214Capture/@Control@400/PhoneScreen/Root/Phone/Content/Status",
+			"rect": [
+				0.0,
+				0.0,
+				674.0,
+				26.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "04:06   ·   64%   ·   Không có sóng"
+		},
+		{
+			"font_size": 19,
+			"output_px": 12.6666666666667,
+			"path": "/root/T214Capture/@Control@400/PhoneScreen/Root/Phone/Content/Tools/@HBoxContainer@406/@Button@407",
+			"rect": [
+				0.0,
+				0.0,
+				212.0,
+				31.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Cuộc gọi [ ]"
+		},
+		{
+			"font_size": 19,
+			"output_px": 12.6666666666667,
+			"path": "/root/T214Capture/@Control@400/PhoneScreen/Root/Phone/Content/Tools/@HBoxContainer@406/@Button@408",
+			"rect": [
+				216.0,
+				0.0,
+				213.0,
+				31.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Sơ đồ"
+		},
+		{
+			"font_size": 19,
+			"output_px": 12.6666666666667,
+			"path": "/root/T214Capture/@Control@400/PhoneScreen/Root/Phone/Content/Tools/@HBoxContainer@406/@Button@409",
+			"rect": [
+				433.0,
+				0.0,
+				213.0,
+				31.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Camera"
+		},
+		{
+			"font_size": 24,
+			"output_px": 16.0,
+			"path": "/root/T214Capture/@Control@400/PhoneScreen/Root/Phone/Content/Call",
+			"rect": [
+				0.0,
+				67.0,
+				674.0,
+				31.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Cuộc gọi nhóm"
+		},
+		{
+			"font_size": 21,
+			"output_px": 14.0,
+			"path": "/root/T214Capture/@Control@400/PhoneScreen/Root/Phone/Content/MembersScroll/Members/@HBoxContainer@476/Name",
+			"rect": [
+				28.0,
+				6.0,
+				119.0,
+				27.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Người thử A"
+		},
+		{
+			"font_size": 28,
+			"output_px": 18.6666666666667,
+			"path": "/root/T214Capture/@Control@400/PhoneScreen/Root/Phone/Content/MembersScroll/Members/@HBoxContainer@476/@Label@475",
+			"rect": [
+				151.0,
+				0.0,
+				17.0,
+				39.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "●"
+		},
+		{
+			"font_size": 21,
+			"output_px": 14.0,
+			"path": "/root/T214Capture/@Control@400/PhoneScreen/Root/Phone/Content/MembersScroll/Members/@HBoxContainer@479/Name",
+			"rect": [
+				28.0,
+				6.0,
+				118.0,
+				27.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Người thử B"
+		},
+		{
+			"font_size": 28,
+			"output_px": 18.6666666666667,
+			"path": "/root/T214Capture/@Control@400/PhoneScreen/Root/Phone/Content/MembersScroll/Members/@HBoxContainer@479/@Label@478",
+			"rect": [
+				150.0,
+				0.0,
+				17.0,
+				39.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "●"
+		},
+		{
+			"font_size": 23,
+			"output_px": 15.3333333333333,
+			"path": "/root/T214Capture/@Control@400/PhoneScreen/Root/Phone/Content/Transcript",
+			"rect": [
+				0.0,
+				162.0,
+				674.0,
+				164.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "04:05  Người thử A: Đây là câu nói dùng để kiểm tra bản chép lời.\n04:06  Người thử B: Dòng mới được thêm ở cuối lịch sử.\n"
+		},
+		{
+			"font_size": 18,
+			"output_px": 12.0,
+			"path": "/root/T214Capture/@Control@400/PhoneScreen/Root/Phone/Content/ScrollHint",
+			"rect": [
+				0.0,
+				331.0,
+				674.0,
+				23.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Lăn: hội thoại · Shift + lăn: thành viên"
+		}
+	]
+}

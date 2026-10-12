@@ -81,26 +81,43 @@ func set_value(section: String, key: String, value: Variant) -> Error:
 
 
 func reset_defaults() -> Error:
+	return _reset_sections(SCHEMA.keys())
+
+
+func reset_section(section: String) -> Error:
+	if not SCHEMA.has(section):
+		return ERR_INVALID_PARAMETER
+	return _reset_sections([section])
+
+
+func _reset_sections(sections: Array) -> Error:
 	# Save once before notifying readers; preserve all unrelated existing entries.
 	var config := ConfigFile.new()
 	var error := config.load(SETTINGS_PATH)
 	if error != OK and error != ERR_FILE_NOT_FOUND:
 		return error
-	for section: String in SCHEMA:
+	for section: String in sections:
 		for key: String in SCHEMA[section]:
 			# Acknowledgement is not a preference: reset must not repeat first-run UI.
 			if section == "ui" and key == "content_warning_seen":
 				config.set_value(section, key, get_value(section, key))
 				continue
 			config.set_value(section, key, SCHEMA[section][key]["default"])
-	error = config.save(SETTINGS_PATH)
+	error = _save_reset_config(config)
 	if error != OK:
 		return error
-	apply_startup()
-	for section: String in SCHEMA:
+	for section: String in sections:
+		for key: String in SCHEMA[section]:
+			_apply_value(section, key, config.get_value(section, key))
+	for section: String in sections:
 		for key: String in SCHEMA[section]:
 			EventBus.settings_changed.emit(section, key)
 	return OK
+
+
+func _save_reset_config(config: ConfigFile) -> Error:
+	# One persistence boundary also permits deterministic I/O-failure tests.
+	return config.save(SETTINGS_PATH)
 
 
 func apply_startup() -> void:

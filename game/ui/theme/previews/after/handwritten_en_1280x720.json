@@ -1,0 +1,39 @@
+{
+	"locale": "en",
+	"logical_resolution": [
+		1920,
+		1080
+	],
+	"resolution": [
+		1280,
+		720
+	],
+	"text": [
+		{
+			"font_size": 29,
+			"output_px": 19.3333333333333,
+			"path": "/root/T214Capture/@Control@2042/DocumentView/Root/Paper/Content/Scroll/Lines/@Label@2046",
+			"rect": [
+				0.0,
+				0.0,
+				1155.0,
+				77.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "1. At roll call, the room must answer every name that is read. Answer for anyone asleep."
+		},
+		{
+			"font_size": 28,
+			"output_px": 18.6666666666667,
+			"path": "/root/T214Capture/@Control@2042/DocumentView/Root/Hint",
+			"rect": [
+				192.0,
+				1004.40002441406,
+				1536.0,
+				36.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "E / Left click / Esc / Tab — Close · Scroll to read more"
+		}
+	]
+}

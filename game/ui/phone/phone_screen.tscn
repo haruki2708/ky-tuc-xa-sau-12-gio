@@ -52,12 +52,12 @@ mouse_filter = 2
 
 [node name="Content" type="VBoxContainer" parent="Root/Phone"]
 layout_mode = 2
-theme_override_constants/separation = 5
+theme_override_constants/separation = 4
 mouse_filter = 2
 
 [node name="Status" type="Label" parent="Root/Phone/Content"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 24
 mouse_filter = 2
 
 [node name="Call" type="Label" parent="Root/Phone/Content"]
@@ -67,7 +67,7 @@ mouse_filter = 2
 
 [node name="MembersScroll" type="ScrollContainer" parent="Root/Phone/Content"]
 layout_mode = 2
-custom_minimum_size = Vector2(0, 54)
+custom_minimum_size = Vector2(0, 36)
 vertical_scroll_mode = 0
 mouse_filter = 2
 
@@ -79,7 +79,7 @@ mouse_filter = 2
 [node name="Transcript" type="RichTextLabel" parent="Root/Phone/Content"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_font_sizes/normal_font_size = 23
+theme_override_font_sizes/normal_font_size = 24
 scroll_following = true
 mouse_filter = 2
 
@@ -92,7 +92,8 @@ mouse_filter = 2
 [node name="ScrollHint" type="Label" parent="Root/Phone/Content"]
 layout_mode = 2
 text = "UI_PHONE_SCROLL_HINT"
-theme_override_font_sizes/font_size = 18
+theme_override_font_sizes/font_size = 24
+autowrap_mode = 3
 mouse_filter = 2
 
 [node name="Incoming" type="PanelContainer" parent="Root"]
@@ -116,7 +117,7 @@ mouse_filter = 2
 
 [node name="Hint" type="Label" parent="Root/Incoming/Content"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 22
+theme_override_font_sizes/font_size = 24
 autowrap_mode = 3
 mouse_filter = 2
 
@@ -137,7 +138,7 @@ mouse_filter = 2
 [node name="Hint" type="Label" parent="Root/Choices/Content"]
 layout_mode = 2
 text = "UI_PHONE_CHOICE_HINT"
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 24
 autowrap_mode = 3
 mouse_filter = 2
 

@@ -17,9 +17,11 @@ var _audio_rows: Dictionary = {}
 var _head_bob: CheckButton
 var _reduce_scares: CheckButton
 var _locale: OptionButton
+var _tabs: Array[Button] = []
 
 
 func _ready() -> void:
+	_build_tabs()
 	for key: String in AUDIO_LABELS:
 		var row := _add_slider($Scroll/Columns/Audio, "audio", key, AUDIO_LABELS[key], 0.5)
 		_audio_rows[key] = row
@@ -52,9 +54,15 @@ func _ready() -> void:
 	description.name = "Description"
 	description.text = "UI_REDUCE_SCARES_DESCRIPTION"
 	description.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	description.add_theme_font_size_override("font_size", 22)
+	description.add_theme_font_size_override("font_size", 24)
 	accessibility.add_child(description)
 	$Footer/Reset.pressed.connect(_on_reset_pressed)
+	$Footer/ResetVideo.pressed.connect(_on_reset_video_pressed)
+	$ResetVideoConfirmation.confirmed.connect(_confirm_reset_video)
+	$ResetVideoConfirmation.canceled.connect(func() -> void: $Footer/ResetVideo.grab_focus.call_deferred())
+	visibility_changed.connect(func() -> void:
+		if not is_visible_in_tree():
+			$ResetVideoConfirmation.hide())
 	$Footer/Back.pressed.connect(func() -> void: back_requested.emit())
 	EventBus.settings_changed.connect(_on_settings_changed)
 	AudioServer.bus_layout_changed.connect(refresh)
@@ -100,8 +108,30 @@ func _notification(what: int) -> void:
 func _add_heading(parent: Control, text_key: String) -> void:
 	var label := Label.new()
 	label.text = text_key
+	label.theme_type_variation = &"HeadingLabel"
 	label.add_theme_font_size_override("font_size", 30)
 	parent.add_child(label)
+
+
+func _build_tabs() -> void:
+	for index in 3:
+		var button := Button.new()
+		button.text = ["UI_SETTINGS_ALL", "UI_SETTINGS_AUDIO", "UI_SETTINGS_PREFERENCES"][index]
+		button.icon = load("res://ui/theme/icons/%s.svg" % ["all", "audio", "input"][index])
+		button.toggle_mode = true
+		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		button.pressed.connect(_select_page.bind(index))
+		$Tabs.add_child(button)
+		_tabs.append(button)
+	_select_page(0)
+
+
+func _select_page(index: int) -> void:
+	$Scroll/Columns/Audio.visible = index != 2
+	$Scroll/Columns/Other.visible = index != 1
+	for current in _tabs.size():
+		_tabs[current].set_pressed_no_signal(current == index)
+	$Scroll.scroll_vertical = 0
 
 
 func _add_slider(parent: Control, section: String, key: String, text_key: String, step: float) -> VBoxContainer:
@@ -156,6 +186,24 @@ func _on_reduce_scares_changed(enabled: bool) -> void:
 func _on_reset_pressed() -> void:
 	if _settings != null:
 		_show_save_result(_settings.reset_defaults())
+
+
+func _on_reset_video_pressed() -> void:
+	if _settings == null:
+		return
+	var dialog: ConfirmationDialog = $ResetVideoConfirmation
+	dialog.title = tr("UI_RESET_VIDEO")
+	dialog.dialog_text = tr("UI_RESET_VIDEO_CONFIRM")
+	dialog.ok_button_text = tr("UI_CONFIRM_ACCEPT")
+	dialog.cancel_button_text = tr("UI_CONFIRM_CANCEL")
+	dialog.popup_centered(Vector2i(760, 260))
+	dialog.get_cancel_button().grab_focus()
+
+
+func _confirm_reset_video() -> void:
+	if _settings != null:
+		_show_save_result(_settings.reset_section("video"))
+	$Footer/ResetVideo.grab_focus()
 
 
 func _on_settings_changed(_section: String, _key: String) -> void:

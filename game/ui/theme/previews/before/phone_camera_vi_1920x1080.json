@@ -1,0 +1,104 @@
+{
+	"locale": "vi",
+	"logical_resolution": [
+		1920,
+		1080
+	],
+	"resolution": [
+		1920,
+		1080
+	],
+	"text": [
+		{
+			"font_size": 20,
+			"output_px": 20.0,
+			"path": "/root/T214Capture/@Control@2444/PhoneScreen/Root/Phone/Content/Status",
+			"rect": [
+				0.0,
+				0.0,
+				674.0,
+				26.0
+			],
+			"screen_scale": 1.0,
+			"text": "04:06   ·   64%   ·   Không có sóng"
+		},
+		{
+			"font_size": 19,
+			"output_px": 19.0,
+			"path": "/root/T214Capture/@Control@2444/PhoneScreen/Root/Phone/Content/Tools/@HBoxContainer@2450/@Button@2451",
+			"rect": [
+				0.0,
+				0.0,
+				212.0,
+				31.0
+			],
+			"screen_scale": 1.0,
+			"text": "Cuộc gọi [ ]"
+		},
+		{
+			"font_size": 19,
+			"output_px": 19.0,
+			"path": "/root/T214Capture/@Control@2444/PhoneScreen/Root/Phone/Content/Tools/@HBoxContainer@2450/@Button@2452",
+			"rect": [
+				216.0,
+				0.0,
+				213.0,
+				31.0
+			],
+			"screen_scale": 1.0,
+			"text": "Sơ đồ"
+		},
+		{
+			"font_size": 19,
+			"output_px": 19.0,
+			"path": "/root/T214Capture/@Control@2444/PhoneScreen/Root/Phone/Content/Tools/@HBoxContainer@2450/@Button@2453",
+			"rect": [
+				433.0,
+				0.0,
+				213.0,
+				31.0
+			],
+			"screen_scale": 1.0,
+			"text": "Camera"
+		},
+		{
+			"font_size": 19,
+			"output_px": 19.0,
+			"path": "/root/T214Capture/@Control@2444/PhoneScreen/Root/Phone/Content/Tools/@VBoxContainer@2506/@HBoxContainer@2507/@Button@2508",
+			"rect": [
+				0.0,
+				0.0,
+				30.0,
+				31.0
+			],
+			"screen_scale": 1.0,
+			"text": "‹ ,"
+		},
+		{
+			"font_size": 18,
+			"output_px": 18.0,
+			"path": "/root/T214Capture/@Control@2444/PhoneScreen/Root/Phone/Content/Tools/@VBoxContainer@2506/@HBoxContainer@2507/@Label@2509",
+			"rect": [
+				34.0,
+				4.0,
+				606.0,
+				23.0
+			],
+			"screen_scale": 1.0,
+			"text": "Chưa có hình camera"
+		},
+		{
+			"font_size": 19,
+			"output_px": 19.0,
+			"path": "/root/T214Capture/@Control@2444/PhoneScreen/Root/Phone/Content/Tools/@VBoxContainer@2506/@HBoxContainer@2507/@Button@2510",
+			"rect": [
+				644.0,
+				0.0,
+				30.0,
+				31.0
+			],
+			"screen_scale": 1.0,
+			"text": ". ›"
+		}
+	]
+}

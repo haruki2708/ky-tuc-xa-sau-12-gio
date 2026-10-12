@@ -17,8 +17,8 @@ func configure(id: String, name_text: String, member_state: String) -> void:
 	var label := Label.new()
 	label.name = "Name"
 	label.text = name_text
-	label.add_theme_font_size_override("font_size", 21)
-	label.modulate = Color(0.55, 0.55, 0.55) if state != "joined" else Color.WHITE
+	label.add_theme_font_size_override("font_size", 24)
+	label.modulate = Color(0.58, 0.58, 0.58) if state != "joined" else Color.WHITE
 	add_child(label)
 	var dot := Label.new()
 	dot.text = "●"

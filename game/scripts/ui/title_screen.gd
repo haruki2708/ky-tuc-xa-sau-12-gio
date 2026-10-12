@@ -2,6 +2,7 @@ extends Control
 ## First-run acknowledgement, title navigation and injectable core actions.
 
 const SettingsStore = preload("res://scripts/ui/settings.gd")
+const Motion = preload("res://scripts/ui/ui_motion.gd")
 const CREDIT_SECTIONS := ["KIT", "AUDIO", "FONT", "AI", "DICTIONARY"]
 
 @export var settings_path: NodePath = ^"/root/Settings"
@@ -17,6 +18,7 @@ var _pending_chapter := 0
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	_size_title()
 	_settings = get_node_or_null(settings_path) as SettingsStore
 	if _settings == null:
 		_settings = SettingsStore.new()
@@ -66,6 +68,7 @@ func _show_screen(screen: String) -> void:
 	_screen = screen
 	for node_name: String in ["Menu", "Warning", "Credits", "SettingsCard", "Confirmation", "Chapters"]:
 		get_node(node_name).visible = node_name == screen
+	Motion.reveal(get_node(screen))
 
 
 func show_warning() -> void:
@@ -155,6 +158,7 @@ func _start_chapter(chapter: int) -> void:
 	if _leaving or chapter > Progress.unlocked_chapter(progress_path):
 		return
 	_leaving = true
+	Motion.scene_curtain(get_tree().root)
 	get_node(app_path).start_chapter(chapter)
 
 
@@ -179,6 +183,12 @@ func _refresh_chapters() -> void:
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_TRANSLATION_CHANGED and is_node_ready():
 		_refresh_chapters()
+		_size_title()
+
+
+func _size_title() -> void:
+	# Keep the translated title intact while balancing its visual line lengths.
+	$Menu/GameTitle.custom_minimum_size.x = 560 if TranslationServer.get_locale().begins_with("vi") else 758
 
 
 func _has_saved_game() -> bool:
@@ -196,6 +206,7 @@ func _start_game(continue_saved: bool) -> void:
 func _request_start(continue_saved: bool) -> void:
 	var app := get_node_or_null(app_path)
 	if app != null:
+		Motion.scene_curtain(get_tree().root)
 		app.start_game(continue_saved)
 
 
@@ -218,7 +229,7 @@ func _build_warning() -> void:
 	body.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	_add_button(content, "Continue", "UI_TITLE_CONTINUE", _acknowledge_warning.bind(false))
 	_add_button(content, "ReduceScares", "UI_WARNING_REDUCE_SCARES", _acknowledge_warning.bind(true))
-	var error := _add_label(content, "SaveError", "UI_SETTINGS_SAVE_ERROR", 22)
+	var error := _add_label(content, "SaveError", "UI_SETTINGS_SAVE_ERROR", 24)
 	error.hide()
 
 

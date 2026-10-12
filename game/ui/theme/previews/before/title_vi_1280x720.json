@@ -1,0 +1,104 @@
+{
+	"locale": "vi",
+	"logical_resolution": [
+		1920,
+		1080
+	],
+	"resolution": [
+		1280,
+		720
+	],
+	"text": [
+		{
+			"font_size": 64,
+			"output_px": 42.6666666666667,
+			"path": "/root/T214Capture/@Control@28/TitleScreen/Menu/GameTitle",
+			"rect": [
+				0.0,
+				0.0,
+				825.0,
+				81.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Ký túc xá sau 12 giờ"
+		},
+		{
+			"font_size": 28,
+			"output_px": 18.6666666666667,
+			"path": "/root/T214Capture/@Control@28/TitleScreen/Menu/Buttons/Continue",
+			"rect": [
+				0.0,
+				0.0,
+				440.0,
+				60.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Tiếp tục"
+		},
+		{
+			"font_size": 28,
+			"output_px": 18.6666666666667,
+			"path": "/root/T214Capture/@Control@28/TitleScreen/Menu/Buttons/NewGame",
+			"rect": [
+				0.0,
+				74.0,
+				440.0,
+				60.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Chơi mới"
+		},
+		{
+			"font_size": 28,
+			"output_px": 18.6666666666667,
+			"path": "/root/T214Capture/@Control@28/TitleScreen/Menu/Buttons/Settings",
+			"rect": [
+				0.0,
+				148.0,
+				440.0,
+				60.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Cài đặt"
+		},
+		{
+			"font_size": 28,
+			"output_px": 18.6666666666667,
+			"path": "/root/T214Capture/@Control@28/TitleScreen/Menu/Buttons/Credits",
+			"rect": [
+				0.0,
+				222.0,
+				440.0,
+				60.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Ghi công"
+		},
+		{
+			"font_size": 28,
+			"output_px": 18.6666666666667,
+			"path": "/root/T214Capture/@Control@28/TitleScreen/Menu/Buttons/Chapters",
+			"rect": [
+				0.0,
+				296.0,
+				440.0,
+				60.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Chọn chương"
+		},
+		{
+			"font_size": 28,
+			"output_px": 18.6666666666667,
+			"path": "/root/T214Capture/@Control@28/TitleScreen/Menu/Buttons/Quit",
+			"rect": [
+				0.0,
+				370.0,
+				440.0,
+				60.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Thoát game"
+		}
+	]
+}

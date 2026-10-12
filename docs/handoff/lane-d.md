@@ -52,3 +52,43 @@ Integrator trả T-211: git fetch origin; đọc Review trên origin/main:docs/t
 Rebase nhánh lane-d/T-211-graphics-settings-readability lên origin/main, sửa đúng từng ý trong phạm vi.
 Chạy full test/check, cập nhật Handoff và push nhánh; nêu rõ phần chưa kiểm/đang chờ.
 ```
+
+## 4. Prompt T-214: nâng cấp giao diện đẹp + đặt lại riêng Hình ảnh + chữ 720p (12/10)
+
+Dán nguyên khối, dùng được cho phiên cũ lẫn phiên mới. Chỉ gửi khi chủ dự án xác nhận lane D còn hạn mức.
+
+```text
+Bạn là agent Lane D (UI và Đa ngôn ngữ), game kinh dị "Ký túc xá sau 12 giờ" (Godot 4.7.2). Trả lời/tài liệu tiếng Việt, code tiếng Anh.
+Chỉ làm trong D:\GAME_WORK\lane-d. Không sửa D:\GAME_DEMO hay workspace lane khác.
+Integrator là Claude (Opus 5.5) ở máy. Câu hỏi core/contract và việc xin lượt chạy Godot đều gửi về integrator qua chủ dự án.
+
+VIỆC: T-214. Chủ dự án yêu cầu "giao diện thật đẹp, không quá đơn giản như trước". Phong cách: kinh dị ký túc xá Việt Nam, gần chân thực
+(tối, đèn tuýp xanh lạnh, giấy ố vàng, đỏ cảnh báo dùng tiết chế; chất liệu thật như giấy, kim loại sơn, kính màn hình thay cho hộp màu phẳng;
+chuyển động tinh tế: mờ dần, chập chờn nhẹ). Đẹp nhưng chữ phải rõ.
+Không thêm graphics_preset/render scale hay control đồ họa mới (vẫn chờ hợp đồng). T-211 giữ nguyên, không làm lại.
+
+1. git status (không ghi đè việc đang dở) → git fetch origin → tạo nhánh lane-d/T-214-video-reset-readability từ origin/main mới nhất.
+   Card docs/tasks/T-214-video-reset-readability.md có thể chưa lên origin/main ngay lúc này: nếu chưa có thì làm theo prompt này, khi có thì rebase và đọc card.
+2. Đọc: AGENTS.md, docs/STATUS.md, card T-214 (nếu đã có), Handoff/Review T-211, game/scripts/ui/settings.gd, settings_panel, title, pause, phone, document UI,
+   game/ui/theme/, game/assets/fonts/CREDITS.md và các test trong game/tests/ui/.
+3. Làm theo thứ tự, commit nhỏ sau mỗi việc ("T-214: ..."):
+   (1) Nút "Đặt lại hình ảnh"/"Reset video": settings.gd thêm reset_section(section) chỉ đặt lại một mục SCHEMA; nạp file cũ, giữ mọi mục/khóa khác kể cả khóa lạ,
+       lưu một lần trước khi phát tín hiệu, lỗi lưu thì không phát tín hiệu; nút có hộp xác nhận trong settings panel; key vi/en; test.
+   (2) Màn tiêu đề: nền 3D động (instance cảnh hành lang tầng 4 có sẵn chỉ để xem, camera trôi chậm, đèn chập chờn) hoặc ảnh chụp từ cảnh đó nếu nặng;
+       logo tên game có chữ phong cách; menu hover/focus rõ cho phím, chuột, tay cầm; nhiễu phim nhẹ + viền tối; chuyển cảnh mờ dần.
+   (3) Menu tạm dừng + Cài đặt: khung trong mờ có chất liệu, viền mảnh, tab có biểu tượng, thanh trượt/nút bật tắt tùy biến, hiệu ứng mở/đóng 150–250 ms.
+   (4) Điện thoại trong game: như smartphone thật (viền, góc bo, thanh trạng thái giờ/pin/sóng, tab như ứng dụng có biểu tượng); giữ mọi tab, nút, dữ liệu, luồng chương 1–4.
+   (5) Giấy tờ, ghi chú, phụ đề, gợi ý phím E (có biểu tượng phím), màn chết, thẻ tên chương: nền giấy thật, chữ đánh máy/viết tay hợp ngữ cảnh nhưng dễ đọc, kiểu điện ảnh.
+   (6) Chụp 1280×720 và 1920×1080 (vi và en): mọi chữ ≥ 16 px ở 720p, đủ tương phản, không tràn chữ; bảng cỡ chữ.
+   Dùng theme chung trong game/ui/theme/ để các màn thống nhất.
+4. Ràng buộc: font chỉ OFL/CC0/CC-BY có đủ dấu tiếng Việt (kiểm ă â đ ê ô ơ ư và 5 dấu), ghi game/assets/fonts/CREDITS.md + file giấy phép; texture UI CC0/CC-BY có credits.
+   Không đổi nội dung chữ, key cũ, luồng chơi, luật, lời thoại; chỉ thêm key UI_ mới (vi + en). Giữ tên node/đường dẫn mà script và test dùng; mọi test UI cũ vẫn đạt.
+   Không sửa game/scripts/core/, cảnh chương, project.godot; cần signal/autoload mới thì ghi "Yêu cầu thay đổi". Âm thanh hover/click là vùng lane F: chỉ ghi đề xuất.
+   Không đo FPS, không bot.
+5. Ảnh trước/sau từng màn (720p, 1080p, vi, en) kèm bảng cỡ chữ và danh sách font/texture + giấy phép.
+6. Khi cần renderer thật (chụp ảnh) hoặc full test/check: NHẮN integrator xin lượt rồi mới chạy pwsh tools/test.ps1, sau đó pwsh tools/check.ps1.
+7. Hai lệnh đạt → git push origin lane-d/T-214-video-reset-readability (không push main, không mở PR) → báo nhả lượt Godot.
+   Sắp hết hạn mức thì dừng ở bước đang làm, commit phần đã có ("T-214 WIP: ..."), push, ghi Handoff rõ đã xong việc nào, còn dở việc nào.
+8. Cập nhật Handoff trong card (không sửa STATUS, DECISIONS hay mục Review) và báo lại: việc đã xong (1–6), ảnh trước/sau, font/texture + giấy phép,
+   key mới, dòng RESULT test.ps1/check.ps1, commit hash, phần chưa làm, yêu cầu thay đổi ngoài phạm vi, có bị chặn gì không.
+```

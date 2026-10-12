@@ -15,15 +15,21 @@ func _ready() -> void:
 	add_to_group("death_screen")
 	add_to_group("reading_overlay") # Esc must not open the pause menu over death.
 	var shade := ColorRect.new()
-	shade.color = Color.BLACK
+	shade.color = Color("050807")
 	$Root.add_child(shade)
 	shade.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	var content := Layout.card($Root, Rect2(0.15, 0.27, 0.7, 0.46))
+	Layout.cinematic_style($Root/Card, true)
 	for spec in [["Title", "UI_CH1_DEATH_TITLE", 60], ["Reason", "", 32],
 		["Count", "", 38], ["Retry", "UI_DEATH_RELOADING", 26]]:
 		var text := Layout.label(content, spec[0], spec[1], spec[2])
 		text.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		text.size_flags_vertical = Control.SIZE_EXPAND_FILL
+		if spec[0] == "Title":
+			text.add_theme_color_override("font_color", Color("decabe"))
+			text.add_theme_font_override("font", preload("res://assets/fonts/be_vietnam_pro_semibold.ttf"))
+		elif spec[0] == "Retry":
+			text.add_theme_color_override("font_color", Color("adb8aa"))
 	$Root.hide()
 	EventBus.player_failed.connect(_on_failed)
 	EventBus.checkpoint_loaded.connect(func(_id: StringName) -> void: close_view())

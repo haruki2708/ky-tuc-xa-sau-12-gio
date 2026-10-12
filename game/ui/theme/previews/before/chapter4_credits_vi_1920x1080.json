@@ -1,0 +1,182 @@
+{
+	"locale": "vi",
+	"logical_resolution": [
+		1920,
+		1080
+	],
+	"resolution": [
+		1920,
+		1080
+	],
+	"text": [
+		{
+			"font_size": 46,
+			"output_px": 46.0,
+			"path": "/root/T214Capture/@Control@2849/Chapter4EndCard/Root/Card/Content/End",
+			"rect": [
+				0.0,
+				0.0,
+				1257.0,
+				59.0
+			],
+			"screen_scale": 1.0,
+			"text": "Hết chương 4"
+		},
+		{
+			"font_size": 36,
+			"output_px": 36.0,
+			"path": "/root/T214Capture/@Control@2849/Chapter4EndCard/Root/Card/Content/Thanks",
+			"rect": [
+				0.0,
+				79.0,
+				1257.0,
+				46.0
+			],
+			"screen_scale": 1.0,
+			"text": "Cảm ơn bạn đã chơi"
+		},
+		{
+			"font_size": 28,
+			"output_px": 28.0,
+			"path": "/root/T214Capture/@Control@2849/Chapter4EndCard/Root/Card/Content/Credits/@VBoxContainer@2853/KITTitle",
+			"rect": [
+				0.0,
+				0.0,
+				1249.0,
+				36.0
+			],
+			"screen_scale": 1.0,
+			"text": "Môi trường và mô hình"
+		},
+		{
+			"font_size": 24,
+			"output_px": 24.0,
+			"path": "/root/T214Capture/@Control@2849/Chapter4EndCard/Root/Card/Content/Credits/@VBoxContainer@2853/KITText",
+			"rect": [
+				0.0,
+				60.0,
+				1249.0,
+				65.0
+			],
+			"screen_scale": 1.0,
+			"text": "Lane B — bộ kit ký túc xá, tầng 4, bóng người và gương. Mô hình và texture được tạo bằng script với Blender 5.2.2 LTS và Godot. Asset: CC0 1.0 — https://creativecommons.org/publicdomain/zero/1.0/"
+		},
+		{
+			"font_size": 28,
+			"output_px": 28.0,
+			"path": "/root/T214Capture/@Control@2849/Chapter4EndCard/Root/Card/Content/Credits/@VBoxContainer@2853/AUDIOTitle",
+			"rect": [
+				0.0,
+				149.0,
+				1249.0,
+				36.0
+			],
+			"screen_scale": 1.0,
+			"text": "Âm thanh"
+		},
+		{
+			"font_size": 24,
+			"output_px": 24.0,
+			"path": "/root/T214Capture/@Control@2849/Chapter4EndCard/Root/Card/Content/Credits/@VBoxContainer@2853/AUDIOText",
+			"rect": [
+				0.0,
+				209.0,
+				1249.0,
+				133.0
+			],
+			"screen_scale": 1.0,
+			"text": "Lane E — âm môi trường, bước chân, hiệu ứng đoạn 1–2 và hù dọa/truy đuổi. Tự tổng hợp bằng Python 3, xử lý bằng FFmpeg 9.0.2; không dùng mẫu âm bên ngoài. Waveform và OGG: CC0 1.0. Nhạc nền tự tổng hợp (CC0). Giọng loa phát thanh tạo offline bằng eSpeak NG 1.52.0 (công cụ GPL-3.0-or-later, không đóng gói trong game)."
+		},
+		{
+			"font_size": 28,
+			"output_px": 28.0,
+			"path": "/root/T214Capture/@Control@2849/Chapter4EndCard/Root/Card/Content/Credits/@VBoxContainer@2853/FONTTitle",
+			"rect": [
+				0.0,
+				366.0,
+				1249.0,
+				36.0
+			],
+			"screen_scale": 1.0,
+			"text": "Phông chữ"
+		},
+		{
+			"font_size": 24,
+			"output_px": 24.0,
+			"path": "/root/T214Capture/@Control@2849/Chapter4EndCard/Root/Card/Content/Credits/@VBoxContainer@2853/FONTText",
+			"rect": [
+				0.0,
+				426.0,
+				1249.0,
+				65.0
+			],
+			"screen_scale": 1.0,
+			"text": "Be Vietnam Pro Regular — The Be Vietnam Pro Project Authors. SIL Open Font License 1.1. https://github.com/bettergui/BeVietnamPro"
+		},
+		{
+			"font_size": 28,
+			"output_px": 28.0,
+			"path": "/root/T214Capture/@Control@2849/Chapter4EndCard/Root/Card/Content/Credits/@VBoxContainer@2853/AITitle",
+			"rect": [
+				0.0,
+				515.0,
+				1249.0,
+				36.0
+			],
+			"screen_scale": 1.0,
+			"text": "Nội dung có hỗ trợ AI"
+		},
+		{
+			"font_size": 24,
+			"output_px": 24.0,
+			"path": "/root/T214Capture/@Control@2849/Chapter4EndCard/Root/Card/Content/Credits/@VBoxContainer@2853/AIText",
+			"rect": [
+				0.0,
+				575.0,
+				1249.0,
+				99.0
+			],
+			"screen_scale": 1.0,
+			"text": "OpenAI Codex hỗ trợ viết mã tạo mô hình, texture, scene, shader và tổng hợp âm thanh. Anthropic Claude viết kiến trúc lõi, luồng cốt truyện, filter PS1, mã âm bước chân và mô hình đạo cụ tầng 4. Ảnh nền là ảnh chụp hành lang trong game qua Godot; không dùng mô hình sinh ảnh hoặc asset lấy từ game khác."
+		},
+		{
+			"font_size": 28,
+			"output_px": 28.0,
+			"path": "/root/T214Capture/@Control@2849/Chapter4EndCard/Root/Card/Content/Credits/@VBoxContainer@2853/DICTIONARYTitle",
+			"rect": [
+				0.0,
+				698.0,
+				1249.0,
+				36.0
+			],
+			"screen_scale": 1.0,
+			"text": "Từ điển nối từ"
+		},
+		{
+			"font_size": 24,
+			"output_px": 24.0,
+			"path": "/root/T214Capture/@Control@2849/Chapter4EndCard/Root/Card/Content/Credits/@VBoxContainer@2853/DICTIONARYText",
+			"rect": [
+				0.0,
+				758.0,
+				1249.0,
+				303.0
+			],
+			"screen_scale": 1.0,
+			"text": "Wiktionary tiếng Việt và tiếng Anh — các tác giả Wiktionary.\nhttps://vi.wiktionary.org · https://en.wiktionary.org\nBản trích: kaikki.org (wiktextract)\nhttps://kaikki.org/viwiktionary/Tiếng Việt/\nhttps://kaikki.org/dictionary/Vietnamese/\nCC BY-SA 4.0\nhttps://creativecommons.org/licenses/by-sa/4.0/\nĐã chuyển thể: chỉ giữ từ hai tiếng; bỏ tên riêng, ký tự và phụ tố; thêm dạng chuẩn hóa, cờ xác biết và từ của game."
+		},
+		{
+			"font_size": 28,
+			"output_px": 28.0,
+			"path": "/root/T214Capture/@Control@2849/Chapter4EndCard/Root/Card/Content/Return",
+			"rect": [
+				0.0,
+				776.0,
+				1257.0,
+				60.0
+			],
+			"screen_scale": 1.0,
+			"text": "Về màn hình chính"
+		}
+	]
+}

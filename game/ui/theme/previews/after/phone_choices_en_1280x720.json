@@ -1,0 +1,221 @@
+{
+	"locale": "en",
+	"logical_resolution": [
+		1920,
+		1080
+	],
+	"resolution": [
+		1280,
+		720
+	],
+	"text": [
+		{
+			"font_size": 24,
+			"output_px": 16.0,
+			"path": "/root/T214Capture/@Control@1785/PhoneScreen/Root/Phone/Content/Status",
+			"rect": [
+				0.0,
+				0.0,
+				662.0,
+				31.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "04:06   ·   64%   ·   No signal"
+		},
+		{
+			"font_size": 24,
+			"output_px": 16.0,
+			"path": "/root/T214Capture/@Control@1785/PhoneScreen/Root/Phone/Content/Tools/@HBoxContainer@1791/@Button@1792",
+			"rect": [
+				0.0,
+				0.0,
+				206.0,
+				37.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Call [ ]"
+		},
+		{
+			"font_size": 24,
+			"output_px": 16.0,
+			"path": "/root/T214Capture/@Control@1785/PhoneScreen/Root/Phone/Content/Tools/@HBoxContainer@1791/@Button@1793",
+			"rect": [
+				212.0,
+				0.0,
+				207.0,
+				37.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Map"
+		},
+		{
+			"font_size": 24,
+			"output_px": 16.0,
+			"path": "/root/T214Capture/@Control@1785/PhoneScreen/Root/Phone/Content/Tools/@HBoxContainer@1791/@Button@1794",
+			"rect": [
+				425.0,
+				0.0,
+				207.0,
+				37.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Camera"
+		},
+		{
+			"font_size": 24,
+			"output_px": 16.0,
+			"path": "/root/T214Capture/@Control@1785/PhoneScreen/Root/Phone/Content/Call",
+			"rect": [
+				0.0,
+				76.0,
+				662.0,
+				31.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Group call"
+		},
+		{
+			"font_size": 24,
+			"output_px": 16.0,
+			"path": "/root/T214Capture/@Control@1785/PhoneScreen/Root/Phone/Content/MembersScroll/Members/@HBoxContainer@1864/Name",
+			"rect": [
+				28.0,
+				4.0,
+				175.0,
+				31.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Test member A"
+		},
+		{
+			"font_size": 28,
+			"output_px": 18.6666666666667,
+			"path": "/root/T214Capture/@Control@1785/PhoneScreen/Root/Phone/Content/MembersScroll/Members/@HBoxContainer@1864/@Label@1863",
+			"rect": [
+				207.0,
+				0.0,
+				17.0,
+				39.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "●"
+		},
+		{
+			"font_size": 24,
+			"output_px": 16.0,
+			"path": "/root/T214Capture/@Control@1785/PhoneScreen/Root/Phone/Content/MembersScroll/Members/@HBoxContainer@1867/Name",
+			"rect": [
+				28.0,
+				4.0,
+				174.0,
+				31.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Test member B"
+		},
+		{
+			"font_size": 28,
+			"output_px": 18.6666666666667,
+			"path": "/root/T214Capture/@Control@1785/PhoneScreen/Root/Phone/Content/MembersScroll/Members/@HBoxContainer@1867/@Label@1866",
+			"rect": [
+				206.0,
+				0.0,
+				17.0,
+				39.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "●"
+		},
+		{
+			"font_size": 24,
+			"output_px": 16.0,
+			"path": "/root/T214Capture/@Control@1785/PhoneScreen/Root/Phone/Content/Transcript",
+			"rect": [
+				0.0,
+				154.0,
+				662.0,
+				153.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "04:05  Test member A: This sample line tests the live transcript.\n04:06  Test member B: New lines are added at the end of the history.\n"
+		},
+		{
+			"font_size": 24,
+			"output_px": 16.0,
+			"path": "/root/T214Capture/@Control@1785/PhoneScreen/Root/Phone/Content/ScrollHint",
+			"rect": [
+				0.0,
+				311.0,
+				662.0,
+				31.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Scroll: transcript · Shift + scroll: members"
+		},
+		{
+			"font_size": 24,
+			"output_px": 16.0,
+			"path": "/root/T214Capture/@Control@1785/PhoneScreen/Root/Choices/Content/Hint",
+			"rect": [
+				0.0,
+				0.0,
+				646.0,
+				31.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "1–4 to reply · Or scroll then left-click"
+		},
+		{
+			"font_size": 24,
+			"output_px": 16.0,
+			"path": "/root/T214Capture/@Control@1785/PhoneScreen/Root/Choices/Content/Options/Option1",
+			"rect": [
+				0.0,
+				0.0,
+				646.0,
+				55.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "1. First test option"
+		},
+		{
+			"font_size": 24,
+			"output_px": 16.0,
+			"path": "/root/T214Capture/@Control@1785/PhoneScreen/Root/Choices/Content/Options/Option2",
+			"rect": [
+				0.0,
+				61.0,
+				646.0,
+				55.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "2. Second test option"
+		},
+		{
+			"font_size": 24,
+			"output_px": 16.0,
+			"path": "/root/T214Capture/@Control@1785/PhoneScreen/Root/Choices/Content/Options/Option3",
+			"rect": [
+				0.0,
+				122.0,
+				646.0,
+				55.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "3. Third test option"
+		},
+		{
+			"font_size": 24,
+			"output_px": 16.0,
+			"path": "/root/T214Capture/@Control@1785/PhoneScreen/Root/Choices/Content/Options/Option4",
+			"rect": [
+				0.0,
+				183.0,
+				646.0,
+				55.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "4. Fourth test option"
+		}
+	]
+}

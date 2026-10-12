@@ -1,0 +1,39 @@
+{
+	"locale": "en",
+	"logical_resolution": [
+		1920,
+		1080
+	],
+	"resolution": [
+		1280,
+		720
+	],
+	"text": [
+		{
+			"font_size": 28,
+			"output_px": 18.6666666666667,
+			"path": "/root/T214Capture/@Control@1893/HUD/Root/Prompt",
+			"rect": [
+				384.0,
+				564.0,
+				1152.0,
+				52.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "[E] Read"
+		},
+		{
+			"font_size": 28,
+			"output_px": 18.6666666666667,
+			"path": "/root/T214Capture/@Control@1893/HUD/Root/SubtitleMargin/SubtitlePanel/Subtitle",
+			"rect": [
+				24.0,
+				14.0,
+				1488.0,
+				36.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Added to notebook (Tab)"
+		}
+	]
+}

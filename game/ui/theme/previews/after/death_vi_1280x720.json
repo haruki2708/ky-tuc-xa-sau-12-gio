@@ -1,0 +1,65 @@
+{
+	"locale": "vi",
+	"logical_resolution": [
+		1920,
+		1080
+	],
+	"resolution": [
+		1280,
+		720
+	],
+	"text": [
+		{
+			"font_size": 60,
+			"output_px": 40.0,
+			"path": "/root/T214Capture/@Control@1061/DeathScreen/Root/Card/Content/Title",
+			"rect": [
+				0.0,
+				0.0,
+				1248.0,
+				90.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Bạn đã chết"
+		},
+		{
+			"font_size": 32,
+			"output_px": 21.3333333333333,
+			"path": "/root/T214Capture/@Control@1061/DeathScreen/Root/Card/Content/Reason",
+			"rect": [
+				0.0,
+				110.0,
+				1248.0,
+				90.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Bạn không còn sống sót."
+		},
+		{
+			"font_size": 38,
+			"output_px": 25.3333333333333,
+			"path": "/root/T214Capture/@Control@1061/DeathScreen/Root/Card/Content/Count",
+			"rect": [
+				0.0,
+				220.0,
+				1248.0,
+				90.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Số người sống sót: chưa rõ"
+		},
+		{
+			"font_size": 26,
+			"output_px": 17.3333333333333,
+			"path": "/root/T214Capture/@Control@1061/DeathScreen/Root/Card/Content/Retry",
+			"rect": [
+				0.0,
+				330.0,
+				1248.0,
+				90.0
+			],
+			"screen_scale": 0.666666666666667,
+			"text": "Đang trở lại điểm lưu…"
+		}
+	]
+}
