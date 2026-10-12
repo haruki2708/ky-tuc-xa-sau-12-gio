@@ -4,9 +4,9 @@
     {
       "asset_id": "room407_backpack",
       "scope": "prototype",
-      "file": "game/assets/models/graphics_pilot/room407_backpack_tripo.glb",
+      "file": "game/assets/models/graphics_pilot/room407_backpack_tripo_r2.glb",
       "source": {
-        "uri": "repo:art_source/graphics_upgrade/tripo/room407_backpack/source/tripo_original_r1.glb",
+        "uri": "repo:art_source/graphics_upgrade/tripo/room407_backpack/source/tripo_original_r2.glb",
         "author": "Tripo AI Studio; operator: project owner",
         "license": "LicenseRef-Tripo-Paid-D-084",
         "credits_file": "art_source/graphics_upgrade/tripo/room407_backpack/CREDITS.md",
@@ -21,9 +21,21 @@
         "collider_policy": "preserve_gameplay"
       },
       "geometry": {
-        "dimensions_m": [0.29, 0.45636, 0.30274],
-        "bounds_min_m": [-0.145, 0.01, -0.1325],
-        "root_scale": [1.0, 1.0, 1.0],
+        "dimensions_m": [
+          0.29,
+          0.45636,
+          0.30274
+        ],
+        "bounds_min_m": [
+          -0.145,
+          0.01,
+          -0.1325
+        ],
+        "root_scale": [
+          1.0,
+          1.0,
+          1.0
+        ],
         "tolerance_m": 0.001,
         "markers": {},
         "coordinate_space": "selected_root_local",
@@ -31,9 +43,21 @@
         "visibility_policy": "include_hidden"
       },
       "placement": {
-        "position_m": [33.78, 0.02, -4.52],
-        "rotation_degrees": [0.0, 90.0, 0.0],
-        "scale": [1.0, 1.0, 1.0]
+        "position_m": [
+          33.78,
+          0.02,
+          -4.52
+        ],
+        "rotation_degrees": [
+          0.0,
+          90.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
       },
       "generation": {
         "provider": "tripo",
@@ -47,7 +71,7 @@
         "created_on": "2026-10-12",
         "parameters": {
           "mode": "text_to_3d",
-          "prompt": "A worn, inexpensive student backpack resting upright on the floor. Faded olive-gray fabric, two black shoulder straps on the back, a small carry loop on top, one flat front pocket. Subtle seams and wear. Closed bottom, straps attached. No logos, no text, no items sticking out. Realistic, game-ready, PBR textures.",
+          "prompt": "A worn, inexpensive student backpack resting upright on the floor. Navy blue fabric body with medium gray trim and gray zipper tape, black shoulder straps on the back, a small carry loop on top, one front pocket with a contrasting gray panel, a side mesh bottle pocket. Faded color, subtle seams, light scuffs and dust. Closed bottom, straps attached. No logos, no text, no items sticking out. Realistic, game-ready, PBR textures.",
           "topology": "triangle",
           "polycount": 2500,
           "pbr": true,
@@ -55,7 +79,9 @@
           "ultra_mesh_quality": false,
           "texture_8k": false,
           "generate_in_parts": false,
-          "credits_per_generation_shown": 30
+          "credits_per_generation_shown": 30,
+          "generation_round": 2,
+          "model_id_note": "Studio did not show a task/model ID (owner, 2026-10-12)"
         },
         "rights_evidence": [
           "art_source/graphics_upgrade/tripo/room407_backpack/evidence/tripo_terms_2026-10-12.pdf",
@@ -66,16 +92,16 @@
         "triangle_limit_exclusive": 3001,
         "material_limit": 2,
         "texture_edge_limit": 1024,
-        "basis": "D-079 prototype target; D-084 at most 5 generations; D-085 G2 criteria.",
+        "basis": "D-079 prototype target; D-084 at most 5 generations (2 used: round 1 3800 -> 3820 incl. an unexplained +50 credit bonus, round 2 3820 -> 3790); D-085 G2 criteria.",
         "wallet_id": "tripo:studio:owner",
         "estimated_credits": 30,
-        "consumed_credits": null,
-        "balance_before": 3800,
-        "balance_after": null
+        "consumed_credits": 30,
+        "balance_before": 3820,
+        "balance_after": 3790
       },
       "approval": {
-        "status": "pending",
-        "reviewer": null
+        "status": "approved",
+        "reviewer": "project owner, 2026-10-12 (picked round 2 over round 1 and the CC0 backpack)"
       },
       "planned_route": "tripo_studio_manual"
     }

@@ -1,6 +1,6 @@
 # STATUS — cập nhật bởi integrator
 
-**Cập nhật lần cuối:** 2026-10-12, Claude Code ở máy (Opus 5.5, integrator) — **G2 balo Tripo: đã tạo và chuẩn hóa.** Chủ dự án mua Tripo Studio Pro 12/10 và tạo balo (H3.1); Claude làm thay lane B: xoay túi về −Z, khớp khung balo cũ, texture 1024, nhập `game/assets/models/graphics_pilot/` (bản chơi chưa đổi), ảnh 4 góc + trước/sau phòng 407 ở `art_source/graphics_upgrade/tripo/room407_backpack/g2/`. Công cụ C (Claude làm thay: thêm nhãn ngoại lệ `LicenseRef-Tripo-Paid-D-084`): **`errors: []`**, số đo đạt (2.300 tam giác, 1 vật liệu, 1024). Chờ chủ dự án: số lượt/credit sau, mã model, duyệt hình (`g2/compare_room_before_after.png`). Phiếu: `docs/handoff/TRIPO_PHIEU_BALO.md`.
+**Cập nhật lần cuối:** 2026-10-12, Claude Code ở máy (Opus 5.5, integrator) — **D-086: G2 balo Tripo đạt, chủ dự án chọn lượt 2 (xanh navy).** Mẫu ở `game/assets/models/graphics_pilot/room407_backpack_tripo_r2.glb`, ảnh `art_source/graphics_upgrade/tripo/room407_backpack/compare_cc0_r1_r2.png`; bản chơi chưa đổi. **D-087:** chưa thay balo; chủ dự án tạo **Tripo đợt 1** (7 đồ phòng 407, tối đa 3 lượt/món) theo `docs/handoff/TRIPO_DOT1_PHONG407.md`, rồi thay cả nhóm ở G3. Tripo: 2/5 lượt, còn 3.790 credit. Phiếu `docs/handoff/TRIPO_PHIEU_BALO.md`.
 
 **Bản đồ lộ trình tổng quan:** [`docs/ROADMAP.md`](ROADMAP.md) (từ demo tới phát hành, đang ở đâu).
 
@@ -17,7 +17,7 @@
 6. **Build chơi thử:** `build/windows/KyTucXa.exe`, 2026-10-10 03:57:18, code `add6d5f` có D-075. D-082 nhận prototype/QA/tài liệu, chưa đổi nội dung cảnh chơi nên không export. Đã xem hai ảnh mount B; chưa duyệt chất lượng đồ họa cuối, nghe/chơi tay hoặc đo FPS.
 7. **Chơi thử còn mở:** chương 1 D-071/chương 2 D-073 tạm chốt; đoạn nhắn tin D-072 chưa chơi lại. Chương 3 lần cuối bước 6/tầng 1; D-074/T-206/D-075 đã sửa, chờ chơi tiếp. Chương 4/giọng và âm chương 2–4 còn chờ chủ dự án kiểm. D-059 chưa bắt đầu.
 8. **Lượt Windows:** chủ dự án xác nhận A/B/C/D/F xong, integrator nhận lượt kiểm D-082 rồi báo nhả sau khi kết thúc. Code/tài liệu/offline vẫn song song; các phiên không tự biết nhau nhả lượt. Import/check cũng dùng APPDATA riêng; không tự mở bot/FPS.
-9. Số đã cấp **D-076…D-085, T-207…T-212**. Số tiếp theo **D-086, T-213**.
+9. Số đã cấp **D-076…D-087, T-207…T-212**. Số tiếp theo **D-088, T-213**.
 
 **Repo:** https://github.com/tuaanh666/ky-tuc-xa-sau-12-gio (private)
 

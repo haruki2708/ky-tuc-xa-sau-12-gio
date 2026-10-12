@@ -119,3 +119,4 @@ Full test/check sau cập nhật là điều kiện commit/push; kết quả, gi
 - `normalize_backpack.py` (Blender 5.2.2): xoay 180° (túi về −Z), khớp khung balo cũ, texture 2048 → 1024, đổi tên texture; kết quả `game/assets/models/graphics_pilot/room407_backpack_tripo.glb` (import mặc định Godot, không dùng importer PS1).
 - `game/scenes/levels/graphics_pilot/backpack_g2_capture.tscn` (`-- --backpack-g2-capture`, cần renderer thật): 4 góc giống bộ ảnh G1 + trước/sau phòng 407 cùng camera; bản chơi không đổi.
 - QA C: `errors: []`; chờ credit/mã model từ chủ dự án và duyệt hình. Chi tiết `docs/handoff/TRIPO_PHIEU_BALO.md`.
+- **Lượt 2 (D-086):** chủ dự án muốn màu giống balo sinh viên hơn → lượt 2 xanh navy; chọn lượt 2. `room407_backpack_tripo_r2.glb` (2.359 tam giác, 1 vật liệu, 1024), QA `errors: []`, đối soát credit khớp. Capture nhận `--model=` / `--out=`. Lượt 1 gỡ khỏi `game/`. Bản chơi chưa đổi; G3 chờ chủ dự án.

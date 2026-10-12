@@ -4,11 +4,13 @@ extends Node3D
 ## before/after pairs in room 407 (same camera, old CC0 visual vs Tripo visual).
 ## The playable scenes are untouched: the swap happens on an off-line instance.
 ## Run: <godot> --path game res://scenes/levels/graphics_pilot/backpack_g2_capture.tscn -- --backpack-g2-capture
+## Optional: --model=res://...glb --out=<folder name under tripo/room407_backpack> (default: chosen round 2, g2_r2).
+## Round 1 images in g2/ were taken from its GLB before it was removed from game/ (source kept in art_source).
 
-const TRIPO := preload("res://assets/models/graphics_pilot/room407_backpack_tripo.glb")
+const DEFAULT_MODEL := "res://assets/models/graphics_pilot/room407_backpack_tripo_r2.glb"
+const OUTPUT_ROOT := "res://../art_source/graphics_upgrade/tripo/room407_backpack"
 const FLOOR := preload("res://scenes/levels/floor4/floor4.tscn")
 const PROBE := preload("res://scripts/debug/graphics_asset_probe.gd")
-const OUTPUT := "res://../art_source/graphics_upgrade/tripo/room407_backpack/g2"
 const BINDING := "Room407/Details/Trung/Backpack"
 const FACING_TARGET := Vector3(0, 0.23818, 0.01887)
 ## Room views as offsets from the backpack root in world space (its front faces world -X).
@@ -17,25 +19,35 @@ const ROOM_VIEWS := [
 	{"name": "room_near", "eye": Vector3(-0.75, 0.95, 0.25), "look": Vector3(0, 0.22, 0)},
 ]
 
+var _model_path := DEFAULT_MODEL
+var _output := OUTPUT_ROOT.path_join("g2_r2")
+var _tripo: PackedScene
+
 
 func _ready() -> void:
 	if "--backpack-g2-capture" not in OS.get_cmdline_user_args():
 		return
+	for arg in OS.get_cmdline_user_args():
+		if arg.begins_with("--model="):
+			_model_path = arg.trim_prefix("--model=")
+		elif arg.begins_with("--out="):
+			_output = OUTPUT_ROOT.path_join(arg.trim_prefix("--out="))
+	_tripo = load(_model_path) as PackedScene
 	if DisplayServer.get_name() == "headless":
 		push_error("G2 capture requires a real renderer")
 		App.quit(1)
 		return
 	get_window().content_scale_size = Vector2i(1280, 720)
 	get_window().size = Vector2i(1280, 720)
-	DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(OUTPUT))
-	var report := {"asset_id": "room407_backpack", "file": "res://assets/models/graphics_pilot/room407_backpack_tripo.glb",
-		"source_sha256": FileAccess.get_sha256("res://assets/models/graphics_pilot/room407_backpack_tripo.glb"),
+	DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(_output))
+	var report := {"asset_id": "room407_backpack", "file": _model_path,
+		"source_sha256": FileAccess.get_sha256(_model_path),
 		"renderer": RenderingServer.get_current_rendering_method(), "gpu": RenderingServer.get_video_adapter_name(),
 		"godot": Engine.get_version_info().string, "front": [0, 0, -1], "up": [0, 1, 0], "pivot": [0, 0, 0],
 		"facing_images": [], "room_images": []}
 	await _capture_facing(report)
 	await _capture_room(report)
-	var file := FileAccess.open(OUTPUT.path_join("g2_capture_report.json"), FileAccess.WRITE)
+	var file := FileAccess.open(_output.path_join("g2_capture_report.json"), FileAccess.WRITE)
 	file.store_string(JSON.stringify(report, "\t") + "\n")
 	print("RESULT: backpack G2 capture %d images PASS" % (report.facing_images.size() + report.room_images.size()))
 	App.quit()
@@ -45,7 +57,7 @@ func _ready() -> void:
 func _capture_facing(report: Dictionary) -> void:
 	var stage := Node3D.new()
 	add_child(stage)
-	var model := TRIPO.instantiate() as Node3D
+	var model := _tripo.instantiate() as Node3D
 	report["glb_measurement"] = PROBE.measure(model)
 	stage.add_child(model)
 	var world := WorldEnvironment.new()
@@ -105,7 +117,7 @@ func _capture_room(report: Dictionary) -> void:
 	add_child(torch)
 	var base := slot.global_position
 	var old_visuals: Array[Node] = slot.get_children()
-	var tripo := TRIPO.instantiate() as Node3D
+	var tripo := _tripo.instantiate() as Node3D
 	tripo.visible = false
 	slot.add_child(tripo)
 	for view: Dictionary in ROOM_VIEWS:
@@ -130,7 +142,7 @@ func _save(file_name: String) -> void:
 		await get_tree().process_frame
 	await RenderingServer.frame_post_draw
 	var capture := get_viewport().get_texture().get_image()
-	if capture.save_png(OUTPUT.path_join(file_name)) != OK:
+	if capture.save_png(_output.path_join(file_name)) != OK:
 		push_error("Cannot save " + file_name)
 		App.quit(1)
 

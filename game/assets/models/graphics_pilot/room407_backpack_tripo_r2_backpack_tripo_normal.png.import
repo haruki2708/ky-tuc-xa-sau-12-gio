@@ -2,19 +2,19 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c5synxy43c7g6"
-path="res://.godot/imported/room407_backpack_tripo_backpack_tripo_rm.png-0ac805ec162d665e28158e86c4410049.ctex"
+uid="uid://df60hui1eq25i"
+path="res://.godot/imported/room407_backpack_tripo_r2_backpack_tripo_normal.png-103e978751ea7cf3c75bbee1e0fe76d4.ctex"
 metadata={
 "vram_texture": false
 }
 generator_parameters={
-"md5": "8b14862624bfbf3df0f60833f1ec013e"
+"md5": "9bcc2dcebc003358aef19ae6e254e33e"
 }
 
 [deps]
 
-source_file="res://assets/models/graphics_pilot/room407_backpack_tripo_backpack_tripo_rm.png"
-dest_files=["res://.godot/imported/room407_backpack_tripo_backpack_tripo_rm.png-0ac805ec162d665e28158e86c4410049.ctex"]
+source_file="res://assets/models/graphics_pilot/room407_backpack_tripo_r2_backpack_tripo_normal.png"
+dest_files=["res://.godot/imported/room407_backpack_tripo_r2_backpack_tripo_normal.png-103e978751ea7cf3c75bbee1e0fe76d4.ctex"]
 
 [params]
 

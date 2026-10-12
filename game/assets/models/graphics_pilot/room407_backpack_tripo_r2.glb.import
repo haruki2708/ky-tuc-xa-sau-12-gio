@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dx6mw5l2g2f5c"
-path="res://.godot/imported/room407_backpack_tripo.glb-f37d5b654a205bf6d41044c46cc45352.scn"
+uid="uid://fh0jh1rxcp86"
+path="res://.godot/imported/room407_backpack_tripo_r2.glb-c011e95330000561b17dbef006ad74bf.scn"
 
 [deps]
 
-source_file="res://assets/models/graphics_pilot/room407_backpack_tripo.glb"
-dest_files=["res://.godot/imported/room407_backpack_tripo.glb-f37d5b654a205bf6d41044c46cc45352.scn"]
+source_file="res://assets/models/graphics_pilot/room407_backpack_tripo_r2.glb"
+dest_files=["res://.godot/imported/room407_backpack_tripo_r2.glb-c011e95330000561b17dbef006ad74bf.scn"]
 
 [params]
 
