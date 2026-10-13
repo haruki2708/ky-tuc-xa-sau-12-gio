@@ -4,7 +4,8 @@ Blender 5.2.2, background:
     blender -b --factory-startup -P bake_prop.py -- \
         --src high.glb --out game.glb --name stool \
         --min -0.18 0 -0.18 --size 0.36 0.30 0.36 \
-        [--rotate 180] [--fit box|height|width] [--tris 5000] [--tex 1024] [--image-format JPEG]
+        [--rotate 180] [--fit box|height|width] [--tris 5000] [--tex 1024] [--image-format JPEG] [--sharp 40]
+        [--height-map 0:0 0.39:0.38 1.35:1.15 1.70:1.50]
 
 1. Import the Tripo GLB (the detailed "high" model), join it into one mesh.
 2. Rotate about the vertical axis so the agreed front faces glTF -Z.
@@ -37,6 +38,12 @@ def parse_args():
     parser.add_argument("--tris", type=int, default=5000)
     parser.add_argument("--tex", type=int, default=1024)
     # JPEG keeps large props (2048 maps) under the 10 MiB file limit.
+    # Hard-surface props: split normals above this angle (degrees) so welded tubes and
+    # panel edges stay crisp after decimation; 0 keeps fully smooth shading.
+    parser.add_argument("--sharp", type=float, default=0.0)
+    # Piecewise-linear vertical remap (glTF height after fitting, "from:to" knots in
+    # metres) to land functional surfaces such as bunk decks on gameplay heights.
+    parser.add_argument("--height-map", nargs="*", default=[])
     parser.add_argument("--image-format", choices=("AUTO", "JPEG"), default="AUTO")
     return parser.parse_args(sys.argv[sys.argv.index("--") + 1:])
 
@@ -106,6 +113,20 @@ def main():
     fit = mathutils.Matrix.Translation(offset) @ mathutils.Matrix.Diagonal((*scale, 1.0)) @ mathutils.Matrix.Translation(-lo)
     high.data.transform(fit)
     high.data.update()
+    if args.height_map:
+        knots = sorted(tuple(float(v) for v in k.split(":")) for k in args.height_map)
+
+        def remap(z):
+            if z <= knots[0][0]:
+                return z - knots[0][0] + knots[0][1]
+            for (a, a2), (b, b2) in zip(knots, knots[1:]):
+                if z <= b:
+                    return a2 + (z - a) * (b2 - a2) / (b - a)
+            return z - knots[-1][0] + knots[-1][1]
+
+        for v in high.data.vertices:
+            v.co.z = remap(v.co.z)
+        print("BAKE height map", knots)
     lo, hi = bounds(high)
     print("BAKE high tris", triangles(high), "bounds", tuple(round(v, 4) for v in lo), tuple(round(v, 4) for v in hi))
 
@@ -137,6 +158,9 @@ def main():
     bpy.ops.mesh.select_all(action="SELECT")
     bpy.ops.mesh.quads_convert_to_tris()
     bpy.ops.object.mode_set(mode="OBJECT")
+    if args.sharp:
+        select_only(low)
+        bpy.ops.object.shade_smooth_by_angle(angle=math.radians(args.sharp))
     print("BAKE low tris", triangles(low))
 
     # 5. Bake the high shading normal into the low UVs.

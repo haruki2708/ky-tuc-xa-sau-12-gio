@@ -1,0 +1,202 @@
+{
+	"godot": "4.7.2-stable (official)",
+	"gpu": "NVIDIA GeForce RTX 3050 Laptop GPU",
+	"images": [
+		{
+			"eye": [
+				2.09999990463257,
+				1.64999997615814,
+				-0.349999994039536
+			],
+			"file": "door_overview_tube_after.png",
+			"fov": 80.0,
+			"sha256": "ef2c0ea576cc266b9cd43e5266feac6717bccfd9ac64f80cd5689182798a19d5"
+		},
+		{
+			"eye": [
+				2.09999990463257,
+				1.64999997615814,
+				-0.349999994039536
+			],
+			"file": "door_overview_torch_after.png",
+			"fov": 80.0,
+			"sha256": "76e2fa6e5166740f165cd70e753b58e4b7537e1093631e9e61b4b1726ece48cc"
+		},
+		{
+			"eye": [
+				2.09999990463257,
+				1.64999997615814,
+				-0.349999994039536
+			],
+			"file": "door_overview_tube_before.png",
+			"fov": 80.0,
+			"sha256": "643cf1b6998428e10dbfe1b537f8f9ed4d74932a462661835fa72cbd1ac26658"
+		},
+		{
+			"eye": [
+				4.69999980926514,
+				1.64999997615814,
+				-3.75
+			],
+			"file": "back_overview_tube_after.png",
+			"fov": 80.0,
+			"sha256": "330fc214fbe7cc759fa1cc6e7ea090a8f884a25cc1242aa7a74e8c61b96e6205"
+		},
+		{
+			"eye": [
+				4.69999980926514,
+				1.64999997615814,
+				-3.75
+			],
+			"file": "back_overview_torch_after.png",
+			"fov": 80.0,
+			"sha256": "b1bbf20ad88ab3486fff1fe9fa442ab06197134d895385d4a1a292a1320bc947"
+		},
+		{
+			"eye": [
+				4.69999980926514,
+				1.64999997615814,
+				-3.75
+			],
+			"file": "back_overview_tube_before.png",
+			"fov": 80.0,
+			"sha256": "3bcb66d015e2a2149f28510dacfe47043c4688949d03e6ffa9ba788f80d5924d"
+		},
+		{
+			"eye": [
+				2.5,
+				1.5,
+				-1.5
+			],
+			"file": "bunk_a_tube_after.png",
+			"fov": 70.0,
+			"sha256": "a530b0bffcd3c2af9156941dbbaec795b7c7e6f75bcfaff1a204f319d33830b9"
+		},
+		{
+			"eye": [
+				2.5,
+				1.5,
+				-1.5
+			],
+			"file": "bunk_a_torch_after.png",
+			"fov": 70.0,
+			"sha256": "42436e649b5465124477ea3ee02e076924492a7b429b5b42910a0e7d22eb045a"
+		},
+		{
+			"eye": [
+				5.5,
+				1.5,
+				-1.5
+			],
+			"file": "bunk_b_tube_after.png",
+			"fov": 70.0,
+			"sha256": "fddad0dd8f64ce92a8a8629a320266408e2a011ec23aa717ee62d6f7e13dd866"
+		},
+		{
+			"eye": [
+				5.5,
+				1.5,
+				-1.5
+			],
+			"file": "bunk_b_torch_after.png",
+			"fov": 70.0,
+			"sha256": "95c3e4d1a8b29421b09f63e4c9b5722f9b43d7b46b2d056b831263baf96d082b"
+		},
+		{
+			"eye": [
+				2.70000004768372,
+				1.45000004768372,
+				-3.20000004768372
+			],
+			"file": "study_desk_tube_after.png",
+			"fov": 72.0,
+			"sha256": "1fbaaebd41e717728f230a3f05da7a41e0e9c3d51ddcaff965ce057bb1ff8f1e"
+		},
+		{
+			"eye": [
+				2.70000004768372,
+				1.45000004768372,
+				-3.20000004768372
+			],
+			"file": "study_desk_torch_after.png",
+			"fov": 72.0,
+			"sha256": "7ff904ce0e5c0b85725c428b443140d06551b51fc56328dfe3bf33aa576e4d1a"
+		},
+		{
+			"eye": [
+				2.70000004768372,
+				1.45000004768372,
+				-3.20000004768372
+			],
+			"file": "study_desk_tube_before.png",
+			"fov": 72.0,
+			"sha256": "acf08d10af0f5649adf356984623e59958d09dbbac1cb8ff68bbc8d3c83b10f0"
+		},
+		{
+			"eye": [
+				4.30000019073486,
+				1.54999995231628,
+				-2.29999995231628
+			],
+			"file": "viet_desk_tube_after.png",
+			"fov": 72.0,
+			"sha256": "eee65f9ae866a054000ff88d863d7a0f895d674aab2436132d74d6de5b8dc90f"
+		},
+		{
+			"eye": [
+				4.30000019073486,
+				1.54999995231628,
+				-2.29999995231628
+			],
+			"file": "viet_desk_torch_after.png",
+			"fov": 72.0,
+			"sha256": "533d20a50178e30ad162f8f115dc8501f6333f5d4af8baaf29c5ec5425f97c22"
+		},
+		{
+			"eye": [
+				0.649999976158142,
+				0.860000014305115,
+				-2.35999989509583
+			],
+			"file": "lying_lower_bunk_tube_after.png",
+			"fov": 75.0,
+			"sha256": "2231cacedf07e8b220d9afc7aa9591df7e2235506c5a59cc462fd27369154a6e"
+		},
+		{
+			"eye": [
+				0.649999976158142,
+				0.860000014305115,
+				-2.35999989509583
+			],
+			"file": "lying_lower_bunk_torch_after.png",
+			"fov": 75.0,
+			"sha256": "2c9abcec1e871a5e4b12430a9457034c0653544fb4222d7ce4597e5a461391cb"
+		},
+		{
+			"eye": [
+				6.0,
+				1.60000002384186,
+				-4.34999990463257
+			],
+			"file": "bathroom_tube_after.png",
+			"fov": 82.0,
+			"sha256": "f6dde34dea3dd1134bd41f9e184c75ccb91b95147eecee2aef2c89ee50250628"
+		},
+		{
+			"eye": [
+				6.0,
+				1.60000002384186,
+				-4.34999990463257
+			],
+			"file": "bathroom_torch_after.png",
+			"fov": 82.0,
+			"sha256": "1762e6efd4648317fc76155fbf4a51384fe90b84be43e87333f3b81c35ef622b"
+		}
+	],
+	"placements": 67,
+	"renderer": "forward_plus",
+	"resolution": [
+		1280,
+		720
+	]
+}

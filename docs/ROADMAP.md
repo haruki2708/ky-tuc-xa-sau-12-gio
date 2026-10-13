@@ -1,6 +1,6 @@
 # Bản đồ lộ trình — "Ký túc xá sau 12 giờ"
 
-> **Cập nhật:** 2026-10-13 (sau D-093: duyệt phòng, đồ trong phòng làm bằng Tripo). Integrator cập nhật file này **mỗi khi qua một mốc** (chốt chương, đóng cổng G, đổi hướng lớn).
+> **Cập nhật:** 2026-10-13 (sau D-096: Tripo đợt 2 xong, phòng 407 đủ đồ trong cảnh làm thử). Integrator cập nhật file này **mỗi khi qua một mốc** (chốt chương, đóng cổng G, đổi hướng lớn).
 > Chi tiết từng ngày: `docs/STATUS.md`. Lý do từng quyết định: `docs/DECISIONS.md` (D-001…D-090).
 > Ký hiệu: ✅ xong · 🔶 đang làm · ⬜ chưa bắt đầu · 📍 **đang ở đây**
 
@@ -75,7 +75,7 @@ Khoảng 4–6 ngày: hết chương tự sang chương sau, **một file lưu x
 Phát hành theo chương (D-029). Nền tảng, giá, ngày: chưa quyết. Lưu ý Steam yêu cầu khai báo nội dung AI (`AGENTS.md` §5).
 
 ## 3. Việc đang chờ chủ dự án
-1. 📍 **Góc phòng 407 đã duyệt hướng (D-093).** Tiếp theo: Tripo tạo mọi đồ trong phòng (giường tầng, bàn, tủ, quạt, mùng, đồ nhỏ), integrator khớp số đo, rồi thay cả cụm vào bản chơi (G3). Anh/chị còn chấm **giao diện mới** (D-091, `game/ui/theme/previews/index.html`).
+1. 📍 **Phòng 407 đã đủ đồ Tripo trong cảnh làm thử (D-096).** Tiếp theo: dựng bằng Blender các đồ không hợp Tripo (mùng, poster, giấy, dây điện, dây phơi; D-095), rồi thay cả cụm vào bản chơi (G3). Ảnh: `art_source/graphics_upgrade/room407_furnished/previews/`.
 2. Chơi tiếp **chương 3 từ tầng 1** và chơi **chương 4** lần đầu (độc lập với đồ họa).
 3. Kiểm hạn mức lane trước khi giao việc mới (C còn một sửa nhỏ: ID balo chữ hoa).
 

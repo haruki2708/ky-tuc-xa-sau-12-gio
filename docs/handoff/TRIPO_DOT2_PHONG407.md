@@ -312,6 +312,42 @@ Credit không cần theo dõi chặt (12/10). Chỉ ghi nếu anh/chị báo.
 
 ## Phiếu đợt 2 (integrator điền)
 
+Ngày 13/10/2026, chủ dự án tạo đủ 33 món lượt 1 rồi tạo lại 4 món (khung giường, nệm, chăn tung, bàn). Integrator kiểm từng bản gốc (ảnh `art_source/graphics_upgrade/tripo/room407_batch2/previews/`), nướng bằng `bake_batch2.py` theo `bake_spec.json` (mọi món xoay 180° vì Tripo quay mặt trước về +Z; bàn r2 xoay −90°). Hash nguồn: `SHA256SUMS.txt`. Credit không theo dõi (D-095).
+
 | Món | Lượt / sửa | File | Bản game (tam giác, texture) | Kết quả |
 |---|---|---|---|---|
-| | | | | |
+| A1 bunk_frame | r2 | `bunk_frame.glb` | ≤ 8.000, 2048 | r1 thanh vạt chảy ngay trong bản gốc → r2 ván ép; giữ cạnh sắc 40°; co chiều đứng để ván ở 0,38 / 1,15 m |
+| A5 blanket_messy | r2 | `blanket_messy.glb` | ≤ 8.000, 2048 | r1 kèm nệm, gần vuông → r2 |
+| A3 pillow | r1 | `pillow.glb` | ≤ 5.000, 1024 | Đạt |
+| A4 blanket_folded | r1 | `blanket_folded.glb` | ≤ 5.000, 1024 | File `fleece blanket 3d model.glb` |
+| A6 desk | r2 | `desk.glb` | ≤ 8.000, 2048 | r1 chỉ rộng 1 m → r2 dài, 2 ngăn kéo |
+| A7 locker_closed | r1 | `locker_closed.glb` | ≤ 8.000, 2048 | Đạt |
+| A8 locker_open | r1 | `locker_open.glb` | ≤ 8.000, 2048 | Tủ 2 cánh, 1 cánh mở; cánh chưa tách (cắt ở G3 cho tủ Việt) |
+| A9 ceiling_fan | r1 | `ceiling_fan.glb` | ≤ 8.000, 2048 | 4 cánh liền khối; tách cánh quay ở G3 |
+| B1 wall_shelf | r1 | `wall_shelf.glb` | ≤ 5.000, 1024 | Đạt |
+| B2 bookshelf | r1 | `bookshelf.glb` | ≤ 8.000, 2048 | Đạt |
+| B3 shoe_rack | r1 | `shoe_rack.glb` | ≤ 8.000, 1024 | Đạt |
+| B4 standing_fan | r1 | `standing_fan.glb` | ≤ 8.000, 2048 | Cánh liền khối |
+| B5 toilet | r1 | `toilet.glb` | ≤ 8.000, 2048 | Đạt |
+| B6 sink | r1 | `sink.glb` | ≤ 5.000, 1024 | Đạt |
+| B7 shower | r1 | `shower.glb` | ≤ 5.000, 1024 | Đạt |
+| B8 mirror_full | r1 | `mirror_full.glb` | ≤ 5.000, 1024 | Đạt |
+| B9 plant_pot | r1 | `plant_pot.glb` | ≤ 5.000, 1024 | Đạt |
+| B10 shirt_hanging | r1 | `shirt_hanging.glb` | ≤ 5.000, 1024 | Đạt |
+| C1 desk_lamp | r1 | `desk_lamp.glb` | ≤ 5.000, 1024 | Đạt |
+| C2 laptop | r1 | `laptop.glb` | ≤ 5.000, 1024 | Đạt |
+| C3 books | r1 | `books.glb` | ≤ 5.000, 1024 | Đạt |
+| C4 books_row | r1 | `books_row.glb` | ≤ 5.000, 1024 | Đạt |
+| C5 notebook | r1 | `notebook.glb` | ≤ 5.000, 1024 | Đạt |
+| C6 headphones | r1 | `headphones.glb` | ≤ 5.000, 1024 | Đạt |
+| C7 noodles | r1 | `noodles.glb` | ≤ 5.000, 1024 | Đạt |
+| C8 router | r1 | `router.glb` | ≤ 5.000, 1024 | Đạt |
+| C9 power_strip | r1 | `power_strip.glb` | ≤ 5.000, 1024 | Đạt |
+| C10 photo_frame | r1 | `photo_frame.glb` | ≤ 5.000, 1024 | Đạt |
+| C11 guitar | r1 | `guitar.glb` | ≤ 5.000, 1024 | Đạt |
+| C12 trash_bin | r1 | `trash_bin.glb` | ≤ 5.000, 1024 | Đạt |
+| C13 kettle | r1 | `kettle.glb` | ≤ 5.000, 1024 | Đạt |
+| C14 hanger | r1 | `hanger.glb` | ≤ 5.000, 1024 | Đạt |
+| A2 mattress | r1, r2 | — | — | **Không dùng** (tỉ lệ gần vuông, dày); chủ dự án chọn nệm + chiếu Blender (D-095 cách a): `game/assets/models/graphics_pilot/room407_furnished/bunk_mattress.glb`, 142 tam giác |
+
+Đặt cả phòng: `game/scenes/levels/graphics_pilot/room407_furnished_pilot.tscn` (D-096), 19 ảnh ở `art_source/graphics_upgrade/room407_furnished/previews/`.

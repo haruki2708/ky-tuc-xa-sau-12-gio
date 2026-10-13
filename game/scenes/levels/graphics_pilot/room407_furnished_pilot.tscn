@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scenes/levels/graphics_pilot/room407_furnished_pilot.gd" id="1"]
+
+[node name="Room407FurnishedPilot" type="Node3D"]
+script = ExtResource("1")

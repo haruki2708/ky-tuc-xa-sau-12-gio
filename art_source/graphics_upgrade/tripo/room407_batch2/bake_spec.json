@@ -1,0 +1,351 @@
+{
+  "comment": "Tripo batch 2 (D-093). size = target glTF envelope [x width, y height, z depth] in metres, pivot at floor centre. fit: height/width keep proportions, box scales each axis. Tripo exports the front toward glTF +Z, so every item turns 180 deg to face -Z. desk_r2 has its long side on glTF Z with the drawers toward -X, so it turns -90 deg. Mattress: owner chose the Blender mattress and sedge mat of the T-213 pilot (Tripo could not make a thin 0.8 x 1.9 m mattress); mattress_r1/r2 are kept as sources only. bunk_frame height_map lowers the upper deck from 1.35 to 1.15 m so both decks sit 5 cm under the bunk View heights (mattress top 0.43 / 1.20) of room407_anchors.tscn.",
+  "defaults": {
+    "rotate": 180,
+    "fit": "height",
+    "tris": 5000,
+    "tex": 1024,
+    "image_format": "AUTO"
+  },
+  "items": [
+    {
+      "name": "bunk_frame",
+      "src": "bunk_frame_r2.glb",
+      "size": [
+        0.9,
+        1.7,
+        2.0
+      ],
+      "fit": "box",
+      "tris": 8000,
+      "tex": 2048,
+      "image_format": "JPEG",
+      "sharp": 40,
+      "height_map": [
+        "0:0",
+        "0.39:0.38",
+        "1.35:1.15",
+        "1.70:1.50"
+      ]
+    },
+    {
+      "name": "blanket_messy",
+      "src": "blanket_messy_r2.glb",
+      "size": [
+        0.8,
+        0.2,
+        1.2
+      ],
+      "fit": "box",
+      "tris": 8000,
+      "tex": 2048,
+      "image_format": "JPEG"
+    },
+    {
+      "name": "pillow",
+      "src": "pillow_r1.glb",
+      "size": [
+        0.55,
+        0.14,
+        0.32
+      ],
+      "fit": "box"
+    },
+    {
+      "name": "blanket_folded",
+      "src": "fleece blanket 3d model.glb",
+      "size": [
+        0.42,
+        0.24,
+        0.45
+      ],
+      "fit": "box"
+    },
+    {
+      "name": "desk",
+      "src": "desk_r2.glb",
+      "size": [
+        1.5,
+        0.76,
+        0.65
+      ],
+      "fit": "box",
+      "rotate": -90,
+      "tris": 8000,
+      "tex": 2048,
+      "image_format": "JPEG"
+    },
+    {
+      "name": "locker_closed",
+      "src": "locker_closed_r1.glb",
+      "size": [
+        0.7,
+        1.77,
+        0.6
+      ],
+      "tris": 8000,
+      "tex": 2048,
+      "image_format": "JPEG"
+    },
+    {
+      "name": "locker_open",
+      "src": "locker_open_r1.glb",
+      "size": [
+        0.9,
+        1.7,
+        0.95
+      ],
+      "tris": 8000,
+      "tex": 2048,
+      "image_format": "JPEG"
+    },
+    {
+      "name": "ceiling_fan",
+      "src": "ceiling_fan_r1.glb",
+      "size": [
+        1.1,
+        0.8,
+        1.1
+      ],
+      "fit": "width",
+      "tris": 8000,
+      "tex": 2048,
+      "image_format": "JPEG"
+    },
+    {
+      "name": "wall_shelf",
+      "src": "wall_shelf_r1.glb",
+      "size": [
+        0.8,
+        0.27,
+        0.32
+      ],
+      "fit": "width"
+    },
+    {
+      "name": "bookshelf",
+      "src": "bookshelf_r1.glb",
+      "size": [
+        1.0,
+        1.3,
+        0.35
+      ],
+      "fit": "box",
+      "tris": 8000,
+      "tex": 2048,
+      "image_format": "JPEG"
+    },
+    {
+      "name": "shoe_rack",
+      "src": "shoe_rack_r1.glb",
+      "size": [
+        0.6,
+        0.5,
+        0.26
+      ],
+      "tris": 8000
+    },
+    {
+      "name": "standing_fan",
+      "src": "standing_fan_r1.glb",
+      "size": [
+        0.6,
+        1.3,
+        0.5
+      ],
+      "tris": 8000,
+      "tex": 2048,
+      "image_format": "JPEG"
+    },
+    {
+      "name": "toilet",
+      "src": "toilet_r1.glb",
+      "size": [
+        0.4,
+        0.8,
+        0.7
+      ],
+      "tris": 8000,
+      "tex": 2048,
+      "image_format": "JPEG"
+    },
+    {
+      "name": "sink",
+      "src": "sink_r1.glb",
+      "size": [
+        0.45,
+        0.49,
+        0.36
+      ],
+      "fit": "width"
+    },
+    {
+      "name": "shower",
+      "src": "shower_r1.glb",
+      "size": [
+        0.47,
+        1.25,
+        0.47
+      ]
+    },
+    {
+      "name": "mirror_full",
+      "src": "mirror_full_r1.glb",
+      "size": [
+        0.44,
+        1.2,
+        0.29
+      ]
+    },
+    {
+      "name": "plant_pot",
+      "src": "plant_pot_r1.glb",
+      "size": [
+        0.36,
+        0.45,
+        0.34
+      ]
+    },
+    {
+      "name": "shirt_hanging",
+      "src": "shirt_hanging_r1.glb",
+      "size": [
+        0.57,
+        0.78,
+        0.2
+      ]
+    },
+    {
+      "name": "desk_lamp",
+      "src": "desk_lamp_r1.glb",
+      "size": [
+        0.43,
+        0.4,
+        0.27
+      ]
+    },
+    {
+      "name": "laptop",
+      "src": "laptop_r1.glb",
+      "size": [
+        0.34,
+        0.3,
+        0.26
+      ],
+      "fit": "width"
+    },
+    {
+      "name": "books",
+      "src": "books_r1.glb",
+      "size": [
+        0.24,
+        0.23,
+        0.33
+      ],
+      "fit": "width"
+    },
+    {
+      "name": "books_row",
+      "src": "books_row_r1.glb",
+      "size": [
+        0.36,
+        0.28,
+        0.22
+      ]
+    },
+    {
+      "name": "notebook",
+      "src": "notebook_r1.glb",
+      "size": [
+        0.18,
+        0.025,
+        0.25
+      ],
+      "fit": "box"
+    },
+    {
+      "name": "headphones",
+      "src": "headphones_r1.glb",
+      "size": [
+        0.2,
+        0.11,
+        0.16
+      ],
+      "fit": "width"
+    },
+    {
+      "name": "noodles",
+      "src": "noodles_r1.glb",
+      "size": [
+        0.28,
+        0.2,
+        0.24
+      ],
+      "fit": "width"
+    },
+    {
+      "name": "router",
+      "src": "router_r1.glb",
+      "size": [
+        0.19,
+        0.23,
+        0.16
+      ]
+    },
+    {
+      "name": "power_strip",
+      "src": "power_strip_r1.glb",
+      "size": [
+        0.26,
+        0.06,
+        0.34
+      ]
+    },
+    {
+      "name": "photo_frame",
+      "src": "photo_frame_r1.glb",
+      "size": [
+        0.24,
+        0.24,
+        0.07
+      ]
+    },
+    {
+      "name": "guitar",
+      "src": "guitar_r1.glb",
+      "size": [
+        0.43,
+        1.0,
+        0.18
+      ]
+    },
+    {
+      "name": "trash_bin",
+      "src": "trash_bin_r1.glb",
+      "size": [
+        0.3,
+        0.3,
+        0.3
+      ]
+    },
+    {
+      "name": "kettle",
+      "src": "kettle_r1.glb",
+      "size": [
+        0.23,
+        0.24,
+        0.18
+      ]
+    },
+    {
+      "name": "hanger",
+      "src": "hanger_r1.glb",
+      "size": [
+        0.42,
+        0.26,
+        0.04
+      ],
+      "fit": "width"
+    }
+  ]
+}

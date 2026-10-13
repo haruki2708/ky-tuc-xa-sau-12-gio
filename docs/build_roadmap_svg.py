@@ -13,7 +13,7 @@ phases = [
         ("G0 Chuẩn bị — D-079", DONE),
         ("G1 Hợp đồng kỹ thuật, balo — D-085", DONE),
         ("G2 Mẫu balo Tripo đạt, chọn lượt 2 xanh navy — D-086", DONE),
-        ("G3 Phòng 407 duyệt hướng; đồ trong phòng làm bằng Tripo", HERE),
+        ("G3 Phòng 407 đủ đồ Tripo trong cảnh thử — D-096", HERE),
         ("G4 Nhà B → nhân vật → khuôn viên → thư viện/bệnh viện", TODO)]),
     ("GĐ 4", "Ghép bản hoàn chỉnh (D-059)", TODO, [("Chơi liền 4 chương, 1 file lưu, bot + FPS, chơi tay trọn game", TODO)]),
     ("GĐ 5", "Phát hành theo chương", TODO, [("Nền tảng, giá, ngày: chưa quyết", TODO)]),
