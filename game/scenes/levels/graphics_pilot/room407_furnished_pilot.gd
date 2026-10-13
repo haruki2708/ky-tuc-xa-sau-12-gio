@@ -2,6 +2,7 @@ extends Node3D
 ## Tripo batch 2 (D-093) isolated visual study: the whole room 407 furnished with the approved
 ## shell of T-213, the Blender mattress (D-095) and every Tripo prop. Source gameplay nodes never
 ## enter the tree. Opt-in capture: -- --furnished-capture; default scene opens a lit overview.
+## Split props (split_animated.py): F spins the ceiling fan rotor, O opens Viet's locker door.
 
 const ROOM := preload("res://scenes/levels/floor4/room_407.tscn")
 const SNAPSHOT := preload("res://scenes/levels/graphics_pilot/material_pilot.gd")
@@ -9,6 +10,8 @@ const SHELL := "res://assets/models/graphics_pilot/room407_corner/"
 const SOURCE := "res://../art_source/graphics_upgrade/room407_furnished/"
 const OUTPUT := SOURCE + "previews/"
 const ORIGIN := Vector3(30, 0, 0)
+## Same blade speed as the playable scenes (main.gd, chapter1_main.gd).
+const FAN_SPEED := 15.0
 # Room-local eye/target; ids "before" also render the PS1 room for comparison.
 const VIEWS := [
 	{"id": "door_overview", "eye": Vector3(2.1, 1.65, -0.35), "target": Vector3(4.0, 0.9, -4.8), "fov": 80.0, "before": true},
@@ -19,6 +22,7 @@ const VIEWS := [
 	{"id": "viet_desk", "eye": Vector3(4.3, 1.55, -2.3), "target": Vector3(4.5, 0.8, -0.4), "fov": 72.0, "before": false},
 	{"id": "lying_lower_bunk", "eye": Vector3(0.65, 0.86, -2.36), "target": Vector3(0.65, 1.13, -3.36), "fov": 75.0, "before": false},
 	{"id": "bathroom", "eye": Vector3(6.0, 1.6, -4.35), "target": Vector3(7.0, 0.7, -6.6), "fov": 82.0, "before": false},
+	{"id": "viet_locker_open", "eye": Vector3(2.0, 1.45, -1.2), "target": Vector3(0.35, 0.95, -1.15), "fov": 70.0, "before": false, "locker_open": true},
 ]
 
 var before: Node3D
@@ -34,6 +38,9 @@ var tube_materials: Array[StandardMaterial3D] = []
 var bindings: Array = []
 var after_mode := true
 var lights_on := true
+var fan_rotor: Node3D
+var locker_door: Node3D
+var fan_spinning := false
 
 
 func _ready() -> void:
@@ -68,6 +75,8 @@ func _ready() -> void:
 		model.position = Vector3(row.position[0], row.position[1], row.position[2])
 		model.rotation_degrees = Vector3(row.get("rot_x", 0.0), row.yaw, 0)
 		props.add_child(model)
+	fan_rotor = props.get_node("CeilingFan").find_child("fan_rotor", true, false) as Node3D
+	locker_door = props.get_node("LockerViet").find_child("DoorPivot", true, false) as Node3D
 	for mesh: MeshInstance3D in after.find_children("*", "MeshInstance3D", true, false):
 		mesh.gi_mode = GeometryInstance3D.GI_MODE_STATIC
 		if String(mesh.name).begins_with("FluorescentTube"):
@@ -171,12 +180,26 @@ func set_mode(improved: bool, lit: bool) -> void:
 	screen.set_shader_parameter("strength", 0.0 if improved else 1.0)
 
 
+## Like hinged.gd of ch1v2/viet_locker.tscn: +90 degrees about Y swings the door out.
+func set_locker_open(value: bool) -> void:
+	locker_door.rotation.y = PI / 2.0 if value else 0.0
+
+
+func _process(delta: float) -> void:
+	if fan_spinning:
+		fan_rotor.rotate_y(FAN_SPEED * delta)
+
+
 func _unhandled_key_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and not event.echo:
 		if event.keycode == KEY_L:
 			set_mode(after_mode, not lights_on)
 		elif event.keycode == KEY_B:
 			set_mode(not after_mode, lights_on)
+		elif event.keycode == KEY_F:
+			fan_spinning = not fan_spinning
+		elif event.keycode == KEY_O:
+			set_locker_open(locker_door.rotation.y == 0.0)
 		elif event.keycode >= KEY_1 and event.keycode < KEY_1 + VIEWS.size():
 			set_view(VIEWS[event.keycode - KEY_1])
 
@@ -194,6 +217,7 @@ func _capture() -> void:
 		"resolution": [1280, 720], "placements": bindings.size(), "images": []}
 	for view: Dictionary in VIEWS:
 		set_view(view)
+		set_locker_open(view.get("locker_open", false))
 		var states: Array = [[true, true], [true, false]]
 		if view.before:
 			states.append([false, true])

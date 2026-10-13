@@ -10,7 +10,7 @@
 			],
 			"file": "door_overview_tube_after.png",
 			"fov": 80.0,
-			"sha256": "bdd017268ca0178b340605324abf8a14f7069c91c814943e591bd69c9b532c8b"
+			"sha256": "5c25bcd86b65f0e24ee1298ec954171b024837e0abc4e9b0feb5ed402deadbc1"
 		},
 		{
 			"eye": [
@@ -20,7 +20,7 @@
 			],
 			"file": "door_overview_torch_after.png",
 			"fov": 80.0,
-			"sha256": "fa81ab30f9f7a7610e1a1d949356d0ddd4ef17d4e312ac504ca850406db6fc7c"
+			"sha256": "6a923b851875bb483cd82f417e5928b9021f9047a1cd4bb55beab224c6c7b570"
 		},
 		{
 			"eye": [
@@ -40,7 +40,7 @@
 			],
 			"file": "back_overview_tube_after.png",
 			"fov": 80.0,
-			"sha256": "35df96006de841a71321f1f98224bc10c5130d8530dc039e10e8c3c715165d2b"
+			"sha256": "40f13a9331d2fd25abfafe88445d6c3580079f658c6c392e4b71acda7fac756e"
 		},
 		{
 			"eye": [
@@ -50,7 +50,7 @@
 			],
 			"file": "back_overview_torch_after.png",
 			"fov": 80.0,
-			"sha256": "9adb76a2c492dac84b09bab1eaf1eac50462193f37e2789a14894f0408f93d05"
+			"sha256": "c1573a0afced828442141b73acd34ec970aba331a51cbdc5f01abefb27250ac7"
 		},
 		{
 			"eye": [
@@ -70,7 +70,7 @@
 			],
 			"file": "bunk_a_tube_after.png",
 			"fov": 70.0,
-			"sha256": "801ab8b7cd0b7fa1752de58041530f0158b968dda17a4efc76360879b00d3f9e"
+			"sha256": "143638ca9e74cb368037ee35573cae6b56797c7ac8093b2dee9e75fb1c6e0c97"
 		},
 		{
 			"eye": [
@@ -80,7 +80,7 @@
 			],
 			"file": "bunk_a_torch_after.png",
 			"fov": 70.0,
-			"sha256": "ba4d7a480f4276ef382da2488e36cc172f8f791c3af6238356b52b25ec8eca8b"
+			"sha256": "ffd0b77f1098883a4bfb161b860fa33e57c3792ecb850bdb8921256ab49a407a"
 		},
 		{
 			"eye": [
@@ -90,7 +90,7 @@
 			],
 			"file": "bunk_b_tube_after.png",
 			"fov": 70.0,
-			"sha256": "55ee50864bb80049079ccecba1a0729f72ce5df345d9f8a7e06665086a4db083"
+			"sha256": "f9cdb7ee8aba2bc977d62473fb6e9cfaec90531297df4288a5a28b6fbf16dadb"
 		},
 		{
 			"eye": [
@@ -100,7 +100,7 @@
 			],
 			"file": "bunk_b_torch_after.png",
 			"fov": 70.0,
-			"sha256": "e5f05f38894803825885e7ef14a0580a3df059a8be5581a20a95b97ee1f0104f"
+			"sha256": "4caba7fb3e7c2b833c1a5b21a8c55a279ab4faae91ad3f9b01e0e5e49964b869"
 		},
 		{
 			"eye": [
@@ -110,7 +110,7 @@
 			],
 			"file": "study_desk_tube_after.png",
 			"fov": 72.0,
-			"sha256": "c19fdbf7786c36ea2173dd9a023b0b8ae3f3bf5cd621a78ca71177874655ec87"
+			"sha256": "cbda1f3198222616f9dccd37c6554394ca039fece2e50fa98df5176c450ca285"
 		},
 		{
 			"eye": [
@@ -120,7 +120,7 @@
 			],
 			"file": "study_desk_torch_after.png",
 			"fov": 72.0,
-			"sha256": "1bd3d9b14136175b363359d389e0624e0f9248b290e661d30305456559c85265"
+			"sha256": "da9cc49ab176882c6e2ed76f438c56a45fc4e7518ecd13990d0b482350fae3dd"
 		},
 		{
 			"eye": [
@@ -140,7 +140,7 @@
 			],
 			"file": "viet_desk_tube_after.png",
 			"fov": 72.0,
-			"sha256": "3e93bef761fb0afb99c9747b76bdaacd8f9957092b76d8a3362b2c80b1ff2c73"
+			"sha256": "e10024462b1e7fd20134334dc4c871f7d2d463d58bc0613266a3655731f84957"
 		},
 		{
 			"eye": [
@@ -150,7 +150,7 @@
 			],
 			"file": "viet_desk_torch_after.png",
 			"fov": 72.0,
-			"sha256": "22e811015ecfb8651a09d39910077d0b4d35f222ec55afba5c541051436f1b52"
+			"sha256": "04b119fd71b061f4214bffd408179ba3de0492b7583a15c0a7a3cb5e979792c7"
 		},
 		{
 			"eye": [
@@ -160,7 +160,7 @@
 			],
 			"file": "lying_lower_bunk_tube_after.png",
 			"fov": 75.0,
-			"sha256": "238fee4bd92572a81fd6aa20d065a56d1230f35c62732212198b7e4cc11b093b"
+			"sha256": "99829aacc7c41c6c543d5fde80bf78f35ebb186425e4a88fdfd09a930c01804f"
 		},
 		{
 			"eye": [
@@ -170,7 +170,7 @@
 			],
 			"file": "lying_lower_bunk_torch_after.png",
 			"fov": 75.0,
-			"sha256": "bfe7dd059e30041eba1d8c88aa06ac741a9fb00c7bd8728646a0b3b46d0d3d77"
+			"sha256": "99428baa9f4955484e490f45ee9129aba09ec675554e4eb60e609830265435a9"
 		},
 		{
 			"eye": [
@@ -180,7 +180,7 @@
 			],
 			"file": "bathroom_tube_after.png",
 			"fov": 82.0,
-			"sha256": "87a0a0e69c260e2c9d188c61432d266cdc7a8c9e39fd44faa8f3360da6f85f0b"
+			"sha256": "965c10a5901180d13815d050fada8365bcdf4db73fe1e7c7ea73e8c3a1eed4a1"
 		},
 		{
 			"eye": [
@@ -190,7 +190,27 @@
 			],
 			"file": "bathroom_torch_after.png",
 			"fov": 82.0,
-			"sha256": "acb533bf1ea84c140a1ecfde3848f774d03b9ea86947b4082531060ac329bc8a"
+			"sha256": "bd2640add4947367ad70d32428ea942b2baa3852bd904723c26ecea735d1db05"
+		},
+		{
+			"eye": [
+				2.0,
+				1.45000004768372,
+				-1.20000004768372
+			],
+			"file": "viet_locker_open_tube_after.png",
+			"fov": 70.0,
+			"sha256": "93b37cdeef6eb46163a9ff5589a4b61f7be0ef6ed5e4703c23e1de56352c1283"
+		},
+		{
+			"eye": [
+				2.0,
+				1.45000004768372,
+				-1.20000004768372
+			],
+			"file": "viet_locker_open_torch_after.png",
+			"fov": 70.0,
+			"sha256": "7763b47c150dad2f67bb6add1ebab53522f1dc86ed0729df9f9ca377acb0f379"
 		}
 	],
 	"placements": 74,

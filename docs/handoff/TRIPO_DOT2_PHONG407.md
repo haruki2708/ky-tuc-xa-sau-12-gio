@@ -323,7 +323,7 @@ Ngày 13/10/2026, chủ dự án tạo đủ 33 món lượt 1 rồi tạo lại
 | A6 desk | r2 | `desk.glb` | ≤ 8.000, 2048 | r1 chỉ rộng 1 m → r2 dài, 2 ngăn kéo |
 | A7 locker_closed | r1 | `locker_closed.glb` | ≤ 8.000, 2048 | Đạt |
 | A8 locker_open | r1 | `locker_open.glb` | ≤ 8.000, 2048 | Tủ 2 cánh, 1 cánh mở; cánh chưa tách (cắt ở G3 cho tủ Việt) |
-| A9 ceiling_fan | r1 | `ceiling_fan.glb` | ≤ 8.000, 2048 | 4 cánh liền khối; tách cánh quay ở G3 |
+| A9 ceiling_fan | r1 | `ceiling_fan.glb` | ≤ 8.000, 2048 | Cánh liền khối; đã tách cánh quay bằng Blender (D-099, `ceiling_fan_split.glb`) |
 | B1 wall_shelf | r1 | `wall_shelf.glb` | ≤ 5.000, 1024 | Đạt |
 | B2 bookshelf | r1 | `bookshelf.glb` | ≤ 8.000, 2048 | Đạt |
 | B3 shoe_rack | r1 | `shoe_rack.glb` | ≤ 8.000, 1024 | Đạt |
