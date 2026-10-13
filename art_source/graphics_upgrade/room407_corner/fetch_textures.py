@@ -10,7 +10,9 @@ DEST = HERE / "textures"  # source maps; the GLBs embed what Godot needs
 SETS = {"plastered_wall_04": "2k", "interior_tiles": "2k", "wood_table_worn": "1k",
         # Integrator rework: aged paint, painted bed steel, sleeping mat and bedding.
         "painted_plaster_wall": "2k", "green_metal_rust": "1k", "tatami_mat": "1k",
-        "rough_linen": "1k", "fabric_pattern_05": "1k", "polar_fleece": "1k"}
+        "rough_linen": "1k", "fabric_pattern_05": "1k", "polar_fleece": "1k",
+        # D-100 lived-in room: old white wall tiles for the bathroom.
+        "long_white_tiles": "2k"}
 
 
 def fetch(url):

@@ -281,4 +281,16 @@ Nhắn: `Đã tạo <mã món> (lượt n)` hoặc `xong nhóm D`. Integrator l�
 5. Ghi phiếu dưới đây.
 
 ## Phiếu đợt 3 (integrator điền)
-Chưa có món nào.
+Ngày 14/10/2026 chủ dự án tạo đủ 30 món, mỗi món **lượt 1** (`*_r1.glb`). Integrator lưu hash (`art_source/graphics_upgrade/tripo/room407_batch3/SHA256SUMS.txt`), nướng bằng `bake_batch3.py` theo `bake_spec.json` (mọi món xoay 180°), xem ảnh từng món rồi đặt vào cảnh thử (D-101).
+
+| Món | Kết quả |
+|---|---|
+| D1 folding_table | Tripo ra bàn cao như bàn thường → ép theo hộp 0,7 × 0,3 × 0,5 m (chân ngắn lại), đạt |
+| D3 pot | Màu đen sẫm hơn nhôm trong prompt; dùng được (nồi cũ ám khói) |
+| D4 water_dispenser | Bình nhựa đục như dự kiến; đặt cạnh tủ lạnh |
+| D7 storage_box | Cao hơn gầm giường (0,29 m) → đặt dưới bàn Việt |
+| E6 towel_draped | Kèm thanh inox; đặt trùng thanh cuối giường nên gần như không lộ |
+| F1 bath_shelf | Ra giỏ 2 tầng đứng (không phải kệ góc) → đặt dưới sàn cạnh vòi sen |
+| 24 món còn lại | Đạt ngay lượt 1 |
+
+Bản game: `game/assets/models/graphics_pilot/room407_batch3/`, đồ lớn ≤ 8.000 tam giác / 2048, đồ nhỏ ≤ 5.000 / 1024, 1 vật liệu. Ảnh: `art_source/graphics_upgrade/room407_furnished/previews/summary_furnished.jpg`.

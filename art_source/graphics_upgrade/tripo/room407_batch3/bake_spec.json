@@ -1,0 +1,335 @@
+{
+  "defaults": {
+    "rotate": 180,
+    "fit": "height",
+    "tris": 5000,
+    "tex": 1024,
+    "image_format": "AUTO"
+  },
+  "items": [
+    {
+      "name": "folding_table",
+      "src": "folding_table_r1.glb",
+      "size": [
+        0.7,
+        0.3,
+        0.5
+      ],
+      "fit": "box",
+      "tris": 8000,
+      "tex": 2048,
+      "image_format": "JPEG"
+    },
+    {
+      "name": "meal_tray",
+      "src": "meal_tray_r1.glb",
+      "size": [
+        0.4,
+        0.1,
+        0.4
+      ],
+      "fit": "width"
+    },
+    {
+      "name": "pot",
+      "src": "pot_r1.glb",
+      "size": [
+        0.24,
+        0.16,
+        0.24
+      ],
+      "fit": "width"
+    },
+    {
+      "name": "water_dispenser",
+      "src": "water_dispenser_r1.glb",
+      "size": [
+        0.3,
+        0.75,
+        0.3
+      ],
+      "fit": "height",
+      "tris": 8000,
+      "tex": 2048,
+      "image_format": "JPEG"
+    },
+    {
+      "name": "cardboard_boxes",
+      "src": "cardboard_boxes_r1.glb",
+      "size": [
+        0.5,
+        0.45,
+        0.35
+      ],
+      "fit": "height",
+      "tris": 8000,
+      "tex": 2048,
+      "image_format": "JPEG"
+    },
+    {
+      "name": "suitcase",
+      "src": "suitcase_r1.glb",
+      "size": [
+        0.45,
+        0.25,
+        0.65
+      ],
+      "fit": "height",
+      "tris": 8000,
+      "tex": 2048,
+      "image_format": "JPEG"
+    },
+    {
+      "name": "storage_box",
+      "src": "storage_box_r1.glb",
+      "size": [
+        0.55,
+        0.3,
+        0.4
+      ],
+      "fit": "width",
+      "tris": 8000,
+      "tex": 2048,
+      "image_format": "JPEG"
+    },
+    {
+      "name": "basin_clothes",
+      "src": "basin_clothes_r1.glb",
+      "size": [
+        0.5,
+        0.2,
+        0.5
+      ],
+      "fit": "width",
+      "tris": 8000,
+      "tex": 2048,
+      "image_format": "JPEG"
+    },
+    {
+      "name": "clothes_pile",
+      "src": "clothes_pile_r1.glb",
+      "size": [
+        0.6,
+        0.25,
+        0.5
+      ],
+      "fit": "width",
+      "tris": 8000,
+      "tex": 2048,
+      "image_format": "JPEG"
+    },
+    {
+      "name": "trash_bag",
+      "src": "trash_bag_r1.glb",
+      "size": [
+        0.35,
+        0.45,
+        0.35
+      ],
+      "fit": "height"
+    },
+    {
+      "name": "bottles_cans",
+      "src": "bottles_cans_r1.glb",
+      "size": [
+        0.4,
+        0.25,
+        0.3
+      ],
+      "fit": "width"
+    },
+    {
+      "name": "helmet",
+      "src": "helmet_r1.glb",
+      "size": [
+        0.25,
+        0.18,
+        0.3
+      ],
+      "fit": "width"
+    },
+    {
+      "name": "football",
+      "src": "football_r1.glb",
+      "size": [
+        0.22,
+        0.22,
+        0.22
+      ],
+      "fit": "height"
+    },
+    {
+      "name": "pen_cup",
+      "src": "pen_cup_r1.glb",
+      "size": [
+        0.08,
+        0.18,
+        0.08
+      ],
+      "fit": "width"
+    },
+    {
+      "name": "takeaway_box",
+      "src": "takeaway_box_r1.glb",
+      "size": [
+        0.2,
+        0.07,
+        0.15
+      ],
+      "fit": "width"
+    },
+    {
+      "name": "jacket_hook",
+      "src": "jacket_hook_r1.glb",
+      "size": [
+        0.5,
+        0.8,
+        0.15
+      ],
+      "fit": "height"
+    },
+    {
+      "name": "towel_draped",
+      "src": "towel_draped_r1.glb",
+      "size": [
+        0.6,
+        0.4,
+        0.06
+      ],
+      "fit": "width"
+    },
+    {
+      "name": "wall_socket",
+      "src": "wall_socket_r1.glb",
+      "size": [
+        0.12,
+        0.12,
+        0.03
+      ],
+      "fit": "width"
+    },
+    {
+      "name": "bath_shelf",
+      "src": "bath_shelf_r1.glb",
+      "size": [
+        0.25,
+        0.45,
+        0.25
+      ],
+      "fit": "height"
+    },
+    {
+      "name": "toothbrush_cup",
+      "src": "toothbrush_cup_r1.glb",
+      "size": [
+        0.08,
+        0.2,
+        0.08
+      ],
+      "fit": "width"
+    },
+    {
+      "name": "mirror_small",
+      "src": "mirror_small_r1.glb",
+      "size": [
+        0.4,
+        0.55,
+        0.03
+      ],
+      "fit": "height"
+    },
+    {
+      "name": "mop",
+      "src": "mop_r1.glb",
+      "size": [
+        0.3,
+        1.25,
+        0.25
+      ],
+      "fit": "height"
+    },
+    {
+      "name": "towel_rack",
+      "src": "towel_rack_r1.glb",
+      "size": [
+        0.45,
+        0.35,
+        0.1
+      ],
+      "fit": "width"
+    },
+    {
+      "name": "drying_rack",
+      "src": "drying_rack_r1.glb",
+      "size": [
+        1.2,
+        1.0,
+        0.55
+      ],
+      "fit": "width",
+      "tris": 8000,
+      "tex": 2048,
+      "image_format": "JPEG"
+    },
+    {
+      "name": "bath_basins",
+      "src": "bath_basins_r1.glb",
+      "size": [
+        0.45,
+        0.25,
+        0.45
+      ],
+      "fit": "width"
+    },
+    {
+      "name": "toilet_brush",
+      "src": "toilet_brush_r1.glb",
+      "size": [
+        0.12,
+        0.4,
+        0.12
+      ],
+      "fit": "height"
+    },
+    {
+      "name": "toilet_paper",
+      "src": "toilet_paper_r1.glb",
+      "size": [
+        0.15,
+        0.15,
+        0.12
+      ],
+      "fit": "width"
+    },
+    {
+      "name": "laundry_detergent",
+      "src": "laundry_detergent_r1.glb",
+      "size": [
+        0.3,
+        0.3,
+        0.15
+      ],
+      "fit": "width"
+    },
+    {
+      "name": "sink_toiletries",
+      "src": "sink_toiletries_r1.glb",
+      "size": [
+        0.3,
+        0.05,
+        0.15
+      ],
+      "fit": "width"
+    },
+    {
+      "name": "shower_bottles",
+      "src": "shower_bottles_r1.glb",
+      "size": [
+        0.25,
+        0.3,
+        0.1
+      ],
+      "fit": "height"
+    }
+  ]
+}

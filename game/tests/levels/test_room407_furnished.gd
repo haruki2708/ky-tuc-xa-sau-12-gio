@@ -5,6 +5,9 @@ const ANCHORS := preload("res://scenes/levels/room407/room407_anchors.tscn")
 const BATCH2 := "res://assets/models/graphics_pilot/room407_batch2/"
 const BUDGET_LARGE := 8000
 const BUDGET_SMALL := 5000
+const BATCH3 := "res://assets/models/graphics_pilot/room407_batch3/"
+const LARGE3 := ["folding_table", "water_dispenser", "cardboard_boxes", "suitcase", "storage_box", "basin_clothes",
+	"clothes_pile", "drying_rack"]
 const LARGE := ["bunk_frame", "blanket_messy", "desk", "locker_closed", "locker_open", "ceiling_fan",
 	"bookshelf", "shoe_rack", "standing_fan", "toilet"]
 
@@ -138,4 +141,44 @@ func test_split_props_hinge_and_spin_like_the_playable_scenes() -> void:
 			first = false
 	assert_true(Vector2(hub.get_center().x, hub.get_center().z).length() <= 0.01 and hub.end.y <= 0.005, "hub centred on the axis, below the collar")
 	fan.queue_free()
+	await wait_frames(2)
+
+
+func test_batch3_lived_in_props_stay_within_budget_and_one_material() -> void:
+	# D-100: 30 Tripo props for a moderately messy, lived-in room.
+	var names: Array[String] = []
+	for file: String in DirAccess.get_files_at(BATCH3):
+		if file.ends_with(".glb"):
+			names.append(file.get_basename())
+	assert_eq(names.size(), 30, "30 baked Tripo batch 3 props")
+	for name in names:
+		var model := (load(BATCH3 + name + ".glb") as PackedScene).instantiate()
+		var limit := BUDGET_LARGE if name in LARGE3 else BUDGET_SMALL
+		assert_true(_triangles(model) <= limit, "%s within %d triangles" % [name, limit])
+		var meshes := model.find_children("*", "MeshInstance3D", true, false)
+		assert_eq(meshes.size(), 1, name + " single mesh")
+		assert_eq((meshes[0] as MeshInstance3D).mesh.get_surface_count(), 1, name + " single material")
+		model.free()
+
+
+func test_lived_in_blender_pieces_and_decals() -> void:
+	# build_lived_in.py pieces and the grime decals of decals.json (D-100).
+	var folder := "res://assets/models/graphics_pilot/room407_furnished/"
+	for row: Array in [["floor_mat", BUDGET_SMALL], ["bath_tiles", BUDGET_SMALL], ["conduits", BUDGET_SMALL],
+			["calendar", BUDGET_SMALL], ["timetable", BUDGET_SMALL], ["sticky_notes", BUDGET_SMALL],
+			["curtain_balcony", BUDGET_LARGE]]:
+		var model := (load(folder + row[0] + ".glb") as PackedScene).instantiate()
+		assert_true(_triangles(model) <= row[1], "%s within %d triangles" % row)
+		model.free()
+	var pilot := PILOT.instantiate()
+	tree.root.add_child(pilot)
+	await wait_frames(1)
+	var rows: Array = JSON.parse_string(FileAccess.get_file_as_string("res://../art_source/graphics_upgrade/room407_furnished/decals.json"))
+	assert_eq(pilot.decals.get_child_count(), rows.size())
+	for decal: Decal in pilot.decals.get_children():
+		assert_true(decal.texture_albedo != null, String(decal.name) + " has its texture")
+	# The balcony doorway (x 2.3..3.3) stays clear: the curtain is drawn back west of the jamb.
+	var curtain := _bounds(pilot.props.get_node("CurtainBalcony").find_child("Curtain", true, false) as Node3D, pilot.after)
+	assert_true(curtain.end.x <= 2.36 and curtain.position.y >= 0.01, "curtain clear of the balcony doorway and floor")
+	pilot.queue_free()
 	await wait_frames(2)

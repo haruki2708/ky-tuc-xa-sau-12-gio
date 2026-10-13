@@ -336,6 +336,44 @@
     ]
   },
   {
+    "asset": "long_white_tiles",
+    "url": "https://polyhaven.com/a/long_white_tiles",
+    "authors": {
+      "Jenelle van Heerden": "processing",
+      "Sergej Majboroda": "photography"
+    },
+    "license": "CC0-1.0",
+    "license_url": "https://polyhaven.com/license",
+    "resolution": "2k",
+    "source_width_mm": [
+      1269.9999809265137,
+      1269.9999809265137
+    ],
+    "maps": [
+      {
+        "channel": "Diffuse",
+        "file": "art_source/graphics_upgrade/room407_corner/textures/long_white_tiles_color.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/long_white_tiles/long_white_tiles_diff_2k.jpg",
+        "sha256": "476ccb9f93aa78dbf3be31a4de66a7b2a180c199c6ee18381498e3159d40655a",
+        "bytes": 2439827
+      },
+      {
+        "channel": "nor_gl",
+        "file": "art_source/graphics_upgrade/room407_corner/textures/long_white_tiles_normal.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/long_white_tiles/long_white_tiles_nor_gl_2k.jpg",
+        "sha256": "df34d8a821182acff16a8c76e6149ab2d90fa23687893c2230273de2f8413d39",
+        "bytes": 2541844
+      },
+      {
+        "channel": "arm",
+        "file": "art_source/graphics_upgrade/room407_corner/textures/long_white_tiles_arm.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/long_white_tiles/long_white_tiles_arm_2k.jpg",
+        "sha256": "2e0b91fe06ea2bb4ec3611d2c725d678698f3cd55a25988701b35032e339c6e8",
+        "bytes": 2326211
+      }
+    ]
+  },
+  {
     "asset": "plastered_wall_04",
     "url": "https://polyhaven.com/a/plastered_wall_04",
     "authors": {

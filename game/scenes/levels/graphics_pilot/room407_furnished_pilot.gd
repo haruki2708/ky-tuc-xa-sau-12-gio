@@ -22,6 +22,9 @@ const VIEWS := [
 	{"id": "viet_desk", "eye": Vector3(4.3, 1.55, -2.3), "target": Vector3(4.5, 0.8, -0.4), "fov": 72.0, "before": false},
 	{"id": "lying_lower_bunk", "eye": Vector3(0.65, 0.86, -2.36), "target": Vector3(0.65, 1.13, -3.36), "fov": 75.0, "before": false},
 	{"id": "bathroom", "eye": Vector3(6.0, 1.6, -4.35), "target": Vector3(7.0, 0.7, -6.6), "fov": 82.0, "before": false},
+	{"id": "room_centre", "eye": Vector3(5.6, 1.6, -0.9), "target": Vector3(2.8, 0.35, -3.0), "fov": 75.0, "before": false},
+	{"id": "bath_sink", "eye": Vector3(6.95, 1.55, -4.55), "target": Vector3(5.4, 0.95, -5.4), "fov": 75.0, "before": false},
+	{"id": "balcony_side", "eye": Vector3(4.6, 1.5, -3.5), "target": Vector3(1.8, 0.9, -6.6), "fov": 75.0, "before": false},
 	{"id": "viet_locker_open", "eye": Vector3(2.0, 1.45, -1.2), "target": Vector3(0.35, 0.95, -1.15), "fov": 70.0, "before": false, "locker_open": true},
 ]
 
@@ -38,6 +41,7 @@ var tube_materials: Array[StandardMaterial3D] = []
 var bindings: Array = []
 var after_mode := true
 var lights_on := true
+var decals: Node3D
 var fan_rotor: Node3D
 var locker_door: Node3D
 var fan_spinning := false
@@ -74,7 +78,15 @@ func _ready() -> void:
 		model.name = row.name
 		model.position = Vector3(row.position[0], row.position[1], row.position[2])
 		model.rotation_degrees = Vector3(row.get("rot_x", 0.0), row.yaw, 0)
+		if row.get("mount", "") == "wall":
+			# The row position is a point on the wall: push the model's back (+Z) onto it.
+			model.position += model.basis * Vector3(0, 0, -_local_bounds(model).end.z)
 		props.add_child(model)
+	decals = Node3D.new()
+	decals.name = "Decals"
+	after.add_child(decals)
+	for row: Dictionary in JSON.parse_string(FileAccess.get_file_as_string(SOURCE + "decals.json")):
+		decals.add_child(_decal(row))
 	fan_rotor = props.get_node("CeilingFan").find_child("fan_rotor", true, false) as Node3D
 	locker_door = props.get_node("LockerViet").find_child("DoorPivot", true, false) as Node3D
 	for mesh: MeshInstance3D in after.find_children("*", "MeshInstance3D", true, false):
@@ -142,6 +154,45 @@ func _ready() -> void:
 	set_mode(true, true)
 	if "--furnished-capture" in OS.get_cmdline_user_args():
 		await _capture()
+
+
+## Unrotated bounds of a model in its own space (all meshes).
+func _local_bounds(model: Node3D) -> AABB:
+	var result := AABB()
+	var first := true
+	for mesh: MeshInstance3D in model.find_children("*", "MeshInstance3D", true, false):
+		var to_model := Transform3D()
+		var node: Node = mesh
+		while node != model:
+			to_model = (node as Node3D).transform * to_model
+			node = node.get_parent()
+		var box: AABB = to_model * mesh.get_aabb()
+		result = box if first else result.merge(box)
+		first = false
+	return result
+
+
+## D-100 grime decal. "project" is the direction it prints towards (into the surface):
+## -y floor, +y ceiling, -x west faces, +x east faces, -z back faces, +z the door wall.
+## "size" is [width, height on the surface, projection depth].
+func _decal(row: Dictionary) -> Decal:
+	var decal := Decal.new()
+	decal.name = row.name
+	decal.texture_albedo = load(row.texture) as Texture2D
+	# Decals print along local -Y with the image on local X/Z.
+	decal.size = Vector3(row.size[0], row.size[2], row.size[1])
+	decal.position = Vector3(row.position[0], row.position[1], row.position[2])
+	decal.modulate = Color(1, 1, 1, row.get("opacity", 1.0))
+	decal.upper_fade = 0.1
+	decal.lower_fade = 0.1
+	var turns := {"-y": Vector3.ZERO, "+y": Vector3(180, 0, 0), "-x": Vector3(0, 0, -90), "+x": Vector3(0, 0, 90),
+		"-z": Vector3(90, 0, 0), "+z": Vector3(-90, 0, 0)}
+	decal.rotation_degrees = turns[row.project]
+	# On x-facing walls the turn stands local X upright: spin it back so the image's top stays up.
+	var spin: float = row.get("spin", 0.0) + (90.0 if row.project in ["-x", "+x"] else 0.0)
+	if spin != 0.0:
+		decal.rotate_object_local(Vector3.UP, deg_to_rad(spin))
+	return decal
 
 
 func _light(pos: Vector3, color: Color, energy: float, radius: float, size: float) -> void:

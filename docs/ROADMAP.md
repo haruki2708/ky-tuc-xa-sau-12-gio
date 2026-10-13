@@ -75,7 +75,7 @@ Khoảng 4–6 ngày: hết chương tự sang chương sau, **một file lưu x
 Phát hành theo chương (D-029). Nền tảng, giá, ngày: chưa quyết. Lưu ý Steam yêu cầu khai báo nội dung AI (`AGENTS.md` §5).
 
 ## 3. Việc đang chờ chủ dự án
-1. 📍 **Phòng 407 đủ đồ trong cảnh làm thử (D-096, D-097 duyệt), thêm mùng, dây phơi, poster Blender (D-098); tủ Việt có cánh mở, quạt trần có cánh quay riêng (D-099).** Phòng còn trống: **Tripo đợt 3, 30 món đồ sinh hoạt, mức bừa vừa (D-100)**, phiếu `docs/handoff/TRIPO_DOT3_PHONG407.md`. Sau đó thay cả cụm vào bản chơi (G3): giữ va chạm, chỗ nằm, làm đẹp dây điện và giấy manh mối trong code. Ảnh: `art_source/graphics_upgrade/room407_furnished/previews/`.
+1. 📍 **Phòng 407 đủ đồ trong cảnh làm thử (D-096, D-097 duyệt), thêm mùng, dây phơi, poster Blender (D-098); tủ Việt có cánh mở, quạt trần có cánh quay riêng (D-099).** Phòng còn trống: **Tripo đợt 3, 30 món đồ sinh hoạt, mức bừa vừa (D-100), đã đặt vào cảnh thử cùng chiếu, gạch nhà tắm, vết bẩn/ẩm (D-101), chờ duyệt**. Sau đó thay cả cụm vào bản chơi (G3): giữ va chạm, chỗ nằm, làm đẹp dây điện và giấy manh mối trong code. Ảnh: `art_source/graphics_upgrade/room407_furnished/previews/`.
 2. Chơi tiếp **chương 3 từ tầng 1** và chơi **chương 4** lần đầu (độc lập với đồ họa).
 3. Kiểm hạn mức lane trước khi giao việc mới (C còn một sửa nhỏ: ID balo chữ hoa).
 

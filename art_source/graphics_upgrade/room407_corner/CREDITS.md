@@ -13,6 +13,7 @@ Ngày tải: 12/10/2026. Mọi bộ PBR bề mặt là ảnh chụp thật của
 | Vỏ gối kẻ ô | [Fabric Pattern 05](https://polyhaven.com/a/fabric_pattern_05) (biến thể màu `col_01`) | Rob Tuytel | 0,5 m, 1024² | màu, normal OpenGL, ARM |
 | Chăn lông | [Polar Fleece](https://polyhaven.com/a/polar_fleece) | colormass (chụp), Rico Cilliers (xử lý) | 0,27 m, 1024² | màu, normal OpenGL, ARM |
 | Mặt bàn, ngăn kéo | [Wood Table Worn](https://polyhaven.com/a/wood_table_worn) | Dimitrios Savva (chụp), Rico Cilliers (xử lý) | 0,55 m, 1024² | màu, normal OpenGL, ARM |
+| Gạch men ốp nhà tắm (D-100, `room407_furnished/build_lived_in.py`), tải 14/10/2026 | [Long White Tiles](https://polyhaven.com/a/long_white_tiles) | Sergej Majboroda (chụp), Jenelle van Heerden (xử lý) | 1,27 m, 2048² | màu, normal OpenGL, ARM |
 
 ARM: AO ở R, roughness ở G, metallic ở B. UV theo mét đúng kích thước thật của từng ảnh (vải không bị phóng to).
 

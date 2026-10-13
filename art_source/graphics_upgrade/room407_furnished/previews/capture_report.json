@@ -10,7 +10,7 @@
 			],
 			"file": "door_overview_tube_after.png",
 			"fov": 80.0,
-			"sha256": "5c25bcd86b65f0e24ee1298ec954171b024837e0abc4e9b0feb5ed402deadbc1"
+			"sha256": "3f4070d28257d4c3275c707c988a712f592c390e104f1ea2212b3b1563f73753"
 		},
 		{
 			"eye": [
@@ -20,7 +20,7 @@
 			],
 			"file": "door_overview_torch_after.png",
 			"fov": 80.0,
-			"sha256": "6a923b851875bb483cd82f417e5928b9021f9047a1cd4bb55beab224c6c7b570"
+			"sha256": "5a20087ed945ad0f4d409c0886bfd1de7a72486e5bd8320481d6f32137c3f06e"
 		},
 		{
 			"eye": [
@@ -40,7 +40,7 @@
 			],
 			"file": "back_overview_tube_after.png",
 			"fov": 80.0,
-			"sha256": "40f13a9331d2fd25abfafe88445d6c3580079f658c6c392e4b71acda7fac756e"
+			"sha256": "5afe656dc63cb10fbcdc8d5752235e2766d5f809fa00d236f36e416ab1301bc3"
 		},
 		{
 			"eye": [
@@ -50,7 +50,7 @@
 			],
 			"file": "back_overview_torch_after.png",
 			"fov": 80.0,
-			"sha256": "c1573a0afced828442141b73acd34ec970aba331a51cbdc5f01abefb27250ac7"
+			"sha256": "2bef6d7d3c28e27d4ceba255215cd2767915af2437f1fdf8f2eedb76761123ca"
 		},
 		{
 			"eye": [
@@ -70,7 +70,7 @@
 			],
 			"file": "bunk_a_tube_after.png",
 			"fov": 70.0,
-			"sha256": "143638ca9e74cb368037ee35573cae6b56797c7ac8093b2dee9e75fb1c6e0c97"
+			"sha256": "7e1d553a5cdd759bc64cc58745bab3c087c941189e67037e4f90e54a52dd6e5b"
 		},
 		{
 			"eye": [
@@ -80,7 +80,7 @@
 			],
 			"file": "bunk_a_torch_after.png",
 			"fov": 70.0,
-			"sha256": "ffd0b77f1098883a4bfb161b860fa33e57c3792ecb850bdb8921256ab49a407a"
+			"sha256": "c22c7bba4380c00f5fa5ee5dfd143f787632be33134b373e36dac1a826e451ea"
 		},
 		{
 			"eye": [
@@ -90,7 +90,7 @@
 			],
 			"file": "bunk_b_tube_after.png",
 			"fov": 70.0,
-			"sha256": "f9cdb7ee8aba2bc977d62473fb6e9cfaec90531297df4288a5a28b6fbf16dadb"
+			"sha256": "0f446efa90f60abc79e46f15f2601c7b10290dfd60d50c7e0f4914738b89fd76"
 		},
 		{
 			"eye": [
@@ -100,7 +100,7 @@
 			],
 			"file": "bunk_b_torch_after.png",
 			"fov": 70.0,
-			"sha256": "4caba7fb3e7c2b833c1a5b21a8c55a279ab4faae91ad3f9b01e0e5e49964b869"
+			"sha256": "a83bd8276141fdcfef94c79f2c97ebaa19285f93d7fd62b3a2e72043f87a5d2a"
 		},
 		{
 			"eye": [
@@ -110,7 +110,7 @@
 			],
 			"file": "study_desk_tube_after.png",
 			"fov": 72.0,
-			"sha256": "cbda1f3198222616f9dccd37c6554394ca039fece2e50fa98df5176c450ca285"
+			"sha256": "54db4b278939588a92baed7cbd4eab8c9cef3429e24734deaf757d313c6b5743"
 		},
 		{
 			"eye": [
@@ -120,7 +120,7 @@
 			],
 			"file": "study_desk_torch_after.png",
 			"fov": 72.0,
-			"sha256": "da9cc49ab176882c6e2ed76f438c56a45fc4e7518ecd13990d0b482350fae3dd"
+			"sha256": "dc3a72021f60723d875c7e75726a71146f02123b1d7ffe261bddba092bed21f3"
 		},
 		{
 			"eye": [
@@ -140,7 +140,7 @@
 			],
 			"file": "viet_desk_tube_after.png",
 			"fov": 72.0,
-			"sha256": "e10024462b1e7fd20134334dc4c871f7d2d463d58bc0613266a3655731f84957"
+			"sha256": "b45ceb4ab56922bd9d28c0ff1366999c26acfcead68a38a7563a882485d55653"
 		},
 		{
 			"eye": [
@@ -150,7 +150,7 @@
 			],
 			"file": "viet_desk_torch_after.png",
 			"fov": 72.0,
-			"sha256": "04b119fd71b061f4214bffd408179ba3de0492b7583a15c0a7a3cb5e979792c7"
+			"sha256": "34f9474b672952c3541ed206b1088ab26748a0c3ba46aeeb2ffc2e1518406e32"
 		},
 		{
 			"eye": [
@@ -160,7 +160,7 @@
 			],
 			"file": "lying_lower_bunk_tube_after.png",
 			"fov": 75.0,
-			"sha256": "99829aacc7c41c6c543d5fde80bf78f35ebb186425e4a88fdfd09a930c01804f"
+			"sha256": "d52e8e7d7d25d6d4837f0a36dd4c6aa41a02bbbee3422c7b5a14d8a57b90f3a8"
 		},
 		{
 			"eye": [
@@ -170,7 +170,7 @@
 			],
 			"file": "lying_lower_bunk_torch_after.png",
 			"fov": 75.0,
-			"sha256": "99428baa9f4955484e490f45ee9129aba09ec675554e4eb60e609830265435a9"
+			"sha256": "d7224ab0d9147e09b1074a1aa90538908596925f010896137750a00ae3199238"
 		},
 		{
 			"eye": [
@@ -180,7 +180,7 @@
 			],
 			"file": "bathroom_tube_after.png",
 			"fov": 82.0,
-			"sha256": "965c10a5901180d13815d050fada8365bcdf4db73fe1e7c7ea73e8c3a1eed4a1"
+			"sha256": "84fce9a580c45017fa163e163ab3a2350e9a35ed59fcd27cf313bb37c4e11722"
 		},
 		{
 			"eye": [
@@ -190,7 +190,67 @@
 			],
 			"file": "bathroom_torch_after.png",
 			"fov": 82.0,
-			"sha256": "bd2640add4947367ad70d32428ea942b2baa3852bd904723c26ecea735d1db05"
+			"sha256": "0b678f91fc57f1a59695207263e9252cf2bfcfc40d7ac688d309b6a616cb6fce"
+		},
+		{
+			"eye": [
+				5.59999990463257,
+				1.60000002384186,
+				-0.899999976158142
+			],
+			"file": "room_centre_tube_after.png",
+			"fov": 75.0,
+			"sha256": "f3d9132c59d144a61fb7a389ad6816714a053430aedc7054f024f54dfdb0d8cf"
+		},
+		{
+			"eye": [
+				5.59999990463257,
+				1.60000002384186,
+				-0.899999976158142
+			],
+			"file": "room_centre_torch_after.png",
+			"fov": 75.0,
+			"sha256": "929e1ace301b799c644b6224fa3b973395d5cfdff5e036f4c786e42478d4ef0f"
+		},
+		{
+			"eye": [
+				6.94999980926514,
+				1.54999995231628,
+				-4.55000019073486
+			],
+			"file": "bath_sink_tube_after.png",
+			"fov": 75.0,
+			"sha256": "8fad9ff59e7fc9d7f4e0c3c2ad491057a2fb0ee8069aff3ccf7e102335cde213"
+		},
+		{
+			"eye": [
+				6.94999980926514,
+				1.54999995231628,
+				-4.55000019073486
+			],
+			"file": "bath_sink_torch_after.png",
+			"fov": 75.0,
+			"sha256": "de59089109fa98ba8d3bc218024327935bfc48989dead763f38ed8020f02d171"
+		},
+		{
+			"eye": [
+				4.59999990463257,
+				1.5,
+				-3.5
+			],
+			"file": "balcony_side_tube_after.png",
+			"fov": 75.0,
+			"sha256": "8ffdbfd26790f8b313eebedd62c5673bfdee29e05a2dca49e4d806552b253385"
+		},
+		{
+			"eye": [
+				4.59999990463257,
+				1.5,
+				-3.5
+			],
+			"file": "balcony_side_torch_after.png",
+			"fov": 75.0,
+			"sha256": "6e2e01fedc8a271d89e51cf36eef6c1cb154d74db09432f0abbabe5d62b53807"
 		},
 		{
 			"eye": [
@@ -200,7 +260,7 @@
 			],
 			"file": "viet_locker_open_tube_after.png",
 			"fov": 70.0,
-			"sha256": "93b37cdeef6eb46163a9ff5589a4b61f7be0ef6ed5e4703c23e1de56352c1283"
+			"sha256": "4572dc1a398ac08840e7aab13f05aadb655f66ff868d0ff3dd070c1d794397d9"
 		},
 		{
 			"eye": [
@@ -210,10 +270,10 @@
 			],
 			"file": "viet_locker_open_torch_after.png",
 			"fov": 70.0,
-			"sha256": "7763b47c150dad2f67bb6add1ebab53522f1dc86ed0729df9f9ca377acb0f379"
+			"sha256": "4ad72fe472f6471139901bd21c6ed5f17294cf197d5d6c3fe2623876915f2ff9"
 		}
 	],
-	"placements": 74,
+	"placements": 116,
 	"renderer": "forward_plus",
 	"resolution": [
 		1280,
