@@ -1,5 +1,5 @@
 # T-214 — Nâng cấp giao diện đẹp (kinh dị, gần chân thực) + đặt lại riêng Hình ảnh + chữ dễ đọc ở 720p
-- Lane: D (UI và Đa ngôn ngữ) | Trạng thái: done (D-091) | Agent: lane D; commit/push: Claude làm thay (D hết hạn mức 12/10)
+- Lane: D (UI và Đa ngôn ngữ) | Trạng thái: done (D-091), chủ dự án chấm đạt (D-094, 13/10) | Agent: lane D; commit/push: Claude làm thay (D hết hạn mức 12/10)
 - Nhánh: `lane-d/T-214-video-reset-readability`
 - Phụ thuộc: T-211 (khảo sát G0/D-082). Không phụ thuộc hợp đồng `graphics_preset` (vẫn chờ T-207/T-213).
 - Prompt: `docs/handoff/lane-d.md` mục 4.
