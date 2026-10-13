@@ -89,3 +89,14 @@ func test_bunk_decks_and_mattresses_land_on_the_sleeping_anchors() -> void:
 	anchors.free()
 	pilot.queue_free()
 	await wait_frames(2)
+
+
+func test_blender_soft_props_stay_within_budget() -> void:
+	# D-095 Blender props: nets <= 8000 triangles each (large-prop budget), lines and poster small.
+	var folder := "res://assets/models/graphics_pilot/room407_furnished/"
+	for row: Array in [["mosquito_net_lower_closed", BUDGET_LARGE], ["mosquito_net_lower_open", BUDGET_LARGE],
+			["mosquito_net_upper_closed", BUDGET_LARGE], ["clothesline_room", BUDGET_SMALL],
+			["clothesline_balcony", BUDGET_SMALL], ["poster_football", BUDGET_SMALL], ["bunk_mattress", BUDGET_SMALL]]:
+		var model := (load(folder + row[0] + ".glb") as PackedScene).instantiate()
+		assert_true(_triangles(model) <= row[1], "%s within %d triangles" % row)
+		model.free()

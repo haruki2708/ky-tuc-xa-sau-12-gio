@@ -68,7 +68,6 @@ func _ready() -> void:
 		model.position = Vector3(row.position[0], row.position[1], row.position[2])
 		model.rotation_degrees = Vector3(row.get("rot_x", 0.0), row.yaw, 0)
 		props.add_child(model)
-	_add_clothesline()
 	for mesh: MeshInstance3D in after.find_children("*", "MeshInstance3D", true, false):
 		mesh.gi_mode = GeometryInstance3D.GI_MODE_STATIC
 		if String(mesh.name).begins_with("FluorescentTube"):
@@ -147,25 +146,6 @@ func _light(pos: Vector3, color: Color, energy: float, radius: float, size: floa
 	light.light_bake_mode = Light3D.BAKE_DYNAMIC
 	add_child(light)
 	lights.append(light)
-
-
-func _add_clothesline() -> void:
-	# Stand-in cord until the Blender clothesline of D-095 exists.
-	var cord := MeshInstance3D.new()
-	cord.name = "ClotheslineCord"
-	var mesh := CylinderMesh.new()
-	mesh.top_radius = 0.0025
-	mesh.bottom_radius = 0.0025
-	mesh.height = 2.4
-	mesh.radial_segments = 6
-	var material := StandardMaterial3D.new()
-	material.albedo_color = Color(0.78, 0.76, 0.7)
-	material.roughness = 0.8
-	mesh.material = material
-	cord.mesh = mesh
-	cord.position = Vector3(1.98, 2.585, -3.9)
-	cord.rotation_degrees.z = 90
-	after.add_child(cord)
 
 
 func set_view(view: Dictionary) -> void:

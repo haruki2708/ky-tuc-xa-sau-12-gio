@@ -13,6 +13,10 @@
   {"name": "BlanketPhuc", "model": "res://assets/models/graphics_pilot/room407_batch2/blanket_folded.glb", "position": [0.65, 1.2, -3.68], "yaw": 3},
   {"name": "BlanketTrung", "model": "res://assets/models/graphics_pilot/room407_batch2/blanket_messy.glb", "position": [7.35, 0.43, -2.95], "yaw": 180},
   {"name": "BlanketDat", "model": "res://assets/models/graphics_pilot/room407_batch2/blanket_folded.glb", "position": [7.35, 1.2, -3.38], "yaw": -4},
+  {"name": "NetViet", "model": "res://assets/models/graphics_pilot/room407_furnished/mosquito_net_lower_closed.glb", "position": [0.65, 0, -3], "yaw": 0, "source_node": "BunkA/Net_Viet"},
+  {"name": "NetPhuc", "model": "res://assets/models/graphics_pilot/room407_furnished/mosquito_net_upper_closed.glb", "position": [0.65, 0, -3], "yaw": 0, "source_node": "BunkA/Net_Phuc"},
+  {"name": "NetTrung", "model": "res://assets/models/graphics_pilot/room407_furnished/mosquito_net_lower_open.glb", "position": [7.35, 0, -2.7], "yaw": 180, "source_node": "BunkB/Net_Trung"},
+  {"name": "NetDat", "model": "res://assets/models/graphics_pilot/room407_furnished/mosquito_net_upper_closed.glb", "position": [7.35, 0, -2.7], "yaw": 180, "source_node": "BunkB/Net_Dat"},
   {"name": "LockerPhuc", "model": "res://assets/models/graphics_pilot/room407_batch2/locker_open.glb", "position": [0.3, 0, -0.45], "yaw": -90, "source_node": "Locker_Phuc"},
   {"name": "LockerViet", "model": "res://assets/models/graphics_pilot/room407_batch2/locker_closed.glb", "position": [0.3, 0, -1.25], "yaw": -90, "source_node": "Locker_Viet"},
   {"name": "LockerDat", "model": "res://assets/models/graphics_pilot/room407_batch2/locker_closed.glb", "position": [7.7, 0, -0.45], "yaw": 90, "source_node": "Locker_Dat"},
@@ -65,5 +69,8 @@
   {"name": "SlippersViet", "model": "res://assets/models/graphics_pilot/room407_batch1/slippers.glb", "position": [1.0, 0.005, -0.18], "yaw": 180, "source_node": "Details/Slippers/Viet"},
   {"name": "SlippersTrung", "model": "res://assets/models/graphics_pilot/room407_batch1/slippers.glb", "position": [3.0, 0.005, -0.18], "yaw": 180, "source_node": "Details/Slippers/Trung"},
   {"name": "SlippersDat", "model": "res://assets/models/graphics_pilot/room407_batch1/slippers.glb", "position": [3.33, 0.005, -0.18], "yaw": 180, "source_node": "Details/Slippers/Dat"},
-  {"name": "Trainers", "model": "res://assets/models/graphics_pilot/room407_batch1/trainers.glb", "position": [7.63, 0.015, -1.57], "yaw": 15, "source_node": "Details/Dat/Trainers"}
+  {"name": "Trainers", "model": "res://assets/models/graphics_pilot/room407_batch1/trainers.glb", "position": [7.63, 0.015, -1.57], "yaw": 15, "source_node": "Details/Dat/Trainers"},
+  {"name": "ClotheslineRoom", "model": "res://assets/models/graphics_pilot/room407_furnished/clothesline_room.glb", "position": [0, 0, 0], "yaw": 0, "source_node": "Details/ClothesLine"},
+  {"name": "ClotheslineBalcony", "model": "res://assets/models/graphics_pilot/room407_furnished/clothesline_balcony.glb", "position": [0, 0, 0], "yaw": 0, "source_node": "Clothesline"},
+  {"name": "FootballPoster", "model": "res://assets/models/graphics_pilot/room407_furnished/poster_football.glb", "position": [0, 0, 0], "yaw": 0, "source_node": "Details/Phuc/FootballPoster"}
 ]

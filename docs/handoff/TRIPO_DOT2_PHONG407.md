@@ -351,3 +351,5 @@ Ngày 13/10/2026, chủ dự án tạo đủ 33 món lượt 1 rồi tạo lại
 | A2 mattress | r1, r2 | — | — | **Không dùng** (tỉ lệ gần vuông, dày); chủ dự án chọn nệm + chiếu Blender (D-095 cách a): `game/assets/models/graphics_pilot/room407_furnished/bunk_mattress.glb`, 142 tam giác |
 
 Đặt cả phòng: `game/scenes/levels/graphics_pilot/room407_furnished_pilot.tscn` (D-096), 19 ảnh ở `art_source/graphics_upgrade/room407_furnished/previews/`.
+
+D-098 (13/10): mùng, dây phơi, poster dựng bằng Blender (`art_source/graphics_upgrade/room407_furnished/build_nets.py`, `build_lines_poster.py`) và đã đặt vào cảnh thử. Dây điện và giấy manh mối là node code có tương tác: làm đẹp ở G3.

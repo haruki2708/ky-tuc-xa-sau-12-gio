@@ -10,7 +10,7 @@
 			],
 			"file": "door_overview_tube_after.png",
 			"fov": 80.0,
-			"sha256": "ef2c0ea576cc266b9cd43e5266feac6717bccfd9ac64f80cd5689182798a19d5"
+			"sha256": "bdd017268ca0178b340605324abf8a14f7069c91c814943e591bd69c9b532c8b"
 		},
 		{
 			"eye": [
@@ -20,7 +20,7 @@
 			],
 			"file": "door_overview_torch_after.png",
 			"fov": 80.0,
-			"sha256": "76e2fa6e5166740f165cd70e753b58e4b7537e1093631e9e61b4b1726ece48cc"
+			"sha256": "fa81ab30f9f7a7610e1a1d949356d0ddd4ef17d4e312ac504ca850406db6fc7c"
 		},
 		{
 			"eye": [
@@ -40,7 +40,7 @@
 			],
 			"file": "back_overview_tube_after.png",
 			"fov": 80.0,
-			"sha256": "330fc214fbe7cc759fa1cc6e7ea090a8f884a25cc1242aa7a74e8c61b96e6205"
+			"sha256": "35df96006de841a71321f1f98224bc10c5130d8530dc039e10e8c3c715165d2b"
 		},
 		{
 			"eye": [
@@ -50,7 +50,7 @@
 			],
 			"file": "back_overview_torch_after.png",
 			"fov": 80.0,
-			"sha256": "b1bbf20ad88ab3486fff1fe9fa442ab06197134d895385d4a1a292a1320bc947"
+			"sha256": "9adb76a2c492dac84b09bab1eaf1eac50462193f37e2789a14894f0408f93d05"
 		},
 		{
 			"eye": [
@@ -70,7 +70,7 @@
 			],
 			"file": "bunk_a_tube_after.png",
 			"fov": 70.0,
-			"sha256": "a530b0bffcd3c2af9156941dbbaec795b7c7e6f75bcfaff1a204f319d33830b9"
+			"sha256": "801ab8b7cd0b7fa1752de58041530f0158b968dda17a4efc76360879b00d3f9e"
 		},
 		{
 			"eye": [
@@ -80,7 +80,7 @@
 			],
 			"file": "bunk_a_torch_after.png",
 			"fov": 70.0,
-			"sha256": "42436e649b5465124477ea3ee02e076924492a7b429b5b42910a0e7d22eb045a"
+			"sha256": "ba4d7a480f4276ef382da2488e36cc172f8f791c3af6238356b52b25ec8eca8b"
 		},
 		{
 			"eye": [
@@ -90,7 +90,7 @@
 			],
 			"file": "bunk_b_tube_after.png",
 			"fov": 70.0,
-			"sha256": "fddad0dd8f64ce92a8a8629a320266408e2a011ec23aa717ee62d6f7e13dd866"
+			"sha256": "55ee50864bb80049079ccecba1a0729f72ce5df345d9f8a7e06665086a4db083"
 		},
 		{
 			"eye": [
@@ -100,7 +100,7 @@
 			],
 			"file": "bunk_b_torch_after.png",
 			"fov": 70.0,
-			"sha256": "95c3e4d1a8b29421b09f63e4c9b5722f9b43d7b46b2d056b831263baf96d082b"
+			"sha256": "e5f05f38894803825885e7ef14a0580a3df059a8be5581a20a95b97ee1f0104f"
 		},
 		{
 			"eye": [
@@ -110,7 +110,7 @@
 			],
 			"file": "study_desk_tube_after.png",
 			"fov": 72.0,
-			"sha256": "1fbaaebd41e717728f230a3f05da7a41e0e9c3d51ddcaff965ce057bb1ff8f1e"
+			"sha256": "c19fdbf7786c36ea2173dd9a023b0b8ae3f3bf5cd621a78ca71177874655ec87"
 		},
 		{
 			"eye": [
@@ -120,7 +120,7 @@
 			],
 			"file": "study_desk_torch_after.png",
 			"fov": 72.0,
-			"sha256": "7ff904ce0e5c0b85725c428b443140d06551b51fc56328dfe3bf33aa576e4d1a"
+			"sha256": "1bd3d9b14136175b363359d389e0624e0f9248b290e661d30305456559c85265"
 		},
 		{
 			"eye": [
@@ -140,7 +140,7 @@
 			],
 			"file": "viet_desk_tube_after.png",
 			"fov": 72.0,
-			"sha256": "eee65f9ae866a054000ff88d863d7a0f895d674aab2436132d74d6de5b8dc90f"
+			"sha256": "3e93bef761fb0afb99c9747b76bdaacd8f9957092b76d8a3362b2c80b1ff2c73"
 		},
 		{
 			"eye": [
@@ -150,7 +150,7 @@
 			],
 			"file": "viet_desk_torch_after.png",
 			"fov": 72.0,
-			"sha256": "533d20a50178e30ad162f8f115dc8501f6333f5d4af8baaf29c5ec5425f97c22"
+			"sha256": "22e811015ecfb8651a09d39910077d0b4d35f222ec55afba5c541051436f1b52"
 		},
 		{
 			"eye": [
@@ -160,7 +160,7 @@
 			],
 			"file": "lying_lower_bunk_tube_after.png",
 			"fov": 75.0,
-			"sha256": "2231cacedf07e8b220d9afc7aa9591df7e2235506c5a59cc462fd27369154a6e"
+			"sha256": "238fee4bd92572a81fd6aa20d065a56d1230f35c62732212198b7e4cc11b093b"
 		},
 		{
 			"eye": [
@@ -170,7 +170,7 @@
 			],
 			"file": "lying_lower_bunk_torch_after.png",
 			"fov": 75.0,
-			"sha256": "2c9abcec1e871a5e4b12430a9457034c0653544fb4222d7ce4597e5a461391cb"
+			"sha256": "bfe7dd059e30041eba1d8c88aa06ac741a9fb00c7bd8728646a0b3b46d0d3d77"
 		},
 		{
 			"eye": [
@@ -180,7 +180,7 @@
 			],
 			"file": "bathroom_tube_after.png",
 			"fov": 82.0,
-			"sha256": "f6dde34dea3dd1134bd41f9e184c75ccb91b95147eecee2aef2c89ee50250628"
+			"sha256": "87a0a0e69c260e2c9d188c61432d266cdc7a8c9e39fd44faa8f3360da6f85f0b"
 		},
 		{
 			"eye": [
@@ -190,10 +190,10 @@
 			],
 			"file": "bathroom_torch_after.png",
 			"fov": 82.0,
-			"sha256": "1762e6efd4648317fc76155fbf4a51384fe90b84be43e87333f3b81c35ef622b"
+			"sha256": "acb533bf1ea84c140a1ecfde3848f774d03b9ea86947b4082531060ac329bc8a"
 		}
 	],
-	"placements": 67,
+	"placements": 74,
 	"renderer": "forward_plus",
 	"resolution": [
 		1280,
