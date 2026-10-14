@@ -14,10 +14,11 @@ Phòng 407 trong cả 4 chương trông như cảnh thử `room407_furnished_pil
 6. **Kiểm:** test node/va chạm/phần động; ảnh chụp trong cảnh chương (Forward+); hồi quy 4 chương; xuất bản build. Chạy bot/FPS phải hỏi chủ dự án trước.
 
 ## Còn lại sau mốc này
-Gương phản chiếu thật, dây điện/giấy manh mối polish. (Cánh cửa phòng 407 đã treo lên `Door407` ở bước 1.)
+Dây điện/giấy manh mối polish (gương phản chiếu xong ở D-105). (Cánh cửa phòng 407 đã treo lên `Door407` ở bước 1.)
 
 ## Tiến độ
 - **Bước 1 (D-103):** xong mục 1–5; test `game/tests/levels/test_room407_playable_furnished.gd` (va chạm/đường đi không đổi, mesh PS1 ẩn đúng danh sách, phần động, tường cửa, đèn tuýp, gương chương 2, cửa 407). Test đường đi `test_room407_fixes.gd` chờ bản đồ điều hướng đồng bộ (tầng nặng hơn cần quá 2 khung vật lý). Ảnh `art_source/graphics_upgrade/room407_furnished/previews/g3/` (30 ảnh, chụp bằng `room407_g3_capture.tscn -- --g3-capture`).
 - **Ánh sáng (D-104):** trong phòng (`Room407.INSIDE`) môi trường và đèn pin điện thoại (node `Flashlight` dưới camera) chuyển sang giá trị cảnh thử, ra khỏi phòng trả lại như cũ; đèn trần `flicker_energy` 2,6, tầm 9 m, bóng đổ; đèn hành lang chạm tới phòng bật bóng đổ (`floor4.gd`). Ảnh có thêm góc `room_centre` và chế độ `tube` (đèn trần sáng).
+- **Gương (D-105):** `Room407.MIRROR_GLASS` (tâm, kích thước, hướng, độ ngả của mặt kính theo mô hình) → `mirror.tscn` tên `ReflectiveMirrorSmall`, `ReflectiveFullMirror`; `follow` = thân mang camera hiện tại (`Head/Camera3D`); `require_in_view`. Ảnh `mirror_full_*`, `mirror_bath_*`; cảnh chụp đặt camera trên `Rig/Head/Camera3D` như người chơi.
 - **Giới hạn đã biết:** xác, vết rạch, máu vẫn là hình PS1 (thay ở đợt nhân vật G4); hành lang vẫn PS1 nên cửa 407 nhìn từ hành lang khác phần tường quanh; đèn chính mặc định energy 0 (T-153) nên đèn tuýp chỉ sáng khi đèn chính thật sự phát sáng (nhấp nháy).
-- **Tiếp:** chủ dự án chơi thử 4 chương; gương phản chiếu thật; xuất bản build; đo FPS khi được phép.
+- **Tiếp:** chủ dự án chơi thử 4 chương; dây điện/giấy manh mối; đo FPS khi được phép (có thêm bóng đổ, SSAO, gương).

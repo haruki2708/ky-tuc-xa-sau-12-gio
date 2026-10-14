@@ -212,6 +212,48 @@ func test_room_is_darker_and_the_torch_stronger_inside_only() -> void:
 	assert_false(environment.ssao_enabled)
 
 
+func test_furnished_mirrors_reflect_only_when_looked_at() -> void:
+	var room := spawn(ROOM)
+	var body := Node3D.new()
+	fixtures.append(body)
+	var head := Node3D.new()
+	head.name = "Head"
+	head.position.y = 1.6
+	body.add_child(head)
+	var camera := Camera3D.new()
+	head.add_child(camera)
+	room.add_child(body)
+	camera.make_current()
+	for prop_name: String in room.MIRROR_GLASS:
+		var mirror := room.get_node("Reflective" + prop_name) as Node3D
+		var model := room.get_node("Furnished/TripoProps/" + prop_name) as Node3D
+		var glass: Dictionary = room.MIRROR_GLASS[prop_name]
+		assert_true(mirror.require_in_view, prop_name)
+		assert_true(mirror.mirror_size.is_equal_approx(glass.size), prop_name + " glass size")
+		assert_true(((mirror.get_node("Surface") as MeshInstance3D).mesh as QuadMesh).size.is_equal_approx(glass.size))
+		var texels: Vector2i = (mirror.get_node("ReflectionViewport") as SubViewport).size
+		assert_true(absf(float(texels.x) / texels.y - glass.size.x / glass.size.y) < 0.01, "reflection keeps the glass aspect")
+		# The glass sits on the model's glass, a few millimetres out, facing away from the model.
+		var centre := model.to_global(glass.centre)
+		assert_true(mirror.global_position.distance_to(centre) < 0.01, prop_name + " on the glass")
+		var out := mirror.global_basis.z
+		assert_true(out.dot(mirror.global_position - centre) > 0.0, prop_name + " in front of the glass")
+		# In front and looking at it: reflects the player's body. Turned away or outside: off.
+		body.global_position = mirror.global_position + out * 1.2 - Vector3(0, mirror.global_position.y, 0)
+		camera.look_at(mirror.global_position)
+		await wait_frames(3)
+		assert_eq(mirror.follow, body, prop_name + " follows the camera's body")
+		assert_true(mirror.rendering_active, prop_name + " renders when looked at")
+		camera.look_at(mirror.global_position + out * 3.0)
+		await wait_frames(3)
+		assert_false(mirror.rendering_active, prop_name + " idle when turned away")
+		body.global_position = room.to_global(Vector3(3.0, 0.0, 2.0))
+		camera.look_at(mirror.global_position)
+		await wait_frames(3)
+		assert_false(mirror.rendering_active, prop_name + " idle from the corridor")
+	assert_eq(room.get_node("Ch2Bathroom/MirrorFog").get_parent(), room.get_node("Ch2Bathroom"), "chapter 2 effects untouched")
+
+
 func test_ps1_room_stays_available() -> void:
 	var room := spawn(ROOM, false)
 	assert_true(room.get_node_or_null("Furnished") == null)

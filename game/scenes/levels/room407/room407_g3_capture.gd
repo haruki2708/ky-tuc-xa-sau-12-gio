@@ -24,12 +24,16 @@ const VIEWS := [
 	{"id": "story_bunk_a", "eye": Vector3(2.5, 1.5, -1.5), "target": Vector3(0.65, 0.7, -3.0), "fov": 70.0, "story": true},
 	{"id": "story_bunk_b", "eye": Vector3(5.5, 1.5, -1.5), "target": Vector3(7.35, 0.7, -2.9), "fov": 70.0, "story": true},
 	{"id": "story_mirror", "eye": Vector3(6.5, 1.5, -5.0), "target": Vector3(5.4, 1.35, -5.0), "fov": 60.0, "steam": true},
+	{"id": "mirror_full", "eye": Vector3(6.2, 1.6, -2.0), "target": Vector3(6.6, 0.9, -3.78), "fov": 70.0},
+	{"id": "mirror_bath", "eye": Vector3(6.5, 1.6, -5.0), "target": Vector3(5.4, 1.4, -5.0), "fov": 70.0},
 	{"id": "viet_locker_open", "eye": Vector3(2.0, 1.45, -1.2), "target": Vector3(0.35, 0.95, -1.15), "fov": 70.0, "locker_open": true},
 ]
 
 var floor4: Node3D
 var room: Node3D
 var camera: Camera3D
+## Stands in for the player: the room's mirrors reflect the body that carries Head/Camera3D (D-105).
+var rig: Node3D
 var torch: SpotLight3D
 
 
@@ -37,8 +41,14 @@ func _ready() -> void:
 	floor4 = FLOOR.instantiate() as Node3D
 	add_child(floor4)
 	room = floor4.get_node("Room407") as Node3D
+	rig = Node3D.new()
+	rig.name = "Rig"
+	add_child(rig)
+	var head := Node3D.new()
+	head.name = "Head"
+	rig.add_child(head)
 	camera = Camera3D.new()
-	add_child(camera)
+	head.add_child(camera)
 	camera.make_current()
 	# phone_item.tscn's flashlight; room 407 brightens any "Flashlight" under the camera (D-104).
 	torch = SpotLight3D.new()
@@ -56,7 +66,10 @@ func _ready() -> void:
 
 
 func set_view(view: Dictionary, torch_on: bool, tube_on: bool = false) -> void:
-	camera.position = ORIGIN + view.eye
+	rig.position = ORIGIN + Vector3(view.eye.x, 0.0, view.eye.z)
+	var aim: Vector3 = view.target - view.eye
+	rig.rotation.y = atan2(-aim.x, -aim.z)
+	(camera.get_parent() as Node3D).position.y = view.eye.y
 	camera.fov = view.fov
 	camera.look_at(ORIGIN + view.target)
 	torch.visible = torch_on

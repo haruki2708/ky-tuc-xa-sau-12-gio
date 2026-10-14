@@ -1,6 +1,6 @@
 # Chơi thử G3 — phòng 407 đủ đồ (T-215, D-103)
 
-Build: `build/windows/KyTucXa.exe`, xuất 2026-10-14 15:15, code `ffe733f`. Bộ lọc PS1 mặc định tắt (bật lại trong Cài đặt nếu muốn so sánh).
+Build: `build/windows/KyTucXa.exe`, bản xuất sau commit D-105 (giờ xuất integrator báo trong trò chuyện). Bộ lọc PS1 mặc định tắt (bật lại trong Cài đặt nếu muốn so sánh).
 
 Luật, cốt truyện, độ khó **không đổi**; chỉ hình phòng 407 đổi. Ghi lại chỗ nào khác bản cũ về cách chơi (kẹt, không bấm được, không nằm được, nhìn xuyên tường) và chỗ nào hình trông sai.
 
@@ -8,6 +8,10 @@ Luật, cốt truyện, độ khó **không đổi**; chỉ hình phòng 407 đ�
 - [ ] Tắt đèn trong phòng: tối hẳn như ảnh `room_centre_torch_after`; bật đèn pin (F) thấy rõ vệt sáng.
 - [ ] Ra hành lang: sáng như cũ; vào lại phòng: chuyển tối nhẹ nhàng, không giật.
 - [ ] Đèn trần nhấp nháy (quản lý trong phòng): sáng như ảnh `room_centre_tube_after`.
+
+## Gương (D-105)
+- [ ] Đứng trước gương đứng (cạnh giường Đạt/Trung) và gương nhà tắm: thấy phòng và thân mình trong gương, ảnh không lệch khỏi khung kính.
+- [ ] Quay đi rồi nhìn lại: gương hiện lại ngay, không nhấp nháy.
 
 ## Chương 1
 - [ ] Đi quanh phòng: không kẹt ở lối đi giữa giường, bàn, nhà tắm, ban công.

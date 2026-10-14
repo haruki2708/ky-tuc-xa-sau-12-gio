@@ -8,6 +8,8 @@ const MAX_LAG: float = 10.0
 @export var follow: Node3D
 @export var mirror_size := Vector2(2.8, 0.95)
 @export var room_bounds := AABB(Vector3(0.15, -0.1, -4.9), Vector3(5.7, 3.2, 4.8))
+## D-105: render only while the glass is on screen (furnished room 407 mirrors).
+@export var require_in_view: bool = false
 var lag_seconds: float = 0.0
 var is_staring: bool = false
 var rendering_active: bool = false
@@ -107,6 +109,8 @@ func _process(delta: float) -> void:
 	var normal := global_basis.z.normalized()
 	var distance := normal.dot(eye - global_position)
 	active = active and distance > 0.05
+	if require_in_view:
+		active = active and _glass_in_view()
 	_set_active(active)
 	if not active:
 		_samples.clear()
@@ -123,6 +127,14 @@ func _process(delta: float) -> void:
 		var head: Node3D = reflection_body.head
 		var target := head.global_transform.looking_at(reflection_camera.global_position, Vector3.UP)
 		head.global_basis = head.global_basis.slerp(target.basis, 1.0 - exp(-delta * 14.0)).orthonormalized()
+
+
+func _glass_in_view() -> bool:
+	for corner in [Vector2(-1, -1), Vector2(1, -1), Vector2(-1, 1), Vector2(1, 1), Vector2.ZERO]:
+		var point := to_global(Vector3(corner.x * mirror_size.x, corner.y * mirror_size.y, 0.0) * 0.5)
+		if _source_camera.is_position_in_frustum(point):
+			return true
+	return false
 
 
 func _apply_sample(target_time: float) -> void:

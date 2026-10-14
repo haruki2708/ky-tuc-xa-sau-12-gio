@@ -39,12 +39,26 @@ const TUBE_LIGHT := {"light_color": Color(0.88, 0.94, 0.80), "omni_range": 9.0, 
 	"shadow_enabled": true, "flicker_energy": 2.6}
 ## Seconds to blend between the corridor and the room look at the door.
 const BLEND_TIME := 0.35
+## D-105: planar mirrors (mirror.gd) on the glass of the furnished mirrors, in model space:
+## glass centre, size, yaw of its outward normal (both models face their glass to -Z) and the
+## angle in radians the glass leans back (about 1 degree; measured by ray casts on the models).
+const MIRROR := preload("res://scenes/levels/mirror.tscn")
+const MIRROR_SHADER := preload("res://rendering/mirror_surface_hd.gdshader")
+const MIRROR_GLASS := {
+	"MirrorSmall": {"centre": Vector3(0.0, 0.289, 0.037), "size": Vector2(0.38, 0.448), "yaw": PI, "lean": 0.017},
+	"FullMirror": {"centre": Vector3(0.0, 0.604, -0.072), "size": Vector2(0.384, 1.146), "yaw": deg_to_rad(166.8),
+		"lean": 0.022},
+}
+## Reflection texels per metre of glass, capped so the tall mirror stays cheap.
+const MIRROR_TEXELS := 1000.0
+const MIRROR_MAX_TEXELS := 800
 var _furnished: Node3D
 var _tubes: Array[StandardMaterial3D] = []
 var _trung_blanket: Node3D
 var _inside_weight: float = 0.0
 var _environment: Environment
 var _torch: SpotLight3D
+var _mirrors: Array[Node3D] = []
 
 
 func _ready() -> void:
@@ -138,6 +152,7 @@ func set_plugged(cable_id: StringName, value: bool) -> bool:
 func _process(delta: float) -> void:
 	if _furnished:
 		_blend_room_lighting(delta)
+		_update_mirror_follow()
 	if not _tubes.is_empty():
 		var light := $Room407MainLight as Light3D
 		var glow := TUBE_ENERGY * clampf(light.light_energy, 0.0, 1.0) if light.is_visible_in_tree() else 0.0
@@ -197,6 +212,44 @@ func _furnish() -> void:
 	_tubes = Room407Furnish.tube_materials(_furnished)
 	for property: String in TUBE_LIGHT:
 		$Room407MainLight.set(property, TUBE_LIGHT[property])
+	for prop_name: String in MIRROR_GLASS:
+		_hang_mirror(props.get_node(prop_name), MIRROR_GLASS[prop_name])
+
+
+## D-105: a mirror.gd reflection on the model's glass, 4 mm in front of it, rendered only
+## while the player is in the room, in front of the glass and looking at it.
+func _hang_mirror(model: Node3D, glass: Dictionary) -> void:
+	var basis := Basis(Vector3.UP, glass.yaw) * Basis(Vector3.RIGHT, -glass.lean)
+	var pose := model.global_transform * Transform3D(basis, glass.centre + basis.z * 0.004)
+	var mirror := MIRROR.instantiate() as Node3D
+	mirror.name = "Reflective" + model.name
+	var size: Vector2 = glass.size * pose.basis.get_scale().x
+	mirror.mirror_size = size
+	mirror.room_bounds = INSIDE
+	mirror.require_in_view = true
+	(mirror.get_node("Frame") as Node3D).visible = false
+	var surface := mirror.get_node("Surface") as MeshInstance3D
+	var quad := QuadMesh.new()
+	quad.size = size
+	surface.mesh = quad
+	var material := ShaderMaterial.new()
+	material.shader = MIRROR_SHADER
+	surface.material_override = material
+	var texels := minf(MIRROR_TEXELS, MIRROR_MAX_TEXELS / maxf(size.x, size.y))
+	(mirror.get_node("ReflectionViewport") as SubViewport).size = Vector2i(roundi(size.x * texels), roundi(size.y * texels))
+	add_child(mirror)
+	mirror.global_transform = Transform3D(pose.basis.orthonormalized(), pose.origin)
+	_mirrors.append(mirror)
+
+
+## The mirrors reflect the body that carries the current camera as Head/Camera3D (the player).
+func _update_mirror_follow() -> void:
+	var camera := get_viewport().get_camera_3d()
+	var head := camera.get_parent() if camera else null
+	var body := head.get_parent() as Node3D if head and head.name == &"Head" else null
+	for mirror in _mirrors:
+		if mirror.follow != body:
+			mirror.follow = body
 
 
 func _exit_tree() -> void:
