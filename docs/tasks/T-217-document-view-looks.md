@@ -51,6 +51,43 @@
 
 ## Handoff (agent điền)
 
+### Đã làm
+- Cập nhật `game/scripts/ui/paper_surface.gd`: thêm nhánh vẽ mới cho `&"card"` (nền thẻ sinh viên bo góc, dải màu xanh navy đầu thẻ có viền kim loại vàng, ô ảnh thẻ 3×4 kèm bóng mờ chân dung) và `&"photo_back"` (mặt sau giấy ảnh với chất giấy ấm và thớ mờ nhẹ). Giữ nguyên 100% màu sắc, nét kẻ và viền của các style cũ (`notebook`, `handwritten`, `log`, `photocopy`, `notice`).
+- Cập nhật `game/ui/document/document_view.tscn` và `game/scripts/ui/document_view.gd`:
+  - Đọc trường `_document.look`.
+  - Với `photo` và `photo_family`: hiển thị ảnh in dùng texture `res://assets/textures/papers/photo.png` / `photo_family.png` đặt song song cạnh mặt sau giấy ảnh (chữ viết tay nghiêng tự nhiên), không che hình, căn giữa màn hình, dễ đọc ở cả 720p và 1080p.
+  - Với `card`: hiển thị thẻ sinh viên nằm ngang tỷ lệ chuẩn (~85.6 × 54), có dải màu xanh đậm đầu thẻ, tiêu đề "Thẻ sinh viên", ô ảnh thẻ chân dung, thông tin họ tên, ngày sinh, ký túc xá bằng font chữ máy đánh chữ sắc nét, cùng dấu đỏ trường khi có `style == &"stamped"`.
+  - Với look rỗng (`&""`): giữ nguyên 100% cách hiển thị tờ giấy `Paper` cũ cho mọi tài liệu trước đây.
+  - Giữ nguyên các node gốc `Root/Paper/Content/Title`, `Scroll/Lines`, `Stamp`, `Hint`, cơ chế mở/đóng, tạm dừng và phím tắt (E, Esc, Tab, click chuột).
+- Thêm scene chụp và tạo ảnh xem trước `game/ui/document/capture_looks.tscn` / `capture_looks.gd`, đã render đủ 3 ảnh xem trước:
+  - `game/ui/document/previews/photo_vi.png` (1920×1080)
+  - `game/ui/document/previews/photo_family_vi.png` (1920×1080)
+  - `game/ui/document/previews/card_vi.png` (1920×1080)
+- Viết test mới `game/tests/ui/test_document_view_looks.gd` kiểm tra:
+  - Texture và khung hiển thị cho `photo`, `photo_family`, `card`.
+  - Mọi `text_keys` đều có mặt trên màn hình.
+  - Kiểu giấy cũ vẫn ra `Paper` như trước.
+  - Toàn bộ nội dung nằm gọn trong màn hình 1280×720 và dịch đúng vi/en.
+
+### Danh sách mọi file đã xóa hoặc đổi tên
+- 12 file tạm Movie Maker trong `game/ui/document/previews/` (`photo_frame.wav`, `photo_frame00000000…00000004.png` và các `.import`), chưa từng commit, chủ dự án cho phép xóa.
+
+### Kết quả kiểm tra
+- `RESULT: 784 passed, 0 failed` (`pwsh tools/test.ps1`)
+- `RESULT: check 0 error(s)` (`pwsh tools/check.ps1`)
+
+### Commit hash
+- `0ef1dad` (commit triển khai)
+
+### Màn cần integrator chụp 720p/1080p (vi/en)
+- Các màn đọc ảnh chụp (`ch1_team_photo`, `ch1_viet_photo`) và thẻ sinh viên (`ch1_dat_card`, `ch1_phuc_card`, `ch1_viet_card`) ở cả hai độ phân giải 1280×720 và 1920×1080, tiếng Việt và tiếng Anh (ảnh xem trước `photo_vi.png`, `photo_family_vi.png`, `card_vi.png` đã được tạo sẵn trong `game/ui/document/previews/`).
+
+### Phần chưa làm
+- Không có (toàn bộ yêu cầu của card T-217 đã hoàn thành).
+
+### Yêu cầu thay đổi
+- Không có yêu cầu ngoài phạm vi.
+
 ## Review (integrator)
 
 ### Integrator — 15/10/2026, lần 1: **trả sửa** (nhánh `a4a0ba4`)
