@@ -4,6 +4,8 @@ extends Node3D
 ## blood and slashed bedding; chapter 2 mirror steam and reflection. Opt-in: -- --g3-capture (needs Forward+); otherwise a free view.
 
 const FLOOR := preload("res://scenes/levels/floor4/floor4.tscn")
+## Chapters place the room's papers with chapter1_main.gd (D-106 captures them).
+const CHAPTER := preload("res://scenes/main/chapter1_main.gd")
 const OUTPUT := "res://../art_source/graphics_upgrade/room407_furnished/previews/g3/"
 const ORIGIN := Vector3(30, 0, 0)
 # Room-local eye/target, as room407_furnished_pilot.gd; "story" shows corpses, blood and slashes.
@@ -26,6 +28,8 @@ const VIEWS := [
 	{"id": "story_mirror", "eye": Vector3(6.5, 1.5, -5.0), "target": Vector3(5.4, 1.35, -5.0), "fov": 60.0, "steam": true},
 	{"id": "mirror_full", "eye": Vector3(6.2, 1.6, -2.0), "target": Vector3(6.6, 0.9, -3.78), "fov": 70.0},
 	{"id": "mirror_bath", "eye": Vector3(6.5, 1.6, -5.0), "target": Vector3(5.4, 1.4, -5.0), "fov": 70.0},
+	{"id": "cables_router", "eye": Vector3(4.1, 1.25, -1.7), "target": Vector3(4.6, 0.35, -0.4), "fov": 70.0},
+	{"id": "cables_strip", "eye": Vector3(1.7, 1.15, -1.5), "target": Vector3(0.8, 0.1, -2.3), "fov": 70.0},
 	{"id": "viet_locker_open", "eye": Vector3(2.0, 1.45, -1.2), "target": Vector3(0.35, 0.95, -1.15), "fov": 70.0, "locker_open": true},
 ]
 
@@ -35,12 +39,17 @@ var camera: Camera3D
 ## Stands in for the player: the room's mirrors reflect the body that carries Head/Camera3D (D-105).
 var rig: Node3D
 var torch: SpotLight3D
+## VIEWS plus a close view of every paper (torch and tube only).
+var views: Array = VIEWS.duplicate()
 
 
 func _ready() -> void:
 	floor4 = FLOOR.instantiate() as Node3D
 	add_child(floor4)
 	room = floor4.get_node("Room407") as Node3D
+	CHAPTER.place_papers(room.get_node("Anchors") as Node3D, self)
+	for paper: Node3D in find_children("*", "Area3D", false, false):
+		views.append(_paper_view(paper))
 	rig = Node3D.new()
 	rig.name = "Rig"
 	add_child(rig)
@@ -88,6 +97,14 @@ func set_view(view: Dictionary, torch_on: bool, tube_on: bool = false) -> void:
 	(room.get_node("Ch2Bathroom/Reflection") as Node3D).visible = view.get("steam", false)
 
 
+## Half a metre in front of the sheet, a little to the side so flat desk papers have an up axis.
+func _paper_view(paper: Node3D) -> Dictionary:
+	var out := paper.global_basis.z
+	var side := Vector3(0.12, 0.0, 0.12) if absf(out.y) > 0.9 else Vector3(0.0, 0.12, 0.0)
+	return {"id": "paper_" + String(paper.get("document_id")), "fov": 55.0, "modes": ["torch", "tube"],
+		"eye": room.to_local(paper.global_position + out * 0.45 + side), "target": room.to_local(paper.global_position)}
+
+
 func _capture() -> void:
 	if DisplayServer.get_name() == "headless":
 		push_error("G3 capture requires Forward+ renderer")
@@ -99,8 +116,8 @@ func _capture() -> void:
 	var report := {"godot": Engine.get_version_info().string,
 		"renderer": RenderingServer.get_current_rendering_method(), "gpu": RenderingServer.get_video_adapter_name(),
 		"resolution": [1280, 720], "ps1_strength": 0.0, "images": []}
-	for view: Dictionary in VIEWS:
-		for mode: String in ["night", "torch", "tube"]:
+	for view: Dictionary in views:
+		for mode: String in view.get("modes", ["night", "torch", "tube"]):
 			set_view(view, mode == "torch", mode == "tube")
 			var file := "%s_%s.png" % [view.id, mode]
 			await _save(file)

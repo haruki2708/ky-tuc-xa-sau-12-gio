@@ -225,8 +225,8 @@ func test_readable_size_updates_mesh_and_collision_per_instance() -> void:
 	board.size = Vector2(0.8, 1.2)
 	world.add_child(paper)
 	world.add_child(board)
-	assert_eq(paper.get_node("Mesh").mesh.size, Vector3(0.21, 0.297, 0.004))
-	assert_eq(board.get_node("Mesh").mesh.size, Vector3(0.8, 1.2, 0.004))
+	assert_eq(paper.get_node("Mesh").mesh.size, Vector2(0.21, 0.297))
+	assert_eq(board.get_node("Mesh").mesh.size, Vector2(0.8, 1.2))
 	board.size = Vector2(1, 1.5)
 	assert_eq(board.get_node("CollisionShape3D").shape.size, Vector3(1, 1.5, 0.004))
 	assert_eq(paper.get_node("CollisionShape3D").shape.size, Vector3(0.21, 0.297, 0.004))
@@ -248,7 +248,7 @@ func test_readable_pick_depth_extends_forward_and_survives_resize() -> void:
 	board.pick_depth = 0.3
 	assert_eq(collision.shape.size, Vector3(0.5, 0.7, 0.3))
 	assert_true(is_equal_approx(collision.position.z, 0.15))
-	assert_eq(board.get_node("Mesh").mesh.size, Vector3(0.5, 0.7, 0.004))
+	assert_eq(board.get_node("Mesh").mesh.size, Vector2(0.5, 0.7))
 	await tree.physics_frame
 	await tree.process_frame
 	var query: PhysicsRayQueryParameters3D = PhysicsRayQueryParameters3D.create(

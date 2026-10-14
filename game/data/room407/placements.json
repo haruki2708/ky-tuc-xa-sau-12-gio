@@ -87,7 +87,6 @@
   {"name": "TrashBag", "model": "res://assets/models/graphics_pilot/room407_batch3/trash_bag.glb", "position": [3.25, 0, -5.6], "yaw": 0, "source_node": "D-100"},
   {"name": "BottlesCans", "model": "res://assets/models/graphics_pilot/room407_batch3/bottles_cans.glb", "position": [1.15, 0, -6.65], "yaw": 40, "source_node": "D-100"},
   {"name": "HelmetShoeRack", "model": "res://assets/models/graphics_pilot/room407_batch3/helmet.glb", "position": [5.75, 0.48, -0.22], "yaw": 160, "source_node": "D-100"},
-  {"name": "HelmetLocker", "model": "res://assets/models/graphics_pilot/room407_batch3/helmet.glb", "position": [7.7, 1.77, -1.25], "yaw": 70, "source_node": "D-100"},
   {"name": "FootballPhuc", "model": "res://assets/models/graphics_pilot/room407_batch3/football.glb", "position": [1.0, 0, -2.45], "yaw": 0, "source_node": "D-100"},
   {"name": "PenCupStudy", "model": "res://assets/models/graphics_pilot/room407_batch3/pen_cup.glb", "position": [1.42, 0.76, -4.42], "yaw": 0, "source_node": "D-100"},
   {"name": "PenCupDat", "model": "res://assets/models/graphics_pilot/room407_batch3/pen_cup.glb", "position": [4.85, 0.76, -5.72], "yaw": 30, "source_node": "D-100"},

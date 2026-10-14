@@ -14,17 +14,19 @@ const END_CARD_MIN_SECONDS: float = 4.0
 const END_CARD_MAX_SECONDS: float = 40.0
 
 ## Room 407 papers on lane B's anchors (T-153, under Room407/Anchors):
-## [document, anchor, offset, rotation (degrees), size]. Desk papers lie flat;
+## [document, anchor, offset, rotation (degrees), size, optional look (D-106)]. Desk papers lie flat;
 ## the others face into the room (+X from the west wall).
 const PAPERS: Array = [
 	[&"ch1_dat_note", "DatNote", Vector3.ZERO, Vector3(-90, 15, 0), Vector2(0.15, 0.21)],
 	[&"ch1_dat_card", "DatNote", Vector3(0.0, 0.0, 0.22), Vector3(-90, -10, 0), Vector2(0.09, 0.06)],
 	[&"ch1_phuc_schedule", "PhucBooks", Vector3(0.12, -0.25, 0.0), Vector3(0, 90, 0), Vector2(0.21, 0.3)],
-	[&"ch1_viet_photo", "VietPhoto", Vector3(0.05, 0.0, 0.0), Vector3(0, 90, 0), Vector2(0.15, 0.1)],
+	# D-106: both photos sit in the opening of the furnished room's photo frames (frames lean back 9°).
+	[&"ch1_viet_photo", "VietPhoto", Vector3(-0.001, -0.05, 0.142), Vector3(-9, 188, 0), Vector2(0.15, 0.1), &"photo_family"],
 	# Chapter 1 v2 (D-039): lane B's anchors from T-162, with fallbacks below.
 	[&"ch1_phuc_card", "PhucCard", Vector3.ZERO, Vector3(-90, 0, 0), Vector2(0.09, 0.06)],
-	[&"ch1_team_photo", "TeamPhoto", Vector3.ZERO, Vector3(0, -90, 0), Vector2(0.15, 0.1)],
-	[&"ch1_viet_card", "VietLaptop", Vector3(0.0, 0.03, 0.18), Vector3(-90, 0, 0), Vector2(0.09, 0.06)],
+	[&"ch1_team_photo", "TeamPhoto", Vector3(0.062, 0.1, 0.05), Vector3(-9, -90, 0), Vector2(0.15, 0.1), &"photo"],
+	# D-106: on the desk beside the furnished laptop (it floated behind the new laptop's screen).
+	[&"ch1_viet_card", "VietLaptop", Vector3(0.27, -0.148, 0.03), Vector3(-90, 20, 0), Vector2(0.09, 0.06)],
 	[&"ch1_tap_chart", "GuitarSongbook", Vector3.ZERO, Vector3(-90, 0, 0), Vector2(0.15, 0.21)],
 ]
 ## Where v2 papers go while lane B's new anchors are missing: anchor → fallback.
@@ -153,8 +155,12 @@ func _wire_room() -> void:
 
 func _place_papers() -> void:
 	var anchors := $Floor4.get_node_or_null("Room407/Anchors") as Node3D
-	if anchors == null:
-		return
+	if anchors != null:
+		place_papers(anchors, self)
+
+
+## Also used by room407_g3_capture.gd to show the papers without a chapter.
+static func place_papers(anchors: Node3D, parent: Node) -> void:
 	for entry: Array in PAPERS:
 		var anchor := anchors.get_node_or_null(String(entry[1])) as Node3D
 		var offset: Vector3 = entry[2]
@@ -167,7 +173,9 @@ func _place_papers() -> void:
 		paper.name = String(entry[0]).to_pascal_case()
 		paper.document_id = entry[0]
 		paper.size = entry[4]
-		add_child(paper)
+		if entry.size() > 5:
+			paper.look = entry[5]
+		parent.add_child(paper)
 		paper.global_position = anchor.global_position + offset
 		paper.rotation_degrees = entry[3]
 		paper.pick_depth = PAPER_PICK_DEPTH

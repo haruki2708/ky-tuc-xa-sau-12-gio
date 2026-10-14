@@ -1,6 +1,6 @@
 # Chơi thử G3 — phòng 407 đủ đồ (T-215, D-103)
 
-Build: `build/windows/KyTucXa.exe`, bản xuất sau commit D-105 (giờ xuất integrator báo trong trò chuyện). Bộ lọc PS1 mặc định tắt (bật lại trong Cài đặt nếu muốn so sánh).
+Build: `build/windows/KyTucXa.exe`, bản xuất sau commit D-106 (giờ xuất integrator báo trong trò chuyện). Bộ lọc PS1 mặc định tắt (bật lại trong Cài đặt nếu muốn so sánh).
 
 Luật, cốt truyện, độ khó **không đổi**; chỉ hình phòng 407 đổi. Ghi lại chỗ nào khác bản cũ về cách chơi (kẹt, không bấm được, không nằm được, nhìn xuyên tường) và chỗ nào hình trông sai.
 
@@ -12,6 +12,11 @@ Luật, cốt truyện, độ khó **không đổi**; chỉ hình phòng 407 đ�
 ## Gương (D-105)
 - [ ] Đứng trước gương đứng (cạnh giường Đạt/Trung) và gương nhà tắm: thấy phòng và thân mình trong gương, ảnh không lệch khỏi khung kính.
 - [ ] Quay đi rồi nhìn lại: gương hiện lại ngay, không nhấp nháy.
+
+## Giấy và dây (D-106)
+- [ ] Đọc đủ 8 tờ chương 1 (giấy Đạt, thẻ Đạt, lịch Phúc, ảnh Việt, thẻ Phúc, ảnh đội bóng, thẻ Việt, bảng gõ): nhìn thấy, ngắm trúng, mở đọc được.
+- [ ] Ảnh đội bóng (trên nóc tủ Trung) và ảnh Việt (bàn Việt) nằm trong khung.
+- [ ] Dây LAN cắm vào ổ tường đúng chỗ.
 
 ## Chương 1
 - [ ] Đi quanh phòng: không kẹt ở lối đi giữa giường, bàn, nhà tắm, ban công.

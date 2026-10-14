@@ -16,7 +16,9 @@ const KEEP_PS1: Array[String] = ["Anchors", "Details/BloodSeep", "Details/BloodP
 const REPLACED_PS1: Array[String] = ["Anchors/VietLocker/Back", "Anchors/VietLocker/West",
 	"Anchors/VietLocker/East", "Anchors/VietLocker/Shelf*", "Anchors/VietLocker/Pivot",
 	"Anchors/PhucMattress/Pivot", "Anchors/TeamPhoto", "Anchors/TrashBin/Base", "Anchors/TrashBin/Slat*",
-	"Anchors/Router/Model/Case", "Anchors/Router/Model/Antenna*", "Anchors/Router/Model/Vent*"]
+	"Anchors/Router/Model/Case", "Anchors/Router/Model/Antenna*", "Anchors/Router/Model/Vent*",
+	# D-106: the readable ch1_phuc_card (every chapter places it) draws the card.
+	"Anchors/PhucCard/Card", "Anchors/PhucCard/Photo", "Anchors/PhucCard/Head"]
 ## Furnished props carried by a moving PS1 node (net stir and hide, mattress lift, slashed pillow).
 const FOLLOW := {"NetViet": "BunkA/Net_Viet", "NetPhuc": "BunkA/Net_Phuc", "NetTrung": "BunkB/Net_Trung",
 	"NetDat": "BunkB/Net_Dat", "MattressPhuc": "Anchors/PhucMattress/Pivot",

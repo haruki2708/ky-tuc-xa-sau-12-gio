@@ -23,9 +23,11 @@ func set_fragment(value: int) -> void:
 			builder.set_uv(Vector2(point.x / .2 + .5, point.z / .26 + .5))
 			builder.add_vertex(point)
 	builder.generate_normals()
-	var material := ShaderMaterial.new()
-	material.shader = preload("res://rendering/ps1_surface.gdshader")
-	material.set_shader_parameter("albedo_texture", preload("res://assets/textures/ch1_models/paper.png"))
-	material.set_shader_parameter("albedo_color", Color(.46,.11,.10) if fragment_id == 2 else Color.WHITE)
+	# D-106: the torn inspection form uses the photocopy sheet of the readable papers.
+	var material := StandardMaterial3D.new()
+	material.albedo_texture = preload("res://assets/textures/papers/photocopy.png")
+	material.albedo_color = Color(.62,.22,.20) if fragment_id == 2 else Color.WHITE
+	material.roughness = .9
+	material.cull_mode = BaseMaterial3D.CULL_DISABLED
 	builder.set_material(material)
 	$Mesh.mesh = builder.commit()
