@@ -6,6 +6,31 @@ var blood_stage: int = 0
 var slashed_amount: float = 0.0
 var _drip_time: float = 0.0
 var desk_lamp_on: bool = true
+## T-215 (D-102): the approved furnished room draws the room; the PS1 meshes hide but every
+## node, collision and API stays. False keeps the PS1 room (comparisons, old captures).
+@export var furnished: bool = true
+## PS1 meshes that stay: story states, puzzles and clue props (paths under Room407).
+const KEEP_PS1: Array[String] = ["Anchors", "Details/BloodSeep", "Details/BloodPools", "Details/SlashRips",
+	"Details/Debris", "Details/CleaningRag", "Ch2Bathroom", "Cables", "Zones"]
+## Inside KEEP_PS1, the PS1 meshes that a furnished model draws instead.
+const REPLACED_PS1: Array[String] = ["Anchors/VietLocker/Back", "Anchors/VietLocker/West",
+	"Anchors/VietLocker/East", "Anchors/VietLocker/Shelf*", "Anchors/VietLocker/Pivot",
+	"Anchors/PhucMattress/Pivot", "Anchors/TeamPhoto", "Anchors/TrashBin/Base", "Anchors/TrashBin/Slat*",
+	"Anchors/Router/Model/Case", "Anchors/Router/Model/Antenna*", "Anchors/Router/Model/Vent*"]
+## Furnished props carried by a moving PS1 node (net stir and hide, mattress lift, slashed pillow).
+const FOLLOW := {"NetViet": "BunkA/Net_Viet", "NetPhuc": "BunkA/Net_Phuc", "NetTrung": "BunkB/Net_Trung",
+	"NetDat": "BunkB/Net_Dat", "MattressPhuc": "Anchors/PhucMattress/Pivot",
+	"BlanketPhuc": "Anchors/PhucMattress/Pivot", "PillowPhuc": "Anchors/PhucMattress/Pivot",
+	"PillowTrung": "Details/TrungPillow"}
+## The playable corridor wall reaches z = -0.1 while the pilot shell's door wall face is z = 0:
+## the door wall, the things on it and its decals come 0.105 m into the room.
+const DOOR_WALL_SHIFT := -0.105
+const DOOR_WALL_PARTS: Array[String] = ["architecture/FrontWallWest", "architecture/FrontWallEast",
+	"architecture/DoorLintel", "fixtures/RoomDoor", "TripoProps/Conduits"]
+const TUBE_ENERGY := 1.2
+var _furnished: Node3D
+var _tubes: Array[StandardMaterial3D] = []
+var _trung_blanket: Node3D
 
 
 func _ready() -> void:
@@ -16,6 +41,8 @@ func _ready() -> void:
 		_apply_surface(node, preload("res://assets/textures/room407/room_wall.png"), Vector2(2, 1))
 	for net in [$BunkA/Net_Phuc, $BunkA/Net_Viet, $BunkB/Net_Dat, $BunkB/Net_Trung]:
 		PropTint.apply(net, Color(.58, .62, .58))
+	if furnished:
+		_furnish()
 	set_blood_stage(blood_stage)
 	set_slashed(slashed_amount)
 
@@ -54,6 +81,8 @@ func set_slashed(amount: float) -> void:
 	$Details/SlashRips.visible = count > 0
 	$Details/Debris.visible = count > 0
 	$Details/TrungPillow.visible = slashed_amount < 1.0
+	if _trung_blanket:
+		_trung_blanket.visible = count == 0
 
 
 func set_flicker(value: bool) -> void:
@@ -93,6 +122,11 @@ func set_plugged(cable_id: StringName, value: bool) -> bool:
 
 
 func _process(delta: float) -> void:
+	if not _tubes.is_empty():
+		var light := $Room407MainLight as Light3D
+		var glow := TUBE_ENERGY * clampf(light.light_energy, 0.0, 1.0) if light.is_visible_in_tree() else 0.0
+		for material in _tubes:
+			material.emission_energy_multiplier = glow
 	if blood_stage == 0:
 		return
 	_drip_time += delta
@@ -100,3 +134,81 @@ func _process(delta: float) -> void:
 		var drop := get_node("Details/BloodSeep/Droplet%d" % number) as Node3D
 		var top := 1.45 if number != 2 else .68
 		drop.position.y = lerpf(top, .03, fmod(_drip_time * .7 + number * .27, 1.0))
+
+
+## T-215: build the D-102 room, hide the PS1 meshes it replaces and hang its moving parts on
+## the old nodes so every script, tween and story state keeps driving them.
+func _furnish() -> void:
+	_furnished = Room407Furnish.build()
+	add_child(_furnished)
+	for mesh: MeshInstance3D in find_children("*", "MeshInstance3D", true, false):
+		if _furnished.is_ancestor_of(mesh):
+			continue
+		var path := String(get_path_to(mesh))
+		if not _matches(path, KEEP_PS1) or _matches(path, REPLACED_PS1):
+			mesh.visible = false
+	var props := _furnished.get_node("TripoProps")
+	for path: String in DOOR_WALL_PARTS:
+		(_furnished.get_node(path) as Node3D).position.z += DOOR_WALL_SHIFT
+	for prop: Node3D in props.get_children():
+		var row: Dictionary = prop.get_meta(&"placement")
+		if row.get("mount", "") == "wall" and row.position[2] > -0.05:
+			prop.position.z += DOOR_WALL_SHIFT
+	for decal: Node3D in _furnished.get_node("Decals").get_children():
+		if decal.get_meta(&"placement").project == "+z":
+			decal.position.z += DOOR_WALL_SHIFT
+	for prop_name: String in FOLLOW:
+		_carry(props.get_node(prop_name), get_node(FOLLOW[prop_name]))
+	# Viet's locker: the body stays, the door swings on hinged.gd's Pivot moved to the model's hinge.
+	var locker := props.get_node("LockerViet") as Node3D
+	var door_pivot := locker.find_child("DoorPivot", true, false) as Node3D
+	var anchor_pivot := $Anchors/VietLocker/Pivot as Node3D
+	var angle := anchor_pivot.rotation.y
+	anchor_pivot.rotation.y = 0.0
+	anchor_pivot.global_position = door_pivot.global_position
+	for door: Node in door_pivot.get_children():
+		# "Door" is already the PS1 door's collision body under the anchor's Pivot.
+		door.name = "Furnished" + door.name
+		_carry(door as Node3D, anchor_pivot)
+	anchor_pivot.rotation.y = angle
+	var bath_pivot := $Extension/BathroomDoor/Pivot as Node3D
+	angle = bath_pivot.rotation.y
+	bath_pivot.rotation.y = 0.0
+	_carry(_furnished.get_node("fixtures/BathroomDoor"), bath_pivot)
+	bath_pivot.rotation.y = angle
+	_fit_mirror_effects(props.get_node("MirrorSmall"))
+	_trung_blanket = props.get_node("BlanketTrung")
+	_tubes = Room407Furnish.tube_materials(_furnished)
+
+
+## Chapter 2's fog sheet and manager reflection were sized for the PS1 mirror (0.5 x 0.65 m,
+## centre y 1.55): fit them to the furnished mirror with the same proportions.
+func _fit_mirror_effects(mirror: Node3D) -> void:
+	var glass: AABB = mirror.transform * Room407Furnish.local_bounds(mirror)
+	var scale_y := glass.size.y / 0.65
+	var fog := $Ch2Bathroom/MirrorFog as Node3D
+	fog.position = Vector3(glass.end.x + 0.01, glass.get_center().y, glass.get_center().z)
+	fog.scale = Vector3(glass.size.z / 0.5, scale_y, 1.0)
+	var reflection := $Ch2Bathroom/Reflection as Node3D
+	reflection.position = Vector3(glass.end.x + 0.025, glass.position.y + 0.035 * scale_y, glass.get_center().z)
+	reflection.scale = Vector3(0.26 * scale_y, 0.26 * scale_y, 0.025)
+
+
+## The room door leaf of the shell, for floor4.gd to hang on Door407 (null without the furnished room).
+func furnished_room_door() -> Node3D:
+	return _furnished.get_node_or_null("fixtures/RoomDoor") as Node3D if _furnished else null
+
+
+func _carry(node: Node3D, holder: Node3D) -> void:
+	node.set_meta(&"furnished", true)
+	var pose := node.global_transform
+	node.get_parent().remove_child(node)
+	holder.add_child(node)
+	node.global_transform = pose
+
+
+static func _matches(path: String, patterns: Array[String]) -> bool:
+	for pattern in patterns:
+		if path == pattern or path.begins_with(pattern + "/") or path.match(pattern) or path.match(pattern + "/*"):
+			return true
+	return false

@@ -5,7 +5,8 @@ extends CanvasLayer
 ## Debug: `-- --ps1-strength=0..1` overrides the strength without saving.
 
 const SETTINGS_PATH := "user://settings.cfg"
-const DEFAULT_STRENGTH: float = 1.0
+## Off by default since G3 brought the furnished room 407 in (D-102); still a player setting.
+const DEFAULT_STRENGTH: float = 0.0
 const DEFAULT_BRIGHTNESS: float = 1.0
 const STRENGTH_ARG := "--ps1-strength="
 

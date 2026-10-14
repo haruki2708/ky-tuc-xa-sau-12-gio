@@ -26,7 +26,7 @@ func after_each() -> void:
 		file.close()
 	elif FileAccess.file_exists(SETTINGS_PATH):
 		DirAccess.remove_absolute(SETTINGS_PATH)
-	RenderingServer.global_shader_parameter_set(&"ps1_strength", 1.0)
+	RenderingServer.global_shader_parameter_set(&"ps1_strength", 0.0)
 
 
 func _save(strength: Variant, brightness: Variant) -> void:
@@ -48,12 +48,13 @@ func test_filter_sits_below_hud_and_menus() -> void:
 	assert_eq(screen.anchor_bottom, 1.0, "covers the full height")
 
 
-func test_defaults_without_settings_apply_full_filter() -> void:
-	assert_eq(filter.strength, 1.0, "default strength;")
+func test_defaults_without_settings_leave_filter_off() -> void:
+	# D-102: the PS1 look is opt-in once G3 brought the furnished room 407 in.
+	assert_eq(filter.strength, 0.0, "default strength;")
 	assert_eq(filter.brightness, 1.0, "default brightness;")
-	assert_eq(_param("strength"), 1.0, "shader strength;")
-	assert_true(filter.get_node("Screen").visible, "filter visible at full strength")
-	assert_eq(filter.snap_strength, 1.0, "vertex snap global sent;")
+	assert_eq(_param("strength"), 0.0, "shader strength;")
+	assert_false(filter.get_node("Screen").visible, "no full-screen pass by default")
+	assert_eq(filter.snap_strength, 0.0, "vertex snap global sent;")
 	assert_true(ProjectSettings.has_setting("shader_globals/ps1_strength"), "shader global declared in project")
 
 
@@ -72,7 +73,7 @@ func test_zero_strength_turns_filter_off_but_brightness_still_applies() -> void:
 func test_settings_changed_reloads_only_video_keys() -> void:
 	_save(0.4, 0.8)
 	EventBus.settings_changed.emit("audio", "sfx_db")
-	assert_eq(filter.strength, 1.0, "unrelated key ignored;")
+	assert_eq(filter.strength, 0.0, "unrelated key ignored;")
 	EventBus.settings_changed.emit("video", "ps1_strength")
 	assert_eq(filter.strength, 0.4, "strength reloaded;")
 	assert_eq(_param("brightness"), 0.8, "brightness read in the same pass;")
@@ -85,5 +86,5 @@ func test_invalid_values_fall_back_to_defaults() -> void:
 	for pair: Array in [["0.5", "1.1"], [2.0, 0.2], [-0.1, 1.6], [NAN, INF], [1, 1]]:
 		_save(pair[0], pair[1])
 		filter.reload()
-		assert_eq(filter.strength, 1.0, "invalid strength %s defaults;" % str(pair[0]))
+		assert_eq(filter.strength, 0.0, "invalid strength %s defaults;" % str(pair[0]))
 		assert_eq(filter.brightness, 1.0, "invalid brightness %s defaults;" % str(pair[1]))

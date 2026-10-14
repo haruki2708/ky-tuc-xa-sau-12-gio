@@ -1,0 +1,6 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scenes/levels/room407/room407_g3_capture.gd" id="1"]
+
+[node name="Room407G3Capture" type="Node3D"]
+script = ExtResource("1")

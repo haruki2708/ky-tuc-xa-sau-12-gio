@@ -173,7 +173,7 @@ func test_lived_in_blender_pieces_and_decals() -> void:
 	var pilot := PILOT.instantiate()
 	tree.root.add_child(pilot)
 	await wait_frames(1)
-	var rows: Array = JSON.parse_string(FileAccess.get_file_as_string("res://../art_source/graphics_upgrade/room407_furnished/decals.json"))
+	var rows: Array = JSON.parse_string(FileAccess.get_file_as_string(Room407Furnish.DECALS))
 	assert_eq(pilot.decals.get_child_count(), rows.size())
 	for decal: Decal in pilot.decals.get_children():
 		assert_true(decal.texture_albedo != null, String(decal.name) + " has its texture")

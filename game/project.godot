@@ -53,7 +53,7 @@ locale/fallback="vi"
 
 ps1_strength={
 "type": "float",
-"value": 1.0
+"value": 0.0
 }
 
 [rendering]

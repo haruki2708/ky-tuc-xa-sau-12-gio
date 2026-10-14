@@ -97,6 +97,8 @@ func _capture_facing(report: Dictionary) -> void:
 ## the camera, identical for the old and the Tripo visual.
 func _capture_room(report: Dictionary) -> void:
 	var floor_root := FLOOR.instantiate() as Node3D
+	# G2 compared against the PS1 room; keep it (T-215 furnishes the playable room).
+	floor_root.get_node("Room407").furnished = false
 	add_child(floor_root)
 	var slot := floor_root.get_node(BINDING) as Node3D
 	var world := WorldEnvironment.new()

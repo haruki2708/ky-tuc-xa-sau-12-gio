@@ -22,7 +22,7 @@
 | `[audio] music_db` | float | `0.0` | −40…+6 | D | Bus `Music` |
 | `[input] mouse_sensitivity` | float | `0.002` | 0.0005…0.006 | A | Player đọc |
 | `[video] head_bob` | bool | `true` | | A | Player đọc; tắt cho người dễ say 3D |
-| `[video] ps1_strength` | float | `1.0` | 0…1 | B | Filter PS1 đọc; 0 là tắt filter (D-005) |
+| `[video] ps1_strength` | float | `0.0` | 0…1 | B | Filter PS1 đọc; 0 là tắt filter (D-005). Mặc định tắt từ G3 phòng 407 (D-102) |
 | `[video] brightness` | float | `1.0` | 0.5…1.5 | B | Filter PS1 đọc, áp dụng kể cả khi `ps1_strength = 0` |
 | `[accessibility] reduce_scares` | bool | `false` | | core, A, F | Giảm hù dọa (D-024): StoryDirector bỏ jumpscare hình ảnh và sting mạnh; thực thể truy đuổi chậm hơn; tiếng thì thầm nhỏ hơn. F tiếp nhận trách nhiệm âm thanh của E theo D-078; key và hành vi giữ nguyên |
 

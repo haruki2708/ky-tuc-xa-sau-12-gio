@@ -1,0 +1,282 @@
+{
+	"godot": "4.7.2-stable (official)",
+	"gpu": "NVIDIA GeForce RTX 3050 Laptop GPU",
+	"images": [
+		{
+			"eye": [
+				2.09999990463257,
+				1.64999997615814,
+				-0.349999994039536
+			],
+			"file": "door_overview_night.png",
+			"fov": 80.0
+		},
+		{
+			"eye": [
+				2.09999990463257,
+				1.64999997615814,
+				-0.349999994039536
+			],
+			"file": "door_overview_torch.png",
+			"fov": 80.0
+		},
+		{
+			"eye": [
+				4.69999980926514,
+				1.64999997615814,
+				-3.75
+			],
+			"file": "back_overview_night.png",
+			"fov": 80.0
+		},
+		{
+			"eye": [
+				4.69999980926514,
+				1.64999997615814,
+				-3.75
+			],
+			"file": "back_overview_torch.png",
+			"fov": 80.0
+		},
+		{
+			"eye": [
+				3.59999990463257,
+				1.60000002384186,
+				-3.40000009536743
+			],
+			"file": "door_wall_night.png",
+			"fov": 75.0
+		},
+		{
+			"eye": [
+				3.59999990463257,
+				1.60000002384186,
+				-3.40000009536743
+			],
+			"file": "door_wall_torch.png",
+			"fov": 75.0
+		},
+		{
+			"eye": [
+				2.5,
+				1.5,
+				-1.5
+			],
+			"file": "bunk_a_night.png",
+			"fov": 70.0
+		},
+		{
+			"eye": [
+				2.5,
+				1.5,
+				-1.5
+			],
+			"file": "bunk_a_torch.png",
+			"fov": 70.0
+		},
+		{
+			"eye": [
+				5.5,
+				1.5,
+				-1.5
+			],
+			"file": "bunk_b_night.png",
+			"fov": 70.0
+		},
+		{
+			"eye": [
+				5.5,
+				1.5,
+				-1.5
+			],
+			"file": "bunk_b_torch.png",
+			"fov": 70.0
+		},
+		{
+			"eye": [
+				2.70000004768372,
+				1.45000004768372,
+				-3.20000004768372
+			],
+			"file": "study_desk_night.png",
+			"fov": 72.0
+		},
+		{
+			"eye": [
+				2.70000004768372,
+				1.45000004768372,
+				-3.20000004768372
+			],
+			"file": "study_desk_torch.png",
+			"fov": 72.0
+		},
+		{
+			"eye": [
+				4.30000019073486,
+				1.54999995231628,
+				-2.29999995231628
+			],
+			"file": "viet_desk_night.png",
+			"fov": 72.0
+		},
+		{
+			"eye": [
+				4.30000019073486,
+				1.54999995231628,
+				-2.29999995231628
+			],
+			"file": "viet_desk_torch.png",
+			"fov": 72.0
+		},
+		{
+			"eye": [
+				6.0,
+				1.60000002384186,
+				-4.34999990463257
+			],
+			"file": "bathroom_night.png",
+			"fov": 82.0
+		},
+		{
+			"eye": [
+				6.0,
+				1.60000002384186,
+				-4.34999990463257
+			],
+			"file": "bathroom_torch.png",
+			"fov": 82.0
+		},
+		{
+			"eye": [
+				6.94999980926514,
+				1.54999995231628,
+				-4.55000019073486
+			],
+			"file": "bath_sink_night.png",
+			"fov": 75.0
+		},
+		{
+			"eye": [
+				6.94999980926514,
+				1.54999995231628,
+				-4.55000019073486
+			],
+			"file": "bath_sink_torch.png",
+			"fov": 75.0
+		},
+		{
+			"eye": [
+				4.59999990463257,
+				1.5,
+				-3.5
+			],
+			"file": "balcony_side_night.png",
+			"fov": 75.0
+		},
+		{
+			"eye": [
+				4.59999990463257,
+				1.5,
+				-3.5
+			],
+			"file": "balcony_side_torch.png",
+			"fov": 75.0
+		},
+		{
+			"eye": [
+				2.59999990463257,
+				1.60000002384186,
+				2.59999990463257
+			],
+			"file": "corridor_door_night.png",
+			"fov": 75.0
+		},
+		{
+			"eye": [
+				2.59999990463257,
+				1.60000002384186,
+				2.59999990463257
+			],
+			"file": "corridor_door_torch.png",
+			"fov": 75.0
+		},
+		{
+			"eye": [
+				2.5,
+				1.5,
+				-1.5
+			],
+			"file": "story_bunk_a_night.png",
+			"fov": 70.0
+		},
+		{
+			"eye": [
+				2.5,
+				1.5,
+				-1.5
+			],
+			"file": "story_bunk_a_torch.png",
+			"fov": 70.0
+		},
+		{
+			"eye": [
+				5.5,
+				1.5,
+				-1.5
+			],
+			"file": "story_bunk_b_night.png",
+			"fov": 70.0
+		},
+		{
+			"eye": [
+				5.5,
+				1.5,
+				-1.5
+			],
+			"file": "story_bunk_b_torch.png",
+			"fov": 70.0
+		},
+		{
+			"eye": [
+				6.5,
+				1.5,
+				-5.0
+			],
+			"file": "story_mirror_night.png",
+			"fov": 60.0
+		},
+		{
+			"eye": [
+				6.5,
+				1.5,
+				-5.0
+			],
+			"file": "story_mirror_torch.png",
+			"fov": 60.0
+		},
+		{
+			"eye": [
+				2.0,
+				1.45000004768372,
+				-1.20000004768372
+			],
+			"file": "viet_locker_open_night.png",
+			"fov": 70.0
+		},
+		{
+			"eye": [
+				2.0,
+				1.45000004768372,
+				-1.20000004768372
+			],
+			"file": "viet_locker_open_torch.png",
+			"fov": 70.0
+		}
+	],
+	"ps1_strength": 0.0,
+	"renderer": "forward_plus",
+	"resolution": [
+		1280,
+		720
+	]
+}

@@ -6,9 +6,7 @@ extends Node3D
 
 const ROOM := preload("res://scenes/levels/floor4/room_407.tscn")
 const SNAPSHOT := preload("res://scenes/levels/graphics_pilot/material_pilot.gd")
-const SHELL := "res://assets/models/graphics_pilot/room407_corner/"
-const SOURCE := "res://../art_source/graphics_upgrade/room407_furnished/"
-const OUTPUT := SOURCE + "previews/"
+const OUTPUT := "res://../art_source/graphics_upgrade/room407_furnished/previews/"
 const ORIGIN := Vector3(30, 0, 0)
 ## Same blade speed as the playable scenes (main.gd, chapter1_main.gd).
 const FAN_SPEED := 15.0
@@ -48,8 +46,9 @@ var fan_spinning := false
 
 
 func _ready() -> void:
-	bindings = JSON.parse_string(FileAccess.get_file_as_string(SOURCE + "placements.json"))
+	bindings = Room407Furnish.placements()
 	var source := ROOM.instantiate()
+	source.furnished = false
 	before = SNAPSHOT.snapshot(source) as Node3D
 	source.free()
 	before.name = "BeforePS1"
@@ -59,44 +58,15 @@ func _ready() -> void:
 		light.visible = false
 	for path: String in ["Details/BloodSeep", "Details/BloodPools", "Details/SlashRips", "Details/Debris", "Extension/ShowerMixer"]:
 		(before.get_node(path) as Node3D).hide()
-	after = Node3D.new()
+	after = Room407Furnish.build()
 	after.name = "AfterFurnished"
 	after.position = ORIGIN
 	add_child(after)
-	for part: String in ["floor", "architecture", "fixtures"]:
-		var model := (load(SHELL + part + ".glb") as PackedScene).instantiate() as Node3D
-		model.name = part
-		after.add_child(model)
-	# The corner pilot's Blender desk lamp is replaced by the Tripo lamp.
-	for node: Node in after.get_node("fixtures").find_children("Lamp*", "", true, false):
-		(node as Node3D).hide()
-	props = Node3D.new()
-	props.name = "TripoProps"
-	after.add_child(props)
-	for row: Dictionary in bindings:
-		var model := (load(row.model) as PackedScene).instantiate() as Node3D
-		model.name = row.name
-		model.position = Vector3(row.position[0], row.position[1], row.position[2])
-		model.rotation_degrees = Vector3(row.get("rot_x", 0.0), row.yaw, 0)
-		if row.get("mount", "") == "wall":
-			# The row position is a point on the wall: push the model's back (+Z) onto it.
-			model.position += model.basis * Vector3(0, 0, -_local_bounds(model).end.z)
-		props.add_child(model)
-	decals = Node3D.new()
-	decals.name = "Decals"
-	after.add_child(decals)
-	for row: Dictionary in JSON.parse_string(FileAccess.get_file_as_string(SOURCE + "decals.json")):
-		decals.add_child(_decal(row))
+	props = after.get_node("TripoProps") as Node3D
+	decals = after.get_node("Decals") as Node3D
 	fan_rotor = props.get_node("CeilingFan").find_child("fan_rotor", true, false) as Node3D
 	locker_door = props.get_node("LockerViet").find_child("DoorPivot", true, false) as Node3D
-	for mesh: MeshInstance3D in after.find_children("*", "MeshInstance3D", true, false):
-		mesh.gi_mode = GeometryInstance3D.GI_MODE_STATIC
-		if String(mesh.name).begins_with("FluorescentTube"):
-			var material := mesh.get_active_material(0).duplicate() as StandardMaterial3D
-			material.emission_enabled = true
-			material.emission = Color(0.88, 0.94, 0.80)
-			mesh.material_override = material
-			tube_materials.append(material)
+	tube_materials = Room407Furnish.tube_materials(after)
 	var world := WorldEnvironment.new()
 	environment = Environment.new()
 	world.environment = environment
@@ -154,45 +124,6 @@ func _ready() -> void:
 	set_mode(true, true)
 	if "--furnished-capture" in OS.get_cmdline_user_args():
 		await _capture()
-
-
-## Unrotated bounds of a model in its own space (all meshes).
-func _local_bounds(model: Node3D) -> AABB:
-	var result := AABB()
-	var first := true
-	for mesh: MeshInstance3D in model.find_children("*", "MeshInstance3D", true, false):
-		var to_model := Transform3D()
-		var node: Node = mesh
-		while node != model:
-			to_model = (node as Node3D).transform * to_model
-			node = node.get_parent()
-		var box: AABB = to_model * mesh.get_aabb()
-		result = box if first else result.merge(box)
-		first = false
-	return result
-
-
-## D-100 grime decal. "project" is the direction it prints towards (into the surface):
-## -y floor, +y ceiling, -x west faces, +x east faces, -z back faces, +z the door wall.
-## "size" is [width, height on the surface, projection depth].
-func _decal(row: Dictionary) -> Decal:
-	var decal := Decal.new()
-	decal.name = row.name
-	decal.texture_albedo = load(row.texture) as Texture2D
-	# Decals print along local -Y with the image on local X/Z.
-	decal.size = Vector3(row.size[0], row.size[2], row.size[1])
-	decal.position = Vector3(row.position[0], row.position[1], row.position[2])
-	decal.modulate = Color(1, 1, 1, row.get("opacity", 1.0))
-	decal.upper_fade = 0.1
-	decal.lower_fade = 0.1
-	var turns := {"-y": Vector3.ZERO, "+y": Vector3(180, 0, 0), "-x": Vector3(0, 0, -90), "+x": Vector3(0, 0, 90),
-		"-z": Vector3(90, 0, 0), "+z": Vector3(-90, 0, 0)}
-	decal.rotation_degrees = turns[row.project]
-	# On x-facing walls the turn stands local X upright: spin it back so the image's top stays up.
-	var spin: float = row.get("spin", 0.0) + (90.0 if row.project in ["-x", "+x"] else 0.0)
-	if spin != 0.0:
-		decal.rotate_object_local(Vector3.UP, deg_to_rad(spin))
-	return decal
 
 
 func _light(pos: Vector3, color: Color, energy: float, radius: float, size: float) -> void:

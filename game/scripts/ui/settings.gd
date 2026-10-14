@@ -25,7 +25,7 @@ const SCHEMA := {
 	"video": {
 		"head_bob": {"default": true},
 		"brightness": {"default": 1.0, "min": 0.5, "max": 1.5},
-		"ps1_strength": {"default": 1.0, "min": 0.0, "max": 1.0},
+		"ps1_strength": {"default": 0.0, "min": 0.0, "max": 1.0},
 	},
 }
 

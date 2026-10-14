@@ -18,7 +18,7 @@ func test_reset_video_saves_once_before_all_signals_and_preserves_every_other_ke
 		"input": {"mouse_sensitivity": 0.004},
 		"accessibility": {"reduce_scares": true},
 		"other": {"sentinel": [7, "keep", false]},
-		"video": {"head_bob": false, "brightness": 1.4, "ps1_strength": 0.0, "unknown": 42},
+		"video": {"head_bob": false, "brightness": 1.4, "ps1_strength": 0.6, "unknown": 42},
 	}
 	for section: String in original:
 		for key: String in original[section]:
@@ -32,7 +32,7 @@ func test_reset_video_saves_once_before_all_signals_and_preserves_every_other_ke
 		assert_eq(saved.load(SettingsStore.SETTINGS_PATH), OK)
 		assert_eq(saved.get_value("video", "head_bob"), true)
 		assert_eq(saved.get_value("video", "brightness"), 1.0)
-		assert_eq(saved.get_value("video", "ps1_strength"), 1.0)
+		assert_eq(saved.get_value("video", "ps1_strength"), 0.0)
 		observed.append(section + "/" + key)
 	EventBus.settings_changed.connect(callback)
 	assert_eq(spy.reset_section("video"), OK)
@@ -58,7 +58,7 @@ func test_reset_section_missing_file_creates_only_requested_schema_section() -> 
 	assert_eq(saved.get_sections(), PackedStringArray(["video"]))
 	assert_eq(saved.get_value("video", "head_bob"), true)
 	assert_eq(saved.get_value("video", "brightness"), 1.0)
-	assert_eq(saved.get_value("video", "ps1_strength"), 1.0)
+	assert_eq(saved.get_value("video", "ps1_strength"), 0.0)
 	assert_eq(typeof(saved.get_value("video", "brightness")), TYPE_FLOAT)
 
 
@@ -102,7 +102,7 @@ func test_reset_section_replaces_invalid_video_types_but_keeps_unknown_entries()
 	assert_eq(config.get_value("video", "head_bob"), true)
 	assert_eq(config.get_value("video", "brightness"), 1.0)
 	assert_eq(typeof(config.get_value("video", "brightness")), TYPE_FLOAT)
-	assert_eq(config.get_value("video", "ps1_strength"), 1.0)
+	assert_eq(config.get_value("video", "ps1_strength"), 0.0)
 	assert_eq(config.get_value("video", "external"), "keep")
 
 
@@ -250,7 +250,7 @@ func _assert_defaults() -> void:
 			"footsteps_db": 0.0, "voice_db": 0.0, "music_db": 0.0},
 		"input": {"mouse_sensitivity": 0.002},
 		"accessibility": {"reduce_scares": false},
-		"video": {"head_bob": true, "brightness": 1.0, "ps1_strength": 1.0},
+		"video": {"head_bob": true, "brightness": 1.0, "ps1_strength": 0.0},
 	}
 	for section: String in expected:
 		for key: String in expected[section]:

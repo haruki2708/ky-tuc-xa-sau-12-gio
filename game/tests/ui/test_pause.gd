@@ -97,14 +97,14 @@ func test_controls_save_live_while_paused_and_reset_restores_defaults() -> void:
 	panel.get_node("Scroll/Columns/Other/mouse_sensitivity/Slider").value = 0.004
 	panel.get_node("Scroll/Columns/Other/HeadBob").button_pressed = false
 	panel.get_node("Scroll/Columns/Other/brightness/Slider").value = 1.25
-	panel.get_node("Scroll/Columns/Other/ps1_strength/Slider").value = 0.0
+	panel.get_node("Scroll/Columns/Other/ps1_strength/Slider").value = 0.6
 	panel.get_node("Scroll/Columns/Other/Locale").item_selected.emit(1)
 	await wait_frames(1)
 	assert_true(tree.paused)
 	assert_eq(settings.get_value("input", "mouse_sensitivity"), 0.004)
 	assert_eq(settings.get_value("video", "head_bob"), false)
 	assert_eq(settings.get_value("video", "brightness"), 1.25)
-	assert_eq(settings.get_value("video", "ps1_strength"), 0.0)
+	assert_eq(settings.get_value("video", "ps1_strength"), 0.6)
 	assert_eq(TranslationServer.get_locale(), "en")
 	assert_true(AudioServer.is_bus_mute(AudioServer.get_bus_index("SFX")))
 	assert_eq(panel.get_node("Title").tr("UI_SETTINGS_TITLE"), "Settings")
@@ -113,7 +113,7 @@ func test_controls_save_live_while_paused_and_reset_restores_defaults() -> void:
 	assert_eq(settings.get_value("input", "mouse_sensitivity"), 0.002)
 	assert_eq(settings.get_value("video", "head_bob"), true)
 	assert_eq(panel.get_node("Scroll/Columns/Other/brightness/Slider").value, 1.0)
-	assert_eq(panel.get_node("Scroll/Columns/Other/ps1_strength/Slider").value, 1.0)
+	assert_eq(panel.get_node("Scroll/Columns/Other/ps1_strength/Slider").value, 0.0)
 	assert_false(AudioServer.is_bus_mute(AudioServer.get_bus_index("SFX")))
 	assert_false(panel.get_node("SaveError").visible)
 
@@ -224,7 +224,7 @@ func test_reset_video_requires_confirmation_and_keeps_nonvideo_preferences() -> 
 	settings.set_value("accessibility", "reduce_scares", true)
 	settings.set_value("video", "brightness", 1.4)
 	settings.set_value("video", "head_bob", false)
-	settings.set_value("video", "ps1_strength", 0.0)
+	settings.set_value("video", "ps1_strength", 0.6)
 	_menu.open_menu()
 	_menu.show_settings()
 	var panel := _menu.get_node("Root/SettingsCard/SettingsPanel")
@@ -242,7 +242,7 @@ func test_reset_video_requires_confirmation_and_keeps_nonvideo_preferences() -> 
 	dialog.get_ok_button().pressed.emit()
 	assert_eq(settings.get_value("video", "brightness"), 1.0)
 	assert_eq(settings.get_value("video", "head_bob"), true)
-	assert_eq(settings.get_value("video", "ps1_strength"), 1.0)
+	assert_eq(settings.get_value("video", "ps1_strength"), 0.0)
 	assert_eq(settings.get_value("ui", "locale"), "en")
 	assert_eq(settings.get_value("audio", "sfx_db"), -12.0)
 	assert_eq(settings.get_value("input", "mouse_sensitivity"), 0.004)
