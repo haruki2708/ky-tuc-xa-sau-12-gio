@@ -53,4 +53,56 @@ G3 (D-103…D-106, D-109) đã thay phòng 407 trong bản chơi bằng đồ m�
 
 ## Handoff (agent điền)
 
+### Claude Code web, lane F, D-108 — 15/10/2026 (UTC), nhánh `lane-f/T-218-room407-object-audio` từ `origin/main` `a167d6e` (D-110)
+
+**Tóm tắt:** đo vị trí thật của mọi nguồn âm phòng 407 trong cả 4 chương, dời nguồn âm cho khớp đồ G3, thêm cảnh nghe thử và 10 test. Quạt và đèn tuýp vốn đã gần đúng (lệch ≤ 14 cm vì D-103…D-106 giữ nguyên toạ độ); chỗ lệch thật là **vòi sen (1,03 m)** và **mirror_shiver (1,48 m)**. Không thêm file âm, không đổi âm lượng, không đổi `light_hum.gd`. **Chưa ai nghe; máy cloud không có loa.**
+
+#### Bảng lệch vị trí (toạ độ cục bộ `Room407`, mét; đo bằng scene tạm headless trong `game/_tmp`, đã xóa; chương 1–4 đều đo)
+
+| Nguồn | Vật mới (đo trong cảnh) | Trước (khoảng cách tới vật) | Sau |
+|---|---|---|---|
+| Quạt trần `FanAmbience` | tâm cánh `fan_rotor` của `CeilingFan` mới (2; 2,54; −2,5) | (2; 2,40; −2,5): **0,143** | (2; 2,54; −2,5): **0,003** |
+| Tiếng ù đèn `LightHum` | tâm hai ống `FluorescentTube` mới (2; 2,84; −1,20) | (2; 2,78; −1,20): **0,060** | (2; 2,84; −1,20): **0,000** |
+| Nước vòi sen `ShowerAudio/Water` | đầu phát nước thấy được `Ch2Bathroom/Water` (6,18; 2,17; −6,65); mô hình `Shower` mới cao đến y 2,05, tâm xz (6,18; −6,69) | tâm khoang `ShowerStall` (6,18; 1,20; −6,32): **1,025** so với điểm nước rơi | (6,18; 2,17; −6,65): **0,000**; cách tâm mô hình theo xz 0,039 |
+| `mirror_shiver` (cue chương 2 slot 12) | bóng quản lý `Ch2Bathroom/Reflection` trên gương nhỏ (5,52; 1,15; −5,0); kính `ReflectiveMirrorSmall` (5,40; 1,41; −5,0) | tâm khoang (6,18; 1,20; −6,32): **1,478** (kính: 1,546) | (5,52; 1,15; −5,0): **0,000** (kính: 0,283) |
+| Tiếng đẩy cửa, `door_burst`, `Cue` | cửa nhà tắm `Extension/BathroomDoor` (5,35; 0; −4,0) | tâm khoang, cách cửa khoảng 2,4 m | **giữ nguyên** (xem "Ghi nhận") |
+| Hơi nước `Steam`, tiếng bíp `shower_beep` | khoang tắm | tâm khoang | giữ nguyên |
+
+Quạt có quay ở **cả 4 chương** (`chapter1_main.gd` gom `fan_rotor` của phòng mới, test xác nhận), và `FanAmbience` đang phát ở cả 4 chương, nên không có chỗ quạt quay mà thiếu tiếng hay ngược lại. `ShowerAudio` chỉ có ở chương 2 (do `chapter2_director.gd` dựng), đúng như trước. Đèn chính phòng 407 tắt lúc vào cảnh (`chapter1_main.gd`), nên tiếng ù chỉ có khi đèn sáng hoặc đang chập.
+
+#### Đã làm
+1. `game/scenes/levels/floor4/room_407.tscn` (chỉ thuộc tính vị trí hai node, đúng phạm vi card): `FanAmbience` y 2,40 → 2,54; `LightHum` thêm `position = (0; 0,06; 0)`. `volume_db`, `unit_size`, `max_distance`, stream giữ nguyên.
+2. `game/scripts/audio/shower_audio.gd`: nước phát tại `Ch2Bathroom/Water`; `mirror_shiver` phát tại `Ch2Bathroom/Reflection`, dự phòng `ReflectiveMirrorSmall`. Tìm node từ tổ tiên chứa `ShowerStall`; thiếu node thì về tâm khoang (vị trí cũ), không bao giờ về gốc thế giới (có test). Thêm `@export var follow_fixtures` (mặc định `true`; `false` đưa mọi nguồn về chỗ cũ, dùng cho so sánh). Đẩy cửa và `door_burst` giữ chỗ cũ. API `set_water`, `set_steam`, `play_cue`, `play_door_push` không đổi.
+3. `game/scripts/audio/light_hum.gd` **không sửa.** Đã kiểm: tiếng ù theo năng lượng thật của đèn mỗi frame; `flicker_light.gd` (D-104) chỉ đổi biên độ xung (0,7 → 2,6) chứ không đổi nhịp 0,73 s nên tiếng ù tắt/bật khít xung của đèn mới. Test chạy đèn thật chập 1,7 giây, mỗi frame so `hum.playing` với trạng thái đèn: 0 lệch.
+4. Cảnh nghe thử `game/audio/graphics_upgrade/room407_audio_preview.tscn` (+ `.gd`): phòng 407 đủ đồ, mở im lặng, người nghe ở giữa phòng (`C`) hoặc ở cửa nhà tắm (`B`); phím bật quạt (`F`), đèn (`L`), chập (`K`), nước lạnh/ấm/sôi (`1/2/3`), tắt nước (`0`), hơi nước (`S`), `mirror_shiver` (`M`), **đổi vị trí mới ↔ cũ (`T`)**, tắt hết (Space), nạp lại (`R`), thoát (Esc). Hướng dẫn và danh sách nghe: `audio_source/graphics_upgrade/README.md` (mục T-218).
+5. Test `game/tests/audio/test_room407_object_audio.gd` (10 test): nguồn nằm trong 10 cm quanh tâm quạt/đèn và trong mô hình; âm lượng nền không tăng; ù đèn khít xung chập; nước từ chỗ nước rơi và vẫn bật/tắt theo `set_water`; `mirror_shiver` ở bóng gương, đẩy cửa giữ chỗ cũ; thiếu node → tâm khoang chứ không phải gốc thế giới; `follow_fixtures=false`; 3 lần nạp lại phòng chỉ còn một nguồn mỗi loại và `checkpoint_loaded` tắt hết; quạt quay và có tiếng ở chương 1–4; cảnh nghe thử im lặng khi mở và các phím chạy. Chạy thử bộ test mới với code cũ (`room_407.tscn` và `shower_audio.gd` của `origin/main`): 5/10 **FAIL** đúng chỗ (quạt lệch 0,143 > 10 cm, nước, gương, thiếu node, quạt ở 4 chương); các test còn lại pass vì không phụ thuộc vị trí (ù đèn chỉ lệch cũ 6 cm, âm lượng, nạp lại, cảnh nghe thử, `follow_fixtures`).
+6. `game/audio/graphics_upgrade/CREDITS.md`: ghi T-218 không thêm asset âm thanh.
+
+#### Đề xuất âm lượng/tầm nghe (chưa áp dụng, chờ nghe)
+Mặc định **không tăng**. Vùng `AmbientZone` (7,8 × 3 × 6,9 m) phủ cả phòng và khoang tắm; quạt `unit_size 4`, `max_distance 22` luôn nghe được khắp phòng; ù đèn `max_distance 6`: từ vòi sen đèn cách khoảng 7 m nên **không nghe ù đèn ở khoang tắm** (thiết kế cũ, không đổi). Nếu chủ dự án thấy quạt quá hiện diện ở cuối phòng thì giảm `max_distance` quạt về khoảng 12 hoặc `volume_db` xuống 1–2 dB, chứ không cần dời nữa.
+
+#### Ghi nhận / yêu cầu thay đổi ngoài vùng F
+1. **(B hoặc integrator)** Hạt nước `Ch2Bathroom/Water` bắt đầu ở y 2,17 nhưng mô hình `Shower` mới chỉ cao đến y 2,05, tức nước (và tiếng nước đi theo) khởi phát cao hơn đầu vòi mới khoảng 12 cm. Nếu hạ emitter xuống đầu vòi thật thì tiếng nước tự đi theo (F lấy vị trí từ emitter), không cần sửa gì ở F.
+2. **(core, `chapter2_director.gd`)** Tiếng đẩy cửa (`play_door_push`) và `door_burst` phát ở giữa khoang tắm, cách cửa nhà tắm (5,35; 0; −4,0) khoảng 2,4 m. Chưa đổi vì card chỉ yêu cầu nước và gương; nếu muốn khớp cửa, đề nghị director đặt thêm một anchor (ví dụ `Anchors/BathroomDoorAudio`) hoặc cho F nhận đường dẫn `Extension/BathroomDoor`. F có thể làm ngay khi được cho phép.
+3. **(core, `chapter1_director.gd`)** Chập chờn đèn chương 1 (`_set_flicker`) không gọi `LightHum.flicker()` nên không có tiếng rè `fluorescent_flicker.ogg` (chỉ ù tắt/bật theo xung ánh sáng). Hành lang 405/407 thì có. Chỉ ghi nhận, không phải lỗi của T-218.
+4. Gương đứng `FullMirror` không có cue riêng: `flash_reflection` và `mirror_shiver` chỉ gắn với gương nhỏ trong nhà tắm.
+5. Không cần câu hỏi về luật chơi hay cốt truyện.
+
+#### Danh sách âm chủ dự án cần nghe (trên Windows, có loa)
+Cảnh nghe thử: `& 'D:\Tools\Godot\Godot_v4.7.2-stable_win64_console.exe' --path game res://audio/graphics_upgrade/room407_audio_preview.tscn --windowed --resolution 960x540` (xếp lượt Godot với integrator trước).
+- Quạt (F) từ giữa phòng (C): nhỏ, đúng ở trên đầu/trần.
+- Đèn (L, K): ù tắt/bật đúng nhịp đèn chập; không click lạ lúc bật lại. Theo đọc code, hum khởi động lại từ đầu clip mỗi lần đèn sáng lại (cơ chế cũ, chưa đổi); cần nghe để biết có click không.
+- Nước (1/2/3) từ cửa nhà tắm (B) và giữa phòng (C), so mới/cũ bằng T: từ vòi sen mới, không to hơn, không chói.
+- `mirror_shiver` (M, T): lệch về tường tây nhà tắm (gương), nghe khác với chỗ cũ.
+- Cảnh thật: chương 1 phòng 407 khi đèn chập; chương 1–4 tiếng quạt trong phòng; chương 2 nhà tắm (nước lạnh/ấm/sôi, đẩy cửa, slot 12 bóng quản lý trong gương).
+
+#### Chưa kiểm được trên máy cloud (không loa, không card đồ họa)
+Chất âm, âm lượng và hướng nghe thật; so cảm nhận mới/cũ; hiển thị cảnh nghe thử (chỉ chạy headless; test gọi các hàm gắn với phím và xác nhận mở im lặng, chưa gõ phím thật, chưa xem ảnh); khớp hình-âm thanh trong cảnh render; FPS (không đo). Không chạy `pwsh tools/test.ps1`/`tools/check.ps1` (máy Linux không có PowerShell): thay bằng lệnh Godot trực tiếp theo `web.md`, test chạy với dữ liệu người dùng cô lập (`XDG_DATA_HOME` + `QA_EXPECTED_USER_ROOT` như `tools/test.ps1`); phần "check" thay bằng parse từng script mới qua `parse_probe` (PASS).
+
+#### Kết quả test (Linux, Godot 4.7.2, dữ liệu người dùng cô lập; lệnh trực tiếp thay `pwsh tools/test.ps1`)
+- **Lượt 1, trước khi sửa, trên `origin/main` `a167d6e`:** `RESULT: 779 passed, 1 failed`. FAIL duy nhất: `test_wide_corridors.gd::test_floor4_standalone_navigation_reaches_both_ends_and_room407` (nav chập chờn trên Linux, STATUS đã ghi chưa chẩn đoán; lượt đó chạy song song với một lượt Godot khác nên CPU tải nặng; ở lượt chạy trước và lượt 2 test này pass). Không sửa. Lượt chạy đầu tiên (chưa cô lập dữ liệu người dùng, có chạy song song) cho 775 passed, 5 failed: `test_ch2_menu` và `test_ch3_tools` đòi `QA_EXPECTED_USER_ROOT` (chỉ có khi chạy qua `tools/test.ps1`), `test_manager` và hai test của `test_reading` nhiễm dữ liệu người dùng dùng chung; không dùng làm chuẩn so sánh.
+- **Lượt 2, sau khi sửa (nhánh này, bản commit):** `RESULT: 790 passed, 0 failed` (780 test cũ + 10 test mới), không dòng `ERROR:` nào trong log. Không có FAIL mới so với lượt 1; nav test pass.
+- `git diff --check` PASS. Parse từng script đổi/mới qua `tests/tools/parse_probe.tscn` (cách `tools/check.ps1` dùng): `shower_audio.gd`, `light_hum.gd`, `room407_audio_preview.gd`, `test_room407_object_audio.gd` đều PASS. **Không chạy được `tools/check.ps1` nguyên bản (không có `pwsh`).**
+- `default_bus_layout.tres` do Godot tự ghi lúc import: đã `git checkout` trước khi commit, không nằm trong diff. Không FPS, không bot.
+
 ## Review (integrator)
