@@ -23,14 +23,43 @@ func set_paper_style(value: StringName) -> void:
 		_paper_tint = Color("e9dfbf")
 	elif value == &"notebook":
 		_paper_tint = Color("e9dfc2")
+	elif value == &"photo_back":
+		_paper_tint = Color("fbf8f0")
+	elif value == &"card":
+		_paper_tint = Color("f6f8fa")
 	box.bg_color = _paper_tint
-	box.shadow_color = Color(0, 0, 0, 0.65)
-	box.shadow_size = 22
-	box.shadow_offset = Vector2(0, 12)
-	box.content_margin_left = 56
-	box.content_margin_right = 56
-	box.content_margin_top = 38
-	box.content_margin_bottom = 38
+	if value == &"card":
+		box.corner_radius_top_left = 12
+		box.corner_radius_top_right = 12
+		box.corner_radius_bottom_left = 12
+		box.corner_radius_bottom_right = 12
+		box.shadow_color = Color(0, 0, 0, 0.65)
+		box.shadow_size = 26
+		box.shadow_offset = Vector2(0, 14)
+		box.content_margin_left = 24
+		box.content_margin_right = 24
+		box.content_margin_top = 0
+		box.content_margin_bottom = 20
+	elif value == &"photo_back":
+		box.corner_radius_top_left = 2
+		box.corner_radius_top_right = 2
+		box.corner_radius_bottom_left = 2
+		box.corner_radius_bottom_right = 2
+		box.shadow_color = Color(0, 0, 0, 0.6)
+		box.shadow_size = 20
+		box.shadow_offset = Vector2(0, 10)
+		box.content_margin_left = 32
+		box.content_margin_right = 32
+		box.content_margin_top = 28
+		box.content_margin_bottom = 28
+	else:
+		box.shadow_color = Color(0, 0, 0, 0.65)
+		box.shadow_size = 22
+		box.shadow_offset = Vector2(0, 12)
+		box.content_margin_left = 56
+		box.content_margin_right = 56
+		box.content_margin_top = 38
+		box.content_margin_bottom = 38
 	add_theme_stylebox_override("panel", box)
 	queue_redraw()
 
@@ -61,3 +90,15 @@ func _draw() -> void:
 	elif paper_style == &"notice":
 		for x in [size.x * 0.16, size.x * 0.76]:
 			draw_rect(Rect2(x, 4, 100, 24), Color(0.67, 0.57, 0.31, 0.45))
+	elif paper_style == &"photo_back":
+		for y in range(40, int(size.y), 44):
+			draw_line(Vector2(16, y), Vector2(size.x - 16, y), Color(0.35, 0.3, 0.25, 0.05))
+	elif paper_style == &"card":
+		draw_rect(Rect2(Vector2(1, 1), size - Vector2(2, 2)), Color(0.18, 0.24, 0.35, 0.2), false, 1.5)
+		draw_rect(Rect2(0, 0, size.x, 54), Color("1b324f"))
+		draw_line(Vector2(0, 54), Vector2(size.x, 54), Color("d4af37"), 2.0)
+		var photo_rect := Rect2(36, 78, 130, 170)
+		draw_rect(photo_rect, Color(0.88, 0.91, 0.94))
+		draw_rect(photo_rect, Color(0.65, 0.72, 0.8), false, 1.5)
+		draw_circle(Vector2(101, 138), 26, Color(0.74, 0.8, 0.86))
+		draw_circle(Vector2(101, 225), 45, Color(0.74, 0.8, 0.86))

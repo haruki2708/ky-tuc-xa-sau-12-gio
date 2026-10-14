@@ -1,9 +1,23 @@
-[gd_scene load_steps=5 format=3]
+[gd_scene load_steps=6 format=3]
 
 [ext_resource type="Script" path="res://scripts/ui/document_view.gd" id="1"]
 [ext_resource type="Theme" path="res://ui/theme/main_theme.tres" id="2"]
 [ext_resource type="Script" path="res://scripts/ui/paper_surface.gd" id="3"]
 [ext_resource type="Script" path="res://scripts/ui/document_stamp.gd" id="4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_photo_card"]
+bg_color = Color(0.96, 0.95, 0.92, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_left = 3
+corner_radius_bottom_right = 3
+shadow_color = Color(0, 0, 0, 0.65)
+shadow_size = 22
+shadow_offset = Vector2(0, 10)
+content_margin_left = 4
+content_margin_top = 4
+content_margin_right = 4
+content_margin_bottom = 4
 
 [node name="DocumentView" type="CanvasLayer"]
 process_mode = 3
@@ -61,6 +75,135 @@ size_flags_horizontal = 8
 theme_override_colors/font_color = Color(0.65, 0.2, 0.18, 1)
 theme_override_constants/outline_size = 0
 theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+script = ExtResource("4")
+
+[node name="PhotoFrame" type="HBoxContainer" parent="Root"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -500.0
+offset_top = -175.0
+offset_right = 500.0
+offset_bottom = 175.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 36
+alignment = 1
+
+[node name="PhotoCard" type="PanelContainer" parent="Root/PhotoFrame"]
+custom_minimum_size = Vector2(480, 320)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_photo_card")
+
+[node name="PhotoTexture" type="TextureRect" parent="Root/PhotoFrame/PhotoCard"]
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="BackPaper" type="PanelContainer" parent="Root/PhotoFrame"]
+custom_minimum_size = Vector2(480, 320)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("3")
+paper_style = &"photo_back"
+
+[node name="BackContent" type="VBoxContainer" parent="Root/PhotoFrame/BackPaper"]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="BackTitle" type="Label" parent="Root/PhotoFrame/BackPaper/BackContent"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.18, 0.16, 0.14, 1)
+theme_override_constants/outline_size = 0
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="BackScroll" type="ScrollContainer" parent="Root/PhotoFrame/BackPaper/BackContent"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="BackLines" type="VBoxContainer" parent="Root/PhotoFrame/BackPaper/BackContent/BackScroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 16
+
+[node name="CardFrame" type="PanelContainer" parent="Root"]
+visible = false
+custom_minimum_size = Vector2(640, 404)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -202.0
+offset_right = 320.0
+offset_bottom = 202.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3")
+paper_style = &"card"
+
+[node name="CardContent" type="VBoxContainer" parent="Root/CardFrame"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="CardHeader" type="MarginContainer" parent="Root/CardFrame/CardContent"]
+custom_minimum_size = Vector2(0, 54)
+layout_mode = 2
+theme_override_constants/margin_left = 28
+theme_override_constants/margin_right = 28
+
+[node name="CardTitle" type="Label" parent="Root/CardFrame/CardContent/CardHeader"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.96, 0.98, 1)
+theme_override_constants/outline_size = 0
+theme_override_font_sizes/font_size = 24
+vertical_alignment = 1
+
+[node name="CardBody" type="MarginContainer" parent="Root/CardFrame/CardContent"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 28
+theme_override_constants/margin_top = 22
+theme_override_constants/margin_right = 28
+theme_override_constants/margin_bottom = 20
+
+[node name="CardColumns" type="HBoxContainer" parent="Root/CardFrame/CardContent/CardBody"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="CardPhotoSpacer" type="Control" parent="Root/CardFrame/CardContent/CardBody/CardColumns"]
+custom_minimum_size = Vector2(148, 170)
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="CardDetails" type="VBoxContainer" parent="Root/CardFrame/CardContent/CardBody/CardColumns"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 16
+
+[node name="CardStamp" type="Label" parent="Root/CardFrame/CardContent/CardBody"]
+custom_minimum_size = Vector2(110, 110)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_colors/font_color = Color(0.65, 0.2, 0.18, 0.8)
+theme_override_constants/outline_size = 0
+theme_override_font_sizes/font_size = 18
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
