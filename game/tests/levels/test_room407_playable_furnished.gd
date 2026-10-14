@@ -168,6 +168,50 @@ func test_floor_hangs_the_furnished_room_door_on_door407() -> void:
 	assert_not_null(fan, "main.gd spins every fan_rotor under Floor4")
 
 
+func test_room_is_darker_and_the_torch_stronger_inside_only() -> void:
+	var floor4 := spawn(FLOOR)
+	var room := floor4.get_node("Room407") as Node3D
+	var environment := (floor4.get_node("Environment") as WorldEnvironment).environment
+	var outside_ambient := environment.ambient_light_energy
+	var camera := Camera3D.new()
+	fixtures.append(camera)
+	tree.root.add_child(camera)
+	camera.make_current()
+	var torch := SpotLight3D.new()
+	torch.name = "Flashlight"
+	torch.light_energy = 2.5
+	torch.spot_angle = 28.0
+	camera.add_child(torch)
+	camera.global_position = room.to_global(Vector3(2.8, 1.6, 2.0))
+	await wait_frames(30)
+	assert_eq(environment.ambient_light_energy, outside_ambient, "the corridor keeps floor 4's night")
+	assert_eq(torch.light_energy, 2.5)
+	camera.global_position = room.to_global(Vector3(4.0, 1.6, -3.0))
+	await wait_frames(60)
+	assert_true(is_equal_approx(environment.ambient_light_energy, room.ROOM_ENVIRONMENT.ambient_light_energy), "room night as dark as the pilot")
+	assert_true(environment.ssao_enabled)
+	assert_true(is_equal_approx(torch.light_energy, room.ROOM_TORCH.light_energy), "pilot torch inside the room")
+	assert_true(is_equal_approx(torch.spot_angle, room.ROOM_TORCH.spot_angle))
+	var tube := room.get_node("Room407MainLight") as OmniLight3D
+	assert_true(tube.shadow_enabled and tube.omni_range == room.TUBE_LIGHT.omni_range, "pilot ceiling tube")
+	tube.set_flicker(true)
+	tube.visible = true
+	var peak := 0.0
+	for i in 40:
+		await wait_frames(1)
+		peak = maxf(peak, tube.light_energy)
+	tube.set_flicker(false)
+	assert_true(is_equal_approx(peak, room.TUBE_LIGHT.flicker_energy), "the flicker lights the room like the pilot tube")
+	for name in ["CorridorLight_406", "CorridorLight_407", "CorridorLight_408"]:
+		assert_true((floor4.get_node("Corridor/" + name) as OmniLight3D).shadow_enabled, name + " stops at the room walls")
+	assert_false((floor4.get_node("Corridor/CorridorLight_401") as OmniLight3D).shadow_enabled, "far corridor lights unchanged")
+	floor4.queue_free()
+	fixtures.erase(floor4)
+	await wait_frames(2)
+	assert_eq(environment.ambient_light_energy, outside_ambient, "the shared environment is handed back")
+	assert_false(environment.ssao_enabled)
+
+
 func test_ps1_room_stays_available() -> void:
 	var room := spawn(ROOM, false)
 	assert_true(room.get_node_or_null("Furnished") == null)

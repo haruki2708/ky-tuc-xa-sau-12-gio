@@ -28,9 +28,23 @@ const DOOR_WALL_SHIFT := -0.105
 const DOOR_WALL_PARTS: Array[String] = ["architecture/FrontWallWest", "architecture/FrontWallEast",
 	"architecture/DoorLintel", "fixtures/RoomDoor", "TripoProps/Conduits"]
 const TUBE_ENERGY := 1.2
+## D-104: inside the room the night and the lit tube look like the approved pilot
+## (previews/room_centre_torch_after.png, room_centre_tube_after.png); the corridor keeps floor 4's night.
+const INSIDE := AABB(Vector3(0.1, -0.5, -6.95), Vector3(7.8, 4.0, 6.95))
+const ROOM_ENVIRONMENT := {"ambient_light_color": Color(0.48, 0.57, 0.7), "ambient_light_energy": 0.06,
+	"fog_light_color": Color(0.25, 0.30, 0.36), "fog_density": 0.004}
+const ROOM_TORCH := {"light_energy": 5.0, "spot_angle": 38.0, "spot_angle_attenuation": 1.3,
+	"spot_range": 10.0, "light_size": 0.025}
+const TUBE_LIGHT := {"light_color": Color(0.88, 0.94, 0.80), "omni_range": 9.0, "light_size": 0.25,
+	"shadow_enabled": true, "flicker_energy": 2.6}
+## Seconds to blend between the corridor and the room look at the door.
+const BLEND_TIME := 0.35
 var _furnished: Node3D
 var _tubes: Array[StandardMaterial3D] = []
 var _trung_blanket: Node3D
+var _inside_weight: float = 0.0
+var _environment: Environment
+var _torch: SpotLight3D
 
 
 func _ready() -> void:
@@ -122,6 +136,8 @@ func set_plugged(cable_id: StringName, value: bool) -> bool:
 
 
 func _process(delta: float) -> void:
+	if _furnished:
+		_blend_room_lighting(delta)
 	if not _tubes.is_empty():
 		var light := $Room407MainLight as Light3D
 		var glow := TUBE_ENERGY * clampf(light.light_energy, 0.0, 1.0) if light.is_visible_in_tree() else 0.0
@@ -179,6 +195,59 @@ func _furnish() -> void:
 	_fit_mirror_effects(props.get_node("MirrorSmall"))
 	_trung_blanket = props.get_node("BlanketTrung")
 	_tubes = Room407Furnish.tube_materials(_furnished)
+	for property: String in TUBE_LIGHT:
+		$Room407MainLight.set(property, TUBE_LIGHT[property])
+
+
+func _exit_tree() -> void:
+	# Floor 4's Environment is shared by every instance of the scene: hand it back untouched.
+	_apply_room_lighting(0.0)
+	_environment = null
+	_torch = null
+
+
+## Blends the world environment and the phone torch (any "Flashlight" under the camera)
+## toward ROOM_ENVIRONMENT / ROOM_TORCH while the camera is inside the room.
+func _blend_room_lighting(delta: float) -> void:
+	var camera := get_viewport().get_camera_3d()
+	var inside := camera != null and INSIDE.has_point(to_local(camera.global_position))
+	var weight := move_toward(_inside_weight, 1.0 if inside else 0.0, delta / BLEND_TIME)
+	var world := get_viewport().find_world_3d()
+	var environment := world.environment if world else null
+	var torch := camera.find_child("Flashlight", true, false) as SpotLight3D if camera else null
+	if environment != _environment or torch != _torch:
+		_apply_room_lighting(0.0)
+		_environment = environment
+		_torch = torch
+	elif weight == _inside_weight:
+		return
+	_inside_weight = weight
+	_apply_room_lighting(weight)
+
+
+func _apply_room_lighting(weight: float) -> void:
+	if is_instance_valid(_environment):
+		_blend(_environment, ROOM_ENVIRONMENT, weight)
+		var room := weight > 0.5
+		_environment.ssao_enabled = room or _environment.get_meta(&"outside_ssao")
+		_environment.ssao_radius = 0.35 if room else _environment.get_meta(&"outside_ssao_radius")
+	if is_instance_valid(_torch):
+		_blend(_torch, ROOM_TORCH, weight)
+
+
+## Lerps target's properties from their own values (kept in meta on first use) toward room.
+static func _blend(target: Object, room: Dictionary, weight: float) -> void:
+	if not target.has_meta(&"outside_lighting"):
+		var outside := {}
+		for property: String in room:
+			outside[property] = target.get(property)
+		target.set_meta(&"outside_lighting", outside)
+		if target is Environment:
+			target.set_meta(&"outside_ssao", (target as Environment).ssao_enabled)
+			target.set_meta(&"outside_ssao_radius", (target as Environment).ssao_radius)
+	var outside: Dictionary = target.get_meta(&"outside_lighting")
+	for property: String in room:
+		target.set(property, lerp(outside[property], room[property], weight))
 
 
 ## Chapter 2's fog sheet and manager reflection were sized for the PS1 mirror (0.5 x 0.65 m,

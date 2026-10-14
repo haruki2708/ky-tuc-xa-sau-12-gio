@@ -1,6 +1,8 @@
 extends OmniLight3D
 ## Deterministic visual pulse, pause-aware; LightHum observes the real energy.
 
+## Energy of a flicker pulse when the light rests darker (D-104: the furnished tube is brighter).
+@export var flicker_energy: float = 0.7
 var flickering: bool = false
 var _rest_energy: float = 0.0
 var _rest_visible: bool = true
@@ -26,4 +28,4 @@ func _process(delta: float) -> void:
 		return
 	_elapsed += delta
 	var pulse := fmod(_elapsed, 0.73)
-	light_energy = maxf(_rest_energy, 0.7) if (pulse < .08 or (pulse > .14 and pulse < .29) or pulse > .43) else 0.0
+	light_energy = maxf(_rest_energy, flicker_energy) if (pulse < .08 or (pulse > .14 and pulse < .29) or pulse > .43) else 0.0

@@ -23,6 +23,13 @@ func _hang_furnished_door() -> void:
 	pivot.rotation.y = angle
 	for mesh: MeshInstance3D in $Door407/Pivot/Leaf.find_children("*", "MeshInstance3D", true, false):
 		mesh.visible = false
+	# D-104: corridor lights reaching into the furnished room cast shadows so its walls keep them out.
+	var room := $Room407 as Node3D
+	var inside: AABB = room.global_transform * room.INSIDE
+	for light: OmniLight3D in $Corridor.find_children("*", "OmniLight3D", true, false):
+		var nearest := light.global_position.clamp(inside.position, inside.end)
+		if light.global_position.distance_to(nearest) < light.omni_range:
+			light.shadow_enabled = true
 
 
 func sync_door_anchor() -> void:
