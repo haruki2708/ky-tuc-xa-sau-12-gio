@@ -12,6 +12,10 @@ const DIRECTORY := "res://data/documents/"
 ## How it looks: &"stamped" (typed, red stamp), &"photocopy", &"handwritten",
 ## &"notice" (printed sheet taped to a wall), &"log" (duty log pages).
 @export var style: StringName = &"photocopy"
+## D-110: what the object is, when it is not a plain sheet: &"photo", &"photo_family"
+## (a printed photo; the text is its back) or &"card" (a student ID card). Empty: a sheet.
+## The 3D paper and the close-up view both read it.
+@export var look: StringName = &""
 ## Where the player reads it; recorded as the notebook source of each line.
 @export var source: StringName
 ## Rule lines in print order, numbered 1..n; text from each RuleData.text_key.

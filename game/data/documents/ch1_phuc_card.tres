@@ -7,6 +7,7 @@ script = ExtResource("1_doc")
 id = &"ch1_phuc_card"
 title_key = "DOC_CH1_PHUC_CARD_TITLE"
 style = &"stamped"
+look = &"card"
 source = &"ch1_phuc_card"
 rule_ids = Array[StringName]([])
 text_keys = Array[String](["DOC_CH1_PHUC_CARD_1", "DOC_CH1_PHUC_CARD_2", "DOC_CH1_PHUC_CARD_3"])

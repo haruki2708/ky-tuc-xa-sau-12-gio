@@ -1,7 +1,7 @@
 extends Interactable
 
 ## D-106: the sheet is drawn as one textured quad on the front (+Z) face; the texture follows
-## the document's DocumentData.style unless look names another (e.g. &"photo").
+## the readable's look, else the document's DocumentData.look, else its style (D-110).
 const LOOKS := {
 	&"photocopy": preload("res://assets/textures/papers/photocopy.png"),
 	&"handwritten": preload("res://assets/textures/papers/handwritten.png"),
@@ -61,7 +61,11 @@ func paper_look() -> StringName:
 	if LOOKS.has(look):
 		return look
 	var document: DocumentData = DocumentData.load_by_id(document_id) if document_id != &"" else null
-	return document.style if document != null and LOOKS.has(document.style) else DEFAULT_LOOK
+	if document == null:
+		return DEFAULT_LOOK
+	if LOOKS.has(document.look):
+		return document.look
+	return document.style if LOOKS.has(document.style) else DEFAULT_LOOK
 
 
 func _update_look() -> void:

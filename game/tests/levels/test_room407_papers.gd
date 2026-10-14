@@ -39,6 +39,8 @@ func test_every_document_style_has_a_paper_look() -> void:
 	assert_eq(_texture(note), note.LOOKS[&"handwritten"])
 	var photo := _paper(&"ch1_team_photo", &"photo")
 	assert_eq(_texture(photo), photo.LOOKS[&"photo"], "look overrides the style")
+	assert_eq(_paper(&"ch1_viet_photo").paper_look(), &"photo_family", "D-110: the document's look")
+	assert_eq(_paper(&"ch1_dat_card").paper_look(), &"stamped", "no 3D card look: the style")
 	assert_eq(_paper(&"").paper_look(), &"photocopy", "no document: photocopy")
 	note.document_id = &"room_paper_407"
 	assert_eq(_texture(note), note.LOOKS[&"photocopy"], "changing the document changes the sheet")

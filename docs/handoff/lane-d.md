@@ -9,6 +9,8 @@
 - Không bao giờ được push `main`. Integrator chỉ ghép sau khi tự kiểm (mục 0.3); lời báo "xong" của Gemini không được coi là bằng chứng.
 - Thư mục `D:\GAME_WORK\lane-d` đang còn việc T-214 cũ chưa commit (57 file, nhánh `lane-d/T-214-video-reset-readability`). T-214 đã được ghép ở D-091 nên đây là bản cũ; phải `git stash` trước khi làm việc mới, **không xóa**.
 
+**Việc hiện tại (D-110): [T-217 Khung đọc giấy hiện đúng ảnh chụp và thẻ](../tasks/T-217-document-view-looks.md)**, nhánh `lane-d/T-217-document-view-looks`. Dán prompt 0.1 với dòng Task: `T-217, docs/tasks/T-217-document-view-looks.md`. (`-u` trong Bước 1 để cất cả file mới chưa track, theo góp ý của Gemini.)
+
 ### 0.1 Prompt giao task (dán nguyên khối vào Antigravity, mở thư mục D:\GAME_WORK\lane-d)
 ```text
 Bạn là agent Lane D (UI và Đa ngôn ngữ) của game kinh dị "Ký túc xá sau 12 giờ" (Godot 4.7.2, GDScript), theo D-108.
@@ -26,7 +28,7 @@ LUẬT CỨNG (vi phạm bất kỳ điều nào thì integrator trả task, kh�
 - Chỉ được nói "xong" khi có: dòng "RESULT: N passed, 0 failed" của tools/test.ps1 và "RESULT: check 0 error(s)" của tools/check.ps1
   CHÉP NGUYÊN VĂN từ lần chạy cuối, kèm commit hash đã push. Thiếu một trong ba thì ghi "CHƯA XONG" và lý do.
 
-Bước 1. git status. Nếu có thay đổi chưa commit: git stash push -m "lane D leftovers before <T-xxx>" (không xóa, không reset).
+Bước 1. git status. Nếu có thay đổi chưa commit: git stash push -u -m "lane D leftovers before <T-xxx>" (không xóa, không reset).
         git status phải sạch. git fetch origin; git switch -c lane-d/<T-xxx-ten-ngan> origin/main.
 Bước 2. Đọc: AGENTS.md, docs/STATUS.md, D-091/D-094/D-108 trong docs/DECISIONS.md, docs/handoff/lane-d.md mục 0, card của task,
         Handoff/Review T-214, game/ui/theme/, game/assets/fonts/CREDITS.md, game/tests/ui/.
