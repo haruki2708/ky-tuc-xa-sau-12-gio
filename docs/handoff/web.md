@@ -6,7 +6,7 @@ Vùng của lane F: `game/audio/`, `game/scripts/audio/`, âm thanh/giọng tron
 
 Lịch sử phiên web trước: T-192 (thay lane B), T-201, T-204 (thay core), G0 của T-207; đều đã ghép.
 
-**Việc hiện tại (D-110): [T-218 Âm thanh phòng 407 khớp đồ mới](../tasks/T-218-room407-object-audio.md)**, nhánh `lane-f/T-218-room407-object-audio`. Dán prompt mục 1 với dòng Task: `T-218, docs/tasks/T-218-room407-object-audio.md`.
+**Việc hiện tại: chưa có.** T-218 đã ghép (D-111). Khi có việc âm thanh, integrator viết card `docs/tasks/T-xxx-*.md` và điền tên task vào mục 1.
 
 **Chỉ có trên máy chủ dự án, phiên web không thấy:** thư mục `D:\GAME_WORK\lane-f` còn một stash cũ ("T-212: preserve pending D-080 handoff before D-081 rebase"). Integrator giữ nguyên; nếu task cần nội dung đó, integrator đưa lên nhánh trước.
 

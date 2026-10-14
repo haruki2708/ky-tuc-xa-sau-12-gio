@@ -1,5 +1,5 @@
 # T-218 — Âm thanh phòng 407 khớp đồ mới: quạt trần, đèn tuýp, vòi sen, gương
-- Lane: F (Âm thanh) | Trạng thái: todo | Agent: Claude Code web, Sonnet 5.5 (D-108)
+- Lane: F (Âm thanh) | Trạng thái: **done (D-111), chờ chủ dự án nghe** | Agent: Claude Code web, Sonnet 5.5 (D-108)
 - Phụ thuộc: D-103…D-106, D-109, **D-110** trên `main`. Quyết định giao: D-110 (chủ dự án: "ok tôi đồng ý, bạn thực hiện đi").
 - Nhánh: `lane-f/T-218-room407-object-audio` từ `origin/main` mới nhất. Làm theo `docs/handoff/web.md` mục 1.
 - Không đụng T-212 (chuông báo cháy vẫn chờ marker G1). Task này độc lập.
@@ -106,3 +106,12 @@ Chất âm, âm lượng và hướng nghe thật; so cảm nhận mới/cũ; hi
 - `default_bus_layout.tres` do Godot tự ghi lúc import: đã `git checkout` trước khi commit, không nằm trong diff. Không FPS, không bot.
 
 ## Review (integrator)
+
+### Integrator — 15/10/2026, D-111 (Claude Code ở máy, Opus 5.5)
+**Đạt, đã ghép** (merge `19f295b` từ `0b8badb`). Đã kiểm: 10 file đều trong "Được phép sửa", không xóa/đổi tên; `room_407.tscn` chỉ đổi `position` của `FanAmbience` và `LightHum`, âm lượng giữ nguyên; `light_hum.gd` không đổi; `_find_anchor` tìm đúng `Ch2Bathroom/Water`, `Ch2Bathroom/Reflection`, `ReflectiveMirrorSmall`; thiếu node thì về tâm khoang tắm. 5/10 test mới FAIL với code cũ là bằng chứng tốt. Ba yêu cầu thay đổi đều đúng khi đối chiếu source; xử lý khi ghép:
+1. **Tia nước chương 2** (`Ch2Bathroom/Water` y 2,17, cao hơn đỉnh vòi sen 2,05): `room407.gd::_fit_shower_water` đặt điểm bắt đầu 11 cm dưới đỉnh mô hình vòi sen (y ≈ 1,94); tiếng nước tự theo. Test thêm: điểm nước nằm dưới đỉnh vòi.
+2. **Tiếng đẩy/phá cửa nhà tắm** (giữa khoang, cách cửa ~2,4 m): `shower_audio.gd` thêm `DOOR_ANCHORS` = `Extension/BathroomDoor/Pivot/Handle`; `play_door_push` và `door_burst` phát ở tay nắm cửa. Test lane F sửa theo (đổi tên thành `..._door_cues_from_the_door`). Claude làm thay F phần script nhỏ này.
+3. **Tiếng rè khi đèn chập chương 1:** chủ dự án: "có chứ". `scripts/audio/flicker_buzz.gd` (mới) phát lại `sfx/fluorescent_flicker.ogg` với khoảng nghỉ ngẫu nhiên 0,25–1,4 s; `chapter1_director.gd::_set_flicker` tạo `FlickerBuzz` dưới `Room407MainLight`, cùng bus/âm lượng với tiếng ù (−10 dB), tắt khi hết chập. Test `test_chapter1.gd::test_door_flicker_crackles_under_the_tube`.
+
+Cần chủ dự án nghe: cảnh nghe thử (lệnh ở Handoff), tiếng rè khi quản lý mở cửa chương 1, tiếng đẩy cửa nhà tắm chương 2.
+

@@ -122,6 +122,7 @@ func test_water_comes_from_the_new_shower_head() -> void:
 	assert_true(water.playing)
 	assert_true(water.global_position.distance_to(emitter.global_position) <= 0.01, "water at the falling-water emitter")
 	assert_true(_near(water.global_position, model, 0.3), "water within the shower model")
+	assert_true(emitter.global_position.y < model.end.y, "the water starts under the shower top, not above it")
 	assert_true(water.global_position.distance_to(stall.global_position) > 0.5, "water left the stall centre")
 	shower.set_water(81.0, true)
 	assert_true(water.playing and water.stream == Ch2AudioBank.clip("water_boiling"))
@@ -131,7 +132,7 @@ func test_water_comes_from_the_new_shower_head() -> void:
 	assert_true((shower.get_node("Steam") as Node3D).position.is_zero_approx(), "steam keeps the stall centre")
 
 
-func test_mirror_shiver_comes_from_the_small_mirror_and_door_cues_stay() -> void:
+func test_mirror_shiver_comes_from_the_small_mirror_and_door_cues_from_the_door() -> void:
 	var room := _room()
 	var shower := _shower(room)
 	await wait_frames(2)
@@ -144,12 +145,13 @@ func test_mirror_shiver_comes_from_the_small_mirror_and_door_cues_stay() -> void
 	assert_true(cue.global_position.distance_to(figure.global_position) <= 0.01, "shiver where the figure appears")
 	assert_true(cue.global_position.distance_to(glass.global_position) <= 0.35, "and within a hand of the glass")
 	assert_true(_near(cue.global_position, _bounds(room.get_node("Furnished/TripoProps/MirrorSmall") as Node3D), 0.3))
+	var handle := room.get_node("Extension/BathroomDoor/Pivot/Handle") as Node3D
 	shower.play_door_push(2)
-	assert_true(cue.position.is_zero_approx(), "door push keeps the old spot")
+	assert_true(cue.global_position.distance_to(handle.global_position) <= 0.01, "door push at the door handle")
 	shower.play_cue("mirror_shiver")
 	shower.play_cue("door_burst")
-	assert_true(cue.position.is_zero_approx(), "door burst keeps the old spot")
-	assert_true(cue.global_position.is_equal_approx(stall.global_position))
+	assert_true(cue.global_position.distance_to(handle.global_position) <= 0.01, "door burst at the door handle")
+	assert_true(cue.global_position.distance_to(stall.global_position) > 1.0, "no longer in the stall centre")
 
 
 func test_missing_nodes_fall_back_to_the_stall_never_the_world_origin() -> void:

@@ -1,5 +1,5 @@
 # T-217 — Khung đọc giấy hiện đúng ảnh chụp và thẻ sinh viên
-- Lane: D (UI và Đa ngôn ngữ) | Trạng thái: todo | Agent: Gemini 3.8 Flash trong Antigravity (D-108)
+- Lane: D (UI và Đa ngôn ngữ) | Trạng thái: **trả sửa lần 1 (15/10)** | Agent: Gemini 3.8 Flash trong Antigravity (D-108)
 - Phụ thuộc: D-106, **D-110** trên `main`. Quyết định giao: D-110 (chủ dự án: "ok tôi đồng ý, bạn thực hiện đi").
 - Nhánh: `lane-d/T-217-document-view-looks` từ `origin/main` mới nhất. Làm trong `D:\GAME_WORK\lane-d` theo `docs/handoff/lane-d.md` mục 0.
 
@@ -52,3 +52,16 @@
 ## Handoff (agent điền)
 
 ## Review (integrator)
+
+### Integrator — 15/10/2026, lần 1: **trả sửa** (nhánh `a4a0ba4`)
+**Kiểm theo `lane-d.md` 0.3:** nhánh đúng tên, gốc `a167d6e`; `git diff --name-status` không có `D`/`R`, 15 file đều trong "Được phép sửa"; 12 file tạm Movie Maker xóa đúng danh sách được duyệt, chưa từng commit; stash cũ trong `D:\GAME_WORK\lane-d` còn nguyên. Code đọc `look` đúng, kiểu giấy cũ giữ nguyên (nhánh `else` giữ đủ bóng/lề cũ), font Be Vietnam Pro / IBM Plex Mono có đủ dấu tiếng Việt, test mới hợp lý. **Handoff khớp với diff.** Phần ảnh (`photo_vi.png`, `photo_family_vi.png`) đạt.
+
+**Cần sửa (thấy trên `card_vi.png`):**
+1. **Bóng người trong ô ảnh thẻ tràn ra ngoài khung:** `paper_surface.gd` vẽ hình tròn thân ở (101, 225), bán kính 45, nên tràn xuống y 270, trong khi ô ảnh `Rect2(36, 78, 130, 170)` hết ở y 248. Thân phải nằm gọn trong ô (cắt phần dưới theo đáy ô, hoặc vẽ vai bằng hình nằm trong ô).
+2. **Chữ con dấu tràn khỏi vòng tròn:** `CardStamp` 110×110, chữ 18 px. "Ký túc xá – Tầng 4" chạm/tràn qua vòng ngoài; bản tiếng Anh "Dormitory – Floor 4" còn dài hơn. Chữ phải nằm trong vòng trong ở **cả vi và en** (tăng cỡ dấu hoặc giảm chữ, giữ dấu không che dòng thông tin).
+3. **Nếp gấp giấy trên thẻ nhựa và mặt sau ảnh:** `_draw()` vẽ đường gấp dọc giữa (và viền giấy) cho mọi style, nên thẻ và mặt sau ảnh có vệt gấp ở giữa. Thẻ nhựa và giấy ảnh không gấp: bỏ đường gấp với `card` và `photo_back`; các style cũ giữ nguyên.
+4. Chụp lại `card_vi.png`, thêm `card_en.png` và `photo_en.png` (cùng `capture_looks.tscn`), ghi ảnh ra trước trong `D:\GAME_WORK\lane-d\build\` rồi chép đúng file PNG cần commit vào `previews/`.
+5. Thêm assert vào test: hình bóng người nằm trong ô ảnh (hằng số hình học dùng chung), và chữ con dấu không vượt chiều rộng dấu ở vi/en (ví dụ so `get_minimum_size()` hoặc độ rộng chữ với `size`).
+
+Giữ nguyên phần đã đạt. Làm theo prompt 0.2, chạy lại test/check, cập nhật Handoff (thêm mục "Lần sửa 1").
+

@@ -1878,8 +1878,26 @@ func _set_flicker(on: bool) -> void:
 	var main_light := room.get_node_or_null("Room407MainLight") if room != null else null
 	if main_light != null and main_light.has_method("set_flicker"):
 		main_light.set_flicker(on)
+		_flicker_buzz(main_light as Node3D, on)
 	elif room != null and room.has_method("set_flicker"):
 		room.set_flicker(on)
+
+
+## The ballast crackle under the flickering tube (owner, after T-218); quiet like the tube's hum.
+func _flicker_buzz(light: Node3D, on: bool) -> void:
+	var buzz := light.get_node_or_null("FlickerBuzz") as FlickerBuzz
+	if buzz == null:
+		if not on:
+			return
+		buzz = FlickerBuzz.new()
+		buzz.name = "FlickerBuzz"
+		var hum := light.get_node_or_null("LightHum") as AudioStreamPlayer3D
+		buzz.bus = hum.bus if hum != null else &"Ambience"
+		buzz.volume_db = hum.volume_db if hum != null else -10.0
+		buzz.unit_size = 2.0
+		buzz.max_distance = 9.0
+		light.add_child(buzz)
+	buzz.active = on
 
 
 func _set_bed_slashed(amount: float) -> void:

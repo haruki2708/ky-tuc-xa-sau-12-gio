@@ -337,6 +337,23 @@ func test_door_flicker_keeps_the_desk_lamp_off() -> void:
 	director._set_flicker(false)
 
 
+func test_door_flicker_crackles_under_the_tube() -> void:
+	var light := scene.get_node("Floor4/Room407/Room407MainLight") as Node3D
+	director._set_flicker(true)
+	await wait_frames(2)
+	var buzz := light.get_node_or_null("FlickerBuzz") as FlickerBuzz
+	assert_true(buzz != null and buzz.playing, "the ballast crackles while the tube flickers;")
+	assert_eq(buzz.stream, FlickerBuzz.CLIP)
+	assert_true(buzz.volume_db <= -10.0, "no louder than the tube's hum;")
+	director._set_flicker(true)
+	assert_eq(light.find_children("FlickerBuzz", "", false, false).size(), 1, "one crackle source;")
+	director._set_flicker(false)
+	assert_false(buzz.playing, "silent once the flicker ends;")
+	buzz.finished.emit()
+	await wait_frames(3)
+	assert_false(buzz.playing, "a late finished does not restart it;")
+
+
 func test_lamp_left_on_is_a_trace_even_without_the_flag() -> void:
 	# A reloaded checkpoint may not carry desk_lamp_on: the lamp itself counts.
 	var lamp := scene.get_node("Floor4/Room407/Room407DeskLamp") as Light3D

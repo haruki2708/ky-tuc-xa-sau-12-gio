@@ -6,6 +6,8 @@ extends Node3D
 ## Room407 that owns the stall and are tried in order; any miss keeps the old spot, the stall centre.
 const NO_ANCHORS: Array[String] = []
 const WATER_ANCHORS: Array[String] = ["Ch2Bathroom/Water"]
+## Pushing and bursting the stuck bathroom door sound at its handle (integrator, after T-218).
+const DOOR_ANCHORS: Array[String] = ["Extension/BathroomDoor/Pivot/Handle"]
 ## flash_reflection shows the manager only in the small bathroom mirror (its figure is fitted to the
 ## furnished glass); the glass itself is the second choice.
 const MIRROR_ANCHORS: Array[String] = ["Ch2Bathroom/Reflection", "ReflectiveMirrorSmall"]
@@ -102,14 +104,14 @@ func set_steam(level: float) -> void:
 
 func play_door_push(level: int) -> void:
 	if not _stopped and is_node_ready() and level >= 1 and level <= 3:
-		_aim(_cue, NO_ANCHORS)
+		_aim(_cue, DOOR_ANCHORS)
 		_cue.volume_db = 0.0
 		_play(_cue, "door_push_%02d" % level)
 
 
 func play_cue(clip_name: String) -> void:
 	if not _stopped and is_node_ready() and clip_name in ["door_burst", "mirror_shiver"]:
-		_aim(_cue, MIRROR_ANCHORS if clip_name == "mirror_shiver" else NO_ANCHORS)
+		_aim(_cue, MIRROR_ANCHORS if clip_name == "mirror_shiver" else DOOR_ANCHORS)
 		_cue.volume_db = -10.0 if Ch1AudioBank.reduced() else 0.0
 		_play(_cue, clip_name)
 

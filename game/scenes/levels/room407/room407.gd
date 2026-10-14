@@ -29,6 +29,8 @@ const FOLLOW := {"NetViet": "BunkA/Net_Viet", "NetPhuc": "BunkA/Net_Phuc", "NetT
 const DOOR_WALL_SHIFT := -0.105
 const DOOR_WALL_PARTS: Array[String] = ["architecture/FrontWallWest", "architecture/FrontWallEast",
 	"architecture/DoorLintel", "fixtures/RoomDoor", "TripoProps/Conduits"]
+## Chapter 2 water starts this far below the top of the furnished shower model (under its rose).
+const SHOWER_ROSE_DROP := 0.11
 const TUBE_ENERGY := 1.2
 ## D-104: inside the room the night and the lit tube look like the approved pilot
 ## (previews/room_centre_torch_after.png, room_centre_tube_after.png); the corridor keeps floor 4's night.
@@ -210,6 +212,7 @@ func _furnish() -> void:
 	_carry(_furnished.get_node("fixtures/BathroomDoor"), bath_pivot)
 	bath_pivot.rotation.y = angle
 	_fit_mirror_effects(props.get_node("MirrorSmall"))
+	_fit_shower_water(props.get_node("Shower"))
 	_trung_blanket = props.get_node("BlanketTrung")
 	_tubes = Room407Furnish.tube_materials(_furnished)
 	for property: String in TUBE_LIGHT:
@@ -316,6 +319,13 @@ func _fit_mirror_effects(mirror: Node3D) -> void:
 	var reflection := $Ch2Bathroom/Reflection as Node3D
 	reflection.position = Vector3(glass.end.x + 0.025, glass.position.y + 0.035 * scale_y, glass.get_center().z)
 	reflection.scale = Vector3(0.26 * scale_y, 0.26 * scale_y, 0.025)
+
+
+## Chapter 2's water started 12 cm above the furnished shower (T-218): start it just under the rose
+## (11 cm below the model's top); ShowerAudio follows the emitter.
+func _fit_shower_water(shower: Node3D) -> void:
+	var bounds: AABB = shower.transform * Room407Furnish.local_bounds(shower)
+	($Ch2Bathroom/Water as Node3D).position.y = bounds.end.y - SHOWER_ROSE_DROP
 
 
 ## The room door leaf of the shell, for floor4.gd to hang on Door407 (null without the furnished room).
