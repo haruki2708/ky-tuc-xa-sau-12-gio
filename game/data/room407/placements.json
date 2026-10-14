@@ -101,7 +101,7 @@
   {"name": "SinkToiletries", "model": "res://assets/models/graphics_pilot/room407_batch3/sink_toiletries.glb", "position": [5.43, 0.77, -5.17], "yaw": -90, "source_node": "D-100"},
   {"name": "MirrorSmall", "model": "res://assets/models/graphics_pilot/room407_batch3/mirror_small.glb", "position": [5.383, 1.12, -5.0], "yaw": -90, "mount": "wall", "source_node": "D-100"},
   {"name": "Mop", "model": "res://assets/models/graphics_pilot/room407_batch3/mop.glb", "position": [7.72, 0, -4.3], "yaw": 0, "source_node": "D-100"},
-  {"name": "TowelRack", "model": "res://assets/models/graphics_pilot/room407_batch3/towel_rack.glb", "position": [7.892, 1.3, -5.3], "yaw": 90, "mount": "wall", "source_node": "D-100"},
+  {"name": "TowelRack", "model": "res://assets/models/graphics_pilot/room407_batch3/towel_rack.glb", "position": [7.892, 1.15, -5.3], "yaw": 90, "mount": "wall", "source_node": "D-100"},
   {"name": "DryingRack", "model": "res://assets/models/graphics_pilot/room407_batch3/drying_rack.glb", "position": [1.75, 0, -6.4], "yaw": 0, "source_node": "D-100"},
   {"name": "BathBasins", "model": "res://assets/models/graphics_pilot/room407_batch3/bath_basins.glb", "position": [6.1, 0, -6.2], "yaw": 0, "source_node": "D-100"},
   {"name": "ToiletBrush", "model": "res://assets/models/graphics_pilot/room407_batch3/toilet_brush.glb", "position": [6.95, 0, -6.75], "yaw": 0, "source_node": "D-100"},

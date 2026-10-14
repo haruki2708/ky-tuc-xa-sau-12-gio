@@ -32,7 +32,7 @@
 
 [ext_resource type="PackedScene" path="res://scenes/levels/ch1v2/phuc_card.tscn" id="v2_phuc_card"]
 
-[ext_resource type="PackedScene" path="res://scenes/levels/ch1_models/rag.tscn" id="t172_rag"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/room407_furnished/cleaning_rag.glb" id="t172_rag"]
 
 [ext_resource type="PackedScene" path="res://scenes/levels/ch2/towel.tscn" id="t172_towel"]
 
@@ -309,8 +309,8 @@ position = Vector3(6.85, 0.03, -4.6)
 ; T172 additions
 
 [node name="RagSpot" type="Marker3D" parent="."]
-position = Vector3(5.65, 0.88, -5)
-rotation_degrees = Vector3(0,0,0)
+position = Vector3(7.827, 1.509, -5.3)
+rotation_degrees = Vector3(0,90,0)
 
 [node name="Model" parent="RagSpot" instance=ExtResource("t172_rag")]
 
@@ -339,20 +339,23 @@ script = ExtResource("t172_gag")
 body_path = NodePath("../Corpse4/Body")
 
 [node name="ShowerScreen" type="Marker3D" parent="."]
-position = Vector3(6.18,1.45,-6.78)
+position = Vector3(5.387,1.45,-6.0)
+rotation_degrees = Vector3(0,90,0)
 metadata/size = Vector2(0.4,0.3)
 
 [node name="Surface" type="MeshInstance3D" parent="ShowerScreen"]
 mesh = SubResource("t172_screen")
 
 [node name="ShowerYes" type="Marker3D" parent="."]
-position = Vector3(6.07,1.20,-6.76)
+position = Vector3(5.407,1.20,-5.89)
+rotation_degrees = Vector3(0,90,0)
 
 [node name="Button" type="MeshInstance3D" parent="ShowerYes"]
 mesh = SubResource("t172_button")
 
 [node name="ShowerNo" type="Marker3D" parent="."]
-position = Vector3(6.29,1.20,-6.76)
+position = Vector3(5.407,1.20,-6.11)
+rotation_degrees = Vector3(0,90,0)
 
 [node name="Button" type="MeshInstance3D" parent="ShowerNo"]
 mesh = SubResource("t172_button")

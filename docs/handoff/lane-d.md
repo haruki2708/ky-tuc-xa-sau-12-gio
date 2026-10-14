@@ -1,6 +1,57 @@
 # Prompt bàn giao — Lane D (UI và Đa ngôn ngữ)
 
-> **14/10, D-107: agent lane D cũ đã nghỉ. Claude Code trên web nhận lane D**; dùng [web.md](web.md), không dán các prompt bên dưới cho agent cũ nữa. Các prompt dưới đây giữ làm lịch sử T-211/T-214.
+> **14/10, D-108: lane D do Gemini 3.8 Flash (Antigravity, chạy trong SpaceVibe Deck ở máy chủ dự án) đảm nhiệm**, thay D-107 (Claude web nay làm lane F). Dùng **mục 0** bên dưới. Mục 1–4 giữ làm lịch sử T-211/T-214 của agent cũ.
+
+## 0. Gemini (Antigravity) — luật bắt buộc và prompt
+
+**Rủi ro chủ dự án đã báo:** Gemini làm giao diện tốt nhưng hay xóa file/thư mục quan trọng mà không xin phép, đôi lúc không theo luật, hoặc báo "xong" khi chưa xong. Vì vậy:
+- Gemini chỉ làm trong `D:\GAME_WORK\lane-d` (bản clone riêng). Không mở `D:\GAME_DEMO` hay thư mục lane khác trong Antigravity.
+- Không bao giờ được push `main`. Integrator chỉ ghép sau khi tự kiểm (mục 0.3); lời báo "xong" của Gemini không được coi là bằng chứng.
+- Thư mục `D:\GAME_WORK\lane-d` đang còn việc T-214 cũ chưa commit (57 file, nhánh `lane-d/T-214-video-reset-readability`). T-214 đã được ghép ở D-091 nên đây là bản cũ; phải `git stash` trước khi làm việc mới, **không xóa**.
+
+### 0.1 Prompt giao task (dán nguyên khối vào Antigravity, mở thư mục D:\GAME_WORK\lane-d)
+```text
+Bạn là agent Lane D (UI và Đa ngôn ngữ) của game kinh dị "Ký túc xá sau 12 giờ" (Godot 4.7.2, GDScript), theo D-108.
+Task: <T-xxx, tên card>. Trả lời bằng tiếng Việt. Tài liệu tiếng Việt, code tiếng Anh.
+
+LUẬT CỨNG (vi phạm bất kỳ điều nào thì integrator trả task, không ghép):
+- Chỉ làm trong D:\GAME_WORK\lane-d. Không mở, đọc ghi hay chạy lệnh trong D:\GAME_DEMO hoặc thư mục lane khác.
+- KHÔNG XÓA file hay thư mục nào (kể cả rm, Remove-Item, git rm, git clean, git checkout -- ., git reset --hard, ghi đè cả thư mục)
+  nếu card không ghi rõ được phép. Cần xóa thì DỪNG, hỏi chủ dự án, chờ trả lời.
+- Không git push lên main, không force-push, không xóa nhánh, không đổi .gitattributes/.gitignore/project.godot/export_presets.cfg.
+- Chỉ sửa file trong mục "Được phép sửa" của card. Ngoài phạm vi thì ghi "Yêu cầu thay đổi" vào Handoff.
+- Không cài gì vào ổ C:. Godot ở D:\Tools\Godot\Godot_v4.7.2-stable_win64_console.exe. Không đo FPS, không chạy bot.
+- Font chỉ OFL/CC0/CC-BY có đủ dấu tiếng Việt; texture UI CC0/CC-BY; ghi CREDITS.md. Không đổi nội dung chữ, key cũ, luật, lời thoại;
+  chỉ thêm key UI_ mới (vi + en). Giữ tên node/đường dẫn mà script và test dùng.
+- Chỉ được nói "xong" khi có: dòng "RESULT: N passed, 0 failed" của tools/test.ps1 và "RESULT: check 0 error(s)" của tools/check.ps1
+  CHÉP NGUYÊN VĂN từ lần chạy cuối, kèm commit hash đã push. Thiếu một trong ba thì ghi "CHƯA XONG" và lý do.
+
+Bước 1. git status. Nếu có thay đổi chưa commit: git stash push -m "lane D leftovers before <T-xxx>" (không xóa, không reset).
+        git status phải sạch. git fetch origin; git switch -c lane-d/<T-xxx-ten-ngan> origin/main.
+Bước 2. Đọc: AGENTS.md, docs/STATUS.md, D-091/D-094/D-108 trong docs/DECISIONS.md, docs/handoff/lane-d.md mục 0, card của task,
+        Handoff/Review T-214, game/ui/theme/, game/assets/fonts/CREDITS.md, game/tests/ui/.
+Bước 3. Trước khi sửa: báo chủ dự án xin lượt Godot (integrator có thể đang chạy test), rồi chạy pwsh tools/test.ps1 một lần, lưu dòng RESULT.
+Bước 4. Làm task, commit nhỏ "T-xxx: ..." sau mỗi phần.
+Bước 5. Xin lượt Godot, chạy pwsh tools/test.ps1 rồi pwsh tools/check.ps1; sau đó git checkout -- game/default_bus_layout.tres.
+        Không có test FAIL mới. git push -u origin lane-d/<T-xxx-ten-ngan>.
+Bước 6. Điền Handoff trong card: việc đã làm; DANH SÁCH MỌI FILE ĐÃ XÓA HOẶC ĐỔI TÊN (ghi "không có" nếu không có);
+        hai dòng RESULT nguyên văn; commit hash; màn nào cần integrator chụp 720p/1080p (vi/en); phần chưa làm; yêu cầu thay đổi.
+        Commit, push, rồi trả lời chủ dự án đúng các mục đó.
+```
+
+### 0.2 Prompt tiếp tục / yêu cầu sửa
+```text
+Tiếp tục <T-xxx> (lane D, D-108) theo docs/handoff/lane-d.md mục 0.1, giữ nguyên LUẬT CỨNG. git status, git log -5, đọc Handoff và mục Review của card
+(git fetch; git show origin/main:docs/tasks/<card>.md). Rebase nhánh lên origin/main (không reset, không xóa file), sửa từng ý, kết thúc theo Bước 5–6.
+```
+
+### 0.3 Integrator kiểm mỗi lần Gemini báo xong (không bỏ bước nào)
+1. `git fetch`; nhánh đúng tên, có trên origin, gốc là `origin/main`.
+2. `git diff --name-status origin/main...<nhánh>`: không có dòng `D` (xóa) hay `R` (đổi tên) ngoài card; mọi file nằm trong "Được phép sửa".
+3. So Handoff với diff: việc nào báo "xong" mà không có thay đổi tương ứng thì ghi vào Review là chưa xong.
+4. Integrator tự chạy full test + check trên nhánh (không dùng dòng RESULT của Gemini làm bằng chứng), chụp ảnh giao diện 720p/1080p, vi/en.
+5. Kiểm `D:\GAME_WORK\lane-d`: stash cũ còn nguyên (`git stash list`), không mất file ngoài phạm vi.
+6. Vi phạm → ghi Review, trả task bằng prompt 0.2; không sửa hộ để "cho qua".
 
 > **D-082:** đã review phần mới; đọc Review card và [kết luận chung](REVIEW_G1_2026-10-11.md), giữ công việc đã nhận. Không làm lại G0 hoặc tự chạy một vòng test mới chỉ vì nhận thông báo; tiếp tục đúng phần còn thiếu trong Review.
 

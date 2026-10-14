@@ -1,0 +1,434 @@
+{
+  "godot": "4.7.2-stable (official)",
+  "gpu": "NVIDIA GeForce RTX 3050 Laptop GPU",
+  "images": [
+    {
+      "eye": [
+        7.65000009536743,
+        1.94000005722046,
+        -6.65000009536743
+      ],
+      "file": "t216_cap_ne_close_torch.png",
+      "fov": 25.0,
+      "resolution": [
+        1280,
+        720
+      ],
+      "sha256": "4caccc35c8edb9498509fc0ef60067273cbdd3039011e0c4ff56c2c147959152"
+    },
+    {
+      "eye": [
+        7.63000011444092,
+        1.94000005722046,
+        -6.65000009536743
+      ],
+      "file": "t216_cap_ne_shift_torch.png",
+      "fov": 25.0,
+      "resolution": [
+        1280,
+        720
+      ],
+      "sha256": "5230a5b961f6c6ec769b6b5ea81a0a056ef640c92c8d7e91d256912953d7b55e"
+    },
+    {
+      "eye": [
+        6.17999982833862,
+        1.60000002384186,
+        -5.59999990463257
+      ],
+      "file": "t216_panel_side_torch.png",
+      "fov": 72.0,
+      "resolution": [
+        1280,
+        720
+      ],
+      "sha256": "92d6c24305adffe6ee3bf2cdbfa678ca830b9308e684ba6e0922dc2515cf7b0c"
+    },
+    {
+      "eye": [
+        6.17999982833862,
+        1.60000002384186,
+        -5.59999990463257
+      ],
+      "file": "t216_panel_side_tube.png",
+      "fov": 72.0,
+      "resolution": [
+        1280,
+        720
+      ],
+      "sha256": "44a10f78800c38012f63485f3b7bfd85e0e89a1652a411c5de45c40f203b4f1e"
+    },
+    {
+      "eye": [
+        6.0,
+        1.60000002384186,
+        -4.34999990463257
+      ],
+      "file": "t216_panel_door_torch.png",
+      "fov": 65.0,
+      "resolution": [
+        1280,
+        720
+      ],
+      "sha256": "655f67279ec6128d17818649d9186306f225ce35a253fff4902ff2b4c655b9a3"
+    },
+    {
+      "eye": [
+        6.0,
+        1.60000002384186,
+        -4.34999990463257
+      ],
+      "file": "t216_panel_door_tube.png",
+      "fov": 65.0,
+      "resolution": [
+        1280,
+        720
+      ],
+      "sha256": "5b2037e64d3e02e9a84b304cab5ea1d94886d309a90552aca81b273a57e295a1"
+    },
+    {
+      "eye": [
+        6.84999990463257,
+        1.70000004768372,
+        -4.80000019073486
+      ],
+      "file": "t216_rag_rack_torch.png",
+      "fov": 55.0,
+      "resolution": [
+        1280,
+        720
+      ],
+      "sha256": "0cb77e044face5ae86b150c0d26f2e7b336a8cb7ee21f36fd4d161e1da672aac"
+    },
+    {
+      "eye": [
+        6.84999990463257,
+        1.70000004768372,
+        -4.80000019073486
+      ],
+      "file": "t216_rag_rack_tube.png",
+      "fov": 55.0,
+      "resolution": [
+        1280,
+        720
+      ],
+      "sha256": "d9d9cd6d1052e4e22cbc4a4f4f1de817324b060efe4df932206041a881dd09ca"
+    },
+    {
+      "eye": [
+        6.17999982833862,
+        1.60000002384186,
+        -5.59999990463257
+      ],
+      "file": "t216_shower_stall_torch.png",
+      "fov": 70.0,
+      "resolution": [
+        1280,
+        720
+      ],
+      "sha256": "abd3eccf7501c03d516391312f5102bb65b3c9c1369480b2086d5d78da7b91d8"
+    },
+    {
+      "eye": [
+        6.17999982833862,
+        1.60000002384186,
+        -5.59999990463257
+      ],
+      "file": "t216_shower_stall_tube.png",
+      "fov": 70.0,
+      "resolution": [
+        1280,
+        720
+      ],
+      "sha256": "5915393091402ee5eb7950093bde7518216964ba3b0bdf6fe4a4a040259862d1"
+    },
+    {
+      "eye": [
+        6.0,
+        1.60000002384186,
+        -4.34999990463257
+      ],
+      "file": "t216_shower_entry_torch.png",
+      "fov": 65.0,
+      "resolution": [
+        1280,
+        720
+      ],
+      "sha256": "f93372ef8ed6b426fc1916130ef71db712392243710d1003bcb20a39319d645d"
+    },
+    {
+      "eye": [
+        6.0,
+        1.60000002384186,
+        -4.34999990463257
+      ],
+      "file": "t216_shower_entry_tube.png",
+      "fov": 65.0,
+      "resolution": [
+        1280,
+        720
+      ],
+      "sha256": "d56918d47334f751af2acb7a290fd39bae04637123ead40e0074a0f0910ccac8"
+    },
+    {
+      "eye": [
+        6.25,
+        1.45000004768372,
+        -5.44999980926514
+      ],
+      "file": "t216_rag_torch.png",
+      "fov": 70.0,
+      "resolution": [
+        1280,
+        720
+      ],
+      "sha256": "63748f14b7b242783067c9ffaece3059cc9607bea20bc1d75616d593b792bf54"
+    },
+    {
+      "eye": [
+        6.25,
+        1.45000004768372,
+        -5.44999980926514
+      ],
+      "file": "t216_rag_tube.png",
+      "fov": 70.0,
+      "resolution": [
+        1280,
+        720
+      ],
+      "sha256": "ca2f331d338257e173de754e10d41fd453cbfd284c8e88f3ef50c6f4c4140962"
+    },
+    {
+      "eye": [
+        6.09999990463257,
+        2.09999990463257,
+        -5.90000009536743
+      ],
+      "file": "t216_corner_nw_top_torch.png",
+      "fov": 55.0,
+      "resolution": [
+        1280,
+        720
+      ],
+      "sha256": "1714c6d363c2334ac8cc43ac42152415b18500c492b77c8408d18f3acd61ae77"
+    },
+    {
+      "eye": [
+        6.09999990463257,
+        2.09999990463257,
+        -5.90000009536743
+      ],
+      "file": "t216_corner_nw_top_tube.png",
+      "fov": 55.0,
+      "resolution": [
+        1280,
+        720
+      ],
+      "sha256": "3f5dfa7b00d09e81346f4363928b598e69e0e1a4683563c5c75a2fa8d976197e"
+    },
+    {
+      "eye": [
+        7.09999990463257,
+        2.09999990463257,
+        -5.90000009536743
+      ],
+      "file": "t216_corner_ne_top_torch.png",
+      "fov": 55.0,
+      "resolution": [
+        1280,
+        720
+      ],
+      "sha256": "8ce786cb5b5cfedcb81a16227e9bb8d8e53457a34d50b6c284a738ae21455305"
+    },
+    {
+      "eye": [
+        7.09999990463257,
+        2.09999990463257,
+        -5.90000009536743
+      ],
+      "file": "t216_corner_ne_top_tube.png",
+      "fov": 55.0,
+      "resolution": [
+        1280,
+        720
+      ],
+      "sha256": "39949c347e5ab7b8423647095675fd9020498d5b2cefddff0de46357a830476f"
+    },
+    {
+      "eye": [
+        6.09999990463257,
+        2.09999990463257,
+        -5.09999990463257
+      ],
+      "file": "t216_corner_sw_top_torch.png",
+      "fov": 55.0,
+      "resolution": [
+        1280,
+        720
+      ],
+      "sha256": "f1955e8b6d6143cfc0767b2c4b30730f9ebb220d676e34b83e147075f91b73a4"
+    },
+    {
+      "eye": [
+        6.09999990463257,
+        2.09999990463257,
+        -5.09999990463257
+      ],
+      "file": "t216_corner_sw_top_tube.png",
+      "fov": 55.0,
+      "resolution": [
+        1280,
+        720
+      ],
+      "sha256": "280d00a2c6d19e29a00e5113aacde982b589ac00324b05ee5b68fc1888a58388"
+    },
+    {
+      "eye": [
+        7.09999990463257,
+        2.09999990463257,
+        -5.09999990463257
+      ],
+      "file": "t216_corner_se_top_torch.png",
+      "fov": 55.0,
+      "resolution": [
+        1280,
+        720
+      ],
+      "sha256": "aa28e32dece189b020969a4c69ff67119b41112dd367fbc8fddf7ba9de0679f0"
+    },
+    {
+      "eye": [
+        7.09999990463257,
+        2.09999990463257,
+        -5.09999990463257
+      ],
+      "file": "t216_corner_se_top_tube.png",
+      "fov": 55.0,
+      "resolution": [
+        1280,
+        720
+      ],
+      "sha256": "637c378232a3827666bcf6f7c57f58fda880eae5b0af3ab3b5a08659ed08b85a"
+    },
+    {
+      "eye": [
+        6.09999990463257,
+        0.899999976158142,
+        -5.90000009536743
+      ],
+      "file": "t216_corner_nw_low_torch.png",
+      "fov": 65.0,
+      "resolution": [
+        1280,
+        720
+      ],
+      "sha256": "09d07cf1df0632ee96f7676901fa1ffd129531f85c78f371a7662f23c422b54e"
+    },
+    {
+      "eye": [
+        6.09999990463257,
+        0.899999976158142,
+        -5.90000009536743
+      ],
+      "file": "t216_corner_nw_low_tube.png",
+      "fov": 65.0,
+      "resolution": [
+        1280,
+        720
+      ],
+      "sha256": "e7ceeecfdb7d5c2ec8f3f51c3c355e637819e35498160749de16df5b9e988509"
+    },
+    {
+      "eye": [
+        7.09999990463257,
+        0.899999976158142,
+        -5.90000009536743
+      ],
+      "file": "t216_corner_ne_low_torch.png",
+      "fov": 65.0,
+      "resolution": [
+        1280,
+        720
+      ],
+      "sha256": "12413c8a196c4e8deace6289e31206e67bb5c953fdc19589c848c9c4729ff766"
+    },
+    {
+      "eye": [
+        7.09999990463257,
+        0.899999976158142,
+        -5.90000009536743
+      ],
+      "file": "t216_corner_ne_low_tube.png",
+      "fov": 65.0,
+      "resolution": [
+        1280,
+        720
+      ],
+      "sha256": "2b1ca3e4cee178dbd956036071167f70aa79d8f769e1f76df082d60480f8684e"
+    },
+    {
+      "eye": [
+        6.09999990463257,
+        0.899999976158142,
+        -5.09999990463257
+      ],
+      "file": "t216_corner_sw_low_torch.png",
+      "fov": 65.0,
+      "resolution": [
+        1280,
+        720
+      ],
+      "sha256": "d5e1ab57518be86fa35b7ca8557855a24d41b8cb79be00ec111edef9e013267b"
+    },
+    {
+      "eye": [
+        6.09999990463257,
+        0.899999976158142,
+        -5.09999990463257
+      ],
+      "file": "t216_corner_sw_low_tube.png",
+      "fov": 65.0,
+      "resolution": [
+        1280,
+        720
+      ],
+      "sha256": "61e3ccbf3e8395982c942f63243b43f266c237c37afd22ef691d42c9428014bb"
+    },
+    {
+      "eye": [
+        7.09999990463257,
+        0.899999976158142,
+        -5.09999990463257
+      ],
+      "file": "t216_corner_se_low_torch.png",
+      "fov": 65.0,
+      "resolution": [
+        1280,
+        720
+      ],
+      "sha256": "b5ee5eda1ec9140be248afdabec8556994e7daebb7295a21c01b66f8f33e18cf"
+    },
+    {
+      "eye": [
+        7.09999990463257,
+        0.899999976158142,
+        -5.09999990463257
+      ],
+      "file": "t216_corner_se_low_tube.png",
+      "fov": 65.0,
+      "resolution": [
+        1280,
+        720
+      ],
+      "sha256": "9378c5043e3a1d24765994b3227aaa8e0c909058ffe59cce7db8b18019ccc162"
+    }
+  ],
+  "ps1_strength": 0.0,
+  "renderer": "forward_plus",
+  "resolution": [
+    1280,
+    720
+  ],
+  "full_capture_image_count": 46,
+  "retained_image_count": 30
+}

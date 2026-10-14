@@ -10,6 +10,23 @@ const OUTPUT := "res://../art_source/graphics_upgrade/room407_furnished/previews
 const ORIGIN := Vector3(30, 0, 0)
 # Room-local eye/target, as room407_furnished_pilot.gd; "story" shows corpses, blood and slashes.
 const VIEWS := [
+	{"id": "t216_cap_ne_close", "eye": Vector3(7.65, 1.94, -6.65), "target": Vector3(7.891, 1.812, -6.916), "fov": 25.0, "modes": ["torch"]},
+	{"id": "t216_cap_ne_shift", "eye": Vector3(7.63, 1.94, -6.65), "target": Vector3(7.891, 1.812, -6.916), "fov": 25.0, "modes": ["torch"]},
+	{"id": "t216_panel_side", "eye": Vector3(6.18, 1.6, -5.6), "target": Vector3(5.387, 1.4, -6.0), "fov": 72.0, "modes": ["torch", "tube"]},
+	{"id": "t216_panel_door", "eye": Vector3(6.0, 1.6, -4.35), "target": Vector3(5.387, 1.4, -6.0), "fov": 65.0, "modes": ["torch", "tube"]},
+	{"id": "t216_rag_rack", "eye": Vector3(6.85, 1.7, -4.8), "target": Vector3(7.835, 1.66, -5.3), "fov": 55.0, "modes": ["torch", "tube"]},
+	# T-216: identical before/after views, including both sides of every tile corner.
+	{"id": "t216_shower_stall", "eye": Vector3(6.18, 1.6, -5.6), "target": Vector3(6.48, 1.4, -6.91), "fov": 70.0, "modes": ["torch", "tube"]},
+	{"id": "t216_shower_entry", "eye": Vector3(6.0, 1.6, -4.35), "target": Vector3(6.48, 1.4, -6.91), "fov": 65.0, "modes": ["torch", "tube"]},
+	{"id": "t216_rag", "eye": Vector3(6.25, 1.45, -5.45), "target": Vector3(5.55, 0.9, -6.2), "fov": 70.0, "modes": ["torch", "tube"]},
+	{"id": "t216_corner_nw_top", "eye": Vector3(6.1, 2.1, -5.9), "target": Vector3(5.385, 1.8, -6.915), "fov": 55.0, "modes": ["torch", "tube"]},
+	{"id": "t216_corner_ne_top", "eye": Vector3(7.1, 2.1, -5.9), "target": Vector3(7.89, 1.8, -6.915), "fov": 55.0, "modes": ["torch", "tube"]},
+	{"id": "t216_corner_sw_top", "eye": Vector3(6.1, 2.1, -5.1), "target": Vector3(5.385, 1.8, -4.085), "fov": 55.0, "modes": ["torch", "tube"]},
+	{"id": "t216_corner_se_top", "eye": Vector3(7.1, 2.1, -5.1), "target": Vector3(7.89, 1.8, -4.085), "fov": 55.0, "modes": ["torch", "tube"]},
+	{"id": "t216_corner_nw_low", "eye": Vector3(6.1, 0.9, -5.9), "target": Vector3(5.385, 0.12, -6.915), "fov": 65.0, "modes": ["torch", "tube"]},
+	{"id": "t216_corner_ne_low", "eye": Vector3(7.1, 0.9, -5.9), "target": Vector3(7.89, 0.12, -6.915), "fov": 65.0, "modes": ["torch", "tube"]},
+	{"id": "t216_corner_sw_low", "eye": Vector3(6.1, 0.9, -5.1), "target": Vector3(5.385, 0.12, -4.085), "fov": 65.0, "modes": ["torch", "tube"]},
+	{"id": "t216_corner_se_low", "eye": Vector3(7.1, 0.9, -5.1), "target": Vector3(7.89, 0.12, -4.085), "fov": 65.0, "modes": ["torch", "tube"]},
 	# The pilot's room_centre view (D-104 reference: room_centre_torch_after / _tube_after).
 	{"id": "room_centre", "eye": Vector3(5.6, 1.6, -0.9), "target": Vector3(2.8, 0.35, -3.0), "fov": 75.0},
 	{"id": "door_overview", "eye": Vector3(2.1, 1.65, -0.35), "target": Vector3(4.0, 0.9, -4.8), "fov": 80.0},

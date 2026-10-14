@@ -1,5 +1,5 @@
 # T-216 — Sửa 3 lỗi nhà tắm phòng 407 sau G3
-- Lane: B (Môi trường và 3D) | Trạng thái: todo | Agent: lane B
+- Lane: B (Môi trường và 3D) | Trạng thái: done (D-109) | Agent: lane B; ghép: integrator (Claude làm thay commit, lane B hết hạn mức)
 - Phụ thuộc: D-103…D-106 trên `main` (`75c526e` trở đi). Quyết định giao: **D-107** (chủ dự án chọn giao lane B).
 - Nhánh: `lane-b/T-216-bathroom-fixes` từ `origin/main` mới nhất.
 
@@ -79,7 +79,46 @@ Cần sửa ngoài danh sách trên (ví dụ `chapter2_director.gd`, `cables.gd
   - phần chưa kiểm.
 
 ## Handoff
-_(lane B điền)_
+### Lane B — 14/10/2026
+
+- Workspace `D:\GAME_WORK\lane-b`, nhánh `lane-b/T-216-bathroom-fixes`, gốc `origin/main` = `45fa1c4`. Đã cất 129 file staged T-213 vào `stash@{0}` với thông điệp **`T-213 staged leftovers, superseded by D-092`**, kiểm workspace sạch rồi fetch/tạo nhánh. Stash và nhánh T-213 vẫn giữ nguyên; không đưa phần cũ vào T-216.
+- Chủ dự án đã xác nhận **“Đã cấp lượt, cứ chạy”** cho Forward+ trước/sau và full test/check trong phiên này. Mọi lượt dùng APPDATA riêng dưới `build/t216/userdata` (test runner còn tách UUID riêng).
+
+**Đã sửa**
+
+| Điểm/đồ | Vị trí Room407-local mới (m) | Hướng / ghi chú |
+|---|---|---|
+| `Anchors/RagSpot` | `(7.827, 1.509, -5.3)` | yaw 90°, nằm trên giá khăn, toàn bộ hình giẻ ngoài AABB bồn |
+| `TowelRack` trong placements | `(7.892, 1.15, -5.3)` | hạ 15 cm để mặt giẻ nhìn thấy ở tầm mắt 1,6 m; hình trang trí không có collider |
+| `Anchors/ShowerScreen` | `(5.387, 1.45, -6.0)` | yaw 90°, mặt quay +X vào nhà tắm; cách mặt gạch tây x=5.383 đúng 4 mm |
+| `Anchors/ShowerYes` | `(5.407, 1.20, -5.89)` | yaw 90°, bên trái khi nhìn bảng |
+| `Anchors/ShowerNo` | `(5.407, 1.20, -6.11)` | yaw 90°, bên phải khi nhìn bảng |
+
+- Giẻ: `game/assets/models/graphics_pilot/room407_furnished/cleaning_rag.glb`, dùng chung tại `RagSpot/Model` và `Details/CleaningRag`. Hai lớp vải gấp, nếp nhăn, viền cuốn; Blender 5.2.2, texture Rough Linen CC0 đã có. Nguồn `art_source/graphics_upgrade/room407_furnished/build_cleaning_rag.py`, `cleaning_rag.blend`, `CREDITS.md`. 3.200 tam giác, 1 material, 3 map 1024², GLB 3.013.404 byte; kèm map/import do Godot tách ra. Không dùng Tripo hay nguồn mới không rõ license.
+- Giữ `RagSpot`, `Model`, `Surface`, `metadata/size`, quan hệ nút so với bảng `(-/+0.11, -0.25, +0.02)` trong hệ trục bảng. Luồng cầm/thả/lau/chọn nước dùng script hiện hành; không đổi collision, nav, thời gian, luật, UI, ánh sáng, shader hoặc `KEEP_PS1`.
+- Góc lỗi được kiểm bằng ảnh cận **đông-bắc**, thêm camera lệch 2 cm; hình học GLB gốc có 3 giao nẹp: tây-bắc (`CapWest/CapBack`), đông-bắc (`CapEast/CapBack`), đông-nam (`CapEast/CapFront`). Mặt trên đồng phẳng y ≈ 1.812 m, giao hộp 14×14 mm kèm mép vát; tây-nam là cửa nên không có cặp giao như giả thuyết 4 góc ban đầu. Sửa tận nguồn `build_lived_in.py::bath_tiles`: nẹp sau/trước dừng trước nẹp bên 1 mm; sửa tâm gạch `TilesFront` để hết lấn 4 mm vào gạch đông. Xuất lại **chỉ bàn giao thay đổi `bath_tiles.glb`**, 1.032 tam giác, 7.372.100 byte; đo GLB trước/sau cho **3 → 0 cặp giao**. Không đủ thông tin để khẳng định góc đông-bắc là chính góc chủ dự án đã thấy trong lần chơi báo lỗi.
+
+**Ảnh và bằng chứng**
+
+- `art_source/graphics_upgrade/room407_furnished/previews/t216/README.md`: danh mục/link toàn bộ ảnh; `before/` và `after/` mỗi bên **30 ảnh 1280×720**, Forward+ / RTX 3050 Laptop, cùng camera. Gồm giẻ, bảng từ chỗ tắm/cửa, 4 góc trên + 4 góc dưới, cận nẹp và lệch camera. Hai `capture_report.json` có SHA-256; `geometry_report.json` có bounds nẹp và hash/size/tam giác GLB.
+- Góc chính: `t216_rag_rack_{torch,tube}.png`, `t216_panel_side_{torch,tube}.png`, `t216_panel_door_{torch,tube}.png`, `t216_cap_ne_{close,shift}_torch.png` trong cả hai thư mục. Không chỉnh ảnh. Đã khôi phục nguyên các ảnh G3 cũ sau lượt chụp.
+- Capture dùng `room407_g3_capture.tscn -- --g3-capture`; runner tạm chọn các `t216_` trong `VIEWS`. Mỗi lượt còn tự chụp 16 ảnh giấy: **`RESULT: room407 G3 capture 46 images PASS`**, giữ lại 30 ảnh thuộc T-216. Chỉ thêm góc vào script capture chính.
+
+**Kiểm tra**
+
+- Test mới `game/tests/levels/test_room407_bathroom_fixes.gd`: model giẻ ngoài bồn/ở trên rack/nhìn thấy; ray lấy giẻ qua collision thật; toàn mặt bảng không xuyên AABB vòi sen; khoảng cách mặt gạch; hướng và vị trí hai nút; ray 2 m tới vùng lau/nút từ `(6.18,1.6,-5.6)` và `(6.0,1.6,-4.35)`; lau đủ một giây từ cả hai chỗ; 4 nẹp không giao thể tích.
+- Targeted trước khi hạ rack: **`RESULT: 4 passed, 0 failed`**. Full test sau khi hạ rack: **đang chạy, chưa kết luận**.
+- Full `pwsh tools/test.ps1`: **đang chạy**. `pwsh tools/check.ps1`: **chờ full test**. Log ở `build/t216/`.
+- Commit: **chưa commit; chờ full test/check**.
+
+**Chưa kiểm / yêu cầu thay đổi**
+
+- Chưa chơi tay chương 2 trên build xuất; cần chủ dự án xác nhận hình giẻ, góc từng gặp nhấp nháy và cảm giác lau/bấm khi chơi. Ảnh G3 chỉ có nền bảng; LCD được director chương 2 gắn trong bản chơi. Không chạy bot, không đo FPS, không export build.
+- Giẻ trên tay vẫn dùng placeholder do `chapter2_director.gd`/`carry_item.tscn` hiện hành điều khiển; card này chỉ cho thay model tại điểm neo và giẻ trang trí. Nếu muốn thay cả hình cầm trên tay, integrator/lane A xử lý riêng; B không sửa file ngoài phạm vi.
+- Không có yêu cầu core bắt buộc cho bản sửa này. Chờ full test/check trước khi bàn giao.
 
 ## Review
-_(integrator điền)_
+**Integrator, 14/10/2026 (D-109), nhận.** Lane B hết hạn mức sau khi sửa xong và đã khởi động full test/check; lượt đó tự chạy hết trong `D:\GAME_WORK\lane-b`: **`RESULT: 780 passed, 0 failed`**, **`RESULT: check 0 error(s)`** (log `build/t216/` của lane B). Claude làm thay phần commit: chép nguyên các file thay đổi/mới của lane B sang `D:\GAME_DEMO` (không sửa thư mục lane B; bỏ `game/default_bus_layout.tres` do test tự ghi), không đổi nội dung.
+- Đã xem ảnh trước/sau: bảng + nút Có/Không trên tường tây nhà tắm nhìn rõ từ chỗ tắm và từ cửa; giẻ trên giá khăn; nẹp góc đông-bắc hết chồng mặt (còn khe nối 1 mm nhìn được khi soi gần, chấp nhận).
+- Đúng phạm vi card; không đổi `KEEP_PS1`, core, luật chương 2. Hình giẻ khi cầm trên tay vẫn là placeholder của `carry_item` (ngoài phạm vi, ghi lại để xử lý khi làm G4/đồ cầm tay).
+- Còn chờ chủ dự án chơi tay chương 2 (lấy giẻ, lau bảng, chọn Có/Không) và xác nhận góc nhấp nháy đã hết.

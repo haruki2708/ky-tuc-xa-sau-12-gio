@@ -96,7 +96,7 @@ func test_anchors_props_and_screen_are_reachable_from_stall() -> void:
 	var room := spawn(ROOM)
 	for name in ["RagSpot", "TowelSpot", "ShirtSpot", "Gag1", "Gag2", "Gag4", "ShowerScreen", "ShowerYes", "ShowerNo"]:
 		assert_true(room.get_node("Anchors/" + name) is Marker3D, name)
-	assert_eq(room.get_node("Anchors/RagSpot/Model").scene_file_path, "res://scenes/levels/ch1_models/rag.tscn")
+	assert_eq(room.get_node("Anchors/RagSpot/Model").scene_file_path, "res://assets/models/graphics_pilot/room407_furnished/cleaning_rag.glb")
 	assert_not_null(room.get_node("Clothesline"))
 	var screen := room.get_node("Anchors/ShowerScreen/Surface") as MeshInstance3D
 	assert_eq((screen.mesh as QuadMesh).size, Vector2(.4, .3))

@@ -138,12 +138,15 @@ def bath_tiles():
     bc.box("TilesEast", (x1 - t / 2, half, (z0 + z1) / 2), (t, TILE_TOP, z0 - z1), tiles, .002, period)
     bc.box("TilesBack", ((x0 + x1) / 2, half, z1 + t / 2), (x1 - x0 - 2 * t, TILE_TOP, t), tiles, .002, period)
     door_east = BATH["door"][1]
-    bc.box("TilesFront", ((door_east + x1) / 2, half, z0 - t / 2), (x1 - door_east - t, TILE_TOP, t), tiles, .002, period)
+    bc.box("TilesFront", ((door_east + x1 - t) / 2, half, z0 - t / 2), (x1 - door_east - t, TILE_TOP, t), tiles, .002, period)
     # Bull-nose capping strip on top of the tiling.
     for name, pos, size in (("CapWest", (x0 + .007, TILE_TOP + .006, (z0 + z1) / 2), (.014, .012, z0 - z1)),
                             ("CapEast", (x1 - .007, TILE_TOP + .006, (z0 + z1) / 2), (.014, .012, z0 - z1)),
-                            ("CapBack", ((x0 + x1) / 2, TILE_TOP + .006, z1 + .007), (x1 - x0, .012, .014)),
-                            ("CapFront", ((door_east + x1) / 2, TILE_TOP + .006, z0 - .007), (x1 - door_east, .012, .014))):
+                            # Butt joints stop 1 mm before the side strips. Previously their
+                            # top faces overlapped at NW/NE/SE (SW is the open doorway),
+                            # producing coplanar fragments at y=1.812 and bevel intersections.
+                            ("CapBack", ((x0 + x1) / 2, TILE_TOP + .006, z1 + .007), (x1 - x0 - .030, .012, .014)),
+                            ("CapFront", ((door_east + x1 - .015) / 2, TILE_TOP + .006, z0 - .007), (x1 - door_east - .015, .012, .014))):
         bc.box(name, pos, size, tiles, .005, period)
     drain = (6.45, -6.25)
     bc.box("DrainGrate", (drain[0], .002, drain[1]), (.12, .004, .12), steel, .002, .3)

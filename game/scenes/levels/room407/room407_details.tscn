@@ -28,7 +28,7 @@
 
 [ext_resource type="PackedScene" path="res://scenes/levels/ch1_models/bed_debris.tscn" id="t154_bed_debris"]
 
-[ext_resource type="PackedScene" path="res://scenes/levels/ch1_models/rag.tscn" id="t154_rag"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/room407_furnished/cleaning_rag.glb" id="t154_rag"]
 
 [sub_resource type="ShaderMaterial" id="s1"]
 shader = ExtResource("e1")

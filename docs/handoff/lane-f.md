@@ -1,5 +1,7 @@
 # Prompt bàn giao — Lane F (Âm thanh, tiếp nhận Lane E)
 
+> **14/10, D-108: lane F chuyển cho Claude Code trên web (Sonnet 5.5)**; dùng [web.md](web.md). Các prompt bên dưới giữ làm lịch sử T-212 của agent GPT Plus cũ. Thư mục `D:\GAME_WORK\lane-f` còn một stash cũ; integrator giữ nguyên.
+
 > **D-082:** đã review phần mới; đọc Review card và [kết luận chung](REVIEW_G1_2026-10-11.md), giữ công việc đã nhận. Không làm lại G0 hoặc tự chạy một vòng test mới chỉ vì nhận thông báo; tiếp tục đúng phần còn thiếu trong Review.
 
 > **D-081, 11/10:** Astra làm thay Claude web ở T-207 theo yêu cầu chủ dự án. Đầu mối core/contract chuyển về integrator; web tạm dừng. Đọc [bàn giao G1](T207_G1_ASTRA_2026-10-11.md); giữ G0 và task/nhánh hiện có.
