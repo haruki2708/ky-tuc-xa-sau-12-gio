@@ -1,5 +1,7 @@
 # Prompt bàn giao — Lane B (Môi trường và 3D)
 
+> **14/10, D-107:** prompt đang dùng là **mục 6** (T-216, sửa 3 lỗi nhà tắm).
+
 > **11/10, D-083:** schema/validator G1 của C đã ghép; integrator là Claude (Opus 5.5) ở máy. Prompt đang dùng: **mục 4** (chuyển manifest balo + hướng mặt trước).
 
 > **D-082:** đã review phần mới; đọc Review card và [kết luận chung](REVIEW_G1_2026-10-11.md), giữ công việc đã nhận. Không làm lại G0 hoặc tự chạy một vòng test mới chỉ vì nhận thông báo; tiếp tục đúng phần còn thiếu trong Review.
@@ -128,4 +130,31 @@ VIỆC: T-213 — làm thử "góc phòng 407" gần chân thực bằng Blender
    - Cách ánh sáng gián tiếp đã thử, ưu/nhược; cài đặt môi trường.
    - Dòng RESULT của test.ps1 và check.ps1; commit hash.
    - Phần chưa làm, đề xuất cho bước dựng cả phòng/tòa nhà, có bị chặn gì không.
+```
+
+## 6. Prompt T-216: sửa 3 lỗi nhà tắm phòng 407 (D-107, 14/10)
+
+Dán nguyên khối, dùng được cho phiên cũ lẫn phiên mới.
+
+```text
+Bạn là agent Lane B (Môi trường và 3D), game "Ký túc xá sau 12 giờ" (Godot 4.7.2). Trả lời/tài liệu tiếng Việt, code tiếng Anh.
+Chỉ làm trong D:\GAME_WORK\lane-b. Không sửa D:\GAME_DEMO hay workspace lane khác.
+Integrator là Claude (Opus 5.5) ở máy. Câu hỏi core/contract và việc xin lượt chạy Godot đều gửi về integrator qua chủ dự án.
+
+VIỆC: T-216 — sửa 3 lỗi nhà tắm phòng 407 chủ dự án báo sau G3: giẻ lau chương 2 vẫn là hình PS1 và nằm trong lòng bồn rửa mặt;
+bảng điều khiển sen tắm (và hai nút Có/Không) bị vòi sen che, cần dời ra cạnh vòi sen; một góc tường nhà tắm nhấp nháy.
+
+1. git status (không ghi đè việc đang dở) → git fetch origin → tạo nhánh lane-b/T-216-bathroom-fixes từ origin/main mới nhất (có D-107).
+2. Đọc: AGENTS.md, docs/STATUS.md, docs/tasks/T-216-bathroom-fixes.md (toàn bộ: nguyên nhân đã dò, việc cần làm, được phép sửa),
+   D-102…D-107 trong docs/DECISIONS.md, docs/tasks/T-215-g3-room407-playable.md (phòng mới vào bản chơi thế nào),
+   game/scenes/levels/room407/room407.gd và room407_furnish.gd, game/data/room407/placements.json.
+3. Làm đúng mục "Việc cần làm" của card, chỉ sửa file trong "Được phép sửa". Giữ luật, thời gian, cách chơi chương 2.
+   Kiểm lại nguyên nhân trước khi sửa; góc nhấp nháy phải tìm đúng trên ảnh chụp, sửa tận gốc (build_lived_in.py + xuất lại bath_tiles.glb).
+4. Model giẻ mới: Blender (D:\Tools\Blender\5.2.2\blender.exe) + texture CC0 (ghi nguồn). Muốn dùng Tripo thì ghi prompt đề xuất vào Handoff, không tiêu credit.
+5. Chạy offline/headless trước. Khi cần chụp ảnh (Forward+) hoặc full test/check: NHẮN integrator xin lượt rồi mới chạy
+   pwsh tools/test.ps1, sau đó pwsh tools/check.ps1. Không đo FPS, không chạy bot.
+6. Hai lệnh đạt → commit nhỏ "T-216: ..." → git push origin lane-b/T-216-bathroom-fixes (không push main, không mở PR) → báo nhả lượt Godot.
+   Sắp hết hạn mức thì dừng ở bước đang làm, commit "T-216 WIP: ...", push, ghi Handoff rõ còn dở gì.
+7. Cập nhật Handoff trong card (không sửa STATUS, DECISIONS hay mục Review) và báo lại:
+   vị trí mới của giẻ và bảng (toạ độ), góc nhấp nháy + nguyên nhân thật, ảnh trước/sau, dòng RESULT test/check, commit hash, phần chưa kiểm, có bị chặn gì không.
 ```

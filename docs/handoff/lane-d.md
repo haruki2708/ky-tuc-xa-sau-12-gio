@@ -1,5 +1,7 @@
 # Prompt bàn giao — Lane D (UI và Đa ngôn ngữ)
 
+> **14/10, D-107: agent lane D cũ đã nghỉ. Claude Code trên web nhận lane D**; dùng [web.md](web.md), không dán các prompt bên dưới cho agent cũ nữa. Các prompt dưới đây giữ làm lịch sử T-211/T-214.
+
 > **D-082:** đã review phần mới; đọc Review card và [kết luận chung](REVIEW_G1_2026-10-11.md), giữ công việc đã nhận. Không làm lại G0 hoặc tự chạy một vòng test mới chỉ vì nhận thông báo; tiếp tục đúng phần còn thiếu trong Review.
 
 > **D-081, 11/10:** Astra làm thay Claude web ở T-207 theo yêu cầu chủ dự án. Đầu mối core/contract chuyển về integrator; web tạm dừng. Đọc [bàn giao G1](T207_G1_ASTRA_2026-10-11.md); giữ G0 và task/nhánh hiện có.
