@@ -345,6 +345,7 @@ mesh = SubResource("s36")
 
 [node name="LightHum" type="AudioStreamPlayer3D" parent="Room407MainLight" node_paths=PackedStringArray("light")]
 script = ExtResource("e8")
+position = Vector3(0, 0.06, 0)
 light = NodePath("..")
 bus = &"Ambience"
 unit_size = 2.0
@@ -367,7 +368,7 @@ rotation_degrees = Vector3(0, 180, 0)
 scale = Vector3(1, 1, 1)
 
 [node name="FanAmbience" type="AudioStreamPlayer3D" parent="."]
-position = Vector3(2, 2.4, -2.5)
+position = Vector3(2, 2.54, -2.5)
 script = ExtResource("e10")
 stream = ExtResource("e11")
 bus = &"Ambience"

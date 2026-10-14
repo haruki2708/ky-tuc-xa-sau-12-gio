@@ -7,3 +7,7 @@
 - Công cụ AI: OpenAI Codex hỗ trợ viết mã tổng hợp và fixture; Python 3 tổng hợp cộng các họa âm kim loại, FFmpeg 9.0.2 encode Vorbis q4. Khai báo quy trình có AI hỗ trợ khi phát hành.
 - Dùng lại helper xử lý trong `audio_source/process.py` của E, không đổi nguồn/tác giả của helper hoặc các asset cũ. `lock_alarm.ogg` chỉ được tham chiếu để so sánh; nguồn/license của nó vẫn ở `game/audio/CREDITS.md`.
 - Mẫu mới chưa được chủ dự án nghe; đây là ứng viên G0, chưa thay chuông trong cảnh thật.
+
+# T-218 — Âm thanh phòng 407 khớp đồ G3
+
+Không thêm asset âm thanh: chỉ đổi vị trí nguồn (quạt, đèn tuýp, vòi sen, gương) và thêm cảnh nghe thử `room407_audio_preview.tscn`. Âm vẫn là các file của E đã khai ở `game/audio/CREDITS.md` (`ambience/ceiling_fan.ogg`, `ambience/fluorescent_hum.ogg`, `sfx/fluorescent_flicker.ogg`, `ch2/water_*.ogg`, `ch2/steam_hiss.ogg`, `ch2/mirror_shiver.ogg`). Claude Code web (Sonnet 5.5, lane F, D-108) viết mã định vị và test; không đổi tác giả hay giấy phép của asset nào.

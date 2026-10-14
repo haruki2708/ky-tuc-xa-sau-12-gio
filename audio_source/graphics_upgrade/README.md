@@ -59,3 +59,49 @@ Mỗi lần đổi clip chỉ giữ một player. Chọn clip mới đưa fixtur
 - [ ] Cuộc gọi/loa chương 2–4, năm câu T-205, hai giọng y tá và âm chương 3–4 còn chờ nghe theo STATUS/T-200; không thu lại trong G0.
 
 Test mới: `game/tests/audio/test_graphics_fire_bell.gd` kiểm decode/hash/biên, stream dùng chung không bị bật loop, phát qua cuối clip, pause/stop/disposal/tạo lại và deadline fixture. Full test/check và kết quả thực tế ghi tại Handoff; không lấy fixture thay nghiệm thu cảnh thật.
+
+# T-218 — Âm thanh phòng 407 khớp đồ G3
+
+Không thêm file âm mới: chỉ dời nguồn âm có sẵn cho khớp quạt trần, đèn tuýp, vòi sen và gương mới (D-103…D-109). Âm lượng không đổi. Bảng đo lệch trước/sau nằm trong Handoff `docs/tasks/T-218-room407-object-audio.md`.
+
+## Cảnh nghe thử
+
+F6 `res://audio/graphics_upgrade/room407_audio_preview.tscn`, hoặc chạy từ gốc repo trên Windows:
+
+```powershell
+& 'D:\Tools\Godot\Godot_v4.7.2-stable_win64_console.exe' --path game res://audio/graphics_upgrade/room407_audio_preview.tscn --windowed --resolution 960x540
+```
+
+Dựng phòng 407 đủ đồ (bản chơi), mở im lặng, người nghe là camera cố định. Cảnh không có người chơi nên không có vùng âm: phím bật từng nguồn trực tiếp. Không ghi settings, không phát noise cho AI. Tiêu đề cửa sổ hiện trạng thái hiện tại (vị trí mới/cũ, quạt, đèn, nước, hơi nước).
+
+| Phím | Tác dụng |
+|---|---|
+| F | Bật/tắt tiếng quạt trần |
+| L | Bật/tắt đèn tuýp (tiếng ù đèn đi theo đèn) |
+| K | Bật/tắt chập chờn bằng `flicker_light.gd` thật của đèn mới (tiếng ù tắt/bật đúng nhịp đèn) |
+| 1 / 2 / 3 | Nước lạnh (1 °C) / ấm (37 °C) / sôi (81 °C) |
+| 0 | Tắt nước |
+| S | Bật/tắt tiếng hơi nước |
+| M | `mirror_shiver` (cue ở gương, chương 2 slot 12) |
+| T | Đổi **vị trí mới ↔ cũ** của nguồn, để so trước/sau cùng một âm |
+| C | Người nghe ở giữa phòng (3,5; 1,6; −3,0) |
+| B | Người nghe ở cửa nhà tắm (5,3; 1,6; −4,4), nhìn về phía vòi sen |
+| Space | Tắt hết |
+| R | Nạp lại cảnh (phải im lặng) |
+| Esc | Tắt hết và thoát qua `App.quit` |
+
+Vị trí "cũ" là trước T-218: quạt (2; 2,4; −2,5), tiếng ù đèn đúng tâm bóng PS1, nước và cue ở giữa khoang tắm (6,18; 1,2; −6,32).
+
+## Những gì đổi trong code
+
+- `room_407.tscn` (chỉ hai node âm): `FanAmbience` y 2,4 → 2,54 (tâm cánh quạt mới); `LightHum` cao hơn tâm đèn 6 cm (tâm hai bóng tuýp mới). `volume_db`, `unit_size`, `max_distance`, stream giữ nguyên.
+- `shower_audio.gd`: tiếng nước phát từ `Ch2Bathroom/Water` (chỗ nước rơi thấy được); `mirror_shiver` phát từ `Ch2Bathroom/Reflection` (chỗ bóng quản lý hiện ra trên gương nhỏ), dự phòng `ReflectiveMirrorSmall`. Tìm node từ Room407 chứa ShowerStall; thiếu thì giữ chỗ cũ (giữa khoang tắm), không bao giờ về gốc thế giới. Đẩy cửa và `door_burst` giữ chỗ cũ. `follow_fixtures = false` đưa mọi nguồn về chỗ cũ (dùng cho so sánh). API `set_water`, `set_steam`, `play_cue`, `play_door_push` không đổi.
+- `light_hum.gd` không đổi: tiếng ù đã bám năng lượng thật của đèn, nhịp chập chờn của đèn mới (D-104) không đổi nên không cần sửa.
+
+## Danh sách còn chờ nghe (T-218)
+
+- [ ] Quạt (F, C): vẫn nhỏ, không đổi tông; từ giữa phòng nghe như treo trên đầu.
+- [ ] Đèn (L, K): ù và chập chờn khít nhịp đèn, không click lạ khi bật lại (hum khởi động lại mỗi lần đèn sáng, như trước).
+- [ ] Nước (1/2/3, B vs C, T): từ vòi sen mới thay vì giữa khoang; không to hơn, không chói.
+- [ ] `mirror_shiver` (M, T): lệch về phía gương nhỏ, tai nghe thấy từ phía tường tây nhà tắm.
+- [ ] Cảnh thật: chương 1 phòng 407 khi đèn chập (tiếng ù đúng nhịp), chương 1–4 tiếng quạt trong phòng, chương 2 nhà tắm (tắm nước lạnh/ấm/sôi, slot 12 bóng quản lý trong gương).
