@@ -1,5 +1,5 @@
 # T-217 — Khung đọc giấy hiện đúng ảnh chụp và thẻ sinh viên
-- Lane: D (UI và Đa ngôn ngữ) | Trạng thái: **trả sửa lần 1 (15/10)** | Agent: Gemini 3.8 Flash trong Antigravity (D-108)
+- Lane: D (UI và Đa ngôn ngữ) | Trạng thái: **trả sửa lần 2 (15/10)** | Agent: Gemini 3.8 Flash trong Antigravity (D-108)
 - Phụ thuộc: D-106, **D-110** trên `main`. Quyết định giao: D-110 (chủ dự án: "ok tôi đồng ý, bạn thực hiện đi").
 - Nhánh: `lane-d/T-217-document-view-looks` từ `origin/main` mới nhất. Làm trong `D:\GAME_WORK\lane-d` theo `docs/handoff/lane-d.md` mục 0.
 
@@ -64,4 +64,22 @@
 5. Thêm assert vào test: hình bóng người nằm trong ô ảnh (hằng số hình học dùng chung), và chữ con dấu không vượt chiều rộng dấu ở vi/en (ví dụ so `get_minimum_size()` hoặc độ rộng chữ với `size`).
 
 Giữ nguyên phần đã đạt. Làm theo prompt 0.2, chạy lại test/check, cập nhật Handoff (thêm mục "Lần sửa 1").
+
+### Integrator — 15/10/2026, lần 2: **trả sửa** (nhánh `b95ed3b`)
+**Kiểm theo `lane-d.md` 0.3:** gốc `663b2a3` (main), `git diff --name-status` không có `D`/`R`. Integrator tự chạy trên nhánh: `RESULT: 796 passed, 0 failed`, `RESULT: check 0 error(s)`, khớp Handoff. `document_stamp.gd` nằm ngoài "Được phép sửa" nhưng chỉ thêm hằng số và `get_inner_radius()`, nét vẽ giữ nguyên, chỉ `document_view.tscn` dùng: chấp nhận.
+
+**Đạt:** ý (1) bóng người nằm gọn trong ô ảnh; ý (3) thẻ và mặt sau ảnh không còn nếp gấp, giấy cũ giữ nguyên; ý (4) `card_en.png`, `photo_en.png` có, `photo_en` đẹp; ý (5) test bóng người đúng.
+
+**Chưa đạt: ý (2), chữ con dấu vẫn tràn vòng tròn** (xem `card_vi.png`, `card_en.png`):
+- vi: "Ký túc xá – Tầng 4" nằm **một dòng**, chữ "K" và "4" đè lên cả hai vòng.
+- en: dòng "Dormitory – Floor" đè vòng ở hai đầu.
+- Lý do: Label rộng 130 nên chữ chỉ xuống dòng khi dài quá 130 px, mà vòng trong chỉ rộng khoảng 110 px (bán kính 55), dây cung ở ngoài tâm còn ngắn hơn. Test hiện tại chỉ đo **từng từ**, không đo cả dòng, nên đạt dù ảnh lỗi.
+
+**Cần sửa:**
+1. Chữ dấu phải tự xuống dòng bên trong vòng trong, ví dụ cho `CardStamp` một `StyleBoxEmpty` (theme override `normal`) có `content_margin` mỗi bên khoảng 22–24 px để vùng chữ còn khoảng 82–86 px. Kết quả mong đợi: vi "Ký túc xá –" / "Tầng 4", en "Dormitory –" / "Floor 4" (hoặc tương tự), cả khối chữ nằm trong vòng trong. Không đổi key, không đổi chữ, không sửa nét vẽ vòng.
+2. Sửa test: đo **cả khối chữ** sau khi xuống dòng, không đo từng từ. Ví dụ `font.get_multiline_string_size(text, HORIZONTAL_ALIGNMENT_CENTER, vùng_chữ_rộng, font_size)` ra (w, h), rồi assert góc khối nằm trong vòng trong: `(w/2)² + (h/2)² <= get_inner_radius()²`, ở cả vi và en. Test phải **trượt** với code hiện tại ở `b95ed3b` (ghi vào Handoff là đã thử).
+3. Chụp lại `card_vi.png`, `card_en.png` (ghi ra `D:\GAME_WORK\lane-d\build\` trước). Tự mở hai ảnh xem chữ dấu không chạm vòng trước khi báo xong.
+4. Dọn nhỏ: `stamp.add_theme_font_size_override("font_size", 14)` trong `_render_card()` trùng với `.tscn`, bỏ một chỗ; bỏ dòng trống thừa cuối `document_stamp.gd`, `paper_surface.gd`, `capture_looks.gd`, test.
+
+Giữ nguyên phần đã đạt. Làm theo prompt 0.2, chạy lại test/check, cập nhật Handoff (thêm mục "Lần sửa 2").
 
