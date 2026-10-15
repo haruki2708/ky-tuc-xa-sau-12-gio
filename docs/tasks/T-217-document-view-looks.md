@@ -88,6 +88,23 @@
 ### Yêu cầu thay đổi
 - Không có yêu cầu ngoài phạm vi.
 
+### Lần sửa 1 (15/10/2026)
+- **(1) Bóng người trong ô ảnh thẻ:** Đã thay đổi cách vẽ thân người bằng đa giác `CARD_BODY_POLYGON` cùng các hằng số `CARD_PHOTO_RECT := Rect2(36, 78, 130, 170)`, `CARD_HEAD_CENTER := Vector2(101, 134)`, `CARD_HEAD_RADIUS := 24.0` trong `game/scripts/ui/paper_surface.gd`. Bờ dưới của đa giác thân dừng ở y = 246 (nằm trọn trong ô ảnh có y kết thúc ở 248), không tràn ra ngoài.
+- **(2) Chữ con dấu trong vòng tròn:** Nâng kích thước `CardStamp` lên `130×130`, chỉnh font size thành 14 px trong `game/ui/document/document_view.tscn` và `game/scripts/ui/document_view.gd`. Thêm `get_inner_radius()` vào `game/scripts/ui/document_stamp.gd`. Chữ "Ký túc xá – Tầng 4" (vi) và "Dormitory – Floor 4" (en) đều nằm gọn hoàn toàn bên trong đường tròn con dấu và không che khuất thông tin sinh viên.
+- **(3) Bỏ nếp gấp giấy trên thẻ và mặt sau ảnh:** Trong `game/scripts/ui/paper_surface.gd::_draw()`, bọc phần vẽ đường gấp giữa và viền mép giấy trong `if paper_style != &"card" and paper_style != &"photo_back":`. Thẻ nhựa và giấy ảnh không còn nếp gấp giấy, toàn bộ các style cũ giữ nguyên 100%.
+- **(4) Chụp lại & bổ sung ảnh xem trước:** Cập nhật `game/ui/document/capture_looks.gd` nhận tham số `--locale=`. Xuất ảnh chụp ra `D:\GAME_WORK\lane-d\build\previews\` trước rồi chép vào `game/ui/document/previews/`:
+  - `card_vi.png` (chụp lại sau khi sửa bóng và dấu)
+  - `card_en.png` (bổ sung bản tiếng Anh)
+  - `photo_en.png` (bổ sung bản tiếng Anh)
+- **(5) Thêm assert test:** Trong `game/tests/ui/test_document_view_looks.gd`:
+  - Thêm `test_card_silhouette_stays_inside_photo_rect()` kiểm tra toàn bộ điểm của `CARD_BODY_POLYGON` và vòng tròn đầu `CARD_HEAD_CENTER` nằm trọn trong `CARD_PHOTO_RECT`.
+  - Trong `test_all_looks_fit_in_720p_and_translate_cleanly()`, bổ sung assert kiểm tra `stamp.get_minimum_size().x <= stamp.size.x` và từng từ của chữ con dấu đều có độ rộng nhỏ hơn đường kính vòng tròn trong của dấu ở cả `vi` và `en`.
+- **Danh sách mọi file đã xóa hoặc đổi tên:** không có.
+- **Kết quả kiểm tra:**
+  - `RESULT: 796 passed, 0 failed` (`pwsh tools/test.ps1`)
+  - `RESULT: check 0 error(s)` (`pwsh tools/check.ps1`)
+- **Commit hash:** `c9bb2bc` (code & previews), kèm commit cập nhật card này.
+
 ## Review (integrator)
 
 ### Integrator — 15/10/2026, lần 1: **trả sửa** (nhánh `a4a0ba4`)
