@@ -147,6 +147,8 @@ func _render_card() -> void:
 	var stamp: Label = $Root/CardFrame/CardContent/CardBody/CardStamp
 	stamp.visible = _document.style == &"stamped"
 	stamp.text = tr("UI_DOCUMENT_STAMP")
+	stamp.add_theme_font_size_override("font_size", 14)
+
 
 
 func _add_line(parent: VBoxContainer, text: String) -> void:

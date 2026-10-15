@@ -1,6 +1,7 @@
 extends TestCase
 
 const DOCUMENT = preload("res://ui/document/document_view.tscn")
+const PAPER_SURFACE = preload("res://scripts/ui/paper_surface.gd")
 
 var _host: Node
 var _sub_viewport: SubViewport
@@ -160,5 +161,34 @@ func test_all_looks_fit_in_720p_and_translate_cleanly() -> void:
 		for child in card_lines.get_children():
 			assert_true(child is Label)
 			assert_false(child.text.is_empty())
+
+		# Stamp text bounds check for vi and en
+		var stamp: Label = _document.get_node("Root/CardFrame/CardContent/CardBody/CardStamp")
+		assert_true(stamp.visible, "card stamp visible")
+		var stamp_size := stamp.size
+		assert_true(stamp_size.x >= 120.0 and stamp_size.y >= 120.0, "stamp size at least 120x120")
+		assert_true(stamp.get_minimum_size().x <= stamp_size.x, "stamp minimum width fits inside stamp size")
+		var font: Font = stamp.get_theme_font(&"font")
+		var font_size: int = stamp.get_theme_font_size(&"font_size")
+		var inner_radius: float = stamp.get_inner_radius() if stamp.has_method("get_inner_radius") else (minf(stamp_size.x, stamp_size.y) * 0.5 - 10.0)
+		var inner_diameter := inner_radius * 2.0
+		for word in stamp.text.split(" "):
+			if word.is_empty():
+				continue
+			var word_width := font.get_string_size(word, HORIZONTAL_ALIGNMENT_CENTER, -1, font_size).x
+			assert_true(word_width < inner_diameter, "stamp word '%s' width (%.1f) fits inside inner diameter (%.1f) in locale %s" % [word, word_width, inner_diameter, locale])
+
 		_document.close_view()
 		await wait_frames(2)
+
+
+func test_card_silhouette_stays_inside_photo_rect() -> void:
+	var photo_rect: Rect2 = PAPER_SURFACE.CARD_PHOTO_RECT
+	var head_center: Vector2 = PAPER_SURFACE.CARD_HEAD_CENTER
+	var head_radius: float = PAPER_SURFACE.CARD_HEAD_RADIUS
+	var head_rect := Rect2(head_center - Vector2(head_radius, head_radius), Vector2(head_radius * 2.0, head_radius * 2.0))
+	assert_true(photo_rect.encloses(head_rect), "Card silhouette head must be strictly inside CARD_PHOTO_RECT")
+	assert_true(PAPER_SURFACE.CARD_BODY_POLYGON.size() >= 3, "Card body polygon must have at least 3 vertices")
+	for pt: Vector2 in PAPER_SURFACE.CARD_BODY_POLYGON:
+		assert_true(photo_rect.has_point(pt), "Card body point %s must be inside CARD_PHOTO_RECT" % str(pt))
+
