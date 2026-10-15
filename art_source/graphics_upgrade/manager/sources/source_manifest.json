@@ -1,0 +1,175 @@
+{
+  "source_url": "https://files.makehumancommunity.org/asset_packs/makehuman_system_assets/makehuman_system_assets_cc0.zip",
+  "archive_last_modified_utc": "2024-04-14T13:28:46Z",
+  "downloaded_local": "2026-10-16",
+  "files": [
+    {
+      "file": "clothes/male_casualsuit01/male_casualsuit01_ao.png",
+      "bytes": 785596,
+      "sha256": "9402d75d71318ef3ad90ee59f8b8688effefd13b3ec56423330e005bed5cd6c0",
+      "license": "CC0-1.0"
+    },
+    {
+      "file": "clothes/male_casualsuit01/male_casualsuit01_diffuse.png",
+      "bytes": 5531728,
+      "sha256": "3fd0bba5dcbdea0ac427f644a6c7c298938f7369b8f96626621ce1e88989394e",
+      "license": "CC0-1.0"
+    },
+    {
+      "file": "clothes/male_casualsuit01/male_casualsuit01_normal.png",
+      "bytes": 1738660,
+      "sha256": "ff029fc5a3350ebc72813cdf050afcffd23064c7701d99e664572713cfa98a5f",
+      "license": "CC0-1.0"
+    },
+    {
+      "file": "clothes/male_casualsuit01/male_casualsuit01.mhclo",
+      "bytes": 570419,
+      "sha256": "78503ed7f56c149843d85e06e1164bc6871ce7319b2ef689237046352cc90de4",
+      "license": "CC0-1.0"
+    },
+    {
+      "file": "clothes/male_casualsuit01/male_casualsuit01.mhmat",
+      "bytes": 1345,
+      "sha256": "043b25cefd398261b893d3dae58c81fc3e9633a25a01eafe66963591f5ad6eb6",
+      "license": "CC0-1.0"
+    },
+    {
+      "file": "clothes/male_casualsuit01/male_casualsuit01.obj",
+      "bytes": 699545,
+      "sha256": "001921d237e408c35103720d046aa37f9c5512db1a179a5ede6a065cd504ba89",
+      "license": "CC0-1.0"
+    },
+    {
+      "file": "clothes/shoes01/shoes01_diffuse.png",
+      "bytes": 1335772,
+      "sha256": "50c9a406a7f1cb6aa7b42912348e78f09d0252aa3963c8229cf18dfe8353cdbf",
+      "license": "CC0-1.0"
+    },
+    {
+      "file": "clothes/shoes01/shoes01_normal.png",
+      "bytes": 875473,
+      "sha256": "a9bfd7223e98b8f93100e89596135e3a94e6044f9db11b4d23cec625c37a4599",
+      "license": "CC0-1.0"
+    },
+    {
+      "file": "clothes/shoes01/shoes01.mhclo",
+      "bytes": 119049,
+      "sha256": "7994e38f7cdcee0bd5f55101660badcce0162fcdfc7f432218dd1eb301626252",
+      "license": "CC0-1.0"
+    },
+    {
+      "file": "clothes/shoes01/shoes01.mhmat",
+      "bytes": 1161,
+      "sha256": "db1711e2dfea4dd8c24459643603a190d9a9da603fd26da5542002a73d740be8",
+      "license": "CC0-1.0"
+    },
+    {
+      "file": "clothes/shoes01/shoes01.mhw",
+      "bytes": 324727,
+      "sha256": "b377d91e6d0264521f672c3990c366b2631103accba4921fc3965c2ed5ce395b",
+      "license": "CC0-1.0"
+    },
+    {
+      "file": "clothes/shoes01/shoes01.obj",
+      "bytes": 136910,
+      "sha256": "eac355a842a8eb8ae2f09fac8dd18a877a24ef2521ed2d6bf38559b42ce4b49a",
+      "license": "CC0-1.0"
+    },
+    {
+      "file": "eyebrows/eyebrow001/eyebrow001.mhclo",
+      "bytes": 9141,
+      "sha256": "54c8892c2ba577f4152d779ce1f20f7cd323beb8cbd9cb701796165c221b4f5b",
+      "license": "CC0-1.0"
+    },
+    {
+      "file": "eyebrows/eyebrow001/eyebrow001.mhmat",
+      "bytes": 1098,
+      "sha256": "976e5f4f1d3922d7a11c6e2db233f8b4584b068d00619d5749687e81c92d61fc",
+      "license": "CC0-1.0"
+    },
+    {
+      "file": "eyebrows/eyebrow001/eyebrow001.obj",
+      "bytes": 8227,
+      "sha256": "88b13146395133f3901715e11706cdfd293e5d6087ad7c5e01efe1485a26b513",
+      "license": "CC0-1.0"
+    },
+    {
+      "file": "eyebrows/eyebrow001/eyebrow001.png",
+      "bytes": 89619,
+      "sha256": "9940f7d0b1b223709a19b05156ba6f6e9e4dbdbced02d7574f4d51d72c58967b",
+      "license": "CC0-1.0"
+    },
+    {
+      "file": "eyes/low-poly/low-poly.mhclo",
+      "bytes": 1344,
+      "sha256": "68582e28e9176cba7cfcf35208f671b6201b8d1bc95c32decff61a3160ec34d8",
+      "license": "CC0-1.0"
+    },
+    {
+      "file": "eyes/low-poly/low-poly.obj",
+      "bytes": 6604,
+      "sha256": "783fe1e6331162c876520b4c2bed7a8ca06354ca15497e8ebd68bb1b59f4d3de",
+      "license": "CC0-1.0"
+    },
+    {
+      "file": "eyes/materials/brown_eye.png",
+      "bytes": 610817,
+      "sha256": "4659691c7295ad6206c78b003e5fd0e5f91dcd53032fa914a229bb48cabe424b",
+      "license": "CC0-1.0"
+    },
+    {
+      "file": "eyes/materials/brown.mhmat",
+      "bytes": 1247,
+      "sha256": "4abad93ce50541c08127721e77bce035640c9f16bed16cd0f5524b1cd5908465",
+      "license": "CC0-1.0"
+    },
+    {
+      "file": "eyes/materials/grey_eye.png",
+      "bytes": 669883,
+      "sha256": "ecb05613126036a3d017880fabbd570501c5f14032c186462d8f6e2d719f6c4f",
+      "license": "CC0-1.0"
+    },
+    {
+      "file": "eyes/materials/grey.mhmat",
+      "bytes": 1244,
+      "sha256": "65c536157ef0550b2f8461a9526c726707533dc7cfe8a65abb9b9db0b4e6b25e",
+      "license": "CC0-1.0"
+    },
+    {
+      "file": "hair/short01/short01_diffuse.png",
+      "bytes": 2354146,
+      "sha256": "f34a0957184e3d1e911ed59245f874f8d4843f61ee44ff49f43edb4be0196949",
+      "license": "CC0-1.0"
+    },
+    {
+      "file": "hair/short01/short01.mhclo",
+      "bytes": 201588,
+      "sha256": "ae1ffaa98da5753b803b3a173bede4895d2215e6bb94763f3765a71f0e984f35",
+      "license": "CC0-1.0"
+    },
+    {
+      "file": "hair/short01/short01.mhmat",
+      "bytes": 1314,
+      "sha256": "01e2e12ce3f3d3c859225456660acadcdd27d4f4b4d888bcbd6f11998cadd975",
+      "license": "CC0-1.0"
+    },
+    {
+      "file": "hair/short01/short01.obj",
+      "bytes": 194450,
+      "sha256": "d998d8416f9b5d5591f1d756f4d292288d000a6951bc0f4d2e8e72727bbc44fa",
+      "license": "CC0-1.0"
+    },
+    {
+      "file": "skins/middleage_asian_male/middleage_asian_male.mhmat",
+      "bytes": 1463,
+      "sha256": "341a041eeb9c4bb51133fafb4d61e859a36dbd142c75c7cef4531606143c4e22",
+      "license": "CC0-1.0"
+    },
+    {
+      "file": "skins/middleage_asian_male/middleage_lightskinned_male_diffuse2.png",
+      "bytes": 3730636,
+      "sha256": "e897c4cc1b6ad5d10a7d2b2be92402feda4e772e6582dfaf0a1e8fc4621d8097",
+      "license": "CC0-1.0"
+    }
+  ]
+}

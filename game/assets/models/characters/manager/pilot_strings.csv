@@ -1,0 +1,5 @@
+keys,vi,en
+UI_MANAGER_PILOT_CONTROLS,"1–6: đứng / đi / hỏi / chém / vồ / kết liễu · L: ánh sáng · V: góc nhìn · P: dừng động tác · H: ẩn chữ · F12: chụp · Esc: thoát","1–6: stand / walk / ask / slash / lunge / kill · L: lighting · V: view · P: freeze · H: hide text · F12: capture · Esc: exit"
+UI_MANAGER_PILOT_C,"C — MPFB · đồ đi kèm tạm","C — MPFB · temporary accessories"
+UI_MANAGER_PILOT_A_PENDING,"A — đang chờ file Tripo","A — awaiting Tripo files"
+UI_MANAGER_PILOT_A,"A — Tripo","A — Tripo"

@@ -1,0 +1,20 @@
+{
+  "height_m": 1.7,
+  "triangles": 23872,
+  "materials": 4,
+  "texture_max": 2048,
+  "parts": {
+    "ManagerSkin": 8499,
+    "ManagerUniform": 10999,
+    "ManagerHair": 2450,
+    "ManagerDetails": 1384,
+    "TemporaryCleaver": 540
+  },
+  "mpfb": "2.0.18",
+  "temporary_props": [
+    "cleaver",
+    "keys",
+    "blank ID",
+    "lanyard"
+  ]
+}

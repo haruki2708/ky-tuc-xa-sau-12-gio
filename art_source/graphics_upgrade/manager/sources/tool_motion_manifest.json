@@ -1,0 +1,18 @@
+{
+  "name": "Quaternius Universal Animation Library Standard",
+  "distribution_snapshot": "2025-06-10",
+  "original_url": "https://quaternius.itch.io/universal-animation-library",
+  "mirror": "https://github.com/J-Ponzo/gltf-universal-animation-library",
+  "mirror_commit": "e24c23cf2a1323488a3faa226ea7ea21f644b73e",
+  "license": "CC0-1.0",
+  "downloaded_zip_sha256": "813d53f689f90dbef64645c06feb48f9cbf78ffe758cf68fc04a2a720868debd",
+  "extracted_clips": [
+    "Idle_Loop",
+    "Walk_Formal_Loop",
+    "Idle_Talking_Loop",
+    "Sword_Attack",
+    "Sprint_Loop"
+  ],
+  "mpfb_version": "2.0.18",
+  "mpfb_zip_sha256": "ada7c4ff11e79cf6ed9b441bccabc52c9359f2848b988f66e89c14c30b21fed7"
+}

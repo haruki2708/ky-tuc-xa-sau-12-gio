@@ -1,0 +1,2 @@
+# Godot's generated translation resources are binary.
+*.translation filter=lfs diff=lfs merge=lfs -text
