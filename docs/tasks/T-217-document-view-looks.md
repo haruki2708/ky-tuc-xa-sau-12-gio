@@ -105,6 +105,19 @@
   - `RESULT: check 0 error(s)` (`pwsh tools/check.ps1`)
 - **Commit hash:** `c9bb2bc` (code & previews), kèm commit cập nhật card này.
 
+### Lần sửa 2 (15/10/2026)
+- **(1) Chữ con dấu tự xuống dòng bên trong vòng trong:** Đã gán `theme_override_styles/normal = SubResource("StyleBoxEmpty_card_stamp")` cho `CardStamp` trong `game/ui/document/document_view.tscn`, với `content_margin_left = 23.0` và `content_margin_right = 23.0`. Vùng nội dung chữ được co lại còn 84 px (giữa khung dấu 130 px), khiến chữ tự động xuống dòng 2 dòng cân đối ở cả tiếng Việt ("Ký túc xá –" / "Tầng 4") và tiếng Anh ("Dormitory –" / "Floor 4"), hoàn toàn nằm gọn trong vòng trong của con dấu với khoảng cách an toàn tới nét vẽ vòng tròn. Không đổi key localization, không đổi nội dung chữ, không sửa nét vẽ vòng tròn.
+- **(2) Sửa test đo cả khối chữ multiline & TDD:** Trong `game/tests/ui/test_document_view_looks.gd`, sửa kiểm tra con dấu thành đo cả khối chữ sau khi xuống dòng bằng `font.get_multiline_string_size(stamp.text, HORIZONTAL_ALIGNMENT_CENTER, text_width_limit, font_size)`, tính nửa chiều rộng và chiều cao `(w/2, h/2)`, rồi assert `(w/2)^2 + (h/2)^2 <= inner_radius^2` ở cả `vi` và `en`. Đã chạy thử nghiệm test này trên code commit `b95ed3b` (chưa có margin): test trượt chính xác như kỳ vọng (`vi`: (126.0 x 18.0) corner dist sq 4050.0 > 3025.0; `en`: (125.0 x 36.0) corner dist sq 4230.3 > 3025.0). Sau khi áp dụng content_margin 23 px, test vượt hoàn toàn.
+- **(3) Chụp lại card_vi.png và card_en.png:** Xuất ảnh qua `capture_looks.gd` vào `D:\GAME_WORK\lane-d\build\previews\` trước, tự mở và kiểm tra trực quan cả hai ảnh bằng `view_file` xác nhận chữ nằm cách mép vòng trong > 10 px và không chạm vòng ở bất kỳ góc nào, sau đó mới sao chép vào `game/ui/document/previews/card_vi.png` và `card_en.png`.
+- **(4) Dọn dẹp code:**
+  - Bỏ dòng override `stamp.add_theme_font_size_override("font_size", 14)` trùng lặp trong `_render_card()` của `game/scripts/ui/document_view.gd` (đã khai báo trong `.tscn`).
+  - Bỏ các dòng trống thừa ở cuối file trong `game/scripts/ui/document_stamp.gd`, `game/scripts/ui/paper_surface.gd`, `game/ui/document/capture_looks.gd`, và `game/tests/ui/test_document_view_looks.gd`.
+- **Danh sách mọi file đã xóa hoặc đổi tên:** không có.
+- **Kết quả kiểm tra:**
+  - `RESULT: 796 passed, 0 failed` (`pwsh tools/test.ps1`)
+  - `RESULT: check 0 error(s)` (`pwsh tools/check.ps1`)
+- **Commit hash:** `603ef04` (code, test, previews), kèm commit cập nhật card này.
+
 ## Review (integrator)
 
 ### Integrator — 15/10/2026, lần 1: **trả sửa** (nhánh `a4a0ba4`)
