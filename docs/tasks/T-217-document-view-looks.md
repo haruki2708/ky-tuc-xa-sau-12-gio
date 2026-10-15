@@ -1,5 +1,5 @@
 # T-217 — Khung đọc giấy hiện đúng ảnh chụp và thẻ sinh viên
-- Lane: D (UI và Đa ngôn ngữ) | Trạng thái: **trả sửa lần 2 (15/10)** | Agent: Gemini 3.8 Flash trong Antigravity (D-108)
+- Lane: D (UI và Đa ngôn ngữ) | Trạng thái: **done, D-112 đã ghép (15/10)** | Agent: Gemini 3.8 Flash trong Antigravity (D-108)
 - Phụ thuộc: D-106, **D-110** trên `main`. Quyết định giao: D-110 (chủ dự án: "ok tôi đồng ý, bạn thực hiện đi").
 - Nhánh: `lane-d/T-217-document-view-looks` từ `origin/main` mới nhất. Làm trong `D:\GAME_WORK\lane-d` theo `docs/handoff/lane-d.md` mục 0.
 
@@ -51,6 +51,73 @@
 
 ## Handoff (agent điền)
 
+### Đã làm
+- Cập nhật `game/scripts/ui/paper_surface.gd`: thêm nhánh vẽ mới cho `&"card"` (nền thẻ sinh viên bo góc, dải màu xanh navy đầu thẻ có viền kim loại vàng, ô ảnh thẻ 3×4 kèm bóng mờ chân dung) và `&"photo_back"` (mặt sau giấy ảnh với chất giấy ấm và thớ mờ nhẹ). Giữ nguyên 100% màu sắc, nét kẻ và viền của các style cũ (`notebook`, `handwritten`, `log`, `photocopy`, `notice`).
+- Cập nhật `game/ui/document/document_view.tscn` và `game/scripts/ui/document_view.gd`:
+  - Đọc trường `_document.look`.
+  - Với `photo` và `photo_family`: hiển thị ảnh in dùng texture `res://assets/textures/papers/photo.png` / `photo_family.png` đặt song song cạnh mặt sau giấy ảnh (chữ viết tay nghiêng tự nhiên), không che hình, căn giữa màn hình, dễ đọc ở cả 720p và 1080p.
+  - Với `card`: hiển thị thẻ sinh viên nằm ngang tỷ lệ chuẩn (~85.6 × 54), có dải màu xanh đậm đầu thẻ, tiêu đề "Thẻ sinh viên", ô ảnh thẻ chân dung, thông tin họ tên, ngày sinh, ký túc xá bằng font chữ máy đánh chữ sắc nét, cùng dấu đỏ trường khi có `style == &"stamped"`.
+  - Với look rỗng (`&""`): giữ nguyên 100% cách hiển thị tờ giấy `Paper` cũ cho mọi tài liệu trước đây.
+  - Giữ nguyên các node gốc `Root/Paper/Content/Title`, `Scroll/Lines`, `Stamp`, `Hint`, cơ chế mở/đóng, tạm dừng và phím tắt (E, Esc, Tab, click chuột).
+- Thêm scene chụp và tạo ảnh xem trước `game/ui/document/capture_looks.tscn` / `capture_looks.gd`, đã render đủ 3 ảnh xem trước:
+  - `game/ui/document/previews/photo_vi.png` (1920×1080)
+  - `game/ui/document/previews/photo_family_vi.png` (1920×1080)
+  - `game/ui/document/previews/card_vi.png` (1920×1080)
+- Viết test mới `game/tests/ui/test_document_view_looks.gd` kiểm tra:
+  - Texture và khung hiển thị cho `photo`, `photo_family`, `card`.
+  - Mọi `text_keys` đều có mặt trên màn hình.
+  - Kiểu giấy cũ vẫn ra `Paper` như trước.
+  - Toàn bộ nội dung nằm gọn trong màn hình 1280×720 và dịch đúng vi/en.
+
+### Danh sách mọi file đã xóa hoặc đổi tên
+- 12 file tạm Movie Maker trong `game/ui/document/previews/` (`photo_frame.wav`, `photo_frame00000000…00000004.png` và các `.import`), chưa từng commit, chủ dự án cho phép xóa.
+
+### Kết quả kiểm tra
+- `RESULT: 784 passed, 0 failed` (`pwsh tools/test.ps1`)
+- `RESULT: check 0 error(s)` (`pwsh tools/check.ps1`)
+
+### Commit hash
+- `0ef1dad` (commit triển khai)
+
+### Màn cần integrator chụp 720p/1080p (vi/en)
+- Các màn đọc ảnh chụp (`ch1_team_photo`, `ch1_viet_photo`) và thẻ sinh viên (`ch1_dat_card`, `ch1_phuc_card`, `ch1_viet_card`) ở cả hai độ phân giải 1280×720 và 1920×1080, tiếng Việt và tiếng Anh (ảnh xem trước `photo_vi.png`, `photo_family_vi.png`, `card_vi.png` đã được tạo sẵn trong `game/ui/document/previews/`).
+
+### Phần chưa làm
+- Không có (toàn bộ yêu cầu của card T-217 đã hoàn thành).
+
+### Yêu cầu thay đổi
+- Không có yêu cầu ngoài phạm vi.
+
+### Lần sửa 1 (15/10/2026)
+- **(1) Bóng người trong ô ảnh thẻ:** Đã thay đổi cách vẽ thân người bằng đa giác `CARD_BODY_POLYGON` cùng các hằng số `CARD_PHOTO_RECT := Rect2(36, 78, 130, 170)`, `CARD_HEAD_CENTER := Vector2(101, 134)`, `CARD_HEAD_RADIUS := 24.0` trong `game/scripts/ui/paper_surface.gd`. Bờ dưới của đa giác thân dừng ở y = 246 (nằm trọn trong ô ảnh có y kết thúc ở 248), không tràn ra ngoài.
+- **(2) Chữ con dấu trong vòng tròn:** Nâng kích thước `CardStamp` lên `130×130`, chỉnh font size thành 14 px trong `game/ui/document/document_view.tscn` và `game/scripts/ui/document_view.gd`. Thêm `get_inner_radius()` vào `game/scripts/ui/document_stamp.gd`. Chữ "Ký túc xá – Tầng 4" (vi) và "Dormitory – Floor 4" (en) đều nằm gọn hoàn toàn bên trong đường tròn con dấu và không che khuất thông tin sinh viên.
+- **(3) Bỏ nếp gấp giấy trên thẻ và mặt sau ảnh:** Trong `game/scripts/ui/paper_surface.gd::_draw()`, bọc phần vẽ đường gấp giữa và viền mép giấy trong `if paper_style != &"card" and paper_style != &"photo_back":`. Thẻ nhựa và giấy ảnh không còn nếp gấp giấy, toàn bộ các style cũ giữ nguyên 100%.
+- **(4) Chụp lại & bổ sung ảnh xem trước:** Cập nhật `game/ui/document/capture_looks.gd` nhận tham số `--locale=`. Xuất ảnh chụp ra `D:\GAME_WORK\lane-d\build\previews\` trước rồi chép vào `game/ui/document/previews/`:
+  - `card_vi.png` (chụp lại sau khi sửa bóng và dấu)
+  - `card_en.png` (bổ sung bản tiếng Anh)
+  - `photo_en.png` (bổ sung bản tiếng Anh)
+- **(5) Thêm assert test:** Trong `game/tests/ui/test_document_view_looks.gd`:
+  - Thêm `test_card_silhouette_stays_inside_photo_rect()` kiểm tra toàn bộ điểm của `CARD_BODY_POLYGON` và vòng tròn đầu `CARD_HEAD_CENTER` nằm trọn trong `CARD_PHOTO_RECT`.
+  - Trong `test_all_looks_fit_in_720p_and_translate_cleanly()`, bổ sung assert kiểm tra `stamp.get_minimum_size().x <= stamp.size.x` và từng từ của chữ con dấu đều có độ rộng nhỏ hơn đường kính vòng tròn trong của dấu ở cả `vi` và `en`.
+- **Danh sách mọi file đã xóa hoặc đổi tên:** không có.
+- **Kết quả kiểm tra:**
+  - `RESULT: 796 passed, 0 failed` (`pwsh tools/test.ps1`)
+  - `RESULT: check 0 error(s)` (`pwsh tools/check.ps1`)
+- **Commit hash:** `c9bb2bc` (code & previews), kèm commit cập nhật card này.
+
+### Lần sửa 2 (15/10/2026)
+- **(1) Chữ con dấu tự xuống dòng bên trong vòng trong:** Đã gán `theme_override_styles/normal = SubResource("StyleBoxEmpty_card_stamp")` cho `CardStamp` trong `game/ui/document/document_view.tscn`, với `content_margin_left = 23.0` và `content_margin_right = 23.0`. Vùng nội dung chữ được co lại còn 84 px (giữa khung dấu 130 px), khiến chữ tự động xuống dòng 2 dòng cân đối ở cả tiếng Việt ("Ký túc xá –" / "Tầng 4") và tiếng Anh ("Dormitory –" / "Floor 4"), hoàn toàn nằm gọn trong vòng trong của con dấu với khoảng cách an toàn tới nét vẽ vòng tròn. Không đổi key localization, không đổi nội dung chữ, không sửa nét vẽ vòng tròn.
+- **(2) Sửa test đo cả khối chữ multiline & TDD:** Trong `game/tests/ui/test_document_view_looks.gd`, sửa kiểm tra con dấu thành đo cả khối chữ sau khi xuống dòng bằng `font.get_multiline_string_size(stamp.text, HORIZONTAL_ALIGNMENT_CENTER, text_width_limit, font_size)`, tính nửa chiều rộng và chiều cao `(w/2, h/2)`, rồi assert `(w/2)^2 + (h/2)^2 <= inner_radius^2` ở cả `vi` và `en`. Đã chạy thử nghiệm test này trên code commit `b95ed3b` (chưa có margin): test trượt chính xác như kỳ vọng (`vi`: (126.0 x 18.0) corner dist sq 4050.0 > 3025.0; `en`: (125.0 x 36.0) corner dist sq 4230.3 > 3025.0). Sau khi áp dụng content_margin 23 px, test vượt hoàn toàn.
+- **(3) Chụp lại card_vi.png và card_en.png:** Xuất ảnh qua `capture_looks.gd` vào `D:\GAME_WORK\lane-d\build\previews\` trước, tự mở và kiểm tra trực quan cả hai ảnh bằng `view_file` xác nhận chữ nằm cách mép vòng trong > 10 px và không chạm vòng ở bất kỳ góc nào, sau đó mới sao chép vào `game/ui/document/previews/card_vi.png` và `card_en.png`.
+- **(4) Dọn dẹp code:**
+  - Bỏ dòng override `stamp.add_theme_font_size_override("font_size", 14)` trùng lặp trong `_render_card()` của `game/scripts/ui/document_view.gd` (đã khai báo trong `.tscn`).
+  - Bỏ các dòng trống thừa ở cuối file trong `game/scripts/ui/document_stamp.gd`, `game/scripts/ui/paper_surface.gd`, `game/ui/document/capture_looks.gd`, và `game/tests/ui/test_document_view_looks.gd`.
+- **Danh sách mọi file đã xóa hoặc đổi tên:** không có.
+- **Kết quả kiểm tra:**
+  - `RESULT: 796 passed, 0 failed` (`pwsh tools/test.ps1`)
+  - `RESULT: check 0 error(s)` (`pwsh tools/check.ps1`)
+- **Commit hash:** `603ef04` (code, test, previews), kèm commit cập nhật card này.
+
 ## Review (integrator)
 
 ### Integrator — 15/10/2026, lần 1: **trả sửa** (nhánh `a4a0ba4`)
@@ -83,3 +150,13 @@ Giữ nguyên phần đã đạt. Làm theo prompt 0.2, chạy lại test/check,
 
 Giữ nguyên phần đã đạt. Làm theo prompt 0.2, chạy lại test/check, cập nhật Handoff (thêm mục "Lần sửa 2").
 
+
+### Integrator — 15/10/2026, lần 3: **đạt, đã ghép (D-112)** (nhánh `bb317d0`)
+**Kiểm theo `lane-d.md` 0.3:** gốc `f0f0c90` (main), `git diff --name-status` không có `D`/`R`, file đều trong "Được phép sửa" (trừ `document_stamp.gd` đã chấp nhận ở lần 2). Integrator tự chạy trên bản ghép: kết quả ghi trong D-112.
+
+**Đạt:** chữ con dấu xuống hai dòng, nằm gọn trong vòng trong ở cả vi ("Ký túc xá –" / "Tầng 4") và en; test đo cả khối chữ, Handoff ghi đã thử trượt ở `b95ed3b` (vi 4050 > 3025, en 4230 > 3025). Ba ảnh `photo_*` không đổi so với bản đã duyệt. Dọn code đúng yêu cầu.
+
+**Ghi chú, không chặn:**
+- Bản en thực tế xuống dòng thành "Dormitory" / "– Floor 4" (Handoff ghi "Dormitory –" / "Floor 4"). Dễ đọc, chấp nhận. Muốn gạch nối ở cuối dòng 1 thì phải dùng khoảng trắng không ngắt trong `strings.csv`, việc nhỏ để sau.
+- Game kéo giãn `canvas_items` từ khung gốc 1920×1080, nên bản 720p là bản 1080p thu nhỏ đều; test đã kiểm nội dung nằm trong màn 1280×720. Không chụp 720p riêng.
+- Chưa có `photo_family_en.png`; không bắt buộc.

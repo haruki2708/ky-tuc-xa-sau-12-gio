@@ -9,7 +9,7 @@
 - Không bao giờ được push `main`. Integrator chỉ ghép sau khi tự kiểm (mục 0.3); lời báo "xong" của Gemini không được coi là bằng chứng.
 - Thư mục `D:\GAME_WORK\lane-d` đang còn việc T-214 cũ chưa commit (57 file, nhánh `lane-d/T-214-video-reset-readability`). T-214 đã được ghép ở D-091 nên đây là bản cũ; phải `git stash` trước khi làm việc mới, **không xóa**.
 
-**Việc hiện tại (D-110): [T-217 Khung đọc giấy hiện đúng ảnh chụp và thẻ](../tasks/T-217-document-view-looks.md)**, nhánh `lane-d/T-217-document-view-looks`. Dán prompt 0.1 với dòng Task: `T-217, docs/tasks/T-217-document-view-looks.md`. (`-u` trong Bước 1 để cất cả file mới chưa track, theo góp ý của Gemini.)
+**Việc hiện tại: chưa có.** T-217 xong, D-112 đã ghép sau 2 lần trả sửa. Bài học cho việc sau: ảnh xem trước phải tự mở xem; test về khung/chữ phải đo cả khối chữ và phải trượt được với code lỗi. (`-u` trong Bước 1 để cất cả file mới chưa track, theo góp ý của Gemini.)
 
 ### 0.1 Prompt giao task (dán nguyên khối vào Antigravity, mở thư mục D:\GAME_WORK\lane-d)
 ```text
