@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="PackedScene" path="res://assets/models/characters/manager/manager_c.glb" id="1"]
+[ext_resource type="AnimationLibrary" path="res://assets/models/characters/manager/manager_shared.tres" id="2"]
+[ext_resource type="PackedScene" path="res://assets/models/characters/manager/temporary_cleaver.glb" id="3"]
+[ext_resource type="Material" path="res://assets/models/characters/manager/manager_details.tres" id="4"]
+
+[node name="ManagerBodyC" type="Node3D"]
+
+[node name="Model" parent="." instance=ExtResource("1")]
+rotation = Vector3(0, 3.14159265, 0)
+
+[node name="ManagerDetails" parent="Model/Rig/GeneralSkeleton" index="0"]
+material_override = ExtResource("4")
+
+[node name="KnifeAttachment" type="BoneAttachment3D" parent="Model/Rig/GeneralSkeleton"]
+bone_name = "RightHand"
+
+[node name="Knife" parent="Model/Rig/GeneralSkeleton/KnifeAttachment" instance=ExtResource("3")]
+position = Vector3(0, 0.055, 0)
+rotation = Vector3(1.57079633, 0, 0)
+
+[node name="TemporaryCleaver" parent="Model/Rig/GeneralSkeleton/KnifeAttachment/Knife" index="0"]
+material_override = ExtResource("4")
+
+[node name="BladeTip" type="Marker3D" parent="Model/Rig/GeneralSkeleton/KnifeAttachment/Knife"]
+position = Vector3(0.085, 0, -0.38)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Model")
+libraries = {
+&"": ExtResource("2")
+}
+
+[editable path="Model"]
+[editable path="Model/Rig/GeneralSkeleton/KnifeAttachment/Knife"]

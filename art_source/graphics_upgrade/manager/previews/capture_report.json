@@ -1,0 +1,22 @@
+{
+	"a_available": false,
+	"godot": "4.7.2-stable (official)",
+	"gpu": "NVIDIA GeForce RTX 3050 Laptop GPU",
+	"images": [
+		"full_body_tube.png",
+		"face_1m_tube.png",
+		"full_body_flashlight.png",
+		"face_1m_flashlight.png",
+		"slash_windup.png",
+		"slash_contact.png",
+		"slash_recovery.png",
+		"tube_flicker.png"
+	],
+	"renderer": "forward_plus",
+	"resolution": [
+		1920.0,
+		1080.0
+	],
+	"scene": "res://scenes/levels/graphics_pilot/manager_compare.tscn",
+	"utc": "2026-10-15T18:06:06"
+}
