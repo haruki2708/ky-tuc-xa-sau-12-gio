@@ -1,6 +1,8 @@
 # Prompt bàn giao — Lane C (QA và Tools)
 
-> **16/10, D-117:** prompt đang dùng là **mục 5** (T-219, mẫu thử nhân vật quản lý, chuyển từ lane B vì B hết hạn mức).
+> **16/10, review đợt 1:** prompt đang dùng là **mục 5.1** (sửa T-219: chuyển động tác lệch tư thế, cú chém, mặt 45 tuổi, khuỷu áo, dao tạm).
+
+> **16/10, D-117:** mục 5 (T-219, mẫu thử nhân vật quản lý, chuyển từ lane B vì B hết hạn mức).
 
 > **11/10, sau D-082:** Astra đã bàn giao lại; integrator là Claude (Opus 5.5) ở máy. Câu hỏi core/contract và xin lượt Godot gửi về integrator. Prompt đang dùng: **mục 4**.
 
@@ -157,4 +159,47 @@ Bản chơi KHÔNG đổi: manager.tscn và các chương giữ thân cũ tới 
    việc đã làm, danh sách ảnh so sánh, FPS từng mẫu, bảng nguồn + giấy phép từng tài sản, số tam giác/vật liệu/texture,
    dòng RESULT test/check nguyên văn, commit hash, phần chưa làm, nhận xét A và C (mặt, tay, khớp vai, quần áo khi chém),
    có bị chặn gì không.
+```
+
+### 5.1. Prompt sửa T-219 đợt 1 (review 16/10)
+
+Dán nguyên khối, dùng được cho phiên cũ lẫn phiên mới.
+
+```text
+Bạn là agent Lane C, đang làm T-219 (mẫu thử quản lý, mẫu C MPFB). Integrator đã review đợt 1 (HEAD d7f1f76): kỹ thuật đạt
+(integrator tự chạy 802/802, check 0), nhưng TRẢ SỬA 5 điểm hình/động tác. Chưa ghép vào main.
+Chỉ làm trong D:\GAME_WORK\lane-c, nhánh lane-c/T-219-manager-pilot. Giữ mọi luật của prompt mục 5 (lane-c.md):
+vùng file của card, không sửa manager.gd/manager.tscn/chương, không ghi ổ C, CC0/CC-BY, ≤ 10 MiB/file qua LFS, xin lượt Godot qua chủ dự án.
+
+1. git fetch origin, rebase nhánh lên origin/main mới nhất. Đọc mục "Review đợt 1" trong docs/tasks/T-219-manager-character-pilot.md.
+2. SỬA CHUYỂN ĐỘNG TÁC (phần dùng chung, quan trọng nhất). Probe của integrator ở stand t=0: gối gập 17–24° (tư thế gốc 7°),
+   hai bàn chân cách 0,36 m (gốc 0,20), đầu hạ 11 cm, tay dang. Idle_Loop của Quaternius là dáng đứng thẳng.
+   - Trước khi sửa: đặt mô hình Quaternius gốc chạy cùng clip cạnh mẫu C, chụp để thấy rõ khác biệt.
+   - Sửa tận gốc ở tư thế nghỉ, BoneMap hoặc cách retarget (A-pose với T-pose); không chỉnh tay từng clip.
+     Cách sửa phải dùng được cho khung xương Tripo của mẫu A.
+   - Sau khi sửa: stand đứng thẳng như bản gốc (dáng hơi gù làm bằng cột sống/vai, không bằng khuỵu gối).
+     Chụp lại cặp ảnh so với bản gốc.
+   - Test mới: ở stand, mỗi gối gập ≤ 10°, hai bàn chân cách ≤ 0,28 m, đầu hạ ≤ 5 cm so với tư thế gốc.
+3. SLASH theo card: "chém xuống từ trên vai". Hiện là cú quét ngang của Sword_Attack.
+   - Làm cú bổ: tay phải đưa dao lên cao ngang hoặc trên vai, bổ chéo xuống phía trước; tay trái thu gần thân, không dang.
+   - Vẫn lặp được, nhịp 0,45 s; BladeTip đi theo.
+   - Được phái sinh từ clip CC0 (chỉnh key tay/vai trong Blender), ghi là phái sinh trong CREDITS.
+   - Test mới: ở pha lấy đà BladeTip cao hơn vai phải; ở pha chạm BladeTip thấp hơn ngực và nằm phía trước thân (hướng −Z của scene thân).
+   - Nếu chỉnh kill cùng lúc thì giữ ngắn gọn, không bắt buộc.
+4. MẶT ĐÚNG 45 TUỔI VÀ KINH DỊ HƠN (mục 1 TRIPO_QUAN_LY.md):
+   - tăng age (khoảng 0,66–0,70), má hóp, gò má rõ;
+   - thêm nếp nhăn và normal ở trán, khóe mắt, rãnh mũi má;
+   - vệt máu khô sẫm, chảy từ chân tóc xuống thái dương, mép không đều (không phải dải đỏ phẳng);
+   - mắt đục, con ngươi nhỏ phải THẤY RÕ ở 1 m dưới đèn trần;
+   - tóc bớt "mũ bảo hiểm": thử tóc ngắn CC0 khác của MakeHuman hoặc thêm lớp alpha, ghi lựa chọn và lý do;
+   - giữ ngân sách 25.000 tam giác / 4 vật liệu / 2048².
+5. KHUỶU TAY ÁO: sửa gãy và lộ đường nối khi chém (weight paint hoặc corrective), chụp cận khuỷu ở pha lấy đà.
+6. DAO TẠM: lưỡi thép xám, mép sáng, cán gỗ sẫm (vẫn ghi là "tạm", chờ Tripo), để ảnh không trông như tờ giấy.
+7. Bóng đèn pin răng cưa ở ảnh mặt 1 m: chỉ kiểm cảnh so sánh có dùng cùng thông số bóng với đèn pin trong game (D-104) không, ghi vào Handoff.
+   Khác thì cho giống game; giống thì để nguyên.
+8. Chụp lại đủ 8 ảnh cũ + ảnh so với bản Quaternius gốc + cận khuỷu + một tấm ghép 6 clip (stand, walk, ask, slash, lunge, kill ở giữa clip).
+   Không cần đo lại FPS nếu số tam giác/vật liệu không tăng; tăng thì đo lại như đợt 1.
+9. Xin lượt → pwsh tools/test.ps1 → pwsh tools/check.ps1 → git checkout -- game/default_bus_layout.tres → commit "T-219: ..." → push nhánh → nhả lượt.
+   Cập nhật Handoff (thêm mục "Sửa sau review đợt 1": từng điểm 1–7 đã sửa thế nào, ảnh, RESULT nguyên văn, commit hash).
+   Không sửa mục Review, STATUS, DECISIONS. Sắp hết hạn mức thì commit "T-219 WIP: ...", push, ghi rõ còn dở gì.
 ```
