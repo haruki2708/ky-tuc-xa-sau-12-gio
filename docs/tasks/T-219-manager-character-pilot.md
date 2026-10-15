@@ -120,6 +120,13 @@ RESULT: check 0 error(s)
 
 Đã chạy `git checkout -- game/default_bus_layout.tres` sau hai lệnh. Test riêng có `RESULT: 4 passed, 0 failed`; capture có `RESULT: T219 capture 8 images PASS`. Import GLB cuối không có ERROR. Không chạy bot. Log đầy đủ giữ cục bộ ở `build/t219/full_test.log`, `full_check.log`, `capture_fps.log`. Các snapshot nguồn MakeHuman/MPFB giữ nguyên cả whitespace/tiêu đề gốc; cảnh báo `git diff --check` trong thư mục nguồn là từ bản gốc này, không phải conflict của nhánh. Code và tài liệu tự viết đã qua kiểm whitespace.
 
+**Git:** nhánh `lane-c/T-219-manager-pilot`, đã rebase lên `origin/main` **`cb302c9` (D-117)**. Hai commit triển khai:
+
+- **`900b6136dc37baea451a4a6f6a386f648d523570`** — MPFB C, nguồn/giấy phép, script dựng và thư viện động tác.
+- **`63271da412e457e32477ae6965a37e9ec095c810`** — scene thân/cảnh so sánh, bốn test, ảnh, số đo và báo cáo.
+
+Hai lệnh đầy đủ chạy trước rebase; commit main mới chỉ thay năm tài liệu. Cây `game/` trước/sau rebase có cùng Git tree **`781a3ad19d06dff39d70a1d180cde3e0c56365eb`**, nên code/asset/test đã kiểm không thay đổi. Commit tiếp theo chỉ cập nhật các hash trong Handoff này. Bàn giao nguyên nhánh, không push main, không mở PR.
+
 **Nhận xét để chủ dự án chọn:**
 
 - **C — mặt:** nhận ra da xám, máu khô, mắt đục; vẫn trẻ hơn khoảng 45 tuổi, tóc còn phẳng, chưa đủ để duyệt nét Việt. Rọi đèn pin ở 1 m làm mất chi tiết da. Cần tinh chỉnh tuổi/nếp nhăn/normal và tóc nếu chọn cách C.
