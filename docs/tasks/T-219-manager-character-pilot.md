@@ -1,6 +1,6 @@
 # T-219 — G4 mẫu thử nhân vật: quản lý ký túc xá, hai cách làm song song
-- Lane: **B** (3D/Blender, làm cả phần nối gameplay) | Trạng thái: **đã giao (15/10, D-116)** | Agent: **lane B**, prompt [`lane-b.md` mục 7](../handoff/lane-b.md)
-- Quyết định: **D-115**, giao việc **D-116**. Chủ dự án: "1: làm quản lý trước, 2: thử A và C song song, 3: ngoại hình quản lý tầm 45 tuổi, trang phục quản lý trường học, lộ mặt kinh dị, dao sắc".
+- Lane: **C** (làm cả phần 3D/Blender và nối gameplay; chuyển từ lane B vì B hết hạn mức) | Trạng thái: **đã giao (16/10, D-117)** | Agent: **lane C**, prompt [`lane-c.md` mục 5](../handoff/lane-c.md)
+- Quyết định: **D-115**, giao việc **D-116** (lane B) → **D-117** (lane C). Chủ dự án: "1: làm quản lý trước, 2: thử A và C song song, 3: ngoại hình quản lý tầm 45 tuổi, trang phục quản lý trường học, lộ mặt kinh dị, dao sắc".
 - Phụ thuộc: D-114 (FPS 1080p còn dư), hợp đồng nhân vật T-208 (bảng Manager), `game/scripts/entity/manager.gd` (`body_scene`).
 
 ## Mục tiêu

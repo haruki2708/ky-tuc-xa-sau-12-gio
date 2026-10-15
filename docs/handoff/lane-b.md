@@ -1,6 +1,8 @@
 # Prompt bàn giao — Lane B (Môi trường và 3D)
 
-> **15/10, D-116:** prompt đang dùng là **mục 7** (T-219, mẫu thử nhân vật quản lý: mẫu C + phần dùng chung).
+> **16/10, D-117:** lane B hết hạn mức, **T-219 chuyển sang lane C** ([lane-c.md](lane-c.md) mục 5). Mục 7 dưới đây không dùng nữa; lane B chưa có việc mới.
+
+> **15/10, D-116:** prompt mục 7 (T-219), đã chuyển sang lane C ở D-117.
 
 > **14/10, D-107:** prompt đang dùng là **mục 6** (T-216, sửa 3 lỗi nhà tắm).
 

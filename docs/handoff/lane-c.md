@@ -1,5 +1,7 @@
 # Prompt bàn giao — Lane C (QA và Tools)
 
+> **16/10, D-117:** prompt đang dùng là **mục 5** (T-219, mẫu thử nhân vật quản lý, chuyển từ lane B vì B hết hạn mức).
+
 > **11/10, sau D-082:** Astra đã bàn giao lại; integrator là Claude (Opus 5.5) ở máy. Câu hỏi core/contract và xin lượt Godot gửi về integrator. Prompt đang dùng: **mục 4**.
 
 > **D-082:** đã review phần mới; đọc Review card và [kết luận chung](REVIEW_G1_2026-10-11.md), giữ công việc đã nhận. C chỉ được nhận probe b86a77d; sửa R1–R4 trên phần schema còn lại 7af1075 trước bàn giao lại.
@@ -90,4 +92,69 @@ Integrator đã ghép b86a77d (probe). Không làm lại probe/G0, không sửa 
    - Số fixture âm/dương và kết quả.
    - Dòng RESULT của test.ps1 và check.ps1; commit hash.
    - Phần chưa kiểm, câu hỏi về contract (nếu có), có bị chặn gì không.
+```
+
+## 5. Prompt T-219: mẫu thử nhân vật quản lý, mẫu C + phần dùng chung (D-117, 16/10)
+
+Dán nguyên khối, dùng được cho phiên cũ lẫn phiên mới. Việc này chuyển từ lane B (hết hạn mức) sang lane C. Lane C làm cả phần 3D lẫn phần nối gameplay của card, không cần lane A hay B.
+
+```text
+Bạn là agent Lane C của game "Ký túc xá sau 12 giờ" (Godot 4.7.2). Trả lời/tài liệu tiếng Việt, code tiếng Anh.
+Việc này vốn của lane B (3D/Blender), chuyển sang bạn vì lane B hết hạn mức (D-117).
+Chỉ làm trong D:\GAME_WORK\lane-c. Không sửa D:\GAME_DEMO hay workspace lane khác (được ĐỌC thư mục staging Tripo ở bước 6).
+Integrator là Claude (Opus 5.5) ở máy. Câu hỏi core/contract và việc xin lượt chạy Godot đều gửi về integrator qua chủ dự án.
+
+VIỆC: T-219 — G4 mẫu thử quản lý ký túc xá. Làm MẪU C (thân/mặt/khung xương MPFB, CC0) và phần DÙNG CHUNG cho cả hai mẫu:
+bộ động tác CC0, scene thân theo hợp đồng body_scene của manager.gd, cảnh so sánh trong phòng 407, ảnh, FPS, test.
+Mẫu A (Tripo) chủ dự án đang tạo; khi có file thì chuẩn hóa và đặt vào cùng cảnh.
+Bản chơi KHÔNG đổi: manager.tscn và các chương giữ thân cũ tới khi chủ dự án chọn.
+
+1. git status (không ghi đè việc đang dở; nhánh lane-c/T-210-graphics-asset-qa đã ghép vào main, giữ nguyên các stash cũ).
+   git fetch origin, tạo nhánh lane-c/T-219-manager-pilot từ origin/main mới nhất (có D-117).
+2. Đọc: AGENTS.md, docs/STATUS.md, docs/tasks/T-219-manager-character-pilot.md (toàn bộ), D-084 và D-113…D-117 trong docs/DECISIONS.md,
+   docs/handoff/TRIPO_QUAN_LY.md (ngoại hình mục 1, đồ đi kèm mục 4), tools/reports/D-114-room407-performance.md (cách đo FPS),
+   game/scripts/entity/manager.gd + game/scenes/entity/manager.tscn (hợp đồng body_scene, AnimationPlayer, BladeTip, tên clip),
+   card T-208 (bảng Manager trong hợp đồng nhân vật), game/scenes/levels/room407/room407.gd (ánh sáng D-113),
+   art_source/graphics_upgrade/ (cách các lane trước viết script Blender, ví dụ room407_furnished/build_lived_in.py, tripo/bake_prop.py).
+3. Công cụ: Blender D:\Tools\Blender\5.2.2\blender.exe, đã chạy portable (thư mục D:\Tools\Blender\5.2.2\portable có sẵn).
+   Cài MPFB vào bản portable đó; bộ tài sản MakeHuman (CC0) để trên D:. KHÔNG ghi gì vào ổ C
+   (kiểm lại %APPDATA%\Blender Foundation không có gì mới). Ghi tên, phiên bản, URL, giấy phép của MPFB,
+   tài sản MakeHuman, thư viện động tác vào CREDITS.md.
+4. Mẫu C theo card mục 2 và ngoại hình TRIPO_QUAN_LY.md mục 1: nam ~45 tuổi nét Việt, gầy, hơi gù, cao ~1,70 m;
+   sơ mi xanh nhạt sơ vin, quần tây xám, thắt lưng, giày da;
+   mặt kinh dị bằng texture riêng (da xám bụi bê tông, vệt máu khô từ chân tóc, mắt đục con ngươi nhỏ).
+   Lưu .blend + script dựng trong art_source/graphics_upgrade/manager/ (≤ 10 MiB/file, nhị phân qua LFS);
+   GLB game ở game/assets/models/characters/manager/.
+5. Động tác: thư viện CC0 (ví dụ Quaternius Universal Animation Library), retarget qua SkeletonProfileHumanoid
+   để MỘT bộ chạy được trên cả A và C. Đủ 6 clip đúng tên manager.gd gọi: stand, walk, ask (cúi đầu hỏi),
+   slash (chém xuống từ trên vai, lặp được; đạo diễn chém 6 lần cách 0,45 s), lunge, kill (kết liễu).
+   Không dùng Mixamo hay tài sản không phải CC0/CC-BY.
+6. Đồ đi kèm và mẫu A: chủ dự án tải file Tripo về D:\GAME_DEMO\build\graphics\staging\manager\
+   (manager_knife.glb, manager_keys.glb, manager_id_card.glb, manager_body_rigged.glb, manager_body.glb; lượt sau có _r2, _tex1...).
+   Chỉ ĐỌC/COPY từ đó, không sửa. Chưa có file thì dựng dao phay tạm bằng Blender (ghi rõ "tạm") và làm tiếp;
+   mẫu A để chỗ trống trong cảnh so sánh, ghi vào Handoff.
+   Có file thì chuẩn hóa mẫu A theo card mục 3 (−Z, ~1,70 m, gốc ở chân, texture ≤ 2048², kiểm map được sang SkeletonProfileHumanoid).
+   Không tự tạo trên Tripo, không tiêu credit; cần lượt Tripo mới thì ghi prompt đề xuất vào Handoff.
+7. Scene thân game/scenes/entity/manager_body_c.tscn (và manager_body_a.tscn khi có mẫu A) đúng card mục 5:
+   root Node3D, AnimationPlayer đủ 6 clip, dao gắn xương bàn tay phải bằng BoneAttachment3D, BladeTip ở mũi dao.
+   Tay mở cửa (LeftArm / set_reach_weight) chưa làm, ghi vào phần chưa làm.
+   Cảnh so sánh game/scenes/levels/graphics_pilot/manager_compare.tscn theo card mục 6 (phòng 407 đủ đồ, ánh sáng D-113,
+   phím đổi clip, đổi đèn pin/đèn trần nhấp nháy, chế độ chụp); ảnh 1080p vào art_source/graphics_upgrade/manager/previews/.
+8. Chỉ sửa file trong "Được phép sửa" của card. Không sửa manager.gd, manager.tscn, AI, thời gian chém, luật, lời thoại, các chương.
+   Không xóa/đổi tên file có sẵn. Ngân sách: ≤ 25.000 tam giác (cả dao, chìa khóa, thẻ), ≤ 4 vật liệu,
+   texture ≤ 2048² (mặt có thể 2048² riêng).
+9. Test trong game/tests/ theo card mục 8 (6 clip, BladeTip theo tay khi slash, ngân sách,
+   manager.gd chạy được với scene thân: đi, hỏi, chém, giết, không lỗi).
+10. Chạy offline/headless trước (probe để trong thư mục tạm rồi xóa; không dùng godot -s).
+   Sau khi đổi GLB chạy godot --headless --path game --import.
+   Khi cần chụp ảnh (Forward+), đo FPS (card mục 7, 1080p như D-114, đã được phép trong việc này) hoặc full test/check:
+   NHẮN integrator xin lượt rồi mới chạy pwsh tools/test.ps1, sau đó pwsh tools/check.ps1, rồi git checkout -- game/default_bus_layout.tres.
+   Không chạy bot.
+11. Hai lệnh đạt → commit nhỏ "T-219: ..." → git push origin lane-c/T-219-manager-pilot (không push main, không mở PR) → báo nhả lượt Godot.
+   Có thể bàn giao 2 đợt: đợt 1 mẫu C + động tác + cảnh so sánh; đợt 2 thêm mẫu A khi chủ dự án có file Tripo.
+   Sắp hết hạn mức thì dừng ở bước đang làm, commit "T-219 WIP: ...", push, ghi Handoff rõ còn dở gì.
+12. Cập nhật Handoff trong card (không sửa STATUS, DECISIONS hay mục Review) và báo lại theo mục "Bàn giao" của card:
+   việc đã làm, danh sách ảnh so sánh, FPS từng mẫu, bảng nguồn + giấy phép từng tài sản, số tam giác/vật liệu/texture,
+   dòng RESULT test/check nguyên văn, commit hash, phần chưa làm, nhận xét A và C (mặt, tay, khớp vai, quần áo khi chém),
+   có bị chặn gì không.
 ```
