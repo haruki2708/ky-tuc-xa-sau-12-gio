@@ -1,6 +1,11 @@
 extends Node3D
 ## Keep the integration marker on the inside of the moving door leaf.
 
+## Corridor meshes lying in the same plane as a wall of the furnished room (D-113: the 407/408
+## partition flickered against the furnished east wall above the bathroom tiles). The furnished
+## wall draws them; their collision stays.
+const DRAWN_BY_FURNISHED_ROOM: Array[String] = ["Corridor/RoomPartition_38/Mesh"]
+
 
 func _ready() -> void:
 	_hang_furnished_door()
@@ -23,6 +28,8 @@ func _hang_furnished_door() -> void:
 	pivot.rotation.y = angle
 	for mesh: MeshInstance3D in $Door407/Pivot/Leaf.find_children("*", "MeshInstance3D", true, false):
 		mesh.visible = false
+	for path: String in DRAWN_BY_FURNISHED_ROOM:
+		(get_node(path) as Node3D).visible = false
 	# D-104: corridor lights reaching into the furnished room cast shadows so its walls keep them out.
 	var room := $Room407 as Node3D
 	var inside: AABB = room.global_transform * room.INSIDE

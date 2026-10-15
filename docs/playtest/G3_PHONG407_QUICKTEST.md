@@ -1,6 +1,6 @@
 # Chơi thử G3 — phòng 407 đủ đồ (T-215, D-103)
 
-Build: `build/windows/KyTucXa.exe`, bản xuất lúc 04:00 ngày 15/10/2026, có D-111 (`663b2a3`: tiếng rè đèn chương 1, tiếng cửa và nước nhà tắm chương 2). Bộ lọc PS1 mặc định tắt (bật lại trong Cài đặt nếu muốn so sánh).
+Build: `build/windows/KyTucXa.exe`, bản xuất sau commit D-113 ngày 15/10/2026 (khung đọc ảnh/thẻ D-112; chữ trên lịch/thời khóa biểu/giấy note xuôi, tường nhà tắm hết nhấp nháy, phòng tắt đèn tối hẳn D-113; tiếng rè đèn chương 1 và tiếng cửa/nước nhà tắm D-111). Bộ lọc PS1 mặc định tắt (bật lại trong Cài đặt nếu muốn so sánh).
 
 Luật, cốt truyện, độ khó **không đổi**; chỉ hình phòng 407 đổi. Ghi lại chỗ nào khác bản cũ về cách chơi (kẹt, không bấm được, không nằm được, nhìn xuyên tường) và chỗ nào hình trông sai.
 

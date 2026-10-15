@@ -168,6 +168,36 @@ func test_floor_hangs_the_furnished_room_door_on_door407() -> void:
 	assert_not_null(fan, "main.gd spins every fan_rotor under Floor4")
 
 
+func test_no_corridor_face_shares_a_plane_with_the_furnished_walls() -> void:
+	# D-113: Corridor/RoomPartition_38 lay in the furnished east wall's plane (x = 7.9) and the two
+	# flickered above the bathroom tiles. Its collision stays.
+	var floor4 := spawn(FLOOR)
+	await wait_frames(1)
+	var room := floor4.get_node("Room407") as Node3D
+	var walls: Array[AABB] = []
+	for mesh: MeshInstance3D in room.get_node("Furnished/architecture").find_children("*", "MeshInstance3D", true, false):
+		walls.append(mesh.global_transform * mesh.get_aabb())
+	for mesh: MeshInstance3D in floor4.get_node("Corridor").find_children("*", "MeshInstance3D", true, false):
+		if not mesh.is_visible_in_tree():
+			continue
+		var box: AABB = mesh.global_transform * mesh.get_aabb()
+		for wall in walls:
+			for axis in 3:
+				var a := (axis + 1) % 3
+				var b := (axis + 2) % 3
+				var overlap_a := minf(box.end[a], wall.end[a]) - maxf(box.position[a], wall.position[a])
+				var overlap_b := minf(box.end[b], wall.end[b]) - maxf(box.position[b], wall.position[b])
+				# Walls that only meet at an edge share their floor/ceiling planes over a few cm: skip.
+				if overlap_a < 0.3 or overlap_b < 0.3:
+					continue
+				var flush := absf(box.position[axis] - wall.position[axis]) < 0.002 or absf(box.end[axis] - wall.end[axis]) < 0.002
+				assert_false(flush, "%s shares a plane with the furnished room" % floor4.get_path_to(mesh))
+	assert_not_null(floor4.get_node("Corridor/RoomPartition_38/Collision"), "the partition still blocks")
+	var plain := spawn(FLOOR, false)
+	await wait_frames(1)
+	assert_true((plain.get_node("Corridor/RoomPartition_38/Mesh") as Node3D).is_visible_in_tree(), "PS1 room keeps it")
+
+
 func test_room_is_darker_and_the_torch_stronger_inside_only() -> void:
 	var floor4 := spawn(FLOOR)
 	var room := floor4.get_node("Room407") as Node3D

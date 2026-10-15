@@ -161,6 +161,31 @@ func test_batch3_lived_in_props_stay_within_budget_and_one_material() -> void:
 		model.free()
 
 
+func test_wall_prints_read_left_to_right_from_the_room() -> void:
+	# D-113: the sheets face -Z, so a viewer in the room has -X on the right; the image's u must grow
+	# along -X or every calendar, timetable and sticky note reads mirrored.
+	var folder := "res://assets/models/graphics_pilot/room407_furnished/"
+	for model_name: String in ["calendar", "timetable", "sticky_notes"]:
+		var model := (load(folder + model_name + ".glb") as PackedScene).instantiate() as Node3D
+		var sheets := 0
+		for mesh: MeshInstance3D in model.find_children("*", "MeshInstance3D", true, false):
+			var box := mesh.get_aabb()
+			if box.size.x < 0.05 or box.size.z > 0.03:
+				continue  # tape, nail
+			sheets += 1
+			var arrays := mesh.mesh.surface_get_arrays(0)
+			var points: PackedVector3Array = arrays[Mesh.ARRAY_VERTEX]
+			var uvs: PackedVector2Array = arrays[Mesh.ARRAY_TEX_UV]
+			var west := 0
+			var east := 0
+			for i in points.size():
+				west = i if points[i].x < points[west].x else west
+				east = i if points[i].x > points[east].x else east
+			assert_true(uvs[west].x > uvs[east].x, "%s/%s: image runs along -X" % [model_name, mesh.name])
+		assert_true(sheets > 0, model_name + " has a printed sheet")
+		model.free()
+
+
 func test_lived_in_blender_pieces_and_decals() -> void:
 	# build_lived_in.py pieces and the grime decals of decals.json (D-100).
 	var folder := "res://assets/models/graphics_pilot/room407_furnished/"

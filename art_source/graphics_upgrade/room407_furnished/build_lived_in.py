@@ -1,5 +1,6 @@
 """Blender pieces of the lived-in pass of room 407 (D-100); Tripo batch 3 brings the loose props.
-Run after make_lived_in_textures.py, with Blender 5.2.2: blender -b --factory-startup -P <this file>.
+Run after make_lived_in_textures.py, with Blender 5.2.2: blender -b --factory-startup -P <this file>
+(append "-- --paper-only" to re-export only calendar, timetable and sticky notes).
 Exports to game/assets/models/graphics_pilot/room407_furnished/:
   floor_mat.glb        sedge sleeping mat (chieu) on the floor, 1.4 x 1.8 m, cloth binding, curled corner;
                        object-local, centred, bottom at y=0
@@ -69,7 +70,9 @@ def sheet(name, width, height, mat, cuts=(1, 1), bend=None):
     for face in mesh.polygons:
         for li in face.loop_indices:
             co = mesh.vertices[mesh.loops[li].vertex_index].co
-            uv[li].uv = (co.x / width + .5, co.z / height)
+            # Seen from -Z (Godot) the viewer's right is -X, so the image runs along -X (D-113: the
+            # first export ran it along +X and every print read mirrored).
+            uv[li].uv = (.5 - co.x / width, co.z / height)
     # Godot room-local: facing -Z means the visible side points to Blender +Y.
     mesh.update()
     if mesh.polygons[0].normal.y < 0:
@@ -265,6 +268,11 @@ def curtain():
 def main():
     bpy.ops.wm.read_factory_settings(use_empty=True)
     OUT.mkdir(parents=True, exist_ok=True)
+    if "--paper-only" in sys.argv:
+        # D-113: re-export only the calendar, timetable and sticky notes.
+        paper_items()
+        print("RESULT: lived-in paper items PASS")
+        return
     total = floor_mat() + bath_tiles() + conduits()
     paper_items()
     total += curtain()

@@ -34,9 +34,13 @@ const SHOWER_ROSE_DROP := 0.11
 const TUBE_ENERGY := 1.2
 ## D-104: inside the room the night and the lit tube look like the approved pilot
 ## (previews/room_centre_torch_after.png, room_centre_tube_after.png); the corridor keeps floor 4's night.
+## D-113 (owner): with the lights off the room is near black: things show faintly only up close and
+## the torch is needed. A dark fog swallows what is far; the ambient keeps a trace for what is near.
 const INSIDE := AABB(Vector3(0.1, -0.5, -6.95), Vector3(7.8, 4.0, 6.95))
-const ROOM_ENVIRONMENT := {"ambient_light_color": Color(0.48, 0.57, 0.7), "ambient_light_energy": 0.06,
-	"fog_light_color": Color(0.25, 0.30, 0.36), "fog_density": 0.004}
+const ROOM_ENVIRONMENT := {"ambient_light_color": Color(0.48, 0.57, 0.7), "ambient_light_energy": 0.015,
+	"fog_light_color": Color(0.012, 0.014, 0.018), "fog_density": 0.06}
+## D-113: the furnished room's night lights (moon through the balcony door, bathroom bulb) dimmed.
+const NIGHT_LIGHTS := {"WindowBlue": 0.2, "Extension/BathLight": 0.06}
 const ROOM_TORCH := {"light_energy": 5.0, "spot_angle": 38.0, "spot_angle_attenuation": 1.3,
 	"spot_range": 10.0, "light_size": 0.025}
 const TUBE_LIGHT := {"light_color": Color(0.88, 0.94, 0.80), "omni_range": 9.0, "light_size": 0.25,
@@ -217,6 +221,8 @@ func _furnish() -> void:
 	_tubes = Room407Furnish.tube_materials(_furnished)
 	for property: String in TUBE_LIGHT:
 		$Room407MainLight.set(property, TUBE_LIGHT[property])
+	for path: String in NIGHT_LIGHTS:
+		(get_node(path) as Light3D).light_energy = NIGHT_LIGHTS[path]
 	for prop_name: String in MIRROR_GLASS:
 		_hang_mirror(props.get_node(prop_name), MIRROR_GLASS[prop_name])
 
