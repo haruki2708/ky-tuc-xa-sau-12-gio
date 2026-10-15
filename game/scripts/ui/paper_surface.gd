@@ -118,4 +118,3 @@ func _draw() -> void:
 		draw_colored_polygon(PackedVector2Array(CARD_BODY_POLYGON), Color(0.74, 0.8, 0.86))
 		draw_circle(CARD_HEAD_CENTER, CARD_HEAD_RADIUS, Color(0.74, 0.8, 0.86))
 		draw_rect(CARD_PHOTO_RECT, Color(0.65, 0.72, 0.8), false, 1.5)
-

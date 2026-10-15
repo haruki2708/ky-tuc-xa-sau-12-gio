@@ -171,12 +171,22 @@ func test_all_looks_fit_in_720p_and_translate_cleanly() -> void:
 		var font: Font = stamp.get_theme_font(&"font")
 		var font_size: int = stamp.get_theme_font_size(&"font_size")
 		var inner_radius: float = stamp.get_inner_radius() if stamp.has_method("get_inner_radius") else (minf(stamp_size.x, stamp_size.y) * 0.5 - 10.0)
-		var inner_diameter := inner_radius * 2.0
-		for word in stamp.text.split(" "):
-			if word.is_empty():
-				continue
-			var word_width := font.get_string_size(word, HORIZONTAL_ALIGNMENT_CENTER, -1, font_size).x
-			assert_true(word_width < inner_diameter, "stamp word '%s' width (%.1f) fits inside inner diameter (%.1f) in locale %s" % [word, word_width, inner_diameter, locale])
+
+		var style: StyleBox = stamp.get_theme_stylebox(&"normal")
+		var text_width_limit: float = stamp.size.x
+		if style != null:
+			text_width_limit -= (style.content_margin_left + style.content_margin_right)
+		var text_box := font.get_multiline_string_size(stamp.text, HORIZONTAL_ALIGNMENT_CENTER, text_width_limit, font_size)
+		var half_w := text_box.x * 0.5
+		var half_h := text_box.y * 0.5
+		var corner_dist_sq := half_w * half_w + half_h * half_h
+		var max_radius_sq := inner_radius * inner_radius
+		assert_true(
+			corner_dist_sq <= max_radius_sq,
+			"Stamp text box (%.1f x %.1f) corner distance sq (%.1f) must be <= inner_radius^2 (%.1f) in locale %s" % [
+				text_box.x, text_box.y, corner_dist_sq, max_radius_sq, locale
+			]
+		)
 
 		_document.close_view()
 		await wait_frames(2)
@@ -191,4 +201,3 @@ func test_card_silhouette_stays_inside_photo_rect() -> void:
 	assert_true(PAPER_SURFACE.CARD_BODY_POLYGON.size() >= 3, "Card body polygon must have at least 3 vertices")
 	for pt: Vector2 in PAPER_SURFACE.CARD_BODY_POLYGON:
 		assert_true(photo_rect.has_point(pt), "Card body point %s must be inside CARD_PHOTO_RECT" % str(pt))
-

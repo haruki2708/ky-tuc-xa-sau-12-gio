@@ -30,4 +30,3 @@ func _save_image(path: String) -> void:
 		var err := img.save_png(path)
 		print("SAVED PREVIEW (err %d): %s" % [err, path])
 	get_tree().quit(0)
-
