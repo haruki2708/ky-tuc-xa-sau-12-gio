@@ -13,6 +13,8 @@ from mathutils import Vector, Matrix
 
 sys.dont_write_bytecode = True
 HERE = Path(__file__).resolve().parent
+sys.path.insert(0, str(HERE))
+from face_surface import add_surface
 ROOT = HERE.parents[2]
 SOURCE = HERE / "sources/makehuman"
 OUT = ROOT / "game/assets/models/characters/manager"
@@ -41,14 +43,16 @@ def create_character():
     bpy.ops.object.select_all(action="SELECT")
     bpy.ops.object.delete(use_global=False)
     macro = TargetService.get_default_macro_info_dict()
-    macro.update(gender=1.0, age=0.62, muscle=0.32, weight=0.28, height=0.48)
+    macro.update(gender=1.0, age=0.68, muscle=0.32, weight=0.24, height=0.48)
     macro["race"] = {"asian": 1.0, "caucasian": 0.0, "african": 0.0}
     body = HumanService.create_human(macro_detail_dict=macro)
     body.name = "ManagerSkin"
     targets = Path(LocationService.get_mpfb_data("targets"))
     for side in ("l", "r"):
+        for target, weight in [("volume-decr", 0.50), ("bones-incr", 0.42)]:
+            TargetService.load_target(body, str(targets / f"cheek/{side}-cheek-{target}.target.gz"), weight=weight)
         for part in ("height1", "height2", "height3"):
-            TargetService.load_target(body, str(targets / f"eyes/{side}-eye-{part}-incr.target.gz"), weight=0.45)
+            TargetService.load_target(body, str(targets / f"eyes/{side}-eye-{part}-incr.target.gz"), weight=0.60)
     HumanService.set_character_skin(str(SOURCE / "skins/middleage_asian_male/middleage_asian_male.mhmat"), body, skin_type="GAMEENGINE")
     rig = HumanService.add_builtin_rig(body, "game_engine")
     rig.name = "Rig"
@@ -56,7 +60,7 @@ def create_character():
     for name, path, kind in [
         ("uniform", "clothes/male_casualsuit01/male_casualsuit01.mhclo", "Clothes"),
         ("shoes", "clothes/shoes01/shoes01.mhclo", "Clothes"),
-        ("hair", "hair/short01/short01.mhclo", "Hair"),
+        ("hair", "hair/short04/short04.mhclo", "Hair"),
         ("brows", "eyebrows/eyebrow001/eyebrow001.mhclo", "Eyebrows"),
         ("eyes", "eyes/low-poly/low-poly.mhclo", "Eyes"),
     ]:
@@ -73,7 +77,32 @@ def create_character():
                 obj.modifiers.remove(mod)
         for face in obj.data.polygons:
             face.use_smooth = True
+    repair_elbow_weights(objects["uniform"], rig)
     return rig, objects
+
+
+def repair_elbow_weights(obj, rig):
+    """Use a continuous spatial blend across sleeve seams and both elbow rings."""
+    for side in ("l", "r"):
+        upper = rig.data.bones['upperarm_'+side]
+        lower = rig.data.bones['lowerarm_'+side]
+        elbow = lower.head_local
+        axis = (lower.tail_local-upper.head_local).normalized()
+        names = ['upperarm_'+side, 'lowerarm_'+side]
+        groups = [obj.vertex_groups.get(n) or obj.vertex_groups.new(name=n) for n in names]
+        for vertex in obj.data.vertices:
+            delta = vertex.co-elbow
+            if delta.length > 0.115:
+                continue
+            arm_weight = sum(g.weight for g in vertex.groups if obj.vertex_groups[g.group].name in names)
+            if arm_weight < 0.7:
+                continue
+            t = max(0.0, min(1.0, 0.5+delta.dot(axis)/0.14))
+            t = t*t*(3-2*t)
+            for group in obj.vertex_groups:
+                group.remove([vertex.index])
+            groups[0].add([vertex.index], 1-t, 'REPLACE')
+            groups[1].add([vertex.index], t, 'REPLACE')
 
 
 def triangles(obj):
@@ -96,7 +125,7 @@ def source_material(obj, kind):
         "skin": "skins/middleage_asian_male/middleage_lightskinned_male_diffuse2.png",
         "uniform": "clothes/male_casualsuit01/male_casualsuit01_diffuse.png",
         "shoes": "clothes/shoes01/shoes01_diffuse.png",
-        "hair": "hair/short01/short01_diffuse.png",
+        "hair": "hair/short04/short04_diffuse.png",
         "brows": "eyebrows/eyebrow001/eyebrow001.png",
     }
     diffuse = bpy.data.images.load(str(SOURCE / images[kind]), check_existing=True)
@@ -121,10 +150,7 @@ def source_material(obj, kind):
             x, y, z = obj.data.vertices[obj.data.loops[li].vertex_index].co
             color = (0.7, 0.72, 0.69)
             if kind == "skin":
-                # A branching dried streak from the right hairline to the temple.
-                centre = -0.053 + 0.012 * math.sin((z - 1.47) * 32)
-                blood = y < -0.055 and 1.48 < z < 1.625 and abs(x-centre) < 0.007
-                color = (0.085, 0.009, 0.006) if blood else (0.18, 0.20, 0.175)
+                color = (0.25, 0.26, 0.235)
             elif kind == "uniform":
                 color = (0.34, 0.57, 0.76) if z > 0.895 else (0.21, 0.22, 0.23)
                 if 0.885 < z < 0.925 and abs(x) < 0.20:
@@ -155,6 +181,8 @@ def source_material(obj, kind):
         links.new(tex.outputs["Alpha"], bsdf.inputs["Alpha"])
     obj.data.materials.clear()
     obj.data.materials.append(mat)
+    if kind == 'skin':
+        add_surface(mat)
     return mat
 
 
@@ -191,6 +219,16 @@ def bake_atlas(objects, name, size=2048, alpha=False):
     scene.cycles.samples = 1
     scene.render.bake.margin = 12
     bpy.ops.object.bake(type="EMIT")
+    normal_image = None
+    if name == 'ManagerSkin':
+        normal_image = bpy.data.images.new(name+'_normal', width=size, height=size)
+        normal_image.colorspace_settings.name = 'Non-Color'
+        normal_image.generated_color = (0.5, 0.5, 1, 1)
+        for source_mat, bsdf, emission, output, bake in outputs:
+            source_mat.node_tree.links.new(bsdf.outputs[0], output.inputs[0])
+            bake.image = normal_image
+        scene.render.bake.normal_space = 'TANGENT'
+        bpy.ops.object.bake(type='NORMAL')
     if alpha:
         alpha_image = bpy.data.images.new(name + "_alpha", width=size, height=size)
         for mat, bsdf, emission, output, bake in outputs:
@@ -215,6 +253,10 @@ def bake_atlas(objects, name, size=2048, alpha=False):
     image.filepath_raw = str(texture_dir / (name + ".png"))
     image.file_format = "PNG"
     image.save()
+    if normal_image:
+        normal_image.filepath_raw = str(texture_dir / (name+'_normal.png'))
+        normal_image.file_format = 'PNG'
+        normal_image.save()
     mat = bpy.data.materials.new(name)
     mat.use_nodes = True
     bsdf = mat.node_tree.nodes.get("Principled BSDF")
@@ -222,6 +264,12 @@ def bake_atlas(objects, name, size=2048, alpha=False):
     tex = mat.node_tree.nodes.new("ShaderNodeTexImage")
     tex.image = image
     mat.node_tree.links.new(tex.outputs["Color"], bsdf.inputs["Base Color"])
+    if normal_image:
+        normal_tex = mat.node_tree.nodes.new('ShaderNodeTexImage')
+        normal_tex.image = normal_image
+        normal = mat.node_tree.nodes.new('ShaderNodeNormalMap')
+        mat.node_tree.links.new(normal_tex.outputs['Color'], normal.inputs['Color'])
+        mat.node_tree.links.new(normal.outputs[0], bsdf.inputs['Normal'])
     if alpha:
         mat.node_tree.links.new(tex.outputs["Alpha"], bsdf.inputs["Alpha"])
         mat.surface_render_method = "DITHERED"
@@ -281,7 +329,7 @@ def box(name, centre, size, mat, color, rig=None, bone=None, bevel=0.002):
 def accessories(rig, eyes, mat):
     # Temporary Blender props, clearly distinguished from pending Tripo assets.
     parts = [eyes]
-    detail(eyes, mat, (0.40, 0.46, 0.40))
+    detail(eyes, mat, (0.74, 0.80, 0.76))
     for side in (-1, 1):
         eye_vertices = [v.co for v in eyes.data.vertices if v.co.x * side > 0]
         x = sum(v.x for v in eye_vertices) / len(eye_vertices)
@@ -290,7 +338,7 @@ def accessories(rig, eyes, mat):
         bpy.ops.mesh.primitive_uv_sphere_add(segments=12, ring_count=6, radius=1, location=(x, y, z))
         pupil = bpy.context.object
         pupil.name = "TinyPupil"
-        pupil.scale = (0.0018, 0.002, 0.0018)
+        pupil.scale = (0.0015, 0.002, 0.0015)
         bpy.ops.object.transform_apply(location=True, rotation=True, scale=True)
         parts.append(detail(pupil, mat, (0.015, 0.02, 0.018), rig, "head"))
     parts.append(box("TemporaryBlankID", (0.065, -0.129, 1.18), (0.055, 0.003, 0.084), mat, (0.63, 0.65, 0.60), rig, "spine_03"))
@@ -308,9 +356,9 @@ def accessories(rig, eyes, mat):
 
 def export_knife(mat):
     # Bone-local handle lies along +Y. Final attachment is in the body scene.
-    parts = [box("TemporaryCleaverBlade", (0.024, 0.235, 0), (0.125, 0.29, 0.005), mat, (0.38, 0.41, 0.43)),
-        box("TemporaryCleaverEdge", (0.086, 0.235, 0), (0.008, 0.29, 0.0025), mat, (0.83, 0.85, 0.87), bevel=0.0005),
-        box("TemporaryCleaverHandle", (0, 0.02, 0), (0.029, 0.14, 0.022), mat, (0.12, 0.048, 0.022))]
+    parts = [box("TemporaryCleaverBlade", (0.024, 0.235, 0), (0.125, 0.29, 0.008), mat, (0.085, 0.105, 0.12)),
+        box("TemporaryCleaverEdge", (0.086, 0.235, 0), (0.004, 0.29, 0.003), mat, (0.49, 0.53, 0.56), bevel=0.0005),
+        box("TemporaryCleaverHandle", (0, 0.02, 0), (0.029, 0.14, 0.022), mat, (0.035, 0.014, 0.007))]
     for y in (-0.02, 0.055):
         parts.append(box("BrassRivet", (0, y, -0.0115), (0.009, 0.009, 0.002), mat, (0.49, 0.34, 0.13), bevel=0.001))
     select_only(*parts)

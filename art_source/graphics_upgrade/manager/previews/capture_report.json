@@ -1,5 +1,43 @@
 {
 	"a_available": false,
+	"face_flashlight_shadow": {
+		"light_size": {
+			"phone_base": 0.0,
+			"phone_in_room407": 0.025,
+			"pilot_in_room407": 0.025000000372529
+		},
+		"room407_override": {
+			"angle": 38.0,
+			"attenuation": 1.29999995231628,
+			"energy": 5.0,
+			"range": 10.0
+		},
+		"shadow_bias": {
+			"phone_base": 0.0299999993294477,
+			"phone_in_room407": 0.0299999993294477,
+			"pilot_in_room407": 0.0299999993294477
+		},
+		"shadow_blur": {
+			"phone_base": 1.0,
+			"phone_in_room407": 1.0,
+			"pilot_in_room407": 1.0
+		},
+		"shadow_enabled": {
+			"phone_base": true,
+			"phone_in_room407": true,
+			"pilot_in_room407": true
+		},
+		"shadow_normal_bias": {
+			"phone_base": 1.0,
+			"phone_in_room407": 1.0,
+			"pilot_in_room407": 1.0
+		},
+		"shadow_opacity": {
+			"phone_base": 1.0,
+			"phone_in_room407": 1.0,
+			"pilot_in_room407": 1.0
+		}
+	},
 	"godot": "4.7.2-stable (official)",
 	"gpu": "NVIDIA GeForce RTX 3050 Laptop GPU",
 	"images": [
@@ -18,5 +56,5 @@
 		1080.0
 	],
 	"scene": "res://scenes/levels/graphics_pilot/manager_compare.tscn",
-	"utc": "2026-10-15T18:06:06"
+	"utc": "2026-10-16T04:42:10"
 }

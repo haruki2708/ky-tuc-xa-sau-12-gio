@@ -1,12 +1,12 @@
 {
   "height_m": 1.7,
-  "triangles": 23872,
+  "triangles": 22665,
   "materials": 4,
   "texture_max": 2048,
   "parts": {
     "ManagerSkin": 8499,
-    "ManagerUniform": 10999,
-    "ManagerHair": 2450,
+    "ManagerUniform": 11000,
+    "ManagerHair": 1242,
     "ManagerDetails": 1384,
     "TemporaryCleaver": 540
   },

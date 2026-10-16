@@ -1,0 +1,36 @@
+{
+  "downloaded_local": "2026-10-16",
+  "official_standard_version": "3",
+  "official_updated": "2026-06-16",
+  "official_url": "https://quaternius.itch.io/universal-animation-library",
+  "official_zip_sha256": "cc73fc4e495b82958207316596317a3f40b9fa38065bde1027937452da537724",
+  "official_member": "Universal Animation Library[Standard]/Unreal-Godot/UAL1_Standard.glb",
+  "license": "CC0-1.0",
+  "files": [
+    {
+      "file": "game/assets/models/characters/manager/quaternius_original.glb",
+      "bytes": 3232312,
+      "sha256": "b94b87af722757a3e8971d97e0968c4fca3a1963ec49f216c1935618a9723a09"
+    },
+    {
+      "file": "game/assets/models/characters/manager/quaternius_v3_original.glb",
+      "bytes": 7618436,
+      "sha256": "69591853d817488edaa8fd9bf8fc1d821eaeaf789f8627b3cd23b41c4ed67997"
+    },
+    {
+      "file": "game/assets/models/characters/manager/manager_motion_source.glb",
+      "bytes": 913828,
+      "sha256": "b14eb3474e027f7a28743683b778fdce2b6dc83fdb1188a2df80a5ef6e02c153"
+    },
+    {
+      "file": "art_source/graphics_upgrade/manager/manager_motion.blend",
+      "bytes": 1068619,
+      "sha256": "45db5e3b8a9d9cffbda72c5c189b255a0005d4d0d29ec52df1d6777b48312786"
+    },
+    {
+      "file": "art_source/graphics_upgrade/manager/sources/QUATERNIUS_V3_LICENSE.txt",
+      "bytes": 332,
+      "sha256": "6d01f55c6e4c49a2c9963e147e561945ae2c83958c8ca667d90a6bffdbfac061"
+    }
+  ]
+}

@@ -1,0 +1,171 @@
+{
+	"C": {
+		"clips": [
+			"ask",
+			"kill",
+			"lunge",
+			"slash",
+			"stand",
+			"walk"
+		],
+		"motion_scale": 0.891073822975159,
+		"rest": {
+			"LeftFoot": [
+				0.0994480177760124,
+				0.0722734034061432,
+				-0.0671869516372681
+			],
+			"LeftKnee": 6.9057016070423,
+			"RightFoot": [
+				-0.0994480177760124,
+				0.0722734034061432,
+				-0.0671869516372681
+			],
+			"RightKnee": 6.9057016070423,
+			"feet_distance": 0.198896035552025,
+			"head_y": 1.54166567325592
+		},
+		"stand": {
+			"LeftFoot": [
+				0.211196705698967,
+				0.0684650242328644,
+				0.144441828131676
+			],
+			"LeftKnee": 24.0739972297815,
+			"RightFoot": [
+				-0.154418438673019,
+				0.0688382685184479,
+				-0.239920645952225
+			],
+			"RightKnee": 16.6570043100581,
+			"feet_distance": 0.530480027198792,
+			"head_y": 1.42759299278259
+		}
+	},
+	"original": {
+		"clips": [
+			"A_TPose",
+			"Crouch_Fwd",
+			"Crouch_Idle",
+			"Dance",
+			"Death01",
+			"Driving",
+			"Fixing_Kneeling",
+			"Hit_Chest",
+			"Hit_Head",
+			"Idle",
+			"Idle_Talking",
+			"Idle_Torch",
+			"Interact",
+			"Jog_Fwd",
+			"Jump",
+			"Jump_Land",
+			"Jump_Start",
+			"PickUp_Table",
+			"Pistol_Aim_Down",
+			"Pistol_Aim_Neutral",
+			"Pistol_Aim_Up",
+			"Pistol_Idle",
+			"Pistol_Reload",
+			"Pistol_Shoot",
+			"Punch_Cross",
+			"Punch_Enter",
+			"Punch_Jab",
+			"Push",
+			"Roll",
+			"Roll_RM",
+			"Sitting_Enter",
+			"Sitting_Exit",
+			"Sitting_Idle",
+			"Sitting_Talking",
+			"Spell_Simple_Enter",
+			"Spell_Simple_Exit",
+			"Spell_Simple_Idle",
+			"Spell_Simple_Shoot",
+			"Sprint",
+			"Swim_Fwd",
+			"Swim_Idle",
+			"Sword_Attack",
+			"Sword_Attack_RM",
+			"Sword_Idle",
+			"Walk",
+			"Walk_Formal"
+		],
+		"motion_scale": 1.0,
+		"rest": {
+			"LeftFoot": [
+				0.0889999866485596,
+				0.10370010137558,
+				-0.035799965262413
+			],
+			"LeftKnee": 4.19337329658817,
+			"RightFoot": [
+				-0.088999979197979,
+				0.103700071573257,
+				-0.0357999727129936
+			],
+			"RightKnee": 4.19337415036182,
+			"feet_distance": 0.177999973297119,
+			"head_y": 1.56870055198669
+		},
+		"stand": {
+			"LeftFoot": [
+				0.195194140076637,
+				0.103137105703354,
+				0.127009958028793
+			],
+			"LeftKnee": 21.4467922862927,
+			"RightFoot": [
+				-0.16181369125843,
+				0.103698700666428,
+				-0.267280161380768
+			],
+			"RightKnee": 14.1240158497542,
+			"feet_distance": 0.531901836395264,
+			"head_y": 1.52581393718719
+		}
+	},
+	"retargeted_source": {
+		"clips": [
+			"ask",
+			"kill",
+			"lunge",
+			"slash",
+			"stand",
+			"walk"
+		],
+		"motion_scale": 0.916700124740601,
+		"rest": {
+			"LeftFoot": [
+				0.0889999717473984,
+				0.103700160980225,
+				-0.0357999764382839
+			],
+			"LeftKnee": 4.19337415036182,
+			"RightFoot": [
+				-0.088999979197979,
+				0.103700339794159,
+				-0.0357999540865421
+			],
+			"RightKnee": 4.19337500413546,
+			"feet_distance": 0.177999943494797,
+			"head_y": 1.55965304374695
+		},
+		"stand": {
+			"LeftFoot": [
+				0.195193961262703,
+				0.103137105703354,
+				0.127010270953178
+			],
+			"LeftKnee": 21.4467649655361,
+			"RightFoot": [
+				-0.161813795566559,
+				0.103698760271072,
+				-0.267279922962189
+			],
+			"RightKnee": 14.1240107271123,
+			"feet_distance": 0.531901895999908,
+			"head_y": 1.52581417560577
+		}
+	}
+}

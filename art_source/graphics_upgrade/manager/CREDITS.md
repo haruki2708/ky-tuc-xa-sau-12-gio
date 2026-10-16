@@ -13,4 +13,17 @@ Ngày lấy nguồn: **16/10/2026**. Lane C thực hiện thay B theo chỉ đ�
 
 Các ảnh trong `previews/` còn chứa phòng 407 đã có trong dự án; nguồn phòng và đạo cụ được giữ nguyên ở các hồ sơ graphics upgrade trước đó. Không gán giấy phép CC0 cho những đạo cụ Tripo của phòng.
 
+## Bổ sung sau review đợt 1 — 16/10/2026
+
+| Thành phần | Nguồn / phiên bản | Giấy phép và thay đổi |
+|---|---|---|
+| Tóc đang dùng | MakeHuman system assets CC0, `hair/short04`; cùng tác giả và ZIP 14/04/2024 ở bảng trên | **CC0-1.0**. Thay `short01` bằng tóc vuốt ngắn, trán thoáng, mép sợi alpha. Đã xem phương án `short03` nhưng tóc rẽ mái phủ trán không phù hợp; không đưa `short03` vào game. Giữ nguồn `short01` để đối chiếu lịch sử. |
+| Đối chứng chính thức | [Quaternius Universal Animation Library Standard v3](https://quaternius.itch.io/universal-animation-library), bản cập nhật 16/06/2026, tải ngày 16/10/2026 | **CC0-1.0**, bản Standard miễn phí; `UAL1_Standard.glb` được copy nguyên byte thành `quaternius_v3_original.glb`. Giấy phép nguyên bản: `sources/QUATERNIUS_V3_LICENSE.txt`. Không dùng Pro/Source trả phí. |
+| Đối chứng nguồn đợt 1 | Mirror Quaternius 10/06/2025 ở bảng trên | **CC0-1.0**. `build_reference.py` chỉ đóng JSON/bin thành `quaternius_original.glb`, không đổi bind pose hoặc clip. |
+| `stand` phái sinh | Rig và thư viện Quaternius CC0 của đợt 1, sửa bằng Blender 5.2.2 | **CC0-1.0**. Theo xác nhận của chủ dự án chuyển quyết định integrator trong phiên 16/10: tạo đứng thẳng ở **nguồn dùng chung**, vì Idle gốc đo được gối 21,45°/14,12°. Giữ chuyển động thở, tay hạ và nắm dao; không sửa riêng stand trên rig C. |
+| `slash` phái sinh | `Sword_Attack`, cùng nguồn CC0 | **CC0-1.0**. `build_motion.py` giữ chuyển động thân/chân gốc, chỉnh key hai chuỗi tay trên rig nguồn bằng IK giải tích: tay phải lấy đà trên vai rồi bổ chéo xuống phía trước, tay trái thu gần thân. `manager_motion.blend` lưu bản dựng; Godot retime 0,45 s và khép vòng. `kill` vẫn từ Sword_Attack gốc. |
+| Mặt, normal, trọng số áo, dao tạm | Dự án / Codex; `build_manager.py`, `face_surface.py` | Phái sinh **CC0-1.0** từ MakeHuman. Age 0,68, target má/gò má, nếp nhăn và máu bake vào albedo/normal da; blend trọng số liên tục ở hai khuỷu; màu thép/mép/cán dao và bề dày mới. Nội dung tạo thủ tục có AI hỗ trợ viết code, không dùng ảnh người thật hoặc tài sản ngoài hồ sơ. |
+
+Các model Quaternius đối chứng chỉ được nạp trong chế độ chụp đối chứng, không nằm trong scene thân hoặc phép đo FPS. Bảng hash bổ sung ở `sources/review_sources.json`. Giấy phép phần mềm MPFB vẫn là GPL; chỉ tài sản/đầu ra đủ điều kiện CC0 được đưa vào game.
+
 **Mẫu A và đồ Tripo của quản lý:** chưa nhận được file ở staging; chưa nhập tài sản Tripo, chưa tiêu credit. Khi có file phải bổ sung hồ sơ D-084 (gói trả phí, ngày tạo, task/model ID hoặc ghi rõ Studio không hiện, bản điều khoản và đầu vào hợp lệ) trước khi nghiệm thu.

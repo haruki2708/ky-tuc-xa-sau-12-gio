@@ -170,6 +170,30 @@
       "bytes": 3730636,
       "sha256": "e897c4cc1b6ad5d10a7d2b2be92402feda4e772e6582dfaf0a1e8fc4621d8097",
       "license": "CC0-1.0"
+    },
+    {
+      "file": "hair/short04/short04_diffuse.png",
+      "bytes": 2308132,
+      "sha256": "0bef7fc0e403db5a40fabb2111ebfa6f7e8158e204c6e56b8da98e9ef527846e",
+      "license": "CC0-1.0"
+    },
+    {
+      "file": "hair/short04/short04.mhclo",
+      "bytes": 59195,
+      "sha256": "d60640aa4c4ffce1aa269647ba436b6ee0bb21bb948f927b84e27a48d2107157",
+      "license": "CC0-1.0"
+    },
+    {
+      "file": "hair/short04/short04.mhmat",
+      "bytes": 1316,
+      "sha256": "7a3ac74db8478aa0afdb8a596c6fe3997d1a8a09d12211d70e8f1e9f0b7e0e97",
+      "license": "CC0-1.0"
+    },
+    {
+      "file": "hair/short04/short04.obj",
+      "bytes": 55152,
+      "sha256": "676964a133ee35ffcea1195382bf75542da7a298931e4001bc7b0d7b707225de",
+      "license": "CC0-1.0"
     }
   ]
 }
