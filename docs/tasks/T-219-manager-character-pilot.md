@@ -1,5 +1,5 @@
 # T-219 — G4 mẫu thử nhân vật: quản lý ký túc xá, hai cách làm song song
-- Lane: **C** (làm cả phần 3D/Blender và nối gameplay; chuyển từ lane B vì B hết hạn mức) | Trạng thái: **đợt 1 trả sửa (16/10)** | Agent: **lane C**, prompt [`lane-c.md` mục 5](../handoff/lane-c.md)
+- Lane: **C** (làm cả phần 3D/Blender và nối gameplay; chuyển từ lane B vì B hết hạn mức) | Trạng thái: **chủ dự án tự làm, integrator hỗ trợ (D-118, 16/10)**; phần lane C không ghép | Agent: chủ dự án + Claude
 - Quyết định: **D-115**, giao việc **D-116** (lane B) → **D-117** (lane C). Chủ dự án: "1: làm quản lý trước, 2: thử A và C song song, 3: ngoại hình quản lý tầm 45 tuổi, trang phục quản lý trường học, lộ mặt kinh dị, dao sắc".
 - Phụ thuộc: D-114 (FPS 1080p còn dư), hợp đồng nhân vật T-208 (bảng Manager), `game/scripts/entity/manager.gd` (`body_scene`).
 
@@ -106,3 +106,16 @@ Nhánh `lane-c/T-219-manager-pilot` HEAD `d7f1f76`.
 - Bóng đèn pin răng cưa ở ảnh mặt 1 m: chỉ cần ghi lại cảnh so sánh có dùng cùng thông số bóng với đèn pin trong game (D-104) không.
 
 Prompt sửa: [`lane-c.md` mục 5.1](../handoff/lane-c.md).
+
+### D-118 (16/10/2026): dừng giao lane, không ghép phần của lane C
+
+- Chủ dự án: "cái bước nhờ lane c tạo mẫu quản lý tôi nghĩ nên bỏ được rồi, tôi sẽ đảm nhiệm việc đó + sự hỗ trợ của chính bạn".
+- Hỏi xử lý phần lane C đã làm xong (mẫu C MPFB, bộ động tác dùng chung, cảnh so sánh, test), chủ dự án chọn **"Bỏ hết"**.
+- **Không ghép** nhánh `lane-c/T-219-manager-pilot`. Lượt sửa HEAD `40c3b2d` đã qua review: integrator tự chạy 804/804, check 0 trên bản ghép thử, rồi hủy bản ghép theo quyết định này. Nhánh vẫn nằm trên origin để tra cứu, không xóa.
+- **Từ nay chủ dự án tự làm quản lý, integrator hỗ trợ** (Claude làm thay phần B/A khi cần). Không giao lane B, C cho việc này; prompt `lane-b.md` mục 7 và `lane-c.md` mục 5, 5.1 không dùng nữa.
+- Mục tiêu, ngân sách, hợp đồng `body_scene` và "bản chơi giữ thân cũ tới khi chủ dự án duyệt" vẫn giữ. Phiếu `docs/handoff/TRIPO_QUAN_LY.md` vẫn dùng được.
+- **Bài học từ lượt của lane C, giữ lại cho lần làm sau:**
+  - Clip `Idle_Loop` và `Idle_Talking_Loop` của Quaternius UAL là thế thủ khuỵu gối, không dùng thẳng cho dáng đứng hoặc dáng hỏi.
+  - Retarget sang `SkeletonProfileHumanoid` cần chỉnh tư thế nghỉ (rest fixer) ở cả nguồn và đích.
+  - `Sword_Attack` là cú quét ngang, không phải cú bổ.
+  - MPFB `age` 0,62 trông như thiếu niên; tóc short01 thành khối như mũ.

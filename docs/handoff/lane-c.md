@@ -1,6 +1,8 @@
 # Prompt bàn giao — Lane C (QA và Tools)
 
-> **16/10, review đợt 1:** prompt đang dùng là **mục 5.1** (sửa T-219: chuyển động tác lệch tư thế, cú chém, mặt 45 tuổi, khuỷu áo, dao tạm).
+> **16/10, D-118:** T-219 dừng giao lane C, chủ dự án tự làm quản lý (integrator hỗ trợ); nhánh `lane-c/T-219-manager-pilot` không ghép. Mục 5 và 5.1 không dùng nữa; lane C chưa có việc mới.
+
+> **16/10, review đợt 1:** prompt **mục 5.1** (sửa T-219: chuyển động tác lệch tư thế, cú chém, mặt 45 tuổi, khuỷu áo, dao tạm).
 
 > **16/10, D-117:** mục 5 (T-219, mẫu thử nhân vật quản lý, chuyển từ lane B vì B hết hạn mức).
 
