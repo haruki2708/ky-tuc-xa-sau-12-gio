@@ -137,6 +137,71 @@ Hai lệnh đầy đủ chạy trước rebase; commit main mới chỉ thay nă
 
 Không có chặn kỹ thuật với đợt 1 hoặc yêu cầu sửa core/contract. Đợt 2 **chờ file của chủ dự án**. [Báo cáo ảnh/nhận xét đầy đủ](../../art_source/graphics_upgrade/manager/REPORT.md), [cách dựng lại/chạy cảnh](../../art_source/graphics_upgrade/manager/README.md). Giữ nguyên ba stash cũ.
 
+### Sửa sau review đợt 1 — Lane C, 16/10/2026
+
+Làm trên `lane-c/T-219-manager-pilot` trong `D:\GAME_WORK\lane-c`; đã fetch và rebase lên **`origin/main f651a8f`** (có nguyên Review đợt 1). Giữ ba stash cũ. Integrator đã cấp lượt Godot qua chủ dự án trong phiên này. Không sửa manager production, chương, AI, nhịp director, STATUS, DECISIONS hoặc phần Review.
+
+**Từng điểm 1–7 của prompt sửa:**
+
+1. **Nhánh / review:** đã đọc review và mục 5.1 của `lane-c.md`, rebase thành công. Hash cũ đợt 1 đổi do rebase; bản chưa ghép main vẫn được giữ trong lịch sử nhánh.
+2. **Retarget và stand:** đã chụp Quaternius nguyên bản cạnh C **trước** khi thay model/clip. Cả mirror cũ và Standard v3 chính thức đều có Idle gối gập **21,45°/14,12°**, chân cách **0,532 m**; Blender độc lập xác nhận cùng số đo với Godot. Đã gửi bằng chứng qua chủ dự án và nhận quyết định **“Đồng ý sửa retarget + tạo stand nguồn thẳng”**. Sửa rest fixer ở **cả nguồn và đích**, ngưỡng silhouette **0,1°** thay mặc định 15°, chuẩn hóa các góc nghỉ nhỏ trước khi đổi trục; BoneMap vẫn tường minh theo SkeletonProfileHumanoid. Tạo stand thẳng có thở/nắm dao trên rig nguồn CC0, dùng cùng thư viện cho A/C; không hiệu chỉnh stand theo tỷ lệ riêng của C. Ảnh sau có Quaternius và C cùng chạy đúng `manager_shared.tres/stand`. C đo gối **4,193°/4,193°**, chân cách **0,21993 m**, đầu hạ **0,03927 m** so rest; test cả năm điểm trong vòng stand đạt giới hạn 10° / 0,28 m / 0,05 m. Khoảng cách chân ở đây là **3D**, không chỉ độ rộng theo X như con số 0,36 m của review. [Dữ liệu trước](../../art_source/graphics_upgrade/manager/previews/retarget_before.json), [sau](../../art_source/graphics_upgrade/manager/previews/retarget_after.json), [kiểm chéo Blender](../../art_source/graphics_upgrade/manager/previews/original_blender_probe.json).
+3. **Slash:** phái sinh CC0 từ Sword_Attack, chỉnh hai chuỗi tay trên rig nguồn bằng IK giải tích trong Blender; giữ chuyển động thân/chân gốc. Tay phải nâng dao trên vai rồi bổ chéo xuống trước thân; tay trái thu gần thân. Pha 0,10 s: BladeTip y=**1,813 m**, vai phải y=**1,228 m**. Pha 0,25 s: BladeTip y=**0,277 m** < ngực **0,756 m**, z=**−0,962 m** ở trước ngực z=**−0,027 m** (scene thân hướng −Z). Vẫn lặp **0,45 s**, test bám RightHand/khép vòng và sáu lần director vẫn đạt. `.blend` động tác và script dựng đã lưu; ghi rõ phái sinh trong CREDITS. `kill` giữ biến thể Sword_Attack cũ, không sửa ngoài yêu cầu.
+4. **Mặt / tóc:** age **0,68**, weight **0,24**, target giảm đầy má/tăng gò má; thêm nếp trán, khóe mắt, rãnh mũi má vào albedo và tangent normal da 2048². Máu nâu sẫm chia nhánh từ chân tóc, mép không đều; mắt đục sáng hơn, con ngươi nhỏ nhìn thấy ở ảnh 1 m dưới đèn trần. Đã so lựa chọn tóc CC0 short03/short04: chọn **short04**, tóc vuốt ngắn thoáng trán và mép alpha; short03 có mái phủ trán nên không dùng. Giữ nguồn short01 cũ để đối chiếu. Không thêm material.
+5. **Khuỷu áo:** thay trọng số vùng khuỷu bằng blend upperarm/lowerarm liên tục theo vị trí, cùng giá trị qua seam, vùng chuyển 14 cm dùng smoothstep. Cận pha lấy đà cho khuỷu liền/tròn hơn; vẫn còn nếp và vùng tối ở vai/nách do skinning, không có cloth/corrective động.
+6. **Dao tạm:** lưỡi thép xám sẫm, cạnh sáng hẹp, cán gỗ nâu sẫm và đinh tán; dày 5 → **8 mm**, số tam giác dao vẫn **540**. Tiếp tục ghi **tạm**, chờ Tripo; chưa tiêu credit.
+7. **Bóng đèn pin:** kiểm scene điện thoại và override phòng 407, ghi giá trị runtime ngay tại ảnh mặt. **Khớp game**: shadow=true, bias=0,03, normal bias=1, blur=1, opacity=1; trong phòng light_size=0,025, energy=5, angle=38°, attenuation=1,3, range=10. **Giữ nguyên thông số**, không làm mềm bóng riêng cho ảnh pilot. [Metadata đối chiếu](../../art_source/graphics_upgrade/manager/previews/capture_report.json).
+
+**Ảnh bàn giao — 15 ảnh 1920×1080**, thư mục [`previews/`](../../art_source/graphics_upgrade/manager/previews/):
+
+| Nhóm | File |
+|---|---|
+| Tám ảnh chụp lại | `full_body_tube.png`, `face_1m_tube.png`, `full_body_flashlight.png`, `face_1m_flashlight.png`, `slash_windup.png`, `slash_contact.png`, `slash_recovery.png`, `tube_flicker.png` |
+| Đối chứng trước sửa | `reference_original_before_front.png`, `reference_v3_original_before_front.png` — trái: Quaternius Idle nguyên bản; phải: C đợt 1 |
+| Đối chứng sau, cùng clip mới | `reference_shared_after_front.png` — cả hai cùng chạy thư viện stand mới; dùng ảnh này để so retarget |
+| Đối chứng giữ nguồn cũ | `reference_original_after_front.png`, `reference_v3_original_after_front.png` — trái vẫn Idle gốc, phải stand mới; không coi là cùng clip |
+| Khuỷu / sáu clip | `elbow_windup_close.png`; `six_clips_midpoint.png` — trái → phải, trên → dưới: stand, walk, ask, slash, lunge, kill tại giữa mỗi clip |
+
+[Báo cáo có liên kết ảnh](../../art_source/graphics_upgrade/manager/REPORT.md), [metadata tấm ghép](../../art_source/graphics_upgrade/manager/previews/review_capture_report.json). Ảnh chụp từ viewport thật; tấm ghép chỉ cắt giữa/thu nhỏ/ghép pixel, không chỉnh hình nhân vật. Góc chéo thử bị đồ phòng che nên đã bỏ khỏi bộ bàn giao, không thay bằng ảnh giả.
+
+**Ngân sách / FPS:** C **22.665 tam giác** (da 8.499; đồng phục/giày 11.000; tóc/mày 1.242; mắt/đồ đeo 1.384; dao 540), giảm **1.207** so đợt 1; **4 vật liệu**, texture tối đa **2048²** (da thêm normal 2048², tóc 1024²). GLB thân **7.982.276 byte**, `.blend` thân **7.704.972 byte**; mọi nhị phân qua LFS, ≤10 MiB/file. Quaternius đối chứng chỉ dùng chế độ chụp, không nằm trong scene thân hoặc lượt FPS.
+
+Đã đo lại 1080p Forward+, RTX 3050 Laptop, 90 frame khởi động + 240 frame/góc, VSync tắt, một C chạy slash, đèn trần peak/đèn bàn bật như D-114: **centre 90,1 FPS / p95 11,50 ms**; **door_overview 83,8 FPS / p95 12,27 ms**. [Raw frame time](../../art_source/graphics_upgrade/manager/previews/fps_report.json). **A chưa có file, chưa có FPS**; staging vẫn chưa tồn tại ở lần kiểm trong phiên này.
+
+**Nguồn / giấy phép bổ sung:**
+
+| Tài sản | Nguồn / tác giả | Giấy phép |
+|---|---|---|
+| Thân/mặt/rig, macro/target má | MakeHuman Team, dữ liệu kèm MPFB 2.0.18 | CC0-1.0; MPFB GPL chỉ là công cụ |
+| Da, quần áo, giày, tóc short04, mày/mắt | MakeHuman system assets 14/04/2024; Data Collection AB, Joel Palmius, Jonas Hauquier | CC0-1.0 |
+| Thư viện dùng chung, stand/slash phái sinh | Quaternius UAL Standard snapshot 10/06/2025 + sửa nguồn Blender/Codex của dự án | CC0-1.0 |
+| Model đối chứng v3 | Quaternius UAL Standard v3 chính thức 16/06/2026, tải 16/10/2026 | CC0-1.0; không dùng bản Pro/Source trả phí |
+| Normal/nếp nhăn/máu, dao và đồ đi kèm tạm | Script thủ tục của dự án, Codex hỗ trợ | Phần mới/phái sinh CC0-1.0; đã khai báo AI hỗ trợ |
+
+Tên file, URL chính thức, license snapshot và SHA256 ở [CREDITS](../../art_source/graphics_upgrade/manager/CREDITS.md), [manifest nguồn](../../art_source/graphics_upgrade/manager/sources/source_manifest.json), [manifest bổ sung](../../art_source/graphics_upgrade/manager/sources/review_sources.json). Không ghi gì mới vào `%APPDATA%/Blender Foundation` trên C:; thư mục đó vẫn không tồn tại. Godot APPDATA/TEMP/TMP riêng trên D:. Không chạy bot.
+
+**Kiểm tra:** probe offline/headless và import sau mỗi đổi GLB không có ERROR; probe tạm đã xóa. Sáu test pilot đạt; hai lệnh đầy đủ chạy đúng thứ tự và đều exit 0:
+
+```text
+RESULT: 6 passed, 0 failed
+RESULT: T219 capture 8 images PASS
+RESULT: T219 elbow and six-clip contact sheet PASS
+pwsh tools/test.ps1
+RESULT: 804 passed, 0 failed
+pwsh tools/check.ps1
+RESULT: check 0 error(s)
+```
+
+Đã chạy `git checkout -- game/default_bus_layout.tres` sau hai lệnh. Log giữ cục bộ: `build/t219/full_test_review.log`, `full_check_review.log`, `capture_review.log`. Phạm vi file, giới hạn 10 MiB, thuộc tính LFS cho toàn bộ nhị phân mới/đổi và việc giữ nguyên Review đã kiểm đạt.
+
+**Git / bàn giao:** hai commit triển khai sau rebase:
+
+- **`036310279c13fdbf1829775b13465da682b967ca`** — chuẩn hóa rest/retarget, stand nguồn mới, cú bổ, đối chứng Quaternius và test.
+- **`1cd4c47b8eb348577c66440b416ff876dbf7c147`** — mặt/normal/tóc/áo/dao, nguồn CC0, bộ ảnh và FPS/báo cáo.
+
+Commit Handoff tiếp theo chỉ cập nhật tài liệu này. Nhánh đích `origin/lane-c/T-219-manager-pilot`; do rebase, push dùng `--force-with-lease` với HEAD remote cũ đã kiểm **`d7f1f76a70f870d9f82c03601dfcef68c011bf25`**, để từ chối nếu người khác cập nhật nhánh. Không push main, không mở PR. Nhả lượt Godot qua chủ dự án sau khi push được xác nhận.
+
+**Nhận xét / còn lại:** C đã thay dáng stand, cú bổ, mặt/normal/tóc/mắt, khuỷu và dao như trên; tuổi/nét Việt vẫn cần chủ dự án duyệt bằng mắt, mặt còn mang tính dựng thủ tục. Cách nắm cán, nếp vai/nách/cổ/cạp và vật liệu dao còn đơn giản; không có mô phỏng vải/đồ đeo. A chưa nhận nên chưa nhận xét mặt/tay/vai/quần áo hoặc chứng minh trên rig Tripo thật. `LeftArm` / `set_reach_weight`, IK mở cửa, biểu cảm/lip-sync vẫn chưa làm. Không còn chặn kỹ thuật của phần sửa C; đợt A/đồ Tripo chờ file và hồ sơ D-084. Quyết định bổ sung stand nguồn đã nhận qua chủ dự án; không có yêu cầu thay core/contract khác.
+
 ## Review (integrator)
 
 ### Review đợt 1 (integrator, 16/10/2026): **trả sửa**, chưa ghép
