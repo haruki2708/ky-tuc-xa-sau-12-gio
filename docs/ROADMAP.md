@@ -1,7 +1,7 @@
 # Bản đồ lộ trình — "Ký túc xá sau 12 giờ"
 
-> **Cập nhật:** 2026-10-13 (sau D-096: Tripo đợt 2 xong, phòng 407 đủ đồ trong cảnh làm thử). Integrator cập nhật file này **mỗi khi qua một mốc** (chốt chương, đóng cổng G, đổi hướng lớn).
-> Chi tiết từng ngày: `docs/STATUS.md`. Lý do từng quyết định: `docs/DECISIONS.md` (D-001…D-090).
+> **Cập nhật:** 2026-10-16 (sau D-118: G3 xong, G4 bắt đầu bằng nhân vật quản lý, chủ dự án tự làm cùng integrator). Integrator cập nhật file này **mỗi khi qua một mốc** (chốt chương, đóng cổng G, đổi hướng lớn).
+> Chi tiết từng ngày: `docs/STATUS.md`. Lý do từng quyết định: `docs/DECISIONS.md` (D-001…D-118).
 > Ký hiệu: ✅ xong · 🔶 đang làm · ⬜ chưa bắt đầu · 📍 **đang ở đây**
 
 ## 1. Bản đồ tổng
@@ -27,8 +27,11 @@ Bản chữ (xem được trong terminal / Notepad):
   │     ├─ [✅] G0 Chuẩn bị .............................. D-079
   │     ├─ [✅] G1 Hợp đồng kỹ thuật (balo) .............. D-085
   │     ├─ [✅] G2 Mẫu balo Tripo, chọn lượt 2 ............ D-086
-  │     ├─ [📍] G3 Đưa mẫu vào cảnh chơi thật ............ ĐANG Ở ĐÂY (chờ quyết)
-  │     └─ [⬜] G4 Nhà B → nhân vật → khuôn viên → thư viện/bệnh viện
+  │     ├─ [✅] G3 Phòng 407 đủ đồ vào bản chơi .......... D-103…D-114
+  │     ├─ [📍] G4 Nhân vật: quản lý trước ............... ĐANG Ở ĐÂY (D-115…D-118)
+  │     ├─ [⬜] G4 Nhân vật chính có thân, tay cầm nắm thật  chờ 3 quyết định
+  │     ├─ [⬜] G4 Xác sống, bạn học, bảo vệ
+  │     └─ [⬜] G5 Hành lang tầng 4 → nhà B → khuôn viên → thư viện/bệnh viện
   │
 [⬜] GĐ 4  Ghép bản hoàn chỉnh: chơi liền 4 chương, 1 file lưu (D-059)
   │
@@ -48,36 +51,44 @@ Bản chữ (xem được trong terminal / Notepad):
 ### Giai đoạn 2 — Làm 4 chương (04–10/10)
 | Chương | Đã làm | Chơi tay | Tình trạng |
 |---|---|---|---|
-| 1 Tổng tắc | Bản 1 (`v0.2-ch1`), bản 2 tám nhiệm vụ (`v0.3-ch1`), sửa giường/quản lý/gõ tường (D-069, D-070) | ✅ | **Tạm chốt D-071** |
-| 2 Trò chơi | Nối từ gõ phím + từ điển Wiktionary (D-051), tắm/nhiệt độ, `v0.4-ch2`, nhắn cách qua màn (D-072) | ✅ trừ đoạn nhắn tin D-072 | **Tạm chốt D-073** |
-| 3 Truy sát | Khuôn viên gần kích thước thật, xác sống, thanh sắt, đồng đội đi theo; sửa D-061…D-065, D-074, D-075 | 🔶 tới tầng 1 nhà B | **Chờ chủ dự án chơi tiếp từ tầng 1** (`docs/playtest/CH3_QUICKTEST.md` bước 6) |
+| 1 Tổng tắc | Bản 1 (`v0.2-ch1`), bản 2 tám nhiệm vụ (`v0.3-ch1`), sửa giường/quản lý/gõ tường (D-069, D-070) | ✅ | **Tạm chốt D-071.** Phòng 407 mới (G3) đã chơi, 3 lỗi sửa ở D-113 |
+| 2 Trò chơi | Nối từ gõ phím + từ điển Wiktionary (D-051), tắm/nhiệt độ, `v0.4-ch2`, nhắn cách qua màn (D-072) | ✅ trừ đoạn nhắn tin D-072 | **Tạm chốt D-073.** Nhà tắm mới (D-109) chờ chơi lại |
+| 3 Truy sát | Khuôn viên gần kích thước thật, xác sống, thanh sắt, đồng đội đi theo; sửa D-061…D-065, D-074, D-075 | 🔶 tới tầng 1 nhà B | **Chờ chủ dự án chơi tiếp từ tầng 1** |
 | 4 Người sống sót | Đối chiếu, gọi điện, bệnh viện, kết thúc; lồng tiếng (D-067, D-068) | ⬜ | **Chờ chủ dự án chơi lần đầu** |
 
-Bản chơi hiện hành: `build/windows/KyTucXa.exe` **10/10 03:57** (commit `add6d5f`). Từ đó tới nay chưa đổi nội dung chơi.
+Bản chơi hiện hành: `build/windows/KyTucXa.exe` **15/10 17:21** (sau D-113). Phiếu chơi thử: `docs/playtest/G3_PHONG407_QUICKTEST.md`.
 
 ### Giai đoạn 3 — Đồ họa gần chân thực (từ 10/10, D-076) 📍
-Mục tiêu: hình gần thật, chạy 1080p/60 FPS Medium trên RTX 3050 Laptop (cần đo). Tạo model bằng **Tripo AI** (D-080), chỉnh trong Blender, đưa vào Godot. Kế hoạch: `docs/design/GRAPHICS_UPGRADE_PLAN.md`.
+Mục tiêu: hình gần thật, 1080p/60 FPS trên RTX 3050 Laptop. Đồ vật tạo bằng **Tripo AI** (gói Studio Pro, D-080/D-084), chỉnh trong Blender, đưa vào Godot. Kế hoạch: `docs/design/GRAPHICS_UPGRADE_PLAN.md`.
 
 | Cổng | Nội dung | Tình trạng |
 |---|---|---|
 | G0 Chuẩn bị | 6 gói việc T-207…T-212 khảo sát, đo, công cụ | ✅ D-079 |
-| G1 Hợp đồng kỹ thuật | Công cụ kiểm asset (C), hồ sơ + hướng mặt trước balo (B), giấy phép Tripo (D-084) | ✅ D-085 (đạo cụ tĩnh) |
-| G2 Thử Tripo | Đã mua Tripo Studio Pro (12/10, tháng, 263.000 đồng); tạo balo 2/5 lượt, **chọn lượt 2 xanh navy** → B chuẩn hóa → C kiểm → ảnh trước/sau → chủ dự án duyệt | ✅ D-086 — ảnh `art_source/graphics_upgrade/tripo/room407_backpack/compare_cc0_r1_r2.png` |
-| **G3 Vào cảnh chơi** | Thay balo (rồi từng nhóm nhỏ) trong bản chơi, test 4 chương | 📍 **chờ chủ dự án quyết** |
-| G4 Mở rộng | Phòng 407 → nhà B → nhân vật/xác sống → khuôn viên → thư viện/bệnh viện | ⬜ |
-
-Chạy song song, không chặn G2: khung xương nhân vật, cài đặt đồ họa, chuông báo cháy thật (T-207 W1–W4, integrator); adapter hình–gameplay (A, T-208); cài đặt/dễ đọc (D, T-211); âm thanh gắn vật (F, T-212).
+| G1 Hợp đồng kỹ thuật | Công cụ kiểm asset, hồ sơ balo, giấy phép Tripo (D-084) | ✅ D-085 |
+| G2 Thử Tripo | Balo Tripo lượt 2 xanh navy | ✅ D-086 |
+| G3 Phòng 407 vào bản chơi | Tripo 3 đợt (70 món) + mùng, chiếu, gạch, decal bằng Blender (D-089…D-101) → vào bản chơi cả 4 chương (D-103) → ánh sáng (D-104), gương phản chiếu thật (D-105), giấy và dây điện (D-106), sửa nhà tắm (D-109), khung đọc ảnh/thẻ (D-112), sửa 3 lỗi chủ dự án báo + phòng tối hẳn (D-113). **1080p thấp nhất 97,7 FPS (D-114).** Bộ lọc PS1 mặc định tắt | ✅ chủ dự án duyệt độ tối và hết lỗi |
+| **G4 Nhân vật** | **Quản lý trước** (D-115): nam ~45 tuổi, đồng phục quản lý trường học, mặt kinh dị, dao phay. Lane C làm thử mẫu MPFB (D-117) nhưng chủ dự án chọn bỏ; **chủ dự án tự làm, integrator hỗ trợ** (D-118). Phiếu Tripo `docs/handoff/TRIPO_QUAN_LY.md`; bài học kỹ thuật trong card T-219 | 📍 **đang ở đây** |
+| G4 tiếp | Nhân vật chính có thân và tay cầm nắm, mở cửa như thật; nhân vật khác đi không trượt chân; xác sống, 2 bạn học, bảo vệ | ⬜ chờ chủ dự án chốt 3 câu (mục 3) |
+| G5 Mở rộng cảnh | Hành lang tầng 4 → nhà B → khuôn viên → thư viện/bệnh viện | ⬜ |
 
 ### Giai đoạn 4 — Ghép bản hoàn chỉnh (D-059) ⬜
-Khoảng 4–6 ngày: hết chương tự sang chương sau, **một file lưu xuyên suốt**, đồng bộ đồ họa giữa các chương, ánh sáng 4 giờ → 9 giờ, rà chi tiết liền mạch (đồ đạc, xác, chat, ai sống), bot cả 4 chương, đo FPS, chơi tay trọn game. Chưa mở (D-076). Thứ tự so với G4 do chủ dự án chốt khi tới
+Khoảng 4–6 ngày: hết chương tự sang chương sau, **một file lưu xuyên suốt**, đồng bộ đồ họa giữa các chương, ánh sáng 4 giờ → 9 giờ, rà chi tiết liền mạch (đồ đạc, xác, chat, ai sống), bot cả 4 chương, đo FPS, chơi tay trọn game. Thứ tự so với G4/G5 do chủ dự án chốt khi tới.
 
 ### Giai đoạn 5 — Phát hành ⬜
-Phát hành theo chương (D-029). Nền tảng, giá, ngày: chưa quyết. Lưu ý Steam yêu cầu khai báo nội dung AI (`AGENTS.md` §5).
+Phát hành theo chương (D-029). Nền tảng, giá, ngày: chưa quyết. Steam yêu cầu khai báo nội dung AI (`AGENTS.md` §5).
 
-## 3. Việc đang chờ chủ dự án
-1. 📍 **Phòng 407 đủ đồ trong cảnh làm thử (D-096, D-097 duyệt), thêm mùng, dây phơi, poster Blender (D-098); tủ Việt có cánh mở, quạt trần có cánh quay riêng (D-099).** Phòng còn trống: **Tripo đợt 3, 30 món đồ sinh hoạt, mức bừa vừa (D-100), đã đặt vào cảnh thử cùng chiếu, gạch nhà tắm, vết bẩn/ẩm (D-101), chờ duyệt**. Sau đó thay cả cụm vào bản chơi (G3): giữ va chạm, chỗ nằm, làm đẹp dây điện và giấy manh mối trong code. Ảnh: `art_source/graphics_upgrade/room407_furnished/previews/`.
-2. Chơi tiếp **chương 3 từ tầng 1** và chơi **chương 4** lần đầu (độc lập với đồ họa).
-3. Kiểm hạn mức lane trước khi giao việc mới (C còn một sửa nhỏ: ID balo chữ hoa).
+## 3. Việc đang chờ chủ dự án (để tiếp tục)
+1. 📍 **Quản lý (T-219):** tạo trên Tripo theo `docs/handoff/TRIPO_QUAN_LY.md`: thân có Auto Rig, dao phay, chùm chìa khóa, thẻ đeo. Tải về `D:\GAME_DEMO\build\graphics\staging\manager\` rồi báo integrator (tên file, lượt, đã sửa gì). Integrator chuẩn hóa, gắn dao, đặt vào phòng 407 chụp ảnh.
+2. **Học làm động tác (tùy chọn):** integrator soạn trang hướng dẫn Blender cho người mới (tạo dáng, đặt mốc, xuất file) khi chủ dự án muốn bắt đầu.
+3. **Nhân vật chính có thân/tay thật**, chốt 3 câu trước khi viết card T-220:
+   - thấy cả người (cúi thấy chân, có bóng, trong gương; integrator đề xuất) hay chỉ hai tay;
+   - thao tác bằng tay mất khoảng 0,5–1 giây: giữ thời gian luật (khó hơn chút) hay nới thời gian ở đoạn bị đuổi;
+   - nguồn chuyển động: chỉ CC0 + chỉnh tay, hay thêm quay video + AI motion capture trả phí.
+4. **Chơi thử** bản 15/10 17:21 theo `docs/playtest/G3_PHONG407_QUICKTEST.md`: chương 2 (nhà tắm mới, đoạn nhắn tin D-072), chương 3 từ tầng 1 (báo cháy, 4 xác sống), chương 4 lần đầu.
 
 ## 4. Đội làm
-Integrator: Claude Code ở máy (Opus 5.5). Lane A gameplay, B môi trường/3D, C QA/công cụ, D giao diện/đa ngôn ngữ, F âm thanh (thay E từ D-078). Lúc lane hết hạn mức: integrator hoặc Claude Code trên web làm thay, ghi "Claude làm thay".
+- **Integrator:** Claude Code ở máy (Opus 5.5).
+- **Lane:** A gameplay, B môi trường/3D (**đang hết hạn mức**), C QA/công cụ, D giao diện/đa ngôn ngữ (Gemini 3.8 Flash, D-108), F âm thanh (Claude Code web, D-108). Hiện không lane nào có việc dở.
+- **Quản lý (T-219):** chủ dự án + integrator, không giao lane (D-118).
+- Lúc lane hết hạn mức: integrator làm thay, ghi "Claude làm thay".
+- Việc nhỏ có thể giao lane rảnh: con dấu tiếng Anh xuống dòng, thẻ sinh viên thừa dòng "Cuộn để đọc tiếp", đèn pin chói trắng khi sát vật dưới 1 m.

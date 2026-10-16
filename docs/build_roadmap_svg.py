@@ -13,8 +13,11 @@ phases = [
         ("G0 Chuẩn bị — D-079", DONE),
         ("G1 Hợp đồng kỹ thuật, balo — D-085", DONE),
         ("G2 Mẫu balo Tripo đạt, chọn lượt 2 xanh navy — D-086", DONE),
-        ("G3 Phòng 407 đủ đồ Tripo trong cảnh thử — D-096", HERE),
-        ("G4 Nhà B → nhân vật → khuôn viên → thư viện/bệnh viện", TODO)]),
+        ("G3 Phòng 407 đủ đồ vào bản chơi, 1080p ≥ 97 FPS — D-103…D-114", DONE),
+        ("G4 Nhân vật: quản lý trước, chủ dự án tự làm — D-115…D-118", HERE),
+        ("G4 Nhân vật chính có thân, tay cầm nắm thật — chờ 3 quyết định", TODO),
+        ("G4 Xác sống, bạn học, bảo vệ", TODO),
+        ("G5 Hành lang tầng 4 → nhà B → khuôn viên → thư viện/bệnh viện", TODO)]),
     ("GĐ 4", "Ghép bản hoàn chỉnh (D-059)", TODO, [("Chơi liền 4 chương, 1 file lưu, bot + FPS, chơi tay trọn game", TODO)]),
     ("GĐ 5", "Phát hành theo chương", TODO, [("Nền tảng, giá, ngày: chưa quyết", TODO)]),
 ]
