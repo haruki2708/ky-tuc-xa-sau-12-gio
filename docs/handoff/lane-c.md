@@ -172,7 +172,9 @@ Chỉ làm trong D:\GAME_WORK\lane-c, nhánh lane-c/T-219-manager-pilot. Giữ m
 vùng file của card, không sửa manager.gd/manager.tscn/chương, không ghi ổ C, CC0/CC-BY, ≤ 10 MiB/file qua LFS, xin lượt Godot qua chủ dự án.
 
 1. git fetch origin, rebase nhánh lên origin/main mới nhất. Đọc mục "Review đợt 1" trong docs/tasks/T-219-manager-character-pilot.md.
-2. SỬA CHUYỂN ĐỘNG TÁC (phần dùng chung, quan trọng nhất). Probe của integrator ở stand t=0: gối gập 17–24° (tư thế gốc 7°),
+2. [ĐÍNH CHÍNH 16/10: Idle_Loop gốc cũng khuỵu gối, không phải lỗi retarget. Integrator đồng ý: tạo stand đứng thẳng phái sinh CC0
+   ở thư viện nguồn dùng chung A/C; lệch retarget nếu còn thì vẫn sửa ở rest pose/BoneMap; ask nếu khuỵu thì làm cùng cách; ngưỡng test giữ nguyên.]
+   SỬA CHUYỂN ĐỘNG TÁC (phần dùng chung, quan trọng nhất). Probe của integrator ở stand t=0: gối gập 17–24° (tư thế gốc 7°),
    hai bàn chân cách 0,36 m (gốc 0,20), đầu hạ 11 cm, tay dang. Idle_Loop của Quaternius là dáng đứng thẳng.
    - Trước khi sửa: đặt mô hình Quaternius gốc chạy cùng clip cạnh mẫu C, chụp để thấy rõ khác biệt.
    - Sửa tận gốc ở tư thế nghỉ, BoneMap hoặc cách retarget (A-pose với T-pose); không chỉnh tay từng clip.

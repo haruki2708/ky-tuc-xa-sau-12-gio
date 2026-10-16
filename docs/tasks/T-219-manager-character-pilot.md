@@ -85,11 +85,10 @@ Nhánh `lane-c/T-219-manager-pilot` HEAD `d7f1f76`.
 - Handoff kỹ và tự nêu đúng điểm yếu.
 
 **Phải sửa:**
-1. **Chuyển động tác sang khung xương MPFB bị lệch tư thế** (phần dùng chung, mẫu A cũng sẽ dính).
-   - Probe của integrator ở `stand` t = 0 so với tư thế gốc: gối gập 17–24° (gốc 7°), hai bàn chân cách 0,36 m (gốc 0,20), đầu hạ 11 cm (1,54 → 1,43 m), tay dang.
-   - `Idle_Loop` của Quaternius là dáng đứng thẳng. Ảnh toàn thân vì thế giống thế thủ khuỵu gối, không phải người quản lý đứng.
-   - Kiểm bằng cách cho mô hình Quaternius gốc chạy cùng clip ngay cạnh, rồi chụp.
-   - Sửa tận gốc ở tư thế nghỉ hoặc BoneMap (A-pose với T-pose), không chỉnh tay từng clip.
+1. **`stand` là dáng khuỵu gối, chân choãi, tay dang**, không phải người quản lý đứng.
+   - Probe của integrator ở `stand` t = 0 so với tư thế gốc: gối gập 17–24° (gốc 7°), hai bàn chân cách 0,36 m (gốc 0,20), đầu hạ 11 cm (1,54 → 1,43 m).
+   - **Đính chính (16/10, sau phản hồi lane C):** integrator nhận định ban đầu là lỗi chuyển động tác. Sai: ảnh `previews/reference_v3_original_before_front.png` cho thấy mô hình Quaternius gốc cũng khuỵu như vậy (`Idle_Loop` t = 0: gối 21,45°/14,12°, hai bàn chân cách 0,532 m, đo ở cả Blender và Godot). Đây là dáng thủ thế của clip nguồn.
+   - **Integrator đồng ý hướng lane C đề xuất:** tạo một `stand` đứng thẳng, phái sinh CC0, đặt ở thư viện nguồn dùng chung (A và C cùng dùng, không chỉnh riêng từng mẫu). Nếu đo thấy còn lệch do chuyển động tác thì vẫn sửa ở tư thế nghỉ hoặc BoneMap. `ask` nếu cũng khuỵu như vậy thì làm cùng cách. Ngưỡng test giữ nguyên.
 2. **`slash` chưa đúng card** ("chém xuống từ trên vai").
    - `Sword_Attack` là cú quét ngang. Pha lấy đà dang hai tay như giữ thăng bằng; pha chạm là cú vung thấp ngang người.
    - Cần một cú bổ: tay phải đưa dao lên cao ngang hoặc trên vai, bổ chéo xuống phía trước; tay trái thu gần thân. Vẫn lặp được với nhịp 0,45 s.
