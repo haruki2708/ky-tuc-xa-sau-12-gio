@@ -48,6 +48,7 @@ for file, source in [("manager_c", "mpfb"), ("manager_motion_source", "quaterniu
 "retarget/rest_fixer/normalize_position_tracks": true,
 "retarget/rest_fixer/retarget_method": 1,
 "retarget/rest_fixer/fix_silhouette/enable": true,
+"retarget/rest_fixer/fix_silhouette/threshold": 0.1,
 "retarget/remove_tracks/except_bone_transform": false,
 "retarget/remove_tracks/unimportant_positions": false,
 "retarget/remove_tracks/unmapped_bones": false

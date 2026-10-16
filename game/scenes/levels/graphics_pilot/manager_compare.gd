@@ -70,7 +70,7 @@ func _ready() -> void:
 	play_clip(&"stand")
 	set_light(2)
 	var args: PackedStringArray = OS.get_cmdline_user_args()
-	if "--manager-capture" in args or "--manager-fps" in args:
+	if "--manager-capture" in args or "--manager-fps" in args or "--manager-reference-before" in args or "--manager-reference-after" in args:
 		automated = true
 		overlay.hide()
 		if DisplayServer.get_name() == "headless" or RenderingServer.get_current_rendering_method() != "forward_plus":
@@ -78,11 +78,54 @@ func _ready() -> void:
 			App.quit(1)
 			return
 		DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(OUTPUT))
+		if "--manager-reference-before" in args or "--manager-reference-after" in args:
+			await _capture_reference("before" if "--manager-reference-before" in args else "after")
 		if "--manager-capture" in args:
 			await _capture_set()
+			await _capture_review_details()
 		if "--manager-fps" in args:
 			await _measure_fps()
 		App.quit()
+
+
+func _capture_reference(stage: String) -> void:
+	# The reference uses its untouched source rig, bind pose and animation data.
+	# It is deliberately excluded from the candidate/FPS dictionary.
+	if bodies.has("A"):
+		(bodies.A as Node3D).hide()
+	set_light(2)
+	_freeze_at(&"stand", 0.0)
+	for version: String in ["original", "v3_original"]:
+		var reference: Node3D = load("res://assets/models/characters/manager/quaternius_%s.glb" % version).instantiate() as Node3D
+		room.add_child(reference)
+		reference.position = POSITIONS.A
+		var player: AnimationPlayer = reference.find_child("AnimationPlayer", true, false) as AnimationPlayer
+		player.play(&"Idle")
+		player.seek(0.0, true)
+		player.pause()
+		await _settle(2)
+		set_view(0)
+		await _save("reference_%s_%s_front.png" % [version, stage])
+		reference.queue_free()
+		await _settle(2)
+	if stage == "after":
+		var shared_source: Node3D = load("res://assets/models/characters/manager/manager_motion_source.glb").instantiate() as Node3D
+		room.add_child(shared_source)
+		shared_source.position = POSITIONS.A
+		var source_player: AnimationPlayer = shared_source.find_child("AnimationPlayer", true, false) as AnimationPlayer
+		# Play the exact same shared library, including the common spine hunch.
+		source_player.remove_animation_library(&"")
+		source_player.add_animation_library(&"", load("res://assets/models/characters/manager/manager_shared.tres"))
+		source_player.play(&"stand")
+		source_player.seek(0.0, true)
+		source_player.pause()
+		await _settle(2)
+		set_view(0)
+		await _save("reference_shared_after_front.png")
+		shared_source.queue_free()
+		await _settle(2)
+	if bodies.has("A"):
+		(bodies.A as Node3D).show()
 
 
 func _add_body(id: String, scene: PackedScene) -> void:
@@ -205,6 +248,7 @@ func _save(file: String) -> void:
 
 func _capture_set() -> void:
 	var images: Array[String] = []
+	var face_flashlight: Dictionary = {}
 	for spec: Dictionary in [
 		{"id": "full_body_tube", "view": 0, "light": 2, "clip": &"stand", "time": 0.0},
 		{"id": "face_1m_tube", "view": 1, "light": 2, "clip": &"stand", "time": 0.0},
@@ -221,10 +265,13 @@ func _capture_set() -> void:
 		set_view(spec.view)
 		var file: String = spec.id + ".png"
 		await _save(file)
+		if spec.id == "face_1m_flashlight":
+			face_flashlight = _flashlight_shadow_report()
 		images.append(file)
 	var report: Dictionary = _metadata()
 	report["images"] = images
 	report["a_available"] = bodies.has("A")
+	report["face_flashlight_shadow"] = face_flashlight
 	_write_json("capture_report.json", report)
 	print("RESULT: T219 capture %d images PASS" % images.size())
 
@@ -233,6 +280,51 @@ func _metadata() -> Dictionary:
 	return {"godot": Engine.get_version_info().string, "renderer": RenderingServer.get_current_rendering_method(),
 		"gpu": RenderingServer.get_video_adapter_name(), "resolution": [get_viewport().get_visible_rect().size.x, get_viewport().get_visible_rect().size.y],
 		"scene": scene_file_path, "utc": Time.get_datetime_string_from_system(true)}
+
+
+func _capture_review_details() -> void:
+	set_light(2)
+	_freeze_at(&"slash", 0.10)
+	await _settle(2)
+	var body: Node3D = bodies.C
+	var skeleton: Skeleton3D = body.find_child("GeneralSkeleton", true, false) as Skeleton3D
+	var elbow: Vector3 = room.to_local(skeleton.to_global(skeleton.get_bone_global_pose(skeleton.find_bone("RightLowerArm")).origin))
+	_aim(elbow + Vector3(-0.65, 0.05, 0.60), elbow, 40.0)
+	await _save("elbow_windup_close.png")
+	var sheet: Image = Image.create(1920, 1080, false, Image.FORMAT_RGB8)
+	var frames: Array[Dictionary] = []
+	for index: int in CLIPS.size():
+		var clip: StringName = CLIPS[index]
+		var player: AnimationPlayer = body.get_node("AnimationPlayer") as AnimationPlayer
+		var time: float = player.get_animation(clip).length * 0.5
+		_freeze_at(clip, time)
+		_aim(POSITIONS.C + Vector3(-1.2, 1.1, 1.6), POSITIONS.C + Vector3(0, 0.95, 0), 60.0)
+		await _settle()
+		await RenderingServer.frame_post_draw
+		# Deterministic contact sheet from actual rendered pixels; no art retouching.
+		var cell: Image = get_viewport().get_texture().get_image().get_region(Rect2i(320, 0, 1280, 1080))
+		cell.resize(640, 540, Image.INTERPOLATE_LANCZOS)
+		cell.convert(Image.FORMAT_RGB8)
+		sheet.blit_rect(cell, Rect2i(0, 0, 640, 540), Vector2i((index % 3) * 640, (index / 3) * 540))
+		frames.append({"clip": clip, "time": time, "row": index / 3, "column": index % 3})
+	assert(sheet.save_png(OUTPUT + "six_clips_midpoint.png") == OK)
+	var report: Dictionary = _metadata()
+	report["cells_left_to_right_top_to_bottom"] = frames
+	report["flashlight_shadow"] = _flashlight_shadow_report()
+	_write_json("review_capture_report.json", report)
+	print("RESULT: T219 elbow and six-clip contact sheet PASS")
+
+
+func _flashlight_shadow_report() -> Dictionary:
+	var phone: Node3D = load("res://scenes/player/phone_item.tscn").instantiate() as Node3D
+	var game_torch: SpotLight3D = phone.find_child("Flashlight", true, false) as SpotLight3D
+	var room_values: Dictionary = room.get_script().get_script_constant_map()["ROOM_TORCH"]
+	var result: Dictionary = {}
+	for property: String in ["shadow_enabled", "shadow_bias", "shadow_normal_bias", "shadow_blur", "shadow_opacity", "light_size"]:
+		result[property] = {"pilot_in_room407": torch.get(property), "phone_base": game_torch.get(property), "phone_in_room407": room_values.get(property, game_torch.get(property))}
+	result["room407_override"] = {"energy": torch.light_energy, "angle": torch.spot_angle, "range": torch.spot_range, "attenuation": torch.spot_angle_attenuation}
+	phone.free()
+	return result
 
 
 func _measure_fps() -> void:

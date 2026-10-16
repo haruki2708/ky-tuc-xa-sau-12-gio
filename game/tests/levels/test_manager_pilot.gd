@@ -111,6 +111,59 @@ func test_manager_pilot_visible_asset_budget() -> void:
 		assert_true(materials.size() <= 4, "materials: %d" % materials.size())
 
 
+func _bone_point(body: Node3D, skeleton: Skeleton3D, bone: StringName, rest: bool = false) -> Vector3:
+	var index: int = skeleton.find_bone(bone)
+	var transform: Transform3D = skeleton.get_bone_global_rest(index) if rest else skeleton.get_bone_global_pose(index)
+	return body.to_local(skeleton.to_global(transform.origin))
+
+
+func test_manager_pilot_stand_has_upright_knees_and_narrow_stance() -> void:
+	for scene: PackedScene in _bodies():
+		var body: Node3D = scene.instantiate() as Node3D
+		world.add_child(body)
+		var skeleton: Skeleton3D = body.find_child("GeneralSkeleton", true, false) as Skeleton3D
+		var player: AnimationPlayer = body.get_node("AnimationPlayer") as AnimationPlayer
+		var rest_head: float = _bone_point(body, skeleton, &"Head", true).y
+		for fraction: float in [0.0, 0.25, 0.5, 0.75, 0.999]:
+			player.play(&"stand")
+			player.seek(player.get_animation(&"stand").length * fraction, true)
+			player.pause()
+			await wait_frames(2)
+			for side: String in ["Left", "Right"]:
+				var hip: Vector3 = _bone_point(body, skeleton, side + "UpperLeg")
+				var knee: Vector3 = _bone_point(body, skeleton, side + "LowerLeg")
+				var foot: Vector3 = _bone_point(body, skeleton, side + "Foot")
+				var angle: float = rad_to_deg((knee - hip).angle_to(foot - knee))
+				assert_true(angle <= 10.0, "%s knee %.3f degrees at %.3f" % [side, angle, fraction])
+			var spread: float = _bone_point(body, skeleton, &"LeftFoot").distance_to(_bone_point(body, skeleton, &"RightFoot"))
+			assert_true(spread <= 0.28, "ankle distance in 3D %.4f m" % spread)
+			var drop: float = rest_head - _bone_point(body, skeleton, &"Head").y
+			assert_true(drop <= 0.05, "head drop %.4f m" % drop)
+
+
+func test_manager_pilot_slash_starts_above_shoulder_and_cuts_down_forward() -> void:
+	for scene: PackedScene in _bodies():
+		var body: Node3D = scene.instantiate() as Node3D
+		world.add_child(body)
+		var skeleton: Skeleton3D = body.find_child("GeneralSkeleton", true, false) as Skeleton3D
+		var player: AnimationPlayer = body.get_node("AnimationPlayer") as AnimationPlayer
+		var tip: Node3D = body.find_child("BladeTip", true, false) as Node3D
+		for time: float in [0.10, 0.25]:
+			player.play(&"slash")
+			player.seek(time, true)
+			player.pause()
+			await wait_frames(2)
+			var point: Vector3 = body.to_local(tip.global_position)
+			var shoulder: Vector3 = _bone_point(body, skeleton, &"RightUpperArm")
+			var chest: Vector3 = _bone_point(body, skeleton, &"Chest")
+			print("T219_SLASH phase=%.2f tip=%s shoulder=%s chest=%s" % [time, point, shoulder, chest])
+			if time < 0.2:
+				assert_true(point.y > shoulder.y, "windup tip must be above right shoulder")
+			else:
+				assert_true(point.y < chest.y, "contact tip must be below chest")
+				assert_true(point.z < chest.z - 0.1, "contact tip must be in front of body (-Z)")
+
+
 func test_manager_pilot_production_walk_ask_slash_lunge_kill() -> void:
 	for scene: PackedScene in _bodies():
 		var manager: DormManager = MANAGER.instantiate() as DormManager
