@@ -1,0 +1,109 @@
+{
+	"godot": "4.7.2-stable (official)",
+	"gpu": "NVIDIA GeForce RTX 3050 Laptop GPU",
+	"images": [
+		{
+			"clip": "stand",
+			"file": "full_tube.png",
+			"light": "tube",
+			"time": 0.0,
+			"view": "full"
+		},
+		{
+			"clip": "stand",
+			"file": "full_torch.png",
+			"light": "torch",
+			"time": 0.0,
+			"view": "full"
+		},
+		{
+			"clip": "stand",
+			"file": "full_night.png",
+			"light": "night",
+			"time": 0.0,
+			"view": "full"
+		},
+		{
+			"clip": "stand",
+			"file": "face_tube.png",
+			"light": "tube",
+			"time": 0.0,
+			"view": "face"
+		},
+		{
+			"clip": "stand",
+			"file": "face_torch.png",
+			"light": "torch",
+			"time": 0.0,
+			"view": "face"
+		},
+		{
+			"clip": "stand",
+			"file": "side_tube.png",
+			"light": "tube",
+			"time": 0.0,
+			"view": "side"
+		},
+		{
+			"clip": "walk",
+			"file": "walk_tube.png",
+			"light": "tube",
+			"time": 0.6,
+			"view": "full"
+		},
+		{
+			"clip": "ask",
+			"file": "ask_tube.png",
+			"light": "tube",
+			"time": 2.8,
+			"view": "full"
+		},
+		{
+			"clip": "wait",
+			"file": "wait_tube.png",
+			"light": "tube",
+			"time": 2.0,
+			"view": "full"
+		},
+		{
+			"clip": "slash",
+			"file": "slash_windup_tube.png",
+			"light": "tube",
+			"time": 0.62,
+			"view": "full"
+		},
+		{
+			"clip": "slash",
+			"file": "slash_chop_tube.png",
+			"light": "tube",
+			"time": 1.0,
+			"view": "full"
+		},
+		{
+			"clip": "slash",
+			"file": "slash_side_torch.png",
+			"light": "torch",
+			"time": 0.62,
+			"view": "side"
+		},
+		{
+			"clip": "lunge",
+			"file": "lunge_tube.png",
+			"light": "tube",
+			"time": 0.3,
+			"view": "full"
+		},
+		{
+			"clip": "kill",
+			"file": "kill_low_torch.png",
+			"light": "torch",
+			"time": 1.1,
+			"view": "low"
+		}
+	],
+	"renderer": "forward_plus",
+	"resolution": [
+		1920,
+		1080
+	]
+}

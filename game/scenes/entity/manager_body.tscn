@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://scripts/entity/manager_body.gd" id="1"]
+[ext_resource type="PackedScene" path="res://assets/models/characters/manager/manager_tripo.glb" id="2"]
+[ext_resource type="PackedScene" path="res://assets/models/characters/manager/manager_knife.glb" id="3"]
+[ext_resource type="PackedScene" path="res://assets/models/characters/manager/manager_keys.glb" id="4"]
+[ext_resource type="PackedScene" path="res://assets/models/characters/manager/manager_id_card.glb" id="5"]
+[ext_resource type="Script" path="res://scripts/entity/hand_grip_modifier.gd" id="6"]
+
+[node name="ManagerBody" type="Node3D"]
+script = ExtResource("1")
+
+[node name="Model" parent="." instance=ExtResource("2")]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, 0)
+
+[node name="RightHandGrip" type="SkeletonModifier3D" parent="Model/Armature/Skeleton3D"]
+script = ExtResource("6")
+bones = PackedStringArray("mixamorig_RightHandIndex1", "mixamorig_RightHandIndex2", "mixamorig_RightHandIndex3", "mixamorig_RightHandMiddle1", "mixamorig_RightHandMiddle2", "mixamorig_RightHandMiddle3", "mixamorig_RightHandRing1", "mixamorig_RightHandRing2", "mixamorig_RightHandRing3", "mixamorig_RightHandPinky1", "mixamorig_RightHandPinky2", "mixamorig_RightHandPinky3")
+curl_degrees = 65.0
+
+[node name="RightHandAttach" type="BoneAttachment3D" parent="Model/Armature/Skeleton3D"]
+bone_name = "mixamorig_RightHand"
+bone_idx = 44
+
+[node name="Knife" parent="Model/Armature/Skeleton3D/RightHandAttach" instance=ExtResource("3")]
+transform = Transform3D(0, 1, 0, -1, 0, 0, 0, 0, 1, -0.085, 0.102, 0.03)
+
+[node name="BladeTip" type="Marker3D" parent="Model/Armature/Skeleton3D/RightHandAttach/Knife"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.06, 0.41, 0)
+
+[node name="HipsAttach" type="BoneAttachment3D" parent="Model/Armature/Skeleton3D"]
+bone_name = "mixamorig_Hips"
+bone_idx = 0
+
+[node name="Keys" parent="Model/Armature/Skeleton3D/HipsAttach" instance=ExtResource("4")]
+transform = Transform3D(0.998822, 0.045815, -0.016016, -0.045325, 0.998529, 0.029752, 0.017356, -0.028991, 0.999429, 0.006747, -0.145894, 0.19286)
+
+[node name="ChestAttach" type="BoneAttachment3D" parent="Model/Armature/Skeleton3D"]
+bone_name = "mixamorig_Spine2"
+bone_idx = 13
+
+[node name="IdCard" parent="Model/Armature/Skeleton3D/ChestAttach" instance=ExtResource("5")]
+transform = Transform3D(-0.003529, -0.02472, 0.999688, 0.05013, 0.998433, 0.024866, -0.998737, 0.050202, -0.002284, 0.176204, -0.074073, -0.096938)

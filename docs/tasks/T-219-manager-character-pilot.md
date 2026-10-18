@@ -1,5 +1,5 @@
 # T-219 — G4 mẫu thử nhân vật: quản lý ký túc xá, hai cách làm song song
-- Lane: **C** (làm cả phần 3D/Blender và nối gameplay; chuyển từ lane B vì B hết hạn mức) | Trạng thái: **chủ dự án tự làm, integrator hỗ trợ (D-118, 16/10)**; phần lane C không ghép | Agent: chủ dự án + Claude
+- Lane: **C** (làm cả phần 3D/Blender và nối gameplay; chuyển từ lane B vì B hết hạn mức) | Trạng thái: **D-119: quản lý Tripo trong cảnh xem thử, chờ chủ dự án duyệt** (chủ dự án tự làm, integrator hỗ trợ, D-118) | Agent: chủ dự án + Claude
 - Quyết định: **D-115**, giao việc **D-116** (lane B) → **D-117** (lane C). Chủ dự án: "1: làm quản lý trước, 2: thử A và C song song, 3: ngoại hình quản lý tầm 45 tuổi, trang phục quản lý trường học, lộ mặt kinh dị, dao sắc".
 - Phụ thuộc: D-114 (FPS 1080p còn dư), hợp đồng nhân vật T-208 (bảng Manager), `game/scripts/entity/manager.gd` (`body_scene`).
 
@@ -119,3 +119,41 @@ Prompt sửa: [`lane-c.md` mục 5.1](../handoff/lane-c.md).
   - Retarget sang `SkeletonProfileHumanoid` cần chỉnh tư thế nghỉ (rest fixer) ở cả nguồn và đích.
   - `Sword_Attack` là cú quét ngang, không phải cú bổ.
   - MPFB `age` 0,62 trông như thiếu niên; tóc short01 thành khối như mũ.
+
+### D-119 (19/10/2026): quản lý Tripo trong cảnh xem thử (chủ dự án tạo trên Tripo, Claude làm thay B/A)
+
+**Chủ dự án tạo trên Tripo Studio (18–19/10):**
+- Lượt đầu Text to 3D ra kiểu hoạt hình nên bỏ. Đổi sang tạo ảnh mẫu trong Tripo (Nano Banana, khung 3:4, chọn ảnh 2), rồi Image to 3D.
+- Retopo còn 18.449 tam giác. Auto Rig loại Humanoid, xương kiểu Mixamo, có đủ ngón tay.
+- Động tác preset: idle, walk, wait, run, slash, bow.
+- Đồ đi kèm: dao phay, chùm chìa khóa, thẻ đeo.
+
+**Claude làm thay B/A:**
+- **`pack_tripo_manager.py`:**
+  - gốc là file có động tác (file rigged không kèm động tác có xương ở vị trí gốc);
+  - ghép 7 clip `stand` (idle), `walk`, `ask` (bow), `wait`, `slash` (cắt 1,15–3,10 s), `lunge` (run), `kill` (slash 1,15–2,30 s; Tripo không có động tác kết liễu);
+  - bỏ trôi hông ở clip di chuyển, bỏ kênh scale hằng;
+  - texture JPEG ≤ 2048; file 4,9 MiB.
+- **Import:** `root_scale` 1,73 → đỉnh đầu 1,70 m.
+- **`manager_body.tscn`:**
+  - xoay 180° để nhìn về −Z;
+  - dao (dựng thẳng bằng `align_prop.py`, nướng bằng `bake_prop.py`) gắn tay phải, lưỡi hướng ra trước nắm tay, `BladeTip` ở mũi dao;
+  - chìa khóa ở hông phải, thẻ ở ngực trái;
+  - `HandGripModifier` co 4 ngón tay phải quanh cán;
+  - `manager_body.gd` cho các clip đứng, đi, chạy lặp.
+- **Ngân sách:** 24.131 tam giác, 4 vật liệu, texture ≤ 2048².
+- **Cảnh xem thử** `game/scenes/levels/graphics_pilot/manager_preview.tscn`: phòng 407 của bản chơi, ánh sáng D-113; phím 1–7, L, C, Space. 14 ảnh 1080p ở `art_source/graphics_upgrade/manager/previews/`.
+- **5 test** `game/tests/player/test_manager_body.gd`:
+  - đủ 6 clip và vòng lặp;
+  - cao 1,70 m, nhìn −Z;
+  - mũi dao lên trên đầu rồi bổ xuống phía trước;
+  - ngân sách;
+  - `manager.gd` đi, hỏi, chém 6 lần, giết với thân mới.
+- **Bản chơi chưa đổi:** `manager.tscn` và các chương vẫn dùng thân cũ.
+
+**Còn mở:**
+- **Mắt:** trong game mắt bình thường, không trắng đục như ảnh mẫu (texture Tripo không giữ).
+- **Chủ dự án chọn `ask`:** bow (cúi chào 90°) hay wait (chống nạnh).
+- **Chuyển cảnh giữa các động tác:** `manager.gd` gọi `stop()` trước mỗi `play()` nên không pha trộn động tác. Sửa khi đưa vào bản chơi.
+- **Xác nhận gói tài khoản Tripo:** ảnh mẫu tạo ở tài khoản hiển thị "H".
+- **Tay trái:** tay mở cửa (`LeftArm`) chưa làm.
