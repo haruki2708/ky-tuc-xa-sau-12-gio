@@ -28,7 +28,7 @@ Bản chữ (xem được trong terminal / Notepad):
   │     ├─ [✅] G1 Hợp đồng kỹ thuật (balo) .............. D-085
   │     ├─ [✅] G2 Mẫu balo Tripo, chọn lượt 2 ............ D-086
   │     ├─ [✅] G3 Phòng 407 đủ đồ vào bản chơi .......... D-103…D-114
-  │     ├─ [📍] G4 Nhân vật: quản lý trước ............... ĐANG Ở ĐÂY (D-115…D-118)
+  │     ├─ [📍] G4 Nhân vật: quản lý trước ............... ĐANG Ở ĐÂY (D-115…D-120, đã vào bản chơi, chờ chơi thử)
   │     ├─ [⬜] G4 Nhân vật chính có thân, tay cầm nắm thật  chờ 3 quyết định
   │     ├─ [⬜] G4 Xác sống, bạn học, bảo vệ
   │     └─ [⬜] G5 Hành lang tầng 4 → nhà B → khuôn viên → thư viện/bệnh viện
@@ -67,7 +67,7 @@ Mục tiêu: hình gần thật, 1080p/60 FPS trên RTX 3050 Laptop. Đồ vật
 | G1 Hợp đồng kỹ thuật | Công cụ kiểm asset, hồ sơ balo, giấy phép Tripo (D-084) | ✅ D-085 |
 | G2 Thử Tripo | Balo Tripo lượt 2 xanh navy | ✅ D-086 |
 | G3 Phòng 407 vào bản chơi | Tripo 3 đợt (70 món) + mùng, chiếu, gạch, decal bằng Blender (D-089…D-101) → vào bản chơi cả 4 chương (D-103) → ánh sáng (D-104), gương phản chiếu thật (D-105), giấy và dây điện (D-106), sửa nhà tắm (D-109), khung đọc ảnh/thẻ (D-112), sửa 3 lỗi chủ dự án báo + phòng tối hẳn (D-113). **1080p thấp nhất 97,7 FPS (D-114).** Bộ lọc PS1 mặc định tắt | ✅ chủ dự án duyệt độ tối và hết lỗi |
-| **G4 Nhân vật** | **Quản lý trước** (D-115): nam ~45 tuổi, đồng phục quản lý trường học, mặt kinh dị, dao phay. Lane C làm thử mẫu MPFB (D-117) nhưng chủ dự án chọn bỏ; **chủ dự án tự làm, integrator hỗ trợ** (D-118). Phiếu Tripo `docs/handoff/TRIPO_QUAN_LY.md`; bài học kỹ thuật trong card T-219 | 📍 **đang ở đây** |
+| **G4 Nhân vật** | **Quản lý trước** (D-115): nam ~45 tuổi, đồng phục quản lý trường học, mặt kinh dị, dao phay. Lane C làm thử mẫu MPFB (D-117) nhưng chủ dự án chọn bỏ; **chủ dự án tự làm, integrator hỗ trợ** (D-118). Phiếu Tripo `docs/handoff/TRIPO_QUAN_LY.md`; bài học kỹ thuật trong card T-219. Tripo: thân, 6 động tác, dao, chìa khóa, thẻ (D-119); chủ dự án duyệt, mắt trắng đục, vào bản chơi chương 1 và gương chương 2 (D-120) | 📍 **chờ chơi thử** |
 | G4 tiếp | Nhân vật chính có thân và tay cầm nắm, mở cửa như thật; nhân vật khác đi không trượt chân; xác sống, 2 bạn học, bảo vệ | ⬜ chờ chủ dự án chốt 3 câu (mục 3) |
 | G5 Mở rộng cảnh | Hành lang tầng 4 → nhà B → khuôn viên → thư viện/bệnh viện | ⬜ |
 
@@ -78,7 +78,7 @@ Khoảng 4–6 ngày: hết chương tự sang chương sau, **một file lưu x
 Phát hành theo chương (D-029). Nền tảng, giá, ngày: chưa quyết. Steam yêu cầu khai báo nội dung AI (`AGENTS.md` §5).
 
 ## 3. Việc đang chờ chủ dự án (để tiếp tục)
-1. 📍 **Quản lý (T-219):** tạo trên Tripo theo `docs/handoff/TRIPO_QUAN_LY.md`: thân có Auto Rig, dao phay, chùm chìa khóa, thẻ đeo. Tải về `D:\GAME_DEMO\build\graphics\staging\manager\` rồi báo integrator (tên file, lượt, đã sửa gì). Integrator chuẩn hóa, gắn dao, đặt vào phòng 407 chụp ảnh.
+1. 📍 **Quản lý (T-219):** đã vào bản chơi (D-120). Chủ dự án chơi thử chương 1 (quản lý vào phòng, hỏi, rạch giường, mở cửa, cảnh camera) và chương 2 (bóng trong gương nhà tắm), báo chỗ chưa ổn.
 2. **Học làm động tác (tùy chọn):** integrator soạn trang hướng dẫn Blender cho người mới (tạo dáng, đặt mốc, xuất file) khi chủ dự án muốn bắt đầu.
 3. **Nhân vật chính có thân/tay thật**, chốt 3 câu trước khi viết card T-220:
    - thấy cả người (cúi thấy chân, có bóng, trong gương; integrator đề xuất) hay chỉ hai tay;

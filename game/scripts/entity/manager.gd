@@ -13,6 +13,7 @@ enum State { IDLE, WALKING, SPEAKING, LISTENING, SLASHING, LUNGING, KILLING, HUN
 
 const HUNT_REACH: float = 1.2
 const HUNT_TIMEOUT: float = 12.0
+const BLEND_SECONDS: float = 0.2
 
 @export var body_scene: PackedScene
 @export var player: Node3D
@@ -432,13 +433,23 @@ func _face(point: Vector3) -> void:
 		visual.global_rotation.y = atan2(-offset.x, -offset.z)
 
 
+## Cross-fades between body clips (D-120). A looping clip already playing carries on; a
+## one-shot clip played again (each chop) starts over at once.
 func _play_animation(name: StringName, seconds: float = 0.0) -> void:
-	if is_instance_valid(_model_animation):
+	if not is_instance_valid(_model_animation):
+		return
+	if not _model_animation.has_animation(name):
 		_model_animation.stop()
-		if _model_animation.has_animation(name):
-			var animation: Animation = _model_animation.get_animation(name)
-			_model_animation.speed_scale = animation.length / seconds if seconds > 0.0 else 1.0
-			_model_animation.play(name)
+		return
+	var animation: Animation = _model_animation.get_animation(name)
+	var clip_speed: float = animation.length / seconds if seconds > 0.0 else 1.0
+	var blend: float = BLEND_SECONDS
+	if _model_animation.current_animation == name:
+		if animation.loop_mode != Animation.LOOP_NONE:
+			return
+		_model_animation.stop()
+		blend = 0.0
+	_model_animation.play(name, blend, clip_speed)
 
 
 func _audio(method: StringName, arguments: Array = []) -> void:

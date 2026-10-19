@@ -1,4 +1,4 @@
-# Quản lý ký túc xá — dựng lại từ file Tripo (T-219, D-118)
+# Quản lý ký túc xá — dựng lại từ file Tripo (T-219, D-118…D-120)
 
 File gốc Tripo ở `build/graphics/staging/manager/` (không vào git; hash trong `SHA256SUMS.txt`).
 
@@ -13,19 +13,24 @@ python -I art_source/graphics_upgrade/manager/pack_tripo_manager.py --staging bu
   |---|---|---|
   | `stand` | idle | |
   | `walk` | walk | hông giữ tại chỗ |
-  | `ask` | bow | cúi chào 90° |
-  | `wait` | wait | chống nạnh; chỉ để so, game không gọi |
+  | `ask` | wait | chống nạnh (chủ dự án chọn, D-120); bow không dùng |
   | `slash` | slash 1,15–3,10 s | giơ dao, bổ, về đúng dáng đầu |
   | `lunge` | run | hông giữ tại chỗ |
   | `kill` | slash 1,15–2,30 s | một cú bổ, dừng thấp |
 
+- **Mắt trắng đục (D-120):** texture Tripo mất mắt trắng của ảnh mẫu, nên script tô lại (`paint_milky_eyes`).
+  - Bảng `EYES`: tâm, nửa rộng, nửa cao của hai hốc mắt, đo trên ảnh chụp thẳng mô hình gốc (mét Tripo, mặt nhìn +Z).
+  - Từng texel của tam giác vùng mắt được đưa về vị trí trên mô hình rồi tô: lòng trắng đục, tròng xám mờ, đồng tử đục, bóng mí trên. Vùng mắt có roughness 0,25 (bóng ướt).
+  - Đổi mô hình khác thì đo lại `EYES`.
 - **Godot import** (`manager_tripo.glb.import`): `nodes/root_scale=1.73`, để người Tripo cao 0,98 m đứng 1,70 m. Texture tự tách thành `manager_tripo_*.jpg`.
 - **Scene thân** `game/scenes/entity/manager_body.tscn`:
   - xoay mô hình 180° để nhìn về −Z;
   - gắn dao, chìa khóa, thẻ đeo bằng `BoneAttachment3D`;
   - `BladeTip` ở mũi dao;
-  - `HandGripModifier` co 4 ngón tay phải quanh cán dao (động tác Tripo để tay mở).
-- **Vòng lặp:** `manager_body.gd` cho `stand`, `walk`, `wait`, `lunge` lặp.
+  - `HandGripModifier` co 4 ngón tay phải quanh cán dao (động tác Tripo để tay mở);
+  - `LeftArm` (`ArmReachModifier`): `manager.gd` `open_door` xoay node này, tay trái với ra trước tới tay nắm cửa.
+- **Vòng lặp:** `manager_body.gd` cho `stand`, `walk`, `ask`, `lunge` lặp; đứng một mình (gương chương 2) thì tự chạy `stand`.
+- **Chuyển động tác:** `manager.gd` pha 0,2 s giữa hai clip; mỗi nhát chém bắt đầu lại ngay.
 
 ## 2. Đồ đi kèm
 Dao từ Tripo nằm nghiêng, nên dựng thẳng theo trục chính trước:
@@ -44,11 +49,12 @@ Dao sau khi dựng thẳng: cán ở y 0–0,17 m, sống dao phía +X, lưỡi 
 
 ## 3. Xem và chụp
 - **Xem:** mở `game/scenes/levels/graphics_pilot/manager_preview.tscn`.
-  - phím 1–7: đổi clip;
+  - phím 1–6: đổi clip;
   - L: đổi đèn tắt / đèn pin / đèn trần;
   - C: đổi góc máy;
+  - R: với tay mở cửa;
   - Space: dừng.
-- **Chụp 14 ảnh 1080p** vào `previews/`:
+- **Chụp 14 ảnh 1080p** (sau khi đổi GLB: `godot --headless --path game --import` trước) vào `previews/`:
   ```
   godot --path game res://scenes/levels/graphics_pilot/manager_preview.tscn -- --manager-capture
   ```

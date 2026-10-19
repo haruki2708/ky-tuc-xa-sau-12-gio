@@ -1,7 +1,8 @@
 extends Node3D
-## T-219 (D-118): the Tripo dorm manager standing in the playable room 407 (D-113 lighting).
-## Free view: 1-7 play stand/walk/ask/wait/slash/lunge/kill, L cycles night/torch/tube,
-## C cycles cameras, Space pauses. Opt-in captures: -- --manager-capture (needs Forward+).
+## T-219 (D-118, D-120): the Tripo dorm manager standing in the playable room 407 (D-113 lighting).
+## Free view: 1-6 play stand/walk/ask/slash/lunge/kill, L cycles night/torch/tube,
+## C cycles cameras, R toggles the door reach (left arm), Space pauses.
+## Opt-in captures: -- --manager-capture (needs Forward+).
 
 const FLOOR := preload("res://scenes/levels/floor4/floor4.tscn")
 const BODY := preload("res://scenes/entity/manager_body.tscn")
@@ -9,7 +10,7 @@ const OUTPUT := "res://../art_source/graphics_upgrade/manager/previews/"
 const ORIGIN := Vector3(30, 0, 0)
 ## Room-local spot on the floor mat between the bunks, facing the door.
 const STAND := Vector3(3.6, 0.0, -2.9)
-const CLIPS: Array[StringName] = [&"stand", &"walk", &"ask", &"wait", &"slash", &"lunge", &"kill"]
+const CLIPS: Array[StringName] = [&"stand", &"walk", &"ask", &"slash", &"lunge", &"kill"]
 const LIGHTS: Array[String] = ["night", "torch", "tube"]
 ## Room-local eyes; targets are offsets from the manager's feet.
 const VIEWS := [
@@ -18,7 +19,7 @@ const VIEWS := [
 	{"id": "side", "eye": Vector3(5.6, 1.5, -2.2), "aim": Vector3(0.0, 0.95, 0.0), "fov": 60.0},
 	{"id": "low", "eye": Vector3(3.1, 0.55, -1.7), "aim": Vector3(0.0, 1.3, 0.0), "fov": 60.0},
 ]
-## id, view, light, clip, time (s) — the review set.
+## id, view, light, clip, time (s)[, door reach] — the review set.
 const SHOTS := [
 	["full_tube", "full", "tube", &"stand", 0.0],
 	["full_torch", "full", "torch", &"stand", 0.0],
@@ -27,13 +28,13 @@ const SHOTS := [
 	["face_torch", "face", "torch", &"stand", 0.0],
 	["side_tube", "side", "tube", &"stand", 0.0],
 	["walk_tube", "full", "tube", &"walk", 0.6],
-	["ask_tube", "full", "tube", &"ask", 2.8],
-	["wait_tube", "full", "tube", &"wait", 2.0],
+	["ask_tube", "full", "tube", &"ask", 2.0],
 	["slash_windup_tube", "full", "tube", &"slash", 0.62],
 	["slash_chop_tube", "full", "tube", &"slash", 1.0],
 	["slash_side_torch", "side", "torch", &"slash", 0.62],
 	["lunge_tube", "full", "tube", &"lunge", 0.3],
 	["kill_low_torch", "low", "torch", &"kill", 1.1],
+	["reach_side_tube", "side", "tube", &"stand", 0.0, true],
 ]
 
 var floor4: Node3D
@@ -46,6 +47,7 @@ var rig: Node3D
 var view_index: int = 0
 var light_index: int = 2
 var clip_index: int = 0
+var reach: bool = false
 
 
 func _ready() -> void:
@@ -80,7 +82,7 @@ func _ready() -> void:
 		await _capture()
 
 
-func _apply(view: Dictionary, light: String, clip: StringName, time: float) -> void:
+func _apply(view: Dictionary, light: String, clip: StringName, time: float, reach_door: bool = false) -> void:
 	var target: Vector3 = ORIGIN + STAND + view.aim
 	rig.position = ORIGIN + Vector3(view.eye.x, 0.0, view.eye.z)
 	var aim: Vector3 = target - (ORIGIN + view.eye)
@@ -98,6 +100,8 @@ func _apply(view: Dictionary, light: String, clip: StringName, time: float) -> v
 	var tube := room.get_node("Room407MainLight") as OmniLight3D
 	tube.visible = light == "tube"
 	tube.light_energy = tube.flicker_energy if light == "tube" else 0.0
+	# What DormManager.open_door tweens (D-120).
+	(body.find_child("LeftArm", true, false) as Node3D).rotation.x = PI * 0.45 if reach_door else 0.0
 	player.play(clip)
 	if time >= 0.0:
 		player.seek(time, true)
@@ -112,6 +116,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		clip_index = key - KEY_1
 	elif key == KEY_L:
 		light_index = (light_index + 1) % LIGHTS.size()
+	elif key == KEY_R:
+		reach = not reach
 	elif key == KEY_C:
 		view_index = (view_index + 1) % VIEWS.size()
 	elif key == KEY_SPACE:
@@ -122,7 +128,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 	else:
 		return
-	_apply(VIEWS[view_index], LIGHTS[light_index], CLIPS[clip_index], -1.0)
+	_apply(VIEWS[view_index], LIGHTS[light_index], CLIPS[clip_index], -1.0, reach)
 
 
 func _capture() -> void:
@@ -140,7 +146,7 @@ func _capture() -> void:
 		"renderer": RenderingServer.get_current_rendering_method(), "gpu": RenderingServer.get_video_adapter_name(),
 		"resolution": [1920, 1080], "images": []}
 	for shot: Array in SHOTS:
-		_apply(views[shot[1]], shot[2], shot[3], shot[4])
+		_apply(views[shot[1]], shot[2], shot[3], shot[4], shot.size() > 5 and shot[5])
 		var file := "%s.png" % shot[0]
 		for frame in range(45):
 			await get_tree().process_frame
@@ -149,7 +155,8 @@ func _capture() -> void:
 			push_error("Cannot save manager capture: " + file)
 			App.quit(1)
 			return
-		report.images.append({"file": file, "view": shot[1], "light": shot[2], "clip": String(shot[3]), "time": shot[4]})
+		report.images.append({"file": file, "view": shot[1], "light": shot[2], "clip": String(shot[3]), "time": shot[4],
+			"door_reach": shot.size() > 5 and shot[5]})
 	var out := FileAccess.open(OUTPUT + "capture_report.json", FileAccess.WRITE)
 	out.store_string(JSON.stringify(report, "\t") + "\n")
 	print("RESULT: manager capture %d images PASS" % report.images.size())

@@ -1,5 +1,5 @@
 # T-219 — G4 mẫu thử nhân vật: quản lý ký túc xá, hai cách làm song song
-- Lane: **C** (làm cả phần 3D/Blender và nối gameplay; chuyển từ lane B vì B hết hạn mức) | Trạng thái: **D-119: quản lý Tripo trong cảnh xem thử, chờ chủ dự án duyệt** (chủ dự án tự làm, integrator hỗ trợ, D-118) | Agent: chủ dự án + Claude
+- Lane: **C** (làm cả phần 3D/Blender và nối gameplay; chuyển từ lane B vì B hết hạn mức) | Trạng thái: **D-120: chủ dự án duyệt; quản lý Tripo trong bản chơi chương 1 và gương chương 2, chờ chơi thử** (chủ dự án tự làm, integrator hỗ trợ, D-118) | Agent: chủ dự án + Claude
 - Quyết định: **D-115**, giao việc **D-116** (lane B) → **D-117** (lane C). Chủ dự án: "1: làm quản lý trước, 2: thử A và C song song, 3: ngoại hình quản lý tầm 45 tuổi, trang phục quản lý trường học, lộ mặt kinh dị, dao sắc".
 - Phụ thuộc: D-114 (FPS 1080p còn dư), hợp đồng nhân vật T-208 (bảng Manager), `game/scripts/entity/manager.gd` (`body_scene`).
 
@@ -157,3 +157,37 @@ Prompt sửa: [`lane-c.md` mục 5.1](../handoff/lane-c.md).
 - **Chuyển cảnh giữa các động tác:** `manager.gd` gọi `stop()` trước mỗi `play()` nên không pha trộn động tác. Sửa khi đưa vào bản chơi.
 - **Xác nhận gói tài khoản Tripo:** ảnh mẫu tạo ở tài khoản hiển thị "H".
 - **Tay trái:** tay mở cửa (`LeftArm`) chưa làm.
+
+### D-120 (19/10/2026): chủ dự án duyệt, quản lý mới vào bản chơi (Claude làm thay B/A)
+
+**Chủ dự án chốt:**
+- hình tổng thể và khuôn mặt đạt;
+- mắt: cách (a), Claude tô lại texture;
+- `ask`: tư thế wait (chống nạnh), không dùng bow;
+- cả hai tài khoản Tripo đều trả phí (D-084).
+
+**Claude làm:**
+- **Mắt trắng đục** trong `pack_tripo_manager.py` (`paint_milky_eyes`):
+  - đo hai hốc mắt trên ảnh chụp thẳng của mô hình gốc (bảng `EYES`, đơn vị mét của Tripo);
+  - đưa từng texel của tam giác vùng mắt về vị trí trên mô hình, tô hình hạnh nhân quanh mỗi mắt: lòng trắng đục, tròng xám mờ, đồng tử đục, bóng mí trên;
+  - tô thêm 1,5 texel ra khe giữa các mảnh UV (không đè mảnh khác) để lọc texture không kéo màu mắt cũ vào;
+  - vùng mắt bóng ướt: roughness 0,25 trong map `rm`.
+- **`ask` = clip Tripo wait**, lặp; bỏ bow và clip `wait` riêng. Thân còn 6 clip.
+- **Chuyển động tác mượt** trong `manager.gd` `_play_animation`:
+  - pha 0,2 s giữa hai clip khác nhau, tốc độ clip riêng (`play(name, blend, speed)`);
+  - clip lặp đang chạy thì chạy tiếp, không giật về đầu;
+  - clip một lần gọi lại (mỗi nhát chém) bắt đầu lại ngay.
+- **Tay trái mở cửa:** `arm_reach_modifier.gd` (node `LeftArm` trong `manager_body.tscn`). `open_door` vẫn xoay `LeftArm.rotation.x` như cũ; modifier quay xương `mixamorig_LeftArm` ra trước 0,7 góc đó, tay lên ngang tay nắm cửa.
+- **Thân đứng một mình** (bóng trong gương) tự chạy `stand`, không đứng tư thế chữ T.
+- **Bản chơi:**
+  - `chapter1_director.gd` `MANAGER_BODY` → `scenes/entity/manager_body.tscn` (cả cảnh camera an ninh);
+  - `ch2/bathroom_effects.tscn` bóng quản lý trong gương dùng thân mới.
+  - Bảo vệ khuôn viên (`campus/guard.tscn`) vẫn dùng thân cũ.
+- **Cảnh xem thử:** phím 1–6, thêm R (với tay mở cửa); ảnh `reach_side_tube.png`, bỏ `wait_tube.png`.
+- **Test** `test_manager_body.gd` thêm 2 (còn 7):
+  - tay trái với ra trước, lên tầm tay nắm cửa;
+  - pha trộn động tác và nhát chém bắt đầu lại.
+
+**Còn mở:**
+- Chủ dự án chơi thử chương 1 và 2.
+- Bảo vệ khuôn viên làm ở G4 sau (nhân vật riêng).

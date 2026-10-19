@@ -4,6 +4,7 @@
 	"images": [
 		{
 			"clip": "stand",
+			"door_reach": false,
 			"file": "full_tube.png",
 			"light": "tube",
 			"time": 0.0,
@@ -11,6 +12,7 @@
 		},
 		{
 			"clip": "stand",
+			"door_reach": false,
 			"file": "full_torch.png",
 			"light": "torch",
 			"time": 0.0,
@@ -18,6 +20,7 @@
 		},
 		{
 			"clip": "stand",
+			"door_reach": false,
 			"file": "full_night.png",
 			"light": "night",
 			"time": 0.0,
@@ -25,6 +28,7 @@
 		},
 		{
 			"clip": "stand",
+			"door_reach": false,
 			"file": "face_tube.png",
 			"light": "tube",
 			"time": 0.0,
@@ -32,6 +36,7 @@
 		},
 		{
 			"clip": "stand",
+			"door_reach": false,
 			"file": "face_torch.png",
 			"light": "torch",
 			"time": 0.0,
@@ -39,6 +44,7 @@
 		},
 		{
 			"clip": "stand",
+			"door_reach": false,
 			"file": "side_tube.png",
 			"light": "tube",
 			"time": 0.0,
@@ -46,6 +52,7 @@
 		},
 		{
 			"clip": "walk",
+			"door_reach": false,
 			"file": "walk_tube.png",
 			"light": "tube",
 			"time": 0.6,
@@ -53,20 +60,15 @@
 		},
 		{
 			"clip": "ask",
+			"door_reach": false,
 			"file": "ask_tube.png",
-			"light": "tube",
-			"time": 2.8,
-			"view": "full"
-		},
-		{
-			"clip": "wait",
-			"file": "wait_tube.png",
 			"light": "tube",
 			"time": 2.0,
 			"view": "full"
 		},
 		{
 			"clip": "slash",
+			"door_reach": false,
 			"file": "slash_windup_tube.png",
 			"light": "tube",
 			"time": 0.62,
@@ -74,6 +76,7 @@
 		},
 		{
 			"clip": "slash",
+			"door_reach": false,
 			"file": "slash_chop_tube.png",
 			"light": "tube",
 			"time": 1.0,
@@ -81,6 +84,7 @@
 		},
 		{
 			"clip": "slash",
+			"door_reach": false,
 			"file": "slash_side_torch.png",
 			"light": "torch",
 			"time": 0.62,
@@ -88,6 +92,7 @@
 		},
 		{
 			"clip": "lunge",
+			"door_reach": false,
 			"file": "lunge_tube.png",
 			"light": "tube",
 			"time": 0.3,
@@ -95,10 +100,19 @@
 		},
 		{
 			"clip": "kill",
+			"door_reach": false,
 			"file": "kill_low_torch.png",
 			"light": "torch",
 			"time": 1.1,
 			"view": "low"
+		},
+		{
+			"clip": "stand",
+			"door_reach": true,
+			"file": "reach_side_tube.png",
+			"light": "tube",
+			"time": 0.0,
+			"view": "side"
 		}
 	],
 	"renderer": "forward_plus",

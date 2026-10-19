@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scenes/levels/ch2/bathroom_effects.gd" id="e1"]
 [ext_resource type="Shader" path="res://scenes/levels/ch2/steam.gdshader" id="e2"]
-[ext_resource type="PackedScene" path="res://scenes/levels/ch1_models/manager_body.tscn" id="e3"]
+[ext_resource type="PackedScene" path="res://scenes/entity/manager_body.tscn" id="e3"]
 
 [sub_resource type="StandardMaterial3D" id="s1"]
 shading_mode = 0

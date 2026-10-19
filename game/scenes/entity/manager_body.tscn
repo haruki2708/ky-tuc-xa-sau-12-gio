@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3]
+[gd_scene load_steps=8 format=3]
 
 [ext_resource type="Script" path="res://scripts/entity/manager_body.gd" id="1"]
 [ext_resource type="PackedScene" path="res://assets/models/characters/manager/manager_tripo.glb" id="2"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" path="res://assets/models/characters/manager/manager_keys.glb" id="4"]
 [ext_resource type="PackedScene" path="res://assets/models/characters/manager/manager_id_card.glb" id="5"]
 [ext_resource type="Script" path="res://scripts/entity/hand_grip_modifier.gd" id="6"]
+[ext_resource type="Script" path="res://scripts/entity/arm_reach_modifier.gd" id="7"]
 
 [node name="ManagerBody" type="Node3D"]
 script = ExtResource("1")
@@ -17,6 +18,9 @@ transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, 0)
 script = ExtResource("6")
 bones = PackedStringArray("mixamorig_RightHandIndex1", "mixamorig_RightHandIndex2", "mixamorig_RightHandIndex3", "mixamorig_RightHandMiddle1", "mixamorig_RightHandMiddle2", "mixamorig_RightHandMiddle3", "mixamorig_RightHandRing1", "mixamorig_RightHandRing2", "mixamorig_RightHandRing3", "mixamorig_RightHandPinky1", "mixamorig_RightHandPinky2", "mixamorig_RightHandPinky3")
 curl_degrees = 65.0
+
+[node name="LeftArm" type="SkeletonModifier3D" parent="Model/Armature/Skeleton3D"]
+script = ExtResource("7")
 
 [node name="RightHandAttach" type="BoneAttachment3D" parent="Model/Armature/Skeleton3D"]
 bone_name = "mixamorig_RightHand"

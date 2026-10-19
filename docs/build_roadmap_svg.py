@@ -14,7 +14,7 @@ phases = [
         ("G1 Hợp đồng kỹ thuật, balo — D-085", DONE),
         ("G2 Mẫu balo Tripo đạt, chọn lượt 2 xanh navy — D-086", DONE),
         ("G3 Phòng 407 đủ đồ vào bản chơi, 1080p ≥ 97 FPS — D-103…D-114", DONE),
-        ("G4 Nhân vật: quản lý trước, chủ dự án tự làm — D-115…D-118", HERE),
+        ("G4 Nhân vật: quản lý trước, đã vào bản chơi — D-115…D-120", HERE),
         ("G4 Nhân vật chính có thân, tay cầm nắm thật — chờ 3 quyết định", TODO),
         ("G4 Xác sống, bạn học, bảo vệ", TODO),
         ("G5 Hành lang tầng 4 → nhà B → khuôn viên → thư viện/bệnh viện", TODO)]),

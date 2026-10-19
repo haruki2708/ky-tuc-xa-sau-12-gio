@@ -101,7 +101,7 @@ const STUDENT_SCENES := {
 ## clear straight lines between waypoints).
 const MANAGER_VIA: PackedVector3Array = [Vector3(32.0, 0.05, -0.8)]
 const MANAGER_OUT_VIA: PackedVector3Array = [Vector3(32.0, 0.05, -0.8)]
-const MANAGER_BODY := "res://scenes/levels/ch1_models/manager_body.tscn"
+const MANAGER_BODY := "res://scenes/entity/manager_body.tscn"
 const ROOM_407_X := Vector2(30.0, 34.0)
 ## Bed number → floor 4 anchor (docs/tasks/T-150: 1 Phúc, 2 Việt, 3 Trung, 4 Đạt).
 const BED_ANCHORS := {1: "Bed_Phuc", 2: "Bed_Viet", 3: "Bed_Trung", 4: "Bed_Dat"}

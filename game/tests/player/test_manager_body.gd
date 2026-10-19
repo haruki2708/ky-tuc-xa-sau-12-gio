@@ -1,5 +1,5 @@
 extends TestCase
-## T-219 (D-118): the Tripo manager body meets DormManager's body_scene contract and the card budget.
+## T-219 (D-118, D-120): the Tripo manager body meets DormManager's body_scene contract and the card budget.
 
 const BODY: PackedScene = preload("res://scenes/entity/manager_body.tscn")
 const MANAGER: PackedScene = preload("res://scenes/entity/manager.tscn")
@@ -42,9 +42,9 @@ func test_body_has_the_six_game_clips_and_loops_the_steady_ones() -> void:
 	var player: AnimationPlayer = _body().find_children("*", "AnimationPlayer", true, false)[0] as AnimationPlayer
 	for clip: StringName in CLIPS:
 		assert_true(player.has_animation(clip), "missing clip %s" % clip)
-	for clip: StringName in [&"stand", &"walk", &"lunge"]:
+	for clip: StringName in [&"stand", &"walk", &"ask", &"lunge"]:
 		assert_eq(player.get_animation(clip).loop_mode, Animation.LOOP_LINEAR, "%s loops" % clip)
-	for clip: StringName in [&"ask", &"slash", &"kill"]:
+	for clip: StringName in [&"slash", &"kill"]:
 		assert_eq(player.get_animation(clip).loop_mode, Animation.LOOP_NONE, "%s plays once per call" % clip)
 
 
@@ -129,3 +129,51 @@ func test_dorm_manager_walks_asks_slashes_and_kills_with_the_tripo_body() -> voi
 	for index: int in 70:
 		await tree.physics_frame
 	assert_eq(caught, [&"manager"])
+
+
+func test_left_arm_reaches_forward_for_the_door() -> void:
+	var manager: DormManager = MANAGER.instantiate() as DormManager
+	manager.body_scene = BODY
+	world.add_child(manager)
+	var body: Node3D = manager.find_child("ManagerBody", true, false) as Node3D
+	var reach: Node3D = body.find_child("LeftArm", true, false) as Node3D
+	assert_eq(manager._reach_arm, reach, "open_door drives the body's arm, not the hidden fallback")
+	var skeleton: Skeleton3D = body.find_children("*", "Skeleton3D", true, false)[0] as Skeleton3D
+	var hand: BoneAttachment3D = BoneAttachment3D.new()
+	hand.bone_name = "mixamorig_LeftHand"
+	skeleton.add_child(hand)
+	manager._model_animation.pause()
+	await wait_frames(2)
+	var rest: Vector3 = hand.global_position
+	reach.rotation.x = PI * 0.45
+	await wait_frames(2)
+	var lifted: Vector3 = hand.global_position
+	assert_true(lifted.z < rest.z - 0.25, "hand reaches forward (-Z): %.2f -> %.2f" % [rest.z, lifted.z])
+	assert_true(lifted.y > rest.y + 0.15, "hand rises toward a door handle: %.2f -> %.2f" % [rest.y, lifted.y])
+	assert_true(lifted.y > 0.8 and lifted.y < 1.3, "hand at handle height, got %.2f" % lifted.y)
+
+
+func test_dorm_manager_cross_fades_clips_but_restarts_each_chop() -> void:
+	var manager: DormManager = MANAGER.instantiate() as DormManager
+	manager.body_scene = BODY
+	world.add_child(manager)
+	var player: AnimationPlayer = manager._model_animation
+	await wait_frames(3)
+	var breath: float = player.current_animation_position
+	assert_true(breath > 0.0)
+	manager._play_animation(&"stand")
+	assert_eq(player.current_animation_position, breath, "a looping clip already playing carries on")
+	var skeleton: Skeleton3D = player.get_parent().find_children("*", "Skeleton3D", true, false)[0] as Skeleton3D
+	var hand: int = skeleton.find_bone("mixamorig_RightHand")
+	manager._play_animation(&"slash", 0.45)
+	player.advance(0.05)
+	var blended: Vector3 = skeleton.get_bone_global_pose(hand).origin
+	var time: float = player.current_animation_position
+	player.stop()
+	player.play(&"slash")
+	player.seek(time, true)
+	var pure: Vector3 = skeleton.get_bone_global_pose(hand).origin
+	assert_true(blended.distance_to(pure) > 0.03, "50 ms into a 0.2 s fade the knife hand is still between clips")
+	player.advance(0.2)
+	manager._play_animation(&"slash", 0.45)
+	assert_eq(player.current_animation_position, 0.0, "the next chop starts over at once")
