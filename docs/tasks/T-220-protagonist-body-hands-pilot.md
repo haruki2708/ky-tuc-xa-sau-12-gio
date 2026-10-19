@@ -1,5 +1,5 @@
 # T-220 — G4 nhân vật chính có thân và tay thật, bước 1: mẫu thử trong phòng 407
-- Lane: **chưa giao** (integrator đề xuất làm như T-219: chủ dự án tạo thân Trần Trung trên Tripo, Claude làm phần còn lại, ghi "Claude làm thay A/B") | Trạng thái: **mới (D-121), chờ chủ dự án duyệt card và chốt ngoại hình Trần Trung** | Agent: —
+- Lane: **chủ dự án + Claude** (D-122, như T-219: chủ dự án tạo thân Trần Trung trên Tripo, Claude làm phần còn lại, ghi "Claude làm thay A/B") | Trạng thái: **mới (D-121, D-122); ngoại hình Trần Trung để sau, Claude làm cơ chế trên thân tạm CC0 trước** | Agent: chủ dự án + Claude
 - Quyết định: **D-121**. Chủ dự án: "1: thấy cả người( cúi thấy chân, có bóng, hiện trên gương), 2 : thao tác tay mất 1 giây ( nhưng phải thấy thao tác chân thật nhất như là cầm lên trên tay đầy đủ động tác chứ không phải là ấn nút nhặt đồ là nó có trong tay). giữ nguyên thời gian thật", "câu 3 tôi chọn theo (c) nhé".
 - Phụ thuộc:
   - D-120: quy trình Tripo → Godot của quản lý (`art_source/graphics_upgrade/manager/`), `HandGripModifier`, `ArmReachModifier`;
