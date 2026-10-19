@@ -1,6 +1,6 @@
 # Bản đồ lộ trình — "Ký túc xá sau 12 giờ"
 
-> **Cập nhật:** 2026-10-16 (sau D-118: G3 xong, G4 bắt đầu bằng nhân vật quản lý, chủ dự án tự làm cùng integrator). Integrator cập nhật file này **mỗi khi qua một mốc** (chốt chương, đóng cổng G, đổi hướng lớn).
+> **Cập nhật:** 2026-10-19 (sau D-121: quản lý Tripo vào bản chơi; nhân vật chính có thân và tay thật đã chốt 3 câu, card T-220; xác sống làm trước). Integrator cập nhật file này **mỗi khi qua một mốc** (chốt chương, đóng cổng G, đổi hướng lớn).
 > Chi tiết từng ngày: `docs/STATUS.md`. Lý do từng quyết định: `docs/DECISIONS.md` (D-001…D-118).
 > Ký hiệu: ✅ xong · 🔶 đang làm · ⬜ chưa bắt đầu · 📍 **đang ở đây**
 
@@ -29,8 +29,8 @@ Bản chữ (xem được trong terminal / Notepad):
   │     ├─ [✅] G2 Mẫu balo Tripo, chọn lượt 2 ............ D-086
   │     ├─ [✅] G3 Phòng 407 đủ đồ vào bản chơi .......... D-103…D-114
   │     ├─ [📍] G4 Nhân vật: quản lý trước ............... ĐANG Ở ĐÂY (D-115…D-120, đã vào bản chơi, chờ chơi thử)
-  │     ├─ [⬜] G4 Nhân vật chính có thân, tay cầm nắm thật  chờ 3 quyết định
-  │     ├─ [⬜] G4 Xác sống, bạn học, bảo vệ
+  │     ├─ [⬜] G4 Nhân vật chính có thân, tay cầm nắm thật  D-121 đã chốt, card T-220
+  │     ├─ [⬜] G4 Xác sống (trước), bạn học, bảo vệ ...... chờ chọn ngoại hình xác sống
   │     └─ [⬜] G5 Hành lang tầng 4 → nhà B → khuôn viên → thư viện/bệnh viện
   │
 [⬜] GĐ 4  Ghép bản hoàn chỉnh: chơi liền 4 chương, 1 file lưu (D-059)
@@ -56,7 +56,7 @@ Bản chữ (xem được trong terminal / Notepad):
 | 3 Truy sát | Khuôn viên gần kích thước thật, xác sống, thanh sắt, đồng đội đi theo; sửa D-061…D-065, D-074, D-075 | 🔶 tới tầng 1 nhà B | **Chờ chủ dự án chơi tiếp từ tầng 1** |
 | 4 Người sống sót | Đối chiếu, gọi điện, bệnh viện, kết thúc; lồng tiếng (D-067, D-068) | ⬜ | **Chờ chủ dự án chơi lần đầu** |
 
-Bản chơi hiện hành: `build/windows/KyTucXa.exe` **15/10 17:21** (sau D-113). Phiếu chơi thử: `docs/playtest/G3_PHONG407_QUICKTEST.md`.
+Bản chơi hiện hành: `build/windows/KyTucXa.exe` **19/10 20:21** (sau D-120, có quản lý Tripo). Phiếu chơi thử: `docs/playtest/G3_PHONG407_QUICKTEST.md`.
 
 ### Giai đoạn 3 — Đồ họa gần chân thực (từ 10/10, D-076) 📍
 Mục tiêu: hình gần thật, 1080p/60 FPS trên RTX 3050 Laptop. Đồ vật tạo bằng **Tripo AI** (gói Studio Pro, D-080/D-084), chỉnh trong Blender, đưa vào Godot. Kế hoạch: `docs/design/GRAPHICS_UPGRADE_PLAN.md`.
@@ -68,7 +68,7 @@ Mục tiêu: hình gần thật, 1080p/60 FPS trên RTX 3050 Laptop. Đồ vật
 | G2 Thử Tripo | Balo Tripo lượt 2 xanh navy | ✅ D-086 |
 | G3 Phòng 407 vào bản chơi | Tripo 3 đợt (70 món) + mùng, chiếu, gạch, decal bằng Blender (D-089…D-101) → vào bản chơi cả 4 chương (D-103) → ánh sáng (D-104), gương phản chiếu thật (D-105), giấy và dây điện (D-106), sửa nhà tắm (D-109), khung đọc ảnh/thẻ (D-112), sửa 3 lỗi chủ dự án báo + phòng tối hẳn (D-113). **1080p thấp nhất 97,7 FPS (D-114).** Bộ lọc PS1 mặc định tắt | ✅ chủ dự án duyệt độ tối và hết lỗi |
 | **G4 Nhân vật** | **Quản lý trước** (D-115): nam ~45 tuổi, đồng phục quản lý trường học, mặt kinh dị, dao phay. Lane C làm thử mẫu MPFB (D-117) nhưng chủ dự án chọn bỏ; **chủ dự án tự làm, integrator hỗ trợ** (D-118). Phiếu Tripo `docs/handoff/TRIPO_QUAN_LY.md`; bài học kỹ thuật trong card T-219. Tripo: thân, 6 động tác, dao, chìa khóa, thẻ (D-119); chủ dự án duyệt, mắt trắng đục, vào bản chơi chương 1 và gương chương 2 (D-120) | 📍 **chờ chơi thử** |
-| G4 tiếp | Nhân vật chính có thân và tay cầm nắm, mở cửa như thật; nhân vật khác đi không trượt chân; xác sống, 2 bạn học, bảo vệ | ⬜ chờ chủ dự án chốt 3 câu (mục 3) |
+| G4 tiếp | Nhân vật chính có thân và tay cầm nắm, mở cửa như thật; nhân vật khác đi không trượt chân; xác sống, 2 bạn học, bảo vệ | ⬜ D-121 đã chốt: thấy cả người, thao tác 1 s, CC0 trước; card T-220. Xác sống làm trước (mục 3) |
 | G5 Mở rộng cảnh | Hành lang tầng 4 → nhà B → khuôn viên → thư viện/bệnh viện | ⬜ |
 
 ### Giai đoạn 4 — Ghép bản hoàn chỉnh (D-059) ⬜
@@ -80,11 +80,9 @@ Phát hành theo chương (D-029). Nền tảng, giá, ngày: chưa quyết. Ste
 ## 3. Việc đang chờ chủ dự án (để tiếp tục)
 1. 📍 **Quản lý (T-219):** đã vào bản chơi (D-120). Chủ dự án chơi thử chương 1 (quản lý vào phòng, hỏi, rạch giường, mở cửa, cảnh camera) và chương 2 (bóng trong gương nhà tắm), báo chỗ chưa ổn.
 2. **Học làm động tác (tùy chọn):** integrator soạn trang hướng dẫn Blender cho người mới (tạo dáng, đặt mốc, xuất file) khi chủ dự án muốn bắt đầu.
-3. **Nhân vật chính có thân/tay thật**, chốt 3 câu trước khi viết card T-220:
-   - thấy cả người (cúi thấy chân, có bóng, trong gương; integrator đề xuất) hay chỉ hai tay;
-   - thao tác bằng tay mất khoảng 0,5–1 giây: giữ thời gian luật (khó hơn chút) hay nới thời gian ở đoạn bị đuổi;
-   - nguồn chuyển động: chỉ CC0 + chỉnh tay, hay thêm quay video + AI motion capture trả phí.
-4. **Chơi thử** bản 15/10 17:21 theo `docs/playtest/G3_PHONG407_QUICKTEST.md`: chương 2 (nhà tắm mới, đoạn nhắn tin D-072), chương 3 từ tầng 1 (báo cháy, 4 xác sống), chương 4 lần đầu.
+3. **Nhân vật chính có thân/tay thật (T-220, D-121):** duyệt card, chốt ai làm (integrator đề xuất như quản lý), chốt ngoại hình Trần Trung để integrator soạn phiếu Tripo.
+4. **Xác sống (D-121):** chọn ngoại hình A xác vừa chết / B thối rữa / C bị nguyền; integrator soạn phiếu Tripo, chủ dự án tạo mẫu đầu (1 nam sinh viên).
+5. **Chơi thử** bản 19/10 20:21 theo `docs/playtest/G3_PHONG407_QUICKTEST.md`: chương 1 và gương chương 2 với quản lý mới, chương 2 (nhà tắm mới, đoạn nhắn tin D-072), chương 3 từ tầng 1 (báo cháy, 4 xác sống), chương 4 lần đầu.
 
 ## 4. Đội làm
 - **Integrator:** Claude Code ở máy (Opus 5.5).
