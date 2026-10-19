@@ -66,6 +66,8 @@ var _breath_cooldown: float = 0.0
 var _control_locks: Array[Node] = []
 var _movement_locks: Array[Node] = []
 var death_animation: PlayerDeath
+## T-220: the full first-person body, when one is attached (pilot only so far).
+var body: PlayerBody
 var _bash_elapsed: float = 0.22
 var _text_entry_active: bool = false
 
@@ -242,7 +244,23 @@ func _physics_process(delta: float) -> void:
 	_update_steps_and_bob(previous_position, was_grounded, delta)
 	_update_focus()
 	if Input.is_action_pressed("interact") and Input.is_action_just_pressed("interact") and is_instance_valid(_target):
-		_target.interact(self)
+		# With a body, a thing that has a HandTarget is used by hand over one second (D-121).
+		if is_instance_valid(body) and body.can_handle(_target):
+			body.perform(_target)
+		else:
+			_target.interact(self)
+
+
+## T-220: attach a full body; it follows this player and does hand actions for it.
+func set_body(value: PlayerBody) -> void:
+	if is_instance_valid(body) and body != value:
+		body.queue_free()
+	body = value
+	if body == null:
+		return
+	if body.get_parent() != self:
+		add_child(body)
+	body.bind(self)
 
 
 func give_bar(hits: int = 8) -> void:

@@ -13,7 +13,8 @@ func _ready() -> void:
 
 
 func _on_interact(_player: Node) -> void:
-	set_open(not is_open)
+	# A hand (T-220) swings the leaf over its hold; a plain press still snaps it.
+	set_open(not is_open, hand_seconds)
 
 
 func set_open(value: bool, seconds: float = 0.0) -> void:

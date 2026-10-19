@@ -1,0 +1,211 @@
+{
+	"godot": "4.7.2-stable (official)",
+	"gpu": "NVIDIA GeForce RTX 3050 Laptop GPU",
+	"images": [
+		{
+			"file": "look_down_tube.png",
+			"shot": {
+				"id": "look_down_tube",
+				"light": "tube",
+				"pitch": -75.0,
+				"spot": "open"
+			}
+		},
+		{
+			"file": "look_down_night.png",
+			"shot": {
+				"id": "look_down_night",
+				"light": "torch",
+				"pitch": -75.0,
+				"spot": "open"
+			}
+		},
+		{
+			"file": "look_down_walk_tube.png",
+			"shot": {
+				"id": "look_down_walk_tube",
+				"light": "tube",
+				"pitch": -60.0,
+				"spot": "open",
+				"walk": 0.55
+			}
+		},
+		{
+			"file": "look_down_crouch_tube.png",
+			"shot": {
+				"crouch": true,
+				"id": "look_down_crouch_tube",
+				"light": "tube",
+				"pitch": -65.0,
+				"spot": "open"
+			}
+		},
+		{
+			"file": "mirror_tube.png",
+			"shot": {
+				"id": "mirror_tube",
+				"light": "tube",
+				"spot": "mirror"
+			}
+		},
+		{
+			"file": "bath_mirror_tube.png",
+			"shot": {
+				"id": "bath_mirror_tube",
+				"light": "tube",
+				"spot": "bath_mirror"
+			}
+		},
+		{
+			"file": "body_side_tube.png",
+			"shot": {
+				"id": "body_side_tube",
+				"light": "tube",
+				"spot": "open",
+				"third": true
+			}
+		},
+		{
+			"file": "body_walk_side_tube.png",
+			"shot": {
+				"id": "body_walk_side_tube",
+				"light": "tube",
+				"spot": "open",
+				"third": true,
+				"walk": 0.55
+			}
+		},
+		{
+			"file": "door_reach_tube.png",
+			"shot": {
+				"action": "door",
+				"at": 0.45,
+				"id": "door_reach_tube",
+				"light": "tube",
+				"spot": "door"
+			}
+		},
+		{
+			"file": "door_pull_tube.png",
+			"shot": {
+				"action": "door",
+				"at": 0.75,
+				"id": "door_pull_tube",
+				"light": "tube",
+				"spot": "door"
+			}
+		},
+		{
+			"file": "door_side_tube.png",
+			"shot": {
+				"action": "door",
+				"at": 0.5,
+				"id": "door_side_tube",
+				"light": "tube",
+				"spot": "door",
+				"third": true
+			}
+		},
+		{
+			"file": "door_hand_close_tube.png",
+			"shot": {
+				"action": "door",
+				"at": 0.45,
+				"eye": "(32.25, 1.25, -0.75)",
+				"id": "door_hand_close_tube",
+				"light": "tube",
+				"look": "(31.75, 1.05, -0.1)",
+				"spot": "door",
+				"third": true
+			}
+		},
+		{
+			"file": "locker_reach_tube.png",
+			"shot": {
+				"action": "locker",
+				"at": 0.45,
+				"id": "locker_reach_tube",
+				"light": "tube",
+				"spot": "locker"
+			}
+		},
+		{
+			"file": "locker_side_tube.png",
+			"shot": {
+				"action": "locker",
+				"at": 0.6,
+				"id": "locker_side_tube",
+				"light": "tube",
+				"spot": "locker",
+				"third": true
+			}
+		},
+		{
+			"file": "paper_reach_tube.png",
+			"shot": {
+				"action": "paper",
+				"at": 0.45,
+				"id": "paper_reach_tube",
+				"light": "tube",
+				"spot": "paper"
+			}
+		},
+		{
+			"file": "paper_lift_tube.png",
+			"shot": {
+				"action": "paper",
+				"at": 0.95,
+				"id": "paper_lift_tube",
+				"light": "tube",
+				"spot": "paper"
+			}
+		},
+		{
+			"file": "paper_side_tube.png",
+			"shot": {
+				"action": "paper",
+				"at": 0.6,
+				"id": "paper_side_tube",
+				"light": "tube",
+				"spot": "paper",
+				"third": true
+			}
+		},
+		{
+			"file": "paper_hold_close_tube.png",
+			"shot": {
+				"action": "paper",
+				"at": 0.98,
+				"eye": "(31.85, 1.6, -3.7)",
+				"id": "paper_hold_close_tube",
+				"light": "tube",
+				"look": "(31.3, 1.5, -4.25)",
+				"spot": "paper",
+				"third": true
+			}
+		},
+		{
+			"file": "paper_hold_back_tube.png",
+			"shot": {
+				"action": "paper",
+				"at": 0.98,
+				"eye": "(30.85, 1.75, -3.35)",
+				"id": "paper_hold_back_tube",
+				"light": "tube",
+				"look": "(31.3, 1.45, -4.2)",
+				"spot": "paper",
+				"third": true
+			}
+		}
+	],
+	"renderer": "forward_plus",
+	"resolution": [
+		1920,
+		1080
+	],
+	"stride_speeds": {
+		"crouch_walk": 0.584436812573817,
+		"run": 0.967527031898499,
+		"walk": 0.979297649111047
+	}
+}

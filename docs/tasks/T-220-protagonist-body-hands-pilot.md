@@ -1,5 +1,5 @@
 # T-220 — G4 nhân vật chính có thân và tay thật, bước 1: mẫu thử trong phòng 407
-- Lane: **chủ dự án + Claude** (D-122, như T-219: chủ dự án tạo thân Trần Trung trên Tripo, Claude làm phần còn lại, ghi "Claude làm thay A/B") | Trạng thái: **mới (D-121, D-122); ngoại hình Trần Trung để sau, Claude làm cơ chế trên thân tạm CC0 trước** | Agent: chủ dự án + Claude
+- Lane: **chủ dự án + Claude** (D-122, như T-219: chủ dự án tạo thân Trần Trung trên Tripo, Claude làm phần còn lại, ghi "Claude làm thay A/B") | Trạng thái: **D-123: cơ chế bước 1 xong trên thân tạm CC0, chờ chủ dự án duyệt; Trần Trung (Tripo) chưa có** | Agent: chủ dự án + Claude
 - Quyết định: **D-121**. Chủ dự án: "1: thấy cả người( cúi thấy chân, có bóng, hiện trên gương), 2 : thao tác tay mất 1 giây ( nhưng phải thấy thao tác chân thật nhất như là cầm lên trên tay đầy đủ động tác chứ không phải là ấn nút nhặt đồ là nó có trong tay). giữ nguyên thời gian thật", "câu 3 tôi chọn theo (c) nhé".
 - Phụ thuộc:
   - D-120: quy trình Tripo → Godot của quản lý (`art_source/graphics_upgrade/manager/`), `HandGripModifier`, `ArmReachModifier`;
@@ -96,3 +96,52 @@ Chủ dự án chơi thử mẫu này để quyết hai việc:
 5. Hồi quy 4 chương (cần chạy bot, phải hỏi chủ dự án trước).
 
 ## Handoff (người làm điền)
+
+### D-123 (19/10/2026): cơ chế bước 1 trên thân tạm CC0 (Claude làm thay A/B)
+
+**Đã làm:**
+- **Thân tạm:** Quaternius Universal Animation Library, CC0, lấy từ nhánh lane C. Nối xương sang `SkeletonProfileHumanoid` khi import; nguồn ghi ở `game/assets/models/characters/standin/CREDITS.md`.
+- **`PlayerBody`** (`game/scripts/player/player_body.gd`), `player.set_body()`:
+  - lớp nhìn không đầu, không đổ bóng; lớp gương có đầu, đổ bóng (layer 20);
+  - mắt dưới camera theo từng động tác; cúi nhìn thì đầu nhô ra trước để thấy chân;
+  - chân không trượt (đo tốc độ lùi của bàn chân phẳng trong động tác).
+- **Thao tác tay 1,0 s:**
+  - IK hai khúc tay, xoay cổ tay theo kiểu cầm, khép ngón;
+  - cúi lưng khi tay không đủ dài, camera theo đầu 60%;
+  - dùng đồ ở 0,45 s;
+  - tay đi về chỗ động tác gốc rồi mới buông.
+- **Đồ vật:**
+  - `HandTarget` trên từng đồ;
+  - `Interactable.interact_by_hand`;
+  - cửa 407 quay theo tay (`door407.gd` dùng `hand_seconds`), tủ Việt cũng vậy (trong cảnh thử);
+  - giấy nhấc lên trước mắt rồi mới đọc, đọc xong đặt lại đúng chỗ.
+- **Cảnh thử** `graphics_pilot/protagonist_pilot.tscn`:
+  - 19 ảnh ở `art_source/graphics_upgrade/protagonist/previews/`;
+  - video `build/graphics/protagonist/t220_demo.mp4` (không vào git);
+  - cách chạy ở `art_source/graphics_upgrade/protagonist/README.md`.
+- **10 test** `game/tests/player/test_protagonist_body.gd`.
+
+**Chủ dự án xem video, góp ý 19/10 (đã sửa):**
+- "tay cầm giấy bị vung ngược phía sau":
+  - đọc xong, giấy biến về bàn ngay và tay rơi thẳng về tư thế đứng; nay tay đưa giấy xuống đặt lại rồi thu về theo đường thẳng;
+  - cảnh quay từ ngoài lấy nhầm camera quay phim làm mắt; nay luôn dùng mắt người chơi.
+- "giấy lọt qua tay", "tờ giấy cần lọt qua cái tay cầm 1 chút", "cầm từ méc phải hoặc trái", "vẫn xuyên qua lòng bàn tay":
+  - cầm mép phải, ngón cái phía trước, các ngón phía sau;
+  - mép giấy dừng sát mặt lòng bàn tay;
+  - test kiểm tra không xuyên.
+
+**Chờ chủ dự án quyết khi xem cảnh thử:**
+1. **Đứng xa đồ vật** (tia tương tác dài 2 m, tay chỉ với được khoảng 0,6 m, cúi thêm khoảng 0,2 m). Chọn một:
+   - (a) người tự bước tới trong 1 giây (vị trí người chơi đổi khoảng 0,5 m);
+   - (b) phải đứng gần mới dùng được;
+   - (c) tay với hết cỡ, đồ vẫn dùng được (kém thật).
+2. **Tay trái cầm điện thoại/đèn pin** (bộ CC0 có sẵn `Idle_Torch`).
+3. **Trong 1 giây** không đi được nhưng vẫn xoay nhìn được (đang làm vậy).
+4. **Nhịp chân khi đi nhanh** (bước gốc 0,9 m/s, người chơi đi 2,2 m/s): bước 2 sẽ giãn sải chân.
+
+**Chưa làm:**
+- **Trần Trung (Tripo):** ngoại hình chủ dự án để sau.
+- **Đưa vào bản chơi (bước 5):**
+  - thân phản chiếu trong gương đang là bản PS1 có độ trễ (chương 2); cảnh thử ẩn nó đi;
+  - lúc nấp thì ẩn thân;
+  - cửa quay vào người khi đứng quá gần.

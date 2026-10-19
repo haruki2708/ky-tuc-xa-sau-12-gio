@@ -29,7 +29,7 @@ Bản chữ (xem được trong terminal / Notepad):
   │     ├─ [✅] G2 Mẫu balo Tripo, chọn lượt 2 ............ D-086
   │     ├─ [✅] G3 Phòng 407 đủ đồ vào bản chơi .......... D-103…D-114
   │     ├─ [📍] G4 Nhân vật: quản lý trước ............... ĐANG Ở ĐÂY (D-115…D-120, đã vào bản chơi, chờ chơi thử)
-  │     ├─ [⬜] G4 Nhân vật chính có thân, tay cầm nắm thật  D-121 đã chốt, card T-220
+  │     ├─ [🔶] G4 Nhân vật chính có thân, tay cầm nắm thật  T-220 bước 1 xong trên thân tạm (D-123)
   │     ├─ [⬜] G4 Xác sống (trước), bạn học, bảo vệ ...... D-122 kiểu A, card T-221, chờ mẫu m1
   │     └─ [⬜] G5 Hành lang tầng 4 → nhà B → khuôn viên → thư viện/bệnh viện
   │
@@ -80,7 +80,7 @@ Phát hành theo chương (D-029). Nền tảng, giá, ngày: chưa quyết. Ste
 ## 3. Việc đang chờ chủ dự án (để tiếp tục)
 1. 📍 **Quản lý (T-219):** đã vào bản chơi (D-120). Chủ dự án chơi thử chương 1 (quản lý vào phòng, hỏi, rạch giường, mở cửa, cảnh camera) và chương 2 (bóng trong gương nhà tắm), báo chỗ chưa ổn.
 2. **Học làm động tác (tùy chọn):** integrator soạn trang hướng dẫn Blender cho người mới (tạo dáng, đặt mốc, xuất file) khi chủ dự án muốn bắt đầu.
-3. **Nhân vật chính có thân/tay thật (T-220, D-121, D-122):** chủ dự án + Claude như quản lý. Ngoại hình Trần Trung để sau; Claude làm cơ chế trên thân tạm CC0 trước.
+3. **Nhân vật chính có thân/tay thật (T-220, D-121…D-123):** cơ chế bước 1 xong trên thân tạm CC0. Chủ dự án xem `build/graphics/protagonist/t220_demo.mp4` hoặc tự đi trong `graphics_pilot/protagonist_pilot.tscn`, rồi quyết: đứng xa đồ vật, tay trái cầm điện thoại, nhịp chân. Ngoại hình Trần Trung để sau.
 4. **Xác sống (T-221, D-122):** tạo m1 (Phúc) theo `docs/handoff/TRIPO_XAC_SONG.md`, tải về `build/graphics/staging/zombie/`, báo integrator. Duyệt ảnh m1 trong game rồi mới làm m2–m4.
 5. **Chơi thử** bản 19/10 20:21 theo `docs/playtest/G3_PHONG407_QUICKTEST.md`: chương 1 và gương chương 2 với quản lý mới, chương 2 (nhà tắm mới, đoạn nhắn tin D-072), chương 3 từ tầng 1 (báo cháy, 4 xác sống), chương 4 lần đầu.
 
