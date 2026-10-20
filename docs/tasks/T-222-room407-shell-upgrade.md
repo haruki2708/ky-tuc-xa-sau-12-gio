@@ -1,6 +1,8 @@
 # T-222 — Nâng vỏ phòng 407 (tường, trần, sàn, cửa, ban công) cho hợp đồ Tripo
-- Lane: **chủ dự án + Claude** (chủ dự án tạo các cánh cửa và tay nắm trên Tripo; Claude làm phần còn lại, ghi "Claude làm thay B") | Trạng thái: **mới (D-126), chờ chủ dự án tạo cửa trên Tripo và chọn 2 câu ở cuối card** | Agent: chủ dự án + Claude
-- Quyết định: **D-126**. Chủ dự án: "Tôi duyệt hướng này để bạn viết card T-222, BAN CÔNG THÊM CỬA".
+- Lane: **chủ dự án + Claude** (chủ dự án tạo các cánh cửa và tay nắm trên Tripo; Claude làm phần còn lại, ghi "Claude làm thay B") | Trạng thái: **mới (D-126); cửa ban công đã chọn (D-127); chờ chủ dự án tạo cửa trên Tripo** | Agent: chủ dự án + Claude
+- Quyết định:
+  - **D-126**. Chủ dự án: "Tôi duyệt hướng này để bạn viết card T-222, BAN CÔNG THÊM CỬA".
+  - **D-127**: cửa ban công là cửa cánh nhôm kính có tay nắm gạt, mở sẵn lúc vào chương.
 - Phụ thuộc:
   - **G3** (T-215, D-103…D-114): vỏ phòng hiện là vỏ của góc phòng T-213, vật liệu CC0, dựng bằng `game/scenes/levels/room407/room407_furnish.gd` từ `game/data/room407/`;
   - **T-220, D-124:** tay nắm cửa gạt (`DoorHandles`, `HandTarget.lever`), camera nhìn theo tay nên khung cửa và tay nắm bị nhìn rất gần;
@@ -50,7 +52,8 @@ Vỏ phòng 407 cùng mức chân thật và mức cũ bẩn với đồ Tripo:
    - độ bóng không đều (chỗ hay đi mờ hơn).
 6. **Nhà tắm (Claude):** ron gạch bẩn, ố mốc ở chân tường và quanh ga thoát nước, trần vôi ẩm.
 7. **Ban công (Claude):**
-   - **cửa ban công mới** (D-126), mở bằng tay như cửa phòng: bản lề, tay nắm hai mặt, `HandTarget`, có va chạm;
+   - **cửa ban công mới** (D-126, D-127): cửa cánh nhôm kính, mở bằng tay như cửa phòng: bản lề, tay nắm gạt hai mặt, `HandTarget`, có va chạm;
+   - lúc vào chương cửa **mở sẵn** (D-127); cánh mở không chắn lối ra ban công, không đè rèm, không thu hẹp lối qua cửa;
    - lan can thật, đồ phơi;
    - cảnh ngoài: dãy nhà ký túc đối diện có vài ô cửa sáng đèn, trời đêm, ánh trăng như D-113.
 8. **Chỉ số:**
@@ -64,13 +67,10 @@ Vỏ phòng 407 cùng mức chân thật và mức cũ bẩn với đồ Tripo:
    - các chương có đi ra ban công vẫn qua được.
 10. **Ảnh trước/sau:** dùng lại các góc G3 (`room407_g3_capture.tscn`), thêm cận cảnh khung cửa, chân tường, trần, ban công.
 
-## Chờ chủ dự án chọn
-1. **Kiểu cửa ban công:**
-   - (a) cửa cánh nhôm kính có tay nắm gạt (integrator đề xuất, dùng chung cơ chế tay nắm đã có);
-   - (b) cửa nhôm kính lùa (tay kéo ngang, cần thêm thao tác kéo).
-2. **Cửa ban công lúc vào chương:**
-   - (a) mở sẵn: thời gian các chương giữ nguyên (integrator đề xuất);
-   - (b) đóng: mỗi lần ra ban công mất thêm 1 giây mở cửa (D-121).
+## Cửa ban công (D-127, chủ dự án chọn 21/10/2026)
+Chủ dự án chọn cả hai đề xuất của integrator:
+1. **Kiểu cửa:** (a) cửa cánh nhôm kính có tay nắm gạt, dùng chung cơ chế tay nắm đã có. Không làm cửa lùa.
+2. **Lúc vào chương:** (a) mở sẵn, thời gian các chương giữ nguyên. Người chơi vẫn đóng, mở bằng tay được (1 giây, D-121).
 
 ## Không làm
 - Hành lang tầng 4 và các tầng khác: G5.

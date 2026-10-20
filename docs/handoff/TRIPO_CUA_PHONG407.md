@@ -22,7 +22,7 @@
 | 3 | Cánh cửa ban công | `door_balcony.glb` | 0,92 × 2,24 × 0,05 m | `Single balcony door leaf only, no frame, old aluminium framed door with a frosted glass upper panel and a solid aluminium lower panel, dull grey aluminium with oxidation spots and grime in the corners, slightly dirty glass, two hinges on one long edge, no handle, no lock, no text, flat front view, photorealistic, PBR` |
 | 4 | Tay nắm cửa gạt | `door_lever.glb` | cần gạt dài khoảng 12 cm, đế tròn | `Single door lever handle with a round rose plate, old worn brushed stainless steel, light scratches, dull grime around the rose, slightly tarnished, typical Vietnamese apartment or dormitory interior door hardware, lever about 12 cm long, photorealistic, PBR, no text, no keyhole, isolated object` |
 
-- **Cửa ban công:** đang tính theo kiểu (a) cửa cánh có tay nắm gạt. Anh/chị chọn kiểu (b) cửa lùa thì báo integrator để đổi prompt.
+- **Cửa ban công:** cửa cánh có tay nắm gạt, chủ dự án đã chốt (D-127). Prompt món 3 giữ nguyên.
 - **Tay nắm:** chọn kiểu **đế tròn**. Đế dài hình chữ nhật thì Claude phải tách đế khỏi cần gạt (vẫn làm được nhưng lâu hơn).
 
 ## 3. Kiểm trước khi tải
