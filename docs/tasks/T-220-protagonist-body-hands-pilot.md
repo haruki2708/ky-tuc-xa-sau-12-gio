@@ -1,5 +1,5 @@
 # T-220 — G4 nhân vật chính có thân và tay thật, bước 1: mẫu thử trong phòng 407
-- Lane: **chủ dự án + Claude** (D-122, như T-219: chủ dự án tạo thân Trần Trung trên Tripo, Claude làm phần còn lại, ghi "Claude làm thay A/B") | Trạng thái: **D-123: cơ chế bước 1 xong trên thân tạm CC0, chờ chủ dự án duyệt; Trần Trung (Tripo) chưa có** | Agent: chủ dự án + Claude
+- Lane: **chủ dự án + Claude** (D-122, như T-219: chủ dự án tạo thân Trần Trung trên Tripo, Claude làm phần còn lại, ghi "Claude làm thay A/B") | Trạng thái: **D-124: bước 1 xong trên thân tạm CC0 (camera nhìn theo tay, phải đứng gần, tay trái cầm điện thoại, tay nắm cửa gạt); chờ chủ dự án duyệt, ban công chưa có cửa; Trần Trung (Tripo) chưa có** | Agent: chủ dự án + Claude
 - Quyết định: **D-121**. Chủ dự án: "1: thấy cả người( cúi thấy chân, có bóng, hiện trên gương), 2 : thao tác tay mất 1 giây ( nhưng phải thấy thao tác chân thật nhất như là cầm lên trên tay đầy đủ động tác chứ không phải là ấn nút nhặt đồ là nó có trong tay). giữ nguyên thời gian thật", "câu 3 tôi chọn theo (c) nhé".
 - Phụ thuộc:
   - D-120: quy trình Tripo → Godot của quản lý (`art_source/graphics_upgrade/manager/`), `HandGripModifier`, `ArmReachModifier`;
@@ -145,3 +145,44 @@ Chủ dự án chơi thử mẫu này để quyết hai việc:
   - thân phản chiếu trong gương đang là bản PS1 có độ trễ (chương 2); cảnh thử ẩn nó đi;
   - lúc nấp thì ẩn thân;
   - cửa quay vào người khi đứng quá gần.
+
+### D-124 (20/10/2026): chủ dự án chốt 3 câu và thêm tay nắm cửa (Claude làm thay A/B)
+
+**Chủ dự án:** "1 : đồng ý, 2 (b), 3 : có. Tôi có bổ sung 1 ý là làm các cánh cửa phòng, nhà vệ sinh, ban công có tay nắm, vặn cửa để sau nhân vật mở hay đóng cửa sẽ tự nhiên hơn".
+
+**Đã làm:**
+- **Camera nhìn theo tay** (`PlayerBody._look`):
+  - camera quay về phía tay (85% quãng, tối đa 40°) trong lúc với tới, cầm, đặt xuống rồi trả lại;
+  - chuột vẫn điều khiển chồng lên.
+- **Phải đứng gần** (`PlayerBody.can_reach`, `player.gd` `_update_focus`):
+  - đồ dùng bằng tay chỉ hiện "[E]" khi tay với tới (cúi tối đa 45°);
+  - đồ không có `HandTarget` vẫn dùng được từ 2 m.
+- **Tay trái cầm điện thoại** (`PlayerBody._tick_phone`):
+  - bật đèn pin: máy cầm thấp ở góc trái, đèn phát từ máy và chiếu theo hướng nhìn;
+  - giơ máy: đưa lên trước mặt, các ngón ôm mép máy.
+- **Tay nắm cửa gạt:**
+  - mô hình `game/assets/models/props/door_lever.glb` dựng bằng `art_source/graphics_upgrade/protagonist/build_door_lever.py`;
+  - `DoorHandles.fit` gắn cả hai mặt cửa, mỗi mặt có `HandTarget` gắn trên cần gạt;
+  - `HandTarget.lever` cho tay nắm cần, vặn xuống 35° trong 0,15 s rồi cửa mới quay; buông tay cần bật về;
+  - `Interactable.hand_target(from)` chọn tay nắm phía người chơi đứng.
+  - Cửa 407: tay nắm treo trên `HandlePivot` nên cảnh rung tay nắm từ hành lang vẫn rung cả hai.
+  - Cửa nhà vệ sinh: mở được bằng tay trong cảnh thử.
+  - Tay nắm hộp PS1 cũ ẩn đi.
+- **Cảnh thử:** 26 ảnh; video `build/graphics/protagonist/t220_demo.mp4` (34 giây, thêm đèn pin và cửa nhà vệ sinh).
+- **Test:** thêm 4, còn 14.
+
+**Còn hỏi chủ dự án:**
+- **Ban công không có cánh cửa:** hiện chỉ có khung, ngưỡng và rèm. Thêm cửa là thêm một đồ phải mở (1 giây) trên đường ra ban công, ảnh hưởng thời gian các chương có đi ra ban công. Chọn:
+  - không thêm;
+  - cửa cánh có tay nắm gạt;
+  - cửa nhôm kính lùa.
+- **Tay nắm:** dùng bản Blender đang có, hay chủ dự án tạo bản Tripo (giống thật hơn, có vết xước)?
+
+### D-125 (20/10/2026): cửa nhà vệ sinh mở xong biến mất, đã sửa (cả bản chơi)
+
+- **Chủ dự án:** "ok tôi thấy ok rồi", rồi báo "khi mở cửa nhà vệ sinh, mở xong thì cánh cửa mất ( điều này rất phi vật lý )".
+- **Nguyên nhân:** bản lề nằm trong bề dày tường phía tây phòng tắm, mở 90° thì cánh chìm vào tường.
+- **Sửa:**
+  - `bathroom_door.gd` mở tới 82°;
+  - dời cụm bồn rửa (bồn, gương nhỏ, cốc bàn chải, đồ vệ sinh) vào trong 22 cm để cánh cửa không cắm vào bồn mà lối vào vẫn rộng (`placements.json`);
+  - test trong `test_room407_bathroom_fixes.gd`.

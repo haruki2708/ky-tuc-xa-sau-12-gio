@@ -313,6 +313,10 @@ func _update_focus() -> void:
 		candidate = null
 	if candidate != null and candidate.has_method("can_interact") and not candidate.call("can_interact", self):
 		candidate = null
+	# D-124: with a body, a thing used by hand must be within arm's reach (leaning in counts).
+	if candidate != null and is_instance_valid(body) and not is_hidden() and candidate.hand_target() != null \
+			and not body.can_reach(candidate):
+		candidate = null
 	var next_id: int = candidate.get_instance_id() if candidate != null else 0
 	var next_key: String = candidate.prompt_key if candidate != null else ""
 	_target = candidate

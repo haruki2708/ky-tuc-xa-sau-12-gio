@@ -326,3 +326,114 @@ func test_held_paper_is_pinched_by_its_side_edge_not_through_the_palm() -> void:
 	assert_true(reach_in > half and reach_in < half + 0.015, "the edge is %.3f m from the palm's middle (palm surface at %.3f)" % [reach_in, half])
 	assert_true(absf((middle - sheet.global_position).dot(sheet.global_basis.z.normalized())) < 0.02, "the sheet runs through the grip")
 	EventBus.document_closed.emit(&"ch1_dat_note")
+
+
+func _floor() -> void:
+	var floor_body := StaticBody3D.new()
+	var shape := CollisionShape3D.new()
+	shape.shape = BoxShape3D.new()
+	(shape.shape as BoxShape3D).size = Vector3(20, 0.2, 20)
+	floor_body.add_child(shape)
+	floor_body.position.y = -0.1
+	world.add_child(floor_body)
+
+
+## A tall panel straight ahead (the player's ray hits it at eye height) with its handle low on it.
+func _panel(distance: float) -> Interactable:
+	var panel := Interactable.new()
+	world.add_child(panel)
+	panel.global_position = Vector3(0.0, 1.5, -distance)
+	var shape := CollisionShape3D.new()
+	shape.shape = BoxShape3D.new()
+	(shape.shape as BoxShape3D).size = Vector3(0.4, 1.0, 0.06)
+	panel.add_child(shape)
+	var marker := HandTarget.new()
+	panel.add_child(marker)
+	marker.global_position = Vector3(0.12, 1.12, -distance + 0.04)
+	return panel
+
+
+## D-124 (owner: "b"): what is used by hand needs the player close; from further the prompt hides.
+func test_a_hand_thing_out_of_reach_shows_no_prompt() -> void:
+	_floor()
+	var player := PLAYER.instantiate() as CharacterBody3D
+	world.add_child(player)
+	player.set_body(PlayerBody.new())
+	var far := _panel(1.5)
+	await _seconds(0.3)
+	assert_false(player.body.can_reach(far))
+	assert_eq(player.get("_target"), null, "1.5 m away: no prompt")
+	far.queue_free()
+	var near := _panel(0.45)
+	await _seconds(0.2)
+	assert_true(player.body.can_reach(near))
+	assert_eq(player.get("_target"), near, "within reach: the prompt is back")
+
+
+## D-124: the eyes go to the working hand and come back.
+func test_camera_turns_to_the_working_hand_and_back() -> void:
+	var walker := _walker()
+	var body := _body(walker)
+	await _seconds(0.3)
+	var camera := walker.get_node("Head/Camera3D") as Camera3D
+	var target := _target(walker.global_position + Vector3(0.15, 1.0, -0.42))
+	body.perform(target)
+	await _seconds(PlayerBody.CONTACT)
+	var aim: Vector3 = -camera.global_basis.z.normalized()
+	var to_hand: Vector3 = (target.hand_target().global_position - camera.global_position).normalized()
+	assert_true(camera.rotation.x < -0.2, "looking down at the hand, pitch %.2f" % camera.rotation.x)
+	assert_true(aim.dot(to_hand) > cos(deg_to_rad(30.0)), "the hand is well inside the view (70 degree field)")
+	await _seconds(PlayerBody.HAND_SECONDS - PlayerBody.CONTACT + 0.05)
+	assert_false(body.acting)
+	assert_eq(camera.rotation, Vector3.ZERO, "the view is the player's own again")
+
+
+## D-124 (owner): a door handle is taken, pressed down, and only then does the door move; it
+## springs back after.
+func test_lever_is_pressed_before_the_door_moves() -> void:
+	var walker := _walker()
+	var body := _body(walker)
+	await _seconds(0.3)
+	var door := Interactable.new()
+	world.add_child(door)
+	var leaf := Node3D.new()
+	door.add_child(leaf)
+	var targets: Array[HandTarget] = DoorHandles.fit(leaf, walker.global_position + Vector3(0.05, 1.05, -0.5), Vector3.BACK, Vector3.RIGHT, 0.02)
+	var near: HandTarget = door.hand_target(walker.global_position + Vector3.UP * 1.4)
+	assert_eq(near, targets[0], "the handle on the player's side")
+	var rest_y: float = near.global_position.y
+	var lever: Node3D = near.lever
+	var rest: Quaternion = lever.quaternion
+	body.perform(door)
+	await _seconds(PlayerBody.CONTACT + 0.05)
+	assert_true(interactions.is_empty(), "the door waits for the lever")
+	assert_false(lever.quaternion.is_equal_approx(rest), "the lever is going down")
+	await _seconds(PlayerBody.LEVER_SECONDS)
+	assert_eq(interactions, [door] as Array[Object], "pressed: the door is used once")
+	assert_true(near.global_position.y < rest_y - 0.02, "the hand's grip point went down with the lever")
+	await _seconds(PlayerBody.HAND_SECONDS)
+	assert_false(body.acting)
+	assert_true(lever.quaternion.is_equal_approx(rest), "the lever sprang back")
+	assert_eq(interactions.size(), 1)
+
+
+## D-124 (owner): the left hand holds the phone while its light is on; the light leaves the phone.
+func test_left_hand_holds_the_phone_while_its_light_is_on() -> void:
+	_floor()
+	var player := PLAYER.instantiate() as CharacterBody3D
+	world.add_child(player)
+	player.set_body(PlayerBody.new())
+	var phone := player.get_node("Head/Camera3D/PhoneItem") as Node3D
+	var model := phone.get_node("Model") as Node3D
+	var light := phone.get_node("Flashlight") as Node3D
+	var hand := _attach(player.body, "LeftHand")
+	phone.call("set_flashlight", true)
+	await _seconds(0.4)
+	assert_true(model.visible, "the phone is in the hand")
+	assert_true(hand.global_position.distance_to(model.global_position) < 0.15, "the left hand holds it, %.2f m off" % hand.global_position.distance_to(model.global_position))
+	assert_true(light.global_position.distance_to(model.global_position) < 0.1, "the light comes from the phone")
+	var camera := player.get_node("Head/Camera3D") as Camera3D
+	assert_true((camera.global_transform.affine_inverse() * model.global_position).x < -0.05, "held on the left")
+	phone.call("set_flashlight", false)
+	await _seconds(0.4)
+	assert_false(model.visible, "put away when the light is off")

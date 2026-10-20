@@ -11,6 +11,10 @@ extends Node3D
 ##   paper rides to the eyes, and after reading is carried back to its place before the hand
 ##   lets go. The camera follows the head while leaning. Movement is locked meanwhile; looking
 ##   around is not.
+## - D-124 (owner): what is used by hand must be within reach (can_reach; the player hides the
+##   prompt otherwise); the camera turns toward the working hand and back; a lever (door handle)
+##   is taken, pressed down, and only then does the thing move; the left hand holds the phone
+##   while it is raised or its light is on.
 
 signal hand_action_finished(target: Interactable)
 
@@ -55,6 +59,29 @@ const NECK_FORWARD: float = 0.14
 ## Share of the head's lean the camera follows: enough to feel the reach, not so much that the
 ## view presses into the door being opened.
 const LEAN_FOLLOW: float = 0.6
+## The camera turns toward the working hand this share of the way, at most LOOK_LIMIT off the
+## player's own aim (D-124).
+const LOOK_FOLLOW: float = 0.85
+const LOOK_LIMIT: float = deg_to_rad(40.0)
+## A lever is pressed over this long once the hand has it, and springs back as long after release.
+const LEVER_SECONDS: float = 0.15
+## The left hand takes the phone over this long when it is raised or its light goes on (D-124).
+const PHONE_FADE: float = 0.25
+## The phone in the left hand, camera space: raised to read (screen to the eyes), or held low
+## with its light ahead and the screen tipped up.
+const PHONE_RAISED_AT: Vector3 = Vector3(-0.12, -0.11, -0.3)
+const PHONE_RAISED_TILT: Vector3 = Vector3(-0.15, 0.2, 0.08)
+const PHONE_LOW_AT: Vector3 = Vector3(-0.14, -0.17, -0.3)
+const PHONE_LOW_TILT: Vector3 = Vector3(-0.9, 0.25, 0.0)
+## The light leaves the phone this far ahead of it (clear of the hand holding it).
+const PHONE_LIGHT_AHEAD: float = 0.06
+const PHONE_CURL: float = 50.0
+const LEFT_GRIP_BONES: PackedStringArray = [
+	"LeftIndexProximal", "LeftIndexIntermediate", "LeftIndexDistal",
+	"LeftMiddleProximal", "LeftMiddleIntermediate", "LeftMiddleDistal",
+	"LeftRingProximal", "LeftRingIntermediate", "LeftRingDistal",
+	"LeftLittleProximal", "LeftLittleIntermediate", "LeftLittleDistal",
+]
 ## Where a picked-up paper's centre is held to read, in camera space (the hand is at its edge,
 ## and the arm must reach it: about 30 cm out, a little below the eyes).
 const READ_POINT: Vector3 = Vector3(0.0, -0.09, -0.27)
@@ -130,6 +157,20 @@ var _phase: Phase = Phase.REACH
 var _phase_time: float = 0.0
 ## Where the goal's current leg starts.
 var _from: Vector3
+## The thing has been used (for a lever, once it is pressed down).
+var _used: bool = false
+var _lever_rest: Quaternion = Quaternion.IDENTITY
+var _left_ik: TwoBoneIK3D
+var _left_align: HandAlignModifier
+var _left_grip: HandGripModifier
+var _left_goal: Node3D
+var _left_pole: Node3D
+var _left_attach: BoneAttachment3D
+var _left_palm_axis: Vector3 = Vector3.FORWARD
+var _phone: Node3D
+var _phone_weight: float = 0.0
+var _phone_raise: float = 0.0
+var _phone_half: float = 0.006
 
 
 func _ready() -> void:
@@ -159,10 +200,27 @@ func bind(owner_player: CharacterBody3D) -> void:
 	var camera := player.get_node_or_null("Head/Camera3D") as Camera3D
 	if camera != null:
 		camera.set_cull_mask_value(MIRROR_LAYER, false)
+	_phone = player.get_node_or_null("Head/Camera3D/PhoneItem") as Node3D
+	if _phone != null:
+		var body_mesh := _phone.get_node_or_null("Model/Body") as MeshInstance3D
+		if body_mesh != null and body_mesh.mesh != null:
+			_phone_half = body_mesh.mesh.get_aabb().size.z * 0.5
 
 
 func can_handle(target: Interactable) -> bool:
-	return not acting and is_instance_valid(target) and target.enabled and target.hand_target() != null
+	return not acting and is_instance_valid(target) and target.enabled and target.hand_target(_reach_from()) != null
+
+
+## D-124: the HandTarget is within reach, leaning in at most MAX_BEND.
+func can_reach(target: Interactable) -> bool:
+	if not is_instance_valid(target):
+		return false
+	var marker: HandTarget = target.hand_target(_reach_from())
+	return marker != null and _bend_for(marker.global_position) <= MAX_BEND
+
+
+func _reach_from() -> Vector3:
+	return _bone_world("RightUpperArm")
 
 
 func perform(target: Interactable) -> void:
@@ -170,9 +228,12 @@ func perform(target: Interactable) -> void:
 		return
 	acting = true
 	_target = target
-	_marker = target.hand_target()
+	_marker = target.hand_target(_reach_from())
 	_time = 0.0
 	_contacted = false
+	_used = false
+	if is_instance_valid(_marker.lever):
+		_lever_rest = _marker.lever.quaternion
 	_reading = false
 	_set_phase(Phase.REACH)
 	_from = _hand_tip()
@@ -199,6 +260,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		_lean = Vector3.ZERO
 		_tick_locomotion(delta)
+	_tick_phone(delta)
 	_move_head()
 
 
@@ -251,9 +313,12 @@ func _tick_action(delta: float) -> void:
 		return
 	_time += delta
 	_phase_time += delta
+	var look_at: Vector3 = _marker.global_position
+	var look: float = 0.0
 	match _phase:
 		Phase.REACH:
 			var reach: float = smoothstep(0.0, CONTACT, _time)
+			look = reach
 			_aim(_from.lerp(_marker.global_position, reach), _start_basis.slerp(_grip_basis(), reach), reach)
 			_ik.influence = smoothstep(0.0, IK_FADE, _time)
 			_grip.influence = smoothstep(CONTACT * 0.6, CONTACT, _time)
@@ -268,17 +333,27 @@ func _tick_action(delta: float) -> void:
 				_aim(_carried_from.origin.lerp(_read_point(), lift), _grip_basis().slerp(_read_basis(), lift), 1.0)
 				_grip.curl_degrees = lerpf(GRIP_DEGREES[_marker.grip], READ_CURL, lift)
 				_update_carried(lift)
-				# Straighten up while the paper rises to the eyes.
+				# Straighten up while the paper rises to the eyes (and the look comes back up).
 				_bend.degrees = _bend_degrees * (1.0 - lift)
+				look_at = _contact_point()
+				look = 1.0 - lift
 				if _time >= HAND_SECONDS:
 					_read()
 			else:
+				look = 1.0
+				_press_lever(smoothstep(CONTACT, CONTACT + LEVER_SECONDS, _time))
+				if not _used and _time >= CONTACT + (LEVER_SECONDS if is_instance_valid(_marker.lever) else 0.0):
+					_use()
 				_aim(_marker.global_position, _grip_basis(), 1.0)
 				if _time >= RELEASE:
 					_from = _marker.global_position
 					_set_phase(Phase.RETURN)
 		Phase.RETURN:
 			var back: float = smoothstep(RELEASE, HAND_SECONDS, _time)
+			look = 1.0 - back
+			_press_lever(1.0 - smoothstep(RELEASE, RELEASE + LEVER_SECONDS, _time))
+			if not _used:
+				_use()
 			_aim(_from.lerp(_natural_tip(), back), _grip_basis().slerp(_natural_basis(), back), 1.0 - back)
 			_grip.influence = 1.0 - back
 			_bend.degrees = _bend_degrees * (1.0 - back)
@@ -291,6 +366,8 @@ func _tick_action(delta: float) -> void:
 			_update_carried(1.0)
 		Phase.PUT_DOWN:
 			var down: float = smoothstep(0.0, PUT_DOWN_SECONDS, _phase_time)
+			look_at = _carried_from.origin
+			look = down
 			_aim(_read_point().lerp(_carried_from.origin, down), _read_basis().slerp(_grip_basis(), down), 1.0)
 			_grip.curl_degrees = lerpf(READ_CURL, GRIP_DEGREES[_marker.grip], down)
 			_update_carried(1.0 - down)
@@ -301,6 +378,8 @@ func _tick_action(delta: float) -> void:
 				_set_phase(Phase.LET_GO)
 		Phase.LET_GO:
 			var away: float = smoothstep(0.0, LET_GO_SECONDS, _phase_time)
+			look_at = _from
+			look = 1.0 - away
 			_aim(_from.lerp(_natural_tip(), away), _grip_basis().slerp(_natural_basis(), away), 1.0 - away)
 			_grip.influence = 1.0 - away
 			_bend.degrees = _bend_degrees * (1.0 - away)
@@ -310,6 +389,34 @@ func _tick_action(delta: float) -> void:
 				return
 	_align.influence = _ik.influence
 	_follow_head(LEAN_FOLLOW)
+	_look(look_at, look)
+
+
+## D-124: the eyes go to the working hand. The camera turns from the player's own aim toward
+## `point`, LOOK_FOLLOW of the way (at most LOOK_LIMIT), scaled by `weight`; the mouse still
+## turns the player and head underneath.
+func _look(point: Vector3, weight: float) -> void:
+	var camera := _camera()
+	if camera == null or not is_instance_valid(_head) or camera.get_parent() != _head:
+		return
+	var local: Vector3 = _head.global_basis.orthonormalized().inverse() * (point - camera.global_position)
+	var yaw: float = clampf(atan2(-local.x, -local.z), -LOOK_LIMIT, LOOK_LIMIT)
+	var pitch: float = clampf(atan2(local.y, Vector2(local.x, local.z).length()), -LOOK_LIMIT, LOOK_LIMIT)
+	camera.rotation = Vector3(pitch, yaw, 0.0) * LOOK_FOLLOW * clampf(weight, 0.0, 1.0)
+
+
+## Turn the target's lever `amount` of its way down (0 = at rest).
+func _press_lever(amount: float) -> void:
+	if not is_instance_valid(_marker.lever) or is_zero_approx(_marker.lever_degrees):
+		return
+	var turn := Quaternion(_marker.lever_axis.normalized(), deg_to_rad(_marker.lever_degrees) * clampf(amount, 0.0, 1.0))
+	_marker.lever.quaternion = _lever_rest * turn
+
+
+## Use the thing (a door swings over the rest of the hold).
+func _use() -> void:
+	_used = true
+	_target.interact_by_hand(player, maxf(0.0, HAND_SECONDS - _time))
 
 
 ## Hold `point` with the hand turned to `hand`: the palm's middle sits back from the point on the
@@ -359,15 +466,50 @@ func _read_basis() -> Basis:
 	return _hand_basis(view.y, across)
 
 
-## A hand basis with its fingers (bone +Y) along `fingers` and the palm facing `palm`.
-func _hand_basis(fingers: Vector3, palm: Vector3) -> Basis:
+## A hand basis with its fingers (bone +Y) along `fingers` and the palm facing `palm`; the right
+## hand unless another palm axis is given.
+func _hand_basis(fingers: Vector3, palm: Vector3, palm_axis: Vector3 = Vector3.ZERO) -> Basis:
+	var axis: Vector3 = _palm_axis if palm_axis.is_zero_approx() else palm_axis
 	var y: Vector3 = fingers.normalized()
 	var facing: Vector3 = (palm - y * palm.dot(y)).normalized()
-	if absf(_palm_axis.x) > 0.5:
-		var x: Vector3 = facing * signf(_palm_axis.x)
+	if absf(axis.x) > 0.5:
+		var x: Vector3 = facing * signf(axis.x)
 		return Basis(x, y, x.cross(y))
-	var z: Vector3 = facing * signf(_palm_axis.z)
+	var z: Vector3 = facing * signf(axis.z)
 	return Basis(y.cross(z), y, z)
+
+
+## D-124: the left hand holds the phone while it is raised or its light is on. The phone (its
+## model and light) is moved to the hand: raised before the eyes to read, or low with the light
+## ahead; the light still aims where the player looks.
+func _tick_phone(delta: float) -> void:
+	if not is_instance_valid(_phone):
+		return
+	var model := _phone.get_node_or_null("Model") as Node3D
+	var light := _phone.get_node_or_null("Flashlight") as Node3D
+	var camera := _camera()
+	if model == null or light == null or camera == null:
+		return
+	var raised: bool = bool(_phone.get("raised"))
+	var holding: bool = visible and not bool(_phone.get("away")) and (raised or light.visible)
+	_phone_weight = move_toward(_phone_weight, 1.0 if holding else 0.0, delta / PHONE_FADE)
+	_phone_raise = move_toward(_phone_raise, 1.0 if raised else 0.0, delta / PHONE_FADE)
+	var low: Transform3D = camera.global_transform * Transform3D(Basis.from_euler(PHONE_LOW_TILT), PHONE_LOW_AT)
+	var high: Transform3D = camera.global_transform * Transform3D(Basis.from_euler(PHONE_RAISED_TILT), PHONE_RAISED_AT)
+	var pose: Transform3D = low.interpolate_with(high, _phone_raise)
+	model.global_transform = pose
+	model.visible = raised or _phone_weight > 0.01
+	light.global_transform = Transform3D(camera.global_basis, pose.origin + (-camera.global_basis.z.normalized()) * PHONE_LIGHT_AHEAD)
+	# Palm on the back of the phone, fingers round its far edge.
+	var back: Vector3 = -pose.basis.z.normalized()
+	var fingers: Vector3 = (pose.basis.x.normalized() * 0.8 + pose.basis.y.normalized() * 0.6)
+	var hand: Basis = _hand_basis(fingers, -back, _left_palm_axis)
+	var middle: Vector3 = pose.origin + back * (_phone_half + HAND_HALF * _scale())
+	_left_goal.global_position = middle - hand.y.normalized() * PALM * _scale()
+	_left_align.target_basis = hand
+	_left_ik.influence = _phone_weight
+	_left_align.influence = _phone_weight
+	_left_grip.influence = _phone_weight
 
 
 ## The hand as the clip holds it this frame (before IK), world space.
@@ -409,9 +551,19 @@ func _follow_head(weight: float) -> void:
 	_lean = player.global_basis.inverse() * (_eye_world() - _eye_start) * weight
 
 
-## Lean the chest toward the goal until the shoulder is within reach of it. The bend is
-## shared by the spine bones as SpineBendModifier does, each turning about its own joint.
+## Lean the chest toward the goal until the shoulder is within reach of it.
 func _plan_bend(goal: Vector3) -> void:
+	var flat: Vector3 = goal - _bone_world(_bend.bones[0])
+	flat.y = 0.0
+	var forward: Vector3 = flat.normalized() if flat.length() > 0.01 else -global_basis.z
+	_bend.axis = (skeleton.global_basis.inverse() * Vector3.UP.cross(forward).normalized()).normalized()
+	_bend_degrees = minf(_bend_for(goal), MAX_BEND)
+
+
+## The lean (degrees, in 5 degree steps) that brings the shoulder within reach of `goal`, or INF
+## if even MAX_BEND does not. The bend is shared by the spine bones as SpineBendModifier does,
+## each turning about its own joint (the pose before any lean).
+func _bend_for(goal: Vector3) -> float:
 	var joints: Array[Vector3] = []
 	for bone: String in _bend.bones:
 		joints.append(_bone_world(bone))
@@ -420,8 +572,6 @@ func _plan_bend(goal: Vector3) -> void:
 	flat.y = 0.0
 	var forward: Vector3 = flat.normalized() if flat.length() > 0.01 else -global_basis.z
 	var axis: Vector3 = Vector3.UP.cross(forward).normalized()
-	_bend.axis = (skeleton.global_basis.inverse() * axis).normalized()
-	_bend_degrees = MAX_BEND
 	for step: int in range(0, int(MAX_BEND) + 1, 5):
 		var turn: Basis = Basis(axis, deg_to_rad(step) / joints.size())
 		var points: Array[Vector3] = joints.duplicate()
@@ -430,16 +580,16 @@ func _plan_bend(goal: Vector3) -> void:
 			for index: int in range(joint + 1, points.size()):
 				points[index] = points[joint] + turn * (points[index] - points[joint])
 		if points[-1].distance_to(goal) <= ARM_REACH * _scale():
-			_bend_degrees = step
-			break
+			return float(step)
+	return INF
 
 
 func _contact() -> void:
 	if _marker.pick_up:
 		_carried_from = _marker.global_transform
 		_carry(_target)
-	else:
-		_target.interact_by_hand(player, HAND_SECONDS - CONTACT)
+	elif not is_instance_valid(_marker.lever):
+		_use()
 
 
 ## Where the held point goes to read: the sheet's centre at READ_POINT.
@@ -515,6 +665,11 @@ func _finish() -> void:
 	_grip.influence = 0.0
 	_bend.degrees = 0.0
 	_lean = Vector3.ZERO
+	var camera := _camera()
+	if camera != null and camera.get_parent() == _head:
+		camera.rotation = Vector3.ZERO
+	if is_instance_valid(_marker) and is_instance_valid(_marker.lever):
+		_marker.lever.quaternion = _lever_rest
 	_target = null
 	_marker = null
 	if is_instance_valid(player) and player.has_method("release_movement_lock"):
@@ -624,7 +779,7 @@ func _build_modifiers() -> void:
 	_align.name = "RightHandAlign"
 	skeleton.add_child(_align)
 	_align.influence = 0.0
-	_palm_axis = _find_palm_axis("RightHand")
+	_palm_axis = _find_palm_axis("RightHand", GRIP_BONES[3])
 	_grip = HandGripModifier.new()
 	_grip.name = "RightGrip"
 	_grip.bones = GRIP_BONES
@@ -638,14 +793,49 @@ func _build_modifiers() -> void:
 	_hand_attach.name = "HandAttach"
 	_hand_attach.bone_name = "RightHand"
 	skeleton.add_child(_hand_attach)
+	# The left arm holds the phone (D-124): the same chain on the other side.
+	_left_goal = Node3D.new()
+	_left_goal.name = "LeftHandGoal"
+	_left_goal.top_level = true
+	add_child(_left_goal)
+	_left_pole = Node3D.new()
+	_left_pole.name = "LeftElbowPole"
+	model.add_child(_left_pole)
+	_left_pole.position = Vector3(0.6, 0.8, -0.4)
+	_left_ik = TwoBoneIK3D.new()
+	_left_ik.name = "LeftArmIK"
+	skeleton.add_child(_left_ik)
+	_left_ik.setting_count = 1
+	_left_ik.set_root_bone_name(0, "LeftUpperArm")
+	_left_ik.set_middle_bone_name(0, "LeftLowerArm")
+	_left_ik.set_end_bone_name(0, "LeftHand")
+	_left_ik.set_target_node(0, _left_ik.get_path_to(_left_goal))
+	_left_ik.set_pole_node(0, _left_ik.get_path_to(_left_pole))
+	_left_ik.influence = 0.0
+	_left_align = HandAlignModifier.new()
+	_left_align.name = "LeftHandAlign"
+	_left_align.bone = &"LeftHand"
+	skeleton.add_child(_left_align)
+	_left_align.influence = 0.0
+	_left_palm_axis = _find_palm_axis("LeftHand", LEFT_GRIP_BONES[3])
+	_left_grip = HandGripModifier.new()
+	_left_grip.name = "LeftGrip"
+	_left_grip.bones = LEFT_GRIP_BONES
+	_left_grip.curl_degrees = PHONE_CURL
+	skeleton.add_child(_left_grip)
+	_left_grip.influence = 0.0
+	_left_attach = BoneAttachment3D.new()
+	_left_attach.name = "LeftHandAttach"
+	_left_attach.bone_name = "LeftHand"
+	skeleton.add_child(_left_attach)
 
 
 ## The hand's local axis out of the palm: where a finger's tip goes when HandGripModifier
 ## curls it (about the finger's +X, so toward the finger's +Z), seen from the hand, snapped
 ## to the nearest of +-X and +-Z.
-func _find_palm_axis(bone: String) -> Vector3:
+func _find_palm_axis(bone: String, finger_bone: String) -> Vector3:
 	var hand: Basis = skeleton.get_bone_global_rest(skeleton.find_bone(bone)).basis.orthonormalized()
-	var finger: Basis = skeleton.get_bone_global_rest(skeleton.find_bone(GRIP_BONES[3])).basis.orthonormalized()
+	var finger: Basis = skeleton.get_bone_global_rest(skeleton.find_bone(finger_bone)).basis.orthonormalized()
 	var palm: Vector3 = hand.inverse() * (finger * Vector3.BACK)
 	if absf(palm.x) > absf(palm.z):
 		return Vector3(signf(palm.x), 0.0, 0.0)

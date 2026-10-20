@@ -1,7 +1,9 @@
 extends Node3D
-## T-220 step 1 (D-121): the player with a full body in the playable room 407 (D-113 lighting).
-## Free play: walk, crouch, look down at the feet, see the body in the full mirror; E by hand
-## on Door 407, Viet's locker and Dat's note (one second each). L cycles night/torch/tube.
+## T-220 step 1 (D-121, D-124): the player with a full body in the playable room 407 (D-113
+## lighting). Free play: walk, crouch, look down at the feet, see the body in the mirrors; E by
+## hand on Door 407 and the bathroom door (lever handles on both faces), Viet's locker and Dat's
+## note (one second each, within reach only). F lights the phone, held in the left hand (Q
+## raises it). L cycles night/torch/tube.
 ## Opt-in captures: -- --body-capture (needs Forward+). Scripted walk-through for a video:
 ## -- --body-demo (record with Godot's --write-movie).
 
@@ -9,8 +11,9 @@ const CHAPTER := preload("res://scenes/main/chapter1_main.gd")
 const OUTPUT := "res://../art_source/graphics_upgrade/protagonist/previews/"
 const ORIGIN := Vector3(30, 0, 0)
 const LIGHTS: Array[String] = ["night", "torch", "tube"]
-## Door 407's lever, on the room side of the leaf (Door407/Pivot space).
-const DOOR_HANDLE := Vector3(-0.69, 1.055, -0.07)
+## Door 407's handle spindle at mid-thickness of the leaf (world, closed), and the bathroom door's.
+const DOOR_HANDLE := Vector3(31.71, 1.065, -0.085)
+const BATH_HANDLE := Vector3(36.19, 1.0, -4.0)
 ## Viet's locker door: the outer edge at hand height, world space at the closed angle.
 const LOCKER_EDGE := Vector3(30.61, 1.0, -1.31)
 const PAPER := "Ch1DatNote"
@@ -22,6 +25,7 @@ var spots := {
 	"locker": [Vector3(31.18, 0.02, -1.35), PI * 0.5, -22.0, Vector3(32.6, 1.5, -2.6)],
 	"paper": [Vector3(31.28, 0.02, -3.98), 0.0, -45.0, Vector3(32.9, 1.7, -2.9)],
 	"open": [Vector3(32.6, 0.02, -2.0), 0.0, 0.0, Vector3(33.9, 1.5, -3.9)],
+	"bath_door": [Vector3(36.02, 0.02, -3.45), 0.0, -35.0, Vector3(34.6, 1.6, -2.6)],
 	"mirror": [Vector3.ZERO, 0.0, -18.0, Vector3.ZERO],
 	"bath_mirror": [Vector3.ZERO, 0.0, -8.0, Vector3.ZERO],
 }
@@ -36,10 +40,18 @@ const SHOTS := [
 	{"id": "body_side_tube", "spot": "open", "light": "tube", "third": true},
 	{"id": "body_walk_side_tube", "spot": "open", "light": "tube", "third": true, "walk": 0.55},
 	{"id": "door_reach_tube", "spot": "door", "light": "tube", "action": "door", "at": 0.45},
+	{"id": "door_press_tube", "spot": "door", "light": "tube", "action": "door", "at": 0.6},
 	{"id": "door_pull_tube", "spot": "door", "light": "tube", "action": "door", "at": 0.75},
 	{"id": "door_side_tube", "spot": "door", "light": "tube", "action": "door", "at": 0.5, "third": true},
 	{"id": "door_hand_close_tube", "spot": "door", "light": "tube", "action": "door", "at": 0.45, "third": true,
 		"eye": Vector3(32.25, 1.25, -0.75), "look": Vector3(31.75, 1.05, -0.1)},
+	{"id": "bath_door_press_tube", "spot": "bath_door", "light": "tube", "action": "bath_door", "at": 0.6},
+	{"id": "bath_door_side_tube", "spot": "bath_door", "light": "tube", "action": "bath_door", "at": 0.6, "third": true},
+	{"id": "lever_close_tube", "spot": "door", "light": "tube", "action": "door", "at": 0.6, "third": true,
+		"eye": Vector3(32.15, 1.3, -0.62), "look": Vector3(31.76, 1.05, -0.13)},
+	{"id": "phone_torch_tube", "spot": "open", "light": "torch", "pitch": -20.0},
+	{"id": "phone_raised_tube", "spot": "open", "light": "tube", "pitch": -10.0, "phone": true},
+	{"id": "phone_torch_side", "spot": "open", "light": "torch", "third": true},
 	{"id": "locker_reach_tube", "spot": "locker", "light": "tube", "action": "locker", "at": 0.45},
 	{"id": "locker_side_tube", "spot": "locker", "light": "tube", "action": "locker", "at": 0.6, "third": true},
 	{"id": "paper_reach_tube", "spot": "paper", "light": "tube", "action": "paper", "at": 0.45},
@@ -55,7 +67,7 @@ var floor4: Node3D
 var room: Node3D
 var player: CharacterBody3D
 var body: PlayerBody
-var torch: SpotLight3D
+var phone: Node3D
 var targets: Dictionary = {}
 var light_index: int = 2
 var third_camera: Camera3D
@@ -65,20 +77,28 @@ var bath_lamp: OmniLight3D
 var _spot: String = "open"
 
 
-## Opens and closes a hinged.gd thing (Viet's locker) by hand: the leaf swings over the hold.
+## Opens and closes a hinged.gd thing by hand (Viet's locker, the bathroom door): the leaf swings
+## over the hold. Its HandTargets ride on the leaf (the hand follows the edge or lever); the one
+## nearest the player is taken.
 class HandHinge:
 	extends Interactable
 	var hinged: Node3D
-	## Rides on the leaf, so the hand follows the edge while the locker swings open.
-	var edge: HandTarget
+	var edges: Array[HandTarget] = []
 
-	func hand_target() -> HandTarget:
-		return edge
+	func hand_target(from: Vector3 = Vector3.INF) -> HandTarget:
+		var best: HandTarget = null
+		for edge: HandTarget in edges:
+			if best == null or (from.is_finite()
+					and edge.global_position.distance_squared_to(from) < best.global_position.distance_squared_to(from)):
+				best = edge
+		return best
 
 	func _on_interact(_player: Node) -> void:
 		var pivot := hinged.get_node("Pivot") as Node3D
 		var opening: bool = not bool(hinged.get("is_open"))
-		var angle: float = PI / 2.0 if opening else 0.0
+		# The bathroom door stops short of its wall (D-124); other hinges open square.
+		var open: float = hinged.call("open_angle") if hinged.has_method("open_angle") else PI / 2.0
+		var angle: float = open if opening else 0.0
 		hinged.set("is_open", opening)
 		if hand_seconds > 0.0:
 			var swing := create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
@@ -117,16 +137,8 @@ func _ready() -> void:
 	stand.y = 0.02
 	spots["bath_mirror"][0] = stand
 	spots["bath_mirror"][1] = atan2(front.x, front.z)
-	var camera := player.get_node("Head/Camera3D") as Camera3D
-	torch = SpotLight3D.new()
-	torch.name = "Flashlight"
-	torch.position = Vector3(0.1, -0.08, -0.15)
-	torch.light_color = Color(0.9, 0.94, 1)
-	torch.light_energy = 2.5
-	torch.shadow_enabled = true
-	torch.spot_range = 12.0
-	torch.spot_angle = 28.0
-	camera.add_child(torch)
+	# The phone's own light is the torch (D-104 brightens the room for a "Flashlight" under the camera).
+	phone = player.get_node("Head/Camera3D/PhoneItem") as Node3D
 	bath_lamp = OmniLight3D.new()
 	bath_lamp.light_color = Color(1.0, 0.93, 0.82)
 	bath_lamp.light_energy = 1.2
@@ -147,12 +159,27 @@ func _ready() -> void:
 
 
 func _add_targets() -> void:
+	# D-124: lever handles on both faces; on Door 407 they hang on its HandlePivot, so the rattle
+	# from the corridor shakes them too. The PS1 box handles go.
 	var door := floor4.get_node("Door407") as Interactable
-	var handle := HandTarget.new()
-	handle.name = "HandTarget"
-	floor4.get_node("Door407/Pivot").add_child(handle)
-	handle.position = DOOR_HANDLE
+	DoorHandles.fit(floor4.get_node("Door407/Pivot/HandlePivot") as Node3D, DOOR_HANDLE, Vector3.FORWARD, Vector3.RIGHT, 0.02)
+	(floor4.get_node("Door407/Pivot/HandlePivot/Grip") as Node3D).hide()
 	targets["door"] = door
+	var bath := room.get_node("Extension/BathroomDoor") as Node3D
+	var bath_door := HandHinge.new()
+	bath_door.name = "BathroomDoorHand"
+	bath_door.hinged = bath
+	bath_door.prompt_key = "PROMPT_OPEN_DOOR"
+	add_child(bath_door)
+	bath_door.global_position = Vector3(35.85, 1.05, -4.0)
+	var leaf := CollisionShape3D.new()
+	leaf.shape = BoxShape3D.new()
+	(leaf.shape as BoxShape3D).size = Vector3(0.98, 2.0, 0.12)
+	bath_door.add_child(leaf)
+	for edge: HandTarget in DoorHandles.fit(bath.get_node("Pivot") as Node3D, BATH_HANDLE, Vector3.BACK, Vector3.LEFT, 0.02):
+		bath_door.edges.append(edge)
+	(bath.get_node("Pivot/Handle") as Node3D).hide()
+	targets["bath_door"] = bath_door
 	var hinged := room.get_node("Anchors/VietLocker") as Node3D
 	var locker := HandHinge.new()
 	locker.name = "VietLockerHand"
@@ -170,7 +197,7 @@ func _add_targets() -> void:
 	edge.grip = HandTarget.Grip.HOOK
 	(hinged.get_node("Pivot") as Node3D).add_child(edge)
 	edge.global_position = LOCKER_EDGE
-	locker.edge = edge
+	locker.edges.append(edge)
 	targets["locker"] = locker
 	var paper := get_node(PAPER) as Interactable
 	var pinch := HandTarget.new()
@@ -184,7 +211,7 @@ func _add_targets() -> void:
 
 
 func _set_light(light: String) -> void:
-	torch.visible = light == "torch"
+	phone.set_flashlight(light == "torch")
 	var tube := room.get_node("Room407MainLight") as OmniLight3D
 	tube.visible = light == "tube"
 	tube.light_energy = tube.flicker_energy if light == "tube" else 0.0
@@ -210,6 +237,8 @@ func _reset_things() -> void:
 	(targets["door"] as Node).call("set_open", false)
 	var hinged := room.get_node("Anchors/VietLocker") as Node3D
 	hinged.call("set_open", false)
+	(room.get_node("Extension/BathroomDoor") as Node).call("set_open", false)
+	phone.set_raised(false)
 	var view := get_node_or_null("DocumentView")
 	if view != null and view.has_method("close_view"):
 		view.call("close_view")
@@ -261,6 +290,10 @@ func _capture() -> void:
 		Input.action_release("crouch")
 		for frame in range(20):
 			await get_tree().physics_frame
+		if shot.get("phone", false):
+			phone.set_raised(true)
+			for frame in range(30):
+				await get_tree().physics_frame
 		if shot.get("crouch", false):
 			Input.action_press("crouch")
 			for frame in range(30):
@@ -298,19 +331,20 @@ func _capture() -> void:
 	App.quit()
 
 
-## A short walk-through for a video: walking while looking down, the bathroom mirror, then
-## the locker, Dat's note (read for two seconds) and Door 407, first as the player sees them
-## and again from inside the room.
+## A short walk-through for a video: walking with the phone's light in the left hand, the
+## bathroom mirror, then the locker, Dat's note (read for two seconds), Door 407 and the bathroom
+## door (lever handles), first as the player sees them and again from inside the room.
 func _demo() -> void:
-	_set_light("tube")
-	_place("open", -55.0)
+	_set_light("torch")
+	_place("open", -25.0)
 	await _wait(1.0)
 	await _walk(1.4)
 	await _wait(0.8)
+	_set_light("tube")
 	_place("bath_mirror")
 	await _wait(2.5)
 	for third: bool in [false, true]:
-		for spot: String in ["locker", "paper", "door"]:
+		for spot: String in ["locker", "paper", "door", "bath_door"]:
 			_reset_things()
 			_place(spot)
 			_show_third_person(third)

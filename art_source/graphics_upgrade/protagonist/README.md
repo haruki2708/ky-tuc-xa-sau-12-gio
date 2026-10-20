@@ -1,4 +1,4 @@
-# Nhân vật chính có thân và tay thật — bước 1, cảnh thử (T-220, D-121, D-122)
+# Nhân vật chính có thân và tay thật — bước 1, cảnh thử (T-220, D-121…D-124)
 
 Bản chơi chưa đổi. Mọi thứ chạy trong cảnh thử `game/scenes/levels/graphics_pilot/protagonist_pilot.tscn`. Thân hiện là thân tạm CC0 (`game/assets/models/characters/standin/`), sẽ thay bằng Trần Trung từ Tripo.
 
@@ -26,18 +26,26 @@ Bản chơi chưa đổi. Mọi thứ chạy trong cảnh thử `game/scenes/lev
   - cầm giấy ở **mép phải**, giấy đứng bên trái bàn tay;
   - mép giấy **kẹp giữa ngón cái (phía trước) và các ngón (phía sau)**, dừng sát mặt lòng bàn tay, **không xuyên qua lòng bàn tay**;
   - không vung tay ra sau khi đặt giấy xuống.
+- **D-124 (chủ dự án chốt 20/10):**
+  - **camera nhìn theo tay:** khi thao tác camera quay về phía tay (85% quãng, tối đa 40°) rồi trả lại;
+  - **phải đứng gần:** đồ dùng bằng tay chỉ hiện "[E]" khi tay với tới;
+  - **tay trái cầm điện thoại:** bật đèn pin (F) hoặc giơ máy (Q) thì tay trái cầm máy, đèn phát từ máy;
+  - **tay nắm cửa gạt** hai mặt (`door_lever.glb`, dựng bằng `build_door_lever.py`, gắn bằng `DoorHandles.fit`): tay nắm cần, vặn xuống 35°, rồi cửa mới quay; buông tay thì cần bật về. Đã gắn cho cửa 407 và cửa nhà vệ sinh trong cảnh thử.
 - **`HandTarget`** (`game/scripts/interaction/hand_target.gd`) đặt trên từng đồ vật:
   - đặt ngay chỗ cầm: thanh nắm cửa, mép tủ, giấy thì sát mép phải;
   - `grip` = `GRIP` (nắm), `PINCH` (kẹp), `HOOK` (móc);
-  - `pick_up` cho đồ được cầm lên.
+  - `pick_up` cho đồ được cầm lên;
+  - `lever` / `lever_axis` / `lever_degrees` cho tay nắm cần (đặt `HandTarget` dưới cần để tay đi theo);
+  - đồ dùng được từ hai phía có một `HandTarget` mỗi phía, lấy cái gần người chơi.
   - Đồ chưa có `HandTarget` vẫn chạy như cũ (bấm là xong).
 
 ## Xem và chụp
 - **Tự đi trong cảnh:** mở `protagonist_pilot.tscn` rồi chạy.
-  - E: dùng cửa 407, tủ Việt, tờ ghi chú của Đạt;
+  - E: dùng cửa 407, cửa nhà vệ sinh, tủ Việt, tờ ghi chú của Đạt;
+  - F: đèn pin điện thoại, Q: giơ điện thoại;
   - L: đổi đèn (tắt / đèn pin / đèn trần).
   - Nhà tắm có thêm một đèn phụ (chỉ có trong cảnh thử) để soi gương.
-- **Chụp 19 ảnh 1080p** vào `previews/`:
+- **Chụp 26 ảnh 1080p** vào `previews/`:
   ```
   godot --path game res://scenes/levels/graphics_pilot/protagonist_pilot.tscn -- --body-capture
   ```
@@ -48,7 +56,7 @@ Bản chơi chưa đổi. Mọi thứ chạy trong cảnh thử `game/scenes/lev
   ```
 
 ## Test
-`game/tests/player/test_protagonist_body.gd`, 10 test:
+`game/tests/player/test_protagonist_body.gd`, 14 test:
 - đầu ẩn với camera, có trong gương;
 - mắt ở dưới camera;
 - chân không trượt quá 3 cm;
@@ -58,6 +66,10 @@ Bản chơi chưa đổi. Mọi thứ chạy trong cảnh thử `game/scenes/lev
 - cửa quay theo tay;
 - giấy được nhấc lên, đọc, rồi đặt lại;
 - không vung tay ra sau;
-- giấy kẹp ở mép phải, không xuyên lòng bàn tay.
+- giấy kẹp ở mép phải, không xuyên lòng bàn tay;
+- đứng xa thì không hiện "[E]" (D-124);
+- camera nhìn theo tay rồi trả lại;
+- vặn cần gạt trước khi cửa quay, buông thì cần bật về;
+- tay trái cầm điện thoại khi bật đèn pin.
 
 Ảnh trong `previews/` chụp trong phòng 407 của bản chơi. Đồ Tripo trong phòng giữ nguồn ở các hồ sơ graphics upgrade trước (D-084).

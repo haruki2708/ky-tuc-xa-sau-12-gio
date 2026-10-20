@@ -127,3 +127,44 @@ func test_tile_caps_have_no_overlapping_volume() -> void:
 	for i in caps.size():
 		for j in range(i + 1, caps.size()):
 			assert_false(caps[i].intersects(caps[j]), "cap pair %d/%d must not share top faces" % [i, j])
+
+
+## D-124 (owner: the bathroom door vanished once opened): its hinge sits inside the west wall's
+## thickness, so at 90 degrees the leaf sank into the wall. Open, the far half of the leaf must
+## stand clear of the wall (only the strip at the hinge may stay in it), clear the basin (set
+## back 22 cm for it), and leave the doorway passable.
+func test_open_bathroom_door_stands_clear_of_the_west_wall() -> void:
+	var door := room.get_node("Extension/BathroomDoor")
+	door.set_open(true)
+	var leaf := room.get_node("Extension/BathroomDoor/Pivot/BathroomDoor") as MeshInstance3D
+	var wall_mesh := room.get_node("Furnished/architecture/BathroomSide") as MeshInstance3D
+	var wall: AABB = room.global_transform.affine_inverse() * wall_mesh.global_transform * wall_mesh.get_aabb()
+	var pivot: Vector3 = room.to_local((room.get_node("Extension/BathroomDoor/Pivot") as Node3D).global_position)
+	var box: AABB = leaf.get_aabb()
+	var clear: int = 0
+	var far: int = 0
+	for corner: int in 8:
+		var point: Vector3 = room.to_local(leaf.global_transform * box.get_endpoint(corner))
+		if Vector2(point.x - pivot.x, point.z - pivot.z).length() < 0.5:
+			continue
+		far += 1
+		if point.x > wall.end.x + 0.02:
+			clear += 1
+	assert_true(far >= 4)
+	assert_eq(clear, far, "the far half of the open leaf stands out of the wall")
+	assert_true(door.get_node("Pivot").rotation.y > deg_to_rad(70.0), "still opens wide")
+	# Nor does it swing into the basin on the same wall: sample the leaf's whole face.
+	var sink := _bounds(room.get_node("Furnished/TripoProps/Sink"))
+	var inside: int = 0
+	for u: int in 11:
+		for v: int in 11:
+			var local := box.position + Vector3(box.size.x * u / 10.0, box.size.y * v / 10.0, box.size.z * 0.5)
+			if sink.has_point(room.to_local(leaf.global_transform * local)):
+				inside += 1
+	assert_eq(inside, 0, "the open leaf clears the basin")
+	# The player's capsule (0.6 m) passes between the open leaf and the far jamb.
+	var jamb_x: float = room.to_local((room.get_node("Extension/BathroomDoor/Pivot") as Node3D).global_position).x + 0.98
+	var leaf_x: float = -INF
+	for corner: int in 8:
+		leaf_x = maxf(leaf_x, room.to_local(leaf.global_transform * box.get_endpoint(corner)).x)
+	assert_true(jamb_x - leaf_x > 0.65, "the doorway stays %.2f m wide" % (jamb_x - leaf_x))

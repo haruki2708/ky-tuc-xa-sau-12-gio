@@ -185,7 +185,7 @@ func test_stuck_door_shakes_without_opening_then_cancels_on_open() -> void:
 	room.set_bathroom_door_open(true)
 	await tree.create_timer(.25).timeout
 	assert_true(door.is_open)
-	assert_true(absf(door.get_node("Pivot").rotation.y - PI / 2.0) < .001)
+	assert_true(absf(door.get_node("Pivot").rotation.y - door.open_angle()) < .001)
 	room.set_bathroom_door_open(false)
 	assert_eq(door.get_node("Pivot").rotation.y, 0.0)
 

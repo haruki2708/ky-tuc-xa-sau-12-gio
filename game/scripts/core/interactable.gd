@@ -33,12 +33,22 @@ func interact_by_hand(player: Node, seconds: float) -> void:
 	hand_seconds = 0.0
 
 
-## The HandTarget a full body reaches for, or null for a plain press.
-func hand_target() -> HandTarget:
-	for child: Node in get_children():
-		if child is HandTarget:
-			return child as HandTarget
-	return find_child("HandTarget", true, false) as HandTarget
+## The HandTarget a full body reaches for, or null for a plain press. A thing used from either
+## side (a door's two handles) has one per side: the one nearest `from` is taken.
+func hand_target(from: Vector3 = Vector3.INF) -> HandTarget:
+	var best: HandTarget = null
+	var best_distance: float = INF
+	for node: Node in find_children("*", "Marker3D", true, false):
+		var marker := node as HandTarget
+		if marker == null:
+			continue
+		if not from.is_finite():
+			return marker
+		var distance: float = marker.global_position.distance_squared_to(from)
+		if distance < best_distance:
+			best_distance = distance
+			best = marker
+	return best
 
 
 func _on_interact(_player: Node) -> void:
