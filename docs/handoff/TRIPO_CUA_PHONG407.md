@@ -39,4 +39,4 @@
 
 ## 4. Báo lại integrator
 - Tên file, lượt thứ mấy, đã sửa bằng gì.
-- Link tác vụ: ghi vào `build/graphics/staging/doors/ghi_chu.txt`.
+- Báo ngay trong lúc trò chuyện với integrator. Không cần ghi file; bằng chứng giấy phép D-084 do Claude lưu khi đóng gói (gói Pro, ngày tạo, prompt, điều khoản, hash file gốc).
