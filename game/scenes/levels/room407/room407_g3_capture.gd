@@ -48,7 +48,22 @@ const VIEWS := [
 	{"id": "cables_router", "eye": Vector3(4.1, 1.25, -1.7), "target": Vector3(4.6, 0.35, -0.4), "fov": 70.0},
 	{"id": "cables_strip", "eye": Vector3(1.7, 1.15, -1.5), "target": Vector3(0.8, 0.1, -2.3), "fov": 70.0},
 	{"id": "viet_locker_open", "eye": Vector3(2.0, 1.45, -1.2), "target": Vector3(0.35, 0.95, -1.15), "fov": 70.0, "locker_open": true},
+	# T-222 close-ups: frames, skirting, ceiling, damp, wet feet, the balcony.
+	{"id": "t222_ceiling", "eye": Vector3(3.6, 1.6, -3.4), "target": Vector3(3.0, 3.0, -5.6), "fov": 80.0},
+	{"id": "t222_room_door", "eye": Vector3(2.6, 1.55, -1.7), "target": Vector3(1.9, 1.0, 0.0), "fov": 70.0},
+	{"id": "t222_bath_door", "eye": Vector3(5.2, 1.55, -2.4), "target": Vector3(5.9, 1.0, -3.95), "fov": 70.0},
+	{"id": "t222_skirting", "eye": Vector3(4.2, 0.9, -5.0), "target": Vector3(5.225, 0.2, -6.3), "fov": 65.0},
+	{"id": "t222_switch", "eye": Vector3(2.9, 1.5, -0.9), "target": Vector3(2.72, 1.3, 0.0), "fov": 60.0},
+	{"id": "t222_wet_feet", "eye": Vector3(5.6, 1.6, -2.0), "target": Vector3(6.3, 0.0, -3.3), "fov": 70.0},
+	{"id": "t222_balcony_door", "eye": Vector3(2.8, 1.6, -5.2), "target": Vector3(2.8, 1.2, -7.0), "fov": 75.0},
+	{"id": "t222_balcony_out", "eye": Vector3(2.6, 1.6, -7.3), "target": Vector3(2.4, 1.0, -9.5), "fov": 80.0},
+	{"id": "t222_balcony_back", "eye": Vector3(1.0, 1.6, -8.2), "target": Vector3(3.2, 1.4, -7.0), "fov": 80.0},
 ]
+## The T-222 review set (with --shell-t222 / --shell-corner and no --views).
+const T222_VIEWS := ["room_centre", "door_overview", "back_overview", "door_wall", "bunk_a", "bunk_b", "bathroom",
+	"bath_sink", "balcony_side", "corridor_door", "t222_ceiling", "t222_room_door", "t222_bath_door", "t222_skirting",
+	"t222_switch", "t222_wet_feet", "t222_balcony_door", "t222_balcony_out", "t222_balcony_back"]
+const T222_OUTPUT := "res://../art_source/graphics_upgrade/room407_shell/previews/"
 
 var floor4: Node3D
 var room: Node3D
@@ -58,15 +73,34 @@ var rig: Node3D
 var torch: SpotLight3D
 ## VIEWS plus a close view of every paper (torch and tube only).
 var views: Array = VIEWS.duplicate()
+var output := OUTPUT
+## Light modes of views that name none (the T-222 set skips the near-black "night", D-113).
+var default_modes: Array = ["night", "torch", "tube"]
 
 
 func _ready() -> void:
 	floor4 = FLOOR.instantiate() as Node3D
-	add_child(floor4)
 	room = floor4.get_node("Room407") as Node3D
+	# T-222: -- --shell-t222 (after) or --shell-corner (before) captures the review set into
+	# room407_shell/previews/after|before; --views=a,b picks views by id.
+	var args := OS.get_cmdline_user_args()
+	var t222 := "--shell-t222" in args
+	room.shell_t222 = t222
+	add_child(floor4)
 	CHAPTER.place_papers(room.get_node("Anchors") as Node3D, self)
 	for paper: Node3D in find_children("*", "Area3D", false, false):
 		views.append(_paper_view(paper))
+	var picked: Array = []
+	for arg: String in args:
+		if arg.begins_with("--views="):
+			picked = Array(arg.trim_prefix("--views=").split(","))
+	if t222 or "--shell-corner" in args:
+		output = T222_OUTPUT + ("after/" if t222 else "before/")
+		default_modes = ["torch", "tube"]
+		if picked.is_empty():
+			picked = T222_VIEWS
+	if not picked.is_empty():
+		views = views.filter(func(view: Dictionary) -> bool: return view.id in picked)
 	rig = Node3D.new()
 	rig.name = "Rig"
 	add_child(rig)
@@ -129,17 +163,17 @@ func _capture() -> void:
 		return
 	get_window().content_scale_size = Vector2i(1280, 720)
 	get_window().size = Vector2i(1280, 720)
-	DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(OUTPUT))
+	DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(output))
 	var report := {"godot": Engine.get_version_info().string,
 		"renderer": RenderingServer.get_current_rendering_method(), "gpu": RenderingServer.get_video_adapter_name(),
 		"resolution": [1280, 720], "ps1_strength": 0.0, "images": []}
 	for view: Dictionary in views:
-		for mode: String in view.get("modes", ["night", "torch", "tube"]):
+		for mode: String in view.get("modes", default_modes):
 			set_view(view, mode == "torch", mode == "tube")
 			var file := "%s_%s.png" % [view.id, mode]
 			await _save(file)
 			report.images.append({"file": file, "eye": [view.eye.x, view.eye.y, view.eye.z], "fov": view.fov})
-	var file := FileAccess.open(OUTPUT + "capture_report.json", FileAccess.WRITE)
+	var file := FileAccess.open(output + "capture_report.json", FileAccess.WRITE)
 	file.store_string(JSON.stringify(report, "\t") + "\n")
 	print("RESULT: room407 G3 capture %d images PASS" % report.images.size())
 	App.quit()
@@ -149,6 +183,6 @@ func _save(file: String) -> void:
 	for frame in range(60):
 		await get_tree().process_frame
 	await RenderingServer.frame_post_draw
-	if get_viewport().get_texture().get_image().save_png(OUTPUT + file) != OK:
+	if get_viewport().get_texture().get_image().save_png(output + file) != OK:
 		push_error("Cannot save G3 capture: " + file)
 		App.quit(1)

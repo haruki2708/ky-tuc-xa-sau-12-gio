@@ -1,0 +1,5 @@
+[
+  {"name": "BalconyTowel", "model": "res://assets/models/graphics_pilot/room407_batch3/towel_draped.glb", "position": [2.8, 1.423, -7.85], "yaw": 0, "source_node": "Anchors/TowelSpot (T-222)"},
+  {"name": "BalconyShirt0", "model": "res://assets/models/graphics_pilot/room407_batch2/shirt_hanging.glb", "position": [1.25, 1.375, -7.85], "yaw": 4, "source_node": "T-222"},
+  {"name": "BalconyShirt1", "model": "res://assets/models/graphics_pilot/room407_batch2/shirt_hanging.glb", "position": [4.15, 1.375, -7.85], "yaw": -6, "source_node": "T-222"}
+]

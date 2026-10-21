@@ -5,14 +5,15 @@ Blender 5.2.2, background:
         --src high.glb --out game.glb --name stool \
         --min -0.18 0 -0.18 --size 0.36 0.30 0.36 \
         [--rotate 180] [--fit box|height|width] [--tris 5000] [--tex 1024] [--image-format JPEG] [--sharp 40]
-        [--height-map 0:0 0.39:0.38 1.35:1.15 1.70:1.50]
+        [--height-map 0:0 0.39:0.38 1.35:1.15 1.70:1.50] [--low prepared_low.glb]
 
 1. Import the Tripo GLB (the detailed "high" model), join it into one mesh.
 2. Rotate about the vertical axis so the agreed front faces glTF -Z.
 3. Fit it to the measured envelope of the prop it replaces (glTF min/size):
    "box" scales each axis to the envelope; "height" / "width" keep proportions,
    match the height or the X width and centre the footprint on the envelope.
-4. Duplicate and decimate the copy to the triangle budget, keeping its UVs.
+4. Duplicate and decimate the copy to the triangle budget, keeping its UVs (or, with --low, take a
+   low model prepared elsewhere in the high model's space; it gets the same rotation and fit).
 5. Bake the high model's shading normal (geometry + its normal map) onto the
    low model (Cycles, selected to active) and reuse the colour and
    roughness/metal maps, resized to --tex.
@@ -45,6 +46,9 @@ def parse_args():
     # metres) to land functional surfaces such as bunk decks on gameplay heights.
     parser.add_argument("--height-map", nargs="*", default=[])
     parser.add_argument("--image-format", choices=("AUTO", "JPEG"), default="AUTO")
+    # A low model already decimated and edited like the high one (T-222 door leaves: the edited
+    # high model no longer decimates cleanly).
+    parser.add_argument("--low", default="")
     return parser.parse_args(sys.argv[sys.argv.index("--") + 1:])
 
 
@@ -68,6 +72,30 @@ def select_only(*objs):
     for o in objs:
         o.select_set(True)
     bpy.context.view_layer.objects.active = objs[-1]
+
+
+def import_low(path, rotate, fit):
+    before = set(bpy.context.scene.objects)
+    bpy.ops.import_scene.gltf(filepath=path)
+    added = [o for o in bpy.context.scene.objects if o not in before]
+    meshes = [o for o in added if o.type == "MESH"]
+    for o in meshes:
+        w = o.matrix_world.copy()
+        o.parent = None
+        o.matrix_world = w
+    for o in added:
+        if o.type != "MESH":
+            bpy.data.objects.remove(o, do_unlink=True)
+    select_only(*meshes)
+    if len(meshes) > 1:
+        bpy.ops.object.join()
+    low = bpy.context.view_layer.objects.active
+    bpy.ops.object.transform_apply(location=True, rotation=True, scale=True)
+    if rotate:
+        low.data.transform(mathutils.Matrix.Rotation(math.radians(rotate), 4, "Z"))
+    low.data.transform(fit)
+    low.data.update()
+    return low
 
 
 def main():
@@ -113,7 +141,7 @@ def main():
     fit = mathutils.Matrix.Translation(offset) @ mathutils.Matrix.Diagonal((*scale, 1.0)) @ mathutils.Matrix.Translation(-lo)
     high.data.transform(fit)
     high.data.update()
-    if args.height_map:
+    if args.height_map and not args.low:
         knots = sorted(tuple(float(v) for v in k.split(":")) for k in args.height_map)
 
         def remap(z):
@@ -131,10 +159,14 @@ def main():
     print("BAKE high tris", triangles(high), "bounds", tuple(round(v, 4) for v in lo), tuple(round(v, 4) for v in hi))
 
     # 4. Low model: decimated copy that keeps the UV layout.
-    low = high.copy()
-    low.data = high.data.copy()
-    low.name = args.name
-    bpy.context.scene.collection.objects.link(low)
+    if args.low:
+        low = import_low(args.low, args.rotate, fit)
+        low.name = args.name
+    else:
+        low = high.copy()
+        low.data = high.data.copy()
+        low.name = args.name
+        bpy.context.scene.collection.objects.link(low)
     # glTF import splits vertices along UV seams; weld them so the decimator
     # sees one surface (UVs live on face corners and survive), then use plain
     # smooth normals that the tangent-space bake and the export both follow.

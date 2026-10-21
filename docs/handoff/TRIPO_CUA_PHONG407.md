@@ -25,6 +25,23 @@
 - **Cửa ban công:** cửa cánh có tay nắm gạt, chủ dự án đã chốt (D-127). Prompt món 3 giữ nguyên.
 - **Tay nắm:** chọn kiểu **đế tròn**. Đế dài hình chữ nhật thì Claude phải tách đế khỏi cần gạt (vẫn làm được nhưng lâu hơn).
 
+## 2b. Lượt 1 (22/10) và lượt 2
+
+Integrator xem lượt 1 (ảnh xem nhanh trong Blender, mặt trước, mặt sau, cạnh):
+
+| File | Kết quả | Việc tiếp |
+|---|---|---|
+| `door_lever.glb` | **Đạt**: cần gạt, đế tròn 3 lỗ vít, thép cũ trầy | Claude giảm lưới, nướng |
+| `door_balcony.glb` | **Đạt**: khung nhôm, kính mờ trên, tấm nhôm dưới, hai mặt đều có chi tiết | Claude cắt tay nắm nhỏ dính trên cánh, bóp ngang cho vừa 0,92 m |
+| `door_bathroom.glb` | **Dùng được**: lá sách, ố chân cửa đẹp; nhưng dính khung bao, có tay nắm, mặt sau trơn | Claude cắt khung, bỏ tay nắm, lấy mặt trước làm luôn mặt sau. Anh/chị muốn thì tạo lại bằng prompt dưới |
+| `door_room.glb` | **Không đạt**: ra **cửa hai cánh**, dính khung, có tay nắm và ổ khóa, mặt sau trơn | **Tạo lại**, file `door_room_r2.glb` |
+
+**Lượt 2, cánh cửa phòng (`door_room_r2.glb`):** nên làm như lần quản lý: tạo ảnh mẫu trong Tripo trước, thấy đúng một cánh rồi mới Image to 3D.
+
+- Prompt ảnh mẫu / Text to 3D: `One single interior door leaf, ONE leaf only, not a double door, tall narrow rectangle about 0.9 m wide and 2.1 m tall, solid wood, four raised rectangular panels arranged two above two, painted dark green with chipped and peeling paint at the edges, faint hand marks, scratches, dust in the panel grooves, no frame, no casing, no handle, no lock, no keyhole, no hinges, no number, no text, straight flat front view on a plain background, photorealistic, PBR`
+- Mặt sau trơn cũng không sao: Claude lấy mặt trước làm mặt sau (cửa phòng thật hai mặt giống nhau).
+- (Tuỳ chọn) cửa nhà tắm lượt 2 (`door_bathroom_r2.glb`): `One single bathroom door leaf only, old cream white PVC plastic door common in Vietnamese dormitories, a louvred ventilation grille in the lower part that goes through the door, yellowed and water-stained near the bottom, light scratches, no frame, no casing, no handle, no lock, no hinges, no text, straight flat front view, photorealistic, PBR`
+
 ## 3. Kiểm trước khi tải
 1. Chỉ có cánh cửa, không dính khung hay tường.
 2. Hai mặt cánh đều có chi tiết, không bị mặt sau trơn hoặc rỗng.

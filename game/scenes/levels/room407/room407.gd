@@ -9,6 +9,8 @@ var desk_lamp_on: bool = true
 ## T-215 (D-102): the approved furnished room draws the room; the PS1 meshes hide but every
 ## node, collision and API stays. False keeps the PS1 room (comparisons, old captures).
 @export var furnished: bool = true
+## T-222 (D-126): build the furnished room with the upgraded shell. Pilot captures only until approved.
+@export var shell_t222: bool = false
 ## PS1 meshes that stay: story states, puzzles and clue props (paths under Room407).
 const KEEP_PS1: Array[String] = ["Anchors", "Details/BloodSeep", "Details/BloodPools", "Details/SlashRips",
 	"Details/Debris", "Details/CleaningRag", "Ch2Bathroom", "Cables", "Zones"]
@@ -19,6 +21,11 @@ const REPLACED_PS1: Array[String] = ["Anchors/VietLocker/Back", "Anchors/VietLoc
 	"Anchors/Router/Model/Case", "Anchors/Router/Model/Antenna*", "Anchors/Router/Model/Vent*",
 	# D-106: the readable ch1_phuc_card (every chapter places it) draws the card.
 	"Anchors/PhucCard/Card", "Anchors/PhucCard/Photo", "Anchors/PhucCard/Head"]
+## T-222: the upgraded shell shows the balcony, so the chapter-2 towel (TowelSpot, carry item) moves
+## onto the balcony line and is drawn by a Tripo towel (BalconyTowel) instead of the PS1 one.
+const T222_ANCHORS := {"Anchors/TowelSpot": Vector3(2.8, 2.15, -7.85)}
+const T222_REPLACED_PS1: Array[String] = ["Anchors/TowelSpot/Model"]
+const T222_FOLLOW := {"BalconyTowel": "Anchors/TowelSpot/Model"}
 ## Furnished props carried by a moving PS1 node (net stir and hide, mattress lift, slashed pillow).
 const FOLLOW := {"NetViet": "BunkA/Net_Viet", "NetPhuc": "BunkA/Net_Phuc", "NetTrung": "BunkB/Net_Trung",
 	"NetDat": "BunkB/Net_Dat", "MattressPhuc": "Anchors/PhucMattress/Pivot",
@@ -28,7 +35,9 @@ const FOLLOW := {"NetViet": "BunkA/Net_Viet", "NetPhuc": "BunkA/Net_Phuc", "NetT
 ## the door wall, the things on it and its decals come 0.105 m into the room.
 const DOOR_WALL_SHIFT := -0.105
 const DOOR_WALL_PARTS: Array[String] = ["architecture/FrontWallWest", "architecture/FrontWallEast",
-	"architecture/DoorLintel", "fixtures/RoomDoor", "TripoProps/Conduits"]
+	"architecture/DoorLintel", "fixtures/RoomDoor", "TripoProps/Conduits",
+	# T-222 shell only.
+	"frames/RoomDoorFrame", "floor/FrontSkirtingWest", "floor/FrontSkirtingEast"]
 ## Chapter 2 water starts this far below the top of the furnished shower model (under its rose).
 const SHOWER_ROSE_DROP := 0.11
 const TUBE_ENERGY := 1.2
@@ -178,17 +187,22 @@ func _process(delta: float) -> void:
 ## T-215: build the D-102 room, hide the PS1 meshes it replaces and hang its moving parts on
 ## the old nodes so every script, tween and story state keeps driving them.
 func _furnish() -> void:
-	_furnished = Room407Furnish.build()
+	_furnished = Room407Furnish.build("t222" if shell_t222 else "corner")
 	add_child(_furnished)
+	if shell_t222:
+		for path: String in T222_ANCHORS:
+			(get_node(path) as Node3D).position = T222_ANCHORS[path]
 	for mesh: MeshInstance3D in find_children("*", "MeshInstance3D", true, false):
 		if _furnished.is_ancestor_of(mesh):
 			continue
 		var path := String(get_path_to(mesh))
-		if not _matches(path, KEEP_PS1) or _matches(path, REPLACED_PS1):
+		if not _matches(path, KEEP_PS1) or _matches(path, REPLACED_PS1) or shell_t222 and _matches(path, T222_REPLACED_PS1):
 			mesh.visible = false
 	var props := _furnished.get_node("TripoProps")
 	for path: String in DOOR_WALL_PARTS:
-		(_furnished.get_node(path) as Node3D).position.z += DOOR_WALL_SHIFT
+		var part := _furnished.get_node_or_null(path) as Node3D
+		if part:
+			part.position.z += DOOR_WALL_SHIFT
 	for prop: Node3D in props.get_children():
 		var row: Dictionary = prop.get_meta(&"placement")
 		if row.get("mount", "") == "wall" and row.position[2] > -0.05:
@@ -196,8 +210,9 @@ func _furnish() -> void:
 	for decal: Node3D in _furnished.get_node("Decals").get_children():
 		if decal.get_meta(&"placement").project == "+z":
 			decal.position.z += DOOR_WALL_SHIFT
-	for prop_name: String in FOLLOW:
-		_carry(props.get_node(prop_name), get_node(FOLLOW[prop_name]))
+	var follow := FOLLOW.merged(T222_FOLLOW) if shell_t222 else FOLLOW
+	for prop_name: String in follow:
+		_carry(props.get_node(prop_name), get_node(follow[prop_name]))
 	# Viet's locker: the body stays, the door swings on hinged.gd's Pivot moved to the model's hinge.
 	var locker := props.get_node("LockerViet") as Node3D
 	var door_pivot := locker.find_child("DoorPivot", true, false) as Node3D

@@ -1,0 +1,187 @@
+[
+  {
+    "asset": "peeling_painted_wall",
+    "url": "https://polyhaven.com/a/peeling_painted_wall",
+    "authors": {
+      "Dimitrios Savva": "All"
+    },
+    "license": "CC0-1.0",
+    "license_url": "https://polyhaven.com/license",
+    "resolution": "2k",
+    "source_width_mm": [
+      1800.0000715255737,
+      1800.0000715255737
+    ],
+    "maps": [
+      {
+        "channel": "Diffuse",
+        "file": "art_source/graphics_upgrade/room407_shell/textures/peeling_painted_wall_color.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/peeling_painted_wall/peeling_painted_wall_diff_2k.jpg",
+        "sha256": "49e438e8a0195c20b1ac73fa2a4763409ec7d6bc005fb48d53f30a1ec5d73d05",
+        "bytes": 1742944
+      },
+      {
+        "channel": "nor_gl",
+        "file": "art_source/graphics_upgrade/room407_shell/textures/peeling_painted_wall_normal.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/peeling_painted_wall/peeling_painted_wall_nor_gl_2k.jpg",
+        "sha256": "62d09e8db4ef1969f1f50986081af0dbbac64d3784adc0ff09ff020bf1ab9c91",
+        "bytes": 4067269
+      },
+      {
+        "channel": "arm",
+        "file": "art_source/graphics_upgrade/room407_shell/textures/peeling_painted_wall_arm.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/peeling_painted_wall/peeling_painted_wall_arm_2k.jpg",
+        "sha256": "be7375003fd99dde094bf2448954ddf2220110da7d2f587d2a5241529e5db6b3",
+        "bytes": 3447409
+      }
+    ]
+  },
+  {
+    "asset": "distressed_painted_planks",
+    "url": "https://polyhaven.com/a/distressed_painted_planks",
+    "authors": {
+      "Rob Tuytel": "All"
+    },
+    "license": "CC0-1.0",
+    "license_url": "https://polyhaven.com/license",
+    "resolution": "1k",
+    "source_width_mm": [
+      1599.9999046325684,
+      1599.9999046325684
+    ],
+    "maps": [
+      {
+        "channel": "Diffuse",
+        "file": "art_source/graphics_upgrade/room407_shell/textures/distressed_painted_planks_color.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/distressed_painted_planks/distressed_painted_planks_diff_1k.jpg",
+        "sha256": "ec8d54700e32d583ec3cd64089de73810de1e177874266fe29e931d33ab5ca1e",
+        "bytes": 366553
+      },
+      {
+        "channel": "nor_gl",
+        "file": "art_source/graphics_upgrade/room407_shell/textures/distressed_painted_planks_normal.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/distressed_painted_planks/distressed_painted_planks_nor_gl_1k.jpg",
+        "sha256": "65372398238b1a4d723e414b195e94900e076fa63d9409c5acc9b55d795abe88",
+        "bytes": 424390
+      },
+      {
+        "channel": "arm",
+        "file": "art_source/graphics_upgrade/room407_shell/textures/distressed_painted_planks_arm.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/distressed_painted_planks/distressed_painted_planks_arm_1k.jpg",
+        "sha256": "10cf35fb0e55ccbf3e4e31f68e8f2d8e4579fe4241bb999669eedbb6b0172722",
+        "bytes": 368878
+      }
+    ]
+  },
+  {
+    "asset": "anti_skid_tiles",
+    "url": "https://polyhaven.com/a/anti_skid_tiles",
+    "authors": {
+      "Amal Kumar": "All"
+    },
+    "license": "CC0-1.0",
+    "license_url": "https://polyhaven.com/license",
+    "resolution": "1k",
+    "source_width_mm": [
+      1800.0000715255737,
+      1800.0000715255737
+    ],
+    "maps": [
+      {
+        "channel": "Diffuse",
+        "file": "art_source/graphics_upgrade/room407_shell/textures/anti_skid_tiles_color.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/anti_skid_tiles/anti_skid_tiles_diff_1k.jpg",
+        "sha256": "c46ec19caf6c82d70b96603de7ff5ad7c244cf6df3bc178f320ed493e61ee752",
+        "bytes": 575833
+      },
+      {
+        "channel": "nor_gl",
+        "file": "art_source/graphics_upgrade/room407_shell/textures/anti_skid_tiles_normal.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/anti_skid_tiles/anti_skid_tiles_nor_gl_1k.jpg",
+        "sha256": "e8f6c249e532cea8e68dd7838f8575252057a64a127baad7b915a318e2c98b7d",
+        "bytes": 652260
+      },
+      {
+        "channel": "arm",
+        "file": "art_source/graphics_upgrade/room407_shell/textures/anti_skid_tiles_arm.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/anti_skid_tiles/anti_skid_tiles_arm_1k.jpg",
+        "sha256": "7bc72c3733ea4aecd57e78fb4befcfd9c1ee1fc9b490fc9bc852c9731faf0f11",
+        "bytes": 775618
+      }
+    ]
+  },
+  {
+    "asset": "floor_tiles_08",
+    "url": "https://polyhaven.com/a/floor_tiles_08",
+    "authors": {
+      "Rob Tuytel": "All"
+    },
+    "license": "CC0-1.0",
+    "license_url": "https://polyhaven.com/license",
+    "resolution": "1k",
+    "source_width_mm": [
+      1500,
+      1500
+    ],
+    "maps": [
+      {
+        "channel": "Diffuse",
+        "file": "art_source/graphics_upgrade/room407_shell/textures/floor_tiles_08_color.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/floor_tiles_08/floor_tiles_08_diff_1k.jpg",
+        "sha256": "c618d589b732e22ae68d9a18af6baed551e1e736deb8d2039b2d8e7ffa320036",
+        "bytes": 414119
+      },
+      {
+        "channel": "nor_gl",
+        "file": "art_source/graphics_upgrade/room407_shell/textures/floor_tiles_08_normal.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/floor_tiles_08/floor_tiles_08_nor_gl_1k.jpg",
+        "sha256": "93a800229fb4406d1206fd4eca7697459ea46bc5b811bb13fca274dab38c97aa",
+        "bytes": 259727
+      },
+      {
+        "channel": "arm",
+        "file": "art_source/graphics_upgrade/room407_shell/textures/floor_tiles_08_arm.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/floor_tiles_08/floor_tiles_08_arm_1k.jpg",
+        "sha256": "0ee65ff0ff6f4e1be2d739ef5127876407234ce72e77755c92901d67b45a8520",
+        "bytes": 71636
+      }
+    ]
+  },
+  {
+    "asset": "plastered_wall_02",
+    "url": "https://polyhaven.com/a/plastered_wall_02",
+    "authors": {
+      "Charlotte Baglioni": "All"
+    },
+    "license": "CC0-1.0",
+    "license_url": "https://polyhaven.com/license",
+    "resolution": "2k",
+    "source_width_mm": [
+      2229.999542236328,
+      2229.999542236328
+    ],
+    "maps": [
+      {
+        "channel": "Diffuse",
+        "file": "art_source/graphics_upgrade/room407_shell/textures/plastered_wall_02_color.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/plastered_wall_02/plastered_wall_02_diff_2k.jpg",
+        "sha256": "caa72056d9157f08912a4c86c844296f93f323f8b30f418895625b052c837d0c",
+        "bytes": 1713014
+      },
+      {
+        "channel": "nor_gl",
+        "file": "art_source/graphics_upgrade/room407_shell/textures/plastered_wall_02_normal.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/plastered_wall_02/plastered_wall_02_nor_gl_2k.jpg",
+        "sha256": "7667573e538a6116892a3139fbecf5acb85728bf10e715111b87080af756cd78",
+        "bytes": 3842550
+      },
+      {
+        "channel": "arm",
+        "file": "art_source/graphics_upgrade/room407_shell/textures/plastered_wall_02_arm.jpg",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/plastered_wall_02/plastered_wall_02_arm_2k.jpg",
+        "sha256": "a110e1743704f636d3d4f80986c726310b304224d11429aa088e9c55f9c7e3ff",
+        "bytes": 2258378
+      }
+    ]
+  }
+]

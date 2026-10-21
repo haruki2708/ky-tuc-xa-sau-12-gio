@@ -1,0 +1,42 @@
+{
+  "basis": "Godot room-local metres; place at the room origin",
+  "px_per_metre": {
+    "walls": 164,
+    "floor": 193,
+    "ceiling": 260,
+    "balcony": 264
+  },
+  "groups": {
+    "architecture": {
+      "triangles": 240,
+      "objects": 20,
+      "bytes": 35792
+    },
+    "floor": {
+      "triangles": 132,
+      "objects": 11,
+      "bytes": 20636
+    },
+    "ceiling": {
+      "triangles": 20,
+      "objects": 5,
+      "bytes": 64692
+    },
+    "frames": {
+      "triangles": 4388,
+      "objects": 28,
+      "bytes": 1598068
+    },
+    "fixtures": {
+      "triangles": 21691,
+      "objects": 21,
+      "bytes": 3234704
+    },
+    "balcony": {
+      "triangles": 1332,
+      "objects": 23,
+      "bytes": 91636
+    }
+  },
+  "triangles": 27803
+}
