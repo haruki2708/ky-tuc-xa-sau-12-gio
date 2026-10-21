@@ -143,7 +143,14 @@ Chủ dự án chọn cả hai đề xuất của integrator:
   - vỏ cũ giữ nguyên;
   - texture ≤ 2048.
 
+### Lượt 1b (22/10/2026): cửa phòng Tripo lượt 2
+
+- Chủ dự án tạo `door_room_r2.glb` (một cánh, 5 ô pano).
+- Claude cắt khung, bỏ tay nắm và ổ khóa, lấy mặt trước làm mặt sau, nướng còn 5.057 tam giác.
+- Tay nắm Tripo hai mặt ở phía chốt (x 1,615). `floor4.gd` treo chúng lên `Door407/Pivot/HandlePivot` (dời về trục tay nắm) và ẩn tay nắm hộp PS1, nên cảnh rung tay nắm từ hành lang vẫn rung. Vỏ cũ không đổi.
+- Tay nắm nướng lại còn 1.372 tam giác.
+- 9 test.
+
 **Chưa làm:**
-- cánh cửa phòng Tripo lượt 2;
 - cửa ban công chưa có va chạm và chưa mở/đóng bằng tay (làm khi đưa vào bản chơi cùng T-220);
 - đo FPS (hỏi chủ dự án trước).

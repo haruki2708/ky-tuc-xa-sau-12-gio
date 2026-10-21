@@ -14,8 +14,9 @@ $B = "D:\Tools\Blender\5.2.2\blender.exe"; $P = "build/graphics/staging/doors/pr
 & $B -b --factory-startup -P art_source/graphics_upgrade/room407_shell/prep_doors.py -- door_bathroom build/graphics/staging/doors/door_bathroom.glb $P/door_bathroom_low.glb 4000
 & $B -b --factory-startup -P art_source/graphics_upgrade/tripo/bake_prop.py -- --src $P/door_bathroom.glb --low $P/door_bathroom_low.glb --out $O/door_bathroom.glb --name door_bathroom --min -0.49 0 -0.02 --size 0.98 2.2 0.04 --fit box --rotate 180 --tris 8000 --tex 2048 --image-format JPEG --sharp 30
 #   door_balcony: như trên với "6000" cho bản nhẹ, --min -0.46 0 -0.025 --size 0.92 2.24 0.05, không --rotate
+#   door_room_r2 -> door_room: như door_bathroom, --min -0.445 0 -0.02 --size 0.89 2.1 0.04, không --rotate
 & $B -b --factory-startup -P art_source/graphics_upgrade/room407_shell/prep_lever.py -- build/graphics/staging/doors/door_lever.glb build/graphics/staging/doors/prepped/door_lever.glb
-#   rồi bake_prop.py --fit box với gltf_min/gltf_size mà prep_lever.py in ra, --tris 3000 --tex 1024
+#   rồi bake_prop.py --fit box với gltf_min/gltf_size mà prep_lever.py in ra, --tris 1400 --tex 1024
 & $B -b --factory-startup -P art_source/graphics_upgrade/room407_shell/build_shell.py      # 6 GLB vỏ phòng
 & $B -b --factory-startup -P art_source/graphics_upgrade/room407_shell/build_outside.py    # outside.glb
 godot --headless --path game --import
@@ -41,7 +42,7 @@ pwsh tools/test.ps1 -Filter room407_shell
   - trên trần: vết loang có 3 vòng ố, nứt, khói đèn, bụi quanh quạt;
   - trên sàn: lối đi mòn, bụi chân tường và gầm giường, vết vòng xô, vết giày;
   - dấu chân ướt từ cửa nhà tắm tới giường Trung, vũng nước dưới bình lọc.
-- **Cửa:**
+- **Cửa:** cả ba cánh là Tripo (cửa phòng lượt 2), tay nắm Tripo hai mặt ở phía chốt; tay nắm cửa phòng treo lên `Door407/Pivot/HandlePivot` (`floor4.gd`) để cảnh rung tay nắm từ hành lang vẫn rung đúng trục.
   - Cửa phòng: khung gỗ sơn xanh, nẹp 7 cm, 3 bản lề, ngưỡng đá; khung đi theo tường cửa khi game dịch tường 0,105 m (`room407.gd` `DOOR_WALL_PARTS`).
   - Cửa nhà tắm: khung kem.
   - Cửa ban công: khung nhôm sát mép ngoài tường, để cánh mở ra ngoài được gần 180°. D-127: cánh mở sẵn 172°, áp vào tường ngoài phía đông (`fixtures/BalconyDoorPivot`), không chắn lối ra ban công.
@@ -50,7 +51,6 @@ pwsh tools/test.ps1 -Filter room407_shell
 
 ## Chưa xong
 
-- Cánh cửa phòng Tripo lượt 2 (đang dùng tấm tạm sơn xanh).
 - Cửa ban công chưa có va chạm và chưa mở/đóng bằng tay (chỉ đứng mở): làm khi đưa vào bản chơi cùng thao tác tay T-220.
 - Tay nắm Tripo gắn tĩnh trên cánh: khi T-220 vào bản chơi, `DoorHandles.fit` sẽ dùng mô hình này.
 - Đo FPS (hỏi chủ dự án trước).

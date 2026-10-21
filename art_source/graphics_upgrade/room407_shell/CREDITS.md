@@ -18,11 +18,11 @@
 
 ## Tripo (D-084)
 
-`game/assets/models/graphics_pilot/room407_shell/doors/door_bathroom.glb`, `door_balcony.glb`, `door_lever.glb`:
+`game/assets/models/graphics_pilot/room407_shell/doors/door_room.glb` (từ `door_room_r2.glb`), `door_bathroom.glb`, `door_balcony.glb`, `door_lever.glb`:
 - Tripo AI Studio, gói **Pro trả phí**, chủ dự án tạo ngày 22/10/2026 theo prompt chữ trong [`docs/handoff/TRIPO_CUA_PHONG407.md`](../../../docs/handoff/TRIPO_CUA_PHONG407.md) mục 2 (không ảnh đầu vào).
 - Điều khoản lúc tạo: `../tripo/room407_backpack/evidence/tripo_terms_2026-10-12.pdf`, `tripo_commercial_2026-10-12.pdf`.
 - File gốc ở `build/graphics/staging/doors/` (không vào git, mỗi file 63–67 MB), chỉ lưu hash: [`tripo_doors/SHA256SUMS.txt`](tripo_doors/SHA256SUMS.txt).
 - Claude sửa: cắt khung, ép tay nắm in sẵn, lật mặt trước ra sau (cửa nhà tắm) bằng `prep_doors.py`; xoay và thu nhỏ tay nắm bằng `prep_lever.py`; giảm lưới, nướng normal bằng `../tripo/bake_prop.py`.
-- `door_room.glb` lượt 1 không dùng (cửa hai cánh, mục 2b của phiếu); chờ lượt 2.
+- `door_room.glb` lượt 1 không dùng (cửa hai cánh, mục 2b của phiếu); dùng lượt 2 `door_room_r2.glb` (prompt mục 2b, chủ dự án tạo 22/10/2026).
 
 Khai báo nội dung AI (Steam): cánh cửa và tay nắm tạo bằng AI (Tripo AI).

@@ -28,9 +28,9 @@
       "bytes": 1598068
     },
     "fixtures": {
-      "triangles": 21691,
-      "objects": 21,
-      "bytes": 3234704
+      "triangles": 23112,
+      "objects": 23,
+      "bytes": 3314208
     },
     "balcony": {
       "triangles": 1332,
@@ -38,5 +38,5 @@
       "bytes": 91636
     }
   },
-  "triangles": 27803
+  "triangles": 29224
 }

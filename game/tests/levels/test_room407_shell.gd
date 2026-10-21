@@ -99,3 +99,20 @@ func test_textures_stay_within_budget() -> void:
 			"wall_peel_color.jpg", "plastered_wall_02_color.jpg"]:
 		var texture := load(Room407Furnish.SHELL_TEX + file) as Texture2D
 		assert_true(texture.get_width() <= 2048 and texture.get_height() <= 2048, file)
+
+
+func test_room_door_levers_rattle_on_the_handle_pivot() -> void:
+	for t222: bool in [true, false]:
+		var floor4 := (load("res://scenes/levels/floor4/floor4.tscn") as PackedScene).instantiate() as Node3D
+		floor4.get_node("Room407").shell_t222 = t222
+		fixtures.append(floor4)
+		tree.root.add_child(floor4)
+		var handle := floor4.get_node("Door407/Pivot/HandlePivot") as Node3D
+		var levers := handle.find_children("Lever*", "", false, false)
+		assert_eq(levers.size(), 2 if t222 else 0, "levers on the handle pivot (t222 %s)" % t222)
+		assert_eq((handle.get_node("Grip") as Node3D).visible, not t222, "the PS1 box grip only without them")
+		if t222:
+			var leaf := floor4.get_node("Door407/Pivot/RoomDoor") as MeshInstance3D
+			assert_not_null(leaf, "the Tripo leaf hangs on Door407")
+			var spindle := floor4.global_transform.affine_inverse() * handle.global_position
+			assert_true(absf(spindle.y - 1.05) < 0.01, "pivot at the levers' spindle height")

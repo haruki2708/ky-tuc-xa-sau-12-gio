@@ -35,6 +35,7 @@ Integrator xem lượt 1 (ảnh xem nhanh trong Blender, mặt trước, mặt s
 | `door_balcony.glb` | **Đạt**: khung nhôm, kính mờ trên, tấm nhôm dưới, hai mặt đều có chi tiết | Claude cắt tay nắm nhỏ dính trên cánh, bóp ngang cho vừa 0,92 m |
 | `door_bathroom.glb` | **Dùng được**: lá sách, ố chân cửa đẹp; nhưng dính khung bao, có tay nắm, mặt sau trơn | Claude cắt khung, bỏ tay nắm, lấy mặt trước làm luôn mặt sau. Anh/chị muốn thì tạo lại bằng prompt dưới |
 | `door_room.glb` | **Không đạt**: ra **cửa hai cánh**, dính khung, có tay nắm và ổ khóa, mặt sau trơn | **Tạo lại**, file `door_room_r2.glb` |
+| `door_room_r2.glb` (22/10) | **Đạt**: một cánh, 5 ô pano; còn dính khung, tay nắm, mặt sau trơn | Claude cắt khung, bỏ tay nắm, lấy mặt trước làm mặt sau; đã gắn vào cảnh thử |
 
 **Lượt 2, cánh cửa phòng (`door_room_r2.glb`):** nên làm như lần quản lý: tạo ảnh mẫu trong Tripo trước, thấy đúng một cánh rồi mới Image to 3D.
 

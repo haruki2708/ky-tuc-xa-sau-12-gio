@@ -279,14 +279,16 @@ def place_lever(lever, centre, out, bar, parent):
 
 def fixtures():
     bc.GROUP = "fixtures"
-    green = pbr("Room door leaf (until Tripo r2) | CC0 planks repainted", TEX / "frame_green_color.jpg",
-                SCANS / "distressed_painted_planks_normal.jpg", SCANS / "distressed_painted_planks_arm.jpg", 0.6)
     # Leaves where the corner shell had them: floor4.gd hangs RoomDoor on Door407, room407.gd carries
     # BathroomDoor onto the bathroom door's pivot.
-    bc.box("RoomDoor", (1.995, 1.05, 0.02), (0.89, 2.1, 0.04), green, 0.006, 0.9)
     # Tripo leaves (prep_doors.py + ../tripo/bake_prop.py), each with a Tripo lever on both faces at the
     # latch side, the bar toward the hinges (DoorHandles' layout; static until T-220 reaches the game).
+    # floor4.gd moves the room door's levers onto Door407's HandlePivot (the corridor rattle).
     lever = import_glb(DOORS / "door_lever.glb", "DoorLever")
+    room = import_glb(DOORS / "door_room.glb", "RoomDoor")
+    room.location = bc.point((1.995, 0.0, 0.02))
+    for side in (-1, 1):  # room face z 0 (out -z), corridor face z 0.04
+        place_lever(lever, (1.615, 1.05, 0.02 + side * 0.02), (0, 0, side), (1, 0, 0), room)
     bath = import_glb(DOORS / "door_bathroom.glb", "BathroomDoor")
     bath.location = bc.point((5.85, 0.0, -4.0))
     for side in (1, -1):

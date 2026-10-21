@@ -3,6 +3,7 @@ Blender 5.2.2:  blender -b --factory-startup -P prep_doors.py -- <name> <src.glb
 With a triangle count the source is first welded and decimated to it, then edited the same way: the
 low model for bake_prop.py --low (edited full-detail meshes no longer decimate cleanly).
 Tripo gave each leaf extra parts the room cannot use (TRIPO_CUA_PHONG407.md section 2b):
+  door_room_r2   a casing round the leaf, a lever and lock plate on its front, a plain back
   door_bathroom  a casing round the leaf, a lever on its front, a plain back
   door_balcony   its own frame round the leaf, a small knob on the front
 Steps (Tripo's own units, Blender axes: x across, -y the front face, z up from the floor):
@@ -22,6 +23,9 @@ DOORS = {
     # paint_face: Tripo also printed the lever into the leaf's own texture; repaint that patch too.
     "door_bathroom": {"crop": (-0.188, 0.185, 0.0, 0.925), "clamp_front": -0.032,
                       "lever": (-0.195, -0.135, 0.43, 0.53), "face_y": -0.024, "mirror": -0.016, "paint_face": True},
+    # Round 2 of the room door (round 1 came out a double door): casing, lever and lock plate on the west.
+    "door_room_r2": {"crop": (-0.193, 0.193, 0.0, 0.926), "clamp_front": -0.001,
+                     "lever": (-0.2, -0.14, 0.4, 0.6), "face_y": 0.002, "mirror": 0.0185, "paint_face": True},
     "door_balcony": {"crop": (-0.224, 0.224, 0.0, 0.936), "clamp_front": -0.022,
                      "lever": (-0.218, -0.15, 0.41, 0.445), "face_y": -0.020, "mirror": None},
 }

@@ -28,6 +28,18 @@ func _hang_furnished_door() -> void:
 	pivot.rotation.y = angle
 	for mesh: MeshInstance3D in $Door407/Pivot/Leaf.find_children("*", "MeshInstance3D", true, false):
 		mesh.visible = false
+	# T-222: a leaf with its own levers (the Tripo door) turns them on HandlePivot, so the corridor
+	# rattle shakes them about their spindle; the box grip hides.
+	var levers := leaf.find_children("Lever*", "", false, false)
+	if not levers.is_empty():
+		var handle := $Door407/Pivot/HandlePivot as Node3D
+		var spindle := Vector3.ZERO
+		for lever: Node3D in levers:
+			spindle += lever.global_position / levers.size()
+		handle.global_position = spindle
+		for lever: Node3D in levers:
+			lever.reparent(handle)
+		($Door407/Pivot/HandlePivot/Grip as Node3D).visible = false
 	for path: String in DRAWN_BY_FURNISHED_ROOM:
 		(get_node(path) as Node3D).visible = false
 	# D-104: corridor lights reaching into the furnished room cast shadows so its walls keep them out.
