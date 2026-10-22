@@ -35,7 +35,6 @@ uniform int debug_channel = -1;
 void fragment() {
 	vec4 m = texture(mask, UV2);
 	vec4 nf = texture(noise, UV * 2.3);
-	vec4 nc = texture(noise, UV * 0.41 + vec2(0.31, 0.77));
 	vec3 albedo = texture(base_albedo, UV).rgb * base_tint;
 	vec3 arm = texture(base_arm, UV).rgb;
 	vec3 nrm = texture(base_normal, UV).rgb;
@@ -46,25 +45,38 @@ void fragment() {
 	if (kind == 0) {
 		// Paint loss: the painted edge follows the scan's own flakes and a little noise, with a dirty rim.
 		vec2 luv = UV * layer_scale;
+		vec2 nuv = UV * 0.41 + vec2(0.31, 0.77);
+		// Most of the room keeps its paint and has no stain or mould (D-132): the layer and the coarse
+		// noise are read only where they show, with gradients taken here so their mip level is unchanged.
+		vec2 luv_dx = dFdx(luv);
+		vec2 luv_dy = dFdy(luv);
+		vec2 nuv_dx = dFdx(nuv);
+		vec2 nuv_dy = dFdy(nuv);
 		float edge = m.r * peel_strength + (nf.r - 0.5) * 0.3 + (nf.a - 0.5) * 0.3;
 		float peel = smoothstep(0.42, 0.5, edge);
 		float rim = smoothstep(0.3, 0.42, edge) * (1.0 - peel);
-		albedo = mix(albedo, texture(layer_albedo, luv).rgb * base_tint, peel) * (1.0 - 0.3 * rim);
-		nrm = mix(nrm, texture(layer_normal, luv).rgb, peel);
-		vec3 larm = texture(layer_arm, luv).rgb;
-		rough = mix(rough, larm.g, peel);
-		ao = mix(ao, larm.r, peel);
+		if (peel > 0.0) {
+			albedo = mix(albedo, textureGrad(layer_albedo, luv, luv_dx, luv_dy).rgb * base_tint, peel);
+			nrm = mix(nrm, textureGrad(layer_normal, luv, luv_dx, luv_dy).rgb, peel);
+			vec3 larm = textureGrad(layer_arm, luv, luv_dx, luv_dy).rgb;
+			rough = mix(rough, larm.g, peel);
+			ao = mix(ao, larm.r, peel);
+		}
+		albedo *= 1.0 - 0.3 * rim;
 		albedo = mix(albedo, albedo * grime_color, grime);
 		rough = min(rough + 0.12 * grime, 1.0);
-		// Water: yellow-brown, tide lines drawn into the mask darker than the body.
-		float stain = clamp(m.b * stain_strength * (0.85 + 0.3 * nc.r), 0.0, 1.0);
-		albedo = mix(albedo, albedo * stain_color, stain);
-		albedo *= 1.0 - 0.18 * smoothstep(0.75, 1.0, m.b) * stain_strength;
-		// Mould: speckles that thicken into patches.
-		float spores = nf.r * 0.55 + nf.a * 0.25 + nc.g * 0.2;
-		float mould = smoothstep(1.0 - m.a * mould_strength, 1.12 - m.a * mould_strength, spores) * step(0.02, m.a);
-		albedo = mix(albedo, mould_color, mould * 0.85);
-		rough = mix(rough, 0.95, mould);
+		if (m.b > 0.0 || m.a >= 0.02) {
+			vec4 nc = textureGrad(noise, nuv, nuv_dx, nuv_dy);
+			// Water: yellow-brown, tide lines drawn into the mask darker than the body.
+			float stain = clamp(m.b * stain_strength * (0.85 + 0.3 * nc.r), 0.0, 1.0);
+			albedo = mix(albedo, albedo * stain_color, stain);
+			albedo *= 1.0 - 0.18 * smoothstep(0.75, 1.0, m.b) * stain_strength;
+			// Mould: speckles that thicken into patches.
+			float spores = nf.r * 0.55 + nf.a * 0.25 + nc.g * 0.2;
+			float mould = smoothstep(1.0 - m.a * mould_strength, 1.12 - m.a * mould_strength, spores) * step(0.02, m.a);
+			albedo = mix(albedo, mould_color, mould * 0.85);
+			rough = mix(rough, 0.95, mould);
+		}
 	} else {
 		// Grout lines are the dark creases of the scan's AO.
 		float grout = smoothstep(0.985, 0.82, ao);

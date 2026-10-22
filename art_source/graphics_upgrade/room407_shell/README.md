@@ -49,11 +49,11 @@ pwsh tools/test.ps1 -Filter room407_shell
   - Bản lề và va chạm cửa ban công: `game/scenes/levels/room407/balcony_door.tscn`; `room407.gd` đặt nó lên trục của vỏ và treo cánh lên (D-129).
 - **Ban công:** chiếc khăn chương 2 (`Anchors/TowelSpot`, đồ cầm được) chuyển lên dây phơi mới và vẽ bằng khăn Tripo (`placements_t222.json`, `room407.gd` `T222_*`); thêm 2 áo phơi.
 - **Bên ngoài** [`build_outside.py`](build_outside.py): 9 phòng × 6 tầng mỗi dãy, cách 22 m. Đồ xa không vát cạnh, gộp theo vật liệu (khoảng 22.600 tam giác). Trời, ô cửa sáng đèn và đèn sân không bị sương mù che (`Room407Furnish.OUTSIDE_UNLIT`).
+- **FPS** (D-131, D-132, [`tools/reports/D-131-room407-t222-performance.md`](../../../tools/reports/D-131-room407-t222-performance.md)): shader `game/rendering/room407_shell.gdshader` chỉ đọc lớp sơn bong và nhiễu thô ở chỗ cần (hình không đổi, `previews/compare_d132.jpg`); 1080p thấp nhất 86 FPS.
 
 ## Chưa xong
 
 - Người chơi chưa tự đóng/mở cửa ban công trong bản chơi (mở/đóng bằng tay có trong cảnh thử T-220): làm cùng T-220 bước 5 (D-130).
 - Tay nắm Tripo gắn tĩnh trên cánh; cảnh thử T-220 gắn `HandTarget` lên chúng (`DoorHandles.take`).
-- FPS (D-131, `tools/reports/D-131-room407-t222-performance.md`): 1080p thấp nhất 75 FPS, chậm chủ yếu do shader `room407_shell.gdshader`; tối ưu shader chờ chủ dự án chọn.
 
 Nguồn và giấy phép: [`CREDITS.md`](CREDITS.md). Ảnh: `previews/before/`, `previews/after/`, so sánh `previews/compare_*.jpg`.

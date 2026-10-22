@@ -1,5 +1,5 @@
 # T-222 — Nâng vỏ phòng 407 (tường, trần, sàn, cửa, ban công) cho hợp đồ Tripo
-- Lane: **chủ dự án + Claude** (chủ dự án tạo các cánh cửa và tay nắm trên Tripo; Claude làm phần còn lại, ghi "Claude làm thay B") | Trạng thái: **D-129: vào bản chơi (22/10/2026); D-130: người chơi tự đóng/mở cửa ban công làm cùng T-220 bước 5; D-131: FPS 1080p thấp nhất 75, chờ chủ dự án chọn có tối ưu shader vỏ không** | Agent: chủ dự án + Claude
+- Lane: **chủ dự án + Claude** (chủ dự án tạo các cánh cửa và tay nắm trên Tripo; Claude làm phần còn lại, ghi "Claude làm thay B") | Trạng thái: **D-129: vào bản chơi (22/10/2026); D-130: người chơi tự đóng/mở cửa ban công làm cùng T-220 bước 5; D-131: đo FPS; D-132: tối ưu shader vỏ, 1080p thấp nhất 86 FPS, hình không đổi** | Agent: chủ dự án + Claude
 - Quyết định:
   - **D-126**. Chủ dự án: "Tôi duyệt hướng này để bạn viết card T-222, BAN CÔNG THÊM CỬA".
   - **D-127**: cửa ban công là cửa cánh nhôm kính có tay nắm gạt, mở sẵn lúc vào chương.
@@ -7,6 +7,7 @@
   - **D-129**: chủ dự án duyệt ảnh ("ok tôi thấy ok rồi đấy"), vỏ mới vào bản chơi.
   - **D-130**: người chơi tự đóng/mở cửa ban công để tới T-220 bước 5 ("chọn phương án a đi").
   - **D-131**: đo FPS ([báo cáo](../../tools/reports/D-131-room407-t222-performance.md)).
+  - **D-132**: tối ưu shader vỏ ngay, hình không đổi ("chọn (a)").
 - Phụ thuộc:
   - **G3** (T-215, D-103…D-114): vỏ phòng hiện là vỏ của góc phòng T-213, vật liệu CC0, dựng bằng `game/scenes/levels/room407/room407_furnish.gd` từ `game/data/room407/`;
   - **T-220, D-124:** tay nắm cửa gạt (`DoorHandles`, `HandTarget.lever`), camera nhìn theo tay nên khung cửa và tay nắm bị nhìn rất gần;
@@ -184,6 +185,14 @@ Chủ dự án chọn cả hai đề xuất của integrator:
 - Nguyên nhân chính là shader bẩn `game/rendering/room407_shell.gdshader`: tường và trần đọc 9 texture mỗi điểm ảnh. Thay bằng chất liệu thường thì gần bằng vỏ cũ. Cảnh bên ngoài tốn khoảng 0,5 ms; khung cửa gần như không tốn gì.
 - Phần dư cho G4 ở góc nặng nhất còn khoảng 3,4 ms (D-114: 6,5 ms).
 
+### Tối ưu shader vỏ (22/10/2026, D-132, Claude làm thay B)
+
+[Báo cáo mục 4](../../tools/reports/D-131-room407-t222-performance.md).
+- `game/rendering/room407_shell.gdshader` chỉ đọc 3 texture lớp sơn bong ở chỗ sơn thật sự bong (theo mặt nạ: 1–2% tường và trần, 13% ban công), và chỉ đọc nhiễu thô ở chỗ có vết nước hoặc mốc. Sàn không còn đọc nhiễu thô (không dùng tới).
+- Gradient lấy trước khi rẽ nhánh (`textureGrad`), nên mức mip giữ nguyên. Chỗ bị bỏ qua vốn trộn với trọng số 0, nên về toán học hình không đổi.
+- **Hình:** 38 ảnh (19 góc × đèn pin/đèn trần) lệch tối đa 1/255 so với trước; ảnh so sánh `art_source/graphics_upgrade/room407_shell/previews/compare_d132.jpg`.
+- **FPS 1080p:** góc nặng nhất từ 75 lên 86 (13,3 → 11,6 ms mỗi frame); khi chỉ có đèn pin thấp nhất 112 FPS; dư khoảng 5 ms cho G4 (D-114: 6,5 ms).
+- Cả bộ test: 834/834.
+
 **Chưa làm:**
-- tối ưu shader vỏ (gần như không đổi hình, ví dụ chỉ đọc lớp sơn bong ở chỗ sơn bong): chờ chủ dự án chọn;
 - người chơi tự đóng/mở cửa ban công trong bản chơi: làm cùng T-220 bước 5 (D-130).

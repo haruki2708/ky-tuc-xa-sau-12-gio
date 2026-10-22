@@ -1,4 +1,4 @@
-# D-131 — Đo FPS phòng 407 với vỏ T-222 (22/10/2026)
+# D-131 — Đo FPS phòng 407 với vỏ T-222 (22/10/2026); D-132 tối ưu shader vỏ (mục 4)
 
 Máy: AMD Ryzen 5 5600H, NVIDIA GeForce RTX 3050 Laptop GPU, màn hình 144 Hz. Godot 4.7.2, Forward+ (Vulkan), VSync tắt, không giới hạn FPS.
 Bản đo: `main` sau D-130 (`d11bc8f`). Vỏ mới T-222 là vỏ của bản chơi từ D-129; vỏ góc T-213 cũ (`--shell-corner`) đo lại cùng lúc để so.
@@ -73,10 +73,64 @@ Mỗi lượt tắt một phần của vỏ, đo 3 góc. Lượt "gốc" chạy 
 - Khung và nẹp cửa gần như không tốn gì.
 - Về hình học, vỏ rất nhẹ: các phần của vỏ cộng lại khoảng 30.000 tam giác (cảnh bên ngoài 22.588), còn đồ Tripo trong phòng khoảng 560.000.
 
-## Kết luận
+## Kết luận (D-131)
 - Mục tiêu 1080p/60 FPS trên RTX 3050 Laptop vẫn **đạt** ở mọi góc: thấp nhất 75 FPS khi đèn trần nhấp nháy, 94 FPS khi chỉ có đèn pin.
 - **Phần dư cho G4 giảm.**
   - Ở góc nặng nhất, mỗi frame dùng 13,3 ms trên 16,7 ms, còn khoảng 3,4 ms. Lúc D-114 còn khoảng 6,5 ms.
   - Lượng này phải đủ cho thân người chơi (T-220 bước 5), HUD, âm thanh, story, quản lý và xác.
-- Tối ưu được mà gần như không đổi hình. Ví dụ: chỉ đọc lớp sơn bong ở chỗ sơn thật sự bong, vì phần lớn tường không bong. Chờ chủ dự án chọn.
+- Tối ưu được mà gần như không đổi hình. Chủ dự án chọn làm ngay: D-132, mục 4.
 - Chưa đo: chương thật có player, HUD, âm thanh, story, xác và quản lý.
+
+## 4. D-132 (22/10/2026): tối ưu shader vỏ, hình không đổi
+Trên tường và trần, các mặt nạ cho thấy:
+- sơn bong chỉ ở 1–2% diện tích (ban công 13%);
+- vết nước hoặc mốc ở khoảng 15%.
+
+Vì vậy `room407_shell.gdshader` giờ chỉ đọc 3 texture lớp sơn bong ở chỗ sơn thật sự bong, và chỉ đọc nhiễu thô ở chỗ có vết nước hoặc mốc. Sàn không còn đọc nhiễu thô, vì sàn chưa bao giờ dùng nó.
+- Gradient lấy trước khi rẽ nhánh (`textureGrad`) nên mức mip không đổi.
+- Ở chỗ bị bỏ qua, phép trộn vốn có trọng số 0, nên kết quả về toán học không đổi.
+
+**Hình:** chụp lại 19 góc × 2 kiểu đèn, so từng điểm ảnh với ảnh trước khi sửa.
+- Chênh lệch lớn nhất là 1/255 mức màu, tức là sai số làm tròn.
+- Riêng `back_overview_tube` có vài điểm lệch, nhưng chạy lại đúng shader cũ cũng lệch y như vậy, nên đó là nhiễu khi vẽ, không do shader.
+- Ảnh so sánh (trước | sau | chênh lệch ×32): `art_source/graphics_upgrade/room407_shell/previews/compare_d132.jpg`.
+
+**Thử thêm:** lọc thường thay lọc bất đẳng hướng cho bản đồ độ nhám/AO. Nhanh hơn không đáng kể mà hình đổi chút ít (lệch tới 14/255), nên không dùng.
+
+**FPS 1080p (FPS trung bình, torch / tube):**
+
+| Góc | Trước D-132 | **Sau D-132** |
+|---|---|---|
+| centre | 100,7 / 82,3 | 112,3 / 89,6 |
+| door_overview | 94,4 / 75,4 | 112,0 / **86,0** |
+| back_overview | 108,4 / 92,2 | 126,0 / 103,7 |
+| mirror_full | 111,9 / 84,8 | 121,3 / 87,9 |
+| mirror_bath | 141,7 / 112,1 | 153,1 / 117,5 |
+| bathroom | 146,6 / 116,5 | 158,1 / 121,4 |
+| corridor_door | 194,3 / 152,1 | 205,4 / 149,5 |
+| balcony_side | 116,7 / 99,1 | 139,6 / 113,2 |
+| balcony_out | 298,3 / 212,0 | 317,8 / 219,9 |
+| balcony_back | 219,0 / 162,9 | 220,5 / 173,4 |
+
+- `balcony_side` và `balcony_back` lấy trung bình 2 lượt đo xen kẽ shader cũ và mới trong cùng buổi. Shader cũ lúc đó đạt 116,4 / 97,8 và 208,9 / 158,4.
+- Lượt đo đầu của `balcony_back` (192 FPS) là dao động: hai lượt sau đều được 220.
+- Góc nặng nhất từ 75,4 lên 86,0 FPS (13,3 → 11,6 ms mỗi frame), còn dư khoảng 5,0 ms. Khi chỉ có đèn pin, thấp nhất 112 FPS.
+- p95 cao nhất: 13,9 ms (`mirror_full`, đèn trần), vì gương phản chiếu thật.
+- Vỏ cũ ở góc nặng nhất đạt 96,7 FPS. Phần chênh còn lại khoảng 1,3 ms là nền, nhiễu mịn và mặt nạ (đọc ở mọi điểm vì vết bẩn phủ khắp phòng), cộng với cảnh bên ngoài.
+
+**720p sau D-132:**
+
+| Góc | torch / tube |
+|---|---|
+| centre | 183,7 / 132,5 |
+| door_overview | 180,5 / 130,2 |
+| back_overview | 214,1 / 165,5 |
+| mirror_full | 187,7 / 122,5 |
+| mirror_bath | 196,4 / 151,3 |
+| bathroom | 265,1 / 172,5 |
+| corridor_door | 289,0 / 251,3 |
+| balcony_side | 243,4 / 196,5 |
+| balcony_out | 495,8 / 357,3 |
+| balcony_back | 331,4 / 215,7 |
+
+5 góc cuối đo lại vì lượt đầu bị khóa 144,9 FPS. Ở 720p, khi FPS trên khoảng 150 thì số dao động nhiều giữa các lượt; mọi góc vẫn trên 120 FPS.
