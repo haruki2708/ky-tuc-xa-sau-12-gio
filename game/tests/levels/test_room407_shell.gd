@@ -80,6 +80,17 @@ func test_door_wall_parts_move_with_the_corridor_wall() -> void:
 		assert_true(absf((room.get_node("Furnished/" + part) as Node3D).position.z - original - shift) < 0.0001, part)
 
 
+## D-133: the old corridor wall no longer shows between the doorway and the narrower Tripo leaf.
+func test_room_door_stop_shuts_the_latch_gap() -> void:
+	var room := spawn()
+	var strip := _room_box(room, room.get_node("Furnished/frames/RoomDoorStop") as MeshInstance3D)
+	var wall := _room_box(room, room.get_node("Furnished/architecture/FrontWallWest") as MeshInstance3D)
+	var leaf := _room_box(room, room.get_node("Furnished/fixtures/RoomDoor") as MeshInstance3D)
+	assert_true(strip.position.x <= wall.end.x + 0.001, "from the doorway's edge")
+	assert_true(strip.end.x >= leaf.position.x - 0.001, "to the leaf's latch edge")
+	assert_true(strip.position.z <= leaf.position.z + 0.001 and strip.end.z >= leaf.end.z - 0.001, "as deep as the leaf")
+
+
 func test_tripo_bathroom_door_swings_with_its_levers() -> void:
 	var room := spawn()
 	var leaf := room.get_node("Extension/BathroomDoor/Pivot/BathroomDoor") as MeshInstance3D
@@ -226,5 +237,8 @@ func test_room_door_levers_rattle_on_the_handle_pivot() -> void:
 		if t222:
 			var leaf := floor4.get_node("Door407/Pivot/RoomDoor") as MeshInstance3D
 			assert_not_null(leaf, "the Tripo leaf hangs on Door407")
+			for lever: MeshInstance3D in levers:
+				var length := lever.get_aabb().size.x * lever.global_basis.get_scale().x
+				assert_true(length > 0.13, "D-133: a main door's lever, %.3f m" % length)
 			var spindle := floor4.global_transform.affine_inverse() * handle.global_position
 			assert_true(absf(spindle.y - 1.05) < 0.01, "pivot at the levers' spindle height")

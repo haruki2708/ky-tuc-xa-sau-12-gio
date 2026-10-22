@@ -72,7 +72,7 @@ func _ready() -> void:
 	torch.name = "Flashlight"
 	torch.position = Vector3(0.1, -0.08, -0.15)
 	torch.light_color = Color(0.9, 0.94, 1)
-	torch.light_energy = 2.5
+	torch.light_energy = 1.5
 	torch.shadow_enabled = true
 	torch.spot_range = 12.0
 	torch.spot_angle = 28.0

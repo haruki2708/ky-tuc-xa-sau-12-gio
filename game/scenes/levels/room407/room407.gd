@@ -41,6 +41,9 @@ const DOOR_WALL_PARTS: Array[String] = ["architecture/FrontWallWest", "architect
 	"architecture/DoorLintel", "fixtures/RoomDoor", "TripoProps/Conduits",
 	# T-222 shell only.
 	"frames/RoomDoorFrame", "floor/FrontSkirtingWest", "floor/FrontSkirtingEast"]
+## D-133: the Tripo room door leaf is 5 cm narrower than the shell's doorway on its latch side, where
+## the old corridor wall showed through; a strip of the frame's paint (room space, after the shift) shuts it.
+const DOOR_STOP := AABB(Vector3(1.5, 0.0, -0.115), Vector3(0.05, 2.1, 0.05))
 ## Chapter 2 water starts this far below the top of the furnished shower model (under its rose).
 const SHOWER_ROSE_DROP := 0.11
 const TUBE_ENERGY := 1.2
@@ -53,7 +56,8 @@ const ROOM_ENVIRONMENT := {"ambient_light_color": Color(0.48, 0.57, 0.7), "ambie
 	"fog_light_color": Color(0.012, 0.014, 0.018), "fog_density": 0.06}
 ## D-113: the furnished room's night lights (moon through the balcony door, bathroom bulb) dimmed.
 const NIGHT_LIGHTS := {"WindowBlue": 0.2, "Extension/BathLight": 0.06}
-const ROOM_TORCH := {"light_energy": 5.0, "spot_angle": 38.0, "spot_angle_attenuation": 1.3,
+## D-133 (owner): the torch was too bright; inside it is as strong as everywhere else, only wider.
+const ROOM_TORCH := {"light_energy": 1.5, "spot_angle": 38.0, "spot_angle_attenuation": 1.3,
 	"spot_range": 10.0, "light_size": 0.025}
 const TUBE_LIGHT := {"light_color": Color(0.88, 0.94, 0.80), "omni_range": 9.0, "light_size": 0.25,
 	"shadow_enabled": true, "flicker_energy": 2.6}
@@ -206,6 +210,8 @@ func _furnish() -> void:
 		var part := _furnished.get_node_or_null(path) as Node3D
 		if part:
 			part.position.z += DOOR_WALL_SHIFT
+	if shell_t222:
+		_stop_door_gap()
 	for prop: Node3D in props.get_children():
 		var row: Dictionary = prop.get_meta(&"placement")
 		if row.get("mount", "") == "wall" and row.position[2] > -0.05:
@@ -369,6 +375,18 @@ func _fit_mirror_effects(mirror: Node3D) -> void:
 func _fit_shower_water(shower: Node3D) -> void:
 	var bounds: AABB = shower.transform * Room407Furnish.local_bounds(shower)
 	($Ch2Bathroom/Water as Node3D).position.y = bounds.end.y - SHOWER_ROSE_DROP
+
+
+func _stop_door_gap() -> void:
+	var frame := _furnished.get_node("frames/RoomDoorFrame") as MeshInstance3D
+	var stop := MeshInstance3D.new()
+	stop.name = "RoomDoorStop"
+	var box := BoxMesh.new()
+	box.size = DOOR_STOP.size
+	stop.mesh = box
+	stop.material_override = frame.get_active_material(0)
+	frame.get_parent().add_child(stop)
+	stop.global_transform = global_transform * Transform3D(Basis(), DOOR_STOP.get_center())
 
 
 ## The room door leaf of the shell, for floor4.gd to hang on Door407 (null without the furnished room).

@@ -203,7 +203,7 @@ func test_no_corridor_face_shares_a_plane_with_the_furnished_walls() -> void:
 	assert_true((plain.get_node("Corridor/RoomPartition_38/Mesh") as Node3D).is_visible_in_tree(), "PS1 room keeps it")
 
 
-func test_room_is_darker_and_the_torch_stronger_inside_only() -> void:
+func test_room_is_darker_and_the_torch_wider_inside_only() -> void:
 	var floor4 := spawn(FLOOR)
 	var room := floor4.get_node("Room407") as Node3D
 	var environment := (floor4.get_node("Environment") as WorldEnvironment).environment
@@ -214,13 +214,13 @@ func test_room_is_darker_and_the_torch_stronger_inside_only() -> void:
 	camera.make_current()
 	var torch := SpotLight3D.new()
 	torch.name = "Flashlight"
-	torch.light_energy = 2.5
+	torch.light_energy = 1.5
 	torch.spot_angle = 28.0
 	camera.add_child(torch)
 	camera.global_position = room.to_global(Vector3(2.8, 1.6, 2.0))
 	await wait_frames(30)
 	assert_eq(environment.ambient_light_energy, outside_ambient, "the corridor keeps floor 4's night")
-	assert_eq(torch.light_energy, 2.5)
+	assert_eq(torch.light_energy, 1.5)
 	camera.global_position = room.to_global(Vector3(4.0, 1.6, -3.0))
 	await wait_frames(60)
 	assert_true(is_equal_approx(environment.ambient_light_energy, room.ROOM_ENVIRONMENT.ambient_light_energy), "room night as dark as the pilot")

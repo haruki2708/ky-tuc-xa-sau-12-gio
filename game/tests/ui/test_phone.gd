@@ -76,7 +76,7 @@ func test_phone_visibility_status_and_gameplay_ownership() -> void:
 	assert_true(phone.state.flashlight)
 	await wait_frames(2)
 	var rect: Rect2 = phone.get_node("Root/Phone").get_global_rect()
-	assert_true(absf(rect.size.y - 1080.0 * 0.35) < 1.0)
+	assert_true(absf(rect.size.y - 1080.0 * 0.66) < 1.0, "D-133: twice the old phone")
 	assert_true(rect.end.y < 968.0, "phone leaves the normal HUD subtitle strip clear")
 	EventBus.phone_raised.emit(false)
 	assert_false(phone.get_node("Root/Phone").visible)
@@ -147,6 +147,22 @@ func test_transcript_members_subtitles_and_live_locale() -> void:
 	await wait_frames(2)
 	assert_true(transcript.get_parsed_text().contains("Test member A:"))
 	assert_eq(_subtitles.size(), 2, "translation refresh does not replay subtitles")
+
+
+## D-133: the larger phone keeps the tabs, the choices and an incoming call readable.
+func test_choices_lie_on_the_chat_and_calls_above_the_phone() -> void:
+	EventBus.phone_raised.emit(true)
+	EventBus.chat_choice_requested.emit(&"preview_choice", OPTIONS)
+	EventBus.phone_call_incoming.emit(&"preview")
+	await wait_frames(2)
+	var body: Rect2 = phone.get_node("Root/Phone").get_global_rect()
+	var choices: Rect2 = phone.get_node("Root/Choices").get_global_rect()
+	var incoming: Rect2 = phone.get_node("Root/Incoming").get_global_rect()
+	assert_true(body.encloses(choices), "choices over the phone's chat")
+	assert_true(choices.position.y > body.position.y + 60.0, "the status line and tabs stay visible")
+	assert_true(incoming.end.y <= body.position.y, "the call banner above the phone")
+	var sheet := (phone.get_node("Root/Choices") as PanelContainer).get_theme_stylebox("panel") as StyleBoxFlat
+	assert_eq(sheet.bg_color.a, 1.0, "opaque over the chat")
 
 
 func test_choices_raise_phone_number_keys_and_single_completion() -> void:

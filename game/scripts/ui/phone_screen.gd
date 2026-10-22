@@ -70,6 +70,19 @@ func _ready() -> void:
 	paper.content_margin_bottom = 18
 	$Root/Phone.add_theme_stylebox_override("panel", paper)
 	$Root/Phone.draw.connect(_draw_phone_shell)
+	# D-133: the choices lie over the top of the larger phone's chat, opaque so its lines don't show through.
+	var sheet := StyleBoxFlat.new()
+	sheet.bg_color = Color(0.03, 0.06, 0.066, 1)
+	sheet.set_border_width_all(2)
+	sheet.border_color = Color("788776")
+	sheet.set_corner_radius_all(16)
+	sheet.shadow_color = Color(0, 0, 0, 0.6)
+	sheet.shadow_size = 10
+	sheet.content_margin_left = 24
+	sheet.content_margin_right = 24
+	sheet.content_margin_top = 16
+	sheet.content_margin_bottom = 16
+	$Root/Choices.add_theme_stylebox_override("panel", sheet)
 	var battery := Control.new()
 	battery.name = "BatteryIcon"
 	battery.mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -206,7 +219,6 @@ func _refresh_visibility() -> void:
 	var blocked := _blocked()
 	var predicting: bool = is_instance_valid(prediction) and not prediction.member.is_empty()
 	predicting = predicting or (is_instance_valid(ch4) and ch4.is_active())
-	$Root/Phone.anchor_top = 0.37 if predicting else 0.54
 	$Root/Phone/Content/MembersScroll.visible = not predicting and state.tab == 0
 	$Root/Phone/Content/ScrollHint.visible = not predicting and state.tab == 0
 	tools_view.visible = not predicting

@@ -5,6 +5,9 @@ extends Node3D
 ## partition flickered against the furnished east wall above the bathroom tiles). The furnished
 ## wall draws them; their collision stays.
 const DRAWN_BY_FURNISHED_ROOM: Array[String] = ["Corridor/RoomPartition_38/Mesh"]
+## D-133 (owner: no handle on the door into 407): the Tripo levers were 10 cm, small and dark in the
+## corridor wall's 20 cm recess; a main door's 14 cm lever shows from the corridor.
+const LEVER_SCALE := 1.4
 
 
 func _ready() -> void:
@@ -39,6 +42,7 @@ func _hang_furnished_door() -> void:
 		handle.global_position = spindle
 		for lever: Node3D in levers:
 			lever.reparent(handle)
+			lever.scale *= LEVER_SCALE
 		($Door407/Pivot/HandlePivot/Grip as Node3D).visible = false
 	for path: String in DRAWN_BY_FURNISHED_ROOM:
 		(get_node(path) as Node3D).visible = false

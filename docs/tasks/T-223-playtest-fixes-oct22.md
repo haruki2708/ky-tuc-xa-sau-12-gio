@@ -1,5 +1,5 @@
 # T-223 — Sửa lỗi chơi thử 22/10: tay nắm cửa phòng 407, đèn pin, khung điện thoại
-- Lane: **integrator** (Claude làm thay B/D) | Trạng thái: **đang làm** | Agent: Claude Code ở máy (Opus 5.5)
+- Lane: **integrator** (Claude làm thay B/D) | Trạng thái: **xong (22/10/2026), chờ chủ dự án chơi bản build mới** | Agent: Claude Code ở máy (Opus 5.5)
 - Quyết định: **D-133**. Chủ dự án chơi chương 1 bản 22/10 21:51 và báo lỗi, rồi chọn đèn pin mức D, khung điện thoại kiểu B.
 - Liên quan: [T-224](T-224-manager-ch1-beds-chase-physics.md) (lỗi quản lý chủ dự án báo cùng lúc).
 
@@ -38,3 +38,23 @@
 - Ảnh trước/sau cho cả 3 mục.
 - Bộ test và `check.ps1`.
 - Build lại bản chơi thử.
+
+## Đã làm (22/10/2026, Claude làm thay B/D)
+1. **Cửa phòng 407:**
+   - `room407.gd` `DOOR_STOP`, `_stop_door_gap`: một nẹp 5 cm cùng màu sơn khung (`Furnished/frames/RoomDoorStop`) bịt khe giữa ô cửa và cánh Tripo.
+   - `floor4.gd` `LEVER_SCALE` 1,4: tay nắm dài khoảng 14,6 cm như tay nắm cửa chính, nhìn từ hành lang thấy rõ.
+   - Ảnh trước/sau (hành lang thẳng, từ phía tây, từ phía đông, trong phòng): `art_source/graphics_upgrade/room407_shell/previews/compare_d133_door.jpg`.
+2. **Đèn pin 1,5:**
+   - `phone_item.tscn` và `room407.gd` `ROOM_TORCH`. Trong phòng đèn chỉ còn rộng hơn (38°), không mạnh hơn.
+   - Hai cảnh chụp (`room407_g3_capture.gd`, `manager_preview.gd`) dùng cùng mức.
+3. **Điện thoại kiểu B:**
+   - Khung `Root/Phone` ngang 0,50–0,98, dọc 0,22–0,88. Cùng cỡ với mẫu B nhưng dời lên trên 8% để không che phụ đề ở đáy màn hình.
+   - Câu chọn (`Choices`) nằm trên phần chat của điện thoại (0,51–0,97 × 0,30–0,62), nền đặc nên chữ chat bên dưới không lộ ra; thanh trạng thái và các thẻ vẫn thấy.
+   - Cuộc gọi đến (`Incoming`) dời lên trên khung (0,04–0,20).
+   - Ô gõ chữ chương 2 và chương 4 không cần đẩy mép trên lên nữa vì khung đã đủ cao.
+   - Ảnh: `game/ui/phone/previews/d133_chat_choices_vi.png`, `d133_camera_vi.png`.
+4. **Test:**
+   - `test_room_door_stop_shuts_the_latch_gap`;
+   - tay nắm cửa phòng dài hơn 13 cm;
+   - khung điện thoại cao 0,66 màn hình, câu chọn nằm trong khung, cuộc gọi đến nằm trên khung, nền câu chọn đặc;
+   - cả bộ 836/836, `check.ps1` 0 lỗi.
