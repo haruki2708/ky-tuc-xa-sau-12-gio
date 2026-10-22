@@ -1,11 +1,12 @@
 # T-222 — Nâng vỏ phòng 407 (tường, trần, sàn, cửa, ban công) cho hợp đồ Tripo
-- Lane: **chủ dự án + Claude** (chủ dự án tạo các cánh cửa và tay nắm trên Tripo; Claude làm phần còn lại, ghi "Claude làm thay B") | Trạng thái: **D-129: vào bản chơi (22/10/2026); D-130: người chơi tự đóng/mở cửa ban công làm cùng T-220 bước 5; chờ đo FPS (hỏi trước)** | Agent: chủ dự án + Claude
+- Lane: **chủ dự án + Claude** (chủ dự án tạo các cánh cửa và tay nắm trên Tripo; Claude làm phần còn lại, ghi "Claude làm thay B") | Trạng thái: **D-129: vào bản chơi (22/10/2026); D-130: người chơi tự đóng/mở cửa ban công làm cùng T-220 bước 5; D-131: FPS 1080p thấp nhất 75, chờ chủ dự án chọn có tối ưu shader vỏ không** | Agent: chủ dự án + Claude
 - Quyết định:
   - **D-126**. Chủ dự án: "Tôi duyệt hướng này để bạn viết card T-222, BAN CÔNG THÊM CỬA".
   - **D-127**: cửa ban công là cửa cánh nhôm kính có tay nắm gạt, mở sẵn lúc vào chương.
   - **D-128**: lượt 1 (vỏ mới, ban công, cửa nhà tắm, cửa ban công, tay nắm Tripo) trong cảnh thử.
   - **D-129**: chủ dự án duyệt ảnh ("ok tôi thấy ok rồi đấy"), vỏ mới vào bản chơi.
   - **D-130**: người chơi tự đóng/mở cửa ban công để tới T-220 bước 5 ("chọn phương án a đi").
+  - **D-131**: đo FPS ([báo cáo](../../tools/reports/D-131-room407-t222-performance.md)).
 - Phụ thuộc:
   - **G3** (T-215, D-103…D-114): vỏ phòng hiện là vỏ của góc phòng T-213, vật liệu CC0, dựng bằng `game/scenes/levels/room407/room407_furnish.gd` từ `game/data/room407/`;
   - **T-220, D-124:** tay nắm cửa gạt (`DoorHandles`, `HandTarget.lever`), camera nhìn theo tay nên khung cửa và tay nắm bị nhìn rất gần;
@@ -175,6 +176,14 @@ Chủ dự án chọn cả hai đề xuất của integrator:
   - bản chơi dùng vỏ mới; vỏ cũ vẫn dựng được.
 - Cả bộ test: 834/834.
 
+### Đo FPS (22/10/2026, D-131)
+
+[Báo cáo](../../tools/reports/D-131-room407-t222-performance.md). Cách đo giống D-114, thêm 3 góc ban công, vỏ cũ đo lại cùng lúc để so.
+- 1080p vẫn đạt ≥60 ở mọi góc: thấp nhất 75 FPS (`door_overview`, đèn trần nhấp nháy), 94 FPS khi chỉ có đèn pin. D-114 vỏ cũ: 97,7 và 124.
+- Các góc trong phòng chậm hơn vỏ cũ 20–25%, góc nặng nhất thêm khoảng 2,9 ms mỗi frame.
+- Nguyên nhân chính là shader bẩn `game/rendering/room407_shell.gdshader`: tường và trần đọc 9 texture mỗi điểm ảnh. Thay bằng chất liệu thường thì gần bằng vỏ cũ. Cảnh bên ngoài tốn khoảng 0,5 ms; khung cửa gần như không tốn gì.
+- Phần dư cho G4 ở góc nặng nhất còn khoảng 3,4 ms (D-114: 6,5 ms).
+
 **Chưa làm:**
-- đo FPS phòng 407 (hỏi chủ dự án trước), so với D-114;
+- tối ưu shader vỏ (gần như không đổi hình, ví dụ chỉ đọc lớp sơn bong ở chỗ sơn bong): chờ chủ dự án chọn;
 - người chơi tự đóng/mở cửa ban công trong bản chơi: làm cùng T-220 bước 5 (D-130).

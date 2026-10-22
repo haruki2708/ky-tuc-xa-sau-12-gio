@@ -54,6 +54,6 @@ pwsh tools/test.ps1 -Filter room407_shell
 
 - Người chơi chưa tự đóng/mở cửa ban công trong bản chơi (mở/đóng bằng tay có trong cảnh thử T-220): làm cùng T-220 bước 5 (D-130).
 - Tay nắm Tripo gắn tĩnh trên cánh; cảnh thử T-220 gắn `HandTarget` lên chúng (`DoorHandles.take`).
-- Đo FPS (hỏi chủ dự án trước).
+- FPS (D-131, `tools/reports/D-131-room407-t222-performance.md`): 1080p thấp nhất 75 FPS, chậm chủ yếu do shader `room407_shell.gdshader`; tối ưu shader chờ chủ dự án chọn.
 
 Nguồn và giấy phép: [`CREDITS.md`](CREDITS.md). Ảnh: `previews/before/`, `previews/after/`, so sánh `previews/compare_*.jpg`.

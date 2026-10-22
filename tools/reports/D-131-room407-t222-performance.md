@@ -1,0 +1,82 @@
+# D-131 — Đo FPS phòng 407 với vỏ T-222 (22/10/2026)
+
+Máy: AMD Ryzen 5 5600H, NVIDIA GeForce RTX 3050 Laptop GPU, màn hình 144 Hz. Godot 4.7.2, Forward+ (Vulkan), VSync tắt, không giới hạn FPS.
+Bản đo: `main` sau D-130 (`d11bc8f`). Vỏ mới T-222 là vỏ của bản chơi từ D-129; vỏ góc T-213 cũ (`--shell-corner`) đo lại cùng lúc để so.
+
+## Cách đo
+Cách đo giống [D-114](D-114-room407-performance.md), dùng cảnh tạm `game/_probe_tmp/perf.tscn` (đã xóa):
+- dựng như `room407_g3_capture.gd`: tầng 4 và phòng đủ đồ, không có player, HUD, âm thanh, story, xác hay quản lý;
+- đèn bàn bật, FOV 75;
+- mỗi góc: 90 frame khởi động, rồi lấy mẫu 240 frame;
+- "torch" là đèn pin bật; "tube" là đèn trần ở đỉnh nhấp nháy, trường hợp nặng nhất.
+
+D-114 có 7 góc. Lần này thêm 3 góc ban công (`balcony_side`, `balcony_out`, `balcony_back`) cho phần cảnh bên ngoài mới.
+
+**Lưu ý khi đo lại:**
+- Chạy trong cửa sổ thì đôi khi giữa chừng mọi góc đứng im ở đúng 144,9 FPS (p95 7,0 ms), tức là bị khóa theo tần số quét màn hình. Đã bỏ hết các dòng này, và một lượt vỏ cũ phải đo lại.
+- Đặt cửa sổ luôn nằm trên cùng thì cửa sổ thành 1920×1057 (chừa thanh tác vụ). Vỏ mới đo ở 1920×1057 và 1920×1080 chênh nhau dưới 1%: góc `door_overview` lần lượt 94,9 và 94,4 FPS.
+
+## 1. 1080p: vỏ cũ và vỏ mới (FPS trung bình, torch / tube)
+
+| Góc | D-114, vỏ cũ (15/10) | Vỏ cũ, đo lại (1920×1057) | **Vỏ mới T-222** (1920×1080) |
+|---|---|---|---|
+| centre | 123,8 / 103,9 | 128,3 / 101,1 | 100,7 / 82,3 |
+| door_overview | 130,9 / 97,7 | 125,4 / 96,7 | 94,4 / **75,4** |
+| back_overview | 134,4 / 109,9 | 134,8 / 107,6 | 108,4 / 92,2 |
+| mirror_full | 135,7 / 100,8 | 129,9 / 97,2 | 111,9 / 84,8 |
+| mirror_bath | 153,3 / 122,2 | 151,7 / 122,5 | 141,7 / 112,1 |
+| bathroom | 200,6 / 162,7 | 172,4 / 133,7 | 146,6 / 116,5 |
+| corridor_door | 235,9 / 177,7 | 243,8 / 172,4 | 194,3 / 152,1 |
+| balcony_side | — | 158,7 / 126,8 | 116,7 / 99,1 |
+| balcony_out | — | 572,0 / 530,5 | 298,3 / 212,0 |
+| balcony_back | — | 315,0 / 241,8 | 219,0 / 162,9 |
+
+- Vỏ cũ đo lại gần đúng như D-114, nên so được với các số cũ.
+- Vỏ mới thấp nhất 75,4 FPS (`door_overview`, đèn trần); khi chỉ có đèn pin thì thấp nhất 94,4 FPS.
+- p95 cao nhất của vỏ mới ở 1080p là 14,4 ms (khoảng 69 FPS), tức mọi frame chậm vẫn dưới 16,7 ms.
+- So với vỏ cũ, các góc nhìn trong phòng chậm hơn 20–25%. Ở góc nặng nhất, mỗi frame tốn thêm khoảng 2,9 ms (10,3 → 13,3 ms).
+
+## 2. 720p (FPS trung bình, torch / tube)
+
+| Góc | Vỏ cũ | Vỏ mới T-222 |
+|---|---|---|
+| centre | 188,0 / 158,2 | 159,6 / 114,9 |
+| door_overview | 198,9 / 143,0 | 152,2 / 115,6 |
+| back_overview | 219,4 / 179,1 | 181,0 / 151,4 |
+| mirror_full | 187,3 / 148,6 | 177,6 / 117,4 |
+| mirror_bath | 210,9 / 163,8 | 230,2 / 151,4 |
+| bathroom | — | 232,8 / 192,0 |
+| corridor_door | — | 332,8 / 225,2 |
+| balcony_side | — | 203,9 / 177,9 |
+| balcony_out | — | 430,3 / 328,7 |
+| balcony_back | — | 325,1 / 262,3 |
+
+Các ô "—" của vỏ cũ là các dòng bị khóa 144,9 FPS nên đã bỏ.
+
+## 3. Phần nào của vỏ mới tốn thời gian (1080p, vỏ mới)
+Mỗi lượt tắt một phần của vỏ, đo 3 góc. Lượt "gốc" chạy 2 lần (đầu và cuối) và cho kết quả lặp lại.
+
+| Thử | centre | door_overview | balcony_out |
+|---|---|---|---|
+| gốc (lần 1 / lần 2) | 99,5 / 81,9 và 98,8 / 82,4 | 95,5 / 75,4 và 94,6 / 74,5 | 300,5 / 214,2 và 297,0 / 209,9 |
+| chất liệu thường thay shader bẩn (chỉ màu + normal) | 117,3 / 93,8 | **124,5 / 91,6** | 301,8 / 223,1 |
+| ẩn cảnh bên ngoài | 105,4 / 87,5 | 100,3 / 78,6 | 367,0 / 243,3 |
+| ẩn cảnh bên ngoài + ban công | 106,6 / 87,4 | 98,7 / 79,5 | 579,5 / 433,7 |
+| ẩn khung và nẹp cửa | 99,5 / 82,7 | 94,3 / 75,2 | 293,6 / 214,6 |
+| ẩn trần | 102,3 / 85,2 | 108,1 / 83,6 | 295,3 / 210,3 |
+
+- **Phần lớn chi phí nằm ở shader bẩn `game/rendering/room407_shell.gdshader`** (tường, trần, sàn, ban công).
+  - Ở tường và trần (sơn trên vữa), mỗi điểm ảnh đọc 9 texture: nền 3, lớp sơn bong 3, mặt nạ 1, nhiễu 2. Sàn đọc 6.
+  - Thay bằng chất liệu thường thì góc `door_overview` gần bằng vỏ cũ, nhanh hơn khoảng 2,4–2,5 ms mỗi frame.
+  - Ẩn trần giảm khoảng 1,3 ms, vì trần chiếm nhiều điểm ảnh và cũng dùng shader này.
+- Cảnh bên ngoài tốn khoảng 0,5–0,6 ms khi đứng trong phòng.
+- Khung và nẹp cửa gần như không tốn gì.
+- Về hình học, vỏ rất nhẹ: các phần của vỏ cộng lại khoảng 30.000 tam giác (cảnh bên ngoài 22.588), còn đồ Tripo trong phòng khoảng 560.000.
+
+## Kết luận
+- Mục tiêu 1080p/60 FPS trên RTX 3050 Laptop vẫn **đạt** ở mọi góc: thấp nhất 75 FPS khi đèn trần nhấp nháy, 94 FPS khi chỉ có đèn pin.
+- **Phần dư cho G4 giảm.**
+  - Ở góc nặng nhất, mỗi frame dùng 13,3 ms trên 16,7 ms, còn khoảng 3,4 ms. Lúc D-114 còn khoảng 6,5 ms.
+  - Lượng này phải đủ cho thân người chơi (T-220 bước 5), HUD, âm thanh, story, quản lý và xác.
+- Tối ưu được mà gần như không đổi hình. Ví dụ: chỉ đọc lớp sơn bong ở chỗ sơn thật sự bong, vì phần lớn tường không bong. Chờ chủ dự án chọn.
+- Chưa đo: chương thật có player, HUD, âm thanh, story, xác và quản lý.
