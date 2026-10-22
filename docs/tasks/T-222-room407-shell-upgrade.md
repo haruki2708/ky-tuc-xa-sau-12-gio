@@ -1,10 +1,11 @@
 # T-222 — Nâng vỏ phòng 407 (tường, trần, sàn, cửa, ban công) cho hợp đồ Tripo
-- Lane: **chủ dự án + Claude** (chủ dự án tạo các cánh cửa và tay nắm trên Tripo; Claude làm phần còn lại, ghi "Claude làm thay B") | Trạng thái: **D-129: vào bản chơi (22/10/2026); chờ chủ dự án chọn có cho người chơi tự đóng/mở cửa ban công không, đo FPS (hỏi trước)** | Agent: chủ dự án + Claude
+- Lane: **chủ dự án + Claude** (chủ dự án tạo các cánh cửa và tay nắm trên Tripo; Claude làm phần còn lại, ghi "Claude làm thay B") | Trạng thái: **D-129: vào bản chơi (22/10/2026); D-130: người chơi tự đóng/mở cửa ban công làm cùng T-220 bước 5; chờ đo FPS (hỏi trước)** | Agent: chủ dự án + Claude
 - Quyết định:
   - **D-126**. Chủ dự án: "Tôi duyệt hướng này để bạn viết card T-222, BAN CÔNG THÊM CỬA".
   - **D-127**: cửa ban công là cửa cánh nhôm kính có tay nắm gạt, mở sẵn lúc vào chương.
   - **D-128**: lượt 1 (vỏ mới, ban công, cửa nhà tắm, cửa ban công, tay nắm Tripo) trong cảnh thử.
   - **D-129**: chủ dự án duyệt ảnh ("ok tôi thấy ok rồi đấy"), vỏ mới vào bản chơi.
+  - **D-130**: người chơi tự đóng/mở cửa ban công để tới T-220 bước 5 ("chọn phương án a đi").
 - Phụ thuộc:
   - **G3** (T-215, D-103…D-114): vỏ phòng hiện là vỏ của góc phòng T-213, vật liệu CC0, dựng bằng `game/scenes/levels/room407/room407_furnish.gd` từ `game/data/room407/`;
   - **T-220, D-124:** tay nắm cửa gạt (`DoorHandles`, `HandTarget.lever`), camera nhìn theo tay nên khung cửa và tay nắm bị nhìn rất gần;
@@ -160,7 +161,7 @@ Chủ dự án chọn cả hai đề xuất của integrator:
   - hộp va chạm lấy đúng kích thước cánh, không tính tay nắm;
   - mở sẵn đúng góc vỏ dựng (172°, D-127), `set_open(false)` đóng kín ô cửa;
   - như cửa nhà tắm, đây chỉ là hình khối: chương nào cần đóng/mở thì gọi `set_open`.
-- **Người chơi chưa tự đóng/mở cửa ban công trong bản chơi** (giống cửa nhà tắm). Nếu cho đóng thì quản lý (chương 1) phải biết mở cửa này như cửa nhà tắm, và đường ra ban công thêm 1 giây. Chờ chủ dự án chọn.
+- **Người chơi chưa tự đóng/mở cửa ban công trong bản chơi** (giống cửa nhà tắm). Nếu cho đóng thì quản lý (chương 1) phải biết mở cửa này như cửa nhà tắm, và đường ra ban công thêm 1 giây. **D-130:** chủ dự án chọn để tới T-220 bước 5.
 - **Cảnh thử T-220** (`protagonist_pilot.tscn`):
   - tay nắm Tripo nhận tay ở cửa phòng, cửa nhà tắm và cửa ban công (`DoorHandles.take`, điểm nắm trên thanh gạt Tripo);
   - cửa ban công mở/đóng bằng tay: phải ra ban công, đứng trước cánh đang áp tường;
@@ -176,4 +177,4 @@ Chủ dự án chọn cả hai đề xuất của integrator:
 
 **Chưa làm:**
 - đo FPS phòng 407 (hỏi chủ dự án trước), so với D-114;
-- người chơi tự đóng/mở cửa ban công trong bản chơi: chờ chủ dự án chọn (ngay, hoặc cùng T-220 bước 5).
+- người chơi tự đóng/mở cửa ban công trong bản chơi: làm cùng T-220 bước 5 (D-130).

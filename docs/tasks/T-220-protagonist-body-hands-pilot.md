@@ -144,7 +144,8 @@ Chủ dự án chơi thử mẫu này để quyết hai việc:
 - **Đưa vào bản chơi (bước 5):**
   - thân phản chiếu trong gương đang là bản PS1 có độ trễ (chương 2); cảnh thử ẩn nó đi;
   - lúc nấp thì ẩn thân;
-  - cửa quay vào người khi đứng quá gần.
+  - cửa quay vào người khi đứng quá gần;
+  - cửa ban công phòng 407 (D-130): người chơi mở/đóng bằng tay như cảnh thử; quản lý chương 1 mở cửa này như cửa nhà tắm (`chapter1_director.gd` `_bathroom_door_between`).
 
 ### D-124 (20/10/2026): chủ dự án chốt 3 câu và thêm tay nắm cửa (Claude làm thay A/B)
 
