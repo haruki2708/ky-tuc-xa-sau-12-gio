@@ -86,16 +86,6 @@
 			}
 		},
 		{
-			"file": "door_press_tube.png",
-			"shot": {
-				"action": "door",
-				"at": 0.6,
-				"id": "door_press_tube",
-				"light": "tube",
-				"spot": "door"
-			}
-		},
-		{
 			"file": "door_pull_tube.png",
 			"shot": {
 				"action": "door",
@@ -130,16 +120,6 @@
 			}
 		},
 		{
-			"file": "bath_door_press_tube.png",
-			"shot": {
-				"action": "bath_door",
-				"at": 0.6,
-				"id": "bath_door_press_tube",
-				"light": "tube",
-				"spot": "bath_door"
-			}
-		},
-		{
 			"file": "bath_door_side_tube.png",
 			"shot": {
 				"action": "bath_door",
@@ -147,19 +127,6 @@
 				"id": "bath_door_side_tube",
 				"light": "tube",
 				"spot": "bath_door",
-				"third": true
-			}
-		},
-		{
-			"file": "lever_close_tube.png",
-			"shot": {
-				"action": "door",
-				"at": 0.6,
-				"eye": "(32.15, 1.3, -0.62)",
-				"id": "lever_close_tube",
-				"light": "tube",
-				"look": "(31.76, 1.05, -0.13)",
-				"spot": "door",
 				"third": true
 			}
 		},
@@ -266,6 +233,60 @@
 				"light": "tube",
 				"look": "(31.3, 1.45, -4.2)",
 				"spot": "paper",
+				"third": true
+			}
+		},
+		{
+			"file": "door_press_tube.png",
+			"shot": {
+				"action": "door",
+				"at": 0.6,
+				"id": "door_press_tube",
+				"light": "tube",
+				"spot": "door"
+			}
+		},
+		{
+			"file": "bath_door_press_tube.png",
+			"shot": {
+				"action": "bath_door",
+				"at": 0.6,
+				"id": "bath_door_press_tube",
+				"light": "tube",
+				"spot": "bath_door"
+			}
+		},
+		{
+			"file": "balcony_door_reach_torch.png",
+			"shot": {
+				"action": "balcony_door",
+				"at": 0.45,
+				"id": "balcony_door_reach_torch",
+				"light": "torch",
+				"spot": "balcony_door"
+			}
+		},
+		{
+			"file": "balcony_door_side_tube.png",
+			"shot": {
+				"action": "balcony_door",
+				"at": 0.8,
+				"id": "balcony_door_side_tube",
+				"light": "tube",
+				"spot": "balcony_door",
+				"third": true
+			}
+		},
+		{
+			"file": "lever_close_tube.png",
+			"shot": {
+				"action": "door",
+				"at": 0.6,
+				"eye": "(32.15, 1.3, -0.62)",
+				"id": "lever_close_tube",
+				"light": "tube",
+				"look": "(31.76, 1.05, -0.13)",
+				"spot": "door",
 				"third": true
 			}
 		}

@@ -1,5 +1,6 @@
 extends TestCase
 ## T-215 (D-102): the playable room 407 draws the furnished room and keeps every gameplay node.
+## D-129: with the T-222 shell, whose only new physics is the balcony door (D-127).
 
 const ROOM := "res://scenes/levels/floor4/room_407.tscn"
 const FLOOR := "res://scenes/levels/floor4/floor4.tscn"
@@ -37,23 +38,26 @@ func _row(name: String) -> Dictionary:
 	return {}
 
 
-func test_furnished_room_is_built_with_every_prop_and_decal() -> void:
+func test_furnished_room_is_built_with_every_prop() -> void:
 	var room := spawn(ROOM)
 	var furnished := room.get_node("Furnished")
-	for part in ["floor", "architecture", "fixtures"]:
+	for part: String in Room407Furnish.SHELL_PARTS["t222"]:
 		assert_not_null(furnished.get_node_or_null(part), part)
-	var carried: int = room.FOLLOW.size()
+	var carried: int = room.FOLLOW.merged(room.T222_FOLLOW).size()
 	var props := furnished.get_node("TripoProps")
-	assert_eq(props.get_child_count() + carried, Room407Furnish.placements().size(), "every row is placed once")
-	assert_eq(furnished.get_node("Decals").get_child_count(), Room407Furnish.decal_rows().size())
+	assert_eq(props.get_child_count() + carried, Room407Furnish.placements("t222").size(), "every row is placed once")
+	assert_eq(furnished.get_node("Decals").get_child_count(), 0, "the T-222 shell paints its grime in")
 	for node: Node in furnished.find_children("*", "", true, false):
 		assert_false(node is CollisionObject3D or node is CollisionShape3D, "visual only: " + String(furnished.get_path_to(node)))
 
 
 func test_physics_and_navigation_are_unchanged() -> void:
 	var old := _physics(spawn(ROOM, false))
-	var new := _physics(spawn(ROOM))
-	assert_eq(new.size(), old.size(), "same collision/navigation nodes")
+	var room := spawn(ROOM)
+	var new := _physics(room).filter(func(entry: Array) -> bool:
+		return not String(entry[0]).begins_with("Extension/BalconyDoor"))
+	assert_not_null(room.get_node_or_null("Extension/BalconyDoor/Pivot/Leaf/Collision"), "D-127: the balcony door is new")
+	assert_eq(new.size(), old.size(), "same collision/navigation nodes besides it")
 	for i in old.size():
 		assert_eq(new[i][0], old[i][0])
 		# Viet's locker door and its pivot follow the model's hinge (a few cm).
@@ -77,7 +81,8 @@ func test_ps1_meshes_give_way_except_story_and_puzzle_ones() -> void:
 		if _is_furnished(mesh, room):
 			continue
 		var path := String(room.get_path_to(mesh))
-		var keep: bool = room._matches(path, room.KEEP_PS1) and not room._matches(path, room.REPLACED_PS1)
+		var keep: bool = room._matches(path, room.KEEP_PS1) and not room._matches(path, room.REPLACED_PS1) \
+				and not room._matches(path, room.T222_REPLACED_PS1)
 		var before := old.get_node_or_null(path) as MeshInstance3D
 		if before == null:
 			continue  # runtime meshes get unique names per instance
@@ -132,7 +137,7 @@ func test_viet_locker_and_bathroom_door_swing_on_their_hinges() -> void:
 func test_door_wall_meets_the_corridor_wall_and_tubes_follow_the_main_light() -> void:
 	var room := spawn(ROOM)
 	var wall := room.get_node("Furnished/architecture/FrontWallWest") as Node3D
-	var shell := (load(Room407Furnish.SHELL + "architecture.glb") as PackedScene).instantiate() as Node3D
+	var shell := (load(Room407Furnish.SHELL_T222 + "architecture.glb") as PackedScene).instantiate() as Node3D
 	var rest: float = (shell.get_node("FrontWallWest") as Node3D).position.z
 	shell.free()
 	assert_true(absf(wall.position.z - (rest + room.DOOR_WALL_SHIFT)) < 0.001, "door wall moved onto the corridor wall")

@@ -178,6 +178,13 @@ Chủ dự án chơi thử mẫu này để quyết hai việc:
   - cửa nhôm kính lùa.
 - **Tay nắm:** dùng bản Blender đang có, hay chủ dự án tạo bản Tripo (giống thật hơn, có vết xước)?
 
+### T-222 (22/10/2026, D-129): tay nắm Tripo và cửa ban công trong cảnh thử (Claude làm thay A/B)
+
+- Vỏ phòng T-222 vào bản chơi, nên cảnh thử cũng dùng vỏ mới. Cả 3 cửa đã có tay nắm Tripo gắn sẵn: `DoorHandles.take` gắn `HandTarget` lên chúng, thay cho `DoorHandles.fit` (tay nắm PS1 tạm). Điểm nắm `TRIPO_GRIP_POINT` nằm trên thanh gạt Tripo (ngắn hơn, đứng xa mặt cửa hơn bản tạm).
+- Cửa ban công (`Extension/BalconyDoor`) mở/đóng bằng tay như cửa nhà tắm (`HandHinge`). Vùng bấm đi theo cánh: mở sẵn thì cánh áp tường ngoài, phải ra ban công mới với tới.
+- Chụp: `-- --body-capture --shots=a,b` chụp lại vài ảnh, giữ phần còn lại của báo cáo. Đã chụp lại `door_press_tube`, `lever_close_tube`, `bath_door_press_tube` (tay trên thanh gạt Tripo) và thêm `balcony_door_reach_torch`, `balcony_door_side_tube`.
+- Đóng cửa ban công từ ngoài ban công thì cánh quay qua chỗ người chơi đứng: cùng việc "cửa quay vào người khi đứng quá gần" của bước 5.
+
 ### D-125 (20/10/2026): cửa nhà vệ sinh mở xong biến mất, đã sửa (cả bản chơi)
 
 - **Chủ dự án:** "ok tôi thấy ok rồi", rồi báo "khi mở cửa nhà vệ sinh, mở xong thì cánh cửa mất ( điều này rất phi vật lý )".

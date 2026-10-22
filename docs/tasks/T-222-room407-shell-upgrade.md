@@ -1,9 +1,10 @@
 # T-222 — Nâng vỏ phòng 407 (tường, trần, sàn, cửa, ban công) cho hợp đồ Tripo
-- Lane: **chủ dự án + Claude** (chủ dự án tạo các cánh cửa và tay nắm trên Tripo; Claude làm phần còn lại, ghi "Claude làm thay B") | Trạng thái: **lượt 1 xong trong cảnh thử (D-128); chờ chủ dự án xem ảnh và tạo cửa phòng Tripo lượt 2** | Agent: chủ dự án + Claude
+- Lane: **chủ dự án + Claude** (chủ dự án tạo các cánh cửa và tay nắm trên Tripo; Claude làm phần còn lại, ghi "Claude làm thay B") | Trạng thái: **D-129: vào bản chơi (22/10/2026); chờ chủ dự án chọn có cho người chơi tự đóng/mở cửa ban công không, đo FPS (hỏi trước)** | Agent: chủ dự án + Claude
 - Quyết định:
   - **D-126**. Chủ dự án: "Tôi duyệt hướng này để bạn viết card T-222, BAN CÔNG THÊM CỬA".
   - **D-127**: cửa ban công là cửa cánh nhôm kính có tay nắm gạt, mở sẵn lúc vào chương.
   - **D-128**: lượt 1 (vỏ mới, ban công, cửa nhà tắm, cửa ban công, tay nắm Tripo) trong cảnh thử.
+  - **D-129**: chủ dự án duyệt ảnh ("ok tôi thấy ok rồi đấy"), vỏ mới vào bản chơi.
 - Phụ thuộc:
   - **G3** (T-215, D-103…D-114): vỏ phòng hiện là vỏ của góc phòng T-213, vật liệu CC0, dựng bằng `game/scenes/levels/room407/room407_furnish.gd` từ `game/data/room407/`;
   - **T-220, D-124:** tay nắm cửa gạt (`DoorHandles`, `HandTarget.lever`), camera nhìn theo tay nên khung cửa và tay nắm bị nhìn rất gần;
@@ -151,6 +152,28 @@ Chủ dự án chọn cả hai đề xuất của integrator:
 - Tay nắm nướng lại còn 1.372 tam giác.
 - 9 test.
 
+### Lượt 2 (22/10/2026, D-129): vào bản chơi (Claude làm thay B, Opus 5.5)
+
+- **Bản chơi dùng vỏ mới:** `room407.gd` `shell_t222` mặc định bật. Tắt thì về vỏ góc T-213: `room407_g3_capture.tscn -- --g3-capture --shell-corner` vẫn chụp được ảnh trước; không cờ thì chụp đúng phòng như trong game.
+- **Cửa ban công có bản lề và va chạm** (`game/scenes/levels/room407/balcony_door.tscn`, `balcony_door.gd`):
+  - `room407.gd` đặt `Extension/BalconyDoor` lên trục bản lề của vỏ, treo cánh Tripo lên `Pivot` của nó;
+  - hộp va chạm lấy đúng kích thước cánh, không tính tay nắm;
+  - mở sẵn đúng góc vỏ dựng (172°, D-127), `set_open(false)` đóng kín ô cửa;
+  - như cửa nhà tắm, đây chỉ là hình khối: chương nào cần đóng/mở thì gọi `set_open`.
+- **Người chơi chưa tự đóng/mở cửa ban công trong bản chơi** (giống cửa nhà tắm). Nếu cho đóng thì quản lý (chương 1) phải biết mở cửa này như cửa nhà tắm, và đường ra ban công thêm 1 giây. Chờ chủ dự án chọn.
+- **Cảnh thử T-220** (`protagonist_pilot.tscn`):
+  - tay nắm Tripo nhận tay ở cửa phòng, cửa nhà tắm và cửa ban công (`DoorHandles.take`, điểm nắm trên thanh gạt Tripo);
+  - cửa ban công mở/đóng bằng tay: phải ra ban công, đứng trước cánh đang áp tường;
+  - lệnh chụp có `--shots=a,b` để chụp lại vài ảnh; thêm 2 ảnh `balcony_door_*`.
+- **Test** `test_room407_shell.gd`, 14 test, thêm:
+  - va chạm đúng bằng cánh;
+  - đóng kín ô cửa; quay từ đóng tới mở không lấn vào phòng, không xuyên lan can hay vách ngăn;
+  - tay nắm phía tường không chạm tường;
+  - cánh mở cách mọi cạnh đường đi của quản lý (`ManagerNavigation`) từ 0,3 m trở lên;
+  - tay nắm Tripo của 3 cửa nhận tay, ấn thì thanh gạt đi xuống;
+  - bản chơi dùng vỏ mới; vỏ cũ vẫn dựng được.
+- Cả bộ test: 834/834.
+
 **Chưa làm:**
-- cửa ban công chưa có va chạm và chưa mở/đóng bằng tay (làm khi đưa vào bản chơi cùng T-220);
-- đo FPS (hỏi chủ dự án trước).
+- đo FPS phòng 407 (hỏi chủ dự án trước), so với D-114;
+- người chơi tự đóng/mở cửa ban công trong bản chơi: chờ chủ dự án chọn (ngay, hoặc cùng T-220 bước 5).

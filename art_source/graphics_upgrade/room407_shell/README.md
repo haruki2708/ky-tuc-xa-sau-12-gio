@@ -1,6 +1,6 @@
 # Vỏ phòng 407 nâng cấp — cảnh thử (T-222, D-126, D-127)
 
-Thay vỏ phòng của góc thử T-213 (`../room407_corner/`) bằng vỏ cùng mức cũ bẩn với đồ Tripo: tường, trần, sàn, gạch chân tường, khung và nẹp cửa, ngưỡng đá, máng đèn, mạng nhện, ban công (sàn, lan can, vách ngăn, cửa nhôm kính mở sẵn, đồ phơi) và cảnh bên ngoài (ban công hàng xóm, sân, cây, dãy ký túc đối diện, trời đêm). **Bản chơi chưa đổi:** `room407.gd` chỉ dùng vỏ này khi `shell_t222 = true` (cảnh chụp).
+Thay vỏ phòng của góc thử T-213 (`../room407_corner/`) bằng vỏ cùng mức cũ bẩn với đồ Tripo: tường, trần, sàn, gạch chân tường, khung và nẹp cửa, ngưỡng đá, máng đèn, mạng nhện, ban công (sàn, lan can, vách ngăn, cửa nhôm kính mở sẵn, đồ phơi) và cảnh bên ngoài (ban công hàng xóm, sân, cây, dãy ký túc đối diện, trời đêm). **Vào bản chơi từ D-129** (22/10/2026): `room407.gd` `shell_t222` mặc định bật; tắt thì về vỏ góc T-213 (ảnh trước, `--shell-corner`).
 
 ## Dựng lại
 
@@ -46,13 +46,14 @@ pwsh tools/test.ps1 -Filter room407_shell
   - Cửa phòng: khung gỗ sơn xanh, nẹp 7 cm, 3 bản lề, ngưỡng đá; khung đi theo tường cửa khi game dịch tường 0,105 m (`room407.gd` `DOOR_WALL_PARTS`).
   - Cửa nhà tắm: khung kem.
   - Cửa ban công: khung nhôm sát mép ngoài tường, để cánh mở ra ngoài được gần 180°. D-127: cánh mở sẵn 172°, áp vào tường ngoài phía đông (`fixtures/BalconyDoorPivot`), không chắn lối ra ban công.
+  - Bản lề và va chạm cửa ban công: `game/scenes/levels/room407/balcony_door.tscn`; `room407.gd` đặt nó lên trục của vỏ và treo cánh lên (D-129).
 - **Ban công:** chiếc khăn chương 2 (`Anchors/TowelSpot`, đồ cầm được) chuyển lên dây phơi mới và vẽ bằng khăn Tripo (`placements_t222.json`, `room407.gd` `T222_*`); thêm 2 áo phơi.
 - **Bên ngoài** [`build_outside.py`](build_outside.py): 9 phòng × 6 tầng mỗi dãy, cách 22 m. Đồ xa không vát cạnh, gộp theo vật liệu (khoảng 22.600 tam giác). Trời, ô cửa sáng đèn và đèn sân không bị sương mù che (`Room407Furnish.OUTSIDE_UNLIT`).
 
 ## Chưa xong
 
-- Cửa ban công chưa có va chạm và chưa mở/đóng bằng tay (chỉ đứng mở): làm khi đưa vào bản chơi cùng thao tác tay T-220.
-- Tay nắm Tripo gắn tĩnh trên cánh: khi T-220 vào bản chơi, `DoorHandles.fit` sẽ dùng mô hình này.
+- Người chơi chưa tự đóng/mở cửa ban công trong bản chơi (mở/đóng bằng tay có trong cảnh thử T-220): chờ chủ dự án chọn.
+- Tay nắm Tripo gắn tĩnh trên cánh; cảnh thử T-220 gắn `HandTarget` lên chúng (`DoorHandles.take`).
 - Đo FPS (hỏi chủ dự án trước).
 
 Nguồn và giấy phép: [`CREDITS.md`](CREDITS.md). Ảnh: `previews/before/`, `previews/after/`, so sánh `previews/compare_*.jpg`.

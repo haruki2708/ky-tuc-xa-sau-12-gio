@@ -82,10 +82,12 @@ func _ready() -> void:
 	floor4 = FLOOR.instantiate() as Node3D
 	room = floor4.get_node("Room407") as Node3D
 	# T-222: -- --shell-t222 (after) or --shell-corner (before) captures the review set into
-	# room407_shell/previews/after|before; --views=a,b picks views by id.
+	# room407_shell/previews/after|before; --views=a,b picks views by id. Without either the room is
+	# built as the game builds it (the T-222 shell since D-129).
 	var args := OS.get_cmdline_user_args()
 	var t222 := "--shell-t222" in args
-	room.shell_t222 = t222
+	if t222 or "--shell-corner" in args:
+		room.shell_t222 = t222
 	add_child(floor4)
 	CHAPTER.place_papers(room.get_node("Anchors") as Node3D, self)
 	for paper: Node3D in find_children("*", "Area3D", false, false):

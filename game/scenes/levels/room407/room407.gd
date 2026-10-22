@@ -9,8 +9,9 @@ var desk_lamp_on: bool = true
 ## T-215 (D-102): the approved furnished room draws the room; the PS1 meshes hide but every
 ## node, collision and API stays. False keeps the PS1 room (comparisons, old captures).
 @export var furnished: bool = true
-## T-222 (D-126): build the furnished room with the upgraded shell. Pilot captures only until approved.
-@export var shell_t222: bool = false
+## T-222 (D-126, D-129): build the furnished room with the upgraded shell (approved 22/10/2026).
+## False keeps the T-213 corner shell (before captures).
+@export var shell_t222: bool = true
 ## PS1 meshes that stay: story states, puzzles and clue props (paths under Room407).
 const KEEP_PS1: Array[String] = ["Anchors", "Details/BloodSeep", "Details/BloodPools", "Details/SlashRips",
 	"Details/Debris", "Details/CleaningRag", "Ch2Bathroom", "Cables", "Zones"]
@@ -26,6 +27,8 @@ const REPLACED_PS1: Array[String] = ["Anchors/VietLocker/Back", "Anchors/VietLoc
 const T222_ANCHORS := {"Anchors/TowelSpot": Vector3(2.8, 2.15, -7.85)}
 const T222_REPLACED_PS1: Array[String] = ["Anchors/TowelSpot/Model"]
 const T222_FOLLOW := {"BalconyTowel": "Anchors/TowelSpot/Model"}
+## T-222 (D-127): the balcony door's hinge and collision; the shell's Tripo leaf swings on it.
+const BALCONY_DOOR := preload("res://scenes/levels/room407/balcony_door.tscn")
 ## Furnished props carried by a moving PS1 node (net stir and hide, mattress lift, slashed pillow).
 const FOLLOW := {"NetViet": "BunkA/Net_Viet", "NetPhuc": "BunkA/Net_Phuc", "NetTrung": "BunkB/Net_Trung",
 	"NetDat": "BunkB/Net_Dat", "MattressPhuc": "Anchors/PhucMattress/Pivot",
@@ -230,6 +233,8 @@ func _furnish() -> void:
 	bath_pivot.rotation.y = 0.0
 	_carry(_furnished.get_node("fixtures/BathroomDoor"), bath_pivot)
 	bath_pivot.rotation.y = angle
+	if shell_t222:
+		_hang_balcony_door()
 	_fit_mirror_effects(props.get_node("MirrorSmall"))
 	_fit_shower_water(props.get_node("Shower"))
 	_trung_blanket = props.get_node("BlanketTrung")
@@ -240,6 +245,23 @@ func _furnish() -> void:
 		(get_node(path) as Light3D).light_energy = NIGHT_LIGHTS[path]
 	for prop_name: String in MIRROR_GLASS:
 		_hang_mirror(props.get_node(prop_name), MIRROR_GLASS[prop_name])
+
+
+## T-222: Extension/BalconyDoor (balcony_door.tscn) on the shell's hinge, open as far as the shell
+## built it; the Tripo leaf rides its Pivot, and the collision box is the leaf's own (no levers).
+func _hang_balcony_door() -> void:
+	var shell_pivot := _furnished.get_node("fixtures/BalconyDoorPivot") as Node3D
+	var leaf := shell_pivot.get_node("BalconyDoor") as MeshInstance3D
+	var door := BALCONY_DOOR.instantiate() as Node3D
+	door.set("open_degrees", rad_to_deg(shell_pivot.rotation.y))
+	$Extension.add_child(door)
+	door.global_position = shell_pivot.global_position
+	_carry(leaf, door.get_node("Pivot"))
+	var box: AABB = leaf.transform * leaf.get_aabb()
+	var shape := BoxShape3D.new()
+	shape.size = box.size
+	(door.get_node("Pivot/Leaf/Collision") as CollisionShape3D).shape = shape
+	(door.get_node("Pivot/Leaf") as Node3D).position = box.get_center()
 
 
 ## D-105: a mirror.gd reflection on the model's glass, 4 mm in front of it, rendered only
