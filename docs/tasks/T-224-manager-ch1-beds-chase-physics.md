@@ -81,4 +81,6 @@ Vì sao đi xuyên đồ:
    - sửa test cũ theo cách mới (chém lặp, quay từ từ, đồ vật lý trong `Furnished`);
    - cả bộ 843/843, `check.ps1` 0 lỗi.
 
-**Chưa làm:** đo FPS phòng 407 có quản lý và vật lý (hỏi chủ dự án trước); người chơi chưa đẩy đồ (đi xuyên như trước).
+**FPS** (23/10, chủ dự án: "đo fps"; [báo cáo mục 5](../../tools/reports/D-131-room407-t222-performance.md)): 1080p có quản lý đứng trong phòng thấp nhất 79,9 FPS (đèn trần), vẫn trên 60; quản lý tốn thêm 0,4–1,5 ms khi thấy ông ta, nhiều hơn với đèn trần và trong gương.
+
+**Chưa làm:** người chơi chưa đẩy đồ (đi xuyên như trước).

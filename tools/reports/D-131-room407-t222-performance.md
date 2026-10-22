@@ -134,3 +134,31 @@ Vì vậy `room407_shell.gdshader` giờ chỉ đọc 3 texture lớp sơn bong 
 | balcony_back | 331,4 / 215,7 |
 
 5 góc cuối đo lại vì lượt đầu bị khóa 144,9 FPS. Ở 720p, khi FPS trên khoảng 150 thì số dao động nhiều giữa các lượt; mọi góc vẫn trên 120 FPS.
+
+## 5. T-224 (23/10/2026): quản lý đứng trong phòng, đồ vật lý, đường đi dựng lại
+Đo cùng cách ở 1080p, với bản sau T-224 (`f79deed`): 16 đồ nhỏ là vật thể vật lý nằm yên, đường đi dựng khi nạp phòng (khoảng 10–18 ms, một lần). Lượt "có quản lý": quản lý Tripo đứng giữa phòng (3,6; −3,6), quay về phía cửa, chạy động tác đứng.
+
+| Góc | Không có quản lý | **Có quản lý** |
+|---|---|---|
+| centre | 109,5 / 88,6 | 105,1 / 84,3 |
+| door_overview | 105,1 / 81,3 | 99,6 / **79,9** |
+| back_overview | 125,9 / 102,1 | 124,0 / 102,4 |
+| mirror_full | 122,4 / 89,7 | 107,1 / 83,4 |
+| mirror_bath | 139,8 / 119,5 | 131,6 / 109,9 |
+| bathroom | 154,1 / 121,6 | 141,7 / 95,3 |
+| corridor_door | 157,4 / 139,7 | 114,0 / 99,6 |
+| balcony_side | 135,7 / 109,3 | 132,6 / 109,3 |
+| balcony_out | 307,6 / 212,0 | 254,4 / 193,3 |
+| balcony_back | 230,2 / 175,1 | 160,7 / 104,3 |
+
+(FPS trung bình, torch / tube; hai lượt chạy liền nhau.)
+
+- **1080p vẫn trên 60 FPS ở mọi góc khi có quản lý:** thấp nhất 79,9 FPS (`door_overview`, đèn trần).
+- Quản lý tốn thêm khoảng 0,4–1,5 ms mỗi frame ở các góc thấy ông ta, nhiều hơn khi đèn trần bật (bóng của đèn trần vẽ thân ông ta thêm 6 lần) và khi ông ta hiện trong gương.
+- Đồ vật lý nằm yên gần như không tốn gì. Không có quản lý, số đo bằng D-132 trong phạm vi dao động.
+- **Dao động lớn trong buổi đo này:**
+  - lượt lặp lại thì mọi số đều tụt 10–30%, kể cả khi không có quản lý (máy nóng hoặc có việc chạy ngầm, game không chạy);
+  - có những lượt bị khóa 144,9 FPS theo màn hình.
+
+  Đã bỏ hết các lượt này; chỉ dùng cặp lượt đầu.
+- Chưa đo: chương thật có người chơi, HUD, âm thanh, story và xác.
