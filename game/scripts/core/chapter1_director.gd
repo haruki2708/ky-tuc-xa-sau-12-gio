@@ -111,6 +111,18 @@ const BED_EXIT := {1: Vector3(31.4, 0.05, -2.2), 2: Vector3(31.4, 0.05, -2.2),
 	3: Vector3(32.6, 0.05, -2.2), 4: Vector3(32.6, 0.05, -2.2)}
 ## Spot in front of Trung's bunk where the manager stands and listens.
 const MANAGER_SPOT := Vector3(33.0, 0.05, -1.9)
+## D-134 (owner): he checks the beds in this order, then comes to Trung's own bed 3.
+const CHECKED_BEDS: Array[int] = [1, 2, 4]
+## Room-local: where he stands at each bed's bunk, by its head end, and the pillow he looks at.
+const BED_CHECK_SPOTS := {1: Vector3(1.55, 0.05, -2.45), 2: Vector3(1.55, 0.05, -2.45),
+	3: Vector3(6.45, 0.05, -2.15), 4: Vector3(6.45, 0.05, -2.15)}
+const BED_PILLOWS := {1: Vector3(0.65, 1.3, -2.33), 2: Vector3(0.65, 0.5, -2.33),
+	3: Vector3(7.35, 0.5, -2.03), 4: Vector3(7.35, 1.3, -2.03)}
+## Degrees he bends to look a bed over, and right down to the face of the one Trung lies on
+## (the upper bunks are at his eye level).
+const BED_LEAN := {1: [10.0, 25.0], 2: [30.0, 55.0], 3: [30.0, 55.0], 4: [10.0, 25.0]}
+const BED_LOOK_SECONDS := 2.5
+const BED_CLOSE_SECONDS := 5.0
 ## The short silence after the question, before he laughs and cuts bed 3 (D-069 1).
 const MANAGER_LISTEN_SECONDS := 2.5
 const DOOR_SPOT := Vector3(32.0, 0.05, 0.6)
@@ -596,7 +608,15 @@ func _manager_at_407() -> void:
 		return
 	if manager != null:
 		manager.set("speed", ROOM_SPEED)
-	await _manager_walk(manager, _manager_spot(), MANAGER_VIA, true)
+	# D-134: bed by bed (1, 2, 4), leaning in close over the one Trung lies on, then his own bed 3.
+	var via := MANAGER_VIA
+	for bed: int in CHECKED_BEDS:
+		await _check_bed(manager, bed, via)
+		via = PackedVector3Array()
+		if _bed == 0:
+			await _manager_kills(manager, &"DEATH_NOT_IN_BED")
+			return
+	await _manager_walk(manager, _bed_spot(TRUNG_BED), via, true)
 	if _bed == 0:
 		await _manager_kills(manager, &"DEATH_NOT_IN_BED")
 		return
@@ -642,6 +662,39 @@ func _manager_at_407() -> void:
 		EventBus.phone_call_lost.emit(&"stranger_call")
 		await _wait(2.0)
 		_die(&"DEATH_LOST_NHAT")
+
+
+## D-134: he walks to bed's bunk and looks it over toward its pillow, bent forward; over the bed
+## Trung lies on he leans right down to his face and stays longer. Getting up cuts it short.
+func _check_bed(manager: Node3D, bed: int, via: PackedVector3Array) -> void:
+	var spot := _bed_spot(bed)
+	if manager == null or manager.global_position.distance_to(spot) > 0.3:
+		await _manager_walk(manager, spot, via, true)
+	if _bed == 0 or manager == null:
+		return
+	var close := bed == _bed
+	var room := _room() as Node3D
+	if manager.has_method("face") and room != null:
+		manager.face(room.to_global(BED_PILLOWS[bed]))
+	if manager.has_method("lean"):
+		manager.lean(BED_LEAN[bed][1 if close else 0])
+	await _wait_until(func() -> bool: return _bed == 0, BED_CLOSE_SECONDS if close else BED_LOOK_SECONDS)
+	if is_instance_valid(manager) and manager.has_method("lean"):
+		manager.lean(0.0)
+
+
+## Where he stands to check bed (on his navigation mesh when it has one).
+func _bed_spot(bed: int) -> Vector3:
+	var room := _room() as Node3D
+	if room == null:
+		return _manager_spot()
+	var spot: Vector3 = room.to_global(BED_CHECK_SPOTS[bed])
+	var map := room.get_world_3d().navigation_map
+	if NavigationServer3D.map_get_iteration_id(map) > 0:
+		var on_mesh := NavigationServer3D.map_get_closest_point(map, spot)
+		if on_mesh.distance_to(spot) < 0.5:
+			spot = Vector3(on_mesh.x, spot.y, on_mesh.z)
+	return spot
 
 
 ## He tries the handle: a short rattle of the leaf, then the latch (if Trung set

@@ -3,9 +3,10 @@ extends Node3D
 ## manager.gd finds the AnimationPlayer, BladeTip and LeftArm (door reach) by name. On its own
 ## (chapter 2's mirror flash) the body stands breathing instead of in its bind pose.
 
-## Clips that repeat while their state lasts (ask is Tripo "wait", hand on hip, D-120);
-## slash and kill restart per call.
-const LOOPING: Array[StringName] = [&"stand", &"walk", &"ask", &"lunge"]
+## Clips that repeat while their state lasts (ask is Tripo "wait", hand on hip, D-120); kill
+## restarts per call. T-224 (D-134): slash loops too, one chop per cycle, instead of snapping
+## back to its start at each chop.
+const LOOPING: Array[StringName] = [&"stand", &"walk", &"ask", &"lunge", &"slash"]
 
 
 func _ready() -> void:
@@ -16,3 +17,9 @@ func _ready() -> void:
 				player.get_animation(clip).loop_mode = Animation.LOOP_LINEAR
 		if not player.is_playing() and player.has_animation(&"stand"):
 			player.play(&"stand")
+		# T-224: the right wrist keeps its "stand" grip on the cleaver through every clip.
+		var lock := find_child("RightWristLock", true, false) as BoneLockModifier
+		if lock != null and player.has_animation(&"stand"):
+			var grip: Variant = BoneLockModifier.clip_rotation(player.get_animation(&"stand"), lock.bone)
+			if grip is Quaternion:
+				lock.locked_rotation = grip

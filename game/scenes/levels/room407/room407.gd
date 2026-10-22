@@ -241,6 +241,9 @@ func _furnish() -> void:
 	bath_pivot.rotation.y = angle
 	if shell_t222:
 		_hang_balcony_door()
+		# T-224 (D-134): the small props the manager knocks over, his path around everything else.
+		Room407Obstacles.make_dynamic(self, props)
+		Room407Obstacles.bake_navigation(self, $ManagerNavigation)
 	_fit_mirror_effects(props.get_node("MirrorSmall"))
 	_fit_shower_water(props.get_node("Shower"))
 	_trung_blanket = props.get_node("BlanketTrung")

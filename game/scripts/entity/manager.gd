@@ -8,12 +8,20 @@ signal slashed(target: Node3D)
 signal slash_finished
 signal heard_movement
 signal door_opened
+## He leans toward degrees (D-134: looking a bed over; 0 straightens up).
+signal leaned(degrees: float)
 
 enum State { IDLE, WALKING, SPEAKING, LISTENING, SLASHING, LUNGING, KILLING, HUNTING, OPENING }
 
 const HUNT_REACH: float = 1.2
 const HUNT_TIMEOUT: float = 12.0
-const BLEND_SECONDS: float = 0.2
+const BLEND_SECONDS: float = 0.3
+## T-224 (D-134): he turns toward a new heading at this rate (rad/s) instead of snapping to it.
+const TURN_SPEED: float = 6.0
+## T-224 (D-134): small props on this physics layer (room407_obstacles.gd) tip over or slide away
+## when he walks into them, pushed this hard (m/s² for their mass).
+const PROPS_LAYER: int = 16
+const KICK_ACCELERATION: float = 14.0
 
 @export var body_scene: PackedScene
 @export var player: Node3D
@@ -57,6 +65,10 @@ var _door_tween: Tween
 var _opening_door: Node
 var _reach_arm: Node3D
 var _arm_rest: Vector3
+var _yaw_target: float = NAN
+var _kick: Area3D
+var _lean: Node
+var _lean_tween: Tween
 
 
 func _ready() -> void:
@@ -80,6 +92,20 @@ func _ready() -> void:
 			push_warning("Manager body_scene needs a Node3D root; using fallback.")
 	if _reach_arm == null:
 		_reach_arm = get_node_or_null("Visual/Fallback/LeftArm") as Node3D
+	_lean = visual.find_child("Lean", true, false)
+	_kick = Area3D.new()
+	_kick.name = "Kick"
+	_kick.collision_layer = 0
+	_kick.collision_mask = PROPS_LAYER
+	_kick.monitorable = false
+	var reach := CollisionShape3D.new()
+	var legs := CylinderShape3D.new()
+	legs.radius = 0.45
+	legs.height = 0.9
+	reach.shape = legs
+	reach.position.y = 0.45
+	_kick.add_child(reach)
+	add_child(_kick)
 	if _reach_arm != null:
 		_arm_rest = _reach_arm.rotation
 	if audio_rig == null:
@@ -148,7 +174,11 @@ func open_door(door: Node, seconds: float = 0.0) -> void:
 	_opening_door = door
 	if door is Node3D:
 		_face((door as Node3D).global_position)
-	if is_instance_valid(_model_animation):
+	# A skinned body's arm is a modifier on top of its clip: he stands still while it reaches
+	# (stopping the clip froze him mid-stride). A rigid body's arm is a node its clips move.
+	if _reach_arm is SkeletonModifier3D:
+		_play_animation(&"stand")
+	elif is_instance_valid(_model_animation):
 		_model_animation.stop()
 	if accepts_duration:
 		door.call("set_open", true, duration)
@@ -178,7 +208,7 @@ func open_door(door: Node, seconds: float = 0.0) -> void:
 func ask(line_key: String) -> void:
 	stop()
 	if is_instance_valid(look_target):
-		_face(look_target.global_position)
+		_face(look_target.global_position, true)
 	_heard = false
 	state = State.SPEAKING
 	_remaining = maxf(0.0, subtitle_seconds)
@@ -261,6 +291,8 @@ func stop() -> void:
 
 func _physics_process(delta: float) -> void:
 	_sync_audio()
+	_turn(delta)
+	_kick_props()
 	match state:
 		State.HUNTING:
 			_hunt(delta)
@@ -427,10 +459,54 @@ func _flat_offset(point: Vector3) -> Vector3:
 	return offset
 
 
-func _face(point: Vector3) -> void:
+## Sets the heading he turns to (TURN_SPEED); instant snaps to it.
+func _face(point: Vector3, instant: bool = false) -> void:
 	var offset: Vector3 = _flat_offset(point)
-	if not offset.is_zero_approx():
-		visual.global_rotation.y = atan2(-offset.x, -offset.z)
+	if offset.is_zero_approx():
+		return
+	_yaw_target = atan2(-offset.x, -offset.z)
+	if instant:
+		visual.global_rotation.y = _yaw_target
+
+
+func _turn(delta: float) -> void:
+	if is_nan(_yaw_target):
+		return
+	var rate: float = TURN_SPEED * (2.5 if state in [State.LUNGING, State.KILLING] else 1.0) * delta
+	var yaw: float = visual.global_rotation.y
+	visual.global_rotation.y = yaw + clampf(wrapf(_yaw_target - yaw, -PI, PI), -rate, rate)
+
+
+## Turns him toward point (the director's bed checks, D-134).
+func face(point: Vector3) -> void:
+	_face(point)
+
+
+## Leans the upper body forward by degrees over seconds (a body scene's "Lean" SpineBendModifier):
+## looking into a bed (D-134).
+func lean(degrees: float, seconds: float = 0.6) -> void:
+	leaned.emit(degrees)
+	if not is_instance_valid(_lean):
+		return
+	if _lean_tween != null and _lean_tween.is_valid():
+		_lean_tween.kill()
+	_lean_tween = create_tween()
+	_lean_tween.tween_property(_lean, "degrees", degrees, maxf(0.01, seconds)).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+
+
+func _kick_props() -> void:
+	var heading := Vector3(velocity.x, 0.0, velocity.z)
+	if heading.length() < 0.05 or not is_instance_valid(_kick):
+		return
+	for body: Node3D in _kick.get_overlapping_bodies():
+		var prop := body as RigidBody3D
+		if prop == null:
+			continue
+		# Mostly away from him, so what he walks into goes aside instead of being shoved ahead of him.
+		var push: Vector3 = (heading.normalized() * 0.6 + _flat_offset(prop.global_position).normalized()).normalized()
+		prop.sleeping = false
+		# Pushed a little above its middle: tall things tip over, flat ones slide.
+		prop.apply_force(push * prop.mass * KICK_ACCELERATION, Vector3.UP * 0.15)
 
 
 ## Cross-fades between body clips (D-120). A looping clip already playing carries on; a

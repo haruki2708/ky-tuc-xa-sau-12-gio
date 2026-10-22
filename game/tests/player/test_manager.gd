@@ -248,6 +248,17 @@ func test_walk_speed_arrival_drag_steps_and_wall_collision() -> void:
 	assert_false(audio.dragging, "blocked actor does not keep dragging")
 
 
+## T-224 (D-134): a new heading is turned to at TURN_SPEED, not snapped to.
+func test_he_turns_round_smoothly() -> void:
+	var start: float = manager.visual.global_rotation.y
+	manager._face(manager.global_position + manager.visual.global_basis.z)
+	await _ticks(1)
+	var step: float = absf(wrapf(manager.visual.global_rotation.y - start, -PI, PI))
+	assert_true(step > 0.0 and step <= DormManager.TURN_SPEED / Engine.physics_ticks_per_second + 0.001, "one tick turns %.3f rad" % step)
+	await _ticks(45)
+	assert_true(absf(wrapf(manager.visual.global_rotation.y - start, -PI, PI)) > PI - 0.01, "about turned after 0.75 s")
+
+
 func test_route_passes_doorway_and_stand_marker_sets_facing() -> void:
 	_wall(Vector3(4, 3, 0.2), Vector3(-1, 1.5, -1))
 	_wall(Vector3(4, 3, 0.2), Vector3(4, 1.5, -1))
@@ -263,6 +274,8 @@ func test_route_passes_doorway_and_stand_marker_sets_facing() -> void:
 	manager.stand_at(marker)
 	await _ticks(2)
 	assert_eq(arrivals, 2)
+	# T-224: he turns to the marker's heading at TURN_SPEED instead of snapping.
+	await _ticks(40)
 	assert_true((-manager.visual.global_basis.z).dot(-marker.global_basis.z) > 0.99)
 	var door: Node = load("res://scenes/levels/floor4/door407.gd").new()
 	var pivot: Node3D = Node3D.new()

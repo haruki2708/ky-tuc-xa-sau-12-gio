@@ -29,8 +29,10 @@ python -I art_source/graphics_upgrade/manager/pack_tripo_manager.py --staging bu
   - `BladeTip` ở mũi dao;
   - `HandGripModifier` co 4 ngón tay phải quanh cán dao (động tác Tripo để tay mở);
   - `LeftArm` (`ArmReachModifier`): `manager.gd` `open_door` xoay node này, tay trái với ra trước tới tay nắm cửa.
-- **Vòng lặp:** `manager_body.gd` cho `stand`, `walk`, `ask`, `lunge` lặp; đứng một mình (gương chương 2) thì tự chạy `stand`.
-- **Chuyển động tác:** `manager.gd` pha 0,2 s giữa hai clip; mỗi nhát chém bắt đầu lại ngay.
+  - `RightWristLock` (`BoneLockModifier`, T-224): cổ tay phải giữ tư thế cầm dao của `stand` qua mọi động tác (động tác Tripo xoay cổ tay như tay không, dao lật ngược);
+  - `Lean` (`SpineBendModifier`, T-224): `manager.gd` `lean()` cúi người khi soi giường.
+- **Vòng lặp:** `manager_body.gd` cho `stand`, `walk`, `ask`, `lunge`, `slash` lặp (T-224: các nhát chém nối liền); đứng một mình (gương chương 2) thì tự chạy `stand`.
+- **Chuyển động tác:** `manager.gd` pha 0,3 s giữa hai clip (T-224, trước 0,2 s); quay người từ từ 6 rad/s.
 
 ## 2. Đồ đi kèm
 Dao từ Tripo nằm nghiêng, nên dựng thẳng theo trục chính trước:

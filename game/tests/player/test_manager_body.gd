@@ -42,10 +42,10 @@ func test_body_has_the_six_game_clips_and_loops_the_steady_ones() -> void:
 	var player: AnimationPlayer = _body().find_children("*", "AnimationPlayer", true, false)[0] as AnimationPlayer
 	for clip: StringName in CLIPS:
 		assert_true(player.has_animation(clip), "missing clip %s" % clip)
-	for clip: StringName in [&"stand", &"walk", &"ask", &"lunge"]:
+	# T-224 (D-134): slash loops too, one chop per cycle, so the chops run on without a snap.
+	for clip: StringName in [&"stand", &"walk", &"ask", &"lunge", &"slash"]:
 		assert_eq(player.get_animation(clip).loop_mode, Animation.LOOP_LINEAR, "%s loops" % clip)
-	for clip: StringName in [&"slash", &"kill"]:
-		assert_eq(player.get_animation(clip).loop_mode, Animation.LOOP_NONE, "%s plays once per call" % clip)
+	assert_eq(player.get_animation(&"kill").loop_mode, Animation.LOOP_NONE, "kill plays once per call")
 
 
 func test_standing_manager_is_life_size_and_faces_minus_z() -> void:
@@ -153,7 +153,7 @@ func test_left_arm_reaches_forward_for_the_door() -> void:
 	assert_true(lifted.y > 0.8 and lifted.y < 1.3, "hand at handle height, got %.2f" % lifted.y)
 
 
-func test_dorm_manager_cross_fades_clips_but_restarts_each_chop() -> void:
+func test_dorm_manager_cross_fades_clips_and_chops_run_on() -> void:
 	var manager: DormManager = MANAGER.instantiate() as DormManager
 	manager.body_scene = BODY
 	world.add_child(manager)
@@ -173,7 +173,32 @@ func test_dorm_manager_cross_fades_clips_but_restarts_each_chop() -> void:
 	player.play(&"slash")
 	player.seek(time, true)
 	var pure: Vector3 = skeleton.get_bone_global_pose(hand).origin
-	assert_true(blended.distance_to(pure) > 0.03, "50 ms into a 0.2 s fade the knife hand is still between clips")
+	assert_true(blended.distance_to(pure) > 0.03, "50 ms into a 0.3 s fade the knife hand is still between clips")
 	player.advance(0.2)
+	var chop: float = player.current_animation_position
 	manager._play_animation(&"slash", 0.45)
-	assert_eq(player.current_animation_position, 0.0, "the next chop starts over at once")
+	assert_eq(player.current_animation_position, chop, "T-224: the next chop runs on, no snap back to the start")
+
+
+## T-224 (D-134): the clips no longer turn the cleaver over at the wrist; it keeps its grip
+## to the forearm through the walk and the chop.
+func test_the_cleaver_keeps_its_grip_to_the_forearm() -> void:
+	var body: Node3D = _body()
+	var player: AnimationPlayer = body.find_children("*", "AnimationPlayer", true, false)[0] as AnimationPlayer
+	var skeleton: Skeleton3D = body.find_children("*", "Skeleton3D", true, false)[0] as Skeleton3D
+	var forearm: int = skeleton.find_bone("mixamorig_RightForeArm")
+	var knife: Node3D = body.find_child("Knife", true, false) as Node3D
+	var first: Basis = Basis()
+	var grip_found: bool = false
+	for clip: StringName in [&"walk", &"slash"]:
+		var length: float = player.get_animation(clip).length
+		for step: int in 6:
+			await _pose(player, clip, length * step / 6.0)
+			await tree.process_frame
+			var arm: Basis = (skeleton.global_transform * skeleton.get_bone_global_pose(forearm)).basis.orthonormalized()
+			var grip: Basis = arm.inverse() * knife.global_basis.orthonormalized()
+			if not grip_found:
+				first = grip
+				grip_found = true
+			var turned: float = first.get_rotation_quaternion().angle_to(grip.get_rotation_quaternion())
+			assert_true(turned < 0.1, "%s at %d/6: the cleaver turned %.2f rad in the hand" % [clip, step, turned])

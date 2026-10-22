@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3]
+[gd_scene load_steps=10 format=3]
 
 [ext_resource type="Script" path="res://scripts/entity/manager_body.gd" id="1"]
 [ext_resource type="PackedScene" path="res://assets/models/characters/manager/manager_tripo.glb" id="2"]
@@ -7,12 +7,21 @@
 [ext_resource type="PackedScene" path="res://assets/models/characters/manager/manager_id_card.glb" id="5"]
 [ext_resource type="Script" path="res://scripts/entity/hand_grip_modifier.gd" id="6"]
 [ext_resource type="Script" path="res://scripts/entity/arm_reach_modifier.gd" id="7"]
+[ext_resource type="Script" path="res://scripts/entity/bone_lock_modifier.gd" id="8"]
+[ext_resource type="Script" path="res://scripts/player/spine_bend_modifier.gd" id="9"]
 
 [node name="ManagerBody" type="Node3D"]
 script = ExtResource("1")
 
 [node name="Model" parent="." instance=ExtResource("2")]
 transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, 0)
+
+[node name="RightWristLock" type="SkeletonModifier3D" parent="Model/Armature/Skeleton3D"]
+script = ExtResource("8")
+
+[node name="Lean" type="SkeletonModifier3D" parent="Model/Armature/Skeleton3D"]
+script = ExtResource("9")
+bones = PackedStringArray("mixamorig_Spine", "mixamorig_Spine1", "mixamorig_Spine2")
 
 [node name="RightHandGrip" type="SkeletonModifier3D" parent="Model/Armature/Skeleton3D"]
 script = ExtResource("6")

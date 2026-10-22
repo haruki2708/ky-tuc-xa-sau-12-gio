@@ -57,6 +57,9 @@ func test_shell_has_every_part() -> void:
 		assert_not_null(furnished.get_node_or_null(path), path)
 	assert_eq(furnished.get_node("Decals").get_child_count(), 0, "the grime is painted into the surfaces")
 	for node: Node in furnished.find_children("*", "", true, false):
+		# T-224 (D-134): the small props the manager knocks over are rigid bodies on his props layer.
+		if String(furnished.get_path_to(node)).get_slice("/", 1) in Room407Obstacles.DYNAMIC:
+			continue
 		assert_false(node is CollisionObject3D or node is CollisionShape3D, "visual only: " + String(furnished.get_path_to(node)))
 
 

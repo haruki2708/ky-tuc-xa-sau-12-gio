@@ -48,14 +48,18 @@ func test_furnished_room_is_built_with_every_prop() -> void:
 	assert_eq(props.get_child_count() + carried, Room407Furnish.placements("t222").size(), "every row is placed once")
 	assert_eq(furnished.get_node("Decals").get_child_count(), 0, "the T-222 shell paints its grime in")
 	for node: Node in furnished.find_children("*", "", true, false):
-		assert_false(node is CollisionObject3D or node is CollisionShape3D, "visual only: " + String(furnished.get_path_to(node)))
+		# T-224 (D-134): the small props the manager knocks over are rigid bodies on his props layer.
+		var path := String(furnished.get_path_to(node))
+		if path.get_slice("/", 1) in Room407Obstacles.DYNAMIC:
+			continue
+		assert_false(node is CollisionObject3D or node is CollisionShape3D, "visual only: " + path)
 
 
 func test_physics_and_navigation_are_unchanged() -> void:
 	var old := _physics(spawn(ROOM, false))
 	var room := spawn(ROOM)
 	var new := _physics(room).filter(func(entry: Array) -> bool:
-		return not String(entry[0]).begins_with("Extension/BalconyDoor"))
+		return not String(entry[0]).begins_with("Extension/BalconyDoor") and not String(entry[0]).begins_with("Furnished/TripoProps/"))
 	assert_not_null(room.get_node_or_null("Extension/BalconyDoor/Pivot/Leaf/Collision"), "D-127: the balcony door is new")
 	assert_eq(new.size(), old.size(), "same collision/navigation nodes besides it")
 	for i in old.size():

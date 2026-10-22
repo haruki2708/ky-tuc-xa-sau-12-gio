@@ -44,7 +44,7 @@ mesh = SubResource("Blade")
 [node name="BladeTip" type="Marker3D" parent="Visual/Fallback/BladePivot"]
 position = Vector3(0, -1.15, 0)
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
-path_desired_distance = 0.05
+path_desired_distance = 0.25
 target_desired_distance = 0.05
 radius = 0.3
 height = 2.0

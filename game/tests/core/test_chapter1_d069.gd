@@ -126,6 +126,31 @@ func test_bed_4_survives_with_lights_off_and_turning() -> void:
 	await _survive_on(4)
 
 
+## D-134: lying on bed 2, Trung sees him look bunk A over (beds 1 and 2) and then bunk B (bed 4),
+## bending right down over bed 2, before he asks about bed 3 and cuts it.
+func test_he_checks_beds_1_2_4_then_cuts_3() -> void:
+	await _manager_scene(2)
+	await _until(func() -> bool: return _manager() != null, 30.0)
+	var manager := _manager()
+	assert_not_null(manager, "he comes;")
+	if manager == null:
+		return
+	var leans: Array = []
+	manager.leaned.connect(func(degrees: float) -> void:
+		if degrees > 0.0:
+			leans.append([degrees, manager.global_position.x]))
+	await _until(func() -> bool: return _manager_done() or not restarts.is_empty(), 120.0)
+	assert_true(restarts.is_empty(), "alive on bed 2 (%s);" % [reasons])
+	assert_eq(leans.size(), 3, "three beds looked over before bed 3: %s;" % [leans])
+	if leans.size() == 3:
+		assert_true(leans[0][1] < 33.0 and leans[1][1] < 33.0, "beds 1 and 2 from bunk A;")
+		assert_true(leans[2][1] > 34.0, "bed 4 from bunk B;")
+		assert_eq(leans[0][0], Chapter1Director.BED_LEAN[1][0], "a look at bed 1;")
+		assert_eq(leans[1][0], Chapter1Director.BED_LEAN[2][1], "right down over Trung on bed 2;")
+		assert_eq(leans[2][0], Chapter1Director.BED_LEAN[4][0], "a look at bed 4;")
+	assert_true(director._slash_cuts > 0, "bed 3 cut;")
+
+
 func test_own_bed_3_is_still_death() -> void:
 	await _manager_scene(3)
 	await _until(func() -> bool: return not restarts.is_empty(), 90.0)
