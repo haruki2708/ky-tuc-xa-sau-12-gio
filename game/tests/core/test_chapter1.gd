@@ -394,7 +394,9 @@ func test_mission_props_have_no_grey_boxes_and_the_lamp_is_the_switch() -> void:
 	for path: String in ["Chapter1Director/DatLocker/Mesh", anchors + "DeskLampSwitch/DeskLampSwitch/Mesh",
 			anchors + "VietLocker/SearchVietLocker/Placeholder", anchors + "PhucMattress/SearchPhucMattress/Placeholder",
 			anchors + "TrashBin/SearchTrashBin/Placeholder", anchors + "WallKnock406/WallKnock406/Placeholder",
-			anchors + "LanWallPort/LanSocket/Placeholder", "Floor4/Door407/Pivot/DoorLatch407/Mesh"]:
+			anchors + "LanWallPort/LanSocket/Placeholder", "Floor4/Door407/Pivot/DoorLatch407/Mesh",
+			# T-226 (D-136): the room's RJ45 plugs are the cable ends.
+			anchors + "LanBlueEnd/Cable_blue/Placeholder", anchors + "LanGrayEnd/Cable_gray/Placeholder"]:
 		var mesh := scene.get_node_or_null(path) as Node3D
 		assert_not_null(mesh, path)
 		if mesh != null:

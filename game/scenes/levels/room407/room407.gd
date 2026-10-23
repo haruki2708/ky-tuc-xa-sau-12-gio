@@ -76,6 +76,15 @@ const MIRROR_GLASS := {
 ## Reflection texels per metre of glass, capped so the tall mirror stays cheap.
 const MIRROR_TEXELS := 1000.0
 const MIRROR_MAX_TEXELS := 800
+## T-226 (D-136, owner: the standing fan, plugged in, should be running): its Rotor
+## (split_standing_fan.py) turns on its local Y. 4.5 turns a second is 27 degrees a frame at 60 FPS,
+## clear of the five blades' 72-degree repeat; two fainter copies trail behind as motion blur.
+const FAN_SPIN := TAU * 4.5
+const FAN_TRAIL := [[-9.0, 0.35], [-18.0, 0.15]]
+## A very quiet hum, heard only beside the fan (owner chose a soft one); the ceiling fan's clip, a step higher.
+const FAN_HUM := preload("res://audio/ambience/ceiling_fan.ogg")
+const FAN_HUM_PLAYER := {"volume_db": -24.0, "unit_size": 1.0, "max_distance": 5.0, "pitch_scale": 1.25,
+	"bus": &"Ambience"}
 var _furnished: Node3D
 var _tubes: Array[StandardMaterial3D] = []
 var _trung_blanket: Node3D
@@ -83,6 +92,7 @@ var _inside_weight: float = 0.0
 var _environment: Environment
 var _torch: SpotLight3D
 var _mirrors: Array[Node3D] = []
+var _fan_rotor: Node3D
 
 
 func _ready() -> void:
@@ -177,6 +187,8 @@ func _process(delta: float) -> void:
 	if _furnished:
 		_blend_room_lighting(delta)
 		_update_mirror_follow()
+	if _fan_rotor:
+		_fan_rotor.rotate_object_local(Vector3.UP, FAN_SPIN * delta)
 	if not _tubes.is_empty():
 		var light := $Room407MainLight as Light3D
 		var glow := TUBE_ENERGY * clampf(light.light_energy, 0.0, 1.0) if light.is_visible_in_tree() else 0.0
@@ -248,6 +260,7 @@ func _furnish() -> void:
 		Room407Obstacles.make_solid(props)
 	_fit_mirror_effects(props.get_node("MirrorSmall"))
 	_fit_shower_water(props.get_node("Shower"))
+	_run_fan(props.get_node("StandingFan"))
 	_trung_blanket = props.get_node("BlanketTrung")
 	_tubes = Room407Furnish.tube_materials(_furnished)
 	for property: String in TUBE_LIGHT:
@@ -373,6 +386,36 @@ func _fit_mirror_effects(mirror: Node3D) -> void:
 	var reflection := $Ch2Bathroom/Reflection as Node3D
 	reflection.position = Vector3(glass.end.x + 0.025, glass.position.y + 0.035 * scale_y, glass.get_center().z)
 	reflection.scale = Vector3(0.26 * scale_y, 0.26 * scale_y, 0.025)
+
+
+## T-226: the standing fan's blades turn with their trail, and it hums.
+func _run_fan(fan: Node3D) -> void:
+	_fan_rotor = fan.find_child("Rotor", true, false) as Node3D
+	if _fan_rotor == null:
+		return
+	var blades := _fan_rotor.get_node("Blades") as MeshInstance3D
+	for index in FAN_TRAIL.size():
+		var trail: Array = FAN_TRAIL[index]
+		var ghost := MeshInstance3D.new()
+		ghost.name = "BladesTrail%d" % (index + 1)
+		ghost.mesh = blades.mesh
+		ghost.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+		var material := blades.get_active_material(0).duplicate() as StandardMaterial3D
+		material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+		material.albedo_color.a = trail[1]
+		ghost.material_override = material
+		_fan_rotor.add_child(ghost)
+		ghost.transform = Transform3D(Basis(Vector3.UP, deg_to_rad(trail[0])), Vector3.ZERO) * blades.transform
+	var hum := AmbientEmitter.new()
+	hum.name = "FanHum"
+	hum.stream = FAN_HUM
+	for property: String in FAN_HUM_PLAYER:
+		hum.set(property, FAN_HUM_PLAYER[property])
+	_fan_rotor.add_child(hum)
+	# Heard only while the player is in the room, like the ceiling fan (AmbientZone).
+	var zone := get_node_or_null("AmbientZone") as AmbientZone
+	if zone != null:
+		zone.add_emitter(hum)
 
 
 ## Chapter 2's water started 12 cm above the furnished shower (T-218): start it just under the rose

@@ -72,7 +72,6 @@ const DOOR_HOLD_SECONDS := 10.0
 ## N7: seconds to choose the advice for Minh Nhật.
 const TELL_SECONDS := 10.0
 const TELL_CORRECT := 0
-const STRIP_NUDGE := Vector3(0.4, 0.0, 0.0)
 ## Where a search spot's E-zone goes relative to lane B's anchor (world).
 const SEARCH_OFFSETS := {"VietLocker": Vector3(0.32, 1.0, 0.0), "PhucMattress": Vector3(0.5, 0.1, 0.0)}
 ### N6: the real lamp, else the flag.
@@ -1320,10 +1319,8 @@ func _place_mission_props() -> void:
 		_hide_placeholder(knock)
 	# Power strip (N2): lane A's three switch areas over lane B's model.
 	var strip_anchor := _room_anchor("PowerStrip")
-	if strip_anchor != null:
-		# Lane B's strip sits half under bunk A: out from under it so every
-		# switch can be aimed at standing up.
-		strip_anchor.global_position += STRIP_NUDGE
+	# T-226 (D-136): lane B's strip anchor now lies where STRIP_NUDGE used to move it (0.4 m out from
+	# under bunk A), so the leads in cables.gd reach its plugs.
 	if strip_anchor != null and ResourceLoader.exists("res://scenes/interaction/power_strip.tscn"):
 		var strip := load("res://scenes/interaction/power_strip.tscn").instantiate() as Node3D
 		strip.name = "PowerStripInteract"
@@ -1349,6 +1346,8 @@ func _place_mission_props() -> void:
 			cable.name = "Cable_" + String(entry[1])
 			cable.set("cable_id", entry[1])
 			end.add_child(cable)
+			# T-226 (D-136): the room's RJ45 plug (cables.gd) is the cable end now.
+			_hide_placeholder(cable)
 	var port := _room_anchor("LanWallPort")
 	if port != null and ResourceLoader.exists("res://scenes/interaction/lan_socket.tscn"):
 		var socket := load("res://scenes/interaction/lan_socket.tscn").instantiate() as Node3D

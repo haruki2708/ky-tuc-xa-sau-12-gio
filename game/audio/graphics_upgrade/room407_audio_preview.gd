@@ -39,6 +39,10 @@ func _ready() -> void:
 	room.remove_child(zone)
 	zone.free()
 	fan.stop_emitting()
+	# T-226: the running standing fan's hum (room407.gd) stays off here too.
+	var stand_fan := room.find_child("FanHum", true, false) as AmbientEmitter
+	if stand_fan != null:
+		stand_fan.stop_emitting()
 	light.visible = false
 	light.light_energy = 0.8
 	# The director side of the rig, as chapter2_director builds it.

@@ -20,6 +20,14 @@ func _ready() -> void:
 	occupancy_changed.connect(_on_occupancy_changed)
 
 
+## A source built after this zone was ready (T-226: room 407's standing fan hum).
+func add_emitter(source: AmbientEmitter) -> void:
+	if source == null or _sources.has(source):
+		return
+	_sources.append(source)
+	source.set_zone_gain(get_instance_id(), _gain)
+
+
 func _on_occupancy_changed(inside: bool) -> void:
 	if _fade != null:
 		_fade.kill()

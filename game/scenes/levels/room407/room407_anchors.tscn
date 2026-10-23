@@ -259,7 +259,7 @@ position = Vector3(0,-0.30,-0.28)
 
 [node name="PowerStrip" parent="." instance=ExtResource("v2_power_strip") ]
 rotation_degrees = Vector3(0, 0, 0)
-position = Vector3(0.95, 0.02, -2.35)
+position = Vector3(1.35, 0.02, -2.35)
 
 [node name="VietLocker" parent="." instance=ExtResource("v2_viet_locker") ]
 rotation_degrees = Vector3(0, -90, 0)

@@ -74,6 +74,26 @@ func test_takeaway_box_leaves_the_papers_and_songbook_clear() -> void:
 			assert_false(box.intersects(bounds), "clear of " + String(room.get_path_to(mesh)))
 
 
+func test_standing_fan_runs_and_hums() -> void:
+	# T-226 (D-136, owner: the fan, plugged in, should be running).
+	var room := spawn(ROOM)
+	var fan: Node3D = room.furnished_prop("StandingFan")
+	var rotor := fan.find_child("Rotor", true, false) as Node3D
+	assert_not_null(rotor, "split fan")
+	assert_not_null(rotor.get_node_or_null("Blades"))
+	assert_eq(rotor.find_children("BladesTrail*", "MeshInstance3D", false, false).size(), 2, "two trailing copies")
+	assert_true(rotor.global_basis.y.dot(-fan.global_basis.z) > 0.95, "the blades turn about the fan's facing")
+	var before := rotor.basis
+	await wait_frames(3)
+	assert_false(rotor.basis.is_equal_approx(before), "the blades turn")
+	assert_true(rotor.global_basis.y.dot(-fan.global_basis.z) > 0.95, "still about the same axis")
+	var hum := rotor.get_node("FanHum") as AmbientEmitter
+	assert_eq(hum.bus, &"Ambience")
+	assert_true(hum.volume_db <= -20.0 and hum.max_distance <= 6.0, "quiet, only beside the fan")
+	assert_true(hum.volume_linear < 0.001, "silent while nobody is in the room (its AmbientZone)")
+	assert_not_null(room.furnished_prop("SocketFan"), "plugged into the wall by it")
+
+
 func test_timetable_paper_is_dimmed_for_the_torch() -> void:
 	# T-225 (D-135): its near-white paper burnt out under the torch close up.
 	var room := spawn(ROOM)

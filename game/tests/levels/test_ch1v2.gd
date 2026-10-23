@@ -81,6 +81,32 @@ func test_bathroom_balcony_routes_and_door_collision() -> void:
 	assert_true(floor_scene.get_node_or_null("Corridor/BackWall_408")==null,"old 408 wall cannot cut bathroom")
 
 
+func test_strip_is_the_blender_model_with_plugs_and_leads() -> void:
+	# T-226 (D-136, owner: the strip and the network ends were still boxes).
+	var strip := room.get_node("Anchors/PowerStrip")
+	assert_eq(strip.position, Vector3(1.35, .02, -2.35), "where chapter 1 used to nudge it, by the plugs' leads")
+	var case := strip.get_node("Case") as MeshInstance3D
+	assert_false(case.mesh is PrimitiveMesh, "modelled case")
+	assert_true(strip.get_node_or_null("Model") == null, "the model's parts moved onto the gameplay nodes")
+	for i in range(1, 4):
+		var rocker := strip.get_node("Switch%d/Rocker/Rocker%d" % [i, i]) as MeshInstance3D
+		assert_not_null(rocker, "rocker %d rides its pivot" % i)
+		var led := strip.get_node("Switch%d/LED" % i) as MeshInstance3D
+		assert_true(led.mesh != null and not (led.mesh is PrimitiveMesh), "lamp %d" % i)
+		var top: float = (case.global_transform * case.get_aabb()).end.y
+		assert_true(absf(led.global_position.y - top) < .005, "lamp %d sits in the case top" % i)
+	for plug in ["LaptopPlug", "RouterPlug", "KettlePlug"]:
+		assert_not_null(strip.get_node_or_null(plug + "/Body"), plug)
+	assert_not_null(strip.get_node_or_null("RouterPlug/RedTape"), "the router's plug keeps its red tape")
+	var cables := room.get_node("Cables")
+	for lead in ["StripPower", "FanPower", "StripPlug", "FanPlug"]:
+		assert_not_null(cables.get_node_or_null(lead), lead)
+	assert_not_null(room.get_node_or_null("Anchors/LanWallPort/PortFace/Jacks"), "modelled LAN faceplate")
+	var plug := room.get_node("Anchors/LanBlueEnd/Plug") as Node3D
+	assert_not_null(plug.get_node_or_null("Contacts"), "modelled RJ45 plug")
+	assert_true(absf(room.get_node("Anchors/LanBlueEnd").position.y - .0045) < .001, "the loose plug lies on the floor")
+
+
 func test_switches_trip_and_sparks_reset() -> void:
 	var strip := room.get_node("Anchors/PowerStrip")
 	for i in range(1,4):
@@ -185,6 +211,10 @@ func test_new_prop_triangle_budgets() -> void:
 		for mesh: MeshInstance3D in node.find_children("*","MeshInstance3D",true,false):
 			triangles += mesh.mesh.get_faces().size()/3
 		var limit := 1500 if model in ["viet_locker","phuc_mattress","bunk_a_frame","bathroom_door"] else 500
+		# T-226 (D-136): the strip is a Blender model now (~3.2k triangles, rockers and lamps included) with
+		# its three plugs (~1.1k each); a Tripo prop of the room is baked to 5k (D-093).
+		if model == "power_strip":
+			limit = 8000
 		assert_true(triangles>0 and triangles<limit,model+" triangle budget")
 		print("T162_TRIANGLES: %s %d"%[model,triangles])
 		node.queue_free()
