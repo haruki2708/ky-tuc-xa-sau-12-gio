@@ -66,9 +66,12 @@ func test_the_player_cannot_walk_through_the_furniture() -> void:
 func test_he_reaches_the_beds_balcony_and_bathroom_from_the_corridor() -> void:
 	var room := _floor4().get_node("Room407") as Node3D
 	var map := room.get_world_3d().navigation_map
-	# Map sync runs asynchronously (as in test_room407_fixes.gd).
+	# Map sync runs asynchronously (as in test_room407_fixes.gd). Wait for the room itself: with only the
+	# corridor's polygons on the map, a path exists but stops in the corridor.
+	var balcony: Vector3 = room.to_global(PLACES["balcony"])
 	for frame in 120:
-		if NavigationServer3D.map_get_path(map, room.to_global(CORRIDOR), room.to_global(PLACES["balcony"]), true).size() >= 2:
+		var probe := NavigationServer3D.map_get_path(map, room.to_global(CORRIDOR), balcony, true)
+		if probe.size() >= 2 and Vector2(probe[-1].x - balcony.x, probe[-1].z - balcony.z).length() < 0.3:
 			break
 		await tree.physics_frame
 	for place: String in PLACES:

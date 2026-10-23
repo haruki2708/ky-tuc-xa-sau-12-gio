@@ -64,4 +64,4 @@ Thư mục ảnh còn có `xuyen_qua.png`: đi xuyên qua giá phơi đồ.
   - `test_phone.gd`: sau một khung hình cao và một lần rung, khung điện thoại về đúng chỗ.
   - `test_room407_obstacles.gd`: 8 món chặn được người chơi. Test đường đi cũ nay chờ bản đồ đường đi cập nhật, vì một lần chạy bị lệch ngẫu nhiên.
   - `test_room407_playable_furnished.gd`: hộp xôi không đè giấy và sổ; thời khóa biểu tối đi, mô hình dùng chung không đổi.
-  - Cả bộ: 846/848 lần chạy đầu. Hai lỗi: bồn rửa chặn lối vào nhà tắm (bỏ bồn rửa khỏi đồ chặn) và `test_room407_shell.gd` chưa cho khối chặn mới (đã sửa). Chạy lại 4 file liên quan đều đạt; `check.ps1` 0 lỗi.
+  - Cả bộ: 846/848 lần chạy đầu. Hai lỗi: bồn rửa chặn lối vào nhà tắm (bỏ bồn rửa khỏi đồ chặn) và `test_room407_shell.gd` chưa cho khối chặn mới (đã sửa). Chạy lại 4 file liên quan đều đạt; `check.ps1` 0 lỗi. Lần chạy cả bộ thứ hai 847/848: test đường đi của quản lý thôi chờ khi bản đồ mới có hành lang, chưa có phòng (đường dừng ở z 1,1); test nay chờ tới khi đường tới được ban công. **Lần chạy cả bộ thứ ba 848/848.**
