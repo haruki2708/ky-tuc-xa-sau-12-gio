@@ -437,3 +437,32 @@ func test_left_hand_holds_the_phone_while_its_light_is_on() -> void:
 	phone.call("set_flashlight", false)
 	await _seconds(0.4)
 	assert_false(model.visible, "put away when the light is off")
+
+
+## T-227 (D-137): the body is Tran Trung from Tripo, about 1.7 m; Tripo's own clips drive him and
+## the CC0 clips fill the gaps without moving his hips; the phone in his hand is the thin Tripo one.
+func test_tran_trung_from_tripo_with_his_clips_and_phone() -> void:
+	var walker := _walker()
+	var body := _body(walker)
+	assert_eq(body.model_scene.resource_path, "res://assets/models/characters/protagonist/trung_tripo.glb")
+	var height: float = 0.0
+	for mesh: MeshInstance3D in body.view_meshes:
+		height = maxf(height, mesh.get_aabb().size.y * body.model.scale.y)
+		var material := mesh.get_active_material(0) as BaseMaterial3D
+		assert_eq(material.diffuse_mode, BaseMaterial3D.DIFFUSE_LAMBERT_WRAP, "cloth and skin wrap the light")
+	assert_true(height > 1.68 and height < 1.78, "about 1.7 m tall, got %.2f" % height)
+	for clip: StringName in [&"idle", &"walk", &"run", &"look_around", &"scared", &"hit", &"jump", &"climb", &"sit"]:
+		assert_true(body.animator.has_animation(clip), "Tripo clip " + clip)
+	for key: StringName in PlayerBody.CLIPS:
+		assert_true(body.animator.has_animation(PlayerBody.CLIPS[key]), "clip for " + key)
+	assert_eq(body.animator.get_animation(&"idle").loop_mode, Animation.LOOP_PINGPONG)
+	assert_true(body.arm_reach < 0.6, "his arms are measured, shorter than the stand-in's: %.2f" % body.arm_reach)
+	var own: Vector3 = body._hips_at(&"idle")
+	var fill: Vector3 = body._hips_at(&"ual/Idle")
+	assert_true(Vector2(own.x - fill.x, own.z - fill.z).length() < 0.01, "CC0 hips stand where his do")
+	var player := PLAYER.instantiate() as CharacterBody3D
+	world.add_child(player)
+	player.set_body(PlayerBody.new())
+	var phone_body := player.get_node("Head/Camera3D/PhoneItem/Model/Body") as Node3D
+	assert_eq(phone_body.scene_file_path, "res://assets/models/props/phone/phone_tripo.glb")
+	assert_true(player.body._phone_half > 0.003 and player.body._phone_half < 0.006, "a thin phone, %.4f m half" % player.body._phone_half)

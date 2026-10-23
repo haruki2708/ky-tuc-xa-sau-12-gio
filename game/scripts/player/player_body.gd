@@ -15,6 +15,8 @@ extends Node3D
 ##   prompt otherwise); the camera turns toward the working hand and back; a lever (door handle)
 ##   is taken, pressed down, and only then does the thing move; the left hand holds the phone
 ##   while it is raised or its light is on.
+## - T-227 (D-137): the body is Tran Trung from Tripo (pack_tripo_protagonist.py), about 1.74 m
+##   once his eyes meet the camera.
 
 signal hand_action_finished(target: Interactable)
 
@@ -34,8 +36,9 @@ const MOVING: float = 0.15
 ## Between the player's walk (2.2 m/s) and sprint (3.6 m/s) speeds.
 const RUN_FROM: float = 2.9
 const MAX_YAW: float = deg_to_rad(60.0)
-## Eyes from the head bone, model space (the model faces +Z), metres before scaling.
-const EYES_FROM_HEAD_BONE: Vector3 = Vector3(0.0, 0.085, 0.09)
+## Eyes from the head bone, model space (the model faces +Z), metres before scaling. Tran Trung's
+## head bone sits 1.7 cm left of his face's middle (measured on the Tripo mesh, T-227).
+const EYES_FROM_HEAD_BONE: Vector3 = Vector3(-0.017, 0.08, 0.09)
 ## The palm centre beyond the wrist bone: IK puts the wrist here short of the HandTarget, along
 ## the fingers of the turned hand, so the palm lands on it.
 const PALM: float = 0.08
@@ -50,8 +53,9 @@ const HOLD_GAP: float = 0.012
 const PAPER_GAP: float = 0.018
 ## Reading, the sheet sits this much toward the eyes from the palm's middle: the thumb in front.
 const THUMB_DEPTH: float = 0.01
-## Shoulder to palm a hand reaches without straining, metres before scaling.
-const ARM_REACH: float = 0.6
+## Share of the arm's full length a hand reaches without straining (T-227: measured on the
+## skeleton, Tran Trung's arms are shorter than the stand-in's).
+const ARM_STRAIGHT: float = 0.95
 const MAX_BEND: float = 45.0
 ## Looking down bends the neck: the eyes move this far forward at a straight-down look, so
 ## the chest no longer hides the legs and feet.
@@ -88,11 +92,15 @@ const READ_POINT: Vector3 = Vector3(0.0, -0.09, -0.27)
 const SAMPLES: int = 48
 ## A foot whose ankle and toes are both this close to their lowest points is planted flat.
 const STANCE_HEIGHT: float = 0.02
+## T-227: Tran Trung's own Tripo clips where Tripo has them; the rest from the CC0 Quaternius
+## library (FILL_LIBRARY), retargeted onto his skeleton through the shared humanoid bone names.
 const CLIPS := {
-	&"idle": &"Idle", &"walk": &"Walk", &"run": &"Jog_Fwd",
-	&"crouch_idle": &"Crouch_Idle", &"crouch_walk": &"Crouch_Fwd",
-	&"reach": &"Interact", &"reach_low": &"PickUp_Table",
+	&"idle": &"idle", &"walk": &"walk", &"run": &"run",
+	&"crouch_idle": &"ual/Crouch_Idle", &"crouch_walk": &"ual/Crouch_Fwd",
+	&"reach": &"ual/Interact", &"reach_low": &"ual/PickUp_Table",
 }
+const FILL_LIBRARY: StringName = &"ual"
+const FILL_SCENE: PackedScene = preload("res://assets/models/characters/standin/quaternius_ual.glb")
 const LOCOMOTION: Array[StringName] = [&"idle", &"walk", &"run", &"crouch_idle", &"crouch_walk"]
 ## A HandTarget lower than this above the feet uses the low reach.
 const LOW_REACH: float = 0.95
@@ -104,7 +112,7 @@ const GRIP_BONES: PackedStringArray = [
 ]
 const GRIP_DEGREES := {HandTarget.Grip.GRIP: 75.0, HandTarget.Grip.PINCH: 35.0, HandTarget.Grip.HOOK: 55.0}
 
-@export var model_scene: PackedScene = preload("res://assets/models/characters/standin/quaternius_ual.glb")
+@export var model_scene: PackedScene = preload("res://assets/models/characters/protagonist/trung_tripo.glb")
 ## Standing eye height; the player's Head sits at 1.6 m.
 @export var eye_height: float = 1.6
 
@@ -119,6 +127,8 @@ var stride_speeds: Dictionary = {}
 ## Mean eye point (model space, unscaled) of each locomotion clip.
 var eye_points: Dictionary = {}
 var acting: bool = false
+## Shoulder to palm a hand reaches without straining, metres before scaling.
+var arm_reach: float = 0.6
 
 var _key: StringName = &""
 var _clip: StringName = &""
@@ -180,12 +190,19 @@ func _ready() -> void:
 	model.rotation.y = PI
 	skeleton = model.find_children("*", "Skeleton3D", true, false)[0] as Skeleton3D
 	animator = model.find_children("*", "AnimationPlayer", true, false)[0] as AnimationPlayer
+	# The player moves on physics frames: stepping the clips anywhere else lets a planted foot
+	# skip with the body whenever a render frame holds two physics frames.
+	animator.callback_mode_process = AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_PHYSICS
+	_add_fill_clips()
 	_fit_height()
+	_measure_arm()
 	_split_meshes()
 	_build_modifiers()
 	for key: StringName in LOCOMOTION:
 		_measure(key)
-		animator.get_animation(CLIPS[key]).loop_mode = Animation.LOOP_LINEAR
+		# Tran Trung's idle is a short window of Tripo's (pack_tripo_protagonist.py): back and forth
+		# hides the seam.
+		animator.get_animation(CLIPS[key]).loop_mode = Animation.LOOP_PINGPONG if key == &"idle" else Animation.LOOP_LINEAR
 	_eye = eye_points[&"idle"]
 	_play(&"idle")
 	_place_model(0.0)
@@ -201,10 +218,15 @@ func bind(owner_player: CharacterBody3D) -> void:
 	if camera != null:
 		camera.set_cull_mask_value(MIRROR_LAYER, false)
 	_phone = player.get_node_or_null("Head/Camera3D/PhoneItem") as Node3D
-	if _phone != null:
-		var body_mesh := _phone.get_node_or_null("Model/Body") as MeshInstance3D
-		if body_mesh != null and body_mesh.mesh != null:
-			_phone_half = body_mesh.mesh.get_aabb().size.z * 0.5
+	var phone_body := _phone.get_node_or_null("Model/Body") if _phone != null else null
+	if phone_body != null:
+		# T-227: the Tripo phone (a GLB scene) or a plain mesh.
+		var meshes: Array[Node] = phone_body.find_children("*", "MeshInstance3D", true, false)
+		if phone_body is MeshInstance3D:
+			meshes.append(phone_body)
+		for mesh: MeshInstance3D in meshes:
+			if mesh.mesh != null:
+				_phone_half = mesh.mesh.get_aabb().size.z * 0.5
 
 
 func can_handle(target: Interactable) -> bool:
@@ -579,7 +601,7 @@ func _bend_for(goal: Vector3) -> float:
 		for joint: int in joints.size():
 			for index: int in range(joint + 1, points.size()):
 				points[index] = points[joint] + turn * (points[index] - points[joint])
-		if points[-1].distance_to(goal) <= ARM_REACH * _scale():
+		if points[-1].distance_to(goal) <= arm_reach * _scale():
 			return float(step)
 	return INF
 
@@ -720,6 +742,46 @@ func _scale() -> float:
 	return model.scale.x
 
 
+## The Quaternius clips, as library FILL_LIBRARY (the model's own clips stay in the default one).
+## Quaternius stands with its hips about 8 cm further back than Tran Trung's own clips do: each
+## copy is shifted so its idle hips meet his, or the body jumps back when such a clip starts.
+func _add_fill_clips() -> void:
+	if animator.has_animation_library(FILL_LIBRARY):
+		return
+	var source := FILL_SCENE.instantiate()
+	var original := (source.find_children("*", "AnimationPlayer", true, false)[0] as AnimationPlayer).get_animation_library(&"")
+	var library := AnimationLibrary.new()
+	for clip: StringName in original.get_animation_list():
+		library.add_animation(clip, original.get_animation(clip).duplicate() as Animation)
+	source.free()
+	animator.add_animation_library(FILL_LIBRARY, library)
+	var own: Vector3 = _hips_at(CLIPS[&"idle"])
+	var fill: Vector3 = _hips_at(FILL_LIBRARY + "/Idle")
+	var shift := Vector3(own.x - fill.x, 0.0, own.z - fill.z) / skeleton.motion_scale
+	for clip: StringName in library.get_animation_list():
+		var animation := library.get_animation(clip)
+		var track: int = animation.find_track(^"%GeneralSkeleton:Hips", Animation.TYPE_POSITION_3D)
+		for key: int in (animation.track_get_key_count(track) if track >= 0 else 0):
+			animation.track_set_key_value(track, key, (animation.track_get_key_value(track, key) as Vector3) + shift)
+
+
+## The hips (skeleton space) at the start of a clip.
+func _hips_at(clip: StringName) -> Vector3:
+	animator.play(clip)
+	animator.seek(0.0, true)
+	var hips: Vector3 = skeleton.get_bone_pose_position(skeleton.find_bone("Hips"))
+	animator.stop()
+	return hips
+
+
+## The right arm's two bones, nearly straight, plus the palm.
+func _measure_arm() -> void:
+	var upper: Vector3 = skeleton.get_bone_global_rest(skeleton.find_bone("RightUpperArm")).origin
+	var lower: Vector3 = skeleton.get_bone_global_rest(skeleton.find_bone("RightLowerArm")).origin
+	var hand: Vector3 = skeleton.get_bone_global_rest(skeleton.find_bone("RightHand")).origin
+	arm_reach = (upper.distance_to(lower) + lower.distance_to(hand)) * ARM_STRAIGHT + PALM
+
+
 ## Scale the model so its eyes, in the rest pose, are at eye_height.
 func _fit_height() -> void:
 	var head: int = skeleton.find_bone("Head")
@@ -732,6 +794,15 @@ func _fit_height() -> void:
 func _split_meshes() -> void:
 	var head: int = skeleton.find_bone("Head")
 	for mesh: MeshInstance3D in skeleton.find_children("*", "MeshInstance3D", true, false):
+		# T-227: cloth and skin wrap the light a little past the side facing it. With the room's
+		# ceiling light behind him, plain Lambert left the chest below the eyes black (the room
+		# has no bounced light).
+		for surface: int in mesh.get_surface_override_material_count():
+			var material := mesh.get_active_material(surface)
+			if material is BaseMaterial3D:
+				var wrapped := material.duplicate() as BaseMaterial3D
+				wrapped.diffuse_mode = BaseMaterial3D.DIFFUSE_LAMBERT_WRAP
+				mesh.set_surface_override_material(surface, wrapped)
 		var mirror := mesh.duplicate(0) as MeshInstance3D
 		mirror.name = mesh.name + "Mirror"
 		mesh.get_parent().add_child(mirror)
@@ -843,7 +914,7 @@ func _find_palm_axis(bone: String, finger_bone: String) -> Vector3:
 
 
 ## For a locomotion clip: the mean eye point, and for moving clips the stride speed (how fast
-## a planted foot slides back), over the longest run of grounded samples in two cycles.
+## a planted foot slides back), over every run of grounded samples in two cycles.
 func _measure(key: StringName) -> void:
 	var clip: StringName = CLIPS[key]
 	var animation: Animation = animator.get_animation(clip)
@@ -871,8 +942,9 @@ func _measure(key: StringName) -> void:
 	for index: int in points.size():
 		low = minf(low, points[index].y)
 		low_toe = minf(low_toe, toes[index])
-	var best_samples: int = 0
-	var best_speed: float = 1.0
+	# Every grounded run counts: Tripo's walk takes two unequal steps per cycle (T-227).
+	var distance: float = 0.0
+	var time: float = 0.0
 	var run_start: int = -1
 	for index: int in points.size() + 1:
 		var grounded: bool = index < points.size() and points[index].y < low + STANCE_HEIGHT \
@@ -881,10 +953,10 @@ func _measure(key: StringName) -> void:
 			run_start = index
 		elif not grounded and run_start >= 0:
 			var samples: int = index - run_start
-			if samples > best_samples and samples >= 3:
+			if samples >= 3:
 				var first: Vector3 = points[run_start]
 				var last: Vector3 = points[index - 1]
-				best_samples = samples
-				best_speed = Vector2(last.x - first.x, last.z - first.z).length() / (step * (samples - 1))
+				distance += Vector2(last.x - first.x, last.z - first.z).length()
+				time += step * (samples - 1)
 			run_start = -1
-	stride_speeds[key] = best_speed * _scale()
+	stride_speeds[key] = (distance / time if time > 0.0 else 1.0) * _scale()

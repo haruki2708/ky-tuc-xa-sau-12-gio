@@ -7,6 +7,8 @@ extends Node3D
 ## Opt-in captures: -- --body-capture (needs Forward+; --shots=a,b retakes those shots only and
 ## keeps the rest of the report). Scripted walk-through for a video:
 ## -- --body-demo (record with Godot's --write-movie).
+## T-227: -- --clip-gallery plays every clip Tran Trung has, captioned, seen from inside the room
+## (record it the same way), for the owner to approve.
 
 const CHAPTER := preload("res://scenes/main/chapter1_main.gd")
 const OUTPUT := "res://../art_source/graphics_upgrade/protagonist/previews/"
@@ -158,6 +160,8 @@ func _ready() -> void:
 		await _capture()
 	elif "--body-demo" in args:
 		await _demo()
+	elif "--clip-gallery" in args:
+		await _clip_gallery()
 
 
 func _add_targets() -> void:
@@ -388,6 +392,68 @@ func _demo() -> void:
 			await _wait(1.0)
 	_show_third_person(false)
 	print("RESULT: body demo PASS")
+	App.quit()
+
+
+## T-227: every clip on a second Tran Trung standing in the room, captioned with its group, name
+## and source (Tripo, or the CC0 Quaternius library), each held at least GALLERY_SECONDS.
+const GALLERY_SECONDS := 3.0
+const GALLERY := [
+	["1. Đi lại", "Đứng thở", &"idle", "Tripo"],
+	["1. Đi lại", "Đi bộ", &"walk", "Tripo"],
+	["1. Đi lại", "Chạy", &"run", "Tripo"],
+	["1. Đi lại", "Ngồi xổm, khom", &"ual/Crouch_Idle", "CC0"],
+	["1. Đi lại", "Đi khom", &"ual/Crouch_Fwd", "CC0"],
+	["2. Tay", "Với tay, mở cửa", &"ual/Interact", "CC0 + IK"],
+	["2. Tay", "Cúi nhặt", &"ual/PickUp_Table", "CC0 + IK"],
+	["2. Tay", "Đẩy vật nặng", &"ual/Push", "CC0"],
+	["2. Tay", "Nhìn quanh", &"look_around", "Tripo"],
+	["3. Giường, ghế", "Ngồi xuống", &"ual/Sitting_Enter", "CC0"],
+	["3. Giường, ghế", "Ngồi", &"sit", "Tripo"],
+	["3. Giường, ghế", "Đứng dậy", &"ual/Sitting_Exit", "CC0"],
+	["3. Giường, ghế", "Leo, trèo lên", &"climb", "Tripo"],
+	["4. Sợ hãi, chết", "Giật mình", &"scared", "Tripo"],
+	["4. Sợ hãi, chết", "Trúng đòn", &"hit", "Tripo"],
+	["4. Sợ hãi, chết", "Trúng đầu", &"ual/Hit_Head", "CC0"],
+	["4. Sợ hãi, chết", "Ngã chết", &"ual/Death01", "CC0"],
+	["5. Chương 3-4", "Nhảy", &"jump", "Tripo"],
+	["5. Chương 3-4", "Vung gậy", &"ual/Sword_Attack", "CC0"],
+]
+
+
+func _clip_gallery() -> void:
+	_set_light("tube")
+	_place("mirror", 0.0)
+	player.visible = false
+	body.visible = false
+	var actor := PlayerBody.new()
+	actor.name = "GalleryBody"
+	add_child(actor)
+	# On the "open" spot facing the mat; the camera stands over the mat, looking back at him.
+	actor.global_position = spots["open"][0]
+	third_camera.set_cull_mask_value(PlayerBody.MIRROR_LAYER, true)
+	third_camera.make_current()
+	var layer := CanvasLayer.new()
+	add_child(layer)
+	var caption := Label.new()
+	caption.position = Vector2(40, 30)
+	caption.add_theme_font_size_override("font_size", 34)
+	caption.add_theme_color_override("font_outline_color", Color.BLACK)
+	caption.add_theme_constant_override("outline_size", 8)
+	layer.add_child(caption)
+	for entry: Array in GALLERY:
+		var clip: StringName = entry[2]
+		var animation := actor.animator.get_animation(clip)
+		caption.text = "%s\n%s  (%s)" % [entry[0], entry[1], entry[3]]
+		var climbing: bool = clip == &"climb"
+		var focus: Vector3 = actor.global_position + Vector3.UP * (1.4 if climbing else 0.9)
+		third_camera.global_position = actor.global_position + Vector3(-0.5, 1.5 if climbing else 1.3, -2.6 if climbing else -2.1)
+		third_camera.look_at(focus)
+		actor.animator.speed_scale = 1.0
+		actor.animator.play(clip, 0.2)
+		var shown: float = maxf(GALLERY_SECONDS, minf(animation.length, 8.0))
+		await _wait(shown)
+	print("RESULT: clip gallery PASS")
 	App.quit()
 
 

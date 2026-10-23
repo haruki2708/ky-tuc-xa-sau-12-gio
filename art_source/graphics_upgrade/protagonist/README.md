@@ -1,6 +1,60 @@
-# Nhân vật chính có thân và tay thật — bước 1, cảnh thử (T-220, D-121…D-124)
+# Nhân vật chính có thân và tay thật — cảnh thử (T-220, D-121…D-124; T-227, D-137, D-138)
 
-Bản chơi chưa đổi. Mọi thứ chạy trong cảnh thử `game/scenes/levels/graphics_pilot/protagonist_pilot.tscn`. Thân hiện là thân tạm CC0 (`game/assets/models/characters/standin/`), sẽ thay bằng Trần Trung từ Tripo.
+Bản chơi chưa đổi. Mọi thứ chạy trong cảnh thử `game/scenes/levels/graphics_pilot/protagonist_pilot.tscn`. Từ T-227 thân là **Trần Trung làm trên Tripo** (mục 0); thân tạm CC0 chỉ còn cho mượn động tác.
+
+## 0. Trần Trung từ Tripo (T-227)
+File gốc ở `build/graphics/staging/protagonist/` (không vào git; hash trong `SHA256SUMS.txt`): 3 ảnh Gemini và tệp ghi prompt (D-138), thân, 9 động tác, điện thoại.
+
+### Thân và động tác → `game/assets/models/characters/protagonist/trung_tripo.glb`
+```
+python -I art_source/graphics_upgrade/protagonist/pack_tripo_protagonist.py --staging build/graphics/staging/protagonist --out game/assets/models/characters/protagonist/trung_tripo.glb
+```
+- Cách làm như quản lý (`../manager/pack_tripo_manager.py`, script dùng lại các hàm đọc/ghi GLB ở đó):
+  - gốc là `trung_idle.glb` (file có động tác, mang dáng đứng gốc của xương);
+  - bỏ tiền tố `mixamorig:` ở tên xương;
+  - bỏ các kênh không đổi (Tripo ghi vị trí và tỉ lệ cho mọi xương);
+  - texture thu về 2048 JPEG.
+- **Bảng `CLIPS`:**
+
+  | Clip game | Nguồn Tripo | Ghi chú |
+  |---|---|---|
+  | `idle` | idle 0–5,6 s | sau 6 s Tripo dồn trọng tâm sang một bên, đầu lệch camera 10 cm; game phát qua lại |
+  | `walk`, `run` | walk, run | hông giữ tại chỗ |
+  | `look_around` | look_around | |
+  | `scared` | scared_01 | hông giữ tại chỗ |
+  | `hit` | hit_to_body_02 | hông giữ tại chỗ |
+  | `jump` | jump | hông giữ tại chỗ |
+  | `climb` | climb | giữ chuyển động: trèo lên gờ cao khoảng 1,7 m |
+  | `sit` | sit | ngồi suốt clip |
+
+- **Godot import** (`trung_tripo.glb.import`):
+  - `root_scale=1.74` (người Tripo cao 0,98 m);
+  - nối xương qua `trung_bone_map.tres` (tên Mixamo → `SkeletonProfileHumanoid`), khung xương `GeneralSkeleton`;
+  - bật `fix_silhouette`: Tripo gắn xương ở dáng chữ A, thân tạm ở dáng chữ T. Không bật thì tay dang ra khi phát động tác CC0.
+- **Động tác bù (CC0):** động tác Tripo không có thì `player_body.gd` lấy từ thư viện Quaternius của thân tạm (thư viện `ual/`, cùng tên xương nên dùng chung được):
+  - ngồi xổm, đi khom, với tay, cúi nhặt (đang dùng);
+  - đẩy, ngồi xuống, đứng dậy, trúng đầu, ngã chết, vung gậy (có sẵn cho các bước sau);
+  - hông Quaternius đứng lùi 8 cm so với Trần Trung, nên mỗi clip được dời hông cho khớp, không thì cả người giật lùi lúc bắt đầu với tay.
+- **Thân trong game (`player_body.gd`):**
+  - cao khoảng 1,74 m, để mắt đúng 1,6 m của camera;
+  - mắt cách xương đầu (−1,7; 8; 9) cm, đo trên mô hình;
+  - tầm với đo từ xương tay (tay Trần Trung ngắn hơn thân tạm);
+  - động tác chạy theo khung vật lý, cùng nhịp với người chơi;
+  - tốc độ sải chân lấy trung bình mọi bước chạm đất (bước đi Tripo dài ngắn không đều);
+  - vật liệu dùng ánh sáng kiểu "wrap" cho vải và da: đèn trần sau lưng không còn làm ngực đen kịt khi cúi nhìn.
+- **Điện thoại:** `trung_phone.glb` (Tripo, lượt 1 dày 2,5 cm) qua `../tripo/bake_prop.py`:
+  ```
+  blender -b --factory-startup -P art_source/graphics_upgrade/tripo/bake_prop.py -- --src build/graphics/staging/protagonist/trung_phone.glb --out game/assets/models/props/phone/phone_tripo.glb --name phone --min -0.038 -0.0725 -0.0045 --size 0.076 0.145 0.009 --fit box --tris 3000 --tex 1024 --sharp 40 --image-format JPEG
+  ```
+  - ép còn 7,6 × 14,5 × 0,9 cm, khoảng 2.900 tam giác, normal nướng từ bản gốc;
+  - thay khối hộp `Model/Body` trong `scenes/player/phone_item.tscn`; màn hình sáng `Screen` giữ nguyên, thu cho vừa mặt kính.
+- **Xem:**
+  - ảnh 1080p: `--body-capture` (mục "Xem và chụp");
+  - video đi một vòng: `build/graphics/protagonist/t227_demo.mp4`;
+  - video từng động tác có chú thích nhóm và nguồn (không vào git, quay như `--body-demo`):
+    ```
+    godot --path game --write-movie build/graphics/protagonist/t227_clips.avi --fixed-fps 30 --resolution 1280x720 res://scenes/levels/graphics_pilot/protagonist_pilot.tscn -- --clip-gallery
+    ```
 
 ## Cách hoạt động
 - **`PlayerBody`** (`game/scripts/player/player_body.gd`), gắn bằng `player.set_body(PlayerBody.new())`:
@@ -56,7 +110,8 @@ Bản chơi chưa đổi. Mọi thứ chạy trong cảnh thử `game/scenes/lev
   ```
 
 ## Test
-`game/tests/player/test_protagonist_body.gd`, 14 test:
+`game/tests/player/test_protagonist_body.gd`, 15 test:
+- T-227: thân là Trần Trung (khoảng 1,7 m), đủ clip, hông clip CC0 khớp, điện thoại Tripo mỏng;
 - đầu ẩn với camera, có trong gương;
 - mắt ở dưới camera;
 - chân không trượt quá 3 cm;
