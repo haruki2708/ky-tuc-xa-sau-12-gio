@@ -35,6 +35,14 @@ const LEAF_MARGIN := 0.06
 const COLLIDER_MARGIN := 0.04
 ## His capsule is 0.3 m; 5 cm more keeps his swinging arms and the cleaver off the furniture.
 const NAV_RADIUS := 0.35
+## T-225 (D-135, owner: walked through the drying rack): furniture with no old room collider under it,
+## solid for the player too. Soft or small things on the floor (clothes, bags, the ball) stay passable, and
+## so does the sink: it juts into the way in through the bathroom door (test_ch1v2's entry at x 5.85).
+const SOLID: Array[String] = ["DryingRack", "StandingFan", "ShoeRack", "FullMirror", "WaterDispenser",
+	"FoldingTable", "BathShelf", "Mop"]
+## The player's box sits this far inside a SOLID prop's bounds, so the manager's paths (NAV_RADIUS off
+## the bounds, give or take a voxel) never brush it.
+const SOLID_INSET := 0.05
 
 
 ## Wraps DYNAMIC props of TripoProps in rigid bodies on the manager's props layer; the stool's old
@@ -72,6 +80,29 @@ static func make_dynamic(room: Node3D, props: Node3D) -> Array[RigidBody3D]:
 		if old != null:
 			for collision: CollisionShape3D in old.find_children("*", "CollisionShape3D", true, false):
 				collision.disabled = true
+		bodies.append(body)
+	return bodies
+
+
+## A static box (world layer) inside each SOLID prop's bounds, as the prop's child "Solid". Added after
+## bake_navigation: his mesh already keeps NAV_RADIUS off these props.
+static func make_solid(props: Node3D) -> Array[StaticBody3D]:
+	var bodies: Array[StaticBody3D] = []
+	for prop_name: String in SOLID:
+		var prop := props.get_node_or_null(prop_name) as Node3D
+		if prop == null:
+			continue
+		var bounds: AABB = Room407Furnish.local_bounds(prop)
+		var body := StaticBody3D.new()
+		body.name = "Solid"
+		body.collision_mask = 0
+		var shape := CollisionShape3D.new()
+		var box := BoxShape3D.new()
+		box.size = (bounds.size - Vector3(SOLID_INSET, 0.0, SOLID_INSET) * 2.0).max(Vector3.ONE * 0.02)
+		shape.shape = box
+		shape.position = bounds.get_center()
+		body.add_child(shape)
+		prop.add_child(body)
 		bodies.append(body)
 	return bodies
 

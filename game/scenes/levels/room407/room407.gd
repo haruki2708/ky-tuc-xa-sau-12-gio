@@ -244,6 +244,8 @@ func _furnish() -> void:
 		# T-224 (D-134): the small props the manager knocks over, his path around everything else.
 		Room407Obstacles.make_dynamic(self, props)
 		Room407Obstacles.bake_navigation(self, $ManagerNavigation)
+		# T-225 (D-135): the furniture the player walked through.
+		Room407Obstacles.make_solid(props)
 	_fit_mirror_effects(props.get_node("MirrorSmall"))
 	_fit_shower_water(props.get_node("Shower"))
 	_trung_blanket = props.get_node("BlanketTrung")
@@ -395,6 +397,11 @@ func _stop_door_gap() -> void:
 ## The room door leaf of the shell, for floor4.gd to hang on Door407 (null without the furnished room).
 func furnished_room_door() -> Node3D:
 	return _furnished.get_node_or_null("fixtures/RoomDoor") as Node3D if _furnished else null
+
+
+## A Tripo prop of the furnished room by its placements name (null without the furnished room).
+func furnished_prop(prop_name: String) -> Node3D:
+	return _furnished.get_node_or_null("TripoProps/" + prop_name) as Node3D if _furnished else null
 
 
 func _carry(node: Node3D, holder: Node3D) -> void:

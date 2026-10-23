@@ -52,7 +52,44 @@ func test_furnished_room_is_built_with_every_prop() -> void:
 		var path := String(furnished.get_path_to(node))
 		if path.get_slice("/", 1) in Room407Obstacles.DYNAMIC:
 			continue
+		# T-225 (D-135): furniture the player walked through has a Solid box.
+		if path.get_slice("/", 1) in Room407Obstacles.SOLID and path.get_slice("/", 2) == "Solid":
+			continue
 		assert_false(node is CollisionObject3D or node is CollisionShape3D, "visual only: " + path)
+
+
+func test_takeaway_box_leaves_the_papers_and_songbook_clear() -> void:
+	# T-225 (D-135): the box lay over Việt's guitar songbook (owner's playtest, so_ghi.png).
+	var room := spawn(ROOM)
+	var prop: Node3D = room.furnished_prop("TakeawayBox")
+	var box: AABB = prop.global_transform * Room407Furnish.local_bounds(prop)
+	var papers := Node3D.new()
+	room.add_child(papers)
+	preload("res://scenes/main/chapter1_main.gd").place_papers(room.get_node("Anchors") as Node3D, papers)
+	var things: Array[Node] = papers.get_children()
+	things.append(room.get_node("Anchors/GuitarSongbook/Book"))
+	for thing: Node in things:
+		for mesh: MeshInstance3D in thing.find_children("*", "MeshInstance3D", true, false):
+			var bounds: AABB = (mesh.global_transform * mesh.get_aabb()).grow(0.005)
+			assert_false(box.intersects(bounds), "clear of " + String(room.get_path_to(mesh)))
+
+
+func test_timetable_paper_is_dimmed_for_the_torch() -> void:
+	# T-225 (D-135): its near-white paper burnt out under the torch close up.
+	var room := spawn(ROOM)
+	var timetable: Node3D = room.furnished_prop("Timetable")
+	var surfaces := 0
+	for mesh: MeshInstance3D in timetable.find_children("*", "MeshInstance3D", true, false):
+		for surface in mesh.mesh.get_surface_count():
+			var material := mesh.get_active_material(surface) as StandardMaterial3D
+			assert_true(material.albedo_color.r <= Room407Furnish.PAPER_TINT["Timetable"] + 0.001,
+				"%s at %s" % [mesh.name, material.albedo_color])
+			surfaces += 1
+	assert_true(surfaces >= 2, "paper and tape")
+	var source := (load(_row("Timetable").model) as PackedScene).instantiate() as Node3D
+	var paper := source.find_children("timetable", "MeshInstance3D", true, false)[0] as MeshInstance3D
+	assert_eq((paper.get_active_material(0) as StandardMaterial3D).albedo_color, Color.WHITE, "the shared model keeps its own")
+	source.free()
 
 
 func test_physics_and_navigation_are_unchanged() -> void:

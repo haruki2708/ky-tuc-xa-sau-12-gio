@@ -50,6 +50,9 @@ const PLACEMENTS := "res://data/room407/placements.json"
 const PLACEMENTS_T222 := "res://data/room407/placements_t222.json"
 const DECALS := "res://data/room407/decals.json"
 const TUBE_COLOR := Color(0.88, 0.94, 0.80)
+## T-225 (D-135, owner: the torch burnt the timetable's text out): props printed on near-white paper
+## (the timetable's texture is 0.96) are drawn at this fraction of their albedo, paper and tape alike.
+const PAPER_TINT := {"Timetable": 0.55}
 ## Models and decal textures stay loaded once read: floor 4 (and this room) is rebuilt on every
 ## chapter load, retry and test, and ~120 GLBs would otherwise be read from disk each time.
 static var _cache: Dictionary = {}
@@ -100,6 +103,8 @@ static func build(shell: String = "corner") -> Node3D:
 			model.position += model.basis * Vector3(0, 0, -local_bounds(model).end.z)
 		model.set_meta(&"placement", row)
 		props.add_child(model)
+		if PAPER_TINT.has(row.name):
+			_tint(model, PAPER_TINT[row.name])
 	var decals := Node3D.new()
 	decals.name = "Decals"
 	root.add_child(decals)
@@ -116,6 +121,15 @@ static func build(shell: String = "corner") -> Node3D:
 			material.emission = TUBE_COLOR
 			mesh.material_override = material
 	return root
+
+
+## Every surface of model darkened to factor of its albedo (own copies: the cached model is shared).
+static func _tint(model: Node3D, factor: float) -> void:
+	for mesh: MeshInstance3D in model.find_children("*", "MeshInstance3D", true, false):
+		for surface in mesh.mesh.get_surface_count():
+			var material := mesh.get_active_material(surface).duplicate() as StandardMaterial3D
+			material.albedo_color *= Color(factor, factor, factor)
+			mesh.set_surface_override_material(surface, material)
 
 
 ## T-222: the Shell* placeholder materials become room407_shell.gdshader with their SHELL_LOOKS.

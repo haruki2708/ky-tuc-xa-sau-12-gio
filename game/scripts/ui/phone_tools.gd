@@ -87,7 +87,7 @@ func _ready() -> void:
 	EventBus.scare_triggered.connect(_on_scare)
 	EventBus.settings_changed.connect(func(section: String, key: String) -> void:
 		if section == "accessibility" and key == "reduce_scares" and _reduce():
-			phone.get_node("Root/Phone").position.x -= phone.get_node("Root/Phone").get_meta("buzz_offset", 0.0)
+			_shift_panel(-float(phone.get_node("Root/Phone").get_meta("buzz_offset", 0.0)))
 			phone.get_node("Root/Phone").set_meta("buzz_offset", 0.0))
 	refresh()
 
@@ -216,10 +216,21 @@ func advance(delta: float) -> void:
 	_buzz_left = maxf(0.0, _buzz_left - delta)
 	var panel: Control = phone.get_node("Root/Phone")
 	var offset := sin(_buzz_left * 100.0) * 3.0 if _buzz_left > 0.0 and not _reduce() else 0.0
-	panel.position.x += offset - float(panel.get_meta("buzz_offset", 0.0))
+	_shift_panel(offset - float(panel.get_meta("buzz_offset", 0.0)))
 	panel.set_meta("buzz_offset", offset)
 	if phone.state.tab == 2 and phone.state.raised:
 		_refresh_feed()
+
+
+## T-225 (D-135): the buzz slides the phone by its side offsets only. Setting position rewrites all
+## four offsets from the current size, so the size of its first layout frames (1310 px tall in
+## chapter 1, more than the screen) stayed for good and the phone ran off the bottom.
+func _shift_panel(dx: float) -> void:
+	if dx == 0.0:
+		return
+	var panel: Control = phone.get_node("Root/Phone")
+	panel.offset_left += dx
+	panel.offset_right += dx
 
 
 func refresh_network() -> void:

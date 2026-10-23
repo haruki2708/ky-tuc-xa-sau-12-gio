@@ -165,6 +165,33 @@ func test_choices_lie_on_the_chat_and_calls_above_the_phone() -> void:
 	assert_eq(sheet.bg_color.a, 1.0, "opaque over the chat")
 
 
+func test_phone_stays_on_its_anchors_after_a_tall_frame_and_a_buzz() -> void:
+	# T-225 (D-135): chapter 1 lays the phone out 1310 px tall for its first frames; the buzz used to
+	# write that size into the offsets for good and the phone ran off the bottom of the screen.
+	EventBus.phone_raised.emit(true)
+	await wait_frames(2)
+	var panel := phone.get_node("Root/Phone") as Control
+	var anchored := panel.get_global_rect()
+	var tall := Control.new()
+	tall.custom_minimum_size.y = 2000.0
+	phone.get_node("Root/Phone/Content").add_child(tall)
+	await wait_frames(2)
+	assert_true(panel.size.y > anchored.size.y, "the tall frame grows the phone")
+	phone.tools_view.advance(0.016)
+	tall.free()
+	await wait_frames(2)
+	assert_eq([panel.offset_top, panel.offset_bottom], [0.0, 0.0], "no size written into the offsets")
+	assert_true(panel.get_global_rect().is_equal_approx(anchored), "back on its anchors: %s" % panel.get_global_rect())
+	phone.state.camera_unlocked = true
+	EventBus.cctv_focus_requested.emit(&"preview")
+	phone.tools_view.advance(0.01)
+	assert_true(absf(panel.offset_left) > 0.5, "the buzz still shakes it sideways")
+	assert_eq(panel.offset_left, panel.offset_right)
+	phone.tools_view.advance(0.5)
+	await wait_frames(2)
+	assert_true(panel.get_global_rect().is_equal_approx(anchored), "and puts it back: %s" % panel.get_global_rect())
+
+
 func test_choices_raise_phone_number_keys_and_single_completion() -> void:
 	EventBus.chat_choice_requested.emit(&"reply", OPTIONS)
 	assert_true(phone.state.raised)

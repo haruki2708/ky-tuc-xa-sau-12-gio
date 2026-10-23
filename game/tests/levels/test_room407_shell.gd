@@ -60,6 +60,10 @@ func test_shell_has_every_part() -> void:
 		# T-224 (D-134): the small props the manager knocks over are rigid bodies on his props layer.
 		if String(furnished.get_path_to(node)).get_slice("/", 1) in Room407Obstacles.DYNAMIC:
 			continue
+		# T-225 (D-135): furniture the player walked through has a Solid box.
+		var path := String(furnished.get_path_to(node))
+		if path.get_slice("/", 1) in Room407Obstacles.SOLID and path.get_slice("/", 2) == "Solid":
+			continue
 		assert_false(node is CollisionObject3D or node is CollisionShape3D, "visual only: " + String(furnished.get_path_to(node)))
 
 

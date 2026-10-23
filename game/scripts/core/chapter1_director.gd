@@ -934,6 +934,8 @@ func _place_room_props() -> void:
 		station.name = "DatLocker"
 		add_child(station)
 		station.global_position = locker.global_position + station_offset
+		# T-225 (D-135): the room's combination lock is drawn; the station's box covered it.
+		_hide_placeholder(station, "Mesh")
 	var phone_anchor := _room_anchor("TrungChargingCable")
 	if phone_anchor == null:
 		phone_anchor = _anchor("Phone_Trung")
@@ -1303,6 +1305,8 @@ func _place_mission_props() -> void:
 			# Lane B's anchors sit at the model's origin (locker foot, middle of
 			# the upper bunk); the player's ray must reach the front face.
 			spot.global_position = anchor.global_position + SEARCH_OFFSETS.get(anchor_name, Vector3.ZERO)
+			# T-225 (D-135): the locker, mattress and bin are drawn by the room; the grey boxes hid them.
+			_hide_placeholder(spot)
 			if spot.has_signal("searched"):
 				spot.searched.connect(_on_searched.bind(anchor_name))
 	# Shared wall with 406 (N3).
@@ -1313,6 +1317,7 @@ func _place_mission_props() -> void:
 		knock.name = "WallKnock406"
 		knock.set("wall_id", &"wall_406")
 		wall.add_child(knock)
+		_hide_placeholder(knock)
 	# Power strip (N2): lane A's three switch areas over lane B's model.
 	var strip_anchor := _room_anchor("PowerStrip")
 	if strip_anchor != null:
@@ -1349,6 +1354,8 @@ func _place_mission_props() -> void:
 		var socket := load("res://scenes/interaction/lan_socket.tscn").instantiate() as Node3D
 		socket.name = "LanSocket"
 		port.add_child(socket)
+		# The anchor's PortFace draws the wall port with its two jacks.
+		_hide_placeholder(socket)
 		socket.plugged.connect(func(cable_id: StringName) -> void:
 			GameState.set_flag(&"lan_plugged", String(cable_id))
 			if room.has_method("set_plugged"):
@@ -1369,6 +1376,16 @@ func _place_mission_props() -> void:
 			lamp_switch.set("light", lamp)
 		lamp_anchor.add_child(lamp_switch)
 		GameState.set_flag(&"desk_lamp_on", lamp != null and (lamp as Node3D).visible)
+		# T-225 (D-135): no switch box on the desk; with the furnished room the lamp itself is aimed at.
+		_hide_placeholder(lamp_switch, "Mesh")
+		var lamp_model: Node3D = room.furnished_prop("DeskLamp") if room.has_method("furnished_prop") else null
+		if lamp_model != null:
+			var bounds: AABB = lamp_model.global_transform * Room407Furnish.local_bounds(lamp_model)
+			var pick := lamp_switch.get_node("CollisionShape3D") as CollisionShape3D
+			var shape := BoxShape3D.new()
+			shape.size = bounds.size
+			pick.shape = shape
+			pick.global_transform = Transform3D(Basis(), bounds.get_center())
 	# Door latch (N4): lane A's latch on the door leaf, as in the demo.
 	var latch_scene := "res://scenes/interaction/door_latch.tscn"
 	var door := _door()
@@ -1378,6 +1395,8 @@ func _place_mission_props() -> void:
 		latch.set("door", door)
 		# The latch scene already sits on the leaf (its shape is offset inside it).
 		door.get_node("Pivot").add_child(latch)
+		# T-225 (D-135): its box hid the room door's lever; the shape stays on the lever.
+		_hide_placeholder(latch, "Mesh")
 
 
 ## QA (lane C bot, T-166): pick up a cable and plug it in with the player's
@@ -1389,6 +1408,13 @@ func qa_plug_cable(cable_id: String, player: Node) -> void:
 	if cable != null and socket != null:
 		cable.interact(player)
 		socket.interact(player)
+
+
+## Lane A's grey stand-in box of an interactable that a model in the room draws.
+func _hide_placeholder(node: Node, mesh_name: String = "Placeholder") -> void:
+	var placeholder := node.get_node_or_null(mesh_name) as Node3D
+	if placeholder != null:
+		placeholder.visible = false
 
 
 func _find_component(script_file: String) -> Node:

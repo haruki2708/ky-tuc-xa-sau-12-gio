@@ -386,6 +386,26 @@ func test_player_can_aim_at_the_door_latch() -> void:
 	assert_eq(hit.get("collider"), latch, "the ray from the room hits the latch first;")
 
 
+func test_mission_props_have_no_grey_boxes_and_the_lamp_is_the_switch() -> void:
+	# T-225 (D-135): lane A's stand-in boxes covered the lock, the door lever, the locker, the mattress
+	# and the bin in the furnished room (owner's playtest screenshots).
+	await wait_frames(2)
+	var anchors := "Floor4/Room407/Anchors/"
+	for path: String in ["Chapter1Director/DatLocker/Mesh", anchors + "DeskLampSwitch/DeskLampSwitch/Mesh",
+			anchors + "VietLocker/SearchVietLocker/Placeholder", anchors + "PhucMattress/SearchPhucMattress/Placeholder",
+			anchors + "TrashBin/SearchTrashBin/Placeholder", anchors + "WallKnock406/WallKnock406/Placeholder",
+			anchors + "LanWallPort/LanSocket/Placeholder", "Floor4/Door407/Pivot/DoorLatch407/Mesh"]:
+		var mesh := scene.get_node_or_null(path) as Node3D
+		assert_not_null(mesh, path)
+		if mesh != null:
+			assert_false(mesh.visible, path + " hidden")
+	var lamp: Node3D = scene.get_node("Floor4/Room407").furnished_prop("DeskLamp")
+	var bounds: AABB = lamp.global_transform * Room407Furnish.local_bounds(lamp)
+	var pick := scene.get_node(anchors + "DeskLampSwitch/DeskLampSwitch/CollisionShape3D") as CollisionShape3D
+	assert_true(bounds.grow(0.001).encloses(AABB(pick.global_position - (pick.shape as BoxShape3D).size / 2.0,
+		(pick.shape as BoxShape3D).size)), "the switch is the lamp")
+
+
 func test_player_can_aim_at_every_mission_prop() -> void:
 	# The bot calls these directly; a player has to hit them with the ray.
 	await wait_frames(2)

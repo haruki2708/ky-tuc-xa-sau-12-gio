@@ -44,6 +44,25 @@ func test_the_owners_small_props_are_rigid_on_the_props_layer() -> void:
 		assert_true(shape.disabled, "the old stool's collision gives way to the rigid one")
 
 
+func test_the_player_cannot_walk_through_the_furniture() -> void:
+	# T-225 (D-135): the owner walked through the drying rack (xuyen_qua.png).
+	var room := _floor4().get_node("Room407") as Node3D
+	await tree.physics_frame
+	var space := room.get_world_3d().direct_space_state
+	for prop_name: String in Room407Obstacles.SOLID:
+		var prop: Node3D = room.furnished_prop(prop_name)
+		var body := prop.get_node_or_null("Solid") as StaticBody3D
+		assert_not_null(body, prop_name + " is solid")
+		if body == null:
+			continue
+		assert_eq(body.collision_layer, 1, prop_name + " on the world layer the player collides with")
+		var bounds: AABB = prop.global_transform * Room407Furnish.local_bounds(prop)
+		var query := PhysicsPointQueryParameters3D.new()
+		query.position = Vector3(bounds.get_center().x, bounds.position.y + minf(bounds.size.y, 1.0) * 0.5, bounds.get_center().z)
+		var hits := space.intersect_point(query)
+		assert_true(hits.any(func(hit: Dictionary) -> bool: return hit.collider == body), prop_name + " blocks at its middle")
+
+
 func test_he_reaches_the_beds_balcony_and_bathroom_from_the_corridor() -> void:
 	var room := _floor4().get_node("Room407") as Node3D
 	var map := room.get_world_3d().navigation_map
@@ -87,7 +106,13 @@ func test_the_mesh_keeps_clear_of_every_blocking_prop() -> void:
 			assert_false(inner.has_point(Vector2(centre.x, centre.z)), "%s: no path on it" % prop.name)
 	assert_true(blocked > 30, "most of the room's things block him (%d)" % blocked)
 	var bin := (room.get_node("Furnished/TripoProps/TrashBin") as Node3D).global_position
-	var on_mesh := NavigationServer3D.map_get_closest_point(room.get_world_3d().navigation_map, bin)
+	# Map sync runs asynchronously: the previous test's floor may still be the one on the map.
+	var on_mesh := Vector3.INF
+	for frame in 120:
+		on_mesh = NavigationServer3D.map_get_closest_point(room.get_world_3d().navigation_map, bin)
+		if Vector2(on_mesh.x - bin.x, on_mesh.z - bin.z).length() < 0.05:
+			break
+		await tree.physics_frame
 	assert_true(Vector2(on_mesh.x - bin.x, on_mesh.z - bin.z).length() < 0.05, "the bin stands on his way to the balcony")
 
 

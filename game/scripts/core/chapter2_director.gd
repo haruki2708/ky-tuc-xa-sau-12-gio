@@ -912,12 +912,6 @@ func _instance_on(parent: Node, scene_path: String, node_name: String) -> Node3D
 	return node
 
 
-func _hide_placeholder(node: Node) -> void:
-	var placeholder := node.get_node_or_null("Placeholder") as Node3D
-	if placeholder != null:
-		placeholder.visible = false
-
-
 func _set_shower_buttons(enabled: bool) -> void:
 	for anchor_name in ["ShowerYes", "ShowerNo"]:
 		var button := _room_anchor(anchor_name + "/Choice") if _room() != null else null

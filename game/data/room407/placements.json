@@ -90,7 +90,7 @@
   {"name": "FootballPhuc", "model": "res://assets/models/graphics_pilot/room407_batch3/football.glb", "position": [1.0, 0, -2.45], "yaw": 0, "source_node": "D-100"},
   {"name": "PenCupStudy", "model": "res://assets/models/graphics_pilot/room407_batch3/pen_cup.glb", "position": [1.42, 0.76, -4.42], "yaw": 0, "source_node": "D-100"},
   {"name": "PenCupDat", "model": "res://assets/models/graphics_pilot/room407_batch3/pen_cup.glb", "position": [4.85, 0.76, -5.72], "yaw": 30, "source_node": "D-100"},
-  {"name": "TakeawayBox", "model": "res://assets/models/graphics_pilot/room407_batch3/takeaway_box.glb", "position": [4.0, 0.76, -0.8], "yaw": 15, "source_node": "D-100"},
+  {"name": "TakeawayBox", "model": "res://assets/models/graphics_pilot/room407_batch3/takeaway_box.glb", "position": [5.09, 0.76, -0.85], "yaw": 0, "source_node": "D-100"},
   {"name": "JacketDoor", "model": "res://assets/models/graphics_pilot/room407_batch3/jacket_hook.glb", "position": [1.1, 0.95, 0.0], "yaw": 0, "mount": "wall", "source_node": "D-100"},
   {"name": "TowelBunkA", "model": "res://assets/models/graphics_pilot/room407_batch3/towel_draped.glb", "position": [0.65, 1.085, -4.0], "yaw": 0, "source_node": "D-100"},
   {"name": "TowelBunkB", "model": "res://assets/models/graphics_pilot/room407_batch3/towel_draped.glb", "position": [7.35, 0.215, -3.7], "yaw": 180, "source_node": "D-100"},
