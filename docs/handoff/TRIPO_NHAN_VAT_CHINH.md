@@ -18,6 +18,38 @@
 - Ô negative prompt (nếu có), dán chung:
   `text, letters, logo, print on shirt, watermark, holding object, phone in hand, T-pose with fists, floating parts, base platform, ground plane, cartoon, anime, stylized, toy, chibi, baked shadows, glasses`
 
+## 2b. Cách tạo đã chọn: ảnh Gemini trước, rồi Tripo dựng từ ảnh (D-138)
+- **Bước 1, ảnh trên Gemini:**
+  - tạo ảnh chính diện bằng prompt dưới;
+  - sửa đi sửa lại tới khi mặt, tóc, áo, quần, dép, tư thế chữ A đúng ý (rẻ hơn thử trên Tripo);
+  - rồi hỏi tiếp trong cùng cuộc trò chuyện ảnh nhìn nghiêng trái và ảnh sau lưng.
+- **Bước 2, Tripo:**
+  - **Multiview to 3D** với ảnh trước, nghiêng, sau; không có thì **Image to 3D** với ảnh chính diện;
+  - cài đặt như mục 2 (H3.1, Ultra mesh, 4K, PBR, Remove lighting);
+  - prompt ở mục 3 dùng làm mô tả kèm (nếu ô có) và cho AI Texturing hoặc Magic Brush khi cần sửa.
+- **Ảnh đạt khi:**
+  - ảnh chụp kiểu studio, nền xám trơn, ánh sáng đều, không bóng gắt;
+  - đủ người từ đầu tới dép, có khoảng trống quanh người;
+  - camera ngang ngực, không chụp gần;
+  - hai bàn tay mở rõ 5 ngón, không cầm gì;
+  - không chữ; góc ảnh có logo hay hình mờ thì cắt bỏ.
+- **Lưu bằng chứng (D-084):** để cùng thư mục `build/graphics/staging/protagonist/`:
+  - các ảnh gốc Gemini: `trung_ref_front.png`, `trung_ref_left.png`, `trung_ref_back.png`;
+  - một tệp `trung_ref_gemini.txt` ghi prompt đã dùng, ngày tạo, tên và phiên bản Gemini.
+
+**Prompt ảnh chính diện:**
+```text
+Full-body character reference photo of a Vietnamese male university student, about 20 years old, 170 cm, average slim build, standing in a neutral A-pose facing the camera: arms straight and angled down about 45 degrees away from the body, open relaxed hands with five separated fingers, feet shoulder-width apart. Short black slightly messy hair, ordinary friendly face, tired expression, faint dark circles under the eyes, no glasses. Old loose plain light grey cotton t-shirt with no print, dark navy cotton shorts ending just above the knees, white Vietnamese honeycomb foam slippers on bare feet. Photorealistic studio photo, plain light grey seamless background, soft even front lighting, no harsh shadows, whole body in frame from head to toes with margin, camera at chest height, 50mm lens, no perspective distortion, no text, no logo, nothing in the hands.
+```
+**Ảnh nghiêng và sau lưng** (mỗi lần một ảnh, trong cùng cuộc trò chuyện):
+```text
+Same person, same clothes, same pose, same lighting and background, seen exactly from his left side.
+```
+```text
+Same person, same clothes, same pose, same lighting and background, seen exactly from behind.
+```
+Điện thoại (mục 5) vẫn tạo thẳng trên Tripo bằng prompt chữ, vì đồ vật đơn giản không cần ảnh trước.
+
 ## 3. Thân Trần Trung: `trung_body.glb`
 
 **Prompt:**

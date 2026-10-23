@@ -21,6 +21,8 @@
   - 1 giây đó tính vào thời gian luật.
 
 ## Việc của chủ dự án
+**D-138:** tạo ảnh Trần Trung trên Gemini trước (trước, nghiêng, sau), rồi Tripo dựng từ ảnh (phiếu mục 2b). Lưu ảnh gốc và prompt làm bằng chứng (D-084).
+
 Tạo theo phiếu, tải về `build/graphics/staging/protagonist/`, báo lại kèm ảnh chụp danh sách động tác Tripo:
 - thân;
 - động tác nhóm 1 bắt buộc, các nhóm 2–5 càng nhiều càng tốt;

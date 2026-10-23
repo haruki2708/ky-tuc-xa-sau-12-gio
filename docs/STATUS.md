@@ -27,7 +27,7 @@
    - Đọc mục "D-118" cuối card (bài học từ lượt lane C).
    - Nhánh `lane-c/T-219-manager-pilot` không ghép, chỉ để tra cứu.
    - Chủ dự án muốn tự học làm khung xương và động tác trong Blender. Integrator đã đề nghị soạn trang hướng dẫn cho người mới, chưa được nhận lời.
-3. **Nhân vật chính có thân và tay thật** (chủ dự án hỏi 16/10). **D-137 (23/10): làm tiếp bằng Tripo, đủ động tác; [T-227](tasks/T-227-protagonist-tripo-body-motions.md), phiếu [`TRIPO_NHAN_VAT_CHINH.md`](handoff/TRIPO_NHAN_VAT_CHINH.md); chờ chủ dự án tạo thân và động tác.** Integrator đã đề xuất kế hoạch 5 bước:
+3. **Nhân vật chính có thân và tay thật** (chủ dự án hỏi 16/10). **D-137 (23/10): làm tiếp bằng Tripo, đủ động tác; [T-227](tasks/T-227-protagonist-tripo-body-motions.md), phiếu [`TRIPO_NHAN_VAT_CHINH.md`](handoff/TRIPO_NHAN_VAT_CHINH.md); chờ chủ dự án tạo thân và động tác. D-138: ảnh Gemini trước rồi Tripo dựng từ ảnh (phiếu mục 2b).** Integrator đã đề xuất kế hoạch 5 bước:
    1. mẫu thử trong phòng 407: mở cửa 407, mở tủ Việt, nhặt giấy;
    2. bước chân thật;
    3. 8–10 loại thao tác tay, dùng IK và điểm cầm trên từng đồ vật;
@@ -69,7 +69,7 @@
    - Hỏi chủ dự án trước khi chạy bot hoặc đo FPS.
    - Kiểm `Get-Process godot*,KyTucXa*` trước khi chạy Godot.
    - Máy từng thiếu RAM làm lượt test chạy nền bị dừng (16/10). Gặp lại thì báo chủ dự án, không tự chạy lại.
-11. Số đã cấp **D-076…D-137, T-207…T-227**. Số tiếp theo **D-138, T-228**.
+11. Số đã cấp **D-076…D-138, T-207…T-227**. Số tiếp theo **D-139, T-228**.
 
 **Repo:** https://github.com/tuaanh666/ky-tuc-xa-sau-12-gio (private)
 
