@@ -49,7 +49,7 @@
    - **D-131: đo FPS** ([báo cáo](../tools/reports/D-131-room407-t222-performance.md)): 1080p thấp nhất 75 FPS khi đèn trần nhấp nháy, 94 FPS khi chỉ có đèn pin (D-114 vỏ cũ: 97,7 và 124); phần dư cho G4 còn khoảng 3,4 ms mỗi frame;
    - **D-132: tối ưu shader vỏ**, hình không đổi (ảnh `room407_shell/previews/compare_d132.jpg`): góc nặng nhất 1080p lên 86 FPS, khi chỉ có đèn pin thấp nhất 112; dư khoảng 5 ms mỗi frame cho G4.
 6. **Chơi thử còn mở:**
-   - chương 1 và chương 2 với quản lý mới và vỏ phòng 407 T-222. Chủ dự án chơi chương 1 bản 22/10 21:51 và báo lỗi: D-133 (T-223), D-134 (T-224), đã sửa; bản 23/10 01:40 (sau T-224): chủ dự án chơi, quản lý đã ổn, báo lỗi D-135 (T-225), đã sửa; **bản mới `build/windows/KyTucXa.exe` 23/10 14:40** (sau T-225) chờ chơi lại; chương 2 chưa báo;
+   - chương 1 và chương 2 với quản lý mới và vỏ phòng 407 T-222. Chủ dự án chơi chương 1 bản 22/10 21:51 và báo lỗi: D-133 (T-223), D-134 (T-224), đã sửa; bản 23/10 01:40 (sau T-224): chủ dự án chơi, quản lý đã ổn, báo lỗi D-135 (T-225), đã sửa; bản 23/10 14:40 (sau T-225): chủ dự án chơi, báo ổ cắm, dây mạng còn dạng khối và muốn quạt đứng chạy (D-136, T-226, đã làm); **bản mới `build/windows/KyTucXa.exe` 23/10 17:21** (sau T-226) chờ chơi lại; chương 2 chưa báo;
    - chương 2: nhà tắm mới D-109, đoạn nhắn tin D-072;
    - chương 3: từ tầng 1 (báo cháy, 4 xác sống);
    - chương 4: chưa chơi lần nào.
