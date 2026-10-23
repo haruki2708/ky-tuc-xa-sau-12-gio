@@ -125,7 +125,11 @@ Chủ dự án muốn **đủ động tác như người bình thường**.
 
 | File | Prompt | Kiểm |
 |---|---|---|
-| `trung_phone.glb` | `Old budget Android smartphone about 15 cm tall, dark grey plastic back with scuffs, slightly cracked screen protector on a black screen, thin black bezel, small camera lens, photorealistic, PBR, no text, no logo` | Màn hình đen phẳng, máy mỏng, không chữ, không logo |
+| `trung_phone.glb` | `A single thin budget Android smartphone, one flat rectangular slab with slightly rounded corners, very slim like a thin sheet of glass: 15 cm tall, 7 cm wide and only 8 mm thick, thickness about one twentieth of the height. Flat black glass screen covering the whole front with a thin black bezel and a small hairline crack in one top corner. Matte dark grey plastic back with light scuffs, one small round camera lens in the top corner. Thin straight side edges with two tiny buttons. Photorealistic, PBR, no case, no stand, no text, no logo` | Màn hình đen phẳng; nhìn nghiêng máy phải mỏng, dày khoảng 1/20 chiều cao; không chữ, không logo |
+
+- Lượt 1 (23/10) ra máy dày, to; prompt trên là bản viết lại cho mỏng.
+- Negative prompt (nếu có ô): `thick, bulky, chunky, brick, box, rugged case, phone case, flip phone, keypad, stand, base, holder, hand, cartoon, toy, text, logo`
+- Kích thước thật trong Tripo không quan trọng, Claude chỉnh về 15 cm khi ghép. Nếu hình và màu đúng mà chỉ hơi dày, Claude ép mỏng lại trong Blender được.
 
 Hiện điện thoại trên tay người chơi vẫn là khối hộp. Với tay thật cầm máy, nó sẽ lộ ra suốt.
 
