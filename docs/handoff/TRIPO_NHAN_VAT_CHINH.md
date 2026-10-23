@@ -105,7 +105,7 @@ Chủ dự án muốn **đủ động tác như người bình thường**.
 | | `trung_reach.glb` | với lấy đồ trước mặt hoặc trên cao | lấy đồ trên kệ, giường trên |
 | | `trung_open_door.glb` | mở cửa, đẩy cửa | cửa 407, nhà tắm, ban công |
 | | `trung_push.glb` | đẩy vật nặng hoặc huých vai | cửa nhà tắm bị kẹt (chương 2) |
-| | `trung_phone.glb` | đứng nhìn điện thoại, nhắn tin | khung điện thoại |
+| | `trung_phone_look.glb` | đứng nhìn điện thoại, nhắn tin | khung điện thoại |
 | | `trung_look_around.glb` | nhìn quanh dò xét | đứng yên lâu |
 | **3. Giường, nấp** | `trung_lie.glb` | nằm ngủ hoặc nằm im | nằm giường (luật chương 1) |
 | | `trung_get_up.glb` | ngồi dậy hoặc đứng dậy | rời giường |
