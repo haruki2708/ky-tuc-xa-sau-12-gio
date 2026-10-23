@@ -22,6 +22,12 @@
 
 ## Việc của chủ dự án
 **D-138:** tạo ảnh Trần Trung trên Gemini trước (trước, nghiêng, sau), rồi Tripo dựng từ ảnh (phiếu mục 2b). Lưu ảnh gốc và prompt làm bằng chứng (D-084).
+- **Ảnh Gemini xong (23/10/2026, khoảng 23:10):**
+  - chủ dự án tạo 3 ảnh trên Gemini Argon 4, gói trả phí Google AI Pro: `trung_ref_front.png`, `trung_ref_left.png`, `trung_ref_back.png`;
+  - Claude viết `trung_ref_gemini.txt` cùng thư mục staging: prompt theo phiếu mục 2b, giờ lưu và SHA256 từng ảnh;
+  - Claude xem ảnh: chữ A khớp giữa ảnh trước và sau, tay mở, áo trơn, dép tổ ong, không hình mờ. Mặt hơi tươi, chưa rõ quầng thâm; đầu ẩn khi chơi nên dùng được, nếu cần thì sửa sau bằng Magic Brush;
+  - 3 tệp đuôi `.png` nhưng nội dung là JPEG 687×1024; giữ nguyên bản gốc.
+- Tiếp theo: Tripo Multiview to 3D với 3 ảnh.
 
 Tạo theo phiếu, tải về `build/graphics/staging/protagonist/`, báo lại kèm ảnh chụp danh sách động tác Tripo:
 - thân;
