@@ -26,7 +26,7 @@ Trả lời/tài liệu tiếng Việt, code tiếng Anh. Integrator tạm là A
 sau đó Claude Code ở máy dùng Opus 5.5 nhận lại. Astra nhận phần core T-207 thay Claude web theo D-081.
 D-081: Astra làm thay Claude web ở T-207. Gửi yêu cầu core/contract về Astra.
 Đọc docs/handoff/T207_G1_ASTRA_2026-10-11.md và contract G1 cập nhật.
-Repo: https://github.com/tuaanh666/ky-tuc-xa-sau-12-gio.git
+Repo: https://github.com/haruki2708/ky-tuc-xa-sau-12-gio.git
 Chỉ làm trong D:\GAME_WORK\lane-f; không sửa D:\GAME_DEMO hoặc workspace lane khác, kể cả lane-e.
 
 1. Nếu chưa có workspace, clone repo vào D:\GAME_WORK\lane-f rồi cd vào đó.

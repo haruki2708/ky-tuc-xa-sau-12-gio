@@ -28,11 +28,11 @@ Bản chữ (xem được trong terminal / Notepad):
   │     ├─ [✅] G1 Hợp đồng kỹ thuật (balo) .............. D-085
   │     ├─ [✅] G2 Mẫu balo Tripo, chọn lượt 2 ............ D-086
   │     ├─ [✅] G3 Phòng 407 đủ đồ vào bản chơi .......... D-103…D-114
-  │     ├─ [📍] G4 Nhân vật: quản lý trước ............... ĐANG Ở ĐÂY (D-115…D-120, đã vào bản chơi, chờ chơi thử)
-  │     ├─ [🔶] G4 Nhân vật chính có thân, tay cầm nắm thật  T-220 bước 1 xong trên thân tạm (D-123, D-124)
-  │     ├─ [⬜] G3+ Vỏ phòng 407 hợp đồ Tripo, ban công có cửa  T-222 (D-126), chờ cửa Tripo
+  │     ├─ [✅] G4 Nhân vật: quản lý Tripo ............... D-120, chương 1 chủ dự án chấp nhận (D-137)
+  │     ├─ [✅] G3+ Vỏ phòng 407, ổ điện, quạt quay ...... T-222…T-226 (D-129, D-136)
+  │     ├─ [📍] G4 Nhân vật chính Trần Trung (Tripo) ..... ĐANG Ở ĐÂY: T-227 lượt 1 trong cảnh thử, chờ duyệt video
   │     ├─ [⬜] G4 Xác sống (trước), bạn học, bảo vệ ...... D-122 kiểu A, card T-221, chờ mẫu m1
-  │     └─ [⬜] G5 Hành lang tầng 4 → nhà B → khuôn viên → thư viện/bệnh viện
+  │     └─ [⬜] G5 Hành lang tầng 4 → nhà B → khuôn viên → thư viện/bệnh viện  (T-229 khảo sát hành lang, D-139)
   │
 [⬜] GĐ 4  Ghép bản hoàn chỉnh: chơi liền 4 chương, 1 file lưu (D-059)
   │
@@ -57,7 +57,7 @@ Bản chữ (xem được trong terminal / Notepad):
 | 3 Truy sát | Khuôn viên gần kích thước thật, xác sống, thanh sắt, đồng đội đi theo; sửa D-061…D-065, D-074, D-075 | 🔶 tới tầng 1 nhà B | **Chờ chủ dự án chơi tiếp từ tầng 1** |
 | 4 Người sống sót | Đối chiếu, gọi điện, bệnh viện, kết thúc; lồng tiếng (D-067, D-068) | ⬜ | **Chờ chủ dự án chơi lần đầu** |
 
-Bản chơi hiện hành: `build/windows/KyTucXa.exe` **19/10 20:21** (sau D-120, có quản lý Tripo). Phiếu chơi thử: `docs/playtest/G3_PHONG407_QUICKTEST.md`.
+Bản chơi hiện hành: `build/windows/KyTucXa.exe` **23/10 17:21** (sau T-226: quản lý Tripo, vỏ phòng 407 mới, quạt quay). Phiếu chơi thử: `docs/playtest/G3_PHONG407_QUICKTEST.md`.
 
 ### Giai đoạn 3 — Đồ họa gần chân thực (từ 10/10, D-076) 📍
 Mục tiêu: hình gần thật, 1080p/60 FPS trên RTX 3050 Laptop. Đồ vật tạo bằng **Tripo AI** (gói Studio Pro, D-080/D-084), chỉnh trong Blender, đưa vào Godot. Kế hoạch: `docs/design/GRAPHICS_UPGRADE_PLAN.md`.
@@ -79,15 +79,12 @@ Khoảng 4–6 ngày: hết chương tự sang chương sau, **một file lưu x
 Phát hành theo chương (D-029). Nền tảng, giá, ngày: chưa quyết. Steam yêu cầu khai báo nội dung AI (`AGENTS.md` §5).
 
 ## 3. Việc đang chờ chủ dự án (để tiếp tục)
-1. 📍 **Quản lý (T-219):** đã vào bản chơi (D-120). Chủ dự án chơi thử chương 1 (quản lý vào phòng, hỏi, rạch giường, mở cửa, cảnh camera) và chương 2 (bóng trong gương nhà tắm), báo chỗ chưa ổn.
-2. **Học làm động tác (tùy chọn):** integrator soạn trang hướng dẫn Blender cho người mới (tạo dáng, đặt mốc, xuất file) khi chủ dự án muốn bắt đầu.
-3. **Nhân vật chính có thân/tay thật (T-220, D-121…D-124; D-137):** **D-137: tạo Trần Trung và động tác trên Tripo theo `docs/handoff/TRIPO_NHAN_VAT_CHINH.md` (card T-227), tải về `build/graphics/staging/protagonist/`, báo kèm ảnh danh sách động tác Tripo.** Trước đó: bước 1 xong trên thân tạm CC0 (camera nhìn theo tay, phải đứng gần, tay trái cầm điện thoại, tay nắm cửa gạt). Chủ dự án xem `build/graphics/protagonist/t220_demo.mp4` hoặc tự đi trong `graphics_pilot/protagonist_pilot.tscn`, rồi quyết: ban công có thêm cửa không, tay nắm Blender hay Tripo, nhịp chân. Ngoại hình Trần Trung để sau.
-4. **Xác sống (T-221, D-122):** tạo m1 (Phúc) theo `docs/handoff/TRIPO_XAC_SONG.md`, tải về `build/graphics/staging/zombie/`, báo integrator. Duyệt ảnh m1 trong game rồi mới làm m2–m4.
-5. **Chơi thử** bản 19/10 20:21 theo `docs/playtest/G3_PHONG407_QUICKTEST.md`: chương 1 và gương chương 2 với quản lý mới, chương 2 (nhà tắm mới, đoạn nhắn tin D-072), chương 3 từ tầng 1 (báo cháy, 4 xác sống), chương 4 lần đầu.
+1. 📍 **Trần Trung (T-227):** xem `build/graphics/protagonist/t227_clips.mp4` và `t227_demo.mp4`, báo động tác chưa ổn; gửi link tác vụ Tripo và tên tài khoản (D-084). Duyệt xong integrator làm động tác còn thiếu rồi đưa vào 4 chương.
+2. **Lane A, B, C mới (D-139):** dán prompt mục 1 của `docs/handoff/lane-a.md`, `lane-b.md`, `lane-c.md` cho từng tài khoản Codex CLI; báo integrator khi agent xong để review.
+3. **Xác sống (T-221, D-122):** tạo m1 (Phúc) theo `docs/handoff/TRIPO_XAC_SONG.md`, tải về `build/graphics/staging/zombie/`.
+4. **Chơi thử:** chương 2–4 với đồ họa mới (chương 3 từ tầng 1, chương 4 lần đầu). Bản chơi `build/windows/KyTucXa.exe` 23/10 17:21.
+5. **Học làm động tác (tùy chọn):** integrator soạn trang hướng dẫn Blender cho người mới khi chủ dự án muốn.
 
 ## 4. Đội làm
 - **Integrator:** Claude Code ở máy (Opus 5.5).
-- **Lane:** A gameplay, B môi trường/3D (**đang hết hạn mức**), C QA/công cụ, D giao diện/đa ngôn ngữ (Gemini 3.8 Flash, D-108), F âm thanh (Claude Code web, D-108). Hiện không lane nào có việc dở.
-- **Quản lý (T-219):** chủ dự án + integrator, không giao lane (D-118).
-- Lúc lane hết hạn mức: integrator làm thay, ghi "Claude làm thay".
-- Việc nhỏ có thể giao lane rảnh: con dấu tiếng Anh xuống dòng, thẻ sinh viên thừa dòng "Cuộn để đọc tiếp", đèn pin chói trắng khi sát vật dưới 1 m.
+- **Lane:** A gameplay, B môi trường/3D, C QA/công cụ: **3 tài khoản GPT mới, Codex CLI trên máy này (D-139)**, việc thử T-228, T-229, T-230. D giao diện/đa ngôn ngữ (Gemini 3.8 Flash, D-108), F âm thanh (Claude Code web, D-108): rảnh.

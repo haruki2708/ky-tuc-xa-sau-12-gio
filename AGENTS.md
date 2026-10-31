@@ -4,15 +4,17 @@ Dự án: **"Ký túc xá sau 12 giờ"**. Game kinh dị và giải đố 3D, g
 Mục tiêu là game đầy đủ khoảng 3–4 tiếng, phát hành theo 4 chương (D-029); cả bốn chương đã có phần triển khai, tình trạng chơi thử xem `docs/STATUS.md`. Đợt tiếp theo T-207…T-212 chuẩn bị/nâng đồ họa, giữ cơ chế và logic đã chốt. **Thiết kế cốt truyện duy nhất còn hiệu lực là `docs/design/STORY.md` (v2, D-034, D-035).** Các tài liệu trong `docs/design/archive/` là phần chơi cũ của bản demo, chỉ để tham khảo hệ thống có sẵn; đừng làm theo cốt truyện hay luật trong đó.
 
 Các vai trò và phiên làm việc trong dự án:
-- **Integrator (Claude):** giữ kiến trúc, review và merge mọi nhánh vào `main`.
-- **10–11/10/2026:** Astra thay điều phối tạm thời; sau đó Claude Code ở máy (Opus 5.5) nhận lại qua `docs/handoff/OPUS_5_5_NHAN_LAI_DIEU_PHOI.md`. **D-081:** Astra làm thay Claude web ở T-207 theo yêu cầu chủ dự án; Claude web tạm dừng task này. A/B/C/D/F gửi yêu cầu core/contract về Astra, sau đó Opus tiếp nhận. Giữ lịch sử G0 của web; xem `docs/handoff/T207_G1_ASTRA_2026-10-11.md`.
-- **Năm agent lane A, B, C, D, F:** mỗi agent một lane, mỗi lane sở hữu một vùng file riêng. **D-078:** lane E tạm nghỉ vô thời hạn; lane F (tài khoản GPT Plus mới do chủ dự án chỉ định) tiếp nhận toàn bộ vai trò âm thanh trước đây của E, gồm T-212 và bảo trì âm thanh đã ghép. E không nhận việc mới; tên E trong lịch sử/credits vẫn giữ nguyên.
-- **Chủ dự án (người dùng):** ra quyết định thiết kế, chơi thử, gửi prompt cho agent.
+- **Integrator (Claude Code ở máy, Opus 5.5):** giữ kiến trúc, viết task card, review và merge mọi nhánh vào `main`, cập nhật `docs/STATUS.md`.
+- **Agent lane A, B, C, D, F:** mỗi agent một lane, mỗi lane sở hữu một vùng file riêng (mục 3).
+  - **D-139 (31/10/2026):** lane A, B, C đổi sang 3 tài khoản GPT mới, chạy **Codex CLI trên máy này**. Giữ tên lane và phạm vi file; workspace mới `D:\GAME_WORK\lane-a2`, `lane-b2`, `lane-c2`. Bàn giao: `docs/handoff/BAN_GIAO_LANE_ABC_2026-10-31.md`. Workspace cũ `lane-a`, `lane-b`, `lane-c` giữ nguyên để đối chiếu, không sửa.
+  - D-078: lane E nghỉ, lane F tiếp nhận âm thanh. Tên E trong lịch sử và credits giữ nguyên.
+  - Lịch sử điều phối cũ (Astra, Claude web 10–11/10) xem `docs/handoff/OPUS_5_5_NHAN_LAI_DIEU_PHOI.md`; không còn hiệu lực.
+- **Chủ dự án (người dùng):** ra quyết định thiết kế, chơi thử, gửi prompt cho agent, chuyển kết quả cho integrator.
 
 ## 1. Bắt đầu mỗi phiên (bắt buộc)
-1. Làm việc **trong thư mục riêng của lane**: `D:\GAME_WORK\lane-<x>`.
-   - **Không bao giờ** làm trong `D:\GAME_DEMO`, đó là bản tích hợp của integrator.
-   - Chưa có thư mục thì clone: `git clone https://github.com/tuaanh666/ky-tuc-xa-sau-12-gio.git D:\GAME_WORK\lane-<x>`.
+1. Làm việc **trong thư mục riêng của lane**: `D:\GAME_WORK\lane-<x>2` cho A, B, C (D-139); `D:\GAME_WORK\lane-d`, `lane-f` cho D, F.
+   - **Không bao giờ** làm trong `D:\GAME_DEMO` (bản tích hợp của integrator) hay workspace của lane khác, kể cả workspace cũ `lane-a`, `lane-b`, `lane-c`.
+   - Chưa có thư mục thì clone: `git clone https://github.com/haruki2708/ky-tuc-xa-sau-12-gio.git D:\GAME_WORK\lane-<x>2`, rồi `git lfs pull`.
 2. Chạy `git fetch origin`, rồi chuyển sang nhánh task của bạn. Nhánh tạo từ `origin/main`, đặt tên `lane-<x>/T-xxx-mo-ta-ngan`.
 3. Đọc lần lượt:
    - file này,
@@ -60,6 +62,14 @@ Mọi lane đều được sửa: task card của mình (`docs/tasks/T-xxx*.md`,
   ```
   <godot_console> --path game <res://scene.tscn> --write-movie <out>/frame.png --fixed-fps 30 --quit-after 60 --resolution 1280x720
   ```
+
+### Lượt Godot (D-139: nhiều agent chung một laptop, 16 GB RAM)
+- Full `pwsh tools/test.ps1` mất khoảng 28 phút, `pwsh tools/check.ps1` khoảng 12 phút. **Mỗi lúc chỉ một phiên chạy full test, check, chụp ảnh hay export.**
+- Trước khi chạy: xem file `D:\GAME_WORK\GODOT_DANG_CHAY.txt`.
+  - Có file thì người khác đang chạy: chờ, hoặc chỉ chạy lệnh ngắn `pwsh tools/test.ps1 -Filter <tên file test của bạn>`.
+  - Không có file: tạo file, ghi một dòng `lane, lệnh, giờ bắt đầu`, chạy, **xóa file khi xong** (kể cả khi lỗi).
+  - File cũ hơn 60 phút mà `Get-Process godot*` không thấy tiến trình nào thì coi là bỏ quên, xóa được.
+- Không tắt tiến trình Godot của người khác. Integrator cũng theo luật này.
 
 ## 5. Quy ước code và asset
 - **Code:**

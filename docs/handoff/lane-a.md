@@ -1,54 +1,47 @@
 # Prompt bàn giao — Lane A (Gameplay)
 
-> **D-082:** đã review phần mới; đọc Review card và [kết luận chung](REVIEW_G1_2026-10-11.md), giữ công việc đã nhận. Không làm lại G0 hoặc tự chạy một vòng test mới chỉ vì nhận thông báo; tiếp tục đúng phần còn thiếu trong Review.
+> **31/10/2026, D-139:** lane A chuyển sang tài khoản GPT mới chạy Codex CLI trên máy này, workspace `D:\GAME_WORK\lane-a2`. Đọc [bàn giao](BAN_GIAO_LANE_ABC_2026-10-31.md). Các prompt cũ (T-208/T-209/T-210, T-216, T-219) xem lịch sử git của file này; không dùng nữa.
 
-> **D-081, 11/10:** Astra làm thay Claude web ở T-207 theo yêu cầu chủ dự án. Đầu mối core/contract chuyển về integrator; web tạm dừng. Đọc [bàn giao G1](T207_G1_ASTRA_2026-10-11.md); giữ G0 và task/nhánh hiện có.
-
-> **D-080, 11/10:** dùng **Tripo AI thay Meshy**. Studio thủ công ưu tiên cho mẫu đầu; API dùng ví riêng. Đọc [cập nhật provider](TRIPO_AI_CHUYEN_DOI_2026-10-11.md), tiếp tục gói hiện có và giữ kết quả G0.
-
-> **D-079, 11/10:** G0 đã review/ghép. Khi tiếp tục, fetch/rebase main chứa D-079 rồi đọc Review của card và [yêu cầu G1](REVIEW_G0_2026-10-11.md); không làm lại G0 theo đoạn prompt cũ. Đây là phần tiếp của gói đã giao, chưa mở Tripo AI trả phí hoặc production.
-
-**10/10/2026:** T-208, D-076/D-077; chủ dự án xác nhận lane còn hạn mức. Astra chỉ điều phối tạm 10–11/10, Opus 5.5 ở máy nhận lại sau đó. Card đã phân công; trạng thái thực xem Handoff.
-
-## 1. Prompt giao task (dán nguyên khối)
+## 1. Prompt giao việc đầu tiên (dán nguyên khối)
 ```text
-Bạn là agent Lane A (Gameplay) của game Ký túc xá sau 12 giờ, Godot 4.7.2/GDScript.
-Task T-208: adapter giữa logic và model/animation. Trả lời/tài liệu tiếng Việt, code tiếng Anh.
-D-081: Astra làm thay Claude web ở T-207. Gửi yêu cầu core/contract về Astra.
-Đọc docs/handoff/T207_G1_ASTRA_2026-10-11.md và contract G1 cập nhật.
-Repo: https://github.com/tuaanh666/ky-tuc-xa-sau-12-gio.git
-Chỉ làm trong D:\GAME_WORK\lane-a; không sửa D:\GAME_DEMO hoặc workspace lane khác.
+Bạn là agent Lane A (Gameplay) của game "Ký túc xá sau 12 giờ" (Godot 4.7.2, GDScript).
+Bạn là tài khoản mới nhận lane A từ hôm nay (D-139). Trả lời và viết tài liệu bằng tiếng Việt; code, comment, commit message bằng tiếng Anh.
+Integrator là Claude Code ở máy (Opus 5.5): review và merge vào main. Chủ dự án quyết mọi việc thiết kế.
 
-1. Kiểm git status ở workspace của bạn; không ghi đè công việc đang có. git fetch origin.
-   Nhánh: lane-a/T-208-visual-gameplay-adapters. Nếu local đã có thì switch và pull --ff-only.
-   Nếu chỉ origin có thì tạo tracking branch. Nếu chưa có thì tạo từ origin/main có D-081.
-   Rebase an toàn lên origin/main có D-081, giữ mọi thay đổi cục bộ.
-2. Đọc AGENTS.md, docs/STATUS.md, docs/design/GRAPHICS_UPGRADE_PLAN.md và docs/tasks/T-208-visual-gameplay-adapters.md.
-   Đọc docs/handoff/TRIPO_AI_CHUYEN_DOI_2026-10-11.md và Review card.
-3. G0 đã ghép D-079. Đọc Review và cập nhật D-080, tiếp tục các yêu cầu G1 đúng lane; không làm lại G0.
-   Những bước sau phụ thuộc G1/G2 làm khi điều kiện trong card đủ; không tự đoán API/setting.
-   Chỉ sửa đúng vùng của card. Giữ logic, collision, nav, timing; không sửa luật hoặc lời thoại.
-4. Tripo AI chưa được xác nhận gói/đã mua/ngân sách; Studio/API tách credit: không tiêu credit, không cài MCP/plugin.
-   Không chạy bot chương 3–4 hoặc FPS. Phần chuẩn bị/công cụ không cần chờ các quyền này.
-5. Bàn giao từng phần bằng commit nhỏ “T-208: ...”; không đánh dấu cả gói done khi mới xong G0.
-   Trước commit: full pwsh tools/test.ps1 và pwsh tools/check.ps1; ghi RESULT và những gì chưa kiểm.
-   Phối hợp integrator xếp lượt full test/render trên Windows, tránh nhiều lượt Godot tranh tài nguyên.
-   git push -u origin lane-a/T-208-visual-gameplay-adapters. Không push main, không mở PR nếu chưa được yêu cầu.
-6. Cập nhật Handoff/checklist card của bạn, báo: đã làm; test/check; dependency/mục chưa đạt;
-   yêu cầu ngoài phạm vi; commit/nhánh; có chặn gì không. Không sửa STATUS/DECISIONS/Review.
+Workspace của bạn: D:\GAME_WORK\lane-a2. Chỉ làm trong thư mục này.
+Không sửa D:\GAME_DEMO, không sửa workspace lane khác, kể cả workspace cũ D:\GAME_WORK\lane-a.
+
+1. Nếu D:\GAME_WORK\lane-a2 chưa có:
+   git clone https://github.com/haruki2708/ky-tuc-xa-sau-12-gio.git D:\GAME_WORK\lane-a2
+   rồi trong thư mục đó: git lfs install --local và git lfs pull.
+   Nếu đã có: kiểm git status, không ghi đè thay đổi đang có, git fetch origin.
+2. Tạo nhánh lane-a/T-228-ch1-hand-targets từ origin/main (đã có thì switch và pull --ff-only).
+3. Đọc lần lượt: AGENTS.md, docs/handoff/BAN_GIAO_LANE_ABC_2026-10-31.md, docs/STATUS.md (phần đầu),
+   docs/tasks/T-228-ch1-hand-targets.md.
+4. Làm task T-228: gắn HandTarget cho đồ dùng tay trong chương 1, có test.
+   Chỉ sửa file trong mục "Được phép sửa" của card. Cần sửa ngoài phạm vi thì ghi "Yêu cầu thay đổi" trong Handoff, không tự sửa.
+   Không chạy bot, không đo FPS, không tiêu credit Tripo.
+   Việc thiết kế không rõ thì đưa phương án kèm đề xuất, không tự chọn.
+5. Chạy Godot theo luật "Lượt Godot" trong AGENTS.md mục 4 (file khóa D:\GAME_WORK\GODOT_DANG_CHAY.txt).
+   Khi đang làm: pwsh tools/test.ps1 -Filter <tên test>. Trước commit: full pwsh tools/test.ps1 rồi pwsh tools/check.ps1.
+   Không sửa âm thanh thì trước commit chạy git checkout -- game/default_bus_layout.tres.
+6. Commit nhỏ "T-228: ...", push nhánh: git push -u origin lane-a/T-228-ch1-hand-targets. Không push main, không mở PR.
+7. Cập nhật Checklist và Handoff trong card: đã làm, còn dở, cách kiểm tra, dòng RESULT test và check,
+   commit hash, yêu cầu thay đổi, phần chưa kiểm. Ghi trung thực. Không sửa STATUS hay DECISIONS.
+8. Cuối phiên báo lại ngắn gọn bằng tiếng Việt cho chủ dự án: xong gì, nhánh, commit, có bị chặn không.
 ```
 
-## 2. Prompt tiếp tục
+## 2. Prompt tiếp tục (phiên sau)
 ```text
-Tiếp tục T-208 ở D:\GAME_WORK\lane-a, nhánh lane-a/T-208-visual-gameplay-adapters.
-Kiểm git status, fetch, switch/pull --ff-only an toàn; đọc Handoff tại docs/tasks/T-208-visual-gameplay-adapters.md.
-Đọc STATUS và kế hoạch đồ họa để biết mốc G1/G2 đã đủ chưa. Rebase origin/main nếu cần, không mất thay đổi cục bộ.
-Làm các phần còn được mở trong card và bàn giao theo mục 1; không tạo lại asset/tác vụ Tripo AI đã có task ID.
+Tiếp tục T-228 ở D:\GAME_WORK\lane-a2, nhánh lane-a/T-228-ch1-hand-targets.
+Kiểm git status, git fetch origin, rebase an toàn lên origin/main nếu main có thay đổi mới (không mất thay đổi cục bộ).
+Đọc lại AGENTS.md và mục Handoff trong docs/tasks/T-228-ch1-hand-targets.md để biết lần trước dừng ở đâu.
+Làm tiếp phần còn dở, bàn giao theo bước 5–8 của prompt mục 1.
 ```
 
-## 3. Prompt yêu cầu sửa
+## 3. Prompt yêu cầu sửa (khi integrator trả lại)
 ```text
-Integrator trả T-208: git fetch origin; đọc Review trên origin/main:docs/tasks/T-208-visual-gameplay-adapters.md.
-Rebase nhánh lane-a/T-208-visual-gameplay-adapters lên origin/main, sửa đúng từng ý trong phạm vi.
-Chạy full test/check, cập nhật Handoff và push nhánh; nêu rõ phần chưa kiểm/đang chờ.
+Integrator trả T-228. Ở D:\GAME_WORK\lane-a2: git fetch origin, đọc mục Review trong origin/main:docs/tasks/T-228-ch1-hand-targets.md
+(hoặc nội dung chủ dự án dán kèm). Rebase lane-a/T-228-ch1-hand-targets lên origin/main, sửa đúng từng ý trong phạm vi được phép.
+Chạy full test và check theo luật Lượt Godot, cập nhật Handoff, push nhánh, báo lại phần đã sửa và phần chưa kiểm.
 ```
