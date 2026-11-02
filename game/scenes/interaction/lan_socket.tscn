@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3]
+[gd_scene load_steps=6 format=3]
 
 [ext_resource type="Script" path="res://scripts/interaction/lan_socket.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/interaction/hand_target.gd" id="hand_target"]
 [sub_resource type="BoxShape3D" id="Shape"]
 size = Vector3(0.14, 0.18, 0.04)
 [sub_resource type="BoxMesh" id="Mesh"]
@@ -18,3 +19,8 @@ shape = SubResource("Shape")
 [node name="Placeholder" type="MeshInstance3D" parent="."]
 mesh = SubResource("Mesh")
 material_override = SubResource("Material")
+
+[node name="HandTarget" type="Marker3D" parent="."]
+position = Vector3(0, 0, 0.02)
+script = ExtResource("hand_target")
+grip = 1

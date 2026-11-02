@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3]
+[gd_scene load_steps=7 format=3]
 
 [ext_resource type="Script" path="res://scripts/interaction/power_strip.gd" id="1"]
 [ext_resource type="Script" path="res://scripts/interaction/power_strip_switch.gd" id="2"]
+[ext_resource type="Script" path="res://scripts/interaction/hand_target.gd" id="hand_target"]
 [sub_resource type="BoxShape3D" id="Shape"]
 size = Vector3(0.11, 0.06, 0.12)
 [sub_resource type="BoxMesh" id="Mesh"]
@@ -47,3 +48,18 @@ index = 2
 shape = SubResource("Shape")
 [node name="Placeholder" type="MeshInstance3D" parent="Switch3"]
 mesh = SubResource("Mesh")
+
+[node name="HandTarget" type="Marker3D" parent="Switch1"]
+position = Vector3(0, 0, -0.03)
+script = ExtResource("hand_target")
+grip = 1
+
+[node name="HandTarget" type="Marker3D" parent="Switch2"]
+position = Vector3(0, 0, -0.03)
+script = ExtResource("hand_target")
+grip = 1
+
+[node name="HandTarget" type="Marker3D" parent="Switch3"]
+position = Vector3(0, 0, -0.03)
+script = ExtResource("hand_target")
+grip = 1

@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3]
+[gd_scene load_steps=6 format=3]
 
 [ext_resource type="Script" path="res://scripts/interaction/light_switch.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/interaction/hand_target.gd" id="hand_target"]
 [sub_resource type="BoxShape3D" id="Shape"]
 size = Vector3(0.08, 0.12, 0.025)
 [sub_resource type="BoxMesh" id="Mesh"]
@@ -21,3 +22,8 @@ shape = SubResource("Shape")
 position = Vector3(0, 0, 0.0125)
 mesh = SubResource("Mesh")
 material_override = SubResource("Material")
+
+[node name="HandTarget" type="Marker3D" parent="."]
+position = Vector3(0, 0, 0.025)
+script = ExtResource("hand_target")
+grip = 1
