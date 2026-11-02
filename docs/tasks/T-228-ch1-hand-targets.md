@@ -1,5 +1,5 @@
 # T-228 — Điểm đặt tay (`HandTarget`) cho đồ dùng được trong chương 1
-- Lane: A (Gameplay) | Trạng thái: todo | Agent: (chủ dự án điền tên tài khoản GPT mới)
+- Lane: A (Gameplay) | Trạng thái: done (D-140) | Agent: (chủ dự án điền tên tài khoản GPT mới)
 - Nhánh: `lane-a/T-228-ch1-hand-targets` từ `origin/main` mới nhất.
 - Quyết định giao: **D-139** (việc thử đầu tiên của tài khoản lane A mới). Integrator chấm theo bảng trong `docs/tasks/README.md`.
 - Phụ thuộc: T-220 (cơ chế tay, D-121, D-124), T-227 lượt 1 (thân Trần Trung, `5289def`).
@@ -126,3 +126,10 @@ Các đường dẫn anchor dưới đây tương đối với `Floor4/Room407/A
 - `Interactable.hand_target()` tìm đệ quy nên `Door407.hand_target()` có thể lấy marker của **Interactable chốt cửa con**. Không đòi cửa trả null trong test T-228 vì chốt nằm trong subtree cửa. Integrator cần review cách bỏ qua Interactable lồng nhau/chọn marker cửa khi đưa thân vào bản chơi; lane A không sửa core hoặc `door_handles.gd`.
 - Chưa duyệt hình tay chạm đèn bàn/thùng rác/khóa số/tường và các đồ khác trên thân Trần Trung. Integrator chụp/duyệt theo mục Cách kiểm tra của card.
 - Chưa chạy bot, đo FPS, export, chơi tay 4 chương hoặc dùng Tripo; không phát sinh credit.
+
+## Review (integrator, 02/11/2026)
+- **Đạt, đã merge** (D-140). Điểm: 5 · 4 · 5 · 4 · 5 · 0 vòng (`docs/tasks/README.md`).
+- Đúng phạm vi, test kiểm đúng chỗ quan trọng (vị trí thật trong chương 1, sau khi director đổi vùng bấm), Handoff trung thực, tự nêu lỗi full test và vấn đề cửa/chốt.
+- Lỗi `test_pursuer` trong full test của agent: chạy riêng đạt, lượt full của lane B, C và lượt integrator sau merge đều đạt; coi là test chập chờn khi máy bận.
+- Integrator sửa khi merge: `Interactable.hand_target()` bỏ qua marker của Interactable lồng bên trong (cửa 407 không lấy marker chốt), thêm kiểm tra vào `test_ch1_hand_targets.gd`; bỏ marker giấy Đạt gắn tạm trong `protagonist_pilot.gd` và `test_protagonist_body.gd`.
+- Góp ý lần sau: tránh mã cứng theo `spot_id` và so kích thước khối (`light_switch.gd`); nếu cần cấu hình theo từng chỗ đặt, đề xuất thuộc tính `@export` hoặc ghi "Yêu cầu thay đổi".

@@ -1,5 +1,5 @@
 # T-229 — Hành lang tầng 4: khảo sát hiện trạng và kế hoạch nâng đồ họa (G5)
-- Lane: B (Môi trường và 3D) | Trạng thái: todo | Agent: (chủ dự án điền tên tài khoản GPT mới)
+- Lane: B (Môi trường và 3D) | Trạng thái: done (D-140) | Agent: (chủ dự án điền tên tài khoản GPT mới)
 - Nhánh: `lane-b/T-229-floor4-corridor-survey` từ `origin/main` mới nhất.
 - Quyết định giao: **D-139** (việc thử đầu tiên của tài khoản lane B mới). Integrator chấm theo bảng trong `docs/tasks/README.md`.
 - Lượt này **chỉ khảo sát, chụp ảnh và viết kế hoạch**. Không sửa scene chơi được.
@@ -81,3 +81,9 @@
 - Yêu cầu thay đổi: không cần sửa ngoài phạm vi T-229. Lượt triển khai sau cần integrator giao card cho CCTV/core nếu đồng bộ hình trên điện thoại; chủ dự án duyệt các phương án mỹ thuật trước dựng.
 - Phần chưa kiểm: chơi tay bốn chương, bot, FPS/VRAM và credit/asset Tripo (không được giao thực hiện).
 - Blocked: không. Khóa Godot đã được trả sau kiểm tra; file bus âm thanh được trả về trước commit. Không sửa STATUS/DECISIONS, không sửa scene chơi, không chạy bot/FPS hay tiêu credit Tripo.
+
+## Review (integrator, 02/11/2026)
+- **Đạt, đã merge** (D-140). Điểm: 5 · 5 · 5 · 4 · 5 · 0 vòng (`docs/tasks/README.md`).
+- Bảng hiện trạng và bảng "không được đổi" kỹ, đối chiếu đúng T-190 (408 thật ở X=42); 12 ảnh đủ góc; kế hoạch có rủi ro FPS và chia lượt; không quyết thay chủ dự án.
+- Integrator bỏ 9 file log trong `previews/` khỏi repo, thêm `.gitignore`. Lần sau: log để trong `build/`, không commit.
+- Bước tiếp: chủ dự án chọn phương án `PLAN.md` mục 4, rồi integrator mở card lượt 1 (mẫu đoạn 406–407).

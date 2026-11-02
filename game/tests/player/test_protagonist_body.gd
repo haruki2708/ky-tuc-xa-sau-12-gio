@@ -65,18 +65,14 @@ func _target(position: Vector3) -> Interactable:
 	return target
 
 
-## Dat's note lying face up on a desk in front of the walker, taken by its right-hand edge.
+## Dat's note lying face up on a desk in front of the walker, taken by its right-hand edge (the
+## readable scene's own HandTarget since T-228).
 func _paper(walker: CharacterBody3D) -> Interactable:
 	var paper := (load("res://scenes/interaction/readable.tscn") as PackedScene).instantiate() as Interactable
 	paper.set("document_id", &"ch1_dat_note")
 	world.add_child(paper)
 	paper.global_position = walker.global_position + Vector3(0.1, 0.85, -0.45)
 	paper.rotation_degrees = Vector3(-90, 0, 0)
-	var pinch := HandTarget.new()
-	pinch.pick_up = true
-	pinch.grip = HandTarget.Grip.PINCH
-	paper.add_child(pinch)
-	pinch.position = Vector3((paper.get("size") as Vector2).x * 0.5 - 0.015, 0.0, 0.002)
 	return paper
 
 

@@ -34,13 +34,14 @@ func interact_by_hand(player: Node, seconds: float) -> void:
 
 
 ## The HandTarget a full body reaches for, or null for a plain press. A thing used from either
-## side (a door's two handles) has one per side: the one nearest `from` is taken.
+## side (a door's two handles) has one per side: the one nearest `from` is taken. Markers of a
+## nested Interactable (Door 407's latch, T-228) belong to that thing, not to this one.
 func hand_target(from: Vector3 = Vector3.INF) -> HandTarget:
 	var best: HandTarget = null
 	var best_distance: float = INF
 	for node: Node in find_children("*", "Marker3D", true, false):
 		var marker := node as HandTarget
-		if marker == null:
+		if marker == null or not _owns(marker):
 			continue
 		if not from.is_finite():
 			return marker
@@ -49,6 +50,15 @@ func hand_target(from: Vector3 = Vector3.INF) -> HandTarget:
 			best_distance = distance
 			best = marker
 	return best
+
+
+func _owns(marker: Node) -> bool:
+	var node := marker.get_parent()
+	while node != self:
+		if node == null or node is Interactable:
+			return false
+		node = node.get_parent()
+	return true
 
 
 func _on_interact(_player: Node) -> void:

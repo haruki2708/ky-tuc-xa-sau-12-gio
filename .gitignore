@@ -19,3 +19,6 @@ art_source/props/.scratch.tmp/
 
 # Chapter 2 dictionary downloads (build_dictionary.py)
 docs/design/ch2/.cache/
+
+# T-229 capture/test logs written by run_stage.ps1
+art_source/graphics_upgrade/floor4_corridor/previews/*.log

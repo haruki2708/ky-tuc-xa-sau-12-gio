@@ -43,3 +43,12 @@ Integrator chấm mỗi tiêu chí từ 1 đến 5. Chủ dự án ghi thêm ti�
 | | C | 5 · 5 · 5 · 4 · 5 · 0 vòng | |
 | | D | 5 · 5 · 5 · 5 · 5 · 0 vòng | |
 | | E | 5 · 4 · 5 · 5 · 5 · 0 vòng | |
+
+## Chấm việc thử tài khoản mới lane A, B, C (D-139, D-140)
+Cùng 7 tiêu chí ở trên. Chấm 02/11/2026 khi integrator review và merge.
+
+| Lane | Việc thử | Điểm 1–6 | Lý do trừ điểm | Ghi chú 7 |
+|---|---|---|---|---|
+| A | T-228 | 5 · 4 · 5 · 4 · 5 · 0 vòng | Full test lượt của agent có 1 lỗi chập chờn `test_pursuer` (agent ghi trung thực, không tự đánh dấu đạt; lượt integrator sau merge đạt). Code đặt marker theo `spot_id` và so kích thước khối đèn bàn, hơi cứng | |
+| B | T-229 | 5 · 5 · 5 · 4 · 5 · 0 vòng | Commit 9 file log (khoảng 4.000 dòng) vào `previews/`; integrator bỏ khi merge, thêm `.gitignore` | |
+| C | T-230 | 5 · 5 · 5 · 5 · 5 · 0 vòng | Không | |

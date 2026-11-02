@@ -1,5 +1,5 @@
 # T-230 — Rà bot và smoke test chương 2–4 sau đợt nâng đồ họa
-- Lane: C (QA và Tools) | Trạng thái: todo | Agent: (chủ dự án điền tên tài khoản GPT mới)
+- Lane: C (QA và Tools) | Trạng thái: done (D-140) | Agent: (chủ dự án điền tên tài khoản GPT mới)
 - Nhánh: `lane-c/T-230-bot-smoke-review-ch2-4` từ `origin/main` mới nhất.
 - Quyết định giao: **D-139** (việc thử đầu tiên của tài khoản lane C mới). Integrator chấm theo bảng trong `docs/tasks/README.md`.
 - Lượt này **chỉ đọc code, kiểm tĩnh và báo cáo**. **Không chạy bot** (chạy bot phải hỏi chủ dự án trước).
@@ -67,3 +67,8 @@
 - Yêu cầu thay đổi: integrator review và giao lượt sau cho sửa aim/tọa độ profile, kiểm đường đi/collider thật, bổ sung coverage báo cháy; cân nhắc menu4/smoke UI allowlist. Nếu cần đổi collider/navmesh/API core, chuyển B/core, không tự sửa ngoài phạm vi.
 - Chưa kiểm: bot end-to-end, physics/raycast/walking toàn tuyến, FPS/hình ảnh, chơi tay ch4. Không chạy bot/benchmark/Tripo, không sửa STATUS/DECISIONS.
 - Blocked: không. Full test/check đều đạt; không coi các lỗi bot tìm được là đã sửa.
+
+## Review (integrator, 02/11/2026)
+- **Đạt, đã merge** (D-140). Điểm: 5 · 5 · 5 · 5 · 5 · 0 vòng (`docs/tasks/README.md`).
+- Integrator kiểm lại: aim lau màn trong `tools/ch2-profile.json` (36.18, 1.45, −6.78) lệch màn thật ở x=35.387 (`room407_anchors.tscn` ShowerScreen + offset phòng 30); `qa-menu.ps1` chỉ nhận chương 1–3; profile ch3 không có báo cháy tầng 1. Đúng.
+- Bước tiếp: chủ dự án quyết có sửa và chạy bot chương 2, 3 không (thời gian dự trù ở báo cáo mục 7); chương 4 cần card riêng nếu muốn bot.

@@ -223,15 +223,8 @@ func _add_targets() -> void:
 	edge.global_position = LOCKER_EDGE
 	locker.edges.append(edge)
 	targets["locker"] = locker
-	var paper := get_node(PAPER) as Interactable
-	var pinch := HandTarget.new()
-	pinch.name = "HandTarget"
-	pinch.grip = HandTarget.Grip.PINCH
-	pinch.pick_up = true
-	paper.add_child(pinch)
-	# Just inside the sheet's right-hand edge (+X lying face up on the desk), half way up.
-	pinch.position = Vector3((paper.get("size") as Vector2).x * 0.5 - 0.015, 0.0, 0.002)
-	targets["paper"] = paper
+	# T-228: the readable scene carries its own pinch at the sheet's right-hand edge.
+	targets["paper"] = get_node(PAPER) as Interactable
 
 
 func _set_light(light: String) -> void:
