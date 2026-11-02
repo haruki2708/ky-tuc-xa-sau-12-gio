@@ -55,6 +55,10 @@ func _update_size() -> void:
 	shape.size = Vector3(size.x, size.y, pick_depth)
 	$CollisionShape3D.shape = shape
 	$CollisionShape3D.position.z = pick_depth * 0.5
+	# Keep the grip on the sheet, independent of the enlarged picking depth.
+	var target := get_node_or_null("HandTarget") as HandTarget
+	if target != null:
+		target.position = Vector3(maxf(0.0, size.x * 0.5 - 0.015), 0.0, FACE_OFFSET)
 
 
 func paper_look() -> StringName:

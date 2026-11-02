@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene load_steps=5 format=3]
 [ext_resource type="Script" path="res://scripts/interaction/puzzle_station.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/interaction/hand_target.gd" id="hand_target"]
 [sub_resource type="BoxShape3D" id="Pick"]
 size = Vector3(0.22, 0.3, 0.16)
 [sub_resource type="BoxMesh" id="Lock"]
@@ -13,3 +14,8 @@ prompt_key = "PROMPT_PUZZLE_OPEN"
 shape = SubResource("Pick")
 [node name="Mesh" type="MeshInstance3D" parent="."]
 mesh = SubResource("Lock")
+
+[node name="HandTarget" type="Marker3D" parent="."]
+position = Vector3(0.10, 0, 0)
+script = ExtResource("hand_target")
+grip = 1
