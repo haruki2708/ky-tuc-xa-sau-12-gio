@@ -49,7 +49,7 @@
 - [x] Mỗi kết luận "hỏng" có dòng code hoặc node path làm bằng chứng
 - [x] Công cụ kiểm tĩnh và test (nếu làm) đạt
 - [x] Full `pwsh tools/test.ps1` và `pwsh tools/check.ps1` đạt (theo luật lượt Godot trong `AGENTS.md`)
-- [ ] Handoff trung thực, có commit hash
+- [x] Handoff trung thực, có commit hash
 
 ## Cách kiểm tra
 - Integrator đọc báo cáo, thử lại vài kết luận "hỏng" bằng cách đọc code hoặc load scene.
@@ -62,7 +62,7 @@
 - Kiểm tra: `pwsh tools/test.ps1 -Filter test_profile_static_audit` → `RESULT: 3 passed, 0 failed`, exit 0. Lượt lọc đầu bắt lỗi chuẩn hóa `./` trong công cụ mới, đã sửa và chạy lại đạt.
 - Full test/check: lượt 23:29 ngày 01/11 bị ngắt, chưa có RESULT; đã xác nhận session/tiến trình lane C không còn và tiếp tục lúc 23:59 theo yêu cầu chủ dự án. Lượt chạy lại tuần tự dưới khóa lane C: `RESULT: 854 passed, 0 failed` (exit 0, xong 02/11 00:20:52), rồi `RESULT: check 0 error(s)` (exit 0, xong 00:33:55). Khóa đã dọn trong finally.
 - Còn dở: không còn phần triển khai/kiểm tra nào trong phạm vi T-230; các sửa bot/profile là đề xuất lượt sau, chờ integrator review và chủ dự án cho chạy.
-- Commit hash: ghi ở lần cập nhật Handoff ngay sau commit nội dung.
+- Commit nội dung đã kiểm: `700c1294909a8d8441233cd716f82e0d0d15d9bd` — `T-230: Audit chapter bot profiles and document smoke coverage`. Commit tiếp theo chỉ chốt hash/checklist Handoff này. Nhánh bàn giao: `lane-c/T-230-bot-smoke-review-ch2-4`.
 - Cách kiểm: đọc báo cáo và chạy lại test lọc trên; kết quả static không đồng nghĩa bot chạy hết chương. Log phiên trong `build/t230/` (không commit build).
 - Yêu cầu thay đổi: integrator review và giao lượt sau cho sửa aim/tọa độ profile, kiểm đường đi/collider thật, bổ sung coverage báo cháy; cân nhắc menu4/smoke UI allowlist. Nếu cần đổi collider/navmesh/API core, chuyển B/core, không tự sửa ngoài phạm vi.
 - Chưa kiểm: bot end-to-end, physics/raycast/walking toàn tuyến, FPS/hình ảnh, chơi tay ch4. Không chạy bot/benchmark/Tripo, không sửa STATUS/DECISIONS.
