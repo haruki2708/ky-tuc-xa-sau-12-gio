@@ -1,0 +1,6 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scenes/levels/floor4/corridor_capture.gd" id="1"]
+
+[node name="CorridorCapture" type="Node3D"]
+script = ExtResource("1")

@@ -57,11 +57,11 @@
 - Không quyết thay chủ dự án về hình dáng (màu tường, kiểu cửa, đồ trang trí mang ý nghĩa truyện): đưa 2–3 phương án kèm đề xuất trong `PLAN.md`.
 
 ## Checklist hoàn thành
-- [ ] Bảng hiện trạng và bảng "không được đổi" trong `PLAN.md`
-- [ ] 8–12 ảnh `before_*.jpg` 1080p
-- [ ] `PLAN.md` có các lượt nhỏ, rủi ro FPS, phương án cho chủ dự án chọn
-- [ ] `TRIPO_NHAP.md`
-- [ ] Full `pwsh tools/test.ps1` và `pwsh tools/check.ps1` đạt (theo luật lượt Godot trong `AGENTS.md`)
+- [x] Bảng hiện trạng và bảng "không được đổi" trong `PLAN.md`
+- [x] 8–12 ảnh `before_*.jpg` 1080p
+- [x] `PLAN.md` có các lượt nhỏ, rủi ro FPS, phương án cho chủ dự án chọn
+- [x] `TRIPO_NHAP.md`
+- [x] Full `pwsh tools/test.ps1` và `pwsh tools/check.ps1` đạt (theo luật lượt Godot trong `AGENTS.md`)
 - [ ] Handoff trung thực, có commit hash
 
 ## Cách kiểm tra
@@ -69,4 +69,15 @@
 - Integrator xem ảnh và kế hoạch, rồi hỏi chủ dự án các phương án.
 
 ## Handoff (agent điền)
-- Phiên YYYY-MM-DD: đã làm / còn dở / cách kiểm tra / yêu cầu thay đổi / Blocked
+- Phiên 2026-11-01, lane B mới (Codex), workspace `D:\GAME_WORK\lane-b2`, nền `2773a3f608f33a2bda719a3dcfbf74900cfe07c0`.
+- Đã làm: clone + LFS, nhánh đúng tên; khảo sát tĩnh, PLAN và TRIPO_NHAP; tạo cảnh chụp độc lập 12 góc 1080p và script chờ/giữ/trả khóa Godot. Không thay scene chơi.
+- Bố trí 408: đã đối chiếu T-190 Handoff và generator; tấm bịt X=36 được giữ có chủ đích, cửa thật ở X=42. Không đề nghị dời lại.
+- Kiểm tra ngắn: `pwsh tools/test.ps1 -Filter test_floor4` → `RESULT: 6 passed, 0 failed`, exit 0.
+- 02/11/2026: đã chụp và xem đủ 12 ảnh 1920×1080 Forward+ trên RTX 3050 Laptop; `RESULT: corridor capture 12 images PASS`, exit 0; log không có lỗi engine. Đã chờ lane C trả khóa rồi mới chạy.
+- Đã hoàn tất khảo sát, ảnh, kế hoạch, phiếu nháp và kiểm tra. Chờ integrator review và chủ dự án duyệt mỹ thuật để mở card triển khai; không có việc dựng scene chơi trong T-229.
+- Cách kiểm tra: `art_source/graphics_upgrade/floor4_corridor/PLAN.md` mục 3; các stage `filter`, `capture`, `test`, `check` trong `run_stage.ps1` tự chờ khóa bằng CreateNew.
+- Full test lượt 1: `RESULT: test FAIL (engine error or missing successful runner result)`; smoke khởi tạo cảnh chụp headless làm cảnh gọi thoát. Đã sửa cảnh chỉ chạy chụp khi là current_scene trực tiếp (deferred); chụp lại vẫn đủ 12 ảnh PASS. Check lượt 1 bị ngắt, chưa có RESULT; không tính đạt.
+- Lượt xác nhận sau sửa: smoke `RESULT: 1 passed, 0 failed`, exit 0; full `pwsh tools/test.ps1` → `RESULT: 851 passed, 0 failed`, exit 0. `pwsh tools/check.ps1` → `RESULT: check 0 error(s)`, exit 0. Chuỗi `verify.ps1` kết thúc `RESULT: T229 verification PASS`. Commit: bổ sung ngay sau commit nội dung.
+- Yêu cầu thay đổi: không cần sửa ngoài phạm vi T-229. Lượt triển khai sau cần integrator giao card cho CCTV/core nếu đồng bộ hình trên điện thoại; chủ dự án duyệt các phương án mỹ thuật trước dựng.
+- Phần chưa kiểm: chơi tay bốn chương, bot, FPS/VRAM và credit/asset Tripo (không được giao thực hiện).
+- Blocked: không. Khóa Godot đã được trả sau kiểm tra; file bus âm thanh được trả về trước commit. Không sửa STATUS/DECISIONS, không sửa scene chơi, không chạy bot/FPS hay tiêu credit Tripo.

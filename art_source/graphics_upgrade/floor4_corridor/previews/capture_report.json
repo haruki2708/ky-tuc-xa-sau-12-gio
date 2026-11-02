@@ -1,0 +1,206 @@
+{
+	"baseline_commit": "2773a3f608f33a2bda719a3dcfbf74900cfe07c0",
+	"capture_kind": "Static geometry survey, no chapter director or player",
+	"godot": "4.7.2-stable (official)",
+	"gpu": "NVIDIA GeForce RTX 3050 Laptop GPU",
+	"images": [
+		{
+			"campus": false,
+			"eye": [
+				0.699999988079071,
+				1.64999997615814,
+				2.70000004768372
+			],
+			"file": "before_01_west_night.jpg",
+			"fov": 75.0,
+			"target": [
+				32.0,
+				1.39999997615814,
+				1.20000004768372
+			],
+			"torch": false
+		},
+		{
+			"campus": false,
+			"eye": [
+				43.2999992370605,
+				1.64999997615814,
+				3.09999990463257
+			],
+			"file": "before_02_east_night.jpg",
+			"fov": 75.0,
+			"target": [
+				12.0,
+				1.39999997615814,
+				1.10000002384186
+			],
+			"torch": false
+		},
+		{
+			"campus": false,
+			"eye": [
+				33.5,
+				1.64999997615814,
+				3.09999990463257
+			],
+			"file": "before_03_door407_night.jpg",
+			"fov": 75.0,
+			"target": [
+				32.0,
+				1.25,
+				0.0
+			],
+			"torch": false
+		},
+		{
+			"campus": false,
+			"eye": [
+				33.5,
+				1.64999997615814,
+				3.09999990463257
+			],
+			"file": "before_04_door407_torch.jpg",
+			"fov": 75.0,
+			"target": [
+				32.0,
+				1.25,
+				0.0
+			],
+			"torch": true
+		},
+		{
+			"campus": false,
+			"eye": [
+				37.2999992370605,
+				1.64999997615814,
+				3.09999990463257
+			],
+			"file": "before_05_desk_night.jpg",
+			"fov": 75.0,
+			"target": [
+				40.0,
+				1.25,
+				0.400000005960464
+			],
+			"torch": false
+		},
+		{
+			"campus": false,
+			"eye": [
+				37.2999992370605,
+				1.64999997615814,
+				3.09999990463257
+			],
+			"file": "before_06_desk_torch.jpg",
+			"fov": 75.0,
+			"target": [
+				40.0,
+				1.25,
+				0.400000005960464
+			],
+			"torch": true
+		},
+		{
+			"campus": false,
+			"eye": [
+				3.0,
+				1.64999997615814,
+				0.800000011920929
+			],
+			"file": "before_07_washroom_night.jpg",
+			"fov": 75.0,
+			"target": [
+				2.5,
+				1.10000002384186,
+				-3.5
+			],
+			"torch": false
+		},
+		{
+			"campus": false,
+			"eye": [
+				2.40000009536743,
+				1.64999997615814,
+				-1.0
+			],
+			"file": "before_08_washroom_torch.jpg",
+			"fov": 75.0,
+			"target": [
+				0.200000002980232,
+				1.29999995231628,
+				-2.29999995231628
+			],
+			"torch": true
+		},
+		{
+			"campus": false,
+			"eye": [
+				35.0,
+				1.64999997615814,
+				2.79999995231628
+			],
+			"file": "before_09_sealed_old408_night.jpg",
+			"fov": 75.0,
+			"target": [
+				36.0,
+				1.14999997615814,
+				0.129999995231628
+			],
+			"torch": false
+		},
+		{
+			"campus": false,
+			"eye": [
+				43.0,
+				1.64999997615814,
+				2.79999995231628
+			],
+			"file": "before_10_door408_torch.jpg",
+			"fov": 75.0,
+			"target": [
+				42.0,
+				1.29999995231628,
+				0.0
+			],
+			"torch": true
+		},
+		{
+			"campus": true,
+			"eye": [
+				-1.0,
+				1.64999997615814,
+				2.5
+			],
+			"file": "before_11_main_stairs_torch.jpg",
+			"fov": 75.0,
+			"target": [
+				-3.79999995231628,
+				-0.699999988079071,
+				-1.39999997615814
+			],
+			"torch": true
+		},
+		{
+			"campus": true,
+			"eye": [
+				46.5,
+				1.64999997615814,
+				2.5
+			],
+			"file": "before_12_fire_stairs_torch.jpg",
+			"fov": 75.0,
+			"target": [
+				45.2000007629395,
+				-0.699999988079071,
+				-1.39999997615814
+			],
+			"torch": true
+		}
+	],
+	"lighting": "Unmodified scene lights and environment; optional camera flashlight",
+	"renderer": "forward_plus",
+	"resolution": [
+		1920,
+		1080
+	]
+}
