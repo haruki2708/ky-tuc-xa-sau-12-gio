@@ -62,7 +62,7 @@
 - [x] `PLAN.md` có các lượt nhỏ, rủi ro FPS, phương án cho chủ dự án chọn
 - [x] `TRIPO_NHAP.md`
 - [x] Full `pwsh tools/test.ps1` và `pwsh tools/check.ps1` đạt (theo luật lượt Godot trong `AGENTS.md`)
-- [ ] Handoff trung thực, có commit hash
+- [x] Handoff trung thực, có commit hash
 
 ## Cách kiểm tra
 - Chạy cảnh chụp: `<godot_console> --path game res://scenes/levels/floor4/corridor_capture.tscn` (không `--headless`, cần Forward+).
@@ -77,7 +77,7 @@
 - Đã hoàn tất khảo sát, ảnh, kế hoạch, phiếu nháp và kiểm tra. Chờ integrator review và chủ dự án duyệt mỹ thuật để mở card triển khai; không có việc dựng scene chơi trong T-229.
 - Cách kiểm tra: `art_source/graphics_upgrade/floor4_corridor/PLAN.md` mục 3; các stage `filter`, `capture`, `test`, `check` trong `run_stage.ps1` tự chờ khóa bằng CreateNew.
 - Full test lượt 1: `RESULT: test FAIL (engine error or missing successful runner result)`; smoke khởi tạo cảnh chụp headless làm cảnh gọi thoát. Đã sửa cảnh chỉ chạy chụp khi là current_scene trực tiếp (deferred); chụp lại vẫn đủ 12 ảnh PASS. Check lượt 1 bị ngắt, chưa có RESULT; không tính đạt.
-- Lượt xác nhận sau sửa: smoke `RESULT: 1 passed, 0 failed`, exit 0; full `pwsh tools/test.ps1` → `RESULT: 851 passed, 0 failed`, exit 0. `pwsh tools/check.ps1` → `RESULT: check 0 error(s)`, exit 0. Chuỗi `verify.ps1` kết thúc `RESULT: T229 verification PASS`. Commit: bổ sung ngay sau commit nội dung.
+- Lượt xác nhận sau sửa: smoke `RESULT: 1 passed, 0 failed`, exit 0; full `pwsh tools/test.ps1` → `RESULT: 851 passed, 0 failed`, exit 0. `pwsh tools/check.ps1` → `RESULT: check 0 error(s)`, exit 0. Chuỗi `verify.ps1` kết thúc `RESULT: T229 verification PASS`. Commit nội dung đã kiểm: `a4ac622a6425b56f88d14829eea01024ebee889e` (`T-229: Survey floor four corridor and draft graphics upgrade plan`). Commit tiếp theo chỉ cập nhật Handoff/checklist; không đổi code hay asset.
 - Yêu cầu thay đổi: không cần sửa ngoài phạm vi T-229. Lượt triển khai sau cần integrator giao card cho CCTV/core nếu đồng bộ hình trên điện thoại; chủ dự án duyệt các phương án mỹ thuật trước dựng.
 - Phần chưa kiểm: chơi tay bốn chương, bot, FPS/VRAM và credit/asset Tripo (không được giao thực hiện).
 - Blocked: không. Khóa Godot đã được trả sau kiểm tra; file bus âm thanh được trả về trước commit. Không sửa STATUS/DECISIONS, không sửa scene chơi, không chạy bot/FPS hay tiêu credit Tripo.
