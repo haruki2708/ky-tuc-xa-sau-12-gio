@@ -1,0 +1,9 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+  PASS test_floor4.gd::test_floor4_structure_dimensions_and_anchors
+  PASS test_floor4.gd::test_floors_have_tile_surface_and_world_collision
+  PASS test_floor4.gd::test_door407_opens_and_paper_anchor_follows_leaf
+  PASS test_floor4.gd::test_capsule_routes_to_room_desk_and_washroom
+  PASS test_floor4.gd::test_railing_and_locked_exits_block_capsule
+  PASS test_floor4.gd::test_lights_audio_zones_and_sleepers
+RESULT: 6 passed, 0 failed

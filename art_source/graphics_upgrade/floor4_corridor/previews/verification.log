@@ -1,0 +1,1567 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+WARNING: Light switch has no assigned light.
+   at: push_warning (core/variant/variant_utility.cpp:1033)
+   GDScript backtrace (most recent call first):
+       [0] _ready (res://scripts/interaction/light_switch.gd:9)
+       [1] test_all_scenes_load_and_instantiate (res://tests/smoke/test_smoke_scenes.gd:16)
+WARNING: Light switch has no assigned light.
+   at: push_warning (core/variant/variant_utility.cpp:1033)
+   GDScript backtrace (most recent call first):
+       [0] _ready (res://scripts/interaction/light_switch.gd:9)
+       [1] test_all_scenes_load_and_instantiate (res://tests/smoke/test_smoke_scenes.gd:16)
+  PASS test_smoke_scenes.gd::test_all_scenes_load_and_instantiate
+RESULT: 1 passed, 0 failed
+T229_STAGE_EXIT smoke=0
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+  PASS test_audio.gd::test_all_ogg_load_and_decode_with_correct_loop_flags
+  PASS test_audio.gd::test_bus_layout_is_loaded_and_routed
+  PASS test_audio.gd::test_footsteps_do_not_repeat_and_cover_all_variants
+  PASS test_audio.gd::test_footstep_empty_unknown_and_duplicate_banks
+  PASS test_audio.gd::test_ambient_loop_does_not_modify_shared_stream
+  PASS test_audio.gd::test_ambient_random_interval_lifecycle
+  PASS test_audio.gd::test_audio_room_loads_and_starts_sources
+  PASS test_audio.gd::test_footstep_intensity_selects_bank_without_repeats
+  PASS test_audio.gd::test_footstep_louder_when_running
+  PASS test_audio.gd::test_walk_bank_quieter_than_run_bank
+  PASS test_audio_zones.gd::test_hum_small_speaker_report_matches_asset
+  PASS test_audio_zones.gd::test_ambient_zone_physics_entry_exit_and_reverse_fade
+  PASS test_audio_zones.gd::test_shared_emitter_overlap_and_restart_preserve_gain
+  PASS test_audio_zones.gd::test_zone_ignores_other_layers_and_tracks_multiple_bodies
+  PASS test_audio_zones.gd::test_reverb_overlap_priority_exit_and_scene_cleanup
+  PASS test_audio_zones.gd::test_light_visibility_energy_and_flicker_lifecycle
+  PASS test_audio_zones.gd::test_light_hum_respects_zone_when_restarted_and_flickering
+  PASS test_audio_zones.gd::test_zones_scene_player_traversal_and_keys
+  PASS test_ch1_audio.gd::test_ch1_assets_decode_loudness_loops_and_hashes
+  PASS test_ch1_audio.gd::test_phone_filters_route_to_existing_sliders
+  PASS test_ch1_audio.gd::test_floor_filter_is_per_source_and_restores_routing
+  PASS test_ch1_audio.gd::test_manager_spatial_api_missing_streams_and_voice_duration
+  PASS test_ch1_audio.gd::test_reduced_scares_uses_less_detailed_clips_including_live_change
+  PASS test_ch1_audio.gd::test_scream_wave_staggers_positions_floors_and_cancels
+  PASS test_ch1_audio.gd::test_phone_call_queue_spoken_filter_member_death_and_shutdown
+  PASS test_ch1_audio.gd::test_phone_missing_voice_keeps_transcript_and_missing_sfx_is_safe
+  PASS test_ch1_audio.gd::test_player_heartbeat_accelerates_and_only_exhaustion_gasps
+  PASS test_ch1_audio.gd::test_corpse_pose_signal_drip_control_and_pause
+  PASS test_ch1_audio.gd::test_chapter_music_silence_is_latched_and_missing_streams_safe
+  PASS test_ch1_audio.gd::test_chapter_speaker_keeps_contract_with_new_start_and_line_noise
+CH1 audition: 1/29 manager_step_01 -> SFX
+CH1 audition: 2/29 manager_step_02 -> SFX
+CH1 audition: 3/29 manager_drag -> SFX
+CH1 audition: 4/29 manager_knock -> SFX
+CH1 audition: 5/29 slash_mattress_01 -> SFX
+CH1 audition: 6/29 slash_mattress_02 -> SFX
+CH1 audition: 7/29 slash_wood_01 -> SFX
+CH1 audition: 8/29 slash_wood_02 -> SFX
+CH1 audition: 9/29 manager_kill -> SFX
+CH1 audition: 10/29 kill_soft -> SFX
+CH1 audition: 11/29 slash_soft -> SFX
+CH1 audition: 12/29 scream_01 -> SFX
+CH1 audition: 13/29 scream_02 -> SFX
+CH1 audition: 14/29 scream_03 -> SFX
+CH1 audition: 15/29 scream_04 -> SFX
+CH1 audition: 16/29 call_ring -> SFX
+CH1 audition: 17/29 call_disconnect -> PhoneSFX
+CH1 audition: 18/29 call_drop -> PhoneSFX
+CH1 audition: 19/29 blood_drip -> Ambience
+CH1 audition: 20/29 corpse_rustle -> SFX
+CH1 audition: 21/29 heartbeat -> SFX
+CH1 audition: 22/29 breath_gasp -> SFX
+CH1 audition: 23/29 bunk_climb -> SFX
+CH1 audition: 24/29 bunk_creak -> SFX
+CH1 audition: 25/29 wall_knock -> SFX
+CH1 audition: 26/29 locker_unlock -> SFX
+CH1 audition: 27/29 charger_plug -> SFX
+CH1 audition: 28/29 pa_on -> Voice
+CH1 audition: 29/29 pa_burst -> Voice
+  PASS test_ch1_audio.gd::test_ch1_audition_all_clips_and_floor_travel_load
+  PASS test_ch1v2_audio.gd::test_v2_assets_decode_hashes_lufs_and_loops
+  PASS test_ch1v2_audio.gd::test_wall_taps_count_order_digit_and_letter_gaps
+  PASS test_ch1v2_audio.gd::test_wall_cancel_restart_reentrancy_invalid_and_missing_bank
+  PASS test_ch1v2_audio.gd::test_wall_muffling_pause_and_checkpoint_cancel
+  PASS test_ch1v2_audio.gd::test_mission_cues_handle_loop_release_and_missing_streams
+  PASS test_ch1v2_audio.gd::test_phone_lost_drops_speech_and_does_not_replay_missed_lines
+  PASS test_ch1v2_audio.gd::test_death_sounds_deduplicate_both_event_orders_and_reset
+  PASS test_ch1v2_audio.gd::test_fall_bed_reduction_missing_clips_and_shutdown
+  PASS test_ch1v2_audio.gd::test_camera_only_plays_when_viewed_and_channel_changes
+CH1V2 audition: 1/20 wall_tap_01 -> SFX
+CH1V2 audition: 2/20 wall_tap_02 -> SFX
+CH1V2 audition: 3/20 wall_tap_03 -> SFX
+CH1V2 audition: 4/20 router_power_off -> SFX
+CH1V2 audition: 5/20 router_boot -> SFX
+CH1V2 audition: 6/20 router_online -> SFX
+CH1V2 audition: 7/20 power_switch -> SFX
+CH1V2 audition: 8/20 power_short -> SFX
+CH1V2 audition: 9/20 handle_rattle -> SFX
+CH1V2 audition: 10/20 handle_stop -> SFX
+CH1V2 audition: 11/20 lock_alarm -> SFX
+CH1V2 audition: 12/20 kiet_ring -> PhoneSFX
+CH1V2 audition: 13/20 call_reconnect -> PhoneSFX
+CH1V2 audition: 14/20 death_fall_back -> SFX
+CH1V2 audition: 15/20 death_bed_burst -> SFX
+CH1V2 audition: 16/20 death_flesh -> SFX
+CH1V2 audition: 17/20 death_fall_soft -> SFX
+CH1V2 audition: 18/20 death_bed_soft -> SFX
+CH1V2 audition: 19/20 cctv_static -> SFX
+CH1V2 audition: 20/20 cctv_switch -> SFX
+  PASS test_ch1v2_audio.gd::test_v2_preview_loads_all_assets_and_stops
+  PASS test_ch2_audio.gd::test_ch2_assets_decode_and_match_measured_report
+  PASS test_ch2_audio.gd::test_three_corpse_profiles_are_spatial_private_and_route_to_voice
+  PASS test_ch2_audio.gd::test_word_keys_safe_missing_bank_and_cached_voice_duration
+  PASS test_ch2_audio.gd::test_gag_latches_across_fall_revive_and_mumble_stops_on_reset
+  PASS test_ch2_audio.gd::test_chain_clock_fifteen_seconds_last_five_accelerate_and_cancel
+  PASS test_ch2_audio.gd::test_shower_temperature_changes_immediately_without_predicting_slot
+  PASS test_ch2_audio.gd::test_shower_steam_door_mirror_reset_and_missing_bank
+  PASS test_ch2_audio.gd::test_ch2_death_once_reduction_live_and_no_legacy_kill
+  PASS test_ch2_audio.gd::test_camera_room_loss_visible_matching_channel_only_and_no_replay
+  PASS test_ch2_audio.gd::test_ch2_music_turn_pulse_round_crossfade_pause_and_reset
+CH2 audition: 1/23 corpse_mumble -> SFX
+CH2 audition: 2/23 corpse_fall -> SFX
+CH2 audition: 3/23 corpse_revive -> SFX
+CH2 audition: 4/23 corpse_gag -> SFX
+CH2 audition: 5/23 chain_tick -> SFX
+CH2 audition: 6/23 shower_beep -> SFX
+CH2 audition: 7/23 door_push_01 -> SFX
+CH2 audition: 8/23 door_push_02 -> SFX
+CH2 audition: 9/23 door_push_03 -> SFX
+CH2 audition: 10/23 door_burst -> SFX
+CH2 audition: 11/23 water_cold -> Ambience
+CH2 audition: 12/23 water_warm -> Ambience
+CH2 audition: 13/23 water_boiling -> Ambience
+CH2 audition: 14/23 steam_hiss -> Ambience
+CH2 audition: 15/23 mirror_shiver -> SFX
+CH2 audition: 16/23 death_corpse_lunge -> SFX
+CH2 audition: 17/23 death_scald -> SFX
+CH2 audition: 18/23 death_corpse_soft -> SFX
+CH2 audition: 19/23 death_scald_soft -> SFX
+CH2 audition: 20/23 camera_room_loss -> SFX
+CH2 audition: 21/23 music_chain -> Music
+CH2 audition: 22/23 music_shower -> Music
+CH2 audition: 23/23 music_turn -> Music
+  PASS test_ch2_audio.gd::test_ch2_audition_all_clips_and_clean_reset
+  PASS test_ch2_tell_voices.gd::test_ch2_tell_voices_match_csv_decode_and_call_loudness
+  PASS test_ch3_audio.gd::test_ch3_assets_decode_and_match_lufs_hashes_loops
+  PASS test_ch3_audio.gd::test_forty_zombies_only_nearest_eight_then_move_sleep_occlude_and_free
+  PASS test_ch3_audio.gd::test_zombie_steps_door_hits_sleep_and_unregistration
+  PASS test_ch3_audio.gd::test_stamina_drives_pant_cadence_gain_exhaustion_heart_and_recovery
+  PASS test_ch3_audio.gd::test_bar_hit_miss_bend_break_pick_and_no_gameplay_noise
+  PASS test_ch3_audio.gd::test_siren_requires_high_marker_stillness_and_enabled_lifecycle
+  PASS test_ch3_audio.gd::test_environment_profiles_insects_screams_and_restore
+  PASS test_ch3_audio.gd::test_guard_identity_warning_off_and_checkpoint
+  PASS test_ch3_audio.gd::test_ch3_death_signal_order_once_and_reduced_live
+  PASS test_ch3_audio.gd::test_music_run_wave_canteen_latch_ending_once_and_death
+  PASS test_ch3_audio.gd::test_grass_concrete_running_steps_no_repeat_and_footsteps_bus
+CH3 audio: 1 horde; 2 bar; 3/4 stamina; 5 wind; 6 siren high; G low; 7 baton; 8/9 music; C canteen; E ending; Z/X deaths; T/Y/U steps; arrows clips; 0 reset.
+CH3 audition: 1/35 zombie_growl
+CH3 audition: 2/35 zombie_hiss
+CH3 audition: 3/35 zombie_drag_01
+CH3 audition: 4/35 zombie_drag_02
+CH3 audition: 5/35 horde
+CH3 audition: 6/35 door_pound_01
+CH3 audition: 7/35 door_pound_02
+CH3 audition: 8/35 bar_swing
+CH3 audition: 9/35 bar_hit
+CH3 audition: 10/35 bar_miss
+CH3 audition: 11/35 bar_bend
+CH3 audition: 12/35 bar_break
+CH3 audition: 13/35 pant
+CH3 audition: 14/35 run_grass_01
+CH3 audition: 15/35 run_grass_02
+CH3 audition: 16/35 run_grass_03
+CH3 audition: 17/35 run_grass_04
+CH3 audition: 18/35 run_concrete_01
+CH3 audition: 19/35 run_concrete_02
+CH3 audition: 20/35 run_concrete_03
+CH3 audition: 21/35 run_concrete_04
+CH3 audition: 22/35 wind
+CH3 audition: 23/35 stadium
+CH3 audition: 24/35 canteen
+CH3 audition: 25/35 stairs
+CH3 audition: 26/35 far_scream
+CH3 audition: 27/35 rescue_siren
+CH3 audition: 28/35 baton_buzz
+CH3 audition: 29/35 death_zombie_grab
+CH3 audition: 30/35 death_zombie_soft
+CH3 audition: 31/35 death_guard_shock
+CH3 audition: 32/35 death_guard_soft
+CH3 audition: 33/35 music_run
+CH3 audition: 34/35 music_wave
+CH3 audition: 35/35 music_end
+  PASS test_ch3_audio.gd::test_ch3_audition_all_clips_reset_and_no_audio_bus_leak
+  PASS test_ch3_audio.gd::test_ch3_reverb_presets_restore_shared_sfx_bus
+  PASS test_ch3_audio.gd::test_missing_banks_stay_silent_and_stopped_rigs_cannot_restart
+  PASS test_ch4_audio.gd::test_ch4_banks_decode_match_hashes_lufs_loops_and_approved_voices
+  PASS test_ch4_audio.gd::test_decoy_exact_six_seconds_spatial_empty_beep_no_duplicate_or_noise
+  PASS test_ch4_audio.gd::test_decoy_real_scene_clock_stops_and_pause_does_not_spend_duration
+  PASS test_ch4_audio.gd::test_door_ids_cadence_thresholds_and_single_burst_across_three_triggers
+  PASS test_ch4_audio.gd::test_all_ten_scares_route_dedupe_neck_hush_and_monitor_skips_once
+  PASS test_ch4_audio.gd::test_music_time_ramp_library_407_silence_stair_crowd_and_ending
+  PASS test_ch4_audio.gd::test_fade_slowing_heart_hospital_foley_voices_and_pa_no_replay
+  PASS test_ch4_audio.gd::test_reduced_death_late_events_reset_missing_asset_and_scene_cleanup
+CH4 AUDIO: arrows/Space audition 29 sounds + 16 voices; 1 decoy; 2 door damage; 3 library; 4 stairs; 5 room407; 6 neck; 7 fade; 8 hospital; 9 monitor skip; E end; 0 reset; Esc quit.
+See audio_source/ch4/README.md and audio_source/voice_ch4/README.md for measured levels.
+CH4 clip: decoy_ring
+CH4 clip: phone_land
+CH4 clip: battery_empty
+CH4 clip: door_pound
+CH4 clip: wood_crack
+CH4 clip: wood_splinters
+CH4 clip: door_burst
+CH4 clip: door_burst_soft
+CH4 clip: library
+CH4 clip: drizzle
+CH4 clip: librarian_rise
+CH4 clip: books_fall
+CH4 clip: shelf_corpse
+CH4 clip: back_door_hit
+CH4 clip: knife_pull
+CH4 clip: stairs_turn
+CH4 clip: hall_lights
+CH4 clip: door_hand
+CH4 clip: neck_hand
+CH4 clip: pa_laugh
+CH4 clip: body_fade
+CH4 clip: heartbeat
+CH4 clip: monitor
+CH4 clip: nurse_step_01
+CH4 clip: nurse_step_02
+CH4 clip: hospital_door
+CH4 clip: music_sparse
+CH4 clip: music_hospital
+CH4 clip: music_end
+CH4 voice: SPK_CH4_REGISTERED
+CH4 voice: CHAT_CH4_NGU_GO
+CH4 voice: CHAT_CH4_NGU_LECTURE
+CH4 voice: CHAT_CH4_NGU_NO_EXIT
+CH4 voice: CHAT_CH4_NGU_TRUNG
+CH4 voice: CHAT_CH4_N_GO
+CH4 voice: CHAT_CH4_N_GYM
+CH4 voice: CHAT_CH4_N_LINE
+CH4 voice: CHAT_CH4_N_WHERE
+CH4 voice: CHAT_CH4_N_LOST
+CH4 voice: CHAT_CH4_N_GOT
+CH4 voice: NEAR_CH4_NURSE1_AWAKE
+CH4 voice: NEAR_CH4_NURSE1_LUCKY
+CH4 voice: NEAR_CH4_NURSE2_QUAKE
+CH4 voice: NEAR_CH4_NURSE2_ALL
+CH4 voice: NEAR_CH4_NURSE2_ALONE
+  PASS test_ch4_audio.gd::test_ch4_audition_loads_all_assets_and_reset
+  PASS test_ch4_voices_calls.gd::test_real_chapter2_phone_speaks_without_answer_and_after_checkpoint
+  PASS test_ch4_voices_calls.gd::test_real_chapter2_phone_speaks_five_tell_friends_lines
+  PASS test_ch4_voices_calls.gd::test_real_chapter3_phone_speaks_without_answer_and_after_checkpoint
+  PASS test_ch4_voices_calls.gd::test_real_chapter4_phone_speaks_without_answer_and_after_checkpoint
+  PASS test_ch4_voices_calls.gd::test_real_chapter1_still_rings_and_requires_matching_answer
+  PASS test_ch4_voices_calls.gd::test_group_loss_restore_filters_and_terminal_stop_do_not_replay_queue
+  PASS test_ch4_voices_calls.gd::test_checkpoint_uses_restored_chapter_and_clears_previous_call_members
+  PASS test_ch4_voices_calls.gd::test_real_chapter4_pa_and_five_nurse_lines_use_approved_key_files
+  PASS test_ch4_voices_calls.gd::test_chapter_pa_fallback_preserves_path_validation_and_unmasked_rule_block
+SYLLABLE BUILD phuc: 11260 us
+SYLLABLE BUILD viet: 11172 us
+SYLLABLE BUILD dat: 10888 us
+  PASS test_corpse_syllables.gd::test_real_dictionary_word_has_both_cuts_in_order_and_pitch_duration
+  PASS test_corpse_syllables.gd::test_fades_are_baked_at_sample_edges_and_ranges_do_not_leak
+  PASS test_corpse_syllables.gd::test_missing_syllable_is_atomic_and_legacy_full_word_unchanged
+  PASS test_corpse_syllables.gd::test_turn_reset_and_death_interrupt_both_speech_and_inter_syllable_gap
+  PASS test_corpse_syllables.gd::test_gag_mumble_and_replacement_cancel_the_old_phrase
+  PASS test_corpse_syllables.gd::test_phrase_pause_and_finished_follow_audio_clock
+  PASS test_corpse_syllables.gd::test_invalid_piece_ranges_never_build_partial_audio
+CH2 syllables: phuc / khuất bóng / 1.0609756190106 seconds
+CH2 syllables: viet / khuất bóng / 1.19721587583331 seconds
+CH2 syllables: dat / khuất bóng / 0.96394305861139 seconds
+CH2 syllables: phuc / bóng đèn / 0.86953156004298 seconds
+CH2 syllables: viet / bóng đèn / 0.97918237479701 seconds
+CH2 syllables: dat / bóng đèn / 0.79143303393022 seconds
+CH2 syllables: phuc / đèn dầu / 0.94245341234655 seconds
+CH2 syllables: viet / đèn dầu / 1.06223225811822 seconds
+CH2 syllables: dat / đèn dầu / 0.85714283244015 seconds
+  PASS test_corpse_syllables.gd::test_preview_syllables_cycle_words_and_profiles
+  PASS test_graphics_fire_bell.gd::test_candidate_decodes_and_matches_source_report
+  PASS test_graphics_fire_bell.gd::test_loop_survives_clip_end_and_pause_stop_reload_leave_one_source
+  PASS test_graphics_fire_bell.gd::test_preview_deadline_pauses_then_cleans_up_without_finished
+  PASS test_music_director.gd::test_music_assets_and_measured_loudness
+  PASS test_music_director.gd::test_music_segments_tension_hold_and_deviation_ceiling
+  PASS test_music_director.gd::test_music_overlapping_silence_restores_latest_chase_state
+  PASS test_music_director.gd::test_music_chase_settings_and_pause_duck_are_independent
+  PASS test_music_director.gd::test_music_end_checkpoint_reset_and_shutdown_cancel_pending_audio
+  PASS test_music_director.gd::test_music_settings_at_startup_and_live_scare_cancellation
+  PASS test_music_director.gd::test_music_preview_solos_and_demo_sequence
+  PASS test_room407_object_audio.gd::test_fan_hum_sit_on_the_furnished_fan_and_tube
+  PASS test_room407_object_audio.gd::test_fan_and_hum_levels_were_not_raised
+  PASS test_room407_object_audio.gd::test_hum_follows_the_new_tube_flicker_pulses
+  PASS test_room407_object_audio.gd::test_water_comes_from_the_new_shower_head
+  PASS test_room407_object_audio.gd::test_mirror_shiver_comes_from_the_small_mirror_and_door_cues_from_the_door
+  PASS test_room407_object_audio.gd::test_missing_nodes_fall_back_to_the_stall_never_the_world_origin
+  PASS test_room407_object_audio.gd::test_follow_fixtures_off_restores_the_old_placement
+  PASS test_room407_object_audio.gd::test_reload_leaves_one_source_each_and_resets_the_shower
+  PASS test_room407_object_audio.gd::test_fan_turns_and_sounds_in_all_four_chapters
+T-218 room 407 audio | placement NEW | fan false | tube false | water off | steam false
+T-218 room 407 audio | placement NEW | fan true | tube false | water off | steam false
+T-218 room 407 audio | placement NEW | fan true | tube false | water off | steam false
+T-218 room 407 audio | placement NEW | fan true | tube true | water off | steam false
+T-218 room 407 audio | placement NEW | fan true | tube true flicker | water off | steam false
+T-218 room 407 audio | placement NEW | fan true | tube true | water off | steam false
+T-218 room 407 audio | placement NEW | fan true | tube true | water warm | steam false
+T-218 room 407 audio | placement OLD | fan true | tube true | water warm | steam false
+T-218 room 407 audio | placement NEW | fan true | tube true | water warm | steam false
+T-218 room 407 audio | placement NEW | fan true | tube true | water warm | steam true
+T-218 room 407 audio | placement NEW | fan false | tube true | water warm | steam true
+T-218 room 407 audio | placement NEW | fan false | tube true | water warm | steam true
+T-218 room 407 audio | placement NEW | fan false | tube false | water off | steam true
+T-218 room 407 audio | placement NEW | fan false | tube false | water off | steam false
+T-218 room 407 audio | placement NEW | fan false | tube false | water off | steam false
+  PASS test_room407_object_audio.gd::test_preview_opens_silent_toggles_each_source_and_swaps_placement
+  PASS test_scare_audio.gd::test_scare_loudness_report_matches_assets_and_targets
+  PASS test_scare_audio.gd::test_scare_preview_keys_buses_stop_and_loop
+  PASS test_speaker.gd::test_announcement_orders_effects_subtitles_burst_and_completion
+  PASS test_speaker.gd::test_restart_snapshots_input_and_cancels_previous_sequence
+  PASS test_speaker.gd::test_pause_and_cancel_stop_pending_lines
+  PASS test_speaker.gd::test_empty_invalid_and_reentrant_calls
+  PASS test_speaker.gd::test_segment12_fixture_loads_and_all_preview_keys_work
+  PASS test_speaker_voice.gd::test_all_34_voice_files_load_decode_and_match_report
+  PASS test_speaker_voice.gd::test_voice_locale_duration_and_exactly_one_subtitle_per_line
+  PASS test_speaker_voice.gd::test_voice_fallback_minimum_duration_spatial_sync_and_cancel
+  PASS test_speaker_voice.gd::test_garbled_voice_and_reentrant_cancel_stop_all_layers
+  PASS test_speaker_voice.gd::test_voice_preview_selects_both_languages_without_saving_settings
+  PASS test_ch2_syllables.gd::test_every_corpse_word_has_its_syllables_recorded
+  PASS test_ch2_syllables.gd::test_a_cut_is_speech_and_the_gap_before_it_is_silence
+  PASS test_ch2_tell_friends.gd::test_two_loop_words_open_the_tell_choice_and_the_chain_waits
+  PASS test_ch2_tell_friends.gd::test_choice_one_plays_on_and_the_fourth_loop_word_ends_round_3
+  PASS test_ch2_tell_friends.gd::test_choice_two_loses_the_friends
+  PASS test_ch2_tell_friends.gd::test_choice_three_loses_the_friends
+  PASS test_ch2_tell_friends.gd::test_choice_four_loses_the_friends
+  PASS test_ch2_tell_friends.gd::test_no_answer_in_ten_seconds_loses_the_friends
+  PASS test_ch2_tell_friends.gd::test_two_corpses_gagged_never_open_the_choice
+  PASS test_ch2_tell_friends.gd::test_loop_words_count_only_with_all_three_gagged
+  PASS test_ch2_tell_friends.gd::test_the_pass_mark_and_the_death_kind
+  PASS test_ch2_typing_flow.gd::test_a_word_typed_in_the_chain_panel_is_accepted
+  PASS test_ch2_typing_flow.gd::test_predictions_texted_from_the_phone_are_judged
+  PASS test_chapter1.gd::test_staying_in_bed_at_four_kills
+  PASS test_chapter1.gd::test_getting_up_survives_and_hears_the_general_rules
+  PASS test_chapter1.gd::test_stepping_out_of_407_in_round_1_kills
+  PASS test_chapter1.gd::test_round_1_group_call_and_survivor_count
+  PASS test_chapter1.gd::test_solving_dats_locker_enables_the_charger
+  PASS test_chapter1.gd::test_manager_kills_on_your_own_bed
+  PASS test_chapter1.gd::test_manager_kills_when_not_in_bed
+  PASS test_chapter1.gd::test_breath_and_moves_are_no_longer_heard
+  PASS test_chapter1.gd::test_dead_roommates_bed_and_silence_survive
+  PASS test_chapter1.gd::test_ending_unlocks_chapter_2
+  PASS test_chapter1.gd::test_resume_from_checkpoint_places_player_in_room
+  PASS test_chapter1.gd::test_whole_chapter_runs_to_the_end
+  PASS test_chapter1.gd::test_every_chapter_1_line_has_a_voice
+  PASS test_chapter1.gd::test_tap_groups_split_on_the_pauses
+  PASS test_chapter1.gd::test_late_latch_drags_you_out
+  PASS test_chapter1.gd::test_wrong_advice_loses_minh_nhat
+  PASS test_chapter1.gd::test_desk_lamp_gives_you_away
+  PASS test_chapter1.gd::test_network_fix_needs_switch_two_and_the_blue_cable
+  PASS test_chapter1.gd::test_three_scraps_make_the_form
+  PASS test_chapter1.gd::test_idle_waits_are_cut_when_the_round_is_done
+  PASS test_chapter1.gd::test_door_flicker_keeps_the_desk_lamp_off
+  PASS test_chapter1.gd::test_door_flicker_crackles_under_the_tube
+  PASS test_chapter1.gd::test_lamp_left_on_is_a_trace_even_without_the_flag
+  PASS test_chapter1.gd::test_player_can_aim_at_the_door_latch
+  PASS test_chapter1.gd::test_mission_props_have_no_grey_boxes_and_the_lamp_is_the_switch
+  PASS test_chapter1.gd::test_player_can_aim_at_every_mission_prop
+  PASS test_chapter1_d069.gd::test_bed_1_survives_with_lights_off_and_turning
+  PASS test_chapter1_d069.gd::test_bed_2_survives_with_lights_off_and_turning
+  PASS test_chapter1_d069.gd::test_bed_4_survives_with_lights_off_and_turning
+  PASS test_chapter1_d069.gd::test_he_checks_beds_1_2_4_then_cuts_3
+  PASS test_chapter1_d069.gd::test_own_bed_3_is_still_death
+  PASS test_chapter1_d069.gd::test_desk_lamp_seen_from_the_threshold
+  PASS test_chapter1_d069.gd::test_raised_phone_seen_from_the_threshold
+  PASS test_chapter1_d069.gd::test_getting_up_while_he_is_in_the_room_kills
+T201 HUNT: the balcony distance at the kill = 1.18 m, lane A hunt() present = true
+  PASS test_chapter1_d069.gd::test_hiding_on_the_balcony_is_hunted
+T201 HUNT: the bathroom distance at the kill = 1.18 m, lane A hunt() present = true
+  PASS test_chapter1_d069.gd::test_hiding_in_the_bathroom_is_hunted
+  PASS test_chapter1_d069.gd::test_lying_down_while_hunted_does_not_save_him
+T201 DOOR: slow API present=true leaf samples=349
+  PASS test_chapter1_d069.gd::test_he_comes_down_the_corridor_and_opens_the_door_slowly
+  PASS test_chapter1_d069.gd::test_rhythm_listener_hears_the_groups
+  PASS test_chapter1_d069.gd::test_a_wrong_turn_can_be_knocked_again
+  PASS test_chapter1_d069.gd::test_wrong_rhythms_get_no_answer_and_no_note
+  PASS test_chapter1_d069.gd::test_the_right_rhythm_brings_the_note
+  PASS test_chapter1_d069.gd::test_wall_mission_end_to_end
+  PASS test_chapter1_d069.gd::test_slow_door_through_the_manager_api
+  PASS test_chapter1_d069.gd::test_slow_door_through_the_door_api_alone
+  PASS test_chapter1_d069.gd::test_instant_door_when_neither_api_exists
+  PASS test_chapter1_d069.gd::test_hunt_goes_through_the_manager_api
+  PASS test_chapter2.gd::test_bank_dictionary_and_shower_data_load
+  PASS test_chapter2.gd::test_canon_matches_the_dictionary_builder
+  PASS test_chapter2.gd::test_typed_words_follow_the_rule
+  PASS test_chapter2.gd::test_the_first_turn_accepts_common_vo_words
+  PASS test_chapter2.gd::test_every_corpse_word_leaves_five_ways_on
+  PASS test_chapter2.gd::test_a_dictionary_word_the_corpses_do_not_know_makes_them_stall
+  PASS test_chapter2.gd::test_the_chain_never_strands_trung
+  PASS test_chapter2.gd::test_silence_on_your_turn_kills
+  PASS test_chapter2.gd::test_a_wrong_word_kills
+  PASS test_chapter2.gd::test_gagged_corpses_and_the_loop_end_round_3_early
+  PASS test_chapter2.gd::test_shower_by_the_rule_and_right_predictions_finish_the_chapter
+  PASS test_chapter2.gd::test_predictions_come_after_three_safe_showers_in_a_row
+  PASS test_chapter2.gd::test_predictions_come_at_7_40_at_the_latest
+  PASS test_chapter2.gd::test_a_wrong_prediction_for_minh_nhat_loses_round_4
+  PASS test_chapter2.gd::test_a_wrong_prediction_for_ngu_loses_round_4
+  PASS test_chapter2.gd::test_no_prediction_in_time_loses_round_4
+  PASS test_chapter2.gd::test_prediction_answers
+  PASS test_chapter2.gd::test_hot_water_scalds
+  PASS test_chapter2.gd::test_stepping_out_after_yes_kills
+  PASS test_chapter2.gd::test_rule_book_loads_so_the_chapter_can_start
+  PASS test_chapter3.gd::test_scene_has_the_lane_pieces
+  PASS test_chapter3.gd::test_building_b_to_the_garden
+  PASS test_chapter3.gd::test_floor_two_crowd_leaves_203_for_the_extinguisher
+  PASS test_chapter3.gd::test_floor_two_walk_back_to_207_stays_unseen
+  PASS test_chapter3.gd::test_floor_one_crowd_waits_in_the_far_half
+  PASS test_chapter3.gd::test_fire_alarm_pulls_the_floor_one_crowd_away
+  PASS test_chapter3.gd::test_minh_nhat_follows_at_once_when_trung_comes_back
+  PASS test_chapter3.gd::test_companions_follow_the_player_to_the_stadium
+  PASS test_chapter3.gd::test_zombies_come_out_of_the_rooms_not_the_hall
+  PASS test_chapter3.gd::test_room_408_opens_after_the_key
+  PASS test_chapter3.gd::test_floor_three_rooms_next_to_the_stairs_open
+  PASS test_chapter3.gd::test_debug_hooks_for_the_qa_menu
+  PASS test_chapter3.gd::test_a_zombie_grab_kills_and_reloads_the_zone
+  PASS test_chapter3.gd::test_garden_ngu_gives_the_bar
+  PASS test_chapter3.gd::test_stadium_waves_then_the_gate
+  PASS test_chapter3.gd::test_gate_canteen_and_the_end
+  PASS test_chapter3.gd::test_striking_a_guard_kills
+  PASS test_chapter3.gd::test_things_to_use_can_be_reached
+  PASS test_chapter3.gd::test_fire_door_answers_a_straight_look
+  PASS test_chapter3_data.gd::test_rule_book_is_valid
+  PASS test_chapter3_data.gd::test_call_lines_load_and_are_translated
+  PASS test_chapter3_data.gd::test_script_keys_exist
+  PASS test_chapter4.gd::test_the_split_starts_outside_the_canteen_and_ends_in_the_library
+  PASS test_chapter4.gd::test_the_library_only_accepts_the_redundant_line
+  PASS test_chapter4.gd::test_the_way_back_up_to_room_407
+  PASS test_chapter4.gd::test_slats_form_name_and_the_true_ending
+  PASS test_chapter4.gd::test_no_message_in_time_is_the_lonely_ending
+  PASS test_chapter4.gd::test_a_wrong_last_message_is_the_lonely_ending
+  PASS test_chapter4.gd::test_lane_e_audio_rig_follows_the_stages
+  PASS test_chapter4.gd::test_407_slats_are_placed_and_reachable
+  PASS test_chapter4.gd::test_library_back_door_opens_and_shuts_by_hand
+  PASS test_chapter4.gd::test_deaths_name_the_place
+  PASS test_chapter4_data.gd::test_rule_book_holds_all_rounds_and_is_valid
+  PASS test_chapter4_data.gd::test_call_lines_load_and_are_translated
+  PASS test_chapter4_data.gd::test_script_keys_exist
+  PASS test_chapter4_data.gd::test_papers_open_as_documents
+  PASS test_core.gd::test_input_actions_registered
+  PASS test_core.gd::test_autoloads_present
+  PASS test_core.gd::test_main_scene_loads
+  PASS test_core.gd::test_interactable_emits_signal
+  PASS test_core.gd::test_translations_registered
+  PASS test_core.gd::test_main_scene_footsteps_and_ambience_wired
+  PASS test_core.gd::test_main_scene_escape_pauses_and_resumes_player
+  PASS test_core.gd::test_footsteps_volume_setting_reaches_footsteps_bus
+  PASS test_core.gd::test_room_407_interactables_are_reachable_from_inside
+  PASS test_core.gd::test_reading_the_door_paper_opens_and_closes_cleanly
+  PASS test_core.gd::test_room_407_ceiling_fan_spins
+  PASS test_core.gd::test_checkpoint_peek_reads_the_id_without_restoring
+  PASS test_core.gd::test_chapter_contract_inputs_and_signals
+  PASS test_core.gd::test_progress_unlocks_and_keeps_typed_facts
+  PASS test_core.gd::test_game_state_checkpoint_keeps_chapter
+  PASS test_core.gd::test_rule_evidence_pins_and_survives_checkpoint
+  PASS test_core.gd::test_chapter_1_puzzles_load_and_check
+  PASS test_core.gd::test_chapter_1_script_data_loads_and_is_translated
+  PASS test_graphics_bindings.gd::test_room_407_bindings_hold_in_every_chapter
+  PASS test_graphics_bindings.gd::test_the_three_corpses_keep_their_api_and_node_paths
+  PASS test_graphics_bindings.gd::test_gag_anchors_follow_the_corpse_head
+  PASS test_graphics_bindings.gd::test_manager_body_has_the_markers_and_clips_the_manager_looks_up
+  PASS test_graphics_bindings.gd::test_actor_body_swap_leaves_one_model
+  PASS test_graphics_bindings.gd::test_chapter_3_fire_pieces_stay_where_the_ledger_says
+  PASS test_graphics_bindings.gd::test_chapter_4_has_no_fire_alarm_button
+  PASS test_graphics_bindings.gd::test_door_proxy_takes_over_the_leaf_collision_in_chapters_3_and_4
+  PASS test_rule_system.gd::test_validate_reports_authoring_mistakes
+  PASS test_rule_system.gd::test_invalid_set_does_not_replace_loaded_rules
+  PASS test_rule_system.gd::test_following_genuine_line_is_correct_and_costs_nothing
+  PASS test_rule_system.gd::test_following_fake_line_applies_its_penalty_and_consequence
+  PASS test_rule_system.gd::test_ignoring_genuine_line_applies_genuine_penalty
+  PASS test_rule_system.gd::test_fatal_line_reports_failure
+  PASS test_rule_system.gd::test_unruled_and_fake_only_situations
+  PASS test_rule_system.gd::test_deviation_is_clamped
+  PASS test_rule_system.gd::test_notebook_read_order_and_suspicion
+  PASS test_rule_system.gd::test_clock_text_and_progression
+WARNING: GameState flag 'bad' must be bool, int, float or String
+   at: push_warning (core/variant/variant_utility.cpp:1033)
+   GDScript backtrace (most recent call first):
+       [0] set_flag (res://scripts/core/game_state.gd:80)
+       [1] test_flags_accept_simple_types_only (res://tests/core/test_rule_system.gd:197)
+       [2] _ready (res://tests/run_tests.gd:28)
+       [3] after_each (res://tests/core/test_graphics_bindings.gd:48)
+       [4] _close (res://tests/core/test_graphics_bindings.gd:35)
+       [5] wait_frames (res://tests/test_case.gd:40)
+  PASS test_rule_system.gd::test_flags_accept_simple_types_only
+  PASS test_rule_system.gd::test_checkpoint_round_trip_restores_state_and_types
+WARNING: Checkpoint: unreadable or old save at user://test_checkpoint.json
+   at: push_warning (core/variant/variant_utility.cpp:1033)
+   GDScript backtrace (most recent call first):
+       [0] restore (res://scripts/core/checkpoint.gd:34)
+       [1] test_restore_without_or_with_bad_save (res://tests/core/test_rule_system.gd:236)
+       [2] _ready (res://tests/run_tests.gd:28)
+       [3] after_each (res://tests/core/test_graphics_bindings.gd:48)
+       [4] _close (res://tests/core/test_graphics_bindings.gd:35)
+       [5] wait_frames (res://tests/test_case.gd:40)
+  PASS test_rule_system.gd::test_restore_without_or_with_bad_save
+  PASS test_rule_system.gd::test_demo_rule_set_matches_design
+  PASS test_rule_system.gd::test_notebook_entries_keep_source_and_seen_text
+  PASS test_rule_system.gd::test_notebook_entries_survive_checkpoint
+  PASS test_rule_system.gd::test_demo_documents_match_rule_set
+  PASS test_story_director.gd::test_lights_off_and_silence_keep_the_dorm_calm
+  PASS test_story_director.gd::test_light_left_on_and_opened_door_change_the_dorm
+  PASS test_story_director.gd::test_fifth_pair_waits_for_the_door_to_close
+  PASS test_story_director.gd::test_checkpoints_saved_at_segment_starts
+  PASS test_story_director.gd::test_director_follows_reduce_scares_setting
+  PASS test_story_segments_3_5.gd::test_seg3_walking_on_to_the_room_is_correct
+  PASS test_story_segments_3_5.gd::test_seg3_turning_around_and_standing_gets_you_caught
+  PASS test_story_segments_3_5.gd::test_seg3_chase_ends_in_the_lit_corridor
+  PASS test_story_segments_3_5.gd::test_seg3_standing_still_breaks_the_rule
+  PASS test_story_segments_3_5.gd::test_seg4_answering_only_your_name_is_correct
+  PASS test_story_segments_3_5.gd::test_seg4_answering_for_a_roommate_stirs_the_net
+  PASS test_story_segments_3_5.gd::test_seg4_silence_on_your_name_gets_a_second_call
+  PASS test_story_segments_3_5.gd::test_seg4_silence_twice_breaks_the_rule
+  PASS test_story_segments_3_5.gd::test_losing_on_deviation_says_why
+  PASS test_story_segments_3_5.gd::test_seg4_answering_lam_loses_and_resumes_at_seg4
+  PASS test_story_segments_3_5.gd::test_seg5_freezing_at_the_mirror_gets_you_caught
+  PASS test_story_segments_3_5.gd::test_seg5_running_to_the_latched_room_escapes
+  PASS test_story_segments_3_5.gd::test_seg5_closing_the_tap_and_leaving_is_correct
+  PASS test_story_segments_3_5.gd::test_seg5_leaving_the_tap_running_breaks_the_rule
+  PASS test_story_segments_3_5.gd::test_deviation_changes_the_floor_and_level_five_loses
+  PASS test_story_segments_3_5.gd::test_calm_night_ends_with_one_more_name
+  PASS test_story_segments_3_5.gd::test_deviant_night_calls_lam_in_trungs_place
+  PASS test_story_segments_3_5.gd::test_resume_from_checkpoint_after_reload
+  PASS test_story_segments_3_5.gd::test_caught_penalty_survives_the_reload
+  PASS test_story_segments_3_5.gd::test_chases_and_scares_are_announced
+  PASS test_story_segments_3_5.gd::test_story_uses_the_real_props
+  PASS test_story_segments_3_5.gd::test_leaving_the_scene_mid_night_stops_the_story_quietly
+  PASS test_campus.gd::test_contract_and_switches
+  PASS test_campus.gd::test_window_crouch_and_collapsed_stair_collision
+  PASS test_campus.gd::test_navigation_connects_room407_stairs_window_and_canteen
+  PASS test_campus.gd::test_actor_pose_library_reuse_and_triangle_budget
+  PASS test_campus.gd::test_nav_paths_clear_world_geometry_for_crouching_capsule
+  PASS test_cctv.gd::test_set_has_rooms_cameras_and_anchors
+  PASS test_cctv.gd::test_cameras_see_the_victim_bed
+  PASS test_cctv.gd::test_students_have_all_poses_and_stay_low_poly
+  PASS test_cctv.gd::test_chapter_builds_five_feeds
+  PASS test_cctv.gd::test_manager_comes_down_the_hall_and_leaves_no_one_behind
+MODEL_TRIANGLES: manager_body 776
+MODEL_TRIANGLES: corpse_phuc 632
+MODEL_TRIANGLES: corpse_viet 632
+MODEL_TRIANGLES: corpse_dat 656
+MODEL_TRIANGLES: charger 60
+MODEL_TRIANGLES: router 192
+MODEL_TRIANGLES: dat_notebook 108
+MODEL_TRIANGLES: phone_viewmodel 50
+MODEL_TRIANGLES: bed_debris 72
+MODEL_TRIANGLES: rag 40
+  PASS test_ch1_models.gd::test_mesh_budgets_materials_and_texture_imports
+  PASS test_ch1_models.gd::test_manager_clips_move_blade_and_return_to_rest
+  PASS test_ch1_models.gd::test_corpse_poses_are_distinct_reversible_and_blood_independent
+  PASS test_ch1_models.gd::test_router_notebook_and_screen_are_independent_instances
+  PASS test_ch1_models.gd::test_room_placement_clean_reset_and_no_extra_colliders
+  PASS test_ch1v2.gd::test_anchors_extent_bounds_and_navigation
+  PASS test_ch1v2.gd::test_bathroom_balcony_routes_and_door_collision
+  PASS test_ch1v2.gd::test_strip_is_the_blender_model_with_plugs_and_leads
+  PASS test_ch1v2.gd::test_switches_trip_and_sparks_reset
+  PASS test_ch1v2.gd::test_cables_router_states_and_instance_independence
+  PASS test_ch1v2.gd::test_search_props_mattress_followers_and_lamp_reset
+  PASS test_ch1v2.gd::test_door_rattle_stays_closed_and_cancels_cleanly
+T162_TRIANGLES: power_strip 6600
+T162_TRIANGLES: viet_locker 114
+T162_TRIANGLES: phuc_mattress 30
+T162_TRIANGLES: bunk_a_frame 108
+T162_TRIANGLES: trash_bin 198
+T162_TRIANGLES: torn_paper 18
+T162_TRIANGLES: team_photo 84
+T162_TRIANGLES: guitar_songbook 228
+T162_TRIANGLES: phuc_card 36
+T162_TRIANGLES: bathroom_door 36
+  PASS test_ch1v2.gd::test_new_prop_triangle_budgets
+  PASS test_ch2_props.gd::test_all_states_move_reset_and_keep_legacy_api
+  PASS test_ch2_props.gd::test_world_space_look_and_gag_mount_follow_moving_heads
+  PASS test_ch2_props.gd::test_anchors_props_and_screen_are_reachable_from_stall
+  PASS test_ch2_props.gd::test_zones_detect_player_and_exclude_other_rooms
+  PASS test_ch2_props.gd::test_water_steam_instance_isolation_and_reset
+  PASS test_ch2_props.gd::test_stuck_door_shakes_without_opening_then_cancels_on_open
+  PASS test_ch2_props.gd::test_room310_keeps_existing_camera_contract_and_has_four_occupants
+  PASS test_ch4_environment.gd::test_new_doors_block_open_reclose_and_accept_zombie_door
+  PASS test_ch4_environment.gd::test_routes_split_library_return_room_and_all_library_floors
+  PASS test_ch4_environment.gd::test_stair_crowd_markers_reachable_and_have_passing_space
+  PASS test_ch4_environment.gd::test_slats_fake_spots_and_damage_layers_preserve_legacy_door
+  PASS test_ch4_environment.gd::test_proxy_teardown_restores_standalone_room407
+T196_TRIANGLES: Library 8016
+T196_TRIANGLES: Ch4 342
+T196_TRIANGLES: HospitalRoom 828
+  PASS test_ch4_environment.gd::test_hospital_contract_occupancy_and_triangle_budgets
+T188 WALK: reached floor2 hall, feet=(42.11807, -6.59978, 1.997023)
+  PASS test_fire_stairs.gd::test_real_player_walks_floor4_fire_door_both_flights_to_floor2_hall
+T188 BLOCK: all seven floor2 approaches remain above floor1
+  PASS test_fire_stairs.gd::test_floor2_landing_cannot_walk_or_fall_through_collapsed_flight
+T188 EDGES: walk/hop probes cannot drop to floor1
+  PASS test_fire_stairs.gd::test_return_flight_edges_and_jump_cannot_bypass_collapsed_flight
+  PASS test_floor4.gd::test_floor4_structure_dimensions_and_anchors
+  PASS test_floor4.gd::test_floors_have_tile_surface_and_world_collision
+  PASS test_floor4.gd::test_door407_opens_and_paper_anchor_follows_leaf
+  PASS test_floor4.gd::test_capsule_routes_to_room_desk_and_washroom
+  PASS test_floor4.gd::test_railing_and_locked_exits_block_capsule
+  PASS test_floor4.gd::test_lights_audio_zones_and_sleepers
+  PASS test_graphics_pilot.gd::test_measure_scene_has_no_side_effects_without_explicit_opt_in
+  PASS test_graphics_pilot.gd::test_pilot_isolates_gameplay_and_restores_materials_without_saving_settings
+SKIP renderer pixel check: run graphics_pilot with Forward+ to verify restoration
+  PASS test_graphics_pilot.gd::test_shader_override_restores_live_base_on_real_renderer
+  PASS test_kit.gd::test_all_models_load_within_triangle_budgets
+  PASS test_kit.gd::test_required_dimensions_within_five_percent
+  PASS test_kit.gd::test_doorway_clearance
+  PASS test_kit.gd::test_door_hinge_and_front_direction
+  PASS test_kit.gd::test_fan_rotor_is_independent
+  PASS test_kit.gd::test_materials_use_ps1_shader_with_small_nearest_textures
+  PASS test_kit.gd::test_kit_textures_are_lossless_without_mipmaps
+  PASS test_kit.gd::test_showcase_has_seven_models_and_camera
+  PASS test_kit.gd::test_stool_splayed_base_and_carrying_hole
+  PASS test_kit.gd::test_nets_have_cutout_weave_and_no_collision
+  PASS test_kit.gd::test_required_models_have_world_collision
+  PASS test_kit.gd::test_capsule_passes_doorway_but_hits_piers_and_lintel
+  PASS test_kit.gd::test_no_extracted_duplicate_textures
+  PASS test_mirror.gd::test_lag_half_second_interpolates_position_and_rotation
+  PASS test_mirror.gd::test_stare_freezes_body_tracks_reflected_eye_then_release_follows
+  PASS test_mirror.gd::test_render_layers_projection_and_room_gate
+  PASS test_mirror.gd::test_live_process_delay_and_exit_reentry_reset
+  PASS test_mirror.gd::test_step_out_is_supported_clear_capsule_on_washroom_floor
+  PASS test_mirror.gd::test_silhouette_budget_visibility_isolation_and_sway
+  PASS test_props.gd::test_props_load_within_budgets_with_ps1_materials
+  PASS test_props.gd::test_prop_textures_are_lossless_without_mipmaps
+  PASS test_props.gd::test_floor_keeps_code_nodes_and_uses_props
+  PASS test_props.gd::test_water_stream_runs_and_stops
+  PASS test_props.gd::test_slippers_and_cloth_take_their_colour_and_cloth_sways
+  PASS test_props.gd::test_door_prompt_follows_its_state
+  PASS test_ps1_filter.gd::test_filter_sits_below_hud_and_menus
+  PASS test_ps1_filter.gd::test_defaults_without_settings_leave_filter_off
+  PASS test_ps1_filter.gd::test_zero_strength_turns_filter_off_but_brightness_still_applies
+  PASS test_ps1_filter.gd::test_settings_changed_reloads_only_video_keys
+  PASS test_ps1_filter.gd::test_invalid_values_fall_back_to_defaults
+  PASS test_room407.gd::test_chapter_anchors_bed_numbers_and_clear_exits
+  PASS test_room407.gd::test_blood_stages_reset_and_drip_motion
+  PASS test_room407.gd::test_slash_progress_is_monotonic_and_reversible
+  PASS test_room407.gd::test_flicker_preserves_off_and_on_states_and_lock_api
+  PASS test_room407.gd::test_threshold_shadow_and_all_floor_surfaces
+  PASS test_room407.gd::test_room_props_budgets_materials_and_texture_imports
+  PASS test_room407_bathroom_fixes.gd::test_rag_is_visible_on_rack_and_clear_of_sink
+  PASS test_room407_bathroom_fixes.gd::test_panel_and_buttons_clear_shower_and_keep_surface_contract
+  PASS test_room407_bathroom_fixes.gd::test_real_wipe_and_choices_are_reachable_from_stall_and_entry
+  PASS test_room407_bathroom_fixes.gd::test_tile_caps_have_no_overlapping_volume
+  PASS test_room407_bathroom_fixes.gd::test_open_bathroom_door_stands_clear_of_the_west_wall
+  PASS test_room407_corner.gd::test_corner_snapshot_is_visual_only_and_capture_is_opt_in
+  PASS test_room407_corner.gd::test_corner_surfaces_match_existing_room_within_one_centimetre
+  PASS test_room407_corner.gd::test_corner_all_eight_approved_props_keep_source_footprints_and_basis
+  PASS test_room407_fixes.gd::test_both_bunks_have_clear_mattress_aim_from_aisle
+  PASS test_room407_fixes.gd::test_real_player_cannot_walk_through_either_bunk
+  PASS test_room407_fixes.gd::test_door_tween_timing_collision_anchor_and_legacy_api
+  PASS test_room407_fixes.gd::test_door_reversal_reset_and_rattle_during_animation
+  PASS test_room407_fixes.gd::test_navigation_reaches_balcony_and_bathroom_without_crossing_solids
+  PASS test_room407_fixes.gd::test_khoa_note_slot_and_recessed_outlet
+  PASS test_room407_furnished.gd::test_furnished_pilot_is_visual_only_and_capture_is_opt_in
+  PASS test_room407_furnished.gd::test_batch2_models_stay_within_budget_and_one_material
+  PASS test_room407_furnished.gd::test_bunk_decks_and_mattresses_land_on_the_sleeping_anchors
+  PASS test_room407_furnished.gd::test_blender_soft_props_stay_within_budget
+  PASS test_room407_furnished.gd::test_split_props_hinge_and_spin_like_the_playable_scenes
+  PASS test_room407_furnished.gd::test_batch3_lived_in_props_stay_within_budget_and_one_material
+  PASS test_room407_furnished.gd::test_wall_prints_read_left_to_right_from_the_room
+  PASS test_room407_furnished.gd::test_lived_in_blender_pieces_and_decals
+  PASS test_room407_obstacles.gd::test_the_owners_small_props_are_rigid_on_the_props_layer
+  PASS test_room407_obstacles.gd::test_the_player_cannot_walk_through_the_furniture
+  PASS test_room407_obstacles.gd::test_he_reaches_the_beds_balcony_and_bathroom_from_the_corridor
+  PASS test_room407_obstacles.gd::test_the_mesh_keeps_clear_of_every_blocking_prop
+  PASS test_room407_obstacles.gd::test_walking_into_a_bin_knocks_it_over
+  PASS test_room407_papers.gd::test_every_document_style_has_a_paper_look
+  PASS test_room407_papers.gd::test_photos_sit_in_their_frames_and_every_paper_is_visible
+  PASS test_room407_papers.gd::test_cables_are_round_rubber_leads_with_plugs
+  PASS test_room407_playable_furnished.gd::test_furnished_room_is_built_with_every_prop
+  PASS test_room407_playable_furnished.gd::test_takeaway_box_leaves_the_papers_and_songbook_clear
+  PASS test_room407_playable_furnished.gd::test_standing_fan_runs_and_hums
+  PASS test_room407_playable_furnished.gd::test_timetable_paper_is_dimmed_for_the_torch
+  PASS test_room407_playable_furnished.gd::test_physics_and_navigation_are_unchanged
+  PASS test_room407_playable_furnished.gd::test_ps1_meshes_give_way_except_story_and_puzzle_ones
+  PASS test_room407_playable_furnished.gd::test_nets_mattress_and_pillow_follow_their_story_nodes
+  PASS test_room407_playable_furnished.gd::test_viet_locker_and_bathroom_door_swing_on_their_hinges
+  PASS test_room407_playable_furnished.gd::test_door_wall_meets_the_corridor_wall_and_tubes_follow_the_main_light
+  PASS test_room407_playable_furnished.gd::test_floor_hangs_the_furnished_room_door_on_door407
+  PASS test_room407_playable_furnished.gd::test_no_corridor_face_shares_a_plane_with_the_furnished_walls
+  PASS test_room407_playable_furnished.gd::test_room_is_darker_and_the_torch_wider_inside_only
+  PASS test_room407_playable_furnished.gd::test_furnished_mirrors_reflect_only_when_looked_at
+  PASS test_room407_playable_furnished.gd::test_ps1_room_stays_available
+  PASS test_room407_shell.gd::test_shell_has_every_part
+  PASS test_room407_shell.gd::test_surfaces_wear_the_aged_shader_on_their_mask
+  PASS test_room407_shell.gd::test_door_wall_parts_move_with_the_corridor_wall
+  PASS test_room407_shell.gd::test_room_door_stop_shuts_the_latch_gap
+  PASS test_room407_shell.gd::test_tripo_bathroom_door_swings_with_its_levers
+  PASS test_room407_shell.gd::test_balcony_door_stands_open_against_the_outside_wall
+  PASS test_room407_shell.gd::test_balcony_door_collision_is_the_leaf
+  PASS test_room407_shell.gd::test_balcony_door_shuts_the_doorway_and_swings_clear
+  PASS test_room407_shell.gd::test_open_balcony_door_leaves_the_manager_path_clear
+  PASS test_room407_shell.gd::test_tripo_levers_take_the_hand
+  PASS test_room407_shell.gd::test_towel_hangs_on_the_balcony_line
+  PASS test_room407_shell.gd::test_the_playable_room_wears_the_t222_shell
+  PASS test_room407_shell.gd::test_corner_shell_keeps_the_old_room
+  PASS test_room407_shell.gd::test_textures_stay_within_budget
+  PASS test_room407_shell.gd::test_room_door_levers_rattle_on_the_handle_pivot
+  PASS test_room_doors.gd::test_all_22_room_doors_block_then_clear_capsules_and_close_again
+  PASS test_room_doors.gd::test_all_spawns_connect_to_hall_even_while_doors_are_closed
+  PASS test_room_doors.gd::test_rooms_are_enclosed_and_408_is_separate_from_407
+  PASS test_room_doors.gd::test_distant_idle_markers_face_room407_and_zombie_door_contract_works
+T206_CLEARANCE: front=0.0550 m back=0.0050 m
+  PASS test_sealed_408.gd::test_sealed_panel_is_wholly_in_front_of_wall
+T206_AUDIT: 24 room plates and 16 lower-floor frames clear their backing walls
+  PASS test_sealed_408.gd::test_room_plates_and_lower_floor_frames_clear_their_walls
+  PASS test_stands_props.gd::test_main_stand_is_tall_covered_and_next_to_the_track
+  PASS test_stands_props.gd::test_old_small_stand_is_gone_and_gates_moved_to_the_stand_ends
+  PASS test_stands_props.gd::test_anchors_siren_spot_bar_spawn_and_pipes
+T192 WALK: top row reached, feet=(197.8322, -3.225089, 227.5681)
+  PASS test_stands_props.gd::test_real_player_walks_from_the_track_to_the_highest_row
+  PASS test_stands_props.gd::test_real_player_walks_into_the_space_under_the_stand_and_picks_the_bar_spot
+  PASS test_stands_props.gd::test_navigation_garden_stadium_gate_canteen_and_stand
+T192 PROPS: 272 notable props, fewest within 30 m = 4, lane samples = 635
+  PASS test_stands_props.gd::test_street_props_fill_every_route_and_leave_the_lane_free
+T192 TRIANGLES: props=30037 stadium=8376
+  PASS test_stands_props.gd::test_triangle_budget_and_batched_nodes
+  PASS test_wide_corridors.gd::test_four_metre_floors_and_straight_outer_lane_on_all_floors
+  PASS test_wide_corridors.gd::test_fire_door_blocks_new_outer_lane_until_opened
+  PASS test_wide_corridors.gd::test_floor4_standalone_navigation_reaches_both_ends_and_room407
+  PASS test_wide_corridors.gd::test_cctv_floor4_corridor_width_and_camera_target
+T-202 RAYS bed=1 hits=36/36 (100.0%) blockers={  }
+T-202 RAYS bed=2 hits=36/36 (100.0%) blockers={  }
+T-202 RAYS bed=3 hits=36/36 (100.0%) blockers={  }
+T-202 RAYS bed=4 hits=36/36 (100.0%) blockers={  }
+  PASS test_ch1_bunks_manager.gd::test_real_room_bunk_rays_from_six_aisle_positions_and_e
+  PASS test_ch1_bunks_manager.gd::test_lower_mattress_and_upper_search_have_distinct_prompts
+  PASS test_ch1_bunks_manager.gd::test_bed3_e_with_legacy_box_disabled_only_in_fixture
+T-202 HUNT target=(32.8, 0.03, -7.8) nav_covered=true final=(32.8638, 0.000805, -6.602555) distance=1.20 arrivals=1
+T-202 HUNT target=(36.85, 0.03, -5.6) nav_covered=true final=(36.20705, 0.000943, -4.588373) distance=1.20 arrivals=1
+  PASS test_ch1_bunks_manager.gd::test_real_room_hunt_balcony_and_bathroom
+  PASS test_ch1_bunks_manager.gd::test_real_door_opening_contract
+  PASS test_ch1v2_interactions.gd::test_wall_knock_has_no_cooldown_and_uses_wall_position
+  PASS test_ch1v2_interactions.gd::test_search_is_one_shot_including_reentry_and_saved_state
+  PASS test_ch1v2_interactions.gd::test_power_strip_independent_regions_trip_and_lock
+  PASS test_ch1v2_interactions.gd::test_power_lock_freezes_with_pause_and_reentrant_trip
+  PASS test_ch1v2_interactions.gd::test_cables_plug_and_unplug_both_ids_without_network_decision
+  PASS test_ch1v2_interactions.gd::test_cable_holder_replacement_locked_controls_and_freed_socket
+  PASS test_ch1v2_interactions.gd::test_breath_limit_six_seconds_scales_gasp_and_recovery
+  PASS test_ch1v2_interactions.gd::test_desk_lamp_reuses_switch_and_sets_own_flag
+  PASS test_ch1v2_interactions.gd::test_manager_movement_reports_immediately_only_when_enabled_and_near
+  PASS test_ch2_interactions.gd::test_carry_switch_drop_consume_and_follow_camera
+  PASS test_ch2_interactions.gd::test_freed_holder_returns_item_and_locked_or_paused_pickup_is_rejected
+  PASS test_ch2_interactions.gd::test_gag_focus_requires_item_and_core_controls_acceptance
+  PASS test_ch2_interactions.gd::test_stuck_door_three_bashes_noise_camera_reset_and_reentrant_signal
+  PASS test_ch2_interactions.gd::test_stall_physics_entry_exit_and_freed_player
+  PASS test_ch2_interactions.gd::test_choices_are_disabled_by_default_and_work_inside_stall
+  PASS test_ch2_interactions.gd::test_wipe_needs_continuous_focus_and_one_second_inside_stall
+  PASS test_ch2_interactions.gd::test_manual_fixture_loads_all_regions_and_three_items
+  PASS test_ch3_gameplay.gd::test_zombie_wakes_only_near_and_seen_or_heard_then_stuns_and_catches_once
+  PASS test_ch3_gameplay.gd::test_noise_through_wall_wakes_but_wall_prevents_grab
+  PASS test_ch3_gameplay.gd::test_navigation_climbs_real_steps_and_reaches_upper_landing
+  PASS test_ch3_gameplay.gd::test_wooden_door_takes_ten_seconds_and_crowd_does_not_multiply_damage
+  PASS test_ch3_gameplay.gd::test_horde_cap_idle_activation_clear_and_sparse_silent_updates
+  PASS test_ch3_gameplay.gd::test_horde_queues_occupied_anchors_and_clears_pending_spawns
+  PASS test_ch3_gameplay.gd::test_occluded_zombie_ticks_sparsely_and_model_head_drives_hitbox
+  PASS test_ch3_gameplay.gd::test_bar_head_hits_misses_wall_occlusion_eight_hits_and_guard
+  PASS test_ch3_gameplay.gd::test_stamina_twelve_seconds_recovery_hysteresis_panting_and_disabled_legacy
+  PASS test_ch3_gameplay.gd::test_companion_waits_calls_resumes_and_never_stuns_zombies
+  PASS test_ch3_gameplay.gd::test_guard_warns_clears_warn_kills_and_zombie_avoids_radius
+  PASS test_ch3_gameplay.gd::test_sparse_movement_climbs_steps_without_tunnelling
+  PASS test_ch3_gameplay.gd::test_pickup_by_e_mouse_swing_does_not_interact_and_typing_blocks_weapon
+  PASS test_ch3_gameplay.gd::test_exhausted_player_walks_until_threshold_and_ch1_can_sprint
+  PASS test_ch3_gameplay.gd::test_scene_load_and_pause_freezes_actors_and_stamina
+  PASS test_ch4_gameplay.gd::test_phone_three_throws_six_seconds_at_actual_landing_and_returns
+  PASS test_ch4_gameplay.gd::test_phone_g_action_typing_modal_pause_chapter_and_charge_guards
+  PASS test_ch4_gameplay.gd::test_phone_arc_hits_new_wall_then_lands_in_front_without_tunnelling
+  PASS test_ch4_gameplay.gd::test_phone_lands_on_steps_and_existing_zombie_hears_it
+  PASS test_ch4_gameplay.gd::test_phone_pause_freezes_flight_and_ring
+  PASS test_ch4_gameplay.gd::test_bed_five_seconds_once_for_each_valid_bed_and_reentry_safe
+  PASS test_ch4_gameplay.gd::test_bed_player_ray_and_e_start_hold_with_localized_prompt
+  PASS test_ch4_gameplay.gd::test_phone_is_cleaned_up_with_player_during_flight
+  PASS test_ch4_gameplay.gd::test_fake_ceiling_within_eye_ray_can_be_searched_above_three_meters
+  PASS test_ch4_gameplay.gd::test_bed_holds_movement_keeps_look_and_release_decays_then_resumes
+  PASS test_ch4_gameplay.gd::test_hold_pause_typing_and_removed_object_do_not_leave_a_movement_lock
+  PASS test_ch4_gameplay.gd::test_three_fake_spots_take_eight_seconds_and_never_emit_mission_result
+  PASS test_ch4_gameplay.gd::test_door_damage_threshold_room_id_endpoints_and_ch4_duration_override
+  PASS test_ch4_gameplay.gd::test_door_damage_uses_node_name_and_reports_repaired_open_door_zero
+  PASS test_ch4_gameplay.gd::test_door_burst_opens_door_shows_hand_and_crowd_faces_door_after_fall
+  PASS test_ch4_gameplay.gd::test_reduced_door_burst_omits_hand_crowd_fragments_and_camera_shake
+  PASS test_ch4_gameplay.gd::test_fixture_loads_with_slats_fake_spots_and_a_room_door
+  PASS test_gaze_detector.gd::test_continuous_hold_fires_once_and_reset_rearms
+  PASS test_gaze_detector.gd::test_looking_away_breaks_continuity_and_angles_are_three_dimensional
+  PASS test_gaze_detector.gd::test_optional_line_of_sight_world_occlusion_and_target_collider
+  PASS test_gaze_detector.gd::test_target_change_and_invalid_references_clear_partial_hold
+  PASS test_gaze_detector.gd::test_paused_time_does_not_count_and_zero_distance_is_not_gaze
+  PASS test_gaze_detector.gd::test_story_angle_and_duration_presets
+  PASS test_manager.gd::test_answer_uses_four_meter_radius_only_during_listening
+  PASS test_manager.gd::test_subtitle_fallback_faces_bed_and_new_command_cancels_answer
+  PASS test_manager.gd::test_slashes_target_six_times_then_finishes_once
+  PASS test_manager.gd::test_slash_reentrant_stop_and_freed_target_cancel_pending_hits
+  PASS test_manager.gd::test_kill_lunges_then_emits_caught_once_and_stop_cancels
+  PASS test_manager.gd::test_reduce_scares_skips_close_slash_and_updates_live_without_writing
+  PASS test_manager.gd::test_walk_speed_arrival_drag_steps_and_wall_collision
+  PASS test_manager.gd::test_he_turns_round_smoothly
+  PASS test_manager.gd::test_route_passes_doorway_and_stand_marker_sets_facing
+  PASS test_manager.gd::test_navigation_mesh_routes_around_obstacle
+  PASS test_manager.gd::test_pause_freezes_motion_and_listening
+  PASS test_manager.gd::test_model_animation_blade_tip_and_existing_audio_rig_contract
+  PASS test_manager.gd::test_sample_scene_runs_quiet_and_heard_branches_and_leaves_room
+  PASS test_manager.gd::test_hunt_routes_around_wall_tracks_target_and_kills_after_arrival
+  PASS test_manager.gd::test_hunt_timeout_stop_freed_target_and_reentrant_arrival
+  PASS test_manager.gd::test_open_door_duration_pose_completion_pause_and_legacy_api
+  PASS test_manager.gd::test_open_door_cancel_free_and_real_model_arm
+  PASS test_manager.gd::test_hunt_pause_freezes_deadline_and_position
+  PASS test_manager.gd::test_hunt_does_not_arrive_through_a_nearby_wall
+  PASS test_manager_body.gd::test_body_has_the_six_game_clips_and_loops_the_steady_ones
+  PASS test_manager_body.gd::test_standing_manager_is_life_size_and_faces_minus_z
+  PASS test_manager_body.gd::test_blade_tip_rises_over_the_head_then_cuts_down_in_front
+  PASS test_manager_body.gd::test_body_stays_within_the_card_budget
+  PASS test_manager_body.gd::test_dorm_manager_walks_asks_slashes_and_kills_with_the_tripo_body
+  PASS test_manager_body.gd::test_left_arm_reaches_forward_for_the_door
+  PASS test_manager_body.gd::test_dorm_manager_cross_fades_clips_and_chops_run_on
+  PASS test_manager_body.gd::test_the_cleaver_keeps_its_grip_to_the_forearm
+  PASS test_player.gd::test_scene_configuration
+  PASS test_player.gd::test_falls_and_stands_on_floor
+  PASS test_player.gd::test_forward_sprint_and_deceleration
+  PASS test_player.gd::test_diagonal_speed_and_heading
+  PASS test_player.gd::test_focus_changes_only_once_and_clears_on_turn
+  PASS test_player.gd::test_focus_clears_when_target_deleted
+  PASS test_player.gd::test_disabled_target_and_range
+  PASS test_player.gd::test_switching_targets_with_same_prompt_emits
+  PASS test_player.gd::test_wall_blocks_focus_and_movement
+  PASS test_player.gd::test_interact_calls_focused_target_once_per_press
+  PASS test_player.gd::test_footsteps_follow_distance_and_surface
+  PASS test_player.gd::test_no_airborne_footsteps_and_bob_can_be_disabled
+  PASS test_player.gd::test_steady_walk_five_seconds_cadence_and_intensity
+  PASS test_player.gd::test_steady_sprint_five_seconds_cadence_and_intensity
+  PASS test_player.gd::test_stride_jitter_stays_within_six_percent_at_walk_and_sprint
+  PASS test_player.gd::test_stride_interpolates_during_speed_changes_and_honors_exports
+  PASS test_player.gd::test_bob_cycles_stay_with_steps_through_speed_changes
+  PASS test_player.gd::test_mouse_look_clamped_and_pause_signal_toggles_capture
+  PASS test_player.gd::test_demo_scene_focus_label_and_light_switch
+  PASS test_player_death.gd::test_zombie_grab_pulls_towards_face_then_falls_and_finishes_once
+  PASS test_player_death.gd::test_guard_shock_falls_without_blood_and_finishes_once
+  PASS test_player_death.gd::test_reduced_zombie_grab_looks_away_without_blood
+  PASS test_player_death.gd::test_reduced_guard_shock_skips_initial_shake
+  PASS test_player_death.gd::test_fall_back_locks_controls_hits_floor_and_looks_up_once
+  PASS test_player_death.gd::test_ch2_corpse_faces_nearest_head_then_falls_with_blood
+  PASS test_player_death.gd::test_ch2_corpse_reduced_skips_face_and_blood_without_target
+  PASS test_player_death.gd::test_ch2_corpse_freed_during_turn_still_completes
+  PASS test_player_death.gd::test_ch2_scald_looks_down_slumps_without_blood_and_finishes_once
+  PASS test_player_death.gd::test_ch2_reduced_scald_pauses_and_has_no_contraction_shake
+  PASS test_player_death.gd::test_manager_camera_faces_actor_then_falls_sideways
+  PASS test_player_death.gd::test_bed_burst_cancels_climb_and_finishes_on_bed
+  PASS test_player_death.gd::test_death_pause_live_reduced_setting_and_new_player_reset
+  PASS test_player_death.gd::test_reduced_manager_skips_face_lock_and_blood_and_none_is_ignored
+  PASS test_player_death.gd::test_head_bob_settings_and_releasing_other_locks_cannot_reset_death_camera
+  PASS test_player_death.gd::test_falling_against_wall_reaches_floor_without_camera_clipping
+  PASS test_player_settings.gd::test_pause_signal_disables_look_and_resume_restores_it
+  PASS test_player_settings.gd::test_pause_action_and_escape_do_not_change_capture
+  PASS test_player_settings.gd::test_ready_loads_saved_values_without_writing_settings
+  PASS test_player_settings.gd::test_settings_signals_update_only_the_matching_key_while_paused
+  PASS test_player_settings.gd::test_missing_file_and_missing_keys_use_contract_defaults
+  PASS test_player_settings.gd::test_invalid_settings_fall_back_instead_of_clamping_or_coercing
+  PASS test_player_settings.gd::test_sensitivity_accepts_both_inclusive_bounds
+  PASS test_player_settings.gd::test_freed_player_leaves_no_signal_connections
+  PASS test_protagonist_body.gd::test_view_mesh_hides_the_head_and_the_mirror_mesh_casts_the_shadow
+  PASS test_protagonist_body.gd::test_eyes_stand_under_the_camera_and_the_head_stays_put
+  PASS test_protagonist_body.gd::test_planted_feet_do_not_slide_at_walking_speed
+  PASS test_protagonist_body.gd::test_hand_action_takes_one_second_and_reaches_the_target
+  PASS test_protagonist_body.gd::test_a_target_out_of_arm_reach_is_reached_by_leaning_in
+  PASS test_protagonist_body.gd::test_a_thing_without_a_hand_target_is_left_to_a_plain_press
+  PASS test_protagonist_body.gd::test_door_swings_with_the_hand_but_snaps_on_a_press
+  PASS test_protagonist_body.gd::test_paper_rides_to_the_eyes_and_goes_back_after_reading
+  PASS test_protagonist_body.gd::test_hand_never_swings_behind_the_body_when_putting_the_paper_back
+  PASS test_protagonist_body.gd::test_held_paper_is_pinched_by_its_side_edge_not_through_the_palm
+  PASS test_protagonist_body.gd::test_a_hand_thing_out_of_reach_shows_no_prompt
+  PASS test_protagonist_body.gd::test_camera_turns_to_the_working_hand_and_back
+  PASS test_protagonist_body.gd::test_lever_is_pressed_before_the_door_moves
+  PASS test_protagonist_body.gd::test_left_hand_holds_the_phone_while_its_light_is_on
+  PASS test_protagonist_body.gd::test_tran_trung_from_tripo_with_his_clips_and_phone
+  PASS test_pursuer.gd::test_chases_stationary_target_on_floor_and_catches_once
+  PASS test_pursuer.gd::test_wall_prevents_movement_and_catching_through_it
+  PASS test_pursuer.gd::test_blocked_direct_path_detours_along_corridor_x
+  PASS test_pursuer.gd::test_route_crosses_one_meter_doorway_then_catches_target
+  PASS test_pursuer.gd::test_route_still_catches_and_prioritizes_safety_before_finishing
+  PASS test_pursuer.gd::test_route_order_pause_stop_and_legacy_restart
+  PASS test_pursuer.gd::test_route_does_not_cross_walls_when_waypoint_is_unreachable
+  PASS test_pursuer.gd::test_running_target_increases_gap_but_walking_is_caught
+  PASS test_pursuer.gd::test_safe_zone_has_priority_then_retreats_and_escapes
+  PASS test_pursuer.gd::test_entering_safe_zone_during_chase_and_plain_node_target
+  PASS test_pursuer.gd::test_reduce_scares_changes_speed_live_and_validates_settings
+  PASS test_pursuer.gd::test_audio_distance_gain_variants_and_stop
+  PASS test_pursuer.gd::test_steps_follow_actual_ground_movement
+  PASS test_pursuer.gd::test_pause_freezes_chase_audio_and_escape_timer
+  PASS test_pursuer.gd::test_stop_restart_and_deleted_target_cancel_pending_results
+  PASS test_pursuer.gd::test_optional_visual_and_fixture_p_shortcut
+  PASS test_segment12_interactables.gd::test_light_switch_initial_state_toggle_and_external_visibility
+  PASS test_segment12_interactables.gd::test_initially_dark_switch_custom_flag_and_disabled_guard
+  PASS test_segment12_interactables.gd::test_latch_blocks_real_door407_until_unlocked
+  PASS test_segment12_interactables.gd::test_latch_prompt_refreshes_without_looking_away
+  PASS test_segment12_interactables.gd::test_latch_handles_optional_open_property_and_missing_door
+  PASS test_segment12_interactables.gd::test_readable_marks_document_rules_then_emits_id_without_duplicates
+WARNING: Readable document not found: missing_t129_document
+   at: push_warning (core/variant/variant_utility.cpp:1033)
+   GDScript backtrace (most recent call first):
+       [0] interact (res://scripts/interaction/readable.gd:89)
+       [1] test_invalid_document_does_not_emit_or_change_notebook (res://tests/player/test_segment12_interactables.gd:216)
+       [2] _ready (res://tests/run_tests.gd:28)
+       [3] after_each (res://tests/player/test_segment12_interactables.gd:40)
+       [4] wait_frames (res://tests/test_case.gd:40)
+  PASS test_segment12_interactables.gd::test_invalid_document_does_not_emit_or_change_notebook
+  PASS test_segment12_interactables.gd::test_readable_size_updates_mesh_and_collision_per_instance
+  PASS test_segment12_interactables.gd::test_readable_pick_depth_extends_forward_and_survives_resize
+  PASS test_segment12_interactables.gd::test_phone_ring_answer_and_repeat_cycle
+  PASS test_segment12_interactables.gd::test_phone_plays_assigned_stream_and_stops_on_answer
+  PASS test_segment12_interactables.gd::test_all_props_have_interactable_collision_and_translated_prompts
+  PASS test_segment12_interactables.gd::test_test_room_wiring_and_r_key
+  PASS test_segment12_interactables.gd::test_test_room_props_are_reachable_by_player_collision_mask
+  PASS test_survival.gd::test_bunk_entry_exit_flags_occupancy_and_movement_lock
+  PASS test_survival.gd::test_upper_bunks_climb_pause_and_cancel_cleanly
+  PASS test_survival.gd::test_hidden_head_limits_and_fast_turn_noise
+  PASS test_survival.gd::test_breath_eight_seconds_forced_gasp_four_second_recovery
+  PASS test_survival.gd::test_regular_breath_and_pause_do_not_advance_survival_timers
+WARNING: Hiding spot needs valid view and exit Node3D anchors.
+   at: push_warning (core/variant/variant_utility.cpp:1033)
+   GDScript backtrace (most recent call first):
+       [0] enter (res://scripts/interaction/hide_spot.gd:37)
+       [1] test_generic_hiding_pull_out_and_removed_spot_release_player (res://tests/player/test_survival.gd:240)
+       [2] _ticks (res://tests/player/test_survival.gd:61)
+  PASS test_survival.gd::test_generic_hiding_pull_out_and_removed_spot_release_player
+  PASS test_survival.gd::test_crouch_speed_and_headroom_gate
+  PASS test_survival.gd::test_step_noise_radii_follow_actual_walk_run_and_crouch_steps
+  PASS test_survival.gd::test_phone_battery_drain_charge_empty_and_integer_notifications
+  PASS test_survival.gd::test_phone_q_f_model_camera_parent_pause_and_call_only_drain
+  PASS test_survival.gd::test_puzzle_locks_player_matches_id_closes_and_solves_once
+WARNING: Puzzle station has no valid PuzzleData:
+   at: push_warning (core/variant/variant_utility.cpp:1033)
+   GDScript backtrace (most recent call first):
+       [0] interact (res://scripts/interaction/puzzle_station.gd:24)
+       [1] test_puzzle_invalid_data_and_freeing_station_preserve_controls (res://tests/player/test_survival.gd:406)
+       [2] _ready (res://tests/run_tests.gd:28)
+       [3] before_each (res://tests/player/test_survival.gd:40)
+       [4] _ticks (res://tests/player/test_survival.gd:61)
+  PASS test_survival.gd::test_puzzle_invalid_data_and_freeing_station_preserve_controls
+  PASS test_survival.gd::test_switch_and_latch_emit_noise_at_the_object
+  PASS test_survival.gd::test_survival_fixture_has_four_numbered_bunks_and_puzzle
+  PASS test_text_entry.gd::test_typing_stops_existing_motion_blocks_w_e_then_restores_gameplay
+  PASS test_text_entry.gd::test_action_boundaries_clear_held_keys_and_last_value_wins
+  PASS test_text_entry.gd::test_mouse_looks_while_phone_and_flashlight_shortcuts_are_blocked
+  PASS test_text_entry.gd::test_typing_keeps_bed_and_hiding_occupancy_and_regular_breathing
+  PASS test_text_entry.gd::test_pause_and_document_lock_keep_ownership_across_text_transitions
+  PASS test_text_entry.gd::test_typing_cancels_partial_wipe_and_cannot_start_a_new_one
+  PASS test_text_entry.gd::test_text_events_reach_line_edit_without_moving_or_interacting
+  PASS test_text_entry.gd::test_death_lock_and_signal_lifetime_are_independent_of_typing
+  PASS test_unseen_poser.gd::test_seen_pose_never_changes_and_unseen_delay_resets_on_look
+  PASS test_unseen_poser.gd::test_visibility_checks_wall_distance_frustum_and_partial_mesh
+  PASS test_unseen_poser.gd::test_seeded_chance_rolls_once_per_interval_and_disabled_resets
+  PASS test_unseen_poser.gd::test_animation_pose_is_sampled_and_frozen_even_after_becoming_seen
+  PASS test_unseen_poser.gd::test_pause_and_missing_references_do_not_change_pose
+  PASS test_unseen_poser.gd::test_camera_body_does_not_occlude_its_own_view
+T208_G0_HEAD idle actor_local=(-0.002414, 1.479995, 0.0)
+T208_G0_HEAD walk actor_local=(0.0, 1.504963, 0.0)
+T208_G0_HEAD sit actor_local=(0.0, 1.03, 0.0)
+T208_G0_HEAD lie actor_local=(0.0, 0.18, 0.68)
+T208_G0_HEAD wake actor_local=(0.0, 0.533052, 0.762904)
+T208_G0_HEAD stunned actor_local=(0.0, 1.148925, 0.451934)
+T208_G0_HEAD grab actor_local=(0.0, 1.469821, 0.112789)
+  PASS test_visual_adapter_g0.gd::test_existing_poses_move_head_without_moving_gameplay_root
+  PASS test_visual_adapter_g0.gd::test_visual_offsets_and_head_motion_follow_rotated_actor
+  PASS test_visual_adapter_g0.gd::test_missing_marker_pose_and_visual_collision_are_reported
+  PASS test_visual_adapter_g0.gd::test_actor_replacement_and_null_restore_fallback_after_deferred_free
+  PASS test_visual_adapter_g0.gd::test_pause_and_fresh_scene_reset_existing_visual
+WARNING: Light switch has no assigned light.
+   at: push_warning (core/variant/variant_utility.cpp:1033)
+   GDScript backtrace (most recent call first):
+       [0] _ready (res://scripts/interaction/light_switch.gd:9)
+       [1] test_all_scenes_load_and_instantiate (res://tests/smoke/test_smoke_scenes.gd:16)
+WARNING: Light switch has no assigned light.
+   at: push_warning (core/variant/variant_utility.cpp:1033)
+   GDScript backtrace (most recent call first):
+       [0] _ready (res://scripts/interaction/light_switch.gd:9)
+       [1] test_all_scenes_load_and_instantiate (res://tests/smoke/test_smoke_scenes.gd:16)
+  PASS test_smoke_scenes.gd::test_all_scenes_load_and_instantiate
+AUTOPLAY: loaded 5 events from res://tests/tools/autoplay_example.json
+  PASS test_autoplay.gd::test_press_release_mouse_and_finish
+AUTOPLAY: loaded 5 events from res://tests/tools/autoplay_example.json
+  PASS test_autoplay.gd::test_stop_releases_held_actions
+  PASS test_autoplay.gd::test_reject_invalid_recordings
+AUTOPLAY: loaded 3 events from user://qa_semantic_autoplay.json
+AUTOPLAY_COMMAND: SKIP Player is not integrated
+  PASS test_autoplay.gd::test_semantic_command_skip_is_reported_and_playback_continues
+  PASS test_autoplay.gd::test_calls_and_choices_are_observed_before_first_command
+AUTOPLAY: loaded 5 events from res://tests/tools/autoplay_example.json
+AUTOPLAY: finished after 37 frames
+  PASS test_autoplay.gd::test_quit_prefers_app_and_does_not_quit_runner
+AUTOPLAY: loaded 5 events from res://tests/tools/autoplay_example.json
+AUTOPLAY: finished after 37 frames
+  PASS test_autoplay.gd::test_quit_falls_back_when_app_absent
+AUTOPLAY: loaded 5 events from res://tests/tools/autoplay_example.json
+  PASS test_autoplay.gd::test_quit_disabled_never_requests_exit
+  PASS test_ch1v2_tools.gd::test_tap_code_timing_has_coordinate_and_letter_boundaries
+  PASS test_ch1v2_tools.gd::test_scenario_rhythm_matches_core_groups
+  PASS test_ch1v2_tools.gd::test_missing_v2_actions_skip_and_invalid_commands_fail
+QA_DEATH_SUPPRESSED: DEATH_SEEN
+  PASS test_ch1v2_tools.gd::test_invincibility_logs_death_without_triggering_core_death
+  PASS test_ch1v2_tools.gd::test_unbound_missions_cannot_be_reported_as_complete
+  PASS test_ch1v2_tools.gd::test_menu_preserves_an_existing_pause_and_gates_save_isolation
+  PASS test_ch2_menu.gd::test_f9_opens_closes_and_jumps_to_real_rounds
+  PASS test_ch2_tools.gd::test_chain_requires_exact_tone_two_words_and_last_three_turns
+  PASS test_ch2_tools.gd::test_dictionary_typing_trap_and_loop_route
+  PASS test_ch2_tools.gd::test_typed_policy_matches_core_and_requires_real_trap_observations
+  PASS test_ch2_tools.gd::test_temperature_oracle_predicts_entire_approved_sequence_without_lookahead
+  PASS test_ch2_tools.gd::test_action_observer_types_once_and_waits_for_core_acknowledgement
+  PASS test_ch2_tools.gd::test_missing_chapter_and_physical_bindings_skip_instead_of_faking_progress
+  PASS test_ch2_tools.gd::test_four_word_loop_run_is_observed_not_assumed
+  PASS test_ch2_tools.gd::test_predictions_use_history_and_require_both_core_results
+  PASS test_ch2_tools.gd::test_physical_action_requires_signal_even_when_state_already_matches
+  PASS test_ch3_profile.gd::test_real_profile_nodes_actions_and_navigation_endpoints
+  PASS test_ch3_tools.gd::test_route_policy_rejects_unreachable_and_guard_crossings
+  PASS test_ch3_tools.gd::test_bar_policy_saves_hits_and_never_targets_guards
+  PASS test_ch3_tools.gd::test_preflight_never_claims_unbound_profile_is_complete
+  PASS test_ch3_tools.gd::test_fps_summary_reports_worst_frame_and_both_thresholds
+  PASS test_ch3_tools.gd::test_actions_observe_real_events_and_release_held_input
+QA_CH3_ACTION: PASS action acknowledgement: zombies_off
+QA_CH3_ACTION: PASS action acknowledgement: zombies_on
+QA_CH3_ACTION: PASS action acknowledgement: give_bar
+QA_CH3_ACTION: PASS action acknowledgement: refill
+  PASS test_ch3_tools.gd::test_menu_four_jumps_and_debug_controls_with_isolated_fixture
+  PASS test_chapter_tools.gd::test_action_schema_rejects_invalid_durations_positions_and_choices
+  PASS test_chapter_tools.gd::test_missing_mechanic_skips_but_malformed_action_fails
+  PASS test_chapter_tools.gd::test_frame_statistics_use_wall_time_and_nearest_rank_p95
+  PASS test_chapter_tools.gd::test_checkpoint_chapter_and_progress_files_are_independent
+  PASS test_chapter_tools.gd::test_chapter_templates_require_explicit_bindings_and_preserve_zero_index
+  PASS test_export_filters.gd::test_windows_release_excludes_qa_content
+  PASS test_graphics_asset_probe.gd::test_measures_transformed_geometry_and_marker
+  PASS test_graphics_asset_probe.gd::test_empty_model_does_not_claim_geometry_measurement
+GRAPHICS_PROBE_JSON=[{"bounds_min_m":[-0.879999995231628,0.0,-0.0799999535083771],"coordinate_space":"selected_root_local","dependency_hashes":{"game/.godot/imported/door.glb-a81bc8a9179a0677cddf7653ea35df74.scn":"8f452523f68e006c4c85593b5cc029fea4292863bcd6a34cb921660d34b23315","game/.godot/imported/iron.png-d9e7333594f3600a48686e3dfb8ad631.ctex":"3addd19af983def1983698b0e81fda838ee7ae291c98449519be270edde04fe0","game/.godot/imported/old_wood.png-40d993fe646f219510b4fc3572d2e495.ctex":"12fdc12b6926c9b6102c9f36420334a21243be04f40b4a478031fd2e321b0054","game/assets/models/kit/door.glb":"da7cd121c8f4cab5f48b44a08800ec83b6d546d13e12e463b2a42e47609ac8fb","game/assets/models/kit/door.glb.import":"aa9f268ca9c310b600aab31d4ed0d6994d4130934500e579ebfa021f1771d272","game/assets/models/kit/kit_import.gd":"eed00f91ac7a6d7a1394e29f14ba0b768d6de573e3012e4d6a663747d801d355","game/assets/textures/kit/iron.png":"ab099daeafb612a9e44c6e8eb1f0c613f716f2025e1b7dfe38f11a59770d9b83","game/assets/textures/kit/iron.png.import":"ad12d73168f9279fd4279242839e5b26629a8480ecf0d2d502bbe37b15651151","game/assets/textures/kit/old_wood.png":"dced583c873fdcc2579f1ac77f9697e37312c5c3fffabddd8f9efff93924ab72","game/assets/textures/kit/old_wood.png.import":"b46001f0f92c546b504551e2ba60cea22f86ea93e586fa18524feb1c2d157aa5","game/project.godot":"c3ed15334c9aced33121b4f459c956d324cb73af8b613757d28267841f7162f3","game/rendering/ps1_surface.gdshader":"77bc389246e81ded54370fcc6bb7deb6099213052ffa2e6be36bb04643504e71","game/rendering/ps1_surface.gdshaderinc":"eb32593a53be72d35ebb2cf049d38f55837ff09593c7a3747664f0ef25fd2e63","game/rendering/ps1_surface_cutout.gdshader":"c5644929ef912844ce7e6b51f3ef51be73c9b8b0ce1becc2ed08254456c7a402","game/scripts/debug/graphics_asset_probe.gd":"736fecd7271b58cc53a04dad59bc0a150af39289219ce65fc1db0ad14ec321b8"},"dependency_unavailable":[],"dimensions_m":[0.879999995231628,2.07999992370605,0.100000031292439],"engine":"4.7.2-stable (official)","file":"game/assets/models/kit/door.glb","material_count":2,"method":"Godot imported Mesh.get_faces; selected root local; rest pose; includes hidden meshes","nodes":{".":{"position_m":[0.0,0.0,0.0],"scale":[1.0,1.0,1.0]},"WorldCollision":{"position_m":[0.0,0.0,0.0],"scale":[1.0,1.0,1.0]},"WorldCollision/Bounds":{"position_m":[-0.439999997615814,1.03999996185303,-0.0299999378621578],"scale":[1.0,1.0,1.0]},"door":{"position_m":[0.0,0.0,0.0],"scale":[1.0,1.0,1.0]},"door/door_mesh":{"position_m":[-0.708000004291534,1.05499994754791,-0.0639999434351921],"scale":[1.0,1.0,1.0]}},"pose":"rest","root_placement":{"position_m":[0.0,0.0,0.0],"rotation_degrees":[0.0,0.0,0.0],"scale":[1.0,1.0,1.0]},"root_scale":[1.0,1.0,1.0],"sha256":"da7cd121c8f4cab5f48b44a08800ec83b6d546d13e12e463b2a42e47609ac8fb","surfaces":2,"texture_count":2,"textures":{"res://assets/textures/kit/iron.png":{"height":128,"width":128},"res://assets/textures/kit/old_wood.png":{"height":128,"width":128}},"triangles":120,"unavailable":["animated_bounds","gpu_texture_memory","gameplay_collision_nav","visual_approval"],"visibility_policy":"include_hidden"},{"bounds_min_m":[-0.449999988079071,0.0,-1.0],"coordinate_space":"selected_root_local","dependency_hashes":{"game/.godot/imported/bunk_bed.glb-88bed90cdde9422e13f03cf8efea07f9.scn":"da6095681c55e16965a619f7d75f4e108522813538fddf6e090d0cdad1a44322","game/.godot/imported/cloth.png-39e9f1710fae1d0230c004e7a0cad252.ctex":"2fe338d9853e630d33c046dfe71525126a21deedfee05925b08f5b01cf655eb7","game/.godot/imported/iron.png-d9e7333594f3600a48686e3dfb8ad631.ctex":"3addd19af983def1983698b0e81fda838ee7ae291c98449519be270edde04fe0","game/.godot/imported/old_wood.png-40d993fe646f219510b4fc3572d2e495.ctex":"12fdc12b6926c9b6102c9f36420334a21243be04f40b4a478031fd2e321b0054","game/.godot/imported/striped_mat.png-0b2b4e9d184600b79c702e16f44351c1.ctex":"c9523c54548131b355a1e5fa7694f4c348743962036e076851c07b4f7cac59c7","game/assets/models/kit/bunk_bed.glb":"fbc1710c50d13abee0fcbd2810ad77cb28c92506f24c304ceb8b6c3a1a87b82a","game/assets/models/kit/bunk_bed.glb.import":"b1184e8540dd9275363a443da5e8d09b58996ecf150c1b55c404a83eb7c926b7","game/assets/models/kit/kit_import.gd":"eed00f91ac7a6d7a1394e29f14ba0b768d6de573e3012e4d6a663747d801d355","game/assets/textures/kit/cloth.png":"6fe0fc6423fff7dd7dadc4a842c28de703af3a5264aa4cd281121b8ea5bc6798","game/assets/textures/kit/cloth.png.import":"77a62e159b919fbab7344f239458f399bf04d04f12b526e2c984e4030e117d64","game/assets/textures/kit/iron.png":"ab099daeafb612a9e44c6e8eb1f0c613f716f2025e1b7dfe38f11a59770d9b83","game/assets/textures/kit/iron.png.import":"ad12d73168f9279fd4279242839e5b26629a8480ecf0d2d502bbe37b15651151","game/assets/textures/kit/old_wood.png":"dced583c873fdcc2579f1ac77f9697e37312c5c3fffabddd8f9efff93924ab72","game/assets/textures/kit/old_wood.png.import":"b46001f0f92c546b504551e2ba60cea22f86ea93e586fa18524feb1c2d157aa5","game/assets/textures/kit/striped_mat.png":"ab9d24db98419e3c6c4aaf428352dec51818065d066f426cc1d7a8b02b725810","game/assets/textures/kit/striped_mat.png.import":"d9b0067d0b3f79efa30283eb2cee68715c328d07781a195f8c277835085c2aba","game/project.godot":"c3ed15334c9aced33121b4f459c956d324cb73af8b613757d28267841f7162f3","game/rendering/ps1_surface.gdshader":"77bc389246e81ded54370fcc6bb7deb6099213052ffa2e6be36bb04643504e71","game/rendering/ps1_surface.gdshaderinc":"eb32593a53be72d35ebb2cf049d38f55837ff09593c7a3747664f0ef25fd2e63","game/rendering/ps1_surface_cutout.gdshader":"c5644929ef912844ce7e6b51f3ef51be73c9b8b0ce1becc2ed08254456c7a402","game/scripts/debug/graphics_asset_probe.gd":"736fecd7271b58cc53a04dad59bc0a150af39289219ce65fc1db0ad14ec321b8"},"dependency_unavailable":[],"dimensions_m":[0.900000274181366,1.70000004768372,2.0],"engine":"4.7.2-stable (official)","file":"game/assets/models/kit/bunk_bed.glb","material_count":4,"method":"Godot imported Mesh.get_faces; selected root local; rest pose; includes hidden meshes","nodes":{".":{"position_m":[0.0,0.0,0.0],"scale":[1.0,1.0,1.0]},"WorldCollision":{"position_m":[0.0,0.0,0.0],"scale":[1.0,1.0,1.0]},"WorldCollision/Bounds":{"position_m":[0.000000149011611938477,0.850000023841858,0.0],"scale":[1.0,1.0,1.0]},"bunk_bed":{"position_m":[0.0,0.0,0.0],"scale":[1.0,1.0,1.0]},"bunk_bed/bunk_bed_mesh":{"position_m":[0.0,0.340000003576279,-0.959999978542328],"scale":[1.0,1.0,1.0]}},"pose":"rest","root_placement":{"position_m":[0.0,0.0,0.0],"rotation_degrees":[0.0,0.0,0.0],"scale":[1.0,1.0,1.0]},"root_scale":[1.0,1.0,1.0],"sha256":"fbc1710c50d13abee0fcbd2810ad77cb28c92506f24c304ceb8b6c3a1a87b82a","surfaces":4,"texture_count":4,"textures":{"res://assets/textures/kit/cloth.png":{"height":128,"width":128},"res://assets/textures/kit/iron.png":{"height":128,"width":128},"res://assets/textures/kit/old_wood.png":{"height":128,"width":128},"res://assets/textures/kit/striped_mat.png":{"height":128,"width":128}},"triangles":372,"unavailable":["animated_bounds","gpu_texture_memory","gameplay_collision_nav","visual_approval"],"visibility_policy":"include_hidden"},{"bounds_min_m":[-0.145000010728836,0.010000005364418,-0.132500007748604],"coordinate_space":"selected_root_local","dependency_hashes":{"game/.godot/imported/backpack.glb-8d254d9a9c16d29f984fc93e972d2df9.scn":"283e63e68147196f69db0e30a3d91b1b7e69f7bd6068e740e40fff922dd14b13","game/.godot/imported/cloth.png-1dd44f1729372c3ae898a4dab2fd4830.ctex":"b15fec6e74ce5aa1166cab9d66e9dd0c36016f592e019194aba5a33040571da5","game/.godot/imported/ink.png-9917ac908fc4079d598afd4203139a70.ctex":"bdb4a321886f2b25157569d8ddb98ed36078da333af89f7d799bf32953caccde","game/.godot/imported/moss.png-62b5bf30a3559644ee5a77e4330f6cc7.ctex":"904615f62753597ed8ff35d8dbd4c996b2f2990d91648de5729ee68e17e0ffb6","game/assets/models/kit/kit_import.gd":"eed00f91ac7a6d7a1394e29f14ba0b768d6de573e3012e4d6a663747d801d355","game/assets/models/room407/backpack.glb":"b92f6faf3b94df368ecfbca3495bdbeb7880226ecf08c576050495863f848be0","game/assets/models/room407/backpack.glb.import":"ed9b6116fc3bd2bed84e5817ea278b8f4f1c9b6913cc957715e8c2994d6c18c8","game/assets/models/room407/room407_import.gd":"b580e8a6ce088f7163c7d7417e4fe7e5ddd716f782cf500d514ddf94760c3b7a","game/assets/textures/room407/cloth.png":"ab65cb9920a8147dcde179e615ba1a86d5e5b8335d299cf713810fd58d3640c8","game/assets/textures/room407/cloth.png.import":"7ef2af80d2bb63396e6f6320b8e490aa768f2737323606e392bb16c0f6631828","game/assets/textures/room407/ink.png":"30c828b37a9ebeed6fc1da939b6761b0e8065bb6785731c2e62710fb720b2b65","game/assets/textures/room407/ink.png.import":"56e491d623dad52f7ccbb32fe49d05816dae47e03169fcb22a7581941b13177e","game/assets/textures/room407/moss.png":"1e09a4cdbf7c19dd5107089ab2e87de9eeead7c00c45d1108d23b8145737e71b","game/assets/textures/room407/moss.png.import":"fab497a5b18c60284f59c52c0539969c4f7c6f5117bf102740eb284e50096aa1","game/project.godot":"c3ed15334c9aced33121b4f459c956d324cb73af8b613757d28267841f7162f3","game/rendering/ps1_surface.gdshader":"77bc389246e81ded54370fcc6bb7deb6099213052ffa2e6be36bb04643504e71","game/rendering/ps1_surface.gdshaderinc":"eb32593a53be72d35ebb2cf049d38f55837ff09593c7a3747664f0ef25fd2e63","game/rendering/ps1_surface_cutout.gdshader":"c5644929ef912844ce7e6b51f3ef51be73c9b8b0ce1becc2ed08254456c7a402","game/scripts/debug/graphics_asset_probe.gd":"736fecd7271b58cc53a04dad59bc0a150af39289219ce65fc1db0ad14ec321b8"},"dependency_unavailable":[],"dimensions_m":[0.290000021457672,0.456399977207184,0.302700012922287],"engine":"4.7.2-stable (official)","file":"game/assets/models/room407/backpack.glb","material_count":3,"method":"Godot imported Mesh.get_faces; selected root local; rest pose; includes hidden meshes","nodes":{".":{"position_m":[0.0,0.0,0.0],"scale":[1.0,1.0,1.0]},"backpack":{"position_m":[0.0,0.0,0.0],"scale":[1.0,1.0,1.0]},"backpack/backpack_mesh":{"position_m":[0.0,0.209999993443489,0.0],"scale":[1.0,1.0,1.0]}},"pose":"rest","root_placement":{"position_m":[0.0,0.0,0.0],"rotation_degrees":[0.0,0.0,0.0],"scale":[1.0,1.0,1.0]},"root_scale":[1.0,1.0,1.0],"sha256":"b92f6faf3b94df368ecfbca3495bdbeb7880226ecf08c576050495863f848be0","surfaces":3,"texture_count":3,"textures":{"res://assets/textures/room407/cloth.png":{"height":128,"width":128},"res://assets/textures/room407/ink.png":{"height":128,"width":128},"res://assets/textures/room407/moss.png":{"height":128,"width":128}},"triangles":96,"unavailable":["animated_bounds","gpu_texture_memory","gameplay_collision_nav","visual_approval"],"visibility_policy":"include_hidden"}]
+  PASS test_graphics_asset_probe.gd::test_imported_kit_measurements_are_available
+  PASS test_graphics_asset_probe.gd::test_root_placement_does_not_change_local_bounds_or_markers
+  PASS test_graphics_asset_probe.gd::test_hidden_variant_is_included_and_reported_explicitly
+  PASS test_playthrough_pause.gd::test_game_audio_stays_stopped_while_bot_runs_during_pause
+  PASS test_user_data.gd::test_user_data_is_isolated_by_launcher
+  PASS test_ch2_typing.gd::test_enter_opens_native_edit_and_submits_verbatim_once
+  PASS test_ch2_typing.gd::test_escape_cancels_before_pause_in_both_node_orders
+  PASS test_ch2_typing.gd::test_blocked_can_type_but_not_send_and_clock_still_expires
+  PASS test_ch2_typing.gd::test_every_chain_close_releases_keyboard_without_correctness_feedback
+  PASS test_ch2_typing.gd::test_english_labels_keep_dictionary_words_vietnamese
+  PASS test_ch2_typing.gd::test_prediction_routes_member_and_preserves_literal_history_after_restore
+  PASS test_ch2_typing.gd::test_prediction_cancel_timeout_death_checkpoint_and_removal_release_focus
+  PASS test_ch2_typing.gd::test_typing_does_not_answer_phone_or_change_tab_and_unicode_is_unfiltered
+  PASS test_ch2_typing.gd::test_prediction_pause_hide_and_checkpoint_do_not_leave_keyboard_locked
+  PASS test_ch2_ui.gd::test_chain_last_three_words_speakers_mumbling_and_locale
+  PASS test_ch2_ui.gd::test_shower_choice_countdown_uses_core_result_and_never_guesses_timeout
+  PASS test_ch2_ui.gd::test_shower_all_thirty_temperatures_fit_lcd_and_translate_without_hints
+  PASS test_ch2_ui.gd::test_steam_wipe_only_clears_lcd_and_camera_requires_stall_presence
+  PASS test_ch2_ui.gd::test_new_deaths_reduce_scares_and_cleanup
+  PASS test_ch2_ui.gd::test_loop_message_remains_in_phone_history_after_json_restore_and_locale_change
+  PASS test_ch3_ui.gd::test_stamina_threshold_exhaustion_recovery_invalid_input_and_reduced
+  PASS test_ch3_ui.gd::test_bar_has_five_bends_authoritative_hits_and_single_break_animation
+  PASS test_ch3_ui.gd::test_guard_warnings_overlap_and_freed_guards_do_not_leave_static
+  PASS test_ch3_ui.gd::test_status_pause_lifecycle_and_chapter_one_two_do_not_keep_effects
+  PASS test_ch3_ui.gd::test_death_modes_live_reduction_pause_and_checkpoint_cleanup
+  PASS test_ch3_ui.gd::test_end_card_only_chapter_three_translates_and_does_not_unlock_progress
+  PASS test_ch3_ui.gd::test_ch3_death_reasons_use_core_translation_keys_without_local_story
+  PASS test_ch3_ui.gd::test_status_is_passive_and_all_controls_ignore_mouse
+  PASS test_ch4_ui.gd::test_compare_gate_all_rounds_and_verdicts_without_penalty
+  PASS test_ch4_ui.gd::test_scraps_are_distinct_collected_and_restored_without_invented_profile
+  PASS test_ch4_ui.gd::test_blood_ime_wrong_retry_accept_literal_and_damage_clock
+  PASS test_ch4_ui.gd::test_blood_timeout_and_lifecycle_release_keyboard
+  PASS test_ch4_ui.gd::test_last_message_native_submit_waits_for_core_and_preserves_literal_text
+  PASS test_ch4_ui.gd::test_message_timeout_pause_and_charges
+  PASS test_ch4_ui.gd::test_hospital_cards_infer_anchor_and_ending
+  PASS test_ch4_ui.gd::test_end_card_only_chapter_four_then_thanks_and_credits
+  PASS test_ch4_ui.gd::test_door_burst_reuses_blood_and_reduced_scares
+  PASS test_ch4_ui.gd::test_all_new_ui_translations_have_both_languages
+  PASS test_ch4_ui.gd::test_native_enter_escape_reader_lock_and_resume_draft
+  PASS test_ch4_ui.gd::test_saved_underline_and_papers_survive_remount_and_locale_change
+  PASS test_chapter_panels.gd::test_rulebook_rounds_expiry_verbatim_attention_and_evidence
+  PASS test_chapter_panels.gd::test_survivors_fade_replace_and_preserve_controls
+  PASS test_chapter_panels.gd::test_death_reason_count_once_no_pause_and_checkpoint_clears
+  PASS test_chapter_panels.gd::test_puzzle_variable_dials_wrong_then_correct_signal_and_delay
+  PASS test_chapter_panels.gd::test_puzzle_hint_missing_data_escape_and_pause_ownership
+  PASS test_chapter_panels.gd::test_puzzle_mouse_wheel_and_cleanup
+  PASS test_document_view_looks.gd::test_photo_and_photo_family_looks_show_texture_and_handwritten_back
+  PASS test_document_view_looks.gd::test_card_look_shows_student_card_proportions_and_details
+  PASS test_document_view_looks.gd::test_empty_look_retains_legacy_paper_styles
+  PASS test_document_view_looks.gd::test_all_looks_fit_in_720p_and_translate_cleanly
+  PASS test_document_view_looks.gd::test_card_silhouette_stays_inside_photo_rect
+  PASS test_pause.gd::test_escape_pauses_and_resumes_with_signals
+  PASS test_pause.gd::test_resume_button_and_repeated_calls_emit_once
+  PASS test_pause.gd::test_key_echo_does_not_toggle_and_escape_closes_settings
+  PASS test_pause.gd::test_back_returns_to_pause_without_resuming
+  PASS test_pause.gd::test_missing_bus_slider_hidden_and_late_bus_applies_saved_volume
+  PASS test_pause.gd::test_controls_save_live_while_paused_and_reset_restores_defaults
+  PASS test_pause.gd::test_gameplay_timer_stops_while_menu_remains_interactive
+  PASS test_pause.gd::test_mouse_can_open_settings_adjust_slider_and_resume
+  PASS test_pause.gd::test_reduce_scares_toggle_persists_before_signal_and_reset_turns_it_off
+  PASS test_pause.gd::test_reduce_scares_labels_switch_between_vietnamese_and_english
+  PASS test_pause.gd::test_removing_open_menu_resumes_tree
+  PASS test_pause.gd::test_reset_video_requires_confirmation_and_keeps_nonvideo_preferences
+  PASS test_pause_quit.gd::test_quit_button_uses_app_while_paused
+  PASS test_pause_quit.gd::test_quit_button_without_app_uses_direct_fallback
+  PASS test_phone.gd::test_phone_visibility_status_and_gameplay_ownership
+  PASS test_phone.gd::test_modal_panels_hide_phone_and_restore_it_without_raising_it
+  PASS test_phone.gd::test_incoming_banner_while_lowered_and_interact_answers_once
+  PASS test_phone.gd::test_transcript_members_subtitles_and_live_locale
+  PASS test_phone.gd::test_choices_lie_on_the_chat_and_calls_above_the_phone
+  PASS test_phone.gd::test_phone_stays_on_its_anchors_after_a_tall_frame_and_a_buzz
+  PASS test_phone.gd::test_choices_raise_phone_number_keys_and_single_completion
+  PASS test_phone.gd::test_choice_timer_waits_for_modal_and_mouse_click_selects
+  PASS test_phone.gd::test_wheel_selects_option_and_transcript_scrolls
+  PASS test_phone.gd::test_empty_battery_blacks_screen_disconnects_and_times_out_pending_reply
+  PASS test_phone.gd::test_snapshot_json_round_trip_restores_history_members_and_pending_choice_without_signals
+  PASS test_phone.gd::test_hidden_overlay_contracts_with_breath_and_resets_on_exit
+  PASS test_phone_missions.gd::test_lost_call_drops_spoken_lines_and_reconnects_once_with_live_translation
+  PASS test_phone_missions.gd::test_map_keyboard_mouse_toggle_snapshot_and_choices_keep_movement
+  PASS test_phone_missions.gd::test_camera_unlock_focus_feeds_snapshot_and_reduced_scare
+  PASS test_phone_missions.gd::test_limited_lock_three_submissions_noise_position_checkpoint_and_countdown
+  PASS test_phone_missions.gd::test_blood_death_kinds_reduced_mode_and_lifecycle
+  PASS test_reading.gd::test_documents_render_data_and_close_with_signals
+  PASS test_reading.gd::test_escape_closes_document_without_pause_menu_in_both_orders
+  PASS test_reading.gd::test_document_closes_with_interact_mouse_and_tab_without_opening_notebook
+  PASS test_reading.gd::test_modal_conflicts_invalid_document_and_removal_cleanup
+  PASS test_reading.gd::test_opening_interact_release_does_not_close_paper_and_next_tap_does
+  PASS test_reading.gd::test_document_locale_and_log_paragraphs_update
+  PASS test_reading.gd::test_notebook_empty_tab_and_escape
+  PASS test_reading.gd::test_notebook_groups_sources_in_first_seen_order_and_uses_entry_text
+  PASS test_reading.gd::test_notebook_suspicion_live_entries_and_locale
+  PASS test_reading.gd::test_hint_is_sent_only_on_first_read
+  PASS test_reading.gd::test_f6_scene_loads_and_speaker_records_five_entries
+  PASS test_settings.gd::test_reset_video_saves_once_before_all_signals_and_preserves_every_other_key
+  PASS test_settings.gd::test_reset_section_missing_file_creates_only_requested_schema_section
+  PASS test_settings.gd::test_reset_unknown_section_never_creates_or_notifies
+  PASS test_settings.gd::test_reset_save_failure_does_not_apply_emit_or_change_existing_file
+  PASS test_settings.gd::test_reset_section_replaces_invalid_video_types_but_keeps_unknown_entries
+  PASS test_settings.gd::test_defaults_without_file_and_missing_keys
+  PASS test_settings.gd::test_invalid_types_ranges_and_nonfinite_values_use_defaults
+  PASS test_settings.gd::test_valid_boundaries_remain_unchanged
+  PASS test_settings.gd::test_clamping_saves_before_signal_and_preserves_other_sections
+  PASS test_settings.gd::test_invalid_writes_do_not_save_or_emit
+  PASS test_settings.gd::test_sfx_applies_volume_mute_and_unmute_before_notification
+  PASS test_settings.gd::test_ready_applies_saved_locale_and_all_present_audio_buses
+  PASS test_settings.gd::test_reset_defaults_preserves_unrelated_entries_and_notifies_every_key
+  PASS test_title.gd::test_first_warning_saves_before_signal_and_does_not_repeat
+  PASS test_title.gd::test_warning_reduce_scares_saves_both_values_and_stops_background_pulse
+  PASS test_title.gd::test_failed_warning_write_stays_visible_without_acknowledging
+  PASS test_title.gd::test_continue_visibility_and_new_game_without_save
+  PASS test_title.gd::test_saved_continue_delegates_to_core_without_confirmation
+  PASS test_title.gd::test_new_game_requires_confirmation_and_escape_cancels
+  PASS test_title.gd::test_keyboard_navigation_settings_live_locale_credits_and_quit
+  PASS test_title.gd::test_dictionary_credit_has_both_sources_extractor_license_and_adaptation
+  PASS test_title.gd::test_pause_return_title_requires_confirmation_and_unpauses
+  PASS test_title.gd::test_chapter_selection_uses_temporary_progress_and_blocks_locked_chapters
+  PASS test_title.gd::test_saved_chapter_requires_confirmation_and_warning_describes_chapter_content
+  PASS test_title.gd::test_chapter_three_unlock_uses_existing_warning_and_saved_confirmation
+  PASS test_ui.gd::test_font_has_vietnamese_glyphs
+  PASS test_ui.gd::test_title_and_typewriter_fonts_have_all_vietnamese_diacritics
+  PASS test_ui.gd::test_focus_signal_updates_prompt_and_crosshair
+  PASS test_ui.gd::test_subtitle_expires
+  PASS test_ui.gd::test_subtitles_wait_in_fifo_order
+  PASS test_ui.gd::test_live_locale_updates_prompt_and_queued_subtitles
+  PASS test_ui.gd::test_invalid_subtitles_do_not_stall_queue
+  PASS test_ui.gd::test_locale_defaults_to_vi_without_settings
+  PASS test_ui.gd::test_locale_persists_and_preserves_other_settings
+  PASS test_ui.gd::test_hud_does_not_override_locale_and_has_outlined_crosshair
+  PASS test_ui.gd::test_invalid_locale_is_rejected_or_defaults_to_vi
+  PASS test_ui.gd::test_csv_has_unique_keys_and_nonempty_vi_en
+  PASS test_ui.gd::test_playground_buttons_and_translations
+RESULT: 851 passed, 0 failed
+T229_STAGE_EXIT test=0
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+[   0% ] first_scan_filesystem | Started Project initialization (5 steps)
+[   0% ] first_scan_filesystem | Scanning file structure...
+[  16% ] first_scan_filesystem | Loading global class names...
+[  33% ] first_scan_filesystem | Verifying GDExtensions...
+[  50% ] first_scan_filesystem | Creating autoload scripts...
+[  66% ] first_scan_filesystem | Initializing plugins...
+[  83% ] first_scan_filesystem | Starting file scan...
+[ DONE ] first_scan_filesystem
+
+[   0% ] loading_editor_layout | Started Loading editor (5 steps)
+[   0% ] loading_editor_layout | Loading editor layout...
+[  16% ] loading_editor_layout | Loading docks...
+[ DONE ] loading_editor_layout
+
+PASS parse: assets/models/entity/reflection_import.gd
+PASS parse: assets/models/kit/kit_import.gd
+PASS parse: assets/models/room407/room407_import.gd
+PASS parse: audio/graphics_upgrade/fire_bell_preview.gd
+PASS parse: audio/graphics_upgrade/room407_audio_preview.gd
+PASS parse: audio/test/audio_test.gd
+PASS parse: audio/test/ch1_audio_test.gd
+PASS parse: audio/test/ch1v2_audio_test.gd
+PASS parse: audio/test/ch2_audio_test.gd
+PASS parse: audio/test/ch3_audio_test.gd
+PASS parse: audio/test/ch4_audio_test.gd
+PASS parse: audio/test/scare_test.gd
+PASS parse: audio/test/segment12_test.gd
+PASS parse: audio/test/zones_test.gd
+PASS parse: rendering/ps1_filter.gd
+PASS parse: scenes/levels/campus_room_navigation.gd
+PASS parse: scenes/levels/mirror.gd
+PASS parse: scenes/levels/room_door_visual.gd
+PASS parse: scenes/levels/room_door.gd
+PASS parse: scenes/levels/campus/actor.gd
+PASS parse: scenes/levels/campus/boxes.gd
+PASS parse: scenes/levels/campus/campus.gd
+PASS parse: scenes/levels/campus/door.gd
+PASS parse: scenes/levels/campus/flicker.gd
+PASS parse: scenes/levels/campus/foliage.gd
+PASS parse: scenes/levels/campus/strip.gd
+PASS parse: scenes/levels/cctv/student_body.gd
+PASS parse: scenes/levels/ch1v2/cables.gd
+PASS parse: scenes/levels/ch1v2/hinged.gd
+PASS parse: scenes/levels/ch1v2/mattress.gd
+PASS parse: scenes/levels/ch1v2/power_strip.gd
+PASS parse: scenes/levels/ch1v2/torn_paper.gd
+PASS parse: scenes/levels/ch1_models/blade_tip.gd
+PASS parse: scenes/levels/ch1_models/corpse_body.gd
+PASS parse: scenes/levels/ch1_models/dat_notebook.gd
+PASS parse: scenes/levels/ch1_models/models_test.gd
+PASS parse: scenes/levels/ch1_models/phone_viewmodel.gd
+PASS parse: scenes/levels/ch1_models/router.gd
+PASS parse: scenes/levels/ch2/bathroom_door.gd
+PASS parse: scenes/levels/ch2/bathroom_effects.gd
+PASS parse: scenes/levels/ch2/gag_anchor.gd
+PASS parse: scenes/levels/ch4/door407_proxy.gd
+PASS parse: scenes/levels/ch4/review.gd
+PASS parse: scenes/levels/ch4/slat_visual.gd
+PASS parse: scenes/levels/entity/mirror_test.gd
+PASS parse: scenes/levels/entity/reflection_body.gd
+PASS parse: scenes/levels/entity/silhouette.gd
+PASS parse: scenes/levels/floor4/corridor_capture.gd
+PASS parse: scenes/levels/floor4/door407.gd
+PASS parse: scenes/levels/floor4/floor4.gd
+PASS parse: scenes/levels/graphics_pilot/backpack_facing_probe.gd
+PASS parse: scenes/levels/graphics_pilot/backpack_g2_capture.gd
+PASS parse: scenes/levels/graphics_pilot/bell_mount_probe.gd
+PASS parse: scenes/levels/graphics_pilot/manager_preview.gd
+PASS parse: scenes/levels/graphics_pilot/material_pilot.gd
+PASS parse: scenes/levels/graphics_pilot/measure_assets.gd
+PASS parse: scenes/levels/graphics_pilot/protagonist_pilot.gd
+PASS parse: scenes/levels/graphics_pilot/room407_corner_pilot.gd
+PASS parse: scenes/levels/graphics_pilot/room407_furnished_pilot.gd
+PASS parse: scenes/levels/hospital/hospital_room.gd
+PASS parse: scenes/levels/props/hanging_cloth.gd
+PASS parse: scenes/levels/props/prop_tint.gd
+PASS parse: scenes/levels/props/slippers_pair.gd
+PASS parse: scenes/levels/props/water_stream.gd
+PASS parse: scenes/levels/room407/balcony_door.gd
+PASS parse: scenes/levels/room407/dat_locker.gd
+PASS parse: scenes/levels/room407/flicker_light.gd
+PASS parse: scenes/levels/room407/room407_fixes_capture.gd
+PASS parse: scenes/levels/room407/room407_furnish.gd
+PASS parse: scenes/levels/room407/room407_g3_capture.gd
+PASS parse: scenes/levels/room407/room407_obstacles.gd
+PASS parse: scenes/levels/room407/room407_test.gd
+PASS parse: scenes/levels/room407/room407.gd
+PASS parse: scenes/main/chapter1_main.gd
+PASS parse: scenes/main/main.gd
+PASS parse: scripts/audio/ambient_emitter.gd
+PASS parse: scripts/audio/ambient_zone.gd
+PASS parse: scripts/audio/audio_zone.gd
+PASS parse: scripts/audio/building_screams.gd
+PASS parse: scripts/audio/cctv_audio.gd
+PASS parse: scripts/audio/ch1_audio_bank.gd
+PASS parse: scripts/audio/ch1_mission_audio.gd
+PASS parse: scripts/audio/ch1_music.gd
+PASS parse: scripts/audio/ch1_player_audio.gd
+PASS parse: scripts/audio/ch1v2_audio_bank.gd
+PASS parse: scripts/audio/ch2_audio_bank.gd
+PASS parse: scripts/audio/ch2_countdown.gd
+PASS parse: scripts/audio/ch2_music.gd
+PASS parse: scripts/audio/ch3_audio_bank.gd
+PASS parse: scripts/audio/ch3_environment.gd
+PASS parse: scripts/audio/ch3_guard_audio.gd
+PASS parse: scripts/audio/ch3_horde_audio.gd
+PASS parse: scripts/audio/ch3_music.gd
+PASS parse: scripts/audio/ch3_player_audio.gd
+PASS parse: scripts/audio/ch3_siren_audio.gd
+PASS parse: scripts/audio/ch4_audio_bank.gd
+PASS parse: scripts/audio/ch4_audio_rig.gd
+PASS parse: scripts/audio/ch4_decoy_audio.gd
+PASS parse: scripts/audio/ch4_door_audio.gd
+PASS parse: scripts/audio/ch4_hospital_audio.gd
+PASS parse: scripts/audio/ch4_music.gd
+PASS parse: scripts/audio/corpse_audio.gd
+PASS parse: scripts/audio/corpse_syllable_phrase.gd
+PASS parse: scripts/audio/corpse_voice.gd
+PASS parse: scripts/audio/flicker_buzz.gd
+PASS parse: scripts/audio/floor_muffle.gd
+PASS parse: scripts/audio/footstep_player.gd
+PASS parse: scripts/audio/light_hum.gd
+PASS parse: scripts/audio/manager_audio.gd
+PASS parse: scripts/audio/music_director.gd
+PASS parse: scripts/audio/phone_call_audio.gd
+PASS parse: scripts/audio/reverb_zone.gd
+PASS parse: scripts/audio/shower_audio.gd
+PASS parse: scripts/audio/speaker_voice_bank.gd
+PASS parse: scripts/audio/speaker.gd
+PASS parse: scripts/audio/wall_taps.gd
+PASS parse: scripts/audio/zombie_audio.gd
+PASS parse: scripts/core/app.gd
+PASS parse: scripts/core/ch2_dictionary.gd
+PASS parse: scripts/core/ch2_syllable_bank.gd
+PASS parse: scripts/core/ch3_use.gd
+PASS parse: scripts/core/ch3_zombie_link.gd
+PASS parse: scripts/core/chapter1_director.gd
+PASS parse: scripts/core/chapter2_director.gd
+PASS parse: scripts/core/chapter3_director.gd
+PASS parse: scripts/core/chapter4_director.gd
+PASS parse: scripts/core/checkpoint.gd
+PASS parse: scripts/core/document_data.gd
+PASS parse: scripts/core/event_bus.gd
+PASS parse: scripts/core/game_input.gd
+PASS parse: scripts/core/game_state.gd
+PASS parse: scripts/core/interactable.gd
+PASS parse: scripts/core/message_data.gd
+PASS parse: scripts/core/progress.gd
+PASS parse: scripts/core/puzzle_data.gd
+PASS parse: scripts/core/rule_data.gd
+PASS parse: scripts/core/rule_set.gd
+PASS parse: scripts/core/rule_system.gd
+PASS parse: scripts/core/story_director.gd
+PASS parse: scripts/core/story_trigger.gd
+PASS parse: scripts/core/viet_text.gd
+PASS parse: scripts/debug/autoplay.gd
+PASS parse: scripts/debug/ch1v2_actions.gd
+PASS parse: scripts/debug/ch1v2_bot.gd
+PASS parse: scripts/debug/ch2_actions.gd
+PASS parse: scripts/debug/ch2_bot.gd
+PASS parse: scripts/debug/ch2_menu_smoke.gd
+PASS parse: scripts/debug/ch2_menu.gd
+PASS parse: scripts/debug/ch2_performance.gd
+PASS parse: scripts/debug/ch2_policy.gd
+PASS parse: scripts/debug/ch3_actions.gd
+PASS parse: scripts/debug/ch3_bot.gd
+PASS parse: scripts/debug/ch3_menu_smoke.gd
+PASS parse: scripts/debug/ch3_menu.gd
+PASS parse: scripts/debug/ch3_performance.gd
+PASS parse: scripts/debug/ch3_policy.gd
+PASS parse: scripts/debug/chapter_actions.gd
+PASS parse: scripts/debug/chapter_bot.gd
+PASS parse: scripts/debug/graphics_asset_probe.gd
+PASS parse: scripts/debug/performance_bot.gd
+PASS parse: scripts/debug/playthrough_bot.gd
+PASS parse: scripts/debug/qa_director.gd
+PASS parse: scripts/debug/qa_menu_smoke.gd
+PASS parse: scripts/debug/qa_menu.gd
+PASS parse: scripts/entity/arm_reach_modifier.gd
+PASS parse: scripts/entity/bone_lock_modifier.gd
+PASS parse: scripts/entity/ch3_actor.gd
+PASS parse: scripts/entity/ch3_gameplay_test.gd
+PASS parse: scripts/entity/ch3_test_geometry.gd
+PASS parse: scripts/entity/companion.gd
+PASS parse: scripts/entity/entity_visibility.gd
+PASS parse: scripts/entity/guard.gd
+PASS parse: scripts/entity/hand_grip_modifier.gd
+PASS parse: scripts/entity/manager_body.gd
+PASS parse: scripts/entity/manager_test.gd
+PASS parse: scripts/entity/manager.gd
+PASS parse: scripts/entity/pursuer_test.gd
+PASS parse: scripts/entity/pursuer.gd
+PASS parse: scripts/entity/unseen_poser.gd
+PASS parse: scripts/entity/visual_adapter_g0.gd
+PASS parse: scripts/entity/zombie_horde.gd
+PASS parse: scripts/entity/zombie.gd
+PASS parse: scripts/interaction/bed_slat.gd
+PASS parse: scripts/interaction/bunk_spot.gd
+PASS parse: scripts/interaction/carry_item.gd
+PASS parse: scripts/interaction/ch1v2_interactions_test.gd
+PASS parse: scripts/interaction/ch2_interactions_test.gd
+PASS parse: scripts/interaction/demo_door.gd
+PASS parse: scripts/interaction/demo_light_switch.gd
+PASS parse: scripts/interaction/door_handles.gd
+PASS parse: scripts/interaction/door_latch.gd
+PASS parse: scripts/interaction/gag_spot.gd
+PASS parse: scripts/interaction/hand_target.gd
+PASS parse: scripts/interaction/hide_spot.gd
+PASS parse: scripts/interaction/hold_interactable.gd
+PASS parse: scripts/interaction/interaction_test.gd
+PASS parse: scripts/interaction/iron_bar.gd
+PASS parse: scripts/interaction/lan_cable.gd
+PASS parse: scripts/interaction/lan_socket.gd
+PASS parse: scripts/interaction/light_switch.gd
+PASS parse: scripts/interaction/phone.gd
+PASS parse: scripts/interaction/power_strip_switch.gd
+PASS parse: scripts/interaction/power_strip.gd
+PASS parse: scripts/interaction/puzzle_station.gd
+PASS parse: scripts/interaction/readable.gd
+PASS parse: scripts/interaction/search_spot.gd
+PASS parse: scripts/interaction/shower_choice.gd
+PASS parse: scripts/interaction/shower_screen.gd
+PASS parse: scripts/interaction/shower_stall.gd
+PASS parse: scripts/interaction/stuck_door.gd
+PASS parse: scripts/interaction/wall_knock.gd
+PASS parse: scripts/interaction/zombie_door.gd
+PASS parse: scripts/player/ch4_gameplay_test.gd
+PASS parse: scripts/player/door_burst.gd
+PASS parse: scripts/player/gaze_detector.gd
+PASS parse: scripts/player/hand_align_modifier.gd
+PASS parse: scripts/player/iron_bar_weapon.gd
+PASS parse: scripts/player/phone_decoy.gd
+PASS parse: scripts/player/phone_item.gd
+PASS parse: scripts/player/player_body.gd
+PASS parse: scripts/player/player_death.gd
+PASS parse: scripts/player/player_test.gd
+PASS parse: scripts/player/player.gd
+PASS parse: scripts/player/spine_bend_modifier.gd
+PASS parse: scripts/player/survival_test.gd
+PASS parse: scripts/ui/blood_overlay.gd
+PASS parse: scripts/ui/ch2_phone_preview.gd
+PASS parse: scripts/ui/ch2_ui_preview.gd
+PASS parse: scripts/ui/ch3_end_card.gd
+PASS parse: scripts/ui/ch3_status.gd
+PASS parse: scripts/ui/ch3_ui_preview.gd
+PASS parse: scripts/ui/ch4_bed_card.gd
+PASS parse: scripts/ui/ch4_end_card.gd
+PASS parse: scripts/ui/ch4_form.gd
+PASS parse: scripts/ui/ch4_hands.gd
+PASS parse: scripts/ui/ch4_notebook.gd
+PASS parse: scripts/ui/ch4_phone.gd
+PASS parse: scripts/ui/ch4_timed_entry.gd
+PASS parse: scripts/ui/ch4_ui_preview.gd
+PASS parse: scripts/ui/chain_panel.gd
+PASS parse: scripts/ui/chapter_panels_test.gd
+PASS parse: scripts/ui/chapter_ui_layout.gd
+PASS parse: scripts/ui/confirm_panel.gd
+PASS parse: scripts/ui/death_screen.gd
+PASS parse: scripts/ui/document_stamp.gd
+PASS parse: scripts/ui/document_view.gd
+PASS parse: scripts/ui/game_text_entry.gd
+PASS parse: scripts/ui/hud_test.gd
+PASS parse: scripts/ui/hud.gd
+PASS parse: scripts/ui/iron_bar_icon.gd
+PASS parse: scripts/ui/locale_settings.gd
+PASS parse: scripts/ui/notebook_test.gd
+PASS parse: scripts/ui/notebook.gd
+PASS parse: scripts/ui/paper_surface.gd
+PASS parse: scripts/ui/pause_menu.gd
+PASS parse: scripts/ui/pause_test.gd
+PASS parse: scripts/ui/phone_member.gd
+PASS parse: scripts/ui/phone_missions_preview.gd
+PASS parse: scripts/ui/phone_prediction.gd
+PASS parse: scripts/ui/phone_preview.gd
+PASS parse: scripts/ui/phone_screen.gd
+PASS parse: scripts/ui/phone_state.gd
+PASS parse: scripts/ui/phone_test.gd
+PASS parse: scripts/ui/phone_tools.gd
+PASS parse: scripts/ui/puzzle_panel.gd
+PASS parse: scripts/ui/reading_overlay.gd
+PASS parse: scripts/ui/settings_panel.gd
+PASS parse: scripts/ui/settings.gd
+PASS parse: scripts/ui/shower_screen.gd
+PASS parse: scripts/ui/survivor_notice.gd
+PASS parse: scripts/ui/title_screen.gd
+PASS parse: scripts/ui/title_test.gd
+PASS parse: scripts/ui/ui_motion.gd
+PASS parse: tests/run_tests.gd
+PASS parse: tests/test_case.gd
+PASS parse: tests/audio/test_audio_zones.gd
+PASS parse: tests/audio/test_audio.gd
+PASS parse: tests/audio/test_ch1_audio.gd
+PASS parse: tests/audio/test_ch1v2_audio.gd
+PASS parse: tests/audio/test_ch2_audio.gd
+PASS parse: tests/audio/test_ch2_tell_voices.gd
+PASS parse: tests/audio/test_ch3_audio.gd
+PASS parse: tests/audio/test_ch4_audio.gd
+PASS parse: tests/audio/test_ch4_voices_calls.gd
+PASS parse: tests/audio/test_corpse_syllables.gd
+PASS parse: tests/audio/test_graphics_fire_bell.gd
+PASS parse: tests/audio/test_music_director.gd
+PASS parse: tests/audio/test_room407_object_audio.gd
+PASS parse: tests/audio/test_scare_audio.gd
+PASS parse: tests/audio/test_speaker_voice.gd
+PASS parse: tests/audio/test_speaker.gd
+PASS parse: tests/core/test_ch2_syllables.gd
+PASS parse: tests/core/test_ch2_tell_friends.gd
+PASS parse: tests/core/test_ch2_typing_flow.gd
+PASS parse: tests/core/test_chapter1_d069.gd
+PASS parse: tests/core/test_chapter1.gd
+PASS parse: tests/core/test_chapter2.gd
+PASS parse: tests/core/test_chapter3_data.gd
+PASS parse: tests/core/test_chapter3.gd
+PASS parse: tests/core/test_chapter4_data.gd
+PASS parse: tests/core/test_chapter4.gd
+PASS parse: tests/core/test_core.gd
+PASS parse: tests/core/test_graphics_bindings.gd
+PASS parse: tests/core/test_rule_system.gd
+PASS parse: tests/core/test_story_director.gd
+PASS parse: tests/core/test_story_segments_3_5.gd
+PASS parse: tests/levels/test_campus.gd
+PASS parse: tests/levels/test_cctv.gd
+PASS parse: tests/levels/test_ch1_models.gd
+PASS parse: tests/levels/test_ch1v2.gd
+PASS parse: tests/levels/test_ch2_props.gd
+PASS parse: tests/levels/test_ch4_environment.gd
+PASS parse: tests/levels/test_fire_stairs.gd
+PASS parse: tests/levels/test_floor4.gd
+PASS parse: tests/levels/test_graphics_pilot.gd
+PASS parse: tests/levels/test_kit.gd
+PASS parse: tests/levels/test_mirror.gd
+PASS parse: tests/levels/test_props.gd
+PASS parse: tests/levels/test_ps1_filter.gd
+PASS parse: tests/levels/test_room_doors.gd
+PASS parse: tests/levels/test_room407_bathroom_fixes.gd
+PASS parse: tests/levels/test_room407_corner.gd
+PASS parse: tests/levels/test_room407_fixes.gd
+PASS parse: tests/levels/test_room407_furnished.gd
+PASS parse: tests/levels/test_room407_obstacles.gd
+PASS parse: tests/levels/test_room407_papers.gd
+PASS parse: tests/levels/test_room407_playable_furnished.gd
+PASS parse: tests/levels/test_room407_shell.gd
+PASS parse: tests/levels/test_room407.gd
+PASS parse: tests/levels/test_sealed_408.gd
+PASS parse: tests/levels/test_stands_props.gd
+PASS parse: tests/levels/test_wide_corridors.gd
+PASS parse: tests/player/body_walker.gd
+PASS parse: tests/player/test_ch1_bunks_manager.gd
+PASS parse: tests/player/test_ch1v2_interactions.gd
+PASS parse: tests/player/test_ch2_interactions.gd
+PASS parse: tests/player/test_ch3_gameplay.gd
+PASS parse: tests/player/test_ch4_gameplay.gd
+PASS parse: tests/player/test_gaze_detector.gd
+PASS parse: tests/player/test_manager_body.gd
+PASS parse: tests/player/test_manager.gd
+PASS parse: tests/player/test_player_death.gd
+PASS parse: tests/player/test_player_settings.gd
+PASS parse: tests/player/test_player.gd
+PASS parse: tests/player/test_protagonist_body.gd
+PASS parse: tests/player/test_pursuer.gd
+PASS parse: tests/player/test_segment12_interactables.gd
+PASS parse: tests/player/test_survival.gd
+PASS parse: tests/player/test_text_entry.gd
+PASS parse: tests/player/test_unseen_poser.gd
+PASS parse: tests/player/test_visual_adapter_g0.gd
+PASS parse: tests/smoke/test_smoke_scenes.gd
+PASS parse: tests/tools/parse_probe.gd
+PASS parse: tests/tools/test_autoplay.gd
+PASS parse: tests/tools/test_ch1v2_tools.gd
+PASS parse: tests/tools/test_ch2_menu.gd
+PASS parse: tests/tools/test_ch2_tools.gd
+PASS parse: tests/tools/test_ch3_profile.gd
+PASS parse: tests/tools/test_ch3_tools.gd
+PASS parse: tests/tools/test_chapter_tools.gd
+PASS parse: tests/tools/test_export_filters.gd
+PASS parse: tests/tools/test_graphics_asset_probe.gd
+PASS parse: tests/tools/test_playthrough_pause.gd
+PASS parse: tests/tools/test_user_data.gd
+PASS parse: tests/tools/fixtures/ch3_qa_director.gd
+PASS parse: tests/ui/settings_test_case.gd
+PASS parse: tests/ui/test_ch2_typing.gd
+PASS parse: tests/ui/test_ch2_ui.gd
+PASS parse: tests/ui/test_ch3_ui.gd
+PASS parse: tests/ui/test_ch4_ui.gd
+PASS parse: tests/ui/test_chapter_panels.gd
+PASS parse: tests/ui/test_document_view_looks.gd
+PASS parse: tests/ui/test_pause_quit.gd
+PASS parse: tests/ui/test_pause.gd
+PASS parse: tests/ui/test_phone_missions.gd
+PASS parse: tests/ui/test_phone.gd
+PASS parse: tests/ui/test_reading.gd
+PASS parse: tests/ui/test_settings.gd
+PASS parse: tests/ui/test_title.gd
+PASS parse: tests/ui/test_ui.gd
+PASS parse: ui/document/capture_looks.gd
+PASS parse: ui/theme/t214_capture.gd
+PASS parse: ui/title/corridor_still.gd
+RESULT: check 0 error(s)
+T229_STAGE_EXIT check=0
+RESULT: T229 verification PASS

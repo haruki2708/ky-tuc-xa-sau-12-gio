@@ -1,0 +1,57 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+[   0% ] [90m[1mfirst_scan_filesystem[22m | Started Project initialization (5 steps)[39m[0m
+[   0% ] [90m[1mfirst_scan_filesystem[22m | Scanning file structure...[39m[0m
+[  16% ] [90m[1mfirst_scan_filesystem[22m | Loading global class names...[39m[0m
+[  33% ] [90m[1mfirst_scan_filesystem[22m | Verifying GDExtensions...[39m[0m
+[  50% ] [90m[1mfirst_scan_filesystem[22m | Creating autoload scripts...[39m[0m
+[  66% ] [90m[1mfirst_scan_filesystem[22m | Initializing plugins...[39m[0m
+[  83% ] [90m[1mfirst_scan_filesystem[22m | Starting file scan...[39m[0m
+[92m[ DONE ][39m [1mfirst_scan_filesystem[22m
+[0m
+[   0% ] [90m[1mloading_editor_layout[22m | Started Loading editor (5 steps)[39m[0m
+[   0% ] [90m[1mloading_editor_layout[22m | Loading editor layout...[39m[0m
+[  16% ] [90m[1mloading_editor_layout[22m | Loading docks...[39m[0m
+[92m[ DONE ][39m [1mloading_editor_layout[22m
+[0m
+PASS parse: assets/models/entity/reflection_import.gd
+PASS parse: assets/models/kit/kit_import.gd
+PASS parse: assets/models/room407/room407_import.gd
+PASS parse: audio/graphics_upgrade/fire_bell_preview.gd
+PASS parse: audio/graphics_upgrade/room407_audio_preview.gd
+PASS parse: audio/test/audio_test.gd
+PASS parse: audio/test/ch1_audio_test.gd
+PASS parse: audio/test/ch1v2_audio_test.gd
+PASS parse: audio/test/ch2_audio_test.gd
+PASS parse: audio/test/ch3_audio_test.gd
+PASS parse: audio/test/ch4_audio_test.gd
+PASS parse: audio/test/scare_test.gd
+PASS parse: audio/test/segment12_test.gd
+PASS parse: audio/test/zones_test.gd
+PASS parse: rendering/ps1_filter.gd
+PASS parse: scenes/levels/campus_room_navigation.gd
+PASS parse: scenes/levels/mirror.gd
+PASS parse: scenes/levels/room_door_visual.gd
+PASS parse: scenes/levels/room_door.gd
+PASS parse: scenes/levels/campus/actor.gd
+PASS parse: scenes/levels/campus/boxes.gd
+PASS parse: scenes/levels/campus/campus.gd
+PASS parse: scenes/levels/campus/door.gd
+PASS parse: scenes/levels/campus/flicker.gd
+PASS parse: scenes/levels/campus/foliage.gd
+PASS parse: scenes/levels/campus/strip.gd
+PASS parse: scenes/levels/cctv/student_body.gd
+PASS parse: scenes/levels/ch1v2/cables.gd
+PASS parse: scenes/levels/ch1v2/hinged.gd
+PASS parse: scenes/levels/ch1v2/mattress.gd
+PASS parse: scenes/levels/ch1v2/power_strip.gd
+PASS parse: scenes/levels/ch1v2/torn_paper.gd
+PASS parse: scenes/levels/ch1_models/blade_tip.gd
+PASS parse: scenes/levels/ch1_models/corpse_body.gd
+PASS parse: scenes/levels/ch1_models/dat_notebook.gd
+PASS parse: scenes/levels/ch1_models/models_test.gd
+PASS parse: scenes/levels/ch1_models/phone_viewmodel.gd
+PASS parse: scenes/levels/ch1_models/router.gd
+PASS parse: scenes/levels/ch2/bathroom_door.gd
+PASS parse: scenes/levels/ch2/bathroom_effects.gd
+PASS parse: scenes/levels/ch2/gag_anchor.gd
