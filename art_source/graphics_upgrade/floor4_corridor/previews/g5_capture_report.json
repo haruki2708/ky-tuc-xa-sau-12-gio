@@ -1,0 +1,392 @@
+{
+	"capture_kind": "Pilot segment x 26..34 over floor4.tscn, no chapter director or player",
+	"godot": "4.7.2-stable (official)",
+	"gpu": "NVIDIA GeForce RTX 3050 Laptop GPU",
+	"images": [
+		{
+			"door406_open": false,
+			"eye": [
+				0.699999988079071,
+				1.64999997615814,
+				2.70000004768372
+			],
+			"file": "after_01_west_night.jpg",
+			"fov": 75.0,
+			"railing": "dense",
+			"segment": true,
+			"target": [
+				32.0,
+				1.39999997615814,
+				1.20000004768372
+			],
+			"torch": false
+		},
+		{
+			"door406_open": false,
+			"eye": [
+				43.2999992370605,
+				1.64999997615814,
+				3.09999990463257
+			],
+			"file": "after_02_east_night.jpg",
+			"fov": 75.0,
+			"railing": "dense",
+			"segment": true,
+			"target": [
+				12.0,
+				1.39999997615814,
+				1.10000002384186
+			],
+			"torch": false
+		},
+		{
+			"door406_open": false,
+			"eye": [
+				33.5,
+				1.64999997615814,
+				3.09999990463257
+			],
+			"file": "after_03_door407_night.jpg",
+			"fov": 75.0,
+			"railing": "dense",
+			"segment": true,
+			"target": [
+				32.0,
+				1.25,
+				0.0
+			],
+			"torch": false
+		},
+		{
+			"door406_open": false,
+			"eye": [
+				33.5,
+				1.64999997615814,
+				3.09999990463257
+			],
+			"file": "after_04_door407_torch.jpg",
+			"fov": 75.0,
+			"railing": "dense",
+			"segment": true,
+			"target": [
+				32.0,
+				1.25,
+				0.0
+			],
+			"torch": true
+		},
+		{
+			"door406_open": false,
+			"eye": [
+				26.7000007629395,
+				1.54999995231628,
+				1.25
+			],
+			"file": "before_13_door406_night.jpg",
+			"fov": 60.0,
+			"railing": "dense",
+			"segment": false,
+			"target": [
+				27.75,
+				1.0,
+				0.100000001490116
+			],
+			"torch": false
+		},
+		{
+			"door406_open": false,
+			"eye": [
+				26.7000007629395,
+				1.54999995231628,
+				1.25
+			],
+			"file": "after_13_door406_night.jpg",
+			"fov": 60.0,
+			"railing": "dense",
+			"segment": true,
+			"target": [
+				27.75,
+				1.0,
+				0.100000001490116
+			],
+			"torch": false
+		},
+		{
+			"door406_open": false,
+			"eye": [
+				26.7000007629395,
+				1.54999995231628,
+				1.25
+			],
+			"file": "before_14_door406_torch.jpg",
+			"fov": 60.0,
+			"railing": "dense",
+			"segment": false,
+			"target": [
+				27.75,
+				1.0,
+				0.100000001490116
+			],
+			"torch": true
+		},
+		{
+			"door406_open": false,
+			"eye": [
+				26.7000007629395,
+				1.54999995231628,
+				1.25
+			],
+			"file": "after_14_door406_torch.jpg",
+			"fov": 60.0,
+			"railing": "dense",
+			"segment": true,
+			"target": [
+				27.75,
+				1.0,
+				0.100000001490116
+			],
+			"torch": true
+		},
+		{
+			"door406_open": false,
+			"eye": [
+				29.6000003814697,
+				1.5,
+				2.40000009536743
+			],
+			"file": "before_15_railing_night.jpg",
+			"fov": 65.0,
+			"railing": "dense",
+			"segment": false,
+			"target": [
+				31.2000007629395,
+				0.550000011920929,
+				3.99000000953674
+			],
+			"torch": false
+		},
+		{
+			"door406_open": false,
+			"eye": [
+				29.6000003814697,
+				1.5,
+				2.40000009536743
+			],
+			"file": "after_15_railing_night.jpg",
+			"fov": 65.0,
+			"railing": "dense",
+			"segment": true,
+			"target": [
+				31.2000007629395,
+				0.550000011920929,
+				3.99000000953674
+			],
+			"torch": false
+		},
+		{
+			"door406_open": false,
+			"eye": [
+				29.6000003814697,
+				1.5,
+				2.40000009536743
+			],
+			"file": "before_16_railing_torch.jpg",
+			"fov": 65.0,
+			"railing": "dense",
+			"segment": false,
+			"target": [
+				31.2000007629395,
+				0.550000011920929,
+				3.99000000953674
+			],
+			"torch": true
+		},
+		{
+			"door406_open": false,
+			"eye": [
+				29.6000003814697,
+				1.5,
+				2.40000009536743
+			],
+			"file": "after_16_railing_torch.jpg",
+			"fov": 65.0,
+			"railing": "dense",
+			"segment": true,
+			"target": [
+				31.2000007629395,
+				0.550000011920929,
+				3.99000000953674
+			],
+			"torch": true
+		},
+		{
+			"door406_open": false,
+			"eye": [
+				30.7000007629395,
+				0.949999988079071,
+				1.14999997615814
+			],
+			"file": "before_17_wall_base_torch.jpg",
+			"fov": 65.0,
+			"railing": "dense",
+			"segment": false,
+			"target": [
+				29.8999996185303,
+				0.100000001490116,
+				0.100000001490116
+			],
+			"torch": true
+		},
+		{
+			"door406_open": false,
+			"eye": [
+				30.7000007629395,
+				0.949999988079071,
+				1.14999997615814
+			],
+			"file": "after_17_wall_base_torch.jpg",
+			"fov": 65.0,
+			"railing": "dense",
+			"segment": true,
+			"target": [
+				29.8999996185303,
+				0.100000001490116,
+				0.100000001490116
+			],
+			"torch": true
+		},
+		{
+			"door406_open": false,
+			"eye": [
+				29.7999992370605,
+				1.60000002384186,
+				2.70000004768372
+			],
+			"file": "before_18_ceiling_lamp_night.jpg",
+			"fov": 70.0,
+			"railing": "dense",
+			"segment": false,
+			"target": [
+				32.0,
+				2.95000004768372,
+				1.89999997615814
+			],
+			"torch": false
+		},
+		{
+			"door406_open": false,
+			"eye": [
+				29.7999992370605,
+				1.60000002384186,
+				2.70000004768372
+			],
+			"file": "after_18_ceiling_lamp_night.jpg",
+			"fov": 70.0,
+			"railing": "dense",
+			"segment": true,
+			"target": [
+				32.0,
+				2.95000004768372,
+				1.89999997615814
+			],
+			"torch": false
+		},
+		{
+			"door406_open": true,
+			"eye": [
+				26.2999992370605,
+				1.60000002384186,
+				2.5
+			],
+			"file": "before_19_door406_open_torch.jpg",
+			"fov": 70.0,
+			"railing": "dense",
+			"segment": false,
+			"target": [
+				28.2000007629395,
+				1.0,
+				0.300000011920929
+			],
+			"torch": true
+		},
+		{
+			"door406_open": true,
+			"eye": [
+				26.2999992370605,
+				1.60000002384186,
+				2.5
+			],
+			"file": "after_19_door406_open_torch.jpg",
+			"fov": 70.0,
+			"railing": "dense",
+			"segment": true,
+			"target": [
+				28.2000007629395,
+				1.0,
+				0.300000011920929
+			],
+			"torch": true
+		},
+		{
+			"door406_open": false,
+			"eye": [
+				29.6000003814697,
+				1.5,
+				2.40000009536743
+			],
+			"file": "after_20_railing_night_classic.jpg",
+			"fov": 65.0,
+			"railing": "classic",
+			"segment": true,
+			"target": [
+				31.2000007629395,
+				0.550000011920929,
+				3.99000000953674
+			],
+			"torch": false
+		},
+		{
+			"door406_open": false,
+			"eye": [
+				19.5,
+				1.64999997615814,
+				3.0
+			],
+			"file": "before_21_segment_in_corridor_night.jpg",
+			"fov": 75.0,
+			"railing": "dense",
+			"segment": false,
+			"target": [
+				34.0,
+				1.29999995231628,
+				0.899999976158142
+			],
+			"torch": false
+		},
+		{
+			"door406_open": false,
+			"eye": [
+				19.5,
+				1.64999997615814,
+				3.0
+			],
+			"file": "after_21_segment_in_corridor_night.jpg",
+			"fov": 75.0,
+			"railing": "dense",
+			"segment": true,
+			"target": [
+				34.0,
+				1.29999995231628,
+				0.899999976158142
+			],
+			"torch": false
+		}
+	],
+	"lighting": "Unmodified scene lights and environment; optional camera flashlight",
+	"renderer": "forward_plus",
+	"resolution": [
+		1920,
+		1080
+	],
+	"task": "T-233"
+}
