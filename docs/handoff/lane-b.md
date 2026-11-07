@@ -38,6 +38,16 @@ Phiên này CHỈ nhận bàn giao, chưa có việc. Không sửa file, không 
 Sau đó chờ integrator giao card.
 ```
 
+## 1b. Việc hiện tại: T-233 hành lang tầng 4 lượt 1 (mẫu đoạn 406–407 bằng Blender) (dán sau khi phiên nhận bàn giao xong)
+```text
+Việc mới cho lane B: T-233 — đọc docs/tasks/T-233-floor4-corridor-segment-pilot.md.
+Ở D:\GAME_WORK\lane-b2: git status (giữ thay đổi đang có), git fetch origin, git switch main, git pull --ff-only, git lfs pull,
+rồi tạo nhánh lane-b/T-233-floor4-corridor-segment-pilot từ origin/main.
+Đọc card thật kỹ, nhất là mục "Chủ dự án chọn" (nếu có), "Được phép sửa" và "Không được".
+Chủ dự án chọn phương án A cả 4 mục và muốn hành lang giống phong cách đồ họa phòng 407. Chỉ làm trong cảnh thử, không sửa scene chơi. Kết quả chính là ảnh trước/sau để chủ dự án duyệt.
+Làm và bàn giao theo prompt mục 2 của docs/handoff/lane-b.md (luật Lượt Godot, full test và check trước commit, log trong build/, Handoff trung thực, push nhánh, không push main).
+```
+
 ## 2. Prompt giao việc (integrator điền T-xxx)
 ```text
 Việc mới cho lane B: <T-xxx> — đọc docs/tasks/<file card>.md.

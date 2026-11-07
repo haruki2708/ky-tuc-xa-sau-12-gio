@@ -38,6 +38,16 @@ Phiên này CHỈ nhận bàn giao, chưa có việc. Không sửa file, không 
 Sau đó chờ integrator giao card.
 ```
 
+## 1b. Việc hiện tại: T-234 rà âm thanh sau đợt đồ họa (dán sau khi phiên nhận bàn giao xong)
+```text
+Việc mới cho lane E: T-234 — đọc docs/tasks/T-234-audio-audit-after-graphics.md.
+Ở D:\GAME_WORK\lane-e2: git status (giữ thay đổi đang có), git fetch origin, git switch main, git pull --ff-only, git lfs pull,
+rồi tạo nhánh lane-e/T-234-audio-audit-after-graphics từ origin/main.
+Đọc card thật kỹ, nhất là mục "Chủ dự án chọn" (nếu có), "Được phép sửa" và "Không được".
+Lượt này chỉ đo và báo cáo: không đổi file âm thanh, mức âm, bus hay vị trí nguồn âm. Ghi rõ phần nào "chưa nghe bằng tai, chờ chủ dự án nghe".
+Làm và bàn giao theo prompt mục 2 của docs/handoff/lane-e.md (luật Lượt Godot, full test và check trước commit, log trong build/, Handoff trung thực, push nhánh, không push main).
+```
+
 ## 2. Prompt giao việc (integrator điền T-xxx)
 ```text
 Việc mới cho lane E: <T-xxx> — đọc docs/tasks/<file card>.md.

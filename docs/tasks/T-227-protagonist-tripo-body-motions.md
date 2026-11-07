@@ -1,6 +1,6 @@
 # T-227 — Nhân vật chính Trần Trung trên Tripo: thân thật và đủ động tác
 - Lane: **chủ dự án + Claude** (như T-219: chủ dự án tạo trên Tripo, Claude làm phần còn lại, ghi "Claude làm thay A/B") | Trạng thái: **lượt 1 trong cảnh thử xong (24/10/2026), chờ chủ dự án duyệt video** | Agent: chủ dự án + Claude Code ở máy (Opus 5.5)
-- Quyết định: **D-137**.
+- Quyết định: **D-137**. **D-142 (07/11/2026): chủ dự án duyệt lượt 1 ("tôi duyệt hết"); integrator làm lượt 2: động tác còn thiếu, giường và nấp, sợ, chết trong cảnh thử có video duyệt, rồi đưa vào chương 1 (T-220 bước 5).**
 - Phiếu Tripo: [`TRIPO_NHAN_VAT_CHINH.md`](../handoff/TRIPO_NHAN_VAT_CHINH.md).
 - Nối tiếp [T-220](T-220-protagonist-body-hands-pilot.md):
   - bước 1 xong trên thân tạm CC0 (D-123, D-124): thấy chân, bóng, gương; 3 thao tác tay 1 giây bằng IK;
