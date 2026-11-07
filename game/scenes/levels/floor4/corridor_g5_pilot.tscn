@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scenes/levels/floor4/corridor_g5_pilot.gd" id="e1"]
+[ext_resource type="PackedScene" path="res://scenes/levels/floor4/floor4.tscn" id="e2"]
+[ext_resource type="PackedScene" path="res://scenes/player/player.tscn" id="e3"]
+[ext_resource type="Script" path="res://scripts/audio/footstep_player.gd" id="e4"]
+[ext_resource type="PackedScene" path="res://ui/hud/hud.tscn" id="e5"]
+[ext_resource type="PackedScene" path="res://ui/pause/pause_menu.tscn" id="e6"]
+
+[node name="CorridorG5Pilot" type="Node3D"]
+script = ExtResource("e1")
+
+[node name="Floor4" parent="." instance=ExtResource("e2")]
+
+[node name="Player" parent="." instance=ExtResource("e3")]
+position = Vector3(35.2, 0.03, 2.2)
+rotation_degrees = Vector3(0, 90, 0)
+
+[node name="Footsteps" type="AudioStreamPlayer3D" parent="Player"]
+script = ExtResource("e4")
+
+[node name="HUD" parent="." instance=ExtResource("e5")]
+
+[node name="PauseMenu" parent="." instance=ExtResource("e6")]
+
+[connection signal="footstep" from="Player" to="Player/Footsteps" method="play_footstep"]
