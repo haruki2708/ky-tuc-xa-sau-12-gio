@@ -1,5 +1,5 @@
 # T-232 — Sửa bot chương 2–3 theo báo cáo T-230, thêm menu F9 chương 4
-- Lane: C (QA và Tools) | Trạng thái: todo | Agent: tài khoản GPT lane C (D-139)
+- Lane: C (QA và Tools) | Trạng thái: done (merge 08/11/2026) | Agent: tài khoản GPT lane C (D-139)
 - Nhánh: `lane-c/T-232-bot-fixes-ch2-3-menu-ch4` từ `origin/main` mới nhất.
 - Quyết định giao: **D-141** (chủ dự án duyệt 07/11). Tiếp nối báo cáo [T-230](T-230-bot-smoke-review-ch2-4.md) (`tools/reports/T-230-bot-review.md`, D-140).
 - **Lượt này sửa và kiểm tĩnh. KHÔNG chạy bot** (`playthrough.ps1`, `*_bot.tscn`) và không đo FPS (`*_performance.tscn`). Chạy bot chương 2, 3 là lượt sau, khi chủ dự án cho phép.
@@ -73,3 +73,11 @@ Báo cáo T-230 (integrator đã kiểm lại, đúng):
 - Chưa chạy bot/playthrough, chưa đo FPS, không dùng Tripo. Chưa chứng minh bot vượt toàn tuyến, sweep capsule giữa các điểm, phản ứng đám đông/cửa, ray/reach các action ngoài Wipe, trải nghiệm/chất lượng hình ảnh hoặc các kết chương 4. Smoke chỉ nhảy tới đầu năm stage và mở/đóng F9.
 - ETA sau sửa (ước lượng, không phải số đo): ch2 good 12–25 phút, chain 1–5 phút/case, scald/leave 4–10 phút/case, wrong_prediction 8–18 phút, tổng sáu case 30–75 phút; ch3 good 12–30 phút, grabbed/guard 1–6 phút/case, tổng 15–45 phút. Bước báo cháy thêm vài giây dự trù, chưa đo; wait207 vẫn 30 giây. Ch4 chưa có bot nên không có ETA bot. Giữ trần bảo vệ cũ, không đồng nhất timeout với ETA.
 - Blocked: chưa có; phần chuyển wait207 sang tín hiệu phụ thuộc yêu cầu core trên và được card cho phép hoãn. Các cổng kiểm tra đã đạt; phần triển khai đã commit `a1172c5`, sẵn sàng integrator review. Bàn giao riêng tại `docs/handoff/lane-c.md` theo yêu cầu chủ dự án phiên tiếp tục. Không còn việc triển khai dở trong phạm vi T-232; phần wait207 và những phần chưa kiểm nêu trên giữ nguyên giới hạn.
+
+## Review (integrator, 08/11/2026)
+- **Đạt, merge vào `main`** (merge `c68c27d`). Wipe ngắm node thật (`aim_path`), test capsule cho mọi điểm goto ch2 và hai điểm ra 407 ch3, báo cháy tầng 1 thành mốc bắt buộc của bot ch3, menu F9 chương 4 năm điểm nhảy kèm smoke. Không chạy bot, không sửa level/core.
+- Sửa fixture menu ch4 khôi phục `GameState` bằng snapshot, sau khi full đầu lỗi 2 test sổ tay: tìm đúng nguyên nhân, không né test.
+- **Bỏ khi merge:** mục 5 thêm vào `docs/handoff/lane-c.md` (`docs/` là của integrator; nội dung đã có trong card). Lần sau ghi bàn giao vào card, không sửa file handoff.
+- Nhãn menu ch4 viết cứng trong script debug, cùng cách menu ch2/ch3 đã có; chấp nhận cho công cụ QA, không phải chữ của game.
+- Yêu cầu core (cờ/signal công khai khi kéo đám đông 203 xong, để thay wait 30 giây phòng 207): ghi nhận, làm khi giao lượt bot tiếp theo.
+- Integrator chạy lại sau merge A + C: full `RESULT: 863 passed, 0 failed`; check `RESULT: check 0 error(s)`.

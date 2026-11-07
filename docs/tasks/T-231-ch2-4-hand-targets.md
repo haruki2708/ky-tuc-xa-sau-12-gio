@@ -1,5 +1,5 @@
 # T-231 — Điểm đặt tay (`HandTarget`) cho đồ dùng được trong chương 2–4
-- Lane: A (Gameplay) | Trạng thái: todo | Agent: tài khoản GPT lane A (D-139)
+- Lane: A (Gameplay) | Trạng thái: done (merge 08/11/2026) | Agent: tài khoản GPT lane A (D-139)
 - Nhánh: `lane-a/T-231-ch2-4-hand-targets` từ `origin/main` mới nhất.
 - Quyết định giao: **D-141** (chủ dự án duyệt 07/11). Tiếp nối T-228 (chương 1, D-140).
 - Phụ thuộc: T-228 (cách đặt marker, test mẫu `game/tests/player/test_ch1_hand_targets.gd`), D-140 (`Interactable.hand_target()` bỏ qua marker của Interactable lồng bên trong).
@@ -174,3 +174,11 @@ Vị trí là local của node ghi trong bảng; các model cùng thao tác vớ
 - Full `pwsh tools/test.ps1`: **`RESULT: 860 passed, 0 failed`**, exit 0; hoàn tất 20:14:28 ngày 07/11, log `build/t231/full-test.log`. Bao gồm test marker mới và test tương tác/chương 2–4 cũ.
 - `pwsh tools/check.ps1`: **`RESULT: check 0 error(s)`**, exit 0; hoàn tất 20:27:26 ngày 07/11, log `build/t231/check.log`. Chạy sau full test trong cùng lượt; mã thoát lưu ở `build/t231/validation-exits.txt`.
 - Lượt Godot lấy khóa bằng CreateNew lúc 19:53:03 +07:00 ngày 07/11; đã giải phóng trong finally sau cả hai lệnh. Đã trả lại `game/default_bus_layout.tres`. Không chạy bot/FPS/Tripo. Log chỉ lưu build/, không commit.
+
+## Review (integrator, 08/11/2026)
+- **Đạt, merge vào `main`** (merge `a9f4e8b`). Đúng phạm vi lane A: 6 scene đồ dùng thêm `HandTarget`, `fake_search_spot` chỉ chỉnh marker kế thừa, test mới `test_ch2_4_hand_targets.gd` instance thật cả ba chương. Không sửa script gameplay, core hay level.
+- Kiểu nắm khớp enum (`GRIP=0, PINCH=1, HOOK=2`); marker nằm trong hoặc sát collision. `pick_up = false` cho vải và thanh sắt là đúng: hai loại này tự quản lý việc cầm.
+- Ngoại lệ độ cao ghi đúng câu trả lời của chủ dự án (D-142), có khoảng kiểm riêng từng đồ.
+- Bảng nhóm 2 (Ch3Use) và nhóm 3 (level) rõ, có lý do; integrator dùng khi đưa thân vào chương. Hai điểm cần chủ dự án chốt trước khi gắn: hình thức tay mở cửa cứu hỏa, và model nhật ký trên ghế thủ thư.
+- Lưu ý cho T-227: `SearchCeiling` (2,92 m) và `SearchVent` (2,35 m) cao hơn tầm nhón chân của thân; cần hỏi chủ dự án cách với (trèo lên đồ, hay dời chỗ) khi đưa thân vào chương 4.
+- Integrator chạy lại sau merge A + C: full `RESULT: 863 passed, 0 failed`, check `RESULT: check 0 error(s)`.
