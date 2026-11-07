@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3]
+[gd_scene load_steps=6 format=3]
 
 [ext_resource type="Script" path="res://scripts/interaction/stuck_door.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/interaction/hand_target.gd" id="hand_target"]
 [sub_resource type="BoxShape3D" id="Shape"]
 size = Vector3(0.85, 1.9, 0.1)
 [sub_resource type="StandardMaterial3D" id="Material"]
@@ -19,3 +20,8 @@ prompt_key = "PROMPT_CH2_DOOR_BASH"
 shape = SubResource("Shape")
 [node name="Placeholder" type="MeshInstance3D" parent="."]
 mesh = SubResource("Mesh")
+
+[node name="HandTarget" type="Marker3D" parent="."]
+position = Vector3(0.35, 0.90, 0.05)
+script = ExtResource("hand_target")
+grip = 0

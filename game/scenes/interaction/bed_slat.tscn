@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3]
+[gd_scene load_steps=6 format=3]
 
 [ext_resource type="Script" path="res://scripts/interaction/bed_slat.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/interaction/hand_target.gd" id="hand_target"]
 [sub_resource type="BoxShape3D" id="Shape"]
 size = Vector3(1.2, 0.22, 0.9)
 [sub_resource type="BoxMesh" id="Slat"]
@@ -20,3 +21,8 @@ shape = SubResource("Shape")
 position = Vector3(0, 0, 0.45)
 mesh = SubResource("Slat")
 material_override = SubResource("Wood")
+
+[node name="HandTarget" type="Marker3D" parent="."]
+position = Vector3(0, -0.0175, 0.70)
+script = ExtResource("hand_target")
+grip = 2
