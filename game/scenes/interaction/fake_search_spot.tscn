@@ -3,3 +3,6 @@
 [node name="FakeSearchSpot" instance=ExtResource("1")]
 hold_seconds = 8.0
 empty_result = true
+
+[node name="HandTarget" parent="." index="2"]
+position = Vector3(0, 0, 0)
