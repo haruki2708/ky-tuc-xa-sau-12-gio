@@ -1,47 +1,66 @@
 # Prompt bàn giao — Lane B (Môi trường và 3D)
 
-> **31/10/2026, D-139:** lane B chuyển sang tài khoản GPT mới chạy Codex CLI trên máy này, workspace `D:\GAME_WORK\lane-b2`. Đọc [bàn giao](BAN_GIAO_LANE_ABC_2026-10-31.md). Các prompt cũ (T-208/T-209/T-210, T-216, T-219) xem lịch sử git của file này; không dùng nữa.
+> **07/11/2026, D-141:** lane B chuyển sang **một tài khoản Claude chạy Claude Code trên máy này**, workspace `D:\GAME_WORK\lane-b2` (dùng lại thư mục của agent GPT trước). Agent GPT từng làm lane B chuyển sang lane E (âm thanh). Đọc [bàn giao](BAN_GIAO_LANE_B_E_2026-11-07.md). Prompt T-229 của agent trước xem lịch sử git của file này.
 
-## 1. Prompt giao việc đầu tiên (dán nguyên khối)
+## 0. Cài đặt cho chủ dự án (làm một lần)
+1. **Đóng mọi cửa sổ Codex đang mở ở `D:\GAME_WORK\lane-b2`.** Thư mục này từ nay của Claude lane B.
+2. Mở cửa sổ Claude lane B bằng file `D:\GAME_WORK\mo_claude_lane_b.cmd` (nháy đúp). File này:
+   - đặt `CLAUDE_CONFIG_DIR=C:\Users\ADMIN\.claude-lane-b`, để tài khoản Claude thứ hai có chỗ đăng nhập riêng, **không đè đăng nhập của integrator**;
+   - mở Claude Code trong `D:\GAME_WORK\lane-b2`.
+   Không mở Claude lane B bằng lệnh `claude` thường: lệnh đó dùng đăng nhập của integrator.
+3. Lần đầu: gõ `/login`, đăng nhập **tài khoản Claude mới**. Kiểm lại bằng `/status` (phải hiện tài khoản mới).
+4. Chọn model bằng `/model`: Opus nếu gói cho phép (dựng Blender, đọc cảnh 3D cần suy luận nhiều), không thì Sonnet.
+5. Khi Claude hỏi quyền chạy lệnh: cho phép `git`, `git lfs`, `pwsh tools/test.ps1`, `pwsh tools/check.ps1`, Godot (`D:\Tools\Godot\`), Blender (`D:\Tools\Blender\`), Python. Không cho phép lệnh xóa thư mục ngoài `lane-b2`.
+6. Dán prompt mục 1.
+
+## 1. Prompt nhận bàn giao (dán nguyên khối, phiên đầu)
 ```text
-Bạn là agent Lane B (Môi trường và 3D) của game "Ký túc xá sau 12 giờ" (Godot 4.7.2, GDScript).
-Bạn là tài khoản mới nhận lane B từ hôm nay (D-139). Trả lời và viết tài liệu bằng tiếng Việt; code, comment, commit message bằng tiếng Anh.
-Integrator là Claude Code ở máy (Opus 5.5): review và merge vào main. Chủ dự án quyết mọi việc thiết kế.
+Bạn là agent Lane B (Môi trường và 3D) của game "Ký túc xá sau 12 giờ" (Godot 4.7.2, GDScript), tài khoản Claude mới nhận lane B từ hôm nay (D-141).
+Bạn KHÔNG phải integrator. Integrator là một phiên Claude Code khác (Opus 5.5) làm ở D:\GAME_DEMO: review và merge vào main. Chủ dự án quyết mọi việc thiết kế.
+Trả lời và viết tài liệu bằng tiếng Việt; code, comment, commit message bằng tiếng Anh.
 
-Workspace của bạn: D:\GAME_WORK\lane-b2. Chỉ làm trong thư mục này.
-Không sửa D:\GAME_DEMO, không sửa workspace lane khác, kể cả workspace cũ D:\GAME_WORK\lane-b.
+Workspace của bạn: D:\GAME_WORK\lane-b2. Chỉ làm trong thư mục này. Không mở, không sửa D:\GAME_DEMO hay workspace lane khác.
 
-1. Nếu D:\GAME_WORK\lane-b2 chưa có:
-   git clone https://github.com/haruki2708/ky-tuc-xa-sau-12-gio.git D:\GAME_WORK\lane-b2
-   rồi trong thư mục đó: git lfs install --local và git lfs pull.
-   Nếu đã có: kiểm git status, không ghi đè thay đổi đang có, git fetch origin.
-2. Tạo nhánh lane-b/T-229-floor4-corridor-survey từ origin/main (đã có thì switch và pull --ff-only).
-3. Đọc lần lượt: AGENTS.md, docs/handoff/BAN_GIAO_LANE_ABC_2026-10-31.md, docs/STATUS.md (phần đầu),
-   docs/tasks/T-229-floor4-corridor-survey.md.
-4. Làm task T-229: khảo sát hành lang tầng 4, chụp ảnh hiện trạng, viết kế hoạch và phiếu Tripo nháp; không sửa scene chơi.
-   Chỉ sửa file trong mục "Được phép sửa" của card. Cần sửa ngoài phạm vi thì ghi "Yêu cầu thay đổi" trong Handoff, không tự sửa.
-   Không chạy bot, không đo FPS, không tiêu credit Tripo.
-   Việc thiết kế không rõ thì đưa phương án kèm đề xuất, không tự chọn.
-5. Chạy Godot theo luật "Lượt Godot" trong AGENTS.md mục 4 (file khóa D:\GAME_WORK\GODOT_DANG_CHAY.txt).
-   Khi đang làm: pwsh tools/test.ps1 -Filter <tên test>. Trước commit: full pwsh tools/test.ps1 rồi pwsh tools/check.ps1.
-   Không sửa âm thanh thì trước commit chạy git checkout -- game/default_bus_layout.tres.
-6. Commit nhỏ "T-229: ...", push nhánh: git push -u origin lane-b/T-229-floor4-corridor-survey. Không push main, không mở PR.
-7. Cập nhật Checklist và Handoff trong card: đã làm, còn dở, cách kiểm tra, dòng RESULT test và check,
-   commit hash, yêu cầu thay đổi, phần chưa kiểm. Ghi trung thực. Không sửa STATUS hay DECISIONS.
-8. Cuối phiên báo lại ngắn gọn bằng tiếng Việt cho chủ dự án: xong gì, nhánh, commit, có bị chặn không.
+Phiên này CHỈ nhận bàn giao, chưa có việc. Không sửa file, không commit.
+1. Kiểm thư mục: git status (phải sạch), git remote -v (phải là haruki2708/ky-tuc-xa-sau-12-gio).
+   git fetch origin, git switch main, git pull --ff-only, git lfs pull.
+2. Đọc lần lượt: CLAUDE.md, AGENTS.md, docs/handoff/BAN_GIAO_LANE_B_E_2026-11-07.md, docs/handoff/lane-b.md,
+   docs/STATUS.md (phần đầu và bảng task), docs/ROADMAP.md, docs/tasks/T-229-floor4-corridor-survey.md,
+   art_source/graphics_upgrade/floor4_corridor/PLAN.md, art_source/graphics_upgrade/room407_shell/README.md.
+3. Làm nóng Godot theo luật "Lượt Godot" (AGENTS.md mục 4, file khóa D:\GAME_WORK\GODOT_DANG_CHAY.txt):
+   khi tới lượt, chạy pwsh tools/test.ps1 -Filter test_floor4. Ghi dòng RESULT. Xóa file khóa khi xong, kể cả khi lỗi.
+   Sau đó: git checkout -- game/default_bus_layout.tres nếu file này bị đổi.
+4. Báo lại cho chủ dự án bằng tiếng Việt, ngắn gọn:
+   - bạn hiểu lane B làm gì, được sửa thư mục nào, luật nào quan trọng nhất;
+   - dự án đang ở đâu với phần môi trường 3D (phòng 407 đã nâng, hành lang tầng 4 đang chờ chủ dự án chọn phương án);
+   - kết quả bước 1 và 3;
+   - câu hỏi nếu có.
+Sau đó chờ integrator giao card.
 ```
 
-## 2. Prompt tiếp tục (phiên sau)
+## 2. Prompt giao việc (integrator điền T-xxx)
 ```text
-Tiếp tục T-229 ở D:\GAME_WORK\lane-b2, nhánh lane-b/T-229-floor4-corridor-survey.
+Việc mới cho lane B: <T-xxx> — đọc docs/tasks/<file card>.md.
+Ở D:\GAME_WORK\lane-b2: git status (giữ thay đổi đang có), git fetch origin, tạo nhánh lane-b/<T-xxx-...> từ origin/main.
+Đọc lại AGENTS.md mục 3–5 và card. Chỉ sửa file trong mục "Được phép sửa"; ngoài phạm vi thì ghi "Yêu cầu thay đổi".
+Không chạy bot, không đo FPS, không tiêu credit Tripo khi card không cho phép. Thiết kế không rõ thì đưa phương án kèm đề xuất.
+Godot theo luật Lượt Godot. Khi làm: pwsh tools/test.ps1 -Filter <tên test>. Trước commit: full pwsh tools/test.ps1 rồi pwsh tools/check.ps1,
+rồi git checkout -- game/default_bus_layout.tres. Log để trong build/, không commit log.
+Commit nhỏ "<T-xxx>: ...", git push -u origin <nhánh>. Không push main, không mở PR.
+Cập nhật Checklist và Handoff trong card (đã làm, còn dở, cách kiểm tra, dòng RESULT test và check, commit hash, yêu cầu thay đổi, phần chưa kiểm). Không sửa STATUS hay DECISIONS.
+Cuối phiên báo ngắn bằng tiếng Việt: xong gì, nhánh, commit, có bị chặn không.
+```
+
+## 3. Prompt tiếp tục (phiên sau)
+```text
+Tiếp tục <T-xxx> ở D:\GAME_WORK\lane-b2, nhánh lane-b/<T-xxx-...>.
 Kiểm git status, git fetch origin, rebase an toàn lên origin/main nếu main có thay đổi mới (không mất thay đổi cục bộ).
-Đọc lại AGENTS.md và mục Handoff trong docs/tasks/T-229-floor4-corridor-survey.md để biết lần trước dừng ở đâu.
-Làm tiếp phần còn dở, bàn giao theo bước 5–8 của prompt mục 1.
+Đọc lại AGENTS.md và mục Handoff trong card để biết lần trước dừng ở đâu. Làm tiếp, bàn giao như prompt mục 2.
 ```
 
-## 3. Prompt yêu cầu sửa (khi integrator trả lại)
+## 4. Prompt yêu cầu sửa (khi integrator trả lại)
 ```text
-Integrator trả T-229. Ở D:\GAME_WORK\lane-b2: git fetch origin, đọc mục Review trong origin/main:docs/tasks/T-229-floor4-corridor-survey.md
-(hoặc nội dung chủ dự án dán kèm). Rebase lane-b/T-229-floor4-corridor-survey lên origin/main, sửa đúng từng ý trong phạm vi được phép.
+Integrator trả <T-xxx>. Ở D:\GAME_WORK\lane-b2: git fetch origin, đọc mục Review trong origin/main:docs/tasks/<file card>.md
+(hoặc nội dung chủ dự án dán kèm). Rebase nhánh lên origin/main, sửa đúng từng ý trong phạm vi được phép.
 Chạy full test và check theo luật Lượt Godot, cập nhật Handoff, push nhánh, báo lại phần đã sửa và phần chưa kiểm.
 ```

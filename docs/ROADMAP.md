@@ -87,4 +87,4 @@ Phát hành theo chương (D-029). Nền tảng, giá, ngày: chưa quyết. Ste
 
 ## 4. Đội làm
 - **Integrator:** Claude Code ở máy (Opus 5.5).
-- **Lane:** A gameplay, B môi trường/3D, C QA/công cụ: **3 tài khoản GPT mới, Codex CLI trên máy này (D-139)**, việc thử T-228, T-229, T-230. D giao diện/đa ngôn ngữ (Gemini 3.8 Flash, D-108), F âm thanh (Claude Code web, D-108): rảnh.
+- **Lane (D-141):** A gameplay và C QA/công cụ: tài khoản GPT, Codex CLI trên máy này (việc T-231, T-232). B môi trường/3D: **tài khoản Claude, Claude Code trên máy này**. E âm thanh: tài khoản GPT từng làm B. D giao diện/đa ngôn ngữ: Gemini 3.8 Flash (D-108), rảnh. F (Claude Code web): dừng.

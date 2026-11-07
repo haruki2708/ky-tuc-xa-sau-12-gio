@@ -5,15 +5,17 @@ Mục tiêu là game đầy đủ khoảng 3–4 tiếng, phát hành theo 4 ch�
 
 Các vai trò và phiên làm việc trong dự án:
 - **Integrator (Claude Code ở máy, Opus 5.5):** giữ kiến trúc, viết task card, review và merge mọi nhánh vào `main`, cập nhật `docs/STATUS.md`.
-- **Agent lane A, B, C, D, F:** mỗi agent một lane, mỗi lane sở hữu một vùng file riêng (mục 3).
-  - **D-139 (31/10/2026):** lane A, B, C đổi sang 3 tài khoản GPT mới, chạy **Codex CLI trên máy này**. Giữ tên lane và phạm vi file; workspace mới `D:\GAME_WORK\lane-a2`, `lane-b2`, `lane-c2`. Bàn giao: `docs/handoff/BAN_GIAO_LANE_ABC_2026-10-31.md`. Workspace cũ `lane-a`, `lane-b`, `lane-c` giữ nguyên để đối chiếu, không sửa.
-  - D-078: lane E nghỉ, lane F tiếp nhận âm thanh. Tên E trong lịch sử và credits giữ nguyên.
+- **Agent lane A, B, C, D, E:** mỗi agent một lane, mỗi lane sở hữu một vùng file riêng (mục 3).
+  - **D-139 (31/10/2026):** lane A, C là 2 tài khoản GPT chạy **Codex CLI trên máy này**, workspace `D:\GAME_WORK\lane-a2`, `lane-c2`. Bàn giao: `docs/handoff/BAN_GIAO_LANE_ABC_2026-10-31.md`.
+  - **D-141 (07/11/2026):** lane B (Môi trường và 3D) chuyển sang **một tài khoản Claude chạy Claude Code trên máy này**, workspace `D:\GAME_WORK\lane-b2`. Tài khoản GPT từng làm lane B chuyển sang **lane E (Âm thanh)**, Codex CLI, workspace `D:\GAME_WORK\lane-e2`. Lane F (Claude Code web) dừng. Bàn giao: `docs/handoff/BAN_GIAO_LANE_B_E_2026-11-07.md`.
+  - Lane D: Gemini (Antigravity) trên máy này, workspace `D:\GAME_WORK\lane-d` (D-108).
+  - Lịch sử: D-078 lane E nghỉ và F nhận âm thanh; D-141 âm thanh trở lại tên E. Các workspace cũ `lane-a`, `lane-b`, `lane-c`, `lane-e`, `lane-f` đã xóa ngày 07/11; tác giả, nguồn asset trong credits giữ nguyên.
   - Lịch sử điều phối cũ (Astra, Claude web 10–11/10) xem `docs/handoff/OPUS_5_5_NHAN_LAI_DIEU_PHOI.md`; không còn hiệu lực.
 - **Chủ dự án (người dùng):** ra quyết định thiết kế, chơi thử, gửi prompt cho agent, chuyển kết quả cho integrator.
 
 ## 1. Bắt đầu mỗi phiên (bắt buộc)
-1. Làm việc **trong thư mục riêng của lane**: `D:\GAME_WORK\lane-<x>2` cho A, B, C (D-139); `D:\GAME_WORK\lane-d`, `lane-f` cho D, F.
-   - **Không bao giờ** làm trong `D:\GAME_DEMO` (bản tích hợp của integrator) hay workspace của lane khác, kể cả workspace cũ `lane-a`, `lane-b`, `lane-c`.
+1. Làm việc **trong thư mục riêng của lane**: `D:\GAME_WORK\lane-a2`, `lane-b2`, `lane-c2`, `lane-e2` cho A, B, C, E; `D:\GAME_WORK\lane-d` cho D.
+   - **Không bao giờ** làm trong `D:\GAME_DEMO` (bản tích hợp của integrator) hay workspace của lane khác.
    - Chưa có thư mục thì clone: `git clone https://github.com/haruki2708/ky-tuc-xa-sau-12-gio.git D:\GAME_WORK\lane-<x>2`, rồi `git lfs pull`.
 2. Chạy `git fetch origin`, rồi chuyển sang nhánh task của bạn. Nhánh tạo từ `origin/main`, đặt tên `lane-<x>/T-xxx-mo-ta-ngan`.
 3. Đọc lần lượt:
@@ -41,9 +43,9 @@ Các vai trò và phiên làm việc trong dự án:
 | B | Môi trường và 3D | `art_source/`, `game/assets/models/`, `game/assets/textures/`, `game/scenes/levels/`, `game/rendering/`, `game/tests/levels/` |
 | C | QA và Tools | `tools/` (trừ `godot-path.ps1`), `game/scripts/debug/`, `game/tests/smoke/`, `game/tests/tools/` |
 | D | UI và Đa ngôn ngữ | `game/ui/`, `game/scripts/ui/`, `game/assets/fonts/`, `game/localization/strings.csv` (thêm key), `game/tests/ui/` |
-| F | Âm thanh (tiếp nhận E, D-078) | `audio_source/`, `game/audio/`, `game/scripts/audio/`, `game/default_bus_layout.tres`, `game/tests/audio/` |
+| E | Âm thanh (D-141; từ D-078 đến D-141 gọi là F) | `audio_source/`, `game/audio/`, `game/scripts/audio/`, `game/default_bus_layout.tres`, `game/tests/audio/` |
 
-Lane F dùng workspace riêng `D:\GAME_WORK\lane-f`, nhánh `lane-f/T-xxx-...`, prompt `docs/handoff/lane-f.md`. Giữ nguyên workspace/nhánh cũ của E để đối chiếu; không đổi tên, sao chép hoặc sửa `D:\GAME_WORK\lane-e`. Nếu phát hiện thay đổi của E chưa ghép, báo integrator review trước khi tiếp nhận. Tài liệu lịch sử ghi E sở hữu âm thanh được hiểu là F tiếp nhận từ D-078; tác giả/nguồn asset cũ không đổi.
+Tài liệu cũ ghi lane F sở hữu âm thanh thì hiểu là lane E hiện nay. Nhánh âm thanh mới đặt tên `lane-e/T-xxx-...`.
 
 Mọi lane đều được sửa: task card của mình (`docs/tasks/T-xxx*.md`, chỉ mục Handoff và checklist). Lane nào cũng được **thêm key mới** vào `strings.csv`, nhưng không được sửa key của lane khác.
 
@@ -67,7 +69,7 @@ Mọi lane đều được sửa: task card của mình (`docs/tasks/T-xxx*.md`,
 - Full `pwsh tools/test.ps1` mất khoảng 28 phút, `pwsh tools/check.ps1` khoảng 12 phút. **Mỗi lúc chỉ một phiên chạy full test, check, chụp ảnh hay export.**
 - Trước khi chạy: xem file `D:\GAME_WORK\GODOT_DANG_CHAY.txt`.
   - Có file thì người khác đang chạy: chờ, hoặc chỉ chạy lệnh ngắn `pwsh tools/test.ps1 -Filter <tên file test của bạn>`.
-  - Không có file: tạo file, ghi một dòng `lane, lệnh, giờ bắt đầu`, chạy, **xóa file khi xong** (kể cả khi lỗi).
+  - Không có file: tạo file, ghi một dòng `lane, lệnh, giờ bắt đầu`, chạy, **xóa file khi xong** (kể cả khi lỗi). Nên tạo bằng chế độ "chỉ tạo khi chưa có" (`[IO.File]::Open(..., CreateNew)`) để hai lane không cùng lấy một lượt.
   - File cũ hơn 60 phút mà `Get-Process godot*` không thấy tiến trình nào thì coi là bỏ quên, xóa được.
 - Không tắt tiến trình Godot của người khác. Integrator cũng theo luật này.
 

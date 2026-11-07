@@ -1,5 +1,7 @@
 # Prompt bàn giao — Lane F (Âm thanh, tiếp nhận Lane E)
 
+> **07/11/2026, D-141: LANE F ĐÃ DỪNG.** Claude Code web không còn dùng; thư mục `D:\GAME_WORK\lane-f` đã xóa. Âm thanh trở lại tên **lane E**: dùng [lane-e.md](lane-e.md). Phần dưới chỉ là lịch sử.
+
 > **14/10, D-108: lane F chuyển cho Claude Code trên web (Sonnet 5.5)**; dùng [web.md](web.md). Các prompt bên dưới giữ làm lịch sử T-212 của agent GPT Plus cũ. Thư mục `D:\GAME_WORK\lane-f` còn một stash cũ; integrator giữ nguyên.
 
 > **D-082:** đã review phần mới; đọc Review card và [kết luận chung](REVIEW_G1_2026-10-11.md), giữ công việc đã nhận. Không làm lại G0 hoặc tự chạy một vòng test mới chỉ vì nhận thông báo; tiếp tục đúng phần còn thiếu trong Review.
