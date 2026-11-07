@@ -1,0 +1,71 @@
+{
+  "basis": "Floor4 metres (Godot axes); place every file at the Floor4 origin",
+  "segment_x": [
+    26.0,
+    34.0
+  ],
+  "atlas": [
+    2048,
+    1024
+  ],
+  "px_per_metre": {
+    "walls": 253,
+    "floor": 245,
+    "ceiling": 253
+  },
+  "files": {
+    "shell": {
+      "file": "segment_shell.glb",
+      "triangles": 120,
+      "objects": 10,
+      "bytes": 18728,
+      "materials": [
+        "CorrCeiling",
+        "CorrFloor",
+        "CorrSkirting",
+        "CorrWall"
+      ]
+    },
+    "frames": {
+      "file": "segment_frames.glb",
+      "triangles": 2280,
+      "objects": 22,
+      "bytes": 127808,
+      "materials": [
+        "CorrFrameGreen",
+        "CorrGranite",
+        "CorrHinge"
+      ]
+    },
+    "lamps": {
+      "file": "segment_lamps.glb",
+      "triangles": 2744,
+      "objects": 26,
+      "bytes": 156200,
+      "materials": [
+        "CorrEnamel",
+        "CorrTubeCap",
+        "CorrTubeGlass"
+      ]
+    },
+    "railing_dense": {
+      "file": "segment_railing_dense.glb",
+      "triangles": 2080,
+      "objects": 76,
+      "bytes": 168776,
+      "materials": [
+        "CorrRailSteel"
+      ]
+    },
+    "railing_classic": {
+      "file": "segment_railing_classic.glb",
+      "triangles": 1456,
+      "objects": 24,
+      "bytes": 90336,
+      "materials": [
+        "CorrRailSteel"
+      ]
+    }
+  },
+  "pilot_triangles": 7224
+}
