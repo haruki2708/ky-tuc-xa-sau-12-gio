@@ -1,5 +1,5 @@
 # T-234 — Rà âm thanh sau đợt nâng đồ họa: vị trí nguồn âm và độ to
-- Lane: E (Âm thanh) | Trạng thái: todo | Agent: tài khoản GPT lane E (D-141, từng làm lane B)
+- Lane: E (Âm thanh) | Trạng thái: done (merge 08/11/2026) | Agent: tài khoản GPT lane E (D-141, từng làm lane B)
 - Nhánh: `lane-e/T-234-audio-audit-after-graphics` từ `origin/main` mới nhất.
 - Quyết định giao: **D-142** (chủ dự án chọn 07/11). Việc đầu của lane E mới.
 - Lượt này **chỉ đo, kiểm tĩnh và báo cáo**. **Không đổi tiếng nào, không dời nguồn âm nào.**
@@ -77,3 +77,10 @@ RESULT: check 0 error(s)
 ```
 
 Commit triển khai: `0aaa330` (`T-234: Add audio audit tools, chapter snapshot and report`), push nhánh `lane-e/T-234-audio-audit-after-graphics`. **Claude làm thay** commit, push và phần Handoff này: lane E hết hạn mức khi lượt full test/check đang chạy nền (kết quả trên là của lượt đó). Blocked: không.
+
+## Review (integrator, 08/11/2026)
+- **Đạt, merge vào `main`.** Đúng phạm vi lane E: chỉ thêm script đo trong `audio_source/`, báo cáo `audio_source/reports/`, một test snapshot trong `game/tests/audio/`. Không đổi file âm, gain, bus hay vị trí nguồn.
+- **Claude làm thay** commit, push và Handoff: lane E hết hạn mức khi lượt full test/check đang chạy nền. Integrator đọc log lượt đó (`build/t234/verification.log` ở `lane-e2`): full `RESULT: 864 passed, 0 failed`, check `RESULT: check 0 error(s)`, trên base `0fe5e44` trùng `main`, nên không chạy lại.
+- Integrator kiểm lại kết luận "lệch" trong code: `chapter1_director.gd::_mission_cue()` luôn dời MissionAudio về router, nên tiếng công tắc/chập ổ điện phát ở router (lệch khoảng 4 m); `_hold_the_door()` bật rung tay nắm mà không dời nguồn về cửa. **Đúng, là lỗi của core**; sửa trong task riêng của integrator (0 dB, chỉ dời vị trí), xong thì nhờ chủ dự án nghe lại.
+- Điểm cần chủ dự án quyết (báo cáo mục "Đề xuất sửa"): nghe chuyển vùng phòng 407 → ban công; burst đèn chập có gắt không. Danh sách nghe thử: báo cáo mục "Danh sách nghe thử cho chủ dự án". **Chưa nghe bằng tai.**
+- Ghi chú nhỏ: test snapshot ghi `build/t234/spatial_raw.json` mỗi lần chạy full test (thư mục build, không commit): chấp nhận.
