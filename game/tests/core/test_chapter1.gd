@@ -299,6 +299,28 @@ func test_network_fix_needs_switch_two_and_the_blue_cable() -> void:
 	assert_true(director._network_up, "back online;")
 
 
+func test_mission_sounds_come_from_the_strip_the_router_and_the_handle() -> void:
+	# T-234: the strip's click was heard at the router, the handle where the last cue was.
+	var mission := scene.get_node("MissionAudio") as Ch1MissionAudio
+	var anchors := "Floor4/Room407/Anchors/"
+	var near := func(sound: Node3D, thing: Node3D) -> bool:
+		return sound.global_position.distance_to(thing.global_position) < 0.05
+	director._network_down()
+	director._on_strip_switch(1, true)
+	assert_true(near.call(mission._cue, scene.get_node(anchors + "PowerStrip/PowerStripInteract/Switch1")), "the click at the switch;")
+	director._mission_cue(&"router_boot")
+	var router := scene.get_node(anchors + "Router") as Node3D
+	assert_true(near.call(mission._cue, router), "the router's cue at the router;")
+	director._on_strip_switch(3, true)
+	assert_true(near.call(mission._cue, scene.get_node(anchors + "PowerStrip")), "the short at the strip;")
+	director._set_handle_rattling(true)
+	var handle := scene.get_node("Floor4/Door407/Pivot/HandlePivot") as Node3D
+	director._mission_cue(&"router_online")
+	assert_true(near.call(mission._handle, handle), "the rattle at the handle, even after a router cue;")
+	director._set_handle_rattling(false)
+	assert_true(mission._tail.playing and near.call(mission._tail, handle), "and its release;")
+
+
 func test_three_scraps_make_the_form() -> void:
 	var opened: Array[StringName] = []
 	var on_open := func(id: StringName) -> void: opened.append(id)

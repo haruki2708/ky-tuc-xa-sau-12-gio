@@ -94,3 +94,12 @@ Tạo theo phiếu, tải về `build/graphics/staging/protagonist/`, báo lại
    - chân không trượt, thao tác 1 giây ± 1 khung;
    - interactable chưa có `HandTarget` vẫn chạy.
 6. **FPS:** đo phòng 407 có thân người chơi. Hỏi chủ dự án trước khi đo.
+
+## Lượt 2 (integrator làm, từ 08/11/2026)
+- **Nguồn động tác bù (D-143):** Quaternius UAL2 bản Standard miễn phí (CC0). Chủ dự án tải zip vào `build/graphics/staging/protagonist/ual2/` (chưa có). Động tác gói không có thì integrator làm bằng IK hoặc keyframe.
+- **Xong — nhón chân với chỗ cao** (08/11): đồ cao hơn tầm tay duỗi thẳng thì Trần Trung đứng yên, nhón chân (gót nhấc tối đa 8 cm, mũi chân giữ trên sàn), khuỷu tay mở sang bên, ngón tay duỗi theo cánh tay; không cúi người. Cao hơn mức nhón thì không hiện gợi ý dùng tay.
+  - Code: `game/scripts/player/tiptoe_modifier.gd` (mới, nghiêng bàn chân quanh mắt cá, trả ngón chân về phẳng), `player_body.gd` (`TIPTOE`, `_rise_for`, `_weigh`, `_high`).
+  - Lúc với cao không dùng clip `ual/Interact` (clip này bước chân, nhấc gót) mà đứng yên `idle`.
+  - Test `test_protagonist_body.gd::test_a_high_target_is_reached_on_tiptoe`: tay chạm đúng điểm, gót nhấc, mũi chân lệch dưới 2,5 cm, xong thì hạ gót.
+- **Phát hiện khi đo (cần xử lý trước khi đưa thân vào chương):** vai phải Trần Trung (thân Tripo, mắt 1,6 m) ở khoảng 1,29 m, tầm với lòng bàn tay 0,53 m: với tới khoảng **1,82 m** khi đứng, **1,90 m** khi nhón. Các đồ chủ dự án đã cho giữ ở chỗ cao (D-142, T-228/T-231) cao hơn mức này: `Ch1PhucCard`, `Ch1TeamPhoto` 2,0–2,1 m (chương 1), `Carry_towel` 2,17 m (chương 2), `SearchVent` 2,35 m, `SearchCeiling` 2,92 m (chương 4). Người thật cao chừng ấy với được khoảng 2,1–2,2 m (vai nhô lên khi giơ tay, tính tới đầu ngón). Hướng xử lý (integrator, khi làm bước đưa vào chương): thêm nhô vai khi giơ tay và tính tới đầu ngón cho kiểu nắm PINCH; 2,35 m và 2,92 m thì phải trèo lên đồ hoặc dời chỗ: **hỏi chủ dự án** lúc đó.
+- Còn lại: xoay tại chỗ; giường (nằm, ngồi dậy: UAL2), nấp, sợ, chết; cầu thang, ôm đồ, bò; video duyệt; đưa vào chương 1 (T-220 bước 5, D-130).

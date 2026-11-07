@@ -454,14 +454,11 @@ func _hold_the_door() -> void:
 	GameState.set_flag(&"door_threat", true)
 	if door != null and door.has_method("rattle"):
 		door.rattle(DOOR_HOLD_SECONDS)
-	var mission := get_parent().get_node_or_null("MissionAudio") if get_parent() else null
-	if mission != null and mission.has_method("set_handle_rattling"):
-		mission.set_handle_rattling(true)
+	_set_handle_rattling(true)
 	await _wait_until(func() -> bool: return GameState.get_flag(&"door_locked", false) == true, DOOR_HOLD_SECONDS)
 	if door != null and door.has_method("stop_rattle"):
 		door.stop_rattle()
-	if mission != null and mission.has_method("set_handle_rattling"):
-		mission.set_handle_rattling(false)
+	_set_handle_rattling(false)
 	if GameState.get_flag(&"door_locked", false) != true:
 		_open_door()
 		_die(&"DEATH_DRAGGED_OUT")
@@ -1468,7 +1465,7 @@ func _network_restored(remote: bool) -> void:
 func _on_strip_switch(index: int, on: bool) -> void:
 	_strip_on[index] = on
 	GameState.set_flag(StringName("strip_switch_%d" % index), on)
-	_mission_cue(&"power_switch")
+	_mission_cue(&"power_switch", _strip_position(index))
 	if not on or _network_up:
 		if index == 2 and not on and not _network_up:
 			_router_state(false, &"off")
@@ -1488,7 +1485,7 @@ func _on_strip_switch(index: int, on: bool) -> void:
 		var room := _room_anchor("PowerStrip")
 		if room != null and room.has_method("spark"):
 			room.spark()
-		_mission_cue(&"power_short")
+		_mission_cue(&"power_short", _strip_position())
 		_strip_on.clear()
 		_router_state(false, &"off")
 		return
@@ -1542,12 +1539,37 @@ func _router_state(power: bool, network: StringName) -> void:
 		router.set_led(power and network == &"ok")
 
 
-func _mission_cue(cue: StringName) -> void:
-	var mission := get_parent().get_node_or_null("MissionAudio") if get_parent() else null
+## Router cues sound at the router; the strip's click and short at the strip (T-234).
+func _mission_cue(cue: StringName, at: Vector3 = Vector3.INF) -> void:
+	var mission := _mission_audio()
 	if mission != null and mission.has_method("play_cue"):
-		var rig := mission as Node3D
-		rig.global_position = _router_position()
-		mission.play_cue(cue)
+		mission.play_cue(cue, at if at.is_finite() else _router_position())
+
+
+func _mission_audio() -> Node:
+	return get_parent().get_node_or_null("MissionAudio") if get_parent() else null
+
+
+## The handle twisting on the door (N4) is heard at the handle, not where the last cue was (T-234).
+func _set_handle_rattling(on: bool) -> void:
+	var mission := _mission_audio()
+	if mission != null and mission.has_method("set_handle_rattling"):
+		mission.set_handle_rattling(on, _handle_position())
+
+
+func _handle_position() -> Vector3:
+	var door := _door() as Node3D
+	if door == null:
+		return Vector3.INF
+	var handle := door.get_node_or_null("Pivot/HandlePivot") as Node3D
+	return (handle if handle != null else door).global_position
+
+
+func _strip_position(index: int = 0) -> Vector3:
+	var node := _room_anchor("PowerStrip/PowerStripInteract/Switch%d" % index) if index > 0 else null
+	if node == null:
+		node = _room_anchor("PowerStrip")
+	return node.global_position if node != null else Vector3.INF
 
 
 func _router_position() -> Vector3:

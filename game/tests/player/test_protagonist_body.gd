@@ -210,6 +210,44 @@ func test_a_target_out_of_arm_reach_is_reached_by_leaning_in() -> void:
 	assert_true((walker.get_node("Head") as Node3D).position.is_equal_approx(Vector3(0, 1.6, 0)), "the head is back")
 
 
+## T-227 round 2: above a straight arm's reach the body goes up on its toes, toes still on the
+## floor, the clip standing still and the fingers along the arm; higher than the toes allow is
+## out of reach.
+func test_a_high_target_is_reached_on_tiptoe() -> void:
+	var walker := _walker()
+	var body := _body(walker)
+	await _seconds(0.3)
+	var toe := _attach(body, "RightToes")
+	var ankle := _attach(body, "RightFoot")
+	await _seconds(0.1)
+	var toe_floor: float = toe.global_position.y
+	var ankle_floor: float = ankle.global_position.y
+	# Straight above the shoulder's reach, a little ahead: half the toes' rise short of it.
+	var shoulder: Vector3 = body._bone_world("RightUpperArm")
+	var reach: float = body.arm_reach * body._scale()
+	var ahead: Vector3 = walker.global_basis * Vector3(0.0, 0.0, -0.25)
+	var straight: float = sqrt(reach * reach - ahead.length_squared())
+	var too_high := _target(shoulder + ahead + Vector3.UP * (straight + PlayerBody.TIPTOE + 0.05))
+	assert_false(body.can_reach(too_high), "higher than the toes go")
+	too_high.queue_free()
+	var target := _target(shoulder + ahead + Vector3.UP * (straight + PlayerBody.TIPTOE * 0.6))
+	assert_true(is_inf(body._bend_for(target.hand_target().global_position)), "a straight arm falls short")
+	assert_true(body.can_reach(target), "but on the toes it does not")
+	body.perform(target)
+	await _seconds(PlayerBody.CONTACT)
+	var rise: float = body.model.position.y
+	assert_true(rise > 0.01 and rise <= PlayerBody.TIPTOE + 0.0001, "up on the toes by %.3f m" % rise)
+	assert_true(is_zero_approx(body._bend.degrees), "no lean forward for a high reach")
+	var off: float = body._contact_point().distance_to(target.hand_target().global_position)
+	assert_true(off < 0.05, "the hand gets there: %.3f m off" % off)
+	assert_true(ankle.global_position.y - ankle_floor > rise * 0.7, "the heel comes up")
+	assert_true(absf(toe.global_position.y - toe_floor) < 0.025, "the toes stay down: %.3f m" % (toe.global_position.y - toe_floor))
+	await _seconds(0.7)
+	assert_false(body.acting)
+	assert_true(is_zero_approx(body.model.position.y), "back down on the heels")
+	assert_true(is_zero_approx(body._tiptoe.rise))
+
+
 func test_a_thing_without_a_hand_target_is_left_to_a_plain_press() -> void:
 	var walker := _walker()
 	var body := _body(walker)
