@@ -40,7 +40,7 @@ func test_real_profile_nodes_actions_and_navigation_endpoints() -> void:
 	var rejected: Dictionary = await helper.perform("take_key")
 	assert_eq(rejected.status, "FAIL", "cannot interact remotely")
 	assert_false(GameState.get_flag(&"ch3_has_key", false))
-	for key in ["open_407", "take_key", "open_fire_door", "sound_extinguisher"]:
+	for key in ["open_407", "take_key", "open_fire_door", "sound_extinguisher", "sound_fire_alarm"]:
 		var spec: Dictionary = profile.actions[key]
 		var target: Node3D = scene.get_node(spec.path)
 		# Unit-test setup only; the bot uses input and navmesh, never this placement.

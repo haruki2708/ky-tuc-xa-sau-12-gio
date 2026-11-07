@@ -163,7 +163,15 @@ func _verified(target: Node, check: Dictionary, seen: bool) -> bool:
 
 
 func _invoke(target: Node, step: Dictionary) -> Dictionary:
-	if step.has("aim"):
+	if step.has("aim_path"):
+		var aim_node := world.get_node_or_null(str(step.aim_path)) as Node3D
+		if aim_node == null: return result("FAIL", "aim node missing: " + str(step.aim_path))
+		var camera := world.get_viewport().get_camera_3d()
+		if camera == null: return result("SKIP", "active player camera missing")
+		camera.look_at(aim_node.global_position)
+		await get_tree().physics_frame
+		await get_tree().physics_frame
+	elif step.has("aim"):
 		if not valid({"op": "goto", "position": step.aim}): return result("FAIL", "invalid aim coordinates")
 		var camera := world.get_viewport().get_camera_3d()
 		if camera == null: return result("SKIP", "active player camera missing")

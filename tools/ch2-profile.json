@@ -15,9 +15,9 @@
         {
           "path": "Chapter2Director",
           "position": [
-            35.6,
+            36.85,
             0.05,
-            -4.7
+            -4.9
           ],
           "verify": {
             "flag": "ch2_zone",
@@ -147,9 +147,9 @@
         {
           "path": "Chapter2Director",
           "position": [
-            36.6,
+            35.6,
             0.05,
-            -2.0
+            -2
           ],
           "verify": {
             "flag": "ch2_zone",
@@ -176,7 +176,7 @@
           "position": [
             33.5,
             0.05,
-            -2.0
+            -1.5
           ],
           "verify": {
             "flag": "ch2_zone",
@@ -265,14 +265,10 @@
           "path": "Floor4/Room407/Anchors/ShowerScreen/Wipe",
           "hold_action": "interact",
           "seconds": 1.1,
-          "aim": [
-            36.18,
-            1.45,
-            -6.78
-          ],
           "verify": {
             "signal": "wiped"
-          }
+          },
+          "aim_path": "Floor4/Room407/Anchors/ShowerScreen/Wipe"
         }
       ]
     }

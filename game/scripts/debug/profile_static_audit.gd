@@ -3,7 +3,7 @@ extends RefCounted
 ## entering the scene tree, playing a chapter or sending input.
 ## DEFERRED means a reviewed runtime producer still needs runtime verification.
 
-const PATH_KEYS := ["path", "anchor", "director", "death_ui", "death_ui_path", "bar_head_path"]
+const PATH_KEYS := ["path", "aim_path", "anchor", "director", "death_ui", "death_ui_path", "bar_head_path"]
 const PATH_ARRAYS := ["guard_paths", "spawn_paths"]
 
 
@@ -53,6 +53,7 @@ static func runtime_contracts(chapter: int) -> Dictionary:
 			var parent := room + str(pair[0])
 			contracts[parent + "/" + str(pair[1])] = [parent, "Chapter2Director"]
 	if chapter == 3:
+		contracts["Campus/Anchors/FireAlarm1F/Use_FireAlarm1F"] = ["Campus/Anchors", "Chapter3Director"]
 		for name: String in ["FireKey", "FireDoor", "Extinguisher2F"]:
 			var parent := "Campus/Anchors/" + name
 			contracts[parent + "/Use_" + name] = [parent, "Chapter3Director"]
