@@ -1,5 +1,5 @@
 # T-233 — Hành lang tầng 4, lượt 1: mẫu đoạn 406–407 dựng bằng Blender theo phong cách phòng 407
-- Lane: B (Môi trường và 3D) | Trạng thái: todo | Agent: tài khoản Claude lane B (D-141)
+- Lane: B (Môi trường và 3D) | Trạng thái: done lượt 1 (merge 08/11/2026), chờ chủ dự án duyệt ảnh | Agent: tài khoản Claude lane B (D-141)
 - Nhánh: `lane-b/T-233-floor4-corridor-segment-pilot` từ `origin/main` mới nhất.
 - Quyết định giao: **D-142** (chủ dự án chọn 07/11). Tiếp nối [T-229](T-229-floor4-corridor-survey.md): khảo sát, ảnh hiện trạng và kế hoạch 4 lượt ở `art_source/graphics_upgrade/floor4_corridor/PLAN.md`.
 - Lượt này làm **mẫu trong cảnh thử riêng**. Không thay scene chơi được. Chủ dự án duyệt ảnh xong mới nhân rộng (lượt 2).
@@ -127,3 +127,10 @@ python -B art_source/graphics_upgrade/floor4_corridor/make_compare.py           
 Đi thử: mở `res://scenes/levels/floor4/corridor_g5_pilot.tscn` trong editor, F6; G bật/tắt mẫu, R đổi lan can.
 
 **Yêu cầu thay đổi ngoài phạm vi**: không có.
+
+## Review (integrator, 08/11/2026)
+- **Đạt, merge vào `main`.** Việc đầu của lane B mới (tài khoản Claude, D-141). Đúng phạm vi: chỉ `art_source/`, model/texture `graphics_pilot/floor4_corridor/`, cảnh thử `corridor_g5_pilot`, chế độ chụp và test trong `game/tests/levels/`. Không sửa scene chơi, không tiêu credit Tripo (dùng lại cánh và tay gạt của phòng 407).
+- Lane B tự xem ảnh lượt đầu và sửa trước khi bàn giao: vệt tay màu nâu dễ nhìn thành máu (phương án A cấm), xước tường lên quá cao. Tốt.
+- Kiểm tra trên nhánh đã rebase lên `e744649` (= `main` lúc merge): full `RESULT: 871 passed, 0 failed`, check `RESULT: check 0 error(s)`, chụp `RESULT: corridor g5 capture 21 images PASS`. Integrator không chạy lại.
+- Integrator xem ảnh: hợp phong cách phòng 407; mép nối với phần PS1 ở x 26/34 lộ rõ, đúng như ghi chú (lượt 2 phủ cả hành lang thì hết). Số tam giác của đoạn 8 m khoảng 15 000; lượt 2 cần đo FPS (hỏi chủ dự án trước).
+- **Chờ chủ dự án:** duyệt ảnh; chọn lan can A1/A2 (`compare_20_railing_variants.jpg`); có thay biển số phòng PS1 cùng cửa ở lượt 2 không.
