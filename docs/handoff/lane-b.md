@@ -38,13 +38,14 @@ Phiên này CHỈ nhận bàn giao, chưa có việc. Không sửa file, không 
 Sau đó chờ integrator giao card.
 ```
 
-## 1b. Việc hiện tại: T-233 hành lang tầng 4 lượt 1 (mẫu đoạn 406–407 bằng Blender) (dán sau khi phiên nhận bàn giao xong)
+## 1b. Việc hiện tại: T-235 hành lang tầng 4 lượt 2 (cả hành lang, cửa 401…408, biển số mới)
 ```text
-Việc mới cho lane B: T-233 — đọc docs/tasks/T-233-floor4-corridor-segment-pilot.md.
+Việc mới cho lane B: T-235 — đọc docs/tasks/T-235-floor4-corridor-full-shell.md.
+Chủ dự án đã duyệt mẫu T-233 (D-144): nhân ra cả hành lang, lan can A1, thay biển số phòng cùng cửa.
 Ở D:\GAME_WORK\lane-b2: git status (giữ thay đổi đang có), git fetch origin, git switch main, git pull --ff-only, git lfs pull,
-rồi tạo nhánh lane-b/T-233-floor4-corridor-segment-pilot từ origin/main.
-Đọc card thật kỹ, nhất là mục "Chủ dự án chọn" (nếu có), "Được phép sửa" và "Không được".
-Chủ dự án chọn phương án A cả 4 mục và muốn hành lang giống phong cách đồ họa phòng 407. Chỉ làm trong cảnh thử, không sửa scene chơi. Kết quả chính là ảnh trước/sau để chủ dự án duyệt.
+rồi tạo nhánh lane-b/T-235-floor4-corridor-full-shell từ origin/main.
+Đọc card thật kỹ, nhất là mục "Chủ dự án chọn", "Được phép sửa" và "Không được". Vẫn chỉ làm trong cảnh thử, không sửa scene chơi.
+Chạy test/check dài bằng tiến trình pwsh riêng ghi log (như cuối T-233) để khỏi bị dừng khi máy thiếu RAM.
 Làm và bàn giao theo prompt mục 2 của docs/handoff/lane-b.md (luật Lượt Godot, full test và check trước commit, log trong build/, Handoff trung thực, push nhánh, không push main).
 ```
 
