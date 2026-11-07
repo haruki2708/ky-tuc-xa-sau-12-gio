@@ -42,3 +42,14 @@ Chạy full test và check theo luật Lượt Godot, cập nhật Handoff, push
 
 ## 4. Giao việc khác (integrator điền)
 Dùng prompt mục 1, thay số việc, card, nhánh `lane-c/T-xxx-...` và card việc trước.
+
+## 5. Bàn giao thực hiện T-232 — cập nhật 08/11/2026
+
+- Workspace: `D:\GAME_WORK\lane-c2`; nhánh `lane-c/T-232-bot-fixes-ch2-3-menu-ch4`, nền `85598c6`. Fetch đầu phiên 08/11: main chưa đổi, không cần rebase, giữ nguyên thay đổi chưa commit.
+- Đã triển khai: Wipe ngắm node thật; chỉnh điểm đứng ch2/ch3 và test capsule/ray; thêm báo cháy tầng 1 cùng mốc `ch3_fire_alarm`; menu F9 ch4 năm điểm nhảy và launcher/smoke. Chi tiết, ETA bot và giới hạn tại [Handoff T-232](../tasks/T-232-bot-fixes-ch2-3-menu-ch4.md#handoff-agent-điền); cập nhật ưu tiên tại [báo cáo T-230, mục 7](../../tools/reports/T-230-bot-review.md#7-ưu-tiên-và-thời-gian-dự-trù-chưa-đo).
+- Đã kiểm: `RESULT: 50 passed, 0 failed` với filter tools; `RESULT: qa-menu PASS chapter4 (five stage jumps, F9)`, cả hai exit 0. Đã xem ảnh smoke, đủ năm nút tiếng Việt. Không chạy bot hoặc đo FPS.
+- Lượt full đầu 08/11 00:31–00:54: `RESULT: 858 passed, 2 failed` (exit 1). Hai test đọc tài liệu/sổ tay bị ảnh hưởng vì fixture menu ch4 dùng `GameState.reset()` vẫn để lại chương 4; đã sửa fixture khôi phục snapshot trạng thái, không sửa UI/core. Dừng riêng check của C trước khi xong (không có RESULT, không tính PASS). Đã kiểm lại menu: `RESULT: 2 passed, 0 failed` (exit 0). Full lần hai 00:56:52–01:19:48 đạt `RESULT: 860 passed, 0 failed` (exit 0), hai ca lỗi cũ đều PASS; check bị ngắt khi phiên đổi, không có RESULT; đã xác nhận không còn tiến trình, thu hồi đúng khóa C bỏ dở và chạy lại riêng check lúc 01:35. Mã không đổi sau full PASS. Log lỗi đầu và lượt hiện hành đều trong `build/t232/`, không commit.
+- Yêu cầu core: công khai cờ/signal báo hoàn tất kéo đám đông 203 để thay wait207; hiện giữ nguyên 30 giây theo card.
+- Chốt kiểm tra: full `RESULT: 860 passed, 0 failed` (exit 0); check chạy lại 01:35:27–01:49:37 đạt `RESULT: check 0 error(s)` (exit 0). Đã trả khóa Godot và hoàn nguyên `game/default_bus_layout.tres` trước commit.
+- Commit triển khai: `a1172c587a52bdf8b3f84afcb132d1055fdb409c` — `T-232: Fix chapter bot targets and add chapter four QA menu`. Commit tài liệu tiếp theo ghi Checklist/Handoff và hash này; hai commit cùng trên nhánh task để integrator review, không mở PR hoặc push main.
+- Blocked: không. Trong phạm vi T-232 không còn việc triển khai dở; wait207 giữ 30 giây theo card, yêu cầu API core và các phần chưa kiểm đã ghi trong Handoff. Chưa chạy bot/playthrough, chưa kiểm sweep/đi bộ toàn tuyến hoặc trải nghiệm các kết chương 4; chưa đo FPS, không dùng Tripo.

@@ -224,20 +224,22 @@ Giới hạn: scene chạy _ready, không hoàn toàn tĩnh; chỉ hai frame kh�
 
 ## 7. Ưu tiên và thời gian dự trù (chưa đo)
 
-| Ưu tiên | Đề xuất lượt sau | Ai/phạm vi |
+Cập nhật T-232 ngày 07/11/2026 trên nền `85598c6`; các mục 1–6 và 8 giữ nguyên bằng chứng lịch sử T-230. Các sửa đổi T-232 trong bảng dưới thuộc commit `a1172c587a52bdf8b3f84afcb132d1055fdb409c`. Kiểm tra cuối ngày 08/11: `RESULT: 860 passed, 0 failed`, `RESULT: check 0 error(s)` (đều exit 0); smoke `RESULT: qa-menu PASS chapter4 (five stage jumps, F9)` (exit 0). Không chạy bot.
+
+| Ưu tiên | Trạng thái sau T-232 | Còn lại / người xử lý |
 |---|---|---|
-| P1 | Sửa aim Wipe theo node/anchor, test ray thực ở chỗ đứng hợp lệ | Lane C với card cho phép sửa profile; không sửa luật lau |
-| P1 | Kiểm capsule ở mọi điểm goto ch2, đặc biệt bedroom và cửa ban công; kiểm lối ra 407 ch3 bằng navigation + collision | C kiểm; thiếu/sai collider/navmesh thì chuyển B/integrator |
-| P1 | Thêm coverage báo cháy tầng1 ch3; xác minh cách vượt đám đông theo D-075 | C đề xuất tuyến/case, chủ dự án duyệt việc chạy; không tự đổi độ khó |
-| P2 | Thay wait30s bằng acknowledgement có hạn khi có hợp đồng phù hợp; assert zone ở waypoint quan trọng | C; cần API/cờ mới thì yêu cầu core |
-| P2 | Kiểm ray/reach cho nhặt/gag/đẩy cửa, tránh method call che lỗi bố trí; log điểm đứng và target | C theo card sau |
-| P2 | Menu jump ch4 + smoke UI allowlist nếu cần | Chưa được giao; integrator/chủ dự án quyết |
+| P1 | Đã sửa Wipe dùng `aim_path` đến node thật, giữ hold 1,1 giây; test dùng InteractRay từ hai điểm enter/leave_shower | Chưa chạy bot để chứng minh hoàn tất vòng tắm |
+| P1 | Đã thêm truy vấn capsule bán kính 0,3 m, cao 1,75 m cho mọi vị trí bước goto ch2 và hai waypoint ra 407 ch3. Sửa bedroom, pickup_rag, gag_4 và nâng hai điểm ch3 5 cm khỏi mặt sàn | Chưa kiểm sweep/đi bộ toàn tuyến; không sửa level/collision |
+| P1 | Đã thêm báo cháy tầng 1 ngay sau Nhat/P05, trước P06; action kiểm cờ `ch3_fire_alarm`, preflight và mốc good bắt buộc cờ này | Test hợp đồng gọi action thật và kiểm endpoint navmesh; không chứng minh thoát đám đông bằng bot |
+| P2 | Giữ wait30s phòng 207: chỉ có biến riêng `_crowd_pull_active`, chưa có cờ/signal công khai báo kéo đám đông xong | Yêu cầu core công khai trạng thái hoàn tất kéo đám đông; assert zone ngoài phạm vi T-232 |
+| P2 | Ray Wipe đã được kiểm; ray/reach nhặt/gag/đẩy cửa chưa bổ sung | C theo card sau; method call hiện có chưa chứng minh thao tác người chơi |
+| P2 | Đã thêm profile menu ch4 không có routes, F9 và launcher chương 4, năm điểm nhảy thật; chờ một frame để audio rig deferred sẵn sàng | Smoke UI allowlist rộng hơn ngoài phạm vi; không có bot ch4 |
 | P3 | Kiểm thủ công hình phản chiếu quản lý, giấy, ánh sáng, cánh cửa | Chủ dự án chơi thử; bot logic không thay thế |
 
 Ước lượng phục vụ đặt lịch, **không phải số đo hoặc cam kết PASS**, chưa gồm import lần đầu:
 - Ch2 good sau sửa: khoảng 12–25 phút; hai case chain khoảng 1–5 phút/case; scald/leave khoảng 4–10 phút/case; wrong_prediction khoảng 8–18 phút. Tổng sáu case dự trù 30–75 phút nếu không bị kẹt. Căn cứ: bắt đầu R3 cho mọi case, báo thoại/nối từ, tối đa 30 slot tắm; slot20s là ngân sách, code :544–575 trừ thời gian lựa chọn và có grace2s, nên không lấy 30×20 làm thời gian thực chính xác.
-- Ch3 good: khoảng 12–30 phút; grabbed/guard khoảng 1–6 phút/case; tổng khoảng 15–45 phút. Căn cứ: sân240s, chờ207 30s, nhận bar tối đa60s, chiều dài tuyến và hội thoại chưa đo.
-- Ch4 chưa có bot: không có thời gian chạy bot khả dụng; chỉ có chi phí test/menu sau khi được giao.
+- Ch3 good sau bổ sung báo cháy: vẫn dự trù khoảng 12–30 phút; đoạn rẽ tới báo cháy và thao tác thêm vài giây theo chiều dài tuyến, chưa đo; grabbed/guard khoảng 1–6 phút/case; tổng khoảng 15–45 phút. Căn cứ: sân240s, chờ207 30s, nhận bar tối đa60s, chiều dài tuyến và hội thoại chưa đo.
+- Ch4 vẫn chưa có bot: không có ETA bot. T-232 chỉ thêm test/menu nhảy, thời gian smoke không phải thời lượng chương.
 - Trần bảo vệ không phải ETA: ch2 60 phút/case trong bot :92 và launcher3615s (:94); ch3 75 phút/case (:100) và launcher4515s. Sáu case ch2 kẹt có thể gần6 giờ; ba case ch3 gần3 giờ45 phút. Đề xuất cho chạy từng case sau khi sửa/review, dừng để phân tích khi case đầu lỗi, chưa xin/chưa có ủy quyền chạy trong T-230.
 
 ## 8. Kiểm tra phiên này
