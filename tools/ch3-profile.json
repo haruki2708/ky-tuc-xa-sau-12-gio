@@ -17,7 +17,7 @@
       {
         "position": [
           32,
-          0,
+          0.05,
           -1.3
         ],
         "zone": "b",
@@ -26,7 +26,7 @@
       {
         "position": [
           35.75,
-          0,
+          0.05,
           2
         ],
         "zone": "b"
@@ -114,6 +114,15 @@
       {
         "anchor": "Campus/Anchors/Paths/Nhat/P05",
         "zone": "b"
+      },
+      {
+        "position": [
+          0.9,
+          -9.85,
+          1.5
+        ],
+        "zone": "b",
+        "action": "sound_fire_alarm"
       },
       {
         "anchor": "Campus/Anchors/Paths/Nhat/P06",
@@ -274,7 +283,11 @@
       "Chapter3Director/Guard11",
       "Chapter3Director/Guard12"
     ],
-    "grab_stage": "garden"
+    "grab_stage": "garden",
+    "fire_alarm": {
+      "flag": "ch3_fire_alarm",
+      "equals": true
+    }
   },
   "actions": {
     "take_key": {
@@ -322,6 +335,18 @@
       "max_distance": 2.5,
       "verify": {
         "property": "is_open",
+        "equals": true
+      }
+    },
+    "sound_fire_alarm": {
+      "path": "Campus/Anchors/FireAlarm1F/Use_FireAlarm1F",
+      "method": "interact",
+      "args": [
+        "$player"
+      ],
+      "max_distance": 2.5,
+      "verify": {
+        "flag": "ch3_fire_alarm",
         "equals": true
       }
     }

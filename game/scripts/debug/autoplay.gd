@@ -30,6 +30,9 @@ func _ready() -> void:
 		var ch3_menu := preload("res://scripts/debug/ch3_menu.gd").new()
 		ch3_menu.name = "Chapter3QAMenu"
 		add_child(ch3_menu)
+		var ch4_menu := preload("res://scripts/debug/ch4_menu.gd").new()
+		ch4_menu.name = "Chapter4QAMenu"
+		add_child(ch4_menu)
 	# Observe calls/choices before the first scheduled command; otherwise an
 	# answer_call event would miss an already ringing phone.
 	_commands = CHAPTER_ACTIONS.new()

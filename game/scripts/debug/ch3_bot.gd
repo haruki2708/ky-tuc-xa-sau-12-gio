@@ -74,7 +74,7 @@ func _run() -> void:
 				_record(await actions.step(point))
 		await _until(func() -> bool: return 3 in completed_chapters or not failed_rules.is_empty(), "chapter 3 completion")
 		if not failed_rules.is_empty(): failure = "unexpected death " + str(failed_rules)
-		for key in ["key_taken", "noise_203", "stadium_survived"]:
+		for key in ["key_taken", "noise_203", "fire_alarm", "stadium_survived"]:
 			if not CH3_ACTIONS.acknowledged(profile.bindings[key]): failure = "missing milestone: " + key
 		if Progress.unlocked_chapter() < 4 or not actions.bar_received or actions.companions.size() < 2 or visited.size() < 4:
 			failure = "chapter 4 unlock / bar / companions / four stages not verified"

@@ -1,0 +1,13 @@
+{
+  "chapter": 4,
+  "scene": "res://scenes/main/chapter4.tscn",
+  "director": "Chapter4Director",
+  "rule_set": "res://data/rules/ch4.tres",
+  "jumps": {
+    "split": "split",
+    "library": "library",
+    "return": "return",
+    "room407": "room407",
+    "end4": "end4"
+  }
+}

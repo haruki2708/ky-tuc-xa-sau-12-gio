@@ -30,7 +30,7 @@ static func preflight(profile: Dictionary, performance: bool = false, count: int
 	else:
 		for stage: String in STAGES:
 			if not valid_route(profile.get("routes", {}).get(stage)): missing.append("T-181/T-183 route missing: " + stage)
-		for key in ["key_taken", "noise_203", "stadium_survived", "death_ui", "bar_head_path", "guard_paths", "grab_stage"]:
+		for key in ["key_taken", "noise_203", "fire_alarm", "stadium_survived", "death_ui", "bar_head_path", "guard_paths", "grab_stage"]:
 			if profile.get("bindings", {}).get(key) == null: missing.append("T-181/T-182 binding missing: " + key)
 		if not valid_route([profile.get("guard_target")]): missing.append("guard target missing")
 		for key in ["zombies_on", "zombies_off", "give_bar", "refill"]:
