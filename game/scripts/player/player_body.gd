@@ -36,6 +36,16 @@ const MOVING: float = 0.15
 ## Between the player's walk (2.2 m/s) and sprint (3.6 m/s) speeds.
 const RUN_FROM: float = 2.9
 const MAX_YAW: float = deg_to_rad(60.0)
+## T-227 round 2: standing still the feet keep their heading while the view turns (the chest
+## TWIST_SHARE of the way with it); past TURN_START the body steps round at TURN_SPEED (rad/s) until
+## it faces the view again. A jump past TURN_SNAP (a teleport, a respawn) is not stepped.
+const TURN_START: float = deg_to_rad(50.0)
+const TURN_SPEED: float = 3.0
+const TURN_DONE: float = deg_to_rad(2.0)
+const TURN_SNAP: float = deg_to_rad(135.0)
+const TWIST_SHARE: float = 0.6
+## The walk clip's pace while stepping round on the spot.
+const TURN_STEP_PACE: float = 0.7
 ## Eyes from the head bone, model space (the model faces +Z), metres before scaling. Tran Trung's
 ## head bone sits 1.7 cm left of his face's middle (measured on the Tripo mesh, T-227).
 const EYES_FROM_HEAD_BONE: Vector3 = Vector3(-0.017, 0.08, 0.09)
@@ -60,6 +70,11 @@ const MAX_BEND: float = 45.0
 ## T-227 round 2: what is above the reach of a straight arm is taken up on the toes, the ankles
 ## rising at most this far (metres), the elbow out to the side.
 const TIPTOE: float = 0.08
+## Reaching up the collarbone lifts the shoulder joint this far (degrees toward up), and a pinch
+## or hook takes the thing at the fingertips, not the palm: every centimetre overhead counts.
+const SHOULDER_RAISE: float = 25.0
+## The distal finger bone's own length past its joint (model metres), to the fingertip.
+const FINGERTIP: float = 0.025
 ## Looking down bends the neck: the eyes move this far forward at a straight-down look, so
 ## the chest no longer hides the legs and feet.
 const NECK_FORWARD: float = 0.14
@@ -132,6 +147,8 @@ var eye_points: Dictionary = {}
 var acting: bool = false
 ## Shoulder to palm a hand reaches without straining, metres before scaling.
 var arm_reach: float = 0.6
+## Palm centre to the middle fingertip, metres before scaling.
+var finger_reach: float = 0.08
 
 var _key: StringName = &""
 var _clip: StringName = &""
@@ -142,11 +159,21 @@ var _grip: HandGripModifier
 var _align: HandAlignModifier
 var _bend: SpineBendModifier
 var _tiptoe: TiptoeModifier
+var _raise: ShoulderRaiseModifier
+var _twist: SpineBendModifier
+## The world heading the feet keep while standing, and whether the body is stepping round.
+var _stand_yaw: float = 0.0
+var _turning: bool = false
 ## How far up on the toes this reach goes (metres), and how far it is now.
 var _rise_target: float = 0.0
 var _rise: float = 0.0
-## This reach is above a straight arm (up on the toes, fingers along the arm).
+## This reach is above a straight arm (up on the toes, shoulder lifted, fingers along the arm).
 var _high: bool = false
+## Beyond the palm centre to where the hand takes the thing (metres before scaling): the
+## fingertips for a high pinch or hook, else 0.
+var _tip_extra: float = 0.0
+## The share of this reach's lean, rise and shoulder lift last given to _weigh.
+var _rise_weight: float = 0.0
 var _pole_rest: Vector3
 ## The hand bone's local axis that faces out of the palm (the side the fingers curl to).
 var _palm_axis: Vector3 = Vector3.FORWARD
@@ -223,6 +250,8 @@ func _ready() -> void:
 ## mirror layer, so only the headless view mesh is seen from inside.
 func bind(owner_player: CharacterBody3D) -> void:
 	player = owner_player
+	if player.is_inside_tree():
+		_stand_yaw = player.global_rotation.y
 	_head = player.get_node_or_null("Head") as Node3D
 	var camera := player.get_node_or_null("Head/Camera3D") as Camera3D
 	if camera != null:
@@ -247,10 +276,16 @@ func can_handle(target: Interactable) -> bool:
 func can_reach(target: Interactable) -> bool:
 	if not is_instance_valid(target):
 		return false
+	# Judged for a body square to the view, as perform() turns it (standing, the feet may lag).
+	var drawn: float = _yaw
+	if not acting:
+		_place_model(0.0)
 	var marker: HandTarget = target.hand_target(_reach_from())
-	if marker == null:
-		return false
-	return _bend_for(marker.global_position) <= MAX_BEND or _rise_for(marker.global_position) <= TIPTOE
+	var reachable: bool = marker != null and (_bend_for(marker.global_position) <= MAX_BEND \
+			or _rise_for(marker.global_position, marker.grip) <= TIPTOE)
+	if not acting:
+		_place_model(drawn)
+	return reachable
 
 
 func _reach_from() -> Vector3:
@@ -260,6 +295,7 @@ func _reach_from() -> Vector3:
 func perform(target: Interactable) -> void:
 	if not can_handle(target):
 		return
+	_face_view()
 	acting = true
 	_target = target
 	_marker = target.hand_target(_reach_from())
@@ -281,6 +317,7 @@ func perform(target: Interactable) -> void:
 	var high: bool = _marker.global_position.y > _bone_world("RightUpperArm").y \
 			and is_inf(_bend_for(_marker.global_position))
 	_high = high
+	_tip_extra = finger_reach if high and _marker.grip != HandTarget.Grip.GRIP else 0.0
 	_clip = CLIPS[&"idle" if high else (&"reach_low" if low else &"reach")]
 	_key = &""
 	animator.speed_scale = 1.0
@@ -293,7 +330,7 @@ func perform(target: Interactable) -> void:
 	if high:
 		# The elbow out to the side and up.
 		_bend_degrees = 0.0
-		_rise_target = minf(_rise_for(_marker.global_position), TIPTOE)
+		_rise_target = minf(_rise_for(_marker.global_position, _marker.grip), TIPTOE)
 		_pole.position = Vector3(_pole_rest.x * 1.5, _shoulder_model_height(), -_pole_rest.z * 0.5)
 
 
@@ -331,7 +368,10 @@ func _tick_locomotion(delta: float) -> void:
 	var speed: float = local.length()
 	var crouched: bool = bool(player.get("crouched"))
 	var target_yaw: float = 0.0
+	var follow: float = 1.0 - exp(-10.0 * delta)
+	var view_yaw: float = player.global_rotation.y
 	if speed > MOVING:
+		_turning = false
 		var heading: float = atan2(-local.x, -local.z)
 		var direction: float = 1.0
 		if absf(heading) > deg_to_rad(100.0):
@@ -344,13 +384,50 @@ func _tick_locomotion(delta: float) -> void:
 		# Sideways, only the share of the motion along the body is in the stride.
 		var along: float = speed * cos(absf(heading) - absf(target_yaw))
 		animator.speed_scale = direction * maxf(along, 0.2) / maxf(stride_speeds[key], 0.05)
+		_yaw = lerp_angle(_yaw, target_yaw, follow)
 	else:
-		_play(&"crouch_idle" if crouched else &"idle")
-		animator.speed_scale = 1.0
-	var follow: float = 1.0 - exp(-10.0 * delta)
-	_yaw = lerp_angle(_yaw, target_yaw, follow)
+		_yaw = _stand_turn(wrapf(_stand_yaw - view_yaw, -PI, PI), delta)
+		if _turning:
+			_play(&"crouch_walk" if crouched else &"walk")
+			animator.speed_scale = TURN_STEP_PACE
+		else:
+			_play(&"crouch_idle" if crouched else &"idle")
+			animator.speed_scale = 1.0
+	_stand_yaw = view_yaw + _yaw
+	_set_twist(-_yaw * TWIST_SHARE)
 	_eye = _eye.lerp(eye_points[_key], follow)
 	_place_model(_yaw)
+
+
+## Standing, the body's heading off the view (`lag`, radians) this frame: kept while small,
+## stepped round toward 0 once past TURN_START, dropped at once past TURN_SNAP.
+func _stand_turn(lag: float, delta: float) -> float:
+	if absf(lag) > TURN_SNAP:
+		_turning = false
+		return 0.0
+	if absf(lag) > TURN_START:
+		_turning = true
+	if _turning:
+		lag -= signf(lag) * minf(TURN_SPEED * delta, absf(lag))
+		if absf(lag) <= TURN_DONE:
+			_turning = false
+	return lag
+
+
+## Turn the chest about the vertical by `angle` (radians, world sense), shared by the spine.
+func _set_twist(angle: float) -> void:
+	_twist.axis = _tiptoe.up * signf(angle) if not is_zero_approx(angle) else _tiptoe.up
+	_twist.degrees = rad_to_deg(absf(angle))
+
+
+## Face the view at once (a hand action starts from a body square to it).
+func _face_view() -> void:
+	_turning = false
+	_yaw = 0.0
+	_set_twist(0.0)
+	if is_instance_valid(player):
+		_stand_yaw = player.global_rotation.y
+	_place_model(0.0)
 
 
 func _tick_action(delta: float) -> void:
@@ -472,7 +549,13 @@ func _aim(point: Vector3, hand: Basis, hold: float) -> void:
 	_align.target_basis = hand
 	var palm: Vector3 = (hand * _palm_axis).normalized()
 	var middle: Vector3 = point - palm * _hold_gap() * hold
-	_goal.global_position = middle - hand.y.normalized() * PALM * _scale()
+	_goal.global_position = middle - hand.y.normalized() * (PALM + _tip()) * _scale()
+
+
+## How far past the palm's middle the hand takes the thing now (model metres): the fingertips on
+## a high pinch or hook, as far as the reach has come.
+func _tip() -> float:
+	return _tip_extra * clampf(_rise_weight, 0.0, 1.0)
 
 
 ## From the palm's middle to what the hand holds, along the palm's facing.
@@ -481,10 +564,12 @@ func _hold_gap() -> float:
 	return (HAND_HALF + gap) * _scale()
 
 
-## The point the hand holds, as drawn: palm's middle plus the hold gap out of the palm.
+## The point the hand holds, as drawn: palm's middle (or the fingertips, _tip) plus the hold gap
+## out of the palm.
 func _contact_point() -> Vector3:
-	var palm: Vector3 = (_hand_attach.global_basis.orthonormalized() * _palm_axis).normalized()
-	return _hand_tip() + palm * _hold_gap()
+	var hand: Basis = _hand_attach.global_basis.orthonormalized()
+	var palm: Vector3 = (hand * _palm_axis).normalized()
+	return _hand_tip() + hand.y * _tip() * _scale() + palm * _hold_gap()
 
 
 ## How the hand meets the target (world space): a lever palm down with the fingers over it, an
@@ -496,7 +581,7 @@ func _grip_basis() -> Basis:
 	if _high:
 		# Reaching up, the fingers carry on the arm's line and the palm faces the thing: every
 		# centimetre of the hand counts (fingers over a lever would put the wrist above it).
-		return _hand_basis((_marker.global_position - _bone_world("RightUpperArm")).normalized(), flat)
+		return _hand_basis((_marker.global_position - _lifted_shoulder()).normalized(), flat)
 	match _marker.grip:
 		HandTarget.Grip.HOOK:
 			return _hand_basis(flat, Vector3.UP.cross(flat))
@@ -634,24 +719,35 @@ func _bend_for(goal: Vector3) -> float:
 	return INF
 
 
-## How far up on the toes (metres) brings the shoulder, straight up, within reach of `goal`:
-## 0 if it already is, INF if no rise does (the goal is too far off to the side).
-func _rise_for(goal: Vector3) -> float:
-	var shoulder: Vector3 = _bone_world("RightUpperArm")
-	var reach: float = arm_reach * _scale()
+## How far up on the toes (metres) brings the lifted shoulder, straight up, within reach of
+## `goal` for this grip (a pinch or hook to the fingertips): 0 if it already is, INF if no rise
+## does (the goal is too far off to the side).
+func _rise_for(goal: Vector3, grip: HandTarget.Grip = HandTarget.Grip.GRIP) -> float:
+	var shoulder: Vector3 = _lifted_shoulder()
+	var reach: float = (arm_reach + (finger_reach if grip != HandTarget.Grip.GRIP else 0.0)) * _scale()
 	var side: float = Vector2(goal.x - shoulder.x, goal.z - shoulder.z).length()
 	if side > reach:
 		return INF
 	return maxf(0.0, goal.y - shoulder.y - sqrt(reach * reach - side * side))
 
 
+## The right shoulder joint (world) with the collarbone lifted SHOULDER_RAISE, as for a reach up.
+func _lifted_shoulder() -> Vector3:
+	var collar: Vector3 = _bone_world("RightShoulder")
+	var joint: Vector3 = _bone_world("RightUpperArm")
+	return collar + ShoulderRaiseModifier.lift(joint - collar, Vector3.UP, SHOULDER_RAISE) * (joint - collar)
+
+
 ## Share `weight` (0..1) of this reach's lean and rise. The rise lifts the model and tips the feet
-## so the toes stay on the floor; the eyes, and so the camera, come up with it.
+## so the toes stay on the floor; the eyes, and so the camera, come up with it. A high reach also
+## lifts the shoulder and reaches to the fingertips.
 func _weigh(weight: float) -> void:
+	_rise_weight = weight
 	_bend.degrees = _bend_degrees * weight
 	_rise = _rise_target * weight
 	model.position.y = _rise
 	_tiptoe.rise = (skeleton.global_basis.inverse() * Vector3(0.0, _rise, 0.0)).length()
+	_raise.degrees = SHOULDER_RAISE * weight if _high else 0.0
 
 
 ## The right shoulder's height in the model's own space (where the elbow pole lives).
@@ -742,6 +838,7 @@ func _finish() -> void:
 	_bend_degrees = 0.0
 	_rise_target = 0.0
 	_high = false
+	_tip_extra = 0.0
 	_weigh(0.0)
 	_pole.position = _pole_rest
 	_lean = Vector3.ZERO
@@ -838,6 +935,9 @@ func _measure_arm() -> void:
 	var lower: Vector3 = skeleton.get_bone_global_rest(skeleton.find_bone("RightLowerArm")).origin
 	var hand: Vector3 = skeleton.get_bone_global_rest(skeleton.find_bone("RightHand")).origin
 	arm_reach = (upper.distance_to(lower) + lower.distance_to(hand)) * ARM_STRAIGHT + PALM
+	var finger: int = skeleton.find_bone("RightMiddleDistal")
+	if finger >= 0:
+		finger_reach = maxf(0.0, hand.distance_to(skeleton.get_bone_global_rest(finger).origin) + FINGERTIP - PALM)
 
 
 ## Scale the model so its eyes, in the rest pose, are at eye_height.
@@ -900,6 +1000,16 @@ func _build_modifiers() -> void:
 	_bend = SpineBendModifier.new()
 	_bend.name = "SpineBend"
 	skeleton.add_child(_bend)
+	# Standing with the view turned past the feet, the chest turns part of the way (about up).
+	_twist = SpineBendModifier.new()
+	_twist.name = "SpineTwist"
+	_twist.axis = _tiptoe.up
+	skeleton.add_child(_twist)
+	# After the lean, before the arm's IK (which starts from the lifted shoulder joint).
+	_raise = ShoulderRaiseModifier.new()
+	_raise.name = "ShoulderRaise"
+	_raise.up = _tiptoe.up
+	skeleton.add_child(_raise)
 	_ik = TwoBoneIK3D.new()
 	_ik.name = "RightArmIK"
 	skeleton.add_child(_ik)

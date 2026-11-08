@@ -220,10 +220,14 @@ func test_a_high_target_is_reached_on_tiptoe() -> void:
 	var toe := _attach(body, "RightToes")
 	var ankle := _attach(body, "RightFoot")
 	await _seconds(0.1)
+	var joint := _attach(body, "RightUpperArm")
+	await _seconds(0.1)
 	var toe_floor: float = toe.global_position.y
 	var ankle_floor: float = ankle.global_position.y
-	# Straight above the shoulder's reach, a little ahead: half the toes' rise short of it.
-	var shoulder: Vector3 = body._bone_world("RightUpperArm")
+	var joint_floor: float = joint.global_position.y
+	# Straight above the lifted shoulder's reach, a little ahead: half the toes' rise short of it.
+	var shoulder: Vector3 = body._lifted_shoulder()
+	assert_true(shoulder.y > body._bone_world("RightUpperArm").y + 0.01, "a reach up lifts the shoulder")
 	var reach: float = body.arm_reach * body._scale()
 	var ahead: Vector3 = walker.global_basis * Vector3(0.0, 0.0, -0.25)
 	var straight: float = sqrt(reach * reach - ahead.length_squared())
@@ -242,10 +246,76 @@ func test_a_high_target_is_reached_on_tiptoe() -> void:
 	assert_true(off < 0.05, "the hand gets there: %.3f m off" % off)
 	assert_true(ankle.global_position.y - ankle_floor > rise * 0.7, "the heel comes up")
 	assert_true(absf(toe.global_position.y - toe_floor) < 0.025, "the toes stay down: %.3f m" % (toe.global_position.y - toe_floor))
+	assert_true(joint.global_position.y - joint_floor > rise + 0.01, "the shoulder comes up more than the heels")
 	await _seconds(0.7)
 	assert_false(body.acting)
 	assert_true(is_zero_approx(body.model.position.y), "back down on the heels")
 	assert_true(is_zero_approx(body._tiptoe.rise))
+	assert_true(is_zero_approx(body._raise.degrees), "and the shoulder down")
+
+
+## T-227 round 2: standing, a small turn of the view leaves the feet where they are (the chest
+## turns part of the way); past TURN_START the body steps round to face the view; a jump (a
+## respawn) is not stepped; a hand action starts square to the view.
+func test_standing_the_feet_keep_their_heading_until_the_view_turns_far() -> void:
+	var walker := _walker()
+	var body := _body(walker)
+	await _seconds(0.4)
+	var heading := func() -> float: return body.model.global_rotation.y
+	var start: float = heading.call()
+	walker.rotate_y(deg_to_rad(30.0))
+	await _seconds(0.3)
+	assert_true(absf(angle_difference(heading.call(), start)) < deg_to_rad(2.0), "30 degrees: the feet stay put")
+	assert_true(body._twist.degrees > 10.0, "the chest turns with the view: %.0f degrees" % body._twist.degrees)
+	assert_false(body._turning)
+	assert_eq(body._key, &"idle")
+	walker.rotate_y(deg_to_rad(40.0))
+	await _seconds(0.1)
+	assert_true(body._turning, "past %.0f degrees the body steps round" % rad_to_deg(PlayerBody.TURN_START))
+	assert_eq(body._key, &"walk", "stepping")
+	await _seconds(0.8)
+	assert_false(body._turning)
+	assert_true(absf(angle_difference(heading.call(), start + deg_to_rad(70.0))) < deg_to_rad(3.0), "facing the view again")
+	assert_eq(body._key, &"idle")
+	walker.rotate_y(deg_to_rad(160.0))
+	await _seconds(0.1)
+	assert_false(body._turning, "a jump is not stepped")
+	assert_true(absf(angle_difference(heading.call(), start + deg_to_rad(230.0))) < deg_to_rad(3.0), "it just faces the view")
+	walker.rotate_y(deg_to_rad(-35.0))
+	await _seconds(0.2)
+	assert_false(is_zero_approx(body._yaw), "the feet lag again")
+	var target := _target(walker.global_position + walker.global_basis * Vector3(0.15, 1.1, -0.35))
+	assert_true(body.can_reach(target))
+	body.perform(target)
+	assert_true(is_zero_approx(body._yaw) and is_zero_approx(body._twist.degrees), "a hand action starts square to the view")
+	await _seconds(1.1)
+	assert_false(body.acting)
+
+
+## A pinch or hook overhead takes the thing at the fingertips: higher than a palm reaches.
+func test_a_high_pinch_is_taken_at_the_fingertips() -> void:
+	var walker := _walker()
+	var body := _body(walker)
+	await _seconds(0.4)
+	assert_true(body.finger_reach > 0.04, "fingers measured: %.3f m" % body.finger_reach)
+	var shoulder: Vector3 = body._lifted_shoulder()
+	var ahead: Vector3 = walker.global_basis * Vector3(0.0, 0.0, -0.2)
+	var reach: float = (body.arm_reach + body.finger_reach) * body._scale()
+	var target := _target(shoulder + ahead + Vector3.UP * (sqrt(reach * reach - ahead.length_squared()) + PlayerBody.TIPTOE * 0.8))
+	var marker := target.hand_target() as HandTarget
+	marker.grip = HandTarget.Grip.GRIP
+	assert_false(body.can_reach(target), "a palm does not get there")
+	marker.grip = HandTarget.Grip.PINCH
+	assert_true(body.can_reach(target), "fingertips do")
+	print("REACH palm %.2f m, fingertips %.2f m (straight up, on the toes)" % [
+			shoulder.y + body.arm_reach * body._scale() + PlayerBody.TIPTOE, shoulder.y + reach + PlayerBody.TIPTOE])
+	body.perform(target)
+	await _seconds(PlayerBody.CONTACT)
+	var off: float = body._contact_point().distance_to(marker.global_position)
+	assert_true(off < 0.05, "the fingertips get there: %.3f m off" % off)
+	await _seconds(0.7)
+	assert_false(body.acting)
+	assert_true(is_zero_approx(body._tip()), "the hand is back to its palm")
 
 
 func test_a_thing_without_a_hand_target_is_left_to_a_plain_press() -> void:

@@ -54,12 +54,12 @@ func _process_modification() -> void:
 		if is_zero_approx(angle):
 			continue
 		var swing := Quaternion(across.normalized(), angle)
-		_turn(skeleton, foot, swing)
-		_turn(skeleton, toe, swing.inverse())
+		turn(skeleton, foot, swing)
+		turn(skeleton, toe, swing.inverse())
 
 
 ## Turn a bone by `swing` (skeleton space) in its parent's current pose.
-func _turn(skeleton: Skeleton3D, bone: int, swing: Quaternion) -> void:
+static func turn(skeleton: Skeleton3D, bone: int, swing: Quaternion) -> void:
 	var parent: int = skeleton.get_bone_parent(bone)
 	var parent_rotation: Quaternion = Quaternion.IDENTITY
 	if parent >= 0:
