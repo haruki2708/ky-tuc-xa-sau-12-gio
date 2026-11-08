@@ -1,5 +1,5 @@
 # T-235 — Hành lang tầng 4, lượt 2: cả hành lang 44 m, cửa 401…408, biển số phòng mới
-- Lane: B (Môi trường và 3D) | Trạng thái: todo | Agent: tài khoản Claude lane B (D-141)
+- Lane: B (Môi trường và 3D) | Trạng thái: done (merge 08/11/2026), chủ dự án duyệt (D-148) | Agent: tài khoản Claude lane B (D-141)
 - Nhánh: `lane-b/T-235-floor4-corridor-full-shell` từ `origin/main` mới nhất.
 - Quyết định giao: **D-144** (chủ dự án duyệt lượt 1 ngày 08/11). Tiếp nối [T-233](T-233-floor4-corridor-segment-pilot.md) (mẫu đoạn 406–407) và `PLAN.md` mục 7 lượt 2.
 - Lượt này vẫn làm **trong cảnh thử** `corridor_g5_pilot`. Chủ dự án duyệt ảnh xong, integrator mở card đưa vào bản chơi.
@@ -150,3 +150,8 @@
 - Commit card này ngay sau.
 
 **Yêu cầu thay đổi:** không. **Blocked:** không.
+
+## Review (integrator, 08/11/2026)
+- **Đạt, merge vào `main`.** Đúng phạm vi lane B (`art_source/`, model/texture `graphics_pilot/floor4_corridor/`, cảnh thử, test `levels`); không sửa scene chơi, không tiêu credit Tripo. Đã bỏ lan can A2 theo D-144. Hai phương án có sẵn, chủ dự án chọn bằng ảnh: biển số A (nhôm), cửa 408 cũ kiểu 1 (xây kín, trát vữa); đều là mặc định của lane B (D-148).
+- Kiểm tra trên `main` sau merge (nhánh tách từ `main` cũ): full `RESULT: 884 passed, 0 failed`, check `RESULT: check 0 error(s)`.
+- **Tiếp theo:** integrator đo FPS (chủ dự án cho phép, D-148), rồi mở card đưa hành lang mới vào bản chơi. Còn PS1: bên trong phòng 401–406 và 408, bàn trực, nhà vệ sinh chung, đồ phơi, cầu thang (lượt 3–4).
