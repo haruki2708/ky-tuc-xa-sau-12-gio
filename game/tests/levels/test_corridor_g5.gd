@@ -1,10 +1,12 @@
 extends TestCase
-## T-233, T-235 (D-142, D-144): the whole floor-4 corridor in room 407's style (corridor_g5_pilot.gd) is visual
-## only. Built over floor4.tscn it must leave every collider, marker, light, area and navigation node of the
-## gameplay contract (art_source/graphics_upgrade/floor4_corridor/PLAN.md section 2) exactly as it was, keep
-## the lanes clear, swing the Tripo leaves with RoomDoor and keep the room numbers where they were.
+## T-233, T-235 (D-142, D-144): the whole floor-4 corridor in room 407's style is visual only. Since T-237
+## (D-148) floor4.gd builds it in every chapter (corridor_shell.gd); it must leave every collider, marker, light,
+## area and navigation node of the gameplay contract (art_source/graphics_upgrade/floor4_corridor/PLAN.md
+## section 2) exactly as the PS1 floor has it, keep the lanes clear, swing the Tripo leaves with RoomDoor and
+## keep the room numbers where they were. The pilot (corridor_g5_pilot.gd) adds the unpicked variants on top.
 
 const FLOOR := preload("res://scenes/levels/floor4/floor4.tscn")
+const SHELL := preload("res://scenes/levels/floor4/corridor_shell.gd")
 const PILOT := preload("res://scenes/levels/floor4/corridor_g5_pilot.gd")
 const PILOT_SCENE := "res://scenes/levels/floor4/corridor_g5_pilot.tscn"
 const ROOM_DOORS: Array[String] = ["401", "402", "403", "404", "405", "406", "408"]
@@ -23,7 +25,7 @@ const CONTRACT: Array[String] = ["Corridor", "Room407", "Washroom", "DutyDesk", 
 ## Where a body walks: nothing new may reach into it (the floor, wall, ceiling and end faces, the skirting,
 ## architraves, sills and plates lie on its edges; lamps above, railing beyond).
 const WALKABLE := AABB(Vector3(0.02, 0.013, 0.12), Vector3(43.96, 2.78, 3.81))
-## Triangles of what the pilot shows by default (geometry_report.json default_triangles, about 42 000).
+## Triangles of what the playable corridor shows (geometry_report.json default_triangles, about 42 000).
 const TRIANGLE_BUDGET := 50000
 var fixtures: Array[Node] = []
 
@@ -36,13 +38,15 @@ func after_each() -> void:
 	await tree.create_timer(0.4).timeout
 
 
-func spawn(with_corridor: bool, origin: Vector3 = Vector3.ZERO) -> Node3D:
+## with_corridor false: the PS1 floor (floor4.gd upgraded_corridor off); variants: the pilot's extra looks.
+func spawn(with_corridor: bool, origin: Vector3 = Vector3.ZERO, variants: bool = false) -> Node3D:
 	var floor4 := FLOOR.instantiate() as Node3D
 	floor4.position = origin
+	floor4.set("upgraded_corridor", with_corridor)
 	fixtures.append(floor4)
 	tree.root.add_child(floor4)
-	if with_corridor:
-		PILOT.build(floor4)
+	if variants:
+		PILOT.add_variants(floor4)
 	return floor4
 
 
@@ -125,9 +129,17 @@ func test_corridor_parts_and_contract_nodes() -> void:
 	var floor4 := spawn(true)
 	await wait_frames(2)
 	var corridor := floor4.get_node_or_null("G5Corridor") as Node3D
-	assert_not_null(corridor, "corridor built")
-	for part: String in ["shell", "frames", "lamps", "railing", "plates_alu", "plates_enamel", "seal_board"]:
+	assert_not_null(corridor, "floor 4 builds the corridor by itself")
+	for part: String in ["shell", "frames", "lamps", "railing", "plates_alu"]:
 		assert_not_null(corridor.get_node_or_null(part), "corridor part " + part)
+	# D-148: the playable corridor has the owner's picks only (aluminium plates, 408 walled up).
+	for part: String in ["plates_enamel", "seal_board"]:
+		assert_true(corridor.get_node_or_null(part) == null, "unpicked variant left out: " + part)
+	assert_eq(SHELL.build(floor4), corridor, "a second build keeps the one corridor")
+	assert_eq(floor4.find_children("G5Corridor*", "", false, false).size(), 1, "one corridor")
+	assert_eq(floor4.get_node("Corridor/WestEnd").find_children("G5*", "", false, false).size(), 1, "one west end wall")
+	assert_eq(floor4.get_node("Corridor/LockedDoor_403/Hinge").find_children("G5*", "", false, false).size(), 1, "one leaf")
+	assert_true(spawn(false).get_node_or_null("G5Corridor") == null, "the PS1 floor has none")
 	for bay: String in ["Washroom", "401", "402", "403", "404", "405", "406", "407W", "407E", "408"]:
 		assert_not_null(corridor.get_node_or_null("shell/Bay" + bay), "shell bay " + bay)
 		assert_not_null(corridor.get_node_or_null("railing/Rail" + bay), "railing bay " + bay)
@@ -160,6 +172,8 @@ func test_gameplay_nodes_are_untouched() -> void:
 	# Both at the origin, compared in the same frame (room 407's rigid props have not moved yet).
 	var plain := spawn(false)
 	var built := spawn(true)
+	assert_true(plain.get_node_or_null("G5Corridor") == null, "baseline is the PS1 floor")
+	assert_not_null(built.get_node_or_null("G5Corridor"), "default floor has the corridor")
 	var before := _snapshot(plain)
 	var after := _snapshot(built)
 	assert_true(before.size() > 500, "floor 4 inventory (%d nodes)" % before.size())
@@ -254,7 +268,7 @@ func test_every_room_door_swings_its_tripo_leaf() -> void:
 
 
 func test_room_plates_keep_their_numbers_and_places() -> void:
-	var floor4 := spawn(true)
+	var floor4 := spawn(true, Vector3.ZERO, true)
 	await wait_frames(1)
 	var corridor := floor4.get_node("G5Corridor")
 	for style: String in ["Alu", "Enamel"]:
@@ -271,6 +285,7 @@ func test_room_plates_keep_their_numbers_and_places() -> void:
 			assert_true(box.position.z >= 0.099 and box.end.z < 0.11, "%s plate %s on the wall (%s)" % [style, room, box])
 			assert_eq((old.get_node("Mesh") as Node).get_meta(&"room_number"), room.to_int(), "room number kept " + room)
 	assert_true((corridor.get_node("plates_alu") as Node3D).visible, "aluminium plates by default")
+	assert_false((corridor.get_node("plates_enamel") as Node3D).visible, "pilot's enamel plates start hidden")
 	PILOT.set_plates(floor4, "enamel")
 	assert_false((corridor.get_node("plates_alu") as Node3D).visible, "aluminium off")
 	assert_true((corridor.get_node("plates_enamel") as Node3D).visible, "enamel on")
@@ -278,7 +293,7 @@ func test_room_plates_keep_their_numbers_and_places() -> void:
 
 
 func test_old_408_doorway_and_ends() -> void:
-	var floor4 := spawn(true)
+	var floor4 := spawn(true, Vector3.ZERO, true)
 	await wait_frames(1)
 	var corridor := floor4.get_node("G5Corridor")
 	var sealed := floor4.get_node("Corridor/Sealed408") as MeshInstance3D
@@ -298,7 +313,7 @@ func test_old_408_doorway_and_ends() -> void:
 		cap_node.hide()
 		assert_false(wall.is_visible_in_tree(), cap + " end wall hidden with its cap")
 		cap_node.show()
-	PILOT.set_upgraded(floor4, false)
+	SHELL.set_upgraded(floor4, false)
 	assert_true(sealed.visible, "PS1 seal back")
 	assert_false((floor4.get_node("Corridor/WestEnd/G5EndWest") as Node3D).visible, "end wall off with the corridor")
 
@@ -311,11 +326,11 @@ func test_before_after_and_tube_glow() -> void:
 	var added: Array = corridor.get_meta(&"added")
 	assert_true(ps1.size() >= 140, "PS1 meshes replaced (%d)" % ps1.size())
 	assert_true(ps1.all(func(n: Node3D) -> bool: return not n.visible), "PS1 hidden under the corridor")
-	PILOT.set_upgraded(floor4, false)
+	SHELL.set_upgraded(floor4, false)
 	assert_false(corridor.visible, "corridor off")
 	assert_true(ps1.all(func(n: Node3D) -> bool: return n.visible), "PS1 back")
 	assert_true(added.all(func(n: Node3D) -> bool: return not n.visible), "leaves and end walls off")
-	PILOT.set_upgraded(floor4, true)
+	SHELL.set_upgraded(floor4, true)
 	for light_name: String in LIGHTS:
 		var batten := corridor.get_node("lamps/Lamp_" + light_name) as MeshInstance3D
 		var glow: StandardMaterial3D = null
@@ -341,5 +356,11 @@ func test_pilot_scene_loads() -> void:
 	tree.root.add_child(scene)
 	await wait_frames(2)
 	assert_not_null(scene.get_node_or_null("Floor4/G5Corridor"), "pilot scene builds the corridor")
+	assert_eq(scene.get_node("Floor4").find_children("G5Corridor*", "", false, false).size(), 1,
+		"pilot reuses the floor's corridor (no second build)")
+	assert_eq(scene.get_node("Floor4/Corridor/LockedDoor_401/Hinge").find_children("G5*", "", false, false).size(), 1,
+		"one Tripo leaf per door")
+	for part: String in ["plates_enamel", "seal_board"]:
+		assert_not_null(scene.get_node_or_null("Floor4/G5Corridor/" + part), "pilot variant " + part)
 	assert_not_null(scene.get_node_or_null("Player"), "pilot is walkable")
 	scene.process_mode = Node.PROCESS_MODE_DISABLED

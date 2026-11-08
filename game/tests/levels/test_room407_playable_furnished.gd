@@ -243,7 +243,10 @@ func test_no_corridor_face_shares_a_plane_with_the_furnished_walls() -> void:
 	var walls: Array[AABB] = []
 	for mesh: MeshInstance3D in room.get_node("Furnished/architecture").find_children("*", "MeshInstance3D", true, false):
 		walls.append(mesh.global_transform * mesh.get_aabb())
-	for mesh: MeshInstance3D in floor4.get_node("Corridor").find_children("*", "MeshInstance3D", true, false):
+	# T-237: the new corridor (G5Corridor, corridor_shell.gd) is checked as well as the PS1 one.
+	var corridor_meshes: Array[Node] = floor4.get_node("Corridor").find_children("*", "MeshInstance3D", true, false)
+	corridor_meshes.append_array(floor4.get_node("G5Corridor").find_children("*", "MeshInstance3D", true, false))
+	for mesh: MeshInstance3D in corridor_meshes:
 		if not mesh.is_visible_in_tree():
 			continue
 		var box: AABB = mesh.global_transform * mesh.get_aabb()

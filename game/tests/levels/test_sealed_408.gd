@@ -10,6 +10,9 @@ func before_each() -> void:
 	fixture = Node3D.new()
 	tree.root.add_child(fixture)
 	var floor4 := preload("res://scenes/levels/floor4/floor4.tscn").instantiate()
+	# T-237: this audits the PS1 panel, plates and frames, which the new corridor hides (it stays the G fallback
+	# of the pilot); the new plates and walled-up doorway are audited in test_corridor_g5.
+	floor4.set("upgraded_corridor", false)
 	fixture.add_child(floor4)
 	corridor = floor4.get_node("Corridor")
 	building = preload("res://scenes/levels/campus/building_b.tscn").instantiate()

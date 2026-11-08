@@ -8,10 +8,15 @@ const DRAWN_BY_FURNISHED_ROOM: Array[String] = ["Corridor/RoomPartition_38/Mesh"
 ## D-133 (owner: no handle on the door into 407): the Tripo levers were 10 cm, small and dark in the
 ## corridor wall's 20 cm recess; a main door's 14 cm lever shows from the corridor.
 const LEVER_SCALE := 1.4
+## T-237 (D-148): the corridor in room 407's style (corridor_shell.gd) over the PS1 one, in every chapter. Off
+## only to compare with the PS1 corridor (tests, the T-229 survey): set it before the floor enters the tree.
+@export var upgraded_corridor := true
 
 
 func _ready() -> void:
 	_hang_furnished_door()
+	if upgraded_corridor:
+		Floor4CorridorShell.build(self)
 	sync_door_anchor()
 
 
