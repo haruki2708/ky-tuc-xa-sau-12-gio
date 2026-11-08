@@ -1,24 +1,34 @@
 {
   "basis": "Floor4 metres (Godot axes); place every file at the Floor4 origin",
-  "segment_x": [
-    26.0,
-    34.0
+  "corridor_x": [
+    0.0,
+    44.0
   ],
-  "atlas": [
-    2048,
-    1024
-  ],
+  "atlas": {
+    "walls": [
+      4096,
+      2048
+    ],
+    "floor": [
+      4096,
+      2048
+    ],
+    "ceiling": [
+      4096,
+      1024
+    ]
+  },
   "px_per_metre": {
-    "walls": 253,
-    "floor": 245,
-    "ceiling": 253
+    "walls": 207,
+    "floor": 191,
+    "ceiling": 126
   },
   "files": {
     "shell": {
-      "file": "segment_shell.glb",
-      "triangles": 120,
+      "file": "corridor_shell.glb",
+      "triangles": 406,
       "objects": 10,
-      "bytes": 18728,
+      "bytes": 62496,
       "materials": [
         "CorrCeiling",
         "CorrFloor",
@@ -26,46 +36,97 @@
         "CorrWall"
       ]
     },
+    "ends": {
+      "file": "corridor_ends.glb",
+      "triangles": 24,
+      "objects": 2,
+      "bytes": 5576,
+      "materials": [
+        "CorrSkirting",
+        "CorrWall"
+      ]
+    },
     "frames": {
-      "file": "segment_frames.glb",
-      "triangles": 2280,
-      "objects": 22,
-      "bytes": 127808,
+      "file": "corridor_frames.glb",
+      "triangles": 12288,
+      "objects": 10,
+      "bytes": 638176,
       "materials": [
         "CorrFrameGreen",
         "CorrGranite",
         "CorrHinge"
       ]
     },
+    "railing": {
+      "file": "corridor_railing.glb",
+      "triangles": 11488,
+      "objects": 10,
+      "bytes": 706156,
+      "materials": [
+        "CorrRailSteel"
+      ]
+    },
     "lamps": {
-      "file": "segment_lamps.glb",
-      "triangles": 2744,
-      "objects": 26,
-      "bytes": 156200,
+      "file": "corridor_lamps.glb",
+      "triangles": 12348,
+      "objects": 9,
+      "bytes": 654764,
       "materials": [
         "CorrEnamel",
         "CorrTubeCap",
         "CorrTubeGlass"
       ]
     },
-    "railing_dense": {
-      "file": "segment_railing_dense.glb",
-      "triangles": 2080,
-      "objects": 76,
-      "bytes": 168776,
+    "plates_alu": {
+      "file": "corridor_plates_alu.glb",
+      "triangles": 5324,
+      "objects": 8,
+      "bytes": 303280,
       "materials": [
-        "CorrRailSteel"
+        "CorrPlateAlu",
+        "CorrPlateInk",
+        "CorrScrew"
       ]
     },
-    "railing_classic": {
-      "file": "segment_railing_classic.glb",
-      "triangles": 1456,
-      "objects": 24,
-      "bytes": 90336,
+    "plates_enamel": {
+      "file": "corridor_plates_enamel.glb",
+      "triangles": 3068,
+      "objects": 8,
+      "bytes": 162336,
       "materials": [
-        "CorrRailSteel"
+        "CorrPlateEnamel",
+        "CorrPlatePrint"
+      ]
+    },
+    "seal_board": {
+      "file": "corridor_seal_board.glb",
+      "triangles": 2380,
+      "objects": 1,
+      "bytes": 143324,
+      "materials": [
+        "CorrBoard",
+        "CorrScrew"
       ]
     }
   },
-  "pilot_triangles": 7224
+  "default_triangles": 41878,
+  "materials": [
+    "CorrBoard",
+    "CorrCeiling",
+    "CorrEnamel",
+    "CorrFloor",
+    "CorrFrameGreen",
+    "CorrGranite",
+    "CorrHinge",
+    "CorrPlateAlu",
+    "CorrPlateEnamel",
+    "CorrPlateInk",
+    "CorrPlatePrint",
+    "CorrRailSteel",
+    "CorrScrew",
+    "CorrSkirting",
+    "CorrTubeCap",
+    "CorrTubeGlass",
+    "CorrWall"
+  ]
 }

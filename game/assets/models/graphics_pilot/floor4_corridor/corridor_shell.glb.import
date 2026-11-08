@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://k67xf88d1ve8"
-path="res://.godot/imported/segment_frames.glb-dbc306378258200de9a268b67b528d82.scn"
+uid="uid://dmffbhbbk5h1e"
+path="res://.godot/imported/corridor_shell.glb-19cd02254fda82f5038602d516281876.scn"
 
 [deps]
 
-source_file="res://assets/models/graphics_pilot/floor4_corridor/segment_frames.glb"
-dest_files=["res://.godot/imported/segment_frames.glb-dbc306378258200de9a268b67b528d82.scn"]
+source_file="res://assets/models/graphics_pilot/floor4_corridor/corridor_shell.glb"
+dest_files=["res://.godot/imported/corridor_shell.glb-19cd02254fda82f5038602d516281876.scn"]
 
 [params]
 

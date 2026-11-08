@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://ccfcd4wktrjey"
-path="res://.godot/imported/segment_railing_dense.glb-781ec0c1c33ea7f0bf32010e1a9e1209.scn"
+uid="uid://c4smx7e26nax0"
+path="res://.godot/imported/corridor_frames.glb-c9b44c645da59c74a9bd05121b46e444.scn"
 
 [deps]
 
-source_file="res://assets/models/graphics_pilot/floor4_corridor/segment_railing_dense.glb"
-dest_files=["res://.godot/imported/segment_railing_dense.glb-781ec0c1c33ea7f0bf32010e1a9e1209.scn"]
+source_file="res://assets/models/graphics_pilot/floor4_corridor/corridor_frames.glb"
+dest_files=["res://.godot/imported/corridor_frames.glb-c9b44c645da59c74a9bd05121b46e444.scn"]
 
 [params]
 

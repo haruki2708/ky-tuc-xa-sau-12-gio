@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://d262utmm3g60h"
-path="res://.godot/imported/segment_lamps.glb-7bc812a249136a5df86f146ceb1b9e41.scn"
+uid="uid://b0exs72llhpff"
+path="res://.godot/imported/corridor_plates_enamel.glb-4703df808b53ac1fea5ef9c73cbc0c11.scn"
 
 [deps]
 
-source_file="res://assets/models/graphics_pilot/floor4_corridor/segment_lamps.glb"
-dest_files=["res://.godot/imported/segment_lamps.glb-7bc812a249136a5df86f146ceb1b9e41.scn"]
+source_file="res://assets/models/graphics_pilot/floor4_corridor/corridor_plates_enamel.glb"
+dest_files=["res://.godot/imported/corridor_plates_enamel.glb-4703df808b53ac1fea5ef9c73cbc0c11.scn"]
 
 [params]
 
