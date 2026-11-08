@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dn73htj32f8is"
-path="res://.godot/imported/segment_railing_classic.glb-07db040eb2b0f4f9a3bde992caffc712.scn"
+uid="uid://bkw7d24u6pvm5"
+path="res://.godot/imported/corridor_lamps.glb-47fb8f57d54d76e44223ce6757180ce9.scn"
 
 [deps]
 
-source_file="res://assets/models/graphics_pilot/floor4_corridor/segment_railing_classic.glb"
-dest_files=["res://.godot/imported/segment_railing_classic.glb-07db040eb2b0f4f9a3bde992caffc712.scn"]
+source_file="res://assets/models/graphics_pilot/floor4_corridor/corridor_lamps.glb"
+dest_files=["res://.godot/imported/corridor_lamps.glb-47fb8f57d54d76e44223ce6757180ce9.scn"]
 
 [params]
 

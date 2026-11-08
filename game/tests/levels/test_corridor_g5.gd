@@ -1,26 +1,30 @@
 extends TestCase
-## T-233 (D-142): the floor-4 corridor pilot segment (corridor_g5_pilot.gd) is visual only. Built over
-## floor4.tscn it must leave every collider, marker, light, area and navigation node of the gameplay
-## contract (art_source/graphics_upgrade/floor4_corridor/PLAN.md section 2) exactly as it was, keep the
-## lanes clear, and swing 406's Tripo leaf with RoomDoor.
+## T-233, T-235 (D-142, D-144): the whole floor-4 corridor in room 407's style (corridor_g5_pilot.gd) is visual
+## only. Built over floor4.tscn it must leave every collider, marker, light, area and navigation node of the
+## gameplay contract (art_source/graphics_upgrade/floor4_corridor/PLAN.md section 2) exactly as it was, keep
+## the lanes clear, swing the Tripo leaves with RoomDoor and keep the room numbers where they were.
 
 const FLOOR := preload("res://scenes/levels/floor4/floor4.tscn")
 const PILOT := preload("res://scenes/levels/floor4/corridor_g5_pilot.gd")
 const PILOT_SCENE := "res://scenes/levels/floor4/corridor_g5_pilot.tscn"
+const ROOM_DOORS: Array[String] = ["401", "402", "403", "404", "405", "406", "408"]
+## RoomPlate_* centres (T-190 layout).
+const PLATES := {"401": 8.0, "402": 12.0, "403": 16.0, "404": 20.0, "405": 24.0, "406": 28.0, "407": 32.0, "408": 42.0}
+const LIGHTS: Array[String] = ["CorridorLight_401", "CorridorLight_402", "CorridorLight_403", "CorridorLight_404",
+	"CorridorLight_405", "CorridorLight_406", "CorridorLight_407", "CorridorLight_408", "CorridorLight_Desk"]
 ## PLAN.md section 2: nodes later lanes and directors call by name.
 const CONTRACT: Array[String] = ["Corridor", "Room407", "Washroom", "DutyDesk", "Environment", "Anchors",
 	"Door407/Pivot", "Door407/Pivot/Leaf", "Door407/Pivot/RulesPaper", "Door407/Pivot/HandlePivot/Grip",
 	"Door407/InteractShape", "Anchors/RulesPaper407", "DoorGap", "Threshold/Shape",
 	"Corridor/RoomPartition_38/Mesh", "Corridor/Navigation", "Corridor/Room407Link", "Corridor/WestEnd",
-	"Corridor/EastEnd", "Corridor/RailingBarrier", "Corridor/LockedDoor_406/Blocker",
-	"Corridor/LockedDoor_406/Hinge", "Corridor/LockedDoor_408/Hinge", "Corridor/RoomPlate_406",
-	"Corridor/RoomPlate_407", "Corridor/Former408Wall", "Corridor/CorridorLight_406/LightHum",
-	"Corridor/CorridorLight_407/LightHum", "Corridor/AmbientZone", "Corridor/ReverbZone"]
-## Where a body walks in the segment: nothing new may reach into it (the floor, wall and ceiling faces,
-## the skirting, architraves and sills lie on its edges; lamps above, railing beyond).
-const WALKABLE := AABB(Vector3(26.0, 0.013, 0.12), Vector3(8.0, 2.78, 3.81))
-## Triangles of what the pilot shows (shell, frames, lamps, dense railing; geometry_report.json).
-const TRIANGLE_BUDGET := 12000
+	"Corridor/EastEnd", "Corridor/RailingBarrier", "Corridor/Former408Wall", "Corridor/Sealed408",
+	"Corridor/Doorway_408", "Corridor/AmbientZone", "Corridor/ReverbZone", "Washroom/EntranceWest",
+	"Washroom/EntranceEast", "Washroom/EntranceLintel", "Anchors/HallBoard", "Anchors/Speaker"]
+## Where a body walks: nothing new may reach into it (the floor, wall, ceiling and end faces, the skirting,
+## architraves, sills and plates lie on its edges; lamps above, railing beyond).
+const WALKABLE := AABB(Vector3(0.02, 0.013, 0.12), Vector3(43.96, 2.78, 3.81))
+## Triangles of what the pilot shows by default (geometry_report.json default_triangles, about 42 000).
+const TRIANGLE_BUDGET := 50000
 var fixtures: Array[Node] = []
 
 
@@ -32,17 +36,17 @@ func after_each() -> void:
 	await tree.create_timer(0.4).timeout
 
 
-func spawn(with_segment: bool, origin: Vector3 = Vector3.ZERO) -> Node3D:
+func spawn(with_corridor: bool, origin: Vector3 = Vector3.ZERO) -> Node3D:
 	var floor4 := FLOOR.instantiate() as Node3D
 	floor4.position = origin
 	fixtures.append(floor4)
 	tree.root.add_child(floor4)
-	if with_segment:
+	if with_corridor:
 		PILOT.build(floor4)
 	return floor4
 
 
-## The pilot's own nodes: G5Segment and the G5* pieces it adds under floor 4 (split meshes, 406's leaf).
+## The pilot's own nodes: G5Corridor and the G5* pieces it hangs under floor 4 (leaves, end walls).
 func _added_by_pilot(floor4: Node3D, node: Node) -> bool:
 	while node != floor4:
 		if String(node.name).begins_with("G5"):
@@ -79,6 +83,8 @@ func _snapshot(floor4: Node3D) -> Dictionary:
 		if node is AudioStreamPlayer3D:
 			var stream := (node as AudioStreamPlayer3D).stream
 			row.append(stream.resource_path if stream else "")
+		if node.has_meta(&"room_number"):
+			row.append(node.get_meta(&"room_number"))
 		result[path] = row
 	return result
 
@@ -102,34 +108,52 @@ func is_equal_approx_any(a: Variant, b: Variant) -> bool:
 	return (a as Vector3).is_equal_approx(b) if a is Vector3 else is_equal_approx(a, b)
 
 
-func test_segment_parts_and_contract_nodes() -> void:
+func _bounds(floor4: Node3D, node: Node) -> AABB:
+	var box := AABB()
+	var first := true
+	var meshes: Array[Node] = node.find_children("*", "MeshInstance3D", true, false)
+	if node is MeshInstance3D:
+		meshes.append(node)
+	for mesh: MeshInstance3D in meshes:
+		var b: AABB = floor4.global_transform.affine_inverse() * mesh.global_transform * mesh.get_aabb()
+		box = b if first else box.merge(b)
+		first = false
+	return box
+
+
+func test_corridor_parts_and_contract_nodes() -> void:
 	var floor4 := spawn(true)
 	await wait_frames(2)
-	var segment := floor4.get_node_or_null("G5Segment") as Node3D
-	assert_not_null(segment, "pilot segment built")
-	for part: String in ["shell", "frames", "lamps", "railing_dense", "railing_classic"]:
-		assert_not_null(segment.get_node_or_null(part), "segment part " + part)
-	for path: String in ["shell/WallWest", "shell/Lintel406", "shell/WallMiddle", "shell/Lintel407", "shell/WallEast",
-			"shell/HallFloor", "shell/HallCeiling", "shell/Skirting1", "frames/Door406LiningW", "frames/Door407Sill",
-			"frames/Door406StopW", "lamps/Lamp0Housing", "railing_dense/Handrail", "railing_dense/Post2"]:
-		assert_not_null(segment.get_node_or_null(path), path)
+	var corridor := floor4.get_node_or_null("G5Corridor") as Node3D
+	assert_not_null(corridor, "corridor built")
+	for part: String in ["shell", "frames", "lamps", "railing", "plates_alu", "plates_enamel", "seal_board"]:
+		assert_not_null(corridor.get_node_or_null(part), "corridor part " + part)
+	for bay: String in ["Washroom", "401", "402", "403", "404", "405", "406", "407W", "407E", "408"]:
+		assert_not_null(corridor.get_node_or_null("shell/Bay" + bay), "shell bay " + bay)
+		assert_not_null(corridor.get_node_or_null("railing/Rail" + bay), "railing bay " + bay)
+	for room: String in ["401", "402", "403", "404", "405", "406", "407", "408", "408Old"]:
+		assert_not_null(corridor.get_node_or_null("frames/Frame" + room), "door frame " + room)
+	for light: String in LIGHTS:
+		assert_not_null(corridor.get_node_or_null("lamps/Lamp_" + light), "batten under " + light)
+	assert_true(corridor.find_child("*classic*", true, false) == null, "railing A2 removed (D-144)")
 	for path: String in CONTRACT:
 		assert_not_null(floor4.get_node_or_null(path), "contract node " + path)
-	assert_true((segment.get_node("railing_dense") as Node3D).visible, "dense railing by default")
-	assert_false((segment.get_node("railing_classic") as Node3D).visible, "classic railing hidden")
-	PILOT.set_railing(floor4, "classic")
-	assert_false((segment.get_node("railing_dense") as Node3D).visible, "dense railing off")
-	assert_true((segment.get_node("railing_classic") as Node3D).visible, "classic railing on")
-	PILOT.set_railing(floor4, "dense")
-	assert_true((segment.get_node("railing_dense") as Node3D).visible, "dense railing back")
-	# The shell surfaces wear room 407's shader with this segment's masks.
-	var wall := segment.get_node("shell/WallMiddle") as MeshInstance3D
-	var material := wall.get_surface_override_material(0) as ShaderMaterial
-	assert_not_null(material, "wall has the shell shader")
-	if material:
-		assert_eq(material.shader.resource_path, "res://rendering/room407_shell.gdshader")
-		assert_eq((material.get_shader_parameter("mask") as Texture2D).resource_path,
-			"res://assets/textures/graphics_pilot/floor4_corridor/mask_walls.png")
+	for room: String in ROOM_DOORS:
+		for child: String in ["Blocker", "Hinge", "Hinge/Leaf"]:
+			assert_not_null(floor4.get_node_or_null("Corridor/LockedDoor_%s/%s" % [room, child]), "LockedDoor_%s/%s" % [room, child])
+	for light: String in LIGHTS:
+		assert_not_null(floor4.get_node_or_null("Corridor/%s/LightHum" % light), light + "/LightHum")
+	# The shell wears room 407's shader with this corridor's masks.
+	var bay := corridor.get_node("shell/Bay403") as MeshInstance3D
+	var shaders := 0
+	for surface in bay.mesh.get_surface_count():
+		var material := bay.get_surface_override_material(surface) as ShaderMaterial
+		if material:
+			shaders += 1
+			assert_eq(material.shader.resource_path, "res://rendering/room407_shell.gdshader")
+			assert_true((material.get_shader_parameter("mask") as Texture2D).resource_path.begins_with(
+				"res://assets/textures/graphics_pilot/floor4_corridor/mask_"), "corridor mask")
+	assert_eq(shaders, bay.mesh.get_surface_count(), "every surface of a bay uses the shell shader")
 
 
 func test_gameplay_nodes_are_untouched() -> void:
@@ -145,29 +169,44 @@ func test_gameplay_nodes_are_untouched() -> void:
 			assert_true(_same(before[path], after[path]), "unchanged: %s %s -> %s" % [path, before[path], after[path]])
 	for path: String in after:
 		assert_true(before.has(path), "no new gameplay node: " + path)
+	assert_true(built.find_children("*", "CollisionObject3D", true, false).all(
+		func(n: Node) -> bool: return not _added_by_pilot(built, n)), "no collider added")
 
 
 func test_new_visuals_stay_out_of_the_walkway() -> void:
 	var floor4 := spawn(true)
 	await wait_frames(1)
-	var segment := floor4.get_node("G5Segment") as Node3D
+	var corridor := floor4.get_node("G5Corridor") as Node3D
+	var to_floor := floor4.global_transform.affine_inverse()
+	var inside := WALKABLE.grow(-0.001)
 	var triangles := 0
-	for mesh: MeshInstance3D in segment.find_children("*", "MeshInstance3D", true, false):
-		var box: AABB = floor4.global_transform.affine_inverse() * mesh.global_transform * mesh.get_aabb()
-		assert_false(box.intersects(WALKABLE), "%s stays out of the walkway (%s)" % [mesh.name, box])
-		if mesh.is_visible_in_tree():
-			for surface in mesh.mesh.get_surface_count():
-				triangles += (mesh.mesh.surface_get_arrays(surface)[Mesh.ARRAY_INDEX] as PackedInt32Array).size() / 3
-	assert_true(triangles > 2000 and triangles < TRIANGLE_BUDGET, "pilot triangles %d" % triangles)
-	# 406's Tripo leaf closes inside the old leaf's blocker; only its levers stand out of it.
-	var leaf := floor4.get_node("Corridor/LockedDoor_406/Hinge/G5Leaf") as Node3D
-	var blocker := AABB(Vector3(27.53, 0.0, -0.08), Vector3(0.93, 2.4, 0.16))
-	for mesh: MeshInstance3D in leaf.find_children("*", "MeshInstance3D", true, false):
-		var box: AABB = floor4.global_transform.affine_inverse() * mesh.global_transform * mesh.get_aabb()
-		if mesh.find_parent("Lever*") == null:
-			assert_true(blocker.encloses(box), "406 leaf inside its blocker (%s)" % box)
-		else:
-			assert_true(box.end.z < 0.14 and box.position.z > -0.2, "406 lever close to the leaf (%s)" % box)
+	var meshes: Array[Node] = corridor.find_children("*", "MeshInstance3D", true, false)
+	meshes.append(floor4.get_node("Corridor/WestEnd/G5EndWest"))
+	meshes.append(floor4.get_node("Corridor/EastEnd/G5EndEast"))
+	for mesh: MeshInstance3D in meshes:
+		# Joined meshes (a bay, a door frame) span the corridor, so test their vertices, not their boxes.
+		var into := to_floor * mesh.global_transform
+		var offending := 0
+		for surface in mesh.mesh.get_surface_count():
+			var arrays := mesh.mesh.surface_get_arrays(surface)
+			for vertex: Vector3 in arrays[Mesh.ARRAY_VERTEX] as PackedVector3Array:
+				if inside.has_point(into * vertex):
+					offending += 1
+			if mesh.is_visible_in_tree():
+				triangles += (arrays[Mesh.ARRAY_INDEX] as PackedInt32Array).size() / 3
+		assert_eq(offending, 0, "%s stays out of the walkway" % mesh.name)
+	assert_true(triangles > 20000 and triangles < TRIANGLE_BUDGET, "corridor triangles %d" % triangles)
+	# Each Tripo leaf closes inside its old leaf's blocker; only its levers stand out of it.
+	for room: String in ROOM_DOORS:
+		var x := float(room.to_int() - 401) * 4.0 + 8.0 if room != "408" else 42.0
+		var blocker := AABB(Vector3(x - 0.47, 0.0, -0.08), Vector3(0.93, 2.4, 0.16))
+		var leaf := floor4.get_node("Corridor/LockedDoor_%s/Hinge/G5Leaf" % room) as Node3D
+		for mesh: MeshInstance3D in leaf.find_children("*", "MeshInstance3D", true, false):
+			var box: AABB = to_floor * mesh.global_transform * mesh.get_aabb()
+			if mesh.find_parent("Lever*") == null:
+				assert_true(blocker.encloses(box), "%s leaf inside its blocker (%s)" % [room, box])
+			else:
+				assert_true(box.end.z < 0.14 and box.position.z > -0.2, "%s lever close to the leaf (%s)" % [room, box])
 
 
 func test_lanes_stay_clear() -> void:
@@ -178,8 +217,12 @@ func test_lanes_stay_clear() -> void:
 	var shape := CapsuleShape3D.new()
 	shape.radius = 0.3
 	shape.height = 1.75
-	for lane: Array in [[Vector3(24.5, 0.03, 3.0), Vector3(35.5, 0.03, 3.0)], [Vector3(24.5, 0.03, 1.0), Vector3(35.5, 0.03, 1.0)],
-			[Vector3(32.0, 0.03, 2.0), Vector3(32.0, 0.03, 0.45)]]:
+	# Z = 3 the whole way; Z = 1 too, except in front of the duty desk (PS1 until round 3, z up to 0.745),
+	# which a body passes 10 cm further out; and into room 407.
+	var lanes := [[Vector3(0.4, 0.03, 3.0), Vector3(43.6, 0.03, 3.0)], [Vector3(0.4, 0.03, 1.0), Vector3(38.9, 0.03, 1.0)],
+		[Vector3(38.9, 0.03, 1.1), Vector3(41.1, 0.03, 1.1)], [Vector3(41.1, 0.03, 1.0), Vector3(43.6, 0.03, 1.0)],
+		[Vector3(32.0, 0.03, 2.0), Vector3(32.0, 0.03, 0.45)]]
+	for lane: Array in lanes:
 		var query := PhysicsShapeQueryParameters3D.new()
 		query.shape = shape
 		query.collision_mask = 1
@@ -190,46 +233,106 @@ func test_lanes_stay_clear() -> void:
 		assert_true(space.cast_motion(query)[0] >= 0.999, "lane %s -> %s unblocked" % [lane[0], lane[1]])
 
 
-func test_door_406_swings_the_tripo_leaf() -> void:
+func test_every_room_door_swings_its_tripo_leaf() -> void:
 	var floor4 := spawn(true)
 	await wait_frames(1)
-	var door := floor4.get_node("Corridor/LockedDoor_406") as RoomDoor
-	var leaf := floor4.get_node("Corridor/LockedDoor_406/Hinge/G5Leaf") as Node3D
-	assert_true((floor4.get_node("Corridor/LockedDoor_406/Hinge/Leaf") as Node3D).find_children("*", "MeshInstance3D", true, false)
-		.all(func(m: Node) -> bool: return not (m as Node3D).visible), "PS1 leaf hidden")
-	door.set_open(true)
+	for room: String in ROOM_DOORS:
+		var door := floor4.get_node("Corridor/LockedDoor_" + room) as RoomDoor
+		assert_true((floor4.get_node("Corridor/LockedDoor_%s/Hinge/Leaf" % room) as Node3D).find_children("*", "MeshInstance3D", true, false)
+			.all(func(m: Node) -> bool: return not (m as Node3D).visible), room + " PS1 leaf hidden")
+		door.set_open(true)
 	await tree.create_timer(0.5).timeout
-	var facing := leaf.global_basis.x
-	assert_true(facing.is_equal_approx(Vector3(0, 0, -1)) or absf(facing.z + 1.0) < 0.01, "leaf turned out into the corridor (%s)" % facing)
-	assert_true(leaf.global_position.z - floor4.global_position.z > 0.4, "open leaf stands in the corridor")
-	door.set_open(false)
+	for room: String in ROOM_DOORS:
+		var leaf := floor4.get_node("Corridor/LockedDoor_%s/Hinge/G5Leaf" % room) as Node3D
+		assert_true(absf(leaf.global_basis.x.z + 1.0) < 0.01, "%s leaf turned out into the corridor (%s)" % [room, leaf.global_basis.x])
+		assert_true(leaf.global_position.z - floor4.global_position.z > 0.4, room + " open leaf stands in the corridor")
+		(floor4.get_node("Corridor/LockedDoor_" + room) as RoomDoor).set_open(false)
 	await tree.create_timer(0.5).timeout
-	assert_true(absf(leaf.global_position.z - floor4.global_position.z + 0.025) < 0.01, "closed again")
+	for room: String in ROOM_DOORS:
+		var leaf := floor4.get_node("Corridor/LockedDoor_%s/Hinge/G5Leaf" % room) as Node3D
+		assert_true(absf(leaf.global_position.z - floor4.global_position.z + 0.025) < 0.01, room + " closed again")
+
+
+func test_room_plates_keep_their_numbers_and_places() -> void:
+	var floor4 := spawn(true)
+	await wait_frames(1)
+	var corridor := floor4.get_node("G5Corridor")
+	for style: String in ["Alu", "Enamel"]:
+		for room: String in PLATES:
+			var plate := corridor.get_node_or_null("plates_%s/Plate%s_%s" % [style.to_lower(), style, room]) as Node3D
+			assert_not_null(plate, "%s plate %s" % [style, room])
+			if plate == null:
+				continue
+			var box := _bounds(floor4, plate)
+			var old := floor4.get_node("Corridor/RoomPlate_" + room) as Node3D
+			assert_true(absf(box.get_center().x - PLATES[room]) < 0.01 and absf(box.get_center().x - old.position.x) < 0.01,
+				"%s plate %s centred over its door (%s)" % [style, room, box.get_center()])
+			assert_true(absf(box.get_center().y - old.position.y) < 0.01, "%s plate %s at the old height" % [style, room])
+			assert_true(box.position.z >= 0.099 and box.end.z < 0.11, "%s plate %s on the wall (%s)" % [style, room, box])
+			assert_eq((old.get_node("Mesh") as Node).get_meta(&"room_number"), room.to_int(), "room number kept " + room)
+	assert_true((corridor.get_node("plates_alu") as Node3D).visible, "aluminium plates by default")
+	PILOT.set_plates(floor4, "enamel")
+	assert_false((corridor.get_node("plates_alu") as Node3D).visible, "aluminium off")
+	assert_true((corridor.get_node("plates_enamel") as Node3D).visible, "enamel on")
+	assert_false((floor4.get_node("Corridor/RoomPlate_405/Mesh") as Node3D).visible, "PS1 plate hidden")
+
+
+func test_old_408_doorway_and_ends() -> void:
+	var floor4 := spawn(true)
+	await wait_frames(1)
+	var corridor := floor4.get_node("G5Corridor")
+	var sealed := floor4.get_node("Corridor/Sealed408") as MeshInstance3D
+	assert_false(sealed.visible, "PS1 seal panel hidden under the new doorway")
+	assert_eq(Vector2(sealed.position.x, sealed.position.y), Vector2(36, 1.02), "Sealed408 kept in place")
+	var board := corridor.get_node("seal_board") as Node3D
+	assert_false(board.visible, "walled up by default")
+	var box := _bounds(floor4, board)
+	assert_true(box.position.x > 35.5 and box.end.x < 36.5 and box.end.z <= 0.1, "planks inside the old frame (%s)" % box)
+	PILOT.set_seal(floor4, "boarded")
+	assert_true(board.visible, "planks on")
+	# The end walls go with their caps: Campus hides the caps to open the stairs.
+	for cap: String in ["WestEnd", "EastEnd"]:
+		var cap_node := floor4.get_node("Corridor/" + cap) as Node3D
+		var wall := cap_node.get_node("G5End" + cap.trim_suffix("End")) as Node3D
+		assert_true(wall.is_visible_in_tree(), cap + " end wall shown")
+		cap_node.hide()
+		assert_false(wall.is_visible_in_tree(), cap + " end wall hidden with its cap")
+		cap_node.show()
+	PILOT.set_upgraded(floor4, false)
+	assert_true(sealed.visible, "PS1 seal back")
+	assert_false((floor4.get_node("Corridor/WestEnd/G5EndWest") as Node3D).visible, "end wall off with the corridor")
 
 
 func test_before_after_and_tube_glow() -> void:
 	var floor4 := spawn(true)
 	await wait_frames(1)
-	var segment := floor4.get_node("G5Segment") as Node3D
-	var ps1: Array = segment.get_meta(&"ps1")
-	var added: Array = segment.get_meta(&"added")
-	assert_true(ps1.size() >= 30, "PS1 meshes of the segment (%d)" % ps1.size())
-	assert_true(ps1.all(func(n: Node3D) -> bool: return not n.visible), "PS1 hidden under the segment")
+	var corridor := floor4.get_node("G5Corridor") as Node3D
+	var ps1: Array = corridor.get_meta(&"ps1")
+	var added: Array = corridor.get_meta(&"added")
+	assert_true(ps1.size() >= 140, "PS1 meshes replaced (%d)" % ps1.size())
+	assert_true(ps1.all(func(n: Node3D) -> bool: return not n.visible), "PS1 hidden under the corridor")
 	PILOT.set_upgraded(floor4, false)
-	assert_false(segment.visible, "segment off")
+	assert_false(corridor.visible, "corridor off")
 	assert_true(ps1.all(func(n: Node3D) -> bool: return n.visible), "PS1 back")
-	assert_true(added.all(func(n: Node3D) -> bool: return not n.visible), "split pieces and 406 leaf off")
+	assert_true(added.all(func(n: Node3D) -> bool: return not n.visible), "leaves and end walls off")
 	PILOT.set_upgraded(floor4, true)
-	var tube := segment.get_node("lamps").find_children("FluorescentTube*", "MeshInstance3D", true, false)[0] as MeshInstance3D
-	var glow := tube.material_override as StandardMaterial3D
-	assert_true(glow != null and glow.emission_enabled and glow.emission_energy_multiplier > 0.5, "tube glows")
-	var light := floor4.get_node("Corridor/CorridorLight_406" if absf(tube.global_position.x - 28.0) < 1.0 else "Corridor/CorridorLight_407") as Light3D
-	light.visible = false
-	await wait_frames(2)
-	assert_eq(glow.emission_energy_multiplier, 0.0, "tube dark with its light")
-	light.visible = true
-	await wait_frames(2)
-	assert_true(glow.emission_energy_multiplier > 0.5, "tube back with its light")
+	for light_name: String in LIGHTS:
+		var batten := corridor.get_node("lamps/Lamp_" + light_name) as MeshInstance3D
+		var glow: StandardMaterial3D = null
+		for surface in batten.mesh.get_surface_count():
+			var material := batten.get_surface_override_material(surface)
+			if material and material.resource_name == "CorrTubeGlow":
+				glow = material as StandardMaterial3D
+		assert_true(glow != null and glow.emission_energy_multiplier > 0.5, light_name + " tubes glow")
+		if glow == null:
+			continue
+		var light := floor4.get_node("Corridor/" + light_name) as Light3D
+		light.visible = false
+		await wait_frames(2)
+		assert_eq(glow.emission_energy_multiplier, 0.0, light_name + " tubes dark with their light")
+		light.visible = true
+		await wait_frames(2)
+		assert_true(glow.emission_energy_multiplier > 0.5, light_name + " tubes back")
 
 
 func test_pilot_scene_loads() -> void:
@@ -237,6 +340,6 @@ func test_pilot_scene_loads() -> void:
 	fixtures.append(scene)
 	tree.root.add_child(scene)
 	await wait_frames(2)
-	assert_not_null(scene.get_node_or_null("Floor4/G5Segment"), "pilot scene builds the segment")
+	assert_not_null(scene.get_node_or_null("Floor4/G5Corridor"), "pilot scene builds the corridor")
 	assert_not_null(scene.get_node_or_null("Player"), "pilot is walkable")
 	scene.process_mode = Node.PROCESS_MODE_DISABLED
