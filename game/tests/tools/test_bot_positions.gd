@@ -27,6 +27,7 @@ func test_profile_positions_clear_world_and_wipe_ray_hits_live_node() -> void:
 						assert_eq(_overlaps(player, point), [] as Array[String], key + " standing capsule")
 			var helper := CH2_ACTIONS.new()
 			helper.world = scene
+			helper.profile = profile
 			tree.root.add_child(helper)
 			var wipe_step: Dictionary = profile.actions.wipe.steps[0]
 			assert_false(wipe_step.has("aim"), "wipe must not store a world coordinate")
@@ -42,6 +43,17 @@ func test_profile_positions_clear_world_and_wipe_ray_hits_live_node() -> void:
 				assert_eq(outcome.status, "PASS")
 				ray.force_raycast_update()
 				assert_eq(ray.get_collider(), wipe, key + " ray must hit Wipe")
+			# Reproduce the first round-4 wipe with live player physics and a door bash.
+			player.set_physics_process(true)
+			var outside: Array = profile.actions.leave_shower.steps[0].position
+			player.global_position = Vector3(outside[0], outside[1], outside[2])
+			player.play_door_bash()
+			var held: Dictionary = await helper.physical("wipe")
+			assert_eq(held.status, "PASS", "door-bash camera reset must not erase wipe aim")
+			# parse_input_event queues the release for the next input flush.
+			await tree.physics_frame
+			await tree.physics_frame
+			assert_false(Input.is_action_pressed("interact"), "release the held input after wiping")
 			# A missing target must fail rather than retain the previous aim.
 			var missing: Dictionary = await helper._invoke(wipe, {"aim_path": "Missing"})
 			assert_eq(missing.status, "FAIL")

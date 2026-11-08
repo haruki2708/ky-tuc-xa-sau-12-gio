@@ -26,6 +26,15 @@ func test_real_profile_nodes_actions_and_navigation_endpoints() -> void:
 	for stage: String in POLICY.STAGES:
 		_check_route(scene, profile.routes[stage])
 	_check_route(scene, [profile.guard_target])
+	# A waypoint is reached within 0.6 m. Stage-entry points must leave that
+	# margin inside the trigger, rather than merely touching its boundary.
+	for transition: Array in [["b", "Garden"], ["garden", "Stadium"], ["stadium", "Gate"]]:
+		var entry: Dictionary = profile.routes[transition[0]][-1]
+		var at: Vector3 = scene.get_node(entry.anchor).global_position if entry.has("anchor") else Vector3(entry.position[0], entry.position[1], entry.position[2])
+		var shape: CollisionShape3D = scene.get_node("Campus/Zones/" + transition[1] + "/Collision")
+		var local := shape.to_local(at + Vector3.UP * 0.5)
+		var half: Vector3 = (shape.shape as BoxShape3D).size * 0.5
+		assert_true(absf(local.x) + 0.6 < half.x and absf(local.z) + 0.6 < half.z, "stage entry clearance: " + str(transition))
 	assert_not_null(scene.get_node_or_null(profile.bindings.death_ui))
 	for path: String in profile.bindings.guard_paths:
 		assert_not_null(scene.get_node_or_null(path), path)
@@ -48,6 +57,14 @@ func test_real_profile_nodes_actions_and_navigation_endpoints() -> void:
 		var outcome: Dictionary = await helper.perform(key)
 		assert_eq(outcome.status, "PASS", key)
 		assert_true(ACTIONS.acknowledged(spec.verify, target, scene), key)
+		if key == "open_fire_door":
+			# The bot queries its next path immediately after perform returns.
+			# An acknowledged door must not leave it using the previous closed link.
+			var door_path := NavigationServer3D.map_get_path(scene.get_world_3d().navigation_map, Vector3(42.22, 0, 1.94), Vector3(45.5, 0, 2), true)
+			print("T236 FIRE DOOR PATH: ", door_path)
+			assert_true(POLICY.path_reaches(door_path, Vector3(45.5, 0, 2)))
+			for node: Vector3 in door_path:
+				assert_true(absf(node.y) < 0.1, "open fire door must cross floor4 without a floor3 detour: " + str(node))
 	# The outdoor navigation mesh has hundreds of regions and registers over
 	# several physics frames: wait until the stadium start is on the map (as
 	# test_campus does) before auditing the routes.
@@ -98,6 +115,12 @@ func _check_paths(scene: Node3D, route: Array, previous: Vector3, guards: Array[
 		else:
 			target = (scene.get_node(point.anchor) as Node3D).global_position
 		var path := NavigationServer3D.map_get_path(map, previous, target, true)
+		if point.get("zone") == "stadium": print("T236 STADIUM PATH: from=", previous, " target=", target, " path=", path)
+		if point.get("zone") == "garden":
+			print("T236 GARDEN PATH: from=", previous, " target=", target, " path=", path)
+			if target.z >= 35.0:
+				for corner: Vector3 in path:
+					assert_true(corner.z > 34.0, "garden rear approach must not detour through the idle crowd")
 		if not POLICY.path_reaches(path, target):
 			print("QA_CH3_NAV: from=", previous, " target=", target, " closest=", NavigationServer3D.map_get_closest_point(map, target), " end=", path[-1] if not path.is_empty() else Vector3.INF)
 		assert_true(POLICY.path_reaches(path, target), "navmesh endpoint: " + str(point))

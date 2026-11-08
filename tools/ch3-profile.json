@@ -80,7 +80,8 @@
           -6.6,
           2
         ],
-        "zone": "b"
+        "zone": "b",
+        "crouch": true
       },
       {
         "position": [
@@ -89,15 +90,26 @@
           -2.3
         ],
         "zone": "b",
-        "wait_seconds": 30
+        "wait_seconds": 30,
+        "crouch": true
       },
       {
         "position": [
           35.75,
           -6.6,
-          2
+          3.0
         ],
-        "zone": "b"
+        "zone": "b",
+        "crouch": true
+      },
+      {
+        "position": [
+          31.5,
+          -6.6,
+          3.0
+        ],
+        "zone": "b",
+        "crouch": true
       },
       {
         "anchor": "Campus/Anchors/Paths/Nhat/P02",
@@ -155,8 +167,37 @@
         "zone": "b"
       },
       {
-        "anchor": "Campus/Anchors/Paths/Nhat/P13",
-        "zone": "garden"
+        "position": [
+          -8,
+          -9.9,
+          6
+        ],
+        "zone": "road"
+      },
+      {
+        "position": [
+          48,
+          -9.9,
+          6
+        ],
+        "zone": "road"
+      },
+      {
+        "position": [
+          48,
+          -9.9,
+          36
+        ],
+        "zone": "road"
+      },
+      {
+        "position": [
+          42,
+          -9.9,
+          36
+        ],
+        "zone": "garden",
+        "crouch": true
       }
     ],
     "garden": [
@@ -164,7 +205,16 @@
         "position": [
           20,
           -9.9,
-          26
+          36
+        ],
+        "zone": "garden",
+        "crouch": true
+      },
+      {
+        "position": [
+          20,
+          -9.9,
+          28
         ],
         "zone": "garden",
         "wait_for": {
@@ -172,7 +222,8 @@
           "property": "bar_weapon:hits_left",
           "equals": 8
         },
-        "wait_timeout": 60
+        "wait_timeout": 60,
+        "crouch": true
       },
       {
         "anchor": "Campus/Anchors/Paths/Nhat/P15",
@@ -187,7 +238,19 @@
         "zone": "road"
       },
       {
-        "anchor": "Campus/Anchors/Paths/Nhat/P18_Wait_stadium",
+        "position": [
+          80,
+          -9.9,
+          226
+        ],
+        "zone": "road"
+      },
+      {
+        "position": [
+          149,
+          -9.9,
+          220
+        ],
         "zone": "stadium"
       }
     ],
@@ -210,10 +273,6 @@
           {
             "anchor": "Campus/Anchors/Paths/Nhat/P22",
             "zone": "stadium"
-          },
-          {
-            "anchor": "Campus/Anchors/Paths/Nhat/P23_Wait_stadium",
-            "zone": "stadium"
           }
         ],
         "until": {
@@ -221,6 +280,22 @@
           "equals": true
         },
         "timeout": 360
+      },
+      {
+        "position": [
+          149,
+          -9.9,
+          220
+        ],
+        "zone": "stadium"
+      },
+      {
+        "position": [
+          80,
+          -9.9,
+          226
+        ],
+        "zone": "road"
       },
       {
         "anchor": "Campus/Anchors/Paths/Nhat/P24",
@@ -312,7 +387,8 @@
       "verify": {
         "flag": "ch3_fire_door_open",
         "equals": true
-      }
+      },
+      "sync_navigation_link": "Campus/Navigation/FireDoorLink"
     },
     "sound_extinguisher": {
       "path": "Campus/Anchors/Extinguisher2F/Use_Extinguisher2F",

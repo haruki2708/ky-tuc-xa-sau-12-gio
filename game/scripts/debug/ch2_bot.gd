@@ -184,6 +184,10 @@ func _tick_actions() -> void:
 	if str(GameState.segment) == str(bindings.round4_segment):
 		if not door_opened:
 			for n in range(1, 4): await _physical("push_door_" + str(n))
+			# Round 4 starts before the first shower choice; leave the bedroom
+			# before the initial wipe instead of aiming from outside its reach.
+			await _physical("leave_shower")
+			if not skipped.is_empty() or not failure.is_empty() or not failed_rules.is_empty(): return
 			door_opened = true
 		if actions.shower_pending:
 			var slot: int = actions.temperatures.size()
@@ -204,7 +208,14 @@ func _tick_actions() -> void:
 
 func _physical(key: String) -> void:
 	if not skipped.is_empty() or not failure.is_empty() or not failed_rules.is_empty(): return
-	_record(await actions.physical(key))
+	var outcome: Dictionary = await actions.physical(key)
+	outcome["action"] = key
+	outcome["segment"] = str(GameState.segment)
+	if is_instance_valid(player):
+		var at: Vector3 = player.global_position
+		outcome["player_position"] = [at.x, at.y, at.z]
+	_record(outcome)
+	if outcome.status != "PASS": _mark("ch2_" + key + "_" + str(outcome.status))
 
 
 func _verify_death() -> void:
