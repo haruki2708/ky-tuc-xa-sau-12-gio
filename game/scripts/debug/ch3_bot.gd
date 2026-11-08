@@ -71,12 +71,23 @@ func _run() -> void:
 			if not await _until(func() -> bool: return str(GameState.segment) == stage or not failed_rules.is_empty(), stage): break
 			for point: Dictionary in profile.routes[stage]:
 				if not failed_rules.is_empty() or not failure.is_empty() or not skipped.is_empty(): break
-				_record(await actions.step(point))
+				var outcome: Dictionary = await actions.step(point)
+				outcome["waypoint"] = point.duplicate(true)
+				outcome["failed_rules"] = failed_rules.duplicate()
+				outcome["segment"] = str(GameState.segment)
+				outcome["nearby_zombies"] = actions.nearby_zombies()
+				outcome["stamina"] = actions.stamina
+				outcome["bar_hits"] = actions.hits
+				if is_instance_valid(player):
+					var at: Vector3 = player.global_position
+					outcome["player_position"] = [at.x, at.y, at.z]
+				_record(outcome)
+				if outcome.status != "PASS": _mark("ch3_waypoint_" + str(outcome.status))
 		await _until(func() -> bool: return 3 in completed_chapters or not failed_rules.is_empty(), "chapter 3 completion")
-		if not failed_rules.is_empty(): failure = "unexpected death " + str(failed_rules)
+		if failure.is_empty() and not failed_rules.is_empty(): failure = "unexpected death " + str(failed_rules)
 		for key in ["key_taken", "noise_203", "fire_alarm", "stadium_survived"]:
-			if not CH3_ACTIONS.acknowledged(profile.bindings[key]): failure = "missing milestone: " + key
-		if Progress.unlocked_chapter() < 4 or not actions.bar_received or actions.companions.size() < 2 or visited.size() < 4:
+			if failure.is_empty() and not CH3_ACTIONS.acknowledged(profile.bindings[key]): failure = "missing milestone: " + key
+		if failure.is_empty() and (Progress.unlocked_chapter() < 4 or not actions.bar_received or actions.companions.size() < 2 or visited.size() < 4):
 			failure = "chapter 4 unlock / bar / companions / four stages not verified"
 	else:
 		if scenario == "ch3_guard":
@@ -112,3 +123,14 @@ func _verify_ch3_death() -> void:
 	if not saw_death or current == null or current.get_instance_id() == original_main_id or GameState.chapter != 3:
 		failure = "death UI / fresh chapter 3 reload not verified"
 	if current != null: main = current
+
+
+func _until(condition: Callable, label: String) -> bool:
+	if not failure.is_empty(): return false
+	var succeeded := await super._until(condition, label)
+	if not succeeded and is_instance_valid(player):
+		var at: Vector3 = player.global_position
+		_record({"status": "FAIL", "reason": failure, "waiting_for": label,
+			"segment": str(GameState.segment), "player_position": [at.x, at.y, at.z]})
+		_mark("ch3_wait_FAIL")
+	return succeeded

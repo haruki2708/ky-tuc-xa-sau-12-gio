@@ -34,6 +34,19 @@ func cancel() -> void:
 	release_movement()
 
 
+func nearby_zombies() -> Array[Dictionary]:
+	var observations: Array[Dictionary] = []
+	var actor := player_node()
+	if actor == null: return observations
+	for zombie: Node3D in get_tree().get_nodes_in_group("ch3_zombie"):
+		if not world.is_ancestor_of(zombie) or zombie.global_position.distance_to(actor.global_position) > 20.0: continue
+		var at := zombie.global_position
+		var goal: Vector3 = zombie.get("_goal")
+		observations.append({"node": str(world.get_path_to(zombie)), "position": [at.x, at.y, at.z],
+			"goal": [goal.x, goal.y, goal.z], "state": str(zombie.get("state")), "caught": bool(zombie.get("_caught"))})
+	return observations
+
+
 func guard_positions() -> Array[Vector3]:
 	var points: Array[Vector3] = []
 	for path: String in profile.get("bindings", {}).get("guard_paths", []):
@@ -75,7 +88,14 @@ func walk(point: Dictionary, allow_guard: bool = false) -> Dictionary:
 		while is_instance_valid(actor) and actor.global_position.distance_to(next) > 0.6:
 			if _cancelled or Time.get_ticks_msec() >= deadline:
 				release_movement()
-				return result("FAIL", "walk cancelled/timed out: " + label)
+				var outcome := result("FAIL", ("walk cancelled: " if _cancelled else "walk timed out: ") + label)
+				outcome["next_path_point"] = [next.x, next.y, next.z]
+				var blockers: Array[String] = []
+				for index in actor.get_slide_collision_count():
+					var collider := actor.get_slide_collision(index).get_collider() as Node
+					if collider != null: blockers.append(str(world.get_path_to(collider)))
+				outcome["slide_colliders"] = blockers
+				return outcome
 			if incoming != &"":
 				await super.execute({"op": "answer_call"})
 				incoming = &""
@@ -145,8 +165,11 @@ func strike_blocker() -> void:
 		event.pressed = true
 		Input.parse_input_event(event)
 		await get_tree().process_frame
-		event.pressed = false
-		Input.parse_input_event(event)
+		# Input may still hold the queued press at process_frame; do not mutate it.
+		var release := InputEventMouseButton.new()
+		release.button_index = MOUSE_BUTTON_LEFT
+		release.pressed = false
+		Input.parse_input_event(release)
 		var until := Time.get_ticks_msec() + 1000
 		while swings == before and Time.get_ticks_msec() < until and not _cancelled: await get_tree().process_frame
 		return
@@ -169,7 +192,26 @@ func perform(key: String) -> Dictionary:
 	target.callv(spec.method, args)
 	var until := Time.get_ticks_msec() + 3000
 	while not acknowledged(spec.verify, target, world) and Time.get_ticks_msec() < until and not _cancelled: await get_tree().process_frame
-	return result("PASS" if acknowledged(spec.verify, target, world) else "FAIL", "action acknowledgement: " + key)
+	if not acknowledged(spec.verify, target, world): return result("FAIL", "action acknowledgement: " + key)
+	# A flag acknowledgement precedes asynchronous navigation-map rebuilds.
+	# Observe the opened link itself; unrelated revisions can finish first.
+	if spec.has("sync_navigation_link"):
+		var link := world.get_node_or_null(str(spec.sync_navigation_link)) as NavigationLink3D
+		if link == null: return result("SKIP", "navigation link missing: " + key)
+		var map := link.get_navigation_map()
+		var from := link.to_global(link.start_position)
+		var to := link.to_global(link.end_position)
+		var sync_deadline := Time.get_ticks_msec() + 10000
+		while true:
+			if _cancelled: return result("FAIL", "action cancelled: " + key)
+			var path := NavigationServer3D.map_get_path(map, from, to, true)
+			var distance := 0.0
+			for index in range(1, path.size()): distance += path[index - 1].distance_to(path[index])
+			if link.enabled and POLICY.path_reaches(path, to, 0.1) and distance <= from.distance_to(to) + 0.25: break
+			if Time.get_ticks_msec() >= sync_deadline: return result("FAIL", "navigation did not synchronize after action: " + key)
+			await get_tree().physics_frame
+	if _cancelled: return result("FAIL", "action cancelled: " + key)
+	return result("PASS", "action acknowledgement: " + key)
 
 
 static func acknowledged(check: Dictionary, target: Node = null, root: Node = null) -> bool:

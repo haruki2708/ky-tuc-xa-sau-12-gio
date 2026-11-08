@@ -166,18 +166,12 @@ func _invoke(target: Node, step: Dictionary) -> Dictionary:
 	if step.has("aim_path"):
 		var aim_node := world.get_node_or_null(str(step.aim_path)) as Node3D
 		if aim_node == null: return result("FAIL", "aim node missing: " + str(step.aim_path))
-		var camera := world.get_viewport().get_camera_3d()
-		if camera == null: return result("SKIP", "active player camera missing")
-		camera.look_at(aim_node.global_position)
-		await get_tree().physics_frame
-		await get_tree().physics_frame
+		var aimed := await _aim_at(aim_node.global_position)
+		if aimed.status != "PASS": return aimed
 	elif step.has("aim"):
 		if not valid({"op": "goto", "position": step.aim}): return result("FAIL", "invalid aim coordinates")
-		var camera := world.get_viewport().get_camera_3d()
-		if camera == null: return result("SKIP", "active player camera missing")
-		camera.look_at(Vector3(step.aim[0], step.aim[1], step.aim[2]))
-		await get_tree().physics_frame
-		await get_tree().physics_frame
+		var aimed := await _aim_at(Vector3(step.aim[0], step.aim[1], step.aim[2]))
+		if aimed.status != "PASS": return aimed
 	if step.has("position"):
 		return await super.execute({"op": "goto", "position": step.position})
 	if step.has("hold_action"):
@@ -199,6 +193,22 @@ func _invoke(target: Node, step: Dictionary) -> Dictionary:
 			args.append(player_node() if SAME._same(value, "$player") else value)
 		target.callv(method, args)
 	return result("PASS", "invoked")
+
+
+func _aim_at(point: Vector3) -> Dictionary:
+	var actor := player_node()
+	var head := actor.get_node_or_null("Head") as Node3D if actor != null else null
+	var camera := world.get_viewport().get_camera_3d()
+	if actor == null or head == null or camera == null:
+		return result("SKIP", "player aim rig missing")
+	# Door-bash feedback owns Camera3D.rotation. Aim the player yaw/head pitch
+	# so that its eventual camera reset does not erase the intended direction.
+	var offset := point - camera.global_position
+	actor.global_rotation.y = atan2(-offset.x, -offset.z)
+	head.rotation = Vector3(atan2(offset.y, Vector2(offset.x, offset.z).length()), 0, 0)
+	await get_tree().physics_frame
+	await get_tree().physics_frame
+	return result("PASS", "aimed with player rig")
 
 func _read(target: Node, check: Dictionary) -> Variant:
 	return GameState.get_flag(StringName(check.flag), null) if check.has("flag") else target.get(str(check.property))
