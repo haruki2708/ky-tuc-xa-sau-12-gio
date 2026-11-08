@@ -46,6 +46,11 @@ const TURN_SNAP: float = deg_to_rad(135.0)
 const TWIST_SHARE: float = 0.6
 ## The walk clip's pace while stepping round on the spot.
 const TURN_STEP_PACE: float = 0.7
+## T-227 round 2 (D-146): in bed the body lies along the bed (the bed's view looks down it to the
+## feet), held at the moment of getting up where the chest is BED_RECLINE degrees up (the view sits
+## 0.43 m over the mattress, propped on the pillow). It lies down or climbs in, and gets up, over
+## the seconds player.gd gives; its eyes ride the camera all the while.
+const BED_RECLINE: float = 30.0
 ## Eyes from the head bone, model space (the model faces +Z), metres before scaling. Tran Trung's
 ## head bone sits 1.7 cm left of his face's middle (measured on the Tripo mesh, T-227).
 const EYES_FROM_HEAD_BONE: Vector3 = Vector3(-0.017, 0.08, 0.09)
@@ -116,9 +121,16 @@ const CLIPS := {
 	&"idle": &"idle", &"walk": &"walk", &"run": &"run",
 	&"crouch_idle": &"ual/Crouch_Idle", &"crouch_walk": &"ual/Crouch_Fwd",
 	&"reach": &"ual/Interact", &"reach_low": &"ual/PickUp_Table",
+	&"get_up": &"ual2/LayToIdle", &"climb_up": &"ual2/ClimbUp_1m",
+	&"knockback": &"ual2/Hit_Knockback", &"carry_walk": &"ual2/Walk_Carry",
 }
 const FILL_LIBRARY: StringName = &"ual"
 const FILL_SCENE: PackedScene = preload("res://assets/models/characters/standin/quaternius_ual.glb")
+## T-227 round 2 (D-143): the CC0 Quaternius UAL2 Standard pack, only the clips the game uses.
+const FILL2_LIBRARY: StringName = &"ual2"
+const FILL2_SCENE: PackedScene = preload("res://assets/models/characters/standin/quaternius_ual2.glb")
+const FILL2_IDLE: StringName = &"Idle_FoldArms"
+const FILL2_CLIPS: Array[StringName] = [&"LayToIdle", &"ClimbUp_1m", &"Hit_Knockback", &"Walk_Carry", &"Idle_FoldArms"]
 const LOCOMOTION: Array[StringName] = [&"idle", &"walk", &"run", &"crouch_idle", &"crouch_walk"]
 ## A HandTarget lower than this above the feet uses the low reach.
 const LOW_REACH: float = 0.95
@@ -164,6 +176,19 @@ var _twist: SpineBendModifier
 ## The world heading the feet keep while standing, and whether the body is stepping round.
 var _stand_yaw: float = 0.0
 var _turning: bool = false
+## In bed: &"in" (lying down or climbing in), &"rest", &"up" (getting up), or &"" when not.
+var _bed_phase: StringName = &""
+var _bed_time: float = 0.0
+var _bed_seconds: float = 1.0
+var _bed_climb: bool = false
+## World yaw of the model lying in this bed, and of the standing model it turned from.
+var _bed_yaw: float = 0.0
+var _bed_from_yaw: float = 0.0
+## The get-up clip's time at BED_RECLINE, and the head-to-hips direction there (model space).
+var _recline: float = -1.0
+var _recline_lie: Vector3 = Vector3.BACK
+## The eyes in the head bone's own space (they turn with the head when it lies back).
+var _eye_in_head: Vector3 = Vector3.INF
 ## How far up on the toes this reach goes (metres), and how far it is now.
 var _rise_target: float = 0.0
 var _rise: float = 0.0
@@ -269,7 +294,8 @@ func bind(owner_player: CharacterBody3D) -> void:
 
 
 func can_handle(target: Interactable) -> bool:
-	return not acting and is_instance_valid(target) and target.enabled and target.hand_target(_reach_from()) != null
+	return not acting and _bed_phase == &"" and is_instance_valid(target) and target.enabled \
+			and target.hand_target(_reach_from()) != null
 
 
 ## D-124: the HandTarget is within reach, leaning in at most MAX_BEND.
@@ -337,8 +363,10 @@ func perform(target: Interactable) -> void:
 func _physics_process(delta: float) -> void:
 	if not is_instance_valid(player):
 		return
-	visible = not (player.has_method("is_hidden") and player.call("is_hidden"))
-	if acting:
+	visible = _bed_phase != &"" or not (player.has_method("is_hidden") and player.call("is_hidden"))
+	if _bed_phase != &"":
+		_tick_bed(delta)
+	elif acting:
 		_tick_action(delta)
 	else:
 		_lean = Vector3.ZERO
@@ -418,6 +446,152 @@ func _stand_turn(lag: float, delta: float) -> float:
 func _set_twist(angle: float) -> void:
 	_twist.axis = _tiptoe.up * signf(angle) if not is_zero_approx(angle) else _tiptoe.up
 	_twist.degrees = rad_to_deg(absf(angle))
+
+
+## D-146: into the bed `spot` (a HideSpot whose View looks down the bed) over `seconds`: lying
+## down, or for an upper bunk (`climb`) climbing up, then held propped on the pillow.
+func enter_bed(spot: Node3D, seconds: float, climb: bool) -> void:
+	var view := spot.get_node_or_null(NodePath(str(spot.get("view")))) as Node3D if spot != null else null
+	var feet: Vector3 = -((view if view != null else spot).global_basis.z) if spot != null else -global_basis.z
+	feet.y = 0.0
+	_measure_recline()
+	_bed_yaw = _yaw_of(feet) - _yaw_of(_recline_lie)
+	_bed_from_yaw = model.global_rotation.y
+	_bed_seconds = maxf(seconds, 0.01)
+	_bed_time = 0.0
+	_bed_climb = climb
+	_bed_phase = &"in"
+	_turning = false
+	_set_twist(0.0)
+	_key = &""
+	animator.speed_scale = 1.0
+	if seconds <= 0.0:
+		_hold_recline()
+		_bed_phase = &"rest"
+		return
+	var clip: StringName = CLIPS[&"climb_up" if climb else &"get_up"]
+	_clip = clip
+	var length: float = animator.get_animation(clip).length
+	if climb:
+		animator.play(clip, BLEND_SECONDS, length / _bed_seconds)
+	else:
+		# The get-up clip backwards, from standing to the propped moment.
+		animator.play(clip, BLEND_SECONDS, -(length - _recline) / _bed_seconds, true)
+
+
+## D-146: get up out of bed over `seconds`, the rest of the get-up clip from the propped moment.
+func get_up(seconds: float) -> void:
+	if _bed_phase == &"":
+		return
+	_hold_recline()
+	_bed_phase = &"up"
+	_bed_time = 0.0
+	_bed_seconds = maxf(seconds, 0.01)
+	var clip: StringName = CLIPS[&"get_up"]
+	animator.speed_scale = 1.0
+	animator.play(clip, 0.0, (animator.get_animation(clip).length - _recline) / _bed_seconds)
+	animator.seek(_recline, true)
+
+
+## Out of bed at once (pulled out, a respawn) or at the end of getting up: standing again.
+func leave_bed() -> void:
+	if _bed_phase == &"":
+		return
+	_bed_phase = &""
+	animator.speed_scale = 1.0
+	if not is_inside_tree():
+		return
+	_key = &""
+	_clip = &""
+	_play(&"idle")
+	_yaw = 0.0
+	_turning = false
+	if is_instance_valid(player):
+		_stand_yaw = player.global_rotation.y
+	_place_model(0.0)
+
+
+func in_bed() -> bool:
+	return _bed_phase != &""
+
+
+func _tick_bed(delta: float) -> void:
+	_bed_time += delta
+	var progress: float = clampf(_bed_time / _bed_seconds, 0.0, 1.0)
+	var yaw: float = _bed_yaw
+	match _bed_phase:
+		&"in":
+			if progress >= 1.0 or (not _bed_climb and animator.current_animation_position <= _recline):
+				_hold_recline()
+				_bed_phase = &"rest"
+			else:
+				yaw = lerp_angle(_bed_from_yaw, _bed_yaw, smoothstep(0.0, 1.0, progress))
+		&"up":
+			if progress >= 1.0:
+				leave_bed()
+				return
+			# Turning from along the bed to the way the player will face, as the legs swing down.
+			yaw = lerp_angle(_bed_yaw, player.global_rotation.y + PI, smoothstep(0.3, 1.0, progress))
+	_hang_from_camera(yaw)
+
+
+## The get-up clip held at the propped moment (no blend: the climb ends where the bed begins).
+func _hold_recline() -> void:
+	var clip: StringName = CLIPS[&"get_up"]
+	_clip = clip
+	animator.speed_scale = 1.0
+	animator.play(clip, 0.0, 1.0)
+	animator.seek(_recline, true)
+	animator.speed_scale = 0.0
+
+
+## Find the get-up clip's moment where the chest is BED_RECLINE degrees up (first on the way up),
+## and which way the head-to-hips line runs there.
+func _measure_recline() -> void:
+	if _recline >= 0.0:
+		return
+	var clip: StringName = CLIPS[&"get_up"]
+	var length: float = animator.get_animation(clip).length
+	var hips: int = skeleton.find_bone("Hips")
+	var head: int = skeleton.find_bone("Head")
+	var to_model: Transform3D = model.global_transform.affine_inverse() * skeleton.global_transform
+	animator.play(clip)
+	_recline = 0.0
+	for index: int in 61:
+		var time: float = length * index / 60.0
+		animator.seek(time, true)
+		var torso: Vector3 = to_model * skeleton.get_bone_global_pose(head).origin - to_model * skeleton.get_bone_global_pose(hips).origin
+		_recline = time
+		_recline_lie = Vector3(-torso.x, 0.0, -torso.z)
+		if torso.normalized().y >= sin(deg_to_rad(BED_RECLINE)):
+			break
+	if _recline_lie.length() < 0.01:
+		_recline_lie = Vector3.BACK
+	animator.stop()
+
+
+## Place the model, turned to world yaw `yaw`, with its eyes (as the clip holds the head now) on
+## the player's camera.
+func _hang_from_camera(yaw: float) -> void:
+	var camera := player.get_node_or_null("Head/Camera3D") as Node3D if is_instance_valid(player) else null
+	if camera == null:
+		return
+	var basis := Basis(Vector3.UP, yaw).scaled(Vector3.ONE * _scale())
+	model.global_transform = Transform3D(basis, camera.global_position - basis * _eye_in_model())
+
+
+## The eyes in the model's space as the clip holds the head now (they turn with the head).
+func _eye_in_model() -> Vector3:
+	var head: int = skeleton.find_bone("Head")
+	var to_model: Transform3D = model.global_transform.affine_inverse() * skeleton.global_transform
+	if not _eye_in_head.is_finite():
+		var rest: Transform3D = to_model * skeleton.get_bone_global_rest(head)
+		_eye_in_head = rest.affine_inverse() * (rest.origin + EYES_FROM_HEAD_BONE)
+	return (to_model * skeleton.get_bone_global_pose(head)) * _eye_in_head
+
+
+static func _yaw_of(direction: Vector3) -> float:
+	return atan2(direction.x, direction.z)
 
 
 ## Face the view at once (a hand action starts from a body square to it).
@@ -888,7 +1062,7 @@ func _play(key: StringName) -> void:
 
 ## Turn the model by yaw and stand it so its eyes are over the player's origin (the camera).
 func _place_model(yaw: float) -> void:
-	model.rotation.y = PI + yaw
+	model.rotation = Vector3(0.0, PI + yaw, 0.0)
 	var eye: Vector3 = Basis(Vector3.UP, PI + yaw) * (_eye * _scale())
 	model.position = Vector3(-eye.x, 0.0, -eye.z)
 
@@ -897,27 +1071,34 @@ func _scale() -> float:
 	return model.scale.x
 
 
-## The Quaternius clips, as library FILL_LIBRARY (the model's own clips stay in the default one).
-## Quaternius stands with its hips about 8 cm further back than Tran Trung's own clips do: each
-## copy is shifted so its idle hips meet his, or the body jumps back when such a clip starts.
+## The Quaternius clips, as libraries FILL_LIBRARY (UAL1, every clip) and FILL2_LIBRARY (UAL2,
+## FILL2_CLIPS only; the model's own clips stay in the default one). Quaternius stands with its
+## hips further back than Tran Trung's own clips do (UAL1 about 8 cm): each copy is shifted so its
+## idle hips meet his, or the body jumps back when such a clip starts.
 func _add_fill_clips() -> void:
-	if animator.has_animation_library(FILL_LIBRARY):
-		return
-	var source := FILL_SCENE.instantiate()
-	var original := (source.find_children("*", "AnimationPlayer", true, false)[0] as AnimationPlayer).get_animation_library(&"")
-	var library := AnimationLibrary.new()
-	for clip: StringName in original.get_animation_list():
-		library.add_animation(clip, original.get_animation(clip).duplicate() as Animation)
-	source.free()
-	animator.add_animation_library(FILL_LIBRARY, library)
-	var own: Vector3 = _hips_at(CLIPS[&"idle"])
-	var fill: Vector3 = _hips_at(FILL_LIBRARY + "/Idle")
-	var shift := Vector3(own.x - fill.x, 0.0, own.z - fill.z) / skeleton.motion_scale
-	for clip: StringName in library.get_animation_list():
-		var animation := library.get_animation(clip)
-		var track: int = animation.find_track(^"%GeneralSkeleton:Hips", Animation.TYPE_POSITION_3D)
-		for key: int in (animation.track_get_key_count(track) if track >= 0 else 0):
-			animation.track_set_key_value(track, key, (animation.track_get_key_value(track, key) as Vector3) + shift)
+	var own: Vector3 = Vector3.INF
+	for fill: Array in [[FILL_LIBRARY, FILL_SCENE, &"Idle", []], [FILL2_LIBRARY, FILL2_SCENE, FILL2_IDLE, FILL2_CLIPS]]:
+		var library_name: StringName = fill[0]
+		if animator.has_animation_library(library_name):
+			continue
+		var source := (fill[1] as PackedScene).instantiate()
+		var original := (source.find_children("*", "AnimationPlayer", true, false)[0] as AnimationPlayer).get_animation_library(&"")
+		var library := AnimationLibrary.new()
+		var keep: Array = fill[3]
+		for clip: StringName in original.get_animation_list():
+			if keep.is_empty() or clip in keep:
+				library.add_animation(clip, original.get_animation(clip).duplicate() as Animation)
+		source.free()
+		animator.add_animation_library(library_name, library)
+		if not own.is_finite():
+			own = _hips_at(CLIPS[&"idle"])
+		var hips: Vector3 = _hips_at(StringName(String(library_name) + "/" + String(fill[2])))
+		var shift := Vector3(own.x - hips.x, 0.0, own.z - hips.z) / skeleton.motion_scale
+		for clip: StringName in library.get_animation_list():
+			var animation := library.get_animation(clip)
+			var track: int = animation.find_track(^"%GeneralSkeleton:Hips", Animation.TYPE_POSITION_3D)
+			for key: int in (animation.track_get_key_count(track) if track >= 0 else 0):
+				animation.track_set_key_value(track, key, (animation.track_get_key_value(track, key) as Vector3) + shift)
 
 
 ## The hips (skeleton space) at the start of a clip.

@@ -12,6 +12,12 @@ const DEFAULT_MOUSE_SENSITIVITY: float = 0.002
 const MIN_MOUSE_SENSITIVITY: float = 0.0005
 const MAX_MOUSE_SENSITIVITY: float = 0.006
 const DEFAULT_HEAD_BOB: bool = true
+## T-227 round 2 (D-146): with a body, into a bed in BED_ENTER_SECONDS (lying down, or climbing to
+## an upper bunk) and out of it, when the player gets up, in BED_EXIT_SECONDS (standing, not
+## moving meanwhile). The bed flag still changes when each starts. Without a body, as before.
+const BED_ENTER_SECONDS: float = 1.0
+const BED_EXIT_SECONDS: float = 1.5
+const STAND_HEAD: Vector3 = Vector3(0, 1.6, 0)
 const GAMEPLAY_ACTIONS: Array[StringName] = [
 	&"move_forward", &"move_back", &"move_left", &"move_right", &"sprint",
 	&"crouch", &"hold_breath", &"interact", &"phone", &"flashlight",
@@ -198,7 +204,7 @@ func _physics_process(delta: float) -> void:
 		_look_distance = 0.0
 		_update_focus()
 		if not keyboard_input_blocked() and Input.is_action_pressed("interact") and Input.is_action_just_pressed("interact"):
-			leave_hide_spot()
+			leave_hide_spot(true, true)
 		return
 	if controls_locked():
 		_update_stamina(delta, false, false)
@@ -464,10 +470,14 @@ func enter_hide_spot(spot: HideSpot) -> bool:
 	_restless_cooldown = 0.0
 	head.rotation = Vector3.ZERO
 	camera.position = Vector3.ZERO
-	if spot.entry_seconds() > 0.0:
+	var seconds: float = spot.entry_seconds()
+	if spot.bed_id() != 0 and is_instance_valid(body):
+		seconds = BED_ENTER_SECONDS
+		body.enter_bed(spot, seconds, spot.entry_seconds() > 0.0)
+	if seconds > 0.0:
 		_climb = create_tween().set_parallel(true).set_trans(Tween.TRANS_SINE)
-		_climb.tween_property(self, "global_transform", anchor.global_transform, spot.entry_seconds())
-		_climb.tween_property(head, "position", Vector3.ZERO, spot.entry_seconds())
+		_climb.tween_property(self, "global_transform", anchor.global_transform, seconds)
+		_climb.tween_property(head, "position", Vector3.ZERO, seconds)
 	else:
 		global_transform = anchor.global_transform
 		head.position = Vector3.ZERO
@@ -477,7 +487,9 @@ func enter_hide_spot(spot: HideSpot) -> bool:
 	return true
 
 
-func leave_hide_spot(noisy: bool = true) -> void:
+## `get_up`: the player chose to (D-146: with a body, out of a bed takes BED_EXIT_SECONDS); pulled
+## out, dying or leaving the scene, it is at once.
+func leave_hide_spot(noisy: bool = true, get_up: bool = false) -> void:
 	if not is_hidden():
 		return
 	var spot: HideSpot = _hide_spot
@@ -488,15 +500,31 @@ func leave_hide_spot(noisy: bool = true) -> void:
 		make_noise(2.0, &"move")
 	_set_holding_breath(false)
 	_breath_elapsed = 0.0
-	global_transform = _exit_transform
 	head.rotation = Vector3.ZERO
 	camera.position = Vector3.ZERO
-	_set_crouched(not _can_stand())
-	body_shape.set_deferred("disabled", false)
 	velocity = Vector3.ZERO
 	GameState.set_flag(&"player_bed", 0)
+	if get_up and spot.bed_id() != 0 and is_instance_valid(body) and body.in_bed() and is_inside_tree():
+		acquire_movement_lock(self)
+		body.get_up(BED_EXIT_SECONDS)
+		_climb = create_tween().set_parallel(true).set_trans(Tween.TRANS_SINE)
+		_climb.tween_property(self, "global_transform", _exit_transform, BED_EXIT_SECONDS)
+		_climb.tween_property(head, "position", STAND_HEAD, BED_EXIT_SECONDS)
+		_climb.chain().tween_callback(_stood_up)
+	else:
+		if is_instance_valid(body):
+			body.leave_bed()
+		global_transform = _exit_transform
+		_set_crouched(not _can_stand())
+		body_shape.set_deferred("disabled", false)
 	spot.release()
 	EventBus.player_hidden.emit(false, spot.kind)
+
+
+func _stood_up() -> void:
+	_set_crouched(not _can_stand())
+	body_shape.set_deferred("disabled", false)
+	release_movement_lock(self)
 
 
 func _update_breath(delta: float) -> void:

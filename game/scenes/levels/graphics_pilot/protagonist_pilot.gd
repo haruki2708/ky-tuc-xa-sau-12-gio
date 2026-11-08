@@ -162,6 +162,10 @@ func _ready() -> void:
 		await _demo()
 	elif "--clip-gallery" in args:
 		await _clip_gallery()
+	elif "--bed-demo" in args:
+		await _bed_demo()
+	elif "--reach-demo" in args:
+		await _reach_demo()
 
 
 func _add_targets() -> void:
@@ -447,6 +451,89 @@ func _clip_gallery() -> void:
 		var shown: float = maxf(GALLERY_SECONDS, minf(animation.length, 8.0))
 		await _wait(shown)
 	print("RESULT: clip gallery PASS")
+	App.quit()
+
+
+## T-227 round 2 (D-146): the lower bunk 2 (lying down) and the upper bunk 1 (climbing in), each
+## seen from inside the room: in over a second, a moment propped on the pillow, the look from the
+## pillow as the player sees it, then getting up over a second and a half.
+func _bed_demo() -> void:
+	_set_light("tube")
+	_reset_things()
+	third_camera.set_cull_mask_value(PlayerBody.MIRROR_LAYER, true)
+	for bed: int in [2, 1]:
+		var anchor := room.get_node("Anchors/Bunks/Bunk%d" % bed) as Node3D
+		var spot := (load("res://scenes/interaction/bunk_spot.tscn") as PackedScene).instantiate() as HideSpot
+		spot.set("bed_number", bed)
+		spot.name = "DemoBunk%d" % bed
+		anchor.add_child(spot)
+		spot.view = NodePath("../View")
+		spot.exit = NodePath("../Exit")
+		var exit := anchor.get_node("Exit") as Node3D
+		var to_bed: Vector3 = anchor.global_position - exit.global_position
+		player.global_position = exit.global_position
+		player.rotation = Vector3(0.0, atan2(-to_bed.x, -to_bed.z), 0.0)
+		player.velocity = Vector3.ZERO
+		var head := player.get_node("Head") as Node3D
+		head.position = Vector3(0, 1.6, 0)
+		head.rotation = Vector3.ZERO
+		_aim_third_person(anchor.global_position + Vector3(2.9, 1.1, 2.3), anchor.global_position + Vector3(0.3, 0.2, -0.1))
+		third_camera.make_current()
+		await _wait(1.0)
+		player.call("enter_hide_spot", spot)
+		await _wait(2.2)
+		_show_third_person(false)
+		await _wait(2.0)
+		third_camera.make_current()
+		await _wait(0.6)
+		player.call("leave_hide_spot", true, true)
+		await _wait(2.4)
+		spot.queue_free()
+	print("RESULT: bed demo PASS")
+	App.quit()
+
+
+## T-227 round 2: a small box 1.98 m up, taken by the fingertips up on the toes (shoulder lifted);
+## then turning on the spot: 35 degrees (the feet stay, the chest turns), back, 80 degrees (the
+## body steps round), back. Seen from inside the room.
+func _reach_demo() -> void:
+	_set_light("tube")
+	_reset_things()
+	third_camera.set_cull_mask_value(PlayerBody.MIRROR_LAYER, true)
+	_place("open", 0.0)
+	await _wait(0.5)
+	var forward: Vector3 = -player.global_basis.z
+	var right: Vector3 = player.global_basis.x
+	var high := Interactable.new()
+	high.name = "HighBox"
+	add_child(high)
+	high.global_position = player.global_position + forward * 0.3 + right * 0.15 + Vector3.UP * 1.98
+	var marker := HandTarget.new()
+	marker.grip = HandTarget.Grip.PINCH
+	high.add_child(marker)
+	var box := MeshInstance3D.new()
+	var shape := BoxMesh.new()
+	shape.size = Vector3(0.1, 0.06, 0.1)
+	box.mesh = shape
+	box.position = Vector3.UP * 0.03
+	high.add_child(box)
+	var feet: Vector3 = player.global_position
+	_aim_third_person(feet + right * 1.7 + forward * 0.9 + Vector3.UP * 1.4, feet + Vector3.UP * 1.2)
+	third_camera.make_current()
+	await _wait(1.0)
+	body.perform(high)
+	while body.acting:
+		await get_tree().physics_frame
+	await _wait(1.0)
+	high.queue_free()
+	_aim_third_person(feet + forward * 2.3 + right * 0.5 + Vector3.UP * 1.7, feet + Vector3.UP * 0.7)
+	await _wait(0.8)
+	var yaw: float = player.rotation.y
+	for turn: float in [35.0, 0.0, 80.0, 0.0]:
+		var swing := create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
+		swing.tween_property(player, "rotation:y", yaw + deg_to_rad(turn), 0.5).set_trans(Tween.TRANS_SINE)
+		await _wait(1.8)
+	print("RESULT: reach demo PASS")
 	App.quit()
 
 

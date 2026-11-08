@@ -292,6 +292,27 @@ func test_standing_the_feet_keep_their_heading_until_the_view_turns_far() -> voi
 	assert_false(body.acting)
 
 
+## T-227 round 2 (D-143): the UAL2 clips run on Tran Trung's skeleton: getting up starts lying
+## down and ends standing where his own idle stands.
+func test_ual2_clips_play_on_tran_trung() -> void:
+	var walker := _walker()
+	var body := _body(walker)
+	await _seconds(0.2)
+	for key: StringName in [&"get_up", &"climb_up", &"knockback", &"carry_walk"]:
+		assert_true(body.animator.has_animation(PlayerBody.CLIPS[key]), "has %s" % PlayerBody.CLIPS[key])
+	var hips := func(clip: StringName, at: float) -> Vector3:
+		body.animator.play(clip)
+		body.animator.seek(at, true)
+		return body.model.global_transform.affine_inverse() * body._bone_world("Hips")
+	var standing: Vector3 = hips.call(PlayerBody.CLIPS[&"idle"], 0.0)
+	var get_up: StringName = PlayerBody.CLIPS[&"get_up"]
+	var lying: Vector3 = hips.call(get_up, 0.0)
+	var risen: Vector3 = hips.call(get_up, body.animator.get_animation(get_up).length)
+	assert_true(lying.y < standing.y * 0.5, "getting up starts lying down: hips %.2f of %.2f" % [lying.y, standing.y])
+	assert_true(absf(risen.y - standing.y) < 0.08, "and ends standing: hips %.2f of %.2f" % [risen.y, standing.y])
+	assert_true(Vector2(risen.x - standing.x, risen.z - standing.z).length() < 0.6, "near where he stands")
+
+
 ## A pinch or hook overhead takes the thing at the fingertips: higher than a palm reaches.
 func test_a_high_pinch_is_taken_at_the_fingertips() -> void:
 	var walker := _walker()
