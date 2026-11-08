@@ -108,3 +108,10 @@
 - Commit card này ngay sau.
 
 **Yêu cầu thay đổi:** không. **Blocked:** không.
+
+## Review (integrator, 09/11/2026)
+- **Đạt, merge vào `main`** (`f7efdc3`). Integrator tự làm thay lane B nên đây là tự rà, không có người rà thứ hai; chủ dự án nên chơi thử trước khi coi là xong hẳn.
+- Đúng phạm vi card: không sửa `door407.gd`, phòng 407, Campus, director, `game/scripts/core/`, shader 407; không đổi tên, dời, xóa node hợp đồng, không thêm va chạm. Bản chơi chỉ có biển số nhôm và cửa 408 xây kín (D-148).
+- Nhánh tách từ `9a104a7` và `main` không có commit mới, nên kết quả full test 887/0 và check 0 lỗi đúng cho `main` sau merge; không chạy lại.
+- **Tiếp theo (cần chủ dự án cho phép):** đo FPS trong chương thật (chương 1 và 3), chạy lại bot chương 2–3, rồi build `KyTucXa.exe` cho chủ dự án chơi thử.
+- **Việc tách riêng:** cánh cửa thoát hiểm Campus khi mở chồng lên lan can; CCTV hành lang trên điện thoại chương 1 vẫn PS1. Còn PS1 ở tầng 4: bên trong phòng 401–406 và 408, bàn trực, nhà vệ sinh chung, đồ phơi, cầu thang (lượt 3–4).
