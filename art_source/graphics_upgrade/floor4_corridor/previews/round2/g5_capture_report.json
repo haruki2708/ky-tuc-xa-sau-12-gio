@@ -1,0 +1,674 @@
+{
+	"capture_kind": "Whole corridor x 0..44 over floor4.tscn, no chapter director or player",
+	"godot": "4.7.2-stable (official)",
+	"gpu": "NVIDIA GeForce RTX 3050 Laptop GPU",
+	"images": [
+		{
+			"campus": false,
+			"corridor": false,
+			"door_open": "",
+			"eye": [
+				0.699999988079071,
+				1.64999997615814,
+				2.70000004768372
+			],
+			"file": "before_01_west_night.jpg",
+			"fov": 75.0,
+			"plates": "alu",
+			"seal": "walled",
+			"target": [
+				32.0,
+				1.39999997615814,
+				1.20000004768372
+			],
+			"torch": false
+		},
+		{
+			"campus": false,
+			"corridor": true,
+			"door_open": "",
+			"eye": [
+				0.699999988079071,
+				1.64999997615814,
+				2.70000004768372
+			],
+			"file": "after_01_west_night.jpg",
+			"fov": 75.0,
+			"plates": "alu",
+			"seal": "walled",
+			"target": [
+				32.0,
+				1.39999997615814,
+				1.20000004768372
+			],
+			"torch": false
+		},
+		{
+			"campus": false,
+			"corridor": false,
+			"door_open": "",
+			"eye": [
+				43.2999992370605,
+				1.64999997615814,
+				3.09999990463257
+			],
+			"file": "before_02_east_night.jpg",
+			"fov": 75.0,
+			"plates": "alu",
+			"seal": "walled",
+			"target": [
+				12.0,
+				1.39999997615814,
+				1.10000002384186
+			],
+			"torch": false
+		},
+		{
+			"campus": false,
+			"corridor": true,
+			"door_open": "",
+			"eye": [
+				43.2999992370605,
+				1.64999997615814,
+				3.09999990463257
+			],
+			"file": "after_02_east_night.jpg",
+			"fov": 75.0,
+			"plates": "alu",
+			"seal": "walled",
+			"target": [
+				12.0,
+				1.39999997615814,
+				1.10000002384186
+			],
+			"torch": false
+		},
+		{
+			"campus": false,
+			"corridor": false,
+			"door_open": "",
+			"eye": [
+				33.5,
+				1.64999997615814,
+				3.09999990463257
+			],
+			"file": "before_03_door407_night.jpg",
+			"fov": 75.0,
+			"plates": "alu",
+			"seal": "walled",
+			"target": [
+				32.0,
+				1.25,
+				0.0
+			],
+			"torch": false
+		},
+		{
+			"campus": false,
+			"corridor": true,
+			"door_open": "",
+			"eye": [
+				33.5,
+				1.64999997615814,
+				3.09999990463257
+			],
+			"file": "after_03_door407_night.jpg",
+			"fov": 75.0,
+			"plates": "alu",
+			"seal": "walled",
+			"target": [
+				32.0,
+				1.25,
+				0.0
+			],
+			"torch": false
+		},
+		{
+			"campus": false,
+			"corridor": false,
+			"door_open": "",
+			"eye": [
+				35.0,
+				1.64999997615814,
+				2.79999995231628
+			],
+			"file": "before_09_sealed_old408_night.jpg",
+			"fov": 75.0,
+			"plates": "alu",
+			"seal": "walled",
+			"target": [
+				36.0,
+				1.14999997615814,
+				0.129999995231628
+			],
+			"torch": false
+		},
+		{
+			"campus": false,
+			"corridor": true,
+			"door_open": "",
+			"eye": [
+				35.0,
+				1.64999997615814,
+				2.79999995231628
+			],
+			"file": "after_09_sealed_old408_night.jpg",
+			"fov": 75.0,
+			"plates": "alu",
+			"seal": "walled",
+			"target": [
+				36.0,
+				1.14999997615814,
+				0.129999995231628
+			],
+			"torch": false
+		},
+		{
+			"campus": false,
+			"corridor": false,
+			"door_open": "",
+			"eye": [
+				43.0,
+				1.64999997615814,
+				2.79999995231628
+			],
+			"file": "before_10_door408_torch.jpg",
+			"fov": 75.0,
+			"plates": "alu",
+			"seal": "walled",
+			"target": [
+				42.0,
+				1.29999995231628,
+				0.0
+			],
+			"torch": true
+		},
+		{
+			"campus": false,
+			"corridor": true,
+			"door_open": "",
+			"eye": [
+				43.0,
+				1.64999997615814,
+				2.79999995231628
+			],
+			"file": "after_10_door408_torch.jpg",
+			"fov": 75.0,
+			"plates": "alu",
+			"seal": "walled",
+			"target": [
+				42.0,
+				1.29999995231628,
+				0.0
+			],
+			"torch": true
+		},
+		{
+			"campus": false,
+			"corridor": false,
+			"door_open": "",
+			"eye": [
+				14.6999998092651,
+				1.60000002384186,
+				2.29999995231628
+			],
+			"file": "before_13_door403_night.jpg",
+			"fov": 65.0,
+			"plates": "alu",
+			"seal": "walled",
+			"target": [
+				16.0,
+				1.04999995231628,
+				0.100000001490116
+			],
+			"torch": false
+		},
+		{
+			"campus": false,
+			"corridor": true,
+			"door_open": "",
+			"eye": [
+				14.6999998092651,
+				1.60000002384186,
+				2.29999995231628
+			],
+			"file": "after_13_door403_night.jpg",
+			"fov": 65.0,
+			"plates": "alu",
+			"seal": "walled",
+			"target": [
+				16.0,
+				1.04999995231628,
+				0.100000001490116
+			],
+			"torch": false
+		},
+		{
+			"campus": false,
+			"corridor": false,
+			"door_open": "403",
+			"eye": [
+				14.3999996185303,
+				1.60000002384186,
+				2.70000004768372
+			],
+			"file": "before_14_door403_open_torch.jpg",
+			"fov": 70.0,
+			"plates": "alu",
+			"seal": "walled",
+			"target": [
+				16.2999992370605,
+				1.0,
+				0.300000011920929
+			],
+			"torch": true
+		},
+		{
+			"campus": false,
+			"corridor": true,
+			"door_open": "403",
+			"eye": [
+				14.3999996185303,
+				1.60000002384186,
+				2.70000004768372
+			],
+			"file": "after_14_door403_open_torch.jpg",
+			"fov": 70.0,
+			"plates": "alu",
+			"seal": "walled",
+			"target": [
+				16.2999992370605,
+				1.0,
+				0.300000011920929
+			],
+			"torch": true
+		},
+		{
+			"campus": false,
+			"corridor": false,
+			"door_open": "",
+			"eye": [
+				40.4000015258789,
+				1.60000002384186,
+				2.59999990463257
+			],
+			"file": "before_15_door408_night.jpg",
+			"fov": 65.0,
+			"plates": "alu",
+			"seal": "walled",
+			"target": [
+				42.0,
+				1.04999995231628,
+				0.100000001490116
+			],
+			"torch": false
+		},
+		{
+			"campus": false,
+			"corridor": true,
+			"door_open": "",
+			"eye": [
+				40.4000015258789,
+				1.60000002384186,
+				2.59999990463257
+			],
+			"file": "after_15_door408_night.jpg",
+			"fov": 65.0,
+			"plates": "alu",
+			"seal": "walled",
+			"target": [
+				42.0,
+				1.04999995231628,
+				0.100000001490116
+			],
+			"torch": false
+		},
+		{
+			"campus": false,
+			"corridor": false,
+			"door_open": "",
+			"eye": [
+				36.0,
+				1.5,
+				3.29999995231628
+			],
+			"file": "before_16_seal_night.jpg",
+			"fov": 60.0,
+			"plates": "alu",
+			"seal": "walled",
+			"target": [
+				36.0,
+				1.14999997615814,
+				0.100000001490116
+			],
+			"torch": false
+		},
+		{
+			"campus": false,
+			"corridor": true,
+			"door_open": "",
+			"eye": [
+				36.0,
+				1.5,
+				3.29999995231628
+			],
+			"file": "after_16_seal_night.jpg",
+			"fov": 60.0,
+			"plates": "alu",
+			"seal": "walled",
+			"target": [
+				36.0,
+				1.14999997615814,
+				0.100000001490116
+			],
+			"torch": false
+		},
+		{
+			"campus": false,
+			"corridor": true,
+			"door_open": "",
+			"eye": [
+				36.0,
+				1.5,
+				3.29999995231628
+			],
+			"file": "after_16b_seal_boarded_night.jpg",
+			"fov": 60.0,
+			"plates": "alu",
+			"seal": "boarded",
+			"target": [
+				36.0,
+				1.14999997615814,
+				0.100000001490116
+			],
+			"torch": false
+		},
+		{
+			"campus": false,
+			"corridor": false,
+			"door_open": "",
+			"eye": [
+				23.2999992370605,
+				1.64999997615814,
+				1.60000002384186
+			],
+			"file": "before_17_plate_night.jpg",
+			"fov": 45.0,
+			"plates": "alu",
+			"seal": "walled",
+			"target": [
+				24.0,
+				2.29999995231628,
+				0.100000001490116
+			],
+			"torch": false
+		},
+		{
+			"campus": false,
+			"corridor": true,
+			"door_open": "",
+			"eye": [
+				23.2999992370605,
+				1.64999997615814,
+				1.60000002384186
+			],
+			"file": "after_17_plate_night.jpg",
+			"fov": 45.0,
+			"plates": "alu",
+			"seal": "walled",
+			"target": [
+				24.0,
+				2.29999995231628,
+				0.100000001490116
+			],
+			"torch": false
+		},
+		{
+			"campus": false,
+			"corridor": true,
+			"door_open": "",
+			"eye": [
+				23.2999992370605,
+				1.64999997615814,
+				1.60000002384186
+			],
+			"file": "after_17b_plate_enamel_night.jpg",
+			"fov": 45.0,
+			"plates": "enamel",
+			"seal": "walled",
+			"target": [
+				24.0,
+				2.29999995231628,
+				0.100000001490116
+			],
+			"torch": false
+		},
+		{
+			"campus": false,
+			"corridor": false,
+			"door_open": "",
+			"eye": [
+				23.2999992370605,
+				1.64999997615814,
+				1.60000002384186
+			],
+			"file": "before_18_plate_torch.jpg",
+			"fov": 45.0,
+			"plates": "alu",
+			"seal": "walled",
+			"target": [
+				24.0,
+				2.29999995231628,
+				0.100000001490116
+			],
+			"torch": true
+		},
+		{
+			"campus": false,
+			"corridor": true,
+			"door_open": "",
+			"eye": [
+				23.2999992370605,
+				1.64999997615814,
+				1.60000002384186
+			],
+			"file": "after_18_plate_torch.jpg",
+			"fov": 45.0,
+			"plates": "alu",
+			"seal": "walled",
+			"target": [
+				24.0,
+				2.29999995231628,
+				0.100000001490116
+			],
+			"torch": true
+		},
+		{
+			"campus": false,
+			"corridor": true,
+			"door_open": "",
+			"eye": [
+				23.2999992370605,
+				1.64999997615814,
+				1.60000002384186
+			],
+			"file": "after_18b_plate_enamel_torch.jpg",
+			"fov": 45.0,
+			"plates": "enamel",
+			"seal": "walled",
+			"target": [
+				24.0,
+				2.29999995231628,
+				0.100000001490116
+			],
+			"torch": true
+		},
+		{
+			"campus": false,
+			"corridor": false,
+			"door_open": "",
+			"eye": [
+				5.59999990463257,
+				1.64999997615814,
+				2.70000004768372
+			],
+			"file": "before_19_west_end_night.jpg",
+			"fov": 70.0,
+			"plates": "alu",
+			"seal": "walled",
+			"target": [
+				0.0,
+				1.29999995231628,
+				1.60000002384186
+			],
+			"torch": false
+		},
+		{
+			"campus": false,
+			"corridor": true,
+			"door_open": "",
+			"eye": [
+				5.59999990463257,
+				1.64999997615814,
+				2.70000004768372
+			],
+			"file": "after_19_west_end_night.jpg",
+			"fov": 70.0,
+			"plates": "alu",
+			"seal": "walled",
+			"target": [
+				0.0,
+				1.29999995231628,
+				1.60000002384186
+			],
+			"torch": false
+		},
+		{
+			"campus": false,
+			"corridor": false,
+			"door_open": "",
+			"eye": [
+				38.4000015258789,
+				1.64999997615814,
+				2.90000009536743
+			],
+			"file": "before_20_east_end_night.jpg",
+			"fov": 70.0,
+			"plates": "alu",
+			"seal": "walled",
+			"target": [
+				44.0,
+				1.29999995231628,
+				1.79999995231628
+			],
+			"torch": false
+		},
+		{
+			"campus": false,
+			"corridor": true,
+			"door_open": "",
+			"eye": [
+				38.4000015258789,
+				1.64999997615814,
+				2.90000009536743
+			],
+			"file": "after_20_east_end_night.jpg",
+			"fov": 70.0,
+			"plates": "alu",
+			"seal": "walled",
+			"target": [
+				44.0,
+				1.29999995231628,
+				1.79999995231628
+			],
+			"torch": false
+		},
+		{
+			"campus": true,
+			"corridor": false,
+			"door_open": "",
+			"eye": [
+				4.19999980926514,
+				1.64999997615814,
+				2.59999990463257
+			],
+			"file": "before_21_west_end_campus_torch.jpg",
+			"fov": 70.0,
+			"plates": "alu",
+			"seal": "walled",
+			"target": [
+				-1.5,
+				0.699999988079071,
+				2.0
+			],
+			"torch": true
+		},
+		{
+			"campus": true,
+			"corridor": true,
+			"door_open": "",
+			"eye": [
+				4.19999980926514,
+				1.64999997615814,
+				2.59999990463257
+			],
+			"file": "after_21_west_end_campus_torch.jpg",
+			"fov": 70.0,
+			"plates": "alu",
+			"seal": "walled",
+			"target": [
+				-1.5,
+				0.699999988079071,
+				2.0
+			],
+			"torch": true
+		},
+		{
+			"campus": true,
+			"corridor": false,
+			"door_open": "",
+			"eye": [
+				39.7999992370605,
+				1.64999997615814,
+				2.59999990463257
+			],
+			"file": "before_22_east_end_campus_torch.jpg",
+			"fov": 70.0,
+			"plates": "alu",
+			"seal": "walled",
+			"target": [
+				45.5,
+				0.699999988079071,
+				2.0
+			],
+			"torch": true
+		},
+		{
+			"campus": true,
+			"corridor": true,
+			"door_open": "",
+			"eye": [
+				39.7999992370605,
+				1.64999997615814,
+				2.59999990463257
+			],
+			"file": "after_22_east_end_campus_torch.jpg",
+			"fov": 70.0,
+			"plates": "alu",
+			"seal": "walled",
+			"target": [
+				45.5,
+				0.699999988079071,
+				2.0
+			],
+			"torch": true
+		}
+	],
+	"lighting": "Unmodified scene lights and environment; optional camera flashlight",
+	"renderer": "forward_plus",
+	"resolution": [
+		1920,
+		1080
+	],
+	"task": "T-235"
+}
