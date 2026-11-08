@@ -42,3 +42,16 @@ Chạy full test và check theo luật Lượt Godot, cập nhật Handoff, push
 
 ## 4. Giao việc khác (integrator điền)
 Dùng prompt mục 1, thay số việc, card, nhánh `lane-c/T-xxx-...` và card việc trước.
+
+## 5. Việc hiện tại: T-236 chạy bot chương 2 và 3 (dán nguyên khối)
+```text
+Việc mới cho lane C: T-236 — đọc docs/tasks/T-236-run-bots-ch2-ch3.md. Chủ dự án đã cho phép chạy bot chương 2 và 3 (D-145).
+Ở D:\GAME_WORK\lane-c2: git status (giữ thay đổi đang có), git fetch origin, git switch main, git pull --ff-only, git lfs pull,
+rồi tạo nhánh lane-c/T-236-run-bots-ch2-ch3 từ origin/main. T-232 đã được integrator merge (xem mục Review trong card T-232).
+Đọc card thật kỹ, nhất là "Được phép" và "Không được". Chạy từng ca một, mỗi ca một lượt Godot (khóa CreateNew, nhả khóa giữa hai ca),
+bằng tiến trình pwsh riêng ghi log trong build/t236/. Ca đầu lỗi thì dừng, phân tích trước khi chạy tiếp.
+Lỗi của bot thì sửa trong phạm vi C; lỗi của game chỉ ghi "Yêu cầu thay đổi". Không sửa docs/ ngoài card.
+Có sửa code thì trước commit chạy full pwsh tools/test.ps1 rồi pwsh tools/check.ps1, git checkout -- game/default_bus_layout.tres.
+Commit nhỏ "T-236: ...", git push -u origin lane-c/T-236-run-bots-ch2-ch3. Không push main, không mở PR.
+Cập nhật Checklist và Handoff trong card. Cuối phiên báo ngắn bằng tiếng Việt: ca nào đạt, ca nào lỗi, vì sao, có bị chặn không.
+```
