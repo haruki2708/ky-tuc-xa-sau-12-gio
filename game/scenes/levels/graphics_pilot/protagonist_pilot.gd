@@ -454,9 +454,9 @@ func _clip_gallery() -> void:
 	App.quit()
 
 
-## T-227 round 2 (D-146): the lower bunk 2 (lying down) and the upper bunk 1 (climbing in), each
-## seen from inside the room: in over a second, a moment propped on the pillow, the look from the
-## pillow as the player sees it, then getting up over a second and a half.
+## T-227 round 2 (D-147): the lower bunk 2 and the upper bunk 1, each seen from inside the room:
+## getting in as before, Tran Trung propped on the pillow, the look from the pillow as the player
+## sees it, then out as before.
 func _bed_demo() -> void:
 	_set_light("tube")
 	_reset_things()
@@ -481,13 +481,13 @@ func _bed_demo() -> void:
 		third_camera.make_current()
 		await _wait(1.0)
 		player.call("enter_hide_spot", spot)
-		await _wait(2.2)
+		await _wait(2.0)
 		_show_third_person(false)
 		await _wait(2.0)
 		third_camera.make_current()
 		await _wait(0.6)
-		player.call("leave_hide_spot", true, true)
-		await _wait(2.4)
+		player.call("leave_hide_spot")
+		await _wait(1.5)
 		spot.queue_free()
 	print("RESULT: bed demo PASS")
 	App.quit()

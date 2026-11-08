@@ -114,8 +114,12 @@ func test_navigation_reaches_balcony_and_bathroom_without_crossing_solids() -> v
 	var nav_map: RID = room.get_world_3d().navigation_map
 	var start := Vector3(32, .03, .3)
 	# Map sync runs asynchronously; a heavier floor (T-215) can need more than two physics frames.
-	for i in range(120):
-		if NavigationServer3D.map_get_path(nav_map, start, room.to_global(Vector3(2.8, .03, -7.8)), true).size() >= 2:
+	# Wait for the opened doors' map, not just any path: on a slow machine the map from before the
+	# doors opened already returns a path, from the closest old polygons (seen 08/11 under load).
+	var first: Vector3 = room.to_global(Vector3(2.8, .03, -7.8))
+	for i in range(240):
+		var probe: PackedVector3Array = NavigationServer3D.map_get_path(nav_map, start, first, true)
+		if probe.size() >= 2 and probe[0].distance_to(start) < .05 and probe[-1].distance_to(first) < .05:
 			break
 		await tree.physics_frame
 	for local_target: Vector3 in [Vector3(2.8, .03, -7.8), Vector3(.6, .03, -7.8), Vector3(4.6, .03, -7.8), Vector3(6.18, .03, -6.3), Vector3(6.85, .03, -4.6)]:

@@ -46,10 +46,10 @@ const TURN_SNAP: float = deg_to_rad(135.0)
 const TWIST_SHARE: float = 0.6
 ## The walk clip's pace while stepping round on the spot.
 const TURN_STEP_PACE: float = 0.7
-## T-227 round 2 (D-146): in bed the body lies along the bed (the bed's view looks down it to the
+## T-227 round 2 (D-147): in bed the body lies along the bed (the bed's view looks down it to the
 ## feet), held at the moment of getting up where the chest is BED_RECLINE degrees up (the view sits
-## 0.43 m over the mattress, propped on the pillow). It lies down or climbs in, and gets up, over
-## the seconds player.gd gives; its eyes ride the camera all the while.
+## 0.43 m over the mattress, propped on the pillow), its eyes on the camera. Getting in and out of
+## bed stay as they were (no motion of their own).
 const BED_RECLINE: float = 30.0
 ## Eyes from the head bone, model space (the model faces +Z), metres before scaling. Tran Trung's
 ## head bone sits 1.7 cm left of his face's middle (measured on the Tripo mesh, T-227).
@@ -176,14 +176,9 @@ var _twist: SpineBendModifier
 ## The world heading the feet keep while standing, and whether the body is stepping round.
 var _stand_yaw: float = 0.0
 var _turning: bool = false
-## In bed: &"in" (lying down or climbing in), &"rest", &"up" (getting up), or &"" when not.
-var _bed_phase: StringName = &""
-var _bed_time: float = 0.0
-var _bed_seconds: float = 1.0
-var _bed_climb: bool = false
-## World yaw of the model lying in this bed, and of the standing model it turned from.
+## In bed (D-147), and the world yaw of the model lying along it.
+var _in_bed: bool = false
 var _bed_yaw: float = 0.0
-var _bed_from_yaw: float = 0.0
 ## The get-up clip's time at BED_RECLINE, and the head-to-hips direction there (model space).
 var _recline: float = -1.0
 var _recline_lie: Vector3 = Vector3.BACK
@@ -294,7 +289,7 @@ func bind(owner_player: CharacterBody3D) -> void:
 
 
 func can_handle(target: Interactable) -> bool:
-	return not acting and _bed_phase == &"" and is_instance_valid(target) and target.enabled \
+	return not acting and not _in_bed and is_instance_valid(target) and target.enabled \
 			and target.hand_target(_reach_from()) != null
 
 
@@ -363,9 +358,9 @@ func perform(target: Interactable) -> void:
 func _physics_process(delta: float) -> void:
 	if not is_instance_valid(player):
 		return
-	visible = _bed_phase != &"" or not (player.has_method("is_hidden") and player.call("is_hidden"))
-	if _bed_phase != &"":
-		_tick_bed(delta)
+	visible = _in_bed or not (player.has_method("is_hidden") and player.call("is_hidden"))
+	if _in_bed:
+		_tick_bed()
 	elif acting:
 		_tick_action(delta)
 	else:
@@ -448,56 +443,26 @@ func _set_twist(angle: float) -> void:
 	_twist.degrees = rad_to_deg(absf(angle))
 
 
-## D-146: into the bed `spot` (a HideSpot whose View looks down the bed) over `seconds`: lying
-## down, or for an upper bunk (`climb`) climbing up, then held propped on the pillow.
-func enter_bed(spot: Node3D, seconds: float, climb: bool) -> void:
+## D-147: in the bed `spot` (a HideSpot whose View looks down the bed), lying propped on the
+## pillow at once; the camera gets in as it always has.
+func enter_bed(spot: Node3D) -> void:
 	var view := spot.get_node_or_null(NodePath(str(spot.get("view")))) as Node3D if spot != null else null
 	var feet: Vector3 = -((view if view != null else spot).global_basis.z) if spot != null else -global_basis.z
 	feet.y = 0.0
 	_measure_recline()
 	_bed_yaw = _yaw_of(feet) - _yaw_of(_recline_lie)
-	_bed_from_yaw = model.global_rotation.y
-	_bed_seconds = maxf(seconds, 0.01)
-	_bed_time = 0.0
-	_bed_climb = climb
-	_bed_phase = &"in"
+	_in_bed = true
 	_turning = false
 	_set_twist(0.0)
 	_key = &""
-	animator.speed_scale = 1.0
-	if seconds <= 0.0:
-		_hold_recline()
-		_bed_phase = &"rest"
-		return
-	var clip: StringName = CLIPS[&"climb_up" if climb else &"get_up"]
-	_clip = clip
-	var length: float = animator.get_animation(clip).length
-	if climb:
-		animator.play(clip, BLEND_SECONDS, length / _bed_seconds)
-	else:
-		# The get-up clip backwards, from standing to the propped moment.
-		animator.play(clip, BLEND_SECONDS, -(length - _recline) / _bed_seconds, true)
-
-
-## D-146: get up out of bed over `seconds`, the rest of the get-up clip from the propped moment.
-func get_up(seconds: float) -> void:
-	if _bed_phase == &"":
-		return
 	_hold_recline()
-	_bed_phase = &"up"
-	_bed_time = 0.0
-	_bed_seconds = maxf(seconds, 0.01)
-	var clip: StringName = CLIPS[&"get_up"]
-	animator.speed_scale = 1.0
-	animator.play(clip, 0.0, (animator.get_animation(clip).length - _recline) / _bed_seconds)
-	animator.seek(_recline, true)
 
 
-## Out of bed at once (pulled out, a respawn) or at the end of getting up: standing again.
+## Out of bed: standing again, at once.
 func leave_bed() -> void:
-	if _bed_phase == &"":
+	if not _in_bed:
 		return
-	_bed_phase = &""
+	_in_bed = false
 	animator.speed_scale = 1.0
 	if not is_inside_tree():
 		return
@@ -512,30 +477,16 @@ func leave_bed() -> void:
 
 
 func in_bed() -> bool:
-	return _bed_phase != &""
+	return _in_bed
 
 
-func _tick_bed(delta: float) -> void:
-	_bed_time += delta
-	var progress: float = clampf(_bed_time / _bed_seconds, 0.0, 1.0)
-	var yaw: float = _bed_yaw
-	match _bed_phase:
-		&"in":
-			if progress >= 1.0 or (not _bed_climb and animator.current_animation_position <= _recline):
-				_hold_recline()
-				_bed_phase = &"rest"
-			else:
-				yaw = lerp_angle(_bed_from_yaw, _bed_yaw, smoothstep(0.0, 1.0, progress))
-		&"up":
-			if progress >= 1.0:
-				leave_bed()
-				return
-			# Turning from along the bed to the way the player will face, as the legs swing down.
-			yaw = lerp_angle(_bed_yaw, player.global_rotation.y + PI, smoothstep(0.3, 1.0, progress))
-	_hang_from_camera(yaw)
+## In bed the body lies along it with its eyes on the camera (which may still be sliding up to an
+## upper bunk's pillow).
+func _tick_bed() -> void:
+	_hang_from_camera(_bed_yaw)
 
 
-## The get-up clip held at the propped moment (no blend: the climb ends where the bed begins).
+## The get-up clip held at the propped moment.
 func _hold_recline() -> void:
 	var clip: StringName = CLIPS[&"get_up"]
 	_clip = clip

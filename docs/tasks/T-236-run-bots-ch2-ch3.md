@@ -1,5 +1,5 @@
 # T-236 — Chạy bot chương 2 và 3 sau lượt sửa T-232
-- Lane: C (QA và Tools) | Trạng thái: todo | Agent: tài khoản GPT lane C (D-139)
+- Lane: C (QA và Tools) | Trạng thái: done một phần (merge 08/11/2026) | Agent: tài khoản GPT lane C (D-139)
 - Nhánh: `lane-c/T-236-run-bots-ch2-ch3` từ `origin/main` mới nhất.
 - Quyết định giao: **D-145** (08/11/2026, chủ dự án cho phép chạy bot chương 2–3). Tiếp nối [T-230](T-230-bot-smoke-review-ch2-4.md) (báo cáo `tools/reports/T-230-bot-review.md`) và [T-232](T-232-bot-fixes-ch2-3-menu-ch4.md) (sửa bot, chưa chạy thật).
 
@@ -58,3 +58,10 @@ Biết thật bot chương 2 và 3 có chạy hết chương không, sau các s�
 - **Yêu cầu thay đổi:** không có; chưa có bằng chứng lỗi game. Gợi ý cho chủ dự án về độ khó chương 3 ghi trong Kết luận báo cáo.
 - **Kiểm tra:** test lọc của lane C ghi trong báo cáo (lịch thao tác 2/0, vị trí/lau 1/0, đánh 1/0, profile 1/0). Full test và check: integrator chạy một lần trên `main` sau khi merge nhánh này cùng việc của integrator, kết quả ghi trong mục Review.
 - Commit: xem `git log` nhánh `lane-c/T-236-run-bots-ch2-ch3` (commit của Claude làm thay).
+
+## Review (integrator, 08/11/2026)
+- **Merge vào `main`.** Lane C làm tốt: mỗi lần bot lỗi đều dừng, tìm đúng nguyên nhân bằng log, ảnh và test nhỏ không chạy chương, rồi mới chạy lại. Không sửa game, không sửa `docs/` ngoài card. Hết hạn mức sau lượt 12; **Claude làm thay** lượt 13, báo cáo, commit và push nhánh.
+- **Kết quả:** ch2 good **đạt** (kiểm được các sửa T-232 ở chương 2). Ch3 good đi qua mọi mốc tới sân vận động, gồm báo cháy tầng 1 (sửa T-232), nhưng **chưa qua vòng sống sót sân vận động**: bot chưa biết đánh xác vây quanh và giữ thể lực. Ca âm chưa chạy.
+- Việc tiếp theo cho lane C (card mới khi có hạn mức): chiến thuật vòng sống sót sân vận động của bot, rồi 7 ca âm.
+- Gợi ý độ khó chương 3 (bot phải đi cúi, vòng tránh đàn xác và đồng đội) ghi trong Kết luận báo cáo, để chủ dự án để ý khi chơi thử; chưa phải lỗi.
+- Integrator chạy full test và check trên `main` sau merge (cùng T-227 D-147): full `RESULT: 881 passed, 1 failed`, check `RESULT: check 0 error(s)`. Test lỗi là `test_room407_fixes.gd::test_navigation_reaches_balcony_and_bathroom_without_crossing_solids`, chập chờn khi máy chậm (đọc bản đồ đường đi cũ trước khi cửa mở, cùng kiểu lỗi lane C gặp ở FireDoorLink), không liên quan bot hay T-227; integrator sửa test chờ đúng bản đồ mới (Claude làm thay B), chạy lại `RESULT: 6 passed, 0 failed`.
