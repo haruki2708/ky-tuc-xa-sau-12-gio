@@ -3,6 +3,13 @@
 - **T-229** (khảo sát, 02/11/2026): số đo, bảng hợp đồng gameplay, 12 ảnh hiện trạng, kế hoạch 4 lượt: [`PLAN.md`](PLAN.md); phiếu Tripo nháp [`TRIPO_NHAP.md`](TRIPO_NHAP.md).
 - **T-233** (lượt 1, D-142): mẫu đoạn x 26…34 quanh cửa 406 và 407, phương án A cả 4 mục, phong cách vỏ phòng 407 ([`../room407_shell/README.md`](../room407_shell/README.md)). Ảnh lượt 1 giữ nguyên trong `previews/` (tên `before_*`, `after_*`, `compare_*`).
 - **T-235** (lượt 2, D-144): chủ dự án duyệt mẫu, chọn lan can A1, thay biển số cùng cửa. Nhân ra **cả hành lang x 0…44**, cửa 401…408, tấm bịt cửa 408 cũ, biển số mới. Vẫn chỉ trong cảnh thử, chưa vào bản chơi. Ảnh lượt 2: `previews/round2/`.
+- **T-237** (bản chơi, D-148): hành lang mới **vào cả bốn chương**. Chủ dự án chọn biển số A (nhôm) và cửa 408 cũ kiểu 1 (xây kín); bản chơi chỉ có hai lựa chọn này. Ảnh từ cảnh chương thật: `previews/round3_playable/` (chương 1 và 3).
+
+## T-237: bản chơi
+- Mã dựng nằm ở `game/scenes/levels/floor4/corridor_shell.gd` (`Floor4CorridorShell`). `floor4.gd` gọi `Floor4CorridorShell.build(self)` trong `_ready`, nên mọi scene dùng `floor4.tscn` đều có hành lang mới: bốn chương, `main.tscn`, cảnh thử, cảnh chụp. Mã giống hệt mã T-235 đã đo FPS (D-148), chỉ chuyển chỗ.
+- Bản chơi dựng `shell`, `frames`, `lamps`, `railing`, `plates_alu`, hai tường đầu và 7 cánh Tripo. Cảnh thử `corridor_g5_pilot` dùng đúng hành lang đó, thêm `plates_enamel` và `seal_board` (ẩn) để còn so bằng phím N, M; phím G vẫn bật/tắt so với PS1.
+- `floor4.gd` có `upgraded_corridor` (mặc định bật). Tắt trước khi Floor4 vào cây để có tầng PS1 nguyên bản: test so hợp đồng (`test_corridor_g5`), test đo hình PS1 (`test_sealed_408`), bộ ảnh khảo sát T-229.
+- Chụp trong cảnh chương: `& $Godot --path game res://scenes/levels/floor4/corridor_capture.tscn -- --chapter=1` (hoặc `3`). Director không chạy (ánh sáng lúc mở chương), giao diện và người chơi ẩn, tắt tiếng. Bộ lọc PS1 tắt theo mặc định của game (D-102), nên ảnh không có hiệu ứng PS1 nếu người chơi không bật.
 
 Script lượt 1 đã đổi tên và mở rộng: `segment_layout.py` → `corridor_layout.py`, `build_segment.py` → `build_corridor.py`, `make_segment_masks.py` → `make_corridor_masks.py`. Các file `segment_*.glb` (kể cả lan can A2 `segment_railing_classic.glb`) đã thay bằng `corridor_*.glb`; bản cũ còn trong lịch sử Git.
 

@@ -1,0 +1,145 @@
+{
+	"campus": false,
+	"capture_kind": "res://scenes/main/chapter1.tscn with its PS1 screen filter, HUD and player hidden",
+	"chapter": 1,
+	"corridor": true,
+	"godot": "4.7.2-stable (official)",
+	"gpu": "NVIDIA GeForce RTX 3050 Laptop GPU",
+	"images": [
+		{
+			"eye": [
+				0.699999988079071,
+				1.64999997615814,
+				2.70000004768372
+			],
+			"file": "ch1_01_west_night.jpg",
+			"fire_door_open": false,
+			"fov": 75.0,
+			"target": [
+				32.0,
+				1.39999997615814,
+				1.20000004768372
+			],
+			"torch": false
+		},
+		{
+			"eye": [
+				43.2999992370605,
+				1.64999997615814,
+				3.09999990463257
+			],
+			"file": "ch1_02_east_night.jpg",
+			"fire_door_open": false,
+			"fov": 75.0,
+			"target": [
+				12.0,
+				1.39999997615814,
+				1.10000002384186
+			],
+			"torch": false
+		},
+		{
+			"eye": [
+				33.5,
+				1.64999997615814,
+				3.09999990463257
+			],
+			"file": "ch1_03_door407_night.jpg",
+			"fire_door_open": false,
+			"fov": 75.0,
+			"target": [
+				32.0,
+				1.25,
+				0.0
+			],
+			"torch": false
+		},
+		{
+			"eye": [
+				33.5,
+				1.64999997615814,
+				3.09999990463257
+			],
+			"file": "ch1_04_door407_torch.jpg",
+			"fire_door_open": false,
+			"fov": 75.0,
+			"target": [
+				32.0,
+				1.25,
+				0.0
+			],
+			"torch": true
+		},
+		{
+			"eye": [
+				5.59999990463257,
+				1.64999997615814,
+				2.70000004768372
+			],
+			"file": "ch1_19_west_end_night.jpg",
+			"fire_door_open": false,
+			"fov": 70.0,
+			"target": [
+				0.0,
+				1.29999995231628,
+				1.60000002384186
+			],
+			"torch": false
+		},
+		{
+			"eye": [
+				38.4000015258789,
+				1.64999997615814,
+				2.90000009536743
+			],
+			"file": "ch1_20_east_end_night.jpg",
+			"fire_door_open": false,
+			"fov": 70.0,
+			"target": [
+				44.0,
+				1.29999995231628,
+				1.79999995231628
+			],
+			"torch": false
+		},
+		{
+			"eye": [
+				4.19999980926514,
+				1.64999997615814,
+				2.59999990463257
+			],
+			"file": "ch1_21_west_end_torch.jpg",
+			"fire_door_open": false,
+			"fov": 70.0,
+			"target": [
+				-1.5,
+				0.699999988079071,
+				2.0
+			],
+			"torch": true
+		},
+		{
+			"eye": [
+				39.7999992370605,
+				1.64999997615814,
+				2.59999990463257
+			],
+			"file": "ch1_22_east_end_torch.jpg",
+			"fire_door_open": false,
+			"fov": 70.0,
+			"target": [
+				45.5,
+				0.699999988079071,
+				2.0
+			],
+			"torch": true
+		}
+	],
+	"lighting": "Chapter scene lights and environment as it opens (director not started); optional camera flashlight",
+	"renderer": "forward_plus",
+	"resolution": [
+		1920,
+		1080
+	],
+	"task": "T-237"
+}
