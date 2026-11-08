@@ -38,15 +38,13 @@ Phiên này CHỈ nhận bàn giao, chưa có việc. Không sửa file, không 
 Sau đó chờ integrator giao card.
 ```
 
-## 1b. Việc hiện tại: T-237 hành lang tầng 4 mới vào bản chơi (bốn chương)
+## 1b. T-237 đã xong, không giao lại
+T-237 (hành lang tầng 4 mới vào bản chơi) integrator đã làm thay lúc lane B hết hạn mức (09/11/2026, merge `f7efdc3`). Khi lane B có hạn mức lại, chỉ dán prompt này rồi chờ card mới:
 ```text
-Việc mới cho lane B: T-237 — đọc docs/tasks/T-237-floor4-corridor-playable.md.
-Chủ dự án đã duyệt T-235 (D-148: biển số A, cửa 408 cũ kiểu 1, lan can A1) và FPS hành lang đo xong (>= 60 ở 1080p, tools/reports/D-148-corridor-fps.md).
-Ở D:\GAME_WORK\lane-b2: git status (giữ thay đổi đang có), git fetch origin, git switch main, git pull --ff-only, git lfs pull,
-rồi tạo nhánh lane-b/T-237-floor4-corridor-playable từ origin/main.
-Đọc card thật kỹ, nhất là "Được phép sửa" và "Không được". floor4 dùng chung cho cả bốn chương nên test hợp đồng PLAN mục 2 phải đạt hết.
-Không đo FPS, không chạy bot (integrator xin chủ dự án riêng). Chạy test/check dài bằng tiến trình pwsh riêng ghi log để khỏi bị dừng khi máy thiếu RAM.
-Làm và bàn giao theo prompt mục 2 của docs/handoff/lane-b.md (luật Lượt Godot, full test và check trước commit, log trong build/, Handoff trung thực, push nhánh, không push main).
+T-237 đã được integrator làm thay và merge vào main (f7efdc3), đừng làm lại, đừng dùng nhánh T-235 cũ.
+Ở D:\GAME_WORK\lane-b2: git status (giữ thay đổi đang có, báo nếu có), git fetch origin, git switch main, git pull --ff-only, git lfs pull.
+Đọc docs/tasks/T-237-floor4-corridor-playable.md (Handoff và Review) để biết hành lang giờ dựng trong game/scenes/levels/floor4/corridor_shell.gd.
+Báo lại: nhánh đang đứng, commit HEAD, thay đổi chưa commit nếu có. Sau đó chờ integrator giao card.
 ```
 
 ## 2. Prompt giao việc (integrator điền T-xxx)

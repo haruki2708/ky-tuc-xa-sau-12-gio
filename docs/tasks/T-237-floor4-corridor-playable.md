@@ -1,5 +1,5 @@
 # T-237 — Hành lang tầng 4 mới vào bản chơi (bốn chương)
-- Lane: B (Môi trường và 3D) | Trạng thái: todo | Agent: tài khoản Claude lane B (D-141)
+- Lane: B (Môi trường và 3D) | Trạng thái: done 09/11/2026 (integrator làm thay, lane B hết hạn mức; merge `f7efdc3`) | Agent: tài khoản Claude lane B (D-141)
 - Nhánh: `lane-b/T-237-floor4-corridor-playable` từ `origin/main` mới nhất.
 - Quyết định giao: **D-148** (08/11/2026: chủ dự án duyệt T-235, chọn biển số A và cửa 408 cũ kiểu 1, cho phép đo FPS). Tiếp nối [T-235](T-235-floor4-corridor-full-shell.md) (cả hành lang trong cảnh thử `corridor_g5_pilot`) và [báo cáo FPS](../../tools/reports/D-148-corridor-fps.md): hành lang mới ≥ 60 FPS ở 1080p, chậm hơn PS1 khoảng 0,55 ms/khung.
 - Lượt này đưa hành lang mới vào **bản chơi**: `floor4.tscn` dùng chung cho cả bốn chương, nên mọi chương đổi theo.
