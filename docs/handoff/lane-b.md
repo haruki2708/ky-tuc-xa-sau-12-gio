@@ -47,6 +47,25 @@ T-237 đã được integrator làm thay và merge vào main (f7efdc3), đừng 
 Báo lại: nhánh đang đứng, commit HEAD, thay đổi chưa commit nếu có. Sau đó chờ integrator giao card.
 ```
 
+## 1c. Giao T-239 (09/11/2026, D-153): 4 lỗi tay Trần Trung
+Chủ dự án: mở Claude lane B bằng `D:\GAME_WORK\mo_claude_lane_b.cmd`, `/model` chọn **Opus 5.5**, đặt effort **max** (`/effort max` hoặc trong `/model`), rồi dán:
+```text
+Việc mới cho lane B: T-239 — sửa 4 lỗi tay Trần Trung mà chủ dự án thấy khi chơi thử. Đọc docs/tasks/T-239-protagonist-hand-fixes.md.
+Ở D:\GAME_WORK\lane-b2: git status (giữ thay đổi đang có, báo nếu có; nhánh T-235 cũ không dùng nữa), git fetch origin,
+git switch -c lane-b/T-239-protagonist-hand-fixes origin/main, git lfs pull.
+Đọc AGENTS.md mục 3–5, card T-239, docs/tasks/T-227-protagonist-tripo-body-motions.md (mục cuối) và game/scripts/player/player_body.gd.
+Xem 4 ảnh lỗi trong art_source/graphics_upgrade/protagonist/previews/t239/before_*.png.
+Chủ dự án muốn sửa dứt điểm: tìm nguyên nhân gốc từng lỗi trước khi sửa, sửa cho mọi đồ cùng loại, tự chụp ảnh trước/sau trong chương 1 thật và tự xem lại.
+Chỉ sửa file trong mục "Được phép sửa"; ngoài phạm vi thì ghi "Yêu cầu thay đổi". Không chạy bot, không đo FPS, không tiêu credit Tripo.
+Có chỗ phải chọn về cách cầm hay động tác mà card chưa nói thì đưa phương án kèm đề xuất cho chủ dự án.
+Godot theo luật Lượt Godot (file khóa D:\GAME_WORK\GODOT_DANG_CHAY.txt). Khi làm: pwsh tools/test.ps1 -Filter <tên test>.
+Trước commit: full pwsh tools/test.ps1 rồi pwsh tools/check.ps1 (chạy bằng tiến trình pwsh riêng ghi log trong build/, mỗi lượt ~25 phút),
+rồi git checkout -- game/default_bus_layout.tres. Không commit log, không commit anh_chup_sua_loi/.
+Commit nhỏ "T-239: ...", git push -u origin lane-b/T-239-protagonist-hand-fixes. Không push main, không mở PR.
+Cập nhật Checklist và Handoff trong card. Không sửa STATUS hay DECISIONS.
+Cuối phiên báo ngắn bằng tiếng Việt: xong gì, nhánh, commit, ảnh ở đâu, có bị chặn không.
+```
+
 ## 2. Prompt giao việc (integrator điền T-xxx)
 ```text
 Việc mới cho lane B: <T-xxx> — đọc docs/tasks/<file card>.md.
