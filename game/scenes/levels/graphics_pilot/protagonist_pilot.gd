@@ -88,13 +88,9 @@ class HandHinge:
 	var hinged: Node3D
 	var edges: Array[HandTarget] = []
 
-	func hand_target(from: Vector3 = Vector3.INF) -> HandTarget:
-		var best: HandTarget = null
-		for edge: HandTarget in edges:
-			if best == null or (from.is_finite()
-					and edge.global_position.distance_squared_to(from) < best.global_position.distance_squared_to(from)):
-				best = edge
-		return best
+	func hand_target(from: Vector3 = Vector3.INF, rank: Callable = Callable()) -> HandTarget:
+		# T-239: the same choice as every Interactable's (HandTarget.best).
+		return HandTarget.best(edges, from, rank)
 
 	func _on_interact(_player: Node) -> void:
 		var pivot := hinged.get_node("Pivot") as Node3D

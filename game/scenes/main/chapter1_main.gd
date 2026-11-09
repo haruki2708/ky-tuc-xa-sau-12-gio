@@ -33,7 +33,8 @@ const PAPERS: Array = [
 	[&"ch1_team_photo", "TeamPhoto", Vector3(0.062, 0.1, 0.05), Vector3(-9, -90, 0), Vector2(0.15, 0.1), &"photo"],
 	# D-106: on the desk beside the furnished laptop (it floated behind the new laptop's screen).
 	[&"ch1_viet_card", "VietLaptop", Vector3(0.27, -0.148, 0.03), Vector3(-90, 20, 0), Vector2(0.09, 0.06)],
-	[&"ch1_tap_chart", "GuitarSongbook", Vector3.ZERO, Vector3(-90, 0, 0), Vector2(0.15, 0.21)],
+	# T-239: on top of the songbook's pages (at the anchor it lay inside the book, 0.8 to 0.8285 m).
+	[&"ch1_tap_chart", "GuitarSongbook", Vector3(0.0, 0.0285, 0.0), Vector3(-90, 0, 0), Vector2(0.15, 0.21)],
 ]
 ## Where v2 papers go while lane B's new anchors are missing: anchor → fallback.
 const PAPER_FALLBACKS := {"PhucCard": ["PhucBooks", Vector3(0.12, -0.2, 0.25)],

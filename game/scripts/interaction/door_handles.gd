@@ -50,3 +50,61 @@ static func _take(lever: Node3D, grip_point: Vector3) -> HandTarget:
 	lever.add_child(target)
 	target.position = grip_point
 	return target
+
+
+## T-239 (owner, 09/11): a door's lever HandTargets learn which side of the doorway each is on, and the
+## leaf gets one more grip at its free edge, so a body takes (HandTarget._door_preference): from one
+## side of the doorway only that side's lever, when its face is turned toward the body; with that
+## face turned away (the leaf open), the free edge.
+## `pivot` swings the leaf (its parent stays put); `levers` are its two faces' HandTargets.
+static func sides(pivot: Node3D, levers: Array[HandTarget]) -> Array[HandTarget]:
+	var edges: Array[HandTarget] = []
+	if levers.size() != 2 or not pivot.get_parent() is Node3D:
+		return edges
+	var to_pivot: Basis = pivot.global_basis.orthonormalized().inverse()
+	# Each face's outward normal in the doorway's frame, with the leaf shut.
+	var shut: Basis = Basis.from_euler(Vector3(pivot.rotation.x, 0.0, pivot.rotation.z))
+	var normal: Vector3 = (shut * (to_pivot * levers[0].lever.global_basis.z).normalized()).normalized()
+	for target: HandTarget in levers:
+		var out: Vector3 = shut * (to_pivot * target.lever.global_basis.z).normalized()
+		target.set_meta(&"door_hinge", pivot)
+		target.set_meta(&"door_normal", normal)
+		target.set_meta(&"door_side", signf(out.dot(normal)))
+		target.set_meta(&"door_levers", levers)
+	# The free edge: from the hinge's axis past the levers' spindle to the far end of the leaf.
+	var spindle: Vector3 = pivot.to_local(levers[0].lever.global_position.lerp(levers[1].lever.global_position, 0.5))
+	var along := Vector3(spindle.x, 0.0, spindle.z)
+	if along.length() < 0.05:
+		return edges
+	along = along.normalized()
+	var reach: float = spindle.dot(along)
+	for mesh: MeshInstance3D in pivot.find_children("*", "MeshInstance3D", true, false):
+		if mesh.mesh == null or _under_lever(mesh, levers):
+			continue
+		var box: AABB = mesh.get_aabb()
+		var to_local: Transform3D = pivot.global_transform.affine_inverse() * mesh.global_transform
+		for corner: int in 8:
+			reach = maxf(reach, (to_local * box.get_endpoint(corner)).dot(along))
+	# One more grip at the free edge itself, half way through the leaf at the levers' height: the
+	# hand hooks round it as it reaches (HOOK, PlayerBody._grip_basis).
+	var edge := HandTarget.new()
+	edge.name = "HandTargetEdge"
+	edge.grip = HandTarget.Grip.HOOK
+	pivot.add_child(edge)
+	edge.position = Vector3(spindle.x, spindle.y, spindle.z) + along * (reach - spindle.dot(along) - EDGE_IN)
+	edge.set_meta(&"door_hinge", pivot)
+	edge.set_meta(&"door_normal", normal)
+	edge.set_meta(&"door_levers", levers)
+	edges.append(edge)
+	return edges
+
+
+## How far in from the free edge the hook takes it.
+const EDGE_IN: float = 0.01
+
+
+static func _under_lever(node: Node, levers: Array[HandTarget]) -> bool:
+	for target: HandTarget in levers:
+		if target.lever == node or target.lever.is_ancestor_of(node):
+			return true
+	return false

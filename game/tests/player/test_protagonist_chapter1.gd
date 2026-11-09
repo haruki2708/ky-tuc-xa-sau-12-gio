@@ -109,7 +109,8 @@ func test_every_hand_thing_can_be_reached_from_a_standing_spot() -> void:
 			continue
 		checked += 1
 		if await _stand_within_reach(thing):
-			var kind: StringName = body._reach_kind(thing.hand_target())
+			# T-239: the grip the body itself takes from here (a paper's edges, a door's side).
+			var kind: StringName = body._reach_kind(thing.hand_target(body._reach_from(), body._reach_rank))
 			kinds[kind] = int(kinds.get(kind, 0)) + 1
 		else:
 			failed.append("%s (hand at %s)" % [thing.get_path(), thing.hand_target().global_position])
@@ -129,7 +130,8 @@ func test_lean_crouch_and_toes_put_the_hand_on_the_thing() -> void:
 	for name: String in ["Ch1VietPhoto", "Ch1DatNote", "Ch1TeamPhoto", "Ch1PhucCard", "Ch1PhucSchedule", "Ch1KhoaNote"]:
 		var thing := chapter.get_node(name) as Interactable
 		assert_true(await _stand_within_reach(thing), name + " within reach")
-		var kind: StringName = body._reach_kind(thing.hand_target())
+		# T-239: the grip the body itself takes from here (a paper has one per edge).
+		var kind: StringName = body._reach_kind(thing.hand_target(body._reach_from(), body._reach_rank))
 		seen[kind] = true
 		var was_crouched: bool = bool(player.get("crouched"))
 		body.perform(thing)
@@ -137,7 +139,7 @@ func test_lean_crouch_and_toes_put_the_hand_on_the_thing() -> void:
 		var closest: float = INF
 		for frame in range(int(PlayerBody.CONTACT * 60.0) + 6):
 			await tree.physics_frame
-			closest = minf(closest, body._hand_tip().distance_to(thing.hand_target().global_position))
+			closest = minf(closest, body._hand_tip().distance_to(body._marker.global_position))
 		if kind == &"kneel":
 			assert_true(bool(player.get("crouched")), name + " crouched for it")
 		assert_true(closest <= 0.06 + body.finger_reach * body._scale(),

@@ -17,6 +17,12 @@ extends Node3D
 ##   while it is raised or its light is on.
 ## - T-227 (D-137): the body is Tran Trung from Tripo (pack_tripo_protagonist.py), about 1.74 m
 ##   once his eyes meet the camera.
+## - T-239 (owner's playtest, 09/11): the fingers of a hand that holds something take a whole hand
+##   shape (FingerPoseModifier, HandShapes: thumb included), made against the thing so nothing goes
+##   through it; a held phone or paper rides on the hand as drawn (placed once the skeleton has its
+##   final pose), so neither lags behind the hand nor slips into it. A paper is pinched by its right
+##   edge before it leaves its place (thumb on its face, the index under the edge), and held up to
+##   read the same way round (thumb in front, fingers behind).
 
 signal hand_action_finished(target: Interactable)
 
@@ -28,6 +34,19 @@ const RELEASE: float = 0.8
 ## After reading: carry the paper back to its place, then the empty hand back to the side.
 const PUT_DOWN_SECONDS: float = 0.5
 const LET_GO_SECONDS: float = 0.35
+## T-239: a paper. The pinch comes down over its right edge and the fingertips reach it at PAPER_TOUCH;
+## the edge rises onto the index (pick_style &"lift") and the thumb closes on the face; from PAPER_PINCH
+## the sheet rides on the hand and turns to the eyes as the grip becomes the reading one.
+const PAPER_TOUCH: float = 0.36
+const PAPER_PINCH: float = 0.52
+## How a paper comes off what it lies on (card section 4, the owner chooses): &"lift" (the index slides
+## under the edge as it rises, then the thumb closes) or &"straight" (the thumb and the index close on
+## the edge where it lies).
+static var pick_style: StringName = &"lift"
+## The pinch comes down onto the sheet from this high over it (metres, along its face), and with
+## &"lift" the index arrives this far outside the edge, sliding under it as it rises.
+const PICK_ABOVE: float = 0.03
+const PICK_SLIDE: float = 0.012
 ## IK fades in and out over this, while the goal sits on the clip's own hand.
 const IK_FADE: float = 0.08
 const MIRROR_LAYER: int = 20
@@ -57,17 +76,11 @@ const EYES_FROM_HEAD_BONE: Vector3 = Vector3(-0.017, 0.08, 0.09)
 ## The palm centre beyond the wrist bone: IK puts the wrist here short of the HandTarget, along
 ## the fingers of the turned hand, so the palm lands on it.
 const PALM: float = 0.08
-## Finger curl while holding a paper up to read: closed round its edge.
-const READ_CURL: float = 30.0
 ## Half the palm's thickness (model metres before scaling). What a hand holds sits on the palm
-## side, never inside the palm: a lever HOLD_GAP out, a paper's marked point (1.5 cm inside its
-## edge) PAPER_GAP out, so the sheet's edge stops just short of the palm, between the thumb and
-## the fingers (the owner: in the grip a little, not through the palm, by a side edge, 19/10).
+## side, never inside the palm: a lever HOLD_GAP out. (A paper and the phone have their own hold,
+## HandShapes, T-239.)
 const HAND_HALF: float = 0.02
 const HOLD_GAP: float = 0.012
-const PAPER_GAP: float = 0.018
-## Reading, the sheet sits this much toward the eyes from the palm's middle: the thumb in front.
-const THUMB_DEPTH: float = 0.01
 ## Share of the arm's full length a hand reaches without straining (T-227: measured on the
 ## skeleton, Tran Trung's arms are shorter than the stand-in's).
 const ARM_STRAIGHT: float = 0.95
@@ -111,13 +124,6 @@ const PHONE_LOW_AT: Vector3 = Vector3(-0.14, -0.17, -0.3)
 const PHONE_LOW_TILT: Vector3 = Vector3(-0.9, 0.25, 0.0)
 ## The light leaves the phone this far ahead of it (clear of the hand holding it).
 const PHONE_LIGHT_AHEAD: float = 0.06
-const PHONE_CURL: float = 50.0
-const LEFT_GRIP_BONES: PackedStringArray = [
-	"LeftIndexProximal", "LeftIndexIntermediate", "LeftIndexDistal",
-	"LeftMiddleProximal", "LeftMiddleIntermediate", "LeftMiddleDistal",
-	"LeftRingProximal", "LeftRingIntermediate", "LeftRingDistal",
-	"LeftLittleProximal", "LeftLittleIntermediate", "LeftLittleDistal",
-]
 ## Where a picked-up paper's centre is held to read, in camera space (the hand is at its edge,
 ## and the arm must reach it: about 30 cm out, a little below the eyes).
 const READ_POINT: Vector3 = Vector3(0.0, -0.09, -0.27)
@@ -215,6 +221,11 @@ var _tip_extra: float = 0.0
 ## The share of this reach's lean, rise and shoulder lift last given to _weigh.
 var _rise_weight: float = 0.0
 var _pole_rest: Vector3
+## T-239: where this action's elbow points by default (model space; _place_pole turns it toward the
+## hand's little finger), and the shoulder joints as drawn last frame (after the lean), world space.
+var _pole_base: Vector3
+var _drawn_shoulder: Vector3 = Vector3.INF
+var _drawn_left_shoulder: Vector3 = Vector3.INF
 ## The hand bone's local axis that faces out of the palm (the side the fingers curl to).
 var _palm_axis: Vector3 = Vector3.FORWARD
 var _start_basis: Basis
@@ -249,15 +260,34 @@ var _used: bool = false
 var _lever_rest: Quaternion = Quaternion.IDENTITY
 var _left_ik: TwoBoneIK3D
 var _left_align: HandAlignModifier
-var _left_grip: HandGripModifier
 var _left_goal: Node3D
 var _left_pole: Node3D
 var _left_attach: BoneAttachment3D
-var _left_palm_axis: Vector3 = Vector3.FORWARD
 var _phone: Node3D
 var _phone_weight: float = 0.0
 var _phone_raise: float = 0.0
 var _phone_half: float = 0.006
+## T-239: whole hand shapes for the right hand (a paper) and the left (the phone).
+var _fingers: FingerPoseModifier
+var _left_fingers: FingerPoseModifier
+## Where the phone wants to be this frame (world); it is put in the hand as drawn once the skeleton
+## has its final pose (_on_skeleton_updated).
+var _phone_pose: Transform3D = Transform3D.IDENTITY
+## A paper from its pinch on: the HandTarget's frame in the hand bone's frame (skeleton units) moves
+## from _held_from to _held_to by _held_blend; the sheet is put there on the hand as drawn. _land
+## (weight _land_weight) is where it must end up exactly when it is put back.
+var _attach_pending: bool = false
+var _held_paper: bool = false
+var _held_from: Transform3D = Transform3D.IDENTITY
+var _held_to: Transform3D = Transform3D.IDENTITY
+var _held_blend: float = 0.0
+var _land: Transform3D = Transform3D.IDENTITY
+var _land_weight: float = 0.0
+## Where the wrist was when the hand set off (a paper's reach goes wrist to wrist).
+var _from_wrist: Vector3 = Vector3.ZERO
+var _sheet_width: float = 0.21
+## The wrist and the hand's turn when the sheet was put down (the empty hand lets go from there).
+var _down_hand: Transform3D = Transform3D.IDENTITY
 
 
 func _ready() -> void:
@@ -323,7 +353,7 @@ func can_reach(target: Interactable) -> bool:
 	var drawn: float = _yaw
 	if not acting:
 		_place_model(0.0)
-	var marker: HandTarget = target.hand_target(_reach_from())
+	var marker: HandTarget = target.hand_target(_reach_from(), _reach_rank)
 	var reachable: bool = marker != null and _reach_kind(marker) != &""
 	if not acting:
 		_place_model(drawn)
@@ -334,13 +364,29 @@ func _reach_from() -> Vector3:
 	return _bone_world("RightUpperArm")
 
 
+## T-239: how much body a reach for `marker` takes (HandTarget.best): with the arm (0), up on the
+## toes (1), leaning (2), crouched (3), or out of reach. Of a paper's edges the one reached with
+## least is taken, so the edge chosen never needs a crouch (or is out of reach) while another is not.
+func _reach_rank(marker: HandTarget) -> int:
+	match _reach_kind(marker):
+		&"near":
+			return 0
+		&"up":
+			return 1
+		&"lean":
+			return 2
+		&"kneel":
+			return 3
+	return HandTarget.OUT_OF_REACH
+
+
 func perform(target: Interactable) -> void:
 	if not can_handle(target):
 		return
 	_face_view()
 	acting = true
 	_target = target
-	_marker = target.hand_target(_reach_from())
+	_marker = target.hand_target(_reach_from(), _reach_rank)
 	_time = 0.0
 	_contacted = false
 	_used = false
@@ -350,6 +396,17 @@ func perform(target: Interactable) -> void:
 	_set_phase(Phase.REACH)
 	_from = _hand_tip()
 	_start_basis = _natural_basis()
+	_from_wrist = _hand_attach.global_position
+	_attach_pending = false
+	_held_paper = false
+	_land_weight = 0.0
+	if _marker.pick_up:
+		# T-239: the sheet's HandTarget frame where it lies (its right edge, +Z its face).
+		_carried_from = _marker.global_transform.orthonormalized()
+		# How far the sheet runs across from the edge taken (readable.gd puts it on each edge's marker).
+		var size: Variant = target.get("size")
+		_sheet_width = float(_marker.get_meta(&"sheet_across", (size as Vector2).x if size is Vector2 else 0.21))
+		_fingers.hold(_pick_shape())
 	if is_instance_valid(player) and player.has_method("acquire_movement_lock"):
 		player.acquire_movement_lock(self)
 	_eye_start = _eye_world()
@@ -357,10 +414,22 @@ func perform(target: Interactable) -> void:
 	# Above a straight arm: no lean, up on the toes. The body stands still (the reach clip steps
 	# and lifts a heel) and the arm and the toes do it.
 	_reach = _reach_kind(_marker)
-	var high: bool = _reach == &"up" or (_reach == &"near" and _marker.global_position.y > _bone_world("RightUpperArm").y \
-			and is_inf(_bend_for(_marker.global_position)))
+	# T-239: a paper is reached for where the pinch puts the palm, when the body can get it there
+	# (a crouch or a lean of its own); else as the prompt judged, and the sheet is drawn in (_pull).
+	var goal: Vector3 = _marker.global_position
+	var grip: HandTarget.Grip = _marker.grip
+	_pull = Vector3.ZERO
+	if _marker.pick_up:
+		var palm: Vector3 = _pinch_palm(_marker)
+		var kind: StringName = _judge_goal(palm, HandTarget.Grip.GRIP)
+		if kind != &"":
+			goal = palm
+			grip = HandTarget.Grip.GRIP
+			_reach = kind
+	var high: bool = _reach == &"up" or (_reach == &"near" and goal.y > _bone_world("RightUpperArm").y \
+			and is_inf(_bend_for(goal)))
 	_high = high
-	_tip_extra = finger_reach if (high or _reach != &"near") and _marker.grip != HandTarget.Grip.GRIP else 0.0
+	_tip_extra = finger_reach if (high or _reach != &"near") and grip != HandTarget.Grip.GRIP else 0.0
 	# D-152: crouched down for it; the player stands back up by itself once the hand is back.
 	if _reach == &"kneel" and is_instance_valid(player) and not bool(player.get("crouched")) \
 			and player.has_method("_set_crouched"):
@@ -371,20 +440,29 @@ func perform(target: Interactable) -> void:
 	_key = &""
 	animator.speed_scale = 1.0
 	animator.play(_clip, BLEND_SECONDS, animator.get_animation(_clip).length / HAND_SECONDS)
-	_grip.curl_degrees = GRIP_DEGREES[_marker.grip]
+	_grip.curl_degrees = float(_marker.get_meta(&"curl", GRIP_DEGREES[_marker.grip]))
 	_aim(_from, _start_basis, 0.0)
-	_plan_bend(_marker.global_position)
+	# T-239: a pinch leans a little past the bare reach, so the arm is not at full stretch on the sheet.
+	var slack: float = PICK_SLACK if _marker.pick_up else 0.0
+	_plan_bend(goal, -slack)
 	if _reach == &"lean" or _reach == &"kneel":
-		_bend_degrees = _posed_bend(_marker.global_position, &"crouch_idle" if _reach == &"kneel" else &"idle",
-				_tip_extra, KNEEL_BEND if _reach == &"kneel" else LEAN_BEND)
+		var pose: StringName = &"crouch_idle" if _reach == &"kneel" else &"idle"
+		var limit: float = KNEEL_BEND if _reach == &"kneel" else LEAN_BEND
+		_bend_degrees = _posed_bend(goal, pose, _tip_extra - slack, limit)
+		if not is_finite(_bend_degrees):
+			_bend_degrees = _posed_bend(goal, pose, _tip_extra, limit)
 	_rise_target = 0.0
 	_pole.position = _pole_rest
 	if high:
 		# The elbow out to the side and up; over something low the chest leans in first (D-152).
-		_bend_degrees = _up_lean(_marker.global_position, _marker.grip) if _reach == &"up" else 0.0
-		_rise_target = minf(_rise_from(_leaned_shoulder(_marker.global_position, _bend_degrees),
-				_marker.global_position, _marker.grip), TIPTOE)
+		_bend_degrees = _up_lean(goal, grip) if _reach == &"up" else 0.0
+		_rise_target = minf(_rise_from(_leaned_shoulder(goal, _bend_degrees), goal, grip), TIPTOE)
 		_pole.position = Vector3(_pole_rest.x * 1.5, _shoulder_model_height(), -_pole_rest.z * 0.5)
+	_pole_base = _pole.position
+	_door = _marker.has_meta(&"door_levers")
+	_closing = _door and bool(target.get("is_open"))
+	_released_at = RELEASE
+	_shape_arm(_marker.pick_up or _door)
 
 
 func _physics_process(delta: float) -> void:
@@ -593,6 +671,9 @@ func _tick_action(delta: float) -> void:
 		return
 	_time += delta
 	_phase_time += delta
+	if _marker.pick_up:
+		_tick_paper()
+		return
 	var look_at: Vector3 = _marker.global_position
 	var look: float = 0.0
 	match _phase:
@@ -605,63 +686,124 @@ func _tick_action(delta: float) -> void:
 			_weigh(reach)
 			if _time >= CONTACT:
 				_contacted = true
+				# The hand keeps its hold on the grip as it moves (a door's leaf turns it).
+				_grip_at_contact = _marker.global_basis.orthonormalized()
+				_grip_in_marker = _grip_at_contact.inverse() * _grip_basis()
 				_contact()
 				_set_phase(Phase.HOLD)
 		Phase.HOLD:
-			if _marker.pick_up:
-				var lift: float = smoothstep(CONTACT, HAND_SECONDS, _time)
-				_aim(_carried_from.origin.lerp(_read_point(), lift), _grip_basis().slerp(_read_basis(), lift), 1.0)
-				_grip.curl_degrees = lerpf(GRIP_DEGREES[_marker.grip], READ_CURL, lift)
-				_update_carried(lift)
-				# Straighten up while the paper rises to the eyes (and the look comes back up).
-				_weigh(1.0 - lift)
-				look_at = _contact_point()
-				look = 1.0 - lift
-				if _time >= HAND_SECONDS:
-					_read()
-			else:
-				look = 1.0
+			look = 1.0
+			var pressing: bool = is_instance_valid(_marker.lever) and not _closing
+			if pressing:
 				_press_lever(smoothstep(CONTACT, CONTACT + LEVER_SECONDS, _time))
-				if not _used and _time >= CONTACT + (LEVER_SECONDS if is_instance_valid(_marker.lever) else 0.0):
-					_use()
-				_aim(_marker.global_position, _grip_basis(), 1.0)
-				if _time >= RELEASE:
-					_from = _marker.global_position
-					_set_phase(Phase.RETURN)
+			if not _used and _time >= CONTACT + (LEVER_SECONDS if pressing else 0.0):
+				_use()
+			_aim(_marker.global_position, _held_basis(), 1.0)
+			# T-239: a door's grip is followed as the leaf swings, until the time comes or it leaves the
+			# arm's reach; then the hand lets go and the leaf swings on.
+			if _time >= (DOOR_LET_GO if _door else RELEASE) or (_door and _used and _beyond_arm()):
+				_from = _marker.global_position
+				_released_at = _time
+				_release_basis = _held_basis()
+				_set_phase(Phase.RETURN)
 		Phase.RETURN:
-			var back: float = smoothstep(RELEASE, HAND_SECONDS, _time)
+			var back: float = smoothstep(_released_at, HAND_SECONDS, _time)
 			look = 1.0 - back
-			_press_lever(1.0 - smoothstep(RELEASE, RELEASE + LEVER_SECONDS, _time))
+			if not _closing:
+				_press_lever(1.0 - smoothstep(_released_at, _released_at + LEVER_SECONDS, _time))
 			if not _used:
 				_use()
-			_aim(_from.lerp(_natural_tip(), back), _grip_basis().slerp(_natural_basis(), back), 1.0 - back)
+			# Let go of a door's grip, the hand turns back to the arm's line first (no bent wrist hangs on).
+			var unwind: float = smoothstep(_released_at, _released_at + DOOR_UNWIND, _time) if _door else back
+			_aim(_from.lerp(_natural_tip(), back), _release_basis.slerp(_natural_basis(), unwind), 1.0 - back)
 			_grip.influence = 1.0 - back
 			_weigh(1.0 - back)
 			_ik.influence = 1.0 - smoothstep(HAND_SECONDS - IK_FADE, HAND_SECONDS, _time)
 			if _time >= HAND_SECONDS:
 				_finish()
 				return
+	_align.influence = _ik.influence
+	_follow_head(LEAN_FOLLOW)
+	_look(look_at, look)
+
+
+## T-239: a paper, from the reach to letting go of it again (see PAPER_TOUCH, PAPER_PINCH).
+func _tick_paper() -> void:
+	var look_at: Vector3 = _carried_from.origin
+	var look: float = 0.0
+	match _phase:
+		Phase.REACH:
+			# Wrist to wrist: from where the clip held it to over the edge, the pinch already shaped.
+			var reach: float = smoothstep(0.0, PAPER_TOUCH, _time)
+			look = reach
+			var above: Transform3D = _pick_hand(0.0)
+			_aim_hand(Transform3D(_start_basis.slerp(above.basis, reach), _reach_path(_from_wrist, above.origin, _time / PAPER_TOUCH)))
+			_ik.influence = smoothstep(0.0, IK_FADE, _time)
+			_fingers.influence = smoothstep(PAPER_TOUCH * 0.3, PAPER_TOUCH, _time)
+			_weigh(reach)
+			if _time >= PAPER_TOUCH:
+				_contacted = true
+				_carry(_target)
+				_set_phase(Phase.HOLD)
+		Phase.HOLD:
+			if _time < PAPER_PINCH:
+				# Down onto the edge (sliding the index under it as it rises), the thumb closes on the face.
+				var take: float = smoothstep(PAPER_TOUCH, PAPER_PINCH, _time)
+				look = 1.0
+				_draw_in()
+				_aim_hand(_pick_hand(take))
+				_carried.global_transform = _lifted_sheet(take)
+				_weigh(1.0)
+			else:
+				if not _held_paper and not _attach_pending:
+					# The sheet comes away now, held as the hand has it: as planned until the skeleton's
+					# final pose this frame gives the exact hold (_on_skeleton_updated).
+					_carried.global_transform = _lifted_sheet(1.0)
+					_held_from = _relation(_pick_hand(1.0), _carried.global_transform)
+					_attach_pending = true
+					_held_to = _ortho(HandShapes.SHEET_IN_HAND_READ)
+				var lift: float = smoothstep(PAPER_PINCH, HAND_SECONDS, _time)
+				var held: Transform3D = _held_from.interpolate_with(_held_to, lift)
+				_held_blend = lift
+				_aim_hand(_hand_for(_sheet_path(_lifted_sheet(1.0), _read_pose(), lift), held))
+				_fingers.morph(_pick_shape(), HandShapes.READ, lift)
+				# Straighten up while the paper rises to the eyes (and the look comes back up).
+				_weigh(1.0 - lift)
+				look_at = _carried.global_position if is_instance_valid(_carried) else look_at
+				look = 1.0 - lift
+				if _time >= HAND_SECONDS:
+					_read()
 		Phase.READ:
-			_aim(_read_point(), _read_basis(), 1.0)
-			_update_carried(1.0)
+			_held_blend = 1.0
+			_aim_hand(_hand_for(_read_pose(), _held_to))
+			_fingers.hold(HandShapes.READ)
 		Phase.PUT_DOWN:
+			# Back where it lay, flat, held as when it is set down with a straight pinch.
 			var down: float = smoothstep(0.0, PUT_DOWN_SECONDS, _phase_time)
-			look_at = _carried_from.origin
+			var placed: Transform3D = _set_down_hold()
+			_held_blend = down
+			_land = _carried_from
+			_land_weight = smoothstep(0.75, 1.0, down)
 			look = down
-			_aim(_read_point().lerp(_carried_from.origin, down), _read_basis().slerp(_grip_basis(), down), 1.0)
-			_grip.curl_degrees = lerpf(READ_CURL, GRIP_DEGREES[_marker.grip], down)
-			_update_carried(1.0 - down)
+			_aim_hand(_hand_for(_sheet_path(_read_pose(), _carried_from, down), _held_from.interpolate_with(placed, down)))
+			_fingers.morph(HandShapes.READ, HandShapes.PICK_STRAIGHT if _flat(_carried_from) else HandShapes.READ, down)
 			_weigh(down)
 			if _phase_time >= PUT_DOWN_SECONDS:
+				_down_hand = _hand_for(_carried_from, placed)
 				_restore_carried()
-				_from = _carried_from.origin
+				_held_paper = false
+				_land_weight = 0.0
 				_set_phase(Phase.LET_GO)
 		Phase.LET_GO:
+			# Up off the sheet, then back to the side; the fingers go back to the clip's.
 			var away: float = smoothstep(0.0, LET_GO_SECONDS, _phase_time)
-			look_at = _from
+			var off: Vector3 = _down_hand.origin + _carried_from.basis.z * PICK_ABOVE
 			look = 1.0 - away
-			_aim(_from.lerp(_natural_tip(), away), _grip_basis().slerp(_natural_basis(), away), 1.0 - away)
-			_grip.influence = 1.0 - away
+			var wrist: Vector3 = _down_hand.origin.lerp(off, smoothstep(0.0, 0.3, away))
+			if away > 0.3:
+				wrist = _reach_path(off, _natural_wrist(), (away - 0.3) / 0.7)
+			_aim_hand(Transform3D(_down_hand.basis.slerp(_natural_basis(), away), wrist))
+			_fingers.influence = 1.0 - away
 			_weigh(1.0 - away)
 			_ik.influence = 1.0 - smoothstep(LET_GO_SECONDS - IK_FADE, LET_GO_SECONDS, _phase_time)
 			if _phase_time >= LET_GO_SECONDS:
@@ -670,6 +812,110 @@ func _tick_action(delta: float) -> void:
 	_align.influence = _ik.influence
 	_follow_head(LEAN_FOLLOW)
 	_look(look_at, look)
+
+
+## T-239: the wrist's way from `from` to `to` at `t` (0..1). Going up to a desk the hand rises first,
+## then comes over (it does not cut through the desk's edge); going down it comes over first, then
+## drops onto the sheet.
+static func _reach_path(from: Vector3, to: Vector3, t: float) -> Vector3:
+	var up: bool = to.y > from.y
+	var level: float = smoothstep(0.0, 0.65, t) if up else smoothstep(0.35, 1.0, t)
+	var over: float = smoothstep(0.25, 1.0, t) if up else smoothstep(0.0, 0.7, t)
+	var flat: Vector3 = Vector3(from.x, 0.0, from.z).lerp(Vector3(to.x, 0.0, to.z), over)
+	return Vector3(flat.x, lerpf(from.y, to.y, level), flat.z)
+
+
+## The sheet on its way between `from` and `to` (turning on the way), along _reach_path.
+static func _sheet_path(from: Transform3D, to: Transform3D, t: float) -> Transform3D:
+	return Transform3D(from.basis.orthonormalized().slerp(to.basis.orthonormalized(), t), _reach_path(from.origin, to.origin, t))
+
+
+## The pinch for picking the sheet up (pick_style); a standing sheet (a photo in its frame) is taken
+## as it is read, the thumb in front and the fingers behind it.
+func _pick_shape() -> Dictionary:
+	if not _flat(_carried_from):
+		return HandShapes.READ
+	return HandShapes.PICK_LIFT if pick_style == &"lift" else HandShapes.PICK_STRAIGHT
+
+
+## A sheet lying (its face up or down), not standing.
+static func _flat(sheet: Transform3D) -> bool:
+	return absf(sheet.basis.z.normalized().y) > 0.7
+
+
+## How the hand holds the sheet's HandTarget frame when it sets it down (and picked a standing one).
+func _set_down_hold() -> Transform3D:
+	if not _flat(_carried_from):
+		return _ortho(HandShapes.SHEET_IN_HAND_READ)
+	return _ortho(HandShapes.HAND_IN_SHEET_PICK_STRAIGHT.affine_inverse())
+
+
+## The hand for the pinch on the sheet where it lies: `take` 0 hovers PICK_ABOVE over it (and with
+## &"lift" PICK_SLIDE outside its edge), 1 is the pinch. The edge taken already suits the reach
+## (HandTarget.preference), so the pinch is the one designed for the sheet, not turned about it
+## (turned, the index went through the sheet).
+func _pick_hand(take: float) -> Transform3D:
+	var hand: Transform3D = _pinch_hand(_carried_from.translated(_pull * take))
+	var away: float = 1.0 - take
+	var slide: float = PICK_SLIDE if pick_style == &"lift" else 0.0
+	hand.origin += _carried_from.basis.z * PICK_ABOVE * away + _carried_from.basis.x * slide * away
+	return hand
+
+
+## How much further than the bare reach a pinch is planned to lean (metres).
+const PICK_SLACK: float = 0.03
+## T-239: a sheet the arm cannot bring the pinch to (the prompt's reach is to its edge with the
+## fingertips) is drawn in by the fingertips along what it lies on, toward where the hand gets to,
+## at most this far (metres), before it is pinched.
+const PULL_LIMIT: float = 0.12
+var _pull: Vector3 = Vector3.ZERO
+var _wrist_short: Vector3 = Vector3.ZERO
+
+
+## While the wrist falls short of the pinch, draw the sheet in along its face (never up off its desk)
+## by part of the shortfall each frame: the goal comes back within the arm's reach.
+func _draw_in() -> void:
+	if _wrist_short.length() < 0.005:
+		return
+	var face: Vector3 = _carried_from.basis.z.normalized()
+	var along: Vector3 = _wrist_short - face * _wrist_short.dot(face)
+	along.y = 0.0
+	_pull = (_pull + along * 0.5).limit_length(PULL_LIMIT)
+## The width of sheet HandShapes' lift was designed on, and how far in from the edge the index's pad
+## goes under it (metres): a narrower sheet tilts more for the same rise, so it rises a little more to
+## clear the pad as much.
+const PICK_DESIGN_WIDTH: float = 0.15
+const PICK_PAD_IN: float = 0.012
+
+
+## The hand at the pinch on a sheet whose HandTarget frame is `sheet` (pick_style).
+func _pinch_hand(sheet: Transform3D) -> Transform3D:
+	if not _flat(sheet):
+		return _hand_for(sheet, _ortho(HandShapes.SHEET_IN_HAND_READ))
+	var in_sheet: Transform3D = HandShapes.HAND_IN_SHEET_PICK_LIFT if pick_style == &"lift" else HandShapes.HAND_IN_SHEET_PICK_STRAIGHT
+	return _hand_for(sheet, _ortho(in_sheet.affine_inverse()))
+
+
+## The sheet where it lies, its right edge risen `rise` of the way onto the index (&"lift": turned
+## about its left edge), before the pinch takes it.
+func _lifted_sheet(rise: float) -> Transform3D:
+	if pick_style != &"lift" or is_zero_approx(rise) or not _flat(_carried_from):
+		return _carried_from.translated(_pull * rise)
+	var width: float = maxf(_sheet_width, PICK_PAD_IN + 0.02)
+	var height: float = HandShapes.PICK_LIFT_RISE * rise * (1.0 - PICK_PAD_IN / PICK_DESIGN_WIDTH) / (1.0 - PICK_PAD_IN / width)
+	var tilt: float = asin(clampf(height / width, 0.0, 1.0))
+	var left: Vector3 = _carried_from * Vector3(-(_sheet_width - 0.015), 0.0, 0.0)
+	var axis: Vector3 = -_carried_from.basis.y
+	var turn := Basis(axis, tilt)
+	return Transform3D(turn * _carried_from.basis, left + turn * (_carried_from.origin - left) + _pull * rise)
+
+
+## Held up to read: the sheet's face to the eyes, upright, its centre at READ_POINT.
+func _read_pose() -> Transform3D:
+	var camera := _camera()
+	if camera == null:
+		return _carried_from
+	return Transform3D(camera.global_basis.orthonormalized(), _read_point())
 
 
 ## D-124: the eyes go to the working hand. The camera turns from the player's own aim toward
@@ -699,6 +945,43 @@ func _use() -> void:
 	_target.interact_by_hand(player, maxf(0.0, HAND_SECONDS - _time))
 
 
+## T-239 (owner, 09/11): a door (DoorHandles.sides) is closed without pressing its lever; its grip is
+## held as the leaf swings until DOOR_LET_GO (or until it leaves the arm's reach), then let go.
+const DOOR_LET_GO: float = 0.86
+const DOOR_UNWIND: float = 0.12
+var _door: bool = false
+var _closing: bool = false
+var _released_at: float = RELEASE
+var _release_basis: Basis = Basis.IDENTITY
+var _grip_in_marker: Basis = Basis.IDENTITY
+
+
+## The hand on the grip: as it took hold (turning with a door's leaf), else as _grip_basis.
+func _held_basis() -> Basis:
+	if _door:
+		return (_marker.global_basis.orthonormalized() * _grip_in_marker).orthonormalized()
+	return _grip_basis()
+
+
+## The arm, as drawn last frame, no longer brings the wrist to its goal (the grip has gone past
+## the arm's reach): further off it than this (metres).
+const ARM_SHORT: float = 0.015
+## ... or would bend the wrist further than this off the forearm (degrees): the grip has come round
+## too close (a leaf swinging in toward the body).
+const WRIST_BEND_LIMIT: float = 90.0
+## ... or the grip has turned this far since the hand took it (a leaf swung on past what the arm
+## follows without twisting round; radians).
+const FOLLOW_TURN: float = deg_to_rad(45.0)
+var _wrist_off_goal: float = 0.0
+var _wrist_bend: float = 0.0
+var _grip_at_contact: Basis = Basis.IDENTITY
+
+
+func _beyond_arm() -> bool:
+	var turned: float = (_grip_at_contact.inverse() * _marker.global_basis.orthonormalized()).get_rotation_quaternion().get_angle()
+	return _wrist_off_goal > ARM_SHORT or _wrist_bend > WRIST_BEND_LIMIT or turned > FOLLOW_TURN
+
+
 ## Hold `point` with the hand turned to `hand`: the palm's middle sits back from the point on the
 ## palm side by the hold gap (scaled by `hold`, 0 while the hand is still free), and the wrist
 ## goal back along the fingers from there.
@@ -707,6 +990,133 @@ func _aim(point: Vector3, hand: Basis, hold: float) -> void:
 	var palm: Vector3 = (hand * _palm_axis).normalized()
 	var middle: Vector3 = point - palm * _hold_gap() * hold
 	_goal.global_position = middle - hand.y.normalized() * (PALM + _tip()) * _scale()
+	if _arm_shaped:
+		_place_pole(_pole, _pole_base, _drawn_shoulder, _goal.global_position, -hand.x.normalized())
+
+
+## T-239: the wrist (the IK goal) at `hand`'s origin and the hand turned to its basis.
+func _aim_hand(hand: Transform3D) -> void:
+	_align.target_basis = hand.basis
+	_goal.global_position = hand.origin
+	if _arm_shaped:
+		_place_pole(_pole, _pole_base, _drawn_shoulder, hand.origin, -hand.basis.x.normalized())
+
+
+## T-239 (wrist): the IK turns the arm about its line so the elbow's point (the forearm's back, -Z)
+## faces the pole. With the pole on the side of the hand's little finger (square to the arm), the
+## forearm is already turned the way the hand is and the wrist keeps its shape: a hand twisted half
+## round against its forearm pinched the skin at the wrist (owner's playtest, 09/11). From where the
+## elbow points by default (`rest`, model space) it swings at most ELBOW_SWING; what twist is left
+## the forearm shares with the wrist (HandAlignModifier.forearm_share).
+const ELBOW_SWING: float = deg_to_rad(110.0)
+const LEFT_POLE_REST := Vector3(0.6, 0.8, -0.4)
+const FOREARM_SHARE: float = 0.5
+var _arm_shaped: bool = false
+
+
+var _pole_angles: Dictionary = {}
+
+
+func _shape_arm(on: bool) -> void:
+	_arm_shaped = on
+	_pole_angles.erase(_pole)
+	_ik.set_pole_direction(0, SkeletonModifier3D.SECONDARY_DIRECTION_MINUS_Z if on else SkeletonModifier3D.SECONDARY_DIRECTION_NONE)
+	_align.forearm_share = FOREARM_SHARE if on else 0.0
+
+
+## Put `pole` beside the arm from `shoulder` to `goal` (world), toward `little` (the hand's
+## little-finger side) as far as ELBOW_SWING from the default side `rest` (model space).
+func _place_pole(pole: Node3D, rest: Vector3, shoulder: Vector3, goal: Vector3, little: Vector3) -> void:
+	if not shoulder.is_finite():
+		return
+	var line: Vector3 = goal - shoulder
+	if line.length() < 0.01:
+		return
+	line = line.normalized()
+	var base: Vector3 = model.global_transform * rest - shoulder
+	base -= line * base.dot(line)
+	if base.length() < 0.001:
+		return
+	base = base.normalized()
+	var side: Vector3 = little - line * little.dot(line)
+	var angle: float = float(_pole_angles.get(pole, 0.0))
+	if side.length() > 0.2:
+		# The way round nearest last frame's (the elbow does not flip as the hand turns past behind it).
+		var wanted: float = base.signed_angle_to(side.normalized(), line)
+		wanted += TAU * roundf((angle - wanted) / TAU)
+		angle = clampf(wanted, -ELBOW_SWING, ELBOW_SWING)
+	_pole_angles[pole] = angle
+	pole.global_position = shoulder.lerp(goal, 0.5) + base.rotated(line, angle) * 0.4
+
+
+## The skeleton's world scale: hand-space transforms (HandShapes) are in skeleton units.
+func _sk_scale() -> float:
+	return skeleton.global_basis.get_scale().x
+
+
+## A bone as the skeleton finally poses it (IK and fingers included). Only meaningful while the
+## skeleton updates (_on_skeleton_updated): elsewhere the pose is the clip's.
+func _posed_bone(bone: String) -> Transform3D:
+	return skeleton.global_transform * skeleton.get_bone_global_pose(skeleton.find_bone(bone))
+
+
+## Where a thing held at `held` (in the hand bone's frame, skeleton units) is, for the hand bone at
+## `hand` (world, the skeleton's scale in its basis).
+func _held_world(hand: Transform3D, held: Transform3D) -> Transform3D:
+	return Transform3D((hand.basis.orthonormalized() * held.basis).orthonormalized(), hand * held.origin)
+
+
+## The hand bone (world; unscaled basis) that has a thing at `world` held at `held`.
+func _hand_for(world: Transform3D, held: Transform3D) -> Transform3D:
+	var basis: Basis = (world.basis.orthonormalized() * held.basis.orthonormalized().inverse()).orthonormalized()
+	return Transform3D(basis, world.origin - basis * (held.origin * _sk_scale()))
+
+
+## How a thing at `world` sits in the hand bone at `hand` (unscaled basis): the inverse of _hand_for.
+func _relation(hand: Transform3D, world: Transform3D) -> Transform3D:
+	var inverse: Basis = hand.basis.orthonormalized().inverse()
+	return Transform3D((inverse * world.basis.orthonormalized()).orthonormalized(), inverse * (world.origin - hand.origin) / _sk_scale())
+
+
+## A hand-space transform (HandShapes) with its basis made exactly orthonormal, for interpolation.
+static func _ortho(transform: Transform3D) -> Transform3D:
+	return Transform3D(transform.basis.orthonormalized(), transform.origin)
+
+
+## The wrist where the clip itself holds it this frame (before IK).
+func _natural_wrist() -> Vector3:
+	return (skeleton.global_transform * skeleton.get_bone_global_pose(skeleton.find_bone("RightHand"))).origin
+
+
+## T-239: once the skeleton has its final pose this frame (IK, fingers), what the hands hold is put on
+## them as drawn: the phone in the left hand, a pinched paper in the right.
+func _on_skeleton_updated() -> void:
+	_drawn_shoulder = _posed_bone("RightUpperArm").origin
+	_drawn_left_shoulder = _posed_bone("LeftUpperArm").origin
+	var hand_drawn: Transform3D = _posed_bone("RightHand")
+	_wrist_short = hand_drawn.origin - _goal.global_position if _ik.influence >= 1.0 else Vector3.ZERO
+	_wrist_off_goal = _wrist_short.length()
+	var forearm: Vector3 = hand_drawn.origin - _posed_bone("RightLowerArm").origin
+	_wrist_bend = rad_to_deg(forearm.angle_to(hand_drawn.basis.y)) if forearm.length() > 0.001 else 0.0
+	if _phone_weight > 0.0 and is_instance_valid(_phone):
+		var model := _phone.get_node_or_null("Model") as Node3D
+		if model != null:
+			var placed: Transform3D = _phone_pose.interpolate_with(_held_world(_posed_bone("LeftHand"), HandShapes.PHONE_IN_HAND), _phone_weight)
+			model.global_transform = placed
+			var light := _phone.get_node_or_null("Flashlight") as Node3D
+			var camera := _camera()
+			if light != null and camera != null:
+				light.global_transform = Transform3D(camera.global_basis, placed.origin + (-camera.global_basis.z.normalized()) * PHONE_LIGHT_AHEAD)
+	if not acting or not is_instance_valid(_carried):
+		return
+	var hand: Transform3D = _posed_bone("RightHand")
+	if _attach_pending:
+		_held_from = _relation(Transform3D(hand.basis.orthonormalized(), hand.origin), _carried.global_transform)
+		_attach_pending = false
+		_held_paper = true
+	elif _held_paper:
+		var on_hand: Transform3D = _held_world(hand, _held_from.interpolate_with(_held_to, _held_blend))
+		_carried.global_transform = on_hand.interpolate_with(_land, _land_weight) if _land_weight > 0.0 else on_hand
 
 
 ## How far past the palm's middle the hand takes the thing now (model metres): the fingertips on
@@ -717,8 +1127,7 @@ func _tip() -> float:
 
 ## From the palm's middle to what the hand holds, along the palm's facing.
 func _hold_gap() -> float:
-	var gap: float = PAPER_GAP if is_instance_valid(_marker) and _marker.pick_up else HOLD_GAP
-	return (HAND_HALF + gap) * _scale()
+	return (HAND_HALF + HOLD_GAP) * _scale()
 
 
 ## The point the hand holds, as drawn: palm's middle (or the fingertips, _tip) plus the hold gap
@@ -732,6 +1141,9 @@ func _contact_point() -> Vector3:
 ## How the hand meets the target (world space): a lever palm down with the fingers over it, an
 ## edge with the palm turned in, a paper with the fingers down onto its near edge.
 func _grip_basis() -> Basis:
+	if _marker.has_meta(&"hand_basis"):
+		# T-239: a grip that says how the hand lies on it (a door's free edge, DoorHandles.sides).
+		return (_marker.global_basis.orthonormalized() * (_marker.get_meta(&"hand_basis") as Basis)).orthonormalized()
 	var flat: Vector3 = _marker.global_position - global_position
 	flat.y = 0.0
 	flat = flat.normalized() if flat.length() > 0.01 else -player.global_basis.z
@@ -745,17 +1157,6 @@ func _grip_basis() -> Basis:
 		HandTarget.Grip.PINCH:
 			return _hand_basis(flat * 0.8 + Vector3.DOWN * 0.6, Vector3.DOWN)
 	return _hand_basis(flat * 0.9 + Vector3.DOWN * 0.3, Vector3.DOWN)
-
-
-## Holding a paper up by its right-hand edge to read: fingers up, the palm facing in across the
-## sheet; the sheet runs between the thumb (in front) and the fingers (behind).
-func _read_basis() -> Basis:
-	var camera := _camera()
-	if camera == null:
-		return _grip_basis()
-	var view: Basis = camera.global_basis.orthonormalized()
-	var across: Vector3 = (view * _carried_centre).normalized() if _carried_centre.length() > 0.01 else -view.x
-	return _hand_basis(view.y, across)
 
 
 ## A hand basis with its fingers (bone +Y) along `fingers` and the palm facing `palm`; the right
@@ -792,16 +1193,18 @@ func _tick_phone(delta: float) -> void:
 	model.global_transform = pose
 	model.visible = raised or _phone_weight > 0.01
 	light.global_transform = Transform3D(camera.global_basis, pose.origin + (-camera.global_basis.z.normalized()) * PHONE_LIGHT_AHEAD)
-	# Palm on the back of the phone, fingers round its far edge.
-	var back: Vector3 = -pose.basis.z.normalized()
-	var fingers: Vector3 = (pose.basis.x.normalized() * 0.8 + pose.basis.y.normalized() * 0.6)
-	var hand: Basis = _hand_basis(fingers, -back, _left_palm_axis)
-	var middle: Vector3 = pose.origin + back * (_phone_half + HAND_HALF * _scale())
-	_left_goal.global_position = middle - hand.y.normalized() * PALM * _scale()
-	_left_align.target_basis = hand
+	# T-239: the left hand that holds the phone there (HandShapes.PHONE_IN_HAND: its back on the palm,
+	# the fingers round its far edge, the thumb up its near edge); once the skeleton has its final pose
+	# the phone is put in that hand as drawn (_on_skeleton_updated).
+	_phone_pose = pose
+	var hand: Transform3D = _hand_for(pose, HandShapes.PHONE_IN_HAND)
+	_left_goal.global_position = hand.origin
+	_left_align.target_basis = hand.basis
+	# The left hand's +X is its little-finger side (the right hand's is the thumb's).
+	_place_pole(_left_pole, LEFT_POLE_REST, _drawn_left_shoulder, hand.origin, hand.basis.x.normalized())
 	_left_ik.influence = _phone_weight
 	_left_align.influence = _phone_weight
-	_left_grip.influence = _phone_weight
+	_left_fingers.influence = _phone_weight
 
 
 ## The hand as the clip holds it this frame (before IK), world space.
@@ -843,13 +1246,15 @@ func _follow_head(weight: float) -> void:
 	_lean = player.global_basis.inverse() * (_eye_world() - _eye_start) * weight
 
 
-## Lean the chest toward the goal until the shoulder is within reach of it.
-func _plan_bend(goal: Vector3) -> void:
+## Lean the chest toward the goal until the shoulder is within reach of it (`extra` metres more
+## reach, or less when negative: some slack).
+func _plan_bend(goal: Vector3, extra: float = 0.0) -> void:
 	var flat: Vector3 = goal - _bone_world(_bend.bones[0])
 	flat.y = 0.0
 	var forward: Vector3 = flat.normalized() if flat.length() > 0.01 else -global_basis.z
 	_bend.axis = (skeleton.global_basis.inverse() * Vector3.UP.cross(forward).normalized()).normalized()
-	_bend_degrees = minf(_bend_for(goal), MAX_BEND)
+	var bend: float = _posed_bend(goal, _stance(), extra, MAX_BEND)
+	_bend_degrees = minf(bend if is_finite(bend) else _bend_for(goal), MAX_BEND)
 
 
 ## The lean (degrees, in 5 degree steps) that brings the shoulder within reach of `goal`, or INF
@@ -908,17 +1313,28 @@ func _reach_kind(marker: HandTarget) -> StringName:
 
 
 func _judge_reach(marker: HandTarget) -> StringName:
-	var goal: Vector3 = marker.global_position
-	if _bend_for(goal) <= MAX_BEND or _rise_for(goal, marker.grip) <= TIPTOE:
+	return _judge_goal(marker.global_position, marker.grip)
+
+
+func _judge_goal(goal: Vector3, grip: HandTarget.Grip) -> StringName:
+	if _bend_for(goal) <= MAX_BEND or _rise_for(goal, grip) <= TIPTOE:
 		return &"near"
-	if _up_lean(goal, marker.grip) <= HIGH_LEAN:
+	if _up_lean(goal, grip) <= HIGH_LEAN:
 		return &"up"
-	var extra: float = finger_reach if marker.grip != HandTarget.Grip.GRIP else 0.0
+	var extra: float = finger_reach if grip != HandTarget.Grip.GRIP else 0.0
 	if _posed_bend(goal, &"idle", extra, LEAN_BEND) <= LEAN_BEND:
 		return &"lean"
 	if _posed_bend(goal, &"crouch_idle", extra, KNEEL_BEND) <= KNEEL_BEND:
 		return &"kneel"
 	return &""
+
+
+## T-239: the palm's middle in the pinch on a paper's HandTarget (HandShapes: over a flat sheet, or
+## below the edge of a standing one, as it is read). The body plans its lean for it when it can get
+## the palm there (perform); the prompt still judges the reach by the marker (D-152).
+func _pinch_palm(marker: HandTarget) -> Vector3:
+	var hand: Transform3D = _pinch_hand(marker.global_transform.orthonormalized())
+	return hand.origin + hand.basis.y.normalized() * PALM * _scale()
 
 
 ## D-152: the bend bones and the right shoulder joint of the standing and crouched poses, model space.
@@ -1017,10 +1433,7 @@ func _shoulder_model_height() -> float:
 
 
 func _contact() -> void:
-	if _marker.pick_up:
-		_carried_from = _marker.global_transform
-		_carry(_target)
-	elif not is_instance_valid(_marker.lever):
+	if not is_instance_valid(_marker.lever):
 		_use()
 
 
@@ -1053,20 +1466,6 @@ func _carry(target: Node3D) -> void:
 		_carried_centre += (copy as Node3D).position / _carried.get_child_count()
 
 
-## The paper is held at the point its HandTarget marks (the hand's contact point), and turns its
-## face (+Z) to the eyes, upright, as it is lifted, the thumb side in front of it.
-func _update_carried(lift: float) -> void:
-	if not is_instance_valid(_carried):
-		return
-	var facing: Basis = _carried_from.basis
-	var point: Vector3 = _contact_point()
-	var camera := _camera()
-	if camera != null:
-		facing = camera.global_basis.orthonormalized()
-		point += (camera.global_position - point).normalized() * THUMB_DEPTH * _scale() * lift
-	_carried.global_transform = Transform3D(_carried_from.basis.slerp(facing, lift).orthonormalized(), point)
-
-
 ## D-151: a hand action stops where it is (a carried paper goes back to its place) and the body
 ## hides, so the death camera (PlayerDeath) moves alone; the head keeps no lean or neck offset of ours.
 func _on_death_started(_kind: StringName) -> void:
@@ -1094,6 +1493,11 @@ func _on_document_closed(_id: StringName) -> void:
 func _put_back() -> void:
 	_reading = false
 	_set_phase(Phase.PUT_DOWN)
+	if is_instance_valid(_marker) and _marker.pick_up:
+		# T-239: from the reading hold to the pinch it is set down with.
+		_held_from = _ortho(HandShapes.SHEET_IN_HAND_READ)
+		_held_to = _set_down_hold()
+		_held_blend = 0.0
 
 
 func _restore_carried() -> void:
@@ -1114,12 +1518,19 @@ func _finish() -> void:
 	_ik.influence = 0.0
 	_align.influence = 0.0
 	_grip.influence = 0.0
+	_fingers.influence = 0.0
+	_attach_pending = false
+	_held_paper = false
+	_land_weight = 0.0
 	_bend_degrees = 0.0
 	_rise_target = 0.0
 	_high = false
 	_tip_extra = 0.0
 	_weigh(0.0)
 	_pole.position = _pole_rest
+	_shape_arm(false)
+	_door = false
+	_closing = false
 	_lean = Vector3.ZERO
 	var camera := _camera()
 	if camera != null and camera.get_parent() == _head:
@@ -1316,6 +1727,12 @@ func _build_modifiers() -> void:
 	_grip.bones = GRIP_BONES
 	skeleton.add_child(_grip)
 	_grip.influence = 0.0
+	# T-239: after the curl, a whole hand shape (thumb included) for what is held by a shaped grip.
+	_fingers = FingerPoseModifier.new()
+	_fingers.name = "RightFingers"
+	_fingers.side = &"Right"
+	skeleton.add_child(_fingers)
+	_fingers.influence = 0.0
 	_head_attach = BoneAttachment3D.new()
 	_head_attach.name = "HeadAttach"
 	_head_attach.bone_name = "Head"
@@ -1332,7 +1749,7 @@ func _build_modifiers() -> void:
 	_left_pole = Node3D.new()
 	_left_pole.name = "LeftElbowPole"
 	model.add_child(_left_pole)
-	_left_pole.position = Vector3(0.6, 0.8, -0.4)
+	_left_pole.position = LEFT_POLE_REST
 	_left_ik = TwoBoneIK3D.new()
 	_left_ik.name = "LeftArmIK"
 	skeleton.add_child(_left_ik)
@@ -1342,23 +1759,27 @@ func _build_modifiers() -> void:
 	_left_ik.set_end_bone_name(0, "LeftHand")
 	_left_ik.set_target_node(0, _left_ik.get_path_to(_left_goal))
 	_left_ik.set_pole_node(0, _left_ik.get_path_to(_left_pole))
+	# T-239: only the phone uses this arm; it is always turned to face its pole (see _place_pole).
+	_left_ik.set_pole_direction(0, SkeletonModifier3D.SECONDARY_DIRECTION_MINUS_Z)
 	_left_ik.influence = 0.0
 	_left_align = HandAlignModifier.new()
 	_left_align.name = "LeftHandAlign"
 	_left_align.bone = &"LeftHand"
+	_left_align.forearm_share = FOREARM_SHARE
 	skeleton.add_child(_left_align)
 	_left_align.influence = 0.0
-	_left_palm_axis = _find_palm_axis("LeftHand", LEFT_GRIP_BONES[3])
-	_left_grip = HandGripModifier.new()
-	_left_grip.name = "LeftGrip"
-	_left_grip.bones = LEFT_GRIP_BONES
-	_left_grip.curl_degrees = PHONE_CURL
-	skeleton.add_child(_left_grip)
-	_left_grip.influence = 0.0
+	# T-239: the phone's own hand shape (HandShapes.PHONE), not a curl on top of the clip.
+	_left_fingers = FingerPoseModifier.new()
+	_left_fingers.name = "LeftFingers"
+	_left_fingers.side = &"Left"
+	skeleton.add_child(_left_fingers)
+	_left_fingers.hold(HandShapes.PHONE)
+	_left_fingers.influence = 0.0
 	_left_attach = BoneAttachment3D.new()
 	_left_attach.name = "LeftHandAttach"
 	_left_attach.bone_name = "LeftHand"
 	skeleton.add_child(_left_attach)
+	skeleton.skeleton_updated.connect(_on_skeleton_updated)
 
 
 ## The hand's local axis out of the palm: where a finger's tip goes when HandGripModifier
