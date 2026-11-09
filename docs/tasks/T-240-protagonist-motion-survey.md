@@ -1,6 +1,6 @@
 # T-240 — Khảo sát mọi động tác của Trần Trung ở chương 1 (chỉ khảo sát, chưa sửa)
-- Lane: B | Trạng thái: todo, **bắt đầu sau khi T-239 đã merge vào main** | Agent: tài khoản Claude lane B (D-141), Opus 5.5 (effort do chủ dự án đặt)
-- Nhánh: `lane-b/T-240-protagonist-motion-survey` từ `origin/main` **sau khi** integrator merge [T-239](T-239-protagonist-hand-fixes.md).
+- Lane: B | Trạng thái: todo, **bắt đầu sau khi T-241 đã merge vào main** (D-156; T-239 đã merge 10/11) | Agent: tài khoản Claude lane B (D-141), Opus 5.5 (effort do chủ dự án đặt)
+- Nhánh: `lane-b/T-240-protagonist-motion-survey` từ `origin/main` **sau khi** integrator merge [T-241](T-241-protagonist-natural-reach.md) (lấy đồ tự nhiên, D-156).
 - Quyết định giao: **D-155** (09/11/2026). Chủ dự án hỏi có nên cho lane B khảo sát tất cả các hành động (cầm nắm, lấy đồ dùng…) để tìm động tác thiếu tự nhiên và lỗi logic, chỉnh trong Blender. Integrator đề xuất làm sau T-239, chỉ khảo sát và đề xuất; chủ dự án: "có giao".
 - Vì sao làm sau T-239: T-239 làm lại hệ ngón tay (tư thế theo kiểu cầm, ngón cái, cách chọn chỗ cầm cửa). Khảo sát trên bản đã sửa mới không trùng 4 lỗi đã biết.
 
@@ -23,7 +23,7 @@ Một báo cáo kèm ảnh để chủ dự án xem rồi **chọn lỗi nào s�
   - công tắc, ổ điện, dây mạng, ổ mạng;
   - tủ, nan giường, chỗ lục đồ, gõ tường, bàn giải đố;
   - đồ ôm hoặc mang (`carry_item`) nếu chương 1 có.
-- **Mỗi đồ khảo sát mọi cách với mà game cho phép:** đứng, nhón chân, rướn qua đồ, quỳ (D-152). Với mỗi cách, kiểm từ chỗ đứng gần nhất và một chỗ đứng xa nhất còn hiện lời nhắc.
+- **Mỗi đồ khảo sát mọi cách với mà game cho phép:** sau T-241 (D-156) là đứng gập hông nhẹ (đồ trên bàn), cúi gập gối chùng (đồ thấp), ngồi xổm khi cúi không tới, nhón chân (đồ cao). Với mỗi cách, kiểm từ chỗ đứng gần nhất và một chỗ đứng xa nhất còn hiện lời nhắc.
 
 **B. Tay trái và điện thoại** (bắt buộc): giơ lên đọc, cầm thấp bật đèn, cất. Cầm điện thoại **trong lúc** tay phải đang làm việc khác (lấy giấy, mở cửa): hai tay có va nhau không, điện thoại có xuyên thân không.
 

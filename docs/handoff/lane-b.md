@@ -47,7 +47,7 @@ T-237 đã được integrator làm thay và merge vào main (f7efdc3), đừng 
 Báo lại: nhánh đang đứng, commit HEAD, thay đổi chưa commit nếu có. Sau đó chờ integrator giao card.
 ```
 
-## 1c. Giao T-239 (09/11/2026, D-153): 4 lỗi tay Trần Trung
+## 1c. Giao T-239 (09/11/2026, D-153): 4 lỗi tay Trần Trung (ĐÃ XONG, merge 10/11; không dán lại)
 Chủ dự án: mở Claude lane B bằng `D:\GAME_WORK\mo_claude_lane_b.cmd`, `/model` chọn **Opus 5.5**, đặt effort **max** (`/effort max` hoặc trong `/model`), rồi dán:
 ```text
 Việc mới cho lane B: T-239 — sửa 4 lỗi tay Trần Trung mà chủ dự án thấy khi chơi thử. Đọc docs/tasks/T-239-protagonist-hand-fixes.md.
@@ -71,20 +71,43 @@ Cập nhật Checklist và Handoff trong card. Không sửa STATUS hay DECISIONS
 Cuối phiên báo ngắn bằng tiếng Việt: xong gì, nhánh, commit, ảnh ở đâu, có bị chặn không.
 ```
 
-## 1d. Giao T-240 (D-155): khảo sát mọi động tác Trần Trung, CHỈ dán sau khi integrator đã merge T-239
-Chủ dự án: chờ integrator báo T-239 đã merge vào main, rồi dán vào cửa sổ lane B (cùng phiên hoặc phiên mới):
+## 1d. Giao T-240 (D-155): khảo sát mọi động tác Trần Trung, CHỈ dán sau khi integrator đã merge T-241 (D-156)
+Chủ dự án: chờ integrator báo T-241 đã merge vào main, rồi dán vào cửa sổ lane B (cùng phiên hoặc phiên mới):
 ```text
 Việc mới cho lane B: T-240 — khảo sát mọi động tác của Trần Trung ở chương 1, CHỈ khảo sát và đề xuất, không sửa game. Đọc docs/tasks/T-240-protagonist-motion-survey.md.
 Ở D:\GAME_WORK\lane-b2: git status (giữ thay đổi đang có, báo nếu có), git fetch origin,
-kiểm T-239 đã có trên origin/main (git log --oneline origin/main | grep T-239), nếu chưa thì dừng và báo.
+kiểm T-241 đã có trên origin/main (git log --oneline origin/main | grep T-241), nếu chưa thì dừng và báo.
 git switch -c lane-b/T-240-protagonist-motion-survey origin/main, git lfs pull.
-Đọc AGENTS.md mục 3–5, card T-240, Handoff của T-239 (cách đo xuyên vật, cách chụp) và game/tests/player/test_protagonist_chapter1.gd.
+Đọc AGENTS.md mục 3–5, card T-240, Handoff của T-239 và T-241 (cách đo, cách chụp) và game/tests/player/test_protagonist_chapter1.gd.
 Lấy danh sách đồ dùng tay bằng code ở mọi mốc truyện; chấm Tự nhiên / Hơi gượng / Sai, độ nặng, ảnh, đề xuất sửa (code, Blender, vị trí đồ, Tripo) và công.
 Không sửa code, scene, asset game; cảnh chụp tạm trong game/_probe_tmp/ rồi xóa. Không chạy bot, không đo FPS, không tiêu credit Tripo.
 Godot theo luật Lượt Godot (file khóa D:\GAME_WORK\GODOT_DANG_CHAY.txt), chụp chia nhiều lượt nhỏ.
 Commit báo cáo và ảnh ("T-240: ..."), git push -u origin lane-b/T-240-protagonist-motion-survey. Không push main, không mở PR.
 Cập nhật Checklist và Handoff trong card. Không sửa STATUS hay DECISIONS.
 Cuối phiên báo ngắn bằng tiếng Việt: số mục đã khảo sát, số Hơi gượng / Sai, 5 lỗi nên sửa trước, câu hỏi cho chủ dự án, nhánh, commit.
+```
+
+## 1e. Giao T-241 (10/11/2026, D-156): lấy đồ tự nhiên, dán NGAY (trước T-240)
+Chủ dự án: mở Claude lane B bằng `D:\GAME_WORK\mo_claude_lane_b.cmd` (hoặc dùng cửa sổ lane B đang mở), `/model` chọn **Opus 5.5**, effort đề xuất **max** như T-239, rồi dán:
+```text
+Việc mới cho lane B: T-241 — lấy đồ tự nhiên (chủ dự án chơi thử bản có T-239). Đọc docs/tasks/T-241-protagonist-natural-reach.md.
+Nếu đang làm T-240 thì dừng: commit phần đã có vào nhánh T-240 ("T-240: WIP"), push, rồi làm T-241 (T-240 làm lại sau khi T-241 merge).
+Ở D:\GAME_WORK\lane-b2: git status (giữ thay đổi đang có, báo nếu có), git fetch origin,
+git switch -c lane-b/T-241-protagonist-natural-reach origin/main, git lfs pull.
+Đọc AGENTS.md mục 3–5, card T-241 (mục 1 là điều chủ dự án đã chốt), Handoff của T-239, docs/tasks/T-227-protagonist-tripo-body-motions.md (mục cuối) và game/scripts/player/player_body.gd.
+Chủ dự án khen cách cầm của T-239, chỉ chê cách thân với đồ: đồ trên bàn đứng yên gập hông nhẹ (≤ 45°, không khom, không rướn sâu, không nhón),
+giấy dưới đất và thùng rác cúi gập gối hơi chùng (không ngồi xổm), thứ thấp khác cũng cúi gập. Giữ nguyên cách cầm T-239 và test T-239.
+Card mục 2 là nguyên nhân integrator đọc ra từ code: tự đo để xác nhận trước khi sửa, ghi số đo trước/sau và bảng mọi đồ trong Handoff.
+Tự chụp ảnh trước/sau trong chương 1 thật, tự xem lại từng tấm; nên có video ngắn (để trong build/, không commit).
+Câu hỏi ở card mục 4 (1 giây có đủ cho cúi nhặt không, đồ phải dời xa hơn 10 cm) đưa chủ dự án kèm ảnh hoặc video và đề xuất, không tự quyết.
+Đầu phiên ghi commit của card đã đọc (git log -1 --format=%h origin/main -- docs/tasks/T-241-protagonist-natural-reach.md).
+Chỉ sửa file trong mục "Được phép sửa"; ngoài phạm vi thì ghi "Yêu cầu thay đổi". Không chạy bot, không đo FPS, không tiêu credit Tripo.
+Godot theo luật Lượt Godot (file khóa D:\GAME_WORK\GODOT_DANG_CHAY.txt). Khi làm: pwsh tools/test.ps1 -Filter <tên test>.
+Trước commit: full pwsh tools/test.ps1 rồi pwsh tools/check.ps1 (tiến trình pwsh riêng, log trong build/, mỗi lượt ~25 phút),
+rồi git checkout -- game/default_bus_layout.tres. Không commit log, video, anh_chup_sua_loi/.
+Commit nhỏ "T-241: ...", git push -u origin lane-b/T-241-protagonist-natural-reach. Không push main, không mở PR.
+Cập nhật Checklist và Handoff trong card. Không sửa STATUS hay DECISIONS.
+Cuối phiên báo ngắn bằng tiếng Việt: xong gì, nhánh, commit, ảnh và video ở đâu, câu hỏi cho chủ dự án, có bị chặn không.
 ```
 
 ## 2. Prompt giao việc (integrator điền T-xxx)
