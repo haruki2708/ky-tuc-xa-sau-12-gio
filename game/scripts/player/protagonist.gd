@@ -3,7 +3,8 @@ extends RefCounted
 ## T-227 (D-151): Tran Trung's full body on the player, the same in the pilot scene and in chapter 1.
 ## - The player gets a PlayerBody (player.set_body).
 ## - Door 407's Tripo levers take the hand (D-124, T-222), so the body presses the lever and the door
-##   swings with it (door407.gd hand_seconds).
+##   swings with it (door407.gd hand_seconds). T-239: from inside the room never the corridor lever;
+##   with the open leaf's inner face turned away, its free edge (DoorHandles.sides).
 ## - The room's mirrors show the body's mirror copy; their PS1 stand-in body is hidden. The mirrors
 ##   still follow the player (lag stays a mirror's own business).
 
@@ -18,7 +19,11 @@ static func attach(player: CharacterBody3D, floor4: Node3D) -> PlayerBody:
 		for lever: Node in door.find_children("Lever*", "", true, false):
 			if not _has_hand_target(lever):
 				bare.append(lever)
-		DoorHandles.take(bare)
+		var levers: Array[HandTarget] = DoorHandles.take(bare)
+		# T-239: which lever (or the free edge) a body takes depends on its side of the doorway.
+		var pivot := door.get_node_or_null("Pivot") as Node3D
+		if pivot != null:
+			DoorHandles.sides(pivot, levers)
 	var room := floor4.get_node_or_null("Room407") as Node3D
 	if room != null:
 		for mirror: Node in room.find_children("*", "", true, false):
