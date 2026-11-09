@@ -58,7 +58,32 @@ func _update_size() -> void:
 	# Keep the grip on the sheet, independent of the enlarged picking depth.
 	var target := get_node_or_null("HandTarget") as HandTarget
 	if target != null:
-		target.position = Vector3(maxf(0.0, size.x * 0.5 - 0.015), 0.0, FACE_OFFSET)
+		_place_edge_targets(target)
+
+
+## T-239: a pinch on each edge, 1.5 cm in from it half way along; the scene's HandTarget is the
+## right-hand one. Each turns with its edge (+X out across it, +Z out of the face, the pinch's fingers
+## along +Y), so a body takes the edge its reach suits (HandTarget.preference). Each knows how far the
+## sheet runs across from it ("sheet_across", for lifting that edge).
+const EDGES := {"HandTarget": 0.0, "HandTargetTop": PI / 2.0, "HandTargetLeft": PI, "HandTargetBottom": -PI / 2.0}
+const EDGE_INSET := 0.015
+
+
+func _place_edge_targets(right: HandTarget) -> void:
+	for edge: String in EDGES:
+		var marker := get_node_or_null(edge) as HandTarget
+		if marker == null:
+			marker = HandTarget.new()
+			marker.name = edge
+			marker.grip = right.grip
+			marker.pick_up = right.pick_up
+			add_child(marker)
+		var angle: float = EDGES[edge]
+		var out := Vector2(cos(angle), sin(angle)).snapped(Vector2.ONE)
+		var across: float = size.x if absf(out.x) > 0.5 else size.y
+		marker.position = Vector3(out.x, out.y, 0.0) * maxf(0.0, across * 0.5 - EDGE_INSET) + Vector3(0.0, 0.0, FACE_OFFSET)
+		marker.rotation = Vector3(0.0, 0.0, angle)
+		marker.set_meta(&"sheet_across", across)
 
 
 func paper_look() -> StringName:
