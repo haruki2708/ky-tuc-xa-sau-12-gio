@@ -423,34 +423,9 @@ func test_hand_never_swings_behind_the_body_when_putting_the_paper_back() -> voi
 	assert_true(behind < rest + 0.05, "the hand went %.2f m back, resting at %.2f" % [behind, rest])
 
 
-## The owner (19/10): the sheet sits a little inside the grip, by a side edge, but never through
-## the palm. Held up to read, it faces the eyes, upright, reaches across to the left of the hand;
-## its right-hand edge stops just short of the palm, between the thumb and the fingers.
-func test_held_paper_is_pinched_by_its_side_edge_not_through_the_palm() -> void:
-	var walker := _walker()
-	var body := _body(walker)
-	await _seconds(0.3)
-	var paper := _paper(walker)
-	var edge: float = (paper.get("size") as Vector2).x * 0.5
-	body.perform(paper)
-	await _seconds(PlayerBody.HAND_SECONDS + 0.2)
-	var camera := walker.get_node("Head/Camera3D") as Camera3D
-	var sheet := body.get_node("Carried") as Node3D
-	var middle: Vector3 = body._hand_tip()
-	var centre: Vector3 = (sheet.get_child(0) as Node3D).global_position
-	var right: Vector3 = sheet.global_basis.x.normalized()
-	var half: float = PlayerBody.HAND_HALF * body._scale()
-	assert_true(sheet.global_basis.y.normalized().dot(Vector3.UP) > 0.9, "upright")
-	assert_true(sheet.global_basis.z.normalized().dot((camera.global_position - centre).normalized()) > 0.9, "the face turns to the eyes")
-	var palm: Vector3 = (body._hand_attach.global_basis.orthonormalized() * body._palm_axis).normalized()
-	assert_true(palm.dot(-right) > 0.8, "the palm faces in across the sheet")
-	assert_true((centre - middle).dot(right) < -0.04, "the sheet reaches across, left of the hand")
-	# The right-hand edge, from the palm's middle along the sheet's right: past the palm's surface
-	# (not in the palm), within a centimetre and a half of it.
-	var reach_in: float = -(centre + right * edge - middle).dot(right)
-	assert_true(reach_in > half and reach_in < half + 0.015, "the edge is %.3f m from the palm's middle (palm surface at %.3f)" % [reach_in, half])
-	assert_true(absf((middle - sheet.global_position).dot(sheet.global_basis.z.normalized())) < 0.02, "the sheet runs through the grip")
-	EventBus.document_closed.emit(&"ch1_dat_note")
+## T-239: how the read sheet sits in the hand (thumb in front, fingers behind, the edge in the web)
+## is tested on the drawn fingers in test_t239_hands.gd; the palm-middle geometry checked here before
+## T-239 described the old grip.
 
 
 func _floor() -> void:

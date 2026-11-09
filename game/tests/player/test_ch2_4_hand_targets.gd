@@ -150,7 +150,8 @@ func _check_known_target(path: String) -> void:
 func _check_prop(prop: Interactable, script_name: String) -> void:
 	var targets := _markers(prop)
 	var label := String(chapter.get_path_to(prop))
-	assert_eq(targets.size(), 1, label + " exactly one marker")
+	# T-239: a paper has a grip on each edge (readable.gd); the scene's own is its right-hand one.
+	assert_eq(targets.size(), 4 if script_name == "readable" else 1, label + " markers")
 	var target := prop.hand_target()
 	assert_not_null(target, label)
 	if target == null:

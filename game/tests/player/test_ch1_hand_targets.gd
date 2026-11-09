@@ -154,7 +154,8 @@ func _check_target(prop: Interactable, grip: HandTarget.Grip, pick_up: bool, flo
 	for child: Node in prop.get_children():
 		if child is HandTarget:
 			count += 1
-	assert_eq(count, 1, label + " single grip")
+	# T-239: a paper has a grip on each edge (readable.gd); the scene's own is its right-hand one.
+	assert_eq(count, 4 if pick_up else 1, label + " grips")
 	var closest: float = INF
 	for child: Node in prop.get_children():
 		var collision := child as CollisionShape3D
