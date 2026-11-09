@@ -110,7 +110,7 @@ python -I art_source/graphics_upgrade/protagonist/pack_tripo_protagonist.py --st
   ```
 
 ## Test
-`game/tests/player/test_protagonist_body.gd`, 15 test:
+`game/tests/player/test_protagonist_body.gd`, 14 test (cách kẹp giấy đọc: xem mục T-239 bên dưới):
 - T-227: thân là Trần Trung (khoảng 1,7 m), đủ clip, hông clip CC0 khớp, điện thoại Tripo mỏng;
 - đầu ẩn với camera, có trong gương;
 - mắt ở dưới camera;
@@ -121,10 +121,29 @@ python -I art_source/graphics_upgrade/protagonist/pack_tripo_protagonist.py --st
 - cửa quay theo tay;
 - giấy được nhấc lên, đọc, rồi đặt lại;
 - không vung tay ra sau;
-- giấy kẹp ở mép phải, không xuyên lòng bàn tay;
 - đứng xa thì không hiện "[E]" (D-124);
 - camera nhìn theo tay rồi trả lại;
 - vặn cần gạt trước khi cửa quay, buông thì cần bật về;
 - tay trái cầm điện thoại khi bật đèn pin.
 
 Ảnh trong `previews/` chụp trong phòng 407 của bản chơi. Đồ Tripo trong phòng giữ nguồn ở các hồ sơ graphics upgrade trước (D-084).
+
+## T-239: dáng tay khi cầm điện thoại, giấy, cửa (D-153, D-154)
+Bốn lỗi chủ dự án thấy khi chơi thử (card `docs/tasks/T-239-protagonist-hand-fixes.md`).
+
+**Công cụ thiết kế dáng tay** (Python 3, numpy; không cần Godot):
+- `t239_hands.json`: bàn tay Tripo của Trần Trung lấy từ `trung_tripo.glb` (xương ngón, tư thế nghỉ, đỉnh lưới và trọng số da của hai bàn tay), dạng số để tính ngoài Godot.
+- `t239_hands.py`: dựng bàn tay theo một bộ góc khớp, tính da bằng linear blend skinning, khoảng cách tới hộp.
+- `t239_grips.py`: tìm dáng tay cho từng kiểu cầm sao cho không phần nào của da xuyên vật, đường xương ngón không cắt qua tờ giấy, rồi xuất ra `game/scripts/player/hand_shapes.gd`:
+  ```
+  python -B art_source/graphics_upgrade/protagonist/t239_grips.py export
+  ```
+  Chạy khoảng 3 phút. File `hand_shapes.gd` sinh tự động, không sửa tay.
+- Kiểu cầm: điện thoại tay trái (`PHONE`, `PHONE_IN_HAND`), giơ giấy đọc (`READ`, `SHEET_IN_HAND_READ`), lấy giấy "nhấc mép rồi kẹp" (`PICK_LIFT`, mặc định theo chủ dự án 09/11) và "kẹp thẳng mép" (`PICK_STRAIGHT`).
+
+**Trong game:** `FingerPoseModifier` (`game/scripts/player/finger_pose_modifier.gd`) đặt dáng ngón theo bảng; `PlayerBody` đặt đồ đang cầm lên bàn tay đã dựng xong (`skeleton_updated`); IK cánh tay quay khuỷu về phía ngón út của bàn tay đích và chia độ xoắn cho khuỷu và cổ tay (`HandAlignModifier.forearm_share`); mỗi tờ giấy có 4 điểm cầm ở 4 mép, thân chọn mép hợp hướng với và dễ với nhất; cửa chọn tay nắm theo phía đứng (`DoorHandles.sides`).
+
+**Test:** `game/tests/player/test_t239_hands.gd` đo trên xương đã dựng: điện thoại không bị xuyên, không ngón nào che màn hình (cầm thấp, giơ lên, lúc chuyển); giấy đọc kẹp mép phải, ngón cái phía trước; giấy chỉ rời bàn sau khi kẹp; mép được chọn hợp hướng với; cửa không bao giờ dùng tay nắm hành lang khi đứng trong phòng; đóng cửa không nhấn tay nắm, tay bám chỗ cầm rồi buông.
+
+**Ảnh:** `previews/t239/before_*.png` (chủ dự án chụp), `previews/t239/after_*.jpg` và ảnh ghép so sánh `previews/t239/compare_*.jpg`, chụp trong chương 1 thật.
+
