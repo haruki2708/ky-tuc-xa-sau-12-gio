@@ -58,7 +58,9 @@ Xem 4 ảnh lỗi trong art_source/graphics_upgrade/protagonist/previews/t239/be
 Chủ dự án muốn sửa dứt điểm. Card mục 2 là nguyên nhân integrator đọc ra từ code: tự đo để xác nhận trước khi sửa, ghi số đo trước/sau.
 Sửa cho mọi đồ cùng loại, tự chụp ảnh trước/sau trong chương 1 thật và tự xem lại từng tấm.
 Không sửa game/scripts/entity/hand_grip_modifier.gd (quản lý dùng chung); hệ ngón tay mới viết riêng trong game/scripts/player/.
-Câu hỏi ở card mục 4 (đóng cửa có nhấn tay nắm không, lấy giấy kiểu nào) đưa chủ dự án kèm ảnh/video và đề xuất; vượt 1 giây hay phải sửa door407.gd thì dừng, hỏi trước.
+Câu hỏi ở card mục 4 (đóng cửa 407 đang mở thì tay cầm vào đâu, đóng có nhấn tay nắm không, lấy giấy kiểu nào) đưa chủ dự án kèm ảnh dựng thử và đề xuất,
+hỏi phần cửa trước khi làm cửa; vượt 1 giây hay phải sửa door407.gd thì dừng, hỏi trước.
+Đầu phiên ghi commit của card đã đọc (git log -1 --format=%h origin/main -- docs/tasks/T-239-protagonist-hand-fixes.md).
 Chỉ sửa file trong mục "Được phép sửa"; ngoài phạm vi thì ghi "Yêu cầu thay đổi". Không chạy bot, không đo FPS, không tiêu credit Tripo.
 Có chỗ phải chọn về cách cầm hay động tác mà card chưa nói thì đưa phương án kèm đề xuất cho chủ dự án.
 Godot theo luật Lượt Godot (file khóa D:\GAME_WORK\GODOT_DANG_CHAY.txt). Khi làm: pwsh tools/test.ps1 -Filter <tên test>.

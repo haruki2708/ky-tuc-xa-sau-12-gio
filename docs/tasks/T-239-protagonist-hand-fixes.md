@@ -13,7 +13,7 @@
 | # | Ảnh | Chủ dự án thấy | Đúng phải là |
 |---|---|---|---|
 | 1 | `before_tay_cam_dien_thoai.png` | Tay trái xuyên điện thoại: ngón đè lên, xuyên mặt màn hình, máy chìm trong lòng bàn tay | Máy nằm trong lòng bàn tay trái, mặt sau tựa vào lòng bàn tay. Ngón cái ôm cạnh gần, bốn ngón ôm cạnh xa và mặt sau. Không phần nào của tay xuyên thân máy, không ngón nào che màn hình. Đúng ở **cả hai tư thế**: giơ lên đọc, cầm thấp bật đèn. Đúng cả lúc chuyển giữa hai tư thế. |
-| 2 | `before_tay_cam_nam_cua.png` | Đóng cửa 407 từ trong phòng thì tay nắm tay nắm **phía ngoài**; động tác sai | Đứng ở phía nào của khung cửa thì dùng tay nắm phía đó (trong phòng: mặt trong; hành lang: mặt ngoài), dù cánh đang đóng, mở hay đang quay. Tay nắm rồi kéo hoặc đẩy cánh; bàn tay **bám theo tay nắm** khi cánh quay, không đứng giữa không trung, không xuyên cánh, rồi buông. Mở cửa vẫn như D-124: nhấn tay nắm xuống rồi cánh mới quay. |
+| 2 | `before_tay_cam_nam_cua.png` | Đóng cửa 407 từ trong phòng thì tay nắm tay nắm **phía ngoài**; động tác sai | Ở trong phòng **không bao giờ dùng tay nắm mặt ngoài** (chủ dự án). Tay không xuyên cánh, không vòng qua mép cánh để với tay nắm bên kia. Chỗ cầm khi cánh đang mở theo mục 4 (chủ dự án chọn). Tay **bám theo chỗ cầm** khi cánh quay, không đứng giữa không trung, rồi buông. Mở cửa đang đóng vẫn như D-124: tay nắm phía người chơi, nhấn xuống rồi cánh mới quay. |
 | 3 | `before_tay_cam_giay.png` | Tay phải xuyên tờ giấy đang cầm đọc; tay co gần thành nắm đấm | Kẹp mép phải tờ giấy: ngón cái ở mặt trước (phía mắt), các ngón khác ở mặt sau. Mép giấy nằm sâu trong kẽ ngón cái và ngón trỏ. Không ngón nào xuyên mặt giấy. |
 | 4 | `before_tay_lay_giay.png` | Lấy giấy trên bàn sai, không giống người thật: bàn tay úp thẳng, chọc ngón trỏ xuống, với ngang qua cuốn sổ | Bàn tay tới gần mép giấy với ngón hơi khép. Ngón cái và ngón trỏ kẹp mép giấy (hoặc đầu ngón miết, nhấc mép rồi kẹp) rồi mới nhấc lên. Giấy chỉ rời mặt bàn khi ngón đã kẹp. Tay không xuyên bàn hay đồ trên bàn. |
 
@@ -28,7 +28,9 @@ Dòng tham chiếu ở commit `815dad3`.
   - Góc cong **cộng thêm vào tư thế ngón của clip đang chạy**: `ual/Interact`, `ual/PickUp_Table`, `idle`, `crouch_idle`. Vì vậy hình bàn tay đổi theo clip, không cố định theo kiểu cầm.
   - Modifier không biết đồ vật nên ngón cong xuyên qua.
   - Góc lấy từ `GRIP_DEGREES` dòng 152, `READ_CURL` dòng 61, `PHONE_CURL` dòng 114.
-- **Ngón cái không được điều khiển ở đâu cả** (trong code không có chữ "Thumb"). Rig có `RightHandThumb1…4` và `LeftHandThumb1…4`, đổi tên qua `trung_bone_map.tres`. Ngón cái đứng theo clip nên không kẹp được.
+- **Ngón cái không được điều khiển ở đâu cả** (trong code không có chữ "Thumb"). Ngón cái đứng theo clip nên không kẹp được.
+  - Trong Skeleton3D của Godot, xương ngón cái mang tên humanoid sau `trung_bone_map.tres`: `RightThumbMetacarpal`, `RightThumbProximal`, `RightThumbDistal` (bên trái tương tự).
+  - Trong file GLB gốc là `RightHandThumb1…3`; tên `…Thumb4` là điểm đầu ngón.
 - **Khoảng cách tay–vật là số ước lượng**: `HAND_HALF` 2 cm, `HOLD_GAP`, `PAPER_GAP`, `THUMB_DEPTH` (dòng 62–70). Các số này chưa đo trên bàn tay Tripo thật (độ dày lòng bàn tay, độ dài từng đốt).
 - **Lưu ý:** `HandGripModifier` dùng chung với **quản lý** (`game/scenes/entity/manager_body.tscn`, tay cầm dao). Không đổi hành vi của file này. Cần hệ ngón mới thì viết modifier riêng cho người chơi trong `game/scripts/player/`.
 
@@ -41,8 +43,13 @@ Dòng tham chiếu ở commit `815dad3`.
 **Lỗi 2, cửa:**
 - **Chọn tay nắm sai bên:**
   - `perform()` (dòng 343) lấy `target.hand_target(_reach_from())`, tức là `Interactable.hand_target()` (`game/scripts/core/interactable.gd:39`) chọn **marker gần vai phải nhất**.
-  - Cửa 407 (`game/scenes/levels/floor4/door407.gd`) mở 90° vào trong. Khi cánh đang mở, tay nắm mặt ngoài có thể gần vai hơn.
-  - `can_handle`/`can_reach` (dòng 313–330) dùng cùng cách chọn. Đổi cách chọn thì phải đổi cả hai chỗ để lời nhắc và hành động luôn khớp nhau (D-152).
+  - `can_handle`/`can_reach` (dòng 313–330) dùng cùng cách chọn và **chỉ đo khoảng cách**, không xét cánh cửa chắn giữa vai và tay nắm. Đổi cách chọn thì phải đổi cả hai chỗ để lời nhắc và hành động luôn khớp nhau (D-152).
+- **Hình học cửa 407** (integrator tính từ `floor4.tscn` và `door407.gd`, lane B kiểm lại bằng số đo):
+  - Bản lề (`Door407/Pivot`) ở (32,44; 0; 0). Cánh rộng khoảng 0,88 m, mép tự do ở phía −x. Tường hành lang ở z = 0, phòng ở z < 0.
+  - Mở = `Pivot.rotation.y` −90°: cánh quay **vào trong phòng**, nằm dọc mặt phẳng x = 32,44, mép tự do tới khoảng (32,44; −0,88).
+  - Khi cánh mở: mặt trong (lúc đóng nhìn vào phòng) quay về **+x (phía đông)**; mặt ngoài quay về **−x (phía tây)**, tức phía khoảng trống cửa ra vào.
+  - Trong ảnh 2, người chơi đứng phía tây cánh, gần khoảng trống cửa: mặt hướng về người chơi là mặt ngoài. Vì vậy code chọn tay nắm ngoài; tay nắm trong lúc đó nằm **sau cánh**.
+  - Hệ quả: quy tắc "trong phòng thì luôn dùng tay nắm mặt trong" sẽ bắt tay vòng qua mép hoặc xuyên cánh (IK không biết va chạm). Không làm theo quy tắc đó; xem mục 4.
 - **Nhịp thời gian:**
   - 0–0,45 s: tay tới tay nắm (`CONTACT`).
   - 0,45–0,6 s: nhấn tay nắm (`LEVER_SECONDS`).
@@ -79,11 +86,26 @@ Dòng tham chiếu ở commit `815dad3`.
    
    Ghi rõ đã chọn cách nào, vì sao, file ở đâu. Asset ngoài chỉ được dùng CC0 hoặc CC-BY.
 4. **Cửa:**
-   - chọn tay nắm theo phía của người chơi so với mặt phẳng khung cửa, không theo khoảng cách;
-   - khi đóng, bàn tay bám tay nắm trong đoạn cánh quay mà tay còn với tới, rồi buông, cánh tự quay nốt.
+   - Chọn chỗ cầm theo quy tắc chủ dự án chốt ở mục 4, không theo khoảng cách.
+   - Bắt buộc: không đốt nào của tay phải (vai → đầu ngón) cắt cánh cửa trong suốt thao tác.
+   - `can_reach` cũng phải xét điều này: tay nắm bị cánh che thì không đưa ra cho người chơi.
+   - Cần chỗ cầm ở mép cánh thì thêm `HandTarget` ở mép tự do của cánh cửa 407 qua `Protagonist.attach` hoặc `DoorHandles`. Cảnh thử đã có mẫu: lớp `HandHinge`, kiểu cầm `HOOK`, `protagonist_pilot.gd:219`.
+   - Khi đóng, tay bám chỗ cầm trong đoạn cánh quay mà tay còn với tới, rồi buông, cánh tự quay nốt.
 5. **Trong 1 giây:** được chia lại các pha (`CONTACT`, `RELEASE`, `LEVER_SECONDS`, thời gian cánh quay truyền qua `interact_by_hand`) miễn tổng thao tác vẫn 1 giây (D-121). Phần đặt giấy lại sau khi đọc (`PUT_DOWN_SECONDS`, `LET_GO_SECONDS`) chỉnh nhẹ được.
 
 ## 4. Chỗ phải hỏi chủ dự án (đưa phương án kèm đề xuất, kèm ảnh hoặc video)
+Hỏi **trước khi làm phần cửa**, các lỗi khác làm song song được.
+
+**Đóng cửa 407 đang mở, người chơi trong phòng, tay cầm vào đâu?** Chủ dự án đã chốt: không phải tay nắm mặt ngoài. Đưa ảnh dựng thử cho từng cách:
+- (a) **Luôn cầm mép tự do của cánh**, kéo hoặc đẩy cánh về khung. Đứng phía nào cũng làm được.
+- (b) **Theo phía đứng:**
+  - nếu mặt trong đang quay về phía người chơi (đứng phía đông cánh), cầm tay nắm mặt trong và đẩy cánh về khung; tay nắm về đúng chỗ khi cửa đóng;
+  - nếu không (đứng phía tây như ảnh 2), cầm mép tự do kéo về.
+- (c) Như (b), nhưng **ở phía tây thì không cho đóng**: không hiện lời nhắc, người chơi phải bước sang phía đông.
+- **Integrator nghiêng về (b)**: giống người thật nhất, không bắt người chơi đi vòng.
+
+**Từ hành lang** (cánh mở vào trong phòng) thì cầm tay nắm mặt ngoài kéo về, hay cầm mép? Lane B đề xuất theo cùng nguyên tắc.
+
 - **Đóng cửa có nhấn tay nắm không?** Integrator nghiêng về không: nắm rồi kéo hoặc đẩy, chốt tự bật vào. Mở cửa vẫn nhấn trước (D-124).
 - **Lấy giấy kiểu nào?** Kẹp thẳng mép, hay miết đầu ngón nhấc mép rồi kẹp? Chọn kiểu nhìn thật nhất mà vẫn vừa 1 giây.
 - Nếu muốn đủ tự nhiên mà phải vượt 1 giây, hoặc phải đổi `door407.gd`: **dừng, hỏi trước**, không tự làm.
@@ -111,7 +133,12 @@ Dòng tham chiếu ở commit `815dad3`.
 
 **Test tự động mới** trong `game/tests/player/`:
 - **Không xuyên:** điểm dọc các đốt ngón (gồm ngón cái và đầu ngón, cộng bán kính ngón đo trên mesh Tripo) không lọt vào hộp điện thoại ở cả hai tư thế. Với tờ giấy lúc đọc: ngón cái ở mặt trước, các ngón khác ở mặt sau, không đốt nào cắt mặt giấy trong phạm vi tờ.
-- **Cửa:** đứng trong phòng (cánh đóng, mở, đang quay) thì marker được chọn là tay nắm mặt trong; ở hành lang thì mặt ngoài. `can_reach` và `perform` chọn cùng một marker. Lúc tay đang nắm, khoảng cách tay–tay nắm nhỏ hơn một ngưỡng do lane B đặt và ghi lý do.
+- **Cửa:**
+  - Kiểm đúng quy tắc chủ dự án chọn ở mục 4, ở nhiều chỗ đứng: phía đông và phía tây cánh, trong phòng và ngoài hành lang, với cánh đóng, mở và đang quay.
+  - Đứng trong phòng thì không bao giờ chọn tay nắm mặt ngoài.
+  - `can_reach` và `perform` chọn cùng một chỗ cầm.
+  - Không đốt nào của tay phải cắt hộp cánh cửa trong suốt thao tác.
+  - Lúc tay đang cầm, khoảng cách tay–chỗ cầm nhỏ hơn một ngưỡng; lane B đặt ngưỡng và ghi lý do.
 - **Lấy giấy:** tờ giấy chỉ rời chỗ khi đầu ngón cái và ngón trỏ đã ở mép giấy.
 - Có thể sửa test cũ nếu ngưỡng cũ không còn đúng (ví dụ `test_protagonist_chapter1.gd` đo tay tới đồ trong `0.06 + finger_reach`), nhưng phải ghi lý do trong Handoff.
 - Các nhóm test cũ phải đạt: `protagonist`, `hand_targets`, `ch1_bunks`, `room407`, `player_death`, `manager`, `mirror`.
@@ -143,7 +170,7 @@ Dòng tham chiếu ở commit `815dad3`.
 ## Checklist hoàn thành
 - [ ] Đã đo và ghi nguyên nhân thật của từng lỗi (khớp hay khác mục 2)
 - [ ] Lỗi 1 điện thoại: không xuyên ở hai tư thế và lúc chuyển; ảnh trước/sau
-- [ ] Lỗi 2 cửa: đúng tay nắm theo phía người chơi; tay bám tay nắm khi đóng và mở; ảnh, video
+- [ ] Lỗi 2 cửa: chỗ cầm đúng quy tắc chủ dự án chọn (mục 4), trong phòng không dùng tay nắm ngoài, tay không cắt cánh; tay bám chỗ cầm khi đóng và mở; ảnh, video
 - [ ] Lỗi 3 cầm giấy đọc: kẹp mép, ngón cái trước, ngón khác sau, không xuyên; ảnh trước/sau
 - [ ] Lỗi 4 lấy giấy: kẹp rồi mới nhấc; ảnh trước/sau; đã kiểm tờ giấy vắt qua cuốn sổ
 - [ ] Mọi giấy, thẻ, ảnh chương 1 dùng cách cầm mới (kể cả với nhón chân, rướn, quỳ)
