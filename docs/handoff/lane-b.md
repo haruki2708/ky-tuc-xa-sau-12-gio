@@ -71,6 +71,22 @@ Cập nhật Checklist và Handoff trong card. Không sửa STATUS hay DECISIONS
 Cuối phiên báo ngắn bằng tiếng Việt: xong gì, nhánh, commit, ảnh ở đâu, có bị chặn không.
 ```
 
+## 1d. Giao T-240 (D-155): khảo sát mọi động tác Trần Trung, CHỈ dán sau khi integrator đã merge T-239
+Chủ dự án: chờ integrator báo T-239 đã merge vào main, rồi dán vào cửa sổ lane B (cùng phiên hoặc phiên mới):
+```text
+Việc mới cho lane B: T-240 — khảo sát mọi động tác của Trần Trung ở chương 1, CHỈ khảo sát và đề xuất, không sửa game. Đọc docs/tasks/T-240-protagonist-motion-survey.md.
+Ở D:\GAME_WORK\lane-b2: git status (giữ thay đổi đang có, báo nếu có), git fetch origin,
+kiểm T-239 đã có trên origin/main (git log --oneline origin/main | grep T-239), nếu chưa thì dừng và báo.
+git switch -c lane-b/T-240-protagonist-motion-survey origin/main, git lfs pull.
+Đọc AGENTS.md mục 3–5, card T-240, Handoff của T-239 (cách đo xuyên vật, cách chụp) và game/tests/player/test_protagonist_chapter1.gd.
+Lấy danh sách đồ dùng tay bằng code ở mọi mốc truyện; chấm Tự nhiên / Hơi gượng / Sai, độ nặng, ảnh, đề xuất sửa (code, Blender, vị trí đồ, Tripo) và công.
+Không sửa code, scene, asset game; cảnh chụp tạm trong game/_probe_tmp/ rồi xóa. Không chạy bot, không đo FPS, không tiêu credit Tripo.
+Godot theo luật Lượt Godot (file khóa D:\GAME_WORK\GODOT_DANG_CHAY.txt), chụp chia nhiều lượt nhỏ.
+Commit báo cáo và ảnh ("T-240: ..."), git push -u origin lane-b/T-240-protagonist-motion-survey. Không push main, không mở PR.
+Cập nhật Checklist và Handoff trong card. Không sửa STATUS hay DECISIONS.
+Cuối phiên báo ngắn bằng tiếng Việt: số mục đã khảo sát, số Hơi gượng / Sai, 5 lỗi nên sửa trước, câu hỏi cho chủ dự án, nhánh, commit.
+```
+
 ## 2. Prompt giao việc (integrator điền T-xxx)
 ```text
 Việc mới cho lane B: <T-xxx> — đọc docs/tasks/<file card>.md.
