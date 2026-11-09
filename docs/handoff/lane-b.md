@@ -55,7 +55,10 @@ Việc mới cho lane B: T-239 — sửa 4 lỗi tay Trần Trung mà chủ dự
 git switch -c lane-b/T-239-protagonist-hand-fixes origin/main, git lfs pull.
 Đọc AGENTS.md mục 3–5, card T-239, docs/tasks/T-227-protagonist-tripo-body-motions.md (mục cuối) và game/scripts/player/player_body.gd.
 Xem 4 ảnh lỗi trong art_source/graphics_upgrade/protagonist/previews/t239/before_*.png.
-Chủ dự án muốn sửa dứt điểm: tìm nguyên nhân gốc từng lỗi trước khi sửa, sửa cho mọi đồ cùng loại, tự chụp ảnh trước/sau trong chương 1 thật và tự xem lại.
+Chủ dự án muốn sửa dứt điểm. Card mục 2 là nguyên nhân integrator đọc ra từ code: tự đo để xác nhận trước khi sửa, ghi số đo trước/sau.
+Sửa cho mọi đồ cùng loại, tự chụp ảnh trước/sau trong chương 1 thật và tự xem lại từng tấm.
+Không sửa game/scripts/entity/hand_grip_modifier.gd (quản lý dùng chung); hệ ngón tay mới viết riêng trong game/scripts/player/.
+Câu hỏi ở card mục 4 (đóng cửa có nhấn tay nắm không, lấy giấy kiểu nào) đưa chủ dự án kèm ảnh/video và đề xuất; vượt 1 giây hay phải sửa door407.gd thì dừng, hỏi trước.
 Chỉ sửa file trong mục "Được phép sửa"; ngoài phạm vi thì ghi "Yêu cầu thay đổi". Không chạy bot, không đo FPS, không tiêu credit Tripo.
 Có chỗ phải chọn về cách cầm hay động tác mà card chưa nói thì đưa phương án kèm đề xuất cho chủ dự án.
 Godot theo luật Lượt Godot (file khóa D:\GAME_WORK\GODOT_DANG_CHAY.txt). Khi làm: pwsh tools/test.ps1 -Filter <tên test>.
