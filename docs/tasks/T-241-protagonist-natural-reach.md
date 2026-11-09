@@ -16,7 +16,7 @@
 | Nhóm | Đồ (lấy danh sách thật bằng code, xem mục 6) | Động tác chốt |
 |---|---|---|
 | **Đồ trên bàn** | giấy Đạt, thẻ Đạt, thẻ Việt, bảng tab trên sổ hợp âm, ảnh Việt, và mọi đồ khác nằm trên mặt bàn | **Đứng yên, gập hông nhẹ:**<br>- chân không bước, gót không nhấc;<br>- thân gập **tối đa khoảng 30–45°**, phần còn lại do cánh tay;<br>- **không** ngồi xổm hay khom, **không** rướn sâu, **không** nhón chân. |
-| **Giấy dưới đất, thùng rác** | mẩu giấy của Khoa (trên sàn trước ổ điện), lục thùng rác (`SearchTrashBin`) | **Cúi gập, gối hơi chùng:**<br>- đứng rồi gập người xuống, đầu gối chùng một chút như người cúi nhặt đồ;<br>- **không** ngồi xổm;<br>- camera đi theo vừa đủ, không thấy tóc hay gáy của chính mình. |
+| **Giấy dưới đất, thùng rác** | mẩu giấy của Khoa (trên sàn trước ổ điện, sát mép giường dưới), lục thùng rác (`SearchTrashBin`) | **Cúi gập, gối hơi chùng:**<br>- đứng rồi gập người xuống, đầu gối chùng một chút như người cúi nhặt đồ;<br>- **không** ngồi xổm;<br>- camera đi theo vừa đủ, không thấy tóc hay gáy của chính mình.<br>Nếu giường cản người cúi tới mẩu giấy Khoa thì xem mục 3 "Dời đồ" và mục 4. |
 | **Thứ thấp khác** | ổ điện, ổ mạng, dây mạng sát chân tường, lục đệm giường dưới (`SearchPhucMattress`), và mọi thứ dùng tay khác nằm thấp | **Cúi gập như đồ dưới đất.** Chỉ ngồi xổm khi cúi gập không với tới; ghi rõ những đồ nào phải ngồi xổm. |
 | **Không đổi** | đồ cao phải nhón chân (thẻ Phúc, ảnh nhóm, thời khóa biểu Phúc), cửa 407, công tắc, gõ tường, chốt cửa… ở tầm đứng | Giữ như hiện tại (D-152, T-239). |
 
@@ -78,6 +78,11 @@
   - Nếu cúi xuống rồi đứng lên trong 1 giây trông vội, đưa ảnh hoặc video của 1 giây và của bản dài hơn (ví dụ 1,4 giây) cho chủ dự án chọn.
   - Không tự đổi.
 - **Đồ trên bàn phải dời xa hơn 10 cm:** hỏi trước, kèm ảnh vị trí cũ và mới.
+- **Mẩu giấy Khoa:** nếu thành giường cản người cúi gập (đầu hoặc lưng chạm giường) mà dời ra ≤ 10 cm vẫn không đủ, đưa chủ dự án hai phương án kèm ảnh:
+  - (a) dời mẩu giấy ra xa giường hơn;
+  - (b) riêng đồ này ngồi xổm.
+  
+  Integrator nghiêng về (a), vì chủ dự án đã chốt đồ dưới đất thì cúi gập.
 - Có chỗ khác cần chọn về kiểu động tác mà card chưa nói thì hỏi theo cùng cách.
 
 ## 5. Phải giữ nguyên
@@ -106,7 +111,7 @@
   - mỗi bàn chân trượt ≤ 2 cm;
   - góc gập thân ≤ 45°, đo bằng góc giữa trục hông–ngực và phương thẳng đứng.
 - **Đồ dưới đất, thùng rác, thứ thấp:**
-  - người chơi không khom, trừ những đồ đã ghi là phải ngồi xổm;
+  - người chơi không khom. Riêng thứ thấp khác (không phải giấy dưới đất hay thùng rác) được ngồi xổm khi cúi không tới, và phải ghi tên. Mẩu giấy Khoa chỉ được ngồi xổm nếu chủ dự án chọn (b) ở mục 4;
   - gối chùng trong khoảng lane B đặt, ghi lý do;
   - gót không nhấc;
   - tay tới chỗ cầm như ngưỡng hiện có.
@@ -127,7 +132,11 @@
 - `game/assets/models/characters/protagonist/`: import, clip mới dựng trên khung xương Trần Trung; không thay mesh Tripo.
 - `game/assets/models/characters/standin/`: chỉ thêm clip UAL/UAL2 CC0 vào danh sách dùng.
 - `game/scenes/main/chapter1_main.gd`: chỉ vị trí đồ trong `PAPERS`, theo mục 3 "Dời đồ".
-- `game/scenes/levels/room407/room407_anchors.tscn`: chỉ vị trí các anchor đồ trên bàn (`DatNote`, `VietLaptop`, `GuitarSongbook`, `VietPhoto`), và chỉ khi phải dời đồ. Sửa test vị trí liên quan (`game/tests/levels/test_room407_fixes.gd`) nếu có.
+- `game/scenes/levels/room407/room407_anchors.tscn`, chỉ khi phải dời đồ:
+  - vị trí các anchor đồ trên bàn: `DatNote`, `VietLaptop`, `GuitarSongbook`, `VietPhoto`;
+  - `KhoaNoteSlot`: dời ra xa giường ≤ 10 cm, xa hơn thì hỏi (mục 4).
+  
+  Sửa test vị trí liên quan trong `game/tests/levels/test_room407_fixes.gd` (`KhoaNoteSlot` đang bị test giữ ở (30.55, .015, −1.8), D-152).
 - `game/scenes/levels/graphics_pilot/protagonist_pilot.*` (cảnh thử).
 - `art_source/graphics_upgrade/protagonist/` (Blender, ảnh, README, CREDITS), `game/tests/player/`.
 - Card này: chỉ Checklist và Handoff.
