@@ -27,8 +27,6 @@ const HEIGHT_EXCEPTIONS := {
 	"Cable_gray": Vector2(0.005, 0.04),
 	"SearchTrashBin": Vector2(0.15, 0.20),
 	"Ch1KhoaNote": Vector2(0.03, 0.08),
-	"Ch1PhucCard": Vector2(2.0, 2.1),
-	"Ch1TeamPhoto": Vector2(2.0, 2.1),
 }
 
 var world: Node3D
@@ -59,7 +57,7 @@ func test_targets_at_actual_chapter_placements() -> void:
 	await wait_frames(2)
 	var floor_y: float = chapter.get_node("Floor4/Room407").global_position.y
 	var player := chapter.get_node("Player")
-	assert_eq(player.get("body"), null, "production player still has no body")
+	assert_true(player.get("body") is PlayerBody, "D-151: chapter 1's player has Tran Trung's body")
 	for path: String in TARGETS:
 		_check_target(chapter.get_node(ROOT + path) as Interactable, TARGETS[path], false, floor_y)
 	_check_target(chapter.get_node("Chapter1Director/DatLocker") as Interactable, HandTarget.Grip.PINCH, false, floor_y)
@@ -84,12 +82,17 @@ func test_targets_at_actual_chapter_placements() -> void:
 	for node: Node in chapter.find_children("*", "Area3D", true, false):
 		if node is StoryTrigger or node is HideSpot:
 			assert_eq(node.hand_target(), null, String(node.get_path()))
-	# The room door is owned by the level; its handles come from the pilot. The latch inside its
-	# subtree is a thing of its own, so the door must not reach for the latch's marker.
+	# The room door is owned by the level; its handles take the hand once the body is on
+	# (Protagonist.attach, D-151). The latch inside its subtree is a thing of its own, so the door
+	# reaches for a lever, never for the latch's marker.
 	var door := chapter.get_node("Floor4/Door407") as Interactable
 	var latch := chapter.get_node("Floor4/Door407/Pivot/DoorLatch407") as Interactable
-	assert_eq(door.hand_target(), null, "the door takes no marker of its nested latch")
-	assert_eq(door.hand_target(latch.hand_target().global_position), null, "not even beside the latch")
+	for from: Vector3 in [Vector3.INF, latch.hand_target().global_position]:
+		var marker := door.hand_target(from)
+		assert_not_null(marker, "the door has its lever markers")
+		if marker != null:
+			assert_true(marker != latch.hand_target() and marker.lever != null
+				and String(marker.lever.name).begins_with("Lever"), "the door takes a lever, not the latch")
 
 
 func test_paper_marker_resizes_without_cross_instance_changes() -> void:

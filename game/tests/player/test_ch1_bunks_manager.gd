@@ -14,6 +14,10 @@ func before_each() -> void:
 	GameState.reset()
 	Chapter1Director.resume_checkpoint = &""
 	scene = load("res://scenes/main/chapter1.tscn").instantiate()
+	# D-151: these audit the bunks' rays, prompts and the manager from fixed aiming spots (1.2 m off);
+	# with Tran Trung's body a hand thing must also be within reach, which
+	# test_protagonist_chapter1 checks for every one of them.
+	scene.set("protagonist_body", false)
 	director = scene.get_node("Chapter1Director")
 	director.auto_start = false
 	tree.root.add_child(scene)

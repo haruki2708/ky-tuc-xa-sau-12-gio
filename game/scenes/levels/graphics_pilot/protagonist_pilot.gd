@@ -116,15 +116,9 @@ func _ready() -> void:
 	room = floor4.get_node("Room407") as Node3D
 	player = $Player as CharacterBody3D
 	CHAPTER.place_papers(room.get_node("Anchors") as Node3D, self)
-	body = PlayerBody.new()
-	player.set_body(body)
+	# D-151: the same body, door levers and mirrors as chapter 1 (Protagonist.attach).
+	body = Protagonist.attach(player, floor4)
 	_add_targets()
-	# The mirrors show the body's mirror mesh; their PS1 stand-in body stays hidden here.
-	for mirror: Node in room.find_children("*", "", true, false):
-		if mirror.has_method("set_lag"):
-			mirror.set("follow", player)
-			for mesh: MeshInstance3D in mirror.get_node("ReflectionBody").find_children("*", "MeshInstance3D", true, false):
-				mesh.hide()
 	# 1.4 m in front of the full mirror (its +Z faces the room), looking at it.
 	var glass := room.get_node("ReflectiveFullMirror") as Node3D
 	var front: Vector3 = glass.global_basis.z.normalized()
@@ -171,8 +165,8 @@ func _ready() -> void:
 func _add_targets() -> void:
 	# D-124: lever handles on both faces. T-222: the shell's Tripo levers take the hand; Door 407's
 	# hang on its HandlePivot (floor4.gd), so the rattle from the corridor shakes them too.
+	# Door 407's levers already take the hand (Protagonist.attach).
 	var door := floor4.get_node("Door407") as Interactable
-	DoorHandles.take(door.find_children("Lever*", "", true, false))
 	targets["door"] = door
 	var bath := room.get_node("Extension/BathroomDoor") as Node3D
 	var bath_door := HandHinge.new()

@@ -24,7 +24,6 @@ const SHARED_HEIGHTS := {
 	"Switch1": Vector2(0.02, 0.10), "Switch2": Vector2(0.02, 0.10), "Switch3": Vector2(0.02, 0.10),
 	"Cable_blue": Vector2(0.005, 0.04), "Cable_gray": Vector2(0.005, 0.04),
 	"SearchTrashBin": Vector2(0.15, 0.20),
-	"Ch1PhucCard": Vector2(2.0, 2.1), "Ch1TeamPhoto": Vector2(2.0, 2.1),
 }
 ## Owner approved these existing placements on 2026-11-07.
 const NEW_HEIGHTS := {

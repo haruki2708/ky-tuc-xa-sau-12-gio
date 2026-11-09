@@ -12,6 +12,9 @@ const FAN_SPEED: float = 15.0
 const PAPER_PICK_DEPTH: float = 0.15
 const END_CARD_MIN_SECONDS: float = 4.0
 const END_CARD_MAX_SECONDS: float = 40.0
+## D-151: Tran Trung's full body (T-227) on the player. On in chapter1.tscn only; chapters 2-4 share
+## this script and stay without a body for now. Set it before the scene enters the tree.
+@export var protagonist_body := false
 
 ## Room 407 papers on lane B's anchors (T-153, under Room407/Anchors):
 ## [document, anchor, offset, rotation (degrees), size, optional look (D-106)]. Desk papers lie flat;
@@ -19,11 +22,14 @@ const END_CARD_MAX_SECONDS: float = 40.0
 const PAPERS: Array = [
 	[&"ch1_dat_note", "DatNote", Vector3.ZERO, Vector3(-90, 15, 0), Vector2(0.15, 0.21)],
 	[&"ch1_dat_card", "DatNote", Vector3(0.0, 0.0, 0.22), Vector3(-90, -10, 0), Vector2(0.09, 0.06)],
-	[&"ch1_phuc_schedule", "PhucBooks", Vector3(0.12, -0.25, 0.0), Vector3(0, 90, 0), Vector2(0.21, 0.3)],
+	# D-152: taped to the front edge of Phuc's shelf (it hung 10 cm further in, out of reach).
+	[&"ch1_phuc_schedule", "PhucBooks", Vector3(0.226, -0.25, 0.0), Vector3(0, 90, 0), Vector2(0.21, 0.3)],
 	# D-106: both photos sit in the opening of the furnished room's photo frames (frames lean back 9°).
 	[&"ch1_viet_photo", "VietPhoto", Vector3(-0.001, -0.05, 0.142), Vector3(-9, 188, 0), Vector2(0.15, 0.1), &"photo_family"],
 	# Chapter 1 v2 (D-039): lane B's anchors from T-162, with fallbacks below.
-	[&"ch1_phuc_card", "PhucCard", Vector3.ZERO, Vector3(-90, 0, 0), Vector2(0.09, 0.06)],
+	# D-151/D-152: fallen off Phuc's shelf onto Viet's locker below it (it lay at 2.06 m, out of reach).
+	[&"ch1_phuc_card", "PhucCard", Vector3.ZERO, Vector3(-90, 20, 0), Vector2(0.09, 0.06)],
+	# D-151: the frame stands on Trung's locker, in front of Dat's shelf (it stood on the shelf, out of reach).
 	[&"ch1_team_photo", "TeamPhoto", Vector3(0.062, 0.1, 0.05), Vector3(-9, -90, 0), Vector2(0.15, 0.1), &"photo"],
 	# D-106: on the desk beside the furnished laptop (it floated behind the new laptop's screen).
 	[&"ch1_viet_card", "VietLaptop", Vector3(0.27, -0.148, 0.03), Vector3(-90, 20, 0), Vector2(0.09, 0.06)],
@@ -40,6 +46,9 @@ var _end_card_key_pressed: bool = false
 func _ready() -> void:
 	_place_speaker()
 	_place_papers()
+	# Before the director starts (deferred), so lying in bed at the start or a resume has the body.
+	if protagonist_body:
+		Protagonist.attach($Player as CharacterBody3D, $Floor4 as Node3D)
 	var light := $Floor4.get_node_or_null("Room407/Room407MainLight") as Node3D
 	if light != null:
 		light.visible = false

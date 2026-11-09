@@ -152,7 +152,8 @@ func _assert_capsule_clear(start: Vector3, end: Vector3) -> void:
 func test_khoa_note_slot_and_recessed_outlet() -> void:
 	var anchor := room.get_node("Anchors/KhoaNoteSlot") as Marker3D
 	assert_not_null(anchor)
-	assert_true(anchor.global_position.is_equal_approx(Vector3(30.2, .015, -1.8)))
+	# D-152: slid 35 cm further out from under the bed so a crouched hand reaches it.
+	assert_true(anchor.global_position.is_equal_approx(Vector3(30.55, .015, -1.8)))
 	var outlet := room.get_node("Anchors/KhoaOutlet") as Node3D
 	var triangles: int = 0
 	for mesh: MeshInstance3D in outlet.find_children("*", "MeshInstance3D", true, false):
