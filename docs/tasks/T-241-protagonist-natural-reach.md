@@ -166,3 +166,47 @@
 - Báo chủ dự án dán prompt T-240.
 
 ## Handoff (agent điền)
+
+### Đang làm dở (lane B, 10/11/2026) — lưu tiến độ, CHƯA xong
+Nhánh `lane-b/T-241-protagonist-natural-reach`, tạo từ `73c4d1e` (card đọc ở commit `73c4d1e`). Phiên dừng vì hết lượt dùng; phiên sau làm tiếp từ mục "Còn lại".
+
+**Đã xong:**
+- **Đo "trước" ở `origin/main`** (log trong `build/t241/`, không commit: `table_before.log`, `posture_before.log`, `map_before.log`, `what.log`). Khớp mục 2 của card:
+  - Đồ trên bàn: chỗ đứng gần nhất là `lean` (cột sống cong 70–75°), mọi chỗ xa hơn là `kneel`. Ví dụ giấy Đạt 37/39 chỗ đứng là `kneel`, thẻ Việt chỉ có 1 chỗ đứng (`kneel`), công tắc đèn bàn 27/27 `kneel`. Người chơi bấm ngay khi lời nhắc hiện (chỗ xa nhất), nên gần như lần nào cũng ngồi thụp.
+  - Động tác nặng hơn lời nhắc: thẻ Đạt lời nhắc `lean` ở 9 chỗ, lúc làm chỉ 2 chỗ còn `lean`, 7 chỗ thành `kneel`; bảng tab lời nhắc `up` ở 7 chỗ, lúc làm thành `lean`/`kneel`.
+  - Camera sau đầu 20–35 cm mỗi khi rướn hay quỳ (đo camera so với xương `Head` theo hướng mặt: −0,20…−0,35 m; lúc đứng +0,07 m), nên thấy gáy và tóc.
+  - Clip `ual/Interact`: bàn chân dời 22–43 cm, mũi chân nhấc 7–9 cm, cổ tay trái lên cao hơn lúc đứng 42–44 cm (nắm tay trước ngực). `ual/PickUp_Table`: tay trái lên 18–22 cm.
+  - Gập chỉ ở cột sống: đặt 75° thì trục hông–cổ chỉ nghiêng 55–57°.
+- **Độ cao chỗ cầm (23 đồ, đo bằng code):**
+  - sàn: công tắc ổ cắm kéo dài `Switch1–3` 0,06 m; đầu dây mạng `Cable_blue/gray` 0,02 m; giấy Khoa 0,05 m; thùng rác 0,18 m; ổ mạng `LanSocket` 0,35 m;
+  - bàn: thẻ Việt 0,76; công tắc đèn bàn 0,79; giấy Đạt, thẻ Đạt 0,80; bảng tab 0,83; ảnh Việt 0,85–0,92;
+  - tầm đứng: tủ Việt 1,00; cửa 407 1,05; chốt 1,06; **đệm Phúc 1,195 (giường tầng trên, không phải đồ thấp như card ghi)**; tủ Đạt 1,24; gõ tường 1,30;
+  - cao: thẻ Phúc 1,70; thời khóa biểu 1,60–1,87; ảnh nhóm 1,86–1,93.
+- **Ảnh "trước"** 1080p, chương 1 thật (bật đèn trần để thấy thân): `build/t241/shots/before/*.png` (34 tấm, chưa chép vào `previews/t241/`).
+- **Code (commit WIP, chưa chạy full test):**
+  - `game/scripts/player/body_lean_modifier.gd` (mới): gập ở hông (xoay khung chậu quanh khớp háng, hông lùi và hạ), chia phần nhỏ cho cột sống, vai với xoay ra trước, cổ ngửa lại; giải lại hai chân để bàn chân đứng nguyên chỗ, gót không nhấc; tay trái buông theo trọng lực.
+  - `player_body.gd`: luật mới theo độ cao chỗ cầm (không theo tên đồ):
+    - từ 0,6 m trở lên: `near` = đứng yên, gập hông tối đa `MAX_BEND` 45° (hông 80%, lưng 20%), kẹp/móc với tới đầu ngón; cao quá tay thì nhón như cũ (`up` chỉ còn cho đồ cao hơn vai);
+    - dưới 0,6 m: `stoop` = cúi gập tới `STOOP_BEND` 130°, hông lùi 16 cm, hạ 12 cm cho gối chùng;
+    - thân không tự ngồi xổm nữa; `kneel` chỉ còn khi người chơi tự khom. Bỏ `lean` 75°.
+    - `perform` làm đúng cách lời nhắc đã chấm, không leo thang (`_reaches`, `_plan`).
+    - Mọi thao tác tay dùng clip `idle` làm nền (bỏ `ual/Interact`, `ual/PickUp_Table`).
+    - Camera đặt đúng mắt theo tư thế đã tính của khung hình này (`_follow_head`, không trễ khung, không còn 60%), có chặn không cho chui vào tường (`_clear`).
+    - `stoop_seconds` (mặc định 1 giây) để quay bản 1,4 giây cho chủ dự án so.
+  - Chạy `pwsh tools/test.ps1 -Filter protagonist_body`: 18 đạt, 0 lỗi. **Chưa chạy** nhóm `t239`, `protagonist_chapter1`, full test, check.
+
+**Còn lại (theo thứ tự):**
+1. Chạy `-Filter t239` và `-Filter protagonist_chapter1`; chạy probe `--mode=table` và `--mode=posture` để có số "sau". Probe tạm ở `game/_probe_tmp/t241_probe.gd` (không commit; mất thì viết lại theo mô tả trong file), chạy bằng `build/t241/run_godot.ps1` (tự giữ khóa Lượt Godot).
+2. Xem ảnh "sau", chỉnh hằng số (`STAND_*`, `STOOP_*`), kiểm gối chùng +15…+40° so với lúc đứng.
+3. Xét đồ nào không còn với tới theo luật mới rồi dời ra mép bàn (dự đoán: công tắc đèn bàn, giấy Đạt, thẻ Việt, có thể ảnh Việt). Dời quá 10 cm thì hỏi chủ dự án.
+4. Giấy Khoa: nằm ở miệng khe giữa tủ Việt và giường (khe rộng 0,45 m, người chơi không vào được), đứng gần nhất cách 0,33 m; phải kiểm đầu có chạm tủ hay giường khi cúi, nếu chạm thì đưa hai phương án (a)/(b) ở mục 4.
+5. `LanSocket` nằm giữa bàn Việt và kệ giày (kệ cao 0,45 m): kiểm cúi qua kệ giày.
+6. Test mới trong `game/tests/player/` (mục 6), sửa `test_lean_crouch_and_toes_put_the_hand_on_the_thing`.
+7. Ảnh sau, ảnh ghép `compare_ban.jpg`, `compare_thap.jpg`, video 1 giây và 1,4 giây; README, CREDITS.
+8. Full `pwsh tools/test.ps1`, `pwsh tools/check.ps1`, `git checkout -- game/default_bus_layout.tres`, commit, push, điền Handoff đầy đủ.
+
+**Sẽ báo chủ dự án (chưa quyết):**
+- Cửa, công tắc, gõ tường ở tầm đứng giờ cũng đứng yên, tay trái buông (vì clip `ual/Interact` là nguồn của bước chân và nắm tay trước ngực). Tầm với cửa ngắn lại khoảng 10 cm so với kiểu rướn 75° cũ.
+- Câu hỏi mục 4 (1 giây hay dài hơn, dời đồ quá 10 cm, giấy Khoa) chờ có ảnh và video "sau".
+
+**Yêu cầu thay đổi ngoài phạm vi:** chưa có.
