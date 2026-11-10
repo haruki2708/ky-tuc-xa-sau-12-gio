@@ -125,9 +125,10 @@ const STOOP_ARM_FROM: float = 45.0
 ## While the player itself crouches, a reach leans in the back as far as this (D-152's kneel, now
 ## only ever the player's own crouch).
 const KNEEL_BEND: float = 85.0
-## How long bending down to something low and coming back up takes (D-121: one second; the owner
-## chooses, card section 4). The other actions take HAND_SECONDS.
-static var stoop_seconds: float = HAND_SECONDS
+## How long bending down to something low and coming back up takes (D-157: the owner chose 1.4 s
+## over D-121's one second, T-241 section 4). The other actions take HAND_SECONDS.
+const STOOP_SECONDS: float = 1.4
+static var stoop_seconds: float = STOOP_SECONDS
 ## Bent down, the hand lets go this early (not at RELEASE), so that coming back up from the floor
 ## has as long as going down had: held until RELEASE the body stood up in a fifth of a second.
 const STOOP_RELEASE: float = 0.62

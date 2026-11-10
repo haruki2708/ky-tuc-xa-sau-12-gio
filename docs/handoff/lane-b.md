@@ -87,7 +87,7 @@ Cập nhật Checklist và Handoff trong card. Không sửa STATUS hay DECISIONS
 Cuối phiên báo ngắn bằng tiếng Việt: số mục đã khảo sát, số Hơi gượng / Sai, 5 lỗi nên sửa trước, câu hỏi cho chủ dự án, nhánh, commit.
 ```
 
-## 1e. Giao T-241 (10/11/2026, D-156): lấy đồ tự nhiên, dán NGAY (trước T-240)
+## 1e. Giao T-241 (10/11/2026, D-156): lấy đồ tự nhiên (ĐÃ XONG, merge 10/11; không dán lại)
 Chủ dự án: mở Claude lane B bằng `D:\GAME_WORK\mo_claude_lane_b.cmd` (hoặc dùng cửa sổ lane B đang mở), `/model` chọn **Opus 5.5**, effort đề xuất **max** như T-239, rồi dán:
 ```text
 Việc mới cho lane B: T-241 — lấy đồ tự nhiên (chủ dự án chơi thử bản có T-239). Đọc docs/tasks/T-241-protagonist-natural-reach.md.

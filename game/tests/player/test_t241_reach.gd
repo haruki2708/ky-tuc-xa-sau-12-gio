@@ -52,7 +52,7 @@ func before_each() -> void:
 
 
 func after_each() -> void:
-	PlayerBody.stoop_seconds = PlayerBody.HAND_SECONDS
+	PlayerBody.stoop_seconds = PlayerBody.STOOP_SECONDS
 	tree.paused = false
 	world.queue_free()
 	await wait_frames(2)
@@ -367,7 +367,9 @@ func test_the_body_is_drawn_where_the_lean_was_planned() -> void:
 		made.perform(target)
 		assert_eq(made._reach, case[1], "reached the %s way" % case[1])
 		assert_true(made._bend_degrees >= 20.0, "%s: it takes a lean (%.0f)" % [case[1], made._bend_degrees])
-		await _seconds(PlayerBody.CONTACT + 0.05)
+		# A stoop runs on its own length (D-157); the action's clock reaches CONTACT that much later.
+		var length: float = (PlayerBody.stoop_seconds if case[1] == &"stoop" else PlayerBody.HAND_SECONDS) / PlayerBody.HAND_SECONDS
+		await _seconds((PlayerBody.CONTACT + 0.05) * length)
 		var planned: Dictionary = made._leaned(made._kind(), (made.global_basis * made._lean_forward).normalized(), made._lean_now)
 		var shoulder: float = _at("RightUpperArm").distance_to(planned["shoulder"])
 		var head: Transform3D = drawn["Head"]
@@ -378,7 +380,7 @@ func test_the_body_is_drawn_where_the_lean_was_planned() -> void:
 			"%s: the camera in front of the head" % case[1])
 		var off: float = made._contact_point().distance_to(target.hand_target().global_position)
 		assert_true(off < 0.05 + made.finger_reach * made._scale(), "%s: the hand gets there (%.3f m)" % [case[1], off])
-		await _seconds(0.8)
+		await _seconds(0.8 * length)
 		assert_false(made.acting, "%s: done" % case[1])
 		assert_true((walker.get_node("Head") as Node3D).position.is_equal_approx(Vector3(0, 1.6, 0)), "the head is back")
 		target.queue_free()
@@ -397,7 +399,7 @@ func test_only_the_player_crouches() -> void:
 	assert_eq(made._reach_kind(desk.hand_target()), &"near", "standing: taken standing")
 	assert_false(made.can_reach(deep), "too deep on the desk: out of reach, nothing leans further for it")
 	made.perform(low)
-	await _seconds(PlayerBody.HAND_SECONDS + 0.1)
+	await _seconds(PlayerBody.stoop_seconds + 0.1)
 	assert_false(walker.crouched, "bending down did not crouch the player")
 	walker.crouched = true
 	await _seconds(0.4)
