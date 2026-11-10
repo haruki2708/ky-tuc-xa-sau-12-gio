@@ -201,6 +201,14 @@ Nhánh `lane-b/T-241-protagonist-natural-reach`, tạo từ `73c4d1e` (card đ�
 - Đã dời 1 đồ: thẻ Việt 10 cm ra mép trước bàn (`PAPERS`, z +0,03 → −0,07); không đồ nào phải dời quá 10 cm.
 - Chạy `-Filter protagonist_body` 18/18, `-Filter t239` 6/6. Chưa chạy `protagonist_chapter1` (test D-152 chưa sửa), chưa viết test mới, chưa có ảnh ghép, video, full test, check.
 
+**Cập nhật lần 3 (10/11; code và test đã xong phần chính, CHƯA chạy full test, check, chưa có ảnh ghép và video):**
+- Test mới `game/tests/player/test_t241_reach.gd` (7 test, đều đạt): đồ tầm bàn trở lên đứng yên (12 đồ, ở chỗ đứng xa nhất: không khom, gót ≤ 1,5 cm, chân trượt ≤ 2 cm, trục hông–ngực ≤ 45°, đo được 25–30°); đồ thấp cúi gập (8 đồ: không khom, góc gối 71–73° so với 36° lúc đứng đầu clip và 125° lúc ngồi xổm; ngưỡng test 50–80°); đồ cao camera vẫn trước đầu; lời nhắc và động tác trùng ở 1044 chỗ đứng; khớp vai và camera đúng chỗ đã tính; thân không tự khom, người chơi tự khom thì với từ tư thế khom; `stoop_seconds` kéo dài đúng thời gian đặt.
+- Sửa test D-152: `test_lean_crouch_and_toes…` thành `test_standing_bending_down_and_toes_put_the_hand_on_the_thing` (phải có `near`, `stoop`, `up`; không còn `kneel`, `lean`; thân không khom). D-152 in ra: 23 đồ, `near` 13, `stoop` 8, `up` 2.
+- Bàn tay phải: dưới lớp cong ngón giữ dáng ngón của clip cũ (từ 0,95 m trở lên: `ual/Interact`; thấp hơn: bàn tay mở của `ual/Crouch_Idle`), vì nền `idle` nắm tay lại.
+- Ảnh trong khung dựng đứng (ảnh Việt): lời nhắc xét theo chỗ lòng bàn tay kẹp tới được, không kéo trượt ảnh ra khỏi khung.
+- Nhóm test cũ đều đạt (10/11): `protagonist` 26, `t239` 6, `hand_targets` 6, `ch1_bunks` 5, `room407` 75, `player_death` 16, `manager` 32, `mirror` 6; `t241` 7.
+- Việc còn lại: mục 7 và 8 dưới đây (ảnh "sau" cuối, ảnh ghép, video 1 giây và 1,4 giây, README, CREDITS, full test, check, Handoff đầy đủ kèm bảng 23 đồ), và xóa `game/_probe_tmp/`.
+
 **Còn lại (theo thứ tự):**
 1. Chạy `-Filter t239` và `-Filter protagonist_chapter1`; chạy probe `--mode=table` và `--mode=posture` để có số "sau". Probe tạm ở `game/_probe_tmp/t241_probe.gd` (không commit; mất thì viết lại theo mô tả trong file), chạy bằng `build/t241/run_godot.ps1` (tự giữ khóa Lượt Godot).
 2. Xem ảnh "sau", chỉnh hằng số (`STAND_*`, `STOOP_*`), kiểm gối chùng +15…+40° so với lúc đứng.

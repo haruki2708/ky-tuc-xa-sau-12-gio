@@ -1558,6 +1558,10 @@ func _reach_kind(marker: HandTarget) -> StringName:
 
 
 func _judge_reach(marker: HandTarget) -> StringName:
+	# T-241: a sheet standing in its frame cannot be drawn in by the fingertips as one lying on a
+	# desk is (_pull): the pinch itself has to get to it. (What is reached up for: as before.)
+	if marker.pick_up and not _flat(marker.global_transform.orthonormalized()) and not _overhead(marker.global_position):
+		return _judge_goal(_pinch_palm(marker), HandTarget.Grip.GRIP)
 	return _judge_goal(marker.global_position, marker.grip)
 
 
