@@ -95,15 +95,15 @@ const ARM_STRAIGHT: float = 0.95
 ## line from the hips to the chest then leans about 35 degrees: "a light fold at the hips"), the
 ## arm does the rest; a pinch or hook goes out to the fingertips. What that misses is out of reach
 ## from there: the player steps closer (D-124), nothing leans further or crouches for it.
-const MAX_BEND: float = 45.0
+const MAX_BEND: float = 40.0
 ## The lean is searched in steps of this many degrees.
 const LEAN_STEP: int = 5
 ## Standing: the hips' share of the lean (the back bends the rest), how far the reaching shoulder
 ## leads at MAX_BEND (degrees about the back's own line), how far the seat goes back to keep the
 ## weight over the feet (metres at MAX_BEND), and the share of the lean the neck gives back.
 const STAND_HIP_SHARE: float = 0.8
-const STAND_TWIST: float = 20.0
-const STAND_BACK: float = 0.05
+const STAND_TWIST: float = 25.0
+const STAND_BACK: float = 0.02
 const STAND_NECK: float = 0.6
 ## T-241: a hand target lower than this over the feet is taken bending down (a stoop): below it a
 ## standing lean of MAX_BEND no longer brings the hand down to it.
@@ -353,6 +353,7 @@ func _ready() -> void:
 		# hides the seam.
 		animator.get_animation(CLIPS[key]).loop_mode = Animation.LOOP_PINGPONG if key == &"idle" else Animation.LOOP_LINEAR
 	_measure_reach_joints()
+	_measure_reach_hands()
 	_eye = eye_points[&"idle"]
 	_play(&"idle")
 	_place_model(0.0)
@@ -427,6 +428,9 @@ func perform(target: Interactable) -> void:
 	if not can_handle(target):
 		return
 	_face_view()
+	# T-241: the pose this action is done in, as the clip holds it now (see _joints).
+	var stance: StringName = _stance()
+	_action_joints = {stance: _joints(stance)}
 	acting = true
 	_target = target
 	_marker = target.hand_target(_reach_from(), _reach_rank)
@@ -472,7 +476,9 @@ func perform(target: Interactable) -> void:
 	_key = &""
 	_pace = HAND_SECONDS / maxf(stoop_seconds, 0.1) if _reach == &"stoop" else 1.0
 	animator.speed_scale = 1.0
-	animator.play(_clip, BLEND_SECONDS)
+	# Held still where it is: his idle shifts its feet about, and the reach was planned on this pose.
+	animator.play(_clip, BLEND_SECONDS, 0.0)
+	_reach_fingers.hold(_reach_hands.get(&"reach_low" if _marker.global_position.y - global_position.y < LOW_REACH else &"reach", {}))
 	_grip.curl_degrees = float(_marker.get_meta(&"curl", GRIP_DEGREES[_marker.grip]))
 	_aim(_from, _start_basis, 0.0)
 	_pole_base = _pole.position
@@ -1266,7 +1272,6 @@ func _set_phase(phase: Phase) -> void:
 func _read() -> void:
 	_reading = true
 	_set_phase(Phase.READ)
-	_play(&"idle")
 	var opened: Array[bool] = [false]
 	var probe := func(_id: StringName) -> void: opened[0] = true
 	EventBus.document_opened.connect(probe)
@@ -1326,9 +1331,74 @@ func _lean_parts(kind: StringName, degrees: float) -> PackedFloat32Array:
 	return PackedFloat32Array([0.0, degrees, 0.0, 0.0, 0.0, 0.0, 0.0])
 
 
+## T-241: the joints a lean in `pose` is planned on (model space). Tran Trung's idle shifts his
+## weight (his ankles wander 10 cm, his shoulders with them), so a body standing still in that
+## pose is taken as the clip holds it now, not as its first frame: the prompt judges the pose the
+## action will be done in (perform holds the clip still), and the hand gets where it was planned.
+## During an action: the joints it started with.
+func _joints(pose: StringName) -> Dictionary:
+	if acting and _action_joints.has(pose):
+		return _action_joints[pose]
+	if _key == pose and _clip == CLIPS[pose] and animator.current_animation == String(CLIPS[pose]):
+		var frame: int = Engine.get_physics_frames()
+		if _live_frame != frame or _live_pose != pose:
+			_live_frame = frame
+			_live_pose = pose
+			_live_joints = _read_joints()
+		return _live_joints
+	return _lean_joints.get(pose, {})
+
+
+## T-241: the right hand's fingers as the clip under a reach held them when the hand touched (a
+## FingerPoseModifier shape each): &"reach" the standing reach clip (ual/Interact) for what is
+## LOW_REACH or more over the feet; &"reach_low" the crouch's open hand for what is lower (before
+## T-241 the body crouched for nearly all of that: desks and the floor). Those clips no longer
+## play under a reach (one stepped, lifted a heel and raised the other fist; the other was the
+## crouch), but what the hand looked like on a switch, a handle or a mattress stays (T-239).
+const REACH_HANDS := {&"reach": &"ual/Interact", &"reach_low": &"ual/Crouch_Idle"}
+const LOW_REACH: float = 0.95
+var _reach_hands: Dictionary = {}
+var _reach_fingers: FingerPoseModifier
+
+
+func _measure_reach_hands() -> void:
+	for key: StringName in REACH_HANDS:
+		var clip: StringName = REACH_HANDS[key]
+		if not animator.has_animation(clip):
+			continue
+		animator.play(clip)
+		animator.seek(animator.get_animation(clip).length * CONTACT / HAND_SECONDS, true)
+		var shape: Dictionary = {}
+		for joint: String in FingerPoseModifier.JOINTS:
+			var index: int = skeleton.find_bone("Right" + joint)
+			if index >= 0:
+				shape[joint] = skeleton.get_bone_rest(index).basis.get_rotation_quaternion().inverse() * skeleton.get_bone_pose_rotation(index)
+		_reach_hands[key] = shape
+	animator.stop()
+
+
+var _action_joints: Dictionary = {}
+var _live_joints: Dictionary = {}
+var _live_frame: int = -1
+var _live_pose: StringName = &""
+
+
+## The lean's joints as the clip holds the skeleton now, model space.
+func _read_joints() -> Dictionary:
+	var to_model: Transform3D = model.global_transform.affine_inverse() * skeleton.global_transform
+	var at := func(bone: String) -> Vector3: return (to_model * skeleton.get_bone_global_pose(skeleton.find_bone(bone))).origin
+	var spine: Array[Vector3] = []
+	for bone: String in _bend.bones:
+		spine.append(at.call(bone))
+	var head: Vector3 = at.call("Head")
+	return {"pivot": ((at.call("LeftUpperLeg") as Vector3) + (at.call("RightUpperLeg") as Vector3)) * 0.5,
+			"spine": spine, "neck": at.call("Neck"), "head": head, "eye": head + EYES_FROM_HEAD_BONE,
+			"shoulder": at.call("RightUpperArm"), "left_shoulder": at.call("LeftUpperArm")}
+
+
 ## Flat, from between the hips toward `goal` (world): the way a reach for it leans.
 func _toward(goal: Vector3) -> Vector3:
-	var joints: Dictionary = _lean_joints.get(&"idle", {})
+	var joints: Dictionary = _joints(_stance())
 	var from: Vector3 = model.global_transform * (joints["pivot"] as Vector3) if not joints.is_empty() else global_position
 	var flat: Vector3 = goal - from
 	flat.y = 0.0
@@ -1339,7 +1409,7 @@ func _toward(goal: Vector3) -> Vector3:
 ## right shoulder joint, the left one and the eyes (world): the measured pose's joints posed step
 ## by step as BodyLeanModifier poses the bones.
 func _leaned(kind: StringName, forward: Vector3, degrees: float) -> Dictionary:
-	var joints: Dictionary = _lean_joints.get(_pose_of(kind), {})
+	var joints: Dictionary = _joints(_pose_of(kind))
 	if joints.is_empty():
 		var shoulder: Vector3 = _bone_world("RightUpperArm")
 		return {"shoulder": shoulder, "left_shoulder": _bone_world("LeftUpperArm"), "eye": _eye_world()}
@@ -1359,7 +1429,7 @@ func _leaned(kind: StringName, forward: Vector3, degrees: float) -> Dictionary:
 ## the shoulder within the arm's reach of `goal` (`extra` metres more, or less when negative: some
 ## slack), or INF if none does.
 func _lean_for(kind: StringName, goal: Vector3, extra: float, limit: float) -> float:
-	var joints: Dictionary = _lean_joints.get(_pose_of(kind), {})
+	var joints: Dictionary = _joints(_pose_of(kind))
 	if joints.is_empty():
 		return INF
 	var reach: float = (arm_reach + extra) * _scale()
@@ -1371,8 +1441,33 @@ func _lean_for(kind: StringName, goal: Vector3, extra: float, limit: float) -> f
 	var forward: Vector3 = _toward(goal)
 	for step: int in range(0, int(limit) + 1, LEAN_STEP):
 		if (_leaned(kind, forward, float(step))["shoulder"] as Vector3).distance_to(goal) <= reach:
-			return float(step)
+			# Not with the head through a wall, a locker or a bed frame: from here it is out of reach.
+			return float(step) if _head_free(kind, forward, float(step)) else INF
 	return INF
+
+
+## The eyes' way from standing to a lean of `degrees` (and CAMERA_CLEAR beyond) is free of the
+## world's collision.
+func _head_free(kind: StringName, forward: Vector3, degrees: float) -> bool:
+	if degrees <= 0.0 or not is_inside_tree():
+		return true
+	# The eyes swing out and down on an arc: every HEAD_STEP degrees of it, as the camera will follow.
+	var space := get_world_3d().direct_space_state
+	var start: Vector3 = _leaned(kind, forward, 0.0)["eye"]
+	var steps: int = maxi(1, ceili(degrees / HEAD_STEP))
+	for step: int in range(1, steps + 1):
+		var to: Vector3 = _leaned(kind, forward, degrees * step / steps)["eye"]
+		if start.distance_to(to) < 0.01:
+			continue
+		var query := PhysicsRayQueryParameters3D.create(start, to + (to - start).normalized() * CAMERA_CLEAR, 1)
+		if player is CollisionObject3D:
+			query.exclude = [(player as CollisionObject3D).get_rid()]
+		if not space.intersect_ray(query).is_empty():
+			return false
+	return true
+
+
+const HEAD_STEP: float = 20.0
 
 
 ## The first lean found for `goal` with each of `extras` in turn, else INF.
@@ -1401,7 +1496,8 @@ func _plan(goal: Vector3, grip: HandTarget.Grip, slack: float) -> void:
 	if kind == &"near":
 		# The palm on it when a lean brings it there. Above the arm: up on the toes, no lean (T-227).
 		# Else a pinch or hook takes it out at the fingertips.
-		lean = _first_lean(kind, goal, [-slack, 0.0])
+		if not _overhead(goal):
+			lean = _first_lean(kind, goal, [-slack, 0.0])
 		if is_inf(lean):
 			if goal.y > _standing_shoulder().y and _rise_for(goal, grip) <= TIPTOE:
 				_high = true
@@ -1431,6 +1527,15 @@ func _bend_for(goal: Vector3) -> float:
 ## D-152: the measured pose the player's stance reaches from.
 func _stance() -> StringName:
 	return &"crouch_idle" if is_instance_valid(player) and bool(player.get("crouched")) else &"idle"
+
+
+## What is this far over the shoulder is reached up for (the arm and the toes, T-227; D-152's lean
+## on the toes): folding at the hips takes the shoulder down and away from it. Unchanged by T-241.
+const OVERHEAD: float = 0.2
+
+
+func _overhead(goal: Vector3) -> bool:
+	return goal.y > _standing_shoulder().y + OVERHEAD
 
 
 ## The right shoulder joint of the standing pose, world space.
@@ -1476,6 +1581,8 @@ func _reaches(kind: StringName, goal: Vector3, grip: HandTarget.Grip) -> bool:
 	var extra: float = finger_reach if grip != HandTarget.Grip.GRIP else 0.0
 	match kind:
 		&"near":
+			if _overhead(goal):
+				return _rise_for(goal, grip) <= TIPTOE
 			return is_finite(_lean_for(kind, goal, extra, MAX_BEND)) or _rise_for(goal, grip) <= TIPTOE
 		&"up":
 			# Only what is above the shoulder: lower down a standing lean already reaches further.
@@ -1509,14 +1616,7 @@ func _measure_reach_joints() -> void:
 		_reach_joints[pose] = points
 		_reach_collars[pose] = (to_model * skeleton.get_bone_global_pose(skeleton.find_bone("RightShoulder"))).origin
 		# T-241: what the lean from the hips is planned on.
-		var at := func(bone: String) -> Vector3: return (to_model * skeleton.get_bone_global_pose(skeleton.find_bone(bone))).origin
-		var spine: Array[Vector3] = []
-		for bone: String in _bend.bones:
-			spine.append(at.call(bone))
-		var head: Vector3 = at.call("Head")
-		_lean_joints[pose] = {"pivot": ((at.call("LeftUpperLeg") as Vector3) + (at.call("RightUpperLeg") as Vector3)) * 0.5,
-				"spine": spine, "neck": at.call("Neck"), "head": head, "eye": head + EYES_FROM_HEAD_BONE,
-				"shoulder": at.call("RightUpperArm"), "left_shoulder": at.call("LeftUpperArm")}
+		_lean_joints[pose] = _read_joints()
 	animator.stop()
 
 
@@ -1597,6 +1697,9 @@ func _weigh(weight: float) -> void:
 	# Standing and bending down the free arm hangs from its shoulder; it does not tip up behind.
 	_bend.arm_hangs = kind == &"near" or kind == &"stoop"
 	_bend.arm_degrees = parts[6]
+	# The working hand opens as the reach clips had it (not up on the toes or from a crouch: those
+	# always stood on a clip of their own).
+	_reach_fingers.influence = weight if _bend.arm_hangs and not _high and not _reach_fingers.to_shape.is_empty() else 0.0
 	_rise = _rise_target * weight
 	model.position.y = _rise
 	_tiptoe.rise = (skeleton.global_basis.inverse() * Vector3(0.0, _rise, 0.0)).length()
@@ -1902,6 +2005,13 @@ func _build_modifiers() -> void:
 	skeleton.add_child(_align)
 	_align.influence = 0.0
 	_palm_axis = _find_palm_axis("RightHand", GRIP_BONES[3])
+	# T-241: under the curl, the fingers the reach clips held (the body now stands on its idle,
+	# whose hands are closed: curled on top of that the hand pressed a switch as a fist).
+	_reach_fingers = FingerPoseModifier.new()
+	_reach_fingers.name = "RightReachFingers"
+	_reach_fingers.side = &"Right"
+	skeleton.add_child(_reach_fingers)
+	_reach_fingers.influence = 0.0
 	_grip = HandGripModifier.new()
 	_grip.name = "RightGrip"
 	_grip.bones = GRIP_BONES

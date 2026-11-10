@@ -195,6 +195,12 @@ Nhánh `lane-b/T-241-protagonist-natural-reach`, tạo từ `73c4d1e` (card đ�
     - `stoop_seconds` (mặc định 1 giây) để quay bản 1,4 giây cho chủ dự án so.
   - Chạy `pwsh tools/test.ps1 -Filter protagonist_body`: 18 đạt, 0 lỗi. **Chưa chạy** nhóm `t239`, `protagonist_chapter1`, full test, check.
 
+**Cập nhật lần 2 (10/11, sau khi có ảnh "sau" đầu tiên; vẫn CHƯA xong):**
+- Đã chỉnh theo ảnh: `MAX_BEND` 40° (trục hông–cổ đo được 38–39°), hông lùi 2 cm, vai với xoay 25°; đồ cao hơn vai 20 cm vẫn nhón như cũ; clip `idle` đứng im trong lúc với (idle của Trần Trung tự dời chân 10 cm mỗi chu kỳ); không cho cúi khi đầu chạm tường, tủ, giường; bàn tay phải giữ dáng ngón như trước T-241.
+- Đo "sau" (`build/t241/table_after3.log`, `posture_after3.log`): 23/23 đồ với tới; lời nhắc và động tác trùng nhau ở mọi chỗ đứng; không còn `lean`, `kneel`; bàn chân trượt ≤ 1 cm, gót không nhấc; camera luôn trước đầu (0,06–0,09 m, như lúc đứng); tay trái không giơ lên.
+- Đã dời 1 đồ: thẻ Việt 10 cm ra mép trước bàn (`PAPERS`, z +0,03 → −0,07); không đồ nào phải dời quá 10 cm.
+- Chạy `-Filter protagonist_body` 18/18, `-Filter t239` 6/6. Chưa chạy `protagonist_chapter1` (test D-152 chưa sửa), chưa viết test mới, chưa có ảnh ghép, video, full test, check.
+
 **Còn lại (theo thứ tự):**
 1. Chạy `-Filter t239` và `-Filter protagonist_chapter1`; chạy probe `--mode=table` và `--mode=posture` để có số "sau". Probe tạm ở `game/_probe_tmp/t241_probe.gd` (không commit; mất thì viết lại theo mô tả trong file), chạy bằng `build/t241/run_godot.ps1` (tự giữ khóa Lượt Godot).
 2. Xem ảnh "sau", chỉnh hằng số (`STAND_*`, `STOOP_*`), kiểm gối chùng +15…+40° so với lúc đứng.
