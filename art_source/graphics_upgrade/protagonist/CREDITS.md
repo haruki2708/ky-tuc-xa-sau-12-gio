@@ -14,4 +14,4 @@
 - `previews/` chụp trong phòng 407 của bản chơi. Đồ Tripo trong phòng giữ nguồn ở các hồ sơ graphics upgrade trước (D-084).
 - Tay nắm có thể thay bằng bản Tripo (chủ dự án tạo, gói trả phí D-084) mà không đổi code: `DoorHandles.LEVER` trỏ tới GLB mới. Yêu cầu: đế nằm ở gốc, cần gạt chạy theo +X, nhô ra theo +Z.
 - **T-239:** `t239_hands.json` là số liệu trích từ bàn tay của `trung_tripo.glb` (xương, đỉnh lưới, trọng số da) để thiết kế dáng tay; cùng nguồn và quyền dùng với mô hình (Tripo, D-084). `t239_hands.py`, `t239_grips.py` và `game/scripts/player/hand_shapes.gd` (sinh ra từ chúng) do dự án viết (Claude).
-
+- **T-241:** tư thế gập hông, cúi gập (BodyLeanModifier) dựng bằng code của dự án (Claude) trên khung xương Trần Trung; không thêm asset, clip hay mô hình mới. previews/t241/ chụp trong chương 1 của bản chơi.

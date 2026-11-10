@@ -128,6 +128,9 @@ const KNEEL_BEND: float = 85.0
 ## How long bending down to something low and coming back up takes (D-121: one second; the owner
 ## chooses, card section 4). The other actions take HAND_SECONDS.
 static var stoop_seconds: float = HAND_SECONDS
+## Bent down, the hand lets go this early (not at RELEASE), so that coming back up from the floor
+## has as long as going down had: held until RELEASE the body stood up in a fifth of a second.
+const STOOP_RELEASE: float = 0.62
 ## The camera stays this far short of what the head would lean into (metres).
 const CAMERA_CLEAR: float = 0.12
 ## D-152: what is high and behind something low (a shelf over a locker) is taken up on the toes
@@ -742,7 +745,8 @@ func _tick_action(delta: float) -> void:
 			_aim(_marker.global_position, _held_basis(), 1.0)
 			# T-239: a door's grip is followed as the leaf swings, until the time comes or it leaves the
 			# arm's reach; then the hand lets go and the leaf swings on.
-			if _time >= (DOOR_LET_GO if _door else RELEASE) or (_door and _used and _beyond_arm()):
+			var hold_until: float = DOOR_LET_GO if _door else (STOOP_RELEASE if _reach == &"stoop" else RELEASE)
+			if _time >= hold_until or (_door and _used and _beyond_arm()):
 				_from = _marker.global_position
 				_released_at = _time
 				_release_basis = _held_basis()

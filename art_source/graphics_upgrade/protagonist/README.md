@@ -147,3 +147,26 @@ Bốn lỗi chủ dự án thấy khi chơi thử (card `docs/tasks/T-239-protag
 
 **Ảnh:** `previews/t239/before_*.png` (chủ dự án chụp), `previews/t239/after_*.jpg` và ảnh ghép so sánh `previews/t239/compare_*.jpg`, chụp trong chương 1 thật.
 
+## T-241: thân đi theo tay khi lấy đồ (D-156)
+Chủ dự án chơi bản có T-239 (10/11): cách cầm đã ổn, nhưng thân ngồi thụp cạnh bàn và rướn sâu khi lấy thẻ, lấy giấy (card `docs/tasks/T-241-protagonist-natural-reach.md`).
+
+**Luật với đồ** (`game/scripts/player/player_body.gd`), chia theo độ cao chỗ cầm so với bàn chân, không theo tên đồ:
+- **Từ 0,6 m trở lên** (bàn, tay nắm cửa, công tắc, tủ): đứng yên, gập ở hông tối đa 40° (`MAX_BEND`; hông 80%, lưng 20%), vai với xoay ra trước tối đa 25°. Kẹp và móc với tới đầu ngón.
+- **Cao hơn vai 20 cm** (thẻ Phúc, ảnh nhóm, thời khóa biểu): nhón chân như T-227, D-152, không đổi.
+- **Dưới 0,6 m** (sàn, thùng rác, ổ điện, ổ mạng): cúi gập tới 130° (`STOOP_BEND`), hông lùi 16 cm và hạ 12 cm cho gối chùng.
+- Thân không tự ngồi xổm. Người chơi tự khom thì thân với từ tư thế khom (`kneel`).
+- Lời nhắc và động tác dùng chung một phép chấm (`_reaches`); động tác không bao giờ nặng hơn lời nhắc.
+- Đầu sắp chạm tường, tủ hay giường thì từ chỗ đó không hiện lời nhắc (`_head_free`).
+
+**Dựng tư thế:** `BodyLeanModifier` (`game/scripts/player/body_lean_modifier.gd`) xoay khung chậu quanh khớp háng, dời hông, chia phần gập cho cột sống, ngửa cổ lại, rồi giải lại hai chân để bàn chân đứng nguyên chỗ (gót không nhấc). Tay trái buông theo trọng lực. `PlayerBody` tính trước vị trí vai và mắt bằng đúng các bước đó (`_leaned`), nên tay tới đúng chỗ và camera đặt đúng mắt ngay trong khung hình (không trễ, không còn thấy gáy).
+
+**Clip nền:** mọi thao tác tay đứng trên `idle`, giữ yên trong lúc với (idle của Trần Trung tự dời bàn chân khoảng 10 cm mỗi chu kỳ 5,6 giây). `ual/Interact` và `ual/PickUp_Table` không còn phát khi với tay; dáng ngón tay phải dưới lớp cong ngón vẫn lấy từ `ual/Interact` (đồ từ 0,95 m) và `ual/Crouch_Idle` (đồ thấp hơn), để bàn tay trên công tắc, tay nắm, mép đệm trông như trước.
+
+**Thời gian cúi:** `PlayerBody.stoop_seconds` (mặc định 1 giây, D-121). Chủ dự án chọn sau khi xem video 1 giây và 1,4 giây.
+
+**Đồ đã dời:** thẻ Việt, 10 cm ra mép trước bàn (`PAPERS` trong `chapter1_main.gd`).
+
+**Test:** `game/tests/player/test_t241_reach.gd` (7 test, chương 1 thật, đo trên xương đã dựng) và `test_protagonist_chapter1.gd` (D-152 theo luật mới).
+
+**Ảnh:** `previews/t241/after_*.jpg` (1080p, chương 1 thật, bật đèn trần để thấy thân; `_mat` là mắt người chơi, `_ngoai` là nhìn từ ngoài; số trong tên là phần trăm giây của thao tác), ảnh ghép `previews/t241/compare_ban.jpg`, `compare_thap.jpg`. Ảnh chụp ở chỗ đứng xa nhất mà lời nhắc còn hiện, là chỗ người chơi thường bấm. Video để trong `build/t241/video/` (không đưa vào git).
+
