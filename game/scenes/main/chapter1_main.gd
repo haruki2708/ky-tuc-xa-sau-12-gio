@@ -32,7 +32,8 @@ const PAPERS: Array = [
 	# D-151: the frame stands on Trung's locker, in front of Dat's shelf (it stood on the shelf, out of reach).
 	[&"ch1_team_photo", "TeamPhoto", Vector3(0.062, 0.1, 0.05), Vector3(-9, -90, 0), Vector2(0.15, 0.1), &"photo"],
 	# D-106: on the desk beside the furnished laptop (it floated behind the new laptop's screen).
-	[&"ch1_viet_card", "VietLaptop", Vector3(0.27, -0.148, 0.03), Vector3(-90, 20, 0), Vector2(0.09, 0.06)],
+	# T-241: 10 cm nearer the desk's front edge (it lay 34 cm in: out of a standing reach).
+	[&"ch1_viet_card", "VietLaptop", Vector3(0.27, -0.148, -0.07), Vector3(-90, 20, 0), Vector2(0.09, 0.06)],
 	# T-239: on top of the songbook's pages (at the anchor it lay inside the book, 0.8 to 0.8285 m).
 	[&"ch1_tap_chart", "GuitarSongbook", Vector3(0.0, 0.0285, 0.0), Vector3(-90, 0, 0), Vector2(0.15, 0.21)],
 ]

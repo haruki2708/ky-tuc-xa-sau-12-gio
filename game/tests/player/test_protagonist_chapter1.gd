@@ -119,9 +119,10 @@ func test_every_hand_thing_can_be_reached_from_a_standing_spot() -> void:
 	print("D152_REACH: %d hand things reachable in chapter 1 %s" % [checked, kinds])
 
 
-## D-152: leaning over a desk, crouched at a desk, up on the toes over a locker: the hand gets to the
-## thing at the touch, it is used, and the player stands up again after a crouched reach.
-func test_lean_crouch_and_toes_put_the_hand_on_the_thing() -> void:
+## D-152, as T-241 changed it (owner, 10/11): standing at a desk, bending down to the floor, up on
+## the toes over a locker: the hand gets to the thing at the touch, it is used, and the body never
+## crouches for it (D-152's lean of 75 degrees and its crouch are gone).
+func test_standing_bending_down_and_toes_put_the_hand_on_the_thing() -> void:
 	await _open_chapter1()
 	director._place_khoa_note(chapter.get_node("Floor4/Room407/Anchors/WallKnock406"))
 	await wait_frames(2)
@@ -140,8 +141,7 @@ func test_lean_crouch_and_toes_put_the_hand_on_the_thing() -> void:
 		for frame in range(int(PlayerBody.CONTACT * 60.0) + 6):
 			await tree.physics_frame
 			closest = minf(closest, body._hand_tip().distance_to(body._marker.global_position))
-		if kind == &"kneel":
-			assert_true(bool(player.get("crouched")), name + " crouched for it")
+		assert_false(bool(player.get("crouched")), name + ": the body does not crouch for it")
 		assert_true(closest <= 0.06 + body.finger_reach * body._scale(),
 			"%s (%s): the hand gets to it (%.3f m)" % [name, kind, closest])
 		# Papers open their document; close it so the paper is put back and the hand comes home.
@@ -160,7 +160,8 @@ func test_lean_crouch_and_toes_put_the_hand_on_the_thing() -> void:
 		player.set_physics_process(false)
 		if not was_crouched:
 			assert_false(bool(player.get("crouched")), name + " stands back up")
-	assert_true(seen.has(&"kneel") and seen.has(&"up"), "crouched and tiptoe reaches covered: %s" % [seen.keys()])
+	assert_true(seen.has(&"near") and seen.has(&"stoop") and seen.has(&"up"), "standing, bent down and tiptoe reaches covered: %s" % [seen.keys()])
+	assert_false(seen.has(&"kneel") or seen.has(&"lean"), "no crouch or deep lean of the body's own: %s" % [seen.keys()])
 
 
 func test_dying_puts_the_body_away_and_lets_go_of_a_paper() -> void:
