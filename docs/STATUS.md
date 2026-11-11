@@ -65,13 +65,14 @@
    - **B môi trường/3D: tài khoản Claude, Claude Code trên máy này (D-141)**, workspace `D:\GAME_WORK\lane-b2`, mở bằng `D:\GAME_WORK\mo_claude_lane_b.cmd` (đăng nhập riêng). Việc: hành lang tầng 4 [T-233](tasks/T-233-floor4-corridor-segment-pilot.md), [T-235](tasks/T-235-floor4-corridor-full-shell.md) xong; [T-237](tasks/T-237-floor4-corridor-playable.md) integrator làm thay (09/11, B hết hạn mức). **Đang giao [T-239](tasks/T-239-protagonist-hand-fixes.md) sửa 4 lỗi tay Trần Trung (D-153, Opus 5.5 effort max).** **Sau đó [T-240](tasks/T-240-protagonist-motion-survey.md) khảo sát động tác (D-155).**
    - **E âm thanh: tài khoản GPT từng làm lane B (D-141)**, Codex CLI, workspace `D:\GAME_WORK\lane-e2`. Việc: [T-234](tasks/T-234-audio-audit-after-graphics.md) rà âm thanh (D-142).
    - D giao diện (Gemini, `D:\GAME_WORK\lane-d`): rảnh. F (Claude Code web): dừng.
+   - **HARU điều phối phụ (D-160):** tài khoản Claude riêng, mở bằng `D:\GAME_WORK\mo_claude_lane_haru.cmd`; làm tiếp việc dở của integrator khi integrator hết hạn mức. Điểm vào và tiến độ: [`handoff/haru.md`](handoff/haru.md).
    - Workspace cũ `lane-a`, `lane-b`, `lane-c`, `lane-e`, `lane-f` đã xóa 07/11 (đã kiểm không mất gì).
    - Nhiều agent chung laptop: luật "Lượt Godot" (`AGENTS.md` mục 4, file khóa `D:\GAME_WORK\GODOT_DANG_CHAY.txt`); integrator cũng theo.
    - Sau mọi thay đổi: `pwsh tools/test.ps1` → `pwsh tools/check.ps1` → `git checkout -- game/default_bus_layout.tres` → commit, push main.
    - Hỏi chủ dự án trước khi chạy bot hoặc đo FPS.
    - Kiểm `Get-Process godot*,KyTucXa*` trước khi chạy Godot.
    - Máy từng thiếu RAM làm lượt test chạy nền bị dừng (16/10). Gặp lại thì báo chủ dự án, không tự chạy lại.
-11. Số đã cấp **D-076…D-159, T-207…T-242** (T-238 giữ cho bot sân vận động đã hoãn, D-149). Số tiếp theo **D-160, T-243**.
+11. Số đã cấp **D-076…D-160, T-207…T-242** (T-238 giữ cho bot sân vận động đã hoãn, D-149). Số tiếp theo **D-161, T-243**.
 
 **Repo:** https://github.com/haruki2708/ky-tuc-xa-sau-12-gio (private; trước là `tuaanh666/...`)
 
