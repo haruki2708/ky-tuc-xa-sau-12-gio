@@ -91,5 +91,5 @@ Trả lời và viết tài liệu bằng tiếng Việt; code, comment, commit 
 **Cập nhật:** 12/11/2026 05:40, integrator (Opus 5.5).
 
 - **Vừa xong:** [T-243](../tasks/T-243-protagonist-chapter2.md) merge vào main và push (full test 921/0, check 0, bot ch2_good đạt, FPS chương 2 ≥ 60).
-- **Đang làm:** build bản chơi (`pwsh tools/package.ps1`, log `D:\GAME_DEMO\build\integrator\package_t243.log`).
+- **Bản chơi:** `build/windows/KyTucXa.exe`, zip `build/dist/KyTucXa-0.0.1-e98ec15-win64.zip` (package PASS 12/11 05:33). Chờ chủ dự án chơi chương 2.
 - **Bước tiếp:** báo chủ dự án đường dẫn exe và việc cần thử (card T-243 mục 5 "Chủ dự án xem khi chơi"). Đang chờ: lane E làm T-244 (tiếng cửa) khi chủ dự án dán prompt `lane-e.md` 1c. Việc lớn tiếp theo integrator đề xuất: xác ba bạn cùng phòng bằng Tripo (T-221, chủ dự án tạo m1 trước). Chưa có việc nào đang dở.
