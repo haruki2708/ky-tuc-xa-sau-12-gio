@@ -229,6 +229,19 @@ func test_hiding_on_the_balcony_is_hunted() -> void:
 	_assert_walked_up(distance, "the balcony")
 
 
+## T-242 (D-130, D-154): out on the balcony with its door shut behind him, the manager swings the
+## door open and comes out after Trung.
+func test_hiding_on_the_balcony_behind_its_shut_door_is_hunted() -> void:
+	await _manager_scene(0)
+	var door := scene.get_node("Floor4/Room407/Extension/BalconyDoor") as Node3D
+	door.call("set_open", false)
+	player.global_position = BALCONY_SPOT
+	var distance := await _distance_at_kill()
+	assert_eq(reasons, [&"DEATH_NOT_IN_BED"] as Array[StringName], "no bed, no safety;")
+	assert_true(door.get("is_open"), "he opened the balcony door;")
+	_assert_walked_up(distance, "the balcony behind its shut door")
+
+
 func test_hiding_in_the_bathroom_is_hunted() -> void:
 	await _manager_scene(0)
 	var entry := scene.get_node("Floor4/Room407/Anchors/BathroomEntry") as Node3D

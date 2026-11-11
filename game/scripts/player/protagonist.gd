@@ -5,8 +5,14 @@ extends RefCounted
 ## - Door 407's Tripo levers take the hand (D-124, T-222), so the body presses the lever and the door
 ##   swings with it (door407.gd hand_seconds). T-239: from inside the room never the corridor lever;
 ##   with the open leaf's inner face turned away, its free edge (DoorHandles.sides).
+## - T-242 (D-154): the bathroom and balcony doors of room 407 get a HingedDoor each: opened and
+##   closed by hand the same way.
 ## - The room's mirrors show the body's mirror copy; their PS1 stand-in body is hidden. The mirrors
 ##   still follow the player (lag stays a mirror's own business).
+
+
+## The hinged.gd leaves of room 407 that a hand opens and closes (T-242).
+const HINGED_DOORS: Array[String] = ["Extension/BathroomDoor", "Extension/BalconyDoor"]
 
 
 static func attach(player: CharacterBody3D, floor4: Node3D) -> PlayerBody:
@@ -26,6 +32,11 @@ static func attach(player: CharacterBody3D, floor4: Node3D) -> PlayerBody:
 			DoorHandles.sides(pivot, levers)
 	var room := floor4.get_node_or_null("Room407") as Node3D
 	if room != null:
+		# T-242 (D-154): the bathroom and balcony doors open and close by hand, as Door 407 does.
+		for path: String in HINGED_DOORS:
+			var hinged := room.get_node_or_null(path) as Node3D
+			if hinged != null and HingedDoor.of(hinged) == null:
+				HingedDoor.fit(hinged)
 		for mirror: Node in room.find_children("*", "", true, false):
 			if mirror.has_method("set_lag") and mirror.has_node("ReflectionBody"):
 				mirror.set("follow", player)

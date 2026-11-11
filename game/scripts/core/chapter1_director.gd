@@ -141,6 +141,8 @@ const SAFE_BEDS: Array[int] = [1, 2, 4]
 const HUNT_SECONDS := 15.0
 ## He opens the shut bathroom door when this close to it while hunting.
 const BATHROOM_DOOR_REACH := 1.4
+## T-242: he swings the shut balcony door open over this long (it turns 172 degrees).
+const BALCONY_DOOR_SECONDS := 0.5
 const BUNK_SCENE := "res://scenes/interaction/bunk_spot.tscn"
 const PUZZLE_STATION_SCENE := "res://scenes/interaction/puzzle_station.tscn"
 const MANAGER_SCENE := "res://scenes/entity/manager.tscn"
@@ -754,13 +756,36 @@ func _arg_count(object: Object, method: StringName) -> int:
 ## The shut bathroom door when Trung is on its far side from the room, else null.
 func _bathroom_door_between(manager: Node3D) -> Node3D:
 	var room := _room()
-	var door := room.get_node_or_null("Extension/BathroomDoor") as Node3D if room != null else null
-	if door == null or door.get("is_open") == true or not room.has_method("set_bathroom_door_open") or _player == null:
+	if room == null or not room.has_method("set_bathroom_door_open"):
+		return null
+	return _shut_door_between(manager, "Extension/BathroomDoor")
+
+
+## T-242 (D-130, D-154): the shut balcony door when Trung is out on the balcony behind it, else null.
+func _balcony_door_between(manager: Node3D) -> Node3D:
+	return _shut_door_between(manager, "Extension/BalconyDoor")
+
+
+## Room 407's hinged door at `path` when it is shut with Trung on its far side from the manager.
+func _shut_door_between(manager: Node3D, path: String) -> Node3D:
+	var room := _room()
+	var door := room.get_node_or_null(path) as Node3D if room != null else null
+	if door == null or door.get("is_open") == true or _player == null:
 		return null
 	# Sides of the door's plane (its local z): Trung against the manager.
 	var player_side := (door.global_transform.affine_inverse() * _player.global_position).z
 	var manager_side := (door.global_transform.affine_inverse() * manager.global_position).z
 	return door if signf(player_side) != signf(manager_side) else null
+
+
+## The middle of a hinged door's doorway on the floor (its leaf's collision box, shut).
+func _door_middle(door: Node3D) -> Vector3:
+	var leaf := door.get_node_or_null("Pivot/Leaf") as Node3D
+	return (door.global_transform * leaf.position) if leaf != null else door.global_position
+
+
+static func _flat_distance(a: Vector3, b: Vector3) -> float:
+	return Vector2(a.x - b.x, a.z - b.z).length()
 
 
 func _manager_hunts(manager: Node3D) -> void:
@@ -776,6 +801,17 @@ func _manager_hunts(manager: Node3D) -> void:
 			await _wait_until(func() -> bool: return arrived[0] or _dying or manager.global_position.distance_to(bathroom_door.global_position) < BATHROOM_DOOR_REACH, HUNT_SECONDS, false)
 			if not arrived[0] and not _dying:
 				_room().set_bathroom_door_open(true)
+		# T-242 (D-130): out on the balcony behind its shut door: he opens that one the same way.
+		var balcony_door := _balcony_door_between(manager)
+		if balcony_door != null:
+			await _wait_until(func() -> bool: return arrived[0] or _dying or _flat_distance(manager.global_position, _door_middle(balcony_door)) < BATHROOM_DOOR_REACH, HUNT_SECONDS, false)
+			if not arrived[0] and not _dying and is_instance_valid(balcony_door):
+				# Swung open where a hand can swing it (Trung's body is in the chapter), else at once.
+				var by_hand := HingedDoor.of(balcony_door)
+				if by_hand != null:
+					by_hand.swing(true, BALCONY_DOOR_SECONDS)
+				else:
+					balcony_door.call("set_open", true)
 		await _wait_until(func() -> bool: return arrived[0] or _dying, HUNT_SECONDS, false)
 	elif manager != null and manager.has_method("walk_to") and _player != null:
 		# Without `hunt`: follow the navigation mesh to Trung (lane B's room mesh,
