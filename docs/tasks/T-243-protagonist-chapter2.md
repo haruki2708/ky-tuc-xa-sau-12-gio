@@ -39,4 +39,31 @@
 - Cầm đồ khi đi lại: tay buông xuôi cầm đồ, hay ôm trước ngực.
 
 ## 5. Handoff
-(agent điền)
+Nhánh `integrator/T-243-protagonist-chapter2`, integrator (Opus 5.5 high) làm thay B. Commit: `cca5bb3` (bước 1: thân vào chương 2), `9f68d61` (bước 2: các thao tác), `e9fc76a` (gỡ cảnh thử khỏi git).
+
+**Đã làm:**
+- **Thân ở chương 2:** `chapter2.tscn` `protagonist_body = true`. `Protagonist.attach(..., hinged_doors)`: chương 2 chỉ gắn `HingedDoor` cho cửa ban công; **cửa nhà tắm vẫn là cửa kẹt** (vòng 4, đúng 3 lần hích; test kiểm).
+- **Cầm đồ tay phải** (`PlayerBody.take_item`, `_tick_carry`, `_place_held`; `CarryItem` gọi khi tay chạm đồ):
+  - nhặt bằng tay theo luật T-241; đồ là bản sao mô hình thật trong nắm tay (không còn hộp tạm trước camera), vải gấp phẳng (giẻ, áo) rủ xuống từ nắm tay;
+  - giữa các thao tác tay giữ đồ trước hông phải (cúi nhìn 60° là thấy); đi lại vẫn giữ;
+  - lấy đồ khác thì đổi (đồ cũ về chỗ cũ); dùng thứ khác (cửa, công tắc, giấy) thì **làm bằng nắm tay đang cầm** (D-162).
+- **Nhét miệng xác** (`gag_spot.tscn` có `HandTarget` kiểu đầu ngón tay ở miệng, đi theo đầu xác): tay cầm đồ vươn tới ấn vào, đồ biến vào miệng (`consume`), tay về. Theo độ cao miệng: Việt (tầng dưới) đứng; Phúc, Đạt (tầng trên, miệng 1,94 m) **kiễng chân**, chỉ từ một vùng nhỏ sát mép giường (đo: 53–66 ô lưới 5 cm). **Xác nằm thì miệng ngoài tầm với, không hiện lời nhắc** (chủ dự án chọn).
+- **Hích vai cửa kẹt** (`_start_shove`, `_tick_shove`): lùi đà, cả người lao tới (tối đa 0,4 m, không vào cánh: tâm người cách mặt cửa ≥ 0,33 m), vai phải dẫn (ngực xoay 42°), chạm ở 0,34 s thì tính 1 lần, rồi bật về chỗ cũ; 0,8 s mỗi cú. Bấm dồn trong lúc hích không tính.
+- **Lau màn:** tay áp lòng bàn tay, xoa vòng tròn (5 cm, 1,6 vòng/s) **suốt lúc giữ E**; lau xong hoặc nhả E thì tay về. Nhả sớm: không tính (như cũ).
+- **Nút Có/Không:** bấm bằng tay như công tắc. Bấm "Có" xong vẫn còn thời gian bước vào buồng tắm trước khi nước chạy (test kiểm dư > 0,3 s).
+- **Sửa chỗ đặt để có thân vẫn chơi được** (trước đây bấm xuyên được, giờ tay phải tới):
+  - **tủ Việt mở sẵn** ở chương 2 (chủ dự án chọn): áo trong tủ;
+  - **khăn cầm ở phần rủ** (0,4 m dưới dây phơi, ~1,77 m): dây 2,15 m ngoài tầm với cả khi kiễng chân; hình không đổi;
+  - **hộp nhìn của cửa kẹt phủ đúng cánh cửa:** trước nằm ở bản lề, nửa trong tường, dưới tay nắm (lỗi có từ trước, có thân mới lộ).
+
+**Test:**
+- Mới `test_t243_chapter2.gd` 7 test: thân ở chương 2; cửa nhà tắm vẫn kẹt; giẻ/khăn/áo trong nắm tay (đo trên xương đã vẽ), đi vẫn giữ, đổi đồ, thả; nhét miệng Việt và Phúc bằng tay, xác nằm không với tới; hích 3 cú (tính đúng lúc chạm, bấm dồn không tính, không vào cánh, về chỗ cũ); bấm nút kịp vào buồng tắm; lau giữ E (nhả sớm không tính, giữ đủ thì lau được 1 lần).
+- Sửa: `test_protagonist_chapter1` (chương 1 và 2 có thân), `test_ch2_4_hand_targets` (chương 2 có thân: cửa 407 và cửa ban công có chỗ cầm; `gag_spot` kiểu đầu ngón tay; khăn 1,74–1,79 m).
+
+**Ảnh:** `art_source/graphics_upgrade/protagonist/previews/t243/` (mỗi thao tác 4–7 khung; `1_lay_gie` có thêm khung đi cầm đồ và nhìn bằng mắt Trung).
+
+**Chủ dự án xem khi chơi:**
+- Xác chương 2 vẫn là hình khối PS1 (chưa có xác Tripo, T-221): tay ấn vào miệng khối vuông.
+- Phúc/Đạt chỉ nhét được khi đứng sát mép giường, ngay dưới đầu xác (vùng nhỏ). Nếu khó tìm chỗ, có thể nới.
+- Hích vai: lao người tới ~0,4 m rồi về; xem có đủ "mạnh" chưa.
+- Đồ cầm tay: vải gấp được xoay cho rủ xuống, có thể trông hơi cứng (mô hình là tấm vải gấp, không phải vải mềm).
