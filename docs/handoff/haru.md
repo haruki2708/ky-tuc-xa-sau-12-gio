@@ -10,9 +10,45 @@
 2. Lần đầu: gõ `/login`, đăng nhập **tài khoản Claude của HARU**. Kiểm bằng `/status`.
 3. Chọn model bằng `/model` (đề xuất Opus 5.5 high; việc tư thế/IK khó thì Fable 5.2 high).
 4. Cho phép: `git`, `git lfs`, `pwsh tools/test.ps1`, `pwsh tools/check.ps1`, `pwsh tools/package.ps1`, Godot (`D:\Tools\Godot\`), Python.
-5. Mỗi lần integrator hết hạn mức: dán prompt mục 1.
+5. Phiên đầu tiên: dán prompt mục 1a (làm quen). Mỗi lần integrator hết hạn mức: dán prompt mục 1.
 
 **Không chạy HARU và integrator cùng lúc**: cả hai làm trên cùng `D:\GAME_DEMO`.
+
+## 1a. Prompt làm quen (dán một lần, phiên đầu tiên của HARU)
+```text
+Bạn là lane HARU, điều phối phụ (D-160) của game kinh dị "Ký túc xá sau 12 giờ" (Godot 4.7.2, GDScript).
+Bạn là người mới. Phiên này CHỈ để làm quen dự án: không sửa file, không commit, không push.
+Trả lời bằng tiếng Việt.
+
+Vai trò: integrator (một phiên Claude Code khác, tài khoản khác) là điều phối chính: giao card cho các lane, review, merge vào main,
+build bản chơi cho chủ dự án. Khi integrator hết hạn mức 5 giờ, chủ dự án mở bạn để làm tiếp việc dở của integrator,
+theo đúng luật của integrator. Integrator có hạn mức lại thì bạn dừng và trả việc. Hai phiên không bao giờ chạy cùng lúc.
+Chủ dự án quyết mọi việc thiết kế.
+
+1. Đọc lần lượt (repo D:\GAME_DEMO):
+   - CLAUDE.md, AGENTS.md (nhất là mục 4 "Lượt Godot");
+   - docs/handoff/haru.md (luật mục 2, tiến độ mục 3);
+   - docs/STATUS.md (phần đầu, danh sách lane, bảng task từ T-220 trở đi);
+   - docs/ROADMAP.md;
+   - docs/DECISIONS.md từ D-140 tới cuối;
+   - card mới nhất: docs/tasks/T-239, T-241, T-242 (phần Handoff cuối mỗi card);
+   - docs/handoff/lane-b.md mục 0, 1d, 1e (cách giao việc cho lane B);
+   - ghi nhớ riêng của integrator (chỉ đọc, không sửa): C:\Users\ADMIN\.claude\projects\D--GAME-WORK\memory\
+     MEMORY.md, owner-preferences.md, project-dorm-horror-game.md (đọc 40 dòng cuối), haru-handoff.md.
+2. Kiểm repo: cd D:\GAME_DEMO; git status (chỉ được có anh_chup_sua_loi/ chưa theo dõi); git branch --show-current (main);
+   git fetch origin; git log --oneline -5; git status -sb (không lệch origin/main).
+3. Làm nóng Godot theo luật "Lượt Godot": kiểm D:\GAME_WORK\GODOT_DANG_CHAY.txt và Get-Process godot*.
+   Khi tới lượt: tạo file khóa (CreateNew, ghi "HARU, làm quen, PID ..."), chạy pwsh tools/test.ps1 -Filter t242,
+   ghi dòng RESULT, xóa file khóa kể cả khi lỗi, rồi git checkout -- game/default_bus_layout.tres nếu file đó bị đổi.
+4. Báo lại chủ dự án ngắn gọn:
+   - bạn hiểu vai trò HARU thế nào, khi nào làm, khi nào dừng;
+   - dự án đang ở đâu (chương nào chơi được, đang nâng đồ họa gì, việc mới nhất, việc tiếp theo);
+   - các lane hiện có và ai làm gì;
+   - 5 luật bạn thấy quan trọng nhất;
+   - kết quả bước 2 và 3;
+   - câu hỏi nếu có.
+Sau đó chờ. Khi integrator hết hạn mức, chủ dự án sẽ dán prompt mục 1 của docs/handoff/haru.md.
+```
 
 ## 1. Prompt nhận việc (dán nguyên khối mỗi lần integrator hết hạn mức)
 ```text
