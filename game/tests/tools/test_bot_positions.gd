@@ -29,7 +29,13 @@ func test_profile_positions_clear_world_and_wipe_ray_hits_live_node() -> void:
 			helper.world = scene
 			helper.profile = profile
 			tree.root.add_child(helper)
-			var wipe_step: Dictionary = profile.actions.wipe.steps[0]
+			# T-243: the wipe steps into the stall by the screen first (a hand reaches it from there),
+			# then aims at it and holds E.
+			var wipe_step: Dictionary = {}
+			for step: Dictionary in profile.actions.wipe.steps:
+				if step.has("aim_path"):
+					wipe_step = step
+			assert_true(wipe_step.has("aim_path"), "the wipe aims at the screen")
 			assert_false(wipe_step.has("aim"), "wipe must not store a world coordinate")
 			var wipe := scene.get_node(wipe_step.aim_path) as Node3D
 			var camera := player.get_node("Head/Camera3D") as Camera3D
