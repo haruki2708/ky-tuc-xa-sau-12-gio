@@ -778,6 +778,35 @@ func _shut_door_between(manager: Node3D, path: String) -> Node3D:
 	return door if signf(player_side) != signf(manager_side) else null
 
 
+## The first of `doors` the manager is within reach of (the bathroom door measured at its hinge, as
+## always; the balcony door at its doorway's middle), else null.
+func _door_near(manager: Node3D, doors: Array[Node3D]) -> Node3D:
+	for door: Node3D in doors:
+		if not is_instance_valid(door):
+			continue
+		var bathroom: bool = door.name == &"BathroomDoor"
+		var at: Vector3 = door.global_position if bathroom else _door_middle(door)
+		var distance: float = manager.global_position.distance_to(at) if bathroom else _flat_distance(manager.global_position, at)
+		if distance < BATHROOM_DOOR_REACH:
+			return door
+	return null
+
+
+## He opens a shut door he hunts Trung through: the bathroom's as the room does it, the balcony's
+## swung open where a hand can swing it (Trung's body is in the chapter), else at once.
+func _open_hunted_door(door: Node3D) -> void:
+	if not is_instance_valid(door):
+		return
+	if door.name == &"BathroomDoor":
+		_room().set_bathroom_door_open(true)
+		return
+	var by_hand := HingedDoor.of(door)
+	if by_hand != null:
+		by_hand.swing(true, BALCONY_DOOR_SECONDS)
+	else:
+		door.call("set_open", true)
+
+
 ## The middle of a hinged door's doorway on the floor (its leaf's collision box, shut).
 func _door_middle(door: Node3D) -> Vector3:
 	var leaf := door.get_node_or_null("Pivot/Leaf") as Node3D
@@ -794,24 +823,24 @@ func _manager_hunts(manager: Node3D) -> void:
 		var arrived := [false]
 		manager.arrived.connect(func() -> void: arrived[0] = true, CONNECT_ONE_SHOT)
 		manager.call("hunt", _player)
-		# Hiding behind the shut bathroom door: he walks up to it and opens it
-		# (lane B's room mesh runs through the doorway, the leaf blocks him).
-		var bathroom_door := _bathroom_door_between(manager)
-		if bathroom_door != null:
-			await _wait_until(func() -> bool: return arrived[0] or _dying or manager.global_position.distance_to(bathroom_door.global_position) < BATHROOM_DOOR_REACH, HUNT_SECONDS, false)
-			if not arrived[0] and not _dying:
-				_room().set_bathroom_door_open(true)
-		# T-242 (D-130): out on the balcony behind its shut door: he opens that one the same way.
-		var balcony_door := _balcony_door_between(manager)
-		if balcony_door != null:
-			await _wait_until(func() -> bool: return arrived[0] or _dying or _flat_distance(manager.global_position, _door_middle(balcony_door)) < BATHROOM_DOOR_REACH, HUNT_SECONDS, false)
-			if not arrived[0] and not _dying and is_instance_valid(balcony_door):
-				# Swung open where a hand can swing it (Trung's body is in the chapter), else at once.
-				var by_hand := HingedDoor.of(balcony_door)
-				if by_hand != null:
-					by_hand.swing(true, BALCONY_DOOR_SECONDS)
-				else:
-					balcony_door.call("set_open", true)
+		# Hiding behind a shut door (the bathroom's, T-242 the balcony's): he walks up to it and opens it
+		# (lane B's room mesh runs through the doorway, the leaf blocks him). Each door's plane runs
+		# on past its doorway, so out on the balcony the bathroom door counts too: whichever he comes
+		# near first is opened; on a timeout, the ones left.
+		var shut: Array[Node3D] = []
+		for door: Node3D in [_bathroom_door_between(manager), _balcony_door_between(manager)]:
+			if door != null:
+				shut.append(door)
+		while not shut.is_empty():
+			await _wait_until(func() -> bool: return arrived[0] or _dying or _door_near(manager, shut) != null, HUNT_SECONDS, false)
+			if arrived[0] or _dying:
+				break
+			var near := _door_near(manager, shut)
+			for door: Node3D in ([near] if near != null else shut.duplicate()):
+				_open_hunted_door(door)
+				shut.erase(door)
+			if near == null:
+				break
 		await _wait_until(func() -> bool: return arrived[0] or _dying, HUNT_SECONDS, false)
 	elif manager != null and manager.has_method("walk_to") and _player != null:
 		# Without `hunt`: follow the navigation mesh to Trung (lane B's room mesh,
