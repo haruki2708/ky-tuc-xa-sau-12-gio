@@ -1,5 +1,5 @@
 # T-242 — Cửa nhà tắm và cửa ban công mở/đóng bằng tay; Trung tự bước tránh cánh cửa (D-154, D-159)
-- Lane: **integrator (Claude làm thay B, lane B hết hạn mức)** | Trạng thái: in-progress | Agent: Claude Code ở máy, Fable 5.2 high (chủ dự án đặt 11/11)
+- Lane: **integrator (Claude làm thay B, lane B hết hạn mức)** | Trạng thái: done (chờ full test, merge) | Agent: Claude Code ở máy, Fable 5.2 high (chủ dự án đặt 11/11)
 - Nhánh: `integrator/T-242-doors-by-hand` từ `main` (`8838947`).
 - Quyết định giao: **D-154** (làm sau T-239), **D-159** (11/11/2026, bốn lựa chọn của chủ dự án, mục 1).
 - Bối cảnh: [T-239](T-239-protagonist-hand-fixes.md) (quy tắc chọn tay nắm theo phía cửa, `DoorHandles.sides`), [T-241](T-241-protagonist-natural-reach.md) (đứng yên gập hông khi với), D-127/D-129/D-130 (cửa ban công).
@@ -34,4 +34,44 @@
 - Đóng cửa ban công từ trong phòng: chủ dự án chọn không làm.
 
 ## 5. Handoff
-(integrator điền khi xong)
+Nhánh `integrator/T-242-doors-by-hand`. Phần lớn code viết bằng Fable 5.2 high, phần cuối (sửa quản lý, kiểm, merge) bằng Opus 5.5 high. Commit: `3de713e` (code + test), `32bf33d` (quản lý mở cửa gần nhất, ảnh).
+
+**Đã làm:**
+- **`HingedDoor`** (`game/scripts/interaction/hinged_door.gd`): `Interactable` cưỡi trên cánh của `hinged.gd`; lời nhắc Mở cửa/Đóng cửa theo trạng thái; cánh quay theo tay, không nhanh hơn 200°/s (cửa ban công 172° quay tiếp sau khi tay buông); `set_open` của chương hay quản lý vẫn thắng nếu gọi giữa lúc cánh đang quay. `HingedDoor.of(door)` tìm lại nó.
+- **`Protagonist.attach`** gắn `HingedDoor` cho cửa nhà tắm và cửa ban công (`HINGED_DOORS`). Chỉ chương 1 có thân nên chương 2–4 không đổi (test kiểm).
+- **`DoorHandles.sides`** đo cánh cửa thành một tấm (chiều dài, bề dày) cho **`DoorSwing`** (`game/scripts/interaction/door_swing.gd`): khoảng cách gần nhất từ một điểm tới cánh trong lúc cánh quay, tính đúng công thức, không lấy mẫu.
+- **Tự bước tránh** (`PlayerBody.clear_spot`, `player.gd` `_tick_clear_step`):
+  - bấm E khi thân nằm trong tầm quét thì tìm trên lưới 6 cm, bán kính 1,2 m, chỗ cánh không chạm (cách thân ≥ 4 cm), thân vừa, đi thẳng tới được, vẫn với tới chỗ cầm, kể cả khi người hơi lắc;
+  - ưu tiên chỗ đi ít và **chỗ cầm gần** (không phải rướn): ảnh đầu tiên cho thấy đóng cửa ban công phải gập người sâu, đã sửa;
+  - đi bộ thật (clip đi, tiếng bước chân) 1,8 m/s, mắt giữ nguyên hướng nhìn chỗ cầm; tới nơi mới làm động tác cửa;
+  - không thấy chỗ nào thì không làm gì (không chặn người chơi);
+  - tìm chậm nhất 7 ms (một lần mỗi lần bấm E).
+- **Cửa 407** có `swing_angle()`/`pivot()` nên dùng chung cách tránh (D-159 (2)).
+- **Quản lý chương 1** (`chapter1_director.gd`): Trung ở ban công sau cánh cửa đóng thì quản lý tới gần và quay cánh mở (0,5 s). Trước đây mặt phẳng của cửa nhà tắm kéo dài ra tới ban công nên cũng bị coi là "chắn giữa": quản lý giờ mở cửa nào anh ta tới gần trước, hết giờ thì mở những cửa còn lại (như cũ).
+
+**Đo trong chương 1 (lưới 10 cm quanh bản lề, mọi chỗ có lời nhắc):**
+
+| Cửa | Đang | Chỗ vướng cánh | Chỗ không vướng | Bước xa nhất |
+|---|---|---|---|---|
+| 407 | đóng | 43 | 31 | 1,15 m |
+| 407 | mở | 43 | 57 | 1,03 m |
+| Nhà tắm | đóng | 30 | 25 | 0,91 m |
+| Nhà tắm | mở | 36 | 21 | 0,97 m |
+| Ban công | đóng | 30 | 15 | 0,97 m |
+| Ban công | mở | 36 | 21 | 1,03 m |
+
+- Mọi chỗ vướng đều tìm được chỗ để bước.
+- Bấm E thật từ 18 chỗ vướng (3 mỗi cửa mỗi trạng thái): đều bước rồi mới làm động tác cửa, cửa đổi trạng thái; cánh đang quay cách thân (capsule) ≥ 2,6 cm và không cắt xương nào; sát nhất là tay trái lướt sát cánh (0 cm) một lần ở cửa 407 đang mở.
+- **Lệch so với lúc hỏi (D-159):** tôi nói "một bước ngắn, dưới 0,6 m". Đo thật: phần lớn dưới 0,6 m nhưng có chỗ phải đi tới 1,15 m (đứng sát bản lề, phải vòng ra ngoài tầm quét cả mét).
+
+**Test:**
+- Mới: `test_t242_doors.gd` 8 test (cửa có tay ở chương 1, không có ở chương khác; mỗi phía cầm đúng tay nắm hoặc mép; công thức tầm quét; mọi chỗ vướng có chỗ bước; bấm E bước rồi dùng cửa, cánh không chạm thân; không vướng thì dùng ngay; cửa không có tay và chương tự đặt).
+- `test_chapter1_d069.gd`: thêm `test_hiding_on_the_balcony_behind_its_shut_door_is_hunted` (22/22).
+- T-241 7/7, T-239 6/6 sau thay đổi.
+
+**Ảnh:** `art_source/graphics_upgrade/protagonist/previews/t242/` (mỗi ảnh 5 khung: trước khi bấm E, đang bước, tay chạm chỗ cầm, cánh đang quay, xong).
+
+**Chưa làm / chủ dự án xem khi chơi:**
+- Cửa chưa có tiếng (như trước). Muốn có thì giao lane E.
+- Chương 1 giờ vào được nhà tắm; người chơi có thể đóng cửa nhà tắm hay cửa ban công rồi trốn sau đó. Quản lý vẫn mở cửa vào bắt (D-069), nhưng anh/chị nên chơi thử xem nhịp có ổn không.
+- Đứng sát bản lề mà bấm E thì Trung có thể đi gần 1 m mới nắm cửa. Nếu thấy lâu, có thể chặn: xa quá thì hiện lời nhắc "lùi ra" thay vì tự đi.
