@@ -50,5 +50,5 @@ Trả lời và viết tài liệu bằng tiếng Việt; code, comment, commit 
 **Cập nhật:** 12/11/2026 00:10, integrator (Opus 5.5).
 
 - **Việc vừa xong:** [T-242](../tasks/T-242-doors-by-hand.md) đã merge vào main (full test 913/0, check 0) và đẩy lên GitHub.
-- **Đang làm:** build bản chơi (`pwsh tools/package.ps1`, log `D:\GAME_DEMO\build\integrator\package_t242.log`).
-- **Bước tiếp:** báo chủ dự án đường dẫn exe/zip và những gì cần thử (card T-242 mục 5 "Chưa làm / chủ dự án xem khi chơi"). Chưa có việc nào khác đang dở.
+- **Bản chơi:** `build/windows/KyTucXa.exe`, zip `build/dist/KyTucXa-0.0.1-780ed57-win64.zip` (package PASS, 12/11 00:02).
+- **Bước tiếp:** chờ chủ dự án chơi thử T-242. Chưa có việc nào khác đang dở.
