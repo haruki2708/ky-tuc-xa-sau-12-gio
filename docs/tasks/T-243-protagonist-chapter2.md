@@ -1,5 +1,5 @@
 # T-243 — Thân Trần Trung ở chương 2: cầm đồ, nhét miệng xác, hích cửa kẹt, nút vòi sen, lau màn hình
-- Lane: **integrator (Claude làm thay B, chủ dự án chọn 12/11)** | Trạng thái: in-progress | Agent: Claude Code ở máy, Opus 5.5 high
+- Lane: **integrator (Claude làm thay B, chủ dự án chọn 12/11)** | Trạng thái: merged 12/11/2026 (full test 921/0, check 0, bot ch2_good đạt), chờ chủ dự án chơi thử | Agent: Claude Code ở máy, Opus 5.5 high
 - Nhánh: `integrator/T-243-protagonist-chapter2` từ `main`.
 - Quyết định giao: **D-161** (thân Trung cho chương 2), **D-162** (12/11/2026, kiểu động tác, mục 1).
 - Bối cảnh cần đọc:
@@ -39,7 +39,9 @@
 - Cầm đồ khi đi lại: tay buông xuôi cầm đồ, hay ôm trước ngực.
 
 ## 5. Handoff
-Nhánh `integrator/T-243-protagonist-chapter2`, integrator (Opus 5.5 high) làm thay B. Commit: `cca5bb3` (bước 1: thân vào chương 2), `9f68d61` (bước 2: các thao tác), `e9fc76a` (gỡ cảnh thử khỏi git).
+Nhánh `integrator/T-243-protagonist-chapter2`, integrator (Opus 5.5 high) làm thay B. Commit: `cca5bb3` (bước 1: thân vào chương 2), `9f68d61` (bước 2: các thao tác), `b5de122` (lau tính từ lúc bấm), `fe2de20` (bot lau từ trong buồng tắm), `f29af30` (hai test cũ theo thay đổi).
+
+**Kiểm cuối:** full test 921/0 (12/11 05:31), check 0 lỗi. Lượt full đầu hỏng 30: 2 test cũ chưa theo thay đổi (chỗ nhét miệng có chỗ cầm; bước lau có thêm bước đi tới), 28 test giao diện hỏng dây chuyền vì test vị trí bot dừng giữa chừng để sót cảnh; sửa hai test thì cả bộ đạt.
 
 **Đã làm:**
 - **Thân ở chương 2:** `chapter2.tscn` `protagonist_body = true`. `Protagonist.attach(..., hinged_doors)`: chương 2 chỉ gắn `HingedDoor` cho cửa ban công; **cửa nhà tắm vẫn là cửa kẹt** (vòng 4, đúng 3 lần hích; test kiểm).

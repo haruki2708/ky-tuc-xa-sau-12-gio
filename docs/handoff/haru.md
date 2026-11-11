@@ -88,16 +88,8 @@ Trả lời và viết tài liệu bằng tiếng Việt; code, comment, commit 
 - **Nguồn đúng khi lệch nhau:** mục 3 file này mới nhất; rồi `docs/STATUS.md`; `docs/ROADMAP.md` chỉ cập nhật khi qua mốc.
 
 ## 3. Tiến độ integrator để lại (integrator cập nhật sau mỗi bước)
-**Cập nhật:** 12/11/2026 01:15, integrator (Opus 5.5).
+**Cập nhật:** 12/11/2026 05:40, integrator (Opus 5.5).
 
-- **Vừa xong (main, đã push):** tín hiệu `HingedDoor.swung`/`settled` (full test 914/0, check 0); D-161, D-162; card [T-243](../tasks/T-243-protagonist-chapter2.md), [T-244](../tasks/T-244-hinged-door-sounds.md); prompt lane E `lane-e.md` mục 1c (chủ dự án dán).
-- **Đang làm:** [T-243](../tasks/T-243-protagonist-chapter2.md) thân Trần Trung ở chương 2, integrator làm thay B, nhánh `integrator/T-243-protagonist-chapter2`.
-- **Đã xong trên nhánh:** bước 1 (commit "T-243 step 1"): thân ở chương 2, cửa nhà tắm vẫn kẹt; test chương 2 đạt.
-- **Đã xong trên nhánh (bước 2, commit "T-243 step 2"):** cầm đồ tay phải, nhét miệng bằng tay (chỉ khi xác ngồi; tầng trên kiễng chân), hích vai cửa kẹt, lau màn giữ E; tủ Việt mở sẵn, khăn cầm ở phần rủ, hộp cửa kẹt phủ cánh. Test `test_t243_chapter2` 7/7. Ảnh thử `build/integrator/t243/sheets/` (cảnh chụp `game/_probe_tmp/t243_capture.tscn`, xóa trước commit cuối).
-- **12/11 02:35:** bot ch2_good có thân ĐẠT (586,6 s); FPS chương 2 ≥ 60 mọi góc (báo cáo `tools/reports/T-243-ch2-body-fps.md`); `game/_probe_tmp` đã xóa. Full test + check đang chạy (`build/integrator/t243full.log`).
-- **Bước tiếp:** đạt thì cập nhật Handoff card (bot/FPS, lau màn tính từ lúc bấm), STATUS, merge `--no-ff` vào main, push, build bản chơi, báo chủ dự án thử chương 2.
-- **Kế hoạch T-243 (thứ tự):**
-  1. Bật thân ở chương 2 (`chapter2.tscn` `protagonist_body = true`), cửa nhà tắm chương 2 **không** gắn `HingedDoor` (vẫn là cửa kẹt 3 lần hích). `Protagonist.attach` chạy trong `chapter1_main._ready` trước khi director đặt `StuckDoor`, nên chọn theo loại director/scene. Test: chương 2 không có HingedDoor ở cửa nhà tắm, vẫn đúng 3 lần hích. Chạy mọi filter chương 2 (`ch2`, `chapter_tools`) để biết test nào vỡ.
-  2. Nút Có/Không (có lẽ chạy sẵn), cầm đồ tay phải, nhét miệng (theo độ cao: tầng trên nhón, tầng dưới đứng), hích vai cửa kẹt, lau màn (giữ E: cần kiểu thao tác giữ, không phải 1 s).
-  3. Kiểm thời gian: bấm "Có" xong còn 2 s vào buồng tắm (`SHOWER_GRACE_SECONDS`); nhét miệng trong lượt xác nói.
-  4. Trước khi xong: xin chủ dự án chạy bot + đo FPS chương 2.
+- **Vừa xong:** [T-243](../tasks/T-243-protagonist-chapter2.md) merge vào main và push (full test 921/0, check 0, bot ch2_good đạt, FPS chương 2 ≥ 60).
+- **Đang làm:** build bản chơi (`pwsh tools/package.ps1`, log `D:\GAME_DEMO\build\integrator\package_t243.log`).
+- **Bước tiếp:** báo chủ dự án đường dẫn exe và việc cần thử (card T-243 mục 5 "Chủ dự án xem khi chơi"). Đang chờ: lane E làm T-244 (tiếng cửa) khi chủ dự án dán prompt `lane-e.md` 1c. Việc lớn tiếp theo integrator đề xuất: xác ba bạn cùng phòng bằng Tripo (T-221, chủ dự án tạo m1 trước). Chưa có việc nào đang dở.
