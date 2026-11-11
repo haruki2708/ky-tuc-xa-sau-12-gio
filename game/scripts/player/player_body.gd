@@ -408,6 +408,152 @@ func can_reach(target: Interactable) -> bool:
 	return reachable
 
 
+## T-242 (D-159): a door's leaf must not swing through the body. Round where the player stands,
+## this far out (metres) on a grid this fine, a spot is looked for that the leaf will miss.
+const CLEAR_REACH: float = 1.2
+const CLEAR_GRID: float = 0.06
+## The leaf passes at least this far from the body (metres).
+const SWING_MARGIN: float = 0.04
+## A spot must still reach the grip from this much nearer it (his idle sways).
+const CLEAR_SWAY: float = 0.03
+## Only spots this far from the grip (flat, metres) can reach it at all; and at most this many of
+## them are tried for their reach, the nearest first.
+const CLEAR_ARM: Vector2 = Vector2(0.2, 0.95)
+const CLEAR_TRIES: int = 30
+## A grip this near (flat, metres) is taken standing straight; further off costs a lean, weighed
+## against the walk at this many metres of walk a metre.
+const CLEAR_COMFORT: float = 0.45
+const CLEAR_LEAN_COST: float = 1.5
+## The grid's steps from where the player stands (made once).
+static var _clear_steps: Array[Vector3] = []
+
+
+## Where the player should stand to use `target`, a door (swing_angle(), pivot()) whose leaf would
+## swing through the body where it stands now: {"spot", "aim", "turn"}, the best spot the leaf
+## misses (a short walk, the grip within easy reach) that the body fits on, can walk straight to
+## and reaches the grip from. "aim" is the grip
+## and "turn" how far the view is turned off it now, for the player to keep looking at it the same
+## way as it walks. Empty when the body is clear as it stands, the thing is no such door, or there
+## is no such spot.
+func clear_spot(target: Interactable) -> Dictionary:
+	if not can_handle(target) or not target.has_method("swing_angle") or not target.has_method("pivot"):
+		return {}
+	var here: Vector3 = player.global_position
+	var leaf: Node3D = target.call("pivot")
+	var to: float = target.call("swing_angle")
+	var radius: float = _body_radius()
+	if not DoorSwing.hits(leaf, to, here, radius):
+		return {}
+	var marker: HandTarget = target.hand_target(_reach_from(), _reach_rank)
+	if marker == null:
+		return {}
+	var aim: Vector3 = marker.global_position
+	var view: float = player.global_rotation.y
+	var turn: float = wrapf(view - _yaw_to(here, aim), -PI, PI)
+	# The grid's spots the leaf misses, the best first: a short walk, and the grip near enough to be
+	# taken without leaning far (a metre of walk for CLEAR_LEAN_COST metres of reach past CLEAR_COMFORT).
+	if _clear_steps.is_empty():
+		var cells: int = int(CLEAR_REACH / CLEAR_GRID)
+		for column: int in range(-cells, cells + 1):
+			for row: int in range(-cells, cells + 1):
+				var step := Vector3(column, 0.0, row) * CLEAR_GRID
+				if step.length() <= CLEAR_REACH and (column != 0 or row != 0):
+					_clear_steps.append(step)
+	var scored: Array = []
+	for step: Vector3 in _clear_steps:
+		var spot: Vector3 = here + step
+		var arm: float = Vector2(aim.x - spot.x, aim.z - spot.z).length()
+		if arm < CLEAR_ARM.x or arm > CLEAR_ARM.y or DoorSwing.hits(leaf, to, spot, radius, SWING_MARGIN):
+			continue
+		scored.append([step.length() + maxf(0.0, arm - CLEAR_COMFORT) * CLEAR_LEAN_COST, spot])
+	scored.sort_custom(func(a: Array, b: Array) -> bool: return a[0] < b[0])
+	var kept: Array = [_yaw, _stand_yaw, _turning, _twist.axis, _twist.degrees]
+	var found: Dictionary = {}
+	var tries: int = 0
+	for entry: Array in scored:
+		var spot: Vector3 = entry[1]
+		var toward := Vector3(aim.x - spot.x, 0.0, aim.z - spot.z)
+		if not _fits(spot) or not _free_way(here, spot):
+			continue
+		tries += 1
+		if tries > CLEAR_TRIES:
+			break
+		# From there, and from a little nearer the grip (his idle sways): within reach.
+		_stand_at(spot + toward.normalized() * CLEAR_SWAY, _yaw_to(spot, aim) + turn)
+		if not can_reach(target):
+			continue
+		_stand_at(spot, _yaw_to(spot, aim) + turn)
+		if can_reach(target):
+			found = {"spot": spot, "aim": aim, "turn": turn}
+			break
+	player.global_position = here
+	player.global_rotation.y = view
+	_yaw = kept[0]
+	_stand_yaw = kept[1]
+	_turning = kept[2]
+	_twist.axis = kept[3]
+	_twist.degrees = kept[4]
+	_place_model(_yaw)
+	return found
+
+
+## The radius of the player's body (its capsule), metres.
+func _body_radius() -> float:
+	var shape := player.get("body_shape") as CollisionShape3D
+	return (shape.shape as CapsuleShape3D).radius if shape != null and shape.shape is CapsuleShape3D else 0.3
+
+
+## The player's body fits standing on `spot` (world).
+func _fits(spot: Vector3) -> bool:
+	var shape := player.get("body_shape") as CollisionShape3D
+	if shape == null:
+		return true
+	var query := PhysicsShapeQueryParameters3D.new()
+	query.shape = shape.shape
+	query.transform = Transform3D(Basis.IDENTITY, spot + shape.position + Vector3.UP * FIT_LIFT)
+	query.collision_mask = player.collision_mask
+	query.exclude = [player.get_rid()]
+	return get_world_3d().direct_space_state.intersect_shape(query, 1).is_empty()
+
+
+## The player's body gets from `from` straight to `to` (world) without meeting anything.
+func _free_way(from: Vector3, to: Vector3) -> bool:
+	var shape := player.get("body_shape") as CollisionShape3D
+	if shape == null:
+		return true
+	var query := PhysicsShapeQueryParameters3D.new()
+	query.shape = shape.shape
+	if shape.shape is CapsuleShape3D:
+		# A little slimmer: a body standing against a wall can still leave along it.
+		var slim := (shape.shape as CapsuleShape3D).duplicate() as CapsuleShape3D
+		slim.radius -= WAY_SLIM
+		query.shape = slim
+	query.transform = Transform3D(Basis.IDENTITY, from + shape.position + Vector3.UP * FIT_LIFT)
+	query.motion = to - from
+	query.collision_mask = player.collision_mask
+	query.exclude = [player.get_rid()]
+	return get_world_3d().direct_space_state.cast_motion(query)[0] >= 0.999
+
+
+## The body's shape is tried this far over the floor it stands on (metres).
+const FIT_LIFT: float = 0.04
+## A way is tried with the body this much slimmer (metres).
+const WAY_SLIM: float = 0.03
+
+
+## Stand the player on `spot`, the view turned to `yaw`, the body square to it (to judge a reach
+## from there; clear_spot puts everything back).
+func _stand_at(spot: Vector3, yaw: float) -> void:
+	player.global_position = spot
+	player.global_rotation.y = yaw
+	_face_view()
+
+
+## The view yaw that looks from `from` toward `to` (world, flat).
+static func _yaw_to(from: Vector3, to: Vector3) -> float:
+	return atan2(from.x - to.x, from.z - to.z)
+
+
 func _reach_from() -> Vector3:
 	return _bone_world("RightUpperArm")
 

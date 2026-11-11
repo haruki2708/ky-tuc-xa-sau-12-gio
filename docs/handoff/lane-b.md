@@ -5,7 +5,7 @@
 ## 0. Cài đặt cho chủ dự án (làm một lần)
 1. **Đóng mọi cửa sổ Codex đang mở ở `D:\GAME_WORK\lane-b2`.** Thư mục này từ nay của Claude lane B.
 2. Mở cửa sổ Claude lane B bằng file `D:\GAME_WORK\mo_claude_lane_b.cmd` (nháy đúp). File này:
-   - đặt `CLAUDE_CONFIG_DIR=C:\Users\ADMIN\.claude-lane-b`, để tài khoản Claude thứ hai có chỗ đăng nhập riêng, **không đè đăng nhập của integrator**;
+   - đặt `CLAUDE_CONFIG_DIR=D:\ClaudeConfig\lane-b (11/11/2026 chuyển từ C:\Users\ADMIN\.claude-lane-b, chép nguyên thư mục nên giữ đăng nhập và các cuộc trò chuyện)`, để tài khoản Claude thứ hai có chỗ đăng nhập riêng, **không đè đăng nhập của integrator**;
    - mở Claude Code trong `D:\GAME_WORK\lane-b2`.
    Không mở Claude lane B bằng lệnh `claude` thường: lệnh đó dùng đăng nhập của integrator.
 3. Lần đầu: gõ `/login`, đăng nhập **tài khoản Claude mới**. Kiểm lại bằng `/status` (phải hiện tài khoản mới).

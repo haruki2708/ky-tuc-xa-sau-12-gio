@@ -85,6 +85,7 @@ static func sides(pivot: Node3D, levers: Array[HandTarget]) -> Array[HandTarget]
 		var to_local: Transform3D = pivot.global_transform.affine_inverse() * mesh.global_transform
 		for corner: int in 8:
 			reach = maxf(reach, (to_local * box.get_endpoint(corner)).dot(along))
+	_measure_leaf(pivot, levers, along, reach)
 	# One more grip at the free edge itself, half way through the leaf at the levers' height: the
 	# hand hooks round it as it reaches (HOOK, PlayerBody._grip_basis).
 	var edge := HandTarget.new()
@@ -97,6 +98,37 @@ static func sides(pivot: Node3D, levers: Array[HandTarget]) -> Array[HandTarget]
 	edge.set_meta(&"door_levers", levers)
 	edges.append(edge)
 	return edges
+
+
+## T-242: the leaf as a slab, for DoorSwing (metas on the pivot, in its space): which way it runs
+## from the hinge (`leaf_along`), how far (`leaf_length`), half its thickness (`leaf_half`) and how
+## far its middle lies off the hinge's axis toward (along.z, 0, -along.x) (`leaf_offset`).
+static func _measure_leaf(pivot: Node3D, levers: Array[HandTarget], along: Vector3, reach: float) -> void:
+	var across := Vector3(along.z, 0.0, -along.x)
+	var low: float = INF
+	var high: float = -INF
+	for mesh: MeshInstance3D in pivot.find_children("*", "MeshInstance3D", true, false):
+		if mesh.mesh == null or not mesh.is_visible_in_tree() or _under_lever(mesh, levers):
+			continue
+		var box: AABB = mesh.get_aabb()
+		var to_local: Transform3D = pivot.global_transform.affine_inverse() * mesh.global_transform
+		var run := Vector2(INF, -INF)
+		var thick := Vector2(INF, -INF)
+		for corner: int in 8:
+			var point: Vector3 = to_local * box.get_endpoint(corner)
+			run = Vector2(minf(run.x, point.dot(along)), maxf(run.y, point.dot(along)))
+			thick = Vector2(minf(thick.x, point.dot(across)), maxf(thick.y, point.dot(across)))
+		# The leaf itself, not what hangs on it (a paper, a latch).
+		if run.y - run.x >= reach * 0.5:
+			low = minf(low, thick.x)
+			high = maxf(high, thick.y)
+	if low > high:
+		low = -0.02
+		high = 0.02
+	pivot.set_meta(&"leaf_along", along)
+	pivot.set_meta(&"leaf_length", reach)
+	pivot.set_meta(&"leaf_half", (high - low) * 0.5)
+	pivot.set_meta(&"leaf_offset", (high + low) * 0.5)
 
 
 ## How far in from the free edge the hook takes it.

@@ -70,6 +70,17 @@ var death_animation: PlayerDeath
 var body: PlayerBody
 var _bash_elapsed: float = 0.22
 var _text_entry_active: bool = false
+## T-242 (D-159): the walk of the body's own to where a door's leaf will miss it
+## (PlayerBody.clear_spot), before the hand takes the door.
+const CLEAR_STEP_SPEED: float = 1.8
+const CLEAR_STEP_NEAR: float = 0.02
+## There, the body may need a moment to stand still before the grip is within its reach.
+const CLEAR_STEP_SETTLE: float = 0.4
+var _clear_target: Interactable
+var _clear_spot: Vector3 = Vector3.ZERO
+var _clear_aim: Vector3 = Vector3.ZERO
+var _clear_turn: float = 0.0
+var _clear_left: float = 0.0
 
 
 func _ready() -> void:
@@ -185,9 +196,12 @@ func _unhandled_input(event: InputEvent) -> void:
 func _physics_process(delta: float) -> void:
 	if death_animation != null and death_animation.active:
 		velocity = Vector3.ZERO
+		_clear_target = null
 		return
 	_update_door_bash(delta)
 	_breath_cooldown = maxf(0.0, _breath_cooldown - delta)
+	if is_hidden() or controls_locked() or _text_entry_active:
+		_clear_target = null
 	if is_hidden():
 		_update_stamina(delta, false, false)
 		_update_breath(delta)
@@ -213,8 +227,12 @@ func _physics_process(delta: float) -> void:
 		return
 	if movement_locked():
 		velocity = Vector3.ZERO
+		_clear_target = null
 		_update_stamina(delta, false, false)
 		_update_focus()
+		return
+	if _clear_target != null:
+		_tick_clear_step(delta)
 		return
 	_update_crouch()
 	var input_vector: Vector2 = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
@@ -246,9 +264,58 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("interact") and Input.is_action_just_pressed("interact") and is_instance_valid(_target):
 		# With a body, a thing that has a HandTarget is used by hand over one second (D-121).
 		if is_instance_valid(body) and body.can_handle(_target):
-			body.perform(_target)
+			# T-242: a door whose leaf would swing through the body: a step clear of it first.
+			var clear: Dictionary = body.clear_spot(_target)
+			if clear.is_empty():
+				body.perform(_target)
+			else:
+				_clear_target = _target
+				_clear_spot = clear["spot"]
+				_clear_aim = clear["aim"]
+				_clear_turn = clear["turn"]
+				_clear_left = global_position.distance_to(_clear_spot) / CLEAR_STEP_SPEED + 0.4
 		else:
 			_target.interact(self)
+
+
+## T-242 (D-159): walks to _clear_spot, the view kept on the door's grip as it was, then the hand
+## takes the door. Given up (nothing is done) if the way is not as clear_spot saw it.
+func _tick_clear_step(delta: float) -> void:
+	var target: Interactable = _clear_target
+	if not is_instance_valid(target) or not target.enabled or not is_instance_valid(body):
+		_clear_target = null
+		velocity = Vector3.ZERO
+		return
+	var to: Vector3 = _clear_spot - global_position
+	to.y = 0.0
+	_clear_left -= delta
+	if to.length() <= CLEAR_STEP_NEAR or _clear_left <= 0.0:
+		# There (or as near as it gets): the hand takes the door once the body stands still enough.
+		velocity = Vector3.ZERO
+		_clear_left = minf(_clear_left, 0.0)
+		if body.can_handle(target) and body.can_reach(target):
+			_clear_target = null
+			body.perform(target)
+		elif _clear_left < -CLEAR_STEP_SETTLE:
+			_clear_target = null
+			_update_focus()
+		return
+	# Up to speed over a tenth of a second, slowing into the spot.
+	var wanted: Vector3 = to.normalized() * minf(CLEAR_STEP_SPEED, maxf(to.length() * 10.0, 0.3))
+	var horizontal: Vector3 = Vector3(velocity.x, 0.0, velocity.z).move_toward(wanted, acceleration * delta)
+	horizontal = horizontal.limit_length(to.length() / delta)
+	velocity.x = horizontal.x
+	velocity.z = horizontal.z
+	if not is_on_floor():
+		velocity += get_gravity() * delta
+	else:
+		velocity.y = 0.0
+	var was_grounded: bool = is_on_floor()
+	var previous_position: Vector3 = global_position
+	move_and_slide()
+	global_rotation.y = atan2(global_position.x - _clear_aim.x, global_position.z - _clear_aim.z) + _clear_turn
+	_update_stamina(delta, false, true)
+	_update_steps_and_bob(previous_position, was_grounded, delta)
 
 
 ## T-220: attach a full body; it follows this player and does hand actions for it.

@@ -39,6 +39,16 @@ func set_open(value: bool, seconds: float = 0.0) -> void:
 		_set_angle(target)
 
 
+## T-242: where the leaf turns to when it is used next, and the pivot it turns on (DoorSwing: a
+## body in its way steps clear first).
+func swing_angle() -> float:
+	return 0.0 if is_open else -PI / 2.0
+
+
+func pivot() -> Node3D:
+	return $Pivot as Node3D
+
+
 func _set_angle(angle: float) -> void:
 	$Pivot.rotation.y = angle
 	var floor_root := get_parent()
