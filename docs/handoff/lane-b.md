@@ -71,7 +71,7 @@ Cập nhật Checklist và Handoff trong card. Không sửa STATUS hay DECISIONS
 Cuối phiên báo ngắn bằng tiếng Việt: xong gì, nhánh, commit, ảnh ở đâu, có bị chặn không.
 ```
 
-## 1d. Giao T-240 (D-155): khảo sát mọi động tác Trần Trung, CHỈ dán sau khi integrator đã merge T-241 (D-156)
+## 1d. Giao T-240 (D-155): khảo sát mọi động tác Trần Trung (ĐÃ BỎ, D-158 ngày 11/11; không dán)
 Chủ dự án: chờ integrator báo T-241 đã merge vào main, rồi dán vào cửa sổ lane B (cùng phiên hoặc phiên mới):
 ```text
 Việc mới cho lane B: T-240 — khảo sát mọi động tác của Trần Trung ở chương 1, CHỈ khảo sát và đề xuất, không sửa game. Đọc docs/tasks/T-240-protagonist-motion-survey.md.

@@ -1,3 +1,5 @@
+> **ĐÃ BỎ (D-158, 11/11/2026):** chủ dự án chơi thử bản `53c706c` thấy chuyển động chương 1 đã mượt; card giữ làm hồ sơ, không giao.
+
 # T-240 — Khảo sát mọi động tác của Trần Trung ở chương 1 (chỉ khảo sát, chưa sửa)
 - Lane: B | Trạng thái: todo, **bắt đầu sau khi T-241 đã merge vào main** (D-156; T-239 đã merge 10/11) | Agent: tài khoản Claude lane B (D-141), Opus 5.5 (effort do chủ dự án đặt)
 - Nhánh: `lane-b/T-240-protagonist-motion-survey` từ `origin/main` **sau khi** integrator merge [T-241](T-241-protagonist-natural-reach.md) (lấy đồ tự nhiên, D-156).
