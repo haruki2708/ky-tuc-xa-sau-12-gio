@@ -12,9 +12,9 @@
 
 ## Việc tiếp theo (cho phiên integrator kế tiếp)
 
-> Viết lại 16/10/2026 sau D-118. Danh sách cũ (G1, Astra, D-082) đã xong hoặc nằm trong DECISIONS; xem lịch sử git của file này nếu cần.
+> Viết lại 16/10/2026 sau D-118; mục 1 và dòng đầu mục 3 cập nhật 12/11/2026. Danh sách cũ (G1, Astra, D-082) đã xong hoặc nằm trong DECISIONS; xem lịch sử git của file này nếu cần.
 
-1. **Bản chơi:** `build/windows/KyTucXa.exe` **09/11 02:00** (sau T-237: hành lang tầng 4 mới ở cả bốn chương; FPS [báo cáo](../tools/reports/T-237-chapter-fps.md)). Phiếu chơi thử [`G3_PHONG407_QUICKTEST.md`](playtest/G3_PHONG407_QUICKTEST.md).
+1. **Bản chơi:** `build/windows/KyTucXa.exe` **12/11 00:01** (main `780ed57`, sau T-242: cửa nhà tắm và cửa ban công mở bằng tay ở chương 1; trước đó T-239 tay, T-241 lấy đồ tự nhiên đã được chủ dự án duyệt 11/11). Zip `build/dist/KyTucXa-0.0.1-780ed57-win64.zip`. Phiếu chơi thử [`G3_PHONG407_QUICKTEST.md`](playtest/G3_PHONG407_QUICKTEST.md); việc cần thử của T-242 ở card mục 5.
 2. **G4 quản lý ([T-219](tasks/T-219-manager-character-pilot.md), D-118):** chủ dự án tự làm, integrator hỗ trợ, không giao lane.
    - **D-119 (19/10):** đã có thân, 7 động tác, dao, chìa khóa, thẻ trong cảnh xem thử `graphics_pilot/manager_preview.tscn`, quy trình dựng lại ở `art_source/graphics_upgrade/manager/README.md`.
    - **D-120 (19/10):** chủ dự án duyệt. Mắt tô trắng đục, `ask` = tư thế chống nạnh, chuyển động tác mượt, tay trái với mở cửa. **Chương 1 và gương chương 2 đã dùng quản lý mới**; chờ chủ dự án chơi thử. Bảo vệ khuôn viên vẫn thân cũ.
@@ -27,7 +27,7 @@
    - Đọc mục "D-118" cuối card (bài học từ lượt lane C).
    - Nhánh `lane-c/T-219-manager-pilot` không ghép, chỉ để tra cứu.
    - Chủ dự án muốn tự học làm khung xương và động tác trong Blender. Integrator đã đề nghị soạn trang hướng dẫn cho người mới, chưa được nhận lời.
-3. **Nhân vật chính có thân và tay thật** (chủ dự án hỏi 16/10). **D-137 (23/10): làm tiếp bằng Tripo, đủ động tác; [T-227](tasks/T-227-protagonist-tripo-body-motions.md), phiếu [`TRIPO_NHAN_VAT_CHINH.md`](handoff/TRIPO_NHAN_VAT_CHINH.md); chờ chủ dự án tạo thân và động tác. D-138: ảnh Gemini trước rồi Tripo dựng từ ảnh (phiếu mục 2b). 23/10 23:10: 3 ảnh Gemini xong (Gemini Argon 4, Google AI Pro), bằng chứng `trung_ref_gemini.txt` trong staging. 24/10: Tripo xong (thân, 9 động tác, điện thoại); lượt 1 trong cảnh thử xong, động tác thiếu bù bằng CC0; chờ chủ dự án duyệt video `t227_clips.mp4`, `t227_demo.mp4`.** Integrator đã đề xuất kế hoạch 5 bước:
+3. **Nhân vật chính có thân và tay thật** (chủ dự án hỏi 16/10). **12/11: thân Tripo của Trần Trung đã vào chương 1 (D-151); tay T-239, lấy đồ T-241 (chủ dự án duyệt 11/11, D-157), cửa bằng tay T-242 (merged 12/11, chờ chơi thử); T-240 bỏ (D-158). Chương 2–4 chưa có thân.** Lịch sử bên dưới. **D-137 (23/10): làm tiếp bằng Tripo, đủ động tác; [T-227](tasks/T-227-protagonist-tripo-body-motions.md), phiếu [`TRIPO_NHAN_VAT_CHINH.md`](handoff/TRIPO_NHAN_VAT_CHINH.md); chờ chủ dự án tạo thân và động tác. D-138: ảnh Gemini trước rồi Tripo dựng từ ảnh (phiếu mục 2b). 23/10 23:10: 3 ảnh Gemini xong (Gemini Argon 4, Google AI Pro), bằng chứng `trung_ref_gemini.txt` trong staging. 24/10: Tripo xong (thân, 9 động tác, điện thoại); lượt 1 trong cảnh thử xong, động tác thiếu bù bằng CC0; chờ chủ dự án duyệt video `t227_clips.mp4`, `t227_demo.mp4`.** Integrator đã đề xuất kế hoạch 5 bước:
    1. mẫu thử trong phòng 407: mở cửa 407, mở tủ Việt, nhặt giấy;
    2. bước chân thật;
    3. 8–10 loại thao tác tay, dùng IK và điểm cầm trên từng đồ vật;

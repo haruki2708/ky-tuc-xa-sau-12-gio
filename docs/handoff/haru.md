@@ -81,9 +81,14 @@ Trả lời và viết tài liệu bằng tiếng Việt; code, comment, commit 
 - Build bản chơi: `pwsh tools/package.ps1` (có khóa Godot). Báo đường dẫn exe và zip, nói chủ dự án cần thử gì.
 - Giao việc cho lane B (tài khoản Claude khác, `D:\GAME_WORK\lane-b2`): viết card + prompt trong `docs/handoff/lane-b.md`; chủ dự án dán. Không sửa workspace lane khác.
 - Báo cáo trung thực: test hỏng thì nói hỏng, kèm lý do; bước nào bỏ qua thì nói.
+- **Integrator bị cắt ngang chưa kịp ghi mục 3 (12/11, chủ dự án đồng ý cách của HARU):** chỉ kiểm, không làm tiếp khi chưa rõ việc.
+  - Kiểm: `git status`, `git diff --stat` (sửa chưa commit), `git log --oneline -5` trên nhánh hiện tại, `git branch -a`, file khóa và Godot; đọc 20 dòng cuối `C:\Users\ADMIN\.claude\projects\D--GAME-WORK\memory\project-dorm-horror-game.md` (integrator ghi việc ở đó).
+  - Báo chủ dự án: thấy gì, đoán việc dở là gì, đề xuất bước tiếp. Chủ dự án đồng ý mới làm.
+  - Không xóa, không reset, không stash sửa đổi chưa commit của integrator.
+- **Nguồn đúng khi lệch nhau:** mục 3 file này mới nhất; rồi `docs/STATUS.md`; `docs/ROADMAP.md` chỉ cập nhật khi qua mốc.
 
 ## 3. Tiến độ integrator để lại (integrator cập nhật sau mỗi bước)
-**Cập nhật:** 12/11/2026 00:10, integrator (Opus 5.5).
+**Cập nhật:** 12/11/2026, integrator (Opus 5.5). HARU đã làm quen (test t242 8/8); ROADMAP và STATUS "Việc tiếp theo" đã cập nhật.
 
 - **Việc vừa xong:** [T-242](../tasks/T-242-doors-by-hand.md) đã merge vào main (full test 913/0, check 0) và đẩy lên GitHub.
 - **Bản chơi:** `build/windows/KyTucXa.exe`, zip `build/dist/KyTucXa-0.0.1-780ed57-win64.zip` (package PASS, 12/11 00:02).
