@@ -49,7 +49,7 @@ Nhánh `integrator/T-243-protagonist-chapter2`, integrator (Opus 5.5 high) làm 
   - lấy đồ khác thì đổi (đồ cũ về chỗ cũ); dùng thứ khác (cửa, công tắc, giấy) thì **làm bằng nắm tay đang cầm** (D-162).
 - **Nhét miệng xác** (`gag_spot.tscn` có `HandTarget` kiểu đầu ngón tay ở miệng, đi theo đầu xác): tay cầm đồ vươn tới ấn vào, đồ biến vào miệng (`consume`), tay về. Theo độ cao miệng: Việt (tầng dưới) đứng; Phúc, Đạt (tầng trên, miệng 1,94 m) **kiễng chân**, chỉ từ một vùng nhỏ sát mép giường (đo: 53–66 ô lưới 5 cm). **Xác nằm thì miệng ngoài tầm với, không hiện lời nhắc** (chủ dự án chọn).
 - **Hích vai cửa kẹt** (`_start_shove`, `_tick_shove`): lùi đà, cả người lao tới (tối đa 0,4 m, không vào cánh: tâm người cách mặt cửa ≥ 0,33 m), vai phải dẫn (ngực xoay 42°), chạm ở 0,34 s thì tính 1 lần, rồi bật về chỗ cũ; 0,8 s mỗi cú. Bấm dồn trong lúc hích không tính.
-- **Lau màn:** tay áp lòng bàn tay, xoa vòng tròn (5 cm, 1,6 vòng/s) **suốt lúc giữ E**; lau xong hoặc nhả E thì tay về. Nhả sớm: không tính (như cũ).
+- **Lau màn:** tay áp lòng bàn tay, xoa vòng tròn (5 cm, 1,6 vòng/s) **suốt lúc giữ E**; lau xong hoặc nhả E thì tay về. Nhả sớm: không tính (như cũ). **Màn tính từ lúc bấm E** (1 s như khi chưa có thân): tay vươn tới (0,45 s) rồi xoa nốt.
 - **Nút Có/Không:** bấm bằng tay như công tắc. Bấm "Có" xong vẫn còn thời gian bước vào buồng tắm trước khi nước chạy (test kiểm dư > 0,3 s).
 - **Sửa chỗ đặt để có thân vẫn chơi được** (trước đây bấm xuyên được, giờ tay phải tới):
   - **tủ Việt mở sẵn** ở chương 2 (chủ dự án chọn): áo trong tủ;
@@ -59,6 +59,8 @@ Nhánh `integrator/T-243-protagonist-chapter2`, integrator (Opus 5.5 high) làm 
 **Test:**
 - Mới `test_t243_chapter2.gd` 7 test: thân ở chương 2; cửa nhà tắm vẫn kẹt; giẻ/khăn/áo trong nắm tay (đo trên xương đã vẽ), đi vẫn giữ, đổi đồ, thả; nhét miệng Việt và Phúc bằng tay, xác nằm không với tới; hích 3 cú (tính đúng lúc chạm, bấm dồn không tính, không vào cánh, về chỗ cũ); bấm nút kịp vào buồng tắm; lau giữ E (nhả sớm không tính, giữ đủ thì lau được 1 lần).
 - Sửa: `test_protagonist_chapter1` (chương 1 và 2 có thân), `test_ch2_4_hand_targets` (chương 2 có thân: cửa 407 và cửa ban công có chỗ cầm; `gag_spot` kiểu đầu ngón tay; khăn 1,74–1,79 m).
+
+**Bot và FPS** (chủ dự án cho phép, [báo cáo](../../tools/reports/T-243-ch2-body-fps.md)): `ch2_good` ĐẠT 586,6 s (kịch bản bot giờ lau từ trong buồng tắm, sát màn); FPS 1080p 5 góc phòng 407 có thân ≥ 60 (TB thấp nhất 100,2 ở nhà tắm có hơi nước, 1% thấp nhất 67,5); thân tốn ~0,4–1,6 ms/khung.
 
 **Ảnh:** `art_source/graphics_upgrade/protagonist/previews/t243/` (mỗi thao tác 4–7 khung; `1_lay_gie` có thêm khung đi cầm đồ và nhìn bằng mắt Trung).
 
