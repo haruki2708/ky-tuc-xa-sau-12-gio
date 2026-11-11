@@ -596,6 +596,10 @@ func perform(target: Interactable) -> void:
 		# T-243 (D-162): a shoulder into the swollen door, not a hand on its handle.
 		_start_shove(target)
 		return
+	if _rub:
+		# T-243: the screen counts the wipe from the press, as without the body (WIPE_SECONDS): the
+		# hand gets there and rubs for the rest of it.
+		target.interact(player)
 	_contacted = false
 	_used = false
 	if is_instance_valid(_marker.lever):
@@ -905,8 +909,7 @@ func _tick_action(delta: float) -> void:
 			look = 1.0
 			if _rub:
 				# T-243: rubbing round while E is held (the screen counts it); then the hand goes back.
-				if not _used:
-					_use()
+				_used = true
 				_rub_time += delta
 				if _rubbing():
 					_time = minf(_time, CONTACT + 0.01)

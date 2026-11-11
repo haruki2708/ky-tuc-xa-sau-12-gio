@@ -326,6 +326,7 @@ func test_the_screen_is_wiped_by_a_rubbing_palm_while_e_is_held() -> void:
 	var seen: Dictionary = await _use(wipe, Vector3(5.85, 0.02, -5.45), wipe.hand_target().global_position, 0.6)
 	assert_true(seen["acted"], "the hand goes to the screen")
 	assert_true(wiped.is_empty(), "let go early: not wiped")
-	seen = await _use(wipe, Vector3(5.85, 0.02, -5.45), wipe.hand_target().global_position, 1.8)
-	assert_eq(wiped.size(), 1, "held long enough: wiped once")
+	# As long as without the body (ShowerScreen.WIPE_SECONDS from the press; the bot holds 1.1 s).
+	seen = await _use(wipe, Vector3(5.85, 0.02, -5.45), wipe.hand_target().global_position, 1.1)
+	assert_eq(wiped.size(), 1, "held 1.1 s: wiped once")
 	assert_false(body.acting, "then the hand goes back")
