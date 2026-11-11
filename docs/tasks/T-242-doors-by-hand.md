@@ -1,5 +1,5 @@
 # T-242 — Cửa nhà tắm và cửa ban công mở/đóng bằng tay; Trung tự bước tránh cánh cửa (D-154, D-159)
-- Lane: **integrator (Claude làm thay B, lane B hết hạn mức)** | Trạng thái: done (chờ full test, merge) | Agent: Claude Code ở máy, Fable 5.2 high (chủ dự án đặt 11/11)
+- Lane: **integrator (Claude làm thay B, lane B hết hạn mức)** | Trạng thái: merged 12/11/2026 (full test 913/0, check 0), chờ chủ dự án chơi thử | Agent: Claude Code ở máy, Fable 5.2 high (chủ dự án đặt 11/11)
 - Nhánh: `integrator/T-242-doors-by-hand` từ `main` (`8838947`).
 - Quyết định giao: **D-154** (làm sau T-239), **D-159** (11/11/2026, bốn lựa chọn của chủ dự án, mục 1).
 - Bối cảnh: [T-239](T-239-protagonist-hand-fixes.md) (quy tắc chọn tay nắm theo phía cửa, `DoorHandles.sides`), [T-241](T-241-protagonist-natural-reach.md) (đứng yên gập hông khi với), D-127/D-129/D-130 (cửa ban công).

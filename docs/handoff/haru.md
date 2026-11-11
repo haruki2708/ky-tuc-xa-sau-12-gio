@@ -47,14 +47,8 @@ Trả lời và viết tài liệu bằng tiếng Việt; code, comment, commit 
 - Báo cáo trung thực: test hỏng thì nói hỏng, kèm lý do; bước nào bỏ qua thì nói.
 
 ## 3. Tiến độ integrator để lại (integrator cập nhật sau mỗi bước)
-**Cập nhật:** 11/11/2026 23:30, integrator (Opus 5.5).
+**Cập nhật:** 12/11/2026 00:10, integrator (Opus 5.5).
 
-- **Việc đang làm:** [T-242](../tasks/T-242-doors-by-hand.md), cửa nhà tắm và cửa ban công mở/đóng bằng tay ở chương 1, Trung tự bước tránh cánh cửa (D-154, D-159).
-- **Nhánh:** `integrator/T-242-doors-by-hand` (chưa đẩy lên GitHub, chưa merge). Commit: `3de713e` (code + test), `32bf33d` (sửa quản lý, ảnh). Phần bàn giao của card đã viết.
-- **Đã kiểm:** test_t242_doors 8/8, test_chapter1_d069 22/22, T-241 7/7, T-239 6/6. Ảnh `art_source/graphics_upgrade/protagonist/previews/t242/` đã xem: ổn.
-- **Đang chạy:** full test rồi check (log `D:\GAME_DEMO\build\integrator\t242full.log`, chi tiết `t242full_full.out.log`, `t242full_check.out.log`).
-- **Bước tiếp:**
-  1. Đọc `t242full.log`. Đạt (0 failed, check 0 lỗi) thì làm tiếp; hỏng thì đọc `*.out.log`, sửa, chạy lại phần hỏng.
-  2. Commit tài liệu đang sửa dở (card T-242, file này) trên nhánh.
-  3. `git switch main`, `git merge --no-ff integrator/T-242-doors-by-hand`, cập nhật `docs/STATUS.md` (dòng đầu, dòng T-242 thành "merged", không đổi số đã cấp), commit, `git push origin main`.
-  4. Build bản chơi (`pwsh tools/package.ps1` có khóa). Báo chủ dự án thử: mở/đóng cửa nhà tắm và cửa ban công hai phía, đứng sát bản lề rồi bấm E (Trung tự bước tránh, có thể đi tới ~1 m), trốn ngoài ban công đóng cửa cho quản lý tới.
+- **Việc vừa xong:** [T-242](../tasks/T-242-doors-by-hand.md) đã merge vào main (full test 913/0, check 0) và đẩy lên GitHub.
+- **Đang làm:** build bản chơi (`pwsh tools/package.ps1`, log `D:\GAME_DEMO\build\integrator\package_t242.log`).
+- **Bước tiếp:** báo chủ dự án đường dẫn exe/zip và những gì cần thử (card T-242 mục 5 "Chưa làm / chủ dự án xem khi chơi"). Chưa có việc nào khác đang dở.
