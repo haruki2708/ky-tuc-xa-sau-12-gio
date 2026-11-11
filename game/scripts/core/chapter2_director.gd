@@ -768,6 +768,25 @@ func _inside_zone(zone: Area3D) -> bool:
 	return false
 
 
+## T-243 (D-162): the towel hangs from the balcony line (2.15 m, out of a hand's reach even on the
+## toes) down to about 1.4 m: it is taken by its hanging part, this far below the line, and is
+## looked at there too.
+const TOWEL_GRAB_DROP := 0.4
+
+
+func _hang_low(item: Node3D) -> void:
+	var marker := item.get_node_or_null("HandTarget") as Node3D
+	if marker != null:
+		marker.position.y -= TOWEL_GRAB_DROP
+	for child: Node in item.get_children():
+		var shape := child as CollisionShape3D
+		if shape != null and shape.shape is BoxShape3D:
+			var box := (shape.shape as BoxShape3D).duplicate() as BoxShape3D
+			box.size.y = TOWEL_GRAB_DROP + box.size.y
+			shape.shape = box
+			shape.position.y -= TOWEL_GRAB_DROP * 0.5
+
+
 ## Lane A's pieces (T-171) on lane B's anchors (T-172), when they exist.
 func _place_ch2_props() -> void:
 	var room := _room()
@@ -782,16 +801,27 @@ func _place_ch2_props() -> void:
 			continue
 		item.set("item_id", entry[1])
 		item.set("prompt_key", entry[2])
+		if entry[1] == &"towel":
+			_hang_low(item)
 		var model := anchor.get_node_or_null("Model") as Node3D
 		var placeholder := item.get_node_or_null("Placeholder") as Node3D
+		if model != null:
+			# T-243: what a hand carrying it shows (PlayerBody.take_item).
+			item.set_meta(&"look", model)
 		if model != null and placeholder != null:
 			placeholder.visible = false
 			item.picked.connect(func(_id: StringName) -> void:
 				model.visible = false
-				placeholder.visible = true)
+				# T-243: a hand carrying it shows the model in the fist instead.
+				placeholder.visible = not item.call("carried_by_hand"))
 			item.dropped.connect(func(_id: StringName) -> void:
 				model.visible = true
 				placeholder.visible = false)
+	# T-243 (D-162): Viet's locker stands open as chapter 1 left it (Trung searched it), so a hand
+	# gets in to his shirt.
+	var locker := _room_anchor("VietLocker")
+	if locker != null and locker.has_method("set_open"):
+		locker.call("set_open", true)
 	# Gag spots at the corpses' mouths (N4).
 	for bed in [1, 2, 4]:
 		var spot := _instance_on(_room_anchor("Gag%d" % bed), "res://scenes/interaction/gag_spot.tscn", "GagSpot")
@@ -807,6 +837,12 @@ func _place_ch2_props() -> void:
 	if door != null:
 		door.set("room", room)
 		_hide_placeholder(door)
+		# T-243: the door's own box over its leaf (it sat on the hinge, half in the wall and below the
+		# handle: the eyes on the handle missed it). Its HandTarget stays on the handle.
+		var leaf := door_model.get_node_or_null("Pivot/Leaf") as Node3D
+		var box := door.get_node_or_null("CollisionShape3D") as Node3D
+		if leaf != null and box != null:
+			box.position = door.to_local(leaf.global_position)
 		door.bashed.connect(func(count: int) -> void:
 			if room.has_method("set_stuck_shake"):
 				room.set_stuck_shake(0.35 * count))

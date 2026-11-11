@@ -18,6 +18,9 @@ const SPECS := {
 	"stuck_door": [HandTarget.Grip.GRIP, false],
 	"iron_bar": [HandTarget.Grip.GRIP, false],
 	"bed_slat": [HandTarget.Grip.HOOK, false],
+	# T-243: the fingertips press the held rag, towel or shirt into a corpse's mouth (a pinch: the
+	# upper bunks' mouths are 1.94 m up, within the fingertips' reach only).
+	"gag_spot": [HandTarget.Grip.PINCH, false],
 }
 ## T-228 exceptions approved on 2026-11-01 and confirmed in D-142.
 const SHARED_HEIGHTS := {
@@ -27,7 +30,8 @@ const SHARED_HEIGHTS := {
 }
 ## Owner approved these existing placements on 2026-11-07.
 const NEW_HEIGHTS := {
-	"Carry_towel": Vector2(2.14, 2.19),
+	# T-243 (D-162): taken by its hanging part, 0.4 m under the line (2.15 m is out of a hand's reach).
+	"Carry_towel": Vector2(1.74, 1.79),
 	"SearchCeiling": Vector2(2.90, 2.95),
 	"SearchVent": Vector2(2.33, 2.38),
 }
@@ -60,14 +64,14 @@ func after_each() -> void:
 func test_chapter2_actual_hand_targets_and_exclusions() -> void:
 	await _load_chapter(2)
 	var counts := COMMON_COUNTS.duplicate()
-	counts.merge({"carry_item": 3, "shower_screen": 1, "shower_choice": 2, "stuck_door": 1})
+	counts.merge({"carry_item": 3, "shower_screen": 1, "shower_choice": 2, "stuck_door": 1, "gag_spot": 3})
 	_check_inventory(counts)
 	for path: String in ["RagSpot/Carry_rag", "TowelSpot/Carry_towel", "ShirtSpot/Carry_shirt",
 			"ShowerScreen/Wipe", "ShowerYes/Choice", "ShowerNo/Choice"]:
 		_check_known_target(ROOT + path)
 	_check_known_target("Floor4/Room407/Extension/BathroomDoor/StuckDoor")
 	for bed: int in [1, 2, 4]:
-		assert_eq(chapter.get_node(ROOT + "Gag%d/GagSpot" % bed).hand_target(), null)
+		_check_known_target(ROOT + "Gag%d/GagSpot" % bed)
 	var stall := chapter.get_node(ROOT + "ShowerStall/ShowerStallArea")
 	assert_false(stall is Interactable, "standing in the shower is not a hand action")
 	assert_true(_markers(stall).is_empty(), "no marker on a standing region")
@@ -129,7 +133,7 @@ func _check_inventory(expected: Dictionary) -> void:
 		var prop := node as Interactable
 		if prop == null:
 			continue
-		if prop is HideSpot or prop is GagSpot or prop is StoryTrigger or prop is Ch3Use:
+		if prop is HideSpot or prop is StoryTrigger or prop is Ch3Use:
 			assert_eq(prop.hand_target(), null, String(prop.get_path()) + " excluded")
 			continue
 		var bodied: bool = chapter.get_node("Player").get("body") != null

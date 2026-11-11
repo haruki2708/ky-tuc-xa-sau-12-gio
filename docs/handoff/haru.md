@@ -92,6 +92,7 @@ Trả lời và viết tài liệu bằng tiếng Việt; code, comment, commit 
 
 - **Vừa xong (main, đã push):** tín hiệu `HingedDoor.swung`/`settled` (full test 914/0, check 0); D-161, D-162; card [T-243](../tasks/T-243-protagonist-chapter2.md), [T-244](../tasks/T-244-hinged-door-sounds.md); prompt lane E `lane-e.md` mục 1c (chủ dự án dán).
 - **Đang làm:** [T-243](../tasks/T-243-protagonist-chapter2.md) thân Trần Trung ở chương 2, integrator làm thay B, nhánh `integrator/T-243-protagonist-chapter2`.
+- **Đã xong trên nhánh:** bước 1 (commit "T-243 step 1"): thân ở chương 2, cửa nhà tắm vẫn kẹt; test chương 2 đạt.
 - **Kế hoạch T-243 (thứ tự):**
   1. Bật thân ở chương 2 (`chapter2.tscn` `protagonist_body = true`), cửa nhà tắm chương 2 **không** gắn `HingedDoor` (vẫn là cửa kẹt 3 lần hích). `Protagonist.attach` chạy trong `chapter1_main._ready` trước khi director đặt `StuckDoor`, nên chọn theo loại director/scene. Test: chương 2 không có HingedDoor ở cửa nhà tắm, vẫn đúng 3 lần hích. Chạy mọi filter chương 2 (`ch2`, `chapter_tools`) để biết test nào vỡ.
   2. Nút Có/Không (có lẽ chạy sẵn), cầm đồ tay phải, nhét miệng (theo độ cao: tầng trên nhón, tầng dưới đứng), hích vai cửa kẹt, lau màn (giữ E: cần kiểu thao tác giữ, không phải 1 s).
