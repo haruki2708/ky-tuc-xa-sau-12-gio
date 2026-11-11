@@ -15,7 +15,7 @@ phases = [
         ("G2 Mẫu balo Tripo đạt, chọn lượt 2 xanh navy — D-086", DONE),
         ("G3 Phòng 407 đủ đồ vào bản chơi, 1080p ≥ 97 FPS — D-103…D-114", DONE),
         ("G4 Nhân vật: quản lý Tripo trong bản chơi, chương 1 chủ dự án chấp nhận — D-120, D-137", DONE),
-        ("G4 Nhân vật chính Trần Trung — chương 1: thân, tay, lấy đồ, cửa bằng tay (T-242 chờ chơi thử)", HERE),
+        ("G4 Nhân vật chính Trần Trung — chương 1: thân, tay, lấy đồ, cửa bằng tay (T-242 chốt)", HERE),
         ("G3+ Vỏ phòng 407, ổ điện, quạt quay — T-222…T-226 vào bản chơi (D-129, D-136)", DONE),
         ("G4 Xác sống kiểu A (làm trước, T-221), bạn học, bảo vệ", TODO),
         ("G5 Hành lang tầng 4 mới ở 4 chương (T-237) → nhà B → khuôn viên → …", DOING)]),

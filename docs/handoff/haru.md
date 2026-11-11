@@ -88,8 +88,8 @@ Trả lời và viết tài liệu bằng tiếng Việt; code, comment, commit 
 - **Nguồn đúng khi lệch nhau:** mục 3 file này mới nhất; rồi `docs/STATUS.md`; `docs/ROADMAP.md` chỉ cập nhật khi qua mốc.
 
 ## 3. Tiến độ integrator để lại (integrator cập nhật sau mỗi bước)
-**Cập nhật:** 12/11/2026, integrator (Opus 5.5). HARU đã làm quen (test t242 8/8); ROADMAP và STATUS "Việc tiếp theo" đã cập nhật.
+**Cập nhật:** 12/11/2026, integrator (Opus 5.5). Chủ dự án chơi thử và chốt T-242. Chưa chọn việc tiếp theo.
 
 - **Việc vừa xong:** [T-242](../tasks/T-242-doors-by-hand.md) đã merge vào main (full test 913/0, check 0) và đẩy lên GitHub.
 - **Bản chơi:** `build/windows/KyTucXa.exe`, zip `build/dist/KyTucXa-0.0.1-780ed57-win64.zip` (package PASS, 12/11 00:02).
-- **Bước tiếp:** chờ chủ dự án chơi thử T-242. Chưa có việc nào khác đang dở.
+- **Bước tiếp:** chủ dự án chọn việc tiếp theo (integrator đề xuất thân Trần Trung cho chương 2, tiếng cửa cho lane E). Chưa có việc nào đang dở.

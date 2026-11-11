@@ -30,7 +30,7 @@ Bản chữ (xem được trong terminal / Notepad):
   │     ├─ [✅] G3 Phòng 407 đủ đồ vào bản chơi .......... D-103…D-114
   │     ├─ [✅] G4 Nhân vật: quản lý Tripo ............... D-120, chương 1 chủ dự án chấp nhận (D-137)
   │     ├─ [✅] G3+ Vỏ phòng 407, ổ điện, quạt quay ...... T-222…T-226 (D-129, D-136)
-  │     ├─ [📍] G4 Nhân vật chính Trần Trung (Tripo) ..... ĐANG Ở ĐÂY: thân vào chương 1 (D-151), tay/lấy đồ duyệt (D-157), cửa bằng tay T-242 chờ chơi thử; chương 2–4 chưa có thân
+  │     ├─ [📍] G4 Nhân vật chính Trần Trung (Tripo) ..... ĐANG Ở ĐÂY: thân vào chương 1 (D-151), tay/lấy đồ duyệt (D-157), cửa bằng tay T-242 chủ dự án chốt; chương 2–4 chưa có thân
   │     ├─ [⬜] G4 Xác sống (trước), bạn học, bảo vệ ...... D-122 kiểu A, card T-221, chờ mẫu m1
   │     └─ [🔶] G5 Hành lang tầng 4 mới ở 4 chương (T-237) → nhà B → khuôn viên → thư viện/bệnh viện
   │
@@ -69,7 +69,7 @@ Mục tiêu: hình gần thật, 1080p/60 FPS trên RTX 3050 Laptop. Đồ vật
 | G2 Thử Tripo | Balo Tripo lượt 2 xanh navy | ✅ D-086 |
 | G3 Phòng 407 vào bản chơi | Tripo 3 đợt (70 món) + mùng, chiếu, gạch, decal bằng Blender (D-089…D-101) → vào bản chơi cả 4 chương (D-103) → ánh sáng (D-104), gương phản chiếu thật (D-105), giấy và dây điện (D-106), sửa nhà tắm (D-109), khung đọc ảnh/thẻ (D-112), sửa 3 lỗi chủ dự án báo + phòng tối hẳn (D-113). **1080p thấp nhất 97,7 FPS (D-114).** Bộ lọc PS1 mặc định tắt | ✅ chủ dự án duyệt độ tối và hết lỗi |
 | **G4 Nhân vật** | **Quản lý trước** (D-115): nam ~45 tuổi, đồng phục quản lý trường học, mặt kinh dị, dao phay. Lane C làm thử mẫu MPFB (D-117) nhưng chủ dự án chọn bỏ; **chủ dự án tự làm, integrator hỗ trợ** (D-118). Phiếu Tripo `docs/handoff/TRIPO_QUAN_LY.md`; bài học kỹ thuật trong card T-219. Tripo: thân, 6 động tác, dao, chìa khóa, thẻ (D-119); chủ dự án duyệt, mắt trắng đục, vào bản chơi chương 1 và gương chương 2 (D-120) | 📍 **chờ chơi thử** |
-| G4 tiếp | Nhân vật chính có thân và tay cầm nắm, mở cửa như thật; nhân vật khác đi không trượt chân; xác sống, 2 bạn học, bảo vệ | 📍 Trần Trung trong chương 1: thân Tripo (T-227, D-151), sửa tay T-239, lấy đồ tự nhiên T-241 (chủ dự án duyệt 11/11), cửa nhà tắm/ban công bằng tay T-242 (12/11, chờ chơi thử). Chương 2–4 chưa có thân. Xác sống T-221 chờ mẫu m1 |
+| G4 tiếp | Nhân vật chính có thân và tay cầm nắm, mở cửa như thật; nhân vật khác đi không trượt chân; xác sống, 2 bạn học, bảo vệ | 📍 Trần Trung trong chương 1: thân Tripo (T-227, D-151), sửa tay T-239, lấy đồ tự nhiên T-241 (chủ dự án duyệt 11/11), cửa nhà tắm/ban công bằng tay T-242 (chủ dự án chốt 12/11). Chương 2–4 chưa có thân. Xác sống T-221 chờ mẫu m1 |
 | G5 Mở rộng cảnh | Hành lang tầng 4 → nhà B → khuôn viên → thư viện/bệnh viện | 🔶 hành lang tầng 4 mới ở 4 chương (T-237, 09/11); bên trong phòng khác, cầu thang, nhà vệ sinh chung để sau |
 
 ### Giai đoạn 4 — Ghép bản hoàn chỉnh (D-059) ⬜
@@ -79,7 +79,7 @@ Khoảng 4–6 ngày: hết chương tự sang chương sau, **một file lưu x
 Phát hành theo chương (D-029). Nền tảng, giá, ngày: chưa quyết. Steam yêu cầu khai báo nội dung AI (`AGENTS.md` §5).
 
 ## 3. Việc đang chờ chủ dự án (để tiếp tục)
-1. 📍 **Chơi thử T-242:** mở/đóng cửa nhà tắm và cửa ban công hai phía; đứng sát bản lề rồi bấm E (Trung tự bước tránh); trốn sau cửa đóng cho quản lý tới. Bản chơi 12/11 00:01.
+1. 📍 **Chọn việc tiếp theo:** integrator đề xuất thân Trần Trung cho chương 2, kèm tiếng cửa (lane E).
 2. **Xác sống (T-221, D-122):** tạo m1 (Phúc) theo `docs/handoff/TRIPO_XAC_SONG.md`, tải về `build/graphics/staging/zombie/`.
 3. **Chơi thử chương 2–4** với đồ họa mới (chương 3 từ tầng 1, chương 4 lần đầu).
 4. **Thân Trần Trung cho chương 2–4:** chủ dự án chọn lúc nào làm (sau khi chơi T-242).
