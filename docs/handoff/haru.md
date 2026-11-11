@@ -4,7 +4,7 @@
 
 ## 0. Cài đặt cho chủ dự án (làm một lần)
 1. Mở cửa sổ HARU bằng `D:\GAME_WORK\mo_claude_lane_haru.cmd` (nháy đúp). File này:
-   - đặt `CLAUDE_CONFIG_DIR=C:\Users\ADMIN\.claude-lane-haru`: tài khoản HARU đăng nhập riêng, **không đè đăng nhập của integrator hay lane B**;
+   - đặt `CLAUDE_CONFIG_DIR=D:\ClaudeConfig\lane-haru`: tài khoản HARU đăng nhập riêng, **không đè đăng nhập của integrator hay lane B**;
    - mở Claude Code trong `D:\GAME_WORK`, giống integrator.
    Không mở HARU bằng lệnh `claude` thường: lệnh đó dùng đăng nhập của integrator.
 2. Lần đầu: gõ `/login`, đăng nhập **tài khoản Claude của HARU**. Kiểm bằng `/status`.
