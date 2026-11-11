@@ -30,6 +30,10 @@ extends Node3D
 ##   stoop), never a crouch of the body's own. The prompt and the action judge the reach the same
 ##   way and the action never does more than the prompt judged. The camera stays on the eyes as
 ##   planned (no frame behind), so the player never sees the back of his own head.
+## - T-243 (D-161, D-162): chapter 2. The right hand carries the rag, towel or shirt between actions
+##   (held in the fist in front of the hip, other things are still done with that fist); round 4's
+##   swollen door gets a shoulder shove instead of a reach; the shower screen is wiped with the palm
+##   rubbing round for as long as E is held.
 
 signal hand_action_finished(target: Interactable)
 
@@ -585,6 +589,17 @@ func perform(target: Interactable) -> void:
 	_target = target
 	_marker = target.hand_target(_reach_from(), _reach_rank)
 	_time = 0.0
+	_shove = false
+	_rub = target is ShowerScreen
+	_rub_time = 0.0
+	if target is StuckDoor:
+		# T-243 (D-162): a shoulder into the swollen door, not a hand on its handle.
+		_start_shove(target)
+		return
+	if _rub:
+		# T-243: the screen counts the wipe from the press, as without the body (WIPE_SECONDS): the
+		# hand gets there and rubs for the rest of it.
+		target.interact(player)
 	_contacted = false
 	_used = false
 	if is_instance_valid(_marker.lever):
@@ -592,7 +607,7 @@ func perform(target: Interactable) -> void:
 	_reading = false
 	_set_phase(Phase.REACH)
 	_from = _hand_tip()
-	_start_basis = _natural_basis()
+	_start_basis = _carry_basis() if _carry_weight > 0.5 else _natural_basis()
 	_from_wrist = _hand_attach.global_position
 	_attach_pending = false
 	_held_paper = false
@@ -649,6 +664,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		_lean = Vector3.ZERO
 		_tick_locomotion(delta)
+	_tick_carry(delta)
 	_tick_phone(delta)
 	_move_head()
 
@@ -860,6 +876,9 @@ func _tick_action(delta: float) -> void:
 	if not is_instance_valid(_target) or not is_instance_valid(_marker):
 		_finish()
 		return
+	if _shove:
+		_tick_shove(delta)
+		return
 	_time += delta * _pace
 	_phase_time += delta * _pace
 	if _marker.pick_up:
@@ -872,8 +891,12 @@ func _tick_action(delta: float) -> void:
 			var reach: float = smoothstep(0.0, CONTACT, _time)
 			look = reach
 			_aim(_from.lerp(_marker.global_position, reach), _start_basis.slerp(_grip_basis(), reach), reach)
-			_ik.influence = smoothstep(0.0, IK_FADE, _time)
-			_grip.influence = smoothstep(CONTACT * 0.6, CONTACT, _time)
+			_ik.influence = maxf(smoothstep(0.0, IK_FADE, _time), _carry_weight)
+			_grip.influence = maxf(smoothstep(CONTACT * 0.6, CONTACT, _time), _carry_weight)
+			if _carry_weight > 0.0:
+				_grip.curl_degrees = CARRY_CURL
+			elif _rub:
+				_grip.curl_degrees = RUB_CURL
 			_weigh(reach)
 			if _time >= CONTACT:
 				_contacted = true
@@ -884,6 +907,22 @@ func _tick_action(delta: float) -> void:
 				_set_phase(Phase.HOLD)
 		Phase.HOLD:
 			look = 1.0
+			if _rub:
+				# T-243: rubbing round while E is held (the screen counts it); then the hand goes back.
+				_used = true
+				_rub_time += delta
+				if _rubbing():
+					_time = minf(_time, CONTACT + 0.01)
+				_aim(_rub_goal(), _rub_basis(), 1.0)
+				if _time >= RELEASE:
+					_from = _rub_goal()
+					_released_at = _time
+					_release_basis = _rub_basis()
+					_set_phase(Phase.RETURN)
+				_align.influence = _ik.influence
+				_follow_head()
+				_look(look_at, look)
+				return
 			var pressing: bool = is_instance_valid(_marker.lever) and not _closing
 			if pressing:
 				_press_lever(smoothstep(CONTACT, CONTACT + LEVER_SECONDS, _time))
@@ -907,10 +946,14 @@ func _tick_action(delta: float) -> void:
 				_use()
 			# Let go of a door's grip, the hand turns back to the arm's line first (no bent wrist hangs on).
 			var unwind: float = smoothstep(_released_at, _released_at + DOOR_UNWIND, _time) if _door else back
-			_aim(_from.lerp(_natural_tip(), back), _release_basis.slerp(_natural_basis(), unwind), 1.0 - back)
-			_grip.influence = 1.0 - back
+			# T-243: with something in the fist the hand goes back to carrying it, not to the side.
+			var carrying: bool = _still_held()
+			var rest_tip: Vector3 = _carry_palm() if carrying else _natural_tip()
+			var rest_basis: Basis = _carry_basis() if carrying else _natural_basis()
+			_aim(_from.lerp(rest_tip, back), _release_basis.slerp(rest_basis, unwind), 0.0 if carrying else 1.0 - back)
+			_grip.influence = 1.0 if carrying else 1.0 - back
 			_weigh(1.0 - back)
-			_ik.influence = 1.0 - smoothstep(HAND_SECONDS - IK_FADE, HAND_SECONDS, _time)
+			_ik.influence = 1.0 if carrying else 1.0 - smoothstep(HAND_SECONDS - IK_FADE, HAND_SECONDS, _time)
 			if _time >= HAND_SECONDS:
 				_finish()
 				return
@@ -1299,6 +1342,7 @@ func _on_skeleton_updated() -> void:
 			var camera := _camera()
 			if light != null and camera != null:
 				light.global_transform = Transform3D(camera.global_basis, placed.origin + (-camera.global_basis.z.normalized()) * PHONE_LIGHT_AHEAD)
+	_place_held()
 	if not acting or not is_instance_valid(_carried):
 		return
 	var hand: Transform3D = _posed_bone("RightHand")
@@ -1333,6 +1377,8 @@ func _contact_point() -> Vector3:
 ## How the hand meets the target (world space): a lever palm down with the fingers over it, an
 ## edge with the palm turned in, a paper with the fingers down onto its near edge.
 func _grip_basis() -> Basis:
+	if _rub:
+		return _rub_basis()
 	if _marker.has_meta(&"hand_basis"):
 		# T-239: a grip that says how the hand lies on it (a door's free edge, DoorHandles.sides).
 		return (_marker.global_basis.orthonormalized() * (_marker.get_meta(&"hand_basis") as Basis)).orthonormalized()
@@ -1854,7 +1900,7 @@ func _weigh(weight: float) -> void:
 	_bend.arm_degrees = parts[6]
 	# The working hand opens as the reach clips had it (not up on the toes or from a crouch: those
 	# always stood on a clip of their own).
-	_reach_fingers.influence = weight if _bend.arm_hangs and not _high and not _reach_fingers.to_shape.is_empty() else 0.0
+	_reach_fingers.influence = weight if _bend.arm_hangs and not _high and not _reach_fingers.to_shape.is_empty() and _carry_weight <= 0.0 else 0.0
 	_rise = _rise_target * weight
 	model.position.y = _rise
 	_tiptoe.rise = (skeleton.global_basis.inverse() * Vector3(0.0, _rise, 0.0)).length()
@@ -1908,6 +1954,7 @@ func _on_death_started(_kind: StringName) -> void:
 		return
 	if acting:
 		_finish()
+	release_item()
 	_dead = true
 	visible = false
 	if is_instance_valid(_head) and _head.position == _head_written:
@@ -1967,6 +2014,10 @@ func _finish() -> void:
 	_shape_arm(false)
 	_door = false
 	_closing = false
+	_shove = false
+	_rub = false
+	_set_twist(0.0)
+	_bend.shift = Vector3.ZERO
 	_lean = Vector3.ZERO
 	var camera := _camera()
 	if camera != null and camera.get_parent() == _head:
@@ -1979,6 +2030,8 @@ func _finish() -> void:
 		player.release_movement_lock(self)
 	_clip = &""
 	_play(&"idle")
+	# T-243: the fist that carries something stays up this frame too (no drop to the side and back).
+	_tick_carry(0.0)
 	hand_action_finished.emit(target)
 
 
@@ -2286,3 +2339,250 @@ func _measure(key: StringName) -> void:
 				time += step * (samples - 1)
 			run_start = -1
 	stride_speeds[key] = (distance / time if time > 0.0 else 1.0) * _scale()
+
+
+# --- T-243 (D-161, D-162): chapter 2's hand things ---------------------------------------------
+
+## What the right hand carries between actions (a CarryItem: the rag, towel or shirt), its look in
+## the hand (a copy of the thing's model, hanging from the fist) and how far the hand has come to
+## the carrying pose.
+var _held_item: Node3D = null
+var _held_visual: Node3D = null
+var _carry_weight: float = 0.0
+## The carrying hand: the palm's middle this far in front of the hips, to the right and up (model
+## space, metres at the model's scale: the model faces +Z, its right is -X).
+const CARRY_PALM: Vector3 = Vector3(-0.17, 1.06, 0.36)
+## The fist's curl on what it carries, and how fast the hand comes to (and leaves) the pose.
+const CARRY_CURL: float = 80.0
+const CARRY_FADE: float = 0.25
+## The copy of what is carried hangs this far under the fist's middle (metres).
+const CARRY_HANG: float = 0.03
+
+## Round 4's swollen door (StuckDoor): a shove of the right shoulder into the leaf. The body winds
+## back, drives in until SHOVE_HIT (the door counts the shove there), holds and comes back.
+const SHOVE_SECONDS: float = 0.8
+const SHOVE_HIT: float = 0.34
+const SHOVE_LEAN: float = 22.0
+## The chest turns this far so the right shoulder leads (degrees); the hips go this far ahead of the
+## feet; and the whole body lunges at most this far toward the door (metres): as far as brings the
+## shoulder to the leaf, the body never into it.
+const SHOVE_TWIST: float = 42.0
+const SHOVE_HIPS: float = 0.08
+const SHOVE_LUNGE: float = 0.4
+## The body's middle stays this far off the door's plane (its radius and a little).
+const SHOVE_CLEAR: float = 0.33
+## The shoulder stops this far short of the door's plane (half the arm's thickness).
+const SHOVE_SHORT: float = 0.06
+var _shove: bool = false
+var _shove_hit: bool = false
+var _shove_drive: float = 0.0
+var _shove_from: Vector3 = Vector3.ZERO
+
+## Wiping the steamed shower screen (ShowerScreen): the palm flat on it, rubbing round while E is
+## held, until the screen is wiped or E is let go.
+const RUB_RADIUS: float = 0.05
+const RUB_TURNS_PER_SECOND: float = 1.6
+const RUB_CURL: float = 8.0
+var _rub: bool = false
+var _rub_time: float = 0.0
+
+
+## T-243: true while the right hand carries `item` (CarryItem asks before it follows the camera).
+func holds(item: Node3D) -> bool:
+	return is_instance_valid(_held_item) and _held_item == item
+
+
+## T-243: the hand has taken `item` (CarryItem.interact, at the touch of a hand action). `look`: the
+## model the item shows as (its own placeholder is hidden while the hand has it).
+func take_item(item: Node3D, look: Node3D = null) -> void:
+	release_item()
+	_held_item = item
+	_held_visual = Node3D.new()
+	_held_visual.name = "HeldItem"
+	_held_visual.top_level = true
+	add_child(_held_visual)
+	var source: Node3D = look if is_instance_valid(look) else item
+	var copies: Array[MeshInstance3D] = []
+	for mesh: MeshInstance3D in source.find_children("*", "MeshInstance3D", true, false):
+		# Not what the shell hid for good (a PS1 stand-in under the model).
+		if mesh.mesh == null or not mesh.visible:
+			continue
+		var copy := mesh.duplicate(0) as MeshInstance3D
+		copy.visible = true
+		_held_visual.add_child(copy)
+		copy.transform = source.global_transform.affine_inverse() * mesh.global_transform
+		copies.append(copy)
+	if source is MeshInstance3D and (source as MeshInstance3D).mesh != null:
+		var copy := (source as MeshInstance3D).duplicate(0) as MeshInstance3D
+		_held_visual.add_child(copy)
+		copy.transform = Transform3D.IDENTITY
+		copies.append(copy)
+	# Hung from the fist: the top middle of what it looks like at the hand.
+	var box := _bounds(copies)
+	var first: bool = copies.is_empty()
+	# A cloth lying folded flat (a rag over a bar, a shirt on a shelf) hangs down from the fist,
+	# not held out flat like a tray.
+	if not first and box.size.y < 0.35 * maxf(box.size.x, box.size.z):
+		var down := Basis(Vector3.RIGHT, -PI / 2.0) if box.size.z >= box.size.x else Basis(Vector3.BACK, PI / 2.0)
+		for copy: MeshInstance3D in copies:
+			copy.transform = Transform3D(down, Vector3.ZERO) * copy.transform
+		box = _bounds(copies)
+	_held_hang = Vector3(box.get_center().x, box.end.y, box.get_center().z) if not first else Vector3.ZERO
+	_held_turn = Basis.from_euler(Vector3(0.0, source.global_rotation.y - model.global_rotation.y, 0.0))
+	_hide_placeholder(item)
+
+
+var _held_hang: Vector3 = Vector3.ZERO
+
+
+static func _bounds(meshes: Array[MeshInstance3D]) -> AABB:
+	var box := AABB()
+	var first: bool = true
+	for mesh: MeshInstance3D in meshes:
+		var bounds: AABB = mesh.transform * mesh.get_aabb()
+		box = bounds if first else box.merge(bounds)
+		first = false
+	return box
+var _held_turn: Basis = Basis.IDENTITY
+
+
+## The hand lets go of what it carries (dropped, swapped for another, or pressed into a mouth).
+func release_item() -> void:
+	if is_instance_valid(_held_visual):
+		_held_visual.queue_free()
+	_held_visual = null
+	_held_item = null
+
+
+## The carried item is still the player's (not consumed, not dropped).
+func _still_held() -> bool:
+	if not is_instance_valid(_held_item) or not _held_item.is_visible_in_tree():
+		return false
+	if bool(_held_item.get("consumed")):
+		return false
+	return _held_item.get("holder") == player
+
+
+static func _hide_placeholder(item: Node3D) -> void:
+	var placeholder := item.get_node_or_null("Placeholder") as Node3D
+	if placeholder != null:
+		placeholder.visible = false
+
+
+## Where the carrying hand's palm goes (world) and how it lies: the fingers down and forward, the
+## palm turned in, in front of the right hip.
+func _carry_palm() -> Vector3:
+	return model.global_transform * CARRY_PALM
+
+
+func _carry_basis() -> Basis:
+	var forward: Vector3 = model.global_basis.z.normalized()
+	var inward: Vector3 = model.global_basis.x.normalized()
+	return _hand_basis(forward * 0.55 + Vector3.DOWN * 0.85, inward)
+
+
+## Between actions: the right hand comes up to the carrying pose and holds it while he walks.
+func _tick_carry(delta: float) -> void:
+	if is_instance_valid(_held_item) and not _still_held():
+		release_item()
+	var holding: bool = is_instance_valid(_held_item) and visible
+	_carry_weight = move_toward(_carry_weight, 1.0 if holding else 0.0, delta / CARRY_FADE)
+	if acting:
+		return
+	if _carry_weight <= 0.0:
+		_ik.influence = 0.0
+		_align.influence = 0.0
+		_grip.influence = 0.0
+		return
+	var basis: Basis = _natural_basis().slerp(_carry_basis(), _carry_weight)
+	_aim(_natural_tip().lerp(_carry_palm(), _carry_weight), basis, 0.0)
+	_ik.influence = _carry_weight
+	_align.influence = _carry_weight
+	_grip.curl_degrees = CARRY_CURL
+	_grip.influence = _carry_weight
+
+
+## The carried item in the fist as drawn this frame.
+func _place_held() -> void:
+	if not is_instance_valid(_held_visual) or not is_instance_valid(_held_item):
+		return
+	_hide_placeholder(_held_item)
+	var hand: Transform3D = _ortho(_posed_bone("RightHand"))
+	var palm: Vector3 = hand.origin + hand.basis.y.normalized() * PALM * _scale()
+	var turn: Basis = (model.global_basis.orthonormalized() * _held_turn).orthonormalized()
+	_held_visual.global_transform = Transform3D(turn, palm + Vector3.DOWN * CARRY_HANG - turn * _held_hang)
+
+
+## A shove into round 4's swollen door, instead of a reach for its handle.
+func _start_shove(target: Interactable) -> void:
+	_shove = true
+	_shove_hit = false
+	_reach = &"near"
+	# The leaf where its handle is (the StuckDoor box sits on the hinge's node).
+	var door: Vector3 = _marker.global_position if is_instance_valid(_marker) else target.global_position
+	var toward: Vector3 = _toward(door)
+	_lean_forward = (global_basis.inverse() * toward).normalized()
+	_bend.axis = (skeleton.global_basis.inverse() * Vector3.UP.cross(toward).normalized()).normalized()
+	_bend_degrees = SHOVE_LEAN
+	# How far the hips go: as far as brings the leaned right shoulder to the door's face.
+	var shoulder: Vector3 = _leaned(&"near", toward, SHOVE_LEAN)["shoulder"]
+	var face: Vector3 = (target.get_parent() as Node3D).global_basis.z.normalized() if target.get_parent() is Node3D else target.global_basis.z.normalized()
+	face.y = 0.0
+	face = face.normalized() if face.length() > 0.01 else -toward
+	var short: float = absf((door - shoulder).dot(face)) - SHOVE_SHORT - SHOVE_HIPS
+	var room: float = absf((door - player.global_position).dot(face)) - SHOVE_CLEAR
+	_shove_drive = clampf(minf(short, room), 0.0, SHOVE_LUNGE)
+	_shove_from = player.global_position
+	_clip = CLIPS[&"idle"]
+	_key = &""
+	animator.play(_clip, BLEND_SECONDS, 0.0)
+	if is_instance_valid(player) and player.has_method("acquire_movement_lock"):
+		player.acquire_movement_lock(self)
+
+
+func _tick_shove(delta: float) -> void:
+	_time += delta
+	# Wind back a little, drive in to the hit, lean on it, come back.
+	var drive: float
+	if _time < 0.12:
+		drive = -0.25 * smoothstep(0.0, 0.12, _time)
+	elif _time < SHOVE_HIT:
+		drive = lerpf(-0.25, 1.0, smoothstep(0.12, SHOVE_HIT, _time))
+	elif _time < SHOVE_HIT + 0.08:
+		drive = 1.0
+	else:
+		drive = 1.0 - smoothstep(SHOVE_HIT + 0.08, SHOVE_SECONDS, _time)
+	_weigh(maxf(drive, 0.0))
+	var forward: Vector3 = (global_basis * _lean_forward).normalized()
+	_bend.shift = skeleton.global_basis.inverse() * (forward * SHOVE_HIPS * drive)
+	_set_twist(deg_to_rad(SHOVE_TWIST) * maxf(drive, 0.0))
+	# The whole body lunges in and back (a step's worth), the camera with it.
+	player.global_position = _shove_from + forward * _shove_drive * drive
+	if not _shove_hit and _time >= SHOVE_HIT:
+		_shove_hit = true
+		if is_instance_valid(_target):
+			_target.interact(player)
+	_follow_head()
+	if _time >= SHOVE_SECONDS:
+		player.global_position = _shove_from
+		_finish()
+
+
+## The palm flat on the screen, the fingers up.
+func _rub_basis() -> Basis:
+	var normal: Vector3 = _marker.global_basis.z.normalized()
+	return _hand_basis(Vector3.UP - normal * normal.y, -normal)
+
+
+## While E is held the palm rubs round on the screen; it stops (the hand goes back) once the screen
+## is wiped or E is let go.
+func _rub_goal() -> Vector3:
+	var basis: Basis = _marker.global_basis.orthonormalized()
+	var angle: float = TAU * RUB_TURNS_PER_SECOND * _rub_time
+	return _marker.global_position + (basis.x * cos(angle) + basis.y * sin(angle)) * RUB_RADIUS
+
+
+func _rubbing() -> bool:
+	if not is_instance_valid(_target) or bool(_target.get("_completed")):
+		return false
+	return Input.is_action_pressed("interact")

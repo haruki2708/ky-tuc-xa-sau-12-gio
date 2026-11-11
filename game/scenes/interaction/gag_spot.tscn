@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3]
+[gd_scene load_steps=6 format=3]
 
 [ext_resource type="Script" path="res://scripts/interaction/gag_spot.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/interaction/hand_target.gd" id="hand_target"]
 [sub_resource type="BoxShape3D" id="Shape"]
 size = Vector3(0.26, 0.18, 0.15)
 [sub_resource type="StandardMaterial3D" id="Material"]
@@ -19,3 +20,7 @@ prompt_key = "PROMPT_CH2_GAG"
 shape = SubResource("Shape")
 [node name="Placeholder" type="MeshInstance3D" parent="."]
 mesh = SubResource("Mesh")
+
+[node name="HandTarget" type="Marker3D" parent="."]
+script = ExtResource("hand_target")
+grip = 1

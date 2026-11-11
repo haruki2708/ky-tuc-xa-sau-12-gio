@@ -17,6 +17,7 @@
 
 [node name="Chapter2" type="Node3D"]
 script = ExtResource("1_main")
+protagonist_body = true
 
 [node name="Floor4" parent="." instance=ExtResource("2_floor")]
 

@@ -121,10 +121,16 @@ func test_shared_switch_and_excluded_interactions() -> void:
 		world.add_child(switch)
 		switch.position.y = 1.35
 		_check_target(switch, HandTarget.Grip.PINCH, false, 0.0)
-	for scene_name: String in ["bunk_spot", "hide_spot", "gag_spot"]:
+	for scene_name: String in ["bunk_spot", "hide_spot"]:
 		var spot := load("res://scenes/interaction/%s.tscn" % scene_name).instantiate() as Interactable
 		world.add_child(spot)
 		assert_eq(spot.hand_target(), null, scene_name)
+	# T-243 (D-162): a gag is pressed into the mouth by the fingertips.
+	var gag := load("res://scenes/interaction/gag_spot.tscn").instantiate() as Interactable
+	world.add_child(gag)
+	assert_not_null(gag.hand_target(), "gag_spot")
+	if gag.hand_target() != null:
+		assert_eq(gag.hand_target().grip, HandTarget.Grip.PINCH, "gag_spot grip")
 
 
 func _check_paper_edge(paper: Interactable) -> void:

@@ -45,7 +45,13 @@ func interact(player: Node) -> void:
 	_home = global_transform
 	holder = player
 	collision_layer = 0
-	_follow_camera()
+	# T-243 (D-162): with Tran Trung's body the right hand carries it (a copy of its model in the
+	# fist; the item itself stays where it was taken from, hidden by the chapter's `picked`).
+	var hand := _body()
+	if hand != null:
+		hand.call("take_item", self, get_meta(&"look") if has_meta(&"look") else null)
+	else:
+		_follow_camera()
 	picked.emit(StringName(item_id))
 	EventBus.interacted.emit(self)
 
@@ -59,7 +65,25 @@ func _physics_process(_delta: float) -> void:
 		drop()
 
 
+## T-243: a hand carries it (its placeholder box is not shown in front of the camera).
+func carried_by_hand() -> bool:
+	var hand := _body()
+	return hand != null and bool(hand.call("holds", self))
+
+
+## T-243: the full body of the holder whose hand carries this, else null.
+func _body() -> Node:
+	var body: Variant = holder.get("body") if is_instance_valid(holder) else null
+	if body is Node and is_instance_valid(body) and (body as Node).has_method("take_item") and (body as Node3D).visible:
+		return body as Node
+	return null
+
+
 func _follow_camera() -> void:
+	var hand := _body()
+	if hand != null and hand.call("holds", self):
+		# The hand carries it (PlayerBody places its look in the fist): the item itself stays here.
+		return
 	var camera: Camera3D = holder.get_node_or_null("Head/Camera3D") as Camera3D
 	if camera == null:
 		drop()
@@ -70,6 +94,9 @@ func _follow_camera() -> void:
 func drop() -> void:
 	if consumed or collision_layer != 0:
 		return
+	var hand := _body()
+	if hand != null and hand.call("holds", self):
+		hand.call("release_item")
 	holder = null
 	global_transform = _home
 	collision_layer = LAYER_INTERACTABLE

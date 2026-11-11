@@ -15,7 +15,9 @@ extends RefCounted
 const HINGED_DOORS: Array[String] = ["Extension/BathroomDoor", "Extension/BalconyDoor"]
 
 
-static func attach(player: CharacterBody3D, floor4: Node3D) -> PlayerBody:
+## `hinged_doors`: which of HINGED_DOORS a hand uses in this chapter (T-243: not chapter 2's stuck
+## bathroom door).
+static func attach(player: CharacterBody3D, floor4: Node3D, hinged_doors: Array[String] = HINGED_DOORS) -> PlayerBody:
 	var body := PlayerBody.new()
 	player.set_body(body)
 	var door := floor4.get_node_or_null("Door407") as Node3D
@@ -33,7 +35,7 @@ static func attach(player: CharacterBody3D, floor4: Node3D) -> PlayerBody:
 	var room := floor4.get_node_or_null("Room407") as Node3D
 	if room != null:
 		# T-242 (D-154): the bathroom and balcony doors open and close by hand, as Door 407 does.
-		for path: String in HINGED_DOORS:
+		for path: String in hinged_doors:
 			var hinged := room.get_node_or_null(path) as Node3D
 			if hinged != null and HingedDoor.of(hinged) == null:
 				HingedDoor.fit(hinged)
