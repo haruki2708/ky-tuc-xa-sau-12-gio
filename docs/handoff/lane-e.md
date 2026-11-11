@@ -48,6 +48,18 @@ Lượt này chỉ đo và báo cáo: không đổi file âm thanh, mức âm, b
 Làm và bàn giao theo prompt mục 2 của docs/handoff/lane-e.md (luật Lượt Godot, full test và check trước commit, log trong build/, Handoff trung thực, push nhánh, không push main).
 ```
 
+## 1c. Việc hiện tại: T-244 tiếng cửa nhà tắm và cửa ban công (12/11/2026, D-161)
+```text
+Việc mới cho lane E: T-244 — đọc docs/tasks/T-244-hinged-door-sounds.md.
+Ở D:\GAME_WORK\lane-e2: git status (giữ thay đổi đang có), git fetch origin, git switch main, git pull --ff-only, git lfs pull,
+rồi tạo nhánh lane-e/T-244-hinged-door-sounds từ origin/main.
+Kiểm origin/main có tín hiệu cho âm thanh: git grep -n "signal swung" origin/main -- game/scripts/interaction/hinged_door.gd (phải ra 1 dòng).
+Đọc card thật kỹ, nhất là mục 1 (tín hiệu swung/settled, ai làm cửa quay), "Được phép sửa" và "Không được".
+Chủ dự án thích âm NHỎ. Cửa nhà tắm là gỗ, cửa ban công là khung nhôm kính: tiếng khác nhau.
+Không sửa hinged_door.gd hay chapter1_main.gd: cần integrator gọi hàm gắn tiếng thì ghi "Yêu cầu thay đổi" trong Handoff.
+Làm và bàn giao theo prompt mục 2 của docs/handoff/lane-e.md (luật Lượt Godot, full test và check trước commit, log trong build/, Handoff trung thực, push nhánh, không push main).
+```
+
 ## 2. Prompt giao việc (integrator điền T-xxx)
 ```text
 Việc mới cho lane E: <T-xxx> — đọc docs/tasks/<file card>.md.

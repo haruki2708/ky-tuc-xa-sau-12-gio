@@ -5,6 +5,11 @@ extends Interactable
 ## hand's hold as Door 407's does, and its levers and free edge take the hand by Door 407's rule
 ## (DoorHandles.sides). Chapters and the manager still use the hinge's own set_open.
 
+## T-244: for sounds (lane E). `swung` when the leaf starts to turn, open or shut, over `seconds`
+## (zero: at once, as the chapter or the manager sets the hinge); `settled` when it has got there.
+signal swung(open: bool, seconds: float)
+signal settled(open: bool)
+
 ## A hand swings the leaf no faster than this (the balcony door turns 172 degrees: it swings on
 ## after the hand has let go).
 const SWING_SPEED: float = deg_to_rad(200.0)
@@ -19,6 +24,8 @@ var is_open: bool:
 		return is_instance_valid(hinged) and bool(hinged.get("is_open"))
 var _swing: Tween
 var _swing_open: bool = false
+## The hinge as this door last knew it (a change by someone else is told as a swing at once).
+var _known_open: bool = false
 
 
 ## Hangs a HingedDoor on `door` (a hinged.gd node whose Pivot carries Leaf/Collision and the
@@ -81,9 +88,12 @@ func swing(open: bool, seconds: float = 0.0) -> void:
 		_swing = null
 	var leaf_pivot := pivot()
 	var angle: float = _open_angle() if open else 0.0
+	_known_open = open
 	if not is_finite(seconds) or seconds <= 0.0:
 		hinged.call("set_open", open)
 		_update_prompt()
+		swung.emit(open, 0.0)
+		settled.emit(open)
 		return
 	hinged.set("is_open", open)
 	_swing_open = open
@@ -91,7 +101,14 @@ func swing(open: bool, seconds: float = 0.0) -> void:
 	var time: float = maxf(seconds, absf(angle - leaf_pivot.rotation.y) / SWING_SPEED)
 	_swing = create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
 	_swing.tween_property(leaf_pivot, "rotation:y", angle, time).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
-	_swing.finished.connect(func() -> void: _swing = null)
+	_swing.finished.connect(func() -> void:
+		_swing = null
+		settled.emit(open))
+	swung.emit(open, time)
+
+
+func _ready() -> void:
+	_known_open = is_open
 
 
 func _physics_process(_delta: float) -> void:
@@ -100,6 +117,10 @@ func _physics_process(_delta: float) -> void:
 		_swing.kill()
 		_swing = null
 		hinged.call("set_open", is_open)
+	if is_open != _known_open:
+		_known_open = is_open
+		swung.emit(is_open, 0.0)
+		settled.emit(is_open)
 	_update_prompt()
 
 

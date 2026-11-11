@@ -406,3 +406,27 @@ func test_a_hinged_door_without_a_hand() -> void:
 		frames += 1
 	assert_true(is_zero_approx(balcony.pivot().rotation.y), "the balcony door swings shut")
 	assert_true(frames > 0.8 * 60.0 * deg_to_rad(172.0) / HingedDoor.SWING_SPEED, "no faster than a hand swings it (%d frames)" % frames)
+
+
+## T-244: a door tells when its leaf starts to swing and when it gets there (for its sounds), by
+## hand and when the chapter sets it.
+func test_a_hinged_door_tells_its_swings() -> void:
+	await _open_chapter1()
+	var bathroom: HingedDoor = doors["bathroom"]
+	var swings: Array = []
+	var settles: Array = []
+	bathroom.swung.connect(func(open: bool, seconds: float) -> void: swings.append([open, seconds]))
+	bathroom.settled.connect(func(open: bool) -> void: settles.append(open))
+	bathroom.swing(true, 0.4)
+	assert_eq(swings.size(), 1, "the swing starts")
+	assert_true(swings[0][0] and float(swings[0][1]) >= 0.4, "opening, over the hand's hold or longer")
+	assert_true(settles.is_empty(), "not there yet")
+	for frame: int in 60:
+		await tree.physics_frame
+	assert_eq(settles, [true], "open")
+	room.call("set_bathroom_door_open", false)
+	await tree.physics_frame
+	await tree.physics_frame
+	assert_eq(swings.size(), 2, "the chapter shutting it is told too")
+	assert_eq(swings[1], [false, 0.0], "shut at once")
+	assert_eq(settles, [true, false], "and settled shut")
