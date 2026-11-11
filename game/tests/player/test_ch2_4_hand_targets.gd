@@ -116,7 +116,11 @@ func _load_chapter(number: int) -> void:
 	for frame: int in 3:
 		await tree.physics_frame
 		await tree.process_frame
-	assert_eq(chapter.get_node("Player").get("body"), null, "production player has no body")
+	# T-243 (D-161): chapter 2 has Tran Trung's body, chapters 3 and 4 not yet.
+	if number == 2:
+		assert_not_null(chapter.get_node("Player").get("body"), "chapter 2's player has the body")
+	else:
+		assert_eq(chapter.get_node("Player").get("body"), null, "production player has no body")
 
 
 func _check_inventory(expected: Dictionary) -> void:
@@ -128,8 +132,18 @@ func _check_inventory(expected: Dictionary) -> void:
 		if prop is HideSpot or prop is GagSpot or prop is StoryTrigger or prop is Ch3Use:
 			assert_eq(prop.hand_target(), null, String(prop.get_path()) + " excluded")
 			continue
+		var bodied: bool = chapter.get_node("Player").get("body") != null
 		if prop == chapter.get_node("Floor4/Door407"):
-			assert_eq(prop.hand_target(), null, "room door must not borrow the latch target")
+			if bodied:
+				# With the body its own levers take the hand (Protagonist.attach, T-239).
+				assert_not_null(prop.hand_target(), "room door's levers take the hand")
+			else:
+				assert_eq(prop.hand_target(), null, "room door must not borrow the latch target")
+			continue
+		if prop is HingedDoor:
+			# T-242: a door used by hand (only where the body is), its own levers and free edge.
+			assert_true(bodied, String(prop.get_path()) + " only with the body")
+			assert_eq((prop as HingedDoor).grips.size(), 3, String(prop.get_path()) + " levers and edge")
 			continue
 		var script_name: String = prop.get_script().resource_path.get_file().get_basename()
 		assert_true(SPECS.has(script_name), "unclassified interactable: " + String(prop.get_path()))

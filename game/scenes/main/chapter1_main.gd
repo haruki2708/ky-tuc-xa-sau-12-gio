@@ -12,8 +12,9 @@ const FAN_SPEED: float = 15.0
 const PAPER_PICK_DEPTH: float = 0.15
 const END_CARD_MIN_SECONDS: float = 4.0
 const END_CARD_MAX_SECONDS: float = 40.0
-## D-151: Tran Trung's full body (T-227) on the player. On in chapter1.tscn only; chapters 2-4 share
-## this script and stay without a body for now. Set it before the scene enters the tree.
+## D-151: Tran Trung's full body (T-227) on the player. On in chapter1.tscn and (T-243, D-161)
+## chapter2.tscn; chapters 3-4 share this script and stay without a body for now. Set it before the
+## scene enters the tree.
 @export var protagonist_body := false
 
 ## Room 407 papers on lane B's anchors (T-153, under Room407/Anchors):
@@ -50,7 +51,7 @@ func _ready() -> void:
 	_place_papers()
 	# Before the director starts (deferred), so lying in bed at the start or a resume has the body.
 	if protagonist_body:
-		Protagonist.attach($Player as CharacterBody3D, $Floor4 as Node3D)
+		Protagonist.attach($Player as CharacterBody3D, $Floor4 as Node3D, _hinged_doors())
 	var light := $Floor4.get_node_or_null("Room407/Room407MainLight") as Node3D
 	if light != null:
 		light.visible = false
@@ -60,6 +61,15 @@ func _ready() -> void:
 		_fan_rotors.append(rotor as Node3D)
 	_director().restart_requested.connect(_on_restart_requested)
 	_director().chapter_done.connect(_on_chapter_done)
+
+
+## T-243 (D-162): the room's doors a hand opens and closes in this chapter. In chapter 2 the bathroom
+## door is the swollen one of round 4 (StuckDoor, three shoves), never opened by hand.
+func _hinged_doors() -> Array[String]:
+	var doors: Array[String] = Protagonist.HINGED_DOORS.duplicate()
+	if _director() is Chapter2Director:
+		doors.erase("Extension/BathroomDoor")
+	return doors
 
 
 ## Chapters 1–3 (T-170, T-181) share this scene script; the director node

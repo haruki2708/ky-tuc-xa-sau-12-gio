@@ -74,10 +74,11 @@ func _freeze_player() -> void:
 	player.set_process_unhandled_input(false)
 
 
-func test_only_chapter_one_turns_the_body_on() -> void:
+## T-243 (D-161): chapters 1 and 2 have the body; 3 and 4 not yet.
+func test_chapters_one_and_two_turn_the_body_on() -> void:
 	for index in CHAPTERS.size():
 		var scene := (load(CHAPTERS[index]) as PackedScene).instantiate()
-		assert_eq(scene.get("protagonist_body"), index == 0, CHAPTERS[index])
+		assert_eq(scene.get("protagonist_body"), index <= 1, CHAPTERS[index])
 		scene.free()
 	await _open_chapter1()
 	assert_not_null(body, "chapter 1's player has the body")
