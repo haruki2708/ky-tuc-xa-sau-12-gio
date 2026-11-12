@@ -129,6 +129,26 @@ Cập nhật Checklist và Handoff trong card. Không sửa STATUS hay DECISIONS
 Cuối phiên báo ngắn bằng tiếng Việt: xong gì, nhánh, commit, báo cáo và ảnh ở đâu, câu hỏi cho chủ dự án, có bị chặn không.
 ```
 
+## 1g. Giao T-249 (12/11/2026, D-165): HARU làm thay lane B — thân Trần Trung chương 3, thanh sắt, ngoảnh lại, thở dốc
+Lane B hết hạn mức nên **HARU làm thay** trong thư mục của lane B. Chủ dự án: nháy đúp `D:\GAME_WORK\mo_claude_haru_lam_lane_b.cmd` (đăng nhập HARU, thư mục `lane-b2`; không mở lane B cùng lúc), `/model` chọn **Fable 5.2**, effort **high**, rồi dán:
+```text
+Bạn là lane HARU, hôm nay làm thay lane B (lane B hết hạn mức) trong D:\GAME_WORK\lane-b2. Làm đúng như agent lane B: luật lane B trong AGENTS.md mục 3–5.
+Integrator (phiên Claude Code khác, D:\GAME_DEMO) review và merge vào main. Không làm gì trong D:\GAME_DEMO. Trả lời tiếng Việt; code, comment, commit message tiếng Anh.
+Việc: T-249 — thân Trần Trung vào chương 3, phần không phụ thuộc cảnh (thanh sắt trong tay phải, vung, nhặt, Ngư đưa; ngoảnh lại khi chạy; thở dốc). Đọc docs/tasks/T-249-protagonist-chapter3-bar.md.
+Ở D:\GAME_WORK\lane-b2: git status (giữ thay đổi đang có, báo nếu có), git fetch origin,
+git switch -c lane-b/T-249-protagonist-chapter3-bar origin/main, git lfs pull.
+Đầu phiên ghi commit của card đã đọc (git log -1 --format=%h origin/main -- docs/tasks/T-249-protagonist-chapter3-bar.md).
+Đọc card mục "Cần đọc", nhất là tools/reports/T-247-ch3-body-survey.md và docs/tasks/T-243-protagonist-chapter2.md. Luật chương 1–2 đã duyệt: giữ nguyên.
+Phương án từng dòng đã chốt ở card mục 1: làm đúng như vậy; thấy phương án không ổn thì dừng dòng đó, đưa phương án kèm ảnh vào Handoff, không tự đổi.
+Chỉ sửa file trong mục "Được phép sửa"; ngoài phạm vi thì ghi "Yêu cầu thay đổi". Không chạy bot, không đo FPS, không tiêu credit Tripo.
+Tự chụp ảnh trước/sau trong chương 3 thật vào art_source/graphics_upgrade/protagonist/previews/t249/, tự xem lại từng tấm; video để trong build/, không commit.
+Godot theo luật Lượt Godot (file khóa D:\GAME_WORK\GODOT_DANG_CHAY.txt, tạo bằng CreateNew, ghi "HARU (thay B), T-249, <giờ>", xoá khi xong kể cả khi lỗi; máy ít RAM: mỗi lúc một Godot).
+Khi làm: pwsh tools/test.ps1 -Filter <tên test>. Trước commit: full pwsh tools/test.ps1 rồi pwsh tools/check.ps1 (log trong build/), rồi git checkout -- game/default_bus_layout.tres.
+Không commit log, video, anh_chup_sua_loi/, game/_probe_tmp/. Commit nhỏ "T-249: ...", git push -u origin lane-b/T-249-protagonist-chapter3-bar. Không push main, không mở PR.
+Cập nhật Checklist và Handoff trong card. Không sửa STATUS hay DECISIONS.
+Cuối phiên báo ngắn bằng tiếng Việt: xong gì, nhánh, commit, ảnh ở đâu, dòng RESULT test và check, câu hỏi cho chủ dự án, có bị chặn không.
+```
+
 ## 2. Prompt giao việc (integrator điền T-xxx)
 ```text
 Việc mới cho lane B: <T-xxx> — đọc docs/tasks/<file card>.md.
