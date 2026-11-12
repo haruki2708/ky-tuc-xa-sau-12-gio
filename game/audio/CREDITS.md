@@ -287,3 +287,18 @@ không dùng giọng người thật, MBROLA, neural voice hoặc sample tải v
 Code có **OpenAI Codex hỗ trợ (AI-assisted)**; giữ khai báo khi phát hành.
 SHA256/LUFS/peak/lời trong `audio_source/voice_ch2/build_report.json`,
 hướng dẫn/bảng đo trong `audio_source/voice_ch2/README.md`. **Chưa nghe bằng tai.**
+
+## T-244 — cửa gỗ nhà tắm và cửa nhôm kính ban công (12/11/2026)
+
+Bốn âm **tự tổng hợp**, không bản thu/sample bên ngoài, không lấy từ game/video: tác giả dự án/Lane E, code tổng hợp có **OpenAI Codex hỗ trợ (AI-assisted)**; giữ khai báo nội dung AI khi phát hành. Đầu ra phát hành theo [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/) như pipeline âm tổng hợp hiện hành.
+
+Nguồn tái tạo: [process_doors.py](https://github.com/haruki2708/ky-tuc-xa-sau-12-gio/blob/lane-e/T-244-hinged-door-sounds/audio_source/hinged_doors/process_doors.py). Công cụ: Python stdlib (sin, noise seed cố định), [FFmpeg](https://ffmpeg.org/)/libvorbis có sẵn, bản 9.0.2 trong báo cáo; không dịch vụ sinh âm hay giọng người. Công cụ chỉ chạy offline, không đóng gói vào game.
+
+| File trong `game/audio/hinged_doors/` | Raw trong `audio_source/hinged_doors/raw/` | Nguồn |
+|---|---|---|
+| `wood_open.ogg` | `wood_open.wav` | Tổng hợp ma sát và bản lề nhẹ, seed 24400 |
+| `wood_close.ogg` | `wood_close.wav` | Tổng hợp khung gỗ và chốt, seed 24401 |
+| `aluminium_glass_open.ogg` | `aluminium_glass_open.wav` | Tổng hợp ma sát khung nhôm, seed 24402 |
+| `aluminium_glass_close.ogg` | `aluminium_glass_close.wav` | Tổng hợp khung và cộng hưởng kính nhẹ, seed 24403 |
+
+Số đo, SHA256 và dung lượng: `audio_source/hinged_doors/build_report.json`. Hướng dẫn pipeline/cảnh nghe: `audio_source/hinged_doors/README.md`. **Chưa nghe bằng tai, chờ chủ dự án nghe; chất âm và mức nhỏ này chưa được duyệt.**
