@@ -94,3 +94,12 @@ Mỗi glb chỉ mang vật liệu giữ chỗ; `.import` trỏ sang `materials/*
 5. Điện thoại bàn, loa treo dựng bằng Blender theo D-166; nếu chưa ưng thì đổi sang Tripo ở lượt sau.
 
 **Yêu cầu thay đổi ngoài phạm vi:** va chạm cho lan can mép chiếu nghỉ tầng 4 (câu hỏi 4); va chạm bậc riêng cho IK chân (Thấy thêm 4) khi làm T-247 dòng 9.
+
+**Chủ dự án trả lời (13/11/2026):**
+1. Cửa thoát hiểm màu **xanh**: giữ như bản này.
+2. Chân tường cầu thang **xanh xám**: giữ như bản này.
+3. **Giữ hai cánh thép có ổ khoá và tay gạt**: giữ như bản này.
+4. **Có làm** lan can mép chiếu nghỉ tầng 4. Nhờ integrator viết card (đổi va chạm nên ngoài T-250). Đề xuất cho card:
+   - Ở cả hai cầu thang, mép chiếu nghỉ tầng 4 (y 0, z 0) phía giếng thang, trên vế B: Main x −2,28…−0,12 (cộng khe giếng tới −2,72), Fire x 46,72…48,88 (từ 46,28). Lan can cùng kiểu lan can giếng thang của T-250 (song thép sơn xanh, tay vịn gỗ, trụ hai đầu), cao 0,95 m, nối với lan can vế A ở trụ đầu thang.
+   - Thêm một `StaticBody3D` hộp mỏng (khoảng 0,05 × 1,0 m) trên layer 1 đúng chỗ lan can, để người chơi và bot không rơi xuống tầng 3; kiểm `test_fire_stairs`, `test_campus` (đường dẫn, lối đi) và ảnh từ chiếu nghỉ tầng 4.
+   - Phạm vi lane B: `building_b.tscn` (thân va chạm), `art_source/graphics_upgrade/realistic_map/wave1/build_stairs.py` (hình lan can), test trong `game/tests/levels/`.
