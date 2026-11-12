@@ -167,6 +167,39 @@ Cập nhật Checklist và Handoff trong card. Không sửa STATUS hay DECISIONS
 Cuối phiên báo ngắn bằng tiếng Việt: xong gì, nhánh, commit, ảnh ở đâu, dòng RESULT test và check, câu hỏi cho chủ dự án, có bị chặn không.
 ```
 
+## 1i. Giao T-254 (13/11/2026): lan can mép chiếu nghỉ tầng 4 ở hai cầu thang nhà B (có va chạm)
+Chủ dự án: mở lane B bằng `D:\GAME_WORK\mo_claude_lane_b.cmd`, `/model` chọn **Opus 5.5**, effort **high** (việc nhỏ), rồi dán:
+```text
+Việc mới cho lane B: T-254 — lan can mép chiếu nghỉ tầng 4 ở cả hai cầu thang nhà B, có va chạm (bạn đề xuất ở câu 4 của T-250, chủ dự án đồng ý). Đọc docs/tasks/T-254-floor4-landing-guard-rail.md.
+Ở D:\GAME_WORK\lane-b2: git status (giữ thay đổi đang có, báo nếu có), git fetch origin,
+git switch -c lane-b/T-254-floor4-landing-guard-rail origin/main, git lfs pull.
+Đầu phiên ghi commit của card đã đọc (git log -1 --format=%h origin/main -- docs/tasks/T-254-floor4-landing-guard-rail.md).
+Làm đúng card: hình lan can như lan can giếng thang của T-250, thêm hộp va chạm mỏng layer 1; không đổi va chạm nào khác. Ảnh trước/sau từ chiếu nghỉ tầng 4, tự xem lại.
+Chỉ sửa file trong mục "Được phép sửa"; không chạy bot, không đo FPS, không tiêu credit Tripo.
+Godot theo luật Lượt Godot (file khóa D:\GAME_WORK\GODOT_DANG_CHAY.txt). Trước commit cuối: full pwsh tools/test.ps1 rồi pwsh tools/check.ps1, rồi git checkout -- game/default_bus_layout.tres.
+Commit nhỏ "T-254: ...", git push -u origin lane-b/T-254-floor4-landing-guard-rail. Không push main, không mở PR.
+Cập nhật Checklist và Handoff trong card. Không sửa STATUS hay DECISIONS.
+Cuối phiên báo ngắn bằng tiếng Việt: xong gì, nhánh, commit, ảnh ở đâu, dòng RESULT test và check, có bị chặn không.
+```
+
+## 1j. Giao T-253 (13/11/2026, D-167): đồ hoạ thật đợt 2 — hành lang tầng 3→1, phòng 203, sảnh, phòng quản lý, bình cứu hoả, hộp báo cháy
+**Dán sau khi lane B đã push xong T-254** (mục 1i), cùng cửa sổ hoặc phiên mới. `/model` chọn **Opus 5.5**, effort **xhigh** (khó thì **max**), rồi dán:
+```text
+Việc mới cho lane B: T-253 — đồ hoạ thật đợt 2 (nhà B: hành lang tầng 3, 2, 1, phòng 203, sảnh, phòng quản lý và cửa sổ, bình cứu hoả tầng 2, hộp báo cháy tầng 1). Đọc docs/tasks/T-253-realistic-graphics-wave2.md.
+Chủ dự án đã duyệt phong cách đợt 1 của bạn (D-167): dùng lại đúng bộ vật liệu, màu và chi tiết đó cho đợt 2.
+Ở D:\GAME_WORK\lane-b2: git status (giữ thay đổi đang có, báo nếu có), git fetch origin,
+git switch -c lane-b/T-253-realistic-graphics-wave2 lane-b/T-254-floor4-landing-guard-rail (làm nối tiếp T-254 vì cùng sửa building_b.tscn), git lfs pull.
+Đầu phiên ghi commit của card đã đọc (git log -1 --format=%h origin/main -- docs/tasks/T-253-realistic-graphics-wave2.md).
+Đọc card T-253, card T-250 (mục Handoff: cách bạn đã dựng đợt 1), art_source/graphics_upgrade/realistic_map/PLAN.md mục 2–4, 6 (A08–A11), ảnh hiện trạng realistic_map/previews/survey/16–25.
+Dựng bằng Blender, không dùng Tripo. Giữ nguyên collider, navmesh, Ch3Use, tên node, luật (PLAN mục 4). Động tác Trần Trung (bình cứu hoả, báo cháy, cửa sổ) chưa làm, chỉ dựng hình để làm được sau.
+Làm từng khu, chụp ảnh trước/sau trong chương 3 thật, tự xem lại từng tấm. Thứ cần chủ dự án chọn thì đưa ảnh kèm phương án và một đề xuất vào Handoff.
+Chỉ sửa file trong mục "Được phép sửa"; ngoài phạm vi thì ghi "Yêu cầu thay đổi". Không chạy bot, không đo FPS, không tiêu credit Tripo.
+Godot theo luật Lượt Godot (file khóa D:\GAME_WORK\GODOT_DANG_CHAY.txt). Trước commit cuối: full pwsh tools/test.ps1 rồi pwsh tools/check.ps1, rồi git checkout -- game/default_bus_layout.tres.
+Không commit log, video, anh_chup_sua_loi/, game/_probe_tmp/. Commit nhỏ "T-253: ...", git push -u origin lane-b/T-253-realistic-graphics-wave2. Không push main, không mở PR.
+Cập nhật Checklist và Handoff trong card. Không sửa STATUS hay DECISIONS.
+Cuối phiên báo ngắn bằng tiếng Việt: xong gì, nhánh, commit, ảnh ở đâu, dòng RESULT test và check, câu hỏi cho chủ dự án, có bị chặn không.
+```
+
 ## 2. Prompt giao việc (integrator điền T-xxx)
 ```text
 Việc mới cho lane B: <T-xxx> — đọc docs/tasks/<file card>.md.

@@ -1,6 +1,7 @@
 # T-253 — Đồ hoạ thật đợt 2: hành lang tầng 3→1, phòng 203, sảnh, phòng quản lý, bình cứu hoả, hộp báo cháy (nhà B)
-- Lane: **chưa giao** (chờ chủ dự án duyệt ảnh đợt 1 [T-250](T-250-realistic-graphics-wave1.md) và mẫu thử lane Codex [T-252](T-252-floor4-rooms-sample-codex.md)) | Trạng thái: chờ | Agent: lane B (Opus 5.5 xhigh/max), hoặc chia cho lane Codex nếu T-252 đạt.
-- Nhánh: `lane-<x>/T-253-realistic-graphics-wave2` từ `origin/main` mới nhất (sau khi T-250 merge).
+- Lane: **B** (D-167: chủ dự án duyệt phong cách đợt 1, 13/11/2026) | Trạng thái: todo, làm sau [T-254](T-254-floor4-landing-guard-rail.md) | Agent: tài khoản Claude lane B, Opus 5.5 xhigh (khó thì max); chủ dự án tự dán prompt (`lane-b.md` mục 1j).
+- Nhánh: `lane-b/T-253-realistic-graphics-wave2` từ nhánh `lane-b/T-254-floor4-landing-guard-rail` (cùng sửa `building_b.tscn`: làm nối tiếp để khỏi xung đột).
+- **Phong cách đã duyệt (D-167):** dùng lại bộ vật liệu, màu, chi tiết của đợt 1: tường trát hai màu (dưới xanh xám, trên kem), chân tường đá mài, sàn và bậc đá mài, cửa thép sơn xanh, lan can song thép xanh tay vịn gỗ, shader vỏ phòng 407 với bản đồ bẩn riêng. Ảnh mẫu: `realistic_map/previews/wave1/compare_overview.jpg`.
 - Quyết định: **D-165, D-166** (10 đợt theo đường người chơi đi; dựng bằng Blender theo chất lượng phòng 407, không ưng thì đổi Tripo; nhà B cũ vừa; ánh sáng giữ như nay). Card viết sẵn 13/11/2026 để giao ngay khi đợt 1 được duyệt.
 
 ## 1. Phạm vi (`art_source/graphics_upgrade/realistic_map/PLAN.md` mục 2–4)

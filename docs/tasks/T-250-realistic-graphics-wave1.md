@@ -1,5 +1,5 @@
 # T-250 — Đồ hoạ thật đợt 1: bàn trực tầng 4, cầu thang thoát hiểm và cửa, cầu thang chính nhà B
-- Lane: B | Trạng thái: todo | Agent: tài khoản Claude lane B, `D:\GAME_WORK\lane-b2`; model **Opus 5.5 xhigh** (khó thì max), chủ dự án tự dán prompt (`lane-b.md` mục 1h).
+- Lane: B | Trạng thái: **merged 13/11/2026** (full test 949/0, check 0); chủ dự án duyệt phong cách (D-167) | Agent: tài khoản Claude lane B, `D:\GAME_WORK\lane-b2`; model **Opus 5.5 xhigh** (khó thì max), chủ dự án tự dán prompt (`lane-b.md` mục 1h).
 - Nhánh: `lane-b/T-250-realistic-graphics-wave1` từ `origin/main` mới nhất.
 - Quyết định giao: **D-166** (12/11/2026): chủ dự án duyệt kế hoạch [T-248](T-248-realistic-graphics-survey.md) với 10 đợt theo đường người chơi đi; mọi thứ dựng **bằng Blender trước, theo đúng chất lượng đồ phòng 407**; chỗ nào chủ dự án không ưng thì đổi sang Tripo sau.
 
@@ -103,3 +103,9 @@ Mỗi glb chỉ mang vật liệu giữ chỗ; `.import` trỏ sang `materials/*
    - Ở cả hai cầu thang, mép chiếu nghỉ tầng 4 (y 0, z 0) phía giếng thang, trên vế B: Main x −2,28…−0,12 (cộng khe giếng tới −2,72), Fire x 46,72…48,88 (từ 46,28). Lan can cùng kiểu lan can giếng thang của T-250 (song thép sơn xanh, tay vịn gỗ, trụ hai đầu), cao 0,95 m, nối với lan can vế A ở trụ đầu thang.
    - Thêm một `StaticBody3D` hộp mỏng (khoảng 0,05 × 1,0 m) trên layer 1 đúng chỗ lan can, để người chơi và bot không rơi xuống tầng 3; kiểm `test_fire_stairs`, `test_campus` (đường dẫn, lối đi) và ảnh từ chiếu nghỉ tầng 4.
    - Phạm vi lane B: `building_b.tscn` (thân va chạm), `art_source/graphics_upgrade/realistic_map/wave1/build_stairs.py` (hình lan can), test trong `game/tests/levels/`.
+
+## Review integrator (13/11/2026)
+- Đạt. Phạm vi đúng: ngoài art_source, assets chỉ sửa `building_b.tscn`, `door.gd` (xoay cánh phụ), `duty_desk.tscn`, `duty_desk.gd` (mới), test mới; va chạm hai cầu thang, cửa, bàn trực trùng main (test có dấu vân tay md5).
+- Sau merge (cùng T-251 và main mới nhất): full test 949/0, check 0 (lane B không chạy hết check vì máy thiếu RAM, chủ dự án miễn; integrator chạy lại sau merge đạt).
+- Chủ dự án duyệt phong cách đợt 1 (D-167); đợt 2 giao lane B ([T-253](T-253-realistic-graphics-wave2.md)) sau lan can mép chiếu nghỉ tầng 4 ([T-254](T-254-floor4-landing-guard-rail.md)).
+- Còn để sau (Thấy thêm): va chạm bậc riêng cho IK chân (T-247 dòng 9); hộp `FireStairs/Collapse` gồ 0–14 cm trên 3 bậc cuối vế 3A (đã phủ đá vụn cho có hình).
