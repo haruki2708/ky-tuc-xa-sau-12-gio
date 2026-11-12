@@ -1,6 +1,6 @@
 # T-245: Sửa sau khi chủ dự án chơi chương 2 (tay cầm điện thoại trong gương, giẻ, áo và ổ khoá thật)
 
-| Lane: integrator (thay B) | Nhánh: `integrator/T-245-ch2-playtest-fixes` | Trạng thái: in-progress (code và mô hình xong, chưa chạy test) |
+| Lane: integrator (thay B) | Nhánh: `integrator/T-245-ch2-playtest-fixes` | Trạng thái: merged 12/11/2026 (full test 924/0 (lượt full 922/2: hai test cũ còn khẳng định hành vi cũ, sửa xong chạy lại hai file đạt 32/32), check 0), chờ chủ dự án chơi thử |
 |---|---|---|
 
 Quyết định: D-163. Model: Fable 5.2 high (chủ dự án chọn).
@@ -25,17 +25,26 @@ Quyết định: D-163. Model: Fable 5.2 high (chủ dự án chọn).
   - `chapter2_director.gd`: vùng nhìn và chỗ tay cầm phủ dọc chiều dài khăn (`_hang_low` có tham số).
 
 ### 2.3 Áo của Việt và ổ khoá
-- `build_viet_shirt.py` → `viet_shirt.glb`: áo thun kẻ xanh navy/trắng gấp, vải scan CC0 Rough Linen. Nằm trên kệ 0,75 m của tủ Việt (kệ thật của tủ Tripo; áo PS1 lơ lửng ở 0,87 m). `Anchors/ShirtSpot` dời theo (`FURNISHED_ANCHORS`).
+- `build_viet_shirt.py` → `viet_shirt.glb`: áo thun kẻ xanh navy/trắng gấp, vải scan CC0 Rough Linen. Nằm trên **kệ trên của tủ Việt (1,34 m, ngang ngực)**, trong nửa tủ có cánh mở. `Anchors/ShirtSpot` dời theo (`FURNISHED_ANCHORS`).
+  - Áo PS1 nằm ở (0,3; 0,87; −1,25): đúng vách ngăn giữa hai nửa tủ Tripo, lơ lửng trên kệ 0,75 m.
+  - Đã thử kệ 0,75 m: chỉ với tới từ một ô sàn rộng cỡ bàn tay, và vùng "lục tủ" của chương 1 (cao 1,0 m) chắn giữa mắt và áo nên không hiện gợi ý. Ở kệ 1,34 m: với tới từ một vùng sàn khoảng 30 × 35 cm trước tủ.
 - `build_combo_lock.py` → `combo_lock.glb`: ổ khoá số thân đồng **4 bánh số** (mật mã 4 chữ số; khoá PS1 chỉ có 3), hiện 4-7-3-6 (không phải đáp án), còng thép móc qua bản lề khoá trên hai cánh tủ Đạt. Mở khoá: còng nhấc lên và xoay quanh chân dài (`dat_locker.gd`, nút `Shackle/Swing`).
 - Giấy nhớ trên tủ Đạt lơ lửng trước cửa 5 cm: dán sát cửa và nhích lên trên bản lề khoá.
 
-## 3. Còn phải làm
-1. Sửa test cũ theo thay đổi: `test_room407.gd` (còng khoá), `test_room407_bathroom_fixes.gd` (giẻ), `test_t243_chapter2.gd` (chỗ đứng lấy áo: áo dời tới (0,36; 0,77; −1,44)).
-2. Viết test mới T-245: tay gương (lớp vẽ, khuỷu thấp hơn bàn tay, cổ tay < 35°), giẻ mất khi lấy, áo và khoá là mô hình thật.
-3. Kiểm chỗ bot lấy áo (`tools/ch2-profile.json` `pickup_shirt` đứng ở (31,0; 0,05; −1,25)): tay có với tới áo ở chỗ mới không; nếu không thì dời chỗ đứng.
-4. Full test, check, ảnh trước/sau vào `art_source/graphics_upgrade/protagonist/previews/t245/`, README/CREDITS của `room407_furnished`, D-163, STATUS, merge, build bản chơi.
-5. Xóa `game/_probe_tmp/` (không commit).
+## 3. Kiểm
+- **Test mới** `game/tests/player/test_t245_ch2_fixes.gd` (3 test, đo trong chương 2 thật):
+  - tay gương khi bật đèn pin và khi giơ máy, nhìn ngang / cúi 35° / ngẩng 25°: khuỷu gập 55–125°, cổ tay < 35°, khuỷu thấp hơn vai ≥ 8 cm, bàn tay cách thân < 0,42 m, máy nằm trong bàn tay gương; lớp vẽ đúng (không camera nào ngoài camera người chơi vẽ lớp góc nhìn thứ nhất); cất máy thì hai tay trùng nhau lại;
+  - giẻ: chỉ khăn xanh được vẽ làm giẻ, lấy bằng tay thì mất khỏi giá, đặt lại thì hiện, dùng rồi thì mất hẳn;
+  - áo nằm trên kệ, trong tủ, lấy được bằng tay từ ≥ 6/24 ô sàn trước tủ; khoá PS1 không còn vẽ, khoá mới áp cửa tủ, còng mở ra và đóng về chỗ.
+- **Test cũ sửa theo:** `test_room407.gd` (còng khoá), `test_room407_bathroom_fixes.gd` (giẻ là khăn trên giá), `test_t243_chapter2.gd` (chỗ đứng lấy áo).
+- **Kết quả:** full test 924/0 (lượt full 922/2: hai test cũ còn khẳng định hành vi cũ, sửa xong chạy lại hai file đạt 32/32), check 0.
+- **Chưa làm:** chưa chạy lại bot chương 2 (bot gọi thẳng `interact` của giẻ/khăn/áo nên không phụ thuộc chỗ đứng; cần chủ dự án cho phép mới chạy). Chưa đo lại FPS (thêm khoảng 18 xương sao chép của tay trái và một điện thoại sao chép; không thêm camera hay đèn).
+- **Ảnh trước/sau:** `art_source/graphics_upgrade/protagonist/previews/t245/` (`phone_in_mirror_before_after.jpg`, `rag_shirt_lock_before_after.jpg`, ba ảnh mô hình).
+
+### Thấy thêm, chưa sửa
+- Cánh tủ Việt khi mở: khối va chạm vô hình (của tủ PS1) rộng 0,6 m, còn cánh Tripo chỉ rộng 0,32 m, nên trước nửa tủ mở có một đoạn "tường vô hình" 0,28 m. Có từ G3, không thuộc việc này.
+- Mảnh giấy PS1 (`Anchors/VietLocker/Paper1`) nằm ở vách ngăn giữa hai nửa tủ.
 
 ## 4. Chủ dự án xem khi chơi
 - Soi gương nhà tắm và gương dài khi bật đèn pin, khi giơ máy (Q), khi ngồi, khi đi.
-- Lấy giẻ (khăn xanh trên giá nhà tắm), lấy áo kẻ trong tủ Việt, nhìn ổ khoá tủ Đạt (chương 1: giải mật mã xem còng mở).
+- Lấy giẻ (khăn xanh trên giá nhà tắm), lấy áo kẻ trên kệ trên của tủ Việt, nhìn ổ khoá tủ Đạt (chương 1: giải mật mã xem còng mở).

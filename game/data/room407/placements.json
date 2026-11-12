@@ -105,7 +105,7 @@
   {"name": "Mop", "model": "res://assets/models/graphics_pilot/room407_batch3/mop.glb", "position": [7.72, 0, -4.3], "yaw": 0, "source_node": "D-100"},
   {"name": "TowelRack", "model": "res://assets/models/graphics_pilot/room407_furnished/towel_rack_bare.glb", "position": [7.892, 1.15, -5.3], "yaw": 90, "mount": "wall", "source_node": "D-100"},
   {"name": "RackRag", "model": "res://assets/models/graphics_pilot/room407_furnished/rack_rag.glb", "position": [7.833, 1.15, -5.3], "yaw": 90, "source_node": "T-245"},
-  {"name": "ShirtViet", "model": "res://assets/models/graphics_pilot/room407_furnished/viet_shirt.glb", "position": [0.36, 0.752, -1.44], "yaw": 90, "source_node": "T-245"},
+  {"name": "ShirtViet", "model": "res://assets/models/graphics_pilot/room407_furnished/viet_shirt.glb", "position": [0.36, 1.342, -1.44], "yaw": 90, "source_node": "T-245"},
   {"name": "LockDat", "model": "res://assets/models/graphics_pilot/room407_furnished/combo_lock.glb", "position": [7.41, 1.22, -0.45], "yaw": -90, "source_node": "T-245"},
   {"name": "DryingRack", "model": "res://assets/models/graphics_pilot/room407_batch3/drying_rack.glb", "position": [1.75, 0, -6.4], "yaw": 0, "source_node": "D-100"},
   {"name": "BathBasins", "model": "res://assets/models/graphics_pilot/room407_batch3/bath_basins.glb", "position": [6.1, 0, -6.2], "yaw": 0, "source_node": "D-100"},

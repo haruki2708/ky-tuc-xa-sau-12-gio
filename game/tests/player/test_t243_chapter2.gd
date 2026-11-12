@@ -158,7 +158,7 @@ func test_the_rag_towel_and_shirt_are_carried_in_the_right_hand() -> void:
 	var rag := anchors.get_node("RagSpot/Carry_rag") as CarryItem
 	var towel := anchors.get_node("TowelSpot/Carry_towel") as CarryItem
 	var shirt := anchors.get_node("ShirtSpot/Carry_shirt") as CarryItem
-	for entry: Array in [[rag, Vector3(7.5, 0.02, -5.7)], [towel, Vector3(2.8, 0.02, -7.45)], [shirt, Vector3(0.91, 0.02, -0.9)]]:
+	for entry: Array in [[rag, Vector3(7.5, 0.02, -5.7)], [towel, Vector3(2.8, 0.02, -7.45)], [shirt, Vector3(1.0, 0.02, -1.25)]]:
 		var item: CarryItem = entry[0]
 		var seen: Dictionary = await _use(item, entry[1], item.hand_target().global_position)
 		var name: String = String(item.item_id)
@@ -213,7 +213,7 @@ func test_a_gag_is_pressed_into_a_sitting_corpse_by_hand() -> void:
 	assert_true(bool(director._gagged[1]) and towel.consumed, "Phuc is gagged")
 	# Lying down, the mouths are out of reach: no prompt.
 	var shirt := anchors.get_node("ShirtSpot/Carry_shirt") as CarryItem
-	await _use(shirt, Vector3(0.91, 0.02, -0.9), shirt.hand_target().global_position)
+	await _use(shirt, Vector3(1.0, 0.02, -1.25), shirt.hand_target().global_position)
 	director._corpse_state(4, &"slump")
 	for frame: int in 60:
 		await tree.process_frame

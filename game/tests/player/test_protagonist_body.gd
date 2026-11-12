@@ -92,7 +92,8 @@ func test_view_mesh_hides_the_head_and_the_mirror_mesh_casts_the_shadow() -> voi
 	for index: int in body.view_meshes.size():
 		var view: MeshInstance3D = body.view_meshes[index]
 		var mirror: MeshInstance3D = body.mirror_meshes[index]
-		assert_eq(view.layers, 1)
+		# T-245: the view mesh is on a layer only the player's own camera draws.
+		assert_eq(view.layers, 1 << (PlayerBody.VIEW_LAYER - 1))
 		assert_eq(view.cast_shadow, GeometryInstance3D.SHADOW_CASTING_SETTING_OFF)
 		assert_eq(mirror.layers, 1 << (PlayerBody.MIRROR_LAYER - 1))
 		assert_eq(mirror.cast_shadow, GeometryInstance3D.SHADOW_CASTING_SETTING_ON)
@@ -104,6 +105,7 @@ func test_view_mesh_hides_the_head_and_the_mirror_mesh_casts_the_shadow() -> voi
 		assert_true(folded, "the view mesh folds the head away")
 	var camera := walker.get_node("Head/Camera3D") as Camera3D
 	assert_false(camera.get_cull_mask_value(PlayerBody.MIRROR_LAYER), "the player's camera skips the mirror mesh")
+	assert_true(camera.get_cull_mask_value(PlayerBody.VIEW_LAYER), "and draws the view mesh")
 
 
 func test_eyes_stand_under_the_camera_and_the_head_stays_put() -> void:

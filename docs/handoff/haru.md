@@ -88,13 +88,9 @@ Trả lời và viết tài liệu bằng tiếng Việt; code, comment, commit 
 - **Nguồn đúng khi lệch nhau:** mục 3 file này mới nhất; rồi `docs/STATUS.md`; `docs/ROADMAP.md` chỉ cập nhật khi qua mốc.
 
 ## 3. Tiến độ integrator để lại (integrator cập nhật sau mỗi bước)
-**Cập nhật:** 12/11/2026, integrator (Fable 5.2 high). Chủ dự án bảo lưu tiến độ để reset hạn mức; integrator làm tiếp sau khi reset.
+**Cập nhật:** 12/11/2026, integrator (Fable 5.2 high).
 
-- **Đang làm:** [T-245](../tasks/T-245-ch2-playtest-fixes.md) (D-163), nhánh `integrator/T-245-ch2-playtest-fixes` (đã push, commit WIP): sửa ba việc chủ dự án báo sau khi chơi chương 2 bản `e98ec15`:
-  1. tay cầm điện thoại trong gương trông gãy → gương vẽ tay trái theo tư thế riêng;
-  2. lấy giẻ mà giẻ vẫn còn → khăn xanh trên giá là giẻ, lấy thì mất;
-  3. áo của Việt và ổ khoá tủ Đạt là khối PS1 → mô hình thật dựng bằng Blender.
-- **Đã xong trên nhánh:** toàn bộ code và mô hình (xem card mục 2), đã chụp ảnh kiểm bằng mắt. **Chưa chạy test nào.**
-- **Bước tiếp (card mục 3):** sửa 3 test cũ, viết test T-245, kiểm chỗ bot lấy áo, full test + check, ảnh trước/sau, D-163 + STATUS, merge main, build bản chơi, báo chủ dự án.
-- **Lưu ý:** `game/_probe_tmp/` có cảnh thử (`t245_phone`, `t245_measure`, `t245_ch2`), không commit, xóa khi xong. Ảnh thử ở `build/integrator/t245/` (không commit).
-- **Trước đó:** T-243 đã merge (`e98ec15`), bản chơi `build/dist/KyTucXa-0.0.1-e98ec15-win64.zip`. Lane E chờ T-244 (prompt `lane-e.md` 1c).
+- **Vừa xong:** [T-245](../tasks/T-245-ch2-playtest-fixes.md) (D-163) merge vào main (full test 924/0 (lượt full 922/2: hai test cũ còn khẳng định hành vi cũ, sửa xong chạy lại hai file đạt 32/32), check 0): tay cầm điện thoại trong gương, giẻ là khăn trên giá, áo Việt và ổ khoá tủ Đạt dựng bằng Blender.
+- **Đang làm:** build bản chơi (`pwsh tools/package.ps1`), rồi báo chủ dự án chơi lại chương 2 (card T-245 mục 4).
+- **Đang chờ:** lane E làm T-244 (tiếng cửa) khi chủ dự án dán prompt `lane-e.md` 1c. Việc lớn tiếp theo integrator đề xuất: xác ba bạn cùng phòng bằng Tripo (T-221, chủ dự án tạo m1 trước).
+- **Chưa làm:** chưa chạy lại bot chương 2 sau T-245 (cần chủ dự án cho phép).

@@ -25,9 +25,12 @@ const REPLACED_PS1: Array[String] = ["Anchors/VietLocker/Back", "Anchors/VietLoc
 	# T-245 (D-163): the rag is the green cloth on the rack, Viet's shirt and Dat's lock are real things.
 	"Anchors/RagSpot/Model", "Anchors/ShirtSpot/Model", "Anchors/DatLocker/CombinationLock",
 	"Anchors/DatLocker/Wheel*", "Anchors/DatLocker/Shackle"]
-## T-245 (D-163): Viet's shirt lies on the furnished locker's own shelf (0.75 m, in the half behind
-## its door), not where the PS1 locker had one.
-const FURNISHED_ANCHORS := {"Anchors/ShirtSpot": Vector3(0.36, 0.77, -1.44)}
+## T-245 (D-163): Viet's shirt lies on the furnished locker's own top shelf (VIET_SHIRT_SHELF, in
+## the half behind its door), not where the PS1 locker had a shelf: chest high, where it is seen
+## and reached standing before the open locker (the shelf at 0.75 m was reached from a patch of floor
+## a hand wide, and chapter 1's search zone stood between the eyes and it).
+const VIET_SHIRT_SHELF := 1.34
+const FURNISHED_ANCHORS := {"Anchors/ShirtSpot": Vector3(0.36, VIET_SHIRT_SHELF + 0.02, -1.44)}
 ## T-245: the rag is taken by the cloth this far under its top edge on the bar.
 const RAG_GRAB_DROP := 0.03
 ## T-222: the upgraded shell shows the balcony, so the chapter-2 towel (TowelSpot, carry item) moves
