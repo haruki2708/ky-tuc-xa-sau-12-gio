@@ -1,5 +1,5 @@
 # T-249 — Thân Trần Trung vào chương 3, phần không phụ thuộc cảnh: thanh sắt, ngoảnh lại khi chạy, thở dốc
-- Lane: **HARU làm thay lane B** (lane B hết hạn mức; chủ dự án chọn 12/11) | Trạng thái: **đang dở** (HARU rồi integrator, 12/11; xem Handoff) | Agent: tài khoản Claude của HARU, mở trong **`D:\GAME_WORK\lane-b2`** bằng `D:\GAME_WORK\mo_claude_haru_lam_lane_b.cmd`; model đề xuất **Fable 5.2 high**. Chủ dự án tự dán prompt (integrator không điều khiển lane Claude).
+- Lane: **HARU làm thay lane B** (lane B hết hạn mức; chủ dự án chọn 12/11) | Trạng thái: **xong phần lane B, chờ integrator review** (HARU, integrator, rồi lane B, 12/11; xem Handoff) | Agent: tài khoản Claude của HARU, mở trong **`D:\GAME_WORK\lane-b2`** bằng `D:\GAME_WORK\mo_claude_haru_lam_lane_b.cmd`; model đề xuất **Fable 5.2 high**. Chủ dự án tự dán prompt (integrator không điều khiển lane Claude).
 - Nhánh: `lane-b/T-249-protagonist-chapter3-bar` từ `origin/main` mới nhất.
 - Quyết định giao: **D-165** (12/11/2026): đồ hoạ thật trước (T-248); thân chương 3 tách hai phần, phần không phụ thuộc cảnh làm ngay. Phương án các dòng lấy theo đề xuất của [T-247](T-247-protagonist-chapter3-survey.md) (`tools/reports/T-247-ch3-body-survey.md` mục 1); chủ dự án đổi dòng nào thì integrator sửa card trước khi giao.
 
@@ -43,14 +43,14 @@
 - Commit log, video, `anh_chup_sua_loi/`, `game/_probe_tmp/`.
 
 ## Checklist
-- [ ] Bật thân chương 3
-- [ ] Mô hình thanh sắt Blender, cầm trong tay phải (dòng 1)
-- [ ] Vung bổ chéo, gãy rơi khỏi tay (dòng 2)
-- [ ] Nhặt cúi 1,4 s, B05/B06 với được (dòng 3)
-- [ ] Ngư đưa thanh vào tay (dòng 4)
-- [ ] Ngoảnh lại khi chạy (dòng 11), thở dốc (dòng 12)
-- [ ] Test mới, test cũ đạt; ảnh `previews/t249/`
-- [ ] Full test, check; push nhánh; Handoff
+- [x] Bật thân chương 3
+- [x] Mô hình thanh sắt Blender, cầm trong tay phải (dòng 1)
+- [x] Vung bổ chéo, gãy rơi khỏi tay (dòng 2)
+- [x] Nhặt cúi 1,4 s, B05/B06 với được (dòng 3)
+- [x] Ngư đưa thanh vào tay (dòng 4)
+- [x] Ngoảnh lại khi chạy (dòng 11), thở dốc (dòng 12)
+- [x] Test mới, test cũ đạt; ảnh `previews/t249/`
+- [x] Full test, check; push nhánh; Handoff
 
 ## Handoff
 ### 12/11/2026 — HARU (dừng 20:03, hết hạn mức) rồi integrator (Fable 5.2, dừng vì gần hết hạn mức)
@@ -78,3 +78,74 @@
 
 **Chưa kiểm:** tất cả. Không chạy bot, không đo FPS.
 
+### 12/11/2026 — lane B (Claude, Opus 5.5) làm tiếp và hoàn tất
+Nhánh `lane-b/T-249-protagonist-chapter3-bar`, nhận ở `163b38d`. Commit: `872ce07` (lần chạy đầu: bật thân, đặt thanh, cầm đầu gần, cú vung), `14ef7e7` (test mới, thở dốc an toàn), và commit ảnh, CREDITS, README, card này.
+Full `pwsh tools/test.ps1`: `RESULT: 939 passed, 0 failed` (12/11, 21:34–22:03, log `build/t249/full_test.log`, không commit). `pwsh tools/check.ps1`: `RESULT: check 0 error(s)` (22:03–22:20, `build/t249/full_check.log`); sau đó đã `git checkout -- game/default_bus_layout.tres`. Chạy ở `14ef7e7`; commit sau chỉ thêm ảnh, CREDITS, README, card.
+
+**Đã làm (theo "Việc còn lại" ở trên):**
+1. **Biên dịch:** code HARU và integrator viết biên dịch được ngay, không lỗi kiểu. Cây node `iron_bar.glb` đúng như code đọc (`Armature/Skeleton3D/Bar`, 7 xương `Bar0…Bar6`, `HalfGrip`, `HalfTip`).
+2. **Đặt thanh:** `_settle_bars` đặt mọi thanh nằm lên mặt dưới nó (`IronBar.rest_on`), tia dò xuống thêm 0,3 m. Thanh nằm cách mặt đất đúng một bán kính ống (1,45 cm). `test_ch2_4_hand_targets.gd`: thanh sắt kiểu nắm `HOOK`, độ cao 6 thanh của director đo so với mặt ngay dưới thanh (0,008–0,025 m), chương 3 có thân.
+3. **Bật thân:** `chapter3.tscn` `protagonist_body = true`; `test_protagonist_chapter1.gd` (chương 1–3 có thân, chương 4 chưa).
+4. **Chạy thử trong chương 3 thật** (cảnh tạm `game/_probe_tmp/`, đã xoá; bản sao `build/t249/probe_backup/`, không commit). Sửa theo ảnh:
+   - **Cú vung:** lúc chạm, thanh chúi xuống ngang gối trong khi luật trúng đầu ở tầm mắt. Đổi `BAR_SWING`, `BAR_BLOW` (0,5 → 0,46): giơ qua vai phải, chạm khi thanh chếch lên ngang tầm đầu phía trước, rồi vụt xuống bên trái. Thời gian, tầm, luật trúng không đổi.
+   - **Nhặt thanh, lỗi thật:** đi tới từ phía một đầu thanh thì `IronBar.hand_target` giữ đầu "bên phải" cũ, có khi là đầu xa (cách vai 1,54 m) nên **không hiện lời nhắc**. Nay đứng dọc theo thanh thì cầm đầu gần; đứng bên cạnh thì vẫn đầu bên phải.
+   - **Thở dốc:** `_tick_breath` gọi `bool(null)` khi người chơi giả trong test không có thể lực (lỗi script trong nhóm `protagonist`, `t24`). Nay so `== true`.
+   - Không đổi `BAR_READY`, `BACK_*`, `BREATH_*`: ảnh trông ổn.
+5. **Test mới** `game/tests/player/test_t249_chapter3_bar.gd`, 7 test, chương 3 thật, đo trên xương đã dựng:
+   - thân ở chương 3;
+   - thanh trong nắm tay phải khi đứng, chạy, giữa cú vung, sau cú vung (chuôi cách xương bàn tay < 13 cm, đo được 9,6 cm; cách các xương sống > 10 cm; không còn thanh trước camera);
+   - vung đúng 0,55 s, đang chạy vẫn chạy (chậm nhất > 2,9 m/s);
+   - đập trời trượt (`[false, 8]`), đập đầu trúng và xác tê liệt; lần cuối gãy, hai nửa rơi nằm dưới đất, tay hết thanh;
+   - đủ 7 thanh với tới bằng cúi gập (mỗi thanh 30–32 chỗ đứng trên lưới thử, kể cả B05, B06); nhặt B05: cúi 1,4 s, không khom, thanh mới trong tay, thanh dưới đất biến mất;
+   - Ngư đưa thanh (vườn hoa, director thật): thanh vào nắm tay;
+   - chạy mà camera quay ra sau: clip chạy phát xuôi, thân hướng theo chiều chạy (lệch < 15°), ngực ngoảnh > 20°, đầu thêm; đi lùi giữ như cũ;
+   - hết sức: camera lệch < 1 mm, vai nhô > 8 mm; hồi sức thì hết thở dốc.
+6. **Nhóm test cũ, chạy riêng đều đạt:** `ch3` 45, `chapter3` 29, `hand_targets` 6, `protagonist` 26, `t24` 35, `t249` 7.
+
+**Số đo chính** (cảnh tạm, chương 3):
+| Việc | Đo |
+|---|---|
+| Cầm, đứng | chuôi cách xương bàn tay 9,6 cm; thanh cách camera 0,65 m; góc mắt thấy đầu thanh |
+| Vung | 0,55 s; đang đi vẫn đi 1,25 m trong 0,55 s (2,2 m/s); thanh không gần xương thân nào dưới 16 cm |
+| Gãy | trúng, xác tê liệt; hai nửa chạm đất sau khoảng 1,2 s |
+| Nhặt | 7/7 thanh với tới (180–212 chỗ đứng mỗi thanh, vòng 0,25–1 m); cúi 1,4 s, đầu hạ còn 0,5 m |
+| Ngoảnh lại | thân lệch hướng chạy 0°, ngực 38°, đầu 25°, clip chạy tốc độ +1,14 |
+| Thở dốc | camera đứng yên; vai nhô 15 mm mỗi nhịp |
+
+**Ảnh:** `art_source/graphics_upgrade/protagonist/previews/t249/`, 35 tấm 1080p, chương 3 thật, ánh sáng của chương (đêm). Đã tự xem từng tấm.
+- `1_` cầm (đứng, cúi nhìn, đi, chạy);
+- `2_` vung (6 khung, cả lúc đang đi);
+- `3_` gãy;
+- `4_` nhặt (5 khung);
+- `5_` Ngư đưa;
+- `6_` ngoảnh lại khi chạy, đi lùi;
+- `7_` thở dốc;
+- `x_nen_gia_phong_407_chan_lun.jpg`: xem "Thấy thêm".
+
+**Quyết định kỹ thuật (giữ như integrator đã chọn, báo chủ dự án):**
+- Tư thế sẵn sàng: thanh chếch lên phía trước, nắm tay trước hông phải (không buông dọc chân), để góc mắt thấy đầu thanh. Ảnh `1_cam_*`.
+- Đang cầm thanh mà gặp giấy: đọc tại chỗ, không nhón lên.
+- Đang làm việc khác bằng tay thì không vung được.
+- Nhặt thanh khi đang có thanh: thanh trong tay thẳng lại (thanh mới).
+- Thêm (lane B): đứng dọc theo thanh thì cầm đầu gần (sửa lỗi không hiện lời nhắc ở trên).
+
+**Thấy thêm, chưa sửa (ngoài phạm vi card):**
+- **Tấm nền giả quanh nhà B:** `Floor4/Room407/Furnished/outside/OutsideGround` (80 × 28 m, cảnh nhìn ra cửa sổ phòng 407 ở chương 1–2) nổi cao hơn mặt đất thật của khuôn viên 14 cm (−9,80 so với −9,94) và không có va chạm. Ở chương 3, trong vùng đó (cả đường nội bộ cạnh nhà B):
+  - chân người chơi lún vào "mặt đất";
+  - thanh **B04** nằm chìm dưới tấm nền, không thấy (từ trước T-249 đã vậy: trước đây thanh ở −9,89, vẫn dưới −9,80).
+  
+  Ảnh `previews/t249/x_nen_gia_phong_407_chan_lun.jpg` (chụp trước khi sửa chỗ cầm; chỉ để thấy chân lún và thanh không hiện). Đề xuất: ẩn `Furnished/outside` khi có `Campus` (chương 3–4), hoặc hạ xuống −9,94. Việc của lane B nhưng ở cảnh phòng 407, nên chờ chủ dự án hoặc integrator giao.
+- **Ngoảnh lại khi chạy:** góc mắt thấy vai áo của chính mình ở cạnh dưới khi nhìn hẳn ra sau (ảnh `6_ngoanh_2_mat`). Không thấy cổ hay gáy.
+- Trên cầu thang chân còn lún hoặc lơ lửng (T-247 dòng 9): để nguyên theo card.
+
+**Chưa kiểm:**
+- Chưa chơi bằng tay. Mọi kiểm tra là test tự động và ảnh chụp tự động.
+- Chưa thử cầm thanh khi đi khom, chạy ngang, lên xuống cầu thang, cầm điện thoại tay trái cùng lúc.
+- Không chạy bot, không đo FPS (chủ dự án chưa cho phép). Chỗ nghi nặng: thanh trong tay thêm một lưới có xương (1.532 tam giác) và một modifier ngực, thở; nặng nhất lúc ở sân vận động đông xác.
+
+**Câu hỏi cho chủ dự án:**
+1. Tấm nền giả quanh nhà B (ở trên): cho làm một card nhỏ để ẩn nó ở chương 3–4 (đề xuất), hay để sau?
+2. Tư thế cầm sẵn sàng (thanh chếch lên phía trước, ảnh `1_cam_*`) có được không, hay muốn buông thanh dọc chân như bảng T-247 (khi đó góc mắt không thấy thanh)?
+3. Cho phép chạy bot `ch3` và đo FPS chương 3 có thân khi integrator merge không?
+
+**Yêu cầu thay đổi ngoài phạm vi:** tấm nền giả quanh nhà B (câu hỏi 1).
