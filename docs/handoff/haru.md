@@ -91,6 +91,6 @@ Trả lời và viết tài liệu bằng tiếng Việt; code, comment, commit 
 **Cập nhật:** 12/11/2026, integrator (Opus 5.5 high).
 
 - **Vừa xong:** [T-246](../tasks/T-246-viet-locker-door-collision.md) merge vào main (full test 925/0, check 0): bỏ tường vô hình trước tủ Việt mở cánh. Trước đó [T-245](../tasks/T-245-ch2-playtest-fixes.md) (D-163) merge vào main (full test 924/0 (lượt full 922/2: hai test cũ còn khẳng định hành vi cũ, sửa xong chạy lại hai file đạt 32/32), check 0): tay cầm điện thoại trong gương, giẻ là khăn trên giá, áo Việt và ổ khoá tủ Đạt dựng bằng Blender.
-- **Bản chơi:** `build/windows/KyTucXa.exe`, zip `build/dist/KyTucXa-0.0.1-e96056f-win64.zip` (package PASS 12/11 10:30). Chủ dự án chơi thử chương 2 đạt (12/11).
+- **Bản chơi:** `build/windows/KyTucXa.exe`, zip `build/dist/KyTucXa-0.0.1-17e8a4e-win64.zip` (sau T-246, package PASS 12/11 16:14). Bản `e96056f` (T-245) chủ dự án chơi thử chương 2 đạt (12/11).
 - **Đang chờ:** lane E làm T-244 (tiếng cửa) khi chủ dự án dán prompt `lane-e.md` 1c. Việc lớn tiếp theo integrator đề xuất: xác ba bạn cùng phòng bằng Tripo (T-221, chủ dự án tạo m1 trước).
 - **Chưa làm:** chưa chạy lại bot chương 2 sau T-245 (cần chủ dự án cho phép).
