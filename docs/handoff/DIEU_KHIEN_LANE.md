@@ -35,4 +35,9 @@ Chạy ngầm (D-164): integrator gọi bạn, chủ dự án không dán prompt
 - Mỗi lúc chỉ một Godot nặng (file khóa). Máy yếu RAM: integrator giao lần lượt, không cho nhiều lane chạy Godot cùng lúc.
 - Bot, đo FPS, tiêu credit Tripo: vẫn hỏi chủ dự án trước khi giao.
 - Không mở hai agent trong cùng một workspace: khi lane đang chạy ngầm, chủ dự án đừng gõ vào cửa sổ Codex/Claude cũ của lane đó.
-- Hết hạn mức tài khoản lane thì lane dừng; integrator báo lại, không tự chuyển việc sang tài khoản khác.
+- **Hết hạn mức** (chủ dự án dặn 12/11): integrator theo dõi nhật ký lane, thấy lỗi hạn mức thì báo ngay chủ dự án. Chủ dự án đăng nhập một tài khoản khác vào **cùng thư mục đăng nhập của lane** (lane E vẫn là `.codex-accountB`):
+  ```
+  $env:CODEX_HOME = "$env:USERPROFILE\.codex-accountB"
+  codex -c cli_auth_credentials_store=file login
+  ```
+  Xong, integrator chạy lại lane với `-Resume` để làm tiếp phiên đang dở. Integrator không tự đổi tài khoản.
