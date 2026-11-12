@@ -1,5 +1,5 @@
 # T-249 — Thân Trần Trung vào chương 3, phần không phụ thuộc cảnh: thanh sắt, ngoảnh lại khi chạy, thở dốc
-- Lane: **HARU làm thay lane B** (lane B hết hạn mức; chủ dự án chọn 12/11) | Trạng thái: **xong phần lane B, chờ integrator review** (HARU, integrator, rồi lane B, 12/11; xem Handoff) | Agent: tài khoản Claude của HARU, mở trong **`D:\GAME_WORK\lane-b2`** bằng `D:\GAME_WORK\mo_claude_haru_lam_lane_b.cmd`; model đề xuất **Fable 5.2 high**. Chủ dự án tự dán prompt (integrator không điều khiển lane Claude).
+- Lane: **HARU làm thay lane B** (lane B hết hạn mức; chủ dự án chọn 12/11) | Trạng thái: **merged 12/11/2026** (full test 939/0, check 0), chờ chủ dự án chơi thử (HARU, integrator, rồi lane B làm) | Agent: tài khoản Claude của HARU, mở trong **`D:\GAME_WORK\lane-b2`** bằng `D:\GAME_WORK\mo_claude_haru_lam_lane_b.cmd`; model đề xuất **Fable 5.2 high**. Chủ dự án tự dán prompt (integrator không điều khiển lane Claude).
 - Nhánh: `lane-b/T-249-protagonist-chapter3-bar` từ `origin/main` mới nhất.
 - Quyết định giao: **D-165** (12/11/2026): đồ hoạ thật trước (T-248); thân chương 3 tách hai phần, phần không phụ thuộc cảnh làm ngay. Phương án các dòng lấy theo đề xuất của [T-247](T-247-protagonist-chapter3-survey.md) (`tools/reports/T-247-ch3-body-survey.md` mục 1); chủ dự án đổi dòng nào thì integrator sửa card trước khi giao.
 
@@ -149,3 +149,10 @@ Full `pwsh tools/test.ps1`: `RESULT: 939 passed, 0 failed` (12/11, 21:34–22:03
 3. Cho phép chạy bot `ch3` và đo FPS chương 3 có thân khi integrator merge không?
 
 **Yêu cầu thay đổi ngoài phạm vi:** tấm nền giả quanh nhà B (câu hỏi 1).
+
+## Review integrator (12/11/2026)
+- Đạt. Lane B làm tiếp phần HARU và integrator để dở: code biên dịch được, lane B nâng cú vung lúc chạm lên ngang đầu, sửa lỗi phần thở dốc với người chơi giả, 7 test mới, 35 ảnh trong chương 3 thật.
+- Phạm vi đúng: ngoài file của lane chỉ sửa `chapter3_director.gd` (`_settle_bars`) và `test_ch2_4_hand_targets.gd` như card cho phép, cộng `test_protagonist_chapter1.gd` (chương 3 nay có thân).
+- Sau merge: full test 939/0, check 0.
+- Câu hỏi của lane B chuyển chủ dự án: (1) ẩn tấm nền giả cao 14 cm quanh nhà B ở chương 3–4 (chân lún, thanh B04 chìm; có từ trước); (2) giữ tư thế cầm thanh chếch lên trước hông hay buông dọc chân; (3) cho phép bot chương 3 và đo FPS.
+- Chưa kiểm (lane B ghi): chơi bằng tay; cầm thanh khi khom, trên cầu thang, khi tay trái cầm điện thoại.
