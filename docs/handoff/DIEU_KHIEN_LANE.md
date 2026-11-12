@@ -2,6 +2,8 @@
 
 Từ D-164, integrator tự giao card và chạy lane ở chế độ ngầm. Chủ dự án không phải dán prompt từ `lane-*.md` nữa (vẫn dán tay được nếu muốn, các prompt cũ giữ nguyên).
 
+**12/11/2026, chủ dự án chỉnh:** integrator chỉ điều khiển các phiên **Codex (lane A, C, E)**. **Lane B (Claude) chủ dự án tự dán prompt** như cũ: integrator viết prompt vào `lane-b.md` rồi báo chủ dự án, không gọi `chay_lane.ps1 -Lane B`.
+
 ## 1. Đăng nhập của từng lane (chủ dự án đã đặt sẵn, không cần đăng nhập lại)
 | Lane | Workspace | Đăng nhập |
 |---|---|---|

@@ -72,7 +72,7 @@
    - Hỏi chủ dự án trước khi chạy bot hoặc đo FPS.
    - Kiểm `Get-Process godot*,KyTucXa*` trước khi chạy Godot.
    - Máy từng thiếu RAM làm lượt test chạy nền bị dừng (16/10). Gặp lại thì báo chủ dự án, không tự chạy lại.
-11. Số đã cấp **D-076…D-164, T-207…T-246** (T-238 giữ cho bot sân vận động đã hoãn, D-149). Số tiếp theo **D-165, T-247**.
+11. Số đã cấp **D-076…D-164, T-207…T-247** (T-238 giữ cho bot sân vận động đã hoãn, D-149). Số tiếp theo **D-165, T-248**.
 
 **Repo:** https://github.com/haruki2708/ky-tuc-xa-sau-12-gio (private; trước là `tuaanh666/...`)
 
@@ -124,6 +124,7 @@
 | [T-242 Cửa nhà tắm, cửa ban công bằng tay](tasks/T-242-doors-by-hand.md) | integrator (thay B) | **done: merged 12/11, D-154/D-159; chủ dự án chơi thử bản `780ed57` và chốt ("khá ổn, tôi chốt")**: hai cửa mở/đóng bằng tay ở chương 1, Trung tự bước tránh cánh cửa (cả cửa 407), quản lý mở cửa ban công. |
 | [T-243 Thân Trần Trung chương 2](tasks/T-243-protagonist-chapter2.md) | integrator (thay B) | **merged 12/11, D-161/D-162, chờ chủ dự án chơi thử** (full 921/0, check 0, bot ch2_good đạt, [FPS](../tools/reports/T-243-ch2-body-fps.md) ≥ 60): hích vai cửa kẹt, cầm đồ tay phải, cúi ấn đồ vào miệng xác, nút vòi sen, lau màn; cửa nhà tắm chương 2 giữ kẹt. |
 | [T-246 Tủ Việt mở cánh: bỏ tường vô hình](tasks/T-246-viet-locker-door-collision.md) | integrator | **merged 12/11** (full test 925/0, check 0): khối chặn cánh tủ đúng bằng cánh Tripo 0,32 m, nửa tủ đóng có khối riêng; chờ chủ dự án chơi. |
+| [T-247 Khảo sát thân Trần Trung chương 3](tasks/T-247-protagonist-chapter3-survey.md) | B (chủ dự án tự dán prompt) | **todo, 12/11**: chỉ khảo sát và đề xuất, prompt [`lane-b.md`](handoff/lane-b.md) mục 1f. |
 | [T-244 Tiếng cửa nhà tắm, cửa ban công](tasks/T-244-hinged-door-sounds.md) | E | **đang làm, D-161**: integrator giao chạy ngầm 12/11 16:22 (D-164). |
 | [T-245 Sửa sau khi chơi chương 2](tasks/T-245-ch2-playtest-fixes.md) | integrator (thay B) | **merged 12/11, D-163, chủ dự án chơi thử đạt 12/11** (full test 924/0 (lượt full 922/2: hai test cũ còn khẳng định hành vi cũ, sửa xong chạy lại hai file đạt 32/32), check 0): tay cầm điện thoại trong gương, giẻ là khăn trên giá, áo Việt và ổ khoá tủ Đạt dựng bằng Blender. |
 | [T-236 Chạy bot chương 2 và 3](tasks/T-236-run-bots-ch2-ch3.md) | C (D-145) | **done một phần** 08/11, đã merge: ch2 good đạt; ch3 good kẹt ở vòng sống sót sân vận động; ca âm chưa chạy (việc sau) |

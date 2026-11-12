@@ -110,6 +110,25 @@ Cập nhật Checklist và Handoff trong card. Không sửa STATUS hay DECISIONS
 Cuối phiên báo ngắn bằng tiếng Việt: xong gì, nhánh, commit, ảnh và video ở đâu, câu hỏi cho chủ dự án, có bị chặn không.
 ```
 
+## 1f. Giao T-247 (12/11/2026): khảo sát đưa thân Trần Trung vào chương 3 (chỉ khảo sát)
+Chủ dự án tự dán (integrator không điều khiển lane B): mở Claude lane B bằng `D:\GAME_WORK\mo_claude_lane_b.cmd` (hoặc cửa sổ lane B đang mở), `/model` chọn **Opus 5.5**, effort đề xuất **high**, rồi dán:
+```text
+Việc mới cho lane B: T-247 — khảo sát đưa thân Trần Trung vào chương 3 (chỉ khảo sát và đề xuất, chưa sửa game). Đọc docs/tasks/T-247-protagonist-chapter3-survey.md.
+Ở D:\GAME_WORK\lane-b2: git status (giữ thay đổi đang có, báo nếu có), git fetch origin,
+git switch -c lane-b/T-247-protagonist-chapter3-survey origin/main, git lfs pull.
+Đầu phiên ghi commit của card đã đọc (git log -1 --format=%h origin/main -- docs/tasks/T-247-protagonist-chapter3-survey.md).
+Đọc AGENTS.md mục 3–5, card T-247 (mục "Cần đọc"), bảng chủ dự án chốt của chương 2 ở docs/tasks/T-243-protagonist-chapter2.md mục 1.
+Chương 1–2 đã có thân và đã được chủ dự án duyệt: giữ nguyên mọi luật đã duyệt, chỉ đề xuất cho chương 3.
+Lượt này KHÔNG sửa code, scene, test, chapter3.tscn: thử bật thân chỉ trong game/_probe_tmp/ (không commit, xoá khi xong).
+Mỗi thao tác đưa 2–3 phương án kèm một đề xuất; thứ cần chủ dự án chọn thì đưa vào bảng quyết định đầu báo cáo, không tự quyết.
+Tự chụp ảnh 1080p trong chương 3 thật vào art_source/graphics_upgrade/protagonist/previews/t247/, tự xem lại từng tấm; video (nếu có) để trong build/, không commit.
+Không chạy bot, không đo FPS, không tiêu credit Tripo. Godot theo luật Lượt Godot (file khóa D:\GAME_WORK\GODOT_DANG_CHAY.txt, tạo bằng CreateNew, xoá khi xong kể cả khi lỗi).
+Commit chỉ có báo cáo, ảnh và card nên không cần full test/check. Không commit log, video, anh_chup_sua_loi/, game/_probe_tmp/.
+Commit nhỏ "T-247: ...", git push -u origin lane-b/T-247-protagonist-chapter3-survey. Không push main, không mở PR.
+Cập nhật Checklist và Handoff trong card. Không sửa STATUS hay DECISIONS.
+Cuối phiên báo ngắn bằng tiếng Việt: xong gì, nhánh, commit, báo cáo và ảnh ở đâu, câu hỏi cho chủ dự án, có bị chặn không.
+```
+
 ## 2. Prompt giao việc (integrator điền T-xxx)
 ```text
 Việc mới cho lane B: <T-xxx> — đọc docs/tasks/<file card>.md.
