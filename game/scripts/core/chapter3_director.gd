@@ -524,8 +524,10 @@ func _place_bars() -> void:
 	_settle_bars.call_deferred(bars)
 
 
-## A marker may sit inside a prop's collision (B01 in the fallen bunk): lift
-## each bar onto the first surface above it, or the player could not pick it up.
+## A marker may sit inside a prop's collision (B01 in the fallen bunk) or a little
+## over or under the ground: lay each bar on the first surface under the point 2 m
+## over its marker (T-249: the pipe lies on it, IronBar.rest_on), or the player
+## could not pick it up.
 func _settle_bars(bars: Array[Node3D]) -> void:
 	await get_tree().physics_frame
 	if not is_inside_tree() or bars.is_empty():
@@ -535,8 +537,12 @@ func _settle_bars(bars: Array[Node3D]) -> void:
 		if not is_instance_valid(bar):
 			continue
 		var at := bar.global_position
-		var hit := state.intersect_ray(PhysicsRayQueryParameters3D.create(at + Vector3(0, 2.0, 0), at, 1))
-		if not hit.is_empty():
+		var hit := state.intersect_ray(PhysicsRayQueryParameters3D.create(at + Vector3(0, 2.0, 0), at - Vector3(0, 0.3, 0), 1))
+		if hit.is_empty():
+			continue
+		if bar.has_method("rest_on"):
+			bar.call("rest_on", hit.position.y)
+		else:
 			bar.global_position = Vector3(at.x, hit.position.y + 0.05, at.z)
 
 

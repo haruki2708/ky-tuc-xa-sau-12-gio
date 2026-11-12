@@ -170,3 +170,15 @@ Chủ dự án chơi bản có T-239 (10/11): cách cầm đã ổn, nhưng thâ
 
 **Ảnh:** `previews/t241/after_*.jpg` (1080p, chương 1 thật, bật đèn trần để thấy thân; `_mat` là mắt người chơi, `_ngoai` là nhìn từ ngoài; số trong tên là phần trăm giây của thao tác), ảnh ghép `previews/t241/compare_ban.jpg`, `compare_thap.jpg`. Ảnh chụp ở chỗ đứng xa nhất mà lời nhắc còn hiện, là chỗ người chơi thường bấm. Video để trong `build/t241/video/` (không đưa vào git).
 
+
+## T-249: thanh sắt chương 3, ngoảnh lại khi chạy, thở dốc (D-165)
+Thân Trần Trung bật ở chương 3 (`chapter3.tscn` `protagonist_body = true`). Card `docs/tasks/T-249-protagonist-chapter3-bar.md`.
+
+- **Thanh sắt thật:** `iron_bar/build_iron_bar.py` (Blender 5.2.2) dựng ống thép gỉ 0,85 m, 7 xương để uốn khi mòn, hai nửa gãy. `IronBarWeapon` giữ luật cũ (8 lần, tầm 1,5 m, 0,55 s, tốn sức như cũ).
+- **Cầm trong nắm tay phải:** dáng tay `bar_hand.gd` sinh từ bàn tay Tripo bằng `iron_bar/bar_grip.py` (như T-239). Tư thế sẵn sàng: nắm tay trước hông phải, thanh chếch lên phía trước (`BAR_READY`), góc mắt thấy đầu thanh.
+- **Vung:** bổ chéo từ vai phải (`BAR_SWING`): giơ qua vai, chạm ngang tầm đầu phía trước lúc 46% cú vung (`BAR_BLOW`), vụt xuống bên trái, về tư thế sẵn sàng. Không khoá di chuyển. Lần đập cuối: thanh gãy đôi ngay lúc chạm, hai nửa rơi xuống đất, nằm 45 s rồi biến mất.
+- **Nhặt dưới đất:** cúi gập 1,4 s (D-157), móc bằng đầu ngón (`HOOK`) rồi lăn vào nắm tay. Đứng bên cạnh thì cầm đầu thanh bên phải; đứng phía một đầu thanh thì cầm đầu gần. Director đặt thanh nằm đúng mặt đất (`IronBar.rest_on`).
+- **Ngoảnh lại khi chạy:** chân chạy theo hướng di chuyển, ngực ngoảnh tối đa 38°, đầu thêm 25° (`TorsoTurnModifier`). Đi lùi (không chạy) giữ như cũ.
+- **Thở dốc:** khi hết sức, ngực ngửa nhẹ và vai nhô theo nhịp (`BreathModifier`, 1,25 nhịp/giây); camera không đổi.
+- **Test:** `game/tests/player/test_t249_chapter3_bar.gd` (7 test, chương 3 thật).
+- **Ảnh:** `previews/t249/` (1080p, chương 3 thật, ánh sáng của chương; `_mat` mắt người chơi, `_ngoai` nhìn từ ngoài). `x_nen_gia_phong_407_chan_lun.jpg`: ảnh ghép chụp trước khi sửa chỗ cầm, giữ lại để chỉ tấm nền giả quanh nhà B làm chân lún (Handoff).
