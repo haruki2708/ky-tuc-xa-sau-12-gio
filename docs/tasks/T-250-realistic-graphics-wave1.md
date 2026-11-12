@@ -43,7 +43,7 @@ Hợp đồng gameplay (PLAN mục 4): không đổi tên, transform gốc, mark
 - [x] A01 bàn trực (ngăn kéo riêng), ảnh trước/sau
 - [x] A07 cầu thang thoát hiểm, cửa (ổ khoá, tay nắm riêng), đoạn sập, ảnh
 - [x] A06 cầu thang chính, ảnh
-- [ ] Test mới, test cũ đạt, full test, check (test mới, test cũ, full test đạt; check bị dừng vì máy thiếu RAM, chờ chạy lại)
+- [x] Test mới, test cũ đạt, full test, check (test mới, test cũ, full test đạt; check bị dừng vì máy thiếu RAM, chủ dự án bảo không cần chạy lại)
 - [x] CREDITS, ảnh ghép trước/sau, Handoff
 
 ## Handoff
@@ -64,7 +64,7 @@ Nhánh `lane-b/T-250-realistic-graphics-wave1` từ `origin/main` `ee05aa5` (com
 - Test mới `game/tests/levels/test_t250_realistic_wave1.gd` (5 test, đạt): dấu vân tay mọi va chạm của hai cầu thang, cửa thoát hiểm, bàn trực **trùng main** (36 khối, md5 ghi ở test); marker, node cũ đúng chỗ; ngăn kéo trượt riêng, bàn trong hộp va chạm, chìa trên đáy ngăn kéo; cửa quay, ổ khoá và tay gạt đi theo cánh, cánh phụ quay theo, mở ra không chạm cửa 408; **mặt bậc nhìn thấy tại giữa mỗi bậc cách dốc va chạm tối đa 0,1 mm** (226 điểm đo, 10 vế); chiếu nghỉ đúng mặt va chạm; đống đổ, vế gãy không lọt vào khoảng đi được.
 - Nhóm test cũ chạy riêng đều đạt: `t250` 5, `campus` 5, `fire_stairs` 3, `props` 21, `floor4` 9, `corridor_g5` 9, `chapter3` 29, `ch3_` 45, `hand_targets` 6, `t249` 7, `room407_furnished` 8, `smoke` 1.
 - **Full test** (13/11 01:09–01:38, sau khi xoá `game/_probe_tmp/`): `RESULT: 944 passed, 0 failed`, không có lỗi engine.
-- **Check: chưa xong.** `pwsh tools/check.ps1` chạy từ 01:38 thì bị Claude Code dừng lúc 01:45 vì máy thiếu RAM (đang ở bước parse script, mọi dòng đã chạy đều PASS). Chưa chạy lại; integrator chạy check khi merge, hoặc lane B chạy lại khi được bảo. `game/default_bus_layout.tres` không đổi.
+- **Check: chưa xong.** `pwsh tools/check.ps1` chạy từ 01:38 thì bị Claude Code dừng lúc 01:45 vì máy thiếu RAM (đang ở bước parse script, mọi dòng đã chạy đều PASS). 13/11: chủ dự án xem kết quả và bảo **không cần chạy lại check** ("tôi thấy ok rồi"). `game/default_bus_layout.tres` không đổi.
 
 **Ảnh** `art_source/graphics_upgrade/realistic_map/previews/wave1/` (1080p, chương thật, director giữ, ánh sáng lúc mở chương, có/không đèn pin khảo sát như T-248): `before_*`/`after_*` cùng camera (chương 1 và 3 cho bàn trực, chương 3 cho cầu thang), ghép `compare_a01.jpg`, `compare_a07.jpg`, `compare_a06.jpg`, **tổng hợp `compare_overview.jpg`**, phương án `compare_options.jpg`. Ảnh `after_*_7_drawer_open_torch` cho chìa đi theo ngăn kéo **chỉ trong cảnh chụp** để thấy chìa. Đã tự xem từng ảnh; sửa sau khi xem: quai ca men lạc chỗ, dây loa xuyên đồng hồ, đá mài quá thô, vệt nước như gỉ, đống đổ thưa như đá bay, tường hành lang PS1 nhô vào lòng thang (xem dưới).
 
