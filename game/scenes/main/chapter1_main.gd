@@ -47,6 +47,12 @@ var _end_card_key_pressed: bool = false
 
 
 func _ready() -> void:
+	# T-251 (D-166): Campus supplies the outdoor world in chapters 3-4.
+	# Room 407's window backdrop has no collision and covers the real road and B04.
+	if has_node("Campus"):
+		var outside := get_node_or_null("Floor4/Room407/Furnished/outside") as Node3D
+		if outside != null:
+			outside.hide()
 	_place_speaker()
 	_place_papers()
 	# Before the director starts (deferred), so lying in bed at the start or a resume has the body.

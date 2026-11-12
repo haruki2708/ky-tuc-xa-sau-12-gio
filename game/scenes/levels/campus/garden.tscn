@@ -1472,6 +1472,9 @@ material = SubResource("s45")
 size = Vector3(0.035, 0.035, 1.2)
 material = SubResource("s45")
 
+[sub_resource type="ConvexPolygonShape3D" id="CanopyShape"]
+points = PackedVector3Array(0.0, -0.8, 1.1, 0.7778175, -0.8, 0.7778175, 1.1, -0.8, 0.0, 0.7778175, -0.8, -0.7778175, 0.0, -0.8, -1.1, -0.7778175, -0.8, -0.7778175, -1.1, -0.8, -0.0, -0.7778175, -0.8, 0.7778175, 0.0, 0.8, 0.175, 0.1237437, 0.8, 0.1237437, 0.175, 0.8, 0.0, 0.1237437, 0.8, -0.1237437, 0.0, 0.8, -0.175, -0.1237437, 0.8, -0.1237437, -0.175, 0.8, -0.0, -0.1237437, 0.8, 0.1237437)
+
 [node name="Garden" type="Node3D"]
 
 
@@ -1811,6 +1814,13 @@ mesh = SubResource("s66")
 position = Vector3(6, -7.9, 12)
 mesh = SubResource("s67")
 
+[node name="CanopyCollision" type="StaticBody3D" parent="LowCrown0_0"]
+collision_layer = 1
+collision_mask = 0
+
+[node name="Shape" type="CollisionShape3D" parent="LowCrown0_0/CanopyCollision"]
+shape = SubResource("CanopyShape")
+
 [node name="Bush0_1_0" type="MeshInstance3D" parent="."]
 position = Vector3(20.1, -9.2, 12)
 mesh = SubResource("s68")
@@ -1906,6 +1916,13 @@ mesh = SubResource("s84")
 [node name="LowCrown0_1" type="MeshInstance3D" parent="."]
 position = Vector3(22, -7.9, 12)
 mesh = SubResource("s85")
+
+[node name="CanopyCollision" type="StaticBody3D" parent="LowCrown0_1"]
+collision_layer = 1
+collision_mask = 0
+
+[node name="Shape" type="CollisionShape3D" parent="LowCrown0_1/CanopyCollision"]
+shape = SubResource("CanopyShape")
 
 [node name="Bush0_2_0" type="MeshInstance3D" parent="."]
 position = Vector3(36.1, -9.2, 12)
@@ -2003,6 +2020,13 @@ mesh = SubResource("s102")
 position = Vector3(38, -7.9, 12)
 mesh = SubResource("s103")
 
+[node name="CanopyCollision" type="StaticBody3D" parent="LowCrown0_2"]
+collision_layer = 1
+collision_mask = 0
+
+[node name="Shape" type="CollisionShape3D" parent="LowCrown0_2/CanopyCollision"]
+shape = SubResource("CanopyShape")
+
 [node name="Bush1_0_0" type="MeshInstance3D" parent="."]
 position = Vector3(4.1, -9.2, 22)
 mesh = SubResource("s104")
@@ -2098,6 +2122,13 @@ mesh = SubResource("s120")
 [node name="LowCrown1_0" type="MeshInstance3D" parent="."]
 position = Vector3(6, -7.9, 22)
 mesh = SubResource("s121")
+
+[node name="CanopyCollision" type="StaticBody3D" parent="LowCrown1_0"]
+collision_layer = 1
+collision_mask = 0
+
+[node name="Shape" type="CollisionShape3D" parent="LowCrown1_0/CanopyCollision"]
+shape = SubResource("CanopyShape")
 
 [node name="Bush1_1_0" type="MeshInstance3D" parent="."]
 position = Vector3(20.1, -9.2, 22)
@@ -2195,6 +2226,13 @@ mesh = SubResource("s138")
 position = Vector3(22, -7.9, 22)
 mesh = SubResource("s139")
 
+[node name="CanopyCollision" type="StaticBody3D" parent="LowCrown1_1"]
+collision_layer = 1
+collision_mask = 0
+
+[node name="Shape" type="CollisionShape3D" parent="LowCrown1_1/CanopyCollision"]
+shape = SubResource("CanopyShape")
+
 [node name="Bush1_2_0" type="MeshInstance3D" parent="."]
 position = Vector3(36.1, -9.2, 22)
 mesh = SubResource("s140")
@@ -2290,6 +2328,13 @@ mesh = SubResource("s156")
 [node name="LowCrown1_2" type="MeshInstance3D" parent="."]
 position = Vector3(38, -7.9, 22)
 mesh = SubResource("s157")
+
+[node name="CanopyCollision" type="StaticBody3D" parent="LowCrown1_2"]
+collision_layer = 1
+collision_mask = 0
+
+[node name="Shape" type="CollisionShape3D" parent="LowCrown1_2/CanopyCollision"]
+shape = SubResource("CanopyShape")
 
 [node name="Bush2_0_0" type="MeshInstance3D" parent="."]
 position = Vector3(4.1, -9.2, 32)
@@ -2387,6 +2432,13 @@ mesh = SubResource("s174")
 position = Vector3(6, -7.9, 32)
 mesh = SubResource("s175")
 
+[node name="CanopyCollision" type="StaticBody3D" parent="LowCrown2_0"]
+collision_layer = 1
+collision_mask = 0
+
+[node name="Shape" type="CollisionShape3D" parent="LowCrown2_0/CanopyCollision"]
+shape = SubResource("CanopyShape")
+
 [node name="Bush2_1_0" type="MeshInstance3D" parent="."]
 position = Vector3(20.1, -9.2, 32)
 mesh = SubResource("s176")
@@ -2482,6 +2534,13 @@ mesh = SubResource("s192")
 [node name="LowCrown2_1" type="MeshInstance3D" parent="."]
 position = Vector3(22, -7.9, 32)
 mesh = SubResource("s193")
+
+[node name="CanopyCollision" type="StaticBody3D" parent="LowCrown2_1"]
+collision_layer = 1
+collision_mask = 0
+
+[node name="Shape" type="CollisionShape3D" parent="LowCrown2_1/CanopyCollision"]
+shape = SubResource("CanopyShape")
 
 [node name="Bush2_2_0" type="MeshInstance3D" parent="."]
 position = Vector3(36.1, -9.2, 32)
@@ -2579,6 +2638,13 @@ mesh = SubResource("s210")
 position = Vector3(38, -7.9, 32)
 mesh = SubResource("s211")
 
+[node name="CanopyCollision" type="StaticBody3D" parent="LowCrown2_2"]
+collision_layer = 1
+collision_mask = 0
+
+[node name="Shape" type="CollisionShape3D" parent="LowCrown2_2/CanopyCollision"]
+shape = SubResource("CanopyShape")
+
 [node name="Bush3_0_0" type="MeshInstance3D" parent="."]
 position = Vector3(4.1, -9.2, 42)
 mesh = SubResource("s212")
@@ -2674,6 +2740,13 @@ mesh = SubResource("s228")
 [node name="LowCrown3_0" type="MeshInstance3D" parent="."]
 position = Vector3(6, -7.9, 42)
 mesh = SubResource("s229")
+
+[node name="CanopyCollision" type="StaticBody3D" parent="LowCrown3_0"]
+collision_layer = 1
+collision_mask = 0
+
+[node name="Shape" type="CollisionShape3D" parent="LowCrown3_0/CanopyCollision"]
+shape = SubResource("CanopyShape")
 
 [node name="Bush3_1_0" type="MeshInstance3D" parent="."]
 position = Vector3(20.1, -9.2, 42)
@@ -2771,6 +2844,13 @@ mesh = SubResource("s246")
 position = Vector3(22, -7.9, 42)
 mesh = SubResource("s247")
 
+[node name="CanopyCollision" type="StaticBody3D" parent="LowCrown3_1"]
+collision_layer = 1
+collision_mask = 0
+
+[node name="Shape" type="CollisionShape3D" parent="LowCrown3_1/CanopyCollision"]
+shape = SubResource("CanopyShape")
+
 [node name="Bush3_2_0" type="MeshInstance3D" parent="."]
 position = Vector3(36.1, -9.2, 42)
 mesh = SubResource("s248")
@@ -2866,6 +2946,13 @@ mesh = SubResource("s264")
 [node name="LowCrown3_2" type="MeshInstance3D" parent="."]
 position = Vector3(38, -7.9, 42)
 mesh = SubResource("s265")
+
+[node name="CanopyCollision" type="StaticBody3D" parent="LowCrown3_2"]
+collision_layer = 1
+collision_mask = 0
+
+[node name="Shape" type="CollisionShape3D" parent="LowCrown3_2/CanopyCollision"]
+shape = SubResource("CanopyShape")
 
 [node name="NguBenchLeg21.15" type="Node3D" parent="."]
 position = Vector3(21.15, -9.68, 28)

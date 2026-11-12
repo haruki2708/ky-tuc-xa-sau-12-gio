@@ -260,6 +260,10 @@ func _garden() -> void:
 	_set_area(&"garden")
 	if not _companions.has(&"minh_nhat"):
 		_join(&"minh_nhat", "Start_garden")
+		# T-251: a checkpoint creates Nhat beside Trung, never inside his capsule.
+		# The clear entry strip runs along X; the existing route continues toward +Z.
+		if _companions.has(&"minh_nhat"):
+			_companions[&"minh_nhat"].global_position += Vector3(1.2, 0, 0)
 	var bench := _anchor("NguBench")
 	_join(&"ngu", "NguBench", false)
 	_story(["near:ngu_here"])
@@ -619,6 +623,9 @@ func _arrive(zone: String, anchor_name: String) -> void:
 	var start := _anchor(anchor_name)
 	if start != null:
 		_place_player(start.global_position)
+		if zone == "garden":
+			# Face the garden and Ngu's bench when resuming, not back toward building B.
+			_player.rotation.y = PI
 
 
 # --- Zombies --------------------------------------------------------------------------
