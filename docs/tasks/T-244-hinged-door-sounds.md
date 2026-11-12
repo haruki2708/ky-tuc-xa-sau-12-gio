@@ -1,5 +1,5 @@
 # T-244 — Tiếng mở/đóng cửa nhà tắm và cửa ban công (chương 1)
-- Lane: E (Âm thanh) | Trạng thái: todo | Agent: tài khoản GPT lane E (D-141), Codex CLI, `D:\GAME_WORK\lane-e2`
+- Lane: E (Âm thanh) | Trạng thái: merged 12/11/2026 (full test 932/0, check 0), chờ chủ dự án nghe | Agent: tài khoản GPT lane E (D-141), Codex CLI, `D:\GAME_WORK\lane-e2`
 - Nhánh: `lane-e/T-244-hinged-door-sounds` từ `origin/main` mới nhất (phải có tín hiệu `HingedDoor.swung`/`settled`, xem mục 1).
 - Quyết định giao: **D-161** (12/11/2026): chủ dự án chơi T-242 và chốt; chọn giao lane E làm tiếng cho hai cửa. **Tiếng để nhỏ, chủ dự án nghe rồi mới chốt.**
 - Bối cảnh: [T-242](T-242-doors-by-hand.md) (cửa nhà tắm và cửa ban công mở/đóng bằng tay ở chương 1, Trung tự bước tránh cánh cửa). Hiện hai cửa này **im lặng** khi mở/đóng.
@@ -69,3 +69,9 @@
   **Phải giới hạn chương 1:** main hiện tại đã merge T-243, chương 2 cũng có thân và HingedDoor **ban công**, khác mục hiện trạng cũ của card nói chương 2–4 đều null. Script main dùng chung; không gọi chỉ theo `protagonist_body`, không tự áp âm mới sang chương 2. API không tự quyết chương được dùng.
 - Lane E không sửa `hinged_door.gd`, main, director, level, scene phòng, STATUS hay DECISIONS. Cửa 407 vẫn ngoài phạm vi (chưa có tiếng mở/đóng theo card), không thêm trong T-244.
 - Không bị chặn triển khai lane E; còn integrator ghép lời gọi trên và chủ dự án nghe duyệt. Commit triển khai: **`f308c9e`** — `T-244: add quiet wood and aluminium glass door audio`; commit Handoff riêng theo sau. Chỉ push nhánh task, không push main, không mở PR.
+
+## Review integrator (12/11/2026)
+- Đạt. Lane E chạy ngầm (D-164) từ 16:22 đến 17:18, không hỏi giữa chừng, không bị chặn. Không đụng file ngoài phạm vi, không đổi mức âm cũ, `default_bus_layout.tres` không commit.
+- Integrator làm "Yêu cầu thay đổi": `chapter1_main.gd` gọi `HingedDoorAudio.attach_all` sau `Protagonist.attach`, chỉ khi có `Chapter1Director` (chương 2 im). Test `game/tests/player/test_t244_door_audio_wiring.gd`.
+- Sau merge: full test 932/0, check 0.
+- **Chờ chủ dự án nghe** trong chương 1: mở/đóng cửa nhà tắm (gỗ) và cửa ban công (nhôm kính); có thể nghe riêng ở cảnh `res://audio/test/hinged_door_audio_test.tscn` (phím 1–4).
