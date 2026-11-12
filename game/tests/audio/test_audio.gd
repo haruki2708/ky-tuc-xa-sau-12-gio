@@ -44,6 +44,23 @@ func test_all_ogg_load_and_decode_with_correct_loop_flags() -> void:
 		expected.append("res://audio/voice/vi/%s.ogg" % clip_name)
 	# G0 candidate is decoded and checked by test_graphics_fire_bell.gd.
 	expected.append("res://audio/graphics_upgrade/fire_bell_soft.ogg")
+	# T-244: four quiet, finite door clips are part of the complete inventory too.
+	for clip_name: String in ["wood_open", "wood_close", "aluminium_glass_open", "aluminium_glass_close"]:
+		var path: String = "res://audio/hinged_doors/%s.ogg" % clip_name
+		expected.append(path)
+		var clip := load(path) as AudioStreamOggVorbis
+		assert_not_null(clip, path)
+		if clip == null:
+			continue
+		assert_false(clip.loop, "one-shot " + path)
+		assert_true(clip.get_length() > 0.4 and clip.get_length() < 0.8, "short door clip " + path)
+		var playback := clip.instantiate_playback()
+		playback.start()
+		var peak: float = 0.0
+		for frame: Vector2 in playback.mix_audio(1.0, 16384):
+			peak = maxf(peak, absf(frame.x))
+		assert_true(peak > 0.00001 and peak < 0.11, "quiet decoded door signal " + path)
+		playback.stop()
 	# Chapter 1 voices (T-159): every voiced key of the chapter-1 script, Vietnamese only (D-006).
 	for line in FileAccess.get_file_as_string("res://localization/strings.csv").split("\n"):
 		var key := line.get_slice(",", 0)
