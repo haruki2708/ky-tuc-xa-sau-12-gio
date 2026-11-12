@@ -3100,7 +3100,8 @@ func _place_bar() -> void:
 
 
 func _tick_breath(delta: float) -> void:
-	var spent: bool = visible and not _in_bed and bool(player.get("exhausted"))
+	# A stand-in player (tests) may have no stamina at all.
+	var spent: bool = visible and not _in_bed and player.get("exhausted") == true
 	_breath_amount = move_toward(_breath_amount, 1.0 if spent else 0.0, delta / (BREATH_ON if spent else BREATH_OFF))
 	if _breath_amount <= 0.0:
 		_breath_phase = 0.0
