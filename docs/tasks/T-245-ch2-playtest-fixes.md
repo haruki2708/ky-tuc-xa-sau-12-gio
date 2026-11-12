@@ -1,6 +1,6 @@
 # T-245: Sửa sau khi chủ dự án chơi chương 2 (tay cầm điện thoại trong gương, giẻ, áo và ổ khoá thật)
 
-| Lane: integrator (thay B) | Nhánh: `integrator/T-245-ch2-playtest-fixes` | Trạng thái: merged 12/11/2026 (full test 924/0 (lượt full 922/2: hai test cũ còn khẳng định hành vi cũ, sửa xong chạy lại hai file đạt 32/32), check 0), chờ chủ dự án chơi thử |
+| Lane: integrator (thay B) | Nhánh: `integrator/T-245-ch2-playtest-fixes` | Trạng thái: merged 12/11/2026 (full test 924/0 (lượt full 922/2: hai test cũ còn khẳng định hành vi cũ, sửa xong chạy lại hai file đạt 32/32), check 0); **chủ dự án chơi thử đạt 12/11** |
 |---|---|---|
 
 Quyết định: D-163. Model: Fable 5.2 high (chủ dự án chọn).
@@ -48,3 +48,6 @@ Quyết định: D-163. Model: Fable 5.2 high (chủ dự án chọn).
 ## 4. Chủ dự án xem khi chơi
 - Soi gương nhà tắm và gương dài khi bật đèn pin, khi giơ máy (Q), khi ngồi, khi đi.
 - Lấy giẻ (khăn xanh trên giá nhà tắm), lấy áo kẻ trên kệ trên của tủ Việt, nhìn ổ khoá tủ Đạt (chương 1: giải mật mã xem còng mở).
+
+## 5. Kết quả chơi thử
+- 12/11/2026: chủ dự án chơi bản `e96056f` và xác nhận đạt ("tôi xác nhận test là ok rồi nhé").
