@@ -26,11 +26,22 @@
 - Sửa STATUS, DECISIONS; commit log, `anh_chup_sua_loi/`, `game/_probe_tmp/`.
 
 ## Checklist
-- [ ] Lỗi 1: tấm nền giả ẩn ở chương 3–4, ảnh trước/sau
-- [ ] Lỗi 2: checkpoint vườn hoa không chồng người
-- [ ] Lỗi 3: va chạm tán cây, không chặn tuyến
+- [x] Lỗi 1: tấm nền giả ẩn ở chương 3–4, ảnh trước/sau
+- [x] Lỗi 2: checkpoint vườn hoa không chồng người
+- [x] Lỗi 3: va chạm tán cây, không chặn tuyến
 - [ ] Test mới, test cũ, full test, check
 - [ ] Handoff
 
 ## Handoff
-(lane A điền)
+### 12/11/2026 — Lane A (Codex, chạy ngầm D-164)
+
+- Đầu phiên workspace sạch; `git fetch origin`, tạo nhánh `lane-a/T-251-ch3-ground-garden-fixes` từ `origin/main`, `git lfs pull`. Commit của card đã đọc: **`ee05aa5`**. Đã chạy `--headless --import` thành công trước lần mở cảnh đầu tiên; mọi lượt Godot dùng khóa CreateNew, xóa khóa mình trong `finally`.
+- **Lỗi 1:** chọn `chapter1_main.gd::_ready`, vì đây là chỗ ghép chương và biết có `Campus`; phòng 407 độc lập và chương 1–2 giữ nguyên. Ẩn cả `Furnished/outside`: kiểm tra `build_outside.py` và cây node thực tế thấy tất cả là cảnh nền không va chạm (nhà đối diện, sân, cây, đèn, quần áo trên nhà giả, trời cầu bán kính 140 m). Campus đã có môi trường ngoài trời; giữ nhóm giả sẽ còn nhà/cây xuyên đường và trời che khuôn viên. Giữ ban công, đồ phơi thật của phòng, đèn phòng và toàn bộ va chạm cũ. Ảnh sau: chân và **B04** hiện trên nền thật; nhìn từ cửa kính/ban công phòng 407 thấy khuôn viên thay nhà nền giả.
+- **Lỗi 2:** chỉ khi Minh Nhật được tạo mới ở vườn, đặt lệch +X **1,2 m** so với `Start_garden`. Người chơi giữ `(22, -9.9, 8)`; Minh Nhật `(23.2, -9.9, 8)`. Khi `_arrive` phải đặt lại người chơi ở vườn, quay về +Z (hướng vào vườn/ghế Ngư). Đồng đội đã đi cùng từ nhà B không bị dời. Không sửa anchor, tuyến, thời gian, lời hay hành vi đi theo.
+- **Lỗi 3:** `garden.tscn` thêm 12 `StaticBody3D/CollisionShape3D`, layer world, dùng chung một `ConvexPolygonShape3D` 16 đỉnh đúng tán nón cụt tám cạnh (bán kính đáy 1,1 m, đỉnh 0,175 m, cao 1,6 m). Tán bắt đầu ở 1,2 m so với mặt lát, thấp tới tầm người; khối bám toàn tán tới 2,8 m để không tạo mặt đứng vô hình giữa tán. Tất cả nằm gọn trong bồn 6 × 4 m đã có va chạm, không cần bỏ cây nào hoặc sửa navigation. Không sửa `foliage.gd`: cây đường lớn có đáy tán từ 2,1 m, không thuộc lỗi tán thấp vườn hoa.
+- **Test mới:** `game/tests/levels/test_t251_ground_garden.gd`, 5 ca: visibility từng mesh nhóm outside ở đủ bốn chương; `run_from(garden)`; khôi phục save `ch3_garden` qua `start()` (đo 30 khung vật lý, không chồng người); ray ở ba độ cao/bốn phía trên cả 12 tán và quét capsule người chơi thật; capsule tại mọi anchor và lấy mẫu đường navigation giữa waypoint đồng đội trong vườn. Lần đầu 4/1 do test lấy đường trước khi navigation ngoài trời đồng bộ xong; sửa chờ chính điểm vào vườn được đồng bộ, chạy lại **`RESULT: 5 passed, 0 failed`** (`build/t251/test_test_t251_ground_garden.log`).
+- **Ảnh:** đã tự xem 8 JPG trong `art_source/graphics_upgrade/realistic_map/previews/t251/`. Cặp `before/after_01_window`: cửa kính phòng 407; `02_road_b04`: chân và B04; `03_garden_spawn`: checkpoint; `04_crown`: đẩy capsule vào cùng tán cây, trước x≈6,96, sau x≈7,40. Kiểm tra kích thước phát hiện cửa sổ Windows giới hạn 1920 × 1057; chờ lượt full test/check xong để chụp lại bằng viewport cố định 1920 × 1080. Cảnh tạm `game/_probe_tmp/` đã xóa; bản sao tái hiện ở `build/t251/probe_backup/`, không commit.
+- **Kiểm cuối:** đang chạy full `pwsh tools/test.ps1` rồi `pwsh tools/check.ps1`; log ở `build/t251/full_test.log`, `build/t251/full_check.log` (không commit). Chưa có kết quả cuối tại thời điểm ghi mục này.
+- **Đối chiếu profile bot (chỉ đọc JSON):** ba tọa độ khai báo trực tiếp thuộc vườn hoa `(42, -9.9, 36)`, `(20, -9.9, 36)`, `(20, -9.9, 28)` đều ngoài tán; khoảng hở nhỏ nhất sau khi trừ bán kính tán 1,1 m và capsule 0,3 m là **3,07 m**. Các điểm dùng anchor đã được kiểm bằng test vật lý. Không chạy bot.
+- **Chờ chủ dự án:** chơi thử và xem ảnh sau merge; không có quyết định thiết kế mới cần chọn. Không chạy bot, không đo FPS, chưa chơi bằng tay.
+- **Yêu cầu thay đổi:** không có. **Blocked:** không.
