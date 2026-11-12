@@ -149,6 +149,24 @@ Cập nhật Checklist và Handoff trong card. Không sửa STATUS hay DECISIONS
 Cuối phiên báo ngắn bằng tiếng Việt: xong gì, nhánh, commit, ảnh ở đâu, dòng RESULT test và check, câu hỏi cho chủ dự án, có bị chặn không.
 ```
 
+## 1h. Giao T-250 (12/11/2026, D-166): đồ hoạ thật đợt 1 — bàn trực, cầu thang thoát hiểm và cửa, cầu thang chính nhà B
+Chủ dự án: mở lane B bằng `D:\GAME_WORK\mo_claude_lane_b.cmd`, `/model` chọn **Opus 5.5**, effort **xhigh** (khó thì **max**), rồi dán:
+```text
+Việc mới cho lane B: T-250 — đồ hoạ thật đợt 1 (bàn trực tầng 4, cầu thang thoát hiểm và cửa, cầu thang chính nhà B). Đọc docs/tasks/T-250-realistic-graphics-wave1.md.
+Ở D:\GAME_WORK\lane-b2: git status (giữ thay đổi đang có, báo nếu có), git fetch origin,
+git switch -c lane-b/T-250-realistic-graphics-wave1 origin/main, git lfs pull.
+Đầu phiên ghi commit của card đã đọc (git log -1 --format=%h origin/main -- docs/tasks/T-250-realistic-graphics-wave1.md).
+Đọc AGENTS.md mục 3–5, card T-250 (mục 1 là điều chủ dự án đã chốt), art_source/graphics_upgrade/realistic_map/PLAN.md (mục 2–5, khu A01, A06, A07) và ảnh hiện trạng trong realistic_map/previews/survey/ (01, 02, 11–15).
+Dựng bằng Blender, chân thực như đồ phòng 407 và hành lang tầng 4 (xem cách dựng trong art_source/graphics_upgrade/floor4_corridor/ và room407_furnished/); không dùng Tripo.
+Làm bàn trực (A01) trước, chụp ảnh trước/sau, tự xem lại, rồi mới tới hai cầu thang và cửa. Giữ nguyên collider, navmesh, Ch3Use, tên node, luật chơi (PLAN mục 4).
+Thứ cần chủ dự án chọn (kiểu đồ, màu, mức cũ) thì đưa ảnh kèm phương án và một đề xuất vào Handoff, không tự quyết.
+Chỉ sửa file trong mục "Được phép sửa"; ngoài phạm vi thì ghi "Yêu cầu thay đổi". Không chạy bot, không đo FPS, không tiêu credit Tripo.
+Godot theo luật Lượt Godot (file khóa D:\GAME_WORK\GODOT_DANG_CHAY.txt). Khi làm: pwsh tools/test.ps1 -Filter <tên test>. Trước commit: full pwsh tools/test.ps1 rồi pwsh tools/check.ps1, rồi git checkout -- game/default_bus_layout.tres.
+Không commit log, video, anh_chup_sua_loi/, game/_probe_tmp/. Commit nhỏ "T-250: ...", git push -u origin lane-b/T-250-realistic-graphics-wave1. Không push main, không mở PR.
+Cập nhật Checklist và Handoff trong card. Không sửa STATUS hay DECISIONS.
+Cuối phiên báo ngắn bằng tiếng Việt: xong gì, nhánh, commit, ảnh ở đâu, dòng RESULT test và check, câu hỏi cho chủ dự án, có bị chặn không.
+```
+
 ## 2. Prompt giao việc (integrator điền T-xxx)
 ```text
 Việc mới cho lane B: <T-xxx> — đọc docs/tasks/<file card>.md.
