@@ -1,25 +1,23 @@
 {
   "shell_4": {
-    "triangles": 1692,
+    "triangles": 1152,
     "materials": [
       "Dark",
-      "Linen",
       "Plaster",
       "Steel",
       "Tile"
     ],
-    "bytes": 98748
+    "bytes": 78496
   },
   "shell_6": {
-    "triangles": 1692,
+    "triangles": 1152,
     "materials": [
       "Dark",
-      "Linen",
       "Plaster",
       "Steel",
       "Tile"
     ],
-    "bytes": 98752
+    "bytes": 78500
   },
   "bunk": {
     "triangles": 3742,
@@ -31,7 +29,7 @@
       "Steel",
       "Wood"
     ],
-    "bytes": 220636
+    "bytes": 220632
   },
   "desk": {
     "triangles": 1488,
@@ -60,6 +58,14 @@
       "Wood"
     ],
     "bytes": 28292
+  },
+  "curtains": {
+    "triangles": 540,
+    "materials": [
+      "Linen",
+      "Steel"
+    ],
+    "bytes": 21468
   },
   "room_4_triangles": 12432,
   "room_6_triangles": 12432,

@@ -28,6 +28,7 @@ func _ready() -> void:
 	furnishings = Node3D.new()
 	furnishings.name = "Furnishings"
 	add_child(furnishings)
+	_add_part(furnishings, "curtains", "Curtains", Vector3.ZERO)
 	var half := float(width) / 2.0
 	var variant := int(room) % 3
 	_add_part(furnishings, "bunk", "BunkWest", Vector3(-half + 0.67, 0, -3.45))

@@ -2,7 +2,7 @@
 
 Lane C (Codex), 13/11/2026. Hình học mới dựng bằng script Blender 5.2.2, CC0; AI hỗ trợ viết code. Không ảnh raster AI, không Tripo, không tải asset mới. Script dùng lại các hàm hình học CC0 của `room407_corner/build_corner.py` (lane B/Codex và Claude, T-213).
 
-Các GLB `shell_4`, `shell_6`, `bunk`, `desk`, `locker`, `stool` trong `game/assets/models/graphics_pilot/realistic_map/floor4_rooms/` chỉ chứa hình học và vật liệu đặt tên. `room_visual.gd` gán các scan đã nhập của phòng 407, dùng chung tài nguyên giữa bảy phòng:
+Các GLB `shell_4`, `shell_6`, `bunk`, `desk`, `locker`, `stool`, `curtains` trong `game/assets/models/graphics_pilot/realistic_map/floor4_rooms/` chỉ chứa hình học và vật liệu đặt tên. `room_visual.gd` gán các scan đã nhập của phòng 407, dùng chung tài nguyên giữa bảy phòng:
 
 | Bộ / URL | Tác giả | Giấy phép | Dùng cho / tiền tố file trong `game/assets/models/graphics_pilot/room407_corner/` |
 |---|---|---|---|

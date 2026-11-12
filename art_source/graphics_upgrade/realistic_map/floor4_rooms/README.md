@@ -19,7 +19,7 @@ pwsh art_source/graphics_upgrade/realistic_map/floor4_rooms/run_stage.ps1 -Stage
 pwsh art_source/graphics_upgrade/realistic_map/floor4_rooms/run_stage.ps1 -Stage full
 ```
 
-`install_visuals.py` chỉ dành cho áp vào corridor baseline chưa có T-252, từ chối thêm trùng. `build_rooms.py` tái sinh 6 GLB và `geometry_report.json`; số tam giác là LOD0, chưa tính giảm theo camera. Không lưu `.blend` trùng: script là nguồn chỉnh sửa.
+`install_visuals.py` chỉ dành cho áp vào corridor baseline chưa có T-252, từ chối thêm trùng. `build_rooms.py` tái sinh 7 GLB và `geometry_report.json`; số tam giác là LOD0, chưa tính giảm theo camera. Rèm thuộc nhóm đồ ẩn khi đóng cửa. Không lưu `.blend` trùng: script là nguồn chỉnh sửa.
 
 Runner chờ khóa mỗi 30 giây, tạo bằng CreateNew, chỉ xóa khóa có token của mình. Log ở `build/t252/`. Cảnh chụp được chép tạm vào `game/_probe_tmp/` rồi xóa trong finally.
 

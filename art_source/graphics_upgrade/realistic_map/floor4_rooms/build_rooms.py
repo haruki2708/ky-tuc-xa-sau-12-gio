@@ -59,7 +59,7 @@ def export(name, build):
     obj = bpy.context.object
     obj.name = name
     bpy.ops.object.transform_apply(location=True, rotation=True, scale=True)
-    if not name.startswith('shell'):
+    if not name.startswith('shell') and name != 'curtains':
         reduction = obj.modifiers.new('Doorway detail budget', 'DECIMATE')
         reduction.ratio = .65
         reduction.use_collapse_triangulate = True
@@ -92,6 +92,9 @@ def shell(width):
     for y in [1.34, 1.96, 2.58]:
         box('WindowRail', (0, y, -4.844), (1.53, .035, .055), 'Steel', .002)
     box('WindowSill', (0, 1.31, -4.79), (1.65, .06, .22), 'Tile', .006, 1.9)
+
+
+def curtains():
     tube('CurtainRod', (-1, 2.69, -4.65), (1, 2.69, -4.65), .012)
     # Gathered curtains with a readable silhouette, no alpha overdraw.
     for side in [-1, 1]:
@@ -196,9 +199,9 @@ def main():
     OUT.mkdir(parents=True, exist_ok=True)
     for width in [4, 6]:
         export(f'shell_{width}', lambda: shell(width))
-    for name, build in [('bunk', bunk), ('desk', desk), ('locker', locker), ('stool', stool)]:
+    for name, build in [('bunk', bunk), ('desk', desk), ('locker', locker), ('stool', stool), ('curtains', curtains)]:
         export(name, build)
-    REPORT['room_4_triangles'] = REPORT['shell_4']['triangles'] + sum(REPORT[n]['triangles']*c for n,c in [('bunk',2),('desk',1),('locker',1),('stool',1)])
+    REPORT['room_4_triangles'] = REPORT['shell_4']['triangles'] + sum(REPORT[n]['triangles']*c for n,c in [('bunk',2),('desk',1),('locker',1),('stool',1),('curtains',1)])
     REPORT['room_6_triangles'] = REPORT['room_4_triangles'] - REPORT['shell_4']['triangles'] + REPORT['shell_6']['triangles']
     REPORT['total_seven_rooms'] = REPORT['room_4_triangles']*6 + REPORT['room_6_triangles']
     (HERE/'geometry_report.json').write_text(json.dumps(REPORT, indent=2)+'\n')

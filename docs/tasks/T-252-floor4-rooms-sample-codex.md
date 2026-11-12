@@ -42,7 +42,7 @@
 
 ## Handoff
 - Tiếp tục 13/11/2026 từ WIP `0fa724e` do integrator lưu. Workspace sạch lúc nhận lại; đã fetch/pull và rebase an toàn lên `origin/main=369a6c8` (WIP sau rebase `5105e60`). Commit card đã đọc: `a64361d`. T-250 chưa nằm trong `origin/main` ở thời điểm fetch; integrator đang giữ lượt Godot để kiểm bản merge.
-- Đã dựng 6 GLB bằng Blender, giảm đồ lặp xuống 65% lưới gốc: 12.432 tam giác/phòng, tổng 87.024 cho bảy phòng; 8 vật liệu dùng chung, 718.560 byte GLB (không nhúng lại texture). Tái dùng 7 scan CC0 của phòng 407; nguồn đầy đủ ở `art_source/graphics_upgrade/realistic_map/floor4_rooms/CREDITS.md`.
+- Đã dựng 7 GLB bằng Blender, giảm đồ lặp xuống 65% lưới gốc: 12.432 tam giác/phòng, tổng 87.024 cho bảy phòng; 8 vật liệu dùng chung, 699.520 byte GLB (không nhúng lại texture). Rèm cũng ẩn khi đóng cửa; bảy vỏ phòng còn 8.064 tam giác khi tất cả cửa đóng. Tái dùng 7 scan CC0 của phòng 407; nguồn đầy đủ ở `art_source/graphics_upgrade/realistic_map/floor4_rooms/CREDITS.md`.
 - Đã gắn module vào riêng A03 của `corridor.tscn`, ẩn hình PS1, giữ node/collider/cửa. Script hình ảnh chỉ đọc trạng thái/góc cửa, ẩn đồ khi đóng; giữ vỏ phòng để không thủng mặt nhà.
 - **Đang làm:** import đầu phiên, ảnh trước/sau chương 1 và 3, tự xem ảnh, test và check. Chưa có RESULT kiểm tra; không coi bản WIP là đã đạt. Runner đang chờ khóa của integrator, kiểm lại mỗi 30 giây và không xóa khóa người khác.
 - Lựa chọn mỹ thuật: giường sắt xanh, bàn gỗ, tủ thép, chăn/gối/rèm cùng họ vật liệu 407; mức cũ vừa phải, **chờ chủ dự án chọn**. Chưa đo/nghiệm thu ngân sách A03–04 ≤0,35 ms; không đo FPS, không bot.

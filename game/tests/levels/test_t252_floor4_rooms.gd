@@ -23,7 +23,7 @@ func test_each_room_has_fitted_blender_shell_and_furniture() -> void:
 		var center := 41.0 if room == 408 else 8.0 + (room - 401) * 4.0
 		var half := 3.0 if room == 408 else 2.0
 		assert_eq(visual.position, Vector3(center, 0, 0), "room %d placement" % room)
-		for part: String in ["Shell", "Furnishings/BunkWest", "Furnishings/BunkEast", "Furnishings/Locker", "Furnishings/Desk", "Furnishings/Stool"]:
+		for part: String in ["Shell", "Furnishings/Curtains", "Furnishings/BunkWest", "Furnishings/BunkEast", "Furnishings/Locker", "Furnishings/Desk", "Furnishings/Stool"]:
 			assert_true(visual.has_node(part), "room %d missing %s" % [room, part])
 		assert_true(visual.find_children("*", "CollisionObject3D", true, false).is_empty(), "visuals cannot alter collision")
 		assert_true(visual.find_children("*", "Light3D", true, false).is_empty(), "lighting unchanged")

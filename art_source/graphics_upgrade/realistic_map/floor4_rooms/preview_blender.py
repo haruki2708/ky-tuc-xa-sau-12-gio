@@ -27,7 +27,7 @@ dark = bpy.data.materials.new('Preview_Dark')
 dark.use_nodes = True
 dark.node_tree.nodes['Principled BSDF'].inputs['Base Color'].default_value = (.045,.06,.065,1)
 materials['Dark'] = dark
-for asset, position, yaw in [('shell_4', (0,0,0),0), ('bunk',(-1.33,0,-3.45),0),
+for asset, position, yaw in [('shell_4', (0,0,0),0), ('curtains',(0,0,0),0), ('bunk',(-1.33,0,-3.45),0),
                             ('bunk',(1.33,0,-1.45),math.pi), ('desk',(.16,0,-4.48),0),
                             ('locker',(1.35,0,-3.9),0), ('stool',(.23,0,-3.68),.26)]:
     before = set(bpy.context.scene.objects)
