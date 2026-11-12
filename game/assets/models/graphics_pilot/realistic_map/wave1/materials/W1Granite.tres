@@ -1,0 +1,11 @@
+[gd_resource type="ORMMaterial3D" format=3]
+
+[ext_resource type="Texture2D" path="res://assets/textures/graphics_pilot/room407_shell/granite_color.jpg" id="1"]
+[ext_resource type="Texture2D" path="res://assets/textures/graphics_pilot/room407_shell/granite_arm.jpg" id="2"]
+
+[resource]
+resource_name = "W1Granite"
+albedo_color = Color(1, 1, 1, 1)
+albedo_texture = ExtResource("1")
+orm_texture = ExtResource("2")
+uv1_scale = Vector3(1, 1, 1)
