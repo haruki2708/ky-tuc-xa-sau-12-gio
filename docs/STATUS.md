@@ -72,7 +72,7 @@
    - Hỏi chủ dự án trước khi chạy bot hoặc đo FPS.
    - Kiểm `Get-Process godot*,KyTucXa*` trước khi chạy Godot.
    - Máy từng thiếu RAM làm lượt test chạy nền bị dừng (16/10). Gặp lại thì báo chủ dự án, không tự chạy lại.
-11. Số đã cấp **D-076…D-166, T-207…T-251** (T-238 giữ cho bot sân vận động đã hoãn, D-149). Số tiếp theo **D-167, T-252**.
+11. Số đã cấp **D-076…D-166, T-207…T-253** (T-238 giữ cho bot sân vận động đã hoãn, D-149). Số tiếp theo **D-167, T-254**.
 
 **Repo:** https://github.com/haruki2708/ky-tuc-xa-sau-12-gio (private; trước là `tuaanh666/...`)
 
@@ -126,6 +126,8 @@
 | [T-246 Tủ Việt mở cánh: bỏ tường vô hình](tasks/T-246-viet-locker-door-collision.md) | integrator | **merged 12/11** (full test 925/0, check 0): khối chặn cánh tủ đúng bằng cánh Tripo 0,32 m, nửa tủ đóng có khối riêng; chờ chủ dự án chơi. |
 | [T-248 Khảo sát và kế hoạch đồ hoạ thật toàn map](tasks/T-248-realistic-graphics-survey.md) | A (chạy ngầm, D-164) | **done, merged 12/11, D-165**: [kế hoạch](../art_source/graphics_upgrade/realistic_map/PLAN.md) 30 khu, 10 đợt, 12 mẫu Tripo đề xuất, 74 ảnh; chờ chủ dự án trả lời Q1–Q8 (PLAN mục 9) và duyệt đợt 1. |
 | [T-250 Đồ hoạ thật đợt 1: bàn trực, cầu thang thoát hiểm, cầu thang chính](tasks/T-250-realistic-graphics-wave1.md) | B (chủ dự án tự dán, Opus 5.5 xhigh/max) | **todo, D-166**: prompt [`lane-b.md`](handoff/lane-b.md) mục 1h; dựng Blender theo chất lượng phòng 407. |
+| [T-252 Mẫu thử đồ hoạ thật bằng lane Codex: phòng 401–406, 408](tasks/T-252-floor4-rooms-sample-codex.md) | C (chạy ngầm, D-164) | **đang làm, 13/11**: chủ dự án đồng ý thử; chỉ merge khi chủ dự án xem ảnh và đồng ý. |
+| [T-253 Đồ hoạ thật đợt 2: tầng 3→1, phòng 203, sảnh, phòng quản lý, bình, báo cháy](tasks/T-253-realistic-graphics-wave2.md) | chưa giao | **chờ** chủ dự án duyệt ảnh đợt 1 (T-250) và mẫu T-252. |
 | [T-251 Chương 3: tấm nền giả, chồng người ở checkpoint vườn, tán cây](tasks/T-251-ch3-ground-garden-fixes.md) | A (chạy ngầm, D-164), integrator làm nốt | **merged 13/11, D-166** (full test 944/0, check 0): chương 3–4 không còn tấm nền giả, checkpoint vườn hoa không chồng người, tán cây có va chạm. |
 | [T-249 Thân Trần Trung chương 3: thanh sắt, ngoảnh lại, thở dốc](tasks/T-249-protagonist-chapter3-bar.md) | HARU, integrator, lane B | **merged 12/11, D-165** (full test 939/0, check 0): chương 3 có thân; thanh sắt trong tay phải (cầm, vung, gãy, nhặt, Ngư đưa), ngoảnh lại khi chạy, thở dốc; chờ chủ dự án chơi thử và trả lời 3 câu (Review trong card). |
 | [T-247 Khảo sát thân Trần Trung chương 3](tasks/T-247-protagonist-chapter3-survey.md) | B (chủ dự án tự dán prompt) | **done, merged 12/11**: [báo cáo](../tools/reports/T-247-ch3-body-survey.md), 34 ảnh; chờ chủ dự án chọn 13 dòng bảng quyết định và 3 câu hỏi (mục 7). |
