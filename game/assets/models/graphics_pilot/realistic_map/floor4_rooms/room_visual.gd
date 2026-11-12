@@ -36,6 +36,30 @@ func _ready() -> void:
 	_add_part(furnishings, "desk", "Desk", Vector3((variant - 1) * 0.16, 0, -4.48))
 	_add_part(furnishings, "stool", "Stool", Vector3((variant - 1) * 0.23, 0, -3.68), (variant - 1) * 0.26)
 	_update_visibility()
+	# Preserve the existing unfurnished-407 comparison mode, including its shared partition.
+	var floor4 := get_parent().get_parent().get_parent()
+	var room407 := floor4.get_node_or_null("Room407") if floor4 != null else null
+	if room407 != null and room407.get("furnished") == false:
+		_restore_legacy_comparison()
+
+
+func _restore_legacy_comparison() -> void:
+	hide()
+	set_process(false)
+	var corridor := get_parent().get_parent()
+	for child: Node in get_parent().get_children():
+		if child != self:
+			for mesh: MeshInstance3D in child.find_children("*", "MeshInstance3D", true, false):
+				mesh.show()
+	for prefix: String in ["Floor_", "BackWall_", "Ceiling_"]:
+		var legacy := corridor.get_node_or_null(prefix + room + "/Mesh") as Node3D
+		if legacy != null:
+			legacy.show()
+	var partition := 38 if room == "408" else 6 + (int(room) - 401) * 4
+	(corridor.get_node("RoomPartition_%d/Mesh" % partition) as Node3D).show()
+	if room == "408":
+		(corridor.get_node("Room408BackWall/Mesh") as Node3D).show()
+		(corridor.get_node("Room408EastWall/Mesh") as Node3D).show()
 
 
 func _process(_delta: float) -> void:

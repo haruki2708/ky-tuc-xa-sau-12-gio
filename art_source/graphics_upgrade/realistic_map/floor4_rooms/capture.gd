@@ -86,7 +86,8 @@ func _restore_a03_baseline() -> void:
 			var mesh := corridor.get_node_or_null(prefix + str(room) + "/Mesh") as Node3D
 			if mesh != null:
 				mesh.show()
-	for path: String in ["RoomPartition_6", "RoomPartition_10", "RoomPartition_14", "RoomPartition_18", "RoomPartition_22", "RoomPartition_26", "RoomPartition_38", "Room408BackWall", "Room408EastWall"]:
+	# The furnished 407 already hides RoomPartition_38 in the baseline (D-113).
+	for path: String in ["RoomPartition_6", "RoomPartition_10", "RoomPartition_14", "RoomPartition_18", "RoomPartition_22", "RoomPartition_26", "Room408BackWall", "Room408EastWall"]:
 		(corridor.get_node(path + "/Mesh") as Node3D).show()
 
 
