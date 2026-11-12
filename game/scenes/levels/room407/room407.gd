@@ -21,7 +21,18 @@ const REPLACED_PS1: Array[String] = ["Anchors/VietLocker/Back", "Anchors/VietLoc
 	"Anchors/PhucMattress/Pivot", "Anchors/TeamPhoto", "Anchors/TrashBin/Base", "Anchors/TrashBin/Slat*",
 	"Anchors/Router/Model/Case", "Anchors/Router/Model/Antenna*", "Anchors/Router/Model/Vent*",
 	# D-106: the readable ch1_phuc_card (every chapter places it) draws the card.
-	"Anchors/PhucCard/Card", "Anchors/PhucCard/Photo", "Anchors/PhucCard/Head"]
+	"Anchors/PhucCard/Card", "Anchors/PhucCard/Photo", "Anchors/PhucCard/Head",
+	# T-245 (D-163): the rag is the green cloth on the rack, Viet's shirt and Dat's lock are real things.
+	"Anchors/RagSpot/Model", "Anchors/ShirtSpot/Model", "Anchors/DatLocker/CombinationLock",
+	"Anchors/DatLocker/Wheel*", "Anchors/DatLocker/Shackle"]
+## T-245 (D-163): Viet's shirt lies on the furnished locker's own top shelf (VIET_SHIRT_SHELF, in
+## the half behind its door), not where the PS1 locker had a shelf: chest high, where it is seen
+## and reached standing before the open locker (the shelf at 0.75 m was reached from a patch of floor
+## a hand wide, and chapter 1's search zone stood between the eyes and it).
+const VIET_SHIRT_SHELF := 1.34
+const FURNISHED_ANCHORS := {"Anchors/ShirtSpot": Vector3(0.36, VIET_SHIRT_SHELF + 0.02, -1.44)}
+## T-245: the rag is taken by the cloth this far under its top edge on the bar.
+const RAG_GRAB_DROP := 0.03
 ## T-222: the upgraded shell shows the balcony, so the chapter-2 towel (TowelSpot, carry item) moves
 ## onto the balcony line and is drawn by a Tripo towel (BalconyTowel) instead of the PS1 one.
 const T222_ANCHORS := {"Anchors/TowelSpot": Vector3(2.8, 2.15, -7.85)}
@@ -33,7 +44,9 @@ const BALCONY_DOOR := preload("res://scenes/levels/room407/balcony_door.tscn")
 const FOLLOW := {"NetViet": "BunkA/Net_Viet", "NetPhuc": "BunkA/Net_Phuc", "NetTrung": "BunkB/Net_Trung",
 	"NetDat": "BunkB/Net_Dat", "MattressPhuc": "Anchors/PhucMattress/Pivot",
 	"BlanketPhuc": "Anchors/PhucMattress/Pivot", "PillowPhuc": "Anchors/PhucMattress/Pivot",
-	"PillowTrung": "Details/TrungPillow"}
+	"PillowTrung": "Details/TrungPillow",
+	# T-245 (D-163): chapter 2's carry items show (and hide, once taken) these furnished things.
+	"RackRag": "Anchors/RagSpot/Model", "ShirtViet": "Anchors/ShirtSpot/Model"}
 ## The playable corridor wall reaches z = -0.1 while the pilot shell's door wall face is z = 0:
 ## the door wall, the things on it and its decals come 0.105 m into the room.
 const DOOR_WALL_SHIFT := -0.105
@@ -211,6 +224,9 @@ func _furnish() -> void:
 	if shell_t222:
 		for path: String in T222_ANCHORS:
 			(get_node(path) as Node3D).position = T222_ANCHORS[path]
+	for path: String in FURNISHED_ANCHORS:
+		(get_node(path) as Node3D).position = FURNISHED_ANCHORS[path]
+	_seat_rag()
 	for mesh: MeshInstance3D in find_children("*", "MeshInstance3D", true, false):
 		if _furnished.is_ancestor_of(mesh):
 			continue
@@ -234,6 +250,12 @@ func _furnish() -> void:
 	var follow := FOLLOW.merged(T222_FOLLOW) if shell_t222 else FOLLOW
 	for prop_name: String in follow:
 		_carry(props.get_node(prop_name), get_node(follow[prop_name]))
+	# T-245 (D-163): Dat's lock: dat_locker.gd swings the furnished shackle about its long leg.
+	var lock_pivot := props.get_node("LockDat").find_child("ShacklePivot", true, false) as Node3D
+	if lock_pivot != null:
+		lock_pivot.name = "Swing"
+		_carry(lock_pivot, $Anchors/DatLocker/Shackle)
+		($Anchors/DatLocker as Node).call("set_unlocked", $Anchors/DatLocker.get("unlocked"))
 	# Viet's locker: the body stays, the door swings on hinged.gd's Pivot moved to the model's hinge.
 	var locker := props.get_node("LockerViet") as Node3D
 	var door_pivot := locker.find_child("DoorPivot", true, false) as Node3D
@@ -445,6 +467,27 @@ func furnished_room_door() -> Node3D:
 ## A Tripo prop of the furnished room by its placements name (null without the furnished room).
 func furnished_prop(prop_name: String) -> Node3D:
 	return _furnished.get_node_or_null("TripoProps/" + prop_name) as Node3D if _furnished else null
+
+
+## T-245 (D-163): chapter 2's rag is the green cloth over the towel rack's bar: its anchor (the pick
+## zone and the hand's target) sits on the cloth's room side, just under the bar, and tells the
+## chapter the cloth hangs down from there ("hangs": metres the pick zone reaches down).
+func _seat_rag() -> void:
+	var rag := _furnished.get_node_or_null("TripoProps/RackRag") as Node3D
+	if rag == null:
+		return
+	var box := AABB()
+	var first := true
+	for mesh: MeshInstance3D in rag.find_children("*", "MeshInstance3D", true, false):
+		var bounds: AABB = (global_transform.affine_inverse() * mesh.global_transform) * mesh.get_aabb()
+		box = bounds if first else box.merge(bounds)
+		first = false
+	if first:
+		return
+	var anchor := $Anchors/RagSpot as Node3D
+	# The rack is on the east wall: the room side of the cloth is its low x.
+	anchor.position = Vector3(box.position.x + 0.01, box.end.y - RAG_GRAB_DROP, box.get_center().z)
+	anchor.set_meta(&"hangs", box.size.y - RAG_GRAB_DROP - 0.04)
 
 
 func _carry(node: Node3D, holder: Node3D) -> void:

@@ -774,17 +774,17 @@ func _inside_zone(zone: Area3D) -> bool:
 const TOWEL_GRAB_DROP := 0.4
 
 
-func _hang_low(item: Node3D) -> void:
+func _hang_low(item: Node3D, drop: float = TOWEL_GRAB_DROP) -> void:
 	var marker := item.get_node_or_null("HandTarget") as Node3D
 	if marker != null:
-		marker.position.y -= TOWEL_GRAB_DROP
+		marker.position.y -= drop
 	for child: Node in item.get_children():
 		var shape := child as CollisionShape3D
 		if shape != null and shape.shape is BoxShape3D:
 			var box := (shape.shape as BoxShape3D).duplicate() as BoxShape3D
-			box.size.y = TOWEL_GRAB_DROP + box.size.y
+			box.size.y = drop + box.size.y
 			shape.shape = box
-			shape.position.y -= TOWEL_GRAB_DROP * 0.5
+			shape.position.y -= drop * 0.5
 
 
 ## Lane A's pieces (T-171) on lane B's anchors (T-172), when they exist.
@@ -803,6 +803,13 @@ func _place_ch2_props() -> void:
 		item.set("prompt_key", entry[2])
 		if entry[1] == &"towel":
 			_hang_low(item)
+		elif anchor.has_meta(&"hangs"):
+			# T-245 (D-163): the rag is the cloth hanging from the rack's bar (room407.gd): looked at
+			# and taken anywhere down its length, the hand a third of the way down.
+			_hang_low(item, float(anchor.get_meta(&"hangs")))
+			var marker := item.get_node_or_null("HandTarget") as Node3D
+			if marker != null:
+				marker.position.y += float(anchor.get_meta(&"hangs")) * 0.67
 		var model := anchor.get_node_or_null("Model") as Node3D
 		var placeholder := item.get_node_or_null("Placeholder") as Node3D
 		if model != null:

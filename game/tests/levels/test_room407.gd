@@ -101,10 +101,20 @@ func test_flicker_preserves_off_and_on_states_and_lock_api() -> void:
 	var locker := room.get_node("Anchors/DatLocker")
 	locker.set_unlocked(true)
 	assert_true(locker.unlocked)
-	assert_true(locker.get_node("Shackle").position.y > 0)
+	# T-245 (D-163): the furnished padlock's shackle lifts and turns about its long leg.
+	var swing := locker.get_node_or_null("Shackle/Swing") as Node3D
+	if swing != null:
+		var shut: Transform3D = swing.get_meta(&"shut")
+		assert_true(swing.position.y > shut.origin.y + 0.005, "the shackle lifts out of the body")
+		assert_true(absf(swing.basis.get_euler().y - shut.basis.get_euler().y) > 0.5, "and turns aside")
+	else:
+		assert_true(locker.get_node("Shackle").position.y > 0)
 	locker.set_unlocked(false)
 	assert_false(locker.unlocked)
-	assert_eq(locker.get_node("Shackle").position.y, 0.0)
+	if swing != null:
+		assert_true(swing.transform.is_equal_approx(swing.get_meta(&"shut")), "locked: the shackle is home")
+	else:
+		assert_eq(locker.get_node("Shackle").position.y, 0.0)
 
 
 func test_threshold_shadow_and_all_floor_surfaces() -> void:

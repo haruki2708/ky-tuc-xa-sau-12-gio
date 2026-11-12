@@ -150,11 +150,14 @@ func test_ps1_meshes_give_way_except_story_and_puzzle_ones() -> void:
 		assert_eq(mesh.visible, before.visible and keep, path)
 		checked += 1
 	assert_true(checked > 200, "every PS1 mesh checked (%d)" % checked)
-	for path in ["Anchors/PowerStrip/Case", "Anchors/DatLocker/CombinationLock/Mesh", "Anchors/Router/Model/LED",
+	for path in ["Anchors/PowerStrip/Case", "Anchors/DatLocker/Charger/Case", "Anchors/Router/Model/LED",
 			"Details/BloodSeep/BlanketStain1", "Ch2Bathroom/MirrorFog"]:
 		assert_eq((room.get_node(path) as Node3D).visible, (old.get_node(path) as Node3D).visible, "kept: " + path)
 	for path in ["Anchors/TrashBin/Base", "Anchors/Router/Model/Case", "Anchors/TeamPhoto/Frame", "WestWall/Mesh",
-			"Anchors/VietLocker/Pivot/Door/Mesh", "Extension/BathroomDoor/Pivot/Leaf/Mesh"]:
+			"Anchors/VietLocker/Pivot/Door/Mesh", "Extension/BathroomDoor/Pivot/Leaf/Mesh",
+			# T-245 (D-163): Dat's lock, Viet's shirt and the rag are furnished models.
+			"Anchors/DatLocker/CombinationLock/Mesh", "Anchors/DatLocker/Wheel0/Mesh",
+			"Anchors/DatLocker/Shackle/Top/Mesh", "Anchors/ShirtSpot/Model/Torso"]:
 		assert_false((room.get_node(path) as Node3D).visible, "replaced: " + path)
 
 

@@ -22,19 +22,26 @@ func _bounds(node: Node3D) -> AABB:
 	return room.global_transform.affine_inverse() * node.global_transform * Room407Furnish.local_bounds(node)
 
 
-func test_rag_is_visible_on_rack_and_clear_of_sink() -> void:
-	var rag := room.get_node("Anchors/RagSpot/Model") as Node3D
-	assert_eq(rag.scene_file_path, RAG)
+## T-245 (D-163): the rag is the green cloth hung over the towel rack's bar (the owner took the rag
+## and that cloth stayed); the linen rag of T-216 is no longer drawn there.
+func test_rag_is_the_cloth_on_the_rack_and_clear_of_sink() -> void:
+	var model := room.get_node("Anchors/RagSpot/Model") as Node3D
+	assert_eq(model.scene_file_path, RAG)
 	assert_eq(room.get_node("Details/CleaningRag").scene_file_path, RAG)
-	var box := _bounds(rag)
+	var cloth := model.get_node_or_null("RackRag") as Node3D
+	assert_not_null(cloth, "the rack's cloth rides the rag's model node")
+	if cloth == null:
+		return
+	for mesh: MeshInstance3D in model.find_children("*", "MeshInstance3D", true, false):
+		assert_eq(mesh.is_visible_in_tree(), cloth.is_ancestor_of(mesh), "only the cloth is drawn: " + mesh.name)
+	var box := _bounds(cloth)
 	var sink := _bounds(room.get_node("Furnished/TripoProps/Sink"))
 	assert_false(box.intersects(sink), "entire cloth clears the basin, not only the pickup point")
 	assert_false(sink.has_point(room.get_node("Anchors/RagSpot").position))
 	var rack := _bounds(room.get_node("Furnished/TripoProps/TowelRack"))
-	assert_true(absf(box.position.y - rack.end.y) < 0.015, "cloth rests at the rack top")
+	assert_true(box.end.y <= rack.end.y + 0.005 and box.end.y > rack.end.y - 0.09, "cloth hangs over the rack's bar")
 	assert_true(box.end.x < 7.892, "cloth stays in front of east wall tiles")
-	for mesh: MeshInstance3D in rag.find_children("*", "MeshInstance3D", true, false):
-		assert_true(mesh.is_visible_in_tree(), "furnishing does not hide the carry model")
+	assert_true(box.grow(0.03).has_point(room.get_node("Anchors/RagSpot").position), "picked at the cloth")
 	var carry := preload("res://scenes/interaction/carry_item.tscn").instantiate() as Area3D
 	room.get_node("Anchors/RagSpot").add_child(carry)
 	await tree.physics_frame
