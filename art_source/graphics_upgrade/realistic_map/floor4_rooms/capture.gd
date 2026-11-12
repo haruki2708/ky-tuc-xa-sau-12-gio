@@ -62,6 +62,8 @@ func _run() -> void:
 		await get_tree().create_timer(.4).timeout
 		var x := door.position.x
 		await _shot("room_%d_inspection_torch" % room, Vector3(x-.12, 1.62, .85), Vector3(x-.28, 1.25, -3.8), true, true)
+		if room == 408:
+			await _shot("room_408_side_inspection_torch", Vector3(42.65, 1.62, 1.25), Vector3(39.6, 1.25, -4.0), true, true)
 		door.call("set_open", false)
 		await get_tree().create_timer(.4).timeout
 	var file := FileAccess.open(OUTPUT + "ch%d_%s.json" % [chapter, state], FileAccess.WRITE)

@@ -4,8 +4,9 @@ from PIL import Image, ImageDraw, ImageFont
 
 HERE = Path(__file__).resolve().parent
 OUT = HERE.parent / 'previews/t252'
-FONT = ImageFont.truetype('C:/Windows/Fonts/arial.ttf', 25)
-SMALL = ImageFont.truetype('C:/Windows/Fonts/arial.ttf', 21)
+FONT_PATH = HERE.parents[3] / 'game/assets/fonts/be_vietnam_pro_regular.ttf'
+FONT = ImageFont.truetype(str(FONT_PATH), 25)
+SMALL = ImageFont.truetype(str(FONT_PATH), 21)
 
 
 def sheet(chapter, views, filename):
@@ -31,7 +32,7 @@ def sheet(chapter, views, filename):
 if __name__ == '__main__':
     for chapter in [1,3]:
         sheet(chapter, ['hall_west_closed', 'room_401_inspection_torch', 'room_403_inspection_torch',
-                        'room_408_inspection_torch'], f'compare_ch{chapter}.jpg')
+                        'room_408_inspection_torch', 'room_408_side_inspection_torch'], f'compare_ch{chapter}.jpg')
         sheet(chapter, [f'room_{n}_inspection_torch' for n in [402,404,405,406]]+['hall_east_closed'],
               f'compare_ch{chapter}_remaining.jpg')
-    print('RESULT: T-252 four before/after sheets PASS (36 source screenshots, no exposure edits)')
+    print('RESULT: T-252 four before/after sheets PASS (40 source screenshots, no exposure edits)')

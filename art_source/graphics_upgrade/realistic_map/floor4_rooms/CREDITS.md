@@ -15,3 +15,5 @@ Các GLB `shell_4`, `shell_6`, `bunk`, `desk`, `locker`, `stool`, `curtains` tro
 | [Polar Fleece](https://polyhaven.com/a/polar_fleece) | colormass, Rico Cilliers | CC0-1.0 | Chăn; `bunk_a_bedding_polar_fleece_square_*` |
 
 Mỗi tiền tố dùng màu, normal OpenGL, ARM. Hồ sơ URL gốc, SHA-256 và giấy phép đã lưu tại [`../../room407_corner/texture_sources.json`](../../room407_corner/texture_sources.json) và [`../../room407_corner/CREDITS.md`](../../room407_corner/CREDITS.md). Màu tối cửa sổ/chân cao su là thông số vật liệu tự tạo. Ảnh chụp chương thật còn chứa những tài sản khác của dự án (kể cả cửa G5 Tripo); không tuyên bố toàn bộ ảnh là CC0.
+
+Chữ chú thích ảnh ghép dùng lại Be Vietnam Pro Regular đã có trong dự án (The Be Vietnam Pro Project Authors, SIL OFL 1.1; nguồn và giấy phép ở `game/assets/fonts/CREDITS.md`). Không tải, cài hay đóng gói font mới.
