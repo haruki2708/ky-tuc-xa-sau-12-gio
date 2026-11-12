@@ -517,6 +517,7 @@ func _show_hospital() -> void:
 	var camera := _hospital.get_node_or_null("Camera_Wake") as Camera3D
 	if camera != null:
 		camera.make_current()
+	_light_ward(camera)
 	if _audio != null:
 		_audio.monitor_marker = _hospital.get_node_or_null("MonitorAudio") as Node3D
 	if _hospital.has_method("set_companions_visible"):
@@ -527,6 +528,18 @@ func _show_hospital() -> void:
 			var mark := _hospital.get_node_or_null(bed + "/Card")
 			if mark != null:
 				mark.add_child((load(BED_CARD_SCENE) as PackedScene).instantiate())
+
+
+## D-167 (owner): the ward in its own soft light. The campus's dawn sun and sky stay on (the
+## chapter is still there at y 0) but reached the ward at y 300 as well and washed it out white:
+## its camera takes the ward's own environment, and no light of the campus shines on it.
+func _light_ward(camera: Camera3D) -> void:
+	var ward := _hospital.get_node_or_null("Environment") as WorldEnvironment
+	if camera != null and ward != null:
+		camera.environment = ward.environment
+	for light: Node in get_parent().find_children("*", "DirectionalLight3D", true, false):
+		if not _hospital.is_ancestor_of(light):
+			(light as Node3D).visible = false
 
 
 func _hospital_voice(key: String, where: String) -> void:
