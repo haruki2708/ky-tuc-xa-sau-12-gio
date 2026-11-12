@@ -34,6 +34,12 @@ extends Node3D
 ##   (held in the fist in front of the hip, other things are still done with that fist); round 4's
 ##   swollen door gets a shoulder shove instead of a reach; the shower screen is wiped with the palm
 ##   rubbing round for as long as E is held.
+## - T-249 (D-165): chapter 3. The right hand holds the iron bar (IronBarWeapon keeps the rules): at
+##   the ready before the hip, swung down across from the right shoulder without stopping the feet,
+##   its pieces falling from the hand when it breaks; a bar on the ground is bent down to, hooked by
+##   the fingertips and rolled into the fist. Running with the view turned back, the legs keep
+##   running the way he goes and the chest and head turn back (no run played backwards). Out of
+##   breath the chest heaves and the shoulders rise.
 
 signal hand_action_finished(target: Interactable)
 
@@ -392,6 +398,7 @@ func _ready() -> void:
 	_place_model(0.0)
 	EventBus.document_closed.connect(_on_document_closed)
 	EventBus.player_death_started.connect(_on_death_started)
+	EventBus.bar_picked.connect(_on_bar_picked)
 
 
 ## Attach to a player (player.gd calls this from set_body): the camera stops drawing the
@@ -470,8 +477,11 @@ func _build_mirror_phone() -> void:
 
 
 func can_handle(target: Interactable) -> bool:
-	return not acting and not _in_bed and not _dead and is_instance_valid(target) and target.enabled \
-			and target.hand_target(_reach_from()) != null
+	if acting or _in_bed or _dead or not is_instance_valid(target) or not target.enabled:
+		return false
+	var marker: HandTarget = target.hand_target(_reach_from())
+	# T-249: a fist that holds the bar pinches up no paper (it is read where it lies, as without a body).
+	return marker != null and not (marker.pick_up and _has_bar())
 
 
 ## D-124: the HandTarget is within reach of a body standing here (T-241: standing and folding at
@@ -686,6 +696,10 @@ func perform(target: Interactable) -> void:
 	_set_phase(Phase.REACH)
 	_from = _hand_tip()
 	_start_basis = _carry_basis() if _carry_weight > 0.5 else _natural_basis()
+	if _bar_weight > 0.5:
+		# T-249: from where the fist holds the bar (a swing stops here).
+		_start_basis = _hand_attach.global_basis.orthonormalized()
+	_end_swing()
 	_from_wrist = _hand_attach.global_position
 	_attach_pending = false
 	_held_paper = false
@@ -729,6 +743,12 @@ func perform(target: Interactable) -> void:
 	_closing = _door and bool(target.get("is_open"))
 	_released_at = RELEASE
 	_shape_arm(_marker.pick_up or _door)
+	# T-249: an empty hand taking a bar off the ground hooks it with the fingertips.
+	_bar_reach = target is IronBar and not _has_bar()
+	_bar_taking = false
+	if _bar_reach:
+		_bar_goal = (target as IronBar).grip_frame()
+		_fingers.hold(BarHand.HOOK)
 
 
 func _physics_process(delta: float) -> void:
@@ -743,6 +763,8 @@ func _physics_process(delta: float) -> void:
 		_lean = Vector3.ZERO
 		_tick_locomotion(delta)
 	_tick_carry(delta)
+	_tick_bar(delta)
+	_tick_breath(delta)
 	_tick_phone(delta)
 	_move_head()
 
@@ -792,18 +814,37 @@ func _tick_locomotion(delta: float) -> void:
 		_turning = false
 		var heading: float = atan2(-local.x, -local.z)
 		var direction: float = 1.0
-		if absf(heading) > deg_to_rad(100.0):
-			# Walking backwards: face forward-ish and play the stride in reverse.
-			direction = -1.0
-			heading = wrapf(heading + PI, -PI, PI)
-		target_yaw = clampf(heading, -MAX_YAW, MAX_YAW)
+		var back: bool = absf(heading) > deg_to_rad(100.0)
+		if back and speed > RUN_FROM and not crouched:
+			# T-249: running with the view turned back. The legs keep running the way he goes and the
+			# body faces that way, round by the side it turned (the chest and head turn back, below).
+			if _back_side == 0.0:
+				_back_side = signf(_yaw) if absf(_yaw) > 0.05 else (signf(heading) if heading != 0.0 else 1.0)
+			target_yaw = heading if signf(heading) == _back_side else heading + TAU * _back_side
+			if absf(target_yaw) > BACK_ROUND:
+				# The view has come round the other side: the body turns back the short way.
+				_back_side = -_back_side
+				target_yaw = heading
+			_yaw += (target_yaw - _yaw) * follow
+		else:
+			if _back_side != 0.0:
+				_back_side = 0.0
+				_yaw = wrapf(_yaw, -PI, PI)
+			if back:
+				# Walking backwards: face forward-ish and play the stride in reverse.
+				direction = -1.0
+				heading = wrapf(heading + PI, -PI, PI)
+			target_yaw = clampf(heading, -MAX_YAW, MAX_YAW)
+			_yaw = lerp_angle(_yaw, target_yaw, follow)
 		var key: StringName = &"crouch_walk" if crouched else (&"run" if speed > RUN_FROM else &"walk")
 		_play(key)
 		# Sideways, only the share of the motion along the body is in the stride.
-		var along: float = speed * cos(absf(heading) - absf(target_yaw))
+		var along: float = speed * cos(absf(heading) - absf(target_yaw)) if _back_side == 0.0 else speed
 		animator.speed_scale = direction * maxf(along, 0.2) / maxf(stride_speeds[key], 0.05)
-		_yaw = lerp_angle(_yaw, target_yaw, follow)
 	else:
+		if _back_side != 0.0:
+			_back_side = 0.0
+			_yaw = wrapf(_yaw, -PI, PI)
 		_yaw = _stand_turn(wrapf(_stand_yaw - view_yaw, -PI, PI), delta)
 		if _turning:
 			_play(&"crouch_walk" if crouched else &"walk")
@@ -812,7 +853,13 @@ func _tick_locomotion(delta: float) -> void:
 			_play(&"crouch_idle" if crouched else &"idle")
 			animator.speed_scale = 1.0
 	_stand_yaw = view_yaw + _yaw
-	_set_twist(-_yaw * TWIST_SHARE)
+	# The chest turns back toward the view: about up as far as MAX_YAW of heading; past it (T-249,
+	# looking back on the run) about the back's own line, the head further still.
+	var square: float = clampf(_yaw, -MAX_YAW, MAX_YAW)
+	_set_twist(-square * TWIST_SHARE)
+	var past: float = rad_to_deg(_yaw - square)
+	_look_chest = -clampf(past * BACK_CHEST_SHARE, -BACK_CHEST, BACK_CHEST)
+	_look_head = -clampf(past * BACK_HEAD_SHARE, -BACK_HEAD, BACK_HEAD)
 	_eye = _eye.lerp(eye_points[_key], follow)
 	_place_model(_yaw)
 
@@ -944,6 +991,9 @@ static func _yaw_of(direction: Vector3) -> float:
 func _face_view() -> void:
 	_turning = false
 	_yaw = 0.0
+	_back_side = 0.0
+	_look_chest = 0.0
+	_look_head = 0.0
 	_set_twist(0.0)
 	if is_instance_valid(player):
 		_stand_yaw = player.global_rotation.y
@@ -968,9 +1018,14 @@ func _tick_action(delta: float) -> void:
 		Phase.REACH:
 			var reach: float = smoothstep(0.0, CONTACT, _time)
 			look = reach
-			_aim(_from.lerp(_marker.global_position, reach), _start_basis.slerp(_grip_basis(), reach), reach)
-			_ik.influence = maxf(smoothstep(0.0, IK_FADE, _time), _carry_weight)
-			_grip.influence = maxf(smoothstep(CONTACT * 0.6, CONTACT, _time), _carry_weight)
+			if _bar_reach:
+				# T-249: the hand comes down onto the bar as the hook that takes it.
+				_aim_hand(Transform3D(_start_basis, _from_wrist).interpolate_with(_bar_hook(), reach))
+				_fingers.influence = smoothstep(CONTACT * 0.3, CONTACT, _time)
+			else:
+				_aim(_from.lerp(_marker.global_position, reach), _start_basis.slerp(_grip_basis(), reach), reach)
+			_ik.influence = maxf(smoothstep(0.0, IK_FADE, _time), maxf(_carry_weight, _bar_weight))
+			_grip.influence = 0.0 if _bar_reach else maxf(smoothstep(CONTACT * 0.6, CONTACT, _time), _carry_weight)
 			if _carry_weight > 0.0:
 				_grip.curl_degrees = CARRY_CURL
 			elif _rub:
@@ -1006,7 +1061,10 @@ func _tick_action(delta: float) -> void:
 				_press_lever(smoothstep(CONTACT, CONTACT + LEVER_SECONDS, _time))
 			if not _used and _time >= CONTACT + (LEVER_SECONDS if pressing else 0.0):
 				_use()
-			_aim(_marker.global_position, _held_basis(), 1.0)
+			if _bar_reach:
+				_aim_hand(_bar_hook())
+			else:
+				_aim(_marker.global_position, _held_basis(), 1.0)
 			# T-239: a door's grip is followed as the leaf swings, until the time comes or it leaves the
 			# arm's reach; then the hand lets go and the leaf swings on.
 			var hold_until: float = DOOR_LET_GO if _door else (STOOP_RELEASE if _reach == &"stoop" else RELEASE)
@@ -1028,8 +1086,18 @@ func _tick_action(delta: float) -> void:
 			var carrying: bool = _still_held()
 			var rest_tip: Vector3 = _carry_palm() if carrying else _natural_tip()
 			var rest_basis: Basis = _carry_basis() if carrying else _natural_basis()
-			_aim(_from.lerp(rest_tip, back), _release_basis.slerp(rest_basis, unwind), 0.0 if carrying else 1.0 - back)
-			_grip.influence = 1.0 if carrying else 1.0 - back
+			if _has_bar():
+				# T-249: ... or to holding the bar at the ready.
+				var ready: Transform3D = _bar_ready()
+				carrying = true
+				rest_basis = ready.basis
+				rest_tip = ready.origin + ready.basis.y * PALM * _scale()
+			if _bar_reach and carrying:
+				# The hook that took the bar comes up with it, the fist closing (_tick_bar).
+				_aim_hand(_bar_hook().interpolate_with(Transform3D(rest_basis, rest_tip - rest_basis.y * PALM * _scale()), back))
+			else:
+				_aim(_from.lerp(rest_tip, back), _release_basis.slerp(rest_basis, unwind), 0.0 if carrying else 1.0 - back)
+			_grip.influence = 0.0 if _has_bar() else (1.0 if carrying else 1.0 - back)
 			_weigh(1.0 - back)
 			_ik.influence = 1.0 if carrying else 1.0 - smoothstep(HAND_SECONDS - IK_FADE, HAND_SECONDS, _time)
 			if _time >= HAND_SECONDS:
@@ -1428,6 +1496,7 @@ func _on_skeleton_updated() -> void:
 		if shown:
 			_mirror_phone.global_transform = _held_world(_posed_bone(MIRROR_BONE + "LeftHand"), HandShapes.PHONE_IN_HAND)
 	_place_held()
+	_place_bar()
 	if not acting or not is_instance_valid(_carried):
 		return
 	var hand: Transform3D = _posed_bone("RightHand")
@@ -2067,6 +2136,9 @@ func _on_death_started(_kind: StringName) -> void:
 	if acting:
 		_finish()
 	release_item()
+	_end_swing()
+	if is_instance_valid(_bar):
+		_bar.visible = false
 	_dead = true
 	visible = false
 	if is_instance_valid(_head) and _head.position == _head_written:
@@ -2128,6 +2200,8 @@ func _finish() -> void:
 	_closing = false
 	_shove = false
 	_rub = false
+	_bar_reach = false
+	_bar_taking = false
 	_set_twist(0.0)
 	_bend.shift = Vector3.ZERO
 	_lean = Vector3.ZERO
@@ -2144,6 +2218,7 @@ func _finish() -> void:
 	_play(&"idle")
 	# T-243: the fist that carries something stays up this frame too (no drop to the side and back).
 	_tick_carry(0.0)
+	_tick_bar(0.0)
 	hand_action_finished.emit(target)
 
 
@@ -2307,6 +2382,15 @@ func _build_modifiers() -> void:
 	_twist.name = "SpineTwist"
 	_twist.axis = _tiptoe.up
 	skeleton.add_child(_twist)
+	# T-249: the chest about the back's own line (looking back on the run, the bar's swing), and the
+	# breath of a runner who is spent.
+	_torso = TorsoTurnModifier.new()
+	_torso.name = "TorsoTurn"
+	skeleton.add_child(_torso)
+	_breath = BreathModifier.new()
+	_breath.name = "Breath"
+	_breath.up = _tiptoe.up
+	skeleton.add_child(_breath)
 	# After the lean, before the arm's IK (which starts from the lifted shoulder joint).
 	_raise = ShoulderRaiseModifier.new()
 	_raise.name = "ShoulderRaise"
@@ -2768,3 +2852,257 @@ func _rubbing() -> bool:
 	if not is_instance_valid(_target) or bool(_target.get("_completed")):
 		return false
 	return Input.is_action_pressed("interact")
+
+
+# --- T-249 (D-165): chapter 3. The iron bar, looking back on the run, out of breath -------------
+
+## Running with the view turned back: past this far round (radians) the body turns back the other,
+## shorter way; of what the heading is past MAX_YAW the chest turns back this share, at most
+## BACK_CHEST degrees (about the back's own line), and the neck and head this much more.
+const BACK_ROUND: float = deg_to_rad(215.0)
+const BACK_CHEST_SHARE: float = 0.4
+const BACK_CHEST: float = 38.0
+const BACK_HEAD_SHARE: float = 0.3
+const BACK_HEAD: float = 25.0
+var _back_side: float = 0.0
+var _look_chest: float = 0.0
+var _look_head: float = 0.0
+var _torso: TorsoTurnModifier
+var _breath: BreathModifier
+
+## Out of breath (the player's `exhausted`): breaths a second, how fast the heaving comes on and how
+## slowly it dies away (seconds).
+const BREATH_RATE: float = 1.25
+const BREATH_ON: float = 0.5
+const BREATH_OFF: float = 3.0
+var _breath_amount: float = 0.0
+var _breath_phase: float = 0.0
+
+## The bar in the right fist. At the ready: the fist's middle here (model space, metres at the
+## model's scale: the model faces +Z, its right is -X), the bar rising BAR_READY[1] degrees ahead and
+## turned BAR_READY[2] degrees in toward the body's middle. The hand comes to it over BAR_FADE.
+const BAR_READY: Array = [Vector3(-0.2, 1.0, 0.3), 26.0, 12.0]
+const BAR_FADE: float = 0.2
+## The swing, over the weapon's swing_seconds (shares of it): [share, fist, degrees up, degrees in,
+## chest turn (degrees, + to the left)]. Wound up over the right shoulder, down across to the left
+## (the blow lands at BAR_BLOW), held a moment, back to the ready.
+const BAR_SWING: Array = [
+	[0.0, Vector3(-0.2, 1.0, 0.3), 26.0, 12.0, 0.0],
+	[0.24, Vector3(-0.27, 1.44, 0.12), 112.0, -8.0, -20.0],
+	[0.52, Vector3(0.06, 1.0, 0.46), -16.0, 36.0, 28.0],
+	[0.64, Vector3(0.07, 0.98, 0.45), -18.0, 38.0, 28.0],
+	[1.0, Vector3(-0.2, 1.0, 0.3), 26.0, 12.0, 0.0],
+]
+const BAR_BLOW: float = 0.5
+## A bar taken off the ground rolls from the fingertips into the fist over this long (seconds).
+const BAR_CLOSE: float = 0.25
+var _bar: Node3D
+var _bar_weight: float = 0.0
+var _bar_hits: int = -1
+var _bar_swing_time: float = 0.0
+var _bar_swing_len: float = 0.0
+var _bar_break: bool = false
+var _swing_chest: float = 0.0
+## Taking a bar off the ground: the reach is for one (an empty hand), where its grip lies (the bar's
+## frame at the fist, world), the fist is closing on it, and how it lay in the hand at the touch.
+var _bar_reach: bool = false
+var _bar_goal: Transform3D = Transform3D.IDENTITY
+var _bar_taking: bool = false
+var _bar_take_time: float = 0.0
+var _bar_attach: bool = false
+var _bar_take_rel: Transform3D = Transform3D.IDENTITY
+
+
+func _bar_weapon() -> IronBarWeapon:
+	var weapon: Variant = player.get("bar_weapon") if is_instance_valid(player) else null
+	return weapon as IronBarWeapon if weapon is IronBarWeapon and is_instance_valid(weapon) else null
+
+
+## The right hand has a bar (one with hits left).
+func _has_bar() -> bool:
+	var weapon := _bar_weapon()
+	return weapon != null and weapon.hits_left > 0
+
+
+func _ensure_bar() -> void:
+	if is_instance_valid(_bar):
+		return
+	_bar = IronBarWeapon.make_model()
+	_bar.name = "BarInHand"
+	_bar.top_level = true
+	_bar.visible = false
+	add_child(_bar)
+	_bar_hits = -1
+
+
+## The hand bone (world, unscaled basis) that holds the bar with the fist's middle at `at` (model
+## space), the bar rising `up` degrees ahead and turned `inward` degrees toward the body's middle.
+func _bar_hand(at: Vector3, up: float, inward: float) -> Transform3D:
+	var forward: Vector3 = model.global_basis.z.normalized()
+	var left: Vector3 = model.global_basis.x.normalized()
+	var rise: float = deg_to_rad(up)
+	var turn: float = deg_to_rad(inward)
+	var along: Vector3 = ((forward * cos(turn) + left * sin(turn)) * cos(rise) + Vector3.UP * sin(rise)).normalized()
+	# The palm faces in: out of it is to the left of the bar's line.
+	var out: Vector3 = left * cos(turn) - forward * sin(turn)
+	out = (out - along * out.dot(along)).normalized()
+	var fist := Transform3D(Basis(out, along.cross(out), along), model.global_transform * at)
+	return _hand_for(fist, _ortho(BarHand.BAR_IN_FIST))
+
+
+func _bar_ready() -> Transform3D:
+	return _bar_hand(BAR_READY[0], BAR_READY[1], BAR_READY[2])
+
+
+## The hook on the bar being taken (the hand bone, world).
+func _bar_hook() -> Transform3D:
+	return _hand_for(_bar_goal, _ortho(BarHand.BAR_IN_HOOK))
+
+
+## T-249: the weapon swung (IronBarWeapon.swing, which has already judged the blow): the arm swings
+## the bar over `seconds`; `broke`: that was its last blow, the pieces fall when it lands.
+func swing_bar(seconds: float, broke: bool = false) -> void:
+	if _dead or acting:
+		return
+	_ensure_bar()
+	_bar_swing_len = maxf(seconds, 0.05)
+	_bar_swing_time = 0.0
+	_bar_break = broke
+
+
+## A swing stops where it is (a hand action begins, death): a bar that broke falls now.
+func _end_swing() -> void:
+	if _bar_break:
+		_break_bar()
+	_bar_swing_len = 0.0
+	_bar_swing_time = 0.0
+	_swing_chest = 0.0
+
+
+## The swing's pose `share` of the way through: [hand bone (world), chest turn (degrees)].
+func _swing_pose(share: float) -> Array:
+	var before: Array = BAR_SWING[0]
+	var after: Array = BAR_SWING[BAR_SWING.size() - 1]
+	for index: int in range(1, BAR_SWING.size()):
+		if share <= float(BAR_SWING[index][0]):
+			before = BAR_SWING[index - 1]
+			after = BAR_SWING[index]
+			break
+	var span: float = float(after[0]) - float(before[0])
+	var t: float = smoothstep(0.0, 1.0, (share - float(before[0])) / span) if span > 0.0 else 1.0
+	return [_bar_hand((before[1] as Vector3).lerp(after[1], t), lerpf(before[2], after[2], t), lerpf(before[3], after[3], t)),
+			lerpf(before[4], after[4], t)]
+
+
+## The last blow broke the bar: its two pieces fall from the hand and lie where they land.
+func _break_bar() -> void:
+	_bar_break = false
+	if not is_instance_valid(_bar) or not is_instance_valid(player) or player.get_parent() == null:
+		return
+	IronBarWeapon.bend(_bar, IronBarWeapon.BEND_MAX)
+	var ahead: Vector3 = -player.global_basis.z.normalized()
+	var side: Vector3 = player.global_basis.x.normalized()
+	var index: int = 0
+	for half: Node3D in IronBarWeapon.halves(_bar):
+		var piece := half.duplicate() as Node3D
+		var length: float = 0.4
+		var mesh := piece as MeshInstance3D
+		if mesh != null and mesh.mesh != null:
+			length = mesh.mesh.get_aabb().get_longest_axis_size()
+		# The piece in the fist drops, the far one flies on ahead.
+		var velocity: Vector3 = ahead * (0.6 if index == 0 else 2.6) + Vector3.UP * (0.2 if index == 0 else 1.2) - side * 0.5 * index
+		IronBarWeapon.drop(piece, half.global_transform, player.get_parent(), velocity + player.velocity,
+				side * (3.0 if index == 0 else -9.0), length)
+		index += 1
+	_bar.visible = false
+	_bar_hits = -1
+
+
+## The weapon has a (fresh) bar: at the touch of a reach for one it comes into the hook that took it.
+func _on_bar_picked(_hits: int) -> void:
+	if _dead or not is_instance_valid(player) or not _has_bar():
+		return
+	_ensure_bar()
+	if acting and _bar_reach and not _bar_taking:
+		_bar_taking = true
+		_bar_take_time = 0.0
+		_bar_attach = true
+		_bar.global_transform = _bar_goal * Transform3D(Basis.IDENTITY, Vector3(0.0, 0.0, -IronBarWeapon.GRIP_Z))
+		_bar.visible = visible
+
+
+## Every frame: the bar the hand holds (shown, worn), the hand at the ready or swinging it, the fist.
+func _tick_bar(delta: float) -> void:
+	var weapon := _bar_weapon()
+	var hits: int = weapon.hits_left if weapon != null else 0
+	var has: bool = (hits > 0 or _bar_break) and visible and not _dead
+	if has:
+		_ensure_bar()
+	if is_instance_valid(_bar):
+		_bar.visible = has
+		if hits > 0 and hits != _bar_hits:
+			IronBarWeapon.bend(_bar, IronBarWeapon.wear(hits, weapon.max_hits))
+			_bar_hits = hits
+	_bar_weight = move_toward(_bar_weight, 1.0 if has else 0.0, delta / BAR_FADE)
+	if _bar_taking:
+		_bar_take_time += delta
+	# The swing's clock runs with the weapon's.
+	var swinging: bool = _bar_swing_len > 0.0
+	var share: float = 0.0
+	if swinging:
+		_bar_swing_time += delta
+		share = _bar_swing_time / _bar_swing_len
+		if _bar_break and share >= BAR_BLOW:
+			_break_bar()
+		if share >= 1.0:
+			swinging = false
+			_bar_swing_len = 0.0
+	var pose: Array = _swing_pose(share) if swinging else [Transform3D.IDENTITY, 0.0]
+	_swing_chest = float(pose[1]) * _bar_weight
+	_torso.chest_degrees = _look_chest + _swing_chest
+	# The head stays where it looked while the chest swings under it.
+	_torso.head_degrees = _look_head - _swing_chest
+	if _bar_weight <= 0.0:
+		return
+	# The fist round the bar (closing on one just taken), whatever else the hand does.
+	if _bar_taking:
+		_fingers.morph(BarHand.HOOK, BarHand.FIST, smoothstep(0.0, BAR_CLOSE, _bar_take_time))
+		_fingers.influence = 1.0
+	elif not (acting and _bar_reach):
+		_fingers.hold(BarHand.FIST)
+		_fingers.influence = _bar_weight
+	if acting:
+		return
+	var hand: Transform3D = pose[0] if swinging else _bar_ready()
+	_align.target_basis = _natural_basis().slerp(hand.basis, _bar_weight)
+	_goal.global_position = _natural_wrist().lerp(hand.origin, _bar_weight)
+	_ik.influence = _bar_weight
+	_align.influence = _bar_weight
+	_grip.influence = 0.0
+
+
+## The bar in the fist as drawn this frame.
+func _place_bar() -> void:
+	if not is_instance_valid(_bar) or not _bar.visible:
+		return
+	var hand: Transform3D = _posed_bone("RightHand")
+	var held: Transform3D = _ortho(BarHand.BAR_IN_FIST)
+	if _bar_taking:
+		if _bar_attach:
+			# As it lay in the hand at the touch.
+			_bar_take_rel = _relation(Transform3D(hand.basis.orthonormalized(), hand.origin), _bar_goal)
+			_bar_attach = false
+		held = _bar_take_rel.interpolate_with(held, smoothstep(0.0, BAR_CLOSE, _bar_take_time))
+	var fist: Transform3D = _held_world(hand, held)
+	_bar.global_transform = fist * Transform3D(Basis.IDENTITY, Vector3(0.0, 0.0, -IronBarWeapon.GRIP_Z))
+
+
+func _tick_breath(delta: float) -> void:
+	var spent: bool = visible and not _in_bed and bool(player.get("exhausted"))
+	_breath_amount = move_toward(_breath_amount, 1.0 if spent else 0.0, delta / (BREATH_ON if spent else BREATH_OFF))
+	if _breath_amount <= 0.0:
+		_breath_phase = 0.0
+		_breath.lift = 0.0
+		return
+	_breath_phase = fmod(_breath_phase + delta * BREATH_RATE * TAU, TAU)
+	_breath.lift = _breath_amount * (0.5 - 0.5 * cos(_breath_phase))

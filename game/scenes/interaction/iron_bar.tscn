@@ -17,4 +17,4 @@ shape = SubResource("Shape")
 [node name="HandTarget" type="Marker3D" parent="."]
 position = Vector3(0, 0, -0.32)
 script = ExtResource("hand_target")
-grip = 0
+grip = 2
