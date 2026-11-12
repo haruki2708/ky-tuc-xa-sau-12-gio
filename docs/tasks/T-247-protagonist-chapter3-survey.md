@@ -54,13 +54,46 @@ Với mỗi thứ ghi: code hiện có làm gì (camera, treo đồ trước m�
 - Commit chỉ có báo cáo và ảnh nên **không cần full test/check**; vẫn theo luật Lượt Godot mỗi khi mở Godot (file khoá `D:\GAME_WORK\GODOT_DANG_CHAY.txt`).
 
 ## Checklist
-- [ ] A: bật thân ở chương 3 trong cảnh tạm, đi qua 5 mốc, bảng thứ hỏng
-- [ ] B: bảng mọi thao tác bằng tay (nhóm 1 lấy bằng code, nhóm 2, thanh sắt, thứ khác), phương án và đề xuất
-- [ ] C: chấm động tác thân riêng chương 3
-- [ ] D: rủi ro, việc cần cho phép
-- [ ] Bảng quyết định đầu báo cáo, đề xuất chia việc, câu hỏi cho chủ dự án
-- [ ] Ảnh `previews/t247/` đã tự xem lại
-- [ ] Xoá `game/_probe_tmp/`; push nhánh; Handoff
+- [x] A: bật thân ở chương 3 trong cảnh tạm, đi qua 5 mốc, bảng thứ hỏng
+- [x] B: bảng mọi thao tác bằng tay (nhóm 1 lấy bằng code, nhóm 2, thanh sắt, thứ khác), phương án và đề xuất
+- [x] C: chấm động tác thân riêng chương 3
+- [x] D: rủi ro, việc cần cho phép
+- [x] Bảng quyết định đầu báo cáo, đề xuất chia việc, câu hỏi cho chủ dự án
+- [x] Ảnh `previews/t247/` đã tự xem lại
+- [x] Xoá `game/_probe_tmp/`; push nhánh; Handoff
 
 ## Handoff
 (lane B điền)
+
+### Kết quả (lane B, Opus 5.5, 12/11/2026)
+Nhánh `lane-b/T-247-protagonist-chapter3-survey`, gốc `origin/main` `fc57369` (card đọc ở `fc57369`). Chỉ commit báo cáo, ảnh và card; không sửa code, scene, test, `chapter3.tscn`. Không cần full test/check (card).
+
+**Sản phẩm:**
+- Báo cáo [`tools/reports/T-247-ch3-body-survey.md`](../../tools/reports/T-247-ch3-body-survey.md): đầu báo cáo là bảng quyết định 13 dòng; sau đó phần A–D, đề xuất chia 4 card, câu hỏi cho chủ dự án.
+- 34 ảnh 1080p chương 3 thật: `art_source/graphics_upgrade/protagonist/previews/t247/` (đã tự xem từng tấm).
+
+**Cách làm:** cảnh tạm `game/_probe_tmp/t247_probe.*` (đã xoá; bản sao để tra lại ở `build/t247/probe_backup/`, không commit) nạp `chapter3.tscn` thật, bật `protagonist_body` trước khi vào cây, `auto_start = false`, chạy từng mốc bằng `run_from`. Người chơi đi bằng phím thật, đi cầu thang theo lưới dẫn đường như bot. Log ở `build/t247/*.log`.
+- 15 lượt mở chương 3, mỗi lượt giữ khóa Lượt Godot riêng.
+- Lượt chạy liền 14 cảnh đầu tiên bị Claude Code dừng vì máy thiếu RAM. Khóa của mình đã xoá tay (không còn Godot nào chạy). Chủ dự án cho phép chạy lại, mình chạy lần lượt từng cảnh.
+
+**Phát hiện chính:**
+- Bật thân ở chương 3 **không lỗi script** ở cả 5 mốc. Cửa 407, cửa nhà tắm, ban công, đồ phòng 407, điện thoại, cảnh chết chạy như chương 1–2.
+- **Thanh sắt chưa nằm trong tay:** là hộp treo trước camera, tay thân trống; từ ngoài thấy thanh lơ lửng. Nhặt thanh: thanh biến mất lúc chạm, tay bật về ngay.
+- **B05 (cổng), B06 (gần nhà ăn) thấp hơn tầm lòng bàn tay 4 cm khi cúi:** có thân thì không hiện lời nhắc.
+- **4 `Ch3Use` chưa có chỗ đặt tay:** có thân vẫn bấm E là xong, không động tác.
+- **Cầu thang:** mũi chân lún 4–25 cm, lơ lửng tới 38 cm. **Cửa sổ phòng quản lý:** chân lơ lửng 30–45 cm.
+- **Quay ra sau lúc chạy:** clip chạy phát ngược.
+
+**Lỗi có từ trước, ghi cho integrator (không thuộc thân, không sửa):**
+- Ở checkpoint vườn hoa, người chơi và Minh Nhật cùng đặt ở `Start_garden`: người chơi đứng trên đầu Minh Nhật rồi rơi xuống.
+- Tán cây vườn hoa không có va chạm.
+
+**Câu hỏi cho chủ dự án:** báo cáo mục 7.
+- Chọn phương án cho 13 dòng của bảng 1.
+- Đồng ý không thêm lời nhắc ở cửa sổ phòng quản lý (D-055).
+- Cho phép đo FPS và chạy bot `ch3` ở bước kiểm cuối.
+- Ngư chìa thanh tận tay: làm khi có mô hình Ngư thật, hay giữ thanh hiện thẳng trong tay.
+
+**Chưa thử:** chạy qua cửa lúc đang chạy, chạy cạnh đồng đội, jumpscare, đổi hướng gấp ở sân vận động (ghi "Chưa thử" trong báo cáo). Không chạy bot, không đo FPS, không tiêu credit Tripo.
+
+**Yêu cầu thay đổi ngoài phạm vi:** không có.
