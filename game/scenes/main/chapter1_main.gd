@@ -52,6 +52,9 @@ func _ready() -> void:
 	# Before the director starts (deferred), so lying in bed at the start or a resume has the body.
 	if protagonist_body:
 		Protagonist.attach($Player as CharacterBody3D, $Floor4 as Node3D, _hinged_doors())
+		# T-244 (D-161): the bathroom and balcony doors' sounds, chapter 1 only until the owner hears them.
+		if has_node("Chapter1Director"):
+			HingedDoorAudio.attach_all($Floor4/Room407 as Node3D)
 	var light := $Floor4.get_node_or_null("Room407/Room407MainLight") as Node3D
 	if light != null:
 		light.visible = false

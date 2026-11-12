@@ -1,0 +1,66 @@
+{
+  "ffmpeg": "ffmpeg version 9.0.2-full_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers",
+  "assets": [
+    {
+      "file": "game/audio/hinged_doors/wood_open.ogg",
+      "seconds": 0.49733333333333335,
+      "sample_rate": 48000,
+      "channels": 1,
+      "loop": false,
+      "target_lufs": -36,
+      "lufs": -36.05,
+      "true_peak_db": -24.54,
+      "bytes": 7935,
+      "raw_bytes": 48044,
+      "boundary_delta": 1.948616401320491e-06,
+      "sha256": "fb91570b0b890ce986daef7032ebb32834dd47204ff0b60f896af0014f3a3a0e",
+      "raw_sha256": "bf8bfcff5c3acd59ab72bdffea2639c1977687561c35ab2dcdb403842882dbf4"
+    },
+    {
+      "file": "game/audio/hinged_doors/wood_close.ogg",
+      "seconds": 0.6473333333333333,
+      "sample_rate": 48000,
+      "channels": 1,
+      "loop": false,
+      "target_lufs": -42,
+      "lufs": -42.12,
+      "true_peak_db": -20.73,
+      "bytes": 7240,
+      "raw_bytes": 62444,
+      "boundary_delta": 0.0,
+      "sha256": "0fa3d329b5b21373982d20f936b9b1f1396ae3ef1f92afc0eb38797d8b024fd4",
+      "raw_sha256": "af5e4f1b5eb903ce8f7d60eaec752d88d2aad2e22ece43b442fe772147fd7f43"
+    },
+    {
+      "file": "game/audio/hinged_doors/aluminium_glass_open.ogg",
+      "seconds": 0.49733333333333335,
+      "sample_rate": 48000,
+      "channels": 1,
+      "loop": false,
+      "target_lufs": -36,
+      "lufs": -36.25,
+      "true_peak_db": -22.92,
+      "bytes": 8034,
+      "raw_bytes": 48044,
+      "boundary_delta": 1.9130737529682307e-06,
+      "sha256": "9fee783c2a2a2fe2651914036c431064922753d157f44f30ce560871956e6e1d",
+      "raw_sha256": "37efe5d72c5ebc4caff075c2c07d3727b42ce4f31724987d16644691eaf0b07f"
+    },
+    {
+      "file": "game/audio/hinged_doors/aluminium_glass_close.ogg",
+      "seconds": 0.6706666666666666,
+      "sample_rate": 48000,
+      "channels": 1,
+      "loop": false,
+      "target_lufs": -42,
+      "lufs": -42.13,
+      "true_peak_db": -21.75,
+      "bytes": 8021,
+      "raw_bytes": 62444,
+      "boundary_delta": 0.0,
+      "sha256": "8d0e50b461e3f08c082cdf6eca283c6b26a84172faded0177b540aa1b4b27abe",
+      "raw_sha256": "8bf281c60b6ad9c98ad044dcbca5b0d566ec05ab0b0d21612c48b5d21c7ccdf7"
+    }
+  ],
+  "listening_status": "pending_owner_listening"
+}
