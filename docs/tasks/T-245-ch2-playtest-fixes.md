@@ -42,7 +42,7 @@ Quyết định: D-163. Model: Fable 5.2 high (chủ dự án chọn).
 - **Ảnh trước/sau:** `art_source/graphics_upgrade/protagonist/previews/t245/` (`phone_in_mirror_before_after.jpg`, `rag_shirt_lock_before_after.jpg`, ba ảnh mô hình).
 
 ### Thấy thêm, chưa sửa
-- Cánh tủ Việt khi mở: khối va chạm vô hình (của tủ PS1) rộng 0,6 m, còn cánh Tripo chỉ rộng 0,32 m, nên trước nửa tủ mở có một đoạn "tường vô hình" 0,28 m. Có từ G3, không thuộc việc này.
+- Cánh tủ Việt khi mở: khối va chạm vô hình (của tủ PS1) rộng 0,6 m, còn cánh Tripo chỉ rộng 0,32 m, nên trước nửa tủ mở có một đoạn "tường vô hình" 0,28 m. Có từ G3, không thuộc việc này. **Đã sửa ở [T-246](T-246-viet-locker-door-collision.md).**
 - Mảnh giấy PS1 (`Anchors/VietLocker/Paper1`) nằm ở vách ngăn giữa hai nửa tủ.
 
 ## 4. Chủ dự án xem khi chơi

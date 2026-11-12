@@ -267,6 +267,7 @@ func _furnish() -> void:
 		# "Door" is already the PS1 door's collision body under the anchor's Pivot.
 		door.name = "Furnished" + door.name
 		_carry(door as Node3D, anchor_pivot)
+	_fit_viet_locker_door(locker, anchor_pivot)
 	anchor_pivot.rotation.y = angle
 	var bath_pivot := $Extension/BathroomDoor/Pivot as Node3D
 	angle = bath_pivot.rotation.y
@@ -291,6 +292,45 @@ func _furnish() -> void:
 		(get_node(path) as Light3D).light_energy = NIGHT_LIGHTS[path]
 	for prop_name: String in MIRROR_GLASS:
 		_hang_mirror(props.get_node(prop_name), MIRROR_GLASS[prop_name])
+
+
+## T-246: the PS1 door's box was 0.6 m wide, the furnished leaf 0.32 m: open, the rest stood in front
+## of the locker as an invisible wall. The box takes the leaf's width; the locker's other half (its
+## door is part of the body and never opens) gets a box of its own, the anchor's "FixedDoor".
+## Called with the pivot closed.
+func _fit_viet_locker_door(locker: Node3D, pivot: Node3D) -> void:
+	var to_pivot := pivot.global_transform.affine_inverse()
+	var leaf := AABB()
+	var first := true
+	for child: Node in pivot.get_children():
+		if child is MeshInstance3D and String(child.name).begins_with("Furnished"):
+			var box: AABB = to_pivot * (child as MeshInstance3D).global_transform * (child as MeshInstance3D).get_aabb()
+			leaf = box if first else leaf.merge(box)
+			first = false
+	if first:
+		return
+	var door := pivot.get_node("Door") as StaticBody3D
+	var collision := door.get_node("Collision") as CollisionShape3D
+	var shape := (collision.shape as BoxShape3D).duplicate() as BoxShape3D
+	shape.size.x = leaf.size.x
+	collision.shape = shape
+	door.position.x = leaf.get_center().x
+	var body := locker.find_child("LockerBody", true, false) as MeshInstance3D
+	var outer: AABB = to_pivot * body.global_transform * body.get_aabb()
+	var width := outer.end.x - leaf.end.x
+	if width < 0.05:
+		return
+	var fixed := StaticBody3D.new()
+	fixed.name = "FixedDoor"
+	fixed.collision_mask = 0
+	var fixed_shape := CollisionShape3D.new()
+	fixed_shape.name = "Collision"
+	fixed_shape.shape = BoxShape3D.new()
+	(fixed_shape.shape as BoxShape3D).size = Vector3(width, shape.size.y, shape.size.z)
+	fixed.add_child(fixed_shape)
+	pivot.get_parent().add_child(fixed)
+	fixed.global_transform = pivot.global_transform * Transform3D(Basis(),
+			Vector3(leaf.end.x + width / 2.0, door.position.y, door.position.z))
 
 
 ## T-222: Extension/BalconyDoor (balcony_door.tscn) on the shell's hinge, open as far as the shell

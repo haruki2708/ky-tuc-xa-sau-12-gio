@@ -116,7 +116,8 @@ func test_physics_and_navigation_are_unchanged() -> void:
 	var old := _physics(spawn(ROOM, false))
 	var room := spawn(ROOM)
 	var new := _physics(room).filter(func(entry: Array) -> bool:
-		return not String(entry[0]).begins_with("Extension/BalconyDoor") and not String(entry[0]).begins_with("Furnished/TripoProps/"))
+		return not String(entry[0]).begins_with("Extension/BalconyDoor") and not String(entry[0]).begins_with("Furnished/TripoProps/") \
+				and not String(entry[0]).begins_with("Anchors/VietLocker/FixedDoor"))  # T-246: the locker's fixed half
 	assert_not_null(room.get_node_or_null("Extension/BalconyDoor/Pivot/Leaf/Collision"), "D-127: the balcony door is new")
 	assert_eq(new.size(), old.size(), "same collision/navigation nodes besides it")
 	for i in old.size():
@@ -196,6 +197,37 @@ func test_viet_locker_and_bathroom_door_swing_on_their_hinges() -> void:
 	var shut := bath.global_transform
 	(room.get_node("Extension/BathroomDoor/Pivot") as Node3D).rotation.y = 1.2
 	assert_false(bath.global_transform.is_equal_approx(shut))
+
+
+func test_viet_locker_door_blocks_only_where_it_shows() -> void:
+	# T-246: the PS1 door's 0.6 m box stood 0.28 m past the furnished leaf when open.
+	var room := spawn(ROOM)
+	var locker := room.get_node("Anchors/VietLocker")
+	var pivot := room.get_node("Anchors/VietLocker/Pivot") as Node3D
+	var leaf := pivot.get_node("FurnishedDoor") as MeshInstance3D
+	var collision := pivot.get_node("Door/Collision") as CollisionShape3D
+	var size: Vector3 = (collision.shape as BoxShape3D).size
+	var leaf_box: AABB = leaf.transform * leaf.get_aabb()
+	assert_true(absf(size.x - leaf_box.size.x) < 0.01, "the box is as wide as the leaf (%.3f)" % size.x)
+	for open: bool in [false, true]:
+		locker.set_open(open)
+		var shown: AABB = (leaf.global_transform * leaf.get_aabb()).grow(0.03)
+		for end: float in [-0.5, 0.5]:
+			var corner := collision.global_transform * Vector3(size.x * end, 0.0, 0.0)
+			assert_true(shown.has_point(Vector3(corner.x, shown.get_center().y, corner.z)),
+				"open %s: the box ends with the leaf" % open)
+	locker.set_open(true)
+	var body := room.get_node("Furnished/TripoProps/LockerViet/LockerBody") as MeshInstance3D
+	var outer: AABB = body.global_transform * body.get_aabb()
+	var fixed := room.get_node("Anchors/VietLocker/FixedDoor/Collision") as CollisionShape3D
+	var fixed_size: Vector3 = (fixed.shape as BoxShape3D).size
+	assert_true(outer.has_point(fixed.global_position), "the other half's door is closed by its own box")
+	assert_true(absf(size.x + fixed_size.x - 0.6) < 0.12, "the two boxes close the front, as the PS1 door did (%.3f)" % (size.x + fixed_size.x))
+	assert_eq(fixed.get_parent().collision_layer, 1)
+	var old := spawn(ROOM, false)
+	assert_true(is_equal_approx(((old.get_node("Anchors/VietLocker/Pivot/Door/Collision") as CollisionShape3D).shape as BoxShape3D).size.x,
+		0.6), "the PS1 scene keeps its own door")
+	assert_true(old.get_node_or_null("Anchors/VietLocker/FixedDoor") == null, "no fixed-half box in the PS1 room")
 
 
 func test_door_wall_meets_the_corridor_wall_and_tubes_follow_the_main_light() -> void:
