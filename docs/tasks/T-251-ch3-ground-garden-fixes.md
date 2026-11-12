@@ -1,5 +1,5 @@
 # T-251 — Chương 3: tấm nền giả quanh nhà B, người chơi chồng lên Minh Nhật ở checkpoint vườn hoa, tán cây không va chạm
-- Lane: A | Trạng thái: **merged 13/11/2026** (full test 944/0, check 0), chờ chủ dự án chơi thử | Agent: tài khoản GPT lane A (`.codex-accountA`), Codex CLI, `D:\GAME_WORK\lane-a2`; integrator giao chạy ngầm (D-164).
+- Lane: A | Trạng thái: **merged 13/11/2026** (full test 944/0, check 0), chủ dự án chơi thử bản `04ddc7d` đạt 13/11 | Agent: tài khoản GPT lane A (`.codex-accountA`), Codex CLI, `D:\GAME_WORK\lane-a2`; integrator giao chạy ngầm (D-164).
 - Nhánh: `lane-a/T-251-ch3-ground-garden-fixes` từ `origin/main` mới nhất.
 - Quyết định giao: **D-166** (12/11/2026): chủ dự án chọn ẩn tấm nền giả ở chương 3–4 và giao lane Codex sửa hai lỗi cũ ở vườn hoa. Ba lỗi đều có từ trước, lane B tìm ra ở T-247 và T-249.
 
@@ -50,3 +50,6 @@
 - Lane A (chạy ngầm, D-164) làm xong code, 5 test mới và ảnh trước/sau rồi **hết hạn mức lúc 23:46 khi đang chạy full test**. Integrator commit phần đã làm lên nhánh (`da533fa`), gỡ khoá Godot bị bỏ lại (không còn tiến trình Godot nào), review và merge.
 - Đạt, đúng phạm vi: `chapter1_main.gd` ẩn `Floor4/Room407/Furnished/outside` khi có `Campus` (chương 3–4); `chapter3_director.gd` khi chạy từ checkpoint vườn hoa đặt Minh Nhật cách người chơi 1,2 m và cho người chơi quay mặt về vườn; `garden.tscn` thêm khối va chạm hình nón cho 12 tán cây thấp.
 - Sau merge: full test 944/0, check 0. Ảnh: `art_source/graphics_upgrade/realistic_map/previews/t251/`.
+
+## Chơi thử
+- 13/11/2026: chủ dự án chơi bản `04ddc7d` (gồm T-244, T-246, T-249, T-251) và xác nhận: "ok tôi đã chơi thử rồi, ổn đấy".

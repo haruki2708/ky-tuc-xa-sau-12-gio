@@ -1,6 +1,6 @@
 # T-246: Tủ Việt mở cánh: bỏ "tường vô hình" trước tủ
 
-| Lane: integrator | Nhánh: `integrator/T-246-viet-locker-door-collision` | Trạng thái: merged 12/11/2026 (full test 925/0, check 0) |
+| Lane: integrator | Nhánh: `integrator/T-246-viet-locker-door-collision` | Trạng thái: merged 12/11/2026 (full test 925/0, check 0); **chủ dự án chơi thử bản `04ddc7d` đạt 13/11** |
 |---|---|---|
 
 Chủ dự án chọn làm trước (12/11/2026, sau khi duyệt T-245): "bước 2 làm trước đi". Integrator nhận làm vì việc nhỏ và vừa thấy lỗi khi làm T-245 (card T-245, mục "Thấy thêm, chưa sửa").
@@ -21,3 +21,6 @@ Chủ dự án chọn làm trước (12/11/2026, sau khi duyệt T-245): "bướ
 
 ## 4. Chủ dự án xem khi chơi
 - Chương 2: đi sát trước nửa tủ Việt đang mở, chỗ ngoài mép cánh tủ không còn bị chặn; cánh tủ và nửa tủ đóng vẫn chặn như thường.
+
+## Chơi thử
+- 13/11/2026: chủ dự án chơi bản `04ddc7d` (gồm T-244, T-246, T-249, T-251) và xác nhận: "ok tôi đã chơi thử rồi, ổn đấy".

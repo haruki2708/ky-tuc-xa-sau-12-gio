@@ -1,5 +1,5 @@
 # T-244 — Tiếng mở/đóng cửa nhà tắm và cửa ban công (chương 1)
-- Lane: E (Âm thanh) | Trạng thái: merged 12/11/2026 (full test 932/0, check 0), chờ chủ dự án nghe | Agent: tài khoản GPT lane E (D-141), Codex CLI, `D:\GAME_WORK\lane-e2`
+- Lane: E (Âm thanh) | Trạng thái: merged 12/11/2026 (full test 932/0, check 0), chủ dự án chơi thử bản `04ddc7d` đạt 13/11 | Agent: tài khoản GPT lane E (D-141), Codex CLI, `D:\GAME_WORK\lane-e2`
 - Nhánh: `lane-e/T-244-hinged-door-sounds` từ `origin/main` mới nhất (phải có tín hiệu `HingedDoor.swung`/`settled`, xem mục 1).
 - Quyết định giao: **D-161** (12/11/2026): chủ dự án chơi T-242 và chốt; chọn giao lane E làm tiếng cho hai cửa. **Tiếng để nhỏ, chủ dự án nghe rồi mới chốt.**
 - Bối cảnh: [T-242](T-242-doors-by-hand.md) (cửa nhà tắm và cửa ban công mở/đóng bằng tay ở chương 1, Trung tự bước tránh cánh cửa). Hiện hai cửa này **im lặng** khi mở/đóng.
@@ -75,3 +75,6 @@
 - Integrator làm "Yêu cầu thay đổi": `chapter1_main.gd` gọi `HingedDoorAudio.attach_all` sau `Protagonist.attach`, chỉ khi có `Chapter1Director` (chương 2 im). Test `game/tests/player/test_t244_door_audio_wiring.gd`.
 - Sau merge: full test 932/0, check 0.
 - **Chờ chủ dự án nghe** trong chương 1: mở/đóng cửa nhà tắm (gỗ) và cửa ban công (nhôm kính); có thể nghe riêng ở cảnh `res://audio/test/hinged_door_audio_test.tscn` (phím 1–4).
+
+## Chơi thử
+- 13/11/2026: chủ dự án chơi bản `04ddc7d` (gồm T-244, T-246, T-249, T-251) và xác nhận: "ok tôi đã chơi thử rồi, ổn đấy".
