@@ -1,0 +1,67 @@
+{
+  "shell_4": {
+    "triangles": 1692,
+    "materials": [
+      "Dark",
+      "Linen",
+      "Plaster",
+      "Steel",
+      "Tile"
+    ],
+    "bytes": 98748
+  },
+  "shell_6": {
+    "triangles": 1692,
+    "materials": [
+      "Dark",
+      "Linen",
+      "Plaster",
+      "Steel",
+      "Tile"
+    ],
+    "bytes": 98752
+  },
+  "bunk": {
+    "triangles": 3742,
+    "materials": [
+      "Blanket",
+      "Check",
+      "Dark",
+      "Linen",
+      "Steel",
+      "Wood"
+    ],
+    "bytes": 220636
+  },
+  "desk": {
+    "triangles": 1488,
+    "materials": [
+      "Check",
+      "Dark",
+      "Linen",
+      "Steel",
+      "Wood"
+    ],
+    "bytes": 128360
+  },
+  "locker": {
+    "triangles": 1460,
+    "materials": [
+      "Dark",
+      "Steel",
+      "Wood"
+    ],
+    "bytes": 143772
+  },
+  "stool": {
+    "triangles": 308,
+    "materials": [
+      "Steel",
+      "Wood"
+    ],
+    "bytes": 28292
+  },
+  "room_4_triangles": 12432,
+  "room_6_triangles": 12432,
+  "total_seven_rooms": 87024
+}

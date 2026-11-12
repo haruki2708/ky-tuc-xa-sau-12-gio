@@ -28,6 +28,8 @@
 [ext_resource type="Script" path="res://scenes/levels/room_door_visual.gd" id="t190_e5"]
 
 
+[ext_resource type="Script" path="res://assets/models/graphics_pilot/realistic_map/floor4_rooms/room_visual.gd" id="t252_visual"]
+
 [sub_resource type="BoxShape3D" id="s1"]
 size = Vector3(44, 0.2, 4)
 
@@ -1729,6 +1731,7 @@ collision_mask = 0
 shape = SubResource("s106")
 
 [node name="Mesh" type="MeshInstance3D" parent="Floor_401"]
+visible = false
 mesh = SubResource("s107")
 
 [node name="BackWall_401" type="StaticBody3D" parent="."]
@@ -1740,6 +1743,7 @@ collision_mask = 0
 shape = SubResource("s108")
 
 [node name="Mesh" type="MeshInstance3D" parent="BackWall_401"]
+visible = false
 mesh = SubResource("s109")
 
 [node name="Ceiling_401" type="StaticBody3D" parent="."]
@@ -1751,6 +1755,7 @@ collision_mask = 0
 shape = SubResource("s110")
 
 [node name="Mesh" type="MeshInstance3D" parent="Ceiling_401"]
+visible = false
 mesh = SubResource("s111")
 
 [node name="RoomPlate_401" type="Node3D" parent="."]
@@ -1809,6 +1814,7 @@ collision_mask = 0
 shape = SubResource("s116")
 
 [node name="Mesh" type="MeshInstance3D" parent="Floor_402"]
+visible = false
 mesh = SubResource("s117")
 
 [node name="BackWall_402" type="StaticBody3D" parent="."]
@@ -1820,6 +1826,7 @@ collision_mask = 0
 shape = SubResource("s118")
 
 [node name="Mesh" type="MeshInstance3D" parent="BackWall_402"]
+visible = false
 mesh = SubResource("s119")
 
 [node name="Ceiling_402" type="StaticBody3D" parent="."]
@@ -1831,6 +1838,7 @@ collision_mask = 0
 shape = SubResource("s120")
 
 [node name="Mesh" type="MeshInstance3D" parent="Ceiling_402"]
+visible = false
 mesh = SubResource("s121")
 
 [node name="RoomPlate_402" type="Node3D" parent="."]
@@ -1889,6 +1897,7 @@ collision_mask = 0
 shape = SubResource("s124")
 
 [node name="Mesh" type="MeshInstance3D" parent="Floor_403"]
+visible = false
 mesh = SubResource("s125")
 
 [node name="BackWall_403" type="StaticBody3D" parent="."]
@@ -1900,6 +1909,7 @@ collision_mask = 0
 shape = SubResource("s126")
 
 [node name="Mesh" type="MeshInstance3D" parent="BackWall_403"]
+visible = false
 mesh = SubResource("s127")
 
 [node name="Ceiling_403" type="StaticBody3D" parent="."]
@@ -1911,6 +1921,7 @@ collision_mask = 0
 shape = SubResource("s128")
 
 [node name="Mesh" type="MeshInstance3D" parent="Ceiling_403"]
+visible = false
 mesh = SubResource("s129")
 
 [node name="RoomPlate_403" type="Node3D" parent="."]
@@ -1969,6 +1980,7 @@ collision_mask = 0
 shape = SubResource("s132")
 
 [node name="Mesh" type="MeshInstance3D" parent="Floor_404"]
+visible = false
 mesh = SubResource("s133")
 
 [node name="BackWall_404" type="StaticBody3D" parent="."]
@@ -1980,6 +1992,7 @@ collision_mask = 0
 shape = SubResource("s134")
 
 [node name="Mesh" type="MeshInstance3D" parent="BackWall_404"]
+visible = false
 mesh = SubResource("s135")
 
 [node name="Ceiling_404" type="StaticBody3D" parent="."]
@@ -1991,6 +2004,7 @@ collision_mask = 0
 shape = SubResource("s136")
 
 [node name="Mesh" type="MeshInstance3D" parent="Ceiling_404"]
+visible = false
 mesh = SubResource("s137")
 
 [node name="RoomPlate_404" type="Node3D" parent="."]
@@ -2049,6 +2063,7 @@ collision_mask = 0
 shape = SubResource("s140")
 
 [node name="Mesh" type="MeshInstance3D" parent="Floor_405"]
+visible = false
 mesh = SubResource("s141")
 
 [node name="BackWall_405" type="StaticBody3D" parent="."]
@@ -2060,6 +2075,7 @@ collision_mask = 0
 shape = SubResource("s142")
 
 [node name="Mesh" type="MeshInstance3D" parent="BackWall_405"]
+visible = false
 mesh = SubResource("s143")
 
 [node name="Ceiling_405" type="StaticBody3D" parent="."]
@@ -2071,6 +2087,7 @@ collision_mask = 0
 shape = SubResource("s144")
 
 [node name="Mesh" type="MeshInstance3D" parent="Ceiling_405"]
+visible = false
 mesh = SubResource("s145")
 
 [node name="RoomPlate_405" type="Node3D" parent="."]
@@ -2129,6 +2146,7 @@ collision_mask = 0
 shape = SubResource("s148")
 
 [node name="Mesh" type="MeshInstance3D" parent="Floor_406"]
+visible = false
 mesh = SubResource("s149")
 
 [node name="BackWall_406" type="StaticBody3D" parent="."]
@@ -2140,6 +2158,7 @@ collision_mask = 0
 shape = SubResource("s150")
 
 [node name="Mesh" type="MeshInstance3D" parent="BackWall_406"]
+visible = false
 mesh = SubResource("s151")
 
 [node name="Ceiling_406" type="StaticBody3D" parent="."]
@@ -2151,6 +2170,7 @@ collision_mask = 0
 shape = SubResource("s152")
 
 [node name="Mesh" type="MeshInstance3D" parent="Ceiling_406"]
+visible = false
 mesh = SubResource("s153")
 
 [node name="RoomPlate_406" type="Node3D" parent="."]
@@ -2267,6 +2287,7 @@ collision_mask = 0
 shape = SubResource("s166")
 
 [node name="Mesh" type="MeshInstance3D" parent="RoomPartition_6"]
+visible = false
 mesh = SubResource("s167")
 
 [node name="RoomPartition_10" type="StaticBody3D" parent="."]
@@ -2278,6 +2299,7 @@ collision_mask = 0
 shape = SubResource("s168")
 
 [node name="Mesh" type="MeshInstance3D" parent="RoomPartition_10"]
+visible = false
 mesh = SubResource("s169")
 
 [node name="RoomPartition_14" type="StaticBody3D" parent="."]
@@ -2289,6 +2311,7 @@ collision_mask = 0
 shape = SubResource("s170")
 
 [node name="Mesh" type="MeshInstance3D" parent="RoomPartition_14"]
+visible = false
 mesh = SubResource("s171")
 
 [node name="RoomPartition_18" type="StaticBody3D" parent="."]
@@ -2300,6 +2323,7 @@ collision_mask = 0
 shape = SubResource("s172")
 
 [node name="Mesh" type="MeshInstance3D" parent="RoomPartition_18"]
+visible = false
 mesh = SubResource("s173")
 
 [node name="RoomPartition_22" type="StaticBody3D" parent="."]
@@ -2311,6 +2335,7 @@ collision_mask = 0
 shape = SubResource("s174")
 
 [node name="Mesh" type="MeshInstance3D" parent="RoomPartition_22"]
+visible = false
 mesh = SubResource("s175")
 
 [node name="RoomPartition_26" type="StaticBody3D" parent="."]
@@ -2322,6 +2347,7 @@ collision_mask = 0
 shape = SubResource("s176")
 
 [node name="Mesh" type="MeshInstance3D" parent="RoomPartition_26"]
+visible = false
 mesh = SubResource("s177")
 
 [node name="RoomPartition_38" type="StaticBody3D" parent="."]
@@ -2333,6 +2359,7 @@ collision_mask = 0
 shape = SubResource("s178")
 
 [node name="Mesh" type="MeshInstance3D" parent="RoomPartition_38"]
+visible = false
 mesh = SubResource("s179")
 
 [node name="CorridorLight_Desk" type="OmniLight3D" parent="."]
@@ -2582,6 +2609,7 @@ shape = SubResource("t190_s1")
 metadata/t190 = true
 
 [node name="Mesh" type="MeshInstance3D" parent="Floor_408"]
+visible = false
 mesh = SubResource("t190_s3")
 metadata/t190 = true
 
@@ -2596,6 +2624,7 @@ shape = SubResource("t190_s4")
 metadata/t190 = true
 
 [node name="Mesh" type="MeshInstance3D" parent="Room408BackWall"]
+visible = false
 mesh = SubResource("t190_s6")
 metadata/t190 = true
 
@@ -2610,6 +2639,7 @@ shape = SubResource("t190_s7")
 metadata/t190 = true
 
 [node name="Mesh" type="MeshInstance3D" parent="Ceiling_408"]
+visible = false
 mesh = SubResource("t190_s8")
 metadata/t190 = true
 
@@ -2624,6 +2654,7 @@ shape = SubResource("t190_s9")
 metadata/t190 = true
 
 [node name="Mesh" type="MeshInstance3D" parent="Room408EastWall"]
+visible = false
 mesh = SubResource("t190_s10")
 metadata/t190 = true
 
@@ -2673,6 +2704,7 @@ shape = SubResource("t190_s12")
 metadata/t190 = true
 
 [node name="Mesh" type="MeshInstance3D" parent="RoomInterior_401/Bunk0.4"]
+visible = false
 mesh = SubResource("t190_s14")
 metadata/t190 = true
 
@@ -2687,6 +2719,7 @@ shape = SubResource("t190_s15")
 metadata/t190 = true
 
 [node name="Mesh" type="MeshInstance3D" parent="RoomInterior_401/Bunk1.45"]
+visible = false
 mesh = SubResource("t190_s16")
 metadata/t190 = true
 
@@ -2701,6 +2734,7 @@ shape = SubResource("t190_s17")
 metadata/t190 = true
 
 [node name="Mesh" type="MeshInstance3D" parent="RoomInterior_401/Post-4.35"]
+visible = false
 mesh = SubResource("t190_s18")
 metadata/t190 = true
 
@@ -2715,6 +2749,7 @@ shape = SubResource("t190_s19")
 metadata/t190 = true
 
 [node name="Mesh" type="MeshInstance3D" parent="RoomInterior_401/Post-2.55"]
+visible = false
 mesh = SubResource("t190_s20")
 metadata/t190 = true
 
@@ -2729,6 +2764,7 @@ shape = SubResource("t190_s21")
 metadata/t190 = true
 
 [node name="Mesh" type="MeshInstance3D" parent="RoomInterior_401/Locker"]
+visible = false
 mesh = SubResource("t190_s23")
 metadata/t190 = true
 
@@ -2773,6 +2809,7 @@ shape = SubResource("t190_s25")
 metadata/t190 = true
 
 [node name="Mesh" type="MeshInstance3D" parent="RoomInterior_402/Bunk0.4"]
+visible = false
 mesh = SubResource("t190_s26")
 metadata/t190 = true
 
@@ -2787,6 +2824,7 @@ shape = SubResource("t190_s27")
 metadata/t190 = true
 
 [node name="Mesh" type="MeshInstance3D" parent="RoomInterior_402/Bunk1.45"]
+visible = false
 mesh = SubResource("t190_s28")
 metadata/t190 = true
 
@@ -2801,6 +2839,7 @@ shape = SubResource("t190_s29")
 metadata/t190 = true
 
 [node name="Mesh" type="MeshInstance3D" parent="RoomInterior_402/Post-4.35"]
+visible = false
 mesh = SubResource("t190_s30")
 metadata/t190 = true
 
@@ -2815,6 +2854,7 @@ shape = SubResource("t190_s31")
 metadata/t190 = true
 
 [node name="Mesh" type="MeshInstance3D" parent="RoomInterior_402/Post-2.55"]
+visible = false
 mesh = SubResource("t190_s32")
 metadata/t190 = true
 
@@ -2829,6 +2869,7 @@ shape = SubResource("t190_s33")
 metadata/t190 = true
 
 [node name="Mesh" type="MeshInstance3D" parent="RoomInterior_402/Locker"]
+visible = false
 mesh = SubResource("t190_s34")
 metadata/t190 = true
 
@@ -2873,6 +2914,7 @@ shape = SubResource("t190_s36")
 metadata/t190 = true
 
 [node name="Mesh" type="MeshInstance3D" parent="RoomInterior_403/Bunk0.4"]
+visible = false
 mesh = SubResource("t190_s37")
 metadata/t190 = true
 
@@ -2887,6 +2929,7 @@ shape = SubResource("t190_s38")
 metadata/t190 = true
 
 [node name="Mesh" type="MeshInstance3D" parent="RoomInterior_403/Bunk1.45"]
+visible = false
 mesh = SubResource("t190_s39")
 metadata/t190 = true
 
@@ -2901,6 +2944,7 @@ shape = SubResource("t190_s40")
 metadata/t190 = true
 
 [node name="Mesh" type="MeshInstance3D" parent="RoomInterior_403/Post-4.35"]
+visible = false
 mesh = SubResource("t190_s41")
 metadata/t190 = true
 
@@ -2915,6 +2959,7 @@ shape = SubResource("t190_s42")
 metadata/t190 = true
 
 [node name="Mesh" type="MeshInstance3D" parent="RoomInterior_403/Post-2.55"]
+visible = false
 mesh = SubResource("t190_s43")
 metadata/t190 = true
 
@@ -2929,6 +2974,7 @@ shape = SubResource("t190_s44")
 metadata/t190 = true
 
 [node name="Mesh" type="MeshInstance3D" parent="RoomInterior_403/Locker"]
+visible = false
 mesh = SubResource("t190_s45")
 metadata/t190 = true
 
@@ -2973,6 +3019,7 @@ shape = SubResource("t190_s47")
 metadata/t190 = true
 
 [node name="Mesh" type="MeshInstance3D" parent="RoomInterior_404/Bunk0.4"]
+visible = false
 mesh = SubResource("t190_s48")
 metadata/t190 = true
 
@@ -2987,6 +3034,7 @@ shape = SubResource("t190_s49")
 metadata/t190 = true
 
 [node name="Mesh" type="MeshInstance3D" parent="RoomInterior_404/Bunk1.45"]
+visible = false
 mesh = SubResource("t190_s50")
 metadata/t190 = true
 
@@ -3001,6 +3049,7 @@ shape = SubResource("t190_s51")
 metadata/t190 = true
 
 [node name="Mesh" type="MeshInstance3D" parent="RoomInterior_404/Post-4.35"]
+visible = false
 mesh = SubResource("t190_s52")
 metadata/t190 = true
 
@@ -3015,6 +3064,7 @@ shape = SubResource("t190_s53")
 metadata/t190 = true
 
 [node name="Mesh" type="MeshInstance3D" parent="RoomInterior_404/Post-2.55"]
+visible = false
 mesh = SubResource("t190_s54")
 metadata/t190 = true
 
@@ -3029,6 +3079,7 @@ shape = SubResource("t190_s55")
 metadata/t190 = true
 
 [node name="Mesh" type="MeshInstance3D" parent="RoomInterior_404/Locker"]
+visible = false
 mesh = SubResource("t190_s56")
 metadata/t190 = true
 
@@ -3073,6 +3124,7 @@ shape = SubResource("t190_s58")
 metadata/t190 = true
 
 [node name="Mesh" type="MeshInstance3D" parent="RoomInterior_405/Bunk0.4"]
+visible = false
 mesh = SubResource("t190_s59")
 metadata/t190 = true
 
@@ -3087,6 +3139,7 @@ shape = SubResource("t190_s60")
 metadata/t190 = true
 
 [node name="Mesh" type="MeshInstance3D" parent="RoomInterior_405/Bunk1.45"]
+visible = false
 mesh = SubResource("t190_s61")
 metadata/t190 = true
 
@@ -3101,6 +3154,7 @@ shape = SubResource("t190_s62")
 metadata/t190 = true
 
 [node name="Mesh" type="MeshInstance3D" parent="RoomInterior_405/Post-4.35"]
+visible = false
 mesh = SubResource("t190_s63")
 metadata/t190 = true
 
@@ -3115,6 +3169,7 @@ shape = SubResource("t190_s64")
 metadata/t190 = true
 
 [node name="Mesh" type="MeshInstance3D" parent="RoomInterior_405/Post-2.55"]
+visible = false
 mesh = SubResource("t190_s65")
 metadata/t190 = true
 
@@ -3129,6 +3184,7 @@ shape = SubResource("t190_s66")
 metadata/t190 = true
 
 [node name="Mesh" type="MeshInstance3D" parent="RoomInterior_405/Locker"]
+visible = false
 mesh = SubResource("t190_s67")
 metadata/t190 = true
 
@@ -3173,6 +3229,7 @@ shape = SubResource("t190_s69")
 metadata/t190 = true
 
 [node name="Mesh" type="MeshInstance3D" parent="RoomInterior_406/Bunk0.4"]
+visible = false
 mesh = SubResource("t190_s70")
 metadata/t190 = true
 
@@ -3187,6 +3244,7 @@ shape = SubResource("t190_s71")
 metadata/t190 = true
 
 [node name="Mesh" type="MeshInstance3D" parent="RoomInterior_406/Bunk1.45"]
+visible = false
 mesh = SubResource("t190_s72")
 metadata/t190 = true
 
@@ -3201,6 +3259,7 @@ shape = SubResource("t190_s73")
 metadata/t190 = true
 
 [node name="Mesh" type="MeshInstance3D" parent="RoomInterior_406/Post-4.35"]
+visible = false
 mesh = SubResource("t190_s74")
 metadata/t190 = true
 
@@ -3215,6 +3274,7 @@ shape = SubResource("t190_s75")
 metadata/t190 = true
 
 [node name="Mesh" type="MeshInstance3D" parent="RoomInterior_406/Post-2.55"]
+visible = false
 mesh = SubResource("t190_s76")
 metadata/t190 = true
 
@@ -3229,6 +3289,7 @@ shape = SubResource("t190_s77")
 metadata/t190 = true
 
 [node name="Mesh" type="MeshInstance3D" parent="RoomInterior_406/Locker"]
+visible = false
 mesh = SubResource("t190_s78")
 metadata/t190 = true
 
@@ -3273,6 +3334,7 @@ shape = SubResource("t190_s80")
 metadata/t190 = true
 
 [node name="Mesh" type="MeshInstance3D" parent="RoomInterior_408/Bunk0.4"]
+visible = false
 mesh = SubResource("t190_s81")
 metadata/t190 = true
 
@@ -3287,6 +3349,7 @@ shape = SubResource("t190_s82")
 metadata/t190 = true
 
 [node name="Mesh" type="MeshInstance3D" parent="RoomInterior_408/Bunk1.45"]
+visible = false
 mesh = SubResource("t190_s83")
 metadata/t190 = true
 
@@ -3301,6 +3364,7 @@ shape = SubResource("t190_s84")
 metadata/t190 = true
 
 [node name="Mesh" type="MeshInstance3D" parent="RoomInterior_408/Post-4.35"]
+visible = false
 mesh = SubResource("t190_s85")
 metadata/t190 = true
 
@@ -3315,6 +3379,7 @@ shape = SubResource("t190_s86")
 metadata/t190 = true
 
 [node name="Mesh" type="MeshInstance3D" parent="RoomInterior_408/Post-2.55"]
+visible = false
 mesh = SubResource("t190_s87")
 metadata/t190 = true
 
@@ -3329,5 +3394,48 @@ shape = SubResource("t190_s88")
 metadata/t190 = true
 
 [node name="Mesh" type="MeshInstance3D" parent="RoomInterior_408/Locker"]
+visible = false
 mesh = SubResource("t190_s89")
 metadata/t190 = true
+
+[node name="T252Visual" type="Node3D" parent="RoomInterior_401"]
+position = Vector3(8, 0, 0)
+script = ExtResource("t252_visual")
+room = "401"
+width = 4
+
+[node name="T252Visual" type="Node3D" parent="RoomInterior_402"]
+position = Vector3(12, 0, 0)
+script = ExtResource("t252_visual")
+room = "402"
+width = 4
+
+[node name="T252Visual" type="Node3D" parent="RoomInterior_403"]
+position = Vector3(16, 0, 0)
+script = ExtResource("t252_visual")
+room = "403"
+width = 4
+
+[node name="T252Visual" type="Node3D" parent="RoomInterior_404"]
+position = Vector3(20, 0, 0)
+script = ExtResource("t252_visual")
+room = "404"
+width = 4
+
+[node name="T252Visual" type="Node3D" parent="RoomInterior_405"]
+position = Vector3(24, 0, 0)
+script = ExtResource("t252_visual")
+room = "405"
+width = 4
+
+[node name="T252Visual" type="Node3D" parent="RoomInterior_406"]
+position = Vector3(28, 0, 0)
+script = ExtResource("t252_visual")
+room = "406"
+width = 4
+
+[node name="T252Visual" type="Node3D" parent="RoomInterior_408"]
+position = Vector3(41, 0, 0)
+script = ExtResource("t252_visual")
+room = "408"
+width = 6
