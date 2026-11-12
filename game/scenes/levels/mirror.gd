@@ -4,6 +4,9 @@ extends Node3D
 
 const BODY_LAYER: int = 1 << 19
 const SURFACE_LAYER: int = 1 << 18
+## T-245: the player's own view of his body and phone (PlayerBody.VIEW_LAYER); a mirror shows the
+## mirror copy.
+const VIEW_LAYER: int = 1 << 17
 const MAX_LAG: float = 10.0
 @export var follow: Node3D
 @export var mirror_size := Vector2(2.8, 0.95)
@@ -31,7 +34,7 @@ func _ready() -> void:
 	_material = ($Surface as MeshInstance3D).material_override.duplicate() as ShaderMaterial
 	$Surface.material_override = _material
 	_material.set_shader_parameter("reflection_texture", viewport.get_texture())
-	reflection_camera.cull_mask = ((1 << 20) - 1) & ~SURFACE_LAYER
+	reflection_camera.cull_mask = ((1 << 20) - 1) & ~SURFACE_LAYER & ~VIEW_LAYER
 	_set_active(false)
 
 

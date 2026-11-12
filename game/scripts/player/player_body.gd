@@ -61,6 +61,25 @@ const PICK_SLIDE: float = 0.012
 ## IK fades in and out over this, while the goal sits on the clip's own hand.
 const IK_FADE: float = 0.08
 const MIRROR_LAYER: int = 20
+## T-245 (D-163): only the player's own camera draws this layer: the view mesh and the phone held
+## before the eyes. Every other camera (mirrors, CCTV, a third-person view) draws the mirror mesh.
+const VIEW_LAYER: int = 18
+## T-245 (D-163): before the eyes the phone has to sit 0.3 m ahead of the camera to be seen at all,
+## which a body's arm only reaches stretched out straight with the wrist bent back (the owner in the
+## bathroom mirror: "the arm looks broken"). So a mirror shows the left arm in a pose of its own
+## while it holds the phone: the elbow down by the ribs, the phone before the chest. Its bones are
+## copies of the left arm's (MirrorArmModifier), named with this in front.
+const MIRROR_BONE := "Mirror"
+const MIRROR_ARM_ROOT := "LeftUpperArm"
+## The phone a mirror shows, from the left shoulder (x right, y up, z back; the frame turns with the
+## view and takes MIRROR_PITCH_SHARE of its pitch): lit low before the chest, or raised to read.
+const MIRROR_PHONE_LOW_AT: Vector3 = Vector3(0.11, -0.09, -0.34)
+const MIRROR_PHONE_LOW_TILT: Vector3 = Vector3(-1.05, 0.25, 0.0)
+const MIRROR_PHONE_RAISED_AT: Vector3 = Vector3(0.16, 0.03, -0.29)
+const MIRROR_PHONE_RAISED_TILT: Vector3 = Vector3(-0.5, 0.2, 0.08)
+const MIRROR_PITCH_SHARE: float = 0.3
+## Where that arm's elbow points (the same frame): down, a little out and back.
+const MIRROR_ELBOW: Vector3 = Vector3(-0.6, -0.75, 0.3)
 const BLEND_SECONDS: float = 0.2
 const MOVING: float = 0.15
 ## Between the player's walk (2.2 m/s) and sprint (3.6 m/s) speeds.
@@ -313,6 +332,12 @@ var _left_align: HandAlignModifier
 var _left_goal: Node3D
 var _left_pole: Node3D
 var _left_attach: BoneAttachment3D
+var _mirror_ik: TwoBoneIK3D
+var _mirror_align: HandAlignModifier
+var _mirror_goal: Node3D
+var _mirror_pole: Node3D
+## T-245: the phone a mirror shows, in the mirror arm's hand.
+var _mirror_phone: Node3D
 var _phone: Node3D
 var _phone_weight: float = 0.0
 var _phone_raise: float = 0.0
@@ -379,7 +404,9 @@ func bind(owner_player: CharacterBody3D) -> void:
 	var camera := player.get_node_or_null("Head/Camera3D") as Camera3D
 	if camera != null:
 		camera.set_cull_mask_value(MIRROR_LAYER, false)
+		camera.set_cull_mask_value(VIEW_LAYER, true)
 	_phone = player.get_node_or_null("Head/Camera3D/PhoneItem") as Node3D
+	_build_mirror_phone()
 	var phone_body := _phone.get_node_or_null("Model/Body") if _phone != null else null
 	if phone_body != null:
 		# T-227: the Tripo phone (a GLB scene) or a plain mesh.
@@ -389,6 +416,57 @@ func bind(owner_player: CharacterBody3D) -> void:
 		for mesh: MeshInstance3D in meshes:
 			if mesh.mesh != null:
 				_phone_half = mesh.mesh.get_aabb().size.z * 0.5
+
+
+func _enter_tree() -> void:
+	if not get_tree().node_added.is_connected(_on_node_added):
+		get_tree().node_added.connect(_on_node_added)
+	for camera: Node in get_tree().root.find_children("*", "Camera3D", true, false):
+		_on_node_added(camera)
+
+
+func _exit_tree() -> void:
+	if get_tree().node_added.is_connected(_on_node_added):
+		get_tree().node_added.disconnect(_on_node_added)
+
+
+## T-245: no camera but the player's own draws the view layer.
+func _on_node_added(node: Node) -> void:
+	var camera := node as Camera3D
+	if camera == null:
+		return
+	if is_instance_valid(player) and camera == player.get_node_or_null("Head/Camera3D"):
+		return
+	camera.set_cull_mask_value(VIEW_LAYER, false)
+
+
+## T-245: the phone before the eyes is the player's own view of it; a copy on the mirror layer sits
+## in the hand a mirror shows.
+func _build_mirror_phone() -> void:
+	if is_instance_valid(_mirror_phone):
+		_mirror_phone.queue_free()
+	_mirror_phone = null
+	var source := _phone.get_node_or_null("Model") as Node3D if is_instance_valid(_phone) else null
+	if source == null or _mirror_ik == null:
+		return
+	_mirror_phone = Node3D.new()
+	_mirror_phone.name = "MirrorPhone"
+	_mirror_phone.top_level = true
+	_mirror_phone.visible = false
+	add_child(_mirror_phone)
+	for mesh: MeshInstance3D in source.find_children("*", "MeshInstance3D", true, false):
+		if mesh.mesh == null:
+			continue
+		var copy := mesh.duplicate(0) as MeshInstance3D
+		var place: Transform3D = Transform3D.IDENTITY
+		var step: Node = mesh
+		while step != source and step is Node3D:
+			place = (step as Node3D).transform * place
+			step = step.get_parent()
+		_mirror_phone.add_child(copy)
+		copy.transform = place
+		copy.layers = 1 << (MIRROR_LAYER - 1)
+		mesh.layers = 1 << (VIEW_LAYER - 1)
 
 
 func can_handle(target: Interactable) -> bool:
@@ -1342,6 +1420,13 @@ func _on_skeleton_updated() -> void:
 			var camera := _camera()
 			if light != null and camera != null:
 				light.global_transform = Transform3D(camera.global_basis, placed.origin + (-camera.global_basis.z.normalized()) * PHONE_LIGHT_AHEAD)
+	if is_instance_valid(_mirror_phone):
+		# T-245: the phone a mirror shows rides the hand a mirror shows.
+		var shown: bool = _phone_weight > 0.01 and is_visible_in_tree() and is_instance_valid(_phone) \
+				and (_phone.get_node("Model") as Node3D).is_visible_in_tree()
+		_mirror_phone.visible = shown
+		if shown:
+			_mirror_phone.global_transform = _held_world(_posed_bone(MIRROR_BONE + "LeftHand"), HandShapes.PHONE_IN_HAND)
 	_place_held()
 	if not acting or not is_instance_valid(_carried):
 		return
@@ -1443,6 +1528,33 @@ func _tick_phone(delta: float) -> void:
 	_left_ik.influence = _phone_weight
 	_left_align.influence = _phone_weight
 	_left_fingers.influence = _phone_weight
+	_tick_mirror_arm(camera)
+
+
+## T-245 (D-163): the arm a mirror shows holds the phone by the body (MIRROR_PHONE_*): the same hand
+## shape on the phone, the elbow down by the ribs.
+func _tick_mirror_arm(camera: Camera3D) -> void:
+	if _mirror_ik == null:
+		return
+	_mirror_ik.influence = _phone_weight
+	_mirror_align.influence = _phone_weight
+	if _phone_weight <= 0.0 or not _drawn_left_shoulder.is_finite():
+		return
+	var forward: Vector3 = -camera.global_basis.z.normalized()
+	var flat := Vector3(forward.x, 0.0, forward.z)
+	if flat.length() < 0.05:
+		# Looking straight down or up: the top of the view is ahead.
+		flat = camera.global_basis.y * (-signf(forward.y))
+		flat.y = 0.0
+	var turn := Basis.looking_at(flat.normalized(), Vector3.UP)
+	var pitch: float = asin(clampf(forward.y, -1.0, 1.0)) * MIRROR_PITCH_SHARE
+	var frame := Transform3D(turn * Basis(Vector3.RIGHT, pitch), _drawn_left_shoulder)
+	var low: Transform3D = frame * Transform3D(Basis.from_euler(MIRROR_PHONE_LOW_TILT), MIRROR_PHONE_LOW_AT)
+	var high: Transform3D = frame * Transform3D(Basis.from_euler(MIRROR_PHONE_RAISED_TILT), MIRROR_PHONE_RAISED_AT)
+	var hand: Transform3D = _hand_for(low.interpolate_with(high, _phone_raise), HandShapes.PHONE_IN_HAND)
+	_mirror_goal.global_position = hand.origin
+	_mirror_align.target_basis = hand.basis
+	_mirror_pole.global_position = _drawn_left_shoulder.lerp(hand.origin, 0.5) + (frame.basis * MIRROR_ELBOW).normalized() * 0.4
 
 
 ## The hand as the clip holds it this frame (before IK), world space.
@@ -2153,6 +2265,8 @@ func _split_meshes() -> void:
 		mirror.layers = 1 << (MIRROR_LAYER - 1)
 		mirror.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_ON
 		mirror_meshes.append(mirror)
+		# T-245: the view mesh is the player's own camera's alone.
+		mesh.layers = 1 << (VIEW_LAYER - 1)
 		mesh.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 		if mesh.skin != null:
 			var skin := mesh.skin.duplicate() as Skin
@@ -2277,7 +2391,75 @@ func _build_modifiers() -> void:
 	_left_attach.name = "LeftHandAttach"
 	_left_attach.bone_name = "LeftHand"
 	skeleton.add_child(_left_attach)
+	_build_mirror_arm()
 	skeleton.skeleton_updated.connect(_on_skeleton_updated)
+
+
+## T-245 (D-163): the left arm a mirror shows. Copies of the arm's bones (shoulder joint to
+## fingertips) carry the mirror mesh's left arm; they follow the originals (MirrorArmModifier), and
+## while the phone is held an IK of their own holds it by the body (_tick_mirror_arm).
+func _build_mirror_arm() -> void:
+	var root: int = skeleton.find_bone(MIRROR_ARM_ROOT)
+	if root < 0:
+		return
+	var copies: Dictionary = {}
+	var pairs := PackedInt32Array()
+	var queue: Array[int] = [root]
+	while not queue.is_empty():
+		var bone: int = queue.pop_front()
+		var copy: int = skeleton.add_bone(MIRROR_BONE + skeleton.get_bone_name(bone))
+		var parent: int = skeleton.get_bone_parent(bone)
+		skeleton.set_bone_parent(copy, copies.get(parent, parent))
+		skeleton.set_bone_rest(copy, skeleton.get_bone_rest(bone))
+		skeleton.set_bone_pose(copy, skeleton.get_bone_pose(bone))
+		copies[bone] = copy
+		pairs.append(bone)
+		pairs.append(copy)
+		for child: int in skeleton.get_bone_children(bone):
+			queue.append(child)
+	for mirror: MeshInstance3D in mirror_meshes:
+		if mirror.skin == null:
+			continue
+		var skin := mirror.skin.duplicate() as Skin
+		for bind: int in skin.get_bind_count():
+			var bind_name: StringName = skin.get_bind_name(bind)
+			var bone: int = skeleton.find_bone(bind_name) if bind_name != &"" else skin.get_bind_bone(bind)
+			if not copies.has(bone):
+				continue
+			if bind_name != &"":
+				skin.set_bind_name(bind, MIRROR_BONE + String(bind_name))
+			else:
+				skin.set_bind_bone(bind, copies[bone])
+		mirror.skin = skin
+	var follow := MirrorArmModifier.new()
+	follow.name = "MirrorArmFollow"
+	follow.pairs = pairs
+	skeleton.add_child(follow)
+	_mirror_goal = Node3D.new()
+	_mirror_goal.name = "MirrorHandGoal"
+	_mirror_goal.top_level = true
+	add_child(_mirror_goal)
+	_mirror_pole = Node3D.new()
+	_mirror_pole.name = "MirrorElbowPole"
+	_mirror_pole.top_level = true
+	add_child(_mirror_pole)
+	_mirror_ik = TwoBoneIK3D.new()
+	_mirror_ik.name = "MirrorArmIK"
+	skeleton.add_child(_mirror_ik)
+	_mirror_ik.setting_count = 1
+	_mirror_ik.set_root_bone_name(0, MIRROR_BONE + "LeftUpperArm")
+	_mirror_ik.set_middle_bone_name(0, MIRROR_BONE + "LeftLowerArm")
+	_mirror_ik.set_end_bone_name(0, MIRROR_BONE + "LeftHand")
+	_mirror_ik.set_target_node(0, _mirror_ik.get_path_to(_mirror_goal))
+	_mirror_ik.set_pole_node(0, _mirror_ik.get_path_to(_mirror_pole))
+	_mirror_ik.set_pole_direction(0, SkeletonModifier3D.SECONDARY_DIRECTION_MINUS_Z)
+	_mirror_ik.influence = 0.0
+	_mirror_align = HandAlignModifier.new()
+	_mirror_align.name = "MirrorHandAlign"
+	_mirror_align.bone = StringName(MIRROR_BONE + "LeftHand")
+	_mirror_align.forearm_share = FOREARM_SHARE
+	skeleton.add_child(_mirror_align)
+	_mirror_align.influence = 0.0
 
 
 ## The hand's local axis out of the palm: where a finger's tip goes when HandGripModifier
