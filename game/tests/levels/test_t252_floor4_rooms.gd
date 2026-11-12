@@ -15,6 +15,8 @@ func before_each() -> void:
 func after_each() -> void:
 	fixture.queue_free()
 	await wait_frames(2)
+	# Reverb fades are owned by the scene tree and outlive the corridor for 0.3 seconds.
+	await tree.create_timer(.4).timeout
 
 
 func test_each_room_has_fitted_blender_shell_and_furniture() -> void:
@@ -81,10 +83,10 @@ func test_mesh_budget_and_shared_materials() -> void:
 		var visual := fixture.get_node("RoomInterior_%d/T252Visual" % room)
 		for instance: MeshInstance3D in visual.find_children("*", "MeshInstance3D", true, false):
 			for surface: int in instance.mesh.get_surface_count():
-				var count := instance.mesh.surface_get_array_index_len(surface)
-				if count == 0:
-					count = instance.mesh.surface_get_array_len(surface)
-				triangles += int(count / 3)
+				var arrays := instance.mesh.surface_get_arrays(surface)
+				var indices: PackedInt32Array = arrays[Mesh.ARRAY_INDEX]
+				var vertices: PackedVector3Array = arrays[Mesh.ARRAY_VERTEX]
+				triangles += int((vertices.size() if indices.is_empty() else indices.size()) / 3)
 				var material := instance.get_active_material(surface) as StandardMaterial3D
 				assert_not_null(material)
 				materials[material] = true
