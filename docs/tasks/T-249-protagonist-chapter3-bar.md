@@ -1,5 +1,5 @@
 # T-249 — Thân Trần Trung vào chương 3, phần không phụ thuộc cảnh: thanh sắt, ngoảnh lại khi chạy, thở dốc
-- Lane: **HARU làm thay lane B** (lane B hết hạn mức; chủ dự án chọn 12/11) | Trạng thái: todo | Agent: tài khoản Claude của HARU, mở trong **`D:\GAME_WORK\lane-b2`** bằng `D:\GAME_WORK\mo_claude_haru_lam_lane_b.cmd`; model đề xuất **Fable 5.2 high**. Chủ dự án tự dán prompt (integrator không điều khiển lane Claude).
+- Lane: **HARU làm thay lane B** (lane B hết hạn mức; chủ dự án chọn 12/11) | Trạng thái: **đang dở** (HARU rồi integrator, 12/11; xem Handoff) | Agent: tài khoản Claude của HARU, mở trong **`D:\GAME_WORK\lane-b2`** bằng `D:\GAME_WORK\mo_claude_haru_lam_lane_b.cmd`; model đề xuất **Fable 5.2 high**. Chủ dự án tự dán prompt (integrator không điều khiển lane Claude).
 - Nhánh: `lane-b/T-249-protagonist-chapter3-bar` từ `origin/main` mới nhất.
 - Quyết định giao: **D-165** (12/11/2026): đồ hoạ thật trước (T-248); thân chương 3 tách hai phần, phần không phụ thuộc cảnh làm ngay. Phương án các dòng lấy theo đề xuất của [T-247](T-247-protagonist-chapter3-survey.md) (`tools/reports/T-247-ch3-body-survey.md` mục 1); chủ dự án đổi dòng nào thì integrator sửa card trước khi giao.
 
@@ -53,4 +53,28 @@
 - [ ] Full test, check; push nhánh; Handoff
 
 ## Handoff
-(HARU điền)
+### 12/11/2026 — HARU (dừng 20:03, hết hạn mức) rồi integrator (Fable 5.2, dừng vì gần hết hạn mức)
+**Chưa xong. Code chưa chạy lần nào (chưa biên dịch, chưa test).** Nhánh `lane-b/T-249-protagonist-chapter3-bar`, commit WIP mới nhất ở đầu nhánh.
+
+**Đã có trên nhánh**
+- HARU (`963a664`): mô hình thanh sắt `game/assets/models/graphics_pilot/protagonist/iron_bar.glb` (script `art_source/graphics_upgrade/protagonist/iron_bar/build_iron_bar.py`: ống thép gỉ 0,85 m, 7 xương `Bar0…Bar6` để uốn, hai nửa gãy `HalfGrip`, `HalfTip`); dáng tay `game/scripts/player/bar_hand.gd` (`FIST`, `HOOK`, `BAR_IN_FIST`, `BAR_IN_HOOK`, sinh từ `bar_grip.py`); `breath_modifier.gd`, `torso_turn_modifier.gd`; `iron_bar_weapon.gd` (mô hình mới, `make_model`, `bend`, `wear`, `drop`, gọi `hand.swing_bar`); `iron_bar.gd` (`rest_on`, chờ tay rồi mới `queue_free`).
+- Integrator (commit WIP sau đó), **viết xong nhưng chưa chạy**:
+  - `player_body.gd` (cuối file, mục "T-249"): `_tick_bar` (thanh trong nắm tay phải, tư thế sẵn sàng `BAR_READY`, vung `BAR_SWING` 0,55 s không khoá di chuyển, gãy `_break_bar` rơi hai nửa), `_place_bar` (đặt thanh theo tay đã dựng), nhặt thanh (`_bar_reach`, `_bar_hook`, `_on_bar_picked`: móc bằng đầu ngón rồi lăn vào nắm tay), `swing_bar`, `_tick_breath` (thở dốc khi `player.exhausted`), ngoảnh lại khi chạy trong `_tick_locomotion` (`_back_side`, `_look_chest`, `_look_head`, `BACK_*`), `can_handle` (đang cầm thanh thì không nhón giấy), `_torso` và `_breath` thêm trong `_build_modifiers`.
+  - `iron_bar.gd`: `hand_target()` dời `HandTarget` về đầu thanh bên phải người với (`_side`), `grip_frame()`; `iron_bar.tscn`: `grip = 2` (HOOK, lấy bằng đầu ngón: sửa B05/B06 thiếu 4 cm).
+
+**Việc còn lại, theo thứ tự**
+1. Import rồi biên dịch: `pwsh tools/test.ps1 -Filter test_ch3_gameplay` (lượt Godot). Sửa lỗi cú pháp/kiểu nếu có. Cần kiểm: `EventBus.bar_picked` có đúng một tham số; `IronBarWeapon.halves()` trả node có `global_transform` đúng (xem cây node của `iron_bar.glb`).
+2. `chapter3_director.gd` `_settle_bars`: gọi `bar.rest_on(hit.position.y)` thay cho `+ 0.05`, tia dò kéo xuống dưới mốc 0,3 m (B05, B06 không trúng mặt đất). Rồi sửa giới hạn độ cao trong `game/tests/player/test_ch2_4_hand_targets.gd` (`_bar_height_limits`, và `"iron_bar": [HandTarget.Grip.GRIP, false]` → `HOOK`) theo số in `T231_BAR`.
+3. `game/scenes/main/chapter3.tscn`: `protagonist_body = true`.
+4. Cảnh thử trong `game/_probe_tmp/` (không commit): chương 3 thật, `auto_start = false`, `player.give_bar(8)`, chụp góc mắt và góc ngoài: đứng, đi, chạy, vung (8 khung), gãy, nhặt B01…B06, chạy ngoảnh lại (S + chạy), thở dốc. Chỉnh hằng số `BAR_READY`, `BAR_SWING`, `BACK_*`, `BREATH_*` theo ảnh. **Chỗ cần nhìn kỹ:** khuỷu tay khi vung (IK không có pole khi không `acting`), thanh có xuyên thân hay camera không, góc mắt có thấy đầu thanh không, thân quay lưng khi ngoảnh lại có lộ cổ trong góc mắt không.
+5. Test mới `game/tests/player/test_t249_chapter3_bar.gd` theo card mục 3; test cũ `test_ch3_*`, `test_chapter3`, `test_ch3_ui`, `test_ch3_audio`, `test_ch2_4_hand_targets`, `test_protagonist_*`, `test_t24*` phải đạt.
+6. Ảnh `art_source/graphics_upgrade/protagonist/previews/t249/`, CREDITS cho thanh sắt (tự dựng, không tải texture), full test, check, Handoff, push.
+
+**Quyết định kỹ thuật đã chọn (báo chủ dự án khi bàn giao)**
+- Tư thế cầm: thanh **chếch lên phía trước ở tư thế sẵn sàng** (nắm tay trước hông phải) để góc mắt thấy đầu thanh và độ cong; không buông dọc chân như chữ trong bảng T-247 (hai ý đó không cùng lúc được). Đổi bằng `BAR_READY`.
+- Đang cầm thanh mà gặp giấy: đọc tại chỗ như khi không có thân (không nhón lên). Chương 3 không có chỗ nào vừa có thanh vừa có giấy.
+- Đang làm việc khác bằng tay (1 giây) thì không vung được (`IronBarWeapon.swing` trả `false`).
+- Nhặt thanh khi tay đang có thanh: thanh trong tay thẳng lại (thanh mới), không có động tác đổi thanh.
+
+**Chưa kiểm:** tất cả. Không chạy bot, không đo FPS.
+
