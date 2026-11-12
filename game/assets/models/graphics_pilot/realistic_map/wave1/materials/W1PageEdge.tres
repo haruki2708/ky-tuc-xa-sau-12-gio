@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" format=3]
+
+[resource]
+resource_name = "W1PageEdge"
+albedo_color = Color(0.8, 0.77, 0.68, 1)
+roughness = 0.95

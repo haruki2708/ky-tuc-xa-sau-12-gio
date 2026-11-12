@@ -16,6 +16,15 @@
 [ext_resource type="PackedScene" path="res://assets/models/kit/bunk_bed.glb" id="e14"]
 
 [ext_resource type="Script" path="res://scenes/levels/room_door.gd" id="t190_e1"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave1/wall_clock.glb" id="w1_clock"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave1/duty_key.glb" id="w1_key"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave1/fire_stairs.glb" id="w1_fire_stairs"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave1/fire_door_frame.glb" id="w1_door_frame"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave1/fire_door_leaf.glb" id="w1_door_leaf"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave1/fire_door_leaf_b.glb" id="w1_door_leaf_b"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave1/fire_door_lock.glb" id="w1_door_lock"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave1/fire_door_handle.glb" id="w1_door_handle"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave1/main_stairs.glb" id="w1_main_stairs"]
 
 
 [sub_resource type="BoxShape3D" id="s1"]
@@ -5789,6 +5798,7 @@ collision_mask = 0
 shape = SubResource("s303")
 
 [node name="Mesh" type="MeshInstance3D" parent="MainStairs/Landing1"]
+visible = false
 mesh = SubResource("s304")
 
 [node name="Landing2" type="StaticBody3D" parent="MainStairs"]
@@ -5802,6 +5812,7 @@ collision_mask = 0
 shape = SubResource("s305")
 
 [node name="Mesh" type="MeshInstance3D" parent="MainStairs/Landing2"]
+visible = false
 mesh = SubResource("s306")
 
 [node name="Landing3" type="StaticBody3D" parent="MainStairs"]
@@ -5815,6 +5826,7 @@ collision_mask = 0
 shape = SubResource("s307")
 
 [node name="Mesh" type="MeshInstance3D" parent="MainStairs/Landing3"]
+visible = false
 mesh = SubResource("s308")
 
 [node name="Landing4" type="StaticBody3D" parent="MainStairs"]
@@ -5828,6 +5840,7 @@ collision_mask = 0
 shape = SubResource("s309")
 
 [node name="Mesh" type="MeshInstance3D" parent="MainStairs/Landing4"]
+visible = false
 mesh = SubResource("s310")
 
 [node name="MainStairsDown4A" type="StaticBody3D" parent="MainStairs"]
@@ -5839,66 +5852,77 @@ metadata/surface = &"tile"
 shape = SubResource("s311")
 
 [node name="Tread00" type="Node3D" parent="MainStairs/MainStairsDown4A"]
+visible = false
 position = Vector3(-3.8, -0.165, -0.2181818)
 
 [node name="Mesh" type="MeshInstance3D" parent="MainStairs/MainStairsDown4A/Tread00"]
 mesh = SubResource("s312")
 
 [node name="Tread01" type="Node3D" parent="MainStairs/MainStairsDown4A"]
+visible = false
 position = Vector3(-3.8, -0.315, -0.6545455)
 
 [node name="Mesh" type="MeshInstance3D" parent="MainStairs/MainStairsDown4A/Tread01"]
 mesh = SubResource("s313")
 
 [node name="Tread02" type="Node3D" parent="MainStairs/MainStairsDown4A"]
+visible = false
 position = Vector3(-3.8, -0.465, -1.0909091)
 
 [node name="Mesh" type="MeshInstance3D" parent="MainStairs/MainStairsDown4A/Tread02"]
 mesh = SubResource("s314")
 
 [node name="Tread03" type="Node3D" parent="MainStairs/MainStairsDown4A"]
+visible = false
 position = Vector3(-3.8, -0.615, -1.5272727)
 
 [node name="Mesh" type="MeshInstance3D" parent="MainStairs/MainStairsDown4A/Tread03"]
 mesh = SubResource("s315")
 
 [node name="Tread04" type="Node3D" parent="MainStairs/MainStairsDown4A"]
+visible = false
 position = Vector3(-3.8, -0.765, -1.9636364)
 
 [node name="Mesh" type="MeshInstance3D" parent="MainStairs/MainStairsDown4A/Tread04"]
 mesh = SubResource("s316")
 
 [node name="Tread05" type="Node3D" parent="MainStairs/MainStairsDown4A"]
+visible = false
 position = Vector3(-3.8, -0.915, -2.4)
 
 [node name="Mesh" type="MeshInstance3D" parent="MainStairs/MainStairsDown4A/Tread05"]
 mesh = SubResource("s317")
 
 [node name="Tread06" type="Node3D" parent="MainStairs/MainStairsDown4A"]
+visible = false
 position = Vector3(-3.8, -1.065, -2.8363636)
 
 [node name="Mesh" type="MeshInstance3D" parent="MainStairs/MainStairsDown4A/Tread06"]
 mesh = SubResource("s318")
 
 [node name="Tread07" type="Node3D" parent="MainStairs/MainStairsDown4A"]
+visible = false
 position = Vector3(-3.8, -1.215, -3.2727273)
 
 [node name="Mesh" type="MeshInstance3D" parent="MainStairs/MainStairsDown4A/Tread07"]
 mesh = SubResource("s319")
 
 [node name="Tread08" type="Node3D" parent="MainStairs/MainStairsDown4A"]
+visible = false
 position = Vector3(-3.8, -1.365, -3.7090909)
 
 [node name="Mesh" type="MeshInstance3D" parent="MainStairs/MainStairsDown4A/Tread08"]
 mesh = SubResource("s320")
 
 [node name="Tread09" type="Node3D" parent="MainStairs/MainStairsDown4A"]
+visible = false
 position = Vector3(-3.8, -1.515, -4.1454545)
 
 [node name="Mesh" type="MeshInstance3D" parent="MainStairs/MainStairsDown4A/Tread09"]
 mesh = SubResource("s321")
 
 [node name="Tread10" type="Node3D" parent="MainStairs/MainStairsDown4A"]
+visible = false
 position = Vector3(-3.8, -1.665, -4.5818182)
 
 [node name="Mesh" type="MeshInstance3D" parent="MainStairs/MainStairsDown4A/Tread10"]
@@ -5915,6 +5939,7 @@ collision_mask = 0
 shape = SubResource("s323")
 
 [node name="Mesh" type="MeshInstance3D" parent="MainStairs/Turn4"]
+visible = false
 mesh = SubResource("s324")
 
 [node name="MainStairsDown4B" type="StaticBody3D" parent="MainStairs"]
@@ -5926,66 +5951,77 @@ metadata/surface = &"tile"
 shape = SubResource("s325")
 
 [node name="Tread00" type="Node3D" parent="MainStairs/MainStairsDown4B"]
+visible = false
 position = Vector3(-1.2, -1.815, -4.5818182)
 
 [node name="Mesh" type="MeshInstance3D" parent="MainStairs/MainStairsDown4B/Tread00"]
 mesh = SubResource("s326")
 
 [node name="Tread01" type="Node3D" parent="MainStairs/MainStairsDown4B"]
+visible = false
 position = Vector3(-1.2, -1.965, -4.1454545)
 
 [node name="Mesh" type="MeshInstance3D" parent="MainStairs/MainStairsDown4B/Tread01"]
 mesh = SubResource("s327")
 
 [node name="Tread02" type="Node3D" parent="MainStairs/MainStairsDown4B"]
+visible = false
 position = Vector3(-1.2, -2.115, -3.7090909)
 
 [node name="Mesh" type="MeshInstance3D" parent="MainStairs/MainStairsDown4B/Tread02"]
 mesh = SubResource("s328")
 
 [node name="Tread03" type="Node3D" parent="MainStairs/MainStairsDown4B"]
+visible = false
 position = Vector3(-1.2, -2.265, -3.2727273)
 
 [node name="Mesh" type="MeshInstance3D" parent="MainStairs/MainStairsDown4B/Tread03"]
 mesh = SubResource("s329")
 
 [node name="Tread04" type="Node3D" parent="MainStairs/MainStairsDown4B"]
+visible = false
 position = Vector3(-1.2, -2.415, -2.8363636)
 
 [node name="Mesh" type="MeshInstance3D" parent="MainStairs/MainStairsDown4B/Tread04"]
 mesh = SubResource("s330")
 
 [node name="Tread05" type="Node3D" parent="MainStairs/MainStairsDown4B"]
+visible = false
 position = Vector3(-1.2, -2.565, -2.4)
 
 [node name="Mesh" type="MeshInstance3D" parent="MainStairs/MainStairsDown4B/Tread05"]
 mesh = SubResource("s331")
 
 [node name="Tread06" type="Node3D" parent="MainStairs/MainStairsDown4B"]
+visible = false
 position = Vector3(-1.2, -2.715, -1.9636364)
 
 [node name="Mesh" type="MeshInstance3D" parent="MainStairs/MainStairsDown4B/Tread06"]
 mesh = SubResource("s332")
 
 [node name="Tread07" type="Node3D" parent="MainStairs/MainStairsDown4B"]
+visible = false
 position = Vector3(-1.2, -2.865, -1.5272727)
 
 [node name="Mesh" type="MeshInstance3D" parent="MainStairs/MainStairsDown4B/Tread07"]
 mesh = SubResource("s333")
 
 [node name="Tread08" type="Node3D" parent="MainStairs/MainStairsDown4B"]
+visible = false
 position = Vector3(-1.2, -3.015, -1.0909091)
 
 [node name="Mesh" type="MeshInstance3D" parent="MainStairs/MainStairsDown4B/Tread08"]
 mesh = SubResource("s334")
 
 [node name="Tread09" type="Node3D" parent="MainStairs/MainStairsDown4B"]
+visible = false
 position = Vector3(-1.2, -3.165, -0.6545455)
 
 [node name="Mesh" type="MeshInstance3D" parent="MainStairs/MainStairsDown4B/Tread09"]
 mesh = SubResource("s335")
 
 [node name="Tread10" type="Node3D" parent="MainStairs/MainStairsDown4B"]
+visible = false
 position = Vector3(-1.2, -3.315, -0.2181818)
 
 [node name="Mesh" type="MeshInstance3D" parent="MainStairs/MainStairsDown4B/Tread10"]
@@ -6000,66 +6036,77 @@ metadata/surface = &"tile"
 shape = SubResource("s337")
 
 [node name="Tread00" type="Node3D" parent="MainStairs/MainStairsDown3A"]
+visible = false
 position = Vector3(-3.8, -3.465, -0.2181818)
 
 [node name="Mesh" type="MeshInstance3D" parent="MainStairs/MainStairsDown3A/Tread00"]
 mesh = SubResource("s338")
 
 [node name="Tread01" type="Node3D" parent="MainStairs/MainStairsDown3A"]
+visible = false
 position = Vector3(-3.8, -3.615, -0.6545455)
 
 [node name="Mesh" type="MeshInstance3D" parent="MainStairs/MainStairsDown3A/Tread01"]
 mesh = SubResource("s339")
 
 [node name="Tread02" type="Node3D" parent="MainStairs/MainStairsDown3A"]
+visible = false
 position = Vector3(-3.8, -3.765, -1.0909091)
 
 [node name="Mesh" type="MeshInstance3D" parent="MainStairs/MainStairsDown3A/Tread02"]
 mesh = SubResource("s340")
 
 [node name="Tread03" type="Node3D" parent="MainStairs/MainStairsDown3A"]
+visible = false
 position = Vector3(-3.8, -3.915, -1.5272727)
 
 [node name="Mesh" type="MeshInstance3D" parent="MainStairs/MainStairsDown3A/Tread03"]
 mesh = SubResource("s341")
 
 [node name="Tread04" type="Node3D" parent="MainStairs/MainStairsDown3A"]
+visible = false
 position = Vector3(-3.8, -4.065, -1.9636364)
 
 [node name="Mesh" type="MeshInstance3D" parent="MainStairs/MainStairsDown3A/Tread04"]
 mesh = SubResource("s342")
 
 [node name="Tread05" type="Node3D" parent="MainStairs/MainStairsDown3A"]
+visible = false
 position = Vector3(-3.8, -4.215, -2.4)
 
 [node name="Mesh" type="MeshInstance3D" parent="MainStairs/MainStairsDown3A/Tread05"]
 mesh = SubResource("s343")
 
 [node name="Tread06" type="Node3D" parent="MainStairs/MainStairsDown3A"]
+visible = false
 position = Vector3(-3.8, -4.365, -2.8363636)
 
 [node name="Mesh" type="MeshInstance3D" parent="MainStairs/MainStairsDown3A/Tread06"]
 mesh = SubResource("s344")
 
 [node name="Tread07" type="Node3D" parent="MainStairs/MainStairsDown3A"]
+visible = false
 position = Vector3(-3.8, -4.515, -3.2727273)
 
 [node name="Mesh" type="MeshInstance3D" parent="MainStairs/MainStairsDown3A/Tread07"]
 mesh = SubResource("s345")
 
 [node name="Tread08" type="Node3D" parent="MainStairs/MainStairsDown3A"]
+visible = false
 position = Vector3(-3.8, -4.665, -3.7090909)
 
 [node name="Mesh" type="MeshInstance3D" parent="MainStairs/MainStairsDown3A/Tread08"]
 mesh = SubResource("s346")
 
 [node name="Tread09" type="Node3D" parent="MainStairs/MainStairsDown3A"]
+visible = false
 position = Vector3(-3.8, -4.815, -4.1454545)
 
 [node name="Mesh" type="MeshInstance3D" parent="MainStairs/MainStairsDown3A/Tread09"]
 mesh = SubResource("s347")
 
 [node name="Tread10" type="Node3D" parent="MainStairs/MainStairsDown3A"]
+visible = false
 position = Vector3(-3.8, -4.965, -4.5818182)
 
 [node name="Mesh" type="MeshInstance3D" parent="MainStairs/MainStairsDown3A/Tread10"]
@@ -6076,6 +6123,7 @@ collision_mask = 0
 shape = SubResource("s349")
 
 [node name="Mesh" type="MeshInstance3D" parent="MainStairs/Turn3"]
+visible = false
 mesh = SubResource("s350")
 
 [node name="MainStairsDown3B" type="StaticBody3D" parent="MainStairs"]
@@ -6087,72 +6135,84 @@ metadata/surface = &"tile"
 shape = SubResource("s351")
 
 [node name="Tread00" type="Node3D" parent="MainStairs/MainStairsDown3B"]
+visible = false
 position = Vector3(-1.2, -5.10875, -4.6)
 
 [node name="Mesh" type="MeshInstance3D" parent="MainStairs/MainStairsDown3B/Tread00"]
 mesh = SubResource("s352")
 
 [node name="Tread01" type="Node3D" parent="MainStairs/MainStairsDown3B"]
+visible = false
 position = Vector3(-1.2, -5.24625, -4.2)
 
 [node name="Mesh" type="MeshInstance3D" parent="MainStairs/MainStairsDown3B/Tread01"]
 mesh = SubResource("s353")
 
 [node name="Tread02" type="Node3D" parent="MainStairs/MainStairsDown3B"]
+visible = false
 position = Vector3(-1.2, -5.38375, -3.8)
 
 [node name="Mesh" type="MeshInstance3D" parent="MainStairs/MainStairsDown3B/Tread02"]
 mesh = SubResource("s354")
 
 [node name="Tread03" type="Node3D" parent="MainStairs/MainStairsDown3B"]
+visible = false
 position = Vector3(-1.2, -5.52125, -3.4)
 
 [node name="Mesh" type="MeshInstance3D" parent="MainStairs/MainStairsDown3B/Tread03"]
 mesh = SubResource("s355")
 
 [node name="Tread04" type="Node3D" parent="MainStairs/MainStairsDown3B"]
+visible = false
 position = Vector3(-1.2, -5.65875, -3.0)
 
 [node name="Mesh" type="MeshInstance3D" parent="MainStairs/MainStairsDown3B/Tread04"]
 mesh = SubResource("s356")
 
 [node name="Tread05" type="Node3D" parent="MainStairs/MainStairsDown3B"]
+visible = false
 position = Vector3(-1.2, -5.79625, -2.6)
 
 [node name="Mesh" type="MeshInstance3D" parent="MainStairs/MainStairsDown3B/Tread05"]
 mesh = SubResource("s357")
 
 [node name="Tread06" type="Node3D" parent="MainStairs/MainStairsDown3B"]
+visible = false
 position = Vector3(-1.2, -5.93375, -2.2)
 
 [node name="Mesh" type="MeshInstance3D" parent="MainStairs/MainStairsDown3B/Tread06"]
 mesh = SubResource("s358")
 
 [node name="Tread07" type="Node3D" parent="MainStairs/MainStairsDown3B"]
+visible = false
 position = Vector3(-1.2, -6.07125, -1.8)
 
 [node name="Mesh" type="MeshInstance3D" parent="MainStairs/MainStairsDown3B/Tread07"]
 mesh = SubResource("s359")
 
 [node name="Tread08" type="Node3D" parent="MainStairs/MainStairsDown3B"]
+visible = false
 position = Vector3(-1.2, -6.20875, -1.4)
 
 [node name="Mesh" type="MeshInstance3D" parent="MainStairs/MainStairsDown3B/Tread08"]
 mesh = SubResource("s360")
 
 [node name="Tread09" type="Node3D" parent="MainStairs/MainStairsDown3B"]
+visible = false
 position = Vector3(-1.2, -6.34625, -1.0)
 
 [node name="Mesh" type="MeshInstance3D" parent="MainStairs/MainStairsDown3B/Tread09"]
 mesh = SubResource("s361")
 
 [node name="Tread10" type="Node3D" parent="MainStairs/MainStairsDown3B"]
+visible = false
 position = Vector3(-1.2, -6.48375, -0.6)
 
 [node name="Mesh" type="MeshInstance3D" parent="MainStairs/MainStairsDown3B/Tread10"]
 mesh = SubResource("s362")
 
 [node name="Tread11" type="Node3D" parent="MainStairs/MainStairsDown3B"]
+visible = false
 position = Vector3(-1.2, -6.62125, -0.2)
 
 [node name="Mesh" type="MeshInstance3D" parent="MainStairs/MainStairsDown3B/Tread11"]
@@ -6167,72 +6227,84 @@ metadata/surface = &"tile"
 shape = SubResource("s364")
 
 [node name="Tread00" type="Node3D" parent="MainStairs/MainStairsDown2A"]
+visible = false
 position = Vector3(-3.8, -6.75875, -0.2)
 
 [node name="Mesh" type="MeshInstance3D" parent="MainStairs/MainStairsDown2A/Tread00"]
 mesh = SubResource("s365")
 
 [node name="Tread01" type="Node3D" parent="MainStairs/MainStairsDown2A"]
+visible = false
 position = Vector3(-3.8, -6.89625, -0.6)
 
 [node name="Mesh" type="MeshInstance3D" parent="MainStairs/MainStairsDown2A/Tread01"]
 mesh = SubResource("s366")
 
 [node name="Tread02" type="Node3D" parent="MainStairs/MainStairsDown2A"]
+visible = false
 position = Vector3(-3.8, -7.03375, -1.0)
 
 [node name="Mesh" type="MeshInstance3D" parent="MainStairs/MainStairsDown2A/Tread02"]
 mesh = SubResource("s367")
 
 [node name="Tread03" type="Node3D" parent="MainStairs/MainStairsDown2A"]
+visible = false
 position = Vector3(-3.8, -7.17125, -1.4)
 
 [node name="Mesh" type="MeshInstance3D" parent="MainStairs/MainStairsDown2A/Tread03"]
 mesh = SubResource("s368")
 
 [node name="Tread04" type="Node3D" parent="MainStairs/MainStairsDown2A"]
+visible = false
 position = Vector3(-3.8, -7.30875, -1.8)
 
 [node name="Mesh" type="MeshInstance3D" parent="MainStairs/MainStairsDown2A/Tread04"]
 mesh = SubResource("s369")
 
 [node name="Tread05" type="Node3D" parent="MainStairs/MainStairsDown2A"]
+visible = false
 position = Vector3(-3.8, -7.44625, -2.2)
 
 [node name="Mesh" type="MeshInstance3D" parent="MainStairs/MainStairsDown2A/Tread05"]
 mesh = SubResource("s370")
 
 [node name="Tread06" type="Node3D" parent="MainStairs/MainStairsDown2A"]
+visible = false
 position = Vector3(-3.8, -7.58375, -2.6)
 
 [node name="Mesh" type="MeshInstance3D" parent="MainStairs/MainStairsDown2A/Tread06"]
 mesh = SubResource("s371")
 
 [node name="Tread07" type="Node3D" parent="MainStairs/MainStairsDown2A"]
+visible = false
 position = Vector3(-3.8, -7.72125, -3.0)
 
 [node name="Mesh" type="MeshInstance3D" parent="MainStairs/MainStairsDown2A/Tread07"]
 mesh = SubResource("s372")
 
 [node name="Tread08" type="Node3D" parent="MainStairs/MainStairsDown2A"]
+visible = false
 position = Vector3(-3.8, -7.85875, -3.4)
 
 [node name="Mesh" type="MeshInstance3D" parent="MainStairs/MainStairsDown2A/Tread08"]
 mesh = SubResource("s373")
 
 [node name="Tread09" type="Node3D" parent="MainStairs/MainStairsDown2A"]
+visible = false
 position = Vector3(-3.8, -7.99625, -3.8)
 
 [node name="Mesh" type="MeshInstance3D" parent="MainStairs/MainStairsDown2A/Tread09"]
 mesh = SubResource("s374")
 
 [node name="Tread10" type="Node3D" parent="MainStairs/MainStairsDown2A"]
+visible = false
 position = Vector3(-3.8, -8.13375, -4.2)
 
 [node name="Mesh" type="MeshInstance3D" parent="MainStairs/MainStairsDown2A/Tread10"]
 mesh = SubResource("s375")
 
 [node name="Tread11" type="Node3D" parent="MainStairs/MainStairsDown2A"]
+visible = false
 position = Vector3(-3.8, -8.27125, -4.6)
 
 [node name="Mesh" type="MeshInstance3D" parent="MainStairs/MainStairsDown2A/Tread11"]
@@ -6249,6 +6321,7 @@ collision_mask = 0
 shape = SubResource("s377")
 
 [node name="Mesh" type="MeshInstance3D" parent="MainStairs/Turn2"]
+visible = false
 mesh = SubResource("s378")
 
 [node name="MainStairsDown2B" type="StaticBody3D" parent="MainStairs"]
@@ -6260,66 +6333,77 @@ metadata/surface = &"tile"
 shape = SubResource("s379")
 
 [node name="Tread00" type="Node3D" parent="MainStairs/MainStairsDown2B"]
+visible = false
 position = Vector3(-1.2, -8.415, -4.5818182)
 
 [node name="Mesh" type="MeshInstance3D" parent="MainStairs/MainStairsDown2B/Tread00"]
 mesh = SubResource("s380")
 
 [node name="Tread01" type="Node3D" parent="MainStairs/MainStairsDown2B"]
+visible = false
 position = Vector3(-1.2, -8.565, -4.1454545)
 
 [node name="Mesh" type="MeshInstance3D" parent="MainStairs/MainStairsDown2B/Tread01"]
 mesh = SubResource("s381")
 
 [node name="Tread02" type="Node3D" parent="MainStairs/MainStairsDown2B"]
+visible = false
 position = Vector3(-1.2, -8.715, -3.7090909)
 
 [node name="Mesh" type="MeshInstance3D" parent="MainStairs/MainStairsDown2B/Tread02"]
 mesh = SubResource("s382")
 
 [node name="Tread03" type="Node3D" parent="MainStairs/MainStairsDown2B"]
+visible = false
 position = Vector3(-1.2, -8.865, -3.2727273)
 
 [node name="Mesh" type="MeshInstance3D" parent="MainStairs/MainStairsDown2B/Tread03"]
 mesh = SubResource("s383")
 
 [node name="Tread04" type="Node3D" parent="MainStairs/MainStairsDown2B"]
+visible = false
 position = Vector3(-1.2, -9.015, -2.8363636)
 
 [node name="Mesh" type="MeshInstance3D" parent="MainStairs/MainStairsDown2B/Tread04"]
 mesh = SubResource("s384")
 
 [node name="Tread05" type="Node3D" parent="MainStairs/MainStairsDown2B"]
+visible = false
 position = Vector3(-1.2, -9.165, -2.4)
 
 [node name="Mesh" type="MeshInstance3D" parent="MainStairs/MainStairsDown2B/Tread05"]
 mesh = SubResource("s385")
 
 [node name="Tread06" type="Node3D" parent="MainStairs/MainStairsDown2B"]
+visible = false
 position = Vector3(-1.2, -9.315, -1.9636364)
 
 [node name="Mesh" type="MeshInstance3D" parent="MainStairs/MainStairsDown2B/Tread06"]
 mesh = SubResource("s386")
 
 [node name="Tread07" type="Node3D" parent="MainStairs/MainStairsDown2B"]
+visible = false
 position = Vector3(-1.2, -9.465, -1.5272727)
 
 [node name="Mesh" type="MeshInstance3D" parent="MainStairs/MainStairsDown2B/Tread07"]
 mesh = SubResource("s387")
 
 [node name="Tread08" type="Node3D" parent="MainStairs/MainStairsDown2B"]
+visible = false
 position = Vector3(-1.2, -9.615, -1.0909091)
 
 [node name="Mesh" type="MeshInstance3D" parent="MainStairs/MainStairsDown2B/Tread08"]
 mesh = SubResource("s388")
 
 [node name="Tread09" type="Node3D" parent="MainStairs/MainStairsDown2B"]
+visible = false
 position = Vector3(-1.2, -9.765, -0.6545455)
 
 [node name="Mesh" type="MeshInstance3D" parent="MainStairs/MainStairsDown2B/Tread09"]
 mesh = SubResource("s389")
 
 [node name="Tread10" type="Node3D" parent="MainStairs/MainStairsDown2B"]
+visible = false
 position = Vector3(-1.2, -9.915, -0.2181818)
 
 [node name="Mesh" type="MeshInstance3D" parent="MainStairs/MainStairsDown2B/Tread10"]
@@ -6378,6 +6462,7 @@ collision_mask = 0
 shape = SubResource("s399")
 
 [node name="Mesh" type="MeshInstance3D" parent="MainStairs/UpperRubble"]
+visible = false
 mesh = SubResource("s400")
 
 [node name="FireStairs" type="Node3D" parent="."]
@@ -6394,6 +6479,7 @@ collision_mask = 0
 shape = SubResource("s401")
 
 [node name="Mesh" type="MeshInstance3D" parent="FireStairs/Landing1"]
+visible = false
 mesh = SubResource("s402")
 
 [node name="Landing2" type="StaticBody3D" parent="FireStairs"]
@@ -6407,6 +6493,7 @@ collision_mask = 0
 shape = SubResource("s403")
 
 [node name="Mesh" type="MeshInstance3D" parent="FireStairs/Landing2"]
+visible = false
 mesh = SubResource("s404")
 
 [node name="Landing3" type="StaticBody3D" parent="FireStairs"]
@@ -6420,6 +6507,7 @@ collision_mask = 0
 shape = SubResource("s405")
 
 [node name="Mesh" type="MeshInstance3D" parent="FireStairs/Landing3"]
+visible = false
 mesh = SubResource("s406")
 
 [node name="Landing4" type="StaticBody3D" parent="FireStairs"]
@@ -6433,6 +6521,7 @@ collision_mask = 0
 shape = SubResource("s407")
 
 [node name="Mesh" type="MeshInstance3D" parent="FireStairs/Landing4"]
+visible = false
 mesh = SubResource("s408")
 
 [node name="FireStairsDown4A" type="StaticBody3D" parent="FireStairs"]
@@ -6444,66 +6533,77 @@ metadata/surface = &"tile"
 shape = SubResource("s409")
 
 [node name="Tread00" type="Node3D" parent="FireStairs/FireStairsDown4A"]
+visible = false
 position = Vector3(45.2, -0.165, -0.2181818)
 
 [node name="Mesh" type="MeshInstance3D" parent="FireStairs/FireStairsDown4A/Tread00"]
 mesh = SubResource("s410")
 
 [node name="Tread01" type="Node3D" parent="FireStairs/FireStairsDown4A"]
+visible = false
 position = Vector3(45.2, -0.315, -0.6545455)
 
 [node name="Mesh" type="MeshInstance3D" parent="FireStairs/FireStairsDown4A/Tread01"]
 mesh = SubResource("s411")
 
 [node name="Tread02" type="Node3D" parent="FireStairs/FireStairsDown4A"]
+visible = false
 position = Vector3(45.2, -0.465, -1.0909091)
 
 [node name="Mesh" type="MeshInstance3D" parent="FireStairs/FireStairsDown4A/Tread02"]
 mesh = SubResource("s412")
 
 [node name="Tread03" type="Node3D" parent="FireStairs/FireStairsDown4A"]
+visible = false
 position = Vector3(45.2, -0.615, -1.5272727)
 
 [node name="Mesh" type="MeshInstance3D" parent="FireStairs/FireStairsDown4A/Tread03"]
 mesh = SubResource("s413")
 
 [node name="Tread04" type="Node3D" parent="FireStairs/FireStairsDown4A"]
+visible = false
 position = Vector3(45.2, -0.765, -1.9636364)
 
 [node name="Mesh" type="MeshInstance3D" parent="FireStairs/FireStairsDown4A/Tread04"]
 mesh = SubResource("s414")
 
 [node name="Tread05" type="Node3D" parent="FireStairs/FireStairsDown4A"]
+visible = false
 position = Vector3(45.2, -0.915, -2.4)
 
 [node name="Mesh" type="MeshInstance3D" parent="FireStairs/FireStairsDown4A/Tread05"]
 mesh = SubResource("s415")
 
 [node name="Tread06" type="Node3D" parent="FireStairs/FireStairsDown4A"]
+visible = false
 position = Vector3(45.2, -1.065, -2.8363636)
 
 [node name="Mesh" type="MeshInstance3D" parent="FireStairs/FireStairsDown4A/Tread06"]
 mesh = SubResource("s416")
 
 [node name="Tread07" type="Node3D" parent="FireStairs/FireStairsDown4A"]
+visible = false
 position = Vector3(45.2, -1.215, -3.2727273)
 
 [node name="Mesh" type="MeshInstance3D" parent="FireStairs/FireStairsDown4A/Tread07"]
 mesh = SubResource("s417")
 
 [node name="Tread08" type="Node3D" parent="FireStairs/FireStairsDown4A"]
+visible = false
 position = Vector3(45.2, -1.365, -3.7090909)
 
 [node name="Mesh" type="MeshInstance3D" parent="FireStairs/FireStairsDown4A/Tread08"]
 mesh = SubResource("s418")
 
 [node name="Tread09" type="Node3D" parent="FireStairs/FireStairsDown4A"]
+visible = false
 position = Vector3(45.2, -1.515, -4.1454545)
 
 [node name="Mesh" type="MeshInstance3D" parent="FireStairs/FireStairsDown4A/Tread09"]
 mesh = SubResource("s419")
 
 [node name="Tread10" type="Node3D" parent="FireStairs/FireStairsDown4A"]
+visible = false
 position = Vector3(45.2, -1.665, -4.5818182)
 
 [node name="Mesh" type="MeshInstance3D" parent="FireStairs/FireStairsDown4A/Tread10"]
@@ -6520,6 +6620,7 @@ collision_mask = 0
 shape = SubResource("s421")
 
 [node name="Mesh" type="MeshInstance3D" parent="FireStairs/Turn4"]
+visible = false
 mesh = SubResource("s422")
 
 [node name="FireStairsDown4B" type="StaticBody3D" parent="FireStairs"]
@@ -6531,66 +6632,77 @@ metadata/surface = &"tile"
 shape = SubResource("s423")
 
 [node name="Tread00" type="Node3D" parent="FireStairs/FireStairsDown4B"]
+visible = false
 position = Vector3(47.8, -1.815, -4.5818182)
 
 [node name="Mesh" type="MeshInstance3D" parent="FireStairs/FireStairsDown4B/Tread00"]
 mesh = SubResource("s424")
 
 [node name="Tread01" type="Node3D" parent="FireStairs/FireStairsDown4B"]
+visible = false
 position = Vector3(47.8, -1.965, -4.1454545)
 
 [node name="Mesh" type="MeshInstance3D" parent="FireStairs/FireStairsDown4B/Tread01"]
 mesh = SubResource("s425")
 
 [node name="Tread02" type="Node3D" parent="FireStairs/FireStairsDown4B"]
+visible = false
 position = Vector3(47.8, -2.115, -3.7090909)
 
 [node name="Mesh" type="MeshInstance3D" parent="FireStairs/FireStairsDown4B/Tread02"]
 mesh = SubResource("s426")
 
 [node name="Tread03" type="Node3D" parent="FireStairs/FireStairsDown4B"]
+visible = false
 position = Vector3(47.8, -2.265, -3.2727273)
 
 [node name="Mesh" type="MeshInstance3D" parent="FireStairs/FireStairsDown4B/Tread03"]
 mesh = SubResource("s427")
 
 [node name="Tread04" type="Node3D" parent="FireStairs/FireStairsDown4B"]
+visible = false
 position = Vector3(47.8, -2.415, -2.8363636)
 
 [node name="Mesh" type="MeshInstance3D" parent="FireStairs/FireStairsDown4B/Tread04"]
 mesh = SubResource("s428")
 
 [node name="Tread05" type="Node3D" parent="FireStairs/FireStairsDown4B"]
+visible = false
 position = Vector3(47.8, -2.565, -2.4)
 
 [node name="Mesh" type="MeshInstance3D" parent="FireStairs/FireStairsDown4B/Tread05"]
 mesh = SubResource("s429")
 
 [node name="Tread06" type="Node3D" parent="FireStairs/FireStairsDown4B"]
+visible = false
 position = Vector3(47.8, -2.715, -1.9636364)
 
 [node name="Mesh" type="MeshInstance3D" parent="FireStairs/FireStairsDown4B/Tread06"]
 mesh = SubResource("s430")
 
 [node name="Tread07" type="Node3D" parent="FireStairs/FireStairsDown4B"]
+visible = false
 position = Vector3(47.8, -2.865, -1.5272727)
 
 [node name="Mesh" type="MeshInstance3D" parent="FireStairs/FireStairsDown4B/Tread07"]
 mesh = SubResource("s431")
 
 [node name="Tread08" type="Node3D" parent="FireStairs/FireStairsDown4B"]
+visible = false
 position = Vector3(47.8, -3.015, -1.0909091)
 
 [node name="Mesh" type="MeshInstance3D" parent="FireStairs/FireStairsDown4B/Tread08"]
 mesh = SubResource("s432")
 
 [node name="Tread09" type="Node3D" parent="FireStairs/FireStairsDown4B"]
+visible = false
 position = Vector3(47.8, -3.165, -0.6545455)
 
 [node name="Mesh" type="MeshInstance3D" parent="FireStairs/FireStairsDown4B/Tread09"]
 mesh = SubResource("s433")
 
 [node name="Tread10" type="Node3D" parent="FireStairs/FireStairsDown4B"]
+visible = false
 position = Vector3(47.8, -3.315, -0.2181818)
 
 [node name="Mesh" type="MeshInstance3D" parent="FireStairs/FireStairsDown4B/Tread10"]
@@ -6605,66 +6717,77 @@ metadata/surface = &"tile"
 shape = SubResource("s435")
 
 [node name="Tread00" type="Node3D" parent="FireStairs/FireStairsDown3A"]
+visible = false
 position = Vector3(45.2, -3.465, -0.2181818)
 
 [node name="Mesh" type="MeshInstance3D" parent="FireStairs/FireStairsDown3A/Tread00"]
 mesh = SubResource("s436")
 
 [node name="Tread01" type="Node3D" parent="FireStairs/FireStairsDown3A"]
+visible = false
 position = Vector3(45.2, -3.615, -0.6545455)
 
 [node name="Mesh" type="MeshInstance3D" parent="FireStairs/FireStairsDown3A/Tread01"]
 mesh = SubResource("s437")
 
 [node name="Tread02" type="Node3D" parent="FireStairs/FireStairsDown3A"]
+visible = false
 position = Vector3(45.2, -3.765, -1.0909091)
 
 [node name="Mesh" type="MeshInstance3D" parent="FireStairs/FireStairsDown3A/Tread02"]
 mesh = SubResource("s438")
 
 [node name="Tread03" type="Node3D" parent="FireStairs/FireStairsDown3A"]
+visible = false
 position = Vector3(45.2, -3.915, -1.5272727)
 
 [node name="Mesh" type="MeshInstance3D" parent="FireStairs/FireStairsDown3A/Tread03"]
 mesh = SubResource("s439")
 
 [node name="Tread04" type="Node3D" parent="FireStairs/FireStairsDown3A"]
+visible = false
 position = Vector3(45.2, -4.065, -1.9636364)
 
 [node name="Mesh" type="MeshInstance3D" parent="FireStairs/FireStairsDown3A/Tread04"]
 mesh = SubResource("s440")
 
 [node name="Tread05" type="Node3D" parent="FireStairs/FireStairsDown3A"]
+visible = false
 position = Vector3(45.2, -4.215, -2.4)
 
 [node name="Mesh" type="MeshInstance3D" parent="FireStairs/FireStairsDown3A/Tread05"]
 mesh = SubResource("s441")
 
 [node name="Tread06" type="Node3D" parent="FireStairs/FireStairsDown3A"]
+visible = false
 position = Vector3(45.2, -4.365, -2.8363636)
 
 [node name="Mesh" type="MeshInstance3D" parent="FireStairs/FireStairsDown3A/Tread06"]
 mesh = SubResource("s442")
 
 [node name="Tread07" type="Node3D" parent="FireStairs/FireStairsDown3A"]
+visible = false
 position = Vector3(45.2, -4.515, -3.2727273)
 
 [node name="Mesh" type="MeshInstance3D" parent="FireStairs/FireStairsDown3A/Tread07"]
 mesh = SubResource("s443")
 
 [node name="Tread08" type="Node3D" parent="FireStairs/FireStairsDown3A"]
+visible = false
 position = Vector3(45.2, -4.665, -3.7090909)
 
 [node name="Mesh" type="MeshInstance3D" parent="FireStairs/FireStairsDown3A/Tread08"]
 mesh = SubResource("s444")
 
 [node name="Tread09" type="Node3D" parent="FireStairs/FireStairsDown3A"]
+visible = false
 position = Vector3(45.2, -4.815, -4.1454545)
 
 [node name="Mesh" type="MeshInstance3D" parent="FireStairs/FireStairsDown3A/Tread09"]
 mesh = SubResource("s445")
 
 [node name="Tread10" type="Node3D" parent="FireStairs/FireStairsDown3A"]
+visible = false
 position = Vector3(45.2, -4.965, -4.5818182)
 
 [node name="Mesh" type="MeshInstance3D" parent="FireStairs/FireStairsDown3A/Tread10"]
@@ -6681,6 +6804,7 @@ collision_mask = 0
 shape = SubResource("s447")
 
 [node name="Mesh" type="MeshInstance3D" parent="FireStairs/Turn3"]
+visible = false
 mesh = SubResource("s448")
 
 [node name="FireStairsDown3B" type="StaticBody3D" parent="FireStairs"]
@@ -6692,72 +6816,84 @@ metadata/surface = &"tile"
 shape = SubResource("s449")
 
 [node name="Tread00" type="Node3D" parent="FireStairs/FireStairsDown3B"]
+visible = false
 position = Vector3(47.8, -5.10875, -4.6)
 
 [node name="Mesh" type="MeshInstance3D" parent="FireStairs/FireStairsDown3B/Tread00"]
 mesh = SubResource("s450")
 
 [node name="Tread01" type="Node3D" parent="FireStairs/FireStairsDown3B"]
+visible = false
 position = Vector3(47.8, -5.24625, -4.2)
 
 [node name="Mesh" type="MeshInstance3D" parent="FireStairs/FireStairsDown3B/Tread01"]
 mesh = SubResource("s451")
 
 [node name="Tread02" type="Node3D" parent="FireStairs/FireStairsDown3B"]
+visible = false
 position = Vector3(47.8, -5.38375, -3.8)
 
 [node name="Mesh" type="MeshInstance3D" parent="FireStairs/FireStairsDown3B/Tread02"]
 mesh = SubResource("s452")
 
 [node name="Tread03" type="Node3D" parent="FireStairs/FireStairsDown3B"]
+visible = false
 position = Vector3(47.8, -5.52125, -3.4)
 
 [node name="Mesh" type="MeshInstance3D" parent="FireStairs/FireStairsDown3B/Tread03"]
 mesh = SubResource("s453")
 
 [node name="Tread04" type="Node3D" parent="FireStairs/FireStairsDown3B"]
+visible = false
 position = Vector3(47.8, -5.65875, -3.0)
 
 [node name="Mesh" type="MeshInstance3D" parent="FireStairs/FireStairsDown3B/Tread04"]
 mesh = SubResource("s454")
 
 [node name="Tread05" type="Node3D" parent="FireStairs/FireStairsDown3B"]
+visible = false
 position = Vector3(47.8, -5.79625, -2.6)
 
 [node name="Mesh" type="MeshInstance3D" parent="FireStairs/FireStairsDown3B/Tread05"]
 mesh = SubResource("s455")
 
 [node name="Tread06" type="Node3D" parent="FireStairs/FireStairsDown3B"]
+visible = false
 position = Vector3(47.8, -5.93375, -2.2)
 
 [node name="Mesh" type="MeshInstance3D" parent="FireStairs/FireStairsDown3B/Tread06"]
 mesh = SubResource("s456")
 
 [node name="Tread07" type="Node3D" parent="FireStairs/FireStairsDown3B"]
+visible = false
 position = Vector3(47.8, -6.07125, -1.8)
 
 [node name="Mesh" type="MeshInstance3D" parent="FireStairs/FireStairsDown3B/Tread07"]
 mesh = SubResource("s457")
 
 [node name="Tread08" type="Node3D" parent="FireStairs/FireStairsDown3B"]
+visible = false
 position = Vector3(47.8, -6.20875, -1.4)
 
 [node name="Mesh" type="MeshInstance3D" parent="FireStairs/FireStairsDown3B/Tread08"]
 mesh = SubResource("s458")
 
 [node name="Tread09" type="Node3D" parent="FireStairs/FireStairsDown3B"]
+visible = false
 position = Vector3(47.8, -6.34625, -1.0)
 
 [node name="Mesh" type="MeshInstance3D" parent="FireStairs/FireStairsDown3B/Tread09"]
 mesh = SubResource("s459")
 
 [node name="Tread10" type="Node3D" parent="FireStairs/FireStairsDown3B"]
+visible = false
 position = Vector3(47.8, -6.48375, -0.6)
 
 [node name="Mesh" type="MeshInstance3D" parent="FireStairs/FireStairsDown3B/Tread10"]
 mesh = SubResource("s460")
 
 [node name="Tread11" type="Node3D" parent="FireStairs/FireStairsDown3B"]
+visible = false
 position = Vector3(47.8, -6.62125, -0.2)
 
 [node name="Mesh" type="MeshInstance3D" parent="FireStairs/FireStairsDown3B/Tread11"]
@@ -6772,6 +6908,7 @@ collision_mask = 0
 shape = SubResource("s462")
 
 [node name="Mesh" type="MeshInstance3D" parent="FireStairs/Collapse"]
+visible = false
 mesh = SubResource("s463")
 
 [node name="Wall43.92" type="StaticBody3D" parent="FireStairs"]
@@ -6827,6 +6964,7 @@ collision_mask = 0
 shape = SubResource("s472")
 
 [node name="Mesh" type="MeshInstance3D" parent="FireStairs/UpperRubble"]
+visible = false
 mesh = SubResource("s473")
 
 [node name="FireDoor" type="Node3D" parent="."]
@@ -6844,6 +6982,7 @@ shape = SubResource("s474")
 position = Vector3(1.9, 0, 0)
 
 [node name="Mesh" type="MeshInstance3D" parent="FireDoor/Leaf"]
+visible = false
 mesh = SubResource("s475")
 position = Vector3(1.9, 0, 0)
 
@@ -9444,6 +9583,7 @@ shadow_enabled = false
 light_color = Color(0.65,0.7,0.52,1)
 
 [node name="FireRubbleDetail" type="Node3D" parent="."]
+visible = false
 position = Vector3(22, 0, 0)
 scale = Vector3(0.5, 1, 1)
 
@@ -9546,6 +9686,7 @@ rotation_degrees = Vector3(35,186,22)
 mesh = SubResource("s854")
 
 [node name="UpperRubbleDetail" type="Node3D" parent="."]
+visible = false
 
 
 [node name="Chunk0" type="Node3D" parent="UpperRubbleDetail"]
@@ -9647,6 +9788,7 @@ rotation_degrees = Vector3(35,186,22)
 mesh = SubResource("s868")
 
 [node name="StairCrack" type="Node3D" parent="."]
+visible = false
 position = Vector3(48.88, -0.4, -3)
 
 [node name="Branch0" type="Node3D" parent="StairCrack"]
@@ -9699,6 +9841,7 @@ rotation_degrees = Vector3(0,0,-17)
 mesh = SubResource("s875")
 
 [node name="Handrail_-4.9_0" type="Node3D" parent="."]
+visible = false
 position = Vector3(-4.9, -0.1, -2.4)
 rotation_degrees = Vector3(-19,0,0)
 
@@ -9706,6 +9849,7 @@ rotation_degrees = Vector3(-19,0,0)
 mesh = SubResource("s876")
 
 [node name="Handrail_-4.9_-3.3" type="Node3D" parent="."]
+visible = false
 position = Vector3(-4.9, -3.4, -2.4)
 rotation_degrees = Vector3(-19,0,0)
 
@@ -9713,6 +9857,7 @@ rotation_degrees = Vector3(-19,0,0)
 mesh = SubResource("s877")
 
 [node name="Handrail_-4.9_-6.6" type="Node3D" parent="."]
+visible = false
 position = Vector3(-4.9, -6.7, -2.4)
 rotation_degrees = Vector3(-19,0,0)
 
@@ -9720,6 +9865,7 @@ rotation_degrees = Vector3(-19,0,0)
 mesh = SubResource("s878")
 
 [node name="Handrail_48.9_0" type="Node3D" parent="."]
+visible = false
 position = Vector3(48.9, -0.1, -2.4)
 rotation_degrees = Vector3(-19,0,0)
 
@@ -9727,6 +9873,7 @@ rotation_degrees = Vector3(-19,0,0)
 mesh = SubResource("s879")
 
 [node name="Handrail_48.9_-3.3" type="Node3D" parent="."]
+visible = false
 position = Vector3(48.9, -3.4, -2.4)
 rotation_degrees = Vector3(-19,0,0)
 
@@ -9734,6 +9881,7 @@ rotation_degrees = Vector3(-19,0,0)
 mesh = SubResource("s880")
 
 [node name="Handrail_48.9_-6.6" type="Node3D" parent="."]
+visible = false
 position = Vector3(48.9, -6.7, -2.4)
 rotation_degrees = Vector3(-19,0,0)
 
@@ -9840,18 +9988,21 @@ rotation_degrees = Vector3(0,0,0)
 metadata/stopped_hour = 4
 
 [node name="Case" type="Node3D" parent="DeskClock"]
+visible = false
 position = Vector3(0, 0, 0)
 
 [node name="Mesh" type="MeshInstance3D" parent="DeskClock/Case"]
 mesh = SubResource("s897")
 
 [node name="Dial" type="Node3D" parent="DeskClock"]
+visible = false
 position = Vector3(0, 0, 0.047)
 
 [node name="Mesh" type="MeshInstance3D" parent="DeskClock/Dial"]
 mesh = SubResource("s898")
 
 [node name="Tick0" type="Node3D" parent="DeskClock"]
+visible = false
 position = Vector3(0.0, 0.19, 0.06)
 rotation_degrees = Vector3(0,0,0)
 
@@ -9859,6 +10010,7 @@ rotation_degrees = Vector3(0,0,0)
 mesh = SubResource("s899")
 
 [node name="Tick1" type="Node3D" parent="DeskClock"]
+visible = false
 position = Vector3(0.095, 0.1645448, 0.06)
 rotation_degrees = Vector3(0,0,-30)
 
@@ -9866,6 +10018,7 @@ rotation_degrees = Vector3(0,0,-30)
 mesh = SubResource("s900")
 
 [node name="Tick2" type="Node3D" parent="DeskClock"]
+visible = false
 position = Vector3(0.1645448, 0.095, 0.06)
 rotation_degrees = Vector3(0,0,-60)
 
@@ -9873,6 +10026,7 @@ rotation_degrees = Vector3(0,0,-60)
 mesh = SubResource("s901")
 
 [node name="Tick3" type="Node3D" parent="DeskClock"]
+visible = false
 position = Vector3(0.19, 0.0, 0.06)
 rotation_degrees = Vector3(0,0,-90)
 
@@ -9880,6 +10034,7 @@ rotation_degrees = Vector3(0,0,-90)
 mesh = SubResource("s902")
 
 [node name="Tick4" type="Node3D" parent="DeskClock"]
+visible = false
 position = Vector3(0.1645448, -0.095, 0.06)
 rotation_degrees = Vector3(0,0,-120)
 
@@ -9887,6 +10042,7 @@ rotation_degrees = Vector3(0,0,-120)
 mesh = SubResource("s903")
 
 [node name="Tick5" type="Node3D" parent="DeskClock"]
+visible = false
 position = Vector3(0.095, -0.1645448, 0.06)
 rotation_degrees = Vector3(0,0,-150)
 
@@ -9894,6 +10050,7 @@ rotation_degrees = Vector3(0,0,-150)
 mesh = SubResource("s904")
 
 [node name="Tick6" type="Node3D" parent="DeskClock"]
+visible = false
 position = Vector3(0.0, -0.19, 0.06)
 rotation_degrees = Vector3(0,0,-180)
 
@@ -9901,6 +10058,7 @@ rotation_degrees = Vector3(0,0,-180)
 mesh = SubResource("s905")
 
 [node name="Tick7" type="Node3D" parent="DeskClock"]
+visible = false
 position = Vector3(-0.095, -0.1645448, 0.06)
 rotation_degrees = Vector3(0,0,-210)
 
@@ -9908,6 +10066,7 @@ rotation_degrees = Vector3(0,0,-210)
 mesh = SubResource("s906")
 
 [node name="Tick8" type="Node3D" parent="DeskClock"]
+visible = false
 position = Vector3(-0.1645448, -0.095, 0.06)
 rotation_degrees = Vector3(0,0,-240)
 
@@ -9915,6 +10074,7 @@ rotation_degrees = Vector3(0,0,-240)
 mesh = SubResource("s907")
 
 [node name="Tick9" type="Node3D" parent="DeskClock"]
+visible = false
 position = Vector3(-0.19, -0.0, 0.06)
 rotation_degrees = Vector3(0,0,-270)
 
@@ -9922,6 +10082,7 @@ rotation_degrees = Vector3(0,0,-270)
 mesh = SubResource("s908")
 
 [node name="Tick10" type="Node3D" parent="DeskClock"]
+visible = false
 position = Vector3(-0.1645448, 0.095, 0.06)
 rotation_degrees = Vector3(0,0,-300)
 
@@ -9929,6 +10090,7 @@ rotation_degrees = Vector3(0,0,-300)
 mesh = SubResource("s909")
 
 [node name="Tick11" type="Node3D" parent="DeskClock"]
+visible = false
 position = Vector3(-0.095, 0.1645448, 0.06)
 rotation_degrees = Vector3(0,0,-330)
 
@@ -9936,12 +10098,14 @@ rotation_degrees = Vector3(0,0,-330)
 mesh = SubResource("s910")
 
 [node name="Minute" type="Node3D" parent="DeskClock"]
+visible = false
 position = Vector3(0, 0.092, 0.077)
 
 [node name="Mesh" type="MeshInstance3D" parent="DeskClock/Minute"]
 mesh = SubResource("s911")
 
 [node name="Hour" type="Node3D" parent="DeskClock"]
+visible = false
 position = Vector3(0.057, -0.033, 0.08)
 rotation_degrees = Vector3(0,0,-120)
 
@@ -9952,12 +10116,14 @@ mesh = SubResource("s912")
 position = Vector3(39.8, 0.66, 0.42)
 
 [node name="Mesh" type="MeshInstance3D" parent="KeyStem"]
+visible = false
 mesh = SubResource("s913")
 
 [node name="KeyTooth" type="Node3D" parent="."]
 position = Vector3(39.85, 0.66, 0.44)
 
 [node name="Mesh" type="MeshInstance3D" parent="KeyTooth"]
+visible = false
 mesh = SubResource("s914")
 
 [node name="ChainLink0" type="Node3D" parent="MainDoor/Chains"]
@@ -11597,3 +11763,29 @@ metadata/t190 = true
 [node name="Mesh" type="MeshInstance3D" parent="Floor2/RoomInterior_208/Locker"]
 mesh = SubResource("t190_s182")
 metadata/t190 = true
+
+[node name="Model" parent="DeskClock" instance=ExtResource("w1_clock")]
+position = Vector3(0, 0, -0.078)
+
+[node name="Model" parent="KeyStem" instance=ExtResource("w1_key")]
+position = Vector3(0, -0.01, 0)
+rotation_degrees = Vector3(0, 12, 0)
+
+[node name="W1Stairs" parent="FireStairs" instance=ExtResource("w1_fire_stairs")]
+
+[node name="Frame" parent="FireDoor" instance=ExtResource("w1_door_frame")]
+
+[node name="Model" parent="FireDoor/Leaf" instance=ExtResource("w1_door_leaf")]
+
+[node name="Lock" parent="FireDoor/Leaf" instance=ExtResource("w1_door_lock")]
+position = Vector3(1.872, -0.222, 0)
+
+[node name="Handle" parent="FireDoor/Leaf" instance=ExtResource("w1_door_handle")]
+position = Vector3(1.872, -0.15, 0)
+
+[node name="LeafB" type="Node3D" parent="FireDoor"]
+position = Vector3(1.86, 1.2, 0)
+
+[node name="Model" parent="FireDoor/LeafB" instance=ExtResource("w1_door_leaf_b")]
+
+[node name="W1Stairs" parent="MainStairs" instance=ExtResource("w1_main_stairs")]
