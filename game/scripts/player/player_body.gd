@@ -2884,16 +2884,18 @@ var _breath_phase: float = 0.0
 const BAR_READY: Array = [Vector3(-0.2, 1.0, 0.3), 26.0, 12.0]
 const BAR_FADE: float = 0.2
 ## The swing, over the weapon's swing_seconds (shares of it): [share, fist, degrees up, degrees in,
-## chest turn (degrees, + to the left)]. Wound up over the right shoulder, down across to the left
-## (the blow lands at BAR_BLOW), held a moment, back to the ready.
+## chest turn (degrees, + to the left)]. Wound up over the right shoulder, across at head height
+## ahead (the blow lands at BAR_BLOW: the bar crosses where the view aims, as the hit is judged), on
+## down to the left, held a moment, back to the ready.
 const BAR_SWING: Array = [
 	[0.0, Vector3(-0.2, 1.0, 0.3), 26.0, 12.0, 0.0],
-	[0.24, Vector3(-0.27, 1.44, 0.12), 112.0, -8.0, -20.0],
-	[0.52, Vector3(0.06, 1.0, 0.46), -16.0, 36.0, 28.0],
-	[0.64, Vector3(0.07, 0.98, 0.45), -18.0, 38.0, 28.0],
+	[0.22, Vector3(-0.25, 1.45, 0.08), 112.0, -8.0, -22.0],
+	[0.46, Vector3(-0.04, 1.36, 0.4), 22.0, 24.0, 16.0],
+	[0.62, Vector3(0.1, 0.98, 0.38), -20.0, 46.0, 30.0],
+	[0.72, Vector3(0.1, 0.98, 0.37), -20.0, 46.0, 30.0],
 	[1.0, Vector3(-0.2, 1.0, 0.3), 26.0, 12.0, 0.0],
 ]
-const BAR_BLOW: float = 0.5
+const BAR_BLOW: float = 0.46
 ## A bar taken off the ground rolls from the fingertips into the fist over this long (seconds).
 const BAR_CLOSE: float = 0.25
 var _bar: Node3D

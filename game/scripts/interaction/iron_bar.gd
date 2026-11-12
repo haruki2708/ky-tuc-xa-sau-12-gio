@@ -26,14 +26,17 @@ var _side: float = 1.0
 
 
 ## The hand takes the end on its right, the rest of the bar running off to the left of whoever
-## reaches from `from` (a right hand, palm down, has its thumb to the left): the one HandTarget moves
-## to that end.
+## reaches from `from` beside it (a right hand, palm down, has its thumb to the left); from beyond one
+## of its ends (more along its line than beside it) the near end, the rest running away from him.
+## The one HandTarget moves to that end.
 func hand_target(from: Vector3 = Vector3.INF, rank: Callable = Callable()) -> HandTarget:
 	var marker: HandTarget = super(from, rank)
 	if marker != null and from.is_finite() and is_inside_tree():
 		var local: Vector3 = to_local(from)
-		# Kept while the reacher stands about on the bar's own line.
-		if absf(local.x) > 0.1:
+		if absf(local.z) > absf(local.x):
+			# GRIP_Z is toward -Z: the near end's side.
+			_side = -signf(local.z)
+		elif absf(local.x) > 0.1:
 			_side = 1.0 if local.x > 0.0 else -1.0
 		marker.position = Vector3(0.0, 0.0, IronBarWeapon.GRIP_Z * _side)
 	return marker

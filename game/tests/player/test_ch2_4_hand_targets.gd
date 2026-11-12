@@ -16,7 +16,8 @@ const SPECS := {
 	"shower_screen": [HandTarget.Grip.PINCH, false],
 	"shower_choice": [HandTarget.Grip.PINCH, false],
 	"stuck_door": [HandTarget.Grip.GRIP, false],
-	"iron_bar": [HandTarget.Grip.GRIP, false],
+	# T-249: a bar on the ground is hooked up by the fingertips (B05, B06 lie 4 cm below a palm's reach).
+	"iron_bar": [HandTarget.Grip.HOOK, false],
 	"bed_slat": [HandTarget.Grip.HOOK, false],
 	# T-243: the fingertips press the held rag, towel or shirt into a corpse's mouth (a pinch: the
 	# upper bunks' mouths are 1.94 m up, within the fingertips' reach only).
@@ -120,9 +121,9 @@ func _load_chapter(number: int) -> void:
 	for frame: int in 3:
 		await tree.physics_frame
 		await tree.process_frame
-	# T-243 (D-161): chapter 2 has Tran Trung's body, chapters 3 and 4 not yet.
-	if number == 2:
-		assert_not_null(chapter.get_node("Player").get("body"), "chapter 2's player has the body")
+	# T-243 (D-161), T-249 (D-165): chapters 2 and 3 have Tran Trung's body, chapter 4 not yet.
+	if number == 2 or number == 3:
+		assert_not_null(chapter.get_node("Player").get("body"), "chapter %d's player has the body" % number)
 	else:
 		assert_eq(chapter.get_node("Player").get("body"), null, "production player has no body")
 
@@ -190,12 +191,16 @@ func _check_prop(prop: Interactable, script_name: String) -> void:
 	var tolerance: float = 0.11 if prop.name == &"SearchPhucMattress" else 0.05
 	assert_true(distance <= tolerance + 0.00001, "%s collision distance %.4f" % [label, distance])
 	var floor_y: float = -9.9 if script_name == "iron_bar" else 0.0
-	var height: float = target.global_position.y - floor_y
 	var limits: Vector2 = SHARED_HEIGHTS.get(String(prop.name), NEW_HEIGHTS.get(String(prop.name), Vector2(0.2, 1.9)))
 	if script_name == "iron_bar":
-		# Campus bar spawns share the outdoor ground datum; some rest on fallen props.
-		# Owner approved near-floor pickups; the upper reach limit remains unchanged.
+		# T-249: the director lays every spawned bar on what is under it (IronBar.rest_on): the ground
+		# (-9.94 on the stadium and the road, -9.9 at the gate) or the fallen bunk (B01). Its grip is on
+		# the pipe's middle line, a radius over that surface. The library counter bar keeps the outdoor
+		# ground datum and the shared reach limits.
 		limits = _bar_height_limits(prop)
+		if limits != Vector2(0.2, 1.9):
+			floor_y = _surface_under(target.global_position)
+	var height: float = target.global_position.y - floor_y
 	assert_true(height >= limits.x - 0.0001 and height <= limits.y + 0.0001,
 		"%s height %.4f outside %s" % [label, height, limits])
 	if script_name == "readable":
@@ -229,16 +234,19 @@ func _bar_height_limits(bar: Node3D) -> Vector2:
 	# The library counter bar is not one of the six director spawns.
 	if bar == chapter.get_node("Campus/Library/Counter/IronBar"):
 		return Vector2(0.2, 1.9)
-	var low_spawns := {
-		"B03": Vector2(0.08, 0.12),
-		"B02": Vector2(0.01, 0.04), "B04": Vector2(0.01, 0.04),
-		"B05": Vector2(0.01, 0.04), "B06": Vector2(0.01, 0.04),
-	}
+	# Every director spawn (B01 to B06): the pipe lying on the surface under it (0.0145 m over it).
 	for spawn: Node3D in chapter.get_node("Campus/Anchors/BarSpawns").get_children():
 		if Vector2(bar.global_position.x, bar.global_position.z).distance_to(
 				Vector2(spawn.global_position.x, spawn.global_position.z)) < 0.001:
-			return low_spawns.get(String(spawn.name), Vector2(0.2, 1.9))
+			return Vector2(0.008, 0.025)
 	return Vector2(0.2, 1.9)
+
+
+## The world's surface right under `at` (the bar's own area is not on the world layer).
+func _surface_under(at: Vector3) -> float:
+	var query := PhysicsRayQueryParameters3D.create(at + Vector3.UP * 0.2, at + Vector3.DOWN * 1.0, 1)
+	var hit: Dictionary = chapter.get_world_3d().direct_space_state.intersect_ray(query)
+	return (hit["position"] as Vector3).y if not hit.is_empty() else -INF
 
 func _check_core_uses(paths: Array) -> void:
 	for path: String in paths:
