@@ -54,8 +54,48 @@ const SETS := {
 		{"id": "8_landing_floor3", "eye": Vector3(0.6, -1.65, 2.2), "target": Vector3(-3.5, -2.6, 0.0), "ch": [3]},
 	],
 }
+## Options for the owner (picture only: the shared materials are changed in memory, never saved).
+const MATS := "res://assets/models/graphics_pilot/realistic_map/wave1/materials/"
+const OWN := "res://assets/textures/graphics_pilot/realistic_map/wave1/"
+const OPTIONS := [
+	{"id": "door_1_green", "eye": Vector3(41.2, 1.6, 2.6), "target": Vector3(44, 1.2, 2), "door_paint": "green", "ch": [3]},
+	{"id": "door_2_grey", "eye": Vector3(41.2, 1.6, 2.6), "target": Vector3(44, 1.2, 2), "door_paint": "grey", "ch": [3]},
+	{"id": "door_3_red", "eye": Vector3(41.2, 1.6, 2.6), "target": Vector3(44, 1.2, 2), "door_paint": "red", "ch": [3]},
+	{"id": "dado_1_greengrey", "eye": Vector3(46.5, 1.65, 2.5), "target": Vector3(45.6, -0.4, -2.4), "torch": true, "door": true,
+		"dado": "greengrey", "ch": [3]},
+	{"id": "dado_2_cream", "eye": Vector3(46.5, 1.65, 2.5), "target": Vector3(45.6, -0.4, -2.4), "torch": true, "door": true,
+		"dado": "cream", "ch": [3]},
+	{"id": "dado_3_grey", "eye": Vector3(46.5, 1.65, 2.5), "target": Vector3(45.6, -0.4, -2.4), "torch": true, "door": true,
+		"dado": "grey", "ch": [3]},
+]
 var camera: Camera3D
 var torch: SpotLight3D
+var _door_green: Dictionary = {}
+
+
+func _apply_options(view: Dictionary) -> void:
+	var door := load(MATS + "W1DoorPaint.tres") as BaseMaterial3D
+	if _door_green.is_empty():
+		_door_green = {"albedo": door.albedo_texture, "orm": (door as ORMMaterial3D).orm_texture, "normal": door.normal_texture,
+			"color": door.albedo_color, "scale": door.uv1_scale}
+	var paint: String = view.get("door_paint", "green")
+	if paint == "green":
+		door.albedo_texture = _door_green.albedo
+		(door as ORMMaterial3D).orm_texture = _door_green.orm
+		door.normal_texture = _door_green.normal
+		door.albedo_color = _door_green.color
+		door.uv1_scale = _door_green.scale
+	else:
+		# The same scan with its green taken out (make_wave1_textures.py door), tinted.
+		door.albedo_texture = load(OWN + "door_paint_neutral_color.png")
+		(door as ORMMaterial3D).orm_texture = _door_green.orm
+		door.normal_texture = _door_green.normal
+		door.albedo_color = Color(0.5, 0.51, 0.5) if paint == "grey" else Color(0.52, 0.25, 0.18)
+		door.uv1_scale = _door_green.scale
+	var tints := {"greengrey": Color(0.6, 0.7, 0.68), "cream": Color(0.9, 0.88, 0.82), "grey": Color(0.66, 0.66, 0.64)}
+	var tint: Color = tints[view.get("dado", "greengrey")]
+	for name: String in ["W1StairDado", "W1StairSide"]:
+		(load(MATS + name + ".tres") as ShaderMaterial).set_shader_parameter("base_tint", tint)
 
 
 func _ready() -> void:
@@ -112,7 +152,7 @@ func _run() -> void:
 	var count := 0
 	var views: Array[Dictionary] = []
 	for name: String in set_name.split(","):
-		for view: Dictionary in SETS[name]:
+		for view: Dictionary in (OPTIONS if name == "options" else SETS[name]):
 			var tagged := view.duplicate()
 			tagged["set"] = name
 			views.append(tagged)
@@ -134,6 +174,7 @@ func _run() -> void:
 				key.position.z = float(key.get_meta(&"shut_z")) + 0.34 * float(view.get("drawer", 0.0))
 		if campus != null:
 			campus.call("set_fire_door_open", view.get("door", false))
+		_apply_options(view)
 		camera.position = view.eye
 		camera.look_at(view.target)
 		camera.fov = view.get("fov", 75.0)

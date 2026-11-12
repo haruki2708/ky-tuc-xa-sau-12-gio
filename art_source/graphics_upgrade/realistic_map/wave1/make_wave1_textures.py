@@ -384,9 +384,22 @@ def crack():
 	save_rgba("crack.png", np.asarray(img).astype(np.float32) / 255.0)
 
 
+def door_neutral():
+	"""Green Metal Rust (CC0, Poly Haven) with its green taken out, for the fire door's colour options: the same
+	drips, chips and rust as luminance around a light grey, to be tinted by the material."""
+	src = ROOT / "art_source/graphics_upgrade/room407_corner/textures/green_metal_rust_color.jpg"
+	rgb = np.asarray(Image.open(src).convert("RGB")).astype(np.float32) / 255.0
+	lum = rgb @ np.array([0.3, 0.55, 0.15])
+	rust = np.clip((rgb[..., 0] - rgb[..., 1]) * 4.0, 0, 1)  # the rust is redder than the paint
+	base = 0.78 * lum / max(float(np.median(lum)), 1e-3)
+	out = np.stack([base, base, base], axis=2)
+	out = out * (1 - rust[..., None]) + np.array([0.42, 0.24, 0.12]) * rust[..., None] * 1.6
+	save_rgb("door_paint_neutral_color.png", np.clip(out, 0, 1))
+
+
 if __name__ == "__main__":
 	jobs = {"dial": clock_dial, "cork": cork, "notices": notices, "terrazzo": terrazzo, "ledger": ledger_cover,
-		"pages": ledger_pages, "paint": paint_grey, "masks": stair_masks, "crack": crack}
+		"pages": ledger_pages, "paint": paint_grey, "masks": stair_masks, "crack": crack, "door": door_neutral}
 	for name in sys.argv[1:] or list(jobs):
 		jobs[name]()
 		print("T250_TEX", name)
