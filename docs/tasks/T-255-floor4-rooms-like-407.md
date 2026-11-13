@@ -1,5 +1,5 @@
 # T-255 — Các phòng 401–406, 408: sâu như phòng 407, có nhà tắm và ban công, đồ đầy đủ như 407, mở cửa đi vào được
-- Lane: B | Trạng thái: todo (làm sau T-254, T-253; chủ dự án đổi thứ tự được) | Agent: tài khoản Claude lane B, `D:\GAME_WORK\lane-b2`; model **Opus 5.5 xhigh** (khó thì max). Chủ dự án tự dán prompt (`lane-b.md` mục 1k).
+- Lane: B | Trạng thái: **merged 13/11/2026** (full test 975/0, check 0 sau merge; D-171; chưa chơi thử, còn bốn điểm chờ chủ dự án chọn, xem Review) | Agent: tài khoản Claude lane B, `D:\GAME_WORK\lane-b2`; model **Opus 5.5 xhigh** (khó thì max). Chủ dự án tự dán prompt (`lane-b.md` mục 1k).
 - Nhánh: `lane-b/T-255-floor4-rooms-like-407` từ `origin/main` mới nhất.
 - Quyết định: **D-168** (13/11/2026). Chủ dự án xem mẫu lane C ([T-252](T-252-floor4-rooms-sample-codex.md), không merge): "chất lượng không đạt, tôi muốn các phòng khác rộng bằng phòng 407 và đồ đạc trong đó đầy đủ như phòng 407 (khi chơi, chúng ta có thể mở được cửa các phòng đó)", giao lane B.
 
@@ -190,3 +190,15 @@ Thêm:
 - Chơi chương 1: ra hành lang, mở cửa 401–406, 408 bằng tay, vào nhà tắm, ra ban công.
 - Chương 3: phòng tầng 4 vẫn bị xác phá cửa như cũ.
 - Chụp lại: chép `capture_t255.gd` vào `game/_probe_tmp/` (xem đầu file; có `--rooms=off`, `--hide=`, ghi VRAM).
+
+## Review integrator (13/11/2026)
+- **Đạt, merged.** Phạm vi đúng card. Ngoài phạm vi, lane B đã báo và integrator duyệt: phông ngoài ban công `room407_shell/outside.glb` (bỏ các ô ban công giả tầng 4 nay là phòng thật) và cách nén VRAM của 6 texture lá cửa trong `room407_shell/doors/`; bảng bày đồ `game/data/floor4_rooms/rooms.json`.
+- Code: `floor4_rooms.gd` (vỏ, va chạm, đồ, ẩn nội thất theo cửa và camera), `room_door_hand.gd`, `room_hinge.gd`, `room_door.gd` (thêm thời gian xoay, mặc định như cũ), `floor4.gd` (`upgraded_rooms`). Phòng PS1 chỉ ẩn và tắt va chạm.
+- **Năm test hỏng của lane B (970/5), integrator sửa trên nhánh `integrator/T-255-merge`:**
+  - Yêu cầu thay đổi 2: `test_ch2_4_hand_targets.gd` phân loại `RoomDoorHand` (có thân: tay gạt nhận tay, 3 điểm cầm; không thân: bấm thường).
+  - Yêu cầu thay đổi 1, **D-171**: integrator đo lại bằng cảnh thử trên nhánh đã merge: ở chỗ cũ (z −1,65) không chỗ đứng nào với tới `WallKnock406`, kể cả từ 406; trong 407 chỉ đoạn tường z −3,8…−5,05 với tới được. Chủ dự án chọn dời chỗ gõ: `room407_anchors.tscn` `WallKnock406` z −1,65 → **−4,4** (39 chỗ đứng trong 407). Kèm `chapter1_director.gd` (hai hằng số dự phòng), `test_ch1v2.gd` (chỗ gõ 406 nằm trên đoạn tường trống, không còn đòi cách giường 1 dưới 1,5 m).
+- **Sau merge và sửa: full test `975 passed, 0 failed`, check `0 error(s)`** (13/11 21:56–22:47).
+- Yêu cầu thay đổi 3 (director bỏ qua mở phòng khi người chơi đang ở trong phòng đó): chưa làm, chờ chủ dự án chơi thử chương 3.
+- Rủi ro lane B nêu, ghi cho việc sau: chương 3 dùng khoảng 3.660 MB trên 4 GB VRAM; nhiều texture Tripo của 407 chưa nén VRAM (đề nghị một task nén).
+- **Chờ chủ dự án chọn sau khi chơi thử** (đã làm theo đề xuất của lane B): nhà tắm góc sau; ban công cả bề ngang phòng; chủ đề từng phòng; có khoá hẳn cửa phòng ở chương 3–4 không; cánh cửa phòng đang mở không có va chạm (như trước).
+- FPS: integrator đo sau merge (D-168), báo cáo `tools/reports/T-255-rooms-fps.md`.
