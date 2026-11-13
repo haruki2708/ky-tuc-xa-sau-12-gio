@@ -3,9 +3,10 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b8h8gyujj6s7w"
-path="res://.godot/imported/desk_desk_normal.jpg-d7e6a2f2cdd2221aeff990ed3c55d46d.ctex"
+path.s3tc="res://.godot/imported/desk_desk_normal.jpg-d7e6a2f2cdd2221aeff990ed3c55d46d.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "b089def9e98eacb48815008f2a71e684"
@@ -14,17 +15,17 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/graphics_pilot/room407_batch2/desk_desk_normal.jpg"
-dest_files=["res://.godot/imported/desk_desk_normal.jpg-d7e6a2f2cdd2221aeff990ed3c55d46d.ctex"]
+dest_files=["res://.godot/imported/desk_desk_normal.jpg-d7e6a2f2cdd2221aeff990ed3c55d46d.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
-compress/normal_map=0
+compress/normal_map=1
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1

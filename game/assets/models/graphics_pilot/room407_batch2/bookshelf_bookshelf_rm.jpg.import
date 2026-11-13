@@ -3,9 +3,10 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d5qf81x6frfa"
-path="res://.godot/imported/bookshelf_bookshelf_rm.jpg-4d4dd47f71384dd449c02de6f0b99750.ctex"
+path.s3tc="res://.godot/imported/bookshelf_bookshelf_rm.jpg-4d4dd47f71384dd449c02de6f0b99750.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "83d459946e23b3202dd3bfb4d9354a3b"
@@ -14,11 +15,11 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/graphics_pilot/room407_batch2/bookshelf_bookshelf_rm.jpg"
-dest_files=["res://.godot/imported/bookshelf_bookshelf_rm.jpg-4d4dd47f71384dd449c02de6f0b99750.ctex"]
+dest_files=["res://.godot/imported/bookshelf_bookshelf_rm.jpg-4d4dd47f71384dd449c02de6f0b99750.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

@@ -3,9 +3,10 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d1cm5hrg7j7i7"
-path="res://.godot/imported/laundry_detergent_laundry_detergent_normal.png-75c890e7c2c29a561016ceefaae4f0bb.ctex"
+path.s3tc="res://.godot/imported/laundry_detergent_laundry_detergent_normal.png-75c890e7c2c29a561016ceefaae4f0bb.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "94d9e80b7c933a36bc9ea9df3e27c683"
@@ -14,17 +15,17 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/graphics_pilot/room407_batch3/laundry_detergent_laundry_detergent_normal.png"
-dest_files=["res://.godot/imported/laundry_detergent_laundry_detergent_normal.png-75c890e7c2c29a561016ceefaae4f0bb.ctex"]
+dest_files=["res://.godot/imported/laundry_detergent_laundry_detergent_normal.png-75c890e7c2c29a561016ceefaae4f0bb.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
-compress/normal_map=0
+compress/normal_map=1
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1

@@ -3,9 +3,10 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cux88vitq5ey1"
-path="res://.godot/imported/sink_sink_basecolor.png-93e50465a1a0699e5b01181793bd2db5.ctex"
+path.s3tc="res://.godot/imported/sink_sink_basecolor.png-93e50465a1a0699e5b01181793bd2db5.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "1c6598c308a54b80c35b98eca0b70808"
@@ -14,11 +15,11 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/graphics_pilot/room407_batch2/sink_sink_basecolor.png"
-dest_files=["res://.godot/imported/sink_sink_basecolor.png-93e50465a1a0699e5b01181793bd2db5.ctex"]
+dest_files=["res://.godot/imported/sink_sink_basecolor.png-93e50465a1a0699e5b01181793bd2db5.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

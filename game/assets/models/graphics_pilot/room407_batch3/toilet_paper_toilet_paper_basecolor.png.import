@@ -3,9 +3,10 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dgfcyyor4jqia"
-path="res://.godot/imported/toilet_paper_toilet_paper_basecolor.png-0bc7bd11d85ef48ed9eb5c9f45930492.ctex"
+path.s3tc="res://.godot/imported/toilet_paper_toilet_paper_basecolor.png-0bc7bd11d85ef48ed9eb5c9f45930492.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "14d63dd6271aa99d2058af12686b28c9"
@@ -14,11 +15,11 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/graphics_pilot/room407_batch3/toilet_paper_toilet_paper_basecolor.png"
-dest_files=["res://.godot/imported/toilet_paper_toilet_paper_basecolor.png-0bc7bd11d85ef48ed9eb5c9f45930492.ctex"]
+dest_files=["res://.godot/imported/toilet_paper_toilet_paper_basecolor.png-0bc7bd11d85ef48ed9eb5c9f45930492.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

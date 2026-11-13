@@ -3,9 +3,10 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dbdw68omh0gwm"
-path="res://.godot/imported/rice_cooker_rice_cooker_rm.png-b8957b4c4380fe821777f8c341dc978e.ctex"
+path.s3tc="res://.godot/imported/rice_cooker_rice_cooker_rm.png-b8957b4c4380fe821777f8c341dc978e.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "86ebd0cf74451a4ccda7f0fdab9f876e"
@@ -14,11 +15,11 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/graphics_pilot/room407_batch1/rice_cooker_rice_cooker_rm.png"
-dest_files=["res://.godot/imported/rice_cooker_rice_cooker_rm.png-b8957b4c4380fe821777f8c341dc978e.ctex"]
+dest_files=["res://.godot/imported/rice_cooker_rice_cooker_rm.png-b8957b4c4380fe821777f8c341dc978e.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

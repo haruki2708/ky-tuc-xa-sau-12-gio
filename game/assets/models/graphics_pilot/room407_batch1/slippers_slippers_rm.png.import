@@ -3,9 +3,10 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cxdqmnijl8vg0"
-path="res://.godot/imported/slippers_slippers_rm.png-1e26354a9616f5f4aa344daed431002e.ctex"
+path.s3tc="res://.godot/imported/slippers_slippers_rm.png-1e26354a9616f5f4aa344daed431002e.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "8941db4a50bc22c3d687868722159272"
@@ -14,11 +15,11 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/graphics_pilot/room407_batch1/slippers_slippers_rm.png"
-dest_files=["res://.godot/imported/slippers_slippers_rm.png-1e26354a9616f5f4aa344daed431002e.ctex"]
+dest_files=["res://.godot/imported/slippers_slippers_rm.png-1e26354a9616f5f4aa344daed431002e.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

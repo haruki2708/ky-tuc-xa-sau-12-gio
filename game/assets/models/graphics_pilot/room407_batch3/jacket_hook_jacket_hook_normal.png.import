@@ -3,9 +3,10 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dp5iswc504flu"
-path="res://.godot/imported/jacket_hook_jacket_hook_normal.png-23ce340f64f97b06a3224ed86a96ad2c.ctex"
+path.s3tc="res://.godot/imported/jacket_hook_jacket_hook_normal.png-23ce340f64f97b06a3224ed86a96ad2c.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "b3da60cbe264598c55471a0751e8dbad"
@@ -14,17 +15,17 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/graphics_pilot/room407_batch3/jacket_hook_jacket_hook_normal.png"
-dest_files=["res://.godot/imported/jacket_hook_jacket_hook_normal.png-23ce340f64f97b06a3224ed86a96ad2c.ctex"]
+dest_files=["res://.godot/imported/jacket_hook_jacket_hook_normal.png-23ce340f64f97b06a3224ed86a96ad2c.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
-compress/normal_map=0
+compress/normal_map=1
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1

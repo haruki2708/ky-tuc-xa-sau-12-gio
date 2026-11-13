@@ -3,9 +3,10 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c16kpjwr0g64w"
-path="res://.godot/imported/fixtures_plastered_wall_04_small_arm.jpg-adcccbd0b973e3350927881e5fdfccaa.ctex"
+path.s3tc="res://.godot/imported/fixtures_plastered_wall_04_small_arm.jpg-adcccbd0b973e3350927881e5fdfccaa.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "b4a7639c7bbdb353b121e55397332260"
@@ -14,11 +15,11 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/graphics_pilot/room407_corner/fixtures_plastered_wall_04_small_arm.jpg"
-dest_files=["res://.godot/imported/fixtures_plastered_wall_04_small_arm.jpg-adcccbd0b973e3350927881e5fdfccaa.ctex"]
+dest_files=["res://.godot/imported/fixtures_plastered_wall_04_small_arm.jpg-adcccbd0b973e3350927881e5fdfccaa.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

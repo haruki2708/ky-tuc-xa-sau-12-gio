@@ -3,9 +3,10 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cvq8jnhwptrh0"
-path="res://.godot/imported/wall_shelf_wall_shelf_rm.png-4c974bc82b4b4800c9be57dc414926e8.ctex"
+path.s3tc="res://.godot/imported/wall_shelf_wall_shelf_rm.png-4c974bc82b4b4800c9be57dc414926e8.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "17ea3c50374802f2b60712e07de7641f"
@@ -14,11 +15,11 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/graphics_pilot/room407_batch2/wall_shelf_wall_shelf_rm.png"
-dest_files=["res://.godot/imported/wall_shelf_wall_shelf_rm.png-4c974bc82b4b4800c9be57dc414926e8.ctex"]
+dest_files=["res://.godot/imported/wall_shelf_wall_shelf_rm.png-4c974bc82b4b4800c9be57dc414926e8.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

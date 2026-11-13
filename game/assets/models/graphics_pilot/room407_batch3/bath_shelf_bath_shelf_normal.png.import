@@ -3,9 +3,10 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cgljyoxa525gh"
-path="res://.godot/imported/bath_shelf_bath_shelf_normal.png-16b1e4ad5ab0c345e93d4f2447f39650.ctex"
+path.s3tc="res://.godot/imported/bath_shelf_bath_shelf_normal.png-16b1e4ad5ab0c345e93d4f2447f39650.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "4263d24c757637f8aa797a147383eb81"
@@ -14,17 +15,17 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/graphics_pilot/room407_batch3/bath_shelf_bath_shelf_normal.png"
-dest_files=["res://.godot/imported/bath_shelf_bath_shelf_normal.png-16b1e4ad5ab0c345e93d4f2447f39650.ctex"]
+dest_files=["res://.godot/imported/bath_shelf_bath_shelf_normal.png-16b1e4ad5ab0c345e93d4f2447f39650.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
-compress/normal_map=0
+compress/normal_map=1
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1

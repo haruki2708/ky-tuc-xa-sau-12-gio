@@ -3,9 +3,10 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dxi1wnvm8164h"
-path="res://.godot/imported/locker_viet_locker_open_basecolor.jpg-55ac082a4bcfabeb395f3bbbf153c534.ctex"
+path.s3tc="res://.godot/imported/locker_viet_locker_open_basecolor.jpg-55ac082a4bcfabeb395f3bbbf153c534.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "08813abe0516adac319eec42daffe1c3"
@@ -14,11 +15,11 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/graphics_pilot/room407_furnished/locker_viet_locker_open_basecolor.jpg"
-dest_files=["res://.godot/imported/locker_viet_locker_open_basecolor.jpg-55ac082a4bcfabeb395f3bbbf153c534.ctex"]
+dest_files=["res://.godot/imported/locker_viet_locker_open_basecolor.jpg-55ac082a4bcfabeb395f3bbbf153c534.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

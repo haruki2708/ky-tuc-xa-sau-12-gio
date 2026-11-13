@@ -3,9 +3,10 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b04vu7e1yvytl"
-path="res://.godot/imported/bunk_a_green_metal_rust_color.jpg-e2e2d6ca8bcf04c239b64d6cf4add3af.ctex"
+path.s3tc="res://.godot/imported/bunk_a_green_metal_rust_color.jpg-e2e2d6ca8bcf04c239b64d6cf4add3af.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "c925d8b893915e68bf25ce17b636aa38"
@@ -14,11 +15,11 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/graphics_pilot/room407_corner/bunk_a_green_metal_rust_color.jpg"
-dest_files=["res://.godot/imported/bunk_a_green_metal_rust_color.jpg-e2e2d6ca8bcf04c239b64d6cf4add3af.ctex"]
+dest_files=["res://.godot/imported/bunk_a_green_metal_rust_color.jpg-e2e2d6ca8bcf04c239b64d6cf4add3af.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

@@ -3,9 +3,10 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://qf8bjve2tg1y"
-path="res://.godot/imported/takeaway_box_takeaway_box_rm.png-51ff5fcbb8d901eebe996f4bdee5bc72.ctex"
+path.s3tc="res://.godot/imported/takeaway_box_takeaway_box_rm.png-51ff5fcbb8d901eebe996f4bdee5bc72.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "99c21c31e28d7a703ff1bf2f6cf3ceee"
@@ -14,11 +15,11 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/graphics_pilot/room407_batch3/takeaway_box_takeaway_box_rm.png"
-dest_files=["res://.godot/imported/takeaway_box_takeaway_box_rm.png-51ff5fcbb8d901eebe996f4bdee5bc72.ctex"]
+dest_files=["res://.godot/imported/takeaway_box_takeaway_box_rm.png-51ff5fcbb8d901eebe996f4bdee5bc72.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

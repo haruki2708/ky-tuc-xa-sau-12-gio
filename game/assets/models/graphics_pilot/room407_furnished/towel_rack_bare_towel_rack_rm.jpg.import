@@ -3,9 +3,10 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://uloqfsgl2uxo"
-path="res://.godot/imported/towel_rack_bare_towel_rack_rm.jpg-10e1327f55b81d782af3420fb1d00ce7.ctex"
+path.s3tc="res://.godot/imported/towel_rack_bare_towel_rack_rm.jpg-10e1327f55b81d782af3420fb1d00ce7.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "b188739027d94054a840f23c58f29770"
@@ -14,11 +15,11 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/graphics_pilot/room407_furnished/towel_rack_bare_towel_rack_rm.jpg"
-dest_files=["res://.godot/imported/towel_rack_bare_towel_rack_rm.jpg-10e1327f55b81d782af3420fb1d00ce7.ctex"]
+dest_files=["res://.godot/imported/towel_rack_bare_towel_rack_rm.jpg-10e1327f55b81d782af3420fb1d00ce7.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

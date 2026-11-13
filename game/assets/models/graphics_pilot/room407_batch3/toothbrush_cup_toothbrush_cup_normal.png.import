@@ -3,9 +3,10 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dsyqk3jl50mkd"
-path="res://.godot/imported/toothbrush_cup_toothbrush_cup_normal.png-a2a75fc22f4cfa0d511728396ae595f4.ctex"
+path.s3tc="res://.godot/imported/toothbrush_cup_toothbrush_cup_normal.png-a2a75fc22f4cfa0d511728396ae595f4.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "2b3029702df728a2803009fef7c1cb77"
@@ -14,17 +15,17 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/graphics_pilot/room407_batch3/toothbrush_cup_toothbrush_cup_normal.png"
-dest_files=["res://.godot/imported/toothbrush_cup_toothbrush_cup_normal.png-a2a75fc22f4cfa0d511728396ae595f4.ctex"]
+dest_files=["res://.godot/imported/toothbrush_cup_toothbrush_cup_normal.png-a2a75fc22f4cfa0d511728396ae595f4.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
-compress/normal_map=0
+compress/normal_map=1
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1

@@ -3,9 +3,10 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bjj7a73jxw5xc"
-path="res://.godot/imported/fixtures_door_bathroom_rm.jpg-767d811f9f851af6f840593316132aee.ctex"
+path.s3tc="res://.godot/imported/fixtures_door_bathroom_rm.jpg-767d811f9f851af6f840593316132aee.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "2bc32c7b82628bf97f1564b7786cdfe4"
@@ -14,11 +15,11 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/graphics_pilot/room407_shell/fixtures_door_bathroom_rm.jpg"
-dest_files=["res://.godot/imported/fixtures_door_bathroom_rm.jpg-767d811f9f851af6f840593316132aee.ctex"]
+dest_files=["res://.godot/imported/fixtures_door_bathroom_rm.jpg-767d811f9f851af6f840593316132aee.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

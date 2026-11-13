@@ -3,9 +3,10 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dh2i40vj0t68y"
-path="res://.godot/imported/locker_closed_locker_closed_rm.jpg-15d1e8f8f7964a575985b734effc877c.ctex"
+path.s3tc="res://.godot/imported/locker_closed_locker_closed_rm.jpg-15d1e8f8f7964a575985b734effc877c.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "10eebb27ef371972602c0f8e86fa8c58"
@@ -14,11 +15,11 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/graphics_pilot/room407_batch2/locker_closed_locker_closed_rm.jpg"
-dest_files=["res://.godot/imported/locker_closed_locker_closed_rm.jpg-15d1e8f8f7964a575985b734effc877c.ctex"]
+dest_files=["res://.godot/imported/locker_closed_locker_closed_rm.jpg-15d1e8f8f7964a575985b734effc877c.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

@@ -3,9 +3,10 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b8yacxmbmsqh"
-path="res://.godot/imported/bunk_a_rough_linen_square_arm.jpg-0704503eb63acb9762b393cf9ceadd94.ctex"
+path.s3tc="res://.godot/imported/bunk_a_rough_linen_square_arm.jpg-0704503eb63acb9762b393cf9ceadd94.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "ffb4d86f10bffb5cf9926292ef6684bb"
@@ -14,11 +15,11 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/graphics_pilot/room407_corner/bunk_a_rough_linen_square_arm.jpg"
-dest_files=["res://.godot/imported/bunk_a_rough_linen_square_arm.jpg-0704503eb63acb9762b393cf9ceadd94.ctex"]
+dest_files=["res://.godot/imported/bunk_a_rough_linen_square_arm.jpg-0704503eb63acb9762b393cf9ceadd94.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

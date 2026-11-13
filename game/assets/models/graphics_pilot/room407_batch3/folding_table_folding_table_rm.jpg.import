@@ -3,9 +3,10 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bbie83pq182hd"
-path="res://.godot/imported/folding_table_folding_table_rm.jpg-3a4554dfdf30481458487f1e3827dbb4.ctex"
+path.s3tc="res://.godot/imported/folding_table_folding_table_rm.jpg-3a4554dfdf30481458487f1e3827dbb4.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "b88c6445ca9e78c4cd837ab8fcfc7578"
@@ -14,11 +15,11 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/graphics_pilot/room407_batch3/folding_table_folding_table_rm.jpg"
-dest_files=["res://.godot/imported/folding_table_folding_table_rm.jpg-3a4554dfdf30481458487f1e3827dbb4.ctex"]
+dest_files=["res://.godot/imported/folding_table_folding_table_rm.jpg-3a4554dfdf30481458487f1e3827dbb4.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

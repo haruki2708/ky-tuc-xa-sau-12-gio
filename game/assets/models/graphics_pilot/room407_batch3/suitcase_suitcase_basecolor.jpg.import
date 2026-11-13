@@ -3,9 +3,10 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://djaf8mgrtwkcj"
-path="res://.godot/imported/suitcase_suitcase_basecolor.jpg-152a56f39ba10c2ae532890d48c8442e.ctex"
+path.s3tc="res://.godot/imported/suitcase_suitcase_basecolor.jpg-152a56f39ba10c2ae532890d48c8442e.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "a4a797c00cdbdc35a140b3de8ab4264e"
@@ -14,11 +15,11 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/graphics_pilot/room407_batch3/suitcase_suitcase_basecolor.jpg"
-dest_files=["res://.godot/imported/suitcase_suitcase_basecolor.jpg-152a56f39ba10c2ae532890d48c8442e.ctex"]
+dest_files=["res://.godot/imported/suitcase_suitcase_basecolor.jpg-152a56f39ba10c2ae532890d48c8442e.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

@@ -3,9 +3,10 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c5ku5sdapsj6f"
-path="res://.godot/imported/meal_tray_meal_tray_rm.png-f26f3f8619f35c7b06bab0d1e939d09b.ctex"
+path.s3tc="res://.godot/imported/meal_tray_meal_tray_rm.png-f26f3f8619f35c7b06bab0d1e939d09b.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "d7fc46d9cc1e3a91079d196d8d26156d"
@@ -14,11 +15,11 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/graphics_pilot/room407_batch3/meal_tray_meal_tray_rm.png"
-dest_files=["res://.godot/imported/meal_tray_meal_tray_rm.png-f26f3f8619f35c7b06bab0d1e939d09b.ctex"]
+dest_files=["res://.godot/imported/meal_tray_meal_tray_rm.png-f26f3f8619f35c7b06bab0d1e939d09b.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

@@ -3,9 +3,10 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b5bak1mvbls20"
-path="res://.godot/imported/cleaning_rag_rough_linen_normal.jpg-aa78d774d9e91515b8d7adfcb7b16fce.ctex"
+path.s3tc="res://.godot/imported/cleaning_rag_rough_linen_normal.jpg-aa78d774d9e91515b8d7adfcb7b16fce.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "f979e414edf46216a6a55a65eeec23f4"
@@ -14,17 +15,17 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/graphics_pilot/room407_furnished/cleaning_rag_rough_linen_normal.jpg"
-dest_files=["res://.godot/imported/cleaning_rag_rough_linen_normal.jpg-aa78d774d9e91515b8d7adfcb7b16fce.ctex"]
+dest_files=["res://.godot/imported/cleaning_rag_rough_linen_normal.jpg-aa78d774d9e91515b8d7adfcb7b16fce.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
-compress/normal_map=0
+compress/normal_map=1
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1

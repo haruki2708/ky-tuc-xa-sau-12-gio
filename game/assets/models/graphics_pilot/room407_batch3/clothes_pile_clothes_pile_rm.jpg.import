@@ -3,9 +3,10 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cywdy2ho5eo82"
-path="res://.godot/imported/clothes_pile_clothes_pile_rm.jpg-7c6baf9b029bf31e400646ac3261104a.ctex"
+path.s3tc="res://.godot/imported/clothes_pile_clothes_pile_rm.jpg-7c6baf9b029bf31e400646ac3261104a.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "9ffcf2fcda3f99eeeda7480c60f76935"
@@ -14,11 +15,11 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/graphics_pilot/room407_batch3/clothes_pile_clothes_pile_rm.jpg"
-dest_files=["res://.godot/imported/clothes_pile_clothes_pile_rm.jpg-7c6baf9b029bf31e400646ac3261104a.ctex"]
+dest_files=["res://.godot/imported/clothes_pile_clothes_pile_rm.jpg-7c6baf9b029bf31e400646ac3261104a.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

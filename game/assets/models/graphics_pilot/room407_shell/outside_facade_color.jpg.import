@@ -3,9 +3,10 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bnuromcoxe2as"
-path="res://.godot/imported/outside_facade_color.jpg-fc3aacd0065801bc55e557fda4da2049.ctex"
+path.s3tc="res://.godot/imported/outside_facade_color.jpg-fc3aacd0065801bc55e557fda4da2049.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "6bc705d2f0cb558083fd6e10d7f8d7e9"
@@ -14,11 +15,11 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/graphics_pilot/room407_shell/outside_facade_color.jpg"
-dest_files=["res://.godot/imported/outside_facade_color.jpg-fc3aacd0065801bc55e557fda4da2049.ctex"]
+dest_files=["res://.godot/imported/outside_facade_color.jpg-fc3aacd0065801bc55e557fda4da2049.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

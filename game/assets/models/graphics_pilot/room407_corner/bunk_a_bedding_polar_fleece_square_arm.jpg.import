@@ -3,9 +3,10 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d2b8i0a3ar8t2"
-path="res://.godot/imported/bunk_a_bedding_polar_fleece_square_arm.jpg-aa41b79f890cb02e74fef151b24e665f.ctex"
+path.s3tc="res://.godot/imported/bunk_a_bedding_polar_fleece_square_arm.jpg-aa41b79f890cb02e74fef151b24e665f.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "84f360b0a2db6c38839c316b14d40ad7"
@@ -14,11 +15,11 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/graphics_pilot/room407_corner/bunk_a_bedding_polar_fleece_square_arm.jpg"
-dest_files=["res://.godot/imported/bunk_a_bedding_polar_fleece_square_arm.jpg-aa41b79f890cb02e74fef151b24e665f.ctex"]
+dest_files=["res://.godot/imported/bunk_a_bedding_polar_fleece_square_arm.jpg-aa41b79f890cb02e74fef151b24e665f.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

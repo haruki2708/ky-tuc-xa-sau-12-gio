@@ -3,9 +3,10 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b1vipmqrue410"
-path="res://.godot/imported/desk_lamp_desk_lamp_basecolor.png-e1a023be6847a6e6b39c73a7107d8ca6.ctex"
+path.s3tc="res://.godot/imported/desk_lamp_desk_lamp_basecolor.png-e1a023be6847a6e6b39c73a7107d8ca6.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "e38c2a572e771a0eaa6f8c4e59d27559"
@@ -14,11 +15,11 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/graphics_pilot/room407_batch2/desk_lamp_desk_lamp_basecolor.png"
-dest_files=["res://.godot/imported/desk_lamp_desk_lamp_basecolor.png-e1a023be6847a6e6b39c73a7107d8ca6.ctex"]
+dest_files=["res://.godot/imported/desk_lamp_desk_lamp_basecolor.png-e1a023be6847a6e6b39c73a7107d8ca6.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

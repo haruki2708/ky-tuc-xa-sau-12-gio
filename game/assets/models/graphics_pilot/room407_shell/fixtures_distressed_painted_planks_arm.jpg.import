@@ -3,9 +3,10 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dhqm25jsrip7x"
-path="res://.godot/imported/fixtures_distressed_painted_planks_arm.jpg-5e2626f5bdc32b6301a527d353ff4372.ctex"
+path.s3tc="res://.godot/imported/fixtures_distressed_painted_planks_arm.jpg-5e2626f5bdc32b6301a527d353ff4372.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "fdabcd023ca90f997788f24f1c21f377"
@@ -14,11 +15,11 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/graphics_pilot/room407_shell/fixtures_distressed_painted_planks_arm.jpg"
-dest_files=["res://.godot/imported/fixtures_distressed_painted_planks_arm.jpg-5e2626f5bdc32b6301a527d353ff4372.ctex"]
+dest_files=["res://.godot/imported/fixtures_distressed_painted_planks_arm.jpg-5e2626f5bdc32b6301a527d353ff4372.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

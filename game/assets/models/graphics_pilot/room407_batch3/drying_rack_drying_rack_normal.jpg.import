@@ -3,9 +3,10 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dxgfqr8vstxvt"
-path="res://.godot/imported/drying_rack_drying_rack_normal.jpg-f18bd05e12b03788ff3f7cc1ce2070c0.ctex"
+path.s3tc="res://.godot/imported/drying_rack_drying_rack_normal.jpg-f18bd05e12b03788ff3f7cc1ce2070c0.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "4c0e62257924f756c46d953615610142"
@@ -14,17 +15,17 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/graphics_pilot/room407_batch3/drying_rack_drying_rack_normal.jpg"
-dest_files=["res://.godot/imported/drying_rack_drying_rack_normal.jpg-f18bd05e12b03788ff3f7cc1ce2070c0.ctex"]
+dest_files=["res://.godot/imported/drying_rack_drying_rack_normal.jpg-f18bd05e12b03788ff3f7cc1ce2070c0.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
-compress/normal_map=0
+compress/normal_map=1
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
