@@ -1,5 +1,5 @@
 # T-256 — Tầng 4 lượt 3–4 (phần còn lại): nhà vệ sinh chung, đồ ở hành lang, rà cửa thoát hiểm, trường quay CCTV hành lang
-- Lane: B | Trạng thái: **todo, giao sau khi [T-255](T-255-floor4-rooms-like-407.md) merge** (cùng sửa `corridor.tscn`, làm nối tiếp để khỏi xung đột) | Agent: tài khoản Claude lane B, `D:\GAME_WORK\lane-b2`; model **Opus 5.5 xhigh** (khó thì max). Chủ dự án tự dán prompt (`lane-b.md` mục 1l).
+- Lane: B | Trạng thái: **merged 14/11/2026** (lane B full test 984/0 trên đúng cây mã đã merge; integrator chạy lại check 0 lỗi, `test_t256` 9/9); chưa chơi thử; lỗi tường giếng thang ở chương 3–4 tách sang [T-258](T-258-main-stairs-wall-over-washroom.md) | Agent: tài khoản Claude lane B, `D:\GAME_WORK\lane-b2`; model **Opus 5.5 xhigh** (khó thì max). Chủ dự án tự dán prompt (`lane-b.md` mục 1l).
 - Nhánh: `lane-b/T-256-floor4-washroom-corridor-props` từ `origin/main` mới nhất (đã có T-255).
 - Quyết định: **D-170** (xem mục 1). Nền: D-166 (dựng Blender theo chất lượng phòng 407, không ưng thì chủ dự án đổi Tripo; ánh sáng giữ như nay; CCTV cảnh thật, giữ góc và độ rõ), D-167 (phong cách nhà B đã duyệt).
 - Khảo sát: integrator, 13/11/2026 (đọc scene, script, ảnh `realistic_map/previews/survey/`, ảnh T-250, T-254; đo và chụp cửa thoát hiểm trong chương 3 thật, phần C).
@@ -208,3 +208,11 @@ Nhánh `lane-b/T-256-floor4-washroom-corridor-props` từ `origin/main` `8aad1c3
 - `pwsh tools/test.ps1 -Filter test_t256` (9 test), và `-Filter test_t253`, `test_t250`, `test_mirror`, `test_floor4`, `test_cctv`.
 - Xem ảnh ghép `previews/floor4_rest/overview.jpg` và `compare_*.jpg`.
 - Chơi chương 1 hoặc 3: vào nhà vệ sinh tầng 4 (gương phản chiếu người chơi), đi hết hành lang tầng 4, mở cửa thoát hiểm cuối hành lang (chương 3). Feed CCTV hành lang: như ảnh `compare_cctv_ch1.jpg` ở chương 1.
+
+## Review integrator (14/11/2026)
+- **Đạt, merged.** Phạm vi đúng card: hai script cảnh mới (`washroom_real.gd`, `corridor_props.gd`), bốn scene chỉ thêm node hoặc ẩn hình (`washroom.tscn`, `corridor.tscn`, `cctv_set.tscn`, `building_b.tscn` phần `FireDoor`), model, ba texture ≤ 1K, test mới. Va chạm, anchor, đèn, âm thanh giữ nguyên (test so dấu vân tay với main); hình PS1 chỉ ẩn.
+- Ảnh `previews/floor4_rest/overview.jpg`, `compare_*.jpg`: đã xem. Nhà vệ sinh, đồ hành lang, tay gạt gọn, biển thoát hiểm, trường quay CCTV đúng D-170.
+- **Kiểm:** cây `game/` sau merge trùng hệt cây lane B đã chạy full test **984/0** (chỉ khác tài liệu), nên không chạy lại full test (như D-169). Check của lane B bị dừng vì thiếu RAM: integrator chạy lại sau merge, **`check 0 error(s)`** (14/11 02:53–03:21), `test_t256` 9/9.
+- **Yêu cầu thay đổi 1** (tường giếng cầu thang chính lấn 6 cm vào nhà vệ sinh ở chương 3–4, che gương, ống nước, bảng tin): integrator xác nhận trên `compare_washroom_ch3.jpg`; lỗi có từ trước, **tách thành [T-258](T-258-main-stairs-wall-over-washroom.md)** giao lane B. Tới khi T-258 xong, gương và máng rửa mới chỉ thấy đủ ở chương 1–2.
+- Chưa đo lại bộ nhớ hình sau T-256 trên nền T-257 (lane B đo trước rebase: +28 MB so với T-255); ba texture mới đều nén VRAM.
+- **Chờ chủ dự án chọn sau khi chơi thử** (đã làm theo đề xuất của lane B): màu gạch nhà vệ sinh và góc khép ba cửa buồng; đồ trước mỗi phòng bớt hay thêm; tay gạt cửa thoát hiểm bản gọn (thanh gạt cách cánh 3,1 cm thay vì 5,6 cm).

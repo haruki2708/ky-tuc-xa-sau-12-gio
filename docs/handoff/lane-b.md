@@ -230,6 +230,20 @@ Cập nhật Checklist và Handoff trong card. Không sửa STATUS hay DECISIONS
 Cuối phiên báo ngắn bằng tiếng Việt: xong gì, nhánh, commit, ảnh ở đâu, dòng RESULT test và check, câu hỏi cho chủ dự án, có bị chặn không.
 ```
 
+## 1m. Giao T-258 (14/11/2026): tường giếng cầu thang chính lấn vào nhà vệ sinh tầng 4 ở chương 3–4
+Dán **sau khi T-256 đã merge vào main** (integrator báo). `/model` chọn **Opus 5.5**, effort **xhigh**, rồi dán:
+```text
+Việc mới cho lane B: T-258 — chương 3–4: tường giếng cầu thang chính lấn 6 cm vào nhà vệ sinh tầng 4, che gương và máng rửa của T-256 (chính bạn phát hiện, yêu cầu thay đổi 1 của T-256). Đọc docs/tasks/T-258-main-stairs-wall-over-washroom.md.
+Ở D:\GAME_WORK\lane-b2: git status (giữ thay đổi đang có, báo nếu có), git fetch origin, git switch -c lane-b/T-258-main-stairs-wall-over-washroom origin/main, git lfs pull. origin/main phải đã có T-256; chưa có thì dừng và báo.
+Đầu phiên ghi commit của card đã đọc (git log -1 --format=%h origin/main -- docs/tasks/T-258-main-stairs-wall-over-washroom.md).
+Sửa hình và va chạm của tường giếng thang chính chỉ ở độ cao tầng 4 để nó không vượt quá mặt ngoài tường tây nhà vệ sinh; kiểm cùng lỗi ở phía cầu thang thoát hiểm với phòng 408. Đây là đổi va chạm có chủ ý: cập nhật các test dấu vân tay của building_b.tscn chỉ ở đúng phần tường này và ghi rõ trong Handoff.
+Không đổi nhà vệ sinh, hành lang, bậc thang, chiếu nghỉ, lan can, navmesh, director, luật. Không Tripo, không bot, không đo FPS.
+Godot theo luật Lượt Godot (file khóa D:\GAME_WORK\GODOT_DANG_CHAY.txt); máy ít RAM: đóng Blender và Godot khi không dùng, chạy full test và check ở tiền cảnh.
+Trước commit cuối: full pwsh tools/test.ps1 rồi pwsh tools/check.ps1, rồi git checkout -- game/default_bus_layout.tres. Commit nhỏ "T-258: ...", push nhánh. Không push main, không mở PR.
+Cập nhật Checklist và Handoff trong card. Không sửa STATUS hay DECISIONS.
+Cuối phiên báo ngắn bằng tiếng Việt: xong gì, nhánh, commit, ảnh ở đâu, dòng RESULT test và check, có bị chặn không.
+```
+
 ## 2. Prompt giao việc (integrator điền T-xxx)
 ```text
 Việc mới cho lane B: <T-xxx> — đọc docs/tasks/<file card>.md.

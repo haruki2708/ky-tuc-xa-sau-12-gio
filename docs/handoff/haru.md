@@ -88,7 +88,18 @@ Trả lời và viết tài liệu bằng tiếng Việt; code, comment, commit 
 - **Nguồn đúng khi lệch nhau:** mục 3 file này mới nhất; rồi `docs/STATUS.md`; `docs/ROADMAP.md` chỉ cập nhật khi qua mốc.
 
 ## 3. Tiến độ integrator để lại (integrator cập nhật sau mỗi bước)
-**Cập nhật:** 13/11/2026 khoảng 23:25, integrator (Fable 5.2) sắp hết hạn mức: **bàn giao T-257 (nén bộ nhớ hình) cho HARU, dừng ở chỗ an toàn.** Trước đó 22:55: T-255 đã merge vào main (full test 975/0, check 0), D-171, đo FPS, build bản chơi `9e5613f`.
+**Cập nhật:** 14/11/2026 khoảng 03:30, integrator (Fable 5.2) nhận lại việc từ HARU: **T-256 đã merge vào main**, card T-258 cho lane B, đang build bản chơi.
+
+**Việc dở ngay lúc này (đọc trước):**
+- **T-256 merged** (lane B `9153597`; cây `game/` sau merge trùng cây lane B đã chạy full test 984/0; integrator chạy lại check 0 lỗi, `test_t256` 9/9, 14/11 03:21). Review trong card.
+- **Bản chơi mới sau T-256:** `build/integrator/package_locked.ps1 -Label 'package T-256' -Name package_t256` (chạy nền từ khoảng 03:30; log `build/integrator/package_t256.log`). Xong thì báo chủ dự án. Dòng "Bản chơi" trong STATUS mục 1 cập nhật sau khi build xong.
+- **[T-258](../tasks/T-258-main-stairs-wall-over-washroom.md)** (lane B, todo): ở chương 3–4 tường PS1 của giếng cầu thang chính lấn 6 cm vào nhà vệ sinh tầng 4, che gương và máng rửa mới. Prompt `lane-b.md` mục 1m; chủ dự án dán khi lane B có hạn mức.
+- **Chờ chủ dự án chơi thử** (T-253, T-254, T-255, D-171, T-257, T-256) và chọn: T-255 (nhà tắm góc sau, ban công cả bề ngang, chủ đề phòng, khoá cửa phòng chương 3–4, cánh cửa mở không va chạm); T-256 (màu gạch và góc cửa buồng, đồ trước mỗi phòng, tay gạt gọn); xem ảnh T-257 `vram_compress/previews/compare_closeup.jpg`.
+- Chưa làm: occlusion culling (yêu cầu thay đổi T-253); bốn lỗi nhỏ STATUS mục 7; yêu cầu thay đổi 3 của T-255 (director bỏ qua mở phòng khi người chơi đang ở trong).
+- **Tài khoản các lane (kiểm 14/11):** A `deptraihoang1627` (ChatGPT), C `hoanganhh1628`, E `bululachup`; B `deptraihoang1627` (Claude); HARU `hoangdeptrai1628` (Claude, đã tách khỏi lane B); integrator `tunank1103`. Máy lúc 02:50 chỉ trống 2,1–2,4 GB RAM (Chrome, Blender của lane B còn mở).
+
+**Lịch sử 13/11 tối – 14/11 (HARU làm T-257, đã xong):**
+Bàn giao lúc 13/11 23:25: integrator sắp hết hạn mức, giao T-257 (nén bộ nhớ hình) cho HARU. Trước đó 22:55: T-255 đã merge vào main (full test 975/0, check 0), D-171, đo FPS, build bản chơi `9e5613f`.
 
 **HARU làm T-257 (từ 13/11 23:20, chủ dự án đồng ý), cập nhật sau mỗi bước:**
 - Bước 1–5 **xong**, commit WIP trên nhánh `integrator/T-257-vram-compress`:
