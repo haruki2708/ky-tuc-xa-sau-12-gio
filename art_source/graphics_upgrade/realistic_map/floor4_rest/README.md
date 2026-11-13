@@ -37,5 +37,5 @@ Texture mới để nén VRAM trong file `.import` (`compress/mode=2`). Godot im
   - Quần áo thật gắn vào `HangingCloth_i` sau `_ready` của chúng: vẫn đung đưa, không bị tô màu.
   - Đồ cỡ xô trở lên có hộp va chạm, đặt sát tường giữa các cửa hoặc sát lan can, không nằm trong 1,2 m trước cửa.
   - Dép `Slippers_0…3` vẫn ẩn như trước: đã có dép Tripo ở `Anchors/Slippers407`.
-- **Cửa thoát hiểm:** `building_b.tscn` cho `FireDoor/Leaf/Handle` dùng tay gạt bản gọn (node, vị trí như cũ) và thêm `FireDoor/ExitSign`.
+- **Cửa thoát hiểm:** `building_b.tscn` cho `FireDoor/Leaf/Handle` dùng tay gạt bản gọn (node, vị trí như cũ) và thêm `FireDoor/Frame/ExitSign` (treo dưới khung đợt 1 vì hộp biển cũ thuộc khung; như các model đợt 1–2, node này nằm ngoài dấu vân tay node của `test_t253`).
 - **CCTV:** `cctv_set.tscn` thêm `Corridor/RealSet`, ẩn mesh PS1 và hình ba cửa kit. Camera, đèn, va chạm như cũ.

@@ -313,7 +313,8 @@ func test_fire_door_lever_clears_the_handrail() -> void:
 	assert_true(leaf.end.z < HANDRAIL_Z, "the leaf itself clear as before")
 	campus.call("set_fire_door_open", false)
 	# The exit light box encloses wave 1's plain sign box over the door.
-	var sign := door.get_node_or_null("ExitSign") as Node3D
+	# Hung under wave 1's frame (whose box it hides), so test_t253's print of main's nodes stays whole.
+	var sign := door.get_node_or_null("Frame/ExitSign") as Node3D
 	assert_not_null(sign, "exit light box over the door")
 	var box := _mesh_bounds(sign, door)
 	assert_true(box.has_point(Vector3(-0.2, 2.58, -0.14)) and box.has_point(Vector3(0.2, 2.72, -0.08)), "it hides the old box: %s" % box)

@@ -12431,7 +12431,7 @@ position = Vector3(1.872, -0.222, 0)
 [node name="Handle" parent="FireDoor/Leaf" instance=ExtResource("t256_handle")]
 position = Vector3(1.872, -0.15, 0)
 
-[node name="ExitSign" parent="FireDoor" instance=ExtResource("t256_exit")]
+[node name="ExitSign" parent="FireDoor/Frame" instance=ExtResource("t256_exit")]
 
 [node name="LeafB" type="Node3D" parent="FireDoor"]
 position = Vector3(1.86, 1.2, 0)

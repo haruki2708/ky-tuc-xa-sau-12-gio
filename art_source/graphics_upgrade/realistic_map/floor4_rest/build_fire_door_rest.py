@@ -4,9 +4,11 @@ box over the door becomes an exit light box (unlit). FireDoor-local metres, as w
   fire_door_handle_compact.glb  FireDoor/Leaf/Handle  wave 1's levers with the corridor-side one (local -Z face) on a
                                 short neck: its bar 31 mm off the leaf (wave 1: 56 mm), so open it stays 3 mm short of
                                 the handrail and 2 cm short of the balusters. Same origin (the spindle), same node.
-  exit_sign.glb                 FireDoor/ExitSign  a light box "LỐI THOÁT" over the door, its face on the corridor side,
-                                enclosing wave 1's sign box (left in its frame, hidden inside this one); EndCover, a
-                                plastered pier over the PS1 strip at the corridor's east end by the railing
+  exit_sign.glb                 FireDoor/Frame/ExitSign  a light box "LỐI THOÁT" over the door, its face on the corridor
+                                side, enclosing wave 1's sign box (left in its frame, hidden inside this one); EndCover,
+                                a plastered pier over the PS1 strip at the corridor's east end by the railing. Hung
+                                under the frame (at FireDoor's origin) like wave 1's models, so test_t253's print of
+                                main's nodes stays whole.
 Run: blender -b --factory-startup -P art_source/graphics_upgrade/realistic_map/floor4_rest/build_fire_door_rest.py
 """
 import sys
