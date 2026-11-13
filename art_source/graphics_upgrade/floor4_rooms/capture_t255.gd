@@ -65,10 +65,19 @@ func _run() -> void:
 	Chapter1Director.resume_checkpoint = &""
 	var scene := (load("res://scenes/main/chapter%d.tscn" % chapter) as PackedScene).instantiate() as Node3D
 	scene.get_node("Chapter%dDirector" % chapter).set("auto_start", false)
+	# --rooms=off: the floor without T-255's rooms (diagnosis, before stills on a later branch).
+	scene.get_node("Floor4").set("upgraded_rooms", _arg("rooms", "on") != "off")
 	add_child(scene)
 	for frame in range(3):
 		await get_tree().process_frame
 	var floor4 := scene.get_node("Floor4") as Node3D
+	# --hide=Interior,Outdoor/Shell,...: hides those paths in every room (diagnosis).
+	for part: String in _arg("hide", "").split(",", false):
+		for room: Node in (floor4.get_node("Rooms").get_children() if floor4.has_node("Rooms") else []):
+			var node := room.get_node_or_null(part) as Node3D
+			if node != null:
+				node.visible = false
+				node.process_mode = Node.PROCESS_MODE_DISABLED
 	var player := scene.get_node("Player") as Node3D
 	player.visible = false
 	player.process_mode = Node.PROCESS_MODE_DISABLED
@@ -115,7 +124,7 @@ func _run() -> void:
 			var image: Image = get_viewport().get_texture().get_image()
 			var file := "%s_ch%d_%s_%s.jpg" % [tag, chapter, name, view.id]
 			image.save_jpg(OUTPUT + file, 0.92)
-			print("CAPTURE: " + file)
+			print("CAPTURE: %s (video memory %d MB)" % [file, int(Performance.get_monitor(Performance.RENDER_VIDEO_MEM_USED) / 1048576.0)])
 			count += 1
 			for door in opened:
 				door.call("set_open", false)

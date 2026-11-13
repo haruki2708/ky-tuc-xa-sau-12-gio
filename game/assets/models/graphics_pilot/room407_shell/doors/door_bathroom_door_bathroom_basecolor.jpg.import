@@ -3,9 +3,10 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cyb6jher6tquu"
-path="res://.godot/imported/door_bathroom_door_bathroom_basecolor.jpg-cc964c2674a95a0bfb29900a489172e0.ctex"
+path.s3tc="res://.godot/imported/door_bathroom_door_bathroom_basecolor.jpg-cc964c2674a95a0bfb29900a489172e0.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "f724860d4c0e571f11fac7ab4f8ac027"
@@ -14,11 +15,11 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/graphics_pilot/room407_shell/doors/door_bathroom_door_bathroom_basecolor.jpg"
-dest_files=["res://.godot/imported/door_bathroom_door_bathroom_basecolor.jpg-cc964c2674a95a0bfb29900a489172e0.ctex"]
+dest_files=["res://.godot/imported/door_bathroom_door_bathroom_basecolor.jpg-cc964c2674a95a0bfb29900a489172e0.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
