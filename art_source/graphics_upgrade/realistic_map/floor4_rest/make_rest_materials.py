@@ -21,6 +21,7 @@ PLASTER = CORNER + "architecture_painted_plaster_wall_"
 TEX = "res://assets/textures/graphics_pilot/realistic_map/floor4_rest/"
 MASK = TEX + "mask_washroom.png"
 FRAME = "res://assets/models/graphics_pilot/room407_shell/frames_distressed_painted_planks_"
+CLOTH = "res://assets/textures/graphics_pilot/floor4_rooms/curtain_"
 TILES = {"kind": 1, "base_albedo": FURN + "bath_tiles_long_white_tiles_color.jpg",
 	"base_normal": FURN + "bath_tiles_long_white_tiles_normal.jpg", "base_arm": FURN + "bath_tiles_long_white_tiles_arm.jpg",
 	"mask": MASK}
@@ -58,6 +59,37 @@ LOOKS = {
 	"WRVent": {"color": (0.6, 0.58, 0.53), "rough": 0.9},
 	"WRCork": {"color": (0.5, 0.38, 0.25), "rough": 0.9},
 	"WRMirrorStain": {"albedo": TEX + "mirror_stain.png", "alpha": 1.0, "rough": 0.6},
+	# Part B: the corridor's things. Cloth: T-255's recoloured linen (floor4_rooms/curtain_*.jpg), no new texture.
+	"CCCardboard": {"color": (0.55, 0.42, 0.28), "rough": 0.88},
+	"CCTape": {"color": (0.66, 0.56, 0.38), "rough": 0.35},
+	"CCRubber": {"color": (0.1, 0.1, 0.1), "rough": 0.75},
+	"CCCanvas": {"color": (0.17, 0.19, 0.22), "rough": 0.85},
+	"CCBag": {"color": (0.22, 0.15, 0.1), "rough": 0.7},
+	"CCStraw": {"color": (0.58, 0.46, 0.27), "rough": 0.9},
+	"CCWire": {"color": (0.22, 0.22, 0.21), "rough": 0.5, "metal": 0.6},
+	"CCClothBlue": {"albedo": CLOTH + "blue.jpg", "rough": 0.95, "scale": 3.0, "two_sided": True},
+	"CCClothRed": {"albedo": CLOTH + "maroon.jpg", "rough": 0.95, "scale": 3.0, "two_sided": True},
+	"CCClothGrey": {"albedo": CLOTH + "grey.jpg", "rough": 0.95, "scale": 3.0, "two_sided": True},
+	"CCClothWhite": {"albedo": CLOTH + "grey.jpg", "color": (1.0, 1.0, 0.97), "rough": 0.95, "scale": 3.0, "two_sided": True},
+	"CCClothGreen": {"albedo": CLOTH + "green.jpg", "rough": 0.95, "scale": 3.0, "two_sided": True},
+	"CCClothNavy": {"albedo": CLOTH + "navy.jpg", "rough": 0.95, "scale": 3.0, "two_sided": True},
+	# Part C: the exit light box's face (unlit: the stairwell's lights stay as they are).
+	"CDExitFace": {"albedo": TEX + "exit_sign.png", "rough": 0.4},
+	# Part D: the CCTV corridor set, the corridor's scans as plain ORM materials (no mask: the feed is 320 x 240).
+	"CVWall": {"albedo": PLASTER + "cream_color.jpg", "orm": PLASTER + "arm.jpg", "normal": PLASTER + "normal.jpg",
+		"color": (0.9, 0.88, 0.82), "normal_scale": 0.6},
+	"CVCeiling": {"albedo": PLASTER + "cream_color.jpg", "orm": PLASTER + "arm.jpg", "normal": PLASTER + "normal.jpg",
+		"color": (0.95, 0.94, 0.88), "normal_scale": 0.4},
+	"CVFloor": {"albedo": SHELL + "floor_tiles_08_color.jpg", "orm": SHELL + "floor_tiles_08_arm.jpg",
+		"normal": SHELL + "floor_tiles_08_normal.jpg"},
+	"CVSkirting": {"albedo": SHELL + "floor_tiles_08_color.jpg", "orm": SHELL + "floor_tiles_08_arm.jpg"},
+	"CVFrame": {"albedo": SHELL + "frame_green_color.jpg", "orm": FRAME + "arm.jpg", "normal": FRAME + "normal.jpg",
+		"normal_scale": 0.6},
+	"CVLeaf": {"albedo": SHELL + "frame_green_color.jpg", "orm": FRAME + "arm.jpg", "normal": FRAME + "normal.jpg",
+		"normal_scale": 0.6, "color": (0.9, 1.0, 0.95)},
+	"CVRail": {"albedo": CORNER + "fixtures_green_metal_rust_color.jpg", "orm": CORNER + "fixtures_green_metal_rust_arm.jpg",
+		"normal": CORNER + "fixtures_green_metal_rust_normal.jpg", "normal_scale": 0.6},
+	"CVTube": {"color": (0.92, 0.94, 0.9), "rough": 0.25, "emission": (0.85, 0.95, 0.8), "energy": 0.6},
 }
 
 
@@ -69,7 +101,7 @@ def main():
 	for name, look in LOOKS.items():
 		M.write_material(name, look)
 	known = M.wave1_names() | set(LOOKS)
-	M.glb_materials = lambda path: [n for n in _names(path) if n[:2] in ("W1", "WR", "CC", "CD")]
+	M.glb_materials = lambda path: [n for n in _names(path) if n[:2] in ("W1", "WR", "CC", "CD", "CV")]
 	for glb in sorted(MODELS.glob("*.glb")):
 		M.write_import(glb, known)
 

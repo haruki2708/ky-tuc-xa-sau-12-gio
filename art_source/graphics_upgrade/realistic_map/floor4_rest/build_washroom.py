@@ -549,4 +549,5 @@ def main():
 	K.w1kit.export(OUT / "washroom.glb", objs)
 
 
-main()
+if __name__ == "__main__":
+	main()

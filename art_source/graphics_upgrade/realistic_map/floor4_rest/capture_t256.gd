@@ -71,6 +71,7 @@ func _run() -> void:
 	scene.get_node("Chapter%dDirector" % chapter).set("auto_start", false)
 	if old:
 		scene.get_node("Floor4/Washroom").set("upgraded", false)
+		scene.get_node("Floor4/Corridor/RealProps").set("upgraded", false)
 	add_child(scene)
 	for frame in range(3):
 		await get_tree().process_frame

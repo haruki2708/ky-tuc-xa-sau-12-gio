@@ -1,0 +1,14 @@
+[gd_resource type="ORMMaterial3D" format=3]
+
+[ext_resource type="Texture2D" path="res://assets/textures/graphics_pilot/room407_shell/floor_tiles_08_color.jpg" id="1"]
+[ext_resource type="Texture2D" path="res://assets/textures/graphics_pilot/room407_shell/floor_tiles_08_arm.jpg" id="2"]
+[ext_resource type="Texture2D" path="res://assets/textures/graphics_pilot/room407_shell/floor_tiles_08_normal.jpg" id="3"]
+
+[resource]
+resource_name = "CVFloor"
+albedo_color = Color(1, 1, 1, 1)
+albedo_texture = ExtResource("1")
+orm_texture = ExtResource("2")
+normal_enabled = true
+normal_scale = 1
+normal_texture = ExtResource("3")

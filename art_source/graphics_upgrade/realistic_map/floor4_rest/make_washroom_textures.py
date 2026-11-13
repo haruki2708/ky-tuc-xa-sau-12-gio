@@ -207,7 +207,36 @@ def mirror_stain():
 	Image.fromarray((np.clip(img, 0, 1) * 255 + 0.5).astype(np.uint8), "RGBA").save(OUT / "mirror_stain.png", optimize=True)
 
 
-if __name__ == "__main__":
+if __name__ == "__main__" and "exit" not in sys.argv[1:]:
 	mask()
 	mirror_stain()
 	print("T256_TEX mask_washroom.png mirror_stain.png")
+
+
+def exit_sign():
+	"""Part C: the exit light box's face, 512 x 192: a running figure, an arrow, "LỐI THOÁT" (the project's font)."""
+	from PIL import ImageDraw, ImageFont
+	w, h = 512, 192
+	img = Image.new("RGB", (w, h), (18, 112, 52))
+	d = ImageDraw.Draw(img)
+	white = (236, 240, 230)
+	d.rectangle([6, 6, w - 7, h - 7], outline=(210, 228, 214), width=3)
+	# The running figure: head, body, arms and legs in thick strokes.
+	cx, cy = 92, 96
+	d.ellipse([cx - 4, cy - 62, cx + 18, cy - 40], fill=white)
+	for a, b in (((cx + 4, cy - 36), (cx - 8, cy + 10)), ((cx - 8, cy + 10), (cx + 22, cy + 30)), ((cx + 22, cy + 30), (cx + 18, cy + 62)),
+			((cx - 8, cy + 10), (cx - 30, cy + 34)), ((cx - 30, cy + 34), (cx - 52, cy + 30)), ((cx + 2, cy - 24), (cx + 34, cy - 12)),
+			((cx + 2, cy - 24), (cx - 26, cy - 6)), ((cx - 26, cy - 6), (cx - 36, cy + 14))):
+		d.line([a, b], fill=white, width=13)
+	# A door frame and an arrow out of it.
+	d.rectangle([150, 34, 192, 160], outline=white, width=6)
+	d.polygon([(205, 86), (236, 86), (236, 70), (262, 97), (236, 124), (236, 108), (205, 108)], fill=white)
+	font_path = str(ROOT / "game/assets/fonts/be_vietnam_pro_semibold.ttf")
+	d.text((388, 86), "LỐI THOÁT", font=ImageFont.truetype(font_path, 36), fill=white, anchor="mm")
+	d.text((388, 138), "EXIT", font=ImageFont.truetype(font_path, 30), fill=white, anchor="mm")
+	img.save(OUT / "exit_sign.png", optimize=True)
+	print("T256_TEX exit_sign.png")
+
+
+if __name__ == "__main__" and "exit" in sys.argv[1:]:
+	exit_sign()

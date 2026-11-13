@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" path="res://scenes/levels/ch1_models/corpse_phuc.tscn" id="e19"]
 [ext_resource type="PackedScene" path="res://scenes/levels/ch1_models/corpse_viet.tscn" id="e20"]
 [ext_resource type="PackedScene" path="res://scenes/levels/ch1_models/corpse_dat.tscn" id="e21"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/floor4_rest/cctv_corridor.glb" id="t256_cctv"]
 
 [sub_resource type="BoxShape3D" id="s1"]
 size = Vector3(4, 0.2, 5)
@@ -1942,6 +1943,7 @@ collision_mask = 0
 shape = SubResource("s132")
 
 [node name="Mesh" type="MeshInstance3D" parent="Corridor/Floor"]
+visible = false
 mesh = SubResource("s133")
 
 [node name="RoomWall" type="StaticBody3D" parent="Corridor"]
@@ -1953,6 +1955,7 @@ collision_mask = 0
 shape = SubResource("s134")
 
 [node name="Mesh" type="MeshInstance3D" parent="Corridor/RoomWall"]
+visible = false
 mesh = SubResource("s135")
 
 [node name="OuterWall" type="StaticBody3D" parent="Corridor"]
@@ -1964,6 +1967,7 @@ collision_mask = 0
 shape = SubResource("s136")
 
 [node name="Mesh" type="MeshInstance3D" parent="Corridor/OuterWall"]
+visible = false
 mesh = SubResource("s137")
 
 [node name="Ceiling" type="StaticBody3D" parent="Corridor"]
@@ -1975,6 +1979,7 @@ collision_mask = 0
 shape = SubResource("s138")
 
 [node name="Mesh" type="MeshInstance3D" parent="Corridor/Ceiling"]
+visible = false
 mesh = SubResource("s139")
 
 [node name="EndWest" type="StaticBody3D" parent="Corridor"]
@@ -1986,6 +1991,7 @@ collision_mask = 0
 shape = SubResource("s140")
 
 [node name="Mesh" type="MeshInstance3D" parent="Corridor/EndWest"]
+visible = false
 mesh = SubResource("s141")
 
 [node name="EndEast" type="StaticBody3D" parent="Corridor"]
@@ -1997,9 +2003,11 @@ collision_mask = 0
 shape = SubResource("s142")
 
 [node name="Mesh" type="MeshInstance3D" parent="Corridor/EndEast"]
+visible = false
 mesh = SubResource("s143")
 
 [node name="Door405" parent="Corridor" instance=ExtResource("e18")]
+visible = false
 position = Vector3(1.5, 0.01, 0)
 rotation_degrees = Vector3(0, 0, 0)
 scale = Vector3(1, 1, 1)
@@ -2015,6 +2023,7 @@ outline_size = 0
 shaded = true
 
 [node name="Door406" parent="Corridor" instance=ExtResource("e18")]
+visible = false
 position = Vector3(4.7, 0.01, 0)
 rotation_degrees = Vector3(0, 0, 0)
 scale = Vector3(1, 1, 1)
@@ -2030,6 +2039,7 @@ outline_size = 0
 shaded = true
 
 [node name="Door407" parent="Corridor" instance=ExtResource("e18")]
+visible = false
 position = Vector3(7.9, 0.01, 0)
 rotation_degrees = Vector3(0, 0, 0)
 scale = Vector3(1, 1, 1)
@@ -2050,6 +2060,8 @@ light_color = Color(0.82, 0.9, 0.76, 1)
 light_energy = 0.55
 omni_range = 7.0
 shadow_enabled = false
+
+[node name="RealSet" parent="Corridor" instance=ExtResource("t256_cctv")]
 
 [node name="Cam" type="Camera3D" parent="Corridor"]
 position = Vector3(0.3, 2.75, 3.7)

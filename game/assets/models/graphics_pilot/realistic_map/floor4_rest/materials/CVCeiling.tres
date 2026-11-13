@@ -1,0 +1,14 @@
+[gd_resource type="ORMMaterial3D" format=3]
+
+[ext_resource type="Texture2D" path="res://assets/models/graphics_pilot/room407_corner/architecture_painted_plaster_wall_cream_color.jpg" id="1"]
+[ext_resource type="Texture2D" path="res://assets/models/graphics_pilot/room407_corner/architecture_painted_plaster_wall_arm.jpg" id="2"]
+[ext_resource type="Texture2D" path="res://assets/models/graphics_pilot/room407_corner/architecture_painted_plaster_wall_normal.jpg" id="3"]
+
+[resource]
+resource_name = "CVCeiling"
+albedo_color = Color(0.95, 0.94, 0.88, 1)
+albedo_texture = ExtResource("1")
+orm_texture = ExtResource("2")
+normal_enabled = true
+normal_scale = 0.4
+normal_texture = ExtResource("3")

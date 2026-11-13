@@ -26,6 +26,7 @@
 
 
 [ext_resource type="Script" path="res://scenes/levels/room_door_visual.gd" id="t190_e5"]
+[ext_resource type="Script" path="res://scenes/levels/floor4/corridor_props.gd" id="t256_props"]
 
 
 [sub_resource type="BoxShape3D" id="s1"]
@@ -3331,3 +3332,6 @@ metadata/t190 = true
 [node name="Mesh" type="MeshInstance3D" parent="RoomInterior_408/Locker"]
 mesh = SubResource("t190_s89")
 metadata/t190 = true
+
+[node name="RealProps" type="Node3D" parent="."]
+script = ExtResource("t256_props")
