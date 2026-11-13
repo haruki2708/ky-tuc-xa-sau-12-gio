@@ -88,12 +88,12 @@ Trả lời và viết tài liệu bằng tiếng Việt; code, comment, commit 
 - **Nguồn đúng khi lệch nhau:** mục 3 file này mới nhất; rồi `docs/STATUS.md`; `docs/ROADMAP.md` chỉ cập nhật khi qua mốc.
 
 ## 3. Tiến độ integrator để lại (integrator cập nhật sau mỗi bước)
-**Cập nhật:** 13/11/2026 khoảng 13:55, integrator (Opus 5.5): merge T-254.
+**Cập nhật:** 13/11/2026 khoảng 17:35, integrator (Opus 5.5): merge T-253, D-169, gắn hộp báo cháy.
 
-**Main:** merge T-254 `14c574e` (full test 954/0, check 0), đẩy lên origin. Bản chơi mới nhất: `build/windows/KyTucXa.exe`, zip `build/dist/KyTucXa-0.0.1-b1b1cb3-win64.zip` (package PASS 13/11 11:08): có T-244, T-246, T-249, T-250, T-251 và sửa ánh sáng bệnh viện. Chủ dự án đã chơi và duyệt bản `04ddc7d` (T-244, T-246, T-249, T-251).
+**Main:** merge T-254 `14c574e` (full test 954/0, check 0); merge T-253 `75550f1` (lane B full test 963/0, check 0; không chạy lại sau merge, chủ dự án đồng ý, code trùng hệt); hộp báo cháy nút nhấn của lane B thay hộp đỏ core trong `chapter3_director.gd` (test liên quan đạt, chưa chạy full test, check). Đã đẩy lên origin. Bản chơi chưa build lại sau T-254, T-253. Bản chơi mới nhất: `build/windows/KyTucXa.exe`, zip `build/dist/KyTucXa-0.0.1-b1b1cb3-win64.zip` (package PASS 13/11 11:08): có T-244, T-246, T-249, T-250, T-251 và sửa ánh sáng bệnh viện. Chủ dự án đã chơi và duyệt bản `04ddc7d` (T-244, T-246, T-249, T-251).
 
 **Đang chạy**
-- **Lane B:** [T-254](../tasks/T-254-floor4-landing-guard-rail.md) lan can **đã merge 13/11** (chưa chơi thử). Chủ dự án `/clear` lane B và dán **mục 1j** ([T-253](../tasks/T-253-realistic-graphics-wave2.md) đồ hoạ đợt 2, Opus 5.5 xhigh, nhánh từ `origin/main`), sau đó **mục 1k** ([T-255](../tasks/T-255-floor4-rooms-like-407.md) phòng 401–406, 408 như 407; chủ dự án đã cho phép đo FPS khi T-255 xong).
+- **Lane B:** T-254 lan can và [T-253](../tasks/T-253-realistic-graphics-wave2.md) đồ hoạ đợt 2 **đã merge 13/11** (chưa chơi thử; D-169). Còn yêu cầu thay đổi của T-253: bật occlusion culling (`project.godot`), làm khi có số đo FPS. Tiếp: chủ dự án `/clear` lane B và dán **mục 1k** ([T-255](../tasks/T-255-floor4-rooms-like-407.md) phòng 401–406, 408 như 407; chủ dự án đã cho phép đo FPS khi T-255 xong).
 
 **Lane khác**
 - Lane A, C, E (Codex, integrator điều khiển bằng `D:\GAME_WORK\chay_lane.ps1`, [DIEU_KHIEN_LANE.md](DIEU_KHIEN_LANE.md)): rảnh, không có việc. Ba lane dùng ba tài khoản ChatGPT khác nhau (integrator đã kiểm 13/11). Lane C hết hạn mức tới 16:09 hôm 13/11.
@@ -111,4 +111,4 @@ Trả lời và viết tài liệu bằng tiếng Việt; code, comment, commit 
 - Lane hết hạn mức hay bị dừng giữa chừng: lưu (commit, push) phần đã làm lên nhánh của lane, gỡ khoá Godot nó bỏ lại (khi không còn tiến trình Godot nào).
 - Script chạy test, khoá, đóng gói của integrator: `build/integrator/run_tests_locked.ps1`, `run_locked.ps1`, `package_locked.ps1` (thư mục `build/` không commit).
 
-**Số tiếp theo:** D-169, T-256.
+**Số tiếp theo:** D-170, T-256.

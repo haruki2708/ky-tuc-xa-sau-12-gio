@@ -51,6 +51,9 @@ const FLOOR1_Y := -9.9
 const FLOOR1_CROWD := [Vector3(18.0, 0.0, 2.1), Vector3(22.0, 0.0, 1.4), Vector3(26.0, 0.0, 2.7), Vector3(30.0, 0.0, 2.0)]
 const FLOOR1_CROWD_DELAY := 6.0
 const FIRE_ALARM_AT := Vector3(0.9, -8.5, 0.12)
+## T-253 / D-169: lane B's alarm (red box, round push button `Button`, press point `Press`), origin at the
+## centre of the old 0.22 x 0.28 x 0.06 greybox, face towards +Z (the hall).
+const FIRE_ALARM_MODEL := "res://assets/models/graphics_pilot/realistic_map/wave2/fire_alarm.glb"
 const FIRE_BELL_AT := Vector3(42.0, -9.9, 2.0)
 const FIRE_BELL_SECONDS := 20.0
 const FIRE_BELL_STREAM := "res://audio/ch1v2/lock_alarm.ogg"
@@ -751,8 +754,8 @@ func _floor1_crowd() -> void:
 			zombie.wake()
 
 
-## A red fire alarm on the hall wall at the foot of the main stairs (D-075).
-## Core greybox until lane B models one; the bell is lane E's alarm for now.
+## A red fire alarm on the hall wall at the foot of the main stairs (D-075), lane B's model (T-253, D-169);
+## the bell is lane E's alarm for now.
 func _place_fire_alarm() -> void:
 	# Chapter 3 only: chapter 4 (which inherits this director) has its own stairs plan.
 	if _chapter() != 3:
@@ -764,16 +767,9 @@ func _place_fire_alarm() -> void:
 	marker.name = "FireAlarm1F"
 	anchors.add_child(marker)
 	marker.global_position = FIRE_ALARM_AT
-	var box := MeshInstance3D.new()
-	var mesh := BoxMesh.new()
-	mesh.size = Vector3(0.22, 0.28, 0.06)
-	var material := StandardMaterial3D.new()
-	material.albedo_color = Color(0.72, 0.06, 0.05)
-	material.emission_enabled = true
-	material.emission = Color(0.35, 0.02, 0.02)
-	mesh.material = material
-	box.mesh = mesh
-	marker.add_child(box)
+	var visual := (load(FIRE_ALARM_MODEL) as PackedScene).instantiate() as Node3D
+	visual.name = "AlarmModel"
+	marker.add_child(visual)
 	var alarm := _use("FireAlarm1F", "PROMPT_CH3_FIRE_ALARM", Vector3(0.5, 0.6, 0.5))
 	if alarm != null:
 		alarm.used.connect(_on_fire_alarm)

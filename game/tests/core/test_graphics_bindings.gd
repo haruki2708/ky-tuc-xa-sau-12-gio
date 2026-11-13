@@ -190,7 +190,13 @@ func test_chapter_3_fire_pieces_stay_where_the_ledger_says() -> void:
 	if alarm != null:
 		assert_true(_near(alarm.global_position, Vector3(0.9, -8.5, 0.12), 0.001), "alarm on the wall by the stairs;")
 		assert_true(alarm.get_child_count() >= 2, "alarm has its visual and its use zone;")
-		assert_eq(alarm.get_children().filter(func(n: Node) -> bool: return n is MeshInstance3D).size(), 1, "one greybox visual (core's own);")
+		var model := alarm.get_node_or_null("AlarmModel") as Node3D
+		assert_not_null(model, "lane B's alarm model (T-253, D-169);")
+		assert_eq(alarm.get_children().filter(func(n: Node) -> bool: return n is MeshInstance3D).size(), 0, "no greybox box left;")
+		if model != null:
+			assert_true(model.transform.is_equal_approx(Transform3D.IDENTITY), "model sits on the marker, face to +Z;")
+			assert_not_null(model.find_child("Button", true, false), "push button is its own node;")
+			assert_not_null(model.find_child("Press", true, false), "press point;")
 	assert_true(_near(Chapter3Director.FIRE_BELL_AT, Vector3(42.0, -9.9, 2.0), 0.001), "bell position;")
 	assert_eq(Chapter3Director.FIRE_BELL_SECONDS, 20.0, "20 s;")
 	var stream := load(Chapter3Director.FIRE_BELL_STREAM) as AudioStreamOggVorbis
