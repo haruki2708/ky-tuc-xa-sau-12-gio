@@ -26,7 +26,7 @@
 - [x] A09 tầng 2, phòng 203
 - [x] A10 tầng 1, sảnh, phòng quản lý, cửa sổ
 - [x] A11 bình cứu hoả, hộp báo cháy (hộp báo cháy: glb xong, chờ core gắn, xem "Yêu cầu thay đổi")
-- [ ] Test, full test, check, ảnh, Handoff
+- [x] Test, full test, check, ảnh, Handoff
 
 ## Handoff
 
@@ -69,7 +69,9 @@ Nhánh `lane-b/T-253-realistic-graphics-wave2` từ `origin/main` `1c66187` (đ�
   - cửa chính hai cánh, mở áp hai trụ, xích ẩn cùng;
   - bình, cần bóp, điểm cầm, giá riêng; hộp báo cháy có nút riêng.
 - Nhóm test cũ chạy riêng đều đạt: `t253` 9, `room_doors` 4, `sealed_408` 2, `campus` 5, `graphics_bindings` 8, `t250` 5, `t254` 4, `fire_stairs` 3, `wide_corridors` 4, `manager` 32.
-- **Full test, check: chưa có kết quả.** Lượt chạy full test lúc 15:50 bị Claude Code dừng sau khoảng 4 phút vì máy thiếu RAM (còn khoảng 5 GB trống), log chưa có dòng nào. Khoá Godot của lượt đó đã xoá, `default_bus_layout.tres` không đổi. Chờ chủ dự án cho chạy lại (hoặc integrator chạy sau merge).
+- **Full test** (13/11 16:01–16:32, chạy lại theo yêu cầu chủ dự án, sau khi xoá `game/_probe_tmp/`): `RESULT: 963 passed, 0 failed`, không có lỗi engine.
+- **Check** (16:32–16:53): `RESULT: check 0 error(s)`. Sau đó `git checkout -- game/default_bus_layout.tres`.
+- Lượt đầu lúc 15:50 bị Claude Code dừng sau khoảng 4 phút vì máy thiếu RAM, chưa chạy được test nào; khoá Godot của lượt đó đã xoá.
 - **Chưa kiểm:** chưa chơi bằng tay; chưa chạy bot, chưa đo FPS (không được phép); chưa chụp chương 4 (cùng cảnh nhà B, chỉ khác trạng thái cửa chính và xác).
 
 **Ảnh** `art_source/graphics_upgrade/realistic_map/previews/wave2/`:
