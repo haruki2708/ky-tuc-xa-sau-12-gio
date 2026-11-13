@@ -88,7 +88,16 @@ Trả lời và viết tài liệu bằng tiếng Việt; code, comment, commit 
 - **Nguồn đúng khi lệch nhau:** mục 3 file này mới nhất; rồi `docs/STATUS.md`; `docs/ROADMAP.md` chỉ cập nhật khi qua mốc.
 
 ## 3. Tiến độ integrator để lại (integrator cập nhật sau mỗi bước)
-**Cập nhật:** 13/11/2026 khoảng 21:20, integrator (Fable 5.2): D-170, card T-256 (tầng 4 phần còn lại), prompt `lane-b.md` mục 1l. Trước đó 17:35 (Opus 5.5): merge T-253, D-169, gắn hộp báo cháy.
+**Cập nhật:** 13/11/2026 khoảng 22:05, integrator (Fable 5.2): **đang merge T-255 trên nhánh `integrator/T-255-merge` (chưa đẩy, main chưa đổi), full test + check đang chạy nền.**
+
+**Việc dở ngay lúc này (đọc trước):**
+- Lane B xong T-255 (`7f94e14`, Handoff trong card): full test của lane B 970/5, check 0. Review code, phạm vi, ảnh: đạt.
+- Nhánh `integrator/T-255-merge` (từ main `7e12f86`): `ffb4f38` merge T-255; `b3c30fc` sửa 5 test hỏng: (1) **D-171**: mốc `WallKnock406` dời z −1,65 → −4,4 (`room407_anchors.tscn`; chỗ cũ không với tới được từ trong 407 từ khi có thân, integrator đã đo bằng cảnh thử), `chapter1_director.gd` hai hằng số dự phòng, `test_ch1v2.gd`; (2) `test_ch2_4_hand_targets.gd` phân loại `RoomDoorHand`. Chạy lọc sau sửa: `test_t241_reach` 7/0, `test_ch2_4_hand_targets` 3/0, `test_ch1v2` 33/0.
+- **22:00 chạy nền** `build/integrator/run_tests_locked.ps1 -Name t255full -Filters @('') -Check` (có khoá Godot; log `build/integrator/t255full.log`, `t255full_full.out.log`, `t255full_check.out.log`). Xong mà đạt: commit tài liệu (D-171 đã ghi trong `DECISIONS.md`, chưa commit thì commit), merge `integrator/T-255-merge` vào main (`--no-ff` hoặc fast-forward), đẩy, cập nhật STATUS, card T-255 (trạng thái, mục Review), rồi **đo FPS** (chủ dự án đã cho, D-168): script soạn sẵn `build/integrator/t255_fps.gd` (chép vào `game/_probe_tmp/` cùng một `.tscn` gắn script, chạy chương 1 và 3, `--rooms=on` rồi `--rooms=off`, xoá khi xong), viết báo cáo `tools/reports/T-255-rooms-fps.md`; rồi build bản chơi (`package_locked.ps1`).
+- Phiên integrator đóng giữa chừng thì lượt chạy nền mất: kiểm khoá và `Get-Process godot*`, gỡ khoá của integrator nếu không còn Godot, chạy lại lệnh trên.
+- Chờ chủ dự án chọn sau khi chơi thử T-255 (lane B làm theo đề xuất): nhà tắm góc sau; ban công cả bề ngang; chủ đề từng phòng; có khoá hẳn cửa phòng ở chương 3–4 không; cánh cửa mở không va chạm. Yêu cầu thay đổi 3 của T-255 (director bỏ qua mở phòng khi người chơi đang ở trong) chưa làm.
+
+Trước đó 21:20: D-170, card T-256 (tầng 4 phần còn lại), prompt `lane-b.md` mục 1l. Trước đó 17:35 (Opus 5.5): merge T-253, D-169, gắn hộp báo cháy.
 
 **Main:** merge T-254 `14c574e` (full test 954/0, check 0); merge T-253 `75550f1` (lane B full test 963/0, check 0; không chạy lại sau merge, chủ dự án đồng ý, code trùng hệt); hộp báo cháy nút nhấn của lane B thay hộp đỏ core trong `chapter3_director.gd` (test liên quan đạt, chưa chạy full test, check). Đã đẩy lên origin. Bản chơi chưa build lại sau T-254, T-253. Bản chơi mới nhất: `build/windows/KyTucXa.exe`, zip `build/dist/KyTucXa-0.0.1-b1b1cb3-win64.zip` (package PASS 13/11 11:08): có T-244, T-246, T-249, T-250, T-251 và sửa ánh sáng bệnh viện. Chủ dự án đã chơi và duyệt bản `04ddc7d` (T-244, T-246, T-249, T-251).
 
