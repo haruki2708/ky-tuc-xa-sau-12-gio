@@ -1,5 +1,5 @@
 # T-257 — Nén bộ nhớ hình (VRAM) cho texture đồ hoạ mới: đồ Tripo và vỏ phòng 407, nhà B
-- Lane: core (integrator làm) | Trạng thái: đang làm (13/11/2026) | Nhánh: `integrator/T-257-vram-compress`
+- Lane: core (integrator làm) | Trạng thái: **xong** (14/11/2026, HARU làm tiếp từ integrator) | Nhánh: `integrator/T-257-vram-compress`
 - Giao việc: chủ dự án chọn 13/11/2026 trong lúc lane B làm T-256 ("Nén bộ nhớ hình phòng 407").
 
 ## Vì sao
@@ -19,4 +19,11 @@
 - Test cũ đạt (`test_kit`, `test_props`, `test_room407`, `test_ch1_models` vẫn yêu cầu texture PS1 không nén: không đụng).
 
 ## Handoff
-(integrator điền)
+- **14/11/2026 00:20, lane HARU** (thay integrator hết hạn mức, theo các bước integrator soạn; [báo cáo](../../tools/reports/T-257-vram-compress.md)).
+- Đổi 333 `.import` (109 normal map nén hai kênh); nhập lại có khoá: 18 giây, không lỗi.
+- **Bộ nhớ hình: chương 1 đỉnh 3.505 → 1.143 MB, chương 3 đỉnh 3.664 → 1.249 MB** (cùng camera, cùng đèn pin).
+- Ảnh trước/sau: PSNR 35–45 dB; chỗ khác rõ chỉ là quạt trần, quạt đứng đang quay. Cận cảnh 1:1 (chăn, màn, sàn, tường, tủ, nhà tắm, hai bàn): không thấy vệt nén, normal không lạ. **Không texture nào phải trả về không nén.** Ảnh ghép `art_source/graphics_upgrade/vram_compress/previews/compare_ch1.jpg`, `compare_ch3.jpg`, `compare_closeup.jpg`.
+- Trong 333 có 2 texture thanh sắt chương 3 (`protagonist/iron_bar_*`, normal và orm của đồ cầm tay; không phải thân, mặt Trần Trung); không có trong ảnh vì thân người chơi bị ẩn khi chụp.
+- Full test 975/0, check 0. Không chạy bot, không đo FPS.
+- Còn để nguyên (nếu sau cần thêm bộ nhớ): texture dưới 1024 px, texture có chữ, bầu trời, mask shader nhà B, texture nhân vật, texture PS1 cũ.
+- Chờ chủ dự án xem ảnh so sánh và chơi thử bản build sau merge.

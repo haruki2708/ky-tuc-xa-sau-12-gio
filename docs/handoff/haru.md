@@ -97,7 +97,8 @@ Trả lời và viết tài liệu bằng tiếng Việt; code, comment, commit 
   - So ảnh: PSNR từng cặp 35–45 dB, độ sáng trung bình gần như không đổi; ba cặp khác nhiều nhất (`ch3_08`, `ch1_11`, `ch1_04`) chỉ khác ở quạt trần và quạt đứng đang quay. Cận cảnh 1:1 chăn, màn, sàn, tường, tủ, nhà tắm, bàn Phúc, bàn trực: không thấy vệt nén hay normal lạ. **Không texture nào phải trả về không nén.** Thanh sắt (`protagonist/iron_bar_*` normal, orm, đồ cầm tay chương 3) nằm trong 333, không có trong ảnh (thân người chơi bị ẩn khi chụp).
   - Ảnh ghép: `art_source/graphics_upgrade/vram_compress/previews/compare_ch1.jpg`, `compare_ch3.jpg`, `compare_closeup.jpg` (script `vram_compress/make_compare.py`).
   - HARU dùng bản chép `godot_steps_locked.ps1` ghi tên "HARU" vào file khoá (thư mục tạm của HARU, không sửa script của integrator).
-- **Tiếp theo:** bước 6 full test + check (khoảng 50 phút), rồi bước 7.
+- Bước 6 **xong**: full test **975/0** (khoá 13/11 23:34 → 14/11 00:03), check **0 lỗi** (00:20); log `build/integrator/t257full*.log`. Chủ dự án cho xếp hàng ngay khi lane B đang dùng khoá (test lọc T-256).
+- Bước 7: báo cáo [`tools/reports/T-257-vram-compress.md`](../../tools/reports/T-257-vram-compress.md), Handoff card, STATUS xong; **merge vào main** (14/11 khoảng 00:25), đẩy. **Tiếp theo:** build bản chơi (`package_locked.ps1`, bản chép ghi tên HARU), báo chủ dự án xem ảnh so sánh và chơi thử.
 
 **BÀN GIAO CHO HARU — [T-257](../tasks/T-257-vram-compress-room407-textures.md) nén VRAM texture phòng 407 và nhà B (chủ dự án chọn 13/11 tối)**
 - **Trạng thái lúc dừng:** repo ở nhánh `integrator/T-257-vram-compress` (đã đẩy), **chưa đổi file `.import` nào**. Đã có: card, 20 ảnh "trước" (`art_source/graphics_upgrade/vram_compress/previews/before_ch1_*.jpg` 12 ảnh, `before_ch3_*.jpg` 8 ảnh), số đo trước: **chương 1 đỉnh 3.505 MB, chương 3 đỉnh 3.664 MB** (texture 3.359 và 3.502 MB). Khoá Godot đã trả, `game/_probe_tmp/` đã xoá. Main không đổi ngoài tài liệu.
