@@ -1,0 +1,5770 @@
+{
+	"note": "T-255 (D-168): written by art_source/graphics_upgrade/floor4_rooms/make_placements.py",
+	"depths": {
+		"wall_room": -0.1,
+		"back_in": -6.925,
+		"back_out": -7.075,
+		"balcony_out": -8.45,
+		"parapet_out": -8.55,
+		"bath_front_room": -3.925,
+		"bath_front_in": -4.075,
+		"ceiling": 3.0,
+		"ext_h": 3.3,
+		"bath_door_top": 2.2,
+		"balcony_door_top": 2.3
+	},
+	"rooms": {
+		"401": {
+			"layout": {
+				"x0": 6.1,
+				"x1": 9.9,
+				"west": 6.0,
+				"east": 10.0,
+				"door_x": 8.0,
+				"bath_side": "east",
+				"bath": [
+					8.1,
+					9.9
+				],
+				"bath_wall": 8.0,
+				"bath_door": [
+					8.22,
+					9.22
+				],
+				"balcony_door": [
+					6.85,
+					7.85
+				],
+				"window": [
+					8.9,
+					9.5,
+					1.85,
+					2.35
+				]
+			},
+			"props": [
+				{
+					"name": "BunkA",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/bunk_frame.glb",
+					"position": [
+						6.6,
+						0.0,
+						-2.5
+					],
+					"yaw": 0.0,
+					"solid": true
+				},
+				{
+					"name": "MattressALower",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/bunk_mattress.glb",
+					"position": [
+						6.6,
+						0.38,
+						-2.5
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "PillowALower",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/pillow.glb",
+					"position": [
+						6.6,
+						0.43,
+						-1.83
+					],
+					"yaw": 4.4,
+					"fabric": "blue"
+				},
+				{
+					"name": "BlanketALower",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/blanket_folded.glb",
+					"position": [
+						6.6,
+						0.43,
+						-3.18
+					],
+					"yaw": 1.8,
+					"fabric": "blue"
+				},
+				{
+					"name": "NetALower",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/mosquito_net_lower_closed.glb",
+					"position": [
+						6.6,
+						0.0,
+						-2.5
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "MattressAUpper",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/bunk_mattress.glb",
+					"position": [
+						6.6,
+						1.15,
+						-2.5
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "PillowAUpper",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/pillow.glb",
+					"position": [
+						6.6,
+						1.2,
+						-1.83
+					],
+					"yaw": 3.7,
+					"fabric": "navy"
+				},
+				{
+					"name": "BlanketAUpper",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/blanket_folded.glb",
+					"position": [
+						6.6,
+						1.2,
+						-3.18
+					],
+					"yaw": 1.3,
+					"fabric": "navy"
+				},
+				{
+					"name": "NetAUpper",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/mosquito_net_upper_closed.glb",
+					"position": [
+						6.6,
+						0.0,
+						-2.5
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "BunkB",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/bunk_frame.glb",
+					"position": [
+						9.4,
+						0.0,
+						-2.5
+					],
+					"yaw": -180.0,
+					"solid": true
+				},
+				{
+					"name": "MattressBLower",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/bunk_mattress.glb",
+					"position": [
+						9.4,
+						0.38,
+						-2.5
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "PillowBLower",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/pillow.glb",
+					"position": [
+						9.4,
+						0.43,
+						-1.83
+					],
+					"yaw": 4.5,
+					"fabric": "grey"
+				},
+				{
+					"name": "BlanketBLower",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/blanket_folded.glb",
+					"position": [
+						9.4,
+						0.43,
+						-3.18
+					],
+					"yaw": 1.9,
+					"fabric": "grey"
+				},
+				{
+					"name": "NetBLower",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/mosquito_net_lower_open.glb",
+					"position": [
+						9.4,
+						0.0,
+						-2.5
+					],
+					"yaw": -180.0
+				},
+				{
+					"name": "MattressBUpper",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/bunk_mattress.glb",
+					"position": [
+						9.4,
+						1.15,
+						-2.5
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "PillowBUpper",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/pillow.glb",
+					"position": [
+						9.4,
+						1.2,
+						-1.83
+					],
+					"yaw": 3.8,
+					"fabric": "blue"
+				},
+				{
+					"name": "BlanketBUpper",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/blanket_messy.glb",
+					"position": [
+						9.4,
+						1.2,
+						-2.75
+					],
+					"yaw": -180.0,
+					"fabric": "blue"
+				},
+				{
+					"name": "NetBUpper",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/mosquito_net_upper_closed.glb",
+					"position": [
+						9.4,
+						0.0,
+						-2.5
+					],
+					"yaw": -180.0
+				},
+				{
+					"name": "Locker0",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/locker_closed.glb",
+					"position": [
+						6.406,
+						0.0,
+						-0.45
+					],
+					"yaw": -90.0,
+					"solid": true
+				},
+				{
+					"name": "Locker1",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/locker_closed.glb",
+					"position": [
+						6.406,
+						0.0,
+						-1.13
+					],
+					"yaw": -90.0,
+					"solid": true
+				},
+				{
+					"name": "Locker2",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/locker_closed.glb",
+					"position": [
+						9.594,
+						0.0,
+						-0.45
+					],
+					"yaw": 90.0,
+					"solid": true
+				},
+				{
+					"name": "Locker3",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/locker_viet.glb",
+					"position": [
+						9.562,
+						0.0,
+						-1.13
+					],
+					"yaw": 90.0,
+					"solid": true
+				},
+				{
+					"name": "DeskStudy",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/desk.glb",
+					"position": [
+						6.46,
+						0.0,
+						-4.27
+					],
+					"yaw": -90.0,
+					"solid": true
+				},
+				{
+					"name": "StoolStudy",
+					"model": "res://assets/models/graphics_pilot/room407_batch1/stool.glb",
+					"position": [
+						6.7,
+						0.0,
+						-4.02
+					],
+					"yaw": 0.0,
+					"solid": true
+				},
+				{
+					"name": "DeskStudyItem0",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/desk_lamp.glb",
+					"position": [
+						6.36,
+						0.76,
+						-3.87
+					],
+					"yaw": -90.0
+				},
+				{
+					"name": "DeskStudyItem1",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/notebook.glb",
+					"position": [
+						6.46,
+						0.76,
+						-4.27
+					],
+					"yaw": -100.0
+				},
+				{
+					"name": "DeskStudyItem2",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/books.glb",
+					"position": [
+						6.41,
+						0.76,
+						-4.72
+					],
+					"yaw": -80.0
+				},
+				{
+					"name": "DeskStudyItem3",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/pen_cup.glb",
+					"position": [
+						6.31,
+						0.76,
+						-4.07
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "DeskStudyItem4",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/power_strip.glb",
+					"position": [
+						6.26,
+						0.76,
+						-3.72
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "DeskWindow",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/desk.glb",
+					"position": [
+						6.46,
+						0.0,
+						-5.77
+					],
+					"yaw": -90.0,
+					"solid": true
+				},
+				{
+					"name": "StoolWindow",
+					"model": "res://assets/models/graphics_pilot/room407_batch1/stool.glb",
+					"position": [
+						6.7,
+						0.0,
+						-5.52
+					],
+					"yaw": 0.0,
+					"solid": true
+				},
+				{
+					"name": "DeskWindowItem0",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/laptop.glb",
+					"position": [
+						6.46,
+						0.76,
+						-5.67
+					],
+					"yaw": -90.0
+				},
+				{
+					"name": "DeskWindowItem1",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/desk_lamp.glb",
+					"position": [
+						6.36,
+						0.76,
+						-6.27
+					],
+					"yaw": -90.0
+				},
+				{
+					"name": "DeskWindowItem2",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/books_row.glb",
+					"position": [
+						6.31,
+						0.76,
+						-5.22
+					],
+					"yaw": -90.0
+				},
+				{
+					"name": "DeskWindowItem3",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/pen_cup.glb",
+					"position": [
+						6.31,
+						0.76,
+						-6.02
+					],
+					"yaw": 30.0
+				},
+				{
+					"name": "Bookshelf",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/bookshelf.glb",
+					"position": [
+						7.815,
+						0.0,
+						-4.55
+					],
+					"yaw": 90.0,
+					"solid": true
+				},
+				{
+					"name": "BookshelfTop",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/books_row.glb",
+					"position": [
+						7.83,
+						1.3,
+						-4.4
+					],
+					"yaw": 90.0
+				},
+				{
+					"name": "BookshelfTop2",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/books_row.glb",
+					"position": [
+						7.83,
+						1.3,
+						-4.8
+					],
+					"yaw": 90.0
+				},
+				{
+					"name": "Timetable",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/timetable.glb",
+					"position": [
+						6.1,
+						1.45,
+						-4.5
+					],
+					"yaw": -90.0,
+					"mount": "wall"
+				},
+				{
+					"name": "Calendar",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/calendar.glb",
+					"position": [
+						6.1,
+						1.4,
+						-6.0
+					],
+					"yaw": -90.0,
+					"mount": "wall"
+				},
+				{
+					"name": "ShelfA",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/wall_shelf.glb",
+					"position": [
+						6.1,
+						1.648,
+						-1.95
+					],
+					"yaw": -90.0,
+					"mount": "wall"
+				},
+				{
+					"name": "ShelfABooks",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/books_row.glb",
+					"position": [
+						6.26,
+						1.92,
+						-1.8
+					],
+					"yaw": -90.0
+				},
+				{
+					"name": "ShelfB",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/wall_shelf.glb",
+					"position": [
+						9.9,
+						1.648,
+						-1.95
+					],
+					"yaw": 90.0,
+					"mount": "wall"
+				},
+				{
+					"name": "ShelfBBooks",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/books.glb",
+					"position": [
+						9.74,
+						1.92,
+						-2.0
+					],
+					"yaw": 10.0
+				},
+				{
+					"name": "TrashBin",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/trash_bin.glb",
+					"position": [
+						7.5,
+						0.0,
+						-6.6
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "Backpack",
+					"model": "res://assets/models/graphics_pilot/room407_backpack_tripo_r2.glb",
+					"position": [
+						7.2,
+						0.02,
+						-4.6
+					],
+					"yaw": 90.0
+				},
+				{
+					"name": "Shirt0",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/shirt_hanging.glb",
+					"position": [
+						6.4,
+						1.82,
+						-3.72
+					],
+					"yaw": -1.1,
+					"fabric": "blue"
+				},
+				{
+					"name": "Shirt1",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/shirt_hanging.glb",
+					"position": [
+						6.95,
+						1.82,
+						-3.72
+					],
+					"yaw": -0.2,
+					"fabric": "grey"
+				},
+				{
+					"name": "Shirt2",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/shirt_hanging.glb",
+					"position": [
+						9.6,
+						1.82,
+						-3.72
+					],
+					"yaw": 0.8,
+					"fabric": "navy"
+				},
+				{
+					"name": "Slippers0",
+					"model": "res://assets/models/graphics_pilot/room407_batch1/slippers.glb",
+					"position": [
+						7.2,
+						0.005,
+						-0.2
+					],
+					"yaw": -180.0
+				},
+				{
+					"name": "Slippers1",
+					"model": "res://assets/models/graphics_pilot/room407_batch1/slippers.glb",
+					"position": [
+						9.0,
+						0.005,
+						-0.25
+					],
+					"yaw": 170.0
+				},
+				{
+					"name": "Slippers2",
+					"model": "res://assets/models/graphics_pilot/room407_batch1/slippers.glb",
+					"position": [
+						6.8,
+						0.005,
+						-3.75
+					],
+					"yaw": 90.0
+				},
+				{
+					"name": "SocketFront0",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/wall_socket.glb",
+					"position": [
+						7.2,
+						0.3,
+						-0.1
+					],
+					"yaw": 0.0,
+					"mount": "wall"
+				},
+				{
+					"name": "SocketFront1",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/wall_socket.glb",
+					"position": [
+						9.1,
+						0.3,
+						-0.1
+					],
+					"yaw": 0.0,
+					"mount": "wall"
+				},
+				{
+					"name": "SocketDesk",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/wall_socket.glb",
+					"position": [
+						6.1,
+						0.3,
+						-4.9
+					],
+					"yaw": -90.0,
+					"mount": "wall"
+				},
+				{
+					"name": "CeilingFan",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/ceiling_fan_split.glb",
+					"position": [
+						8.0,
+						3.0,
+						-2.2
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "Toilet",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/toilet.glb",
+					"position": [
+						9.63,
+						0.0,
+						-6.55
+					],
+					"yaw": -180.0,
+					"solid": true
+				},
+				{
+					"name": "ToiletBrush",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/toilet_brush.glb",
+					"position": [
+						9.28,
+						0.0,
+						-6.755
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "ToiletPaper",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/toilet_paper.glb",
+					"position": [
+						9.9,
+						0.75,
+						-6.075
+					],
+					"yaw": 90.0,
+					"mount": "wall"
+				},
+				{
+					"name": "Shower",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/shower.glb",
+					"position": [
+						8.7,
+						0.8,
+						-6.69
+					],
+					"yaw": -180.0
+				},
+				{
+					"name": "ShowerBottles",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/shower_bottles.glb",
+					"position": [
+						9.05,
+						0.0,
+						-6.845
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "BathShelf",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/bath_shelf.glb",
+					"position": [
+						8.31,
+						0.0,
+						-6.825
+					],
+					"yaw": 0.0,
+					"solid": true
+				},
+				{
+					"name": "BathBucket",
+					"model": "res://assets/models/graphics_pilot/room407_batch1/bucket.glb",
+					"position": [
+						8.45,
+						0.015,
+						-6.275
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "BathBasins",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/bath_basins.glb",
+					"position": [
+						8.95,
+						0.0,
+						-6.175
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "Sink",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/sink.glb",
+					"position": [
+						9.722,
+						0.36,
+						-4.75
+					],
+					"yaw": 90.0
+				},
+				{
+					"name": "MirrorSmall",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/mirror_small.glb",
+					"position": [
+						9.9,
+						1.12,
+						-4.75
+					],
+					"yaw": 90.0,
+					"mount": "wall"
+				},
+				{
+					"name": "ToothbrushCup",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/toothbrush_cup.glb",
+					"position": [
+						9.84,
+						0.77,
+						-4.6
+					],
+					"yaw": 90.0
+				},
+				{
+					"name": "SinkToiletries",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/sink_toiletries.glb",
+					"position": [
+						9.84,
+						0.77,
+						-4.92
+					],
+					"yaw": 90.0
+				},
+				{
+					"name": "TowelRack",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/towel_rack_bare.glb",
+					"position": [
+						8.1,
+						1.15,
+						-5.75
+					],
+					"yaw": -90.0,
+					"mount": "wall"
+				},
+				{
+					"name": "RackRag",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/rack_rag.glb",
+					"position": [
+						8.159,
+						1.15,
+						-5.75
+					],
+					"yaw": -90.0
+				},
+				{
+					"name": "Mop",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/mop.glb",
+					"position": [
+						9.68,
+						0.0,
+						-5.55
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "LaundryDetergent",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/laundry_detergent.glb",
+					"position": [
+						8.25,
+						0.0,
+						-5.45
+					],
+					"yaw": -90.0
+				},
+				{
+					"name": "CurtainBalcony",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/curtain_balcony.glb",
+					"position": [
+						5.46,
+						0.0,
+						0.0
+					],
+					"yaw": 0.0,
+					"scale": [
+						0.7,
+						1.0,
+						1.0
+					],
+					"fabric": "blue"
+				},
+				{
+					"name": "BalconyShirt0",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/shirt_hanging.glb",
+					"position": [
+						6.7,
+						1.39,
+						-7.85
+					],
+					"yaw": 0.0,
+					"fabric": "navy",
+					"outdoor": true
+				},
+				{
+					"name": "BalconyShirt1",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/shirt_hanging.glb",
+					"position": [
+						7.3,
+						1.39,
+						-7.85
+					],
+					"yaw": 0.0,
+					"fabric": "blue",
+					"outdoor": true
+				},
+				{
+					"name": "BalconyTowel0",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/towel_draped.glb",
+					"position": [
+						8.1,
+						1.44,
+						-7.85
+					],
+					"yaw": 0.0,
+					"outdoor": true
+				},
+				{
+					"name": "BalconyTowel1",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/towel_draped.glb",
+					"position": [
+						8.7,
+						1.44,
+						-7.85
+					],
+					"yaw": 0.0,
+					"outdoor": true
+				},
+				{
+					"name": "Balcony0",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/basin_clothes.glb",
+					"position": [
+						9.0,
+						-0.02,
+						-7.6
+					],
+					"yaw": 0.0,
+					"outdoor": true,
+					"solid": false
+				},
+				{
+					"name": "Balcony1",
+					"model": "res://assets/models/graphics_pilot/room407_batch1/bucket.glb",
+					"position": [
+						9.5,
+						-0.02,
+						-7.5
+					],
+					"yaw": 0.0,
+					"outdoor": true,
+					"solid": false
+				}
+			]
+		},
+		"402": {
+			"layout": {
+				"x0": 10.1,
+				"x1": 13.9,
+				"west": 10.0,
+				"east": 14.0,
+				"door_x": 12.0,
+				"bath_side": "west",
+				"bath": [
+					10.1,
+					11.9
+				],
+				"bath_wall": 12.0,
+				"bath_door": [
+					10.78,
+					11.78
+				],
+				"balcony_door": [
+					12.15,
+					13.15
+				],
+				"window": [
+					10.5,
+					11.1,
+					1.85,
+					2.35
+				]
+			},
+			"props": [
+				{
+					"name": "BunkA",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/bunk_frame.glb",
+					"position": [
+						13.4,
+						0.0,
+						-2.5
+					],
+					"yaw": -180.0,
+					"solid": true
+				},
+				{
+					"name": "MattressALower",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/bunk_mattress.glb",
+					"position": [
+						13.4,
+						0.38,
+						-2.5
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "PillowALower",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/pillow.glb",
+					"position": [
+						13.4,
+						0.43,
+						-1.83
+					],
+					"yaw": -4.4,
+					"fabric": "maroon"
+				},
+				{
+					"name": "BlanketALower",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/blanket_messy.glb",
+					"position": [
+						13.4,
+						0.43,
+						-2.75
+					],
+					"yaw": 0.0,
+					"fabric": "maroon"
+				},
+				{
+					"name": "NetALower",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/mosquito_net_lower_open.glb",
+					"position": [
+						13.4,
+						0.0,
+						-2.5
+					],
+					"yaw": -180.0
+				},
+				{
+					"name": "MattressAUpper",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/bunk_mattress.glb",
+					"position": [
+						13.4,
+						1.15,
+						-2.5
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "PillowAUpper",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/pillow.glb",
+					"position": [
+						13.4,
+						1.2,
+						-1.83
+					],
+					"yaw": -3.7,
+					"fabric": "mustard"
+				},
+				{
+					"name": "BlanketAUpper",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/blanket_messy.glb",
+					"position": [
+						13.4,
+						1.2,
+						-2.75
+					],
+					"yaw": -180.0,
+					"fabric": "mustard"
+				},
+				{
+					"name": "NetAUpper",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/mosquito_net_upper_closed.glb",
+					"position": [
+						13.4,
+						0.0,
+						-2.5
+					],
+					"yaw": -180.0
+				},
+				{
+					"name": "BunkB",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/bunk_frame.glb",
+					"position": [
+						10.6,
+						0.0,
+						-2.5
+					],
+					"yaw": 0.0,
+					"solid": true
+				},
+				{
+					"name": "MattressBLower",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/bunk_mattress.glb",
+					"position": [
+						10.6,
+						0.38,
+						-2.5
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "PillowBLower",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/pillow.glb",
+					"position": [
+						10.6,
+						0.43,
+						-1.83
+					],
+					"yaw": -4.5,
+					"fabric": "brown"
+				},
+				{
+					"name": "BlanketBLower",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/blanket_messy.glb",
+					"position": [
+						10.6,
+						0.43,
+						-2.75
+					],
+					"yaw": 0.0,
+					"fabric": "brown"
+				},
+				{
+					"name": "MattressBUpper",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/bunk_mattress.glb",
+					"position": [
+						10.6,
+						1.15,
+						-2.5
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "PillowBUpper",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/pillow.glb",
+					"position": [
+						10.6,
+						1.2,
+						-1.83
+					],
+					"yaw": -3.8,
+					"fabric": "maroon"
+				},
+				{
+					"name": "BlanketBUpper",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/blanket_folded.glb",
+					"position": [
+						10.6,
+						1.2,
+						-3.18
+					],
+					"yaw": -1.4,
+					"fabric": "maroon"
+				},
+				{
+					"name": "Locker0",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/locker_open.glb",
+					"position": [
+						13.6,
+						0.0,
+						-0.45
+					],
+					"yaw": 90.0,
+					"solid": true
+				},
+				{
+					"name": "Locker1",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/locker_closed.glb",
+					"position": [
+						13.594,
+						0.0,
+						-1.13
+					],
+					"yaw": 90.0,
+					"solid": true
+				},
+				{
+					"name": "Locker2",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/locker_closed.glb",
+					"position": [
+						10.406,
+						0.0,
+						-0.45
+					],
+					"yaw": -90.0,
+					"solid": true
+				},
+				{
+					"name": "Locker3",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/locker_closed.glb",
+					"position": [
+						10.406,
+						0.0,
+						-1.13
+					],
+					"yaw": -90.0,
+					"solid": true
+				},
+				{
+					"name": "DeskLaptop",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/desk.glb",
+					"position": [
+						13.54,
+						0.0,
+						-4.27
+					],
+					"yaw": 90.0,
+					"solid": true
+				},
+				{
+					"name": "StoolLaptop",
+					"model": "res://assets/models/graphics_pilot/room407_batch1/stool.glb",
+					"position": [
+						13.3,
+						0.0,
+						-4.02
+					],
+					"yaw": 0.0,
+					"solid": true
+				},
+				{
+					"name": "DeskLaptopItem0",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/laptop.glb",
+					"position": [
+						13.54,
+						0.76,
+						-4.12
+					],
+					"yaw": 80.0
+				},
+				{
+					"name": "DeskLaptopItem1",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/noodles.glb",
+					"position": [
+						13.64,
+						0.76,
+						-4.67
+					],
+					"yaw": -20.0
+				},
+				{
+					"name": "DeskLaptopItem2",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/takeaway_box.glb",
+					"position": [
+						13.64,
+						0.76,
+						-3.72
+					],
+					"yaw": -10.0
+				},
+				{
+					"name": "DeskLaptopItem3",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/kettle.glb",
+					"position": [
+						13.69,
+						0.76,
+						-4.87
+					],
+					"yaw": 30.0
+				},
+				{
+					"name": "DeskLaptopItem4",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/headphones.glb",
+					"position": [
+						13.74,
+						0.76,
+						-4.27
+					],
+					"yaw": -40.0
+				},
+				{
+					"name": "Fridge",
+					"model": "res://assets/models/graphics_pilot/room407_batch1/fridge.glb",
+					"position": [
+						13.6,
+						0.0,
+						-5.4
+					],
+					"yaw": 90.0,
+					"solid": true
+				},
+				{
+					"name": "RiceCooker",
+					"model": "res://assets/models/graphics_pilot/room407_batch1/rice_cooker.glb",
+					"position": [
+						13.6,
+						0.84,
+						-5.4
+					],
+					"yaw": 90.0
+				},
+				{
+					"name": "WaterDispenser",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/water_dispenser.glb",
+					"position": [
+						13.68,
+						0.0,
+						-6.05
+					],
+					"yaw": 90.0,
+					"solid": true
+				},
+				{
+					"name": "TrashBag",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/trash_bag.glb",
+					"position": [
+						12.35,
+						0.0,
+						-6.55
+					],
+					"yaw": -20.0
+				},
+				{
+					"name": "TrashBag2",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/trash_bag.glb",
+					"position": [
+						12.3,
+						0.0,
+						-6.05
+					],
+					"yaw": 40.0
+				},
+				{
+					"name": "BottlesCans",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/bottles_cans.glb",
+					"position": [
+						12.5,
+						0.0,
+						-5.1
+					],
+					"yaw": -40.0
+				},
+				{
+					"name": "FloorMat",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/floor_mat.glb",
+					"position": [
+						12.0,
+						0.0,
+						-2.95
+					],
+					"yaw": -90.0
+				},
+				{
+					"name": "FoldingTable",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/folding_table.glb",
+					"position": [
+						12.3,
+						0.008,
+						-2.95
+					],
+					"yaw": -90.0,
+					"solid": true
+				},
+				{
+					"name": "MealTray",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/meal_tray.glb",
+					"position": [
+						12.3,
+						0.308,
+						-2.95
+					],
+					"yaw": -20.0
+				},
+				{
+					"name": "Pot",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/pot.glb",
+					"position": [
+						11.6,
+						0.008,
+						-3.3
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "TakeawayFloor",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/takeaway_box.glb",
+					"position": [
+						12.4,
+						0.0,
+						-3.25
+					],
+					"yaw": 30.0
+				},
+				{
+					"name": "ClothesPile",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/clothes_pile.glb",
+					"position": [
+						11.35,
+						0.0,
+						-0.4
+					],
+					"yaw": -30.0
+				},
+				{
+					"name": "ClothesPileBunk",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/clothes_pile.glb",
+					"position": [
+						10.6,
+						0.43,
+						-2.2
+					],
+					"yaw": 20.0
+				},
+				{
+					"name": "ShelfA",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/wall_shelf.glb",
+					"position": [
+						13.9,
+						1.648,
+						-1.95
+					],
+					"yaw": 90.0,
+					"mount": "wall"
+				},
+				{
+					"name": "ShelfANoodles",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/noodles.glb",
+					"position": [
+						13.74,
+						1.92,
+						-2.15
+					],
+					"yaw": 90.0
+				},
+				{
+					"name": "ShelfANoodles2",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/noodles.glb",
+					"position": [
+						13.74,
+						1.92,
+						-1.8
+					],
+					"yaw": 70.0
+				},
+				{
+					"name": "TrashBin",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/trash_bin.glb",
+					"position": [
+						12.85,
+						0.0,
+						-3.7
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "Backpack",
+					"model": "res://assets/models/graphics_pilot/room407_backpack_tripo_r2.glb",
+					"position": [
+						10.9,
+						0.02,
+						-3.8
+					],
+					"yaw": 160.0
+				},
+				{
+					"name": "Shirt0",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/shirt_hanging.glb",
+					"position": [
+						13.6,
+						1.82,
+						-3.72
+					],
+					"yaw": 1.1,
+					"fabric": "maroon"
+				},
+				{
+					"name": "Shirt1",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/shirt_hanging.glb",
+					"position": [
+						13.1,
+						1.82,
+						-3.72
+					],
+					"yaw": 0.2,
+					"fabric": "mustard"
+				},
+				{
+					"name": "Shirt2",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/shirt_hanging.glb",
+					"position": [
+						12.6,
+						1.82,
+						-3.72
+					],
+					"yaw": -0.8,
+					"fabric": "brown"
+				},
+				{
+					"name": "Shirt3",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/shirt_hanging.glb",
+					"position": [
+						10.4,
+						1.82,
+						-3.72
+					],
+					"yaw": -1.8,
+					"fabric": "grey"
+				},
+				{
+					"name": "Slippers0",
+					"model": "res://assets/models/graphics_pilot/room407_batch1/slippers.glb",
+					"position": [
+						12.6,
+						0.005,
+						-0.3
+					],
+					"yaw": 160.0
+				},
+				{
+					"name": "Slippers1",
+					"model": "res://assets/models/graphics_pilot/room407_batch1/slippers.glb",
+					"position": [
+						11.5,
+						0.005,
+						-1.4
+					],
+					"yaw": -120.0
+				},
+				{
+					"name": "Slippers2",
+					"model": "res://assets/models/graphics_pilot/room407_batch1/slippers.glb",
+					"position": [
+						10.9,
+						0.005,
+						-0.2
+					],
+					"yaw": -160.0
+				},
+				{
+					"name": "Slippers3",
+					"model": "res://assets/models/graphics_pilot/room407_batch1/slippers.glb",
+					"position": [
+						12.2,
+						0.005,
+						-3.6
+					],
+					"yaw": -70.0
+				},
+				{
+					"name": "SocketFront0",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/wall_socket.glb",
+					"position": [
+						12.8,
+						0.3,
+						-0.1
+					],
+					"yaw": 0.0,
+					"mount": "wall"
+				},
+				{
+					"name": "SocketFront1",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/wall_socket.glb",
+					"position": [
+						10.9,
+						0.3,
+						-0.1
+					],
+					"yaw": 0.0,
+					"mount": "wall"
+				},
+				{
+					"name": "SocketDesk",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/wall_socket.glb",
+					"position": [
+						13.9,
+						0.3,
+						-4.9
+					],
+					"yaw": 90.0,
+					"mount": "wall"
+				},
+				{
+					"name": "CeilingFan",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/ceiling_fan_split.glb",
+					"position": [
+						12.0,
+						3.0,
+						-2.2
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "Toilet",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/toilet.glb",
+					"position": [
+						10.37,
+						0.0,
+						-6.55
+					],
+					"yaw": -180.0,
+					"solid": true
+				},
+				{
+					"name": "ToiletBrush",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/toilet_brush.glb",
+					"position": [
+						10.72,
+						0.0,
+						-6.755
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "ToiletPaper",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/toilet_paper.glb",
+					"position": [
+						10.1,
+						0.75,
+						-6.075
+					],
+					"yaw": -90.0,
+					"mount": "wall"
+				},
+				{
+					"name": "Shower",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/shower.glb",
+					"position": [
+						11.3,
+						0.8,
+						-6.69
+					],
+					"yaw": -180.0
+				},
+				{
+					"name": "ShowerBottles",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/shower_bottles.glb",
+					"position": [
+						10.95,
+						0.0,
+						-6.845
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "BathShelf",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/bath_shelf.glb",
+					"position": [
+						11.69,
+						0.0,
+						-6.825
+					],
+					"yaw": 0.0,
+					"solid": true
+				},
+				{
+					"name": "BathBucket",
+					"model": "res://assets/models/graphics_pilot/room407_batch1/bucket.glb",
+					"position": [
+						11.55,
+						0.015,
+						-6.275
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "BathBasins",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/bath_basins.glb",
+					"position": [
+						11.05,
+						0.0,
+						-6.175
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "Sink",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/sink.glb",
+					"position": [
+						10.278,
+						0.36,
+						-4.75
+					],
+					"yaw": -90.0
+				},
+				{
+					"name": "MirrorSmall",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/mirror_small.glb",
+					"position": [
+						10.1,
+						1.12,
+						-4.75
+					],
+					"yaw": -90.0,
+					"mount": "wall"
+				},
+				{
+					"name": "ToothbrushCup",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/toothbrush_cup.glb",
+					"position": [
+						10.16,
+						0.77,
+						-4.6
+					],
+					"yaw": -90.0
+				},
+				{
+					"name": "SinkToiletries",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/sink_toiletries.glb",
+					"position": [
+						10.16,
+						0.77,
+						-4.92
+					],
+					"yaw": -90.0
+				},
+				{
+					"name": "TowelRack",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/towel_rack_bare.glb",
+					"position": [
+						11.9,
+						1.15,
+						-5.75
+					],
+					"yaw": 90.0,
+					"mount": "wall"
+				},
+				{
+					"name": "RackRag",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/rack_rag.glb",
+					"position": [
+						11.841,
+						1.15,
+						-5.75
+					],
+					"yaw": 90.0
+				},
+				{
+					"name": "Mop",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/mop.glb",
+					"position": [
+						10.32,
+						0.0,
+						-5.55
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "LaundryDetergent",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/laundry_detergent.glb",
+					"position": [
+						11.75,
+						0.0,
+						-5.45
+					],
+					"yaw": 90.0
+				},
+				{
+					"name": "BathExtra0",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/clothes_pile.glb",
+					"position": [
+						11.0,
+						0.0,
+						-5.0
+					],
+					"yaw": -10.0
+				},
+				{
+					"name": "CurtainBalcony",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/curtain_balcony.glb",
+					"position": [
+						10.76,
+						0.0,
+						0.0
+					],
+					"yaw": 0.0,
+					"scale": [
+						0.7,
+						1.0,
+						1.0
+					],
+					"fabric": "brown"
+				},
+				{
+					"name": "BalconyShirt0",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/shirt_hanging.glb",
+					"position": [
+						13.4,
+						1.39,
+						-7.85
+					],
+					"yaw": 0.0,
+					"fabric": "maroon",
+					"outdoor": true
+				},
+				{
+					"name": "BalconyShirt1",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/shirt_hanging.glb",
+					"position": [
+						12.9,
+						1.39,
+						-7.85
+					],
+					"yaw": 0.0,
+					"fabric": "mustard",
+					"outdoor": true
+				},
+				{
+					"name": "Balcony0",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/drying_rack.glb",
+					"position": [
+						11.4,
+						-0.02,
+						-7.75
+					],
+					"yaw": 0.0,
+					"outdoor": true,
+					"solid": true
+				},
+				{
+					"name": "Balcony1",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/trash_bag.glb",
+					"position": [
+						13.5,
+						-0.02,
+						-7.4
+					],
+					"yaw": 0.0,
+					"outdoor": true,
+					"solid": false
+				}
+			]
+		},
+		"403": {
+			"layout": {
+				"x0": 14.1,
+				"x1": 17.9,
+				"west": 14.0,
+				"east": 18.0,
+				"door_x": 16.0,
+				"bath_side": "east",
+				"bath": [
+					16.1,
+					17.9
+				],
+				"bath_wall": 16.0,
+				"bath_door": [
+					16.22,
+					17.22
+				],
+				"balcony_door": [
+					14.85,
+					15.85
+				],
+				"window": [
+					16.9,
+					17.5,
+					1.85,
+					2.35
+				]
+			},
+			"props": [
+				{
+					"name": "BunkA",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/bunk_frame.glb",
+					"position": [
+						14.6,
+						0.0,
+						-2.5
+					],
+					"yaw": 0.0,
+					"solid": true
+				},
+				{
+					"name": "MattressALower",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/bunk_mattress.glb",
+					"position": [
+						14.6,
+						0.38,
+						-2.5
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "PillowALower",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/pillow.glb",
+					"position": [
+						14.6,
+						0.43,
+						-1.83
+					],
+					"yaw": 4.4,
+					"fabric": "green"
+				},
+				{
+					"name": "BlanketALower",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/blanket_messy.glb",
+					"position": [
+						14.6,
+						0.43,
+						-2.75
+					],
+					"yaw": 0.0,
+					"fabric": "green"
+				},
+				{
+					"name": "NetALower",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/mosquito_net_lower_closed.glb",
+					"position": [
+						14.6,
+						0.0,
+						-2.5
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "MattressAUpper",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/bunk_mattress.glb",
+					"position": [
+						14.6,
+						1.15,
+						-2.5
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "PillowAUpper",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/pillow.glb",
+					"position": [
+						14.6,
+						1.2,
+						-1.83
+					],
+					"yaw": 3.7,
+					"fabric": "green"
+				},
+				{
+					"name": "BlanketAUpper",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/blanket_folded.glb",
+					"position": [
+						14.6,
+						1.2,
+						-3.18
+					],
+					"yaw": 1.3,
+					"fabric": "green"
+				},
+				{
+					"name": "NetAUpper",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/mosquito_net_upper_closed.glb",
+					"position": [
+						14.6,
+						0.0,
+						-2.5
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "BunkB",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/bunk_frame.glb",
+					"position": [
+						17.4,
+						0.0,
+						-2.5
+					],
+					"yaw": -180.0,
+					"solid": true
+				},
+				{
+					"name": "MattressBLower",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/bunk_mattress.glb",
+					"position": [
+						17.4,
+						0.38,
+						-2.5
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "PillowBLower",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/pillow.glb",
+					"position": [
+						17.4,
+						0.43,
+						-1.83
+					],
+					"yaw": 4.5,
+					"fabric": "grey"
+				},
+				{
+					"name": "BlanketBLower",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/blanket_messy.glb",
+					"position": [
+						17.4,
+						0.43,
+						-2.75
+					],
+					"yaw": 0.0,
+					"fabric": "grey"
+				},
+				{
+					"name": "NetBLower",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/mosquito_net_lower_closed.glb",
+					"position": [
+						17.4,
+						0.0,
+						-2.5
+					],
+					"yaw": -180.0
+				},
+				{
+					"name": "MattressBUpper",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/bunk_mattress.glb",
+					"position": [
+						17.4,
+						1.15,
+						-2.5
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "PillowBUpper",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/pillow.glb",
+					"position": [
+						17.4,
+						1.2,
+						-1.83
+					],
+					"yaw": 3.8,
+					"fabric": "navy"
+				},
+				{
+					"name": "BlanketBUpper",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/blanket_messy.glb",
+					"position": [
+						17.4,
+						1.2,
+						-2.75
+					],
+					"yaw": -180.0,
+					"fabric": "navy"
+				},
+				{
+					"name": "NetBUpper",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/mosquito_net_upper_closed.glb",
+					"position": [
+						17.4,
+						0.0,
+						-2.5
+					],
+					"yaw": -180.0
+				},
+				{
+					"name": "Locker0",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/locker_closed.glb",
+					"position": [
+						14.406,
+						0.0,
+						-0.45
+					],
+					"yaw": -90.0,
+					"solid": true
+				},
+				{
+					"name": "Locker1",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/locker_open.glb",
+					"position": [
+						14.4,
+						0.0,
+						-1.13
+					],
+					"yaw": -90.0,
+					"solid": true
+				},
+				{
+					"name": "Locker2",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/locker_closed.glb",
+					"position": [
+						17.594,
+						0.0,
+						-0.45
+					],
+					"yaw": 90.0,
+					"solid": true
+				},
+				{
+					"name": "Locker3",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/locker_closed.glb",
+					"position": [
+						17.594,
+						0.0,
+						-1.13
+					],
+					"yaw": 90.0,
+					"solid": true
+				},
+				{
+					"name": "DeskStudy",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/desk.glb",
+					"position": [
+						14.46,
+						0.0,
+						-4.27
+					],
+					"yaw": -90.0,
+					"solid": true
+				},
+				{
+					"name": "StoolStudy",
+					"model": "res://assets/models/graphics_pilot/room407_batch1/stool.glb",
+					"position": [
+						14.7,
+						0.0,
+						-4.02
+					],
+					"yaw": 0.0,
+					"solid": true
+				},
+				{
+					"name": "DeskStudyItem0",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/laptop.glb",
+					"position": [
+						14.46,
+						0.76,
+						-4.27
+					],
+					"yaw": -100.0
+				},
+				{
+					"name": "DeskStudyItem1",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/photo_frame.glb",
+					"position": [
+						14.31,
+						0.76,
+						-3.82
+					],
+					"yaw": -80.0
+				},
+				{
+					"name": "DeskStudyItem2",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/books.glb",
+					"position": [
+						14.41,
+						0.76,
+						-4.77
+					],
+					"yaw": -95.0
+				},
+				{
+					"name": "DeskStudyItem3",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/pen_cup.glb",
+					"position": [
+						14.28,
+						0.76,
+						-3.97
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "DeskKit",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/desk.glb",
+					"position": [
+						14.46,
+						0.0,
+						-5.77
+					],
+					"yaw": -90.0,
+					"solid": true
+				},
+				{
+					"name": "StoolKit",
+					"model": "res://assets/models/graphics_pilot/room407_batch1/stool.glb",
+					"position": [
+						14.7,
+						0.0,
+						-5.52
+					],
+					"yaw": 0.0,
+					"solid": true
+				},
+				{
+					"name": "DeskKitItem0",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/helmet.glb",
+					"position": [
+						14.41,
+						0.76,
+						-5.47
+					],
+					"yaw": 160.0
+				},
+				{
+					"name": "DeskKitItem1",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/books_row.glb",
+					"position": [
+						14.34,
+						0.76,
+						-6.22
+					],
+					"yaw": -90.0
+				},
+				{
+					"name": "Football",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/football.glb",
+					"position": [
+						15.5,
+						0.0,
+						-3.8
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "FootballDesk",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/football.glb",
+					"position": [
+						15.3,
+						0.0,
+						-6.5
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "Trainers",
+					"model": "res://assets/models/graphics_pilot/room407_batch1/trainers.glb",
+					"position": [
+						15.6,
+						0.015,
+						-5.3
+					],
+					"yaw": 15.0
+				},
+				{
+					"name": "Trainers2",
+					"model": "res://assets/models/graphics_pilot/room407_batch1/trainers.glb",
+					"position": [
+						14.95,
+						0.015,
+						-0.3
+					],
+					"yaw": -160.0
+				},
+				{
+					"name": "ShoeRack",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/shoe_rack.glb",
+					"position": [
+						15.7,
+						0.0,
+						-6.0
+					],
+					"yaw": 90.0,
+					"solid": true
+				},
+				{
+					"name": "HelmetRack",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/helmet.glb",
+					"position": [
+						15.7,
+						0.5,
+						-5.85
+					],
+					"yaw": 70.0
+				},
+				{
+					"name": "FootballPoster",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/poster_football.glb",
+					"position": [
+						14.0,
+						0.0,
+						0.0
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "TowelBunkA",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/towel_draped.glb",
+					"position": [
+						14.6,
+						1.085,
+						-3.5
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "TowelBunkB",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/towel_draped.glb",
+					"position": [
+						17.4,
+						0.215,
+						-3.5
+					],
+					"yaw": -180.0
+				},
+				{
+					"name": "ShelfB",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/wall_shelf.glb",
+					"position": [
+						17.9,
+						1.648,
+						-1.95
+					],
+					"yaw": 90.0,
+					"mount": "wall"
+				},
+				{
+					"name": "TeamPhoto",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/photo_frame.glb",
+					"position": [
+						17.76,
+						1.92,
+						-1.8
+					],
+					"yaw": 90.0
+				},
+				{
+					"name": "TrashBin",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/trash_bin.glb",
+					"position": [
+						15.6,
+						0.0,
+						-4.4
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "Backpack",
+					"model": "res://assets/models/graphics_pilot/room407_backpack_tripo_r2.glb",
+					"position": [
+						15.05,
+						0.02,
+						-6.4
+					],
+					"yaw": 60.0
+				},
+				{
+					"name": "Shirt0",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/shirt_hanging.glb",
+					"position": [
+						14.4,
+						1.82,
+						-3.72
+					],
+					"yaw": -1.1,
+					"fabric": "green"
+				},
+				{
+					"name": "Shirt1",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/shirt_hanging.glb",
+					"position": [
+						14.95,
+						1.82,
+						-3.72
+					],
+					"yaw": -0.2,
+					"fabric": "green"
+				},
+				{
+					"name": "Shirt2",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/shirt_hanging.glb",
+					"position": [
+						17.6,
+						1.82,
+						-3.72
+					],
+					"yaw": 0.8,
+					"fabric": "grey"
+				},
+				{
+					"name": "Slippers0",
+					"model": "res://assets/models/graphics_pilot/room407_batch1/slippers.glb",
+					"position": [
+						15.1,
+						0.005,
+						-0.2
+					],
+					"yaw": -180.0
+				},
+				{
+					"name": "Slippers1",
+					"model": "res://assets/models/graphics_pilot/room407_batch1/slippers.glb",
+					"position": [
+						16.9,
+						0.005,
+						-0.22
+					],
+					"yaw": -170.0
+				},
+				{
+					"name": "Slippers2",
+					"model": "res://assets/models/graphics_pilot/room407_batch1/slippers.glb",
+					"position": [
+						17.1,
+						0.005,
+						-3.65
+					],
+					"yaw": 80.0
+				},
+				{
+					"name": "SocketFront0",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/wall_socket.glb",
+					"position": [
+						15.2,
+						0.3,
+						-0.1
+					],
+					"yaw": 0.0,
+					"mount": "wall"
+				},
+				{
+					"name": "SocketFront1",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/wall_socket.glb",
+					"position": [
+						17.1,
+						0.3,
+						-0.1
+					],
+					"yaw": 0.0,
+					"mount": "wall"
+				},
+				{
+					"name": "SocketDesk",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/wall_socket.glb",
+					"position": [
+						14.1,
+						0.3,
+						-4.9
+					],
+					"yaw": -90.0,
+					"mount": "wall"
+				},
+				{
+					"name": "CeilingFan",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/ceiling_fan_split.glb",
+					"position": [
+						16.0,
+						3.0,
+						-2.2
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "Toilet",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/toilet.glb",
+					"position": [
+						17.63,
+						0.0,
+						-6.55
+					],
+					"yaw": -180.0,
+					"solid": true
+				},
+				{
+					"name": "ToiletBrush",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/toilet_brush.glb",
+					"position": [
+						17.28,
+						0.0,
+						-6.755
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "ToiletPaper",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/toilet_paper.glb",
+					"position": [
+						17.9,
+						0.75,
+						-6.075
+					],
+					"yaw": 90.0,
+					"mount": "wall"
+				},
+				{
+					"name": "Shower",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/shower.glb",
+					"position": [
+						16.7,
+						0.8,
+						-6.69
+					],
+					"yaw": -180.0
+				},
+				{
+					"name": "ShowerBottles",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/shower_bottles.glb",
+					"position": [
+						17.05,
+						0.0,
+						-6.845
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "BathShelf",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/bath_shelf.glb",
+					"position": [
+						16.31,
+						0.0,
+						-6.825
+					],
+					"yaw": 0.0,
+					"solid": true
+				},
+				{
+					"name": "BathBucket",
+					"model": "res://assets/models/graphics_pilot/room407_batch1/bucket.glb",
+					"position": [
+						16.45,
+						0.015,
+						-6.275
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "BathBasins",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/bath_basins.glb",
+					"position": [
+						16.95,
+						0.0,
+						-6.175
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "Sink",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/sink.glb",
+					"position": [
+						17.722,
+						0.36,
+						-4.75
+					],
+					"yaw": 90.0
+				},
+				{
+					"name": "MirrorSmall",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/mirror_small.glb",
+					"position": [
+						17.9,
+						1.12,
+						-4.75
+					],
+					"yaw": 90.0,
+					"mount": "wall"
+				},
+				{
+					"name": "ToothbrushCup",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/toothbrush_cup.glb",
+					"position": [
+						17.84,
+						0.77,
+						-4.6
+					],
+					"yaw": 90.0
+				},
+				{
+					"name": "SinkToiletries",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/sink_toiletries.glb",
+					"position": [
+						17.84,
+						0.77,
+						-4.92
+					],
+					"yaw": 90.0
+				},
+				{
+					"name": "TowelRack",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/towel_rack_bare.glb",
+					"position": [
+						16.1,
+						1.15,
+						-5.75
+					],
+					"yaw": -90.0,
+					"mount": "wall"
+				},
+				{
+					"name": "RackRag",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/rack_rag.glb",
+					"position": [
+						16.159,
+						1.15,
+						-5.75
+					],
+					"yaw": -90.0
+				},
+				{
+					"name": "Mop",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/mop.glb",
+					"position": [
+						17.68,
+						0.0,
+						-5.55
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "LaundryDetergent",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/laundry_detergent.glb",
+					"position": [
+						16.25,
+						0.0,
+						-5.45
+					],
+					"yaw": -90.0
+				},
+				{
+					"name": "CurtainBalcony",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/curtain_balcony.glb",
+					"position": [
+						13.46,
+						0.0,
+						0.0
+					],
+					"yaw": 0.0,
+					"scale": [
+						0.7,
+						1.0,
+						1.0
+					],
+					"fabric": "green"
+				},
+				{
+					"name": "BalconyShirt0",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/shirt_hanging.glb",
+					"position": [
+						15.0,
+						1.39,
+						-7.85
+					],
+					"yaw": 0.0,
+					"fabric": "green",
+					"outdoor": true
+				},
+				{
+					"name": "BalconyShirt1",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/shirt_hanging.glb",
+					"position": [
+						15.5,
+						1.39,
+						-7.85
+					],
+					"yaw": 0.0,
+					"fabric": "green",
+					"outdoor": true
+				},
+				{
+					"name": "BalconyShirt2",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/shirt_hanging.glb",
+					"position": [
+						16.0,
+						1.39,
+						-7.85
+					],
+					"yaw": 0.0,
+					"fabric": "grey",
+					"outdoor": true
+				},
+				{
+					"name": "BalconyShirt3",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/shirt_hanging.glb",
+					"position": [
+						16.5,
+						1.39,
+						-7.85
+					],
+					"yaw": 0.0,
+					"fabric": "navy",
+					"outdoor": true
+				},
+				{
+					"name": "BalconyTowel0",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/towel_draped.glb",
+					"position": [
+						17.3,
+						1.44,
+						-7.85
+					],
+					"yaw": 0.0,
+					"outdoor": true
+				},
+				{
+					"name": "Balcony0",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/basin_clothes.glb",
+					"position": [
+						14.6,
+						-0.02,
+						-7.6
+					],
+					"yaw": 0.0,
+					"outdoor": true,
+					"solid": false
+				},
+				{
+					"name": "Balcony1",
+					"model": "res://assets/models/graphics_pilot/room407_batch1/trainers.glb",
+					"position": [
+						17.4,
+						-0.02,
+						-7.3
+					],
+					"yaw": 40.0,
+					"outdoor": true,
+					"solid": false
+				}
+			]
+		},
+		"404": {
+			"layout": {
+				"x0": 18.1,
+				"x1": 21.9,
+				"west": 18.0,
+				"east": 22.0,
+				"door_x": 20.0,
+				"bath_side": "west",
+				"bath": [
+					18.1,
+					19.9
+				],
+				"bath_wall": 20.0,
+				"bath_door": [
+					18.78,
+					19.78
+				],
+				"balcony_door": [
+					20.15,
+					21.15
+				],
+				"window": [
+					18.5,
+					19.1,
+					1.85,
+					2.35
+				]
+			},
+			"props": [
+				{
+					"name": "BunkA",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/bunk_frame.glb",
+					"position": [
+						21.4,
+						0.0,
+						-2.5
+					],
+					"yaw": -180.0,
+					"solid": true
+				},
+				{
+					"name": "MattressALower",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/bunk_mattress.glb",
+					"position": [
+						21.4,
+						0.38,
+						-2.5
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "PillowALower",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/pillow.glb",
+					"position": [
+						21.4,
+						0.43,
+						-1.83
+					],
+					"yaw": -4.4,
+					"fabric": "navy"
+				},
+				{
+					"name": "BlanketALower",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/blanket_messy.glb",
+					"position": [
+						21.4,
+						0.43,
+						-2.75
+					],
+					"yaw": 0.0,
+					"fabric": "navy"
+				},
+				{
+					"name": "NetALower",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/mosquito_net_lower_closed.glb",
+					"position": [
+						21.4,
+						0.0,
+						-2.5
+					],
+					"yaw": -180.0
+				},
+				{
+					"name": "MattressAUpper",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/bunk_mattress.glb",
+					"position": [
+						21.4,
+						1.15,
+						-2.5
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "PillowAUpper",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/pillow.glb",
+					"position": [
+						21.4,
+						1.2,
+						-1.83
+					],
+					"yaw": -3.7,
+					"fabric": "pink"
+				},
+				{
+					"name": "BlanketAUpper",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/blanket_messy.glb",
+					"position": [
+						21.4,
+						1.2,
+						-2.75
+					],
+					"yaw": -180.0,
+					"fabric": "pink"
+				},
+				{
+					"name": "BunkB",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/bunk_frame.glb",
+					"position": [
+						18.6,
+						0.0,
+						-2.5
+					],
+					"yaw": 0.0,
+					"solid": true
+				},
+				{
+					"name": "MattressBLower",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/bunk_mattress.glb",
+					"position": [
+						18.6,
+						0.38,
+						-2.5
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "PillowBLower",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/pillow.glb",
+					"position": [
+						18.6,
+						0.43,
+						-1.83
+					],
+					"yaw": -4.5,
+					"fabric": "grey"
+				},
+				{
+					"name": "BlanketBLower",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/blanket_folded.glb",
+					"position": [
+						18.6,
+						0.43,
+						-3.18
+					],
+					"yaw": -1.9,
+					"fabric": "grey"
+				},
+				{
+					"name": "NetBLower",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/mosquito_net_lower_closed.glb",
+					"position": [
+						18.6,
+						0.0,
+						-2.5
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "MattressBUpper",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/bunk_mattress.glb",
+					"position": [
+						18.6,
+						1.15,
+						-2.5
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "PillowBUpper",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/pillow.glb",
+					"position": [
+						18.6,
+						1.2,
+						-1.83
+					],
+					"yaw": -3.8,
+					"fabric": "navy"
+				},
+				{
+					"name": "BlanketBUpper",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/blanket_folded.glb",
+					"position": [
+						18.6,
+						1.2,
+						-3.18
+					],
+					"yaw": -1.4,
+					"fabric": "navy"
+				},
+				{
+					"name": "NetBUpper",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/mosquito_net_upper_closed.glb",
+					"position": [
+						18.6,
+						0.0,
+						-2.5
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "Locker0",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/locker_closed.glb",
+					"position": [
+						21.594,
+						0.0,
+						-0.45
+					],
+					"yaw": 90.0,
+					"solid": true
+				},
+				{
+					"name": "Locker1",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/locker_closed.glb",
+					"position": [
+						21.594,
+						0.0,
+						-1.13
+					],
+					"yaw": 90.0,
+					"solid": true
+				},
+				{
+					"name": "Locker2",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/locker_viet.glb",
+					"position": [
+						18.438,
+						0.0,
+						-0.45
+					],
+					"yaw": -90.0,
+					"solid": true
+				},
+				{
+					"name": "Locker3",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/locker_closed.glb",
+					"position": [
+						18.406,
+						0.0,
+						-1.13
+					],
+					"yaw": -90.0,
+					"solid": true
+				},
+				{
+					"name": "DeskMusic",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/desk.glb",
+					"position": [
+						21.54,
+						0.0,
+						-4.27
+					],
+					"yaw": 90.0,
+					"solid": true
+				},
+				{
+					"name": "StoolMusic",
+					"model": "res://assets/models/graphics_pilot/room407_batch1/stool.glb",
+					"position": [
+						21.3,
+						0.0,
+						-4.02
+					],
+					"yaw": 0.0,
+					"solid": true
+				},
+				{
+					"name": "DeskMusicItem0",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/laptop.glb",
+					"position": [
+						21.54,
+						0.76,
+						-4.17
+					],
+					"yaw": 90.0
+				},
+				{
+					"name": "DeskMusicItem1",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/headphones.glb",
+					"position": [
+						21.64,
+						0.76,
+						-4.57
+					],
+					"yaw": 60.0
+				},
+				{
+					"name": "DeskMusicItem2",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/router.glb",
+					"position": [
+						21.74,
+						0.76,
+						-3.67
+					],
+					"yaw": 90.0
+				},
+				{
+					"name": "DeskMusicItem3",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/desk_lamp.glb",
+					"position": [
+						21.69,
+						0.76,
+						-4.82
+					],
+					"yaw": 90.0
+				},
+				{
+					"name": "DeskWindow",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/desk.glb",
+					"position": [
+						21.54,
+						0.0,
+						-5.77
+					],
+					"yaw": 90.0,
+					"solid": true
+				},
+				{
+					"name": "StoolWindow",
+					"model": "res://assets/models/graphics_pilot/room407_batch1/stool.glb",
+					"position": [
+						21.3,
+						0.0,
+						-5.52
+					],
+					"yaw": 0.0,
+					"solid": true
+				},
+				{
+					"name": "DeskWindowItem0",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/books.glb",
+					"position": [
+						21.59,
+						0.76,
+						-5.57
+					],
+					"yaw": 85.0
+				},
+				{
+					"name": "DeskWindowItem1",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/notebook.glb",
+					"position": [
+						21.54,
+						0.76,
+						-5.97
+					],
+					"yaw": 110.0
+				},
+				{
+					"name": "DeskWindowItem2",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/headphones.glb",
+					"position": [
+						21.69,
+						0.76,
+						-5.27
+					],
+					"yaw": -30.0
+				},
+				{
+					"name": "Guitar",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/guitar.glb",
+					"position": [
+						20.15,
+						0.0,
+						-4.1
+					],
+					"yaw": -90.0,
+					"rot_x": 12.0
+				},
+				{
+					"name": "Guitar2",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/guitar.glb",
+					"position": [
+						18.35,
+						0.0,
+						-3.75
+					],
+					"yaw": -180.0,
+					"rot_x": 10.0
+				},
+				{
+					"name": "GuitarBunk",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/guitar.glb",
+					"position": [
+						21.4,
+						1.21,
+						-3.0
+					],
+					"yaw": 0.0,
+					"rot_x": -80.0
+				},
+				{
+					"name": "ShelfA",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/wall_shelf.glb",
+					"position": [
+						21.9,
+						1.648,
+						-1.95
+					],
+					"yaw": 90.0,
+					"mount": "wall"
+				},
+				{
+					"name": "ShelfAHeadphones",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/headphones.glb",
+					"position": [
+						21.75,
+						1.92,
+						-1.85
+					],
+					"yaw": 90.0
+				},
+				{
+					"name": "ShelfABooks",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/books_row.glb",
+					"position": [
+						21.74,
+						1.92,
+						-2.15
+					],
+					"yaw": 90.0
+				},
+				{
+					"name": "Timetable",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/timetable.glb",
+					"position": [
+						21.9,
+						1.5,
+						-4.6
+					],
+					"yaw": 90.0,
+					"mount": "wall"
+				},
+				{
+					"name": "TrashBin",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/trash_bin.glb",
+					"position": [
+						20.35,
+						0.0,
+						-5.6
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "Backpack",
+					"model": "res://assets/models/graphics_pilot/room407_backpack_tripo_r2.glb",
+					"position": [
+						20.9,
+						0.02,
+						-3.95
+					],
+					"yaw": -100.0
+				},
+				{
+					"name": "Shirt0",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/shirt_hanging.glb",
+					"position": [
+						21.6,
+						1.82,
+						-3.72
+					],
+					"yaw": 1.1,
+					"fabric": "navy"
+				},
+				{
+					"name": "Shirt1",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/shirt_hanging.glb",
+					"position": [
+						18.35,
+						1.82,
+						-3.72
+					],
+					"yaw": 0.2,
+					"fabric": "pink"
+				},
+				{
+					"name": "Slippers0",
+					"model": "res://assets/models/graphics_pilot/room407_batch1/slippers.glb",
+					"position": [
+						20.7,
+						0.005,
+						-0.2
+					],
+					"yaw": -180.0
+				},
+				{
+					"name": "Slippers1",
+					"model": "res://assets/models/graphics_pilot/room407_batch1/slippers.glb",
+					"position": [
+						19.2,
+						0.005,
+						-0.3
+					],
+					"yaw": 160.0
+				},
+				{
+					"name": "SocketFront0",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/wall_socket.glb",
+					"position": [
+						20.8,
+						0.3,
+						-0.1
+					],
+					"yaw": 0.0,
+					"mount": "wall"
+				},
+				{
+					"name": "SocketFront1",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/wall_socket.glb",
+					"position": [
+						18.9,
+						0.3,
+						-0.1
+					],
+					"yaw": 0.0,
+					"mount": "wall"
+				},
+				{
+					"name": "SocketDesk",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/wall_socket.glb",
+					"position": [
+						21.9,
+						0.3,
+						-4.9
+					],
+					"yaw": 90.0,
+					"mount": "wall"
+				},
+				{
+					"name": "CeilingFan",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/ceiling_fan_split.glb",
+					"position": [
+						20.0,
+						3.0,
+						-2.2
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "Toilet",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/toilet.glb",
+					"position": [
+						18.37,
+						0.0,
+						-6.55
+					],
+					"yaw": -180.0,
+					"solid": true
+				},
+				{
+					"name": "ToiletBrush",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/toilet_brush.glb",
+					"position": [
+						18.72,
+						0.0,
+						-6.755
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "ToiletPaper",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/toilet_paper.glb",
+					"position": [
+						18.1,
+						0.75,
+						-6.075
+					],
+					"yaw": -90.0,
+					"mount": "wall"
+				},
+				{
+					"name": "Shower",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/shower.glb",
+					"position": [
+						19.3,
+						0.8,
+						-6.69
+					],
+					"yaw": -180.0
+				},
+				{
+					"name": "ShowerBottles",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/shower_bottles.glb",
+					"position": [
+						18.95,
+						0.0,
+						-6.845
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "BathShelf",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/bath_shelf.glb",
+					"position": [
+						19.69,
+						0.0,
+						-6.825
+					],
+					"yaw": 0.0,
+					"solid": true
+				},
+				{
+					"name": "BathBucket",
+					"model": "res://assets/models/graphics_pilot/room407_batch1/bucket.glb",
+					"position": [
+						19.55,
+						0.015,
+						-6.275
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "BathBasins",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/bath_basins.glb",
+					"position": [
+						19.05,
+						0.0,
+						-6.175
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "Sink",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/sink.glb",
+					"position": [
+						18.278,
+						0.36,
+						-4.75
+					],
+					"yaw": -90.0
+				},
+				{
+					"name": "MirrorSmall",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/mirror_small.glb",
+					"position": [
+						18.1,
+						1.12,
+						-4.75
+					],
+					"yaw": -90.0,
+					"mount": "wall"
+				},
+				{
+					"name": "ToothbrushCup",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/toothbrush_cup.glb",
+					"position": [
+						18.16,
+						0.77,
+						-4.6
+					],
+					"yaw": -90.0
+				},
+				{
+					"name": "SinkToiletries",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/sink_toiletries.glb",
+					"position": [
+						18.16,
+						0.77,
+						-4.92
+					],
+					"yaw": -90.0
+				},
+				{
+					"name": "TowelRack",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/towel_rack_bare.glb",
+					"position": [
+						19.9,
+						1.15,
+						-5.75
+					],
+					"yaw": 90.0,
+					"mount": "wall"
+				},
+				{
+					"name": "RackRag",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/rack_rag.glb",
+					"position": [
+						19.841,
+						1.15,
+						-5.75
+					],
+					"yaw": 90.0
+				},
+				{
+					"name": "Mop",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/mop.glb",
+					"position": [
+						18.32,
+						0.0,
+						-5.55
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "LaundryDetergent",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/laundry_detergent.glb",
+					"position": [
+						19.75,
+						0.0,
+						-5.45
+					],
+					"yaw": 90.0
+				},
+				{
+					"name": "CurtainBalcony",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/curtain_balcony.glb",
+					"position": [
+						18.76,
+						0.0,
+						0.0
+					],
+					"yaw": 0.0,
+					"scale": [
+						0.7,
+						1.0,
+						1.0
+					],
+					"fabric": "maroon"
+				},
+				{
+					"name": "BalconyShirt0",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/shirt_hanging.glb",
+					"position": [
+						21.2,
+						1.39,
+						-7.85
+					],
+					"yaw": 0.0,
+					"fabric": "pink",
+					"outdoor": true
+				},
+				{
+					"name": "BalconyShirt1",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/shirt_hanging.glb",
+					"position": [
+						20.6,
+						1.39,
+						-7.85
+					],
+					"yaw": 0.0,
+					"fabric": "navy",
+					"outdoor": true
+				},
+				{
+					"name": "BalconyTowel0",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/towel_draped.glb",
+					"position": [
+						19.6,
+						1.44,
+						-7.85
+					],
+					"yaw": 0.0,
+					"outdoor": true
+				},
+				{
+					"name": "Balcony0",
+					"model": "res://assets/models/graphics_pilot/room407_batch1/bucket.glb",
+					"position": [
+						18.5,
+						-0.02,
+						-7.4
+					],
+					"yaw": 0.0,
+					"outdoor": true,
+					"solid": false
+				}
+			]
+		},
+		"405": {
+			"layout": {
+				"x0": 22.1,
+				"x1": 25.9,
+				"west": 22.0,
+				"east": 26.0,
+				"door_x": 24.0,
+				"bath_side": "east",
+				"bath": [
+					24.1,
+					25.9
+				],
+				"bath_wall": 24.0,
+				"bath_door": [
+					24.22,
+					25.22
+				],
+				"balcony_door": [
+					22.85,
+					23.85
+				],
+				"window": [
+					24.9,
+					25.5,
+					1.85,
+					2.35
+				]
+			},
+			"props": [
+				{
+					"name": "BunkA",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/bunk_frame.glb",
+					"position": [
+						22.6,
+						0.0,
+						-2.5
+					],
+					"yaw": 0.0,
+					"solid": true
+				},
+				{
+					"name": "MattressALower",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/bunk_mattress.glb",
+					"position": [
+						22.6,
+						0.38,
+						-2.5
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "PillowALower",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/pillow.glb",
+					"position": [
+						22.6,
+						0.43,
+						-1.83
+					],
+					"yaw": 4.4,
+					"fabric": "grey"
+				},
+				{
+					"name": "BlanketALower",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/blanket_folded.glb",
+					"position": [
+						22.6,
+						0.43,
+						-3.18
+					],
+					"yaw": 1.8,
+					"fabric": "grey"
+				},
+				{
+					"name": "NetALower",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/mosquito_net_lower_closed.glb",
+					"position": [
+						22.6,
+						0.0,
+						-2.5
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "MattressAUpper",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/bunk_mattress.glb",
+					"position": [
+						22.6,
+						1.15,
+						-2.5
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "PillowAUpper",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/pillow.glb",
+					"position": [
+						22.6,
+						1.2,
+						-1.83
+					],
+					"yaw": 3.7,
+					"fabric": "grey"
+				},
+				{
+					"name": "BlanketAUpper",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/blanket_messy.glb",
+					"position": [
+						22.6,
+						1.2,
+						-2.75
+					],
+					"yaw": -180.0,
+					"fabric": "grey"
+				},
+				{
+					"name": "BunkB",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/bunk_frame.glb",
+					"position": [
+						25.4,
+						0.0,
+						-2.5
+					],
+					"yaw": -180.0,
+					"solid": true
+				},
+				{
+					"name": "MattressBLower",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/bunk_mattress.glb",
+					"position": [
+						25.4,
+						0.38,
+						-2.5
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "Locker0",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/locker_closed.glb",
+					"position": [
+						22.406,
+						0.0,
+						-0.45
+					],
+					"yaw": -90.0,
+					"solid": true
+				},
+				{
+					"name": "Locker1",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/locker_open.glb",
+					"position": [
+						22.4,
+						0.0,
+						-1.13
+					],
+					"yaw": -90.0,
+					"solid": true
+				},
+				{
+					"name": "Locker2",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/locker_open.glb",
+					"position": [
+						25.6,
+						0.0,
+						-0.45
+					],
+					"yaw": 90.0,
+					"solid": true
+				},
+				{
+					"name": "Locker3",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/locker_open.glb",
+					"position": [
+						25.6,
+						0.0,
+						-1.13
+					],
+					"yaw": 90.0,
+					"solid": true
+				},
+				{
+					"name": "DeskLeft",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/desk.glb",
+					"position": [
+						22.46,
+						0.0,
+						-4.27
+					],
+					"yaw": -90.0,
+					"solid": true
+				},
+				{
+					"name": "StoolLeft",
+					"model": "res://assets/models/graphics_pilot/room407_batch1/stool.glb",
+					"position": [
+						22.7,
+						0.0,
+						-4.02
+					],
+					"yaw": 0.0,
+					"solid": true
+				},
+				{
+					"name": "DeskLeftItem0",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/books.glb",
+					"position": [
+						22.41,
+						0.76,
+						-4.27
+					],
+					"yaw": -90.0
+				},
+				{
+					"name": "DeskLeftItem1",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/desk_lamp.glb",
+					"position": [
+						22.34,
+						0.76,
+						-3.82
+					],
+					"yaw": -90.0
+				},
+				{
+					"name": "Suitcase",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/suitcase.glb",
+					"position": [
+						25.4,
+						0.43,
+						-2.3
+					],
+					"yaw": 8.0
+				},
+				{
+					"name": "Suitcase2",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/suitcase.glb",
+					"position": [
+						22.46,
+						0.0,
+						-6.55
+					],
+					"yaw": 0.0,
+					"solid": true
+				},
+				{
+					"name": "Boxes",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/cardboard_boxes.glb",
+					"position": [
+						25.4,
+						0.43,
+						-3.05
+					],
+					"yaw": 85.0
+				},
+				{
+					"name": "Boxes2",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/cardboard_boxes.glb",
+					"position": [
+						22.4,
+						0.0,
+						-5.4
+					],
+					"yaw": -90.0,
+					"solid": true
+				},
+				{
+					"name": "Boxes3",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/cardboard_boxes.glb",
+					"position": [
+						22.4,
+						0.45,
+						-5.4
+					],
+					"yaw": -84.0
+				},
+				{
+					"name": "Boxes4",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/cardboard_boxes.glb",
+					"position": [
+						22.4,
+						0.0,
+						-5.9
+					],
+					"yaw": -90.0,
+					"solid": true
+				},
+				{
+					"name": "TrashBag",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/trash_bag.glb",
+					"position": [
+						23.75,
+						0.0,
+						-4.3
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "TrashBag2",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/trash_bag.glb",
+					"position": [
+						22.4,
+						0.0,
+						-6.0
+					],
+					"yaw": 30.0
+				},
+				{
+					"name": "Calendar",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/calendar.glb",
+					"position": [
+						22.1,
+						1.4,
+						-6.3
+					],
+					"yaw": -90.0,
+					"mount": "wall"
+				},
+				{
+					"name": "Backpack",
+					"model": "res://assets/models/graphics_pilot/room407_backpack_tripo_r2.glb",
+					"position": [
+						23.0,
+						0.02,
+						-3.85
+					],
+					"yaw": 30.0
+				},
+				{
+					"name": "Shirt0",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/shirt_hanging.glb",
+					"position": [
+						22.45,
+						1.82,
+						-3.72
+					],
+					"yaw": -1.1,
+					"fabric": "grey"
+				},
+				{
+					"name": "Slippers0",
+					"model": "res://assets/models/graphics_pilot/room407_batch1/slippers.glb",
+					"position": [
+						23.1,
+						0.005,
+						-0.2
+					],
+					"yaw": -180.0
+				},
+				{
+					"name": "SocketFront0",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/wall_socket.glb",
+					"position": [
+						23.2,
+						0.3,
+						-0.1
+					],
+					"yaw": 0.0,
+					"mount": "wall"
+				},
+				{
+					"name": "SocketDesk",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/wall_socket.glb",
+					"position": [
+						22.1,
+						0.3,
+						-4.9
+					],
+					"yaw": -90.0,
+					"mount": "wall"
+				},
+				{
+					"name": "CeilingFan",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/ceiling_fan_split.glb",
+					"position": [
+						24.0,
+						3.0,
+						-2.2
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "Toilet",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/toilet.glb",
+					"position": [
+						25.63,
+						0.0,
+						-6.55
+					],
+					"yaw": -180.0,
+					"solid": true
+				},
+				{
+					"name": "ToiletBrush",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/toilet_brush.glb",
+					"position": [
+						25.28,
+						0.0,
+						-6.755
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "ToiletPaper",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/toilet_paper.glb",
+					"position": [
+						25.9,
+						0.75,
+						-6.075
+					],
+					"yaw": 90.0,
+					"mount": "wall"
+				},
+				{
+					"name": "Shower",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/shower.glb",
+					"position": [
+						24.7,
+						0.8,
+						-6.69
+					],
+					"yaw": -180.0
+				},
+				{
+					"name": "ShowerBottles",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/shower_bottles.glb",
+					"position": [
+						25.05,
+						0.0,
+						-6.845
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "BathShelf",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/bath_shelf.glb",
+					"position": [
+						24.31,
+						0.0,
+						-6.825
+					],
+					"yaw": 0.0,
+					"solid": true
+				},
+				{
+					"name": "BathBucket",
+					"model": "res://assets/models/graphics_pilot/room407_batch1/bucket.glb",
+					"position": [
+						24.45,
+						0.015,
+						-6.275
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "BathBasins",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/bath_basins.glb",
+					"position": [
+						24.95,
+						0.0,
+						-6.175
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "Sink",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/sink.glb",
+					"position": [
+						25.722,
+						0.36,
+						-4.75
+					],
+					"yaw": 90.0
+				},
+				{
+					"name": "MirrorSmall",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/mirror_small.glb",
+					"position": [
+						25.9,
+						1.12,
+						-4.75
+					],
+					"yaw": 90.0,
+					"mount": "wall"
+				},
+				{
+					"name": "ToothbrushCup",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/toothbrush_cup.glb",
+					"position": [
+						25.84,
+						0.77,
+						-4.6
+					],
+					"yaw": 90.0
+				},
+				{
+					"name": "SinkToiletries",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/sink_toiletries.glb",
+					"position": [
+						25.84,
+						0.77,
+						-4.92
+					],
+					"yaw": 90.0
+				},
+				{
+					"name": "TowelRack",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/towel_rack_bare.glb",
+					"position": [
+						24.1,
+						1.15,
+						-5.75
+					],
+					"yaw": -90.0,
+					"mount": "wall"
+				},
+				{
+					"name": "RackRag",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/rack_rag.glb",
+					"position": [
+						24.159,
+						1.15,
+						-5.75
+					],
+					"yaw": -90.0
+				},
+				{
+					"name": "Mop",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/mop.glb",
+					"position": [
+						25.68,
+						0.0,
+						-5.55
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "LaundryDetergent",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/laundry_detergent.glb",
+					"position": [
+						24.25,
+						0.0,
+						-5.45
+					],
+					"yaw": -90.0
+				},
+				{
+					"name": "CurtainBalcony",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/curtain_balcony.glb",
+					"position": [
+						21.46,
+						0.0,
+						0.0
+					],
+					"yaw": 0.0,
+					"scale": [
+						0.7,
+						1.0,
+						1.0
+					],
+					"fabric": "grey"
+				},
+				{
+					"name": "BalconyShirt0",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/shirt_hanging.glb",
+					"position": [
+						23.2,
+						1.39,
+						-7.85
+					],
+					"yaw": 0.0,
+					"fabric": "grey",
+					"outdoor": true
+				},
+				{
+					"name": "Balcony0",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/storage_box.glb",
+					"position": [
+						22.6,
+						-0.02,
+						-7.5
+					],
+					"yaw": 90.0,
+					"outdoor": true,
+					"solid": true
+				}
+			]
+		},
+		"406": {
+			"layout": {
+				"x0": 26.1,
+				"x1": 29.9,
+				"west": 26.0,
+				"east": 30.0,
+				"door_x": 28.0,
+				"bath_side": "west",
+				"bath": [
+					26.1,
+					27.9
+				],
+				"bath_wall": 28.0,
+				"bath_door": [
+					26.78,
+					27.78
+				],
+				"balcony_door": [
+					28.15,
+					29.15
+				],
+				"window": [
+					26.5,
+					27.1,
+					1.85,
+					2.35
+				]
+			},
+			"props": [
+				{
+					"name": "BunkA",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/bunk_frame.glb",
+					"position": [
+						29.4,
+						0.0,
+						-2.5
+					],
+					"yaw": -180.0,
+					"solid": true
+				},
+				{
+					"name": "MattressALower",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/bunk_mattress.glb",
+					"position": [
+						29.4,
+						0.38,
+						-2.5
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "PillowALower",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/pillow.glb",
+					"position": [
+						29.4,
+						0.43,
+						-1.83
+					],
+					"yaw": -4.4,
+					"fabric": "brown"
+				},
+				{
+					"name": "BlanketALower",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/blanket_messy.glb",
+					"position": [
+						29.4,
+						0.43,
+						-2.75
+					],
+					"yaw": 0.0,
+					"fabric": "brown"
+				},
+				{
+					"name": "NetALower",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/mosquito_net_lower_closed.glb",
+					"position": [
+						29.4,
+						0.0,
+						-2.5
+					],
+					"yaw": -180.0
+				},
+				{
+					"name": "MattressAUpper",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/bunk_mattress.glb",
+					"position": [
+						29.4,
+						1.15,
+						-2.5
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "PillowAUpper",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/pillow.glb",
+					"position": [
+						29.4,
+						1.2,
+						-1.83
+					],
+					"yaw": -3.7,
+					"fabric": "mustard"
+				},
+				{
+					"name": "BlanketAUpper",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/blanket_folded.glb",
+					"position": [
+						29.4,
+						1.2,
+						-3.18
+					],
+					"yaw": -1.3,
+					"fabric": "mustard"
+				},
+				{
+					"name": "NetAUpper",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/mosquito_net_upper_closed.glb",
+					"position": [
+						29.4,
+						0.0,
+						-2.5
+					],
+					"yaw": -180.0
+				},
+				{
+					"name": "BunkB",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/bunk_frame.glb",
+					"position": [
+						26.6,
+						0.0,
+						-2.5
+					],
+					"yaw": 0.0,
+					"solid": true
+				},
+				{
+					"name": "MattressBLower",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/bunk_mattress.glb",
+					"position": [
+						26.6,
+						0.38,
+						-2.5
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "PillowBLower",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/pillow.glb",
+					"position": [
+						26.6,
+						0.43,
+						-1.83
+					],
+					"yaw": -4.5,
+					"fabric": "mustard"
+				},
+				{
+					"name": "BlanketBLower",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/blanket_folded.glb",
+					"position": [
+						26.6,
+						0.43,
+						-3.18
+					],
+					"yaw": -1.9,
+					"fabric": "mustard"
+				},
+				{
+					"name": "NetBLower",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/mosquito_net_lower_open.glb",
+					"position": [
+						26.6,
+						0.0,
+						-2.5
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "MattressBUpper",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/bunk_mattress.glb",
+					"position": [
+						26.6,
+						1.15,
+						-2.5
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "PillowBUpper",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/pillow.glb",
+					"position": [
+						26.6,
+						1.2,
+						-1.83
+					],
+					"yaw": -3.8,
+					"fabric": "brown"
+				},
+				{
+					"name": "BlanketBUpper",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/blanket_messy.glb",
+					"position": [
+						26.6,
+						1.2,
+						-2.75
+					],
+					"yaw": -180.0,
+					"fabric": "brown"
+				},
+				{
+					"name": "NetBUpper",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/mosquito_net_upper_closed.glb",
+					"position": [
+						26.6,
+						0.0,
+						-2.5
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "Locker0",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/locker_closed.glb",
+					"position": [
+						29.594,
+						0.0,
+						-0.45
+					],
+					"yaw": 90.0,
+					"solid": true
+				},
+				{
+					"name": "Locker1",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/locker_closed.glb",
+					"position": [
+						29.594,
+						0.0,
+						-1.13
+					],
+					"yaw": 90.0,
+					"solid": true
+				},
+				{
+					"name": "Locker2",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/locker_open.glb",
+					"position": [
+						26.4,
+						0.0,
+						-0.45
+					],
+					"yaw": -90.0,
+					"solid": true
+				},
+				{
+					"name": "Locker3",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/locker_closed.glb",
+					"position": [
+						26.406,
+						0.0,
+						-1.13
+					],
+					"yaw": -90.0,
+					"solid": true
+				},
+				{
+					"name": "DeskKitchen",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/desk.glb",
+					"position": [
+						29.54,
+						0.0,
+						-4.27
+					],
+					"yaw": 90.0,
+					"solid": true
+				},
+				{
+					"name": "StoolKitchen",
+					"model": "res://assets/models/graphics_pilot/room407_batch1/stool.glb",
+					"position": [
+						29.3,
+						0.0,
+						-4.02
+					],
+					"yaw": 0.0,
+					"solid": true
+				},
+				{
+					"name": "DeskKitchenItem0",
+					"model": "res://assets/models/graphics_pilot/room407_batch1/rice_cooker.glb",
+					"position": [
+						29.59,
+						0.76,
+						-3.87
+					],
+					"yaw": 90.0
+				},
+				{
+					"name": "DeskKitchenItem1",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/kettle.glb",
+					"position": [
+						29.64,
+						0.76,
+						-4.37
+					],
+					"yaw": 30.0
+				},
+				{
+					"name": "DeskKitchenItem2",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/pot.glb",
+					"position": [
+						29.59,
+						0.76,
+						-4.77
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "DeskKitchenItem3",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/noodles.glb",
+					"position": [
+						29.79,
+						0.76,
+						-4.22
+					],
+					"yaw": -10.0
+				},
+				{
+					"name": "Fridge",
+					"model": "res://assets/models/graphics_pilot/room407_batch1/fridge.glb",
+					"position": [
+						29.6,
+						0.0,
+						-5.35
+					],
+					"yaw": 90.0,
+					"solid": true
+				},
+				{
+					"name": "WaterDispenser",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/water_dispenser.glb",
+					"position": [
+						29.68,
+						0.0,
+						-6.0
+					],
+					"yaw": 90.0,
+					"solid": true
+				},
+				{
+					"name": "BottlesCans",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/bottles_cans.glb",
+					"position": [
+						29.5,
+						0.0,
+						-6.6
+					],
+					"yaw": -10.0
+				},
+				{
+					"name": "FloorMat",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/floor_mat.glb",
+					"position": [
+						28.0,
+						0.0,
+						-2.95
+					],
+					"yaw": -90.0
+				},
+				{
+					"name": "FoldingTable",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/folding_table.glb",
+					"position": [
+						28.3,
+						0.008,
+						-2.95
+					],
+					"yaw": -90.0,
+					"solid": true
+				},
+				{
+					"name": "MealTray",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/meal_tray.glb",
+					"position": [
+						28.35,
+						0.308,
+						-2.95
+					],
+					"yaw": 10.0
+				},
+				{
+					"name": "BasinMat",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/basin_clothes.glb",
+					"position": [
+						28.5,
+						0.0,
+						-3.25
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "Bookshelf",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/bookshelf.glb",
+					"position": [
+						28.185,
+						0.0,
+						-4.55
+					],
+					"yaw": -90.0,
+					"solid": true
+				},
+				{
+					"name": "BookshelfNoodles",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/noodles.glb",
+					"position": [
+						28.17,
+						1.3,
+						-4.35
+					],
+					"yaw": -90.0
+				},
+				{
+					"name": "BookshelfCooker",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/takeaway_box.glb",
+					"position": [
+						28.17,
+						1.3,
+						-4.75
+					],
+					"yaw": -80.0
+				},
+				{
+					"name": "ShelfB",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/wall_shelf.glb",
+					"position": [
+						26.1,
+						1.648,
+						-1.95
+					],
+					"yaw": -90.0,
+					"mount": "wall"
+				},
+				{
+					"name": "ShelfBNoodles",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/noodles.glb",
+					"position": [
+						26.26,
+						1.92,
+						-2.0
+					],
+					"yaw": -90.0
+				},
+				{
+					"name": "TrashBin",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/trash_bin.glb",
+					"position": [
+						28.5,
+						0.0,
+						-6.6
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "Backpack",
+					"model": "res://assets/models/graphics_pilot/room407_backpack_tripo_r2.glb",
+					"position": [
+						28.85,
+						0.02,
+						-4.7
+					],
+					"yaw": -120.0
+				},
+				{
+					"name": "Shirt0",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/shirt_hanging.glb",
+					"position": [
+						29.6,
+						1.82,
+						-3.72
+					],
+					"yaw": 1.1,
+					"fabric": "brown"
+				},
+				{
+					"name": "Shirt1",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/shirt_hanging.glb",
+					"position": [
+						29.05,
+						1.82,
+						-3.72
+					],
+					"yaw": 0.2,
+					"fabric": "mustard"
+				},
+				{
+					"name": "Shirt2",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/shirt_hanging.glb",
+					"position": [
+						26.4,
+						1.82,
+						-3.72
+					],
+					"yaw": -0.8,
+					"fabric": "brown"
+				},
+				{
+					"name": "Slippers0",
+					"model": "res://assets/models/graphics_pilot/room407_batch1/slippers.glb",
+					"position": [
+						28.9,
+						0.005,
+						-0.2
+					],
+					"yaw": -180.0
+				},
+				{
+					"name": "Slippers1",
+					"model": "res://assets/models/graphics_pilot/room407_batch1/slippers.glb",
+					"position": [
+						27.0,
+						0.005,
+						-0.2
+					],
+					"yaw": -175.0
+				},
+				{
+					"name": "Slippers2",
+					"model": "res://assets/models/graphics_pilot/room407_batch1/slippers.glb",
+					"position": [
+						28.3,
+						0.005,
+						-3.7
+					],
+					"yaw": -60.0
+				},
+				{
+					"name": "SocketFront0",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/wall_socket.glb",
+					"position": [
+						28.8,
+						0.3,
+						-0.1
+					],
+					"yaw": 0.0,
+					"mount": "wall"
+				},
+				{
+					"name": "SocketFront1",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/wall_socket.glb",
+					"position": [
+						26.9,
+						0.3,
+						-0.1
+					],
+					"yaw": 0.0,
+					"mount": "wall"
+				},
+				{
+					"name": "SocketDesk",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/wall_socket.glb",
+					"position": [
+						29.9,
+						0.3,
+						-4.9
+					],
+					"yaw": 90.0,
+					"mount": "wall"
+				},
+				{
+					"name": "CeilingFan",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/ceiling_fan_split.glb",
+					"position": [
+						28.0,
+						3.0,
+						-2.2
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "Toilet",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/toilet.glb",
+					"position": [
+						26.37,
+						0.0,
+						-6.55
+					],
+					"yaw": -180.0,
+					"solid": true
+				},
+				{
+					"name": "ToiletBrush",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/toilet_brush.glb",
+					"position": [
+						26.72,
+						0.0,
+						-6.755
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "ToiletPaper",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/toilet_paper.glb",
+					"position": [
+						26.1,
+						0.75,
+						-6.075
+					],
+					"yaw": -90.0,
+					"mount": "wall"
+				},
+				{
+					"name": "Shower",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/shower.glb",
+					"position": [
+						27.3,
+						0.8,
+						-6.69
+					],
+					"yaw": -180.0
+				},
+				{
+					"name": "ShowerBottles",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/shower_bottles.glb",
+					"position": [
+						26.95,
+						0.0,
+						-6.845
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "BathShelf",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/bath_shelf.glb",
+					"position": [
+						27.69,
+						0.0,
+						-6.825
+					],
+					"yaw": 0.0,
+					"solid": true
+				},
+				{
+					"name": "BathBucket",
+					"model": "res://assets/models/graphics_pilot/room407_batch1/bucket.glb",
+					"position": [
+						27.55,
+						0.015,
+						-6.275
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "BathBasins",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/bath_basins.glb",
+					"position": [
+						27.05,
+						0.0,
+						-6.175
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "Sink",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/sink.glb",
+					"position": [
+						26.278,
+						0.36,
+						-4.75
+					],
+					"yaw": -90.0
+				},
+				{
+					"name": "MirrorSmall",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/mirror_small.glb",
+					"position": [
+						26.1,
+						1.12,
+						-4.75
+					],
+					"yaw": -90.0,
+					"mount": "wall"
+				},
+				{
+					"name": "ToothbrushCup",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/toothbrush_cup.glb",
+					"position": [
+						26.16,
+						0.77,
+						-4.6
+					],
+					"yaw": -90.0
+				},
+				{
+					"name": "SinkToiletries",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/sink_toiletries.glb",
+					"position": [
+						26.16,
+						0.77,
+						-4.92
+					],
+					"yaw": -90.0
+				},
+				{
+					"name": "TowelRack",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/towel_rack_bare.glb",
+					"position": [
+						27.9,
+						1.15,
+						-5.75
+					],
+					"yaw": 90.0,
+					"mount": "wall"
+				},
+				{
+					"name": "RackRag",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/rack_rag.glb",
+					"position": [
+						27.841,
+						1.15,
+						-5.75
+					],
+					"yaw": 90.0
+				},
+				{
+					"name": "Mop",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/mop.glb",
+					"position": [
+						26.32,
+						0.0,
+						-5.55
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "LaundryDetergent",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/laundry_detergent.glb",
+					"position": [
+						27.75,
+						0.0,
+						-5.45
+					],
+					"yaw": 90.0
+				},
+				{
+					"name": "CurtainBalcony",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/curtain_balcony.glb",
+					"position": [
+						26.76,
+						0.0,
+						0.0
+					],
+					"yaw": 0.0,
+					"scale": [
+						0.7,
+						1.0,
+						1.0
+					],
+					"fabric": "mustard"
+				},
+				{
+					"name": "BalconyShirt0",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/shirt_hanging.glb",
+					"position": [
+						29.2,
+						1.39,
+						-7.85
+					],
+					"yaw": 0.0,
+					"fabric": "brown",
+					"outdoor": true
+				},
+				{
+					"name": "BalconyShirt1",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/shirt_hanging.glb",
+					"position": [
+						28.6,
+						1.39,
+						-7.85
+					],
+					"yaw": 0.0,
+					"fabric": "mustard",
+					"outdoor": true
+				},
+				{
+					"name": "BalconyTowel0",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/towel_draped.glb",
+					"position": [
+						27.8,
+						1.44,
+						-7.85
+					],
+					"yaw": 0.0,
+					"outdoor": true
+				},
+				{
+					"name": "Balcony0",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/basin_clothes.glb",
+					"position": [
+						27.0,
+						-0.02,
+						-7.6
+					],
+					"yaw": 0.0,
+					"outdoor": true,
+					"solid": false
+				},
+				{
+					"name": "Balcony1",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/bottles_cans.glb",
+					"position": [
+						29.5,
+						-0.02,
+						-7.35
+					],
+					"yaw": 0.0,
+					"outdoor": true,
+					"solid": false
+				}
+			]
+		},
+		"408": {
+			"layout": {
+				"x0": 38.1,
+				"x1": 43.84,
+				"west": 38.0,
+				"east": 44.0,
+				"door_x": 42.0,
+				"bath_side": "west",
+				"bath": [
+					38.1,
+					40.64
+				],
+				"bath_wall": 40.74,
+				"bath_door": [
+					39.52,
+					40.52
+				],
+				"balcony_door": [
+					41.6,
+					42.6
+				],
+				"window": [
+					38.87,
+					39.47,
+					1.85,
+					2.35
+				]
+			},
+			"props": [
+				{
+					"name": "BunkA",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/bunk_frame.glb",
+					"position": [
+						43.388,
+						0.0,
+						-3.63
+					],
+					"yaw": -180.0,
+					"solid": true
+				},
+				{
+					"name": "MattressALower",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/bunk_mattress.glb",
+					"position": [
+						43.388,
+						0.38,
+						-3.63
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "PillowALower",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/pillow.glb",
+					"position": [
+						43.388,
+						0.43,
+						-2.96
+					],
+					"yaw": -4.4,
+					"fabric": "pink"
+				},
+				{
+					"name": "BlanketALower",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/blanket_messy.glb",
+					"position": [
+						43.388,
+						0.43,
+						-3.88
+					],
+					"yaw": 0.0,
+					"fabric": "pink"
+				},
+				{
+					"name": "NetALower",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/mosquito_net_lower_closed.glb",
+					"position": [
+						43.388,
+						0.0,
+						-3.63
+					],
+					"yaw": -180.0
+				},
+				{
+					"name": "MattressAUpper",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/bunk_mattress.glb",
+					"position": [
+						43.388,
+						1.15,
+						-3.63
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "PillowAUpper",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/pillow.glb",
+					"position": [
+						43.388,
+						1.2,
+						-2.96
+					],
+					"yaw": -3.7,
+					"fabric": "blue"
+				},
+				{
+					"name": "BlanketAUpper",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/blanket_folded.glb",
+					"position": [
+						43.388,
+						1.2,
+						-4.31
+					],
+					"yaw": -1.3,
+					"fabric": "blue"
+				},
+				{
+					"name": "NetAUpper",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/mosquito_net_upper_closed.glb",
+					"position": [
+						43.388,
+						0.0,
+						-3.63
+					],
+					"yaw": -180.0
+				},
+				{
+					"name": "BunkB",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/bunk_frame.glb",
+					"position": [
+						43.388,
+						0.0,
+						-5.75
+					],
+					"yaw": -180.0,
+					"solid": true
+				},
+				{
+					"name": "MattressBLower",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/bunk_mattress.glb",
+					"position": [
+						43.388,
+						0.38,
+						-5.75
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "PillowBLower",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/pillow.glb",
+					"position": [
+						43.388,
+						0.43,
+						-5.08
+					],
+					"yaw": -4.5,
+					"fabric": "green"
+				},
+				{
+					"name": "BlanketBLower",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/blanket_folded.glb",
+					"position": [
+						43.388,
+						0.43,
+						-6.43
+					],
+					"yaw": -1.9,
+					"fabric": "green"
+				},
+				{
+					"name": "NetBLower",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/mosquito_net_lower_open.glb",
+					"position": [
+						43.388,
+						0.0,
+						-5.75
+					],
+					"yaw": -180.0
+				},
+				{
+					"name": "MattressBUpper",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/bunk_mattress.glb",
+					"position": [
+						43.388,
+						1.15,
+						-5.75
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "PillowBUpper",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/pillow.glb",
+					"position": [
+						43.388,
+						1.2,
+						-5.08
+					],
+					"yaw": -3.8,
+					"fabric": "navy"
+				},
+				{
+					"name": "BlanketBUpper",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/blanket_messy.glb",
+					"position": [
+						43.388,
+						1.2,
+						-6.0
+					],
+					"yaw": -180.0,
+					"fabric": "navy"
+				},
+				{
+					"name": "NetBUpper",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/mosquito_net_upper_closed.glb",
+					"position": [
+						43.388,
+						0.0,
+						-5.75
+					],
+					"yaw": -180.0
+				},
+				{
+					"name": "BunkC",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/bunk_frame.glb",
+					"position": [
+						38.55,
+						0.0,
+						-2.85
+					],
+					"yaw": 0.0,
+					"solid": true
+				},
+				{
+					"name": "MattressCLower",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/bunk_mattress.glb",
+					"position": [
+						38.55,
+						0.38,
+						-2.85
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "PillowCLower",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/pillow.glb",
+					"position": [
+						38.55,
+						0.43,
+						-2.18
+					],
+					"yaw": -4.6,
+					"fabric": "grey"
+				},
+				{
+					"name": "BlanketCLower",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/blanket_messy.glb",
+					"position": [
+						38.55,
+						0.43,
+						-3.1
+					],
+					"yaw": 0.0,
+					"fabric": "grey"
+				},
+				{
+					"name": "NetCLower",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/mosquito_net_lower_closed.glb",
+					"position": [
+						38.55,
+						0.0,
+						-2.85
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "MattressCUpper",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/bunk_mattress.glb",
+					"position": [
+						38.55,
+						1.15,
+						-2.85
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "PillowCUpper",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/pillow.glb",
+					"position": [
+						38.55,
+						1.2,
+						-2.18
+					],
+					"yaw": -3.9,
+					"fabric": "maroon"
+				},
+				{
+					"name": "BlanketCUpper",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/blanket_messy.glb",
+					"position": [
+						38.55,
+						1.2,
+						-3.1
+					],
+					"yaw": -180.0,
+					"fabric": "maroon"
+				},
+				{
+					"name": "NetCUpper",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/mosquito_net_upper_closed.glb",
+					"position": [
+						38.55,
+						0.0,
+						-2.85
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "Locker0",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/locker_closed.glb",
+					"position": [
+						43.534,
+						0.0,
+						-0.45
+					],
+					"yaw": 90.0,
+					"solid": true
+				},
+				{
+					"name": "Locker1",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/locker_open.glb",
+					"position": [
+						43.54,
+						0.0,
+						-1.13
+					],
+					"yaw": 90.0,
+					"solid": true
+				},
+				{
+					"name": "Locker2",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/locker_viet.glb",
+					"position": [
+						38.438,
+						0.0,
+						-0.45
+					],
+					"yaw": -90.0,
+					"solid": true
+				},
+				{
+					"name": "Locker3",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/locker_closed.glb",
+					"position": [
+						38.406,
+						0.0,
+						-1.13
+					],
+					"yaw": -90.0,
+					"solid": true
+				},
+				{
+					"name": "Locker4",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/locker_closed.glb",
+					"position": [
+						39.75,
+						0.0,
+						-0.42
+					],
+					"yaw": 0.0,
+					"solid": true
+				},
+				{
+					"name": "Locker5",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/locker_closed.glb",
+					"position": [
+						40.45,
+						0.0,
+						-0.42
+					],
+					"yaw": 0.0,
+					"solid": true
+				},
+				{
+					"name": "DeskA",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/desk.glb",
+					"position": [
+						41.1,
+						0.0,
+						-4.68
+					],
+					"yaw": -90.0,
+					"solid": true
+				},
+				{
+					"name": "StoolA",
+					"model": "res://assets/models/graphics_pilot/room407_batch1/stool.glb",
+					"position": [
+						41.34,
+						0.0,
+						-4.43
+					],
+					"yaw": 0.0,
+					"solid": true
+				},
+				{
+					"name": "DeskAItem0",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/laptop.glb",
+					"position": [
+						41.1,
+						0.76,
+						-4.68
+					],
+					"yaw": 90.0
+				},
+				{
+					"name": "DeskAItem1",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/kettle.glb",
+					"position": [
+						41.25,
+						0.76,
+						-4.18
+					],
+					"yaw": 30.0
+				},
+				{
+					"name": "DeskB",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/desk.glb",
+					"position": [
+						41.1,
+						0.0,
+						-6.175
+					],
+					"yaw": -90.0,
+					"solid": true
+				},
+				{
+					"name": "StoolB",
+					"model": "res://assets/models/graphics_pilot/room407_batch1/stool.glb",
+					"position": [
+						41.34,
+						0.0,
+						-5.925
+					],
+					"yaw": 0.0,
+					"solid": true
+				},
+				{
+					"name": "DeskBItem0",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/books.glb",
+					"position": [
+						41.15,
+						0.76,
+						-6.075
+					],
+					"yaw": 80.0
+				},
+				{
+					"name": "DeskBItem1",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/desk_lamp.glb",
+					"position": [
+						41.2,
+						0.76,
+						-6.675
+					],
+					"yaw": 90.0
+				},
+				{
+					"name": "DryingRack",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/drying_rack.glb",
+					"position": [
+						40.1,
+						0.0,
+						-1.9
+					],
+					"yaw": 90.0,
+					"solid": true
+				},
+				{
+					"name": "ClothesPile2",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/clothes_pile.glb",
+					"position": [
+						43.35,
+						0.43,
+						-6.1
+					],
+					"yaw": -30.0
+				},
+				{
+					"name": "Fridge",
+					"model": "res://assets/models/graphics_pilot/room407_batch1/fridge.glb",
+					"position": [
+						43.56,
+						0.0,
+						-2.0
+					],
+					"yaw": 90.0,
+					"solid": true
+				},
+				{
+					"name": "RiceCooker",
+					"model": "res://assets/models/graphics_pilot/room407_batch1/rice_cooker.glb",
+					"position": [
+						43.56,
+						0.84,
+						-2.0
+					],
+					"yaw": 90.0
+				},
+				{
+					"name": "TrashBin",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/trash_bin.glb",
+					"position": [
+						42.7,
+						0.0,
+						-2.85
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "Backpack",
+					"model": "res://assets/models/graphics_pilot/room407_backpack_tripo_r2.glb",
+					"position": [
+						42.7,
+						0.02,
+						-4.75
+					],
+					"yaw": -60.0
+				},
+				{
+					"name": "ShelfA",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/wall_shelf.glb",
+					"position": [
+						43.84,
+						1.648,
+						-3.1
+					],
+					"yaw": 90.0,
+					"mount": "wall"
+				},
+				{
+					"name": "ShelfABooks",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/books_row.glb",
+					"position": [
+						43.68,
+						1.92,
+						-2.95
+					],
+					"yaw": 90.0
+				},
+				{
+					"name": "Calendar",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/calendar.glb",
+					"position": [
+						40.74,
+						1.45,
+						-5.0
+					],
+					"yaw": -90.0,
+					"mount": "wall"
+				},
+				{
+					"name": "CeilingFan",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/ceiling_fan_split.glb",
+					"position": [
+						41.4,
+						3.0,
+						-2.2
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "CeilingFanBack",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/ceiling_fan_split.glb",
+					"position": [
+						42.3,
+						3.0,
+						-5.0
+					],
+					"yaw": 30.0
+				},
+				{
+					"name": "SocketFront0",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/wall_socket.glb",
+					"position": [
+						40.9,
+						0.3,
+						-0.1
+					],
+					"yaw": 0.0,
+					"mount": "wall"
+				},
+				{
+					"name": "SocketFront1",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/wall_socket.glb",
+					"position": [
+						43.0,
+						0.3,
+						-0.1
+					],
+					"yaw": 0.0,
+					"mount": "wall"
+				},
+				{
+					"name": "Shirt0",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/shirt_hanging.glb",
+					"position": [
+						39.32,
+						1.82,
+						-3.72
+					],
+					"yaw": 90.0,
+					"fabric": "green"
+				},
+				{
+					"name": "Shirt1",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/shirt_hanging.glb",
+					"position": [
+						43.55,
+						1.82,
+						-3.72
+					],
+					"yaw": 90.0,
+					"fabric": "navy"
+				},
+				{
+					"name": "Slippers0",
+					"model": "res://assets/models/graphics_pilot/room407_batch1/slippers.glb",
+					"position": [
+						42.64,
+						0.005,
+						-0.2
+					],
+					"yaw": -180.0
+				},
+				{
+					"name": "Slippers1",
+					"model": "res://assets/models/graphics_pilot/room407_batch1/slippers.glb",
+					"position": [
+						40.94,
+						0.005,
+						-0.25
+					],
+					"yaw": -170.0
+				},
+				{
+					"name": "Slippers2",
+					"model": "res://assets/models/graphics_pilot/room407_batch1/slippers.glb",
+					"position": [
+						39.3,
+						0.005,
+						-0.95
+					],
+					"yaw": -150.0
+				},
+				{
+					"name": "Slippers3",
+					"model": "res://assets/models/graphics_pilot/room407_batch1/slippers.glb",
+					"position": [
+						41.6,
+						0.005,
+						-3.8
+					],
+					"yaw": -90.0
+				},
+				{
+					"name": "Toilet",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/toilet.glb",
+					"position": [
+						38.37,
+						0.0,
+						-6.55
+					],
+					"yaw": -180.0,
+					"solid": true
+				},
+				{
+					"name": "ToiletBrush",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/toilet_brush.glb",
+					"position": [
+						38.72,
+						0.0,
+						-6.755
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "ToiletPaper",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/toilet_paper.glb",
+					"position": [
+						38.1,
+						0.75,
+						-6.075
+					],
+					"yaw": -90.0,
+					"mount": "wall"
+				},
+				{
+					"name": "Shower",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/shower.glb",
+					"position": [
+						40.04,
+						0.8,
+						-6.69
+					],
+					"yaw": -180.0
+				},
+				{
+					"name": "ShowerBottles",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/shower_bottles.glb",
+					"position": [
+						39.69,
+						0.0,
+						-6.845
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "BathShelf",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/bath_shelf.glb",
+					"position": [
+						40.43,
+						0.0,
+						-6.825
+					],
+					"yaw": 0.0,
+					"solid": true
+				},
+				{
+					"name": "BathBucket",
+					"model": "res://assets/models/graphics_pilot/room407_batch1/bucket.glb",
+					"position": [
+						40.29,
+						0.015,
+						-6.275
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "BathBasins",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/bath_basins.glb",
+					"position": [
+						39.79,
+						0.0,
+						-6.175
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "Sink",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/sink.glb",
+					"position": [
+						38.278,
+						0.36,
+						-4.75
+					],
+					"yaw": -90.0
+				},
+				{
+					"name": "MirrorSmall",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/mirror_small.glb",
+					"position": [
+						38.1,
+						1.12,
+						-4.75
+					],
+					"yaw": -90.0,
+					"mount": "wall"
+				},
+				{
+					"name": "ToothbrushCup",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/toothbrush_cup.glb",
+					"position": [
+						38.16,
+						0.77,
+						-4.6
+					],
+					"yaw": -90.0
+				},
+				{
+					"name": "SinkToiletries",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/sink_toiletries.glb",
+					"position": [
+						38.16,
+						0.77,
+						-4.92
+					],
+					"yaw": -90.0
+				},
+				{
+					"name": "TowelRack",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/towel_rack_bare.glb",
+					"position": [
+						40.64,
+						1.15,
+						-5.75
+					],
+					"yaw": 90.0,
+					"mount": "wall"
+				},
+				{
+					"name": "RackRag",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/rack_rag.glb",
+					"position": [
+						40.581,
+						1.15,
+						-5.75
+					],
+					"yaw": 90.0
+				},
+				{
+					"name": "Mop",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/mop.glb",
+					"position": [
+						38.32,
+						0.0,
+						-5.55
+					],
+					"yaw": 0.0
+				},
+				{
+					"name": "LaundryDetergent",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/laundry_detergent.glb",
+					"position": [
+						40.49,
+						0.0,
+						-5.45
+					],
+					"yaw": 90.0
+				},
+				{
+					"name": "CurtainBalcony",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/curtain_balcony.glb",
+					"position": [
+						40.21,
+						0.0,
+						0.0
+					],
+					"yaw": 0.0,
+					"scale": [
+						0.7,
+						1.0,
+						1.0
+					],
+					"fabric": "navy"
+				},
+				{
+					"name": "BalconyShirt0",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/shirt_hanging.glb",
+					"position": [
+						42.74,
+						1.39,
+						-7.85
+					],
+					"yaw": 0.0,
+					"fabric": "grey",
+					"outdoor": true
+				},
+				{
+					"name": "BalconyShirt1",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/shirt_hanging.glb",
+					"position": [
+						42.14,
+						1.39,
+						-7.85
+					],
+					"yaw": 0.0,
+					"fabric": "pink",
+					"outdoor": true
+				},
+				{
+					"name": "BalconyShirt2",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/shirt_hanging.glb",
+					"position": [
+						41.54,
+						1.39,
+						-7.85
+					],
+					"yaw": 0.0,
+					"fabric": "blue",
+					"outdoor": true
+				},
+				{
+					"name": "BalconyShirt3",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/shirt_hanging.glb",
+					"position": [
+						40.94,
+						1.39,
+						-7.85
+					],
+					"yaw": 0.0,
+					"fabric": "green",
+					"outdoor": true
+				},
+				{
+					"name": "BalconyShirt4",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/shirt_hanging.glb",
+					"position": [
+						40.34,
+						1.39,
+						-7.85
+					],
+					"yaw": 0.0,
+					"fabric": "maroon",
+					"outdoor": true
+				},
+				{
+					"name": "BalconyTowel0",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/towel_draped.glb",
+					"position": [
+						39.64,
+						1.44,
+						-7.85
+					],
+					"yaw": 0.0,
+					"outdoor": true
+				},
+				{
+					"name": "BalconyTowel1",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/towel_draped.glb",
+					"position": [
+						39.04,
+						1.44,
+						-7.85
+					],
+					"yaw": 0.0,
+					"outdoor": true
+				},
+				{
+					"name": "Balcony0",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/drying_rack.glb",
+					"position": [
+						39.4,
+						-0.02,
+						-7.75
+					],
+					"yaw": 0.0,
+					"outdoor": true,
+					"solid": true
+				},
+				{
+					"name": "Balcony1",
+					"model": "res://assets/models/graphics_pilot/room407_batch3/basin_clothes.glb",
+					"position": [
+						43.14,
+						-0.02,
+						-7.5
+					],
+					"yaw": 0.0,
+					"outdoor": true,
+					"solid": false
+				},
+				{
+					"name": "Balcony2",
+					"model": "res://assets/models/graphics_pilot/room407_batch1/bucket.glb",
+					"position": [
+						43.59,
+						-0.02,
+						-8.1
+					],
+					"yaw": 0.0,
+					"outdoor": true,
+					"solid": false
+				}
+			]
+		}
+	}
+}

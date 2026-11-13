@@ -3,9 +3,10 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bvp6slsukwkl"
-path="res://.godot/imported/door_balcony_door_balcony_basecolor.jpg-69c7b23c567c25ef5f23c00a31614dc8.ctex"
+path.s3tc="res://.godot/imported/door_balcony_door_balcony_basecolor.jpg-69c7b23c567c25ef5f23c00a31614dc8.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "d6441b7154c1a2cc5001ccf1bb7f0c62"
@@ -14,11 +15,11 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/graphics_pilot/room407_shell/doors/door_balcony_door_balcony_basecolor.jpg"
-dest_files=["res://.godot/imported/door_balcony_door_balcony_basecolor.jpg-69c7b23c567c25ef5f23c00a31614dc8.ctex"]
+dest_files=["res://.godot/imported/door_balcony_door_balcony_basecolor.jpg-69c7b23c567c25ef5f23c00a31614dc8.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
