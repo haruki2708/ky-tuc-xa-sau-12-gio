@@ -62,8 +62,24 @@ def export(name, objs):
 	w1kit.export(OUT / name, objs)
 
 
-def build(part):
-	return part.build(uv_size=SIZES)
+def keep_uv(part, faces):
+	"""Faces whose UV1 is set by hand. bmesh operators clear the face tag that Part.build() reads to leave a face's
+	UV alone, so the faces are kept here and tagged again just before the build."""
+	if not hasattr(part, "kept_uv"):
+		part.kept_uv = []
+	part.kept_uv.extend(faces)
+
+
+def planar_uv(part, faces, *args, **kwargs):
+	part.planar_uv(faces, *args, **kwargs)
+	keep_uv(part, faces)
+
+
+def build(part, origin=(0, 0, 0)):
+	for f in getattr(part, "kept_uv", []):
+		if f.is_valid:
+			f.tag = True
+	return part.build(origin=origin, uv_size=SIZES)
 
 
 def quad(part, mat_name, a, b, c, d, facing=None):

@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" path="res://assets/textures/campus/concrete.png" id="e6"]
 [ext_resource type="PackedScene" path="res://assets/models/props/desk.glb" id="e7"]
 [ext_resource type="Texture2D" path="res://assets/textures/campus/glass.png" id="e8"]
-[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave2/door_surround.glb" id="e9"]
+[ext_resource type="PackedScene" path="res://assets/models/kit/wall_door.glb" id="e9"]
 [ext_resource type="Texture2D" path="res://assets/textures/campus/blue.png" id="e10"]
 [ext_resource type="Texture2D" path="res://assets/textures/campus/paper.png" id="e11"]
 [ext_resource type="Texture2D" path="res://assets/textures/campus/white.png" id="e12"]
@@ -25,12 +25,38 @@
 [ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave1/fire_door_lock.glb" id="w1_door_lock"]
 [ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave1/fire_door_handle.glb" id="w1_door_handle"]
 [ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave1/main_stairs.glb" id="w1_main_stairs"]
-[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave2/room_door_leaf_right.glb" id="w2_leaf_r"]
-[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave2/room_door_leaf_left.glb" id="w2_leaf_l"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave2/room_door_leaf.glb" id="w2_leaf"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave2/door_surround.glb" id="w2_surround"]
 [ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave2/room_plate.glb" id="w2_plate"]
 [ext_resource type="FontFile" path="res://assets/fonts/be_vietnam_pro_semibold.ttf" id="w2_font"]
 [ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave2/floor3_hall.glb" id="w2_hall3"]
 [ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave2/floor3_rooms.glb" id="w2_rooms3"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave2/floor2_hall.glb" id="w2_hall2"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave2/floor2_rooms.glb" id="w2_rooms2"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/room407_batch2/bunk_frame.glb" id="w2_407_bunk_frame"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/room407_furnished/bunk_mattress.glb" id="w2_407_bunk_mattress"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/room407_batch2/pillow.glb" id="w2_407_pillow"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/room407_batch2/blanket_messy.glb" id="w2_407_blanket_messy"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/room407_batch2/blanket_folded.glb" id="w2_407_blanket_folded"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/room407_batch2/desk.glb" id="w2_407_desk"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/room407_batch2/books.glb" id="w2_407_books"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/room407_batch2/notebook.glb" id="w2_407_notebook"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/room407_batch1/stool.glb" id="w2_407_stool"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/room407_batch1/bucket.glb" id="w2_407_bucket"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/room407_batch1/slippers.glb" id="w2_407_slippers"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave2/floor1_hall.glb" id="w2_hall1"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave2/floor1_rooms.glb" id="w2_rooms1"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave1/duty_desk.glb" id="w2_manager_desk"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave2/knife.glb" id="w2_knife"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave2/manager_window.glb" id="w2_window"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave2/manager_room.glb" id="w2_manager_room"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave1/notice_board.glb" id="w2_notice_board"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave2/main_door_frame.glb" id="w2_main_frame"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave2/main_door_leaf.glb" id="w2_main_leaf"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave2/main_door_leaf_b.glb" id="w2_main_leaf_b"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave2/main_door_chain.glb" id="w2_main_chain"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave2/extinguisher.glb" id="w2_ext"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave2/extinguisher_bracket.glb" id="w2_ext_bracket"]
 
 
 [sub_resource type="BoxShape3D" id="s1"]
@@ -4515,6 +4541,7 @@ collision_mask = 0
 shape = SubResource("s47")
 
 [node name="Mesh" type="MeshInstance3D" parent="Floor1/Door2"]
+visible = false
 mesh = SubResource("s48")
 
 [node name="Partition2" type="StaticBody3D" parent="Floor1"]
@@ -4672,6 +4699,7 @@ collision_mask = 0
 shape = SubResource("s75")
 
 [node name="Mesh" type="MeshInstance3D" parent="Floor1/Door5"]
+visible = false
 mesh = SubResource("s76")
 
 [node name="Partition5" type="StaticBody3D" parent="Floor1"]
@@ -4785,6 +4813,7 @@ collision_mask = 0
 shape = SubResource("s95")
 
 [node name="Mesh" type="MeshInstance3D" parent="Floor1/Door7"]
+visible = false
 mesh = SubResource("s96")
 
 [node name="Floor2" type="Node3D" parent="."]
@@ -5628,6 +5657,7 @@ shape = SubResource("s275")
 position = Vector3(1.5, 0, 0)
 
 [node name="Mesh" type="MeshInstance3D" parent="MainDoor/Leaf"]
+visible = false
 mesh = SubResource("s276")
 position = Vector3(1.5, 0, 0)
 
@@ -5635,6 +5665,7 @@ position = Vector3(1.5, 0, 0)
 
 
 [node name="Chain-30" type="Node3D" parent="MainDoor/Chains"]
+visible = false
 position = Vector3(0, 1.1, 0.1)
 rotation_degrees = Vector3(0,0,-30)
 
@@ -5642,6 +5673,7 @@ rotation_degrees = Vector3(0,0,-30)
 mesh = SubResource("s277")
 
 [node name="Chain30" type="Node3D" parent="MainDoor/Chains"]
+visible = false
 position = Vector3(0, 1.1, 0.1)
 rotation_degrees = Vector3(0,0,30)
 
@@ -5679,42 +5711,49 @@ metadata/surface = &"tile"
 shape = SubResource("s283")
 
 [node name="Tread00" type="Node3D" parent="WindowApproach"]
+visible = false
 position = Vector3(4.0, -9.9185714, -4.6928571)
 
 [node name="Mesh" type="MeshInstance3D" parent="WindowApproach/Tread00"]
 mesh = SubResource("s285")
 
 [node name="Tread01" type="Node3D" parent="WindowApproach"]
+visible = false
 position = Vector3(4.0, -9.7757143, -5.0785714)
 
 [node name="Mesh" type="MeshInstance3D" parent="WindowApproach/Tread01"]
 mesh = SubResource("s286")
 
 [node name="Tread02" type="Node3D" parent="WindowApproach"]
+visible = false
 position = Vector3(4.0, -9.6328571, -5.4642857)
 
 [node name="Mesh" type="MeshInstance3D" parent="WindowApproach/Tread02"]
 mesh = SubResource("s287")
 
 [node name="Tread03" type="Node3D" parent="WindowApproach"]
+visible = false
 position = Vector3(4.0, -9.49, -5.85)
 
 [node name="Mesh" type="MeshInstance3D" parent="WindowApproach/Tread03"]
 mesh = SubResource("s288")
 
 [node name="Tread04" type="Node3D" parent="WindowApproach"]
+visible = false
 position = Vector3(4.0, -9.3471429, -6.2357143)
 
 [node name="Mesh" type="MeshInstance3D" parent="WindowApproach/Tread04"]
 mesh = SubResource("s289")
 
 [node name="Tread05" type="Node3D" parent="WindowApproach"]
+visible = false
 position = Vector3(4.0, -9.2042857, -6.6214286)
 
 [node name="Mesh" type="MeshInstance3D" parent="WindowApproach/Tread05"]
 mesh = SubResource("s290")
 
 [node name="Tread06" type="Node3D" parent="WindowApproach"]
+visible = false
 position = Vector3(4.0, -9.0614286, -7.0071429)
 
 [node name="Mesh" type="MeshInstance3D" parent="WindowApproach/Tread06"]
@@ -5729,42 +5768,49 @@ metadata/surface = &"tile"
 shape = SubResource("s292")
 
 [node name="Tread00" type="Node3D" parent="WindowExit"]
+visible = false
 position = Vector3(4.0, -9.0614286, -8.1928571)
 
 [node name="Mesh" type="MeshInstance3D" parent="WindowExit/Tread00"]
 mesh = SubResource("s293")
 
 [node name="Tread01" type="Node3D" parent="WindowExit"]
+visible = false
 position = Vector3(4.0, -9.2042857, -8.5785714)
 
 [node name="Mesh" type="MeshInstance3D" parent="WindowExit/Tread01"]
 mesh = SubResource("s294")
 
 [node name="Tread02" type="Node3D" parent="WindowExit"]
+visible = false
 position = Vector3(4.0, -9.3471429, -8.9642857)
 
 [node name="Mesh" type="MeshInstance3D" parent="WindowExit/Tread02"]
 mesh = SubResource("s295")
 
 [node name="Tread03" type="Node3D" parent="WindowExit"]
+visible = false
 position = Vector3(4.0, -9.49, -9.35)
 
 [node name="Mesh" type="MeshInstance3D" parent="WindowExit/Tread03"]
 mesh = SubResource("s296")
 
 [node name="Tread04" type="Node3D" parent="WindowExit"]
+visible = false
 position = Vector3(4.0, -9.6328571, -9.7357143)
 
 [node name="Mesh" type="MeshInstance3D" parent="WindowExit/Tread04"]
 mesh = SubResource("s297")
 
 [node name="Tread05" type="Node3D" parent="WindowExit"]
+visible = false
 position = Vector3(4.0, -9.7757143, -10.1214286)
 
 [node name="Mesh" type="MeshInstance3D" parent="WindowExit/Tread05"]
 mesh = SubResource("s298")
 
 [node name="Tread06" type="Node3D" parent="WindowExit"]
+visible = false
 position = Vector3(4.0, -9.9185714, -10.5071429)
 
 [node name="Mesh" type="MeshInstance3D" parent="WindowExit/Tread06"]
@@ -5781,9 +5827,11 @@ collision_mask = 0
 shape = SubResource("s300")
 
 [node name="Mesh" type="MeshInstance3D" parent="WindowBridge"]
+visible = false
 mesh = SubResource("s301")
 
 [node name="ManagerDesk" parent="." instance=ExtResource("e7")]
+visible = false
 position = Vector3(1.4, -9.9, -3.2)
 rotation_degrees = Vector3(0, 0, 0)
 scale = Vector3(1, 1, 1)
@@ -7180,89 +7228,108 @@ scale = Vector3(1, 1, 1)
 position = Vector3(2.75, -7.3, 0.12)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Plate0"]
+visible = false
 mesh = SubResource("s504")
 
 [node name="Number" type="Label3D" parent="KitDetail1/Plate0"]
 text = "101"
-font_size = 32
-pixel_size = 0.004
+font = ExtResource("w2_font")
+font_size = 64
+pixel_size = 0.0016
 outline_size = 0
-position = Vector3(0,0,0.025)
-texture_filter = 0
+modulate = Color(0.06, 0.06, 0.065, 1)
+shaded = true
+double_sided = false
+alpha_cut = 1
+texture_filter = 3
+position = Vector3(0, 0.11, -0.009)
 
 [node name="RailingTop0" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(2.75, -8.6, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/RailingTop0"]
 mesh = SubResource("s505")
 
 [node name="Railing0_0" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(0.25, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing0_0"]
 mesh = SubResource("s506")
 
 [node name="Railing0_1" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(0.75, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing0_1"]
 mesh = SubResource("s507")
 
 [node name="Railing0_2" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(1.25, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing0_2"]
 mesh = SubResource("s508")
 
 [node name="Railing0_3" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(1.75, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing0_3"]
 mesh = SubResource("s509")
 
 [node name="Railing0_4" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(2.25, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing0_4"]
 mesh = SubResource("s510")
 
 [node name="Railing0_5" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(2.75, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing0_5"]
 mesh = SubResource("s511")
 
 [node name="Railing0_6" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(3.25, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing0_6"]
 mesh = SubResource("s512")
 
 [node name="Railing0_7" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(3.75, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing0_7"]
 mesh = SubResource("s513")
 
 [node name="Railing0_8" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(4.25, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing0_8"]
 mesh = SubResource("s514")
 
 [node name="Railing0_9" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(4.75, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing0_9"]
 mesh = SubResource("s515")
 
 [node name="Railing0_10" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(5.25, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing0_10"]
 mesh = SubResource("s516")
 
 [node name="Tube0" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(2.75, -7.05, 2.0)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Tube0"]
@@ -7277,89 +7344,108 @@ scale = Vector3(1, 1, 1)
 position = Vector3(8.25, -7.3, 0.12)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Plate1"]
+visible = false
 mesh = SubResource("s519")
 
 [node name="Number" type="Label3D" parent="KitDetail1/Plate1"]
 text = "102"
-font_size = 32
-pixel_size = 0.004
+font = ExtResource("w2_font")
+font_size = 64
+pixel_size = 0.0016
 outline_size = 0
-position = Vector3(0,0,0.025)
-texture_filter = 0
+modulate = Color(0.06, 0.06, 0.065, 1)
+shaded = true
+double_sided = false
+alpha_cut = 1
+texture_filter = 3
+position = Vector3(0, 0.11, -0.009)
 
 [node name="RailingTop1" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(8.25, -8.6, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/RailingTop1"]
 mesh = SubResource("s520")
 
 [node name="Railing1_0" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(5.75, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing1_0"]
 mesh = SubResource("s521")
 
 [node name="Railing1_1" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(6.25, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing1_1"]
 mesh = SubResource("s522")
 
 [node name="Railing1_2" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(6.75, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing1_2"]
 mesh = SubResource("s523")
 
 [node name="Railing1_3" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(7.25, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing1_3"]
 mesh = SubResource("s524")
 
 [node name="Railing1_4" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(7.75, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing1_4"]
 mesh = SubResource("s525")
 
 [node name="Railing1_5" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(8.25, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing1_5"]
 mesh = SubResource("s526")
 
 [node name="Railing1_6" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(8.75, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing1_6"]
 mesh = SubResource("s527")
 
 [node name="Railing1_7" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(9.25, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing1_7"]
 mesh = SubResource("s528")
 
 [node name="Railing1_8" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(9.75, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing1_8"]
 mesh = SubResource("s529")
 
 [node name="Railing1_9" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(10.25, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing1_9"]
 mesh = SubResource("s530")
 
 [node name="Railing1_10" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(10.75, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing1_10"]
 mesh = SubResource("s531")
 
 [node name="Tube1" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(8.25, -7.05, 2.0)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Tube1"]
@@ -7374,89 +7460,108 @@ scale = Vector3(1, 1, 1)
 position = Vector3(13.75, -7.3, 0.12)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Plate2"]
+visible = false
 mesh = SubResource("s533")
 
 [node name="Number" type="Label3D" parent="KitDetail1/Plate2"]
 text = "103"
-font_size = 32
-pixel_size = 0.004
+font = ExtResource("w2_font")
+font_size = 64
+pixel_size = 0.0016
 outline_size = 0
-position = Vector3(0,0,0.025)
-texture_filter = 0
+modulate = Color(0.06, 0.06, 0.065, 1)
+shaded = true
+double_sided = false
+alpha_cut = 1
+texture_filter = 3
+position = Vector3(0, 0.11, -0.009)
 
 [node name="RailingTop2" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(13.75, -8.6, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/RailingTop2"]
 mesh = SubResource("s534")
 
 [node name="Railing2_0" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(11.25, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing2_0"]
 mesh = SubResource("s535")
 
 [node name="Railing2_1" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(11.75, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing2_1"]
 mesh = SubResource("s536")
 
 [node name="Railing2_2" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(12.25, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing2_2"]
 mesh = SubResource("s537")
 
 [node name="Railing2_3" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(12.75, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing2_3"]
 mesh = SubResource("s538")
 
 [node name="Railing2_4" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(13.25, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing2_4"]
 mesh = SubResource("s539")
 
 [node name="Railing2_5" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(13.75, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing2_5"]
 mesh = SubResource("s540")
 
 [node name="Railing2_6" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(14.25, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing2_6"]
 mesh = SubResource("s541")
 
 [node name="Railing2_7" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(14.75, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing2_7"]
 mesh = SubResource("s542")
 
 [node name="Railing2_8" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(15.25, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing2_8"]
 mesh = SubResource("s543")
 
 [node name="Railing2_9" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(15.75, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing2_9"]
 mesh = SubResource("s544")
 
 [node name="Railing2_10" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(16.25, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing2_10"]
 mesh = SubResource("s545")
 
 [node name="Tube2" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(13.75, -7.05, 2.0)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Tube2"]
@@ -7471,89 +7576,108 @@ scale = Vector3(1, 1, 1)
 position = Vector3(19.25, -7.3, 0.12)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Plate3"]
+visible = false
 mesh = SubResource("s547")
 
 [node name="Number" type="Label3D" parent="KitDetail1/Plate3"]
 text = "104"
-font_size = 32
-pixel_size = 0.004
+font = ExtResource("w2_font")
+font_size = 64
+pixel_size = 0.0016
 outline_size = 0
-position = Vector3(0,0,0.025)
-texture_filter = 0
+modulate = Color(0.06, 0.06, 0.065, 1)
+shaded = true
+double_sided = false
+alpha_cut = 1
+texture_filter = 3
+position = Vector3(0, 0.11, -0.009)
 
 [node name="RailingTop3" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(19.25, -8.6, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/RailingTop3"]
 mesh = SubResource("s548")
 
 [node name="Railing3_0" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(16.75, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing3_0"]
 mesh = SubResource("s549")
 
 [node name="Railing3_1" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(17.25, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing3_1"]
 mesh = SubResource("s550")
 
 [node name="Railing3_2" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(17.75, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing3_2"]
 mesh = SubResource("s551")
 
 [node name="Railing3_3" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(18.25, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing3_3"]
 mesh = SubResource("s552")
 
 [node name="Railing3_4" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(18.75, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing3_4"]
 mesh = SubResource("s553")
 
 [node name="Railing3_5" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(19.25, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing3_5"]
 mesh = SubResource("s554")
 
 [node name="Railing3_6" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(19.75, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing3_6"]
 mesh = SubResource("s555")
 
 [node name="Railing3_7" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(20.25, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing3_7"]
 mesh = SubResource("s556")
 
 [node name="Railing3_8" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(20.75, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing3_8"]
 mesh = SubResource("s557")
 
 [node name="Railing3_9" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(21.25, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing3_9"]
 mesh = SubResource("s558")
 
 [node name="Railing3_10" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(21.75, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing3_10"]
 mesh = SubResource("s559")
 
 [node name="Tube3" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(19.25, -7.05, 2.0)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Tube3"]
@@ -7568,89 +7692,108 @@ scale = Vector3(1, 1, 1)
 position = Vector3(24.75, -7.3, 0.12)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Plate4"]
+visible = false
 mesh = SubResource("s561")
 
 [node name="Number" type="Label3D" parent="KitDetail1/Plate4"]
 text = "105"
-font_size = 32
-pixel_size = 0.004
+font = ExtResource("w2_font")
+font_size = 64
+pixel_size = 0.0016
 outline_size = 0
-position = Vector3(0,0,0.025)
-texture_filter = 0
+modulate = Color(0.06, 0.06, 0.065, 1)
+shaded = true
+double_sided = false
+alpha_cut = 1
+texture_filter = 3
+position = Vector3(0, 0.11, -0.009)
 
 [node name="RailingTop4" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(24.75, -8.6, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/RailingTop4"]
 mesh = SubResource("s562")
 
 [node name="Railing4_0" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(22.25, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing4_0"]
 mesh = SubResource("s563")
 
 [node name="Railing4_1" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(22.75, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing4_1"]
 mesh = SubResource("s564")
 
 [node name="Railing4_2" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(23.25, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing4_2"]
 mesh = SubResource("s565")
 
 [node name="Railing4_3" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(23.75, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing4_3"]
 mesh = SubResource("s566")
 
 [node name="Railing4_4" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(24.25, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing4_4"]
 mesh = SubResource("s567")
 
 [node name="Railing4_5" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(24.75, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing4_5"]
 mesh = SubResource("s568")
 
 [node name="Railing4_6" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(25.25, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing4_6"]
 mesh = SubResource("s569")
 
 [node name="Railing4_7" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(25.75, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing4_7"]
 mesh = SubResource("s570")
 
 [node name="Railing4_8" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(26.25, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing4_8"]
 mesh = SubResource("s571")
 
 [node name="Railing4_9" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(26.75, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing4_9"]
 mesh = SubResource("s572")
 
 [node name="Railing4_10" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(27.25, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing4_10"]
 mesh = SubResource("s573")
 
 [node name="Tube4" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(24.75, -7.05, 2.0)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Tube4"]
@@ -7665,89 +7808,108 @@ scale = Vector3(1, 1, 1)
 position = Vector3(30.25, -7.3, 0.12)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Plate5"]
+visible = false
 mesh = SubResource("s575")
 
 [node name="Number" type="Label3D" parent="KitDetail1/Plate5"]
 text = "106"
-font_size = 32
-pixel_size = 0.004
+font = ExtResource("w2_font")
+font_size = 64
+pixel_size = 0.0016
 outline_size = 0
-position = Vector3(0,0,0.025)
-texture_filter = 0
+modulate = Color(0.06, 0.06, 0.065, 1)
+shaded = true
+double_sided = false
+alpha_cut = 1
+texture_filter = 3
+position = Vector3(0, 0.11, -0.009)
 
 [node name="RailingTop5" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(30.25, -8.6, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/RailingTop5"]
 mesh = SubResource("s576")
 
 [node name="Railing5_0" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(27.75, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing5_0"]
 mesh = SubResource("s577")
 
 [node name="Railing5_1" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(28.25, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing5_1"]
 mesh = SubResource("s578")
 
 [node name="Railing5_2" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(28.75, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing5_2"]
 mesh = SubResource("s579")
 
 [node name="Railing5_3" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(29.25, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing5_3"]
 mesh = SubResource("s580")
 
 [node name="Railing5_4" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(29.75, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing5_4"]
 mesh = SubResource("s581")
 
 [node name="Railing5_5" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(30.25, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing5_5"]
 mesh = SubResource("s582")
 
 [node name="Railing5_6" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(30.75, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing5_6"]
 mesh = SubResource("s583")
 
 [node name="Railing5_7" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(31.25, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing5_7"]
 mesh = SubResource("s584")
 
 [node name="Railing5_8" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(31.75, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing5_8"]
 mesh = SubResource("s585")
 
 [node name="Railing5_9" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(32.25, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing5_9"]
 mesh = SubResource("s586")
 
 [node name="Railing5_10" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(32.75, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing5_10"]
 mesh = SubResource("s587")
 
 [node name="Tube5" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(30.25, -7.05, 2.0)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Tube5"]
@@ -7762,89 +7924,108 @@ scale = Vector3(1, 1, 1)
 position = Vector3(35.75, -7.3, 0.12)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Plate6"]
+visible = false
 mesh = SubResource("s589")
 
 [node name="Number" type="Label3D" parent="KitDetail1/Plate6"]
 text = "107"
-font_size = 32
-pixel_size = 0.004
+font = ExtResource("w2_font")
+font_size = 64
+pixel_size = 0.0016
 outline_size = 0
-position = Vector3(0,0,0.025)
-texture_filter = 0
+modulate = Color(0.06, 0.06, 0.065, 1)
+shaded = true
+double_sided = false
+alpha_cut = 1
+texture_filter = 3
+position = Vector3(0, 0.11, -0.009)
 
 [node name="RailingTop6" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(35.75, -8.6, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/RailingTop6"]
 mesh = SubResource("s590")
 
 [node name="Railing6_0" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(33.25, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing6_0"]
 mesh = SubResource("s591")
 
 [node name="Railing6_1" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(33.75, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing6_1"]
 mesh = SubResource("s592")
 
 [node name="Railing6_2" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(34.25, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing6_2"]
 mesh = SubResource("s593")
 
 [node name="Railing6_3" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(34.75, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing6_3"]
 mesh = SubResource("s594")
 
 [node name="Railing6_4" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(35.25, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing6_4"]
 mesh = SubResource("s595")
 
 [node name="Railing6_5" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(35.75, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing6_5"]
 mesh = SubResource("s596")
 
 [node name="Railing6_6" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(36.25, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing6_6"]
 mesh = SubResource("s597")
 
 [node name="Railing6_7" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(36.75, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing6_7"]
 mesh = SubResource("s598")
 
 [node name="Railing6_8" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(37.25, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing6_8"]
 mesh = SubResource("s599")
 
 [node name="Railing6_9" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(37.75, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing6_9"]
 mesh = SubResource("s600")
 
 [node name="Railing6_10" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(38.25, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing6_10"]
 mesh = SubResource("s601")
 
 [node name="Tube6" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(35.75, -7.05, 2.0)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Tube6"]
@@ -7859,89 +8040,108 @@ scale = Vector3(1, 1, 1)
 position = Vector3(41.25, -7.3, 0.12)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Plate7"]
+visible = false
 mesh = SubResource("s603")
 
 [node name="Number" type="Label3D" parent="KitDetail1/Plate7"]
 text = "108"
-font_size = 32
-pixel_size = 0.004
+font = ExtResource("w2_font")
+font_size = 64
+pixel_size = 0.0016
 outline_size = 0
-position = Vector3(0,0,0.025)
-texture_filter = 0
+modulate = Color(0.06, 0.06, 0.065, 1)
+shaded = true
+double_sided = false
+alpha_cut = 1
+texture_filter = 3
+position = Vector3(0, 0.11, -0.009)
 
 [node name="RailingTop7" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(41.25, -8.6, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/RailingTop7"]
 mesh = SubResource("s604")
 
 [node name="Railing7_0" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(38.75, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing7_0"]
 mesh = SubResource("s605")
 
 [node name="Railing7_1" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(39.25, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing7_1"]
 mesh = SubResource("s606")
 
 [node name="Railing7_2" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(39.75, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing7_2"]
 mesh = SubResource("s607")
 
 [node name="Railing7_3" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(40.25, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing7_3"]
 mesh = SubResource("s608")
 
 [node name="Railing7_4" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(40.75, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing7_4"]
 mesh = SubResource("s609")
 
 [node name="Railing7_5" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(41.25, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing7_5"]
 mesh = SubResource("s610")
 
 [node name="Railing7_6" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(41.75, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing7_6"]
 mesh = SubResource("s611")
 
 [node name="Railing7_7" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(42.25, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing7_7"]
 mesh = SubResource("s612")
 
 [node name="Railing7_8" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(42.75, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing7_8"]
 mesh = SubResource("s613")
 
 [node name="Railing7_9" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(43.25, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing7_9"]
 mesh = SubResource("s614")
 
 [node name="Railing7_10" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(43.75, -9.25, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Railing7_10"]
 mesh = SubResource("s615")
 
 [node name="Tube7" type="Node3D" parent="KitDetail1"]
+visible = false
 position = Vector3(41.25, -7.05, 2.0)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail1/Tube7"]
@@ -7994,89 +8194,108 @@ scale = Vector3(1, 1, 1)
 position = Vector3(2.75, -4.0, 0.12)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Plate0"]
+visible = false
 mesh = SubResource("s617")
 
 [node name="Number" type="Label3D" parent="KitDetail2/Plate0"]
 text = "201"
-font_size = 32
-pixel_size = 0.004
+font = ExtResource("w2_font")
+font_size = 64
+pixel_size = 0.0016
 outline_size = 0
-position = Vector3(0,0,0.025)
-texture_filter = 0
+modulate = Color(0.06, 0.06, 0.065, 1)
+shaded = true
+double_sided = false
+alpha_cut = 1
+texture_filter = 3
+position = Vector3(0, 0.11, -0.009)
 
 [node name="RailingTop0" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(2.75, -5.3, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/RailingTop0"]
 mesh = SubResource("s618")
 
 [node name="Railing0_0" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(0.25, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing0_0"]
 mesh = SubResource("s619")
 
 [node name="Railing0_1" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(0.75, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing0_1"]
 mesh = SubResource("s620")
 
 [node name="Railing0_2" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(1.25, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing0_2"]
 mesh = SubResource("s621")
 
 [node name="Railing0_3" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(1.75, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing0_3"]
 mesh = SubResource("s622")
 
 [node name="Railing0_4" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(2.25, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing0_4"]
 mesh = SubResource("s623")
 
 [node name="Railing0_5" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(2.75, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing0_5"]
 mesh = SubResource("s624")
 
 [node name="Railing0_6" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(3.25, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing0_6"]
 mesh = SubResource("s625")
 
 [node name="Railing0_7" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(3.75, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing0_7"]
 mesh = SubResource("s626")
 
 [node name="Railing0_8" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(4.25, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing0_8"]
 mesh = SubResource("s627")
 
 [node name="Railing0_9" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(4.75, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing0_9"]
 mesh = SubResource("s628")
 
 [node name="Railing0_10" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(5.25, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing0_10"]
 mesh = SubResource("s629")
 
 [node name="Tube0" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(2.75, -3.75, 2.0)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Tube0"]
@@ -8091,89 +8310,108 @@ scale = Vector3(1, 1, 1)
 position = Vector3(8.25, -4.0, 0.12)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Plate1"]
+visible = false
 mesh = SubResource("s631")
 
 [node name="Number" type="Label3D" parent="KitDetail2/Plate1"]
 text = "202"
-font_size = 32
-pixel_size = 0.004
+font = ExtResource("w2_font")
+font_size = 64
+pixel_size = 0.0016
 outline_size = 0
-position = Vector3(0,0,0.025)
-texture_filter = 0
+modulate = Color(0.06, 0.06, 0.065, 1)
+shaded = true
+double_sided = false
+alpha_cut = 1
+texture_filter = 3
+position = Vector3(0, 0.11, -0.009)
 
 [node name="RailingTop1" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(8.25, -5.3, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/RailingTop1"]
 mesh = SubResource("s632")
 
 [node name="Railing1_0" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(5.75, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing1_0"]
 mesh = SubResource("s633")
 
 [node name="Railing1_1" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(6.25, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing1_1"]
 mesh = SubResource("s634")
 
 [node name="Railing1_2" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(6.75, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing1_2"]
 mesh = SubResource("s635")
 
 [node name="Railing1_3" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(7.25, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing1_3"]
 mesh = SubResource("s636")
 
 [node name="Railing1_4" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(7.75, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing1_4"]
 mesh = SubResource("s637")
 
 [node name="Railing1_5" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(8.25, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing1_5"]
 mesh = SubResource("s638")
 
 [node name="Railing1_6" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(8.75, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing1_6"]
 mesh = SubResource("s639")
 
 [node name="Railing1_7" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(9.25, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing1_7"]
 mesh = SubResource("s640")
 
 [node name="Railing1_8" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(9.75, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing1_8"]
 mesh = SubResource("s641")
 
 [node name="Railing1_9" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(10.25, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing1_9"]
 mesh = SubResource("s642")
 
 [node name="Railing1_10" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(10.75, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing1_10"]
 mesh = SubResource("s643")
 
 [node name="Tube1" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(8.25, -3.75, 2.0)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Tube1"]
@@ -8188,89 +8426,108 @@ scale = Vector3(1, 1, 1)
 position = Vector3(13.75, -4.0, 0.12)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Plate2"]
+visible = false
 mesh = SubResource("s645")
 
 [node name="Number" type="Label3D" parent="KitDetail2/Plate2"]
 text = "203"
-font_size = 32
-pixel_size = 0.004
+font = ExtResource("w2_font")
+font_size = 64
+pixel_size = 0.0016
 outline_size = 0
-position = Vector3(0,0,0.025)
-texture_filter = 0
+modulate = Color(0.06, 0.06, 0.065, 1)
+shaded = true
+double_sided = false
+alpha_cut = 1
+texture_filter = 3
+position = Vector3(0, 0.11, -0.009)
 
 [node name="RailingTop2" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(13.75, -5.3, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/RailingTop2"]
 mesh = SubResource("s646")
 
 [node name="Railing2_0" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(11.25, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing2_0"]
 mesh = SubResource("s647")
 
 [node name="Railing2_1" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(11.75, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing2_1"]
 mesh = SubResource("s648")
 
 [node name="Railing2_2" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(12.25, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing2_2"]
 mesh = SubResource("s649")
 
 [node name="Railing2_3" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(12.75, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing2_3"]
 mesh = SubResource("s650")
 
 [node name="Railing2_4" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(13.25, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing2_4"]
 mesh = SubResource("s651")
 
 [node name="Railing2_5" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(13.75, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing2_5"]
 mesh = SubResource("s652")
 
 [node name="Railing2_6" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(14.25, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing2_6"]
 mesh = SubResource("s653")
 
 [node name="Railing2_7" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(14.75, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing2_7"]
 mesh = SubResource("s654")
 
 [node name="Railing2_8" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(15.25, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing2_8"]
 mesh = SubResource("s655")
 
 [node name="Railing2_9" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(15.75, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing2_9"]
 mesh = SubResource("s656")
 
 [node name="Railing2_10" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(16.25, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing2_10"]
 mesh = SubResource("s657")
 
 [node name="Tube2" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(13.75, -3.75, 2.0)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Tube2"]
@@ -8285,89 +8542,108 @@ scale = Vector3(1, 1, 1)
 position = Vector3(19.25, -4.0, 0.12)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Plate3"]
+visible = false
 mesh = SubResource("s659")
 
 [node name="Number" type="Label3D" parent="KitDetail2/Plate3"]
 text = "204"
-font_size = 32
-pixel_size = 0.004
+font = ExtResource("w2_font")
+font_size = 64
+pixel_size = 0.0016
 outline_size = 0
-position = Vector3(0,0,0.025)
-texture_filter = 0
+modulate = Color(0.06, 0.06, 0.065, 1)
+shaded = true
+double_sided = false
+alpha_cut = 1
+texture_filter = 3
+position = Vector3(0, 0.11, -0.009)
 
 [node name="RailingTop3" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(19.25, -5.3, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/RailingTop3"]
 mesh = SubResource("s660")
 
 [node name="Railing3_0" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(16.75, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing3_0"]
 mesh = SubResource("s661")
 
 [node name="Railing3_1" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(17.25, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing3_1"]
 mesh = SubResource("s662")
 
 [node name="Railing3_2" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(17.75, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing3_2"]
 mesh = SubResource("s663")
 
 [node name="Railing3_3" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(18.25, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing3_3"]
 mesh = SubResource("s664")
 
 [node name="Railing3_4" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(18.75, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing3_4"]
 mesh = SubResource("s665")
 
 [node name="Railing3_5" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(19.25, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing3_5"]
 mesh = SubResource("s666")
 
 [node name="Railing3_6" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(19.75, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing3_6"]
 mesh = SubResource("s667")
 
 [node name="Railing3_7" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(20.25, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing3_7"]
 mesh = SubResource("s668")
 
 [node name="Railing3_8" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(20.75, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing3_8"]
 mesh = SubResource("s669")
 
 [node name="Railing3_9" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(21.25, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing3_9"]
 mesh = SubResource("s670")
 
 [node name="Railing3_10" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(21.75, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing3_10"]
 mesh = SubResource("s671")
 
 [node name="Tube3" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(19.25, -3.75, 2.0)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Tube3"]
@@ -8382,89 +8658,108 @@ scale = Vector3(1, 1, 1)
 position = Vector3(24.75, -4.0, 0.12)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Plate4"]
+visible = false
 mesh = SubResource("s673")
 
 [node name="Number" type="Label3D" parent="KitDetail2/Plate4"]
 text = "205"
-font_size = 32
-pixel_size = 0.004
+font = ExtResource("w2_font")
+font_size = 64
+pixel_size = 0.0016
 outline_size = 0
-position = Vector3(0,0,0.025)
-texture_filter = 0
+modulate = Color(0.06, 0.06, 0.065, 1)
+shaded = true
+double_sided = false
+alpha_cut = 1
+texture_filter = 3
+position = Vector3(0, 0.11, -0.009)
 
 [node name="RailingTop4" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(24.75, -5.3, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/RailingTop4"]
 mesh = SubResource("s674")
 
 [node name="Railing4_0" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(22.25, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing4_0"]
 mesh = SubResource("s675")
 
 [node name="Railing4_1" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(22.75, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing4_1"]
 mesh = SubResource("s676")
 
 [node name="Railing4_2" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(23.25, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing4_2"]
 mesh = SubResource("s677")
 
 [node name="Railing4_3" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(23.75, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing4_3"]
 mesh = SubResource("s678")
 
 [node name="Railing4_4" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(24.25, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing4_4"]
 mesh = SubResource("s679")
 
 [node name="Railing4_5" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(24.75, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing4_5"]
 mesh = SubResource("s680")
 
 [node name="Railing4_6" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(25.25, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing4_6"]
 mesh = SubResource("s681")
 
 [node name="Railing4_7" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(25.75, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing4_7"]
 mesh = SubResource("s682")
 
 [node name="Railing4_8" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(26.25, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing4_8"]
 mesh = SubResource("s683")
 
 [node name="Railing4_9" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(26.75, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing4_9"]
 mesh = SubResource("s684")
 
 [node name="Railing4_10" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(27.25, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing4_10"]
 mesh = SubResource("s685")
 
 [node name="Tube4" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(24.75, -3.75, 2.0)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Tube4"]
@@ -8479,89 +8774,108 @@ scale = Vector3(1, 1, 1)
 position = Vector3(30.25, -4.0, 0.12)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Plate5"]
+visible = false
 mesh = SubResource("s687")
 
 [node name="Number" type="Label3D" parent="KitDetail2/Plate5"]
 text = "206"
-font_size = 32
-pixel_size = 0.004
+font = ExtResource("w2_font")
+font_size = 64
+pixel_size = 0.0016
 outline_size = 0
-position = Vector3(0,0,0.025)
-texture_filter = 0
+modulate = Color(0.06, 0.06, 0.065, 1)
+shaded = true
+double_sided = false
+alpha_cut = 1
+texture_filter = 3
+position = Vector3(0, 0.11, -0.009)
 
 [node name="RailingTop5" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(30.25, -5.3, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/RailingTop5"]
 mesh = SubResource("s688")
 
 [node name="Railing5_0" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(27.75, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing5_0"]
 mesh = SubResource("s689")
 
 [node name="Railing5_1" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(28.25, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing5_1"]
 mesh = SubResource("s690")
 
 [node name="Railing5_2" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(28.75, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing5_2"]
 mesh = SubResource("s691")
 
 [node name="Railing5_3" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(29.25, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing5_3"]
 mesh = SubResource("s692")
 
 [node name="Railing5_4" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(29.75, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing5_4"]
 mesh = SubResource("s693")
 
 [node name="Railing5_5" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(30.25, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing5_5"]
 mesh = SubResource("s694")
 
 [node name="Railing5_6" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(30.75, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing5_6"]
 mesh = SubResource("s695")
 
 [node name="Railing5_7" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(31.25, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing5_7"]
 mesh = SubResource("s696")
 
 [node name="Railing5_8" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(31.75, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing5_8"]
 mesh = SubResource("s697")
 
 [node name="Railing5_9" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(32.25, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing5_9"]
 mesh = SubResource("s698")
 
 [node name="Railing5_10" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(32.75, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing5_10"]
 mesh = SubResource("s699")
 
 [node name="Tube5" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(30.25, -3.75, 2.0)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Tube5"]
@@ -8576,89 +8890,108 @@ scale = Vector3(1, 1, 1)
 position = Vector3(35.75, -4.0, 0.12)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Plate6"]
+visible = false
 mesh = SubResource("s701")
 
 [node name="Number" type="Label3D" parent="KitDetail2/Plate6"]
 text = "207"
-font_size = 32
-pixel_size = 0.004
+font = ExtResource("w2_font")
+font_size = 64
+pixel_size = 0.0016
 outline_size = 0
-position = Vector3(0,0,0.025)
-texture_filter = 0
+modulate = Color(0.06, 0.06, 0.065, 1)
+shaded = true
+double_sided = false
+alpha_cut = 1
+texture_filter = 3
+position = Vector3(0, 0.11, -0.009)
 
 [node name="RailingTop6" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(35.75, -5.3, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/RailingTop6"]
 mesh = SubResource("s702")
 
 [node name="Railing6_0" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(33.25, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing6_0"]
 mesh = SubResource("s703")
 
 [node name="Railing6_1" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(33.75, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing6_1"]
 mesh = SubResource("s704")
 
 [node name="Railing6_2" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(34.25, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing6_2"]
 mesh = SubResource("s705")
 
 [node name="Railing6_3" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(34.75, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing6_3"]
 mesh = SubResource("s706")
 
 [node name="Railing6_4" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(35.25, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing6_4"]
 mesh = SubResource("s707")
 
 [node name="Railing6_5" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(35.75, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing6_5"]
 mesh = SubResource("s708")
 
 [node name="Railing6_6" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(36.25, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing6_6"]
 mesh = SubResource("s709")
 
 [node name="Railing6_7" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(36.75, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing6_7"]
 mesh = SubResource("s710")
 
 [node name="Railing6_8" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(37.25, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing6_8"]
 mesh = SubResource("s711")
 
 [node name="Railing6_9" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(37.75, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing6_9"]
 mesh = SubResource("s712")
 
 [node name="Railing6_10" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(38.25, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing6_10"]
 mesh = SubResource("s713")
 
 [node name="Tube6" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(35.75, -3.75, 2.0)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Tube6"]
@@ -8673,89 +9006,108 @@ scale = Vector3(1, 1, 1)
 position = Vector3(41.25, -4.0, 0.12)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Plate7"]
+visible = false
 mesh = SubResource("s715")
 
 [node name="Number" type="Label3D" parent="KitDetail2/Plate7"]
 text = "208"
-font_size = 32
-pixel_size = 0.004
+font = ExtResource("w2_font")
+font_size = 64
+pixel_size = 0.0016
 outline_size = 0
-position = Vector3(0,0,0.025)
-texture_filter = 0
+modulate = Color(0.06, 0.06, 0.065, 1)
+shaded = true
+double_sided = false
+alpha_cut = 1
+texture_filter = 3
+position = Vector3(0, 0.11, -0.009)
 
 [node name="RailingTop7" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(41.25, -5.3, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/RailingTop7"]
 mesh = SubResource("s716")
 
 [node name="Railing7_0" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(38.75, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing7_0"]
 mesh = SubResource("s717")
 
 [node name="Railing7_1" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(39.25, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing7_1"]
 mesh = SubResource("s718")
 
 [node name="Railing7_2" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(39.75, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing7_2"]
 mesh = SubResource("s719")
 
 [node name="Railing7_3" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(40.25, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing7_3"]
 mesh = SubResource("s720")
 
 [node name="Railing7_4" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(40.75, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing7_4"]
 mesh = SubResource("s721")
 
 [node name="Railing7_5" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(41.25, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing7_5"]
 mesh = SubResource("s722")
 
 [node name="Railing7_6" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(41.75, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing7_6"]
 mesh = SubResource("s723")
 
 [node name="Railing7_7" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(42.25, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing7_7"]
 mesh = SubResource("s724")
 
 [node name="Railing7_8" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(42.75, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing7_8"]
 mesh = SubResource("s725")
 
 [node name="Railing7_9" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(43.25, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing7_9"]
 mesh = SubResource("s726")
 
 [node name="Railing7_10" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(43.75, -5.95, 4.02)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Railing7_10"]
 mesh = SubResource("s727")
 
 [node name="Tube7" type="Node3D" parent="KitDetail2"]
+visible = false
 position = Vector3(41.25, -3.75, 2.0)
 
 [node name="Mesh" type="MeshInstance3D" parent="KitDetail2/Tube7"]
@@ -10072,6 +10424,7 @@ mesh = SubResource("s881")
 position = Vector3(1.4, -9.08, -3.2)
 
 [node name="Blade" type="Node3D" parent="Knife"]
+visible = false
 position = Vector3(0, 0.12, 0)
 rotation_degrees = Vector3(0,0,-12)
 
@@ -10079,6 +10432,7 @@ rotation_degrees = Vector3(0,0,-12)
 mesh = SubResource("s883")
 
 [node name="Grip" type="Node3D" parent="Knife"]
+visible = false
 position = Vector3(0.046, 0.31, 0)
 rotation_degrees = Vector3(0,0,-12)
 
@@ -10086,6 +10440,7 @@ rotation_degrees = Vector3(0,0,-12)
 mesh = SubResource("s884")
 
 [node name="GlassShard0" type="Node3D" parent="."]
+visible = false
 position = Vector3(2.2, -8.86, -7.6)
 rotation_degrees = Vector3(0,0,0)
 
@@ -10125,6 +10480,7 @@ visible = false
 mesh = SubResource("s889")
 
 [node name="GlassShard5" type="Node3D" parent="."]
+visible = false
 position = Vector3(5.4, -8.86, -7.6)
 rotation_degrees = Vector3(0,0,195)
 
@@ -10132,6 +10488,7 @@ rotation_degrees = Vector3(0,0,195)
 mesh = SubResource("s890")
 
 [node name="GlassShard6" type="Node3D" parent="."]
+visible = false
 position = Vector3(6.04, -8.86, -7.6)
 rotation_degrees = Vector3(0,0,234)
 
@@ -10139,6 +10496,7 @@ rotation_degrees = Vector3(0,0,234)
 mesh = SubResource("s891")
 
 [node name="GlassShard7" type="Node3D" parent="."]
+visible = false
 position = Vector3(6.68, -8.86, -7.6)
 rotation_degrees = Vector3(0,0,273)
 
@@ -10146,6 +10504,7 @@ rotation_degrees = Vector3(0,0,273)
 mesh = SubResource("s892")
 
 [node name="GlassShard8" type="Node3D" parent="."]
+visible = false
 position = Vector3(7.32, -8.86, -7.6)
 rotation_degrees = Vector3(0,0,312)
 
@@ -10153,10 +10512,12 @@ rotation_degrees = Vector3(0,0,312)
 mesh = SubResource("s893")
 
 [node name="FireExtinguisher" type="MeshInstance3D" parent="."]
+layers = 0
 position = Vector3(48.86, -5.8, 2.4)
 mesh = SubResource("s895")
 
 [node name="ExtinguisherHandle" type="Node3D" parent="."]
+visible = false
 position = Vector3(48.86, -5.5, 2.4)
 
 [node name="Mesh" type="MeshInstance3D" parent="ExtinguisherHandle"]
@@ -10307,6 +10668,7 @@ visible = false
 mesh = SubResource("s914")
 
 [node name="ChainLink0" type="Node3D" parent="MainDoor/Chains"]
+visible = false
 position = Vector3(-1.15, 1.25, 0.13)
 rotation_degrees = Vector3(0,0,24)
 
@@ -10314,6 +10676,7 @@ rotation_degrees = Vector3(0,0,24)
 mesh = SubResource("s915")
 
 [node name="ChainLink1" type="Node3D" parent="MainDoor/Chains"]
+visible = false
 position = Vector3(-0.99, 1.29, 0.13)
 rotation_degrees = Vector3(0,0,-24)
 
@@ -10321,6 +10684,7 @@ rotation_degrees = Vector3(0,0,-24)
 mesh = SubResource("s916")
 
 [node name="ChainLink2" type="Node3D" parent="MainDoor/Chains"]
+visible = false
 position = Vector3(-0.83, 1.25, 0.13)
 rotation_degrees = Vector3(0,0,24)
 
@@ -10328,6 +10692,7 @@ rotation_degrees = Vector3(0,0,24)
 mesh = SubResource("s917")
 
 [node name="ChainLink3" type="Node3D" parent="MainDoor/Chains"]
+visible = false
 position = Vector3(-0.67, 1.29, 0.13)
 rotation_degrees = Vector3(0,0,-24)
 
@@ -10335,6 +10700,7 @@ rotation_degrees = Vector3(0,0,-24)
 mesh = SubResource("s918")
 
 [node name="ChainLink4" type="Node3D" parent="MainDoor/Chains"]
+visible = false
 position = Vector3(-0.51, 1.25, 0.13)
 rotation_degrees = Vector3(0,0,24)
 
@@ -10342,6 +10708,7 @@ rotation_degrees = Vector3(0,0,24)
 mesh = SubResource("s919")
 
 [node name="ChainLink5" type="Node3D" parent="MainDoor/Chains"]
+visible = false
 position = Vector3(-0.35, 1.29, 0.13)
 rotation_degrees = Vector3(0,0,-24)
 
@@ -10349,6 +10716,7 @@ rotation_degrees = Vector3(0,0,-24)
 mesh = SubResource("s920")
 
 [node name="ChainLink6" type="Node3D" parent="MainDoor/Chains"]
+visible = false
 position = Vector3(-0.19, 1.25, 0.13)
 rotation_degrees = Vector3(0,0,24)
 
@@ -10356,6 +10724,7 @@ rotation_degrees = Vector3(0,0,24)
 mesh = SubResource("s921")
 
 [node name="ChainLink7" type="Node3D" parent="MainDoor/Chains"]
+visible = false
 position = Vector3(-0.03, 1.29, 0.13)
 rotation_degrees = Vector3(0,0,-24)
 
@@ -10363,6 +10732,7 @@ rotation_degrees = Vector3(0,0,-24)
 mesh = SubResource("s922")
 
 [node name="ChainLink8" type="Node3D" parent="MainDoor/Chains"]
+visible = false
 position = Vector3(0.13, 1.25, 0.13)
 rotation_degrees = Vector3(0,0,24)
 
@@ -10370,6 +10740,7 @@ rotation_degrees = Vector3(0,0,24)
 mesh = SubResource("s923")
 
 [node name="ChainLink9" type="Node3D" parent="MainDoor/Chains"]
+visible = false
 position = Vector3(0.29, 1.29, 0.13)
 rotation_degrees = Vector3(0,0,-24)
 
@@ -10377,6 +10748,7 @@ rotation_degrees = Vector3(0,0,-24)
 mesh = SubResource("s924")
 
 [node name="ChainLink10" type="Node3D" parent="MainDoor/Chains"]
+visible = false
 position = Vector3(0.45, 1.25, 0.13)
 rotation_degrees = Vector3(0,0,24)
 
@@ -10384,6 +10756,7 @@ rotation_degrees = Vector3(0,0,24)
 mesh = SubResource("s925")
 
 [node name="ChainLink11" type="Node3D" parent="MainDoor/Chains"]
+visible = false
 position = Vector3(0.61, 1.29, 0.13)
 rotation_degrees = Vector3(0,0,-24)
 
@@ -10391,6 +10764,7 @@ rotation_degrees = Vector3(0,0,-24)
 mesh = SubResource("s926")
 
 [node name="ChainLink12" type="Node3D" parent="MainDoor/Chains"]
+visible = false
 position = Vector3(0.77, 1.25, 0.13)
 rotation_degrees = Vector3(0,0,24)
 
@@ -10398,6 +10772,7 @@ rotation_degrees = Vector3(0,0,24)
 mesh = SubResource("s927")
 
 [node name="ChainLink13" type="Node3D" parent="MainDoor/Chains"]
+visible = false
 position = Vector3(0.93, 1.29, 0.13)
 rotation_degrees = Vector3(0,0,-24)
 
@@ -10405,11 +10780,13 @@ rotation_degrees = Vector3(0,0,-24)
 mesh = SubResource("s928")
 
 [node name="Room203Bed" parent="." instance=ExtResource("e14")]
+visible = false
 position = Vector3(12.1, -6.6, -4.6)
 rotation_degrees = Vector3(0, 0, 0)
 scale = Vector3(1, 1, 1)
 
 [node name="Room203Desk" parent="." instance=ExtResource("e7")]
+visible = false
 position = Vector3(15.2, -6.6, -5.8)
 rotation_degrees = Vector3(0, 0, 0)
 scale = Vector3(1, 1, 1)
@@ -10446,8 +10823,8 @@ shape = SubResource("t190_s1")
 metadata/t190 = true
 
 [node name="Hinge" type="Node3D" parent="Floor3/Door0"]
-position = Vector3(0.85, 0.01, 0)
 metadata/t190 = true
+position = Vector3(0.45, 0.01, 0)
 
 [node name="Leaf" type="Node3D" parent="Floor3/Door0/Hinge"]
 position = Vector3(-0.85, 1.19, 0)
@@ -10553,8 +10930,8 @@ shape = SubResource("t190_s15")
 metadata/t190 = true
 
 [node name="Hinge" type="Node3D" parent="Floor3/Door1"]
-position = Vector3(0.85, 0.01, 0)
 metadata/t190 = true
+position = Vector3(0.45, 0.01, 0)
 
 [node name="Leaf" type="Node3D" parent="Floor3/Door1/Hinge"]
 position = Vector3(-0.85, 1.19, 0)
@@ -10660,8 +11037,8 @@ shape = SubResource("t190_s27")
 metadata/t190 = true
 
 [node name="Hinge" type="Node3D" parent="Floor3/Door2"]
-position = Vector3(0.85, 0.01, 0)
 metadata/t190 = true
+position = Vector3(0.45, 0.01, 0)
 
 [node name="Leaf" type="Node3D" parent="Floor3/Door2/Hinge"]
 position = Vector3(-0.85, 1.19, 0)
@@ -10767,8 +11144,8 @@ shape = SubResource("t190_s39")
 metadata/t190 = true
 
 [node name="Hinge" type="Node3D" parent="Floor3/Door3"]
-position = Vector3(0.85, 0.01, 0)
 metadata/t190 = true
+position = Vector3(0.45, 0.01, 0)
 
 [node name="Leaf" type="Node3D" parent="Floor3/Door3/Hinge"]
 position = Vector3(-0.85, 1.19, 0)
@@ -10874,8 +11251,8 @@ shape = SubResource("t190_s51")
 metadata/t190 = true
 
 [node name="Hinge" type="Node3D" parent="Floor3/Door4"]
-position = Vector3(0.85, 0.01, 0)
 metadata/t190 = true
+position = Vector3(0.45, 0.01, 0)
 
 [node name="Leaf" type="Node3D" parent="Floor3/Door4/Hinge"]
 position = Vector3(-0.85, 1.19, 0)
@@ -10981,8 +11358,8 @@ shape = SubResource("t190_s63")
 metadata/t190 = true
 
 [node name="Hinge" type="Node3D" parent="Floor3/Door5"]
-position = Vector3(0.85, 0.01, 0)
 metadata/t190 = true
+position = Vector3(0.45, 0.01, 0)
 
 [node name="Leaf" type="Node3D" parent="Floor3/Door5/Hinge"]
 position = Vector3(-0.85, 1.19, 0)
@@ -11088,8 +11465,8 @@ shape = SubResource("t190_s75")
 metadata/t190 = true
 
 [node name="Hinge" type="Node3D" parent="Floor3/Door6"]
-position = Vector3(0.85, 0.01, 0)
 metadata/t190 = true
+position = Vector3(0.45, 0.01, 0)
 
 [node name="Leaf" type="Node3D" parent="Floor3/Door6/Hinge"]
 position = Vector3(-0.85, 1.19, 0)
@@ -11195,8 +11572,8 @@ shape = SubResource("t190_s87")
 metadata/t190 = true
 
 [node name="Hinge" type="Node3D" parent="Floor3/Door7"]
-position = Vector3(0.85, 0.01, 0)
 metadata/t190 = true
+position = Vector3(0.45, 0.01, 0)
 
 [node name="Leaf" type="Node3D" parent="Floor3/Door7/Hinge"]
 position = Vector3(-0.85, 1.19, 0)
@@ -11302,14 +11679,15 @@ shape = SubResource("t190_s99")
 metadata/t190 = true
 
 [node name="Hinge" type="Node3D" parent="Floor2/Door0"]
-position = Vector3(0.85, 0.01, 0)
 metadata/t190 = true
+position = Vector3(0.45, 0.01, 0)
 
 [node name="Leaf" type="Node3D" parent="Floor2/Door0/Hinge"]
 position = Vector3(-0.85, 1.19, 0)
 metadata/t190 = true
 
 [node name="Mesh" type="MeshInstance3D" parent="Floor2/Door0/Hinge/Leaf"]
+visible = false
 mesh = SubResource("t190_s100")
 metadata/t190 = true
 
@@ -11327,6 +11705,7 @@ shape = SubResource("t190_s101")
 metadata/t190 = true
 
 [node name="Mesh" type="MeshInstance3D" parent="Floor2/RoomInterior_201/Bunk0.4"]
+visible = false
 mesh = SubResource("t190_s102")
 metadata/t190 = true
 
@@ -11341,6 +11720,7 @@ shape = SubResource("t190_s103")
 metadata/t190 = true
 
 [node name="Mesh" type="MeshInstance3D" parent="Floor2/RoomInterior_201/Bunk1.45"]
+visible = false
 mesh = SubResource("t190_s104")
 metadata/t190 = true
 
@@ -11355,6 +11735,7 @@ shape = SubResource("t190_s105")
 metadata/t190 = true
 
 [node name="Mesh" type="MeshInstance3D" parent="Floor2/RoomInterior_201/Post-4.35"]
+visible = false
 mesh = SubResource("t190_s106")
 metadata/t190 = true
 
@@ -11369,6 +11750,7 @@ shape = SubResource("t190_s107")
 metadata/t190 = true
 
 [node name="Mesh" type="MeshInstance3D" parent="Floor2/RoomInterior_201/Post-2.55"]
+visible = false
 mesh = SubResource("t190_s108")
 metadata/t190 = true
 
@@ -11383,6 +11765,7 @@ shape = SubResource("t190_s109")
 metadata/t190 = true
 
 [node name="Mesh" type="MeshInstance3D" parent="Floor2/RoomInterior_201/Locker"]
+visible = false
 mesh = SubResource("t190_s110")
 metadata/t190 = true
 
@@ -11403,14 +11786,15 @@ shape = SubResource("t190_s111")
 metadata/t190 = true
 
 [node name="Hinge" type="Node3D" parent="Floor2/Door1"]
-position = Vector3(0.85, 0.01, 0)
 metadata/t190 = true
+position = Vector3(0.45, 0.01, 0)
 
 [node name="Leaf" type="Node3D" parent="Floor2/Door1/Hinge"]
 position = Vector3(-0.85, 1.19, 0)
 metadata/t190 = true
 
 [node name="Mesh" type="MeshInstance3D" parent="Floor2/Door1/Hinge/Leaf"]
+visible = false
 mesh = SubResource("t190_s112")
 metadata/t190 = true
 
@@ -11428,6 +11812,7 @@ shape = SubResource("t190_s113")
 metadata/t190 = true
 
 [node name="Mesh" type="MeshInstance3D" parent="Floor2/RoomInterior_202/Bunk0.4"]
+visible = false
 mesh = SubResource("t190_s114")
 metadata/t190 = true
 
@@ -11442,6 +11827,7 @@ shape = SubResource("t190_s115")
 metadata/t190 = true
 
 [node name="Mesh" type="MeshInstance3D" parent="Floor2/RoomInterior_202/Bunk1.45"]
+visible = false
 mesh = SubResource("t190_s116")
 metadata/t190 = true
 
@@ -11456,6 +11842,7 @@ shape = SubResource("t190_s117")
 metadata/t190 = true
 
 [node name="Mesh" type="MeshInstance3D" parent="Floor2/RoomInterior_202/Post-4.35"]
+visible = false
 mesh = SubResource("t190_s118")
 metadata/t190 = true
 
@@ -11470,6 +11857,7 @@ shape = SubResource("t190_s119")
 metadata/t190 = true
 
 [node name="Mesh" type="MeshInstance3D" parent="Floor2/RoomInterior_202/Post-2.55"]
+visible = false
 mesh = SubResource("t190_s120")
 metadata/t190 = true
 
@@ -11484,6 +11872,7 @@ shape = SubResource("t190_s121")
 metadata/t190 = true
 
 [node name="Mesh" type="MeshInstance3D" parent="Floor2/RoomInterior_202/Locker"]
+visible = false
 mesh = SubResource("t190_s122")
 metadata/t190 = true
 
@@ -11504,14 +11893,15 @@ shape = SubResource("t190_s123")
 metadata/t190 = true
 
 [node name="Hinge" type="Node3D" parent="Floor2/Door3"]
-position = Vector3(0.85, 0.01, 0)
 metadata/t190 = true
+position = Vector3(0.45, 0.01, 0)
 
 [node name="Leaf" type="Node3D" parent="Floor2/Door3/Hinge"]
 position = Vector3(-0.85, 1.19, 0)
 metadata/t190 = true
 
 [node name="Mesh" type="MeshInstance3D" parent="Floor2/Door3/Hinge/Leaf"]
+visible = false
 mesh = SubResource("t190_s124")
 metadata/t190 = true
 
@@ -11529,6 +11919,7 @@ shape = SubResource("t190_s125")
 metadata/t190 = true
 
 [node name="Mesh" type="MeshInstance3D" parent="Floor2/RoomInterior_204/Bunk0.4"]
+visible = false
 mesh = SubResource("t190_s126")
 metadata/t190 = true
 
@@ -11543,6 +11934,7 @@ shape = SubResource("t190_s127")
 metadata/t190 = true
 
 [node name="Mesh" type="MeshInstance3D" parent="Floor2/RoomInterior_204/Bunk1.45"]
+visible = false
 mesh = SubResource("t190_s128")
 metadata/t190 = true
 
@@ -11557,6 +11949,7 @@ shape = SubResource("t190_s129")
 metadata/t190 = true
 
 [node name="Mesh" type="MeshInstance3D" parent="Floor2/RoomInterior_204/Post-4.35"]
+visible = false
 mesh = SubResource("t190_s130")
 metadata/t190 = true
 
@@ -11571,6 +11964,7 @@ shape = SubResource("t190_s131")
 metadata/t190 = true
 
 [node name="Mesh" type="MeshInstance3D" parent="Floor2/RoomInterior_204/Post-2.55"]
+visible = false
 mesh = SubResource("t190_s132")
 metadata/t190 = true
 
@@ -11585,6 +11979,7 @@ shape = SubResource("t190_s133")
 metadata/t190 = true
 
 [node name="Mesh" type="MeshInstance3D" parent="Floor2/RoomInterior_204/Locker"]
+visible = false
 mesh = SubResource("t190_s134")
 metadata/t190 = true
 
@@ -11605,14 +12000,15 @@ shape = SubResource("t190_s135")
 metadata/t190 = true
 
 [node name="Hinge" type="Node3D" parent="Floor2/Door4"]
-position = Vector3(0.85, 0.01, 0)
 metadata/t190 = true
+position = Vector3(0.45, 0.01, 0)
 
 [node name="Leaf" type="Node3D" parent="Floor2/Door4/Hinge"]
 position = Vector3(-0.85, 1.19, 0)
 metadata/t190 = true
 
 [node name="Mesh" type="MeshInstance3D" parent="Floor2/Door4/Hinge/Leaf"]
+visible = false
 mesh = SubResource("t190_s136")
 metadata/t190 = true
 
@@ -11630,6 +12026,7 @@ shape = SubResource("t190_s137")
 metadata/t190 = true
 
 [node name="Mesh" type="MeshInstance3D" parent="Floor2/RoomInterior_205/Bunk0.4"]
+visible = false
 mesh = SubResource("t190_s138")
 metadata/t190 = true
 
@@ -11644,6 +12041,7 @@ shape = SubResource("t190_s139")
 metadata/t190 = true
 
 [node name="Mesh" type="MeshInstance3D" parent="Floor2/RoomInterior_205/Bunk1.45"]
+visible = false
 mesh = SubResource("t190_s140")
 metadata/t190 = true
 
@@ -11658,6 +12056,7 @@ shape = SubResource("t190_s141")
 metadata/t190 = true
 
 [node name="Mesh" type="MeshInstance3D" parent="Floor2/RoomInterior_205/Post-4.35"]
+visible = false
 mesh = SubResource("t190_s142")
 metadata/t190 = true
 
@@ -11672,6 +12071,7 @@ shape = SubResource("t190_s143")
 metadata/t190 = true
 
 [node name="Mesh" type="MeshInstance3D" parent="Floor2/RoomInterior_205/Post-2.55"]
+visible = false
 mesh = SubResource("t190_s144")
 metadata/t190 = true
 
@@ -11686,6 +12086,7 @@ shape = SubResource("t190_s145")
 metadata/t190 = true
 
 [node name="Mesh" type="MeshInstance3D" parent="Floor2/RoomInterior_205/Locker"]
+visible = false
 mesh = SubResource("t190_s146")
 metadata/t190 = true
 
@@ -11706,14 +12107,15 @@ shape = SubResource("t190_s147")
 metadata/t190 = true
 
 [node name="Hinge" type="Node3D" parent="Floor2/Door5"]
-position = Vector3(0.85, 0.01, 0)
 metadata/t190 = true
+position = Vector3(0.45, 0.01, 0)
 
 [node name="Leaf" type="Node3D" parent="Floor2/Door5/Hinge"]
 position = Vector3(-0.85, 1.19, 0)
 metadata/t190 = true
 
 [node name="Mesh" type="MeshInstance3D" parent="Floor2/Door5/Hinge/Leaf"]
+visible = false
 mesh = SubResource("t190_s148")
 metadata/t190 = true
 
@@ -11731,6 +12133,7 @@ shape = SubResource("t190_s149")
 metadata/t190 = true
 
 [node name="Mesh" type="MeshInstance3D" parent="Floor2/RoomInterior_206/Bunk0.4"]
+visible = false
 mesh = SubResource("t190_s150")
 metadata/t190 = true
 
@@ -11745,6 +12148,7 @@ shape = SubResource("t190_s151")
 metadata/t190 = true
 
 [node name="Mesh" type="MeshInstance3D" parent="Floor2/RoomInterior_206/Bunk1.45"]
+visible = false
 mesh = SubResource("t190_s152")
 metadata/t190 = true
 
@@ -11759,6 +12163,7 @@ shape = SubResource("t190_s153")
 metadata/t190 = true
 
 [node name="Mesh" type="MeshInstance3D" parent="Floor2/RoomInterior_206/Post-4.35"]
+visible = false
 mesh = SubResource("t190_s154")
 metadata/t190 = true
 
@@ -11773,6 +12178,7 @@ shape = SubResource("t190_s155")
 metadata/t190 = true
 
 [node name="Mesh" type="MeshInstance3D" parent="Floor2/RoomInterior_206/Post-2.55"]
+visible = false
 mesh = SubResource("t190_s156")
 metadata/t190 = true
 
@@ -11787,6 +12193,7 @@ shape = SubResource("t190_s157")
 metadata/t190 = true
 
 [node name="Mesh" type="MeshInstance3D" parent="Floor2/RoomInterior_206/Locker"]
+visible = false
 mesh = SubResource("t190_s158")
 metadata/t190 = true
 
@@ -11807,14 +12214,15 @@ shape = SubResource("t190_s159")
 metadata/t190 = true
 
 [node name="Hinge" type="Node3D" parent="Floor2/Door6"]
-position = Vector3(0.85, 0.01, 0)
 metadata/t190 = true
+position = Vector3(0.45, 0.01, 0)
 
 [node name="Leaf" type="Node3D" parent="Floor2/Door6/Hinge"]
 position = Vector3(-0.85, 1.19, 0)
 metadata/t190 = true
 
 [node name="Mesh" type="MeshInstance3D" parent="Floor2/Door6/Hinge/Leaf"]
+visible = false
 mesh = SubResource("t190_s160")
 metadata/t190 = true
 
@@ -11832,6 +12240,7 @@ shape = SubResource("t190_s161")
 metadata/t190 = true
 
 [node name="Mesh" type="MeshInstance3D" parent="Floor2/RoomInterior_207/Bunk0.4"]
+visible = false
 mesh = SubResource("t190_s162")
 metadata/t190 = true
 
@@ -11846,6 +12255,7 @@ shape = SubResource("t190_s163")
 metadata/t190 = true
 
 [node name="Mesh" type="MeshInstance3D" parent="Floor2/RoomInterior_207/Bunk1.45"]
+visible = false
 mesh = SubResource("t190_s164")
 metadata/t190 = true
 
@@ -11860,6 +12270,7 @@ shape = SubResource("t190_s165")
 metadata/t190 = true
 
 [node name="Mesh" type="MeshInstance3D" parent="Floor2/RoomInterior_207/Post-4.35"]
+visible = false
 mesh = SubResource("t190_s166")
 metadata/t190 = true
 
@@ -11874,6 +12285,7 @@ shape = SubResource("t190_s167")
 metadata/t190 = true
 
 [node name="Mesh" type="MeshInstance3D" parent="Floor2/RoomInterior_207/Post-2.55"]
+visible = false
 mesh = SubResource("t190_s168")
 metadata/t190 = true
 
@@ -11888,6 +12300,7 @@ shape = SubResource("t190_s169")
 metadata/t190 = true
 
 [node name="Mesh" type="MeshInstance3D" parent="Floor2/RoomInterior_207/Locker"]
+visible = false
 mesh = SubResource("t190_s170")
 metadata/t190 = true
 
@@ -11908,14 +12321,15 @@ shape = SubResource("t190_s171")
 metadata/t190 = true
 
 [node name="Hinge" type="Node3D" parent="Floor2/Door7"]
-position = Vector3(0.85, 0.01, 0)
 metadata/t190 = true
+position = Vector3(0.45, 0.01, 0)
 
 [node name="Leaf" type="Node3D" parent="Floor2/Door7/Hinge"]
 position = Vector3(-0.85, 1.19, 0)
 metadata/t190 = true
 
 [node name="Mesh" type="MeshInstance3D" parent="Floor2/Door7/Hinge/Leaf"]
+visible = false
 mesh = SubResource("t190_s172")
 metadata/t190 = true
 
@@ -11933,6 +12347,7 @@ shape = SubResource("t190_s173")
 metadata/t190 = true
 
 [node name="Mesh" type="MeshInstance3D" parent="Floor2/RoomInterior_208/Bunk0.4"]
+visible = false
 mesh = SubResource("t190_s174")
 metadata/t190 = true
 
@@ -11947,6 +12362,7 @@ shape = SubResource("t190_s175")
 metadata/t190 = true
 
 [node name="Mesh" type="MeshInstance3D" parent="Floor2/RoomInterior_208/Bunk1.45"]
+visible = false
 mesh = SubResource("t190_s176")
 metadata/t190 = true
 
@@ -11961,6 +12377,7 @@ shape = SubResource("t190_s177")
 metadata/t190 = true
 
 [node name="Mesh" type="MeshInstance3D" parent="Floor2/RoomInterior_208/Post-4.35"]
+visible = false
 mesh = SubResource("t190_s178")
 metadata/t190 = true
 
@@ -11975,6 +12392,7 @@ shape = SubResource("t190_s179")
 metadata/t190 = true
 
 [node name="Mesh" type="MeshInstance3D" parent="Floor2/RoomInterior_208/Post-2.55"]
+visible = false
 mesh = SubResource("t190_s180")
 metadata/t190 = true
 
@@ -11989,6 +12407,7 @@ shape = SubResource("t190_s181")
 metadata/t190 = true
 
 [node name="Mesh" type="MeshInstance3D" parent="Floor2/RoomInterior_208/Locker"]
+visible = false
 mesh = SubResource("t190_s182")
 metadata/t190 = true
 
@@ -12022,66 +12441,370 @@ position = Vector3(1.86, 1.2, 0)
 
 [node name="W2Rooms" parent="Floor3" instance=ExtResource("w2_rooms3")]
 
+[node name="wall_door" parent="KitDetail3/Frame0" index="0"]
+visible = false
+
+[node name="Surround" parent="KitDetail3/Frame0" instance=ExtResource("w2_surround")]
+
 [node name="Model" parent="KitDetail3/Plate0" instance=ExtResource("w2_plate")]
+
+[node name="wall_door" parent="KitDetail3/Frame1" index="0"]
+visible = false
+
+[node name="Surround" parent="KitDetail3/Frame1" instance=ExtResource("w2_surround")]
 
 [node name="Model" parent="KitDetail3/Plate1" instance=ExtResource("w2_plate")]
 
+[node name="wall_door" parent="KitDetail3/Frame2" index="0"]
+visible = false
+
+[node name="Surround" parent="KitDetail3/Frame2" instance=ExtResource("w2_surround")]
+
 [node name="Model" parent="KitDetail3/Plate2" instance=ExtResource("w2_plate")]
+
+[node name="wall_door" parent="KitDetail3/Frame3" index="0"]
+visible = false
+
+[node name="Surround" parent="KitDetail3/Frame3" instance=ExtResource("w2_surround")]
 
 [node name="Model" parent="KitDetail3/Plate3" instance=ExtResource("w2_plate")]
 
+[node name="wall_door" parent="KitDetail3/Frame4" index="0"]
+visible = false
+
+[node name="Surround" parent="KitDetail3/Frame4" instance=ExtResource("w2_surround")]
+
 [node name="Model" parent="KitDetail3/Plate4" instance=ExtResource("w2_plate")]
+
+[node name="wall_door" parent="KitDetail3/Frame5" index="0"]
+visible = false
+
+[node name="Surround" parent="KitDetail3/Frame5" instance=ExtResource("w2_surround")]
 
 [node name="Model" parent="KitDetail3/Plate5" instance=ExtResource("w2_plate")]
 
+[node name="wall_door" parent="KitDetail3/Frame6" index="0"]
+visible = false
+
+[node name="Surround" parent="KitDetail3/Frame6" instance=ExtResource("w2_surround")]
+
 [node name="Model" parent="KitDetail3/Plate6" instance=ExtResource("w2_plate")]
+
+[node name="wall_door" parent="KitDetail3/Frame7" index="0"]
+visible = false
+
+[node name="Surround" parent="KitDetail3/Frame7" instance=ExtResource("w2_surround")]
 
 [node name="Model" parent="KitDetail3/Plate7" instance=ExtResource("w2_plate")]
 
-[node name="LeafRight" parent="Floor3/Door0/Hinge/Leaf" instance=ExtResource("w2_leaf_r")]
+[node name="Model" parent="Floor3/Door0/Hinge/Leaf" instance=ExtResource("w2_leaf")]
 position = Vector3(0.85, -1.19, 0)
 
-[node name="LeafLeft" parent="Floor3/Door0/Hinge/Leaf" instance=ExtResource("w2_leaf_l")]
-position = Vector3(-0.85, -1.19, 0)
-
-[node name="LeafRight" parent="Floor3/Door1/Hinge/Leaf" instance=ExtResource("w2_leaf_r")]
+[node name="Model" parent="Floor3/Door1/Hinge/Leaf" instance=ExtResource("w2_leaf")]
 position = Vector3(0.85, -1.19, 0)
 
-[node name="LeafLeft" parent="Floor3/Door1/Hinge/Leaf" instance=ExtResource("w2_leaf_l")]
-position = Vector3(-0.85, -1.19, 0)
-
-[node name="LeafRight" parent="Floor3/Door2/Hinge/Leaf" instance=ExtResource("w2_leaf_r")]
+[node name="Model" parent="Floor3/Door2/Hinge/Leaf" instance=ExtResource("w2_leaf")]
 position = Vector3(0.85, -1.19, 0)
 
-[node name="LeafLeft" parent="Floor3/Door2/Hinge/Leaf" instance=ExtResource("w2_leaf_l")]
-position = Vector3(-0.85, -1.19, 0)
-
-[node name="LeafRight" parent="Floor3/Door3/Hinge/Leaf" instance=ExtResource("w2_leaf_r")]
+[node name="Model" parent="Floor3/Door3/Hinge/Leaf" instance=ExtResource("w2_leaf")]
 position = Vector3(0.85, -1.19, 0)
 
-[node name="LeafLeft" parent="Floor3/Door3/Hinge/Leaf" instance=ExtResource("w2_leaf_l")]
-position = Vector3(-0.85, -1.19, 0)
-
-[node name="LeafRight" parent="Floor3/Door4/Hinge/Leaf" instance=ExtResource("w2_leaf_r")]
+[node name="Model" parent="Floor3/Door4/Hinge/Leaf" instance=ExtResource("w2_leaf")]
 position = Vector3(0.85, -1.19, 0)
 
-[node name="LeafLeft" parent="Floor3/Door4/Hinge/Leaf" instance=ExtResource("w2_leaf_l")]
-position = Vector3(-0.85, -1.19, 0)
-
-[node name="LeafRight" parent="Floor3/Door5/Hinge/Leaf" instance=ExtResource("w2_leaf_r")]
+[node name="Model" parent="Floor3/Door5/Hinge/Leaf" instance=ExtResource("w2_leaf")]
 position = Vector3(0.85, -1.19, 0)
 
-[node name="LeafLeft" parent="Floor3/Door5/Hinge/Leaf" instance=ExtResource("w2_leaf_l")]
-position = Vector3(-0.85, -1.19, 0)
-
-[node name="LeafRight" parent="Floor3/Door6/Hinge/Leaf" instance=ExtResource("w2_leaf_r")]
+[node name="Model" parent="Floor3/Door6/Hinge/Leaf" instance=ExtResource("w2_leaf")]
 position = Vector3(0.85, -1.19, 0)
 
-[node name="LeafLeft" parent="Floor3/Door6/Hinge/Leaf" instance=ExtResource("w2_leaf_l")]
-position = Vector3(-0.85, -1.19, 0)
-
-[node name="LeafRight" parent="Floor3/Door7/Hinge/Leaf" instance=ExtResource("w2_leaf_r")]
+[node name="Model" parent="Floor3/Door7/Hinge/Leaf" instance=ExtResource("w2_leaf")]
 position = Vector3(0.85, -1.19, 0)
 
-[node name="LeafLeft" parent="Floor3/Door7/Hinge/Leaf" instance=ExtResource("w2_leaf_l")]
-position = Vector3(-0.85, -1.19, 0)
+[node name="W2Hall" parent="Floor2" instance=ExtResource("w2_hall2")]
+
+[node name="W2Rooms" parent="Floor2" instance=ExtResource("w2_rooms2")]
+
+[node name="wall_door" parent="KitDetail2/Frame0" index="0"]
+visible = false
+
+[node name="Surround" parent="KitDetail2/Frame0" instance=ExtResource("w2_surround")]
+
+[node name="Model" parent="KitDetail2/Plate0" instance=ExtResource("w2_plate")]
+
+[node name="wall_door" parent="KitDetail2/Frame1" index="0"]
+visible = false
+
+[node name="Surround" parent="KitDetail2/Frame1" instance=ExtResource("w2_surround")]
+
+[node name="Model" parent="KitDetail2/Plate1" instance=ExtResource("w2_plate")]
+
+[node name="wall_door" parent="KitDetail2/Frame2" index="0"]
+visible = false
+
+[node name="Surround" parent="KitDetail2/Frame2" instance=ExtResource("w2_surround")]
+
+[node name="Model" parent="KitDetail2/Plate2" instance=ExtResource("w2_plate")]
+
+[node name="wall_door" parent="KitDetail2/Frame3" index="0"]
+visible = false
+
+[node name="Surround" parent="KitDetail2/Frame3" instance=ExtResource("w2_surround")]
+
+[node name="Model" parent="KitDetail2/Plate3" instance=ExtResource("w2_plate")]
+
+[node name="wall_door" parent="KitDetail2/Frame4" index="0"]
+visible = false
+
+[node name="Surround" parent="KitDetail2/Frame4" instance=ExtResource("w2_surround")]
+
+[node name="Model" parent="KitDetail2/Plate4" instance=ExtResource("w2_plate")]
+
+[node name="wall_door" parent="KitDetail2/Frame5" index="0"]
+visible = false
+
+[node name="Surround" parent="KitDetail2/Frame5" instance=ExtResource("w2_surround")]
+
+[node name="Model" parent="KitDetail2/Plate5" instance=ExtResource("w2_plate")]
+
+[node name="wall_door" parent="KitDetail2/Frame6" index="0"]
+visible = false
+
+[node name="Surround" parent="KitDetail2/Frame6" instance=ExtResource("w2_surround")]
+
+[node name="Model" parent="KitDetail2/Plate6" instance=ExtResource("w2_plate")]
+
+[node name="wall_door" parent="KitDetail2/Frame7" index="0"]
+visible = false
+
+[node name="Surround" parent="KitDetail2/Frame7" instance=ExtResource("w2_surround")]
+
+[node name="Model" parent="KitDetail2/Plate7" instance=ExtResource("w2_plate")]
+
+[node name="Model" parent="Floor2/Door0/Hinge/Leaf" instance=ExtResource("w2_leaf")]
+position = Vector3(0.85, -1.19, 0)
+
+[node name="Model" parent="Floor2/Door1/Hinge/Leaf" instance=ExtResource("w2_leaf")]
+position = Vector3(0.85, -1.19, 0)
+
+[node name="Model" parent="Floor2/Door3/Hinge/Leaf" instance=ExtResource("w2_leaf")]
+position = Vector3(0.85, -1.19, 0)
+
+[node name="Model" parent="Floor2/Door4/Hinge/Leaf" instance=ExtResource("w2_leaf")]
+position = Vector3(0.85, -1.19, 0)
+
+[node name="Model" parent="Floor2/Door5/Hinge/Leaf" instance=ExtResource("w2_leaf")]
+position = Vector3(0.85, -1.19, 0)
+
+[node name="Model" parent="Floor2/Door6/Hinge/Leaf" instance=ExtResource("w2_leaf")]
+position = Vector3(0.85, -1.19, 0)
+
+[node name="Model" parent="Floor2/Door7/Hinge/Leaf" instance=ExtResource("w2_leaf")]
+position = Vector3(0.85, -1.19, 0)
+
+[node name="Room203Furnished" type="Node3D" parent="."]
+
+[node name="BunkFrame" parent="Room203Furnished" instance=ExtResource("w2_407_bunk_frame")]
+position = Vector3(12.1, -6.6, -4.6)
+rotation_degrees = Vector3(0, 0, 0)
+
+[node name="MattressLow" parent="Room203Furnished" instance=ExtResource("w2_407_bunk_mattress")]
+position = Vector3(12.1, -6.22, -4.6)
+rotation_degrees = Vector3(0, 0, 0)
+
+[node name="MattressHigh" parent="Room203Furnished" instance=ExtResource("w2_407_bunk_mattress")]
+position = Vector3(12.1, -5.45, -4.6)
+rotation_degrees = Vector3(0, 0, 0)
+
+[node name="PillowLow" parent="Room203Furnished" instance=ExtResource("w2_407_pillow")]
+position = Vector3(12.1, -6.17, -3.93)
+rotation_degrees = Vector3(0, 4, 0)
+
+[node name="PillowHigh" parent="Room203Furnished" instance=ExtResource("w2_407_pillow")]
+position = Vector3(12.1, -5.4, -3.93)
+rotation_degrees = Vector3(0, -6, 0)
+
+[node name="BlanketLow" parent="Room203Furnished" instance=ExtResource("w2_407_blanket_messy")]
+position = Vector3(12.1, -6.17, -4.85)
+rotation_degrees = Vector3(0, 180, 0)
+
+[node name="BlanketHigh" parent="Room203Furnished" instance=ExtResource("w2_407_blanket_folded")]
+position = Vector3(12.1, -5.4, -5.28)
+rotation_degrees = Vector3(0, 3, 0)
+
+[node name="Desk" parent="Room203Furnished" instance=ExtResource("w2_407_desk")]
+position = Vector3(15.2, -6.6, -5.8)
+rotation_degrees = Vector3(0, 180, 0)
+
+[node name="Books" parent="Room203Furnished" instance=ExtResource("w2_407_books")]
+position = Vector3(15.55, -5.84, -5.95)
+rotation_degrees = Vector3(0, 12, 0)
+
+[node name="Notebook" parent="Room203Furnished" instance=ExtResource("w2_407_notebook")]
+position = Vector3(14.9, -5.84, -5.75)
+rotation_degrees = Vector3(0, -20, 0)
+
+[node name="Stool" parent="Room203Furnished" instance=ExtResource("w2_407_stool")]
+position = Vector3(15.05, -6.6, -5.05)
+rotation_degrees = Vector3(0, 15, 0)
+
+[node name="Bucket" parent="Room203Furnished" instance=ExtResource("w2_407_bucket")]
+position = Vector3(12.35, -6.6, -7.05)
+rotation_degrees = Vector3(0, 0, 0)
+
+[node name="Slippers" parent="Room203Furnished" instance=ExtResource("w2_407_slippers")]
+position = Vector3(12.85, -6.6, -3.1)
+rotation_degrees = Vector3(0, 70, 0)
+
+[node name="Room203Leaf" parent="." instance=ExtResource("w2_leaf")]
+position = Vector3(14.2, -6.59, -0.088)
+rotation_degrees = Vector3(0, 180, 0)
+
+[node name="W2Hall" parent="Floor1" instance=ExtResource("w2_hall1")]
+
+[node name="W2Rooms" parent="Floor1" instance=ExtResource("w2_rooms1")]
+
+[node name="wall_door" parent="KitDetail1/Frame0" index="0"]
+visible = false
+
+[node name="Surround" parent="KitDetail1/Frame0" instance=ExtResource("w2_surround")]
+
+[node name="Model" parent="KitDetail1/Plate0" instance=ExtResource("w2_plate")]
+
+[node name="wall_door" parent="KitDetail1/Frame1" index="0"]
+visible = false
+
+[node name="Surround" parent="KitDetail1/Frame1" instance=ExtResource("w2_surround")]
+
+[node name="Model" parent="KitDetail1/Plate1" instance=ExtResource("w2_plate")]
+
+[node name="wall_door" parent="KitDetail1/Frame2" index="0"]
+visible = false
+
+[node name="Surround" parent="KitDetail1/Frame2" instance=ExtResource("w2_surround")]
+
+[node name="Model" parent="KitDetail1/Plate2" instance=ExtResource("w2_plate")]
+
+[node name="wall_door" parent="KitDetail1/Frame3" index="0"]
+visible = false
+
+[node name="Surround" parent="KitDetail1/Frame3" instance=ExtResource("w2_surround")]
+
+[node name="Model" parent="KitDetail1/Plate3" instance=ExtResource("w2_plate")]
+
+[node name="wall_door" parent="KitDetail1/Frame4" index="0"]
+visible = false
+
+[node name="Surround" parent="KitDetail1/Frame4" instance=ExtResource("w2_surround")]
+
+[node name="Model" parent="KitDetail1/Plate4" instance=ExtResource("w2_plate")]
+
+[node name="wall_door" parent="KitDetail1/Frame5" index="0"]
+visible = false
+
+[node name="Surround" parent="KitDetail1/Frame5" instance=ExtResource("w2_surround")]
+
+[node name="Model" parent="KitDetail1/Plate5" instance=ExtResource("w2_plate")]
+
+[node name="wall_door" parent="KitDetail1/Frame6" index="0"]
+visible = false
+
+[node name="Surround" parent="KitDetail1/Frame6" instance=ExtResource("w2_surround")]
+
+[node name="Model" parent="KitDetail1/Plate6" instance=ExtResource("w2_plate")]
+
+[node name="wall_door" parent="KitDetail1/Frame7" index="0"]
+visible = false
+
+[node name="Surround" parent="KitDetail1/Frame7" instance=ExtResource("w2_surround")]
+
+[node name="Model" parent="KitDetail1/Plate7" instance=ExtResource("w2_plate")]
+
+[node name="Model" parent="Floor1/Door2" instance=ExtResource("w2_leaf")]
+position = Vector3(0.45, -1.19, 0)
+
+[node name="Model" parent="Floor1/Door5" instance=ExtResource("w2_leaf")]
+position = Vector3(0.45, -1.19, 0)
+
+[node name="Model" parent="Floor1/Door7" instance=ExtResource("w2_leaf")]
+position = Vector3(0.45, -1.19, 0)
+
+[node name="F1BrokenDoors" type="Node3D" parent="."]
+
+[node name="Door1Leaf" parent="F1BrokenDoors" instance=ExtResource("w2_leaf")]
+position = Vector3(10.15, -9.917, -0.6)
+rotation_degrees = Vector3(-90, 8, 0)
+
+[node name="Door4Leaf" parent="F1BrokenDoors" instance=ExtResource("w2_leaf")]
+position = Vector3(26.65, -9.917, -0.6)
+rotation_degrees = Vector3(-90, 8, 0)
+
+[node name="Door6Leaf" parent="F1BrokenDoors" instance=ExtResource("w2_leaf")]
+position = Vector3(37.65, -9.917, -0.6)
+rotation_degrees = Vector3(-90, 8, 0)
+
+[node name="ManagerDoorLeaf" parent="." instance=ExtResource("w2_leaf")]
+position = Vector3(3.2, -9.89, -0.088)
+rotation_degrees = Vector3(0, 180, 0)
+
+[node name="ManagerDeskModel" parent="." instance=ExtResource("w2_manager_desk")]
+position = Vector3(1.4, -9.9, -3.2)
+rotation_degrees = Vector3(0, 180, 0)
+
+[node name="Model" parent="Knife" instance=ExtResource("w2_knife")]
+
+[node name="W2ManagerWindow" parent="." instance=ExtResource("w2_window")]
+
+[node name="W2ManagerRoom" parent="." instance=ExtResource("w2_manager_room")]
+
+[node name="W2Lobby" type="Node3D" parent="."]
+
+[node name="NoticeBack" parent="W2Lobby" instance=ExtResource("w2_notice_board")]
+position = Vector3(19.25, -8.35, -7.494)
+
+[node name="NoticeWest" parent="W2Lobby" instance=ExtResource("w2_notice_board")]
+position = Vector3(16.583, -8.35, -4.2)
+rotation_degrees = Vector3(0, 90, 0)
+
+[node name="Frame" parent="MainDoor" instance=ExtResource("w2_main_frame")]
+
+[node name="Model" parent="MainDoor/Leaf" instance=ExtResource("w2_main_leaf")]
+
+[node name="LeafB" type="Node3D" parent="MainDoor"]
+position = Vector3(1.5, 1.2, 0)
+
+[node name="Model" parent="MainDoor/LeafB" instance=ExtResource("w2_main_leaf_b")]
+
+[node name="Model" parent="MainDoor/Chains" instance=ExtResource("w2_main_chain")]
+
+[node name="Model" parent="FireExtinguisher" instance=ExtResource("w2_ext")]
+
+[node name="ExtinguisherBracket" type="Node3D" parent="."]
+position = Vector3(48.86, -5.8, 2.4)
+
+[node name="Model" parent="ExtinguisherBracket" instance=ExtResource("w2_ext_bracket")]
+
+[editable path="KitDetail1/Frame0"]
+[editable path="KitDetail1/Frame1"]
+[editable path="KitDetail1/Frame2"]
+[editable path="KitDetail1/Frame3"]
+[editable path="KitDetail1/Frame4"]
+[editable path="KitDetail1/Frame5"]
+[editable path="KitDetail1/Frame6"]
+[editable path="KitDetail1/Frame7"]
+[editable path="KitDetail2/Frame0"]
+[editable path="KitDetail2/Frame1"]
+[editable path="KitDetail2/Frame2"]
+[editable path="KitDetail2/Frame3"]
+[editable path="KitDetail2/Frame4"]
+[editable path="KitDetail2/Frame5"]
+[editable path="KitDetail2/Frame6"]
+[editable path="KitDetail2/Frame7"]
+[editable path="KitDetail3/Frame0"]
+[editable path="KitDetail3/Frame1"]
+[editable path="KitDetail3/Frame2"]
+[editable path="KitDetail3/Frame3"]
+[editable path="KitDetail3/Frame4"]
+[editable path="KitDetail3/Frame5"]
+[editable path="KitDetail3/Frame6"]
+[editable path="KitDetail3/Frame7"]

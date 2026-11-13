@@ -41,6 +41,16 @@ materials/extract_format=0
 materials/extract_path=""
 _subresources={
 "materials": {
+"W1Black": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Black.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Black.tres"
+},
+"W1Soffit": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Soffit.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Soffit.tres"
+},
 "W1StairDado": {
 "use_external/enabled": true,
 "use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1StairDado.tres",
@@ -51,55 +61,45 @@ _subresources={
 "use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1StairWall.tres",
 "use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1StairWall.tres"
 },
+"W1Steel": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Steel.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Steel.tres"
+},
 "W1Terrazzo": {
 "use_external/enabled": true,
 "use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Terrazzo.tres",
 "use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Terrazzo.tres"
-},
-"W1Soffit": {
-"use_external/enabled": true,
-"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Soffit.tres",
-"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Soffit.tres"
-},
-"W2BunkPaint": {
-"use_external/enabled": true,
-"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave2/materials/W2BunkPaint.tres",
-"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave2/materials/W2BunkPaint.tres"
 },
 "W1WoodPale": {
 "use_external/enabled": true,
 "use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1WoodPale.tres",
 "use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1WoodPale.tres"
 },
-"W2Mattress": {
+"W2BunkPaint": {
 "use_external/enabled": true,
-"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave2/materials/W2Mattress.tres",
-"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave2/materials/W2Mattress.tres"
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave2/materials/W2BunkPaint.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave2/materials/W2BunkPaint.tres"
 },
 "W2Chieu": {
 "use_external/enabled": true,
 "use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave2/materials/W2Chieu.tres",
 "use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave2/materials/W2Chieu.tres"
 },
-"W2Pillow": {
-"use_external/enabled": true,
-"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave2/materials/W2Pillow.tres",
-"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave2/materials/W2Pillow.tres"
-},
 "W2LockerPaint": {
 "use_external/enabled": true,
 "use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave2/materials/W2LockerPaint.tres",
 "use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave2/materials/W2LockerPaint.tres"
 },
-"W1Black": {
+"W2Mattress": {
 "use_external/enabled": true,
-"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Black.tres",
-"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Black.tres"
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave2/materials/W2Mattress.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave2/materials/W2Mattress.tres"
 },
-"W1Steel": {
+"W2Pillow": {
 "use_external/enabled": true,
-"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Steel.tres",
-"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Steel.tres"
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave2/materials/W2Pillow.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave2/materials/W2Pillow.tres"
 }
 }
 }

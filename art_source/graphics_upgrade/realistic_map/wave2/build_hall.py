@@ -15,11 +15,12 @@ every PS1 collider; the new surfaces stand 3 mm in front of the PS1 faces they c
                                  2-3 a light bunk and a locker inside the PS1 RoomInterior colliders (room 203 gets room
                                  407's furniture in the scene instead)
   kit (local frames, instanced in building_b.tscn):
-    door_surround.glb        replaces the PS1 wall_door kit under KitDetail<N>/Frame<i> (origin: the doorway's
-                             centre on the floor): linings, a transom bar over the 2.4 m leaves, stops, architraves
-                             both sides, a granite threshold, hinge knuckles, the green backing of the room plate
-    room_door_leaf_right.glb / room_door_leaf_left.glb   one leaf of a double door each, origin on its hinge line at
-                             the leaf's foot; under Door<i>/Hinge/Leaf (RoomDoor) or a shut Door<i> body
+    door_surround.glb        KitDetail<N>/Frame<i>/Surround (origin: the doorway's centre on the floor) over the
+                             wall_door kit, whose mesh hides and whose collision (a 0.9 x 2.1 m doorway) stays:
+                             linings, stops, architraves both sides, a granite threshold, hinge knuckles, the green
+                             backing of the room plate
+    room_door_leaf.glb       the single leaf, origin on its hinge line at its foot; under Door<i>/Hinge/Leaf
+                             (RoomDoor, its Hinge on the doorway's edge), a shut Door<i> body, or standing open
     room_plate.glb           the aluminium plate (no digits: KitDetail<N>/Plate<i>/Number prints them)
 """
 import math
@@ -39,6 +40,7 @@ SKIRT_OUT = 0.01
 FLOOR_LIFT = 0.002
 ROW = {3: 2.0 / 3.0, 2: 1.0 / 3.0, 1: 0.0}  # UV2 v base of each floor's row in the hall masks
 CHUNKS = ((0, 1), (2, 3), (4, 5), (6, 7))
+W_INNER = L.WINDOW["z"] + L.WINDOW["depth"] / 2
 BEAM_W = 0.25
 BEAM_D = 0.35
 EDGE_BEAM = 3.75  # the edge beam's inner face (z); its outer face is the slab edge at 4.0
@@ -104,7 +106,7 @@ def hall_chunk(floor, chunk):
 	part = K.Part("Hall%d" % CHUNKS.index(chunk))
 	face = L.FACE + COVER
 	wall_uv2 = lambda s, h: (s / 44.0, row_v(floor, h / L.CEILING))  # noqa: E731
-	holes = [(L.door_x(i) - L.DOOR_HALF, L.door_x(i) + L.DOOR_HALF, L.DOOR_TOP) for i in range(L.BAYS)]
+	holes = [(L.door_x(i) - L.KIT_HALF, L.door_x(i) + L.KIT_HALF, L.KIT_TOP) for i in range(L.BAYS)]
 	wx0 = x0 - (L.END_HALF + COVER) if x0 == L.X0 else x0
 	wx1 = x1 + (L.END_HALF + COVER) if x1 == L.X1 else x1
 	wall(part, "z", face, wx0, wx1, y, holes, (0, 0, 1), ("W2HallDado", "W2HallWall"), wall_uv2)
@@ -118,6 +120,10 @@ def hall_chunk(floor, chunk):
 		if end:
 			wall(part, "x", x, 4.025, 4.175, y, [], (facing, 0, 0), ("W2HallDado", "W2HallWall"),
 				lambda s, h: (x / 44.0, row_v(floor, h / L.CEILING)), skirting=False)
+			# ...and the 10 cm of their inside face that stands past the stairwell, over the corridor's end.
+			a, b = sorted((x, x - facing * (0.1 + COVER)))
+			wall(part, "z", 4.025 - COVER, a, b, y, [], (0, 0, -1), ("W2HallDado", "W2HallWall"),
+				lambda s, h: (s / 44.0, row_v(floor, h / L.CEILING)), skirting=False)
 	# Floor: terrazzo over the slab, to the rail's curb (floor 1: the parapet, and out to the main door).
 	front = L.RAIL_FRONT if floor != 1 else L.RAIL_FRONT - COVER
 	floor_uv2 = lambda co: (co.x / 44.0, row_v(floor, -co.y / 4.0))  # noqa: E731
@@ -233,12 +239,20 @@ def room_shell(part, floor, i):
 	"""Walls, floor, ceiling and skirting of bay i's room (all faces 3 mm in front of the PS1 boxes)."""
 	y = L.FLOORS[floor]
 	rx0, rx1 = L.bay_span(i)
+	# The stair towers' corridor-side walls (MainStairs Wall0.08 to x 0.16, FireStairs Wall43.92 from x 43.84,
+	# z -6.2..-0.2) stand 6 cm into the end rooms: their plaster goes in front of those.
+	if i == 0:
+		rx0 = L.STAIR_WALL_W
+	if i == L.BAYS - 1:
+		rx1 = L.STAIR_WALL_E
 	rx0, rx1 = rx0 + COVER, rx1 - COVER
 	back = L.BACK_FACE + COVER
+	if floor == 1 and i == 0:
+		back = W_INNER + COVER  # the window's sill and head boxes are 2 cm deeper than the back wall
 	front = -L.FACE - COVER
 	dx = L.door_x(i)
 	mats = ("W1StairDado", "W1StairWall")
-	door = [(dx - L.DOOR_HALF, dx + L.DOOR_HALF, L.DOOR_TOP)]
+	door = [(dx - L.KIT_HALF, dx + L.KIT_HALF, L.KIT_TOP)]
 	along = lambda a, b: (lambda s, h: ((s - a) / (b - a), h / 3.3))  # noqa: E731
 	wall(part, "z", front, rx0, rx1, y, door, (0, 0, -1), mats, along(rx0, rx1))
 	holes = []
@@ -321,71 +335,63 @@ def rooms(floor):
 # ---------------------------------------------------------------- kit (local frames)
 
 def door_surround():
-	"""Origin: the doorway's centre on the floor (KitDetail<N>/Frame<i> stands at (x, y, 0))."""
+	"""Under KitDetail<N>/Frame<i> (origin: the doorway's centre on the floor), over the wall_door kit's hidden mesh,
+	round its collision opening (x +/- 0.45, y 0..2.1, z +/- 0.1): linings on the reveals, stops, architraves on
+	both faces, a granite threshold, hinge knuckles on the +X jamb, the green backing of the room plate."""
 	part = K.Part("DoorSurround")
-	h, face = L.DOOR_HALF, L.FACE + COVER
+	h, top, d = L.KIT_HALF, L.KIT_TOP, L.KIT_DEPTH
+	face = L.FACE + COVER
 	paint = "W1DoorPaint"
-	lin = 0.004
+	lin = 0.003
 	for s in (-1, 1):
-		gbox(part, paint, (s * (h - lin), 0.008, -face), (s * h, 2.392, face))
-		# Stops behind the leaves (they close from the corridor side at z 0.03..0.07).
-		gbox(part, paint, (s * (h - lin - 0.011), 0.008, 0.012), (s * (h - lin), 2.392, 0.03))
+		gbox(part, paint, (s * (h - lin), 0.008, -d), (s * h, top, d))
+		# Stops behind the leaf (it shuts from the corridor side at z 0.02..0.06, its face on the Blocker's).
+		gbox(part, paint, (s * (h - lin - 0.011), 0.008, 0.005), (s * (h - lin), top - lin, 0.02))
 		for side in (-1, 1):
 			z0, z1 = (face, face + 0.022) if side > 0 else (-face - 0.022, -face)
-			gbox(part, paint, (s * h, 0.0, z0), (s * (h + 0.07), 2.57, z1), bevel=0.004)
-		# Hinge knuckles on the jamb, one leaf each side.
-		for ky in (0.26, 1.21, 2.14):
-			part.cylinder("W1Steel", tuple(G(s * (h - 0.007), ky, 0.074)), 0.007, 0.1, axis="Z", segments=10)
-			gbox(part, "W1Steel", (s * (h - 0.004), ky - 0.045, 0.06), (s * (h - 0.001), ky + 0.045, 0.074))
-	# The transom bar over the 2.4 m leaves fills the opening's top (y 2.392..2.5), its lining, the stop.
-	gbox(part, paint, (-h, 2.392, -face), (h, 2.5, face), bevel=0.002)
-	gbox(part, paint, (-h + lin, 2.38, 0.012), (h - lin, 2.392, 0.03))
+			gbox(part, paint, (s * h, 0.0, z0), (s * (h + 0.07), top + 0.07, z1), bevel=0.004)
+	gbox(part, paint, (-h, top - lin, -d), (h, top, d))
+	gbox(part, paint, (-h + lin, top - lin - 0.011, 0.005), (h - lin, top - lin, 0.02))
 	for side in (-1, 1):
 		z0, z1 = (face, face + 0.022) if side > 0 else (-face - 0.022, -face)
-		gbox(part, paint, (-(h + 0.07), 2.5, z0), (h + 0.07, 2.57, z1), bevel=0.004)
-	# Granite threshold (6 mm proud of the terrazzo).
-	gbox(part, "W1Granite", (-h, 0.0, -face), (h, 0.008, face), bevel=0.002)
-	# The plate's green backing on the wall over the head (its front at z 0.105: the plate stands proud of it).
+		gbox(part, paint, (-(h + 0.07), top, z0), (h + 0.07, top + 0.07, z1), bevel=0.004)
+	gbox(part, "W1Granite", (-h, 0.0, -d), (h, 0.008, d), bevel=0.002)
+	# Hinge knuckles on the +X jamb, on the RoomDoor's pivot line (x 0.45), in front of the leaf.
+	for ky in (0.24, 1.05, 1.86):
+		part.cylinder("W1Steel", tuple(G(h - 0.004, ky, 0.064)), 0.007, 0.1, axis="Z", segments=10)
+		gbox(part, "W1Steel", (h - 0.003, ky - 0.045, 0.045), (h, ky + 0.045, 0.06))
+	# The plate's green backing on the wall over the door (its front at z 0.105: the plate stands proud of it).
 	gbox(part, paint, (-0.19, 2.62, face), (0.19, 2.8, face + 0.022), bevel=0.004)
 	return K.build(part)
 
 
-def leaf(side):
-	"""One leaf of the double door, 0.836 x 2.38 x 0.04 at z 0.03..0.07; origin on its hinge line at its foot.
-	side 'right': the hinge on its +x edge (the leaf runs to -x), 'left' the mirror. Raised panels both faces,
-	a lever handle and a lock on the right leaf (the active one), flush bolts on the left one."""
-	s = -1 if side == "right" else 1  # direction from the hinge to the meeting edge
-	part = K.Part("Leaf" + side.capitalize())
+def leaf():
+	"""The single leaf, 0.89 x 2.08 x 0.04 at z 0.02..0.06 (its corridor face on the RoomDoor Blocker's); origin on
+	its hinge line (x 0) at its foot, the leaf running to -X. Four raised panels both faces, a lever handle both faces and a key escutcheon by the edge."""
+	part = K.Part("Leaf")
 	paint = "W1DoorPaint"
-	a, b = 0.0045, 0.8425  # from the hinge line
-	xs = sorted((s * a, s * b))
-	z0, z1 = 0.03, 0.07
-	H = 2.38
-	stile, top_rail, mid_rail, bottom_rail = 0.11, 0.12, 0.18, 0.22
-	gbox(part, paint, (xs[0], 0.0, z0 + 0.008), (xs[1], H, z1 - 0.008))
-	inner = (xs[0] + stile, xs[1] - stile)
-	for lo, hi in ((xs[0], xs[0] + stile), (xs[1] - stile, xs[1])):
+	x0, x1 = -0.8955, -0.0045
+	z0, z1 = 0.02, 0.06
+	H = 2.08
+	stile, top_rail, lock_rail, bottom_rail, muntin = 0.1, 0.11, (0.92, 1.1), 0.2, 0.08
+	gbox(part, paint, (x0, 0.0, z0 + 0.008), (x1, H, z1 - 0.008))
+	for lo, hi in ((x0, x0 + stile), (x1 - stile, x1)):
 		gbox(part, paint, (lo, 0.0, z0), (hi, H, z1), bevel=0.003)
-	mid = 1.0
-	for lo, hi in ((0.0, bottom_rail), (mid - mid_rail / 2, mid + mid_rail / 2), (H - top_rail, H)):
+	inner = (x0 + stile, x1 - stile)
+	for lo, hi in ((0.0, bottom_rail), lock_rail, (H - top_rail, H)):
 		gbox(part, paint, (inner[0], lo, z0), (inner[1], hi, z1), bevel=0.003)
-	# Raised fields in the two panels, both faces.
-	for lo, hi in ((bottom_rail, mid - mid_rail / 2), (mid + mid_rail / 2, H - top_rail)):
-		for zz in ((z1 - 0.012, z1 - 0.003), (z0 + 0.003, z0 + 0.012)):
-			gbox(part, paint, (inner[0] + 0.035, lo + 0.035, zz[0]), (inner[1] - 0.035, hi - 0.035, zz[1]), bevel=0.012, segments=2)
-	meet = s * b
-	if side == "right":
-		# Astragal over the meeting gap (corridor face), lever handles both faces, a key escutcheon.
-		gbox(part, paint, (meet - 0.012, 0.01, z1), (meet + 0.006, H - 0.01, z1 + 0.008), bevel=0.002)
-		hx = meet + 0.065
-		for face_z, out in ((z1, 1), (z0, -1)):
-			gbox(part, "W1Steel", (hx - 0.022, 0.86, face_z), (hx + 0.022, 1.13, face_z + out * 0.006), bevel=0.003)
-			part.cylinder("W1Steel", tuple(G(hx, 1.05, face_z + out * 0.03)), 0.009, 0.05, axis="Y", segments=10)
-			part.tube("W1Steel", [G(hx, 1.05, face_z + out * 0.055), G(hx - s * 0.12, 1.05, face_z + out * 0.06)], 0.009, 10)
-			part.cylinder("W1Black", tuple(G(hx, 0.93, face_z + out * 0.0065)), 0.006, 0.002, axis="Y", segments=8)
-	else:
-		for by in (0.02, H - 0.25):
-			gbox(part, "W1Steel", (meet - 0.03, by, z0 - 0.006), (meet - 0.012, by + 0.23, z0))
+	mx = (inner[0] + inner[1]) / 2
+	for lo, hi in ((bottom_rail, lock_rail[0]), (lock_rail[1], H - top_rail)):
+		gbox(part, paint, (mx - muntin / 2, lo, z0), (mx + muntin / 2, hi, z1), bevel=0.003)
+		for a, b in ((inner[0], mx - muntin / 2), (mx + muntin / 2, inner[1])):
+			for zz in ((z1 - 0.012, z1 - 0.003), (z0 + 0.003, z0 + 0.012)):
+				gbox(part, paint, (a + 0.03, lo + 0.03, zz[0]), (b - 0.03, hi - 0.03, zz[1]), bevel=0.01, segments=2)
+	hx = x0 + 0.065
+	for face_z, out in ((z1, 1), (z0, -1)):
+		gbox(part, "W1Steel", (hx - 0.022, 0.86, face_z), (hx + 0.022, 1.13, face_z + out * 0.006), bevel=0.003)
+		part.cylinder("W1Steel", tuple(G(hx, 1.05, face_z + out * 0.022)), 0.009, 0.04, axis="Y", segments=10)
+		part.tube("W1Steel", [G(hx, 1.05, face_z + out * 0.04), G(hx + 0.12, 1.05, face_z + out * 0.045)], 0.009, 10)
+		part.cylinder("W1Black", tuple(G(hx, 0.93, face_z + out * 0.0065)), 0.006, 0.002, axis="Y", segments=8)
 	return K.build(part)
 
 
@@ -415,10 +421,9 @@ def main():
 				K.export(name, [fn()])
 				K.reset()
 				K.materials()
-			for side in ("right", "left"):
-				K.export("room_door_leaf_%s.glb" % side, [leaf(side)])
-				K.reset()
-				K.materials()
+			K.export("room_door_leaf.glb", [leaf()])
+			K.reset()
+			K.materials()
 			continue
 		floor = int(job)
 		objs = [hall_chunk(floor, c) for c in CHUNKS] + [lamps(floor)]

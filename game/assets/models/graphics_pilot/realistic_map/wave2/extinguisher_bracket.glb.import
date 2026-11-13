@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dsra05j787ef3"
-path="res://.godot/imported/room_door_leaf_right.glb-414652380f0f92930d35444de1808a97.scn"
+uid="uid://comvwmnw1kqcm"
+path="res://.godot/imported/extinguisher_bracket.glb-a346b886f5734323ec8ad544031b65a1.scn"
 
 [deps]
 
-source_file="res://assets/models/graphics_pilot/realistic_map/wave2/room_door_leaf_right.glb"
-dest_files=["res://.godot/imported/room_door_leaf_right.glb-414652380f0f92930d35444de1808a97.scn"]
+source_file="res://assets/models/graphics_pilot/realistic_map/wave2/extinguisher_bracket.glb"
+dest_files=["res://.godot/imported/extinguisher_bracket.glb-a346b886f5734323ec8ad544031b65a1.scn"]
 
 [params]
 
@@ -41,20 +41,25 @@ materials/extract_format=0
 materials/extract_path=""
 _subresources={
 "materials": {
-"W1DoorPaint": {
+"W1Alu": {
 "use_external/enabled": true,
-"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1DoorPaint.tres",
-"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1DoorPaint.tres"
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Alu.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Alu.tres"
+},
+"W1Iron": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Iron.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Iron.tres"
 },
 "W1Steel": {
 "use_external/enabled": true,
 "use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Steel.tres",
 "use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Steel.tres"
 },
-"W1Black": {
+"W2Orders": {
 "use_external/enabled": true,
-"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Black.tres",
-"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Black.tres"
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave2/materials/W2Orders.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave2/materials/W2Orders.tres"
 }
 }
 }

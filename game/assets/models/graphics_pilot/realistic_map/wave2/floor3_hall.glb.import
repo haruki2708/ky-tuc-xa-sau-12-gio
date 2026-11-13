@@ -41,40 +41,15 @@ materials/extract_format=0
 materials/extract_path=""
 _subresources={
 "materials": {
-"W2HallDado": {
-"use_external/enabled": true,
-"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave2/materials/W2HallDado.tres",
-"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave2/materials/W2HallDado.tres"
-},
-"W2HallWall": {
-"use_external/enabled": true,
-"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave2/materials/W2HallWall.tres",
-"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave2/materials/W2HallWall.tres"
-},
-"W1Terrazzo": {
-"use_external/enabled": true,
-"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Terrazzo.tres",
-"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Terrazzo.tres"
-},
-"W2HallFloor": {
-"use_external/enabled": true,
-"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave2/materials/W2HallFloor.tres",
-"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave2/materials/W2HallFloor.tres"
-},
-"W2Divider": {
-"use_external/enabled": true,
-"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave2/materials/W2Divider.tres",
-"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave2/materials/W2Divider.tres"
-},
-"W2HallCeiling": {
-"use_external/enabled": true,
-"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave2/materials/W2HallCeiling.tres",
-"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave2/materials/W2HallCeiling.tres"
-},
 "W1Concrete": {
 "use_external/enabled": true,
 "use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Concrete.tres",
 "use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Concrete.tres"
+},
+"W1Enamel": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Enamel.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Enamel.tres"
 },
 "W1RailSteel": {
 "use_external/enabled": true,
@@ -86,20 +61,45 @@ _subresources={
 "use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1RailWood.tres",
 "use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1RailWood.tres"
 },
-"W1Enamel": {
+"W1Steel": {
 "use_external/enabled": true,
-"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Enamel.tres",
-"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Enamel.tres"
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Steel.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Steel.tres"
+},
+"W1Terrazzo": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Terrazzo.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Terrazzo.tres"
+},
+"W2Divider": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave2/materials/W2Divider.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave2/materials/W2Divider.tres"
+},
+"W2HallCeiling": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave2/materials/W2HallCeiling.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave2/materials/W2HallCeiling.tres"
+},
+"W2HallDado": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave2/materials/W2HallDado.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave2/materials/W2HallDado.tres"
+},
+"W2HallFloor": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave2/materials/W2HallFloor.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave2/materials/W2HallFloor.tres"
+},
+"W2HallWall": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave2/materials/W2HallWall.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave2/materials/W2HallWall.tres"
 },
 "W2Tube": {
 "use_external/enabled": true,
 "use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave2/materials/W2Tube.tres",
 "use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave2/materials/W2Tube.tres"
-},
-"W1Steel": {
-"use_external/enabled": true,
-"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Steel.tres",
-"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Steel.tres"
 }
 }
 }

@@ -5,7 +5,7 @@ extends Node3D
 ##   godot --path game res://_probe_tmp/capture_wave2.tscn -- --set=a08,a09,a10,a11 --tag=before
 ## Writes art_source/graphics_upgrade/realistic_map/previews/wave2/<tag>_<set>_<view>.jpg (1920 x 1080).
 ## --only=<id,id> takes some views; --alarm_preview puts the wave-2 fire alarm (alarm_preview.tscn, picture only)
-## on core's FireAlarm1F marker in place of core's red box; --options=<json> applies the owner's colour options.
+## on core's FireAlarm1F marker in place of core's red box.
 const OUTPUT := "res://../art_source/graphics_upgrade/realistic_map/previews/wave2/"
 const RESOLUTION := Vector2i(1920, 1080)
 const ALARM_PREVIEW := "res://_probe_tmp/alarm_preview.tscn"
@@ -46,6 +46,8 @@ const SETS := {
 		{"id": "9_desk_knife_torch", "eye": Vector3(2.7, -8.35, -2.1), "target": Vector3(1.4, -9.1, -3.2), "torch": true, "fov": 65.0},
 		{"id": "10_room_entry", "eye": Vector3(2.75, -8.25, 2.6), "target": Vector3(2.9, -8.8, -3.5)},
 		{"id": "11_alcove_torch", "eye": Vector3(8.0, -8.25, 2.8), "target": Vector3(8.25, -8.9, -3.0), "torch": true},
+		{"id": "12_chain_torch", "eye": Vector3(18.7, -8.55, 3.3), "target": Vector3(19.25, -8.85, 4.2), "torch": true, "fov": 60.0},
+		{"id": "13_alcove_inside_torch", "eye": Vector3(8.25, -8.3, 0.4), "target": Vector3(6.4, -9.2, -1.6), "torch": true},
 	],
 	"a11": [
 		{"id": "1_extinguisher_torch", "eye": Vector3(45, -4.95, 2.7), "target": Vector3(48.83, -5.5, 2.4), "torch": true},

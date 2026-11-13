@@ -54,16 +54,17 @@ LOOKS = {
 	"W2BunkPaint": {**PAINT, "scale": 2.0, "color": (0.32, 0.45, 0.52)},
 	"W2LockerPaint": {**PAINT, "scale": 2.0, "color": (0.66, 0.72, 0.66)},
 	# Floor 1 (A10): glass of the main door and the manager's window, the knife.
-	"W2Glass": {"color": (0.5, 0.58, 0.56), "alpha": 0.25, "rough": 0.06},
-	"W2Blade": {"color": (0.72, 0.72, 0.7), "rough": 0.22, "metal": 1.0},
+	"W2Glass": {"color": (0.5, 0.58, 0.56), "alpha": 0.25, "rough": 0.06, "two_sided": True},
+	"W2Blade": {"color": (0.78, 0.78, 0.76), "rough": 0.32, "metal": 0.6},
 	"W2Grip": {"color": (0.07, 0.06, 0.05), "rough": 0.55},
 	# A11: the fire extinguisher and the fire alarm.
 	"W2ExtRed": {**PAINT, "scale": 4.0, "color": (0.74, 0.07, 0.05)},
 	"W2ExtLabel": {"albedo": OWN2 + "extinguisher_label.png", "rough": 0.45},
 	"W2Gauge": {"albedo": OWN2 + "gauge_dial.png", "rough": 0.12},
 	"W2AlarmRed": {**PAINT, "scale": 4.0, "color": (0.72, 0.07, 0.05)},
-	"W2AlarmFace": {"albedo": OWN2 + "alarm_face.png", "rough": 0.4},
+	"W2AlarmFace": {"albedo": OWN2 + "alarm_face.png", "rough": 0.62},
 	"W2AlarmButton": {"color": (0.9, 0.88, 0.82), "rough": 0.2},
+	"W2Orders": {"albedo": OWN2 + "orders_board.png", "rough": 0.5},
 }
 
 
@@ -121,6 +122,8 @@ def write_material(name, look):
 	if "emission" in look:
 		lines += ["emission_enabled = true", "emission = Color(%g, %g, %g, 1)" % look["emission"],
 			"emission_energy_multiplier = %g" % look.get("energy", 1.0)]
+	if look.get("two_sided"):
+		lines.append("cull_mode = 2")
 	if "scale" in look:
 		s = look["scale"]
 		lines.append("uv1_scale = Vector3(%g, %g, %g)" % (s, s, s))

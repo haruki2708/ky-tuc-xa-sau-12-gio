@@ -10,7 +10,7 @@
                         worn path down the middle, the turns into each door and the stairs, rain blown in at the rail.
   mask_hall_ceiling.png corridor ceilings (kind 0): soot over the lamps, damp along the open edge, a few leaks.
   extinguisher_label.png, gauge_dial.png, alarm_face.png   the fire extinguisher's label and gauge, the fire alarm's
-                        face (A11). Words are drawn with Be Vietnam Pro (OFL, in the game already).
+                        face, orders_board.png the fire orders beside the extinguisher (A11). Words are drawn with Be Vietnam Pro (OFL, in the game already).
 Run: python -B art_source/graphics_upgrade/realistic_map/wave2/make_wave2_textures.py [job ...]
 """
 from pathlib import Path
@@ -81,9 +81,9 @@ def hall_wall():
 			cx = L.door_x(i)
 			darker = 0.6 + 0.4 * rng.random()
 			for side in (-1, 1):
-				# Hand marks on the wall beside both jambs, heavier on the latch side (the leaves meet in the middle,
-				# people push the wall as they go in), and kicks at the foot of the architraves.
-				edge = cx + side * (L.DOOR_HALF + 0.12)
+				# Hand marks on the wall beside both jambs (people push the wall as they go in), kicks at the foot of
+				# the architraves.
+				edge = cx + side * (L.KIT_HALF + 0.12)
 				grime = grime + blob(x, h, edge + side * 0.08, 1.15, 0.1, 0.32) * (0.28 + 0.12 * rng.random()) * darker
 				grime = grime + blob(x, h, edge + side * 0.05, 0.12, 0.16, 0.12) * 0.35 * darker
 			# Above the door: soot from years of the corridor lamp and dust on the head.
@@ -91,13 +91,13 @@ def hall_wall():
 			# Kicks along the wall where people stop and wait.
 			for _ in range(rng.integers(2, 5)):
 				kx = cx + rng.uniform(-2.6, 2.6)
-				if abs(kx - cx) < L.DOOR_HALF + 0.15:
+				if abs(kx - cx) < L.KIT_HALF + 0.15:
 					continue
 				grime = grime + blob(x, h, kx, rng.uniform(0.1, 0.3), rng.uniform(0.04, 0.09), rng.uniform(0.03, 0.08)) * rng.uniform(0.3, 0.6)
 		# Water: runs from the ceiling where the floor above leaks (not on doors), tide lines darker.
 		for _ in range(rng.integers(3, 6)):
 			sx = rng.uniform(0.5, 43.5)
-			if min(abs(sx - L.door_x(i)) for i in range(L.BAYS)) < L.DOOR_HALF + 0.25:
+			if min(abs(sx - L.door_x(i)) for i in range(L.BAYS)) < L.KIT_HALF + 0.25:
 				continue
 			width = rng.uniform(0.12, 0.35)
 			length = rng.uniform(0.5, 1.6)
@@ -251,9 +251,38 @@ def alarm_face():
 	save_rgb("alarm_face.png", arr)
 
 
+def orders_board():
+	"""The fire-orders board by the extinguisher (tiêu lệnh chữa cháy): 640 x 900 for 0.44 x 0.63 m; the heading and
+	the four orders' first words are words, the rest is print drawn as lines."""
+	w, h = 640, 900
+	rng = np.random.default_rng(253_600)
+	img = Image.new("RGB", (w, h), (238, 234, 222))
+	d = ImageDraw.Draw(img)
+	big = ImageFont.truetype(str(FONT_BOLD), 44)
+	mid = ImageFont.truetype(str(FONT_BOLD), 30)
+	d.rectangle([0, 0, w, 130], fill=(190, 28, 24))
+	d.text((w // 2, 66), "TIÊU LỆNH CHỮA CHÁY", font=big, fill=(250, 244, 232), anchor="mm")
+	y = 175
+	for k, word in enumerate(("BÁO ĐỘNG", "CẮT ĐIỆN", "DÙNG BÌNH", "GỌI 114")):
+		d.ellipse([40, y - 4, 92, y + 48], fill=(190, 28, 24))
+		d.text((66, y + 22), str(k + 1), font=mid, fill=(250, 244, 232), anchor="mm")
+		d.text((112, y + 22), word, font=mid, fill=(40, 36, 34), anchor="lm")
+		for r in range(3):
+			length = int((w - 160) * (0.55 + 0.4 * rng.random()))
+			d.rectangle([112, y + 66 + r * 26, 112 + length, y + 74 + r * 26], fill=(90, 86, 82))
+		y += 172
+	d.rectangle([0, h - 40, w, h], fill=(190, 28, 24))
+	img = img.filter(ImageFilter.GaussianBlur(0.6))
+	arr = np.asarray(img).astype(np.float32) / 255.0
+	noise = smooth_noise(rng, (h, w), 60)
+	arr *= (1.0 - 0.07 * np.clip(noise * 0.5 + 0.5, 0, 1))[..., None]
+	arr *= (1.0 - 0.06 * np.linspace(0, 1, h)[:, None, None])
+	save_rgb("orders_board.png", arr)
+
+
 if __name__ == "__main__":
 	jobs = {"wall": hall_wall, "floor": hall_floor, "ceiling": hall_ceiling, "label": extinguisher_label,
-		"gauge": gauge_dial, "alarm": alarm_face}
+		"gauge": gauge_dial, "alarm": alarm_face, "orders": orders_board}
 	for name in sys.argv[1:] or list(jobs):
 		jobs[name]()
 		print("T253_TEX", name)

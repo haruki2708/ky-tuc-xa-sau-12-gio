@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://deit2lwmqnpoo"
-path="res://.godot/imported/room_door_leaf_left.glb-d6ae90ab14c944df63e02e6f3f9e079e.scn"
+uid="uid://cvq6tj8khd64"
+path="res://.godot/imported/knife.glb-94ae21a7dacb2fbb1f2f7a8e87a2883f.scn"
 
 [deps]
 
-source_file="res://assets/models/graphics_pilot/realistic_map/wave2/room_door_leaf_left.glb"
-dest_files=["res://.godot/imported/room_door_leaf_left.glb-d6ae90ab14c944df63e02e6f3f9e079e.scn"]
+source_file="res://assets/models/graphics_pilot/realistic_map/wave2/knife.glb"
+dest_files=["res://.godot/imported/knife.glb-94ae21a7dacb2fbb1f2f7a8e87a2883f.scn"]
 
 [params]
 
@@ -41,15 +41,20 @@ materials/extract_format=0
 materials/extract_path=""
 _subresources={
 "materials": {
-"W1DoorPaint": {
-"use_external/enabled": true,
-"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1DoorPaint.tres",
-"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1DoorPaint.tres"
-},
 "W1Steel": {
 "use_external/enabled": true,
 "use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Steel.tres",
 "use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Steel.tres"
+},
+"W2Blade": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave2/materials/W2Blade.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave2/materials/W2Blade.tres"
+},
+"W2Grip": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave2/materials/W2Grip.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave2/materials/W2Grip.tres"
 }
 }
 }
