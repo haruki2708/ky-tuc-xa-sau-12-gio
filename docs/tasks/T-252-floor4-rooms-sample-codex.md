@@ -1,5 +1,5 @@
 # T-252 — Mẫu thử đồ hoạ thật bằng lane Codex: các phòng 401–406, 408 nhìn qua cửa (đợt 10, khu A03)
-- Lane: C | Trạng thái: todo | Agent: tài khoản GPT lane C (`.codex-accountC`), Codex CLI, `D:\GAME_WORK\lane-c2`; integrator giao chạy ngầm (D-164).
+- Lane: C | Trạng thái: **đóng, không merge (D-168)**: chủ dự án xem ảnh, chất lượng không đạt; lane B làm lại ở [T-255](T-255-floor4-rooms-like-407.md). Nhánh `lane-c/T-252-floor4-rooms-sample` (đầu `e9b9d95`) giữ làm tư liệu | Agent: tài khoản GPT lane C (`.codex-accountC`), Codex CLI, `D:\GAME_WORK\lane-c2`; integrator giao chạy ngầm (D-164).
 - Nhánh: `lane-c/T-252-floor4-rooms-sample` từ `origin/main` mới nhất.
 - Giao việc: 13/11/2026, chủ dự án đồng ý cho một lane Codex làm thử đồ hoạ (theo D-166). **Mục đích kép:** (1) các phòng khác ở tầng 4 nhìn qua cửa có nội thất thật thay PS1; (2) biết lane Codex dựng Blender có đạt chất lượng phòng 407 không, để các đợt sau chia cho nhiều lane. **Chỉ merge khi chủ dự án xem ảnh và đồng ý.**
 
@@ -42,3 +42,7 @@
 
 ## Handoff
 (lane C điền)
+
+## Review integrator (13/11/2026)
+- Lane C (chạy ngầm, D-164) dựng 7 phòng, gắn vào hành lang, chụp ảnh chương 1 và 3 (`realistic_map/previews/t252/` trên nhánh), rồi hết hạn mức ba lần (01:25, 02:38, 11:24); lần 03:42 bị dừng vì máy thiếu RAM. Chưa chạy xong full test, check.
+- Chủ dự án xem ảnh: **không đạt** (phòng nhỏ, đồ không đầy đủ như 407). Không merge; làm lại ở T-255 (lane B). Kết luận cho câu hỏi "lane Codex dựng Blender có đạt không": chưa đạt ở mức phòng 407; đồ hoạ tiếp tục để lane B.

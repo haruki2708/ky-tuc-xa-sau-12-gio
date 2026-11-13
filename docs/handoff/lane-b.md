@@ -200,6 +200,21 @@ Cập nhật Checklist và Handoff trong card. Không sửa STATUS hay DECISIONS
 Cuối phiên báo ngắn bằng tiếng Việt: xong gì, nhánh, commit, ảnh ở đâu, dòng RESULT test và check, câu hỏi cho chủ dự án, có bị chặn không.
 ```
 
+## 1k. Giao T-255 (13/11/2026, D-168): các phòng 401–406, 408 sâu như 407, nhà tắm, ban công, đồ đầy đủ, mở cửa đi vào được
+Dán **sau khi lane B xong T-253** (mục 1j), hoặc trước nếu chủ dự án muốn đổi thứ tự. `/model` chọn **Opus 5.5**, effort **xhigh** (khó thì **max**), rồi dán:
+```text
+Việc mới cho lane B: T-255 — các phòng 401–406, 408 ở tầng 4: sâu như phòng 407, có nhà tắm và ban công, đồ đạc đầy đủ như 407 (mỗi phòng một khác), mở cửa bằng tay và đi vào khám được ở mọi chương. Đọc docs/tasks/T-255-floor4-rooms-like-407.md.
+Ở D:\GAME_WORK\lane-b2: git status (giữ thay đổi đang có, báo nếu có), git fetch origin, git switch -c lane-b/T-255-floor4-rooms-like-407 origin/main, git lfs pull.
+Đầu phiên ghi commit của card đã đọc (git log -1 --format=%h origin/main -- docs/tasks/T-255-floor4-rooms-like-407.md).
+Đọc card (mục 1 là điều chủ dự án đã chốt ở D-168, mục 2 hiện trạng). Làm bước 1 (khảo sát, đề xuất bố cục, ghi Handoff) trước khi dựng; thứ cần chủ dự án chọn thì đưa phương án kèm đề xuất, làm theo đề xuất và ghi "chờ chủ dự án chọn".
+Chất lượng phải ngang phòng 407 (chủ dự án chê mẫu T-252 của lane C: phòng nhỏ, đồ thưa, cùng một bố cục, rèm nệm trông mới). Dựng bằng Blender, dùng lại đồ phòng 407 có sẵn; không dùng Tripo.
+Không dời cửa, không đổi hành lang, cầu thang, đường đi quản lý và xác sống, luật chơi. Phần ngoài phạm vi lane B (script người chơi, director, Protagonist) ghi "Yêu cầu thay đổi".
+Không chạy bot, không đo FPS, không tiêu credit Tripo. Godot theo luật Lượt Godot (file khóa D:\GAME_WORK\GODOT_DANG_CHAY.txt); máy ít RAM, đóng Godot khi không dùng.
+Trước commit cuối: full pwsh tools/test.ps1 rồi pwsh tools/check.ps1, rồi git checkout -- game/default_bus_layout.tres. Commit nhỏ "T-255: ...", push nhánh sau mỗi phần xong. Không push main, không mở PR.
+Cập nhật Checklist và Handoff trong card. Không sửa STATUS hay DECISIONS.
+Cuối phiên báo ngắn bằng tiếng Việt: xong gì, nhánh, commit, ảnh ở đâu, dòng RESULT test và check, câu hỏi cho chủ dự án, có bị chặn không.
+```
+
 ## 2. Prompt giao việc (integrator điền T-xxx)
 ```text
 Việc mới cho lane B: <T-xxx> — đọc docs/tasks/<file card>.md.
