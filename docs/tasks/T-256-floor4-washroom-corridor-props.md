@@ -2,7 +2,7 @@
 - Lane: B | Trạng thái: **todo, giao sau khi [T-255](T-255-floor4-rooms-like-407.md) merge** (cùng sửa `corridor.tscn`, làm nối tiếp để khỏi xung đột) | Agent: tài khoản Claude lane B, `D:\GAME_WORK\lane-b2`; model **Opus 5.5 xhigh** (khó thì max). Chủ dự án tự dán prompt (`lane-b.md` mục 1l).
 - Nhánh: `lane-b/T-256-floor4-washroom-corridor-props` từ `origin/main` mới nhất (đã có T-255).
 - Quyết định: **D-170** (xem mục 1). Nền: D-166 (dựng Blender theo chất lượng phòng 407, không ưng thì chủ dự án đổi Tripo; ánh sáng giữ như nay; CCTV cảnh thật, giữ góc và độ rõ), D-167 (phong cách nhà B đã duyệt).
-- Khảo sát: integrator, 13/11/2026 (đọc scene, script, ảnh `realistic_map/previews/survey/`, ảnh T-250, T-254; chưa chụp ảnh mới vì lane B đang giữ khoá Godot).
+- Khảo sát: integrator, 13/11/2026 (đọc scene, script, ảnh `realistic_map/previews/survey/`, ảnh T-250, T-254; đo và chụp cửa thoát hiểm trong chương 3 thật, phần C).
 
 ## 0. "Lượt 3–4" của kế hoạch hành lang còn lại gì
 Kế hoạch gốc: `art_source/graphics_upgrade/floor4_corridor/PLAN.md` mục 7 (lượt 3: bàn trực, nhà vệ sinh chung, đồ phơi; lượt 4: cầu thang, review tích hợp, CCTV). Mã khu: `realistic_map/PLAN.md` (A01–A30).
@@ -14,7 +14,7 @@ Kế hoạch gốc: `art_source/graphics_upgrade/floor4_corridor/PLAN.md` mục 
 | Phòng 401–406, 408 | A03 | Lane B đang làm (T-255), chưa merge | Không |
 | **Nhà vệ sinh chung** | A02 | **PS1 toàn bộ** (1.794 tam giác, 21 vật liệu): hộp sàn, tường, trần màu trơn; 3 cửa buồng `stall_front.glb` vân ô vuông; 3 bồn và vòi PS1; gương là tấm xám phẳng; máng đèn hộp. Riêng tường lối vào phía hành lang đã là vỏ G5 | **Phần A** |
 | **Đồ ở hành lang** | A04 | **PS1**: dây phơi, 5 món vải (`hanging_cloth.gd`, có đung đưa), 3 xô (`Bucket_11/19/35`, có va chạm), 4 đôi dép `Slippers_0…3` (đang ẩn) | **Phần B** |
-| **Cửa thoát hiểm mở chồng lan can** | A07 | Lỗi ghi ở T-237 (cánh PS1 một tấm 3,8 m dày 12 cm, nằm z 3,84…3,96, đè lan can z 3,99). T-250 đã thay bằng hai cánh thép dày 4,5 cm: cánh chính bản lề ở z 3,9, mở ra nằm z ≈ 3,88…3,92, cách song lan can khoảng 5 cm. **Theo số đo thì hết chồng; tay gạt mặt ngoài (nhô khoảng 6 cm) có thể chạm song.** Chưa có ảnh cận | **Phần C** (rà, sửa nếu còn) |
+| **Cửa thoát hiểm mở chồng lan can** | A07 | Lỗi ghi ở T-237 (cánh PS1 một tấm 3,8 m dày 12 cm, nằm z 3,84…3,96, đè lan can z 3,99). T-250 đã thay bằng hai cánh thép dày 4,5 cm: cánh chính bản lề ở z 3,9, mở ra nằm z ≈ 3,88…3,92, cách song lan can khoảng 5 cm. **Đã đo 13/11: tấm cánh hết chồng; chỉ còn tay gạt mặt ngoài đâm vào tay vịn lan can khoảng 2 cm** | **Phần C** (sửa tay gạt) |
 | **CCTV hành lang tầng 4** | A29 | **PS1** (432 tam giác): hộp kín 10 × 4 m, **tường ngoài xây kín** (hành lang thật là lan can mở), 3 cửa 405/406/407 cách nhau 3,2 m (thật: 4 m), số phòng `Label3D`, một đèn. Feed 320 × 240 trên điện thoại chương 1–2 | **Phần D** |
 | Cảnh ngoài nhìn từ tầng 4, chương 1–2 | A05 | **PS1**: 4 "cây" là hộp đen, 1 đèn đường xa không có cột. Chương 3–4 ẩn chúng, thấy vườn hoa thật của khuôn viên | Không (D-170: chờ đợt 3 vườn hoa) |
 | CCTV các phòng 102, 306, 209, 106, 310 | A24–A28 | PS1 (2.468–4.464 tam giác mỗi phòng) | Không (không thuộc tầng 4; card riêng sau, dùng bộ đồ phòng T-253/T-255) |
@@ -59,10 +59,22 @@ Phòng 6 × 5 m (x 0…6, z −5…0), cao 3 m, lối vào rộng 1,2 m cao 2,3 
 - Đồ nhỏ không cần va chạm; đồ từ cỡ xô trở lên có va chạm (D-135).
 
 ## 4. Phần C — Cửa thoát hiểm mở sát lan can (`campus/building_b.tscn` → `FireDoor`)
-- Chụp cận trong chương 3 khi cửa mở: cánh chính (`FireDoor/Leaf`, bản lề z 3,9) so với lan can G5 (z 3,99) và gờ chân lan can; cánh phụ `LeafB` so với tường và khung cửa 408.
-- Còn chồng hình (tay gạt, ổ khoá, bản lề chạm song hoặc gờ) thì sửa **chỉ phần hình**: ví dụ dời bản lề hình vào trong vài cm, hoặc cho cánh dừng ở góc nhỏ hơn 90° trong `door.gd` (script của lane B; `Leaf` giữ va chạm và trạng thái như cũ). Không đổi `Use_FireDoor`, blocker, trục va chạm.
-- Không chồng thì ghi "không cần sửa" kèm ảnh.
-- Thấy thêm 1 (hộp xanh trên cửa, mảng cột PS1) làm ở phần này.
+**Integrator đã đo và chụp trong chương 3 thật, main `de24a94` (13/11 21:23; ảnh `realistic_map/previews/floor4_rest/before_ch3_firedoor_*.jpg`):**
+
+| Khi cửa mở | x | y | z |
+|---|---|---|---|
+| Tấm cánh chính `Leaf/Model` | 42,06…44,01 | 0,01…2,39 | 3,875…3,940 |
+| Ổ khoá `Leaf/Lock` | 42,11…42,15 | 0,92…1,17 | 3,865…3,935 |
+| **Tay gạt `Leaf/Handle`** | 42,10…42,27 | **1,024…1,076** | 3,813…**3,987** |
+| Cánh phụ `LeafB` | 42,18…44,01 | 0,01…2,39 | 0,100…0,166 |
+| Lan can G5: tay vịn ống | cả hành lang | **1,045…1,095** | **3,965**…4,015 |
+| Lan can G5: song đứng | cách 12,5 cm | 0,20…1,05 | 3,982…3,998 |
+| Khung cửa 408 | 41,55…42,44 | | −0,14…0,09 |
+
+- **Tấm cánh và ổ khoá không còn chồng lan can** (cách tay vịn 2,5 cm, cách song 4 cm); cánh phụ không chạm tường và cửa 408.
+- **Còn một chỗ: tay gạt mặt ngoài của cánh chính đâm vào tay vịn lan can khoảng 2 cm** (cùng độ cao 1,05 m; ảnh `before_ch3_firedoor_1_handle_in_handrail_torch.jpg`).
+- Sửa **chỉ phần hình**, chọn cách ít đổi nhất, ví dụ: cho cánh chính dừng ở khoảng 86–87° trong `door.gd` (script của lane B; cánh phụ vẫn 90°), hoặc dời trục bản lề hình vào trong 3 cm. `Leaf` giữ va chạm và trạng thái như cũ; không đổi `Use_FireDoor`, blocker, trục va chạm, `FireDoorLink`. Tay gạt và ổ khoá vẫn nằm trong hộp `Use_FireDoor` khi cửa đóng (test T-250).
+- Thấy thêm 1 làm ở phần này: hộp xanh lá trên cửa (ảnh `..._2_ps1_sign_torch.jpg`) và cột vân ô vuông PS1 ở đầu đông, phía lan can, từ khoảng y 2,4 tới trần (ảnh `..._3_ps1_column_torch.jpg`).
 
 ## 5. Phần D — Trường quay CCTV hành lang (`game/scenes/levels/cctv/cctv_set.tscn` → `Corridor`)
 D-170: dựng lại trường quay.
@@ -94,7 +106,7 @@ D-170: dựng lại trường quay.
 ## Checklist
 - [ ] Phần A nhà vệ sinh chung, ảnh trước/sau chương 1 và 3
 - [ ] Phần B đồ hành lang, lối đi trống
-- [ ] Phần C cửa thoát hiểm và lan can (ảnh; sửa nếu còn chồng), Thấy thêm 1
+- [ ] Phần C tay gạt cửa thoát hiểm không đâm tay vịn lan can (ảnh trước/sau), Thấy thêm 1
 - [ ] Phần D trường quay CCTV hành lang
 - [ ] Test mới, test cũ, full test, check
 - [ ] README, CREDITS, ảnh ghép, Handoff
