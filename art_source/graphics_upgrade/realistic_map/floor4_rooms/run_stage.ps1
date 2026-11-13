@@ -8,11 +8,17 @@ $repo = (Resolve-Path -LiteralPath (Join-Path $PSScriptRoot '../../../..')).Path
 Set-Location -LiteralPath $repo
 $lockPath = 'D:\GAME_WORK\GODOT_DANG_CHAY.txt'
 $stream = $null
+$waitStarted = Get-Date
 while ($null -eq $stream) {
     try {
         $stream = [IO.File]::Open($lockPath, [IO.FileMode]::CreateNew, [IO.FileAccess]::Write, [IO.FileShare]::Read)
     } catch [IO.IOException] {
         if (-not (Test-Path -LiteralPath $lockPath)) { throw }
+        $lockAge = (Get-Date) - (Get-Item -LiteralPath $lockPath).LastWriteTime
+        if ($lockAge.TotalMinutes -ge 10 -or ((Get-Date) - $waitStarted).TotalMinutes -ge 10) {
+            Write-Output 'RESULT: T-252 blocked: Godot lock wait exceeded 10 minutes; leave owner lock untouched'
+            exit 75
+        }
         Write-Output ('WAIT Godot: ' + (Get-Content -LiteralPath $lockPath -Raw))
         Start-Sleep -Seconds 30
     }

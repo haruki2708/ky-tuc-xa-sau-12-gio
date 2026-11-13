@@ -34,17 +34,19 @@
 - Tripo, credit Tripo; bot, FPS; commit log, video, `anh_chup_sua_loi/`; sửa STATUS, DECISIONS.
 
 ## Checklist
-- [ ] Module phòng 4 × 5 m và phòng 408, Blender, vật liệu CC0
-- [ ] Thay PS1 trong `corridor.tscn`, va chạm giữ nguyên
-- [ ] Ảnh trước/sau chương 1 và 3, ảnh ghép
+- [x] Module phòng 4 × 5 m và phòng 408, Blender, vật liệu CC0
+- [x] Thay PS1 trong `corridor.tscn`, va chạm giữ nguyên
+- [x] Ảnh trước/sau chương 1 và 3, ảnh ghép
 - [ ] Test mới, test cũ, full test, check
 - [ ] Handoff (số tam giác, vật liệu, chỗ chưa ưng)
 
 ## Handoff
-- Tiếp tục 13/11/2026 từ WIP `0fa724e` do integrator lưu. Workspace sạch lúc nhận lại; đã fetch/pull và rebase an toàn lên `origin/main=369a6c8` (WIP sau rebase `5105e60`). Commit card đã đọc: `a64361d`. T-250 chưa nằm trong `origin/main` ở thời điểm fetch; integrator đang giữ lượt Godot để kiểm bản merge.
+- Tiếp tục 13/11/2026 từ WIP `0fa724e` do integrator lưu; các phiên sau lưu tới `b4c5b89`. Workspace sạch lúc nhận lại; rebase an toàn lên `origin/main=bf26f59` (đã có T-250 và sửa đèn bệnh viện), không xung đột, không sửa bàn trực/nhà B. Commit card đã đọc: `a64361d`.
 - Đã dựng 7 GLB bằng Blender, giảm đồ lặp xuống 65% lưới gốc: 12.432 tam giác/phòng, tổng 87.024 cho bảy phòng; 8 vật liệu dùng chung, 699.520 byte GLB (không nhúng lại texture). Rèm cũng ẩn khi đóng cửa; bảy vỏ phòng còn 8.064 tam giác khi tất cả cửa đóng. Tái dùng 7 scan CC0 của phòng 407; nguồn đầy đủ ở `art_source/graphics_upgrade/realistic_map/floor4_rooms/CREDITS.md`.
 - Đã gắn module vào riêng A03 của `corridor.tscn`, ẩn hình PS1, giữ node/collider/cửa. Script hình ảnh chỉ đọc trạng thái/góc cửa, ẩn đồ khi đóng; giữ vỏ phòng để không thủng mặt nhà.
-- **Đang làm:** import đầu phiên, ảnh trước/sau chương 1 và 3, tự xem ảnh, test và check. Chưa có RESULT kiểm tra; không coi bản WIP là đã đạt. Runner đang chờ khóa của integrator, kiểm lại mỗi 30 giây và không xóa khóa người khác.
+- Import đầu phiên đã xong: lần đầu import đủ asset nhưng thoát native `-1073741819` ở cuối, không lỗi script; chạy lại exit 0. Runner có giới hạn chờ khóa 10 phút (exit 75), không xóa khóa người khác. Đã chụp 40 ảnh gốc 1080p + 4 ảnh ghép trước/sau chương 1/3; tự xem từng góc, sửa chăn xuyên nệm và góc phụ 408 bị cánh cửa che rồi chụp lại. Cảnh tạm đã tự xóa sau chụp.
+- Test mới: `pwsh tools/test.ps1 -Filter test_t252_floor4_rooms` → **`RESULT: 5 passed, 0 failed`**, log `build/t252/test_t252_floor4_rooms.log`. Kiểm 242 khối node/shape gốc không đổi, hình cũ ẩn, vị trí/giới hạn phòng, cửa đóng/mở, 8 vật liệu dùng chung, ngân sách 90.000 tam giác. Full test/check đang chạy, chưa có kết quả cuối ở thời điểm push ảnh.
 - Lựa chọn mỹ thuật: giường sắt xanh, bàn gỗ, tủ thép, chăn/gối/rèm cùng họ vật liệu 407; mức cũ vừa phải, **chờ chủ dự án chọn**. Chưa đo/nghiệm thu ngân sách A03–04 ≤0,35 ms; không đo FPS, không bot.
-- Ảnh dự kiến: `art_source/graphics_upgrade/realistic_map/previews/t252/`. Hai góc hành lang giữ cửa đóng đầu chương; góc nội thất mở bằng API cửa để kiểm hình, sẽ ghi rõ `inspection` (director không chạy, không giả là lượt chơi).
-- Yêu cầu thay đổi ngoài phạm vi: chưa có.
+- Ảnh: `art_source/graphics_upgrade/realistic_map/previews/t252/`, xem `compare_ch1.jpg`, `compare_ch3.jpg` và hai ảnh `*_remaining.jpg`. Hai góc hành lang giữ cửa đóng đầu chương; góc nội thất mở bằng API cửa để kiểm hình, ghi rõ `inspection` (director không chạy, không giả là lượt chơi).
+- Chỗ chưa ưng: rèm/nệm xanh khá mới, đồ sinh hoạt thưa và nếp vải đều hơn phòng 407; các phòng còn giống nhau dù bàn/ghế đã thay vị trí/góc. **Chờ chủ dự án chọn/duyệt chất lượng trước merge.**
+- **Yêu cầu thay đổi ngoài phạm vi:** chương 3 còn mảng tường PS1 đông 408 từ `Campus/BuildingB/FireStairs/Wall43.92`, nhìn rõ trong ảnh 408. Cần integrator/lane B đồng bộ mặt hướng vào 408; lane C không sửa `building_b.tscn`, không ẩn node lane B. Đây không phải mesh A03 cũ còn vẽ. Chương 1 không có mảng này.

@@ -140,7 +140,7 @@ def bunk():
                                mat('Check'), 3, bc.pillow_shape, .5)
         pillow.rotation_euler.z = .09 if y < 1 else -.12
         # Folded fabric surface and a sewn edge, rounded folds visible from a doorway.
-        cloth = bc.grid('Blanket', (-.4, .4), (-.25, .89), y+.105, 10, 16,
+        cloth = bc.grid('Blanket', (-.4, .4), (-.25, .89), y+.14, 10, 16,
                         mat('Blanket'), .27,
                         lambda u, v: .025*math.sin(v*14+u*5)+.013*math.sin(u*19-v*4))
         solid = cloth.modifiers.new('Fabric thickness', 'SOLIDIFY')

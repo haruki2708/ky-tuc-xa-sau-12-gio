@@ -1,0 +1,172 @@
+{
+	"chapter": 3,
+	"door_state": "Hall: actual opening state. Room views: staged open via RoomDoor for visual inspection; not a playthrough.",
+	"images": [
+		{
+			"eye": [
+				5.19999980926514,
+				1.64999997615814,
+				2.70000004768372
+			],
+			"file": "ch3_after_hall_west_closed.jpg",
+			"fov": 65.0,
+			"staged_open": false,
+			"target": [
+				30.0,
+				1.45000004768372,
+				1.0
+			],
+			"torch": false
+		},
+		{
+			"eye": [
+				43.2999992370605,
+				1.64999997615814,
+				3.09999990463257
+			],
+			"file": "ch3_after_hall_east_closed.jpg",
+			"fov": 65.0,
+			"staged_open": false,
+			"target": [
+				12.0,
+				1.39999997615814,
+				1.10000002384186
+			],
+			"torch": false
+		},
+		{
+			"eye": [
+				7.88000011444092,
+				1.62000000476837,
+				0.850000023841858
+			],
+			"file": "ch3_after_room_401_inspection_torch.jpg",
+			"fov": 65.0,
+			"staged_open": true,
+			"target": [
+				7.71999979019165,
+				1.25,
+				-3.79999995231628
+			],
+			"torch": true
+		},
+		{
+			"eye": [
+				11.8800001144409,
+				1.62000000476837,
+				0.850000023841858
+			],
+			"file": "ch3_after_room_402_inspection_torch.jpg",
+			"fov": 65.0,
+			"staged_open": true,
+			"target": [
+				11.7200002670288,
+				1.25,
+				-3.79999995231628
+			],
+			"torch": true
+		},
+		{
+			"eye": [
+				15.8800001144409,
+				1.62000000476837,
+				0.850000023841858
+			],
+			"file": "ch3_after_room_403_inspection_torch.jpg",
+			"fov": 65.0,
+			"staged_open": true,
+			"target": [
+				15.7200002670288,
+				1.25,
+				-3.79999995231628
+			],
+			"torch": true
+		},
+		{
+			"eye": [
+				19.8799991607666,
+				1.62000000476837,
+				0.850000023841858
+			],
+			"file": "ch3_after_room_404_inspection_torch.jpg",
+			"fov": 65.0,
+			"staged_open": true,
+			"target": [
+				19.7199993133545,
+				1.25,
+				-3.79999995231628
+			],
+			"torch": true
+		},
+		{
+			"eye": [
+				23.8799991607666,
+				1.62000000476837,
+				0.850000023841858
+			],
+			"file": "ch3_after_room_405_inspection_torch.jpg",
+			"fov": 65.0,
+			"staged_open": true,
+			"target": [
+				23.7199993133545,
+				1.25,
+				-3.79999995231628
+			],
+			"torch": true
+		},
+		{
+			"eye": [
+				27.8799991607666,
+				1.62000000476837,
+				0.850000023841858
+			],
+			"file": "ch3_after_room_406_inspection_torch.jpg",
+			"fov": 65.0,
+			"staged_open": true,
+			"target": [
+				27.7199993133545,
+				1.25,
+				-3.79999995231628
+			],
+			"torch": true
+		},
+		{
+			"eye": [
+				41.8800010681152,
+				1.62000000476837,
+				0.850000023841858
+			],
+			"file": "ch3_after_room_408_inspection_torch.jpg",
+			"fov": 65.0,
+			"staged_open": true,
+			"target": [
+				41.7200012207031,
+				1.25,
+				-3.79999995231628
+			],
+			"torch": true
+		},
+		{
+			"eye": [
+				42.1500015258789,
+				1.62000000476837,
+				0.649999976158142
+			],
+			"file": "ch3_after_room_408_side_inspection_torch.jpg",
+			"fov": 65.0,
+			"staged_open": true,
+			"target": [
+				40.0,
+				1.25,
+				-3.79999995231628
+			],
+			"torch": true
+		}
+	],
+	"lighting": "Unchanged chapter opening lights; optional camera flashlight 1.5. Director auto_start=false.",
+	"resolution": [
+		1920,
+		1080
+	],
+	"state": "after"
+}
