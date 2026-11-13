@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3]
+
+[ext_resource type="Texture2D" path="res://assets/textures/graphics_pilot/realistic_map/floor4_rest/mirror_stain.png" id="1"]
+
+[resource]
+resource_name = "WRMirrorStain"
+transparency = 1
+albedo_color = Color(1, 1, 1, 1)
+albedo_texture = ExtResource("1")
+roughness = 0.6

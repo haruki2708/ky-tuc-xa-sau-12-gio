@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" format=3]
+
+[resource]
+resource_name = "WRPink"
+albedo_color = Color(0.8, 0.44, 0.56, 1)
+roughness = 0.45

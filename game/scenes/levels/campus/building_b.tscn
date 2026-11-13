@@ -23,7 +23,8 @@
 [ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave1/fire_door_leaf.glb" id="w1_door_leaf"]
 [ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave1/fire_door_leaf_b.glb" id="w1_door_leaf_b"]
 [ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave1/fire_door_lock.glb" id="w1_door_lock"]
-[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave1/fire_door_handle.glb" id="w1_door_handle"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/floor4_rest/fire_door_handle_compact.glb" id="t256_handle"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/floor4_rest/exit_sign.glb" id="t256_exit"]
 [ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave1/main_stairs.glb" id="w1_main_stairs"]
 [ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave2/room_door_leaf.glb" id="w2_leaf"]
 [ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave2/door_surround.glb" id="w2_surround"]
@@ -12427,8 +12428,10 @@ rotation_degrees = Vector3(0, 12, 0)
 [node name="Lock" parent="FireDoor/Leaf" instance=ExtResource("w1_door_lock")]
 position = Vector3(1.872, -0.222, 0)
 
-[node name="Handle" parent="FireDoor/Leaf" instance=ExtResource("w1_door_handle")]
+[node name="Handle" parent="FireDoor/Leaf" instance=ExtResource("t256_handle")]
 position = Vector3(1.872, -0.15, 0)
+
+[node name="ExitSign" parent="FireDoor/Frame" instance=ExtResource("t256_exit")]
 
 [node name="LeafB" type="Node3D" parent="FireDoor"]
 position = Vector3(1.86, 1.2, 0)
