@@ -60,8 +60,9 @@ const TAP_GROUP_BREAK := 0.7
 const TAP_TURN_END := 2.5
 const TAP_REPLY_SECONDS := 90.0
 ## Where Khoa's note lands when lane B's KhoaNoteSlot anchor (T-203) is missing:
-## on the floor in front of the wall socket (offset from WallKnock406).
-const KHOA_NOTE_FALLBACK := Vector3(0.45, -1.25, 0.0)
+## on the floor in front of the wall socket (offset from WallKnock406; D-171: the knock is on the
+## free wall past bunk A, 2.75 m further in than the socket).
+const KHOA_NOTE_FALLBACK := Vector3(0.45, -1.25, 2.75)
 const KHOA_NOTE_SIZE := Vector2(0.09, 0.12)
 const READABLE_SCENE := "res://scenes/interaction/readable.tscn"
 const OUTAGE_SECONDS := 150.0
@@ -1654,7 +1655,7 @@ func _set_door_latched(latched: bool) -> void:
 func _wall_taps() -> void:
 	_missions[&"wall"] = false
 	var wall := _room_anchor("WallKnock406")
-	var where := wall.global_position if wall != null else Vector3(30.1, 1.3, -1.65)
+	var where := wall.global_position if wall != null else Vector3(30.1, 1.3, -4.4)
 	for repeat in 2:
 		await _play_khoa_rhythm(where)
 		if repeat == 0:

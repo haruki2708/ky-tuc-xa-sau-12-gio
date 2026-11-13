@@ -49,8 +49,12 @@ func test_anchors_extent_bounds_and_navigation() -> void:
 		assert_true(path[-1].distance_to(destination)<.1,"navmesh reaches bed 3 approach")
 		for i in range(path.size()-1):
 			assert_true(_motion(room.to_local(path[i]),room.to_local(path[i+1]))>.999,"manager capsule clears furniture")
-	for pair in [["Bunks/Bunk1/View","WallKnock406"],["Bunks/Bunk4/View","WallKnock408"]]:
+	for pair in [["Bunks/Bunk4/View","WallKnock408"]]:
 		assert_true(room.get_node("Anchors/"+pair[0]).global_position.distance_to(room.get_node("Anchors/"+pair[1]).global_position)<1.5,"wall knock reachable from bed")
+	# D-171 (T-255 review): the body knocks standing, so the knock to 406 is on the free stretch of that wall, past
+	# bunk A and short of Phuc's desk (test_protagonist_chapter1 stands the body there).
+	var knock: Vector3 = room.get_node("Anchors/WallKnock406").position
+	assert_true(knock.x < 0.2 and knock.z < -4.05 and knock.z > -5.05, "knock to 406 on the free wall: %s" % knock)
 
 
 func _motion(from: Vector3,to: Vector3) -> float:

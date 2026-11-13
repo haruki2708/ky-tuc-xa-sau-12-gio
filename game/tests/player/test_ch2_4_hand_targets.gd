@@ -145,6 +145,15 @@ func _check_inventory(expected: Dictionary) -> void:
 			else:
 				assert_eq(prop.hand_target(), null, "room door must not borrow the latch target")
 			continue
+		if prop is RoomDoorHand:
+			# T-255 (D-168): the doors of rooms 401-406 and 408, by hand like Door 407: with the body the leaf's
+			# two levers and its free edge take the hand; without it a plain press.
+			if bodied:
+				assert_not_null(prop.hand_target(), String(prop.get_path()) + " levers take the hand")
+				assert_eq((prop as RoomDoorHand).grips.size(), 3, String(prop.get_path()) + " levers and edge")
+			else:
+				assert_eq(prop.hand_target(), null, String(prop.get_path()) + " plain press without the body")
+			continue
 		if prop is HingedDoor:
 			# T-242: a door used by hand (only where the body is), its own levers and free edge.
 			assert_true(bodied, String(prop.get_path()) + " only with the body")
