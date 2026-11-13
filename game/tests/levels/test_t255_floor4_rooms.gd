@@ -63,7 +63,7 @@ func test_every_room_is_built_as_deep_as_407() -> void:
 	for number: String in ROOMS:
 		var room := rooms.get_node_or_null("Room" + number) as Node3D
 		assert_not_null(room, "room " + number)
-		for path: String in ["Interior/Shell", "Outdoor/Shell", "Interior/BathroomDoor", "Outdoor/BalconyDoor", "Floor", "Collision"]:
+		for path: String in ["Interior/Shell", "Outdoor/Shell", "Interior/BathroomDoor", "Outdoor/BalconyDoor", "RoomFloor", "Collision"]:
 			assert_not_null(room.get_node_or_null(path), "%s has %s" % [number, path])
 		var inside: AABB = (room.get_node("Interior/Shell") as MeshInstance3D).get_aabb()
 		var outside: AABB = (room.get_node("Outdoor/Shell") as MeshInstance3D).get_aabb()
@@ -74,7 +74,7 @@ func test_every_room_is_built_as_deep_as_407() -> void:
 		# Outside: to the parapet (the drain spout pokes 10 cm through it).
 		assert_true(outside.position.z > PARAPET_OUT - 0.11 and outside.position.z < PARAPET_OUT + 0.01,
 			"%s balcony out to 407's parapet (%.3f)" % [number, outside.position.z])
-		var floor_body := room.get_node("Floor") as StaticBody3D
+		var floor_body := room.get_node("RoomFloor") as StaticBody3D
 		assert_eq(floor_body.get_meta(&"surface", &""), &"tile", number + " floor sounds as tile")
 		assert_true(floor_body.get_meta(&"is_floor", false), number + " floor is a floor")
 		# The back wall stands where 407's does, the balcony's parapet where 407's does (rays above the furniture).
@@ -208,6 +208,7 @@ func test_interiors_drawn_only_while_wanted() -> void:
 	for number: String in ROOMS:
 		assert_false((rooms.get_node("Room%s/Interior" % number) as Node3D).visible, number + " hidden behind its shut door")
 		assert_true((rooms.get_node("Room%s/Outdoor" % number) as Node3D).visible, number + " facade always drawn")
+		assert_false((rooms.get_node("Room%s/Outdoor/Props" % number) as Node3D).visible, number + " washing unseen from the corridor")
 	var door := floor4.get_node("Corridor/LockedDoor_404") as RoomDoor
 	door.set_open(true)
 	await wait_frames(2)
@@ -223,6 +224,11 @@ func test_interiors_drawn_only_while_wanted() -> void:
 	camera.global_position = floor4.to_global(Vector3(40.0, 1.6, -7.9))
 	await wait_frames(2)
 	assert_true((rooms.get_node("Room408/Interior") as Node3D).visible, "408 drawn with the player on its balcony")
+	assert_true((rooms.get_node("Room406/Outdoor/Props") as Node3D).visible, "406's washing seen from 408's balcony")
+	assert_false((rooms.get_node("Room401/Outdoor/Props") as Node3D).visible, "401's washing too far along to matter")
+	camera.global_position = floor4.to_global(Vector3(24.0, -6.0, -30.0))
+	await wait_frames(2)
+	assert_true((rooms.get_node("Room405/Outdoor/Props") as Node3D).visible, "405's washing seen from behind building B")
 
 
 func test_each_room_is_furnished_its_own_way() -> void:

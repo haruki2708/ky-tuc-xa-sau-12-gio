@@ -11,7 +11,8 @@ extends Node3D
 ## - Doors: RoomDoorHand on each RoomDoor; the bathroom and balcony doors are room_hinge.gd leaves (room 407's
 ##   Tripo leaves and levers) with lane A's HingedDoor.
 ## - Drawing: a room's interior (its shell inside, its furniture, its bathroom door) only while its door is open or
-##   the camera is in the room; the facade, balcony and what stands on the balcony always.
+##   the camera is in the room; what stands on its balcony with it, or for a camera behind the facade nearby; the
+##   facade, the balcony and its door always.
 
 const DATA := "res://data/floor4_rooms/rooms.json"
 const SHELLS := "res://assets/models/graphics_pilot/floor4_rooms/room_"
@@ -37,6 +38,9 @@ const RETIRED_408: Array[String] = ["Room408BackWall"]
 const HIDDEN_408: Array[String] = ["Room408EastWall"]
 ## The camera counts as in a room this far past its walls (standing in the doorway, on the balcony).
 const INSIDE_MARGIN := 0.15
+## What stands on a balcony (washing, racks) is drawn with the room's interior, or for an eye behind the facade
+## (on a balcony, or out behind building B in chapters 3-4) within this many metres along the facade.
+const OUTDOOR_REACH := 25.0
 
 ## Every interior drawn whatever the doors (captures, tests).
 @export var show_all_interiors := false
@@ -102,8 +106,9 @@ func assemble(floor4: Node3D) -> void:
 		var hand: RoomDoorHand = RoomDoorHand.fit(door) if door != null else null
 		for mesh: MeshInstance3D in room.find_children("*", "MeshInstance3D", true, false):
 			mesh.gi_mode = GeometryInstance3D.GI_MODE_STATIC
-		rooms[number] = {"node": room, "interior": interior, "outdoor": outdoor, "door": door, "hand": hand,
-			"bath_door": bath, "balcony_door": balcony, "inside": _inside_box(layout, depths)}
+		rooms[number] = {"node": room, "interior": interior, "outdoor": outdoor, "outdoor_props": outdoor_props,
+			"door": door, "hand": hand, "bath_door": bath, "balcony_door": balcony, "inside": _inside_box(layout, depths),
+			"middle": (float(layout.x0) + float(layout.x1)) / 2.0, "facade": float(depths.back_out)}
 		_retire(floor4, number)
 	_update_interiors()
 
@@ -125,7 +130,9 @@ func _update_interiors() -> void:
 	var eye := to_local(camera.global_position) if camera != null else Vector3.INF
 	for number: String in rooms:
 		var room: Dictionary = rooms[number]
-		(room.interior as Node3D).visible = show_all_interiors or interior_wanted(number, eye)
+		var wanted := show_all_interiors or interior_wanted(number, eye)
+		(room.interior as Node3D).visible = wanted
+		(room.outdoor_props as Node3D).visible = wanted or outdoor_wanted(number, eye)
 
 
 ## Whether room `number`'s interior is drawn with the eye at `eye` (Floor4 metres): its door open or swinging, or
@@ -136,6 +143,12 @@ func interior_wanted(number: String, eye: Vector3) -> bool:
 	if door != null and (door.is_open or absf((door.get_node("Hinge") as Node3D).rotation.y) > 0.001):
 		return true
 	return (room.inside as AABB).has_point(eye)
+
+
+## Whether what stands on room `number`'s balcony is drawn for an eye behind the facade (Floor4 metres).
+func outdoor_wanted(number: String, eye: Vector3) -> bool:
+	var room: Dictionary = rooms[number]
+	return eye.z < float(room.facade) and absf(eye.x - float(room.middle)) < OUTDOOR_REACH
 
 
 # --------------------------------------------------------------------------- collision
@@ -195,7 +208,8 @@ func _walls(body: StaticBody3D, layout: Dictionary, depths: Dictionary) -> void:
 ## The room's floor (to the back wall's outside face; tile, for the footsteps) and the balcony's, 2 cm lower.
 func _floors(room: Node3D, layout: Dictionary, depths: Dictionary) -> void:
 	var floor_body := StaticBody3D.new()
-	floor_body.name = "Floor"
+	# Not "Floor*": test_floor4 counts the PS1 floors by that name (the retired ones keep it).
+	floor_body.name = "RoomFloor"
 	floor_body.collision_mask = 0
 	floor_body.set_meta(&"surface", &"tile")
 	floor_body.set_meta(&"is_floor", true)

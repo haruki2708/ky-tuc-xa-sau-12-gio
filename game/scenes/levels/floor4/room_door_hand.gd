@@ -42,7 +42,11 @@ static func fit(room_door: RoomDoor) -> RoomDoorHand:
 	if leaf != null:
 		var levers: Array[HandTarget] = DoorHandles.take(leaf.find_children("Lever*", "", false, false))
 		hand.grips.append_array(levers)
-		hand.grips.append_array(DoorHandles.sides(hinge, levers))
+		for edge: HandTarget in DoorHandles.sides(hinge, levers):
+			# The free edge's grip rides the corridor's leaf (it turns with the hinge all the same), so the
+			# RoomDoor keeps exactly the nodes it had (test_corridor_g5: gameplay nodes untouched).
+			edge.reparent(leaf, true)
+			hand.grips.append(edge)
 	hinge.rotation.y = angle
 	hand._update_prompt()
 	return hand
