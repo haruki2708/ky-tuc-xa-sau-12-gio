@@ -21,7 +21,7 @@
 2. Dựng vỏ phòng (tường, sàn, trần, cửa sổ, nhà tắm, ban công) theo cách vỏ 407; va chạm cho phòng mới.
 3. Đồ đạc mỗi phòng một khác, chất lượng 407.
 4. **Cửa mở bằng tay và đi vào được** ở mọi chương: dùng lại cách cửa 407 (tay nắm, `HandTarget`, thân Trần Trung có ở chương 1–3). Phần nào ngoài phạm vi lane B (script người chơi, director, `Protagonist`) thì ghi "Yêu cầu thay đổi" cho integrator, không tự sửa.
-5. **Nặng máy:** bảy phòng đủ đồ như 407 rất nặng. Chỉ vẽ nội thất phòng khi cửa phòng đó mở hoặc người chơi ở trong; dùng bản nhẹ cho đồ nhỏ. Ghi số tam giác, vật liệu, đèn mới. **Không đo FPS** (chủ dự án chưa cho); ghi chỗ nghi nặng để chủ dự án quyết đo.
+5. **Nặng máy:** bảy phòng đủ đồ như 407 rất nặng. Chỉ vẽ nội thất phòng khi cửa phòng đó mở hoặc người chơi ở trong; dùng bản nhẹ cho đồ nhỏ. Ghi số tam giác, vật liệu, đèn mới, chỗ nghi nặng. Lane B không đo FPS; **chủ dự án đã cho phép integrator đo FPS khi T-255 xong** (13/11).
 6. Ảnh trước/sau 1080p trong chương 1 và chương 3: từ hành lang qua cửa mở, đứng trong từng phòng, nhà tắm, ban công; ảnh ghép tổng.
 
 ## 4. Kiểm
