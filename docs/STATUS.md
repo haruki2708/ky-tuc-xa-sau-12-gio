@@ -14,7 +14,7 @@
 
 > Viết lại 16/10/2026 sau D-118; mục 1 và dòng đầu mục 3 cập nhật 12/11/2026. Danh sách cũ (G1, Astra, D-082) đã xong hoặc nằm trong DECISIONS; xem lịch sử git của file này nếu cần.
 
-1. **Bản chơi:** `build/windows/KyTucXa.exe` (build sau merge T-245, 12/11): chương 1 và 2 có thân Trần Trung; tay cầm điện thoại trong gương, giẻ, áo Việt, ổ khoá tủ Đạt đã sửa (D-163); chủ dự án chơi thử đạt 12/11. Trước đó bản `e98ec15` (T-243), bản `780ed57` (T-242, chủ dự án chốt).
+1. **Bản chơi:** `build/windows/KyTucXa.exe`, zip `build/dist/KyTucXa-0.0.1-9e5613f-win64.zip` (package PASS 13/11 22:58): thêm đồ hoạ đợt 2 nhà B (T-253), lan can chiếu nghỉ tầng 4 (T-254), bảy phòng 401–406, 408 mở cửa vào được (T-255), chỗ gõ tường 406 mới (D-171); **chờ chủ dự án chơi thử**. Bản 12/11 (sau merge T-245): chương 1 và 2 có thân Trần Trung; tay cầm điện thoại trong gương, giẻ, áo Việt, ổ khoá tủ Đạt đã sửa (D-163); chủ dự án chơi thử đạt 12/11. Trước đó bản `e98ec15` (T-243), bản `780ed57` (T-242, chủ dự án chốt).
 2. **G4 quản lý ([T-219](tasks/T-219-manager-character-pilot.md), D-118):** chủ dự án tự làm, integrator hỗ trợ, không giao lane.
    - **D-119 (19/10):** đã có thân, 7 động tác, dao, chìa khóa, thẻ trong cảnh xem thử `graphics_pilot/manager_preview.tscn`, quy trình dựng lại ở `art_source/graphics_upgrade/manager/README.md`.
    - **D-120 (19/10):** chủ dự án duyệt. Mắt tô trắng đục, `ask` = tư thế chống nạnh, chuyển động tác mượt, tay trái với mở cửa. **Chương 1 và gương chương 2 đã dùng quản lý mới**; chờ chủ dự án chơi thử. Bảo vệ khuôn viên vẫn thân cũ.
