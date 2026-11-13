@@ -12,6 +12,7 @@
 [ext_resource type="Script" path="res://scripts/audio/ambient_zone.gd" id="e10"]
 
 [ext_resource type="PackedScene" path="res://scenes/levels/room407/washroom_details.tscn" id="t153_washroom"]
+[ext_resource type="Script" path="res://scenes/levels/floor4/washroom_real.gd" id="t256_real"]
 
 [sub_resource type="BoxShape3D" id="s1"]
 size = Vector3(6, 0.2, 5)
@@ -131,6 +132,7 @@ material = SubResource("s31")
 size = Vector3(5.8, 3, 4.9)
 
 [node name="Washroom" type="Node3D"]
+script = ExtResource("t256_real")
 
 
 [node name="Floor" type="StaticBody3D" parent="."]
