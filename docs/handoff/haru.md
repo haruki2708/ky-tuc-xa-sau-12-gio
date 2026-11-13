@@ -88,11 +88,27 @@ Trả lời và viết tài liệu bằng tiếng Việt; code, comment, commit 
 - **Nguồn đúng khi lệch nhau:** mục 3 file này mới nhất; rồi `docs/STATUS.md`; `docs/ROADMAP.md` chỉ cập nhật khi qua mốc.
 
 ## 3. Tiến độ integrator để lại (integrator cập nhật sau mỗi bước)
-**Cập nhật:** 12/11/2026, integrator (Opus 5.5 high).
+**Cập nhật:** 13/11/2026 khoảng 12:00, integrator (Opus 5.5 high), viết lại gọn trước khi chủ dự án `/clear` sang phiên điều phối mới.
 
-- **Vừa xong:** [T-244](../tasks/T-244-hinged-door-sounds.md) (lane E chạy ngầm) merge vào main (full test 932/0, check 0), chờ chủ dự án nghe tiếng cửa. Trước đó [T-246](../tasks/T-246-viet-locker-door-collision.md) merge vào main (full test 925/0, check 0): bỏ tường vô hình trước tủ Việt mở cánh. Trước đó [T-245](../tasks/T-245-ch2-playtest-fixes.md) (D-163) merge vào main (full test 924/0 (lượt full 922/2: hai test cũ còn khẳng định hành vi cũ, sửa xong chạy lại hai file đạt 32/32), check 0): tay cầm điện thoại trong gương, giẻ là khăn trên giá, áo Việt và ổ khoá tủ Đạt dựng bằng Blender.
-- **Bản chơi:** `build/windows/KyTucXa.exe`, zip `build/dist/KyTucXa-0.0.1-b1b1cb3-win64.zip` (sau T-250 và sửa ánh sáng bệnh viện, package PASS 13/11 11:08; trước đó 04ddc7d sau T-249 và T-251: chương 3 có thân và thanh sắt; còn T-244 tiếng cửa chương 1, T-246 tủ Việt chờ chủ dự án thử). Bản `e96056f` (T-245) chủ dự án chơi thử chương 2 đạt (12/11).
-- **Đang chạy:** D-164: integrator tự chạy lane bằng `D:\GAME_WORK\chay_lane.ps1` ([cách dùng](DIEU_KHIEN_LANE.md)). D-165: lane A xong khảo sát đồ hoạ thật toàn map [T-248](../tasks/T-248-realistic-graphics-survey.md) (merged; chờ chủ dự án Q1–Q8 trong PLAN mục 9); **HARU làm thay lane B** [T-249](../tasks/T-249-protagonist-chapter3-bar.md) trong `lane-b2` (`mo_claude_haru_lam_lane_b.cmd`, prompt `lane-b.md` 1g). Lane B xong [T-247](../tasks/T-247-protagonist-chapter3-survey.md) (khảo sát thân Trần Trung chương 3, merged); chờ chủ dự án chọn bảng quyết định trong `tools/reports/T-247-ch3-body-survey.md`. Integrator chỉ điều khiển lane Codex A/C/E, lane B chủ dự án tự dán. Việc lớn tiếp theo integrator đề xuất: xác ba bạn cùng phòng bằng Tripo (T-221, chủ dự án tạo m1 trước).
-- **Chưa làm:** chưa chạy lại bot chương 2 sau T-245 (cần chủ dự án cho phép).
-- **13/11 03:42 (chủ dự án đi ngủ, integrator điều phối tiếp):** main `bf26f59` có T-250 (đồ hoạ đợt 1) và sửa ánh sáng bệnh viện (full test 950/0, check 0). Bản build lúc 03:42 bị Claude Code dừng vì máy thiếu RAM: `build/windows/KyTucXa.exe` đã export xong nhưng **chưa nén zip, chưa qua bước kiểm**; zip hỏng đã xoá; zip tốt gần nhất `KyTucXa-0.0.1-04ddc7d-win64.zip`. Lane C T-252 cũng bị dừng cùng lúc (03:42, tài khoản hoanganhh1628, chưa làm thêm gì, nhánh sạch `6622e37`). **Theo luật, không chạy lại khi chưa hỏi chủ dự án.** Lane B chờ chủ dự án dán `lane-b.md` 1i (T-254) rồi 1j (T-253).
-- **T-249 merged (12/11 23:16):** lane B làm xong phần dở của HARU và integrator; full test 939/0, check 0. Chờ chủ dự án chơi chương 3 và trả lời 3 câu ở mục Review của card [T-249](../tasks/T-249-protagonist-chapter3-bar.md).
+**Main:** `82631bd` (đẩy lên origin). Bản chơi mới nhất: `build/windows/KyTucXa.exe`, zip `build/dist/KyTucXa-0.0.1-b1b1cb3-win64.zip` (package PASS 13/11 11:08): có T-244, T-246, T-249, T-250, T-251 và sửa ánh sáng bệnh viện. Chủ dự án đã chơi và duyệt bản `04ddc7d` (T-244, T-246, T-249, T-251).
+
+**Đang chạy**
+- **Lane B: [T-254](../tasks/T-254-floor4-landing-guard-rail.md)** lan can mép chiếu nghỉ tầng 4 (chủ dự án dán prompt `lane-b.md` mục 1i, Opus 5.5 high, khoảng 11:50). Khi lane B báo xong: review, merge (full test + check sau merge), rồi chủ dự án `/clear` lane B và dán **mục 1j** ([T-253](../tasks/T-253-realistic-graphics-wave2.md) đồ hoạ đợt 2, Opus 5.5 xhigh, làm nối tiếp trên nhánh T-254), sau đó **mục 1k** ([T-255](../tasks/T-255-floor4-rooms-like-407.md) phòng 401–406, 408 như 407; chủ dự án đã cho phép đo FPS khi T-255 xong).
+
+**Lane khác**
+- Lane A, C, E (Codex, integrator điều khiển bằng `D:\GAME_WORK\chay_lane.ps1`, [DIEU_KHIEN_LANE.md](DIEU_KHIEN_LANE.md)): rảnh, không có việc. Ba lane dùng ba tài khoản ChatGPT khác nhau (integrator đã kiểm 13/11). Lane C hết hạn mức tới 16:09 hôm 13/11.
+- **D-168:** lane Codex dựng đồ hoạ chưa đạt mức phòng 407 (T-252 không merge), nên đồ hoạ giao lane B. Chủ dự án muốn lane B dùng **Opus 5.5 xhigh/max**, không Fable 5.2 (tốn hạn mức).
+- Lane HARU: dự phòng.
+
+**Chờ chủ dự án**
+- Chơi thử bản 11:08: bàn trực tầng 4, cửa thoát hiểm và hai cầu thang nhà B (chương 3), bệnh viện chương 4 (chỉ chỉnh ánh sáng; đồ hoạ bệnh viện là đợt 9). Máy chủ dự án để độ sáng 1,45.
+- Có muốn đưa đợt 9 (bệnh viện) lên sớm không (integrator vừa hỏi).
+- Xoá bản sao đăng nhập cũ lane B `C:\Users\ADMIN\.claude-lane-b`: chờ chủ dự án đóng mọi cửa sổ lane B cũ và nói "đã đóng"; trước khi xoá chép ghi nhớ T-247 (`projects\D--GAME-WORK-lane-b2\memory\t247-ch3-survey.md` và dòng trong MEMORY.md) sang `D:\ClaudeConfig\lane-b`.
+
+**Luật đã rút ra hôm nay**
+- Máy ít RAM (lúc 11:06 chỉ trống 3,3 GB; Chrome và `rsEngineSvc` ăn nhiều). Việc nặng chạy tiền cảnh hoặc lần lượt; việc nền bị dừng vì thiếu RAM thì không tự chạy lại khi chưa hỏi.
+- Lane Codex chờ khoá Godot vẫn tốn hạn mức: khi lane Codex đang chạy, integrator không giữ Godot lâu; prompt dặn lane dừng và báo nếu chờ khoá quá 10 phút.
+- Lane hết hạn mức hay bị dừng giữa chừng: lưu (commit, push) phần đã làm lên nhánh của lane, gỡ khoá Godot nó bỏ lại (khi không còn tiến trình Godot nào).
+- Script chạy test, khoá, đóng gói của integrator: `build/integrator/run_tests_locked.ps1`, `run_locked.ps1`, `package_locked.ps1` (thư mục `build/` không commit).
+
+**Số tiếp theo:** D-169, T-256.
