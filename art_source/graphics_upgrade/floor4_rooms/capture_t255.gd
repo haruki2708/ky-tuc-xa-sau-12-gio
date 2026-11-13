@@ -11,20 +11,25 @@ const SETS := {
 	"rooms": [
 		{"id": "01_corridor_401", "eye": Vector3(9.4, 1.65, 2.9), "target": Vector3(8.0, 1.2, -2.5), "open": ["401"], "torch": true},
 		{"id": "02_in_401", "eye": Vector3(8.0, 1.6, -0.4), "target": Vector3(8.0, 1.0, -6.5), "open": ["401"], "torch": true},
-		{"id": "03_in_401_back", "eye": Vector3(8.6, 1.6, -5.6), "target": Vector3(7.6, 1.2, 0.0), "open": ["401"], "torch": true},
+		{"id": "03_in_401_back", "eye": Vector3(7.5, 1.6, -6.3), "target": Vector3(8.6, 1.1, -0.5), "open": ["401"], "torch": true},
 		{"id": "04_in_402", "eye": Vector3(12.0, 1.6, -0.4), "target": Vector3(12.0, 1.0, -6.5), "open": ["402"], "torch": true},
 		{"id": "05_in_403", "eye": Vector3(16.0, 1.6, -0.4), "target": Vector3(16.0, 1.0, -6.5), "open": ["403"], "torch": true},
 		{"id": "06_in_404", "eye": Vector3(20.0, 1.6, -0.4), "target": Vector3(20.0, 1.0, -6.5), "open": ["404"], "torch": true},
 		{"id": "07_in_405", "eye": Vector3(24.0, 1.6, -0.4), "target": Vector3(24.0, 1.0, -6.5), "open": ["405"], "torch": true},
 		{"id": "08_in_406", "eye": Vector3(28.0, 1.6, -0.4), "target": Vector3(28.0, 1.0, -6.5), "open": ["406"], "torch": true},
 		{"id": "09_in_408", "eye": Vector3(42.0, 1.6, -0.4), "target": Vector3(40.4, 1.0, -6.5), "open": ["408"], "torch": true},
-		{"id": "10_bath_401", "eye": Vector3(8.0, 1.6, -3.6), "target": Vector3(9.2, 1.0, -6.4), "open": ["401"], "torch": true},
-		{"id": "11_balcony_401", "eye": Vector3(7.2, 1.6, -7.6), "target": Vector3(9.5, 1.0, -8.3), "open": ["401"], "torch": true},
+		{"id": "10_bath_401", "eye": Vector3(8.7, 1.65, -3.3), "target": Vector3(9.4, 0.9, -6.6), "open": ["401"], "bath": ["401"], "torch": true},
+		{"id": "11_balcony_401", "eye": Vector3(7.35, 1.6, -7.5), "target": Vector3(9.6, 1.0, -8.3), "open": ["401"], "balcony": ["401"], "torch": true},
 		{"id": "12_corridor_west", "eye": Vector3(36.0, 1.65, 2.5), "target": Vector3(6.0, 1.2, 1.0), "open": ["405", "403"]},
 		{"id": "13_facade_from_407", "eye": Vector3(30.8, 1.6, -8.25), "target": Vector3(18.0, 0.8, -7.8)},
 		{"id": "14_facade_outside", "eye": Vector3(24.0, -6.5, -24.0), "target": Vector3(24.0, 1.2, -7.5), "fov": 60.0},
+		{"id": "15_in_402_back", "eye": Vector3(13.4, 1.6, -6.3), "target": Vector3(11.4, 1.1, -0.5), "open": ["402"], "torch": true},
+		{"id": "16_in_408_back", "eye": Vector3(41.5, 1.6, -6.4), "target": Vector3(40.0, 1.1, -0.8), "open": ["408"], "torch": true},
+		{"id": "17_bath_408", "eye": Vector3(40.0, 1.65, -3.3), "target": Vector3(38.6, 0.9, -6.6), "open": ["408"], "bath": ["408"], "torch": true},
+		{"id": "18_in_404_back", "eye": Vector3(21.0, 1.6, -6.3), "target": Vector3(19.4, 1.1, -0.5), "open": ["404"], "torch": true},
 	],
 }
+
 var camera: Camera3D
 var torch: SpotLight3D
 
@@ -93,6 +98,13 @@ func _run() -> void:
 				if door != null and door.has_method("set_open"):
 					door.call("set_open", true)
 					opened.append(door)
+			for key: String in ["bath", "balcony"]:
+				for room: String in view.get(key, []):
+					var part := "Interior/BathroomDoor" if key == "bath" else "Outdoor/BalconyDoor"
+					var hinged := floor4.get_node_or_null("Rooms/Room%s/%s" % [room, part])
+					if hinged != null:
+						hinged.call("set_open", true)
+						opened.append(hinged)
 			camera.position = view.eye
 			camera.look_at(view.target)
 			camera.fov = view.get("fov", 75.0)

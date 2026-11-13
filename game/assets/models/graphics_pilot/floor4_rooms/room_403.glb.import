@@ -1,0 +1,133 @@
+[remap]
+
+importer="scene"
+importer_version=1
+type="PackedScene"
+uid="uid://de6h7x123eyew"
+path="res://.godot/imported/room_403.glb-b4ceceaab2b976751c96ba9b1a978c3c.scn"
+
+[deps]
+
+source_file="res://assets/models/graphics_pilot/floor4_rooms/room_403.glb"
+dest_files=["res://.godot/imported/room_403.glb-b4ceceaab2b976751c96ba9b1a978c3c.scn"]
+
+[params]
+
+nodes/root_type=""
+nodes/root_name=""
+nodes/root_script=null
+mesh_library/use_node_names_as_mesh_names=false
+array_mesh/deduplicate_surfaces=true
+nodes/apply_root_scale=true
+nodes/root_scale=1.0
+nodes/import_as_skeleton_bones=false
+nodes/use_name_suffixes=true
+nodes/use_node_type_suffixes=true
+meshes/ensure_tangents=true
+meshes/generate_lods=true
+meshes/create_shadow_meshes=true
+meshes/light_baking=1
+meshes/lightmap_texel_size=0.2
+meshes/force_disable_compression=false
+skins/use_named_skins=true
+animation/import=false
+animation/fps=30
+animation/trimming=false
+animation/remove_immutable_tracks=true
+animation/import_rest_as_RESET=false
+import_script/path=""
+materials/extract=0
+materials/extract_format=0
+materials/extract_path=""
+_subresources={
+"materials": {
+"F4Alu": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/graphics_pilot/floor4_rooms/materials/F4Alu.tres",
+"use_external/path": "res://assets/models/graphics_pilot/floor4_rooms/materials/F4Alu.tres"
+},
+"F4BalconyFloor": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/graphics_pilot/floor4_rooms/materials/F4BalconyFloor.tres",
+"use_external/path": "res://assets/models/graphics_pilot/floor4_rooms/materials/F4BalconyFloor.tres"
+},
+"F4BathFloor": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/graphics_pilot/floor4_rooms/materials/F4BathFloor.tres",
+"use_external/path": "res://assets/models/graphics_pilot/floor4_rooms/materials/F4BathFloor.tres"
+},
+"F4BathTiles": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/graphics_pilot/floor4_rooms/materials/F4BathTiles.tres",
+"use_external/path": "res://assets/models/graphics_pilot/floor4_rooms/materials/F4BathTiles.tres"
+},
+"F4Ceiling": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/graphics_pilot/floor4_rooms/materials/F4Ceiling.tres",
+"use_external/path": "res://assets/models/graphics_pilot/floor4_rooms/materials/F4Ceiling.tres"
+},
+"F4Drain": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/graphics_pilot/floor4_rooms/materials/F4Drain.tres",
+"use_external/path": "res://assets/models/graphics_pilot/floor4_rooms/materials/F4Drain.tres"
+},
+"F4Enamel": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/graphics_pilot/floor4_rooms/materials/F4Enamel.tres",
+"use_external/path": "res://assets/models/graphics_pilot/floor4_rooms/materials/F4Enamel.tres"
+},
+"F4Exterior": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/graphics_pilot/floor4_rooms/materials/F4Exterior.tres",
+"use_external/path": "res://assets/models/graphics_pilot/floor4_rooms/materials/F4Exterior.tres"
+},
+"F4Floor": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/graphics_pilot/floor4_rooms/materials/F4Floor.tres",
+"use_external/path": "res://assets/models/graphics_pilot/floor4_rooms/materials/F4Floor.tres"
+},
+"F4FrameGreen": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/graphics_pilot/floor4_rooms/materials/F4FrameGreen.tres",
+"use_external/path": "res://assets/models/graphics_pilot/floor4_rooms/materials/F4FrameGreen.tres"
+},
+"F4Louvre": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/graphics_pilot/floor4_rooms/materials/F4Louvre.tres",
+"use_external/path": "res://assets/models/graphics_pilot/floor4_rooms/materials/F4Louvre.tres"
+},
+"F4Skirting": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/graphics_pilot/floor4_rooms/materials/F4Skirting.tres",
+"use_external/path": "res://assets/models/graphics_pilot/floor4_rooms/materials/F4Skirting.tres"
+},
+"F4TubeGlass": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/graphics_pilot/floor4_rooms/materials/F4TubeGlass.tres",
+"use_external/path": "res://assets/models/graphics_pilot/floor4_rooms/materials/F4TubeGlass.tres"
+},
+"F4Wall": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/graphics_pilot/floor4_rooms/materials/F4Wall.tres",
+"use_external/path": "res://assets/models/graphics_pilot/floor4_rooms/materials/F4Wall.tres"
+},
+"F4Wire": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/graphics_pilot/floor4_rooms/materials/F4Wire.tres",
+"use_external/path": "res://assets/models/graphics_pilot/floor4_rooms/materials/F4Wire.tres"
+},
+"W1Black": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Black.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Black.tres"
+},
+"W1Iron": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Iron.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Iron.tres"
+}
+}
+}
+gltf/naming_version=2
+gltf/embedded_image_handling=1
+gltf/texture_map_mode=1

@@ -11,12 +11,17 @@ const LEVER_SCALE := 1.4
 ## T-237 (D-148): the corridor in room 407's style (corridor_shell.gd) over the PS1 one, in every chapter. Off
 ## only to compare with the PS1 corridor (tests, the T-229 survey): set it before the floor enters the tree.
 @export var upgraded_corridor := true
+## T-255 (D-168): rooms 401-406 and 408 as deep as room 407, furnished, opened by hand (floor4_rooms.gd), in every
+## chapter. Off only to compare with the PS1 rooms: set it before the floor enters the tree.
+@export var upgraded_rooms := true
 
 
 func _ready() -> void:
 	_hang_furnished_door()
 	if upgraded_corridor:
 		Floor4CorridorShell.build(self)
+	if upgraded_rooms:
+		Floor4Rooms.build(self)
 	sync_door_anchor()
 
 

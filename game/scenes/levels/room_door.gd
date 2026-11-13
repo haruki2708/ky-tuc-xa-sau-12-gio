@@ -15,7 +15,8 @@ func _ready() -> void:
 	blocker.collision_mask = 0
 
 
-func set_open(open: bool) -> void:
+## T-255: `seconds` is how long the leaf takes (a hand keeps hold that long, RoomDoorHand).
+func set_open(open: bool, seconds: float = 0.3) -> void:
 	is_open = open
 	if not is_node_ready():
 		await ready
@@ -23,4 +24,4 @@ func set_open(open: bool) -> void:
 	if _swing != null and _swing.is_valid():
 		_swing.kill()
 	_swing = create_tween()
-	_swing.tween_property(_hinge, "rotation:y", PI / 2.0 if open else 0.0, 0.3).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	_swing.tween_property(_hinge, "rotation:y", PI / 2.0 if open else 0.0, maxf(seconds, 0.01)).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)

@@ -32,9 +32,13 @@ def floor_y(k):
     return (k - 4) * FLOOR
 
 
-def module(x0, y0, mirror, mats, ours=False):
-    """One room's balcony bay. mirror=False faces -z (our block), True faces +z (the block opposite)."""
+def module(x0, y0, mirror, mats, ours=False, dry=False, soffit_real=False):
+    """One room's balcony bay. mirror=False faces -z (our block), True faces +z (the block opposite).
+    dry: draws nothing but takes the same random numbers (T-255: a bay where a real room now stands, so the other
+    bays keep their washing and lit windows). soffit_real: its floor slab is a real room's balcony roof (T-255)."""
     wall, slab, glass_dark, glass_lit, cloth, steel = mats
+    bc_box = (lambda *args, **kwargs: None) if dry else bc.box
+    bc_tube = (lambda *args, **kwargs: None) if dry else bc.tube
     z_wall = -7.075 if not mirror else -7.075 - 2 * (-7.075 - FACADE_Z) - GAP  # mirror through the gap
     out = -1 if not mirror else 1
 
@@ -43,36 +47,46 @@ def module(x0, y0, mirror, mats, ours=False):
 
     depth = abs(FACADE_Z - (-7.075))
     if not ours:
-        if not (not mirror and x0 == 0 and y0 == FLOOR):  # our balcony's soffit is the slab above it
-            bc.box("OutSlab", (x0 + 2.6, y0 - 0.1, z(depth / 2)), (5.32, 0.2, depth + 0.05), slab, 0, 2.0)
-        bc.box("OutParapet", (x0 + 2.6, y0 + 0.55, z(depth - 0.05)), (5.2, 1.1, 0.1), wall, 0, 2.0)
-        bc.box("OutCoping", (x0 + 2.6, y0 + 1.125, z(depth - 0.05)), (5.32, 0.05, 0.16), slab, 0, 1.0)
+        if not (not mirror and x0 == 0 and y0 == FLOOR) and not soffit_real:  # our balcony's soffit is the slab above it
+            bc_box("OutSlab", (x0 + 2.6, y0 - 0.1, z(depth / 2)), (5.32, 0.2, depth + 0.05), slab, 0, 2.0)
+        bc_box("OutParapet", (x0 + 2.6, y0 + 0.55, z(depth - 0.05)), (5.2, 1.1, 0.1), wall, 0, 2.0)
+        bc_box("OutCoping", (x0 + 2.6, y0 + 1.125, z(depth - 0.05)), (5.32, 0.05, 0.16), slab, 0, 1.0)
         for dx in (0.0, 5.2):
-            bc.box("OutDivider", (x0 + dx, y0 + 1.0, z(depth / 2)), (0.12, 2.0, depth), wall, 0, 2.0)
+            bc_box("OutDivider", (x0 + dx, y0 + 1.0, z(depth / 2)), (0.12, 2.0, depth), wall, 0, 2.0)
         # Back wall with the balcony door and the bathroom's small window.
         for (a, b), (c, d) in (((0, 2.3), (0, FLOOR)), ((3.3, ROOM), (0, FLOOR)), ((2.3, 3.3), (2.3, FLOOR))):
-            bc.box("OutWall", (x0 + (a + b) / 2, y0 + (c + d) / 2, z(-0.05)), (b - a, d - c, 0.1), wall, 0, 2.0)
+            bc_box("OutWall", (x0 + (a + b) / 2, y0 + (c + d) / 2, z(-0.05)), (b - a, d - c, 0.1), wall, 0, 2.0)
         lit = RNG.random() < (0.22 if mirror else 0.12)
-        bc.box("OutDoorGlass", (x0 + 2.8, y0 + 1.15, z(-0.02)), (0.92, 2.24, 0.02), glass_lit if lit else glass_dark, 0, 1.0)
+        bc_box("OutDoorGlass", (x0 + 2.8, y0 + 1.15, z(-0.02)), (0.92, 2.24, 0.02), glass_lit if lit else glass_dark, 0, 1.0)
         if RNG.random() < 0.15:
-            bc.box("OutBathWindow", (x0 + 6.8, y0 + 2.05, z(0.01)), (0.5, 0.4, 0.02), glass_lit, 0, 1.0)
+            bc_box("OutBathWindow", (x0 + 6.8, y0 + 2.05, z(0.01)), (0.5, 0.4, 0.02), glass_lit, 0, 1.0)
         # Washing on about half the lines.
         if RNG.random() < 0.55:
-            bc.tube("OutLine", (x0 + 0.3, y0 + 2.15, z(0.7)), (x0 + 4.9, y0 + 2.15, z(0.7)), 0.003, steel, 6, 0.3)
+            bc_tube("OutLine", (x0 + 0.3, y0 + 2.15, z(0.7)), (x0 + 4.9, y0 + 2.15, z(0.7)), 0.003, steel, 6, 0.3)
             for _ in range(RNG.randint(2, 6)):
                 cx = x0 + RNG.uniform(0.6, 4.6)
                 w, h = RNG.uniform(0.35, 0.6), RNG.uniform(0.45, 0.8)
-                bc.box("OutCloth", (cx, y0 + 2.15 - h / 2, z(0.7)), (w, h, 0.01), RNG.choice(cloth), 0, 1.0)
+                bc_box("OutCloth", (cx, y0 + 2.15 - h / 2, z(0.7)), (w, h, 0.01), RNG.choice(cloth), 0, 1.0)
     else:
         # Only the walls of our own bay beside the balcony (the shell has the rest): the bathroom part.
-        bc.box("OutWall", (x0 + 6.6, y0 + 1.6, z(-0.05)), (2.8, FLOOR, 0.1), wall, 0, 2.0)
+        bc_box("OutWall", (x0 + 6.6, y0 + 1.6, z(-0.05)), (2.8, FLOOR, 0.1), wall, 0, 2.0)
+
+
+# T-255 (D-168): rooms 401-406 and 408 are real now (art_source/graphics_upgrade/floor4_rooms/), as deep as ours with
+# their balconies: floor 4's bays over Floor4 x 6..30 and 38..46 (room-local -24..0, 8..16) go, floor 5's bays there
+# keep everything but their floor slab (the real balconies' roofs), and the stretch past room 408 (Floor4 x 44..46)
+# gets a plain wall.
+REAL_ROOMS_FLOOR4 = (-3, -2, -1, 1)
 
 
 def block(mirror, mats):
     for k in FLOORS:
         for i in range(-4, 5):
             ours = (not mirror) and k == 4 and i == 0
-            module(i * ROOM, floor_y(k), mirror, mats, ours)
+            real = (not mirror) and i in REAL_ROOMS_FLOOR4
+            module(i * ROOM, floor_y(k), mirror, mats, ours, dry=real and k == 4, soffit_real=real and k == 5)
+    if not mirror:
+        bc.box("OutWall", (15.0, 1.6, -7.025), (2.0, FLOOR, 0.1), mats[0], 0, 2.0)
     # Gable ends and the roof edge.
     zc = (-7.075 + FACADE_Z) / 2 if not mirror else (-7.075 - GAP - 2 * (-7.075 - FACADE_Z) + (FACADE_Z - GAP)) / 2
     wall = mats[0]
