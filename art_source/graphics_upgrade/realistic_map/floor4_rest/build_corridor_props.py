@@ -146,22 +146,20 @@ def solids():
 	objs.append(W.build(p))
 	# 404 (music): a guitar case leaning on the wall.
 	p = solid("GuitarBag404")
-	# A soft gig bag leaning on the wall: the guitar's two bulbs and its neck, a zip and a strap.
-	up = (0.0, 0.985, -0.17)
-	out = (0.0, 0.17, 0.985)
-	axes = ((1, 0, 0), up, out)
-	x = 17.3
+	# A soft gig bag leaning on the wall, 10 degrees: two rounded bulbs, the neck and head, a zip and a strap.
+	from mathutils import Matrix
+	lean = Matrix.Rotation(math.radians(-10.0), 4, "X")
+	x, z_foot = 17.3, 0.27
 
-	def along(h, d=0.0):
-		return (x, h * up[1] + d * out[1], 0.2 + h * up[2] + d * out[2])
-	W.lathe_at(p, "CCBag", [(0.0, -0.055), (0.17, -0.055), (0.19, -0.03), (0.19, 0.03), (0.17, 0.055), (0.0, 0.055)],
-		along(0.22), segments=16, scale=(1.0, 1.0))
-	W.obox(p, "CCBag", along(0.45), axes, (0.15, 0.08, 0.05))
-	W.lathe_at(p, "CCBag", [(0.0, -0.05), (0.13, -0.05), (0.15, -0.025), (0.15, 0.025), (0.13, 0.05), (0.0, 0.05)],
-		along(0.58), segments=14)
-	W.obox(p, "CCBag", along(0.88), axes, (0.055, 0.22, 0.035))
-	W.obox(p, "CCBag", along(1.12), axes, (0.075, 0.07, 0.035))
-	W.gtube(p, "W1Black", [along(0.05, 0.056), along(1.15, 0.036)], 0.004, 4)
+	def piece(mat, h, w, tall, depth, bevel):
+		centre = K.G(x, 0.0, z_foot) + lean @ K.G(0.0, h, 0.0)
+		m = Matrix.Translation(centre) @ lean
+		p.box(mat, (-w / 2, -depth / 2, -tall / 2), (w / 2, depth / 2, tall / 2), bevel=bevel, segments=3, matrix=m)
+	piece("CCBag", 0.22, 0.38, 0.42, 0.11, 0.045)
+	piece("CCBag", 0.55, 0.3, 0.28, 0.1, 0.04)
+	piece("CCBag", 0.88, 0.1, 0.42, 0.07, 0.015)
+	piece("CCBag", 1.14, 0.15, 0.13, 0.07, 0.02)
+	piece("W1Black", 0.6, 0.012, 1.0, 0.115, 0.0)
 	objs.append(W.build(p))
 	# 405 (two have moved out): moving boxes, taped.
 	p = solid("Boxes405")

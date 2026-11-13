@@ -5,7 +5,8 @@ box over the door becomes an exit light box (unlit). FireDoor-local metres, as w
                                 short neck: its bar 31 mm off the leaf (wave 1: 56 mm), so open it stays 3 mm short of
                                 the handrail and 2 cm short of the balusters. Same origin (the spindle), same node.
   exit_sign.glb                 FireDoor/ExitSign  a light box "LỐI THOÁT" over the door, its face on the corridor side,
-                                enclosing wave 1's sign box (left in its frame, hidden inside this one)
+                                enclosing wave 1's sign box (left in its frame, hidden inside this one); EndCover, a
+                                plastered pier over the PS1 strip at the corridor's east end by the railing
 Run: blender -b --factory-startup -P art_source/graphics_upgrade/realistic_map/floor4_rest/build_fire_door_rest.py
 """
 import sys
@@ -61,6 +62,16 @@ def exit_sign():
 	return part.build()
 
 
+def end_cover():
+	"""Thấy thêm 1: the fire stairwell's PS1 front box (FireStairs/FrontRail) and wave 1's old-wall top show as a
+	chequered strip at the corridor's east end by the railing, from the door frame's head to the ceiling. A plastered
+	pier in the corridor's colour covers it: world x 43.84..44.06, z 3.95..4.18, y 2.38..3.05 (FireDoor local:
+	x = 2 - z, z = x - 44)."""
+	part = kit.Part("EndCover")
+	part.box("CVWall", tuple(G(-2.18, 2.38, -0.16)), tuple(G(-1.95, 3.05, 0.06)), bevel=0.004)
+	return part.build(uv_size={"CVWall": 2.0})
+
+
 def main():
 	kit.reset()
 	kit.material("W1Steel", (0.6, 0.6, 0.58), 0.38, 1.0)
@@ -70,7 +81,8 @@ def main():
 	obj = handle()
 	kit.export(OUT / "fire_door_handle_compact.glb", [obj])
 	obj.select_set(False)
-	kit.export(OUT / "exit_sign.glb", [exit_sign()])
+	kit.material("CVWall", (0.8, 0.76, 0.64), 0.85)
+	kit.export(OUT / "exit_sign.glb", [exit_sign(), end_cover()])
 
 
 main()

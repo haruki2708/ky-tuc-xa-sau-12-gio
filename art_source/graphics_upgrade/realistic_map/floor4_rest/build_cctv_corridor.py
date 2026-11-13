@@ -29,7 +29,8 @@ PREVIEW = {
 	"CVFrame": ((0.12, 0.3, 0.2), 0.6, 0.0), "CVLeaf": ((0.15, 0.35, 0.25), 0.6, 0.0),
 	"CVRail": ((0.2, 0.32, 0.24), 0.5, 0.4), "CVTube": ((0.9, 0.95, 0.85), 0.25, 0.0),
 }
-SIZES = {"CVWall": 2.0, "CVCeiling": 2.0, "CVFloor": 1.0, "CVSkirting": 1.0, "CVFrame": 1.0, "CVLeaf": 1.2}
+# As the real corridor (floor4_corridor/build_corridor.py PERIOD): floor tiles and plaster repeat every 2 m.
+SIZES = {"CVWall": 2.0, "CVCeiling": 2.0, "CVFloor": 2.0, "CVSkirting": 2.0, "CVFrame": 1.0, "CVLeaf": 1.2}
 K.SIZES.update(SIZES)
 
 
@@ -46,8 +47,9 @@ def set_part():
 	W.plane(part, "CVWall", (0.0, 0.0, c), PX, PY, LENGTH, CEILING - c, holes)
 	W.plane(part, "CVFloor", (0.0, 0.0, DEPTH), PX, NZ, LENGTH, DEPTH)
 	W.plane(part, "CVCeiling", (0.0, CEILING - c, 0.0), PX, PZ, LENGTH, DEPTH + 0.15)
-	for x, u in ((c, PZ), (LENGTH - c, NZ)):
-		W.plane(part, "CVWall", (x, 0.0, 0.0) if u == PZ else (x, 0.0, DEPTH), u, PY, DEPTH, CEILING - c)
+	# The end walls look into the set: the west one along +x (u = -z), the east one along -x (u = +z).
+	W.plane(part, "CVWall", (c, 0.0, DEPTH), NZ, PY, DEPTH, CEILING - c)
+	W.plane(part, "CVWall", (LENGTH - c, 0.0, 0.0), PZ, PY, DEPTH, CEILING - c)
 	# Tile skirting along the room wall between the doorways, and the slab's edge under the railing.
 	edges = [0.0] + sorted(v for d in DOORS.values() for v in (d - 0.97, d + 0.09)) + [LENGTH]
 	for a, b in zip(edges[0::2], edges[1::2]):

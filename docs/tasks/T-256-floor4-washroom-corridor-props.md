@@ -112,4 +112,51 @@ D-170: dựng lại trường quay.
 - [ ] README, CREDITS, ảnh ghép, Handoff
 
 ## Handoff
-(lane B điền)
+
+### 13–14/11/2026 — lane B (Claude, Opus 5.5)
+Nhánh `lane-b/T-256-floor4-washroom-corridor-props` từ `origin/main` `8aad1c3` (đã có T-255). Commit card đã đọc: `7e12f86`. Lúc mở phiên không có thay đổi dở. Commit: `20aec9e` (phần A), `d635a8b` (B, C, D), các commit sau (ảnh, Handoff).
+
+**Đã làm (nguồn `art_source/graphics_upgrade/realistic_map/floor4_rest/`, README ở đó):**
+- **A, nhà vệ sinh chung** (`washroom.glb`, 11.228 tam giác, 28 vật liệu; script cảnh `game/scenes/levels/floor4/washroom_real.gd` gắn ở gốc `washroom.tscn`):
+  - Tường ốp gạch men xanh nhạt tới 1,8 m, khổ gạch nhỏ hơn nhà tắm 407; trên trát kem. Trần trát có mốc. Sàn gạch chống trơn dốc 1,2 cm về ga thoát. Dùng shader vỏ 407 với mask 1K vẽ riêng: ố vàng dưới vòi, ướt quanh máng và trước buồng, mốc góc trần, lối mòn từ cửa.
+  - Ba buồng xây ốp gạch: bệ xổm trên bậc, vòi thấp trên ống thả từ đường ống dọc tường sau, xô, gáo, thùng rác nhỏ. Cánh cửa sơn xanh khép hờ **vào trong** 24°, 31°, 19°: khe hẹp hơn vai người, không tương tác.
+  - Máng rửa dài xây ốp gạch, phủ kín ba hộp `Sink_*`: ba vòi tường đúng chỗ ba `Tap_*` (miệng vòi tại `TapWater`), ống cấp lộ dưới gương, ống thoát ra ga, xà phòng, ca nhựa.
+  - **Gương phản chiếu thật như 407**: mặt HD, chỉ vẽ khi đang nhìn vào, đi theo người chơi cầm camera; có thân Trần Trung thì ẩn hình thế PS1. Kính thu từ 2,8 m còn 2,5 m (tâm, hướng giữ nguyên) để chừa bảng tin ở `WashroomNotice`. Mép tráng bạc bong, đốm nước (lớp riêng, gương không tự phản chiếu nó).
+  - Máng đèn tuýp thay hộp `WashroomLight/Fixture`, ống sáng theo đèn. Ô thoáng gạch bông, móc, khăn, xô và cây lau, chậu.
+  - Gán `follow` cho gương làm được trong script cảnh lane B (như `room407.gd`), không cần core. Demo `main.tscn` gán `follow = $Player` vẫn như cũ.
+  - Hình PS1 chỉ ẩn (kể cả `Details`, `Tap_*`, `Mirror/Frame`). Va chạm, đèn, âm thanh, vùng, anchor giữ nguyên.
+- **B, đồ hành lang** (`corridor_props.glb` 8.418 + `cloths.glb` 372 tam giác; node `RealProps` với `corridor_props.gd` ở cuối `corridor.tscn`):
+  - Dây phơi thật võng 3 cm giữa các móc trần. Quần áo thật (áo trên mắc, khăn vắt, quần) gắn vào `HangingCloth_0…4` nên **vẫn đung đưa**. `Anchors/ClotheslineExtraShirt` để trống: bản demo cũ treo áo riêng ở đó.
+  - Ba xô cũ đổi hình, giữ va chạm.
+  - Mỗi phòng một khác:
+    - nhà vệ sinh: xô lau và chổi;
+    - 401: kệ giày;
+    - 402: ghế nhựa và chậu, dép;
+    - 403: giày thể thao và bóng;
+    - 404: bao đàn;
+    - 405: thùng carton dọn đi, túi rác;
+    - 406: can nước 20 l, thùng mì, dép;
+    - 407: ô;
+    - 408 cũ: chổi, hót rác.
+  - Sát lan can: chậu ngâm đồ, xô, ghế nhựa.
+  - Đồ cỡ xô trở lên có hộp va chạm (D-135). Tất cả sát tường (z ≤ 0,62) hoặc sát lan can (z ≥ 3,32), cách mỗi cửa 0,9 m sang hai bên trong vùng 1,3 m trước cửa.
+  - Dép `Slippers_0…3` vẫn ẩn như trước: đã có dép Tripo ở `Anchors/Slippers407` (story_director dùng anchor đó), bật lại sẽ trùng.
+- **C, cửa thoát hiểm** (`building_b.tscn`, chỉ `FireDoor`):
+  - Không đổi góc mở hay trục bản lề, vì test T-250 (phải đạt) kiểm `Leaf` đúng 90°, kiểm vị trí `Leaf`, và kiểm ổ khoá, tay gạt bám cứng theo cánh. Cách ít đổi nhất là dùng tay gạt bản gọn `fire_door_handle_compact.glb`: cần gạt phía hành lang trên cổ ngắn, thanh gạt cách mặt cánh 3,1 cm (đợt 1: khoảng 5,6 cm). Node `Handle`, vị trí, va chạm như cũ.
+  - Khi mở, tay gạt dừng cách tay vịn khoảng 3 mm (trước: lấn khoảng 2 cm) và cách song đứng khoảng 2 cm.
+  - Thấy thêm 1: hộp xanh trơn trên cửa là hộp `W1ExitSign` của khung cửa đợt 1. Hộp đèn mới `FireDoor/ExitSign` "LỐI THOÁT / EXIT" (tắt, không thêm đèn) bọc kín hộp cũ, không phải sửa khung.
+- **D, trường quay CCTV hành lang** (`cctv_corridor.glb`, 2.526 tam giác; `cctv_set.tscn` thêm `Corridor/RealSet`):
+  - Tường trát, sàn gạch, len, trần, khung cửa xanh, cửa panô sơn (nhẹ hơn lá Tripo 5.057 tam giác mỗi cái, feed chỉ 320 × 240), biển nhôm sau số `Label3D` cũ, máng đèn.
+  - **Lan can mở** thay tường ngoài (va chạm `OuterWall` giữ nguyên, ngoài lan can là khoảng tối).
+  - Khoảng cửa giữ 3,2 m như set để camera thấy đúng ba cửa như cũ. `Cam`, `Tube`, `Door405/406/407` (chỉ ẩn hình kit), mọi va chạm, vị trí set giữ nguyên.
+
+**Texture mới (cả ba ≤ 1K, nén VRAM):** `mask_washroom.png` 1024², `mirror_stain.png` 1024×512, `exit_sign.png` 512×192. Còn lại dùng lại scan CC0 và vải tô màu của T-255. Không Tripo, không ảnh AI. CREDITS ở hai thư mục `floor4_rest` của model và texture.
+
+**Nặng máy:**
+- Nhà vệ sinh 11.228 tam giác (trần 30.000).
+- Đồ hành lang thêm 8.790 tam giác (trần 25.000).
+- Trường quay 2.526 tam giác (trần 15.000).
+- Tay gạt 392, biển 102 tam giác.
+- Không đèn, không bóng mới.
+- VRAM đo trong cảnh chụp chương 3: 3.687 MB (T-255 đo 3.665 MB).
+- Gương nhà vệ sinh có viewport 800 × 304, chỉ vẽ khi đang nhìn vào (như gương 407).

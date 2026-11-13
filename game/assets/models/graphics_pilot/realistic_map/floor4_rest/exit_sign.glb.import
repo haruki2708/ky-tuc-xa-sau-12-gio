@@ -46,6 +46,11 @@ _subresources={
 "use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/floor4_rest/materials/CDExitFace.tres",
 "use_external/path": "res://assets/models/graphics_pilot/realistic_map/floor4_rest/materials/CDExitFace.tres"
 },
+"CVWall": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/floor4_rest/materials/CVWall.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/floor4_rest/materials/CVWall.tres"
+},
 "W1Alu": {
 "use_external/enabled": true,
 "use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Alu.tres",

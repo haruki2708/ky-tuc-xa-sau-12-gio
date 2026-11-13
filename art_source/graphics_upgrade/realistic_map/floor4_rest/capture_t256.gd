@@ -31,6 +31,11 @@ const SETS := {
 		{"id": "c2_door_open", "eye": Vector3(39.5, 1.65, 1.6), "target": Vector3(44, 1.3, 2.4), "torch": true, "fire_open": true},
 		{"id": "c3_sign_column", "eye": Vector3(40.5, 1.6, 1.8), "target": Vector3(44, 2.5, 2.5), "torch": true},
 	],
+	# The director's set (chapter 1 holds it under Chapter1Director/CctvSet): the feed's own camera, the survey's view.
+	"cctv": [
+		{"id": "d1_feed", "cam": "Chapter1Director/CctvSet/Corridor/Cam"},
+		{"id": "d2_set", "eye": Vector3(31, -58.35, 2.5), "target": Vector3(27, -59, 0)},
+	],
 }
 var camera: Camera3D
 var torch: SpotLight3D
@@ -115,10 +120,22 @@ var body := true
 			if view.get("fire_open", false) and fire_door != null and fire_door.has_method("set_open"):
 				fire_door.call("set_open", true)
 				opened = true
-			eye_rig.global_position = view.eye
-			camera.position = Vector3.ZERO
-			camera.look_at(view.target)
-			camera.fov = view.get("fov", 75.0)
+			if view.has("cam"):
+				var source := scene.get_node_or_null(String(view.cam)) as Camera3D
+				if source == null:
+					push_error("no camera " + String(view.cam))
+					continue
+				eye_rig.global_position = source.global_position
+				camera.position = Vector3.ZERO
+				camera.global_basis = source.global_basis
+				camera.fov = source.fov
+				camera.far = source.far
+			else:
+				eye_rig.global_position = view.eye
+				camera.position = Vector3.ZERO
+				camera.look_at(view.target)
+				camera.fov = view.get("fov", 75.0)
+				camera.far = 4000.0
 			torch.visible = view.get("torch", false)
 			for frame in range(40):
 				await get_tree().process_frame
