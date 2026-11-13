@@ -88,12 +88,12 @@ Trả lời và viết tài liệu bằng tiếng Việt; code, comment, commit 
 - **Nguồn đúng khi lệch nhau:** mục 3 file này mới nhất; rồi `docs/STATUS.md`; `docs/ROADMAP.md` chỉ cập nhật khi qua mốc.
 
 ## 3. Tiến độ integrator để lại (integrator cập nhật sau mỗi bước)
-**Cập nhật:** 13/11/2026 khoảng 12:00, integrator (Opus 5.5 high), viết lại gọn trước khi chủ dự án `/clear` sang phiên điều phối mới.
+**Cập nhật:** 13/11/2026 khoảng 13:55, integrator (Opus 5.5): merge T-254.
 
-**Main:** `82631bd` (đẩy lên origin). Bản chơi mới nhất: `build/windows/KyTucXa.exe`, zip `build/dist/KyTucXa-0.0.1-b1b1cb3-win64.zip` (package PASS 13/11 11:08): có T-244, T-246, T-249, T-250, T-251 và sửa ánh sáng bệnh viện. Chủ dự án đã chơi và duyệt bản `04ddc7d` (T-244, T-246, T-249, T-251).
+**Main:** merge T-254 `14c574e` (full test 954/0, check 0), đẩy lên origin. Bản chơi mới nhất: `build/windows/KyTucXa.exe`, zip `build/dist/KyTucXa-0.0.1-b1b1cb3-win64.zip` (package PASS 13/11 11:08): có T-244, T-246, T-249, T-250, T-251 và sửa ánh sáng bệnh viện. Chủ dự án đã chơi và duyệt bản `04ddc7d` (T-244, T-246, T-249, T-251).
 
 **Đang chạy**
-- **Lane B: [T-254](../tasks/T-254-floor4-landing-guard-rail.md)** lan can mép chiếu nghỉ tầng 4 (chủ dự án dán prompt `lane-b.md` mục 1i, Opus 5.5 high, khoảng 11:50). Khi lane B báo xong: review, merge (full test + check sau merge), rồi chủ dự án `/clear` lane B và dán **mục 1j** ([T-253](../tasks/T-253-realistic-graphics-wave2.md) đồ hoạ đợt 2, Opus 5.5 xhigh, làm nối tiếp trên nhánh T-254), sau đó **mục 1k** ([T-255](../tasks/T-255-floor4-rooms-like-407.md) phòng 401–406, 408 như 407; chủ dự án đã cho phép đo FPS khi T-255 xong).
+- **Lane B:** [T-254](../tasks/T-254-floor4-landing-guard-rail.md) lan can **đã merge 13/11** (chưa chơi thử). Chủ dự án `/clear` lane B và dán **mục 1j** ([T-253](../tasks/T-253-realistic-graphics-wave2.md) đồ hoạ đợt 2, Opus 5.5 xhigh, nhánh từ `origin/main`), sau đó **mục 1k** ([T-255](../tasks/T-255-floor4-rooms-like-407.md) phòng 401–406, 408 như 407; chủ dự án đã cho phép đo FPS khi T-255 xong).
 
 **Lane khác**
 - Lane A, C, E (Codex, integrator điều khiển bằng `D:\GAME_WORK\chay_lane.ps1`, [DIEU_KHIEN_LANE.md](DIEU_KHIEN_LANE.md)): rảnh, không có việc. Ba lane dùng ba tài khoản ChatGPT khác nhau (integrator đã kiểm 13/11). Lane C hết hạn mức tới 16:09 hôm 13/11.

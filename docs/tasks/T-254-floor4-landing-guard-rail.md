@@ -1,5 +1,5 @@
 # T-254 — Lan can mép chiếu nghỉ tầng 4 ở hai cầu thang nhà B (có va chạm)
-- Lane: B | Trạng thái: todo | Agent: tài khoản Claude lane B, `D:\GAME_WORK\lane-b2`; model Opus 5.5 high (việc nhỏ). Chủ dự án tự dán prompt (`lane-b.md` mục 1i).
+- Lane: B | Trạng thái: **merged 13/11** (`14c574e`, full test sau merge 954/0, check 0) | Agent: tài khoản Claude lane B, `D:\GAME_WORK\lane-b2`; model Opus 5.5 high (việc nhỏ). Chủ dự án tự dán prompt (`lane-b.md` mục 1i).
 - Nhánh: `lane-b/T-254-floor4-landing-guard-rail` từ `origin/main` mới nhất (đã có T-250).
 - Giao việc: chủ dự án trả lời câu 4 của [T-250](T-250-realistic-graphics-wave1.md) (13/11/2026): **có làm** lan can mép chiếu nghỉ tầng 4; card riêng vì phải thêm va chạm (T-250 cấm đổi va chạm).
 
