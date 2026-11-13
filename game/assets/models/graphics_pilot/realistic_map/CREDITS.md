@@ -33,3 +33,29 @@ Không chép thêm bản nào; vật liệu trỏ thẳng vào file sẵn có:
 
 ### Đồ phòng 407 dùng lại (Tripo, D-084)
 `room407_batch2/desk_lamp.glb` (đèn bàn) và `room407_batch1/stool.glb` (ghế nhựa) đặt ở bàn trực; giấy phép và hồ sơ giữ như credits gốc (`art_source/graphics_upgrade/tripo/room407_batch1/CREDITS.md`, `room407_batch2/`). Không tạo mẫu Tripo mới.
+
+## `wave2/` — T-253: tầng 3 → 1 nhà B (A08–A10), bình cứu hoả tầng 2 và hộp báo cháy tầng 1 (A11)
+
+| File | Là gì | Dựng bằng | Tác giả | Giấy phép |
+|---|---|---|---|---|
+| `floor1_hall.glb`, `floor2_hall.glb`, `floor3_hall.glb` | Hành lang mỗi tầng: tường trát hai màu, chân tường đá mài, sàn đá mài có nẹp phân ô, trần trát, dầm; lan can song thép tay vịn gỗ (tầng 2–3), tường thấp sảnh (tầng 1), máng đèn hai bóng tuýp | `art_source/graphics_upgrade/realistic_map/wave2/build_hall.py` (Blender 5.2.2) | Dự án (Claude, lane B; T-253) | Như dự án |
+| `floor1_rooms.glb`, `floor2_rooms.glb`, `floor3_rooms.glb` | Bên trong các phòng nhìn được qua cửa: tường, sàn, trần; giường tầng khung thép nhẹ và tủ thép hai cánh trong hộp va chạm PS1 | như trên | như trên | Như dự án |
+| `door_surround.glb`, `room_door_leaf.glb`, `room_plate.glb` | Khung cửa phòng (ốp quanh lỗ cửa 0,9 × 2,1 m của bộ `wall_door`), cánh thép sơn xanh bốn ô có tay gạt, biển số nhôm (số in bằng Label3D) | như trên | như trên | Như dự án |
+| `manager_window.glb`, `manager_room.glb`, `knife.glb` | Cửa sổ phòng quản lý (khung thép, kính vỡ, cánh treo ngoài, cánh rơi), bậc lên xuống bậu khớp dốc va chạm; hộp chìa, lịch, giấy trên bàn; dao găm vào mặt bàn | `build_floor1.py` | như trên | Như dự án |
+| `main_door_frame.glb`, `main_door_leaf.glb`, `main_door_leaf_b.glb`, `main_door_chain.glb` | Cửa chính sảnh: hai cánh kính khung thép xanh, ô kính trên, trụ trát hai bên; xích quấn hai vòng quanh tay nắm, khoá móc | `build_floor1.py` | như trên | Như dự án |
+| `extinguisher.glb`, `extinguisher_bracket.glb` | Bình bột ABC 4 kg (cần bóp và điểm cầm là node riêng), giá treo tường riêng, bảng tiêu lệnh chữa cháy | `build_fire_kit.py` | như trên | Như dự án |
+| `fire_alarm.glb` | Nút báo cháy tầng 1 (nút nhấn là node riêng), đèn, ống luồn dây; để core gắn thay hộp đỏ đang dựng lúc chạy | `build_fire_kit.py` | như trên | Như dự án |
+| `materials/*.tres` | Vật liệu W2* của đợt này (`make_wave2_materials.py`); vật liệu W1* là của đợt 1, dùng lại, không chép | | như trên | Như dự án |
+
+**Không dùng Tripo, không tạo ảnh bằng AI** cho đợt này. AI (Claude) viết script dựng hình và vẽ texture bằng code.
+
+### Texture dùng lại (đã có trong game, CC0 Poly Haven)
+Như đợt 1 (Painted Plaster Wall, Peeling Painted Wall, Green Metal Rust, Wood Table Worn, Plastered Wall 04, nhôm và đá ngưỡng của T-222, đá mài và sơn xám của đợt 1). Thêm:
+- [Rough Linen](https://polyhaven.com/a/rough_linen) (colormass, Rico Cilliers) và [Tatami Mat](https://polyhaven.com/a/tatami_mat) (Charlotte Baglioni) của nệm phòng 407 (`room407_furnished/bunk_mattress_*`; nguồn ghi ở `art_source/graphics_upgrade/room407_furnished/CREDITS.md`): nệm, gối, chiếu cuộn các phòng.
+
+### Texture tự vẽ (CC0, `make_wave2_textures.py`, numpy + Pillow)
+`game/assets/textures/graphics_pilot/realistic_map/wave2/`: bản đồ bẩn tường, sàn, trần hành lang ba tầng (vẽ theo vị trí thật: vết tay bên mỗi cửa, vệt nước, mốc, lối mòn), nhãn bình cứu hoả ("BÌNH CHỮA CHÁY", "BỘT ABC 4 kg"), mặt đồng hồ áp suất, mặt hộp báo cháy ("BÁO CHÁY", "NHẤN MẠNH"), bảng tiêu lệnh ("TIÊU LỆNH CHỮA CHÁY" và bốn đầu mục). Chữ vẽ bằng font Be Vietnam Pro (OFL, có trong game); phần còn lại là nét giả chữ.
+
+### Đồ dùng lại
+- Phòng 203: đồ phòng 407 (Tripo, D-084) `room407_batch2/bunk_frame.glb`, `pillow.glb`, `blanket_messy.glb`, `blanket_folded.glb`, `desk.glb`, `books.glb`, `notebook.glb`; `room407_batch1/stool.glb`, `bucket.glb`, `slippers.glb`; nệm Blender `room407_furnished/bunk_mattress.glb`. Giấy phép và hồ sơ như credits gốc (`art_source/graphics_upgrade/tripo/room407_batch1/CREDITS.md`, `room407_batch2/`). Không tạo mẫu Tripo mới.
+- Phòng quản lý: bàn `wave1/duty_desk.glb`; sảnh: bảng tin `wave1/notice_board.glb` (đợt 1).

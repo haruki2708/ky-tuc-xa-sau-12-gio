@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" format=3]
+
+[resource]
+resource_name = "W2Glass"
+transparency = 1
+albedo_color = Color(0.5, 0.58, 0.56, 0.25)
+roughness = 0.06
+cull_mode = 2

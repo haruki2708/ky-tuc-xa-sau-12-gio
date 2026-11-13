@@ -1,0 +1,108 @@
+[remap]
+
+importer="scene"
+importer_version=1
+type="PackedScene"
+uid="uid://cldcx7f2x0abk"
+path="res://.godot/imported/floor2_hall.glb-8cc6bc694d5ad367ba5fd205bdb05fee.scn"
+
+[deps]
+
+source_file="res://assets/models/graphics_pilot/realistic_map/wave2/floor2_hall.glb"
+dest_files=["res://.godot/imported/floor2_hall.glb-8cc6bc694d5ad367ba5fd205bdb05fee.scn"]
+
+[params]
+
+nodes/root_type=""
+nodes/root_name=""
+nodes/root_script=null
+mesh_library/use_node_names_as_mesh_names=false
+array_mesh/deduplicate_surfaces=true
+nodes/apply_root_scale=true
+nodes/root_scale=1.0
+nodes/import_as_skeleton_bones=false
+nodes/use_name_suffixes=true
+nodes/use_node_type_suffixes=true
+meshes/ensure_tangents=true
+meshes/generate_lods=true
+meshes/create_shadow_meshes=true
+meshes/light_baking=1
+meshes/lightmap_texel_size=0.2
+meshes/force_disable_compression=false
+skins/use_named_skins=true
+animation/import=false
+animation/fps=30
+animation/trimming=false
+animation/remove_immutable_tracks=true
+animation/import_rest_as_RESET=false
+import_script/path=""
+materials/extract=0
+materials/extract_format=0
+materials/extract_path=""
+_subresources={
+"materials": {
+"W1Concrete": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Concrete.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Concrete.tres"
+},
+"W1Enamel": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Enamel.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Enamel.tres"
+},
+"W1RailSteel": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1RailSteel.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1RailSteel.tres"
+},
+"W1RailWood": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1RailWood.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1RailWood.tres"
+},
+"W1Steel": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Steel.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Steel.tres"
+},
+"W1Terrazzo": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Terrazzo.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Terrazzo.tres"
+},
+"W2Divider": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave2/materials/W2Divider.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave2/materials/W2Divider.tres"
+},
+"W2HallCeiling": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave2/materials/W2HallCeiling.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave2/materials/W2HallCeiling.tres"
+},
+"W2HallDado": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave2/materials/W2HallDado.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave2/materials/W2HallDado.tres"
+},
+"W2HallFloor": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave2/materials/W2HallFloor.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave2/materials/W2HallFloor.tres"
+},
+"W2HallWall": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave2/materials/W2HallWall.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave2/materials/W2HallWall.tres"
+},
+"W2Tube": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave2/materials/W2Tube.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave2/materials/W2Tube.tres"
+}
+}
+}
+gltf/naming_version=2
+gltf/embedded_image_handling=1
+gltf/texture_map_mode=1
