@@ -5028,7 +5028,7 @@
 					"position": [
 						38.55,
 						0.0,
-						-2.5
+						-2.85
 					],
 					"yaw": 0.0,
 					"solid": true
@@ -5039,7 +5039,7 @@
 					"position": [
 						38.55,
 						0.38,
-						-2.5
+						-2.85
 					],
 					"yaw": 0.0
 				},
@@ -5049,7 +5049,7 @@
 					"position": [
 						38.55,
 						0.43,
-						-1.83
+						-2.18
 					],
 					"yaw": -4.6,
 					"fabric": "grey"
@@ -5060,7 +5060,7 @@
 					"position": [
 						38.55,
 						0.43,
-						-2.75
+						-3.1
 					],
 					"yaw": 0.0,
 					"fabric": "grey"
@@ -5071,7 +5071,7 @@
 					"position": [
 						38.55,
 						0.0,
-						-2.5
+						-2.85
 					],
 					"yaw": 0.0
 				},
@@ -5081,7 +5081,7 @@
 					"position": [
 						38.55,
 						1.15,
-						-2.5
+						-2.85
 					],
 					"yaw": 0.0
 				},
@@ -5091,7 +5091,7 @@
 					"position": [
 						38.55,
 						1.2,
-						-1.83
+						-2.18
 					],
 					"yaw": -3.9,
 					"fabric": "maroon"
@@ -5102,7 +5102,7 @@
 					"position": [
 						38.55,
 						1.2,
-						-2.75
+						-3.1
 					],
 					"yaw": -180.0,
 					"fabric": "maroon"
@@ -5113,7 +5113,7 @@
 					"position": [
 						38.55,
 						0.0,
-						-2.5
+						-2.85
 					],
 					"yaw": 0.0
 				},
@@ -5141,9 +5141,9 @@
 				},
 				{
 					"name": "Locker2",
-					"model": "res://assets/models/graphics_pilot/room407_batch2/locker_closed.glb",
+					"model": "res://assets/models/graphics_pilot/room407_furnished/locker_viet.glb",
 					"position": [
-						38.406,
+						38.438,
 						0.0,
 						-0.45
 					],
@@ -5152,9 +5152,9 @@
 				},
 				{
 					"name": "Locker3",
-					"model": "res://assets/models/graphics_pilot/room407_furnished/locker_viet.glb",
+					"model": "res://assets/models/graphics_pilot/room407_batch2/locker_closed.glb",
 					"position": [
-						38.438,
+						38.406,
 						0.0,
 						-1.13
 					],
@@ -5277,16 +5277,6 @@
 					],
 					"yaw": 90.0,
 					"solid": true
-				},
-				{
-					"name": "ClothesPile",
-					"model": "res://assets/models/graphics_pilot/room407_batch3/clothes_pile.glb",
-					"position": [
-						38.6,
-						0.0,
-						-3.75
-					],
-					"yaw": 20.0
 				},
 				{
 					"name": "ClothesPile2",
@@ -5417,29 +5407,7 @@
 					"name": "Shirt0",
 					"model": "res://assets/models/graphics_pilot/room407_batch2/shirt_hanging.glb",
 					"position": [
-						38.35,
-						1.82,
-						-3.72
-					],
-					"yaw": 90.0,
-					"fabric": "pink"
-				},
-				{
-					"name": "Shirt1",
-					"model": "res://assets/models/graphics_pilot/room407_batch2/shirt_hanging.glb",
-					"position": [
-						38.8,
-						1.82,
-						-3.72
-					],
-					"yaw": 90.0,
-					"fabric": "blue"
-				},
-				{
-					"name": "Shirt2",
-					"model": "res://assets/models/graphics_pilot/room407_batch2/shirt_hanging.glb",
-					"position": [
-						39.25,
+						39.32,
 						1.82,
 						-3.72
 					],
@@ -5447,7 +5415,7 @@
 					"fabric": "green"
 				},
 				{
-					"name": "Shirt3",
+					"name": "Shirt1",
 					"model": "res://assets/models/graphics_pilot/room407_batch2/shirt_hanging.glb",
 					"position": [
 						43.55,

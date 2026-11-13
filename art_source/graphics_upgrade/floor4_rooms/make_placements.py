@@ -370,9 +370,11 @@ def room_408():
 	# and west walls by the door, two on the front wall west of the door's box. The fridge in the east corner.
 	bunk(p, "A", 0.452, -3.63, 0.0, ("messy", "pink"), ("folded", "blue"))
 	bunk(p, "B", 0.452, -5.75, 0.0, ("folded", "green"), ("messy", "navy"), nets=("lower_open", "upper_closed"))
-	bunk(p, "C", p.s_of(38.55), BUNK_Z, 180.0, ("messy", "grey"), ("messy", "maroon"))
+	# Bunk C 0.35 m further back than the others: test_room_doors casts a capsule at (39, -1.5) through the 407|408
+	# wall, and the way from the door to the bathroom door passes its head.
+	bunk(p, "C", p.s_of(38.55), -2.85, 180.0, ("messy", "grey"), ("messy", "maroon"))
 	for k, (s, z, yaw, kind) in enumerate([(0.306, -0.45, -90.0, "closed"), (0.3, -1.13, -90.0, "open"),
-			(p.s_of(38.406), -0.45, 90.0, "closed"), (p.s_of(38.438), -1.13, 90.0, "viet"),
+			(p.s_of(38.438), -0.45, 90.0, "viet"), (p.s_of(38.406), -1.13, 90.0, "closed"),
 			(p.s_of(39.75), -0.42, 0.0, "closed"), (p.s_of(40.45), -0.42, 0.0, "closed")]):
 		model = {"closed": B2 + "locker_closed.glb", "open": B2 + "locker_open.glb", "viet": FU + "locker_viet.glb"}[kind]
 		p.add("Locker%d" % k, model, s, 0.0, z, yaw, solid=True)
@@ -384,7 +386,6 @@ def room_408():
 		for k, (model, dz, dx, yaw) in enumerate(items):
 			p.add("Desk%sItem%d" % (tag, k), model, x=40.74 + 0.36 + dx, y=DESK_TOP, z=z + dz, yaw=yaw)
 	p.add("DryingRack", B3 + "drying_rack.glb", x=40.1, y=0.0, z=-1.9, yaw=90.0, solid=True)
-	p.add("ClothesPile", B3 + "clothes_pile.glb", x=38.6, y=0.0, z=-3.75, yaw=20.0)
 	p.add("ClothesPile2", B3 + "clothes_pile.glb", x=43.35, y=LOWER + 0.05, z=-6.1, yaw=-30.0)
 	p.add("Fridge", B1 + "fridge.glb", x=43.56, y=0.0, z=-2.0, yaw=90.0, solid=True)
 	p.add("RiceCooker", B1 + "rice_cooker.glb", x=43.56, y=0.84, z=-2.0, yaw=90.0)
@@ -398,7 +399,7 @@ def room_408():
 	for k, x in enumerate((40.9, 43.0)):
 		p.add("SocketFront%d" % k, B3 + "wall_socket.glb", x=x, y=0.3, z=L.WALL_ROOM, yaw=0.0, mount="wall")
 	# Washing: the room's line (x 38.1..43.84), shirts clear of the bathroom door (x 39.52..40.52) and the way in.
-	for k, (x, colour) in enumerate(((38.35, "pink"), (38.8, "blue"), (39.25, "green"), (43.55, "navy"))):
+	for k, (x, colour) in enumerate(((39.32, "green"), (43.55, "navy"))):
 		p.add("Shirt%d" % k, B2 + "shirt_hanging.glb", x=x, y=LINE_Y - SHIRT_DROP, z=-3.72, yaw=90.0, fabric=colour)
 	slippers(p, [(1.2, -0.2, 180.0), (2.9, -0.25, 170.0), (p.s_of(39.3), -0.95, 150.0), (p.s_of(41.6), -3.8, 90.0)])
 	bathroom(p, extra=[])

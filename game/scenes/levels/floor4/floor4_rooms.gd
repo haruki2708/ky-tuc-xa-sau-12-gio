@@ -44,6 +44,10 @@ const OUTDOOR_REACH := 25.0
 
 ## Every interior drawn whatever the doors (captures, tests).
 @export var show_all_interiors := false
+## Whether a hand opens the doors (levers, HingedDoor): in a chapter with Tran Trung's body, as room 407's doors get
+## theirs (Protagonist.attach). Without the body (chapter 4) the room doors open with a plain press, the bathroom and
+## balcony doors stand open (room 407's balcony door stands open the same way). Set by build() from the chapter.
+var hands := true
 
 var rooms: Dictionary[String, Dictionary] = {}
 var _data: Dictionary
@@ -58,6 +62,11 @@ static func build(floor4: Node3D) -> Floor4Rooms:
 		return existing
 	var node := Floor4Rooms.new()
 	node.name = "Rooms"
+	# The chapter's root says whether the player has the body (chapter1_main.gd protagonist_body); a floor on its
+	# own (tests, pilots) has the hands.
+	var chapter := floor4.get_parent()
+	var bodied: Variant = chapter.get("protagonist_body") if chapter != null else null
+	node.hands = bodied == null or bool(bodied)
 	floor4.add_child(node)
 	node.assemble(floor4)
 	return node
@@ -103,7 +112,7 @@ func assemble(floor4: Node3D) -> void:
 		var bath := _hinged(interior, "BathroomDoor", layout, depths, true)
 		var balcony := _hinged(outdoor, "BalconyDoor", layout, depths, false)
 		var door := floor4.get_node_or_null("Corridor/LockedDoor_" + number) as RoomDoor
-		var hand: RoomDoorHand = RoomDoorHand.fit(door) if door != null else null
+		var hand: RoomDoorHand = RoomDoorHand.fit(door, hands) if door != null else null
 		for mesh: MeshInstance3D in room.find_children("*", "MeshInstance3D", true, false):
 			mesh.gi_mode = GeometryInstance3D.GI_MODE_STATIC
 		rooms[number] = {"node": room, "interior": interior, "outdoor": outdoor, "outdoor_props": outdoor_props,
@@ -133,6 +142,11 @@ func _update_interiors() -> void:
 		var wanted := show_all_interiors or interior_wanted(number, eye)
 		(room.interior as Node3D).visible = wanted
 		(room.outdoor_props as Node3D).visible = wanted or outdoor_wanted(number, eye)
+		# The balcony door's hand belongs to the room's inside, as the bathroom door's does (only usable from the
+		# room or its balcony; its area still answers the player's ray, visible or not).
+		var balcony_hand := HingedDoor.of(room.balcony_door as Node3D)
+		if balcony_hand != null:
+			balcony_hand.visible = wanted
 
 
 ## Whether room `number`'s interior is drawn with the eye at `eye` (Floor4 metres): its door open or swinging, or
@@ -369,5 +383,8 @@ func _hinged(parent: Node3D, name: String, layout: Dictionary, depths: Dictionar
 		lever.transform = Transform3D(Basis(bar, out.cross(bar), out).scaled(Vector3.ONE * LEVER_SCALE),
 			Vector3(dir * (size.x - LEVER_FROM_EDGE), LEVER_HEIGHT, side * size.z / 2.0))
 	parent.add_child(door)
-	HingedDoor.fit(door)
+	if hands:
+		HingedDoor.fit(door)
+	else:
+		door.call("set_open", true)
 	return door

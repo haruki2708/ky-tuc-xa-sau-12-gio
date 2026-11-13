@@ -21,11 +21,17 @@ const DOORWAY := AABB(Vector3(-0.65, -0.5, -0.6), Vector3(1.3, 3.0, 1.6))
 
 var door: RoomDoor
 var grips: Array[HandTarget] = []
+## The door's state, as the body reads it off what it uses (PlayerBody.perform: closing or opening).
+var is_open: bool:
+	get:
+		return door != null and door.is_open
 var _shut_for_story := false
 
 
-## Hangs a RoomDoorHand on `door`'s Hinge; its levers (if the corridor has hung room 407's leaf) take the hand.
-static func fit(room_door: RoomDoor) -> RoomDoorHand:
+## Hangs a RoomDoorHand on `door`'s Hinge. With `levers` (a chapter with Tran Trung's body, as Protagonist.attach
+## gives Door 407 its levers) the corridor's Tripo leaf's levers and free edge take the hand; without, the door
+## opens with a plain press (Door 407 the same).
+static func fit(room_door: RoomDoor, levers: bool = true) -> RoomDoorHand:
 	var hinge := room_door.get_node("Hinge") as Node3D
 	var angle := hinge.rotation.y
 	hinge.rotation.y = 0.0
@@ -39,10 +45,10 @@ static func fit(room_door: RoomDoor) -> RoomDoorHand:
 	(face.shape as BoxShape3D).size = Vector3(LEAF_SIZE.x, LEAF_SIZE.y, LOOK_THICKNESS)
 	hand.add_child(face)
 	var leaf := hinge.get_node_or_null("G5Leaf")
-	if leaf != null:
-		var levers: Array[HandTarget] = DoorHandles.take(leaf.find_children("Lever*", "", false, false))
-		hand.grips.append_array(levers)
-		for edge: HandTarget in DoorHandles.sides(hinge, levers):
+	if leaf != null and levers:
+		var targets: Array[HandTarget] = DoorHandles.take(leaf.find_children("Lever*", "", false, false))
+		hand.grips.append_array(targets)
+		for edge: HandTarget in DoorHandles.sides(hinge, targets):
 			# The free edge's grip rides the corridor's leaf (it turns with the hinge all the same), so the
 			# RoomDoor keeps exactly the nodes it had (test_corridor_g5: gameplay nodes untouched).
 			edge.reparent(leaf, true)

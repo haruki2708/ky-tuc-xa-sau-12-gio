@@ -137,6 +137,7 @@ func test_room_doors_open_and_shut_by_hand() -> void:
 		assert_true(is_equal_approx(hand.swing_angle(), PI / 2.0), number + " opens out into the corridor")
 		hand.interact_by_hand(null, 0.4)
 		assert_true(door.is_open, number + " opens by hand")
+		assert_true(hand.is_open, number + " the hand reads the door's state (PlayerBody.perform)")
 		assert_eq(hand.prompt_key, "PROMPT_CLOSE_DOOR", number + " prompt follows")
 	await tree.create_timer(0.6).timeout
 	await tree.physics_frame
@@ -152,6 +153,34 @@ func test_room_doors_open_and_shut_by_hand() -> void:
 	for number: String in ROOMS:
 		var door := floor4.get_node("Corridor/LockedDoor_" + number) as RoomDoor
 		assert_eq(door.blocker.collision_layer, 1, number + " doorway shut again")
+
+
+func test_without_the_body_doors_take_a_press_and_inner_doors_stand_open() -> void:
+	# Chapter 4 (no body, as chapter1_main.gd protagonist_body false): Door 407's way.
+	var holder := Node3D.new()
+	var script := GDScript.new()
+	script.source_code = "extends Node3D
+var protagonist_body := false
+"
+	script.reload()
+	holder.set_script(script)
+	fixtures.append(holder)
+	tree.root.add_child(holder)
+	var floor4 := FLOOR.instantiate() as Node3D
+	holder.add_child(floor4)
+	await wait_frames(3)
+	var rooms := _rooms(floor4)
+	assert_false(rooms.hands, "no hands without the body")
+	for number: String in ROOMS:
+		var door := floor4.get_node("Corridor/LockedDoor_" + number) as RoomDoor
+		var hand := door.get_node("Hinge/Hand") as RoomDoorHand
+		assert_true(hand.grips.is_empty() and hand.hand_target() == null, number + ": a plain press, no lever target")
+		hand.interact(null)
+		assert_true(door.is_open, number + " opens with a press")
+		for path: String in ["Interior/BathroomDoor", "Outdoor/BalconyDoor"]:
+			var inner := rooms.get_node("Room%s/%s" % [number, path]) as Node3D
+			assert_true(HingedDoor.of(inner) == null, "%s %s: no hand without the body" % [number, path])
+			assert_true(bool(inner.get("is_open")), "%s %s stands open" % [number, path])
 
 
 func test_a_door_with_a_story_belongs_to_the_chapter() -> void:
