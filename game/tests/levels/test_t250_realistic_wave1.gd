@@ -7,8 +7,10 @@ extends TestCase
 const FLOOR := preload("res://scenes/levels/floor4/floor4.tscn")
 const CAMPUS := preload("res://scenes/levels/campus/campus.tscn")
 ## Every collider of the two stairwells, the fire door and the duty desk as main had them before T-250
-## (_collider_print below, recorded on main ee05aa5).
+## (_collider_print below, recorded on main ee05aa5). T-254 added one body to each stairwell (floor 4's landing rail,
+## checked in test_t254_landing_rail.gd); the print leaves those out, so this still proves every other one unchanged.
 const COLLIDERS_MD5 := "c666d1adfd7714eb34419cd58fe46459"
+const T254_BODIES: Array[StringName] = [&"Landing4Rail"]
 ## Markers and anchors directors and tests look up (positions as main has them).
 const CAMPUS_ANCHORS := {"FireKey": Vector3(39.8, 0.66, 0.42), "FireDoor": Vector3(44, 0, 2), "Collapse2F": Vector3(46.5, -6.6, -1),
 	"Clues/Clock4F": Vector3(40, 2.05, 0.18), "Clues/CrackStair": Vector3(49, -2, -3)}
@@ -71,6 +73,8 @@ func _collider_print(campus: Node3D, floor4: Node3D) -> String:
 		for node: Node in nodes:
 			var shape_node := node as CollisionShape3D
 			var body := shape_node.get_parent() as CollisionObject3D
+			if body and body.name in T254_BODIES:
+				continue
 			var shape := shape_node.shape
 			var params := ""
 			if shape is BoxShape3D:

@@ -10,7 +10,8 @@ Each stairwell gives one glb in Godot world coordinates (instanced at the identi
                      Landings  floor landings and turn landings, terrazzo, slab edges, plastered soffits
                      Walls     plaster and a painted dado on the inside faces (3 mm in front of the PS1 wall boxes,
                                whose outer faces stay), terrazzo skirting, the walls carried up past the old 2.75 m top
-                     Rails     wall handrails and the steel balustrade at the stair well
+                     Rails     wall handrails and the steel balustrade at the stair well; T-254: the balustrade
+                               on floor 4's landing edge over the well and flight 4B (its collider is in the scene)
                      Upper     the storey above floor 4: a turn landing, the flight up to floor 5 and the floor-5
                                landing (the ceiling over floor 4), the flight from floor 4 broken off over the well,
                                out of reach; the rubble that blocks it (UpperRubble's box) and the stairwell's roof
@@ -41,6 +42,7 @@ CEILING = 3.06
 TOP = 6.3  # inside height the walls are carried to (the old boxes stop at 2.75)
 PLASTER = 2.0  # m, Painted Plaster Wall scan (shell shader has no uv1_scale)
 TERRAZZO = 1.0
+LANDING_RAIL_Z = 0.025  # the line of the rails standing on a floor landing's edge (z 0 .. 0.05 on the slab)
 
 
 def G(x, y, z):
@@ -401,8 +403,32 @@ def rails(part, well, flights, upper_flights):
 	for y in (-3.3, -6.6, -9.9):
 		if well.side == "fire" and y == -9.9:
 			continue
-		z = 0.025
+		z = LANDING_RAIL_Z
 		part.tube("W1RailWood", [G(x0 + 2.255, y + 0.95, z), G(x0 + 2.745, y + 0.95, z)], 0.028, 10)
+	landing_rail(part, well)
+
+
+def landing_rail_span(well):
+	"""T-254: floor 4's landing edge left open over the well and flight 4B, from flight 4A's top newel (x0 + 2.255)
+	to the plaster on the side-B wall."""
+	return well.x0 + 2.255, well.x0 + 5.0 - face_inset(well, "east")
+
+
+def landing_rail(part, well):
+	"""T-254: the balustrade on floor 4's landing edge over the well and flight 4B, in the well balustrade's style:
+	square steel bars every ~12 cm, a lower steel rail, the wooden handrail at 0.95 m, joined to flight 4A's top newel
+	and ending at a newel against the side-B wall. It stands on the slab (z 0 .. 0.05, the line of the lower floors'
+	rails across the well), inside its collider <Side>Stairs/Landing4Rail in building_b.tscn (5 cm x 1 m)."""
+	xa, xb = landing_rail_span(well)
+	z = LANDING_RAIL_Z
+	end = xb - 0.025  # the wall newel's centre
+	part.tube("W1RailWood", [G(xa, 0.95, z), G(end, 0.95, z)], 0.028, 10)
+	part.tube("W1RailSteel", [G(xa, 0.12, z), G(end, 0.12, z)], 0.009, 6)
+	count = max(2, round((end - xa) / 0.12))
+	for k in range(1, count):
+		x = xa + (end - xa) * k / count
+		part.box("W1RailSteel", tuple(G(x - 0.007, 0.0, z - 0.007)), tuple(G(x + 0.007, 0.95, z + 0.007)))
+	part.box("W1RailSteel", tuple(G(end - 0.025, 0.0, z - 0.025)), tuple(G(end + 0.025, 1.02, z + 0.025)))
 
 
 def upper_storey(steps, part, well):
