@@ -88,9 +88,27 @@ Trả lời và viết tài liệu bằng tiếng Việt; code, comment, commit 
 - **Nguồn đúng khi lệch nhau:** mục 3 file này mới nhất; rồi `docs/STATUS.md`; `docs/ROADMAP.md` chỉ cập nhật khi qua mốc.
 
 ## 3. Tiến độ integrator để lại (integrator cập nhật sau mỗi bước)
-**Cập nhật:** 13/11/2026 khoảng 22:55, integrator (Fable 5.2): **T-255 đã merge vào main** (full test 975/0, check 0), D-171; tiếp theo đo FPS rồi build bản chơi.
+**Cập nhật:** 13/11/2026 khoảng 23:25, integrator (Fable 5.2) sắp hết hạn mức: **bàn giao T-257 (nén bộ nhớ hình) cho HARU, dừng ở chỗ an toàn.** Trước đó 22:55: T-255 đã merge vào main (full test 975/0, check 0), D-171, đo FPS, build bản chơi `9e5613f`.
 
-**Việc dở ngay lúc này (đọc trước):**
+**BÀN GIAO CHO HARU — [T-257](../tasks/T-257-vram-compress-room407-textures.md) nén VRAM texture phòng 407 và nhà B (chủ dự án chọn 13/11 tối)**
+- **Trạng thái lúc dừng:** repo ở nhánh `integrator/T-257-vram-compress` (đã đẩy), **chưa đổi file `.import` nào**. Đã có: card, 20 ảnh "trước" (`art_source/graphics_upgrade/vram_compress/previews/before_ch1_*.jpg` 12 ảnh, `before_ch3_*.jpg` 8 ảnh), số đo trước: **chương 1 đỉnh 3.505 MB, chương 3 đỉnh 3.664 MB** (texture 3.359 và 3.502 MB). Khoá Godot đã trả, `game/_probe_tmp/` đã xoá. Main không đổi ngoài tài liệu.
+- **Công cụ soạn sẵn trong `build/integrator/` (không commit):**
+  - `t257_inventory.xml`: kiểm kê 393 texture không nén (đường dẫn, kích thước, loại).
+  - `t257_apply.ps1`: đổi `.import` của **333 texture** màu, normal, độ nhám từ 1024 px trở lên (`compress/mode` 0 → 2; 109 normal map thêm `compress/normal_map` 0 → 1). Đã thử khô với `-WhatIf`: chọn 333, chưa ghi gì.
+  - `t257_capture.gd`: cảnh chụp (chép vào `game/_probe_tmp/t257_capture.gd` cùng một `t257_capture.tscn` có root `Node3D` gắn script đó; chạy `--rendering-method forward_plus res://_probe_tmp/t257_capture.tscn -- --chapter=1 --tag=after`, rồi `--chapter=3`; in dòng `VRAM:`).
+  - `godot_steps_locked.ps1 -Label <tên> -Steps @('tên|giây|tham số godot', …)`: lấy khoá, chạy lần lượt, trả khoá; gọi bằng `&` trong pwsh (không dùng `pwsh -File`, mảng bị dính).
+- **Các bước còn lại:**
+  1. `& build\integrator\t257_apply.ps1` (ghi thật).
+  2. Có khoá: `godot_steps_locked.ps1 -Label t257import -Steps @('import|1200|--headless --import')` (nén 333 texture, có thể mất vài phút); `git status` phải chỉ thấy các `.import` đổi.
+  3. Chụp "sau" chương 1 và 3 (cùng lệnh như ảnh "trước", `--tag=after`), ghi số `VRAM:`. Mong đợi giảm khoảng 2 GB trở lên.
+  4. **Tự xem từng cặp ảnh trước/sau** (nhất là `01_bunk_a_bedding`, `08_blanket_close`, `07_floor_and_wall`, `12_wall_close`, `02_lockers`, `06_bathroom`): thấy vệt nén, bệt màu, normal lạ (bề mặt bóng sai, tối sai) ở texture nào thì trả texture đó về `compress/mode=0` (hoặc thử `compress/high_quality=true`) rồi import lại, ghi vào báo cáo. Nếu **mọi** normal trông sai: bỏ `compress/normal_map=1` (trả về 0) cho cả 109 file rồi import lại.
+  5. Ghép ảnh so sánh cho chủ dự án (Python + PIL có sẵn; mẫu `art_source/graphics_upgrade/realistic_map/wave1/make_compare.py`), để trong `art_source/graphics_upgrade/vram_compress/previews/compare_*.jpg`.
+  6. Xoá `game/_probe_tmp/`. Full test + check: `& build\integrator\run_tests_locked.ps1 -Label 'T-257 full' -Name t257full -Filters @('') -Check` (chạy nền, khoảng 50 phút; kỳ vọng 975/0, check 0).
+  7. Viết `tools/reports/T-257-vram-compress.md` (số trước/sau, texture nào để nguyên), điền Handoff card, cập nhật STATUS, merge nhánh vào main, đẩy, build bản chơi (`package_locked.ps1 -Label 'package T-257' -Name package_t257`), báo chủ dự án xem ảnh so sánh và chơi thử.
+- **Lưu ý:** lane B đang làm T-256 và dùng khoá Godot từng lúc: chờ khoá, không tắt Godot của nó; import và full test là lượt dài, nếu lane B đang chờ khoá quá lâu thì nhường. Máy ít RAM: việc nền bị dừng vì thiếu RAM thì không tự chạy lại.
+- Không nén ở lượt này (ghi trong card): texture dưới 1024 px, texture có chữ (lịch, thời khoá biểu, poster, mặt đồng hồ, sổ, bảng thông báo, nhãn), bầu trời đêm, mask shader nhà B, texture nhân vật, texture PS1 cũ (test yêu cầu không nén).
+
+**Việc khác đang mở (đọc sau phần bàn giao):**
 - **Đo FPS sau T-255: xong** (13/11 23:00, [báo cáo](../../tools/reports/T-255-rooms-fps.md)): 1080p trung bình ≥ 60 mọi góc ở chương 1 và 3; thấp nhất 62 FPS (chương 3, mở cả bảy cửa); chương 3 dùng 3.665 MB trên 4 GB bộ nhớ hình. Cảnh thử đã xoá; script lưu ở `build/integrator/t255_fps.gd`.
 - **Bản chơi đã build** (package PASS 13/11 22:58, commit `9e5613f`): `build/windows/KyTucXa.exe`, zip `build/dist/KyTucXa-0.0.1-9e5613f-win64.zip`; có T-253, T-254, T-255, D-171. Đã báo chủ dự án thử: mở cửa 401–406, 408 bằng tay ở chương 1, vào nhà tắm, ra ban công; gõ tường 406 ở chỗ mới (D-171); chương 3 xác vẫn phá cửa phòng tầng 4.
 - Chờ chủ dự án chọn sau khi chơi thử T-255 (lane B làm theo đề xuất): nhà tắm góc sau; ban công cả bề ngang; chủ đề từng phòng; có khoá hẳn cửa phòng ở chương 3–4 không; cánh cửa mở không va chạm. Yêu cầu thay đổi 3 của T-255 (director bỏ qua mở phòng khi người chơi đang ở trong) chưa làm.
@@ -118,4 +136,4 @@ Trả lời và viết tài liệu bằng tiếng Việt; code, comment, commit 
 - Lane hết hạn mức hay bị dừng giữa chừng: lưu (commit, push) phần đã làm lên nhánh của lane, gỡ khoá Godot nó bỏ lại (khi không còn tiến trình Godot nào).
 - Script chạy test, khoá, đóng gói của integrator: `build/integrator/run_tests_locked.ps1`, `run_locked.ps1`, `package_locked.ps1` (thư mục `build/` không commit).
 
-**Số tiếp theo:** D-171, T-257.
+**Số tiếp theo:** D-172, T-258.
