@@ -26,13 +26,13 @@
 ## Checklist
 - [x] Hình lan can hai cầu thang
 - [x] Va chạm hai lan can
-- [ ] Test, full test, check, ảnh (test mới, test T-250, ảnh: xong; full test, check: chưa chạy)
+- [x] Test, full test, check, ảnh
 - [x] Handoff
 
 ## Handoff
 
-### 13/11/2026 — lane B (Claude, Opus 5.5), WIP
-Nhánh `lane-b/T-254-floor4-landing-guard-rail` từ `origin/main` `82631bd` (commit card đã đọc: `d1ab5ad`). Không dùng Tripo, không chạy bot, không đo FPS.
+### 13/11/2026 — lane B (Claude, Opus 5.5)
+Nhánh `lane-b/T-254-floor4-landing-guard-rail` từ `origin/main` `82631bd` (commit card đã đọc: `d1ab5ad`). Xong phần lane B, chờ integrator review. Không dùng Tripo, không chạy bot, không đo FPS.
 
 **Đo trên cảnh trước khi dựng** (chương thật: `floor4.tscn` + `campus.tscn`):
 - Chiếu nghỉ tầng 4 là hộp `Landing4`: x −5…0 (chính) và 44…49 (thoát hiểm), z 0…4, mặt trên y 0. Vế 4A có va chạm tới x0 + 2,28. Trụ đầu thang vế 4A (T-250) ở x0 + 2,255.
@@ -57,11 +57,14 @@ Nhánh `lane-b/T-254-floor4-landing-guard-rail` từ `origin/main` `82631bd` (co
   - người chơi vẫn đi xuống vế 4A sát lan can tới chiếu nghỉ trung gian.
   - Thử tắt hai hộp thì test đẩy hỏng: người chơi rơi xuống vế 4B ở mọi điểm, nên test có tác dụng thật.
 - `test_t250_realistic_wave1.gd`: dấu vân tay va chạm bỏ qua đúng hai body `Landing4Rail`. **md5 giữ nguyên bản main `c666d1ad…`** (36 dòng), tức mọi va chạm cũ của hai cầu thang, cửa, bàn trực không đổi. 5 test T-250 đạt.
-- **Chưa chạy:** full test, check (chạy ngay sau commit này).
+- Nhóm test cũ trong full test đều đạt: `test_fire_stairs` 3, `test_campus` 5 (gồm đường dẫn, lối đi cho capsule cúi), `test_t250_*` 5, `test_chapter3`, `test_ch3_*`.
+- **Full test** (13/11 12:10–12:39, sau khi xoá `game/_probe_tmp/`): `RESULT: 954 passed, 0 failed`, không có lỗi engine.
+- **Check** (12:39–12:58): `RESULT: check 0 error(s)`. Sau đó `git checkout -- game/default_bus_layout.tres`.
+- **Chưa kiểm:** chưa chơi bằng tay; chưa chạy bot, chưa đo FPS (không được phép); chưa xem trong chương 4 (cùng cảnh nhà B với chương 3).
 
 **Ảnh** `art_source/graphics_upgrade/realistic_map/previews/t254/`:
 - Ảnh 1080p, chương 3, director giữ, đèn pin khảo sát như T-250: `before_*`/`after_*` cùng camera, 5 góc mỗi cầu thang (đứng trên chiếu nghỉ, sát mép, từ hành lang hoặc cửa thoát hiểm, từ vế 4A, từ vế 4B nhìn lên).
 - Ghép: `compare_main.jpg`, `compare_fire.jpg`. Đã tự xem từng ảnh: lan can khớp kiểu T-250, nối trụ vế 4A, không hở, không chồng hình.
-- Script chụp là bản sao của `capture_wave1.gd` để ở `game/_probe_tmp/` (không commit).
+- Ảnh chụp bằng một bản sao rút gọn của `capture_wave1.gd` (chỉ cảnh chương 3, 10 góc trên) để tạm trong `game/_probe_tmp/`, đã xoá, không commit. Chụp lại thì chép `capture_wave1.gd` như README đợt 1 và thay bộ góc.
 
 **Yêu cầu thay đổi ngoài phạm vi:** không có.
