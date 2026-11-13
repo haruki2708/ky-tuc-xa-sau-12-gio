@@ -3,9 +3,10 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://kwhun0yyl7in"
-path="res://.godot/imported/toilet_brush_toilet_brush_rm.png-b149bb6f5c3ca4a28c338ecb2bb3607f.ctex"
+path.s3tc="res://.godot/imported/toilet_brush_toilet_brush_rm.png-b149bb6f5c3ca4a28c338ecb2bb3607f.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "b084a0e6facd77d84d0f00bfa95f8ab4"
@@ -14,11 +15,11 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/graphics_pilot/room407_batch3/toilet_brush_toilet_brush_rm.png"
-dest_files=["res://.godot/imported/toilet_brush_toilet_brush_rm.png-b149bb6f5c3ca4a28c338ecb2bb3607f.ctex"]
+dest_files=["res://.godot/imported/toilet_brush_toilet_brush_rm.png-b149bb6f5c3ca4a28c338ecb2bb3607f.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

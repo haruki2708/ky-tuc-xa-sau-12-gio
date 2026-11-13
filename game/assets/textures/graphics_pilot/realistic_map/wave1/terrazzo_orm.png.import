@@ -3,19 +3,20 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ckj0depsx0e5g"
-path="res://.godot/imported/terrazzo_orm.png-84ea4206fd912b63eb87d54a6727e80f.ctex"
+path.s3tc="res://.godot/imported/terrazzo_orm.png-84ea4206fd912b63eb87d54a6727e80f.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/graphics_pilot/realistic_map/wave1/terrazzo_orm.png"
-dest_files=["res://.godot/imported/terrazzo_orm.png-84ea4206fd912b63eb87d54a6727e80f.ctex"]
+dest_files=["res://.godot/imported/terrazzo_orm.png-84ea4206fd912b63eb87d54a6727e80f.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

@@ -3,9 +3,10 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://jdiabha67ajc"
-path="res://.godot/imported/storage_box_storage_box_basecolor.jpg-cc56d44acd209d0b16b73f72bcd6f535.ctex"
+path.s3tc="res://.godot/imported/storage_box_storage_box_basecolor.jpg-cc56d44acd209d0b16b73f72bcd6f535.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "695e0ca6198513370426ac4276f93d74"
@@ -14,11 +15,11 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/graphics_pilot/room407_batch3/storage_box_storage_box_basecolor.jpg"
-dest_files=["res://.godot/imported/storage_box_storage_box_basecolor.jpg-cc56d44acd209d0b16b73f72bcd6f535.ctex"]
+dest_files=["res://.godot/imported/storage_box_storage_box_basecolor.jpg-cc56d44acd209d0b16b73f72bcd6f535.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

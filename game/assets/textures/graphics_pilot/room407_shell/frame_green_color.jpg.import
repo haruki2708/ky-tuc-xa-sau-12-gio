@@ -3,19 +3,20 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cpu82d3ebmxxs"
-path="res://.godot/imported/frame_green_color.jpg-98e7d0cd50ef8aa2ebea6c7fa078e19b.ctex"
+path.s3tc="res://.godot/imported/frame_green_color.jpg-98e7d0cd50ef8aa2ebea6c7fa078e19b.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/graphics_pilot/room407_shell/frame_green_color.jpg"
-dest_files=["res://.godot/imported/frame_green_color.jpg-98e7d0cd50ef8aa2ebea6c7fa078e19b.ctex"]
+dest_files=["res://.godot/imported/frame_green_color.jpg-98e7d0cd50ef8aa2ebea6c7fa078e19b.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

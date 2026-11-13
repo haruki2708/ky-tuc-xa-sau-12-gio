@@ -3,9 +3,10 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dfyspvqq2m0vu"
-path="res://.godot/imported/fixtures_door_lever_rm.jpg-01805401d00b901ad9f182cf0bea4552.ctex"
+path.s3tc="res://.godot/imported/fixtures_door_lever_rm.jpg-01805401d00b901ad9f182cf0bea4552.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "a75467063aaadffa145756a6a4ae9df2"
@@ -14,11 +15,11 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/graphics_pilot/room407_shell/fixtures_door_lever_rm.jpg"
-dest_files=["res://.godot/imported/fixtures_door_lever_rm.jpg-01805401d00b901ad9f182cf0bea4552.ctex"]
+dest_files=["res://.godot/imported/fixtures_door_lever_rm.jpg-01805401d00b901ad9f182cf0bea4552.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

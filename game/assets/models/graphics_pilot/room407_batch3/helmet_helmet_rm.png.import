@@ -3,9 +3,10 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c1sltibo0bbp6"
-path="res://.godot/imported/helmet_helmet_rm.png-dea2131f2cdc9521bfce8bc9b87b91fe.ctex"
+path.s3tc="res://.godot/imported/helmet_helmet_rm.png-dea2131f2cdc9521bfce8bc9b87b91fe.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "be79b2cf8c5b26dd03342e4044b03766"
@@ -14,11 +15,11 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/graphics_pilot/room407_batch3/helmet_helmet_rm.png"
-dest_files=["res://.godot/imported/helmet_helmet_rm.png-dea2131f2cdc9521bfce8bc9b87b91fe.ctex"]
+dest_files=["res://.godot/imported/helmet_helmet_rm.png-dea2131f2cdc9521bfce8bc9b87b91fe.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

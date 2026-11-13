@@ -3,9 +3,10 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dcu784afj50m8"
-path="res://.godot/imported/stool_stool_basecolor.png-76ac045528a0c50aa797c930f8695e2d.ctex"
+path.s3tc="res://.godot/imported/stool_stool_basecolor.png-76ac045528a0c50aa797c930f8695e2d.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "ed37b44cf755eec73959a182d6031f84"
@@ -14,11 +15,11 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/graphics_pilot/room407_batch1/stool_stool_basecolor.png"
-dest_files=["res://.godot/imported/stool_stool_basecolor.png-76ac045528a0c50aa797c930f8695e2d.ctex"]
+dest_files=["res://.godot/imported/stool_stool_basecolor.png-76ac045528a0c50aa797c930f8695e2d.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

@@ -3,9 +3,10 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://chtii82jlitmf"
-path="res://.godot/imported/shower_shower_rm.png-551af86f53e23cd5e9ed67dda9e5fddb.ctex"
+path.s3tc="res://.godot/imported/shower_shower_rm.png-551af86f53e23cd5e9ed67dda9e5fddb.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "0ee6fd6b1959f1084bc6ba13a7c55ac0"
@@ -14,11 +15,11 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/graphics_pilot/room407_batch2/shower_shower_rm.png"
-dest_files=["res://.godot/imported/shower_shower_rm.png-551af86f53e23cd5e9ed67dda9e5fddb.ctex"]
+dest_files=["res://.godot/imported/shower_shower_rm.png-551af86f53e23cd5e9ed67dda9e5fddb.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

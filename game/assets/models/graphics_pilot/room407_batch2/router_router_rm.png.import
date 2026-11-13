@@ -3,9 +3,10 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bsa07bxjfsxqv"
-path="res://.godot/imported/router_router_rm.png-3462c052ec5c7b55f13550faf49ea402.ctex"
+path.s3tc="res://.godot/imported/router_router_rm.png-3462c052ec5c7b55f13550faf49ea402.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "b9be3810c6ce66f474c8d2feb60b172a"
@@ -14,11 +15,11 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/graphics_pilot/room407_batch2/router_router_rm.png"
-dest_files=["res://.godot/imported/router_router_rm.png-3462c052ec5c7b55f13550faf49ea402.ctex"]
+dest_files=["res://.godot/imported/router_router_rm.png-3462c052ec5c7b55f13550faf49ea402.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

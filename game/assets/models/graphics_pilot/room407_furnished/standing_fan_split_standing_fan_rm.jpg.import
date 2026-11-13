@@ -3,9 +3,10 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://baycisirujifk"
-path="res://.godot/imported/standing_fan_split_standing_fan_rm.jpg-f7ae09ad365140cd0dafb4d117aa26e5.ctex"
+path.s3tc="res://.godot/imported/standing_fan_split_standing_fan_rm.jpg-f7ae09ad365140cd0dafb4d117aa26e5.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "bcc6d463ac2734a4e7d386cd4b3955fd"
@@ -14,11 +15,11 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/graphics_pilot/room407_furnished/standing_fan_split_standing_fan_rm.jpg"
-dest_files=["res://.godot/imported/standing_fan_split_standing_fan_rm.jpg-f7ae09ad365140cd0dafb4d117aa26e5.ctex"]
+dest_files=["res://.godot/imported/standing_fan_split_standing_fan_rm.jpg-f7ae09ad365140cd0dafb4d117aa26e5.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

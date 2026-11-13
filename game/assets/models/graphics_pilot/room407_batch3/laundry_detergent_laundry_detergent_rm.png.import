@@ -3,9 +3,10 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://tihmgmha8ydp"
-path="res://.godot/imported/laundry_detergent_laundry_detergent_rm.png-3b7797d97b69a86116c8e922a35a8bbe.ctex"
+path.s3tc="res://.godot/imported/laundry_detergent_laundry_detergent_rm.png-3b7797d97b69a86116c8e922a35a8bbe.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "0d3b1ea5a3a117838a1abee3770d3d4e"
@@ -14,11 +15,11 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/graphics_pilot/room407_batch3/laundry_detergent_laundry_detergent_rm.png"
-dest_files=["res://.godot/imported/laundry_detergent_laundry_detergent_rm.png-3b7797d97b69a86116c8e922a35a8bbe.ctex"]
+dest_files=["res://.godot/imported/laundry_detergent_laundry_detergent_rm.png-3b7797d97b69a86116c8e922a35a8bbe.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

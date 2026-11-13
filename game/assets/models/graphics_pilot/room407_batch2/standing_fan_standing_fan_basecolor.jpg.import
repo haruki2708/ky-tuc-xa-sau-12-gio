@@ -3,9 +3,10 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cmf3amr87qii6"
-path="res://.godot/imported/standing_fan_standing_fan_basecolor.jpg-d859b8b78eb9c385f263c7eecfaee08c.ctex"
+path.s3tc="res://.godot/imported/standing_fan_standing_fan_basecolor.jpg-d859b8b78eb9c385f263c7eecfaee08c.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "9ef31e3a7af04149da35fe8186875526"
@@ -14,11 +15,11 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/graphics_pilot/room407_batch2/standing_fan_standing_fan_basecolor.jpg"
-dest_files=["res://.godot/imported/standing_fan_standing_fan_basecolor.jpg-d859b8b78eb9c385f263c7eecfaee08c.ctex"]
+dest_files=["res://.godot/imported/standing_fan_standing_fan_basecolor.jpg-d859b8b78eb9c385f263c7eecfaee08c.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

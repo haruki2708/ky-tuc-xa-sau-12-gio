@@ -3,19 +3,20 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://boyhqake1tump"
-path="res://.godot/imported/wall_peel_color.jpg-79d1c6b845aa66302ecb6da68d85017f.ctex"
+path.s3tc="res://.godot/imported/wall_peel_color.jpg-79d1c6b845aa66302ecb6da68d85017f.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/graphics_pilot/room407_shell/wall_peel_color.jpg"
-dest_files=["res://.godot/imported/wall_peel_color.jpg-79d1c6b845aa66302ecb6da68d85017f.ctex"]
+dest_files=["res://.godot/imported/wall_peel_color.jpg-79d1c6b845aa66302ecb6da68d85017f.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

@@ -3,9 +3,10 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cyuse3a2nei3h"
-path="res://.godot/imported/towel_towel_rm.png-7f27db2255b0fc1df3842c0cc35443b0.ctex"
+path.s3tc="res://.godot/imported/towel_towel_rm.png-7f27db2255b0fc1df3842c0cc35443b0.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "8a64c200a97f7d0c4458b8bf9f0fcd97"
@@ -14,11 +15,11 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/graphics_pilot/room407_batch1/towel_towel_rm.png"
-dest_files=["res://.godot/imported/towel_towel_rm.png-7f27db2255b0fc1df3842c0cc35443b0.ctex"]
+dest_files=["res://.godot/imported/towel_towel_rm.png-7f27db2255b0fc1df3842c0cc35443b0.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

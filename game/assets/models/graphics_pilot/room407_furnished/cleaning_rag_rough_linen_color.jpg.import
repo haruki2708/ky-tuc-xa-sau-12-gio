@@ -3,9 +3,10 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dfk7fbkgdo8d5"
-path="res://.godot/imported/cleaning_rag_rough_linen_color.jpg-88e813938d72a3523a6175895c648d2a.ctex"
+path.s3tc="res://.godot/imported/cleaning_rag_rough_linen_color.jpg-88e813938d72a3523a6175895c648d2a.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "ae5085a7a5b7b378a45279d94d4a36f2"
@@ -14,11 +15,11 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/graphics_pilot/room407_furnished/cleaning_rag_rough_linen_color.jpg"
-dest_files=["res://.godot/imported/cleaning_rag_rough_linen_color.jpg-88e813938d72a3523a6175895c648d2a.ctex"]
+dest_files=["res://.godot/imported/cleaning_rag_rough_linen_color.jpg-88e813938d72a3523a6175895c648d2a.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

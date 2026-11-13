@@ -3,9 +3,10 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cq36gao511y7"
-path="res://.godot/imported/trainers_trainers_rm.png-fa3ac50de5c9fb1d26743a6614dbb2c4.ctex"
+path.s3tc="res://.godot/imported/trainers_trainers_rm.png-fa3ac50de5c9fb1d26743a6614dbb2c4.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "70ba3af43a1f09714d4969e2106aac8b"
@@ -14,11 +15,11 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/graphics_pilot/room407_batch1/trainers_trainers_rm.png"
-dest_files=["res://.godot/imported/trainers_trainers_rm.png-fa3ac50de5c9fb1d26743a6614dbb2c4.ctex"]
+dest_files=["res://.godot/imported/trainers_trainers_rm.png-fa3ac50de5c9fb1d26743a6614dbb2c4.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

@@ -3,9 +3,10 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://coekc0ts6ix3x"
-path="res://.godot/imported/cleaning_rag_rough_linen_arm.jpg-ad41de748b78cdef0d6d72986af43ea7.ctex"
+path.s3tc="res://.godot/imported/cleaning_rag_rough_linen_arm.jpg-ad41de748b78cdef0d6d72986af43ea7.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "80712d4a0fa20269b2d2b5b86a5f1334"
@@ -14,11 +15,11 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/graphics_pilot/room407_furnished/cleaning_rag_rough_linen_arm.jpg"
-dest_files=["res://.godot/imported/cleaning_rag_rough_linen_arm.jpg-ad41de748b78cdef0d6d72986af43ea7.ctex"]
+dest_files=["res://.godot/imported/cleaning_rag_rough_linen_arm.jpg-ad41de748b78cdef0d6d72986af43ea7.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

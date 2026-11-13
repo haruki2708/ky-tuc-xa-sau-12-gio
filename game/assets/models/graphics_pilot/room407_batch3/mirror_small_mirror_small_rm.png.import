@@ -3,9 +3,10 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b8gpr706utxf8"
-path="res://.godot/imported/mirror_small_mirror_small_rm.png-e141e78edb9acd3143188715d1399ee2.ctex"
+path.s3tc="res://.godot/imported/mirror_small_mirror_small_rm.png-e141e78edb9acd3143188715d1399ee2.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "6e1588f31fef13870445fe111d71d231"
@@ -14,11 +15,11 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/graphics_pilot/room407_batch3/mirror_small_mirror_small_rm.png"
-dest_files=["res://.godot/imported/mirror_small_mirror_small_rm.png-e141e78edb9acd3143188715d1399ee2.ctex"]
+dest_files=["res://.godot/imported/mirror_small_mirror_small_rm.png-e141e78edb9acd3143188715d1399ee2.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

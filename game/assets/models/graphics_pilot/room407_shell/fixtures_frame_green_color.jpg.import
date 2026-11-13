@@ -3,9 +3,10 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dtk7usbe0ar8"
-path="res://.godot/imported/fixtures_frame_green_color.jpg-d2f624b378595a5637b91e418f23052a.ctex"
+path.s3tc="res://.godot/imported/fixtures_frame_green_color.jpg-d2f624b378595a5637b91e418f23052a.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "19af0aa9f887e1d75c45f16736656fb4"
@@ -14,11 +15,11 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/graphics_pilot/room407_shell/fixtures_frame_green_color.jpg"
-dest_files=["res://.godot/imported/fixtures_frame_green_color.jpg-d2f624b378595a5637b91e418f23052a.ctex"]
+dest_files=["res://.godot/imported/fixtures_frame_green_color.jpg-d2f624b378595a5637b91e418f23052a.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

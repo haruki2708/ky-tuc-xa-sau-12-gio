@@ -3,9 +3,10 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ci06jfy6jrtwx"
-path="res://.godot/imported/trash_bin_trash_bin_rm.png-942dad4ac0279849a9e004648b542ab4.ctex"
+path.s3tc="res://.godot/imported/trash_bin_trash_bin_rm.png-942dad4ac0279849a9e004648b542ab4.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "df86933c1607de3e5b2c4c762dd78c80"
@@ -14,11 +15,11 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/graphics_pilot/room407_batch2/trash_bin_trash_bin_rm.png"
-dest_files=["res://.godot/imported/trash_bin_trash_bin_rm.png-942dad4ac0279849a9e004648b542ab4.ctex"]
+dest_files=["res://.godot/imported/trash_bin_trash_bin_rm.png-942dad4ac0279849a9e004648b542ab4.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

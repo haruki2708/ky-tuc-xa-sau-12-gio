@@ -3,9 +3,10 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d3qtlthqvqfxe"
-path="res://.godot/imported/plant_pot_plant_pot_normal.png-36025331772ffcb7aac134f2738942ed.ctex"
+path.s3tc="res://.godot/imported/plant_pot_plant_pot_normal.png-36025331772ffcb7aac134f2738942ed.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "3a6e254840a2e496df33238dad4b6357"
@@ -14,17 +15,17 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/graphics_pilot/room407_batch2/plant_pot_plant_pot_normal.png"
-dest_files=["res://.godot/imported/plant_pot_plant_pot_normal.png-36025331772ffcb7aac134f2738942ed.ctex"]
+dest_files=["res://.godot/imported/plant_pot_plant_pot_normal.png-36025331772ffcb7aac134f2738942ed.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
-compress/normal_map=0
+compress/normal_map=1
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1

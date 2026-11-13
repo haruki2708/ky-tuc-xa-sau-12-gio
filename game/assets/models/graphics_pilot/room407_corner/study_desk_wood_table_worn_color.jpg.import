@@ -3,9 +3,10 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://de4fde8th4m1c"
-path="res://.godot/imported/study_desk_wood_table_worn_color.jpg-c131196f09c9b12933f66a20ed3ee70b.ctex"
+path.s3tc="res://.godot/imported/study_desk_wood_table_worn_color.jpg-c131196f09c9b12933f66a20ed3ee70b.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "7b7264b6088a91bb6ffd81079d206431"
@@ -14,11 +15,11 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/graphics_pilot/room407_corner/study_desk_wood_table_worn_color.jpg"
-dest_files=["res://.godot/imported/study_desk_wood_table_worn_color.jpg-c131196f09c9b12933f66a20ed3ee70b.ctex"]
+dest_files=["res://.godot/imported/study_desk_wood_table_worn_color.jpg-c131196f09c9b12933f66a20ed3ee70b.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

@@ -3,9 +3,10 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bkqe2easoxws2"
-path="res://.godot/imported/books_row_books_row_basecolor.png-b13182c9b2b534042830fb833a300040.ctex"
+path.s3tc="res://.godot/imported/books_row_books_row_basecolor.png-b13182c9b2b534042830fb833a300040.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "9571b6e8ae9c6f4f003438071b6a1ee1"
@@ -14,11 +15,11 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/graphics_pilot/room407_batch2/books_row_books_row_basecolor.png"
-dest_files=["res://.godot/imported/books_row_books_row_basecolor.png-b13182c9b2b534042830fb833a300040.ctex"]
+dest_files=["res://.godot/imported/books_row_books_row_basecolor.png-b13182c9b2b534042830fb833a300040.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

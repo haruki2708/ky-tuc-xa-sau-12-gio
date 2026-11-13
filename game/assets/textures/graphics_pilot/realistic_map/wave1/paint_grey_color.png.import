@@ -3,19 +3,20 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://25jm026pdbdf"
-path="res://.godot/imported/paint_grey_color.png-1ddddc866f64ea9bbb591f2687418cca.ctex"
+path.s3tc="res://.godot/imported/paint_grey_color.png-1ddddc866f64ea9bbb591f2687418cca.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/graphics_pilot/realistic_map/wave1/paint_grey_color.png"
-dest_files=["res://.godot/imported/paint_grey_color.png-1ddddc866f64ea9bbb591f2687418cca.ctex"]
+dest_files=["res://.godot/imported/paint_grey_color.png-1ddddc866f64ea9bbb591f2687418cca.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

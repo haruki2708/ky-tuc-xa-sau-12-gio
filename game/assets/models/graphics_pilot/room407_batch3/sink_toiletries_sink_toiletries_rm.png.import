@@ -3,9 +3,10 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dt8qxq0og10rf"
-path="res://.godot/imported/sink_toiletries_sink_toiletries_rm.png-69d69ba90ac5d57fc97b05898d8d7bcf.ctex"
+path.s3tc="res://.godot/imported/sink_toiletries_sink_toiletries_rm.png-69d69ba90ac5d57fc97b05898d8d7bcf.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "95c5c0d6ce612ece5b368290c4b8ad90"
@@ -14,11 +15,11 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/graphics_pilot/room407_batch3/sink_toiletries_sink_toiletries_rm.png"
-dest_files=["res://.godot/imported/sink_toiletries_sink_toiletries_rm.png-69d69ba90ac5d57fc97b05898d8d7bcf.ctex"]
+dest_files=["res://.godot/imported/sink_toiletries_sink_toiletries_rm.png-69d69ba90ac5d57fc97b05898d8d7bcf.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

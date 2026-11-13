@@ -3,9 +3,10 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b448lv74dg003"
-path="res://.godot/imported/pillow_pillow_rm.png-ed30572168336f45f227f127a9f20734.ctex"
+path.s3tc="res://.godot/imported/pillow_pillow_rm.png-ed30572168336f45f227f127a9f20734.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "23f74d7b02d4e837fb6a58074e1192b4"
@@ -14,11 +15,11 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/graphics_pilot/room407_batch2/pillow_pillow_rm.png"
-dest_files=["res://.godot/imported/pillow_pillow_rm.png-ed30572168336f45f227f127a9f20734.ctex"]
+dest_files=["res://.godot/imported/pillow_pillow_rm.png-ed30572168336f45f227f127a9f20734.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

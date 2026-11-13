@@ -3,9 +3,10 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dudyv6ma42sa8"
-path="res://.godot/imported/bunk_a_bedding_fabric_pattern_05_color.jpg-dcfaa798d9c4a27f50294c13e52cae3f.ctex"
+path.s3tc="res://.godot/imported/bunk_a_bedding_fabric_pattern_05_color.jpg-dcfaa798d9c4a27f50294c13e52cae3f.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "08db4454983795a152c9d24152e99872"
@@ -14,11 +15,11 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/graphics_pilot/room407_corner/bunk_a_bedding_fabric_pattern_05_color.jpg"
-dest_files=["res://.godot/imported/bunk_a_bedding_fabric_pattern_05_color.jpg-dcfaa798d9c4a27f50294c13e52cae3f.ctex"]
+dest_files=["res://.godot/imported/bunk_a_bedding_fabric_pattern_05_color.jpg-dcfaa798d9c4a27f50294c13e52cae3f.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

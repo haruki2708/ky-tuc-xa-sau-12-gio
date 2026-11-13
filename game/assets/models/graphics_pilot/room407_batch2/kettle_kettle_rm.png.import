@@ -3,9 +3,10 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://y8odgiilofsw"
-path="res://.godot/imported/kettle_kettle_rm.png-02fd7811a19e07dd0c8951001476ab10.ctex"
+path.s3tc="res://.godot/imported/kettle_kettle_rm.png-02fd7811a19e07dd0c8951001476ab10.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "9e3b93697564ab4390c1a59b04d9ac29"
@@ -14,11 +15,11 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/graphics_pilot/room407_batch2/kettle_kettle_rm.png"
-dest_files=["res://.godot/imported/kettle_kettle_rm.png-02fd7811a19e07dd0c8951001476ab10.ctex"]
+dest_files=["res://.godot/imported/kettle_kettle_rm.png-02fd7811a19e07dd0c8951001476ab10.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

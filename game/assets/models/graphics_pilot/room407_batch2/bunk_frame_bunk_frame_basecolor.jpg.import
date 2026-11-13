@@ -3,9 +3,10 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bttvion3o06qj"
-path="res://.godot/imported/bunk_frame_bunk_frame_basecolor.jpg-808c01fc6069f9debcd01d75aa93816f.ctex"
+path.s3tc="res://.godot/imported/bunk_frame_bunk_frame_basecolor.jpg-808c01fc6069f9debcd01d75aa93816f.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "0433239ebc13328bf56165ccd7123039"
@@ -14,11 +15,11 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/graphics_pilot/room407_batch2/bunk_frame_bunk_frame_basecolor.jpg"
-dest_files=["res://.godot/imported/bunk_frame_bunk_frame_basecolor.jpg-808c01fc6069f9debcd01d75aa93816f.ctex"]
+dest_files=["res://.godot/imported/bunk_frame_bunk_frame_basecolor.jpg-808c01fc6069f9debcd01d75aa93816f.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

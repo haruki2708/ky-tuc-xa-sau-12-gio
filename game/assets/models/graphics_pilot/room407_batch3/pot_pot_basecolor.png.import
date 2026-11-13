@@ -3,9 +3,10 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c5em3euixvljy"
-path="res://.godot/imported/pot_pot_basecolor.png-c3c109deefcc690fbee53ee87b15b8ff.ctex"
+path.s3tc="res://.godot/imported/pot_pot_basecolor.png-c3c109deefcc690fbee53ee87b15b8ff.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "00b8334da23e6438361af4490d6ebf31"
@@ -14,11 +15,11 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/graphics_pilot/room407_batch3/pot_pot_basecolor.png"
-dest_files=["res://.godot/imported/pot_pot_basecolor.png-c3c109deefcc690fbee53ee87b15b8ff.ctex"]
+dest_files=["res://.godot/imported/pot_pot_basecolor.png-c3c109deefcc690fbee53ee87b15b8ff.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

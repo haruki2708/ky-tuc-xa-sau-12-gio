@@ -3,9 +3,10 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bn5hguuxccbqn"
-path="res://.godot/imported/bunk_mattress_rough_linen_square_color.jpg-bf1629827ef6d3701315f03fcf69f7df.ctex"
+path.s3tc="res://.godot/imported/bunk_mattress_rough_linen_square_color.jpg-bf1629827ef6d3701315f03fcf69f7df.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "6db3ff1c68aa1d20daea3a70832a0e5e"
@@ -14,11 +15,11 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/graphics_pilot/room407_furnished/bunk_mattress_rough_linen_square_color.jpg"
-dest_files=["res://.godot/imported/bunk_mattress_rough_linen_square_color.jpg-bf1629827ef6d3701315f03fcf69f7df.ctex"]
+dest_files=["res://.godot/imported/bunk_mattress_rough_linen_square_color.jpg-bf1629827ef6d3701315f03fcf69f7df.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

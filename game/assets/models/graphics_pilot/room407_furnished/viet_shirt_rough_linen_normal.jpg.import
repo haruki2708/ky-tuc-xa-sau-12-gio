@@ -3,9 +3,10 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://e4ceux4goeu3"
-path="res://.godot/imported/viet_shirt_rough_linen_normal.jpg-ab9aaabd9832480265feac680f773c39.ctex"
+path.s3tc="res://.godot/imported/viet_shirt_rough_linen_normal.jpg-ab9aaabd9832480265feac680f773c39.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "f979e414edf46216a6a55a65eeec23f4"
@@ -14,17 +15,17 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/graphics_pilot/room407_furnished/viet_shirt_rough_linen_normal.jpg"
-dest_files=["res://.godot/imported/viet_shirt_rough_linen_normal.jpg-ab9aaabd9832480265feac680f773c39.ctex"]
+dest_files=["res://.godot/imported/viet_shirt_rough_linen_normal.jpg-ab9aaabd9832480265feac680f773c39.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
-compress/normal_map=0
+compress/normal_map=1
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1

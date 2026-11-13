@@ -3,9 +3,10 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cqgn18nxoaowh"
-path="res://.godot/imported/bottles_cans_bottles_cans_rm.png-4f283f4ba5c1a2936ee8e6c4a738d8f2.ctex"
+path.s3tc="res://.godot/imported/bottles_cans_bottles_cans_rm.png-4f283f4ba5c1a2936ee8e6c4a738d8f2.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "1d3e1328093896f8045f3f05788e07df"
@@ -14,11 +15,11 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/graphics_pilot/room407_batch3/bottles_cans_bottles_cans_rm.png"
-dest_files=["res://.godot/imported/bottles_cans_bottles_cans_rm.png-4f283f4ba5c1a2936ee8e6c4a738d8f2.ctex"]
+dest_files=["res://.godot/imported/bottles_cans_bottles_cans_rm.png-4f283f4ba5c1a2936ee8e6c4a738d8f2.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

@@ -3,9 +3,10 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://da7pcbc1m4eey"
-path="res://.godot/imported/fixtures_green_metal_rust_color.jpg-0edea7bebece2bb59b86e23381493fb5.ctex"
+path.s3tc="res://.godot/imported/fixtures_green_metal_rust_color.jpg-0edea7bebece2bb59b86e23381493fb5.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "c925d8b893915e68bf25ce17b636aa38"
@@ -14,11 +15,11 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/graphics_pilot/room407_corner/fixtures_green_metal_rust_color.jpg"
-dest_files=["res://.godot/imported/fixtures_green_metal_rust_color.jpg-0edea7bebece2bb59b86e23381493fb5.ctex"]
+dest_files=["res://.godot/imported/fixtures_green_metal_rust_color.jpg-0edea7bebece2bb59b86e23381493fb5.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

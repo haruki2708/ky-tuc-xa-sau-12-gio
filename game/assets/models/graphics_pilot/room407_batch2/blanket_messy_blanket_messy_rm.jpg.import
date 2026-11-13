@@ -3,9 +3,10 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://mxpgargfe27k"
-path="res://.godot/imported/blanket_messy_blanket_messy_rm.jpg-7551f2be1808d94205dfaa42051e9c8b.ctex"
+path.s3tc="res://.godot/imported/blanket_messy_blanket_messy_rm.jpg-7551f2be1808d94205dfaa42051e9c8b.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "ad3a019dcbd1697fede12d26a7f55054"
@@ -14,11 +15,11 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/graphics_pilot/room407_batch2/blanket_messy_blanket_messy_rm.jpg"
-dest_files=["res://.godot/imported/blanket_messy_blanket_messy_rm.jpg-7551f2be1808d94205dfaa42051e9c8b.ctex"]
+dest_files=["res://.godot/imported/blanket_messy_blanket_messy_rm.jpg-7551f2be1808d94205dfaa42051e9c8b.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

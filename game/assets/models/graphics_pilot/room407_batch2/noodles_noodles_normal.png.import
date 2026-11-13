@@ -3,9 +3,10 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://7y5vac5yi21p"
-path="res://.godot/imported/noodles_noodles_normal.png-116a299cb31fc94fd651ace6fcddbbbd.ctex"
+path.s3tc="res://.godot/imported/noodles_noodles_normal.png-116a299cb31fc94fd651ace6fcddbbbd.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "3ef2b7ea298f3cadf025560bb360ae34"
@@ -14,17 +15,17 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/graphics_pilot/room407_batch2/noodles_noodles_normal.png"
-dest_files=["res://.godot/imported/noodles_noodles_normal.png-116a299cb31fc94fd651ace6fcddbbbd.ctex"]
+dest_files=["res://.godot/imported/noodles_noodles_normal.png-116a299cb31fc94fd651ace6fcddbbbd.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
-compress/normal_map=0
+compress/normal_map=1
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1

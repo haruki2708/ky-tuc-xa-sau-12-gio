@@ -3,9 +3,10 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://csr1s3scec68k"
-path="res://.godot/imported/viet_shirt_viet_shirt_color.jpg-d4772784e361a28dfcba780954905eba.ctex"
+path.s3tc="res://.godot/imported/viet_shirt_viet_shirt_color.jpg-d4772784e361a28dfcba780954905eba.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "b03c19d0e135664042705e2d58b59d1f"
@@ -14,11 +15,11 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/graphics_pilot/room407_furnished/viet_shirt_viet_shirt_color.jpg"
-dest_files=["res://.godot/imported/viet_shirt_viet_shirt_color.jpg-d4772784e361a28dfcba780954905eba.ctex"]
+dest_files=["res://.godot/imported/viet_shirt_viet_shirt_color.jpg-d4772784e361a28dfcba780954905eba.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

@@ -3,9 +3,10 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c11flthp7rdfk"
-path="res://.godot/imported/wall_socket_wall_socket_basecolor.png-22b7db1a463ad29d5fb62dbd852aa574.ctex"
+path.s3tc="res://.godot/imported/wall_socket_wall_socket_basecolor.png-22b7db1a463ad29d5fb62dbd852aa574.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "e2d53cf9c5b9895c38613978fe9a8a06"
@@ -14,11 +15,11 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/graphics_pilot/room407_batch3/wall_socket_wall_socket_basecolor.png"
-dest_files=["res://.godot/imported/wall_socket_wall_socket_basecolor.png-22b7db1a463ad29d5fb62dbd852aa574.ctex"]
+dest_files=["res://.godot/imported/wall_socket_wall_socket_basecolor.png-22b7db1a463ad29d5fb62dbd852aa574.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
