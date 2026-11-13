@@ -88,11 +88,11 @@ Trả lời và viết tài liệu bằng tiếng Việt; code, comment, commit 
 - **Nguồn đúng khi lệch nhau:** mục 3 file này mới nhất; rồi `docs/STATUS.md`; `docs/ROADMAP.md` chỉ cập nhật khi qua mốc.
 
 ## 3. Tiến độ integrator để lại (integrator cập nhật sau mỗi bước)
-**Cập nhật:** 14/11/2026 khoảng 03:30, integrator (Fable 5.2) nhận lại việc từ HARU: **T-256 đã merge vào main**, card T-258 cho lane B, đang build bản chơi.
+**Cập nhật:** 14/11/2026 khoảng 03:30, integrator (Fable 5.2) nhận lại việc từ HARU: **T-256 đã merge vào main**, card T-258 cho lane B, bản chơi `e738e2e` đã build. Không có việc dở.
 
 **Việc dở ngay lúc này (đọc trước):**
 - **T-256 merged** (lane B `9153597`; cây `game/` sau merge trùng cây lane B đã chạy full test 984/0; integrator chạy lại check 0 lỗi, `test_t256` 9/9, 14/11 03:21). Review trong card.
-- **Bản chơi mới sau T-256:** `build/integrator/package_locked.ps1 -Label 'package T-256' -Name package_t256` (chạy nền từ khoảng 03:30; log `build/integrator/package_t256.log`). Xong thì báo chủ dự án. Dòng "Bản chơi" trong STATUS mục 1 cập nhật sau khi build xong.
+- **Bản chơi mới nhất** (package PASS 14/11 03:23, commit `e738e2e`): `build/windows/KyTucXa.exe`, zip `build/dist/KyTucXa-0.0.1-e738e2e-win64.zip` (497 MiB); có T-253, T-254, T-255, D-171, T-257, T-256. Đã báo chủ dự án; chưa ai chơi thử.
 - **[T-258](../tasks/T-258-main-stairs-wall-over-washroom.md)** (lane B, todo): ở chương 3–4 tường PS1 của giếng cầu thang chính lấn 6 cm vào nhà vệ sinh tầng 4, che gương và máng rửa mới. Prompt `lane-b.md` mục 1m; chủ dự án dán khi lane B có hạn mức.
 - **Chờ chủ dự án chơi thử** (T-253, T-254, T-255, D-171, T-257, T-256) và chọn: T-255 (nhà tắm góc sau, ban công cả bề ngang, chủ đề phòng, khoá cửa phòng chương 3–4, cánh cửa mở không va chạm); T-256 (màu gạch và góc cửa buồng, đồ trước mỗi phòng, tay gạt gọn); xem ảnh T-257 `vram_compress/previews/compare_closeup.jpg`.
 - Chưa làm: occlusion culling (yêu cầu thay đổi T-253); bốn lỗi nhỏ STATUS mục 7; yêu cầu thay đổi 3 của T-255 (director bỏ qua mở phòng khi người chơi đang ở trong).
