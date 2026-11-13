@@ -215,6 +215,21 @@ Cập nhật Checklist và Handoff trong card. Không sửa STATUS hay DECISIONS
 Cuối phiên báo ngắn bằng tiếng Việt: xong gì, nhánh, commit, ảnh ở đâu, dòng RESULT test và check, câu hỏi cho chủ dự án, có bị chặn không.
 ```
 
+## 1l. Giao T-256 (13/11/2026, D-170): tầng 4 phần còn lại — nhà vệ sinh chung, đồ ở hành lang, rà cửa thoát hiểm, trường quay CCTV hành lang
+Dán **sau khi T-255 đã merge vào main** (integrator báo). `/model` chọn **Opus 5.5**, effort **xhigh** (khó thì **max**), rồi dán:
+```text
+Việc mới cho lane B: T-256 — tầng 4 phần còn lại: nhà vệ sinh chung, đồ ở hành lang, rà cửa thoát hiểm mở sát lan can, trường quay CCTV hành lang. Đọc docs/tasks/T-256-floor4-washroom-corridor-props.md.
+Ở D:\GAME_WORK\lane-b2: git status (giữ thay đổi đang có, báo nếu có), git fetch origin, git switch -c lane-b/T-256-floor4-washroom-corridor-props origin/main, git lfs pull. origin/main phải đã có T-255 (các phòng 401–406, 408); chưa có thì dừng và báo.
+Đầu phiên ghi commit của card đã đọc (git log -1 --format=%h origin/main -- docs/tasks/T-256-floor4-washroom-corridor-props.md).
+Mục 1 của card là điều chủ dự án đã chốt (D-170): buồng vệ sinh có bên trong, cửa khép hờ, không tương tác; máng rửa dài ốp gạch men ba vòi; gương phản chiếu thật như gương phòng 407, mép ố; đồ hành lang thêm vừa phải, lối đi trống; dựng lại trường quay CCTV hành lang bằng bộ hành lang thật, giữ camera; cảnh ngoài chương 1–2 không làm.
+Làm phần A (nhà vệ sinh chung) trước, dựng một góc mẫu, chụp cùng camera với ảnh previews/survey/03 và 04, tự xem rồi làm rộng; sau đó phần B, C, D. Chất lượng ngang phòng 407 và đợt 1, 2 đã duyệt; dựng bằng Blender, dùng lại đồ và texture đã có, không thêm texture 2K mới (chương 3 từng hết bộ nhớ hình), không dùng Tripo.
+Không đổi va chạm, navmesh, anchor, ánh sáng, âm thanh, luật, director, script trong game/scripts; hình PS1 chỉ ẩn, không xoá. Phần ngoài phạm vi ghi "Yêu cầu thay đổi".
+Không chạy bot, không đo FPS, không tiêu credit Tripo. Godot theo luật Lượt Godot (file khóa D:\GAME_WORK\GODOT_DANG_CHAY.txt); máy ít RAM: đóng Godot khi không dùng, chạy full test ở tiền cảnh.
+Trước commit cuối: full pwsh tools/test.ps1 rồi pwsh tools/check.ps1, rồi git checkout -- game/default_bus_layout.tres. Commit nhỏ "T-256: ...", push nhánh sau mỗi phần xong. Không push main, không mở PR.
+Cập nhật Checklist và Handoff trong card. Không sửa STATUS hay DECISIONS.
+Cuối phiên báo ngắn bằng tiếng Việt: xong gì, nhánh, commit, ảnh ở đâu, dòng RESULT test và check, câu hỏi cho chủ dự án, có bị chặn không.
+```
+
 ## 2. Prompt giao việc (integrator điền T-xxx)
 ```text
 Việc mới cho lane B: <T-xxx> — đọc docs/tasks/<file card>.md.
