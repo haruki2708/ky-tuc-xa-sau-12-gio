@@ -104,28 +104,30 @@ D-170: dựng lại trường quay.
 - Tripo, credit Tripo; bot, FPS; commit log, video, `anh_chup_sua_loi/`; sửa STATUS, DECISIONS.
 
 ## Checklist
-- [ ] Phần A nhà vệ sinh chung, ảnh trước/sau chương 1 và 3
-- [ ] Phần B đồ hành lang, lối đi trống
-- [ ] Phần C tay gạt cửa thoát hiểm không đâm tay vịn lan can (ảnh trước/sau), Thấy thêm 1
-- [ ] Phần D trường quay CCTV hành lang
-- [ ] Test mới, test cũ, full test, check
-- [ ] README, CREDITS, ảnh ghép, Handoff
+- [x] Phần A nhà vệ sinh chung, ảnh trước/sau chương 1 và 3
+- [x] Phần B đồ hành lang, lối đi trống
+- [x] Phần C tay gạt cửa thoát hiểm không đâm tay vịn lan can (ảnh trước/sau), Thấy thêm 1
+- [x] Phần D trường quay CCTV hành lang
+- [x] Test mới, test cũ, full test, check (check sau rebase bị dừng vì thiếu RAM, chưa chạy hết; xem Handoff)
+- [x] README, CREDITS, ảnh ghép, Handoff
 
 ## Handoff
 
 ### 13–14/11/2026 — lane B (Claude, Opus 5.5)
-Nhánh `lane-b/T-256-floor4-washroom-corridor-props` từ `origin/main` `8aad1c3` (đã có T-255). Commit card đã đọc: `7e12f86`. Lúc mở phiên không có thay đổi dở. Commit: `20aec9e` (phần A), `d635a8b` (B, C, D), các commit sau (ảnh, Handoff).
+Nhánh `lane-b/T-256-floor4-washroom-corridor-props` từ `origin/main` `8aad1c3` (đã có T-255), cuối phiên rebase lên `69f2488` (đã có T-257 nén VRAM, không trùng file nào). Commit card đã đọc: `7e12f86`. Lúc mở phiên không có thay đổi dở. Commit sau rebase: `7ddba25` (phần A), `e430fe7` (B, C, D), `f01458d` (ảnh, sửa sau ảnh), `10a26f5` (gương theo `test_mirror`), `9d97d8c` (biển thoát hiểm treo dưới khung, theo `test_t253`), commit cuối (Handoff).
 
 **Đã làm (nguồn `art_source/graphics_upgrade/realistic_map/floor4_rest/`, README ở đó):**
-- **A, nhà vệ sinh chung** (`washroom.glb`, 11.228 tam giác, 28 vật liệu; script cảnh `game/scenes/levels/floor4/washroom_real.gd` gắn ở gốc `washroom.tscn`):
+- **A, nhà vệ sinh chung** (`washroom.glb`, 11.208 tam giác, 28 vật liệu; script cảnh `game/scenes/levels/floor4/washroom_real.gd` gắn ở gốc `washroom.tscn`):
   - Tường ốp gạch men xanh nhạt tới 1,8 m, khổ gạch nhỏ hơn nhà tắm 407; trên trát kem. Trần trát có mốc. Sàn gạch chống trơn dốc 1,2 cm về ga thoát. Dùng shader vỏ 407 với mask 1K vẽ riêng: ố vàng dưới vòi, ướt quanh máng và trước buồng, mốc góc trần, lối mòn từ cửa.
   - Ba buồng xây ốp gạch: bệ xổm trên bậc, vòi thấp trên ống thả từ đường ống dọc tường sau, xô, gáo, thùng rác nhỏ. Cánh cửa sơn xanh khép hờ **vào trong** 24°, 31°, 19°: khe hẹp hơn vai người, không tương tác.
-  - Máng rửa dài xây ốp gạch, phủ kín ba hộp `Sink_*`: ba vòi tường đúng chỗ ba `Tap_*` (miệng vòi tại `TapWater`), ống cấp lộ dưới gương, ống thoát ra ga, xà phòng, ca nhựa.
-  - **Gương phản chiếu thật như 407**: mặt HD, chỉ vẽ khi đang nhìn vào, đi theo người chơi cầm camera; có thân Trần Trung thì ẩn hình thế PS1. Kính thu từ 2,8 m còn 2,5 m (tâm, hướng giữ nguyên) để chừa bảng tin ở `WashroomNotice`. Mép tráng bạc bong, đốm nước (lớp riêng, gương không tự phản chiếu nó).
+  - Máng rửa dài xây ốp gạch, phủ kín ba hộp `Sink_*`: ba vòi tường đúng chỗ ba `Tap_*` (miệng vòi tại `TapWater`), ống cấp lộ dưới gương, ống đứng ở góc tường trước lên đường ống chạy trên gương và dọc tường sau tới vòi các buồng, ống thoát ra ga, xà phòng, ca nhựa.
+  - **Gương phản chiếu thật như 407**: mặt HD (lọc mịn, ánh kính), đi theo người chơi cầm camera; có thân Trần Trung thì ẩn hình thế PS1. Khung nhôm mới; mép tráng bạc bong và đốm nước nằm trên lớp riêng, gương không tự phản chiếu nó.
+  - Kính giữ 2,8 × 0,95 m, viewport 560 × 190, và gương vẫn vẽ khi người chơi ở trong phòng trước kính (không chỉ khi đang nhìn vào như 407), vì `test_mirror` kiểm đúng các số và cách vẽ này.
+  - Bảng tin (khung nhôm, nền bần) đặt ngay sau mép nam của kính, tâm z −3,39, lệch 14 cm khỏi `Anchors/WashroomNotice` (z −3,25: anchor rơi đúng mép kính). Giấy đọc được ở anchor chỉ bản demo cũ `main.gd` dán, các chương 1–4 không dán.
   - Máng đèn tuýp thay hộp `WashroomLight/Fixture`, ống sáng theo đèn. Ô thoáng gạch bông, móc, khăn, xô và cây lau, chậu.
   - Gán `follow` cho gương làm được trong script cảnh lane B (như `room407.gd`), không cần core. Demo `main.tscn` gán `follow = $Player` vẫn như cũ.
   - Hình PS1 chỉ ẩn (kể cả `Details`, `Tap_*`, `Mirror/Frame`). Va chạm, đèn, âm thanh, vùng, anchor giữ nguyên.
-- **B, đồ hành lang** (`corridor_props.glb` 8.418 + `cloths.glb` 372 tam giác; node `RealProps` với `corridor_props.gd` ở cuối `corridor.tscn`):
+- **B, đồ hành lang** (`corridor_props.glb` 8.834 + `cloths.glb` 372 tam giác; node `RealProps` với `corridor_props.gd` ở cuối `corridor.tscn`):
   - Dây phơi thật võng 3 cm giữa các móc trần. Quần áo thật (áo trên mắc, khăn vắt, quần) gắn vào `HangingCloth_0…4` nên **vẫn đung đưa**. `Anchors/ClotheslineExtraShirt` để trống: bản demo cũ treo áo riêng ở đó.
   - Ba xô cũ đổi hình, giữ va chạm.
   - Mỗi phòng một khác:
@@ -144,7 +146,8 @@ Nhánh `lane-b/T-256-floor4-washroom-corridor-props` từ `origin/main` `8aad1c3
 - **C, cửa thoát hiểm** (`building_b.tscn`, chỉ `FireDoor`):
   - Không đổi góc mở hay trục bản lề, vì test T-250 (phải đạt) kiểm `Leaf` đúng 90°, kiểm vị trí `Leaf`, và kiểm ổ khoá, tay gạt bám cứng theo cánh. Cách ít đổi nhất là dùng tay gạt bản gọn `fire_door_handle_compact.glb`: cần gạt phía hành lang trên cổ ngắn, thanh gạt cách mặt cánh 3,1 cm (đợt 1: khoảng 5,6 cm). Node `Handle`, vị trí, va chạm như cũ.
   - Khi mở, tay gạt dừng cách tay vịn khoảng 3 mm (trước: lấn khoảng 2 cm) và cách song đứng khoảng 2 cm.
-  - Thấy thêm 1: hộp xanh trơn trên cửa là hộp `W1ExitSign` của khung cửa đợt 1. Hộp đèn mới `FireDoor/ExitSign` "LỐI THOÁT / EXIT" (tắt, không thêm đèn) bọc kín hộp cũ, không phải sửa khung.
+  - Thấy thêm 1: hộp xanh trơn trên cửa là hộp `W1ExitSign` của khung cửa đợt 1. Hộp đèn mới `FireDoor/Frame/ExitSign` "LỐI THOÁT / EXIT" (tắt, không thêm đèn) bọc kín hộp cũ, không phải sửa khung. Node treo dưới `FireDoor/Frame` (khung đứng ở gốc `FireDoor`): lần full test đầu, đặt thẳng dưới `FireDoor` làm `test_t253` báo lệch dấu vân tay node của main (2219 dòng thay vì 2216). Dưới khung thì nó thuộc nhóm model treo thêm mà test đó bỏ qua, như model đợt 1–2.
+  - Thấy thêm 1, cột ô vuông PS1: là hộp `FireStairs/FrontRail` của giếng thang thoát hiểm (x 43,9…49,1, z 4,025…4,175, tới 2,75 m) cùng khối đợt 1 phía trên. Che bằng một trụ trát màu hành lang (`EndCover` trong `exit_sign.glb`, x 43,84…44,06, z 3,95…4,18, y 2,38…3,05), không sửa giếng thang.
 - **D, trường quay CCTV hành lang** (`cctv_corridor.glb`, 2.526 tam giác; `cctv_set.tscn` thêm `Corridor/RealSet`):
   - Tường trát, sàn gạch, len, trần, khung cửa xanh, cửa panô sơn (nhẹ hơn lá Tripo 5.057 tam giác mỗi cái, feed chỉ 320 × 240), biển nhôm sau số `Label3D` cũ, máng đèn.
   - **Lan can mở** thay tường ngoài (va chạm `OuterWall` giữ nguyên, ngoài lan can là khoảng tối).
@@ -153,10 +156,55 @@ Nhánh `lane-b/T-256-floor4-washroom-corridor-props` từ `origin/main` `8aad1c3
 **Texture mới (cả ba ≤ 1K, nén VRAM):** `mask_washroom.png` 1024², `mirror_stain.png` 1024×512, `exit_sign.png` 512×192. Còn lại dùng lại scan CC0 và vải tô màu của T-255. Không Tripo, không ảnh AI. CREDITS ở hai thư mục `floor4_rest` của model và texture.
 
 **Nặng máy:**
-- Nhà vệ sinh 11.228 tam giác (trần 30.000).
-- Đồ hành lang thêm 8.790 tam giác (trần 25.000).
+- Nhà vệ sinh 11.208 tam giác (trần 30.000).
+- Đồ hành lang thêm 9.206 tam giác (8.834 + 372 quần áo; trần 25.000).
 - Trường quay 2.526 tam giác (trần 15.000).
-- Tay gạt 392, biển 102 tam giác.
+- Tay gạt 392, biển và trụ che 146 tam giác.
 - Không đèn, không bóng mới.
-- VRAM đo trong cảnh chụp chương 3: 3.687 MB (T-255 đo 3.665 MB).
-- Gương nhà vệ sinh có viewport 800 × 304, chỉ vẽ khi đang nhìn vào (như gương 407).
+- VRAM đo trong cảnh chụp chương 3: 3.693 MB (T-255 đo 3.665 MB). Số này đo trước khi rebase lên T-257 (nén VRAM); sau rebase chưa đo lại.
+- Gương nhà vệ sinh: viewport 560 × 190 như cũ, vẽ khi người chơi ở trong phòng trước kính.
+
+**Thấy thêm khi làm (lane B xác minh, ngoài phạm vi):**
+- **Chương 3–4, tường tây nhà vệ sinh bị tường giếng thang chính che.** `Campus/BuildingB/MainStairs/Wall0.08…/Mesh` (hộp PS1, x 0…0,16, từ tầng 1 tới y 2,75) và khối `W1Stairs` (T-250, trên 2,74 m, cũng tới x 0,16) đặt mặt ngoài ở x 0,16, trong khi mặt trong tường tây nhà vệ sinh ở x 0,1.
+  - Vì vậy trong chương 3–4, tường khảm PS1 đứng che 6 cm phía tây nhà vệ sinh, che luôn gương, ống, bảng tin. Lỗi này có từ trước: ảnh `before_ch3_washroom_04_washroom_sinks.jpg` trên main cũng thấy, gương cũ cũng bị che.
+  - Nằm trong `building_b.tscn` ngoài phần C nên tôi không sửa.
+- Cánh cửa phòng (T-255) mở ra hành lang không có va chạm. Đồ mới đã chừa vùng cánh quét.
+
+**Yêu cầu thay đổi (integrator):**
+1. **Tường giếng thang chính lấn nhà vệ sinh ở chương 3–4** (mục trên). Đề xuất một việc nhỏ cho lane B trong `building_b.tscn`: tầng 4 lùi mặt đông của tường giếng thang (hộp PS1 `Wall0.08…` và khối `W1Stairs` trên 2,74 m) về x 0,1, hoặc ẩn phần tầng 4 của mesh PS1 nếu mặt trong của `W1Stairs` đã đủ. Va chạm hộp đó cũng lấn 6 cm (người chơi chạm tường ở x 0,16 thay vì 0,1), không ảnh hưởng gì khác.
+2. Không cần core gán `follow` cho gương: `washroom_real.gd` làm như `room407.gd`.
+
+**Câu hỏi cho chủ dự án (đã làm theo đề xuất, đổi được):**
+- Màu gạch nhà vệ sinh (xanh nhạt xỉn), góc khép hờ của ba cánh cửa buồng (24°, 31°, 19°).
+- Đồ trước mỗi phòng (danh sách ở trên): có muốn bớt hay thêm.
+- Tay gạt gọn: thanh gạt phía hành lang cách mặt cánh 3,1 cm (đợt 1: 5,6 cm). Nếu muốn giữ tay gạt to thì cần đổi test T-250 để cho cánh dừng ở khoảng 89°.
+
+**Ảnh** (`art_source/graphics_upgrade/realistic_map/previews/floor4_rest/`):
+- trước và sau cùng camera: `before_*` / `after_*`; phần A, B ở chương 1 và 3; phần C ở chương 3; phần D (feed và trường quay) ở chương 1;
+- ảnh trước của C, D chụp bằng file cảnh của main;
+- ghép: `compare_washroom_ch1.jpg`, `compare_washroom_ch3.jpg`, `compare_corridor_ch1.jpg`, `compare_corridor_ch3.jpg`, `compare_firedoor_ch3.jpg`, `compare_cctv_ch1.jpg`, `overview.jpg` (tổng quan cho chủ dự án).
+
+**Test:**
+- `game/tests/levels/test_t256_floor4_rest.gd`: 9/9 đạt. Gồm:
+  - dấu vân tay va chạm nhà vệ sinh trùng main (và bằng bản PS1);
+  - node, anchor, đèn giữ nguyên; hình PS1 ẩn; ngân sách tam giác;
+  - gương HD đi theo người chơi; capsule tới trước từng vòi, từng buồng;
+  - va chạm cũ của hành lang trùng bản không có đồ mới; đồ cứng mới không lấn lối và vùng cửa;
+  - lối z 3 và tuyến quản lý z 2 thông; quần áo vẫn đung đưa;
+  - tay gạt mở cách tay vịn, biển bọc hộp cũ;
+  - trường quay CCTV: dấu vân tay va chạm trùng main, camera, đèn, cửa giữ nguyên, lan can mở.
+- Test cũ chạy theo bộ lọc, tất cả đạt: `test_floor4` 9/9, `test_corridor_g5` 9/9, `test_wide_corridors` 4/4, `test_props` 6/6, `test_mirror` 6/6, `test_cctv` 5/5, `test_story_segments_3_5` 22/22, `test_t250` 5/5, `test_t254` 4/4, `test_t255` 12/12.
+- Full test lần 1 (trước rebase): 983 đạt, 1 lỗi. Lỗi là `test_t253_realistic_wave2.gd::test_colliders_and_main_nodes_are_main_s`, do `FireDoor/ExitSign` thêm 3 node vào dấu vân tay node. Đã sửa bằng cách treo dưới khung (mục C), không đổi test cũ. Sau đó chạy lọc: `test_t253` 9/9 (node 2216 dòng, md5 trùng main), `test_t256` 9/9, `test_t250` 5/5. Check lần 1: 0 lỗi.
+- Full test và check sau rebase (`9d97d8c`, trước commit cuối):
+  ```
+  RESULT: 984 passed, 0 failed
+  ```
+  Check sau rebase **chưa chạy hết**: Claude Code dừng nó lúc máy thiếu RAM, khi đang ở bước parse (408 dòng PASS, chưa có dòng lỗi nào, không có dòng RESULT). Check trước rebase đã chạy hết: `RESULT: check 0 error(s)`. Phần rebase thêm vào chỉ có T-257 (`.import`, ảnh, tài liệu), không trùng file nào của T-256. Integrator nên chạy lại `pwsh tools/check.ps1` khi merge.
+
+**Còn dở:**
+- Check sau rebase chưa chạy hết (mục Test). Còn lại không có việc dở trong phạm vi card. Việc tường giếng thang chính lấn nhà vệ sinh ở chương 3–4 chờ integrator quyết (Yêu cầu thay đổi 1).
+
+**Cách kiểm tra:**
+- `pwsh tools/test.ps1 -Filter test_t256` (9 test), và `-Filter test_t253`, `test_t250`, `test_mirror`, `test_floor4`, `test_cctv`.
+- Xem ảnh ghép `previews/floor4_rest/overview.jpg` và `compare_*.jpg`.
+- Chơi chương 1 hoặc 3: vào nhà vệ sinh tầng 4 (gương phản chiếu người chơi), đi hết hành lang tầng 4, mở cửa thoát hiểm cuối hành lang (chương 3). Feed CCTV hành lang: như ảnh `compare_cctv_ch1.jpg` ở chương 1.
