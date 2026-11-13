@@ -29,6 +29,7 @@ Sau đó mở Godot import hai lần (lần đầu có thể báo lỗi ảnh m�
 - Nội thất mỗi phòng (vỏ trong, đồ, cửa nhà tắm) chỉ vẽ khi cửa phòng mở/đang đóng dở hoặc camera ở trong phòng (cả ban công). Đồ trên ban công vẽ cùng nội thất, hoặc khi camera ở sau mặt nhà trong vòng 25 m. Mặt sau nhà, ban công, cửa ban công luôn vẽ.
 - Cửa phòng: `room_door_hand.gd` (`RoomDoorHand`) cưỡi trên cánh, tay gạt Tripo nhận tay (`DoorHandles` của lane A). Cánh vẫn mở ra hành lang. Khi core gắn `ZombieDoor` (chương 3–4) cửa thuộc về chương: tắt tay; nếu đang mở bằng tay thì tự đóng lại khi không ai đứng ở ô cửa.
 - Cửa nhà tắm, cửa ban công: `room_hinge.gd` + `HingedDoor` (lane A), lá cửa Tripo của 407 và tay gạt. Đóng khi bắt đầu chương. Cửa nhà tắm mở vào trong dọc vách; cửa ban công mở ra, áp vào mặt tường phía nhà tắm (như 407).
+- Chương không có thân Trần Trung (`protagonist_body` của gốc chương là false, hiện là chương 4): cửa phòng mở bằng bấm thường, không tay gạt (như `Door407`); cửa nhà tắm và cửa ban công để mở sẵn, không có `HingedDoor`.
 - Đồ Tripo dùng LOD tự động của Godot (`meshes/generate_lods=true` trong file `.import` có sẵn), đó là bản nhẹ cho đồ nhỏ ở xa.
 
 ## Nguồn

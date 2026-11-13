@@ -38,12 +38,12 @@
 - Tripo, credit Tripo; bot, FPS; commit log, video, `anh_chup_sua_loi/`; sửa STATUS, DECISIONS.
 
 ## Checklist
-- [ ] Khảo sát, đề xuất bố cục (Handoff)
-- [ ] Vỏ phòng, nhà tắm, ban công, va chạm
-- [ ] Đồ đạc mỗi phòng một khác
-- [ ] Cửa mở bằng tay, vào được ở mọi chương
-- [ ] Ẩn nội thất khi cửa đóng
-- [ ] Ảnh chương 1, 3; test; full test; check; Handoff
+- [x] Khảo sát, đề xuất bố cục (Handoff)
+- [x] Vỏ phòng, nhà tắm, ban công, va chạm
+- [x] Đồ đạc mỗi phòng một khác
+- [x] Cửa mở bằng tay, vào được ở mọi chương
+- [x] Ẩn nội thất khi cửa đóng
+- [x] Ảnh chương 1, 3; test; full test; check; Handoff (full test 970/5: 5 test lane A cần integrator, xem Handoff)
 
 ## Handoff
 
@@ -82,3 +82,111 @@ Nhánh `lane-b/T-255-floor4-rooms-like-407` từ `origin/main` `5388911` (commit
 7. **Phông chương 1–2:** dựng lại `room407_shell/outside.glb`, chỉ bỏ các ban công giả của tầng 4 nơi giờ đã có phòng thật. Phòng 407 và phần phông còn lại giữ nguyên. Phông này là của bộ 407 nên ghi rõ để integrator duyệt.
 
 **Không đổi:** hành lang, vị trí cửa, cầu thang, đường đi quản lý và xác sống, luật, director, script người chơi, phòng 407.
+
+### 13/11/2026 — lane B (Claude, Opus 5.5): bước 2, dựng xong bảy phòng
+Commit: `97ddc6a` (vỏ, va chạm, đồ, cửa tay, test), `ef57058` (ẩn đồ ban công, sửa xung đột với `test_floor4`, `test_corridor_g5`, README, CREDITS), `24a36b0` (nén texture vì chương 3 hết VRAM, ảnh sau, ảnh ghép), `b61665c` (sửa sau full test lần 1), commit cuối (Handoff). Nhánh đã push.
+
+**Đã làm (theo đề xuất bước 1):**
+- **Vỏ phòng** `art_source/graphics_upgrade/floor4_rooms/` (`build_rooms.py`, Blender) → `game/assets/models/graphics_pilot/floor4_rooms/room_<n>.glb`:
+  - sâu như 407 (mặt trong tường sau z −6,925, ban công tới lan can −8,55, trần 3 m);
+  - nhà tắm góc sau, hai phòng cạnh nhau đối xứng; ốp gạch tới 1,8 m, sàn chống trơn, phễu thoát nước, ô cửa lá sách nghiêng nhìn ra ban công;
+  - khung cửa xanh như 407, len chân tường, đèn tuýp (tắt), công tắc, dây phơi trong phòng và ngoài ban công;
+  - ban công cả bề ngang phòng, vách ngăn 2 m, lan can và gờ, trần ban công.
+  - Vật liệu: shader vỏ 407 với mask cũ hoá vẽ bằng code theo mặt bằng từng phòng (405 bỏ trống cũ nhất).
+- **Va chạm** (`game/scenes/levels/floor4/floor4_rooms.gd`): hộp cho tường, sàn (`RoomFloor`, `surface = tile`), trần, nhà tắm, ban công, đồ cứng (giường, tủ, bàn, ghế đẩu, kệ, tủ lạnh, bồn cầu…). Phòng PS1 cũ (`Floor_`, `BackWall_`, `Ceiling_`, `RoomInterior_`, `Room408BackWall`) bị ẩn và tắt va chạm, không xoá. Vách ngăn, cửa (`RoomDoor`, `Blocker`), hành lang, cầu thang giữ nguyên.
+- **Đồ đạc** (`make_placements.py` → `game/data/floor4_rooms/rooms.json`, bảng bày đồ riêng như `room407/placements.json`; **báo integrator vì nằm trong `game/data/`**):
+  - Số món: 401: 79, 402: 79, 403: 79, 404: 70, 405: 52, 406: 74, 408: 90.
+  - Toàn bộ là đồ có sẵn của 407. Chăn, gối, áo, rèm tô lại màu theo từng phòng.
+  - Chủ đề: 401 gọn gàng, học (hai bàn, kệ sách); 402 bừa, đồ ăn, máy tính, chiếu và bàn gấp; 403 bóng đá (bóng, giày, mũ bảo hiểm, poster); 404 âm nhạc (ba đàn guitar, tai nghe); 405 nửa trống (giường trơ, vali, thùng, tủ mở trống); 406 nấu ăn (nồi cơm, nồi, ấm, tủ lạnh, bình nước, mâm cơm); 408 sáu người (ba giường, sáu tủ, giá phơi, đồ phơi khắp nơi, hai quạt trần).
+  - Script tự kiểm: không đồ cứng nào trong ô xác sống ra (chương 3), không xuyên tường.
+- **Bố cục thực tế (khác sơ đồ bước 1 ở chi tiết, vẫn theo đề xuất):**
+  - Giường tầng z −1,5…−3,5 sát hai tường bên; bốn tủ trên tường bên cạnh cửa (z −0,1…−1,5); bàn học dọc tường phía không có nhà tắm ở nửa sau phòng.
+  - Cửa nhà tắm sát vách nhà tắm (để đi qua chân giường vào được); cửa ban công cách tường bên 0,75 m.
+  - 408: hai giường dọc tường đông, phía sau ô xác sống; một giường tường tây (z −1,85…−3,85, chừa chỗ cho test tường 407|408 ở (39; −1,5)); sáu tủ; cửa ban công giữa phòng.
+- **Cửa:**
+  - Cửa phòng: `room_door_hand.gd` (`RoomDoorHand`) cưỡi trên cánh Tripo, tay gạt nhận tay (`DoorHandles` của lane A, chỉ gọi). Cánh vẫn mở ra hành lang. `RoomDoor.set_open(open, seconds = 0.3)` thêm thời gian xoay (mặc định như cũ).
+  - Khi core gắn `ZombieDoor` (chương 3–4): tay tắt; cửa đang mở bằng tay sẽ tự đóng khi không ai đứng ở ô cửa, để xác còn phá cửa.
+  - Cửa nhà tắm và cửa ban công: `room_hinge.gd` + `HingedDoor` của lane A, lá cửa Tripo của 407 và tay gạt. Đóng khi bắt đầu chương; cửa ban công mở ra, áp vào mặt tường phía nhà tắm.
+  - **Chương không có thân Trần Trung (chương 4)**, làm như cửa 407: cửa phòng mở bằng bấm thường (không tay gạt); cửa nhà tắm và cửa ban công để mở sẵn, không gắn `HingedDoor`. Floor4Rooms đọc `protagonist_body` của gốc chương.
+- **Nặng máy:**
+  - Nội thất mỗi phòng (vỏ trong, đồ, cửa nhà tắm) chỉ vẽ khi cửa phòng mở hoặc đang xoay, hoặc camera ở trong phòng hay trên ban công phòng đó.
+  - Đồ trên ban công vẽ cùng nội thất, hoặc khi camera ở sau mặt nhà trong vòng 25 m.
+  - Mặt sau nhà, ban công, cửa ban công luôn vẽ.
+- **Phông chương 1–2** (`room407_shell/build_outside.py`, `outside.glb`): bỏ các ô ban công giả tầng 4 ở x 6…30 và 38…46 (giờ là phòng thật), bỏ sàn ô tầng 5 trùng trần ban công thật, thêm tường trơn x 44…46. Các ô khác giữ nguyên số ngẫu nhiên (đồ phơi, đèn sáng). **Thuộc bộ 407, integrator duyệt.**
+- **README, CREDITS:** `art_source/graphics_upgrade/floor4_rooms/README.md`; CREDITS ở `game/assets/models/graphics_pilot/floor4_rooms/` và `game/assets/textures/graphics_pilot/floor4_rooms/`. Không Tripo, không ảnh AI cho phần mới.
+
+**Số liệu nặng máy (để integrator đo FPS, D-168):**
+- Vỏ: khoảng 1.270 tam giác mỗi phòng.
+- Nội thất khi đang vẽ: khoảng 270.000 (405) đến 430.000 (408) tam giác, vì đồ Tripo của 407 nặng (gối, áo, ổ cắm khoảng 4.900; tủ, giường, bàn khoảng 7.800). Godot tự giảm chi tiết đồ ở xa (`meshes/generate_lods=true` sẵn có).
+- Đồ ban công: 13.000–55.000 tam giác mỗi phòng, đã ẩn khi không thấy.
+- Không thêm đèn mới. Vật liệu mới: 17 `F4*.tres`, mask 4096² và 40 ảnh vải 1024², đều nén VRAM.
+- **VRAM (đo trong cảnh chụp, RTX 3050 Laptop 4 GB):** chương 1 khoảng 3.500 MB; chương 3 khoảng 3.660 MB, trước T-255 là 3.574 MB.
+  - Lúc đầu texture mới để dạng không nén, chương 3 lên 3.950 MB và **màn hình đen hẳn**. Đã nén VRAM cho texture phòng và 6 texture 2048² của lá cửa nhà tắm, cửa ban công (`room407_shell/doors/door_bathroom_*`, `door_balcony_*`; chỉ phòng mới dùng, chỉ đổi file `.import`).
+  - **Rủi ro chung, ngoài T-255:** chương 3 trước T-255 đã dùng gần 90% VRAM. Nhiều texture Tripo của 407 cũng để không nén (ví dụ `room407_batch2/*_basecolor.png.import` `compress/mode=0`). Đề nghị một task nén VRAM các texture đó.
+- Chỗ nghi nặng: đứng ở hành lang mở hai cửa liền nhau (hai nội thất cùng lúc); đèn pin có bóng đổ chiếu vào phòng đầy đồ.
+
+**Test:**
+- Test mới `game/tests/levels/test_t255_floor4_rooms.gd`: 12/12 đạt. Gồm:
+  - độ sâu như 407, tường sau, lan can, sàn tile;
+  - cửa nhà tắm và ban công mở/đóng bằng tay, đúng hướng;
+  - cửa phòng mở/đóng bằng tay, tay gạt nhận tay, ô cửa thông/chặn;
+  - cửa có `ZombieDoor` thuộc về chương (tắt tay, tự đóng, chờ người ra khỏi ô cửa);
+  - nội thất và đồ ban công ẩn/hiện đúng lúc;
+  - mỗi phòng một khác, vải đúng màu;
+  - phòng PS1 tắt, vách ngăn và `Blocker` giữ nguyên;
+  - ô xác sống ra trống;
+  - thân người chơi đi vào nhà tắm và ra ban công ở cả bảy phòng;
+  - không va chạm nhà B nào nằm trong phòng (chương 3–4);
+  - cả bốn chương dùng `floor4.tscn` có phòng;
+  - chương không có thân: bấm thường, cửa trong để mở.
+- Test cũ chạy theo bộ lọc, đạt hết trừ một (xem dưới): `test_floor4` 9/9, `test_corridor_g5` 9/9, `test_room407` 76/76, `test_ch1v2` 33/33, `test_t250` 5/5, `test_t254` 4/4, `test_graphics_bindings` 8/8, `test_chapter1` 49/49, `test_chapter2` 20/20, `test_chapter3` 22/22, `test_chapter4` 14/14, `test_ch3_` 45/45, `test_protagonist` 25/26.
+- Full test lần 1 (trước `b61665c`): 968 đạt, 6 hỏng; check 0 lỗi. Đã sửa phần của lane B:
+  - `RoomDoorHand` thiếu `is_open`: `PlayerBody.perform` báo lỗi script khi thân đóng cửa phòng;
+  - `test_room_doors`: giường và tủ 408 chạm điểm thử tường 407|408;
+  - `test_t241_reach` `Ch1VietPhoto` lệch 0,050 m (ngưỡng 0,05): 7 cửa ban công mới chen vào thứ tự test. Tay cửa ban công giờ ẩn/hiện cùng nội thất phòng.
+- Sau khi sửa, chạy lại theo bộ lọc: `test_t255` 12/12, `test_room_doors` 4/4, `test_t241_reach` 6/7 (chỉ còn `WallKnock406`), `test_ch2_4_hand_targets` 0/3 (chỉ còn `RoomDoorHand` chưa phân loại, xem Yêu cầu thay đổi).
+- **Full test lần 2 (sau `b61665c`): `RESULT: 970 passed, 5 failed`. Check: `RESULT: check 0 error(s)`.** Không có lỗi script. Năm test hỏng đều là test của lane A và đúng hai nguyên nhân dưới đây:
+  - `WallKnock406`: `test_protagonist_chapter1` 1 test, `test_t241_reach` 1 test;
+  - `RoomDoorHand` chưa phân loại: `test_ch2_4_hand_targets` 3 test, 21 dòng (7 cửa × chương 2, 3, 4).
+
+**Lỗi test cũ không sửa được trong phạm vi lane B (test của lane A, `game/tests/player/`):**
+
+(1) `test_protagonist_chapter1.gd::test_every_hand_thing_can_be_reached_from_a_standing_spot` và `test_t241_reach.gd::test_what_stands_at_desk_height_or_higher_is_taken_standing_still` cùng báo `WallKnock406` (chỗ gõ tường sang 406 trong phòng 407, room-local (0,12; 1,3; −1,65)) không với tới được.
+- Đã đo bằng probe tạm (đã xoá): trước T-255, cả 51 chỗ đứng với tới được đều ở x 29,5–29,6, tức **trong phòng 406, với qua tường**. Không chỗ nào trong 407 với tới được.
+- Lý do: trong 407, chỗ đứng giữa tủ của Việt và giường A chỉ rộng 0,4 m, người chơi rộng 0,6 m.
+- Giờ 406 có giường tầng ở đúng chỗ đó nên test lộ ra. **Trong game thật** (thân Trần Trung, chương 1) chỗ gõ này có lẽ đã không dùng được từ trước, vì `player.gd` bỏ thứ tay không với tới.
+
+(2) `test_ch2_4_hand_targets.gd` (ba test chương 2, 3, 4) báo `unclassified interactable: .../Corridor/LockedDoor_40x/Hinge/Hand`.
+- Test này liệt kê mọi loại vật tay trong chương; cửa phòng mở bằng tay (D-168) là loại mới `RoomDoorHand`.
+- Không đổi được từ phía lane B mà vẫn giữ D-168 (cửa phòng mở được ở mọi chương).
+
+**Yêu cầu thay đổi (integrator):**
+1. `WallKnock406` (lỗi (1)), chọn một trong hai:
+   - (a) **đề xuất:** dời mốc `WallKnock406` (`room407_anchors.tscn`, phòng 407, ngoài phạm vi T-255) tới chỗ đứng được trên cùng bức tường, ví dụ phía trên đầu giường A hoặc sát cửa;
+   - (b) lane A sửa test chỉ tìm chỗ đứng cùng phía tường với vật (trong 407). Cách này không sửa được lỗi trong game.
+2. Lane A, `test_ch2_4_hand_targets.gd` `_check_inventory` (lỗi (2)): phân loại `RoomDoorHand` như `Door407`:
+   - có thân: `hand_target()` khác null, `grips.size() == 3` (hai tay gạt và mép cánh);
+   - không thân: `hand_target() == null`.
+3. Tuỳ chọn, cho director: `chapter3_director._open_room` có thể bỏ qua phòng khi người chơi đang ở trong phòng đó. Hiện chỉ 408 (sau khi lấy chìa) có thể gặp; xác sẽ sinh ngay cạnh người chơi.
+4. Duyệt `outside.glb` (bộ 407) và file `.import` của 6 texture lá cửa trong `room407_shell/doors/` (chỉ đổi cách nén).
+
+**Chờ chủ dự án chọn (giữ từ bước 1, đã làm theo đề xuất):**
+- nhà tắm góc sau;
+- ban công cả bề ngang;
+- chủ đề từng phòng;
+- khoá hẳn cửa phòng ở chương 3–4 hay không.
+
+Thêm:
+- Cánh cửa phòng mở ra hành lang không có va chạm (như trước T-255): quản lý, xác, người chơi đi xuyên qua cánh đang mở. Thêm va chạm sẽ đổi đường đi của quản lý, nên chưa làm.
+- Phòng không có đèn riêng (đèn tuýp tắt), chỉ đèn pin và ánh hành lang.
+
+**Ảnh** (`art_source/graphics_upgrade/floor4_rooms/previews/`):
+- trước: `before_ch1_*`, `before_ch3_*`;
+- sau: `after_ch1_*` (17), `after_ch3_*` (18);
+- ghép: `compare_ch1.jpg`, `compare_ch3.jpg`, `new_views_ch1.jpg`, `new_views_ch3.jpg`, `overview.jpg` (tổng quan cho chủ dự án).
+
+**Cách kiểm tra:**
+- `pwsh tools/test.ps1 -Filter test_t255`.
+- Chơi chương 1: ra hành lang, mở cửa 401–406, 408 bằng tay, vào nhà tắm, ra ban công.
+- Chương 3: phòng tầng 4 vẫn bị xác phá cửa như cũ.
+- Chụp lại: chép `capture_t255.gd` vào `game/_probe_tmp/` (xem đầu file; có `--rooms=off`, `--hide=`, ghi VRAM).
