@@ -4,17 +4,14 @@ extends Node3D
 ## anchor is moved, added or renamed (washroom.tscn's contract, card T-256 section 2).
 ## - washroom.glb (art_source/graphics_upgrade/realistic_map/floor4_rest/build_washroom.py): shell, stalls with
 ##   their leaves standing open, the wash trough and taps, fixtures, props, the mirror's stain.
-## - The mirror reflects for real as room 407's do (D-105, D-170): the HD surface over the narrowed glass, drawn only
-##   while it is in view; it follows the body that carries the current camera (as room407.gd does), and where that
-##   player has Tran Trung's body its PS1 stand-in is hidden (as Protagonist.attach does for room 407's mirrors).
+## - The mirror reflects for real as room 407's do (D-105, D-170): room 407's HD surface on mirror.tscn's glass (its
+##   size, viewport and when it draws stay as test_mirror holds them); it follows the body that carries the current
+##   camera (as room407.gd does), and where that player has Tran Trung's body its PS1 stand-in is hidden (as
+##   Protagonist.attach does for room 407's mirrors). Its PS1 frame hides behind the new aluminium one.
 ## - The batten's tube glows with WashroomLight (on, off, flickering), as the corridor's do.
 
 const MODEL := preload("res://assets/models/graphics_pilot/realistic_map/floor4_rest/washroom.glb")
 const MIRROR_SHADER := preload("res://rendering/mirror_surface_hd.gdshader")
-## washroom_layout.py MIRROR: the glass, narrowed from 2.8 m so the notice board beside it stays clear.
-const MIRROR_SIZE := Vector2(2.5, 0.95)
-## Room 407's reflection texels (room407.gd MIRROR_MAX_TEXELS over the glass's long side).
-const MIRROR_TEXELS := 800
 ## The mirror surface's render layer (mirror.gd SURFACE_LAYER): its own reflection camera does not see it.
 const SURFACE_LAYER := 1 << 18
 const TUBE_COLOR := Color(0.85, 0.95, 0.8)
@@ -64,17 +61,10 @@ func _ready() -> void:
 	_process(0.0)
 
 
-## The mirror (mirror.gd, already ready) on the narrowed glass with room 407's HD surface, in-view only.
+## The mirror (mirror.gd, already ready) with room 407's HD surface (smooth filtering, a faint glass tint).
 func _upgrade_mirror(mirror: Node3D) -> void:
-	mirror.set("mirror_size", MIRROR_SIZE)
-	mirror.set("require_in_view", true)
 	var surface := mirror.get_node("Surface") as MeshInstance3D
-	var quad := QuadMesh.new()
-	quad.size = MIRROR_SIZE
-	surface.mesh = quad
 	var viewport := mirror.get_node("ReflectionViewport") as SubViewport
-	var texels := float(MIRROR_TEXELS) / maxf(MIRROR_SIZE.x, MIRROR_SIZE.y)
-	viewport.size = Vector2i(roundi(MIRROR_SIZE.x * texels), roundi(MIRROR_SIZE.y * texels))
 	var material := surface.material_override as ShaderMaterial
 	if material != null:
 		material.shader = MIRROR_SHADER

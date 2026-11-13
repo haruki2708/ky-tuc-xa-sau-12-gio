@@ -395,16 +395,18 @@ def trough():
 	for tz in L.TAP_ZS:
 		tap(part, (wall, 1.0, tz), PX, L.TAP_SPOUT[0] - wall)
 		gtube(part, "WRPipe", [(wall + 0.03, L.PIPE_Y, tz), (wall + 0.03, 1.03, tz)], 0.011)
-	pz0, pz1 = -0.6, -3.4
+	pz0, pz1 = L.RISER_Z, -3.0
 	gtube(part, "WRPipe", [(wall + 0.03, L.PIPE_Y, pz0), (wall + 0.03, L.PIPE_Y, pz1)], 0.013)
-	part.cylinder("WRPipe", G(wall + 0.03, L.PIPE_Y, pz0), 0.016, 0.03, axis="Y", segments=10)  # end cap (along z)
-	# The riser at the trough's end up to the pipe that runs back along the west wall and the back wall to the stalls.
-	rz = -3.42
-	gtube(part, "WRPipe", [(wall + 0.03, L.PIPE_Y, rz + 0.02), (wall + 0.03, L.PIPE_Y, rz), (wall + 0.03, 2.35, rz),
-		(wall + 0.03, 2.35, L.BACK + 0.06), (wall + 0.06, 2.35, L.BACK + c + t + 0.03), (L.EAST - 0.1, 2.35, L.BACK + c + t + 0.03)], 0.013)
-	gtube(part, "WRPipe", [(wall + 0.03, 0.0, rz), (wall + 0.03, L.PIPE_Y, rz)], 0.015)
-	for z in (-1.2, -2.4, rz - 0.6):
-		gbox(part, "W1Iron", (wall, L.PIPE_Y - 0.02 if z > rz else 2.33, z - 0.012), (wall + 0.05, L.PIPE_Y + 0.02 if z > rz else 2.37, z + 0.012))
+	part.cylinder("WRPipe", G(wall + 0.03, L.PIPE_Y, pz1), 0.016, 0.03, axis="Y", segments=10)  # end cap (along z)
+	# The riser in the corner by the front wall, up past the mirror to the pipe that runs back along the west wall,
+	# over the stall fronts, and along the back wall to the stalls' taps.
+	rz = L.RISER_Z
+	gtube(part, "WRPipe", [(wall + 0.03, 0.0, rz), (wall + 0.03, 2.35, rz), (wall + 0.03, 2.35, L.BACK + 0.06),
+		(wall + 0.06, 2.35, L.BACK + c + t + 0.03), (L.EAST - 0.1, 2.35, L.BACK + c + t + 0.03)], 0.013)
+	for z in (-1.2, -2.4):
+		gbox(part, "W1Iron", (wall, L.PIPE_Y - 0.02, z - 0.012), (wall + 0.05, L.PIPE_Y + 0.02, z + 0.012))
+	for z in (-1.4, -2.9, -4.2):
+		gbox(part, "W1Iron", (wall, 2.33, z - 0.012), (wall + 0.05, 2.37, z + 0.012))
 	return build(part)
 
 

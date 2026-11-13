@@ -30,7 +30,7 @@ Texture mới để nén VRAM trong file `.import` (`compress/mode=2`). Godot im
 ## Trong game
 - **Nhà vệ sinh:** `game/scenes/levels/floor4/washroom_real.gd` gắn ở gốc `washroom.tscn`.
   - Ẩn hình PS1 (không xoá), thêm `Real`.
-  - Gương phản chiếu thật như 407: mặt HD, chỉ vẽ khi đang nhìn vào, đi theo người chơi cầm camera; có thân thì ẩn hình thế PS1. Kính thu từ 2,8 m còn 2,5 m để chừa bảng tin.
+  - Gương phản chiếu thật như 407: mặt HD, đi theo người chơi cầm camera; có thân thì ẩn hình thế PS1. Kính 2,8 × 0,95 m, viewport 560 × 190 và lúc vẽ giữ như cũ (`test_mirror` kiểm đúng các số này). Bảng tin đặt ngay sau mép nam của kính.
   - Ống đèn sáng theo `WashroomLight`.
   - Va chạm, đèn, âm thanh, anchor giữ nguyên.
 - **Đồ hành lang:** node `RealProps` (`corridor_props.gd`) ở cuối `corridor.tscn`.

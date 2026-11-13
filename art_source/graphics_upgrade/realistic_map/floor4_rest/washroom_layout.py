@@ -31,8 +31,11 @@ TROUGH = {"x": (WEST, 0.645), "z": (-3.2, -0.5), "top": 0.86, "rim": 0.06, "bott
 TAP_ZS = [-0.85, -1.85, -2.85]
 TAP_SPOUT = (0.282, 0.985)  # x, y of the spout's mouth (TapWater)
 PIPE_Y = 1.075  # the exposed supply pipe along the west wall, under the mirror
-MIRROR = {"centre": (0.145, 1.62, -1.85), "size": (2.5, 0.95)}  # narrowed from 2.8 to clear the notice board
-NOTICE = {"centre": (0.15, 1.55, -3.25), "size": (0.28, 0.38)}
+MIRROR = {"centre": (0.145, 1.62, -1.85), "size": (2.8, 0.95)}  # mirror.tscn's glass (test_mirror holds it to this)
+# The notice board just past the glass's south end (z -3.25), so its centre lies 14 cm south of the anchor's
+# (core's paper there belongs to the old demo only).
+NOTICE = {"centre": (0.15, 1.55, -3.39), "size": (0.22, 0.32)}
+RISER_Z = -0.36  # the supply riser in the corner by the front wall, clear of the mirror and of the notice board
 LIGHT = (3.0, 2.8, -2.0)
 DRAIN = (3.0, -1.9)  # the floor drain the floor falls to
 FALL = 0.012  # how much lower the floor is at the drain (visual only; collision stays flat)

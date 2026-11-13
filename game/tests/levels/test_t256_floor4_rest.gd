@@ -116,12 +116,12 @@ func test_washroom_mirror_reflects_like_room_407() -> void:
 	var floor4 := _spawn()
 	await wait_frames(3)
 	var mirror := floor4.get_node("Washroom/Mirror") as Node3D
-	assert_eq(mirror.get("mirror_size"), Vector2(2.5, 0.95), "glass narrowed clear of the notice board")
-	assert_true(bool(mirror.get("require_in_view")), "drawn only while in view")
+	assert_eq(mirror.get("mirror_size"), Vector2(2.8, 0.95), "mirror.tscn's glass (test_mirror)")
 	var surface := mirror.get_node("Surface") as MeshInstance3D
 	assert_eq(((surface.material_override as ShaderMaterial).shader as Shader).resource_path, "res://rendering/mirror_surface_hd.gdshader",
 		"room 407's HD surface")
-	assert_eq((mirror.get_node("ReflectionViewport") as SubViewport).size, Vector2i(800, 304), "407's texels")
+	assert_eq((mirror.get_node("ReflectionViewport") as SubViewport).size, Vector2i(560, 190), "its viewport (test_mirror)")
+	assert_false((mirror.get_node("Frame") as Node3D).visible, "the PS1 frame behind the new one")
 	var stain := floor4.get_node("Washroom/Real").find_child("MirrorStain", true, false) as MeshInstance3D
 	assert_eq(stain.layers, 1 << 18, "the stain on the surface layer: the reflection does not see it")
 	# A player (the body carrying the camera) is followed.
