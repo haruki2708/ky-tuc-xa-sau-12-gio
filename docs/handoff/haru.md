@@ -88,7 +88,14 @@ Trả lời và viết tài liệu bằng tiếng Việt; code, comment, commit 
 - **Nguồn đúng khi lệch nhau:** mục 3 file này mới nhất; rồi `docs/STATUS.md`; `docs/ROADMAP.md` chỉ cập nhật khi qua mốc.
 
 ## 3. Tiến độ integrator để lại (integrator cập nhật sau mỗi bước)
-**Cập nhật:** 14/11/2026 khoảng 03:30, integrator (Fable 5.2) nhận lại việc từ HARU: **T-256 đã merge vào main**, card T-258 cho lane B, bản chơi `e738e2e` đã build. Không có việc dở.
+**Cập nhật:** 14/11/2026 chiều, integrator (Opus 5.5) sắp hết hạn mức: **chủ dự án giao quyền điều phối tạm thời cho HARU.** HARU làm như integrator (luật mục 2) cho tới khi chủ dự án báo integrator có hạn mức lại.
+
+**BÀN GIAO ĐIỀU PHỐI TẠM CHO HARU (đọc trước, theo thứ tự):**
+1. **Review, merge [T-258](../tasks/T-258-main-stairs-wall-over-washroom.md)** (lane B xong: nhánh `origin/lane-b/T-258-main-stairs-wall-over-washroom` `04d9543`, lane B báo full test 989/0, check 0; ảnh `realistic_map/previews/floor4_rest/compare_t258.jpg`). Kiểm: chỉ đổi tường giếng thang chính đoạn tầng 4 (hình và va chạm, có chủ ý) và test dấu vân tay tương ứng; phía thoát hiểm/408 đã kiểm. **Main đã có T-260 (occlusion culling, `chapter*.tscn`, `project.godot`) sau khi lane B rẽ nhánh, nên chạy lại full test + check sau merge** (`& build\integrator\run_tests_locked.ps1 -Label 'T-258 merge' -Name t258full -Filters @('') -Check`). Kiểm thêm: occluder của T-260 (`game/scenes/main/occlusion/occluders_campus.tscn`) có hộp nào nằm trong đoạn tường lane B vừa lùi về x ≤ 0,1 không (nếu có thì hộp đó giờ lòi vào nhà vệ sinh: chụp ảnh nhà vệ sinh chương 3 bật/tắt occlusion, sửa hộp trong `make_occluders.py`). Đạt: merge, card (trạng thái, Review), STATUS, build bản chơi, báo chủ dự án.
+2. **Đợt 3 vườn hoa [T-259](../tasks/T-259-realistic-graphics-wave3-garden.md):** chưa bắt đầu (chưa có nhánh). Sau khi T-258 merge, báo chủ dự án dán prompt `lane-b.md` mục 1n (lượt 1). Lane B làm góc mẫu rồi dừng: HARU chuyển phương án (cây, hoa, sân, ghế, đèn) cho chủ dự án bằng AskUserQuestion kèm đề xuất, ghi lựa chọn thành D-xxx và vào card mục 1, rồi báo chủ dự án dán prompt lượt 2 (cùng mục). D-173: **không đo FPS** sau đợt 3.
+3. **Chờ chủ dự án chơi thử** bản mới nhất (`82104ae`, có T-253…T-257, T-260; sau T-258 thì build lại) và chọn các điểm còn treo của T-255, T-256 (liệt kê ở dưới). Chủ dự án báo lỗi thì ghi D-xxx, viết card, giao lane.
+4. Việc nhỏ chưa làm (chỉ làm khi chủ dự án chọn): bốn lỗi nhỏ STATUS mục 7; yêu cầu thay đổi 3 của T-255 (director bỏ qua mở phòng khi người chơi đang ở trong).
+- Lúc bàn giao: main `2d03b96` sạch, đã đẩy; không có khoá Godot, không có Godot nào chạy; integrator không có việc dở, không có lượt chạy nền.
 
 **Việc dở ngay lúc này (đọc trước):**
 - **VIỆC GIAO CHO HARU (14/11, D-173, chủ dự án: "cho haru làm"): [T-260](../tasks/T-260-occlusion-culling.md) occlusion culling.** Đọc card. Tóm tắt:
@@ -111,9 +118,9 @@ Trả lời và viết tài liệu bằng tiếng Việt; code, comment, commit 
 - **14/11: D-172, chủ dự án duyệt đồ hoạ thật đợt 1 (T-250, T-254) và đợt 2 (T-253).** Đợt 3 vườn hoa: card [T-259](../tasks/T-259-realistic-graphics-wave3-garden.md), prompt `lane-b.md` mục 1n (lượt 1 góc mẫu rồi dừng chờ chủ dự án chọn; lượt 2 cả vườn), giao sau T-258.
 - **T-256 merged** (lane B `9153597`; cây `game/` sau merge trùng cây lane B đã chạy full test 984/0; integrator chạy lại check 0 lỗi, `test_t256` 9/9, 14/11 03:21). Review trong card.
 - **Bản chơi mới nhất** (package PASS 14/11 03:23, commit `e738e2e`): `build/windows/KyTucXa.exe`, zip `build/dist/KyTucXa-0.0.1-e738e2e-win64.zip` (497 MiB); có T-253, T-254, T-255, D-171, T-257, T-256. Đã báo chủ dự án; chưa ai chơi thử.
-- **[T-258](../tasks/T-258-main-stairs-wall-over-washroom.md)** (lane B, todo): ở chương 3–4 tường PS1 của giếng cầu thang chính lấn 6 cm vào nhà vệ sinh tầng 4, che gương và máng rửa mới. Prompt `lane-b.md` mục 1m; chủ dự án dán khi lane B có hạn mức.
+- **[T-258](../tasks/T-258-main-stairs-wall-over-washroom.md)** (lane B **xong trên nhánh `04d9543`, chưa merge**, xem bàn giao mục 1): ở chương 3–4 tường PS1 của giếng cầu thang chính lấn 6 cm vào nhà vệ sinh tầng 4, che gương và máng rửa mới. Prompt `lane-b.md` mục 1m; chủ dự án dán khi lane B có hạn mức.
 - **Chờ chủ dự án chơi thử** (T-253, T-254, T-255, D-171, T-257, T-256) và chọn: T-255 (nhà tắm góc sau, ban công cả bề ngang, chủ đề phòng, khoá cửa phòng chương 3–4, cánh cửa mở không va chạm); T-256 (màu gạch và góc cửa buồng, đồ trước mỗi phòng, tay gạt gọn); xem ảnh T-257 `vram_compress/previews/compare_closeup.jpg`.
-- Chưa làm: occlusion culling (yêu cầu thay đổi T-253); bốn lỗi nhỏ STATUS mục 7; yêu cầu thay đổi 3 của T-255 (director bỏ qua mở phòng khi người chơi đang ở trong).
+- Chưa làm: bốn lỗi nhỏ STATUS mục 7; yêu cầu thay đổi 3 của T-255 (director bỏ qua mở phòng khi người chơi đang ở trong).
 - **Tài khoản các lane (kiểm 14/11):** A `deptraihoang1627` (ChatGPT), C `hoanganhh1628`, E `bululachup`; B `deptraihoang1627` (Claude); HARU `hoangdeptrai1628` (Claude, đã tách khỏi lane B); integrator `tunank1103`. Máy lúc 02:50 chỉ trống 2,1–2,4 GB RAM (Chrome, Blender của lane B còn mở).
 
 **Lịch sử 13/11 tối – 14/11 (HARU làm T-257, đã xong):**
