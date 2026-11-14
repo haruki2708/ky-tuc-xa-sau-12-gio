@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" format=3]
+
+[resource]
+resource_name = "W4FloodGlass"
+albedo_color = Color(0.7, 0.7, 0.66, 1)
+roughness = 0.15
+emission_enabled = true
+emission = Color(1, 0.97, 0.88, 1)
+emission_energy_multiplier = 4

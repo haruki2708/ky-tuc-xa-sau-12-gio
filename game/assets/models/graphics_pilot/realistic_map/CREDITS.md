@@ -63,3 +63,7 @@ Như đợt 1 (Painted Plaster Wall, Peeling Painted Wall, Green Metal Rust, Woo
 ## `wave3/` — T-259: vườn hoa trước nhà B (A12), dải nối nhà B → vườn (A16), bản nhẹ của vườn nhìn từ tầng 4 ở chương 1–2 (A05)
 
 Nguồn từng file, texture và ảnh tham chiếu: [`wave3/CREDITS.md`](wave3/CREDITS.md). Dựng bằng script Blender, texture vẽ bằng code; không Tripo, không ảnh AI (D-166, D-175).
+
+## `wave4/` — T-261: sân vận động (A13), dải nối vườn → sân (A16)
+
+Nguồn từng file và texture: [`wave4/CREDITS.md`](wave4/CREDITS.md). Dựng bằng script Blender, texture vẽ bằng code; không Tripo, không ảnh AI (D-166, D-176, D-178).

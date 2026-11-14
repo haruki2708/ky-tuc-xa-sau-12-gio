@@ -1,0 +1,1244 @@
+{
+ "box": {
+  "x": [
+   50.0,
+   110.0
+  ],
+  "z": [
+   -11.0,
+   176.0
+  ],
+  "y": [
+   -10.5,
+   -6.0
+  ]
+ },
+ "campus.tscn": {
+  "hide_whole": [
+   {
+    "path": "Road/WestBranch/Mesh",
+    "position": [
+     80.0,
+     -9.885,
+     77.0
+    ]
+   },
+   {
+    "path": "Road/StadiumWestAccess/Mesh",
+    "position": [
+     96.0,
+     -9.885,
+     166.0
+    ]
+   }
+  ],
+  "ground_tiles_under_new_ground (kept, colliders unchanged)": [
+   "Ground/Tile_20_-10",
+   "Ground/Tile_20_40",
+   "Ground/Tile_20_90",
+   "Ground/Tile_20_140",
+   "Ground/Tile_70_-10",
+   "Ground/Tile_70_40",
+   "Ground/Tile_70_90",
+   "Ground/Tile_70_140"
+  ]
+ },
+ "props.tscn": {
+  "Props/Parts/P_concrete_box_p2_p3": {
+   "instances": 15,
+   "in_box": [
+    {
+     "index": 0,
+     "kind": "rubble",
+     "origin": [
+      86.894,
+      -9.684,
+      151.413
+     ]
+    },
+    {
+     "index": 1,
+     "kind": "rubble",
+     "origin": [
+      86.826,
+      -9.675,
+      151.343
+     ]
+    },
+    {
+     "index": 2,
+     "kind": "rubble",
+     "origin": [
+      86.322,
+      -9.746,
+      151.169
+     ]
+    },
+    {
+     "index": 3,
+     "kind": "rubble",
+     "origin": [
+      86.979,
+      -9.749,
+      151.386
+     ]
+    },
+    {
+     "index": 4,
+     "kind": "rubble",
+     "origin": [
+      87.111,
+      -9.787,
+      151.002
+     ]
+    },
+    {
+     "index": 5,
+     "kind": "rubble",
+     "origin": [
+      87.241,
+      -9.774,
+      152.298
+     ]
+    },
+    {
+     "index": 6,
+     "kind": "rubble",
+     "origin": [
+      87.613,
+      -9.628,
+      151.872
+     ]
+    },
+    {
+     "index": 7,
+     "kind": "rubble",
+     "origin": [
+      86.918,
+      -9.793,
+      152.319
+     ]
+    },
+    {
+     "index": 8,
+     "kind": "rubble",
+     "origin": [
+      87.223,
+      -9.718,
+      150.48
+     ]
+    },
+    {
+     "index": 9,
+     "kind": "rubble",
+     "origin": [
+      87.312,
+      -9.627,
+      152.068
+     ]
+    },
+    {
+     "index": 10,
+     "kind": "rubble",
+     "origin": [
+      86.4,
+      -9.665,
+      152.208
+     ]
+    }
+   ]
+  },
+  "Props/Parts/P_concrete_box_p2_p4": {
+   "instances": 11,
+   "in_box": [
+    {
+     "index": 0,
+     "kind": "rubble",
+     "origin": [
+      98.511,
+      -9.724,
+      173.18
+     ]
+    },
+    {
+     "index": 1,
+     "kind": "rubble",
+     "origin": [
+      99.24,
+      -9.645,
+      174.21
+     ]
+    },
+    {
+     "index": 2,
+     "kind": "rubble",
+     "origin": [
+      98.653,
+      -9.748,
+      173.817
+     ]
+    },
+    {
+     "index": 3,
+     "kind": "rubble",
+     "origin": [
+      99.66,
+      -9.651,
+      172.884
+     ]
+    },
+    {
+     "index": 4,
+     "kind": "rubble",
+     "origin": [
+      98.975,
+      -9.755,
+      172.94
+     ]
+    },
+    {
+     "index": 5,
+     "kind": "rubble",
+     "origin": [
+      99.141,
+      -9.673,
+      173.655
+     ]
+    },
+    {
+     "index": 6,
+     "kind": "rubble",
+     "origin": [
+      99.217,
+      -9.722,
+      173.283
+     ]
+    },
+    {
+     "index": 7,
+     "kind": "rubble",
+     "origin": [
+      99.173,
+      -9.675,
+      174.026
+     ]
+    },
+    {
+     "index": 8,
+     "kind": "rubble",
+     "origin": [
+      99.784,
+      -9.728,
+      173.882
+     ]
+    },
+    {
+     "index": 9,
+     "kind": "rubble",
+     "origin": [
+      99.393,
+      -9.806,
+      173.914
+     ]
+    },
+    {
+     "index": 10,
+     "kind": "rubble",
+     "origin": [
+      99.677,
+      -9.737,
+      173.433
+     ]
+    }
+   ]
+  },
+  "Props/Parts/P_iron_cylinder_p2_p3": {
+   "instances": 5,
+   "in_box": [
+    {
+     "index": 0,
+     "kind": "rubble pipe",
+     "origin": [
+      86.395,
+      -9.4,
+      151.194
+     ]
+    },
+    {
+     "index": 1,
+     "kind": "rubble pipe",
+     "origin": [
+      87.042,
+      -9.4,
+      151.432
+     ]
+    },
+    {
+     "index": 2,
+     "kind": "rubble pipe",
+     "origin": [
+      87.162,
+      -9.4,
+      151.183
+     ]
+    }
+   ]
+  },
+  "Props/Parts/P_iron_cylinder_p2_p4": {
+   "instances": 4,
+   "in_box": [
+    {
+     "index": 1,
+     "kind": "rubble pipe",
+     "origin": [
+      99.249,
+      -9.4,
+      173.105
+     ]
+    },
+    {
+     "index": 2,
+     "kind": "rubble pipe",
+     "origin": [
+      99.43,
+      -9.4,
+      173.184
+     ]
+    },
+    {
+     "index": 3,
+     "kind": "rubble pipe",
+     "origin": [
+      99.657,
+      -9.4,
+      173.407
+     ]
+    }
+   ]
+  },
+  "Props/Parts/P_paper_box_p1_p1": {
+   "instances": 2,
+   "in_box": [
+    {
+     "index": 0,
+     "kind": "litter",
+     "origin": [
+      78.076,
+      -9.845,
+      65.174
+     ]
+    }
+   ]
+  },
+  "Props/Parts/P_paper_box_p1_p2": {
+   "instances": 4,
+   "in_box": [
+    {
+     "index": 3,
+     "kind": "litter",
+     "origin": [
+      71.807,
+      -9.845,
+      91.805
+     ]
+    }
+   ]
+  },
+  "Props/Parts/P_paper_box_p2_p0": {
+   "instances": 2,
+   "in_box": [
+    {
+     "index": 1,
+     "kind": "litter",
+     "origin": [
+      85.678,
+      -9.845,
+      9.757
+     ]
+    }
+   ]
+  },
+  "Props/Parts/P_paper_box_p2_p2": {
+   "instances": 4,
+   "in_box": [
+    {
+     "index": 1,
+     "kind": "litter",
+     "origin": [
+      82.619,
+      -9.78,
+      86.485
+     ]
+    }
+   ]
+  },
+  "Props/Parts/P_paper_box_p2_p4": {
+   "instances": 2,
+   "in_box": [
+    {
+     "index": 1,
+     "kind": "litter",
+     "origin": [
+      85.479,
+      -9.78,
+      161.824
+     ]
+    }
+   ]
+  },
+  "Props/Decals/D_paper_quad_p0_p0": {
+   "instances": 73,
+   "in_box": [
+    {
+     "index": 48,
+     "kind": "litter",
+     "origin": [
+      72.088,
+      -9.845,
+      33.273
+     ]
+    },
+    {
+     "index": 49,
+     "kind": "litter",
+     "origin": [
+      72.122,
+      -9.843,
+      32.869
+     ]
+    },
+    {
+     "index": 50,
+     "kind": "litter",
+     "origin": [
+      71.784,
+      -9.841,
+      32.571
+     ]
+    },
+    {
+     "index": 51,
+     "kind": "litter",
+     "origin": [
+      71.981,
+      -9.839,
+      32.376
+     ]
+    },
+    {
+     "index": 52,
+     "kind": "litter",
+     "origin": [
+      71.616,
+      -9.837,
+      32.485
+     ]
+    },
+    {
+     "index": 53,
+     "kind": "litter",
+     "origin": [
+      78.165,
+      -9.842,
+      32.729
+     ]
+    },
+    {
+     "index": 54,
+     "kind": "litter",
+     "origin": [
+      76.584,
+      -9.841,
+      34.286
+     ]
+    },
+    {
+     "index": 55,
+     "kind": "litter",
+     "origin": [
+      75.752,
+      -9.84,
+      34.261
+     ]
+    },
+    {
+     "index": 56,
+     "kind": "litter",
+     "origin": [
+      77.321,
+      -9.84,
+      33.344
+     ]
+    },
+    {
+     "index": 57,
+     "kind": "litter",
+     "origin": [
+      75.718,
+      -9.839,
+      33.802
+     ]
+    },
+    {
+     "index": 58,
+     "kind": "litter",
+     "origin": [
+      76.747,
+      -9.838,
+      32.4
+     ]
+    },
+    {
+     "index": 59,
+     "kind": "litter",
+     "origin": [
+      74.283,
+      -9.842,
+      43.753
+     ]
+    },
+    {
+     "index": 60,
+     "kind": "litter",
+     "origin": [
+      75.842,
+      -9.841,
+      43.678
+     ]
+    },
+    {
+     "index": 61,
+     "kind": "litter",
+     "origin": [
+      76.126,
+      -9.84,
+      44.158
+     ]
+    },
+    {
+     "index": 62,
+     "kind": "litter",
+     "origin": [
+      75.687,
+      -9.84,
+      43.789
+     ]
+    },
+    {
+     "index": 63,
+     "kind": "litter",
+     "origin": [
+      76.41,
+      -9.839,
+      42.494
+     ]
+    },
+    {
+     "index": 64,
+     "kind": "litter",
+     "origin": [
+      75.85,
+      -9.838,
+      44.487
+     ]
+    },
+    {
+     "index": 65,
+     "kind": "litter",
+     "origin": [
+      78.008,
+      -9.842,
+      65.09
+     ]
+    },
+    {
+     "index": 66,
+     "kind": "litter",
+     "origin": [
+      75.643,
+      -9.841,
+      65.058
+     ]
+    },
+    {
+     "index": 67,
+     "kind": "litter",
+     "origin": [
+      77.408,
+      -9.84,
+      64.118
+     ]
+    },
+    {
+     "index": 68,
+     "kind": "litter",
+     "origin": [
+      74.45,
+      -9.845,
+      51.177
+     ]
+    },
+    {
+     "index": 69,
+     "kind": "litter",
+     "origin": [
+      73.937,
+      -9.843,
+      50.89
+     ]
+    },
+    {
+     "index": 70,
+     "kind": "litter",
+     "origin": [
+      74.454,
+      -9.841,
+      51.175
+     ]
+    },
+    {
+     "index": 71,
+     "kind": "litter",
+     "origin": [
+      74.451,
+      -9.839,
+      50.981
+     ]
+    },
+    {
+     "index": 72,
+     "kind": "litter",
+     "origin": [
+      74.103,
+      -9.837,
+      51.023
+     ]
+    }
+   ]
+  },
+  "Props/Decals/D_paper_quad_p0_p1": {
+   "instances": 31,
+   "in_box": [
+    {
+     "index": 0,
+     "kind": "litter",
+     "origin": [
+      76.241,
+      -9.842,
+      87.984
+     ]
+    },
+    {
+     "index": 1,
+     "kind": "litter",
+     "origin": [
+      76.295,
+      -9.841,
+      85.817
+     ]
+    },
+    {
+     "index": 2,
+     "kind": "litter",
+     "origin": [
+      76.268,
+      -9.84,
+      85.882
+     ]
+    },
+    {
+     "index": 3,
+     "kind": "litter",
+     "origin": [
+      75.962,
+      -9.84,
+      86.903
+     ]
+    },
+    {
+     "index": 4,
+     "kind": "litter",
+     "origin": [
+      75.047,
+      -9.839,
+      85.755
+     ]
+    },
+    {
+     "index": 5,
+     "kind": "litter",
+     "origin": [
+      76.945,
+      -9.842,
+      106.687
+     ]
+    },
+    {
+     "index": 6,
+     "kind": "litter",
+     "origin": [
+      74.379,
+      -9.841,
+      108.195
+     ]
+    },
+    {
+     "index": 7,
+     "kind": "litter",
+     "origin": [
+      75.931,
+      -9.84,
+      108.539
+     ]
+    },
+    {
+     "index": 8,
+     "kind": "litter",
+     "origin": [
+      79.25,
+      -9.842,
+      117.904
+     ]
+    },
+    {
+     "index": 9,
+     "kind": "litter",
+     "origin": [
+      77.275,
+      -9.841,
+      117.356
+     ]
+    },
+    {
+     "index": 10,
+     "kind": "litter",
+     "origin": [
+      78.317,
+      -9.84,
+      118.844
+     ]
+    },
+    {
+     "index": 11,
+     "kind": "litter",
+     "origin": [
+      77.14,
+      -9.84,
+      117.835
+     ]
+    },
+    {
+     "index": 12,
+     "kind": "litter",
+     "origin": [
+      79.999,
+      -9.839,
+      117.246
+     ]
+    },
+    {
+     "index": 13,
+     "kind": "litter",
+     "origin": [
+      74.226,
+      -9.842,
+      150.135
+     ]
+    },
+    {
+     "index": 14,
+     "kind": "litter",
+     "origin": [
+      72.672,
+      -9.841,
+      149.133
+     ]
+    },
+    {
+     "index": 15,
+     "kind": "litter",
+     "origin": [
+      72.74,
+      -9.84,
+      152.007
+     ]
+    },
+    {
+     "index": 16,
+     "kind": "litter",
+     "origin": [
+      74.149,
+      -9.84,
+      151.412
+     ]
+    },
+    {
+     "index": 17,
+     "kind": "litter",
+     "origin": [
+      74.59,
+      -9.842,
+      122.204
+     ]
+    },
+    {
+     "index": 18,
+     "kind": "litter",
+     "origin": [
+      71.892,
+      -9.841,
+      120.882
+     ]
+    },
+    {
+     "index": 19,
+     "kind": "litter",
+     "origin": [
+      73.595,
+      -9.84,
+      122.627
+     ]
+    },
+    {
+     "index": 20,
+     "kind": "litter",
+     "origin": [
+      74.697,
+      -9.84,
+      122.762
+     ]
+    },
+    {
+     "index": 21,
+     "kind": "litter",
+     "origin": [
+      73.23,
+      -9.839,
+      120.301
+     ]
+    },
+    {
+     "index": 22,
+     "kind": "litter",
+     "origin": [
+      72.72,
+      -9.838,
+      121.63
+     ]
+    },
+    {
+     "index": 23,
+     "kind": "litter",
+     "origin": [
+      77.655,
+      -9.842,
+      101.288
+     ]
+    },
+    {
+     "index": 24,
+     "kind": "litter",
+     "origin": [
+      76.895,
+      -9.841,
+      99.402
+     ]
+    },
+    {
+     "index": 25,
+     "kind": "litter",
+     "origin": [
+      77.454,
+      -9.84,
+      100.033
+     ]
+    },
+    {
+     "index": 26,
+     "kind": "litter",
+     "origin": [
+      77.282,
+      -9.84,
+      99.555
+     ]
+    },
+    {
+     "index": 27,
+     "kind": "litter",
+     "origin": [
+      75.447,
+      -9.839,
+      100.437
+     ]
+    },
+    {
+     "index": 28,
+     "kind": "litter",
+     "origin": [
+      72.787,
+      -9.842,
+      91.319
+     ]
+    },
+    {
+     "index": 29,
+     "kind": "litter",
+     "origin": [
+      74.241,
+      -9.841,
+      91.316
+     ]
+    },
+    {
+     "index": 30,
+     "kind": "litter",
+     "origin": [
+      71.777,
+      -9.84,
+      92.363
+     ]
+    }
+   ]
+  },
+  "Props/Decals/D_paper_quad_p1_m1": {
+   "instances": 14,
+   "in_box": [
+    {
+     "index": 0,
+     "kind": "litter",
+     "origin": [
+      82.397,
+      -9.841,
+      -1.548
+     ]
+    },
+    {
+     "index": 1,
+     "kind": "litter",
+     "origin": [
+      83.216,
+      -9.84,
+      -2.475
+     ]
+    },
+    {
+     "index": 2,
+     "kind": "litter",
+     "origin": [
+      82.939,
+      -9.842,
+      -9.847
+     ]
+    },
+    {
+     "index": 3,
+     "kind": "litter",
+     "origin": [
+      81.162,
+      -9.841,
+      -10.427
+     ]
+    },
+    {
+     "index": 4,
+     "kind": "litter",
+     "origin": [
+      82.025,
+      -9.84,
+      -10.973
+     ]
+    },
+    {
+     "index": 6,
+     "kind": "litter",
+     "origin": [
+      82.953,
+      -9.839,
+      -8.402
+     ]
+    },
+    {
+     "index": 7,
+     "kind": "litter",
+     "origin": [
+      93.704,
+      -9.842,
+      -10.643
+     ]
+    },
+    {
+     "index": 10,
+     "kind": "litter",
+     "origin": [
+      93.482,
+      -9.84,
+      -9.924
+     ]
+    }
+   ]
+  },
+  "Props/Decals/D_paper_quad_p1_p0": {
+   "instances": 13,
+   "in_box": [
+    {
+     "index": 0,
+     "kind": "litter",
+     "origin": [
+      82.424,
+      -9.842,
+      74.174
+     ]
+    },
+    {
+     "index": 1,
+     "kind": "litter",
+     "origin": [
+      82.275,
+      -9.841,
+      74.006
+     ]
+    },
+    {
+     "index": 2,
+     "kind": "litter",
+     "origin": [
+      83.401,
+      -9.84,
+      72.599
+     ]
+    },
+    {
+     "index": 3,
+     "kind": "litter",
+     "origin": [
+      81.458,
+      -9.84,
+      72.635
+     ]
+    },
+    {
+     "index": 4,
+     "kind": "litter",
+     "origin": [
+      84.688,
+      -9.842,
+      51.036
+     ]
+    },
+    {
+     "index": 5,
+     "kind": "litter",
+     "origin": [
+      82.758,
+      -9.841,
+      49.777
+     ]
+    },
+    {
+     "index": 6,
+     "kind": "litter",
+     "origin": [
+      84.795,
+      -9.84,
+      49.084
+     ]
+    },
+    {
+     "index": 7,
+     "kind": "litter",
+     "origin": [
+      83.877,
+      -9.84,
+      50.261
+     ]
+    },
+    {
+     "index": 8,
+     "kind": "litter",
+     "origin": [
+      85.678,
+      -9.842,
+      7.303
+     ]
+    },
+    {
+     "index": 9,
+     "kind": "litter",
+     "origin": [
+      85.854,
+      -9.841,
+      9.955
+     ]
+    },
+    {
+     "index": 10,
+     "kind": "litter",
+     "origin": [
+      85.951,
+      -9.84,
+      8.801
+     ]
+    },
+    {
+     "index": 11,
+     "kind": "litter",
+     "origin": [
+      86.677,
+      -9.84,
+      7.194
+     ]
+    },
+    {
+     "index": 12,
+     "kind": "litter",
+     "origin": [
+      81.963,
+      -9.842,
+      0.387
+     ]
+    }
+   ]
+  },
+  "Props/Decals/D_paper_quad_p1_p1": {
+   "instances": 22,
+   "in_box": [
+    {
+     "index": 16,
+     "kind": "litter",
+     "origin": [
+      81.182,
+      -9.842,
+      143.899
+     ]
+    },
+    {
+     "index": 17,
+     "kind": "litter",
+     "origin": [
+      82.083,
+      -9.841,
+      143.734
+     ]
+    },
+    {
+     "index": 18,
+     "kind": "litter",
+     "origin": [
+      83.035,
+      -9.84,
+      142.237
+     ]
+    },
+    {
+     "index": 19,
+     "kind": "litter",
+     "origin": [
+      80.602,
+      -9.84,
+      141.516
+     ]
+    },
+    {
+     "index": 20,
+     "kind": "litter",
+     "origin": [
+      81.258,
+      -9.839,
+      143.576
+     ]
+    },
+    {
+     "index": 21,
+     "kind": "litter",
+     "origin": [
+      81.735,
+      -9.838,
+      144.147
+     ]
+    }
+   ]
+  },
+  "Props/Decals/D_paper_quad_p1_p2": {
+   "instances": 34,
+   "in_box": [
+    {
+     "index": 4,
+     "kind": "litter",
+     "origin": [
+      86.694,
+      -9.842,
+      160.903
+     ]
+    },
+    {
+     "index": 5,
+     "kind": "litter",
+     "origin": [
+      89.244,
+      -9.841,
+      160.395
+     ]
+    },
+    {
+     "index": 6,
+     "kind": "litter",
+     "origin": [
+      89.72,
+      -9.84,
+      160.851
+     ]
+    },
+    {
+     "index": 29,
+     "kind": "litter",
+     "origin": [
+      86.984,
+      -9.845,
+      162.535
+     ]
+    },
+    {
+     "index": 30,
+     "kind": "litter",
+     "origin": [
+      87.336,
+      -9.843,
+      162.174
+     ]
+    },
+    {
+     "index": 31,
+     "kind": "litter",
+     "origin": [
+      87.836,
+      -9.841,
+      162.562
+     ]
+    },
+    {
+     "index": 32,
+     "kind": "litter",
+     "origin": [
+      87.123,
+      -9.839,
+      162.427
+     ]
+    },
+    {
+     "index": 33,
+     "kind": "litter",
+     "origin": [
+      87.466,
+      -9.837,
+      162.944
+     ]
+    }
+   ]
+  }
+ },
+ "counts": {
+  "rubble": 22,
+  "rubble pipe": 6,
+  "litter": 96
+ }
+}

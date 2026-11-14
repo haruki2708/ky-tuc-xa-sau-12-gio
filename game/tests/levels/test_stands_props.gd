@@ -65,14 +65,16 @@ func _sync_navigation() -> RID:
 	return map
 
 
-func _triangles(node: Node) -> int:
+## T-261: `skip` leaves out a child (the stadium's realistic layer, Real, has its own budget in test_t261_stadium).
+func _triangles(node: Node, skip: String = "") -> int:
 	var total := 0
 	if node is MeshInstance3D and node.mesh:
 		total += node.mesh.get_faces().size() / 3
 	elif node is MultiMeshInstance3D and node.multimesh and node.multimesh.mesh:
 		total += node.multimesh.mesh.get_faces().size() / 3 * node.multimesh.instance_count
 	for child in node.get_children():
-		total += _triangles(child)
+		if skip.is_empty() or String(child.name) != skip:
+			total += _triangles(child)
 	return total
 
 
@@ -295,7 +297,9 @@ func test_street_props_fill_every_route_and_leave_the_lane_free() -> void:
 
 func test_triangle_budget_and_batched_nodes() -> void:
 	var props := _triangles(campus.get_node("Props"))
-	var stadium := _triangles(campus.get_node("Stadium"))
+	# T-261: TRIANGLE_BUDGET_STADIUM is the PS1 stadium's budget (its meshes are now hidden, kept); the realistic
+	# layer (Stadium/Real) is counted against its own budget in test_t261_stadium.
+	var stadium := _triangles(campus.get_node("Stadium"), "Real")
 	print("T192 TRIANGLES: props=", props, " stadium=", stadium)
 	assert_true(props <= TRIANGLE_BUDGET_PROPS, "props %d triangles" % props)
 	assert_true(stadium <= TRIANGLE_BUDGET_STADIUM, "stadium %d triangles" % stadium)

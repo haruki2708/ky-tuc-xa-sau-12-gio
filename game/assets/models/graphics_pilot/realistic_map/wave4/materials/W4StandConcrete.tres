@@ -1,0 +1,26 @@
+[gd_resource type="ShaderMaterial" format=3]
+
+[ext_resource type="Shader" path="res://rendering/room407_shell.gdshader" id="1"]
+[ext_resource type="Texture2D" path="res://assets/models/graphics_pilot/room407_corner/fixtures_plastered_wall_04_small_color.jpg" id="2"]
+[ext_resource type="Texture2D" path="res://assets/models/graphics_pilot/room407_corner/fixtures_plastered_wall_04_small_normal.jpg" id="3"]
+[ext_resource type="Texture2D" path="res://assets/models/graphics_pilot/room407_corner/fixtures_plastered_wall_04_small_arm.jpg" id="4"]
+[ext_resource type="Texture2D" path="res://assets/textures/graphics_pilot/realistic_map/wave4/mask_stand.png" id="5"]
+[ext_resource type="Texture2D" path="res://assets/textures/graphics_pilot/room407_shell/noise.png" id="6"]
+
+[resource]
+resource_name = "W4StandConcrete"
+shader = ExtResource("1")
+shader_parameter/kind = 0
+shader_parameter/base_albedo = ExtResource("2")
+shader_parameter/base_normal = ExtResource("3")
+shader_parameter/base_arm = ExtResource("4")
+shader_parameter/base_tint = Color(0.906, 0.904, 0.866, 1)
+shader_parameter/mask = ExtResource("5")
+shader_parameter/peel_strength = 0
+shader_parameter/grime_strength = 1.2
+shader_parameter/stain_strength = 0.9
+shader_parameter/mould_strength = 0.9
+shader_parameter/normal_strength = 0.8
+shader_parameter/grime_color = Color(0.42, 0.39, 0.33, 1)
+shader_parameter/stain_color = Color(0.62, 0.52, 0.38, 1)
+shader_parameter/noise = ExtResource("6")
