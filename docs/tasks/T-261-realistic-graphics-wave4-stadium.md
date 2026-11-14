@@ -1,5 +1,5 @@
 # T-261 — Đồ hoạ thật đợt 4: sân vận động, khán đài, dải nối vườn → sân vận động
-- Lane: B | Trạng thái: in progress, lượt 2 (giao 15/11/2026, D-176; chọn D-178) | Agent: tài khoản Claude lane B, `D:\GAME_WORK\lane-b2`; model **Opus 5.5 xhigh** (khó thì max). Chủ dự án tự dán prompt (`lane-b.md` mục 1o).
+- Lane: B | Trạng thái: **done** (giao 15/11/2026, D-176; chọn D-178; merge `e0bb9e8` 15/11) | Agent: tài khoản Claude lane B, `D:\GAME_WORK\lane-b2`; model **Opus 5.5 xhigh** (khó thì max). Chủ dự án tự dán prompt (`lane-b.md` mục 1o).
 - Nhánh: `lane-b/T-261-realistic-graphics-wave4-stadium` từ `origin/main` mới nhất.
 - Quyết định nền: **D-166** (đồ hoạ thật dựng bằng Blender, không PS1, không Tripo trừ khi chủ dự án đổi; ánh sáng giữ như nay), **D-167/D-172** (phong cách nhà B đợt 1–2: cũ vừa phải), **D-175** (vườn đợt 3: sân block xám, viền quét vôi, đèn cầu: dải nối phải khớp mép vườn), **D-176** (giao đợt này; chủ dự án chỉ chơi thử một lượt khi xong toàn bộ đồ hoạ). Kế hoạch: `art_source/graphics_upgrade/realistic_map/PLAN.md` đợt 4 (A13 + một phần A16).
 - Làm như đợt 3 (T-259): **lượt 1 góc mẫu rồi dừng chờ chủ dự án chọn; lượt 2 làm cả khu.**
@@ -254,3 +254,14 @@ lượt 1 (không đổi scene, code).
 
 Commit: `8f88c0e` (pipeline góc mẫu), `573663d` (ảnh, bảng phương án, test, danh sách A16), commit cuối lượt 1 (README, CREDITS,
 Handoff).
+
+## Review (HARU thay integrator, 15/11/2026)
+**Đạt, merge `e0bb9e8`** (nhánh lane B `5bc8635`; gốc nhánh là main `072b7bb` nên cây sau merge trùng hệt cây lane B đã kiểm).
+- **Phạm vi:** 243 file, mọi file trong phạm vi lane B và mục 8 (đã mở thêm theo D-178). Code duy nhất: `stadium_real.gd` mới (tắt bóng lưới, rác, vạch; mờ dần đồ nhỏ theo khoảng cách; kính chao dùng chung một vật liệu, đổi sáng/tối theo tín hiệu `visibility_changed` của `Floodlights`, không xử lý mỗi khung). `campus.gd` không sửa.
+- **Cảnh:** `stadium.tscn` thêm lớp `Real`, 114 node PS1 chỉ `visible = false`; `campus.tscn` ẩn hình `Road/WestBranch`, `Road/StadiumWestAccess`, thêm `StripGardenStadium` (dùng lại `garden_real.gd`); `props.tscn` chỉ đổi dữ liệu 42 MultiMesh (thu instance về 0) và ẩn một node giấy; va chạm, mảnh xác, vệt kéo, thùng rác không đổi (test so dấu vân tay với main).
+- **`test_stands_props.gd`:** chỉ đổi cách đếm ngân sách (bỏ qua `Real`), đúng mục 4; lớp thật có ngân sách riêng 36.000 trong `test_t261_stadium` (đang 29.266). Các test đi lại, gầm, navigation, cổng không sửa.
+- **Ảnh** (`previews/wave4/overview.jpg`, 13 cặp): đúng D-178 (đường đỏ, cỏ úa, bê tông trần, mái thiếu tấm ở đầu hồi tây, cột thép, rào B40, trụ trát vôi).
+- **Lane B tự quyết:** đổi cách đếm ngân sách, gỡ phương án không chọn khỏi `game/` (script dựng lại được), giữ cao độ đường dải nối bằng đường PS1. Chấp nhận. Đoạn bot vòng phía bắc ngoài sân (x 80…143, z 176…226) còn nền PS1, để đợt 7.
+- Binary đi qua LFS; CREDITS có mục `wave4/`. Không có yêu cầu thay đổi.
+- **Kiểm sau merge** (khoá Godot, 15/11 05:52–06:42): full test **`RESULT: 1016 passed, 0 failed`**, check **`RESULT: check 0 error(s)`**.
+- Không đo FPS, không chạy bot: HARU hỏi chủ dự án (trận sân vận động nặng nhất chương 3; bot T-238 hoãn theo D-149).
