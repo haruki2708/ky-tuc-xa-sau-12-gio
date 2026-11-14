@@ -1,0 +1,23 @@
+[gd_resource type="ShaderMaterial" format=3]
+
+[ext_resource type="Shader" path="res://rendering/room407_shell.gdshader" id="1"]
+[ext_resource type="Texture2D" path="res://assets/textures/graphics_pilot/realistic_map/wave1/terrazzo_color.png" id="2"]
+[ext_resource type="Texture2D" path="res://assets/textures/graphics_pilot/realistic_map/wave1/terrazzo_normal.png" id="3"]
+[ext_resource type="Texture2D" path="res://assets/textures/graphics_pilot/realistic_map/wave1/terrazzo_orm.png" id="4"]
+[ext_resource type="Texture2D" path="res://assets/textures/graphics_pilot/realistic_map/wave3/mask_bench.png" id="5"]
+[ext_resource type="Texture2D" path="res://assets/textures/graphics_pilot/room407_shell/noise.png" id="6"]
+
+[resource]
+resource_name = "W3Bench"
+shader = ExtResource("1")
+shader_parameter/kind = 1
+shader_parameter/base_albedo = ExtResource("2")
+shader_parameter/base_normal = ExtResource("3")
+shader_parameter/base_arm = ExtResource("4")
+shader_parameter/mask = ExtResource("5")
+shader_parameter/base_tint = Color(0.6, 0.6, 0.58, 1)
+shader_parameter/grime_strength = 1.4
+shader_parameter/wear_strength = 0.5
+shader_parameter/normal_strength = 0.5
+shader_parameter/grime_color = Color(0.48, 0.45, 0.36, 1)
+shader_parameter/noise = ExtResource("6")
