@@ -15,7 +15,8 @@ options the owner picks from. Blender 5.2.2, bmesh/mesh data only, no add-on, no
 
 Gameplay contract (T-251): every tree part lower than 2 m above the paving lies inside its LowCrown's
 CanopyCollision cone (radius 1.1 m at 1.2 m, 0.175 m at 2.8 m); below 1.2 m only the trunk (radius <= 0.13 m, as the
-PS1 trunk). check_canopy() prints the margin; leaves that would break it are not added.
+PS1 trunk). The cone is an octagon: the check uses its inscribed circle, so any turn of the tree fits.
+check_canopy() prints the margin; leaves that would break it are not added.
 Run: blender -b --factory-startup -P art_source/graphics_upgrade/realistic_map/wave3/build_garden_pilot.py [-- name ...]
 """
 import math
@@ -44,8 +45,10 @@ FREE_HEIGHT = 2.0  # above this the crown may be wider than the collision (card 
 
 
 def cone_radius(z):
+	"""The canopy is an octagonal frustum (corners at R): use its inscribed circle, so a tree turned any way about
+	its trunk still fits."""
 	t = (z - CONE_BOTTOM) / (CONE_TOP - CONE_BOTTOM)
-	return R_BOTTOM + (R_TOP - R_BOTTOM) * t
+	return (R_BOTTOM + (R_TOP - R_BOTTOM) * t) * math.cos(math.pi / 8)
 
 
 def allowed(co, trunk_r=0.13):
@@ -394,8 +397,13 @@ def lagerstroemia(rng):
 		if all(allowed(leaves.v[j]) for j in idx):
 			added += 1
 			if i % 3 == 0:
-				card(far_leaves, "W3LeafLager", at - up_axis * size * 0.5, up_axis, nrm, size * 1.6, size * 1.6, cell,
+				far_before = len(far_leaves.v)
+				idx = card(far_leaves, "W3LeafLager", at - up_axis * size * 0.5, up_axis, nrm, size * 1.6, size * 1.6, cell,
 					radial_from=centre, normal_mix=0.6)
+				if not all(allowed(far_leaves.v[j]) for j in idx):
+					del far_leaves.v[far_before:], far_leaves.uv[far_before:], far_leaves.n[far_before:]
+					far_leaves.f.pop()
+					far_leaves.fm.pop()
 		else:
 			del leaves.v[before:], leaves.uv[before:], leaves.n[before:]
 			leaves.f.pop()
@@ -420,8 +428,6 @@ def check_canopy(name, bufs):
 	worst = 9.0
 	bad = 0
 	for buf in bufs:
-		if buf.name.endswith("Far"):
-			continue
 		for v in buf.v:
 			if v.z >= FREE_HEIGHT:
 				continue
