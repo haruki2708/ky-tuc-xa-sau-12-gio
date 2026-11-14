@@ -86,7 +86,7 @@ D-173 vẫn áp dụng: không đo FPS sau merge. Theo phương án này, cả v
 - Tripo, credit Tripo, extension Blender, ảnh AI; bot, FPS; commit log, video, `anh_chup_sua_loi/`; sửa STATUS, DECISIONS.
 
 ## Checklist
-- [ ] Lượt 1: khảo sát, bảng hợp đồng, danh sách node A16 (Handoff)
+- [x] Lượt 1: khảo sát, bảng hợp đồng, danh sách node A16 (Handoff)
 - [ ] Lượt 1: góc mẫu và phương án (cây, hoa, sân, ghế, đèn), ảnh; dừng chờ chủ dự án chọn
 - [ ] Lượt 2: cả vườn
 - [ ] Lượt 2: dải nối nhà B → vườn
@@ -94,4 +94,65 @@ D-173 vẫn áp dụng: không đo FPS sau merge. Theo phương án này, cả v
 - [ ] Ảnh trước/sau, test mới, test cũ, full test, check, README, CREDITS, Handoff
 
 ## Handoff
-(lane B điền)
+### Lượt 1 — khảo sát (lane B, 14/11/2026)
+Nhánh `lane-b/T-259-realistic-graphics-wave3-garden` từ `origin/main` `e517c54` (đã có T-258, T-260). Card đọc ở commit `415763a`.
+
+**Kiểm lại mục 0: đúng.** Số đo cụ thể (toạ độ thế giới; `Garden` đặt ở gốc toạ độ của `Campus`; sân y −9,9):
+- `Paving`: StaticBody (22; −9,93; 28), hộp 44 × 0,06 × 40, mặt trên y −9,90, meta `surface = tile`, `is_floor`.
+- Bồn `Bed{i}_{j}`: i là hàng theo z (12 / 22 / 32 / 42), j là cột theo x (6 / 22 / 38). Hộp va chạm 6 × 0,5 × 4, miệng bồn y −9,40. Con `Soil` 5,7 × 0,08 × 3,7, mặt đất trong bồn y −9,33 (nổi 7 cm trên miệng bồn).
+- Cây `LowTrunk{i}_{j}`: trụ bán kính 0,08–0,10 m, y −9,7…−8,1. **Thân cây không có va chạm riêng**; khối bồn chặn người chơi (PLAN ghi "collision thân", thực tế không có, giữ nguyên như vậy).
+- `LowCrown{i}_{j}`: nón cụt bán kính 1,1 → 0,175 m, y −8,7…−7,1 (1,2…2,8 m trên sân). Con `CanopyCollision` cùng hình (ConvexPolygon 16 điểm, layer 1). Ở 2 m trên sân (y −7,9) khối tán còn bán kính 0,64 m; dưới 1,2 m không có khối tán.
+- Bụi `Bush{i}_{j}_{k}` (k 0…3): trụ bán kính 0,45–0,65, cao 1 m (y −9,7…−8,7), xếp dọc trục x của bồn (lệch −1,9 / −0,6 / +0,7 / +2,0 m). Hoa `Flower{i}_{j}_{k}_{m}` (m 0…2): hộp 10 cm ở y −8,8 trên đỉnh bụi, 144 node. Bụi, hoa không có va chạm; người chơi đứng được trên miệng bồn (test T-251 đặt capsule ở y −9,35).
+- Ghế `Bench0…3` (Node3D: `Seat`, `Leg-0.85`, `Leg0.85`, `Back`) ở (2; 22), (42; 22), (6; 47), (38; 47), y −9,9; `BenchCollision0…3` hộp 2,4 × 0,8 × 0,6, tâm y −9,5. Ghế Ngư `NguBench`: StaticBody (22; −9,42; 28), mặt ngồi 2,4 × 0,18 × 0,7 (mặt trên −9,33), không tựa. Hai chân `NguBenchLeg21.15` và `NguBenchLeg22.85` là Node3D riêng, ngang hàng `NguBench`, không va chạm.
+- Đèn: `GardenLights_0_0` (x 1; z 10 và 24), `_0_1` (1; 40), `_1_0` (43; 10 và 24), `_1_1` (43; 40). Đây là `foliage.gd` kind `garden`: cột 3 m và chao phát sáng vẽ bằng MultiMesh. Đèn `Flicker0…5`: OmniLight3D ở y −7,0, cùng x và z với cột, tầm 5 m, không bóng, màu (0,7; 0,72; 0,45), `flicker.gd` (năng lượng 0,35 hoặc 0,015). **Không có cột đèn nào gần ghế Ngư**; gần nhất là (1; 24), cách 21 m.
+- Đồ đổ: `FallenBunk` StaticBody (8; −9,45; 37) hộp 2 × 0,9 × 2 (Mesh PS1 đã ẩn từ trước), `BrokenBunk` (`kit/bunk_bed.glb` nằm nghiêng 90°), `DetachedRail0…3`.
+- Ánh sáng chương 3–4 (`campus.tscn`): `Dawn` DirectionalLight3D 0,65, **không bóng**; ambient 0,65; sương 0,018. Đèn pin người chơi có bóng.
+- Đếm hiện trạng (probe, chưa trừ culling): `Garden` 532 node, 6.564 tam giác, 19 vật liệu, 276 lần vẽ (mỗi surface một lần).
+
+**Code, test, bot đụng tới vườn** (grep đủ các từ khoá của card trong `game/scripts/`, `game/tests/`, `game/scenes/`, `tools/*.json`):
+| Chỗ | Dùng gì |
+|---|---|
+| `chapter3_director.gd` `_garden()` | `Start_garden` (tới nơi, Nhật nhập ở +1,2 m theo x), `NguBench` (Ngư `_join(..., false)` đứng ở anchor; gặp khi người chơi cách < `NGU_MEET_RADIUS` 4 m), `_horde.place_idle(&"Garden")`, `_scare(&"flowerbed_crawl")` (chỉ phát `EventBus.scare_triggered`, không gắn node vườn nào), `_spawn(&"Garden", 4)` |
+| `chapter3_director.gd` khác | `_zone()` đọc `Zones/Garden`; tiếp tục từ điểm lưu thì quay mặt PI; `_settle_bars`: tia layer 1 từ B01 + 2 m xuống, thanh sắt nằm trên mặt va chạm đầu tiên (mặt trên `FallenBunk`, y −9,0) |
+| `chapter4_director.gd` | không nhắc tới vườn |
+| `scripts/debug/ch3_menu.gd` | mục "Garden" |
+| `tools/ch3-profile.json` (bot) | `Start_garden`, `ZombieSpawns/Garden/S01…S06` |
+| `test_t251_ground_garden` | 12 `LowCrown*` phải là **MeshInstance3D mang CylinderMesh** (test đọc bán kính từ mesh, kể cả khi ẩn); tia ngang chạm `CanopyCollision` đúng mặt nón; capsule tại (7,8; −9,35; 12) bị tán chặn; anchor không chạm tán; navmesh cách tâm tán ≥ 1,4 m; tuyến Nhật/Ngư không chạm tán |
+| `test_chapter3`, `test_t249_chapter3_bar` | `Start_garden`, `NguBench` (+ lệch 1–1,5 m) |
+| `test_campus`, `test_stands_props`, `test_wide_corridors`, `test_ch3_profile` | anchor, `Zones/Garden`, `Garden/Paving` z, chuyển vùng b → Garden |
+
+**Bảng hợp đồng (lượt 2 giữ nguyên tên, gốc, transform, va chạm):**
+| Node | Giữ | Hình mới làm gì |
+|---|---|---|
+| `Garden` (gốc trong `campus.tscn`) | tên, transform 0 | hình mới là con mới của `Garden` |
+| `Paving` + `Collision`, meta | nguyên | ẩn `Paving/Mesh`, sân mới phủ đúng mặt y −9,90 |
+| `Bed{i}_{j}` + `Collision` | nguyên | ẩn `Mesh`, `Soil/Mesh`; viền và đất mới nằm trong hộp 6 × 0,5 × 4 |
+| `LowTrunk{i}_{j}` | nguyên | ẩn; thân mới mọc đúng tâm |
+| `LowCrown{i}_{j}` + `CanopyCollision` | nguyên, **giữ CylinderMesh** (test T-251 đọc) | ẩn; tán dưới 2 m nằm trong khối nón |
+| `Bush*`, `Flower*` | nguyên | ẩn; cây bụi, hoa mới trong lòng bồn |
+| `Bench0…3`, `BenchCollision0…3` | nguyên | ẩn lưới con; ghế mới trong hộp va chạm |
+| `NguBench` + `Collision`, `NguBenchLeg21.15`, `NguBenchLeg22.85` | nguyên | ẩn lưới; mặt ghế mới ở đúng y −9,33 (Ngư ngồi theo anchor `Anchors/NguBench` y −9,33) |
+| `FallenBunk` + `Collision`, `BrokenBunk`, `DetachedRail0…3` | nguyên; B01 vẫn nằm trên mặt −9,0 | lượt 2 làm hình theo đúng chỗ |
+| `GardenLights_*` (điểm đặt) | `points` nguyên | cột đèn mới vẽ tại đúng các điểm |
+| `Flicker0…5` | vị trí, năng lượng, màu, tầm, script | không đổi; chao đèn mới phát sáng theo năng lượng đèn |
+| `campus.tscn`: `Anchors/Start_garden`, `Anchors/NguBench`, `Anchors/ZombieSpawns/Garden/*`, `Anchors/ZombieIdle/Garden/*`, `Anchors/BarSpawns/B01`, `Anchors/Paths/Nhat`, `Anchors/Paths/Ngu`, `Zones/Garden`, `Navigation` | không sửa | |
+
+**Node A16 trong dải x −6…50, z 4…50, y −10,5…−6** (probe trên `campus.tscn` thật, trừ `Garden` và `BuildingB`; `Props` vẽ bằng MultiMesh lúc chạy nên đếm theo từng bản sao):
+| Node | Là gì | Trong dải |
+|---|---|---|
+| `Ground/Tile_-30_-10`, `Tile_-30_40`, `Tile_20_-10`, `Tile_20_40` (`campus.tscn`) | 4 tấm nền cỏ PS1 50 × 50 m có va chạm, meta `tile`, mặt trên y −9,94 (thấp hơn sân lát 4 cm) | một phần mỗi tấm; không sửa tấm, lượt 2 chỉ đắp hình mới lên trên trong dải |
+| `Props/Parts/P_concrete_box_p0_p1` | gạch bê tông vỡ | 11/42 bản (ba đống ở z 49–51, x 7,5 / 22 / 36) |
+| `Props/Parts/P_iron_cylinder_p0_p1` | thanh sắt cạnh đống gạch | 1/9 (7,5; 50,5) |
+| `Props/Parts/P_paper_box_p0_p0`, `_p0_p1`, `_p1_p0` | giấy, túi rác | 13/13, 1/1, 1/3 (6 trong số đó là giấy dán trên bảng tin) |
+| `Props/Parts/P_white_box_m1_p0`, `_p0_p0`, `_p0_p1`, `_p1_p0`; `P_white_cylinder_m1_p0` | túi, khối trắng; thùng (−3; 11,8) | 6/6, 31/31, 3/3, 7/15, 1/2 |
+| `Props/Decals/D_iron_quad_m1_p0`, `_p0_p0` | vết bẩn, vệt kéo sẫm trên sân | 11/54, 79/102 |
+| `Props/Decals/D_paper_quad_m1_p0`, `_p0_p0`; `D_white_quad_m1_p0`, `_p0_p0` | giấy, mảnh trắng trên sân | 4/4, 48/73; 1/1, 8/41 |
+| `Props/Decals/D_red_quad_p0_p0` | vết đỏ (máu) | 15/15 |
+| `Props/Parts/P_iron_box_p0_p0`, `P_wood_box_p0_p0` | **bảng tin** (hai cột sắt, tấm gỗ) ở (30,5; 11,1), va chạm `Props/Solids/Body_p0_p0/S0` | 3/3, 1/1 |
+| `Props/Trees/ExtraTrees_1_0` | 2 cây PS1 ở x 51,7 | ngoài dải (tâm x > 50), chỉ tán chạm mép; không đụng |
+| `Props/Solids/Body_m1_p0/S1`, `Body_p0_p1/S0…S2` | va chạm thùng, đống gạch | không sửa |
+Ghi chú A16: các cụm khối trắng kèm vết đỏ ở (11,5; 17), (16,3; 18,5), (29; 27), (14,5; 36,6), (43; 30,3) là **mảnh xác tĩnh** (PLAN mục 2: xác tĩnh gộp trong `Props`, tách khỏi việc môi trường): lượt 2 không đụng. Không có `Road`, `Fence` nào trong dải.
+
+**Câu hỏi / ghi chú cho lượt 2:**
+1. `DistantStreetLamp` (tầng 4, chương 1–2) là một **OmniLight3D** (năng lượng 0,5, tầm 7 m), `Fixture` và `Stem` là con. Ẩn cả node sẽ tắt đèn, trái với "giữ ánh sáng". Đề xuất: chỉ ẩn `Fixture`, `Stem`, giữ đèn (hoặc đặt cột đèn của bản nhẹ đúng chỗ đèn).
+2. Bảng tin trong vườn (`P_iron_box_p0_p0` + `P_wood_box_p0_p0` + giấy) nằm trong `props.tscn`. Card mục 3 chỉ kể "mặt đất, viền, rãnh, đồ rải": lượt 2 có làm hình bảng tin không? Lane B đề xuất có (cùng chỗ, trong hộp va chạm cũ).
