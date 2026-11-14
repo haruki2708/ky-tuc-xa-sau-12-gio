@@ -1,0 +1,745 @@
+[gd_scene format=3]
+
+[sub_resource type="BoxOccluder3D" id="Box_0"]
+size = Vector3(0.040, 2.800, 7.400)
+
+[sub_resource type="BoxOccluder3D" id="Box_1"]
+size = Vector3(0.040, 2.800, 7.400)
+
+[sub_resource type="BoxOccluder3D" id="Box_2"]
+size = Vector3(1.700, 2.800, 0.040)
+
+[sub_resource type="BoxOccluder3D" id="Box_3"]
+size = Vector3(1.700, 2.800, 0.040)
+
+[sub_resource type="BoxOccluder3D" id="Box_4"]
+size = Vector3(1.500, 0.300, 0.040)
+
+[sub_resource type="BoxOccluder3D" id="Box_5"]
+size = Vector3(1.700, 2.800, 0.040)
+
+[sub_resource type="BoxOccluder3D" id="Box_6"]
+size = Vector3(1.700, 2.800, 0.040)
+
+[sub_resource type="BoxOccluder3D" id="Box_7"]
+size = Vector3(1.500, 0.300, 0.040)
+
+[sub_resource type="BoxOccluder3D" id="Box_8"]
+size = Vector3(0.040, 2.800, 7.400)
+
+[sub_resource type="BoxOccluder3D" id="Box_9"]
+size = Vector3(1.700, 2.800, 0.040)
+
+[sub_resource type="BoxOccluder3D" id="Box_10"]
+size = Vector3(1.700, 2.800, 0.040)
+
+[sub_resource type="BoxOccluder3D" id="Box_11"]
+size = Vector3(1.500, 0.300, 0.040)
+
+[sub_resource type="BoxOccluder3D" id="Box_12"]
+size = Vector3(0.040, 2.800, 7.400)
+
+[sub_resource type="BoxOccluder3D" id="Box_13"]
+size = Vector3(1.700, 2.800, 0.040)
+
+[sub_resource type="BoxOccluder3D" id="Box_14"]
+size = Vector3(1.700, 2.800, 0.040)
+
+[sub_resource type="BoxOccluder3D" id="Box_15"]
+size = Vector3(1.500, 0.300, 0.040)
+
+[sub_resource type="BoxOccluder3D" id="Box_16"]
+size = Vector3(0.040, 2.800, 7.400)
+
+[sub_resource type="BoxOccluder3D" id="Box_17"]
+size = Vector3(1.700, 2.800, 0.040)
+
+[sub_resource type="BoxOccluder3D" id="Box_18"]
+size = Vector3(1.700, 2.800, 0.040)
+
+[sub_resource type="BoxOccluder3D" id="Box_19"]
+size = Vector3(1.500, 0.300, 0.040)
+
+[sub_resource type="BoxOccluder3D" id="Box_20"]
+size = Vector3(0.040, 2.800, 7.400)
+
+[sub_resource type="BoxOccluder3D" id="Box_21"]
+size = Vector3(1.700, 2.800, 0.040)
+
+[sub_resource type="BoxOccluder3D" id="Box_22"]
+size = Vector3(1.700, 2.800, 0.040)
+
+[sub_resource type="BoxOccluder3D" id="Box_23"]
+size = Vector3(1.500, 0.300, 0.040)
+
+[sub_resource type="BoxOccluder3D" id="Box_24"]
+size = Vector3(0.040, 2.800, 7.400)
+
+[sub_resource type="BoxOccluder3D" id="Box_25"]
+size = Vector3(1.700, 2.800, 0.040)
+
+[sub_resource type="BoxOccluder3D" id="Box_26"]
+size = Vector3(1.700, 2.800, 0.040)
+
+[sub_resource type="BoxOccluder3D" id="Box_27"]
+size = Vector3(1.500, 0.300, 0.040)
+
+[sub_resource type="BoxOccluder3D" id="Box_28"]
+size = Vector3(0.040, 2.800, 7.400)
+
+[sub_resource type="BoxOccluder3D" id="Box_29"]
+size = Vector3(1.700, 2.800, 0.040)
+
+[sub_resource type="BoxOccluder3D" id="Box_30"]
+size = Vector3(1.700, 2.800, 0.040)
+
+[sub_resource type="BoxOccluder3D" id="Box_31"]
+size = Vector3(1.500, 0.300, 0.040)
+
+[sub_resource type="BoxOccluder3D" id="Box_32"]
+size = Vector3(43.800, 0.040, 11.400)
+
+[sub_resource type="BoxOccluder3D" id="Box_33"]
+size = Vector3(0.040, 2.800, 7.400)
+
+[sub_resource type="BoxOccluder3D" id="Box_34"]
+size = Vector3(0.040, 2.800, 7.400)
+
+[sub_resource type="BoxOccluder3D" id="Box_35"]
+size = Vector3(1.700, 2.800, 0.040)
+
+[sub_resource type="BoxOccluder3D" id="Box_36"]
+size = Vector3(1.700, 2.800, 0.040)
+
+[sub_resource type="BoxOccluder3D" id="Box_37"]
+size = Vector3(1.500, 0.300, 0.040)
+
+[sub_resource type="BoxOccluder3D" id="Box_38"]
+size = Vector3(0.040, 2.800, 7.400)
+
+[sub_resource type="BoxOccluder3D" id="Box_39"]
+size = Vector3(1.700, 2.800, 0.040)
+
+[sub_resource type="BoxOccluder3D" id="Box_40"]
+size = Vector3(1.700, 2.800, 0.040)
+
+[sub_resource type="BoxOccluder3D" id="Box_41"]
+size = Vector3(1.500, 0.300, 0.040)
+
+[sub_resource type="BoxOccluder3D" id="Box_42"]
+size = Vector3(0.040, 2.800, 7.400)
+
+[sub_resource type="BoxOccluder3D" id="Box_43"]
+size = Vector3(1.700, 2.800, 0.040)
+
+[sub_resource type="BoxOccluder3D" id="Box_44"]
+size = Vector3(1.700, 2.800, 0.040)
+
+[sub_resource type="BoxOccluder3D" id="Box_45"]
+size = Vector3(1.500, 0.300, 0.040)
+
+[sub_resource type="BoxOccluder3D" id="Box_46"]
+size = Vector3(0.040, 2.800, 7.400)
+
+[sub_resource type="BoxOccluder3D" id="Box_47"]
+size = Vector3(1.700, 2.800, 0.040)
+
+[sub_resource type="BoxOccluder3D" id="Box_48"]
+size = Vector3(1.700, 2.800, 0.040)
+
+[sub_resource type="BoxOccluder3D" id="Box_49"]
+size = Vector3(1.500, 0.300, 0.040)
+
+[sub_resource type="BoxOccluder3D" id="Box_50"]
+size = Vector3(0.040, 2.800, 7.400)
+
+[sub_resource type="BoxOccluder3D" id="Box_51"]
+size = Vector3(1.700, 2.800, 0.040)
+
+[sub_resource type="BoxOccluder3D" id="Box_52"]
+size = Vector3(1.700, 2.800, 0.040)
+
+[sub_resource type="BoxOccluder3D" id="Box_53"]
+size = Vector3(1.500, 0.300, 0.040)
+
+[sub_resource type="BoxOccluder3D" id="Box_54"]
+size = Vector3(0.040, 2.800, 7.400)
+
+[sub_resource type="BoxOccluder3D" id="Box_55"]
+size = Vector3(1.700, 2.800, 0.040)
+
+[sub_resource type="BoxOccluder3D" id="Box_56"]
+size = Vector3(1.700, 2.800, 0.040)
+
+[sub_resource type="BoxOccluder3D" id="Box_57"]
+size = Vector3(1.500, 0.300, 0.040)
+
+[sub_resource type="BoxOccluder3D" id="Box_58"]
+size = Vector3(0.040, 2.800, 7.400)
+
+[sub_resource type="BoxOccluder3D" id="Box_59"]
+size = Vector3(1.700, 2.800, 0.040)
+
+[sub_resource type="BoxOccluder3D" id="Box_60"]
+size = Vector3(1.700, 2.800, 0.040)
+
+[sub_resource type="BoxOccluder3D" id="Box_61"]
+size = Vector3(1.500, 0.300, 0.040)
+
+[sub_resource type="BoxOccluder3D" id="Box_62"]
+size = Vector3(0.040, 2.800, 7.400)
+
+[sub_resource type="BoxOccluder3D" id="Box_63"]
+size = Vector3(1.700, 2.800, 0.040)
+
+[sub_resource type="BoxOccluder3D" id="Box_64"]
+size = Vector3(1.700, 2.800, 0.040)
+
+[sub_resource type="BoxOccluder3D" id="Box_65"]
+size = Vector3(1.500, 0.300, 0.040)
+
+[sub_resource type="BoxOccluder3D" id="Box_66"]
+size = Vector3(43.800, 0.040, 11.400)
+
+[sub_resource type="BoxOccluder3D" id="Box_67"]
+size = Vector3(43.800, 0.040, 11.400)
+
+[sub_resource type="BoxOccluder3D" id="Box_68"]
+size = Vector3(0.040, 2.800, 7.400)
+
+[sub_resource type="BoxOccluder3D" id="Box_69"]
+size = Vector3(0.040, 2.800, 7.400)
+
+[sub_resource type="BoxOccluder3D" id="Box_70"]
+size = Vector3(1.700, 2.800, 0.040)
+
+[sub_resource type="BoxOccluder3D" id="Box_71"]
+size = Vector3(1.700, 2.800, 0.040)
+
+[sub_resource type="BoxOccluder3D" id="Box_72"]
+size = Vector3(1.500, 0.300, 0.040)
+
+[sub_resource type="BoxOccluder3D" id="Box_73"]
+size = Vector3(0.040, 2.800, 7.400)
+
+[sub_resource type="BoxOccluder3D" id="Box_74"]
+size = Vector3(1.700, 2.800, 0.040)
+
+[sub_resource type="BoxOccluder3D" id="Box_75"]
+size = Vector3(1.700, 2.800, 0.040)
+
+[sub_resource type="BoxOccluder3D" id="Box_76"]
+size = Vector3(1.500, 0.300, 0.040)
+
+[sub_resource type="BoxOccluder3D" id="Box_77"]
+size = Vector3(0.040, 2.800, 7.400)
+
+[sub_resource type="BoxOccluder3D" id="Box_78"]
+size = Vector3(1.700, 2.800, 0.040)
+
+[sub_resource type="BoxOccluder3D" id="Box_79"]
+size = Vector3(1.700, 2.800, 0.040)
+
+[sub_resource type="BoxOccluder3D" id="Box_80"]
+size = Vector3(1.500, 0.300, 0.040)
+
+[sub_resource type="BoxOccluder3D" id="Box_81"]
+size = Vector3(0.040, 2.800, 7.400)
+
+[sub_resource type="BoxOccluder3D" id="Box_82"]
+size = Vector3(1.700, 2.800, 0.040)
+
+[sub_resource type="BoxOccluder3D" id="Box_83"]
+size = Vector3(1.700, 2.800, 0.040)
+
+[sub_resource type="BoxOccluder3D" id="Box_84"]
+size = Vector3(1.500, 0.300, 0.040)
+
+[sub_resource type="BoxOccluder3D" id="Box_85"]
+size = Vector3(0.040, 2.800, 7.400)
+
+[sub_resource type="BoxOccluder3D" id="Box_86"]
+size = Vector3(1.700, 2.800, 0.040)
+
+[sub_resource type="BoxOccluder3D" id="Box_87"]
+size = Vector3(1.700, 2.800, 0.040)
+
+[sub_resource type="BoxOccluder3D" id="Box_88"]
+size = Vector3(1.500, 0.300, 0.040)
+
+[sub_resource type="BoxOccluder3D" id="Box_89"]
+size = Vector3(0.040, 2.800, 7.400)
+
+[sub_resource type="BoxOccluder3D" id="Box_90"]
+size = Vector3(1.700, 2.800, 0.040)
+
+[sub_resource type="BoxOccluder3D" id="Box_91"]
+size = Vector3(1.700, 2.800, 0.040)
+
+[sub_resource type="BoxOccluder3D" id="Box_92"]
+size = Vector3(1.500, 0.300, 0.040)
+
+[sub_resource type="BoxOccluder3D" id="Box_93"]
+size = Vector3(0.040, 2.800, 7.400)
+
+[sub_resource type="BoxOccluder3D" id="Box_94"]
+size = Vector3(1.700, 2.800, 0.040)
+
+[sub_resource type="BoxOccluder3D" id="Box_95"]
+size = Vector3(1.700, 2.800, 0.040)
+
+[sub_resource type="BoxOccluder3D" id="Box_96"]
+size = Vector3(1.500, 0.300, 0.040)
+
+[sub_resource type="BoxOccluder3D" id="Box_97"]
+size = Vector3(0.040, 2.800, 7.400)
+
+[sub_resource type="BoxOccluder3D" id="Box_98"]
+size = Vector3(1.700, 2.800, 0.040)
+
+[sub_resource type="BoxOccluder3D" id="Box_99"]
+size = Vector3(1.700, 2.800, 0.040)
+
+[sub_resource type="BoxOccluder3D" id="Box_100"]
+size = Vector3(1.500, 0.300, 0.040)
+
+[sub_resource type="BoxOccluder3D" id="Box_101"]
+size = Vector3(43.400, 2.400, 11.000)
+
+[sub_resource type="BoxOccluder3D" id="Box_102"]
+size = Vector3(43.400, 2.400, 11.000)
+
+[sub_resource type="BoxOccluder3D" id="Box_103"]
+size = Vector3(43.000, 18.800, 9.000)
+
+[sub_resource type="BoxOccluder3D" id="Box_104"]
+size = Vector3(79.000, 15.500, 19.000)
+
+[sub_resource type="BoxOccluder3D" id="Box_105"]
+size = Vector3(59.000, 9.000, 39.000)
+
+[node name="OccludersCampus" type="Node3D"]
+
+[node name="BuildingB_Floor1_West" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000, -8.400, -3.800)
+occluder = SubResource("Box_0")
+
+[node name="BuildingB_Floor1_East" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.000, -8.400, -3.800)
+occluder = SubResource("Box_1")
+
+[node name="BuildingB_Floor1_Facade0L" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.950, -8.400, 0.000)
+occluder = SubResource("Box_2")
+
+[node name="BuildingB_Floor1_Facade0R" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.550, -8.400, 0.000)
+occluder = SubResource("Box_3")
+
+[node name="BuildingB_Floor1_Lintel0" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.750, -7.150, 0.000)
+occluder = SubResource("Box_4")
+
+[node name="BuildingB_Floor1_Facade1L" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.450, -8.400, 0.000)
+occluder = SubResource("Box_5")
+
+[node name="BuildingB_Floor1_Facade1R" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.050, -8.400, 0.000)
+occluder = SubResource("Box_6")
+
+[node name="BuildingB_Floor1_Lintel1" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.250, -7.150, 0.000)
+occluder = SubResource("Box_7")
+
+[node name="BuildingB_Floor1_Partition1" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.000, -8.400, -3.800)
+occluder = SubResource("Box_8")
+
+[node name="BuildingB_Floor1_Facade2L" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.950, -8.400, 0.000)
+occluder = SubResource("Box_9")
+
+[node name="BuildingB_Floor1_Facade2R" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.550, -8.400, 0.000)
+occluder = SubResource("Box_10")
+
+[node name="BuildingB_Floor1_Lintel2" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.750, -7.150, 0.000)
+occluder = SubResource("Box_11")
+
+[node name="BuildingB_Floor1_Partition2" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.500, -8.400, -3.800)
+occluder = SubResource("Box_12")
+
+[node name="BuildingB_Floor1_Facade3L" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.450, -8.400, 0.000)
+occluder = SubResource("Box_13")
+
+[node name="BuildingB_Floor1_Facade3R" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.050, -8.400, 0.000)
+occluder = SubResource("Box_14")
+
+[node name="BuildingB_Floor1_Lintel3" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.250, -7.150, 0.000)
+occluder = SubResource("Box_15")
+
+[node name="BuildingB_Floor1_Partition3" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.000, -8.400, -3.800)
+occluder = SubResource("Box_16")
+
+[node name="BuildingB_Floor1_Facade4L" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.950, -8.400, 0.000)
+occluder = SubResource("Box_17")
+
+[node name="BuildingB_Floor1_Facade4R" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.550, -8.400, 0.000)
+occluder = SubResource("Box_18")
+
+[node name="BuildingB_Floor1_Lintel4" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.750, -7.150, 0.000)
+occluder = SubResource("Box_19")
+
+[node name="BuildingB_Floor1_Partition4" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.500, -8.400, -3.800)
+occluder = SubResource("Box_20")
+
+[node name="BuildingB_Floor1_Facade5L" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.450, -8.400, 0.000)
+occluder = SubResource("Box_21")
+
+[node name="BuildingB_Floor1_Facade5R" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.050, -8.400, 0.000)
+occluder = SubResource("Box_22")
+
+[node name="BuildingB_Floor1_Lintel5" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.250, -7.150, 0.000)
+occluder = SubResource("Box_23")
+
+[node name="BuildingB_Floor1_Partition5" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.000, -8.400, -3.800)
+occluder = SubResource("Box_24")
+
+[node name="BuildingB_Floor1_Facade6L" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.950, -8.400, 0.000)
+occluder = SubResource("Box_25")
+
+[node name="BuildingB_Floor1_Facade6R" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.550, -8.400, 0.000)
+occluder = SubResource("Box_26")
+
+[node name="BuildingB_Floor1_Lintel6" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.750, -7.150, 0.000)
+occluder = SubResource("Box_27")
+
+[node name="BuildingB_Floor1_Partition6" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.500, -8.400, -3.800)
+occluder = SubResource("Box_28")
+
+[node name="BuildingB_Floor1_Facade7L" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39.450, -8.400, 0.000)
+occluder = SubResource("Box_29")
+
+[node name="BuildingB_Floor1_Facade7R" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.050, -8.400, 0.000)
+occluder = SubResource("Box_30")
+
+[node name="BuildingB_Floor1_Lintel7" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41.250, -7.150, 0.000)
+occluder = SubResource("Box_31")
+
+[node name="BuildingB_Floor2_Slab" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.000, -6.720, -1.800)
+occluder = SubResource("Box_32")
+
+[node name="BuildingB_Floor2_West" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000, -5.100, -3.800)
+occluder = SubResource("Box_33")
+
+[node name="BuildingB_Floor2_East" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.000, -5.100, -3.800)
+occluder = SubResource("Box_34")
+
+[node name="BuildingB_Floor2_Facade0L" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.950, -5.100, 0.000)
+occluder = SubResource("Box_35")
+
+[node name="BuildingB_Floor2_Facade0R" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.550, -5.100, 0.000)
+occluder = SubResource("Box_36")
+
+[node name="BuildingB_Floor2_Lintel0" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.750, -3.850, 0.000)
+occluder = SubResource("Box_37")
+
+[node name="BuildingB_Floor2_Partition0" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.500, -5.100, -3.800)
+occluder = SubResource("Box_38")
+
+[node name="BuildingB_Floor2_Facade1L" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.450, -5.100, 0.000)
+occluder = SubResource("Box_39")
+
+[node name="BuildingB_Floor2_Facade1R" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.050, -5.100, 0.000)
+occluder = SubResource("Box_40")
+
+[node name="BuildingB_Floor2_Lintel1" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.250, -3.850, 0.000)
+occluder = SubResource("Box_41")
+
+[node name="BuildingB_Floor2_Partition1" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.000, -5.100, -3.800)
+occluder = SubResource("Box_42")
+
+[node name="BuildingB_Floor2_Facade2L" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.950, -5.100, 0.000)
+occluder = SubResource("Box_43")
+
+[node name="BuildingB_Floor2_Facade2R" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.550, -5.100, 0.000)
+occluder = SubResource("Box_44")
+
+[node name="BuildingB_Floor2_Lintel2" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.750, -3.850, 0.000)
+occluder = SubResource("Box_45")
+
+[node name="BuildingB_Floor2_Partition2" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.500, -5.100, -3.800)
+occluder = SubResource("Box_46")
+
+[node name="BuildingB_Floor2_Facade3L" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.450, -5.100, 0.000)
+occluder = SubResource("Box_47")
+
+[node name="BuildingB_Floor2_Facade3R" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.050, -5.100, 0.000)
+occluder = SubResource("Box_48")
+
+[node name="BuildingB_Floor2_Lintel3" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.250, -3.850, 0.000)
+occluder = SubResource("Box_49")
+
+[node name="BuildingB_Floor2_Partition3" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.000, -5.100, -3.800)
+occluder = SubResource("Box_50")
+
+[node name="BuildingB_Floor2_Facade4L" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.950, -5.100, 0.000)
+occluder = SubResource("Box_51")
+
+[node name="BuildingB_Floor2_Facade4R" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.550, -5.100, 0.000)
+occluder = SubResource("Box_52")
+
+[node name="BuildingB_Floor2_Lintel4" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.750, -3.850, 0.000)
+occluder = SubResource("Box_53")
+
+[node name="BuildingB_Floor2_Partition4" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.500, -5.100, -3.800)
+occluder = SubResource("Box_54")
+
+[node name="BuildingB_Floor2_Facade5L" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.450, -5.100, 0.000)
+occluder = SubResource("Box_55")
+
+[node name="BuildingB_Floor2_Facade5R" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.050, -5.100, 0.000)
+occluder = SubResource("Box_56")
+
+[node name="BuildingB_Floor2_Lintel5" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.250, -3.850, 0.000)
+occluder = SubResource("Box_57")
+
+[node name="BuildingB_Floor2_Partition5" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.000, -5.100, -3.800)
+occluder = SubResource("Box_58")
+
+[node name="BuildingB_Floor2_Facade6L" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.950, -5.100, 0.000)
+occluder = SubResource("Box_59")
+
+[node name="BuildingB_Floor2_Facade6R" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.550, -5.100, 0.000)
+occluder = SubResource("Box_60")
+
+[node name="BuildingB_Floor2_Lintel6" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.750, -3.850, 0.000)
+occluder = SubResource("Box_61")
+
+[node name="BuildingB_Floor2_Partition6" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.500, -5.100, -3.800)
+occluder = SubResource("Box_62")
+
+[node name="BuildingB_Floor2_Facade7L" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39.450, -5.100, 0.000)
+occluder = SubResource("Box_63")
+
+[node name="BuildingB_Floor2_Facade7R" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.050, -5.100, 0.000)
+occluder = SubResource("Box_64")
+
+[node name="BuildingB_Floor2_Lintel7" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41.250, -3.850, 0.000)
+occluder = SubResource("Box_65")
+
+[node name="BuildingB_Floor3_Slab" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.000, -3.420, -1.800)
+occluder = SubResource("Box_66")
+
+[node name="BuildingB_Floor3_Ceiling" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.000, -0.180, -1.800)
+occluder = SubResource("Box_67")
+
+[node name="BuildingB_Floor3_West" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000, -1.800, -3.800)
+occluder = SubResource("Box_68")
+
+[node name="BuildingB_Floor3_East" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.000, -1.800, -3.800)
+occluder = SubResource("Box_69")
+
+[node name="BuildingB_Floor3_Facade0L" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.950, -1.800, 0.000)
+occluder = SubResource("Box_70")
+
+[node name="BuildingB_Floor3_Facade0R" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.550, -1.800, 0.000)
+occluder = SubResource("Box_71")
+
+[node name="BuildingB_Floor3_Lintel0" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.750, -0.550, 0.000)
+occluder = SubResource("Box_72")
+
+[node name="BuildingB_Floor3_Partition0" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.500, -1.800, -3.800)
+occluder = SubResource("Box_73")
+
+[node name="BuildingB_Floor3_Facade1L" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.450, -1.800, 0.000)
+occluder = SubResource("Box_74")
+
+[node name="BuildingB_Floor3_Facade1R" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.050, -1.800, 0.000)
+occluder = SubResource("Box_75")
+
+[node name="BuildingB_Floor3_Lintel1" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.250, -0.550, 0.000)
+occluder = SubResource("Box_76")
+
+[node name="BuildingB_Floor3_Partition1" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.000, -1.800, -3.800)
+occluder = SubResource("Box_77")
+
+[node name="BuildingB_Floor3_Facade2L" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.950, -1.800, 0.000)
+occluder = SubResource("Box_78")
+
+[node name="BuildingB_Floor3_Facade2R" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.550, -1.800, 0.000)
+occluder = SubResource("Box_79")
+
+[node name="BuildingB_Floor3_Lintel2" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.750, -0.550, 0.000)
+occluder = SubResource("Box_80")
+
+[node name="BuildingB_Floor3_Partition2" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.500, -1.800, -3.800)
+occluder = SubResource("Box_81")
+
+[node name="BuildingB_Floor3_Facade3L" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.450, -1.800, 0.000)
+occluder = SubResource("Box_82")
+
+[node name="BuildingB_Floor3_Facade3R" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.050, -1.800, 0.000)
+occluder = SubResource("Box_83")
+
+[node name="BuildingB_Floor3_Lintel3" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.250, -0.550, 0.000)
+occluder = SubResource("Box_84")
+
+[node name="BuildingB_Floor3_Partition3" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.000, -1.800, -3.800)
+occluder = SubResource("Box_85")
+
+[node name="BuildingB_Floor3_Facade4L" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.950, -1.800, 0.000)
+occluder = SubResource("Box_86")
+
+[node name="BuildingB_Floor3_Facade4R" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.550, -1.800, 0.000)
+occluder = SubResource("Box_87")
+
+[node name="BuildingB_Floor3_Lintel4" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.750, -0.550, 0.000)
+occluder = SubResource("Box_88")
+
+[node name="BuildingB_Floor3_Partition4" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.500, -1.800, -3.800)
+occluder = SubResource("Box_89")
+
+[node name="BuildingB_Floor3_Facade5L" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.450, -1.800, 0.000)
+occluder = SubResource("Box_90")
+
+[node name="BuildingB_Floor3_Facade5R" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.050, -1.800, 0.000)
+occluder = SubResource("Box_91")
+
+[node name="BuildingB_Floor3_Lintel5" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.250, -0.550, 0.000)
+occluder = SubResource("Box_92")
+
+[node name="BuildingB_Floor3_Partition5" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.000, -1.800, -3.800)
+occluder = SubResource("Box_93")
+
+[node name="BuildingB_Floor3_Facade6L" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.950, -1.800, 0.000)
+occluder = SubResource("Box_94")
+
+[node name="BuildingB_Floor3_Facade6R" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.550, -1.800, 0.000)
+occluder = SubResource("Box_95")
+
+[node name="BuildingB_Floor3_Lintel6" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.750, -0.550, 0.000)
+occluder = SubResource("Box_96")
+
+[node name="BuildingB_Floor3_Partition6" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.500, -1.800, -3.800)
+occluder = SubResource("Box_97")
+
+[node name="BuildingB_Floor3_Facade7L" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39.450, -1.800, 0.000)
+occluder = SubResource("Box_98")
+
+[node name="BuildingB_Floor3_Facade7R" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.050, -1.800, 0.000)
+occluder = SubResource("Box_99")
+
+[node name="BuildingB_Floor3_Lintel7" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41.250, -0.550, 0.000)
+occluder = SubResource("Box_100")
+
+[node name="BuildingB_UpperFloor5" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.000, 4.800, -1.800)
+occluder = SubResource("Box_101")
+
+[node name="BuildingB_UpperFloor6" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.000, 8.100, -1.800)
+occluder = SubResource("Box_102")
+
+[node name="Shells_BuildingA_Shell" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.000, 0.000, 59.000)
+occluder = SubResource("Box_103")
+
+[node name="Shells_Lecture_Shell" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.000, -1.650, 190.000)
+occluder = SubResource("Box_104")
+
+[node name="Shells_Gym_Shell" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.000, -4.900, 110.000)
+occluder = SubResource("Box_105")

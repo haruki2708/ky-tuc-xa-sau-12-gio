@@ -15,6 +15,8 @@
 [ext_resource type="PackedScene" path="res://ui/survivors/survivor_notice.tscn" id="12_survivors"]
 [ext_resource type="PackedScene" path="res://ui/death/death_screen.tscn" id="13_death"]
 [ext_resource type="PackedScene" path="res://ui/puzzle/puzzle_panel.tscn" id="14_puzzle"]
+[ext_resource type="PackedScene" path="res://scenes/main/occlusion/occluders_floor4.tscn" id="t260_floor4"]
+[ext_resource type="PackedScene" path="res://scenes/main/occlusion/occluders_campus.tscn" id="t260_campus"]
 
 [node name="Chapter3" type="Node3D"]
 script = ExtResource("1_main")
@@ -23,6 +25,10 @@ protagonist_body = true
 [node name="Floor4" parent="." instance=ExtResource("2_floor")]
 
 [node name="Campus" parent="." instance=ExtResource("15_campus")]
+
+[node name="OccludersFloor4" parent="." instance=ExtResource("t260_floor4")]
+
+[node name="OccludersCampus" parent="." instance=ExtResource("t260_campus")]
 
 [node name="Player" parent="." instance=ExtResource("3_player")]
 position = Vector3(32, 0.05, -2.2)
