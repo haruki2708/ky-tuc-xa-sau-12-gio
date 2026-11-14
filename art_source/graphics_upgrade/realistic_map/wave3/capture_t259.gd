@@ -21,6 +21,7 @@ const VIEWS := {
 		"c8_back_edge": {"eye": Vector3(24, -8.3, 44.5), "target": Vector3(20, -9.5, 50), "torch": [false, true]},
 		"c9_bench_back": {"eye": Vector3(4.6, -8.3, 19.6), "target": Vector3(2, -9.2, 22), "torch": [false, true]},
 		"c10_lamp": {"eye": Vector3(4.6, -8.3, 27.6), "target": Vector3(1.0, -7.7, 24.0), "torch": [false]},
+		"c11_board_front": {"eye": Vector3(31.2, -8.3, 8.4), "target": Vector3(30.4, -8.4, 11.1), "torch": [false, true]},
 	},
 	1: {
 		"f1_floor4": {"eye": Vector3(22, 1.6, 3.3), "target": Vector3(22, -9.9, 25), "torch": [false]},

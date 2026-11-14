@@ -3,12 +3,57 @@
 Card: `docs/tasks/T-259-realistic-graphics-wave3-garden.md`. Dựng bằng script Blender, texture vẽ bằng code
 (numpy + Pillow). Không Tripo, không extension Blender, không ảnh AI.
 
-**Lượt 1 (14/11/2026): góc mẫu quanh ghế Ngư và các phương án để chủ dự án chọn.** `garden.tscn` chưa sửa:
-`capture_wave3.gd` gắn góc mẫu vào cảnh chương 3 thật lúc chạy (ẩn hình PS1 của `Bed1_1`, `Bed2_1`, hai cây, bụi,
-hoa của hai bồn, `NguBench`, hai chân ghế, `Paving/Mesh`, `GardenLights_0_0`) rồi chụp. Lượt 2 sẽ gắn hẳn vào
-`garden.tscn` theo phương án đã chọn.
+## Lượt 2 (14/11/2026, D-175): cả vườn, dải nối nhà B → vườn, cảnh ngoài chương 1–2
+Chủ dự án chọn: 8 bồn hoa sứ và 4 bồn bằng lăng có hoa, trồng F1 ở cả 12 bồn, viền K1 quét vôi trắng, sân P1 gạch
+block xám, ghế đá mài không chữ, cột đèn cầu, `DistantStreetLamp` chỉ ẩn cột và giữ đèn, làm lại bảng tin.
 
-## Dựng lại
+```powershell
+$B = "D:\Tools\Blender\5.2.2\blender.exe"
+python -B art_source/graphics_upgrade/realistic_map/wave3/make_wave3_textures.py      # các texture đã chọn (khoảng 1 phút)
+& $B -b --factory-startup -P art_source/graphics_upgrade/realistic_map/wave3/build_garden_pilot.py   # ghế Ngư, cột đèn, sân P1
+& $B -b --factory-startup -P art_source/graphics_upgrade/realistic_map/wave3/build_garden.py   # [-- trees beds planting bench bunk backdrop strip props]
+python -B art_source/graphics_upgrade/realistic_map/wave3/make_wave3_materials.py
+godot --headless --path game --import   # lần đầu chạy hai lần
+# Gắn vào scene, chạy một lần trên bản main của bốn file (xem đầu patch_garden.py):
+python -B art_source/graphics_upgrade/realistic_map/wave3/patch_garden.py
+pwsh tools/test.ps1 -Filter t259
+```
+- `garden_layout.py`: bố trí dùng chung (bồn, loài và biến thể cây theo bồn, góc xoay, ghế, đèn, giường đổ, dải A16,
+  bảng tin, hộp va chạm đống gạch vỡ, các chunk PS1 của `props.tscn` thay đợt này). `a16_ps1_props.json`: dữ liệu gốc
+  của các chunk đó lấy từ main (do `patch_garden.py` ghi), để đồ mới đặt đúng chỗ đồ PS1.
+- **`garden.tscn`:** hình PS1 chỉ ẩn (253 node: lưới sân, lưới và đất 12 bồn, 12 thân, 12 tán, 48 bụi, 144 khóm hoa,
+  lưới và hai chân ghế Ngư, `Bench0…3`, `BrokenBunk`, `DetachedRail0…3`); va chạm, node, anchor, đèn giữ nguyên
+  (test so dấu vân tay với main). Node mới `Real` (`garden_real.gd`: lá không đổ bóng, cây đổi sang bản xa từ 40 m):
+  `Paving`, `Beds` (12 viền gộp một lưới, 12 đất một lưới), `Planting` (hàng rào một lưới, cây bụi và hoa một lưới),
+  `Trees/Tree{i}_{j}` (bằng lăng ở `Bed0_0`, `Bed1_2`, `Bed2_1`, `Bed3_0`; mỗi hàng một cây, lệch cột; hoa sứ ba biến
+  thể, bằng lăng hai), `Benches` (ghế Ngư, `Bench0…3` có tựa), `FallenBunk`.
+- **Đèn vườn:** `foliage.gd` (kind `garden`) treo `garden_lamp.glb` ở mỗi điểm của `GardenLights_*` khi có
+  `real_lamp`; cột PS1 vẫn dựng nhưng ẩn; quả cầu sáng theo năng lượng `Flicker*` đứng trên điểm đó (không thêm, không
+  đổi đèn).
+- **Giường tầng đổ:** khung thép nằm nghiêng đúng hộp của giường kit cũ (x 6,3…8,0, cao 0,05…0,95 m, z 36…38); thanh
+  chắn giường trên nằm trên cùng, mặt trên y −8,95 = mặt va chạm cũ, chỗ thanh sắt B01 nằm.
+- **Dải A16** (`campus.tscn` → `StripBGarden`): cỏ mòn x −6…50, z 4,2…50 (shader `ground_blend.gdshader`: cỏ và đất
+  trơ theo `mask_strip.png`), viền bê tông quanh sân, rãnh có tấm đan dọc mặt trước nhà B (z 6,45…6,8). `strip_props.glb`:
+  61 mẩu giấy, tờ rơi, túi ni lông ở đúng chỗ giấy PS1; ba đống gạch vỡ dựng theo đúng từng khối PS1 (42 khối, 9 ống
+  sắt) trong hộp va chạm cũ; bảng tin trong hộp va chạm cũ, 6 tờ giấy giữ đúng chỗ (không chữ, như PS1).
+  `props.tscn`: chunk PS1 thay hẳn thì ẩn node, chunk có một phần trong dải thì thu cỡ các bản trong dải về 0 (giữ mục).
+  Không đụng mảnh xác tĩnh, vệt kéo sẫm, thùng rác.
+- **Chương 1–2** (`floor4/garden_backdrop.tscn` dưới `Floor4/Corridor`): bãi cỏ phẳng tới xa quá tầm sương, sân, 12
+  bồn rút gọn, 12 cây bản xa đúng loài, biến thể, góc xoay như chương 3, 6 cột đèn cầu (sáng tĩnh), cột đèn đường cao
+  tới đúng chỗ `DistantStreetLamp`. Không va chạm, không bóng, không đèn. `YardTree_*` và `Fixture`, `Stem` của
+  `DistantStreetLamp` ẩn (đèn giữ). `campus.gd` ẩn bản nhẹ khi có khuôn viên (chương 3–4), như vẫn ẩn `YardTree_*`.
+
+Ảnh lượt 2: chép `capture_t259.gd` vào `game/_probe_tmp/` cùng một scene gốc gắn script đó, rồi
+`godot --path game res://_probe_tmp/capture_t259.tscn -- --chapter=3 --tag=after` (và `--chapter=1`); ảnh ghép
+`python -B .../make_wave3_sheets.py --overview`. Ảnh "trước" chụp trên bản main của các scene.
+
+## Lượt 1 (14/11/2026): góc mẫu quanh ghế Ngư và các phương án
+`garden.tscn` khi đó chưa sửa: `capture_wave3.gd` gắn góc mẫu vào cảnh chương 3 thật lúc chạy rồi chụp. Các phương án
+chủ dự án không chọn (bàng Đài Loan, F2, gạch đỏ, viền vàng) đã gỡ khỏi `game/`; script lượt 1 vẫn dựng lại được
+(`make_wave3_textures.py mantaly paving_red bark_mantaly`, `build_garden_pilot.py`). Lượt 2 bớt lá hoa sứ (12–16 lá
+mỗi chùm thay vì 14–20) để cả vườn ở mức khoảng 88 nghìn tam giác như đã báo.
+
+## Dựng lại (lượt 1)
 ```powershell
 $B = "D:\Tools\Blender\5.2.2\blender.exe"
 python -B art_source/graphics_upgrade/realistic_map/wave3/make_wave3_textures.py        # khoảng 1 phút

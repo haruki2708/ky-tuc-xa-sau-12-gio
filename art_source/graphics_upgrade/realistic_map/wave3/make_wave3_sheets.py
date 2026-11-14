@@ -2,6 +2,7 @@
 (capture_wave3.gd), plus references.jpg from real photos on Wikimedia Commons (CC0 / CC BY only, credited on the
 sheet and in previews/wave3/README.md; not shipped in the game).
 Run: python -B art_source/graphics_upgrade/realistic_map/wave3/make_wave3_sheets.py [--refs <folder with ref*.jpg and refs.json>]
+Round 2: ... make_wave3_sheets.py --overview  (overview.jpg from before_*/after_* of capture_t259.gd)
 """
 from pathlib import Path
 import json
@@ -148,5 +149,45 @@ def main():
 		references(Path(sys.argv[sys.argv.index("--refs") + 1]))
 
 
-if __name__ == "__main__":
+if __name__ == "__main__" and "--overview" not in sys.argv:
 	main()
+
+
+# ---------------------------------------------------------------------------------------------- round 2
+
+OVERVIEW = [
+	("c1_entry", "dark", "Chương 3 · cổng vào vườn (Start_garden)"),
+	("c2_middle", "dark", "Chương 3 · giữa vườn"),
+	("c3_ngu_bench", "torch", "Chương 3 · ghế Ngư, đèn pin"),
+	("c4_fallen_bunk", "torch", "Chương 3 · giường tầng đổ (thanh sắt B01), đèn pin"),
+	("c9_bench_back", "torch", "Chương 3 · ghế đá có tựa Bench0, đèn pin"),
+	("c10_lamp", "dark", "Chương 3 · cột đèn vườn"),
+	("c11_board_front", "torch", "Chương 3 · bảng tin, đèn pin"),
+	("c6_strip", "dark", "Chương 3 · dải nối nhà B → vườn (A16)"),
+	("c8_back_edge", "torch", "Chương 3 · mép sau vườn, đống gạch vỡ"),
+	("c5_floor4", "dark", "Chương 3 · từ hành lang tầng 4 nhìn xuống"),
+	("f1_floor4", "dark", "Chương 1 · từ hành lang tầng 4 nhìn xuống (bản nhẹ)"),
+	("f3_floor4_far", "dark", "Chương 1 · tầng 4 nhìn xa (bản nhẹ, cột đèn đường)"),
+]
+
+
+def overview():
+	rows = []
+	for view, light, caption in OVERVIEW:
+		pair = []
+		for tag, word in (("before", "Trước"), ("after", "Sau (T-259)")):
+			img = Image.open(PREVIEWS / f"{tag}_{view}_{light}.jpg").convert("RGB").resize(TILE)
+			label(img, f"{word} · {caption}", 20)
+			pair.append(img)
+		rows.append(pair)
+	out = Image.new("RGB", (2 * (TILE[0] + 8) - 8, 70 + len(rows) * (TILE[1] + 8)), (20, 20, 20))
+	label(out, "T-259 — đồ hoạ thật đợt 3: vườn hoa, dải nối nhà B, cảnh ngoài chương 1–2 (D-175)", 34)
+	for r, pair in enumerate(rows):
+		for c, img in enumerate(pair):
+			out.paste(img, (c * (TILE[0] + 8), 70 + r * (TILE[1] + 8)))
+	out.save(PREVIEWS / "overview.jpg", quality=84)
+	print("wrote overview.jpg", out.size)
+
+
+if __name__ == "__main__" and "--overview" in sys.argv:
+	overview()

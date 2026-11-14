@@ -88,9 +88,9 @@ D-173 vẫn áp dụng: không đo FPS sau merge. Theo phương án này, cả v
 ## Checklist
 - [x] Lượt 1: khảo sát, bảng hợp đồng, danh sách node A16 (Handoff)
 - [x] Lượt 1: góc mẫu và phương án (cây, hoa, sân, ghế, đèn), ảnh; dừng chờ chủ dự án chọn
-- [ ] Lượt 2: cả vườn
-- [ ] Lượt 2: dải nối nhà B → vườn
-- [ ] Lượt 2: cảnh ngoài chương 1–2
+- [x] Lượt 2: cả vườn
+- [x] Lượt 2: dải nối nhà B → vườn
+- [x] Lượt 2: cảnh ngoài chương 1–2
 - [ ] Ảnh trước/sau, test mới, test cũ, full test, check, README, CREDITS, Handoff
 
 ## Handoff
@@ -210,3 +210,33 @@ Số lần vẽ giảm (mỗi bồn PS1 có hàng chục khối nhỏ, bản m�
 - `pwsh tools/check.ps1`: **chưa có kết quả.** Lần chạy bị Claude Code dừng giữa chừng vì máy thiếu RAM (đang ở bước parse script, các file đã qua đều PASS); theo luật hệ thống không tự chạy lại. Lượt 1 chỉ thêm asset, script dựng và một test; không sửa scene, script game. File khoá Godot của lần chạy đó đã xoá.
 
 **Yêu cầu thay đổi:** không có.
+
+### Lượt 2 — cả vườn, dải nối, cảnh ngoài chương 1–2 (lane B, 14/11/2026, D-175)
+Nhánh rebase lên `origin/main` `b6126d3` (có card mục 1); vì rebase nên lần push đầu của lượt 2 dùng `--force-with-lease` trên nhánh này. Cách dựng lại, chi tiết từng phần: `art_source/graphics_upgrade/realistic_map/wave3/README.md` (mục Lượt 2).
+
+**Đã làm theo D-175:**
+- **Vườn (A12, `garden.tscn`):** 253 node PS1 chỉ ẩn (`visible = false`: lưới sân, lưới và đất 12 bồn, 12 thân, 12 tán, 48 bụi, 144 khóm hoa, lưới và hai chân ghế Ngư, `Bench0…3`, `BrokenBunk`, `DetachedRail0…3`); không xoá, không đổi tên, gốc, transform. Node mới `Real` (`garden_real.gd`): sân P1, 12 viền K1 quét vôi trắng (chỉnh lại màu: vôi trắng cũ, bẩn chân, không ngả be), đất, F1 ở cả 12 bồn (mỗi bồn lật/lệch mẫu bụi, đổi cỡ bụi, đổi cao hàng rào một chút; không thêm loài), 12 cây đúng tâm bồn: **bằng lăng ở `Bed0_0`, `Bed1_2`, `Bed2_1`, `Bed3_0`** (mỗi hàng một cây, cột 0, 2, 1, 0 để nhìn từ tầng 4 không dồn một phía), còn lại 8 hoa sứ (3 biến thể hoa sứ, 2 biến thể bằng lăng, mỗi cây một góc xoay); ghế Ngư và 4 ghế đá mài có tựa, không chữ; giường tầng thép đổ nghiêng đúng hộp giường kit cũ, thanh chắn giường trên nằm ở mặt va chạm cũ (y −8,95) ngay dưới thanh sắt B01; 4 thanh lan can rời theo đúng transform `DetachedRail*`.
+- **Đèn vườn:** `foliage.gd` (chỉ phần `garden`) treo cột đèn cầu tại đúng 6 điểm của `GardenLights_*` (cột PS1 vẫn dựng, ẩn); quả cầu sáng theo năng lượng đèn `Flicker*` đứng trên điểm đó. Không thêm, không đổi đèn nào.
+- **Dải nối nhà B → vườn (A16):** `campus.tscn` → node mới `StripBGarden`: bãi cỏ mòn x −6…50, z 4,2…50 quanh sân (lối mòn trơ đất dọc mặt trước nhà B, từ nhà B tới cổng vườn x 22, quanh mép sân; ướt cạnh rãnh), viền bê tông quanh sân, rãnh có tấm đan dọc mặt trước nhà B (z 6,45…6,8, vài tấm vỡ, thiếu); 61 mẩu giấy vở, tờ rơi, giấy vo, túi ni lông đúng chỗ giấy PS1; ba đống gạch vỡ dựng theo đúng từng khối PS1 (42 khối, 9 ống sắt) trong hộp va chạm cũ; **bảng tin làm lại** trong hộp va chạm cũ `Props/Solids/Body_p0_p0/S0`, mặt quay về nhà B như PS1, 6 tờ giấy đúng chỗ cũ, không chữ. `props.tscn`: 122 mẩu PS1 được thay chỉ ẩn (chunk thay hẳn: ẩn node; chunk một phần trong dải: thu cỡ các mẩu trong dải về 0, giữ mục). Không đụng mảnh xác tĩnh, vệt kéo sẫm, thùng rác, đường, hàng rào, cây khu khác. **Ghi chú:** ba đống gạch vỡ vắt qua mốc z 50 (va chạm tới z 53), lane B thay trọn từng đống thay vì cắt đôi ở z 50.
+- **Cảnh ngoài chương 1–2 (A05):** đo trước khi dựng: tầng 4 ở chương 1–2 và 3–4 **cùng gốc toạ độ** (`Floor4`, `Corridor` ở gốc trong `chapter1–3.tscn`); ở chương 1–2 **dưới lan can không có mặt đất nào** (tia từ (22; −0,5; z) xuống, z 5…45, không chạm gì), chỉ sương nâu sẫm (mật độ 0,032, ambient 0,24); lan can tầng 4 (thanh song, z 4,05) nhìn được từ z ≈ 4 ra tới chân trời sương. Bản nhẹ `floor4/garden_backdrop.tscn` (dưới `Floor4/Corridor`): bãi cỏ phẳng rộng quá tầm sương, sân, 12 bồn rút gọn, 12 cây bản xa đúng loài, biến thể, góc xoay như chương 3, 6 cột đèn cầu (sáng tĩnh), cột đèn đường cao tới đúng chỗ đèn `DistantStreetLamp`. Không va chạm, không bóng, không đèn. `YardTree_*` và `Fixture`, `Stem` của `DistantStreetLamp` ẩn, **nguồn sáng giữ nguyên**. `campus.gd` ẩn bản nhẹ khi có khuôn viên (chương 3–4), như vẫn ẩn `YardTree_*`.
+
+**Đếm (không đo FPS, D-173).** Tam giác bản gần: hoa sứ 5,2 / 6,9 / 5,9 nghìn mỗi biến thể (lượt 2 bớt lá còn 12–16 lá mỗi chùm), bằng lăng 1,3 nghìn; cây cả vườn khoảng 53 nghìn (bản xa cả 12 cây 3,3 nghìn); viền và đất 8,2 nghìn; trồng bồn 15,9 nghìn; 5 ghế 3,8 nghìn; 6 đèn 6,9 nghìn; giường đổ 1,5 nghìn; sân 12 → **vườn khoảng 89 nghìn tam giác** (PS1 6.564). Dải A16 khoảng 6 nghìn; bản nhẹ chương 1–2 4,3 nghìn. Vật liệu runtime của vườn: 15 (PS1 19). Trong khung hình (`Performance` lúc chụp, cùng camera, không đèn pin; primitive tính cả lượt depth):
+| Góc | Lần vẽ trước → sau | Primitive trước → sau |
+|---|---|---|
+| cổng vào vườn | 975 → 779 | 24.121 → 91.735 |
+| giữa vườn | 1.760 → 1.642 | 41.526 → 99.490 |
+| ghế Ngư | 202 → 130 | 6.675 → 58.030 |
+| bảng tin (mặt trước) | 981 → 784 | 23.517 → 102.823 |
+| tầng 4 nhìn xuống, chương 3 | 531 → 293 | 21.976 → 106.940 |
+| tầng 4 nhìn xuống, chương 1 | 20 → 24 | 4.638 → 8.838 |
+Bộ nhớ hình khi chụp: chương 3 1.248 → 1.267 MB, chương 1 1.141 → 1.152 MB. Mọi texture mới nhập nén VRAM.
+
+**Ảnh** (`art_source/graphics_upgrade/realistic_map/previews/wave3/`): `overview.jpg` (12 cặp trước/sau), ảnh lẻ `before_*`, `after_*` (chương 3: c1 cổng vào vườn, c2 giữa vườn, c3 ghế Ngư, c4 giường tầng đổ, c5 tầng 4 nhìn xuống, c6 dải nối, c7 bảng tin mặt sau, c8 mép sau vườn, c9 ghế có tựa, c10 cột đèn, c11 bảng tin mặt trước; chương 1: f1–f3 tầng 4 nhìn xuống), có và không đèn pin. Ảnh "trước" chụp trên bản main của các scene.
+
+**Kiểm:**
+- Test mới `game/tests/levels/test_t259_garden.gd` (thay `test_t259_garden_pilot.gd` của lượt 1), `-Filter t259`: `RESULT: 11 passed, 0 failed`. Gồm: dấu vân tay **va chạm vườn (32), node và đèn vườn (524), anchor/vùng/navigation của campus (1.079 dòng), va chạm `props.tscn` (175) trùng main**; PS1 ẩn, lớp `Real` đủ (12 cây đúng tâm bồn, 8 hoa sứ, 5 ghế, 6 cột đèn, lá không bóng); quả cầu đèn sáng/tắt theo `Flicker`; mọi đỉnh dưới 2 m của 12 cây đã đặt nằm trong khối bát giác `CanopyCollision` của bồn đó; capsule đi được các lối giữa bồn, từ `Start_garden`, tới ghế Ngư, tới cạnh B01; B01 nằm trên mặt −8,95 và thanh chắn giường mới ở đúng chỗ đó; ghế Ngư đúng mặt ghế cũ; dải A16 nằm trong dải và chỉ ẩn đồ PS1 trong dải; mọi `.import` texture đợt 3 `compress/mode=2` (normal `normal_map=1`); glb chỉ dùng vật liệu chung; chương 1–2 bản nhẹ hiện, chương 3–4 ẩn, `YardTree_*` ẩn, đèn `DistantStreetLamp` giữ.
+- Test cũ (lọc): `t251` 5/5 (không sửa), `test_campus` 5/5, `wide_corridors` 4/4, `graphics_bindings` 8/8, `test_floor4` 9/9, `t250` 5/5, `t253` 9/9, `props` 21/21, `t255` 12/12, `t256` 9/9, `test_chapter3` 22/22.
+- Full test, check: (điền sau khi chạy).
+
+**Yêu cầu thay đổi:**
+1. `game/assets/models/graphics_pilot/realistic_map/CREDITS.md` (file chung, ngoài danh sách được sửa của card): thêm một dòng mục `wave3/` trỏ tới `wave3/CREDITS.md` (nguồn đợt 3 đã ghi đủ ở đó).

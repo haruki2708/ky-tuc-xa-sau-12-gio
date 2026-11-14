@@ -689,8 +689,9 @@ def build_plantings():
 
 # ---------------------------------------------------------------------------------------------- paving, bench, lamp
 
-def build_paving():
-	for option, mat, tile in (("block", "W3PavingBlock", 0.9), ("red", "W3PavingRed", 1.2)):
+def build_paving(options=(("block", "W3PavingBlock", 0.9),)):
+	"""P1 (D-175); the pilot's P2 red paving only through the "paving_red" target."""
+	for option, mat, tile in options:
 		w1kit.reset()
 		part = w1kit.Part("Paving")
 		faces = part.box(mat, (0.0, -48.0, -0.06), (44.0, -8.0, 0.0))
@@ -745,10 +746,12 @@ def build_lamp():
 
 
 BUILDS = {"trees": build_trees, "beds": build_beds, "plantings": build_plantings, "paving": build_paving,
-	"bench": build_bench, "lamp": build_lamp}
+	"paving_red": lambda: build_paving((("red", "W3PavingRed", 1.2),)), "bench": build_bench, "lamp": build_lamp}
+# Round 2 (D-175) uses this script only for the chosen pieces: bench, lamp, paving (and its functions from build_garden.py).
+ROUND2 = ["paving", "bench", "lamp"]
 
 
 if __name__ == "__main__":
 	args = sys.argv[sys.argv.index("--") + 1:] if "--" in sys.argv else []
-	for key in (args or BUILDS):
+	for key in (args or ROUND2):
 		BUILDS[key]()
