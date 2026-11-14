@@ -91,7 +91,7 @@ D-173 vẫn áp dụng: không đo FPS sau merge. Theo phương án này, cả v
 - [x] Lượt 2: cả vườn
 - [x] Lượt 2: dải nối nhà B → vườn
 - [x] Lượt 2: cảnh ngoài chương 1–2
-- [ ] Ảnh trước/sau, test mới, test cũ, full test, check, README, CREDITS, Handoff
+- [x] Ảnh trước/sau, test mới, test cũ, full test, check, README, CREDITS, Handoff
 
 ## Handoff
 ### Lượt 1 — khảo sát (lane B, 14/11/2026)
@@ -236,7 +236,8 @@ Bộ nhớ hình khi chụp: chương 3 1.248 → 1.267 MB, chương 1 1.141 →
 **Kiểm:**
 - Test mới `game/tests/levels/test_t259_garden.gd` (thay `test_t259_garden_pilot.gd` của lượt 1), `-Filter t259`: `RESULT: 11 passed, 0 failed`. Gồm: dấu vân tay **va chạm vườn (32), node và đèn vườn (524), anchor/vùng/navigation của campus (1.079 dòng), va chạm `props.tscn` (175) trùng main**; PS1 ẩn, lớp `Real` đủ (12 cây đúng tâm bồn, 8 hoa sứ, 5 ghế, 6 cột đèn, lá không bóng); quả cầu đèn sáng/tắt theo `Flicker`; mọi đỉnh dưới 2 m của 12 cây đã đặt nằm trong khối bát giác `CanopyCollision` của bồn đó; capsule đi được các lối giữa bồn, từ `Start_garden`, tới ghế Ngư, tới cạnh B01; B01 nằm trên mặt −8,95 và thanh chắn giường mới ở đúng chỗ đó; ghế Ngư đúng mặt ghế cũ; dải A16 nằm trong dải và chỉ ẩn đồ PS1 trong dải; mọi `.import` texture đợt 3 `compress/mode=2` (normal `normal_map=1`); glb chỉ dùng vật liệu chung; chương 1–2 bản nhẹ hiện, chương 3–4 ẩn, `YardTree_*` ẩn, đèn `DistantStreetLamp` giữ.
 - Test cũ (lọc): `t251` 5/5 (không sửa), `test_campus` 5/5, `wide_corridors` 4/4, `graphics_bindings` 8/8, `test_floor4` 9/9, `t250` 5/5, `t253` 9/9, `props` 21/21, `t255` 12/12, `t256` 9/9, `test_chapter3` 22/22.
-- Full test, check: (điền sau khi chạy).
+- Full `pwsh tools/test.ps1` (trên `0829522`): lần 1 `RESULT: 1003 passed, 1 failed`. Test hỏng là `test_chapter3::test_companions_follow_the_player_to_the_stadium`: đồng đội tụt 23 m ở đường x 80, z 66–90 (xa vườn); test cho 10 giây **đồng hồ** để đuổi kịp nên phụ thuộc tải máy. Chạy lọc lại ngay sau: 22/22. Va chạm, navigation, anchor không đổi (dấu vân tay trùng main). Lần 2: **`RESULT: 1004 passed, 0 failed`**.
+- `pwsh tools/check.ps1`: **`RESULT: check 0 error(s)`**. Sau đó `git checkout -- game/default_bus_layout.tres`; `game/_probe_tmp/` đã xoá.
 
 **Yêu cầu thay đổi:**
 1. `game/assets/models/graphics_pilot/realistic_map/CREDITS.md` (file chung, ngoài danh sách được sửa của card): thêm một dòng mục `wave3/` trỏ tới `wave3/CREDITS.md` (nguồn đợt 3 đã ghi đủ ở đó).
