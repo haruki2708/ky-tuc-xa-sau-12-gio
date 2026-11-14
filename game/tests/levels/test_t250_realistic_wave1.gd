@@ -9,7 +9,11 @@ const CAMPUS := preload("res://scenes/levels/campus/campus.tscn")
 ## Every collider of the two stairwells, the fire door and the duty desk as main had them before T-250
 ## (_collider_print below, recorded on main ee05aa5). T-254 added one body to each stairwell (floor 4's landing rail,
 ## checked in test_t254_landing_rail.gd); the print leaves those out, so this still proves every other one unchanged.
-const COLLIDERS_MD5 := "c666d1adfd7714eb34419cd58fe46459"
+## T-258 split the main stairwell's east wall box on purpose (floor 4 beside the washroom stops at x 0.1; checked in
+## test_t258_main_stairs_wall.gd): main's row "Wall0.08000000000000007/Collision|(0.08, -4.0, -3.2)|...(0.16, 13.5, 6.0)"
+## became that box for floors 1-3 (centre y -5.375, 10.75 high) and EastWall4, EastWall4Back; every other row is
+## main's (was c666d1adfd7714eb34419cd58fe46459, 36 rows; now 38).
+const COLLIDERS_MD5 := "e6ec0257073ab48ffe011709bfa2bab9"
 const T254_BODIES: Array[StringName] = [&"Landing4Rail"]
 ## Markers and anchors directors and tests look up (positions as main has them).
 const CAMPUS_ANCHORS := {"FireKey": Vector3(39.8, 0.66, 0.42), "FireDoor": Vector3(44, 0, 2), "Collapse2F": Vector3(46.5, -6.6, -1),

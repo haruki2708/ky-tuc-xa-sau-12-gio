@@ -1493,10 +1493,24 @@ size = Vector3(0.16, 13.5, 10.0)
 material = SubResource("s5")
 
 [sub_resource type="BoxShape3D" id="s393"]
-size = Vector3(0.16, 13.5, 6)
+size = Vector3(0.16, 10.75, 6)
 
 [sub_resource type="BoxMesh" id="s394"]
-size = Vector3(0.16, 13.5, 6)
+size = Vector3(0.16, 10.75, 6)
+material = SubResource("s5")
+
+[sub_resource type="BoxShape3D" id="t258_s1"]
+size = Vector3(0.1, 2.75, 4.8)
+
+[sub_resource type="BoxMesh" id="t258_s2"]
+size = Vector3(0.1, 2.75, 4.8)
+material = SubResource("s5")
+
+[sub_resource type="BoxShape3D" id="t258_s3"]
+size = Vector3(0.16, 2.75, 1.2)
+
+[sub_resource type="BoxMesh" id="t258_s4"]
+size = Vector3(0.16, 2.75, 1.2)
 material = SubResource("s5")
 
 [sub_resource type="BoxShape3D" id="s395"]
@@ -6482,7 +6496,7 @@ shape = SubResource("s391")
 mesh = SubResource("s392")
 
 [node name="Wall0.08000000000000007" type="StaticBody3D" parent="MainStairs"]
-position = Vector3(0.08, -4, -3.2)
+position = Vector3(0.08, -5.375, -3.2)
 collision_layer = 1
 collision_mask = 0
 
@@ -6491,6 +6505,28 @@ shape = SubResource("s393")
 
 [node name="Mesh" type="MeshInstance3D" parent="MainStairs/Wall0.08000000000000007"]
 mesh = SubResource("s394")
+
+[node name="EastWall4" type="StaticBody3D" parent="MainStairs"]
+position = Vector3(0.05, 1.375, -2.6)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="MainStairs/EastWall4"]
+shape = SubResource("t258_s1")
+
+[node name="Mesh" type="MeshInstance3D" parent="MainStairs/EastWall4"]
+mesh = SubResource("t258_s2")
+
+[node name="EastWall4Back" type="StaticBody3D" parent="MainStairs"]
+position = Vector3(0.08, 1.375, -5.6)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="MainStairs/EastWall4Back"]
+shape = SubResource("t258_s3")
+
+[node name="Mesh" type="MeshInstance3D" parent="MainStairs/EastWall4Back"]
+mesh = SubResource("t258_s4")
 
 [node name="Back" type="StaticBody3D" parent="MainStairs"]
 position = Vector3(-2.5, -4, -6.3)
