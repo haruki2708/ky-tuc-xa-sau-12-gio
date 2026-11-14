@@ -1,5 +1,5 @@
 # T-261 — Đồ hoạ thật đợt 4: sân vận động, khán đài, dải nối vườn → sân vận động
-- Lane: B | Trạng thái: todo (giao 15/11/2026, D-176) | Agent: tài khoản Claude lane B, `D:\GAME_WORK\lane-b2`; model **Opus 5.5 xhigh** (khó thì max). Chủ dự án tự dán prompt (`lane-b.md` mục 1o).
+- Lane: B | Trạng thái: in progress, lượt 2 (giao 15/11/2026, D-176; chọn D-178) | Agent: tài khoản Claude lane B, `D:\GAME_WORK\lane-b2`; model **Opus 5.5 xhigh** (khó thì max). Chủ dự án tự dán prompt (`lane-b.md` mục 1o).
 - Nhánh: `lane-b/T-261-realistic-graphics-wave4-stadium` từ `origin/main` mới nhất.
 - Quyết định nền: **D-166** (đồ hoạ thật dựng bằng Blender, không PS1, không Tripo trừ khi chủ dự án đổi; ánh sáng giữ như nay), **D-167/D-172** (phong cách nhà B đợt 1–2: cũ vừa phải), **D-175** (vườn đợt 3: sân block xám, viền quét vôi, đèn cầu: dải nối phải khớp mép vườn), **D-176** (giao đợt này; chủ dự án chỉ chơi thử một lượt khi xong toàn bộ đồ hoạ). Kế hoạch: `art_source/graphics_upgrade/realistic_map/PLAN.md` đợt 4 (A13 + một phần A16).
 - Làm như đợt 3 (T-259): **lượt 1 góc mẫu rồi dừng chờ chủ dự án chọn; lượt 2 làm cả khu.**
@@ -14,7 +14,14 @@
 - D-149: bot sân vận động (T-238) hoãn tới khi sân có đồ hoạ mới. Sau đợt này HARU hỏi chủ dự án có chạy T-238 không; lane B không chạy bot.
 
 ## 1. Chủ dự án chốt
-(HARU điền sau lượt 1, khi chủ dự án chọn trên ảnh mẫu)
+**D-178 (15/11/2026):** chủ dự án xem ảnh lượt 1 (`previews/wave4/options_*.jpg`, `floodlights.jpg`) và chọn cả bảy câu theo đề xuất (phương án a):
+1. Đường chạy: **R1 cao su đỏ bạc màu, nứt**, vạch sơn mòn khoảng 1/3.
+2. Mặt sân: **C1 cỏ thật úa loang lổ**, trọc ở cầu môn.
+3. Khán đài chính: **S1 bậc bê tông trần**, không ghế nhựa. Khán đài phụ làm cùng kiểu.
+4. Cột đèn pha: **L1 thép côn mạ kẽm**; 4 đèn pha giữ nguyên, kính chao chỉ sáng khi `Floodlights` bật.
+5. Hàng rào: **H1 lưới B40 trên cột ống**, trụ cổng trát vôi; cánh cổng mở gập sát rào phía ngoài, không chắn lối.
+6. Mái tôn khung thép: **giữ 3 tấm bị mất** ở đầu hồi tây.
+7. **Được thay đồ rải PS1 trong sân** (rào vượt, ghế, giấy, chai trong `props.tscn` và `Stand_*`), ngoài dải A16 (mục 8 đã mở thêm). **Không đụng mảnh xác, vệt kéo sẫm, thùng rác**, va chạm và điểm gameplay; hình PS1 chỉ ẩn.
 
 ## 2. Việc, theo hai lượt
 
@@ -67,7 +74,7 @@
 - Test cũ đạt: `test_stands_props` (trừ ngân sách như mục 4), `test_campus`, `test_t259*`, `test_t251*`, `test_chapter3`, `test_chapter4`, `test_ch3_*`, `test_ch2_4_hand_targets`, `test_t249*`, `test_graphics_bindings`, `test_t260_occlusion`. Full `pwsh tools/test.ps1` và `pwsh tools/check.ps1` trước commit cuối.
 
 ## 8. Được phép sửa
-- `art_source/graphics_upgrade/realistic_map/wave4/`, `.../previews/wave4/`, `game/assets/models/graphics_pilot/realistic_map/wave4/`, `game/assets/textures/graphics_pilot/realistic_map/wave4/`, `game/assets/models/graphics_pilot/realistic_map/CREDITS.md` (thêm mục `wave4/`), `game/scenes/levels/campus/stadium.tscn`, `campus.tscn` và `props.tscn` (chỉ phần hình A16 trong mục 3), `campus.gd` (chỉ phần đèn sân nếu cần cho chao đèn), script cảnh mới trong `game/scenes/levels/campus/`, `game/tests/levels/test_stands_props.gd` (chỉ cách đếm ngân sách, mục 4), test mới `game/tests/levels/`, card này (Checklist, Handoff).
+- `art_source/graphics_upgrade/realistic_map/wave4/`, `.../previews/wave4/`, `game/assets/models/graphics_pilot/realistic_map/wave4/`, `game/assets/textures/graphics_pilot/realistic_map/wave4/`, `game/assets/models/graphics_pilot/realistic_map/CREDITS.md` (thêm mục `wave4/`), `game/scenes/levels/campus/stadium.tscn`, `campus.tscn` và `props.tscn` (chỉ phần hình A16 trong mục 3, và theo D-178 đồ rải trong sân vận động trừ mảnh xác, vệt kéo, thùng rác), `campus.gd` (chỉ phần đèn sân nếu cần cho chao đèn), script cảnh mới trong `game/scenes/levels/campus/`, `game/tests/levels/test_stands_props.gd` (chỉ cách đếm ngân sách, mục 4), test mới `game/tests/levels/`, card này (Checklist, Handoff).
 - Cảnh tạm `game/_probe_tmp/`: không commit, xoá khi xong.
 
 ## 9. Không được
