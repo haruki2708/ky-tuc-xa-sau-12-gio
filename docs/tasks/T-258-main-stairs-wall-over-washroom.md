@@ -1,5 +1,5 @@
 # T-258 — Chương 3–4: tường giếng cầu thang chính lấn vào nhà vệ sinh tầng 4, che gương và máng rửa
-- Lane: B | Trạng thái: todo | Agent: tài khoản Claude lane B, `D:\GAME_WORK\lane-b2`; model **Opus 5.5 xhigh**. Chủ dự án tự dán prompt (`lane-b.md` mục 1m).
+- Lane: B | Trạng thái: **xong, merged** (14/11/2026, `8ba7000`) | Agent: tài khoản Claude lane B, `D:\GAME_WORK\lane-b2`; model **Opus 5.5 xhigh**. Chủ dự án tự dán prompt (`lane-b.md` mục 1m).
 - Nhánh: `lane-b/T-258-main-stairs-wall-over-washroom` từ `origin/main` mới nhất (đã có T-256).
 - Nguồn: yêu cầu thay đổi 1 của [T-256](T-256-floor4-washroom-corridor-props.md) (lane B phát hiện); integrator xác nhận trên ảnh `realistic_map/previews/floor4_rest/compare_washroom_ch3.jpg`.
 
@@ -99,3 +99,7 @@ Nhánh `lane-b/T-258-main-stairs-wall-over-washroom` từ `origin/main` `415763a
 **Yêu cầu thay đổi (integrator):**
 1. Việc nhỏ cho lane B: thêm mặt ngoài (trát) cho tường sau nhà vệ sinh trong `washroom.glb` (`floor4_rest/build_washroom.py`, file của T-256), và kiểm luôn các mặt ngoài khác của nhà vệ sinh đã ẩn hình PS1 (mặt trên trần, tường đông giáp phòng 401). Không đụng va chạm.
 
+## Review (lane HARU thay integrator, 14/11/2026)
+- Phạm vi đúng card: `building_b.tscn` (hộp tường đông giếng thang chính `Wall0.08…` chỉ còn tầng 1–3, cao 10,75 m, tâm y −5,375; thêm `EastWall4` x 0…0,1 cạnh nhà vệ sinh tầng 4 và `EastWall4Back` phía sau), `build_stairs.py` và `main_stairs.glb`, test `test_t258_main_stairs_wall.gd` mới; md5 va chạm/nút trong test T-250, T-253 đổi có ghi chú đúng các dòng thay. Ảnh `realistic_map/previews/floor4_rest/compare_t258.jpg`.
+- Occluder T-260 không đặt ở giếng thang; tường tây nhà vệ sinh tầng 4 thuộc cảnh tầng 4 (không đổi), nên không phải sửa `make_occluders.py`.
+- Merge `8ba7000` (main đã có T-260 sau khi lane B rẽ nhánh): full test **993/0** (16:35–17:05), check **0 lỗi** (17:25); `test_t258` 5/5, `test_t260` 4/4.

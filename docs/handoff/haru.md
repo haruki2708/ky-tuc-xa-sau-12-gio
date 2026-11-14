@@ -96,6 +96,8 @@ Trả lời và viết tài liệu bằng tiếng Việt; code, comment, commit 
 3. **Chờ chủ dự án chơi thử** bản mới nhất (`82104ae`, có T-253…T-257, T-260; sau T-258 thì build lại) và chọn các điểm còn treo của T-255, T-256 (liệt kê ở dưới). Chủ dự án báo lỗi thì ghi D-xxx, viết card, giao lane.
 4. Việc nhỏ chưa làm (chỉ làm khi chủ dự án chọn): bốn lỗi nhỏ STATUS mục 7; yêu cầu thay đổi 3 của T-255 (director bỏ qua mở phòng khi người chơi đang ở trong).
 - Lúc bàn giao: main `2d03b96` sạch, đã đẩy; không có khoá Godot, không có Godot nào chạy; integrator không có việc dở, không có lượt chạy nền.
+- **Tiến độ HARU (từ 14/11 16:30, chủ dự án đồng ý):**
+  - Bước 1, T-258: review đạt (chỉ `building_b.tscn`: hộp tường đông giếng thang chính `Wall0.08…` còn tầng 1–3, cao 10,75 m; thêm `EastWall4` x 0…0,1 cạnh nhà vệ sinh tầng 4 và `EastWall4Back`; `build_stairs.py`, `main_stairs.glb`; test T-258 mới; md5 T-250, T-253 đổi có ghi chú đúng các dòng). Occluder T-260 không nằm ở giếng thang (tường tây nhà vệ sinh thuộc cảnh tầng 4, không đổi) nên không phải sửa. **Merge `8ba7000`; full test 993/0 (16:35–17:05), check 0 (17:25); đã đẩy main.** Card (Review), STATUS xong. Tiếp: build bản chơi, báo chủ dự án dán `lane-b.md` mục 1n (T-259 lượt 1).
 
 **Việc dở ngay lúc này (đọc trước):**
 - **VIỆC GIAO CHO HARU (14/11, D-173, chủ dự án: "cho haru làm"): [T-260](../tasks/T-260-occlusion-culling.md) occlusion culling.** Đọc card. Tóm tắt:
