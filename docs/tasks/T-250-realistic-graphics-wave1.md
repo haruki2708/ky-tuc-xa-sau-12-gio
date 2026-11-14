@@ -1,5 +1,5 @@
 # T-250 — Đồ hoạ thật đợt 1: bàn trực tầng 4, cầu thang thoát hiểm và cửa, cầu thang chính nhà B
-- Lane: B | Trạng thái: **merged 13/11/2026** (full test 949/0, check 0); chủ dự án duyệt phong cách (D-167) | Agent: tài khoản Claude lane B, `D:\GAME_WORK\lane-b2`; model **Opus 5.5 xhigh** (khó thì max), chủ dự án tự dán prompt (`lane-b.md` mục 1h).
+- Lane: B | Trạng thái: **merged 13/11/2026** (full test 949/0, check 0); chủ dự án duyệt phong cách (D-167), duyệt đợt 1 ngày 14/11 (D-172) | Agent: tài khoản Claude lane B, `D:\GAME_WORK\lane-b2`; model **Opus 5.5 xhigh** (khó thì max), chủ dự án tự dán prompt (`lane-b.md` mục 1h).
 - Nhánh: `lane-b/T-250-realistic-graphics-wave1` từ `origin/main` mới nhất.
 - Quyết định giao: **D-166** (12/11/2026): chủ dự án duyệt kế hoạch [T-248](T-248-realistic-graphics-survey.md) với 10 đợt theo đường người chơi đi; mọi thứ dựng **bằng Blender trước, theo đúng chất lượng đồ phòng 407**; chỗ nào chủ dự án không ưng thì đổi sang Tripo sau.
 
