@@ -244,6 +244,24 @@ Cập nhật Checklist và Handoff trong card. Không sửa STATUS hay DECISIONS
 Cuối phiên báo ngắn bằng tiếng Việt: xong gì, nhánh, commit, ảnh ở đâu, dòng RESULT test và check, có bị chặn không.
 ```
 
+## 1n. Giao T-259 (14/11/2026, D-172): đồ hoạ thật đợt 3 — vườn hoa, dải nối từ nhà B, cảnh ngoài nhìn từ tầng 4 ở chương 1–2
+Dán **sau khi T-258 xong** (hoặc trước nếu chủ dự án muốn). `/model` chọn **Opus 5.5**, effort **xhigh** (khó thì **max**), rồi dán:
+```text
+Việc mới cho lane B: T-259 — đồ hoạ thật đợt 3: vườn hoa trước nhà B (chương 3–4), dải nối từ nhà B, và bản nhẹ của vườn làm cảnh ngoài nhìn từ hành lang tầng 4 ở chương 1–2. Đọc docs/tasks/T-259-realistic-graphics-wave3-garden.md.
+Ở D:\GAME_WORK\lane-b2: git status (giữ thay đổi đang có, báo nếu có), git fetch origin, git switch -c lane-b/T-259-realistic-graphics-wave3-garden origin/main, git lfs pull.
+Đầu phiên ghi commit của card đã đọc (git log -1 --format=%h origin/main -- docs/tasks/T-259-realistic-graphics-wave3-garden.md).
+Phiên này CHỈ làm lượt 1 (card mục 2): khảo sát, bảng hợp đồng, danh sách node A16, góc mẫu quanh ghế Ngư với các phương án cây, hoa, sân, ghế, đèn kèm ảnh trong chương 3 thật. Xong thì commit, push nhánh, ghi Handoff, báo và DỪNG để chủ dự án chọn. Không làm lượt 2.
+D-166: dựng bằng Blender, không Tripo (bỏ qua dòng Tripo của PLAN cho vườn), giữ mật độ, giữ ánh sáng. Giữ nguyên va chạm, anchor, vùng, đèn; tán lá dưới 2 m phải nằm trong khối CanopyCollision của T-251. Mọi texture mới từ 512 px trở lên phải nén VRAM trong .import (compress/mode=2; normal thêm compress/normal_map=1).
+Không đổi director, luật, navmesh. Không Tripo, không extension Blender, không ảnh AI, không bot, không đo FPS.
+Godot theo luật Lượt Godot (file khóa D:\GAME_WORK\GODOT_DANG_CHAY.txt); máy ít RAM: đóng Blender và Godot khi không dùng.
+Commit nhỏ "T-259: ...", push nhánh. Không push main, không mở PR. Cập nhật Checklist và Handoff trong card. Không sửa STATUS hay DECISIONS.
+Cuối phiên báo ngắn bằng tiếng Việt: xong gì, nhánh, commit, ảnh phương án ở đâu, phương án đề xuất, câu hỏi cho chủ dự án, có bị chặn không.
+```
+**Lượt 2** (sau khi chủ dự án chọn, integrator đã ghi vào card mục 1): dán
+```text
+Tiếp tục T-259 lượt 2: chủ dự án đã chọn (card mục 1). Làm cả vườn, dải nối nhà B → vườn, cảnh ngoài chương 1–2, ảnh trước/sau, test, rồi full pwsh tools/test.ps1, pwsh tools/check.ps1, git checkout -- game/default_bus_layout.tres. Commit, push nhánh, cập nhật Handoff, báo ngắn như lượt 1 kèm dòng RESULT test và check.
+```
+
 ## 2. Prompt giao việc (integrator điền T-xxx)
 ```text
 Việc mới cho lane B: <T-xxx> — đọc docs/tasks/<file card>.md.

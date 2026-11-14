@@ -91,7 +91,7 @@ Trả lời và viết tài liệu bằng tiếng Việt; code, comment, commit 
 **Cập nhật:** 14/11/2026 khoảng 03:30, integrator (Fable 5.2) nhận lại việc từ HARU: **T-256 đã merge vào main**, card T-258 cho lane B, bản chơi `e738e2e` đã build. Không có việc dở.
 
 **Việc dở ngay lúc này (đọc trước):**
-- **14/11: D-172, chủ dự án duyệt đồ hoạ thật đợt 1 (T-250, T-254) và đợt 2 (T-253).** Việc tiếp theo theo kế hoạch: đợt 3 vườn hoa (chưa giao, chờ chủ dự án gọi; sau T-258).
+- **14/11: D-172, chủ dự án duyệt đồ hoạ thật đợt 1 (T-250, T-254) và đợt 2 (T-253).** Đợt 3 vườn hoa: card [T-259](../tasks/T-259-realistic-graphics-wave3-garden.md), prompt `lane-b.md` mục 1n (lượt 1 góc mẫu rồi dừng chờ chủ dự án chọn; lượt 2 cả vườn), giao sau T-258.
 - **T-256 merged** (lane B `9153597`; cây `game/` sau merge trùng cây lane B đã chạy full test 984/0; integrator chạy lại check 0 lỗi, `test_t256` 9/9, 14/11 03:21). Review trong card.
 - **Bản chơi mới nhất** (package PASS 14/11 03:23, commit `e738e2e`): `build/windows/KyTucXa.exe`, zip `build/dist/KyTucXa-0.0.1-e738e2e-win64.zip` (497 MiB); có T-253, T-254, T-255, D-171, T-257, T-256. Đã báo chủ dự án; chưa ai chơi thử.
 - **[T-258](../tasks/T-258-main-stairs-wall-over-washroom.md)** (lane B, todo): ở chương 3–4 tường PS1 của giếng cầu thang chính lấn 6 cm vào nhà vệ sinh tầng 4, che gương và máng rửa mới. Prompt `lane-b.md` mục 1m; chủ dự án dán khi lane B có hạn mức.
@@ -162,4 +162,4 @@ Bàn giao lúc 13/11 23:25: integrator sắp hết hạn mức, giao T-257 (nén
 - Lane hết hạn mức hay bị dừng giữa chừng: lưu (commit, push) phần đã làm lên nhánh của lane, gỡ khoá Godot nó bỏ lại (khi không còn tiến trình Godot nào).
 - Script chạy test, khoá, đóng gói của integrator: `build/integrator/run_tests_locked.ps1`, `run_locked.ps1`, `package_locked.ps1` (thư mục `build/` không commit).
 
-**Số tiếp theo:** D-173, T-259.
+**Số tiếp theo:** D-173, T-260.
