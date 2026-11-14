@@ -91,6 +91,13 @@ Trả lời và viết tài liệu bằng tiếng Việt; code, comment, commit 
 **Cập nhật:** 14/11/2026 khoảng 03:30, integrator (Fable 5.2) nhận lại việc từ HARU: **T-256 đã merge vào main**, card T-258 cho lane B, bản chơi `e738e2e` đã build. Không có việc dở.
 
 **Việc dở ngay lúc này (đọc trước):**
+- **VIỆC GIAO CHO HARU (14/11, D-173, chủ dự án: "cho haru làm"): [T-260](../tasks/T-260-occlusion-culling.md) occlusion culling.** Đọc card. Tóm tắt:
+  - Nhánh `integrator/T-260-occlusion-culling` từ main. Bật `rendering/occlusion_culling/use_occlusion_culling` trong `game/project.godot`; occluder hình khối (`BoxOccluder3D`, `QuadOccluder3D`…) đặt trong tường, sàn kín, để trong **cảnh riêng của core** `game/scenes/main/occlusion/`, gắn vào `chapter1.tscn`…`chapter4.tscn`. **Không sửa cảnh lane B** (lane B đang làm T-258 `building_b.tscn`, rồi T-259 vườn hoa).
+  - Đọc tài liệu Godot 4.7 trước (bake occluder chỉ có trong editor; dự án chạy không cửa sổ).
+  - Ảnh bật/tắt cùng camera và một lượt camera di chuyển qua cửa, góc cầu thang (không được có vật biến mất, nhấp nháy). Đo FPS trước/sau bằng `build/integrator/t255_fps.gd` (thêm tuỳ chọn bật/tắt), 1080p, chương 1 và 3, 2 vòng. Báo cáo `tools/reports/T-260-occlusion-culling.md`.
+  - **Không merge khi chủ dự án chưa quyết** bật trong bản chơi. Đề xuất bật chỉ khi có lợi rõ và không lỗi hình.
+  - Lane B chạy song song: chờ khoá Godot, nhường khi lane B cần, không tắt Godot của lane B. Integrator không chạy cùng lúc với HARU.
+  - Công cụ của integrator trong `build/integrator/`: `godot_steps_locked.ps1` (gọi bằng `&`), `run_tests_locked.ps1`, `package_locked.ps1`, `t255_fps.gd`, `t257_capture.gd` (mẫu cảnh chụp).
 - **14/11: D-172, chủ dự án duyệt đồ hoạ thật đợt 1 (T-250, T-254) và đợt 2 (T-253).** Đợt 3 vườn hoa: card [T-259](../tasks/T-259-realistic-graphics-wave3-garden.md), prompt `lane-b.md` mục 1n (lượt 1 góc mẫu rồi dừng chờ chủ dự án chọn; lượt 2 cả vườn), giao sau T-258.
 - **T-256 merged** (lane B `9153597`; cây `game/` sau merge trùng cây lane B đã chạy full test 984/0; integrator chạy lại check 0 lỗi, `test_t256` 9/9, 14/11 03:21). Review trong card.
 - **Bản chơi mới nhất** (package PASS 14/11 03:23, commit `e738e2e`): `build/windows/KyTucXa.exe`, zip `build/dist/KyTucXa-0.0.1-e738e2e-win64.zip` (497 MiB); có T-253, T-254, T-255, D-171, T-257, T-256. Đã báo chủ dự án; chưa ai chơi thử.
@@ -162,4 +169,4 @@ Bàn giao lúc 13/11 23:25: integrator sắp hết hạn mức, giao T-257 (nén
 - Lane hết hạn mức hay bị dừng giữa chừng: lưu (commit, push) phần đã làm lên nhánh của lane, gỡ khoá Godot nó bỏ lại (khi không còn tiến trình Godot nào).
 - Script chạy test, khoá, đóng gói của integrator: `build/integrator/run_tests_locked.ps1`, `run_locked.ps1`, `package_locked.ps1` (thư mục `build/` không commit).
 
-**Số tiếp theo:** D-173, T-260.
+**Số tiếp theo:** D-174, T-261.

@@ -53,7 +53,7 @@
 - Lá: thẻ lá alpha **cắt (alpha scissor), không trộn alpha**; lá **không đổ bóng** (trừ khi integrator đo thấy không tốn); thân và cành đổ bóng được. Mỗi cây có bản gần và bản xa (LOD hoặc `visibility_range`); hoa, cỏ lặp dùng MultiMesh theo cụm.
 - Ngân sách (PLAN mục 6): vườn **≤ 0,40 ms** thêm khi ở gần; ghi số tam giác, vật liệu, số lần vẽ cho góc mẫu và cả vườn. Bản nhẹ chương 1–2: rất nhẹ (gợi ý ≤ 30 nghìn tam giác, ít vật liệu, không bóng).
 - **Mọi texture mới từ 512 px trở lên phải nén VRAM:** trong `.import` đặt `compress/mode=2`, texture normal thêm `compress/normal_map=1` (Godot nhập ở chế độ không cửa sổ để mặc định **không nén**, T-257 vừa phải sửa 333 file vì việc này). Texture lá có alpha: kiểm ảnh sau khi nén, mép lá không nhoè.
-- Không đo FPS, không chạy bot (integrator đo sau merge nếu chủ dự án cho).
+- Không đo FPS, không chạy bot. **D-173: chủ dự án không cho đo FPS sau merge đợt này**, nên ghi số tam giác, vật liệu, số lần vẽ thật kỹ.
 
 ## 6. Ảnh
 - `art_source/graphics_upgrade/realistic_map/previews/wave3/`: lượt 1 `pilot_*` và phương án; lượt 2 `before_*`/`after_*` cùng camera trong **chương 3 thật** (cổng vào vườn, giữa vườn, ghế Ngư, giường tầng đổ, nhìn từ hành lang tầng 4 xuống) và **chương 1 thật** (nhìn từ hành lang tầng 4 xuống, trước/sau bản nhẹ); ảnh ghép tổng `overview.jpg`. Ban đêm như chương, có và không đèn pin.
