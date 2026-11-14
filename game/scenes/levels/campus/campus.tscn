@@ -25,6 +25,8 @@
 [ext_resource type="Script" path="res://scenes/levels/campus/garden_real.gd" id="t259_real"]
 [ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave3/strip_b_garden.glb" id="t259_strip"]
 [ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave3/strip_props.glb" id="t259_strip_props"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave4/strip_garden_stadium.glb" id="t261_strip"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave4/strip_stadium_props.glb" id="t261_strip_props"]
 
 [sub_resource type="BoxShape3D" id="s1"]
 size = Vector3(50, 0.3, 50)
@@ -5922,6 +5924,7 @@ mesh = SubResource("s143")
 position = Vector3(80, -9.885, 77)
 
 [node name="Mesh" type="MeshInstance3D" parent="Road/WestBranch"]
+visible = false
 mesh = SubResource("s144")
 
 [node name="EastBranch" type="Node3D" parent="Road"]
@@ -5934,6 +5937,7 @@ mesh = SubResource("s145")
 position = Vector3(96, -9.885, 166)
 
 [node name="Mesh" type="MeshInstance3D" parent="Road/StadiumWestAccess"]
+visible = false
 mesh = SubResource("s146")
 
 [node name="StadiumEastAccess" type="Node3D" parent="Road"]
@@ -10724,4 +10728,13 @@ script = ExtResource("t259_real")
 position = Vector3(0, -9.9, 0)
 
 [node name="Props" parent="StripBGarden" instance=ExtResource("t259_strip_props")]
+position = Vector3(0, -9.9, 0)
+
+[node name="StripGardenStadium" type="Node3D" parent="."]
+script = ExtResource("t259_real")
+
+[node name="Ground" parent="StripGardenStadium" instance=ExtResource("t261_strip")]
+position = Vector3(0, -9.9, 0)
+
+[node name="Props" parent="StripGardenStadium" instance=ExtResource("t261_strip_props")]
 position = Vector3(0, -9.9, 0)

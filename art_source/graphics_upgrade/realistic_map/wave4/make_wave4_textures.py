@@ -312,6 +312,98 @@ ALL = {"track_rubber": track_rubber, "track_cinder": track_cinder, "turf": turf,
 	"chainlink": chainlink, "net": net, "mask_field": mask_field, "mask_stand": mask_stand}
 
 
+# --- round 2 (D-178) ----------------------------------------------------------------------------------------------
+
+PALETTE_FIXED = {"hurdle_red": (0.62, 0.1, 0.08), "hurdle_white": (0.8, 0.8, 0.77), "black": (0.06, 0.06, 0.07),
+	"steel": (0.42, 0.43, 0.44), "screen": (0.03, 0.04, 0.06), "sole": (0.72, 0.7, 0.66), "napkin": (0.86, 0.84, 0.76)}
+
+
+def palette():
+	"""8 x 8 cells of flat colours with a fine weave noise: the PS1 tints of the stadium's bags, shoes, sandals,
+	phones, trays (w4_ps1_props.json) and fixed colours (hurdle stripes, soles...). palette.json maps each to a cell."""
+	import json
+	data = json.loads(L.W4_PS1_PROPS.read_text(encoding="utf-8"))
+	tints = set()
+	for name, entry in data.items():
+		for basis, origin, rgba in L.instances(entry["data"]):
+			kind = L.prop_kind(name, basis, origin)
+			if kind in ("gym_bag", "backpack", "backpack_pocket", "shoe", "sandal", "phone", "tray", "tray_paper"):
+				tints.add(tuple(round(t, 3) for t in rgba[:3]))
+	cells = {k: v for k, v in PALETTE_FIXED.items()}
+	for t in sorted(tints):
+		cells["%g,%g,%g" % t] = t
+	assert len(cells) <= 64, len(cells)
+	size, cell = 512, 64
+	rng = np.random.default_rng(261_10)
+	weave = smooth_noise(rng, size, 1.2) * 0.04 + smooth_noise(rng, size, 6) * 0.05
+	rgb = np.zeros((size, size, 3))
+	index = {}
+	for i, (key, col) in enumerate(cells.items()):
+		cy, cx = divmod(i, 8)
+		rgb[cy * cell:(cy + 1) * cell, cx * cell:(cx + 1) * cell] = col
+		index[key] = [cx, cy]
+	rgb *= (1.0 + weave)[..., None]
+	save("palette.png", rgb)
+	(HERE / "palette.json").write_text(json.dumps(index, indent=0), encoding="utf-8", newline="\n")
+
+
+STRIP_MASK = (384, 1200)  # UV2 over the A16 box: u = (x - 50) / 60, v = (z + 11) / 187
+
+
+def strip_coords(rng_seed):
+	w, h = STRIP_MASK
+	v, u = np.mgrid[0:h, 0:w].astype(np.float64)
+	x = L.A16_BOX["x"][0] + u / (w - 1) * (L.A16_BOX["x"][1] - L.A16_BOX["x"][0])
+	z = L.A16_BOX["z"][0] + v / (h - 1) * (L.A16_BOX["z"][1] - L.A16_BOX["z"][0])
+	return np.random.default_rng(rng_seed), x, z
+
+
+def mask_strip4():
+	"""The strip's ground (ground_blend: R bare dirt, G wet): the path from the garden's east side along z 28 to the
+	road, worn verges along the road and the access road, the dirt corridor x 96..108 the dead walk to the west gate,
+	the gate's apron, round the rubble."""
+	rng, x, z = strip_coords(261_11)
+	h, w = x.shape
+	big = smooth_noise(rng, (h, w), 30)
+	mid = smooth_noise(rng, (h, w), 8)
+	road = ((x > 75.6) & (x < 84.4) & (z < 169.4)) | ((x > 83.6) & (z > 162.6) & (z < 169.4))
+	d_road = np.minimum(np.where(z < 169.4, np.abs(np.clip(x, 76, 84) - x) + np.where((x > 76) & (x < 84), 0, 0), 99),
+		np.where(x > 84, np.abs(np.clip(z, 163, 169) - z), 99))
+	path = np.exp(-((z - 28.5) / 1.6) ** 2) * (x < 78)
+	verge = np.exp(-d_road / 0.9) * 0.8
+	corridor = np.exp(-((x - 102.0) / 5.0) ** 2) * smoothstep(30, 60, z) * smoothstep(176, 150, z) * 0.55
+	gate = np.exp(-(((x - 106.0) / 5.0) ** 2 + ((z - 166.0) / 7.0) ** 2))
+	rubble = sum(np.exp(-(((x - cx) ** 2 + (z - cz) ** 2) / (r * 1.8) ** 2)) for (cx, cz), r in L.A16_RUBBLE)
+	dirt = np.maximum.reduce([path, verge, corridor, gate, rubble * 0.9])
+	dirt = np.clip(dirt * (0.7 + 0.45 * smoothstep(-1, 1.2, mid)) + 0.25 * smoothstep(1.0, 2.2, big), 0, 1)
+	wet = np.clip(np.exp(-d_road / 0.3) * smoothstep(0.0, 1.4, big + 0.6 * mid) + smoothstep(1.7, 2.5, big) * 0.6, 0, 1)
+	dirt = np.where(road, 0.0, dirt)
+	save("mask_strip4.png", np.dstack([dirt, wet, np.zeros_like(x), np.ones_like(x)]), "RGBA")
+
+
+def mask_road():
+	"""The strip's paver road (room407_shell kind 1: R grout dirt, G grime, B wet, A wear): two wheel tracks along
+	WestBranch (x 78, 82) and the access road (z 165, 167) polished and dark, grime and puddles by the kerbs, oil."""
+	rng, x, z = strip_coords(261_12)
+	h, w = x.shape
+	big = smooth_noise(rng, (h, w), 25)
+	mid = smooth_noise(rng, (h, w), 6)
+	along = x < 84
+	tracks = np.where(along, np.maximum(np.exp(-((x - 78.0) / 0.45) ** 2), np.exp(-((x - 82.0) / 0.45) ** 2)),
+		np.maximum(np.exp(-((z - 165.0) / 0.45) ** 2), np.exp(-((z - 167.0) / 0.45) ** 2)))
+	edge = np.where(along, np.minimum(np.abs(x - 76), np.abs(x - 84)), np.minimum(np.abs(z - 163), np.abs(z - 169)))
+	grout = np.clip(0.55 + 0.3 * smoothstep(-1, 1.5, mid) + 0.3 * np.exp(-edge / 0.6), 0, 1)
+	grime = np.clip(0.35 * np.exp(-edge / 0.8) + 0.3 * tracks + 0.35 * smoothstep(1.2, 2.2, big + 0.4 * mid), 0, 1)
+	wet = np.clip(np.exp(-edge / 0.35) * smoothstep(-0.2, 1.4, big + 0.5 * mid) * 0.9 + smoothstep(1.8, 2.5, big) * tracks, 0, 1)
+	wear = np.clip(tracks * (0.6 + 0.4 * smoothstep(-1, 1, mid)), 0, 1)
+	save("mask_road.png", np.dstack([grout, grime, wet, wear]), "RGBA")
+
+
+ALL.update({"palette": palette, "mask_strip4": mask_strip4, "mask_road": mask_road})
+# Round 1 options the owner did not pick (D-178) are drawn only when named.
+PILOT_ONLY = {"track_cinder", "turf"}
+
+
 if __name__ == "__main__":
-	for key in (sys.argv[1:] or list(ALL)):
+	for key in (sys.argv[1:] or [k for k in ALL if k not in PILOT_ONLY]):
 		ALL[key]()

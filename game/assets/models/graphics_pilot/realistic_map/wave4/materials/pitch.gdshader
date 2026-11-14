@@ -1,14 +1,10 @@
 shader_type spatial;
-// T-261: the infield. UV = world (x, z) in metres; UV2 = mask_field.png (R bare dirt, G wet, B dry grass, A turf worn to
-// the crumb). kind 0 living grass (C1), kind 1 artificial turf (C2). The pitch markings (96 x 58 m, centre 198, 166)
-// are drawn here and worn by the noise texture.
-uniform int kind = 0;
+// T-261 (D-178 C1): the infield's living grass. UV = world (x, z) in metres; UV2 = mask_field.png (R bare dirt, G wet,
+// B dry grass). The pitch markings (96 x 58 m, centre 198, 166) are drawn here and worn by the noise texture.
 uniform sampler2D grass_albedo : source_color, filter_linear_mipmap_anisotropic, repeat_enable;
 uniform sampler2D grass_normal : hint_normal, filter_linear_mipmap_anisotropic, repeat_enable;
 uniform sampler2D dirt_albedo : source_color, filter_linear_mipmap_anisotropic, repeat_enable;
 uniform sampler2D dirt_normal : hint_normal, filter_linear_mipmap_anisotropic, repeat_enable;
-uniform sampler2D turf_albedo : source_color, filter_linear_mipmap_anisotropic, repeat_enable;
-uniform sampler2D turf_normal : hint_normal, filter_linear_mipmap_anisotropic, repeat_enable;
 uniform sampler2D mask : hint_default_black, filter_linear, repeat_disable;
 uniform sampler2D noise : hint_default_white, filter_linear_mipmap, repeat_enable;
 uniform vec3 dry_tint : source_color = vec3(1.0, 0.82, 0.5);
@@ -56,32 +52,15 @@ void fragment() {
 	float line = clamp((0.06 + 0.5 * fw - markings(w)) / fw, 0.0, 1.0) * min(1.0, 0.12 / fw);
 	float gone = 1.0 - smoothstep(line_wear - 0.08, line_wear + 0.08, nf.g * 0.55 + nb.r * 0.45);
 	line *= 1.0 - gone;
-	vec3 albedo;
-	vec3 nrm;
-	float rough;
-	if (kind == 0) {
-		vec3 grass = texture(grass_albedo, w * 0.5).rgb;
-		vec3 dry = grass * dry_tint * 1.25;
-		grass = mix(grass, dry, clamp(m.b * (0.6 + 0.6 * nf.b), 0.0, 1.0));
-		vec3 dirt = texture(dirt_albedo, w * 0.9).rgb * vec3(1.45, 1.35, 1.25);
-		float bald = smoothstep(0.35, 0.7, m.r + (texture(grass_albedo, w * 0.19).g - 0.25) * 0.6 + (nf.a - 0.5) * 0.3);
-		albedo = mix(grass, dirt, bald);
-		nrm = mix(texture(grass_normal, w * 0.5).rgb, texture(dirt_normal, w * 0.9).rgb, bald);
-		albedo = mix(albedo, line_color * (0.75 + 0.25 * grass.g * 3.0), line);
-		rough = 0.93;
-	} else {
-		vec3 t1 = texture(turf_albedo, w * 2.0).rgb;
-		vec3 t2 = texture(turf_albedo, vec2(w.y, -w.x) * 1.7 + 0.31).rgb;
-		float stripe = 0.93 + 0.07 * step(0.5, fract((w.x - centre.x) / 5.0));
-		vec3 turf = mix(t1, t2, 0.5) * stripe * (0.88 + 0.24 * nb.g) * mix(vec3(1.0), vec3(1.25, 1.2, 1.0), m.b * 0.6);
-		float bare = smoothstep(0.4, 0.75, m.a + (nf.a - 0.5) * 0.35);
-		vec3 crumb = vec3(0.05) * (0.8 + 0.4 * nf.r);
-		float lum = dot(t1, vec3(0.33)) * 2.5;
-		albedo = mix(turf, crumb, bare);
-		albedo = mix(albedo, line_color * clamp(lum, 0.6, 1.1), line * (1.0 - bare));
-		nrm = mix(mix(texture(turf_normal, w * 2.0).rgb, texture(turf_normal, vec2(w.y, -w.x) * 1.7 + 0.31).rgb, 0.5), vec3(0.5, 0.5, 1.0), bare * 0.6);
-		rough = mix(0.75, 0.9, bare);
-	}
+	vec3 grass = texture(grass_albedo, w * 0.5).rgb;
+	vec3 dry = grass * dry_tint * 1.25;
+	grass = mix(grass, dry, clamp(m.b * (0.6 + 0.6 * nf.b), 0.0, 1.0));
+	vec3 dirt = texture(dirt_albedo, w * 0.9).rgb * vec3(1.45, 1.35, 1.25);
+	float bald = smoothstep(0.35, 0.7, m.r + (texture(grass_albedo, w * 0.19).g - 0.25) * 0.6 + (nf.a - 0.5) * 0.3);
+	vec3 albedo = mix(grass, dirt, bald);
+	vec3 nrm = mix(texture(grass_normal, w * 0.5).rgb, texture(dirt_normal, w * 0.9).rgb, bald);
+	albedo = mix(albedo, line_color * (0.75 + 0.25 * grass.g * 3.0), line);
+	float rough = 0.93;
 	float wet = clamp(m.g * 0.5, 0.0, 1.0);
 	ALBEDO = albedo * (1.0 - 0.3 * wet);
 	ROUGHNESS = mix(rough, 0.4, wet);

@@ -4,6 +4,7 @@ from the PS1 scene (collision shapes, MultiMesh data of Stand_*, strip vertices 
 pieces stand where the old ones stood; nothing here changes a collider.
 """
 import math
+from pathlib import Path
 
 G = -9.9  # ground and TrackBounds top
 
@@ -123,3 +124,89 @@ def inside_track(x, z, r):
 		return abs(z - TRACK_CZ) <= r
 	c = cw if x < cw else ce
 	return math.hypot(x - c, z - TRACK_CZ) <= r
+
+
+# --- round 2 (D-178) -------------------------------------------------------------------------------------------
+# South stand (SecondaryBleachers): 7 tiers, tread 0.9 deep going -z, riser 0.4, x 168..228; no roof (as PS1).
+SOUTH = {"x": (168.0, 228.0), "tiers": 7, "tread": 0.9, "riser": 0.4, "z0": 119.5, "tread0_top": -9.7,
+	"front_wall": {"z": (119.6, 120.0), "y": (G, -8.8), "x": [(168.0, 180.0), (186.0, 210.0), (216.0, 228.0)]},
+	"aisles": [(180.0, 186.0), (210.0, 216.0)], "rear": {"z": (112.9, 113.2), "y_top": -5.9},
+	"ends": [(167.7, 168.0), (228.0, 228.3)], "end_top": ((119.74, -8.69), (113.44, -5.89))}
+
+
+def south_ramp_y(z):
+	"""Top of the SecondaryBleachers slab collision (from (119.5, G) down-z to (113.2, -7.1))."""
+	return G + max(0.0, (SOUTH["z0"] - z) * (2.8 / 6.3))
+
+
+# The stadium's props (props.tscn, T-192 scatter.py) replaced in round 2 (D-178 question 7): what people dropped,
+# hurdles, crates. Bodies (arms, legs, torsos, heads), blood (D_red_quad), cracks and drag marks (D_iron_quad, but the
+# phones' thin dark edge) and bins stay. Signature = (texture, kind, rounded scale) of one MultiMesh instance.
+STADIUM_AREA = {"x": (108.0, 290.0), "z": (108.0, 236.0)}
+PROP_KINDS = {
+	("white", "box", (0.04, 0.84, 0.04)): "hurdle_post",
+	("white", "box", (1.2, 0.07, 0.05)): "hurdle_bar",
+	("white", "box", (0.75, 0.32, 0.3)): "gym_bag",
+	("white", "box", (0.32, 0.42, 0.2)): "backpack",
+	("white", "box", (0.26, 0.2, 0.06)): "backpack_pocket",
+	("white", "box", (0.26, 0.1, 0.1)): "shoe",
+	("white", "box", (0.42, 0.03, 0.3)): "tray",
+	("paper", "box", (0.34, 0.01, 0.16)): "tray_paper",
+	("white", "box", (0.8, 0.6, 0.8)): "crate",
+	("paper", "quad", (0.18, 1.0, 0.26)): "paper",
+	("white", "quad", (0.11, 1.0, 0.27)): "sandal",
+	("white", "quad", (0.07, 1.0, 0.15)): "phone",
+	("iron", "quad", (0.01, 1.0, 0.17)): "phone_edge",
+}
+W4_PS1_PROPS = Path(__file__).resolve().parent / "w4_ps1_props.json"
+
+
+def chunk_signature(node):
+	"""props.tscn node name (P_<texture>_<kind>_<chunk>) -> (texture, kind)."""
+	parts = node.split("_")
+	return parts[1], parts[2]
+
+
+def prop_kind(node, basis, origin):
+	"""Kind of a props.tscn instance this wave replaces inside the stadium, or None."""
+	x, _, z = origin
+	if not (STADIUM_AREA["x"][0] <= x <= STADIUM_AREA["x"][1] and STADIUM_AREA["z"][0] <= z <= STADIUM_AREA["z"][1]):
+		return None
+	scale = tuple(round(math.sqrt(sum(t * t for t in col)), 2) for col in basis)
+	if max(scale) == 0:
+		return None
+	return PROP_KINDS.get((*chunk_signature(node), scale))
+
+
+def instances(values):
+	"""boxes.gd data -> [(basis columns, origin, rgba)]."""
+	out = []
+	for k in range(0, len(values), 16):
+		v = values[k:k + 16]
+		out.append(((tuple(v[0:3]), tuple(v[3:6]), tuple(v[6:9])), tuple(v[9:12]), tuple(v[12:16])))
+	return out
+
+
+def a16_kind(node, basis, origin):
+	"""A16 box pieces (list_a16_box.py rules): 'litter', 'rubble', 'rubble pipe' or None."""
+	x, y, z = origin
+	box = A16_BOX
+	if not (box["x"][0] <= x <= box["x"][1] and box["z"][0] <= z <= box["z"][1] and box["y"][0] <= y <= box["y"][1]):
+		return None
+	scale = tuple(math.sqrt(sum(t * t for t in col)) for col in basis)
+	if max(scale) == 0:
+		return None
+	near = any((x - cx) ** 2 + (z - cz) ** 2 <= r * r for (cx, cz), r in A16_RUBBLE)
+	if node.startswith(("P_paper", "D_paper")) and y < -9.7:
+		return "litter"
+	if near and node.startswith("P_concrete_box") and max(scale) < 1.0:
+		return "rubble"
+	if near and node.startswith("P_iron_cylinder") and abs(scale[1] - 1.1) < 0.05:
+		return "rubble pipe"
+	return None
+
+
+A16_RUBBLE = [((86.95, 151.44), 1.6), ((99.2, 173.5), 1.5)]  # props.tscn Solids/Body_p2_p3/S1, Body_p2_p4/S1
+# T-259 already zeroed some instances of this chunk inside its strip; the rest all lie in this wave's box, so the
+# whole node is hidden instead (test_t259_garden checks that every zeroed instance there is in its strip).
+HIDE_WHOLE = ["Decals/D_paper_quad_p0_p0"]

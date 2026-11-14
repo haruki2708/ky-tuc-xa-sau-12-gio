@@ -57,8 +57,8 @@ def tint_to(res_path, target):
 
 TRACK_COMMON = {"noise": SHELL + "noise.png", "mask": OWN4 + "mask_field.png"}
 PITCH_COMMON = {"grass_albedo": OWN3 + "ground_grass_color.png", "grass_normal": OWN3 + "ground_grass_normal.png",
-	"dirt_albedo": OWN3 + "soil_color.png", "dirt_normal": OWN3 + "soil_normal.png", "turf_albedo": OWN4 + "turf_color.png",
-	"turf_normal": OWN4 + "turf_normal.png", "mask": OWN4 + "mask_field.png", "noise": SHELL + "noise.png"}
+	"dirt_albedo": OWN3 + "soil_color.png", "dirt_normal": OWN3 + "soil_normal.png", "mask": OWN4 + "mask_field.png",
+	"noise": SHELL + "noise.png"}
 
 
 def looks():
@@ -67,16 +67,12 @@ def looks():
 		"W4Apron": {"ground": {"grass_albedo": OWN3 + "ground_grass_color.png", "grass_normal": OWN3 + "ground_grass_normal.png",
 			"dirt_albedo": OWN3 + "soil_color.png", "dirt_normal": OWN3 + "soil_normal.png", "mask": OWN4 + "mask_field.png",
 			"dirt_tint": (1.45, 1.35, 1.25), "grass_scale": 0.5, "dirt_scale": 0.9}},
-		# R1: faded red rubber, painted lane lines a third gone. R2: cinder, chalked lines.
+		# R1 (D-178): faded red rubber, painted lane lines a third gone.
 		"W4TrackRubber": {"track": {**TRACK_COMMON, "surface_albedo": OWN4 + "track_rubber_color.png",
 			"surface_normal": OWN4 + "track_rubber_normal.png", "line_color": (0.78, 0.77, 0.73), "line_wear": 0.32,
 			"line_softness": 0.003, "inner_wear": 0.45, "wear_color": (0.5, 0.36, 0.31), "roughness_value": 0.86}},
-		"W4TrackCinder": {"track": {**TRACK_COMMON, "surface_albedo": OWN4 + "track_cinder_color.png",
-			"surface_normal": OWN4 + "track_cinder_normal.png", "line_color": (0.74, 0.73, 0.68), "line_wear": 0.45,
-			"line_softness": 0.012, "line_width": 0.065, "inner_wear": 0.35, "wear_color": (0.26, 0.21, 0.18), "roughness_value": 0.95}},
-		# C1: living grass, dry and bald in patches; C2: old artificial turf worn to the crumb in the goalmouths.
-		"W4PitchGrass": {"pitch": {**PITCH_COMMON, "kind": 0}},
-		"W4Turf": {"pitch": {**PITCH_COMMON, "kind": 1}},
+		# C1 (D-178): living grass, dry and bald in patches.
+		"W4PitchGrass": {"pitch": dict(PITCH_COMMON)},
 		# White paint (goal frame, kerb, fascia, track marks): wave 1's grey door paint taken to an old off-white.
 		"W4Paint": {"albedo": OWN1 + "paint_grey_color.png", "normal": OWN1 + "paint_grey_normal.png",
 			"orm": OWN1 + "paint_grey_orm.png", "color": tint_to(OWN1 + "paint_grey_color.png", (0.66, 0.66, 0.63)), "scale": 1.0},
@@ -91,9 +87,6 @@ def looks():
 			"base_tint": tint_to(CORNER + "fixtures_plastered_wall_04_small_color.jpg", (0.5, 0.49, 0.46)), "mask": OWN4 + "mask_stand.png",
 			"peel_strength": 0.0, "grime_strength": 1.2, "stain_strength": 0.9, "mould_strength": 0.9, "normal_strength": 0.8,
 			"grime_color": (0.42, 0.39, 0.33), "stain_color": (0.62, 0.52, 0.38)}},
-		# S2 seats: moulded polypropylene, sun-faded blue (red at run time for the colour question).
-		"W4Seat": {"color": (0.14, 0.25, 0.42), "rough": 0.5},
-		"W4SeatRed": {"color": (0.46, 0.12, 0.1), "rough": 0.5},
 		# Roof: the approved green-painted steel, a little lighter; galvanised corrugated sheet.
 		"W4SteelFrame": {**GREEN_RUST, "color": (0.5, 0.62, 0.55)},
 		"W4RoofSheet": {"albedo": OWN4 + "roof_sheet_color.png", "normal": OWN4 + "roof_sheet_normal.png", "rough": 0.5,
@@ -103,6 +96,15 @@ def looks():
 			"color": tint_to(SHELL + "aluminium_color.jpg", (0.5, 0.51, 0.5)), "scale": 1.0, "metallic_value": 0.6},
 		"W4FloodBody": {"color": (0.15, 0.16, 0.17), "rough": 0.5, "metallic": 0.4},
 		"W4FloodGlass": {"color": (0.7, 0.7, 0.66), "rough": 0.15, "emission": (1.0, 0.97, 0.88), "energy": 4.0},
+		# Round 2: the stadium's props (flat colours of the PS1 tints, palette.json), the A16 strip's lawn and paver road
+		# (wave 3's grey "con sâu" blocks, D-175 P1, aged by mask_road.png: wheel tracks, grime and puddles by the kerbs).
+		"W4Palette": {"albedo": OWN4 + "palette.png", "rough": 0.62, "nearest": True},  # flat cells: no mip bleeding
+		"W4StripGround": {"ground": {"grass_albedo": OWN3 + "ground_grass_color.png", "grass_normal": OWN3 + "ground_grass_normal.png",
+			"dirt_albedo": OWN3 + "soil_color.png", "dirt_normal": OWN3 + "soil_normal.png", "mask": OWN4 + "mask_strip4.png",
+			"dirt_tint": (1.5, 1.4, 1.3), "grass_scale": 0.5, "dirt_scale": 1.25}},
+		"W4RoadPavers": {"shader": {"kind": 1, "base_albedo": OWN3 + "paving_block_color.png", "base_normal": OWN3 + "paving_block_normal.png",
+			"base_arm": OWN3 + "paving_block_orm.png", "mask": OWN4 + "mask_road.png", "grime_strength": 1.0, "wear_strength": 0.7,
+			"wet_strength": 0.8, "grout_strength": 1.0, "normal_strength": 0.7, "grime_color": (0.45, 0.42, 0.35)}},
 		# Gate pillars: whitewash over plaster as wave 3's kerbs (D-175 K1), grime and moss at the foot (mask_stand.png).
 		"W4Pillar": {"shader": {"kind": 0, "base_albedo": PLASTER + "cream_color.jpg", "base_normal": PLASTER + "normal.jpg",
 			"base_arm": PLASTER + "arm.jpg", "mask": OWN4 + "mask_stand.png", "peel": True, "base_tint": (0.98, 1.06, 1.25),
@@ -186,16 +188,12 @@ void fragment() {
 """
 
 PITCH = """shader_type spatial;
-// T-261: the infield. UV = world (x, z) in metres; UV2 = mask_field.png (R bare dirt, G wet, B dry grass, A turf worn to
-// the crumb). kind 0 living grass (C1), kind 1 artificial turf (C2). The pitch markings (96 x 58 m, centre 198, 166)
-// are drawn here and worn by the noise texture.
-uniform int kind = 0;
+// T-261 (D-178 C1): the infield's living grass. UV = world (x, z) in metres; UV2 = mask_field.png (R bare dirt, G wet,
+// B dry grass). The pitch markings (96 x 58 m, centre 198, 166) are drawn here and worn by the noise texture.
 uniform sampler2D grass_albedo : source_color, filter_linear_mipmap_anisotropic, repeat_enable;
 uniform sampler2D grass_normal : hint_normal, filter_linear_mipmap_anisotropic, repeat_enable;
 uniform sampler2D dirt_albedo : source_color, filter_linear_mipmap_anisotropic, repeat_enable;
 uniform sampler2D dirt_normal : hint_normal, filter_linear_mipmap_anisotropic, repeat_enable;
-uniform sampler2D turf_albedo : source_color, filter_linear_mipmap_anisotropic, repeat_enable;
-uniform sampler2D turf_normal : hint_normal, filter_linear_mipmap_anisotropic, repeat_enable;
 uniform sampler2D mask : hint_default_black, filter_linear, repeat_disable;
 uniform sampler2D noise : hint_default_white, filter_linear_mipmap, repeat_enable;
 uniform vec3 dry_tint : source_color = vec3(1.0, 0.82, 0.5);
@@ -243,32 +241,15 @@ void fragment() {
 	float line = clamp((0.06 + 0.5 * fw - markings(w)) / fw, 0.0, 1.0) * min(1.0, 0.12 / fw);
 	float gone = 1.0 - smoothstep(line_wear - 0.08, line_wear + 0.08, nf.g * 0.55 + nb.r * 0.45);
 	line *= 1.0 - gone;
-	vec3 albedo;
-	vec3 nrm;
-	float rough;
-	if (kind == 0) {
-		vec3 grass = texture(grass_albedo, w * 0.5).rgb;
-		vec3 dry = grass * dry_tint * 1.25;
-		grass = mix(grass, dry, clamp(m.b * (0.6 + 0.6 * nf.b), 0.0, 1.0));
-		vec3 dirt = texture(dirt_albedo, w * 0.9).rgb * vec3(1.45, 1.35, 1.25);
-		float bald = smoothstep(0.35, 0.7, m.r + (texture(grass_albedo, w * 0.19).g - 0.25) * 0.6 + (nf.a - 0.5) * 0.3);
-		albedo = mix(grass, dirt, bald);
-		nrm = mix(texture(grass_normal, w * 0.5).rgb, texture(dirt_normal, w * 0.9).rgb, bald);
-		albedo = mix(albedo, line_color * (0.75 + 0.25 * grass.g * 3.0), line);
-		rough = 0.93;
-	} else {
-		vec3 t1 = texture(turf_albedo, w * 2.0).rgb;
-		vec3 t2 = texture(turf_albedo, vec2(w.y, -w.x) * 1.7 + 0.31).rgb;
-		float stripe = 0.93 + 0.07 * step(0.5, fract((w.x - centre.x) / 5.0));
-		vec3 turf = mix(t1, t2, 0.5) * stripe * (0.88 + 0.24 * nb.g) * mix(vec3(1.0), vec3(1.25, 1.2, 1.0), m.b * 0.6);
-		float bare = smoothstep(0.4, 0.75, m.a + (nf.a - 0.5) * 0.35);
-		vec3 crumb = vec3(0.05) * (0.8 + 0.4 * nf.r);
-		float lum = dot(t1, vec3(0.33)) * 2.5;
-		albedo = mix(turf, crumb, bare);
-		albedo = mix(albedo, line_color * clamp(lum, 0.6, 1.1), line * (1.0 - bare));
-		nrm = mix(mix(texture(turf_normal, w * 2.0).rgb, texture(turf_normal, vec2(w.y, -w.x) * 1.7 + 0.31).rgb, 0.5), vec3(0.5, 0.5, 1.0), bare * 0.6);
-		rough = mix(0.75, 0.9, bare);
-	}
+	vec3 grass = texture(grass_albedo, w * 0.5).rgb;
+	vec3 dry = grass * dry_tint * 1.25;
+	grass = mix(grass, dry, clamp(m.b * (0.6 + 0.6 * nf.b), 0.0, 1.0));
+	vec3 dirt = texture(dirt_albedo, w * 0.9).rgb * vec3(1.45, 1.35, 1.25);
+	float bald = smoothstep(0.35, 0.7, m.r + (texture(grass_albedo, w * 0.19).g - 0.25) * 0.6 + (nf.a - 0.5) * 0.3);
+	vec3 albedo = mix(grass, dirt, bald);
+	vec3 nrm = mix(texture(grass_normal, w * 0.5).rgb, texture(dirt_normal, w * 0.9).rgb, bald);
+	albedo = mix(albedo, line_color * (0.75 + 0.25 * grass.g * 3.0), line);
+	float rough = 0.93;
 	float wet = clamp(m.g * 0.5, 0.0, 1.0);
 	ALBEDO = albedo * (1.0 - 0.3 * wet);
 	ROUGHNESS = mix(rough, 0.4, wet);
@@ -338,6 +319,8 @@ def write_material(name, look):
 	if "emission" in look:
 		lines += ["emission_enabled = true", "emission = Color(%g, %g, %g, 1)" % look["emission"],
 			"emission_energy_multiplier = %g" % look.get("energy", 1.0)]
+	if look.get("nearest"):
+		lines.append("texture_filter = 0")
 	if "scale" in look:
 		s = look["scale"]
 		lines.append("uv1_scale = Vector3(%g, %g, %g)" % (s, s, s))
