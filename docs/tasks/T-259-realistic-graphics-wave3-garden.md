@@ -87,7 +87,7 @@ D-173 vẫn áp dụng: không đo FPS sau merge. Theo phương án này, cả v
 
 ## Checklist
 - [x] Lượt 1: khảo sát, bảng hợp đồng, danh sách node A16 (Handoff)
-- [ ] Lượt 1: góc mẫu và phương án (cây, hoa, sân, ghế, đèn), ảnh; dừng chờ chủ dự án chọn
+- [x] Lượt 1: góc mẫu và phương án (cây, hoa, sân, ghế, đèn), ảnh; dừng chờ chủ dự án chọn
 - [ ] Lượt 2: cả vườn
 - [ ] Lượt 2: dải nối nhà B → vườn
 - [ ] Lượt 2: cảnh ngoài chương 1–2
@@ -156,3 +156,57 @@ Ghi chú A16: các cụm khối trắng kèm vết đỏ ở (11,5; 17), (16,3; 
 **Câu hỏi / ghi chú cho lượt 2:**
 1. `DistantStreetLamp` (tầng 4, chương 1–2) là một **OmniLight3D** (năng lượng 0,5, tầm 7 m), `Fixture` và `Stem` là con. Ẩn cả node sẽ tắt đèn, trái với "giữ ánh sáng". Đề xuất: chỉ ẩn `Fixture`, `Stem`, giữ đèn (hoặc đặt cột đèn của bản nhẹ đúng chỗ đèn).
 2. Bảng tin trong vườn (`P_iron_box_p0_p0` + `P_wood_box_p0_p0` + giấy) nằm trong `props.tscn`. Card mục 3 chỉ kể "mặt đất, viền, rãnh, đồ rải": lượt 2 có làm hình bảng tin không? Lane B đề xuất có (cùng chỗ, trong hộp va chạm cũ).
+
+### Lượt 1 — góc mẫu và phương án (lane B, 14/11/2026)
+**Đã làm.** Góc mẫu quanh ghế Ngư: bồn `Bed1_1`, `Bed2_1` (viền, đất, cây, cây bụi, hoa), ghế `NguBench`, sân lát (lát cả 44 × 40 m vì là một tấm), cột đèn vườn ở hai điểm của `GardenLights_0_0` (x 1; z 10 và 24, quanh `Flicker0`, `Flicker1`). Dựng bằng script Blender, texture vẽ bằng code; không Tripo, không extension, không ảnh AI. Cách dựng lại, bảng phương án, nguồn: `art_source/graphics_upgrade/realistic_map/wave3/README.md`.
+- **`garden.tscn` chưa sửa.** `capture_wave3.gd` gắn góc mẫu vào cảnh chương 3 thật lúc chạy (ẩn hình PS1 của các phần trên bằng `visible = false`), giữ sáu đèn `Flicker*` sáng 0,35 khi chụp để các phương án sáng như nhau. Không đổi va chạm, anchor, vùng, đèn, navmesh, director.
+- File: `art_source/.../wave3/` (`make_wave3_textures.py`, `build_garden_pilot.py`, `make_wave3_materials.py`, `capture_wave3.gd`, `make_wave3_sheets.py`, README), `game/assets/models/graphics_pilot/realistic_map/wave3/` (10 glb, vật liệu `W3*`, `materials/foliage.gdshader`, CREDITS), `game/assets/textures/graphics_pilot/realistic_map/wave3/` (23 PNG, CREDITS), test `game/tests/levels/test_t259_garden_pilot.gd`.
+- **Texture:** cả 23 file mới (512–1024 px) nhập nén VRAM (`compress/mode=2`, normal có `compress/normal_map=1`, mipmap bật; nhập thành `s3tc`). Atlas lá có alpha: mép lá xem trong ảnh không nhoè (màu được đẩy ra vùng trong suốt trước khi nén). Bộ nhớ hình chương 3 khi chụp: 1.265 MB (T-258: 1.269 MB); phần texture mới ước khoảng 17 MB.
+- **Hợp đồng tán (T-251):** mọi đỉnh của cả ba cây (bản gần và bản xa) thấp hơn 2 m trên sân nằm trong đường tròn nội tiếp của khối bát giác `CanopyCollision` (nên cây xoay góc nào cũng vẫn trong khối); dưới 1,2 m chỉ có thân, bán kính ≤ 0,13 m như thân PS1. Script dựng kiểm từng đỉnh (0 đỉnh ra ngoài, lề nhỏ nhất 1 cm), test kiểm lại trên glb đã nhập. Ghế đá Ngư: mặt ghế đúng y −9,33 (anchor `NguBench`), nằm trong hộp va chạm cũ.
+- Lá, hoa không đổ bóng (node `Leaves*`, `Planting*` tắt `cast_shadow`); thân, cành có bóng (chỉ đèn pin có bóng ở vườn). Lá là thẻ cắt alpha (không trộn), hai mặt, gần như không bóng gương (để không loá trắng dưới đèn trăng).
+
+**Ảnh** (`art_source/graphics_upgrade/realistic_map/previews/wave3/`, chương 3 thật, ban đêm như chương, có và không đèn pin):
+- `options_trees.jpg` (cây: hiện tại, T1, T2, T3, T1 + T3 xen), `options_beds.jpg` (F1, F2; viền K1, K2), `options_paving.jpg` (P1, P2), `options_lamp_bench.jpg` (ghế đá, cột đèn), `pilot_overview.jpg` (góc mẫu đề xuất so với hiện tại), `references.jpg` (ảnh thật của các loài, Wikimedia Commons CC0/CC BY, ghi tác giả; chỉ để so).
+- Ảnh lẻ: `pilot_<phương án>_<góc>_<dark|torch>.jpg`, 62 ảnh. Góc: `bench_wide` (ghế Ngư giữa hai bồn), `bench_close`, `bed_close`, `entry` (lối giữa các bồn), `lamp`, `floor4` (từ hành lang tầng 4 nhìn xuống).
+
+**Phương án** (tam giác: bản gần / bản xa; vật liệu = số vật liệu runtime):
+| Mã | Là gì | Tam giác | Vật liệu | Cách vẽ lá |
+|---|---|---|---|---|
+| T1 | Hoa sứ / hoa đại (*Plumeria obtusa*): cành mập rẽ đôi, chùm lá dài ở đầu cành, hoa trắng nhuỵ vàng | 6.170 / 262 | 2 | từng lá thật (lưới 3 × 3, gập theo gân, cong rủ); hoa là thẻ chéo; bản xa một thẻ quạt mỗi đầu cành |
+| T2 | Bàng Đài Loan (*Terminalia mantaly*): thân thẳng, 7 tầng cành ngang | 1.788 / 207 | 2 | thẻ "đĩa" hoa thị lá nhỏ nằm gần ngang trên cành |
+| T3 | Bằng lăng (*Lagerstroemia speciosa*): thân chẻ ba, tán tròn, chùm hoa tím, vài cành lá già đỏ | 1.256 / 230 | 2 | 260 thẻ cành lá trên vỏ tán, 16 chùm hoa |
+| F1 | Viền chuỗi ngọc vàng xén + 4 bụi trang đỏ (3 chùm hoa mỗi bụi = 12 khóm như PS1) | 1.324 / bồn | 2 | khối hàng rào có texture lá + thẻ lá rối; bụi 40 thẻ |
+| F2 | 4 khóm cẩm tú mai + 12 khóm dừa cạn hồng, trắng + cỏ ven viền, lộ đất | 432 / bồn | 1 | thẻ quanh tâm khóm |
+| K1 / K2 | Viền gạch trát quét vôi trắng / sơn vàng, bẩn chân, bong góc, rêu; đất có lá khô | 684 / bồn (viền + đất) | 2 | — |
+| P1 / P2 | Sân gạch block "con sâu" xám / gạch đỏ "lá dừa" 30 × 30 lát chéo ô; mặt nạ bẩn vẽ theo đúng chỗ bồn và lối đi | 12 (cả sân) | 1 | — |
+| Ghế | Ghế đá mài của Ngư (một phương án) | 428 | 1 | — |
+| Đèn | Cột đèn sân vườn cầu tròn, sơn xanh sẫm, chao phát sáng theo `Flicker` (một phương án) | 1.148 | 3 | — |
+
+**Đếm trong khung hình (không đo FPS; `Performance` lúc chụp, cùng camera, không đèn pin):**
+| Góc | Lần vẽ PS1 → T1 / T2 / T3 | Primitive PS1 → T1 / T2 / T3 |
+|---|---|---|
+| ghế Ngư giữa hai bồn | 542 → 516 / 516 / 516 | 88.126 → 106.340 / 97.576 / 96.512 |
+| bồn `Bed1_1` gần | 323 → 293 | 8.563 → 25.403 / 16.639 / 15.575 |
+| lối giữa các bồn | 1.058 → 1.026 | 29.420 → 45.256 / 36.492 / 35.428 |
+| từ tầng 4 nhìn xuống | 527 → 497 | 21.611 → 38.451 / 29.687 / 28.623 |
+Số lần vẽ giảm (mỗi bồn PS1 có hàng chục khối nhỏ, bản mới vài lưới). Ước tính cả vườn theo phương án đề xuất (8 T1 + 4 T3, F1, K1, P1, 5 ghế, 6 đèn), bản gần: khoảng 88 nghìn tam giác (PS1 6.564), 13 vật liệu (PS1 19), khoảng 15 lần vẽ nếu lượt 2 gộp lưới theo vật liệu và vẽ cây bằng MultiMesh theo loài (PS1 276). Nếu cần nhẹ hơn: bớt một tầng cành hoa sứ (còn khoảng 4 nghìn), hoặc đưa bản xa vào gần hơn (40 m → 25 m).
+
+**Đề xuất của lane B:** **T1 hoa sứ (đại) cho phần lớn bồn, xen T3 bằng lăng ở khoảng 4/12 bồn** (ảnh cột 5): hoa sứ là cây quen ở sân trường, chùa, nghĩa trang Việt Nam, dáng cành trơ nổi rõ trong đêm, hoa trắng bắt đèn pin, hợp không khí kinh dị; tán bắt đầu cao nên lối đi và hợp đồng tán dễ giữ. Bằng lăng xen vào cho vườn bớt đều và có khối tán dày nhìn từ tầng 4. **F1** (gọn, kiểu trường học, che đất, giữ đủ 4 bụi + 12 khóm hoa), **K1 quét vôi**, **P1 gạch block xám** (P2 đỏ rất nổi dưới đèn trăng, át cảnh), ghế đá mài và đèn cầu như ảnh. T2 bàng Đài Loan nhìn ngang ban đêm giống cây thông, khó nhận ra.
+
+**Câu hỏi cho chủ dự án:**
+1. Cây trong bồn: T1, T2, T3 hay T1 + T3 xen kẽ (đề xuất)? Nếu xen: bao nhiêu bồn mỗi loài?
+2. Hoa sứ có hoa trắng như ảnh, hay chỉ lá? Bằng lăng giữ chùm hoa tím và vài cành lá già đỏ?
+3. Cây bụi, hoa: F1 hay F2, hay phần lớn F1 và vài bồn F2 (để "mỗi bồn khác nhau một chút")?
+4. Viền bồn: K1 quét vôi trắng hay K2 sơn vàng?
+5. Sân: P1 gạch block xám hay P2 gạch đỏ lá dừa?
+6. Ghế đá mài, cột đèn cầu: đạt chưa? Bốn ghế `Bench0…3` (có tựa) làm cùng kiểu đá mài có tựa. Có muốn dòng chữ sơn kiểu "Quà tặng của khoá…" trên tựa ghế (rất quen ở trường Việt Nam)? Lane B chưa làm vì chữ, năm có thể đụng cốt truyện.
+7. Hai câu ở phần khảo sát: `DistantStreetLamp` (chỉ ẩn cột, giữ đèn?) và bảng tin trong vườn (lượt 2 có làm hình không?).
+
+**Lượt 2 cần làm thêm (đã biết):** gắn hẳn vào `garden.tscn` (hình mới là con mới của `Garden`, PS1 chỉ ẩn); gộp viền, đất, cây bụi theo vật liệu; cây vẽ bằng MultiMesh theo loài hoặc node riêng có `visibility_range`; đồng bộ chao đèn với `Flicker*` trong `foliage.gd` (phần `garden`); dải A16; bản nhẹ chương 1–2; test theo card mục 7.
+
+**Kiểm:**
+- `pwsh tools/test.ps1 -Filter t259`: `RESULT: 4 passed, 0 failed` (texture nén VRAM; tán dưới 2 m trong khối `CanopyCollision`; glb chỉ dùng vật liệu chung; ghế Ngư đúng mặt ghế cũ). Test này bắt được một thẻ lá bản xa của bằng lăng thò ra ngoài khối dưới 2 m: đã sửa script dựng.
+- Full `pwsh tools/test.ps1` (trên `7a67225` + Handoff): `RESULT: 997 passed, 0 failed`.
+- `pwsh tools/check.ps1`: **chưa có kết quả.** Lần chạy bị Claude Code dừng giữa chừng vì máy thiếu RAM (đang ở bước parse script, các file đã qua đều PASS); theo luật hệ thống không tự chạy lại. Lượt 1 chỉ thêm asset, script dựng và một test; không sửa scene, script game. File khoá Godot của lần chạy đó đã xoá.
+
+**Yêu cầu thay đổi:** không có.
