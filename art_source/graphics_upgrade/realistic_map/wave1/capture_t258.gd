@@ -20,11 +20,6 @@ const SETS := {
 		{"id": "s3_wall_end", "eye": Vector3(-2.5, 1.6, 2.5), "target": Vector3(0.0, 1.5, -0.2), "torch": true},
 		{"id": "o1_behind_b", "eye": Vector3(3.0, 1.6, -9.5), "target": Vector3(0.1, 1.2, -5.6), "torch": true},
 	],
-	# Seen on the way (outside T-258): the washroom's back wall from room 401's balcony (--set=found).
-	"found": [
-		{"id": "f1_balcony401", "eye": Vector3(6.4, 1.6, -8.2), "target": Vector3(2.5, 1.4, -5.1), "torch": true},
-		{"id": "f2_balcony401_dark", "eye": Vector3(6.4, 1.6, -8.2), "target": Vector3(2.5, 1.4, -5.1)},
-	],
 }
 
 var camera: Camera3D
