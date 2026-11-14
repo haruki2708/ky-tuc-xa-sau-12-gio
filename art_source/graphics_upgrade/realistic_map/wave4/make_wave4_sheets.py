@@ -1,6 +1,8 @@
 """T-261 round 1: option sheets for the owner from previews/wave4/pilot_<config>_<view>_<off|on>[_torch].jpg
 (capture_wave4.gd). One sheet per thing to pick, same cameras across options, chapter 3's real scene at night.
-Run: python -B art_source/graphics_upgrade/realistic_map/wave4/make_wave4_sheets.py
+Run: python -B art_source/graphics_upgrade/realistic_map/wave4/make_wave4_sheets.py  (round 1 option sheets; their
+pilot_* stills came from capture_wave4.gd)
+Round 2: ... make_wave4_sheets.py --overview  (overview.jpg from before_*/after_* of capture_t261.gd)
 """
 from pathlib import Path
 import sys
@@ -95,5 +97,33 @@ def main():
 		"Chương 3 tắt đèn pha trước đoạn sân; director bật lúc vào sân rồi tắt sau 1,5 giây (cảnh doạ stadium_lights).")
 
 
-if __name__ == "__main__":
+if __name__ == "__main__" and "--overview" not in sys.argv:
 	main()
+
+
+# --- round 2 (D-178): overview.jpg from capture_t261.gd's before_*/after_* --------------------------------------------
+OVERVIEW = [("s1_west_gate", "off", "cổng tây, từ ngoài vào"), ("s2_start", "on", "Start_stadium, đèn pha bật"),
+	("s3_mid_pitch", "off", "giữa sân nhìn khán đài chính"), ("s4_stand_front", "off_torch", "khán đài chính từ mép sân, đèn pin"),
+	("s5_stand_top", "on", "hàng cao nhất nhìn xuống, đèn pha bật"), ("s6_under_stand", "off_torch", "gầm khán đài (B03), đèn pin"),
+	("s7_b02", "off_torch", "đầu hồi tây (B02), đèn pin"), ("s8_pole", "on", "cột đèn pha tây bắc, đèn pha bật"),
+	("s9_south_stand", "off_torch", "khán đài phụ phía nam, đèn pin"), ("s10_east", "on", "đầu đông, đèn pha bật"),
+	("a1_strip_road", "off_torch", "dải A16: đường WestBranch, đèn pin"), ("a2_strip_gate", "off_torch", "dải A16: tới cổng tây, đèn pin"),
+	("a3_strip_exit", "off_torch", "dải A16: từ vườn ra đường, đèn pin")]
+
+
+def overview():
+	tile = (960, 540)
+	head = 70
+	out = Image.new("RGB", (2 * tile[0] + 8, head + len(OVERVIEW) * (tile[1] + 8)), (20, 20, 20))
+	label(out, "T-261 đợt 4 (D-178): sân vận động và dải nối từ vườn tới sân — trước (PS1) / sau, chương 3, cùng camera", 30)
+	for r, (view, light, name) in enumerate(OVERVIEW):
+		for c, tag in enumerate(("before", "after")):
+			img = Image.open(PREVIEWS / f"{tag}_{view}_{light}.jpg").convert("RGB").resize(tile)
+			label(img, ("Trước · " if tag == "before" else "Sau · ") + name, 22)
+			out.paste(img, (c * (tile[0] + 8), head + r * (tile[1] + 8)))
+	out.save(PREVIEWS / "overview.jpg", quality=82)
+	print("wrote overview.jpg", out.size)
+
+
+if __name__ == "__main__" and "--overview" in sys.argv:
+	overview()

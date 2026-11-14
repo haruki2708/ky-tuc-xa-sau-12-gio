@@ -84,11 +84,74 @@
 ## Checklist
 - [x] Lượt 1: khảo sát, bảng hợp đồng, đi thử tuyến, chốt hộp và danh sách node A16 (Handoff)
 - [x] Lượt 1: góc mẫu và phương án (đường chạy, cỏ, khán đài, đèn pha, hàng rào, cổng), ảnh đèn tắt/bật; dừng chờ chủ dự án chọn
-- [ ] Lượt 2: cả sân vận động
-- [ ] Lượt 2: dải nối vườn → sân
-- [ ] Ảnh trước/sau, test mới, test cũ, full test, check, README, CREDITS, Handoff
+- [x] Lượt 2: cả sân vận động
+- [x] Lượt 2: dải nối vườn → sân
+- [x] Ảnh trước/sau, test mới, test cũ, full test, check, README, CREDITS, Handoff
 
 ## Handoff
+### Lượt 2 (15/11/2026, D-178, lane B, Claude Opus 5.5) — xong, chờ review
+Nhánh rebase lên `origin/main` `072b7bb` (card mục 1), đẩy lại bằng `--force-with-lease` một lần. Làm đúng phương án a
+và hai ý thêm của D-178. Cách dựng lại, số liệu đầy đủ: `art_source/graphics_upgrade/realistic_map/wave4/README.md`
+(mục "Lượt 2").
+
+**Đã làm**
+- **`stadium.tscn`:** 114 node hình PS1 chỉ ẩn (`Grass`, lưới tường hai khán đài, trụ cổng, cột đèn, dải đường chạy và
+  vạch, khung thành, 16 chao, mọi `Stand_*`); không xoá node nào. Node mới `Real` (`stadium_real.gd`): `Field` (R1 đường
+  cao su đỏ bạc màu, vạch sơn mòn khoảng 1/3; C1 cỏ thật úa, trọc ở cầu môn, đủ vạch sân; bó vỉa; nền quanh đường chạy),
+  `MainStand` (S1 bê tông trần, mái tôn trên vì kèo thép sơn xanh, thiếu 3 tấm ở đầu hồi tây; gầm có ống sắt chỗ B03),
+  `SouthStand` (S1, 7 bậc, không mái như PS1), `Fences` (H1 lưới B40 cả 12 đoạn, 12 cánh cổng gập sát rào phía ngoài
+  0,14 m), `Pillars` (12 trụ trát vôi), `Goals/Goal0…1`, `Poles/Pole0…3` (L1, chao quay về tâm sân), `Props`.
+- **Đèn pha:** 4 đèn và cơ chế `campus.set_stadium_lights` giữ nguyên (`campus.gd` không sửa). Kính chao là một vật liệu
+  chung, sáng khi `Floodlights` hiện, tối khi ẩn (tín hiệu `visibility_changed`, không xử lý mỗi khung).
+- **Đồ rải trong sân (D-178 câu 7):** trong `props.tscn` thu cỡ về 0 (giữ mục) 274 bản PS1: 15 rào vượt (30 cột, 15
+  thanh), 9 túi thể thao, 18 ba lô và 18 túi trước, 22 chiếc giày, 5 khay và 5 tờ giấy lót, 9 thùng gỗ dưới khán đài, 105
+  tờ giấy, 14 dép, 12 điện thoại. Bản mới (`stadium_props.glb`) đặt đúng chỗ, đúng góc từng mảnh PS1, giữ màu PS1 của túi,
+  giày, dép. Mảnh xác, máu, vệt nứt và vệt kéo sẫm, thùng rác giữ nguyên; va chạm của thùng gỗ giữ nguyên. Rào vượt bị
+  đổ có chân lún tới 10 cm vào nền như bản PS1.
+- **Dải A16** (`campus.tscn`, hộp x 50…110, z −11…176 đã chốt ở lượt 1): ẩn `Road/WestBranch/Mesh`,
+  `Road/StadiumWestAccess/Mesh`; node mới `StripGardenStadium` (`garden_real.gd` của đợt 3): bãi cỏ mòn (lối từ vườn ra
+  đường, mép đường, dải đất xác sống đi tới cổng tây), đường lát gạch block con sâu của vườn (D-175 P1) có vệt bánh xe và
+  vũng nước sát bó vỉa, bó vỉa bê tông, 96 mẩu giấy rác và 2 đống gạch vỡ (22 khối, 6 ống) đúng chỗ PS1 (99 bản PS1 thu cỡ
+  về 0; `Decals/D_paper_quad_p0_p0` ẩn cả node vì phần còn lại của nó, sau T-259, đều nằm trong hộp). Mặt đường giữ cao
+  độ mặt đường PS1 để vệt nứt PS1 vẫn nằm trên mặt đường. Mép x 50 khớp dải của vườn đợt 3 (cùng texture cỏ, cùng cao độ, cùng cách đặt UV).
+- **Gỡ phương án không chọn** khỏi `game/` (ghế nhựa, cột bê tông, rào song sắt, đường xỉ than, cỏ nhân tạo); script vẫn
+  dựng lại được (README).
+- **`test_stands_props.gd`** (card mục 4): chỉ đổi cách đếm `TRIANGLE_BUDGET_STADIUM`: đếm hình PS1 của `Stadium`, bỏ
+  qua `Real` (hình PS1 vẫn còn, đã ẩn; ngân sách 12.000 vẫn đúng cho phần đó). Lớp thật có ngân sách riêng 36.000 trong
+  `test_t261_stadium` (đang 29.266 tam giác, 27 mesh). Các test đi lại, gầm khán đài, navigation, cổng không sửa, vẫn đạt.
+
+**Hợp đồng** (`test_t261_stadium`, dấu vân tay lấy từ bản `origin/main` `072b7bb` của ba scene): va chạm sân
+`30bb677d…` (53), node, transform, meta, 4 đèn và `Floodlights` `be790db1…` (257 node), anchor, vùng, navigation của
+campus `2d7e21ae…` (1.079 dòng), va chạm `props.tscn` `97c2301b…` (175), 2.303 bản đồ rải giữ nguyên `10295745…`: tất cả
+trùng main. Capsule đi được từ `Start_stadium` vào sân, từ đường chạy lên hàng cao nhất, vòng cổng tây bắc vào gầm tới
+B03, tới B02; nền mới dưới B02, B03 cao hơn sàn va chạm 4 mm, không có gì mới treo thấp hơn 2,2 m trên chỗ thanh sắt; trong
+gầm hai khán đài không có gì mới thấp hơn 1,9 m (ngoài cột, nằm trong khối va chạm `RoofColumn*`); rào, trụ, chân cột đèn
+nằm sát khối va chạm cũ; 11 texture mới đều nén VRAM; glb chỉ dùng vật liệu chung.
+
+**Số liệu** (chương 3, cùng camera với ảnh trước): số lần vẽ cổng tây 628 → 562, `Start_stadium` 139 → 89, giữa sân
+74 → 57, khán đài từ mép sân 70 → 54, đầu hồi tây 1.465 → 1.404, cột đèn 712 → 708; dải A16: 973 → 925, 166 → 108,
+1.540 → 1.490. Bốn góc rộng nhìn cả khu thêm 56…90 lần vẽ; primitive ở các góc này dao động khoảng ±250 nghìn giữa hai lần
+chạy cùng scene, nên đo riêng bằng cách bật/tắt `Real`: lớp mới thêm khoảng 18–27 nghìn. Bộ nhớ hình chương 3 tăng khoảng
+11 MB (1.267…1.270 → 1.278…1.281 MB). Không đo FPS, không chạy bot.
+
+**Ảnh:** `art_source/graphics_upgrade/realistic_map/previews/wave4/`: `before_*`, `after_*` (13 góc: cổng tây ngoài và
+trong, giữa sân, khán đài chính từ mép sân, hàng cao nhất, gầm khán đài, đầu hồi tây chỗ B02, cột đèn pha, khán đài phụ,
+đầu đông, ba góc dải A16; đèn pha tắt và bật, có đèn pin ở các góc gần), ảnh ghép `overview.jpg` (13 cặp).
+
+**Kiểm:** `pwsh tools/test.ps1 -Filter t261`: `RESULT: 12 passed, 0 failed`. Chạy riêng các test cũ: `stands_props` 8/8,
+`test_campus` 5/5, `t259` 11/11, `t251` 5/5, `graphics_bindings` 8/8, `t260_occlusion` 4/4, `t249` 7/7, `hand_targets` 6/6.
+Full `pwsh tools/test.ps1`: `RESULT: 1016 passed, 0 failed`. `pwsh tools/check.ps1`: `RESULT: check 0 error(s)`.
+`git checkout -- game/default_bus_layout.tres` đã chạy.
+
+**Ghi chú:** đoạn bot vòng phía bắc ngoài sân (x 80…143, z 176…226) ngoài hộp A16 nên vẫn là nền PS1. Không đề xuất
+occluder cho khán đài: gầm và phía sau khán đài mở, một hộp che sẽ che sai. Sau đợt này HARU hỏi chủ dự án có chạy bot sân
+vận động T-238 không (D-149); lane B không chạy bot.
+
+**Yêu cầu thay đổi:** không có.
+
+Commit lượt 2: `5f2e8c5` (gắn vào scene, test, ảnh trước), commit cuối lượt 2 (ảnh sau, `overview.jpg`, README, CREDITS,
+Handoff).
+
 ### Lượt 1 (15/11/2026, lane B, Claude Opus 5.5) — xong, **dừng chờ chủ dự án chọn** (mục 1)
 Nhánh `lane-b/T-261-realistic-graphics-wave4-stadium` từ `origin/main` `7b8431f` (card đọc ở `7b8431f`). Lượt 1 **không sửa
 scene nào**: `capture_wave4.gd` gắn góc mẫu vào cảnh chương 3 thật lúc chạy và ẩn hình PS1 tương ứng. Cách dựng lại, số
