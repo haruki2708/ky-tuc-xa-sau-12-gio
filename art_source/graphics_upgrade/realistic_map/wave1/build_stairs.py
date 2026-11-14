@@ -9,7 +9,9 @@ Each stairwell gives one glb in Godot world coordinates (instanced at the identi
                                a step everywhere: a tread is 7.5 cm above it at its nosing and below it at its back)
                      Landings  floor landings and turn landings, terrazzo, slab edges, plastered soffits
                      Walls     plaster and a painted dado on the inside faces (3 mm in front of the PS1 wall boxes,
-                               whose outer faces stay), terrazzo skirting, the walls carried up past the old 2.75 m top
+                               whose outer faces stay), terrazzo skirting, the walls carried up past the old 2.75 m top;
+                               T-258: the main stairwell's east wall no thicker than to the floor-4 washroom's wall face
+                               (x 0.1) beside the washroom on floor 4, as building_b.tscn's EastWall4 box
                      Rails     wall handrails and the steel balustrade at the stair well; T-254: the balustrade
                                on floor 4's landing edge over the well and flight 4B (its collider is in the scene)
                      Upper     the storey above floor 4: a turn landing, the flight up to floor 5 and the floor-5
@@ -43,6 +45,14 @@ TOP = 6.3  # inside height the walls are carried to (the old boxes stop at 2.75)
 PLASTER = 2.0  # m, Painted Plaster Wall scan (shell shader has no uv1_scale)
 TERRAZZO = 1.0
 LANDING_RAIL_Z = 0.025  # the line of the rails standing on a floor landing's edge (z 0 .. 0.05 on the slab)
+# T-258: in chapters 3-4 the floor-4 washroom (floor4/washroom.tscn: room x 0.1 .. 5.9, z -4.9 .. -0.1, ceiling 3.0)
+# stands against the main stairwell's east wall, whose PS1 box reached x 0.16 and so stood 6 cm into the room. On
+# floor 4 (FLOOR4_Y), beside the washroom (z WASHROOM_Z .. -0.2: from its back wall's centre line to the wall's end),
+# that wall now stops at the washroom's wall face; behind the washroom, below floor 4 and over its ceiling it keeps
+# the PS1 box's 0.16 m.
+WASHROOM_FACE = 0.1
+WASHROOM_Z = -5.0
+FLOOR4_Y = (0.0, 3.05)
 
 
 def G(x, y, z):
@@ -338,17 +348,28 @@ def walls(part, well):
 					f.normal_flip()
 	# The partial wall's end at z -0.2, facing the landing (plaster over the old box's end and the floor walls').
 	xw = well.x0 - 0.16 if well.partial == "west" else well.x0 + 5.0 - 0.103
-	end = part.poly("W1StairWall", [G(xw, -9.9, -0.197), G(xw + 0.263, -9.9, -0.197), G(xw + 0.263, TOP, -0.197), G(xw, TOP, -0.197)],
-		[(0, 1, 2, 3)], recalc=False)
-	end[0].normal_update()
-	if end[0].normal.dot(Vector((0, -1, 0))) < 0:
-		end[0].normal_flip()
+	spans = [(-9.9, TOP, xw + 0.263)]
+	if well.side == "main":
+		# T-258: on floor 4 the end stops at the washroom's wall face.
+		spans = [(-9.9, FLOOR4_Y[0], xw + 0.263), (FLOOR4_Y[0], FLOOR4_Y[1], WASHROOM_FACE), (FLOOR4_Y[1], TOP, xw + 0.263)]
+	for y0, y1, xe in spans:
+		end = part.poly("W1StairWall", [G(xw, y0, -0.197), G(xe, y0, -0.197), G(xe, y1, -0.197), G(xw, y1, -0.197)],
+			[(0, 1, 2, 3)], recalc=False)
+		end[0].normal_update()
+		if end[0].normal.dot(Vector((0, -1, 0))) < 0:
+			end[0].normal_flip()
 	# Above the old 2.75 m tops: solid wall boxes outside too (their outer faces match the PS1 walls), and a roof.
 	x0 = well.x0
-	for lo, hi in (((x0 - 0.16, 2.74, -6.4), (x0, TOP + 0.3, -0.2 if well.partial == "west" else 4.175)),
-			((x0 + 5.0, 2.74, -6.4), (x0 + 5.16, TOP + 0.3, -0.2 if well.partial == "east" else 4.175)),
-			((x0 - 0.16, 2.74, -6.4), (x0 + 5.16, TOP + 0.3, -6.2)), ((x0 - 0.16, 2.74, 4.025), (x0 + 5.16, TOP + 0.3, 4.175))):
-		b = part.box("W1OldWall", tuple(G(*lo)), tuple(G(*hi)))
+	boxes = [((x0 - 0.16, 2.74, -6.4), (x0, TOP + 0.3, -0.2 if well.partial == "west" else 4.175)),
+		((x0 + 5.0, 2.74, -6.4), (x0 + 5.16, TOP + 0.3, -0.2 if well.partial == "east" else 4.175)),
+		((x0 - 0.16, 2.74, -6.4), (x0 + 5.16, TOP + 0.3, -6.2)), ((x0 - 0.16, 2.74, 4.025), (x0 + 5.16, TOP + 0.3, 4.175))]
+	if well.side == "main":
+		# T-258: the east box beside the washroom up to just over its ceiling stops at the washroom's wall face.
+		boxes[1:2] = [((x0 + 5.0, 2.74, WASHROOM_Z), (WASHROOM_FACE, FLOOR4_Y[1], -0.2)),
+			((x0 + 5.0, 2.74, -6.4), (x0 + 5.16, FLOOR4_Y[1], WASHROOM_Z)),
+			((x0 + 5.0, FLOOR4_Y[1], -6.4), (x0 + 5.16, TOP + 0.3, -0.2))]
+	for lo, hi in boxes:
+		part.box("W1OldWall", tuple(G(*lo)), tuple(G(*hi)))
 	part.box("W1OldWall", tuple(G(x0 - 0.16, TOP, -6.4)), tuple(G(x0 + 5.16, TOP + 0.3, 4.175)))
 	roof = part.box("W1Soffit", tuple(G(x0, TOP - 0.004, -6.2)), tuple(G(x0 + 5.0, TOP, 4.025)))
 

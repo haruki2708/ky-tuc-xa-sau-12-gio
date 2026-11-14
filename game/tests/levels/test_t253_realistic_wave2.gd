@@ -10,8 +10,12 @@ const BUILDING := preload("res://scenes/levels/campus/building_b.tscn")
 const ALARM := "res://assets/models/graphics_pilot/realistic_map/wave2/fire_alarm.glb"
 ## Prints of main's building_b.tscn (1c66187; collider_rows: 331 rows, node_rows: 2216 rows, over a fresh instance).
 ## Swapping the lower floors' wall_door kit for another model would drop its 72 doorway colliders: the kit stays.
-const COLLIDERS_MD5 := "b3bd51f1f869a37863e36a6d5bea1c23"
-const NODES_MD5 := "eba52505effdec29d159f136d8b467dd"
+## T-258 split MainStairs' east wall box on purpose (floor 4 beside the washroom stops at x 0.1; checked in
+## test_t258_main_stairs_wall.gd): Wall0.08000000000000007 (body, Collision, Mesh) moved from centre y -4 / 13.5 high
+## to y -5.375 / 10.75 high, and EastWall4, EastWall4Back (body, Collision, Mesh each) were added; every other row is
+## main's (was b3bd51f1f869a37863e36a6d5bea1c23 / 331 rows and eba52505effdec29d159f136d8b467dd / 2216 rows).
+const COLLIDERS_MD5 := "4563095cff01942e4fe085fa191ae3dc"
+const NODES_MD5 := "976f35d09f7d4a855e9601be37b849a7"
 ## Left out of the node print, on main and now alike: the models hung under building B's nodes (wave 1's and
 ## wave 2's: Model, Surround, Frame and LeafB children) and wave 2's own nodes.
 const ADDED_NAMES: Array[String] = ["W2Hall", "W2Rooms", "Room203Furnished", "Room203Leaf", "F1BrokenDoors",

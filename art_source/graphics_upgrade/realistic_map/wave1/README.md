@@ -47,5 +47,18 @@ pwsh tools/test.ps1 -Filter t250
 - **Đoạn sập (thoát hiểm, tầng 2 → 1):** vế 2A còn 40 % trên cùng, một tấm sàn gãy nghiêng tựa xuống tường sau,
   đống đổ nén chặt trong hộp `Collapse`, không lấn ra chiếu nghỉ tầng 2 hay vế 3B. Tầng 1 dưới gầm có sàn bê tông
   và mảnh vỡ phẳng.
+- **T-258, tường đông giếng thang chính ở tầng 4:** ở chương 3–4, nhà vệ sinh tầng 4 (T-256) đứng sát tường này.
+  Mặt trong tường tây nhà vệ sinh ở x 0,1, nhưng hộp PS1 `MainStairs/Wall0.08…` và khối `W1OldWall` trên 2,74 m
+  tới x 0,16, nên lấn 6 cm vào phòng. Giờ, ở tầng 4 (y 0…3,05) và ngay cạnh nhà vệ sinh (z −5…−0,2), tường chỉ tới
+  x 0,1:
+  - hộp PS1 tách làm ba: tầng 1–3 giữ nguyên `Wall0.08…`, tầng 4 cạnh nhà vệ sinh là `EastWall4`, tầng 4 phía sau
+    nhà vệ sinh là `EastWall4Back` (vẫn dày 0,16);
+  - trong `main_stairs.glb`, khối trên 2,74 m và mặt đầu tường ở z −0,197 tách theo cùng cách (`build_stairs.py`:
+    `WASHROOM_FACE`, `WASHROOM_Z`, `FLOOR4_Y`);
+  - mặt phía cầu thang (x 0, lớp trát ở x −0,103) không đổi;
+  - cầu thang thoát hiểm không đổi: tường của nó ở x 43,84 trùng mặt trong phòng 408, không lấn.
+  Test: `game/tests/levels/test_t258_main_stairs_wall.gd`. Ảnh: chép `capture_t258.gd` vào `game/_probe_tmp/` như
+  trên, chạy `godot --path game res://_probe_tmp/capture_t258.tscn -- --tag=after`; ảnh ra
+  `../previews/floor4_rest/t258_*.jpg`, ghép bằng `make_compare_t258.py`.
 
 Nguồn và giấy phép: `game/assets/models/graphics_pilot/realistic_map/CREDITS.md`.
