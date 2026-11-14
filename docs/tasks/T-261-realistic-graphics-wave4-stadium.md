@@ -82,11 +82,112 @@
 - Tripo, credit Tripo, extension Blender, ảnh AI; bot, FPS; commit log, video, `anh_chup_sua_loi/`; sửa STATUS, DECISIONS.
 
 ## Checklist
-- [ ] Lượt 1: khảo sát, bảng hợp đồng, đi thử tuyến, chốt hộp và danh sách node A16 (Handoff)
-- [ ] Lượt 1: góc mẫu và phương án (đường chạy, cỏ, khán đài, đèn pha, hàng rào, cổng), ảnh đèn tắt/bật; dừng chờ chủ dự án chọn
+- [x] Lượt 1: khảo sát, bảng hợp đồng, đi thử tuyến, chốt hộp và danh sách node A16 (Handoff)
+- [x] Lượt 1: góc mẫu và phương án (đường chạy, cỏ, khán đài, đèn pha, hàng rào, cổng), ảnh đèn tắt/bật; dừng chờ chủ dự án chọn
 - [ ] Lượt 2: cả sân vận động
 - [ ] Lượt 2: dải nối vườn → sân
 - [ ] Ảnh trước/sau, test mới, test cũ, full test, check, README, CREDITS, Handoff
 
 ## Handoff
-(lane B ghi)
+### Lượt 1 (15/11/2026, lane B, Claude Opus 5.5) — xong, **dừng chờ chủ dự án chọn** (mục 1)
+Nhánh `lane-b/T-261-realistic-graphics-wave4-stadium` từ `origin/main` `7b8431f` (card đọc ở `7b8431f`). Lượt 1 **không sửa
+scene nào**: `capture_wave4.gd` gắn góc mẫu vào cảnh chương 3 thật lúc chạy và ẩn hình PS1 tương ứng. Cách dựng lại, số
+liệu đầy đủ: `art_source/graphics_upgrade/realistic_map/wave4/README.md`.
+
+**1. Khảo sát (kiểm lại mục 0).** Đúng như mục 0, thêm/khác:
+- Hình khán đài, rào, mái PS1 không phải node riêng mà là MultiMesh `Stand_<vật liệu>_<hình>_<chunk>` (`boxes.gd`): bậc
+  (`Stand_concrete_box_*`), dải ghế xanh, mặt bậc trắng, nẹp lối lên, song rào và thanh ngang (`Stand_iron_box_*`), xà mái,
+  cột mái (`Stand_concrete_cylinder_*`), 4 ống sắt chỗ B03. `RoofColumn*`, `Fence*` chỉ có va chạm (không có `Mesh`).
+  PS1 không có tấm mái (chỉ khung xà).
+- Va chạm khán đài chính là **một dốc phẳng** (`MainBleachers/Slab`: từ z 212,7, y −9,9 lên z 228, y −3,06, dày 0,4 m);
+  bậc hình PS1 (18 bậc 0,85 × 0,38 m) nằm ±0,19 m quanh dốc. Tường trước cao 1,1 m có 3 khe lối lên (x 170…176,
+  195…201, 220…226). Gầm khán đài mở phía sau và hai đầu; B03 (164; −9,82; 225,5) dưới bản sàn, B02 (154; −9,9; 221) ngay
+  ngoài đầu hồi tây, sau `Fence1`.
+- Đường chạy: hai nửa vòng tròn tâm x 155,805 và 240,195 (z 166), bán kính trong 36,19, 7 làn 1,22 m; `Lane0…7` là vạch.
+  `StartLane5`, `StartLane6` của PS1 nằm ngoài đường chạy (bản mới đặt vạch giữa từng làn).
+- Đèn pha: `campus.gd` tắt đèn lúc `_ready`, `set_stadium_lights` chỉ đổi `Stadium/Floodlights.visible`;
+  `chapter3_director._stadium()` bật lúc vào sân rồi **tắt lại sau 1,5 giây** (cảnh doạ `stadium_lights`).
+- Code dùng sân: `campus.gd` (đèn), `chapter3_director.gd` (`Start_stadium`, `ZombieSpawns/Stadium`, `Clues/SirenSpot`,
+  `Zones/Stadium`, `Zones/Bleachers`, đèn), `ch3_siren_audio.gd` (`SirenSpot`); `ch3_audio_bank`, `ch3_environment`,
+  `ch3_music`, `reverb_zone`, `ch3_bot`, `ch3_menu*`, `ch3_policy` chỉ dùng tên vùng `stadium`, không dùng node sân.
+  Test: `test_stands_props.gd` (đi lên hàng cao nhất, chui gầm tới B03, navigation, cổng mở, ngân sách 12.000 tam giác của
+  `Stadium`), `test_campus.gd` (anchor, vùng, `set_stadium_lights`), `test_chapter3.gd`. Bot: `tools/ch3-profile.json`.
+- **Đồ rải trên sân** (rào vượt, ghế, giấy, chai) nằm ở `props.tscn` (`Campus/Props`: `P_white_box_*`, `P_paper_*`,
+  `D_paper_quad_*` trong x 110…286, z 120…232), **không** ở `Stand_*` như mục 2 bước 4 ghi (xem câu hỏi 7).
+
+**Bảng hợp đồng** (lượt 2 giữ tên, gốc, transform; test so dấu vân tay va chạm với main):
+| Node | Giữ | Hình PS1 sẽ ẩn |
+|---|---|---|
+| `Stadium` (gốc, transform 0), meta `tiers` (18, 7) | tên, transform, meta | — |
+| `TrackBounds` (hộp 176 × 0,05 × 92, meta `surface = tile`) | va chạm | `Mesh` đã ẩn sẵn |
+| `MainBleachers` (`Slab`, `FrontWall0…3`, `RearParapet`, `EndWest`, `EndEast`), `SecondaryBleachers` (như trên), meta `surface = concrete` | va chạm, transform, meta | `*/Mesh` |
+| `RoofColumn0…8`, `Fence0…11` | va chạm | (không có Mesh; hình ở `Stand_*`) |
+| `GatePost<x>_<z>_±5` (12 trụ 0,35 × 3,6 m) | va chạm | `*/Mesh` |
+| `Pole0…3` (0,3 × 18 m) | va chạm | `*/Mesh`, `FloodHousing*` |
+| `Floodlights`, `Light0…3` (năng lượng 12, tầm 145 m, màu, không bóng, mặc định ẩn) | tất cả | — |
+| `Grass`, `RunningSurface`, `Lane0…7`, `StartLane0…6`, `PitchLine*`, `PitchEdge*`, `Goal±1`, `GoalPost*`, `GoalCross*`, `Stand_*` | node giữ | ẩn (Stand_* ẩn cả node khi thay hết) |
+| `campus.tscn`: `Anchors/Start_stadium`, `ZombieSpawns/Stadium/S01…06`, `ZombieIdle/Stadium/I01…06`, `BarSpawns/B02`, `B03`, `Clues/SirenSpot`, `Zones/Stadium`, `Zones/Bleachers`, `Navigation` | tất cả | — |
+
+**2. Đi thử tuyến vườn → cổng tây** (probe Godot không cửa sổ, thân người chơi thật và navmesh; không commit):
+đồng đội `P14_Wait_garden` → `P15` (48; 28) → `P16` (80; 28) → `P17` (80; 166) → (115; 166), giữa `Road/WestBranch` rồi
+`Road/StadiumWestAccess`; navmesh `Start_garden` → `Start_stadium` và xác sống từ vườn đi z 8…18 tới x 96 rồi dải đất
+x 96…108 lên cổng tây; bot vòng thêm (80; 226) → (149; 220) → cổng tây bắc. Navmesh đi được hết; thân người đi thẳng chỉ vướng
+đồ PS1 có va chạm (navmesh vòng qua). **Hộp A16 chốt: x 50…110, z −11…176, y −10,5…−6** (khác gợi ý: tuyến thật rời vườn
+về phía đông ở z 28 chứ không qua mép sau z 40; mép nam z −11 là mép bắc `Road/Avenue`, đường ra cổng, không đụng). Đoạn
+bot vòng bắc ngoài sân (x 80…143, z 176…226) để ngoài hộp; nền gầm và sau khán đài chính (x 140…246, z 212,6…234: B02,
+B03) làm cùng khán đài (A13). Node trong hộp (đầy đủ trong `wave4/a16_box_nodes.json`):
+- `campus.tscn`: ẩn `Road/WestBranch/Mesh`, `Road/StadiumWestAccess/Mesh`; nền mới phủ lên `Ground/Tile_20_-10`,
+  `Tile_20_40`, `Tile_20_90`, `Tile_20_140`, `Tile_70_-10`, `Tile_70_40`, `Tile_70_90`, `Tile_70_140` (giữ va chạm).
+- `props.tscn` (chỉ giấy rác trên đất và gạch vỡ): `Parts/P_paper_box_p1_p1`, `p1_p2`, `p2_p0`, `p2_p2`, `p2_p4` (1 mẩu mỗi
+  chunk), `Decals/D_paper_quad_p0_p0` (25/73), `p0_p1` (31/31), `p1_m1` (8/14), `p1_p0` (13/13), `p1_p1` (6/22), `p1_p2`
+  (8/34); đống gạch vỡ (87; 151) và (99; 173): `Parts/P_concrete_box_p2_p3` (11/15), `p2_p4` (11/11),
+  `P_iron_cylinder_p2_p3` (3/5), `p2_p4` (3/4). Ghế đá, thùng rác, xe đạp, ô tô, cọc, cột đèn, cây, mảnh xác, vệt kéo sẫm
+  không đụng.
+
+**3. Góc mẫu** (Blender, `game/assets/models/graphics_pilot/realistic_map/wave4/`): cả mặt sân (đường chạy, bó vỉa, sân
+trong, nền), 2 khung thành, **cả khán đài chính** (module 10 m: bậc, lối lên nửa bậc, tường trước, đầu hồi, lan can, bản
+sàn nghiêng, dầm xiên, 9 cột, mái tôn trên vì kèo thép, nền gầm, ống sắt chỗ B03), 4 cột đèn pha (chao 6 đèn, kính sáng
+theo `Floodlights`, không thêm đèn), rào phía tây và tây bắc với cổng tây, cổng tây bắc. Khán đài phụ phía nam, rào
+phía đông, nam vẫn PS1 trong ảnh. 12 texture mới đều nén VRAM (`s3tc`). Kiểm hình mới chỉ nằm trong khối va chạm cũ hoặc
+trên đầu người: `test_t261_stadium_pilot` 6/6.
+
+**4. Phương án** — ảnh trong `art_source/graphics_upgrade/realistic_map/previews/wave4/`: `options_track.jpg`,
+`options_pitch.jpg`, `options_stand.jpg`, `options_pole.jpg`, `options_fence.jpg`, `floodlights.jpg` (PS1 và a, đèn pha tắt và
+bật), ảnh lẻ `pilot_<before|a|b|c>_<góc>_<off|on>[_torch].jpg` (10 góc, 83 ảnh).
+| Hạng mục | Phương án | Tam giác | Vật liệu |
+|---|---|---|---|
+| Đường chạy | **R1 cao su đỏ bạc màu, nứt, vá** / R2 xỉ than, vạch vôi | 1.690 cả sân | `W4TrackRubber` / `W4TrackCinder`, `W4Apron`, `W4Paint` |
+| Mặt sân | **C1 cỏ thật úa, trọc ở cầu môn** / C2 cỏ nhân tạo cũ | (trong 1.690) | `W4PitchGrass` / `W4Turf` |
+| Khán đài chính | **S1 bê tông trần** / S2 + 2.160 ghế nhựa (xanh; đỏ để so) | 5.122 / + 69.120 | `W4StandConcrete`, `W4SteelFrame`, `W4RoofSheet`, `W1Concrete`, `W1Iron` (+ `W4Seat`) |
+| Cột đèn pha | **L1 thép côn mạ kẽm** / L2 bê tông ly tâm | 822 / 730 mỗi cột | `W4PoleSteel`, `W4FloodBody`, `W4FloodGlass`, `W1Concrete` |
+| Rào, cổng | **H1 lưới B40** / H2 song sắt sơn xanh; trụ trát vôi | 2.000 / 9.384 (120 m + 4 cánh) | `W4PoleSteel`, `W4Chainlink` / `W3LampPaint`; trụ `W4Pillar` |
+PS1 cả sân 8.340 tam giác, 38 vật liệu; góc mẫu a 12.908, b 89.044. Số lần vẽ (chương 3, đèn pha tắt; bật như tắt):
+cổng tây 628 → 606 (a, b), trong cổng 139 → 126, khán đài từ mép sân 70 → 66, hàng cao nhất 5.467 → 5.450, gầm 6.205 →
+6.185; prim thêm khoảng 7–10 nghìn (a) hoặc khoảng 85 nghìn khi thấy khán đài (b, chủ yếu ghế); bộ nhớ hình chương 3 1.283 → 1.286 MB (a),
+1.288 MB (b). Không đo FPS.
+
+**Đề xuất:** R1 + C1 + S1 + L1 + H1 (phương án a). Lý do: đường đỏ, cỏ thật giữ được hình sân trong đêm (xỉ than tối,
+mất đường viền khi chạy trốn 4 phút); bê tông trần hợp "cũ vừa phải", không có cảnh đi xuyên ghế, rẻ hơn khoảng 90 nghìn
+tam giác (cả hai khán đài); B40 nhẹ, nhìn xuyên được, đúng kiểu sân trường; thép côn mảnh hợp cột 18 m.
+
+**Câu hỏi cho chủ dự án:**
+1. Đường chạy R1 hay R2?
+2. Mặt sân C1 hay C2?
+3. Khán đài S1 hay S2? Nếu S2: ghế xanh hay đỏ? (Ghế không có va chạm, người chơi lên bậc sẽ đi xuyên ghế như dải ghế PS1.)
+4. Cột đèn pha L1 hay L2?
+5. Hàng rào H1 hay H2? (Cao 1,3 m đúng va chạm cũ; cổng theo kiểu rào, trụ trát vôi.)
+6. Mái: giữ 3 tấm tôn bị mất (ánh trăng lọt xuống đầu hồi tây) hay mái kín?
+7. Đồ rải trên sân ở `props.tscn` (rào vượt, ghế, giấy, chai): card mục 8 chỉ cho sửa `props.tscn` phần A16 trong hộp.
+   Có cho lượt 2 thay luôn đồ rải trong sân (trừ mảnh xác, vệt kéo) không? Nếu không, rào vượt, ghế PS1 sẽ đứng trên mặt
+   sân mới.
+
+**Yêu cầu thay đổi:** không có (câu 7 là phạm vi, chờ chủ dự án/HARU).
+
+**Còn dở (lượt 2):** cả hai khán đài, sáu cổng, rào quanh sân, đồ rải theo câu 7, dải A16, gắn vào scene, bản xa/
+MultiMesh cho ghế (nếu S2) và song rào (nếu H2), test dấu vân tay va chạm và đổi cách đếm `TRIANGLE_BUDGET_STADIUM`.
+
+**Kiểm:** `pwsh tools/test.ps1 -Filter t261`: `RESULT: 6 passed, 0 failed`. Full `pwsh tools/test.ps1` (15/11, sau commit `573663d`): `RESULT: 1010 passed, 0 failed`. Check chưa chạy ở
+lượt 1 (không đổi scene, code).
+
+Commit: `8f88c0e` (pipeline góc mẫu), `573663d` (ảnh, bảng phương án, test, danh sách A16), commit cuối lượt 1 (README, CREDITS,
+Handoff).
