@@ -1,5 +1,5 @@
 # T-260 — Occlusion culling: không vẽ những gì bị tường, sàn kín che (chương 1–4)
-- Lane: core, **HARU làm** (chủ dự án giao 14/11/2026, D-173) | Trạng thái: todo | Nhánh: `integrator/T-260-occlusion-culling` từ `origin/main` mới nhất.
+- Lane: core, **HARU làm** (chủ dự án giao 14/11/2026, D-173) | Trạng thái: **xong trên nhánh, chờ chủ dự án quyết bật** (14/11/2026) | Nhánh: `integrator/T-260-occlusion-culling` từ `origin/main` mới nhất.
 - Nguồn: yêu cầu thay đổi 2 của [T-253](T-253-realistic-graphics-wave2.md) ("bật `rendering/occlusion_culling/use_occlusion_culling`, rồi thêm `OccluderInstance3D` theo sàn, tường kín; nên làm khi có số đo FPS"); số đo đã có ở [T-255-rooms-fps](../../tools/reports/T-255-rooms-fps.md), [T-237](../../tools/reports/T-237-chapter-fps.md).
 
 ## Vì sao
@@ -28,12 +28,19 @@
 - Nếu occluder cần nằm trong cảnh của lane B mới đúng chỗ, ghi "Yêu cầu thay đổi" cho lane B, không tự sửa cảnh đó.
 
 ## Checklist
-- [ ] Đọc tài liệu, ghi điều đã kiểm
-- [ ] Bảng khối kín, chỗ không đặt
-- [ ] Bật cài đặt, cảnh occluder, gắn vào bốn chương (nhánh riêng)
-- [ ] Ảnh bật/tắt, lượt camera di chuyển, không lỗi hình
-- [ ] Đo FPS trước/sau, báo cáo
-- [ ] Test mới, full test, check; chủ dự án quyết bật hay không
+- [x] Đọc tài liệu, ghi điều đã kiểm
+- [x] Bảng khối kín, chỗ không đặt
+- [x] Bật cài đặt, cảnh occluder, gắn vào bốn chương (nhánh riêng)
+- [x] Ảnh bật/tắt, lượt camera di chuyển, không lỗi hình
+- [x] Đo FPS trước/sau, báo cáo
+- [x] Test mới, full test, check
+- [ ] Chủ dự án quyết bật hay không
 
 ## Handoff
-(HARU điền)
+- **14/11/2026 15:55, lane HARU.** Nhánh `integrator/T-260-occlusion-culling` (đã đẩy, **chưa merge**). [Báo cáo](../../tools/reports/T-260-occlusion-culling.md) (điều đã kiểm trong tài liệu Godot 4.7, bảng khối kín, chỗ không đặt, ảnh, FPS).
+- `project.godot` bật; `game/scenes/main/occlusion/occluders_floor4.tscn` (53 hộp, 4 chương), `occluders_campus.tscn` (106 hộp, chương 3–4); sinh bằng `art_source/graphics_upgrade/occlusion/make_occluders.py` từ khảo sát cảnh thật. Không sửa cảnh lane B.
+- Ảnh tắt/bật 28 góc chương 1, 3: giống hệt từng điểm ảnh (trừ mép cánh quạt); 5 lượt camera di chuyển: không vật nào hiện trễ. Ảnh ghép `art_source/graphics_upgrade/occlusion/previews/compare_ch1.jpg`, `compare_ch3.jpg`.
+- FPS 1080p (2 vòng): góc nặng nhanh hơn rõ (chương 3 sảnh 69 → 98, cả bảy cửa mở 62 → 75, trong 406 nhìn ra 82 → 118, ban công 72 → 100; góc chậm nhất chương 3 62 → 70); 3 góc nhẹ (đã > 95 FPS) chậm đi khoảng 5% (0,4–0,5 ms, chi phí CPU).
+- Test `game/tests/core/test_t260_occlusion.gd` (mỗi occluder nằm trong hộp va chạm đặc, tránh cửa, cửa sổ, lan can, điểm xuất phát); full test 988/0, check 0.
+- **Đề xuất bật trong bản chơi** (chủ dự án quyết, ghi D-xxx). Nếu bật: merge nhánh, build. Nếu không: giữ nhánh.
+- Lượt sau (nếu muốn thêm): tường hậu nhà B (kiểm cửa sổ), giếng thang; khuôn viên còn nặng do cây, đồ nhìn từ xa (`visibility_range`).
