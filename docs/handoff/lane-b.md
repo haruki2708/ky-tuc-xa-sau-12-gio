@@ -262,6 +262,24 @@ Cuối phiên báo ngắn bằng tiếng Việt: xong gì, nhánh, commit, ảnh
 Tiếp tục T-259 lượt 2: chủ dự án đã chọn (card mục 1, D-175: 8 hoa sứ + 4 bằng lăng có hoa, F1 cả 12 bồn, viền K1 vôi trắng, sân P1 xám, ghế đá mài không chữ, đèn cầu, DistantStreetLamp chỉ ẩn cột giữ đèn, làm lại bảng tin). Ở D:\GAME_WORK\lane-b2 trên nhánh lane-b/T-259-realistic-graphics-wave3-garden: git status, git fetch origin, git rebase origin/main (lấy card mục 1), git lfs pull. Làm cả vườn, dải nối nhà B → vườn, cảnh ngoài chương 1–2, ảnh trước/sau, test, rồi full pwsh tools/test.ps1, pwsh tools/check.ps1, git checkout -- game/default_bus_layout.tres. Commit, push nhánh, cập nhật Handoff, báo ngắn như lượt 1 kèm dòng RESULT test và check.
 ```
 
+## 1o. Giao T-261 (15/11/2026, D-176): đồ hoạ thật đợt 4 — sân vận động, khán đài, dải nối vườn → sân
+`/model` chọn **Opus 5.5**, effort **xhigh** (khó thì **max**), rồi dán:
+```text
+Việc mới cho lane B: T-261 — đồ hoạ thật đợt 4: sân vận động (đường chạy, sân cỏ, khung thành, hai khán đài có mái, hàng rào, cổng, cột đèn pha) ở chương 3–4, và dải nối từ vườn hoa tới cổng tây sân. Đọc docs/tasks/T-261-realistic-graphics-wave4-stadium.md.
+Ở D:\GAME_WORK\lane-b2: git status (giữ thay đổi đang có, báo nếu có), git fetch origin, git switch -c lane-b/T-261-realistic-graphics-wave4-stadium origin/main, git lfs pull.
+Đầu phiên ghi commit của card đã đọc (git log -1 --format=%h origin/main -- docs/tasks/T-261-realistic-graphics-wave4-stadium.md).
+Phiên này CHỈ làm lượt 1 (card mục 2): khảo sát, bảng hợp đồng, đi thử tuyến vườn → cổng tây và chốt hộp A16, góc mẫu quanh cổng tây và góc khán đài chính (gầm khán đài có thanh sắt B02/B03) với các phương án đường chạy, cỏ, khán đài, đèn pha, hàng rào, cổng; ảnh trong chương 3 thật, đèn pha tắt và bật. Xong thì commit, push nhánh, ghi Handoff, báo và DỪNG để chủ dự án chọn. Không làm lượt 2.
+D-166: dựng bằng Blender, không Tripo, giữ ánh sáng (không thêm đèn; chao đèn pha mới sáng theo Floodlights). Giữ nguyên va chạm, anchor, vùng, navmesh, 4 đèn pha và cơ chế tắt/bật. Mọi texture mới từ 512 px trở lên phải nén VRAM trong .import (compress/mode=2; normal thêm compress/normal_map=1).
+Không đổi director, luật, âm thanh. Không Tripo, không extension Blender, không ảnh AI, không bot, không đo FPS.
+Godot theo luật Lượt Godot (file khóa D:\GAME_WORK\GODOT_DANG_CHAY.txt); máy ít RAM: đóng Blender và Godot khi không dùng.
+Commit nhỏ "T-261: ...", push nhánh. Không push main, không mở PR. Cập nhật Checklist và Handoff trong card. Không sửa STATUS hay DECISIONS.
+Cuối phiên báo ngắn bằng tiếng Việt: xong gì, nhánh, commit, ảnh phương án ở đâu, phương án đề xuất, câu hỏi cho chủ dự án, có bị chặn không.
+```
+**Lượt 2** (sau khi chủ dự án chọn, HARU/integrator đã ghi vào card mục 1): dán
+```text
+Tiếp tục T-261 lượt 2: chủ dự án đã chọn (card mục 1). Ở D:\GAME_WORK\lane-b2 trên nhánh lane-b/T-261-realistic-graphics-wave4-stadium: git status, git fetch origin, git rebase origin/main (lấy card mục 1), git lfs pull. Làm cả sân vận động, dải nối vườn → sân, ảnh trước/sau (đèn pha tắt và bật), test, rồi full pwsh tools/test.ps1, pwsh tools/check.ps1, git checkout -- game/default_bus_layout.tres. Commit, push nhánh, cập nhật Handoff, báo ngắn như lượt 1 kèm dòng RESULT test và check.
+```
+
 ## 2. Prompt giao việc (integrator điền T-xxx)
 ```text
 Việc mới cho lane B: <T-xxx> — đọc docs/tasks/<file card>.md.
