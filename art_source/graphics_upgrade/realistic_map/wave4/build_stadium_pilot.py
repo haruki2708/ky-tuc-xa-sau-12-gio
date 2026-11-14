@@ -259,10 +259,13 @@ def build_field():
 	x = L.TRACK_CX[1]
 	marks.face("W4Paint", [(x - 0.025, ym, L.TRACK_CZ + L.TRACK_R_IN), (x - 0.025, ym, L.TRACK_CZ + L.TRACK_R_OUT - 0.08),
 		(x + 0.025, ym, L.TRACK_CZ + L.TRACK_R_OUT - 0.08), (x + 0.025, ym, L.TRACK_CZ + L.TRACK_R_IN)], (0, 1, 0))
-	for k in range(7):  # StartLane0..6: 0.13 x 1.1 m at (175 + 0.8 k, 126 - 1.22 k)
-		cx, cz = 175.0 + 0.8 * k, 126.0 - 1.22 * k
-		marks.face("W4Paint", [(cx - 0.065, ym, cz - 0.55), (cx - 0.065, ym, cz + 0.55), (cx + 0.065, ym, cz + 0.55),
-			(cx + 0.065, ym, cz - 0.55)], (0, 1, 0))
+	# Staggered start marks on the south straight at the PS1 StartLane0..6 x (175 + 0.8 k), one across each lane's
+	# middle (the PS1 marks stepped 1.22 m from z 126, so the last two lay off the track).
+	for k in range(L.LANES):
+		cx = 175.0 + 0.8 * k
+		cz = L.TRACK_CZ - (L.TRACK_R_IN + L.LANE_W * (k + 0.5))
+		marks.face("W4Paint", [(cx - 0.025, ym, cz - 0.55), (cx - 0.025, ym, cz + 0.55), (cx + 0.025, ym, cz + 0.55),
+			(cx + 0.025, ym, cz - 0.55)], (0, 1, 0))
 	objs.append(build(marks, {"W4Paint": 1.0}))
 	export(OUT / "field.glb", objs)
 
@@ -363,9 +366,13 @@ def build_stand():
 			for x0, x1 in x_cuts(sx0, sx1):
 				bay = bay_of((x0 + x1) / 2)
 				if not aisle:
-					f = steps.face(M, [(x0, y0, z0), (x1, y0, z0), (x1, y1, z0), (x0, y1, z0)], (0, 0, -1))
+					# Riser, a 30 mm chamfered nosing, tread.
+					c = NOSING
+					f = steps.face(M, [(x0, y0, z0), (x1, y0, z0), (x1, y1 - c, z0), (x0, y1 - c, z0)], (0, 0, -1))
 					steps.map_uv2([f], lambda p, k=k, bay=bay: (stand_u(p[0], bay), (1.1 + k * 1.23 + (p[1] - (L.tread_top(k) - L.RISER))) / PROFILE))
-					f = steps.face(M, [(x0, y1, z0), (x0, y1, z1), (x1, y1, z1), (x1, y1, z0)], (0, 1, 0))
+					f = steps.face(M, [(x0, y1 - c, z0), (x1, y1 - c, z0), (x1, y1, z0 + c), (x0, y1, z0 + c)], (0, 1, -1))
+					steps.map_uv2([f], lambda p, k=k, bay=bay: (stand_u(p[0], bay), (1.1 + k * 1.23 + 0.37) / PROFILE))
+					f = steps.face(M, [(x0, y1, z0 + c), (x0, y1, z1), (x1, y1, z1), (x1, y1, z0 + c)], (0, 1, 0))
 					steps.map_uv2([f], lambda p, k=k, bay=bay: (stand_u(p[0], bay), (1.1 + k * 1.23 + 0.38 + (p[2] - L.tread_front(k))) / PROFILE))
 				else:
 					# Aisle: two half-steps per tier (0.19 m rise, 0.425 m going).
@@ -450,7 +457,7 @@ def build_stand():
 	set_uv(sheet, faces, lambda p: ((p[0] - x_lo) / 2.0, (p[2] - fz) / (bz - fz) * slope_len / 2.0))
 	objs.append(build(sheet))
 	# Fascia and rear beam.
-	roof.gbox("W4Paint", (x_lo, roof_y(fz) - 0.55, fz - 0.15), (x_hi, roof_y(fz) + 0.08, fz))
+	roof.gbox("W4SteelFrame", (x_lo, roof_y(fz) - 0.3, fz - 0.12), (x_hi, roof_y(fz) + 0.06, fz))  # gutter fascia
 	roof.gbox("W4SteelFrame", (x_lo, roof_y(bz) - 0.35, bz - 0.25), (x_hi, roof_y(bz) - 0.02, bz))
 	# Trusses at the columns: top chord under the sheet, bottom chord from the column head to the tip, Warren web.
 	for xc in L.COLUMNS_X:
@@ -483,7 +490,7 @@ def build_stand():
 	while z < bz - 0.2:
 		roof.beam("W4SteelFrame", (x_lo, roof_y(z) - 0.08, z), (x_hi, roof_y(z) - 0.08, z), 0.06, 0.12, caps=False)
 		z += 1.6
-	objs.append(build(roof, {"W4Paint": 1.0, "W4SteelFrame": 1.0}))
+	objs.append(build(roof, {"W4SteelFrame": 1.0}))
 
 	ground = GPart("Ground")
 	bx, bz2 = L.BEHIND["x"], L.BEHIND["z"]
@@ -502,6 +509,7 @@ def build_stand():
 
 
 COLUMN_BACK = 228.6
+NOSING = 0.03
 ROOF_COLUMN_TOP = -0.75
 
 

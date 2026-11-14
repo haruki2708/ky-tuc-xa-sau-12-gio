@@ -13,7 +13,7 @@ uniform sampler2D mask : hint_default_black, filter_linear, repeat_disable;
 uniform sampler2D noise : hint_default_white, filter_linear_mipmap, repeat_enable;
 uniform vec3 dry_tint : source_color = vec3(1.0, 0.82, 0.5);
 uniform vec3 line_color : source_color = vec3(0.72, 0.72, 0.68);
-uniform float line_wear = 0.45;
+uniform float line_wear = 0.3;
 uniform vec2 centre = vec2(198.0, 166.0);
 uniform vec2 half_size = vec2(48.0, 29.0);
 
@@ -52,8 +52,9 @@ void fragment() {
 	vec4 m = texture(mask, UV2);
 	vec4 nf = texture(noise, w * 0.37);
 	vec4 nb = texture(noise, w * 0.043);
-	float line = 1.0 - smoothstep(0.055, 0.075, markings(w));
-	float gone = smoothstep(line_wear - 0.15, line_wear + 0.15, 1.0 - (nf.g * 0.55 + nb.r * 0.45));
+	float fw = max(length(fwidth(w)), 1e-4) + 0.01;
+	float line = clamp((0.06 + 0.5 * fw - markings(w)) / fw, 0.0, 1.0) * min(1.0, 0.12 / fw);
+	float gone = 1.0 - smoothstep(line_wear - 0.08, line_wear + 0.08, nf.g * 0.55 + nb.r * 0.45);
 	line *= 1.0 - gone;
 	vec3 albedo;
 	vec3 nrm;
@@ -69,18 +70,21 @@ void fragment() {
 		albedo = mix(albedo, line_color * (0.75 + 0.25 * grass.g * 3.0), line);
 		rough = 0.93;
 	} else {
-		vec3 turf = texture(turf_albedo, w).rgb * mix(vec3(1.0), vec3(1.25, 1.2, 1.0), m.b * 0.6);
+		vec3 t1 = texture(turf_albedo, w * 2.0).rgb;
+		vec3 t2 = texture(turf_albedo, vec2(w.y, -w.x) * 1.7 + 0.31).rgb;
+		float stripe = 0.93 + 0.07 * step(0.5, fract((w.x - centre.x) / 5.0));
+		vec3 turf = mix(t1, t2, 0.5) * stripe * (0.88 + 0.24 * nb.g) * mix(vec3(1.0), vec3(1.25, 1.2, 1.0), m.b * 0.6);
 		float bare = smoothstep(0.4, 0.75, m.a + (nf.a - 0.5) * 0.35);
 		vec3 crumb = vec3(0.05) * (0.8 + 0.4 * nf.r);
-		float lum = dot(texture(turf_albedo, w).rgb, vec3(0.33)) * 2.5;
+		float lum = dot(t1, vec3(0.33)) * 2.5;
 		albedo = mix(turf, crumb, bare);
 		albedo = mix(albedo, line_color * clamp(lum, 0.6, 1.1), line * (1.0 - bare));
-		nrm = mix(texture(turf_normal, w).rgb, vec3(0.5, 0.5, 1.0), bare * 0.6);
+		nrm = mix(mix(texture(turf_normal, w * 2.0).rgb, texture(turf_normal, vec2(w.y, -w.x) * 1.7 + 0.31).rgb, 0.5), vec3(0.5, 0.5, 1.0), bare * 0.6);
 		rough = mix(0.75, 0.9, bare);
 	}
-	float wet = clamp(m.g * 0.7, 0.0, 1.0);
-	ALBEDO = albedo * (1.0 - 0.35 * wet);
-	ROUGHNESS = mix(rough, 0.25, wet);
+	float wet = clamp(m.g * 0.5, 0.0, 1.0);
+	ALBEDO = albedo * (1.0 - 0.3 * wet);
+	ROUGHNESS = mix(rough, 0.4, wet);
 	NORMAL_MAP = nrm;
 	SPECULAR = 0.3;
 }

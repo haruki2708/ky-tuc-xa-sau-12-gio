@@ -37,6 +37,7 @@ FOLIAGE_SHADER = RES["W3"] + "foliage.gdshader"
 GROUND_SHADER = RES["W3"] + "ground_blend.gdshader"
 TRACK_SHADER = RES["W4"] + "track.gdshader"
 PITCH_SHADER = RES["W4"] + "pitch.gdshader"
+CARD_SHADER = RES["W4"] + "card.gdshader"
 PLASTER = CORNER + "architecture_painted_plaster_wall_"
 PEEL = {"layer_albedo": SHELL + "wall_peel_color.jpg", "layer_normal": SHELL + "peeling_painted_wall_normal.jpg",
 	"layer_arm": SHELL + "peeling_painted_wall_arm.jpg", "layer_scale": 2.0 / 1.8}
@@ -79,10 +80,10 @@ def looks():
 		# White paint (goal frame, kerb, fascia, track marks): wave 1's grey door paint taken to an old off-white.
 		"W4Paint": {"albedo": OWN1 + "paint_grey_color.png", "normal": OWN1 + "paint_grey_normal.png",
 			"orm": OWN1 + "paint_grey_orm.png", "color": tint_to(OWN1 + "paint_grey_color.png", (0.66, 0.66, 0.63)), "scale": 1.0},
-		"W4Net": {"foliage": {"albedo_tex": OWN4 + "net.png", "tint": (0.8, 0.8, 0.78), "roughness_value": 0.9,
-			"specular_value": 0.15, "translucency": 0.15}},
-		"W4Chainlink": {"foliage": {"albedo_tex": OWN4 + "chainlink.png", "tint": (0.9, 0.9, 0.9), "roughness_value": 0.55,
-			"specular_value": 0.4, "translucency": 0.0}},
+		"W4Net": {"card": {"albedo_tex": OWN4 + "net.png", "tint": (0.8, 0.8, 0.78), "roughness_value": 0.9,
+			"specular_value": 0.15}},
+		"W4Chainlink": {"card": {"albedo_tex": OWN4 + "chainlink.png", "tint": (0.9, 0.9, 0.9), "roughness_value": 0.6,
+			"specular_value": 0.2}},
 		# Main stand: wave 1's concrete scan, aged by mask_stand.png (grime in the tread corners, water runs down the
 		# risers, mould low down); no paint (peel 0).
 		"W4StandConcrete": {"shader": {"kind": 0, "base_albedo": CORNER + "fixtures_plastered_wall_04_small_color.jpg",
@@ -107,6 +108,36 @@ def looks():
 			"base_arm": PLASTER + "arm.jpg", "mask": OWN4 + "mask_stand.png", "peel": True, "base_tint": (0.98, 1.06, 1.25),
 			"grime_strength": 1.2, "stain_strength": 0.7, "mould_strength": 1.0, "grime_color": (0.42, 0.38, 0.3)}},
 	}
+
+
+CARD = """shader_type spatial;
+// T-261: tiled alpha-cut cards (goal net, B40 chain-link), UV repeating. The mip's alpha is raised a little with the
+// level (minor axis, as the anisotropic filter reads it) so thin wires stay joined in the middle distance; far, where
+// a texel holds several meshes, it stays under the cut and the mesh fades out instead of turning into a grey sheet.
+render_mode cull_disabled, depth_draw_opaque;
+
+uniform sampler2D albedo_tex : source_color, filter_linear_mipmap_anisotropic, repeat_enable;
+uniform vec3 tint : source_color = vec3(1.0);
+uniform float alpha_cut : hint_range(0.0, 1.0) = 0.5;
+uniform float roughness_value : hint_range(0.0, 1.0) = 0.6;
+uniform float specular_value : hint_range(0.0, 1.0) = 0.35;
+
+void fragment() {
+	vec4 texel = texture(albedo_tex, UV);
+	vec2 size = vec2(textureSize(albedo_tex, 0));
+	vec2 dx = dFdx(UV * size);
+	vec2 dy = dFdy(UV * size);
+	float lod = max(0.0, 0.5 * log2(min(dot(dx, dx), dot(dy, dy))));
+	ALBEDO = texel.rgb * tint;
+	ALPHA = clamp(texel.a * (1.0 + 0.5 * min(lod, 3.0)), 0.0, 1.0);
+	ALPHA_SCISSOR_THRESHOLD = alpha_cut;
+	ROUGHNESS = roughness_value;
+	SPECULAR = specular_value;
+	if (!FRONT_FACING) {
+		NORMAL = -NORMAL;
+	}
+}
+"""
 
 
 TRACK = """shader_type spatial;
@@ -141,8 +172,10 @@ void fragment() {
 	base = mix(base, wear_color * (0.85 + 0.3 * nf.r), clamp(worn, 0.0, 0.8));
 	float idx = clamp(round(k), 0.0, lines - 1.0);
 	float d = abs(UV.x - (first_line + idx * lane_width));
-	float line = 1.0 - smoothstep(line_width * 0.5 - line_softness, line_width * 0.5 + line_softness, d);
-	float gone = smoothstep(line_wear - 0.12, line_wear + 0.12, 1.0 - (nf.g * 0.6 + nb.r * 0.4));
+	// Antialiased: crisp near, and far (a pixel wider than the line) dimmed to the line's share of the pixel.
+	float fw = max(fwidth(UV.x), 1e-4) + line_softness;
+	float line = clamp((line_width * 0.5 + 0.5 * fw - d) / fw, 0.0, 1.0) * min(1.0, line_width / fw);
+	float gone = 1.0 - smoothstep(line_wear - 0.08, line_wear + 0.08, nf.g * 0.6 + nb.r * 0.4);
 	base = mix(base, line_color * (0.85 + 0.2 * nf.r), line * (1.0 - gone));
 	float wet = clamp(m.g * wet_strength, 0.0, 1.0);
 	ALBEDO = base * (1.0 - 0.35 * wet);
@@ -167,7 +200,7 @@ uniform sampler2D mask : hint_default_black, filter_linear, repeat_disable;
 uniform sampler2D noise : hint_default_white, filter_linear_mipmap, repeat_enable;
 uniform vec3 dry_tint : source_color = vec3(1.0, 0.82, 0.5);
 uniform vec3 line_color : source_color = vec3(0.72, 0.72, 0.68);
-uniform float line_wear = 0.45;
+uniform float line_wear = 0.3;
 uniform vec2 centre = vec2(198.0, 166.0);
 uniform vec2 half_size = vec2(48.0, 29.0);
 
@@ -206,8 +239,9 @@ void fragment() {
 	vec4 m = texture(mask, UV2);
 	vec4 nf = texture(noise, w * 0.37);
 	vec4 nb = texture(noise, w * 0.043);
-	float line = 1.0 - smoothstep(0.055, 0.075, markings(w));
-	float gone = smoothstep(line_wear - 0.15, line_wear + 0.15, 1.0 - (nf.g * 0.55 + nb.r * 0.45));
+	float fw = max(length(fwidth(w)), 1e-4) + 0.01;
+	float line = clamp((0.06 + 0.5 * fw - markings(w)) / fw, 0.0, 1.0) * min(1.0, 0.12 / fw);
+	float gone = 1.0 - smoothstep(line_wear - 0.08, line_wear + 0.08, nf.g * 0.55 + nb.r * 0.45);
 	line *= 1.0 - gone;
 	vec3 albedo;
 	vec3 nrm;
@@ -223,18 +257,21 @@ void fragment() {
 		albedo = mix(albedo, line_color * (0.75 + 0.25 * grass.g * 3.0), line);
 		rough = 0.93;
 	} else {
-		vec3 turf = texture(turf_albedo, w).rgb * mix(vec3(1.0), vec3(1.25, 1.2, 1.0), m.b * 0.6);
+		vec3 t1 = texture(turf_albedo, w * 2.0).rgb;
+		vec3 t2 = texture(turf_albedo, vec2(w.y, -w.x) * 1.7 + 0.31).rgb;
+		float stripe = 0.93 + 0.07 * step(0.5, fract((w.x - centre.x) / 5.0));
+		vec3 turf = mix(t1, t2, 0.5) * stripe * (0.88 + 0.24 * nb.g) * mix(vec3(1.0), vec3(1.25, 1.2, 1.0), m.b * 0.6);
 		float bare = smoothstep(0.4, 0.75, m.a + (nf.a - 0.5) * 0.35);
 		vec3 crumb = vec3(0.05) * (0.8 + 0.4 * nf.r);
-		float lum = dot(texture(turf_albedo, w).rgb, vec3(0.33)) * 2.5;
+		float lum = dot(t1, vec3(0.33)) * 2.5;
 		albedo = mix(turf, crumb, bare);
 		albedo = mix(albedo, line_color * clamp(lum, 0.6, 1.1), line * (1.0 - bare));
-		nrm = mix(texture(turf_normal, w).rgb, vec3(0.5, 0.5, 1.0), bare * 0.6);
+		nrm = mix(mix(texture(turf_normal, w * 2.0).rgb, texture(turf_normal, vec2(w.y, -w.x) * 1.7 + 0.31).rgb, 0.5), vec3(0.5, 0.5, 1.0), bare * 0.6);
 		rough = mix(0.75, 0.9, bare);
 	}
-	float wet = clamp(m.g * 0.7, 0.0, 1.0);
-	ALBEDO = albedo * (1.0 - 0.35 * wet);
-	ROUGHNESS = mix(rough, 0.25, wet);
+	float wet = clamp(m.g * 0.5, 0.0, 1.0);
+	ALBEDO = albedo * (1.0 - 0.3 * wet);
+	ROUGHNESS = mix(rough, 0.4, wet);
 	NORMAL_MAP = nrm;
 	SPECULAR = 0.3;
 }
@@ -272,7 +309,7 @@ def write_shader_material(name, params, shader_path):
 
 def write_material(name, look):
 	for key, shader in (("shader", SHELL_SHADER), ("foliage", FOLIAGE_SHADER), ("ground", GROUND_SHADER),
-			("track", TRACK_SHADER), ("pitch", PITCH_SHADER)):
+			("track", TRACK_SHADER), ("pitch", PITCH_SHADER), ("card", CARD_SHADER)):
 		if key in look:
 			write_shader_material(name, look[key], shader)
 			return
@@ -426,6 +463,7 @@ def main():
 	MATS.mkdir(parents=True, exist_ok=True)
 	(MATS / "track.gdshader").write_text(TRACK, encoding="utf-8", newline="\n")
 	(MATS / "pitch.gdshader").write_text(PITCH, encoding="utf-8", newline="\n")
+	(MATS / "card.gdshader").write_text(CARD, encoding="utf-8", newline="\n")
 	all_looks = looks()
 	for name, look in all_looks.items():
 		write_material(name, look)

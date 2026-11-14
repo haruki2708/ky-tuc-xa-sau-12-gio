@@ -56,11 +56,6 @@ _subresources={
 "use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave4/materials/W4Apron.tres",
 "use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave4/materials/W4Apron.tres"
 },
-"W4Paint": {
-"use_external/enabled": true,
-"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave4/materials/W4Paint.tres",
-"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave4/materials/W4Paint.tres"
-},
 "W4RoofSheet": {
 "use_external/enabled": true,
 "use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave4/materials/W4RoofSheet.tres",

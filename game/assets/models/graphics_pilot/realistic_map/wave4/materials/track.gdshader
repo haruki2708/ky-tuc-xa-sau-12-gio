@@ -30,8 +30,10 @@ void fragment() {
 	base = mix(base, wear_color * (0.85 + 0.3 * nf.r), clamp(worn, 0.0, 0.8));
 	float idx = clamp(round(k), 0.0, lines - 1.0);
 	float d = abs(UV.x - (first_line + idx * lane_width));
-	float line = 1.0 - smoothstep(line_width * 0.5 - line_softness, line_width * 0.5 + line_softness, d);
-	float gone = smoothstep(line_wear - 0.12, line_wear + 0.12, 1.0 - (nf.g * 0.6 + nb.r * 0.4));
+	// Antialiased: crisp near, and far (a pixel wider than the line) dimmed to the line's share of the pixel.
+	float fw = max(fwidth(UV.x), 1e-4) + line_softness;
+	float line = clamp((line_width * 0.5 + 0.5 * fw - d) / fw, 0.0, 1.0) * min(1.0, line_width / fw);
+	float gone = 1.0 - smoothstep(line_wear - 0.08, line_wear + 0.08, nf.g * 0.6 + nb.r * 0.4);
 	base = mix(base, line_color * (0.85 + 0.2 * nf.r), line * (1.0 - gone));
 	float wet = clamp(m.g * wet_strength, 0.0, 1.0);
 	ALBEDO = base * (1.0 - 0.35 * wet);
