@@ -259,7 +259,7 @@ Cuối phiên báo ngắn bằng tiếng Việt: xong gì, nhánh, commit, ảnh
 ```
 **Lượt 2** (sau khi chủ dự án chọn, integrator đã ghi vào card mục 1): dán
 ```text
-Tiếp tục T-259 lượt 2: chủ dự án đã chọn (card mục 1). Làm cả vườn, dải nối nhà B → vườn, cảnh ngoài chương 1–2, ảnh trước/sau, test, rồi full pwsh tools/test.ps1, pwsh tools/check.ps1, git checkout -- game/default_bus_layout.tres. Commit, push nhánh, cập nhật Handoff, báo ngắn như lượt 1 kèm dòng RESULT test và check.
+Tiếp tục T-259 lượt 2: chủ dự án đã chọn (card mục 1, D-175: 8 hoa sứ + 4 bằng lăng có hoa, F1 cả 12 bồn, viền K1 vôi trắng, sân P1 xám, ghế đá mài không chữ, đèn cầu, DistantStreetLamp chỉ ẩn cột giữ đèn, làm lại bảng tin). Ở D:\GAME_WORK\lane-b2 trên nhánh lane-b/T-259-realistic-graphics-wave3-garden: git status, git fetch origin, git rebase origin/main (lấy card mục 1), git lfs pull. Làm cả vườn, dải nối nhà B → vườn, cảnh ngoài chương 1–2, ảnh trước/sau, test, rồi full pwsh tools/test.ps1, pwsh tools/check.ps1, git checkout -- game/default_bus_layout.tres. Commit, push nhánh, cập nhật Handoff, báo ngắn như lượt 1 kèm dòng RESULT test và check.
 ```
 
 ## 2. Prompt giao việc (integrator điền T-xxx)

@@ -1,5 +1,5 @@
 # T-259 — Đồ hoạ thật đợt 3: vườn hoa trước nhà B, dải nối từ nhà B, cảnh ngoài nhìn từ tầng 4 ở chương 1–2
-- Lane: B | Trạng thái: todo (giao sau T-258; chủ dự án đổi thứ tự được) | Agent: tài khoản Claude lane B, `D:\GAME_WORK\lane-b2`; model **Opus 5.5 xhigh** (khó thì max). Chủ dự án tự dán prompt (`lane-b.md` mục 1n).
+- Lane: B | Trạng thái: in progress (lượt 1 xong 14/11, nhánh lane B `0dbec92`; chủ dự án đã chọn, D-175; chờ lượt 2) | Agent: tài khoản Claude lane B, `D:\GAME_WORK\lane-b2`; model **Opus 5.5 xhigh** (khó thì max). Chủ dự án tự dán prompt (`lane-b.md` mục 1n).
 - Nhánh: `lane-b/T-259-realistic-graphics-wave3-garden` từ `origin/main` mới nhất.
 - Quyết định nền: **D-166** (vườn hoa: cây, hoa phổ biến ở trường Việt Nam, **giữ mật độ**, đồ hoạ thật **dựng bằng Blender, không PS1, không Tripo**; ánh sáng giữ như nay), **D-167/D-172** (phong cách nhà B đợt 1–2 đã duyệt: cũ vừa phải), **D-170** (cảnh ngoài nhìn từ tầng 4 ở chương 1–2 làm sau khi vườn xong, bằng bản nhẹ của chính vườn này). Kế hoạch: `art_source/graphics_upgrade/realistic_map/PLAN.md` đợt 3 (A12 + một phần A16).
 - **PLAN mục 3 ghi "2 cụm cây/hoa Tripo, tùy chọn" cho A12: không áp dụng.** D-166 chốt Blender, không Tripo.
@@ -17,7 +17,17 @@
 - Hiệu năng: chương 3 đã giật nhẹ khi nhìn từ hành lang tầng 4 ra khuôn viên (1% khung chậm nhất 36–53 FPS, cả trước T-255: [T-255-rooms-fps](../../tools/reports/T-255-rooms-fps.md), [T-237](../../tools/reports/T-237-chapter-fps.md)); vườn có 40 xác sống từng xuống 31,5 FPS từng khung. **Vườn là chỗ phải giữ nhẹ nhất từ đầu.** Bộ nhớ hình sau T-257: chương 3 khoảng 1,25 GB trên 4 GB.
 
 ## 1. Chủ dự án chốt
-(integrator điền sau bước 2, khi chủ dự án chọn trên ảnh mẫu)
+**D-175**, ngày 14/11/2026. Chủ dự án chọn trên ảnh lượt 1 của lane B (`art_source/graphics_upgrade/realistic_map/previews/wave3/`, commit `0dbec92` trên nhánh lane B). Mọi câu đều theo đề xuất:
+1. **Cây:** hoa sứ (hoa đại, T1) và bằng lăng (T3) xen nhau, **8 bồn hoa sứ, 4 bồn bằng lăng**. Lane B tự chọn bồn nào trồng bằng lăng; rải đều để nhìn từ tầng 4 không dồn về một phía.
+2. **Hoa trên cây:** giữ như ảnh. Hoa sứ có hoa trắng nhuỵ vàng; bằng lăng có chùm hoa tím và vài cành lá già đỏ.
+3. **Trong bồn:** F1 cho cả 12 bồn, tức viền chuỗi ngọc xén thấp và 4 bụi trang đỏ (12 khóm hoa như PS1). Để "mỗi bồn khác nhau một chút", xoay, lệch chỗ hoặc đổi cỡ bụi; không thêm loài.
+4. **Viền bồn:** K1, gạch trát quét vôi trắng. Trong ảnh lượt 1, dưới đèn trăng viền hơi ngả be. Lượt 2 chỉnh lại cho ra màu vôi trắng cũ, bẩn ở chân.
+5. **Sân:** P1, gạch block "con sâu" xám.
+6. **Ghế, đèn:** ghế đá mài và cột đèn cầu tròn như ảnh. Bốn ghế có tựa `Bench0…3` làm cùng kiểu đá mài có tựa. **Không sơn chữ** lên ghế.
+7. **`DistantStreetLamp` (chương 1–2):** chỉ ẩn hình cột (`Fixture`, `Stem`), giữ nguồn sáng OmniLight3D đúng chỗ. Cột đèn của bản nhẹ đặt đúng vị trí đèn đó.
+8. **Bảng tin trong vườn:** lượt 2 làm hình mới đúng chỗ cũ, nằm trong hộp va chạm cũ `Props/Solids/Body_p0_p0/S0`. Giấy dán giữ nguyên, không đổi chữ.
+
+D-173 vẫn áp dụng: không đo FPS sau merge. Theo phương án này, cả vườn ở bản gần ước khoảng 88 nghìn tam giác. Muốn nhẹ hơn thì dùng các cách lane B đã nêu: gộp lưới theo vật liệu, vẽ cây bằng MultiMesh, bớt một tầng cành hoa sứ, kéo khoảng chuyển sang bản xa lại gần.
 
 ## 2. Việc, theo hai lượt
 
