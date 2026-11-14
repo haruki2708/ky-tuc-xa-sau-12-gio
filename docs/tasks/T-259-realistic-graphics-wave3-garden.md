@@ -1,5 +1,5 @@
 # T-259 — Đồ hoạ thật đợt 3: vườn hoa trước nhà B, dải nối từ nhà B, cảnh ngoài nhìn từ tầng 4 ở chương 1–2
-- Lane: B | Trạng thái: in progress (lượt 1 xong 14/11, nhánh lane B `0dbec92`; chủ dự án đã chọn, D-175; chờ lượt 2) | Agent: tài khoản Claude lane B, `D:\GAME_WORK\lane-b2`; model **Opus 5.5 xhigh** (khó thì max). Chủ dự án tự dán prompt (`lane-b.md` mục 1n).
+- Lane: B | Trạng thái: **done** (merge `eef2da8` ngày 15/11/2026, HARU; D-175) | Agent: tài khoản Claude lane B, `D:\GAME_WORK\lane-b2`; model **Opus 5.5 xhigh** (khó thì max). Chủ dự án tự dán prompt (`lane-b.md` mục 1n).
 - Nhánh: `lane-b/T-259-realistic-graphics-wave3-garden` từ `origin/main` mới nhất.
 - Quyết định nền: **D-166** (vườn hoa: cây, hoa phổ biến ở trường Việt Nam, **giữ mật độ**, đồ hoạ thật **dựng bằng Blender, không PS1, không Tripo**; ánh sáng giữ như nay), **D-167/D-172** (phong cách nhà B đợt 1–2 đã duyệt: cũ vừa phải), **D-170** (cảnh ngoài nhìn từ tầng 4 ở chương 1–2 làm sau khi vườn xong, bằng bản nhẹ của chính vườn này). Kế hoạch: `art_source/graphics_upgrade/realistic_map/PLAN.md` đợt 3 (A12 + một phần A16).
 - **PLAN mục 3 ghi "2 cụm cây/hoa Tripo, tùy chọn" cho A12: không áp dụng.** D-166 chốt Blender, không Tripo.
@@ -241,3 +241,12 @@ Bộ nhớ hình khi chụp: chương 3 1.248 → 1.267 MB, chương 1 1.141 →
 
 **Yêu cầu thay đổi:**
 1. `game/assets/models/graphics_pilot/realistic_map/CREDITS.md` (file chung, ngoài danh sách được sửa của card): thêm một dòng mục `wave3/` trỏ tới `wave3/CREDITS.md` (nguồn đợt 3 đã ghi đủ ở đó).
+
+## Review (HARU thay integrator, 15/11/2026)
+**Đạt, merge `eef2da8`** (nhánh lane B `f246d52`; gốc nhánh là main `b6126d3` nên cây sau merge trùng hệt cây lane B đã kiểm).
+- **Phạm vi:** 234 file, mọi file trong phạm vi lane B. Code: `campus.gd` (ẩn thêm `GardenBackdrop` khi có khuôn viên), `foliage.gd` (cột đèn thật, quả cầu sáng theo `Flicker`, không thêm đèn), `garden_real.gd` (tắt bóng lá, chuyển bản xa ở 40 m), `garden_backdrop.gd`. Cảnh: `garden.tscn` thêm lớp `Real`, PS1 chỉ ẩn; `props.tscn` ẩn bảng tin, giấy, gạch vỡ trong dải bằng `visible = false` hoặc thu từng instance về 0 (va chạm `Solids` không đổi); `corridor.tscn` ẩn `YardTree_*`, ẩn hình cột `DistantStreetLamp` (đèn giữ), gắn `GardenBackdrop`.
+- **Ảnh** (`previews/wave3/overview.jpg`, ảnh lẻ `after_*`): đúng D-175. Chương 1–2: bản nhẹ là một mảng sân có bồn, cây nằm giữa sương (dưới đó không có mặt đất), mép sân thấy rõ; vẫn hơn 4 hộp đen trước đây.
+- **Lane B tự quyết:** ba đống gạch vỡ vắt qua z 50 được thay trọn, không cắt đôi, hình mới trong vùng va chạm cũ. Chấp nhận.
+- **Yêu cầu thay đổi 1:** HARU làm (thêm mục `wave3/` trỏ tới `wave3/CREDITS.md`).
+- **Kiểm sau merge** (khoá Godot, 15/11 00:32–01:21): full test **`RESULT: 1004 passed, 0 failed`**, check **`RESULT: check 0 error(s)`**. Test `test_companions_follow_the_player_to_the_stadium` hỏng một lần ở máy lane B (phụ thuộc tải máy) đạt ở lần này.
+- D-173: không đo FPS.

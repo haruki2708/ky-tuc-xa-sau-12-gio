@@ -59,3 +59,7 @@ Như đợt 1 (Painted Plaster Wall, Peeling Painted Wall, Green Metal Rust, Woo
 ### Đồ dùng lại
 - Phòng 203: đồ phòng 407 (Tripo, D-084) `room407_batch2/bunk_frame.glb`, `pillow.glb`, `blanket_messy.glb`, `blanket_folded.glb`, `desk.glb`, `books.glb`, `notebook.glb`; `room407_batch1/stool.glb`, `bucket.glb`, `slippers.glb`; nệm Blender `room407_furnished/bunk_mattress.glb`. Giấy phép và hồ sơ như credits gốc (`art_source/graphics_upgrade/tripo/room407_batch1/CREDITS.md`, `room407_batch2/`). Không tạo mẫu Tripo mới.
 - Phòng quản lý: bàn `wave1/duty_desk.glb`; sảnh: bảng tin `wave1/notice_board.glb` (đợt 1).
+
+## `wave3/` — T-259: vườn hoa trước nhà B (A12), dải nối nhà B → vườn (A16), bản nhẹ của vườn nhìn từ tầng 4 ở chương 1–2 (A05)
+
+Nguồn từng file, texture và ảnh tham chiếu: [`wave3/CREDITS.md`](wave3/CREDITS.md). Dựng bằng script Blender, texture vẽ bằng code; không Tripo, không ảnh AI (D-166, D-175).
