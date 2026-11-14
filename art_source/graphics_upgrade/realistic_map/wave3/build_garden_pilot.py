@@ -263,14 +263,14 @@ def plumeria(rng):
 		d = rotate_toward(UP, c * math.tau / 3 + rng.uniform(-0.2, 0.2), rng.uniform(0.3, 0.42))
 		branch(trunk[-1] - UP * 0.04, d, 0.08, 1)
 	for pts, radii, level in segs:
-		tube(bark, "W3BarkPlumeria", pts, radii, 9 if level == 0 else (7 if level < 3 else 6))
+		tube(bark, "W3BarkPlumeria", pts, radii, 9 if level == 0 else (7 if level < 2 else (6 if level < 3 else 5)))
 		if level <= 2:
 			tube(far_bark, "W3BarkPlumeria", [pts[0], pts[-1]], [radii[0], radii[-1]], 5)
 	centre = Vector((0, 0, 2.6))
 	cols = [(0.0, 0.25), (0.25, 0.5), (0.5, 0.75), (0.75, 1.0)]
 	added = dropped = 0
 	for pos, d in tips:
-		count = int(rng.integers(14, 20))
+		count = int(rng.integers(12, 17))  # round 2 (D-175): 12-16 leaves a rosette keeps the garden near 88k triangles
 		for k in range(count):
 			az = k / count * math.tau + rng.uniform(-0.2, 0.2)
 			side, up = frame(d)

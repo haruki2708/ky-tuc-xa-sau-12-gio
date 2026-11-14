@@ -27,6 +27,7 @@
 
 [ext_resource type="Script" path="res://scenes/levels/room_door_visual.gd" id="t190_e5"]
 [ext_resource type="Script" path="res://scenes/levels/floor4/corridor_props.gd" id="t256_props"]
+[ext_resource type="PackedScene" path="res://scenes/levels/floor4/garden_backdrop.tscn" id="t259_backdrop"]
 
 
 [sub_resource type="BoxShape3D" id="s1"]
@@ -2485,24 +2486,28 @@ emitters = Array[NodePath]([NodePath("../CorridorLight_401/LightHum"), NodePath(
 shape = SubResource("s185")
 
 [node name="YardTree_0" type="Node3D" parent="."]
+visible = false
 position = Vector3(5, -3.0, 12)
 
 [node name="Mesh" type="MeshInstance3D" parent="YardTree_0"]
 mesh = SubResource("s187")
 
 [node name="YardTree_1" type="Node3D" parent="."]
+visible = false
 position = Vector3(18, -3.0, 15)
 
 [node name="Mesh" type="MeshInstance3D" parent="YardTree_1"]
 mesh = SubResource("s188")
 
 [node name="YardTree_2" type="Node3D" parent="."]
+visible = false
 position = Vector3(31, -3.0, 12)
 
 [node name="Mesh" type="MeshInstance3D" parent="YardTree_2"]
 mesh = SubResource("s189")
 
 [node name="YardTree_3" type="Node3D" parent="."]
+visible = false
 position = Vector3(43, -3.0, 15)
 
 [node name="Mesh" type="MeshInstance3D" parent="YardTree_3"]
@@ -2516,12 +2521,14 @@ omni_range = 7
 shadow_enabled = false
 
 [node name="Fixture" type="Node3D" parent="DistantStreetLamp"]
+visible = false
 position = Vector3(0, 0.08, 0)
 
 [node name="Mesh" type="MeshInstance3D" parent="DistantStreetLamp/Fixture"]
 mesh = SubResource("s191")
 
 [node name="Stem" type="Node3D" parent="DistantStreetLamp"]
+visible = false
 position = Vector3(0, -0.1, 0)
 
 [node name="Mesh" type="MeshInstance3D" parent="DistantStreetLamp/Stem"]
@@ -3335,3 +3342,5 @@ metadata/t190 = true
 
 [node name="RealProps" type="Node3D" parent="."]
 script = ExtResource("t256_props")
+
+[node name="GardenBackdrop" parent="." instance=ExtResource("t259_backdrop")]

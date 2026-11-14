@@ -1,0 +1,20 @@
+[gd_resource type="ShaderMaterial" format=3]
+
+[ext_resource type="Shader" path="res://assets/models/graphics_pilot/realistic_map/wave3/materials/ground_blend.gdshader" id="1"]
+[ext_resource type="Texture2D" path="res://assets/textures/graphics_pilot/realistic_map/wave3/ground_grass_color.png" id="2"]
+[ext_resource type="Texture2D" path="res://assets/textures/graphics_pilot/realistic_map/wave3/ground_grass_normal.png" id="3"]
+[ext_resource type="Texture2D" path="res://assets/textures/graphics_pilot/realistic_map/wave3/soil_color.png" id="4"]
+[ext_resource type="Texture2D" path="res://assets/textures/graphics_pilot/realistic_map/wave3/soil_normal.png" id="5"]
+[ext_resource type="Texture2D" path="res://assets/textures/graphics_pilot/realistic_map/wave3/mask_strip.png" id="6"]
+
+[resource]
+resource_name = "W3StripGround"
+shader = ExtResource("1")
+shader_parameter/grass_albedo = ExtResource("2")
+shader_parameter/grass_normal = ExtResource("3")
+shader_parameter/dirt_albedo = ExtResource("4")
+shader_parameter/dirt_normal = ExtResource("5")
+shader_parameter/mask = ExtResource("6")
+shader_parameter/dirt_tint = Color(1.5, 1.4, 1.3, 1)
+shader_parameter/grass_scale = 0.5
+shader_parameter/dirt_scale = 1.25

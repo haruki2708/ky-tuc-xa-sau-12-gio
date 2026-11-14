@@ -16,7 +16,12 @@
   mask_bench.png         stone benches (UV2 from the side): kind 1 channels
 Leaf atlases carry alpha for alpha-scissor cards; colour is pushed into the transparent pixels so mipmaps and
 VRAM compression do not draw dark rims.
+Round 2:
+  ground_grass_*         trodden lawn of the B-to-garden strip (2 m tile); mask_strip.png its dirt/wet mask (UV2)
+  litter.png             paper, flyer, crumpled paper, plastic bag (alpha cut-out)
+  board_papers.png       the notice board's six sheets (lines only, no words, as the PS1 papers)
 Run: python -B art_source/graphics_upgrade/realistic_map/wave3/make_wave3_textures.py [name ...]
+(the pilot options not picked in D-175 are drawn only when named: mantaly, paving_red, bark_mantaly)
 """
 from pathlib import Path
 import math
@@ -763,14 +768,138 @@ def mask_bench():
 	save("mask_bench.png", np.dstack([grout, grime, wet, wear]), "RGBA")
 
 
+# ---------------------------------------------------------------------------------------------- round 2: strip, litter
+
+def ground_grass():
+	"""Trodden lawn seen from above (2 m per 1024 px, tiling): short blades over dark soil, a few dry ones."""
+	size = 1024
+	c = Canvas(size, size, 259_20)
+	rng = c.rng
+	big = smooth_noise(rng, (size * SS, size * SS), 60 * SS)
+	c.rgb[:] = np.array([0.13, 0.11, 0.08], np.float32) * (1 + 0.15 * big)[..., None]
+	c.a[:] = 1.0
+	for k in range(9000):
+		x, y = rng.uniform(0, size), rng.uniform(0, size)
+		ang = rng.uniform(0, math.tau)
+		ln = rng.uniform(14, 34)
+		roll = rng.random()
+		tone = (0.36, 0.34, 0.16) if roll < 0.12 else (0.16, 0.27, 0.09) if roll < 0.7 else (0.22, 0.33, 0.11)
+		width = rng.uniform(2.2, 3.6)
+		col = jitter(rng, tone, 0.15)
+		bend = rng.normal(0, 0.15)
+		for dx in (-size, 0, size):
+			for dy in (-size, 0, size):
+				px, py = x + dx, y + dy
+				if -40 < px < size + 40 and -40 < py < size + 40:
+					c.leaf((px, py), ang, ln, width, col, shape=(0.4, 0.9), veins=0, vein_light=0.0, fold=0.15, curve=bend)
+	rgb, _ = c.finish()
+	lum = rgb.mean(axis=2)
+	lum8 = Image.fromarray((np.clip(lum / max(lum.max(), 1e-3), 0, 1) * 255).astype(np.uint8)).filter(ImageFilter.GaussianBlur(0.8))
+	save("ground_grass_color.png", rgb)
+	save("ground_grass_normal.png", wrap_gradient_normal(np.asarray(lum8, np.float32) / 255.0, 5.0))
+
+
+STRIP = (-6.0, 4.0, 56.0, 46.0)  # x0, z0, width, depth of the A16 strip: UV2 u = (x + 6) / 56, v = (z - 4) / 46
+
+
+def mask_strip():
+	"""UV2 over the strip (1024 x 844): R bare dirt (along B's front, from B to the garden entry, round the paving),
+	G wet (by the gutter); B, A unused."""
+	w, h = 1024, 844
+	rng = np.random.default_rng(259_21)
+	v, u = np.mgrid[0:h, 0:w].astype(np.float64)
+	px = STRIP[0] + u / (w - 1) * STRIP[2]
+	pz = STRIP[1] + v / (h - 1) * STRIP[3]
+	big = smooth_noise(rng, (h, w), 40)
+	mid = smooth_noise(rng, (h, w), 10)
+	dirt = np.exp(-((pz - 5.4) / 1.0) ** 2)
+	dirt = np.maximum(dirt, np.exp(-((px - 22) / 1.6) ** 2) * (pz < 9))
+	dirt = np.maximum(dirt, np.exp(-((px - 2) / 1.3) ** 2) * (pz < 9) * 0.8)
+	gap = np.minimum.reduce([np.abs(px - 0), np.abs(px - 44), np.abs(pz - 8), np.abs(pz - 48)])
+	dirt = np.maximum(dirt, np.exp(-gap / 0.5) * 0.7)
+	dirt = np.clip(dirt * (0.75 + 0.35 * smoothstep(-1, 1, mid)) + 0.25 * smoothstep(1.0, 2.0, big), 0, 1)
+	wet = np.clip(np.exp(-((pz - 6.6) / 0.35) ** 2) * smoothstep(0.2, 1.2, big + 0.5 * mid), 0, 1)
+	save("mask_strip.png", np.dstack([dirt, wet, np.zeros_like(px), np.ones_like(px)]), "RGBA")
+
+
+def litter():
+	"""2 x 2 cells: an exercise-book page, a printed flyer (lines only, no words), crumpled white paper, a torn plastic
+	bag; alpha cut-out, a little dirt."""
+	from PIL import ImageDraw
+	size = 1024
+	rng = np.random.default_rng(259_22)
+	img = Image.new("RGBA", (size, size), (0, 0, 0, 0))
+	d = ImageDraw.Draw(img)
+	d.polygon([(40, 60), (470, 40), (480, 470), (30, 480)], fill=(226, 222, 205, 255))
+	for k in range(14):
+		y = 90 + k * 27
+		d.line([(40, y + 2), (474, y - 8)], fill=(150, 170, 200, 255), width=2)
+		if k % 3 != 2:
+			d.line([(90, y - 4), (90 + int(rng.integers(150, 360)), y - 9)], fill=(40, 60, 140, 255), width=3)
+	d.line([(85, 55), (75, 475)], fill=(200, 90, 90, 255), width=2)
+	d.rectangle([560, 40, 990, 480], fill=(205, 205, 198, 255))
+	d.rectangle([590, 70, 960, 200], fill=(70, 72, 76, 255))
+	for k in range(9):
+		y = 225 + k * 26
+		d.line([(590, y), (590 + int(rng.integers(200, 370)), y)], fill=(95, 95, 95, 255), width=8)
+	cx, cy = 256, 768
+	d.polygon([(cx + math.cos(k / 18 * math.tau) * (170 + rng.uniform(-40, 30)),
+		cy + math.sin(k / 18 * math.tau) * (170 + rng.uniform(-40, 30))) for k in range(18)], fill=(222, 220, 212, 255))
+	for k in range(14):
+		a = rng.uniform(0, math.tau)
+		r1, r2 = rng.uniform(0, 60), rng.uniform(90, 160)
+		d.line([(cx + math.cos(a) * r1, cy + math.sin(a) * r1), (cx + math.cos(a + 0.3) * r2, cy + math.sin(a + 0.3) * r2)],
+			fill=(150, 148, 140, 255), width=3)
+	cx, cy = 768, 768
+	d.polygon([(cx + math.cos(k / 22 * math.tau) * (200 + rng.uniform(-50, 20)),
+		cy + math.sin(k / 22 * math.tau) * (170 + rng.uniform(-50, 20))) for k in range(22)], fill=(40, 80, 150, 255))
+	for k in range(10):
+		a = rng.uniform(0, math.tau)
+		d.line([(cx, cy), (cx + math.cos(a) * 170, cy + math.sin(a) * 140)], fill=(70, 115, 185, 255), width=4)
+	arr = np.asarray(img).astype(np.float32) / 255.0
+	arr[..., :3] *= np.clip(0.85 + 0.1 * smooth_noise(rng, size, 30), 0.6, 1.0)[..., None]
+	rgb = push_pull(arr[..., :3], arr[..., 3])
+	save("litter.png", np.dstack([rgb, arr[..., 3]]), "RGBA")
+
+
+def board_papers():
+	"""Six notices for the garden notice board (1024 x 512, three sheets a row): lines, a grid, a stamp ring; no words,
+	as on the PS1 board."""
+	from PIL import ImageDraw
+	w, h = 1024, 512
+	rng = np.random.default_rng(259_23)
+	img = Image.new("RGB", (w, h), (60, 50, 40))
+	d = ImageDraw.Draw(img)
+	for k in range(6):
+		x0, y0 = (k % 3) * 341 + 10, (k // 3) * 256 + 8
+		x1, y1 = x0 + 320, y0 + 240
+		d.rectangle([x0, y0, x1, y1], fill=(230, 226, 210) if k % 2 == 0 else (238, 232, 196))
+		d.line([(x0 + 60, y0 + 22), (x1 - 60, y0 + 22)], fill=(40, 40, 40), width=6)
+		if k in (1, 4):
+			for r in range(6):
+				for col in range(4):
+					d.rectangle([x0 + 20 + col * 70, y0 + 45 + r * 30, x0 + 90 + col * 70, y0 + 75 + r * 30], outline=(90, 90, 90))
+		else:
+			for r in range(9):
+				y = y0 + 50 + r * 18
+				d.line([(x0 + 20, y), (x0 + 20 + int(rng.integers(150, 280)), y)], fill=(70, 70, 70), width=4)
+		d.ellipse([x1 - 90, y1 - 70, x1 - 30, y1 - 10], outline=(170, 40, 40), width=4)
+	arr = np.asarray(img).astype(np.float32) / 255.0
+	arr *= (1 - 0.12 * smoothstep(0.8, 2.0, smooth_noise(rng, (h, w), 25)))[..., None] * np.array([1.0, 0.97, 0.9])
+	save("board_papers.png", arr)
+
+
+# Pilot options the owner did not pick (D-175) are drawn only when named.
+PILOT_ONLY = {"mantaly", "paving_red", "bark_mantaly"}
 ALL = {"plumeria": plumeria, "mantaly": mantaly, "lagerstroemia": lagerstroemia, "shrubs": shrubs, "hedge": hedge,
 	"bark": lambda: [bark("plumeria", (0.46, 0.45, 0.41), seed=259_13, kind="plumeria"),
-		bark("mantaly", (0.36, 0.32, 0.28), seed=259_14, kind="mantaly"),
 		bark("lagerstroemia", (0.55, 0.52, 0.46), seed=259_15, kind="lager")],
+	"bark_mantaly": lambda: bark("mantaly", (0.36, 0.32, 0.28), seed=259_14, kind="mantaly"),
 	"soil": soil, "paving_block": paving_block, "paving_red": paving_red, "mask_paving": mask_paving,
-	"mask_kerb": mask_kerb, "mask_bench": mask_bench}
+	"mask_kerb": mask_kerb, "mask_bench": mask_bench, "ground_grass": ground_grass, "mask_strip": mask_strip,
+	"litter": litter, "board_papers": board_papers}
 
 
 if __name__ == "__main__":
-	for key in (sys.argv[1:] or ALL):
+	for key in (sys.argv[1:] or [k for k in ALL if k not in PILOT_ONLY]):
 		ALL[key]()
