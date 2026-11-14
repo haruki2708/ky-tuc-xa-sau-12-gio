@@ -1,0 +1,24 @@
+[gd_resource type="ShaderMaterial" format=3]
+
+[ext_resource type="Shader" path="res://assets/models/graphics_pilot/realistic_map/wave4/materials/pitch.gdshader" id="1"]
+[ext_resource type="Texture2D" path="res://assets/textures/graphics_pilot/realistic_map/wave3/ground_grass_color.png" id="2"]
+[ext_resource type="Texture2D" path="res://assets/textures/graphics_pilot/realistic_map/wave3/ground_grass_normal.png" id="3"]
+[ext_resource type="Texture2D" path="res://assets/textures/graphics_pilot/realistic_map/wave3/soil_color.png" id="4"]
+[ext_resource type="Texture2D" path="res://assets/textures/graphics_pilot/realistic_map/wave3/soil_normal.png" id="5"]
+[ext_resource type="Texture2D" path="res://assets/textures/graphics_pilot/realistic_map/wave4/turf_color.png" id="6"]
+[ext_resource type="Texture2D" path="res://assets/textures/graphics_pilot/realistic_map/wave4/turf_normal.png" id="7"]
+[ext_resource type="Texture2D" path="res://assets/textures/graphics_pilot/realistic_map/wave4/mask_field.png" id="8"]
+[ext_resource type="Texture2D" path="res://assets/textures/graphics_pilot/room407_shell/noise.png" id="9"]
+
+[resource]
+resource_name = "W4PitchGrass"
+shader = ExtResource("1")
+shader_parameter/grass_albedo = ExtResource("2")
+shader_parameter/grass_normal = ExtResource("3")
+shader_parameter/dirt_albedo = ExtResource("4")
+shader_parameter/dirt_normal = ExtResource("5")
+shader_parameter/turf_albedo = ExtResource("6")
+shader_parameter/turf_normal = ExtResource("7")
+shader_parameter/mask = ExtResource("8")
+shader_parameter/noise = ExtResource("9")
+shader_parameter/kind = 0

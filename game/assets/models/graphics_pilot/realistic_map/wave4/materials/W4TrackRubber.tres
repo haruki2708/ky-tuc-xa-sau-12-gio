@@ -1,0 +1,21 @@
+[gd_resource type="ShaderMaterial" format=3]
+
+[ext_resource type="Shader" path="res://assets/models/graphics_pilot/realistic_map/wave4/materials/track.gdshader" id="1"]
+[ext_resource type="Texture2D" path="res://assets/textures/graphics_pilot/room407_shell/noise.png" id="2"]
+[ext_resource type="Texture2D" path="res://assets/textures/graphics_pilot/realistic_map/wave4/mask_field.png" id="3"]
+[ext_resource type="Texture2D" path="res://assets/textures/graphics_pilot/realistic_map/wave4/track_rubber_color.png" id="4"]
+[ext_resource type="Texture2D" path="res://assets/textures/graphics_pilot/realistic_map/wave4/track_rubber_normal.png" id="5"]
+
+[resource]
+resource_name = "W4TrackRubber"
+shader = ExtResource("1")
+shader_parameter/noise = ExtResource("2")
+shader_parameter/mask = ExtResource("3")
+shader_parameter/surface_albedo = ExtResource("4")
+shader_parameter/surface_normal = ExtResource("5")
+shader_parameter/line_color = Color(0.78, 0.77, 0.73, 1)
+shader_parameter/line_wear = 0.32
+shader_parameter/line_softness = 0.003
+shader_parameter/inner_wear = 0.45
+shader_parameter/wear_color = Color(0.5, 0.36, 0.31, 1)
+shader_parameter/roughness_value = 0.86

@@ -1,0 +1,83 @@
+[remap]
+
+importer="scene"
+importer_version=1
+type="PackedScene"
+uid="uid://cq57f1moxwq4l"
+path="res://.godot/imported/stand.glb-3e46f19b7b4ef448b265c74cdedf2b55.scn"
+
+[deps]
+
+source_file="res://assets/models/graphics_pilot/realistic_map/wave4/stand.glb"
+dest_files=["res://.godot/imported/stand.glb-3e46f19b7b4ef448b265c74cdedf2b55.scn"]
+
+[params]
+
+nodes/root_type=""
+nodes/root_name=""
+nodes/root_script=null
+mesh_library/use_node_names_as_mesh_names=false
+array_mesh/deduplicate_surfaces=true
+nodes/apply_root_scale=true
+nodes/root_scale=1.0
+nodes/import_as_skeleton_bones=false
+nodes/use_name_suffixes=true
+nodes/use_node_type_suffixes=true
+meshes/ensure_tangents=true
+meshes/generate_lods=false
+meshes/create_shadow_meshes=true
+meshes/light_baking=1
+meshes/lightmap_texel_size=0.2
+meshes/force_disable_compression=false
+skins/use_named_skins=true
+animation/import=false
+animation/fps=30
+animation/trimming=false
+animation/remove_immutable_tracks=true
+animation/import_rest_as_RESET=false
+import_script/path=""
+materials/extract=0
+materials/extract_format=0
+materials/extract_path=""
+_subresources={
+"materials": {
+"W1Concrete": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Concrete.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Concrete.tres"
+},
+"W1Iron": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Iron.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Iron.tres"
+},
+"W4Apron": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave4/materials/W4Apron.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave4/materials/W4Apron.tres"
+},
+"W4Paint": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave4/materials/W4Paint.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave4/materials/W4Paint.tres"
+},
+"W4RoofSheet": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave4/materials/W4RoofSheet.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave4/materials/W4RoofSheet.tres"
+},
+"W4StandConcrete": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave4/materials/W4StandConcrete.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave4/materials/W4StandConcrete.tres"
+},
+"W4SteelFrame": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave4/materials/W4SteelFrame.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave4/materials/W4SteelFrame.tres"
+}
+}
+}
+gltf/naming_version=2
+gltf/embedded_image_handling=1
+gltf/texture_map_mode=1
