@@ -1,0 +1,10 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scenes/levels/floor4/garden_backdrop.gd" id="1_script"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave3/garden_backdrop.glb" id="2_glb"]
+
+[node name="GardenBackdrop" type="Node3D"]
+script = ExtResource("1_script")
+
+[node name="Garden" parent="." instance=ExtResource("2_glb")]
+position = Vector3(0, -9.9, 0)

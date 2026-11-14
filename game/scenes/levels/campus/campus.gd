@@ -37,7 +37,8 @@ func attach_floor4(floor4: Node3D) -> void:
 		_restores.append({"node": weakref(environment), "property": &"environment", "value": environment.environment})
 		environment.environment = null
 	for decor in floor4.get_node("Corridor").get_children():
-		if decor is Node3D and (String(decor.name).begins_with("YardTree_") or decor.name == &"DistantStreetLamp"):
+		# T-259: GardenBackdrop is chapters 1-2's light copy of this garden; the campus has the real one.
+		if decor is Node3D and (String(decor.name).begins_with("YardTree_") or decor.name in [&"DistantStreetLamp", &"GardenBackdrop"]):
 			_restores.append({"node": weakref(decor), "property": &"visible", "value": decor.visible})
 			decor.hide()
 

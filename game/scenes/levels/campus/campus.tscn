@@ -22,6 +22,9 @@
 
 [ext_resource type="PackedScene" path="res://scenes/levels/library/library.tscn" id="t196_library"]
 [ext_resource type="PackedScene" path="res://scenes/levels/ch4/ch4_anchors.tscn" id="t196_anchors"]
+[ext_resource type="Script" path="res://scenes/levels/campus/garden_real.gd" id="t259_real"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave3/strip_b_garden.glb" id="t259_strip"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave3/strip_props.glb" id="t259_strip_props"]
 
 [sub_resource type="BoxShape3D" id="s1"]
 size = Vector3(50, 0.3, 50)
@@ -10713,3 +10716,12 @@ metadata/t192 = true
 [node name="Library" parent="." instance=ExtResource("t196_library")]
 
 [node name="Ch4" parent="Anchors" instance=ExtResource("t196_anchors")]
+
+[node name="StripBGarden" type="Node3D" parent="."]
+script = ExtResource("t259_real")
+
+[node name="Lawn" parent="StripBGarden" instance=ExtResource("t259_strip")]
+position = Vector3(0, -9.9, 0)
+
+[node name="Props" parent="StripBGarden" instance=ExtResource("t259_strip_props")]
+position = Vector3(0, -9.9, 0)
