@@ -22,7 +22,9 @@ const PROPS_COLLIDERS_MD5 := "97c2301b5e5f2375e59ef5ecf322a76b"  # as T-259 left
 ## wave's areas) plus the corpse head given back at (43.6, 30.2) (outside this wave's A16 box, so a kept row again).
 ## T-263 step 0: 2117 = 2124 less the 7 pieces T-259 replaced in Parts/P_paper_box_p0_p0 (a tray, six notice-board
 ## sheets), now scaled to 0 as that chunk is shown again for its six corpse heads (its "visible" row turns true).
-const PROPS_KEPT_MD5 := "d5c2dcb8427a4b30cb2c9a5da485f19d"  # 2117 instances kept
+## T-263 round 2 (D-181, HARU allowed this edit): 2099 = 2117 less the 18 pieces the canteen strip replaces (papers,
+## sandals, a backpack, trays in T-263's box x 166..218, z 13..60, outside this wave's areas), now scaled to 0.
+const PROPS_KEPT_MD5 := "8a531ad27ec655c1596149e9fa4b4eb0"  # 2099 instances kept
 const G := -9.9
 const STAND_Z0 := 212.7
 const SOUTH_Z0 := 119.5

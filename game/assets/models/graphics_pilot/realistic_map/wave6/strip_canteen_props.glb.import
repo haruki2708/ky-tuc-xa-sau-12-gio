@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bg6tcwfpd3j1g"
-path="res://.godot/imported/ceiling_roof.glb-9d6928236845e0689af2a3a1053d5eb8.scn"
+uid="uid://bdmw1h6c5drxq"
+path="res://.godot/imported/strip_canteen_props.glb-283285069cd2f4a5a3d9c31be61c0409.scn"
 
 [deps]
 
-source_file="res://assets/models/graphics_pilot/realistic_map/wave6/ceiling_roof.glb"
-dest_files=["res://.godot/imported/ceiling_roof.glb-9d6928236845e0689af2a3a1053d5eb8.scn"]
+source_file="res://assets/models/graphics_pilot/realistic_map/wave6/strip_canteen_props.glb"
+dest_files=["res://.godot/imported/strip_canteen_props.glb-283285069cd2f4a5a3d9c31be61c0409.scn"]
 
 [params]
 
@@ -41,20 +41,20 @@ materials/extract_format=0
 materials/extract_path=""
 _subresources={
 "materials": {
-"W4PoleSteel": {
+"W3Litter": {
 "use_external/enabled": true,
-"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave4/materials/W4PoleSteel.tres",
-"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave4/materials/W4PoleSteel.tres"
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave3/materials/W3Litter.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave3/materials/W3Litter.tres"
 },
-"W4RoofSheet": {
+"W4Palette": {
 "use_external/enabled": true,
-"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave4/materials/W4RoofSheet.tres",
-"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave4/materials/W4RoofSheet.tres"
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave4/materials/W4Palette.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave4/materials/W4Palette.tres"
 },
-"W4SteelFrame": {
+"W6Stainless": {
 "use_external/enabled": true,
-"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave4/materials/W4SteelFrame.tres",
-"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave4/materials/W4SteelFrame.tres"
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave6/materials/W6Stainless.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave6/materials/W6Stainless.tres"
 }
 }
 }

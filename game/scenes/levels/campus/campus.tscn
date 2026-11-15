@@ -31,6 +31,9 @@
 [ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave5/wall_south.glb" id="t262_wall"]
 [ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave5/strip_gate.glb" id="t262_strip"]
 [ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave5/strip_gate_props.glb" id="t262_strip_props"]
+[ext_resource type="Script" path="res://scenes/levels/campus/canteen_real.gd" id="t263_real"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave6/strip_canteen.glb" id="t263_strip_canteen"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave6/strip_canteen_props.glb" id="t263_strip_canteen_props"]
 
 [sub_resource type="BoxShape3D" id="s1"]
 size = Vector3(50, 0.3, 50)
@@ -10758,4 +10761,13 @@ script = ExtResource("t262_real")
 position = Vector3(0, -9.9, 0)
 
 [node name="Props" parent="StripGate" instance=ExtResource("t262_strip_props")]
+position = Vector3(0, -9.9, 0)
+
+[node name="StripCanteen" type="Node3D" parent="."]
+script = ExtResource("t263_real")
+
+[node name="Ground" parent="StripCanteen" instance=ExtResource("t263_strip_canteen")]
+position = Vector3(0, -9.9, 0)
+
+[node name="Props" parent="StripCanteen" instance=ExtResource("t263_strip_canteen_props")]
 position = Vector3(0, -9.9, 0)

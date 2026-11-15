@@ -1,9 +1,0 @@
-[gd_resource type="StandardMaterial3D" format=3]
-
-[ext_resource type="Texture2D" path="res://assets/textures/graphics_pilot/realistic_map/wave6/price_print.png" id="1"]
-
-[resource]
-resource_name = "W6PricePrint"
-albedo_color = Color(1, 1, 1, 1)
-albedo_texture = ExtResource("1")
-roughness = 0.4

@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ba07i64oj48yh"
-path.s3tc="res://.godot/imported/price_print.png-aab7e63c4d2aa019b10106032a262284.s3tc.ctex"
+uid="uid://dg5ddsfkno24j"
+path.s3tc="res://.godot/imported/posters.png-d0ed097ce5dad6ca3c53b96dfeb2d308.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/textures/graphics_pilot/realistic_map/wave6/price_print.png"
-dest_files=["res://.godot/imported/price_print.png-aab7e63c4d2aa019b10106032a262284.s3tc.ctex"]
+source_file="res://assets/textures/graphics_pilot/realistic_map/wave6/posters.png"
+dest_files=["res://.godot/imported/posters.png-d0ed097ce5dad6ca3c53b96dfeb2d308.s3tc.ctex"]
 
 [params]
 

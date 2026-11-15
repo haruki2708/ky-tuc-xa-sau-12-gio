@@ -140,6 +140,107 @@ SIZES = {"W6FloorCeramic": 1.6, "W6FloorTerrazzo": 1.0, "W6KitchenFloor": 0.6, "
 	"W6FacadeWhite": 2.0, "W6CounterTile": 1.24}
 PRICE_PX = (1024, 276)     # one price board in price_*.png (2.6 x 0.7 m); 2 columns x 3 rows, 340 px apart
 
+# ------------------------------------------------------------------------------------ round 2 (D-181)
+# The owner's picks (D-181): T1 tables, F1 floor and walls, Q1 counter with black wood price boards, C2 ceiling, K1
+# kitchen, M2 mess, the TV keeps the wordless news frame. Round 2 adds the rest of A15 and the A16 strip; every number
+# below is main's (survey/canteen_nodes.tsv).
+SIZES.update({"W6Pavers": 0.9, "W6YardConcrete": 2.0})
+# East side of the hall: the hand basins on SinkBlock (collider x 209.3..209.9, z 21.55..26.15, top -9.1), the tray
+# return rack on TrayReturn (x 208.9..209.9, z 37.5..40.5, top -8.1) with ReturnShelf0..3 and the "TRẢ KHAY" sign
+# (ReturnSign), two slop bins (no collider).
+SINK_BLOCK = {"x": (209.3, 209.9), "z": (21.55, 26.15), "top": -9.1}
+BASINS_Z = [22.2, 23.3, 24.4, 25.5]
+TRAY_RETURN = {"x": (208.9, 209.9), "z": (37.5, 40.5), "top": -8.1}
+RETURN_SHELVES = [-9.5, -9.05, -8.6, -8.15]
+DIRTY_TRAYS = [(209.0, -9.45, 38.2), (209.0, -9.0, 38.7), (209.0, -8.55, 39.2), (209.0, -8.1, 39.7)]
+RETURN_SIGN = "TRẢ KHAY"
+SLOP_BINS = [(208.4, 41.2), (208.4, 41.9)]
+# Posters on the west wall (PS1 Poster0..3 at z 24, 28, 36, 40). Poster3 hung in the west exit's opening (z 39.5..41.5,
+# up to y -7.5): the thing PLAN section 9 saw in the doorway. Its new place is beside the exit, clear of the opening.
+POSTERS_Z = [24.0, 28.0, 36.0, 42.85]
+AC_Z = [24.0, 30.0, 36.0]        # ACUnit24/30/36 on the west wall's outside (169.43..169.78, y -7.6..-7.0)
+# Store (x 198..210, z 44..52): racks Shelf199.2_* and Shelf209.2_* (0.7 x 5 m, boards at y -9.4, -8.5, -7.6), the
+# boxes on the west rack, the oil cans on the east one, sacks by the back door; the kitchen's rice sacks.
+RACKS_X = [199.2, 209.2]
+RACK_Z = (45.5, 50.5)
+RACK_LEVELS = [-9.4, -8.5, -7.6]
+STORE_BOXES = [(199.2, -9.2, 46.0), (199.2, -8.3, 46.5), (199.2, -7.4, 47.0), (199.2, -9.2, 47.5), (199.2, -8.3, 48.0),
+	(199.2, -7.4, 48.5), (199.2, -9.2, 49.0), (199.2, -8.3, 49.5)]
+OIL_CANS = [(209.2, -9.2, 46.0), (209.2, -8.3, 46.5), (209.2, -7.4, 47.0), (209.2, -9.2, 47.5), (209.2, -8.3, 48.0),
+	(209.2, -7.4, 48.5), (209.2, -9.2, 49.0), (209.2, -8.3, 49.5)]
+STORE_SACKS = [(200.4, -9.6, 50.8), (200.4, -9.6, 50.0), (200.4, -9.6, 49.2)]
+RICE_SACKS = [(196.9, -9.6, 45.0), (196.9, -9.6, 45.8), (196.9, -9.1, 45.0), (196.9, -9.1, 45.8)]
+BACK_DOOR_HEAD = -7.4            # the back door's shutter box starts 2.5 m up (the opening x 200..204 is full height)
+STORE_DOOR_HEAD = -7.5
+# Outside: bikes (Bike0..5, frame along x, Bike0 and Bike3 leaning 12 degrees), bins, gas cylinders, the chimney.
+BIKES = [(172.0, 17.2, 12.0), (173.6, 17.2, 0.0), (175.2, 17.2, 0.0), (176.8, 17.2, 12.0), (178.4, 17.2, 0.0), (180.0, 17.2, 0.0)]
+BINS = [(205.0, 54.2, "blue_plastic"), (206.2, 54.2, "bin_grey")]
+GAS_CYLINDERS = [(189.0, 53.0), (189.6, 53.0)]
+CHIMNEY = (192.0, 51.0)
+KITCHEN_ROOF = {"x": (185.875, 210.125), "z": (44.5, 52.3)}   # the kitchen and store's own slab (PS1 KitchenRoof)
+ROOF = {"x": (169.5, 210.5), "z": (19.5, 44.5)}               # the hall's slab (PS1 Roof), parapets on all four sides
+# Outside faces other than the front: mask row 3 unrolled anticlockwise seen from above, from the hall's north-west
+# corner (s in metres): back wall west part, kitchen west, kitchen back, store back, store and hall east, hall west.
+OUT_ROW = 3
+OUT_RUNS = {"back_west": 0.0, "kitchen_west": 16.25, "kitchen_back": 24.5, "store_back": 36.75, "east": 49.0, "west": 81.5}
+OUT_LENGTH = 128.0
+# Store inside faces in mask row 1 after the kitchen's (s 28 on).
+STORE_S = 40.0
+
+# The A16 strip round the canteen (inside A16_BOX, less wave 8's corner and the building's footprint).
+FOOTPRINT = {"x": (169.875, 210.125), "z": (19.875, 52.125)}
+STRIP_UV = {"x": (166.0, 218.0), "z": (13.0, 60.0)}           # mask_strip6.png and mask_yard6.png (UV2)
+GROUND_TOP = -9.93          # lawn 1 cm over the PS1 ground tiles (-9.94), as waves 3-5
+PAVED_TOP = G               # pavers and the yard's concrete as T-262's walk (which ends at z 13, x 186..217)
+FRONT_PAVED = {"x": (168.0, 217.0), "z": (13.0, 19.875)}      # the forecourt from the gate strip's walk to the facade
+YARD = {"x": (184.0, 214.0), "z": (52.125, 58.5)}             # the service yard behind the kitchen and the store
+APRON = 0.6                 # concrete apron along the back and side walls, a covered drain on its outer edge
+DRAIN = 0.3
+
+
+def strip_uv2(x, z):
+	return ((x - STRIP_UV["x"][0]) / (STRIP_UV["x"][1] - STRIP_UV["x"][0]), (z - STRIP_UV["z"][0]) / (STRIP_UV["z"][1] - STRIP_UV["z"][0]))
+
+
+# The building is an L: the hall, and the kitchen with the store behind its east part (the yard behind the hall's west
+# part, x 170..185.875, z 44.125..52.125, is outside).
+FOOTPRINT_PARTS = [{"x": (169.875, 210.125), "z": (19.875, 44.125)}, {"x": (185.875, 210.125), "z": (44.125, 52.125)}]
+
+
+def in_footprint(x, z, grow=0.0):
+	return any(p["x"][0] - grow < x < p["x"][1] + grow and p["z"][0] - grow < z < p["z"][1] + grow for p in FOOTPRINT_PARTS)
+
+
+# props.tscn pieces this wave replaces in the A16 box (list_a16_box.py's kinds, round 1): papers, sandals, a backpack,
+# trays. Kept: corpse heads (skin tint), drag marks, blood, and what stands round the kiosks, the drinks machine, the
+# bicycle and the moped.
+SKIN = (0.9, 0.7, 0.6)
+REPLACED = ("paper", "dropped: sandal", "dropped: backpack", "dropped: tray")
+KEEP_ROUND = [((214.0, 17.4), 2.6), ((219.5, 17.4), 2.6), ((182.2, 16.0), 0.8), ((208.4, 17.1), 0.9), ((207.6, 54.6), 1.3)]
+
+
+def _close(a, b, tol=0.015):
+	return all(abs(p - q) <= tol for p, q in zip(a, b))
+
+
+def replaced_kind(name, c):
+	"""c: one props.tscn instance (16 floats: basis columns, origin, colour). The kind this wave replaces, or None."""
+	x, y, z = c[9:12]
+	scale = tuple(math.sqrt(sum(t * t for t in c[k:k + 3])) for k in (0, 3, 6))
+	if max(scale) == 0 or not in_a16(x, z) or tuple(round(t, 2) for t in c[12:15]) == SKIN:
+		return None
+	if name.startswith("D_iron") or name.startswith("D_red") or any(math.hypot(x - p[0], z - p[1]) <= r for p, r in KEEP_ROUND):
+		return None
+	if name.startswith("D_paper") and y < -9.7:
+		return "paper"
+	if name.startswith("D_white") and _close(scale, (0.11, 1.0, 0.27)):
+		return "dropped: sandal"
+	if name.startswith("P_white_box") and (_close(scale, (0.32, 0.42, 0.2)) or _close(scale, (0.26, 0.2, 0.06))):
+		return "dropped: backpack"
+	if (name.startswith("P_white_box") and _close(scale, (0.42, 0.03, 0.3))) or (name.startswith("P_paper_box") and _close(scale, (0.34, 0.012, 0.16))):
+		return "dropped: tray"
+	return None
+
 
 def price_uv(i):
 	"""UV rectangle (u0, v0, u1, v1; v down as in the image) of board i in price_*.png (2048 x 1024)."""

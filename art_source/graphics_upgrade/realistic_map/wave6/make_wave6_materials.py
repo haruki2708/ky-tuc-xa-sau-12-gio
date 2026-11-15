@@ -104,6 +104,22 @@ def looks():
 		"W6ScreenOff": {"color": (0.018, 0.02, 0.024), "rough": 0.12, "metallic": 0.2},
 		"W6FanPaint": {"color": (0.74, 0.72, 0.64), "rough": 0.45, "metallic": 0.1},
 		"W6Shutter": {"color": (0.52, 0.53, 0.5), "rough": 0.55, "metallic": 0.25},
+		# Round 2 (D-181): the posters and ReturnSign's words, the basins' mirrors; the A16 strip's lawn (wave 3's grass
+		# and soil under this strip's own wear mask), the forecourt's grey "con sâu" pavers as T-262's walk (D-175 P1),
+		# the service yard's and the aprons' cast concrete (wave 1's plaster scan, unpainted), both aged by mask_yard6.
+		"W6Posters": {"albedo": OWN6 + "posters.png", "rough": 0.85},
+		"W6Mirror": {"color": (0.5, 0.52, 0.53), "rough": 0.06, "metallic": 0.9},
+		"W6StripGround": {"ground": {"grass_albedo": M4.OWN3 + "ground_grass_color.png", "grass_normal": M4.OWN3 + "ground_grass_normal.png",
+			"dirt_albedo": M4.OWN3 + "soil_color.png", "dirt_normal": M4.OWN3 + "soil_normal.png", "mask": OWN6 + "mask_strip6.png",
+			"dirt_tint": (1.5, 1.4, 1.3), "grass_scale": 0.5, "dirt_scale": 1.25}},
+		"W6Pavers": {"shader": {"kind": 1, "base_albedo": M4.OWN3 + "paving_block_color.png", "base_normal": M4.OWN3 + "paving_block_normal.png",
+			"base_arm": M4.OWN3 + "paving_block_orm.png", "mask": OWN6 + "mask_yard6.png", "grime_strength": 1.0, "wear_strength": 0.7,
+			"wet_strength": 0.8, "grout_strength": 1.0, "normal_strength": 0.7, "grime_color": (0.45, 0.42, 0.35)}},
+		"W6YardConcrete": {"shader": {"kind": 1, "base_albedo": CORNER + "fixtures_plastered_wall_04_small_color.jpg",
+			"base_normal": CORNER + "fixtures_plastered_wall_04_small_normal.jpg", "base_arm": CORNER + "fixtures_plastered_wall_04_small_arm.jpg",
+			"base_tint": tint_to(CORNER + "fixtures_plastered_wall_04_small_color.jpg", (0.5, 0.49, 0.46)), "mask": OWN6 + "mask_yard6.png",
+			"grout_strength": 0.0, "grime_strength": 1.1, "wet_strength": 0.9, "wear_strength": 0.5, "normal_strength": 0.7,
+			"grime_color": (0.4, 0.37, 0.31)}},
 	}
 
 
@@ -121,11 +137,18 @@ emission_texture = ExtResource("1")
 """ % OWN6
 
 
+# Round 1's options the owner did not pick (D-181: F2, the tiled counter Q2, the printed boards): not written in round 2
+# (their glbs went too); pass --options to write them again for build_canteen_pilot.py / capture_wave6.gd.
+ROUND1_OPTIONS = {"W6FloorTerrazzo", "W6WallGreen", "W6DadoGreen", "W6PricePrint", "W6CounterTile"}
+
+
 def main():
 	MATS.mkdir(parents=True, exist_ok=True)
 	M4.MATS, M4.MODELS, M4.TEXTURES, M4.RES = MATS, MODELS, TEXTURES, RES
 	M4.GLB_IMPORT = M4.GLB_IMPORT.replace("realistic_map/wave4/{glb}", "realistic_map/wave6/{glb}")
 	all_looks = looks()
+	if "--options" not in sys.argv:
+		all_looks = {k: v for k, v in all_looks.items() if k not in ROUND1_OPTIONS}
 	for name, look in all_looks.items():
 		if "shader" in look:
 			M4.write_shader_material(name, look["shader"], M4.SHELL_SHADER)

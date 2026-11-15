@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://baca52688cj1v"
-path="res://.godot/imported/tableware.glb-6c8ff48d58154dd6a1ce6ae02e568201.scn"
+uid="uid://qt1ml4olpju8"
+path="res://.godot/imported/bikes.glb-593d37ba7afb814308a6cbe981c5fc8f.scn"
 
 [deps]
 
-source_file="res://assets/models/graphics_pilot/realistic_map/wave6/tableware.glb"
-dest_files=["res://.godot/imported/tableware.glb-6c8ff48d58154dd6a1ce6ae02e568201.scn"]
+source_file="res://assets/models/graphics_pilot/realistic_map/wave6/bikes.glb"
+dest_files=["res://.godot/imported/bikes.glb-593d37ba7afb814308a6cbe981c5fc8f.scn"]
 
 [params]
 
@@ -45,11 +45,6 @@ _subresources={
 "use_external/enabled": true,
 "use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave6/materials/W6Palette.tres",
 "use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave6/materials/W6Palette.tres"
-},
-"W6Stainless": {
-"use_external/enabled": true,
-"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave6/materials/W6Stainless.tres",
-"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave6/materials/W6Stainless.tres"
 }
 }
 }

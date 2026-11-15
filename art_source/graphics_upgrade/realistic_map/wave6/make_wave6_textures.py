@@ -12,6 +12,12 @@
   slogan.png            SloganText "TIẾT KIỆM LƯƠNG THỰC, KHÔNG BỎ PHÍ CƠM" (14 x 0.7 m)
   tv_screen.png         the TV's lit screen: a news programme's layout without words (emission)
   palette.png           8 x 8 flat cells for the tableware, food and small kitchen things (palette.json)
+Round 2 (D-181):
+  posters.png           four wordless posters (hand washing, a balanced plate, no smoking, fire safety; aged paper),
+                        ReturnSign's "TRẢ KHAY" (words unchanged) as a blue enamel sign, a hazard sticker
+  mask_strip6.png       UV2 of the A16 strip's lawn over x 166..218, z 13..60 (ground_blend: R bare dirt, G wet)
+  mask_yard6.png        the same square for the pavers and the yard's concrete (R grout dirt, G grime, B wet, A wear)
+  mask_walls.png        row 3 now ages the outside walls but the front (splash, rain runs, AC drips, kitchen soot)
 Run: python -B art_source/graphics_upgrade/realistic_map/wave6/make_wave6_textures.py [name ...]
 """
 from pathlib import Path
@@ -247,7 +253,23 @@ def mask_walls():
 			grime = grime + 0.4 * smoothstep(0.5, 0.0, y)
 			mould = mould + 0.5 * smoothstep(0.35, 0.0, y) * smoothstep(-0.5, 0.8, a)
 		else:
-			stain = 0.5 * smoothstep(3.0, 4.5, y) * smoothstep(-0.4, 1.2, st)
+			# Outside faces but the front (round 2, canteen_layout.OUT_RUNS): splash and moss at the foot, rain runs
+			# from the roof edge, drips under the west wall's AC units, soot over the kitchen's exhaust, hands round
+			# the west exit and the back door.
+			runs = L.OUT_RUNS
+			stain = 0.55 * smoothstep(3.0, 4.5, y) * smoothstep(-0.4, 1.2, st)
+			grime = grime + 0.35 * smoothstep(0.55, 0.0, y)
+			mould = mould + 0.55 * smoothstep(0.45, 0.0, y) * smoothstep(-0.5, 0.8, a)
+			for z in L.AC_Z:
+				sx = runs["west"] + (z - 19.875)
+				drip = smoothstep(0.5, 0.1, np.abs(s - sx) + 0.15 * st) * smoothstep(2.4, 1.6, y) * smoothstep(-0.3, 1.0, st)
+				stain = np.maximum(stain, 0.8 * drip)
+				grime = grime + 0.25 * smoothstep(0.45, 0.0, np.abs(s - sx)) * smoothstep(0.3, 0.0, y)
+			sx = runs["kitchen_back"] + (194.0 - 185.875)
+			soot = smoothstep(1.2, 0.3, np.abs(s - sx) + 0.2 * a) * smoothstep(2.4, 3.0, y)
+			grime = grime + 0.6 * soot
+			for door_s in (runs["west"] + (40.5 - 19.875), runs["store_back"] + (202.0 - 198.0)):
+				grime = grime + 0.45 * np.exp(-((s - door_s) / 1.6) ** 2) * smoothstep(0.5, 1.0, y) * smoothstep(2.2, 1.4, y)
 		out[row * rh:(row + 1) * rh, :, 0] = np.clip(peel, 0, 1)
 		out[row * rh:(row + 1) * rh, :, 1] = np.clip(grime * (0.85 + 0.25 * a), 0, 1)
 		out[row * rh:(row + 1) * rh, :, 2] = np.clip(stain, 0, 1)
@@ -330,8 +352,10 @@ def _price_board_print(text, seed):
 	return rgb
 
 
-def price_boards():
-	for name, maker in (("price_wood.png", _price_board_wood), ("price_print.png", _price_board_print)):
+def price_boards(options=False):
+	"""The wood boards (D-181); the printed ones (round 1's other option) only with price_print."""
+	makers = [("price_wood.png", _price_board_wood)] + ([("price_print.png", _price_board_print)] if options else [])
+	for name, maker in makers:
 		atlas = np.zeros((1024, 2048, 3))
 		for i, text in enumerate(L.PRICES):
 			col, row = divmod(i, 3)
@@ -432,6 +456,11 @@ PALETTE = {
 	"red_plastic": (0.6, 0.08, 0.06), "green_plastic": (0.15, 0.42, 0.25), "cream_paint": (0.82, 0.8, 0.72), "rubber": (0.07, 0.07, 0.07),
 	"wood": (0.45, 0.3, 0.17), "bamboo": (0.66, 0.55, 0.33), "brass": (0.55, 0.45, 0.2), "charcoal": (0.1, 0.09, 0.08),
 	"fluor": (0.9, 0.92, 0.88), "paper": (0.85, 0.83, 0.76), "led_green": (0.1, 0.5, 0.2), "rust": (0.35, 0.18, 0.08),
+	# Round 2 (appended: the cells above keep their places, so round 1's glbs stay mapped).
+	"bike_blue": (0.13, 0.22, 0.45), "bike_red": (0.5, 0.09, 0.07), "bike_green": (0.13, 0.3, 0.2), "chrome": (0.6, 0.6, 0.58),
+	"saddle": (0.08, 0.065, 0.055), "ac_white": (0.78, 0.78, 0.74), "pvc_grey": (0.52, 0.53, 0.52), "bin_grey": (0.2, 0.23, 0.22),
+	"oil_yellow": (0.74, 0.52, 0.12), "tape": (0.7, 0.58, 0.36), "sack_green": (0.24, 0.4, 0.28), "slop": (0.3, 0.24, 0.12),
+	"door_green": (0.2, 0.34, 0.27), "steel_grey": (0.33, 0.34, 0.34), "copper": (0.5, 0.3, 0.16), "foam": (0.62, 0.6, 0.52),
 }
 
 
@@ -450,10 +479,216 @@ def palette():
 	(HERE / "palette.json").write_text(json.dumps(index, indent=0), encoding="utf-8", newline="\n")
 
 
+# ---------------------------------------------------------------------------------------------- round 2
+
+POSTER_PX = (256, 366)      # one poster (0.7 x 1.0 m) in posters.png; four side by side along the top
+SIGN_PX = (486, 146)        # the "TRẢ KHAY" sign (1.0 x 0.3 m) at the bottom left; a hazard sticker beside it
+
+
+def _aged_paper(rng, h, w):
+	big = smooth_noise(rng, (h, w), 30)
+	mid = smooth_noise(rng, (h, w), 6)
+	v, u = np.mgrid[0:h, 0:w].astype(np.float64)
+	rgb = np.array([0.86, 0.83, 0.74])[None, None] * (1 + 0.05 * big + 0.03 * mid)[..., None]
+	return rgb, big, mid, u, v
+
+
+def _bars(rgb, u, v, x0, x1, y0, rows, rng, colour=(0.35, 0.33, 0.3), height=7, gap=13):
+	"""Lines of small print (grey bars of ragged length), never letters: the posters carry no words."""
+	for k in range(rows):
+		end = x0 + (x1 - x0) * rng.uniform(0.55, 1.0)
+		m = (u > x0) & (u < end) & (v > y0 + k * gap) & (v < y0 + k * gap + height)
+		rgb[m] = rgb[m] * 0.3 + np.array(colour) * 0.7
+	return rgb
+
+
+def _poster(kind, seed):
+	w, h = POSTER_PX
+	rng = np.random.default_rng(seed)
+	rgb, big, mid, u, v = _aged_paper(rng, h, w)
+	if kind == 0:
+		# Hand washing: a blue band, a tap over two hands and drops, three steps as small pictograms, print under them.
+		rgb[(v > 14) & (v < 52)] = np.array([0.16, 0.36, 0.62])
+		tap = ((u > 112) & (u < 150) & (v > 80) & (v < 96)) | ((u > 140) & (u < 152) & (v > 80) & (v < 118))
+		rgb[tap] = np.array([0.45, 0.47, 0.5])
+		for dy in (130, 150, 168):
+			drop = ((u - 146) / 5) ** 2 + ((v - dy) / 8) ** 2 < 1
+			rgb[drop] = np.array([0.3, 0.55, 0.85])
+		for cx in (112, 160):
+			hand = ((u - cx) / 30) ** 2 + ((v - 205) / 22) ** 2 < 1
+			rgb[hand] = np.array([0.82, 0.62, 0.48])
+		for k in range(3):
+			cx = 48 + k * 80
+			ring = np.abs(np.hypot(u - cx, v - 262) - 22) < 3
+			rgb[ring] = np.array([0.16, 0.36, 0.62])
+		rgb = _bars(rgb, u, v, 30, 226, 296, 4, rng)
+	elif kind == 1:
+		# A balanced plate: a green band, a round plate in four parts (rice, greens, meat, soup), print under it.
+		rgb[(v > 14) & (v < 52)] = np.array([0.22, 0.48, 0.24])
+		ang = np.arctan2(v - 160, u - 128)
+		r = np.hypot(u - 128, v - 160)
+		plate = r < 78
+		cols = [np.array([0.9, 0.88, 0.8]), np.array([0.3, 0.55, 0.2]), np.array([0.62, 0.32, 0.16]), np.array([0.8, 0.6, 0.25])]
+		for k in range(4):
+			sector = plate & (ang >= -math.pi + k * math.pi / 2) & (ang < -math.pi + (k + 1) * math.pi / 2)
+			rgb[sector] = cols[k]
+		rgb[np.abs(r - 80) < 3] = np.array([0.5, 0.5, 0.48])
+		rgb = _bars(rgb, u, v, 30, 226, 262, 6, rng)
+	elif kind == 2:
+		# No smoking: the round prohibition sign over a cigarette, print under it.
+		cig = (u > 70) & (u < 186) & (v > 130) & (v < 150)
+		rgb[cig] = np.array([0.95, 0.95, 0.93])
+		rgb[(u > 160) & (u < 186) & (v > 130) & (v < 150)] = np.array([0.85, 0.5, 0.2])
+		for k in range(3):
+			smoke = np.abs(v - (112 - k * 12) - 6 * np.sin(u / 9 + k)) < 2.5
+			rgb[smoke & (u > 60) & (u < 110)] = np.array([0.55, 0.55, 0.55])
+		r = np.hypot(u - 128, v - 140)
+		rgb[np.abs(r - 84) < 11] = np.array([0.75, 0.1, 0.08])
+		slash = (np.abs((u - 128) + (v - 140)) / math.sqrt(2) < 10) & (r < 80)
+		rgb[slash] = np.array([0.75, 0.1, 0.08])
+		rgb = _bars(rgb, u, v, 40, 216, 262, 5, rng)
+	else:
+		# Fire safety: a red band, an extinguisher, an arrow, print under it.
+		rgb[(v > 14) & (v < 52)] = np.array([0.72, 0.1, 0.07])
+		body = (u > 104) & (u < 150) & (v > 110) & (v < 240)
+		top = ((u - 127) / 23) ** 2 + ((v - 110) / 18) ** 2 < 1
+		rgb[body | top] = np.array([0.75, 0.1, 0.08])
+		rgb[(u > 118) & (u < 136) & (v > 80) & (v < 96)] = np.array([0.15, 0.15, 0.15])
+		rgb[(u > 136) & (u < 178) & (v > 84) & (v < 92)] = np.array([0.15, 0.15, 0.15])
+		rgb[(u > 112) & (u < 142) & (v > 140) & (v < 180)] = np.array([0.9, 0.88, 0.8])
+		arrow = (u > 176) & (u < 220) & (np.abs(v - 175) < 0.6 * (220 - u)) & (v > 150) & (v < 200)
+		rgb[arrow] = np.array([0.2, 0.5, 0.25])
+		rgb = _bars(rgb, u, v, 30, 226, 268, 5, rng)
+	# Age: sun-faded colours, water stain, a torn corner, tape at the top corners, fly specks.
+	fade = smoothstep(-0.6, 1.6, big) * 0.3
+	rgb = rgb * (1 - fade[..., None]) + np.array([0.82, 0.79, 0.7]) * fade[..., None]
+	d = np.hypot((u - rng.uniform(40, 220)) / 60, (v - rng.uniform(220, 340)) / 45) + 0.2 * mid
+	tide = np.exp(-((d - 1.0) / 0.06) ** 2) * 0.25 + smoothstep(1.0, 0.7, d) * 0.08
+	rgb *= (1 - tide)[..., None]
+	torn = (u > w - 34) & (v > h - 30) & ((u - (w - 34)) * 30 + (v - (h - 30)) * 34 > 520)
+	rgb[torn] = np.array([0.04, 0.04, 0.04])  # the wall's shadow shows there (the mesh is a flat card)
+	for tx in (14, w - 40):
+		rgb[(u > tx) & (u < tx + 26) & (v < 18)] = np.array([0.76, 0.72, 0.58])
+	specks = (rng.random((h, w)) < 0.003).astype(np.float64)
+	rgb *= (1 - 0.6 * blur(specks, 0.7))[..., None]
+	return rgb
+
+
+def _return_sign(seed):
+	"""ReturnSign "TRẢ KHAY" (the words unchanged) as a blue enamel sign, white letters, chipped edges."""
+	w, h = SIGN_PX
+	rng = np.random.default_rng(seed)
+	big = smooth_noise(rng, (h, w), 20)
+	mid = smooth_noise(rng, (h, w), 5)
+	v, u = np.mgrid[0:h, 0:w].astype(np.float64)
+	rgb = np.array([0.1, 0.24, 0.5])[None, None] * (1 + 0.08 * big)[..., None]
+	border = ((u < 12) | (u > w - 13) | (v < 12) | (v > h - 13)) & ~((u < 6) | (u > w - 7) | (v < 6) | (v > h - 7))
+	rgb[border] = np.array([0.88, 0.88, 0.84])
+	letters = _text_layer((w, h), L.RETURN_SIGN, FONT_BOLD, 0.44, (w / 2, h * 0.55), tracking=0.04)
+	guard = np.clip(blur(letters, 3.0) * 4.0, 0, 1)
+	rgb = rgb * (1 - letters[..., None]) + np.array([0.92, 0.92, 0.88]) * letters[..., None]
+	edge = np.minimum.reduce([u, w - u, v, h - v])
+	chips = smoothstep(1.6, 2.2, mid + 0.6 * big) * smoothstep(30, 6, edge) * (1 - guard)
+	rgb = rgb * (1 - chips[..., None]) + np.array([0.1, 0.09, 0.08]) * chips[..., None]
+	return rgb
+
+
+def _hazard(seed):
+	h = SIGN_PX[1]
+	v, u = np.mgrid[0:h, 0:h].astype(np.float64)
+	rgb = np.full((h, h, 3), 0.6)
+	tri = (v > 18) & (v < h - 14) & (np.abs(u - h / 2) < (v - 18) * 0.62)
+	rgb[tri] = np.array([0.1, 0.1, 0.1])
+	inner = (v > 30) & (v < h - 22) & (np.abs(u - h / 2) < (v - 30) * 0.62 - 6)
+	rgb[inner] = np.array([0.9, 0.72, 0.08])
+	bolt = (np.abs((u - h / 2) - 0.5 * (v - 80)) < 5) & (v > 52) & (v < 112)
+	rgb[bolt] = np.array([0.1, 0.1, 0.1])
+	return rgb
+
+
+def posters():
+	atlas = np.zeros((512, 1024, 3)) + 0.5
+	for k in range(4):
+		atlas[0:POSTER_PX[1], k * 256:(k + 1) * 256] = _poster(k, 263_50 + k)
+	atlas[366:366 + SIGN_PX[1], 0:SIGN_PX[0]] = _return_sign(263_55)
+	atlas[366:366 + SIGN_PX[1], 500:500 + SIGN_PX[1]] = _hazard(263_56)
+	save("posters.png", atlas)
+
+
+def _strip_grid():
+	X, Z = L.STRIP_UV["x"], L.STRIP_UV["z"]
+	w = 1024
+	h = int(round(w * (Z[1] - Z[0]) / (X[1] - X[0])))
+	v, u = np.mgrid[0:h, 0:w].astype(np.float64)
+	return X[0] + u / (w - 1) * (X[1] - X[0]), Z[0] + v / (h - 1) * (Z[1] - Z[0]), (h, w)
+
+
+def _rect_dist(x, z, x0, z0, x1, z1):
+	dx = np.maximum(np.maximum(x0 - x, x - x1), 0.0)
+	dz = np.maximum(np.maximum(z0 - z, z - z1), 0.0)
+	return np.hypot(dx, dz)
+
+
+# The ways people and the horde take round the canteen (from walk_canteen.gd's routes): the west side from Start_split
+# to the front, the forecourt to the door, the back door north across the yard, the east side.
+TRODDEN = [((167.4, 13.0), (167.4, 37.0), 1.0), ((190.0, 13.0), (190.0, 19.0), 1.6), ((202.0, 52.0), (202.0, 60.0), 1.2),
+	((213.5, 13.0), (213.5, 60.0), 0.9), ((172.0, 47.0), (184.0, 56.0), 0.8), ((202.0, 58.0), (186.0, 60.0), 0.8)]
+
+
+def mask_strip6():
+	"""UV2 of the canteen strip's lawn (ground_blend: R bare dirt, G wet) over the A16 box: verges trodden bare along the
+	forecourt, the walls' aprons and the yard; the ways round the building; wet under the eaves' drips and by the bins."""
+	x, z, shape = _strip_grid()
+	rng = np.random.default_rng(263_60)
+	big = smooth_noise(rng, shape, 30)
+	mid = smooth_noise(rng, shape, 8)
+	ad = L.APRON + L.DRAIN
+	paved = np.minimum.reduce([_rect_dist(x, z, L.FRONT_PAVED["x"][0], L.FRONT_PAVED["z"][0], L.FRONT_PAVED["x"][1], L.FRONT_PAVED["z"][1]),
+		_rect_dist(x, z, L.YARD["x"][0], L.YARD["z"][0], L.YARD["x"][1], L.YARD["z"][1])]
+		+ [_rect_dist(x, z, p["x"][0] - ad, p["z"][0], p["x"][1] + ad, p["z"][1] + ad) for p in L.FOOTPRINT_PARTS])
+	verge = np.exp(-paved / 0.7) * 0.8
+	ways = np.zeros_like(x)
+	for a, b, wdt in TRODDEN:
+		ways = np.maximum(ways, np.exp(-(_seg_dist(x, z, a, b) / wdt) ** 2))
+	dirt = np.maximum(verge, ways * 0.85)
+	dirt = np.clip(dirt * (0.7 + 0.45 * smoothstep(-1, 1.2, mid)) + 0.25 * smoothstep(0.9, 2.2, big), 0, 1)
+	eaves = np.exp(-paved / 0.5) * smoothstep(-0.4, 1.2, big + 0.5 * mid)
+	wet = np.clip(0.7 * eaves + 0.6 * smoothstep(1.8, 2.5, big), 0, 1)
+	save("mask_strip6.png", np.dstack([dirt, wet, np.zeros_like(x), np.ones_like(x)]), "RGBA")
+
+
+def mask_yard6():
+	"""UV2 of the pavers and the concrete (room407_shell kind 1: R grout dirt, G grime, B wet, A wear) over the A16 box:
+	grime against the walls and under the bikes, oil under the moped, wet round the drains, the bins and the gas
+	cylinders, the trodden lines from the gate's walk to the door and out of the back door."""
+	x, z, shape = _strip_grid()
+	rng = np.random.default_rng(263_61)
+	big = smooth_noise(rng, shape, 30)
+	mid = smooth_noise(rng, shape, 7)
+	walls = np.minimum.reduce([_rect_dist(x, z, p["x"][0], p["z"][0], p["x"][1], p["z"][1]) for p in L.FOOTPRINT_PARTS])
+	grout = np.clip(0.5 + 0.3 * smoothstep(-1, 1.5, mid) + 0.3 * np.exp(-walls / 1.0), 0, 1)
+	grime = 0.4 * np.exp(-walls / 0.8) + 0.25 * smoothstep(1.2, 2.2, big + 0.4 * mid)
+	for bx, bz, _ in L.BIKES:
+		grime += 0.3 * np.exp(-(((x - bx) / 0.9) ** 2 + ((z - bz) / 0.5) ** 2))
+	oil = np.exp(-(((x - 207.6) / 0.8) ** 2 + ((z - 54.6) / 0.6) ** 2)) * smoothstep(-0.5, 1.2, mid)
+	grime = np.clip(grime + 0.5 * oil, 0, 1)
+	wet = 0.6 * np.exp(-walls / 0.5) * smoothstep(-0.3, 1.3, big + 0.5 * mid) + 0.7 * smoothstep(1.8, 2.5, big)
+	for px, pz, r in [(205.6, 54.2, 1.2), (189.3, 53.0, 0.9), (202.0, 52.8, 1.4), (190.0, 18.6, 1.0)]:
+		wet += 0.6 * smoothstep(r, 0.0, np.hypot(x - px, z - pz) + 0.3 * mid)
+	wet = np.clip(wet + 0.4 * oil, 0, 1)
+	wear = np.zeros_like(x)
+	for a, b, wdt in [((190.0, 13.0), (190.0, 19.9), 1.8), ((186.0, 13.2), (217.0, 13.2), 1.4), ((202.0, 52.0), (202.0, 58.5), 1.3),
+			((169.0, 16.0), (186.0, 16.0), 1.0)]:
+		wear = np.maximum(wear, np.exp(-(_seg_dist(x, z, a, b) / wdt) ** 2))
+	wear = np.clip(wear * (0.75 + 0.3 * smoothstep(-1, 1, mid)), 0, 1)
+	save("mask_yard6.png", np.dstack([grout, grime, wet, wear]), "RGBA")
+
+
 ALL = {"ceramic": ceramic, "ceiling_panels": ceiling_panels, "mask_floor": mask_floor, "mask_ceiling": mask_ceiling,
-	"mask_walls": mask_walls, "price_boards": price_boards, "signs": signs, "tv_screen": tv_screen, "palette": palette}
+	"mask_walls": mask_walls, "price_boards": price_boards, "signs": signs, "tv_screen": tv_screen, "palette": palette,
+	"posters": posters, "mask_strip6": mask_strip6, "mask_yard6": mask_yard6, "price_print": lambda: price_boards(True)}
 
 if __name__ == "__main__":
-	names = sys.argv[1:] or list(ALL)
+	names = sys.argv[1:] or [k for k in ALL if k != "price_print"]
 	for key in names:
 		ALL[key]()

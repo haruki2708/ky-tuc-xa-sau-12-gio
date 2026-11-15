@@ -142,5 +142,69 @@
 "rust": [
 3,
 4
+],
+"bike_blue": [
+4,
+4
+],
+"bike_red": [
+5,
+4
+],
+"bike_green": [
+6,
+4
+],
+"chrome": [
+7,
+4
+],
+"saddle": [
+0,
+5
+],
+"ac_white": [
+1,
+5
+],
+"pvc_grey": [
+2,
+5
+],
+"bin_grey": [
+3,
+5
+],
+"oil_yellow": [
+4,
+5
+],
+"tape": [
+5,
+5
+],
+"sack_green": [
+6,
+5
+],
+"slop": [
+7,
+5
+],
+"door_green": [
+0,
+6
+],
+"steel_grey": [
+1,
+6
+],
+"copper": [
+2,
+6
+],
+"foam": [
+3,
+6
 ]
 }
