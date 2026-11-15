@@ -71,3 +71,9 @@ Nguồn từng file và texture: [`wave4/CREDITS.md`](wave4/CREDITS.md). Dựng 
 ## `wave5/` — T-262: cổng trường, chốt bảo vệ, tường rào nam, sân cổng (A14), dải A16 đoạn cổng
 
 Cổng, chốt bảo vệ, tường rào nam cả `Fence/S`, dải A16 đoạn cổng theo D-180. Nguồn từng file và texture: [`wave5/CREDITS.md`](wave5/CREDITS.md). Dựng bằng script Blender, texture vẽ bằng code; không Tripo, không ảnh AI (D-166, D-176, D-180).
+
+## `wave6/` — T-263: nhà ăn, bếp, kho (A15), lượt 1 góc mẫu và phương án
+
+Góc mẫu nhà ăn (vỏ sảnh, cửa sổ, hai kiểu trần, đèn tuýp, quạt, hai kiểu bàn ghế, khay bát hai mức bừa, hai kiểu quầy, bảng
+giá, TV, bếp hai kiểu, đồng hồ, mặt tiền) chờ chủ dự án chọn. Nguồn từng file và texture: [`wave6/CREDITS.md`](wave6/CREDITS.md).
+Dựng bằng script Blender, texture vẽ bằng code; không Tripo, không ảnh AI (D-166).
