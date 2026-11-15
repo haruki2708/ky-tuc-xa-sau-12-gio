@@ -97,3 +97,84 @@
 
 ## Handoff
 (lane B ghi)
+
+### Lượt 1 — phần 1: khảo sát, hợp đồng, đi thử tuyến, hộp A16 (15/11/2026, đang làm)
+Nhánh `lane-b/T-262-realistic-graphics-wave5-gate` từ `origin/main` `1b63065` (card đọc ở `1b63065`). Chưa sửa scene nào.
+Script: `art_source/graphics_upgrade/realistic_map/wave5/` (`gate_layout.py` số đo, `walk_route.gd` đi thử tuyến,
+`list_a16_box.py` → `a16_box_nodes.json`).
+
+**Kiểm lại mục 0:** đúng như card, thêm mấy điểm:
+- Trụ `Pillar209` nghiêng 7° quanh tâm nên chân khối va chạm hở 11 cm ở góc đông (góc tây chìm 6 cm); bản mới phải
+  phủ kín chân trụ (như nền bị đội lên, nứt).
+- `Fence/S` chạy thẳng sau cổng (không có lỗ cổng), cách cánh cổng 1 m. Nền đất chỉ tới z −60: ngoài tường là khoảng
+  trống. Muốn nhìn qua cánh cổng thấy đường phố thì phải cắt hình tường ở lỗ cổng và thêm một dải vỉa hè, lòng đường
+  ngoài cổng chỉ để nhìn (không va chạm, người chơi không tới được); va chạm `Fence/S` vẫn giữ nguyên.
+- Mặt sân cổng ở −9,90; nền đất quanh sân −9,94; mặt `Road/Avenue` −9,87 (không có va chạm riêng).
+- Sân cổng còn có: thanh sắt `Anchors/BarSpawns/B05` (228; −29) (`test_t249` kiểm cúi nhặt được), xe máy đổ
+  `Road/FallenMoped2` + va chạm `MopedBody2` (225; −25) trong `campus.tscn`; đèn `Props/Lights/Lamp2` (240,8; −5; −22) và
+  đèn khẩn cấp ô tô `Props/Lights/Hazard0` (236; −8; −26).
+- Bảo vệ (`guard.gd`, lane A): cảnh báo 3 m, bắt 1,5 m; `GUARD_TURN_RADIUS` 12 m chỉ là cảnh quay đầu (`guard_turn`).
+
+**Code, test, bot đụng tới cổng:** `chapter3_director.gd` (`_gate`, `_place_guards` đặt bảo vệ ngay trong `_ready`,
+`_watch_scares`, vùng `Gate`/`Canteen`/`Road`), `guard.gd`, `ch3_environment.gd` (vùng `gate`), `ch3_guard_audio`,
+`ch3_bot.gd`/`ch3_policy.gd`/`ch3_menu*.gd` (chặng `gate`), `profile_static_audit.gd` (`Guard01…12` ↔ `GuardLine`),
+`tools/ch3-profile.json` (tuyến `stadium` kết thúc `P24 → P25 → P26 → Start_gate`, tuyến `gate`
+`P28 → P29 → P30_Wait_canteen`, `guard_target` = `G06`, điểm xác `Gate/S01…06`); test `test_campus` (anchor, vùng),
+`test_chapter3` (`run_from(&"gate")`, `DEATH_CH3_GUARD`), `test_ch3_profile`, `test_stands_props` (navmesh
+`Start_gate → CanteenExit`), `test_t249_chapter3_bar` (B05), `test_t261_stadium` (`Road/Avenue/Mesh` phải hiện).
+Không có âm thanh hay reverb gắn vào node của `gate.tscn`.
+
+**Bảng hợp đồng (giữ tên, vị trí, va chạm; lượt 2 so dấu vân tay với main):**
+| Node | Vị trí, kích thước | Va chạm | Ghi chú |
+|---|---|---|---|
+| `Gate` (gốc `gate.tscn` trong `campus.tscn`) | transform 0 | — | |
+| `Court` | (220; −9,92; −40), hộp 60 × 0,04 × 40; meta `surface = tile`, `is_floor` | có | `Court/Mesh` chỉ ẩn |
+| `Pillar209` | (209; −6,9; −59), xoay z 7°, hộp 1,4 × 6 × 1,4 | có | `Mesh` chỉ ẩn |
+| `Pillar231` | (231; −6,9; −59), hộp 1,4 × 6 × 1,4 | có | `Mesh` chỉ ẩn |
+| `Gate/Gate` | (220; −7,9; −59), hộp 20 × 4 × 0,18 | có | hình đã ẩn sẵn |
+| `Booth` | (240; −8,4; −54), hộp 5 × 3 × 4 | có | `Mesh` chỉ ẩn |
+| Hình PS1 không va chạm | `GateBar210…230`, `GateCross0.5`, `GateCross3.4`, `HalfFallenSign`, `SignScar0…8`, `BoothWindow`, `BoothRoof`, `RoadCrack212/222/233` (7 nhánh), `PillarCrack` (7 nhánh) | — | lượt 2 chỉ ẩn |
+| `campus.tscn` `Fence/S` | (170; −8,4; −60), hộp 500 × 3 × 0,3 | có | `Fence/S/Mesh` chỉ ẩn hoặc thay theo phạm vi chủ dự án chọn |
+| `Anchors/GuardLine/G01…G12` | x 210 → 230 (cách 1,82 m), y −9,9, z −54 | — | |
+| `Anchors/GuardBooth`, `Clues/GatePillar`, `Start_gate` | (240; −51), (209; −58), (220; −25), y −9,9 | — | |
+| `Anchors/ZombieSpawns/Gate/S01…06`, `ZombieIdle/Gate/I01…06` | x 196/200/204, z −30/−25 (idle −29/−24) | — | |
+| `Paths/Nhat/P26`, `P27_Wait_gate`, `P28`, `P29`; `Paths/Ngu/P16…P19` | (220; −15), (220; −30), (220; 10), (190; 18) | — | |
+| `Anchors/BarSpawns/B05` | (228; −9,9; −29) | — | mặt sân giữ cao độ −9,90 |
+| `Zones/Gate`, `Zones/GuardRadius`, `Zones/Canteen`, `Zones/Road` | (220; −40) 60 × 40; (220; −52,5) 22 × 3; (194; 36) 48 × 32; (110; −15) 220 × 10 | — | |
+| `props.tscn` `Solids` trong hộp A16 | 26 khối (2 thanh chắn `s17`, 5 ô tô `s16`, đống gạch, ghế, bồn cây, thân cây, xe máy…) | có | giữ cả, đồ mới đặt đúng chỗ đúng góc |
+| Đèn | `Props/Lights/Lamp2`, `Hazard0` | — | không đổi |
+
+**Đi thử tuyến** (`walk_route.gd` trên main: navmesh và thân người chơi thật `player.tscn`, `move_and_slide`, 4 m/s):
+- Navmesh `Start_stadium → Start_gate` (279 m) vào khu này từ phía nhà ăn: (190; 18) → (216; 13) → (220; 12) → `Start_gate`;
+  `Start_gate → CanteenExit` (108 m) đi (220; −25) → (222; −10) rồi lên nhà ăn; `Start_gate → Canteen/S01` đi dọc z −24
+  sang x 190 rồi lên (190; −2) → (190; 18). Đàn xác cổng `Gate/S01…06`, `I01…06` → `Start_gate`: đều tới, trong
+  x 196…220, z −30…−24. Mọi đường navmesh trong khu: x 190…222, z −30…18.
+- Thân người chơi đi được hết: đồng đội/bot `P25 → P26 → P27_Wait_gate → P28 → P29 → P30_Wait_canteen`, cuối tuyến bot
+  `P26 → Start_gate`, tuyến bot `gate` `Start_gate → P28 → P29 → P30`, từ `Start_gate` tới (220; −41,5) (mép 12 m của bảo
+  vệ gần nhất), vòng quanh sân (196; −44) → (196; −29,5) → (246; −29,5) → (246; −46) → (232; −46), và từ góc đông bắc sân ra
+  đầu `Road/Avenue` rồi dọc đường về x 180. Chân người chơi trong khu: x 170…246, z −46…20.
+- Đường nhìn (tia va chạm lớp 1) từ mắt ở `Start_gate` (1,6 m) tới ngực 12 bảo vệ (1,3 m): thông cả 12. Thanh chắn PS1
+  cao 0,9 m, tia đi qua chỗ thanh chắn ở độ cao khoảng 1,35 m.
+
+**Hộp A16 đoạn cổng chốt: x 180…262, z −60…13** (mặt đất y −10,5…−6). Gồm sân cổng, 40 m cuối `Road/Avenue`
+(x 180…220) và khoảng đất từ sân lên tới mép nam hộp nhà ăn (z 13) mà đồng đội, bot, đàn xác và người chơi đều đi qua;
+không lấn hộp nhà ăn (x 170…210, z 13…51). Rộng hơn gợi ý của card (z −60…−10) vì tuyến sang nhà ăn đi qua
+z −10…13. Danh sách đầy đủ (chỉ số bản MultiMesh): `wave5/a16_box_nodes.json`. Tóm tắt:
+- `campus.tscn`: `Road/Avenue/Mesh` nằm một phần trong hộp (x 180…220 của dải x 0…220; `test_t261` đòi node này hiện:
+  lượt 2 đề xuất rút ngắn hình còn x 0…180 thay vì ẩn); nền mới phủ lên 4 ô `Ground/Tile_170_-60`, `Tile_220_-60`,
+  `Tile_170_-10`, `Tile_220_-10` (giữ va chạm). Giữ: đèn đường `Road/StreetLights_4_-1`, `_5_-1`, cây `Road/Trees_4_-1`,
+  `_5_-1`, thân cây `TreeTrunk104/105`, `Road/FallenMoped2`, `BarSpawns/B05`.
+- `props.tscn` (bản MultiMesh còn hiện trên main, lượt 2 thu cỡ về 0 như T-261): 2 thanh chắn (12 bản:
+  `P_white_box_p5_m2`, `P_iron_box_p5_m2`), 2 hàng cọc giao thông (12 bản: `P_white_cone_p5_m2`, đế trong
+  `P_white_box_p5_m2`), 5 ô tô PS1 (70 bản: thân, cabin, kính, mui, bánh, cản, đèn trong `P_white_box_p5_m1`,
+  `P_white_box_p4_m1`, `P_iron_cylinder_p5_m1`, `P_iron_cylinder_p4_m1`, `P_iron_box_p5_m1`, `P_iron_box_p4_m1`,
+  `P_paper_box_p5_m1`, `P_paper_box_p4_m1`), 38 tờ giấy (`D_paper_quad_p2_m1`, `_p2_p0`, `_p3_m1`), đồ rơi (6 bản ba lô,
+  10 giày, 4 dép, 14 mảnh điện thoại), đống gạch vỡ ở (214; −22,7) (14 bản). Giữ nguyên: xác (30 bản, gồm đầu xác), máu
+  (6), vết nứt và vệt kéo (67), ghế đá, bồn cây, xe đạp, xe máy, thùng gỗ, biển chỉ đường, bảng tin, cột đèn, cây.
+
+**Lỗi cũ phát hiện khi khảo sát (ngoài phạm vi, chưa sửa):** bộ lọc "giấy rác" của T-259 và T-261 bắt nhầm **đầu của 3
+xác tĩnh** (khối 0,22 m màu da `(0,9; 0,7; 0,6)` tên `P_paper_box_*`, cao −9,78) nên 3 xác trên main đang mất đầu:
+`P_paper_box_p1_p0` bản 0 (43,6; 30,2) (T-259), `P_paper_box_p2_p2` bản 1 (82,6; 86,5) và `P_paper_box_p2_p4` bản 1
+(85,5; 161,8) (T-261). Sửa: trả lại ma trận gốc của 3 bản đó trong `props.tscn` (và bỏ tờ giấy mới đặt đúng chỗ đó nếu
+có); `test_t261_stadium` đang đòi ít nhất 373 bản thu về 0 nên cần hạ còn 371. Bộ lọc đợt này đã loại riêng màu da.
+Xin integrator cho phép làm việc này ở lượt 2 (hoặc giao việc riêng).

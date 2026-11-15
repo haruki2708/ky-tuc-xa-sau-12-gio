@@ -1,0 +1,3420 @@
+{
+ "box": {
+  "x": [
+   180.0,
+   262.0
+  ],
+  "z": [
+   -60.0,
+   13.0
+  ],
+  "y": [
+   -10.5,
+   -6.0
+  ]
+ },
+ "campus.tscn": {
+  "partly_in_box": [
+   "Road/Avenue/Mesh (x 0..220, z -19..-11: x 180..220 inside; test_t261 keeps it visible)"
+  ],
+  "ground_tiles_under_new_ground (kept, colliders unchanged)": [
+   "Ground/Tile_170_-60",
+   "Ground/Tile_170_-10",
+   "Ground/Tile_220_-60",
+   "Ground/Tile_220_-10"
+  ],
+  "kept": [
+   "Road/StreetLights_4_-1 (180, -20)",
+   "Road/StreetLights_5_-1 (200, -20) (220, -20)",
+   "Road/Trees_4_-1 (184, -7)",
+   "Road/Trees_5_-1 (200, -7)",
+   "Road/TreeTrunk104",
+   "Road/TreeTrunk105",
+   "Road/FallenMoped2 + Road/MopedBody2 (225, -25)",
+   "Anchors/BarSpawns/B05 (228, -29)",
+   "Fence/S (the wall: A14, its own option and scope question)"
+  ]
+ },
+ "props.tscn": {
+  "Props/Parts/P_concrete_box_p4_m1": {
+   "instances": 3,
+   "in_box": [
+    {
+     "index": 1,
+     "kind": "keep: other (concrete box)",
+     "origin": [
+      187.618,
+      -9.6,
+      -20.014
+     ]
+    },
+    {
+     "index": 2,
+     "kind": "keep: other (concrete box)",
+     "origin": [
+      196.959,
+      -9.6,
+      -8.364
+     ]
+    }
+   ]
+  },
+  "Props/Parts/P_concrete_box_p5_m1": {
+   "instances": 15,
+   "in_box": [
+    {
+     "index": 0,
+     "kind": "keep: other (concrete box)",
+     "origin": [
+      204.401,
+      -9.45,
+      -19.735
+     ]
+    },
+    {
+     "index": 1,
+     "kind": "keep: other (concrete box)",
+     "origin": [
+      204.383,
+      -9.12,
+      -19.955
+     ]
+    },
+    {
+     "index": 2,
+     "kind": "keep: other (concrete box)",
+     "origin": [
+      205.198,
+      -9.68,
+      -19.801
+     ]
+    },
+    {
+     "index": 3,
+     "kind": "keep: other (concrete box)",
+     "origin": [
+      203.603,
+      -9.68,
+      -19.67
+     ]
+    },
+    {
+     "index": 4,
+     "kind": "rubble",
+     "origin": [
+      214.09,
+      -9.612,
+      -23.033
+     ]
+    },
+    {
+     "index": 5,
+     "kind": "rubble",
+     "origin": [
+      213.404,
+      -9.696,
+      -23.014
+     ]
+    },
+    {
+     "index": 6,
+     "kind": "rubble",
+     "origin": [
+      213.968,
+      -9.64,
+      -22.215
+     ]
+    },
+    {
+     "index": 7,
+     "kind": "rubble",
+     "origin": [
+      214.001,
+      -9.784,
+      -22.725
+     ]
+    },
+    {
+     "index": 8,
+     "kind": "rubble",
+     "origin": [
+      213.927,
+      -9.77,
+      -22.88
+     ]
+    },
+    {
+     "index": 9,
+     "kind": "rubble",
+     "origin": [
+      213.849,
+      -9.787,
+      -22.679
+     ]
+    },
+    {
+     "index": 10,
+     "kind": "rubble",
+     "origin": [
+      213.17,
+      -9.685,
+      -22.528
+     ]
+    },
+    {
+     "index": 11,
+     "kind": "rubble",
+     "origin": [
+      213.948,
+      -9.763,
+      -22.497
+     ]
+    },
+    {
+     "index": 12,
+     "kind": "rubble",
+     "origin": [
+      214.307,
+      -9.71,
+      -22.335
+     ]
+    },
+    {
+     "index": 13,
+     "kind": "rubble",
+     "origin": [
+      213.956,
+      -9.671,
+      -22.749
+     ]
+    },
+    {
+     "index": 14,
+     "kind": "rubble",
+     "origin": [
+      213.788,
+      -9.625,
+      -22.728
+     ]
+    }
+   ]
+  },
+  "Props/Parts/P_grass_box_p4_m1": {
+   "instances": 3,
+   "in_box": [
+    {
+     "index": 1,
+     "kind": "keep: other (grass box)",
+     "origin": [
+      187.618,
+      -9.28,
+      -20.014
+     ]
+    },
+    {
+     "index": 2,
+     "kind": "keep: other (grass box)",
+     "origin": [
+      196.959,
+      -9.28,
+      -8.364
+     ]
+    }
+   ]
+  },
+  "Props/Parts/P_iron_box_p4_m1": {
+   "instances": 13,
+   "in_box": [
+    {
+     "index": 6,
+     "kind": "car",
+     "origin": [
+      188.106,
+      -9.48,
+      -8.339
+     ]
+    },
+    {
+     "index": 7,
+     "kind": "car",
+     "origin": [
+      187.131,
+      -9.48,
+      -4.213
+     ]
+    },
+    {
+     "index": 8,
+     "kind": "keep: other (iron box)",
+     "origin": [
+      196.498,
+      -9.684,
+      -19.549
+     ]
+    },
+    {
+     "index": 9,
+     "kind": "keep: other (iron box)",
+     "origin": [
+      196.618,
+      -9.693,
+      -19.447
+     ]
+    },
+    {
+     "index": 10,
+     "kind": "keep: other (iron box)",
+     "origin": [
+      196.215,
+      -9.667,
+      -19.821
+     ]
+    },
+    {
+     "index": 11,
+     "kind": "keep: other (iron box)",
+     "origin": [
+      195.959,
+      -9.618,
+      -19.71
+     ]
+    }
+   ]
+  },
+  "Props/Parts/P_iron_box_p4_p0": {
+   "instances": 16,
+   "in_box": [
+    {
+     "index": 13,
+     "kind": "keep: other (iron box)",
+     "origin": [
+      191.533,
+      -9.445,
+      10.667
+     ]
+    },
+    {
+     "index": 14,
+     "kind": "keep: other (iron box)",
+     "origin": [
+      191.768,
+      -9.53,
+      10.421
+     ]
+    }
+   ]
+  },
+  "Props/Parts/P_iron_box_p5_m2": {
+   "instances": 4,
+   "in_box": [
+    {
+     "index": 0,
+     "kind": "barrier",
+     "origin": [
+      212.01,
+      -9.5,
+      -49.361
+     ]
+    },
+    {
+     "index": 1,
+     "kind": "barrier",
+     "origin": [
+      213.99,
+      -9.5,
+      -49.639
+     ]
+    },
+    {
+     "index": 2,
+     "kind": "barrier",
+     "origin": [
+      226.006,
+      -9.5,
+      -49.605
+     ]
+    },
+    {
+     "index": 3,
+     "kind": "barrier",
+     "origin": [
+      227.994,
+      -9.5,
+      -49.395
+     ]
+    }
+   ]
+  },
+  "Props/Parts/P_iron_box_p5_m1": {
+   "instances": 10,
+   "in_box": [
+    {
+     "index": 0,
+     "kind": "car",
+     "origin": [
+      208.995,
+      -9.48,
+      -38.872
+     ]
+    },
+    {
+     "index": 1,
+     "kind": "car",
+     "origin": [
+      207.005,
+      -9.48,
+      -35.128
+     ]
+    },
+    {
+     "index": 2,
+     "kind": "car",
+     "origin": [
+      238.132,
+      -9.48,
+      -35.588
+     ]
+    },
+    {
+     "index": 3,
+     "kind": "car",
+     "origin": [
+      238.868,
+      -9.48,
+      -31.412
+     ]
+    },
+    {
+     "index": 4,
+     "kind": "car",
+     "origin": [
+      238.088,
+      -9.48,
+      -26.368
+     ]
+    },
+    {
+     "index": 5,
+     "kind": "car",
+     "origin": [
+      233.912,
+      -9.48,
+      -25.632
+     ]
+    },
+    {
+     "index": 6,
+     "kind": "keep: other (iron box)",
+     "origin": [
+      203.822,
+      -8.93,
+      -7.417
+     ]
+    },
+    {
+     "index": 7,
+     "kind": "keep: other (iron box)",
+     "origin": [
+      203.802,
+      -9.28,
+      -7.416
+     ]
+    },
+    {
+     "index": 8,
+     "kind": "car",
+     "origin": [
+      225.04,
+      -9.48,
+      -20.97
+     ]
+    },
+    {
+     "index": 9,
+     "kind": "car",
+     "origin": [
+      229.225,
+      -9.48,
+      -20.289
+     ]
+    }
+   ]
+  },
+  "Props/Parts/P_iron_box_p5_p0": {
+   "instances": 10,
+   "in_box": [
+    {
+     "index": 0,
+     "kind": "keep: other (iron box)",
+     "origin": [
+      227.0,
+      -8.9,
+      8.0
+     ]
+    },
+    {
+     "index": 1,
+     "kind": "keep: other (iron box)",
+     "origin": [
+      225.0,
+      -8.9,
+      8.0
+     ]
+    },
+    {
+     "index": 2,
+     "kind": "keep: other (iron box)",
+     "origin": [
+      226.0,
+      -7.7,
+      7.85
+     ]
+    },
+    {
+     "index": 3,
+     "kind": "keep: other (iron box)",
+     "origin": [
+      215.53,
+      -8.9,
+      5.447
+     ]
+    },
+    {
+     "index": 4,
+     "kind": "keep: other (iron box)",
+     "origin": [
+      214.291,
+      -8.9,
+      7.016
+     ]
+    },
+    {
+     "index": 5,
+     "kind": "keep: other (iron box)",
+     "origin": [
+      214.793,
+      -7.7,
+      6.138
+     ]
+    }
+   ]
+  },
+  "Props/Parts/P_iron_cylinder_p4_m1": {
+   "instances": 11,
+   "in_box": [
+    {
+     "index": 4,
+     "kind": "car",
+     "origin": [
+      186.521,
+      -9.56,
+      -5.199
+     ]
+    },
+    {
+     "index": 5,
+     "kind": "car",
+     "origin": [
+      188.117,
+      -9.56,
+      -4.822
+     ]
+    },
+    {
+     "index": 6,
+     "kind": "car",
+     "origin": [
+      187.119,
+      -9.56,
+      -7.73
+     ]
+    },
+    {
+     "index": 7,
+     "kind": "car",
+     "origin": [
+      188.715,
+      -9.56,
+      -7.353
+     ]
+    },
+    {
+     "index": 8,
+     "kind": "keep: other (iron cylinder)",
+     "origin": [
+      196.944,
+      -9.723,
+      -19.236
+     ]
+    },
+    {
+     "index": 9,
+     "kind": "keep: other (iron cylinder)",
+     "origin": [
+      196.421,
+      -9.723,
+      -20.088
+     ]
+    }
+   ]
+  },
+  "Props/Parts/P_iron_cylinder_p4_p0": {
+   "instances": 11,
+   "in_box": [
+    {
+     "index": 8,
+     "kind": "keep: other (iron cylinder)",
+     "origin": [
+      191.106,
+      -9.612,
+      9.425
+     ]
+    },
+    {
+     "index": 9,
+     "kind": "keep: other (iron cylinder)",
+     "origin": [
+      191.982,
+      -9.612,
+      10.169
+     ]
+    }
+   ]
+  },
+  "Props/Parts/P_iron_cylinder_p5_m1": {
+   "instances": 22,
+   "in_box": [
+    {
+     "index": 0,
+     "kind": "keep: other (iron cylinder)",
+     "origin": [
+      214.0,
+      -8.5,
+      -8.0
+     ]
+    },
+    {
+     "index": 1,
+     "kind": "car",
+     "origin": [
+      206.666,
+      -9.56,
+      -36.237
+     ]
+    },
+    {
+     "index": 2,
+     "kind": "car",
+     "origin": [
+      208.114,
+      -9.56,
+      -35.467
+     ]
+    },
+    {
+     "index": 3,
+     "kind": "car",
+     "origin": [
+      207.886,
+      -9.56,
+      -38.533
+     ]
+    },
+    {
+     "index": 4,
+     "kind": "car",
+     "origin": [
+      209.334,
+      -9.56,
+      -37.763
+     ]
+    },
+    {
+     "index": 5,
+     "kind": "car",
+     "origin": [
+      237.918,
+      -9.56,
+      -32.077
+     ]
+    },
+    {
+     "index": 6,
+     "kind": "car",
+     "origin": [
+      239.533,
+      -9.56,
+      -32.362
+     ]
+    },
+    {
+     "index": 7,
+     "kind": "car",
+     "origin": [
+      237.467,
+      -9.56,
+      -34.638
+     ]
+    },
+    {
+     "index": 8,
+     "kind": "car",
+     "origin": [
+      239.082,
+      -9.56,
+      -34.923
+     ]
+    },
+    {
+     "index": 9,
+     "kind": "car",
+     "origin": [
+      234.577,
+      -9.56,
+      -26.582
+     ]
+    },
+    {
+     "index": 10,
+     "kind": "car",
+     "origin": [
+      234.862,
+      -9.56,
+      -24.967
+     ]
+    },
+    {
+     "index": 11,
+     "kind": "car",
+     "origin": [
+      237.138,
+      -9.56,
+      -27.033
+     ]
+    },
+    {
+     "index": 12,
+     "kind": "car",
+     "origin": [
+      237.423,
+      -9.56,
+      -25.418
+     ]
+    },
+    {
+     "index": 13,
+     "kind": "keep: other (iron cylinder)",
+     "origin": [
+      204.95,
+      -9.62,
+      -7.48
+     ]
+    },
+    {
+     "index": 14,
+     "kind": "keep: other (iron cylinder)",
+     "origin": [
+      203.802,
+      -9.62,
+      -7.416
+     ]
+    },
+    {
+     "index": 15,
+     "kind": "rubble",
+     "origin": [
+      214.364,
+      -9.4,
+      -22.791
+     ]
+    },
+    {
+     "index": 16,
+     "kind": "rubble",
+     "origin": [
+      214.129,
+      -9.4,
+      -22.847
+     ]
+    },
+    {
+     "index": 17,
+     "kind": "rubble",
+     "origin": [
+      214.511,
+      -9.4,
+      -23.187
+     ]
+    },
+    {
+     "index": 18,
+     "kind": "car",
+     "origin": [
+      228.284,
+      -9.56,
+      -19.611
+     ]
+    },
+    {
+     "index": 19,
+     "kind": "car",
+     "origin": [
+      228.548,
+      -9.56,
+      -21.23
+     ]
+    },
+    {
+     "index": 20,
+     "kind": "car",
+     "origin": [
+      225.718,
+      -9.56,
+      -20.029
+     ]
+    },
+    {
+     "index": 21,
+     "kind": "car",
+     "origin": [
+      225.981,
+      -9.56,
+      -21.648
+     ]
+    }
+   ]
+  },
+  "Props/Parts/P_iron_cylinder_p6_m1": {
+   "instances": 1,
+   "in_box": [
+    {
+     "index": 0,
+     "kind": "keep: other (iron cylinder)",
+     "origin": [
+      240.0,
+      -7.3,
+      -22.0
+     ]
+    }
+   ]
+  },
+  "Props/Parts/P_paper_box_p4_m1": {
+   "instances": 5,
+   "in_box": [
+    {
+     "index": 1,
+     "kind": "car",
+     "origin": [
+      187.522,
+      -9.2,
+      -8.477
+     ]
+    },
+    {
+     "index": 2,
+     "kind": "car",
+     "origin": [
+      188.69,
+      -9.2,
+      -8.201
+     ]
+    },
+    {
+     "index": 3,
+     "kind": "keep: body",
+     "origin": [
+      187.582,
+      -9.78,
+      -10.067
+     ]
+    }
+   ]
+  },
+  "Props/Parts/P_paper_box_p4_p0": {
+   "instances": 2,
+   "in_box": [
+    {
+     "index": 0,
+     "kind": "keep: other (paper box)",
+     "origin": [
+      191.681,
+      -9.467,
+      10.678
+     ]
+    }
+   ]
+  },
+  "Props/Parts/P_paper_box_p5_m2": {
+   "instances": 2,
+   "in_box": [
+    {
+     "index": 0,
+     "kind": "keep: body",
+     "origin": [
+      205.059,
+      -9.78,
+      -43.084
+     ]
+    },
+    {
+     "index": 1,
+     "kind": "keep: body",
+     "origin": [
+      235.592,
+      -9.78,
+      -40.099
+     ]
+    }
+   ]
+  },
+  "Props/Parts/P_paper_box_p5_m1": {
+   "instances": 11,
+   "in_box": [
+    {
+     "index": 0,
+     "kind": "car",
+     "origin": [
+      208.465,
+      -9.2,
+      -39.154
+     ]
+    },
+    {
+     "index": 1,
+     "kind": "car",
+     "origin": [
+      209.525,
+      -9.2,
+      -38.59
+     ]
+    },
+    {
+     "index": 2,
+     "kind": "car",
+     "origin": [
+      237.541,
+      -9.2,
+      -35.484
+     ]
+    },
+    {
+     "index": 3,
+     "kind": "car",
+     "origin": [
+      238.723,
+      -9.2,
+      -35.692
+     ]
+    },
+    {
+     "index": 4,
+     "kind": "car",
+     "origin": [
+      237.984,
+      -9.2,
+      -26.959
+     ]
+    },
+    {
+     "index": 5,
+     "kind": "car",
+     "origin": [
+      238.192,
+      -9.2,
+      -25.777
+     ]
+    },
+    {
+     "index": 6,
+     "kind": "keep: body",
+     "origin": [
+      214.081,
+      -9.78,
+      -34.424
+     ]
+    },
+    {
+     "index": 7,
+     "kind": "keep: other (paper box)",
+     "origin": [
+      203.702,
+      -9.02,
+      -7.41
+     ]
+    },
+    {
+     "index": 8,
+     "kind": "keep: body",
+     "origin": [
+      213.592,
+      -9.78,
+      -11.468
+     ]
+    },
+    {
+     "index": 9,
+     "kind": "car",
+     "origin": [
+      224.944,
+      -9.2,
+      -20.378
+     ]
+    },
+    {
+     "index": 10,
+     "kind": "car",
+     "origin": [
+      225.137,
+      -9.2,
+      -21.562
+     ]
+    }
+   ]
+  },
+  "Props/Parts/P_paper_box_p5_p0": {
+   "instances": 12,
+   "in_box": [
+    {
+     "index": 0,
+     "kind": "keep: other (paper box)",
+     "origin": [
+      226.85,
+      -8.55,
+      7.91
+     ]
+    },
+    {
+     "index": 1,
+     "kind": "keep: other (paper box)",
+     "origin": [
+      226.0,
+      -8.55,
+      7.91
+     ]
+    },
+    {
+     "index": 2,
+     "kind": "keep: other (paper box)",
+     "origin": [
+      225.15,
+      -8.55,
+      7.91
+     ]
+    },
+    {
+     "index": 3,
+     "kind": "keep: other (paper box)",
+     "origin": [
+      226.85,
+      -8.0,
+      7.91
+     ]
+    },
+    {
+     "index": 4,
+     "kind": "keep: other (paper box)",
+     "origin": [
+      226.0,
+      -8.0,
+      7.91
+     ]
+    },
+    {
+     "index": 5,
+     "kind": "keep: other (paper box)",
+     "origin": [
+      225.15,
+      -8.0,
+      7.91
+     ]
+    },
+    {
+     "index": 6,
+     "kind": "keep: other (paper box)",
+     "origin": [
+      215.367,
+      -8.55,
+      5.509
+     ]
+    },
+    {
+     "index": 7,
+     "kind": "keep: other (paper box)",
+     "origin": [
+      214.84,
+      -8.55,
+      6.176
+     ]
+    },
+    {
+     "index": 8,
+     "kind": "keep: other (paper box)",
+     "origin": [
+      214.313,
+      -8.55,
+      6.843
+     ]
+    },
+    {
+     "index": 9,
+     "kind": "keep: other (paper box)",
+     "origin": [
+      215.367,
+      -8.0,
+      5.509
+     ]
+    },
+    {
+     "index": 10,
+     "kind": "keep: other (paper box)",
+     "origin": [
+      214.84,
+      -8.0,
+      6.176
+     ]
+    },
+    {
+     "index": 11,
+     "kind": "keep: other (paper box)",
+     "origin": [
+      214.313,
+      -8.0,
+      6.843
+     ]
+    }
+   ]
+  },
+  "Props/Parts/P_white_box_p4_m1": {
+   "instances": 17,
+   "in_box": [
+    {
+     "index": 0,
+     "kind": "dropped: backpack",
+     "origin": [
+      199.081,
+      -9.738,
+      -37.109
+     ]
+    },
+    {
+     "index": 1,
+     "kind": "dropped: backpack",
+     "origin": [
+      199.031,
+      -9.872,
+      -37.09
+     ]
+    },
+    {
+     "index": 6,
+     "kind": "car",
+     "origin": [
+      187.618,
+      -9.3,
+      -6.276
+     ]
+    },
+    {
+     "index": 7,
+     "kind": "car",
+     "origin": [
+      187.572,
+      -8.7,
+      -6.081
+     ]
+    },
+    {
+     "index": 8,
+     "kind": "car",
+     "origin": [
+      187.572,
+      -8.68,
+      -6.081
+     ]
+    },
+    {
+     "index": 9,
+     "kind": "car",
+     "origin": [
+      187.572,
+      -8.36,
+      -6.081
+     ]
+    },
+    {
+     "index": 10,
+     "kind": "car",
+     "origin": [
+      186.547,
+      -9.2,
+      -4.351
+     ]
+    },
+    {
+     "index": 11,
+     "kind": "car",
+     "origin": [
+      187.714,
+      -9.2,
+      -4.075
+     ]
+    },
+    {
+     "index": 12,
+     "kind": "keep: body",
+     "origin": [
+      187.618,
+      -9.77,
+      -10.486
+     ]
+    },
+    {
+     "index": 13,
+     "kind": "keep: body",
+     "origin": [
+      187.921,
+      -9.8,
+      -10.511
+     ]
+    },
+    {
+     "index": 14,
+     "kind": "keep: body",
+     "origin": [
+      187.306,
+      -9.8,
+      -10.36
+     ]
+    },
+    {
+     "index": 15,
+     "kind": "keep: body",
+     "origin": [
+      187.8,
+      -9.81,
+      -11.092
+     ]
+    },
+    {
+     "index": 16,
+     "kind": "keep: body",
+     "origin": [
+      187.541,
+      -9.81,
+      -11.114
+     ]
+    }
+   ]
+  },
+  "Props/Parts/P_white_box_p4_p0": {
+   "instances": 9,
+   "in_box": [
+    {
+     "index": 5,
+     "kind": "dropped: backpack",
+     "origin": [
+      197.009,
+      -9.738,
+      5.553
+     ]
+    },
+    {
+     "index": 6,
+     "kind": "dropped: backpack",
+     "origin": [
+      197.059,
+      -9.872,
+      5.572
+     ]
+    },
+    {
+     "index": 7,
+     "kind": "keep: other (white box)",
+     "origin": [
+      191.387,
+      -9.559,
+      9.944
+     ]
+    },
+    {
+     "index": 8,
+     "kind": "keep: other (white box)",
+     "origin": [
+      191.045,
+      -9.501,
+      9.959
+     ]
+    }
+   ]
+  },
+  "Props/Parts/P_white_box_p5_m2": {
+   "instances": 27,
+   "in_box": [
+    {
+     "index": 0,
+     "kind": "cone",
+     "origin": [
+      201.98,
+      -9.598,
+      -47.5
+     ]
+    },
+    {
+     "index": 1,
+     "kind": "cone",
+     "origin": [
+      203.0,
+      -9.88,
+      -47.5
+     ]
+    },
+    {
+     "index": 2,
+     "kind": "cone",
+     "origin": [
+      204.0,
+      -9.88,
+      -47.5
+     ]
+    },
+    {
+     "index": 3,
+     "kind": "cone",
+     "origin": [
+      234.0,
+      -9.88,
+      -47.5
+     ]
+    },
+    {
+     "index": 4,
+     "kind": "cone",
+     "origin": [
+      235.0,
+      -9.88,
+      -47.5
+     ]
+    },
+    {
+     "index": 5,
+     "kind": "cone",
+     "origin": [
+      235.98,
+      -9.598,
+      -47.5
+     ]
+    },
+    {
+     "index": 6,
+     "kind": "barrier",
+     "origin": [
+      212.109,
+      -9.15,
+      -49.375
+     ]
+    },
+    {
+     "index": 7,
+     "kind": "barrier",
+     "origin": [
+      212.703,
+      -9.15,
+      -49.458
+     ]
+    },
+    {
+     "index": 8,
+     "kind": "barrier",
+     "origin": [
+      213.297,
+      -9.15,
+      -49.542
+     ]
+    },
+    {
+     "index": 9,
+     "kind": "barrier",
+     "origin": [
+      213.891,
+      -9.15,
+      -49.625
+     ]
+    },
+    {
+     "index": 10,
+     "kind": "barrier",
+     "origin": [
+      226.105,
+      -9.15,
+      -49.594
+     ]
+    },
+    {
+     "index": 11,
+     "kind": "barrier",
+     "origin": [
+      226.702,
+      -9.15,
+      -49.531
+     ]
+    },
+    {
+     "index": 12,
+     "kind": "barrier",
+     "origin": [
+      227.298,
+      -9.15,
+      -49.469
+     ]
+    },
+    {
+     "index": 13,
+     "kind": "barrier",
+     "origin": [
+      227.895,
+      -9.15,
+      -49.406
+     ]
+    },
+    {
+     "index": 14,
+     "kind": "keep: body",
+     "origin": [
+      205.0,
+      -9.77,
+      -43.5
+     ]
+    },
+    {
+     "index": 15,
+     "kind": "keep: body",
+     "origin": [
+      205.284,
+      -9.8,
+      -43.634
+     ]
+    },
+    {
+     "index": 16,
+     "kind": "keep: body",
+     "origin": [
+      204.73,
+      -9.8,
+      -43.267
+     ]
+    },
+    {
+     "index": 17,
+     "kind": "keep: body",
+     "origin": [
+      205.042,
+      -9.81,
+      -44.132
+     ]
+    },
+    {
+     "index": 18,
+     "kind": "keep: body",
+     "origin": [
+      204.784,
+      -9.81,
+      -44.096
+     ]
+    },
+    {
+     "index": 19,
+     "kind": "keep: body",
+     "origin": [
+      236.0,
+      -9.77,
+      -40.2
+     ]
+    },
+    {
+     "index": 20,
+     "kind": "keep: body",
+     "origin": [
+      235.843,
+      -9.8,
+      -40.47
+     ]
+    },
+    {
+     "index": 21,
+     "kind": "keep: body",
+     "origin": [
+      236.633,
+      -9.81,
+      -40.223
+     ]
+    },
+    {
+     "index": 22,
+     "kind": "keep: body",
+     "origin": [
+      236.571,
+      -9.81,
+      -40.475
+     ]
+    },
+    {
+     "index": 23,
+     "kind": "dropped: backpack",
+     "origin": [
+      218.84,
+      -9.738,
+      -45.748
+     ]
+    },
+    {
+     "index": 24,
+     "kind": "dropped: backpack",
+     "origin": [
+      218.874,
+      -9.872,
+      -45.707
+     ]
+    },
+    {
+     "index": 25,
+     "kind": "dropped: shoe",
+     "origin": [
+      217.925,
+      -9.79,
+      -46.92
+     ]
+    },
+    {
+     "index": 26,
+     "kind": "dropped: shoe",
+     "origin": [
+      218.191,
+      -9.823,
+      -47.114
+     ]
+    }
+   ]
+  },
+  "Props/Parts/P_white_box_p5_m1": {
+   "instances": 46,
+   "in_box": [
+    {
+     "index": 0,
+     "kind": "keep: other (white box)",
+     "origin": [
+      214.0,
+      -7.4,
+      -8.07
+     ]
+    },
+    {
+     "index": 1,
+     "kind": "keep: other (white box)",
+     "origin": [
+      214.0,
+      -7.4,
+      -8.1
+     ]
+    },
+    {
+     "index": 2,
+     "kind": "keep: other (white box)",
+     "origin": [
+      213.72,
+      -7.4,
+      -8.1
+     ]
+    },
+    {
+     "index": 3,
+     "kind": "keep: other (white box)",
+     "origin": [
+      213.72,
+      -7.4,
+      -8.1
+     ]
+    },
+    {
+     "index": 4,
+     "kind": "car",
+     "origin": [
+      208.0,
+      -9.3,
+      -37.0
+     ]
+    },
+    {
+     "index": 5,
+     "kind": "car",
+     "origin": [
+      207.906,
+      -8.7,
+      -36.823
+     ]
+    },
+    {
+     "index": 6,
+     "kind": "car",
+     "origin": [
+      207.906,
+      -8.68,
+      -36.823
+     ]
+    },
+    {
+     "index": 7,
+     "kind": "car",
+     "origin": [
+      207.906,
+      -8.36,
+      -36.823
+     ]
+    },
+    {
+     "index": 8,
+     "kind": "car",
+     "origin": [
+      206.475,
+      -9.2,
+      -35.41
+     ]
+    },
+    {
+     "index": 9,
+     "kind": "car",
+     "origin": [
+      207.535,
+      -9.2,
+      -34.846
+     ]
+    },
+    {
+     "index": 10,
+     "kind": "car",
+     "origin": [
+      238.5,
+      -9.3,
+      -33.5
+     ]
+    },
+    {
+     "index": 11,
+     "kind": "car",
+     "origin": [
+      238.535,
+      -8.7,
+      -33.303
+     ]
+    },
+    {
+     "index": 12,
+     "kind": "car",
+     "origin": [
+      238.535,
+      -8.68,
+      -33.303
+     ]
+    },
+    {
+     "index": 13,
+     "kind": "car",
+     "origin": [
+      238.535,
+      -8.36,
+      -33.303
+     ]
+    },
+    {
+     "index": 14,
+     "kind": "car",
+     "origin": [
+      238.277,
+      -9.2,
+      -31.308
+     ]
+    },
+    {
+     "index": 15,
+     "kind": "car",
+     "origin": [
+      239.459,
+      -9.2,
+      -31.516
+     ]
+    },
+    {
+     "index": 16,
+     "kind": "car",
+     "origin": [
+      236.0,
+      -9.3,
+      -26.0
+     ]
+    },
+    {
+     "index": 17,
+     "kind": "car",
+     "origin": [
+      235.803,
+      -8.7,
+      -25.965
+     ]
+    },
+    {
+     "index": 18,
+     "kind": "car",
+     "origin": [
+      235.803,
+      -8.68,
+      -25.965
+     ]
+    },
+    {
+     "index": 19,
+     "kind": "car",
+     "origin": [
+      235.803,
+      -8.36,
+      -25.965
+     ]
+    },
+    {
+     "index": 20,
+     "kind": "car",
+     "origin": [
+      233.808,
+      -9.2,
+      -26.223
+     ]
+    },
+    {
+     "index": 21,
+     "kind": "car",
+     "origin": [
+      234.016,
+      -9.2,
+      -25.041
+     ]
+    },
+    {
+     "index": 22,
+     "kind": "keep: body",
+     "origin": [
+      236.06,
+      -9.8,
+      -39.906
+     ]
+    },
+    {
+     "index": 23,
+     "kind": "keep: body",
+     "origin": [
+      214.5,
+      -9.77,
+      -34.4
+     ]
+    },
+    {
+     "index": 24,
+     "kind": "keep: body",
+     "origin": [
+      214.539,
+      -9.8,
+      -34.097
+     ]
+    },
+    {
+     "index": 25,
+     "kind": "keep: body",
+     "origin": [
+      214.361,
+      -9.8,
+      -34.709
+     ]
+    },
+    {
+     "index": 26,
+     "kind": "keep: body",
+     "origin": [
+      215.111,
+      -9.81,
+      -34.234
+     ]
+    },
+    {
+     "index": 27,
+     "kind": "keep: body",
+     "origin": [
+      215.126,
+      -9.81,
+      -34.494
+     ]
+    },
+    {
+     "index": 28,
+     "kind": "keep: other (white box)",
+     "origin": [
+      204.401,
+      -9.4,
+      -7.449
+     ]
+    },
+    {
+     "index": 29,
+     "kind": "keep: other (white box)",
+     "origin": [
+      204.65,
+      -9.16,
+      -7.463
+     ]
+    },
+    {
+     "index": 30,
+     "kind": "keep: body",
+     "origin": [
+      213.989,
+      -9.77,
+      -11.331
+     ]
+    },
+    {
+     "index": 31,
+     "kind": "keep: body",
+     "origin": [
+      213.887,
+      -9.8,
+      -11.049
+     ]
+    },
+    {
+     "index": 32,
+     "kind": "keep: body",
+     "origin": [
+      213.996,
+      -9.8,
+      -11.646
+     ]
+    },
+    {
+     "index": 33,
+     "kind": "keep: body",
+     "origin": [
+      214.532,
+      -9.81,
+      -11.006
+     ]
+    },
+    {
+     "index": 34,
+     "kind": "keep: body",
+     "origin": [
+      214.617,
+      -9.81,
+      -11.252
+     ]
+    },
+    {
+     "index": 35,
+     "kind": "car",
+     "origin": [
+      227.133,
+      -9.3,
+      -20.629
+     ]
+    },
+    {
+     "index": 36,
+     "kind": "car",
+     "origin": [
+      227.33,
+      -8.7,
+      -20.597
+     ]
+    },
+    {
+     "index": 37,
+     "kind": "car",
+     "origin": [
+      227.33,
+      -8.68,
+      -20.597
+     ]
+    },
+    {
+     "index": 38,
+     "kind": "car",
+     "origin": [
+      227.33,
+      -8.36,
+      -20.597
+     ]
+    },
+    {
+     "index": 39,
+     "kind": "car",
+     "origin": [
+      229.129,
+      -9.2,
+      -19.697
+     ]
+    },
+    {
+     "index": 40,
+     "kind": "car",
+     "origin": [
+      229.322,
+      -9.2,
+      -20.881
+     ]
+    },
+    {
+     "index": 41,
+     "kind": "keep: other (white box)",
+     "origin": [
+      225.327,
+      -9.6,
+      -12.455
+     ]
+    },
+    {
+     "index": 42,
+     "kind": "keep: other (white box)",
+     "origin": [
+      225.144,
+      -9.0,
+      -11.86
+     ]
+    },
+    {
+     "index": 43,
+     "kind": "keep: other (white box)",
+     "origin": [
+      225.096,
+      -9.6,
+      -12.133
+     ]
+    },
+    {
+     "index": 44,
+     "kind": "keep: other (white box)",
+     "origin": [
+      225.915,
+      -9.0,
+      -13.122
+     ]
+    },
+    {
+     "index": 45,
+     "kind": "keep: other (white box)",
+     "origin": [
+      225.007,
+      -9.6,
+      -12.642
+     ]
+    }
+   ]
+  },
+  "Props/Parts/P_white_box_p5_p0": {
+   "instances": 12,
+   "in_box": [
+    {
+     "index": 3,
+     "kind": "dropped: shoe",
+     "origin": [
+      203.632,
+      -9.79,
+      12.713
+     ]
+    },
+    {
+     "index": 4,
+     "kind": "dropped: shoe",
+     "origin": [
+      203.826,
+      -9.823,
+      12.803
+     ]
+    },
+    {
+     "index": 5,
+     "kind": "dropped: shoe",
+     "origin": [
+      203.514,
+      -9.79,
+      12.794
+     ]
+    },
+    {
+     "index": 6,
+     "kind": "dropped: shoe",
+     "origin": [
+      203.754,
+      -9.79,
+      12.737
+     ]
+    },
+    {
+     "index": 7,
+     "kind": "dropped: shoe",
+     "origin": [
+      213.801,
+      -9.79,
+      6.806
+     ]
+    },
+    {
+     "index": 8,
+     "kind": "dropped: shoe",
+     "origin": [
+      214.041,
+      -9.79,
+      6.731
+     ]
+    }
+   ]
+  },
+  "Props/Parts/P_white_box_p6_m2": {
+   "instances": 2,
+   "in_box": [
+    {
+     "index": 0,
+     "kind": "dropped: shoe",
+     "origin": [
+      241.44,
+      -9.79,
+      -45.042
+     ]
+    },
+    {
+     "index": 1,
+     "kind": "dropped: shoe",
+     "origin": [
+      241.68,
+      -9.79,
+      -44.946
+     ]
+    }
+   ]
+  },
+  "Props/Parts/P_white_cone_p4_m1": {
+   "instances": 9,
+   "in_box": [
+    {
+     "index": 3,
+     "kind": "keep: other (white cone)",
+     "origin": [
+      188.134,
+      -8.836,
+      -20.626
+     ]
+    },
+    {
+     "index": 4,
+     "kind": "keep: other (white cone)",
+     "origin": [
+      187.618,
+      -8.786,
+      -20.014
+     ]
+    },
+    {
+     "index": 5,
+     "kind": "keep: other (white cone)",
+     "origin": [
+      187.102,
+      -8.802,
+      -19.403
+     ]
+    },
+    {
+     "index": 6,
+     "kind": "keep: other (white cone)",
+     "origin": [
+      197.333,
+      -8.885,
+      -9.071
+     ]
+    },
+    {
+     "index": 7,
+     "kind": "keep: other (white cone)",
+     "origin": [
+      196.959,
+      -8.836,
+      -8.364
+     ]
+    },
+    {
+     "index": 8,
+     "kind": "keep: other (white cone)",
+     "origin": [
+      196.586,
+      -8.877,
+      -7.656
+     ]
+    }
+   ]
+  },
+  "Props/Parts/P_white_cone_p5_m2": {
+   "instances": 6,
+   "in_box": [
+    {
+     "index": 0,
+     "kind": "cone",
+     "origin": [
+      201.651,
+      -9.569,
+      -47.5
+     ]
+    },
+    {
+     "index": 1,
+     "kind": "cone",
+     "origin": [
+      203.0,
+      -9.55,
+      -47.5
+     ]
+    },
+    {
+     "index": 2,
+     "kind": "cone",
+     "origin": [
+      204.0,
+      -9.55,
+      -47.5
+     ]
+    },
+    {
+     "index": 3,
+     "kind": "cone",
+     "origin": [
+      234.0,
+      -9.55,
+      -47.5
+     ]
+    },
+    {
+     "index": 4,
+     "kind": "cone",
+     "origin": [
+      235.0,
+      -9.55,
+      -47.5
+     ]
+    },
+    {
+     "index": 5,
+     "kind": "cone",
+     "origin": [
+      235.651,
+      -9.569,
+      -47.5
+     ]
+    }
+   ]
+  },
+  "Props/Parts/P_wood_box_p4_m1": {
+   "instances": 2,
+   "in_box": [
+    {
+     "index": 1,
+     "kind": "keep: other (wood box)",
+     "origin": [
+      196.42,
+      -9.645,
+      -19.242
+     ]
+    }
+   ]
+  },
+  "Props/Parts/P_wood_box_p5_p0": {
+   "instances": 3,
+   "in_box": [
+    {
+     "index": 0,
+     "kind": "keep: other (wood box)",
+     "origin": [
+      226.0,
+      -8.35,
+      7.97
+     ]
+    },
+    {
+     "index": 1,
+     "kind": "keep: other (wood box)",
+     "origin": [
+      214.887,
+      -8.35,
+      6.213
+     ]
+    }
+   ]
+  },
+  "Props/Decals/D_iron_quad_p2_m1": {
+   "instances": 79,
+   "in_box": [
+    {
+     "index": 0,
+     "kind": "dropped: phone",
+     "origin": [
+      199.78,
+      -9.832,
+      -36.981
+     ]
+    },
+    {
+     "index": 1,
+     "kind": "dropped: phone",
+     "origin": [
+      217.976,
+      -9.832,
+      -46.902
+     ]
+    },
+    {
+     "index": 2,
+     "kind": "keep: crack",
+     "origin": [
+      217.003,
+      -9.844,
+      -15.576
+     ]
+    },
+    {
+     "index": 3,
+     "kind": "keep: crack",
+     "origin": [
+      216.999,
+      -9.844,
+      -16.759
+     ]
+    },
+    {
+     "index": 4,
+     "kind": "keep: crack",
+     "origin": [
+      217.02,
+      -9.844,
+      -17.901
+     ]
+    },
+    {
+     "index": 5,
+     "kind": "keep: crack",
+     "origin": [
+      217.13,
+      -9.844,
+      -18.99
+     ]
+    },
+    {
+     "index": 6,
+     "kind": "keep: crack",
+     "origin": [
+      217.101,
+      -9.844,
+      -20.003
+     ]
+    },
+    {
+     "index": 7,
+     "kind": "keep: crack",
+     "origin": [
+      216.769,
+      -9.844,
+      -20.846
+     ]
+    },
+    {
+     "index": 8,
+     "kind": "keep: crack",
+     "origin": [
+      216.153,
+      -9.844,
+      -21.554
+     ]
+    },
+    {
+     "index": 9,
+     "kind": "keep: crack",
+     "origin": [
+      215.54,
+      -9.844,
+      -22.244
+     ]
+    },
+    {
+     "index": 10,
+     "kind": "keep: crack",
+     "origin": [
+      215.289,
+      -9.844,
+      -23.342
+     ]
+    },
+    {
+     "index": 11,
+     "kind": "keep: crack",
+     "origin": [
+      217.471,
+      -9.844,
+      -19.967
+     ]
+    },
+    {
+     "index": 12,
+     "kind": "keep: crack",
+     "origin": [
+      217.875,
+      -9.844,
+      -20.801
+     ]
+    },
+    {
+     "index": 13,
+     "kind": "keep: crack",
+     "origin": [
+      218.205,
+      -9.844,
+      -21.84
+     ]
+    },
+    {
+     "index": 14,
+     "kind": "keep: crack",
+     "origin": [
+      218.559,
+      -9.844,
+      -22.954
+     ]
+    },
+    {
+     "index": 15,
+     "kind": "keep: crack",
+     "origin": [
+      219.058,
+      -9.844,
+      -23.991
+     ]
+    },
+    {
+     "index": 20,
+     "kind": "keep: crack",
+     "origin": [
+      181.133,
+      -9.844,
+      -17.427
+     ]
+    },
+    {
+     "index": 24,
+     "kind": "keep: crack",
+     "origin": [
+      180.184,
+      -9.844,
+      -19.929
+     ]
+    },
+    {
+     "index": 25,
+     "kind": "keep: crack",
+     "origin": [
+      181.271,
+      -9.844,
+      -20.477
+     ]
+    },
+    {
+     "index": 31,
+     "kind": "keep: crack",
+     "origin": [
+      181.048,
+      -9.844,
+      -20.777
+     ]
+    },
+    {
+     "index": 32,
+     "kind": "keep: crack",
+     "origin": [
+      181.947,
+      -9.844,
+      -20.896
+     ]
+    },
+    {
+     "index": 33,
+     "kind": "keep: crack",
+     "origin": [
+      182.932,
+      -9.844,
+      -21.09
+     ]
+    },
+    {
+     "index": 34,
+     "kind": "dropped: phone",
+     "origin": [
+      187.84,
+      -9.832,
+      -22.577
+     ]
+    },
+    {
+     "index": 35,
+     "kind": "dropped: phone",
+     "origin": [
+      188.362,
+      -9.832,
+      -21.652
+     ]
+    },
+    {
+     "index": 36,
+     "kind": "keep: crack",
+     "origin": [
+      193.264,
+      -9.844,
+      -13.907
+     ]
+    },
+    {
+     "index": 37,
+     "kind": "keep: crack",
+     "origin": [
+      192.4,
+      -9.844,
+      -13.223
+     ]
+    },
+    {
+     "index": 38,
+     "kind": "keep: crack",
+     "origin": [
+      191.149,
+      -9.844,
+      -13.257
+     ]
+    },
+    {
+     "index": 39,
+     "kind": "keep: crack",
+     "origin": [
+      190.352,
+      -9.844,
+      -12.904
+     ]
+    },
+    {
+     "index": 40,
+     "kind": "keep: crack",
+     "origin": [
+      192.719,
+      -9.844,
+      -12.579
+     ]
+    },
+    {
+     "index": 41,
+     "kind": "keep: crack",
+     "origin": [
+      192.053,
+      -9.844,
+      -11.645
+     ]
+    },
+    {
+     "index": 42,
+     "kind": "keep: crack",
+     "origin": [
+      191.394,
+      -9.844,
+      -10.702
+     ]
+    },
+    {
+     "index": 43,
+     "kind": "keep: crack",
+     "origin": [
+      190.759,
+      -9.844,
+      -9.568
+     ]
+    },
+    {
+     "index": 44,
+     "kind": "keep: crack",
+     "origin": [
+      190.06,
+      -9.844,
+      -8.605
+     ]
+    },
+    {
+     "index": 45,
+     "kind": "keep: crack",
+     "origin": [
+      217.96,
+      -9.844,
+      -17.097
+     ]
+    },
+    {
+     "index": 46,
+     "kind": "keep: crack",
+     "origin": [
+      218.917,
+      -9.844,
+      -17.188
+     ]
+    },
+    {
+     "index": 47,
+     "kind": "keep: crack",
+     "origin": [
+      219.947,
+      -9.844,
+      -17.267
+     ]
+    },
+    {
+     "index": 48,
+     "kind": "keep: crack",
+     "origin": [
+      221.122,
+      -9.844,
+      -17.212
+     ]
+    },
+    {
+     "index": 49,
+     "kind": "keep: crack",
+     "origin": [
+      222.1,
+      -9.844,
+      -16.728
+     ]
+    },
+    {
+     "index": 50,
+     "kind": "keep: crack",
+     "origin": [
+      223.104,
+      -9.844,
+      -15.769
+     ]
+    },
+    {
+     "index": 51,
+     "kind": "keep: crack",
+     "origin": [
+      222.159,
+      -9.844,
+      -16.942
+     ]
+    },
+    {
+     "index": 52,
+     "kind": "keep: crack",
+     "origin": [
+      223.213,
+      -9.844,
+      -16.371
+     ]
+    },
+    {
+     "index": 53,
+     "kind": "keep: crack",
+     "origin": [
+      224.285,
+      -9.844,
+      -15.982
+     ]
+    },
+    {
+     "index": 54,
+     "kind": "keep: crack",
+     "origin": [
+      225.247,
+      -9.844,
+      -15.86
+     ]
+    },
+    {
+     "index": 55,
+     "kind": "keep: crack",
+     "origin": [
+      221.19,
+      -9.844,
+      -28.964
+     ]
+    },
+    {
+     "index": 56,
+     "kind": "keep: crack",
+     "origin": [
+      220.245,
+      -9.844,
+      -29.54
+     ]
+    },
+    {
+     "index": 57,
+     "kind": "keep: crack",
+     "origin": [
+      219.407,
+      -9.844,
+      -30.333
+     ]
+    },
+    {
+     "index": 58,
+     "kind": "keep: crack",
+     "origin": [
+      218.598,
+      -9.844,
+      -30.977
+     ]
+    },
+    {
+     "index": 59,
+     "kind": "keep: crack",
+     "origin": [
+      217.329,
+      -9.844,
+      -31.36
+     ]
+    },
+    {
+     "index": 60,
+     "kind": "keep: crack",
+     "origin": [
+      216.114,
+      -9.844,
+      -31.36
+     ]
+    },
+    {
+     "index": 61,
+     "kind": "keep: crack",
+     "origin": [
+      215.077,
+      -9.844,
+      -31.211
+     ]
+    },
+    {
+     "index": 62,
+     "kind": "keep: crack",
+     "origin": [
+      217.681,
+      -9.844,
+      -31.378
+     ]
+    },
+    {
+     "index": 63,
+     "kind": "keep: crack",
+     "origin": [
+      216.769,
+      -9.844,
+      -31.675
+     ]
+    },
+    {
+     "index": 64,
+     "kind": "keep: crack",
+     "origin": [
+      215.938,
+      -9.844,
+      -32.166
+     ]
+    },
+    {
+     "index": 65,
+     "kind": "keep: crack",
+     "origin": [
+      214.958,
+      -9.844,
+      -32.814
+     ]
+    },
+    {
+     "index": 66,
+     "kind": "keep: crack",
+     "origin": [
+      213.65,
+      -9.844,
+      -33.355
+     ]
+    },
+    {
+     "index": 67,
+     "kind": "dropped: phone",
+     "origin": [
+      222.123,
+      -9.832,
+      -4.554
+     ]
+    },
+    {
+     "index": 68,
+     "kind": "keep: crack",
+     "origin": [
+      213.621,
+      -9.844,
+      -0.731
+     ]
+    },
+    {
+     "index": 69,
+     "kind": "keep: crack",
+     "origin": [
+      212.935,
+      -9.844,
+      -1.876
+     ]
+    },
+    {
+     "index": 70,
+     "kind": "keep: crack",
+     "origin": [
+      212.344,
+      -9.844,
+      -3.096
+     ]
+    },
+    {
+     "index": 71,
+     "kind": "keep: crack",
+     "origin": [
+      211.356,
+      -9.844,
+      -3.761
+     ]
+    },
+    {
+     "index": 72,
+     "kind": "keep: crack",
+     "origin": [
+      210.311,
+      -9.844,
+      -3.913
+     ]
+    },
+    {
+     "index": 73,
+     "kind": "keep: crack",
+     "origin": [
+      209.499,
+      -9.844,
+      -4.403
+     ]
+    },
+    {
+     "index": 74,
+     "kind": "keep: crack",
+     "origin": [
+      208.541,
+      -9.844,
+      -4.747
+     ]
+    },
+    {
+     "index": 75,
+     "kind": "keep: crack",
+     "origin": [
+      211.772,
+      -9.844,
+      -4.247
+     ]
+    },
+    {
+     "index": 76,
+     "kind": "keep: crack",
+     "origin": [
+      211.148,
+      -9.844,
+      -5.084
+     ]
+    },
+    {
+     "index": 77,
+     "kind": "keep: crack",
+     "origin": [
+      212.629,
+      -9.844,
+      -1.605
+     ]
+    },
+    {
+     "index": 78,
+     "kind": "keep: crack",
+     "origin": [
+      211.71,
+      -9.844,
+      -2.185
+     ]
+    }
+   ]
+  },
+  "Props/Decals/D_iron_quad_p2_p0": {
+   "instances": 33,
+   "in_box": [
+    {
+     "index": 0,
+     "kind": "dropped: phone",
+     "origin": [
+      194.804,
+      -9.832,
+      6.259
+     ]
+    },
+    {
+     "index": 1,
+     "kind": "keep: crack",
+     "origin": [
+      217.856,
+      -9.844,
+      2.499
+     ]
+    },
+    {
+     "index": 2,
+     "kind": "keep: crack",
+     "origin": [
+      217.035,
+      -9.844,
+      2.017
+     ]
+    },
+    {
+     "index": 3,
+     "kind": "keep: crack",
+     "origin": [
+      216.3,
+      -9.844,
+      1.398
+     ]
+    },
+    {
+     "index": 4,
+     "kind": "keep: crack",
+     "origin": [
+      215.699,
+      -9.844,
+      0.74
+     ]
+    },
+    {
+     "index": 5,
+     "kind": "keep: crack",
+     "origin": [
+      214.785,
+      -9.844,
+      0.134
+     ]
+    }
+   ]
+  },
+  "Props/Decals/D_iron_quad_p3_m1": {
+   "instances": 1,
+   "in_box": [
+    {
+     "index": 0,
+     "kind": "dropped: phone",
+     "origin": [
+      240.063,
+      -9.832,
+      -45.174
+     ]
+    }
+   ]
+  },
+  "Props/Decals/D_paper_quad_p2_m1": {
+   "instances": 26,
+   "in_box": [
+    {
+     "index": 0,
+     "kind": "paper",
+     "origin": [
+      199.14,
+      -9.842,
+      -35.193
+     ]
+    },
+    {
+     "index": 1,
+     "kind": "paper",
+     "origin": [
+      199.035,
+      -9.841,
+      -36.49
+     ]
+    },
+    {
+     "index": 2,
+     "kind": "paper",
+     "origin": [
+      201.535,
+      -9.84,
+      -35.124
+     ]
+    },
+    {
+     "index": 3,
+     "kind": "paper",
+     "origin": [
+      200.255,
+      -9.84,
+      -36.565
+     ]
+    },
+    {
+     "index": 4,
+     "kind": "paper",
+     "origin": [
+      200.829,
+      -9.839,
+      -34.425
+     ]
+    },
+    {
+     "index": 5,
+     "kind": "paper",
+     "origin": [
+      220.185,
+      -9.842,
+      -46.423
+     ]
+    },
+    {
+     "index": 6,
+     "kind": "paper",
+     "origin": [
+      218.216,
+      -9.841,
+      -45.01
+     ]
+    },
+    {
+     "index": 7,
+     "kind": "paper",
+     "origin": [
+      218.18,
+      -9.84,
+      -44.829
+     ]
+    },
+    {
+     "index": 8,
+     "kind": "paper",
+     "origin": [
+      219.124,
+      -9.84,
+      -45.396
+     ]
+    },
+    {
+     "index": 9,
+     "kind": "paper",
+     "origin": [
+      218.384,
+      -9.839,
+      -46.281
+     ]
+    },
+    {
+     "index": 16,
+     "kind": "paper",
+     "origin": [
+      187.048,
+      -9.842,
+      -21.261
+     ]
+    },
+    {
+     "index": 17,
+     "kind": "paper",
+     "origin": [
+      186.471,
+      -9.841,
+      -23.158
+     ]
+    },
+    {
+     "index": 18,
+     "kind": "paper",
+     "origin": [
+      188.728,
+      -9.84,
+      -20.945
+     ]
+    },
+    {
+     "index": 19,
+     "kind": "paper",
+     "origin": [
+      186.088,
+      -9.84,
+      -22.551
+     ]
+    },
+    {
+     "index": 20,
+     "kind": "paper",
+     "origin": [
+      187.223,
+      -9.839,
+      -20.485
+     ]
+    },
+    {
+     "index": 21,
+     "kind": "paper",
+     "origin": [
+      186.636,
+      -9.838,
+      -20.374
+     ]
+    },
+    {
+     "index": 22,
+     "kind": "paper",
+     "origin": [
+      222.134,
+      -9.842,
+      -3.818
+     ]
+    },
+    {
+     "index": 23,
+     "kind": "paper",
+     "origin": [
+      220.903,
+      -9.841,
+      -5.069
+     ]
+    },
+    {
+     "index": 24,
+     "kind": "paper",
+     "origin": [
+      221.583,
+      -9.84,
+      -5.594
+     ]
+    },
+    {
+     "index": 25,
+     "kind": "paper",
+     "origin": [
+      222.261,
+      -9.84,
+      -3.22
+     ]
+    }
+   ]
+  },
+  "Props/Decals/D_paper_quad_p2_p0": {
+   "instances": 26,
+   "in_box": [
+    {
+     "index": 5,
+     "kind": "paper",
+     "origin": [
+      203.376,
+      -9.842,
+      12.598
+     ]
+    },
+    {
+     "index": 6,
+     "kind": "paper",
+     "origin": [
+      204.719,
+      -9.841,
+      11.401
+     ]
+    },
+    {
+     "index": 7,
+     "kind": "paper",
+     "origin": [
+      204.41,
+      -9.84,
+      11.551
+     ]
+    },
+    {
+     "index": 8,
+     "kind": "paper",
+     "origin": [
+      205.307,
+      -9.84,
+      12.158
+     ]
+    },
+    {
+     "index": 9,
+     "kind": "paper",
+     "origin": [
+      202.841,
+      -9.839,
+      11.107
+     ]
+    },
+    {
+     "index": 10,
+     "kind": "paper",
+     "origin": [
+      195.77,
+      -9.842,
+      5.353
+     ]
+    },
+    {
+     "index": 11,
+     "kind": "paper",
+     "origin": [
+      196.396,
+      -9.841,
+      5.605
+     ]
+    },
+    {
+     "index": 12,
+     "kind": "paper",
+     "origin": [
+      196.885,
+      -9.84,
+      5.434
+     ]
+    },
+    {
+     "index": 13,
+     "kind": "paper",
+     "origin": [
+      196.865,
+      -9.84,
+      4.605
+     ]
+    },
+    {
+     "index": 14,
+     "kind": "paper",
+     "origin": [
+      197.204,
+      -9.839,
+      6.198
+     ]
+    },
+    {
+     "index": 15,
+     "kind": "paper",
+     "origin": [
+      214.231,
+      -9.842,
+      4.653
+     ]
+    },
+    {
+     "index": 16,
+     "kind": "paper",
+     "origin": [
+      212.413,
+      -9.841,
+      5.2
+     ]
+    },
+    {
+     "index": 17,
+     "kind": "paper",
+     "origin": [
+      214.688,
+      -9.84,
+      7.459
+     ]
+    },
+    {
+     "index": 18,
+     "kind": "paper",
+     "origin": [
+      211.904,
+      -9.84,
+      6.864
+     ]
+    },
+    {
+     "index": 19,
+     "kind": "paper",
+     "origin": [
+      213.527,
+      -9.839,
+      7.781
+     ]
+    }
+   ]
+  },
+  "Props/Decals/D_paper_quad_p3_m1": {
+   "instances": 3,
+   "in_box": [
+    {
+     "index": 0,
+     "kind": "paper",
+     "origin": [
+      240.098,
+      -9.842,
+      -43.463
+     ]
+    },
+    {
+     "index": 1,
+     "kind": "paper",
+     "origin": [
+      240.861,
+      -9.841,
+      -44.337
+     ]
+    },
+    {
+     "index": 2,
+     "kind": "paper",
+     "origin": [
+      240.328,
+      -9.84,
+      -44.728
+     ]
+    }
+   ]
+  },
+  "Props/Decals/D_red_quad_p2_m1": {
+   "instances": 6,
+   "in_box": [
+    {
+     "index": 0,
+     "kind": "keep: blood",
+     "origin": [
+      236.164,
+      -9.846,
+      -40.132
+     ]
+    },
+    {
+     "index": 1,
+     "kind": "keep: blood",
+     "origin": [
+      236.149,
+      -9.845,
+      -40.203
+     ]
+    },
+    {
+     "index": 2,
+     "kind": "keep: blood",
+     "origin": [
+      235.601,
+      -9.845,
+      -40.183
+     ]
+    },
+    {
+     "index": 3,
+     "kind": "keep: blood",
+     "origin": [
+      214.288,
+      -9.846,
+      -34.289
+     ]
+    },
+    {
+     "index": 4,
+     "kind": "keep: blood",
+     "origin": [
+      214.422,
+      -9.845,
+      -34.567
+     ]
+    },
+    {
+     "index": 5,
+     "kind": "keep: blood",
+     "origin": [
+      214.609,
+      -9.845,
+      -34.613
+     ]
+    }
+   ]
+  },
+  "Props/Decals/D_white_quad_p2_m1": {
+   "instances": 7,
+   "in_box": [
+    {
+     "index": 0,
+     "kind": "dropped: phone",
+     "origin": [
+      199.78,
+      -9.834,
+      -36.981
+     ]
+    },
+    {
+     "index": 1,
+     "kind": "dropped: phone",
+     "origin": [
+      217.976,
+      -9.834,
+      -46.902
+     ]
+    },
+    {
+     "index": 2,
+     "kind": "dropped: phone",
+     "origin": [
+      187.84,
+      -9.834,
+      -22.577
+     ]
+    },
+    {
+     "index": 3,
+     "kind": "dropped: phone",
+     "origin": [
+      188.362,
+      -9.834,
+      -21.652
+     ]
+    },
+    {
+     "index": 4,
+     "kind": "dropped: phone",
+     "origin": [
+      222.123,
+      -9.834,
+      -4.554
+     ]
+    },
+    {
+     "index": 5,
+     "kind": "dropped: sandal",
+     "origin": [
+      220.791,
+      -9.838,
+      -4.966
+     ]
+    },
+    {
+     "index": 6,
+     "kind": "dropped: sandal",
+     "origin": [
+      220.965,
+      -9.838,
+      -4.858
+     ]
+    }
+   ]
+  },
+  "Props/Decals/D_white_quad_p2_p0": {
+   "instances": 7,
+   "in_box": [
+    {
+     "index": 2,
+     "kind": "dropped: phone",
+     "origin": [
+      194.804,
+      -9.834,
+      6.259
+     ]
+    },
+    {
+     "index": 3,
+     "kind": "dropped: sandal",
+     "origin": [
+      212.641,
+      -9.838,
+      7.259
+     ]
+    },
+    {
+     "index": 4,
+     "kind": "dropped: sandal",
+     "origin": [
+      212.971,
+      -9.838,
+      7.404
+     ]
+    }
+   ]
+  },
+  "Props/Decals/D_white_quad_p3_m1": {
+   "instances": 1,
+   "in_box": [
+    {
+     "index": 0,
+     "kind": "dropped: phone",
+     "origin": [
+      240.063,
+      -9.834,
+      -45.174
+     ]
+    }
+   ]
+  }
+ },
+ "props.tscn solids in box (kept)": [
+  "Props/Solids/Body_p4_m1/S3 (187.6, -20.0)",
+  "Props/Solids/Body_p4_m1/S4 (187.6, -6.3)",
+  "Props/Solids/Body_p4_m1/S5 (197.0, -19.8)",
+  "Props/Solids/Body_p4_m1/S6 (197.0, -8.4)",
+  "Props/Solids/Body_p4_m1/S7 (180.0, -20.0)",
+  "Props/Solids/Body_p4_m1/S10 (185.7, -2.6)",
+  "Props/Solids/Body_p4_p0/S2 (191.7, 9.6)",
+  "Props/Solids/Body_p5_m2/S0 (213.0, -49.5)",
+  "Props/Solids/Body_p5_m2/S1 (227.0, -49.5)",
+  "Props/Solids/Body_p5_m1/S0 (214.0, -8.0)",
+  "Props/Solids/Body_p5_m1/S1 (208.0, -37.0)",
+  "Props/Solids/Body_p5_m1/S2 (238.5, -33.5)",
+  "Props/Solids/Body_p5_m1/S3 (236.0, -26.0)",
+  "Props/Solids/Body_p5_m1/S4 (204.4, -19.7)",
+  "Props/Solids/Body_p5_m1/S5 (204.4, -7.4)",
+  "Props/Solids/Body_p5_m1/S6 (214.0, -22.8)",
+  "Props/Solids/Body_p5_m1/S7 (227.1, -20.6)",
+  "Props/Solids/Body_p5_m1/S8 (225.5, -12.4)",
+  "Props/Solids/Body_p5_m1/S9 (205.1, -3.1)",
+  "Props/Solids/Body_p5_m1/S10 (229.5, -10.9)",
+  "Props/Solids/Body_p5_m1/S11 (210.9, -0.4)",
+  "Props/Solids/Body_p5_m1/S12 (228.3, -1.7)",
+  "Props/Solids/Body_p5_p0/S0 (226.0, 8.0)",
+  "Props/Solids/Body_p5_p0/S2 (214.9, 6.2)",
+  "Props/Solids/Body_p6_m1/S0 (240.0, -22.0)",
+  "Props/Solids/Body_p6_m1/S1 (255.9, -27.9)"
+ ],
+ "props.tscn lights in box (kept)": [
+  "Props/Lights/Lamp2 (240.8, -5.0, -22.0)",
+  "Props/Lights/Hazard0 (236.0, -8.0, -26.0)"
+ ],
+ "counts": {
+  "barrier": 12,
+  "car": 70,
+  "cone": 12,
+  "dropped: backpack": 6,
+  "dropped: phone": 14,
+  "dropped: sandal": 4,
+  "dropped: shoe": 10,
+  "keep: blood": 6,
+  "keep: body": 30,
+  "keep: crack": 67,
+  "keep: other (concrete box)": 6,
+  "keep: other (grass box)": 2,
+  "keep: other (iron box)": 14,
+  "keep: other (iron cylinder)": 8,
+  "keep: other (paper box)": 14,
+  "keep: other (white box)": 13,
+  "keep: other (white cone)": 6,
+  "keep: other (wood box)": 3,
+  "paper": 38,
+  "rubble": 14
+ }
+}
