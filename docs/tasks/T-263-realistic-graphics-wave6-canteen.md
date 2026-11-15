@@ -1,5 +1,5 @@
 # T-263 — Đồ hoạ thật đợt 6: nhà ăn, bếp, kho (và trả đầu 6 xác trong vườn)
-- Lane: B | Trạng thái: in progress, lượt 2 (giao 15/11/2026; chọn D-181) | Agent: tài khoản Claude lane B, `D:\GAME_WORK\lane-b2`; model **Opus 5.5 xhigh** (khó thì max). Chủ dự án tự dán prompt (`lane-b.md` mục 1q).
+- Lane: B | Trạng thái: **done** (giao 15/11/2026; chọn D-181; merge `4031339` 16/11) | Agent: tài khoản Claude lane B, `D:\GAME_WORK\lane-b2`; model **Opus 5.5 xhigh** (khó thì max). Chủ dự án tự dán prompt (`lane-b.md` mục 1q).
 - Nhánh: `lane-b/T-263-realistic-graphics-wave6-canteen` từ `origin/main` mới nhất.
 - Quyết định nền:
   - **D-166:** đồ hoạ thật dựng bằng Blender, không PS1, không Tripo trừ khi chủ dự án đổi; ánh sáng giữ như nay.
@@ -367,3 +367,30 @@ bước 0). **Full `pwsh tools/test.ps1` chưa có kết quả:** lần chạy l
 3 GB trống), không phải test lỗi; theo hướng dẫn, không tự chạy lại. **`pwsh tools/check.ps1` chưa chạy** (bước 0 có đổi
 `props.tscn`, nên cần chạy). Cần chạy lại cả hai khi máy rảnh RAM (đóng bớt ứng dụng), rồi `git checkout --
 game/default_bus_layout.tres`. Khoá Lượt Godot của lần chạy bị dừng đã xoá; `game/_probe_tmp/` đã xoá.
+
+## Review (HARU thay integrator, 16/11/2026)
+**Đạt, merge `4031339`** (nhánh lane B `1c8a98e`; gốc nhánh là main `d27337c` nên cây sau merge trùng hệt cây lane B đã kiểm).
+- **Phạm vi:** 309 file, tất cả trong phạm vi lane B và mục 8. Code duy nhất là `canteen_real.gd` mới: chạy một lần khi nạp
+  cảnh, đặt tầm vẽ (bàn 60 m, khay bát và kho 40 m, bếp và phía đông 45 m, xe đạp và đồ rải 80 m) và tắt bóng đồ nhỏ, phẳng.
+- **Cảnh:**
+  - `canteen.tscn`: không xoá dòng nào. 940 node PS1 chỉ thêm `visible = false` (932 hình, 8 `Label3D`); thêm lớp `Real`
+    (17 glb) và `TV/Screen/Lit`. 3 đèn, va chạm, meta giữ nguyên.
+  - 8 nhãn chữ ẩn nhưng chữ vẽ lại vào texture đúng nội dung (HARU xem ảnh): "NHÀ ĂN SINH VIÊN", khẩu hiệu "TIẾT KIỆM
+    LƯƠNG THỰC, KHÔNG BỎ PHÍ CƠM", bảng giá CƠM 5 / RAU 3 / THỊT 8 / CANH 2 / MÌ 6, "TRẢ KHAY".
+  - `canteen_west_exit.tscn`: 5 hình PS1 ẩn, va chạm và navigation giữ.
+  - `campus.tscn`: thêm `StripCanteen`. `props.tscn`: chỉ đổi dữ liệu MultiMesh, 18 bản trong hộp x 166…218, z 13…60 thu
+    về 0 (HARU kiểm toạ độ), cộng 7 bản của bước 0 trả đầu 6 xác vườn.
+- **Test cũ sửa theo phép HARU (D-181), có comment:** `test_t262_gate` vẫn đòi đúng 180 bản trong hộp cổng, phần còn lại phải
+  nằm trong hộp nhà ăn (16); `test_t261` hằng `PROPS_KEPT_MD5` 2.099 bản; `test_t259` chuyển `P_paper_box_p0_p0` sang
+  `A16_PARTLY` (bước 0).
+- **`test_t263_canteen` (10 bài):** vân tay node, va chạm, đèn, chữ nhãn, `WestExit` trùng main; PS1 ẩn đủ 945; TV bật/tắt,
+  đồng hồ 4 giờ; đồ mới trên khối va chạm cũ; không lỗ cửa nào hẹp; dải trong hộp; thân người chơi đi P29 → kho → cửa sau,
+  vào bếp, ra lối tây, từ `Start_split` vào lối tây. `test_t263_garden_heads` (2 bài).
+- **Ảnh** (`previews/wave6/`, HARU xem quầy, sảnh từ cửa có TV bật, mặt tiền, góc lối tây): đúng D-181.
+- **Số liệu:** cả đợt 94.630 tam giác; số lần vẽ giảm ở gần mọi góc (cửa chính 1.656 → 1.277, lối tây chương 4 1.014 → 258),
+  bếp, kho gần như cũ; bộ nhớ hình chương 3 gần như không đổi.
+- **Kiểm:** trên nhánh (cùng cây với main sau merge) lane B chạy full test **`RESULT: 1037 passed, 0 failed`** và check
+  **`RESULT: check 0 error(s)`**. Lần kiểm sau merge của HARU (16/11 23:22) bị Claude Code dừng vì máy thiếu RAM trước khi chạy
+  test nào; **chủ dự án quyết không chạy lại** (16/11) vì cây trùng hệt.
+- **Việc tiếp theo của core:** occluder hộp cho vỏ nhà ăn trong `game/scenes/main/occlusion/` (D-181, lane B đề nghị ở lượt 1).
+- Không đo FPS, không chạy bot (D-179).
