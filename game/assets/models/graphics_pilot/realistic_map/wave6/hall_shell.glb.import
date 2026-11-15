@@ -1,0 +1,98 @@
+[remap]
+
+importer="scene"
+importer_version=1
+type="PackedScene"
+uid="uid://cwx8dtbsbpb6v"
+path="res://.godot/imported/hall_shell.glb-c9bd9a3cabeb1f002cb9c8b696fb5ffc.scn"
+
+[deps]
+
+source_file="res://assets/models/graphics_pilot/realistic_map/wave6/hall_shell.glb"
+dest_files=["res://.godot/imported/hall_shell.glb-c9bd9a3cabeb1f002cb9c8b696fb5ffc.scn"]
+
+[params]
+
+nodes/root_type=""
+nodes/root_name=""
+nodes/root_script=null
+mesh_library/use_node_names_as_mesh_names=false
+array_mesh/deduplicate_surfaces=true
+nodes/apply_root_scale=true
+nodes/root_scale=1.0
+nodes/import_as_skeleton_bones=false
+nodes/use_name_suffixes=true
+nodes/use_node_type_suffixes=true
+meshes/ensure_tangents=true
+meshes/generate_lods=false
+meshes/create_shadow_meshes=true
+meshes/light_baking=1
+meshes/lightmap_texel_size=0.2
+meshes/force_disable_compression=false
+skins/use_named_skins=true
+animation/import=false
+animation/fps=30
+animation/trimming=false
+animation/remove_immutable_tracks=true
+animation/import_rest_as_RESET=false
+import_script/path=""
+materials/extract=0
+materials/extract_format=0
+materials/extract_path=""
+_subresources={
+"materials": {
+"W1Terrazzo": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Terrazzo.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Terrazzo.tres"
+},
+"W1Wood": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Wood.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Wood.tres"
+},
+"W6FacadeWhite": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave6/materials/W6FacadeWhite.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave6/materials/W6FacadeWhite.tres"
+},
+"W6FacadeYellow": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave6/materials/W6FacadeYellow.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave6/materials/W6FacadeYellow.tres"
+},
+"W6FloorCeramic": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave6/materials/W6FloorCeramic.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave6/materials/W6FloorCeramic.tres"
+},
+"W6Plenum": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave6/materials/W6Plenum.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave6/materials/W6Plenum.tres"
+},
+"W6Shutter": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave6/materials/W6Shutter.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave6/materials/W6Shutter.tres"
+},
+"W6Stainless": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave6/materials/W6Stainless.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave6/materials/W6Stainless.tres"
+},
+"W6Wainscot": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave6/materials/W6Wainscot.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave6/materials/W6Wainscot.tres"
+},
+"W6WallYellow": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave6/materials/W6WallYellow.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave6/materials/W6WallYellow.tres"
+}
+}
+}
+gltf/naming_version=2
+gltf/embedded_image_handling=1
+gltf/texture_map_mode=1

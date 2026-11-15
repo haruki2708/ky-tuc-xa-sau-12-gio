@@ -1,7 +1,18 @@
 path	type	visible	position	rotation_deg	detail
+Ground/Tile_120_-10/Collision	CollisionShape3D	vis	(145.000, -10.090, 15.000)	(-0.000, 0.000, 0.000)	shape box (50.000, 0.300, 50.000)
+Ground/Tile_120_-10/Mesh	MeshInstance3D	vis	(145.000, -10.090, 15.000)	(-0.000, 0.000, 0.000)	box (50.000, 0.300, 50.000) | aabb (120.000, -10.240, -10.000)..(170.000, -9.940, 40.000) | grass.png ffffffff | shadow 1
+Ground/Tile_120_40/Collision	CollisionShape3D	vis	(145.000, -10.090, 65.000)	(-0.000, 0.000, 0.000)	shape box (50.000, 0.300, 50.000)
+Ground/Tile_120_40/Mesh	MeshInstance3D	vis	(145.000, -10.090, 65.000)	(-0.000, 0.000, 0.000)	box (50.000, 0.300, 50.000) | aabb (120.000, -10.240, 40.000)..(170.000, -9.940, 90.000) | grass.png ffffffff | shadow 1
 Ground/Tile_170_-10	StaticBody3D	vis	(195.000, -10.090, 15.000)	(-0.000, 0.000, 0.000)	layer 1 mask 0 | meta surface=tile | meta is_floor=true
 Ground/Tile_170_-10/Collision	CollisionShape3D	vis	(195.000, -10.090, 15.000)	(-0.000, 0.000, 0.000)	shape box (50.000, 0.300, 50.000)
 Ground/Tile_170_-10/Mesh	MeshInstance3D	vis	(195.000, -10.090, 15.000)	(-0.000, 0.000, 0.000)	box (50.000, 0.300, 50.000) | aabb (170.000, -10.240, -10.000)..(220.000, -9.940, 40.000) | grass.png ffffffff | shadow 1
+Ground/Tile_170_40	StaticBody3D	vis	(195.000, -10.090, 65.000)	(-0.000, 0.000, 0.000)	layer 1 mask 0 | meta surface=tile | meta is_floor=true
+Ground/Tile_170_40/Collision	CollisionShape3D	vis	(195.000, -10.090, 65.000)	(-0.000, 0.000, 0.000)	shape box (50.000, 0.300, 50.000)
+Ground/Tile_170_40/Mesh	MeshInstance3D	vis	(195.000, -10.090, 65.000)	(-0.000, 0.000, 0.000)	box (50.000, 0.300, 50.000) | aabb (170.000, -10.240, 40.000)..(220.000, -9.940, 90.000) | grass.png ffffffff | shadow 1
+Ground/Tile_220_-10/Collision	CollisionShape3D	vis	(245.000, -10.090, 15.000)	(-0.000, 0.000, 0.000)	shape box (50.000, 0.300, 50.000)
+Ground/Tile_220_-10/Mesh	MeshInstance3D	vis	(245.000, -10.090, 15.000)	(-0.000, 0.000, 0.000)	box (50.000, 0.300, 50.000) | aabb (220.000, -10.240, -10.000)..(270.000, -9.940, 40.000) | grass.png ffffffff | shadow 1
+Ground/Tile_220_40/Collision	CollisionShape3D	vis	(245.000, -10.090, 65.000)	(-0.000, 0.000, 0.000)	shape box (50.000, 0.300, 50.000)
+Ground/Tile_220_40/Mesh	MeshInstance3D	vis	(245.000, -10.090, 65.000)	(-0.000, 0.000, 0.000)	box (50.000, 0.300, 50.000) | aabb (220.000, -10.240, 40.000)..(270.000, -9.940, 90.000) | grass.png ffffffff | shadow 1
 Anchors/BarSpawns/B06	Marker3D	vis	(194.000, -9.900, 40.000)	(-0.000, 0.000, 0.000)	
 Anchors/CanteenTV	Marker3D	vis	(170.300, -7.500, 32.000)	(-0.000, 0.000, 0.000)	
 Anchors/CanteenClock	Marker3D	vis	(192.000, -7.400, 51.850)	(-0.000, 0.000, 0.000)	
@@ -38,3 +49,8 @@ Zones/Canteen/Collision	CollisionShape3D	vis	(194.000, -7.900, 36.000)	(-0.000, 
 Navigation/CanteenEntry	NavigationLink3D	vis	(0.000, 0.000, 0.000)	(-0.000, 0.000, 0.000)	link (190.000, -9.900, 18.000) -> (190.000, -9.900, 21.000) bi true
 Library/MapBoard/Canteen	Node3D	vis	(45.220, -8.200, 210.200)	(-0.000, 90.000, 0.000)	
 Library/MapBoard/Canteen/Mesh	MeshInstance3D	vis	(45.220, -8.200, 210.200)	(-0.000, 90.000, 0.000)	box (0.400, 0.260, 0.015) | aabb (45.213, -8.330, 210.000)..(45.228, -8.070, 210.400) | - 3b4d4aff | shadow 1
+StripGate/Ground/Kerbs	MeshInstance3D	vis	(0.000, -9.900, 0.000)	(-0.000, 0.000, 0.000)	ArrayMesh | aabb (180.000, -9.980, -20.000)..(223.120, -9.840, 13.000) | ORMMaterial3D | shadow 0
+StripGate/Ground/Lawn	MeshInstance3D	vis	(0.000, -9.900, 0.000)	(-0.000, 0.000, 0.000)	ArrayMesh | aabb (180.000, -9.930, -60.000)..(262.000, -9.930, 13.000) | ShaderMaterial | shadow 0
+StripGate/Ground/Walk	MeshInstance3D	vis	(0.000, -9.900, 0.000)	(-0.000, 0.000, 0.000)	ArrayMesh | aabb (180.000, -9.900, -20.000)..(223.000, -9.870, 13.000) | ShaderMaterial | shadow 0
+StripGate/Props/Litter	MeshInstance3D	vis	(0.000, -9.900, 0.000)	(-0.000, 0.000, 0.000)	ArrayMesh | aabb (185.923, -9.924, -46.583)..(241.009, -9.894, 12.758) | ShaderMaterial | shadow 0
+StripGate/Props/Props	MeshInstance3D	vis	(0.000, -9.900, 0.000)	(-0.000, 0.000, 0.000)	ArrayMesh | aabb (187.791, -9.962, -47.185)..(241.740, -9.581, 12.933) | palette.png ffffffff | shadow 1

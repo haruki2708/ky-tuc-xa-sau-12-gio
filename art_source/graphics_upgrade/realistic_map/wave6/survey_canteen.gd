@@ -6,7 +6,8 @@ extends Node3D
 ##   godot --headless --path game res://_probe_tmp/survey_canteen.tscn
 ## Writes art_source/graphics_upgrade/realistic_map/wave6/survey/canteen_nodes.tsv and campus_canteen.tsv.
 const OUTPUT := "res://../art_source/graphics_upgrade/realistic_map/wave6/survey/"
-const BOX := AABB(Vector3(160, -12, 8), Vector3(60, 12, 56))  # x 160..220, z 8..64: campus nodes printed
+## x 160..226, z 8..66: campus nodes printed (by mesh or box-collider AABB, else by position).
+const BOX := AABB(Vector3(160, -12, 8), Vector3(66, 14, 58))
 
 
 func _ready() -> void:
@@ -107,6 +108,13 @@ func _dump(root: Node, file: String, filter: Callable) -> int:
 
 
 func _near(node: Node) -> bool:
+	if node is MeshInstance3D:
+		var mi := node as MeshInstance3D
+		return BOX.intersects(mi.global_transform * mi.get_aabb())
+	if node is CollisionShape3D and (node as CollisionShape3D).shape is BoxShape3D:
+		var shape := node as CollisionShape3D
+		var size := (shape.shape as BoxShape3D).size
+		return BOX.intersects(shape.global_transform * AABB(-size / 2, size))
 	if node is Node3D:
 		return BOX.has_point((node as Node3D).global_position)
 	return false
@@ -123,7 +131,7 @@ func _run() -> void:
 		if node == campus or canteen.is_ancestor_of(node) or node == canteen:
 			return false
 		var path := String(campus.get_path_to(node))
-		if path.begins_with("Props") or path.begins_with("Solids"):
+		if path.begins_with("Props"):
 			return false
 		return _near(node) or path.contains("Canteen") or path.contains("canteen") or path.contains("Start_split")
 	print("SURVEY campus rows %d" % _dump(campus, "campus_canteen.tsv", wanted))

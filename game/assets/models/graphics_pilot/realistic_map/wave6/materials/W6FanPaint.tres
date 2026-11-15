@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" format=3]
+
+[resource]
+resource_name = "W6FanPaint"
+albedo_color = Color(0.74, 0.72, 0.64, 1)
+roughness = 0.45
+metallic = 0.1
