@@ -461,7 +461,11 @@ def build_strip_props():
 			if kind == "litter":
 				size = max(0.18, min(0.42, Vector(basis[0]).length * 1.1))
 				a = rnd.uniform(0, math.tau)
-				P_card(litter, B((x, strip_height(x, z), z)), a, size, cells[rnd.randrange(4)])
+				cell = cells[rnd.randrange(4)]
+				# T-262 (D-180): a skin-tinted 0.22 m box is a corpse's head, not paper: no card there (the random draws stay
+				# the same, so every other card keeps its look); patch_gate.py gives the head back in props.tscn.
+				if tint_key(rgba) != "0.9,0.7,0.6":
+					P_card(litter, B((x, strip_height(x, z), z)), a, size, cell)
 			elif kind == "rubble":
 				mg = Matrix((Vector(basis[0]), Vector(basis[1]), Vector(basis[2]))).transposed()
 				mb = to_b @ mg @ to_b.inverted()

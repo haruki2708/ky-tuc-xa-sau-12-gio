@@ -6,6 +6,15 @@
 [ext_resource type="Texture2D" path="res://assets/textures/campus/blue.png" id="e4"]
 [ext_resource type="Texture2D" path="res://assets/textures/campus/paper.png" id="e5"]
 [ext_resource type="Texture2D" path="res://assets/textures/campus/glass.png" id="e6"]
+[ext_resource type="Script" path="res://scenes/levels/campus/gate_real.gd" id="t262_real"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave5/court.glb" id="t262_court"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave5/outside.glb" id="t262_outside"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave5/court_cracks.glb" id="t262_cracks"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave5/pillars_plaster.glb" id="t262_pillars"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave5/gate_swing.glb" id="t262_gate"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave5/sign_arch.glb" id="t262_sign"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave5/booth_masonry.glb" id="t262_booth"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave5/booth_interior.glb" id="t262_interior"]
 
 [sub_resource type="BoxShape3D" id="s1"]
 size = Vector3(60, 0.04, 40)
@@ -356,6 +365,7 @@ collision_mask = 0
 shape = SubResource("s1")
 
 [node name="Mesh" type="MeshInstance3D" parent="Court"]
+visible = false
 mesh = SubResource("s3")
 
 [node name="Pillar209" type="StaticBody3D" parent="."]
@@ -368,6 +378,7 @@ rotation_degrees = Vector3(0,0,7)
 shape = SubResource("s4")
 
 [node name="Mesh" type="MeshInstance3D" parent="Pillar209"]
+visible = false
 mesh = SubResource("s5")
 
 [node name="Pillar231" type="StaticBody3D" parent="."]
@@ -379,6 +390,7 @@ collision_mask = 0
 shape = SubResource("s6")
 
 [node name="Mesh" type="MeshInstance3D" parent="Pillar231"]
+visible = false
 mesh = SubResource("s7")
 
 [node name="Gate" type="StaticBody3D" parent="."]
@@ -402,147 +414,172 @@ collision_mask = 0
 shape = SubResource("s11")
 
 [node name="Mesh" type="MeshInstance3D" parent="Booth"]
+visible = false
 mesh = SubResource("s13")
 
 [node name="GateBar210" type="Node3D" parent="."]
+visible = false
 position = Vector3(210, -7.9, -59)
 
 [node name="Mesh" type="MeshInstance3D" parent="GateBar210"]
 mesh = SubResource("s14")
 
 [node name="GateBar211" type="Node3D" parent="."]
+visible = false
 position = Vector3(211, -7.9, -59)
 
 [node name="Mesh" type="MeshInstance3D" parent="GateBar211"]
 mesh = SubResource("s15")
 
 [node name="GateBar212" type="Node3D" parent="."]
+visible = false
 position = Vector3(212, -7.9, -59)
 
 [node name="Mesh" type="MeshInstance3D" parent="GateBar212"]
 mesh = SubResource("s16")
 
 [node name="GateBar213" type="Node3D" parent="."]
+visible = false
 position = Vector3(213, -7.9, -59)
 
 [node name="Mesh" type="MeshInstance3D" parent="GateBar213"]
 mesh = SubResource("s17")
 
 [node name="GateBar214" type="Node3D" parent="."]
+visible = false
 position = Vector3(214, -7.9, -59)
 
 [node name="Mesh" type="MeshInstance3D" parent="GateBar214"]
 mesh = SubResource("s18")
 
 [node name="GateBar215" type="Node3D" parent="."]
+visible = false
 position = Vector3(215, -7.9, -59)
 
 [node name="Mesh" type="MeshInstance3D" parent="GateBar215"]
 mesh = SubResource("s19")
 
 [node name="GateBar216" type="Node3D" parent="."]
+visible = false
 position = Vector3(216, -7.9, -59)
 
 [node name="Mesh" type="MeshInstance3D" parent="GateBar216"]
 mesh = SubResource("s20")
 
 [node name="GateBar217" type="Node3D" parent="."]
+visible = false
 position = Vector3(217, -7.9, -59)
 
 [node name="Mesh" type="MeshInstance3D" parent="GateBar217"]
 mesh = SubResource("s21")
 
 [node name="GateBar218" type="Node3D" parent="."]
+visible = false
 position = Vector3(218, -7.9, -59)
 
 [node name="Mesh" type="MeshInstance3D" parent="GateBar218"]
 mesh = SubResource("s22")
 
 [node name="GateBar219" type="Node3D" parent="."]
+visible = false
 position = Vector3(219, -7.9, -59)
 
 [node name="Mesh" type="MeshInstance3D" parent="GateBar219"]
 mesh = SubResource("s23")
 
 [node name="GateBar220" type="Node3D" parent="."]
+visible = false
 position = Vector3(220, -7.9, -59)
 
 [node name="Mesh" type="MeshInstance3D" parent="GateBar220"]
 mesh = SubResource("s24")
 
 [node name="GateBar221" type="Node3D" parent="."]
+visible = false
 position = Vector3(221, -7.9, -59)
 
 [node name="Mesh" type="MeshInstance3D" parent="GateBar221"]
 mesh = SubResource("s25")
 
 [node name="GateBar222" type="Node3D" parent="."]
+visible = false
 position = Vector3(222, -7.9, -59)
 
 [node name="Mesh" type="MeshInstance3D" parent="GateBar222"]
 mesh = SubResource("s26")
 
 [node name="GateBar223" type="Node3D" parent="."]
+visible = false
 position = Vector3(223, -7.9, -59)
 
 [node name="Mesh" type="MeshInstance3D" parent="GateBar223"]
 mesh = SubResource("s27")
 
 [node name="GateBar224" type="Node3D" parent="."]
+visible = false
 position = Vector3(224, -7.9, -59)
 
 [node name="Mesh" type="MeshInstance3D" parent="GateBar224"]
 mesh = SubResource("s28")
 
 [node name="GateBar225" type="Node3D" parent="."]
+visible = false
 position = Vector3(225, -7.9, -59)
 
 [node name="Mesh" type="MeshInstance3D" parent="GateBar225"]
 mesh = SubResource("s29")
 
 [node name="GateBar226" type="Node3D" parent="."]
+visible = false
 position = Vector3(226, -7.9, -59)
 
 [node name="Mesh" type="MeshInstance3D" parent="GateBar226"]
 mesh = SubResource("s30")
 
 [node name="GateBar227" type="Node3D" parent="."]
+visible = false
 position = Vector3(227, -7.9, -59)
 
 [node name="Mesh" type="MeshInstance3D" parent="GateBar227"]
 mesh = SubResource("s31")
 
 [node name="GateBar228" type="Node3D" parent="."]
+visible = false
 position = Vector3(228, -7.9, -59)
 
 [node name="Mesh" type="MeshInstance3D" parent="GateBar228"]
 mesh = SubResource("s32")
 
 [node name="GateBar229" type="Node3D" parent="."]
+visible = false
 position = Vector3(229, -7.9, -59)
 
 [node name="Mesh" type="MeshInstance3D" parent="GateBar229"]
 mesh = SubResource("s33")
 
 [node name="GateBar230" type="Node3D" parent="."]
+visible = false
 position = Vector3(230, -7.9, -59)
 
 [node name="Mesh" type="MeshInstance3D" parent="GateBar230"]
 mesh = SubResource("s34")
 
 [node name="GateCross0.5" type="Node3D" parent="."]
+visible = false
 position = Vector3(220, -9.4, -59)
 
 [node name="Mesh" type="MeshInstance3D" parent="GateCross0.5"]
 mesh = SubResource("s35")
 
 [node name="GateCross3.4" type="Node3D" parent="."]
+visible = false
 position = Vector3(220, -6.5, -59)
 
 [node name="Mesh" type="MeshInstance3D" parent="GateCross3.4"]
 mesh = SubResource("s36")
 
 [node name="HalfFallenSign" type="Node3D" parent="."]
+visible = false
 position = Vector3(219, -4.1, -59)
 rotation_degrees = Vector3(0,0,-13)
 
@@ -550,72 +587,84 @@ rotation_degrees = Vector3(0,0,-13)
 mesh = SubResource("s38")
 
 [node name="SignScar0" type="Node3D" parent="."]
+visible = false
 position = Vector3(213.0, -4.5, -58.85)
 
 [node name="Mesh" type="MeshInstance3D" parent="SignScar0"]
 mesh = SubResource("s40")
 
 [node name="SignScar1" type="Node3D" parent="."]
+visible = false
 position = Vector3(214.3, -4.2, -58.85)
 
 [node name="Mesh" type="MeshInstance3D" parent="SignScar1"]
 mesh = SubResource("s41")
 
 [node name="SignScar2" type="Node3D" parent="."]
+visible = false
 position = Vector3(215.6, -4.5, -58.85)
 
 [node name="Mesh" type="MeshInstance3D" parent="SignScar2"]
 mesh = SubResource("s42")
 
 [node name="SignScar3" type="Node3D" parent="."]
+visible = false
 position = Vector3(216.9, -4.2, -58.85)
 
 [node name="Mesh" type="MeshInstance3D" parent="SignScar3"]
 mesh = SubResource("s43")
 
 [node name="SignScar4" type="Node3D" parent="."]
+visible = false
 position = Vector3(218.2, -4.5, -58.85)
 
 [node name="Mesh" type="MeshInstance3D" parent="SignScar4"]
 mesh = SubResource("s44")
 
 [node name="SignScar5" type="Node3D" parent="."]
+visible = false
 position = Vector3(219.5, -4.2, -58.85)
 
 [node name="Mesh" type="MeshInstance3D" parent="SignScar5"]
 mesh = SubResource("s45")
 
 [node name="SignScar6" type="Node3D" parent="."]
+visible = false
 position = Vector3(220.8, -4.5, -58.85)
 
 [node name="Mesh" type="MeshInstance3D" parent="SignScar6"]
 mesh = SubResource("s46")
 
 [node name="SignScar7" type="Node3D" parent="."]
+visible = false
 position = Vector3(222.1, -4.2, -58.85)
 
 [node name="Mesh" type="MeshInstance3D" parent="SignScar7"]
 mesh = SubResource("s47")
 
 [node name="SignScar8" type="Node3D" parent="."]
+visible = false
 position = Vector3(223.4, -4.5, -58.85)
 
 [node name="Mesh" type="MeshInstance3D" parent="SignScar8"]
 mesh = SubResource("s48")
 
 [node name="BoothWindow" type="Node3D" parent="."]
+visible = false
 position = Vector3(240, -8.2, -51.97)
 
 [node name="Mesh" type="MeshInstance3D" parent="BoothWindow"]
 mesh = SubResource("s50")
 
 [node name="BoothRoof" type="Node3D" parent="."]
+visible = false
 position = Vector3(240, -6.78, -54)
 
 [node name="Mesh" type="MeshInstance3D" parent="BoothRoof"]
 mesh = SubResource("s51")
 
 [node name="RoadCrack212" type="Node3D" parent="."]
+visible = false
 position = Vector3(212, -9.88, -54)
 
 [node name="Branch0" type="Node3D" parent="RoadCrack212"]
@@ -668,6 +717,7 @@ rotation_degrees = Vector3(0,-17,0)
 mesh = SubResource("s58")
 
 [node name="RoadCrack222" type="Node3D" parent="."]
+visible = false
 position = Vector3(222, -9.88, -54)
 
 [node name="Branch0" type="Node3D" parent="RoadCrack222"]
@@ -720,6 +770,7 @@ rotation_degrees = Vector3(0,-17,0)
 mesh = SubResource("s65")
 
 [node name="RoadCrack233" type="Node3D" parent="."]
+visible = false
 position = Vector3(233, -9.88, -54)
 
 [node name="Branch0" type="Node3D" parent="RoadCrack233"]
@@ -772,6 +823,7 @@ rotation_degrees = Vector3(0,-17,0)
 mesh = SubResource("s72")
 
 [node name="PillarCrack" type="Node3D" parent="."]
+visible = false
 position = Vector3(208.9, -5.4, -58.27)
 
 [node name="Branch0" type="Node3D" parent="PillarCrack"]
@@ -822,3 +874,30 @@ rotation_degrees = Vector3(0,0,-17)
 
 [node name="Mesh" type="MeshInstance3D" parent="PillarCrack/Branch6"]
 mesh = SubResource("s79")
+
+[node name="Real" type="Node3D" parent="."]
+script = ExtResource("t262_real")
+
+[node name="Court" parent="Real" instance=ExtResource("t262_court")]
+position = Vector3(0, -9.9, 0)
+
+[node name="Outside" parent="Real" instance=ExtResource("t262_outside")]
+position = Vector3(0, -9.9, 0)
+
+[node name="Cracks" parent="Real" instance=ExtResource("t262_cracks")]
+position = Vector3(0, -9.9, 0)
+
+[node name="Pillars" parent="Real" instance=ExtResource("t262_pillars")]
+position = Vector3(0, -9.9, 0)
+
+[node name="Gate" parent="Real" instance=ExtResource("t262_gate")]
+position = Vector3(0, -9.9, 0)
+
+[node name="Sign" parent="Real" instance=ExtResource("t262_sign")]
+position = Vector3(0, -9.9, 0)
+
+[node name="Booth" parent="Real" instance=ExtResource("t262_booth")]
+position = Vector3(0, -9.9, 0)
+
+[node name="Interior" parent="Real" instance=ExtResource("t262_interior")]
+position = Vector3(0, -9.9, 0)

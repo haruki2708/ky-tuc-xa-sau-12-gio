@@ -67,3 +67,7 @@ Nguồn từng file, texture và ảnh tham chiếu: [`wave3/CREDITS.md`](wave3/
 ## `wave4/` — T-261: sân vận động (A13), dải nối vườn → sân (A16)
 
 Nguồn từng file và texture: [`wave4/CREDITS.md`](wave4/CREDITS.md). Dựng bằng script Blender, texture vẽ bằng code; không Tripo, không ảnh AI (D-166, D-176, D-178).
+
+## `wave5/` — T-262: cổng trường, chốt bảo vệ, tường rào nam, sân cổng (A14), dải A16 đoạn cổng
+
+Cổng, chốt bảo vệ, tường rào nam cả `Fence/S`, dải A16 đoạn cổng theo D-180. Nguồn từng file và texture: [`wave5/CREDITS.md`](wave5/CREDITS.md). Dựng bằng script Blender, texture vẽ bằng code; không Tripo, không ảnh AI (D-166, D-176, D-180).
