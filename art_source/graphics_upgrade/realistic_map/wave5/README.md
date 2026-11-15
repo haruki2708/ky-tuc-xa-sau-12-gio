@@ -3,6 +3,72 @@
 Card: `docs/tasks/T-262-realistic-graphics-wave5-gate.md` (đọc ở commit `1b63065`). Dựng bằng script Blender, texture vẽ
 bằng code (numpy + Pillow). Không Tripo, không extension Blender, không ảnh AI.
 
+## Lượt 2 (15/11/2026, D-180): cả cổng, tường rào nam, dải A16 đoạn cổng
+Chủ dự án chọn phương án a có chữ: G1 cổng sắt hai cánh sơn xanh, P1 trụ trát quét vôi + SA biển tôn xanh trên vòm thép,
+chữ "TRƯỜNG ĐẠI HỌC" (tên trường bong), K1 chốt xây quét vôi vàng (đồ bên trong gộp atlas), W1 tường trát quét vôi +
+song sắt dọc **cả `Fence/S`**, C2 block con sâu cho sân cổng và lối sang nhà ăn, thay 5 ô tô PS1 và đồ rơi. HARU cho phép
+rút hình `Road/Avenue` còn x 0…180, cắt hình tường ở lỗ cổng (dải ngoài cổng chỉ để nhìn) và trả đầu 3 xác bị ẩn nhầm.
+
+```powershell
+$B = "D:\Tools\Blender\5.2.2\blender.exe"
+python -B art_source/graphics_upgrade/realistic_map/wave5/make_wave5_textures.py   # 11 texture lượt 2
+# Gắn vào scene: chạy một lần trên bản main của ba file (xem đầu patch_gate.py); bước data trước khi dựng đồ rải:
+python -B art_source/graphics_upgrade/realistic_map/wave5/patch_gate.py data
+& $B -b --factory-startup -P art_source/graphics_upgrade/realistic_map/wave5/build_gate.py   # [-- court ... wall strip strip_props]
+python -B art_source/graphics_upgrade/realistic_map/wave5/make_wave5_materials.py
+godot --headless --path game --import   # lần đầu chạy hai lần
+python -B art_source/graphics_upgrade/realistic_map/wave5/patch_gate.py gate campus props
+pwsh tools/test.ps1 -Filter t262
+```
+- `patch_gate.py`: `data` ghi `w5_ps1_props.json` (dữ liệu main của 24 chunk `props.tscn` đợt này đụng); `gate` ẩn 43 node hình
+  PS1 của `gate.tscn` và thêm node `Real` (`gate_real.gd`); `campus` ẩn `Fence/S/Mesh` (giữ va chạm), rút BoxMesh của
+  `Road/Avenue/Mesh` còn 180 m (mesh dời 20 m sang tây, node `Road/Avenue` không đổi), thêm `WallSouth` và `StripGate`;
+  `props` thu cỡ về 0 đúng 180 bản trong hộp (5 ô tô 70 bản, 2 rào chắn 12, 6 cọc 12, 38 tờ giấy, ba lô 6, giày 10, dép 4,
+  điện thoại 14, đống gạch 14) và trả ma trận main cho 3 đầu xác (`P_paper_box_p1_p0` bản 0, `P_paper_box_p2_p2` bản 1,
+  `P_paper_box_p2_p4` bản 1).
+- **`gate.tscn` → `Real`:** `Court` (block con sâu, cao độ −9,90), `Outside` (vỉa hè, bó vỉa, lòng đường nhựa ngoài cổng,
+  z ≤ −60,15), `Cracks` (vết nứt đúng chỗ `RoadCrack*` và quanh chân trụ tây), `Pillars`, `Gate`, `Sign`, `Booth`, `Interior`.
+- **`campus.tscn` → `WallSouth`:** W1 từ x −80 tới 420 trừ lỗ cổng, mỗi 30 m một khối `Solid_NN`, `BarsNear_NN` (song sắt
+  thật), `BarsFar_NN` (thẻ song sắt phẳng có alpha, shader thẻ của đợt 4). `gate_real.gd`: song thật vẽ tới 45 m, thẻ từ 45 m,
+  chuyển dần 5 m; đồ trong chốt vẽ trong 30 m; đồ rải tắt ở 125 m (giấy 80 m) như PS1; mặt phẳng không đổ bóng.
+- **`campus.tscn` → `StripGate`** (hộp x 180…262, z −60…13): `Ground` (cỏ mòn `W5StripGround`; lối lát block con sâu
+  x 217…223 từ mép bắc sân lên z 13 và rẽ tây tới x 186 ở z 7…13; 37 m cuối đại lộ x 180…217 giữ cao độ −9,87 của đường
+  PS1; bó vỉa, viền bê tông), `Props` (5 ô tô sedan cũ đúng chỗ, đúng góc, màu theo PS1, trong khối va chạm 4,4 × 1,5 ×
+  1,9 m; 2 rào chắn, 6 cọc (2 cọc đổ như PS1); ba lô, giày, dép, điện thoại theo bảng màu đợt 4; 38 tờ giấy; đống gạch vỡ).
+- Lỗi đầu xác: `wave3/build_garden.py` và `wave4/build_stadium.py` bỏ tờ giấy đặt đúng chỗ đầu xác (giữ nguyên lượt rút số
+  ngẫu nhiên nên mọi tờ khác không đổi: so đỉnh glb cũ/mới chỉ mất đúng 1 và 2 tờ); dựng lại `wave3/strip_props.glb`,
+  `wave4/strip_stadium_props.glb`.
+- Phương án không chọn đã gỡ khỏi `game/` (P2, G2, SB và chữ nổi, K2, W2, biển không chữ; texture gạch, composite, mặt nạ
+  băng biển; `barrier.glb`, `cone.glb` gộp vào `strip_gate_props.glb`). Muốn dựng lại: `build_gate_pilot.py` và
+  `make_wave5_textures.py brick panel signs board_masks`, vật liệu ở lịch sử git (commit `18d2530`).
+
+### Số liệu lượt 2
+| Phần | Tam giác | Vật liệu |
+|---|---|---|
+| Sân cổng, vết nứt, dải ngoài cổng | 8 + 18 + 48 | `W5CourtPavers`, `W5GroundCrack`, `W5CourtAsphalt`, `W1Concrete`, `W4Paint` |
+| Hai trụ (P1) | 330 | `W5Plaster`, `W1Concrete`, `W1Crack` |
+| Cổng G1 | 2.292 | `W5GateGreen`, `W1Iron`, `W1Steel` |
+| Vòm và biển SA | 2.252 | `W5GateGreen`, `W1Iron`, `W5SignText`, `W1Steel` |
+| Chốt K1 | 648 | 7 (`W5BoothYellow`, `W5Plaster`, `W1Concrete`, `W1Alu`, `W2Glass`, `W1Iron`, `W5DoorPaint`) |
+| Đồ trong chốt | 528 | 1 (`W5BoothAtlas`) |
+| **Lớp `Real` của cổng** | **6.124** | |
+| Tường nam cả 500 m (17 khối) | 6.408 khối đặc + 29.224 song thật (chỉ vẽ trong 45 m) + 318 thẻ song | `W5Plaster`, `W5GateGreen`, `W5BarsCard` |
+| Dải A16: cỏ, lối lát, đại lộ, bó vỉa | 592 | `W5StripGround`, `W5CourtPavers`, `W1Concrete` |
+| Dải A16: 5 ô tô | 5.880 | 11 (4 màu sơn, kính, đèn, đèn hậu, cao su, thép, đen, biển số) |
+| Dải A16: rào chắn, cọc; đồ rơi; giấy; gạch vỡ, thép | 1.340; 1.616; 76; 924 + 84 | `W5BarrierStripes`, `W4PoleSteel`, `W5ConeOrange`, `W5Reflect`, `W1Rubber`; `W4Palette`; `W3Litter`; `W3Brick`, `W1Concrete`, `W1Rebar` |
+Cả đợt: 52.586 tam giác trong 11 glb (phần lớn là song sắt gần, chỉ vẽ các khối trong 45 m). PS1 cổng 804 tam giác,
+6 vật liệu (vẫn còn, đã ẩn).
+
+Số lần vẽ và primitive (chương 3, cùng camera, trước → sau): từ `Start_gate` 351 / 12,5 k → 336 / 30,2 k; cuối đường vào
+382 / 14,5 k → 380 / 34,3 k; biển, đèn pin 448 / 13,3 k → 432 / 33,7 k; rào chắn, đèn pin 479 / 14,8 k → 466 / 37,4 k; chốt
+35 / 1,6 k → 61 / 16,2 k (đèn pin 43 → 85: chốt 7 vật liệu, đèn pin đổ bóng); qua cửa sổ 17 → 28; nhìn qua cổng 332 → 309;
+từ cổng nhìn về nhà ăn 2.001 / 104 k → 2.019 / 113 k; cuối đại lộ 428 → 424; ô tô 241 / 9,4 k → 251 / 29,9 k; tường sau nhà B
+18 / 1,1 k → 25 / 6,4 k; tường phía đông 25 → 34. Góc rộng nhìn cả khu (tường phía chốt, lối sang nhà ăn, góc đông bắc
+sân, tường nhìn xa): số lần vẽ gần như cũ (4.442 → 4.427, 6.011 → 6.027, 4.258 → 4.247, 3.518 → 3.515), primitive thêm
+6…22 nghìn trên khoảng 1,5 triệu. Bộ nhớ hình chương 3: 1.278…1.279 MB → 1.288…1.290 MB (khoảng +10 MB). Không đo FPS.
+Ảnh: `../previews/wave5/before_*`, `after_*` (17 góc, có hàng bảo vệ), `overview.jpg`; chép `capture_t262.gd` vào
+`game/_probe_tmp/` và chạy `-- --tag=before` (trên bản main) / `--tag=after`, rồi `make_wave5_sheets.py --overview`.
+
 ## Lượt 1 (15/11/2026): khảo sát, góc mẫu, phương án — chờ chủ dự án chọn
 `gate.tscn`, `campus.tscn`, `props.tscn` **chưa sửa**: `capture_wave5.gd` gắn góc mẫu vào cảnh chương 3 thật lúc chạy, ẩn
 hình PS1 tương ứng (`visible = false`; bản MultiMesh của hai thanh chắn và hai hàng cọc thu cỡ về 0; `Fence/S/Mesh` thay

@@ -91,12 +91,70 @@
 ## Checklist
 - [x] Lượt 1: khảo sát, bảng hợp đồng, đi thử tuyến, chốt hộp và danh sách node A16 (Handoff)
 - [x] Lượt 1: góc mẫu và phương án (cánh cổng, trụ và biển, chốt, tường rào, sân cổng), ảnh có hàng bảo vệ; dừng chờ chủ dự án chọn
-- [ ] Lượt 2: cổng, chốt, tường rào
-- [ ] Lượt 2: dải A16 đoạn cổng
-- [ ] Ảnh trước/sau, test mới, test cũ, full test, check, README, CREDITS, Handoff
+- [x] Lượt 2: cổng, chốt, tường rào
+- [x] Lượt 2: dải A16 đoạn cổng
+- [x] Ảnh trước/sau, test mới, test cũ, full test, check, README, CREDITS, Handoff
 
 ## Handoff
 (lane B ghi)
+
+### Lượt 2 (15/11/2026, D-180): xong, chờ review
+Nhánh rebase lên `origin/main` `f19bf4b` (D-180), đẩy bằng `--force-with-lease`. Cách chạy lại, bảng tam giác/vật liệu, số
+lần vẽ đầy đủ: `art_source/graphics_upgrade/realistic_map/wave5/README.md` (mục Lượt 2).
+
+**Đã làm theo mục 1:**
+- `gate.tscn`: ẩn 43 node hình PS1 (sân, hai trụ, chốt, 21 song cổng, 2 thanh ngang, biển rơi nửa, 9 vết sẹo biển, cửa sổ
+  và mái chốt, 3 vết nứt đường, vết nứt trụ); thêm `Real` (`gate_real.gd`): sân block con sâu (C2), dải vỉa hè và lòng đường
+  ngoài cổng chỉ để nhìn (z ≤ −60,15), vết nứt sân đúng chỗ PS1, trụ P1 (trụ tây nghiêng 7°), cổng G1, vòm + biển SA
+  "TRƯỜNG ĐẠI HỌC" rơi nửa, chốt K1 (7 vật liệu) và đồ bên trong một atlas (1 vật liệu, vẽ trong 30 m).
+- `campus.tscn`: `Fence/S/Mesh` ẩn (va chạm giữ); `WallSouth`: W1 dọc cả 500 m trừ lỗ cổng, 17 khối 30 m, song sắt thật
+  trong 45 m, thẻ song phẳng từ 45 m (chuyển dần 5 m); `Road/Avenue/Mesh` rút còn x 0…180 (BoxMesh 180 m, mesh dời 20 m
+  sang tây; node `Road/Avenue` và hiển thị không đổi, `test_t261` vẫn đạt); `StripGate` trong hộp x 180…262, z −60…13: cỏ mòn,
+  lối lát block con sâu từ sân lên mép hộp và rẽ tây về phía cửa nhà ăn, 37 m cuối đại lộ lát block, bó vỉa, viền; đồ rải:
+  5 ô tô sedan cũ (màu PS1, đúng chỗ, đúng góc, trong khối va chạm cũ), 2 rào chắn, 6 cọc, ba lô, giày, dép, điện thoại,
+  38 tờ giấy, đống gạch vỡ.
+- `props.tscn`: thu cỡ về 0 đúng 180 bản trong hộp (so với main bằng script: không bản nào khác đổi); xác, máu, vết nứt,
+  vệt kéo, ghế, bồn cây, xe máy, xe đạp, thùng gỗ, biển chỉ đường, bảng tin, cột đèn, cây giữ nguyên.
+- **Trả đầu 3 xác** (`P_paper_box_p1_p0` bản 0, `P_paper_box_p2_p2` bản 1, `P_paper_box_p2_p4` bản 1) bằng ma trận main
+  (từ `wave3/a16_ps1_props.json`, `wave4/w4_ps1_props.json`); bỏ tờ giấy đặt đúng chỗ đó: sửa `wave3/build_garden.py`,
+  `wave4/build_stadium.py` (vẫn rút số ngẫu nhiên như cũ), dựng lại `wave3/strip_props.glb`, `wave4/strip_stadium_props.glb`;
+  so đỉnh với main: chỉ mất đúng 1 và 2 tờ.
+- Test cũ phải sửa vì việc trả đầu (HARU cho phép mục 1): `test_t261_stadium.gd` ngưỡng 373 → 371 **và** hằng
+  `PROPS_KEPT_MD5` (2.303 → 2.124 dòng: bớt 180 bản đợt này thay, thêm đầu xác (43,6; 30,2) nằm ngoài hộp A16 của T-261
+  nên thành dòng "giữ"); `test_t259_garden.gd` bỏ `Parts/P_paper_box_p1_p0` khỏi `A16_PARTLY` (phần duy nhất bị ẩn ở đó là
+  cái đầu, nay `zeroed > 0` không còn đúng). Đổi `PROPS_KEPT_MD5` và `test_t259` là ngoài chữ của mục 1 nhưng là hệ quả trực
+  tiếp; lý do ghi trong comment của hai file.
+- Bỏ khỏi `game/` các phương án không chọn (P2, G2, SB và chữ nổi, K2, W2, biển không chữ, texture gạch, composite, mặt
+  nạ băng biển, vật liệu tương ứng); `barrier.glb`, `cone.glb` gộp vào đồ rải. `test_t262_gate_pilot.gd` thay bằng
+  `test_t262_gate.gd` (9 test).
+
+**Hợp đồng giữ (`test_t262_gate`):** dấu vân tay node và va chạm `gate.tscn` (145 dòng), va chạm cả `campus.tscn` (957),
+anchor/vùng/navigation, va chạm `props.tscn` trùng main (md5 tính trên bản sao `origin/main` trong `_probe_tmp`, đã xoá);
+hình PS1 ẩn, không xoá; chỉ đúng 180 bản trong hộp thu về 0, 3 đầu trở lại; lớp `StripGate` nằm trong hộp; cổng, trụ,
+chốt, biển (phần dưới 2,3 m), tường, ô tô nằm trong khối va chạm cũ hoặc ngoài tầm với; tia từ 4 điểm mắt (`Start_gate`,
+(220; −15), (205; −16), (235; −30)) tới ngực 12 bảo vệ không cắt tam giác mới nào; thân người chơi đi `Start_gate` → mép
+12 m → về → `P28` → `P29` → `P30_Wait_canteen`; 11 texture đợt 5 nén VRAM; glb chỉ dùng vật liệu chung; cả đợt 52.586 tam giác.
+
+**Số liệu** (chương 3, cùng camera, trước → sau): số lần vẽ phần lớn góc giảm nhẹ hoặc như cũ (từ `Start_gate` 351 → 336,
+biển 448 → 432, rào chắn 479 → 466, góc rộng 4.442 → 4.427); góc nhìn chốt tăng (35 → 61; đèn pin 43 → 85, chốt 7 vật liệu,
+đèn pin đổ bóng). Primitive thêm 10…22 nghìn ở góc gần, góc rộng khoảng 1,5 triệu thêm 6…22 nghìn. Bộ nhớ hình chương 3
+1.278…1.279 → 1.288…1.290 MB. Không đo FPS (D-179).
+
+**Ảnh:** `art_source/graphics_upgrade/realistic_map/previews/wave5/before_*`, `after_*` (17 góc, 27 ảnh mỗi bên, hàng 12
+bảo vệ đứng đúng chỗ, có và không đèn pin), `overview.jpg`.
+
+**Còn lại / ghi chú:**
+- **6 xác trong vườn vẫn mất đầu** (ngoài phép mục 1): T-259 ẩn cả node `Parts/P_paper_box_p0_p0` (`A16_ALL`), trong đó có
+  đầu của 6 xác ở (11,2; 16,9), (29,1; 27,6), (14,3; 37,0), (0,2; 7,6), (16,6; 18,8), (31,1; 30,4) và T-259 đặt giấy đúng
+  các chỗ đó. Sửa: hiện lại node, thu về 0 bảy bản không phải đầu (khay cơm, 6 tờ bảng tin T-259 đã thay), bỏ 6 tờ giấy
+  (`build_garden.py` chỉ cần bỏ điều kiện `mode != "all"`), sửa `A16_ALL`/`A16_PARTLY` trong `test_t259`. Chờ HARU cho phép.
+- Vết nứt PS1 trong dải (giữ nguyên) nằm ở −9,84: trên cỏ mới (−9,93) cao 9 cm, trên sân (−9,90) 6 cm như PS1.
+- Chưa gộp vật liệu của chốt K1 (7) và ô tô (11 trong một mesh cho cả 5 xe).
+- Không đề nghị occluder (sau tường là khoảng trống).
+
+**Kiểm:** `-Filter t262` 9 passed; `-Filter t261` 12 passed; `-Filter t259` 11 passed. Full `pwsh tools/test.ps1` trên
+`39aec28`: `RESULT: 1025 passed, 0 failed`. `pwsh tools/check.ps1`: `RESULT: check 0 error(s)`. Đã
+`git checkout -- game/default_bus_layout.tres` sau mỗi lần chạy.
 
 ### Lượt 1 — phần 2: góc mẫu và phương án (15/11/2026, xong; DỪNG chờ chủ dự án chọn)
 Chưa sửa scene nào (`gate.tscn`, `campus.tscn`, `props.tscn` như main). Góc mẫu: 17 glb trong
