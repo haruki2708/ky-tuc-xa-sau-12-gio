@@ -1,5 +1,5 @@
 # T-262 — Đồ hoạ thật đợt 5: cổng trường, chốt bảo vệ, đường tới cổng
-- Lane: B | Trạng thái: in progress, lượt 2 (giao 15/11/2026; chọn D-180) | Agent: tài khoản Claude lane B, `D:\GAME_WORK\lane-b2`; model **Opus 5.5 xhigh** (khó thì max). Chủ dự án tự dán prompt (`lane-b.md` mục 1p).
+- Lane: B | Trạng thái: **done** (giao 15/11/2026; chọn D-180; merge `187d457` 15/11) | Agent: tài khoản Claude lane B, `D:\GAME_WORK\lane-b2`; model **Opus 5.5 xhigh** (khó thì max). Chủ dự án tự dán prompt (`lane-b.md` mục 1p).
 - Nhánh: `lane-b/T-262-realistic-graphics-wave5-gate` từ `origin/main` mới nhất.
 - Quyết định nền: **D-166** (đồ hoạ thật dựng bằng Blender, không PS1, không Tripo trừ khi chủ dự án đổi; ánh sáng giữ như nay), **D-167/D-172/D-177** (phong cách đã duyệt: cũ vừa phải), **D-175** (sân block xám, viền quét vôi của vườn), **D-178** (sân vận động: bê tông trần, thép mạ kẽm, lưới B40, trụ trát vôi; dải nối có đường block con sâu), **D-176** (chủ dự án chỉ chơi thử một lượt khi xong toàn bộ đồ hoạ), **D-179** (không đo FPS, không chạy bot trong đợt). Kế hoạch: `art_source/graphics_upgrade/realistic_map/PLAN.md` đợt 5 (A14 + A16 đoạn cổng).
 - Làm như đợt 3–4 (T-259, T-261): **lượt 1 góc mẫu rồi dừng chờ chủ dự án chọn; lượt 2 làm cả khu.**
@@ -302,3 +302,30 @@ xác tĩnh** (khối 0,22 m màu da `(0,9; 0,7; 0,6)` tên `P_paper_box_*`, cao 
 (85,5; 161,8) (T-261). Sửa: trả lại ma trận gốc của 3 bản đó trong `props.tscn` (và bỏ tờ giấy mới đặt đúng chỗ đó nếu
 có); `test_t261_stadium` đang đòi ít nhất 373 bản thu về 0 nên cần hạ còn 371. Bộ lọc đợt này đã loại riêng màu da.
 Xin integrator cho phép làm việc này ở lượt 2 (hoặc giao việc riêng).
+
+## Review (HARU thay integrator, 15/11/2026)
+**Đạt, merge `187d457`** (nhánh lane B `36b6a7d`; gốc nhánh là main `f19bf4b` nên cây sau merge trùng hệt cây lane B đã kiểm).
+- **Phạm vi:** 224 file, tất cả trong phạm vi lane B và mục 8. Code duy nhất là `gate_real.gd` mới: chạy một lần khi nạp cảnh, không xử lý mỗi khung. Script tắt bóng các mặt phẳng, cho đồ trong chốt chỉ hiện trong 30 m, song sắt thật hiện trong 45 m (xa hơn thay bằng thẻ phẳng), đồ rải hiện trong 125 m và giấy trong 80 m. Không thêm va chạm, đèn hay âm thanh.
+- **Cảnh:**
+  - `gate.tscn` thêm lớp `Real`; các node PS1 chỉ đặt `visible = false`, không xoá dòng nào.
+  - `campus.tscn` ẩn hình `Fence/S/Mesh` (va chạm giữ nguyên), rút hình `Road/Avenue/Mesh` còn x 0…180 (node vẫn hiện), thêm `WallSouth` và `StripGate`.
+  - `props.tscn` chỉ đổi dữ liệu MultiMesh, vị trí giữ nguyên: thu về 0 đúng 180 bản trong hộp A16 (x 180…262, z −60…13), và trả lại ma trận gốc cho 3 đầu xác tĩnh mà T-259 và T-261 ẩn nhầm.
+- **Hai test cũ có sửa thêm**, đều do trả đầu xác, đã có comment giải thích. Chấp nhận cả hai:
+  - `test_t261_stadium`: ngưỡng 373 → 371 và hằng `PROPS_KEPT_MD5`, 2.303 − 180 + 1 = 2.124 bản giữ.
+  - `test_t259_garden`: bỏ `P_paper_box_p1_p0` khỏi `A16_PARTLY`.
+- **`test_t262_gate` (9 test):**
+  - va chạm, node, anchor, vùng, navigation trùng main;
+  - PS1 chỉ ẩn;
+  - đúng 180 bản thu về 0;
+  - 12 đường nhìn tới bảo vệ thông;
+  - thân người chơi đi được từ `Start_gate` tới mép 12 m và sang nhà ăn.
+- **Ảnh** (`previews/wave5/overview.jpg`, 17 góc, có hàng 12 bảo vệ): đúng D-180. Cổng sắt xanh hai cánh; trụ tây trát vôi vẫn nghiêng; biển tôn xanh "TRƯỜNG ĐẠI HỌC" rơi một nửa, phần tên trường đã bong; chốt vôi vàng; tường vôi có song sắt; sân lát block con sâu xám; 5 sedan cũ.
+- **Số liệu:**
+  - cả đợt 52.586 tam giác;
+  - số lần vẽ giữ như cũ hoặc giảm, trừ góc nhìn chốt (35 → 61);
+  - bộ nhớ hình chương 3 tăng khoảng 10 MB.
+  - Chưa gộp vật liệu chốt (7) và ô tô (11), để sau nếu FPS cuối cần.
+- **Còn lại:** 6 xác trong vườn vẫn mất đầu. T-259 ẩn cả node `Parts/P_paper_box_p0_p0` và đặt giấy đúng chỗ đầu xác. HARU cho phép sửa ở việc kế tiếp của lane B; cách sửa ghi ở Handoff lượt 2.
+- Binary đi qua LFS; CREDITS có mục `wave5/`. Không có yêu cầu thay đổi khác.
+- **Kiểm sau merge** (khoá Godot, 15/11 16:54–17:44): full test **`RESULT: 1025 passed, 0 failed`**, check **`RESULT: check 0 error(s)`**.
+- Không đo FPS, không chạy bot (D-179).
