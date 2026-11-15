@@ -179,12 +179,126 @@
 - Tripo, credit Tripo, extension Blender, ảnh AI; bot, FPS; commit log, video, `anh_chup_sua_loi/`; sửa STATUS, DECISIONS.
 
 ## Checklist
-- [ ] Lượt 1, bước 0: trả đầu 6 xác trong vườn, ảnh trước/sau
-- [ ] Lượt 1: khảo sát, bảng hợp đồng, đi thử tuyến, chốt hộp và danh sách node A16 (Handoff)
-- [ ] Lượt 1: góc mẫu và phương án (bàn ghế, sàn và tường, quầy, trần, bếp, mức bừa), ảnh TV bật/tắt; dừng chờ chủ dự án chọn
+- [x] Lượt 1, bước 0: trả đầu 6 xác trong vườn, ảnh trước/sau
+- [x] Lượt 1: khảo sát, bảng hợp đồng, đi thử tuyến, chốt hộp và danh sách node A16 (Handoff)
+- [x] Lượt 1: góc mẫu và phương án (bàn ghế, sàn và tường, quầy, trần, bếp, mức bừa), ảnh TV bật/tắt; dừng chờ chủ dự án chọn
 - [ ] Lượt 2: sảnh, quầy, TV, bếp, kho, tường tây
 - [ ] Lượt 2: dải A16 quanh nhà ăn
 - [ ] Ảnh trước/sau, test mới, test cũ, full test, check, README, CREDITS, Handoff
 
 ## Handoff
-(lane B ghi)
+### Lượt 1 (15/11/2026): xong, DỪNG chờ chủ dự án chọn
+Card đọc ở `origin/main` `12b7415`. Nhánh `lane-b/T-263-realistic-graphics-wave6-canteen`. Cách chạy lại, bảng tam giác,
+vật liệu, số lần vẽ: `art_source/graphics_upgrade/realistic_map/wave6/README.md`.
+
+**Bước 0 — đầu 6 xác trong vườn: đã trả.** `props.tscn` `Parts/P_paper_box_p0_p0` hiện lại; 7 bản T-259 đã thay (khay
+#0, 6 tờ bảng tin #4…9) thu cỡ về 0, giữ mục; 6 đầu (#1…3, #10…12) giữ ma trận main (`wave6/patch_canteen.py heads`).
+`wave3/build_garden.py` bỏ điều kiện `mode != "all"`; `wave3/strip_props.glb` dựng lại: 54 mẩu giấy, so từng đỉnh với bản
+cũ chỉ mất đúng 6 tờ ở 6 chỗ đầu, các lưới khác (gạch vỡ, ống, bảng tin, tờ bảng tin) trùng hết. Test cũ sửa theo (có
+comment): `test_t259_garden.gd` chuyển `P_paper_box_p0_p0` từ `A16_ALL` sang `A16_PARTLY`; `test_t261_stadium.gd`
+`PROPS_KEPT_MD5` → `d5c2dcb8…` (2.117 dòng: bớt 7 bản thu về 0, dòng "visible" của chunk thành true). `test_t262` không đổi.
+Test mới `test_t263_garden_heads.gd` (6 đầu đủ cỡ đúng chỗ main, 7 bản về 0, không tờ giấy nào phủ lên đầu).
+Ảnh `previews/wave6/heads_<1..6>_<before|after>[_torch].jpg`, bảng `heads.jpg`.
+
+**Khảo sát (kiểm lại mục 0 của card: khớp).** `wave6/survey_canteen.gd` → `survey/canteen_nodes.tsv` (1.758 node: vị trí,
+mesh, AABB, vật liệu, va chạm, meta), `survey/campus_canteen.tsv`. Thêm so với mục 0: `Bike0…5` (x 172…181, z 17,2) nằm
+trong `canteen.tscn`; cửa sổ PS1 là tấm kính dán ngoài tường liền (không lỗ); bếp hở 12 m sang sảnh (x 186…198, không có
+tường), lỗ cửa kho x 201…203; cửa chính là khe x 186…194 cao hết tường; trụ PS1 (mỗi 5 m) đè lên cửa sổ (mỗi 3 m); hộp
+chụp hút PS1 che gần hết `KitchenClock` khi nhìn từ sảnh.
+Chỗ đụng tới nhà ăn: `campus.gd` (`set_canteen_tv`: `Canteen/TV/Screen.visible`); `chapter3_director.gd` (`_gate` chờ vùng
+`canteen`, `_scare(&"canteen_tv")`, TV, `ROOM_CH3_TV_NEWS` tại `Anchors/CanteenTV`, `_spawn(&"Canteen")`, `_split_companions`
+đi tiếp từ `P*_Wait_canteen`); `chapter4_director.gd` (`_arrive_at("Ch4/Start_split")`); âm thanh `ch3_environment.gd`,
+`ch3_music.gd`, `ch3_audio_bank.gd` (vùng `canteen`, reverb `CANTEEN`); bot `ch3_policy.gd`, `tools/ch3-profile.json`
+(tuyến `gate`: P28 → P29 → P30_Wait_canteen; tuyến hiệu năng tới `ZombieSpawns/Canteen/S01`); test `test_campus`,
+`test_chapter3::test_gate_canteen_and_the_end`, `test_chapter4`, `test_ch4_environment` (đường từ (172; 40,5) tới
+`Start_split`), `test_stands_props` (đường `Start_gate → CanteenExit`, hộp `inside_canteen`), `test_t249_chapter3_bar` và
+`test_ch2_4_hand_targets` (B06), `test_t262_gate` (đi tới `P30_Wait_canteen`), `test_ch3_audio`.
+
+**Bảng hợp đồng (giữ tên, vị trí, va chạm; lượt 2 test so dấu vân tay với main):**
+| Cảnh | Node | Vị trí / cỡ |
+|---|---|---|
+| `canteen.tscn` | `Canteen` (gốc, transform 0); `Floor` (meta `surface=tile`, `is_floor`) | (190; −10; 32), 40 × 0,2 × 24 |
+| | `KitchenFloor`, `StoreFloor` (cùng meta) | (192 / 204; −10; 48), 12 × 0,2 × 8 |
+| | `Roof` | (190; −5,3; 32), 41 × 0,3 × 25 |
+| | `Front178`, `Front202` | z 20, x 170…186 / 194…210, cao −9,9…−5,3 |
+| | `Side210`; `Back178`, `Back199.5`, `Back206.5` | x 210; z 44 (x 170…186, 198…201, 203…210) |
+| | `KitchenSide186`, `KitchenSide198`, `KitchenBack` | x 186 / 198 (z 44…52), z 52 |
+| | `StoreSide`, `StoreBack199`, `StoreBack207` | x 210 (z 44…52); z 52 (x 198…200, 204…210) |
+| | `Counter`, `TrayReturn`, `SinkBlock` | (178; −9,45; 42,4) 15 × 0,9 × 1; (209,4; −9; 39) 1 × 1,8 × 3; (209,6; −9,5; 23,85) 0,6 × 0,8 × 4,6 |
+| | `Cooktop`, `PrepTable`, `KitchenSink` | (192; −9,45; 51,2) 8 × 0,9 × 1,1; (188,9; −9,45; 46,6) 1 × 0,9 × 4,4; (187,2; −9,45; 49,3) 1,2 × 0,9 × 0,9 |
+| | `Table_*/Collision` (21) | 2,6 × 0,9 × 2 ở (x; −9,45; z) của bàn; 3 bàn xoay (`1735_370` 9°, `1835_270` 5°, `1965_325` −7°) |
+| | `TV`, `TV/Screen` (tắt sẵn), `KitchenClock` (meta `stopped_hour = 4`) | (170,2; −7,5; 32), (170,29; −7,5; 32), (192; −7,4; 51,85) |
+| | `CeilingLight25/33/40` | OmniLight e 1,1, tầm 19, màu a3b08a, không bóng (giữ, không thêm đèn) |
+| `canteen_west_exit.tscn` | `WestExit`: `SouthWall`, `NorthWall`, `Lintel`; `Threshold`, `Outside`, `Inside` | x 170: z 20…39,5 / 41,5…44; lanh tô −7,5…−5,3; lỗ z 39,5…41,5 |
+| `campus.tscn` | `Anchors/CanteenTV`, `CanteenClock`, `CanteenExit`, `BarSpawns/B06` | (170,3; −7,5; 32), (192; −7,4; 51,85), (202; −9,9; 52), (194; −9,9; 40) |
+| | `ZombieSpawns/Canteen/S01…06`, `ZombieIdle/Canteen/I01…06` | x 178/182/186, z 24/29 và 25/30 |
+| | `Paths/Nhat/P29…P33`, `Paths/Ngu/P19…P23` | (190; 18) → (190; 32) chờ → (202; 43) → (202; 48) → (202; 54) |
+| | `Zones/Canteen`; `Navigation/CanteenEntry`, `KitchenEntry`, `StoreEntry`, `StoreExit`; `Ch4/Start_split` | (194; −7,9; 36) 48 × 4 × 32; (190; 18 → 21), (192; 43 → 45), (202; 43 → 45), (202; 51 → 54); (167; −9,9; 40,5) |
+
+**Đi thử (`wave6/walk_canteen.gd`, campus thật, thân người chơi thật `move_and_slide`): mọi tuyến tới đích.** Đồng đội
+Nhất P28 → P33 và Ngư P18 → P23 (cửa chính, sảnh, kho, cửa sau); tuyến bot `Start_gate → P28 → P29 → P30`; vòng bếp tới
+trước đồng hồ (192; 49,6) và quanh bàn sơ chế; vòng kho ra cửa sau tới z 57; các lối giữa dãy bàn; trước quầy tới chỗ trả
+khay; chương 4 `Start_split` → lối tây → trong sảnh → ra lại, vòng phía tây ra trước cửa chính, sân sau về `Start_split`.
+Navmesh: `Start_gate → P30` 20 m, `P30 → CanteenExit` 28 m (qua `StoreEntry`), `P30 →` trước đồng hồ (qua `KitchenEntry`),
+cả 6 điểm sinh và 6 điểm đứng → P30 và → `CanteenExit`, `Start_split → P30` qua lối tây: đều thông. `Start_split →
+Start_library` không thông trên navmesh của riêng campus (thư viện không nằm trong cảnh thử; như main, không thuộc đợt này).
+Tia nhìn: mắt ở cửa chính → TV và giữa sảnh → TV thông. Ba đoạn "STUCK" trong log là đường thẳng tôi cố ý kẻ xuyên qua
+bàn và ki-ốt, không phải tuyến. Chân người chơi trong khu: x 166…220, z 8…57.
+
+**Hộp A16 chốt: x 166…218, z 13…60, trừ góc x 166…170, z 37…60** (phần ngoài lối tây, đường sang thư viện: đợt 8). Sân
+trước nối mép T-262 ở z 13 (lối lát T-262 x 186…217, z 7…13 hướng cửa chính), hai bên hông, sân sau tới z 60.
+Danh sách đủ: `wave6/a16_box_nodes.json` (`list_a16_box.py`). Mặt đất: `Ground/Tile_170_-10`, `Ground/Tile_170_40` (giữ,
+cỏ mới nằm trên 1 cm như đợt 3–5). Thay ở lượt 2 (18 bản, thu về 0): `Decals/D_paper_quad_p2_p0` #0…4, #20…25 (giấy),
+`Decals/D_white_quad_p2_p0` #0, 1, 5, 6 (dép), `Parts/P_white_box_p4_p0` #3, 4 (ba lô), `Parts/P_paper_box_p5_p1` #0 và
+`Parts/P_white_box_p5_p1` #0 (khay). Giữ: 27 vệt kéo sẫm `D_iron_quad_p2_p0` #6…32 (kéo vào bếp và kho), ki-ốt
+(214; 17), máy bán nước (182,2; 16), xe đạp đổ (208,4; 17), xe máy sau kho (207,6; 54,6), va chạm `Solids` của chúng.
+Đồ ngoài tường thuộc `canteen.tscn` (A15, lượt 2 cùng nhà ăn): `Bike0…5`, `Bin205`, `Bin206.2`, `GasCylinder0/1`,
+`ACUnit*`, `Chimney`.
+
+**Góc mẫu và phương án.** 21 glb trong `game/assets/models/graphics_pilot/realistic_map/wave6/`, 15 texture trong
+`game/assets/textures/.../wave6/` (đều `compress/mode=2`, normal có `normal_map=1`), vật liệu `W6*`. Chưa scene nào dùng:
+`capture_wave6.gd` gắn vào chương 3 thật lúc chạy, ẩn 838 node hình PS1 (va chạm, node, meta giữ), màn sáng treo dưới
+`Canteen/TV/Screen` (bật/tắt bằng `set_canteen_tv` như cũ), 6 xác sống đứng ở `ZombieIdle/Canteen`. Góc mẫu làm cả sảnh
+(vỏ, cửa sổ thật, trần, 20 đèn tuýp, 3 quạt, 21 bàn, quầy, bảng giá, TV), cả bếp và mặt tiền; phía đông sảnh (bồn rửa,
+trả khay), kho, áp phích, mặt ngoài tường bên/sau còn PS1.
+Ảnh: `art_source/graphics_upgrade/realistic_map/previews/wave6/`: `options_tables.jpg`, `options_floor_walls.jpg`,
+`options_counter.jpg`, `options_ceiling.jpg`, `options_kitchen.jpg`, `options_mess.jpg`, `options_tv.jpg` (TV tắt/bật),
+`options_facade.jpg`; ảnh đơn `pilot_<before|a|b|c|d>_<góc>[_tv][_torch].jpg`.
+| Mục | Phương án | Tam giác | Vật liệu |
+|---|---|---|---|
+| Bàn ghế | **T1** bàn inox liền 6 ghế đôn (như PS1) / T2 mặt đá + 126 ghế nhựa rời | 23.100 / 24.360 | 3 / 4 |
+| Sàn và tường | **F1** ceramic 40 × 40 kem, tường vàng nhạt, ốp gạch men trắng 1,4 m / F2 đá mài, tường xanh nhạt, chân tường sơn dầu xanh | vỏ 2.138 (chung) | 3 đổi chỗ |
+| Quầy | **Q1** inox + kính chắn / Q2 xây ốp gạch men trắng; bảng giá **gỗ sơn đen chữ trắng** / bảng in | 3.996 / 3.876; bảng 130 | 4 / 6; 2 |
+| Trần | **C2** tấm 60 × 60 ố vàng (6 tấm rơi, 2 võng) / C1 tôn lộ xà gồ, kèo thép | 516 / 820 | 3 / 3 |
+| Bếp | **K1** bếp gạch ốp men cháy khói, chảo gang, nồi nhôm / K2 bếp inox công nghiệp | 1.752 / 1.964 | 8 / 4 |
+| Mức bừa | M1 như PS1 / **M2** bừa hơn (bát đổ, khay, đũa, mảnh bát rơi ở lối đi; với T2 thêm ghế đổ) | 22.504 / 27.034 | 2 / 2 |
+Chung: cửa sổ 5.721 (4 vật liệu), đèn quạt 2.644, TV 108, phòng bếp 2.828, đồng hồ 190, mặt tiền 522. Cả góc mẫu
+cấu hình a 66.149 tam giác, b 72.335 (PS1 19.380). Số lần vẽ giảm ở mọi góc (từ cửa chính 1.656 → 1.295; từ quầy nhìn
+ra cửa 1.122 → 693; giữa các bàn 1.246 → 724; trần 617 → 254; mặt tiền 1.976 → 1.213); primitive tăng 50–80 nghìn ở góc
+rộng (cửa chính 83 k → 143 k). Bộ nhớ hình chương 3 1.307 → 1.309…1.310 MB khi nạp cả hai bộ. Không đo FPS (D-179).
+
+**Đề xuất: T1, F1, Q1 + bảng gỗ sơn đen, C2, K1, M2 (ảnh cấu hình c, và a cho các góc c không chụp).** T1 khớp khối va
+chạm bàn liền ghế và là kiểu bàn nhà ăn sinh viên quen thuộc; F1 sáng, xác sống nổi rõ trên nền; Q1 là quầy chia cơm phổ
+biến; bảng gỗ viết tay hợp "cũ vừa phải"; C2 hợp mái bằng có tường chắn mái nhìn từ ngoài, ít tam giác; K1 có khói ám, đúng
+bếp tập thể; M2 cho thấy cảnh bỏ chạy mà không đổi va chạm (với T1 ghế liền nên không có ghế đổ).
+
+**Câu hỏi cho chủ dự án:**
+1. Chọn từng mục: bàn ghế (T1/T2), sàn và tường (F1/F2), quầy (Q1/Q2), bảng giá (gỗ sơn đen/in), trần (C2/C1), bếp (K1/K2),
+   mức bừa (M1/M2). Có thể trộn.
+2. Màn TV khi bật: bản tin không chữ (đề xuất, vì lời đọc `ROOM_CH3_TV_NEWS` đã kể tin) hay muốn khác (nhiễu sóng, màn
+   xanh, có dòng chữ khẩn cấp — chữ mới là nội dung cốt truyện)?
+3. Đồng ý hộp A16 x 166…218, z 13…60 (trừ góc tây bắc của đợt 8)?
+
+**Yêu cầu thay đổi (integrator):**
+- Lượt 2 sẽ thu về 0 các bản giấy/dép trong `D_paper_quad_p2_p0`, `D_white_quad_p2_p0` ở hộp nhà ăn; hai chunk này (cùng
+  `D_iron_quad_p2_p0`) nằm trong `CHUNKS` của `test_t262_gate.gd`, test đó đòi mọi bản thu về 0 trong các chunk nằm trong
+  hộp cổng và tổng đúng 180. Xin cho phép sửa `test_t262_gate.gd` ở lượt 2 (chỉ đếm/kiểm các bản trong hộp cổng), comment lý
+  do. `test_t261` (`PROPS_KEPT_MD5`) cũng sẽ phải đổi lần nữa vì các bản này nằm ngoài hộp T-261.
+- Occluder: các góc nhìn về phía tây trong sảnh (TV, lối tây, bếp nhìn chéo) vẽ cả khuôn viên sau tường (4.300–5.200 lần vẽ,
+  PS1 cũng vậy). Đề nghị integrator cân nhắc một occluder hộp cho vỏ nhà ăn trong `game/scenes/main/occlusion/` (card mục 5).
+
+**Kiểm:** `-Filter t263` 8 passed (heads 2, pilot 6); `-Filter t259` 11, `t261` 12, `t262` 9 passed (sau khi sửa hằng ở
+bước 0). **Full `pwsh tools/test.ps1` chưa có kết quả:** lần chạy lúc 19:28 15/11 bị Claude Code dừng vì máy thiếu RAM (khoảng
+3 GB trống), không phải test lỗi; theo hướng dẫn, không tự chạy lại. **`pwsh tools/check.ps1` chưa chạy** (bước 0 có đổi
+`props.tscn`, nên cần chạy). Cần chạy lại cả hai khi máy rảnh RAM (đóng bớt ứng dụng), rồi `git checkout --
+game/default_bus_layout.tres`. Khoá Lượt Godot của lần chạy bị dừng đã xoá; `game/_probe_tmp/` đã xoá.

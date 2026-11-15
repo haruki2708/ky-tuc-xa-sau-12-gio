@@ -43,7 +43,7 @@ thân người chơi thật), chép vào `_probe_tmp` như trên, chạy `--head
 - `capture_wave6.gd`, `make_wave6_sheets.py`: ảnh và bảng phương án. `capture_t263.gd`: ảnh bước 0.
 
 ### Phương án (ảnh ở `../previews/wave6/`)
-Cấu hình chụp: **a** = T1 F1 Q1 + bảng gỗ C2 K1 M1 (đề xuất); **b** = T2 F2 Q2 + bảng in C1 K2 M2; **c** = a với M2;
+Cấu hình chụp: **a** = T1 F1 Q1 + bảng gỗ C2 K1 M1; **b** = T2 F2 Q2 + bảng in C1 K2 M2; **c** = a với M2 (đề xuất);
 **d** = b với M1 (T2 ghế đứng).
 
 | Mã | Là gì | Tam giác | Vật liệu |
