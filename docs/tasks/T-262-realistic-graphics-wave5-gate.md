@@ -160,10 +160,9 @@ không có gì để che, không đề nghị thêm). Ảnh chụp trước lầ
 
 **Cách kiểm tra:** `pwsh tools/test.ps1 -Filter t262` (8 PASS); xem 5 bảng `options_*.jpg`; chạy lại ảnh theo README.
 
-**Kiểm:** `pwsh tools/test.ps1 -Filter t262`: 8 passed, 0 failed. **Full `pwsh tools/test.ps1` chưa có kết quả:** lần chạy
-lúc 07:44 bị Claude Code dừng giữa chừng vì máy thiếu RAM (không phải lỗi test; chưa in dòng PASS/FAIL nào); chưa chạy lại,
-chờ chủ dự án cho phép. `check.ps1` chưa chạy. Lượt 1 không sửa scene, code hay test cũ nào, chỉ thêm asset mới chưa scene
-nào dùng và một file test mới.
+**Kiểm:** `pwsh tools/test.ps1 -Filter t262`: 8 passed, 0 failed. **Full `pwsh tools/test.ps1`: 1024 passed, 0 failed**
+(chạy lại theo yêu cầu chủ dự án, trên commit `8511f98`; lần chạy trước bị Claude Code dừng vì máy thiếu RAM). `check.ps1`
+chưa chạy. Lượt 1 không sửa scene, code hay test cũ nào, chỉ thêm asset mới chưa scene nào dùng và một file test mới.
 
 ### Lượt 1 — phần 1: khảo sát, hợp đồng, đi thử tuyến, hộp A16 (15/11/2026)
 Nhánh `lane-b/T-262-realistic-graphics-wave5-gate` từ `origin/main` `1b63065` (card đọc ở `1b63065`). Chưa sửa scene nào.
