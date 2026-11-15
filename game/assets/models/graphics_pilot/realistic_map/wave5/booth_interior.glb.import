@@ -41,55 +41,10 @@ materials/extract_format=0
 materials/extract_path=""
 _subresources={
 "materials": {
-"W1Alu": {
+"W5BoothAtlas": {
 "use_external/enabled": true,
-"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Alu.tres",
-"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Alu.tres"
-},
-"W1Black": {
-"use_external/enabled": true,
-"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Black.tres",
-"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Black.tres"
-},
-"W1EnamelBlue": {
-"use_external/enabled": true,
-"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1EnamelBlue.tres",
-"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1EnamelBlue.tres"
-},
-"W1LedgerSpine": {
-"use_external/enabled": true,
-"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1LedgerSpine.tres",
-"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1LedgerSpine.tres"
-},
-"W1Notices": {
-"use_external/enabled": true,
-"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Notices.tres",
-"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Notices.tres"
-},
-"W1Pages": {
-"use_external/enabled": true,
-"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Pages.tres",
-"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Pages.tres"
-},
-"W1PhoneIvory": {
-"use_external/enabled": true,
-"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1PhoneIvory.tres",
-"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1PhoneIvory.tres"
-},
-"W1Plastic": {
-"use_external/enabled": true,
-"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Plastic.tres",
-"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Plastic.tres"
-},
-"W1Steel": {
-"use_external/enabled": true,
-"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Steel.tres",
-"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Steel.tres"
-},
-"W1Wood": {
-"use_external/enabled": true,
-"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Wood.tres",
-"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Wood.tres"
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave5/materials/W5BoothAtlas.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave5/materials/W5BoothAtlas.tres"
 }
 }
 }

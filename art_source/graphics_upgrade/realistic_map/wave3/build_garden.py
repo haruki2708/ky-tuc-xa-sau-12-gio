@@ -388,8 +388,13 @@ def build_strip_props():
 			size = max(0.18, min(0.42, math.hypot(*basis[0]) * 1.1))
 			a = rnd.uniform(0, math.tau)
 			at = g2b(x, z, litter_height(x, z))
-			card(litter, "W3Litter", at, Vector((math.cos(a), math.sin(a), 0)), UP, size, size,
-				cells[rnd.randrange(4)], base=0.5)
+			cell = cells[rnd.randrange(4)]
+			# T-262 (D-180): a skin-tinted box is a corpse's head, not paper: no card there (same random draws, so every
+			# other card keeps its look); patch_gate.py gives the head back in props.tscn. Only where the chunk stays shown
+			# (mode "strip"): the heads in the chunk hidden whole (P_paper_box_p0_p0) are still hidden, reported to HARU.
+			if mode != "all" and tuple(round(c, 3) for c in colour[:3]) == (0.9, 0.7, 0.6):
+				continue
+			card(litter, "W3Litter", at, Vector((math.cos(a), math.sin(a), 0)), UP, size, size, cell, base=0.5)
 			count += 1
 	print("T259_LITTER %d pieces" % count)
 	objs = [litter.build()]

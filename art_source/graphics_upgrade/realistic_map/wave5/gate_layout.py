@@ -48,6 +48,25 @@ BAR_B05 = (228.0, G, -29.0)               # an iron bar lies here in chapter 3 (
 
 SKIN = (0.9, 0.7, 0.6)                    # a body's head: P_paper_box 0.22 m with this tint (never litter)
 
+# --- round 2 (D-180) ---------------------------------------------------------------------------------------------
+GROUND_TOP = -9.93   # the strip's lawn: 1 cm over the PS1 ground tiles (-9.94), as waves 3 and 4
+ROAD_TOP = -9.87     # Road/Avenue's top: its last 40 m keeps the height, so the PS1 cracks (kept) lie on it as before
+KERB_TOP = -9.84
+KERB = 0.15
+EDGE = 0.12          # concrete edging along the paved walk
+ROAD = {"x": (180.0, 217.0), "z": (-19.0, -11.0)}            # the Avenue's end, paved (the PS1 mesh keeps x 0..180)
+WALK_N = {"x": (217.0, 223.0), "z": (-20.0, 13.0)}           # paved walk from the court's north edge to the box edge
+WALK_W = {"x": (186.0, 217.0), "z": (7.0, 13.0)}             # and west towards the canteen's door (x ~190, z 20)
+# Lawn rectangles (x0, z0, x1, z1): the box less the court, the road with its kerbs and the walk with its edging.
+LAWN = [(180.0, -60.0, 190.0, -19.15), (250.0, -60.0, 262.0, -20.0), (190.0, -20.0, 216.88, -19.15),
+	(223.12, -20.0, 262.0, 13.0), (180.0, -10.85, 216.88, 6.88), (180.0, 6.88, 185.88, 13.0)]
+WALL_X = (-80.0, 420.0)
+WALL_RUNS = [(-80.0, 208.25), (231.75, 420.0)]   # Fence/S's whole length less the gate between the pillars
+WALL_CHUNK = 30.0     # one mesh per 30 m (10 modules): culled apart; bars near / bar card far
+BARS_NEAR = 45.0      # 3D bars up to this distance, the flat bar card from there (visibility ranges, gate_real.gd)
+PAINT = {"red": (0.85, 0.16, 0.12), "blue": (0.2, 0.36, 0.85), "white": (0.95, 0.95, 0.98), "grey": (0.28, 0.3, 0.36)}
+HEADS = [("P_paper_box_p1_p0", 0, "wave3"), ("P_paper_box_p2_p2", 1, "wave4"), ("P_paper_box_p2_p4", 1, "wave4")]
+
 
 def pillar_matrix(name):
 	"""(cos, sin, cx, cy) of the pillar's rotation about z through its centre (Godot x, y)."""

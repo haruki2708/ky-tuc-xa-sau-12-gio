@@ -27,6 +27,10 @@
 [ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave3/strip_props.glb" id="t259_strip_props"]
 [ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave4/strip_garden_stadium.glb" id="t261_strip"]
 [ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave4/strip_stadium_props.glb" id="t261_strip_props"]
+[ext_resource type="Script" path="res://scenes/levels/campus/gate_real.gd" id="t262_real"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave5/wall_south.glb" id="t262_wall"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave5/strip_gate.glb" id="t262_strip"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave5/strip_gate_props.glb" id="t262_strip_props"]
 
 [sub_resource type="BoxShape3D" id="s1"]
 size = Vector3(50, 0.3, 50)
@@ -535,7 +539,7 @@ uv1_world_triplanar = true
 uv1_scale = Vector3(0.5,0.5,0.5)
 
 [sub_resource type="BoxMesh" id="s143"]
-size = Vector3(220, 0.03, 8)
+size = Vector3(180, 0.03, 8)
 material = SubResource("s142")
 
 [sub_resource type="BoxMesh" id="s144"]
@@ -5918,6 +5922,7 @@ mesh = SubResource("s141")
 position = Vector3(110, -9.885, -15)
 
 [node name="Mesh" type="MeshInstance3D" parent="Road/Avenue"]
+position = Vector3(-20, 0, 0)
 mesh = SubResource("s143")
 
 [node name="WestBranch" type="Node3D" parent="Road"]
@@ -7457,6 +7462,7 @@ collision_mask = 0
 shape = SubResource("s309")
 
 [node name="Mesh" type="MeshInstance3D" parent="Fence/S"]
+visible = false
 mesh = SubResource("s310")
 
 [node name="Anchors" type="Node3D" parent="."]
@@ -10737,4 +10743,19 @@ script = ExtResource("t259_real")
 position = Vector3(0, -9.9, 0)
 
 [node name="Props" parent="StripGardenStadium" instance=ExtResource("t261_strip_props")]
+position = Vector3(0, -9.9, 0)
+
+[node name="WallSouth" type="Node3D" parent="."]
+script = ExtResource("t262_real")
+
+[node name="Wall" parent="WallSouth" instance=ExtResource("t262_wall")]
+position = Vector3(0, -9.9, 0)
+
+[node name="StripGate" type="Node3D" parent="."]
+script = ExtResource("t262_real")
+
+[node name="Ground" parent="StripGate" instance=ExtResource("t262_strip")]
+position = Vector3(0, -9.9, 0)
+
+[node name="Props" parent="StripGate" instance=ExtResource("t262_strip_props")]
 position = Vector3(0, -9.9, 0)

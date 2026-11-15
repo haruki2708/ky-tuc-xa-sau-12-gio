@@ -440,11 +440,112 @@ def mask_gate():
 	save("mask_gate.png", np.dstack([paint, grime, stain, mould]), "RGBA")
 
 
-ALL = {"asphalt": asphalt, "brick": brick, "panel": panel, "signs": signs, "board_masks": board_masks,
+PILOT = {"asphalt": asphalt, "brick": brick, "panel": panel, "signs": signs, "board_masks": board_masks,
 	"barrier_stripes": barrier_stripes, "ground_crack": ground_crack, "mask_court": mask_court, "mask_gate": mask_gate}
 
 
+# --- round 2 (D-180) ----------------------------------------------------------------------------------------------
+# Kept from round 1: asphalt (the street outside), signs (sign_text only), barrier_stripes, ground_crack, mask_court,
+# mask_gate. The options not picked (brick, panel, sign_blank, mask_board_*) are no longer in game/: rebuild them with
+# `make_wave5_textures.py brick panel board_masks` and sign_blank from `signs` if ever needed.
+
+def bars_card():
+	"""W1's iron bars seen from afar (RGBA, alpha cut): 0.48 m (4 bars, 20 mm, every 0.12 m) by 1.1 m on 128 x 256 px,
+	the mid rail at 0.44 m from the top, the top rail; painted green as W5GateGreen (tinted by the material)."""
+	w, h = 128, 256
+	rng = np.random.default_rng(262_11)
+	v, u = np.mgrid[0:h, 0:w].astype(np.float64)
+	xm = u / w * 0.48
+	ym = v / h * 1.1
+	bar = np.abs(((xm + 0.06) % 0.12) - 0.06) < 0.01
+	rail = (ym < 0.04) | (np.abs(ym - 0.44) < 0.006)
+	alpha = (bar | rail).astype(np.float64)
+	alpha = blur(alpha, 0.5)
+	noise = smooth_noise(rng, (h, w), 4)
+	rgb = np.zeros((h, w, 3)) + np.array([0.8, 0.82, 0.8]) * (0.85 + 0.12 * np.tanh(noise))[..., None]
+	rust = smoothstep(1.2, 2.2, noise) * 0.6
+	rgb = rgb * (1 - rust[..., None]) + np.array([0.55, 0.38, 0.25]) * rust[..., None]
+	save("bars_card.png", np.dstack([rgb, alpha]), "RGBA")
+
+
+ATLAS_CELLS = {"wood": (0, 0), "floor": (1, 0), "pages": (2, 0), "calendar": (3, 0), "plastic": (0, 1), "spine": (1, 1),
+	"ivory": (2, 1), "enamel": (3, 1), "black": (0, 2), "steel": (1, 2), "alu": (2, 2), "cap": (3, 2)}
+
+
+def booth_atlas():
+	"""K1's interior in one material (D-180: gathered into an atlas): 4 x 4 cells of 128 px. Wood and terrazzo crops
+	of the scans already in the game (study desk wood, wave 1 terrazzo), a log book's ruled page, a wall calendar (no
+	words: a red header and a grid), and flat cells for the plastic chair, the book's spine, the phone, the flask,
+	black, steel, aluminium and the guard's cap."""
+	n, c = 512, 128
+	img = Image.new("RGB", (n, n), (128, 128, 128))
+	wood = Image.open(ROOT / "game/assets/models/graphics_pilot/room407_corner/study_desk_wood_table_worn_color.jpg").convert("RGB")
+	img.paste(wood.crop((0, 0, wood.width // 3, wood.height // 3)).resize((c, c), Image.LANCZOS), (0, 0))
+	terrazzo = Image.open(ROOT / "game/assets/textures/graphics_pilot/realistic_map/wave1/terrazzo_color.png").convert("RGB")
+	img.paste(terrazzo.crop((0, 0, terrazzo.width // 2, terrazzo.height // 2)).resize((c, c), Image.LANCZOS), (c, 0))
+	d = ImageDraw.Draw(img)
+	d.rectangle((2 * c, 0, 3 * c - 1, c - 1), fill=(222, 218, 205))
+	for y in range(10, c, 9):
+		d.line((2 * c + 6, y, 3 * c - 6, y), fill=(140, 160, 200), width=1)
+	d.line((2 * c + 18, 0, 2 * c + 18, c), fill=(200, 120, 120), width=1)
+	d.rectangle((3 * c, 0, 4 * c - 1, c - 1), fill=(232, 228, 218))
+	d.rectangle((3 * c, 0, 4 * c - 1, 26), fill=(170, 40, 35))
+	for i in range(8):
+		d.line((3 * c + 8 + i * 16, 34, 3 * c + 8 + i * 16, c - 8), fill=(150, 150, 150), width=1)
+	for j in range(6):
+		d.line((3 * c + 8, 34 + j * 17, 4 * c - 8, 34 + j * 17), fill=(150, 150, 150), width=1)
+	flats = {"plastic": (31, 77, 107), "spine": (77, 18, 15), "ivory": (184, 173, 143), "enamel": (20, 41, 107),
+		"black": (8, 8, 8), "steel": (153, 153, 148), "alu": (204, 204, 199), "cap": (24, 30, 24)}
+	for key, rgb in flats.items():
+		cx, cy = ATLAS_CELLS[key]
+		d.rectangle((cx * c, cy * c, cx * c + c - 1, cy * c + c - 1), fill=rgb)
+	arr = np.asarray(img, np.float64) / 255.0
+	rng = np.random.default_rng(262_12)
+	arr *= (1.0 + 0.04 * smooth_noise(rng, n, 3))[..., None]
+	save("booth_atlas.png", arr)
+
+
+STRIP = {"x": (180.0, 262.0), "z": (-60.0, 13.0)}
+
+
+def mask_strip5():
+	"""UV2 of the gate strip's lawn (ground_blend: R bare dirt, G wet) over x 180..262, z -60..13 (1024 x 911): verges
+	trodden bare along the court, the walk and the road; the gate horde's way on the lawn (x 190, z -24..13, the navmesh
+	path to the canteen); bald rings round the tree trunks, the planters and the bench; wet at the wall's foot."""
+	X, Z = STRIP["x"], STRIP["z"]
+	w, h = 1024, int(round(1024 * (Z[1] - Z[0]) / (X[1] - X[0])))
+	rng = np.random.default_rng(262_13)
+	v, u = np.mgrid[0:h, 0:w].astype(np.float64)
+	x = X[0] + u / (w - 1) * (X[1] - X[0])
+	z = Z[0] + v / (h - 1) * (Z[1] - Z[0])
+	big = smooth_noise(rng, (h, w), 30)
+	mid = smooth_noise(rng, (h, w), 8)
+
+	def rect_dist(x0, z0, x1, z1):
+		dx = np.maximum(np.maximum(x0 - x, x - x1), 0.0)
+		dz = np.maximum(np.maximum(z0 - z, z - z1), 0.0)
+		return np.hypot(dx, dz)
+	d_paved = np.minimum.reduce([rect_dist(190, -60, 250, -20), rect_dist(180, -19.15, 217, -10.85), rect_dist(216.88, -20, 223.12, 13),
+		rect_dist(185.88, 6.88, 217, 13)])
+	verge = np.exp(-d_paved / 0.8) * 0.85
+	horde = np.exp(-((x - 190.5) / 1.6) ** 2) * (z > -24) * 0.7
+	spots = [(184, -7), (200, -7), (196.96, -8.36), (187.62, -20.01), (204.4, -19.7), (225.3, -12.5)] + \
+		[(211.0, zz) for zz in (-12, -1, 10)] + [(229.0, zz) for zz in (-12, -1, 10)] + [(255, -50), (175, -50)]
+	rings = sum(np.exp(-(((x - sx) ** 2 + (z - sz) ** 2) / 1.3 ** 2)) for sx, sz in spots)
+	dirt = np.maximum.reduce([verge, horde, np.clip(rings, 0, 1) * 0.8])
+	dirt = np.clip(dirt * (0.7 + 0.45 * smoothstep(-1, 1.2, mid)) + 0.22 * smoothstep(1.0, 2.2, big), 0, 1)
+	wall = np.abs(z + 60.0)
+	wet = np.clip(np.exp(-wall / 0.7) * smoothstep(-0.3, 1.3, big + 0.5 * mid) * 0.9 + smoothstep(1.8, 2.5, big) * 0.6, 0, 1)
+	save("mask_strip5.png", np.dstack([dirt, wet, np.zeros_like(x), np.ones_like(x)]), "RGBA")
+
+
+ROUND2 = {"asphalt": asphalt, "sign_text": lambda: save("sign_text.png", _board(True)), "barrier_stripes": barrier_stripes,
+	"ground_crack": ground_crack, "mask_court": mask_court, "mask_gate": mask_gate, "bars_card": bars_card,
+	"booth_atlas": booth_atlas, "mask_strip5": mask_strip5}
+ALL = dict(PILOT, **ROUND2)
+
+
 if __name__ == "__main__":
-	names = sys.argv[1:] or list(ALL)
+	names = sys.argv[1:] or list(ROUND2)  # round 1's options: name them (brick panel signs board_masks ...)
 	for key in names:
 		ALL[key]()

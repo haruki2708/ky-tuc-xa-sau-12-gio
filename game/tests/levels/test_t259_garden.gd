@@ -25,7 +25,8 @@ const TRUNK_RADIUS := 0.13
 ## PS1 chunks of props.tscn this wave replaces (wave3/garden_layout.py A16_HIDE).
 const A16_ALL := ["Parts/P_paper_box_p0_p0", "Parts/P_paper_box_p0_p1", "Decals/D_paper_quad_m1_p0", "Parts/P_iron_box_p0_p0",
 	"Parts/P_wood_box_p0_p0"]
-const A16_PARTLY := ["Parts/P_paper_box_p1_p0", "Decals/D_paper_quad_p0_p0", "Parts/P_concrete_box_p0_p1", "Parts/P_iron_cylinder_p0_p1"]
+## T-262 (D-180): Parts/P_paper_box_p1_p0 left this list: the one piece this wave hid in it was a corpse's head, given back.
+const A16_PARTLY := ["Decals/D_paper_quad_p0_p0", "Parts/P_concrete_box_p0_p1", "Parts/P_iron_cylinder_p0_p1"]
 
 var scene: Node3D
 

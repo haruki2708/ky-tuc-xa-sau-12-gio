@@ -56,16 +56,6 @@ _subresources={
 "use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Iron.tres",
 "use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Iron.tres"
 },
-"W1Steel": {
-"use_external/enabled": true,
-"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Steel.tres",
-"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Steel.tres"
-},
-"W1Terrazzo": {
-"use_external/enabled": true,
-"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Terrazzo.tres",
-"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Terrazzo.tres"
-},
 "W2Glass": {
 "use_external/enabled": true,
 "use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave2/materials/W2Glass.tres",
@@ -85,11 +75,6 @@ _subresources={
 "use_external/enabled": true,
 "use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave5/materials/W5Plaster.tres",
 "use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave5/materials/W5Plaster.tres"
-},
-"W5PlasterInner": {
-"use_external/enabled": true,
-"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave5/materials/W5PlasterInner.tres",
-"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave5/materials/W5PlasterInner.tres"
 }
 }
 }

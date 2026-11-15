@@ -89,5 +89,35 @@ def main():
 		"Mặt sân giữ cao độ −9,90 (va chạm Court không đổi). Vệt bánh xe, vũng nước sát tường, dầu dưới ô tô; vết nứt đặt đúng chỗ RoadCrack PS1.")
 
 
-if __name__ == "__main__":
+if __name__ == "__main__" and "--overview" not in sys.argv:
 	main()
+
+
+# --- round 2 (D-180): overview.jpg from capture_t262.gd's before_*/after_* -----------------------------------------
+OVERVIEW = [("g1_start", "", "từ Start_gate nhìn cổng"), ("g2_approach", "", "cuối đường vào sân cổng"),
+	("g3_pillar_west", "_torch", "sát trụ tây (nghiêng, nứt), đèn pin"), ("g4_sign", "_torch", "biển rơi nửa, đèn pin"),
+	("g5_booth", "_torch", "chốt bảo vệ, đèn pin"), ("g6_booth_window", "_torch", "qua cửa sổ chốt, đèn pin"),
+	("g7_barrier", "_torch", "rào chắn, cọc, đèn pin"), ("g8_wall_east", "_torch", "tường rào nam phía chốt, đèn pin"),
+	("g9_gate_out", "", "nhìn qua cổng ra ngoài"), ("g10_to_canteen", "", "từ cổng nhìn về nhà ăn"),
+	("a1_avenue", "", "dải A16: cuối đại lộ"), ("a2_walk_canteen", "_torch", "dải A16: lối sang nhà ăn, đèn pin"),
+	("a3_cars", "_torch", "dải A16: ô tô trong sân, đèn pin"), ("a4_court_east", "_torch", "góc đông bắc sân cổng, đèn pin"),
+	("w1_wall_behind_b", "_torch", "tường nam sau nhà B, đèn pin"), ("w2_wall_far", "", "tường nam nhìn xa"),
+	("w3_wall_east_end", "", "tường nam phía đông")]
+
+
+def overview():
+	tile = (960, 540)
+	head = 70
+	out = Image.new("RGB", (2 * tile[0] + 8, head + len(OVERVIEW) * (tile[1] + 8)), (20, 20, 20))
+	label(out, "T-262 đợt 5 (D-180): cổng trường, chốt bảo vệ, tường rào nam, dải A16 đoạn cổng — trước (PS1) / sau, chương 3, cùng camera", 28)
+	for r, (view, torch, name) in enumerate(OVERVIEW):
+		for c, tag in enumerate(("before", "after")):
+			img = Image.open(PREVIEWS / f"{tag}_{view}{torch}.jpg").convert("RGB").resize(tile)
+			label(img, ("Trước · " if tag == "before" else "Sau · ") + name, 22)
+			out.paste(img, (c * (tile[0] + 8), head + r * (tile[1] + 8)))
+	out.save(PREVIEWS / "overview.jpg", quality=80)
+	print("wrote overview.jpg", out.size)
+
+
+if __name__ == "__main__" and "--overview" in sys.argv:
+	overview()

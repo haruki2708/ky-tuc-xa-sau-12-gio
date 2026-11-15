@@ -18,7 +18,9 @@ const STADIUM_COLLIDERS_MD5 := "30bb677dad7fc54fd7a081d4939663d5"  # 53 collider
 const STADIUM_NODES_MD5 := "be790db1b0a517705d29328f409e7e52"  # 257 nodes
 const CAMPUS_CONTRACT_MD5 := "2d7e21aeb14371114326fc6433d81216"  # as T-259 left it
 const PROPS_COLLIDERS_MD5 := "97c2301b5e5f2375e59ef5ecf322a76b"  # as T-259 left it
-const PROPS_KEPT_MD5 := "10295745376f17651da38983980e59e7"  # 2303 instances kept
+## T-262 (D-180): 2124 = main's 2303 kept instances less the 180 the gate strip replaces (scaled to 0, outside this
+## wave's areas) plus the corpse head given back at (43.6, 30.2) (outside this wave's A16 box, so a kept row again).
+const PROPS_KEPT_MD5 := "e5d7b9ea958504f13e0b836c200facbe"  # 2124 instances kept
 const G := -9.9
 const STAND_Z0 := 212.7
 const SOUTH_Z0 := 119.5
@@ -154,7 +156,9 @@ func test_props_keep_bodies_blood_cracks_and_everything_outside() -> void:
 			for k in range(0, values.size(), 16):
 				if values[k] == 0.0 and values[k + 4] == 0.0 and values[k + 8] == 0.0:
 					zeroed += 1
-	assert_true(zeroed >= 373, "replaced PS1 instances scaled to 0 (%d)" % zeroed)
+	# T-262 (D-180): 371, the two corpse heads this wave had hidden as litter (P_paper_box_p2_p2 #1, P_paper_box_p2_p4 #1)
+	# are back; later waves zero more instances elsewhere, so the count only has a floor.
+	assert_true(zeroed >= 371, "replaced PS1 instances scaled to 0 (%d)" % zeroed)
 	for path: String in HIDE_WHOLE:
 		assert_false((props.get_node(path) as Node3D).visible, "hidden whole: " + path)
 	for path in ["Decals/D_red_quad_p2_p2", "Decals/D_iron_quad_p2_p2", "Decals/D_white_quad_p2_p2"]:

@@ -185,12 +185,15 @@ def ensure_uv2(part):
 
 # ------------------------------------------------------------------------------------------------ court
 
-def build_court():
+def build_court(kinds=("Pavers",)):
+	"""Round 2 (D-180, C2): the pavers only; round 1 built both (kinds=("Pavers", "Asphalt"))."""
 	w1kit.reset()
 	x0, x1 = L.COURT["x"]
 	z0, z1 = L.COURT["z"]
 	objs = []
 	for name, m, tile in (("Pavers", "W5CourtPavers", 0.9), ("Asphalt", "W5CourtAsphalt", 2.0)):
+		if name not in kinds:
+			continue
 		part = GPart(name)
 		faces = [part.face(m, [(x0, G, z0), (x1, G, z0), (x1, G, z1), (x0, G, z1)], (0, 1, 0))]
 		# The court's 4 cm edges down to the ground round it (north, west, east).
@@ -640,7 +643,8 @@ def build_booth(kind):
 	w1kit.reset()
 	part = GPart("Booth")
 	ext = "W5BoothYellow" if kind == "masonry" else "W5Panel"
-	inner_m = "W5PlasterInner" if kind == "masonry" else "W5Panel"
+	# Round 2 (D-180): K1's inner walls take the whitewash (W5PlasterInner dropped), its floor moved into the interior's atlas.
+	inner_m = "W5Plaster" if kind == "masonry" else "W5Panel"
 	t = WALL_T if kind == "masonry" else 0.07
 	win = (WIN["x"][0], WIN["x"][1], WIN["y"][0], WIN["y"][1])
 	outer = []
@@ -720,11 +724,9 @@ def build_booth(kind):
 			((BX[0] - 0.01, G, DOOR["z"][1] - 0.04), (BX[0] + 0.06, DOOR["y"][1], DOOR["z"][1])),
 			((BX[0] - 0.01, DOOR["y"][1] - 0.04, DOOR["z"][0]), (BX[0] + 0.06, DOOR["y"][1], DOOR["z"][1]))):
 		part.gbox("W1Alu" if kind == "prefab" else "W1Iron", lo, hi)
-	part.beam("W1Steel", (BX[0] - 0.04, G + 1.0, DOOR["z"][1] - 0.14), (BX[0] - 0.04, G + 1.0, DOOR["z"][1] - 0.28), 0.02, 0.02)
-	part.beam("W1Steel", (BX[0] - 0.04, G + 1.0, DOOR["z"][1] - 0.14), (BX[0] + 0.02, G + 1.0, DOOR["z"][1] - 0.14), 0.02, 0.02)
-	# Floor and ceiling inside.
-	part.face("W1Terrazzo", [(BX[0] + t, G + 0.02, BZ[0] + t), (BX[1] - t, G + 0.02, BZ[0] + t), (BX[1] - t, G + 0.02, BZ[1] - t),
-		(BX[0] + t, G + 0.02, BZ[1] - t)], (0, 1, 0))
+	part.beam("W1Alu", (BX[0] - 0.04, G + 1.0, DOOR["z"][1] - 0.14), (BX[0] - 0.04, G + 1.0, DOOR["z"][1] - 0.28), 0.02, 0.02)
+	part.beam("W1Alu", (BX[0] - 0.04, G + 1.0, DOOR["z"][1] - 0.14), (BX[0] + 0.02, G + 1.0, DOOR["z"][1] - 0.14), 0.02, 0.02)
+	# Ceiling inside (the floor is in booth_interior.glb's atlas).
 	part.face(inner_m, [(BX[0] + t, B_TOP - 0.01, BZ[0] + t), (BX[1] - t, B_TOP - 0.01, BZ[0] + t), (BX[1] - t, B_TOP - 0.01, BZ[1] - t),
 		(BX[0] + t, B_TOP - 0.01, BZ[1] - t)], (0, -1, 0))
 	ensure_uv2(part)

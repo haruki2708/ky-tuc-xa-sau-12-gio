@@ -41,31 +41,36 @@ def wall(mask, tint, **extra):
 def looks():
 	whitewash = (0.98, 1.06, 1.25)       # D-175 K1: the cream scan taken to a cool lime white
 	yellow = tint_to(PLASTER + "cream_color.jpg", (0.78, 0.6, 0.27))  # vôi vàng
+	# Round 2 (D-180: G1, P1 + SA with text, K1, W1 along all of Fence/S, C2). The options not picked (W5PlasterInner,
+	# W5Band, W5BandBlank, W5LetterRed, W5Brick, W5Stainless, W5SignBlank, W5Panel, W5FrameBlue) are out of game/; their
+	# looks are in this file's history (commit 18d2530).
 	return {
-		# P1 pillars, W1 wall, the bands of K1 and P2: whitewash over render, grime at the foot, rust and rain runs.
+		# P1 pillars, W1 wall, K1's bands and inner walls: whitewash over render, grime at the foot, rust and rain runs.
 		"W5Plaster": wall(OWN5 + "mask_gate.png", whitewash),
 		"W5BoothYellow": wall(OWN5 + "mask_gate.png", yellow, stain_color=(0.62, 0.5, 0.3)),
-		"W5PlasterInner": wall(OWN5 + "mask_gate.png", (1.0, 1.0, 0.92), grime_strength=0.6),
-		# SB: the plastered sign band, the ghosts of its letters and their bolts' rust in the mask.
-		"W5Band": wall(OWN5 + "mask_board_text.png", whitewash, stain_color=(0.55, 0.3, 0.14), stain_strength=1.0),
-		"W5BandBlank": wall(OWN5 + "mask_board_blank.png", whitewash, stain_color=(0.55, 0.3, 0.14), stain_strength=1.0),
-		"W5LetterRed": {"color": (0.5, 0.07, 0.05), "rough": 0.45, "metallic": 0.35},
-		# P2, W2: fired clay brick (tile 0.92 x 0.84 m).
-		"W5Brick": {"albedo": OWN5 + "brick_color.png", "orm": OWN5 + "brick_orm.png", "normal": OWN5 + "brick_normal.png",
-			"scale_uv": (1 / 0.92, 1 / 0.84)},
 		# G1 gate, SA arch, W1 bars: the approved green-painted steel, darker; K1 door a little lighter.
 		"W5GateGreen": {**GREEN_RUST, "color": (0.3, 0.42, 0.34)},
 		"W5DoorPaint": {**GREEN_RUST, "color": (0.5, 0.6, 0.55)},
-		# G2: brushed stainless steel.
-		"W5Stainless": {"albedo": SHELL + "aluminium_color.jpg", "orm": SHELL + "aluminium_arm.jpg",
-			"color": tint_to(SHELL + "aluminium_color.jpg", (0.66, 0.67, 0.67)), "scale": 2.0, "metallic_value": 0.85},
-		# SA board: the blue sheet with its white letters (or none).
+		# W1's bars from afar: one alpha-cut card per panel (wave 4's card shader), the same green.
+		"W5BarsCard": {"card": {"albedo_tex": OWN5 + "bars_card.png", "tint": (0.34, 0.46, 0.38), "roughness_value": 0.55,
+			"specular_value": 0.3}},
+		# SA board: the blue sheet with its white letters ("TRƯỜNG ĐẠI HỌC", the name peeled off).
 		"W5SignText": {"albedo": OWN5 + "sign_text.png", "rough": 0.55, "metallic": 0.15},
-		"W5SignBlank": {"albedo": OWN5 + "sign_blank.png", "rough": 0.55, "metallic": 0.15},
-		# K2: composite panels on a blue steel frame.
-		"W5Panel": {"albedo": OWN5 + "panel_color.png", "normal": OWN5 + "panel_normal.png", "rough": 0.5, "scale": 1.0},
-		"W5FrameBlue": {"color": (0.12, 0.26, 0.5), "rough": 0.5, "metallic": 0.35},
-		# C2 (D-175 P1, D-178): grey "con sâu" pavers; C1: old asphalt. One mask for both (wheel tracks, grime, puddles).
+		# K1's interior in one atlas (desk, chair, log book, phone, flask, fan, monitor, cap, calendar, key box, floor).
+		"W5BoothAtlas": {"albedo": OWN5 + "booth_atlas.png", "rough": 0.6},
+		# The strip's lawn (wave 3's grass and soil, the strip's own wear mask), as the earlier strips.
+		"W5StripGround": {"ground": {"grass_albedo": OWN3 + "ground_grass_color.png", "grass_normal": OWN3 + "ground_grass_normal.png",
+			"dirt_albedo": OWN3 + "soil_color.png", "dirt_normal": OWN3 + "soil_normal.png", "mask": OWN5 + "mask_strip5.png",
+			"dirt_tint": (1.5, 1.4, 1.3), "grass_scale": 0.5, "dirt_scale": 1.25}},
+		# The court's old cars (D-180): old paint in the PS1 cars' four colours, dark glass, lamps, tail lights.
+		"W5CarRed": {"color": (0.5, 0.09, 0.06), "rough": 0.42, "metallic": 0.3},
+		"W5CarBlue": {"color": (0.11, 0.2, 0.46), "rough": 0.42, "metallic": 0.3},
+		"W5CarWhite": {"color": (0.7, 0.7, 0.68), "rough": 0.42, "metallic": 0.2},
+		"W5CarGrey": {"color": (0.19, 0.2, 0.23), "rough": 0.42, "metallic": 0.35},
+		"W5CarGlass": {"color": (0.035, 0.045, 0.05), "rough": 0.08, "metallic": 0.3},
+		"W5CarLamp": {"color": (0.66, 0.66, 0.62), "rough": 0.15},
+		"W5CarTail": {"color": (0.42, 0.04, 0.03), "rough": 0.25},
+		# C2 (D-175 P1, D-178): grey "con sâu" pavers; the street outside the gate: old asphalt (C1's texture).
 		"W5CourtPavers": {"shader": {"kind": 1, "base_albedo": OWN3 + "paving_block_color.png", "base_normal": OWN3 + "paving_block_normal.png",
 			"base_arm": OWN3 + "paving_block_orm.png", "mask": OWN5 + "mask_court.png", "grime_strength": 1.0, "wear_strength": 0.7,
 			"wet_strength": 0.8, "grout_strength": 1.0, "normal_strength": 0.7, "grime_color": (0.45, 0.42, 0.35)}},
