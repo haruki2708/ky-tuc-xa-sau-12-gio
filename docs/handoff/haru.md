@@ -88,6 +88,20 @@ Trả lời và viết tài liệu bằng tiếng Việt; code, comment, commit 
 - **Nguồn đúng khi lệch nhau:** mục 3 file này mới nhất; rồi `docs/STATUS.md`; `docs/ROADMAP.md` chỉ cập nhật khi qua mốc.
 
 ## 3. Tiến độ integrator để lại (integrator cập nhật sau mỗi bước)
+**16/11/2026 ~01:00 — HARU DỪNG, TRẢ ĐIỀU PHỐI CHO INTEGRATOR (chủ dự án chọn).** Integrator đọc khối này trước:
+- **Trạng thái:** main `40f640d` sạch (chỉ `anh_chup_sua_loi/` không commit), đã đẩy. HARU không giữ khoá Godot, không có Godot nào chạy, không có lượt chạy nền, không có nhánh dở. `game/_probe_tmp/` không có.
+- **HARU đã làm từ 14/11** (chi tiết ở "Tiến độ HARU" bên dưới và mục Review từng card): merge T-258, T-260 (D-174), T-259 vườn (D-175), T-261 sân vận động (D-178), T-262 cổng (D-180), T-263 nhà ăn (D-181, merge `4031339`). Quyết định thêm: D-176 (chủ dự án chỉ chơi thử một lượt khi xong toàn bộ đồ hoạ), D-177, D-179 (không đo FPS, không chạy bot trong các đợt; bot T-238 sau đợt 7).
+- **T-263:** lane B đạt full test 1037/0, check 0 trên nhánh (cùng cây với main sau merge). Lần kiểm sau merge của HARU bị Claude Code dừng vì thiếu RAM trước khi chạy test nào; **chủ dự án quyết không chạy lại** (16/11).
+- **Bản chơi mới nhất:** zip `build/dist/KyTucXa-0.0.1-3435d24-win64.zip` (package PASS 15/11 17:50), có T-253…T-262. **Chưa có T-263** (chưa build vì máy thiếu RAM).
+- **Việc tiếp theo (đề xuất, hỏi chủ dự án trước):**
+  1. Build bản chơi sau T-263 (`build/integrator/package_locked.ps1`), khi máy đủ RAM.
+  2. Occluder hộp cho vỏ nhà ăn trong `game/scenes/main/occlusion/` (core, có test). HARU đã nhận làm ở D-181, chưa làm. Lý do: đứng trong sảnh nhìn về phía tây vẫn vẽ cả khuôn viên sau tường (4.300–5.200 lần vẽ, card T-263 Handoff lượt 1).
+  3. Đợt 7 nhà nền và mặt đất (card mới T-264 cho lane B, làm như T-259…T-263: lượt 1 góc mẫu rồi dừng, lượt 2 cả khu), rồi bot T-238 (D-179); đợt 8 thư viện và ngoài lối tây; đợt 9 quay lại 407 và bệnh viện (`art_source/graphics_upgrade/realistic_map/PLAN.md`).
+  4. Danh sách điểm cần xem ở lượt chơi cuối (D-176) nằm ở "Bước 3" bên dưới, cộng các điểm cổng: đường nhìn bảo vệ, thẻ song sắt ở 45 m, cửa sổ chốt, ô tô.
+- **Lane B:** rảnh sau T-263 (nhánh đã đẩy, sạch); `/clear` được. Lane A, C, E: rảnh.
+- **Tài khoản Claude (kiểm 16/11):** integrator **`tunank1103`** (chủ dự án vừa đăng nhập lại 16/11 00:41; tài khoản này cũng dùng ở World_History_Platform lane3, dự án riêng của chủ dự án ở ổ E, nên chung hạn mức); HARU `hoangdeptrai1628`; lane B `deptraihoang1627`. Codex: A `deptraihoang1627`, C `hoanganhh1628`, E `bululachup`.
+- Máy thường chỉ trống 2–3 GB RAM: full test, check, package hay bị dừng; không tự chạy lại, báo chủ dự án đóng bớt ứng dụng.
+
 **Cập nhật:** 14/11/2026 chiều, integrator (Opus 5.5) sắp hết hạn mức: **chủ dự án giao quyền điều phối tạm thời cho HARU.** HARU làm như integrator (luật mục 2) cho tới khi chủ dự án báo integrator có hạn mức lại.
 
 **BÀN GIAO ĐIỀU PHỐI TẠM CHO HARU (đọc trước, theo thứ tự):**
