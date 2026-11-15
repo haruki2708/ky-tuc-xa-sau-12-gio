@@ -111,6 +111,35 @@ def heads():
 	print("wrote heads.jpg", out.size)
 
 
+# --- round 2 (D-181): overview.jpg from capture_wave6_r2.gd's before_*/after_* --------------------------------------
+OVERVIEW = [("door", "", "từ cửa chính nhìn sảnh"), ("door", "_tv", "từ cửa chính, TV bật"), ("tv", "_torch", "TV, tranh, máy lạnh tường tây, đèn pin"),
+	("tv", "_tv", "TV bật: bản tin không chữ"), ("counter", "_torch", "quầy chia cơm, bảng giá gỗ, đèn pin"), ("counter_out", "", "từ quầy nhìn ra cửa"),
+	("tables", "_torch", "giữa các bàn, xác sống đứng, đèn pin"), ("east", "_torch", "bồn rửa tay, chỗ trả khay, đèn pin"),
+	("kitchen", "_torch", "bếp và đồng hồ dừng 4 giờ, đèn pin"), ("store", "_torch", "kho và cửa sau, đèn pin"),
+	("store_side", "_torch", "kệ can dầu trong kho, đèn pin"), ("back_door", "_torch", "cửa sau từ sân sau, đèn pin"),
+	("facade", "", "mặt tiền từ sân trước"), ("facade_side", "_torch", "mặt tiền nhìn chéo, xe đạp, đèn pin"),
+	("strip_east", "", "dải A16: hông đông, ki-ốt (giữ)"), ("strip_back", "", "dải A16: sân sau, bãi cỏ"),
+	("strip_west", "", "dải A16: hông tây, máy lạnh"), ("ch4_split", "_torch", "chương 4: lối tây từ Start_split, đèn pin"),
+	("ch4_exit_in", "_torch", "chương 4: lối tây nhìn từ trong sảnh, đèn pin"), ("ch4_wall", "", "chương 4: tường tây nhìn dọc")]
+
+
+def overview():
+	size = (960, 540)
+	head = 70
+	out = Image.new("RGB", (2 * size[0] + 8, head + len(OVERVIEW) * (size[1] + 8)), (20, 20, 20))
+	label(out, "T-263 đợt 6 (D-181): nhà ăn, bếp, kho, tường và lối tây, dải A16 quanh nhà ăn — trước (PS1) / sau, cùng camera", 28)
+	for r, (view, suffix, name) in enumerate(OVERVIEW):
+		for c, tag in enumerate(("before", "after")):
+			img = Image.open(PREVIEWS / f"{tag}_{view}{suffix}.jpg").convert("RGB").resize(size)
+			label(img, ("Trước · " if tag == "before" else "Sau · ") + name, 22)
+			out.paste(img, (c * (size[0] + 8), head + r * (size[1] + 8)))
+	out.save(PREVIEWS / "overview.jpg", quality=80)
+	print("wrote overview.jpg", out.size)
+
+
 if __name__ == "__main__":
-	main()
-	heads()
+	if "--overview" in sys.argv:
+		overview()
+	else:
+		main()
+		heads()

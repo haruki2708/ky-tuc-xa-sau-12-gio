@@ -89,6 +89,73 @@ Số lần vẽ giảm ở mọi góc (PS1 mỗi bàn khoảng 30 lần vẽ; g�
 lần vẽ ở cả PS1 lẫn góc mẫu): đề nghị integrator cân nhắc occluder hộp cho vỏ nhà ăn (card mục 5). Bộ nhớ hình chương 3:
 1.307 MB (PS1) → 1.309–1.310 MB khi đã nạp cả hai bộ phương án. Không đo FPS (D-179).
 
+## Lượt 2 (15/11/2026, D-181): cả khu
+Chủ dự án chọn cả bảy câu theo đề xuất (cấu hình c): T1, F1, Q1 + bảng gỗ sơn đen, C2, K1, M2, TV giữ ảnh bản tin không
+chữ. Lượt 2 gắn các glb đó vào cảnh và làm nốt phần còn lại của A15 cùng dải A16.
+
+```powershell
+$B = "D:\Tools\Blender\5.2.2\blender.exe"
+git checkout origin/main -- game/scenes/levels/campus/canteen.tscn game/scenes/levels/campus/campus.tscn game/scenes/levels/ch4/canteen_west_exit.tscn
+python -B art_source/graphics_upgrade/realistic_map/wave6/patch_canteen.py data      # w6_ps1_props.json (props.tscn của main + bước 0)
+python -B art_source/graphics_upgrade/realistic_map/wave6/make_wave6_textures.py mask_walls palette posters mask_strip6 mask_yard6
+& $B -b --factory-startup -P art_source/graphics_upgrade/realistic_map/wave6/build_canteen.py    # [-- hall_east store outside bikes strip strip_props]
+python -B art_source/graphics_upgrade/realistic_map/wave6/make_wave6_materials.py    # (--options: viết lại vật liệu các phương án không chọn)
+godot --headless --path game --import   # lần đầu chạy hai lần
+python -B art_source/graphics_upgrade/realistic_map/wave6/patch_canteen.py canteen exit campus props
+pwsh tools/test.ps1 -Filter t263
+```
+Ảnh: chép `capture_wave6_r2.gd` vào `game/_probe_tmp/` cùng một scene gốc gắn script đó (không commit), theo Lượt Godot
+`godot --path game res://_probe_tmp/capture_wave6_r2.tscn -- [--states=before,after] [--views=door,...]` (62 ảnh), rồi
+`python -B art_source/graphics_upgrade/realistic_map/wave6/make_wave6_sheets.py --overview` (`overview.jpg`). Trạng thái
+"trước" dựng lại main lúc chạy (hiện hình PS1, ẩn lớp mới, trả 18 đồ rải về ma trận main).
+
+- `build_canteen.py`: `hall_east` (máng rửa tay trên `SinkBlock`, kệ trả khay trên `TrayReturn`, biển "TRẢ KHAY", thùng thức ăn
+  thừa, 4 tranh, 3 máy lạnh, ngưỡng cửa), `store` (sàn, tường, trần, cửa sau cuộn lên từ 2,5 m, 2 kệ, thùng, can dầu, bao
+  gạo), `outside` (mặt ngoài tường tây, đông, sau; mái, tường chắn mái, máng xối, bồn nước; ống khói, ống thoát nước, cục
+  nóng, bình gas, thùng rác, quạt hút, hộp điện, cánh cửa thép lối tây áp tường), `bikes`, `strip` (dải A16), `strip_props`
+  (18 đồ rải).
+- `patch_canteen.py`: `canteen` ẩn 940 hình và nhãn PS1 (va chạm, node, meta, đèn, chữ nhãn giữ nguyên), thêm `Real`
+  (`canteen_real.gd`, 17 lớp) và `TV/Screen/Lit`; `exit` ẩn 5 hình của `WestExit`; `campus` thêm `StripCanteen`; `props`
+  thu về 0 đúng 18 bản (10 giấy, 4 dép, 2 mảnh ba lô, 2 khay).
+- `canteen_real.gd` (đặt một lần lúc nạp): tầm vẽ khay bát 40 m, bàn 60 m, quầy 50 m, bếp và đồng hồ 45 m, kho 40 m, xe đạp và
+  đồ rải 80 m; vật nhỏ, mặt phẳng không đổ bóng.
+- Bỏ glb, vật liệu, texture của các phương án không chọn (`ceiling_roof`, `tables_stone*`, `tableware`, `counter_tiled`,
+  `kitchen_k2`; F2, Q2, bảng in). Test góc mẫu `test_t263_canteen_pilot.gd` thay bằng `test_t263_canteen.gd`.
+
+### Số liệu lượt 2
+Toàn bộ glb đợt 6: **94.630 tam giác** (PS1 `canteen.tscn` 19.380). Lượt 2 thêm: phía đông 3.661, kho 3.688, mặt ngoài
+4.810, xe đạp 9.036, dải 2.150, đồ rải 606.
+
+Số lần vẽ / primitive, cùng camera, trước (PS1) → sau (`previews/wave6/before_*`, `after_*`):
+| Góc | Trước | Sau |
+|---|---|---|
+| từ cửa chính nhìn sảnh | 1.656 / 83 k | 1.277 / 157 k |
+| quầy chia cơm | 1.100 / 79 k | 1.055 / 144 k |
+| từ quầy nhìn ra cửa | 1.122 / 53 k | 689 / 128 k |
+| giữa các bàn (đèn pin) | 1.443 / 59 k | 850 / 160 k |
+| phía đông (bồn rửa, trả khay) | 219 / 25 k | 156 / 92 k |
+| bếp và đồng hồ | 843 / 34 k | 847 / 49 k |
+| kho và cửa sau | 801 / 33 k | 829 / 51 k |
+| cửa sau từ sân sau | 1.604 / 68 k | 759 / 141 k |
+| mặt tiền | 1.976 / 60 k | 1.160 / 132 k |
+| mặt tiền nhìn chéo | 1.073 / 48 k | 392 / 122 k |
+| dải A16 hông đông / sân sau / hông tây | 1.668 / 1.022 / 1.609 | 1.035 / 510 / 1.074 |
+| TV (nhìn về phía tây, thấy cả khuôn viên sau tường) | 4.385 / 1.574 k | 4.323 / 1.649 k |
+| chương 4: lối tây từ `Start_split` | 1.014 / 47 k | 258 / 115 k |
+| chương 4: lối tây nhìn từ trong | 5.724 / 1.975 k | 5.033 / 1.750 k |
+| chương 4: tường tây nhìn dọc | 1.236 / 56 k | 520 / 123 k |
+Số lần vẽ giảm ở gần mọi góc (bàn, khay gộp; vỏ, mái, sân gộp theo vật liệu), bếp và kho gần như cũ, primitive tăng 50–90
+nghìn. Bộ nhớ hình chương 3: 1.307 MB (main, lượt 1 đo) → 1.307–1.309 MB. Không đo FPS (D-179).
+
+### Ghi chú lượt 2
+- Vật che lỗ lối tây mà PLAN mục 9 ghi: dải ốp gạch PS1 `TileW` (x 170,14…170,16, cao 1,4 m) chạy ngang qua lỗ cửa và áp
+  phích `Poster3` treo trong lỗ (z 39,65…40,35). Bản mới: ốp chân tường dừng ở khung cửa, tranh thứ tư dời sang cạnh lối.
+- Hai tờ giấy PS1 trong danh sách A16 (#20, #23 của `D_paper_quad_p2_p0`) nằm trên sàn kho (x 209,0…209,1): tờ mới đặt trên
+  sàn kho.
+- Khay PS1 trên kệ trả khay thò ra ngoài khối `TrayReturn`; khay mới nằm trong khối.
+- Bảng màu: thao tác bo cạnh (bmesh bevel) xoá dấu mọi mặt đã tô trong cùng phần, nên `build_canteen.build()` đánh dấu lại
+  các mặt có UV riêng (lỗi giống đợt 4).
+
 ### Hộp A16 đợt này: x 166…218, z 13…60, trừ góc x 166…170, z 37…60 (đợt 8)
 Sân trước từ mép dải T-262 (z 13) tới mặt tiền, hai bên hông, sân sau cửa kho tới z 60; không lấn hộp T-262 (z < 13) và
 phần ngoài lối tây phía bắc z 37 (đường sang thư viện, đợt 8). Chi tiết: `a16_box_nodes.json` và Handoff của card.

@@ -42,7 +42,7 @@ import canteen_layout as L  # noqa: E402
 w1kit = P.w1kit
 GP = P.GP
 GPart, B, G = P.GPart, P.B, P.G
-cell_uv, lbox, lcyl, yaw_matrix, gl = P.cell_uv, P.lbox, P.lcyl, P.yaw_matrix, P.gl
+lbox, lcyl, yaw_matrix, gl = P.lbox, P.lcyl, P.yaw_matrix, P.gl
 INSET = P.INSET
 T = L.T
 PS1_PROPS = HERE / "w6_ps1_props.json"
@@ -56,7 +56,24 @@ def export(name, objs):
 	P.export(name, objs)
 
 
+def keep(part, faces):
+	"""Faces with their own UVs (palette cells, board atlases): bevelled boxes made later in the same part clear every
+	face's tag (bmesh.ops.bevel), so build() tags these again or w1kit would box-project over their UVs."""
+	if not hasattr(part, "painted"):
+		part.painted = []
+	part.painted += list(faces)
+	return faces
+
+
+def cell_uv(part, faces, key, rnd=None):
+	P.cell_uv(part, faces, key, rnd)
+	return keep(part, faces)
+
+
 def build(part, extra=None):
+	for f in getattr(part, "painted", []):
+		if f.is_valid:
+			f.tag = True
 	return P.build(part, extra)
 
 
@@ -148,10 +165,11 @@ def build_hall_east():
 				P._food(small, m, rnd, rnd.uniform(0.4, 0.9))
 	# ReturnSign "TRẢ KHAY" (Label3D at 209.75, -7.7, 39 facing -x): an enamel board 1.0 x 0.3 on the wall over the rack.
 	u1, v0, v1 = 486 / 1024, 366 / 512, 512 / 512
-	xs = xw - 0.01
-	posters.face("W6Posters", [(xs, -7.85, 39.5), (xs, -7.85, 38.5), (xs, -7.55, 38.5), (xs, -7.55, 39.5)], (-1, 0, 0),
-		uv=[(0.0, 1 - v1), (u1, 1 - v1), (u1, 1 - v0), (0.0, 1 - v0)])   # seen from the hall (looking +x) +z is on the left
-	fix.gbox("W1Iron", (xs, -7.86, 38.48), (xw, -7.54, 39.52), skip=("+x",))
+	xs = xw - 0.014
+	f = posters.face("W6Posters", [(xs, -7.85, 38.5), (xs, -7.85, 39.5), (xs, -7.55, 39.5), (xs, -7.55, 38.5)], (-1, 0, 0),
+		uv=[(0.0, 1 - v1), (u1, 1 - v1), (u1, 1 - v0), (0.0, 1 - v0)])   # seen from the hall (looking +x) +z is on the right
+	keep(posters, [f])
+	fix.gbox("W1Iron", (xw - 0.012, -7.86, 38.48), (xw, -7.54, 39.52), skip=("+x",))
 	# Slop bins: blue plastic, open, full of leftovers; one lid dropped against the second.
 	for k, (x, z) in enumerate(L.SLOP_BINS):
 		m = Matrix.Translation(B((x, G, z)))
@@ -174,7 +192,7 @@ def build_hall_east():
 		va = 366 / 512
 		tilt = rnd.uniform(-0.03, 0.03)
 		pts = [(xp, -8.4 + tilt, zc + 0.35), (xp, -8.4 - tilt, zc - 0.35), (xp, -7.4 - tilt, zc - 0.35), (xp, -7.4 + tilt, zc + 0.35)]
-		posters.face("W6Posters", pts, (1, 0, 0), uv=[(u0, 1 - va), (u1, 1 - va), (u1, 1.0), (u0, 1.0)])  # looking -x, +z is left
+		keep(posters, [posters.face("W6Posters", pts, (1, 0, 0), uv=[(u0, 1 - va), (u1, 1 - va), (u1, 1.0), (u0, 1.0)])])  # looking -x, +z is left
 	# Split AC heads inside, over the outdoor units (z 24, 30, 36), pipes into the wall behind them.
 	for z in L.AC_Z:
 		x0a = L.HALL["x"][0] + T + INSET
@@ -215,7 +233,8 @@ def _sack(part, x, y0, z, size, rnd, key="sack", band="sack_print"):
 
 def _jug(part, x, y0, z, rnd):
 	"""A 5-litre cooking-oil jug: amber plastic, handle, red cap."""
-	f = part.box("W6Palette", (x - 0.1, -(z + 0.065), y0), (x + 0.1, -(z - 0.065), y0 + 0.27), bevel=0.02, segments=1)
+	m = Matrix.Translation(B((x, y0 + 0.135, z)))   # B(): glbs sit at (0, G, 0), so heights go through it
+	f = part.box("W6Palette", (-0.1, -0.065, -0.135), (0.1, 0.065, 0.135), bevel=0.02, segments=1, matrix=m)
 	cell_uv(part, f, "oil_yellow", rnd)
 	f = part.cylinder("W6Palette", tuple(B((x + 0.05, y0 + 0.29, z))), 0.024, 0.04, segments=8)
 	cell_uv(part, f, "red_plastic", rnd)
@@ -517,8 +536,9 @@ def build_outside():
 		fix.beam("W6Shutter", (ex - 0.28, y, zb + 0.23), (ex + 0.28, y, zb + 0.23), 0.075, 0.008, up=(0, 0.6, 0.8))
 	fix.gbox("W1Iron", (hx1, -8.45, 29.7), (hx1 + 0.16, -7.85, 30.2))
 	u0, u1, va, vb = 500 / 1024, 646 / 1024, 366 / 512, 512 / 512
-	small.face("W6Posters", [(hx1 + 0.162, -8.3, 29.85), (hx1 + 0.162, -8.3, 30.05), (hx1 + 0.162, -8.1, 30.05), (hx1 + 0.162, -8.1, 29.85)],
-		(1, 0, 0), uv=[(u0, 1 - vb), (u1, 1 - vb), (u1, 1 - va), (u0, 1 - va)])
+	f = small.face("W6Posters", [(hx1 + 0.162, -8.3, 30.05), (hx1 + 0.162, -8.3, 29.85), (hx1 + 0.162, -8.1, 29.85), (hx1 + 0.162, -8.1, 30.05)],
+		(1, 0, 0), uv=[(u0, 1 - vb), (u1, 1 - vb), (u1, 1 - va), (u0, 1 - va)])   # looking -x, +z is on the left
+	keep(small, [f])
 	f = fix.pipe("W6Palette", [(hx1 + 0.05, -7.85, 30.0), (hx1 + 0.05, top - 0.05, 30.0)], 0.018, sides=6)
 	cell_uv(fix, f, "pvc_grey", rnd)
 	# The west exit's steel leaf, swung out 180 degrees flat against the outside wall north of the opening.
@@ -787,7 +807,7 @@ def _pal4(part, faces, rgba, rnd):
 		for loop in f.loops:
 			loop[part.uv].uv = ((cx + ju) / 8.0, 1.0 - (cy + jv) / 8.0)
 		f.tag = True
-	return faces
+	return keep(part, faces)
 
 
 def _named4(part, faces, key, rnd):
@@ -796,7 +816,7 @@ def _named4(part, faces, key, rnd):
 		for loop in f.loops:
 			loop[part.uv].uv = ((cx + 0.5) / 8.0, 1.0 - (cy + 0.5) / 8.0)
 		f.tag = True
-	return faces
+	return keep(part, faces)
 
 
 def build_strip_props():

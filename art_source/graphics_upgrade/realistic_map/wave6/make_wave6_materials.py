@@ -108,7 +108,7 @@ def looks():
 		# and soil under this strip's own wear mask), the forecourt's grey "con sâu" pavers as T-262's walk (D-175 P1),
 		# the service yard's and the aprons' cast concrete (wave 1's plaster scan, unpainted), both aged by mask_yard6.
 		"W6Posters": {"albedo": OWN6 + "posters.png", "rough": 0.85},
-		"W6Mirror": {"color": (0.5, 0.52, 0.53), "rough": 0.06, "metallic": 0.9},
+		"W6Mirror": {"color": (0.52, 0.55, 0.57), "rough": 0.12, "metallic": 0.35},   # no probe to reflect: a pale sheen, not a black hole
 		"W6StripGround": {"ground": {"grass_albedo": M4.OWN3 + "ground_grass_color.png", "grass_normal": M4.OWN3 + "ground_grass_normal.png",
 			"dirt_albedo": M4.OWN3 + "soil_color.png", "dirt_normal": M4.OWN3 + "soil_normal.png", "mask": OWN6 + "mask_strip6.png",
 			"dirt_tint": (1.5, 1.4, 1.3), "grass_scale": 0.5, "dirt_scale": 1.25}},

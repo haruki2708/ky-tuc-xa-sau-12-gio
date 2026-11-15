@@ -2,6 +2,6 @@
 
 [resource]
 resource_name = "W6Mirror"
-albedo_color = Color(0.5, 0.52, 0.53, 1)
-roughness = 0.06
-metallic = 0.9
+albedo_color = Color(0.52, 0.55, 0.57, 1)
+roughness = 0.12
+metallic = 0.35
