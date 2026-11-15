@@ -21,6 +21,7 @@ const CAMPUS_CONTRACT_MD5 := "2d7e21aeb14371114326fc6433d81216"  # as T-259 and 
 const PROPS_COLLIDERS_MD5 := "97c2301b5e5f2375e59ef5ecf322a76b"  # as T-259 left it
 const G := -9.9
 const A16_BOX := AABB(Vector3(180, -10.5, -60), Vector3(82, 4.5, 73))
+const T263_BOX := AABB(Vector3(166, -10.5, 13), Vector3(52, 4.5, 47))  # T-263's canteen strip (round 2, D-181)
 const GUARD_EYES := [Vector3(220, -8.3, -25), Vector3(220, -8.3, -15), Vector3(205, -8.3, -16), Vector3(235, -8.3, -30)]
 const PS1_HIDDEN := ["Court/Mesh", "Pillar209/Mesh", "Pillar231/Mesh", "Booth/Mesh", "HalfFallenSign", "BoothWindow", "BoothRoof",
 	"PillarCrack", "GateCross0.5", "GateCross3.4", "RoadCrack212", "RoadCrack222", "RoadCrack233"]
@@ -134,14 +135,22 @@ func test_ps1_meshes_hidden_and_the_real_layers_hung() -> void:
 func test_props_replaced_in_the_box_only_and_three_heads_back() -> void:
 	var props := PROPS.instantiate()
 	var zeroed := 0
+	var canteen := 0
 	for path: String in CHUNKS:
 		var data: PackedFloat32Array = props.get_node(path).get("data")
 		for k in range(0, data.size(), 16):
 			if data[k] == 0.0 and data[k + 4] == 0.0 and data[k + 8] == 0.0:
 				var at := Vector3(data[k + 9], data[k + 10], data[k + 11])
-				assert_true(A16_BOX.grow(0.01).has_point(at), "%s: only pieces in the gate box hidden (%s)" % [path, at])
-				zeroed += 1
+				if A16_BOX.grow(0.01).has_point(at):
+					zeroed += 1
+					continue
+				# T-263 round 2 (D-181, HARU allowed this edit): three of these chunks also hold the canteen strip's
+				# papers, sandals and a backpack, scaled to 0 in T-263's box (x 166..218, z 13..60); test_t263_canteen
+				# checks them.
+				assert_true(T263_BOX.grow(0.01).has_point(at), "%s: only pieces in the gate's or the canteen's box hidden (%s)" % [path, at])
+				canteen += 1
 	assert_eq(zeroed, 180, "cars, barricades, cones, papers, dropped things and the rubble scaled to 0")
+	assert_eq(canteen, 16, "T-263's papers, sandals and backpack in the shared chunks")
 	for head: Array in HEADS:
 		var data: PackedFloat32Array = props.get_node(head[0]).get("data")
 		var k: int = head[1] * 16

@@ -1,0 +1,739 @@
+{
+ "box": {
+  "x": [
+   166.0,
+   218.0
+  ],
+  "z": [
+   13.0,
+   60.0
+  ],
+  "less (wave 8)": {
+   "x": [
+    166.0,
+    170.0
+   ],
+   "z": [
+    37.0,
+    60.0
+   ]
+  }
+ },
+ "campus.tscn": {
+  "ground_tiles_under_new_ground (meshes and colliders kept: the new lawn lies 1 cm over them as in waves 3-5)": [
+   "Ground/Tile_120_-10",
+   "Ground/Tile_120_40",
+   "Ground/Tile_170_-10",
+   "Ground/Tile_170_40"
+  ],
+  "edge": "T-262's StripGate ends at z 13 (lawn x 180..262; paved walk x 186..217 at z 7..13 heading for the door): round 2 continues the walk from z 13 to the step (z 17.9) and the lawn from z 13.",
+  "kept (not A16)": [
+   "Anchors/*, Zones/Canteen, Navigation/CanteenEntry, KitchenEntry, StoreEntry, StoreExit",
+   "Ch4/Start_split (167, 40.5) and the ground west of the hall north of z 37 (wave 8)"
+  ],
+  "canteen.tscn pieces outside the walls (A15, round 2 with the canteen)": [
+   "Bike0..5 (x 172..181, z 17.2)",
+   "Bin205, Bin206.2 (z 54.2)",
+   "GasCylinder0, GasCylinder1 (189..189.6, 53)",
+   "ACUnit24/30/36, ACGrill* (west wall)",
+   "Chimney (192, 51)"
+  ]
+ },
+ "props.tscn": {
+  "Props/Parts/P_concrete_box_p5_p0": {
+   "instances": 2,
+   "in_box": [
+    {
+     "index": 0,
+     "kind": "keep: kiosk",
+     "origin": [
+      214.0,
+      -8.8,
+      16.8
+     ]
+    }
+   ]
+  },
+  "Props/Parts/P_iron_box_p4_p0": {
+   "instances": 16,
+   "in_box": [
+    {
+     "index": 12,
+     "kind": "keep: drinks machine",
+     "origin": [
+      182.2,
+      -9.65,
+      15.79
+     ]
+    }
+   ]
+  },
+  "Props/Parts/P_iron_box_p5_p0": {
+   "instances": 10,
+   "in_box": [
+    {
+     "index": 6,
+     "kind": "keep: bicycle",
+     "origin": [
+      208.339,
+      -9.684,
+      16.988
+     ]
+    },
+    {
+     "index": 7,
+     "kind": "keep: bicycle",
+     "origin": [
+      208.186,
+      -9.693,
+      16.948
+     ]
+    },
+    {
+     "index": 8,
+     "kind": "keep: bicycle",
+     "origin": [
+      208.712,
+      -9.667,
+      17.11
+     ]
+    },
+    {
+     "index": 9,
+     "kind": "keep: bicycle",
+     "origin": [
+      208.895,
+      -9.618,
+      16.9
+     ]
+    }
+   ]
+  },
+  "Props/Parts/P_iron_box_p5_p1": {
+   "instances": 2,
+   "in_box": [
+    {
+     "index": 0,
+     "kind": "keep: moped",
+     "origin": [
+      207.773,
+      -9.445,
+      54.142
+     ]
+    },
+    {
+     "index": 1,
+     "kind": "keep: moped",
+     "origin": [
+      207.48,
+      -9.53,
+      54.316
+     ]
+    }
+   ]
+  },
+  "Props/Parts/P_iron_cylinder_p5_p0": {
+   "instances": 2,
+   "in_box": [
+    {
+     "index": 0,
+     "kind": "keep: bicycle",
+     "origin": [
+      207.802,
+      -9.723,
+      16.899
+     ]
+    },
+    {
+     "index": 1,
+     "kind": "keep: bicycle",
+     "origin": [
+      208.642,
+      -9.723,
+      17.44
+     ]
+    }
+   ]
+  },
+  "Props/Parts/P_iron_cylinder_p5_p1": {
+   "instances": 2,
+   "in_box": [
+    {
+     "index": 0,
+     "kind": "keep: moped",
+     "origin": [
+      207.85,
+      -9.612,
+      55.453
+     ]
+    },
+    {
+     "index": 1,
+     "kind": "keep: moped",
+     "origin": [
+      207.207,
+      -9.612,
+      54.5
+     ]
+    }
+   ]
+  },
+  "Props/Parts/P_paper_box_p5_p1": {
+   "instances": 2,
+   "in_box": [
+    {
+     "index": 0,
+     "kind": "dropped: tray",
+     "origin": [
+      211.92,
+      -9.845,
+      46.543
+     ]
+    },
+    {
+     "index": 1,
+     "kind": "keep: moped",
+     "origin": [
+      207.633,
+      -9.467,
+      54.092
+     ]
+    }
+   ]
+  },
+  "Props/Parts/P_red_box_p5_p0": {
+   "instances": 2,
+   "in_box": [
+    {
+     "index": 0,
+     "kind": "keep: kiosk",
+     "origin": [
+      214.0,
+      -7.45,
+      17.1
+     ]
+    }
+   ]
+  },
+  "Props/Parts/P_white_box_p4_p0": {
+   "instances": 9,
+   "in_box": [
+    {
+     "index": 1,
+     "kind": "keep: drinks machine",
+     "origin": [
+      182.2,
+      -8.95,
+      16.2
+     ]
+    },
+    {
+     "index": 2,
+     "kind": "keep: drinks machine",
+     "origin": [
+      182.2,
+      -8.65,
+      15.79
+     ]
+    },
+    {
+     "index": 3,
+     "kind": "dropped: backpack",
+     "origin": [
+      178.066,
+      -9.738,
+      13.463
+     ]
+    },
+    {
+     "index": 4,
+     "kind": "dropped: backpack",
+     "origin": [
+      178.11,
+      -9.872,
+      13.433
+     ]
+    }
+   ]
+  },
+  "Props/Parts/P_white_box_p5_p0": {
+   "instances": 12,
+   "in_box": [
+    {
+     "index": 0,
+     "kind": "keep: kiosk",
+     "origin": [
+      214.0,
+      -8.75,
+      18.0
+     ]
+    },
+    {
+     "index": 1,
+     "kind": "keep: kiosk",
+     "origin": [
+      214.0,
+      -8.9,
+      16.98
+     ]
+    },
+    {
+     "index": 2,
+     "kind": "keep: kiosk",
+     "origin": [
+      214.0,
+      -7.9,
+      16.96
+     ]
+    }
+   ]
+  },
+  "Props/Parts/P_white_box_p5_p1": {
+   "instances": 3,
+   "in_box": [
+    {
+     "index": 0,
+     "kind": "dropped: tray",
+     "origin": [
+      211.863,
+      -9.865,
+      46.527
+     ]
+    },
+    {
+     "index": 1,
+     "kind": "keep: moped",
+     "origin": [
+      207.719,
+      -9.559,
+      54.878
+     ]
+    },
+    {
+     "index": 2,
+     "kind": "keep: moped",
+     "origin": [
+      208.052,
+      -9.501,
+      54.955
+     ]
+    }
+   ]
+  },
+  "Props/Parts/P_wood_box_p5_p0": {
+   "instances": 3,
+   "in_box": [
+    {
+     "index": 2,
+     "kind": "keep: bicycle",
+     "origin": [
+      208.277,
+      -9.645,
+      16.678
+     ]
+    }
+   ]
+  },
+  "Props/Decals/D_iron_quad_p2_p0": {
+   "instances": 33,
+   "in_box": [
+    {
+     "index": 6,
+     "kind": "keep: drag mark",
+     "origin": [
+      195.906,
+      -9.844,
+      37.19
+     ]
+    },
+    {
+     "index": 7,
+     "kind": "keep: drag mark",
+     "origin": [
+      195.509,
+      -9.844,
+      38.126
+     ]
+    },
+    {
+     "index": 8,
+     "kind": "keep: drag mark",
+     "origin": [
+      195.207,
+      -9.844,
+      39.119
+     ]
+    },
+    {
+     "index": 9,
+     "kind": "keep: drag mark",
+     "origin": [
+      194.519,
+      -9.844,
+      40.059
+     ]
+    },
+    {
+     "index": 10,
+     "kind": "keep: drag mark",
+     "origin": [
+      193.758,
+      -9.844,
+      40.757
+     ]
+    },
+    {
+     "index": 11,
+     "kind": "keep: drag mark",
+     "origin": [
+      193.613,
+      -9.844,
+      41.638
+     ]
+    },
+    {
+     "index": 12,
+     "kind": "keep: drag mark",
+     "origin": [
+      193.851,
+      -9.844,
+      42.742
+     ]
+    },
+    {
+     "index": 13,
+     "kind": "keep: drag mark",
+     "origin": [
+      194.19,
+      -9.844,
+      44.011
+     ]
+    },
+    {
+     "index": 14,
+     "kind": "keep: drag mark",
+     "origin": [
+      193.29,
+      -9.844,
+      41.46
+     ]
+    },
+    {
+     "index": 15,
+     "kind": "keep: drag mark",
+     "origin": [
+      192.629,
+      -9.844,
+      42.425
+     ]
+    },
+    {
+     "index": 16,
+     "kind": "keep: drag mark",
+     "origin": [
+      192.095,
+      -9.844,
+      43.756
+     ]
+    },
+    {
+     "index": 17,
+     "kind": "keep: drag mark",
+     "origin": [
+      191.803,
+      -9.844,
+      45.081
+     ]
+    },
+    {
+     "index": 18,
+     "kind": "keep: drag mark",
+     "origin": [
+      191.19,
+      -9.844,
+      45.943
+     ]
+    },
+    {
+     "index": 19,
+     "kind": "keep: drag mark",
+     "origin": [
+      190.297,
+      -9.844,
+      46.133
+     ]
+    },
+    {
+     "index": 20,
+     "kind": "keep: drag mark",
+     "origin": [
+      191.671,
+      -9.844,
+      43.312
+     ]
+    },
+    {
+     "index": 21,
+     "kind": "keep: drag mark",
+     "origin": [
+      203.063,
+      -9.844,
+      41.858
+     ]
+    },
+    {
+     "index": 22,
+     "kind": "keep: drag mark",
+     "origin": [
+      202.312,
+      -9.844,
+      42.408
+     ]
+    },
+    {
+     "index": 23,
+     "kind": "keep: drag mark",
+     "origin": [
+      201.397,
+      -9.844,
+      43.159
+     ]
+    },
+    {
+     "index": 24,
+     "kind": "keep: drag mark",
+     "origin": [
+      200.53,
+      -9.844,
+      44.091
+     ]
+    },
+    {
+     "index": 25,
+     "kind": "keep: drag mark",
+     "origin": [
+      199.759,
+      -9.844,
+      45.078
+     ]
+    },
+    {
+     "index": 26,
+     "kind": "keep: drag mark",
+     "origin": [
+      199.145,
+      -9.844,
+      46.14
+     ]
+    },
+    {
+     "index": 27,
+     "kind": "keep: drag mark",
+     "origin": [
+      199.025,
+      -9.844,
+      47.095
+     ]
+    },
+    {
+     "index": 28,
+     "kind": "keep: drag mark",
+     "origin": [
+      199.197,
+      -9.844,
+      48.061
+     ]
+    },
+    {
+     "index": 29,
+     "kind": "keep: drag mark",
+     "origin": [
+      198.74,
+      -9.844,
+      46.016
+     ]
+    },
+    {
+     "index": 30,
+     "kind": "keep: drag mark",
+     "origin": [
+      197.79,
+      -9.844,
+      46.59
+     ]
+    },
+    {
+     "index": 31,
+     "kind": "keep: drag mark",
+     "origin": [
+      196.559,
+      -9.844,
+      46.711
+     ]
+    },
+    {
+     "index": 32,
+     "kind": "keep: drag mark",
+     "origin": [
+      195.068,
+      -9.844,
+      46.567
+     ]
+    }
+   ]
+  },
+  "Props/Decals/D_paper_quad_p2_p0": {
+   "instances": 26,
+   "in_box": [
+    {
+     "index": 0,
+     "kind": "paper",
+     "origin": [
+      178.137,
+      -9.842,
+      13.892
+     ]
+    },
+    {
+     "index": 2,
+     "kind": "paper",
+     "origin": [
+      177.765,
+      -9.84,
+      14.024
+     ]
+    },
+    {
+     "index": 3,
+     "kind": "paper",
+     "origin": [
+      178.907,
+      -9.84,
+      13.815
+     ]
+    },
+    {
+     "index": 4,
+     "kind": "paper",
+     "origin": [
+      178.004,
+      -9.839,
+      14.197
+     ]
+    },
+    {
+     "index": 20,
+     "kind": "paper",
+     "origin": [
+      209.115,
+      -9.842,
+      46.654
+     ]
+    },
+    {
+     "index": 21,
+     "kind": "paper",
+     "origin": [
+      211.106,
+      -9.841,
+      46.42
+     ]
+    },
+    {
+     "index": 22,
+     "kind": "paper",
+     "origin": [
+      211.742,
+      -9.84,
+      48.725
+     ]
+    },
+    {
+     "index": 23,
+     "kind": "paper",
+     "origin": [
+      209.031,
+      -9.84,
+      49.018
+     ]
+    },
+    {
+     "index": 24,
+     "kind": "paper",
+     "origin": [
+      210.301,
+      -9.839,
+      48.652
+     ]
+    },
+    {
+     "index": 25,
+     "kind": "paper",
+     "origin": [
+      210.964,
+      -9.838,
+      47.072
+     ]
+    }
+   ]
+  },
+  "Props/Decals/D_white_quad_p2_p0": {
+   "instances": 7,
+   "in_box": [
+    {
+     "index": 0,
+     "kind": "dropped: sandal",
+     "origin": [
+      203.729,
+      -9.838,
+      13.28
+     ]
+    },
+    {
+     "index": 1,
+     "kind": "dropped: sandal",
+     "origin": [
+      204.142,
+      -9.838,
+      13.149
+     ]
+    },
+    {
+     "index": 5,
+     "kind": "dropped: sandal",
+     "origin": [
+      210.506,
+      -9.838,
+      46.636
+     ]
+    },
+    {
+     "index": 6,
+     "kind": "dropped: sandal",
+     "origin": [
+      210.772,
+      -9.838,
+      46.612
+     ]
+    }
+   ]
+  }
+ },
+ "props.tscn solids in box (kept)": [
+  "Props/Solids/Body_p4_p0/S1 (182.2, 16.2)",
+  "Props/Solids/Body_p5_p0/S1 (214.0, 18.0)",
+  "Props/Solids/Body_p5_p0/S4 (208.0, 17.4)",
+  "Props/Solids/Body_p5_p1/S0 (207.3, 55.1)"
+ ],
+ "counts": {
+  "dropped: backpack": 2,
+  "dropped: sandal": 4,
+  "dropped: tray": 2,
+  "keep: bicycle": 7,
+  "keep: drag mark": 27,
+  "keep: drinks machine": 3,
+  "keep: kiosk": 5,
+  "keep: moped": 7,
+  "paper": 10
+ }
+}

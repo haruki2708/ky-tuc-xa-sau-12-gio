@@ -57,6 +57,7 @@ collision_mask = 0
 shape = SubResource("s1")
 
 [node name="Mesh" type="MeshInstance3D" parent="SouthWall"]
+visible = false
 mesh = SubResource("s3")
 
 [node name="NorthWall" type="StaticBody3D" parent="."]
@@ -68,6 +69,7 @@ collision_mask = 0
 shape = SubResource("s4")
 
 [node name="Mesh" type="MeshInstance3D" parent="NorthWall"]
+visible = false
 mesh = SubResource("s5")
 
 [node name="Lintel" type="StaticBody3D" parent="."]
@@ -79,18 +81,21 @@ collision_mask = 0
 shape = SubResource("s6")
 
 [node name="Mesh" type="MeshInstance3D" parent="Lintel"]
+visible = false
 mesh = SubResource("s7")
 
 [node name="Jamb39.5" type="Node3D" parent="."]
 position = Vector3(170, -8.7, 39.5)
 
 [node name="Mesh" type="MeshInstance3D" parent="Jamb39.5"]
+visible = false
 mesh = SubResource("s9")
 
 [node name="Jamb41.5" type="Node3D" parent="."]
 position = Vector3(170, -8.7, 41.5)
 
 [node name="Mesh" type="MeshInstance3D" parent="Jamb41.5"]
+visible = false
 mesh = SubResource("s10")
 
 [node name="Threshold" type="NavigationRegion3D" parent="."]
