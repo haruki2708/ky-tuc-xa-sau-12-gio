@@ -280,7 +280,7 @@ Cuối phiên báo ngắn bằng tiếng Việt: xong gì, nhánh, commit, ảnh
 Tiếp tục T-261 lượt 2: chủ dự án đã chọn (card mục 1). Ở D:\GAME_WORK\lane-b2 trên nhánh lane-b/T-261-realistic-graphics-wave4-stadium: git status, git fetch origin, git rebase origin/main (lấy card mục 1), git lfs pull. Làm cả sân vận động, dải nối vườn → sân, ảnh trước/sau (đèn pha tắt và bật), test, rồi full pwsh tools/test.ps1, pwsh tools/check.ps1, git checkout -- game/default_bus_layout.tres. Commit, push nhánh, cập nhật Handoff, báo ngắn như lượt 1 kèm dòng RESULT test và check.
 ```
 
-## 1p. Giao T-262 (15/11/2026): đồ hoạ thật đợt 5 — cổng trường, chốt bảo vệ, đường tới cổng
+## 1p. Giao T-262 (15/11/2026): đồ hoạ thật đợt 5 — cổng trường, chốt bảo vệ, đường tới cổng (ĐÃ XONG, merge 15/11; không dán lại)
 `/model` chọn **Opus 5.5**, effort **xhigh** (khó thì **max**), rồi dán:
 ```text
 Việc mới cho lane B: T-262 — đồ hoạ thật đợt 5: cổng trường (trụ, cánh cổng, biển tên trường rơi nửa), chốt bảo vệ, thanh chắn, tường rào nam, sân cổng ở chương 3, và đoạn đường tới cổng. Đọc docs/tasks/T-262-realistic-graphics-wave5-gate.md.
@@ -296,6 +296,24 @@ Cuối phiên báo ngắn bằng tiếng Việt: xong gì, nhánh, commit, ảnh
 **Lượt 2** (sau khi chủ dự án chọn, HARU/integrator đã ghi vào card mục 1): dán
 ```text
 Tiếp tục T-262 lượt 2: chủ dự án đã chọn (card mục 1). Ở D:\GAME_WORK\lane-b2 trên nhánh lane-b/T-262-realistic-graphics-wave5-gate: git status, git fetch origin, git rebase origin/main (lấy card mục 1), git lfs pull. Làm cả cổng, chốt bảo vệ, tường rào theo phạm vi đã chọn, dải A16 đoạn cổng, ảnh trước/sau (có hàng bảo vệ), test, rồi full pwsh tools/test.ps1, pwsh tools/check.ps1, git checkout -- game/default_bus_layout.tres. Commit, push nhánh, cập nhật Handoff, báo ngắn như lượt 1 kèm dòng RESULT test và check.
+```
+
+## 1q. Giao T-263 (15/11/2026): đồ hoạ thật đợt 6 — nhà ăn, bếp, kho (và trả đầu 6 xác trong vườn)
+Gõ `/clear` (hoặc mở phiên mới), `/model` chọn **Opus 5.5**, effort **xhigh** (khó thì **max**), rồi dán:
+```text
+Việc mới cho lane B: T-263 — đồ hoạ thật đợt 6: nhà ăn (sảnh, 21 bàn, quầy chia cơm, TV, bếp, kho, tường tây lối tây) ở chương 3–4 và dải A16 quanh nhà ăn; trước đó trả đầu 6 xác trong vườn mà T-259 ẩn nhầm. Đọc docs/tasks/T-263-realistic-graphics-wave6-canteen.md.
+Ở D:\GAME_WORK\lane-b2: git status (giữ thay đổi đang có, báo nếu có), git fetch origin, git switch -c lane-b/T-263-realistic-graphics-wave6-canteen origin/main, git lfs pull.
+Đầu phiên ghi commit của card đã đọc (git log -1 --format=%h origin/main -- docs/tasks/T-263-realistic-graphics-wave6-canteen.md).
+Phiên này CHỈ làm lượt 1 (card mục 2): bước 0 trả đầu 6 xác vườn (cách sửa ở Handoff lượt 2 card T-262), khảo sát, bảng hợp đồng, đi thử tuyến cổng → nhà ăn → bếp → kho → cửa sau và lối tây chương 4, chốt hộp A16; góc mẫu sảnh, TV, bếp, mặt tiền với các phương án bàn ghế, sàn và tường, quầy, trần, bếp, mức bừa; ảnh trong chương 3 thật, TV bật và tắt. Xong thì chạy full pwsh tools/test.ps1, pwsh tools/check.ps1 (bước 0 có đổi scene), git checkout -- game/default_bus_layout.tres; commit, push nhánh, ghi Handoff, báo và DỪNG để chủ dự án chọn. Không làm lượt 2.
+D-166: dựng bằng Blender, không Tripo, giữ ánh sáng (không thêm đèn). Giữ nguyên va chạm, anchor, vùng, navmesh, TV bật/tắt, đồng hồ bếp dừng, lỗ cửa. Mọi texture mới từ 512 px trở lên phải nén VRAM trong .import (compress/mode=2; normal thêm compress/normal_map=1).
+Không đổi director, luật, lane A, âm thanh. Không Tripo, không extension Blender, không ảnh AI, không bot, không đo FPS (D-179).
+Godot theo luật Lượt Godot (file khóa D:\GAME_WORK\GODOT_DANG_CHAY.txt); máy ít RAM: đóng Blender và Godot khi không dùng.
+Commit nhỏ "T-263: ...", push nhánh. Không push main, không mở PR. Cập nhật Checklist và Handoff trong card. Không sửa STATUS hay DECISIONS.
+Cuối phiên báo ngắn bằng tiếng Việt: xong gì (kể cả 6 đầu xác), nhánh, commit, ảnh phương án ở đâu, phương án đề xuất, câu hỏi cho chủ dự án, dòng RESULT test và check, có bị chặn không.
+```
+**Lượt 2** (sau khi chủ dự án chọn, HARU/integrator đã ghi vào card mục 1): dán
+```text
+Tiếp tục T-263 lượt 2: chủ dự án đã chọn (card mục 1). Ở D:\GAME_WORK\lane-b2 trên nhánh lane-b/T-263-realistic-graphics-wave6-canteen: git status, git fetch origin, git rebase origin/main (lấy card mục 1), git lfs pull. Làm cả nhà ăn, bếp, kho, tường tây lối tây, dải A16 quanh nhà ăn, ảnh trước/sau (chương 3 và lối tây chương 4), test, rồi full pwsh tools/test.ps1, pwsh tools/check.ps1, git checkout -- game/default_bus_layout.tres. Commit, push nhánh, cập nhật Handoff, báo ngắn như lượt 1 kèm dòng RESULT test và check.
 ```
 
 ## 2. Prompt giao việc (integrator điền T-xxx)
