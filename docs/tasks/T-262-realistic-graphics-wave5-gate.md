@@ -89,8 +89,8 @@
 - Tripo, credit Tripo, extension Blender, ảnh AI; bot, FPS; commit log, video, `anh_chup_sua_loi/`; sửa STATUS, DECISIONS.
 
 ## Checklist
-- [ ] Lượt 1: khảo sát, bảng hợp đồng, đi thử tuyến, chốt hộp và danh sách node A16 (Handoff)
-- [ ] Lượt 1: góc mẫu và phương án (cánh cổng, trụ và biển, chốt, tường rào, sân cổng), ảnh có hàng bảo vệ; dừng chờ chủ dự án chọn
+- [x] Lượt 1: khảo sát, bảng hợp đồng, đi thử tuyến, chốt hộp và danh sách node A16 (Handoff)
+- [x] Lượt 1: góc mẫu và phương án (cánh cổng, trụ và biển, chốt, tường rào, sân cổng), ảnh có hàng bảo vệ; dừng chờ chủ dự án chọn
 - [ ] Lượt 2: cổng, chốt, tường rào
 - [ ] Lượt 2: dải A16 đoạn cổng
 - [ ] Ảnh trước/sau, test mới, test cũ, full test, check, README, CREDITS, Handoff
@@ -98,7 +98,74 @@
 ## Handoff
 (lane B ghi)
 
-### Lượt 1 — phần 1: khảo sát, hợp đồng, đi thử tuyến, hộp A16 (15/11/2026, đang làm)
+### Lượt 1 — phần 2: góc mẫu và phương án (15/11/2026, xong; DỪNG chờ chủ dự án chọn)
+Chưa sửa scene nào (`gate.tscn`, `campus.tscn`, `props.tscn` như main). Góc mẫu: 17 glb trong
+`game/assets/models/graphics_pilot/realistic_map/wave5/`, 16 texture tự vẽ (đều `compress/mode=2`, normal có
+`compress/normal_map=1`), vật liệu `W5*`; `capture_wave5.gd` gắn vào chương 3 thật lúc chạy và ẩn hình PS1 tương ứng. Cách
+chạy, bảng tam giác/vật liệu/lần vẽ đầy đủ: `art_source/graphics_upgrade/realistic_map/wave5/README.md`.
+
+**Ảnh** (`art_source/graphics_upgrade/realistic_map/previews/wave5/`, chương 3 thật, ban đêm, có và không đèn pin, 12 bảo
+vệ đứng đúng chỗ): 5 bảng để chọn `options_gate.jpg`, `options_sign.jpg`, `options_booth.jpg`, `options_wall.jpg`,
+`options_court.jpg`; ảnh lẻ `pilot_<before|a|b|c|d>_<góc>[_torch].jpg` (67 ảnh, 11 góc: từ `Start_gate`, cuối đường vào, sát
+trụ tây, biển rơi nửa, thanh chắn, chốt, qua cửa sổ chốt, tường hai phía cổng, mặt sân, nhìn qua cổng ra ngoài).
+Cấu hình: `a` = C2 P1 G1 SA có chữ K1 W1; `b` = C1 P2 G2 SB có chữ K2 W2; `c` = `a` không chữ; `d` = `b` không chữ (chỉ chụp
+các góc thấy biển). Trụ và biển ghép chéo được (P1 + SB, P2 + SA); hai thứ chỉ chụp theo cặp cho đỡ số ảnh.
+
+| Mục | Phương án | Tam giác | Vật liệu |
+|---|---|---|---|
+| Cánh cổng | **G1** sắt hai cánh sơn xanh (màu thép sơn xanh đã duyệt), tấm tôn dưới, song mũi giáo, cao 3 m / **G2** cổng xếp inox 1,9 m | 2.292 / 11.348 | 3 / 3 |
+| Trụ | **P1** trát quét vôi (như viền bồn D-175, trụ sân D-178) / **P2** ốp gạch đỏ, gờ và mũ quét vôi | 330 / 138 | 3 / 4 |
+| Biển | **SA** biển tôn xanh treo dưới vòm giàn thép / **SB** băng trát vữa có chữ nổi đỏ, bắt giá trên mũ trụ; cả hai rơi nửa, đầu tây còn treo, đầu đông tựa trước cổng | 2.252 / 72 + 2.488 chữ | 4 / 3 |
+| Chữ | **có chữ** mẫu "TRƯỜNG ĐẠI HỌC", phần tên trường đã bong còn vết keo / **không chữ** (mọi chữ rơi, còn vết keo, không đọc được) | | |
+| Chốt | **K1** xây trát quét vôi vàng, mái bê tông, cửa sổ có song / **K2** lắp ghép composite trắng, khung thép xanh, mái tôn; đồ bên trong chung (526 tam giác, vẽ trong 30 m) | 650 / 420 | 10 / 7 |
+| Tường rào | **W1** trát quét vôi 1,8 m + song sắt tới 3 m / **W2** gạch trần 2,7 m, trụ gạch, gờ bê tông (đoạn mẫu x 186…262, ngoài đoạn vẫn PS1) | 3.976 / 768 | 2 / 2 |
+| Sân cổng | **C2** block con sâu xám (như dải nối D-178) / **C1** nhựa đường cũ | 8 / 8 | 1 / 1 |
+| Chung | Rào chắn sọc đỏ trắng di động (2), cọc giao thông (6), vết nứt sân đúng chỗ PS1, vỉa hè và lòng đường ngoài cổng | 488 + 1.116 + 18 + 48 | |
+PS1 `gate.tscn`: 804 tam giác, 6 vật liệu. Cả góc mẫu: phương án a 11.704 tam giác, b 17.438. Số lần vẽ (PS1 → a → b):
+từ `Start_gate` 351 → 323 → 320; cuối đường vào 382 → 353 → 350; biển, đèn pin 448 → 418 → 416; chốt, đèn pin 43 → 78 → 72
+(chốt và đồ bên trong nhiều vật liệu: lượt 2 gộp atlas); góc rộng nhìn cả khu 4.439 → 4.406 → 4.403. Primitive thêm khoảng
+10–28 nghìn tuỳ góc. Bộ nhớ hình chương 3 (đã nạp cả hai bộ phương án): 1.291…1.294 MB. Không đo FPS (D-179).
+
+**Giữ hợp đồng (test `test_t262_gate_pilot`, 8 test):** cánh cổng trong khối `Gate/Gate` 20 × 4 × 0,18 m; trụ trong khối
+trụ (trụ tây nghiêng 7°, chân chôn 0,3 m); biển phần dưới 2,3 m nằm trong bề dày 0,18 m của khối cổng; chốt trong khối
+`Booth` (mái chìa trên 2,85 m); tường trong khối `Fence/S`; mặt sân trên khối `Court`; dải ngoài cổng ở z ≤ −60,15 (không tới
+được); rào chắn trong khối 2,2 × 1,0 × 0,5 m của PS1; tia từ mắt (1,6 m) ở `Start_gate`, (220; −15), (205; −16), (235; −30)
+tới ngực 12 bảo vệ không cắt tam giác nào của mọi phương án và hai rào chắn; không vật mới nào cao hơn 1 m giữa
+`Start_gate` và hàng bảo vệ (rào chắn 0,95 m, cọc 0,7 m như PS1). Texture nén VRAM, glb chỉ dùng vật liệu chung.
+
+**Đề xuất: phương án a có chữ** — G1, P1 + SA, chữ "TRƯỜNG ĐẠI HỌC" (tên bong), K1, W1, C2. Lý do: hợp các lựa chọn đã
+duyệt (thép sơn xanh, trụ và viền quét vôi D-175/D-178, sân block con sâu của dải nối D-178); cổng sắt cao 3 m đọc rõ là
+cổng trường đóng kín sau hàng bảo vệ, rẻ hơn G2 năm lần tam giác; biển xanh trên vòm giống biển PS1 nên người chơi nhận ra
+ngay "biển tên trường rơi nửa" (manh mối), mà trường vẫn không tên; chốt vôi vàng là kiểu chốt trường Việt Nam quen thuộc;
+tường quét vôi có song sắt nhẹ mắt hơn gạch trần, đi cùng trụ. Tường rào: đề xuất làm **cả `Fence/S`** (module 3 m lặp
+bằng MultiMesh, xa thì bỏ song sắt rời thay bằng mặt phẳng), vì chỗ nối với tường PS1 thấy rõ ở mọi góc rộng.
+
+**Câu hỏi cho chủ dự án** (HARU chuyển, ghi lựa chọn vào mục 1):
+1. Cánh cổng G1 hay G2?
+2. Trụ P1 hay P2? Biển SA (vòm thép, biển tôn) hay SB (chữ nổi trên băng trát)? (ghép chéo được)
+3. Chữ trên biển: "TRƯỜNG ĐẠI HỌC" để tên trường bong (như ảnh), chữ khác do chủ dự án đưa, hay không chữ? Chữ nằm trong
+   hình (như bảng giá nhà ăn), bản tiếng Anh vẫn thấy chữ Việt.
+4. Chốt K1 hay K2?
+5. Tường rào W1 hay W2; phạm vi chỉ đoạn quanh sân cổng (x 186…262 như ảnh, chỗ nối PS1 thấy rõ) hay cả `Fence/S` 500 m?
+6. Sân cổng C2 hay C1? (Phần còn lại của hộp A16 lượt 2: 40 m cuối `Road/Avenue` lát block con sâu như `WestBranch` đợt
+   4, khoảng đất sang nhà ăn theo vật liệu sân đã chọn; rút ngắn hình `Road/Avenue` còn x 0…180, không ẩn.)
+7. Lượt 2 có thay luôn 5 ô tô PS1 và đồ rơi (ba lô, giày, dép, điện thoại) trong hộp bằng bản thật (một mẫu sedan cũ dựng
+   Blender, màu theo màu PS1, đúng chỗ, đúng va chạm) không? Đề xuất: có; giấy, cọc, rào chắn thì card đã giao.
+8. (Integrator) Cho phép lượt 2 trả lại đầu của 3 xác tĩnh bị T-259/T-261 ẩn nhầm (xem phần 1) không?
+
+**Hộp A16 chốt rộng hơn gợi ý của card** (z tới 13 thay vì −10): nếu HARU muốn giữ z −60…−10 thì khoảng z −10…13 để đợt 7.
+
+**Chưa làm, cố ý:** không sửa scene; không gộp atlas đồ trong chốt; không occluder (chốt nhỏ, sau tường là khoảng trống:
+không có gì để che, không đề nghị thêm). Ảnh chụp trước lần thu chân rào chắn vào 3 cm (cho vừa khối 0,5 m).
+
+**Cách kiểm tra:** `pwsh tools/test.ps1 -Filter t262` (8 PASS); xem 5 bảng `options_*.jpg`; chạy lại ảnh theo README.
+
+**Kiểm:** `pwsh tools/test.ps1 -Filter t262`: 8 passed, 0 failed. **Full `pwsh tools/test.ps1` chưa có kết quả:** lần chạy
+lúc 07:44 bị Claude Code dừng giữa chừng vì máy thiếu RAM (không phải lỗi test; chưa in dòng PASS/FAIL nào); chưa chạy lại,
+chờ chủ dự án cho phép. `check.ps1` chưa chạy. Lượt 1 không sửa scene, code hay test cũ nào, chỉ thêm asset mới chưa scene
+nào dùng và một file test mới.
+
+### Lượt 1 — phần 1: khảo sát, hợp đồng, đi thử tuyến, hộp A16 (15/11/2026)
 Nhánh `lane-b/T-262-realistic-graphics-wave5-gate` từ `origin/main` `1b63065` (card đọc ở `1b63065`). Chưa sửa scene nào.
 Script: `art_source/graphics_upgrade/realistic_map/wave5/` (`gate_layout.py` số đo, `walk_route.gd` đi thử tuyến,
 `list_a16_box.py` → `a16_box_nodes.json`).
