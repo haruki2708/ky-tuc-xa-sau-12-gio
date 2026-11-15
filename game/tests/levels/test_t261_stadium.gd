@@ -20,7 +20,9 @@ const CAMPUS_CONTRACT_MD5 := "2d7e21aeb14371114326fc6433d81216"  # as T-259 left
 const PROPS_COLLIDERS_MD5 := "97c2301b5e5f2375e59ef5ecf322a76b"  # as T-259 left it
 ## T-262 (D-180): 2124 = main's 2303 kept instances less the 180 the gate strip replaces (scaled to 0, outside this
 ## wave's areas) plus the corpse head given back at (43.6, 30.2) (outside this wave's A16 box, so a kept row again).
-const PROPS_KEPT_MD5 := "e5d7b9ea958504f13e0b836c200facbe"  # 2124 instances kept
+## T-263 step 0: 2117 = 2124 less the 7 pieces T-259 replaced in Parts/P_paper_box_p0_p0 (a tray, six notice-board
+## sheets), now scaled to 0 as that chunk is shown again for its six corpse heads (its "visible" row turns true).
+const PROPS_KEPT_MD5 := "d5c2dcb8427a4b30cb2c9a5da485f19d"  # 2117 instances kept
 const G := -9.9
 const STAND_Z0 := 212.7
 const SOUTH_Z0 := 119.5
