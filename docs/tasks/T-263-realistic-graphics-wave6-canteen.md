@@ -184,7 +184,7 @@
 - [x] Lượt 1: góc mẫu và phương án (bàn ghế, sàn và tường, quầy, trần, bếp, mức bừa), ảnh TV bật/tắt; dừng chờ chủ dự án chọn
 - [x] Lượt 2: sảnh, quầy, TV, bếp, kho, tường tây
 - [x] Lượt 2: dải A16 quanh nhà ăn
-- [ ] Ảnh trước/sau, test mới, test cũ, full test, check, README, CREDITS, Handoff
+- [x] Ảnh trước/sau, test mới, test cũ, full test, check, README, CREDITS, Handoff
 
 ## Handoff
 ### Lượt 2 (15/11/2026, D-181): xong cả khu
@@ -247,9 +247,8 @@ trong sảnh và từ trong nhìn ra lối tây vẫn vẽ cả khuôn viên sau
 
 **Full test, check:**
 - `pwsh tools/test.ps1` (22:15 15/11, sau commit `9efb2a2`): **`RESULT: 1037 passed, 0 failed`**.
-- `pwsh tools/check.ps1` **chưa có kết quả**: lần chạy ngay sau đó bị Claude Code dừng vì máy thiếu RAM (đang ở bước parse, mọi
-  dòng đã in đều PASS). Không phải check lỗi. Theo hướng dẫn, không tự chạy lại. Cần chạy lại khi máy rảnh RAM, rồi
-  `git checkout -- game/default_bus_layout.tres`.
+- `pwsh tools/check.ps1` (chạy lại 22:42 15/11 khi máy đủ RAM, cùng commit; lần đầu bị Claude Code dừng vì thiếu RAM):
+  **`RESULT: check 0 error(s)`**. Sau đó `git checkout -- game/default_bus_layout.tres`.
 - Khoá Lượt Godot của lần chạy bị dừng đã xoá; `game/_probe_tmp/` đã xoá.
 - Test lọc: `-Filter t263` 12/0, `t262` 9/0, `t261` 12/0.
 
