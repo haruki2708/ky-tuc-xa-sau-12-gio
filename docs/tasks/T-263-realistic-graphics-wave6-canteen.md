@@ -1,5 +1,5 @@
 # T-263 — Đồ hoạ thật đợt 6: nhà ăn, bếp, kho (và trả đầu 6 xác trong vườn)
-- Lane: B | Trạng thái: todo (giao 15/11/2026) | Agent: tài khoản Claude lane B, `D:\GAME_WORK\lane-b2`; model **Opus 5.5 xhigh** (khó thì max). Chủ dự án tự dán prompt (`lane-b.md` mục 1q).
+- Lane: B | Trạng thái: in progress, lượt 2 (giao 15/11/2026; chọn D-181) | Agent: tài khoản Claude lane B, `D:\GAME_WORK\lane-b2`; model **Opus 5.5 xhigh** (khó thì max). Chủ dự án tự dán prompt (`lane-b.md` mục 1q).
 - Nhánh: `lane-b/T-263-realistic-graphics-wave6-canteen` từ `origin/main` mới nhất.
 - Quyết định nền:
   - **D-166:** đồ hoạ thật dựng bằng Blender, không PS1, không Tripo trừ khi chủ dự án đổi; ánh sáng giữ như nay.
@@ -47,7 +47,20 @@
 - **Hiệu năng:** PLAN mục 6 cho A15 **≤ 0,60 ms** thêm. Phải gom bàn, khay theo cụm vật liệu; tách bếp và kho; không cho mọi vật nhỏ đổ bóng. Rủi ro lớn nhất là số lần vẽ: hiện có 932 mesh node, phần lớn là bàn và khay lặp.
 
 ## 1. Chủ dự án chốt
-(HARU ghi sau lượt 1)
+**D-181 (15/11/2026):** chủ dự án xem ảnh lượt 1 (`previews/wave6/options_*.jpg`) và chọn cả bảy câu theo đề xuất (cấu hình c):
+1. Bàn ghế: **T1** bàn inox liền 6 ghế đôn tròn.
+2. Sàn và tường: **F1** gạch ceramic 40 × 40 kem, tường sơn vàng nhạt, chân tường ốp gạch men trắng 1,4 m.
+3. Quầy: **Q1** quầy inox có kính chắn, **bảng giá gỗ sơn đen chữ trắng** (chữ giữ nguyên).
+4. Trần: **C2** thạch cao 60 × 60 ố vàng, vài tấm rơi, vài tấm võng; quạt, đèn tuýp, 3 đèn trần giữ chỗ.
+5. Bếp: **K1** bếp gạch ốp men, chảo gang, nồi nhôm lớn; đồng hồ dừng 4 giờ, chụp hút chia đôi.
+6. Mức bừa: **M2** (bát đổ, khay, đũa rơi nhiều hơn; chỉ là hình, không đổi va chạm).
+7. Màn TV khi bật: **giữ ảnh bản tin không chữ** như góc mẫu; giọng `ROOM_CH3_TV_NEWS` giữ nguyên.
+
+**HARU (thay integrator) trả lời các đề nghị trong Handoff lượt 1:**
+- Hộp A16 **x 166…218, z 13…60, trừ góc x 166…170, z 37…60** như lane B chốt.
+- Lượt 2 được sửa `test_t262_gate.gd`: số bản thu về 0 trong chunk dùng chung với hộp cổng (giữ kiểm tra 180 bản của cổng, thêm phần của hộp nhà ăn). Được đổi hằng `PROPS_KEPT_MD5` trong `test_t261_stadium.gd` lần nữa. Ghi lý do trong comment.
+- Occluder hình hộp cho vỏ nhà ăn: việc của core. HARU làm sau khi T-263 merge; lane B không tự thêm.
+- Full test và check của lượt 1 (bị dừng vì thiếu RAM) **không cần chạy lại**; lượt 2 chạy đủ cả hai trước commit cuối.
 
 ## 2. Việc, theo hai lượt
 
@@ -156,7 +169,7 @@
   - script cảnh mới trong `game/scenes/levels/campus/`.
 - Cho bước 0:
   - `art_source/graphics_upgrade/realistic_map/wave3/` (`build_garden.py`) và glb đợt 3 liên quan;
-  - `test_t259_garden.gd`, `test_t261_stadium.gd`, `test_t262_gate.gd`: chỉ hằng và ngưỡng do trả đầu xác, có comment.
+  - `test_t259_garden.gd`, `test_t261_stadium.gd`, `test_t262_gate.gd`: chỉ hằng và ngưỡng do trả đầu xác, có comment. Lượt 2 (D-181): thêm phần đếm bản thu về 0 của hộp nhà ăn trong `test_t262_gate.gd` và hằng `test_t261_stadium.gd`.
 - Test mới trong `game/tests/levels/`; card này (Checklist, Handoff).
 - Cảnh tạm `game/_probe_tmp/`: không commit, xoá khi xong.
 
