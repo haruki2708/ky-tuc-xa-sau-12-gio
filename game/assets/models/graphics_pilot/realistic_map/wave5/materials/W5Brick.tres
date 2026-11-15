@@ -1,0 +1,15 @@
+[gd_resource type="ORMMaterial3D" format=3]
+
+[ext_resource type="Texture2D" path="res://assets/textures/graphics_pilot/realistic_map/wave5/brick_color.png" id="1"]
+[ext_resource type="Texture2D" path="res://assets/textures/graphics_pilot/realistic_map/wave5/brick_orm.png" id="2"]
+[ext_resource type="Texture2D" path="res://assets/textures/graphics_pilot/realistic_map/wave5/brick_normal.png" id="3"]
+
+[resource]
+resource_name = "W5Brick"
+albedo_color = Color(1, 1, 1, 1)
+albedo_texture = ExtResource("1")
+orm_texture = ExtResource("2")
+normal_enabled = true
+normal_scale = 1
+normal_texture = ExtResource("3")
+uv1_scale = Vector3(1.08696, 1.19048, 1)
