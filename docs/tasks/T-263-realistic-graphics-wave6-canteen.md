@@ -182,11 +182,77 @@
 - [x] Lượt 1, bước 0: trả đầu 6 xác trong vườn, ảnh trước/sau
 - [x] Lượt 1: khảo sát, bảng hợp đồng, đi thử tuyến, chốt hộp và danh sách node A16 (Handoff)
 - [x] Lượt 1: góc mẫu và phương án (bàn ghế, sàn và tường, quầy, trần, bếp, mức bừa), ảnh TV bật/tắt; dừng chờ chủ dự án chọn
-- [ ] Lượt 2: sảnh, quầy, TV, bếp, kho, tường tây
-- [ ] Lượt 2: dải A16 quanh nhà ăn
+- [x] Lượt 2: sảnh, quầy, TV, bếp, kho, tường tây
+- [x] Lượt 2: dải A16 quanh nhà ăn
 - [ ] Ảnh trước/sau, test mới, test cũ, full test, check, README, CREDITS, Handoff
 
 ## Handoff
+### Lượt 2 (15/11/2026, D-181): xong cả khu
+Card đọc ở `origin/main` `d27337c` (D-181). Nhánh rebase lên `d27337c` (không xung đột), đẩy lại bằng `--force-with-lease`.
+Cách chạy lại, số liệu đầy đủ: `art_source/graphics_upgrade/realistic_map/wave6/README.md` mục "Lượt 2".
+
+**Đã làm (theo D-181: T1, F1, Q1 + bảng gỗ sơn đen, C2, K1, M2, TV ảnh bản tin không chữ):**
+- `canteen.tscn`: 940 hình và nhãn PS1 ẩn (`visible = false`; va chạm, node, transform, meta, 3 đèn, chữ của nhãn giữ
+  nguyên). Node mới `Real` (`canteen_real.gd`) gồm 17 lớp: vỏ sảnh, cửa sổ, trần C2, đèn tuýp và quạt, bàn T1, khay bát
+  M2, quầy Q1, bảng giá gỗ, TV, phòng bếp, bếp K1, đồng hồ, mặt tiền và lượt 2: phía đông sảnh, kho, mặt ngoài, xe đạp.
+  - Phía đông: máng rửa tay ốp gạch trên `SinkBlock` (4 chậu, vòi, gương), kệ trả khay inox trên `TrayReturn`, biển "TRẢ KHAY"
+    (giữ chữ), 2 thùng thức ăn thừa.
+  - 4 tranh cổ động không chữ, 3 máy lạnh treo tường, ngưỡng cửa.
+  - Kho: sàn, tường, trần, khung cửa sau với cửa cuốn cuộn lên (hộp cửa từ 2,5 m), 2 kệ thép, thùng carton, can dầu, bao gạo.
+  - Mặt ngoài tường tây, đông, sau (sơn vôi vàng như mặt tiền, chân tường, gờ, trụ), mái và tường chắn mái, máng xối, bồn nước
+    inox, ống khói, ống thoát nước, cục nóng máy lạnh, bình gas trong lồng sắt, thùng rác, quạt hút bếp, hộp điện.
+  - 6 xe đạp đúng chỗ PS1.
+- TV: màn sáng `TV/Screen/Lit` treo dưới `TV/Screen`, nên `campus.gd.set_canteen_tv` vẫn bật/tắt như cũ.
+- Đồng hồ bếp vẫn dừng 4 giờ (meta `stopped_hour = 4`, kim mới ở 4:00).
+- `canteen_west_exit.tscn`: 5 hình PS1 ẩn (va chạm, navigation giữ). Hai mặt tường tây và khung cửa mới; cánh cửa thép mở áp
+  tường phía bắc lỗ. **Vật che lỗ mà PLAN mục 9 ghi đã hết:**
+  - đó là dải ốp gạch PS1 `TileW` chạy ngang qua lỗ cửa, và áp phích `Poster3` treo trong lỗ;
+  - đã kiểm ở chương 4 thật (`after_ch4_split*`).
+- `campus.tscn`: node `StripCanteen` (dải A16 trong hộp đã chốt). Gồm sân trước lát gạch "con sâu" nối lối của T-262 ở z 13,
+  hè bê tông và rãnh có nắp dọc tường tây, sau, đông, sân bê tông sau bếp và kho, cỏ mòn, viền.
+- `props.tscn`: đúng 18 bản thu về 0 (10 giấy, 4 dép, 2 mảnh ba lô, 2 khay), thay bằng đồ mới đúng chỗ. Hai tờ giấy PS1 nằm
+  trên sàn kho, tờ mới cũng đặt trên sàn kho. Vệt kéo sẫm, ki-ốt, máy bán nước, xe đạp, xe máy giữ.
+- Bỏ glb, vật liệu, texture của các phương án không chọn. Test góc mẫu thay bằng `test_t263_canteen.gd`.
+
+**Kiểm (hợp đồng):** `test_t263_canteen.gd`, 10 bài:
+- Vân tay node, va chạm, đèn, chữ nhãn, `WestExit` của nhà ăn trùng main (`7da3acc4…`, 1.757 dòng, đo trên cảnh main trước
+  khi vá). Va chạm campus, anchor, vùng, navigation, va chạm props trùng hằng của T-262/T-259.
+- Hình PS1 ẩn đủ 945; TV bật/tắt; đồng hồ 4 giờ.
+- Bàn, ghế, bếp, máng rửa, kệ trả khay, kệ kho, bao gạo nằm trên khối va chạm cũ hoặc đúng chỗ PS1; đồ ngoài nhà sát tường.
+- Không lỗ cửa nào hẹp hơn (cửa chính, lối tây, cửa kho, lỗ bếp, cửa sau).
+- Dải nằm trong hộp, không lấn góc đợt 8, không vào trong nhà.
+- 18 bản thu về 0 đều trong hộp.
+- Thân người chơi thật đi: P29 → P30 → kho → cửa sau (P33); vào bếp tới trước đồng hồ; ra lối tây; từ `Start_split` vào lối tây.
+- Texture nén VRAM, glb chỉ dùng vật liệu chung.
+
+Test cũ sửa theo phép HARU (có comment):
+- `test_t262_gate.gd`: vẫn kiểm đúng 180 bản trong hộp cổng, thêm đếm 16 bản của hộp nhà ăn trong 3 chunk chung.
+- `test_t261_stadium.gd`: `PROPS_KEPT_MD5` → `8a531ad2…` (2.099 dòng = 2.117 − 18).
+
+**Ảnh:** `art_source/graphics_upgrade/realistic_map/previews/wave6/`:
+- `before_*`/`after_*`: 62 ảnh, cùng camera, chương 3 thật ban đêm, có và không đèn pin, TV tắt/bật, 6 xác sống ở
+  `ZombieIdle/Canteen`; thêm 3 góc chương 4 ở lối tây.
+- `overview.jpg`: 20 cặp trước/sau.
+
+**Số liệu:** toàn bộ glb đợt 6: 94.630 tam giác (PS1 19.380).
+- Số lần vẽ giảm ở gần mọi góc: từ cửa chính 1.656 → 1.277, mặt tiền 1.976 → 1.160, giữa các bàn 1.443 → 850, cửa sau từ sân
+  1.604 → 759, chương 4 lối tây 1.014 → 258.
+- Bếp, kho gần như cũ (843 → 847, 801 → 829).
+- Primitive tăng 50–90 nghìn ở góc rộng.
+- Bộ nhớ hình chương 3: 1.307 → 1.307–1.309 MB.
+- Không đo FPS (D-179).
+
+**Yêu cầu thay đổi:** không có mới. Occluder hộp cho vỏ nhà ăn: HARU đã nhận làm sau khi merge. Các góc nhìn về phía tây
+trong sảnh và từ trong nhìn ra lối tây vẫn vẽ cả khuôn viên sau tường (4.300–5.000 lần vẽ, bản PS1 cũng vậy).
+
+**Full test, check:**
+- `pwsh tools/test.ps1` (22:15 15/11, sau commit `9efb2a2`): **`RESULT: 1037 passed, 0 failed`**.
+- `pwsh tools/check.ps1` **chưa có kết quả**: lần chạy ngay sau đó bị Claude Code dừng vì máy thiếu RAM (đang ở bước parse, mọi
+  dòng đã in đều PASS). Không phải check lỗi. Theo hướng dẫn, không tự chạy lại. Cần chạy lại khi máy rảnh RAM, rồi
+  `git checkout -- game/default_bus_layout.tres`.
+- Khoá Lượt Godot của lần chạy bị dừng đã xoá; `game/_probe_tmp/` đã xoá.
+- Test lọc: `-Filter t263` 12/0, `t262` 9/0, `t261` 12/0.
+
 ### Lượt 1 (15/11/2026): xong, DỪNG chờ chủ dự án chọn
 Card đọc ở `origin/main` `12b7415`. Nhánh `lane-b/T-263-realistic-graphics-wave6-canteen`. Cách chạy lại, bảng tam giác,
 vật liệu, số lần vẽ: `art_source/graphics_upgrade/realistic_map/wave6/README.md`.
