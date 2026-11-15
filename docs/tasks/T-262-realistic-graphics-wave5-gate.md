@@ -1,5 +1,5 @@
 # T-262 — Đồ hoạ thật đợt 5: cổng trường, chốt bảo vệ, đường tới cổng
-- Lane: B | Trạng thái: todo (giao 15/11/2026) | Agent: tài khoản Claude lane B, `D:\GAME_WORK\lane-b2`; model **Opus 5.5 xhigh** (khó thì max). Chủ dự án tự dán prompt (`lane-b.md` mục 1p).
+- Lane: B | Trạng thái: in progress, lượt 2 (giao 15/11/2026; chọn D-180) | Agent: tài khoản Claude lane B, `D:\GAME_WORK\lane-b2`; model **Opus 5.5 xhigh** (khó thì max). Chủ dự án tự dán prompt (`lane-b.md` mục 1p).
 - Nhánh: `lane-b/T-262-realistic-graphics-wave5-gate` từ `origin/main` mới nhất.
 - Quyết định nền: **D-166** (đồ hoạ thật dựng bằng Blender, không PS1, không Tripo trừ khi chủ dự án đổi; ánh sáng giữ như nay), **D-167/D-172/D-177** (phong cách đã duyệt: cũ vừa phải), **D-175** (sân block xám, viền quét vôi của vườn), **D-178** (sân vận động: bê tông trần, thép mạ kẽm, lưới B40, trụ trát vôi; dải nối có đường block con sâu), **D-176** (chủ dự án chỉ chơi thử một lượt khi xong toàn bộ đồ hoạ), **D-179** (không đo FPS, không chạy bot trong đợt). Kế hoạch: `art_source/graphics_upgrade/realistic_map/PLAN.md` đợt 5 (A14 + A16 đoạn cổng).
 - Làm như đợt 3–4 (T-259, T-261): **lượt 1 góc mẫu rồi dừng chờ chủ dự án chọn; lượt 2 làm cả khu.**
@@ -14,7 +14,21 @@
 - Hiệu năng: PLAN mục 6: A14 **≤ 0,25 ms** thêm; tách chốt khỏi cổng, đồ trong chốt khuất không cần vẽ; **không che đường nhìn tới hàng bảo vệ**.
 
 ## 1. Chủ dự án chốt
-(HARU điền sau lượt 1, khi chủ dự án chọn trên ảnh mẫu)
+**D-180 (15/11/2026):** chủ dự án xem ảnh lượt 1 (`previews/wave5/options_*.jpg`) và chọn cả tám câu theo đề xuất (phương án a có chữ):
+1. Cánh cổng: **G1** sắt hai cánh, song mũi giáo sơn xanh, tấm tôn dưới, cao 3 m.
+2. Trụ và biển: **P1** trụ trát quét vôi + **SA** biển tôn xanh treo dưới vòm giàn thép. Trụ tây vẫn nghiêng 7°, biển rơi nửa.
+3. Chữ: **"TRƯỜNG ĐẠI HỌC"**, phần tên trường bong chỉ còn vết keo (như ảnh mẫu).
+4. Chốt bảo vệ: **K1** xây trát quét vôi vàng, mái bê tông, cửa sổ có song; đồ bên trong như góc mẫu (lượt 2 gộp atlas).
+5. Tường rào: **W1** trát quét vôi 1,8 m + song sắt tới 3 m.
+6. Phạm vi tường: **cả `Fence/S` 500 m** (module lặp bằng MultiMesh hoặc lưới gộp, xa bỏ song rời thay bằng mặt phẳng).
+7. Sân cổng và khoảng đất sang nhà ăn: **C2** block con sâu xám như dải nối D-178.
+8. **Thay luôn 5 ô tô PS1 và đồ rơi** (ba lô, giày, dép, điện thoại) trong hộp bằng bản thật, đúng chỗ, đúng góc, đúng va chạm; mảnh xác, máu, vết nứt, vệt kéo giữ nguyên.
+
+**HARU (thay integrator) cho phép thêm** (trả lời các đề nghị trong Handoff lượt 1):
+- Hộp A16 **x 180…262, z −60…13** như lane B chốt (không lấn hộp nhà ăn).
+- Rút ngắn hình `Road/Avenue/Mesh` còn x 0…180 (không ẩn, để `test_t261_stadium` vẫn đạt); 40 m cuối lát block con sâu.
+- Cắt hình tường ở lỗ cổng và thêm dải vỉa hè, lòng đường ngoài cổng **chỉ để nhìn** (không va chạm, ở z ≤ −60,15); va chạm `Fence/S` giữ nguyên.
+- **Trả lại đầu của 3 xác tĩnh** bị T-259/T-261 ẩn nhầm (`P_paper_box_p1_p0` bản 0, `P_paper_box_p2_p2` bản 1, `P_paper_box_p2_p4` bản 1 trong `props.tscn`; bỏ tờ giấy mới nếu đặt đúng chỗ đó) và hạ ngưỡng tương ứng trong `test_t261_stadium.gd` (373 → 371), ghi lý do trong Handoff.
 
 ## 2. Việc, theo hai lượt
 
@@ -67,7 +81,7 @@
 - Test cũ đạt: `test_campus`, `test_chapter3`, `test_chapter4`, `test_ch3_*`, `test_stands_props`, `test_t259*`, `test_t261*`, `test_graphics_bindings`, `test_t260_occlusion`. Full `pwsh tools/test.ps1` và `pwsh tools/check.ps1` trước commit cuối.
 
 ## 8. Được phép sửa
-- `art_source/graphics_upgrade/realistic_map/wave5/`, `.../previews/wave5/`, `game/assets/models/graphics_pilot/realistic_map/wave5/`, `game/assets/textures/graphics_pilot/realistic_map/wave5/`, `game/assets/models/graphics_pilot/realistic_map/CREDITS.md` (thêm mục `wave5/`), `game/scenes/levels/campus/gate.tscn`, `campus.tscn` (chỉ hình `Fence/S` theo phạm vi chủ dự án chọn, phần hình A16 trong mục 3 và node lớp thật mới) và `props.tscn` (chỉ đồ rải trong hộp, trừ mảnh xác, máu, vệt kéo, thùng rác), script cảnh mới trong `game/scenes/levels/campus/`, test mới `game/tests/levels/`, card này (Checklist, Handoff).
+- `art_source/graphics_upgrade/realistic_map/wave5/`, `.../previews/wave5/`, `game/assets/models/graphics_pilot/realistic_map/wave5/`, `game/assets/textures/graphics_pilot/realistic_map/wave5/`, `game/assets/models/graphics_pilot/realistic_map/CREDITS.md` (thêm mục `wave5/`), `game/scenes/levels/campus/gate.tscn`, `campus.tscn` (hình cả `Fence/S` theo D-180, hình `Road/Avenue` rút còn x 0…180, phần hình A16 trong mục 3 và node lớp thật mới) và `props.tscn` (chỉ đồ rải trong hộp, gồm ô tô và đồ rơi theo D-180, trừ mảnh xác, máu, vệt kéo, thùng rác; và trả lại đầu 3 xác ở mục 1), `game/tests/levels/test_t261_stadium.gd` (chỉ ngưỡng số bản thu về 0, mục 1), script cảnh mới trong `game/scenes/levels/campus/`, test mới `game/tests/levels/`, card này (Checklist, Handoff).
 - Cảnh tạm `game/_probe_tmp/`: không commit, xoá khi xong.
 
 ## 9. Không được
