@@ -292,7 +292,7 @@ trước mặt hộp; lượt 2 tách lưới theo phòng nên vẫn cần thu h
 
 **Kiểm:**
 - `-Filter t264`: 6 passed, 0 failed.
-- **Full `pwsh tools/test.ps1` chưa có kết quả.** Lần chạy lúc 13:20 16/11 (sau commit `a9ffcdd`) bị Claude Code dừng vì máy thiếu
-  RAM, không phải test lỗi. Theo hướng dẫn, tôi không tự chạy lại.
+- Full `pwsh tools/test.ps1` (chạy lại khi máy đủ RAM, xong 14:45 16/11, cùng nội dung `a9ffcdd`): **`RESULT: 1044 passed, 0 failed`**.
+  Lần chạy đầu lúc 13:20 bị Claude Code dừng vì thiếu RAM.
 - `pwsh tools/check.ps1` chưa chạy. Lượt 1 không sửa cảnh nào, chỉ thêm asset, script và một test.
 - Khoá Lượt Godot của lần bị dừng đã xoá; `game/_probe_tmp/` đã xoá.
