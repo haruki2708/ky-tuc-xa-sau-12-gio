@@ -290,4 +290,9 @@ trước mặt hộp; lượt 2 tách lưới theo phòng nên vẫn cần thu h
 **Yêu cầu thay đổi (integrator):** sau khi chủ dự án chọn, thu khối che theo bảng độ sâu (nếu chọn b và A2: chỉ hộp tầng
 5–6 nhà B, 3,7 m).
 
-**Kiểm:** `-Filter t264` 6/0. Full test và check: xem dòng cuối Handoff này.
+**Kiểm:**
+- `-Filter t264`: 6 passed, 0 failed.
+- **Full `pwsh tools/test.ps1` chưa có kết quả.** Lần chạy lúc 13:20 16/11 (sau commit `a9ffcdd`) bị Claude Code dừng vì máy thiếu
+  RAM, không phải test lỗi. Theo hướng dẫn, tôi không tự chạy lại.
+- `pwsh tools/check.ps1` chưa chạy. Lượt 1 không sửa cảnh nào, chỉ thêm asset, script và một test.
+- Khoá Lượt Godot của lần bị dừng đã xoá; `game/_probe_tmp/` đã xoá.
