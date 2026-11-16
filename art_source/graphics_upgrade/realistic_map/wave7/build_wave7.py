@@ -17,7 +17,7 @@ occluders fill each shell from 0.5 m in); under head height nothing stands more 
   gym.glb             the gym: tall windows between pilasters (fake hall), steel doors under a canopy at x -30, the
                       corrugated vault with arched gables
   b_outside.glb       building B: floors 5-6 front as blocked corridors behind railings (z 0.45..4), the back of floors
-                      1-3 and 5-6 with flush windows (fake rooms), the main roof (floor 4 and the stair towers keep theirs)
+                      1-3 and 5-6 with flush windows (fake rooms), the stair towers' outer skin and roofs, the main roof (floor 4 keeps its own back)
   bldga_light.glb     chapters 1-2's light building A (D-182 item 9): the A2 shell with dark glass, no fake rooms, no
                       grilles, no figures (garden_backdrop.tscn)
 Run: blender -b --factory-startup -P art_source/graphics_upgrade/realistic_map/wave7/build_wave7.py [-- name ...]
@@ -306,11 +306,28 @@ def build_b_outside():
 			f = extras.pipe("W7Palette", [(x, yb, zb - 0.06), (x, ya, zb - 0.06)], 0.045, sides=8)
 			pal(extras, f, "pvc_grey", rnd)
 	# Floors 5-6 ends; the block's ends behind the towers (z -7.7..-6.4) on floors 1-3; the main roof. The stair towers
-	# keep their own walls (waves 1 and 4).
+	# get a skin below (their PS1 boxes stay: their inside faces are the stairwells' walls).
 	for xe, n in ((x0 - 0.004, (-1, 0, 0)), (x1 + 0.004, (1, 0, 0))):
 		wall_face(walls, "W7WallPale", "z", xe, b["back_z"], zr, G + 4 * FH, G + 6 * FH, [], n, 3, b["back_z"])
 		wall_face(walls, "W7WallPale", "z", xe, b["back_z"], -6.4, G - 0.05, G + 3 * FH, [], n, 3, b["back_z"])
 	walls.face("W1Concrete", [(x0, G + 6 * FH, b["back_z"]), (x1, G + 6 * FH, b["back_z"]), (x1, G + 6 * FH, zr), (x0, G + 6 * FH, zr)], (0, 1, 0))
+	# Stair towers (PS1 boxes x -5.16..0.1 and 43.84..49.16, z -6.4..4.175, wall.png outside; W1Stairs inside up to 6.6):
+	# a skin 4 mm out on the three outer faces, small dark vents on the front, a roof slab and parapet over 6.6. No hole: the
+	# towers have no window, inside or out.
+	for (ta, tb), outer in (((-5.16, 0.1), -1), ((43.84, 49.16), 1)):
+		xo = (ta if outer < 0 else tb) + outer * 0.004
+		wall_face(walls, "W7WallPale", "z", xo, -6.4, 4.175, G - 0.05, 6.6, [], (outer, 0, 0), 3, -6.4)
+		wall_face(walls, "W7WallPale", "x", -6.404, ta, tb, G - 0.05, 6.6, [], (0, 0, -1), 3, ta)
+		wall_face(walls, "W7WallPale", "x", 4.179, ta, tb, G - 0.05, 6.6, [], (0, 0, 1), 3, ta)
+		for k in range(5):
+			y = G + 1.8 + FH * k
+			quad_x(glass, "W7GlassDark", (ta + tb) / 2 - 0.4, (ta + tb) / 2 + 0.4, y, y + 0.9, 4.183, 1)
+		walls.face("W1Concrete", [(ta, 6.62, -6.4), (tb, 6.62, -6.4), (tb, 6.62, 4.175), (ta, 6.62, 4.175)], (0, 1, 0))
+		pa, pb = (ta - 0.05, 0.0) if outer < 0 else (44.0, tb + 0.05)   # the inner end stops at the block's face
+		trim.gbox("W7Trim", (pa, 6.6, -6.45), (pb, 7.1, -6.4))
+		trim.gbox("W7Trim", (pa, 6.6, 4.175), (pb, 7.1, 4.23))
+		xp = ta - 0.05 if outer < 0 else tb - 0.0
+		trim.gbox("W7Trim", (xp, 6.6, -6.4), (xp + 0.05, 7.1, 4.175))
 	_export("b_outside.glb", parts)
 
 

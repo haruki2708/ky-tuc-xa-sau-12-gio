@@ -123,9 +123,9 @@ def round2():
 		"Bóng người thứ ba dời từ x 31 (trúng trụ) vào ô cửa x 31,5…33,5 (D-182 mục 8). Không thêm đèn.")
 	sheet("r2_lecture_gym.jpg", "T-264 lượt 2 · Giảng đường (R1, lam bê tông) và nhà thể chất (R2, mái tôn vòm)",
 		pair(["lecture", "lecture_corner", "gym_corner", "gym_door"]))
-	sheet("r2_building_b.jpg", "T-264 lượt 2 · Mặt ngoài nhà B (tầng 5–6 hành lang bị chặn, mặt sau tầng 1–3 và 5–6)",
+	sheet("r2_building_b.jpg", "T-264 lượt 2 · Mặt ngoài nhà B (tầng 5–6 hành lang bị chặn, mặt sau tầng 1–3 và 5–6, vỏ hai tháp cầu thang)",
 		pair(["b_upper", "b_upper_eye", "b_back", "b_back_wide"]),
-		"Tầng 4 phía sau (ban công T-255) và hai tháp cầu thang giữ như cũ; cửa sổ phòng quản lý (lối thoát) để trống.")
+		"Hai tháp cầu thang có vỏ mới (lớp ngoài 4 mm, ô thoáng, mái). Tầng 4 phía sau (ban công T-255) giữ như cũ; cửa sổ phòng quản lý (lối thoát) để trống.")
 	sheet("r2_torch_occlusion.jpg", "T-264 lượt 2 · Đèn pin và khối che bật / tắt", [
 		("Đèn pin", [("after_a_foot_torch", "a_foot_torch"), ("after_a_window_torch", "a_window_torch"), ("after_gym_door_torch", "gym_door_torch"),
 			("after_a_corridor4_torch", "a_corridor4_torch")]),

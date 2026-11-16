@@ -13,7 +13,7 @@ chủ dự án không chọn (D-182): `bldga_wall`, `bldga_gallery`, `gym_r1`, `
 | `bldga_light.glb` | Nhà A bản nhẹ cho chương 1–2 (vỏ A2, kính tối; không phòng giả, song sắt, bóng người) |
 | `lecture.glb` | Giảng đường R1: lớp học giả sau cửa, lam bê tông đứng, ô văng, cửa chính x −10, mái bằng sau tường chắn mái |
 | `gym.glb` | Nhà thể chất R2: cửa sổ cao giữa các trụ (sân giả phía sau), cửa thép xanh có mái, mái tôn vòm |
-| `b_outside.glb` | Nhà B: hành lang tầng 5–6 bị chặn sau lan can (cửa, phòng giả, gạch vụn), mặt sau tầng 1–3 và 5–6 có cửa sổ phẳng (phòng giả), máy lạnh, ống nước, mái |
+| `b_outside.glb` | Nhà B: hành lang tầng 5–6 bị chặn sau lan can (cửa, phòng giả, gạch vụn), mặt sau tầng 1–3 và 5–6 có cửa sổ phẳng (phòng giả), máy lạnh, ống nước, mái; vỏ ngoài và mái hai tháp cầu thang |
 | `road_asphalt.glb` | Đại lộ đoạn mẫu: nhựa cũ có vá, vạch mờ; vỉa quét vôi |
 | `verge_grass.glb` | Lề: cỏ úa và đất |
 | `tree_bang.glb`, `tree_phuong.glb`, `tree_xacu.glb` | Cây ven đường: bàng, phượng vĩ, xà cừ (thân, thẻ lá) |
