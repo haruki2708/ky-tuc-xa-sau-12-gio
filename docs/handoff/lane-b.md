@@ -316,6 +316,28 @@ Cuối phiên báo ngắn bằng tiếng Việt: xong gì (kể cả 6 đầu x�
 Tiếp tục T-263 lượt 2: chủ dự án đã chọn (card mục 1). Ở D:\GAME_WORK\lane-b2 trên nhánh lane-b/T-263-realistic-graphics-wave6-canteen: git status, git fetch origin, git rebase origin/main (lấy card mục 1), git lfs pull. Làm cả nhà ăn, bếp, kho, tường tây lối tây, dải A16 quanh nhà ăn, ảnh trước/sau (chương 3 và lối tây chương 4), test, rồi full pwsh tools/test.ps1, pwsh tools/check.ps1, git checkout -- game/default_bus_layout.tres. Commit, push nhánh, cập nhật Handoff, báo ngắn như lượt 1 kèm dòng RESULT test và check.
 ```
 
+## 1r. Giao T-264 (16/11/2026): đồ hoạ thật đợt 7 — nhà nền (nhà A, giảng đường, nhà thể chất), mặt ngoài nhà B, mặt đất, đường, cây, đèn đường, hàng rào còn lại
+Gõ `/clear` (hoặc mở phiên mới), `/model` chọn **Opus 5.5**, effort **xhigh** (khó thì **max**), rồi dán:
+```text
+Việc mới cho lane B: T-264 — đồ hoạ thật đợt 7: nhà nền (nhà A đối diện nhà B, giảng đường, nhà thể chất) có nội thất nhìn qua cửa, mặt ngoài nhà B, và phần mặt đất, đường, cây, đèn đường, hàng rào còn lại của khuôn viên (chương 3–4). Đọc docs/tasks/T-264-realistic-graphics-wave7-shells-ground.md.
+Ở D:\GAME_WORK\lane-b2: git status (giữ thay đổi đang có, báo nếu có), git fetch origin, git switch -c lane-b/T-264-realistic-graphics-wave7-shells-ground origin/main, git lfs pull.
+Đầu phiên ghi commit của card đã đọc (git log -1 --format=%h origin/main -- docs/tasks/T-264-realistic-graphics-wave7-shells-ground.md).
+Card chia BA lượt. Phiên này CHỈ làm lượt 1 (card mục 2): khảo sát, bảng hợp đồng, đi thử tuyến, chốt hộp A16 còn lại, phân loại đồ rải (đếm đầu xác trước khi đụng), góc mẫu nhà A, một nhà nền nữa, mặt ngoài nhà B, một đoạn đường có cây, đèn, hàng rào, kèm các phương án ở bước 3 với ảnh trong chương 3 thật. Chụp góc mẫu cả khi bật và tắt occlusion culling, ghi độ sâu nội thất cần ở từng mặt nhà (khối che của core đang đặc bằng cả khối nhà, card mục 5). Xong thì commit, push nhánh, ghi Handoff, báo và DỪNG để chủ dự án chọn. Không làm lượt 2, 3.
+D-166: dựng bằng Blender, không Tripo, giữ ánh sáng (không thêm đèn), không mở lối vào nhà nền. Giữ nguyên va chạm, anchor, vùng, navmesh, ba bóng người cửa sổ nhà A. Thư viện, 6 m quanh thư viện, LibraryBand và lỗ cửa lối tây nhà ăn là đợt 8: không đụng. Mọi texture mới từ 512 px trở lên phải nén VRAM trong .import (compress/mode=2; normal thêm compress/normal_map=1).
+Không đổi director, luật, game/scenes/main (kể cả khối che), project.godot, lane A, âm thanh. Không Tripo, không extension Blender, không ảnh AI, không bot, không đo FPS (D-179).
+Godot theo luật Lượt Godot (file khóa D:\GAME_WORK\GODOT_DANG_CHAY.txt); máy ít RAM: đóng Blender và Godot khi không dùng; lượt nào bị dừng vì thiếu RAM thì ghi rõ, không tự chạy lại.
+Commit nhỏ "T-264: ...", push nhánh. Không push main, không mở PR. Cập nhật Checklist và Handoff trong card. Không sửa STATUS hay DECISIONS.
+Cuối phiên báo ngắn bằng tiếng Việt: xong gì, nhánh, commit, ảnh phương án ở đâu, phương án đề xuất, độ sâu nội thất, câu hỏi cho chủ dự án, dòng RESULT test, có bị chặn không.
+```
+**Lượt 2** (sau khi chủ dự án chọn, integrator đã ghi card mục 1 và đã thu khối che): dán
+```text
+Tiếp tục T-264 lượt 2: chủ dự án đã chọn (card mục 1). Ở D:\GAME_WORK\lane-b2 trên nhánh lane-b/T-264-realistic-graphics-wave7-shells-ground: git status, git fetch origin, git rebase origin/main (lấy card mục 1 và khối che đã sửa), git lfs pull. Làm lượt 2 (card mục 2, bước 5–7): nhà A, giảng đường, nhà thể chất, mặt ngoài nhà B, nội thất nhìn qua cửa, ba bóng người cửa sổ, bản nhẹ nhà A cho chương 1–2 nếu mục 1 có chọn; ảnh trước/sau, test, rồi full pwsh tools/test.ps1, pwsh tools/check.ps1, git checkout -- game/default_bus_layout.tres. Commit, push nhánh, cập nhật Handoff, báo ngắn kèm dòng RESULT test và check, rồi DỪNG chờ integrator merge. Không làm lượt 3.
+```
+**Lượt 3** (sau khi integrator merge lượt 2): dán
+```text
+Tiếp tục T-264 lượt 3. Ở D:\GAME_WORK\lane-b2: git status, git fetch origin, git switch lane-b/T-264-realistic-graphics-wave7-shells-ground, git rebase origin/main (main đã có lượt 2), git lfs pull. Làm lượt 3 (card mục 2, bước 8–9): mặt đất, đường, vỉa, cây, đèn đường, ghế, xe máy đổ, hàng rào bắc/đông/tây, đồ rải trong hộp A16 đã chốt, khớp mép với các dải đã làm; mảnh xác, máu, vệt kéo không đụng, chỉ thu từng bản MultiMesh về 0. Ảnh trước/sau (cả toàn cảnh từ hành lang tầng 4 nhà B và từ khán đài), overview.jpg, số lần vẽ trước/sau ở ba góc toàn cảnh, test, rồi full pwsh tools/test.ps1, pwsh tools/check.ps1, git checkout -- game/default_bus_layout.tres. Commit, push nhánh, cập nhật Handoff, README, CREDITS, báo ngắn kèm dòng RESULT test và check.
+```
+
 ## 2. Prompt giao việc (integrator điền T-xxx)
 ```text
 Việc mới cho lane B: <T-xxx> — đọc docs/tasks/<file card>.md.

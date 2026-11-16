@@ -88,6 +88,10 @@ Trả lời và viết tài liệu bằng tiếng Việt; code, comment, commit 
 - **Nguồn đúng khi lệch nhau:** mục 3 file này mới nhất; rồi `docs/STATUS.md`; `docs/ROADMAP.md` chỉ cập nhật khi qua mốc.
 
 ## 3. Tiến độ integrator để lại (integrator cập nhật sau mỗi bước)
+**16/11/2026 — INTEGRATOR (Fable 5.2, tài khoản `tunank1103`) ĐÃ NHẬN LẠI ĐIỀU PHỐI.** Chủ dự án đồng ý thứ tự: (1) card đợt 7, (2) khối che vỏ nhà ăn, (3) build một lần có cả T-263 và khối che, (4) bot T-238 sau đợt 7, (5) đợt 8, 9, (6) lượt chơi thử cuối kèm đo FPS.
+- **Xong:** card [T-264](../tasks/T-264-realistic-graphics-wave7-shells-ground.md) đợt 7, prompt `lane-b.md` mục 1r (ba lượt). Chờ chủ dự án dán lượt 1 cho lane B.
+- **Việc của integrator sau lượt 1 của T-264:** chuyển phương án cho chủ dự án (AskUserQuestion, có đề xuất), ghi D-182 và card mục 1, rồi **thu ba hộp che `Shells_BuildingA_Shell`, `Shells_Gym_Shell`, `Shells_Lecture_Shell` vào trong** theo độ sâu nội thất lane B ghi (`art_source/graphics_upgrade/occlusion/make_occluders.py`, `game/scenes/main/occlusion/occluders_campus.tscn`, `test_t260_occlusion`), trước khi lane B làm lượt 2.
+- **Đang làm:** khối che vỏ nhà ăn (xem dòng tiến độ ngay dưới khi có).
 **16/11/2026 ~01:00 — HARU DỪNG, TRẢ ĐIỀU PHỐI CHO INTEGRATOR (chủ dự án chọn).** Integrator đọc khối này trước:
 - **Trạng thái:** main `40f640d` sạch (chỉ `anh_chup_sua_loi/` không commit), đã đẩy. HARU không giữ khoá Godot, không có Godot nào chạy, không có lượt chạy nền, không có nhánh dở. `game/_probe_tmp/` không có.
 - **HARU đã làm từ 14/11** (chi tiết ở "Tiến độ HARU" bên dưới và mục Review từng card): merge T-258, T-260 (D-174), T-259 vườn (D-175), T-261 sân vận động (D-178), T-262 cổng (D-180), T-263 nhà ăn (D-181, merge `4031339`). Quyết định thêm: D-176 (chủ dự án chỉ chơi thử một lượt khi xong toàn bộ đồ hoạ), D-177, D-179 (không đo FPS, không chạy bot trong các đợt; bot T-238 sau đợt 7).
