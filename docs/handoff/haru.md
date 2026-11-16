@@ -214,4 +214,4 @@ Bàn giao lúc 13/11 23:25: integrator sắp hết hạn mức, giao T-257 (nén
 - Lane hết hạn mức hay bị dừng giữa chừng: lưu (commit, push) phần đã làm lên nhánh của lane, gỡ khoá Godot nó bỏ lại (khi không còn tiến trình Godot nào).
 - Script chạy test, khoá, đóng gói của integrator: `build/integrator/run_tests_locked.ps1`, `run_locked.ps1`, `package_locked.ps1` (thư mục `build/` không commit).
 
-**Số tiếp theo:** D-182, T-264.
+**Số tiếp theo:** D-183, T-265.
