@@ -148,12 +148,82 @@
 ## Checklist
 - [x] Lượt 1: khảo sát, bảng hợp đồng, đi thử, hộp A16 còn lại, phân loại đồ rải (Handoff)
 - [x] Lượt 1: góc mẫu và phương án, ảnh bật/tắt khối che, độ sâu nội thất; dừng chờ chủ dự án chọn
-- [ ] Lượt 2: nhà A, giảng đường, nhà thể chất, mặt ngoài nhà B, nội thất nhìn qua cửa, bóng người cửa sổ
+- [x] Lượt 2: nhà A, giảng đường, nhà thể chất, mặt ngoài nhà B, nội thất nhìn qua cửa, bóng người cửa sổ
 - [ ] Lượt 2: test, full test, check, Handoff; dừng chờ merge
 - [ ] Lượt 3: mặt đất, đường, cây, đèn đường, ghế, xe máy, hàng rào bắc/đông/tây, đồ rải
 - [ ] Lượt 3: ảnh trước/sau, `overview.jpg`, test, full test, check, README, CREDITS, Handoff
 
 ## Handoff
+### Lượt 2 (16/11/2026): xong, DỪNG chờ integrator merge
+Nhánh rebase lên `origin/main` `0d7a25e` (có D-182, card mục 1, khối che tầng 5–6 nhà B đã thu về z 0). Cách chạy lại, số tam
+giác, số lần vẽ: `art_source/graphics_upgrade/realistic_map/wave7/README.md` mục "Lượt 2". Commit: `2491e65`, `024f693`,
+`e23d1ca`, `67938d0`, cùng commit Handoff này.
+
+**Đã làm (theo D-182):**
+- **Nhà A (A2, vàng):** cả mặt trước 8 gian × 6 tầng, phòng giả (shader) sau mọi ô cửa, song sắt tầng 2–6, máy lạnh, quần áo
+  phơi, cửa chính kính có sảnh giả và mái đua từ 3 m; hông, mặt sau (cửa sổ nhỏ kính tối), mái.
+- **Ba bóng người:** `figure.glb` (bóng đen trước rèm sáng, sau kính) treo dưới từng `WindowSilhouette0…2`; ô cửa của ba bóng
+  không có phòng giả. **`WindowSilhouette2` dời x 31 → 32** (trong ô 31,5…33,5), y, z giữ; hai bóng kia giữ nguyên.
+- **Giảng đường (R1):** 16 gian × 5 tầng lớp học giả, lam bê tông đứng và ô văng từ 2,4 m, cửa chính x −10, mái bằng có tường
+  chắn mái.
+- **Nhà thể chất (R2):** cửa sổ cao giữa các trụ (sân giả phía sau), cửa thép xanh có mái, mái tôn vòm có đầu hồi cong; trụ dưới
+  2 m chỉ nhô 0,12 m.
+- **Nhà B mặt ngoài:** tầng 5–6 thành hành lang bị chặn (lan can, cửa phòng, phòng giả, gạch vụn) trong z 0,45…4; mặt sau
+  tầng 1–3 và 5–6 cửa sổ phẳng có phòng giả, song sắt, máy lạnh (không ở tầng trệt), ống nước; hai đầu hồi; vỏ ngoài và mái hai
+  tháp cầu thang; mái chính.
+  - **Mặt sau tầng 4 không phủ:** đó là mặt nhà, ban công của `floor4_rooms.gd` (T-255), có cả ở chương 3–4.
+  - **Cửa sổ phòng quản lý** (x 2…5,3, lối `WindowExit`) để trống.
+  - Vỏ tháp là lớp 4 mm ngoài hộp PS1 (mặt trong hộp là tường cầu thang nên hộp giữ, không ẩn).
+- **Chương 1–2:** `bldga_light.glb` (vỏ A2, kính tối, không phòng giả, song sắt, bóng người) trong
+  `floor4/garden_backdrop.tscn`; không va chạm, không đèn, không bóng đổ (script sẵn có của T-259).
+- **Cảnh:** `patch_wave7.py` sửa `shells.tscn` (ẩn 164 lưới PS1 trừ `LibraryBand*`; thêm `Real`, ba `Figure`),
+  `building_b.tscn` (ẩn 24 lưới `UpperFloor5/6`, `UpperWindow*`; thêm `Real/Outside`), `garden_backdrop.tscn`. Không xoá node,
+  không đổi va chạm. `shells_real.gd` (mới, `game/scenes/levels/campus/`): kính, phòng giả, song sắt, khung, đồ nhỏ, bóng người
+  không đổ bóng; song sắt, đồ nhỏ thôi vẽ ngoài 90 m. Bỏ asset phương án không chọn (`bldga_wall`, `bldga_gallery`, `gym_r1`,
+  `gym_r2`, `road_slab`, `verge_pavers`, `lamp_concrete`, `fence_w1`, `W7WallGrey`, `W7RoadSlab`).
+- Không đụng: thư viện, `LibraryBand*`, lỗ cửa lối tây nhà ăn, director, luật, `game/scenes/main` (kể cả khối che), lane A, âm
+  thanh. Không Tripo, không ảnh AI, không bot, không đo FPS, không thêm đèn.
+
+**Ảnh** (`previews/wave7/`): tờ `r2_building_a.jpg`, `r2_lecture_gym.jpg`, `r2_building_b.jpg`, `r2_torch_occlusion.jpg`,
+`r2_wide_chapter1.jpg`; ảnh lẻ `r2_before_*` / `r2_after_*` cùng camera, chương 3 thật ban đêm (chương 1 cho bản nhẹ).
+- Ảnh từ hành lang tầng 4 đặt ở x 37 (không bị đồ phơi che). **Ảnh đèn pin từ đó không thấy khác:** đèn pin của người chơi
+  (`phone_item.tscn`) tầm 12 m, nhà A cách 50 m. Ảnh đèn pin rọi phòng giả chụp ở chân nhà A, ô cửa bóng người, cửa nhà thể
+  chất, mặt sau nhà B.
+- **Khối che:** bật/tắt ở nhà A, giảng đường, nhà thể chất, tầng 5–6 nhà B cho ảnh như nhau, không vật nào bị ẩn sai. Không
+  có yêu cầu đổi khối che.
+
+**Số lần vẽ** (cùng một lần chạy, khối che bật; main → lượt 2): hành lang tầng 4 1.698 → 1.730, giữa vườn 333 → 316, khán đài
+4.473 → 4.522; quanh nhà A, giảng đường, nhà thể chất đều giảm (ví dụ giảng đường 98 → 37); quanh nhà B tăng 30–100 (vd. tầng
+5–6 từ vườn 3.582 → 3.666). Giữa hai lần chạy số đo lệch vài trăm ở các góc gần nhà B, nên chỉ so trong cùng một lần. Bộ nhớ
+hình chương 3: 1.313 → 1.318 MB. Số khán đài phải về không tăng sau lượt 3 (lượt 3 thay cây, đèn PS1).
+
+**Kiểm:**
+- `test_t264_buildings.gd` (mới, 7 test): dấu vân tay node, va chạm, meta của `shells.tscn` và `building_b.tscn` trùng main
+  (md5 lấy trên cảnh chưa vá; ngoại lệ duy nhất là x của `WindowSilhouette2`, đã ghi trong test), va chạm và hợp đồng
+  (anchor, vùng, navigation) của campus trùng main; PS1 ẩn, `LibraryBand*` còn hiện; bóng đổ đúng lớp; mặt tiền trong 0,45 m;
+  dưới 2 m không gì nhô quá 0,15 m khỏi va chạm; nhà B không có gì trong khối đã che (z < 0); ba bóng người trong ô cửa của
+  mình; nhà A bản nhẹ không phòng giả, va chạm, đèn, bóng đổ; thân người chơi đi vòng sát chân ba nhà nền; vật liệu dùng chung,
+  tổng tam giác dưới 75.000.
+- `test_t264_pilot.gd`: còn các glb mặt đất, cây, đèn, ghế, xe máy, B40 (lượt 3 thay).
+- `pwsh tools/test.ps1 -Filter t264`: `RESULT: 11 passed, 0 failed`.
+- Full `pwsh tools/test.ps1` (bắt đầu 16:28): **bị Claude Code dừng vì máy thiếu RAM, chưa có dòng RESULT; không tự chạy lại.**
+  Một lần trước (sau commit `e23d1ca`, trước khi thêm vỏ tháp) tôi tự dừng giữa chừng để sửa. Khoá Lượt Godot đã gỡ,
+  `game/default_bus_layout.tres` đã trả.
+- `pwsh tools/check.ps1`: **chưa chạy** (chờ full test).
+- Test liên quan đã chạy trên bản cuối: `-Filter t264` 11/0. Chưa chạy riêng `test_t253*`, `test_t259*`, `test_t260_occlusion`,
+  `test_campus`, `test_chapter3/4` trên bản này; dấu vân tay campus của chúng trùng main (test t264 kiểm cùng md5).
+- **Cần chạy lại khi máy đủ RAM** (đóng bớt ứng dụng): full `pwsh tools/test.ps1`, rồi `pwsh tools/check.ps1`, rồi
+  `git checkout -- game/default_bus_layout.tres`.
+
+**Chưa kiểm / lưu ý:**
+- Chưa chạy chương 4 trong ảnh; chưa có ai đi thử bằng tay.
+- Máy lạnh trắng sáng hơn tường ở vài góc. Tầng 4 mặt sau (ban công T-255) nay nằm giữa hai tầng vàng mới, màu khác hẳn; nếu
+  chủ dự án muốn đồng bộ thì cần một việc riêng sửa `floor4_rooms.gd`.
+- Sườn trái ảnh "mặt sau nhà B, xa" vẫn là dốc PS1 của `WindowApproach` (va chạm thuộc hợp đồng; mặt đất là lượt 3).
+- Hai file log T-263 chưa commit vẫn nằm trong cây làm việc (`wave6/survey/capture_pilot.txt`, `walk_canteen.txt`), cố ý không
+  commit.
+
+**Yêu cầu thay đổi ngoài phạm vi:** không.
 ### Lượt 1 (16/11/2026): xong, DỪNG chờ chủ dự án chọn
 Card đọc ở `origin/main` `3cef4c9`; nhánh tạo từ `14a8bcf`. Cách chạy lại, số tam giác, số lần vẽ:
 `art_source/graphics_upgrade/realistic_map/wave7/README.md`. Chưa scene nào đổi (góc mẫu gắn lúc chạy khi chụp).
