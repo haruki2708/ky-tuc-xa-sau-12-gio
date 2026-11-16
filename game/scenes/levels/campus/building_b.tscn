@@ -58,6 +58,7 @@
 [ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave2/main_door_chain.glb" id="w2_main_chain"]
 [ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave2/extinguisher.glb" id="w2_ext"]
 [ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave2/extinguisher_bracket.glb" id="w2_ext_bracket"]
+[ext_resource type="Script" path="res://scenes/levels/campus/shells_real.gd" id="t264_real"]
 [ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave7/b_outside.glb" id="t264_b_outside"]
 
 
@@ -12874,6 +12875,7 @@ position = Vector3(48.86, -5.8, 2.4)
 [editable path="KitDetail3/Frame7"]
 
 [node name="Real" type="Node3D" parent="."]
+script = ExtResource("t264_real")
 
 [node name="Outside" parent="Real" instance=ExtResource("t264_b_outside")]
 position = Vector3(0, -9.9, 0)

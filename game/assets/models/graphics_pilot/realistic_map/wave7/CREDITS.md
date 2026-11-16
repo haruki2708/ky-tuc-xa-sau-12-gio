@@ -1,20 +1,25 @@
 # Nguồn asset — `realistic_map/wave7/` (T-264, nhà nền, mặt ngoài nhà B, mặt đất và cây; lượt 1 góc mẫu; D-166)
 
-Mọi file dưới đây do `art_source/graphics_upgrade/realistic_map/wave7/build_wave7_pilot.py` dựng (Blender 5.2.2, chỉ bmesh;
-cây dùng bộ dựng thân và thẻ lá của đợt 3). Tác giả: dự án (Claude, lane B; T-264). Giấy phép: như dự án. Lượt 1 chưa scene
-nào dùng; lượt 2, 3 bỏ các phương án không chọn.
+Mọi file dưới đây do `art_source/graphics_upgrade/realistic_map/wave7/build_wave7.py` (các nhà, lượt 2) và
+`build_wave7_pilot.py` (mặt đất, cây, đèn, ghế, xe máy, hàng rào; lượt 3 dựng lại) dựng (Blender 5.2.2, chỉ bmesh; cây dùng
+bộ dựng thân và thẻ lá của đợt 3). Tác giả: dự án (Claude, lane B; T-264). Giấy phép: như dự án. Lượt 2 bỏ các phương án
+chủ dự án không chọn (D-182): `bldga_wall`, `bldga_gallery`, `gym_r1`, `gym_r2`, `road_slab`, `verge_pavers`, `lamp_concrete`,
+`fence_w1`, `W7WallGrey`, `W7RoadSlab`.
 
 | File | Là gì |
 |---|---|
-| `bldga_wall.glb` / `bldga_gallery.glb` | Nhà A kiểu A2 (tường có cửa sổ từng phòng) / A1 (hành lang hở có lan can); cửa chính có mái sảnh, dải tầng, trụ, bậu, song sắt, máy lạnh, quần áo phơi; các lớp lấp ô cửa theo phương án nội thất; hình người sau ô cửa tầng 3 (`WindowSilhouette1`) |
-| `gym_r1.glb` / `gym_r2.glb` | Nhà thể chất: mái bằng, lam bê tông / mái tôn vòm; cửa sổ cao giữa các trụ, cửa chính có mái |
-| `b_outside.glb` | Nhà B: hành lang tầng 5–6 bị chặn sau lan can, mặt sau tầng 1–3 có cửa sổ, máy lạnh, ống nước |
-| `road_asphalt.glb` / `road_slab.glb` | Đại lộ đoạn mẫu: nhựa cũ có vá, vạch mờ / bê tông tấm; vỉa quét vôi |
-| `verge_grass.glb` / `verge_pavers.glb` | Lề: cỏ úa và đất / lát block |
+| `bldga.glb` | Nhà A kiểu A2 (lượt 2): cả mặt trước 8 gian x 6 tầng, phòng giả sau mọi ô cửa, cửa chính có mái sảnh, dải tầng, trụ, bậu, song sắt, máy lạnh, quần áo phơi; hông, mặt sau, mái |
+| `figure.glb` | Bóng người sau ô cửa có rèm sáng phía sau; một bản dưới mỗi `WindowSilhouette0…2` |
+| `bldga_light.glb` | Nhà A bản nhẹ cho chương 1–2 (vỏ A2, kính tối; không phòng giả, song sắt, bóng người) |
+| `lecture.glb` | Giảng đường R1: lớp học giả sau cửa, lam bê tông đứng, ô văng, cửa chính x −10, mái bằng sau tường chắn mái |
+| `gym.glb` | Nhà thể chất R2: cửa sổ cao giữa các trụ (sân giả phía sau), cửa thép xanh có mái, mái tôn vòm |
+| `b_outside.glb` | Nhà B: hành lang tầng 5–6 bị chặn sau lan can (cửa, phòng giả, gạch vụn), mặt sau tầng 1–3 và 5–6 có cửa sổ phẳng (phòng giả), máy lạnh, ống nước, mái |
+| `road_asphalt.glb` | Đại lộ đoạn mẫu: nhựa cũ có vá, vạch mờ; vỉa quét vôi |
+| `verge_grass.glb` | Lề: cỏ úa và đất |
 | `tree_bang.glb`, `tree_phuong.glb`, `tree_xacu.glb` | Cây ven đường: bàng, phượng vĩ, xà cừ (thân, thẻ lá) |
-| `lamp_steel.glb` / `lamp_concrete.glb` | Đèn đường: cột thép mạ kẽm cần vươn / cột bê tông ly tâm |
+| `lamp_steel.glb` | Đèn đường: cột thép mạ kẽm cần vươn |
 | `bench.glb`, `moped.glb` | Ghế bê tông mặt đá mài; xe máy đổ |
-| `fence_w1.glb` / `fence_b40.glb` | Hàng rào tây: W1 như tường rào nam / lưới B40 trên cột ống |
+| `fence_b40.glb` | Hàng rào tây: lưới B40 trên cột ống |
 | `materials/*.tres`, `materials/interior.gdshader` | Vật liệu W7* (`make_wave7_materials.py`); shader phòng giả sau ô cửa (interior mapping, tự viết) |
 
 **Không dùng Tripo, không extension Blender, không tạo ảnh bằng AI.** AI (Claude) viết script dựng hình, shader và vẽ texture

@@ -114,6 +114,16 @@ func test_ps1_hidden_and_the_real_layers_hung() -> void:
 		if String(child.name).begins_with("UpperWindow"):
 			assert_false((child.get_node("Mesh") as Node3D).visible, "PS1 hidden: %s/Mesh" % child.name)
 	assert_true(b.has_node("Real/Outside"), "BuildingB/Real/Outside")
+	# shells_real.gd: glass, fake rooms, grilles, frames, small things and the figures cast no shadow; walls still do.
+	var kinds := {}
+	for real: Node in [shells.get_node("Real"), b.get_node("Real"), shells.get_node("WindowSilhouette2/Figure")]:
+		for mesh: MeshInstance3D in real.find_children("*", "MeshInstance3D", true, false):
+			var name := String(mesh.name)
+			kinds[name] = true
+			var off := mesh.cast_shadow == GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+			assert_eq(off, name in ["Glass", "Fake", "Bars", "Extras", "Frames", "Figure"], "%s casts a shadow as it should" % mesh.get_path())
+	for name in ["Walls", "Glass", "Fake", "Bars", "Frames", "Figure"]:
+		assert_true(kinds.has(name), "a %s mesh in the real layers" % name)
 
 
 func _vertices(file: String, root_xf: Transform3D = Transform3D(Basis.IDENTITY, Vector3(0, G, 0))) -> PackedVector3Array:

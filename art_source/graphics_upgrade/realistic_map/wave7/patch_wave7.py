@@ -2,6 +2,7 @@
 twice. Nothing is removed: the PS1 meshes are hidden (visible = false), colliders, nodes, metas stay; the one node moved
 is WindowSilhouette2 (x 31 -> 32, into its window; card section 1).
 
+  Real nodes carry shells_real.gd (no shadow from glass, fake rooms, grilles, frames, small things; ranges).
   shells       shells.tscn: every MeshInstance3D hidden but wave 8's LibraryBand*; Real/BuildingA, Real/Lecture, Real/Gym
                at (0, G, 0); a Figure (figure.glb) under each WindowSilhouette node; WindowSilhouette2 to x 32
   building_b   building_b.tscn: UpperFloor5/6 and UpperWindow5_*/6_* meshes hidden; Real/Outside (b_outside.glb)
@@ -15,6 +16,7 @@ import sys
 ROOT = Path(__file__).resolve().parents[4]
 LEVELS = ROOT / "game/scenes/levels"
 W7 = "res://assets/models/graphics_pilot/realistic_map/wave7/"
+SCRIPT = "res://scenes/levels/campus/shells_real.gd"
 G = -9.9
 SHELLS_REAL = [("BuildingA", "bldga"), ("Lecture", "lecture"), ("Gym", "gym")]
 FIGURE_X = 32.0
@@ -58,8 +60,9 @@ def step_shells():
 	old = '[node name="WindowSilhouette2" type="Node3D" parent="."]\nposition = Vector3(31, -1.9, 53.8)\n'
 	assert old in text
 	text = text.replace(old, old.replace("Vector3(31,", "Vector3(%g," % FIGURE_X))
-	text = add_ext(text, [("PackedScene", W7 + glb + ".glb", "t264_" + glb) for _, glb in SHELLS_REAL] + [("PackedScene", W7 + "figure.glb", "t264_figure")])
-	nodes = ['\n[node name="Real" type="Node3D" parent="."]\n']
+	text = add_ext(text, [("Script", SCRIPT, "t264_real")] + [("PackedScene", W7 + glb + ".glb", "t264_" + glb) for _, glb in SHELLS_REAL]
+		+ [("PackedScene", W7 + "figure.glb", "t264_figure")])
+	nodes = ['\n[node name="Real" type="Node3D" parent="."]\nscript = ExtResource("t264_real")\n']
 	for name, glb in SHELLS_REAL:
 		nodes.append('\n[node name="%s" parent="Real" instance=ExtResource("t264_%s")]\nposition = Vector3(0, %g, 0)\n' % (name, glb, G))
 	for k in range(3):
@@ -74,8 +77,8 @@ def step_building_b():
 	assert 'node name="Real"' not in text, "already patched"
 	text, hidden = hide_meshes(text, lambda parent: not re.fullmatch(r"Upper(Floor[56]|Window[56]_\d+)", parent))
 	assert hidden == 24, hidden
-	text = add_ext(text, [("PackedScene", W7 + "b_outside.glb", "t264_b_outside")])
-	nodes = '\n[node name="Real" type="Node3D" parent="."]\n\n[node name="Outside" parent="Real" instance=ExtResource("t264_b_outside")]\nposition = Vector3(0, %g, 0)\n' % G
+	text = add_ext(text, [("Script", SCRIPT, "t264_real"), ("PackedScene", W7 + "b_outside.glb", "t264_b_outside")])
+	nodes = '\n[node name="Real" type="Node3D" parent="."]\nscript = ExtResource("t264_real")\n\n[node name="Outside" parent="Real" instance=ExtResource("t264_b_outside")]\nposition = Vector3(0, %g, 0)\n' % G
 	write(path, text.rstrip("\n") + "\n" + nodes)
 	print("patched building_b.tscn: %d PS1 meshes hidden, Real/Outside" % hidden)
 

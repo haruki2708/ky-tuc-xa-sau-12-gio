@@ -1,6 +1,7 @@
 """T-264 round 1: option sheets for the owner from previews/wave7/pilot_<shot>.jpg (capture_wave7.gd): one sheet per
 question, same cameras across options, chapter 3's real scene at night, occlusion culling on unless marked.
-Run: python -B art_source/graphics_upgrade/realistic_map/wave7/make_wave7_sheets.py
+--round2: round 2's before/after sheets (r2_*.jpg) from capture_wave7_r2.gd (D-182 picks, scenes patched).
+Run: python -B art_source/graphics_upgrade/realistic_map/wave7/make_wave7_sheets.py [--round2]
 """
 from pathlib import Path
 import sys
@@ -34,8 +35,11 @@ def label(img, text, size=22, at=(0, 0)):
 	draw.text((at[0] + 10, at[1] + 4), text, font=f, fill=(240, 240, 235))
 
 
+PREFIX = "pilot_"
+
+
 def tile(shot, name, view_name):
-	path = PREVIEWS / f"pilot_{shot}.jpg"
+	path = PREVIEWS / f"{PREFIX}{shot}.jpg"
 	img = Image.open(path).convert("RGB").resize(SIZE)
 	label(img, name)
 	label(img, view_name, 18, (0, SIZE[1] - 40))
@@ -101,6 +105,39 @@ def main():
 		("Trước (PS1)", [("before_w_corridor4", "w_corridor4"), ("before_w_garden", "w_garden"), ("before_w_stand", "w_stand")]),
 		("Góc mẫu (A2, phòng giả, R1, nhựa, cỏ, cột thép, W1)", [("after_w_corridor4", "w_corridor4"), ("after_w_garden", "w_garden"), ("after_w_stand", "w_stand")])])
 
+VIEW.update({"a_window": "ô cửa bóng người thứ hai (x 18)", "a_window2": "ô cửa bóng người thứ ba (x 31 → 32)", "a_corner": "góc đông nhà A",
+	"a_window_torch": "ô cửa bóng người, đèn pin", "a_corridor4": "nhà A từ hành lang tầng 4 nhà B (x 37)",
+	"a_corridor4_torch": "từ hành lang tầng 4, đèn pin (12 m, không tới nhà A)", "a_foot_occoff": "chân nhà A, tắt khối che",
+	"a_corridor4_occoff": "từ hành lang tầng 4, tắt khối che", "lecture": "giảng đường, cửa chính", "lecture_corner": "góc đông giảng đường",
+	"lecture_occoff": "giảng đường, tắt khối che", "gym_door": "cửa chính nhà thể chất", "b_upper_near": "nhà B tầng 5–6 nhìn lên",
+	"b_upper_eye": "nhà B tầng 5–6 ngang tầm (camera bay)", "b_upper_near_occoff": "nhà B tầng 5–6, tắt khối che", "b_back": "mặt sau nhà B",
+	"b_back_wide": "mặt sau nhà B, xa", "ch1_corridor4": "chương 1: từ hành lang tầng 4 (x 37)", "ch1_corridor4_wide": "chương 1: hành lang tầng 4 (x 20, khăn phơi che)"})
+
+
+def round2():
+	global PREFIX
+	PREFIX = "r2_"
+	pair = lambda views: [("Trước (main)", [("before_" + v, v) for v in views]), ("Sau (lượt 2)", [("after_" + v, v) for v in views])]
+	sheet("r2_building_a.jpg", "T-264 lượt 2 · Nhà A (A2, vàng, phòng giả sau mọi ô cửa, ba bóng người)",
+		pair(["a_garden", "a_foot", "a_corner"]) + pair(["a_window", "a_window2", "a_corridor4"]),
+		"Bóng người thứ ba dời từ x 31 (trúng trụ) vào ô cửa x 31,5…33,5 (D-182 mục 8). Không thêm đèn.")
+	sheet("r2_lecture_gym.jpg", "T-264 lượt 2 · Giảng đường (R1, lam bê tông) và nhà thể chất (R2, mái tôn vòm)",
+		pair(["lecture", "lecture_corner", "gym_corner", "gym_door"]))
+	sheet("r2_building_b.jpg", "T-264 lượt 2 · Mặt ngoài nhà B (tầng 5–6 hành lang bị chặn, mặt sau tầng 1–3 và 5–6)",
+		pair(["b_upper", "b_upper_eye", "b_back", "b_back_wide"]),
+		"Tầng 4 phía sau (ban công T-255) và hai tháp cầu thang giữ như cũ; cửa sổ phòng quản lý (lối thoát) để trống.")
+	sheet("r2_torch_occlusion.jpg", "T-264 lượt 2 · Đèn pin và khối che bật / tắt", [
+		("Đèn pin", [("after_a_foot_torch", "a_foot_torch"), ("after_a_window_torch", "a_window_torch"), ("after_gym_door_torch", "gym_door_torch"),
+			("after_a_corridor4_torch", "a_corridor4_torch")]),
+		("Khối che bật", [("after_a_foot", "a_foot"), ("after_lecture", "lecture"), ("after_gym_door", "gym_door"), ("after_b_upper_near", "b_upper_near")]),
+		("Khối che tắt", [("after_a_foot_occoff", "a_foot_occoff"), ("after_lecture_occoff", "lecture_occoff"), ("after_gym_door_occoff", "gym_door_occoff"),
+			("after_b_upper_near_occoff", "b_upper_near_occoff")])],
+		"Bật và tắt khối che cho ảnh như nhau: không vật nào bị ẩn sai.")
+	sheet("r2_wide_chapter1.jpg", "T-264 lượt 2 · Ba góc toàn cảnh và nhà A bản nhẹ chương 1–2", [
+		("Trước (main)", [("before_w_corridor4", "w_corridor4"), ("before_w_garden", "w_garden"), ("before_w_stand", "w_stand")]),
+		("Sau (lượt 2)", [("after_w_corridor4", "w_corridor4"), ("after_w_garden", "w_garden"), ("after_w_stand", "w_stand")]),
+		("Chương 1: trước / sau", [("before_ch1_corridor4", "ch1_corridor4"), ("after_ch1_corridor4", "ch1_corridor4"), ("after_ch1_corridor4_wide", "ch1_corridor4_wide")])],
+		"Bản nhẹ: vỏ A2 kính tối, không phòng giả, không song sắt, không bóng người, không bóng đổ, không va chạm.")
 
 if __name__ == "__main__":
-	main()
+	round2() if "--round2" in sys.argv else main()
