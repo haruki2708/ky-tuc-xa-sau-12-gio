@@ -392,5 +392,5 @@ game/default_bus_layout.tres`. Khoá Lượt Godot của lần chạy bị dừn
 - **Kiểm:** trên nhánh (cùng cây với main sau merge) lane B chạy full test **`RESULT: 1037 passed, 0 failed`** và check
   **`RESULT: check 0 error(s)`**. Lần kiểm sau merge của HARU (16/11 23:22) bị Claude Code dừng vì máy thiếu RAM trước khi chạy
   test nào; **chủ dự án quyết không chạy lại** (16/11) vì cây trùng hệt.
-- **Việc tiếp theo của core:** occluder hộp cho vỏ nhà ăn trong `game/scenes/main/occlusion/` (D-181, lane B đề nghị ở lượt 1).
+- **Khối che vỏ nhà ăn (core): xong 16/11** (integrator): 13 hộp trong `game/scenes/main/occlusion/occluders_campus.tscn`, chừa tường trước (cửa sổ kính trong, cửa chính) và các lỗ cửa; 22 góc ảnh tắt/bật giống hệt; kho nhìn vào sảnh 4.784 → 475 lần vẽ. Chi tiết: `tools/reports/T-260-occlusion-culling.md` mục bổ sung.
 - Không đo FPS, không chạy bot (D-179).
