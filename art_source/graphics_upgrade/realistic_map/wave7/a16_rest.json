@@ -1,0 +1,4298 @@
+{
+ "regions": {
+  "wave 8: library and 6 m round it": {
+   "box": [
+    39.0,
+    91.0,
+    189.0,
+    231.0
+   ],
+   "less": null
+  },
+  "building B": {
+   "box": [
+    -5.2,
+    49.2,
+    -10.8,
+    4.3
+   ],
+   "less": null
+  },
+  "building A footprint": {
+   "box": [
+    0.0,
+    44.0,
+    54.0,
+    64.0
+   ],
+   "less": null
+  },
+  "lecture hall footprint": {
+   "box": [
+    -50.0,
+    30.0,
+    180.0,
+    200.0
+   ],
+   "less": null
+  },
+  "gym footprint": {
+   "box": [
+    -60.0,
+    0.0,
+    90.0,
+    130.0
+   ],
+   "less": null
+  },
+  "done: T-259 garden strip": {
+   "box": [
+    -6.0,
+    50.0,
+    4.0,
+    50.0
+   ],
+   "less": null
+  },
+  "done: T-261 stadium": {
+   "box": [
+    108.0,
+    290.0,
+    108.0,
+    236.0
+   ],
+   "less": null
+  },
+  "done: T-261 strip": {
+   "box": [
+    50.0,
+    110.0,
+    -11.0,
+    176.0
+   ],
+   "less": null
+  },
+  "done: T-262 gate strip": {
+   "box": [
+    180.0,
+    262.0,
+    -60.0,
+    13.0
+   ],
+   "less": null
+  },
+  "done: T-263 canteen strip": {
+   "box": [
+    166.0,
+    218.0,
+    13.0,
+    60.0
+   ],
+   "less": [
+    166.0,
+    170.0,
+    37.0,
+    60.0
+   ]
+  },
+  "outside the campus": {
+   "box": null,
+   "less": null
+  }
+ },
+ "props_totals": {
+  "rest": {
+   "other": 367,
+   "drag mark": 133
+  },
+  "building B": {
+   "other": 88,
+   "drag mark": 34
+  },
+  "zeroed": {
+   "other": 656,
+   "drag mark": 19
+  },
+  "done: T-261 strip": {
+   "other": 374,
+   "body: head": 2,
+   "body: torso": 2,
+   "body: arm": 4,
+   "body: leg": 4,
+   "drag mark": 151,
+   "blood": 6
+  },
+  "wave 8: library and 6 m round it": {
+   "other": 52
+  },
+  "done: T-262 gate strip": {
+   "other": 68,
+   "body: head": 5,
+   "body: torso": 5,
+   "body: arm": 10,
+   "body: leg": 10,
+   "drag mark": 67,
+   "blood": 6
+  },
+  "done: T-263 canteen strip": {
+   "other": 22,
+   "drag mark": 27
+  },
+  "done: T-259 garden strip": {
+   "other": 29,
+   "body: head": 7,
+   "body: torso": 7,
+   "body: arm": 14,
+   "body: leg": 14,
+   "drag mark": 86,
+   "blood": 15
+  },
+  "done: T-261 stadium": {
+   "body: head": 16,
+   "body: torso": 16,
+   "body: arm": 32,
+   "body: leg": 32,
+   "drag mark": 163,
+   "blood": 33
+  }
+ },
+ "heads_total": 30,
+ "props": {
+  "Parts/P_concrete_box_m2_p2": {
+   "parent": "Parts",
+   "instances": 10,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "rest": {
+     "other": 10
+    }
+   },
+   "rest_other": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+   ]
+  },
+  "Parts/P_concrete_box_m1_p2": {
+   "parent": "Parts",
+   "instances": 20,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "rest": {
+     "other": 20
+    }
+   },
+   "rest_other": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19
+   ]
+  },
+  "Parts/P_concrete_box_m1_p4": {
+   "parent": "Parts",
+   "instances": 30,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "rest": {
+     "other": 30
+    }
+   },
+   "rest_other": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29
+   ]
+  },
+  "Parts/P_concrete_box_p0_m1": {
+   "parent": "Parts",
+   "instances": 34,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "building B": {
+     "other": 23
+    },
+    "rest": {
+     "other": 11
+    }
+   },
+   "rest_other": [
+    1,
+    3,
+    11,
+    12,
+    14,
+    18,
+    20,
+    27,
+    30,
+    31,
+    33
+   ]
+  },
+  "Parts/P_concrete_box_p0_p1": {
+   "parent": "Parts",
+   "instances": 42,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "zeroed": {
+     "other": 42
+    }
+   }
+  },
+  "Parts/P_concrete_box_p0_p4": {
+   "parent": "Parts",
+   "instances": 15,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "rest": {
+     "other": 15
+    }
+   },
+   "rest_other": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14
+   ]
+  },
+  "Parts/P_concrete_box_p1_m1": {
+   "parent": "Parts",
+   "instances": 6,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "rest": {
+     "other": 4
+    },
+    "building B": {
+     "other": 2
+    }
+   },
+   "rest_other": [
+    0,
+    2,
+    3,
+    4
+   ]
+  },
+  "Parts/P_concrete_box_p1_p1": {
+   "parent": "Parts",
+   "instances": 5,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-261 strip": {
+     "other": 5
+    }
+   }
+  },
+  "Parts/P_concrete_box_p1_p2": {
+   "parent": "Parts",
+   "instances": 4,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-261 strip": {
+     "other": 4
+    }
+   }
+  },
+  "Parts/P_concrete_box_p1_p4": {
+   "parent": "Parts",
+   "instances": 31,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "wave 8: library and 6 m round it": {
+     "other": 30
+    },
+    "done: T-261 strip": {
+     "other": 1
+    }
+   }
+  },
+  "Parts/P_concrete_box_p2_m1": {
+   "parent": "Parts",
+   "instances": 9,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "rest": {
+     "other": 9
+    }
+   },
+   "rest_other": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+   ]
+  },
+  "Parts/P_concrete_box_p2_p0": {
+   "parent": "Parts",
+   "instances": 5,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-261 strip": {
+     "other": 5
+    }
+   }
+  },
+  "Parts/P_concrete_box_p2_p3": {
+   "parent": "Parts",
+   "instances": 15,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "zeroed": {
+     "other": 11
+    },
+    "done: T-261 strip": {
+     "other": 4
+    }
+   }
+  },
+  "Parts/P_concrete_box_p2_p4": {
+   "parent": "Parts",
+   "instances": 11,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "zeroed": {
+     "other": 11
+    }
+   }
+  },
+  "Parts/P_concrete_box_p4_m1": {
+   "parent": "Parts",
+   "instances": 3,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "rest": {
+     "other": 1
+    },
+    "done: T-262 gate strip": {
+     "other": 2
+    }
+   },
+   "rest_other": [
+    0
+   ]
+  },
+  "Parts/P_concrete_box_p4_p0": {
+   "parent": "Parts",
+   "instances": 1,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "rest": {
+     "other": 1
+    }
+   },
+   "rest_other": [
+    0
+   ]
+  },
+  "Parts/P_concrete_box_p5_m1": {
+   "parent": "Parts",
+   "instances": 15,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-262 gate strip": {
+     "other": 4
+    },
+    "zeroed": {
+     "other": 11
+    }
+   }
+  },
+  "Parts/P_concrete_box_p5_p0": {
+   "parent": "Parts",
+   "instances": 2,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-263 canteen strip": {
+     "other": 1
+    },
+    "rest": {
+     "other": 1
+    }
+   },
+   "rest_other": [
+    1
+   ]
+  },
+  "Parts/P_grass_box_p1_p4": {
+   "parent": "Parts",
+   "instances": 1,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-261 strip": {
+     "other": 1
+    }
+   }
+  },
+  "Parts/P_grass_box_p2_m1": {
+   "parent": "Parts",
+   "instances": 1,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "rest": {
+     "other": 1
+    }
+   },
+   "rest_other": [
+    0
+   ]
+  },
+  "Parts/P_grass_box_p2_p0": {
+   "parent": "Parts",
+   "instances": 1,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-261 strip": {
+     "other": 1
+    }
+   }
+  },
+  "Parts/P_grass_box_p4_m1": {
+   "parent": "Parts",
+   "instances": 3,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "rest": {
+     "other": 1
+    },
+    "done: T-262 gate strip": {
+     "other": 2
+    }
+   },
+   "rest_other": [
+    0
+   ]
+  },
+  "Parts/P_iron_box_m1_m1": {
+   "parent": "Parts",
+   "instances": 2,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "rest": {
+     "other": 2
+    }
+   },
+   "rest_other": [
+    0,
+    1
+   ]
+  },
+  "Parts/P_iron_box_p0_m1": {
+   "parent": "Parts",
+   "instances": 12,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "rest": {
+     "other": 12
+    }
+   },
+   "rest_other": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+   ]
+  },
+  "Parts/P_iron_box_p0_p0": {
+   "parent": "Parts",
+   "instances": 3,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-259 garden strip": {
+     "other": 3
+    }
+   }
+  },
+  "Parts/P_iron_box_p1_m1": {
+   "parent": "Parts",
+   "instances": 4,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-261 strip": {
+     "other": 3
+    },
+    "rest": {
+     "other": 1
+    }
+   },
+   "rest_other": [
+    3
+   ]
+  },
+  "Parts/P_iron_box_p1_p0": {
+   "parent": "Parts",
+   "instances": 12,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-261 strip": {
+     "other": 12
+    }
+   }
+  },
+  "Parts/P_iron_box_p1_p1": {
+   "parent": "Parts",
+   "instances": 6,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-261 strip": {
+     "other": 6
+    }
+   }
+  },
+  "Parts/P_iron_box_p1_p2": {
+   "parent": "Parts",
+   "instances": 5,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-261 strip": {
+     "other": 5
+    }
+   }
+  },
+  "Parts/P_iron_box_p1_p3": {
+   "parent": "Parts",
+   "instances": 13,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-261 strip": {
+     "other": 13
+    }
+   }
+  },
+  "Parts/P_iron_box_p2_m1": {
+   "parent": "Parts",
+   "instances": 5,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-261 strip": {
+     "other": 3
+    },
+    "rest": {
+     "other": 2
+    }
+   },
+   "rest_other": [
+    3,
+    4
+   ]
+  },
+  "Parts/P_iron_box_p2_p0": {
+   "parent": "Parts",
+   "instances": 2,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-261 strip": {
+     "other": 2
+    }
+   }
+  },
+  "Parts/P_iron_box_p2_p1": {
+   "parent": "Parts",
+   "instances": 9,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-261 strip": {
+     "other": 9
+    }
+   }
+  },
+  "Parts/P_iron_box_p2_p2": {
+   "parent": "Parts",
+   "instances": 10,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-261 strip": {
+     "other": 10
+    }
+   }
+  },
+  "Parts/P_iron_box_p2_p3": {
+   "parent": "Parts",
+   "instances": 4,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-261 strip": {
+     "other": 4
+    }
+   }
+  },
+  "Parts/P_iron_box_p3_m1": {
+   "parent": "Parts",
+   "instances": 12,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "rest": {
+     "other": 12
+    }
+   },
+   "rest_other": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+   ]
+  },
+  "Parts/P_iron_box_p4_m1": {
+   "parent": "Parts",
+   "instances": 13,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "rest": {
+     "other": 7
+    },
+    "zeroed": {
+     "other": 2
+    },
+    "done: T-262 gate strip": {
+     "other": 4
+    }
+   },
+   "rest_other": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    12
+   ]
+  },
+  "Parts/P_iron_box_p4_p0": {
+   "parent": "Parts",
+   "instances": 16,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "rest": {
+     "other": 13
+    },
+    "done: T-263 canteen strip": {
+     "other": 1
+    },
+    "done: T-262 gate strip": {
+     "other": 2
+    }
+   },
+   "rest_other": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    15
+   ]
+  },
+  "Parts/P_iron_box_p5_m2": {
+   "parent": "Parts",
+   "instances": 4,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "zeroed": {
+     "other": 4
+    }
+   }
+  },
+  "Parts/P_iron_box_p5_m1": {
+   "parent": "Parts",
+   "instances": 10,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "zeroed": {
+     "other": 8
+    },
+    "done: T-262 gate strip": {
+     "other": 2
+    }
+   }
+  },
+  "Parts/P_iron_box_p5_p0": {
+   "parent": "Parts",
+   "instances": 10,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-262 gate strip": {
+     "other": 6
+    },
+    "done: T-263 canteen strip": {
+     "other": 4
+    }
+   }
+  },
+  "Parts/P_iron_box_p5_p1": {
+   "parent": "Parts",
+   "instances": 2,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-263 canteen strip": {
+     "other": 2
+    }
+   }
+  },
+  "Parts/P_iron_box_p6_m1": {
+   "parent": "Parts",
+   "instances": 1,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-262 gate strip": {
+     "other": 1
+    }
+   }
+  },
+  "Parts/P_iron_cylinder_m2_p2": {
+   "parent": "Parts",
+   "instances": 2,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "rest": {
+     "other": 2
+    }
+   },
+   "rest_other": [
+    0,
+    1
+   ]
+  },
+  "Parts/P_iron_cylinder_m1_m1": {
+   "parent": "Parts",
+   "instances": 2,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "rest": {
+     "other": 2
+    }
+   },
+   "rest_other": [
+    0,
+    1
+   ]
+  },
+  "Parts/P_iron_cylinder_m1_p2": {
+   "parent": "Parts",
+   "instances": 4,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "rest": {
+     "other": 4
+    }
+   },
+   "rest_other": [
+    0,
+    1,
+    2,
+    3
+   ]
+  },
+  "Parts/P_iron_cylinder_m1_p4": {
+   "parent": "Parts",
+   "instances": 6,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "rest": {
+     "other": 6
+    }
+   },
+   "rest_other": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+   ]
+  },
+  "Parts/P_iron_cylinder_p0_m1": {
+   "parent": "Parts",
+   "instances": 16,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "building B": {
+     "other": 5
+    },
+    "rest": {
+     "other": 11
+    }
+   },
+   "rest_other": [
+    1,
+    2,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+   ]
+  },
+  "Parts/P_iron_cylinder_p0_p1": {
+   "parent": "Parts",
+   "instances": 9,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "zeroed": {
+     "other": 9
+    }
+   }
+  },
+  "Parts/P_iron_cylinder_p0_p4": {
+   "parent": "Parts",
+   "instances": 3,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "rest": {
+     "other": 3
+    }
+   },
+   "rest_other": [
+    0,
+    1,
+    2
+   ]
+  },
+  "Parts/P_iron_cylinder_p1_m1": {
+   "parent": "Parts",
+   "instances": 3,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "building B": {
+     "other": 1
+    },
+    "rest": {
+     "other": 2
+    }
+   },
+   "rest_other": [
+    1,
+    2
+   ]
+  },
+  "Parts/P_iron_cylinder_p1_p0": {
+   "parent": "Parts",
+   "instances": 9,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-261 strip": {
+     "other": 9
+    }
+   }
+  },
+  "Parts/P_iron_cylinder_p1_p1": {
+   "parent": "Parts",
+   "instances": 5,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-261 strip": {
+     "other": 5
+    }
+   }
+  },
+  "Parts/P_iron_cylinder_p1_p2": {
+   "parent": "Parts",
+   "instances": 5,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-261 strip": {
+     "other": 5
+    }
+   }
+  },
+  "Parts/P_iron_cylinder_p1_p3": {
+   "parent": "Parts",
+   "instances": 8,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-261 strip": {
+     "other": 8
+    }
+   }
+  },
+  "Parts/P_iron_cylinder_p1_p4": {
+   "parent": "Parts",
+   "instances": 6,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "wave 8: library and 6 m round it": {
+     "other": 6
+    }
+   }
+  },
+  "Parts/P_iron_cylinder_p2_m1": {
+   "parent": "Parts",
+   "instances": 5,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "rest": {
+     "other": 5
+    }
+   },
+   "rest_other": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "Parts/P_iron_cylinder_p2_p0": {
+   "parent": "Parts",
+   "instances": 3,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-261 strip": {
+     "other": 3
+    }
+   }
+  },
+  "Parts/P_iron_cylinder_p2_p1": {
+   "parent": "Parts",
+   "instances": 13,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-261 strip": {
+     "other": 13
+    }
+   }
+  },
+  "Parts/P_iron_cylinder_p2_p2": {
+   "parent": "Parts",
+   "instances": 9,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-261 strip": {
+     "other": 9
+    }
+   }
+  },
+  "Parts/P_iron_cylinder_p2_p3": {
+   "parent": "Parts",
+   "instances": 5,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "zeroed": {
+     "other": 3
+    },
+    "done: T-261 strip": {
+     "other": 2
+    }
+   }
+  },
+  "Parts/P_iron_cylinder_p2_p4": {
+   "parent": "Parts",
+   "instances": 4,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-261 strip": {
+     "other": 1
+    },
+    "zeroed": {
+     "other": 3
+    }
+   }
+  },
+  "Parts/P_iron_cylinder_p3_m1": {
+   "parent": "Parts",
+   "instances": 12,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "rest": {
+     "other": 12
+    }
+   },
+   "rest_other": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+   ]
+  },
+  "Parts/P_iron_cylinder_p4_m1": {
+   "parent": "Parts",
+   "instances": 11,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "rest": {
+     "other": 5
+    },
+    "zeroed": {
+     "other": 4
+    },
+    "done: T-262 gate strip": {
+     "other": 2
+    }
+   },
+   "rest_other": [
+    0,
+    1,
+    2,
+    3,
+    10
+   ]
+  },
+  "Parts/P_iron_cylinder_p4_p0": {
+   "parent": "Parts",
+   "instances": 11,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "rest": {
+     "other": 9
+    },
+    "done: T-262 gate strip": {
+     "other": 2
+    }
+   },
+   "rest_other": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    10
+   ]
+  },
+  "Parts/P_iron_cylinder_p5_m1": {
+   "parent": "Parts",
+   "instances": 22,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-262 gate strip": {
+     "other": 3
+    },
+    "zeroed": {
+     "other": 19
+    }
+   }
+  },
+  "Parts/P_iron_cylinder_p5_p0": {
+   "parent": "Parts",
+   "instances": 2,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-263 canteen strip": {
+     "other": 2
+    }
+   }
+  },
+  "Parts/P_iron_cylinder_p5_p1": {
+   "parent": "Parts",
+   "instances": 2,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-263 canteen strip": {
+     "other": 2
+    }
+   }
+  },
+  "Parts/P_iron_cylinder_p6_m1": {
+   "parent": "Parts",
+   "instances": 1,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-262 gate strip": {
+     "other": 1
+    }
+   }
+  },
+  "Parts/P_paper_box_m1_m1": {
+   "parent": "Parts",
+   "instances": 2,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "building B": {
+     "other": 1
+    },
+    "rest": {
+     "other": 1
+    }
+   },
+   "rest_other": [
+    1
+   ]
+  },
+  "Parts/P_paper_box_p0_m1": {
+   "parent": "Parts",
+   "instances": 1,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "building B": {
+     "other": 1
+    }
+   }
+  },
+  "Parts/P_paper_box_p0_p0": {
+   "parent": "Parts",
+   "instances": 13,
+   "node_hidden": false,
+   "heads": 6,
+   "regions": {
+    "zeroed": {
+     "other": 7
+    },
+    "done: T-259 garden strip": {
+     "body: head": 6
+    }
+   }
+  },
+  "Parts/P_paper_box_p0_p1": {
+   "parent": "Parts",
+   "instances": 1,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-259 garden strip": {
+     "other": 1
+    }
+   }
+  },
+  "Parts/P_paper_box_p1_m1": {
+   "parent": "Parts",
+   "instances": 7,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-261 strip": {
+     "other": 6
+    },
+    "rest": {
+     "other": 1
+    }
+   },
+   "rest_other": [
+    6
+   ]
+  },
+  "Parts/P_paper_box_p1_p0": {
+   "parent": "Parts",
+   "instances": 3,
+   "node_hidden": false,
+   "heads": 1,
+   "regions": {
+    "done: T-259 garden strip": {
+     "body: head": 1
+    },
+    "done: T-261 strip": {
+     "other": 2
+    }
+   }
+  },
+  "Parts/P_paper_box_p1_p1": {
+   "parent": "Parts",
+   "instances": 2,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "zeroed": {
+     "other": 1
+    },
+    "done: T-261 strip": {
+     "other": 1
+    }
+   }
+  },
+  "Parts/P_paper_box_p1_p2": {
+   "parent": "Parts",
+   "instances": 4,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-261 strip": {
+     "other": 3
+    },
+    "zeroed": {
+     "other": 1
+    }
+   }
+  },
+  "Parts/P_paper_box_p1_p3": {
+   "parent": "Parts",
+   "instances": 9,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-261 strip": {
+     "other": 9
+    }
+   }
+  },
+  "Parts/P_paper_box_p2_m1": {
+   "parent": "Parts",
+   "instances": 8,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-261 strip": {
+     "other": 6
+    },
+    "rest": {
+     "other": 2
+    }
+   },
+   "rest_other": [
+    6,
+    7
+   ]
+  },
+  "Parts/P_paper_box_p2_p0": {
+   "parent": "Parts",
+   "instances": 2,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-261 strip": {
+     "other": 1
+    },
+    "zeroed": {
+     "other": 1
+    }
+   }
+  },
+  "Parts/P_paper_box_p2_p1": {
+   "parent": "Parts",
+   "instances": 7,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-261 strip": {
+     "other": 7
+    }
+   }
+  },
+  "Parts/P_paper_box_p2_p2": {
+   "parent": "Parts",
+   "instances": 4,
+   "node_hidden": false,
+   "heads": 1,
+   "regions": {
+    "done: T-261 strip": {
+     "other": 3,
+     "body: head": 1
+    }
+   }
+  },
+  "Parts/P_paper_box_p2_p3": {
+   "parent": "Parts",
+   "instances": 2,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-261 strip": {
+     "other": 2
+    }
+   }
+  },
+  "Parts/P_paper_box_p2_p4": {
+   "parent": "Parts",
+   "instances": 2,
+   "node_hidden": false,
+   "heads": 2,
+   "regions": {
+    "done: T-261 stadium": {
+     "body: head": 1
+    },
+    "done: T-261 strip": {
+     "body: head": 1
+    }
+   }
+  },
+  "Parts/P_paper_box_p3_m1": {
+   "parent": "Parts",
+   "instances": 6,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "rest": {
+     "other": 6
+    }
+   },
+   "rest_other": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+   ]
+  },
+  "Parts/P_paper_box_p3_p3": {
+   "parent": "Parts",
+   "instances": 1,
+   "node_hidden": false,
+   "heads": 1,
+   "regions": {
+    "done: T-261 stadium": {
+     "body: head": 1
+    }
+   }
+  },
+  "Parts/P_paper_box_p3_p4": {
+   "parent": "Parts",
+   "instances": 3,
+   "node_hidden": false,
+   "heads": 3,
+   "regions": {
+    "done: T-261 stadium": {
+     "body: head": 3
+    }
+   }
+  },
+  "Parts/P_paper_box_p3_p5": {
+   "parent": "Parts",
+   "instances": 1,
+   "node_hidden": false,
+   "heads": 1,
+   "regions": {
+    "done: T-261 stadium": {
+     "body: head": 1
+    }
+   }
+  },
+  "Parts/P_paper_box_p4_m1": {
+   "parent": "Parts",
+   "instances": 5,
+   "node_hidden": false,
+   "heads": 1,
+   "regions": {
+    "rest": {
+     "other": 2
+    },
+    "zeroed": {
+     "other": 2
+    },
+    "done: T-262 gate strip": {
+     "body: head": 1
+    }
+   },
+   "rest_other": [
+    0,
+    4
+   ]
+  },
+  "Parts/P_paper_box_p4_p0": {
+   "parent": "Parts",
+   "instances": 2,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-262 gate strip": {
+     "other": 1
+    },
+    "rest": {
+     "other": 1
+    }
+   },
+   "rest_other": [
+    1
+   ]
+  },
+  "Parts/P_paper_box_p4_p2": {
+   "parent": "Parts",
+   "instances": 1,
+   "node_hidden": false,
+   "heads": 1,
+   "regions": {
+    "done: T-261 stadium": {
+     "body: head": 1
+    }
+   }
+  },
+  "Parts/P_paper_box_p4_p3": {
+   "parent": "Parts",
+   "instances": 1,
+   "node_hidden": false,
+   "heads": 1,
+   "regions": {
+    "done: T-261 stadium": {
+     "body: head": 1
+    }
+   }
+  },
+  "Parts/P_paper_box_p4_p5": {
+   "parent": "Parts",
+   "instances": 1,
+   "node_hidden": false,
+   "heads": 1,
+   "regions": {
+    "done: T-261 stadium": {
+     "body: head": 1
+    }
+   }
+  },
+  "Parts/P_paper_box_p5_m2": {
+   "parent": "Parts",
+   "instances": 2,
+   "node_hidden": false,
+   "heads": 2,
+   "regions": {
+    "done: T-262 gate strip": {
+     "body: head": 2
+    }
+   }
+  },
+  "Parts/P_paper_box_p5_m1": {
+   "parent": "Parts",
+   "instances": 11,
+   "node_hidden": false,
+   "heads": 2,
+   "regions": {
+    "zeroed": {
+     "other": 8
+    },
+    "done: T-262 gate strip": {
+     "body: head": 2,
+     "other": 1
+    }
+   }
+  },
+  "Parts/P_paper_box_p5_p0": {
+   "parent": "Parts",
+   "instances": 12,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-262 gate strip": {
+     "other": 12
+    }
+   }
+  },
+  "Parts/P_paper_box_p5_p1": {
+   "parent": "Parts",
+   "instances": 2,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "zeroed": {
+     "other": 1
+    },
+    "done: T-263 canteen strip": {
+     "other": 1
+    }
+   }
+  },
+  "Parts/P_paper_box_p5_p3": {
+   "parent": "Parts",
+   "instances": 7,
+   "node_hidden": false,
+   "heads": 2,
+   "regions": {
+    "zeroed": {
+     "other": 5
+    },
+    "done: T-261 stadium": {
+     "body: head": 2
+    }
+   }
+  },
+  "Parts/P_paper_box_p5_p4": {
+   "parent": "Parts",
+   "instances": 1,
+   "node_hidden": false,
+   "heads": 1,
+   "regions": {
+    "done: T-261 stadium": {
+     "body: head": 1
+    }
+   }
+  },
+  "Parts/P_paper_box_p5_p5": {
+   "parent": "Parts",
+   "instances": 2,
+   "node_hidden": false,
+   "heads": 2,
+   "regions": {
+    "done: T-261 stadium": {
+     "body: head": 2
+    }
+   }
+  },
+  "Parts/P_paper_box_p6_m1": {
+   "parent": "Parts",
+   "instances": 1,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-262 gate strip": {
+     "other": 1
+    }
+   }
+  },
+  "Parts/P_paper_box_p6_p3": {
+   "parent": "Parts",
+   "instances": 2,
+   "node_hidden": false,
+   "heads": 2,
+   "regions": {
+    "done: T-261 stadium": {
+     "body: head": 2
+    }
+   }
+  },
+  "Parts/P_red_box_p1_p1": {
+   "parent": "Parts",
+   "instances": 1,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-261 strip": {
+     "other": 1
+    }
+   }
+  },
+  "Parts/P_red_box_p5_p0": {
+   "parent": "Parts",
+   "instances": 2,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-263 canteen strip": {
+     "other": 1
+    },
+    "rest": {
+     "other": 1
+    }
+   },
+   "rest_other": [
+    1
+   ]
+  },
+  "Parts/P_white_box_m1_m1": {
+   "parent": "Parts",
+   "instances": 7,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "building B": {
+     "other": 5
+    },
+    "rest": {
+     "other": 2
+    }
+   },
+   "rest_other": [
+    3,
+    4
+   ]
+  },
+  "Parts/P_white_box_m1_p0": {
+   "parent": "Parts",
+   "instances": 6,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-259 garden strip": {
+     "body: torso": 1,
+     "body: arm": 1,
+     "body: leg": 2
+    },
+    "building B": {
+     "other": 2
+    }
+   }
+  },
+  "Parts/P_white_box_p0_m1": {
+   "parent": "Parts",
+   "instances": 2,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "building B": {
+     "other": 1
+    },
+    "rest": {
+     "other": 1
+    }
+   },
+   "rest_other": [
+    1
+   ]
+  },
+  "Parts/P_white_box_p0_p0": {
+   "parent": "Parts",
+   "instances": 31,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-259 garden strip": {
+     "other": 5,
+     "body: torso": 5,
+     "body: arm": 11,
+     "body: leg": 10
+    }
+   }
+  },
+  "Parts/P_white_box_p0_p1": {
+   "parent": "Parts",
+   "instances": 3,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-259 garden strip": {
+     "other": 3
+    }
+   }
+  },
+  "Parts/P_white_box_p1_m1": {
+   "parent": "Parts",
+   "instances": 4,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "rest": {
+     "other": 4
+    }
+   },
+   "rest_other": [
+    0,
+    1,
+    2,
+    3
+   ]
+  },
+  "Parts/P_white_box_p1_p0": {
+   "parent": "Parts",
+   "instances": 15,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-261 strip": {
+     "other": 8
+    },
+    "done: T-259 garden strip": {
+     "other": 2,
+     "body: torso": 1,
+     "body: arm": 2,
+     "body: leg": 2
+    }
+   }
+  },
+  "Parts/P_white_box_p1_p1": {
+   "parent": "Parts",
+   "instances": 14,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-261 strip": {
+     "other": 14
+    }
+   }
+  },
+  "Parts/P_white_box_p1_p2": {
+   "parent": "Parts",
+   "instances": 23,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-261 strip": {
+     "other": 23
+    }
+   }
+  },
+  "Parts/P_white_box_p1_p3": {
+   "parent": "Parts",
+   "instances": 14,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-261 strip": {
+     "other": 14
+    }
+   }
+  },
+  "Parts/P_white_box_p2_m1": {
+   "parent": "Parts",
+   "instances": 16,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-261 strip": {
+     "other": 6
+    },
+    "rest": {
+     "other": 10
+    }
+   },
+   "rest_other": [
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+   ]
+  },
+  "Parts/P_white_box_p2_p0": {
+   "parent": "Parts",
+   "instances": 7,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-261 strip": {
+     "other": 7
+    }
+   }
+  },
+  "Parts/P_white_box_p2_p1": {
+   "parent": "Parts",
+   "instances": 20,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-261 strip": {
+     "other": 20
+    }
+   }
+  },
+  "Parts/P_white_box_p2_p2": {
+   "parent": "Parts",
+   "instances": 15,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-261 strip": {
+     "other": 10,
+     "body: torso": 1,
+     "body: arm": 2,
+     "body: leg": 2
+    }
+   }
+  },
+  "Parts/P_white_box_p2_p3": {
+   "parent": "Parts",
+   "instances": 11,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-261 strip": {
+     "other": 8
+    },
+    "zeroed": {
+     "other": 3
+    }
+   }
+  },
+  "Parts/P_white_box_p2_p4": {
+   "parent": "Parts",
+   "instances": 13,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-261 strip": {
+     "other": 4,
+     "body: torso": 1,
+     "body: arm": 2,
+     "body: leg": 2
+    },
+    "done: T-261 stadium": {
+     "body: torso": 1,
+     "body: arm": 1,
+     "body: leg": 2
+    }
+   }
+  },
+  "Parts/P_white_box_p3_m1": {
+   "parent": "Parts",
+   "instances": 12,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "rest": {
+     "other": 12
+    }
+   },
+   "rest_other": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+   ]
+  },
+  "Parts/P_white_box_p3_p3": {
+   "parent": "Parts",
+   "instances": 21,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "zeroed": {
+     "other": 16
+    },
+    "done: T-261 stadium": {
+     "body: torso": 1,
+     "body: arm": 2,
+     "body: leg": 2
+    }
+   }
+  },
+  "Parts/P_white_box_p3_p4": {
+   "parent": "Parts",
+   "instances": 36,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "zeroed": {
+     "other": 20
+    },
+    "done: T-261 stadium": {
+     "body: torso": 3,
+     "body: arm": 7,
+     "body: leg": 6
+    }
+   }
+  },
+  "Parts/P_white_box_p3_p5": {
+   "parent": "Parts",
+   "instances": 8,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "zeroed": {
+     "other": 3
+    },
+    "done: T-261 stadium": {
+     "body: torso": 1,
+     "body: arm": 2,
+     "body: leg": 2
+    }
+   }
+  },
+  "Parts/P_white_box_p4_m1": {
+   "parent": "Parts",
+   "instances": 17,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "zeroed": {
+     "other": 8
+    },
+    "rest": {
+     "other": 4
+    },
+    "done: T-262 gate strip": {
+     "body: torso": 1,
+     "body: arm": 2,
+     "body: leg": 2
+    }
+   },
+   "rest_other": [
+    2,
+    3,
+    4,
+    5
+   ]
+  },
+  "Parts/P_white_box_p4_p0": {
+   "parent": "Parts",
+   "instances": 9,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "rest": {
+     "other": 1
+    },
+    "done: T-263 canteen strip": {
+     "other": 2
+    },
+    "zeroed": {
+     "other": 4
+    },
+    "done: T-262 gate strip": {
+     "other": 2
+    }
+   },
+   "rest_other": [
+    0
+   ]
+  },
+  "Parts/P_white_box_p4_p2": {
+   "parent": "Parts",
+   "instances": 5,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-261 stadium": {
+     "body: torso": 1,
+     "body: arm": 2,
+     "body: leg": 2
+    }
+   }
+  },
+  "Parts/P_white_box_p4_p3": {
+   "parent": "Parts",
+   "instances": 25,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "zeroed": {
+     "other": 20
+    },
+    "done: T-261 stadium": {
+     "body: torso": 1,
+     "body: arm": 2,
+     "body: leg": 2
+    }
+   }
+  },
+  "Parts/P_white_box_p4_p4": {
+   "parent": "Parts",
+   "instances": 6,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "zeroed": {
+     "other": 6
+    }
+   }
+  },
+  "Parts/P_white_box_p4_p5": {
+   "parent": "Parts",
+   "instances": 12,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-261 stadium": {
+     "body: torso": 1,
+     "body: arm": 2,
+     "body: leg": 2
+    },
+    "zeroed": {
+     "other": 7
+    }
+   }
+  },
+  "Parts/P_white_box_p5_m2": {
+   "parent": "Parts",
+   "instances": 27,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "zeroed": {
+     "other": 18
+    },
+    "done: T-262 gate strip": {
+     "body: torso": 2,
+     "body: arm": 3,
+     "body: leg": 4
+    }
+   }
+  },
+  "Parts/P_white_box_p5_m1": {
+   "parent": "Parts",
+   "instances": 46,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-262 gate strip": {
+     "other": 11,
+     "body: arm": 5,
+     "body: torso": 2,
+     "body: leg": 4
+    },
+    "zeroed": {
+     "other": 24
+    }
+   }
+  },
+  "Parts/P_white_box_p5_p0": {
+   "parent": "Parts",
+   "instances": 12,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-263 canteen strip": {
+     "other": 3
+    },
+    "zeroed": {
+     "other": 6
+    },
+    "rest": {
+     "other": 3
+    }
+   },
+   "rest_other": [
+    9,
+    10,
+    11
+   ]
+  },
+  "Parts/P_white_box_p5_p1": {
+   "parent": "Parts",
+   "instances": 3,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "zeroed": {
+     "other": 1
+    },
+    "done: T-263 canteen strip": {
+     "other": 2
+    }
+   }
+  },
+  "Parts/P_white_box_p5_p2": {
+   "parent": "Parts",
+   "instances": 3,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "zeroed": {
+     "other": 3
+    }
+   }
+  },
+  "Parts/P_white_box_p5_p3": {
+   "parent": "Parts",
+   "instances": 33,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "zeroed": {
+     "other": 23
+    },
+    "done: T-261 stadium": {
+     "body: torso": 2,
+     "body: arm": 4,
+     "body: leg": 4
+    }
+   }
+  },
+  "Parts/P_white_box_p5_p4": {
+   "parent": "Parts",
+   "instances": 7,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-261 stadium": {
+     "body: torso": 1,
+     "body: arm": 2,
+     "body: leg": 2
+    },
+    "zeroed": {
+     "other": 2
+    }
+   }
+  },
+  "Parts/P_white_box_p5_p5": {
+   "parent": "Parts",
+   "instances": 21,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "zeroed": {
+     "other": 11
+    },
+    "done: T-261 stadium": {
+     "body: torso": 2,
+     "body: arm": 4,
+     "body: leg": 4
+    }
+   }
+  },
+  "Parts/P_white_box_p6_m2": {
+   "parent": "Parts",
+   "instances": 2,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "zeroed": {
+     "other": 2
+    }
+   }
+  },
+  "Parts/P_white_box_p6_p3": {
+   "parent": "Parts",
+   "instances": 9,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "zeroed": {
+     "other": 3
+    },
+    "done: T-261 stadium": {
+     "body: arm": 3,
+     "body: torso": 1,
+     "body: leg": 2
+    }
+   }
+  },
+  "Parts/P_white_box_p6_p4": {
+   "parent": "Parts",
+   "instances": 10,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "zeroed": {
+     "other": 6
+    },
+    "done: T-261 stadium": {
+     "body: torso": 1,
+     "body: arm": 1,
+     "body: leg": 2
+    }
+   }
+  },
+  "Parts/P_white_box_p6_p5": {
+   "parent": "Parts",
+   "instances": 3,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "zeroed": {
+     "other": 3
+    }
+   }
+  },
+  "Parts/P_white_cone_p1_p4": {
+   "parent": "Parts",
+   "instances": 3,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-261 strip": {
+     "other": 3
+    }
+   }
+  },
+  "Parts/P_white_cone_p2_m1": {
+   "parent": "Parts",
+   "instances": 3,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "rest": {
+     "other": 3
+    }
+   },
+   "rest_other": [
+    0,
+    1,
+    2
+   ]
+  },
+  "Parts/P_white_cone_p2_p0": {
+   "parent": "Parts",
+   "instances": 4,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-261 strip": {
+     "other": 4
+    }
+   }
+  },
+  "Parts/P_white_cone_p2_p2": {
+   "parent": "Parts",
+   "instances": 1,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-261 strip": {
+     "other": 1
+    }
+   }
+  },
+  "Parts/P_white_cone_p4_m1": {
+   "parent": "Parts",
+   "instances": 9,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "rest": {
+     "other": 3
+    },
+    "done: T-262 gate strip": {
+     "other": 6
+    }
+   },
+   "rest_other": [
+    0,
+    1,
+    2
+   ]
+  },
+  "Parts/P_white_cone_p5_m2": {
+   "parent": "Parts",
+   "instances": 6,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "zeroed": {
+     "other": 6
+    }
+   }
+  },
+  "Parts/P_white_cylinder_m1_p0": {
+   "parent": "Parts",
+   "instances": 2,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "rest": {
+     "other": 1
+    },
+    "done: T-259 garden strip": {
+     "other": 1
+    }
+   },
+   "rest_other": [
+    0
+   ]
+  },
+  "Parts/P_white_cylinder_p1_p0": {
+   "parent": "Parts",
+   "instances": 1,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-261 strip": {
+     "other": 1
+    }
+   }
+  },
+  "Parts/P_white_cylinder_p1_p1": {
+   "parent": "Parts",
+   "instances": 1,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-261 strip": {
+     "other": 1
+    }
+   }
+  },
+  "Parts/P_white_cylinder_p1_p3": {
+   "parent": "Parts",
+   "instances": 1,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-261 strip": {
+     "other": 1
+    }
+   }
+  },
+  "Parts/P_white_cylinder_p2_p3": {
+   "parent": "Parts",
+   "instances": 1,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-261 strip": {
+     "other": 1
+    }
+   }
+  },
+  "Parts/P_white_cylinder_p2_p4": {
+   "parent": "Parts",
+   "instances": 1,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-261 strip": {
+     "other": 1
+    }
+   }
+  },
+  "Parts/P_white_cylinder_p3_m1": {
+   "parent": "Parts",
+   "instances": 1,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "rest": {
+     "other": 1
+    }
+   },
+   "rest_other": [
+    0
+   ]
+  },
+  "Parts/P_wood_box_p0_p0": {
+   "parent": "Parts",
+   "instances": 1,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-259 garden strip": {
+     "other": 1
+    }
+   }
+  },
+  "Parts/P_wood_box_p1_m1": {
+   "parent": "Parts",
+   "instances": 1,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-261 strip": {
+     "other": 1
+    }
+   }
+  },
+  "Parts/P_wood_box_p1_p0": {
+   "parent": "Parts",
+   "instances": 2,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-261 strip": {
+     "other": 2
+    }
+   }
+  },
+  "Parts/P_wood_box_p1_p1": {
+   "parent": "Parts",
+   "instances": 1,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-261 strip": {
+     "other": 1
+    }
+   }
+  },
+  "Parts/P_wood_box_p1_p3": {
+   "parent": "Parts",
+   "instances": 2,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-261 strip": {
+     "other": 2
+    }
+   }
+  },
+  "Parts/P_wood_box_p2_m1": {
+   "parent": "Parts",
+   "instances": 1,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-261 strip": {
+     "other": 1
+    }
+   }
+  },
+  "Parts/P_wood_box_p2_p2": {
+   "parent": "Parts",
+   "instances": 1,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-261 strip": {
+     "other": 1
+    }
+   }
+  },
+  "Parts/P_wood_box_p3_m1": {
+   "parent": "Parts",
+   "instances": 1,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "rest": {
+     "other": 1
+    }
+   },
+   "rest_other": [
+    0
+   ]
+  },
+  "Parts/P_wood_box_p4_m1": {
+   "parent": "Parts",
+   "instances": 2,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "rest": {
+     "other": 1
+    },
+    "done: T-262 gate strip": {
+     "other": 1
+    }
+   },
+   "rest_other": [
+    0
+   ]
+  },
+  "Parts/P_wood_box_p5_p0": {
+   "parent": "Parts",
+   "instances": 3,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-262 gate strip": {
+     "other": 2
+    },
+    "done: T-263 canteen strip": {
+     "other": 1
+    }
+   }
+  },
+  "Parts/P_wood_cone_p2_p0": {
+   "parent": "Parts",
+   "instances": 3,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-261 strip": {
+     "other": 3
+    }
+   }
+  },
+  "Parts/P_wood_cone_p2_p2": {
+   "parent": "Parts",
+   "instances": 3,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-261 strip": {
+     "other": 3
+    }
+   }
+  },
+  "Parts/P_wood_cylinder_p2_p0": {
+   "parent": "Parts",
+   "instances": 1,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-261 strip": {
+     "other": 1
+    }
+   }
+  },
+  "Parts/P_wood_cylinder_p2_p2": {
+   "parent": "Parts",
+   "instances": 1,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-261 strip": {
+     "other": 1
+    }
+   }
+  },
+  "Decals/D_iron_quad_m1_m1": {
+   "parent": "Decals",
+   "instances": 27,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "rest": {
+     "drag mark": 25
+    },
+    "building B": {
+     "drag mark": 2
+    }
+   }
+  },
+  "Decals/D_iron_quad_m1_p0": {
+   "parent": "Decals",
+   "instances": 54,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "rest": {
+     "drag mark": 46
+    },
+    "done: T-259 garden strip": {
+     "drag mark": 8
+    }
+   }
+  },
+  "Decals/D_iron_quad_p0_m1": {
+   "parent": "Decals",
+   "instances": 52,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "building B": {
+     "drag mark": 30
+    },
+    "rest": {
+     "drag mark": 22
+    }
+   }
+  },
+  "Decals/D_iron_quad_p0_p0": {
+   "parent": "Decals",
+   "instances": 102,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-259 garden strip": {
+     "drag mark": 78
+    },
+    "done: T-261 strip": {
+     "drag mark": 22
+    },
+    "building B": {
+     "drag mark": 2
+    }
+   }
+  },
+  "Decals/D_iron_quad_p0_p1": {
+   "parent": "Decals",
+   "instances": 35,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-261 strip": {
+     "drag mark": 35
+    }
+   }
+  },
+  "Decals/D_iron_quad_p0_p2": {
+   "parent": "Decals",
+   "instances": 7,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-261 strip": {
+     "drag mark": 7
+    }
+   }
+  },
+  "Decals/D_iron_quad_p1_m1": {
+   "parent": "Decals",
+   "instances": 34,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "rest": {
+     "drag mark": 28
+    },
+    "done: T-261 strip": {
+     "drag mark": 6
+    }
+   }
+  },
+  "Decals/D_iron_quad_p1_p0": {
+   "parent": "Decals",
+   "instances": 32,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-261 strip": {
+     "drag mark": 32
+    }
+   }
+  },
+  "Decals/D_iron_quad_p1_p1": {
+   "parent": "Decals",
+   "instances": 32,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "zeroed": {
+     "drag mark": 2
+    },
+    "done: T-261 strip": {
+     "drag mark": 27
+    },
+    "done: T-261 stadium": {
+     "drag mark": 3
+    }
+   }
+  },
+  "Decals/D_iron_quad_p1_p2": {
+   "parent": "Decals",
+   "instances": 56,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "zeroed": {
+     "drag mark": 2
+    },
+    "done: T-261 stadium": {
+     "drag mark": 32
+    },
+    "done: T-261 strip": {
+     "drag mark": 22
+    }
+   }
+  },
+  "Decals/D_iron_quad_p2_m1": {
+   "parent": "Decals",
+   "instances": 79,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "zeroed": {
+     "drag mark": 5
+    },
+    "done: T-262 gate strip": {
+     "drag mark": 62
+    },
+    "rest": {
+     "drag mark": 12
+    }
+   }
+  },
+  "Decals/D_iron_quad_p2_p0": {
+   "parent": "Decals",
+   "instances": 33,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "zeroed": {
+     "drag mark": 1
+    },
+    "done: T-262 gate strip": {
+     "drag mark": 5
+    },
+    "done: T-263 canteen strip": {
+     "drag mark": 27
+    }
+   }
+  },
+  "Decals/D_iron_quad_p2_p1": {
+   "parent": "Decals",
+   "instances": 41,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "zeroed": {
+     "drag mark": 4
+    },
+    "done: T-261 stadium": {
+     "drag mark": 37
+    }
+   }
+  },
+  "Decals/D_iron_quad_p2_p2": {
+   "parent": "Decals",
+   "instances": 65,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-261 stadium": {
+     "drag mark": 62
+    },
+    "zeroed": {
+     "drag mark": 3
+    }
+   }
+  },
+  "Decals/D_iron_quad_p3_m1": {
+   "parent": "Decals",
+   "instances": 1,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "zeroed": {
+     "drag mark": 1
+    }
+   }
+  },
+  "Decals/D_iron_quad_p3_p1": {
+   "parent": "Decals",
+   "instances": 11,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-261 stadium": {
+     "drag mark": 11
+    }
+   }
+  },
+  "Decals/D_iron_quad_p3_p2": {
+   "parent": "Decals",
+   "instances": 19,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "zeroed": {
+     "drag mark": 1
+    },
+    "done: T-261 stadium": {
+     "drag mark": 18
+    }
+   }
+  },
+  "Decals/D_paper_quad_m1_m1": {
+   "parent": "Decals",
+   "instances": 11,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "building B": {
+     "other": 7
+    },
+    "rest": {
+     "other": 4
+    }
+   },
+   "rest_other": [
+    1,
+    2,
+    3,
+    5
+   ]
+  },
+  "Decals/D_paper_quad_m1_p0": {
+   "parent": "Decals",
+   "instances": 4,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-259 garden strip": {
+     "other": 4
+    }
+   }
+  },
+  "Decals/D_paper_quad_p0_m1": {
+   "parent": "Decals",
+   "instances": 7,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "building B": {
+     "other": 6
+    },
+    "rest": {
+     "other": 1
+    }
+   },
+   "rest_other": [
+    4
+   ]
+  },
+  "Decals/D_paper_quad_p0_p0": {
+   "parent": "Decals",
+   "instances": 73,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "zeroed": {
+     "other": 48
+    },
+    "done: T-261 strip": {
+     "other": 25
+    }
+   }
+  },
+  "Decals/D_paper_quad_p0_p1": {
+   "parent": "Decals",
+   "instances": 31,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "zeroed": {
+     "other": 31
+    }
+   }
+  },
+  "Decals/D_paper_quad_p1_m1": {
+   "parent": "Decals",
+   "instances": 14,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "zeroed": {
+     "other": 8
+    },
+    "rest": {
+     "other": 6
+    }
+   },
+   "rest_other": [
+    5,
+    8,
+    9,
+    11,
+    12,
+    13
+   ]
+  },
+  "Decals/D_paper_quad_p1_p0": {
+   "parent": "Decals",
+   "instances": 13,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "zeroed": {
+     "other": 13
+    }
+   }
+  },
+  "Decals/D_paper_quad_p1_p1": {
+   "parent": "Decals",
+   "instances": 22,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "zeroed": {
+     "other": 22
+    }
+   }
+  },
+  "Decals/D_paper_quad_p1_p2": {
+   "parent": "Decals",
+   "instances": 34,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "zeroed": {
+     "other": 34
+    }
+   }
+  },
+  "Decals/D_paper_quad_p2_m1": {
+   "parent": "Decals",
+   "instances": 26,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "zeroed": {
+     "other": 20
+    },
+    "rest": {
+     "other": 6
+    }
+   },
+   "rest_other": [
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+   ]
+  },
+  "Decals/D_paper_quad_p2_p0": {
+   "parent": "Decals",
+   "instances": 26,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "zeroed": {
+     "other": 25
+    },
+    "rest": {
+     "other": 1
+    }
+   },
+   "rest_other": [
+    1
+   ]
+  },
+  "Decals/D_paper_quad_p2_p1": {
+   "parent": "Decals",
+   "instances": 36,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "zeroed": {
+     "other": 36
+    }
+   }
+  },
+  "Decals/D_paper_quad_p2_p2": {
+   "parent": "Decals",
+   "instances": 19,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "zeroed": {
+     "other": 19
+    }
+   }
+  },
+  "Decals/D_paper_quad_p3_m1": {
+   "parent": "Decals",
+   "instances": 3,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "zeroed": {
+     "other": 3
+    }
+   }
+  },
+  "Decals/D_paper_quad_p3_p2": {
+   "parent": "Decals",
+   "instances": 8,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "zeroed": {
+     "other": 8
+    }
+   }
+  },
+  "Decals/D_red_quad_p0_p0": {
+   "parent": "Decals",
+   "instances": 15,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-259 garden strip": {
+     "blood": 15
+    }
+   }
+  },
+  "Decals/D_red_quad_p1_p1": {
+   "parent": "Decals",
+   "instances": 3,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-261 strip": {
+     "blood": 3
+    }
+   }
+  },
+  "Decals/D_red_quad_p1_p2": {
+   "parent": "Decals",
+   "instances": 15,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-261 stadium": {
+     "blood": 12
+    },
+    "done: T-261 strip": {
+     "blood": 3
+    }
+   }
+  },
+  "Decals/D_red_quad_p2_m1": {
+   "parent": "Decals",
+   "instances": 6,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-262 gate strip": {
+     "blood": 6
+    }
+   }
+  },
+  "Decals/D_red_quad_p2_p1": {
+   "parent": "Decals",
+   "instances": 6,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-261 stadium": {
+     "blood": 6
+    }
+   }
+  },
+  "Decals/D_red_quad_p2_p2": {
+   "parent": "Decals",
+   "instances": 9,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-261 stadium": {
+     "blood": 9
+    }
+   }
+  },
+  "Decals/D_red_quad_p3_p1": {
+   "parent": "Decals",
+   "instances": 3,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-261 stadium": {
+     "blood": 3
+    }
+   }
+  },
+  "Decals/D_red_quad_p3_p2": {
+   "parent": "Decals",
+   "instances": 3,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-261 stadium": {
+     "blood": 3
+    }
+   }
+  },
+  "Decals/D_white_quad_m1_p0": {
+   "parent": "Decals",
+   "instances": 1,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-259 garden strip": {
+     "other": 1
+    }
+   }
+  },
+  "Decals/D_white_quad_m1_p1": {
+   "parent": "Decals",
+   "instances": 16,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "rest": {
+     "other": 16
+    }
+   },
+   "rest_other": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+   ]
+  },
+  "Decals/D_white_quad_m1_p2": {
+   "parent": "Decals",
+   "instances": 16,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "rest": {
+     "other": 16
+    }
+   },
+   "rest_other": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+   ]
+  },
+  "Decals/D_white_quad_p0_m1": {
+   "parent": "Decals",
+   "instances": 34,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "building B": {
+     "other": 34
+    }
+   }
+  },
+  "Decals/D_white_quad_p0_p0": {
+   "parent": "Decals",
+   "instances": 41,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-259 garden strip": {
+     "other": 8
+    },
+    "rest": {
+     "other": 30
+    },
+    "done: T-261 strip": {
+     "other": 3
+    }
+   },
+   "rest_other": [
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36
+   ]
+  },
+  "Decals/D_white_quad_p0_p1": {
+   "parent": "Decals",
+   "instances": 6,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-261 strip": {
+     "other": 6
+    }
+   }
+  },
+  "Decals/D_white_quad_p0_p2": {
+   "parent": "Decals",
+   "instances": 19,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "rest": {
+     "other": 8
+    },
+    "wave 8: library and 6 m round it": {
+     "other": 11
+    }
+   },
+   "rest_other": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+   ]
+  },
+  "Decals/D_white_quad_p1_m1": {
+   "parent": "Decals",
+   "instances": 7,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-261 strip": {
+     "other": 3
+    },
+    "rest": {
+     "other": 4
+    }
+   },
+   "rest_other": [
+    3,
+    4,
+    5,
+    6
+   ]
+  },
+  "Decals/D_white_quad_p1_p0": {
+   "parent": "Decals",
+   "instances": 3,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "done: T-261 strip": {
+     "other": 3
+    }
+   }
+  },
+  "Decals/D_white_quad_p1_p1": {
+   "parent": "Decals",
+   "instances": 7,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "zeroed": {
+     "other": 4
+    },
+    "done: T-261 strip": {
+     "other": 3
+    }
+   }
+  },
+  "Decals/D_white_quad_p1_p2": {
+   "parent": "Decals",
+   "instances": 13,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "wave 8: library and 6 m round it": {
+     "other": 5
+    },
+    "zeroed": {
+     "other": 4
+    },
+    "done: T-261 strip": {
+     "other": 4
+    }
+   }
+  },
+  "Decals/D_white_quad_p2_m1": {
+   "parent": "Decals",
+   "instances": 7,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "zeroed": {
+     "other": 7
+    }
+   }
+  },
+  "Decals/D_white_quad_p2_p0": {
+   "parent": "Decals",
+   "instances": 7,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "zeroed": {
+     "other": 7
+    }
+   }
+  },
+  "Decals/D_white_quad_p2_p1": {
+   "parent": "Decals",
+   "instances": 8,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "zeroed": {
+     "other": 8
+    }
+   }
+  },
+  "Decals/D_white_quad_p2_p2": {
+   "parent": "Decals",
+   "instances": 7,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "zeroed": {
+     "other": 7
+    }
+   }
+  },
+  "Decals/D_white_quad_p3_m1": {
+   "parent": "Decals",
+   "instances": 1,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "zeroed": {
+     "other": 1
+    }
+   }
+  },
+  "Decals/D_white_quad_p3_p2": {
+   "parent": "Decals",
+   "instances": 3,
+   "node_hidden": false,
+   "heads": 0,
+   "regions": {
+    "zeroed": {
+     "other": 3
+    }
+   }
+  }
+ },
+ "campus": {
+  "trees": {
+   "Trees_-2_-2": {
+    "points": 2,
+    "regions": {
+     "rest": 2
+    }
+   },
+   "Trees_-2_7": {
+    "points": 2,
+    "regions": {
+     "rest": 2
+    }
+   },
+   "Trees_-1_-2": {
+    "points": 3,
+    "regions": {
+     "rest": 3
+    }
+   },
+   "Trees_-1_7": {
+    "points": 3,
+    "regions": {
+     "rest": 3
+    }
+   },
+   "Trees_0_-2": {
+    "points": 2,
+    "regions": {
+     "rest": 2
+    }
+   },
+   "Trees_0_7": {
+    "points": 2,
+    "regions": {
+     "rest": 2
+    }
+   },
+   "Trees_1_-2": {
+    "points": 3,
+    "regions": {
+     "rest": 3
+    }
+   },
+   "Trees_1_7": {
+    "points": 3,
+    "regions": {
+     "rest": 3
+    }
+   },
+   "Trees_2_-2": {
+    "points": 2,
+    "regions": {
+     "rest": 2
+    }
+   },
+   "Trees_2_7": {
+    "points": 2,
+    "regions": {
+     "rest": 2
+    }
+   },
+   "Trees_3_-2": {
+    "points": 3,
+    "regions": {
+     "rest": 3
+    }
+   },
+   "Trees_3_7": {
+    "points": 3,
+    "regions": {
+     "rest": 3
+    }
+   },
+   "Trees_4_-2": {
+    "points": 1,
+    "regions": {
+     "rest": 1
+    }
+   },
+   "Trees_4_7": {
+    "points": 2,
+    "regions": {
+     "rest": 2
+    }
+   },
+   "Trees_5_7": {
+    "points": 3,
+    "regions": {
+     "rest": 3
+    }
+   },
+   "Trees_6_-2": {
+    "points": 2,
+    "regions": {
+     "done: T-262 gate strip": 1,
+     "rest": 1
+    }
+   },
+   "Trees_6_7": {
+    "points": 2,
+    "regions": {
+     "rest": 2
+    }
+   },
+   "Trees_7_-2": {
+    "points": 3,
+    "regions": {
+     "rest": 3
+    }
+   },
+   "Trees_7_7": {
+    "points": 3,
+    "regions": {
+     "rest": 3
+    }
+   },
+   "Trees_8_-2": {
+    "points": 2,
+    "regions": {
+     "rest": 2
+    }
+   },
+   "Trees_8_7": {
+    "points": 2,
+    "regions": {
+     "rest": 2
+    }
+   },
+   "Trees_9_-2": {
+    "points": 3,
+    "regions": {
+     "rest": 3
+    }
+   },
+   "Trees_9_7": {
+    "points": 3,
+    "regions": {
+     "rest": 3
+    }
+   },
+   "Trees_-2_-1": {
+    "points": 2,
+    "regions": {
+     "rest": 2
+    }
+   },
+   "Trees_10_-1": {
+    "points": 2,
+    "regions": {
+     "rest": 2
+    }
+   },
+   "Trees_-2_0": {
+    "points": 3,
+    "regions": {
+     "rest": 3
+    }
+   },
+   "Trees_10_0": {
+    "points": 3,
+    "regions": {
+     "rest": 3
+    }
+   },
+   "Trees_-2_1": {
+    "points": 2,
+    "regions": {
+     "rest": 2
+    }
+   },
+   "Trees_10_1": {
+    "points": 2,
+    "regions": {
+     "rest": 2
+    }
+   },
+   "Trees_-2_2": {
+    "points": 3,
+    "regions": {
+     "rest": 3
+    }
+   },
+   "Trees_10_2": {
+    "points": 3,
+    "regions": {
+     "rest": 3
+    }
+   },
+   "Trees_-2_3": {
+    "points": 2,
+    "regions": {
+     "rest": 2
+    }
+   },
+   "Trees_10_3": {
+    "points": 2,
+    "regions": {
+     "rest": 2
+    }
+   },
+   "Trees_-2_4": {
+    "points": 3,
+    "regions": {
+     "rest": 3
+    }
+   },
+   "Trees_10_4": {
+    "points": 3,
+    "regions": {
+     "rest": 3
+    }
+   },
+   "Trees_-2_5": {
+    "points": 2,
+    "regions": {
+     "rest": 2
+    }
+   },
+   "Trees_10_5": {
+    "points": 2,
+    "regions": {
+     "rest": 2
+    }
+   },
+   "Trees_-2_6": {
+    "points": 3,
+    "regions": {
+     "rest": 3
+    }
+   },
+   "Trees_10_6": {
+    "points": 3,
+    "regions": {
+     "rest": 3
+    }
+   },
+   "Trees_1_-1": {
+    "points": 2,
+    "regions": {
+     "done: T-261 strip": 2
+    }
+   },
+   "Trees_2_-1": {
+    "points": 2,
+    "regions": {
+     "done: T-261 strip": 2
+    }
+   },
+   "Trees_3_-1": {
+    "points": 3,
+    "regions": {
+     "rest": 3
+    }
+   },
+   "Trees_4_-1": {
+    "points": 2,
+    "regions": {
+     "rest": 1,
+     "done: T-262 gate strip": 1
+    }
+   },
+   "Trees_5_-1": {
+    "points": 1,
+    "regions": {
+     "done: T-262 gate strip": 1
+    }
+   },
+   "Trees_1_0": {
+    "points": 2,
+    "regions": {
+     "done: T-261 strip": 2
+    }
+   },
+   "Trees_1_1": {
+    "points": 3,
+    "regions": {
+     "done: T-261 strip": 3
+    }
+   },
+   "Trees_1_2": {
+    "points": 2,
+    "regions": {
+     "done: T-261 strip": 2
+    }
+   },
+   "Trees_1_3": {
+    "points": 3,
+    "regions": {
+     "done: T-261 strip": 3
+    }
+   }
+  },
+  "lamps": {
+   "StreetLights_0_-1": {
+    "points": 2,
+    "regions": {
+     "rest": 2
+    }
+   },
+   "StreetLights_1_-1": {
+    "points": 2,
+    "regions": {
+     "rest": 2
+    }
+   },
+   "StreetLights_2_-1": {
+    "points": 2,
+    "regions": {
+     "rest": 2
+    }
+   },
+   "StreetLights_3_-1": {
+    "points": 2,
+    "regions": {
+     "rest": 2
+    }
+   },
+   "StreetLights_4_-1": {
+    "points": 2,
+    "regions": {
+     "rest": 1,
+     "done: T-262 gate strip": 1
+    }
+   },
+   "StreetLights_5_-1": {
+    "points": 2,
+    "regions": {
+     "done: T-262 gate strip": 2
+    }
+   },
+   "StreetLights_2_0": {
+    "points": 2,
+    "regions": {
+     "done: T-261 strip": 2
+    }
+   },
+   "StreetLights_2_1": {
+    "points": 2,
+    "regions": {
+     "done: T-261 strip": 2
+    }
+   },
+   "StreetLights_2_2": {
+    "points": 2,
+    "regions": {
+     "done: T-261 strip": 2
+    }
+   },
+   "StreetLights_2_3": {
+    "points": 2,
+    "regions": {
+     "done: T-261 strip": 2
+    }
+   },
+   "StreetLights_2_4": {
+    "points": 1,
+    "regions": {
+     "done: T-261 strip": 1
+    }
+   }
+  },
+  "extra_trees": {
+   "ExtraTrees_0_-1": {
+    "points": 2,
+    "regions": {
+     "rest": 2
+    }
+   },
+   "ExtraTrees_1_-1": {
+    "points": 4,
+    "regions": {
+     "rest": 3,
+     "done: T-261 strip": 1
+    }
+   },
+   "ExtraTrees_2_-1": {
+    "points": 5,
+    "regions": {
+     "rest": 4,
+     "done: T-261 strip": 1
+    }
+   },
+   "ExtraTrees_3_-1": {
+    "points": 5,
+    "regions": {
+     "rest": 5
+    }
+   },
+   "ExtraTrees_4_-1": {
+    "points": 3,
+    "regions": {
+     "rest": 2,
+     "done: T-262 gate strip": 1
+    }
+   },
+   "ExtraTrees_6_-1": {
+    "points": 2,
+    "regions": {
+     "done: T-262 gate strip": 1,
+     "rest": 1
+    }
+   },
+   "ExtraTrees_7_-1": {
+    "points": 3,
+    "regions": {
+     "rest": 3
+    }
+   },
+   "ExtraTrees_8_-1": {
+    "points": 3,
+    "regions": {
+     "rest": 3
+    }
+   },
+   "ExtraTrees_9_-1": {
+    "points": 3,
+    "regions": {
+     "rest": 3
+    }
+   },
+   "ExtraTrees_5_-1": {
+    "points": 4,
+    "regions": {
+     "done: T-262 gate strip": 4
+    }
+   },
+   "ExtraTrees_2_0": {
+    "points": 3,
+    "regions": {
+     "done: T-261 strip": 3
+    }
+   },
+   "ExtraTrees_2_1": {
+    "points": 2,
+    "regions": {
+     "done: T-261 strip": 2
+    }
+   },
+   "ExtraTrees_2_2": {
+    "points": 3,
+    "regions": {
+     "done: T-261 strip": 3
+    }
+   },
+   "ExtraTrees_2_3": {
+    "points": 3,
+    "regions": {
+     "done: T-261 strip": 3
+    }
+   },
+   "ExtraTrees_1_0": {
+    "points": 5,
+    "regions": {
+     "done: T-261 strip": 5
+    }
+   },
+   "ExtraTrees_1_1": {
+    "points": 2,
+    "regions": {
+     "done: T-261 strip": 2
+    }
+   },
+   "ExtraTrees_1_2": {
+    "points": 2,
+    "regions": {
+     "done: T-261 strip": 2
+    }
+   },
+   "ExtraTrees_1_3": {
+    "points": 2,
+    "regions": {
+     "done: T-261 strip": 2
+    }
+   },
+   "ExtraTrees_-1_-1": {
+    "points": 3,
+    "regions": {
+     "rest": 3
+    }
+   }
+  },
+  "trunks": {
+   "rest": 99,
+   "done: T-262 gate strip": 3,
+   "done: T-261 strip": 14
+  },
+  "RoadBench": {
+   "RoadBench0": [
+    62.0,
+    -22.0,
+    "rest"
+   ],
+   "RoadBench1": [
+    102.0,
+    -22.0,
+    "rest"
+   ],
+   "RoadBench2": [
+    148.0,
+    -22.0,
+    "rest"
+   ]
+  },
+  "BenchBody": {
+   "BenchBody0": [
+    62.0,
+    -22.0,
+    "rest"
+   ],
+   "BenchBody1": [
+    102.0,
+    -22.0,
+    "rest"
+   ],
+   "BenchBody2": [
+    148.0,
+    -22.0,
+    "rest"
+   ]
+  },
+  "FallenMoped": {
+   "FallenMoped0": [
+    61.0,
+    -11.0,
+    "done: T-261 strip"
+   ],
+   "FallenMoped1": [
+    145.0,
+    -18.0,
+    "rest"
+   ],
+   "FallenMoped2": [
+    225.0,
+    -25.0,
+    "done: T-262 gate strip"
+   ]
+  },
+  "MopedBody": {
+   "MopedBody0": [
+    61.0,
+    -11.0,
+    "done: T-261 strip"
+   ],
+   "MopedBody1": [
+    145.0,
+    -18.0,
+    "rest"
+   ],
+   "MopedBody2": [
+    225.0,
+    -25.0,
+    "done: T-262 gate strip"
+   ]
+  },
+  "ground_tiles": {
+   "Tile_-80_-60": {
+    "rest": 25
+   },
+   "Tile_-80_-10": {
+    "rest": 25
+   },
+   "Tile_-80_40": {
+    "rest": 25
+   },
+   "Tile_-80_90": {
+    "rest": 13,
+    "gym footprint": 12
+   },
+   "Tile_-80_140": {
+    "rest": 23,
+    "lecture hall footprint": 2
+   },
+   "Tile_-80_190": {
+    "rest": 23,
+    "lecture hall footprint": 2
+   },
+   "Tile_-80_240": {
+    "rest": 25
+   },
+   "Tile_-30_-60": {
+    "rest": 25
+   },
+   "Tile_-30_-10": {
+    "rest": 10,
+    "building B": 3,
+    "done: T-259 garden strip": 12
+   },
+   "Tile_-30_40": {
+    "rest": 20,
+    "done: T-259 garden strip": 3,
+    "building A footprint": 2
+   },
+   "Tile_-30_90": {
+    "gym footprint": 12,
+    "rest": 13
+   },
+   "Tile_-30_140": {
+    "rest": 20,
+    "lecture hall footprint": 5
+   },
+   "Tile_-30_190": {
+    "lecture hall footprint": 5,
+    "rest": 20
+   },
+   "Tile_-30_240": {
+    "rest": 25
+   },
+   "Tile_20_-60": {
+    "rest": 25
+   },
+   "Tile_20_-10": {
+    "building B": 3,
+    "done: T-259 garden strip": 12,
+    "done: T-261 strip": 10
+   },
+   "Tile_20_40": {
+    "done: T-259 garden strip": 3,
+    "building A footprint": 2,
+    "rest": 10,
+    "done: T-261 strip": 10
+   },
+   "Tile_20_90": {
+    "rest": 15,
+    "done: T-261 strip": 10
+   },
+   "Tile_20_140": {
+    "rest": 16,
+    "lecture hall footprint": 1,
+    "done: T-261 strip": 8
+   },
+   "Tile_20_190": {
+    "lecture hall footprint": 1,
+    "rest": 12,
+    "wave 8: library and 6 m round it": 12
+   },
+   "Tile_20_240": {
+    "rest": 25
+   },
+   "Tile_70_-60": {
+    "rest": 25
+   },
+   "Tile_70_-10": {
+    "done: T-261 strip": 20,
+    "rest": 5
+   },
+   "Tile_70_40": {
+    "done: T-261 strip": 20,
+    "rest": 5
+   },
+   "Tile_70_90": {
+    "done: T-261 strip": 20,
+    "rest": 2,
+    "done: T-261 stadium": 3
+   },
+   "Tile_70_140": {
+    "done: T-261 strip": 16,
+    "rest": 4,
+    "done: T-261 stadium": 5
+   },
+   "Tile_70_190": {
+    "wave 8: library and 6 m round it": 8,
+    "rest": 12,
+    "done: T-261 stadium": 5
+   },
+   "Tile_70_240": {
+    "rest": 25
+   },
+   "Tile_120_-60": {
+    "rest": 25
+   },
+   "Tile_120_-10": {
+    "rest": 25
+   },
+   "Tile_120_40": {
+    "rest": 25
+   },
+   "Tile_120_90": {
+    "rest": 10,
+    "done: T-261 stadium": 15
+   },
+   "Tile_120_140": {
+    "done: T-261 stadium": 25
+   },
+   "Tile_120_190": {
+    "done: T-261 stadium": 25
+   },
+   "Tile_120_240": {
+    "rest": 25
+   },
+   "Tile_170_-60": {
+    "rest": 5,
+    "done: T-262 gate strip": 20
+   },
+   "Tile_170_-10": {
+    "rest": 2,
+    "done: T-263 canteen strip": 15,
+    "done: T-262 gate strip": 8
+   },
+   "Tile_170_40": {
+    "done: T-263 canteen strip": 10,
+    "rest": 15
+   },
+   "Tile_170_90": {
+    "rest": 10,
+    "done: T-261 stadium": 15
+   },
+   "Tile_170_140": {
+    "done: T-261 stadium": 25
+   },
+   "Tile_170_190": {
+    "done: T-261 stadium": 25
+   },
+   "Tile_170_240": {
+    "rest": 25
+   },
+   "Tile_220_-60": {
+    "done: T-262 gate strip": 20,
+    "rest": 5
+   },
+   "Tile_220_-10": {
+    "done: T-262 gate strip": 8,
+    "rest": 17
+   },
+   "Tile_220_40": {
+    "rest": 25
+   },
+   "Tile_220_90": {
+    "rest": 10,
+    "done: T-261 stadium": 15
+   },
+   "Tile_220_140": {
+    "done: T-261 stadium": 25
+   },
+   "Tile_220_190": {
+    "done: T-261 stadium": 25
+   },
+   "Tile_220_240": {
+    "rest": 25
+   },
+   "Tile_270_-60": {
+    "rest": 25
+   },
+   "Tile_270_-10": {
+    "rest": 25
+   },
+   "Tile_270_40": {
+    "rest": 25
+   },
+   "Tile_270_90": {
+    "rest": 19,
+    "done: T-261 stadium": 6
+   },
+   "Tile_270_140": {
+    "done: T-261 stadium": 10,
+    "rest": 15
+   },
+   "Tile_270_190": {
+    "done: T-261 stadium": 10,
+    "rest": 15
+   },
+   "Tile_270_240": {
+    "rest": 25
+   },
+   "Tile_320_-60": {
+    "rest": 25
+   },
+   "Tile_320_-10": {
+    "rest": 25
+   },
+   "Tile_320_40": {
+    "rest": 25
+   },
+   "Tile_320_90": {
+    "rest": 25
+   },
+   "Tile_320_140": {
+    "rest": 25
+   },
+   "Tile_320_190": {
+    "rest": 25
+   },
+   "Tile_320_240": {
+    "rest": 25
+   },
+   "Tile_370_-60": {
+    "rest": 25
+   },
+   "Tile_370_-10": {
+    "rest": 25
+   },
+   "Tile_370_40": {
+    "rest": 25
+   },
+   "Tile_370_90": {
+    "rest": 25
+   },
+   "Tile_370_140": {
+    "rest": 25
+   },
+   "Tile_370_190": {
+    "rest": 25
+   },
+   "Tile_370_240": {
+    "rest": 25
+   }
+  }
+ }
+}

@@ -78,3 +78,9 @@ Phương án chủ dự án chọn (T1, F1, Q1 bảng gỗ, C2, K1, M2, TV bản
 ngoài và mái, xe đạp, dải A16 (sân trước lát gạch, hè và rãnh, sân sau, cỏ), 18 đồ rải thay chỗ PS1. Nguồn từng file và
 texture: [`wave6/CREDITS.md`](wave6/CREDITS.md). Dựng bằng script Blender, texture vẽ bằng code; không Tripo, không ảnh AI
 (D-166).
+
+## `wave7/` — T-264: nhà nền, mặt ngoài nhà B, mặt đất, đường, cây, đèn, hàng rào; lượt 1 góc mẫu và phương án
+
+Góc mẫu nhà A (hai kiểu), nhà thể chất (hai kiểu mái), mặt ngoài nhà B, đoạn đại lộ (hai kiểu mặt đường, lề, đèn), ba loài
+cây ven đường, ghế, xe máy đổ, hàng rào tây (hai kiểu) chờ chủ dự án chọn. Nguồn từng file và texture:
+[`wave7/CREDITS.md`](wave7/CREDITS.md). Dựng bằng script Blender, texture vẽ bằng code; không Tripo, không ảnh AI (D-166).

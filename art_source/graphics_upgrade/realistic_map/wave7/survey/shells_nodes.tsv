@@ -1,0 +1,339 @@
+path	type	visible	position	rotation_deg	detail
+.	Node3D	vis	(0.000, 0.000, 0.000)	(-0.000, 0.000, 0.000)	
+BuildingA	Node3D	vis	(0.000, 0.000, 0.000)	(-0.000, 0.000, 0.000)	
+BuildingA/Shell	StaticBody3D	vis	(22.000, 0.000, 59.000)	(-0.000, 0.000, 0.000)	layer 1 mask 0
+BuildingA/Shell/Collision	CollisionShape3D	vis	(22.000, 0.000, 59.000)	(-0.000, 0.000, 0.000)	shape box (44.000, 19.800, 10.000) aabb (0.000, -9.900, 54.000)..(44.000, 9.900, 64.000)
+BuildingA/Shell/Mesh	MeshInstance3D	vis	(22.000, 0.000, 59.000)	(-0.000, 0.000, 0.000)	box (44.000, 19.800, 10.000) | aabb (0.000, -9.900, 54.000)..(44.000, 9.900, 64.000) | wall.png ffffffff | shadow 1
+BuildingA/Window0_0	Node3D	vis	(2.500, -8.100, 53.890)	(-0.000, 0.000, 0.000)	
+BuildingA/Window0_0/Mesh	MeshInstance3D	vis	(2.500, -8.100, 53.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (1.500, -8.850, 53.865)..(3.500, -7.350, 53.915) | glass.png ffffffff | shadow 1
+BuildingA/Window0_1	Node3D	vis	(7.500, -8.100, 53.890)	(-0.000, 0.000, 0.000)	
+BuildingA/Window0_1/Mesh	MeshInstance3D	vis	(7.500, -8.100, 53.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (6.500, -8.850, 53.865)..(8.500, -7.350, 53.915) | glass.png ffffffff | shadow 1
+BuildingA/Window0_2	Node3D	vis	(12.500, -8.100, 53.890)	(-0.000, 0.000, 0.000)	
+BuildingA/Window0_2/Mesh	MeshInstance3D	vis	(12.500, -8.100, 53.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (11.500, -8.850, 53.865)..(13.500, -7.350, 53.915) | glass.png ffffffff | shadow 1
+BuildingA/Window0_3	Node3D	vis	(17.500, -8.100, 53.890)	(-0.000, 0.000, 0.000)	
+BuildingA/Window0_3/Mesh	MeshInstance3D	vis	(17.500, -8.100, 53.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (16.500, -8.850, 53.865)..(18.500, -7.350, 53.915) | glass.png ffffffff | shadow 1
+BuildingA/Window0_4	Node3D	vis	(22.500, -8.100, 53.890)	(-0.000, 0.000, 0.000)	
+BuildingA/Window0_4/Mesh	MeshInstance3D	vis	(22.500, -8.100, 53.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (21.500, -8.850, 53.865)..(23.500, -7.350, 53.915) | glass.png ffffffff | shadow 1
+BuildingA/Window0_5	Node3D	vis	(27.500, -8.100, 53.890)	(-0.000, 0.000, 0.000)	
+BuildingA/Window0_5/Mesh	MeshInstance3D	vis	(27.500, -8.100, 53.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (26.500, -8.850, 53.865)..(28.500, -7.350, 53.915) | glass.png ffffffff | shadow 1
+BuildingA/Window0_6	Node3D	vis	(32.500, -8.100, 53.890)	(-0.000, 0.000, 0.000)	
+BuildingA/Window0_6/Mesh	MeshInstance3D	vis	(32.500, -8.100, 53.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (31.500, -8.850, 53.865)..(33.500, -7.350, 53.915) | glass.png ffffffff | shadow 1
+BuildingA/Window0_7	Node3D	vis	(37.500, -8.100, 53.890)	(-0.000, 0.000, 0.000)	
+BuildingA/Window0_7/Mesh	MeshInstance3D	vis	(37.500, -8.100, 53.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (36.500, -8.850, 53.865)..(38.500, -7.350, 53.915) | glass.png ffffffff | shadow 1
+BuildingA/Window1_0	Node3D	vis	(2.500, -4.800, 53.890)	(-0.000, 0.000, 0.000)	
+BuildingA/Window1_0/Mesh	MeshInstance3D	vis	(2.500, -4.800, 53.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (1.500, -5.550, 53.865)..(3.500, -4.050, 53.915) | glass.png ffffffff | shadow 1
+BuildingA/Window1_1	Node3D	vis	(7.500, -4.800, 53.890)	(-0.000, 0.000, 0.000)	
+BuildingA/Window1_1/Mesh	MeshInstance3D	vis	(7.500, -4.800, 53.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (6.500, -5.550, 53.865)..(8.500, -4.050, 53.915) | glass.png ffffffff | shadow 1
+BuildingA/Window1_2	Node3D	vis	(12.500, -4.800, 53.890)	(-0.000, 0.000, 0.000)	
+BuildingA/Window1_2/Mesh	MeshInstance3D	vis	(12.500, -4.800, 53.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (11.500, -5.550, 53.865)..(13.500, -4.050, 53.915) | glass.png ffffffff | shadow 1
+BuildingA/Window1_3	Node3D	vis	(17.500, -4.800, 53.890)	(-0.000, 0.000, 0.000)	
+BuildingA/Window1_3/Mesh	MeshInstance3D	vis	(17.500, -4.800, 53.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (16.500, -5.550, 53.865)..(18.500, -4.050, 53.915) | glass.png ffffffff | shadow 1
+BuildingA/Window1_4	Node3D	vis	(22.500, -4.800, 53.890)	(-0.000, 0.000, 0.000)	
+BuildingA/Window1_4/Mesh	MeshInstance3D	vis	(22.500, -4.800, 53.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (21.500, -5.550, 53.865)..(23.500, -4.050, 53.915) | glass.png ffffffff | shadow 1
+BuildingA/Window1_5	Node3D	vis	(27.500, -4.800, 53.890)	(-0.000, 0.000, 0.000)	
+BuildingA/Window1_5/Mesh	MeshInstance3D	vis	(27.500, -4.800, 53.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (26.500, -5.550, 53.865)..(28.500, -4.050, 53.915) | glass.png ffffffff | shadow 1
+BuildingA/Window1_6	Node3D	vis	(32.500, -4.800, 53.890)	(-0.000, 0.000, 0.000)	
+BuildingA/Window1_6/Mesh	MeshInstance3D	vis	(32.500, -4.800, 53.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (31.500, -5.550, 53.865)..(33.500, -4.050, 53.915) | glass.png ffffffff | shadow 1
+BuildingA/Window1_7	Node3D	vis	(37.500, -4.800, 53.890)	(-0.000, 0.000, 0.000)	
+BuildingA/Window1_7/Mesh	MeshInstance3D	vis	(37.500, -4.800, 53.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (36.500, -5.550, 53.865)..(38.500, -4.050, 53.915) | glass.png ffffffff | shadow 1
+BuildingA/Window2_0	Node3D	vis	(2.500, -1.500, 53.890)	(-0.000, 0.000, 0.000)	
+BuildingA/Window2_0/Mesh	MeshInstance3D	vis	(2.500, -1.500, 53.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (1.500, -2.250, 53.865)..(3.500, -0.750, 53.915) | glass.png ffffffff | shadow 1
+BuildingA/Window2_1	Node3D	vis	(7.500, -1.500, 53.890)	(-0.000, 0.000, 0.000)	
+BuildingA/Window2_1/Mesh	MeshInstance3D	vis	(7.500, -1.500, 53.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (6.500, -2.250, 53.865)..(8.500, -0.750, 53.915) | glass.png ffffffff | shadow 1
+BuildingA/Window2_2	Node3D	vis	(12.500, -1.500, 53.890)	(-0.000, 0.000, 0.000)	
+BuildingA/Window2_2/Mesh	MeshInstance3D	vis	(12.500, -1.500, 53.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (11.500, -2.250, 53.865)..(13.500, -0.750, 53.915) | glass.png ffffffff | shadow 1
+BuildingA/Window2_3	Node3D	vis	(17.500, -1.500, 53.890)	(-0.000, 0.000, 0.000)	
+BuildingA/Window2_3/Mesh	MeshInstance3D	vis	(17.500, -1.500, 53.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (16.500, -2.250, 53.865)..(18.500, -0.750, 53.915) | glass.png ffffffff | shadow 1
+BuildingA/Window2_4	Node3D	vis	(22.500, -1.500, 53.890)	(-0.000, 0.000, 0.000)	
+BuildingA/Window2_4/Mesh	MeshInstance3D	vis	(22.500, -1.500, 53.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (21.500, -2.250, 53.865)..(23.500, -0.750, 53.915) | glass.png ffffffff | shadow 1
+BuildingA/Window2_5	Node3D	vis	(27.500, -1.500, 53.890)	(-0.000, 0.000, 0.000)	
+BuildingA/Window2_5/Mesh	MeshInstance3D	vis	(27.500, -1.500, 53.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (26.500, -2.250, 53.865)..(28.500, -0.750, 53.915) | glass.png ffffffff | shadow 1
+BuildingA/Window2_6	Node3D	vis	(32.500, -1.500, 53.890)	(-0.000, 0.000, 0.000)	
+BuildingA/Window2_6/Mesh	MeshInstance3D	vis	(32.500, -1.500, 53.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (31.500, -2.250, 53.865)..(33.500, -0.750, 53.915) | glass.png ffffffff | shadow 1
+BuildingA/Window2_7	Node3D	vis	(37.500, -1.500, 53.890)	(-0.000, 0.000, 0.000)	
+BuildingA/Window2_7/Mesh	MeshInstance3D	vis	(37.500, -1.500, 53.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (36.500, -2.250, 53.865)..(38.500, -0.750, 53.915) | glass.png ffffffff | shadow 1
+BuildingA/Window3_0	Node3D	vis	(2.500, 1.800, 53.890)	(-0.000, 0.000, 0.000)	
+BuildingA/Window3_0/Mesh	MeshInstance3D	vis	(2.500, 1.800, 53.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (1.500, 1.050, 53.865)..(3.500, 2.550, 53.915) | glass.png ffffffff | shadow 1
+BuildingA/Window3_1	Node3D	vis	(7.500, 1.800, 53.890)	(-0.000, 0.000, 0.000)	
+BuildingA/Window3_1/Mesh	MeshInstance3D	vis	(7.500, 1.800, 53.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (6.500, 1.050, 53.865)..(8.500, 2.550, 53.915) | glass.png ffffffff | shadow 1
+BuildingA/Window3_2	Node3D	vis	(12.500, 1.800, 53.890)	(-0.000, 0.000, 0.000)	
+BuildingA/Window3_2/Mesh	MeshInstance3D	vis	(12.500, 1.800, 53.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (11.500, 1.050, 53.865)..(13.500, 2.550, 53.915) | glass.png ffffffff | shadow 1
+BuildingA/Window3_3	Node3D	vis	(17.500, 1.800, 53.890)	(-0.000, 0.000, 0.000)	
+BuildingA/Window3_3/Mesh	MeshInstance3D	vis	(17.500, 1.800, 53.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (16.500, 1.050, 53.865)..(18.500, 2.550, 53.915) | glass.png ffffffff | shadow 1
+BuildingA/Window3_4	Node3D	vis	(22.500, 1.800, 53.890)	(-0.000, 0.000, 0.000)	
+BuildingA/Window3_4/Mesh	MeshInstance3D	vis	(22.500, 1.800, 53.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (21.500, 1.050, 53.865)..(23.500, 2.550, 53.915) | glass.png ffffffff | shadow 1
+BuildingA/Window3_5	Node3D	vis	(27.500, 1.800, 53.890)	(-0.000, 0.000, 0.000)	
+BuildingA/Window3_5/Mesh	MeshInstance3D	vis	(27.500, 1.800, 53.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (26.500, 1.050, 53.865)..(28.500, 2.550, 53.915) | glass.png ffffffff | shadow 1
+BuildingA/Window3_6	Node3D	vis	(32.500, 1.800, 53.890)	(-0.000, 0.000, 0.000)	
+BuildingA/Window3_6/Mesh	MeshInstance3D	vis	(32.500, 1.800, 53.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (31.500, 1.050, 53.865)..(33.500, 2.550, 53.915) | glass.png ffffffff | shadow 1
+BuildingA/Window3_7	Node3D	vis	(37.500, 1.800, 53.890)	(-0.000, 0.000, 0.000)	
+BuildingA/Window3_7/Mesh	MeshInstance3D	vis	(37.500, 1.800, 53.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (36.500, 1.050, 53.865)..(38.500, 2.550, 53.915) | glass.png ffffffff | shadow 1
+BuildingA/Window4_0	Node3D	vis	(2.500, 5.100, 53.890)	(-0.000, 0.000, 0.000)	
+BuildingA/Window4_0/Mesh	MeshInstance3D	vis	(2.500, 5.100, 53.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (1.500, 4.350, 53.865)..(3.500, 5.850, 53.915) | glass.png ffffffff | shadow 1
+BuildingA/Window4_1	Node3D	vis	(7.500, 5.100, 53.890)	(-0.000, 0.000, 0.000)	
+BuildingA/Window4_1/Mesh	MeshInstance3D	vis	(7.500, 5.100, 53.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (6.500, 4.350, 53.865)..(8.500, 5.850, 53.915) | glass.png ffffffff | shadow 1
+BuildingA/Window4_2	Node3D	vis	(12.500, 5.100, 53.890)	(-0.000, 0.000, 0.000)	
+BuildingA/Window4_2/Mesh	MeshInstance3D	vis	(12.500, 5.100, 53.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (11.500, 4.350, 53.865)..(13.500, 5.850, 53.915) | glass.png ffffffff | shadow 1
+BuildingA/Window4_3	Node3D	vis	(17.500, 5.100, 53.890)	(-0.000, 0.000, 0.000)	
+BuildingA/Window4_3/Mesh	MeshInstance3D	vis	(17.500, 5.100, 53.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (16.500, 4.350, 53.865)..(18.500, 5.850, 53.915) | glass.png ffffffff | shadow 1
+BuildingA/Window4_4	Node3D	vis	(22.500, 5.100, 53.890)	(-0.000, 0.000, 0.000)	
+BuildingA/Window4_4/Mesh	MeshInstance3D	vis	(22.500, 5.100, 53.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (21.500, 4.350, 53.865)..(23.500, 5.850, 53.915) | glass.png ffffffff | shadow 1
+BuildingA/Window4_5	Node3D	vis	(27.500, 5.100, 53.890)	(-0.000, 0.000, 0.000)	
+BuildingA/Window4_5/Mesh	MeshInstance3D	vis	(27.500, 5.100, 53.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (26.500, 4.350, 53.865)..(28.500, 5.850, 53.915) | glass.png ffffffff | shadow 1
+BuildingA/Window4_6	Node3D	vis	(32.500, 5.100, 53.890)	(-0.000, 0.000, 0.000)	
+BuildingA/Window4_6/Mesh	MeshInstance3D	vis	(32.500, 5.100, 53.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (31.500, 4.350, 53.865)..(33.500, 5.850, 53.915) | glass.png ffffffff | shadow 1
+BuildingA/Window4_7	Node3D	vis	(37.500, 5.100, 53.890)	(-0.000, 0.000, 0.000)	
+BuildingA/Window4_7/Mesh	MeshInstance3D	vis	(37.500, 5.100, 53.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (36.500, 4.350, 53.865)..(38.500, 5.850, 53.915) | glass.png ffffffff | shadow 1
+BuildingA/Window5_0	Node3D	vis	(2.500, 8.400, 53.890)	(-0.000, 0.000, 0.000)	
+BuildingA/Window5_0/Mesh	MeshInstance3D	vis	(2.500, 8.400, 53.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (1.500, 7.650, 53.865)..(3.500, 9.150, 53.915) | glass.png ffffffff | shadow 1
+BuildingA/Window5_1	Node3D	vis	(7.500, 8.400, 53.890)	(-0.000, 0.000, 0.000)	
+BuildingA/Window5_1/Mesh	MeshInstance3D	vis	(7.500, 8.400, 53.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (6.500, 7.650, 53.865)..(8.500, 9.150, 53.915) | glass.png ffffffff | shadow 1
+BuildingA/Window5_2	Node3D	vis	(12.500, 8.400, 53.890)	(-0.000, 0.000, 0.000)	
+BuildingA/Window5_2/Mesh	MeshInstance3D	vis	(12.500, 8.400, 53.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (11.500, 7.650, 53.865)..(13.500, 9.150, 53.915) | glass.png ffffffff | shadow 1
+BuildingA/Window5_3	Node3D	vis	(17.500, 8.400, 53.890)	(-0.000, 0.000, 0.000)	
+BuildingA/Window5_3/Mesh	MeshInstance3D	vis	(17.500, 8.400, 53.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (16.500, 7.650, 53.865)..(18.500, 9.150, 53.915) | glass.png ffffffff | shadow 1
+BuildingA/Window5_4	Node3D	vis	(22.500, 8.400, 53.890)	(-0.000, 0.000, 0.000)	
+BuildingA/Window5_4/Mesh	MeshInstance3D	vis	(22.500, 8.400, 53.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (21.500, 7.650, 53.865)..(23.500, 9.150, 53.915) | glass.png ffffffff | shadow 1
+BuildingA/Window5_5	Node3D	vis	(27.500, 8.400, 53.890)	(-0.000, 0.000, 0.000)	
+BuildingA/Window5_5/Mesh	MeshInstance3D	vis	(27.500, 8.400, 53.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (26.500, 7.650, 53.865)..(28.500, 9.150, 53.915) | glass.png ffffffff | shadow 1
+BuildingA/Window5_6	Node3D	vis	(32.500, 8.400, 53.890)	(-0.000, 0.000, 0.000)	
+BuildingA/Window5_6/Mesh	MeshInstance3D	vis	(32.500, 8.400, 53.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (31.500, 7.650, 53.865)..(33.500, 9.150, 53.915) | glass.png ffffffff | shadow 1
+BuildingA/Window5_7	Node3D	vis	(37.500, 8.400, 53.890)	(-0.000, 0.000, 0.000)	
+BuildingA/Window5_7/Mesh	MeshInstance3D	vis	(37.500, 8.400, 53.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (36.500, 7.650, 53.865)..(38.500, 9.150, 53.915) | glass.png ffffffff | shadow 1
+BuildingA/LockedDoor	Node3D	vis	(22.000, -8.500, 53.840)	(-0.000, 0.000, 0.000)	
+BuildingA/LockedDoor/Mesh	MeshInstance3D	vis	(22.000, -8.500, 53.840)	(-0.000, 0.000, 0.000)	box (3.000, 2.800, 0.100) | aabb (20.500, -9.900, 53.790)..(23.500, -7.100, 53.890) | iron.png ffffffff | shadow 1
+Lecture	Node3D	vis	(0.000, 0.000, 0.000)	(-0.000, 0.000, 0.000)	
+Lecture/Shell	StaticBody3D	vis	(-10.000, -1.650, 190.000)	(-0.000, 0.000, 0.000)	layer 1 mask 0
+Lecture/Shell/Collision	CollisionShape3D	vis	(-10.000, -1.650, 190.000)	(-0.000, 0.000, 0.000)	shape box (80.000, 16.500, 20.000) aabb (-50.000, -9.900, 180.000)..(30.000, 6.600, 200.000)
+Lecture/Shell/Mesh	MeshInstance3D	vis	(-10.000, -1.650, 190.000)	(-0.000, 0.000, 0.000)	box (80.000, 16.500, 20.000) | aabb (-50.000, -9.900, 180.000)..(30.000, 6.600, 200.000) | wall.png ffffffff | shadow 1
+Lecture/Window0_0	Node3D	vis	(-47.500, -8.100, 179.890)	(-0.000, 0.000, 0.000)	
+Lecture/Window0_0/Mesh	MeshInstance3D	vis	(-47.500, -8.100, 179.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (-48.500, -8.850, 179.865)..(-46.500, -7.350, 179.915) | glass.png ffffffff | shadow 1
+Lecture/Window0_1	Node3D	vis	(-42.500, -8.100, 179.890)	(-0.000, 0.000, 0.000)	
+Lecture/Window0_1/Mesh	MeshInstance3D	vis	(-42.500, -8.100, 179.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (-43.500, -8.850, 179.865)..(-41.500, -7.350, 179.915) | glass.png ffffffff | shadow 1
+Lecture/Window0_2	Node3D	vis	(-37.500, -8.100, 179.890)	(-0.000, 0.000, 0.000)	
+Lecture/Window0_2/Mesh	MeshInstance3D	vis	(-37.500, -8.100, 179.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (-38.500, -8.850, 179.865)..(-36.500, -7.350, 179.915) | glass.png ffffffff | shadow 1
+Lecture/Window0_3	Node3D	vis	(-32.500, -8.100, 179.890)	(-0.000, 0.000, 0.000)	
+Lecture/Window0_3/Mesh	MeshInstance3D	vis	(-32.500, -8.100, 179.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (-33.500, -8.850, 179.865)..(-31.500, -7.350, 179.915) | glass.png ffffffff | shadow 1
+Lecture/Window0_4	Node3D	vis	(-27.500, -8.100, 179.890)	(-0.000, 0.000, 0.000)	
+Lecture/Window0_4/Mesh	MeshInstance3D	vis	(-27.500, -8.100, 179.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (-28.500, -8.850, 179.865)..(-26.500, -7.350, 179.915) | glass.png ffffffff | shadow 1
+Lecture/Window0_5	Node3D	vis	(-22.500, -8.100, 179.890)	(-0.000, 0.000, 0.000)	
+Lecture/Window0_5/Mesh	MeshInstance3D	vis	(-22.500, -8.100, 179.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (-23.500, -8.850, 179.865)..(-21.500, -7.350, 179.915) | glass.png ffffffff | shadow 1
+Lecture/Window0_6	Node3D	vis	(-17.500, -8.100, 179.890)	(-0.000, 0.000, 0.000)	
+Lecture/Window0_6/Mesh	MeshInstance3D	vis	(-17.500, -8.100, 179.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (-18.500, -8.850, 179.865)..(-16.500, -7.350, 179.915) | glass.png ffffffff | shadow 1
+Lecture/Window0_7	Node3D	vis	(-12.500, -8.100, 179.890)	(-0.000, 0.000, 0.000)	
+Lecture/Window0_7/Mesh	MeshInstance3D	vis	(-12.500, -8.100, 179.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (-13.500, -8.850, 179.865)..(-11.500, -7.350, 179.915) | glass.png ffffffff | shadow 1
+Lecture/Window0_8	Node3D	vis	(-7.500, -8.100, 179.890)	(-0.000, 0.000, 0.000)	
+Lecture/Window0_8/Mesh	MeshInstance3D	vis	(-7.500, -8.100, 179.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (-8.500, -8.850, 179.865)..(-6.500, -7.350, 179.915) | glass.png ffffffff | shadow 1
+Lecture/Window0_9	Node3D	vis	(-2.500, -8.100, 179.890)	(-0.000, 0.000, 0.000)	
+Lecture/Window0_9/Mesh	MeshInstance3D	vis	(-2.500, -8.100, 179.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (-3.500, -8.850, 179.865)..(-1.500, -7.350, 179.915) | glass.png ffffffff | shadow 1
+Lecture/Window0_10	Node3D	vis	(2.500, -8.100, 179.890)	(-0.000, 0.000, 0.000)	
+Lecture/Window0_10/Mesh	MeshInstance3D	vis	(2.500, -8.100, 179.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (1.500, -8.850, 179.865)..(3.500, -7.350, 179.915) | glass.png ffffffff | shadow 1
+Lecture/Window0_11	Node3D	vis	(7.500, -8.100, 179.890)	(-0.000, 0.000, 0.000)	
+Lecture/Window0_11/Mesh	MeshInstance3D	vis	(7.500, -8.100, 179.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (6.500, -8.850, 179.865)..(8.500, -7.350, 179.915) | glass.png ffffffff | shadow 1
+Lecture/Window0_12	Node3D	vis	(12.500, -8.100, 179.890)	(-0.000, 0.000, 0.000)	
+Lecture/Window0_12/Mesh	MeshInstance3D	vis	(12.500, -8.100, 179.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (11.500, -8.850, 179.865)..(13.500, -7.350, 179.915) | glass.png ffffffff | shadow 1
+Lecture/Window0_13	Node3D	vis	(17.500, -8.100, 179.890)	(-0.000, 0.000, 0.000)	
+Lecture/Window0_13/Mesh	MeshInstance3D	vis	(17.500, -8.100, 179.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (16.500, -8.850, 179.865)..(18.500, -7.350, 179.915) | glass.png ffffffff | shadow 1
+Lecture/Window0_14	Node3D	vis	(22.500, -8.100, 179.890)	(-0.000, 0.000, 0.000)	
+Lecture/Window0_14/Mesh	MeshInstance3D	vis	(22.500, -8.100, 179.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (21.500, -8.850, 179.865)..(23.500, -7.350, 179.915) | glass.png ffffffff | shadow 1
+Lecture/Window0_15	Node3D	vis	(27.500, -8.100, 179.890)	(-0.000, 0.000, 0.000)	
+Lecture/Window0_15/Mesh	MeshInstance3D	vis	(27.500, -8.100, 179.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (26.500, -8.850, 179.865)..(28.500, -7.350, 179.915) | glass.png ffffffff | shadow 1
+Lecture/Window1_0	Node3D	vis	(-47.500, -4.800, 179.890)	(-0.000, 0.000, 0.000)	
+Lecture/Window1_0/Mesh	MeshInstance3D	vis	(-47.500, -4.800, 179.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (-48.500, -5.550, 179.865)..(-46.500, -4.050, 179.915) | glass.png ffffffff | shadow 1
+Lecture/Window1_1	Node3D	vis	(-42.500, -4.800, 179.890)	(-0.000, 0.000, 0.000)	
+Lecture/Window1_1/Mesh	MeshInstance3D	vis	(-42.500, -4.800, 179.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (-43.500, -5.550, 179.865)..(-41.500, -4.050, 179.915) | glass.png ffffffff | shadow 1
+Lecture/Window1_2	Node3D	vis	(-37.500, -4.800, 179.890)	(-0.000, 0.000, 0.000)	
+Lecture/Window1_2/Mesh	MeshInstance3D	vis	(-37.500, -4.800, 179.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (-38.500, -5.550, 179.865)..(-36.500, -4.050, 179.915) | glass.png ffffffff | shadow 1
+Lecture/Window1_3	Node3D	vis	(-32.500, -4.800, 179.890)	(-0.000, 0.000, 0.000)	
+Lecture/Window1_3/Mesh	MeshInstance3D	vis	(-32.500, -4.800, 179.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (-33.500, -5.550, 179.865)..(-31.500, -4.050, 179.915) | glass.png ffffffff | shadow 1
+Lecture/Window1_4	Node3D	vis	(-27.500, -4.800, 179.890)	(-0.000, 0.000, 0.000)	
+Lecture/Window1_4/Mesh	MeshInstance3D	vis	(-27.500, -4.800, 179.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (-28.500, -5.550, 179.865)..(-26.500, -4.050, 179.915) | glass.png ffffffff | shadow 1
+Lecture/Window1_5	Node3D	vis	(-22.500, -4.800, 179.890)	(-0.000, 0.000, 0.000)	
+Lecture/Window1_5/Mesh	MeshInstance3D	vis	(-22.500, -4.800, 179.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (-23.500, -5.550, 179.865)..(-21.500, -4.050, 179.915) | glass.png ffffffff | shadow 1
+Lecture/Window1_6	Node3D	vis	(-17.500, -4.800, 179.890)	(-0.000, 0.000, 0.000)	
+Lecture/Window1_6/Mesh	MeshInstance3D	vis	(-17.500, -4.800, 179.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (-18.500, -5.550, 179.865)..(-16.500, -4.050, 179.915) | glass.png ffffffff | shadow 1
+Lecture/Window1_7	Node3D	vis	(-12.500, -4.800, 179.890)	(-0.000, 0.000, 0.000)	
+Lecture/Window1_7/Mesh	MeshInstance3D	vis	(-12.500, -4.800, 179.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (-13.500, -5.550, 179.865)..(-11.500, -4.050, 179.915) | glass.png ffffffff | shadow 1
+Lecture/Window1_8	Node3D	vis	(-7.500, -4.800, 179.890)	(-0.000, 0.000, 0.000)	
+Lecture/Window1_8/Mesh	MeshInstance3D	vis	(-7.500, -4.800, 179.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (-8.500, -5.550, 179.865)..(-6.500, -4.050, 179.915) | glass.png ffffffff | shadow 1
+Lecture/Window1_9	Node3D	vis	(-2.500, -4.800, 179.890)	(-0.000, 0.000, 0.000)	
+Lecture/Window1_9/Mesh	MeshInstance3D	vis	(-2.500, -4.800, 179.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (-3.500, -5.550, 179.865)..(-1.500, -4.050, 179.915) | glass.png ffffffff | shadow 1
+Lecture/Window1_10	Node3D	vis	(2.500, -4.800, 179.890)	(-0.000, 0.000, 0.000)	
+Lecture/Window1_10/Mesh	MeshInstance3D	vis	(2.500, -4.800, 179.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (1.500, -5.550, 179.865)..(3.500, -4.050, 179.915) | glass.png ffffffff | shadow 1
+Lecture/Window1_11	Node3D	vis	(7.500, -4.800, 179.890)	(-0.000, 0.000, 0.000)	
+Lecture/Window1_11/Mesh	MeshInstance3D	vis	(7.500, -4.800, 179.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (6.500, -5.550, 179.865)..(8.500, -4.050, 179.915) | glass.png ffffffff | shadow 1
+Lecture/Window1_12	Node3D	vis	(12.500, -4.800, 179.890)	(-0.000, 0.000, 0.000)	
+Lecture/Window1_12/Mesh	MeshInstance3D	vis	(12.500, -4.800, 179.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (11.500, -5.550, 179.865)..(13.500, -4.050, 179.915) | glass.png ffffffff | shadow 1
+Lecture/Window1_13	Node3D	vis	(17.500, -4.800, 179.890)	(-0.000, 0.000, 0.000)	
+Lecture/Window1_13/Mesh	MeshInstance3D	vis	(17.500, -4.800, 179.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (16.500, -5.550, 179.865)..(18.500, -4.050, 179.915) | glass.png ffffffff | shadow 1
+Lecture/Window1_14	Node3D	vis	(22.500, -4.800, 179.890)	(-0.000, 0.000, 0.000)	
+Lecture/Window1_14/Mesh	MeshInstance3D	vis	(22.500, -4.800, 179.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (21.500, -5.550, 179.865)..(23.500, -4.050, 179.915) | glass.png ffffffff | shadow 1
+Lecture/Window1_15	Node3D	vis	(27.500, -4.800, 179.890)	(-0.000, 0.000, 0.000)	
+Lecture/Window1_15/Mesh	MeshInstance3D	vis	(27.500, -4.800, 179.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (26.500, -5.550, 179.865)..(28.500, -4.050, 179.915) | glass.png ffffffff | shadow 1
+Lecture/Window2_0	Node3D	vis	(-47.500, -1.500, 179.890)	(-0.000, 0.000, 0.000)	
+Lecture/Window2_0/Mesh	MeshInstance3D	vis	(-47.500, -1.500, 179.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (-48.500, -2.250, 179.865)..(-46.500, -0.750, 179.915) | glass.png ffffffff | shadow 1
+Lecture/Window2_1	Node3D	vis	(-42.500, -1.500, 179.890)	(-0.000, 0.000, 0.000)	
+Lecture/Window2_1/Mesh	MeshInstance3D	vis	(-42.500, -1.500, 179.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (-43.500, -2.250, 179.865)..(-41.500, -0.750, 179.915) | glass.png ffffffff | shadow 1
+Lecture/Window2_2	Node3D	vis	(-37.500, -1.500, 179.890)	(-0.000, 0.000, 0.000)	
+Lecture/Window2_2/Mesh	MeshInstance3D	vis	(-37.500, -1.500, 179.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (-38.500, -2.250, 179.865)..(-36.500, -0.750, 179.915) | glass.png ffffffff | shadow 1
+Lecture/Window2_3	Node3D	vis	(-32.500, -1.500, 179.890)	(-0.000, 0.000, 0.000)	
+Lecture/Window2_3/Mesh	MeshInstance3D	vis	(-32.500, -1.500, 179.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (-33.500, -2.250, 179.865)..(-31.500, -0.750, 179.915) | glass.png ffffffff | shadow 1
+Lecture/Window2_4	Node3D	vis	(-27.500, -1.500, 179.890)	(-0.000, 0.000, 0.000)	
+Lecture/Window2_4/Mesh	MeshInstance3D	vis	(-27.500, -1.500, 179.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (-28.500, -2.250, 179.865)..(-26.500, -0.750, 179.915) | glass.png ffffffff | shadow 1
+Lecture/Window2_5	Node3D	vis	(-22.500, -1.500, 179.890)	(-0.000, 0.000, 0.000)	
+Lecture/Window2_5/Mesh	MeshInstance3D	vis	(-22.500, -1.500, 179.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (-23.500, -2.250, 179.865)..(-21.500, -0.750, 179.915) | glass.png ffffffff | shadow 1
+Lecture/Window2_6	Node3D	vis	(-17.500, -1.500, 179.890)	(-0.000, 0.000, 0.000)	
+Lecture/Window2_6/Mesh	MeshInstance3D	vis	(-17.500, -1.500, 179.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (-18.500, -2.250, 179.865)..(-16.500, -0.750, 179.915) | glass.png ffffffff | shadow 1
+Lecture/Window2_7	Node3D	vis	(-12.500, -1.500, 179.890)	(-0.000, 0.000, 0.000)	
+Lecture/Window2_7/Mesh	MeshInstance3D	vis	(-12.500, -1.500, 179.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (-13.500, -2.250, 179.865)..(-11.500, -0.750, 179.915) | glass.png ffffffff | shadow 1
+Lecture/Window2_8	Node3D	vis	(-7.500, -1.500, 179.890)	(-0.000, 0.000, 0.000)	
+Lecture/Window2_8/Mesh	MeshInstance3D	vis	(-7.500, -1.500, 179.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (-8.500, -2.250, 179.865)..(-6.500, -0.750, 179.915) | glass.png ffffffff | shadow 1
+Lecture/Window2_9	Node3D	vis	(-2.500, -1.500, 179.890)	(-0.000, 0.000, 0.000)	
+Lecture/Window2_9/Mesh	MeshInstance3D	vis	(-2.500, -1.500, 179.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (-3.500, -2.250, 179.865)..(-1.500, -0.750, 179.915) | glass.png ffffffff | shadow 1
+Lecture/Window2_10	Node3D	vis	(2.500, -1.500, 179.890)	(-0.000, 0.000, 0.000)	
+Lecture/Window2_10/Mesh	MeshInstance3D	vis	(2.500, -1.500, 179.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (1.500, -2.250, 179.865)..(3.500, -0.750, 179.915) | glass.png ffffffff | shadow 1
+Lecture/Window2_11	Node3D	vis	(7.500, -1.500, 179.890)	(-0.000, 0.000, 0.000)	
+Lecture/Window2_11/Mesh	MeshInstance3D	vis	(7.500, -1.500, 179.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (6.500, -2.250, 179.865)..(8.500, -0.750, 179.915) | glass.png ffffffff | shadow 1
+Lecture/Window2_12	Node3D	vis	(12.500, -1.500, 179.890)	(-0.000, 0.000, 0.000)	
+Lecture/Window2_12/Mesh	MeshInstance3D	vis	(12.500, -1.500, 179.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (11.500, -2.250, 179.865)..(13.500, -0.750, 179.915) | glass.png ffffffff | shadow 1
+Lecture/Window2_13	Node3D	vis	(17.500, -1.500, 179.890)	(-0.000, 0.000, 0.000)	
+Lecture/Window2_13/Mesh	MeshInstance3D	vis	(17.500, -1.500, 179.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (16.500, -2.250, 179.865)..(18.500, -0.750, 179.915) | glass.png ffffffff | shadow 1
+Lecture/Window2_14	Node3D	vis	(22.500, -1.500, 179.890)	(-0.000, 0.000, 0.000)	
+Lecture/Window2_14/Mesh	MeshInstance3D	vis	(22.500, -1.500, 179.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (21.500, -2.250, 179.865)..(23.500, -0.750, 179.915) | glass.png ffffffff | shadow 1
+Lecture/Window2_15	Node3D	vis	(27.500, -1.500, 179.890)	(-0.000, 0.000, 0.000)	
+Lecture/Window2_15/Mesh	MeshInstance3D	vis	(27.500, -1.500, 179.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (26.500, -2.250, 179.865)..(28.500, -0.750, 179.915) | glass.png ffffffff | shadow 1
+Lecture/Window3_0	Node3D	vis	(-47.500, 1.800, 179.890)	(-0.000, 0.000, 0.000)	
+Lecture/Window3_0/Mesh	MeshInstance3D	vis	(-47.500, 1.800, 179.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (-48.500, 1.050, 179.865)..(-46.500, 2.550, 179.915) | glass.png ffffffff | shadow 1
+Lecture/Window3_1	Node3D	vis	(-42.500, 1.800, 179.890)	(-0.000, 0.000, 0.000)	
+Lecture/Window3_1/Mesh	MeshInstance3D	vis	(-42.500, 1.800, 179.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (-43.500, 1.050, 179.865)..(-41.500, 2.550, 179.915) | glass.png ffffffff | shadow 1
+Lecture/Window3_2	Node3D	vis	(-37.500, 1.800, 179.890)	(-0.000, 0.000, 0.000)	
+Lecture/Window3_2/Mesh	MeshInstance3D	vis	(-37.500, 1.800, 179.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (-38.500, 1.050, 179.865)..(-36.500, 2.550, 179.915) | glass.png ffffffff | shadow 1
+Lecture/Window3_3	Node3D	vis	(-32.500, 1.800, 179.890)	(-0.000, 0.000, 0.000)	
+Lecture/Window3_3/Mesh	MeshInstance3D	vis	(-32.500, 1.800, 179.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (-33.500, 1.050, 179.865)..(-31.500, 2.550, 179.915) | glass.png ffffffff | shadow 1
+Lecture/Window3_4	Node3D	vis	(-27.500, 1.800, 179.890)	(-0.000, 0.000, 0.000)	
+Lecture/Window3_4/Mesh	MeshInstance3D	vis	(-27.500, 1.800, 179.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (-28.500, 1.050, 179.865)..(-26.500, 2.550, 179.915) | glass.png ffffffff | shadow 1
+Lecture/Window3_5	Node3D	vis	(-22.500, 1.800, 179.890)	(-0.000, 0.000, 0.000)	
+Lecture/Window3_5/Mesh	MeshInstance3D	vis	(-22.500, 1.800, 179.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (-23.500, 1.050, 179.865)..(-21.500, 2.550, 179.915) | glass.png ffffffff | shadow 1
+Lecture/Window3_6	Node3D	vis	(-17.500, 1.800, 179.890)	(-0.000, 0.000, 0.000)	
+Lecture/Window3_6/Mesh	MeshInstance3D	vis	(-17.500, 1.800, 179.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (-18.500, 1.050, 179.865)..(-16.500, 2.550, 179.915) | glass.png ffffffff | shadow 1
+Lecture/Window3_7	Node3D	vis	(-12.500, 1.800, 179.890)	(-0.000, 0.000, 0.000)	
+Lecture/Window3_7/Mesh	MeshInstance3D	vis	(-12.500, 1.800, 179.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (-13.500, 1.050, 179.865)..(-11.500, 2.550, 179.915) | glass.png ffffffff | shadow 1
+Lecture/Window3_8	Node3D	vis	(-7.500, 1.800, 179.890)	(-0.000, 0.000, 0.000)	
+Lecture/Window3_8/Mesh	MeshInstance3D	vis	(-7.500, 1.800, 179.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (-8.500, 1.050, 179.865)..(-6.500, 2.550, 179.915) | glass.png ffffffff | shadow 1
+Lecture/Window3_9	Node3D	vis	(-2.500, 1.800, 179.890)	(-0.000, 0.000, 0.000)	
+Lecture/Window3_9/Mesh	MeshInstance3D	vis	(-2.500, 1.800, 179.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (-3.500, 1.050, 179.865)..(-1.500, 2.550, 179.915) | glass.png ffffffff | shadow 1
+Lecture/Window3_10	Node3D	vis	(2.500, 1.800, 179.890)	(-0.000, 0.000, 0.000)	
+Lecture/Window3_10/Mesh	MeshInstance3D	vis	(2.500, 1.800, 179.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (1.500, 1.050, 179.865)..(3.500, 2.550, 179.915) | glass.png ffffffff | shadow 1
+Lecture/Window3_11	Node3D	vis	(7.500, 1.800, 179.890)	(-0.000, 0.000, 0.000)	
+Lecture/Window3_11/Mesh	MeshInstance3D	vis	(7.500, 1.800, 179.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (6.500, 1.050, 179.865)..(8.500, 2.550, 179.915) | glass.png ffffffff | shadow 1
+Lecture/Window3_12	Node3D	vis	(12.500, 1.800, 179.890)	(-0.000, 0.000, 0.000)	
+Lecture/Window3_12/Mesh	MeshInstance3D	vis	(12.500, 1.800, 179.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (11.500, 1.050, 179.865)..(13.500, 2.550, 179.915) | glass.png ffffffff | shadow 1
+Lecture/Window3_13	Node3D	vis	(17.500, 1.800, 179.890)	(-0.000, 0.000, 0.000)	
+Lecture/Window3_13/Mesh	MeshInstance3D	vis	(17.500, 1.800, 179.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (16.500, 1.050, 179.865)..(18.500, 2.550, 179.915) | glass.png ffffffff | shadow 1
+Lecture/Window3_14	Node3D	vis	(22.500, 1.800, 179.890)	(-0.000, 0.000, 0.000)	
+Lecture/Window3_14/Mesh	MeshInstance3D	vis	(22.500, 1.800, 179.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (21.500, 1.050, 179.865)..(23.500, 2.550, 179.915) | glass.png ffffffff | shadow 1
+Lecture/Window3_15	Node3D	vis	(27.500, 1.800, 179.890)	(-0.000, 0.000, 0.000)	
+Lecture/Window3_15/Mesh	MeshInstance3D	vis	(27.500, 1.800, 179.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (26.500, 1.050, 179.865)..(28.500, 2.550, 179.915) | glass.png ffffffff | shadow 1
+Lecture/Window4_0	Node3D	vis	(-47.500, 5.100, 179.890)	(-0.000, 0.000, 0.000)	
+Lecture/Window4_0/Mesh	MeshInstance3D	vis	(-47.500, 5.100, 179.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (-48.500, 4.350, 179.865)..(-46.500, 5.850, 179.915) | glass.png ffffffff | shadow 1
+Lecture/Window4_1	Node3D	vis	(-42.500, 5.100, 179.890)	(-0.000, 0.000, 0.000)	
+Lecture/Window4_1/Mesh	MeshInstance3D	vis	(-42.500, 5.100, 179.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (-43.500, 4.350, 179.865)..(-41.500, 5.850, 179.915) | glass.png ffffffff | shadow 1
+Lecture/Window4_2	Node3D	vis	(-37.500, 5.100, 179.890)	(-0.000, 0.000, 0.000)	
+Lecture/Window4_2/Mesh	MeshInstance3D	vis	(-37.500, 5.100, 179.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (-38.500, 4.350, 179.865)..(-36.500, 5.850, 179.915) | glass.png ffffffff | shadow 1
+Lecture/Window4_3	Node3D	vis	(-32.500, 5.100, 179.890)	(-0.000, 0.000, 0.000)	
+Lecture/Window4_3/Mesh	MeshInstance3D	vis	(-32.500, 5.100, 179.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (-33.500, 4.350, 179.865)..(-31.500, 5.850, 179.915) | glass.png ffffffff | shadow 1
+Lecture/Window4_4	Node3D	vis	(-27.500, 5.100, 179.890)	(-0.000, 0.000, 0.000)	
+Lecture/Window4_4/Mesh	MeshInstance3D	vis	(-27.500, 5.100, 179.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (-28.500, 4.350, 179.865)..(-26.500, 5.850, 179.915) | glass.png ffffffff | shadow 1
+Lecture/Window4_5	Node3D	vis	(-22.500, 5.100, 179.890)	(-0.000, 0.000, 0.000)	
+Lecture/Window4_5/Mesh	MeshInstance3D	vis	(-22.500, 5.100, 179.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (-23.500, 4.350, 179.865)..(-21.500, 5.850, 179.915) | glass.png ffffffff | shadow 1
+Lecture/Window4_6	Node3D	vis	(-17.500, 5.100, 179.890)	(-0.000, 0.000, 0.000)	
+Lecture/Window4_6/Mesh	MeshInstance3D	vis	(-17.500, 5.100, 179.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (-18.500, 4.350, 179.865)..(-16.500, 5.850, 179.915) | glass.png ffffffff | shadow 1
+Lecture/Window4_7	Node3D	vis	(-12.500, 5.100, 179.890)	(-0.000, 0.000, 0.000)	
+Lecture/Window4_7/Mesh	MeshInstance3D	vis	(-12.500, 5.100, 179.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (-13.500, 4.350, 179.865)..(-11.500, 5.850, 179.915) | glass.png ffffffff | shadow 1
+Lecture/Window4_8	Node3D	vis	(-7.500, 5.100, 179.890)	(-0.000, 0.000, 0.000)	
+Lecture/Window4_8/Mesh	MeshInstance3D	vis	(-7.500, 5.100, 179.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (-8.500, 4.350, 179.865)..(-6.500, 5.850, 179.915) | glass.png ffffffff | shadow 1
+Lecture/Window4_9	Node3D	vis	(-2.500, 5.100, 179.890)	(-0.000, 0.000, 0.000)	
+Lecture/Window4_9/Mesh	MeshInstance3D	vis	(-2.500, 5.100, 179.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (-3.500, 4.350, 179.865)..(-1.500, 5.850, 179.915) | glass.png ffffffff | shadow 1
+Lecture/Window4_10	Node3D	vis	(2.500, 5.100, 179.890)	(-0.000, 0.000, 0.000)	
+Lecture/Window4_10/Mesh	MeshInstance3D	vis	(2.500, 5.100, 179.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (1.500, 4.350, 179.865)..(3.500, 5.850, 179.915) | glass.png ffffffff | shadow 1
+Lecture/Window4_11	Node3D	vis	(7.500, 5.100, 179.890)	(-0.000, 0.000, 0.000)	
+Lecture/Window4_11/Mesh	MeshInstance3D	vis	(7.500, 5.100, 179.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (6.500, 4.350, 179.865)..(8.500, 5.850, 179.915) | glass.png ffffffff | shadow 1
+Lecture/Window4_12	Node3D	vis	(12.500, 5.100, 179.890)	(-0.000, 0.000, 0.000)	
+Lecture/Window4_12/Mesh	MeshInstance3D	vis	(12.500, 5.100, 179.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (11.500, 4.350, 179.865)..(13.500, 5.850, 179.915) | glass.png ffffffff | shadow 1
+Lecture/Window4_13	Node3D	vis	(17.500, 5.100, 179.890)	(-0.000, 0.000, 0.000)	
+Lecture/Window4_13/Mesh	MeshInstance3D	vis	(17.500, 5.100, 179.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (16.500, 4.350, 179.865)..(18.500, 5.850, 179.915) | glass.png ffffffff | shadow 1
+Lecture/Window4_14	Node3D	vis	(22.500, 5.100, 179.890)	(-0.000, 0.000, 0.000)	
+Lecture/Window4_14/Mesh	MeshInstance3D	vis	(22.500, 5.100, 179.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (21.500, 4.350, 179.865)..(23.500, 5.850, 179.915) | glass.png ffffffff | shadow 1
+Lecture/Window4_15	Node3D	vis	(27.500, 5.100, 179.890)	(-0.000, 0.000, 0.000)	
+Lecture/Window4_15/Mesh	MeshInstance3D	vis	(27.500, 5.100, 179.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (26.500, 4.350, 179.865)..(28.500, 5.850, 179.915) | glass.png ffffffff | shadow 1
+Lecture/LockedDoor	Node3D	vis	(-10.000, -8.500, 179.840)	(-0.000, 0.000, 0.000)	
+Lecture/LockedDoor/Mesh	MeshInstance3D	vis	(-10.000, -8.500, 179.840)	(-0.000, 0.000, 0.000)	box (3.000, 2.800, 0.100) | aabb (-11.500, -9.900, 179.790)..(-8.500, -7.100, 179.890) | iron.png ffffffff | shadow 1
+Gym	Node3D	vis	(0.000, 0.000, 0.000)	(-0.000, 0.000, 0.000)	
+Gym/Shell	StaticBody3D	vis	(-30.000, -4.900, 110.000)	(-0.000, 0.000, 0.000)	layer 1 mask 0
+Gym/Shell/Collision	CollisionShape3D	vis	(-30.000, -4.900, 110.000)	(-0.000, 0.000, 0.000)	shape box (60.000, 10.000, 40.000) aabb (-60.000, -9.900, 90.000)..(0.000, 0.100, 130.000)
+Gym/Shell/Mesh	MeshInstance3D	vis	(-30.000, -4.900, 110.000)	(-0.000, 0.000, 0.000)	box (60.000, 10.000, 40.000) | aabb (-60.000, -9.900, 90.000)..(0.000, 0.100, 130.000) | wall.png ffffffff | shadow 1
+Gym/Window0_0	Node3D	vis	(-57.500, -8.100, 89.890)	(-0.000, 0.000, 0.000)	
+Gym/Window0_0/Mesh	MeshInstance3D	vis	(-57.500, -8.100, 89.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (-58.500, -8.850, 89.865)..(-56.500, -7.350, 89.915) | glass.png ffffffff | shadow 1
+Gym/Window0_1	Node3D	vis	(-52.500, -8.100, 89.890)	(-0.000, 0.000, 0.000)	
+Gym/Window0_1/Mesh	MeshInstance3D	vis	(-52.500, -8.100, 89.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (-53.500, -8.850, 89.865)..(-51.500, -7.350, 89.915) | glass.png ffffffff | shadow 1
+Gym/Window0_2	Node3D	vis	(-47.500, -8.100, 89.890)	(-0.000, 0.000, 0.000)	
+Gym/Window0_2/Mesh	MeshInstance3D	vis	(-47.500, -8.100, 89.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (-48.500, -8.850, 89.865)..(-46.500, -7.350, 89.915) | glass.png ffffffff | shadow 1
+Gym/Window0_3	Node3D	vis	(-42.500, -8.100, 89.890)	(-0.000, 0.000, 0.000)	
+Gym/Window0_3/Mesh	MeshInstance3D	vis	(-42.500, -8.100, 89.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (-43.500, -8.850, 89.865)..(-41.500, -7.350, 89.915) | glass.png ffffffff | shadow 1
+Gym/Window0_4	Node3D	vis	(-37.500, -8.100, 89.890)	(-0.000, 0.000, 0.000)	
+Gym/Window0_4/Mesh	MeshInstance3D	vis	(-37.500, -8.100, 89.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (-38.500, -8.850, 89.865)..(-36.500, -7.350, 89.915) | glass.png ffffffff | shadow 1
+Gym/Window0_5	Node3D	vis	(-32.500, -8.100, 89.890)	(-0.000, 0.000, 0.000)	
+Gym/Window0_5/Mesh	MeshInstance3D	vis	(-32.500, -8.100, 89.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (-33.500, -8.850, 89.865)..(-31.500, -7.350, 89.915) | glass.png ffffffff | shadow 1
+Gym/Window0_6	Node3D	vis	(-27.500, -8.100, 89.890)	(-0.000, 0.000, 0.000)	
+Gym/Window0_6/Mesh	MeshInstance3D	vis	(-27.500, -8.100, 89.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (-28.500, -8.850, 89.865)..(-26.500, -7.350, 89.915) | glass.png ffffffff | shadow 1
+Gym/Window0_7	Node3D	vis	(-22.500, -8.100, 89.890)	(-0.000, 0.000, 0.000)	
+Gym/Window0_7/Mesh	MeshInstance3D	vis	(-22.500, -8.100, 89.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (-23.500, -8.850, 89.865)..(-21.500, -7.350, 89.915) | glass.png ffffffff | shadow 1
+Gym/Window0_8	Node3D	vis	(-17.500, -8.100, 89.890)	(-0.000, 0.000, 0.000)	
+Gym/Window0_8/Mesh	MeshInstance3D	vis	(-17.500, -8.100, 89.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (-18.500, -8.850, 89.865)..(-16.500, -7.350, 89.915) | glass.png ffffffff | shadow 1
+Gym/Window0_9	Node3D	vis	(-12.500, -8.100, 89.890)	(-0.000, 0.000, 0.000)	
+Gym/Window0_9/Mesh	MeshInstance3D	vis	(-12.500, -8.100, 89.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (-13.500, -8.850, 89.865)..(-11.500, -7.350, 89.915) | glass.png ffffffff | shadow 1
+Gym/Window0_10	Node3D	vis	(-7.500, -8.100, 89.890)	(-0.000, 0.000, 0.000)	
+Gym/Window0_10/Mesh	MeshInstance3D	vis	(-7.500, -8.100, 89.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (-8.500, -8.850, 89.865)..(-6.500, -7.350, 89.915) | glass.png ffffffff | shadow 1
+Gym/Window0_11	Node3D	vis	(-2.500, -8.100, 89.890)	(-0.000, 0.000, 0.000)	
+Gym/Window0_11/Mesh	MeshInstance3D	vis	(-2.500, -8.100, 89.890)	(-0.000, 0.000, 0.000)	box (2.000, 1.500, 0.050) | aabb (-3.500, -8.850, 89.865)..(-1.500, -7.350, 89.915) | glass.png ffffffff | shadow 1
+Gym/LockedDoor	Node3D	vis	(-30.000, -8.500, 89.840)	(-0.000, 0.000, 0.000)	
+Gym/LockedDoor/Mesh	MeshInstance3D	vis	(-30.000, -8.500, 89.840)	(-0.000, 0.000, 0.000)	box (3.000, 2.800, 0.100) | aabb (-31.500, -9.900, 89.790)..(-28.500, -7.100, 89.890) | iron.png ffffffff | shadow 1
+WindowSilhouette0	Node3D	vis	(7.000, -1.900, 53.800)	(-0.000, 0.000, 0.000)	
+WindowSilhouette0/Head	MeshInstance3D	vis	(7.000, -1.450, 53.800)	(-0.000, 0.000, 0.000)	plane (0.24, 0.27) | aabb (6.880, -1.585, 53.800)..(7.120, -1.315, 53.800) | - 060706ff | shadow 1
+WindowSilhouette0/Body	MeshInstance3D	vis	(7.000, -1.900, 53.800)	(-0.000, 0.000, 0.000)	plane (0.46, 0.68) | aabb (6.770, -2.240, 53.800)..(7.230, -1.560, 53.800) | - 060706ff | shadow 1
+WindowSilhouette1	Node3D	vis	(18.000, -1.900, 53.800)	(-0.000, 0.000, 0.000)	
+WindowSilhouette1/Head	MeshInstance3D	vis	(18.000, -1.450, 53.800)	(-0.000, 0.000, 0.000)	plane (0.24, 0.27) | aabb (17.880, -1.585, 53.800)..(18.120, -1.315, 53.800) | - 060706ff | shadow 1
+WindowSilhouette1/Body	MeshInstance3D	vis	(18.000, -1.900, 53.800)	(-0.000, 0.000, 0.000)	plane (0.46, 0.68) | aabb (17.770, -2.240, 53.800)..(18.230, -1.560, 53.800) | - 060706ff | shadow 1
+WindowSilhouette2	Node3D	vis	(31.000, -1.900, 53.800)	(-0.000, 0.000, 0.000)	
+WindowSilhouette2/Head	MeshInstance3D	vis	(31.000, -1.450, 53.800)	(-0.000, 0.000, 0.000)	plane (0.24, 0.27) | aabb (30.880, -1.585, 53.800)..(31.120, -1.315, 53.800) | - 060706ff | shadow 1
+WindowSilhouette2/Body	MeshInstance3D	vis	(31.000, -1.900, 53.800)	(-0.000, 0.000, 0.000)	plane (0.46, 0.68) | aabb (30.770, -2.240, 53.800)..(31.230, -1.560, 53.800) | - 060706ff | shadow 1
+ABand0	Node3D	vis	(22.000, -9.900, 53.820)	(-0.000, 0.000, 0.000)	
+ABand0/Mesh	MeshInstance3D	vis	(22.000, -9.900, 53.820)	(-0.000, 0.000, 0.000)	box (44.000, 0.140, 0.300) | aabb (0.000, -9.970, 53.670)..(44.000, -9.830, 53.970) | concrete.png ffffffff | shadow 1
+ABand1	Node3D	vis	(22.000, -6.600, 53.820)	(-0.000, 0.000, 0.000)	
+ABand1/Mesh	MeshInstance3D	vis	(22.000, -6.600, 53.820)	(-0.000, 0.000, 0.000)	box (44.000, 0.140, 0.300) | aabb (0.000, -6.670, 53.670)..(44.000, -6.530, 53.970) | concrete.png ffffffff | shadow 1
+ABand2	Node3D	vis	(22.000, -3.300, 53.820)	(-0.000, 0.000, 0.000)	
+ABand2/Mesh	MeshInstance3D	vis	(22.000, -3.300, 53.820)	(-0.000, 0.000, 0.000)	box (44.000, 0.140, 0.300) | aabb (0.000, -3.370, 53.670)..(44.000, -3.230, 53.970) | concrete.png ffffffff | shadow 1
+ABand3	Node3D	vis	(22.000, 0.000, 53.820)	(-0.000, 0.000, 0.000)	
+ABand3/Mesh	MeshInstance3D	vis	(22.000, 0.000, 53.820)	(-0.000, 0.000, 0.000)	box (44.000, 0.140, 0.300) | aabb (0.000, -0.070, 53.670)..(44.000, 0.070, 53.970) | concrete.png ffffffff | shadow 1
+ABand4	Node3D	vis	(22.000, 3.300, 53.820)	(-0.000, 0.000, 0.000)	
+ABand4/Mesh	MeshInstance3D	vis	(22.000, 3.300, 53.820)	(-0.000, 0.000, 0.000)	box (44.000, 0.140, 0.300) | aabb (0.000, 3.230, 53.670)..(44.000, 3.370, 53.970) | concrete.png ffffffff | shadow 1
+ABand5	Node3D	vis	(22.000, 6.600, 53.820)	(-0.000, 0.000, 0.000)	
+ABand5/Mesh	MeshInstance3D	vis	(22.000, 6.600, 53.820)	(-0.000, 0.000, 0.000)	box (44.000, 0.140, 0.300) | aabb (0.000, 6.530, 53.670)..(44.000, 6.670, 53.970) | concrete.png ffffffff | shadow 1
+LectureBand0	Node3D	vis	(-10.000, -9.900, 179.820)	(-0.000, 0.000, 0.000)	
+LectureBand0/Mesh	MeshInstance3D	vis	(-10.000, -9.900, 179.820)	(-0.000, 0.000, 0.000)	box (80.000, 0.140, 0.300) | aabb (-50.000, -9.970, 179.670)..(30.000, -9.830, 179.970) | concrete.png ffffffff | shadow 1
+LectureBand1	Node3D	vis	(-10.000, -6.600, 179.820)	(-0.000, 0.000, 0.000)	
+LectureBand1/Mesh	MeshInstance3D	vis	(-10.000, -6.600, 179.820)	(-0.000, 0.000, 0.000)	box (80.000, 0.140, 0.300) | aabb (-50.000, -6.670, 179.670)..(30.000, -6.530, 179.970) | concrete.png ffffffff | shadow 1
+LectureBand2	Node3D	vis	(-10.000, -3.300, 179.820)	(-0.000, 0.000, 0.000)	
+LectureBand2/Mesh	MeshInstance3D	vis	(-10.000, -3.300, 179.820)	(-0.000, 0.000, 0.000)	box (80.000, 0.140, 0.300) | aabb (-50.000, -3.370, 179.670)..(30.000, -3.230, 179.970) | concrete.png ffffffff | shadow 1
+LectureBand3	Node3D	vis	(-10.000, 0.000, 179.820)	(-0.000, 0.000, 0.000)	
+LectureBand3/Mesh	MeshInstance3D	vis	(-10.000, 0.000, 179.820)	(-0.000, 0.000, 0.000)	box (80.000, 0.140, 0.300) | aabb (-50.000, -0.070, 179.670)..(30.000, 0.070, 179.970) | concrete.png ffffffff | shadow 1
+LectureBand4	Node3D	vis	(-10.000, 3.300, 179.820)	(-0.000, 0.000, 0.000)	
+LectureBand4/Mesh	MeshInstance3D	vis	(-10.000, 3.300, 179.820)	(-0.000, 0.000, 0.000)	box (80.000, 0.140, 0.300) | aabb (-50.000, 3.230, 179.670)..(30.000, 3.370, 179.970) | concrete.png ffffffff | shadow 1
+LibraryBand0	Node3D	vis	(65.000, -9.900, 194.820)	(-0.000, 0.000, 0.000)	
+LibraryBand0/Mesh	MeshInstance3D	vis	(65.000, -9.900, 194.820)	(-0.000, 0.000, 0.000)	box (40.000, 0.140, 0.300) | aabb (45.000, -9.970, 194.670)..(85.000, -9.830, 194.970) | concrete.png ffffffff | shadow 1
+LibraryBand1	Node3D	vis	(65.000, -6.600, 194.820)	(-0.000, 0.000, 0.000)	
+LibraryBand1/Mesh	MeshInstance3D	vis	(65.000, -6.600, 194.820)	(-0.000, 0.000, 0.000)	box (40.000, 0.140, 0.300) | aabb (45.000, -6.670, 194.670)..(85.000, -6.530, 194.970) | concrete.png ffffffff | shadow 1
+LibraryBand2	Node3D	vis	(65.000, -3.300, 194.820)	(-0.000, 0.000, 0.000)	
+LibraryBand2/Mesh	MeshInstance3D	vis	(65.000, -3.300, 194.820)	(-0.000, 0.000, 0.000)	box (40.000, 0.140, 0.300) | aabb (45.000, -3.370, 194.670)..(85.000, -3.230, 194.970) | concrete.png ffffffff | shadow 1
+GymBand0	Node3D	vis	(-30.000, -9.900, 89.820)	(-0.000, 0.000, 0.000)	
+GymBand0/Mesh	MeshInstance3D	vis	(-30.000, -9.900, 89.820)	(-0.000, 0.000, 0.000)	box (60.000, 0.140, 0.300) | aabb (-60.000, -9.970, 89.670)..(0.000, -9.830, 89.970) | concrete.png ffffffff | shadow 1
