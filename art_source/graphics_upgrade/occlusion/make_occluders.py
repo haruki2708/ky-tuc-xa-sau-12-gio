@@ -25,7 +25,7 @@ THIN = 0.04
 INSET = 0.1
 
 # (regex on the collision shape's path in the chapter, kind). kind: "plane" (wall or slab, ends 0.1 m in),
-# "plane:<end inset m>", or "solid:<inset m>".
+# "plane:<end inset m>", or "solid:<inset m>" (optionally "|zmax=<world z>").
 FLOOR4 = [
 	(r"Floor4/Corridor/Floor/Collision", "plane"),
 	(r"Floor4/Rooms/Room\d+/RoomFloor/Room", "plane"),
@@ -44,7 +44,9 @@ CAMPUS = [
 	(r"Campus/BuildingB/Floor[123]/(West|East|Partition[1-9]\d*)/Collision", "plane"),
 	(r"Campus/BuildingB/Floor[23]/Partition0/Collision", "plane"),
 	(r"Campus/BuildingB/Floor[123]/(Facade\d+[LR]|Lintel\d+)/Collision", "plane"),
-	(r"Campus/BuildingB/UpperFloor[56]/Collision", "solid:0.3"),
+	# T-264 (D-182): floors 5-6 get a blocked corridor drawn inside this block's front 4 m (z 0..4), so the occluder
+	# stops at the corridor's back wall (z 0) instead of 0.3 m inside the front face (z 3.7).
+	(r"Campus/BuildingB/UpperFloor[56]/Collision", "solid:0.3|zmax=0.0"),
 	(r"Campus/Shells/(BuildingA|Lecture|Gym)/Shell/Collision", "solid:0.5"),
 	# The canteen (T-263, D-181): its closed walls and roof. Not the front wall (ten clear-glass windows and the main
 	# door) nor the floor; the west wall's two boxes stop at the west exit's doorway, the back wall's three at the
@@ -76,9 +78,17 @@ def pick(survey, rules):
 
 def occluder(box, kind):
 	size = [abs(s) for s in box["size"]]
+	# "...|zmax=<world z>": the box is cut off at that z (what is drawn in front of it stays visible).
+	kind, _, clip = kind.partition("|")
 	if kind.startswith("solid:"):
 		inset = float(kind.split(":")[1])
-		return box["origin"], [s - 2 * inset for s in size]
+		origin = list(box["origin"])
+		out = [s - 2 * inset for s in size]
+		if clip.startswith("zmax="):
+			top = min(float(clip.split("=")[1]), origin[2] + out[2] / 2)
+			bottom = origin[2] - out[2] / 2
+			origin[2], out[2] = (top + bottom) / 2, top - bottom
+		return origin, out
 	# "plane" or "plane:<end inset m>" (a doorway's frame reaching over the wall beside it).
 	inset = float(kind.split(":")[1]) if ":" in kind else INSET
 	thin = size.index(min(size))

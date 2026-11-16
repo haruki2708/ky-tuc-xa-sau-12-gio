@@ -304,10 +304,10 @@ size = Vector3(1.700, 2.800, 0.040)
 size = Vector3(1.500, 0.300, 0.040)
 
 [sub_resource type="BoxOccluder3D" id="Box_101"]
-size = Vector3(43.400, 2.400, 11.000)
+size = Vector3(43.400, 2.400, 7.300)
 
 [sub_resource type="BoxOccluder3D" id="Box_102"]
-size = Vector3(43.400, 2.400, 11.000)
+size = Vector3(43.400, 2.400, 7.300)
 
 [sub_resource type="BoxOccluder3D" id="Box_103"]
 size = Vector3(43.000, 18.800, 9.000)
@@ -764,11 +764,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41.250, -0.550, 0.000)
 occluder = SubResource("Box_100")
 
 [node name="BuildingB_UpperFloor5" type="OccluderInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.000, 4.800, -1.800)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.000, 4.800, -3.650)
 occluder = SubResource("Box_101")
 
 [node name="BuildingB_UpperFloor6" type="OccluderInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.000, 8.100, -1.800)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.000, 8.100, -3.650)
 occluder = SubResource("Box_102")
 
 [node name="Shells_BuildingA_Shell" type="OccluderInstance3D" parent="."]

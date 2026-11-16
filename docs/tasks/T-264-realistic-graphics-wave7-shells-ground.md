@@ -36,7 +36,24 @@
 - **Hiệu năng:** PLAN mục 6: A16 **không tăng** thời gian khung ở góc nhìn toàn khuôn viên; A17–A19 **≤ 0,20 ms cho cả ba nhóm**. Chương 3 vốn giật nhẹ khi nhìn ra khuôn viên. Đây là đợt rộng nhất: số lần vẽ và tán cây là rủi ro chính.
 
 ## 1. Chủ dự án chốt
-(integrator điền sau lượt 1, khi chủ dự án chọn trên ảnh mẫu)
+**D-182 (16/11/2026):** chủ dự án xem ảnh lượt 1 (`previews/wave7/options_*.jpg`) và chọn cả chín mục theo đề xuất:
+1. Nội thất nhìn qua cửa: **b**, phòng giả vẽ bằng shader sau mọi ô cửa (không thêm đèn; đèn pin rọi vào thấy phòng). Nhà B cũng dùng phòng giả như nhà A.
+2. Kiểu nhà A: **A2**, tường có cửa sổ từng phòng.
+3. Màu tường ba nhà nền: **vàng như nhà ăn**.
+4. Mái: giảng đường **R1** mái bằng có lam bê tông; nhà thể chất **R2** mái tôn vòm.
+5. Đường và lề: **nhựa cũ có vá, vạch mờ; lề cỏ úa và đất** (chỉ sân trước các nhà lát block); đèn đường **cột thép cần vươn**.
+6. Cây ven đường: **ba loài** (bàng dọc đại lộ, phượng gần các nhà, xà cừ thành hàng dài), mật độ giữ như nay.
+7. Hàng rào bắc, đông, tây: **lưới B40 trên cột ống** (mặt nam giữ tường W1).
+8. Bóng người cửa sổ thứ ba (`WindowSilhouette2`, x 31, đang trúng trụ tường): **dời vào ô cửa bên cạnh**.
+9. Chương 1–2: **có** bản nhẹ nhà A (vỏ A2, không phòng giả, không song sắt, không đèn, xa trong sương), **không có bóng người cửa sổ**.
+
+**Integrator trả lời các đề nghị trong Handoff lượt 1:**
+- **Cho phép đổi vị trí `WindowSilhouette2`**: x từ 31 sang trong ô cửa x 31,5…33,5 (gợi ý 31,6…32,5), y và z giữ. Hai bóng kia giữ nguyên. Test dấu vân tay node ghi rõ ngoại lệ này.
+- **Hộp A16 còn lại** như lane B chốt: cả khuôn viên trừ các dải đã làm, nền các nhà, và vùng đợt 8 (x 39…91, z 189…231, `LibraryBand*`, lỗ cửa lối tây nhà ăn). Góc x 166…170, z 37…60 thuộc đợt này.
+- **Khối che:** với b và A2 chỉ phải sửa hộp tầng 5–6 nhà B. **Integrator đã thu** `BuildingB_UpperFloor5`, `BuildingB_UpperFloor6` từ z 3,7 về **z 0,0** (16/11, đã vào main; `make_occluders.py`, `occluders_campus.tscn`). Ba hộp nhà nền giữ nguyên (đặc từ 0,5 m sau mặt nhà; phòng giả chỉ sâu 0,3 m). Lượt 2: **phòng giả và mọi chi tiết mặt tiền phải nằm trong 0,45 m tính từ mặt nhà**; hành lang tầng 5–6 nhà B nằm trong z 0…4. Sau khi dựng, chụp lại bật/tắt khối che ở nhà A, giảng đường, nhà thể chất, tầng 5–6 nhà B; thấy vật bị ẩn thì ghi "Yêu cầu thay đổi".
+- **Ảnh lượt 2 từ hành lang tầng 4 nhà B:** ảnh lượt 1 bị một tấm khăn phơi che gần hết nhà A. Đặt camera ở chỗ không bị đồ phơi che (ví dụ x 34…40) và thêm một ảnh có đèn pin rọi sang nhà A.
+- Số lần vẽ ở góc khán đài (4.598 → 4.643 ở góc mẫu) phải về không tăng sau lượt 3, như lane B đã nêu.
+- Lượt 1 không chạy check là đúng (chưa sửa cảnh). Lượt 2 và 3 chạy đủ full test và check.
 
 ## 2. Việc, theo ba lượt
 
