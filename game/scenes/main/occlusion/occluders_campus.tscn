@@ -318,6 +318,45 @@ size = Vector3(79.000, 15.500, 19.000)
 [sub_resource type="BoxOccluder3D" id="Box_105"]
 size = Vector3(59.000, 9.000, 39.000)
 
+[sub_resource type="BoxOccluder3D" id="Box_106"]
+size = Vector3(40.800, 0.040, 24.800)
+
+[sub_resource type="BoxOccluder3D" id="Box_107"]
+size = Vector3(0.040, 4.400, 23.800)
+
+[sub_resource type="BoxOccluder3D" id="Box_108"]
+size = Vector3(15.800, 4.400, 0.040)
+
+[sub_resource type="BoxOccluder3D" id="Box_109"]
+size = Vector3(2.800, 4.400, 0.040)
+
+[sub_resource type="BoxOccluder3D" id="Box_110"]
+size = Vector3(6.800, 4.400, 0.040)
+
+[sub_resource type="BoxOccluder3D" id="Box_111"]
+size = Vector3(0.040, 4.400, 7.800)
+
+[sub_resource type="BoxOccluder3D" id="Box_112"]
+size = Vector3(0.040, 4.400, 7.800)
+
+[sub_resource type="BoxOccluder3D" id="Box_113"]
+size = Vector3(11.800, 4.400, 0.040)
+
+[sub_resource type="BoxOccluder3D" id="Box_114"]
+size = Vector3(0.040, 4.400, 7.800)
+
+[sub_resource type="BoxOccluder3D" id="Box_115"]
+size = Vector3(1.200, 3.800, 0.040)
+
+[sub_resource type="BoxOccluder3D" id="Box_116"]
+size = Vector3(5.200, 3.800, 0.040)
+
+[sub_resource type="BoxOccluder3D" id="Box_117"]
+size = Vector3(0.040, 4.400, 19.300)
+
+[sub_resource type="BoxOccluder3D" id="Box_118"]
+size = Vector3(0.040, 4.400, 2.300)
+
 [node name="OccludersCampus" type="Node3D"]
 
 [node name="BuildingB_Floor1_West" type="OccluderInstance3D" parent="."]
@@ -743,3 +782,55 @@ occluder = SubResource("Box_104")
 [node name="Shells_Gym_Shell" type="OccluderInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.000, -4.900, 110.000)
 occluder = SubResource("Box_105")
+
+[node name="Canteen_Roof" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 190.000, -5.300, 32.000)
+occluder = SubResource("Box_106")
+
+[node name="Canteen_Side210" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 210.000, -7.600, 32.000)
+occluder = SubResource("Box_107")
+
+[node name="Canteen_Back178" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 178.000, -7.600, 44.000)
+occluder = SubResource("Box_108")
+
+[node name="Canteen_Back199_5" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 199.500, -7.600, 44.000)
+occluder = SubResource("Box_109")
+
+[node name="Canteen_Back206_5" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 206.500, -7.600, 44.000)
+occluder = SubResource("Box_110")
+
+[node name="Canteen_KitchenSide186" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 186.000, -7.600, 48.000)
+occluder = SubResource("Box_111")
+
+[node name="Canteen_KitchenSide198" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 198.000, -7.600, 48.000)
+occluder = SubResource("Box_112")
+
+[node name="Canteen_KitchenBack" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 192.000, -7.600, 52.000)
+occluder = SubResource("Box_113")
+
+[node name="Canteen_StoreSide" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 210.000, -7.600, 48.000)
+occluder = SubResource("Box_114")
+
+[node name="Canteen_StoreBack199" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 199.000, -7.600, 52.000)
+occluder = SubResource("Box_115")
+
+[node name="Canteen_StoreBack207" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 207.000, -7.600, 52.000)
+occluder = SubResource("Box_116")
+
+[node name="Canteen_WestExit_SouthWall" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 170.000, -7.600, 29.750)
+occluder = SubResource("Box_117")
+
+[node name="Canteen_WestExit_NorthWall" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 170.000, -7.600, 42.750)
+occluder = SubResource("Box_118")

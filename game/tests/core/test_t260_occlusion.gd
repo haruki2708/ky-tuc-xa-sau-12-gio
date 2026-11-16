@@ -59,6 +59,39 @@ func test_chapter3_occluders_inside_walls_clear_of_openings() -> void:
 	await _check_chapter(3)
 
 
+## The canteen's closed walls and roof (after T-263, D-181). Its real layer hides the PS1 window and door nodes the
+## chapter check finds openings by, so the canteen's openings are spelled out here (campus metres, from canteen.tscn's
+## collision boxes): nothing may cover the front wall (ten clear-glass windows, the main door), the west exit, the
+## kitchen's and the store's doorways or the store's back door.
+const CANTEEN_OPENINGS := {
+	# The walls are 0.25 m thick about z 20, z 44, z 52 and x 170; a side wall's occluder may end inside the corner.
+	"front wall (windows, main door)": AABB(Vector3(170.2, -9.9, 19.7), Vector3(39.6, 4.5, 0.35)),
+	"west exit": AABB(Vector3(169.7, -9.9, 39.5), Vector3(0.6, 2.4, 2.0)),
+	"kitchen doorway": AABB(Vector3(186.1, -9.9, 43.8), Vector3(11.8, 4.5, 0.4)),
+	"store doorway": AABB(Vector3(201.0, -9.9, 43.8), Vector3(2.0, 4.5, 0.4)),
+	"store back door": AABB(Vector3(199.7, -9.9, 51.5), Vector3(4.45, 4.5, 0.7)),
+}
+const CANTEEN_OCCLUDERS: Array[String] = ["Canteen_Roof", "Canteen_Side210", "Canteen_Back178", "Canteen_Back199_5",
+	"Canteen_Back206_5", "Canteen_KitchenSide186", "Canteen_KitchenSide198", "Canteen_KitchenBack", "Canteen_StoreSide",
+	"Canteen_StoreBack199", "Canteen_StoreBack207", "Canteen_WestExit_SouthWall", "Canteen_WestExit_NorthWall"]
+
+
+func test_canteen_occluders_leave_its_windows_and_doorways_open() -> void:
+	var root := (load(CAMPUS) as PackedScene).instantiate() as Node3D
+	var found: Array[String] = []
+	for node: OccluderInstance3D in root.find_children("Canteen_*", "OccluderInstance3D", true, false):
+		found.append(String(node.name))
+		var size := (node.occluder as BoxOccluder3D).size
+		var box: AABB = node.transform * AABB(-size / 2.0, size)
+		for opening: String in CANTEEN_OPENINGS:
+			assert_false(box.intersects(CANTEEN_OPENINGS[opening]), "%s %s clear of the canteen's %s;" % [node.name, box, opening])
+	found.sort()
+	var wanted := CANTEEN_OCCLUDERS.duplicate()
+	wanted.sort()
+	assert_eq(found, wanted, "the canteen's occluders;")
+	root.free()
+
+
 func _check_chapter(chapter: int) -> void:
 	Chapter1Director.resume_checkpoint = &""
 	scene = (load("res://scenes/main/chapter%d.tscn" % chapter) as PackedScene).instantiate() as Node3D

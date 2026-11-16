@@ -24,7 +24,8 @@ OUT = ROOT / "game/scenes/main/occlusion"
 THIN = 0.04
 INSET = 0.1
 
-# (regex on the collision shape's path in the chapter, kind). kind: "plane" (wall or slab), or "solid:<inset m>".
+# (regex on the collision shape's path in the chapter, kind). kind: "plane" (wall or slab, ends 0.1 m in),
+# "plane:<end inset m>", or "solid:<inset m>".
 FLOOR4 = [
 	(r"Floor4/Corridor/Floor/Collision", "plane"),
 	(r"Floor4/Rooms/Room\d+/RoomFloor/Room", "plane"),
@@ -45,6 +46,14 @@ CAMPUS = [
 	(r"Campus/BuildingB/Floor[123]/(Facade\d+[LR]|Lintel\d+)/Collision", "plane"),
 	(r"Campus/BuildingB/UpperFloor[56]/Collision", "solid:0.3"),
 	(r"Campus/Shells/(BuildingA|Lecture|Gym)/Shell/Collision", "solid:0.5"),
+	# The canteen (T-263, D-181): its closed walls and roof. Not the front wall (ten clear-glass windows and the main
+	# door) nor the floor; the west wall's two boxes stop at the west exit's doorway, the back wall's three at the
+	# kitchen's and the store's.
+	(r"Campus/Canteen/(Roof|Side210|Back178|Back199\.5|Back206\.5)/Collision", "plane"),
+	(r"Campus/Canteen/(KitchenSide186|KitchenSide198|KitchenBack|StoreSide)/Collision", "plane"),
+	# The store's back door frame (Real/Store/BackDoor) laps 0.3 m over the wall either side of its doorway.
+	(r"Campus/Canteen/(StoreBack199|StoreBack207)/Collision", "plane:0.4"),
+	(r"Campus/Canteen/WestExit/(SouthWall|NorthWall)/Collision", "plane"),
 ]
 
 
@@ -70,8 +79,10 @@ def occluder(box, kind):
 	if kind.startswith("solid:"):
 		inset = float(kind.split(":")[1])
 		return box["origin"], [s - 2 * inset for s in size]
+	# "plane" or "plane:<end inset m>" (a doorway's frame reaching over the wall beside it).
+	inset = float(kind.split(":")[1]) if ":" in kind else INSET
 	thin = size.index(min(size))
-	out = [s - 2 * INSET for s in size]
+	out = [s - 2 * inset for s in size]
 	out[thin] = THIN
 	return box["origin"], out
 

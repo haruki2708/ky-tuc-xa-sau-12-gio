@@ -88,3 +88,25 @@ Cách đo của [T-255](T-255-rooms-fps.md): RTX 3050 Laptop (4 GB), Forward+, c
 ## Kiểm (test)
 - `game/tests/core/test_t260_occlusion.gd`: cài đặt bật; mỗi chương có cảnh occluder đúng (tầng 4 cả bốn chương, khuôn viên chương 3–4); mỗi occluder là hộp; ở chương 1 và 3 thật, **mỗi occluder nằm trong một hộp va chạm đặc layer 1**, không giao với hình của cửa phòng, cửa nhà tắm, ban công, buồng vệ sinh, cửa thoát hiểm, cửa chính, cửa sổ, lan can, và cách mắt (1,0 m và 1,65 m) ở các điểm xuất phát `seg*_start`, `Start_*` và chỗ đứng đầu chương ít nhất 0,3 m. Chương 2 và 4 dùng cùng hai cảnh occluder và cùng tầng 4, khuôn viên.
 - Full test **988 passed, 0 failed** (14/11 15:05–15:35), check **0 lỗi** (15:53), trên nhánh (main không đổi từ khi tách nhánh).
+
+## Bổ sung 16/11/2026: khối che vỏ nhà ăn (sau T-263, D-181)
+Integrator thêm **13 hộp che** cho nhà ăn vào `occluders_campus.tscn` (nay 119 hộp), sinh bằng `make_occluders.py`: mái, tường đông (`Side210`), ba đoạn tường sau, tường bếp và kho, hai đoạn tường tây hai bên lối tây. **Không đặt** ở tường trước (10 cửa sổ kính trong và cửa chính) và sàn. Hai hộp cạnh cửa sau kho thu ngắn 0,4 m mỗi đầu vì khung cửa mới phủ lên tường 0,3 m.
+
+Kiểm bằng cảnh thử `build/integrator/canteen_occ.gd` (chương thật, director giữ, thời gian gần như dừng, 1920 × 1080, đèn pin): chụp cùng camera khi tắt rồi bật occlusion culling, so từng điểm ảnh (ngưỡng 6/255 mỗi kênh). **22 góc (18 ở chương 3, 4 ở chương 4): không điểm ảnh nào khác.**
+
+| Góc (chương 3) | Lần vẽ tắt → bật | Tam giác tắt → bật |
+|---|---|---|
+| Sảnh nhìn tây (TV) | 5.595 → 3.991 | 2,17 → 1,58 triệu |
+| Sảnh nhìn lối tây | 5.802 → 3.674 | 2,11 → 1,49 triệu |
+| Sảnh nhìn cửa sổ trước (chéo) | 4.932 → 3.277 | 1,84 → 1,10 triệu |
+| Góc sảnh đông bắc nhìn tây nam | 4.948 → 862 | 1,84 → 0,22 triệu |
+| Bếp nhìn chéo | 5.738 → 4.276 | 2,10 → 1,72 triệu |
+| Kho nhìn vào sảnh | 4.784 → 475 | 1,58 → 0,12 triệu |
+| Ngoài phía đông nhìn vào | 5.843 → 682 | 2,12 → 0,13 triệu |
+| Sảnh nhìn quầy và bếp | 891 → 202 | 111 → 99 nghìn |
+| Chương 4: sảnh nhìn lối tây | 5.726 → 481 | 2,10 → 0,10 triệu |
+
+- Số "tắt" là không có khối che nào; số "bật" gồm cả 106 hộp cũ và 13 hộp mới (không đo riêng phần của 13 hộp mới).
+- Nhìn thẳng tường tây từ giữa sảnh vẫn còn khoảng 4.000 lần vẽ: qua lỗ lối tây và các cửa sổ trước vẫn thấy một phần khuôn viên, và vật lớn chỉ bị bỏ khi bị che hết.
+- Test: `test_t260_occlusion` 5/0 (thêm bài riêng cho nhà ăn: đủ 13 hộp, không hộp nào chạm tường trước, lối tây, lỗ sang bếp, sang kho, cửa sau kho), `test_t263` 12/0, `test_campus` 5/0. **Chưa chạy full test và check** cho thay đổi này (chỉ đổi cảnh khối che của core và test của nó); sẽ chạy ở lần merge kế tiếp.
+- Không đo FPS (D-179).
