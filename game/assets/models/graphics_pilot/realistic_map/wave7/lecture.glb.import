@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dcpdksmon2h7u"
-path="res://.godot/imported/bldga_wall.glb-681eccb52f55f0447e5426c7e8e41227.scn"
+uid="uid://cyl32b2g7fdjv"
+path="res://.godot/imported/lecture.glb-14ae175cfdc2d2bb7619aa7956500995.scn"
 
 [deps]
 
-source_file="res://assets/models/graphics_pilot/realistic_map/wave7/bldga_wall.glb"
-dest_files=["res://.godot/imported/bldga_wall.glb-681eccb52f55f0447e5426c7e8e41227.scn"]
+source_file="res://assets/models/graphics_pilot/realistic_map/wave7/lecture.glb"
+dest_files=["res://.godot/imported/lecture.glb-14ae175cfdc2d2bb7619aa7956500995.scn"]
 
 [params]
 
@@ -51,11 +51,6 @@ _subresources={
 "use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Concrete.tres",
 "use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Concrete.tres"
 },
-"W1Iron": {
-"use_external/enabled": true,
-"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Iron.tres",
-"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Iron.tres"
-},
 "W2Glass": {
 "use_external/enabled": true,
 "use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave2/materials/W2Glass.tres",
@@ -71,15 +66,10 @@ _subresources={
 "use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave7/materials/W7GlassDark.tres",
 "use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave7/materials/W7GlassDark.tres"
 },
-"W7Palette": {
+"W7RoomClass": {
 "use_external/enabled": true,
-"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave7/materials/W7Palette.tres",
-"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave7/materials/W7Palette.tres"
-},
-"W7RoomDorm": {
-"use_external/enabled": true,
-"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave7/materials/W7RoomDorm.tres",
-"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave7/materials/W7RoomDorm.tres"
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave7/materials/W7RoomClass.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave7/materials/W7RoomClass.tres"
 },
 "W7RoomLobby": {
 "use_external/enabled": true,

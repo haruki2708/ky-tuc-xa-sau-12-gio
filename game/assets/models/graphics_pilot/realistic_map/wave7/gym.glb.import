@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://b0fs1br7ddihh"
-path="res://.godot/imported/gym_r1.glb-02abbef4e7f0a2c0f8eb6c3a7e335d19.scn"
+uid="uid://d0k0xr5yvgn8l"
+path="res://.godot/imported/gym.glb-73f1e3b4b00e5e29b76e2fe4cb97a35e.scn"
 
 [deps]
 
-source_file="res://assets/models/graphics_pilot/realistic_map/wave7/gym_r1.glb"
-dest_files=["res://.godot/imported/gym_r1.glb-02abbef4e7f0a2c0f8eb6c3a7e335d19.scn"]
+source_file="res://assets/models/graphics_pilot/realistic_map/wave7/gym.glb"
+dest_files=["res://.godot/imported/gym.glb-73f1e3b4b00e5e29b76e2fe4cb97a35e.scn"]
 
 [params]
 
@@ -46,15 +46,20 @@ _subresources={
 "use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Alu.tres",
 "use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Alu.tres"
 },
-"W1Concrete": {
-"use_external/enabled": true,
-"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Concrete.tres",
-"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Concrete.tres"
-},
 "W2Glass": {
 "use_external/enabled": true,
 "use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave2/materials/W2Glass.tres",
 "use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave2/materials/W2Glass.tres"
+},
+"W4PoleSteel": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave4/materials/W4PoleSteel.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave4/materials/W4PoleSteel.tres"
+},
+"W4RoofSheet": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave4/materials/W4RoofSheet.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave4/materials/W4RoofSheet.tres"
 },
 "W7Concrete": {
 "use_external/enabled": true,

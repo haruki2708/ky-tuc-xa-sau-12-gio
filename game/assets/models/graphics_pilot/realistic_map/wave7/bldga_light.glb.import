@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://c4x7muvn57k0i"
-path="res://.godot/imported/bldga_gallery.glb-e74ea9fc0cbba6c4de3850d17f079ccd.scn"
+uid="uid://w2j6eagomro7"
+path="res://.godot/imported/bldga_light.glb-702bb546dd8caac57e962fb2aa9de67d.scn"
 
 [deps]
 
-source_file="res://assets/models/graphics_pilot/realistic_map/wave7/bldga_gallery.glb"
-dest_files=["res://.godot/imported/bldga_gallery.glb-e74ea9fc0cbba6c4de3850d17f079ccd.scn"]
+source_file="res://assets/models/graphics_pilot/realistic_map/wave7/bldga_light.glb"
+dest_files=["res://.godot/imported/bldga_light.glb-702bb546dd8caac57e962fb2aa9de67d.scn"]
 
 [params]
 
@@ -51,21 +51,6 @@ _subresources={
 "use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Concrete.tres",
 "use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Concrete.tres"
 },
-"W1Iron": {
-"use_external/enabled": true,
-"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Iron.tres",
-"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Iron.tres"
-},
-"W1Terrazzo": {
-"use_external/enabled": true,
-"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Terrazzo.tres",
-"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Terrazzo.tres"
-},
-"W2Glass": {
-"use_external/enabled": true,
-"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave2/materials/W2Glass.tres",
-"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave2/materials/W2Glass.tres"
-},
 "W7Concrete": {
 "use_external/enabled": true,
 "use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave7/materials/W7Concrete.tres",
@@ -75,21 +60,6 @@ _subresources={
 "use_external/enabled": true,
 "use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave7/materials/W7GlassDark.tres",
 "use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave7/materials/W7GlassDark.tres"
-},
-"W7Palette": {
-"use_external/enabled": true,
-"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave7/materials/W7Palette.tres",
-"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave7/materials/W7Palette.tres"
-},
-"W7RoomDorm": {
-"use_external/enabled": true,
-"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave7/materials/W7RoomDorm.tres",
-"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave7/materials/W7RoomDorm.tres"
-},
-"W7RoomLobby": {
-"use_external/enabled": true,
-"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave7/materials/W7RoomLobby.tres",
-"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave7/materials/W7RoomLobby.tres"
 },
 "W7Trim": {
 "use_external/enabled": true,

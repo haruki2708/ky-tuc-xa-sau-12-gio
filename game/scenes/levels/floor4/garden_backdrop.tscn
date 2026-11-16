@@ -2,9 +2,13 @@
 
 [ext_resource type="Script" path="res://scenes/levels/floor4/garden_backdrop.gd" id="1_script"]
 [ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave3/garden_backdrop.glb" id="2_glb"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave7/bldga_light.glb" id="t264_bldga_light"]
 
 [node name="GardenBackdrop" type="Node3D"]
 script = ExtResource("1_script")
 
 [node name="Garden" parent="." instance=ExtResource("2_glb")]
+position = Vector3(0, -9.9, 0)
+
+[node name="BuildingA" parent="." instance=ExtResource("t264_bldga_light")]
 position = Vector3(0, -9.9, 0)

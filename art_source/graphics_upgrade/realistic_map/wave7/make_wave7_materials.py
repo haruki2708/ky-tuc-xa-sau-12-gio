@@ -107,6 +107,10 @@ uv1_scale = Vector3(2.5, 2.5, 2.5)
 INTERIORS = {"W7RoomDorm": (0.0, 3.2, 0.85), "W7RoomClass": (1.0, 6.0, 0.85), "W7RoomGym": (2.0, 12.0, 0.8), "W7RoomLobby": (3.0, 6.0, 0.9)}
 
 
+# Round 1's options the owner did not pick (D-182): not written (pass --options for build_wave7_pilot.py's option glbs).
+ROUND1_OPTIONS = {"W7WallGrey", "W7RoadSlab"}
+
+
 def write_material(name, look):
 	if any(k in look for k in ("shader", "foliage", "ground")):
 		M4.write_material(name, look)
@@ -124,7 +128,7 @@ def main():
 	MATS.mkdir(parents=True, exist_ok=True)
 	M4.MATS, M4.MODELS, M4.TEXTURES, M4.RES = MATS, MODELS, TEXTURES, RES
 	M4.GLB_IMPORT = M4.GLB_IMPORT.replace("realistic_map/wave4/{glb}", "realistic_map/wave7/{glb}")
-	all_looks = looks()
+	all_looks = {k: v for k, v in looks().items() if k not in ROUND1_OPTIONS or "--options" in sys.argv}
 	for name, look in all_looks.items():
 		write_material(name, look)
 	for species, res in (("bang", "W7BarkBang"), ("phuong", "W7BarkPhuong"), ("xacu", "W7BarkXacu")):

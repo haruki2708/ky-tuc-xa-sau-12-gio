@@ -3,14 +3,14 @@ extends TestCase
 ## imports VRAM compressed; every glb maps its materials onto shared .tres files; the three trees keep only the trunk
 ## (inside TreeTrunk's 0.5 m box) below 3 m and no leaf there; the fence pieces stay inside Fence/W's collider, the bench
 ## inside BenchBody2's, the moped inside MopedBody1's; building A's new front adds nothing under head height more than
-## 0.15 m out from its collider; the figure stands at WindowSilhouette1. Round 2 and 3 replace this file.
+## 0.15 m out from its collider. Round 2 moved the buildings to test_t264_buildings.gd and dropped the options the owner did not
+## pick (D-182); round 3 replaces this file.
 
 const MODELS := "res://assets/models/graphics_pilot/realistic_map/wave7/"
 const TEXTURES := "res://assets/textures/graphics_pilot/realistic_map/wave7/"
 const G := -9.9
 const HEAD := G + 2.0
-const GLBS := ["bldga_wall", "bldga_gallery", "gym_r1", "gym_r2", "b_outside", "road_asphalt", "road_slab", "verge_grass", "verge_pavers",
-	"tree_bang", "tree_phuong", "tree_xacu", "lamp_steel", "lamp_concrete", "bench", "moped", "fence_w1", "fence_b40"]
+const GLBS := ["road_asphalt", "verge_grass", "tree_bang", "tree_phuong", "tree_xacu", "lamp_steel", "bench", "moped", "fence_b40"]
 
 
 ## World-space vertices per MeshInstance3D name of a glb whose root sits at (0, y0, 0).
@@ -83,33 +83,7 @@ func _inside(file: String, box: AABB) -> void:
 
 
 func test_fence_bench_and_moped_stay_inside_their_colliders() -> void:
-	for file in ["fence_w1", "fence_b40"]:
+	for file in ["fence_b40"]:
 		_inside(file, AABB(Vector3(-80.16, G - 0.07, 94.8), Vector3(0.32, 3.08, 30.4)))
 	_inside("bench", AABB(Vector3(148 - 1.21, G - 0.01, -22 - 0.31), Vector3(2.42, 0.82, 0.62)))
 	_inside("moped", AABB(Vector3(145 - 0.95, G - 0.06, -18 - 0.6), Vector3(1.9, 0.72, 1.2)))
-
-
-func test_building_a_adds_nothing_in_reach_beyond_its_collider() -> void:
-	# Below head height every vertex of the front is at most 0.15 m out from the collider's face (z 54): plinth, sills,
-	# pilasters; the entrance's canopy starts 3 m up.
-	for file in ["bldga_wall", "bldga_gallery"]:
-		var parts := glb_vertices(file)
-		for name: String in parts:
-			for v: Vector3 in parts[name]:
-				if v.y < HEAD and v.x > -0.2 and v.x < 44.2 and v.z < 54.0:
-					assert_true(v.z >= 53.85, "%s/%s vertex %s within 0.15 m of building A's front" % [file, name, v])
-					if v.z < 53.85:
-						return
-
-
-func test_the_figure_stands_at_window_silhouette_1() -> void:
-	for file in ["bldga_wall", "bldga_gallery"]:
-		var verts: PackedVector3Array = glb_vertices(file)["Silhouette"]
-		var lo := Vector3(INF, INF, INF)
-		var hi := -lo
-		for v in verts:
-			lo = lo.min(v)
-			hi = hi.max(v)
-		# WindowSilhouette1: x 18, y -1.9 (floor 3, its window 1.05..2.55 m over the floor at -3.3).
-		assert_true(lo.x < 18.0 and hi.x > 18.0, "%s: the figure spans x 18 (%s..%s)" % [file, lo, hi])
-		assert_true(lo.y < -1.9 and hi.y > -1.9, "%s: the figure spans y -1.9 (%s..%s)" % [file, lo, hi])
