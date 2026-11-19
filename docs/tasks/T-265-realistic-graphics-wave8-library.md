@@ -347,7 +347,7 @@ Số lần vẽ giảm ở mọi góc (PS1 mỗi cuốn sách một lưới); pr
 - Chưa kiểm: ba góc toàn cảnh đợt 7, bật/tắt occlusion, bộ nhớ hình sau khi gắn thật vào cảnh (lượt 2).
 
 ### Lượt 2 (20/11/2026, D-185): cả thư viện — xong phần dựng và test T-265; full test bị dừng vì thiếu RAM, check chưa chạy
-- Nhánh rebase lên `origin/main` 4cad2a3 (card mục 1, D-185); `git lfs pull`. Commit WIP `d7e74be`, commit cuối ở dòng "Commit" dưới. Hai file chưa track của đợt 6 vẫn để nguyên.
+- Nhánh rebase lên `origin/main` 4cad2a3 (card mục 1, D-185); `git lfs pull`. Commit: `d7e74be` (WIP: bố cục, glb, vá cảnh, test), `860939d` (ảnh, số liệu, README, Handoff), đã push. Hai file chưa track của đợt 6 vẫn để nguyên.
 - **Làm đủ bước 5–8 trong một lượt** (không phải dừng sau "vỏ ngoài + tầng 1 + cầu thang").
 - Cách chạy lại: `art_source/graphics_upgrade/realistic_map/wave8/README.md` mục "Lượt 2".
 
