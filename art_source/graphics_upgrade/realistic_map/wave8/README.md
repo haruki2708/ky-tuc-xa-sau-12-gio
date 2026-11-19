@@ -13,7 +13,7 @@ navigation giữ; mô hình thanh sắt giữ), treo glb dưới `Library/PilotW
 $B = "D:\Tools\Blender\5.2.2\blender.exe"
 python -B art_source/graphics_upgrade/realistic_map/wave8/list_wave8_zone.py          # zone8.json (vùng ngoài nhà, đếm đầu xác)
 python -B art_source/graphics_upgrade/realistic_map/wave8/plan_wave8.py              # plan_floor1..3.jpg, options_fill_m*_floor1/3.jpg
-python -B art_source/graphics_upgrade/realistic_map/wave8/make_wave8_textures.py     # 12 texture
+python -B art_source/graphics_upgrade/realistic_map/wave8/make_wave8_textures.py     # 11 texture
 & $B -b --factory-startup -P art_source/graphics_upgrade/realistic_map/wave8/build_wave8_pilot.py   # [-- shell stairs counter ...]
 python -B art_source/graphics_upgrade/realistic_map/wave8/make_wave8_materials.py    # .tres W8*, .import glb và texture (nén VRAM)
 godot --headless --path game --import   # lần đầu chạy hai lần; rồi git checkout -- game/default_bus_layout.tres
@@ -25,7 +25,7 @@ Khảo sát: `survey_wave8.gd` (→ `survey/library_nodes.tsv`, `library_bands.t
 cùng một scene gốc gắn script (không commit), chạy `--headless`.
 Ảnh: chép `capture_wave8.gd` như trên rồi theo Lượt Godot
 `godot --path game res://_probe_tmp/capture_wave8.tscn -- [--configs=before,a,b,c] [--views=...] [--parts=main,plan,far,west]`
-(124 ảnh, khoảng 45 phút; số lần vẽ ở `survey/capture_wave8.txt`), rồi `python -B .../wave8/make_wave8_sheets.py`.
+(126 ảnh, khoảng 45 phút; số lần vẽ ở `survey/capture_wave8.txt`), rồi `python -B .../wave8/make_wave8_sheets.py`.
 
 - `wave8_layout.py`: số đo lấy từ main (tường, cửa, cửa sổ, đèn, cầu thang, kệ, bàn, quầy, thanh sắt, bản đồ, chướng ngại,
   anchor), toạ độ mặt nạ UV2, cỡ lặp texture (`SIZES`), bố cục mức đầy M2/M3 (`FILL`).
