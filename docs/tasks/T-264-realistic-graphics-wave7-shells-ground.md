@@ -152,7 +152,7 @@
 - [x] Lượt 2: nhà A, giảng đường, nhà thể chất, mặt ngoài nhà B, nội thất nhìn qua cửa, bóng người cửa sổ
 - [x] Lượt 2: test, full test, check, Handoff; dừng chờ merge
 - [x] Lượt 3: mặt đất, đường, cây, đèn đường, ghế, xe máy, hàng rào bắc/đông/tây, đồ rải
-- [ ] Lượt 3: ảnh trước/sau, `overview.jpg`, test, full test, check, README, CREDITS, Handoff
+- [x] Lượt 3: ảnh trước/sau, `overview.jpg`, test, full test, check, README, CREDITS, Handoff
 
 ## Handoff
 ### Lượt 3 (19/11/2026): xong
@@ -225,9 +225,11 @@ Các góc khác ở README. Bộ nhớ hình chương 3: 1.333 MB trước và s
     - `test_t262_gate` và `test_t263_canteen` hỏi `test_t264_rest.in_rest()` trước khi coi một bản thu về 0 là của mình.
       Số đếm của chúng (180, 16, 18) không đổi; `test_t264_rest` kiểm đúng 365 bản trong phần còn lại.
   - Lần chạy đầu ba test này hỏng đúng ở các chỗ trên, ngoài ra đều đạt.
-- Test liên quan (`-Filter` t259, t261, t262, t263, t264, stands_props, test_campus, room407, t255, t253, t260): FILTER_RESULT
-- Full `pwsh tools/test.ps1`: FULLTEST_RESULT
-- `pwsh tools/check.ps1`: CHECK_RESULT
+- Test liên quan (`-Filter` t259, t261, t262, t263, t264, stands_props, test_campus, room407, t255, t253, t260): đạt sau khi
+  sửa (lần cuối t261 12/0, t262 9/0, t264_rest 11/0; t263 hỏng thụt lề ở lần sửa đầu, đã sửa, full test bên dưới chạy cả nó).
+- Full `pwsh tools/test.ps1` (xong 19:31 19/11, trên `fb9ba35`): **`RESULT: 1056 passed, 0 failed`**.
+- `pwsh tools/check.ps1` (xong 19:51): **`RESULT: check 0 error(s)`**; rồi `git checkout -- game/default_bus_layout.tres`.
+- `game/_probe_tmp/` đã xoá; khoá Lượt Godot đã gỡ.
 
 **Chưa kiểm / lưu ý:**
 - Chưa đi thử bằng tay.
