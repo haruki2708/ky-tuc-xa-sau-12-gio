@@ -43,7 +43,43 @@
 - **Hiệu năng:** PLAN mục 6 cho A20–A21 **≤ 0,60 ms** thêm. Rủi ro chính: sách (hàng nghìn cuốn), ba tầng cùng vẽ, kính.
 
 ## 1. Chủ dự án chốt
-*(Integrator ghi sau lượt 1: lựa chọn của chủ dự án, số D-xxx, và trả lời các đề nghị trong Handoff.)*
+**D-185 (20/11/2026):** chủ dự án giao integrator xem ảnh lượt 1 và chọn ("xem ảnh và cứ chọn những đề xuất bạn chọn, không cần hỏi tôi đâu"). Integrator chọn theo cấu hình **c** của lane B, cộng các điểm ghi "(integrator)" dưới đây. Lượt 2 làm đúng các mục này.
+
+**Review lượt 1 (integrator, 20/11):** đạt, chưa merge (lượt 1 chỉ có góc mẫu). Nhánh `66d6a77`, full test `1063 passed, 0 failed`. Integrator đã xem mọi tờ phương án và bản đồ lối đi.
+
+1. **Mức đầy: M2, có thêm dãy kệ hai mặt trong bốn khoang lớn** (integrator). Ảnh `options_fill.jpg` cho thấy M2 nhìn ngang mắt gần như M1, phòng vẫn trống. Các dãy kệ của ảnh mẫu M3 ở tầng 1 (`options_fill_m3_floor1.jpg`) đều nằm trọn trong vùng xanh, tức đã thoả điều kiện M2 ở mục 4. Vì vậy lấy các dãy đó vào M2:
+   - **Mọi món thêm, kể cả dãy kệ, theo đúng điều kiện M2 ở mục 4:** ngoài mọi vùng navigation cộng 0,6 m; không chắn đường thẳng giữa hai vùng; lối bên cạnh rộng ít nhất 1,2 m; ngoài vòng 1,5 m; không che đường nhìn cửa sau → quầy và đầu cầu thang tầng 2 → bàn đọc; có va chạm dưới `Real/Added`; có danh sách trong Handoff và có test. **Navigation và tuyến xác không đổi; không làm M3**, nên không có card navigation.
+   - **Tầng 1:** đồ M2 cộng các dãy của ảnh mẫu M3 thoả điều kiện; góc tây nam quanh quầy, ghế thủ thư và bản đồ giữ trống như ảnh M2.
+   - **Tầng 2 (phòng đọc):** đồ M2 cộng vài dãy ở khoang xa bàn đọc; giữ trống 3 m quanh ba bàn đọc.
+   - **Tầng 3 (kho sách cổ, CH4_DESIGN):** chỉ những dãy của ảnh mẫu M3 thoả điều kiện, kệ gỗ cũ.
+   - Dãy kệ hai mặt có sách. Bản gần dùng atlas, bản xa là hộp; giữ ngân sách mục 6.
+2. **Kệ:** kệ thép sơn xám, sách đầy ở tầng 1–2; tầng 3 kệ gỗ cũ, sách vơi, có đợt đổ nghiêng. **Sửa (integrator):** lưng kệ thép nhìn từ phía sau (`options_window.jpg`) đang giống khối đá hoa cương; đổi thành tôn sơn có nẹp và đường gấp, bớt lốm đốm.
+3. **Sàn, tường:** F1 (ceramic kem, tường vàng nhạt, chân gạch); tầng 3 sàn xi măng.
+4. **Trần:** C2 (tấm 60 × 60 ố, vài tấm rơi; máng đèn đúng chỗ 6 đèn, các máng khác tắt).
+5. **Quầy:** Q1. **Ghế thủ thư** đứng thẳng, mặt ghế 0,46 m (anchor `LibrarianSeat`, `ch4_diary`).
+6. **Bàn đọc:** T1; sổ quy tắc đúng chỗ anchor `ReadingDesk`.
+7. **Cửa sổ nhìn từ trong:** kính tối, song sắt, rèm bạc màu.
+8. **Mặt ngoài:** E1 (tường vàng, dải trắng, lam bê tông đứng ≤ 0,45 m).
+   - **Ô cửa nhìn từ ngoài là kính tối có rèm phía sau, không dùng phòng giả** (integrator). `W7RoomClass` vẽ lớp học có bảng đen, không hợp thư viện; trong nhà các ô này là kính tối có rèm, nên hai phía phải khớp.
+   - **Mặt đông và tây** (integrator): thêm ô cửa chỉ ở mặt ngoài, cùng nhịp với mặt trước và sau, kính tối, rèm kéo kín, để nhìn từ sân vận động (`options_facade_far.jpg`) không còn là khối trơn. Trong nhà các tường này giữ trơn.
+9. **Bản đồ trường:** bản in trong khung kính nhôm.
+   - **Hai vòng đỏ** vẽ trong hình đúng đường `FadedCircle*` cũ; ẩn 52 đoạn PS1 (integrator đồng ý cách của lane B; không script hay test nào đọc `FadedCircle`). Lượt 2 có test so vị trí hai vòng trong hình với đường `FadedCircle` cũ.
+   - **Giảm phản chiếu của kính** để dưới đèn pin vẫn đọc rõ vòng đỏ ở 2 m (`options_map.jpg` hàng 2 bị loá; integrator).
+10. **Mức bừa:** bừa vừa. **Không bày sẵn kết quả jumpscare** (integrator nói rõ):
+    - trong 2 m quanh `ScareShelf3F`, `ThrownBook3F`, kệ `Shelf2_12` và `Shelf2_28` không rải sách, giấy, không có kệ đổ;
+    - quanh quầy và ghế thủ thư (`librarian_rise`) không có gì giống xác;
+    - ghế thủ thư không đổ.
+11. **Lan can ô cầu thang tầng 2 và 3: có, có va chạm** (integrator; trả lời câu 11 và "Yêu cầu thay đổi"). Đây là **thay đổi gameplay duy nhất** của đợt.
+    - **Vị trí:** mép tây ô cầu thang, x 79, z 199…209, cao 1,1 m từ mặt sàn, ở tầng 2 và tầng 3. Kiểu như lan can cầu thang (thép dẹt, tay vịn gỗ).
+    - **Cách làm:** là **phần thêm dưới `Real/Added`**, không sửa va chạm có sẵn.
+    - **Điều kiện:** nằm ngoài mọi vùng và link navigation cộng bán kính xác sống (lấy từ cảnh xác, ghi số vào Handoff).
+    - **Test:**
+      - dấu vân va chạm ghi đúng hai đoạn lan can này là phần thêm;
+      - đi thử bằng thân người chơi tầng 1 → tầng 2 → nhịp hai → tầng 3 và ngược lại không kẹt;
+      - tuyến navigation từ 6 điểm sinh lên tầng 3 vẫn thông;
+      - người chơi đi vào mép tây ô cầu thang ở z 200, 205, 208 thì bị chặn, không rơi.
+12. **Dải đất quanh thư viện:** như góc mẫu (hè 0,8 m, rãnh nắp bê tông, sân lát block trước cửa chính, thềm đá mài, cỏ úa khớp mặt nạ đợt 7). Sáu điểm sinh xác để trống; hai đống gạch vụn có va chạm giữ nguyên.
+13. **Khối che:** integrator thêm hộp che cho thư viện sau khi đợt này merge (theo "Mặt đặc kín" lane B ghi ở Handoff lượt 1). Lượt 2 chụp vài góc bật và tắt occlusion culling như mục 5.
 
 ## 2. Việc, theo hai lượt
 
