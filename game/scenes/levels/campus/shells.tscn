@@ -2010,18 +2010,21 @@ mesh = SubResource("s200")
 position = Vector3(65.0, -9.9, 194.82)
 
 [node name="Mesh" type="MeshInstance3D" parent="LibraryBand0"]
+visible = false
 mesh = SubResource("s201")
 
 [node name="LibraryBand1" type="Node3D" parent="."]
 position = Vector3(65.0, -6.6, 194.82)
 
 [node name="Mesh" type="MeshInstance3D" parent="LibraryBand1"]
+visible = false
 mesh = SubResource("s202")
 
 [node name="LibraryBand2" type="Node3D" parent="."]
 position = Vector3(65.0, -3.3, 194.82)
 
 [node name="Mesh" type="MeshInstance3D" parent="LibraryBand2"]
+visible = false
 mesh = SubResource("s203")
 
 [node name="GymBand0" type="Node3D" parent="."]

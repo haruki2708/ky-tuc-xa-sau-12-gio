@@ -485,8 +485,29 @@ def palette():
 	(HERE / "palette8.json").write_text(json.dumps(cells, indent=0), encoding="utf-8", newline="\n")
 
 
+def curtain8():
+	"""Round 2 (D-185): a curtain seen through dark glass from outside (W8Curtain*: tinted by the material). u runs 0.6 m
+	of cloth across the image (it tiles), v the window's height: soft vertical folds, a hem, the gathering under the rod,
+	water marks low down; the glass's darkening and gloss are the material's."""
+	w, h = 512, 512
+	rng = np.random.default_rng(265_21)
+	u = np.arange(w)[None, :] / w
+	v = np.arange(h)[:, None] / h
+	phase = smooth_noise(rng, (h, w), 60, aspect=6.0) * 0.1
+	folds = 0.5 + 0.5 * np.cos(2 * np.pi * (6 * u + phase))
+	fine = 0.5 + 0.5 * np.cos(2 * np.pi * (17 * u + 2.5 * phase))
+	shade = 0.62 + 0.28 * folds ** 1.4 + 0.06 * fine
+	shade *= 1.0 - 0.18 * smoothstep(0.08, 0.0, v)            # gathered under the rod
+	shade *= 1.0 - 0.25 * smoothstep(0.93, 0.97, v) + 0.12 * smoothstep(0.97, 1.0, v)   # the hem
+	stains = smoothstep(0.8, 1.8, smooth_noise(rng, (h, w), 40)) * smoothstep(0.6, 1.0, v)
+	shade *= 1.0 - 0.22 * stains
+	shade *= 1.0 + 0.05 * rng.normal(0, 1, (h, w))
+	rgb = np.repeat(shade[..., None], 3, axis=2) * np.array([1.0, 0.98, 0.94])
+	save("curtain8.png", np.clip(rgb, 0, 1))
+
+
 ALL = {"mask_floor8": mask_floor8, "mask_ceiling8": mask_ceiling8, "mask_walls8": mask_walls8, "books": books, "map_print": map_print,
-	"map_drawn": map_drawn, "sign_library": sign_library, "washed_stone": washed_stone, "palette": palette}
+	"map_drawn": map_drawn, "sign_library": sign_library, "washed_stone": washed_stone, "palette": palette, "curtain8": curtain8}
 
 
 if __name__ == "__main__":

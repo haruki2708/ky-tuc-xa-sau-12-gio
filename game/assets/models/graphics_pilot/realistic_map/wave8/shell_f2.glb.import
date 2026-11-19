@@ -61,11 +61,6 @@ _subresources={
 "use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Terrazzo.tres",
 "use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Terrazzo.tres"
 },
-"W1Wood": {
-"use_external/enabled": true,
-"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Wood.tres",
-"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Wood.tres"
-},
 "W2Tube": {
 "use_external/enabled": true,
 "use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave2/materials/W2Tube.tres",
@@ -91,20 +86,10 @@ _subresources={
 "use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave8/materials/W8CeilingPanel.tres",
 "use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave8/materials/W8CeilingPanel.tres"
 },
-"W8DadoGreen": {
-"use_external/enabled": true,
-"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave8/materials/W8DadoGreen.tres",
-"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave8/materials/W8DadoGreen.tres"
-},
 "W8FloorCeramic": {
 "use_external/enabled": true,
 "use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave8/materials/W8FloorCeramic.tres",
 "use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave8/materials/W8FloorCeramic.tres"
-},
-"W8FloorTerrazzo": {
-"use_external/enabled": true,
-"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave8/materials/W8FloorTerrazzo.tres",
-"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave8/materials/W8FloorTerrazzo.tres"
 },
 "W8Palette": {
 "use_external/enabled": true,
@@ -120,11 +105,6 @@ _subresources={
 "use_external/enabled": true,
 "use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave8/materials/W8TubeDead.tres",
 "use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave8/materials/W8TubeDead.tres"
-},
-"W8WallIvory": {
-"use_external/enabled": true,
-"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave8/materials/W8WallIvory.tres",
-"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave8/materials/W8WallIvory.tres"
 },
 "W8WallYellow": {
 "use_external/enabled": true,

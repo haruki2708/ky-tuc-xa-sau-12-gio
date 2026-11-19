@@ -389,9 +389,122 @@ def fill():
 			print("FILL %s floor %d: %d pieces" % (key, level + 1, len(pieces)))
 
 
+# ------------------------------------------------------------------------------------------------ round 2: the final layout
+
+def rect_gap(a, b):
+	"""Plan distance between two boxes (x0, x1, z0, z1); 0 when they touch or overlap."""
+	dx = max(a[0] - b[1], b[0] - a[1], 0.0)
+	dz = max(a[2] - b[3], b[2] - a[3], 0.0)
+	return math.hypot(dx, dz)
+
+
+def _seg_hit(p1, p2, q1, q2):
+	def orient(a, b, c):
+		return (b[0] - a[0]) * (c[1] - a[1]) - (b[1] - a[1]) * (c[0] - a[0])
+	d1, d2 = orient(q1, q2, p1), orient(q1, q2, p2)
+	d3, d4 = orient(p1, p2, q1), orient(p1, p2, q2)
+	return (d1 > 0) != (d2 > 0) and (d3 > 0) != (d4 > 0)
+
+
+def _in_tri(p, a, b, c):
+	def s(p1, p2, p3):
+		return (p1[0] - p3[0]) * (p2[1] - p3[1]) - (p2[0] - p3[0]) * (p1[1] - p3[1])
+	d1, d2, d3 = s(p, a, b), s(p, b, c), s(p, c, a)
+	return not ((d1 < 0 or d2 < 0 or d3 < 0) and (d1 > 0 or d2 > 0 or d3 > 0))
+
+
+def rect_hits_triangle(box, tri):
+	x0, x1, z0, z1 = box
+	corners = [(x0, z0), (x1, z0), (x1, z1), (x0, z1)]
+	if any(_in_tri(c, *tri) for c in corners):
+		return True
+	if any(x0 <= v[0] <= x1 and z0 <= v[1] <= z1 for v in tri):
+		return True
+	edges = list(zip(corners, corners[1:] + corners[:1]))
+	return any(_seg_hit(e[0], e[1], t[0], t[1]) for e in edges for t in zip(tri, tri[1:] + tri[:1]))
+
+
+def seg_rect_gap(p, q, box):
+	"""Plan distance from segment p-q to a box (sampled every 5 cm)."""
+	n = max(2, int(math.hypot(q[0] - p[0], q[1] - p[1]) / 0.05))
+	best = 99.0
+	for k in range(n + 1):
+		t = k / n
+		x, z = p[0] + (q[0] - p[0]) * t, p[1] + (q[1] - p[1]) * t
+		best = min(best, rect_gap((x, x, z, z), box))
+	return best
+
+
+def check_final(level, a):
+	"""Card section 4 and 1 for the final layout of one floor: [(piece, [notes])]."""
+	pieces = [p for p in L.FINAL if p["level"] == level]
+	rails = [r for r in L.RAILS if r["level"] == level]
+	walls = [(L.IN_W - 1, L.IN_W, L.IN_S - 1, L.IN_N + 1), (L.IN_E, L.IN_E + 1, L.IN_S - 1, L.IN_N + 1),
+		(L.IN_W - 1, L.IN_E + 1, L.IN_S - 1, L.IN_S), (L.IN_W - 1, L.IN_E + 1, L.IN_N, L.IN_N + 1)]
+	others = [("tường", w) for w in walls] + [("PS1", s) for s in L.ps1_solids(level)]
+	links = [(lk["a"], lk["b"]) for lk in GEO["links"] if abs(lk["a"][1] - L.LEVELS[level]) < 0.3 and abs(lk["b"][1] - L.LEVELS[level]) < 0.3]
+	nav = grid_mask([p for _, p, _ in a["parts"][6]])
+	zombie_band = dilate(nav, L.ZOMBIE_R + 0.05)
+	out = []
+	for p in pieces + rails:
+		notes = []
+		x0, x1, z0, z1 = p["box"]
+		m = grid_mask([[(x0, z0), (x1, z0), (x1, z1), (x0, z1)]])
+		if p["kind"] == "rail":
+			if (m & zombie_band).any():
+				notes.append("chạm nav + bán kính xác")
+		else:
+			if (m & a["band"]).any():
+				notes.append("chạm nav+0,6")
+			if (m & a["ring"]).any():
+				notes.append("trong vòng 1,5 m")
+			if (m & ~a["floor"]).any():
+				notes.append("ra ngoài sàn")
+			for name, box in others + [(q["name"], q["box"]) for q in pieces if q is not p]:
+				g = rect_gap(p["box"], box)
+				if L.TOUCH < g < L.LANE - 1e-6:
+					notes.append("khe %.2f m với %s" % (g, name))
+			for lk in links:
+				if seg_rect_gap((lk[0][0], lk[0][2]), (lk[1][0], lk[1][2]), p["box"]) < 0.6:
+					notes.append("gần link nav")
+			for s in L.SIGHTLINES:
+				if s["level"] == level and rect_hits_triangle(p["box"], (s["eye"],) + tuple(s["to"])):
+					notes.append("che đường nhìn")
+			if level == 1:
+				for tx in L.TABLES_X:
+					if rect_gap(p["box"], (tx - 1.5, tx + 1.5, L.TABLE_Z - 0.7, L.TABLE_Z + 0.7)) < L.TABLE_CLEAR:
+						notes.append("cách bàn đọc dưới 3 m")
+		out.append((p, notes))
+	return out
+
+
+def final():
+	OUT.mkdir(parents=True, exist_ok=True)
+	bad = 0
+	for level in range(3):
+		a = analyse(level)
+		pieces = []
+		for p, notes in check_final(level, a):
+			q = dict(p)
+			q["ok"] = not notes
+			q["label"] = p["name"].split("_", 1)[1]
+			if notes:
+				bad += 1
+				print("FINAL floor %d %s: %s" % (level + 1, p["name"], "; ".join(notes)))
+			pieces.append(q)
+		img = draw(level, a, "Bố cục lượt 2 (D-185) — tầng %d: %d món thêm + lan can" % (level + 1, len(pieces)), pieces,
+			note="M2 + dãy kệ hai mặt trong bốn khoang. Viền đỏ = phạm luật mục 4 (nav + 0,6 m, vòng 1,5 m, khe < 1,2 m, đường nhìn, link).")
+		img.convert("RGB").save(OUT / ("final_floor%d.jpg" % (level + 1)), quality=90)
+		print("FINAL floor %d: %d pieces" % (level + 1, len(pieces)))
+	print("FINAL: %d pieces break a rule" % bad)
+	return bad
+
+
 if __name__ == "__main__":
 	jobs = sys.argv[1:] or ["plans", "fill"]
 	if "plans" in jobs:
 		plans()
 	if "fill" in jobs:
 		fill()
+	if "final" in jobs:
+		sys.exit(1 if final() else 0)

@@ -88,6 +88,14 @@ def looks():
 			"color": tint_to(OWN1 + "paint_grey_color.png", (0.36, 0.37, 0.36)), "scale": 2.0, "metallic_value": 0.2},
 		"W8ShelfWood": {"albedo": CORNER + "study_desk_wood_table_worn_color.jpg", "orm": CORNER + "study_desk_wood_table_worn_arm.jpg",
 			"normal": CORNER + "study_desk_wood_table_worn_normal.jpg", "color": (0.62, 0.5, 0.4), "scale": 1.81818},
+		# Round 2 (D-185): the steel stacks' backs and dividers as painted sheet (flat enamel, a faint orange peel), not the
+		# speckled grey paint the frames keep.
+		"W8ShelfBack": {"color": (0.34, 0.355, 0.345), "rough": 0.55, "metallic": 0.25, "normal": OWN1 + "paint_grey_normal.png",
+			"normal_scale": 0.25},
+		# The curtains behind the dark glass seen from outside (curtain8.png tinted, darkened by the glass, glossy).
+		"W8CurtainBeige": {"albedo": OWN8 + "curtain8.png", "color": (0.27, 0.25, 0.2), "rough": 0.12, "metallic": 0.3},
+		"W8CurtainGreen": {"albedo": OWN8 + "curtain8.png", "color": (0.17, 0.2, 0.16), "rough": 0.12, "metallic": 0.3},
+		"W8CurtainBlue": {"albedo": OWN8 + "curtain8.png", "color": (0.15, 0.18, 0.22), "rough": 0.12, "metallic": 0.3},
 		"W8Books": {"albedo": OWN8 + "books.png", "rough": 0.82},
 		# The map: printed under glass in an aluminium frame, or drawn by hand on squared paper.
 		"W8MapPrint": {"albedo": OWN8 + "map_print.png", "rough": 0.5},
@@ -125,7 +133,11 @@ def main():
 			M4.write_shader_material(name, look["shader"], M4.SHELL_SHADER)
 		else:
 			M4.write_material(name, look)
-	known = set(all_looks)
+	# The map's glass (round 2, D-185): matt and faint, so the red rings read at 2 m under the torch (W2Glass glared).
+	(MATS / "W8MapGlass.tres").write_text('[gd_resource type="StandardMaterial3D" format=3]\n\n[resource]\nresource_name = "W8MapGlass"\n'
+		"transparency = 1\nalbedo_color = Color(0.6, 0.64, 0.62, 0.08)\nmetallic_specular = 0.15\nroughness = 0.55\n",
+		encoding="utf-8", newline="\n")
+	known = set(all_looks) | {"W8MapGlass"}
 	for wave in ("wave1", "wave2", "wave3", "wave4", "wave5", "wave6", "wave7"):
 		known |= {p.stem for p in (GAME / f"assets/models/graphics_pilot/realistic_map/{wave}/materials").glob("*.tres")}
 	for glb in sorted(MODELS.glob("*.glb")):

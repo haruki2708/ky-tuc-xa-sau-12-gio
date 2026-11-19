@@ -101,8 +101,9 @@ func test_ps1_hidden_and_the_real_layers_hung() -> void:
 		if _added(path) or path.begins_with("LibraryBand"):
 			continue
 		assert_false((node as Node3D).visible, "PS1 hidden: Shells/" + path)
+	# T-265 (wave 8, D-185) hid the library's bands with the library's PS1 (its facade replaces them).
 	for path in ["LibraryBand0/Mesh", "LibraryBand1/Mesh", "LibraryBand2/Mesh"]:
-		assert_true((shells.get_node(path) as Node3D).visible, "wave 8's LibraryBand left alone: " + path)
+		assert_false((shells.get_node(path) as Node3D).visible, "LibraryBand hidden in wave 8: " + path)
 	for name in ["BuildingA", "Lecture", "Gym"]:
 		assert_true(shells.has_node("Real/" + name), "Shells/Real/" + name)
 	for k in 3:

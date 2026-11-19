@@ -206,3 +206,127 @@ def _fill_m3():
 
 
 FILL = {"m1": [], "m2": _fill_m2(), "m3": _fill_m3()}
+
+
+# ------------------------------------------------------------------------------------------------ round 2 (D-185)
+# The owner's pick (card section 1): M2 with double-faced rows in the four bays where they keep M2's rules (card section 4:
+# outside navigation + 0.6 m, out of the 1.5 m rings, off the sightlines, a lane of at least 1.2 m beside each piece, a
+# collider each under Real/Added); floor 1 keeps the counter's corner as M2 had it; floor 2 adds rows only in the bays away
+# from the reading tables (3 m clear round them); floor 3 (the old store, wood) takes the M3 sample's rows that keep the
+# rules. Every piece: name (its collider's node under Real/Added), level, box (x0, x1, z0, z1), height, kind, cluster (the
+# books' near/far mesh it belongs to, shelves only). Pieces touch (gap <= TOUCH) or stand LANE apart: no narrow slot.
+LANE = 1.2
+TOUCH = 0.05
+SCARE_CLEAR = 2.0          # no books, papers or fallen pieces this close to the scare points and their shelves (card 1.10)
+TABLE_CLEAR = 3.0          # floor 2: no added piece this close to a reading table's top
+ROW_D = 0.6                # double-faced row depth (two 0.3 m faces back to back)
+WALL_D = 0.42              # wall shelves
+LOW_D = 0.36               # low shelves under the windows
+ROW_BOARDS = [0.1, 0.55, 1.0, 1.45, 1.9]
+LOW_BOARDS = [0.1, 0.5]
+
+
+def _p(name, level, box, height, kind, cluster=None, **extra):
+	d = {"name": name, "level": level, "box": tuple(round(v, 3) for v in box), "height": height, "kind": kind}
+	if cluster:
+		d["cluster"] = cluster
+	d.update(extra)
+	return d
+
+
+def _final():
+	out = []
+	for level in range(3):
+		f = "F%d" % (level + 1)
+		wood = level == 2
+		shelf = "wall_shelf_wood" if wood else "wall_shelf"
+		row = "row_wood" if wood else "row_steel"
+		low = "low_shelf_wood" if wood else "low_shelf"
+		# Wall shelves: three 3 m units abutting along the west and east walls north of the cross aisle (z 214..223); on the
+		# upper floors three more on the west wall south of it (z 195.15..204.15; floor 1 keeps the map's wall bare).
+		for side, x0, x1 in (("W", IN_W, IN_W + WALL_D), ("E", IN_E - WALL_D, IN_E)):
+			for k in range(3):
+				out.append(_p("%s_Wall%sN%d" % (f, side, k), level, (x0, x1, 214.0 + 3 * k, 217.0 + 3 * k), 2.2, shelf, "%s_Wall%sN" % (f, side)))
+		if level > 0:
+			for k in range(3):
+				out.append(_p("%s_WallWS%d" % (f, k), level, (IN_W, IN_W + WALL_D, 195.15 + 3 * k, 198.15 + 3 * k), 2.2, shelf, f + "_WallWS"))
+		# Low shelves (1.0 m, under the sills at 1.1 m) under the back windows (not on floor 3: its third row of stacks stands
+		# there) and the front ones (floor 1: not x 58, the counter's corner).
+		if level < 2:
+			for wx in WINDOWS_X:
+				out.append(_p("%s_LowN%d" % (f, int(wx)), level, (wx - 1.5, wx + 1.5, IN_N - LOW_D, IN_N), 1.0, low, f + "_LowN"))
+		for wx in ([50.0, 72.0] if level == 0 else [50.0, 58.0, 72.0]):
+			out.append(_p("%s_LowS%d" % (f, int(wx)), level, (wx - 1.5, wx + 1.5, IN_S, IN_S + LOW_D), 1.0, low, f + "_LowS"))
+		# Double-faced rows.
+		rows = []
+		if level == 0:
+			rows += [("NW", 215.2, [(46.8, 49.8), (53.3, 56.3)]), ("NW", 220.6, [(46.8, 49.8), (53.3, 56.3), (59.0, 61.0)]),
+				("NE", 215.2, [(69.4, 72.4), (73.8, 76.8), (78.2, 81.2)]), ("NE", 220.6, [(69.4, 72.4), (73.8, 76.8), (78.2, 81.2)]),
+				("SE", 197.9, [(69.4, 75.6)]), ("SE", 200.7, [(69.4, 75.6)])]
+		elif level == 1:
+			rows += [("SW", 198.8, [(46.8, 52.8), (54.2, 60.2)]), ("SW", 205.2, [(46.8, 52.8), (54.2, 60.2)]), ("SE", 198.8, [(69.4, 75.6)])]
+		else:
+			for z in (215.1, 220.9, 223.3):
+				rows += [("NW", z, [(46.8, 49.8), (53.3, 56.3), (59.0, 61.0)]), ("NE", z, [(69.4, 72.4), (73.8, 76.8), (78.2, 81.2)])]
+			for z in (197.9, 200.7, 203.5, 206.3):
+				rows += [("SW", z, [(46.8, 49.8), (51.2, 54.2), (55.6, 58.6)]), ("SE", z, [(69.4, 72.4), (73.8, 76.0)])]
+		for bay, z, spans in rows:
+			for k, (x0, x1) in enumerate(spans):
+				out.append(_p("%s_Row%s%d_%d" % (f, bay, int(round(z * 10)), k), level, (x0, x1, z - ROW_D / 2, z + ROW_D / 2), 2.2, row,
+					"%s_Row%s%d" % (f, bay, int(round(z * 10)))))
+	# Loose pieces (M2's, moved where the rows left room).
+	out += [
+		_p("F1_Catalogue0", 0, (47.0, 48.2, 203.0, 203.9), 1.3, "catalogue"),
+		_p("F1_Catalogue1", 0, (50.0, 51.2, 203.0, 203.9), 1.3, "catalogue"),
+		_p("F1_Trolley", 0, (52.2, 53.1, 207.3, 207.75), 1.0, "trolley"),
+		_p("F1_NewsTable", 0, (70.0, 72.4, 203.6, 204.8), 1.05, "news_table"),
+		_p("F1_Boxes", 0, (74.0, 75.3, 203.6, 204.6), 0.9, "boxes"),
+		_p("F1_PlantS", 0, (53.4, 54.0, 195.15, 195.75), 1.4, "plant"),
+		_p("F1_PlantE", 0, (75.6, 76.2, 207.4, 208.0), 1.4, "plant"),
+		_p("F2_NewsTable", 1, (70.0, 72.4, 203.6, 204.8), 1.05, "news_table"),
+		_p("F2_Trolley", 1, (47.0, 47.9, 219.0, 219.45), 1.0, "trolley"),
+		_p("F2_Plant", 1, (75.6, 76.2, 195.15, 195.75), 1.4, "plant"),
+		_p("F3_Sheeted", 2, (75.0, 76.2, 195.15, 195.75), 1.2, "sheeted"),
+		_p("F3_BoxesS", 2, (59.5, 60.8, 195.15, 196.15), 1.0, "boxes"),
+		_p("F3_BoxesE", 2, (81.2, 82.4, 214.8, 215.4), 0.7, "boxes"),
+	]
+	return out
+
+
+FINAL = _final()
+# The railing along the stairwell's west edge on floors 2 and 3 (card section 1.11): on the slab's edge at x 78.9 (posts
+# and rail inside its collider x 78.86..78.94), z 199..209, 1.1 m. Clear of navigation by more than the zombie's widest
+# shape (zombie.tscn: capsule r 0.25, agent r 0.3, head sphere r 0.31): StairNav* starts at x 79.4 (0.46 m), StairSide*
+# ends at x 78 (0.86 m), StairFoot* ends at z 198.5 and StairAccess* starts at z 209.5 (0.5 m).
+RAIL = {"x": (78.86, 78.94), "z": (199.0, 209.0), "h": 1.1, "post_x": 78.9}
+ZOMBIE_R = 0.31
+RAILS = [{"name": "WellRail_F%d" % (level + 1), "level": level, "box": (RAIL["x"][0], RAIL["x"][1], RAIL["z"][0], RAIL["z"][1]),
+	"height": RAIL["h"], "kind": "rail"} for level in (1, 2)]
+# Sightlines kept clear (card section 4): the back door to the counter's top, floor 2's stair top to reading table 13.
+SIGHTLINES = [{"level": 0, "eye": (65.0, 225.0), "to": ((COUNTER["at"][0] - 2.5, 206.0), (COUNTER["at"][0] + 2.5, 206.0))},
+	{"level": 1, "eye": STAIR_TOP, "to": ((56.5, TABLE_Z), (59.5, TABLE_Z))}]
+# Scare points (floor 3) and their shelves: no mess within SCARE_CLEAR.
+SCARE_POINTS = [(57.0, 218.0), (73.0, 218.0)]
+SCARE_SHELVES = [(55.5, 58.5, 217.7, 218.3), (71.5, 74.5, 217.7, 218.3)]
+# Floor 1: the librarian's corner (nothing corpse-like, the chair upright).
+LIBRARIAN_CLEAR = 2.0
+
+
+def ps1_solids(level):
+	"""PS1 colliders that stand on a floor (x0, x1, z0, z1): the three shelves, floor 2's tables' tops, floor 1's counter and
+	barricade, the stairs and their rails' footprint."""
+	y = level
+	out = []
+	for sx in SHELF_X:
+		z = SHELF_Z[level]
+		out.append((sx - 1.52, sx + 1.52, z - 0.3, z + 0.3))
+	if level == 1:
+		for tx in TABLES_X:
+			out.append((tx - 1.5, tx + 1.5, TABLE_Z - 0.7, TABLE_Z + 0.7))
+	if level == 0:
+		cx, _, cz = COUNTER["at"]
+		out.append((cx - 2.5, cx + 2.5, cz - 0.7, cz + 0.7))
+		out.append((65.0 - 1.3, 65.0 + 1.3, 196.0 - 0.65, 196.0 + 0.65))
+	out.append((STAIRS["x"][0], STAIRS["x"][1], STAIRS["z"][0], STAIRS["z"][1]))
+	del y
+	return out

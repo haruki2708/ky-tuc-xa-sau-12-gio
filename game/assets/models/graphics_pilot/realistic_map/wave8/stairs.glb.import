@@ -61,10 +61,10 @@ _subresources={
 "use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave8/materials/W8CeilingConcrete.tres",
 "use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave8/materials/W8CeilingConcrete.tres"
 },
-"W8WallIvory": {
+"W8WallYellow": {
 "use_external/enabled": true,
-"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave8/materials/W8WallIvory.tres",
-"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave8/materials/W8WallIvory.tres"
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave8/materials/W8WallYellow.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave8/materials/W8WallYellow.tres"
 }
 }
 }

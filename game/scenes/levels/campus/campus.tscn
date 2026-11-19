@@ -38,6 +38,8 @@
 [ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave7/ground.glb" id="t264_ground"]
 [ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave7/fences.glb" id="t264_fences"]
 [ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave7/rest_props.glb" id="t264_rest_props"]
+[ext_resource type="Script" path="res://scenes/levels/library/library_real.gd" id="t265_real"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave8/strip.glb" id="t265_strip"]
 
 [sub_resource type="BoxShape3D" id="s1"]
 size = Vector3(50, 0.3, 50)
@@ -10835,4 +10837,10 @@ position = Vector3(0, -9.9, 0)
 position = Vector3(0, -9.9, 0)
 
 [node name="Props" parent="StripRest" instance=ExtResource("t264_rest_props")]
+position = Vector3(0, -9.9, 0)
+
+[node name="StripLibrary" type="Node3D" parent="."]
+script = ExtResource("t265_real")
+
+[node name="Ground" parent="StripLibrary" instance=ExtResource("t265_strip")]
 position = Vector3(0, -9.9, 0)
