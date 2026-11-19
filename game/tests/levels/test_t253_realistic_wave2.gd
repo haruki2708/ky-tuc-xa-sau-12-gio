@@ -17,10 +17,11 @@ const ALARM := "res://assets/models/graphics_pilot/realistic_map/wave2/fire_alar
 const COLLIDERS_MD5 := "4563095cff01942e4fe085fa191ae3dc"
 const NODES_MD5 := "976f35d09f7d4a855e9601be37b849a7"
 ## Left out of the node print, on main and now alike: the models hung under building B's nodes (wave 1's and
-## wave 2's: Model, Surround, Frame and LeafB children) and wave 2's own nodes.
+## wave 2's: Model, Surround, Frame and LeafB children), wave 2's own nodes, and wave 7's outside layer (T-264,
+## D-182: "Real" with its b_outside.glb, a visual-only layer at the scene's root; no collider, every main row kept).
 const ADDED_NAMES: Array[String] = ["W2Hall", "W2Rooms", "Room203Furnished", "Room203Leaf", "F1BrokenDoors",
 	"ManagerDeskModel", "ManagerDoorLeaf", "W2ManagerWindow", "W2ManagerRoom", "W2Lobby", "ExtinguisherBracket",
-	"Model", "Surround", "Frame", "LeafB"]
+	"Model", "Surround", "Frame", "LeafB", "Real"]
 const FLOORS := {1: -9.9, 2: -6.6, 3: -3.3}
 var building: Node3D
 

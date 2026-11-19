@@ -1,0 +1,106 @@
+{
+"black": [
+0,
+0
+],
+"rubber": [
+1,
+0
+],
+"chrome": [
+2,
+0
+],
+"steel_grey": [
+3,
+0
+],
+"moped_red": [
+4,
+0
+],
+"moped_blue": [
+5,
+0
+],
+"seat": [
+6,
+0
+],
+"lamp_red": [
+7,
+0
+],
+"lamp_white": [
+0,
+1
+],
+"curtain_blue": [
+1,
+1
+],
+"curtain_green": [
+2,
+1
+],
+"curtain_beige": [
+3,
+1
+],
+"curtain_pink": [
+4,
+1
+],
+"silhouette": [
+5,
+1
+],
+"towel_white": [
+6,
+1
+],
+"clothes_blue": [
+7,
+1
+],
+"clothes_red": [
+0,
+2
+],
+"terrazzo": [
+1,
+2
+],
+"concrete": [
+2,
+2
+],
+"door_green": [
+3,
+2
+],
+"door_blue": [
+4,
+2
+],
+"ac_white": [
+5,
+2
+],
+"pvc_grey": [
+6,
+2
+],
+"rust": [
+7,
+2
+],
+"paper": [
+0,
+3
+],
+"flower_red": [
+1,
+3
+]
+}

@@ -146,12 +146,223 @@
 - Tripo, extension Blender, ảnh AI; bot, FPS; commit log, video, `anh_chup_sua_loi/`; sửa STATUS, DECISIONS.
 
 ## Checklist
-- [ ] Lượt 1: khảo sát, bảng hợp đồng, đi thử, hộp A16 còn lại, phân loại đồ rải (Handoff)
-- [ ] Lượt 1: góc mẫu và phương án, ảnh bật/tắt khối che, độ sâu nội thất; dừng chờ chủ dự án chọn
-- [ ] Lượt 2: nhà A, giảng đường, nhà thể chất, mặt ngoài nhà B, nội thất nhìn qua cửa, bóng người cửa sổ
+- [x] Lượt 1: khảo sát, bảng hợp đồng, đi thử, hộp A16 còn lại, phân loại đồ rải (Handoff)
+- [x] Lượt 1: góc mẫu và phương án, ảnh bật/tắt khối che, độ sâu nội thất; dừng chờ chủ dự án chọn
+- [x] Lượt 2: nhà A, giảng đường, nhà thể chất, mặt ngoài nhà B, nội thất nhìn qua cửa, bóng người cửa sổ
 - [ ] Lượt 2: test, full test, check, Handoff; dừng chờ merge
 - [ ] Lượt 3: mặt đất, đường, cây, đèn đường, ghế, xe máy, hàng rào bắc/đông/tây, đồ rải
 - [ ] Lượt 3: ảnh trước/sau, `overview.jpg`, test, full test, check, README, CREDITS, Handoff
 
 ## Handoff
-(lane B điền)
+### Lượt 2 (16/11/2026): xong, DỪNG chờ integrator merge
+Nhánh rebase lên `origin/main` `0d7a25e` (có D-182, card mục 1, khối che tầng 5–6 nhà B đã thu về z 0). Cách chạy lại, số tam
+giác, số lần vẽ: `art_source/graphics_upgrade/realistic_map/wave7/README.md` mục "Lượt 2". Commit: `2491e65`, `024f693`,
+`e23d1ca`, `67938d0`, cùng commit Handoff này.
+
+**Đã làm (theo D-182):**
+- **Nhà A (A2, vàng):** cả mặt trước 8 gian × 6 tầng, phòng giả (shader) sau mọi ô cửa, song sắt tầng 2–6, máy lạnh, quần áo
+  phơi, cửa chính kính có sảnh giả và mái đua từ 3 m; hông, mặt sau (cửa sổ nhỏ kính tối), mái.
+- **Ba bóng người:** `figure.glb` (bóng đen trước rèm sáng, sau kính) treo dưới từng `WindowSilhouette0…2`; ô cửa của ba bóng
+  không có phòng giả. **`WindowSilhouette2` dời x 31 → 32** (trong ô 31,5…33,5), y, z giữ; hai bóng kia giữ nguyên.
+- **Giảng đường (R1):** 16 gian × 5 tầng lớp học giả, lam bê tông đứng và ô văng từ 2,4 m, cửa chính x −10, mái bằng có tường
+  chắn mái.
+- **Nhà thể chất (R2):** cửa sổ cao giữa các trụ (sân giả phía sau), cửa thép xanh có mái, mái tôn vòm có đầu hồi cong; trụ dưới
+  2 m chỉ nhô 0,12 m.
+- **Nhà B mặt ngoài:** tầng 5–6 thành hành lang bị chặn (lan can, cửa phòng, phòng giả, gạch vụn) trong z 0,45…4; mặt sau
+  tầng 1–3 và 5–6 cửa sổ phẳng có phòng giả, song sắt, máy lạnh (không ở tầng trệt), ống nước; hai đầu hồi; vỏ ngoài và mái hai
+  tháp cầu thang; mái chính.
+  - **Mặt sau tầng 4 không phủ:** đó là mặt nhà, ban công của `floor4_rooms.gd` (T-255), có cả ở chương 3–4.
+  - **Cửa sổ phòng quản lý** (x 2…5,3, lối `WindowExit`) để trống.
+  - Vỏ tháp là lớp 4 mm ngoài hộp PS1 (mặt trong hộp là tường cầu thang nên hộp giữ, không ẩn).
+- **Chương 1–2:** `bldga_light.glb` (vỏ A2, kính tối, không phòng giả, song sắt, bóng người) trong
+  `floor4/garden_backdrop.tscn`; không va chạm, không đèn, không bóng đổ (script sẵn có của T-259).
+- **Cảnh:** `patch_wave7.py` sửa `shells.tscn` (ẩn 164 lưới PS1 trừ `LibraryBand*`; thêm `Real`, ba `Figure`),
+  `building_b.tscn` (ẩn 24 lưới `UpperFloor5/6`, `UpperWindow*`; thêm `Real/Outside`), `garden_backdrop.tscn`. Không xoá node,
+  không đổi va chạm. `shells_real.gd` (mới, `game/scenes/levels/campus/`): kính, phòng giả, song sắt, khung, đồ nhỏ, bóng người
+  không đổ bóng; song sắt, đồ nhỏ thôi vẽ ngoài 90 m. Bỏ asset phương án không chọn (`bldga_wall`, `bldga_gallery`, `gym_r1`,
+  `gym_r2`, `road_slab`, `verge_pavers`, `lamp_concrete`, `fence_w1`, `W7WallGrey`, `W7RoadSlab`).
+- Không đụng: thư viện, `LibraryBand*`, lỗ cửa lối tây nhà ăn, director, luật, `game/scenes/main` (kể cả khối che), lane A, âm
+  thanh. Không Tripo, không ảnh AI, không bot, không đo FPS, không thêm đèn.
+
+**Ảnh** (`previews/wave7/`): tờ `r2_building_a.jpg`, `r2_lecture_gym.jpg`, `r2_building_b.jpg`, `r2_torch_occlusion.jpg`,
+`r2_wide_chapter1.jpg`; ảnh lẻ `r2_before_*` / `r2_after_*` cùng camera, chương 3 thật ban đêm (chương 1 cho bản nhẹ).
+- Ảnh từ hành lang tầng 4 đặt ở x 37 (không bị đồ phơi che). **Ảnh đèn pin từ đó không thấy khác:** đèn pin của người chơi
+  (`phone_item.tscn`) tầm 12 m, nhà A cách 50 m. Ảnh đèn pin rọi phòng giả chụp ở chân nhà A, ô cửa bóng người, cửa nhà thể
+  chất, mặt sau nhà B.
+- **Khối che:** bật/tắt ở nhà A, giảng đường, nhà thể chất, tầng 5–6 nhà B cho ảnh như nhau, không vật nào bị ẩn sai. Không
+  có yêu cầu đổi khối che.
+
+**Số lần vẽ** (cùng một lần chạy, khối che bật; main → lượt 2): hành lang tầng 4 1.698 → 1.730, giữa vườn 333 → 316, khán đài
+4.473 → 4.522; quanh nhà A, giảng đường, nhà thể chất đều giảm (ví dụ giảng đường 98 → 37); quanh nhà B tăng 30–100 (vd. tầng
+5–6 từ vườn 3.582 → 3.666). Giữa hai lần chạy số đo lệch vài trăm ở các góc gần nhà B, nên chỉ so trong cùng một lần. Bộ nhớ
+hình chương 3: 1.313 → 1.318 MB. Số khán đài phải về không tăng sau lượt 3 (lượt 3 thay cây, đèn PS1).
+
+**Kiểm:**
+- `test_t264_buildings.gd` (mới, 7 test): dấu vân tay node, va chạm, meta của `shells.tscn` và `building_b.tscn` trùng main
+  (md5 lấy trên cảnh chưa vá; ngoại lệ duy nhất là x của `WindowSilhouette2`, đã ghi trong test), va chạm và hợp đồng
+  (anchor, vùng, navigation) của campus trùng main; PS1 ẩn, `LibraryBand*` còn hiện; bóng đổ đúng lớp; mặt tiền trong 0,45 m;
+  dưới 2 m không gì nhô quá 0,15 m khỏi va chạm; nhà B không có gì trong khối đã che (z < 0); ba bóng người trong ô cửa của
+  mình; nhà A bản nhẹ không phòng giả, va chạm, đèn, bóng đổ; thân người chơi đi vòng sát chân ba nhà nền; vật liệu dùng chung,
+  tổng tam giác dưới 75.000.
+- `test_t264_pilot.gd`: còn các glb mặt đất, cây, đèn, ghế, xe máy, B40 (lượt 3 thay).
+- `pwsh tools/test.ps1 -Filter t264`: `RESULT: 11 passed, 0 failed`.
+- Full `pwsh tools/test.ps1` (bắt đầu 16:28): **bị Claude Code dừng vì máy thiếu RAM, chưa có dòng RESULT; không tự chạy lại.**
+  Một lần trước (sau commit `e23d1ca`, trước khi thêm vỏ tháp) tôi tự dừng giữa chừng để sửa. Khoá Lượt Godot đã gỡ,
+  `game/default_bus_layout.tres` đã trả.
+- `pwsh tools/check.ps1`: **chưa chạy** (chờ full test).
+- Test liên quan đã chạy trên bản cuối: `-Filter t264` 11/0. Chưa chạy riêng `test_t253*`, `test_t259*`, `test_t260_occlusion`,
+  `test_campus`, `test_chapter3/4` trên bản này; dấu vân tay campus của chúng trùng main (test t264 kiểm cùng md5).
+- **Cần chạy lại khi máy đủ RAM** (đóng bớt ứng dụng): full `pwsh tools/test.ps1`, rồi `pwsh tools/check.ps1`, rồi
+  `git checkout -- game/default_bus_layout.tres`.
+
+**Chưa kiểm / lưu ý:**
+- Chưa chạy chương 4 trong ảnh; chưa có ai đi thử bằng tay.
+- Máy lạnh trắng sáng hơn tường ở vài góc. Tầng 4 mặt sau (ban công T-255) nay nằm giữa hai tầng vàng mới, màu khác hẳn; nếu
+  chủ dự án muốn đồng bộ thì cần một việc riêng sửa `floor4_rooms.gd`.
+- Sườn trái ảnh "mặt sau nhà B, xa" vẫn là dốc PS1 của `WindowApproach` (va chạm thuộc hợp đồng; mặt đất là lượt 3).
+- Hai file log T-263 chưa commit vẫn nằm trong cây làm việc (`wave6/survey/capture_pilot.txt`, `walk_canteen.txt`), cố ý không
+  commit.
+
+**Yêu cầu thay đổi ngoài phạm vi:** không.
+### Lượt 1 (16/11/2026): xong, DỪNG chờ chủ dự án chọn
+Card đọc ở `origin/main` `3cef4c9`; nhánh tạo từ `14a8bcf`. Cách chạy lại, số tam giác, số lần vẽ:
+`art_source/graphics_upgrade/realistic_map/wave7/README.md`. Chưa scene nào đổi (góc mẫu gắn lúc chạy khi chụp).
+
+**Khảo sát (mục 0 khớp; bổ sung):** `wave7/survey_wave7.gd` → `survey/shells_nodes.tsv`, `building_b_nodes.tsv`,
+`campus_rest.tsv`, `library_nodes.tsv`, `occluders_campus.tsv`.
+- Nhà A: cửa sổ chỉ ở mặt trước z 54, 8 ô × 6 tầng (x 2,5 + 5k, 2 × 1,5 m, chân 1,05 m trên sàn), cửa khoá x 20,5…23,5.
+  Ba bóng người ở tầng 3. **`WindowSilhouette2` (x 31) đứng trên trụ giữa hai ô cửa (26,5…28,5 và 31,5…33,5)**, không sau
+  ô nào.
+- Giảng đường: 16 ô × 5 tầng mặt z 180, cửa x −10. Nhà thể chất: 12 ô tầng trệt mặt z 90, cửa x −30.
+- Nhà B:
+  - mặt sau z −7,7 (tầng 1–3 là hộp PS1, phòng thật ở trong), hai tháp cầu thang x −5,2…0,1 và 43,9…49,2;
+  - tầng 5–6 là khối đặc `UpperFloor5/6` tới z 4,0; khối che `BuildingB_UpperFloor*` tới z 3,7.
+- Khối che nhà nền: đặc từ 0,5 m sau mặt nhà (A z 54,5…63,5; giảng đường 180,5…199,5; thể chất 90,5…129,5).
+- Đường: `Avenue` (x 0…180, z −19…−11, mặt −9,87), `EastBranch`, `StadiumEastAccess`; `WestBranch`, `StadiumWestAccess`
+  đã ẩn. Va chạm mặt đất là các ô `Ground/Tile_*` (mặt −9,94); đường không có va chạm.
+- Cây, đèn, hàng rào:
+  - 116 thân `TreeTrunk*` (hộp 0,5 × 3 × 0,5, đáy ở mặt đất);
+  - ghế `BenchBody*` 2,4 × 0,8 × 0,6; xe máy `MopedBody*` 1,8 × 0,6 × 1,1;
+  - `Fence/N|E|W` 0,3 × 3 m, cả ba mặt người chơi tới được dọc suốt chiều dài.
+
+**Chỗ code, test, bot đụng tới:**
+- code: `chapter3_director.gd`, `chapter4_director.gd` (vùng `road`, `Ch4/Start_split`, `Start_library`);
+- âm thanh: `ch3_environment.gd`, `ch4_music.gd`;
+- bot: `tools/ch3-profile.json` (tuyến qua đường);
+- test: `test_campus`, `test_ch3_gameplay`, `test_t259_garden`, `test_t260_occlusion`, `test_t261_stadium`, `test_t262_gate`,
+  `test_ch3_audio`, `game/audio/test/ch3_audio_test.gd`.
+
+Không code nào gọi `Shells/*`, `WindowSilhouette*`, `UpperFloor*` theo tên.
+
+**Bảng hợp đồng (giữ tên, vị trí, va chạm):**
+| Cảnh | Node | Giữ |
+|---|---|---|
+| `shells.tscn` | `Shells`, `BuildingA`, `Lecture`, `Gym`, ba `Shell` (StaticBody + hộp đặc) | tên, transform, va chạm |
+| | `WindowSilhouette0…2` (7 / 18 / 31; −1,9; 53,8) | vị trí (hình làm lại tại chỗ) |
+| `building_b.tscn` | `UpperFloor5/6` (44 × 3 × 11,6 ở y 4,8 / 8,1, z −1,8) | va chạm |
+| `campus.tscn` | `Ground/Tile_*` (70, meta `surface`, `is_floor`), `Road/TreeTrunk0…115`, `BenchBody0…2`, `MopedBody0…2`, `Fence/N|E|W` | va chạm, meta |
+| | điểm `Trees_*` (48 cụm), `StreetLights_*` (11), `Props/Lights` | điểm đặt, đèn |
+| | `Anchors`, `Zones/Road`, `ZombieIdle/Road` I01…06 (65…85; −11), `ZombieSpawns/Road`, `Paths/*`, navigation | giữ nguyên |
+
+**Đi thử (`wave7/walk_wave7.gd`, thân người chơi thật):** mọi tuyến tới đích.
+- Vòng quanh cả ba nhà nền cách tường 0,7 m, không chặng nào bị chặn.
+- Đường vòng bắc sân vận động (z 245, x 100…300, xuống `EastBranch`).
+- Dọc ba mặt hàng rào: tây x −78,6, z −55…285; bắc z 288,6, x −75…415; đông x 418,6.
+- Đường chương 4 `Start_split` → `Start_library`: navmesh thông 272 m, đi bộ tới cửa thư viện.
+- Ba chặng thẳng bị chặn đều là đường tôi cố ý kẻ xuyên vật có sẵn (dốc `WindowExit` sau nhà B, xe trên đại lộ, cửa sau
+  thư viện), không phải tuyến.
+
+**Hộp A16 còn lại: cả khuôn viên x −80…420, z −60…290, trừ:**
+- các dải đã làm: T-259 x −6…50, z 4…50; T-261 sân x 108…290, z 108…236 và dải x 50…110, z −11…176; T-262 x 180…262,
+  z −60…13; T-263 x 166…218, z 13…60;
+- nền ba nhà nền và nhà B;
+- **vùng đợt 8**: thư viện và 6 m quanh nó, tức x 39…91, z 189…231, cùng `LibraryBand*` và lỗ cửa lối tây nhà ăn.
+
+Góc x 166…170, z 37…60 mà T-263 để lại giờ thuộc đợt này (trừ lỗ cửa). Danh sách đủ: `wave7/a16_rest.json`
+(`list_a16_rest.py`, đếm theo vùng). Phần còn lại có:
+- 99 cây ven đường, 29 cây thêm (`Props/Trees/ExtraTrees_*`), 99 thân;
+- 9 điểm đèn, 3 ghế, `FallenMoped1`, toàn bộ ô mặt đất phần ngoài các dải;
+- 367 bản đồ rải trong 66 chunk `props.tscn`.
+
+Đường khớp mép: các cạnh hộp dải đã làm nói trên.
+
+**Phân loại đồ rải và đầu xác:** đếm trong từng node trước khi đụng. Phân loại theo chữ ký của `art_source/campus/scatter.py`:
+- xác người: thân 0,34 × 0,24 × 0,55, đầu hộp giấy 0,22 màu da, tay, chân; máu `D_red`; vệt kéo `D_iron`.
+
+Kết quả đếm:
+- `props.tscn` có 30 đầu xác: vườn 7, sân vận động 16, dải T-261 2, cổng 5.
+- **Phần A16 còn lại không có đầu, mảnh xác hay máu nào.** Chỉ có 133 vệt kéo (giữ) và 367 đồ rải (thay ở lượt 3).
+
+**Góc mẫu:**
+- 18 glb trong `game/assets/models/graphics_pilot/realistic_map/wave7/`; 15 texture trong `.../textures/.../wave7/`, đều
+  `compress/mode=2`, normal có `normal_map=1`.
+- Shader phòng giả `materials/interior.gdshader`. Test `test_t264_pilot.gd`.
+
+Phạm vi góc mẫu:
+- **Nhà A:** cả mặt trước theo module (cửa chính có mái sảnh đua, không cột), 2 kiểu. Bóng người `WindowSilhouette1` là hình
+  người tối sau ô cửa tầng 3, rèm nhạt phía sau để nổi hình.
+- **Nhà thể chất:** 2 kiểu mái.
+- **Nhà B:** hành lang tầng 5–6 bị chặn và mặt sau tầng 1–5 (cửa sổ phẳng ngoài mặt tường vì phòng thật ở trong).
+- **Đoạn đại lộ x 112…176:** đường, vỉa, lề; cây bàng (x 120, 168), phượng (136), xà cừ (152); 3 đèn; ghế `RoadBench2`;
+  xe máy `FallenMoped1`.
+- **Hàng rào tây:** z 95…125.
+
+Ảnh chương 3 thật, ban đêm, có và không đèn pin, khối che bật và tắt: `art_source/graphics_upgrade/realistic_map/previews/wave7/`.
+- Bảng phương án: `options_interior.jpg`, `options_occlusion.jpg`, `options_building_a.jpg`, `options_wall_colour.jpg`,
+  `options_gym_roof.jpg`, `options_b_outside.jpg`, `options_ground.jpg`, `options_fence.jpg`.
+- Ba góc toàn cảnh: `wide_views.jpg`. Ảnh đơn: `pilot_*.jpg`.
+
+| Phương án | Tam giác | Ghi chú |
+|---|---|---|
+| Nội thất a / b / c | (trong nhà A) | a: phòng thật tầng trệt + sảnh, tầng trên kính tối có rèm; b: phòng giả 1 tấm/ô; c: chỉ sảnh |
+| Nhà A A2 / A1 | 13.998 / 30.610 | A2 tường cửa sổ từng phòng; A1 hành lang hở có lan can |
+| Màu tường vàng / kem xám | — | đổi vật liệu |
+| Mái R1 lam bê tông / R2 tôn vòm | 2.536 / 1.638 | nhà thể chất |
+| Đường nhựa / bê tông tấm; lề cỏ / block | 1.576 / 1.602; 32 / 32 | 64 m đại lộ |
+| Đèn thép / bê tông ly tâm | 114 / 110 mỗi cột | |
+| Rào W1 / B40 | 2.184 / 398 mỗi 30 m | cả 1.200 m: ~87 nghìn / ~16 nghìn |
+
+Số lần vẽ ở ba góc toàn cảnh: hành lang tầng 4 nhà B 281 → 238, giữa vườn 333 → 318, khán đài 4.598 → 4.643 (+45: thấy đoạn
+đường mẫu, cây, đèn là node riêng có bóng; lượt 3 giữ cây theo cụm MultiMesh và tắt bóng phần nhỏ). Bộ nhớ hình chương 3
+1.307 → 1.321–1.326 MB khi nạp mọi thứ của góc mẫu. Không đo FPS (D-179).
+
+**Độ sâu nội thất cần ở từng mặt (để integrator thu khối che):**
+| Mặt | Phương án b (phòng giả) | Phương án a | Phương án c |
+|---|---|---|---|
+| Nhà A mặt trước z 54 | 0,3 m: không cần sửa hộp | tầng trệt (y −9,9…−6,6) 3,2 m; sảnh x 17…28: 6 m; tầng trên 0,3 m | sảnh x 17…28, tầng trệt: 6 m |
+| Nhà A kiểu A1 (tầng 2–6 mặt trước) | 2,1 m (hành lang 1,8 + 0,3) | như trái | như trái |
+| Giảng đường z 180, thể chất z 90 | 0,3 m: không sửa | sảnh cửa chính (x −13…−7 / −33…−27) 6 m | như a |
+| Nhà B tầng 5–6 mặt trước | 3,7 m: mặt hộp `BuildingB_UpperFloor5/6` từ z 3,7 về z 0,0 | như trái | như trái |
+| Các mặt khác (hông, sau nhà nền; mặt sau nhà B) | 0 | 0 | 0 |
+Khối che chỉ bỏ vật khi cả hộp bao nằm sau nó. Ở góc mẫu, phòng thật vẫn hiện khi bật khối che vì lưới gộp có phần nằm
+trước mặt hộp; lượt 2 tách lưới theo phòng nên vẫn cần thu hộp theo bảng trên.
+
+**Đề xuất:**
+- Nội thất **b** (phòng giả sau mọi ô cửa: rẻ nhất, mỗi ô một tấm, không phải sửa khối che, đèn pin rọi vào thấy phòng).
+- Nhà A kiểu **A2**: nhẹ hơn một nửa, khác hẳn nhà B, bóng người sau cửa sổ tự nhiên.
+- Tường **vàng như nhà ăn**: khuôn viên đồng bộ; nhà B màu kem nên vẫn phân biệt được.
+- Giảng đường **R1** (mái bằng, lam bê tông); nhà thể chất **R2** (mái tôn vòm).
+- Cây: dùng cả **ba loài** (bàng dọc đại lộ, phượng gần các nhà, xà cừ hàng dài), mật độ giữ như nay.
+- Đường **nhựa cũ có vá, vạch mờ**; lề **cỏ úa và đất**, chỉ sân trước các nhà lát block.
+- Đèn **cột thép cần vươn**.
+- Hàng rào bắc, đông, tây: **B40**. Rẻ hơn 5 lần, hợp mặt sau; W1 giữ cho mặt nam.
+- Nhà B: phòng giả như nhà A.
+- Chương 1–2: **có** bản nhẹ nhà A (vỏ A2, không phòng giả, không song sắt, xa trong sương, không đèn).
+
+**Câu hỏi cho chủ dự án:**
+1. Chọn từng mục: nội thất (a/b/c), kiểu nhà A (A2/A1), màu tường (vàng/kem xám), mái (R1/R2, cho từng nhà), cây (ba loài
+   hay hai), mặt đường và lề, đèn, hàng rào (W1/B40). Có thể trộn.
+2. `WindowSilhouette2` ở x 31 đứng trên trụ giữa hai ô cửa. Chọn một trong hai:
+   - dời hình 0,6 m vào ô cửa x 32,5 (vị trí node đổi: cần integrator cho phép);
+   - giữ đúng x 31 và mở thêm một ô cửa hẹp ở trụ đó.
+3. Có đặt bản nhẹ nhà A cho chương 1–2 không?
+
+**Yêu cầu thay đổi (integrator):** sau khi chủ dự án chọn, thu khối che theo bảng độ sâu (nếu chọn b và A2: chỉ hộp tầng
+5–6 nhà B, 3,7 m).
+
+**Kiểm:**
+- `-Filter t264`: 6 passed, 0 failed.
+- Full `pwsh tools/test.ps1` (chạy lại khi máy đủ RAM, xong 14:45 16/11, cùng nội dung `a9ffcdd`): **`RESULT: 1044 passed, 0 failed`**.
+  Lần chạy đầu lúc 13:20 bị Claude Code dừng vì thiếu RAM.
+- `pwsh tools/check.ps1` chưa chạy. Lượt 1 không sửa cảnh nào, chỉ thêm asset, script và một test.
+- Khoá Lượt Godot của lần bị dừng đã xoá; `game/_probe_tmp/` đã xoá.
