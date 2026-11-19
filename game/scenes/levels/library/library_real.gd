@@ -9,9 +9,14 @@ extends Node3D
 ##   (the well and the stairs see one floor up or down; nothing appears late on the stairs), and floor 1's for a camera
 ##   outside within OUTSIDE metres of the walls (the doors' glass); the windows are dark glass and curtains. With no
 ##   camera (tests) everything draws.
+## - The insides' shells, the stairs and the barricade draw for a camera in the library or within INTERIOR_REACH metres of its
+##   walls; the ground floor's grilles, the drains' slotted covers, the window frames and the roof's tanks within RANGES of their centres.
 ## - Small and flat things cast no shadow (the library's lights cast none; the torch does).
 const FLOORS := {"Counter": 0, "LibrarianChair": 0, "Map": 0, "Shelves_F1": 0, "Fill_F1": 0, "Tables": 1, "Shelves_F2": 1,
 	"Fill_F2": 1, "Shelves_F3N": 2, "Shelves_F3S": 2, "Fill_F3": 2}
+const INTERIOR := ["Shell_F1", "Shell_F2", "Shell_F3", "Stairs", "Barricade"]
+const INTERIOR_REACH := 25.0
+const RANGES := {"Grilles": 80.0, "Drains": 60.0, "Frames": 150.0, "Extras": 150.0}
 const LEVELS := [-9.9, -6.6, -3.3]
 const FLOOR_H := 3.3
 ## The library's walls (world x 45..85, z 195..225).
@@ -22,6 +27,7 @@ const NO_SHADOW := ["Mess", "Fill", "Floor", "Ceiling", "Battens", "Sills", "Win
 	"Extras", "Bands", "RuleBook", "MapPrint", "MapGlass", "BackLeafGlass", "FrontDoorGlass", "Verge", "Apron", "Paved", "Drains"]
 
 var _groups: Array[Array] = [[], [], []]
+var _interior: Array[Node3D] = []
 
 
 func _ready() -> void:
@@ -29,8 +35,12 @@ func _ready() -> void:
 		var level: int = FLOORS.get(String(child.name), -1)
 		if level >= 0:
 			_groups[level].append(child)
+		elif String(child.name) in INTERIOR:
+			_interior.append(child as Node3D)
 	for mesh: MeshInstance3D in find_children("*", "MeshInstance3D", true, false):
 		var name := String(mesh.name)
+		if RANGES.has(name):
+			mesh.visibility_range_end = RANGES[name]
 		if name.begins_with("BooksFar_"):
 			mesh.visibility_range_begin = NEAR
 		elif name.begins_with("Books_"):
@@ -59,10 +69,21 @@ static func floors_shown(at: Vector3) -> Array[bool]:
 	return shown
 
 
+## Whether the insides' shells and the stairs draw for a camera at `at` (world).
+static func interior_shown(at: Vector3) -> bool:
+	var flat := Vector2(at.x, at.z)
+	var gap := maxf(maxf(WALLS.position.x - flat.x, flat.x - WALLS.end.x), maxf(WALLS.position.y - flat.y, flat.y - WALLS.end.y))
+	return gap < INTERIOR_REACH
+
+
 func _process(_delta: float) -> void:
 	var camera := get_viewport().get_camera_3d()
 	if camera == null:
 		return
+	var inside := interior_shown(camera.global_position)
+	for node in _interior:
+		if node.visible != inside:
+			node.visible = inside
 	var shown := floors_shown(camera.global_position)
 	for level in 3:
 		for node: Node3D in _groups[level]:

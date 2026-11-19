@@ -222,10 +222,10 @@
 ## Checklist
 - [x] Lượt 1: khảo sát, bảng hợp đồng, bản đồ lối đi ba tầng, đi thử, jumpscare, vùng ngoài nhà, ảnh lối tây (Handoff)
 - [x] Lượt 1: góc mẫu và phương án (mức đầy M1/M2/M3 có ảnh nhìn từ trên); dừng chờ chủ dự án chọn
-- [ ] Lượt 2: vỏ ngoài, cửa chính, cửa sau, cửa sổ, ẩn `LibraryBand*`
-- [ ] Lượt 2: ba tầng trong, cầu thang, quầy, bản đồ, kệ và sách, bàn đọc, chướng ngại, đồ thêm (nếu chọn)
-- [ ] Lượt 2: dải đất quanh thư viện, khớp mép đợt 7
-- [ ] Lượt 2: ảnh trước/sau, `overview.jpg`, test, full test, check, README, CREDITS, Handoff
+- [x] Lượt 2: vỏ ngoài, cửa chính, cửa sau, cửa sổ, ẩn `LibraryBand*`
+- [x] Lượt 2: ba tầng trong, cầu thang, quầy, bản đồ, kệ và sách, bàn đọc, chướng ngại, đồ thêm (nếu chọn)
+- [x] Lượt 2: dải đất quanh thư viện, khớp mép đợt 7
+- [ ] Lượt 2: ảnh trước/sau, `overview.jpg`, test, full test, check, README, CREDITS, Handoff (xong trừ full test và check: full test bị dừng vì thiếu RAM, check chưa chạy)
 
 ## Handoff
 *(Lane B ghi: đã làm, còn dở, cách kiểm, dòng RESULT test và check, commit, yêu cầu thay đổi, phần chưa kiểm.)*
@@ -345,3 +345,70 @@ Số lần vẽ giảm ở mọi góc (PS1 mỗi cuốn sách một lưới); pr
 - **Full test chạy lại theo yêu cầu chủ dự án** (20/11 00:47–01:24, dưới khóa Godot, trên `6abf249`): **`RESULT: 1063 passed, 0 failed`**. File khóa đã xoá, không còn tiến trình Godot; `default_bus_layout.tres` trả về như cũ.
 - `check.ps1` không chạy (lượt 1 không sửa cảnh). Lượt 1 chỉ thêm glb, texture, vật liệu và một test mới; không cảnh nào đổi.
 - Chưa kiểm: ba góc toàn cảnh đợt 7, bật/tắt occlusion, bộ nhớ hình sau khi gắn thật vào cảnh (lượt 2).
+
+### Lượt 2 (20/11/2026, D-185): cả thư viện — xong phần dựng và test T-265; full test bị dừng vì thiếu RAM, check chưa chạy
+- Nhánh rebase lên `origin/main` 4cad2a3 (card mục 1, D-185); `git lfs pull`. Commit WIP `d7e74be`, commit cuối ở dòng "Commit" dưới. Hai file chưa track của đợt 6 vẫn để nguyên.
+- **Làm đủ bước 5–8 trong một lượt** (không phải dừng sau "vỏ ngoài + tầng 1 + cầu thang").
+- Cách chạy lại: `art_source/graphics_upgrade/realistic_map/wave8/README.md` mục "Lượt 2".
+
+#### Đã làm (đúng card mục 1)
+- **Cảnh:** `library.tscn`: ẩn 667 hình PS1 (`visible = false`, không xoá; thanh sắt là instance `iron_bar.tscn`, giữ mô hình của nó); thêm `Real` (script `library_real.gd`, đặt ở (−45; 0; −195) để glb nằm ở gốc (0; G; 0)) với 19 lớp; `Real/Added` 111 khối va chạm; `BackDoor/Hinge/LeafReal` (cánh mới dưới `Hinge`). `shells.tscn`: ẩn `LibraryBand0…2/Mesh`. `campus.tscn`: `StripLibrary` (dải đất). `props.tscn` **không đổi** (vùng không có mảnh xác; hai đống gạch có va chạm và giấy vụn giữ nguyên). Không đổi director, luật, `ch4_anchors.tscn`, `room_door.gd`, `game/scenes/main`, `project.godot`, âm thanh, ánh sáng (6 đèn như cũ, không thêm đèn).
+- **Vỏ ngoài (E1):** tường vàng, dải trắng, lam bê tông đứng 0,45 m ở mặt trước và sau, mái hắt cửa chính, tường chắn mái, bồn nước, ống thoát; **mọi ô cửa nhìn từ ngoài là kính tối có rèm phía sau** (rèm cùng màu, cùng độ kéo với rèm nhìn từ trong: hàm `curtain()` dùng chung); **mặt đông và tây thêm 3 ô cửa mỗi tầng chỉ ở mặt ngoài** (z 202, 210, 218; rèm kéo kín, song sắt tầng 1); trong nhà các tường này trơn. Cửa chính đóng (kính gỗ, xích); cửa sau mở được.
+- **Ba tầng trong:** F1 (ceramic kem, tường vàng nhạt, chân gạch) ở cả ba tầng, tầng 3 sàn xi măng; C2 (tấm 60 × 60 ố, mỗi tầng 6 ô thiếu tấm, 1–2 tấm nằm dưới sàn); máng đèn đúng chỗ 6 đèn (sáng), 4 máng tắt mỗi tầng; cửa sổ kính tối, song sắt, rèm phai; quầy Q1 (mặt 0,868 m: thanh sắt nằm trên, khe 1,85 cm); ghế thủ thư đứng thẳng, mặt ghế ở `LibrarianSeat`; bản đồ in khung nhôm, **kính mờ ít loá** (`W8MapGlass`), hai vòng đỏ vẽ trong hình đúng đường `FadedCircle*`, 52 đoạn PS1 ẩn; 3 bàn T1 và 6 ghế, sổ quy tắc ở `ReadingDesk`; chướng ngại cửa chính (bàn nặng, 3 ghế lật); cầu thang hai nhịp, bậc trên dốc va chạm, tay vịn trong `RailCollision*`.
+- **Kệ và sách:** 9 kệ PS1 làm lại trong khối va chạm cũ (tầng 1–2 thép đầy sách, tầng 3 gỗ cũ có đợt đổ nghiêng; riêng `Shelf2_12`, `Shelf2_28` để vơi, không đổ); **lưng kệ thép là tôn sơn ba tấm có mép gấp và nẹp đứng** (`W8ShelfBack`, không còn lốm đốm). Sách dùng atlas 48 gáy; mỗi cụm kệ một lưới gần (`Books_*`, trong 14 m) và một lưới xa dạng khối (`BooksFar_*`).
+- **Mức đầy M2 + dãy kệ hai mặt** (bảng dưới): 109 món, mỗi món một `StaticBody3D` lớp 1 dưới `Real/Added`. Danh sách đầy đủ (tên, x, z, cao): `art_source/graphics_upgrade/realistic_map/wave8/survey/final_layout.md`; ảnh nhìn từ trên: `previews/wave8/final_floor1..3.jpg`.
+- **Lan can ô cầu thang** (thay đổi gameplay duy nhất): `Real/Added/WellRail_F2`, `WellRail_F3`, hộp x 78,86…78,94, z 199…209, cao 1,1 m trên sàn tầng 2 và 3; hình (cột thép dẹt 12 cm một cột, tay vịn gỗ) nằm trong hộp. **Bán kính xác sống lấy 0,31 m** (`zombie.tscn`: thân capsule 0,25, agent 0,3, cầu đầu 0,31): lan can cách `StairNav*` 0,46 m, `StairSide*` 0,86 m, `StairFoot*` và `StairAccess*` 0,5 m, các link ≥ 1,4 m.
+- **Không bày sẵn kết quả jumpscare:** trong 2 m quanh `ScareShelf3F`, `ThrownBook3F`, kệ `Shelf2_12`, `Shelf2_28` không có sách rơi, giấy, kệ đổ; quanh quầy và ghế thủ thư không có gì giống xác (2 m quanh ghế không rải gì); ghế không đổ. Mức bừa vừa: sách nằm trước các kệ (ngoài lối đi), giấy, tấm trần rơi dưới chỗ trần thiếu; mọi thứ ≤ 3 cm trên lối đi, ≤ 0,3 m nói chung.
+- **Dải đất** (x 39…91, z 189…231 trừ nền nhà): hè bê tông 0,8 m, rãnh nắp bê tông 0,3 m, sân lát block trước cửa chính, thềm đá mài, cỏ úa trên mặt nạ cả khuôn viên của đợt 7 (khớp mép ở x 39, x 91, z 189, z 231). 6 điểm sinh xác trống.
+- **Vẽ:** `library_real.gd` — đồ của mỗi tầng chỉ vẽ khi camera ở tầng đó hoặc cách một tầng (không vật nào hiện trễ khi lên cầu thang: tầng trên đã hiện từ khi mắt qua mặt sàn tầng dưới); ngoài nhà chỉ tầng 1 trong 12 m (kính cửa); vỏ trong, cầu thang, chướng ngại trong 25 m quanh tường; song sắt 80 m, nắp rãnh 60 m, khung cửa sổ và bồn nước 150 m; sách, giấy, đồ nhỏ không đổ bóng.
+- Glb góc mẫu không chọn đã xoá (`counter_q2`, `facade_e1|e2`, `fill_m2|m3`, `books_*`, `shelf_*`, `table_*`, `map_drawn`, `mess`, `rule_book`); `test_t265_pilot.gd` thay bằng `test_t265_library.gd`.
+
+**Đồ thêm theo tầng** (toạ độ thế giới; chi tiết ở `survey/final_layout.md`):
+
+| Tầng | Món | Gồm |
+|---|---|---|
+| 1 | 32 | kệ thép sát tường tây và đông phía bắc (6 × 3 m, cao 2,2); kệ thấp dưới cửa sổ (4 mặt sau, 2 mặt trước; cao 1,0); 13 dãy kệ thép hai mặt (khoang tây bắc z 214,9…215,5 và 220,3…220,9; đông bắc cùng hai dãy; đông nam z 197,6…198,2 và 200,4…201,0); 2 tủ phích, xe đẩy, bàn báo, thùng sách, 2 cây chết khô. Góc tây nam quanh quầy, ghế, bản đồ giữ như M2 |
+| 2 | 24 + lan can | kệ thép sát tường (9), kệ thấp (7), 5 dãy hai mặt chỉ ở hai khoang nam xa bàn đọc (z 198,5…199,1 và 204,9…205,5), bàn báo, xe đẩy, cây; mọi món cách ba bàn đọc ≥ 3 m |
+| 3 | 53 + lan can | kệ gỗ sát tường (9), kệ gỗ thấp mặt trước (3), 38 dãy gỗ hai mặt (khoang bắc 3 hàng z 214,8…215,4 / 220,6…221,2 / 223,0…223,6; khoang nam 4 hàng z 197,6…206,6), tủ phủ vải, 2 thùng sách; các dãy cách hai kệ jumpscare ≥ 2,2 m |
+
+Luật mục 4 kiểm hai lần (bằng `plan_wave8.py final` trên số đo, và `test_t265_library` trong cảnh thật): ngoài mọi vùng navigation + 0,6 m; ngoài vòng 1,5 m quanh anchor, cửa sau, chân và đầu cầu thang; cách mọi link ≥ 0,6 m; không cắt tam giác nhìn cửa sau → mặt quầy và đầu cầu thang tầng 2 → bàn 13; **mọi khe giữa hai vật (đồ thêm, va chạm PS1, tường) hoặc khít (≤ 5 cm) hoặc ≥ 1,2 m**. Navigation và tuyến xác không đổi.
+
+#### Số liệu
+- Tam giác glb lượt 2: **294.187** (kệ và sách 255.196, trong đó sách gần chiếm phần lớn nhưng chỉ cụm trong 14 m được vẽ; mặt ngoài 9.080; cầu thang và lan can 5.356; vỏ trong 3 tầng 10.888; dải đất 3.052; đồ rời và bừa 6.817). PS1 (PLAN A20): 8.052. Số theo từng glb: `survey/round2_counts.json`.
+- Số lần vẽ / primitive, cùng camera, chương 4 ban đêm (trước = PS1 của main, dựng lại lúc chạy; `capture_wave8_r2.gd`):
+
+| Góc (card mục 6) | Trước | Sau |
+|---|---|---|
+| cửa sau nhìn vào tầng 1 | 4.870 / 2.310 k | 4.538 / 2.394 k |
+| tầng 1 toàn cảnh (chân cầu thang) | 1.044 / 177 k | 631 / 250 k |
+| giữa tầng 2 (nhìn về mặt trước) | 4.005 / 2.006 k | 3.924 / 2.101 k |
+| bàn đọc tầng 2 | 304 / 34 k | 126 / 144 k |
+| giữa tầng 3 | 567 / 56 k | 170 / 141 k |
+| đầu cầu thang tầng 2 | 631 / 56 k | 225 / 188 k |
+| ngoài sân nhìn mặt trước | 724 / 42 k | 146 / 64 k |
+| chương 3, khán đài tây nhìn thư viện | 716 / 67 k | 83 / 72 k |
+| đợt 7: hành lang tầng 4 nhà B (chương 3) | 1.984 / 1.504 k | 1.374 / 1.210 k |
+| đợt 7: giữa vườn | 293 / 175,7 k | 276 / 176,6 k |
+| đợt 7: trên khán đài | 4.660 / 2.333 k | 4.660 / 2.333 k |
+
+  Số lần vẽ giảm hoặc bằng ở mọi góc. Primitive tăng trong nhà (sách thật thay khối PS1). **Góc vườn đợt 7: số lần vẽ giảm (293 → 276) nhưng primitive tăng 866 (+0,5 %)**: thử ẩn từng lớp cho thấy đó là tường mặt ngoài (760) và cửa chính (398) của thư viện thấy từ 190 m, PS1 ở đó chỉ còn ~340 primitive (phần lớn bị khối che nhà B che). Không ẩn thêm (tường và cửa là vỏ ngoài phải còn). Góc nhìn về phía tây/nam ở tầng 1–2 vẫn vẽ cả khuôn viên sau tường (khoảng 4.000–4.900 lần vẽ, như PS1): thư viện chưa có khối che (integrator thêm, mục 5).
+- Bộ nhớ hình: chương 4 **1.301 MB** (lượt 1 với PS1: 1.298–1.300 MB), chương 3 **1.305 MB** (1.303 MB). Không đo FPS (D-179).
+- Occlusion bật/tắt (`r2_occlusion.jpg`: cửa sau, tầng 1 rộng, mặt trước, mặt trước chéo): hình giống hệt nhau, khối che hiện có không ẩn nhầm vật mới.
+
+#### Ảnh
+`art_source/graphics_upgrade/realistic_map/previews/wave8/`: **`overview.jpg`**; trước/sau `r2_floor1.jpg`, `r2_floor2_stairs.jpg`, `r2_floor3.jpg`, `r2_outside.jpg`, `r2_ch3.jpg` (thư viện từ sân vận động và ba góc toàn cảnh đợt 7), `r2_occlusion.jpg`; ảnh lẻ `before_*`, `after_*` (có và không đèn pin), `occl_off_*`, `ch3_before_*`, `ch3_after_*`; bố cục `final_floor1..3.jpg`.
+
+#### Mặt đặc kín cho khối che (cập nhật lượt 2)
+Như lượt 1 (bốn tường ngoài 0,22 m từ y −9,9 tới mái; sàn giữa tầng trừ ô x 79…85, z 199…209; mái kín; lỗ thật chỉ cửa chính và cửa sau tầng 1 x 64…66, y −9,9…−7,5). Lượt 2: mọi ô cửa sổ (kể cả các ô mới ở mặt đông, tây) là kính tối không nhìn xuyên, nằm trong bề dày tường (mặt ngoài lõm 0,11 m; mặt đông, tây chỉ lõm ở ngoài). Chi tiết lấn ra ngoài tường ≤ 0,45 m (lam, mái hắt), bậu 0,06 m, song 0,045 m, ống thoát 0,12 m; dải đất là mặt phẳng ở y −9,925…−9,9. Hộp che đặt lọt trong tường (x 44,95…85,05, z 194,95…225,05) không che nhầm gì.
+
+#### Kiểm
+- `pwsh tools/test.ps1 -Filter t265`: **`RESULT: 14 passed, 0 failed`** (`test_t265_library.gd`: dấu vân `library.tscn` trùng main (1.533 dòng, md5 của main 4cad2a3, `Real` và `LeafReal` để ngoài); 667 hình PS1 ẩn; `LibraryBand*` ẩn; khoảng vẽ sách và tầng; 111 va chạm thêm đúng luật mục 4, hai lan can đúng hộp và cách navigation ≥ 0,31 m; thanh sắt trên mặt quầy (khe ≤ 2 cm), 52 đoạn vòng đỏ PS1 nằm trên vòng đỏ của bản in, mặt ghế ở `LibrarianSeat`, sổ ở `ReadingDesk`; sàn ≤ 2 cm trên va chạm, bậc trên dốc, lan can trong hộp, sách 9 kệ PS1 trong khối cũ, bàn trong mặt bàn cũ; bừa tránh jumpscare và lối đi; cửa sau: cánh mới quay 90° theo `Hinge`, đóng chặn, mở thông capsule 0,3 m, bị phá thì mở; **thân người chơi** đi cửa sau → quầy → bản đồ → tầng 2 → bàn đọc → tầng 3 → `ScareShelf3F` (trong 3 m) → `ThrownBook3F` (trong 2,5 m) → xuống hai nhịp → ra cửa sau không kẹt, và **đi vào mép tây ô cầu thang ở z 200, 205, 208 trên tầng 2 và 3 thì bị chặn, không rơi**; tuyến navigation từ 6 điểm sinh lên tầng 3, bàn đọc, quầy thông, capsule không vướng; dải đất trong hộp, ngoài nền nhà; `props.tscn` 52 bản trong hộp không bản nào thu về 0; texture nén VRAM; glb chỉ dùng vật liệu chung).
+- `test_t264_buildings.gd`: câu khẳng định `LibraryBand*` còn hiện đổi thành "đã ẩn ở đợt 8" (card mục 8 cho phép). Không nới kiểm tra nào khác.
+- **Full `pwsh tools/test.ps1` bị dừng vì máy thiếu RAM**: chạy từ 03:12 (20/11) dưới khóa Godot, cùng lệnh với `check.ps1`; Claude Code tắt lệnh vì bộ nhớ hệ thống gần cạn trước khi có dòng RESULT. Không tự chạy lại (theo luật). File khóa của lane B đã xoá, không còn tiến trình Godot, `default_bus_layout.tres` không đổi.
+- **`pwsh tools/check.ps1` chưa chạy** (xếp sau full test trong cùng lệnh bị dừng). Cần chạy lại full test và check khi chủ dự án bảo và máy đủ RAM (lượt 1: full test chạy lại được 1063/0 khi máy còn khoảng 4,6 GB trống).
+- Chưa kiểm: chơi thử bằng tay (D-176: chủ dự án chơi một lượt khi xong toàn bộ đồ hoạ); bot, FPS không chạy (D-179).
+
+#### Ghi chú, yêu cầu thay đổi
+- Mép **nam** ô cầu thang ở **tầng 3** (z 199, x 79…84) vẫn hở như PS1: vùng nav `StairFoot2` ở tầng 3 dẫn tới đó nhưng tầng 3 không có nhịp đi lên; người chơi đi thẳng về bắc từ đó có thể rơi xuống nhịp hai. Card chỉ yêu cầu mép tây nên lượt 2 không đụng. Nếu muốn chặn: thêm một đoạn lan can có va chạm x 79…84, z 198,9…199 ở tầng 3 (cách `StairFoot2` 0,4 m) cần integrator/chủ dự án duyệt.
+- Khối che thư viện (integrator, sau merge): theo "Mặt đặc kín" trên; xem lại ba góc toàn cảnh đợt 7 sau khi thêm.
+- `test_t265_library` có một tuyến đi bộ dài (khoảng 40 giây chạy thật).

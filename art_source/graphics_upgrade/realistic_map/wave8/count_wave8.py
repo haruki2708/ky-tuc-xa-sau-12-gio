@@ -1,5 +1,5 @@
-"""T-265: triangles and materials per glb and per part (mesh) of the wave-8 pilot, for the options table in the card's
-Handoff and the README. Reads the glbs directly (no Blender, no Godot).
+"""T-265: triangles and materials per glb and per part (mesh) of wave 8 (round 1: the pilot, survey/pilot_counts.json; round 2:
+the final glbs, survey/round2_counts.json), for the card's Handoff and the README. Reads the glbs directly (no Blender, no Godot).
 Run: python -B art_source/graphics_upgrade/realistic_map/wave8/count_wave8.py
 """
 from pathlib import Path
@@ -39,7 +39,7 @@ def main():
 		result[glb.stem] = {"triangles": t, "materials": mats, "parts": {k: v[0] for k, v in p.items()}}
 		print("%-18s %7d tris %2d mats  %s" % (glb.stem, t, len(mats), ", ".join("%s %d" % (k, v[0]) for k, v in p.items())))
 	print("total", total)
-	(Path(__file__).parent / "survey/pilot_counts.json").write_text(json.dumps(result, indent=1), encoding="utf-8", newline="\n")
+	(Path(__file__).parent / "survey/round2_counts.json").write_text(json.dumps(result, indent=1), encoding="utf-8", newline="\n")
 
 
 if __name__ == "__main__":

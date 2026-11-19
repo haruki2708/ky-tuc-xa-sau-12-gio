@@ -14,6 +14,9 @@ sẵn trong game: Be Vietnam Pro (OFL, `game/assets/fonts/OFL.txt`).
 - `sign_library.png`: biển "THƯ VIỆN" chữ đồng trên nền men đỏ (phương án mặt ngoài E2).
 - `washed_stone_*.png`: đá rửa (sỏi nhỏ lộ trong vữa xám), màu, normal, ORM.
 - `palette8.png`: ô màu phẳng cho đồ nhỏ (`palette8.json` ở thư mục art_source).
+- `curtain8.png` (lượt 2): nếp rèm vải nhìn qua kính tối từ ngoài (nếp đứng, gấu, vệt ố), tô màu bởi vật liệu `W8Curtain*`.
+- Lượt 2 không còn dùng `map_drawn.png`, `sign_library.png`, `washed_stone_*.png` (các phương án không chọn); giữ lại làm
+  nguồn cho tờ phương án lượt 1.
 
 Vật liệu dùng lại của các đợt trước (scan CC0 Poly Haven và texture tự vẽ, nguồn ghi ở CREDITS của từng đợt và
 `art_source/graphics_upgrade/room407_corner/CREDITS.md`): sơn trát, gạch ceramic kem và tấm trần của đợt 6, đá mài và sơn

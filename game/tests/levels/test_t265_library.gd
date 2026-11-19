@@ -157,6 +157,10 @@ func test_floors_drawn_for_the_camera() -> void:
 	assert_eq(REAL_SCRIPT.floors_shown(Vector3(81.5, -5.4, 207.5)), [true, true, true], "the top of the first flight")
 	assert_eq(REAL_SCRIPT.floors_shown(Vector3(65, -8.3, 228)), [true, false, false], "outside the back door")
 	assert_eq(REAL_SCRIPT.floors_shown(Vector3(114, -4.5, 196)), [false, false, false], "from the stadium")
+	# The shells and the stairs: in the library and within 25 m of its walls.
+	assert_true(REAL_SCRIPT.interior_shown(Vector3(65, -1.7, 211)), "shells inside")
+	assert_true(REAL_SCRIPT.interior_shown(Vector3(59, -8.3, 180.5)), "shells from the forecourt")
+	assert_false(REAL_SCRIPT.interior_shown(Vector3(114, -4.5, 196)), "no shells from the stadium")
 
 
 # ---------------------------------------------------------------------------------------------- the added colliders

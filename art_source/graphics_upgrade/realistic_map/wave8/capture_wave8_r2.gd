@@ -26,7 +26,7 @@ const VIEWS := {
 	"f2_wide": {"eye": Vector3(66.0, -5.0, 210.0), "target": Vector3(50.0, -5.6, 200.0), "torch": true, "fov": 80.0},
 	"f3_wide": {"eye": Vector3(80.6, -1.7, 213.4), "target": Vector3(54.0, -2.6, 219.0), "torch": true, "fov": 80.0},
 	"f3_south": {"eye": Vector3(65.0, -1.7, 210.0), "target": Vector3(50.0, -2.4, 199.0), "torch": true, "fov": 80.0},
-	"f3_scare": {"eye": Vector3(60.6, -1.7, 214.6), "target": Vector3(57.0, -2.3, 218.0), "torch": true},
+	"f3_scare": {"eye": Vector3(57.7, -1.7, 213.6), "target": Vector3(57.0, -2.3, 218.0), "torch": true},
 	"f3_scare2": {"eye": Vector3(73.1, -1.7, 213.0), "target": Vector3(73.0, -1.6, 218.0), "torch": true},
 	"facade": {"eye": Vector3(59.0, -8.3, 180.5), "target": Vector3(66.0, -5.0, 195.0), "torch": false, "fov": 80.0},
 	"facade_side": {"eye": Vector3(92.0, -8.3, 186.0), "target": Vector3(70.0, -4.8, 200.0), "torch": false},
@@ -86,8 +86,8 @@ func _load_chapter(path: String, director_name: String) -> Node3D:
 		ps1.append(node as Node3D)
 	for band in ["LibraryBand0", "LibraryBand1", "LibraryBand2"]:
 		ps1.append(campus.get_node("Shells/%s/Mesh" % band) as Node3D)
-	for path in ["Real", "BackDoor/Hinge/LeafReal"]:
-		real.append(library.get_node(path) as Node3D)
+	for rel in ["Real", "BackDoor/Hinge/LeafReal"]:
+		real.append(library.get_node(rel) as Node3D)
 	real.append(campus.get_node("StripLibrary") as Node3D)
 	return scene
 

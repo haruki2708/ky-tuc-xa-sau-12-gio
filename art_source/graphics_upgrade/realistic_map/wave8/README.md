@@ -1,5 +1,38 @@
 # Đồ hoạ thật đợt 8 — T-265 (D-166): thư viện ba tầng (A20) và dải đất 6 m quanh thư viện
 
+## Lượt 2 (20/11/2026, D-185): cả thư viện
+Lựa chọn ở card mục 1 (bộ c của lượt 1 cộng các điểm của integrator). Cảnh đã vá: `library.tscn` (667 hình PS1 ẩn; `Real`;
+`Real/Added`; `BackDoor/Hinge/LeafReal`), `shells.tscn` (ẩn `LibraryBand0…2/Mesh`), `campus.tscn` (`StripLibrary`).
+`props.tscn` không đổi (vùng không có mảnh xác; hai đống gạch và giấy vụn giữ nguyên).
+
+```powershell
+$B = "D:\Tools\Blender\5.2.2\blender.exe"
+python -B art_source/graphics_upgrade/realistic_map/wave8/plan_wave8.py final        # kiểm bố cục đồ thêm (mục 4), final_floor1..3.jpg
+python -B art_source/graphics_upgrade/realistic_map/wave8/make_wave8_textures.py curtain8
+& $B -b --factory-startup -P art_source/graphics_upgrade/realistic_map/wave8/build_wave8.py   # [-- shell stairs shelves fill facade ...]
+python -B art_source/graphics_upgrade/realistic_map/wave8/make_wave8_materials.py    # rồi git checkout các .import của glb không đổi (chỉ đảo thứ tự)
+godot --headless --path game --import   # hai lần
+python -B art_source/graphics_upgrade/realistic_map/wave8/patch_wave8.py library shells campus   # trên cảnh của main, mỗi bước một lần
+python -B art_source/graphics_upgrade/realistic_map/wave8/count_wave8.py             # survey/round2_counts.json
+pwsh tools/test.ps1 -Filter t265
+```
+Ảnh: chép `capture_wave8_r2.gd` vào `game/_probe_tmp/` cùng một scene gốc gắn script, theo Lượt Godot
+`godot --path game --log-file <log> res://_probe_tmp/capture_wave8_r2.tscn [-- --parts=ch4,ch3] [--views=...]` (88 ảnh,
+khoảng 1 phút khi cảnh đã import), rồi `python -B .../wave8/make_wave8_sheets.py round2` (`r2_*.jpg`, `overview.jpg`).
+
+- `wave8_layout.py`: `FINAL` (109 món thêm: kệ sát tường, kệ thấp dưới cửa sổ, dãy kệ hai mặt trong bốn khoang, đồ rời),
+  `RAILS` (lan can mép tây ô cầu thang tầng 2, 3), `SIGHTLINES`, `SCARE_POINTS`/`SCARE_SHELVES`, `ps1_solids`. Danh sách đầy
+  đủ: `survey/final_layout.md`.
+- `build_wave8.py`: 21 glb (xem docstring). Sách: mỗi cụm kệ một lưới gần (`Books_*`, một mặt gáy mỗi cuốn, bìa chỉ ở chỗ
+  hở) và một lưới xa (`BooksFar_*`, một khối mỗi đợt). Rèm cửa sổ (`curtain()`) chung cho mặt trong và mặt ngoài.
+- `game/scenes/levels/library/library_real.gd`: khoảng vẽ sách gần/xa (14 m), đồ của từng tầng chỉ vẽ khi camera ở tầng đó
+  hoặc cách một tầng (ngoài nhà: tầng 1 trong 12 m), vỏ trong, cầu thang, chướng ngại trong 25 m quanh tường, song sắt 80 m,
+  nắp rãnh 60 m, khung cửa sổ và bồn nước 150 m; đồ nhỏ không đổ bóng.
+- Vật liệu mới: `W8ShelfBack` (lưng kệ tôn sơn phẳng), `W8Curtain*` (rèm sau kính tối nhìn từ ngoài, texture `curtain8.png`),
+  `W8MapGlass` (kính bản đồ mờ, ít loá).
+- Lượt 2 xoá các glb góc mẫu không chọn (`*_q2`, `facade_e1|e2`, `fill_m2|m3`, `books_*`, `shelf_*`, `table_*`, `map_drawn`,
+  `mess`, `rule_book`) và `test_t265_pilot.gd`; `build_wave8_pilot.py` giữ làm nguồn của lượt 1.
+
 Card: `docs/tasks/T-265-realistic-graphics-wave8-library.md`. Dựng bằng script Blender (bmesh, không extension), texture vẽ
 bằng code (numpy + Pillow). Không Tripo, không ảnh AI. Toạ độ thế giới; `library.tscn` đặt gốc ở (45; −9,9; 195).
 

@@ -45,7 +45,8 @@ def tile(file, name, view, extra, size):
 		label(img, "thiếu " + file, 20, (0, 60))
 	else:
 		img = Image.open(path).convert("RGB").resize(size)
-	label(img, name, 22)
+	if name:
+		label(img, name, 22)
 	label(img, f"{VIEW_NAMES.get(view, view)}{' · ' + extra if extra else ''}", 18, (0, size[1] - 40))
 	return img
 
@@ -118,5 +119,50 @@ def main():
 		[("ch4", "main hiện tại")], [("westexit_door", ""), ("westexit_door", "_torch"), ("westexit_wall", "")], size=(1280, 720))
 
 
+# ------------------------------------------------------------------------------------------------ round 2 (D-185)
+
+VIEW_NAMES.update({
+	"f1_north": "tầng 1, khoang bắc: dãy kệ hai mặt", "stair_top": "đầu cầu thang tầng 2 nhìn về bàn đọc",
+	"f2_well": "tầng 2, lan can mép tây ô cầu thang", "f2_wide": "tầng 2 toàn cảnh (khoang nam: dãy kệ)",
+	"f3_south": "tầng 3, kho sách: khoang nam", "f3_scare2": "tầng 3, kệ ThrownBook3F", "facade_east": "mặt đông: ô cửa chỉ ở ngoài",
+	"strip_west": "dải đất góc tây bắc, chỗ xác sinh ra",
+})
+R2_BEFORE = ("before", "Trước (PS1, main)")
+R2_AFTER = ("after", "Sau (lượt 2, D-185)")
+
+
+def round2():
+	sheet("r2_floor1.jpg", "Tầng 1 trước/sau: sảnh mượn sách, quầy, bản đồ, cửa chính có chướng ngại",
+		[R2_BEFORE, R2_AFTER], [("f1_backdoor", ""), ("f1_wide", "_torch"), ("f1_north", ""), ("f1_counter", "_torch"), ("f1_map", "_torch"),
+		("f1_front_door", "_torch")], size=(800, 450))
+	sheet("r2_floor2_stairs.jpg", "Cầu thang, lan can mép ô cầu thang, tầng 2 (phòng đọc) trước/sau",
+		[R2_BEFORE, R2_AFTER], [("stairs", "_torch"), ("stair_top", ""), ("f2_well", "_torch"), ("f2_table", "_torch"), ("f2_wide", "")], size=(800, 450))
+	sheet("r2_floor3.jpg", "Tầng 3 (kho sách cổ) trước/sau; hai chỗ jumpscare không bày sẵn gì",
+		[R2_BEFORE, R2_AFTER], [("f3_wide", ""), ("f3_south", "_torch"), ("f3_scare", "_torch"), ("f3_scare2", "_torch")], size=(800, 450))
+	sheet("r2_outside.jpg", "Bên ngoài trước/sau: cửa sau, mặt trước, mặt đông, dải đất (chương 4)",
+		[R2_BEFORE, R2_AFTER], [("back_out", "_torch"), ("facade", ""), ("facade_side", ""), ("facade_east", ""), ("strip_west", "_torch")], size=(800, 450))
+	sheet("r2_ch3.jpg", "Chương 3 trước/sau: thư viện nhìn từ sân vận động; ba góc toàn cảnh của đợt 7",
+		[("ch3_before", "Trước"), ("ch3_after", "Sau")], [("far_stand", ""), ("far_track", ""), ("w_corridor4", ""), ("w_garden", ""), ("w_stand", "")],
+		size=(800, 450))
+	sheet("r2_occlusion.jpg", "Bật / tắt occlusion culling (khối che đang có của khuôn viên không ẩn nhầm vật mới)",
+		[("after", "Occlusion bật"), ("occl_off", "Occlusion tắt")], [("f1_backdoor", ""), ("f1_wide", ""), ("facade", ""), ("facade_side", "")],
+		size=(800, 450))
+	# overview.jpg: the library after round 2, twelve stills.
+	picks = [("after_f1_backdoor.jpg", "f1_backdoor"), ("after_f1_wide_torch.jpg", "f1_wide"), ("after_f1_north.jpg", "f1_north"),
+		("after_f1_counter_torch.jpg", "f1_counter"), ("after_f1_map_torch.jpg", "f1_map"), ("after_stairs_torch.jpg", "stairs"),
+		("after_f2_well_torch.jpg", "f2_well"), ("after_f2_wide.jpg", "f2_wide"), ("after_f3_wide.jpg", "f3_wide"),
+		("after_f3_scare_torch.jpg", "f3_scare"), ("after_facade.jpg", "facade"), ("ch3_after_far_stand.jpg", "far_stand")]
+	size = (640, 360)
+	out = Image.new("RGB", (4 * (size[0] + 8) - 8, 70 + 3 * (size[1] + 8)), (20, 20, 20))
+	label(out, "T-265 đợt 8 lượt 2 (D-185): thư viện ba tầng và dải đất quanh nhà — chương 4 ban đêm (ảnh cuối: chương 3)", 28)
+	for k, (file, view) in enumerate(picks):
+		out.paste(tile(file, "", view, "", size), ((k % 4) * (size[0] + 8), 70 + (k // 4) * (size[1] + 8)))
+	out.save(PREVIEWS / "overview.jpg", quality=84)
+	print("wrote overview.jpg", out.size)
+
+
 if __name__ == "__main__":
-	main()
+	if sys.argv[1:] == ["round2"]:
+		round2()
+	else:
+		main()
