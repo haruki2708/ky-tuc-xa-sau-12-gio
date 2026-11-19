@@ -54,6 +54,7 @@
 - **Ảnh lượt 2 từ hành lang tầng 4 nhà B:** ảnh lượt 1 bị một tấm khăn phơi che gần hết nhà A. Đặt camera ở chỗ không bị đồ phơi che (ví dụ x 34…40) và thêm một ảnh có đèn pin rọi sang nhà A.
 - Số lần vẽ ở góc khán đài (4.598 → 4.643 ở góc mẫu) phải về không tăng sau lượt 3, như lane B đã nêu.
 - Lượt 1 không chạy check là đúng (chưa sửa cảnh). Lượt 2 và 3 chạy đủ full test và check.
+- **Sau lượt 2 (19/11), chủ dự án chọn:** dãy ban công tầng 4 phía sau nhà B (T-255) **đổi màu mặt ngoài cho khớp mặt sau mới**, làm trong lượt 3. Lượt 3 được sửa thêm `game/scenes/levels/floor4/floor4_rooms.gd` (và vật liệu, mask vỏ phòng `floor4_rooms` nếu cần), **chỉ màu mặt ngoài ban công, lan can, vách ngăn**; không đổi phòng, va chạm, đồ đạc.
 
 ## 2. Việc, theo ba lượt
 
@@ -366,3 +367,11 @@ trước mặt hộp; lượt 2 tách lưới theo phòng nên vẫn cần thu h
   Lần chạy đầu lúc 13:20 bị Claude Code dừng vì thiếu RAM.
 - `pwsh tools/check.ps1` chưa chạy. Lượt 1 không sửa cảnh nào, chỉ thêm asset, script và một test.
 - Khoá Lượt Godot của lần bị dừng đã xoá; `game/_probe_tmp/` đã xoá.
+
+## Review integrator, lượt 2 (19/11/2026)
+- **Đạt, merge `b3fa3b8`** (nhánh lane B `fe8236e`, gốc main `0d7a25e`, cộng một sửa test của integrator `a4b28c7`).
+- Phạm vi đúng card: `shells.tscn` thêm lớp `Real` (nhà A, giảng đường, nhà thể chất) và dời `WindowSilhouette2` x 31 → 32 (D-182 mục 8); `building_b.tscn` thêm lớp `Real/Outside`; `garden_backdrop.tscn` thêm nhà A bản nhẹ; `shells_real.gd` chỉ chạy một lần khi nạp (tắt bóng kính, phòng giả, song, khung, đồ nhỏ, bóng người; tầm vẽ 90 m cho song và đồ nhỏ). Không thêm va chạm, đèn, âm thanh. PS1 chỉ ẩn.
+- Ảnh `previews/wave7/r2_*.jpg`: đúng D-182 (nhà A vàng kiểu A2, phòng giả, ba bóng người; giảng đường mái bằng, thể chất mái vòm; tầng 5–6 nhà B thành hành lang bị chặn, mặt sau có cửa sổ). Ban công tầng 4 phía sau lệch màu: chủ dự án cho sửa ở lượt 3 (mục 1).
+- **Sửa test của integrator:** `test_t253_realistic_wave2` hỏng vì lớp `Real` mới ở gốc `building_b.tscn` lọt vào bản in node (như `ExitSign` ở T-256). Thêm `Real` vào `ADDED_NAMES`: md5 node trở lại **đúng md5 của main**, va chạm không đổi.
+- **Kiểm** (19/11, khoá Godot, chủ dự án tắt tạm chống virus để đủ RAM): full test **`RESULT: 1049 passed, 0 failed`**, check **`RESULT: check 0 error(s)`**. Lượt này cũng phủ khối che nhà ăn và hộp tầng 5–6 nhà B integrator sửa ngày 16/11.
+- Số lần vẽ góc khán đài 4.473 → 4.522: lượt 3 phải đưa về không tăng.
