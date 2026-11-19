@@ -458,3 +458,12 @@ trước mặt hộp; lượt 2 tách lưới theo phòng nên vẫn cần thu h
 - **Sửa test của integrator:** `test_t253_realistic_wave2` hỏng vì lớp `Real` mới ở gốc `building_b.tscn` lọt vào bản in node (như `ExitSign` ở T-256). Thêm `Real` vào `ADDED_NAMES`: md5 node trở lại **đúng md5 của main**, va chạm không đổi.
 - **Kiểm** (19/11, khoá Godot, chủ dự án tắt tạm chống virus để đủ RAM): full test **`RESULT: 1049 passed, 0 failed`**, check **`RESULT: check 0 error(s)`**. Lượt này cũng phủ khối che nhà ăn và hộp tầng 5–6 nhà B integrator sửa ngày 16/11.
 - Số lần vẽ góc khán đài 4.473 → 4.522: lượt 3 phải đưa về không tăng.
+
+## Review integrator, lượt 3 (19/11/2026)
+- **Đạt, merge fast-forward** nhánh lane B `b85e9b5` (gốc main `97ccd9f`). Đợt 7 (T-264) xong.
+- Phạm vi đúng card: `campus.tscn` thêm lớp `StripRest` (mặt đất, hàng rào, đồ rải; `rest_real.gd` chạy một lần khi nạp) và ẩn 49 hình PS1 (37 ô `Ground/Tile_*`, đường, rào, ghế, xe máy); `props.tscn` thu 365 bản về 0; không thêm va chạm, đèn, âm thanh. Cụm cây rộng nhất 37 m nên tầm vẽ theo cụm không lộ bản xa ở gần.
+- **Chấp nhận phần vượt card mục 8:** ba test cũ (`test_t261`, `test_t262`, `test_t263`) chỉ nới đúng chỗ lượt 3 cố ý ẩn (đại lộ, nhánh đông, đồ rải phần còn lại, qua `test_t264_rest.in_rest`); số đếm của chúng không đổi. **Chấp nhận** `room407_furnish.gd` (một hằng màu mặt ngoài ban công, đúng card mục 1).
+- Ảnh `previews/wave7/r3_*.jpg`, `overview.jpg`: đúng D-182 (đường nhựa cũ, bàng, phượng, xà cừ, rào B40, sân trước lát block, ban công tầng 4 cùng màu mặt sau). Ki-ốt góc nhà ăn đổi từ hồng nhạt sang đỏ sẫm.
+- Số lần vẽ góc khán đài 4.502 → 4.463: đạt yêu cầu của review lượt 2 (không tăng).
+- **Kiểm:** dùng kết quả lane B (full test **1056/0**, check **0**, trên `fb9ba35`; `b85e9b5` chỉ sửa card). Lượt full test của integrator (19/11 20:09) bị Claude Code dừng vì thiếu RAM trước khi in kết quả; chủ dự án chọn đẩy luôn, không chạy lại. Full test chạy lại ở lần merge kế tiếp.
+- **Chưa đóng gói bản build mới** (đóng gói cần RAM): làm khi máy rảnh hoặc gộp với bản sau đợt 8.
