@@ -341,5 +341,7 @@ Số lần vẽ giảm ở mọi góc (PS1 mỗi cuốn sách một lưới); pr
 
 #### Kiểm
 - `pwsh tools/test.ps1 -Filter t265`: `RESULT: 7 passed, 0 failed` (`test_t265_pilot.gd`: texture nén VRAM, glb chỉ dùng vật liệu chung, mặt quầy giữ thanh sắt, kệ/sách/bàn trong khối PS1, cánh cửa sau trong khung `Hinge` và không cắm vào má cửa khi mở, bản đồ trong khung cũ, bậc thang trên dốc).
-- **Full test bị dừng vì máy thiếu RAM**: `pwsh tools/test.ps1` chạy từ 22:46 dưới khóa Godot, tới khoảng 23:20 thì Claude Code tắt lệnh vì bộ nhớ hệ thống gần cạn; không có dòng RESULT, không tự chạy lại (theo luật). File khóa của lane B đã xoá, không còn tiến trình Godot. `check.ps1` không chạy (lượt 1 không sửa cảnh). Lượt 1 chỉ thêm glb, texture, vật liệu và một test mới; không cảnh nào đổi.
+- Lần full test đầu (19/11, từ 22:46) bị Claude Code dừng khoảng 23:20 vì máy thiếu RAM, không có dòng RESULT; không tự chạy lại.
+- **Full test chạy lại theo yêu cầu chủ dự án** (20/11 00:47–01:24, dưới khóa Godot, trên `6abf249`): **`RESULT: 1063 passed, 0 failed`**. File khóa đã xoá, không còn tiến trình Godot; `default_bus_layout.tres` trả về như cũ.
+- `check.ps1` không chạy (lượt 1 không sửa cảnh). Lượt 1 chỉ thêm glb, texture, vật liệu và một test mới; không cảnh nào đổi.
 - Chưa kiểm: ba góc toàn cảnh đợt 7, bật/tắt occlusion, bộ nhớ hình sau khi gắn thật vào cảnh (lượt 2).
