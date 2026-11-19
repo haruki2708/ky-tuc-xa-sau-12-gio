@@ -1,0 +1,7 @@
+path	type	visible	position	rotation_deg	detail
+LibraryBand0	Node3D	vis	(65.000, -9.900, 194.820)	(-0.000, 0.000, 0.000)	
+LibraryBand0/Mesh	MeshInstance3D	vis	(65.000, -9.900, 194.820)	(-0.000, 0.000, 0.000)	box (40.000, 0.140, 0.300) | aabb (45.000, -9.970, 194.670)..(85.000, -9.830, 194.970) | concrete.png ffffffff | shadow 1
+LibraryBand1	Node3D	vis	(65.000, -6.600, 194.820)	(-0.000, 0.000, 0.000)	
+LibraryBand1/Mesh	MeshInstance3D	vis	(65.000, -6.600, 194.820)	(-0.000, 0.000, 0.000)	box (40.000, 0.140, 0.300) | aabb (45.000, -6.670, 194.670)..(85.000, -6.530, 194.970) | concrete.png ffffffff | shadow 1
+LibraryBand2	Node3D	vis	(65.000, -3.300, 194.820)	(-0.000, 0.000, 0.000)	
+LibraryBand2/Mesh	MeshInstance3D	vis	(65.000, -3.300, 194.820)	(-0.000, 0.000, 0.000)	box (40.000, 0.140, 0.300) | aabb (45.000, -3.370, 194.670)..(85.000, -3.230, 194.970) | concrete.png ffffffff | shadow 1

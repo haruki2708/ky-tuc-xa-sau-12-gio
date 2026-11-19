@@ -229,3 +229,8 @@
 
 ## Handoff
 *(Lane B ghi: đã làm, còn dở, cách kiểm, dòng RESULT test và check, commit, yêu cầu thay đổi, phần chưa kiểm.)*
+
+### Lượt 1 (19/11/2026, đang làm)
+- Nhánh `lane-b/T-265-realistic-graphics-wave8-library` từ `origin/main` 1ee3dbc; card đọc ở commit 97ccd9f.
+- Xong bước 1 phần khảo sát (chưa sửa cảnh nào): `wave8/survey_wave8.gd` (bảng node `survey/library_nodes.tsv`, `zone8_nodes.tsv`, hình học `plan_geometry.json`), `wave8/list_wave8_zone.py` (`zone8.json`), `wave8/walk_wave8.gd` (kết quả `survey/walk_wave8.txt`), `wave8/plan_wave8.py` (bản đồ `previews/wave8/plan_floor1..3.jpg`).
+- Còn: góc mẫu Blender, ảnh chương 4 và chương 3, phương án, Handoff đầy đủ.
