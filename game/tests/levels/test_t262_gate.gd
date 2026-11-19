@@ -7,6 +7,7 @@ extends TestCase
 ## guards; the new pieces stay inside the PS1 colliders or out of reach; the player still walks the companions' way.
 
 const T259 := preload("res://tests/levels/test_t259_garden.gd")
+const T264 := preload("res://tests/levels/test_t264_rest.gd")
 const GATE := preload("res://scenes/levels/campus/gate.tscn")
 const CAMPUS := preload("res://scenes/levels/campus/campus.tscn")
 const PROPS := preload("res://scenes/levels/campus/props.tscn")
@@ -112,7 +113,8 @@ func test_ps1_meshes_hidden_and_the_real_layers_hung() -> void:
 		assert_true(gate.has_node("Real/" + name), "Real/" + name)
 	assert_false((campus.get_node("Fence/S/Mesh") as Node3D).visible, "PS1 south wall hidden (its collider stays)")
 	var avenue := campus.get_node("Road/Avenue/Mesh") as MeshInstance3D
-	assert_true(avenue.visible, "the Avenue's PS1 mesh stays shown up to x 180")
+	# T-264 round 3 (D-182) lays the Avenue x 0..180 in asphalt and hides this mesh (test_t264_rest checks it).
+	assert_true(avenue.visible or campus.has_node("StripRest/Ground"), "the Avenue's PS1 mesh stays shown up to x 180")
 	var aabb := avenue.global_transform * avenue.get_aabb()
 	assert_true(absf(aabb.position.x) < 0.01 and absf(aabb.end.x - 180.0) < 0.01, "Road/Avenue's mesh spans x 0..180 (%s)" % aabb)
 	for path in ["WallSouth/Wall", "StripGate/Ground", "StripGate/Props"]:
@@ -143,6 +145,9 @@ func test_props_replaced_in_the_box_only_and_three_heads_back() -> void:
 				var at := Vector3(data[k + 9], data[k + 10], data[k + 11])
 				if A16_BOX.grow(0.01).has_point(at):
 					zeroed += 1
+					continue
+				# T-264 round 3 (D-182): the rest of A16's pieces in the shared chunks (test_t264_rest checks them).
+				if T264.in_rest(at):
 					continue
 				# T-263 round 2 (D-181, HARU allowed this edit): three of these chunks also hold the canteen strip's
 				# papers, sandals and a backpack, scaled to 0 in T-263's box (x 166..218, z 13..60); test_t263_canteen

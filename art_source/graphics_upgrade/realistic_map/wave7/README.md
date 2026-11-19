@@ -103,3 +103,57 @@ PS1, ẩn lớp Real, bóng người thứ ba về x 31).
 | chương 1 từ hành lang tầng 4 (x 37; ảnh đầu của lần chạy, chưa ổn định) | 777 | 460 |
 Số đo giữa hai lần chạy lệch tới vài trăm ở các góc gần nhà B (thứ tự chụp, nạp dần); chỉ so trong cùng một lần. Bộ nhớ hình
 chương 3: 1.313 MB → 1.318 MB. Không đo FPS (D-179). Bật/tắt khối che cho ảnh như nhau (`r2_torch_occlusion.jpg`).
+
+## Lượt 3 (19/11/2026): mặt đất, đường, cây, đèn, hàng rào, đồ rải (D-182)
+```powershell
+$B = "D:\Tools\Blender\5.2.2\blender.exe"
+python -B art_source/graphics_upgrade/realistic_map/wave7/patch_wave7.py data          # w7_ps1_props.json từ props.tscn của main
+python -B art_source/graphics_upgrade/realistic_map/wave7/make_wave7_textures.py mask_road mask_verge leaf_bang tree_far palette
+& $B -b --factory-startup -P art_source/graphics_upgrade/realistic_map/wave7/build_wave7_rest.py   # [-- ground fences trees lamp props]
+python -B art_source/graphics_upgrade/realistic_map/wave7/make_wave7_materials.py
+python -B art_source/graphics_upgrade/realistic_map/wave7/patch_wave7.py props campus  # một lần, trên bản main
+python -B art_source/graphics_upgrade/floor4_rooms/make_room_materials.py             # F4Exterior (chỉ giữ file .tres)
+pwsh tools/test.ps1 -Filter t264
+```
+Ảnh: chép `capture_wave7_r3.gd` và `props.tscn` của main (`props_main.tscn`) vào `game/_probe_tmp/`, chạy (thêm
+`-- --chapter=4`), rồi `make_wave7_sheets.py --round3` → `r3_roads.jpg`, `r3_trees_props.jpg`, `r3_fences_forecourts.jpg`,
+`r3_wide.jpg`, `r3_torch.jpg`, `overview.jpg`.
+
+- `wave7_layout.py`: cao độ (lề −9,925; đường, sân lát −9,92; tile va chạm −9,94), ba đường, ba sân trước, `ground_cells()`
+  chia khuôn viên thành ô một loại mặt (bỏ các dải đã làm, vùng đợt 8, các nhà, hộp nhà B), quy tắc loài cây và hướng cần đèn.
+- `rest_props.py`: nhận từng vật ghép PS1 (`art_source/campus/scatter.py`) theo mảnh neo (thân ô tô, thân xe máy, yên xe đạp,
+  mái che, ...) rồi các mảnh theo cỡ quanh neo; đồ rời (gạch vụn, thép, giấy, kính, dép, giày) theo chỗ nằm. 365/367 bản phần
+  còn lại được thay; hai điện thoại (một ô kính đi cặp ô `D_iron`) giữ PS1. Không đụng `D_iron` (vệt nứt, vệt kéo), `D_red`
+  (máu), mảnh màu da (đầu xác: phần còn lại không có).
+- `build_wave7_rest.py`: `ground.glb`, `fences.glb`, ba `tree_*.glb` (thêm tán trung, thẻ xa), `lamp_steel.glb`, `rest_props.glb`
+  (đồ rải theo ô 80 m, như chunk PS1 bị cắt ở 125 m).
+- `game/scenes/levels/campus/rest_real.gd`: gắn trên `StripRest`; tắt bóng mặt phẳng và đồ nhỏ; cây, đèn thành MultiMesh treo
+  theo đúng điểm của từng cụm `Trees_*`, `ExtraTrees_*`, `StreetLights_*` (hình PS1 ẩn): thân tới 90 m, tán gần 45 m, tán trung
+  40…90 m, thẻ xa 85…125 m; đèn tới 125 m.
+- `patch_wave7.py props campus`: 365 bản thu về 0 trong 61 chunk (28 chunk rỗng thì ẩn); ẩn lưới 37 ô đất bị phủ kín (ô có
+  phần dải cũ, đợt 8 hay hộp nhà B giữ), ba đường PS1, `Fence/N|E|W`, ba ghế và ba xe máy đổ (va chạm giữ); thêm `StripRest`.
+- Ban công tầng 4 phía sau: `F4Exterior` (401–406, 408) và `ShellExterior` của phòng 407 (`room407_furnish.gd`) lấy vữa sơn và
+  màu của `W7WallPale`; mặt nạ, phòng, va chạm, đồ đạc giữ.
+
+### Số tam giác (lượt 3)
+| glb | Tam giác |
+|---|---|
+| mặt đất (`ground`: lề 2.942, đường 746, vỉa 9.984, lát 194, viền, vạch, ngoài rào) | 14.178 |
+| hàng rào B40 (`fences`, 1.200 m) | 15.534 |
+| bàng / phượng / xà cừ (thân + tán gần; tán trung; thẻ xa 4) | 2.781; 540 / 1.939; 392 / 1.731; 384 |
+| đèn thép (`lamp_steel`) | 126 |
+| đồ rải (`rest_props`, 10 ô) | 22.736 |
+
+### Số lần vẽ (chương 3, cùng camera, khối che bật, cùng một lần chạy; main sau lượt 2 → lượt 3)
+| Góc | Trước | Sau |
+|---|---|---|
+| toàn cảnh từ hành lang tầng 4 nhà B (x 37) | 1.933 | 1.924 |
+| toàn cảnh giữa vườn | 316 | 292 |
+| toàn cảnh từ khán đài | 4.502 | 4.463 |
+| đại lộ / ghế, xe máy / phía tây | 533 / 3.859 / 545 | 526 / 3.851 / 510 |
+| mái che xe / ki-ốt / cây sau nhà B | 35 / 143 / 440 | 48 / 137 / 434 |
+| nhánh đông / đường vòng bắc / rào tây / rào bắc | 229 / 85 / 37 / 62 | 213 / 65 / 30 / 44 |
+| sân trước giảng đường / nhà thể chất / ban công sau nhà B | 63 / 42 / 2.764 | 64 / 42 / 2.788 |
+| chương 4: sân trước giảng đường / đường sang thư viện | 63 / 475 | 64 / 463 |
+Ba góc toàn cảnh đều giảm (khán đài 4.502 → 4.463, dưới 4.598 của lượt 1). Bộ nhớ hình chương 3: 1.333 MB trước và sau.
+Không đo FPS (D-179).

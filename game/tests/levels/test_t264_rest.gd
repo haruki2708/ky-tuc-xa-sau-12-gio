@@ -22,8 +22,26 @@ const TILES_HIDDEN := 37
 ## The library and 6 m round it (wave 8): its tiles keep their PS1 mesh.
 const WAVE8 := [39.0, 91.0, 189.0, 231.0]
 
+## The rest of A16 (wave7_layout.region == "rest"): the campus less wave 8, the buildings' boxes and the earlier strips
+## (T-263's box less its west corner x 166..170, z 37..60). Every instance this wave scaled to 0 lies here; the earlier
+## waves' tests ask it before calling a zeroed piece theirs.
+const NOT_REST := [[39.0, 91.0, 189.0, 231.0], [-5.2, 49.2, -10.8, 4.3], [0.0, 44.0, 54.0, 64.0], [-50.0, 30.0, 180.0, 200.0],
+	[-60.0, 0.0, 90.0, 130.0], [-6.0, 50.0, 4.0, 50.0], [108.0, 290.0, 108.0, 236.0], [50.0, 110.0, -11.0, 176.0],
+	[180.0, 262.0, -60.0, 13.0], [166.0, 218.0, 13.0, 60.0]]
+
 var fixture: Node3D
 var campus: Node3D
+
+
+static func in_rest(at: Vector3) -> bool:
+	if at.x < -80.0 or at.x > 420.0 or at.z < -60.0 or at.z > 290.0:
+		return false
+	for box: Array in NOT_REST:
+		if at.x >= box[0] and at.x <= box[1] and at.z >= box[2] and at.z <= box[3]:
+			if box[0] == 166.0 and at.x < 170.0 and at.z > 37.0:
+				continue   # T-263's corner, this wave's
+			return false
+	return true
 
 
 func after_each() -> void:
@@ -183,6 +201,17 @@ func test_corpse_pieces_blood_and_drag_marks_untouched() -> void:
 	print("T264_REST_KEPT ", kept)
 	for key: String in KEPT:
 		assert_eq(kept[key], KEPT[key], "%s pieces still drawn as main has them" % key)
+	# The rest's instances at 0: this wave's 365 (rest_props.py; the two phones stay drawn) and the 49 main already had there.
+	var zeroed := 0
+	for chunk in props.find_children("*", "Node3D", true, false):
+		var data: Variant = chunk.get("data")
+		if not data is PackedFloat32Array:
+			continue
+		var values: PackedFloat32Array = data
+		for k in range(0, values.size(), 16):
+			if values[k] == 0.0 and values[k + 4] == 0.0 and values[k + 8] == 0.0 and in_rest(Vector3(values[k + 9], values[k + 10], values[k + 11])):
+				zeroed += 1
+	assert_eq(zeroed, 365 + 49, "the rest of A16's replaced instances scaled to 0")
 	props.free()
 
 

@@ -24,7 +24,7 @@ const PROPS_COLLIDERS_MD5 := "97c2301b5e5f2375e59ef5ecf322a76b"  # as T-259 left
 ## sheets), now scaled to 0 as that chunk is shown again for its six corpse heads (its "visible" row turns true).
 ## T-263 round 2 (D-181, HARU allowed this edit): 2099 = 2117 less the 18 pieces the canteen strip replaces (papers,
 ## sandals, a backpack, trays in T-263's box x 166..218, z 13..60, outside this wave's areas), now scaled to 0.
-const PROPS_KEPT_MD5 := "8a531ad27ec655c1596149e9fa4b4eb0"  # 2099 instances kept
+const PROPS_KEPT_MD5 := "10dc04056b9d1bb76518e6e488b692e2"  # 1734 instances kept (T-264 round 3 scaled the rest of A16's to 0)
 const G := -9.9
 const STAND_Z0 := 212.7
 const SOUTH_Z0 := 119.5
@@ -420,8 +420,9 @@ func test_strip_stays_in_its_box_and_hides_only_its_pieces() -> void:
 		assert_true(A16_BOX.grow(0.25).encloses(aabb), "%s inside the A16 box (%s)" % [mesh.name, aabb])
 	for path in ["Road/WestBranch/Mesh", "Road/StadiumWestAccess/Mesh"]:
 		assert_false((scene.get_node(path) as Node3D).visible, "PS1 hidden: " + path)
+	# T-264 round 3 (D-182) lays these roads in asphalt and hides their PS1 meshes (test_t264_rest checks them).
 	for path in ["Road/Avenue/Mesh", "Road/EastBranch/Mesh"]:
-		assert_true((scene.get_node(path) as Node3D).visible, "left alone: " + path)
+		assert_true((scene.get_node(path) as Node3D).visible or scene.has_node("StripRest/Ground"), "left alone: " + path)
 
 
 func test_every_wave4_texture_imports_vram_compressed() -> void:

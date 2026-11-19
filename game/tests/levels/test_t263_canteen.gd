@@ -9,6 +9,7 @@ extends TestCase
 ## in through the west exit from chapter 4's start. Replaces round 1's test_t263_canteen_pilot.gd.
 
 const T259 := preload("res://tests/levels/test_t259_garden.gd")
+const T264 := preload("res://tests/levels/test_t264_rest.gd")
 const CAMPUS := preload("res://scenes/levels/campus/campus.tscn")
 const CANTEEN := preload("res://scenes/levels/campus/canteen.tscn")
 const PROPS := preload("res://scenes/levels/campus/props.tscn")
@@ -328,7 +329,8 @@ func test_props_replaced_in_the_box_only() -> void:
 			if data[k] == 0.0 and data[k + 4] == 0.0 and data[k + 8] == 0.0:
 				var at := Vector3(data[k + 9], data[k + 10], data[k + 11])
 				var here := A16_BOX.grow(0.01).has_point(at) and not WAVE8.has_point(Vector2(at.x, at.z))
-				assert_true(here or GATE_BOX.grow(0.01).has_point(at), "%s: only pieces in the canteen's or the gate's box hidden (%s)" % [path, at])
+				# T-264 round 3 (D-182): the rest of A16's pieces in the shared chunks (test_t264_rest checks them).
+				assert_true(here or GATE_BOX.grow(0.01).has_point(at) or T264.in_rest(at), "%s: only pieces in the canteen's or the gate's box hidden (%s)" % [path, at])
 				if here:
 					in_box += 1
 	assert_eq(in_box, 18, "the strip's papers, sandals, backpack and trays scaled to 0")

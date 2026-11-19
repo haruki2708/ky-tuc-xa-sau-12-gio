@@ -150,11 +150,92 @@
 - [x] Lượt 1: khảo sát, bảng hợp đồng, đi thử, hộp A16 còn lại, phân loại đồ rải (Handoff)
 - [x] Lượt 1: góc mẫu và phương án, ảnh bật/tắt khối che, độ sâu nội thất; dừng chờ chủ dự án chọn
 - [x] Lượt 2: nhà A, giảng đường, nhà thể chất, mặt ngoài nhà B, nội thất nhìn qua cửa, bóng người cửa sổ
-- [ ] Lượt 2: test, full test, check, Handoff; dừng chờ merge
-- [ ] Lượt 3: mặt đất, đường, cây, đèn đường, ghế, xe máy, hàng rào bắc/đông/tây, đồ rải
+- [x] Lượt 2: test, full test, check, Handoff; dừng chờ merge
+- [x] Lượt 3: mặt đất, đường, cây, đèn đường, ghế, xe máy, hàng rào bắc/đông/tây, đồ rải
 - [ ] Lượt 3: ảnh trước/sau, `overview.jpg`, test, full test, check, README, CREDITS, Handoff
 
 ## Handoff
+### Lượt 3 (19/11/2026): xong
+Nhánh rebase lên `origin/main` `97ccd9f` (đã có lượt 2, `b3fa3b8`; card mục 1 có thêm màu ban công tầng 4). Cách chạy lại, số
+tam giác, số lần vẽ: `art_source/graphics_upgrade/realistic_map/wave7/README.md` mục "Lượt 3". Commit: `f63c26b`, `9cb4290`,
+cùng commit Handoff này.
+
+**Đã làm (theo D-182):**
+- **Mặt đất** (`StripRest/Ground`, `ground.glb`): lề cỏ úa và đất cả phần còn lại của hộp A16 (mặt nạ vẽ cho cả khuôn viên: đất
+  trơ dọc vỉa, quanh gốc cây, dọc lối đi quanh các nhà, đường vòng bắc sân, chân hàng rào); ba sân trước lát block có viền
+  (nhà A z 50…54, giảng đường z 172…180, nhà thể chất z 82…90); dải cỏ 40 m ngoài hàng rào bắc, đông, tây (lưới B40 nhìn
+  xuyên, tường PS1 thì che).
+- **Đường:** đại lộ x 0…180, nhánh đông, lối vào đông sân vận động bằng nhựa cũ có vá, nứt, vệt bánh xe, vạch mờ; vỉa quét vôi.
+  Đại lộ lên dần 5 cm ở 3 m cuối để khớp đoạn lát của T-262 (x 180, −9,87).
+- **Cây:** mọi cụm `Trees_*` (campus) và `ExtraTrees_*` (props), 175 điểm, thành bàng (dọc đại lộ), phượng (gần các nhà), xà cừ
+  (hàng dài ở rìa khuôn viên và hai bên WestBranch). Dùng MultiMesh theo cụm, đúng điểm PS1: thân tới 90 m, tán gần 45 m, tán
+  trung 40…90 m, thẻ chữ thập xa 85…125 m. Lá và thẻ không đổ bóng; dưới 2 m không lá; thân nằm trong hộp `TreeTrunk`.
+  Hình PS1 ẩn, các điểm giữ nguyên.
+- **Đèn đường:** 21 điểm `StreetLights_*` thành cột thép cần vươn, cần quay ra đường gần nhất (MultiMesh). Đèn `Props/Lights`
+  không đổi.
+- **Hàng rào bắc, đông, tây** (`fences.glb`): lưới B40, cột ống mỗi 2,5 m, bệ thấp, thanh đỉnh; nằm trong hộp va chạm `Fence/*`.
+  Hình PS1 ẩn.
+- **Ghế, xe máy đổ:** `RoadBench0…2`, `FallenMoped0…2` làm lại trên đúng hộp va chạm (hình PS1 ẩn).
+- **Đồ rải hộp A16:** `rest_props.py` nhận từng vật ghép PS1 theo mảnh neo rồi các mảnh theo cỡ. 365/367 bản thay đúng chỗ:
+  - 2 ô tô (sedan của đợt 5), 4 xe máy, 2 xe đạp (của đợt 6);
+  - 2 mái che xe (8 xe đạp đỗ), 1 ki-ốt, 2 bồn cây (bụi của đợt 3), 2 thùng rác, 2 biển chỉ đường;
+  - 5 cột đèn đổ, nghiêng, sáng; 2 ghế;
+  - 89 gạch vụn, 18 thép, 18 giấy, 70 mảnh kính, dép, giày.
+  
+  Các bản PS1 chỉ thu về 0 (`patch_wave7.py props`), 28 chunk rỗng hẳn thì ẩn. Hai điện thoại (ô kính đi cặp với ô `D_iron`)
+  giữ PS1.
+- **Không đụng:** `D_iron` (vệt nứt, vệt kéo: 661 bản như main), `D_red` (máu: 60), mảnh màu da (đầu xác: 30). Phần còn lại
+  không có mảnh xác nào.
+- **Ẩn lưới 37/70 ô `Ground/Tile_*`** bị phủ kín; ô có phần dải cũ, vùng đợt 8 hay hộp nhà B giữ. Va chạm và meta của mọi ô giữ.
+- **Ban công tầng 4 phía sau** (card mục 1, chủ dự án 19/11): `F4Exterior` (phòng 401–406, 408; qua `make_room_materials.py`)
+  và `ShellExterior` của phòng 407 (`room407_furnish.gd`, chỉ một hằng màu) lấy vữa sơn và màu, độ bẩn của `W7WallPale`.
+  Phòng 407 nằm giữa dãy nên đổi cùng. `floor4_rooms.gd` không cần sửa.
+- **Lượt 3 thay cả cây, đèn, xe máy PS1 còn sót trong các dải đã làm** (T-261 x 56…104, T-262), vì đó là điểm, cụm của `Road`
+  dùng chung, để khuôn viên đồng bộ. Mặt đất, đồ rải của các dải đó không đụng.
+- **Bỏ** các mảnh góc mẫu đã thay (`road_asphalt`, `verge_grass`, `fence_b40`, `bench`, `moped`) và `test_t264_pilot.gd`.
+  Phần kiểm của test này chuyển sang `test_t264_rest.gd`.
+
+**Ảnh** (`previews/wave7/`): `overview.jpg`; tờ `r3_roads.jpg`, `r3_trees_props.jpg`, `r3_fences_forecourts.jpg`,
+`r3_wide.jpg` (ba góc toàn cảnh, chương 4), `r3_torch.jpg`; ảnh lẻ `r3_before_*` / `r3_after_*`. Trước = main dựng lại lúc chạy
+(props của main, hình PS1, màu ban công cũ), cùng camera, chương 3 ban đêm (chương 4 cho sân trước giảng đường và đường sang
+thư viện).
+
+**Số lần vẽ ba góc toàn cảnh** (cùng một lần chạy, khối che bật):
+- hành lang tầng 4 nhà B: 1.933 → 1.924;
+- giữa vườn: 316 → 292;
+- khán đài: 4.502 → 4.463, đã về dưới số lượt 1 (4.598).
+
+Các góc khác ở README. Bộ nhớ hình chương 3: 1.333 MB trước và sau. Không đo FPS.
+
+**Kiểm:**
+- `test_t264_rest.gd` (mới, 11 test):
+  - va chạm và hợp đồng campus trùng main;
+  - PS1 ẩn, không xoá (37 ô; ô đợt 8 giữ lưới; đường, rào, ghế, xe máy; va chạm còn);
+  - cây, đèn đúng điểm PS1 (175 / 21), tầm vẽ ≤ 125 m, lá không đổ bóng; thân trong hộp, không lá dưới 2 m;
+  - mặt đường, lát, lề trong 2 cm trên va chạm; rào trong hộp va chạm;
+  - `D_iron`, `D_red`, màu da như main; màu ban công;
+  - texture nén VRAM, vật liệu dùng chung, ngân sách tam giác;
+  - thân người chơi đi đường vòng bắc sân xuống nhánh đông, dọc rào tây và rào bắc.
+- **Sửa test cũ cho hợp lượt 3** (integrator xem lại; card mục 8 chỉ cho sửa hằng số đếm, ba chỗ dưới đây vượt chút):
+  - hằng số: `test_t261_stadium` `PROPS_KEPT_MD5` 2.099 → 1.734 dòng, vì 365 bản phần còn lại thu về 0 (như T-263 đã sửa
+    hằng này);
+  - **không phải hằng số** (lượt 3 ẩn đúng các thứ này):
+    - `test_t261_stadium` "left alone: `Road/Avenue|EastBranch/Mesh`" nhận ẩn khi có `StripRest/Ground`;
+    - `test_t262_gate` "the Avenue's PS1 mesh stays shown" cũng vậy;
+    - `test_t262_gate` và `test_t263_canteen` hỏi `test_t264_rest.in_rest()` trước khi coi một bản thu về 0 là của mình.
+      Số đếm của chúng (180, 16, 18) không đổi; `test_t264_rest` kiểm đúng 365 bản trong phần còn lại.
+  - Lần chạy đầu ba test này hỏng đúng ở các chỗ trên, ngoài ra đều đạt.
+- Test liên quan (`-Filter` t259, t261, t262, t263, t264, stands_props, test_campus, room407, t255, t253, t260): FILTER_RESULT
+- Full `pwsh tools/test.ps1`: FULLTEST_RESULT
+- `pwsh tools/check.ps1`: CHECK_RESULT
+
+**Chưa kiểm / lưu ý:**
+- Chưa đi thử bằng tay.
+- Các vết nứt `D_iron` (giữ) nằm 6–8 cm trên mặt đất mới như trước nằm trên ô PS1.
+- 29 cây `ExtraTrees_*` vốn không có va chạm thân (như main).
+- `capture_wave7.gd` của lượt 1 còn trỏ tới các glb góc mẫu đã bỏ (chỉ để tham khảo).
+
+**Yêu cầu thay đổi ngoài phạm vi:** không. Hàng rào B40 thay tường PS1 nhưng không phải khối đặc nên không cần hộp che.
 ### Lượt 2 (16/11/2026): xong, DỪNG chờ integrator merge
 Nhánh rebase lên `origin/main` `0d7a25e` (có D-182, card mục 1, khối che tầng 5–6 nhà B đã thu về z 0). Cách chạy lại, số tam
 giác, số lần vẽ: `art_source/graphics_upgrade/realistic_map/wave7/README.md` mục "Lượt 2". Commit: `2491e65`, `024f693`,

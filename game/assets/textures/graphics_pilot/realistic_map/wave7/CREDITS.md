@@ -10,5 +10,8 @@ bộ vẽ lá của đợt 3): không tải ảnh, không ảnh AI. Tác giả: 
   https://en.wikipedia.org/wiki/Terminalia_catappa, https://en.wikipedia.org/wiki/Delonix_regia,
   https://en.wikipedia.org/wiki/Khaya_senegalensis (ảnh trong các bài, giấy phép ghi ở từng ảnh; không dùng trong game).
 - `interior_atlas.png`: phòng giả sau ô cửa (phòng ký túc, lớp học, nhà thể chất, sảnh).
-- `mask_facades7.png`, `mask_road7.png`, `mask_verge7.png`: mặt nạ cũ bẩn (UV2) của mặt nhà, mặt đường, lề.
+- `mask_facades7.png`: mặt nạ cũ bẩn (UV2) của mặt nhà. `mask_road7.png`, `mask_verge7.png`: lượt 3 vẽ lại cho cả khuôn viên
+  500 × 350 m (vá, nứt, bẩn, vũng nước, vệt bánh xe; đất trơ dọc vỉa, gốc cây, lối đi).
+- `tree_far_bang.png`, `tree_far_phuong.png`, `tree_far_xacu.png`: thẻ cây xa (lượt 3), ghép từ chính atlas lá và màu vỏ ở
+  đây theo dáng tán từng loài.
 - `paint_line.png`: vạch sơn đường mòn; `palette7.png`: ô màu phẳng cho đồ nhỏ (`palette7.json` ở thư mục art_source).

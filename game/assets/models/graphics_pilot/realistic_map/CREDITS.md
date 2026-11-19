@@ -79,8 +79,9 @@ ngoài và mái, xe đạp, dải A16 (sân trước lát gạch, hè và rãnh,
 texture: [`wave6/CREDITS.md`](wave6/CREDITS.md). Dựng bằng script Blender, texture vẽ bằng code; không Tripo, không ảnh AI
 (D-166).
 
-## `wave7/` — T-264: nhà nền, mặt ngoài nhà B, mặt đất, đường, cây, đèn, hàng rào; lượt 1 góc mẫu và phương án
+## `wave7/` — T-264: nhà nền, mặt ngoài nhà B, mặt đất, đường, cây, đèn, hàng rào (D-182; ba lượt)
 
-Góc mẫu nhà A (hai kiểu), nhà thể chất (hai kiểu mái), mặt ngoài nhà B, đoạn đại lộ (hai kiểu mặt đường, lề, đèn), ba loài
-cây ven đường, ghế, xe máy đổ, hàng rào tây (hai kiểu) chờ chủ dự án chọn. Nguồn từng file và texture:
+Nhà A kiểu A2, giảng đường, nhà thể chất (tường vàng, phòng giả sau mọi ô cửa, ba bóng người), mặt ngoài nhà B, nhà A bản
+nhẹ chương 1–2 (lượt 2); mặt đất, đường nhựa, vỉa, sân trước lát block, hàng rào B40, ba loài cây, đèn thép cần vươn, đồ rải
+phần còn lại hộp A16 (lượt 3). Nguồn từng file và texture:
 [`wave7/CREDITS.md`](wave7/CREDITS.md). Dựng bằng script Blender, texture vẽ bằng code; không Tripo, không ảnh AI (D-166).
