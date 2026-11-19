@@ -88,6 +88,7 @@ Trả lời và viết tài liệu bằng tiếng Việt; code, comment, commit 
 - **Nguồn đúng khi lệch nhau:** mục 3 file này mới nhất; rồi `docs/STATUS.md`; `docs/ROADMAP.md` chỉ cập nhật khi qua mốc.
 
 ## 3. Tiến độ integrator để lại (integrator cập nhật sau mỗi bước)
+**19/11/2026 — D-183: LANE HARU THÔI LÀM DỰ ÁN NÀY** (lane A cũng thôi). Không bàn giao cho HARU nữa; tài khoản integrator đã lên Claude Max. Integrator vẫn ghi tiến độ ở đây và ở STATUS để phiên integrator mới (sau `/clear` hay khởi động lại máy) làm tiếp được.
 **16/11/2026 — INTEGRATOR (Fable 5.2, tài khoản `tunank1103`) ĐÃ NHẬN LẠI ĐIỀU PHỐI.** Chủ dự án đồng ý thứ tự: (1) card đợt 7, (2) khối che vỏ nhà ăn, (3) build một lần có cả T-263 và khối che, (4) bot T-238 sau đợt 7, (5) đợt 8, 9, (6) lượt chơi thử cuối kèm đo FPS.
 - **Xong:** card [T-264](../tasks/T-264-realistic-graphics-wave7-shells-ground.md) đợt 7, prompt `lane-b.md` mục 1r (ba lượt). Chờ chủ dự án dán lượt 1 cho lane B.
 - **Việc của integrator sau lượt 1 của T-264:** chuyển phương án cho chủ dự án (AskUserQuestion, có đề xuất), ghi D-182 và card mục 1, rồi **thu ba hộp che `Shells_BuildingA_Shell`, `Shells_Gym_Shell`, `Shells_Lecture_Shell` vào trong** theo độ sâu nội thất lane B ghi (`art_source/graphics_upgrade/occlusion/make_occluders.py`, `game/scenes/main/occlusion/occluders_campus.tscn`, `test_t260_occlusion`), trước khi lane B làm lượt 2.
