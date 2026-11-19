@@ -47,6 +47,14 @@
 
 **Review lượt 1 (integrator, 20/11):** đạt, chưa merge (lượt 1 chỉ có góc mẫu). Nhánh `66d6a77`, full test `1063 passed, 0 failed`. Integrator đã xem mọi tờ phương án và bản đồ lối đi.
 
+**Review lượt 2 (integrator, 20/11 sáng sớm):** đạt về hình và test, **chưa merge**; cần **lượt 3 nhỏ** (mục 14, D-186). Nhánh `3d10898` (`860939d` + danh sách commit). Đã kiểm:
+- diff `game/` chỉ có thêm (một dòng sửa: `test_t264_buildings` đổi câu `LibraryBand*` còn hiện → đã ẩn, đúng mục 8). Navigation là lưới dựng sẵn trong `library.tscn`, không dòng nào của main bị sửa;
+- `test_t265_library` (14/0): dấu vân 1.533 dòng trùng main, 667 hình PS1 ẩn, 111 khối thêm kiểm từng khối theo luật mục 4, hai lan can đúng hộp và cách navigation ≥ 0,31 m, thân người chơi đi cả ba tầng và bị lan can chặn, tuyến xác từ 6 điểm sinh lên tầng 3;
+- không còn `W7RoomClass` trong thư viện; ảnh bật/tắt occlusion giống nhau;
+- số lần vẽ giảm hoặc bằng ở mọi góc; góc vườn đợt 7 primitive +0,5 % (vỏ thư viện ở 190 m), chấp nhận, xem lại sau khi integrator thêm khối che;
+- độ ướt sàn (`wet_strength` 0,35) thấp hơn sàn các đợt đã duyệt (nhà ăn 0,9, tầng 4 1,2–1,3): giữ nguyên;
+- **full test của lane B bị dừng vì thiếu RAM, check chưa chạy**: integrator chạy một lần full test + check sau lượt 3 (kèm khối che), khi chủ dự án đã tắt RAV và Chrome.
+
 1. **Mức đầy: M2, có thêm dãy kệ hai mặt trong bốn khoang lớn** (integrator). Ảnh `options_fill.jpg` cho thấy M2 nhìn ngang mắt gần như M1, phòng vẫn trống. Các dãy kệ của ảnh mẫu M3 ở tầng 1 (`options_fill_m3_floor1.jpg`) đều nằm trọn trong vùng xanh, tức đã thoả điều kiện M2 ở mục 4. Vì vậy lấy các dãy đó vào M2:
    - **Mọi món thêm, kể cả dãy kệ, theo đúng điều kiện M2 ở mục 4:** ngoài mọi vùng navigation cộng 0,6 m; không chắn đường thẳng giữa hai vùng; lối bên cạnh rộng ít nhất 1,2 m; ngoài vòng 1,5 m; không che đường nhìn cửa sau → quầy và đầu cầu thang tầng 2 → bàn đọc; có va chạm dưới `Real/Added`; có danh sách trong Handoff và có test. **Navigation và tuyến xác không đổi; không làm M3**, nên không có card navigation.
    - **Tầng 1:** đồ M2 cộng các dãy của ảnh mẫu M3 thoả điều kiện; góc tây nam quanh quầy, ghế thủ thư và bản đồ giữ trống như ảnh M2.
@@ -69,7 +77,7 @@
     - trong 2 m quanh `ScareShelf3F`, `ThrownBook3F`, kệ `Shelf2_12` và `Shelf2_28` không rải sách, giấy, không có kệ đổ;
     - quanh quầy và ghế thủ thư (`librarian_rise`) không có gì giống xác;
     - ghế thủ thư không đổ.
-11. **Lan can ô cầu thang tầng 2 và 3: có, có va chạm** (integrator; trả lời câu 11 và "Yêu cầu thay đổi"). Đây là **thay đổi gameplay duy nhất** của đợt.
+11. **Lan can ô cầu thang tầng 2 và 3: có, có va chạm** (integrator; trả lời câu 11 và "Yêu cầu thay đổi"). Cùng mục 14 (D-186), đây là **thay đổi gameplay duy nhất** của đợt.
     - **Vị trí:** mép tây ô cầu thang, x 79, z 199…209, cao 1,1 m từ mặt sàn, ở tầng 2 và tầng 3. Kiểu như lan can cầu thang (thép dẹt, tay vịn gỗ).
     - **Cách làm:** là **phần thêm dưới `Real/Added`**, không sửa va chạm có sẵn.
     - **Điều kiện:** nằm ngoài mọi vùng và link navigation cộng bán kính xác sống (lấy từ cảnh xác, ghi số vào Handoff).
@@ -80,8 +88,17 @@
       - người chơi đi vào mép tây ô cầu thang ở z 200, 205, 208 thì bị chặn, không rơi.
 12. **Dải đất quanh thư viện:** như góc mẫu (hè 0,8 m, rãnh nắp bê tông, sân lát block trước cửa chính, thềm đá mài, cỏ úa khớp mặt nạ đợt 7). Sáu điểm sinh xác để trống; hai đống gạch vụn có va chạm giữ nguyên.
 13. **Khối che:** integrator thêm hộp che cho thư viện sau khi đợt này merge (theo "Mặt đặc kín" lane B ghi ở Handoff lượt 1). Lượt 2 chụp vài góc bật và tắt occlusion culling như mục 5.
+14. **Bịt các chỗ còn rơi được của ô cầu thang (D-186, integrator, review lượt 2).** Va chạm PS1 của ô (toạ độ thế giới): sàn tầng 2 và 3 hở x 79…85, z 199…209; tay vịn đông của mỗi nhịp `RailCollision*_39` ở x 83,95…84,05; mặt trong tường đông ở x 84,89. Còn ba chỗ rơi:
+    - **Khe đông** x 84,05…84,89 (rộng 0,84 m, thân người chơi 0,6 m), z 199…209, ở tầng 2 và tầng 3: đi về bắc từ sàn phía nam (z < 199), hoặc về nam từ sàn phía bắc (z > 209), là rơi xuống tầng 1 (3,3 m từ tầng 2, 6,6 m từ tầng 3).
+    - **Mép nam ở tầng 3** x 79…84, z 199: tầng 3 không có nhịp đi lên, nên đi về bắc từ vùng `StairFoot2` là rơi 3,3 m xuống chân nhịp hai (lane B báo ở lượt 2).
+    - Cách bịt: **lan can có va chạm, kiểu như lan can mép tây** (thép dẹt, tay vịn gỗ, cao 1,1 m từ mặt sàn), là phần thêm dưới `Real/Added`, tên bắt đầu bằng `WellRail` để test kiểm hộp và khoảng cách navigation như hai đoạn mép tây. Integrator đề xuất bốn đoạn (lane B đo lại, ghi toạ độ thật vào Handoff):
+      - `WellRail_F3S`: tầng 3, x 78,86…84,89, z ≈ 198,92…199, nối `WellRail_F3` tới tường đông (bịt cả mép nam lẫn đầu nam khe đông);
+      - `WellRail_F2SE`: tầng 2, x 84,05…84,89, z ≈ 198,92…199 (đầu nam khe đông; lối vào nhịp hai x 79…84 **để hở**);
+      - `WellRail_F2NE`, `WellRail_F3NE`: tầng 2 và tầng 3, x 84,05…84,89, z ≈ 209…209,08 (đầu bắc khe đông; lối ra của nhịp **để hở**).
+    - **Không** lấp khe bằng sàn (sẽ thành hành lang hẹp ngoài navigation, người chơi trốn được) và **không** dùng khối đặc (khối đó phải qua luật M2 mục 4, sát `StairNav` sẽ trượt).
+    - Mỗi đoạn cách mọi vùng và link navigation ≥ 0,31 m (bán kính xác). Đoạn nào chỉ nối tiếp một tay vịn PS1 trên cùng đường x mà không thể cách xa hơn tay vịn đó thì được gần bằng tay vịn đó; ghi số đo và lý do trong Handoff, test kiểm đúng số đó.
 
-## 2. Việc, theo hai lượt
+## 2. Việc, theo ba lượt (lượt 3 thêm sau review lượt 2)
 
 ### Lượt 1 — khảo sát, góc mẫu, phương án, rồi DỪNG chờ chủ dự án chọn
 1. **Khảo sát, ghi Handoff:**
@@ -121,6 +138,17 @@
 6. **Ba tầng trong:** sàn, tường, trần, máng đèn, cửa sổ; quầy, ghế thủ thư, bản đồ; 9 kệ và sách; 3 bàn đọc và 6 ghế; chướng ngại cửa chính; cầu thang và tay vịn; đồ thêm theo mức đầy đã chọn.
 7. **Dải đất** trong vùng đợt 8 ngoài nhà, khớp mép với dải đợt 7 ở x 39, x 91, z 189, z 231.
 8. Ảnh trước/sau, ảnh ghép, test, full test, check, README, CREDITS, Handoff; **báo và dừng**.
+
+### Lượt 3 — bịt ô cầu thang (mục 14, D-186; chủ dự án dán prompt lượt 3)
+9. `git fetch`, **rebase nhánh lên `origin/main`** (lấy mục 1 và lượt 3 này), `git lfs pull`.
+10. **Test trước:** viết các phép thử rơi vào `test_t265_library.gd` và chạy trên bản lượt 2 (chưa có lan can mới); chúng **phải hỏng** (người chơi rơi). Phép thử: thân người chơi đi thẳng
+    - về bắc ở x 84,47 từ z 197, trên tầng 2 và tầng 3;
+    - về nam ở x 84,47 từ z 211, trên tầng 2 và tầng 3;
+    - về bắc ở x 80, 82 và 84,47 từ z 197, trên tầng 3.
+
+    Phép thử nào **không** rơi trên bản lượt 2 thì bỏ đoạn lan can tương ứng và ghi lý do. Đi về bắc ở x 80…84 từ z 197 trên **tầng 2** vẫn phải lên được nhịp hai (lối vào để hở).
+11. **Dựng** các đoạn lan can của mục 14 (glb `stairs` và `Real/Added`), thêm vào `RAILS` và tăng `ADDED` trong test. Các phép thử ở bước 10 phải qua: người chơi dừng trên sàn, không rơi.
+12. **Kiểm:** `pwsh tools/test.ps1 -Filter t265` và `-Filter t264` (cả tuyến đi bộ ba tầng và tuyến xác từ 6 điểm sinh vẫn qua). **Không chạy full test, không chạy check**: máy thiếu RAM; integrator chạy một lần full test + check khi merge (kèm khối che thư viện), lúc chủ dự án đã tắt RAV và Chrome. Thêm 1–2 ảnh lan can mới (`r3_well.jpg`). Ghi Handoff `### Lượt 3`, commit, push, **báo và dừng**.
 
 ## 3. Phạm vi
 - **Trong đợt:** `library.tscn`; `LibraryBand*` trong `shells.tscn` (chỉ ẩn); mặt đất, cây, đèn, đồ rải trong hộp x 39…91, z 189…231.
