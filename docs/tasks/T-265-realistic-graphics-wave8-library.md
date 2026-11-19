@@ -146,7 +146,7 @@
     - về nam ở x 84,47 từ z 211, trên tầng 2 và tầng 3;
     - về bắc ở x 80, 82 và 84,47 từ z 197, trên tầng 3.
 
-    Phép thử nào **không** rơi trên bản lượt 2 thì bỏ đoạn lan can tương ứng và ghi lý do. Đi về bắc ở x 80…84 từ z 197 trên **tầng 2** vẫn phải lên được nhịp hai (lối vào để hở).
+    Phép thử nào **không** rơi trên bản lượt 2 thì bỏ đoạn lan can tương ứng và ghi lý do. Đi về bắc ở x 80, 81,5 và 83 từ z 197 trên **tầng 2** vẫn phải lên được nhịp hai (lối vào để hở; tâm thân người chơi trên nhịp chỉ nằm được trong x ≈ 79,35…83,65 vì hai tay vịn PS1).
 11. **Dựng** các đoạn lan can của mục 14 (glb `stairs` và `Real/Added`), thêm vào `RAILS` và tăng `ADDED` trong test. Các phép thử ở bước 10 phải qua: người chơi dừng trên sàn, không rơi.
 12. **Kiểm:** `pwsh tools/test.ps1 -Filter t265` và `-Filter t264` (cả tuyến đi bộ ba tầng và tuyến xác từ 6 điểm sinh vẫn qua). **Không chạy full test, không chạy check**: máy thiếu RAM; integrator chạy một lần full test + check khi merge (kèm khối che thư viện), lúc chủ dự án đã tắt RAV và Chrome. Thêm 1–2 ảnh lan can mới (`r3_well.jpg`). Ghi Handoff `### Lượt 3`, commit, push, **báo và dừng**.
 
