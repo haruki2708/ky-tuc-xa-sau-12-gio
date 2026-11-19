@@ -1,7 +1,8 @@
 """T-264 round 1: option sheets for the owner from previews/wave7/pilot_<shot>.jpg (capture_wave7.gd): one sheet per
 question, same cameras across options, chapter 3's real scene at night, occlusion culling on unless marked.
 --round2: round 2's before/after sheets (r2_*.jpg) from capture_wave7_r2.gd (D-182 picks, scenes patched).
-Run: python -B art_source/graphics_upgrade/realistic_map/wave7/make_wave7_sheets.py [--round2]
+--round3: round 3's sheets (r3_*.jpg, capture_wave7_r3.gd) and overview.jpg.
+Run: python -B art_source/graphics_upgrade/realistic_map/wave7/make_wave7_sheets.py [--round2 | --round3]
 """
 from pathlib import Path
 import sys
@@ -139,5 +140,36 @@ def round2():
 		("Chương 1: trước / sau", [("before_ch1_corridor4", "ch1_corridor4"), ("after_ch1_corridor4", "ch1_corridor4"), ("after_ch1_corridor4_wide", "ch1_corridor4_wide")])],
 		"Bản nhẹ: vỏ A2 kính tối, không phòng giả, không song sắt, không bóng người, không bóng đổ, không va chạm.")
 
+VIEW.update({"road": "đại lộ (x 125, nhìn đông)", "road_props": "đại lộ: ghế, xe máy, đèn, xe đạp", "road_west": "đại lộ phía tây: ô tô, biển, cột đèn đổ",
+	"trees_b": "cây phượng sau nhà B", "shelter": "mái che xe đạp", "kiosk": "ki-ốt ở góc nhà ăn", "east_branch": "nhánh đông (x 310)",
+	"north_loop": "đường vòng bắc sân vận động", "fence_w": "hàng rào tây", "fence_n": "hàng rào bắc", "lecture_fc": "sân trước giảng đường",
+	"gym_fc": "sân trước nhà thể chất", "b_back": "ban công tầng 4 sau nhà B", "road_props_torch": "đại lộ, đèn pin",
+	"fence_w_torch": "hàng rào tây, đèn pin", "shelter_torch": "mái che xe, đèn pin", "trees_b_torch": "cây sau nhà B, đèn pin",
+	"ch4_lecture": "chương 4: sân trước giảng đường", "ch4_library_way": "chương 4: đường sang thư viện"})
+
+
+def round3():
+	global PREFIX
+	PREFIX = "r3_"
+	pair = lambda views: [("Trước (main)", [("before_" + v, v) for v in views]), ("Sau (lượt 3)", [("after_" + v, v) for v in views])]
+	sheet("r3_roads.jpg", "T-264 lượt 3 · Đường nhựa cũ, vạch mờ, vỉa quét vôi, lề cỏ úa và đất, đèn thép cần vươn",
+		pair(["road", "road_props", "road_west", "east_branch"]),
+		"Ghế, xe máy, ô tô, biển, cột đèn đổ, gạch vụn, giấy làm lại đúng chỗ PS1 (365 bản thu về 0). Vệt nứt, vệt kéo giữ nguyên.")
+	sheet("r3_trees_props.jpg", "T-264 lượt 3 · Cây (bàng, phượng, xà cừ), mái che xe, ki-ốt, đường vòng bắc",
+		pair(["trees_b", "shelter", "kiosk", "north_loop"]))
+	sheet("r3_fences_forecourts.jpg", "T-264 lượt 3 · Hàng rào B40 bắc, đông, tây; sân trước lát block; ban công tầng 4 đổi màu",
+		pair(["fence_w", "fence_n", "lecture_fc", "gym_fc", "b_back"]),
+		"Ngoài hàng rào: dải cỏ 40 m (tường PS1 che, lưới B40 thì nhìn xuyên). Ban công 401–408 cùng màu mặt sau mới.")
+	sheet("r3_wide.jpg", "T-264 lượt 3 · Ba góc toàn cảnh và chương 4 (khối che bật)",
+		pair(["w_corridor4", "w_garden", "w_stand"]) + [("Chương 4: trước / sau", [("before_ch4_lecture", "ch4_lecture"),
+		("after_ch4_lecture", "ch4_lecture"), ("after_ch4_library_way", "ch4_library_way")])],
+		"Số lần vẽ (cùng lần chạy): hành lang tầng 4 1.933 → 1.924, giữa vườn 316 → 292, khán đài 4.502 → 4.463.")
+	sheet("r3_torch.jpg", "T-264 lượt 3 · Đèn pin (12 m)", [("Đèn pin", [("after_road_props_torch", "road_props_torch"),
+		("after_fence_w_torch", "fence_w_torch"), ("after_shelter_torch", "shelter_torch"), ("after_trees_b_torch", "trees_b_torch")])])
+	sheet("overview.jpg", "T-264 · Đồ hoạ thật đợt 7: nhà nền, mặt ngoài nhà B, mặt đất, đường, cây, đèn, hàng rào (chương 3, ban đêm)", [
+		("Lượt 3", [("after_w_corridor4", "w_corridor4"), ("after_w_garden", "w_garden"), ("after_w_stand", "w_stand")]),
+		("Lượt 3", [("after_road", "road"), ("after_shelter", "shelter"), ("after_fence_w", "fence_w")]),
+		("Lượt 3", [("after_lecture_fc", "lecture_fc"), ("after_b_back", "b_back"), ("after_road_props", "road_props")])])
+
 if __name__ == "__main__":
-	round2() if "--round2" in sys.argv else main()
+	round3() if "--round3" in sys.argv else (round2() if "--round2" in sys.argv else main())

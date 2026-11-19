@@ -102,7 +102,7 @@ BARK = """[gd_resource type="StandardMaterial3D" format=3]
 
 [resource]
 resource_name = "{res}"
-albedo_color = Color(0.74, 0.72, 0.7, 1)
+albedo_color = Color({tone}, {tone2}, {tone3}, 1)
 albedo_texture = ExtResource("1")
 roughness = 0.75
 normal_enabled = true
@@ -139,7 +139,10 @@ def main():
 	for name, look in all_looks.items():
 		write_material(name, look)
 	for species, res in (("bang", "W7BarkBang"), ("phuong", "W7BarkPhuong"), ("xacu", "W7BarkXacu")):
-		(MATS / f"{res}.tres").write_text(BARK.format(own=OWN7, name=species, res=res), encoding="utf-8", newline="\n")
+		# Round 3: the phượng's pale bark read white at night; its albedo is darker.
+		tone = {"bang": 0.74, "phuong": 0.5, "xacu": 0.7}[species]
+		(MATS / f"{res}.tres").write_text(BARK.format(own=OWN7, name=species, res=res, tone=tone, tone2=round(tone * 0.973, 3),
+			tone3=round(tone * 0.946, 3)), encoding="utf-8", newline="\n")
 	for name, (row, depth, dim) in INTERIORS.items():
 		M4.write_shader_material(name, {"atlas": OWN7 + "interior_atlas.png", "row": row, "depth": depth, "dim": dim}, INTERIOR_SHADER)
 	known = set(all_looks) | set(INTERIORS) | {"W7BarkBang", "W7BarkPhuong", "W7BarkXacu"}

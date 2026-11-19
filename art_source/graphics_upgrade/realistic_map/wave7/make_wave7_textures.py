@@ -71,7 +71,7 @@ def leaf_bang():
 				ang = k / 5 * math.tau + rng.uniform(-0.3, 0.3)
 				tip = (ox + 256 + math.cos(ang) * 150, oy + 256 + math.sin(ang) * 150)
 				c.stem([(ox + 256, oy + 256), tip], 7, 3, (0.33, 0.28, 0.22))
-				rosette(tip[0], tip[1], rng.uniform(95, 120), int(rng.integers(5, 8)), red=0.12 if cell else 0.05)
+				rosette(tip[0], tip[1], rng.uniform(95, 120), int(rng.integers(5, 8)), red=0.05 if cell else 0.03)   # round 3: fewer red
 			rosette(ox + 256, oy + 256, 110, 7)
 		elif cell == 2:
 			c.stem([(ox + 10, oy + 300), (ox + 260, oy + 286), (ox + 500, oy + 300)], 9, 4, (0.33, 0.28, 0.22))
@@ -82,7 +82,7 @@ def leaf_bang():
 				ang = -math.pi / 2 + (k - 1) * 0.7
 				tip = (ox + 256 + math.cos(ang) * 210, oy + 480 + math.sin(ang) * 330)
 				c.stem([(ox + 256, oy + 505), tip], 8, 3, (0.33, 0.28, 0.22))
-				rosette(tip[0], tip[1], 100, int(rng.integers(5, 7)), red=0.3)
+				rosette(tip[0], tip[1], 100, int(rng.integers(5, 7)), red=0.1)
 	T3.save_rgba("leaf_bang.png", c)
 
 

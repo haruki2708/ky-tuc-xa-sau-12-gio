@@ -654,6 +654,10 @@ def build_tree(species):
 						CELLS[rnd.randrange(2)], base=0.5, radial_from=(0, 0, h + 0.5), normal_mix=0.3)
 					TP.card(leaves, lm, at, d + Vector((0, 0, 0.6)), Vector((math.cos(a + 1.57), math.sin(a + 1.57), 0)), size * 0.9, size * 0.7,
 						CELLS[2 + rnd.randrange(2)], base=0.4, radial_from=(0, 0, h), normal_mix=0.4)
+					# Round 3: a third, flatter rosette card turned at random fills the tier (the pilot's crowns read thin).
+					b = a + rnd.uniform(-1.2, 1.2)
+					TP.card(leaves, lm, at + Vector((0, 0, 0.15)), Vector((math.cos(b), math.sin(b), 0.25)), up, size * 1.05, size * 1.05,
+						CELLS[rnd.randrange(2)], base=0.45, radial_from=(0, 0, h + 0.5), normal_mix=0.35)
 	elif species == "phuong":
 		# Short trunk forking at 3.2 m into 4 spreading limbs, a wide flat umbrella crown of feathery fronds, red flowers.
 		TP.tube(bark, bm, [Vector((0, 0, 0)), Vector((0.02, 0, 1.5)), Vector((0.03, 0.01, 3.4))], [0.21, 0.19, 0.17], 9)
