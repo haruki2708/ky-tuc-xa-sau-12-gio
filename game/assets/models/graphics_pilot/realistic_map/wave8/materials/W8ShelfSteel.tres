@@ -6,7 +6,7 @@
 
 [resource]
 resource_name = "W8ShelfSteel"
-albedo_color = Color(0.663, 0.723, 0.736, 1)
+albedo_color = Color(0.518, 0.535, 0.552, 1)
 albedo_texture = ExtResource("1")
 orm_texture = ExtResource("2")
 metallic = 0.2

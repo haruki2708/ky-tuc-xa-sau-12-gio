@@ -1,0 +1,446 @@
+{
+ "back_frame": {
+  "triangles": 102,
+  "materials": [
+   "W1Steel",
+   "W1Wood"
+  ],
+  "parts": {
+   "BackFrame": 102
+  }
+ },
+ "back_leaf": {
+  "triangles": 750,
+  "materials": [
+   "W1Alu",
+   "W1Iron",
+   "W1Steel",
+   "W1Wood",
+   "W2Glass",
+   "W5DoorPaint",
+   "W8Palette"
+  ],
+  "parts": {
+   "BackLeaf": 742,
+   "BackLeafGlass": 8
+  }
+ },
+ "barricade": {
+  "triangles": 396,
+  "materials": [
+   "W1Iron",
+   "W1Wood"
+  ],
+  "parts": {
+   "BarricadeChairs": 324,
+   "BarricadeTable": 72
+  }
+ },
+ "books_full": {
+  "triangles": 2456,
+  "materials": [
+   "W8Books"
+  ],
+  "parts": {
+   "BooksFull": 2456
+  }
+ },
+ "books_sparse": {
+  "triangles": 1104,
+  "materials": [
+   "W8Books"
+  ],
+  "parts": {
+   "BooksSparse": 1104
+  }
+ },
+ "books_tipped": {
+  "triangles": 1120,
+  "materials": [
+   "W8Books"
+  ],
+  "parts": {
+   "BooksTipped": 1120
+  }
+ },
+ "counter_q1": {
+  "triangles": 788,
+  "materials": [
+   "W1Black",
+   "W1Cord",
+   "W1Ledger",
+   "W1PageEdge",
+   "W1Wood",
+   "W1WoodPale",
+   "W2Glass",
+   "W8Palette"
+  ],
+  "parts": {
+   "CounterQ1": 788
+  }
+ },
+ "counter_q2": {
+  "triangles": 368,
+  "materials": [
+   "W1Cord",
+   "W1Iron",
+   "W1Ledger",
+   "W1PageEdge",
+   "W1Terrazzo",
+   "W1Wood",
+   "W1WoodPale",
+   "W8Palette",
+   "W8Skirting"
+  ],
+  "parts": {
+   "CounterQ2": 368
+  }
+ },
+ "facade_e1": {
+  "triangles": 5876,
+  "materials": [
+   "W1Alu",
+   "W1Iron",
+   "W2Glass",
+   "W6Stainless",
+   "W7GlassDark",
+   "W7RoomClass",
+   "W8Concrete",
+   "W8FacadeWhite",
+   "W8FacadeYellow",
+   "W8Palette"
+  ],
+  "parts": {
+   "Bands": 444,
+   "DarkGlass": 48,
+   "Extras": 364,
+   "FakeRooms": 48,
+   "Fins": 888,
+   "Frames": 1728,
+   "Glass": 48,
+   "Grilles": 1824,
+   "Roof": 12,
+   "Walls": 472
+  }
+ },
+ "facade_e2": {
+  "triangles": 5002,
+  "materials": [
+   "W1Alu",
+   "W1Iron",
+   "W2Glass",
+   "W6Stainless",
+   "W7GlassDark",
+   "W7RoomClass",
+   "W8Concrete",
+   "W8Palette",
+   "W8Sign",
+   "W8WashedStone"
+  ],
+  "parts": {
+   "Bands": 444,
+   "DarkGlass": 48,
+   "Extras": 378,
+   "FakeRooms": 48,
+   "Frames": 1728,
+   "Glass": 48,
+   "Grilles": 1824,
+   "Roof": 12,
+   "Walls": 472
+  }
+ },
+ "fill_m2": {
+  "triangles": 88951,
+  "materials": [
+   "W1Black",
+   "W1Wood",
+   "W1WoodPale",
+   "W8Books",
+   "W8Palette",
+   "W8ShelfSteel",
+   "W8ShelfWood"
+  ],
+  "parts": {
+   "FillM2_F1": 26482,
+   "FillM2_F2": 35957,
+   "FillM2_F3": 26512
+  }
+ },
+ "fill_m3": {
+  "triangles": 32944,
+  "materials": [
+   "W1Black",
+   "W8Books",
+   "W8Palette",
+   "W8ShelfSteel"
+  ],
+  "parts": {
+   "FillM3_F1": 9088,
+   "FillM3_F3": 23856
+  }
+ },
+ "front_door": {
+  "triangles": 414,
+  "materials": [
+   "W1Iron",
+   "W1Steel",
+   "W1Wood",
+   "W2Glass",
+   "W8Palette"
+  ],
+  "parts": {
+   "FrontDoor": 398,
+   "FrontDoorGlass": 16
+  }
+ },
+ "librarian_chair": {
+  "triangles": 276,
+  "materials": [
+   "W1Iron",
+   "W1Steel",
+   "W8Palette"
+  ],
+  "parts": {
+   "LibrarianChair": 276
+  }
+ },
+ "map_drawn": {
+  "triangles": 86,
+  "materials": [
+   "W1Wood",
+   "W1WoodPale",
+   "W8MapDrawn",
+   "W8Palette"
+  ],
+  "parts": {
+   "MapDrawn": 86
+  }
+ },
+ "map_print": {
+  "triangles": 64,
+  "materials": [
+   "W1Alu",
+   "W1WoodPale",
+   "W2Glass",
+   "W8MapPrint"
+  ],
+  "parts": {
+   "MapPrint": 64
+  }
+ },
+ "mess": {
+  "triangles": 736,
+  "materials": [
+   "W1Iron",
+   "W1Wood",
+   "W8Books",
+   "W8Palette"
+  ],
+  "parts": {
+   "Mess_F1": 216,
+   "Mess_F2": 284,
+   "Mess_F3": 236
+  }
+ },
+ "rule_book": {
+  "triangles": 36,
+  "materials": [
+   "W1Ledger",
+   "W1LedgerSpine",
+   "W1PageEdge"
+  ],
+  "parts": {
+   "RuleBook": 36
+  }
+ },
+ "shelf_steel": {
+  "triangles": 228,
+  "materials": [
+   "W1Black",
+   "W8Palette",
+   "W8ShelfSteel"
+  ],
+  "parts": {
+   "ShelfSteel": 228
+  }
+ },
+ "shelf_wood": {
+  "triangles": 168,
+  "materials": [
+   "W1Wood",
+   "W1WoodPale",
+   "W8ShelfWood"
+  ],
+  "parts": {
+   "ShelfWood": 168
+  }
+ },
+ "shell_f1": {
+  "triangles": 9720,
+  "materials": [
+   "W1Alu",
+   "W1Iron",
+   "W1Steel",
+   "W1Terrazzo",
+   "W1Wood",
+   "W2Tube",
+   "W6Plenum",
+   "W7GlassDark",
+   "W8CeilingConcrete",
+   "W8CeilingPanel",
+   "W8DadoGreen",
+   "W8FloorCeramic",
+   "W8FloorTerrazzo",
+   "W8Palette",
+   "W8Skirting",
+   "W8TubeDead",
+   "W8WallIvory",
+   "W8WallYellow"
+  ],
+  "parts": {
+   "Battens": 480,
+   "CeilConcrete": 66,
+   "CeilPanels": 26,
+   "Fans": 600,
+   "Floor_F1": 2,
+   "Floor_F2": 2,
+   "Sills": 96,
+   "Walls_F1": 304,
+   "Walls_F2": 288,
+   "WinGlass": 2672,
+   "WinShutter": 5184
+  }
+ },
+ "shell_f2": {
+  "triangles": 9626,
+  "materials": [
+   "W1Alu",
+   "W1Iron",
+   "W1Steel",
+   "W1Terrazzo",
+   "W1Wood",
+   "W2Tube",
+   "W6Plenum",
+   "W7GlassDark",
+   "W8CeilingConcrete",
+   "W8CeilingPanel",
+   "W8DadoGreen",
+   "W8FloorCeramic",
+   "W8FloorTerrazzo",
+   "W8Palette",
+   "W8Skirting",
+   "W8TubeDead",
+   "W8WallIvory",
+   "W8WallYellow"
+  ],
+  "parts": {
+   "Battens": 480,
+   "CeilConcrete": 66,
+   "CeilPanels": 26,
+   "Fans": 600,
+   "Floor_F1": 6,
+   "Floor_F2": 6,
+   "Sills": 96,
+   "Walls_F1": 232,
+   "Walls_F2": 216,
+   "WellEdge": 42,
+   "WinGlass": 2672,
+   "WinShutter": 5184
+  }
+ },
+ "shell_f3": {
+  "triangles": 9618,
+  "materials": [
+   "W1Alu",
+   "W1Iron",
+   "W1Steel",
+   "W1Terrazzo",
+   "W1Wood",
+   "W2Tube",
+   "W6Plenum",
+   "W7GlassDark",
+   "W8CeilingConcrete",
+   "W8CeilingPanel",
+   "W8DadoGreen",
+   "W8FloorCement",
+   "W8FloorCeramic",
+   "W8FloorTerrazzo",
+   "W8Palette",
+   "W8Skirting",
+   "W8TubeDead",
+   "W8WallIvory",
+   "W8WallYellow"
+  ],
+  "parts": {
+   "Battens": 480,
+   "CeilConcrete": 62,
+   "CeilPanels": 16,
+   "Fans": 600,
+   "Floor_F1": 6,
+   "Floor_F2": 6,
+   "Floor_F3": 6,
+   "Sills": 96,
+   "Walls_F1": 232,
+   "Walls_F2": 216,
+   "WellEdge": 42,
+   "WinGlass": 2672,
+   "WinShutter": 5184
+  }
+ },
+ "stairs": {
+  "triangles": 3244,
+  "materials": [
+   "W1Iron",
+   "W1Terrazzo",
+   "W1Wood",
+   "W8CeilingConcrete",
+   "W8WallIvory"
+  ],
+  "parts": {
+   "Balustrades": 2160,
+   "Stringers": 28,
+   "Treads": 1056
+  }
+ },
+ "strip": {
+  "triangles": 3052,
+  "materials": [
+   "W1Concrete",
+   "W1Terrazzo",
+   "W6Plenum",
+   "W7Pavers",
+   "W7Verge",
+   "W8Apron"
+  ],
+  "parts": {
+   "Apron": 20,
+   "Drains": 3008,
+   "Paved": 2,
+   "Verge": 22
+  }
+ },
+ "table_t1": {
+  "triangles": 324,
+  "materials": [
+   "W1Iron",
+   "W1Wood"
+  ],
+  "parts": {
+   "ChairsT1": 216,
+   "TableT1": 108
+  }
+ },
+ "table_t2": {
+  "triangles": 524,
+  "materials": [
+   "W1Brass",
+   "W1Iron",
+   "W1Wood",
+   "W8Palette"
+  ],
+  "parts": {
+   "ChairsT2": 216,
+   "TableT2": 308
+  }
+ }
+}

@@ -55,33 +55,37 @@ def looks():
 	walls = OWN8 + "mask_walls8.png"
 	floor = OWN8 + "mask_floor8.png"
 	ceiling = OWN8 + "mask_ceiling8.png"
-	pale_yellow = tint_to(PLASTER + "cream_color.jpg", (0.86, 0.79, 0.55))
-	ivory = tint_to(PLASTER + "cream_color.jpg", (0.86, 0.84, 0.75))
-	dado_green = tint_to(PLASTER + "cream_color.jpg", (0.24, 0.38, 0.32))
+	# Inside, the approved colours a third darker than the canteen's: the library at night under its two weak lights and the
+	# scene's ambient (0.65) should read about as dim as the PS1 (round 1 stills: mean grey 64..83 before, 130..145 at the
+	# canteen's values).
+	pale_yellow = tint_to(PLASTER + "cream_color.jpg", (0.56, 0.51, 0.35))
+	ivory = tint_to(PLASTER + "cream_color.jpg", (0.56, 0.55, 0.49))
+	dado_green = tint_to(PLASTER + "cream_color.jpg", (0.17, 0.27, 0.23))
 	lime_yellow = tint_to(PLASTER + "cream_color.jpg", (0.78, 0.6, 0.27))
 	return {
 		# F1: cream ceramic 40 x 40 and pale yellow paint as the canteen (D-181), a ceramic skirting; F2: terrazzo, ivory
 		# limewash over a green oil-paint dado 1.2 m; F3 (the top floor's store): bare cement floor.
-		"W8FloorCeramic": tiles(OWN6 + "ceramic_", floor, (1.0, 1.0, 1.0), grime_color=(0.42, 0.36, 0.27), wet_strength=0.9),
-		"W8FloorTerrazzo": tiles(OWN1 + "terrazzo_", floor, (1.02, 1.0, 0.95), grime_color=(0.42, 0.36, 0.27), grout_strength=0.4,
-			normal_strength=0.5),
-		"W8FloorCement": tiles(CONCRETE, floor, tint_to(CONCRETE + "color.jpg", (0.47, 0.46, 0.43)), ext="jpg", arm="arm",
-			grout_strength=0.0, grime_strength=1.2, wear_strength=0.9, grime_color=(0.4, 0.37, 0.31), normal_strength=0.6),
+		"W8FloorCeramic": tiles(OWN6 + "ceramic_", floor, (0.6, 0.58, 0.55), grime_color=(0.42, 0.36, 0.27), wet_strength=0.35,
+			grime_strength=1.2),
+		"W8FloorTerrazzo": tiles(OWN1 + "terrazzo_", floor, (0.62, 0.6, 0.57), grime_color=(0.42, 0.36, 0.27), grout_strength=0.4,
+			normal_strength=0.5, wet_strength=0.35, grime_strength=1.2),
+		"W8FloorCement": tiles(CONCRETE, floor, tint_to(CONCRETE + "color.jpg", (0.4, 0.39, 0.37)), ext="jpg", arm="arm",
+			grout_strength=0.0, grime_strength=1.2, wet_strength=0.4, wear_strength=0.9, grime_color=(0.4, 0.37, 0.31), normal_strength=0.6),
 		"W8WallYellow": paint(walls, pale_yellow),
 		"W8WallIvory": paint(walls, ivory, grime_strength=1.1),
 		"W8DadoGreen": paint(walls, dado_green, grime_strength=0.8, normal_strength=0.4),
-		"W8Skirting": tiles(OWN6 + "ceramic_", walls, (0.95, 0.93, 0.88), grout_strength=0.3, wet_strength=0.0, wear_strength=0.0),
+		"W8Skirting": tiles(OWN6 + "ceramic_", walls, (0.62, 0.6, 0.57), grout_strength=0.3, wet_strength=0.0, wear_strength=0.0),
 		# C2: the canteen's stained panels under this building's own stains; C1: the bare slab, whitewashed grey, with beams.
 		"W8CeilingPanel": {"shader": {"kind": 0, "base_albedo": OWN6 + "ceiling_panel_color.png", "base_normal": OWN6 + "ceiling_panel_normal.png",
-			"base_arm": OWN6 + "ceiling_panel_orm.png", "mask": ceiling, "peel_strength": 0.0, "grime_strength": 1.0,
+			"base_arm": OWN6 + "ceiling_panel_orm.png", "mask": ceiling, "base_tint": (0.56, 0.55, 0.51), "peel_strength": 0.0, "grime_strength": 1.0,
 			"stain_strength": 1.2, "mould_strength": 0.8, "normal_strength": 0.6, "grime_color": (0.5, 0.45, 0.36),
 			"stain_color": (0.74, 0.58, 0.32)}},
-		"W8CeilingConcrete": paint(ceiling, tint_to(PLASTER + "cream_color.jpg", (0.72, 0.71, 0.66)), peel_strength=0.6, stain_strength=1.1,
+		"W8CeilingConcrete": paint(ceiling, tint_to(PLASTER + "cream_color.jpg", (0.46, 0.45, 0.42)), peel_strength=0.6, stain_strength=1.1,
 			stain_color=(0.62, 0.5, 0.3)),
 		"W8TubeDead": {"color": (0.62, 0.63, 0.6), "rough": 0.35},
 		# Shelves: steel baked enamel (grey-green as school library racks) or the old stained wood of the store.
 		"W8ShelfSteel": {"albedo": OWN1 + "paint_grey_color.png", "normal": OWN1 + "paint_grey_normal.png", "orm": OWN1 + "paint_grey_orm.png",
-			"color": tint_to(OWN1 + "paint_grey_color.png", (0.46, 0.5, 0.48)), "scale": 2.0, "metallic_value": 0.2},
+			"color": tint_to(OWN1 + "paint_grey_color.png", (0.36, 0.37, 0.36)), "scale": 2.0, "metallic_value": 0.2},
 		"W8ShelfWood": {"albedo": CORNER + "study_desk_wood_table_worn_color.jpg", "orm": CORNER + "study_desk_wood_table_worn_arm.jpg",
 			"normal": CORNER + "study_desk_wood_table_worn_normal.jpg", "color": (0.62, 0.5, 0.4), "scale": 1.81818},
 		"W8Books": {"albedo": OWN8 + "books.png", "rough": 0.82},
