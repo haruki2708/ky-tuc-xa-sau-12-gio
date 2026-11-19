@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://c38buka5bnwxq"
-path="res://.godot/imported/road_asphalt.glb-cbf3e9acc562c7b817da68ee0113d847.scn"
+uid="uid://gxygt6qpe61t"
+path="res://.godot/imported/ground.glb-680e25e50b6b1b402921e72f56a72f83.scn"
 
 [deps]
 
-source_file="res://assets/models/graphics_pilot/realistic_map/wave7/road_asphalt.glb"
-dest_files=["res://.godot/imported/road_asphalt.glb-cbf3e9acc562c7b817da68ee0113d847.scn"]
+source_file="res://assets/models/graphics_pilot/realistic_map/wave7/ground.glb"
+dest_files=["res://.godot/imported/ground.glb-680e25e50b6b1b402921e72f56a72f83.scn"]
 
 [params]
 
@@ -41,6 +41,11 @@ materials/extract_format=0
 materials/extract_path=""
 _subresources={
 "materials": {
+"W1Concrete": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Concrete.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Concrete.tres"
+},
 "W7Asphalt": {
 "use_external/enabled": true,
 "use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave7/materials/W7Asphalt.tres",
@@ -55,6 +60,16 @@ _subresources={
 "use_external/enabled": true,
 "use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave7/materials/W7Paint.tres",
 "use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave7/materials/W7Paint.tres"
+},
+"W7Pavers": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave7/materials/W7Pavers.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave7/materials/W7Pavers.tres"
+},
+"W7Verge": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave7/materials/W7Verge.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave7/materials/W7Verge.tres"
 }
 }
 }

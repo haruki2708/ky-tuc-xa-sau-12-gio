@@ -46,6 +46,11 @@ _subresources={
 "use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave7/materials/W7BarkPhuong.tres",
 "use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave7/materials/W7BarkPhuong.tres"
 },
+"W7FarPhuong": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave7/materials/W7FarPhuong.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave7/materials/W7FarPhuong.tres"
+},
 "W7LeafPhuong": {
 "use_external/enabled": true,
 "use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave7/materials/W7LeafPhuong.tres",

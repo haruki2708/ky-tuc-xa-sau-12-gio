@@ -306,6 +306,157 @@ def mask_verge():
 	save("mask_verge7.png", np.dstack([dirt, wet, np.zeros_like(x), np.ones_like(x)]), "RGBA")
 
 
+def _campus_grid(w=2048):
+	X, Z = L.CAMPUS[0:2], L.CAMPUS[2:4]
+	h = int(round(w * (Z[1] - Z[0]) / (X[1] - X[0])))
+	v, u = np.mgrid[0:h, 0:w].astype(np.float64)
+	return X[0] + (u + 0.5) / w * (X[1] - X[0]), Z[0] + (v + 0.5) / h * (Z[1] - Z[0]), (h, w)
+
+
+def _box_dist(x, z, x0, x1, z0, z1):
+	"""Distance from each point to a rectangle (0 inside)."""
+	dx = np.maximum(np.maximum(x0 - x, x - x1), 0.0)
+	dz = np.maximum(np.maximum(z0 - z, z - z1), 0.0)
+	return np.hypot(dx, dz)
+
+
+def mask_road_campus():
+	"""Round 3: the whole campus in UV2 (wave7_layout.campus_uv2), 2048 x 1434 (0.24 m a pixel). R: patches and cracks,
+	G: grime by the kerbs and in the patches, B: puddles by the kerbs, A: polish in the wheel tracks. The forecourts'
+	block paving reads the same mask (grout, grime, wet, wear)."""
+	x, z, shape = _campus_grid()
+	rng = np.random.default_rng(264_31)
+	big = smooth_noise(rng, shape, 120)
+	mid = smooth_noise(rng, shape, 24)
+	kerb = np.full(shape, 99.0)
+	tracks = np.zeros(shape)
+	patch = np.zeros(shape)
+	for name, x0, x1, z0, z1, along in L.ROADS:
+		across, c0, c1 = (z, z0, z1) if along == "x" else (x, x0, x1)
+		mid_line = (c0 + c1) / 2
+		inside = _box_dist(x, z, x0, x1, z0, z1) == 0
+		kerb = np.minimum(kerb, np.where(inside, np.minimum(across - c0, c1 - across), 99.0))
+		for off in (-2.6, -1.1, 1.1, 2.6):
+			if c1 - c0 < 7.0:
+				off *= 0.7
+			tracks = np.maximum(tracks, inside * np.exp(-((across - mid_line - off) / 0.35) ** 2))
+		lr = np.random.default_rng(abs(hash(name)) % 1000)
+		length = (x1 - x0) if along == "x" else (z1 - z0)
+		for k in range(int(length / 14)):
+			s = lr.uniform(0, length)
+			w, d = lr.uniform(1.2, 4.5), lr.uniform(0.8, (c1 - c0) * 0.45)
+			cc = lr.uniform(c0 + d / 2, c1 - d / 2)
+			px, pz = (x0 + s, cc) if along == "x" else (cc, z0 + s)
+			pw, pd = (w, d) if along == "x" else (d, w)
+			patch = np.maximum(patch, ((np.abs(x - px) < pw / 2) & (np.abs(z - pz) < pd / 2)).astype(np.float64))
+	for name, x0, x1, z0, z1 in L.FORECOURTS:
+		inside = _box_dist(x, z, x0, x1, z0, z1) == 0
+		kerb = np.minimum(kerb, np.where(inside, np.minimum(np.minimum(x - x0, x1 - x), np.minimum(z - z0, z1 - z)), 99.0))
+	cn = smooth_noise(rng, shape, 5, aspect=6.0)
+	crack = np.exp(-(cn / 0.035) ** 2) * smoothstep(0.4, 1.4, big + 0.3 * mid)
+	grout = np.clip(0.4 * patch + 0.6 * crack, 0, 1)
+	grime = np.clip(0.3 * np.exp(-kerb / 0.6) + 0.25 * smoothstep(1.0, 2.2, big + 0.4 * mid) + 0.35 * patch, 0, 1)
+	wet = np.clip(np.exp(-kerb / 0.4) * smoothstep(-0.2, 1.2, big + 0.5 * mid) * 0.9 + smoothstep(1.9, 2.5, big) * 0.7, 0, 1)
+	wear = np.clip(tracks * 0.6, 0, 1)
+	save("mask_road7.png", np.dstack([grout, grime, wet, wear]), "RGBA")
+
+
+def mask_verge_campus():
+	"""Round 3: the verges over the whole campus (campus UV2). R bare dirt: along the kerbs and the forecourts' edging,
+	round every tree's foot, along the walked lines (the routes round the buildings, the north loop round the stadium,
+	the fences' feet), in big worn patches; G wet."""
+	x, z, shape = _campus_grid()
+	rng = np.random.default_rng(264_32)
+	big = smooth_noise(rng, shape, 90)
+	mid = smooth_noise(rng, shape, 20)
+	fine = smooth_noise(rng, shape, 4)
+	edge = np.full(shape, 99.0)
+	for name, x0, x1, z0, z1, along in L.ROADS:
+		edge = np.minimum(edge, _box_dist(x, z, x0 - L.KERB, x1 + L.KERB, z0 - L.KERB, z1 + L.KERB))
+	for name, x0, x1, z0, z1 in L.FORECOURTS:
+		edge = np.minimum(edge, _box_dist(x, z, x0 - L.EDGE, x1 + L.EDGE, z0 - L.EDGE, z1))
+	trunks = np.zeros(shape)
+	for pts in L.foliage_points("tree").values():
+		for tx, _ty, tz in pts:
+			trunks = np.maximum(trunks, np.exp(-(((x - tx) ** 2 + (z - tz) ** 2) / 1.6 ** 2)))
+	walk = np.zeros(shape)
+	for x0, x1, z0, z1 in (L.BUILDING_A["x"] + L.BUILDING_A["z"], L.LECTURE["x"] + L.LECTURE["z"], L.GYM["x"] + L.GYM["z"]):
+		d = _box_dist(x, z, x0, x1, z0, z1)
+		walk = np.maximum(walk, np.exp(-((d - 0.9) / 0.8) ** 2))
+	walk = np.maximum(walk, np.exp(-((z - 245.0) / 1.4) ** 2) * ((x > 100) & (x < 312)))     # the north loop (walked, T-261)
+	walk = np.maximum(walk, np.exp(-((x - 310.0) / 1.4) ** 2) * ((z > 166) & (z < 245)))
+	for fx in (L.CAMPUS[0], L.CAMPUS[1]):
+		walk = np.maximum(walk, 0.6 * np.exp(-((x - fx) / 1.2) ** 2))
+	walk = np.maximum(walk, 0.6 * np.exp(-((z - L.CAMPUS[3]) / 1.2) ** 2))
+	walk *= smoothstep(-1.0, 0.6, mid + 0.4 * fine)
+	dirt = np.clip(0.75 * np.exp(-edge / 0.9) + 0.8 * trunks + 0.7 * walk + 0.35 * smoothstep(0.7, 2.0, big + 0.5 * mid) + 0.12 * fine, 0, 1)
+	wet = np.clip(0.5 * np.exp(-edge / 0.5) * smoothstep(-0.3, 1.2, big) + 0.5 * smoothstep(1.9, 2.5, big + 0.3 * mid), 0, 1)
+	save("mask_verge7.png", np.dstack([dirt, wet, np.zeros_like(x), np.ones_like(x)]), "RGBA")
+
+
+def tree_far():
+	"""Far cards (crossed quads, past 85 m): each species' crown drawn from its own leaf atlas cells over a crown profile,
+	the trunk under it; RGBA 512 x 512, alpha cut. The shapes follow build_wave7_rest.py's trees (heights, crown spans)."""
+	shapes = {
+		# (crown bottom, crown top, trunk top, half width at a height fraction 0..1 of the crown, tiers)
+		"bang": (3.8, 11.6, 10.5, lambda t: 4.4 * (1 - t) ** 0.9 + 0.5, 5),
+		"phuong": (3.4, 8.2, 4.5, lambda t: 6.6 * np.sqrt(np.clip(1 - ((t - 0.35) / 0.68) ** 2, 0, 1)), 0),
+		"xacu": (4.8, 13.6, 11.0, lambda t: 4.2 * np.sqrt(np.clip(1 - ((t - 0.42) / 0.6) ** 2, 0, 1)), 0),
+	}
+	size = 512
+	span = 14.0   # the card is 14 m wide, 14 m tall (Godot metres), its foot at the trunk's foot
+	for sp, (y0, y1, trunk_top, half, tiers) in shapes.items():
+		atlas = np.asarray(Image.open(OUT / f"leaf_{sp}.png").convert("RGBA"), np.float64) / 255.0
+		rng = np.random.default_rng({"bang": 1, "phuong": 2, "xacu": 3}[sp] + 264_40)
+		out = np.zeros((size, size, 4))
+		px = size / span
+		# Trunk: a tapered strip of the bark colour.
+		bark = np.asarray(Image.open(OUT / f"bark_{sp}_color.png").convert("RGB"), np.float64).mean(axis=(0, 1)) / 255.0 * 0.7
+		for row in range(size):
+			h = (size - 1 - row) / px
+			if h > trunk_top:
+				continue
+			w = (0.22 - 0.12 * h / trunk_top) * px
+			c0, c1 = int(size / 2 - w), int(size / 2 + w) + 1
+			out[row, c0:c1, :3] = bark * (0.8 + 0.2 * (row % 7 == 0))
+			out[row, c0:c1, 3] = 1.0
+		# Leaf sprays: random cells of the atlas, scaled to 1.4..2.2 m, inside the crown profile; darker inside and below.
+		count = {"bang": 260, "phuong": 300, "xacu": 380}[sp]
+		cells = [(0, 0), (512, 0), (0, 512), (512, 512)]
+		for k in range(count):
+			t = rng.uniform(0, 1) ** 0.85
+			if tiers:
+				t = (np.floor(t * tiers) + rng.uniform(0.2, 0.8)) / tiers
+			yy = y0 + t * (y1 - y0)
+			hw = float(half(t))
+			xx = rng.uniform(-hw, hw)
+			s = rng.uniform(1.4, 2.2) * px
+			if sp == "bang":
+				cx, cy = cells[rng.integers(0, 2)]
+			elif sp == "phuong":   # fronds, a flower spray now and then (as the near tree: cell 3 on half its twigs)
+				cx, cy = cells[3] if rng.random() < 0.1 else cells[rng.integers(0, 3)]
+			else:
+				cx, cy = cells[rng.integers(0, 4)]
+			src = atlas[cy:cy + 512, cx:cx + 512]
+			n = max(4, int(s))
+			idx = (np.arange(n) * 512 / n).astype(int)
+			spr = src[idx][:, idx]
+			if rng.random() < 0.5:
+				spr = spr[:, ::-1]
+			shade = 0.55 + 0.45 * (t * 0.6 + 0.4) * (0.6 + 0.4 * abs(xx) / max(hw, 0.1))
+			r0 = int(size - 1 - yy * px - n / 2)
+			c0 = int(size / 2 + xx * px - n / 2)
+			ra, rb = max(r0, 0), min(r0 + n, size)
+			ca, cb = max(c0, 0), min(c0 + n, size)
+			if ra >= rb or ca >= cb:
+				continue
+			piece = spr[ra - r0:rb - r0, ca - c0:cb - c0]
+			a = (piece[..., 3:4] > 0.5).astype(np.float64)
+			out[ra:rb, ca:cb, :3] = out[ra:rb, ca:cb, :3] * (1 - a) + piece[..., :3] * shade * a
+			out[ra:rb, ca:cb, 3:4] = np.maximum(out[ra:rb, ca:cb, 3:4], a)
+		save(f"tree_far_{sp}.png", out, "RGBA")
+
+
 def paint_line():
 	"""Worn white road paint 2 m long (1024 px) by 12 cm (64 px), alpha cut: chipped edges, holes where tyres rub."""
 	w, h = 1024, 64
@@ -329,6 +480,10 @@ PALETTE = {
 	"towel_white": (0.7, 0.7, 0.66), "clothes_blue": (0.15, 0.25, 0.5), "clothes_red": (0.5, 0.12, 0.1), "terrazzo": (0.55, 0.54, 0.5),
 	"concrete": (0.5, 0.49, 0.46), "door_green": (0.2, 0.34, 0.27), "door_blue": (0.18, 0.3, 0.45), "ac_white": (0.78, 0.78, 0.74),
 	"pvc_grey": (0.52, 0.53, 0.52), "rust": (0.35, 0.18, 0.08), "paper": (0.85, 0.83, 0.76), "flower_red": (0.75, 0.12, 0.05),
+	# Round 3 (appended: the cells above keep their places): mopeds, the kiosk, signs.
+	"moped_yellow": (0.6, 0.48, 0.1), "moped_grey": (0.24, 0.25, 0.27), "kiosk_yellow": (0.62, 0.5, 0.24), "kiosk_blue": (0.24, 0.42, 0.5),
+	"kiosk_red": (0.55, 0.2, 0.15), "awning_red": (0.48, 0.07, 0.05), "sign_blue": (0.06, 0.18, 0.4), "sign_white": (0.78, 0.78, 0.75),
+	"shutter_grey": (0.36, 0.37, 0.38),
 }
 
 
@@ -347,8 +502,10 @@ def palette():
 	(HERE / "palette7.json").write_text(json.dumps(index, indent=0), encoding="utf-8", newline="\n")
 
 
+# Round 3 replaces the pilot's two masks (the Avenue stretch) by the whole campus's (same files, campus UV2).
 ALL = {"leaf_bang": leaf_bang, "leaf_phuong": leaf_phuong, "leaf_xacu": leaf_xacu, "barks": barks, "interior_atlas": interior_atlas,
-	"mask_facades": mask_facades, "mask_road": mask_road, "mask_verge": mask_verge, "paint_line": paint_line, "palette": palette}
+	"mask_facades": mask_facades, "mask_road": mask_road_campus, "mask_verge": mask_verge_campus, "paint_line": paint_line,
+	"palette": palette, "tree_far": tree_far}
 
 if __name__ == "__main__":
 	for key in sys.argv[1:] or list(ALL):

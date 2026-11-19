@@ -102,5 +102,41 @@
 "flower_red": [
 1,
 3
+],
+"moped_yellow": [
+2,
+3
+],
+"moped_grey": [
+3,
+3
+],
+"kiosk_yellow": [
+4,
+3
+],
+"kiosk_blue": [
+5,
+3
+],
+"kiosk_red": [
+6,
+3
+],
+"awning_red": [
+7,
+3
+],
+"sign_blue": [
+0,
+4
+],
+"sign_white": [
+1,
+4
+],
+"shutter_grey": [
+2,
+4
 ]
 }

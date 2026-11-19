@@ -27,9 +27,10 @@ LOOKS = {
 		"mould_strength": 1.2}},
 	"F4Ceiling": {"shader": {**WALL, "base_tint": (1.0, 0.97, 0.88), "normal_strength": 0.5, "grime_strength": 1.4,
 		"stain_strength": 1.3}},
-	"F4Exterior": {"shader": {"kind": 0, "base_albedo": SHELL + "plastered_wall_02_color.jpg",
-		"base_normal": SHELL + "plastered_wall_02_normal.jpg", "base_arm": SHELL + "plastered_wall_02_arm.jpg",
-		"mask": MASK, "peel": True, "base_tint": (1.0, 0.9, 0.66)}},
+	# T-264 round 3 (owner, 19/11): the balconies' outside (back wall, parapets, dividers, roof slab) in building B's new
+	# back colour (wave 7's W7WallPale: the painted plaster tinted pale yellow, its grime), on this task's mask.
+	"F4Exterior": {"shader": {**WALL, "base_tint": (1.227, 1.215, 0.998), "grime_strength": 1.2, "stain_strength": 0.9,
+		"mould_strength": 1.0, "normal_strength": 0.6, "grime_color": (0.42, 0.38, 0.3)}},
 	"F4Floor": {"shader": {"kind": 1, "base_albedo": CORNER + "floor_interior_tiles_color.jpg",
 		"base_normal": CORNER + "floor_interior_tiles_normal.jpg", "base_arm": CORNER + "floor_interior_tiles_arm.jpg",
 		"mask": MASK, "grime_strength": 1.6, "wet_strength": 1.3, "grout_strength": 1.3}},

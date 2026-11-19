@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://c2kxxrm2who4h"
-path="res://.godot/imported/bench.glb-692b3e176c8bd985c62f2d9f5c43690e.scn"
+uid="uid://cfclwu0is7sv8"
+path="res://.godot/imported/fences.glb-4205980b9d2e895effe01a06195aaa2e.scn"
 
 [deps]
 
-source_file="res://assets/models/graphics_pilot/realistic_map/wave7/bench.glb"
-dest_files=["res://.godot/imported/bench.glb-692b3e176c8bd985c62f2d9f5c43690e.scn"]
+source_file="res://assets/models/graphics_pilot/realistic_map/wave7/fences.glb"
+dest_files=["res://.godot/imported/fences.glb-4205980b9d2e895effe01a06195aaa2e.scn"]
 
 [params]
 
@@ -46,10 +46,15 @@ _subresources={
 "use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Concrete.tres",
 "use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Concrete.tres"
 },
-"W1Terrazzo": {
+"W4Chainlink": {
 "use_external/enabled": true,
-"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Terrazzo.tres",
-"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Terrazzo.tres"
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave4/materials/W4Chainlink.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave4/materials/W4Chainlink.tres"
+},
+"W4PoleSteel": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave4/materials/W4PoleSteel.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave4/materials/W4PoleSteel.tres"
 }
 }
 }

@@ -34,6 +34,10 @@
 [ext_resource type="Script" path="res://scenes/levels/campus/canteen_real.gd" id="t263_real"]
 [ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave6/strip_canteen.glb" id="t263_strip_canteen"]
 [ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave6/strip_canteen_props.glb" id="t263_strip_canteen_props"]
+[ext_resource type="Script" path="res://scenes/levels/campus/rest_real.gd" id="t264_rest"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave7/ground.glb" id="t264_ground"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave7/fences.glb" id="t264_fences"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave7/rest_props.glb" id="t264_rest_props"]
 
 [sub_resource type="BoxShape3D" id="s1"]
 size = Vector3(50, 0.3, 50)
@@ -5019,6 +5023,7 @@ collision_mask = 0
 shape = SubResource("s1")
 
 [node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_-80_-60"]
+visible = false
 mesh = SubResource("s3")
 
 [node name="Tile_-80_-10" type="StaticBody3D" parent="Ground"]
@@ -5032,6 +5037,7 @@ collision_mask = 0
 shape = SubResource("s4")
 
 [node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_-80_-10"]
+visible = false
 mesh = SubResource("s5")
 
 [node name="Tile_-80_40" type="StaticBody3D" parent="Ground"]
@@ -5045,6 +5051,7 @@ collision_mask = 0
 shape = SubResource("s6")
 
 [node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_-80_40"]
+visible = false
 mesh = SubResource("s7")
 
 [node name="Tile_-80_90" type="StaticBody3D" parent="Ground"]
@@ -5058,6 +5065,7 @@ collision_mask = 0
 shape = SubResource("s8")
 
 [node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_-80_90"]
+visible = false
 mesh = SubResource("s9")
 
 [node name="Tile_-80_140" type="StaticBody3D" parent="Ground"]
@@ -5071,6 +5079,7 @@ collision_mask = 0
 shape = SubResource("s10")
 
 [node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_-80_140"]
+visible = false
 mesh = SubResource("s11")
 
 [node name="Tile_-80_190" type="StaticBody3D" parent="Ground"]
@@ -5084,6 +5093,7 @@ collision_mask = 0
 shape = SubResource("s12")
 
 [node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_-80_190"]
+visible = false
 mesh = SubResource("s13")
 
 [node name="Tile_-80_240" type="StaticBody3D" parent="Ground"]
@@ -5097,6 +5107,7 @@ collision_mask = 0
 shape = SubResource("s14")
 
 [node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_-80_240"]
+visible = false
 mesh = SubResource("s15")
 
 [node name="Tile_-30_-60" type="StaticBody3D" parent="Ground"]
@@ -5149,6 +5160,7 @@ collision_mask = 0
 shape = SubResource("s22")
 
 [node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_-30_90"]
+visible = false
 mesh = SubResource("s23")
 
 [node name="Tile_-30_140" type="StaticBody3D" parent="Ground"]
@@ -5162,6 +5174,7 @@ collision_mask = 0
 shape = SubResource("s24")
 
 [node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_-30_140"]
+visible = false
 mesh = SubResource("s25")
 
 [node name="Tile_-30_190" type="StaticBody3D" parent="Ground"]
@@ -5175,6 +5188,7 @@ collision_mask = 0
 shape = SubResource("s26")
 
 [node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_-30_190"]
+visible = false
 mesh = SubResource("s27")
 
 [node name="Tile_-30_240" type="StaticBody3D" parent="Ground"]
@@ -5188,6 +5202,7 @@ collision_mask = 0
 shape = SubResource("s28")
 
 [node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_-30_240"]
+visible = false
 mesh = SubResource("s29")
 
 [node name="Tile_20_-60" type="StaticBody3D" parent="Ground"]
@@ -5279,6 +5294,7 @@ collision_mask = 0
 shape = SubResource("s42")
 
 [node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_20_240"]
+visible = false
 mesh = SubResource("s43")
 
 [node name="Tile_70_-60" type="StaticBody3D" parent="Ground"]
@@ -5370,6 +5386,7 @@ collision_mask = 0
 shape = SubResource("s56")
 
 [node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_70_240"]
+visible = false
 mesh = SubResource("s57")
 
 [node name="Tile_120_-60" type="StaticBody3D" parent="Ground"]
@@ -5383,6 +5400,7 @@ collision_mask = 0
 shape = SubResource("s58")
 
 [node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_120_-60"]
+visible = false
 mesh = SubResource("s59")
 
 [node name="Tile_120_-10" type="StaticBody3D" parent="Ground"]
@@ -5409,6 +5427,7 @@ collision_mask = 0
 shape = SubResource("s62")
 
 [node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_120_40"]
+visible = false
 mesh = SubResource("s63")
 
 [node name="Tile_120_90" type="StaticBody3D" parent="Ground"]
@@ -5461,6 +5480,7 @@ collision_mask = 0
 shape = SubResource("s70")
 
 [node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_120_240"]
+visible = false
 mesh = SubResource("s71")
 
 [node name="Tile_170_-60" type="StaticBody3D" parent="Ground"]
@@ -5552,6 +5572,7 @@ collision_mask = 0
 shape = SubResource("s84")
 
 [node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_170_240"]
+visible = false
 mesh = SubResource("s85")
 
 [node name="Tile_220_-60" type="StaticBody3D" parent="Ground"]
@@ -5591,6 +5612,7 @@ collision_mask = 0
 shape = SubResource("s90")
 
 [node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_220_40"]
+visible = false
 mesh = SubResource("s91")
 
 [node name="Tile_220_90" type="StaticBody3D" parent="Ground"]
@@ -5643,6 +5665,7 @@ collision_mask = 0
 shape = SubResource("s98")
 
 [node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_220_240"]
+visible = false
 mesh = SubResource("s99")
 
 [node name="Tile_270_-60" type="StaticBody3D" parent="Ground"]
@@ -5656,6 +5679,7 @@ collision_mask = 0
 shape = SubResource("s100")
 
 [node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_270_-60"]
+visible = false
 mesh = SubResource("s101")
 
 [node name="Tile_270_-10" type="StaticBody3D" parent="Ground"]
@@ -5669,6 +5693,7 @@ collision_mask = 0
 shape = SubResource("s102")
 
 [node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_270_-10"]
+visible = false
 mesh = SubResource("s103")
 
 [node name="Tile_270_40" type="StaticBody3D" parent="Ground"]
@@ -5682,6 +5707,7 @@ collision_mask = 0
 shape = SubResource("s104")
 
 [node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_270_40"]
+visible = false
 mesh = SubResource("s105")
 
 [node name="Tile_270_90" type="StaticBody3D" parent="Ground"]
@@ -5734,6 +5760,7 @@ collision_mask = 0
 shape = SubResource("s112")
 
 [node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_270_240"]
+visible = false
 mesh = SubResource("s113")
 
 [node name="Tile_320_-60" type="StaticBody3D" parent="Ground"]
@@ -5747,6 +5774,7 @@ collision_mask = 0
 shape = SubResource("s114")
 
 [node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_320_-60"]
+visible = false
 mesh = SubResource("s115")
 
 [node name="Tile_320_-10" type="StaticBody3D" parent="Ground"]
@@ -5760,6 +5788,7 @@ collision_mask = 0
 shape = SubResource("s116")
 
 [node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_320_-10"]
+visible = false
 mesh = SubResource("s117")
 
 [node name="Tile_320_40" type="StaticBody3D" parent="Ground"]
@@ -5773,6 +5802,7 @@ collision_mask = 0
 shape = SubResource("s118")
 
 [node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_320_40"]
+visible = false
 mesh = SubResource("s119")
 
 [node name="Tile_320_90" type="StaticBody3D" parent="Ground"]
@@ -5786,6 +5816,7 @@ collision_mask = 0
 shape = SubResource("s120")
 
 [node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_320_90"]
+visible = false
 mesh = SubResource("s121")
 
 [node name="Tile_320_140" type="StaticBody3D" parent="Ground"]
@@ -5799,6 +5830,7 @@ collision_mask = 0
 shape = SubResource("s122")
 
 [node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_320_140"]
+visible = false
 mesh = SubResource("s123")
 
 [node name="Tile_320_190" type="StaticBody3D" parent="Ground"]
@@ -5812,6 +5844,7 @@ collision_mask = 0
 shape = SubResource("s124")
 
 [node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_320_190"]
+visible = false
 mesh = SubResource("s125")
 
 [node name="Tile_320_240" type="StaticBody3D" parent="Ground"]
@@ -5825,6 +5858,7 @@ collision_mask = 0
 shape = SubResource("s126")
 
 [node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_320_240"]
+visible = false
 mesh = SubResource("s127")
 
 [node name="Tile_370_-60" type="StaticBody3D" parent="Ground"]
@@ -5838,6 +5872,7 @@ collision_mask = 0
 shape = SubResource("s128")
 
 [node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_370_-60"]
+visible = false
 mesh = SubResource("s129")
 
 [node name="Tile_370_-10" type="StaticBody3D" parent="Ground"]
@@ -5851,6 +5886,7 @@ collision_mask = 0
 shape = SubResource("s130")
 
 [node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_370_-10"]
+visible = false
 mesh = SubResource("s131")
 
 [node name="Tile_370_40" type="StaticBody3D" parent="Ground"]
@@ -5864,6 +5900,7 @@ collision_mask = 0
 shape = SubResource("s132")
 
 [node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_370_40"]
+visible = false
 mesh = SubResource("s133")
 
 [node name="Tile_370_90" type="StaticBody3D" parent="Ground"]
@@ -5877,6 +5914,7 @@ collision_mask = 0
 shape = SubResource("s134")
 
 [node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_370_90"]
+visible = false
 mesh = SubResource("s135")
 
 [node name="Tile_370_140" type="StaticBody3D" parent="Ground"]
@@ -5890,6 +5928,7 @@ collision_mask = 0
 shape = SubResource("s136")
 
 [node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_370_140"]
+visible = false
 mesh = SubResource("s137")
 
 [node name="Tile_370_190" type="StaticBody3D" parent="Ground"]
@@ -5903,6 +5942,7 @@ collision_mask = 0
 shape = SubResource("s138")
 
 [node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_370_190"]
+visible = false
 mesh = SubResource("s139")
 
 [node name="Tile_370_240" type="StaticBody3D" parent="Ground"]
@@ -5916,6 +5956,7 @@ collision_mask = 0
 shape = SubResource("s140")
 
 [node name="Mesh" type="MeshInstance3D" parent="Ground/Tile_370_240"]
+visible = false
 mesh = SubResource("s141")
 
 [node name="Road" type="Node3D" parent="."]
@@ -5925,6 +5966,7 @@ mesh = SubResource("s141")
 position = Vector3(110, -9.885, -15)
 
 [node name="Mesh" type="MeshInstance3D" parent="Road/Avenue"]
+visible = false
 position = Vector3(-20, 0, 0)
 mesh = SubResource("s143")
 
@@ -5939,6 +5981,7 @@ mesh = SubResource("s144")
 position = Vector3(310, -9.885, 68)
 
 [node name="Mesh" type="MeshInstance3D" parent="Road/EastBranch"]
+visible = false
 mesh = SubResource("s145")
 
 [node name="StadiumWestAccess" type="Node3D" parent="Road"]
@@ -5952,6 +5995,7 @@ mesh = SubResource("s146")
 position = Vector3(298, -9.885, 166)
 
 [node name="Mesh" type="MeshInstance3D" parent="Road/StadiumEastAccess"]
+visible = false
 mesh = SubResource("s147")
 
 [node name="Trees_-2_-2" type="Node3D" parent="Road"]
@@ -7178,6 +7222,7 @@ kind = "lamp"
 points = PackedVector3Array(86,-9.9,165)
 
 [node name="RoadBench0" type="Node3D" parent="Road"]
+visible = false
 position = Vector3(62, -9.9, -22)
 
 [node name="Seat" type="Node3D" parent="Road/RoadBench0"]
@@ -7213,6 +7258,7 @@ collision_mask = 0
 shape = SubResource("s268")
 
 [node name="RoadBench1" type="Node3D" parent="Road"]
+visible = false
 position = Vector3(102, -9.9, -22)
 
 [node name="Seat" type="Node3D" parent="Road/RoadBench1"]
@@ -7248,6 +7294,7 @@ collision_mask = 0
 shape = SubResource("s273")
 
 [node name="RoadBench2" type="Node3D" parent="Road"]
+visible = false
 position = Vector3(148, -9.9, -22)
 
 [node name="Seat" type="Node3D" parent="Road/RoadBench2"]
@@ -7283,6 +7330,7 @@ collision_mask = 0
 shape = SubResource("s278")
 
 [node name="FallenMoped0" type="Node3D" parent="Road"]
+visible = false
 position = Vector3(61, -9.65, -11)
 rotation_degrees = Vector3(0,25,75)
 
@@ -7329,6 +7377,7 @@ collision_mask = 0
 shape = SubResource("s287")
 
 [node name="FallenMoped1" type="Node3D" parent="Road"]
+visible = false
 position = Vector3(145, -9.65, -18)
 rotation_degrees = Vector3(0,25,75)
 
@@ -7375,6 +7424,7 @@ collision_mask = 0
 shape = SubResource("s294")
 
 [node name="FallenMoped2" type="Node3D" parent="Road"]
+visible = false
 position = Vector3(225, -9.65, -25)
 rotation_degrees = Vector3(0,25,75)
 
@@ -7432,6 +7482,7 @@ collision_mask = 0
 shape = SubResource("s302")
 
 [node name="Mesh" type="MeshInstance3D" parent="Fence/W"]
+visible = false
 mesh = SubResource("s304")
 
 [node name="E" type="StaticBody3D" parent="Fence"]
@@ -7443,6 +7494,7 @@ collision_mask = 0
 shape = SubResource("s305")
 
 [node name="Mesh" type="MeshInstance3D" parent="Fence/E"]
+visible = false
 mesh = SubResource("s306")
 
 [node name="N" type="StaticBody3D" parent="Fence"]
@@ -7454,6 +7506,7 @@ collision_mask = 0
 shape = SubResource("s307")
 
 [node name="Mesh" type="MeshInstance3D" parent="Fence/N"]
+visible = false
 mesh = SubResource("s308")
 
 [node name="S" type="StaticBody3D" parent="Fence"]
@@ -10770,4 +10823,16 @@ script = ExtResource("t263_real")
 position = Vector3(0, -9.9, 0)
 
 [node name="Props" parent="StripCanteen" instance=ExtResource("t263_strip_canteen_props")]
+position = Vector3(0, -9.9, 0)
+
+[node name="StripRest" type="Node3D" parent="."]
+script = ExtResource("t264_rest")
+
+[node name="Ground" parent="StripRest" instance=ExtResource("t264_ground")]
+position = Vector3(0, -9.9, 0)
+
+[node name="Fences" parent="StripRest" instance=ExtResource("t264_fences")]
+position = Vector3(0, -9.9, 0)
+
+[node name="Props" parent="StripRest" instance=ExtResource("t264_rest_props")]
 position = Vector3(0, -9.9, 0)

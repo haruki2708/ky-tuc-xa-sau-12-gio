@@ -85,6 +85,13 @@ def looks():
 			"specular_value": 0.04, "translucency": 0.25}},
 		"W7LeafXacu": {"foliage": {"albedo_tex": OWN7 + "leaf_xacu.png", "tint": (0.8, 0.8, 0.8), "roughness_value": 0.8,
 			"specular_value": 0.06, "translucency": 0.15}},
+		# Round 3: the far crossed cards of each tree (make_wave7_textures.tree_far), same shader, a little darker.
+		"W7FarBang": {"foliage": {"albedo_tex": OWN7 + "tree_far_bang.png", "tint": (0.74, 0.74, 0.74), "roughness_value": 0.9,
+			"specular_value": 0.03, "translucency": 0.15, "alpha_cut": 0.5}},
+		"W7FarPhuong": {"foliage": {"albedo_tex": OWN7 + "tree_far_phuong.png", "tint": (0.74, 0.74, 0.74), "roughness_value": 0.9,
+			"specular_value": 0.03, "translucency": 0.15, "alpha_cut": 0.5}},
+		"W7FarXacu": {"foliage": {"albedo_tex": OWN7 + "tree_far_xacu.png", "tint": (0.72, 0.72, 0.72), "roughness_value": 0.9,
+			"specular_value": 0.03, "translucency": 0.12, "alpha_cut": 0.5}},
 	}
 
 

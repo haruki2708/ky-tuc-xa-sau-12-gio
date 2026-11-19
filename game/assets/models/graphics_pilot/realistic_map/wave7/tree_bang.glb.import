@@ -46,6 +46,11 @@ _subresources={
 "use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave7/materials/W7BarkBang.tres",
 "use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave7/materials/W7BarkBang.tres"
 },
+"W7FarBang": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave7/materials/W7FarBang.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave7/materials/W7FarBang.tres"
+},
 "W7LeafBang": {
 "use_external/enabled": true,
 "use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave7/materials/W7LeafBang.tres",
