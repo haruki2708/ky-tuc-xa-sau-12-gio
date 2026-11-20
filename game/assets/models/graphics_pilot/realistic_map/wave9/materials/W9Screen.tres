@@ -1,0 +1,13 @@
+[gd_resource type="StandardMaterial3D" format=3]
+
+[ext_resource type="Texture2D" path="res://assets/textures/graphics_pilot/realistic_map/wave9/screen_mesh.png" id="1"]
+
+[resource]
+resource_name = "W9Screen"
+transparency = 2
+alpha_scissor_threshold = 0.4
+cull_mode = 2
+albedo_texture = ExtResource("1")
+roughness = 0.8
+metallic = 0.3
+uv1_scale = Vector3(1, 1, 1)

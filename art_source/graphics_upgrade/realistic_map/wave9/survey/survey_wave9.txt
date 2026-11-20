@@ -1,0 +1,69 @@
+== chapter 4, run_from(room407)
+segment room407, clock 23:50, player at (32.000, 0.000, -0.850)
+WorldEnvironment Floor4/Environment inside=-
+WorldEnvironment Campus/Environment inside=-
+world env: bg 1 ambient 7a91b3 x0.015 src 2 fog true dens 0.060 sky false tonemap 2 exposure 1.00
+-- lights in the chapter that are on (visible in tree, energy > 0)
+OmniLight3D Floor4/Corridor/CorridorLight_405 on=true energy 1.000 pos (24.000, 2.800, 2.000) range 4.7
+OmniLight3D Floor4/Corridor/CorridorLight_406 on=true energy 1.000 pos (28.000, 2.800, 2.000) range 4.7
+OmniLight3D Floor4/Corridor/CorridorLight_407 on=true energy 1.000 pos (32.000, 2.800, 2.000) range 4.7
+OmniLight3D Floor4/Corridor/CorridorLight_408 on=true energy 1.000 pos (36.000, 2.800, 2.000) range 4.7
+OmniLight3D Floor4/Corridor/CorridorLight_Desk on=true energy 1.000 pos (40.000, 2.800, 2.000) range 4.7
+OmniLight3D Floor4/Room407/Room407MainLight on=false energy 0.000 pos (32.000, 2.780, -1.200) range 9.0
+OmniLight3D Floor4/Room407/Room407DeskLamp on=true energy 0.500 pos (31.800, 1.020, -4.600) range 2.4
+OmniLight3D Floor4/Room407/Anchors/PowerStrip/Sparks/Flash on=false energy 0.700 pos (31.500, 0.220, -2.350) range 0.7
+OmniLight3D Floor4/Room407/WindowBlue on=true energy 0.200 pos (32.800, 2.100, -6.900) range 4.5
+OmniLight3D Floor4/Room407/DoorGapLight on=true energy 0.220 pos (32.000, 0.100, -0.180) range 1.5
+OmniLight3D Floor4/Room407/Extension/BathLight on=true energy 0.060 pos (36.600, 2.500, -5.500) range 2.8
+OmniLight3D Floor4/DutyDesk/DutyDeskLamp on=true energy 0.600 pos (39.500, 1.060, 0.420) range 2.0
+OmniLight3D Campus/BuildingB/KitDetail1/Light32 on=true energy 0.600 pos (32.000, -7.250, 2.000) range 7.0
+OmniLight3D Campus/BuildingB/KitDetail2/Light32 on=true energy 0.600 pos (32.000, -3.950, 2.000) range 7.0
+OmniLight3D Campus/BuildingB/KitDetail2/Light43 on=true energy 0.600 pos (43.000, -3.950, 2.000) range 7.0
+OmniLight3D Campus/BuildingB/KitDetail3/Light32 on=true energy 0.600 pos (32.000, -0.650, 2.000) range 7.0
+OmniLight3D Campus/BuildingB/KitDetail3/Light43 on=true energy 0.600 pos (43.000, -0.650, 2.000) range 7.0
+DirectionalLight3D Campus/Dawn on=true energy 0.650 pos (0.000, 0.000, 0.000)
+SpotLight3D Player/Head/Camera3D/PhoneItem/Flashlight on=false energy 1.500 pos (32.100, 1.520, -1.000)
+-- room407 state: blood_stage 0, desk_lamp true
+-- 31 props on/round the slat beds and lockers (room407_bed_props.tsv)
+BunkA horizontal faces (area > 0.02 m2): y 0.290: 0.089 m2, y 0.320: 0.149 m2, y 0.325: 0.440 m2, y 0.330: 0.452 m2, y 0.335: 0.305 m2, y 0.350: 0.022 m2, y 0.355: 0.059 m2, y 0.375: 0.354 m2, y 0.380: 0.608 m2, y 0.385: 0.398 m2, y 0.570: 0.033 m2, y 1.075: 0.105 m2, y 1.095: 0.062 m2, y 1.100: 0.321 m2, y 1.105: 0.679 m2, y 1.110: 0.216 m2, y 1.115: 0.065 m2, y 1.125: 0.114 m2, y 1.140: 0.159 m2, y 1.145: 0.339 m2, y 1.150: 0.642 m2, y 1.155: 0.193 m2, y 1.160: 0.027 m2, y 1.465: 0.026 m2, y 1.480: 0.020 m2
+BunkB horizontal faces (area > 0.02 m2): y 0.290: 0.089 m2, y 0.320: 0.149 m2, y 0.325: 0.440 m2, y 0.330: 0.452 m2, y 0.335: 0.305 m2, y 0.350: 0.022 m2, y 0.355: 0.059 m2, y 0.375: 0.354 m2, y 0.380: 0.608 m2, y 0.385: 0.398 m2, y 0.570: 0.033 m2, y 1.075: 0.105 m2, y 1.095: 0.062 m2, y 1.100: 0.321 m2, y 1.105: 0.679 m2, y 1.110: 0.216 m2, y 1.115: 0.065 m2, y 1.125: 0.114 m2, y 1.140: 0.159 m2, y 1.145: 0.339 m2, y 1.150: 0.642 m2, y 1.155: 0.193 m2, y 1.160: 0.027 m2, y 1.465: 0.026 m2, y 1.480: 0.020 m2
+Slat1 marker (30.650, 1.180, -3.000) hinge (30.220, 1.180, -3.000) board (30.220, 1.162, -3.725)..(31.080, 1.197, -2.275) size (0.860, 0.035, 1.450)
+  BedSlat1 area centre (30.650, 1.180, -2.550) size (1.200, 0.220, 0.900) hand (30.650, 1.162, -2.300)
+Slat2 marker (30.650, 0.410, -3.000) hinge (30.220, 0.410, -3.000) board (30.220, 0.392, -3.725)..(31.080, 0.428, -2.275) size (0.860, 0.035, 1.450)
+  BedSlat2 area centre (30.650, 0.410, -2.550) size (1.200, 0.220, 0.900) hand (30.650, 0.392, -2.300)
+Slat4 marker (37.350, 1.180, -2.700) hinge (37.780, 1.180, -2.700) board (36.920, 1.162, -3.425)..(37.780, 1.197, -1.975) size (0.860, 0.035, 1.450)
+  BedSlat4 area centre (37.350, 1.180, -2.250) size (1.200, 0.220, 0.900) hand (37.350, 1.162, -2.000)
+FakeLocker (30.650, 1.100, -0.450) shape BoxShape3D at (30.650, 1.100, -0.450) size (0.400, 0.300, 0.200) hand (30.650, 1.100, -0.450) signals searched: 0
+FakeCeiling (33.000, 2.920, -2.000) shape BoxShape3D at (33.000, 2.920, -2.000) size (0.400, 0.300, 0.200) hand (33.000, 2.920, -2.000) signals searched: 0
+FakeVent (37.800, 2.350, -1.000) shape BoxShape3D at (37.800, 2.350, -1.000) size (0.400, 0.300, 0.200) hand (37.800, 2.350, -1.000) signals searched: 0
+CeilingPanel (32.600, 2.943, -2.400)..(33.400, 2.977, -1.600) size (0.800, 0.035, 0.800)
+VentFrame (37.860, 2.125, -1.325)..(37.900, 2.575, -0.675) size (0.040, 0.450, 0.650)
+VentSlat0 (37.818, 2.157, -1.295)..(37.862, 2.183, -0.705) size (0.045, 0.026, 0.590)
+VentSlat5 (37.818, 2.482, -1.295)..(37.862, 2.508, -0.705) size (0.045, 0.026, 0.590)
+-- furnished shell parts near FakeCeiling (33, 2.92, -2) and FakeVent (37.8, 2.35, -1)
+  architecture/EastWall (37.900, 0.000, -3.925)..(37.940, 3.000, 0.000) size (0.040, 3.000, 3.925) ShaderMaterial
+  ceiling/Ceiling (30.100, 3.000, -6.925)..(37.900, 3.040, 0.000) size (7.800, 0.040, 6.925) ShaderMaterial
+Room407MainLight at (32.000, 2.780, -1.200) visible false
+Room407DeskLamp at (31.800, 1.020, -4.600) visible true
+Door407 (32.440, 0.010, 0.000) rot (-0.000, 0.000, 0.000) leaf (0.000, 0.000, 0.000)..(0.000, 0.000, 0.000) size (0.000, 0.000, 0.000) visible true
+proxy (32.440, 0.010, 0.000) blocker layer 1 damage 0.00
+  Damage/Cracks (31.727, 0.510, -0.052)..(32.173, 1.550, -0.042) size (0.445, 1.040, 0.010)
+  Damage/Hole (31.560, 0.010, -0.038)..(32.440, 2.110, 0.038) size (0.880, 2.100, 0.075)
+  Damage/Hand (31.895, 0.885, -0.820)..(32.125, 1.055, 0.055) size (0.230, 0.170, 0.875)
+  leaf mesh door/door_mesh (31.560, 0.010, -0.080)..(32.440, 2.090, 0.020) size (0.880, 2.080, 0.100) door.glb::ShaderMaterial_gmd7d
+triangles: Room407 branch 414, Door 204, Slat1 26, Slat2 26, Slat4 26
+-- zombie_01 body Zombie_01 (res://assets/models/campus/zombie_01.tscn)
+  Model/Rig/Hips/Chest/LeftArm/Sleeve (-0.305, 1.019, -0.080)..(-0.166, 1.300, 0.080) size (0.139, 0.280, 0.160) ShaderMaterial
+  Model/Rig/Hips/Chest/LeftArm/Elbow/Forearm (-0.285, 0.749, -0.058)..(-0.185, 1.020, 0.058) size (0.100, 0.270, 0.115) student_hung.tscn::s4
+  Model/Rig/Hips/Chest/LeftArm/Elbow/Hand/Fingers (-0.278, 0.629, -0.049)..(-0.192, 0.740, 0.028) size (0.086, 0.110, 0.077) student_hung.tscn::s4
+  Model/Rig/Hips/Chest/RightArm/Sleeve (0.165, 1.020, -0.080)..(0.304, 1.301, 0.080) size (0.139, 0.280, 0.160) ShaderMaterial
+  Model/Rig/Hips/Chest/RightArm/Elbow/Forearm (0.185, 0.750, -0.058)..(0.285, 1.021, 0.058) size (0.100, 0.270, 0.115) student_hung.tscn::s4
+  Model/Rig/Hips/Chest/RightArm/Elbow/Hand/Fingers (0.192, 0.630, -0.049)..(0.278, 0.741, 0.028) size (0.086, 0.110, 0.077) student_hung.tscn::s4
+  Model/Rig/Hips/Chest/RightArm/Elbow/Hand/Phone/Body (0.198, 0.555, -0.056)..(0.273, 0.706, -0.044) size (0.075, 0.150, 0.012) student_hung.tscn::s7
+  Model/Rig/Hips/Chest/RightArm/Elbow/Hand/Phone/Screen (0.202, 0.563, -0.060)..(0.269, 0.698, -0.056) size (0.066, 0.135, 0.004) - 9eccff emit
+== hospital (y 300); Camera_Wake (0.000, 300.940, -0.640) rot (24.000, -180.000, 0.000) fov 78 keep_aspect 1 near 0.05
+Bed_Trung triangles 132
+Bed_Nhat triangles 132
+Bed_Ngu triangles 132
+hospital triangles 828
+ward env: bg 33383d ambient e6f0f5 x0.22 tonemap 2; CeilingLight energy 0.75 range 8.0
