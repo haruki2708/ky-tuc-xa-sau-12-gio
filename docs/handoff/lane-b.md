@@ -383,6 +383,21 @@ Luật như lượt 1: dựng bằng Blender, không Tripo, không extension Ble
 Commit, push nhánh, cập nhật Checklist, Handoff "### Lượt 2", README, CREDITS; báo ngắn bằng tiếng Việt kèm dòng RESULT từng test lọc, rồi dừng.
 ```
 
+## 1u. Giao T-267 (viết 20/11/2026): đồ hoạ thật đợt 10 — năm phòng trường quay CCTV và đồ nhỏ phòng 407
+**Chỉ dán sau khi integrator merge T-266** (nhánh mới cần phòng 407 đã có ô thông gió và nắp trần). Gõ `/clear` (hoặc mở phiên mới), `/model` chọn **Opus 5.5**, effort **xhigh** (D-183; lượt sửa lại lần hai thì **max**), rồi dán:
+```text
+Việc mới cho lane B: T-267 — đồ hoạ thật đợt 10, đợt môi trường cuối: năm phòng trường quay CCTV (102, 306, 209, 106, 310, cả hành lang trước cửa mỗi phòng) và đồ nhỏ phòng 407. Đọc docs/tasks/T-267-realistic-graphics-wave10-cctv-room407.md.
+Ở D:\GAME_WORK\lane-b2: git status (giữ thay đổi đang có, báo nếu có), git fetch origin, git switch -c lane-b/T-267-realistic-graphics-wave10-cctv-room407 origin/main, git lfs pull.
+Đầu phiên ghi commit của card đã đọc (git log -1 --format=%h origin/main -- docs/tasks/T-267-realistic-graphics-wave10-cctv-room407.md).
+Card chia HAI lượt. Phiên này CHỈ làm lượt 1 (card mục 2, bước 1–4): khảo sát, bảng hợp đồng; ảnh đúng khung feed 320 × 240 (phóng ×3) và ảnh 1080p cùng camera của năm phòng và năm hành lang lúc director dựng cảnh (chương 1: _cctv_scene như test_cctv; chương 2: _cctv_310); kiểm kê đồ nhỏ phòng 407 (A30) kèm ảnh gần có đèn pin, ghi rõ file nào sở hữu từng món; hình mẫu phòng 306 và hành lang của nó; phương án D1/D2 (đồ trong phòng), W1/W2 (tường sau), hành lang, dấu hiệu trên feed. Xong thì commit, push nhánh, ghi Handoff, báo và DỪNG để chủ dự án chọn. Không làm lượt 2.
+D-166: dựng bằng Blender, không tạo mẫu Tripo mới (được dùng lại đồ Tripo có sẵn của 407), giữ ánh sáng (không thêm, không đổi đèn). Chỉ năm nhánh Room* của cctv_set.tscn; Corridor của trường quay, sinh viên, xác, quản lý không đổi. Va chạm trùng main, đồ mới không có va chạm; camera, marker, nạn nhân giữ nguyên. Hình PS1 chỉ ẩn. Trường quay được nạp ở cả bốn chương: dùng lại mesh, texture có sẵn trước; không texture mới 2K; mọi texture mới từ 512 px trở lên phải nén VRAM trong .import (compress/mode=2; normal thêm compress/normal_map=1).
+Không đổi director, UI (cả tab Camera và kích thước feed), âm thanh, luật, lời thoại, game/scenes/main, project.godot. Không extension Blender, không ảnh AI, không bot, không đo FPS (D-179, D-184).
+Godot theo luật Lượt Godot (file khoá D:\GAME_WORK\GODOT_DANG_CHAY.txt); máy ít RAM: đóng Blender và Godot khi không dùng. Chỉ chạy test lọc (card mục 7), rồi git checkout -- game/default_bus_layout.tres. KHÔNG chạy full test và check: integrator chạy khi merge. Lượt nào bị dừng vì thiếu RAM thì ghi rõ, không tự chạy lại.
+Commit nhỏ "T-267: ...", push nhánh. Không push main, không mở PR. Cập nhật Checklist và Handoff trong card. Không sửa STATUS hay DECISIONS.
+Cuối phiên báo ngắn bằng tiếng Việt: xong gì, nhánh, commit, ảnh phương án ở đâu, phương án đề xuất, câu hỏi cho chủ dự án, dòng RESULT test lọc, có bị chặn không.
+```
+**Lượt 2:** integrator viết sau khi chủ dự án chọn (card mục 1).
+
 ## 2. Prompt giao việc (integrator điền T-xxx)
 ```text
 Việc mới cho lane B: <T-xxx> — đọc docs/tasks/<file card>.md.
