@@ -226,6 +226,7 @@
 - [x] Lượt 2: ba tầng trong, cầu thang, quầy, bản đồ, kệ và sách, bàn đọc, chướng ngại, đồ thêm (nếu chọn)
 - [x] Lượt 2: dải đất quanh thư viện, khớp mép đợt 7
 - [ ] Lượt 2: ảnh trước/sau, `overview.jpg`, test, full test, check, README, CREDITS, Handoff (xong trừ full test và check: full test bị dừng vì thiếu RAM, check chưa chạy)
+- [x] Lượt 3: phép thử rơi (hỏng trên lượt 2), bốn đoạn lan can `WellRail_*`, test t265 15/0, `r3_well.jpg`, Handoff (t264 16/2: hằng số va chạm khuôn viên, xem Handoff lượt 3)
 
 ## Handoff
 *(Lane B ghi: đã làm, còn dở, cách kiểm, dòng RESULT test và check, commit, yêu cầu thay đổi, phần chưa kiểm.)*
@@ -412,3 +413,52 @@ Như lượt 1 (bốn tường ngoài 0,22 m từ y −9,9 tới mái; sàn gi�
 - Mép **nam** ô cầu thang ở **tầng 3** (z 199, x 79…84) vẫn hở như PS1: vùng nav `StairFoot2` ở tầng 3 dẫn tới đó nhưng tầng 3 không có nhịp đi lên; người chơi đi thẳng về bắc từ đó có thể rơi xuống nhịp hai. Card chỉ yêu cầu mép tây nên lượt 2 không đụng. Nếu muốn chặn: thêm một đoạn lan can có va chạm x 79…84, z 198,9…199 ở tầng 3 (cách `StairFoot2` 0,4 m) cần integrator/chủ dự án duyệt.
 - Khối che thư viện (integrator, sau merge): theo "Mặt đặc kín" trên; xem lại ba góc toàn cảnh đợt 7 sau khi thêm.
 - `test_t265_library` có một tuyến đi bộ dài (khoảng 40 giây chạy thật).
+
+### Lượt 3 (20/11/2026, D-186): bịt ô cầu thang — xong; t265 15/0; t264 16/2 (dấu vân va chạm khuôn viên, hỏng từ lượt 2)
+- Nhánh rebase lên `origin/main` a7fcf6f (card mục 1 điểm 14, lượt 3); `git lfs pull`. Commit `9254729` (test, dựng, cảnh, ảnh, README) và commit Handoff này; push bằng `--force-with-lease` (sau rebase). Hai file chưa track của đợt 6 vẫn để nguyên.
+- Cách chạy lại: `art_source/graphics_upgrade/realistic_map/wave8/README.md` mục "Lượt 3".
+
+#### Bước 10 — test trước, trên bản lượt 2
+`test_the_well_has_no_drop_left` (mới trong `test_t265_library.gd`): thân người chơi thật đi thẳng 4 m/s trong 1,8 s, ghi chỗ thấp nhất của chân. Trên bản lượt 2: **`RESULT: 14 passed, 1 failed`**, cả sáu phép rơi đều hỏng:
+
+| Phép thử | Thấp nhất (lượt 2) |
+|---|---|
+| tầng 2, về bắc ở x 84,47 từ z 197 | −9,90 (rơi 3,3 m xuống tầng 1) |
+| tầng 3, về bắc ở x 84,47 từ z 197 | −9,90 (rơi 6,6 m) |
+| tầng 2, về nam ở x 84,47 từ z 211 | −9,90 |
+| tầng 3, về nam ở x 84,47 từ z 211 | −9,90 |
+| tầng 3, về bắc ở x 80 từ z 197 | −5,61 (rơi xuống nhịp hai) |
+| tầng 3, về bắc ở x 82 từ z 197 | −5,61 |
+
+Tầng 2 đi về bắc ở x 80, 81,5 và 83 từ z 197 vẫn lên được tầng 3 (qua ở cả lượt 2 và lượt 3). Không phép thử nào "không rơi", nên dựng đủ bốn đoạn của mục 14.
+
+#### Bước 11 — bốn đoạn lan can (toạ độ thế giới)
+| Tên | Tầng | x | z | Cao | Cách nav gần nhất | Cách link gần nhất |
+|---|---|---|---|---|---|---|
+| `WellRail_F3S` | 3 | 78,86…84,89 | 198,92…199 | 1,1 m (y −3,3…−2,2) | 0,42 m (`StairFoot2`, hết ở z 198,5) | 1,92 m (`StairFootLink2`) |
+| `WellRail_F2SE` | 2 | 84,05…84,89 | 198,92…199 | 1,1 m (y −6,6…−5,5) | 0,45 m (`StairNav1`, hết ở x 83,6); `StairFoot1` 0,49 m | 3,05 m |
+| `WellRail_F2NE` | 2 | 84,05…84,89 | 209…209,08 | 1,1 m (y −6,6…−5,5) | 0,45 m (`StairNav0` phần trên, `StairNav1`); `StairAccess1` 0,49 m | 3,05 m |
+| `WellRail_F3NE` | 3 | 84,05…84,89 | 209…209,08 | 1,1 m (y −3,3…−2,2) | 0,45 m (`StairNav1` phần trên); `StairAccess2` 0,49 m | 3,05 m |
+
+- **Mọi đoạn cách navigation ≥ 0,42 m (≥ 0,31 m bán kính xác), không cần ngoại lệ** "nối tiếp tay vịn PS1". Dưới `WellRail_F3S` là chân nhịp hai, thấp hơn 3,3 m: xác trên nhịp chỉ chạm tới độ cao sàn tầng 3 từ z 202,94 trở lên (cao nhất của `zombie.tscn` 1,86 m: cầu đầu ở 1,55, bán kính 0,31; test lấy 2,0 m), tức cách lan can 3,94 m.
+- **Lối để hở:** lối lên nhịp hai ở tầng 2 (x 79…84 tại z 199, giữa `WellRail_F2` và `WellRail_F2SE`), đầu trên nhịp một ở tầng 2 và nhịp hai ở tầng 3 (x 79…84 tại z 209). `WellRail_F3S` nối `WellRail_F3` (góc x 78,86, z 199) tới mặt trong tường đông (x 84,89); ba đoạn khe đông nối tay vịn PS1 `RailCollision*_39` (x 84,05) tới tường.
+- **Hình** (lớp `WellRail` của `stairs.glb`, như lan can mép tây): cột thép dẹt 12 cm một cột, tay vịn gỗ ở 1,04…1,1 m, thanh thép dưới, cột đầu 5 cm ở hai đầu (góc chung với `WellRail_F3` dùng một cột); mọi đỉnh nằm trong hộp va chạm (test kiểm). `stairs.glb` 5.356 → 6.436 tam giác (`WellRail` 2.112 → 3.192), cùng vật liệu `W1Iron`, `W1Wood`; tổng glb đợt 8 294.187 → 295.267.
+- **Cảnh:** `library.tscn` chỉ thêm 44 dòng (4 `BoxShape3D` `t265_box111…114`, 4 `StaticBody3D` lớp 1, mask 0 dưới `Real/Added`), bằng `patch_wave8.py rails3`; không dòng nào khác đổi. Dấu vân `library.tscn` vẫn trùng main (1.533 dòng, `9b2668a8…`).
+- **Test** (`test_t265_library.gd`): `RAILS` thêm 4 đoạn, `ADDED` 111 → 115; hộp lan can so với sai số 1 mm (float32 quanh z 199 làm bề sâu 0,08 thành 0,079987, quá `is_equal_approx`); phần dốc nhịp dưới chỉ tính chỗ xác chạm tới độ cao sàn (như trên); lan can cách mọi link ≥ 0,31 m; không lan can nào đè lên đầu nhịp (x 79,05…83,95); campus có 1.072 va chạm, bỏ 115 khối `Library/Real/Added` thì còn 957 và trùng main (`5f21b42e…`).
+- `plan_wave8.py final`: khoảng cách lan can – nav, link đo chính xác (các vùng nav là hình chữ nhật; lưới 5 cm làm tròn 0,42 m của `WellRail_F3S` thành "chạm"); **0 món phạm luật**; `final_floor1..3.jpg` vẽ lại; `survey/final_layout.md`, `round2_counts.json` cập nhật.
+
+#### Ảnh
+`previews/wave8/r3_well.jpg`: ba góc trong chương 4 thật ban đêm, có và không đèn pin (ảnh lẻ `r3_*`): tầng 3 nhìn mép nam (`WellRail_F3S`, xa là `WellRail_F3NE`); tầng 2 ở chân nhịp hai (`WellRail_F2SE`, lối lên để hở); tầng 2 ở đầu nhịp một nhìn về nam (`WellRail_F2NE`). Số lần vẽ / primitive: 148 / 108 k; 153 / 125 k; 5.294 / 2.881 k (góc cuối nhìn về nam qua tường thư viện chưa có khối che, như lượt 2 đã ghi). Bộ nhớ hình 1.298–1.301 MB.
+
+#### Kiểm
+- `pwsh tools/test.ps1 -Filter t265`: **`RESULT: 15 passed, 0 failed`**.
+- `pwsh tools/test.ps1 -Filter t264`: **`RESULT: 16 passed, 2 failed`**: `test_t264_buildings::test_colliders_nodes_and_contract_match_main` và `test_t264_rest::test_colliders_and_contract_match_main`, câu "campus colliders as main has them" (mong `5f21b42e…`, được `1e0dd942…`).
+  - **Hỏng từ lượt 2, không do lượt 3:** `CAMPUS_COLLIDERS_MD5` băm mọi va chạm của `campus.tscn`, kể cả trong instance `Library`, nên 111 khối `Real/Added` của lượt 2 đã đổi nó. Chạy t264 với `library.tscn` của lượt 2: cùng 2 lỗi (hash `3864d4b8…`). Lượt 2 không chạy t264 riêng, còn full test bị dừng vì thiếu RAM nên không lộ ra.
+  - Không sửa hằng số này: card mục 8 chỉ cho sửa câu `LibraryBand*` và hằng số MultiMesh. `test_t265_library` chứng minh phần khác vẫn như main (xem dòng Test ở trên).
+  - Suy ra, chưa chạy (lệnh chỉ cho t265 và t264): `test_t262_gate` và `test_t263_canteen` dùng cùng hằng số nên cũng hỏng câu va chạm khuôn viên.
+- **Không chạy full test, không chạy check** (card bước 12: integrator chạy khi merge). `git checkout -- game/default_bus_layout.tres` sau test. Lần chụp ảnh chạy dưới khoá Godot (tạo rồi xoá); `game/_probe_tmp/` đã xoá.
+- Chưa kiểm: chơi thử bằng tay; bot, FPS không chạy (D-179).
+
+#### Yêu cầu thay đổi
+- Đổi `CAMPUS_COLLIDERS_MD5` thành `"1e0dd9426510b21e245fbf2b84ee80c2"` (1.072 va chạm = 957 của main + 115 `Real/Added` của T-265) trong `test_t262_gate.gd` (comment "957 colliders" thành 1072), `test_t263_canteen.gd`, `test_t264_buildings.gd`, `test_t264_rest.gd`. Integrator sửa khi merge, hoặc cho phép thì lane B làm trong một commit riêng.
+- Ghi chú lượt 2 về mép nam tầng 3 đã xử lý bằng `WellRail_F3S`.
