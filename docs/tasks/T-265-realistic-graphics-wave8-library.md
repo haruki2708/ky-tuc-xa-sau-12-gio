@@ -476,7 +476,7 @@ Tầng 2 đi về bắc ở x 80, 81,5 và 83 từ z 197 vẫn lên được t�
   - Không đặt ở sàn tầng 1 (dưới không có gì) và lanh tô trên cửa (chỉ cách khung cửa 2 cm).
   - `test_t260_occlusion` thêm bài riêng cho thư viện: đủ 21 hộp; không hộp nào chạm lỗ cửa trước, sau hay ô cầu thang; hộp tường trước, sau nằm ngoài mặt kính.
   - Chi tiết ở [báo cáo T-260](../../tools/reports/T-260-occlusion-culling.md), mục bổ sung 20/11.
-  - **Chưa chụp ảnh bật/tắt** occlusion cho khối che này, chưa đo lại số lần vẽ ở góc tầng 2 nhìn về nam (5.294 lần vẽ trong `r3_well.jpg`); chờ chủ dự án cho chụp.
+  - **Chưa chụp ảnh bật/tắt** occlusion cho khối che này. Chưa đo lại số lần vẽ ở góc tầng 2 nhìn về nam (5.294 lần vẽ trong `r3_well.jpg`), cũng chưa đo lại ba góc toàn cảnh đợt 7 (review lượt 2: góc vườn primitive +0,5 %; Handoff lượt 2: "xem lại ba góc toàn cảnh đợt 7"). Cả hai làm trong cùng lần chụp, chờ chủ dự án cho.
 - **Kiểm** (20/11, có khoá Godot; chủ dự án đã tắt RAV và Chrome, dù dịch vụ `rsEngineSvc` của RAV vẫn giữ khoảng 3,8 GB và máy còn 4,1 GB trống):
   - Lọc `t26` trước, có khối che: **`RESULT: 72 passed, 0 failed`**.
   - Full test: **`RESULT: 1072 passed, 0 failed`** (15:28–16:09).

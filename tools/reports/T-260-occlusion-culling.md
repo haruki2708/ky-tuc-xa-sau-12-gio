@@ -127,5 +127,5 @@ Integrator thêm **21 hộp che** cho thư viện vào `occluders_campus.tscn` (
 - Test: `test_t260_occlusion` thêm bài riêng cho thư viện. Bài này kiểm đủ 21 hộp, và không hộp nào chạm lỗ cửa trước, sau (khung x 63,92…66,08, tới y −7,42) hay ô cầu thang (x 79…84,89, z 199…209, tầng 2–3). Hộp tường trước, sau phải nằm ngoài mặt kính. Bài chương 3 thật vẫn kiểm mọi hộp: nằm trong một hộp va chạm đặc, không chạm cửa, cửa sổ, lan can, cách điểm xuất phát.
   - Lọc `t26`: 72/0.
   - Full test sau merge T-265: 1072/0. Check: 0.
-- **Chưa chụp ảnh bật/tắt như nhà ăn** và chưa đo số lần vẽ (cần chạy chương thật có hình, tốn RAM; chờ chủ dự án cho). Mốc để so: lane B đo ở tầng 2, đầu nhịp một nhìn về nam, được 5.294 lần vẽ khi thư viện chưa có khối che (`previews/wave8/r3_well.jpg`).
+- **Chưa chụp ảnh bật/tắt như nhà ăn** và chưa đo số lần vẽ (cần chạy chương thật có hình, tốn RAM; chờ chủ dự án cho). Mốc để so: lane B đo ở tầng 2, đầu nhịp một nhìn về nam, được 5.294 lần vẽ khi thư viện chưa có khối che (`previews/wave8/r3_well.jpg`). Lần chụp đó cũng đo lại ba góc toàn cảnh đợt 7 (hành lang tầng 4 nhà B, giữa vườn, trên khán đài), như review lượt 2 và Handoff lượt 2 của T-265 dặn.
 - Không đo FPS (D-179).
