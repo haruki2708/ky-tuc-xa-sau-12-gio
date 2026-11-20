@@ -127,6 +127,11 @@ Trả lời và viết tài liệu bằng tiếng Việt; code, comment, commit 
   - Bước 7, **T-263 merge `4031339` (16/11)**: lane B xong lượt 2 (nhánh `1c8a98e`, full test 1037/0, check 0). HARU review đạt (card mục Review). Kiểm sau merge bị dừng vì thiếu RAM; **chủ dự án quyết không chạy lại** vì cây trùng hệt nhánh. Chưa build (cần RAM). Việc tiếp: occluder hộp vỏ nhà ăn trong `game/scenes/main/occlusion/` (core, có test), rồi đợt 7 nhà nền và mặt đất (rồi bot T-238 theo D-179), đợt 8 thư viện và ngoài lối tây, đợt 9 quay lại 407 và bệnh viện.
 
 **Việc dở ngay lúc này (đọc trước):**
+- **20/11 tối: card đợt 9 [T-266](../tasks/T-266-realistic-graphics-wave9-room407-hospital.md) viết xong** (phòng 407 chương 4, phòng bệnh viện; prompt `lane-b.md` mục 1t; lane B Opus 5.5 xhigh). **Chờ chủ dự án dán lượt 1.**
+  - Sau lượt 1: integrator xem ảnh, chuyển phương án cho chủ dự án. Câu chính: hai y tá chỉ có tiếng ngay giữa khung hình kết (Y1 rèm quây giường, Y2 dời tiếng ra cửa…); nệm chăn gối khi lật vạt (N1/N2); khung hình K1/K2; ô thông gió và tấm trần ở cả bốn chương hay không (C1/C2). Ghi D-187 và card mục 1, rồi viết prompt lượt 2 vào `lane-b.md` 1t.
+  - Hai sửa core khi khảo sát (đã đẩy main): `138cff2` xác ba bạn cùng phòng không còn trên giường 407 ở chương 4; `78365fa` ẩn hộp xám ở ba chỗ tìm giả. Test lọc chương 4 đạt (`test_chapter4` 15/0, `test_ch4_environment` 6/0, `test_ch4_gameplay` 17/0, `test_ch2_4_hand` 3/0).
+  - **Full test + check còn nợ** cho: 4 hộp che sàn tầng 1 thư viện và hai sửa core này. Chạy một lần khi merge T-266 (nhờ chủ dự án thoát RAV và Chrome).
+  - Sau T-266: phần còn của đợt 10 (5 cảnh CCTV phòng 102, 306, 209, 106, 310; chi tiết nhỏ phòng 407; rà đồng bộ bốn chương), card T-267. Số tiếp theo D-187, T-267.
 - **20/11 chiều: T-265 merged** (`9ae6e4f`, no-ff từ nhánh lane B `e773f0b`; đợt 8 xong), cộng hai commit của integrator:
   - `48e04b7`: `CAMPUS_COLLIDERS_MD5` thành `1e0dd942…` (1.072 va chạm: thêm 115 khối `Library/Real/Added`) trong `test_t262_gate`, `test_t263_canteen`, `test_t264_buildings`, `test_t264_rest`.
   - `67b5eb2`: 21 hộp che thư viện; `occluders_campus.tscn` từ 119 lên 140 hộp; `test_t260` có bài riêng cho thư viện.
