@@ -14,7 +14,9 @@ var desk_lamp_on: bool = true
 @export var shell_t222: bool = true
 ## PS1 meshes that stay: story states, puzzles and clue props (paths under Room407).
 const KEEP_PS1: Array[String] = ["Anchors", "Details/BloodSeep", "Details/BloodPools", "Details/SlashRips",
-	"Details/Debris", "Details/CleaningRag", "Ch2Bathroom", "Cables", "Zones"]
+	"Details/Debris", "Details/CleaningRag", "Ch2Bathroom", "Cables", "Zones",
+	# T-266 (D-187, C2): the vent and ceiling hatch (wave 9 models, all four chapters).
+	"Wave9Fixtures"]
 ## Inside KEEP_PS1, the PS1 meshes that a furnished model draws instead.
 const REPLACED_PS1: Array[String] = ["Anchors/VietLocker/Back", "Anchors/VietLocker/West",
 	"Anchors/VietLocker/East", "Anchors/VietLocker/Shelf*", "Anchors/VietLocker/Pivot",

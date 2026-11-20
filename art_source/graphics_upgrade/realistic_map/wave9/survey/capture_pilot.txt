@@ -1,0 +1,23 @@
+RoomDoor in Pivot space: [X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (-0.444998, -0.01, -0.085)] (aabb [P: (-0.445, 0.0, -0.02), S: (0.89, 2.1, 0.04)])
+RulesPaper at (-0.44, 1.39, -0.025)
+CAPTURE: pilot_407_room_before_torch.jpg draws 3022 prims 3056822 objects 3114 vram 1301 MB
+CAPTURE: pilot_bed2_v2b_before_torch.jpg draws 1741 prims 1638164 objects 1770 vram 1303 MB
+CAPTURE: pilot_bed2_v2b_before_stand_torch.jpg draws 1856 prims 1746438 objects 1883 vram 1303 MB
+CAPTURE: pilot_bed2_v2b_n0_after_torch.jpg draws 1730 prims 1606794 objects 1759 vram 1303 MB
+CAPTURE: pilot_bed2_v2b_n1_after_torch.jpg draws 1730 prims 1606794 objects 1759 vram 1303 MB
+CAPTURE: pilot_bed2_v2b_n1_side_torch.jpg draws 1734 prims 1653470 objects 1766 vram 1303 MB
+CAPTURE: pilot_bed2_v2b_read_loang_torch.jpg draws 1643 prims 1524540 objects 1674 vram 1303 MB
+CAPTURE: pilot_bed2_v2b_read_bi_torch.jpg draws 1643 prims 1524540 objects 1674 vram 1303 MB
+CAPTURE: pilot_bed2_v2b_read_khac_torch.jpg draws 1643 prims 1524540 objects 1674 vram 1303 MB
+CAPTURE: pilot_bed2_v2b_read_phieu_torch.jpg draws 1644 prims 1530740 objects 1675 vram 1303 MB
+CAPTURE: pilot_bed2_v2b_n2_after_torch.jpg draws 1741 prims 1615350 objects 1770 vram 1303 MB
+CAPTURE: pilot_bed2_v2b_n2_side_torch.jpg draws 1743 prims 1662026 objects 1777 vram 1303 MB
+CAPTURE: pilot_door_00_torch.jpg draws 3130 prims 3104002 objects 3186 vram 1307 MB
+CAPTURE: pilot_door_30_torch.jpg draws 3144 prims 3104144 objects 3200 vram 1307 MB
+CAPTURE: pilot_door_30_close_torch.jpg draws 2549 prims 2230860 objects 2581 vram 1307 MB
+CAPTURE: pilot_door_60_torch.jpg draws 3146 prims 3058150 objects 3202 vram 1307 MB
+CAPTURE: pilot_door_60_close_torch.jpg draws 2549 prims 2184246 objects 2581 vram 1307 MB
+CAPTURE: pilot_door_80_torch.jpg draws 3163 prims 3060498 objects 3219 vram 1307 MB
+CAPTURE: pilot_door_80_close_torch.jpg draws 2566 prims 2186594 objects 2598 vram 1307 MB
+CAPTURE: pilot_door_80_corridor.jpg draws 3543 prims 3223568 objects 3651 vram 1307 MB
+CAPTURE: pilot_407_room_after_torch.jpg draws 3097 prims 3123543 objects 3194 vram 1307 MB

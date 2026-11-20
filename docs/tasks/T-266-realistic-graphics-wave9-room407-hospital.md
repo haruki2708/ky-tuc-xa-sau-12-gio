@@ -214,11 +214,219 @@
 - Tripo, extension Blender, ảnh AI; bot, FPS; commit log, video, `anh_chup_sua_loi/`; sửa STATUS, DECISIONS.
 
 ## Checklist
-- [ ] Lượt 1: khảo sát hai khu, bảng hợp đồng, ảnh hiện trạng (407 ở chương 1, 3, 4; khung kết ở hai kết, hai độ sáng), sơ đồ phòng bệnh
-- [ ] Lượt 1: hình mẫu và phương án; dừng chờ chủ dự án chọn
-- [ ] Lượt 2: phòng 407 (ba vạt, trần, thông gió, cửa bị phá)
-- [ ] Lượt 2: bệnh viện (vỏ, giường, người, y tá, khung hình)
-- [ ] Lượt 2: ảnh trước/sau, `overview.jpg`, test lọc, README, CREDITS, Handoff
+- [x] Lượt 1: khảo sát hai khu, bảng hợp đồng, ảnh hiện trạng (407 ở chương 1, 3, 4; khung kết ở hai kết, hai độ sáng), sơ đồ phòng bệnh
+- [x] Lượt 1: hình mẫu và phương án; dừng chờ chủ dự án chọn
+- [x] Lượt 2: phòng 407 (ba vạt, trần, thông gió, cửa bị phá)
+- [x] Lượt 2: bệnh viện (vỏ, giường, người, y tá, khung hình)
+- [x] Lượt 2: ảnh trước/sau, `overview.jpg`, test lọc, README, CREDITS, Handoff
 
 ## Handoff
-*(Lane B ghi: đã làm, còn dở, cách kiểm, dòng RESULT test, commit, yêu cầu thay đổi, phần chưa kiểm.)*
+
+### Lượt 2 (lane B, 20–21/11/2026; card đọc ở `d72adcc`, D-187) — xong, DỪNG chờ review (6 lọc chưa chạy vì thiếu RAM, mục 4)
+Làm đúng mục 1 (D-187). Hình PS1 chỉ ẩn (`visible = false`), node, va chạm, marker giữ; hình mới ở node con `Real` (hoặc
+`Empty`, `Wave9Fixtures`, `SearchFeedback`). Chi tiết, bảng glb, tam giác, vật liệu: `art_source/graphics_upgrade/realistic_map/wave9/README.md`.
+
+**Xem trước:** `previews/wave9/overview.jpg`, `compare_407_room.jpg`, `compare_407_bedding.jpg`, `compare_407_fall.jpg`,
+`compare_407_slats.jpg`, `compare_407_spots.jpg`, `compare_407_door.jpg`, `compare_407_corridor.jpg`, `compare_ch1.jpg`,
+`compare_ward.jpg`, `compare_ward_detail.jpg` (ảnh lẻ `before_*`, `after_*`).
+
+#### 1. Đã làm
+- **Phòng 407, chương 4** (`ch4_anchors.tscn`, chỉ nhánh `Room407`; phần ngoài nhánh trùng main từng dòng, test so md5):
+  - Vạt **V2b** cả ba giường, chữ **mực loang** ba mảnh đúng mảnh phiếu UI; góc lật riêng (`slat_visual.gd`, `ANGLES`): giường 1, 4
+    70°, giường 2 62° (đỉnh vạt dưới mặt dưới tầng trên 1,075 m). Vạt trễ 0,08 s, quay 0,42 s: xong ở 0,5 s (≤ 0,6).
+  - **N2 không va chạm**: nệm, chăn, gối Tripo của giường bay theo đường riêng trong 0,55 s (cùng lúc vạt quay), nằm ở chỗ riêng,
+    trả về khi `set_flipped(false)` và khi thoát. Sàn trước giường tầng A chỉ rộng 1,36 m (giữa giường và chiếu, có ổ cắm nối dài
+    và bàn học ở hai đầu): đủ cho **một** tấm nệm. Nên: đồ **giường 1** (tầng trên) rơi xuống đúng khoảng sàn trước giường tầng A,
+    gối và chăn gấp nằm trên nệm của chính nó; **nệm giường 2** (tầng dưới) bị đẩy ra thấp, nằm ngang trước đầu chiếu (cách cung
+    mở cửa 0,17 m), chăn trên nệm, gối bên cạnh; **giường 4** như giường 1, trước giường tầng B. Thứ tự lật nào cũng vậy (vị trí
+    cố định, test 1-2-4 và 2-1-4). Đồ tầng trên trượt qua mép thanh chắn rồi chúc xuống sát thành giường (trong 0,2 m), rơi đứng rồi
+    đổ ra, nên không bay qua chỗ mắt người chơi đứng hay ngồi lật vạt; đồ tầng dưới đi dưới 1,0 m.
+  - **Nắp trần H1, cửa chớp thông gió (C2)**: thêm vào phòng 407 gốc theo **đường (a)**: node `Wave9Fixtures` trong
+    `scenes/levels/floor4/room_407.tscn` (card ghi `levels/room407/`, file thật ở `floor4/`) và `"Wave9Fixtures"` thêm vào `KEEP_PS1`
+    của `room407.gd`. Có ở cả bốn chương, chỉ là hình. Ở chương 3–4 ẩn `CeilingPanel`, `VentFrame`, `VentSlat0…5`. Nắp hở quạt trần
+    hơn 10 cm cả khi mở.
+  - **Phản hồi khi tìm xong** (`Room407/SearchFeedback`, script mới `search_feedback.gd`): nắp hé 28° trên bản lề, chớp treo lệch
+    26° từ vít góc trên (rơi theo trọng lực; lượt 1 xoay ngược), trả lại khi thoát. Tủ Phúc giữ nguyên.
+  - **Cửa bị phá** (`door407_proxy.gd`, phần hình): ba lớp mới đặt đúng transform của cánh Tripo `Door407/Pivot/RoomDoor`; 30 % nứt
+    toác trên cánh thật, 60 % cánh vỡ có lỗ, dằm gỗ, thấy hành lang; 80 % tay xác (tay áo hoodie xám rách, da tái). Từ 60 % ẩn cả
+    `RoomDoor` và `Pivot/Leaf`, bốn hộp `Damage/Hole` ẩn (giữ node); trả lại khi thoát. Lỗi hình của main (hư hại nằm sau cánh
+    Tripo) đã hết (`compare_407_door.jpg`).
+- **Phòng bệnh** (`hospital_room.tscn/.gd`): vỏ hai màu, sàn ceramic, trần 60 × 60, máng đèn ở `CeilingLight`; giường inox, nệm bọc
+  xanh, ga, chăn kẻ; **Trung T1**; **Nhật, Ngư** dưới chăn, không lộ mặt; **kết một mình** ga phẳng, chăn gấp (`Empty`,
+  `set_companions_visible` bật ngược với `Patient`); **Y1** rèm quây ở z 1,5 với bóng hai người đứng yên (một người cầm bệnh án),
+  `Nurse1/2` giữ chỗ cũ, đúng sau hai bóng; **K2** `Camera_Wake` ngước 11°, vị trí và FOV giữ. Không thêm đèn.
+- **Thẻ tên** (ngoại lệ UI, `ui/ch4/bed_card.tscn`, `scripts/ui/ch4_bed_card.gd`): giấy chịu sáng, tối hơn (0,70), chữ hai mặt
+  (`NameBack`, `DetailsBack`, cùng chữ, không ngược), API giữ. Từ `Camera_Wake` đọc được "Khương Ngọc Ngư", "Trần Trung",
+  "Lý Minh Nhật" ở 1,0 và 1,45, không cháy trắng (`compare_ward_detail.jpg`). Khung kẹp thẻ là một phần của `ward_bed.glb`, đúng marker
+  `Card` (marker không dời).
+- Test: `test_t266_room407.gd`, `test_t266_ward.gd`, `test_t266_assets.gd` (thay `test_t266_pilot.gd`, đã xoá). Nâng hai ngưỡng của
+  `test_ch4_environment` có comment: `Room407/Door` 500 → 3.600 (thật 3.206), `Bed_*` 1.500 → 4.000 (thật 3.270 / 3.304); `Slat` giữ
+  500 (thật 362).
+- Asset: 16 glb, 11 texture (nén VRAM), vật liệu mới `W9SlatUnder1/2/4`, `W9Hoodie`, `W9VentPaint`; xoá 10 glb hình mẫu và 3 texture
+  chữ không dùng (dựng lại được bằng script lượt 1). CREDITS (texture đợt 9, models chung) cập nhật; không nguồn ngoài mới.
+
+#### 2. Số đo (không đo FPS)
+| Chỗ (cùng camera) | Trước (hình main) | Sau |
+|---|---|---|
+| Phòng 407 từ cửa, chưa lật | 3.729 lần vẽ | 3.762 (+33) |
+| Phòng 407 từ cửa, lật cả ba, cửa 80 % | 3.719 | 3.776 (+57) |
+| Phòng bệnh, `Camera_Wake`, kết thật / một mình | 27 / 21 (main, K1) | 42 / 34 (K2) |
+| Bộ nhớ hình chương 4 | 1.301 MB (main) | 1.310 MB (phòng 407), 1.313 MB (phòng bệnh) |
+Tam giác: mỗi `Slat` 362, `Door` 3.206, `Bed_Trung` 3.270, `Bed_Nhat`/`Bed_Ngu` 3.304, cả phòng bệnh 13.424 (< 80.000).
+
+#### 3. Ghi thật, cần integrator biết
+- **`searched` không bao giờ phát ở ba chỗ tìm giả**: `fake_search_spot.tscn` đặt `empty_result = true`, và `search_spot.gd`
+  chỉ phát `searched` khi `not empty_result`. Script hình nghe thêm `EventBus.interacted` (mọi lần giữ E xong, `HoldInteractable._finish()`)
+  của `Search<spot>` dưới marker, vẫn nối `searched` nếu sau này có. Không sửa core, lane A.
+- **Không có đường rơi cứng nào sạch hoàn toàn với nệm Tripo**: nệm 0,80 m nằm sẵn dưới cả hai thanh chắn tầng trên (khe 0,70 m)
+  và lấn 5 cm vào cột ở hai đầu ngay lúc nằm yên. Đường đã chọn sạch về phía phòng (thanh, cột phía phòng; test hộp xoay 201 mốc);
+  khi nhấc, mép phía tường của nệm tầng trên đi qua thanh chắn phía tường (chính tấm nệm che); nệm giường 2 (1,90 m, giữa hai cột
+  1,80 m) nghiêng 18,8° và còn lướt 8 mm mặt trong hai cột.
+- **Chỗ nằm của nệm giường 2** ở giữa phòng (trước đầu chiếu), không "cạnh giường", vì trước giường tầng A chỉ đủ một tấm. Nếu chủ
+  dự án muốn khác (ví dụ nệm giường 2 dựng tựa bàn học), chỉ cần đổi `LANDING` và đường bay trong `slat_visual.gd`.
+- Từ hành lang lúc 80 %: bốn xác thật (tự đi tới sau 17,5 s, dừng 0,75–1,26 m từ giữa cửa) đứng che kín lỗ và tay
+  (`compare_407_corridor.jpg`); không thấy tay lơ lửng hay cánh hở. Tờ nội quy phía hành lang (`Pivot/RulesPaper`, floor4) vẫn lệch
+  4 cm khỏi mặt cánh Tripo như main: ngoài phạm vi, chưa sửa.
+- Tổng số lần vẽ trôi theo thời gian trong một lượt chạy: số trên đo trước/sau liền nhau hai lần (`wave9/survey/capture_r2.txt`).
+
+#### 4. Kiểm
+Chạy các lọc của mục 7 liền nhau trong một lượt (21/11, 23:52), rồi `git checkout -- game/default_bus_layout.tres`:
+- `-Filter t266`: `RESULT: 15 passed, 0 failed`
+- `-Filter ch4`: `RESULT: 55 passed, 0 failed` (gồm `test_ch4_environment`, `test_ch4_ui`, `test_ch4_gameplay`, `test_ch4_audio`,
+  `test_ch4_menu`, `test_ch4_voices_calls`)
+- `-Filter chapter4`: `RESULT: 15 passed, 0 failed`
+- `-Filter hospital`: `RESULT: 1 passed, 0 failed`
+- `-Filter room_doors`: `RESULT: 4 passed, 0 failed`
+- `-Filter hand_targets`: `RESULT: 6 passed, 0 failed`
+- `-Filter room407`: `RESULT: 83 passed, 0 failed`
+- **Bị dừng vì máy thiếu RAM** (Claude Code tự dừng lượt chạy nền khi máy cạn bộ nhớ, đang ở `-Filter floor4`), **không tự chạy lại**
+  theo prompt: **chưa chạy** `floor4`, `chapter1`, `chapter2`, `ch1_`, `ch2_props`, `graphics_bindings`; `ch4_ui` đã nằm trong
+  lọc `ch4` ở trên. Khoá `GODOT_DANG_CHAY.txt` của lượt này đã gỡ, không còn tiến trình Godot.
+- Không chạy full test, không chạy check (card mục 7). Không bot, không đo FPS.
+- Commit: `eddc170`, `7fbcd60` (WIP), commit cuối "T-266: round 2 …" (hash ở `git log`).
+- Yêu cầu thay đổi ngoài phạm vi: không. (Gợi ý cho lane A, không bắt buộc: nếu muốn phản hồi khi tìm nghe đúng `searched`, cho
+  chỗ tìm giả phát `searched` mà không mở tài liệu; hiện script hình đã tự nghe `EventBus.interacted`.)
+
+### Lượt 1 (lane B, 20/11/2026; card đọc ở `81b17b3`) — xong, DỪNG chờ chủ dự án chọn
+Không sửa cảnh, script hay test cũ nào. Mới: `art_source/graphics_upgrade/realistic_map/wave9/` (script khảo sát, chụp,
+Blender, texture, vật liệu, sơ đồ, tờ ghép, `README.md`), ảnh `previews/wave9/`, hình mẫu
+`game/assets/models|textures/graphics_pilot/realistic_map/wave9/` (22 glb, 14 texture nén VRAM, 30 vật liệu `W9*`, CREDITS),
+`game/tests/levels/test_t266_pilot.gd`. Hình mẫu chỉ gắn vào cảnh lúc chụp (`capture_wave9_pilot.gd`), chưa vào game.
+
+**Xem trước:** `previews/wave9/options_slat.jpg`, `options_bedding.jpg`, `options_ink.jpg`, `options_ink_beds.jpg`,
+`options_vent_hatch.jpg`, `options_door.jpg`, `options_chapters.jpg`, `options_ward_nurse.jpg`, `options_ward_frame.jpg`,
+`options_ward_patient.jpg`, `plan_hospital.jpg`, `survey_sheet_407.jpg`, `survey_sheet_ward.jpg`.
+
+#### 1. Khảo sát (kiểm lại mục 0)
+- **Phòng 407 ở chương 4 thật** (`run_from(&"room407")`, không bot; người chơi giữ lại và ẩn, bốn xác ở hành lang bị gỡ để
+  không ai phá cửa): **tối**. Đèn tuýp `Room407MainLight` tắt (năng lượng 0, ẩn), còn đèn bàn 0,5, `WindowBlue` 0,2,
+  `DoorGapLight` 0,22, `BathLight` 0,06; môi trường trong phòng ánh sáng nền 0,015 (room407.gd); nắng `Campus/Dawn` 0,65 không
+  vào tới trong. Cần đèn pin; mọi ảnh trong phòng chụp bằng đèn pin của camera (như đèn điện thoại).
+- **Mục 0 lệch so với đếm thật:** nhánh `Room407` 414 tam giác (card ghi 174; `Door` 204, mỗi `Slat` 26), phòng bệnh 828
+  (card 758), mỗi `Bed_*` 132.
+- **Vạt PS1:** tấm ván nằm ở y 0,392…0,428, tức **trong** nệm Tripo 4,9 cm (0,38…0,429), trên sàn giát Tripo (đỉnh 0,385).
+  Lật thì xuyên qua nệm, chăn, gối. **Giường 2 (tầng dưới):** ván 0,86 m quay 70° lên tới y 1,22, **đâm qua tầng trên**
+  (mặt dưới tầng trên 1,075): `survey_407_bed2_low_after_torch.jpg`.
+- **Đồ trên giường** (tên trong `placements.json`): giường 1 `MattressPhuc`, `BlanketPhuc` (gấp), `PillowPhuc` (ba món này đi
+  theo `Anchors/PhucMattress/Pivot`), `NetPhuc`, `TowelBunkA`; giường 2 `MattressViet`, `BlanketViet` (nhàu), `PillowViet`,
+  `NetViet`, dưới gầm `Suitcase`, `FootballPhuc`; giường 4 `MattressDat`, `BlanketDat` (gấp), `PillowDat`, `NetDat`.
+  Bảng đủ: `wave9/survey/room407_bed_props.tsv`.
+- **Mảnh phiếu UI** (`ch4_form.gd`): giường 1 "Phiếu điều tra…" + Giới tính, Tuổi; giường 2 "…người sống sót…" + Ngày sinh,
+  Phòng; giường 4 "…sau thảm họa động đất" + Tòa, Họ và tên. Chữ trên vạt mẫu làm đúng như vậy.
+- **Ba chỗ tìm giả:** `SearchLocker/Ceiling/Vent` là hộp 0,4 × 0,3 × 0,2 ở đúng marker; tín hiệu `searched` chưa ai nối.
+  `FakeLocker` là tủ Phúc (`LockerPhuc`, Tripo, đã mở sẵn).
+- **Cửa 407 (lỗi hình đang có trên main):** cánh người chơi thấy là cánh Tripo `Floor4/Door407/Pivot/RoomDoor` (floor4.gd dời
+  vào, trong không gian Pivot ở (−0,445; −0,01; −0,085), mặt trong ở z −0,105). `door407_proxy.gd` chỉ ẩn `Pivot/Leaf` (cánh kit,
+  lưới đã ẩn sẵn), nên: 30 % vết nứt PS1 (z −0,047) nằm **sau** cánh, không thấy; 60 % cánh Tripo vẫn hiện, **không thấy lỗ**;
+  80 % chỉ có bàn tay hộp xuyên cánh nguyên (`options_door.jpg` hàng trên). Lượt 2 sửa trong `door407_proxy.gd` (phần hình).
+  Phía hành lang, cánh có `Pivot/RulesPaper` (tờ nội quy) ở y 1,39: lỗ đặt dưới nó.
+- **Tay xác:** xác sống chương 3–4 là thân học sinh (`scenes/levels/cctv/student_*.tscn`, `ch1_models/corpse_*`; hộp PS1,
+  áo hoodie xám, da `skin.png`). Tay mẫu theo đó: tay áo hoodie xám rách, da tái lốm đốm.
+- **Chương 1 và 3:** cùng góc (`survey_ch1_vent_ceiling_torch.jpg`, `survey_ch3_…`): chương 1 không có ô thông gió và tấm
+  trần (không có `Campus`), chương 3 có (PS1).
+- **Bệnh viện:** đúng khung `Camera_Wake` qua `_show_hospital()` ở hai kết, độ sáng 1,0 và 1,45 (`survey_sheet_ward.jpg`); sơ đồ
+  `plan_hospital.jpg` (nhìn từ trên với hình nón ngang 110° và mặt cắt dọc với K1/K2). Trong khung K1: trần (nửa trên), tường
+  chân giường, nửa xa hai tường bên, chăn của Trung ở mép dưới, thẻ Trung ở giữa (y −0,60 của khung), chân hai giường bên và
+  thẻ ở hai góc dưới (x ±0,74), một mép cửa sổ. Ngoài khung: máy theo dõi, `MonitorAudio`, tủ, đèn trần, ba cây truyền
+  (ngang vai, sát camera), gối, đầu Trung. `Nurse1/2` ở sàn ngay dưới tâm khung, cách mắt 1,9 m.
+  **Thẻ tên (UI lane D)** quay mặt chữ ra chân giường: từ mắt Trung chỉ thấy **mặt sau trắng trơn**, và ở 1,45 thì cháy trắng.
+- **Chỗ trong code, test, UI, âm thanh đụng hai khu:** `campus.tscn` (instance `ch4_anchors`), `chapter4_director.gd`,
+  `bed_slat.gd`/`.tscn`, `search_spot.gd`, `fake_search_spot.tscn`, `ch4_form.gd`, `ch4_ui_preview.gd`, `ch4_bed_card.gd`,
+  `ui/ch4/bed_card.tscn`, `levels/ch4/review.gd`, `scripts/player/ch4_gameplay_test.gd`; test `test_ch4_environment`,
+  `test_chapter4`, `test_ch4_gameplay`, `test_ch2_4_hand_targets`, `test_hospital_light`, `test_ch4_ui`, `test_ch4_voices_calls`
+  (Nurse1), `test_floor4`, `test_graphics_bindings` (tên `Bed_*` của phòng 407, không phải bệnh viện).
+
+#### 2. Bảng hợp đồng (giữ ở lượt 2)
+| Node | Giữ | Ghi chú |
+|---|---|---|
+| `Room407/Slat1`, `Slat2`, `Slat4` (Marker3D, `slat_visual.gd`) | tên; vị trí (0,65; 1,18; −3), (0,65; 0,41; −3), (7,35; 1,18; −2,7); `bed`, `flipped`, `set_flipped()`; nghe `bed_slat_flipped` | cách `Bunk<n>` < 0,1 m |
+| `Slat<n>/Hinge` | tên; quay quanh z > 1 rad khi lật, ≤ 0,6 s | lệch ∓0,43 m về phía tường; giường 2 đề xuất 62° |
+| `Slat<n>/BedSlat<n>` (director gắn) | Area3D lớp 4, hộp 1,2 × 0,22 × 0,9 tâm marker + (0; 0; 0,45), `HandTarget` (0; −0,0175; 0,7) | hình mới không che tia dùng tay |
+| `Floor4/Room407/BunkA|B/Net_*` | ẩn khi lật, trả khi thoát | mùng Tripo đi theo |
+| `MattressViet` … (Tripo, `furnished_prop`) | chỉ dời lúc lật (N1/N2), trả khi thoát | ba món của Phúc đi theo `PhucMattress/Pivot` |
+| `FakeLocker`, `FakeCeiling`, `FakeVent` | tên, vị trí, Marker3D | `Search*` con của marker (director) |
+| `CeilingPanel`, `VentFrame`, `VentSlat0…5` | chỉ là hình | ẩn, hình mới dưới node con mới |
+| `Room407/Door` (`door407_proxy.gd`) | `room`, `is_open`, `set_open()`, `blocker`, `damage_fraction`, `set_damage_fraction()`, nhóm `room_doors`; bám `Door407`; `Damage.rotation` = `Pivot.rotation` | |
+| `Door/Blocker` | StaticBody3D, hộp 0,88 × 2,1 × 0,08 ở (−0,44; 1,05; 0), lớp 1 khi đóng | ZombieDoor dùng |
+| `Damage/Cracks`, `Hole`, `Hand` | tên; hiện ở 0,3 / 0,6 / 0,8 | |
+| `Door407/Pivot/RoomDoor`, `Pivot/Leaf` (+ va chạm) | ẩn từ 0,6 (cả `RoomDoor`), trả khi thoát | `HandlePivot` (tay nắm), `RulesPaper` không đụng |
+| `HospitalRoom` (`hospital_room.gd`) | `set_companions_visible()` | |
+| `Bed_Trung`, `Bed_Nhat` (−1,65), `Bed_Ngu` (+1,65) và `Card` (0; 0,88; 1,08), `Patient` | tên, kiểu, vị trí | thẻ lane D gắn vào `Card` |
+| `Nurse1`, `Nurse2`, `MonitorAudio`, `Camera_Wake` (0; 0,94; −0,64; 24°, 180°; FOV 78) | tên, kiểu; vị trí/góc chỉ đổi theo Y, K đã chọn | |
+| `Environment`, `CeilingLight` (0,75, tầm 8) + `LightHum`, `West/Mesh` | `test_hospital_light` | |
+
+#### 3. Phương án (hình mẫu trong cảnh thật, cùng camera)
+Phòng 407 (giường 2 làm mẫu):
+- **Vạt** (`options_slat.jpg`): V1 ván ép liền (12 tam giác); V2 giát 9 nan 9 cm trên hai thanh dọc (348; khe 7 cm che mất
+  chữ); **V2b đề xuất**: cùng khung, 9 tấm 14,5 cm khe 1,6 cm (348; đọc được chữ, ra dáng giát giường). Cả ba rộng 0,72 m.
+- **Nệm, chăn, gối** (`options_bedding.jpg`): N0 như nay (ván xuyên qua); N1 dựng nghiêng theo ván sát tường (đi theo
+  `Hinge`); N2 rơi xuống sàn cạnh giường. Không lưới mới, chỉ dời ba món Tripo có sẵn, trả lại khi thoát. **Đề xuất N2 không
+  va chạm** (đúng CH4_DESIGN "ném nệm và đồ đạc xuống", lộ chữ rõ, phòng bị lục tung; nệm dày 5 cm nên đi xuyên khó thấy).
+  N2 có va chạm đổi gameplay: chỉ làm khi chủ dự án chọn (kèm test đi được tới ba giường và ba chỗ tìm).
+- **Chữ** (`options_ink.jpg`, `options_ink_beds.jpg`): mực loang (**đề xuất**, đúng "chữ loang lổ"; đọc được vài chữ ở
+  1 m), bút bi đè, khắc, và thêm một kiểu: mảnh phiếu photocopy dán (giống mảnh phiếu UI nhất). Ba vạt ba texture.
+- **Ô thông gió, trần** (`options_vent_hatch.jpg`): cửa chớp tôn sơn có lưới, muội (144); trần **H1 đề xuất** nắp thăm trần
+  tôn sơn có khung (134) hay H2 tấm thạch cao lỏng (62). **Phản hồi khi tìm xong:** đề xuất có (chớp treo lệch một vít, nắp
+  hé xuống; tủ Phúc đã mở sẵn nên giữ), script hình của lane B nghe `searched`.
+- **Bốn chương** (`options_chapters.jpg`): C1 giữ chỉ chương 3–4; C2 có ở cả bốn chương (đưa vào phòng 407 gốc, integrator
+  duyệt). **Đề xuất C2**: hai thứ này là đồ cố định của phòng, tự dưng xuất hiện ở chương 3 thì lệch; ở chương 1–2 không có
+  lời nhắc tương tác nên không thành chỗ tìm. Thiệt: đụng phòng 407 gốc, thêm khoảng 6 lần vẽ ở chương 1–2.
+- **Cửa bị phá** (`options_door.jpg`): 30 % nứt toác trên cánh thật (lớp vết nứt có alpha); 60 % cánh thật của game cắt lỗ,
+  dằm gỗ, thấy hành lang qua lỗ; 80 % tay xác. Nhìn từ hành lang: tay thò ra không có thân (ảnh chụp đã gỡ bốn xác); lượt 2
+  kiểm lại khi có xác đứng ở cửa.
+Phòng bệnh (dựng thô):
+- **Hai y tá** (`options_ward_nurse.jpg`): **Y1 đề xuất** rèm quây kéo ngang chân giường (z 1,5), bóng mờ hai người in trên rèm
+  (một lớp trong suốt trên nếp rèm, không thêm đèn), tiếng giữ ở `Nurse1/2` sau rèm; Y2 cửa hé ở tường chân giường, tiếng dời
+  ra hành lang; Y3 như nay. Y4 (y tá có hình, Tripo) không làm.
+- **Khung** (`options_ward_frame.jpg`): K1 như nay (phần lớn là trần); **K2 đề xuất** ngước 11°: thấy thân Trung dưới chăn,
+  tay băng, hai giường bên và thẻ, trần còn khoảng 1/3.
+- **Vỏ phòng:** tường hai màu (chân xanh nhạt 1,2 m, trên trắng ngà, chỉ sơn), sàn ceramic, trần tấm 60 × 60, máng đèn tuýp ở
+  `CeilingLight` (hình mẫu). Chưa dựng: ốp gạch men chân tường, đá mài, trần bê tông có quạt.
+- **Giường:** inox, nệm bọc xanh, ga trắng ngà, chăn kẻ xanh nhạt. **Trung: T1 đề xuất** (chăn có dáng người, cẳng tay quấn
+  băng, dây truyền) / T2 chỉ chăn (`options_ward_patient.jpg`). Nhật, Ngư: dáng người dưới chăn, đầu quay vào tường, không mặt.
+  **Kết một mình:** ga phẳng + chăn gấp ở chân giường (**đề xuất**) / nệm cuộn ở đầu giường.
+- Ở 1,45 không vùng nào của phòng cháy trắng (trừ thẻ tên lane D).
+
+#### 4. Số đo
+| Chỗ (cùng camera) | Main | Hình mẫu |
+|---|---|---|
+| Phòng 407 từ cửa, đèn pin (cùng lượt chụp) | 3.022 lần vẽ (chưa lật, cửa 0 %) | 3.097 (giường 2 lật V2b + N1, chớp, H1, cửa 80 %) |
+| Phòng 407 từ cửa, lật cả ba, cửa 80 % (lượt khảo sát) | 3.048 | — |
+| Bệnh viện, khung K1, kết thật / một mình | 27 / 21 lần vẽ, 342 / 248 tam giác | Y1: 35 / 31 lần vẽ, 9.830 / 6.280 tam giác; Y2: 39 |
+| Bộ nhớ hình chương 4 | 1.301 MB | 1.307 MB (+ texture đợt 9) |
+Tam giác, vật liệu từng glb: `wave9/README.md`. Ngưỡng mục 5: `test_t266_pilot` (Slat 374, Door 3.022, Bed_* ≤ 3.212, cả phòng
+bệnh khoảng 13.300). Không đo FPS.
+
+#### 5. Câu hỏi cho chủ dự án
+1. Vạt V1 / V2 / **V2b**? 2. Nệm chăn gối N0 / N1 / **N2 không va chạm** / N2 có va chạm? 3. Chữ **loang** / bút bi / khắc /
+mảnh phiếu? 4. Trần **H1** / H2; phản hồi khi tìm **có** / không? 5. C1 / **C2**? 6. Y1 / Y2 / Y3? 7. K1 / **K2**? 8. T1 / T2;
+kết một mình **ga phẳng** / nệm cuộn? 9. (Cho integrator, lane D) thẻ tên nhìn từ mắt Trung chỉ thấy mặt sau trắng và cháy
+trắng ở 1,45: giữ, hay lane D cho thẻ hai mặt hoặc tối màu hơn?
+
+#### 6. Kiểm
+- `pwsh tools/test.ps1 -Filter t266`: `RESULT: 3 passed, 0 failed`; `-Filter hospital`: 1/0; `room_doors`: 4/0;
+  `hand_targets`: 6/0; `ch4`: 55/0; `chapter4`: 15/0 (mỗi lọc in `RESULT: <n> passed, 0 failed`). Sau đó `git checkout -- game/default_bus_layout.tres`.
+  Không chạy full test và check (card mục 7).
+- Commit: `9558eae` (WIP khảo sát và hình mẫu), commit kế tiếp "T-266: round 1 …" (README, CREDITS, test, Handoff; hash ở `git log`).
+- Chưa kiểm: hình mẫu chưa vào cảnh (lượt 2); cửa nhìn từ hành lang khi có xác; hình mẫu chương 1–2 cho C2.
+- Yêu cầu thay đổi ngoài phạm vi: không (câu 9 là câu hỏi cho lane D, chưa phải yêu cầu).

@@ -2,6 +2,14 @@
 
 [ext_resource type="Script" path="res://scenes/levels/hospital/hospital_room.gd" id="e1"]
 [ext_resource type="Script" path="res://scripts/audio/light_hum.gd" id="e2"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave9/ward_shell.glb" id="w9_ward_shell"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave9/footwall.glb" id="w9_footwall"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave9/curtain_y1.glb" id="w9_curtain_y1"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave9/ward_bed.glb" id="w9_ward_bed"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave9/patient_t1.glb" id="w9_patient_t1"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave9/patient_side.glb" id="w9_patient_side"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave9/bed_empty.glb" id="w9_bed_empty"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave9/iv.glb" id="w9_iv"]
 
 [sub_resource type="BoxShape3D" id="s1"]
 size = Vector3(5, 0.2, 6)
@@ -380,6 +388,7 @@ collision_mask = 0
 shape = SubResource("s1")
 
 [node name="Mesh" type="MeshInstance3D" parent="Floor"]
+visible = false
 mesh = SubResource("s3")
 
 [node name="Ceiling" type="StaticBody3D" parent="."]
@@ -391,6 +400,7 @@ collision_mask = 0
 shape = SubResource("s4")
 
 [node name="Mesh" type="MeshInstance3D" parent="Ceiling"]
+visible = false
 mesh = SubResource("s5")
 
 [node name="West" type="StaticBody3D" parent="."]
@@ -402,6 +412,7 @@ collision_mask = 0
 shape = SubResource("s6")
 
 [node name="Mesh" type="MeshInstance3D" parent="West"]
+visible = false
 mesh = SubResource("s7")
 
 [node name="East" type="StaticBody3D" parent="."]
@@ -413,6 +424,7 @@ collision_mask = 0
 shape = SubResource("s8")
 
 [node name="Mesh" type="MeshInstance3D" parent="East"]
+visible = false
 mesh = SubResource("s9")
 
 [node name="HeadWall" type="StaticBody3D" parent="."]
@@ -424,6 +436,7 @@ collision_mask = 0
 shape = SubResource("s10")
 
 [node name="Mesh" type="MeshInstance3D" parent="HeadWall"]
+visible = false
 mesh = SubResource("s11")
 
 [node name="FootWall" type="StaticBody3D" parent="."]
@@ -435,6 +448,7 @@ collision_mask = 0
 shape = SubResource("s12")
 
 [node name="Mesh" type="MeshInstance3D" parent="FootWall"]
+visible = false
 mesh = SubResource("s13")
 
 [node name="Bed_Trung" type="Node3D" parent="."]
@@ -449,6 +463,7 @@ collision_mask = 0
 shape = SubResource("s14")
 
 [node name="Mesh" type="MeshInstance3D" parent="Bed_Trung/Frame"]
+visible = false
 mesh = SubResource("s16")
 
 [node name="Mattress" type="StaticBody3D" parent="Bed_Trung"]
@@ -460,48 +475,56 @@ collision_mask = 0
 shape = SubResource("s17")
 
 [node name="Mesh" type="MeshInstance3D" parent="Bed_Trung/Mattress"]
+visible = false
 mesh = SubResource("s18")
 
 [node name="Pillow" type="Node3D" parent="Bed_Trung"]
 position = Vector3(0, 0.71, -0.76)
 
 [node name="Mesh" type="MeshInstance3D" parent="Bed_Trung/Pillow"]
+visible = false
 mesh = SubResource("s19")
 
 [node name="End-1.04" type="Node3D" parent="Bed_Trung"]
 position = Vector3(0, 0.64, -1.04)
 
 [node name="Mesh" type="MeshInstance3D" parent="Bed_Trung/End-1.04"]
+visible = false
 mesh = SubResource("s21")
 
 [node name="Leg-1.04-0.48" type="Node3D" parent="Bed_Trung"]
 position = Vector3(-0.48, 0.35, -1.04)
 
 [node name="Mesh" type="MeshInstance3D" parent="Bed_Trung/Leg-1.04-0.48"]
+visible = false
 mesh = SubResource("s22")
 
 [node name="Leg-1.040.48" type="Node3D" parent="Bed_Trung"]
 position = Vector3(0.48, 0.35, -1.04)
 
 [node name="Mesh" type="MeshInstance3D" parent="Bed_Trung/Leg-1.040.48"]
+visible = false
 mesh = SubResource("s23")
 
 [node name="End1.04" type="Node3D" parent="Bed_Trung"]
 position = Vector3(0, 0.64, 1.04)
 
 [node name="Mesh" type="MeshInstance3D" parent="Bed_Trung/End1.04"]
+visible = false
 mesh = SubResource("s24")
 
 [node name="Leg1.04-0.48" type="Node3D" parent="Bed_Trung"]
 position = Vector3(-0.48, 0.35, 1.04)
 
 [node name="Mesh" type="MeshInstance3D" parent="Bed_Trung/Leg1.04-0.48"]
+visible = false
 mesh = SubResource("s25")
 
 [node name="Leg1.040.48" type="Node3D" parent="Bed_Trung"]
 position = Vector3(0.48, 0.35, 1.04)
 
 [node name="Mesh" type="MeshInstance3D" parent="Bed_Trung/Leg1.040.48"]
+visible = false
 mesh = SubResource("s26")
 
 [node name="Patient" type="Node3D" parent="Bed_Trung"]
@@ -511,12 +534,14 @@ mesh = SubResource("s26")
 position = Vector3(0, 0.78, 0.15)
 
 [node name="Mesh" type="MeshInstance3D" parent="Bed_Trung/Patient/Blanket"]
+visible = false
 mesh = SubResource("s27")
 
 [node name="Head" type="Node3D" parent="Bed_Trung/Patient"]
 position = Vector3(0, 0.82, -0.68)
 
 [node name="Mesh" type="MeshInstance3D" parent="Bed_Trung/Patient/Head"]
+visible = false
 mesh = SubResource("s29")
 
 [node name="Card" type="Marker3D" parent="Bed_Trung"]
@@ -531,6 +556,7 @@ collision_mask = 0
 shape = SubResource("s30")
 
 [node name="Mesh" type="MeshInstance3D" parent="Cabinet_Trung"]
+visible = false
 mesh = SubResource("s31")
 
 [node name="IV_Trung" type="Node3D" parent="."]
@@ -540,24 +566,28 @@ position = Vector3(0.57, 0, -0.6)
 position = Vector3(0, 1.05, 0)
 
 [node name="Mesh" type="MeshInstance3D" parent="IV_Trung/Pole"]
+visible = false
 mesh = SubResource("s32")
 
 [node name="Base" type="Node3D" parent="IV_Trung"]
 position = Vector3(0, 0.06, 0)
 
 [node name="Mesh" type="MeshInstance3D" parent="IV_Trung/Base"]
+visible = false
 mesh = SubResource("s33")
 
 [node name="Hook" type="Node3D" parent="IV_Trung"]
 position = Vector3(0, 2.07, 0)
 
 [node name="Mesh" type="MeshInstance3D" parent="IV_Trung/Hook"]
+visible = false
 mesh = SubResource("s34")
 
 [node name="Bag" type="Node3D" parent="IV_Trung"]
 position = Vector3(0.12, 1.84, 0)
 
 [node name="Mesh" type="MeshInstance3D" parent="IV_Trung/Bag"]
+visible = false
 mesh = SubResource("s35")
 
 [node name="Bed_Nhat" type="Node3D" parent="."]
@@ -572,6 +602,7 @@ collision_mask = 0
 shape = SubResource("s36")
 
 [node name="Mesh" type="MeshInstance3D" parent="Bed_Nhat/Frame"]
+visible = false
 mesh = SubResource("s37")
 
 [node name="Mattress" type="StaticBody3D" parent="Bed_Nhat"]
@@ -583,48 +614,56 @@ collision_mask = 0
 shape = SubResource("s38")
 
 [node name="Mesh" type="MeshInstance3D" parent="Bed_Nhat/Mattress"]
+visible = false
 mesh = SubResource("s39")
 
 [node name="Pillow" type="Node3D" parent="Bed_Nhat"]
 position = Vector3(0, 0.71, -0.76)
 
 [node name="Mesh" type="MeshInstance3D" parent="Bed_Nhat/Pillow"]
+visible = false
 mesh = SubResource("s40")
 
 [node name="End-1.04" type="Node3D" parent="Bed_Nhat"]
 position = Vector3(0, 0.64, -1.04)
 
 [node name="Mesh" type="MeshInstance3D" parent="Bed_Nhat/End-1.04"]
+visible = false
 mesh = SubResource("s41")
 
 [node name="Leg-1.04-0.48" type="Node3D" parent="Bed_Nhat"]
 position = Vector3(-0.48, 0.35, -1.04)
 
 [node name="Mesh" type="MeshInstance3D" parent="Bed_Nhat/Leg-1.04-0.48"]
+visible = false
 mesh = SubResource("s42")
 
 [node name="Leg-1.040.48" type="Node3D" parent="Bed_Nhat"]
 position = Vector3(0.48, 0.35, -1.04)
 
 [node name="Mesh" type="MeshInstance3D" parent="Bed_Nhat/Leg-1.040.48"]
+visible = false
 mesh = SubResource("s43")
 
 [node name="End1.04" type="Node3D" parent="Bed_Nhat"]
 position = Vector3(0, 0.64, 1.04)
 
 [node name="Mesh" type="MeshInstance3D" parent="Bed_Nhat/End1.04"]
+visible = false
 mesh = SubResource("s44")
 
 [node name="Leg1.04-0.48" type="Node3D" parent="Bed_Nhat"]
 position = Vector3(-0.48, 0.35, 1.04)
 
 [node name="Mesh" type="MeshInstance3D" parent="Bed_Nhat/Leg1.04-0.48"]
+visible = false
 mesh = SubResource("s45")
 
 [node name="Leg1.040.48" type="Node3D" parent="Bed_Nhat"]
 position = Vector3(0.48, 0.35, 1.04)
 
 [node name="Mesh" type="MeshInstance3D" parent="Bed_Nhat/Leg1.040.48"]
+visible = false
 mesh = SubResource("s46")
 
 [node name="Patient" type="Node3D" parent="Bed_Nhat"]
@@ -634,12 +673,14 @@ mesh = SubResource("s46")
 position = Vector3(0, 0.78, 0.15)
 
 [node name="Mesh" type="MeshInstance3D" parent="Bed_Nhat/Patient/Blanket"]
+visible = false
 mesh = SubResource("s47")
 
 [node name="Head" type="Node3D" parent="Bed_Nhat/Patient"]
 position = Vector3(0, 0.82, -0.68)
 
 [node name="Mesh" type="MeshInstance3D" parent="Bed_Nhat/Patient/Head"]
+visible = false
 mesh = SubResource("s48")
 
 [node name="Card" type="Marker3D" parent="Bed_Nhat"]
@@ -654,6 +695,7 @@ collision_mask = 0
 shape = SubResource("s49")
 
 [node name="Mesh" type="MeshInstance3D" parent="Cabinet_Nhat"]
+visible = false
 mesh = SubResource("s50")
 
 [node name="IV_Nhat" type="Node3D" parent="."]
@@ -663,24 +705,28 @@ position = Vector3(-1.08, 0, -0.6)
 position = Vector3(0, 1.05, 0)
 
 [node name="Mesh" type="MeshInstance3D" parent="IV_Nhat/Pole"]
+visible = false
 mesh = SubResource("s51")
 
 [node name="Base" type="Node3D" parent="IV_Nhat"]
 position = Vector3(0, 0.06, 0)
 
 [node name="Mesh" type="MeshInstance3D" parent="IV_Nhat/Base"]
+visible = false
 mesh = SubResource("s52")
 
 [node name="Hook" type="Node3D" parent="IV_Nhat"]
 position = Vector3(0, 2.07, 0)
 
 [node name="Mesh" type="MeshInstance3D" parent="IV_Nhat/Hook"]
+visible = false
 mesh = SubResource("s53")
 
 [node name="Bag" type="Node3D" parent="IV_Nhat"]
 position = Vector3(0.12, 1.84, 0)
 
 [node name="Mesh" type="MeshInstance3D" parent="IV_Nhat/Bag"]
+visible = false
 mesh = SubResource("s54")
 
 [node name="Bed_Ngu" type="Node3D" parent="."]
@@ -695,6 +741,7 @@ collision_mask = 0
 shape = SubResource("s55")
 
 [node name="Mesh" type="MeshInstance3D" parent="Bed_Ngu/Frame"]
+visible = false
 mesh = SubResource("s56")
 
 [node name="Mattress" type="StaticBody3D" parent="Bed_Ngu"]
@@ -706,48 +753,56 @@ collision_mask = 0
 shape = SubResource("s57")
 
 [node name="Mesh" type="MeshInstance3D" parent="Bed_Ngu/Mattress"]
+visible = false
 mesh = SubResource("s58")
 
 [node name="Pillow" type="Node3D" parent="Bed_Ngu"]
 position = Vector3(0, 0.71, -0.76)
 
 [node name="Mesh" type="MeshInstance3D" parent="Bed_Ngu/Pillow"]
+visible = false
 mesh = SubResource("s59")
 
 [node name="End-1.04" type="Node3D" parent="Bed_Ngu"]
 position = Vector3(0, 0.64, -1.04)
 
 [node name="Mesh" type="MeshInstance3D" parent="Bed_Ngu/End-1.04"]
+visible = false
 mesh = SubResource("s60")
 
 [node name="Leg-1.04-0.48" type="Node3D" parent="Bed_Ngu"]
 position = Vector3(-0.48, 0.35, -1.04)
 
 [node name="Mesh" type="MeshInstance3D" parent="Bed_Ngu/Leg-1.04-0.48"]
+visible = false
 mesh = SubResource("s61")
 
 [node name="Leg-1.040.48" type="Node3D" parent="Bed_Ngu"]
 position = Vector3(0.48, 0.35, -1.04)
 
 [node name="Mesh" type="MeshInstance3D" parent="Bed_Ngu/Leg-1.040.48"]
+visible = false
 mesh = SubResource("s62")
 
 [node name="End1.04" type="Node3D" parent="Bed_Ngu"]
 position = Vector3(0, 0.64, 1.04)
 
 [node name="Mesh" type="MeshInstance3D" parent="Bed_Ngu/End1.04"]
+visible = false
 mesh = SubResource("s63")
 
 [node name="Leg1.04-0.48" type="Node3D" parent="Bed_Ngu"]
 position = Vector3(-0.48, 0.35, 1.04)
 
 [node name="Mesh" type="MeshInstance3D" parent="Bed_Ngu/Leg1.04-0.48"]
+visible = false
 mesh = SubResource("s64")
 
 [node name="Leg1.040.48" type="Node3D" parent="Bed_Ngu"]
 position = Vector3(0.48, 0.35, 1.04)
 
 [node name="Mesh" type="MeshInstance3D" parent="Bed_Ngu/Leg1.040.48"]
+visible = false
 mesh = SubResource("s65")
 
 [node name="Patient" type="Node3D" parent="Bed_Ngu"]
@@ -757,12 +812,14 @@ mesh = SubResource("s65")
 position = Vector3(0, 0.78, 0.15)
 
 [node name="Mesh" type="MeshInstance3D" parent="Bed_Ngu/Patient/Blanket"]
+visible = false
 mesh = SubResource("s66")
 
 [node name="Head" type="Node3D" parent="Bed_Ngu/Patient"]
 position = Vector3(0, 0.82, -0.68)
 
 [node name="Mesh" type="MeshInstance3D" parent="Bed_Ngu/Patient/Head"]
+visible = false
 mesh = SubResource("s67")
 
 [node name="Card" type="Marker3D" parent="Bed_Ngu"]
@@ -777,6 +834,7 @@ collision_mask = 0
 shape = SubResource("s68")
 
 [node name="Mesh" type="MeshInstance3D" parent="Cabinet_Ngu"]
+visible = false
 mesh = SubResource("s69")
 
 [node name="IV_Ngu" type="Node3D" parent="."]
@@ -786,24 +844,28 @@ position = Vector3(2.22, 0, -0.6)
 position = Vector3(0, 1.05, 0)
 
 [node name="Mesh" type="MeshInstance3D" parent="IV_Ngu/Pole"]
+visible = false
 mesh = SubResource("s70")
 
 [node name="Base" type="Node3D" parent="IV_Ngu"]
 position = Vector3(0, 0.06, 0)
 
 [node name="Mesh" type="MeshInstance3D" parent="IV_Ngu/Base"]
+visible = false
 mesh = SubResource("s71")
 
 [node name="Hook" type="Node3D" parent="IV_Ngu"]
 position = Vector3(0, 2.07, 0)
 
 [node name="Mesh" type="MeshInstance3D" parent="IV_Ngu/Hook"]
+visible = false
 mesh = SubResource("s72")
 
 [node name="Bag" type="Node3D" parent="IV_Ngu"]
 position = Vector3(0.12, 1.84, 0)
 
 [node name="Mesh" type="MeshInstance3D" parent="IV_Ngu/Bag"]
+visible = false
 mesh = SubResource("s73")
 
 [node name="Monitor" type="StaticBody3D" parent="."]
@@ -815,72 +877,84 @@ collision_mask = 0
 shape = SubResource("s74")
 
 [node name="Mesh" type="MeshInstance3D" parent="Monitor"]
+visible = false
 mesh = SubResource("s75")
 
 [node name="Screen" type="Node3D" parent="."]
 position = Vector3(0, 1.21, -1.902)
 
 [node name="Mesh" type="MeshInstance3D" parent="Screen"]
+visible = false
 mesh = SubResource("s77")
 
 [node name="Trace0" type="Node3D" parent="."]
 position = Vector3(-0.25, 1.2, -1.891)
 
 [node name="Mesh" type="MeshInstance3D" parent="Trace0"]
+visible = false
 mesh = SubResource("s78")
 
 [node name="Trace1" type="Node3D" parent="."]
 position = Vector3(-0.195, 1.2, -1.891)
 
 [node name="Mesh" type="MeshInstance3D" parent="Trace1"]
+visible = false
 mesh = SubResource("s79")
 
 [node name="Trace2" type="Node3D" parent="."]
 position = Vector3(-0.14, 1.2, -1.891)
 
 [node name="Mesh" type="MeshInstance3D" parent="Trace2"]
+visible = false
 mesh = SubResource("s80")
 
 [node name="Trace3" type="Node3D" parent="."]
 position = Vector3(-0.085, 1.2, -1.891)
 
 [node name="Mesh" type="MeshInstance3D" parent="Trace3"]
+visible = false
 mesh = SubResource("s81")
 
 [node name="Trace4" type="Node3D" parent="."]
 position = Vector3(-0.03, 1.26, -1.891)
 
 [node name="Mesh" type="MeshInstance3D" parent="Trace4"]
+visible = false
 mesh = SubResource("s82")
 
 [node name="Trace5" type="Node3D" parent="."]
 position = Vector3(0.025, 1.2, -1.891)
 
 [node name="Mesh" type="MeshInstance3D" parent="Trace5"]
+visible = false
 mesh = SubResource("s83")
 
 [node name="Trace6" type="Node3D" parent="."]
 position = Vector3(0.08, 1.26, -1.891)
 
 [node name="Mesh" type="MeshInstance3D" parent="Trace6"]
+visible = false
 mesh = SubResource("s84")
 
 [node name="Trace7" type="Node3D" parent="."]
 position = Vector3(0.135, 1.2, -1.891)
 
 [node name="Mesh" type="MeshInstance3D" parent="Trace7"]
+visible = false
 mesh = SubResource("s85")
 
 [node name="Trace8" type="Node3D" parent="."]
 position = Vector3(0.19, 1.2, -1.891)
 
 [node name="Mesh" type="MeshInstance3D" parent="Trace8"]
+visible = false
 mesh = SubResource("s86")
 
 [node name="Trace9" type="Node3D" parent="."]
 position = Vector3(0.245, 1.2, -1.891)
 
 [node name="Mesh" type="MeshInstance3D" parent="Trace9"]
+visible = false
 mesh = SubResource("s87")
 
 [node name="MonitorAudio" type="Marker3D" parent="."]
@@ -890,12 +964,14 @@ position = Vector3(0, 1.2, -1.85)
 position = Vector3(2.485, 1.9, -0.7)
 
 [node name="Mesh" type="MeshInstance3D" parent="Window"]
+visible = false
 mesh = SubResource("s88")
 
 [node name="WindowCross" type="Node3D" parent="."]
 position = Vector3(2.46, 1.9, -0.7)
 
 [node name="Mesh" type="MeshInstance3D" parent="WindowCross"]
+visible = false
 mesh = SubResource("s89")
 
 [node name="Nurse1" type="Marker3D" parent="."]
@@ -906,7 +982,8 @@ position = Vector3(0.72, 0, 1.9)
 
 [node name="Camera_Wake" type="Camera3D" parent="."]
 position = Vector3(0,0.94,-0.64)
-rotation_degrees = Vector3(24,180,0)
+; T-266 (D-187, K2): the eye looks up 11 degrees (was 24): the bed, the two beside it and the cards in frame
+rotation_degrees = Vector3(11,180,0)
 fov = 78
 current = true
 
@@ -924,6 +1001,7 @@ shadow_enabled = false
 position = Vector3(0, 0.08, 0)
 
 [node name="Mesh" type="MeshInstance3D" parent="CeilingLight/Fixture"]
+visible = false
 mesh = SubResource("s92")
 
 [node name="LightHum" type="AudioStreamPlayer3D" parent="CeilingLight" node_paths=PackedStringArray("light")]
@@ -935,3 +1013,36 @@ max_distance = 6.0
 volume_db = -10.0
 pitch_variation = 0.0
 volume_variation_db = 0.0
+
+; T-266 (D-187 points 7-10): the wave-9 ward. Every PS1 mesh above is hidden (nodes, colliders, markers kept).
+[node name="Real" type="Node3D" parent="."]
+
+[node name="Shell" parent="Real" instance=ExtResource("w9_ward_shell")]
+
+[node name="FootWall" parent="Real" instance=ExtResource("w9_footwall")]
+
+[node name="Curtain" parent="Real" instance=ExtResource("w9_curtain_y1")]
+
+[node name="Real" parent="Bed_Trung" instance=ExtResource("w9_ward_bed")]
+
+[node name="Real" parent="Bed_Trung/Patient" instance=ExtResource("w9_patient_t1")]
+
+[node name="Real" parent="IV_Trung" instance=ExtResource("w9_iv")]
+
+[node name="Real" parent="Bed_Nhat" instance=ExtResource("w9_ward_bed")]
+
+[node name="Real" parent="Bed_Nhat/Patient" instance=ExtResource("w9_patient_side")]
+
+[node name="Empty" parent="Bed_Nhat" instance=ExtResource("w9_bed_empty")]
+visible = false
+
+[node name="Real" parent="IV_Nhat" instance=ExtResource("w9_iv")]
+
+[node name="Real" parent="Bed_Ngu" instance=ExtResource("w9_ward_bed")]
+
+[node name="Real" parent="Bed_Ngu/Patient" instance=ExtResource("w9_patient_side")]
+
+[node name="Empty" parent="Bed_Ngu" instance=ExtResource("w9_bed_empty")]
+visible = false
+
+[node name="Real" parent="IV_Ngu" instance=ExtResource("w9_iv")]
