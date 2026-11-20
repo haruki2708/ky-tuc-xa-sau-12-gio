@@ -95,8 +95,8 @@
 2. **Hình mẫu:** một phòng cùng hành lang của nó, chụp ở khung feed và ở 1080p. Đề xuất phòng 306, vì dấu hiệu điện thoại sáng ở đó khó giữ nhất.
 3. **Phương án.** Mỗi phương án ghi số tam giác, số vật liệu, số lần vẽ của feed; đề xuất một:
    - **Đồ trong phòng:**
-     - (D1) bộ nhẹ của đợt 2 (giường tầng khung thép, tủ thép), cộng đồ vải và đồ riêng của từng phòng lấy từ đồ 407;
-     - (D2) đồ 407 đầy đủ như T-255: nặng hơn, giống 407 hơn.
+     - (D1) bộ nhẹ của đợt 2 (giường tầng khung thép, tủ thép), cộng đồ vải và đồ riêng của từng phòng lấy từ đồ 407. Ít tam giác hơn, nhưng thêm texture vào chương 1–2 (mục 5);
+     - (D2) đồ 407 đầy đủ như T-255: nhiều tam giác hơn, giống 407 hơn, gần như không thêm bộ nhớ hình ở chương nào.
    - **Tường sau:**
      - (W1) tường trơn như nay;
      - (W2) cửa ban công và ô cửa sổ đóng như phòng thật. Chỉ là hình; va chạm vẫn là tường cũ.
@@ -156,7 +156,10 @@
 - Dựng bằng script Blender (Blender 5.2.2 ở `D:\Tools\Blender\5.2.2`). Nguồn CC0 ghi URL, tác giả, giấy phép trong CREDITS.
 - **Không tạo mẫu Tripo mới, không extension Blender, không ảnh AI.** Được dùng lại đồ Tripo có sẵn của phòng 407, như T-255 đã làm.
 - **Bộ nhớ hình:** trường quay được nạp ở cả bốn chương (mục 0a).
-  - Dùng lại mesh và texture đang có (đợt 2, đồ 407) trước. Dùng lại đúng file thì không tốn thêm bộ nhớ hình.
+  - Dùng lại mesh và texture đang có trước. Nhưng dùng lại đúng file **chỉ không tốn thêm bộ nhớ hình ở những chương đã nạp sẵn file đó**:
+    - đồ 407 có sẵn ở cả bốn chương, vì phòng 407 có mặt ở mọi chương;
+    - bộ nhẹ đợt 2 (`wave2/floor{1,2,3}_rooms.glb`) chỉ nằm trong `building_b.tscn` của khuôn viên, tức chỉ chương 3–4 nạp. Dùng nó ở trường quay sẽ thêm texture vào chương 1–2.
+  - Phương án D1/D2 phải ghi rõ phần bộ nhớ hình này.
   - **Không thêm texture 2K mới.** Texture mới tối đa 1K, nén VRAM trong `.import` (`compress/mode=2`; normal thêm `compress/normal_map=1`), có test kiểm.
   - Ghi bộ nhớ hình **chương 1 và chương 3** trước/sau.
 - **Ngân sách** (PLAN mục 6): **≤ 0,40 ms cho feed đang xem**; A30 ≤ 0,10 ms. Vì không đo FPS, dùng số tam giác và số lần vẽ để ước.
