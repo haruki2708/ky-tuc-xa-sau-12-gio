@@ -157,7 +157,7 @@ func _room(scene: Node3D) -> void:
 			await _shoot("after_407_bunkA_flipped_214_torch.jpg", R2_VIEWS.bunkA_wide, true)
 			await _shoot("after_407_floor_flipped_214_torch.jpg", R2_VIEWS.floor_top, true)
 			await _unflip(anchors)
-			for step: float in [0.2, 0.4, 0.65]:
+			for step: float in [0.3, 0.45, 0.6, 0.8]:
 				for bed in [1, 2]:
 					await _pose_mid(anchors, room, bed, step)
 				await _pose_mid(anchors, room, 4, step)
@@ -185,7 +185,27 @@ func _room(scene: Node3D) -> void:
 		await _shoot("%s_407_room_flipped_door80_torch.jpg" % look, VIEWS.room_door, true)
 		await _unflip(anchors)
 		proxy.call("set_damage_fraction", 0.0)
+	# Draws, before and after back to back (the totals drift over a run as shadows and streaming settle): from the door,
+	# not flipped, and all three lifted with the door at 80 %.
+	for rep in range(2):
+		for look: String in ["before", "after"]:
+			_look_as(anchors, room, look == "before")
+			await _shoot("draws_%s_407_room_%d.jpg" % [look, rep], VIEWS.room_door, true)
+		for look: String in ["before", "after"]:
+			var before := look == "before"
+			_look_as(anchors, room, before)
+			await _flip(anchors, [1, 2, 4], before)
+			proxy_set(anchors, 0.8, before, room_door)
+			await _shoot("draws_%s_407_flipped_door80_%d.jpg" % [look, rep], VIEWS.room_door, true)
+			proxy_set(anchors, 0.0, before, room_door)
+			await _unflip(anchors)
 	_look_as(anchors, room, false)
+
+
+func proxy_set(anchors: Node3D, level: float, before: bool, room_door: Node3D) -> void:
+	anchors.get_node("Door").call("set_damage_fraction", level)
+	if before:
+		room_door.visible = true
 
 
 ## A fresh room407 stage, its four corpses left to walk to the door; frozen there, then the door from the corridor.
