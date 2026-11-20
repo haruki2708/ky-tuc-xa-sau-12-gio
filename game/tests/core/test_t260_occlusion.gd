@@ -92,6 +92,43 @@ func test_canteen_occluders_leave_its_windows_and_doorways_open() -> void:
 	root.free()
 
 
+## The library's outer walls, floor slabs and roof (after T-265, D-185/D-186). Its real doors and frames are not all
+## named as openings, so the library's openings are spelled out here (campus metres, from library.tscn's collision
+## boxes and the wave 8 door frames, x 63.92..66.08 up to y -7.42): nothing may cover the front or back doorway, nor the
+## stair well (x 79..85 to the east wall's inner face at 84.89, z 199..209) where floors 2 and 3 are open. The front and
+## back walls' occluders sit in the walls' outer half, in front of the opaque panes on the middle plane (z 195, 225),
+## clear of the shells' window dressing behind them.
+const LIBRARY_OPENINGS := {
+	"front doorway": AABB(Vector3(63.92, -9.9, 194.8), Vector3(2.16, 2.48, 0.4)),
+	"back doorway": AABB(Vector3(63.92, -9.9, 224.8), Vector3(2.16, 2.48, 0.4)),
+	"stair well": AABB(Vector3(79.0, -6.9, 199.0), Vector3(5.89, 3.7, 10.0)),
+}
+const LIBRARY_OCCLUDERS: Array[String] = ["Library_West0", "Library_West1", "Library_West2", "Library_East0",
+	"Library_East1", "Library_East2", "Library_FrontW", "Library_FrontE", "Library_Front1", "Library_Front2",
+	"Library_BackW", "Library_BackE", "Library_Back1", "Library_Back2", "Library_Floor1_Main", "Library_Floor1_South",
+	"Library_Floor1_North", "Library_Floor2_Main", "Library_Floor2_South", "Library_Floor2_North", "Library_Roof"]
+
+
+func test_library_occluders_leave_its_doorways_and_stair_well_open() -> void:
+	var root := (load(CAMPUS) as PackedScene).instantiate() as Node3D
+	var found: Array[String] = []
+	for node: OccluderInstance3D in root.find_children("Library_*", "OccluderInstance3D", true, false):
+		found.append(String(node.name))
+		var size := (node.occluder as BoxOccluder3D).size
+		var box: AABB = node.transform * AABB(-size / 2.0, size)
+		for opening: String in LIBRARY_OPENINGS:
+			assert_false(box.intersects(LIBRARY_OPENINGS[opening]), "%s %s clear of the library's %s;" % [node.name, box, opening])
+		if String(node.name).begins_with("Library_Front"):
+			assert_true(box.end.z <= 195.0, "%s %s in front of the panes (z 195);" % [node.name, box])
+		elif String(node.name).begins_with("Library_Back"):
+			assert_true(box.position.z >= 225.0, "%s %s in front of the panes (z 225);" % [node.name, box])
+	found.sort()
+	var wanted := LIBRARY_OCCLUDERS.duplicate()
+	wanted.sort()
+	assert_eq(found, wanted, "the library's occluders;")
+	root.free()
+
+
 func _check_chapter(chapter: int) -> void:
 	Chapter1Director.resume_checkpoint = &""
 	scene = (load("res://scenes/main/chapter%d.tscn" % chapter) as PackedScene).instantiate() as Node3D

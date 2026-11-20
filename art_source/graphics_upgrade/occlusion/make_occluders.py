@@ -57,6 +57,20 @@ CAMPUS = [
 	(r"Campus/Canteen/(StoreBack199|StoreBack207)/Collision", "plane:0.4"),
 	(r"Campus/Canteen/WestExit/(SouthWall|NorthWall)/Collision", "plane"),
 ]
+# The library (after T-265, D-185/D-186), written after CAMPUS so the boxes above keep their ids. Lane B's "Mặt đặc kín":
+# the four outer walls have no real hole but the front and back doorways (x 64..66, y -9.9..-7.5), every window is dark
+# glass (W7GlassDark, opaque) in the wall's thickness, the slabs are open only over the stair well (x 79..85,
+# z 199..209), which their three pieces per floor leave out, and the roof is closed. The front and back walls' occluders
+# sit in the walls' outer half ("at=": in front of the panes on the middle plane), clear of the shells' window dressing
+# ("Windows", from the panes inward). Not the ground slabs (nothing under them), nor the lintels over the doorways
+# (2 cm from the door frames).
+LIBRARY = [
+	(r"Campus/Library/(West|East)[012]/Collision", "plane"),
+	(r"Campus/Library/(FrontW|FrontE|Front1|Front2)/Collision", "plane|at=194.97"),
+	(r"Campus/Library/(BackW|BackE|Back1|Back2)/Collision", "plane|at=225.03"),
+	(r"Campus/Library/Floor[12]_(Main|South|North)/Collision", "plane"),
+	(r"Campus/Library/Roof/Collision", "plane"),
+]
 
 
 def pick(survey, rules):
@@ -89,12 +103,17 @@ def occluder(box, kind):
 			bottom = origin[2] - out[2] / 2
 			origin[2], out[2] = (top + bottom) / 2, top - bottom
 		return origin, out
-	# "plane" or "plane:<end inset m>" (a doorway's frame reaching over the wall beside it).
+	# "plane" or "plane:<end inset m>" (a doorway's frame reaching over the wall beside it); "...|at=<world>" puts the
+	# plane there across the box's thickness instead of on its middle.
 	inset = float(kind.split(":")[1]) if ":" in kind else INSET
 	thin = size.index(min(size))
 	out = [s - 2 * inset for s in size]
 	out[thin] = THIN
-	return box["origin"], out
+	origin = list(box["origin"])
+	if clip.startswith("at="):
+		origin[thin] = float(clip.split("=")[1])
+		assert abs(origin[thin] - box["origin"][thin]) + THIN / 2 <= size[thin] / 2, box["path"]
+	return origin, out
 
 
 def node_name(path):
@@ -126,7 +145,7 @@ def main():
 	ch3 = json.loads((SURVEY / "t260_survey_ch3.json").read_text(encoding="utf-8"))
 	OUT.mkdir(parents=True, exist_ok=True)
 	write("OccludersFloor4", pick(ch1, FLOOR4), OUT / "occluders_floor4.tscn")
-	write("OccludersCampus", pick(ch3, CAMPUS), OUT / "occluders_campus.tscn")
+	write("OccludersCampus", pick(ch3, CAMPUS) + pick(ch3, LIBRARY), OUT / "occluders_campus.tscn")
 
 
 if __name__ == "__main__":
