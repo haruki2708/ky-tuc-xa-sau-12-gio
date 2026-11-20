@@ -470,16 +470,18 @@ Tầng 2 đi về bắc ở x 80, 81,5 và 83 từ z 197 vẫn lên được t�
 - Integrator đối chiếu bốn đoạn với va chạm PS1 (tay vịn nhịp `RailCollision*_39` x 83,95…84,05, mặt trong tường đông x 84,89, sàn y −6,6 và −3,3): mỗi đoạn bịt đúng một đầu khe đông, hoặc mép nam tầng 3. Lối vào nhịp hai ở tầng 2 (x 79…84 tại z 199) và lối ra hai nhịp (z 209) để hở. Đoạn gần navigation nhất cách 0,42 m.
 - Phép thử rơi viết trước: cả sáu hỏng trên bản lượt 2 (bảng ở Handoff lượt 3) và đạt trên lượt 3. Ba đường đi lên tầng 3 qua nhịp hai (x 80; 81,5; 83) vẫn qua. Ảnh `previews/wave8/r3_well.jpg`: lan can cùng kiểu lan can mép tây.
 - **Sửa test của integrator** (yêu cầu thay đổi của lane B): `CAMPUS_COLLIDERS_MD5` trong `test_t262_gate`, `test_t263_canteen`, `test_t264_buildings`, `test_t264_rest` đổi từ `5f21b42e…` (957 va chạm) thành `1e0dd942…`, đúng số lane B đo. Con số mới là 1.072 va chạm: 957 của main cộng 115 khối `Library/Real/Added` của T-265. Phần còn lại của khuôn viên vẫn được giữ như main, vì `test_t265_library` vẫn băm mọi va chạm ngoài `Library/Real/Added` ra `5f21b42e…` và kiểm 115 khối kia từng khối một.
-- **Khối che thư viện (mục 13, `67b5eb2`):** 21 hộp core vào `occluders_campus.tscn` (119 → 140), sinh bằng `make_occluders.py` theo luật `LIBRARY`. Luật này chạy sau `CAMPUS` nên id các hộp cũ giữ nguyên; `occluders_floor4.tscn` không đổi.
-  - Hộp ở: tường tây, đông cả ba tầng; tường trước, sau (bốn khúc mỗi mặt, quanh lỗ cửa); sàn tầng 2 và tầng 3 (ba mảnh mỗi tầng, chừa ô cầu thang); mái.
-  - Tường trước và sau đặt ở nửa ngoài tường (z 194,97 và 225,03): trước lớp kính tối trên mặt giữa, ngoài lớp `Windows` của vỏ.
-  - Không đặt ở sàn tầng 1 (dưới không có gì) và lanh tô trên cửa (chỉ cách khung cửa 2 cm).
-  - `test_t260_occlusion` thêm bài riêng cho thư viện: đủ 21 hộp; không hộp nào chạm lỗ cửa trước, sau hay ô cầu thang; hộp tường trước, sau nằm ngoài mặt kính.
-  - Chi tiết ở [báo cáo T-260](../../tools/reports/T-260-occlusion-culling.md), mục bổ sung 20/11.
-  - **Chưa chụp ảnh bật/tắt** occlusion cho khối che này. Chưa đo lại số lần vẽ ở góc tầng 2 nhìn về nam (5.294 lần vẽ trong `r3_well.jpg`), cũng chưa đo lại ba góc toàn cảnh đợt 7 (review lượt 2: góc vườn primitive +0,5 %; Handoff lượt 2: "xem lại ba góc toàn cảnh đợt 7"). Cả hai làm trong cùng lần chụp, chờ chủ dự án cho.
+- **Khối che thư viện (mục 13):** sinh bằng `make_occluders.py` theo luật `LIBRARY`. Luật này chạy sau `CAMPUS` nên id các hộp cũ giữ nguyên; `occluders_floor4.tscn` không đổi.
+  - Lúc merge (`67b5eb2`): 21 hộp (`occluders_campus.tscn` 119 → 140). Hộp ở tường tây, đông cả ba tầng; tường trước, sau (bốn khúc mỗi mặt, quanh lỗ cửa); sàn tầng 2 và tầng 3 (ba mảnh mỗi tầng, chừa ô cầu thang); mái.
+  - Tối 20/11, sau lần chụp bật/tắt: thêm 4 hộp ở sàn tầng 1 (ba mảnh, và `StairBase` dưới ô cầu thang), thành 25 hộp (140 → 144). Thiếu chúng thì tia nhìn xuống sàn tầng 1 không gặp hộp nào, nên khuôn viên sau tường vẫn được vẽ (quầy tầng 1: 467 → 134 lần vẽ).
+  - Tường trước và sau đặt ở nửa ngoài tường (z 194,97 và 225,03): trước lớp kính tối trên mặt giữa, ngoài lớp `Windows` của vỏ. Không đặt ở lanh tô trên cửa (chỉ cách khung cửa 2 cm).
+  - `test_t260_occlusion` thêm bài riêng cho thư viện: đủ 25 hộp; không hộp nào chạm lỗ cửa trước, sau hay ô cầu thang; hộp tường trước, sau nằm ngoài mặt kính. Lọc `t260` với 25 hộp: **`RESULT: 6 passed, 0 failed`**.
+  - **Chụp bật/tắt** (chủ dự án nói "chụp luôn", 20/11 tối): 25 góc lane B dùng ở lượt 2–3 (cả cửa sau mở) ở chương 4 và 5 góc ở chương 3, mỗi góc trong nhà chụp không và có đèn pin. **52 lần chụp, không điểm ảnh nào khác.**
+  - Số lần vẽ ở các góc trong nhà nhìn ra khuôn viên giảm từ khoảng 3.800–4.600 xuống 130–380. Ba góc vẫn cao: nhìn ra sân qua kính cửa chính (4.118) và ngoài sân dọc tường tây (4.145), vì phần khuôn viên đó thấy thật; đầu nhịp một nhìn xuống khe đông (3.181, chưa rõ vì sao).
+  - Ba góc toàn cảnh đợt 7 không đổi khi thêm khối che (1.361; 276; 4.652). Góc vườn vẫn hơn trước đợt 8 0,5 % primitive, do tường ngoài và cửa chính thư viện thấy từ 190 m, như review lượt 2 đã chấp nhận.
+  - Chi tiết, bảng số ở [báo cáo T-260](../../tools/reports/T-260-occlusion-culling.md), mục bổ sung 20/11.
 - **Kiểm** (20/11, có khoá Godot; chủ dự án đã tắt RAV và Chrome, dù dịch vụ `rsEngineSvc` của RAV vẫn giữ khoảng 3,8 GB và máy còn 4,1 GB trống):
   - Lọc `t26` trước, có khối che: **`RESULT: 72 passed, 0 failed`**.
   - Full test: **`RESULT: 1072 passed, 0 failed`** (15:28–16:09).
   - Check: **`RESULT: check 0 error(s)`** (16:26).
   - Lượt này phủ cả đợt 7 lượt 3 (lượt full test của integrator ngày 19/11 bị dừng).
-- **Bản chơi:** package PASS 20/11 17:35, zip `build/dist/KyTucXa-0.0.1-d893472a-win64.zip`, có đợt 1–8. Lần đóng gói đầu (16:32) bị Claude Code dừng vì thiếu RAM; chủ dự án bảo chạy lại.
+- **Bản chơi:** package PASS 20/11 17:35, zip `build/dist/KyTucXa-0.0.1-d893472a-win64.zip`, có đợt 1–8. Lần đóng gói đầu (16:32) bị Claude Code dừng vì thiếu RAM; chủ dự án bảo chạy lại. Bản này có 21 hộp che thư viện; 4 hộp sàn tầng 1 vào bản build sau.

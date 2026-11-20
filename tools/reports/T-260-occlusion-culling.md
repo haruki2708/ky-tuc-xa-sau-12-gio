@@ -112,20 +112,52 @@ Kiểm bằng cảnh thử `build/integrator/canteen_occ.gd` (chương thật, d
 - Không đo FPS (D-179).
 
 ## Bổ sung 20/11/2026: khối che thư viện (sau T-265, D-185/D-186)
-Integrator thêm **21 hộp che** cho thư viện vào `occluders_campus.tscn` (nay 140 hộp), sinh bằng `make_occluders.py`. Luật `LIBRARY` chạy sau `CAMPUS`, nên id các hộp cũ giữ nguyên; `occluders_floor4.tscn` không đổi (53 hộp). Chỗ đặt theo mục "Mặt đặc kín" lane B ghi ở Handoff T-265: bốn tường ngoài chỉ có hai lỗ thật là cửa trước và cửa sau (x 64…66, y −9,9…−7,5); mọi cửa sổ là kính tối `W7GlassDark` (đục) nằm trong bề dày tường; sàn chỉ hở ở ô cầu thang; mái kín.
+Integrator thêm **25 hộp che** cho thư viện vào `occluders_campus.tscn` (nay 144 hộp), sinh bằng `make_occluders.py`: 21 hộp lúc merge T-265, 4 hộp sàn tầng 1 thêm tối cùng ngày sau lần chụp bật/tắt dưới đây. Luật `LIBRARY` chạy sau `CAMPUS`, nên id các hộp cũ giữ nguyên; `occluders_floor4.tscn` không đổi (53 hộp). Chỗ đặt theo mục "Mặt đặc kín" lane B ghi ở Handoff T-265: bốn tường ngoài chỉ có hai lỗ thật là cửa trước và cửa sau (x 64…66, y −9,9…−7,5); mọi cửa sổ là kính tối `W7GlassDark` (đục) nằm trong bề dày tường; sàn chỉ hở ở ô cầu thang; mái kín.
 
 | Mặt | Hộp | Đặt ở |
 |---|---|---|
 | Tường tây, đông (tầng 1–3) | `Library_West0…2`, `Library_East0…2` | mặt giữa tường |
 | Tường trước (bốn khúc quanh lỗ cửa chính) | `Library_FrontW`, `FrontE`, `Front1`, `Front2` | z 194,97 (nửa ngoài tường) |
 | Tường sau (bốn khúc quanh lỗ cửa sau) | `Library_BackW`, `BackE`, `Back1`, `Back2` | z 225,03 (nửa ngoài tường) |
+| Sàn tầng 1 (y −10,02): ba mảnh, và `StairBase` dưới ô cầu thang | `Library_Floor0_Main/South/North`, `Library_StairBase` | mặt giữa sàn |
 | Sàn tầng 2 (y −6,72) và tầng 3 (y −3,42), ba mảnh mỗi tầng, chừa ô cầu thang x 79…85, z 199…209 | `Library_Floor1_Main/South/North`, `Library_Floor2_Main/South/North` | mặt giữa sàn |
 | Mái | `Library_Roof` | mặt giữa |
 
 - Tường trước và sau dùng kiểu mới `plane|at=<z>` của `make_occluders.py`: mặt che đặt ở nửa ngoài tường, không ở mặt giữa. Lý do: kính tối nằm trên mặt giữa (z 195, 225), còn lớp `Windows` của vỏ (rèm, song) đi từ mặt kính vào trong, nên hộp ở mặt giữa sẽ chạm lớp đó. Script kiểm hộp vẫn nằm trong bề dày tường.
-- Không đặt ở sàn tầng 1 (dưới không có gì để che), và lanh tô trên hai lỗ cửa (chỉ cách khung cửa 2 cm).
-- Test: `test_t260_occlusion` thêm bài riêng cho thư viện. Bài này kiểm đủ 21 hộp, và không hộp nào chạm lỗ cửa trước, sau (khung x 63,92…66,08, tới y −7,42) hay ô cầu thang (x 79…84,89, z 199…209, tầng 2–3). Hộp tường trước, sau phải nằm ngoài mặt kính. Bài chương 3 thật vẫn kiểm mọi hộp: nằm trong một hộp va chạm đặc, không chạm cửa, cửa sổ, lan can, cách điểm xuất phát.
-  - Lọc `t26`: 72/0.
-  - Full test sau merge T-265: 1072/0. Check: 0.
-- **Chưa chụp ảnh bật/tắt như nhà ăn** và chưa đo số lần vẽ (cần chạy chương thật có hình, tốn RAM; chờ chủ dự án cho). Mốc để so: lane B đo ở tầng 2, đầu nhịp một nhìn về nam, được 5.294 lần vẽ khi thư viện chưa có khối che (`previews/wave8/r3_well.jpg`). Lần chụp đó cũng đo lại ba góc toàn cảnh đợt 7 (hành lang tầng 4 nhà B, giữa vườn, trên khán đài), như review lượt 2 và Handoff lượt 2 của T-265 dặn.
+- Sàn tầng 1: dưới nó không có gì để che. Nhưng khi thiếu hộp ở đó, tia nhìn xuống sàn tầng 1 không gặp hộp nào, nên bộ đệm che bị thủng ở vùng sàn và khuôn viên sau tường vẫn được vẽ. Lần chụp dưới đây cho thấy điều này, nên 4 hộp này được thêm sau.
+- Không đặt ở lanh tô trên hai lỗ cửa (chỉ cách khung cửa 2 cm).
+- Test: `test_t260_occlusion` thêm bài riêng cho thư viện. Bài này kiểm đủ 25 hộp, và không hộp nào chạm lỗ cửa trước, sau (khung x 63,92…66,08, tới y −7,42) hay ô cầu thang (x 79…84,89, z 199…209, tầng 2–3). Hộp tường trước, sau phải nằm ngoài mặt kính. Bài chương 3 thật vẫn kiểm mọi hộp: nằm trong một hộp va chạm đặc, không chạm cửa, cửa sổ, lan can, cách điểm xuất phát.
+  - Với 21 hộp: lọc `t26` 72/0; full test sau merge T-265 1072/0; check 0.
+  - Với 25 hộp: lọc `t260` 6/0. Chỉ đổi cảnh khối che của core và test của nó, nên chưa chạy full test; chạy ở lần merge kế tiếp.
+
+**Chụp bật/tắt** (chủ dự án cho, 20/11 tối), bằng cảnh thử `build/integrator/library_occ.gd`:
+- Chạy trong chương thật, director giữ, khung 1600 × 900 như ảnh lane B. Cho chạy 3 giây rồi mới gần như dừng thời gian, vì trong vài giây đầu chương, các góc nhìn ra khuôn viên vẽ thêm khoảng 650 lần (chưa tìm vì sao).
+- Mỗi góc chụp cùng camera khi tắt rồi khi bật occlusion culling với đủ 25 hộp, so từng điểm ảnh (ngưỡng 6/255 mỗi kênh). Góc trong nhà chụp cả không và có đèn pin (12 m, 28°).
+- Góc chụp: 25 góc lane B dùng ở T-265 lượt 2 và 3 (cả cửa sau mở, từ ngoài nhìn vào và từ trong nhìn ra) ở chương 4, và 5 góc ở chương 3.
+- **52 lần chụp (47 ở chương 4, 5 ở chương 3): không điểm ảnh nào khác.** Lần chụp trước đó với 21 hộp cũng không có điểm ảnh nào khác.
+
+Số lần vẽ, không đèn pin, mỗi góc đo liền nhau trong cùng một trạng thái. Cột "không hộp thư viện" là lúc lane B đo, và khớp số ở Handoff T-265 lượt 2 (ví dụ tầng 1 toàn cảnh 631, giữa tầng 2 3.924, ba góc đợt 7: 1.374; 276; 4.660).
+
+| Góc | Tắt | Bật, không hộp thư viện | Bật, 21 hộp | Bật, 25 hộp |
+|---|---|---|---|---|
+| Ch. 4: cửa sau mở, từ ngoài nhìn vào | 4.816 | 4.574 | 709 | 375 |
+| Ch. 4: ngay trong cửa sau mở, nhìn vào tầng 1 | 4.817 | 4.532 | 633 | 300 |
+| Ch. 4: tầng 1 toàn cảnh (chân cầu thang) | 781 | 628 | 369 | 199 |
+| Ch. 4: quầy tầng 1 | 4.249 | 3.830 | 467 | 134 |
+| Ch. 4: giữa tầng 2 nhìn về mặt trước | 4.270 | 3.916 | 152 | 152 |
+| Ch. 4: tầng 2 nhìn xuống ô cầu thang | 4.792 | 4.554 | 189 | 189 |
+| Ch. 4: giữa tầng 3 nhìn về nam | 4.254 | 3.821 | 171 | 171 |
+| Ch. 4: đầu nhịp một nhìn xuống khe đông | 4.792 | 4.619 | 3.179 | 3.181 |
+| Ch. 4: trong cửa chính nhìn ra sân | 4.756 | 4.556 | 4.120 | 4.118 |
+| Ch. 4: ngoài sân dọc tường tây | 4.812 | 4.622 | 4.175 | 4.145 |
+| Ch. 4: ngoài sân nhìn mặt trước | 148 | 148 | 135 | 134 |
+| Ch. 3: khán đài tây nhìn thư viện | 83 | 83 | 74 | 74 |
+| Ch. 3, đợt 7: hành lang tầng 4 nhà B | 1.371 | 1.361 | 1.361 | 1.361 |
+| Ch. 3, đợt 7: giữa vườn | 298 | 276 | 276 | 276 |
+| Ch. 3, đợt 7: trên khán đài | 4.657 | 4.651 | 4.651 | 4.652 |
+
+- Các góc trong nhà nhìn ra khuôn viên giảm từ khoảng 3.800–4.600 xuống 130–380 lần vẽ.
+- Hai góc nhìn ra sân (qua kính cửa chính, và ngoài sân dọc tường tây) vẫn cao, vì phần khuôn viên đó thấy thật.
+- Góc đầu nhịp một nhìn xuống khe đông còn 3.181 lần vẽ (lane B đo 5.294 ở lượt 3); 4 hộp sàn tầng 1 không giảm. Có thể tia lọt qua chỗ nối các hộp tường theo tầng: mỗi hộp lùi 0,1 m ở mép, nên giữa hai tầng còn khe 0,2 m ngay cạnh khe đông. Chưa kiểm. Góc này chỉ thấy lúc đi lên nhịp một.
+- Ba góc toàn cảnh đợt 7 không đổi khi thêm khối che thư viện (không tăng). Góc vườn vẫn hơn trước đợt 8 866 primitive (+0,5 %): đó là tường ngoài và cửa chính thư viện thấy từ 190 m, khối che không bỏ được thứ đang thấy. Review T-265 lượt 2 đã chấp nhận.
 - Không đo FPS (D-179).
