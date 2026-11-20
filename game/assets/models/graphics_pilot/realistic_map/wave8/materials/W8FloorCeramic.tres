@@ -1,0 +1,25 @@
+[gd_resource type="ShaderMaterial" format=3]
+
+[ext_resource type="Shader" path="res://rendering/room407_shell.gdshader" id="1"]
+[ext_resource type="Texture2D" path="res://assets/textures/graphics_pilot/realistic_map/wave6/ceramic_color.png" id="2"]
+[ext_resource type="Texture2D" path="res://assets/textures/graphics_pilot/realistic_map/wave6/ceramic_normal.png" id="3"]
+[ext_resource type="Texture2D" path="res://assets/textures/graphics_pilot/realistic_map/wave6/ceramic_orm.png" id="4"]
+[ext_resource type="Texture2D" path="res://assets/textures/graphics_pilot/realistic_map/wave8/mask_floor8.png" id="5"]
+[ext_resource type="Texture2D" path="res://assets/textures/graphics_pilot/room407_shell/noise.png" id="6"]
+
+[resource]
+resource_name = "W8FloorCeramic"
+shader = ExtResource("1")
+shader_parameter/kind = 1
+shader_parameter/base_albedo = ExtResource("2")
+shader_parameter/base_normal = ExtResource("3")
+shader_parameter/base_arm = ExtResource("4")
+shader_parameter/mask = ExtResource("5")
+shader_parameter/base_tint = Color(0.6, 0.58, 0.55, 1)
+shader_parameter/grout_strength = 1
+shader_parameter/grime_strength = 1.2
+shader_parameter/wet_strength = 0.35
+shader_parameter/wear_strength = 0.8
+shader_parameter/normal_strength = 0.7
+shader_parameter/grime_color = Color(0.42, 0.36, 0.27, 1)
+shader_parameter/noise = ExtResource("6")

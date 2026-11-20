@@ -1,0 +1,31 @@
+path	type	visible	position	rotation_deg	detail
+Shells/LibraryBand0	Node3D	vis	(65.000, -9.900, 194.820)	(-0.000, 0.000, 0.000)	
+Shells/LibraryBand0/Mesh	MeshInstance3D	vis	(65.000, -9.900, 194.820)	(-0.000, 0.000, 0.000)	box (40.000, 0.140, 0.300) | aabb (45.000, -9.970, 194.670)..(85.000, -9.830, 194.970) | concrete.png ffffffff | shadow 1
+Shells/LibraryBand1	Node3D	vis	(65.000, -6.600, 194.820)	(-0.000, 0.000, 0.000)	
+Shells/LibraryBand1/Mesh	MeshInstance3D	vis	(65.000, -6.600, 194.820)	(-0.000, 0.000, 0.000)	box (40.000, 0.140, 0.300) | aabb (45.000, -6.670, 194.670)..(85.000, -6.530, 194.970) | concrete.png ffffffff | shadow 1
+Shells/LibraryBand2	Node3D	vis	(65.000, -3.300, 194.820)	(-0.000, 0.000, 0.000)	
+Shells/LibraryBand2/Mesh	MeshInstance3D	vis	(65.000, -3.300, 194.820)	(-0.000, 0.000, 0.000)	box (40.000, 0.140, 0.300) | aabb (45.000, -3.370, 194.670)..(85.000, -3.230, 194.970) | concrete.png ffffffff | shadow 1
+Ground/Tile_20_140/Collision	CollisionShape3D	vis	(45.000, -10.090, 165.000)	(-0.000, 0.000, 0.000)	shape BoxShape3D aabb (20.000, -10.240, 140.000)..(70.000, -9.940, 190.000) | size (50.000, 0.300, 50.000)
+Ground/Tile_20_140/Mesh	MeshInstance3D	vis	(45.000, -10.090, 165.000)	(-0.000, 0.000, 0.000)	box (50.000, 0.300, 50.000) | aabb (20.000, -10.240, 140.000)..(70.000, -9.940, 190.000) | grass.png ffffffff | shadow 1
+Ground/Tile_20_190	StaticBody3D	vis	(45.000, -10.090, 215.000)	(-0.000, 0.000, 0.000)	layer 1 mask 0 | meta surface=tile | meta is_floor=true
+Ground/Tile_20_190/Collision	CollisionShape3D	vis	(45.000, -10.090, 215.000)	(-0.000, 0.000, 0.000)	shape BoxShape3D aabb (20.000, -10.240, 190.000)..(70.000, -9.940, 240.000) | size (50.000, 0.300, 50.000)
+Ground/Tile_20_190/Mesh	MeshInstance3D	vis	(45.000, -10.090, 215.000)	(-0.000, 0.000, 0.000)	box (50.000, 0.300, 50.000) | aabb (20.000, -10.240, 190.000)..(70.000, -9.940, 240.000) | grass.png ffffffff | shadow 1
+Ground/Tile_70_140/Collision	CollisionShape3D	vis	(95.000, -10.090, 165.000)	(-0.000, 0.000, 0.000)	shape BoxShape3D aabb (70.000, -10.240, 140.000)..(120.000, -9.940, 190.000) | size (50.000, 0.300, 50.000)
+Ground/Tile_70_140/Mesh	MeshInstance3D	vis	(95.000, -10.090, 165.000)	(-0.000, 0.000, 0.000)	box (50.000, 0.300, 50.000) | aabb (70.000, -10.240, 140.000)..(120.000, -9.940, 190.000) | grass.png ffffffff | shadow 1
+Ground/Tile_70_190/Collision	CollisionShape3D	vis	(95.000, -10.090, 215.000)	(-0.000, 0.000, 0.000)	shape BoxShape3D aabb (70.000, -10.240, 190.000)..(120.000, -9.940, 240.000) | size (50.000, 0.300, 50.000)
+Ground/Tile_70_190/Mesh	MeshInstance3D	vis	(95.000, -10.090, 215.000)	(-0.000, 0.000, 0.000)	box (50.000, 0.300, 50.000) | aabb (70.000, -10.240, 190.000)..(120.000, -9.940, 240.000) | grass.png ffffffff | shadow 1
+Anchors/Ch4/Start_library	Marker3D	vis	(65.000, -9.900, 223.000)	(-0.000, 0.000, 0.000)	
+Anchors/Ch4/Counter	Marker3D	vis	(58.000, -9.000, 206.000)	(-0.000, 0.000, 0.000)	
+Anchors/Ch4/MapBoard	Marker3D	vis	(45.250, -8.100, 211.000)	(-0.000, 0.000, 0.000)	
+Anchors/Ch4/ReadingDesk	Marker3D	vis	(58.000, -5.710, 216.000)	(-0.000, 0.000, 0.000)	
+Anchors/Ch4/LibrarianSeat	Marker3D	vis	(57.000, -9.440, 207.500)	(-0.000, 0.000, 0.000)	
+Anchors/Ch4/ScareShelf3F	Marker3D	vis	(57.000, -3.300, 218.000)	(-0.000, 0.000, 0.000)	
+Anchors/Ch4/ThrownBook3F	Marker3D	vis	(73.000, -1.100, 218.000)	(-0.000, 0.000, 0.000)	
+Anchors/Ch4/LibraryZombieSpawn/S01	Marker3D	vis	(62.000, -9.900, 228.000)	(-0.000, 0.000, 0.000)	
+Anchors/Ch4/LibraryZombieSpawn/S02	Marker3D	vis	(65.000, -9.900, 228.000)	(-0.000, 0.000, 0.000)	
+Anchors/Ch4/LibraryZombieSpawn/S03	Marker3D	vis	(68.000, -9.900, 228.000)	(-0.000, 0.000, 0.000)	
+Anchors/Ch4/LibraryZombieSpawn/S04	Marker3D	vis	(62.000, -9.900, 231.000)	(-0.000, 0.000, 0.000)	
+Anchors/Ch4/LibraryZombieSpawn/S05	Marker3D	vis	(65.000, -9.900, 231.000)	(-0.000, 0.000, 0.000)	
+Anchors/Ch4/LibraryZombieSpawn/S06	Marker3D	vis	(68.000, -9.900, 231.000)	(-0.000, 0.000, 0.000)	
+Props/Solids/Body_p1_p4/S0	CollisionShape3D	vis	(58.000, -9.500, 192.000)	(-0.000, 25.910, 0.000)	shape BoxShape3D aabb (55.815, -9.900, 189.908)..(60.185, -9.100, 194.092) | size (3.400, 0.800, 3.000)
+Props/Solids/Body_p1_p4/S1	CollisionShape3D	vis	(78.000, -9.500, 192.000)	(-0.000, -39.560, 0.000)	shape BoxShape3D aabb (75.734, -9.900, 189.761)..(80.266, -9.100, 194.239) | size (3.400, 0.800, 3.000)

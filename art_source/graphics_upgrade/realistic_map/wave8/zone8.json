@@ -1,0 +1,1180 @@
+{
+ "box": [
+  39.0,
+  91.0,
+  189.0,
+  231.0
+ ],
+ "library_floor": [
+  45.0,
+  85.0,
+  195.0,
+  225.0
+ ],
+ "props": {
+  "Parts/P_concrete_box_p1_p4": {
+   "instances": 31,
+   "node_hidden": false,
+   "heads_in_node": 0,
+   "in_box": [
+    {
+     "index": 0,
+     "kind": "other",
+     "where": "outside",
+     "zeroed": false,
+     "at": [
+      57.97,
+      -9.43,
+      192.51
+     ],
+     "scale": [
+      1.336,
+      0.935,
+      1.27
+     ],
+     "tint": [
+      0.8,
+      0.8,
+      0.8
+     ]
+    },
+    {
+     "index": 1,
+     "kind": "other",
+     "where": "outside",
+     "zeroed": false,
+     "at": [
+      57.45,
+      -9.45,
+      191.42
+     ],
+     "scale": [
+      1.281,
+      0.897,
+      1.1
+     ],
+     "tint": [
+      0.8,
+      0.8,
+      0.8
+     ]
+    },
+    {
+     "index": 2,
+     "kind": "other",
+     "where": "outside",
+     "zeroed": false,
+     "at": [
+      59.05,
+      -9.54,
+      192.46
+     ],
+     "scale": [
+      1.016,
+      0.711,
+      0.711
+     ],
+     "tint": [
+      0.8,
+      0.8,
+      0.8
+     ]
+    },
+    {
+     "index": 3,
+     "kind": "other",
+     "where": "outside",
+     "zeroed": false,
+     "at": [
+      58.04,
+      -9.48,
+      192.52
+     ],
+     "scale": [
+      1.197,
+      0.838,
+      0.961
+     ],
+     "tint": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "index": 4,
+     "kind": "other",
+     "where": "outside",
+     "zeroed": false,
+     "at": [
+      58.22,
+      -9.71,
+      191.91
+     ],
+     "scale": [
+      0.533,
+      0.373,
+      0.614
+     ],
+     "tint": [
+      0.9,
+      0.9,
+      0.85
+     ]
+    },
+    {
+     "index": 5,
+     "kind": "other",
+     "where": "outside",
+     "zeroed": false,
+     "at": [
+      57.09,
+      -9.4,
+      192.58
+     ],
+     "scale": [
+      1.43,
+      1.001,
+      1.588
+     ],
+     "tint": [
+      0.8,
+      0.8,
+      0.8
+     ]
+    },
+    {
+     "index": 6,
+     "kind": "other",
+     "where": "outside",
+     "zeroed": false,
+     "at": [
+      59.67,
+      -9.43,
+      192.59
+     ],
+     "scale": [
+      1.345,
+      0.942,
+      1.514
+     ],
+     "tint": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "index": 7,
+     "kind": "other",
+     "where": "outside",
+     "zeroed": false,
+     "at": [
+      56.81,
+      -9.49,
+      190.81
+     ],
+     "scale": [
+      1.171,
+      0.82,
+      1.001
+     ],
+     "tint": [
+      0.9,
+      0.9,
+      0.85
+     ]
+    },
+    {
+     "index": 8,
+     "kind": "other",
+     "where": "outside",
+     "zeroed": false,
+     "at": [
+      58.56,
+      -9.58,
+      190.54
+     ],
+     "scale": [
+      0.924,
+      0.647,
+      0.915
+     ],
+     "tint": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "index": 9,
+     "kind": "other",
+     "where": "outside",
+     "zeroed": false,
+     "at": [
+      58.08,
+      -9.43,
+      191.48
+     ],
+     "scale": [
+      1.332,
+      0.933,
+      1.394
+     ],
+     "tint": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "index": 10,
+     "kind": "other",
+     "where": "outside",
+     "zeroed": false,
+     "at": [
+      57.32,
+      -9.53,
+      190.75
+     ],
+     "scale": [
+      1.067,
+      0.747,
+      0.685
+     ],
+     "tint": [
+      0.8,
+      0.8,
+      0.8
+     ]
+    },
+    {
+     "index": 11,
+     "kind": "other",
+     "where": "outside",
+     "zeroed": false,
+     "at": [
+      59.1,
+      -9.41,
+      192.0
+     ],
+     "scale": [
+      1.406,
+      0.984,
+      1.587
+     ],
+     "tint": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "index": 12,
+     "kind": "other",
+     "where": "outside",
+     "zeroed": false,
+     "at": [
+      58.64,
+      -9.69,
+      192.98
+     ],
+     "scale": [
+      0.587,
+      0.411,
+      0.42
+     ],
+     "tint": [
+      0.9,
+      0.9,
+      0.85
+     ]
+    },
+    {
+     "index": 13,
+     "kind": "other",
+     "where": "outside",
+     "zeroed": false,
+     "at": [
+      58.86,
+      -9.43,
+      192.22
+     ],
+     "scale": [
+      1.351,
+      0.946,
+      1.081
+     ],
+     "tint": [
+      0.9,
+      0.9,
+      0.85
+     ]
+    },
+    {
+     "index": 14,
+     "kind": "other",
+     "where": "outside",
+     "zeroed": false,
+     "at": [
+      58.35,
+      -9.41,
+      191.22
+     ],
+     "scale": [
+      1.401,
+      0.98,
+      0.848
+     ],
+     "tint": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "index": 15,
+     "kind": "other",
+     "where": "outside",
+     "zeroed": false,
+     "at": [
+      76.99,
+      -9.38,
+      192.81
+     ],
+     "scale": [
+      1.498,
+      1.049,
+      1.597
+     ],
+     "tint": [
+      0.8,
+      0.8,
+      0.8
+     ]
+    },
+    {
+     "index": 16,
+     "kind": "other",
+     "where": "outside",
+     "zeroed": false,
+     "at": [
+      79.28,
+      -9.56,
+      192.84
+     ],
+     "scale": [
+      0.978,
+      0.685,
+      0.907
+     ],
+     "tint": [
+      0.8,
+      0.8,
+      0.8
+     ]
+    },
+    {
+     "index": 17,
+     "kind": "other",
+     "where": "outside",
+     "zeroed": false,
+     "at": [
+      79.48,
+      -9.59,
+      191.34
+     ],
+     "scale": [
+      0.891,
+      0.624,
+      0.994
+     ],
+     "tint": [
+      0.9,
+      0.9,
+      0.85
+     ]
+    },
+    {
+     "index": 18,
+     "kind": "other",
+     "where": "outside",
+     "zeroed": false,
+     "at": [
+      77.13,
+      -9.48,
+      193.01
+     ],
+     "scale": [
+      1.206,
+      0.844,
+      0.92
+     ],
+     "tint": [
+      0.8,
+      0.8,
+      0.8
+     ]
+    },
+    {
+     "index": 19,
+     "kind": "other",
+     "where": "outside",
+     "zeroed": false,
+     "at": [
+      77.24,
+      -9.68,
+      192.3
+     ],
+     "scale": [
+      0.642,
+      0.45,
+      0.513
+     ],
+     "tint": [
+      0.8,
+      0.8,
+      0.8
+     ]
+    },
+    {
+     "index": 20,
+     "kind": "other",
+     "where": "outside",
+     "zeroed": false,
+     "at": [
+      77.39,
+      -9.57,
+      192.37
+     ],
+     "scale": [
+      0.948,
+      0.664,
+      0.813
+     ],
+     "tint": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "index": 21,
+     "kind": "other",
+     "where": "outside",
+     "zeroed": false,
+     "at": [
+      77.13,
+      -9.63,
+      193.03
+     ],
+     "scale": [
+      0.773,
+      0.541,
+      0.542
+     ],
+     "tint": [
+      0.8,
+      0.8,
+      0.8
+     ]
+    },
+    {
+     "index": 22,
+     "kind": "other",
+     "where": "outside",
+     "zeroed": false,
+     "at": [
+      78.29,
+      -9.51,
+      192.05
+     ],
+     "scale": [
+      1.128,
+      0.79,
+      1.141
+     ],
+     "tint": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "index": 23,
+     "kind": "other",
+     "where": "outside",
+     "zeroed": false,
+     "at": [
+      77.9,
+      -9.72,
+      191.02
+     ],
+     "scale": [
+      0.512,
+      0.358,
+      0.312
+     ],
+     "tint": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "index": 24,
+     "kind": "other",
+     "where": "outside",
+     "zeroed": false,
+     "at": [
+      77.2,
+      -9.61,
+      191.91
+     ],
+     "scale": [
+      0.842,
+      0.59,
+      0.527
+     ],
+     "tint": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "index": 25,
+     "kind": "other",
+     "where": "outside",
+     "zeroed": false,
+     "at": [
+      77.89,
+      -9.55,
+      191.96
+     ],
+     "scale": [
+      1.005,
+      0.704,
+      0.678
+     ],
+     "tint": [
+      0.8,
+      0.8,
+      0.8
+     ]
+    },
+    {
+     "index": 26,
+     "kind": "other",
+     "where": "outside",
+     "zeroed": false,
+     "at": [
+      78.63,
+      -9.46,
+      193.04
+     ],
+     "scale": [
+      1.266,
+      0.886,
+      1.226
+     ],
+     "tint": [
+      0.8,
+      0.8,
+      0.8
+     ]
+    },
+    {
+     "index": 27,
+     "kind": "other",
+     "where": "outside",
+     "zeroed": false,
+     "at": [
+      77.58,
+      -9.55,
+      190.36
+     ],
+     "scale": [
+      0.988,
+      0.691,
+      0.718
+     ],
+     "tint": [
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "index": 28,
+     "kind": "other",
+     "where": "outside",
+     "zeroed": false,
+     "at": [
+      77.45,
+      -9.43,
+      191.89
+     ],
+     "scale": [
+      1.342,
+      0.939,
+      1.433
+     ],
+     "tint": [
+      0.8,
+      0.8,
+      0.8
+     ]
+    },
+    {
+     "index": 29,
+     "kind": "other",
+     "where": "outside",
+     "zeroed": false,
+     "at": [
+      78.26,
+      -9.47,
+      192.23
+     ],
+     "scale": [
+      1.235,
+      0.865,
+      1.398
+     ],
+     "tint": [
+      0.8,
+      0.8,
+      0.8
+     ]
+    }
+   ]
+  },
+  "Parts/P_iron_cylinder_p1_p4": {
+   "instances": 6,
+   "node_hidden": false,
+   "heads_in_node": 0,
+   "in_box": [
+    {
+     "index": 0,
+     "kind": "other",
+     "where": "outside",
+     "zeroed": false,
+     "at": [
+      59.09,
+      -9.4,
+      191.97
+     ],
+     "scale": [
+      0.04,
+      1.1,
+      0.04
+     ],
+     "tint": [
+      1.0,
+      0.8,
+      0.6
+     ]
+    },
+    {
+     "index": 1,
+     "kind": "other",
+     "where": "outside",
+     "zeroed": false,
+     "at": [
+      57.75,
+      -9.4,
+      191.55
+     ],
+     "scale": [
+      0.04,
+      1.1,
+      0.04
+     ],
+     "tint": [
+      1.0,
+      0.8,
+      0.6
+     ]
+    },
+    {
+     "index": 2,
+     "kind": "other",
+     "where": "outside",
+     "zeroed": false,
+     "at": [
+      58.52,
+      -9.4,
+      192.82
+     ],
+     "scale": [
+      0.04,
+      1.1,
+      0.04
+     ],
+     "tint": [
+      1.0,
+      0.8,
+      0.6
+     ]
+    },
+    {
+     "index": 3,
+     "kind": "other",
+     "where": "outside",
+     "zeroed": false,
+     "at": [
+      78.52,
+      -9.4,
+      191.76
+     ],
+     "scale": [
+      0.04,
+      1.1,
+      0.04
+     ],
+     "tint": [
+      1.0,
+      0.8,
+      0.6
+     ]
+    },
+    {
+     "index": 4,
+     "kind": "other",
+     "where": "outside",
+     "zeroed": false,
+     "at": [
+      78.05,
+      -9.4,
+      192.85
+     ],
+     "scale": [
+      0.04,
+      1.1,
+      0.04
+     ],
+     "tint": [
+      1.0,
+      0.8,
+      0.6
+     ]
+    },
+    {
+     "index": 5,
+     "kind": "other",
+     "where": "outside",
+     "zeroed": false,
+     "at": [
+      77.81,
+      -9.4,
+      193.01
+     ],
+     "scale": [
+      0.04,
+      1.1,
+      0.04
+     ],
+     "tint": [
+      1.0,
+      0.8,
+      0.6
+     ]
+    }
+   ]
+  },
+  "Decals/D_white_quad_p0_p2": {
+   "instances": 19,
+   "node_hidden": false,
+   "heads_in_node": 0,
+   "in_box": [
+    {
+     "index": 8,
+     "kind": "other",
+     "where": "outside",
+     "zeroed": false,
+     "at": [
+      59.53,
+      -9.84,
+      192.75
+     ],
+     "scale": [
+      0.158,
+      1.0,
+      0.119
+     ],
+     "tint": [
+      0.55,
+      0.75,
+      0.85
+     ]
+    },
+    {
+     "index": 9,
+     "kind": "other",
+     "where": "outside",
+     "zeroed": false,
+     "at": [
+      60.43,
+      -9.84,
+      191.58
+     ],
+     "scale": [
+      0.079,
+      1.0,
+      0.047
+     ],
+     "tint": [
+      0.55,
+      0.75,
+      0.85
+     ]
+    },
+    {
+     "index": 10,
+     "kind": "other",
+     "where": "outside",
+     "zeroed": false,
+     "at": [
+      59.64,
+      -9.84,
+      192.3
+     ],
+     "scale": [
+      0.197,
+      1.0,
+      0.137
+     ],
+     "tint": [
+      0.55,
+      0.75,
+      0.85
+     ]
+    },
+    {
+     "index": 11,
+     "kind": "other",
+     "where": "outside",
+     "zeroed": false,
+     "at": [
+      59.3,
+      -9.84,
+      193.62
+     ],
+     "scale": [
+      0.075,
+      1.0,
+      0.045
+     ],
+     "tint": [
+      0.55,
+      0.75,
+      0.85
+     ]
+    },
+    {
+     "index": 12,
+     "kind": "other",
+     "where": "outside",
+     "zeroed": false,
+     "at": [
+      60.97,
+      -9.84,
+      191.4
+     ],
+     "scale": [
+      0.128,
+      1.0,
+      0.121
+     ],
+     "tint": [
+      0.55,
+      0.75,
+      0.85
+     ]
+    },
+    {
+     "index": 13,
+     "kind": "other",
+     "where": "outside",
+     "zeroed": false,
+     "at": [
+      61.51,
+      -9.84,
+      192.83
+     ],
+     "scale": [
+      0.187,
+      1.0,
+      0.132
+     ],
+     "tint": [
+      0.55,
+      0.75,
+      0.85
+     ]
+    },
+    {
+     "index": 14,
+     "kind": "other",
+     "where": "outside",
+     "zeroed": false,
+     "at": [
+      59.79,
+      -9.84,
+      192.24
+     ],
+     "scale": [
+      0.05,
+      1.0,
+      0.044
+     ],
+     "tint": [
+      0.55,
+      0.75,
+      0.85
+     ]
+    },
+    {
+     "index": 15,
+     "kind": "other",
+     "where": "outside",
+     "zeroed": false,
+     "at": [
+      59.56,
+      -9.84,
+      193.07
+     ],
+     "scale": [
+      0.127,
+      1.0,
+      0.062
+     ],
+     "tint": [
+      0.55,
+      0.75,
+      0.85
+     ]
+    },
+    {
+     "index": 16,
+     "kind": "other",
+     "where": "outside",
+     "zeroed": false,
+     "at": [
+      79.32,
+      -9.84,
+      191.61
+     ],
+     "scale": [
+      0.168,
+      1.0,
+      0.136
+     ],
+     "tint": [
+      0.55,
+      0.75,
+      0.85
+     ]
+    },
+    {
+     "index": 17,
+     "kind": "other",
+     "where": "outside",
+     "zeroed": false,
+     "at": [
+      79.39,
+      -9.84,
+      193.25
+     ],
+     "scale": [
+      0.102,
+      1.0,
+      0.069
+     ],
+     "tint": [
+      0.55,
+      0.75,
+      0.85
+     ]
+    },
+    {
+     "index": 18,
+     "kind": "other",
+     "where": "outside",
+     "zeroed": false,
+     "at": [
+      79.62,
+      -9.84,
+      193.27
+     ],
+     "scale": [
+      0.073,
+      1.0,
+      0.033
+     ],
+     "tint": [
+      0.55,
+      0.75,
+      0.85
+     ]
+    }
+   ]
+  },
+  "Decals/D_white_quad_p1_p2": {
+   "instances": 13,
+   "node_hidden": false,
+   "heads_in_node": 0,
+   "in_box": [
+    {
+     "index": 0,
+     "kind": "other",
+     "where": "outside",
+     "zeroed": false,
+     "at": [
+      81.26,
+      -9.84,
+      191.34
+     ],
+     "scale": [
+      0.056,
+      1.0,
+      0.04
+     ],
+     "tint": [
+      0.55,
+      0.75,
+      0.85
+     ]
+    },
+    {
+     "index": 1,
+     "kind": "other",
+     "where": "outside",
+     "zeroed": false,
+     "at": [
+      82.09,
+      -9.84,
+      193.1
+     ],
+     "scale": [
+      0.074,
+      1.0,
+      0.067
+     ],
+     "tint": [
+      0.55,
+      0.75,
+      0.85
+     ]
+    },
+    {
+     "index": 2,
+     "kind": "other",
+     "where": "outside",
+     "zeroed": false,
+     "at": [
+      81.9,
+      -9.84,
+      192.43
+     ],
+     "scale": [
+      0.137,
+      1.0,
+      0.115
+     ],
+     "tint": [
+      0.55,
+      0.75,
+      0.85
+     ]
+    },
+    {
+     "index": 3,
+     "kind": "other",
+     "where": "outside",
+     "zeroed": false,
+     "at": [
+      81.05,
+      -9.84,
+      193.17
+     ],
+     "scale": [
+      0.066,
+      1.0,
+      0.033
+     ],
+     "tint": [
+      0.55,
+      0.75,
+      0.85
+     ]
+    },
+    {
+     "index": 4,
+     "kind": "other",
+     "where": "outside",
+     "zeroed": false,
+     "at": [
+      80.38,
+      -9.84,
+      193.58
+     ],
+     "scale": [
+      0.111,
+      1.0,
+      0.089
+     ],
+     "tint": [
+      0.55,
+      0.75,
+      0.85
+     ]
+    }
+   ]
+  }
+ },
+ "heads_in_props_tscn": 30,
+ "solids": [
+  {
+   "path": "Props/Solids/Body_p1_p4/S0",
+   "at": [
+    58.0,
+    -9.5,
+    192.0
+   ],
+   "size": "3.4, 0.8, 3.0",
+   "yaw": "0,25.91,0",
+   "where": "outside"
+  },
+  {
+   "path": "Props/Solids/Body_p1_p4/S1",
+   "at": [
+    78.0,
+    -9.5,
+    192.0
+   ],
+   "size": "3.4, 0.8, 3.0",
+   "yaw": "0,320.44,0",
+   "where": "outside"
+  }
+ ],
+ "campus": {
+  "trees": {},
+  "lamps": {},
+  "extra_trees": {},
+  "prop_lights": {},
+  "TreeTrunk": {},
+  "RoadBench": {},
+  "BenchBody": {},
+  "FallenMoped": {},
+  "MopedBody": {},
+  "ground_tiles": [
+   "Tile_20_140",
+   "Tile_20_190",
+   "Tile_70_140",
+   "Tile_70_190"
+  ],
+  "road_meshes_near": []
+ },
+ "wave7_glb_faces_in_box": {}
+}

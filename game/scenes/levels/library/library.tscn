@@ -3,6 +3,27 @@
 [ext_resource type="Script" path="res://scripts/audio/light_hum.gd" id="e1"]
 [ext_resource type="PackedScene" path="res://scenes/interaction/iron_bar.tscn" id="e2"]
 [ext_resource type="Script" path="res://scenes/levels/room_door.gd" id="e3"]
+[ext_resource type="Script" path="res://scenes/levels/library/library_real.gd" id="t265_real"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave8/shell_f1.glb" id="t265_shell_f1"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave8/shell_f2.glb" id="t265_shell_f2"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave8/shell_f3.glb" id="t265_shell_f3"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave8/stairs.glb" id="t265_stairs"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave8/counter_q1.glb" id="t265_counter_q1"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave8/librarian_chair.glb" id="t265_librarian_chair"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave8/map_print.glb" id="t265_map_print"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave8/tables.glb" id="t265_tables"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave8/shelves_f1.glb" id="t265_shelves_f1"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave8/shelves_f2.glb" id="t265_shelves_f2"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave8/shelves_f3n.glb" id="t265_shelves_f3n"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave8/shelves_f3s.glb" id="t265_shelves_f3s"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave8/fill_f1.glb" id="t265_fill_f1"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave8/fill_f2.glb" id="t265_fill_f2"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave8/fill_f3.glb" id="t265_fill_f3"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave8/back_frame.glb" id="t265_back_frame"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave8/front_door.glb" id="t265_front_door"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave8/barricade.glb" id="t265_barricade"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave8/facade.glb" id="t265_facade"]
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave8/back_leaf.glb" id="t265_back_leaf"]
 
 [sub_resource type="BoxShape3D" id="s1"]
 size = Vector3(34, 0.24, 30)
@@ -3150,6 +3171,351 @@ vertices = PackedVector3Array(19.4,0,29.2,19.4,0,30.8,20.6,0,30.8,20.6,0,29.2)
 polygons = [PackedInt32Array(0,1,2,3)]
 agent_radius = 0.3
 
+[sub_resource type="BoxShape3D" id="t265_box0"]
+size = Vector3(0.42, 2.2, 3)
+
+[sub_resource type="BoxShape3D" id="t265_box1"]
+size = Vector3(0.42, 2.2, 3)
+
+[sub_resource type="BoxShape3D" id="t265_box2"]
+size = Vector3(0.42, 2.2, 3)
+
+[sub_resource type="BoxShape3D" id="t265_box3"]
+size = Vector3(0.42, 2.2, 3)
+
+[sub_resource type="BoxShape3D" id="t265_box4"]
+size = Vector3(0.42, 2.2, 3)
+
+[sub_resource type="BoxShape3D" id="t265_box5"]
+size = Vector3(0.42, 2.2, 3)
+
+[sub_resource type="BoxShape3D" id="t265_box6"]
+size = Vector3(3, 1, 0.36)
+
+[sub_resource type="BoxShape3D" id="t265_box7"]
+size = Vector3(3, 1, 0.36)
+
+[sub_resource type="BoxShape3D" id="t265_box8"]
+size = Vector3(3, 1, 0.36)
+
+[sub_resource type="BoxShape3D" id="t265_box9"]
+size = Vector3(3, 1, 0.36)
+
+[sub_resource type="BoxShape3D" id="t265_box10"]
+size = Vector3(3, 1, 0.36)
+
+[sub_resource type="BoxShape3D" id="t265_box11"]
+size = Vector3(3, 1, 0.36)
+
+[sub_resource type="BoxShape3D" id="t265_box12"]
+size = Vector3(3, 2.2, 0.6)
+
+[sub_resource type="BoxShape3D" id="t265_box13"]
+size = Vector3(3, 2.2, 0.6)
+
+[sub_resource type="BoxShape3D" id="t265_box14"]
+size = Vector3(3, 2.2, 0.6)
+
+[sub_resource type="BoxShape3D" id="t265_box15"]
+size = Vector3(3, 2.2, 0.6)
+
+[sub_resource type="BoxShape3D" id="t265_box16"]
+size = Vector3(2, 2.2, 0.6)
+
+[sub_resource type="BoxShape3D" id="t265_box17"]
+size = Vector3(3, 2.2, 0.6)
+
+[sub_resource type="BoxShape3D" id="t265_box18"]
+size = Vector3(3, 2.2, 0.6)
+
+[sub_resource type="BoxShape3D" id="t265_box19"]
+size = Vector3(3, 2.2, 0.6)
+
+[sub_resource type="BoxShape3D" id="t265_box20"]
+size = Vector3(3, 2.2, 0.6)
+
+[sub_resource type="BoxShape3D" id="t265_box21"]
+size = Vector3(3, 2.2, 0.6)
+
+[sub_resource type="BoxShape3D" id="t265_box22"]
+size = Vector3(3, 2.2, 0.6)
+
+[sub_resource type="BoxShape3D" id="t265_box23"]
+size = Vector3(6.2, 2.2, 0.6)
+
+[sub_resource type="BoxShape3D" id="t265_box24"]
+size = Vector3(6.2, 2.2, 0.6)
+
+[sub_resource type="BoxShape3D" id="t265_box25"]
+size = Vector3(0.42, 2.2, 3)
+
+[sub_resource type="BoxShape3D" id="t265_box26"]
+size = Vector3(0.42, 2.2, 3)
+
+[sub_resource type="BoxShape3D" id="t265_box27"]
+size = Vector3(0.42, 2.2, 3)
+
+[sub_resource type="BoxShape3D" id="t265_box28"]
+size = Vector3(0.42, 2.2, 3)
+
+[sub_resource type="BoxShape3D" id="t265_box29"]
+size = Vector3(0.42, 2.2, 3)
+
+[sub_resource type="BoxShape3D" id="t265_box30"]
+size = Vector3(0.42, 2.2, 3)
+
+[sub_resource type="BoxShape3D" id="t265_box31"]
+size = Vector3(0.42, 2.2, 3)
+
+[sub_resource type="BoxShape3D" id="t265_box32"]
+size = Vector3(0.42, 2.2, 3)
+
+[sub_resource type="BoxShape3D" id="t265_box33"]
+size = Vector3(0.42, 2.2, 3)
+
+[sub_resource type="BoxShape3D" id="t265_box34"]
+size = Vector3(3, 1, 0.36)
+
+[sub_resource type="BoxShape3D" id="t265_box35"]
+size = Vector3(3, 1, 0.36)
+
+[sub_resource type="BoxShape3D" id="t265_box36"]
+size = Vector3(3, 1, 0.36)
+
+[sub_resource type="BoxShape3D" id="t265_box37"]
+size = Vector3(3, 1, 0.36)
+
+[sub_resource type="BoxShape3D" id="t265_box38"]
+size = Vector3(3, 1, 0.36)
+
+[sub_resource type="BoxShape3D" id="t265_box39"]
+size = Vector3(3, 1, 0.36)
+
+[sub_resource type="BoxShape3D" id="t265_box40"]
+size = Vector3(3, 1, 0.36)
+
+[sub_resource type="BoxShape3D" id="t265_box41"]
+size = Vector3(6, 2.2, 0.6)
+
+[sub_resource type="BoxShape3D" id="t265_box42"]
+size = Vector3(6, 2.2, 0.6)
+
+[sub_resource type="BoxShape3D" id="t265_box43"]
+size = Vector3(6, 2.2, 0.6)
+
+[sub_resource type="BoxShape3D" id="t265_box44"]
+size = Vector3(6, 2.2, 0.6)
+
+[sub_resource type="BoxShape3D" id="t265_box45"]
+size = Vector3(6.2, 2.2, 0.6)
+
+[sub_resource type="BoxShape3D" id="t265_box46"]
+size = Vector3(0.42, 2.2, 3)
+
+[sub_resource type="BoxShape3D" id="t265_box47"]
+size = Vector3(0.42, 2.2, 3)
+
+[sub_resource type="BoxShape3D" id="t265_box48"]
+size = Vector3(0.42, 2.2, 3)
+
+[sub_resource type="BoxShape3D" id="t265_box49"]
+size = Vector3(0.42, 2.2, 3)
+
+[sub_resource type="BoxShape3D" id="t265_box50"]
+size = Vector3(0.42, 2.2, 3)
+
+[sub_resource type="BoxShape3D" id="t265_box51"]
+size = Vector3(0.42, 2.2, 3)
+
+[sub_resource type="BoxShape3D" id="t265_box52"]
+size = Vector3(0.42, 2.2, 3)
+
+[sub_resource type="BoxShape3D" id="t265_box53"]
+size = Vector3(0.42, 2.2, 3)
+
+[sub_resource type="BoxShape3D" id="t265_box54"]
+size = Vector3(0.42, 2.2, 3)
+
+[sub_resource type="BoxShape3D" id="t265_box55"]
+size = Vector3(3, 1, 0.36)
+
+[sub_resource type="BoxShape3D" id="t265_box56"]
+size = Vector3(3, 1, 0.36)
+
+[sub_resource type="BoxShape3D" id="t265_box57"]
+size = Vector3(3, 1, 0.36)
+
+[sub_resource type="BoxShape3D" id="t265_box58"]
+size = Vector3(3, 2.2, 0.6)
+
+[sub_resource type="BoxShape3D" id="t265_box59"]
+size = Vector3(3, 2.2, 0.6)
+
+[sub_resource type="BoxShape3D" id="t265_box60"]
+size = Vector3(2, 2.2, 0.6)
+
+[sub_resource type="BoxShape3D" id="t265_box61"]
+size = Vector3(3, 2.2, 0.6)
+
+[sub_resource type="BoxShape3D" id="t265_box62"]
+size = Vector3(3, 2.2, 0.6)
+
+[sub_resource type="BoxShape3D" id="t265_box63"]
+size = Vector3(3, 2.2, 0.6)
+
+[sub_resource type="BoxShape3D" id="t265_box64"]
+size = Vector3(3, 2.2, 0.6)
+
+[sub_resource type="BoxShape3D" id="t265_box65"]
+size = Vector3(3, 2.2, 0.6)
+
+[sub_resource type="BoxShape3D" id="t265_box66"]
+size = Vector3(2, 2.2, 0.6)
+
+[sub_resource type="BoxShape3D" id="t265_box67"]
+size = Vector3(3, 2.2, 0.6)
+
+[sub_resource type="BoxShape3D" id="t265_box68"]
+size = Vector3(3, 2.2, 0.6)
+
+[sub_resource type="BoxShape3D" id="t265_box69"]
+size = Vector3(3, 2.2, 0.6)
+
+[sub_resource type="BoxShape3D" id="t265_box70"]
+size = Vector3(3, 2.2, 0.6)
+
+[sub_resource type="BoxShape3D" id="t265_box71"]
+size = Vector3(3, 2.2, 0.6)
+
+[sub_resource type="BoxShape3D" id="t265_box72"]
+size = Vector3(2, 2.2, 0.6)
+
+[sub_resource type="BoxShape3D" id="t265_box73"]
+size = Vector3(3, 2.2, 0.6)
+
+[sub_resource type="BoxShape3D" id="t265_box74"]
+size = Vector3(3, 2.2, 0.6)
+
+[sub_resource type="BoxShape3D" id="t265_box75"]
+size = Vector3(3, 2.2, 0.6)
+
+[sub_resource type="BoxShape3D" id="t265_box76"]
+size = Vector3(3, 2.2, 0.6)
+
+[sub_resource type="BoxShape3D" id="t265_box77"]
+size = Vector3(3, 2.2, 0.6)
+
+[sub_resource type="BoxShape3D" id="t265_box78"]
+size = Vector3(3, 2.2, 0.6)
+
+[sub_resource type="BoxShape3D" id="t265_box79"]
+size = Vector3(3, 2.2, 0.6)
+
+[sub_resource type="BoxShape3D" id="t265_box80"]
+size = Vector3(2.2, 2.2, 0.6)
+
+[sub_resource type="BoxShape3D" id="t265_box81"]
+size = Vector3(3, 2.2, 0.6)
+
+[sub_resource type="BoxShape3D" id="t265_box82"]
+size = Vector3(3, 2.2, 0.6)
+
+[sub_resource type="BoxShape3D" id="t265_box83"]
+size = Vector3(3, 2.2, 0.6)
+
+[sub_resource type="BoxShape3D" id="t265_box84"]
+size = Vector3(3, 2.2, 0.6)
+
+[sub_resource type="BoxShape3D" id="t265_box85"]
+size = Vector3(2.2, 2.2, 0.6)
+
+[sub_resource type="BoxShape3D" id="t265_box86"]
+size = Vector3(3, 2.2, 0.6)
+
+[sub_resource type="BoxShape3D" id="t265_box87"]
+size = Vector3(3, 2.2, 0.6)
+
+[sub_resource type="BoxShape3D" id="t265_box88"]
+size = Vector3(3, 2.2, 0.6)
+
+[sub_resource type="BoxShape3D" id="t265_box89"]
+size = Vector3(3, 2.2, 0.6)
+
+[sub_resource type="BoxShape3D" id="t265_box90"]
+size = Vector3(2.2, 2.2, 0.6)
+
+[sub_resource type="BoxShape3D" id="t265_box91"]
+size = Vector3(3, 2.2, 0.6)
+
+[sub_resource type="BoxShape3D" id="t265_box92"]
+size = Vector3(3, 2.2, 0.6)
+
+[sub_resource type="BoxShape3D" id="t265_box93"]
+size = Vector3(3, 2.2, 0.6)
+
+[sub_resource type="BoxShape3D" id="t265_box94"]
+size = Vector3(3, 2.2, 0.6)
+
+[sub_resource type="BoxShape3D" id="t265_box95"]
+size = Vector3(2.2, 2.2, 0.6)
+
+[sub_resource type="BoxShape3D" id="t265_box96"]
+size = Vector3(1.2, 1.3, 0.9)
+
+[sub_resource type="BoxShape3D" id="t265_box97"]
+size = Vector3(1.2, 1.3, 0.9)
+
+[sub_resource type="BoxShape3D" id="t265_box98"]
+size = Vector3(0.9, 1, 0.45)
+
+[sub_resource type="BoxShape3D" id="t265_box99"]
+size = Vector3(2.4, 1.05, 1.2)
+
+[sub_resource type="BoxShape3D" id="t265_box100"]
+size = Vector3(1.3, 0.9, 1)
+
+[sub_resource type="BoxShape3D" id="t265_box101"]
+size = Vector3(0.6, 1.4, 0.6)
+
+[sub_resource type="BoxShape3D" id="t265_box102"]
+size = Vector3(0.6, 1.4, 0.6)
+
+[sub_resource type="BoxShape3D" id="t265_box103"]
+size = Vector3(2.4, 1.05, 1.2)
+
+[sub_resource type="BoxShape3D" id="t265_box104"]
+size = Vector3(0.9, 1, 0.45)
+
+[sub_resource type="BoxShape3D" id="t265_box105"]
+size = Vector3(0.6, 1.4, 0.6)
+
+[sub_resource type="BoxShape3D" id="t265_box106"]
+size = Vector3(1.2, 1.2, 0.6)
+
+[sub_resource type="BoxShape3D" id="t265_box107"]
+size = Vector3(1.3, 1, 1)
+
+[sub_resource type="BoxShape3D" id="t265_box108"]
+size = Vector3(1.2, 0.7, 0.6)
+
+[sub_resource type="BoxShape3D" id="t265_box109"]
+size = Vector3(0.08, 1.1, 10)
+
+[sub_resource type="BoxShape3D" id="t265_box110"]
+size = Vector3(0.08, 1.1, 10)
+
+[sub_resource type="BoxShape3D" id="t265_box111"]
+size = Vector3(6.03, 1.1, 0.08)
+
+[sub_resource type="BoxShape3D" id="t265_box112"]
+size = Vector3(0.84, 1.1, 0.08)
+
+[sub_resource type="BoxShape3D" id="t265_box113"]
+size = Vector3(0.84, 1.1, 0.08)
+
+[sub_resource type="BoxShape3D" id="t265_box114"]
+size = Vector3(0.84, 1.1, 0.08)
+
 [node name="Library" type="Node3D"]
 
 position = Vector3(45,-9.9,195)
@@ -3165,6 +3531,7 @@ collision_mask = 0
 shape = SubResource("s1")
 
 [node name="Mesh" type="MeshInstance3D" parent="Floor0_Main"]
+visible = false
 mesh = SubResource("s3")
 
 [node name="Floor0_South" type="StaticBody3D" parent="."]
@@ -3178,6 +3545,7 @@ collision_mask = 0
 shape = SubResource("s4")
 
 [node name="Mesh" type="MeshInstance3D" parent="Floor0_South"]
+visible = false
 mesh = SubResource("s5")
 
 [node name="Floor0_North" type="StaticBody3D" parent="."]
@@ -3191,6 +3559,7 @@ collision_mask = 0
 shape = SubResource("s6")
 
 [node name="Mesh" type="MeshInstance3D" parent="Floor0_North"]
+visible = false
 mesh = SubResource("s7")
 
 [node name="StairBase" type="StaticBody3D" parent="."]
@@ -3204,6 +3573,7 @@ collision_mask = 0
 shape = SubResource("s8")
 
 [node name="Mesh" type="MeshInstance3D" parent="StairBase"]
+visible = false
 mesh = SubResource("s9")
 
 [node name="West0" type="StaticBody3D" parent="."]
@@ -3215,6 +3585,7 @@ collision_mask = 0
 shape = SubResource("s10")
 
 [node name="Mesh" type="MeshInstance3D" parent="West0"]
+visible = false
 mesh = SubResource("s12")
 
 [node name="East0" type="StaticBody3D" parent="."]
@@ -3226,6 +3597,7 @@ collision_mask = 0
 shape = SubResource("s13")
 
 [node name="Mesh" type="MeshInstance3D" parent="East0"]
+visible = false
 mesh = SubResource("s14")
 
 [node name="FrontW" type="StaticBody3D" parent="."]
@@ -3237,6 +3609,7 @@ collision_mask = 0
 shape = SubResource("s15")
 
 [node name="Mesh" type="MeshInstance3D" parent="FrontW"]
+visible = false
 mesh = SubResource("s16")
 
 [node name="FrontE" type="StaticBody3D" parent="."]
@@ -3248,6 +3621,7 @@ collision_mask = 0
 shape = SubResource("s17")
 
 [node name="Mesh" type="MeshInstance3D" parent="FrontE"]
+visible = false
 mesh = SubResource("s18")
 
 [node name="FrontLintel" type="StaticBody3D" parent="."]
@@ -3259,6 +3633,7 @@ collision_mask = 0
 shape = SubResource("s19")
 
 [node name="Mesh" type="MeshInstance3D" parent="FrontLintel"]
+visible = false
 mesh = SubResource("s20")
 
 [node name="BackW" type="StaticBody3D" parent="."]
@@ -3270,6 +3645,7 @@ collision_mask = 0
 shape = SubResource("s21")
 
 [node name="Mesh" type="MeshInstance3D" parent="BackW"]
+visible = false
 mesh = SubResource("s22")
 
 [node name="BackE" type="StaticBody3D" parent="."]
@@ -3281,6 +3657,7 @@ collision_mask = 0
 shape = SubResource("s23")
 
 [node name="Mesh" type="MeshInstance3D" parent="BackE"]
+visible = false
 mesh = SubResource("s24")
 
 [node name="BackLintel" type="StaticBody3D" parent="."]
@@ -3292,102 +3669,119 @@ collision_mask = 0
 shape = SubResource("s25")
 
 [node name="Mesh" type="MeshInstance3D" parent="BackLintel"]
+visible = false
 mesh = SubResource("s26")
 
 [node name="Window0_5_0.13" type="Node3D" parent="."]
 position = Vector3(5, 1.8, 0.13)
 
 [node name="Mesh" type="MeshInstance3D" parent="Window0_5_0.13"]
+visible = false
 mesh = SubResource("s28")
 
 [node name="Sill0_5_0.13" type="Node3D" parent="."]
 position = Vector3(5, 1.1, 0.13)
 
 [node name="Mesh" type="MeshInstance3D" parent="Sill0_5_0.13"]
+visible = false
 mesh = SubResource("s30")
 
 [node name="Window0_5_29.87" type="Node3D" parent="."]
 position = Vector3(5, 1.8, 29.87)
 
 [node name="Mesh" type="MeshInstance3D" parent="Window0_5_29.87"]
+visible = false
 mesh = SubResource("s31")
 
 [node name="Sill0_5_29.87" type="Node3D" parent="."]
 position = Vector3(5, 1.1, 29.87)
 
 [node name="Mesh" type="MeshInstance3D" parent="Sill0_5_29.87"]
+visible = false
 mesh = SubResource("s32")
 
 [node name="Window0_13_0.13" type="Node3D" parent="."]
 position = Vector3(13, 1.8, 0.13)
 
 [node name="Mesh" type="MeshInstance3D" parent="Window0_13_0.13"]
+visible = false
 mesh = SubResource("s33")
 
 [node name="Sill0_13_0.13" type="Node3D" parent="."]
 position = Vector3(13, 1.1, 0.13)
 
 [node name="Mesh" type="MeshInstance3D" parent="Sill0_13_0.13"]
+visible = false
 mesh = SubResource("s34")
 
 [node name="Window0_13_29.87" type="Node3D" parent="."]
 position = Vector3(13, 1.8, 29.87)
 
 [node name="Mesh" type="MeshInstance3D" parent="Window0_13_29.87"]
+visible = false
 mesh = SubResource("s35")
 
 [node name="Sill0_13_29.87" type="Node3D" parent="."]
 position = Vector3(13, 1.1, 29.87)
 
 [node name="Mesh" type="MeshInstance3D" parent="Sill0_13_29.87"]
+visible = false
 mesh = SubResource("s36")
 
 [node name="Window0_27_0.13" type="Node3D" parent="."]
 position = Vector3(27, 1.8, 0.13)
 
 [node name="Mesh" type="MeshInstance3D" parent="Window0_27_0.13"]
+visible = false
 mesh = SubResource("s37")
 
 [node name="Sill0_27_0.13" type="Node3D" parent="."]
 position = Vector3(27, 1.1, 0.13)
 
 [node name="Mesh" type="MeshInstance3D" parent="Sill0_27_0.13"]
+visible = false
 mesh = SubResource("s38")
 
 [node name="Window0_27_29.87" type="Node3D" parent="."]
 position = Vector3(27, 1.8, 29.87)
 
 [node name="Mesh" type="MeshInstance3D" parent="Window0_27_29.87"]
+visible = false
 mesh = SubResource("s39")
 
 [node name="Sill0_27_29.87" type="Node3D" parent="."]
 position = Vector3(27, 1.1, 29.87)
 
 [node name="Mesh" type="MeshInstance3D" parent="Sill0_27_29.87"]
+visible = false
 mesh = SubResource("s40")
 
 [node name="Window0_35_0.13" type="Node3D" parent="."]
 position = Vector3(35, 1.8, 0.13)
 
 [node name="Mesh" type="MeshInstance3D" parent="Window0_35_0.13"]
+visible = false
 mesh = SubResource("s41")
 
 [node name="Sill0_35_0.13" type="Node3D" parent="."]
 position = Vector3(35, 1.1, 0.13)
 
 [node name="Mesh" type="MeshInstance3D" parent="Sill0_35_0.13"]
+visible = false
 mesh = SubResource("s42")
 
 [node name="Window0_35_29.87" type="Node3D" parent="."]
 position = Vector3(35, 1.8, 29.87)
 
 [node name="Mesh" type="MeshInstance3D" parent="Window0_35_29.87"]
+visible = false
 mesh = SubResource("s43")
 
 [node name="Sill0_35_29.87" type="Node3D" parent="."]
 position = Vector3(35, 1.1, 29.87)
 
 [node name="Mesh" type="MeshInstance3D" parent="Sill0_35_29.87"]
+visible = false
 mesh = SubResource("s44")
 
 [node name="Light0_9" type="OmniLight3D" parent="."]
@@ -3401,6 +3795,7 @@ shadow_enabled = false
 position = Vector3(0, 0.08, 0)
 
 [node name="Mesh" type="MeshInstance3D" parent="Light0_9/Fixture"]
+visible = false
 mesh = SubResource("s46")
 
 [node name="LightHum" type="AudioStreamPlayer3D" parent="Light0_9" node_paths=PackedStringArray("light")]
@@ -3424,6 +3819,7 @@ shadow_enabled = false
 position = Vector3(0, 0.08, 0)
 
 [node name="Mesh" type="MeshInstance3D" parent="Light0_25/Fixture"]
+visible = false
 mesh = SubResource("s47")
 
 [node name="LightHum" type="AudioStreamPlayer3D" parent="Light0_25" node_paths=PackedStringArray("light")]
@@ -3487,6 +3883,7 @@ collision_mask = 0
 shape = SubResource("s54")
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_6/Back"]
+visible = false
 mesh = SubResource("s56")
 
 [node name="Side-1.48" type="StaticBody3D" parent="Shelf0_6"]
@@ -3498,6 +3895,7 @@ collision_mask = 0
 shape = SubResource("s57")
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_6/Side-1.48"]
+visible = false
 mesh = SubResource("s58")
 
 [node name="Side1.48" type="StaticBody3D" parent="Shelf0_6"]
@@ -3509,6 +3907,7 @@ collision_mask = 0
 shape = SubResource("s59")
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_6/Side1.48"]
+visible = false
 mesh = SubResource("s60")
 
 [node name="Shelf0" type="StaticBody3D" parent="Shelf0_6"]
@@ -3520,60 +3919,70 @@ collision_mask = 0
 shape = SubResource("s61")
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_6/Shelf0"]
+visible = false
 mesh = SubResource("s62")
 
 [node name="Book0_0" type="Node3D" parent="Shelf0_6"]
 position = Vector3(-1.28, 0.3, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_6/Book0_0"]
+visible = false
 mesh = SubResource("s64")
 
 [node name="Book0_1" type="Node3D" parent="Shelf0_6"]
 position = Vector3(-0.97, 0.3, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_6/Book0_1"]
+visible = false
 mesh = SubResource("s66")
 
 [node name="Book0_2" type="Node3D" parent="Shelf0_6"]
 position = Vector3(-0.66, 0.3, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_6/Book0_2"]
+visible = false
 mesh = SubResource("s67")
 
 [node name="Book0_3" type="Node3D" parent="Shelf0_6"]
 position = Vector3(-0.35, 0.3, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_6/Book0_3"]
+visible = false
 mesh = SubResource("s68")
 
 [node name="Book0_4" type="Node3D" parent="Shelf0_6"]
 position = Vector3(-0.04, 0.3, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_6/Book0_4"]
+visible = false
 mesh = SubResource("s69")
 
 [node name="Book0_5" type="Node3D" parent="Shelf0_6"]
 position = Vector3(0.27, 0.3, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_6/Book0_5"]
+visible = false
 mesh = SubResource("s70")
 
 [node name="Book0_6" type="Node3D" parent="Shelf0_6"]
 position = Vector3(0.58, 0.3, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_6/Book0_6"]
+visible = false
 mesh = SubResource("s71")
 
 [node name="Book0_7" type="Node3D" parent="Shelf0_6"]
 position = Vector3(0.89, 0.3, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_6/Book0_7"]
+visible = false
 mesh = SubResource("s72")
 
 [node name="Book0_8" type="Node3D" parent="Shelf0_6"]
 position = Vector3(1.2, 0.3, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_6/Book0_8"]
+visible = false
 mesh = SubResource("s73")
 
 [node name="Shelf1" type="StaticBody3D" parent="Shelf0_6"]
@@ -3585,60 +3994,70 @@ collision_mask = 0
 shape = SubResource("s74")
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_6/Shelf1"]
+visible = false
 mesh = SubResource("s75")
 
 [node name="Book1_0" type="Node3D" parent="Shelf0_6"]
 position = Vector3(-1.28, 0.86, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_6/Book1_0"]
+visible = false
 mesh = SubResource("s76")
 
 [node name="Book1_1" type="Node3D" parent="Shelf0_6"]
 position = Vector3(-0.97, 0.86, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_6/Book1_1"]
+visible = false
 mesh = SubResource("s77")
 
 [node name="Book1_2" type="Node3D" parent="Shelf0_6"]
 position = Vector3(-0.66, 0.86, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_6/Book1_2"]
+visible = false
 mesh = SubResource("s78")
 
 [node name="Book1_3" type="Node3D" parent="Shelf0_6"]
 position = Vector3(-0.35, 0.86, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_6/Book1_3"]
+visible = false
 mesh = SubResource("s79")
 
 [node name="Book1_4" type="Node3D" parent="Shelf0_6"]
 position = Vector3(-0.04, 0.86, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_6/Book1_4"]
+visible = false
 mesh = SubResource("s80")
 
 [node name="Book1_5" type="Node3D" parent="Shelf0_6"]
 position = Vector3(0.27, 0.86, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_6/Book1_5"]
+visible = false
 mesh = SubResource("s81")
 
 [node name="Book1_6" type="Node3D" parent="Shelf0_6"]
 position = Vector3(0.58, 0.86, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_6/Book1_6"]
+visible = false
 mesh = SubResource("s82")
 
 [node name="Book1_7" type="Node3D" parent="Shelf0_6"]
 position = Vector3(0.89, 0.86, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_6/Book1_7"]
+visible = false
 mesh = SubResource("s83")
 
 [node name="Book1_8" type="Node3D" parent="Shelf0_6"]
 position = Vector3(1.2, 0.86, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_6/Book1_8"]
+visible = false
 mesh = SubResource("s84")
 
 [node name="Shelf2" type="StaticBody3D" parent="Shelf0_6"]
@@ -3650,60 +4069,70 @@ collision_mask = 0
 shape = SubResource("s85")
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_6/Shelf2"]
+visible = false
 mesh = SubResource("s86")
 
 [node name="Book2_0" type="Node3D" parent="Shelf0_6"]
 position = Vector3(-1.28, 1.42, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_6/Book2_0"]
+visible = false
 mesh = SubResource("s87")
 
 [node name="Book2_1" type="Node3D" parent="Shelf0_6"]
 position = Vector3(-0.97, 1.42, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_6/Book2_1"]
+visible = false
 mesh = SubResource("s88")
 
 [node name="Book2_2" type="Node3D" parent="Shelf0_6"]
 position = Vector3(-0.66, 1.42, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_6/Book2_2"]
+visible = false
 mesh = SubResource("s89")
 
 [node name="Book2_3" type="Node3D" parent="Shelf0_6"]
 position = Vector3(-0.35, 1.42, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_6/Book2_3"]
+visible = false
 mesh = SubResource("s90")
 
 [node name="Book2_4" type="Node3D" parent="Shelf0_6"]
 position = Vector3(-0.04, 1.42, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_6/Book2_4"]
+visible = false
 mesh = SubResource("s91")
 
 [node name="Book2_5" type="Node3D" parent="Shelf0_6"]
 position = Vector3(0.27, 1.42, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_6/Book2_5"]
+visible = false
 mesh = SubResource("s92")
 
 [node name="Book2_6" type="Node3D" parent="Shelf0_6"]
 position = Vector3(0.58, 1.42, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_6/Book2_6"]
+visible = false
 mesh = SubResource("s93")
 
 [node name="Book2_7" type="Node3D" parent="Shelf0_6"]
 position = Vector3(0.89, 1.42, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_6/Book2_7"]
+visible = false
 mesh = SubResource("s94")
 
 [node name="Book2_8" type="Node3D" parent="Shelf0_6"]
 position = Vector3(1.2, 1.42, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_6/Book2_8"]
+visible = false
 mesh = SubResource("s95")
 
 [node name="Shelf3" type="StaticBody3D" parent="Shelf0_6"]
@@ -3715,60 +4144,70 @@ collision_mask = 0
 shape = SubResource("s96")
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_6/Shelf3"]
+visible = false
 mesh = SubResource("s97")
 
 [node name="Book3_0" type="Node3D" parent="Shelf0_6"]
 position = Vector3(-1.28, 1.98, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_6/Book3_0"]
+visible = false
 mesh = SubResource("s98")
 
 [node name="Book3_1" type="Node3D" parent="Shelf0_6"]
 position = Vector3(-0.97, 1.98, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_6/Book3_1"]
+visible = false
 mesh = SubResource("s99")
 
 [node name="Book3_2" type="Node3D" parent="Shelf0_6"]
 position = Vector3(-0.66, 1.98, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_6/Book3_2"]
+visible = false
 mesh = SubResource("s100")
 
 [node name="Book3_3" type="Node3D" parent="Shelf0_6"]
 position = Vector3(-0.35, 1.98, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_6/Book3_3"]
+visible = false
 mesh = SubResource("s101")
 
 [node name="Book3_4" type="Node3D" parent="Shelf0_6"]
 position = Vector3(-0.04, 1.98, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_6/Book3_4"]
+visible = false
 mesh = SubResource("s102")
 
 [node name="Book3_5" type="Node3D" parent="Shelf0_6"]
 position = Vector3(0.27, 1.98, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_6/Book3_5"]
+visible = false
 mesh = SubResource("s103")
 
 [node name="Book3_6" type="Node3D" parent="Shelf0_6"]
 position = Vector3(0.58, 1.98, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_6/Book3_6"]
+visible = false
 mesh = SubResource("s104")
 
 [node name="Book3_7" type="Node3D" parent="Shelf0_6"]
 position = Vector3(0.89, 1.98, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_6/Book3_7"]
+visible = false
 mesh = SubResource("s105")
 
 [node name="Book3_8" type="Node3D" parent="Shelf0_6"]
 position = Vector3(1.2, 1.98, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_6/Book3_8"]
+visible = false
 mesh = SubResource("s106")
 
 [node name="Shelf0_12" type="Node3D" parent="."]
@@ -3784,6 +4223,7 @@ collision_mask = 0
 shape = SubResource("s107")
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_12/Back"]
+visible = false
 mesh = SubResource("s108")
 
 [node name="Side-1.48" type="StaticBody3D" parent="Shelf0_12"]
@@ -3795,6 +4235,7 @@ collision_mask = 0
 shape = SubResource("s109")
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_12/Side-1.48"]
+visible = false
 mesh = SubResource("s110")
 
 [node name="Side1.48" type="StaticBody3D" parent="Shelf0_12"]
@@ -3806,6 +4247,7 @@ collision_mask = 0
 shape = SubResource("s111")
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_12/Side1.48"]
+visible = false
 mesh = SubResource("s112")
 
 [node name="Shelf0" type="StaticBody3D" parent="Shelf0_12"]
@@ -3817,60 +4259,70 @@ collision_mask = 0
 shape = SubResource("s113")
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_12/Shelf0"]
+visible = false
 mesh = SubResource("s114")
 
 [node name="Book0_0" type="Node3D" parent="Shelf0_12"]
 position = Vector3(-1.28, 0.3, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_12/Book0_0"]
+visible = false
 mesh = SubResource("s115")
 
 [node name="Book0_1" type="Node3D" parent="Shelf0_12"]
 position = Vector3(-0.97, 0.3, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_12/Book0_1"]
+visible = false
 mesh = SubResource("s116")
 
 [node name="Book0_2" type="Node3D" parent="Shelf0_12"]
 position = Vector3(-0.66, 0.3, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_12/Book0_2"]
+visible = false
 mesh = SubResource("s117")
 
 [node name="Book0_3" type="Node3D" parent="Shelf0_12"]
 position = Vector3(-0.35, 0.3, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_12/Book0_3"]
+visible = false
 mesh = SubResource("s118")
 
 [node name="Book0_4" type="Node3D" parent="Shelf0_12"]
 position = Vector3(-0.04, 0.3, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_12/Book0_4"]
+visible = false
 mesh = SubResource("s119")
 
 [node name="Book0_5" type="Node3D" parent="Shelf0_12"]
 position = Vector3(0.27, 0.3, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_12/Book0_5"]
+visible = false
 mesh = SubResource("s120")
 
 [node name="Book0_6" type="Node3D" parent="Shelf0_12"]
 position = Vector3(0.58, 0.3, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_12/Book0_6"]
+visible = false
 mesh = SubResource("s121")
 
 [node name="Book0_7" type="Node3D" parent="Shelf0_12"]
 position = Vector3(0.89, 0.3, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_12/Book0_7"]
+visible = false
 mesh = SubResource("s122")
 
 [node name="Book0_8" type="Node3D" parent="Shelf0_12"]
 position = Vector3(1.2, 0.3, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_12/Book0_8"]
+visible = false
 mesh = SubResource("s123")
 
 [node name="Shelf1" type="StaticBody3D" parent="Shelf0_12"]
@@ -3882,60 +4334,70 @@ collision_mask = 0
 shape = SubResource("s124")
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_12/Shelf1"]
+visible = false
 mesh = SubResource("s125")
 
 [node name="Book1_0" type="Node3D" parent="Shelf0_12"]
 position = Vector3(-1.28, 0.86, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_12/Book1_0"]
+visible = false
 mesh = SubResource("s126")
 
 [node name="Book1_1" type="Node3D" parent="Shelf0_12"]
 position = Vector3(-0.97, 0.86, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_12/Book1_1"]
+visible = false
 mesh = SubResource("s127")
 
 [node name="Book1_2" type="Node3D" parent="Shelf0_12"]
 position = Vector3(-0.66, 0.86, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_12/Book1_2"]
+visible = false
 mesh = SubResource("s128")
 
 [node name="Book1_3" type="Node3D" parent="Shelf0_12"]
 position = Vector3(-0.35, 0.86, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_12/Book1_3"]
+visible = false
 mesh = SubResource("s129")
 
 [node name="Book1_4" type="Node3D" parent="Shelf0_12"]
 position = Vector3(-0.04, 0.86, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_12/Book1_4"]
+visible = false
 mesh = SubResource("s130")
 
 [node name="Book1_5" type="Node3D" parent="Shelf0_12"]
 position = Vector3(0.27, 0.86, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_12/Book1_5"]
+visible = false
 mesh = SubResource("s131")
 
 [node name="Book1_6" type="Node3D" parent="Shelf0_12"]
 position = Vector3(0.58, 0.86, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_12/Book1_6"]
+visible = false
 mesh = SubResource("s132")
 
 [node name="Book1_7" type="Node3D" parent="Shelf0_12"]
 position = Vector3(0.89, 0.86, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_12/Book1_7"]
+visible = false
 mesh = SubResource("s133")
 
 [node name="Book1_8" type="Node3D" parent="Shelf0_12"]
 position = Vector3(1.2, 0.86, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_12/Book1_8"]
+visible = false
 mesh = SubResource("s134")
 
 [node name="Shelf2" type="StaticBody3D" parent="Shelf0_12"]
@@ -3947,60 +4409,70 @@ collision_mask = 0
 shape = SubResource("s135")
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_12/Shelf2"]
+visible = false
 mesh = SubResource("s136")
 
 [node name="Book2_0" type="Node3D" parent="Shelf0_12"]
 position = Vector3(-1.28, 1.42, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_12/Book2_0"]
+visible = false
 mesh = SubResource("s137")
 
 [node name="Book2_1" type="Node3D" parent="Shelf0_12"]
 position = Vector3(-0.97, 1.42, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_12/Book2_1"]
+visible = false
 mesh = SubResource("s138")
 
 [node name="Book2_2" type="Node3D" parent="Shelf0_12"]
 position = Vector3(-0.66, 1.42, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_12/Book2_2"]
+visible = false
 mesh = SubResource("s139")
 
 [node name="Book2_3" type="Node3D" parent="Shelf0_12"]
 position = Vector3(-0.35, 1.42, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_12/Book2_3"]
+visible = false
 mesh = SubResource("s140")
 
 [node name="Book2_4" type="Node3D" parent="Shelf0_12"]
 position = Vector3(-0.04, 1.42, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_12/Book2_4"]
+visible = false
 mesh = SubResource("s141")
 
 [node name="Book2_5" type="Node3D" parent="Shelf0_12"]
 position = Vector3(0.27, 1.42, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_12/Book2_5"]
+visible = false
 mesh = SubResource("s142")
 
 [node name="Book2_6" type="Node3D" parent="Shelf0_12"]
 position = Vector3(0.58, 1.42, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_12/Book2_6"]
+visible = false
 mesh = SubResource("s143")
 
 [node name="Book2_7" type="Node3D" parent="Shelf0_12"]
 position = Vector3(0.89, 1.42, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_12/Book2_7"]
+visible = false
 mesh = SubResource("s144")
 
 [node name="Book2_8" type="Node3D" parent="Shelf0_12"]
 position = Vector3(1.2, 1.42, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_12/Book2_8"]
+visible = false
 mesh = SubResource("s145")
 
 [node name="Shelf3" type="StaticBody3D" parent="Shelf0_12"]
@@ -4012,60 +4484,70 @@ collision_mask = 0
 shape = SubResource("s146")
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_12/Shelf3"]
+visible = false
 mesh = SubResource("s147")
 
 [node name="Book3_0" type="Node3D" parent="Shelf0_12"]
 position = Vector3(-1.28, 1.98, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_12/Book3_0"]
+visible = false
 mesh = SubResource("s148")
 
 [node name="Book3_1" type="Node3D" parent="Shelf0_12"]
 position = Vector3(-0.97, 1.98, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_12/Book3_1"]
+visible = false
 mesh = SubResource("s149")
 
 [node name="Book3_2" type="Node3D" parent="Shelf0_12"]
 position = Vector3(-0.66, 1.98, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_12/Book3_2"]
+visible = false
 mesh = SubResource("s150")
 
 [node name="Book3_3" type="Node3D" parent="Shelf0_12"]
 position = Vector3(-0.35, 1.98, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_12/Book3_3"]
+visible = false
 mesh = SubResource("s151")
 
 [node name="Book3_4" type="Node3D" parent="Shelf0_12"]
 position = Vector3(-0.04, 1.98, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_12/Book3_4"]
+visible = false
 mesh = SubResource("s152")
 
 [node name="Book3_5" type="Node3D" parent="Shelf0_12"]
 position = Vector3(0.27, 1.98, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_12/Book3_5"]
+visible = false
 mesh = SubResource("s153")
 
 [node name="Book3_6" type="Node3D" parent="Shelf0_12"]
 position = Vector3(0.58, 1.98, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_12/Book3_6"]
+visible = false
 mesh = SubResource("s154")
 
 [node name="Book3_7" type="Node3D" parent="Shelf0_12"]
 position = Vector3(0.89, 1.98, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_12/Book3_7"]
+visible = false
 mesh = SubResource("s155")
 
 [node name="Book3_8" type="Node3D" parent="Shelf0_12"]
 position = Vector3(1.2, 1.98, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_12/Book3_8"]
+visible = false
 mesh = SubResource("s156")
 
 [node name="Shelf0_28" type="Node3D" parent="."]
@@ -4081,6 +4563,7 @@ collision_mask = 0
 shape = SubResource("s157")
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_28/Back"]
+visible = false
 mesh = SubResource("s158")
 
 [node name="Side-1.48" type="StaticBody3D" parent="Shelf0_28"]
@@ -4092,6 +4575,7 @@ collision_mask = 0
 shape = SubResource("s159")
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_28/Side-1.48"]
+visible = false
 mesh = SubResource("s160")
 
 [node name="Side1.48" type="StaticBody3D" parent="Shelf0_28"]
@@ -4103,6 +4587,7 @@ collision_mask = 0
 shape = SubResource("s161")
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_28/Side1.48"]
+visible = false
 mesh = SubResource("s162")
 
 [node name="Shelf0" type="StaticBody3D" parent="Shelf0_28"]
@@ -4114,60 +4599,70 @@ collision_mask = 0
 shape = SubResource("s163")
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_28/Shelf0"]
+visible = false
 mesh = SubResource("s164")
 
 [node name="Book0_0" type="Node3D" parent="Shelf0_28"]
 position = Vector3(-1.28, 0.3, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_28/Book0_0"]
+visible = false
 mesh = SubResource("s165")
 
 [node name="Book0_1" type="Node3D" parent="Shelf0_28"]
 position = Vector3(-0.97, 0.3, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_28/Book0_1"]
+visible = false
 mesh = SubResource("s166")
 
 [node name="Book0_2" type="Node3D" parent="Shelf0_28"]
 position = Vector3(-0.66, 0.3, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_28/Book0_2"]
+visible = false
 mesh = SubResource("s167")
 
 [node name="Book0_3" type="Node3D" parent="Shelf0_28"]
 position = Vector3(-0.35, 0.3, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_28/Book0_3"]
+visible = false
 mesh = SubResource("s168")
 
 [node name="Book0_4" type="Node3D" parent="Shelf0_28"]
 position = Vector3(-0.04, 0.3, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_28/Book0_4"]
+visible = false
 mesh = SubResource("s169")
 
 [node name="Book0_5" type="Node3D" parent="Shelf0_28"]
 position = Vector3(0.27, 0.3, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_28/Book0_5"]
+visible = false
 mesh = SubResource("s170")
 
 [node name="Book0_6" type="Node3D" parent="Shelf0_28"]
 position = Vector3(0.58, 0.3, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_28/Book0_6"]
+visible = false
 mesh = SubResource("s171")
 
 [node name="Book0_7" type="Node3D" parent="Shelf0_28"]
 position = Vector3(0.89, 0.3, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_28/Book0_7"]
+visible = false
 mesh = SubResource("s172")
 
 [node name="Book0_8" type="Node3D" parent="Shelf0_28"]
 position = Vector3(1.2, 0.3, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_28/Book0_8"]
+visible = false
 mesh = SubResource("s173")
 
 [node name="Shelf1" type="StaticBody3D" parent="Shelf0_28"]
@@ -4179,60 +4674,70 @@ collision_mask = 0
 shape = SubResource("s174")
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_28/Shelf1"]
+visible = false
 mesh = SubResource("s175")
 
 [node name="Book1_0" type="Node3D" parent="Shelf0_28"]
 position = Vector3(-1.28, 0.86, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_28/Book1_0"]
+visible = false
 mesh = SubResource("s176")
 
 [node name="Book1_1" type="Node3D" parent="Shelf0_28"]
 position = Vector3(-0.97, 0.86, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_28/Book1_1"]
+visible = false
 mesh = SubResource("s177")
 
 [node name="Book1_2" type="Node3D" parent="Shelf0_28"]
 position = Vector3(-0.66, 0.86, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_28/Book1_2"]
+visible = false
 mesh = SubResource("s178")
 
 [node name="Book1_3" type="Node3D" parent="Shelf0_28"]
 position = Vector3(-0.35, 0.86, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_28/Book1_3"]
+visible = false
 mesh = SubResource("s179")
 
 [node name="Book1_4" type="Node3D" parent="Shelf0_28"]
 position = Vector3(-0.04, 0.86, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_28/Book1_4"]
+visible = false
 mesh = SubResource("s180")
 
 [node name="Book1_5" type="Node3D" parent="Shelf0_28"]
 position = Vector3(0.27, 0.86, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_28/Book1_5"]
+visible = false
 mesh = SubResource("s181")
 
 [node name="Book1_6" type="Node3D" parent="Shelf0_28"]
 position = Vector3(0.58, 0.86, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_28/Book1_6"]
+visible = false
 mesh = SubResource("s182")
 
 [node name="Book1_7" type="Node3D" parent="Shelf0_28"]
 position = Vector3(0.89, 0.86, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_28/Book1_7"]
+visible = false
 mesh = SubResource("s183")
 
 [node name="Book1_8" type="Node3D" parent="Shelf0_28"]
 position = Vector3(1.2, 0.86, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_28/Book1_8"]
+visible = false
 mesh = SubResource("s184")
 
 [node name="Shelf2" type="StaticBody3D" parent="Shelf0_28"]
@@ -4244,60 +4749,70 @@ collision_mask = 0
 shape = SubResource("s185")
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_28/Shelf2"]
+visible = false
 mesh = SubResource("s186")
 
 [node name="Book2_0" type="Node3D" parent="Shelf0_28"]
 position = Vector3(-1.28, 1.42, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_28/Book2_0"]
+visible = false
 mesh = SubResource("s187")
 
 [node name="Book2_1" type="Node3D" parent="Shelf0_28"]
 position = Vector3(-0.97, 1.42, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_28/Book2_1"]
+visible = false
 mesh = SubResource("s188")
 
 [node name="Book2_2" type="Node3D" parent="Shelf0_28"]
 position = Vector3(-0.66, 1.42, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_28/Book2_2"]
+visible = false
 mesh = SubResource("s189")
 
 [node name="Book2_3" type="Node3D" parent="Shelf0_28"]
 position = Vector3(-0.35, 1.42, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_28/Book2_3"]
+visible = false
 mesh = SubResource("s190")
 
 [node name="Book2_4" type="Node3D" parent="Shelf0_28"]
 position = Vector3(-0.04, 1.42, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_28/Book2_4"]
+visible = false
 mesh = SubResource("s191")
 
 [node name="Book2_5" type="Node3D" parent="Shelf0_28"]
 position = Vector3(0.27, 1.42, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_28/Book2_5"]
+visible = false
 mesh = SubResource("s192")
 
 [node name="Book2_6" type="Node3D" parent="Shelf0_28"]
 position = Vector3(0.58, 1.42, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_28/Book2_6"]
+visible = false
 mesh = SubResource("s193")
 
 [node name="Book2_7" type="Node3D" parent="Shelf0_28"]
 position = Vector3(0.89, 1.42, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_28/Book2_7"]
+visible = false
 mesh = SubResource("s194")
 
 [node name="Book2_8" type="Node3D" parent="Shelf0_28"]
 position = Vector3(1.2, 1.42, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_28/Book2_8"]
+visible = false
 mesh = SubResource("s195")
 
 [node name="Shelf3" type="StaticBody3D" parent="Shelf0_28"]
@@ -4309,60 +4824,70 @@ collision_mask = 0
 shape = SubResource("s196")
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_28/Shelf3"]
+visible = false
 mesh = SubResource("s197")
 
 [node name="Book3_0" type="Node3D" parent="Shelf0_28"]
 position = Vector3(-1.28, 1.98, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_28/Book3_0"]
+visible = false
 mesh = SubResource("s198")
 
 [node name="Book3_1" type="Node3D" parent="Shelf0_28"]
 position = Vector3(-0.97, 1.98, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_28/Book3_1"]
+visible = false
 mesh = SubResource("s199")
 
 [node name="Book3_2" type="Node3D" parent="Shelf0_28"]
 position = Vector3(-0.66, 1.98, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_28/Book3_2"]
+visible = false
 mesh = SubResource("s200")
 
 [node name="Book3_3" type="Node3D" parent="Shelf0_28"]
 position = Vector3(-0.35, 1.98, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_28/Book3_3"]
+visible = false
 mesh = SubResource("s201")
 
 [node name="Book3_4" type="Node3D" parent="Shelf0_28"]
 position = Vector3(-0.04, 1.98, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_28/Book3_4"]
+visible = false
 mesh = SubResource("s202")
 
 [node name="Book3_5" type="Node3D" parent="Shelf0_28"]
 position = Vector3(0.27, 1.98, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_28/Book3_5"]
+visible = false
 mesh = SubResource("s203")
 
 [node name="Book3_6" type="Node3D" parent="Shelf0_28"]
 position = Vector3(0.58, 1.98, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_28/Book3_6"]
+visible = false
 mesh = SubResource("s204")
 
 [node name="Book3_7" type="Node3D" parent="Shelf0_28"]
 position = Vector3(0.89, 1.98, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_28/Book3_7"]
+visible = false
 mesh = SubResource("s205")
 
 [node name="Book3_8" type="Node3D" parent="Shelf0_28"]
 position = Vector3(1.2, 1.98, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf0_28/Book3_8"]
+visible = false
 mesh = SubResource("s206")
 
 [node name="CounterApproach" type="NavigationRegion3D" parent="."]
@@ -4383,6 +4908,7 @@ collision_mask = 0
 shape = SubResource("s208")
 
 [node name="Mesh" type="MeshInstance3D" parent="Floor1_Main"]
+visible = false
 mesh = SubResource("s209")
 
 [node name="Floor1_South" type="StaticBody3D" parent="."]
@@ -4396,6 +4922,7 @@ collision_mask = 0
 shape = SubResource("s210")
 
 [node name="Mesh" type="MeshInstance3D" parent="Floor1_South"]
+visible = false
 mesh = SubResource("s211")
 
 [node name="Floor1_North" type="StaticBody3D" parent="."]
@@ -4409,6 +4936,7 @@ collision_mask = 0
 shape = SubResource("s212")
 
 [node name="Mesh" type="MeshInstance3D" parent="Floor1_North"]
+visible = false
 mesh = SubResource("s213")
 
 [node name="West1" type="StaticBody3D" parent="."]
@@ -4420,6 +4948,7 @@ collision_mask = 0
 shape = SubResource("s214")
 
 [node name="Mesh" type="MeshInstance3D" parent="West1"]
+visible = false
 mesh = SubResource("s215")
 
 [node name="East1" type="StaticBody3D" parent="."]
@@ -4431,6 +4960,7 @@ collision_mask = 0
 shape = SubResource("s216")
 
 [node name="Mesh" type="MeshInstance3D" parent="East1"]
+visible = false
 mesh = SubResource("s217")
 
 [node name="Front1" type="StaticBody3D" parent="."]
@@ -4442,6 +4972,7 @@ collision_mask = 0
 shape = SubResource("s218")
 
 [node name="Mesh" type="MeshInstance3D" parent="Front1"]
+visible = false
 mesh = SubResource("s219")
 
 [node name="Back1" type="StaticBody3D" parent="."]
@@ -4453,102 +4984,119 @@ collision_mask = 0
 shape = SubResource("s220")
 
 [node name="Mesh" type="MeshInstance3D" parent="Back1"]
+visible = false
 mesh = SubResource("s221")
 
 [node name="Window1_5_0.13" type="Node3D" parent="."]
 position = Vector3(5, 5.1, 0.13)
 
 [node name="Mesh" type="MeshInstance3D" parent="Window1_5_0.13"]
+visible = false
 mesh = SubResource("s222")
 
 [node name="Sill1_5_0.13" type="Node3D" parent="."]
 position = Vector3(5, 4.4, 0.13)
 
 [node name="Mesh" type="MeshInstance3D" parent="Sill1_5_0.13"]
+visible = false
 mesh = SubResource("s223")
 
 [node name="Window1_5_29.87" type="Node3D" parent="."]
 position = Vector3(5, 5.1, 29.87)
 
 [node name="Mesh" type="MeshInstance3D" parent="Window1_5_29.87"]
+visible = false
 mesh = SubResource("s224")
 
 [node name="Sill1_5_29.87" type="Node3D" parent="."]
 position = Vector3(5, 4.4, 29.87)
 
 [node name="Mesh" type="MeshInstance3D" parent="Sill1_5_29.87"]
+visible = false
 mesh = SubResource("s225")
 
 [node name="Window1_13_0.13" type="Node3D" parent="."]
 position = Vector3(13, 5.1, 0.13)
 
 [node name="Mesh" type="MeshInstance3D" parent="Window1_13_0.13"]
+visible = false
 mesh = SubResource("s226")
 
 [node name="Sill1_13_0.13" type="Node3D" parent="."]
 position = Vector3(13, 4.4, 0.13)
 
 [node name="Mesh" type="MeshInstance3D" parent="Sill1_13_0.13"]
+visible = false
 mesh = SubResource("s227")
 
 [node name="Window1_13_29.87" type="Node3D" parent="."]
 position = Vector3(13, 5.1, 29.87)
 
 [node name="Mesh" type="MeshInstance3D" parent="Window1_13_29.87"]
+visible = false
 mesh = SubResource("s228")
 
 [node name="Sill1_13_29.87" type="Node3D" parent="."]
 position = Vector3(13, 4.4, 29.87)
 
 [node name="Mesh" type="MeshInstance3D" parent="Sill1_13_29.87"]
+visible = false
 mesh = SubResource("s229")
 
 [node name="Window1_27_0.13" type="Node3D" parent="."]
 position = Vector3(27, 5.1, 0.13)
 
 [node name="Mesh" type="MeshInstance3D" parent="Window1_27_0.13"]
+visible = false
 mesh = SubResource("s230")
 
 [node name="Sill1_27_0.13" type="Node3D" parent="."]
 position = Vector3(27, 4.4, 0.13)
 
 [node name="Mesh" type="MeshInstance3D" parent="Sill1_27_0.13"]
+visible = false
 mesh = SubResource("s231")
 
 [node name="Window1_27_29.87" type="Node3D" parent="."]
 position = Vector3(27, 5.1, 29.87)
 
 [node name="Mesh" type="MeshInstance3D" parent="Window1_27_29.87"]
+visible = false
 mesh = SubResource("s232")
 
 [node name="Sill1_27_29.87" type="Node3D" parent="."]
 position = Vector3(27, 4.4, 29.87)
 
 [node name="Mesh" type="MeshInstance3D" parent="Sill1_27_29.87"]
+visible = false
 mesh = SubResource("s233")
 
 [node name="Window1_35_0.13" type="Node3D" parent="."]
 position = Vector3(35, 5.1, 0.13)
 
 [node name="Mesh" type="MeshInstance3D" parent="Window1_35_0.13"]
+visible = false
 mesh = SubResource("s234")
 
 [node name="Sill1_35_0.13" type="Node3D" parent="."]
 position = Vector3(35, 4.4, 0.13)
 
 [node name="Mesh" type="MeshInstance3D" parent="Sill1_35_0.13"]
+visible = false
 mesh = SubResource("s235")
 
 [node name="Window1_35_29.87" type="Node3D" parent="."]
 position = Vector3(35, 5.1, 29.87)
 
 [node name="Mesh" type="MeshInstance3D" parent="Window1_35_29.87"]
+visible = false
 mesh = SubResource("s236")
 
 [node name="Sill1_35_29.87" type="Node3D" parent="."]
 position = Vector3(35, 4.4, 29.87)
 
 [node name="Mesh" type="MeshInstance3D" parent="Sill1_35_29.87"]
+visible = false
 mesh = SubResource("s237")
 
 [node name="Light1_9" type="OmniLight3D" parent="."]
@@ -4562,6 +5110,7 @@ shadow_enabled = false
 position = Vector3(0, 0.08, 0)
 
 [node name="Mesh" type="MeshInstance3D" parent="Light1_9/Fixture"]
+visible = false
 mesh = SubResource("s238")
 
 [node name="LightHum" type="AudioStreamPlayer3D" parent="Light1_9" node_paths=PackedStringArray("light")]
@@ -4585,6 +5134,7 @@ shadow_enabled = false
 position = Vector3(0, 0.08, 0)
 
 [node name="Mesh" type="MeshInstance3D" parent="Light1_25/Fixture"]
+visible = false
 mesh = SubResource("s239")
 
 [node name="LightHum" type="AudioStreamPlayer3D" parent="Light1_25" node_paths=PackedStringArray("light")]
@@ -4648,6 +5198,7 @@ collision_mask = 0
 shape = SubResource("s246")
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_6/Back"]
+visible = false
 mesh = SubResource("s247")
 
 [node name="Side-1.48" type="StaticBody3D" parent="Shelf1_6"]
@@ -4659,6 +5210,7 @@ collision_mask = 0
 shape = SubResource("s248")
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_6/Side-1.48"]
+visible = false
 mesh = SubResource("s249")
 
 [node name="Side1.48" type="StaticBody3D" parent="Shelf1_6"]
@@ -4670,6 +5222,7 @@ collision_mask = 0
 shape = SubResource("s250")
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_6/Side1.48"]
+visible = false
 mesh = SubResource("s251")
 
 [node name="Shelf0" type="StaticBody3D" parent="Shelf1_6"]
@@ -4681,60 +5234,70 @@ collision_mask = 0
 shape = SubResource("s252")
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_6/Shelf0"]
+visible = false
 mesh = SubResource("s253")
 
 [node name="Book0_0" type="Node3D" parent="Shelf1_6"]
 position = Vector3(-1.28, 0.3, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_6/Book0_0"]
+visible = false
 mesh = SubResource("s254")
 
 [node name="Book0_1" type="Node3D" parent="Shelf1_6"]
 position = Vector3(-0.97, 0.3, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_6/Book0_1"]
+visible = false
 mesh = SubResource("s255")
 
 [node name="Book0_2" type="Node3D" parent="Shelf1_6"]
 position = Vector3(-0.66, 0.3, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_6/Book0_2"]
+visible = false
 mesh = SubResource("s256")
 
 [node name="Book0_3" type="Node3D" parent="Shelf1_6"]
 position = Vector3(-0.35, 0.3, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_6/Book0_3"]
+visible = false
 mesh = SubResource("s257")
 
 [node name="Book0_4" type="Node3D" parent="Shelf1_6"]
 position = Vector3(-0.04, 0.3, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_6/Book0_4"]
+visible = false
 mesh = SubResource("s258")
 
 [node name="Book0_5" type="Node3D" parent="Shelf1_6"]
 position = Vector3(0.27, 0.3, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_6/Book0_5"]
+visible = false
 mesh = SubResource("s259")
 
 [node name="Book0_6" type="Node3D" parent="Shelf1_6"]
 position = Vector3(0.58, 0.3, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_6/Book0_6"]
+visible = false
 mesh = SubResource("s260")
 
 [node name="Book0_7" type="Node3D" parent="Shelf1_6"]
 position = Vector3(0.89, 0.3, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_6/Book0_7"]
+visible = false
 mesh = SubResource("s261")
 
 [node name="Book0_8" type="Node3D" parent="Shelf1_6"]
 position = Vector3(1.2, 0.3, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_6/Book0_8"]
+visible = false
 mesh = SubResource("s262")
 
 [node name="Shelf1" type="StaticBody3D" parent="Shelf1_6"]
@@ -4746,60 +5309,70 @@ collision_mask = 0
 shape = SubResource("s263")
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_6/Shelf1"]
+visible = false
 mesh = SubResource("s264")
 
 [node name="Book1_0" type="Node3D" parent="Shelf1_6"]
 position = Vector3(-1.28, 0.86, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_6/Book1_0"]
+visible = false
 mesh = SubResource("s265")
 
 [node name="Book1_1" type="Node3D" parent="Shelf1_6"]
 position = Vector3(-0.97, 0.86, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_6/Book1_1"]
+visible = false
 mesh = SubResource("s266")
 
 [node name="Book1_2" type="Node3D" parent="Shelf1_6"]
 position = Vector3(-0.66, 0.86, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_6/Book1_2"]
+visible = false
 mesh = SubResource("s267")
 
 [node name="Book1_3" type="Node3D" parent="Shelf1_6"]
 position = Vector3(-0.35, 0.86, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_6/Book1_3"]
+visible = false
 mesh = SubResource("s268")
 
 [node name="Book1_4" type="Node3D" parent="Shelf1_6"]
 position = Vector3(-0.04, 0.86, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_6/Book1_4"]
+visible = false
 mesh = SubResource("s269")
 
 [node name="Book1_5" type="Node3D" parent="Shelf1_6"]
 position = Vector3(0.27, 0.86, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_6/Book1_5"]
+visible = false
 mesh = SubResource("s270")
 
 [node name="Book1_6" type="Node3D" parent="Shelf1_6"]
 position = Vector3(0.58, 0.86, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_6/Book1_6"]
+visible = false
 mesh = SubResource("s271")
 
 [node name="Book1_7" type="Node3D" parent="Shelf1_6"]
 position = Vector3(0.89, 0.86, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_6/Book1_7"]
+visible = false
 mesh = SubResource("s272")
 
 [node name="Book1_8" type="Node3D" parent="Shelf1_6"]
 position = Vector3(1.2, 0.86, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_6/Book1_8"]
+visible = false
 mesh = SubResource("s273")
 
 [node name="Shelf2" type="StaticBody3D" parent="Shelf1_6"]
@@ -4811,60 +5384,70 @@ collision_mask = 0
 shape = SubResource("s274")
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_6/Shelf2"]
+visible = false
 mesh = SubResource("s275")
 
 [node name="Book2_0" type="Node3D" parent="Shelf1_6"]
 position = Vector3(-1.28, 1.42, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_6/Book2_0"]
+visible = false
 mesh = SubResource("s276")
 
 [node name="Book2_1" type="Node3D" parent="Shelf1_6"]
 position = Vector3(-0.97, 1.42, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_6/Book2_1"]
+visible = false
 mesh = SubResource("s277")
 
 [node name="Book2_2" type="Node3D" parent="Shelf1_6"]
 position = Vector3(-0.66, 1.42, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_6/Book2_2"]
+visible = false
 mesh = SubResource("s278")
 
 [node name="Book2_3" type="Node3D" parent="Shelf1_6"]
 position = Vector3(-0.35, 1.42, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_6/Book2_3"]
+visible = false
 mesh = SubResource("s279")
 
 [node name="Book2_4" type="Node3D" parent="Shelf1_6"]
 position = Vector3(-0.04, 1.42, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_6/Book2_4"]
+visible = false
 mesh = SubResource("s280")
 
 [node name="Book2_5" type="Node3D" parent="Shelf1_6"]
 position = Vector3(0.27, 1.42, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_6/Book2_5"]
+visible = false
 mesh = SubResource("s281")
 
 [node name="Book2_6" type="Node3D" parent="Shelf1_6"]
 position = Vector3(0.58, 1.42, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_6/Book2_6"]
+visible = false
 mesh = SubResource("s282")
 
 [node name="Book2_7" type="Node3D" parent="Shelf1_6"]
 position = Vector3(0.89, 1.42, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_6/Book2_7"]
+visible = false
 mesh = SubResource("s283")
 
 [node name="Book2_8" type="Node3D" parent="Shelf1_6"]
 position = Vector3(1.2, 1.42, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_6/Book2_8"]
+visible = false
 mesh = SubResource("s284")
 
 [node name="Shelf3" type="StaticBody3D" parent="Shelf1_6"]
@@ -4876,60 +5459,70 @@ collision_mask = 0
 shape = SubResource("s285")
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_6/Shelf3"]
+visible = false
 mesh = SubResource("s286")
 
 [node name="Book3_0" type="Node3D" parent="Shelf1_6"]
 position = Vector3(-1.28, 1.98, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_6/Book3_0"]
+visible = false
 mesh = SubResource("s287")
 
 [node name="Book3_1" type="Node3D" parent="Shelf1_6"]
 position = Vector3(-0.97, 1.98, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_6/Book3_1"]
+visible = false
 mesh = SubResource("s288")
 
 [node name="Book3_2" type="Node3D" parent="Shelf1_6"]
 position = Vector3(-0.66, 1.98, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_6/Book3_2"]
+visible = false
 mesh = SubResource("s289")
 
 [node name="Book3_3" type="Node3D" parent="Shelf1_6"]
 position = Vector3(-0.35, 1.98, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_6/Book3_3"]
+visible = false
 mesh = SubResource("s290")
 
 [node name="Book3_4" type="Node3D" parent="Shelf1_6"]
 position = Vector3(-0.04, 1.98, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_6/Book3_4"]
+visible = false
 mesh = SubResource("s291")
 
 [node name="Book3_5" type="Node3D" parent="Shelf1_6"]
 position = Vector3(0.27, 1.98, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_6/Book3_5"]
+visible = false
 mesh = SubResource("s292")
 
 [node name="Book3_6" type="Node3D" parent="Shelf1_6"]
 position = Vector3(0.58, 1.98, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_6/Book3_6"]
+visible = false
 mesh = SubResource("s293")
 
 [node name="Book3_7" type="Node3D" parent="Shelf1_6"]
 position = Vector3(0.89, 1.98, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_6/Book3_7"]
+visible = false
 mesh = SubResource("s294")
 
 [node name="Book3_8" type="Node3D" parent="Shelf1_6"]
 position = Vector3(1.2, 1.98, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_6/Book3_8"]
+visible = false
 mesh = SubResource("s295")
 
 [node name="Shelf1_12" type="Node3D" parent="."]
@@ -4945,6 +5538,7 @@ collision_mask = 0
 shape = SubResource("s296")
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_12/Back"]
+visible = false
 mesh = SubResource("s297")
 
 [node name="Side-1.48" type="StaticBody3D" parent="Shelf1_12"]
@@ -4956,6 +5550,7 @@ collision_mask = 0
 shape = SubResource("s298")
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_12/Side-1.48"]
+visible = false
 mesh = SubResource("s299")
 
 [node name="Side1.48" type="StaticBody3D" parent="Shelf1_12"]
@@ -4967,6 +5562,7 @@ collision_mask = 0
 shape = SubResource("s300")
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_12/Side1.48"]
+visible = false
 mesh = SubResource("s301")
 
 [node name="Shelf0" type="StaticBody3D" parent="Shelf1_12"]
@@ -4978,60 +5574,70 @@ collision_mask = 0
 shape = SubResource("s302")
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_12/Shelf0"]
+visible = false
 mesh = SubResource("s303")
 
 [node name="Book0_0" type="Node3D" parent="Shelf1_12"]
 position = Vector3(-1.28, 0.3, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_12/Book0_0"]
+visible = false
 mesh = SubResource("s304")
 
 [node name="Book0_1" type="Node3D" parent="Shelf1_12"]
 position = Vector3(-0.97, 0.3, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_12/Book0_1"]
+visible = false
 mesh = SubResource("s305")
 
 [node name="Book0_2" type="Node3D" parent="Shelf1_12"]
 position = Vector3(-0.66, 0.3, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_12/Book0_2"]
+visible = false
 mesh = SubResource("s306")
 
 [node name="Book0_3" type="Node3D" parent="Shelf1_12"]
 position = Vector3(-0.35, 0.3, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_12/Book0_3"]
+visible = false
 mesh = SubResource("s307")
 
 [node name="Book0_4" type="Node3D" parent="Shelf1_12"]
 position = Vector3(-0.04, 0.3, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_12/Book0_4"]
+visible = false
 mesh = SubResource("s308")
 
 [node name="Book0_5" type="Node3D" parent="Shelf1_12"]
 position = Vector3(0.27, 0.3, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_12/Book0_5"]
+visible = false
 mesh = SubResource("s309")
 
 [node name="Book0_6" type="Node3D" parent="Shelf1_12"]
 position = Vector3(0.58, 0.3, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_12/Book0_6"]
+visible = false
 mesh = SubResource("s310")
 
 [node name="Book0_7" type="Node3D" parent="Shelf1_12"]
 position = Vector3(0.89, 0.3, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_12/Book0_7"]
+visible = false
 mesh = SubResource("s311")
 
 [node name="Book0_8" type="Node3D" parent="Shelf1_12"]
 position = Vector3(1.2, 0.3, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_12/Book0_8"]
+visible = false
 mesh = SubResource("s312")
 
 [node name="Shelf1" type="StaticBody3D" parent="Shelf1_12"]
@@ -5043,60 +5649,70 @@ collision_mask = 0
 shape = SubResource("s313")
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_12/Shelf1"]
+visible = false
 mesh = SubResource("s314")
 
 [node name="Book1_0" type="Node3D" parent="Shelf1_12"]
 position = Vector3(-1.28, 0.86, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_12/Book1_0"]
+visible = false
 mesh = SubResource("s315")
 
 [node name="Book1_1" type="Node3D" parent="Shelf1_12"]
 position = Vector3(-0.97, 0.86, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_12/Book1_1"]
+visible = false
 mesh = SubResource("s316")
 
 [node name="Book1_2" type="Node3D" parent="Shelf1_12"]
 position = Vector3(-0.66, 0.86, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_12/Book1_2"]
+visible = false
 mesh = SubResource("s317")
 
 [node name="Book1_3" type="Node3D" parent="Shelf1_12"]
 position = Vector3(-0.35, 0.86, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_12/Book1_3"]
+visible = false
 mesh = SubResource("s318")
 
 [node name="Book1_4" type="Node3D" parent="Shelf1_12"]
 position = Vector3(-0.04, 0.86, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_12/Book1_4"]
+visible = false
 mesh = SubResource("s319")
 
 [node name="Book1_5" type="Node3D" parent="Shelf1_12"]
 position = Vector3(0.27, 0.86, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_12/Book1_5"]
+visible = false
 mesh = SubResource("s320")
 
 [node name="Book1_6" type="Node3D" parent="Shelf1_12"]
 position = Vector3(0.58, 0.86, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_12/Book1_6"]
+visible = false
 mesh = SubResource("s321")
 
 [node name="Book1_7" type="Node3D" parent="Shelf1_12"]
 position = Vector3(0.89, 0.86, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_12/Book1_7"]
+visible = false
 mesh = SubResource("s322")
 
 [node name="Book1_8" type="Node3D" parent="Shelf1_12"]
 position = Vector3(1.2, 0.86, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_12/Book1_8"]
+visible = false
 mesh = SubResource("s323")
 
 [node name="Shelf2" type="StaticBody3D" parent="Shelf1_12"]
@@ -5108,60 +5724,70 @@ collision_mask = 0
 shape = SubResource("s324")
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_12/Shelf2"]
+visible = false
 mesh = SubResource("s325")
 
 [node name="Book2_0" type="Node3D" parent="Shelf1_12"]
 position = Vector3(-1.28, 1.42, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_12/Book2_0"]
+visible = false
 mesh = SubResource("s326")
 
 [node name="Book2_1" type="Node3D" parent="Shelf1_12"]
 position = Vector3(-0.97, 1.42, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_12/Book2_1"]
+visible = false
 mesh = SubResource("s327")
 
 [node name="Book2_2" type="Node3D" parent="Shelf1_12"]
 position = Vector3(-0.66, 1.42, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_12/Book2_2"]
+visible = false
 mesh = SubResource("s328")
 
 [node name="Book2_3" type="Node3D" parent="Shelf1_12"]
 position = Vector3(-0.35, 1.42, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_12/Book2_3"]
+visible = false
 mesh = SubResource("s329")
 
 [node name="Book2_4" type="Node3D" parent="Shelf1_12"]
 position = Vector3(-0.04, 1.42, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_12/Book2_4"]
+visible = false
 mesh = SubResource("s330")
 
 [node name="Book2_5" type="Node3D" parent="Shelf1_12"]
 position = Vector3(0.27, 1.42, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_12/Book2_5"]
+visible = false
 mesh = SubResource("s331")
 
 [node name="Book2_6" type="Node3D" parent="Shelf1_12"]
 position = Vector3(0.58, 1.42, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_12/Book2_6"]
+visible = false
 mesh = SubResource("s332")
 
 [node name="Book2_7" type="Node3D" parent="Shelf1_12"]
 position = Vector3(0.89, 1.42, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_12/Book2_7"]
+visible = false
 mesh = SubResource("s333")
 
 [node name="Book2_8" type="Node3D" parent="Shelf1_12"]
 position = Vector3(1.2, 1.42, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_12/Book2_8"]
+visible = false
 mesh = SubResource("s334")
 
 [node name="Shelf3" type="StaticBody3D" parent="Shelf1_12"]
@@ -5173,60 +5799,70 @@ collision_mask = 0
 shape = SubResource("s335")
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_12/Shelf3"]
+visible = false
 mesh = SubResource("s336")
 
 [node name="Book3_0" type="Node3D" parent="Shelf1_12"]
 position = Vector3(-1.28, 1.98, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_12/Book3_0"]
+visible = false
 mesh = SubResource("s337")
 
 [node name="Book3_1" type="Node3D" parent="Shelf1_12"]
 position = Vector3(-0.97, 1.98, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_12/Book3_1"]
+visible = false
 mesh = SubResource("s338")
 
 [node name="Book3_2" type="Node3D" parent="Shelf1_12"]
 position = Vector3(-0.66, 1.98, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_12/Book3_2"]
+visible = false
 mesh = SubResource("s339")
 
 [node name="Book3_3" type="Node3D" parent="Shelf1_12"]
 position = Vector3(-0.35, 1.98, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_12/Book3_3"]
+visible = false
 mesh = SubResource("s340")
 
 [node name="Book3_4" type="Node3D" parent="Shelf1_12"]
 position = Vector3(-0.04, 1.98, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_12/Book3_4"]
+visible = false
 mesh = SubResource("s341")
 
 [node name="Book3_5" type="Node3D" parent="Shelf1_12"]
 position = Vector3(0.27, 1.98, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_12/Book3_5"]
+visible = false
 mesh = SubResource("s342")
 
 [node name="Book3_6" type="Node3D" parent="Shelf1_12"]
 position = Vector3(0.58, 1.98, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_12/Book3_6"]
+visible = false
 mesh = SubResource("s343")
 
 [node name="Book3_7" type="Node3D" parent="Shelf1_12"]
 position = Vector3(0.89, 1.98, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_12/Book3_7"]
+visible = false
 mesh = SubResource("s344")
 
 [node name="Book3_8" type="Node3D" parent="Shelf1_12"]
 position = Vector3(1.2, 1.98, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_12/Book3_8"]
+visible = false
 mesh = SubResource("s345")
 
 [node name="Shelf1_28" type="Node3D" parent="."]
@@ -5242,6 +5878,7 @@ collision_mask = 0
 shape = SubResource("s346")
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_28/Back"]
+visible = false
 mesh = SubResource("s347")
 
 [node name="Side-1.48" type="StaticBody3D" parent="Shelf1_28"]
@@ -5253,6 +5890,7 @@ collision_mask = 0
 shape = SubResource("s348")
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_28/Side-1.48"]
+visible = false
 mesh = SubResource("s349")
 
 [node name="Side1.48" type="StaticBody3D" parent="Shelf1_28"]
@@ -5264,6 +5902,7 @@ collision_mask = 0
 shape = SubResource("s350")
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_28/Side1.48"]
+visible = false
 mesh = SubResource("s351")
 
 [node name="Shelf0" type="StaticBody3D" parent="Shelf1_28"]
@@ -5275,60 +5914,70 @@ collision_mask = 0
 shape = SubResource("s352")
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_28/Shelf0"]
+visible = false
 mesh = SubResource("s353")
 
 [node name="Book0_0" type="Node3D" parent="Shelf1_28"]
 position = Vector3(-1.28, 0.3, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_28/Book0_0"]
+visible = false
 mesh = SubResource("s354")
 
 [node name="Book0_1" type="Node3D" parent="Shelf1_28"]
 position = Vector3(-0.97, 0.3, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_28/Book0_1"]
+visible = false
 mesh = SubResource("s355")
 
 [node name="Book0_2" type="Node3D" parent="Shelf1_28"]
 position = Vector3(-0.66, 0.3, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_28/Book0_2"]
+visible = false
 mesh = SubResource("s356")
 
 [node name="Book0_3" type="Node3D" parent="Shelf1_28"]
 position = Vector3(-0.35, 0.3, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_28/Book0_3"]
+visible = false
 mesh = SubResource("s357")
 
 [node name="Book0_4" type="Node3D" parent="Shelf1_28"]
 position = Vector3(-0.04, 0.3, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_28/Book0_4"]
+visible = false
 mesh = SubResource("s358")
 
 [node name="Book0_5" type="Node3D" parent="Shelf1_28"]
 position = Vector3(0.27, 0.3, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_28/Book0_5"]
+visible = false
 mesh = SubResource("s359")
 
 [node name="Book0_6" type="Node3D" parent="Shelf1_28"]
 position = Vector3(0.58, 0.3, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_28/Book0_6"]
+visible = false
 mesh = SubResource("s360")
 
 [node name="Book0_7" type="Node3D" parent="Shelf1_28"]
 position = Vector3(0.89, 0.3, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_28/Book0_7"]
+visible = false
 mesh = SubResource("s361")
 
 [node name="Book0_8" type="Node3D" parent="Shelf1_28"]
 position = Vector3(1.2, 0.3, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_28/Book0_8"]
+visible = false
 mesh = SubResource("s362")
 
 [node name="Shelf1" type="StaticBody3D" parent="Shelf1_28"]
@@ -5340,60 +5989,70 @@ collision_mask = 0
 shape = SubResource("s363")
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_28/Shelf1"]
+visible = false
 mesh = SubResource("s364")
 
 [node name="Book1_0" type="Node3D" parent="Shelf1_28"]
 position = Vector3(-1.28, 0.86, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_28/Book1_0"]
+visible = false
 mesh = SubResource("s365")
 
 [node name="Book1_1" type="Node3D" parent="Shelf1_28"]
 position = Vector3(-0.97, 0.86, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_28/Book1_1"]
+visible = false
 mesh = SubResource("s366")
 
 [node name="Book1_2" type="Node3D" parent="Shelf1_28"]
 position = Vector3(-0.66, 0.86, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_28/Book1_2"]
+visible = false
 mesh = SubResource("s367")
 
 [node name="Book1_3" type="Node3D" parent="Shelf1_28"]
 position = Vector3(-0.35, 0.86, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_28/Book1_3"]
+visible = false
 mesh = SubResource("s368")
 
 [node name="Book1_4" type="Node3D" parent="Shelf1_28"]
 position = Vector3(-0.04, 0.86, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_28/Book1_4"]
+visible = false
 mesh = SubResource("s369")
 
 [node name="Book1_5" type="Node3D" parent="Shelf1_28"]
 position = Vector3(0.27, 0.86, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_28/Book1_5"]
+visible = false
 mesh = SubResource("s370")
 
 [node name="Book1_6" type="Node3D" parent="Shelf1_28"]
 position = Vector3(0.58, 0.86, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_28/Book1_6"]
+visible = false
 mesh = SubResource("s371")
 
 [node name="Book1_7" type="Node3D" parent="Shelf1_28"]
 position = Vector3(0.89, 0.86, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_28/Book1_7"]
+visible = false
 mesh = SubResource("s372")
 
 [node name="Book1_8" type="Node3D" parent="Shelf1_28"]
 position = Vector3(1.2, 0.86, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_28/Book1_8"]
+visible = false
 mesh = SubResource("s373")
 
 [node name="Shelf2" type="StaticBody3D" parent="Shelf1_28"]
@@ -5405,60 +6064,70 @@ collision_mask = 0
 shape = SubResource("s374")
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_28/Shelf2"]
+visible = false
 mesh = SubResource("s375")
 
 [node name="Book2_0" type="Node3D" parent="Shelf1_28"]
 position = Vector3(-1.28, 1.42, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_28/Book2_0"]
+visible = false
 mesh = SubResource("s376")
 
 [node name="Book2_1" type="Node3D" parent="Shelf1_28"]
 position = Vector3(-0.97, 1.42, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_28/Book2_1"]
+visible = false
 mesh = SubResource("s377")
 
 [node name="Book2_2" type="Node3D" parent="Shelf1_28"]
 position = Vector3(-0.66, 1.42, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_28/Book2_2"]
+visible = false
 mesh = SubResource("s378")
 
 [node name="Book2_3" type="Node3D" parent="Shelf1_28"]
 position = Vector3(-0.35, 1.42, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_28/Book2_3"]
+visible = false
 mesh = SubResource("s379")
 
 [node name="Book2_4" type="Node3D" parent="Shelf1_28"]
 position = Vector3(-0.04, 1.42, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_28/Book2_4"]
+visible = false
 mesh = SubResource("s380")
 
 [node name="Book2_5" type="Node3D" parent="Shelf1_28"]
 position = Vector3(0.27, 1.42, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_28/Book2_5"]
+visible = false
 mesh = SubResource("s381")
 
 [node name="Book2_6" type="Node3D" parent="Shelf1_28"]
 position = Vector3(0.58, 1.42, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_28/Book2_6"]
+visible = false
 mesh = SubResource("s382")
 
 [node name="Book2_7" type="Node3D" parent="Shelf1_28"]
 position = Vector3(0.89, 1.42, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_28/Book2_7"]
+visible = false
 mesh = SubResource("s383")
 
 [node name="Book2_8" type="Node3D" parent="Shelf1_28"]
 position = Vector3(1.2, 1.42, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_28/Book2_8"]
+visible = false
 mesh = SubResource("s384")
 
 [node name="Shelf3" type="StaticBody3D" parent="Shelf1_28"]
@@ -5470,60 +6139,70 @@ collision_mask = 0
 shape = SubResource("s385")
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_28/Shelf3"]
+visible = false
 mesh = SubResource("s386")
 
 [node name="Book3_0" type="Node3D" parent="Shelf1_28"]
 position = Vector3(-1.28, 1.98, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_28/Book3_0"]
+visible = false
 mesh = SubResource("s387")
 
 [node name="Book3_1" type="Node3D" parent="Shelf1_28"]
 position = Vector3(-0.97, 1.98, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_28/Book3_1"]
+visible = false
 mesh = SubResource("s388")
 
 [node name="Book3_2" type="Node3D" parent="Shelf1_28"]
 position = Vector3(-0.66, 1.98, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_28/Book3_2"]
+visible = false
 mesh = SubResource("s389")
 
 [node name="Book3_3" type="Node3D" parent="Shelf1_28"]
 position = Vector3(-0.35, 1.98, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_28/Book3_3"]
+visible = false
 mesh = SubResource("s390")
 
 [node name="Book3_4" type="Node3D" parent="Shelf1_28"]
 position = Vector3(-0.04, 1.98, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_28/Book3_4"]
+visible = false
 mesh = SubResource("s391")
 
 [node name="Book3_5" type="Node3D" parent="Shelf1_28"]
 position = Vector3(0.27, 1.98, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_28/Book3_5"]
+visible = false
 mesh = SubResource("s392")
 
 [node name="Book3_6" type="Node3D" parent="Shelf1_28"]
 position = Vector3(0.58, 1.98, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_28/Book3_6"]
+visible = false
 mesh = SubResource("s393")
 
 [node name="Book3_7" type="Node3D" parent="Shelf1_28"]
 position = Vector3(0.89, 1.98, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_28/Book3_7"]
+visible = false
 mesh = SubResource("s394")
 
 [node name="Book3_8" type="Node3D" parent="Shelf1_28"]
 position = Vector3(1.2, 1.98, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf1_28/Book3_8"]
+visible = false
 mesh = SubResource("s395")
 
 [node name="ReadingTable8" type="Node3D" parent="."]
@@ -5538,30 +6217,35 @@ collision_mask = 0
 shape = SubResource("s396")
 
 [node name="Mesh" type="MeshInstance3D" parent="ReadingTable8/Top"]
+visible = false
 mesh = SubResource("s397")
 
 [node name="Leg0" type="Node3D" parent="ReadingTable8"]
 position = Vector3(-1.38, 0.35, -0.58)
 
 [node name="Mesh" type="MeshInstance3D" parent="ReadingTable8/Leg0"]
+visible = false
 mesh = SubResource("s399")
 
 [node name="Leg1" type="Node3D" parent="ReadingTable8"]
 position = Vector3(-1.38, 0.35, 0.58)
 
 [node name="Mesh" type="MeshInstance3D" parent="ReadingTable8/Leg1"]
+visible = false
 mesh = SubResource("s400")
 
 [node name="Leg2" type="Node3D" parent="ReadingTable8"]
 position = Vector3(1.38, 0.35, -0.58)
 
 [node name="Mesh" type="MeshInstance3D" parent="ReadingTable8/Leg2"]
+visible = false
 mesh = SubResource("s401")
 
 [node name="Leg3" type="Node3D" parent="ReadingTable8"]
 position = Vector3(1.38, 0.35, 0.58)
 
 [node name="Mesh" type="MeshInstance3D" parent="ReadingTable8/Leg3"]
+visible = false
 mesh = SubResource("s402")
 
 [node name="Chair8_-1" type="Node3D" parent="."]
@@ -5571,36 +6255,42 @@ position = Vector3(8, 3.3, 19.8)
 position = Vector3(0, 0.46, 0)
 
 [node name="Mesh" type="MeshInstance3D" parent="Chair8_-1/Seat"]
+visible = false
 mesh = SubResource("s403")
 
 [node name="Back" type="Node3D" parent="Chair8_-1"]
 position = Vector3(0, 0.77, 0.21)
 
 [node name="Mesh" type="MeshInstance3D" parent="Chair8_-1/Back"]
+visible = false
 mesh = SubResource("s404")
 
 [node name="Leg0" type="Node3D" parent="Chair8_-1"]
 position = Vector3(-0.2, 0.21, -0.18)
 
 [node name="Mesh" type="MeshInstance3D" parent="Chair8_-1/Leg0"]
+visible = false
 mesh = SubResource("s405")
 
 [node name="Leg1" type="Node3D" parent="Chair8_-1"]
 position = Vector3(-0.2, 0.21, 0.18)
 
 [node name="Mesh" type="MeshInstance3D" parent="Chair8_-1/Leg1"]
+visible = false
 mesh = SubResource("s406")
 
 [node name="Leg2" type="Node3D" parent="Chair8_-1"]
 position = Vector3(0.2, 0.21, -0.18)
 
 [node name="Mesh" type="MeshInstance3D" parent="Chair8_-1/Leg2"]
+visible = false
 mesh = SubResource("s407")
 
 [node name="Leg3" type="Node3D" parent="Chair8_-1"]
 position = Vector3(0.2, 0.21, 0.18)
 
 [node name="Mesh" type="MeshInstance3D" parent="Chair8_-1/Leg3"]
+visible = false
 mesh = SubResource("s408")
 
 [node name="Chair8_1" type="Node3D" parent="."]
@@ -5610,42 +6300,49 @@ position = Vector3(8, 3.3, 22.2)
 position = Vector3(0, 0.46, 0)
 
 [node name="Mesh" type="MeshInstance3D" parent="Chair8_1/Seat"]
+visible = false
 mesh = SubResource("s409")
 
 [node name="Back" type="Node3D" parent="Chair8_1"]
 position = Vector3(0, 0.77, 0.21)
 
 [node name="Mesh" type="MeshInstance3D" parent="Chair8_1/Back"]
+visible = false
 mesh = SubResource("s410")
 
 [node name="Leg0" type="Node3D" parent="Chair8_1"]
 position = Vector3(-0.2, 0.21, -0.18)
 
 [node name="Mesh" type="MeshInstance3D" parent="Chair8_1/Leg0"]
+visible = false
 mesh = SubResource("s411")
 
 [node name="Leg1" type="Node3D" parent="Chair8_1"]
 position = Vector3(-0.2, 0.21, 0.18)
 
 [node name="Mesh" type="MeshInstance3D" parent="Chair8_1/Leg1"]
+visible = false
 mesh = SubResource("s412")
 
 [node name="Leg2" type="Node3D" parent="Chair8_1"]
 position = Vector3(0.2, 0.21, -0.18)
 
 [node name="Mesh" type="MeshInstance3D" parent="Chair8_1/Leg2"]
+visible = false
 mesh = SubResource("s413")
 
 [node name="Leg3" type="Node3D" parent="Chair8_1"]
 position = Vector3(0.2, 0.21, 0.18)
 
 [node name="Mesh" type="MeshInstance3D" parent="Chair8_1/Leg3"]
+visible = false
 mesh = SubResource("s414")
 
 [node name="Book" type="Node3D" parent="ReadingTable8"]
 position = Vector3(0, 0.89, 0)
 
 [node name="Mesh" type="MeshInstance3D" parent="ReadingTable8/Book"]
+visible = false
 mesh = SubResource("s415")
 
 [node name="ReadingTable13" type="Node3D" parent="."]
@@ -5660,30 +6357,35 @@ collision_mask = 0
 shape = SubResource("s416")
 
 [node name="Mesh" type="MeshInstance3D" parent="ReadingTable13/Top"]
+visible = false
 mesh = SubResource("s417")
 
 [node name="Leg0" type="Node3D" parent="ReadingTable13"]
 position = Vector3(-1.38, 0.35, -0.58)
 
 [node name="Mesh" type="MeshInstance3D" parent="ReadingTable13/Leg0"]
+visible = false
 mesh = SubResource("s418")
 
 [node name="Leg1" type="Node3D" parent="ReadingTable13"]
 position = Vector3(-1.38, 0.35, 0.58)
 
 [node name="Mesh" type="MeshInstance3D" parent="ReadingTable13/Leg1"]
+visible = false
 mesh = SubResource("s419")
 
 [node name="Leg2" type="Node3D" parent="ReadingTable13"]
 position = Vector3(1.38, 0.35, -0.58)
 
 [node name="Mesh" type="MeshInstance3D" parent="ReadingTable13/Leg2"]
+visible = false
 mesh = SubResource("s420")
 
 [node name="Leg3" type="Node3D" parent="ReadingTable13"]
 position = Vector3(1.38, 0.35, 0.58)
 
 [node name="Mesh" type="MeshInstance3D" parent="ReadingTable13/Leg3"]
+visible = false
 mesh = SubResource("s421")
 
 [node name="Chair13_-1" type="Node3D" parent="."]
@@ -5693,36 +6395,42 @@ position = Vector3(13, 3.3, 19.8)
 position = Vector3(0, 0.46, 0)
 
 [node name="Mesh" type="MeshInstance3D" parent="Chair13_-1/Seat"]
+visible = false
 mesh = SubResource("s422")
 
 [node name="Back" type="Node3D" parent="Chair13_-1"]
 position = Vector3(0, 0.77, 0.21)
 
 [node name="Mesh" type="MeshInstance3D" parent="Chair13_-1/Back"]
+visible = false
 mesh = SubResource("s423")
 
 [node name="Leg0" type="Node3D" parent="Chair13_-1"]
 position = Vector3(-0.2, 0.21, -0.18)
 
 [node name="Mesh" type="MeshInstance3D" parent="Chair13_-1/Leg0"]
+visible = false
 mesh = SubResource("s424")
 
 [node name="Leg1" type="Node3D" parent="Chair13_-1"]
 position = Vector3(-0.2, 0.21, 0.18)
 
 [node name="Mesh" type="MeshInstance3D" parent="Chair13_-1/Leg1"]
+visible = false
 mesh = SubResource("s425")
 
 [node name="Leg2" type="Node3D" parent="Chair13_-1"]
 position = Vector3(0.2, 0.21, -0.18)
 
 [node name="Mesh" type="MeshInstance3D" parent="Chair13_-1/Leg2"]
+visible = false
 mesh = SubResource("s426")
 
 [node name="Leg3" type="Node3D" parent="Chair13_-1"]
 position = Vector3(0.2, 0.21, 0.18)
 
 [node name="Mesh" type="MeshInstance3D" parent="Chair13_-1/Leg3"]
+visible = false
 mesh = SubResource("s427")
 
 [node name="Chair13_1" type="Node3D" parent="."]
@@ -5732,42 +6440,49 @@ position = Vector3(13, 3.3, 22.2)
 position = Vector3(0, 0.46, 0)
 
 [node name="Mesh" type="MeshInstance3D" parent="Chair13_1/Seat"]
+visible = false
 mesh = SubResource("s428")
 
 [node name="Back" type="Node3D" parent="Chair13_1"]
 position = Vector3(0, 0.77, 0.21)
 
 [node name="Mesh" type="MeshInstance3D" parent="Chair13_1/Back"]
+visible = false
 mesh = SubResource("s429")
 
 [node name="Leg0" type="Node3D" parent="Chair13_1"]
 position = Vector3(-0.2, 0.21, -0.18)
 
 [node name="Mesh" type="MeshInstance3D" parent="Chair13_1/Leg0"]
+visible = false
 mesh = SubResource("s430")
 
 [node name="Leg1" type="Node3D" parent="Chair13_1"]
 position = Vector3(-0.2, 0.21, 0.18)
 
 [node name="Mesh" type="MeshInstance3D" parent="Chair13_1/Leg1"]
+visible = false
 mesh = SubResource("s431")
 
 [node name="Leg2" type="Node3D" parent="Chair13_1"]
 position = Vector3(0.2, 0.21, -0.18)
 
 [node name="Mesh" type="MeshInstance3D" parent="Chair13_1/Leg2"]
+visible = false
 mesh = SubResource("s432")
 
 [node name="Leg3" type="Node3D" parent="Chair13_1"]
 position = Vector3(0.2, 0.21, 0.18)
 
 [node name="Mesh" type="MeshInstance3D" parent="Chair13_1/Leg3"]
+visible = false
 mesh = SubResource("s433")
 
 [node name="Book" type="Node3D" parent="ReadingTable13"]
 position = Vector3(0, 0.89, 0)
 
 [node name="Mesh" type="MeshInstance3D" parent="ReadingTable13/Book"]
+visible = false
 mesh = SubResource("s434")
 
 [node name="ReadingTable27" type="Node3D" parent="."]
@@ -5782,30 +6497,35 @@ collision_mask = 0
 shape = SubResource("s435")
 
 [node name="Mesh" type="MeshInstance3D" parent="ReadingTable27/Top"]
+visible = false
 mesh = SubResource("s436")
 
 [node name="Leg0" type="Node3D" parent="ReadingTable27"]
 position = Vector3(-1.38, 0.35, -0.58)
 
 [node name="Mesh" type="MeshInstance3D" parent="ReadingTable27/Leg0"]
+visible = false
 mesh = SubResource("s437")
 
 [node name="Leg1" type="Node3D" parent="ReadingTable27"]
 position = Vector3(-1.38, 0.35, 0.58)
 
 [node name="Mesh" type="MeshInstance3D" parent="ReadingTable27/Leg1"]
+visible = false
 mesh = SubResource("s438")
 
 [node name="Leg2" type="Node3D" parent="ReadingTable27"]
 position = Vector3(1.38, 0.35, -0.58)
 
 [node name="Mesh" type="MeshInstance3D" parent="ReadingTable27/Leg2"]
+visible = false
 mesh = SubResource("s439")
 
 [node name="Leg3" type="Node3D" parent="ReadingTable27"]
 position = Vector3(1.38, 0.35, 0.58)
 
 [node name="Mesh" type="MeshInstance3D" parent="ReadingTable27/Leg3"]
+visible = false
 mesh = SubResource("s440")
 
 [node name="Chair27_-1" type="Node3D" parent="."]
@@ -5815,36 +6535,42 @@ position = Vector3(27, 3.3, 19.8)
 position = Vector3(0, 0.46, 0)
 
 [node name="Mesh" type="MeshInstance3D" parent="Chair27_-1/Seat"]
+visible = false
 mesh = SubResource("s441")
 
 [node name="Back" type="Node3D" parent="Chair27_-1"]
 position = Vector3(0, 0.77, 0.21)
 
 [node name="Mesh" type="MeshInstance3D" parent="Chair27_-1/Back"]
+visible = false
 mesh = SubResource("s442")
 
 [node name="Leg0" type="Node3D" parent="Chair27_-1"]
 position = Vector3(-0.2, 0.21, -0.18)
 
 [node name="Mesh" type="MeshInstance3D" parent="Chair27_-1/Leg0"]
+visible = false
 mesh = SubResource("s443")
 
 [node name="Leg1" type="Node3D" parent="Chair27_-1"]
 position = Vector3(-0.2, 0.21, 0.18)
 
 [node name="Mesh" type="MeshInstance3D" parent="Chair27_-1/Leg1"]
+visible = false
 mesh = SubResource("s444")
 
 [node name="Leg2" type="Node3D" parent="Chair27_-1"]
 position = Vector3(0.2, 0.21, -0.18)
 
 [node name="Mesh" type="MeshInstance3D" parent="Chair27_-1/Leg2"]
+visible = false
 mesh = SubResource("s445")
 
 [node name="Leg3" type="Node3D" parent="Chair27_-1"]
 position = Vector3(0.2, 0.21, 0.18)
 
 [node name="Mesh" type="MeshInstance3D" parent="Chair27_-1/Leg3"]
+visible = false
 mesh = SubResource("s446")
 
 [node name="Chair27_1" type="Node3D" parent="."]
@@ -5854,42 +6580,49 @@ position = Vector3(27, 3.3, 22.2)
 position = Vector3(0, 0.46, 0)
 
 [node name="Mesh" type="MeshInstance3D" parent="Chair27_1/Seat"]
+visible = false
 mesh = SubResource("s447")
 
 [node name="Back" type="Node3D" parent="Chair27_1"]
 position = Vector3(0, 0.77, 0.21)
 
 [node name="Mesh" type="MeshInstance3D" parent="Chair27_1/Back"]
+visible = false
 mesh = SubResource("s448")
 
 [node name="Leg0" type="Node3D" parent="Chair27_1"]
 position = Vector3(-0.2, 0.21, -0.18)
 
 [node name="Mesh" type="MeshInstance3D" parent="Chair27_1/Leg0"]
+visible = false
 mesh = SubResource("s449")
 
 [node name="Leg1" type="Node3D" parent="Chair27_1"]
 position = Vector3(-0.2, 0.21, 0.18)
 
 [node name="Mesh" type="MeshInstance3D" parent="Chair27_1/Leg1"]
+visible = false
 mesh = SubResource("s450")
 
 [node name="Leg2" type="Node3D" parent="Chair27_1"]
 position = Vector3(0.2, 0.21, -0.18)
 
 [node name="Mesh" type="MeshInstance3D" parent="Chair27_1/Leg2"]
+visible = false
 mesh = SubResource("s451")
 
 [node name="Leg3" type="Node3D" parent="Chair27_1"]
 position = Vector3(0.2, 0.21, 0.18)
 
 [node name="Mesh" type="MeshInstance3D" parent="Chair27_1/Leg3"]
+visible = false
 mesh = SubResource("s452")
 
 [node name="Book" type="Node3D" parent="ReadingTable27"]
 position = Vector3(0, 0.89, 0)
 
 [node name="Mesh" type="MeshInstance3D" parent="ReadingTable27/Book"]
+visible = false
 mesh = SubResource("s453")
 
 [node name="ReadingDeskApproach" type="NavigationRegion3D" parent="."]
@@ -5910,6 +6643,7 @@ collision_mask = 0
 shape = SubResource("s455")
 
 [node name="Mesh" type="MeshInstance3D" parent="Floor2_Main"]
+visible = false
 mesh = SubResource("s456")
 
 [node name="Floor2_South" type="StaticBody3D" parent="."]
@@ -5923,6 +6657,7 @@ collision_mask = 0
 shape = SubResource("s457")
 
 [node name="Mesh" type="MeshInstance3D" parent="Floor2_South"]
+visible = false
 mesh = SubResource("s458")
 
 [node name="Floor2_North" type="StaticBody3D" parent="."]
@@ -5936,6 +6671,7 @@ collision_mask = 0
 shape = SubResource("s459")
 
 [node name="Mesh" type="MeshInstance3D" parent="Floor2_North"]
+visible = false
 mesh = SubResource("s460")
 
 [node name="West2" type="StaticBody3D" parent="."]
@@ -5947,6 +6683,7 @@ collision_mask = 0
 shape = SubResource("s461")
 
 [node name="Mesh" type="MeshInstance3D" parent="West2"]
+visible = false
 mesh = SubResource("s462")
 
 [node name="East2" type="StaticBody3D" parent="."]
@@ -5958,6 +6695,7 @@ collision_mask = 0
 shape = SubResource("s463")
 
 [node name="Mesh" type="MeshInstance3D" parent="East2"]
+visible = false
 mesh = SubResource("s464")
 
 [node name="Front2" type="StaticBody3D" parent="."]
@@ -5969,6 +6707,7 @@ collision_mask = 0
 shape = SubResource("s465")
 
 [node name="Mesh" type="MeshInstance3D" parent="Front2"]
+visible = false
 mesh = SubResource("s466")
 
 [node name="Back2" type="StaticBody3D" parent="."]
@@ -5980,102 +6719,119 @@ collision_mask = 0
 shape = SubResource("s467")
 
 [node name="Mesh" type="MeshInstance3D" parent="Back2"]
+visible = false
 mesh = SubResource("s468")
 
 [node name="Window2_5_0.13" type="Node3D" parent="."]
 position = Vector3(5, 8.4, 0.13)
 
 [node name="Mesh" type="MeshInstance3D" parent="Window2_5_0.13"]
+visible = false
 mesh = SubResource("s469")
 
 [node name="Sill2_5_0.13" type="Node3D" parent="."]
 position = Vector3(5, 7.7, 0.13)
 
 [node name="Mesh" type="MeshInstance3D" parent="Sill2_5_0.13"]
+visible = false
 mesh = SubResource("s470")
 
 [node name="Window2_5_29.87" type="Node3D" parent="."]
 position = Vector3(5, 8.4, 29.87)
 
 [node name="Mesh" type="MeshInstance3D" parent="Window2_5_29.87"]
+visible = false
 mesh = SubResource("s471")
 
 [node name="Sill2_5_29.87" type="Node3D" parent="."]
 position = Vector3(5, 7.7, 29.87)
 
 [node name="Mesh" type="MeshInstance3D" parent="Sill2_5_29.87"]
+visible = false
 mesh = SubResource("s472")
 
 [node name="Window2_13_0.13" type="Node3D" parent="."]
 position = Vector3(13, 8.4, 0.13)
 
 [node name="Mesh" type="MeshInstance3D" parent="Window2_13_0.13"]
+visible = false
 mesh = SubResource("s473")
 
 [node name="Sill2_13_0.13" type="Node3D" parent="."]
 position = Vector3(13, 7.7, 0.13)
 
 [node name="Mesh" type="MeshInstance3D" parent="Sill2_13_0.13"]
+visible = false
 mesh = SubResource("s474")
 
 [node name="Window2_13_29.87" type="Node3D" parent="."]
 position = Vector3(13, 8.4, 29.87)
 
 [node name="Mesh" type="MeshInstance3D" parent="Window2_13_29.87"]
+visible = false
 mesh = SubResource("s475")
 
 [node name="Sill2_13_29.87" type="Node3D" parent="."]
 position = Vector3(13, 7.7, 29.87)
 
 [node name="Mesh" type="MeshInstance3D" parent="Sill2_13_29.87"]
+visible = false
 mesh = SubResource("s476")
 
 [node name="Window2_27_0.13" type="Node3D" parent="."]
 position = Vector3(27, 8.4, 0.13)
 
 [node name="Mesh" type="MeshInstance3D" parent="Window2_27_0.13"]
+visible = false
 mesh = SubResource("s477")
 
 [node name="Sill2_27_0.13" type="Node3D" parent="."]
 position = Vector3(27, 7.7, 0.13)
 
 [node name="Mesh" type="MeshInstance3D" parent="Sill2_27_0.13"]
+visible = false
 mesh = SubResource("s478")
 
 [node name="Window2_27_29.87" type="Node3D" parent="."]
 position = Vector3(27, 8.4, 29.87)
 
 [node name="Mesh" type="MeshInstance3D" parent="Window2_27_29.87"]
+visible = false
 mesh = SubResource("s479")
 
 [node name="Sill2_27_29.87" type="Node3D" parent="."]
 position = Vector3(27, 7.7, 29.87)
 
 [node name="Mesh" type="MeshInstance3D" parent="Sill2_27_29.87"]
+visible = false
 mesh = SubResource("s480")
 
 [node name="Window2_35_0.13" type="Node3D" parent="."]
 position = Vector3(35, 8.4, 0.13)
 
 [node name="Mesh" type="MeshInstance3D" parent="Window2_35_0.13"]
+visible = false
 mesh = SubResource("s481")
 
 [node name="Sill2_35_0.13" type="Node3D" parent="."]
 position = Vector3(35, 7.7, 0.13)
 
 [node name="Mesh" type="MeshInstance3D" parent="Sill2_35_0.13"]
+visible = false
 mesh = SubResource("s482")
 
 [node name="Window2_35_29.87" type="Node3D" parent="."]
 position = Vector3(35, 8.4, 29.87)
 
 [node name="Mesh" type="MeshInstance3D" parent="Window2_35_29.87"]
+visible = false
 mesh = SubResource("s483")
 
 [node name="Sill2_35_29.87" type="Node3D" parent="."]
 position = Vector3(35, 7.7, 29.87)
 
 [node name="Mesh" type="MeshInstance3D" parent="Sill2_35_29.87"]
+visible = false
 mesh = SubResource("s484")
 
 [node name="Light2_9" type="OmniLight3D" parent="."]
@@ -6089,6 +6845,7 @@ shadow_enabled = false
 position = Vector3(0, 0.08, 0)
 
 [node name="Mesh" type="MeshInstance3D" parent="Light2_9/Fixture"]
+visible = false
 mesh = SubResource("s485")
 
 [node name="LightHum" type="AudioStreamPlayer3D" parent="Light2_9" node_paths=PackedStringArray("light")]
@@ -6112,6 +6869,7 @@ shadow_enabled = false
 position = Vector3(0, 0.08, 0)
 
 [node name="Mesh" type="MeshInstance3D" parent="Light2_25/Fixture"]
+visible = false
 mesh = SubResource("s486")
 
 [node name="LightHum" type="AudioStreamPlayer3D" parent="Light2_25" node_paths=PackedStringArray("light")]
@@ -6175,6 +6933,7 @@ collision_mask = 0
 shape = SubResource("s493")
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_6/Back"]
+visible = false
 mesh = SubResource("s494")
 
 [node name="Side-1.48" type="StaticBody3D" parent="Shelf2_6"]
@@ -6186,6 +6945,7 @@ collision_mask = 0
 shape = SubResource("s495")
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_6/Side-1.48"]
+visible = false
 mesh = SubResource("s496")
 
 [node name="Side1.48" type="StaticBody3D" parent="Shelf2_6"]
@@ -6197,6 +6957,7 @@ collision_mask = 0
 shape = SubResource("s497")
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_6/Side1.48"]
+visible = false
 mesh = SubResource("s498")
 
 [node name="Shelf0" type="StaticBody3D" parent="Shelf2_6"]
@@ -6208,60 +6969,70 @@ collision_mask = 0
 shape = SubResource("s499")
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_6/Shelf0"]
+visible = false
 mesh = SubResource("s500")
 
 [node name="Book0_0" type="Node3D" parent="Shelf2_6"]
 position = Vector3(-1.28, 0.3, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_6/Book0_0"]
+visible = false
 mesh = SubResource("s501")
 
 [node name="Book0_1" type="Node3D" parent="Shelf2_6"]
 position = Vector3(-0.97, 0.3, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_6/Book0_1"]
+visible = false
 mesh = SubResource("s502")
 
 [node name="Book0_2" type="Node3D" parent="Shelf2_6"]
 position = Vector3(-0.66, 0.3, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_6/Book0_2"]
+visible = false
 mesh = SubResource("s503")
 
 [node name="Book0_3" type="Node3D" parent="Shelf2_6"]
 position = Vector3(-0.35, 0.3, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_6/Book0_3"]
+visible = false
 mesh = SubResource("s504")
 
 [node name="Book0_4" type="Node3D" parent="Shelf2_6"]
 position = Vector3(-0.04, 0.3, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_6/Book0_4"]
+visible = false
 mesh = SubResource("s505")
 
 [node name="Book0_5" type="Node3D" parent="Shelf2_6"]
 position = Vector3(0.27, 0.3, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_6/Book0_5"]
+visible = false
 mesh = SubResource("s506")
 
 [node name="Book0_6" type="Node3D" parent="Shelf2_6"]
 position = Vector3(0.58, 0.3, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_6/Book0_6"]
+visible = false
 mesh = SubResource("s507")
 
 [node name="Book0_7" type="Node3D" parent="Shelf2_6"]
 position = Vector3(0.89, 0.3, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_6/Book0_7"]
+visible = false
 mesh = SubResource("s508")
 
 [node name="Book0_8" type="Node3D" parent="Shelf2_6"]
 position = Vector3(1.2, 0.3, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_6/Book0_8"]
+visible = false
 mesh = SubResource("s509")
 
 [node name="Shelf1" type="StaticBody3D" parent="Shelf2_6"]
@@ -6273,60 +7044,70 @@ collision_mask = 0
 shape = SubResource("s510")
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_6/Shelf1"]
+visible = false
 mesh = SubResource("s511")
 
 [node name="Book1_0" type="Node3D" parent="Shelf2_6"]
 position = Vector3(-1.28, 0.86, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_6/Book1_0"]
+visible = false
 mesh = SubResource("s512")
 
 [node name="Book1_1" type="Node3D" parent="Shelf2_6"]
 position = Vector3(-0.97, 0.86, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_6/Book1_1"]
+visible = false
 mesh = SubResource("s513")
 
 [node name="Book1_2" type="Node3D" parent="Shelf2_6"]
 position = Vector3(-0.66, 0.86, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_6/Book1_2"]
+visible = false
 mesh = SubResource("s514")
 
 [node name="Book1_3" type="Node3D" parent="Shelf2_6"]
 position = Vector3(-0.35, 0.86, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_6/Book1_3"]
+visible = false
 mesh = SubResource("s515")
 
 [node name="Book1_4" type="Node3D" parent="Shelf2_6"]
 position = Vector3(-0.04, 0.86, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_6/Book1_4"]
+visible = false
 mesh = SubResource("s516")
 
 [node name="Book1_5" type="Node3D" parent="Shelf2_6"]
 position = Vector3(0.27, 0.86, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_6/Book1_5"]
+visible = false
 mesh = SubResource("s517")
 
 [node name="Book1_6" type="Node3D" parent="Shelf2_6"]
 position = Vector3(0.58, 0.86, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_6/Book1_6"]
+visible = false
 mesh = SubResource("s518")
 
 [node name="Book1_7" type="Node3D" parent="Shelf2_6"]
 position = Vector3(0.89, 0.86, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_6/Book1_7"]
+visible = false
 mesh = SubResource("s519")
 
 [node name="Book1_8" type="Node3D" parent="Shelf2_6"]
 position = Vector3(1.2, 0.86, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_6/Book1_8"]
+visible = false
 mesh = SubResource("s520")
 
 [node name="Shelf2" type="StaticBody3D" parent="Shelf2_6"]
@@ -6338,60 +7119,70 @@ collision_mask = 0
 shape = SubResource("s521")
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_6/Shelf2"]
+visible = false
 mesh = SubResource("s522")
 
 [node name="Book2_0" type="Node3D" parent="Shelf2_6"]
 position = Vector3(-1.28, 1.42, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_6/Book2_0"]
+visible = false
 mesh = SubResource("s523")
 
 [node name="Book2_1" type="Node3D" parent="Shelf2_6"]
 position = Vector3(-0.97, 1.42, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_6/Book2_1"]
+visible = false
 mesh = SubResource("s524")
 
 [node name="Book2_2" type="Node3D" parent="Shelf2_6"]
 position = Vector3(-0.66, 1.42, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_6/Book2_2"]
+visible = false
 mesh = SubResource("s525")
 
 [node name="Book2_3" type="Node3D" parent="Shelf2_6"]
 position = Vector3(-0.35, 1.42, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_6/Book2_3"]
+visible = false
 mesh = SubResource("s526")
 
 [node name="Book2_4" type="Node3D" parent="Shelf2_6"]
 position = Vector3(-0.04, 1.42, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_6/Book2_4"]
+visible = false
 mesh = SubResource("s527")
 
 [node name="Book2_5" type="Node3D" parent="Shelf2_6"]
 position = Vector3(0.27, 1.42, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_6/Book2_5"]
+visible = false
 mesh = SubResource("s528")
 
 [node name="Book2_6" type="Node3D" parent="Shelf2_6"]
 position = Vector3(0.58, 1.42, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_6/Book2_6"]
+visible = false
 mesh = SubResource("s529")
 
 [node name="Book2_7" type="Node3D" parent="Shelf2_6"]
 position = Vector3(0.89, 1.42, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_6/Book2_7"]
+visible = false
 mesh = SubResource("s530")
 
 [node name="Book2_8" type="Node3D" parent="Shelf2_6"]
 position = Vector3(1.2, 1.42, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_6/Book2_8"]
+visible = false
 mesh = SubResource("s531")
 
 [node name="Shelf3" type="StaticBody3D" parent="Shelf2_6"]
@@ -6403,60 +7194,70 @@ collision_mask = 0
 shape = SubResource("s532")
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_6/Shelf3"]
+visible = false
 mesh = SubResource("s533")
 
 [node name="Book3_0" type="Node3D" parent="Shelf2_6"]
 position = Vector3(-1.28, 1.98, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_6/Book3_0"]
+visible = false
 mesh = SubResource("s534")
 
 [node name="Book3_1" type="Node3D" parent="Shelf2_6"]
 position = Vector3(-0.97, 1.98, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_6/Book3_1"]
+visible = false
 mesh = SubResource("s535")
 
 [node name="Book3_2" type="Node3D" parent="Shelf2_6"]
 position = Vector3(-0.66, 1.98, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_6/Book3_2"]
+visible = false
 mesh = SubResource("s536")
 
 [node name="Book3_3" type="Node3D" parent="Shelf2_6"]
 position = Vector3(-0.35, 1.98, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_6/Book3_3"]
+visible = false
 mesh = SubResource("s537")
 
 [node name="Book3_4" type="Node3D" parent="Shelf2_6"]
 position = Vector3(-0.04, 1.98, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_6/Book3_4"]
+visible = false
 mesh = SubResource("s538")
 
 [node name="Book3_5" type="Node3D" parent="Shelf2_6"]
 position = Vector3(0.27, 1.98, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_6/Book3_5"]
+visible = false
 mesh = SubResource("s539")
 
 [node name="Book3_6" type="Node3D" parent="Shelf2_6"]
 position = Vector3(0.58, 1.98, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_6/Book3_6"]
+visible = false
 mesh = SubResource("s540")
 
 [node name="Book3_7" type="Node3D" parent="Shelf2_6"]
 position = Vector3(0.89, 1.98, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_6/Book3_7"]
+visible = false
 mesh = SubResource("s541")
 
 [node name="Book3_8" type="Node3D" parent="Shelf2_6"]
 position = Vector3(1.2, 1.98, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_6/Book3_8"]
+visible = false
 mesh = SubResource("s542")
 
 [node name="Shelf2_12" type="Node3D" parent="."]
@@ -6472,6 +7273,7 @@ collision_mask = 0
 shape = SubResource("s543")
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_12/Back"]
+visible = false
 mesh = SubResource("s544")
 
 [node name="Side-1.48" type="StaticBody3D" parent="Shelf2_12"]
@@ -6483,6 +7285,7 @@ collision_mask = 0
 shape = SubResource("s545")
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_12/Side-1.48"]
+visible = false
 mesh = SubResource("s546")
 
 [node name="Side1.48" type="StaticBody3D" parent="Shelf2_12"]
@@ -6494,6 +7297,7 @@ collision_mask = 0
 shape = SubResource("s547")
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_12/Side1.48"]
+visible = false
 mesh = SubResource("s548")
 
 [node name="Shelf0" type="StaticBody3D" parent="Shelf2_12"]
@@ -6505,60 +7309,70 @@ collision_mask = 0
 shape = SubResource("s549")
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_12/Shelf0"]
+visible = false
 mesh = SubResource("s550")
 
 [node name="Book0_0" type="Node3D" parent="Shelf2_12"]
 position = Vector3(-1.28, 0.3, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_12/Book0_0"]
+visible = false
 mesh = SubResource("s551")
 
 [node name="Book0_1" type="Node3D" parent="Shelf2_12"]
 position = Vector3(-0.97, 0.3, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_12/Book0_1"]
+visible = false
 mesh = SubResource("s552")
 
 [node name="Book0_2" type="Node3D" parent="Shelf2_12"]
 position = Vector3(-0.66, 0.3, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_12/Book0_2"]
+visible = false
 mesh = SubResource("s553")
 
 [node name="Book0_3" type="Node3D" parent="Shelf2_12"]
 position = Vector3(-0.35, 0.3, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_12/Book0_3"]
+visible = false
 mesh = SubResource("s554")
 
 [node name="Book0_4" type="Node3D" parent="Shelf2_12"]
 position = Vector3(-0.04, 0.3, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_12/Book0_4"]
+visible = false
 mesh = SubResource("s555")
 
 [node name="Book0_5" type="Node3D" parent="Shelf2_12"]
 position = Vector3(0.27, 0.3, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_12/Book0_5"]
+visible = false
 mesh = SubResource("s556")
 
 [node name="Book0_6" type="Node3D" parent="Shelf2_12"]
 position = Vector3(0.58, 0.3, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_12/Book0_6"]
+visible = false
 mesh = SubResource("s557")
 
 [node name="Book0_7" type="Node3D" parent="Shelf2_12"]
 position = Vector3(0.89, 0.3, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_12/Book0_7"]
+visible = false
 mesh = SubResource("s558")
 
 [node name="Book0_8" type="Node3D" parent="Shelf2_12"]
 position = Vector3(1.2, 0.3, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_12/Book0_8"]
+visible = false
 mesh = SubResource("s559")
 
 [node name="Shelf1" type="StaticBody3D" parent="Shelf2_12"]
@@ -6570,60 +7384,70 @@ collision_mask = 0
 shape = SubResource("s560")
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_12/Shelf1"]
+visible = false
 mesh = SubResource("s561")
 
 [node name="Book1_0" type="Node3D" parent="Shelf2_12"]
 position = Vector3(-1.28, 0.86, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_12/Book1_0"]
+visible = false
 mesh = SubResource("s562")
 
 [node name="Book1_1" type="Node3D" parent="Shelf2_12"]
 position = Vector3(-0.97, 0.86, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_12/Book1_1"]
+visible = false
 mesh = SubResource("s563")
 
 [node name="Book1_2" type="Node3D" parent="Shelf2_12"]
 position = Vector3(-0.66, 0.86, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_12/Book1_2"]
+visible = false
 mesh = SubResource("s564")
 
 [node name="Book1_3" type="Node3D" parent="Shelf2_12"]
 position = Vector3(-0.35, 0.86, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_12/Book1_3"]
+visible = false
 mesh = SubResource("s565")
 
 [node name="Book1_4" type="Node3D" parent="Shelf2_12"]
 position = Vector3(-0.04, 0.86, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_12/Book1_4"]
+visible = false
 mesh = SubResource("s566")
 
 [node name="Book1_5" type="Node3D" parent="Shelf2_12"]
 position = Vector3(0.27, 0.86, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_12/Book1_5"]
+visible = false
 mesh = SubResource("s567")
 
 [node name="Book1_6" type="Node3D" parent="Shelf2_12"]
 position = Vector3(0.58, 0.86, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_12/Book1_6"]
+visible = false
 mesh = SubResource("s568")
 
 [node name="Book1_7" type="Node3D" parent="Shelf2_12"]
 position = Vector3(0.89, 0.86, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_12/Book1_7"]
+visible = false
 mesh = SubResource("s569")
 
 [node name="Book1_8" type="Node3D" parent="Shelf2_12"]
 position = Vector3(1.2, 0.86, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_12/Book1_8"]
+visible = false
 mesh = SubResource("s570")
 
 [node name="Shelf2" type="StaticBody3D" parent="Shelf2_12"]
@@ -6635,60 +7459,70 @@ collision_mask = 0
 shape = SubResource("s571")
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_12/Shelf2"]
+visible = false
 mesh = SubResource("s572")
 
 [node name="Book2_0" type="Node3D" parent="Shelf2_12"]
 position = Vector3(-1.28, 1.42, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_12/Book2_0"]
+visible = false
 mesh = SubResource("s573")
 
 [node name="Book2_1" type="Node3D" parent="Shelf2_12"]
 position = Vector3(-0.97, 1.42, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_12/Book2_1"]
+visible = false
 mesh = SubResource("s574")
 
 [node name="Book2_2" type="Node3D" parent="Shelf2_12"]
 position = Vector3(-0.66, 1.42, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_12/Book2_2"]
+visible = false
 mesh = SubResource("s575")
 
 [node name="Book2_3" type="Node3D" parent="Shelf2_12"]
 position = Vector3(-0.35, 1.42, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_12/Book2_3"]
+visible = false
 mesh = SubResource("s576")
 
 [node name="Book2_4" type="Node3D" parent="Shelf2_12"]
 position = Vector3(-0.04, 1.42, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_12/Book2_4"]
+visible = false
 mesh = SubResource("s577")
 
 [node name="Book2_5" type="Node3D" parent="Shelf2_12"]
 position = Vector3(0.27, 1.42, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_12/Book2_5"]
+visible = false
 mesh = SubResource("s578")
 
 [node name="Book2_6" type="Node3D" parent="Shelf2_12"]
 position = Vector3(0.58, 1.42, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_12/Book2_6"]
+visible = false
 mesh = SubResource("s579")
 
 [node name="Book2_7" type="Node3D" parent="Shelf2_12"]
 position = Vector3(0.89, 1.42, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_12/Book2_7"]
+visible = false
 mesh = SubResource("s580")
 
 [node name="Book2_8" type="Node3D" parent="Shelf2_12"]
 position = Vector3(1.2, 1.42, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_12/Book2_8"]
+visible = false
 mesh = SubResource("s581")
 
 [node name="Shelf3" type="StaticBody3D" parent="Shelf2_12"]
@@ -6700,60 +7534,70 @@ collision_mask = 0
 shape = SubResource("s582")
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_12/Shelf3"]
+visible = false
 mesh = SubResource("s583")
 
 [node name="Book3_0" type="Node3D" parent="Shelf2_12"]
 position = Vector3(-1.28, 1.98, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_12/Book3_0"]
+visible = false
 mesh = SubResource("s584")
 
 [node name="Book3_1" type="Node3D" parent="Shelf2_12"]
 position = Vector3(-0.97, 1.98, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_12/Book3_1"]
+visible = false
 mesh = SubResource("s585")
 
 [node name="Book3_2" type="Node3D" parent="Shelf2_12"]
 position = Vector3(-0.66, 1.98, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_12/Book3_2"]
+visible = false
 mesh = SubResource("s586")
 
 [node name="Book3_3" type="Node3D" parent="Shelf2_12"]
 position = Vector3(-0.35, 1.98, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_12/Book3_3"]
+visible = false
 mesh = SubResource("s587")
 
 [node name="Book3_4" type="Node3D" parent="Shelf2_12"]
 position = Vector3(-0.04, 1.98, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_12/Book3_4"]
+visible = false
 mesh = SubResource("s588")
 
 [node name="Book3_5" type="Node3D" parent="Shelf2_12"]
 position = Vector3(0.27, 1.98, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_12/Book3_5"]
+visible = false
 mesh = SubResource("s589")
 
 [node name="Book3_6" type="Node3D" parent="Shelf2_12"]
 position = Vector3(0.58, 1.98, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_12/Book3_6"]
+visible = false
 mesh = SubResource("s590")
 
 [node name="Book3_7" type="Node3D" parent="Shelf2_12"]
 position = Vector3(0.89, 1.98, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_12/Book3_7"]
+visible = false
 mesh = SubResource("s591")
 
 [node name="Book3_8" type="Node3D" parent="Shelf2_12"]
 position = Vector3(1.2, 1.98, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_12/Book3_8"]
+visible = false
 mesh = SubResource("s592")
 
 [node name="Shelf2_28" type="Node3D" parent="."]
@@ -6769,6 +7613,7 @@ collision_mask = 0
 shape = SubResource("s593")
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_28/Back"]
+visible = false
 mesh = SubResource("s594")
 
 [node name="Side-1.48" type="StaticBody3D" parent="Shelf2_28"]
@@ -6780,6 +7625,7 @@ collision_mask = 0
 shape = SubResource("s595")
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_28/Side-1.48"]
+visible = false
 mesh = SubResource("s596")
 
 [node name="Side1.48" type="StaticBody3D" parent="Shelf2_28"]
@@ -6791,6 +7637,7 @@ collision_mask = 0
 shape = SubResource("s597")
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_28/Side1.48"]
+visible = false
 mesh = SubResource("s598")
 
 [node name="Shelf0" type="StaticBody3D" parent="Shelf2_28"]
@@ -6802,60 +7649,70 @@ collision_mask = 0
 shape = SubResource("s599")
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_28/Shelf0"]
+visible = false
 mesh = SubResource("s600")
 
 [node name="Book0_0" type="Node3D" parent="Shelf2_28"]
 position = Vector3(-1.28, 0.3, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_28/Book0_0"]
+visible = false
 mesh = SubResource("s601")
 
 [node name="Book0_1" type="Node3D" parent="Shelf2_28"]
 position = Vector3(-0.97, 0.3, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_28/Book0_1"]
+visible = false
 mesh = SubResource("s602")
 
 [node name="Book0_2" type="Node3D" parent="Shelf2_28"]
 position = Vector3(-0.66, 0.3, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_28/Book0_2"]
+visible = false
 mesh = SubResource("s603")
 
 [node name="Book0_3" type="Node3D" parent="Shelf2_28"]
 position = Vector3(-0.35, 0.3, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_28/Book0_3"]
+visible = false
 mesh = SubResource("s604")
 
 [node name="Book0_4" type="Node3D" parent="Shelf2_28"]
 position = Vector3(-0.04, 0.3, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_28/Book0_4"]
+visible = false
 mesh = SubResource("s605")
 
 [node name="Book0_5" type="Node3D" parent="Shelf2_28"]
 position = Vector3(0.27, 0.3, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_28/Book0_5"]
+visible = false
 mesh = SubResource("s606")
 
 [node name="Book0_6" type="Node3D" parent="Shelf2_28"]
 position = Vector3(0.58, 0.3, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_28/Book0_6"]
+visible = false
 mesh = SubResource("s607")
 
 [node name="Book0_7" type="Node3D" parent="Shelf2_28"]
 position = Vector3(0.89, 0.3, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_28/Book0_7"]
+visible = false
 mesh = SubResource("s608")
 
 [node name="Book0_8" type="Node3D" parent="Shelf2_28"]
 position = Vector3(1.2, 0.3, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_28/Book0_8"]
+visible = false
 mesh = SubResource("s609")
 
 [node name="Shelf1" type="StaticBody3D" parent="Shelf2_28"]
@@ -6867,60 +7724,70 @@ collision_mask = 0
 shape = SubResource("s610")
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_28/Shelf1"]
+visible = false
 mesh = SubResource("s611")
 
 [node name="Book1_0" type="Node3D" parent="Shelf2_28"]
 position = Vector3(-1.28, 0.86, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_28/Book1_0"]
+visible = false
 mesh = SubResource("s612")
 
 [node name="Book1_1" type="Node3D" parent="Shelf2_28"]
 position = Vector3(-0.97, 0.86, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_28/Book1_1"]
+visible = false
 mesh = SubResource("s613")
 
 [node name="Book1_2" type="Node3D" parent="Shelf2_28"]
 position = Vector3(-0.66, 0.86, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_28/Book1_2"]
+visible = false
 mesh = SubResource("s614")
 
 [node name="Book1_3" type="Node3D" parent="Shelf2_28"]
 position = Vector3(-0.35, 0.86, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_28/Book1_3"]
+visible = false
 mesh = SubResource("s615")
 
 [node name="Book1_4" type="Node3D" parent="Shelf2_28"]
 position = Vector3(-0.04, 0.86, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_28/Book1_4"]
+visible = false
 mesh = SubResource("s616")
 
 [node name="Book1_5" type="Node3D" parent="Shelf2_28"]
 position = Vector3(0.27, 0.86, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_28/Book1_5"]
+visible = false
 mesh = SubResource("s617")
 
 [node name="Book1_6" type="Node3D" parent="Shelf2_28"]
 position = Vector3(0.58, 0.86, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_28/Book1_6"]
+visible = false
 mesh = SubResource("s618")
 
 [node name="Book1_7" type="Node3D" parent="Shelf2_28"]
 position = Vector3(0.89, 0.86, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_28/Book1_7"]
+visible = false
 mesh = SubResource("s619")
 
 [node name="Book1_8" type="Node3D" parent="Shelf2_28"]
 position = Vector3(1.2, 0.86, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_28/Book1_8"]
+visible = false
 mesh = SubResource("s620")
 
 [node name="Shelf2" type="StaticBody3D" parent="Shelf2_28"]
@@ -6932,60 +7799,70 @@ collision_mask = 0
 shape = SubResource("s621")
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_28/Shelf2"]
+visible = false
 mesh = SubResource("s622")
 
 [node name="Book2_0" type="Node3D" parent="Shelf2_28"]
 position = Vector3(-1.28, 1.42, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_28/Book2_0"]
+visible = false
 mesh = SubResource("s623")
 
 [node name="Book2_1" type="Node3D" parent="Shelf2_28"]
 position = Vector3(-0.97, 1.42, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_28/Book2_1"]
+visible = false
 mesh = SubResource("s624")
 
 [node name="Book2_2" type="Node3D" parent="Shelf2_28"]
 position = Vector3(-0.66, 1.42, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_28/Book2_2"]
+visible = false
 mesh = SubResource("s625")
 
 [node name="Book2_3" type="Node3D" parent="Shelf2_28"]
 position = Vector3(-0.35, 1.42, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_28/Book2_3"]
+visible = false
 mesh = SubResource("s626")
 
 [node name="Book2_4" type="Node3D" parent="Shelf2_28"]
 position = Vector3(-0.04, 1.42, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_28/Book2_4"]
+visible = false
 mesh = SubResource("s627")
 
 [node name="Book2_5" type="Node3D" parent="Shelf2_28"]
 position = Vector3(0.27, 1.42, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_28/Book2_5"]
+visible = false
 mesh = SubResource("s628")
 
 [node name="Book2_6" type="Node3D" parent="Shelf2_28"]
 position = Vector3(0.58, 1.42, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_28/Book2_6"]
+visible = false
 mesh = SubResource("s629")
 
 [node name="Book2_7" type="Node3D" parent="Shelf2_28"]
 position = Vector3(0.89, 1.42, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_28/Book2_7"]
+visible = false
 mesh = SubResource("s630")
 
 [node name="Book2_8" type="Node3D" parent="Shelf2_28"]
 position = Vector3(1.2, 1.42, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_28/Book2_8"]
+visible = false
 mesh = SubResource("s631")
 
 [node name="Shelf3" type="StaticBody3D" parent="Shelf2_28"]
@@ -6997,60 +7874,70 @@ collision_mask = 0
 shape = SubResource("s632")
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_28/Shelf3"]
+visible = false
 mesh = SubResource("s633")
 
 [node name="Book3_0" type="Node3D" parent="Shelf2_28"]
 position = Vector3(-1.28, 1.98, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_28/Book3_0"]
+visible = false
 mesh = SubResource("s634")
 
 [node name="Book3_1" type="Node3D" parent="Shelf2_28"]
 position = Vector3(-0.97, 1.98, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_28/Book3_1"]
+visible = false
 mesh = SubResource("s635")
 
 [node name="Book3_2" type="Node3D" parent="Shelf2_28"]
 position = Vector3(-0.66, 1.98, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_28/Book3_2"]
+visible = false
 mesh = SubResource("s636")
 
 [node name="Book3_3" type="Node3D" parent="Shelf2_28"]
 position = Vector3(-0.35, 1.98, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_28/Book3_3"]
+visible = false
 mesh = SubResource("s637")
 
 [node name="Book3_4" type="Node3D" parent="Shelf2_28"]
 position = Vector3(-0.04, 1.98, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_28/Book3_4"]
+visible = false
 mesh = SubResource("s638")
 
 [node name="Book3_5" type="Node3D" parent="Shelf2_28"]
 position = Vector3(0.27, 1.98, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_28/Book3_5"]
+visible = false
 mesh = SubResource("s639")
 
 [node name="Book3_6" type="Node3D" parent="Shelf2_28"]
 position = Vector3(0.58, 1.98, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_28/Book3_6"]
+visible = false
 mesh = SubResource("s640")
 
 [node name="Book3_7" type="Node3D" parent="Shelf2_28"]
 position = Vector3(0.89, 1.98, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_28/Book3_7"]
+visible = false
 mesh = SubResource("s641")
 
 [node name="Book3_8" type="Node3D" parent="Shelf2_28"]
 position = Vector3(1.2, 1.98, -0.03)
 
 [node name="Mesh" type="MeshInstance3D" parent="Shelf2_28/Book3_8"]
+visible = false
 mesh = SubResource("s642")
 
 [node name="Roof" type="StaticBody3D" parent="."]
@@ -7062,6 +7949,7 @@ collision_mask = 0
 shape = SubResource("s643")
 
 [node name="Mesh" type="MeshInstance3D" parent="Roof"]
+visible = false
 mesh = SubResource("s644")
 
 [node name="Stairs0" type="StaticBody3D" parent="."]
@@ -7075,132 +7963,154 @@ shape = SubResource("s645")
 position = Vector3(36.5, -0.005, 4.2272727)
 
 [node name="Mesh" type="MeshInstance3D" parent="Stairs0/Step0"]
+visible = false
 mesh = SubResource("s646")
 
 [node name="Step1" type="Node3D" parent="Stairs0"]
 position = Vector3(36.5, 0.145, 4.6818182)
 
 [node name="Mesh" type="MeshInstance3D" parent="Stairs0/Step1"]
+visible = false
 mesh = SubResource("s647")
 
 [node name="Step2" type="Node3D" parent="Stairs0"]
 position = Vector3(36.5, 0.295, 5.1363636)
 
 [node name="Mesh" type="MeshInstance3D" parent="Stairs0/Step2"]
+visible = false
 mesh = SubResource("s648")
 
 [node name="Step3" type="Node3D" parent="Stairs0"]
 position = Vector3(36.5, 0.445, 5.5909091)
 
 [node name="Mesh" type="MeshInstance3D" parent="Stairs0/Step3"]
+visible = false
 mesh = SubResource("s649")
 
 [node name="Step4" type="Node3D" parent="Stairs0"]
 position = Vector3(36.5, 0.595, 6.0454545)
 
 [node name="Mesh" type="MeshInstance3D" parent="Stairs0/Step4"]
+visible = false
 mesh = SubResource("s650")
 
 [node name="Step5" type="Node3D" parent="Stairs0"]
 position = Vector3(36.5, 0.745, 6.5)
 
 [node name="Mesh" type="MeshInstance3D" parent="Stairs0/Step5"]
+visible = false
 mesh = SubResource("s651")
 
 [node name="Step6" type="Node3D" parent="Stairs0"]
 position = Vector3(36.5, 0.895, 6.9545455)
 
 [node name="Mesh" type="MeshInstance3D" parent="Stairs0/Step6"]
+visible = false
 mesh = SubResource("s652")
 
 [node name="Step7" type="Node3D" parent="Stairs0"]
 position = Vector3(36.5, 1.045, 7.4090909)
 
 [node name="Mesh" type="MeshInstance3D" parent="Stairs0/Step7"]
+visible = false
 mesh = SubResource("s653")
 
 [node name="Step8" type="Node3D" parent="Stairs0"]
 position = Vector3(36.5, 1.195, 7.8636364)
 
 [node name="Mesh" type="MeshInstance3D" parent="Stairs0/Step8"]
+visible = false
 mesh = SubResource("s654")
 
 [node name="Step9" type="Node3D" parent="Stairs0"]
 position = Vector3(36.5, 1.345, 8.3181818)
 
 [node name="Mesh" type="MeshInstance3D" parent="Stairs0/Step9"]
+visible = false
 mesh = SubResource("s655")
 
 [node name="Step10" type="Node3D" parent="Stairs0"]
 position = Vector3(36.5, 1.495, 8.7727273)
 
 [node name="Mesh" type="MeshInstance3D" parent="Stairs0/Step10"]
+visible = false
 mesh = SubResource("s656")
 
 [node name="Step11" type="Node3D" parent="Stairs0"]
 position = Vector3(36.5, 1.645, 9.2272727)
 
 [node name="Mesh" type="MeshInstance3D" parent="Stairs0/Step11"]
+visible = false
 mesh = SubResource("s657")
 
 [node name="Step12" type="Node3D" parent="Stairs0"]
 position = Vector3(36.5, 1.795, 9.6818182)
 
 [node name="Mesh" type="MeshInstance3D" parent="Stairs0/Step12"]
+visible = false
 mesh = SubResource("s658")
 
 [node name="Step13" type="Node3D" parent="Stairs0"]
 position = Vector3(36.5, 1.945, 10.1363636)
 
 [node name="Mesh" type="MeshInstance3D" parent="Stairs0/Step13"]
+visible = false
 mesh = SubResource("s659")
 
 [node name="Step14" type="Node3D" parent="Stairs0"]
 position = Vector3(36.5, 2.095, 10.5909091)
 
 [node name="Mesh" type="MeshInstance3D" parent="Stairs0/Step14"]
+visible = false
 mesh = SubResource("s660")
 
 [node name="Step15" type="Node3D" parent="Stairs0"]
 position = Vector3(36.5, 2.245, 11.0454545)
 
 [node name="Mesh" type="MeshInstance3D" parent="Stairs0/Step15"]
+visible = false
 mesh = SubResource("s661")
 
 [node name="Step16" type="Node3D" parent="Stairs0"]
 position = Vector3(36.5, 2.395, 11.5)
 
 [node name="Mesh" type="MeshInstance3D" parent="Stairs0/Step16"]
+visible = false
 mesh = SubResource("s662")
 
 [node name="Step17" type="Node3D" parent="Stairs0"]
 position = Vector3(36.5, 2.545, 11.9545455)
 
 [node name="Mesh" type="MeshInstance3D" parent="Stairs0/Step17"]
+visible = false
 mesh = SubResource("s663")
 
 [node name="Step18" type="Node3D" parent="Stairs0"]
 position = Vector3(36.5, 2.695, 12.4090909)
 
 [node name="Mesh" type="MeshInstance3D" parent="Stairs0/Step18"]
+visible = false
 mesh = SubResource("s664")
 
 [node name="Step19" type="Node3D" parent="Stairs0"]
 position = Vector3(36.5, 2.845, 12.8636364)
 
 [node name="Mesh" type="MeshInstance3D" parent="Stairs0/Step19"]
+visible = false
 mesh = SubResource("s665")
 
 [node name="Step20" type="Node3D" parent="Stairs0"]
 position = Vector3(36.5, 2.995, 13.3181818)
 
 [node name="Mesh" type="MeshInstance3D" parent="Stairs0/Step20"]
+visible = false
 mesh = SubResource("s666")
 
 [node name="Step21" type="Node3D" parent="Stairs0"]
 position = Vector3(36.5, 3.145, 13.7727273)
 
 [node name="Mesh" type="MeshInstance3D" parent="Stairs0/Step21"]
+visible = false
 mesh = SubResource("s667")
 
 [node name="StairNav0" type="NavigationRegion3D" parent="."]
@@ -7219,6 +8129,7 @@ position = Vector3(34, 2.4, 9)
 rotation_degrees = Vector3(-18.2629,0,0)
 
 [node name="Mesh" type="MeshInstance3D" parent="Rail0_34"]
+visible = false
 mesh = SubResource("s669")
 
 [node name="RailCollision0_34" type="StaticBody3D" parent="."]
@@ -7233,6 +8144,7 @@ position = Vector3(39, 2.4, 9)
 rotation_degrees = Vector3(-18.2629,0,0)
 
 [node name="Mesh" type="MeshInstance3D" parent="Rail0_39"]
+visible = false
 mesh = SubResource("s671")
 
 [node name="RailCollision0_39" type="StaticBody3D" parent="."]
@@ -7253,132 +8165,154 @@ shape = SubResource("s673")
 position = Vector3(36.5, 3.295, 4.2272727)
 
 [node name="Mesh" type="MeshInstance3D" parent="Stairs1/Step0"]
+visible = false
 mesh = SubResource("s674")
 
 [node name="Step1" type="Node3D" parent="Stairs1"]
 position = Vector3(36.5, 3.445, 4.6818182)
 
 [node name="Mesh" type="MeshInstance3D" parent="Stairs1/Step1"]
+visible = false
 mesh = SubResource("s675")
 
 [node name="Step2" type="Node3D" parent="Stairs1"]
 position = Vector3(36.5, 3.595, 5.1363636)
 
 [node name="Mesh" type="MeshInstance3D" parent="Stairs1/Step2"]
+visible = false
 mesh = SubResource("s676")
 
 [node name="Step3" type="Node3D" parent="Stairs1"]
 position = Vector3(36.5, 3.745, 5.5909091)
 
 [node name="Mesh" type="MeshInstance3D" parent="Stairs1/Step3"]
+visible = false
 mesh = SubResource("s677")
 
 [node name="Step4" type="Node3D" parent="Stairs1"]
 position = Vector3(36.5, 3.895, 6.0454545)
 
 [node name="Mesh" type="MeshInstance3D" parent="Stairs1/Step4"]
+visible = false
 mesh = SubResource("s678")
 
 [node name="Step5" type="Node3D" parent="Stairs1"]
 position = Vector3(36.5, 4.045, 6.5)
 
 [node name="Mesh" type="MeshInstance3D" parent="Stairs1/Step5"]
+visible = false
 mesh = SubResource("s679")
 
 [node name="Step6" type="Node3D" parent="Stairs1"]
 position = Vector3(36.5, 4.195, 6.9545455)
 
 [node name="Mesh" type="MeshInstance3D" parent="Stairs1/Step6"]
+visible = false
 mesh = SubResource("s680")
 
 [node name="Step7" type="Node3D" parent="Stairs1"]
 position = Vector3(36.5, 4.345, 7.4090909)
 
 [node name="Mesh" type="MeshInstance3D" parent="Stairs1/Step7"]
+visible = false
 mesh = SubResource("s681")
 
 [node name="Step8" type="Node3D" parent="Stairs1"]
 position = Vector3(36.5, 4.495, 7.8636364)
 
 [node name="Mesh" type="MeshInstance3D" parent="Stairs1/Step8"]
+visible = false
 mesh = SubResource("s682")
 
 [node name="Step9" type="Node3D" parent="Stairs1"]
 position = Vector3(36.5, 4.645, 8.3181818)
 
 [node name="Mesh" type="MeshInstance3D" parent="Stairs1/Step9"]
+visible = false
 mesh = SubResource("s683")
 
 [node name="Step10" type="Node3D" parent="Stairs1"]
 position = Vector3(36.5, 4.795, 8.7727273)
 
 [node name="Mesh" type="MeshInstance3D" parent="Stairs1/Step10"]
+visible = false
 mesh = SubResource("s684")
 
 [node name="Step11" type="Node3D" parent="Stairs1"]
 position = Vector3(36.5, 4.945, 9.2272727)
 
 [node name="Mesh" type="MeshInstance3D" parent="Stairs1/Step11"]
+visible = false
 mesh = SubResource("s685")
 
 [node name="Step12" type="Node3D" parent="Stairs1"]
 position = Vector3(36.5, 5.095, 9.6818182)
 
 [node name="Mesh" type="MeshInstance3D" parent="Stairs1/Step12"]
+visible = false
 mesh = SubResource("s686")
 
 [node name="Step13" type="Node3D" parent="Stairs1"]
 position = Vector3(36.5, 5.245, 10.1363636)
 
 [node name="Mesh" type="MeshInstance3D" parent="Stairs1/Step13"]
+visible = false
 mesh = SubResource("s687")
 
 [node name="Step14" type="Node3D" parent="Stairs1"]
 position = Vector3(36.5, 5.395, 10.5909091)
 
 [node name="Mesh" type="MeshInstance3D" parent="Stairs1/Step14"]
+visible = false
 mesh = SubResource("s688")
 
 [node name="Step15" type="Node3D" parent="Stairs1"]
 position = Vector3(36.5, 5.545, 11.0454545)
 
 [node name="Mesh" type="MeshInstance3D" parent="Stairs1/Step15"]
+visible = false
 mesh = SubResource("s689")
 
 [node name="Step16" type="Node3D" parent="Stairs1"]
 position = Vector3(36.5, 5.695, 11.5)
 
 [node name="Mesh" type="MeshInstance3D" parent="Stairs1/Step16"]
+visible = false
 mesh = SubResource("s690")
 
 [node name="Step17" type="Node3D" parent="Stairs1"]
 position = Vector3(36.5, 5.845, 11.9545455)
 
 [node name="Mesh" type="MeshInstance3D" parent="Stairs1/Step17"]
+visible = false
 mesh = SubResource("s691")
 
 [node name="Step18" type="Node3D" parent="Stairs1"]
 position = Vector3(36.5, 5.995, 12.4090909)
 
 [node name="Mesh" type="MeshInstance3D" parent="Stairs1/Step18"]
+visible = false
 mesh = SubResource("s692")
 
 [node name="Step19" type="Node3D" parent="Stairs1"]
 position = Vector3(36.5, 6.145, 12.8636364)
 
 [node name="Mesh" type="MeshInstance3D" parent="Stairs1/Step19"]
+visible = false
 mesh = SubResource("s693")
 
 [node name="Step20" type="Node3D" parent="Stairs1"]
 position = Vector3(36.5, 6.295, 13.3181818)
 
 [node name="Mesh" type="MeshInstance3D" parent="Stairs1/Step20"]
+visible = false
 mesh = SubResource("s694")
 
 [node name="Step21" type="Node3D" parent="Stairs1"]
 position = Vector3(36.5, 6.445, 13.7727273)
 
 [node name="Mesh" type="MeshInstance3D" parent="Stairs1/Step21"]
+visible = false
 mesh = SubResource("s695")
 
 [node name="StairNav1" type="NavigationRegion3D" parent="."]
@@ -7397,6 +8331,7 @@ position = Vector3(34, 5.7, 9)
 rotation_degrees = Vector3(-18.2629,0,0)
 
 [node name="Mesh" type="MeshInstance3D" parent="Rail1_34"]
+visible = false
 mesh = SubResource("s697")
 
 [node name="RailCollision1_34" type="StaticBody3D" parent="."]
@@ -7411,6 +8346,7 @@ position = Vector3(39, 5.7, 9)
 rotation_degrees = Vector3(-18.2629,0,0)
 
 [node name="Mesh" type="MeshInstance3D" parent="Rail1_39"]
+visible = false
 mesh = SubResource("s699")
 
 [node name="RailCollision1_39" type="StaticBody3D" parent="."]
@@ -7429,6 +8365,7 @@ collision_mask = 0
 shape = SubResource("s701")
 
 [node name="Mesh" type="MeshInstance3D" parent="FrontDoor"]
+visible = false
 mesh = SubResource("s702")
 
 [node name="Barricade" type="Node3D" parent="."]
@@ -7443,30 +8380,35 @@ collision_mask = 0
 shape = SubResource("s703")
 
 [node name="Mesh" type="MeshInstance3D" parent="Barricade/Top"]
+visible = false
 mesh = SubResource("s704")
 
 [node name="Leg0" type="Node3D" parent="Barricade"]
 position = Vector3(-1.18, 0.35, -0.53)
 
 [node name="Mesh" type="MeshInstance3D" parent="Barricade/Leg0"]
+visible = false
 mesh = SubResource("s705")
 
 [node name="Leg1" type="Node3D" parent="Barricade"]
 position = Vector3(-1.18, 0.35, 0.53)
 
 [node name="Mesh" type="MeshInstance3D" parent="Barricade/Leg1"]
+visible = false
 mesh = SubResource("s706")
 
 [node name="Leg2" type="Node3D" parent="Barricade"]
 position = Vector3(1.18, 0.35, -0.53)
 
 [node name="Mesh" type="MeshInstance3D" parent="Barricade/Leg2"]
+visible = false
 mesh = SubResource("s707")
 
 [node name="Leg3" type="Node3D" parent="Barricade"]
 position = Vector3(1.18, 0.35, 0.53)
 
 [node name="Mesh" type="MeshInstance3D" parent="Barricade/Leg3"]
+visible = false
 mesh = SubResource("s708")
 
 [node name="BarricadeChair0" type="Node3D" parent="."]
@@ -7476,36 +8418,42 @@ position = Vector3(19.2, 0.85, 1)
 position = Vector3(0, 0.46, 0)
 
 [node name="Mesh" type="MeshInstance3D" parent="BarricadeChair0/Seat"]
+visible = false
 mesh = SubResource("s709")
 
 [node name="Back" type="Node3D" parent="BarricadeChair0"]
 position = Vector3(0, 0.77, 0.21)
 
 [node name="Mesh" type="MeshInstance3D" parent="BarricadeChair0/Back"]
+visible = false
 mesh = SubResource("s710")
 
 [node name="Leg0" type="Node3D" parent="BarricadeChair0"]
 position = Vector3(-0.2, 0.21, -0.18)
 
 [node name="Mesh" type="MeshInstance3D" parent="BarricadeChair0/Leg0"]
+visible = false
 mesh = SubResource("s711")
 
 [node name="Leg1" type="Node3D" parent="BarricadeChair0"]
 position = Vector3(-0.2, 0.21, 0.18)
 
 [node name="Mesh" type="MeshInstance3D" parent="BarricadeChair0/Leg1"]
+visible = false
 mesh = SubResource("s712")
 
 [node name="Leg2" type="Node3D" parent="BarricadeChair0"]
 position = Vector3(0.2, 0.21, -0.18)
 
 [node name="Mesh" type="MeshInstance3D" parent="BarricadeChair0/Leg2"]
+visible = false
 mesh = SubResource("s713")
 
 [node name="Leg3" type="Node3D" parent="BarricadeChair0"]
 position = Vector3(0.2, 0.21, 0.18)
 
 [node name="Mesh" type="MeshInstance3D" parent="BarricadeChair0/Leg3"]
+visible = false
 mesh = SubResource("s714")
 
 [node name="BarricadeChair1" type="Node3D" parent="."]
@@ -7515,36 +8463,42 @@ position = Vector3(20.0, 0.85, 1)
 position = Vector3(0, 0.46, 0)
 
 [node name="Mesh" type="MeshInstance3D" parent="BarricadeChair1/Seat"]
+visible = false
 mesh = SubResource("s715")
 
 [node name="Back" type="Node3D" parent="BarricadeChair1"]
 position = Vector3(0, 0.77, 0.21)
 
 [node name="Mesh" type="MeshInstance3D" parent="BarricadeChair1/Back"]
+visible = false
 mesh = SubResource("s716")
 
 [node name="Leg0" type="Node3D" parent="BarricadeChair1"]
 position = Vector3(-0.2, 0.21, -0.18)
 
 [node name="Mesh" type="MeshInstance3D" parent="BarricadeChair1/Leg0"]
+visible = false
 mesh = SubResource("s717")
 
 [node name="Leg1" type="Node3D" parent="BarricadeChair1"]
 position = Vector3(-0.2, 0.21, 0.18)
 
 [node name="Mesh" type="MeshInstance3D" parent="BarricadeChair1/Leg1"]
+visible = false
 mesh = SubResource("s718")
 
 [node name="Leg2" type="Node3D" parent="BarricadeChair1"]
 position = Vector3(0.2, 0.21, -0.18)
 
 [node name="Mesh" type="MeshInstance3D" parent="BarricadeChair1/Leg2"]
+visible = false
 mesh = SubResource("s719")
 
 [node name="Leg3" type="Node3D" parent="BarricadeChair1"]
 position = Vector3(0.2, 0.21, 0.18)
 
 [node name="Mesh" type="MeshInstance3D" parent="BarricadeChair1/Leg3"]
+visible = false
 mesh = SubResource("s720")
 
 [node name="BarricadeChair2" type="Node3D" parent="."]
@@ -7554,36 +8508,42 @@ position = Vector3(20.8, 0.85, 1)
 position = Vector3(0, 0.46, 0)
 
 [node name="Mesh" type="MeshInstance3D" parent="BarricadeChair2/Seat"]
+visible = false
 mesh = SubResource("s721")
 
 [node name="Back" type="Node3D" parent="BarricadeChair2"]
 position = Vector3(0, 0.77, 0.21)
 
 [node name="Mesh" type="MeshInstance3D" parent="BarricadeChair2/Back"]
+visible = false
 mesh = SubResource("s722")
 
 [node name="Leg0" type="Node3D" parent="BarricadeChair2"]
 position = Vector3(-0.2, 0.21, -0.18)
 
 [node name="Mesh" type="MeshInstance3D" parent="BarricadeChair2/Leg0"]
+visible = false
 mesh = SubResource("s723")
 
 [node name="Leg1" type="Node3D" parent="BarricadeChair2"]
 position = Vector3(-0.2, 0.21, 0.18)
 
 [node name="Mesh" type="MeshInstance3D" parent="BarricadeChair2/Leg1"]
+visible = false
 mesh = SubResource("s724")
 
 [node name="Leg2" type="Node3D" parent="BarricadeChair2"]
 position = Vector3(0.2, 0.21, -0.18)
 
 [node name="Mesh" type="MeshInstance3D" parent="BarricadeChair2/Leg2"]
+visible = false
 mesh = SubResource("s725")
 
 [node name="Leg3" type="Node3D" parent="BarricadeChair2"]
 position = Vector3(0.2, 0.21, 0.18)
 
 [node name="Mesh" type="MeshInstance3D" parent="BarricadeChair2/Leg3"]
+visible = false
 mesh = SubResource("s726")
 
 [node name="Counter" type="Node3D" parent="."]
@@ -7598,30 +8558,35 @@ collision_mask = 0
 shape = SubResource("s727")
 
 [node name="Mesh" type="MeshInstance3D" parent="Counter/Top"]
+visible = false
 mesh = SubResource("s728")
 
 [node name="Leg0" type="Node3D" parent="Counter"]
 position = Vector3(-2.38, 0.35, -0.58)
 
 [node name="Mesh" type="MeshInstance3D" parent="Counter/Leg0"]
+visible = false
 mesh = SubResource("s729")
 
 [node name="Leg1" type="Node3D" parent="Counter"]
 position = Vector3(-2.38, 0.35, 0.58)
 
 [node name="Mesh" type="MeshInstance3D" parent="Counter/Leg1"]
+visible = false
 mesh = SubResource("s730")
 
 [node name="Leg2" type="Node3D" parent="Counter"]
 position = Vector3(2.38, 0.35, -0.58)
 
 [node name="Mesh" type="MeshInstance3D" parent="Counter/Leg2"]
+visible = false
 mesh = SubResource("s731")
 
 [node name="Leg3" type="Node3D" parent="Counter"]
 position = Vector3(2.38, 0.35, 0.58)
 
 [node name="Mesh" type="MeshInstance3D" parent="Counter/Leg3"]
+visible = false
 mesh = SubResource("s732")
 
 [node name="Panel" type="StaticBody3D" parent="Counter"]
@@ -7633,6 +8598,7 @@ collision_mask = 0
 shape = SubResource("s733")
 
 [node name="Mesh" type="MeshInstance3D" parent="Counter/Panel"]
+visible = false
 mesh = SubResource("s734")
 
 [node name="IronBar" parent="Counter" instance=ExtResource("e2")]
@@ -7645,36 +8611,42 @@ position = Vector3(12, 0, 12.5)
 position = Vector3(0, 0.46, 0)
 
 [node name="Mesh" type="MeshInstance3D" parent="LibrarianChair/Seat"]
+visible = false
 mesh = SubResource("s735")
 
 [node name="Back" type="Node3D" parent="LibrarianChair"]
 position = Vector3(0, 0.77, 0.21)
 
 [node name="Mesh" type="MeshInstance3D" parent="LibrarianChair/Back"]
+visible = false
 mesh = SubResource("s736")
 
 [node name="Leg0" type="Node3D" parent="LibrarianChair"]
 position = Vector3(-0.2, 0.21, -0.18)
 
 [node name="Mesh" type="MeshInstance3D" parent="LibrarianChair/Leg0"]
+visible = false
 mesh = SubResource("s737")
 
 [node name="Leg1" type="Node3D" parent="LibrarianChair"]
 position = Vector3(-0.2, 0.21, 0.18)
 
 [node name="Mesh" type="MeshInstance3D" parent="LibrarianChair/Leg1"]
+visible = false
 mesh = SubResource("s738")
 
 [node name="Leg2" type="Node3D" parent="LibrarianChair"]
 position = Vector3(0.2, 0.21, -0.18)
 
 [node name="Mesh" type="MeshInstance3D" parent="LibrarianChair/Leg2"]
+visible = false
 mesh = SubResource("s739")
 
 [node name="Leg3" type="Node3D" parent="LibrarianChair"]
 position = Vector3(0.2, 0.21, 0.18)
 
 [node name="Mesh" type="MeshInstance3D" parent="LibrarianChair/Leg3"]
+visible = false
 mesh = SubResource("s740")
 
 [node name="MapBoard" type="Node3D" parent="."]
@@ -7685,42 +8657,49 @@ rotation_degrees = Vector3(0,90,0)
 position = Vector3(0, 0, 0)
 
 [node name="Mesh" type="MeshInstance3D" parent="MapBoard/Frame"]
+visible = false
 mesh = SubResource("s741")
 
 [node name="Paper" type="Node3D" parent="MapBoard"]
 position = Vector3(0, 0, 0.05)
 
 [node name="Mesh" type="MeshInstance3D" parent="MapBoard/Paper"]
+visible = false
 mesh = SubResource("s742")
 
 [node name="DormB" type="Node3D" parent="MapBoard"]
 position = Vector3(-0.7, 0.57, 0.07)
 
 [node name="Mesh" type="MeshInstance3D" parent="MapBoard/DormB"]
+visible = false
 mesh = SubResource("s743")
 
 [node name="DormA" type="Node3D" parent="MapBoard"]
 position = Vector3(0.6, 0.45, 0.07)
 
 [node name="Mesh" type="MeshInstance3D" parent="MapBoard/DormA"]
+visible = false
 mesh = SubResource("s744")
 
 [node name="Library" type="Node3D" parent="MapBoard"]
 position = Vector3(-0.7, -0.55, 0.07)
 
 [node name="Mesh" type="MeshInstance3D" parent="MapBoard/Library"]
+visible = false
 mesh = SubResource("s745")
 
 [node name="Canteen" type="Node3D" parent="MapBoard"]
 position = Vector3(0.8, -0.1, 0.07)
 
 [node name="Mesh" type="MeshInstance3D" parent="MapBoard/Canteen"]
+visible = false
 mesh = SubResource("s746")
 
 [node name="Stadium" type="Node3D" parent="MapBoard"]
 position = Vector3(0.7, -0.65, 0.07)
 
 [node name="Mesh" type="MeshInstance3D" parent="MapBoard/Stadium"]
+visible = false
 mesh = SubResource("s747")
 
 [node name="FadedCircle0_0" type="Node3D" parent="MapBoard"]
@@ -7728,6 +8707,7 @@ position = Vector3(-0.1935544, 0.5987179, 0.082)
 rotation_degrees = Vector3(0, 0, 97.0555659)
 
 [node name="Mesh" type="MeshInstance3D" parent="MapBoard/FadedCircle0_0"]
+visible = false
 mesh = SubResource("s749")
 
 [node name="FadedCircle0_1" type="Node3D" parent="MapBoard"]
@@ -7735,6 +8715,7 @@ position = Vector3(-0.2236107, 0.6544847, 0.082)
 rotation_degrees = Vector3(0, 0, 134.4148103)
 
 [node name="Mesh" type="MeshInstance3D" parent="MapBoard/FadedCircle0_1"]
+visible = false
 mesh = SubResource("s750")
 
 [node name="FadedCircle0_2" type="Node3D" parent="MapBoard"]
@@ -7742,6 +8723,7 @@ position = Vector3(-0.2869856, 0.7053415, 0.082)
 rotation_degrees = Vector3(0, 0, 147.1506563)
 
 [node name="Mesh" type="MeshInstance3D" parent="MapBoard/FadedCircle0_2"]
+visible = false
 mesh = SubResource("s751")
 
 [node name="FadedCircle0_3" type="Node3D" parent="MapBoard"]
@@ -7749,6 +8731,7 @@ position = Vector3(-0.3660168, 0.7483328, 0.082)
 rotation_degrees = Vector3(0, 0, 155.5329702)
 
 [node name="Mesh" type="MeshInstance3D" parent="MapBoard/FadedCircle0_3"]
+visible = false
 mesh = SubResource("s752")
 
 [node name="FadedCircle0_4" type="Node3D" parent="MapBoard"]
@@ -7756,6 +8739,7 @@ position = Vector3(-0.4624959, 0.78096, 0.082)
 rotation_degrees = Vector3(0, 0, 166.0991833)
 
 [node name="Mesh" type="MeshInstance3D" parent="MapBoard/FadedCircle0_4"]
+visible = false
 mesh = SubResource("s753")
 
 [node name="FadedCircle0_5" type="Node3D" parent="MapBoard"]
@@ -7763,6 +8747,7 @@ position = Vector3(-0.5779913, 0.801327, 0.082)
 rotation_degrees = Vector3(0, 0, 173.5433048)
 
 [node name="Mesh" type="MeshInstance3D" parent="MapBoard/FadedCircle0_5"]
+visible = false
 mesh = SubResource("s754")
 
 [node name="FadedCircle0_6" type="Node3D" parent="MapBoard"]
@@ -7770,6 +8755,7 @@ position = Vector3(-0.7, 0.8082501, 0.082)
 rotation_degrees = Vector3(0, 0, 180.0)
 
 [node name="Mesh" type="MeshInstance3D" parent="MapBoard/FadedCircle0_6"]
+visible = false
 mesh = SubResource("s755")
 
 [node name="FadedCircle0_7" type="Node3D" parent="MapBoard"]
@@ -7777,6 +8763,7 @@ position = Vector3(-0.8220087, 0.801327, 0.082)
 rotation_degrees = Vector3(0, 0, -173.5433048)
 
 [node name="Mesh" type="MeshInstance3D" parent="MapBoard/FadedCircle0_7"]
+visible = false
 mesh = SubResource("s756")
 
 [node name="FadedCircle0_8" type="Node3D" parent="MapBoard"]
@@ -7784,6 +8771,7 @@ position = Vector3(-0.9375041, 0.78096, 0.082)
 rotation_degrees = Vector3(0, 0, -166.0991833)
 
 [node name="Mesh" type="MeshInstance3D" parent="MapBoard/FadedCircle0_8"]
+visible = false
 mesh = SubResource("s757")
 
 [node name="FadedCircle0_9" type="Node3D" parent="MapBoard"]
@@ -7791,6 +8779,7 @@ position = Vector3(-1.0339832, 0.7483328, 0.082)
 rotation_degrees = Vector3(0, 0, -155.5329702)
 
 [node name="Mesh" type="MeshInstance3D" parent="MapBoard/FadedCircle0_9"]
+visible = false
 mesh = SubResource("s758")
 
 [node name="FadedCircle0_10" type="Node3D" parent="MapBoard"]
@@ -7798,6 +8787,7 @@ position = Vector3(-1.1130144, 0.7053415, 0.082)
 rotation_degrees = Vector3(0, 0, -147.1506563)
 
 [node name="Mesh" type="MeshInstance3D" parent="MapBoard/FadedCircle0_10"]
+visible = false
 mesh = SubResource("s759")
 
 [node name="FadedCircle0_11" type="Node3D" parent="MapBoard"]
@@ -7805,6 +8795,7 @@ position = Vector3(-1.1763893, 0.6544847, 0.082)
 rotation_degrees = Vector3(0, 0, -134.4148103)
 
 [node name="Mesh" type="MeshInstance3D" parent="MapBoard/FadedCircle0_11"]
+visible = false
 mesh = SubResource("s760")
 
 [node name="FadedCircle0_12" type="Node3D" parent="MapBoard"]
@@ -7812,6 +8803,7 @@ position = Vector3(-1.2064456, 0.5987179, 0.082)
 rotation_degrees = Vector3(0, 0, -97.0555659)
 
 [node name="Mesh" type="MeshInstance3D" parent="MapBoard/FadedCircle0_12"]
+visible = false
 mesh = SubResource("s761")
 
 [node name="FadedCircle0_13" type="Node3D" parent="MapBoard"]
@@ -7819,6 +8811,7 @@ position = Vector3(-1.1987347, 0.5412821, 0.082)
 rotation_degrees = Vector3(0, 0, -68.5811979)
 
 [node name="Mesh" type="MeshInstance3D" parent="MapBoard/FadedCircle0_13"]
+visible = false
 mesh = SubResource("s762")
 
 [node name="FadedCircle0_14" type="Node3D" parent="MapBoard"]
@@ -7826,6 +8819,7 @@ position = Vector3(-1.1703736, 0.4855153, 0.082)
 rotation_degrees = Vector3(0, 0, -57.7057402)
 
 [node name="Mesh" type="MeshInstance3D" parent="MapBoard/FadedCircle0_14"]
+visible = false
 mesh = SubResource("s763")
 
 [node name="FadedCircle0_15" type="Node3D" parent="MapBoard"]
@@ -7833,6 +8827,7 @@ position = Vector3(-1.1203086, 0.4346585, 0.082)
 rotation_degrees = Vector3(0, 0, -35.8340702)
 
 [node name="Mesh" type="MeshInstance3D" parent="MapBoard/FadedCircle0_15"]
+visible = false
 mesh = SubResource("s764")
 
 [node name="FadedCircle0_16" type="Node3D" parent="MapBoard"]
@@ -7840,6 +8835,7 @@ position = Vector3(-1.0374703, 0.3916672, 0.082)
 rotation_degrees = Vector3(0, 0, -21.0404043)
 
 [node name="Mesh" type="MeshInstance3D" parent="MapBoard/FadedCircle0_16"]
+visible = false
 mesh = SubResource("s765")
 
 [node name="FadedCircle0_17" type="Node3D" parent="MapBoard"]
@@ -7847,6 +8843,7 @@ position = Vector3(-0.9330574, 0.35904, 0.082)
 rotation_degrees = Vector3(0, 0, -13.846241)
 
 [node name="Mesh" type="MeshInstance3D" parent="MapBoard/FadedCircle0_17"]
+visible = false
 mesh = SubResource("s766")
 
 [node name="FadedCircle0_18" type="Node3D" parent="MapBoard"]
@@ -7854,6 +8851,7 @@ position = Vector3(-0.8203135, 0.338673, 0.082)
 rotation_degrees = Vector3(0, 0, -6.7836401)
 
 [node name="Mesh" type="MeshInstance3D" parent="MapBoard/FadedCircle0_18"]
+visible = false
 mesh = SubResource("s767")
 
 [node name="FadedCircle0_19" type="Node3D" parent="MapBoard"]
@@ -7861,6 +8859,7 @@ position = Vector3(-0.7, 0.3317499, 0.082)
 rotation_degrees = Vector3(0, 0, 0.0)
 
 [node name="Mesh" type="MeshInstance3D" parent="MapBoard/FadedCircle0_19"]
+visible = false
 mesh = SubResource("s768")
 
 [node name="FadedCircle0_20" type="Node3D" parent="MapBoard"]
@@ -7868,6 +8867,7 @@ position = Vector3(-0.5796865, 0.338673, 0.082)
 rotation_degrees = Vector3(0, 0, 6.7836401)
 
 [node name="Mesh" type="MeshInstance3D" parent="MapBoard/FadedCircle0_20"]
+visible = false
 mesh = SubResource("s769")
 
 [node name="FadedCircle0_21" type="Node3D" parent="MapBoard"]
@@ -7875,6 +8875,7 @@ position = Vector3(-0.4669426, 0.35904, 0.082)
 rotation_degrees = Vector3(0, 0, 13.846241)
 
 [node name="Mesh" type="MeshInstance3D" parent="MapBoard/FadedCircle0_21"]
+visible = false
 mesh = SubResource("s770")
 
 [node name="FadedCircle0_22" type="Node3D" parent="MapBoard"]
@@ -7882,6 +8883,7 @@ position = Vector3(-0.3625297, 0.3916672, 0.082)
 rotation_degrees = Vector3(0, 0, 21.0404043)
 
 [node name="Mesh" type="MeshInstance3D" parent="MapBoard/FadedCircle0_22"]
+visible = false
 mesh = SubResource("s771")
 
 [node name="FadedCircle0_23" type="Node3D" parent="MapBoard"]
@@ -7889,6 +8891,7 @@ position = Vector3(-0.2796914, 0.4346585, 0.082)
 rotation_degrees = Vector3(0, 0, 35.8340702)
 
 [node name="Mesh" type="MeshInstance3D" parent="MapBoard/FadedCircle0_23"]
+visible = false
 mesh = SubResource("s772")
 
 [node name="FadedCircle0_24" type="Node3D" parent="MapBoard"]
@@ -7896,6 +8899,7 @@ position = Vector3(-0.2296264, 0.4855153, 0.082)
 rotation_degrees = Vector3(0, 0, 57.7057402)
 
 [node name="Mesh" type="MeshInstance3D" parent="MapBoard/FadedCircle0_24"]
+visible = false
 mesh = SubResource("s773")
 
 [node name="FadedCircle0_25" type="Node3D" parent="MapBoard"]
@@ -7903,6 +8907,7 @@ position = Vector3(-0.2012653, 0.5412821, 0.082)
 rotation_degrees = Vector3(0, 0, 68.5811979)
 
 [node name="Mesh" type="MeshInstance3D" parent="MapBoard/FadedCircle0_25"]
+visible = false
 mesh = SubResource("s774")
 
 [node name="FadedCircle1_0" type="Node3D" parent="MapBoard"]
@@ -7910,6 +8915,7 @@ position = Vector3(1.1064456, 0.4787179, 0.082)
 rotation_degrees = Vector3(0, 0, 97.0555659)
 
 [node name="Mesh" type="MeshInstance3D" parent="MapBoard/FadedCircle1_0"]
+visible = false
 mesh = SubResource("s775")
 
 [node name="FadedCircle1_1" type="Node3D" parent="MapBoard"]
@@ -7917,6 +8923,7 @@ position = Vector3(1.0763893, 0.5344847, 0.082)
 rotation_degrees = Vector3(0, 0, 134.4148103)
 
 [node name="Mesh" type="MeshInstance3D" parent="MapBoard/FadedCircle1_1"]
+visible = false
 mesh = SubResource("s776")
 
 [node name="FadedCircle1_2" type="Node3D" parent="MapBoard"]
@@ -7924,6 +8931,7 @@ position = Vector3(1.0130144, 0.5853415, 0.082)
 rotation_degrees = Vector3(0, 0, 147.1506563)
 
 [node name="Mesh" type="MeshInstance3D" parent="MapBoard/FadedCircle1_2"]
+visible = false
 mesh = SubResource("s777")
 
 [node name="FadedCircle1_3" type="Node3D" parent="MapBoard"]
@@ -7931,6 +8939,7 @@ position = Vector3(0.9339832, 0.6283328, 0.082)
 rotation_degrees = Vector3(0, 0, 155.5329702)
 
 [node name="Mesh" type="MeshInstance3D" parent="MapBoard/FadedCircle1_3"]
+visible = false
 mesh = SubResource("s778")
 
 [node name="FadedCircle1_4" type="Node3D" parent="MapBoard"]
@@ -7938,6 +8947,7 @@ position = Vector3(0.8375041, 0.66096, 0.082)
 rotation_degrees = Vector3(0, 0, 166.0991833)
 
 [node name="Mesh" type="MeshInstance3D" parent="MapBoard/FadedCircle1_4"]
+visible = false
 mesh = SubResource("s779")
 
 [node name="FadedCircle1_5" type="Node3D" parent="MapBoard"]
@@ -7945,6 +8955,7 @@ position = Vector3(0.7220087, 0.681327, 0.082)
 rotation_degrees = Vector3(0, 0, 173.5433048)
 
 [node name="Mesh" type="MeshInstance3D" parent="MapBoard/FadedCircle1_5"]
+visible = false
 mesh = SubResource("s780")
 
 [node name="FadedCircle1_6" type="Node3D" parent="MapBoard"]
@@ -7952,6 +8963,7 @@ position = Vector3(0.6, 0.6882501, 0.082)
 rotation_degrees = Vector3(0, 0, 180.0)
 
 [node name="Mesh" type="MeshInstance3D" parent="MapBoard/FadedCircle1_6"]
+visible = false
 mesh = SubResource("s781")
 
 [node name="FadedCircle1_7" type="Node3D" parent="MapBoard"]
@@ -7959,6 +8971,7 @@ position = Vector3(0.4779913, 0.681327, 0.082)
 rotation_degrees = Vector3(0, 0, -173.5433048)
 
 [node name="Mesh" type="MeshInstance3D" parent="MapBoard/FadedCircle1_7"]
+visible = false
 mesh = SubResource("s782")
 
 [node name="FadedCircle1_8" type="Node3D" parent="MapBoard"]
@@ -7966,6 +8979,7 @@ position = Vector3(0.3624959, 0.66096, 0.082)
 rotation_degrees = Vector3(0, 0, -166.0991833)
 
 [node name="Mesh" type="MeshInstance3D" parent="MapBoard/FadedCircle1_8"]
+visible = false
 mesh = SubResource("s783")
 
 [node name="FadedCircle1_9" type="Node3D" parent="MapBoard"]
@@ -7973,6 +8987,7 @@ position = Vector3(0.2660168, 0.6283328, 0.082)
 rotation_degrees = Vector3(0, 0, -155.5329702)
 
 [node name="Mesh" type="MeshInstance3D" parent="MapBoard/FadedCircle1_9"]
+visible = false
 mesh = SubResource("s784")
 
 [node name="FadedCircle1_10" type="Node3D" parent="MapBoard"]
@@ -7980,6 +8995,7 @@ position = Vector3(0.1869856, 0.5853415, 0.082)
 rotation_degrees = Vector3(0, 0, -147.1506563)
 
 [node name="Mesh" type="MeshInstance3D" parent="MapBoard/FadedCircle1_10"]
+visible = false
 mesh = SubResource("s785")
 
 [node name="FadedCircle1_11" type="Node3D" parent="MapBoard"]
@@ -7987,6 +9003,7 @@ position = Vector3(0.1236107, 0.5344847, 0.082)
 rotation_degrees = Vector3(0, 0, -134.4148103)
 
 [node name="Mesh" type="MeshInstance3D" parent="MapBoard/FadedCircle1_11"]
+visible = false
 mesh = SubResource("s786")
 
 [node name="FadedCircle1_12" type="Node3D" parent="MapBoard"]
@@ -7994,6 +9011,7 @@ position = Vector3(0.0935544, 0.4787179, 0.082)
 rotation_degrees = Vector3(0, 0, -97.0555659)
 
 [node name="Mesh" type="MeshInstance3D" parent="MapBoard/FadedCircle1_12"]
+visible = false
 mesh = SubResource("s787")
 
 [node name="FadedCircle1_13" type="Node3D" parent="MapBoard"]
@@ -8001,6 +9019,7 @@ position = Vector3(0.1012653, 0.4212821, 0.082)
 rotation_degrees = Vector3(0, 0, -68.5811979)
 
 [node name="Mesh" type="MeshInstance3D" parent="MapBoard/FadedCircle1_13"]
+visible = false
 mesh = SubResource("s788")
 
 [node name="FadedCircle1_14" type="Node3D" parent="MapBoard"]
@@ -8008,6 +9027,7 @@ position = Vector3(0.1296264, 0.3655153, 0.082)
 rotation_degrees = Vector3(0, 0, -57.7057402)
 
 [node name="Mesh" type="MeshInstance3D" parent="MapBoard/FadedCircle1_14"]
+visible = false
 mesh = SubResource("s789")
 
 [node name="FadedCircle1_15" type="Node3D" parent="MapBoard"]
@@ -8015,6 +9035,7 @@ position = Vector3(0.1796914, 0.3146585, 0.082)
 rotation_degrees = Vector3(0, 0, -35.8340702)
 
 [node name="Mesh" type="MeshInstance3D" parent="MapBoard/FadedCircle1_15"]
+visible = false
 mesh = SubResource("s790")
 
 [node name="FadedCircle1_16" type="Node3D" parent="MapBoard"]
@@ -8022,6 +9043,7 @@ position = Vector3(0.2625297, 0.2716672, 0.082)
 rotation_degrees = Vector3(0, 0, -21.0404043)
 
 [node name="Mesh" type="MeshInstance3D" parent="MapBoard/FadedCircle1_16"]
+visible = false
 mesh = SubResource("s791")
 
 [node name="FadedCircle1_17" type="Node3D" parent="MapBoard"]
@@ -8029,6 +9051,7 @@ position = Vector3(0.3669426, 0.23904, 0.082)
 rotation_degrees = Vector3(0, 0, -13.846241)
 
 [node name="Mesh" type="MeshInstance3D" parent="MapBoard/FadedCircle1_17"]
+visible = false
 mesh = SubResource("s792")
 
 [node name="FadedCircle1_18" type="Node3D" parent="MapBoard"]
@@ -8036,6 +9059,7 @@ position = Vector3(0.4796865, 0.218673, 0.082)
 rotation_degrees = Vector3(0, 0, -6.7836401)
 
 [node name="Mesh" type="MeshInstance3D" parent="MapBoard/FadedCircle1_18"]
+visible = false
 mesh = SubResource("s793")
 
 [node name="FadedCircle1_19" type="Node3D" parent="MapBoard"]
@@ -8043,6 +9067,7 @@ position = Vector3(0.6, 0.2117499, 0.082)
 rotation_degrees = Vector3(0, 0, 0.0)
 
 [node name="Mesh" type="MeshInstance3D" parent="MapBoard/FadedCircle1_19"]
+visible = false
 mesh = SubResource("s794")
 
 [node name="FadedCircle1_20" type="Node3D" parent="MapBoard"]
@@ -8050,6 +9075,7 @@ position = Vector3(0.7203135, 0.218673, 0.082)
 rotation_degrees = Vector3(0, 0, 6.7836401)
 
 [node name="Mesh" type="MeshInstance3D" parent="MapBoard/FadedCircle1_20"]
+visible = false
 mesh = SubResource("s795")
 
 [node name="FadedCircle1_21" type="Node3D" parent="MapBoard"]
@@ -8057,6 +9083,7 @@ position = Vector3(0.8330574, 0.23904, 0.082)
 rotation_degrees = Vector3(0, 0, 13.846241)
 
 [node name="Mesh" type="MeshInstance3D" parent="MapBoard/FadedCircle1_21"]
+visible = false
 mesh = SubResource("s796")
 
 [node name="FadedCircle1_22" type="Node3D" parent="MapBoard"]
@@ -8064,6 +9091,7 @@ position = Vector3(0.9374703, 0.2716672, 0.082)
 rotation_degrees = Vector3(0, 0, 21.0404043)
 
 [node name="Mesh" type="MeshInstance3D" parent="MapBoard/FadedCircle1_22"]
+visible = false
 mesh = SubResource("s797")
 
 [node name="FadedCircle1_23" type="Node3D" parent="MapBoard"]
@@ -8071,6 +9099,7 @@ position = Vector3(1.0203086, 0.3146585, 0.082)
 rotation_degrees = Vector3(0, 0, 35.8340702)
 
 [node name="Mesh" type="MeshInstance3D" parent="MapBoard/FadedCircle1_23"]
+visible = false
 mesh = SubResource("s798")
 
 [node name="FadedCircle1_24" type="Node3D" parent="MapBoard"]
@@ -8078,6 +9107,7 @@ position = Vector3(1.0703736, 0.3655153, 0.082)
 rotation_degrees = Vector3(0, 0, 57.7057402)
 
 [node name="Mesh" type="MeshInstance3D" parent="MapBoard/FadedCircle1_24"]
+visible = false
 mesh = SubResource("s799")
 
 [node name="FadedCircle1_25" type="Node3D" parent="MapBoard"]
@@ -8085,6 +9115,7 @@ position = Vector3(1.0987347, 0.4212821, 0.082)
 rotation_degrees = Vector3(0, 0, 68.5811979)
 
 [node name="Mesh" type="MeshInstance3D" parent="MapBoard/FadedCircle1_25"]
+visible = false
 mesh = SubResource("s800")
 
 [node name="BackDoor" type="Node3D" parent="."]
@@ -8107,12 +9138,14 @@ position = Vector3(-0.97,0,0)
 position = Vector3(0.97, 1.2, 0)
 
 [node name="Mesh" type="MeshInstance3D" parent="BackDoor/Hinge/Leaf"]
+visible = false
 mesh = SubResource("s802")
 
 [node name="Handle" type="Node3D" parent="BackDoor/Hinge"]
 position = Vector3(1.72, 1.1, -0.09)
 
 [node name="Mesh" type="MeshInstance3D" parent="BackDoor/Hinge/Handle"]
+visible = false
 mesh = SubResource("s803")
 
 [node name="DoorThreshold" type="NavigationRegion3D" parent="."]
@@ -8125,3 +9158,969 @@ end_position = Vector3(20, 0, 29.5)
 [node name="DoorOutside" type="NavigationLink3D" parent="."]
 start_position = Vector3(20, 0, 30.5)
 end_position = Vector3(20, 0, 32)
+
+[node name="Real" type="Node3D" parent="."]
+position = Vector3(-45, 0, -195)
+script = ExtResource("t265_real")
+
+[node name="Shell_F1" parent="Real" instance=ExtResource("t265_shell_f1")]
+
+[node name="Shell_F2" parent="Real" instance=ExtResource("t265_shell_f2")]
+
+[node name="Shell_F3" parent="Real" instance=ExtResource("t265_shell_f3")]
+
+[node name="Stairs" parent="Real" instance=ExtResource("t265_stairs")]
+
+[node name="Counter" parent="Real" instance=ExtResource("t265_counter_q1")]
+
+[node name="LibrarianChair" parent="Real" instance=ExtResource("t265_librarian_chair")]
+
+[node name="Map" parent="Real" instance=ExtResource("t265_map_print")]
+
+[node name="Tables" parent="Real" instance=ExtResource("t265_tables")]
+
+[node name="Shelves_F1" parent="Real" instance=ExtResource("t265_shelves_f1")]
+
+[node name="Shelves_F2" parent="Real" instance=ExtResource("t265_shelves_f2")]
+
+[node name="Shelves_F3N" parent="Real" instance=ExtResource("t265_shelves_f3n")]
+
+[node name="Shelves_F3S" parent="Real" instance=ExtResource("t265_shelves_f3s")]
+
+[node name="Fill_F1" parent="Real" instance=ExtResource("t265_fill_f1")]
+
+[node name="Fill_F2" parent="Real" instance=ExtResource("t265_fill_f2")]
+
+[node name="Fill_F3" parent="Real" instance=ExtResource("t265_fill_f3")]
+
+[node name="BackFrame" parent="Real" instance=ExtResource("t265_back_frame")]
+
+[node name="FrontDoor" parent="Real" instance=ExtResource("t265_front_door")]
+
+[node name="Barricade" parent="Real" instance=ExtResource("t265_barricade")]
+
+[node name="Facade" parent="Real" instance=ExtResource("t265_facade")]
+
+[node name="Added" type="Node3D" parent="Real"]
+
+[node name="F1_WallWN0" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(45.32, 1.1, 215.5)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F1_WallWN0"]
+shape = SubResource("t265_box0")
+
+[node name="F1_WallWN1" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(45.32, 1.1, 218.5)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F1_WallWN1"]
+shape = SubResource("t265_box1")
+
+[node name="F1_WallWN2" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(45.32, 1.1, 221.5)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F1_WallWN2"]
+shape = SubResource("t265_box2")
+
+[node name="F1_WallEN0" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(84.68, 1.1, 215.5)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F1_WallEN0"]
+shape = SubResource("t265_box3")
+
+[node name="F1_WallEN1" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(84.68, 1.1, 218.5)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F1_WallEN1"]
+shape = SubResource("t265_box4")
+
+[node name="F1_WallEN2" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(84.68, 1.1, 221.5)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F1_WallEN2"]
+shape = SubResource("t265_box5")
+
+[node name="F1_LowN50" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(50, 0.5, 224.71)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F1_LowN50"]
+shape = SubResource("t265_box6")
+
+[node name="F1_LowN58" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(58, 0.5, 224.71)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F1_LowN58"]
+shape = SubResource("t265_box7")
+
+[node name="F1_LowN72" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(72, 0.5, 224.71)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F1_LowN72"]
+shape = SubResource("t265_box8")
+
+[node name="F1_LowN80" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(80, 0.5, 224.71)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F1_LowN80"]
+shape = SubResource("t265_box9")
+
+[node name="F1_LowS50" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(50, 0.5, 195.29)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F1_LowS50"]
+shape = SubResource("t265_box10")
+
+[node name="F1_LowS72" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(72, 0.5, 195.29)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F1_LowS72"]
+shape = SubResource("t265_box11")
+
+[node name="F1_RowNW2152_0" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(48.3, 1.1, 215.2)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F1_RowNW2152_0"]
+shape = SubResource("t265_box12")
+
+[node name="F1_RowNW2152_1" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(54.8, 1.1, 215.2)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F1_RowNW2152_1"]
+shape = SubResource("t265_box13")
+
+[node name="F1_RowNW2206_0" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(48.3, 1.1, 220.6)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F1_RowNW2206_0"]
+shape = SubResource("t265_box14")
+
+[node name="F1_RowNW2206_1" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(54.8, 1.1, 220.6)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F1_RowNW2206_1"]
+shape = SubResource("t265_box15")
+
+[node name="F1_RowNW2206_2" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(60, 1.1, 220.6)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F1_RowNW2206_2"]
+shape = SubResource("t265_box16")
+
+[node name="F1_RowNE2152_0" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(70.9, 1.1, 215.2)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F1_RowNE2152_0"]
+shape = SubResource("t265_box17")
+
+[node name="F1_RowNE2152_1" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(75.3, 1.1, 215.2)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F1_RowNE2152_1"]
+shape = SubResource("t265_box18")
+
+[node name="F1_RowNE2152_2" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(79.7, 1.1, 215.2)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F1_RowNE2152_2"]
+shape = SubResource("t265_box19")
+
+[node name="F1_RowNE2206_0" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(70.9, 1.1, 220.6)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F1_RowNE2206_0"]
+shape = SubResource("t265_box20")
+
+[node name="F1_RowNE2206_1" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(75.3, 1.1, 220.6)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F1_RowNE2206_1"]
+shape = SubResource("t265_box21")
+
+[node name="F1_RowNE2206_2" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(79.7, 1.1, 220.6)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F1_RowNE2206_2"]
+shape = SubResource("t265_box22")
+
+[node name="F1_RowSE1979_0" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(72.5, 1.1, 197.9)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F1_RowSE1979_0"]
+shape = SubResource("t265_box23")
+
+[node name="F1_RowSE2007_0" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(72.5, 1.1, 200.7)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F1_RowSE2007_0"]
+shape = SubResource("t265_box24")
+
+[node name="F2_WallWN0" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(45.32, 4.4, 215.5)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F2_WallWN0"]
+shape = SubResource("t265_box25")
+
+[node name="F2_WallWN1" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(45.32, 4.4, 218.5)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F2_WallWN1"]
+shape = SubResource("t265_box26")
+
+[node name="F2_WallWN2" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(45.32, 4.4, 221.5)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F2_WallWN2"]
+shape = SubResource("t265_box27")
+
+[node name="F2_WallEN0" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(84.68, 4.4, 215.5)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F2_WallEN0"]
+shape = SubResource("t265_box28")
+
+[node name="F2_WallEN1" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(84.68, 4.4, 218.5)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F2_WallEN1"]
+shape = SubResource("t265_box29")
+
+[node name="F2_WallEN2" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(84.68, 4.4, 221.5)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F2_WallEN2"]
+shape = SubResource("t265_box30")
+
+[node name="F2_WallWS0" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(45.32, 4.4, 196.65)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F2_WallWS0"]
+shape = SubResource("t265_box31")
+
+[node name="F2_WallWS1" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(45.32, 4.4, 199.65)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F2_WallWS1"]
+shape = SubResource("t265_box32")
+
+[node name="F2_WallWS2" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(45.32, 4.4, 202.65)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F2_WallWS2"]
+shape = SubResource("t265_box33")
+
+[node name="F2_LowN50" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(50, 3.8, 224.71)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F2_LowN50"]
+shape = SubResource("t265_box34")
+
+[node name="F2_LowN58" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(58, 3.8, 224.71)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F2_LowN58"]
+shape = SubResource("t265_box35")
+
+[node name="F2_LowN72" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(72, 3.8, 224.71)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F2_LowN72"]
+shape = SubResource("t265_box36")
+
+[node name="F2_LowN80" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(80, 3.8, 224.71)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F2_LowN80"]
+shape = SubResource("t265_box37")
+
+[node name="F2_LowS50" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(50, 3.8, 195.29)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F2_LowS50"]
+shape = SubResource("t265_box38")
+
+[node name="F2_LowS58" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(58, 3.8, 195.29)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F2_LowS58"]
+shape = SubResource("t265_box39")
+
+[node name="F2_LowS72" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(72, 3.8, 195.29)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F2_LowS72"]
+shape = SubResource("t265_box40")
+
+[node name="F2_RowSW1988_0" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(49.8, 4.4, 198.8)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F2_RowSW1988_0"]
+shape = SubResource("t265_box41")
+
+[node name="F2_RowSW1988_1" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(57.2, 4.4, 198.8)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F2_RowSW1988_1"]
+shape = SubResource("t265_box42")
+
+[node name="F2_RowSW2052_0" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(49.8, 4.4, 205.2)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F2_RowSW2052_0"]
+shape = SubResource("t265_box43")
+
+[node name="F2_RowSW2052_1" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(57.2, 4.4, 205.2)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F2_RowSW2052_1"]
+shape = SubResource("t265_box44")
+
+[node name="F2_RowSE1988_0" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(72.5, 4.4, 198.8)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F2_RowSE1988_0"]
+shape = SubResource("t265_box45")
+
+[node name="F3_WallWN0" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(45.32, 7.7, 215.5)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F3_WallWN0"]
+shape = SubResource("t265_box46")
+
+[node name="F3_WallWN1" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(45.32, 7.7, 218.5)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F3_WallWN1"]
+shape = SubResource("t265_box47")
+
+[node name="F3_WallWN2" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(45.32, 7.7, 221.5)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F3_WallWN2"]
+shape = SubResource("t265_box48")
+
+[node name="F3_WallEN0" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(84.68, 7.7, 215.5)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F3_WallEN0"]
+shape = SubResource("t265_box49")
+
+[node name="F3_WallEN1" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(84.68, 7.7, 218.5)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F3_WallEN1"]
+shape = SubResource("t265_box50")
+
+[node name="F3_WallEN2" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(84.68, 7.7, 221.5)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F3_WallEN2"]
+shape = SubResource("t265_box51")
+
+[node name="F3_WallWS0" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(45.32, 7.7, 196.65)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F3_WallWS0"]
+shape = SubResource("t265_box52")
+
+[node name="F3_WallWS1" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(45.32, 7.7, 199.65)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F3_WallWS1"]
+shape = SubResource("t265_box53")
+
+[node name="F3_WallWS2" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(45.32, 7.7, 202.65)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F3_WallWS2"]
+shape = SubResource("t265_box54")
+
+[node name="F3_LowS50" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(50, 7.1, 195.29)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F3_LowS50"]
+shape = SubResource("t265_box55")
+
+[node name="F3_LowS58" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(58, 7.1, 195.29)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F3_LowS58"]
+shape = SubResource("t265_box56")
+
+[node name="F3_LowS72" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(72, 7.1, 195.29)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F3_LowS72"]
+shape = SubResource("t265_box57")
+
+[node name="F3_RowNW2151_0" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(48.3, 7.7, 215.1)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F3_RowNW2151_0"]
+shape = SubResource("t265_box58")
+
+[node name="F3_RowNW2151_1" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(54.8, 7.7, 215.1)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F3_RowNW2151_1"]
+shape = SubResource("t265_box59")
+
+[node name="F3_RowNW2151_2" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(60, 7.7, 215.1)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F3_RowNW2151_2"]
+shape = SubResource("t265_box60")
+
+[node name="F3_RowNE2151_0" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(70.9, 7.7, 215.1)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F3_RowNE2151_0"]
+shape = SubResource("t265_box61")
+
+[node name="F3_RowNE2151_1" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(75.3, 7.7, 215.1)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F3_RowNE2151_1"]
+shape = SubResource("t265_box62")
+
+[node name="F3_RowNE2151_2" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(79.7, 7.7, 215.1)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F3_RowNE2151_2"]
+shape = SubResource("t265_box63")
+
+[node name="F3_RowNW2209_0" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(48.3, 7.7, 220.9)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F3_RowNW2209_0"]
+shape = SubResource("t265_box64")
+
+[node name="F3_RowNW2209_1" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(54.8, 7.7, 220.9)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F3_RowNW2209_1"]
+shape = SubResource("t265_box65")
+
+[node name="F3_RowNW2209_2" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(60, 7.7, 220.9)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F3_RowNW2209_2"]
+shape = SubResource("t265_box66")
+
+[node name="F3_RowNE2209_0" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(70.9, 7.7, 220.9)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F3_RowNE2209_0"]
+shape = SubResource("t265_box67")
+
+[node name="F3_RowNE2209_1" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(75.3, 7.7, 220.9)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F3_RowNE2209_1"]
+shape = SubResource("t265_box68")
+
+[node name="F3_RowNE2209_2" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(79.7, 7.7, 220.9)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F3_RowNE2209_2"]
+shape = SubResource("t265_box69")
+
+[node name="F3_RowNW2233_0" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(48.3, 7.7, 223.3)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F3_RowNW2233_0"]
+shape = SubResource("t265_box70")
+
+[node name="F3_RowNW2233_1" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(54.8, 7.7, 223.3)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F3_RowNW2233_1"]
+shape = SubResource("t265_box71")
+
+[node name="F3_RowNW2233_2" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(60, 7.7, 223.3)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F3_RowNW2233_2"]
+shape = SubResource("t265_box72")
+
+[node name="F3_RowNE2233_0" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(70.9, 7.7, 223.3)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F3_RowNE2233_0"]
+shape = SubResource("t265_box73")
+
+[node name="F3_RowNE2233_1" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(75.3, 7.7, 223.3)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F3_RowNE2233_1"]
+shape = SubResource("t265_box74")
+
+[node name="F3_RowNE2233_2" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(79.7, 7.7, 223.3)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F3_RowNE2233_2"]
+shape = SubResource("t265_box75")
+
+[node name="F3_RowSW1979_0" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(48.3, 7.7, 197.9)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F3_RowSW1979_0"]
+shape = SubResource("t265_box76")
+
+[node name="F3_RowSW1979_1" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(52.7, 7.7, 197.9)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F3_RowSW1979_1"]
+shape = SubResource("t265_box77")
+
+[node name="F3_RowSW1979_2" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(57.1, 7.7, 197.9)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F3_RowSW1979_2"]
+shape = SubResource("t265_box78")
+
+[node name="F3_RowSE1979_0" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(70.9, 7.7, 197.9)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F3_RowSE1979_0"]
+shape = SubResource("t265_box79")
+
+[node name="F3_RowSE1979_1" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(74.9, 7.7, 197.9)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F3_RowSE1979_1"]
+shape = SubResource("t265_box80")
+
+[node name="F3_RowSW2007_0" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(48.3, 7.7, 200.7)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F3_RowSW2007_0"]
+shape = SubResource("t265_box81")
+
+[node name="F3_RowSW2007_1" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(52.7, 7.7, 200.7)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F3_RowSW2007_1"]
+shape = SubResource("t265_box82")
+
+[node name="F3_RowSW2007_2" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(57.1, 7.7, 200.7)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F3_RowSW2007_2"]
+shape = SubResource("t265_box83")
+
+[node name="F3_RowSE2007_0" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(70.9, 7.7, 200.7)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F3_RowSE2007_0"]
+shape = SubResource("t265_box84")
+
+[node name="F3_RowSE2007_1" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(74.9, 7.7, 200.7)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F3_RowSE2007_1"]
+shape = SubResource("t265_box85")
+
+[node name="F3_RowSW2035_0" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(48.3, 7.7, 203.5)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F3_RowSW2035_0"]
+shape = SubResource("t265_box86")
+
+[node name="F3_RowSW2035_1" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(52.7, 7.7, 203.5)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F3_RowSW2035_1"]
+shape = SubResource("t265_box87")
+
+[node name="F3_RowSW2035_2" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(57.1, 7.7, 203.5)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F3_RowSW2035_2"]
+shape = SubResource("t265_box88")
+
+[node name="F3_RowSE2035_0" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(70.9, 7.7, 203.5)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F3_RowSE2035_0"]
+shape = SubResource("t265_box89")
+
+[node name="F3_RowSE2035_1" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(74.9, 7.7, 203.5)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F3_RowSE2035_1"]
+shape = SubResource("t265_box90")
+
+[node name="F3_RowSW2063_0" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(48.3, 7.7, 206.3)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F3_RowSW2063_0"]
+shape = SubResource("t265_box91")
+
+[node name="F3_RowSW2063_1" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(52.7, 7.7, 206.3)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F3_RowSW2063_1"]
+shape = SubResource("t265_box92")
+
+[node name="F3_RowSW2063_2" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(57.1, 7.7, 206.3)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F3_RowSW2063_2"]
+shape = SubResource("t265_box93")
+
+[node name="F3_RowSE2063_0" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(70.9, 7.7, 206.3)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F3_RowSE2063_0"]
+shape = SubResource("t265_box94")
+
+[node name="F3_RowSE2063_1" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(74.9, 7.7, 206.3)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F3_RowSE2063_1"]
+shape = SubResource("t265_box95")
+
+[node name="F1_Catalogue0" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(47.6, 0.65, 203.45)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F1_Catalogue0"]
+shape = SubResource("t265_box96")
+
+[node name="F1_Catalogue1" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(50.6, 0.65, 203.45)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F1_Catalogue1"]
+shape = SubResource("t265_box97")
+
+[node name="F1_Trolley" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(52.65, 0.5, 207.525)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F1_Trolley"]
+shape = SubResource("t265_box98")
+
+[node name="F1_NewsTable" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(71.2, 0.525, 204.2)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F1_NewsTable"]
+shape = SubResource("t265_box99")
+
+[node name="F1_Boxes" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(74.65, 0.45, 204.1)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F1_Boxes"]
+shape = SubResource("t265_box100")
+
+[node name="F1_PlantS" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(53.7, 0.7, 195.45)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F1_PlantS"]
+shape = SubResource("t265_box101")
+
+[node name="F1_PlantE" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(75.9, 0.7, 207.7)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F1_PlantE"]
+shape = SubResource("t265_box102")
+
+[node name="F2_NewsTable" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(71.2, 3.825, 204.2)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F2_NewsTable"]
+shape = SubResource("t265_box103")
+
+[node name="F2_Trolley" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(47.45, 3.8, 219.225)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F2_Trolley"]
+shape = SubResource("t265_box104")
+
+[node name="F2_Plant" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(75.9, 4, 195.45)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F2_Plant"]
+shape = SubResource("t265_box105")
+
+[node name="F3_Sheeted" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(75.6, 7.2, 195.45)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F3_Sheeted"]
+shape = SubResource("t265_box106")
+
+[node name="F3_BoxesS" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(60.15, 7.1, 195.65)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F3_BoxesS"]
+shape = SubResource("t265_box107")
+
+[node name="F3_BoxesE" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(81.8, 6.95, 215.1)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/F3_BoxesE"]
+shape = SubResource("t265_box108")
+
+[node name="WellRail_F2" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(78.9, 3.85, 204)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/WellRail_F2"]
+shape = SubResource("t265_box109")
+
+[node name="WellRail_F3" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(78.9, 7.15, 204)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/WellRail_F3"]
+shape = SubResource("t265_box110")
+
+[node name="WellRail_F3S" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(81.875, 7.15, 198.96)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/WellRail_F3S"]
+shape = SubResource("t265_box111")
+
+[node name="WellRail_F2SE" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(84.47, 3.85, 198.96)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/WellRail_F2SE"]
+shape = SubResource("t265_box112")
+
+[node name="WellRail_F2NE" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(84.47, 3.85, 209.04)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/WellRail_F2NE"]
+shape = SubResource("t265_box113")
+
+[node name="WellRail_F3NE" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(84.47, 7.15, 209.04)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/WellRail_F3NE"]
+shape = SubResource("t265_box114")
+
+[node name="LeafReal" parent="BackDoor/Hinge" instance=ExtResource("t265_back_leaf")]

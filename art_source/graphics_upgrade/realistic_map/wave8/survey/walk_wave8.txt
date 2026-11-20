@@ -1,0 +1,127 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+PLAYER CharacterBody3D capsule r 0.30 h 1.75, floor_max_angle 45.0, snap 0.10, step? player.gd
+ANCHOR Start_library (65.0, -9.9, 223.0), door (65.0, -9.9, 225.0), hinge (64.03, -9.9, 225.0)
+CLEAR closed door at (65, -9.9, 225): ["Library/BackDoor/Blocker"]
+WALK closed back door from outside -> (65.00, -9.90, 222.00): STUCK, feet (65.00, -9.94, 225.40) blockers ["Library/BackDoor/Blocker"]
+WALK closed back door from outside stopped, feet y -9.94..-9.85
+CLEAR open door at (65, -9.9, 224.4 / 225 / 225.6): [] [] []
+LEAF open at (64.03, -8.7, 224.03), its mesh aabb [P: (63.98, -9.9, 223.06), S: (0.100002, 2.4, 1.940002)]
+WALK route 1: outside -> back door -> Start_library -> counter -> iron bar spot -> (65.00, -9.90, 224.50): reached, feet (65.00, -9.90, 224.75)
+WALK route 1: outside -> back door -> Start_library -> counter -> iron bar spot -> (65.00, -9.90, 223.00): reached, feet (65.00, -9.90, 223.28)
+WALK route 1: outside -> back door -> Start_library -> counter -> iron bar spot -> (65.00, -9.90, 211.00): reached, feet (65.00, -9.90, 211.28)
+WALK route 1: outside -> back door -> Start_library -> counter -> iron bar spot -> (60.00, -9.90, 207.60): reached, feet (60.22, -9.90, 207.76)
+WALK route 1: outside -> back door -> Start_library -> counter -> iron bar spot -> (58.30, -9.90, 207.30): reached, feet (58.54, -9.90, 207.36)
+WALK route 1: outside -> back door -> Start_library -> counter -> iron bar spot done, feet y -9.94..-9.85
+BAR stand (58.3, 207.3): bar at (58.0, -9.0, 206.0), 1.72 m from the feet
+WALK route 2: counter -> map board -> (60.00, -9.90, 211.00): reached, feet (60.00, -9.90, 210.73)
+WALK route 2: counter -> map board -> (46.40, -9.90, 211.00): reached, feet (46.67, -9.90, 210.99)
+WALK route 2: counter -> map board done, feet y -9.90..-9.85
+WALK route 3: map -> stair foot -> floor 2 -> (77.50, -9.90, 211.00): reached, feet (77.27, -9.90, 211.00)
+WALK route 3: map -> stair foot -> floor 2 -> (77.50, -9.90, 197.00): reached, feet (77.50, -9.90, 197.27)
+WALK route 3: map -> stair foot -> floor 2 -> (81.00, -9.90, 197.00): reached, feet (80.75, -9.90, 197.02)
+WALK route 3: map -> stair foot -> floor 2 -> (81.00, -9.90, 198.60): reached, feet (80.96, -9.90, 198.34)
+WALK route 3: map -> stair foot -> floor 2 -> (81.00, -6.60, 209.60): reached, feet (81.00, -6.60, 209.31)
+WALK route 3: map -> stair foot -> floor 2 -> (81.00, -6.60, 211.50): reached, feet (81.00, -6.60, 211.25)
+WALK route 3: map -> stair foot -> floor 2 done, feet y -9.90..-6.59
+WALK route 4: floor 2 stair top -> reading desk -> (65.00, -6.60, 211.00): reached, feet (65.27, -6.60, 211.01)
+WALK route 4: floor 2 stair top -> reading desk -> (61.00, -6.60, 214.50): reached, feet (61.20, -6.60, 214.34)
+WALK route 4: floor 2 stair top -> reading desk -> (60.20, -6.60, 216.00): reached, feet (60.34, -6.60, 215.77)
+WALK route 4: floor 2 stair top -> reading desk done, feet y -6.60..-6.55
+WALK route 5: reading desk -> floor 2 stair foot -> floor 3 -> (65.00, -6.60, 211.00): reached, feet (64.82, -6.60, 211.19)
+WALK route 5: reading desk -> floor 2 stair foot -> floor 3 -> (77.50, -6.60, 211.00): reached, feet (77.22, -6.60, 211.00)
+WALK route 5: reading desk -> floor 2 stair foot -> floor 3 -> (77.50, -6.60, 197.00): reached, feet (77.49, -6.60, 197.27)
+WALK route 5: reading desk -> floor 2 stair foot -> floor 3 -> (81.00, -6.60, 197.00): reached, feet (80.75, -6.60, 197.02)
+WALK route 5: reading desk -> floor 2 stair foot -> floor 3 -> (81.00, -6.60, 198.60): reached, feet (80.96, -6.60, 198.34)
+WALK route 5: reading desk -> floor 2 stair foot -> floor 3 -> (81.00, -3.30, 209.60): reached, feet (81.00, -3.30, 209.31)
+WALK route 5: reading desk -> floor 2 stair foot -> floor 3 -> (81.00, -3.30, 211.50): reached, feet (81.00, -3.30, 211.25)
+WALK route 5: reading desk -> floor 2 stair foot -> floor 3 done, feet y -6.60..-3.29
+WALK route 6: floor 3 -> ScareShelf3F -> ThrownBook3F -> (65.00, -3.30, 211.00): reached, feet (65.27, -3.30, 211.01)
+WALK route 6: floor 3 -> ScareShelf3F -> ThrownBook3F -> (57.00, -3.30, 215.50): reached, feet (57.25, -3.30, 215.37)
+WALK route 6: floor 3 -> ScareShelf3F -> ThrownBook3F -> (57.00, -3.30, 216.80): reached, feet (57.04, -3.30, 216.55)
+WALK route 6: floor 3 -> ScareShelf3F -> ThrownBook3F -> (65.00, -3.30, 216.80): reached, feet (64.71, -3.30, 216.79)
+WALK route 6: floor 3 -> ScareShelf3F -> ThrownBook3F -> (73.00, -3.30, 217.20): reached, feet (72.76, -3.30, 217.19)
+WALK route 6: floor 3 -> ScareShelf3F -> ThrownBook3F done, feet y -3.30..-3.25
+WALK route 7: floor 3 -> down both flights -> out of the back door -> (65.00, -3.30, 211.00): reached, feet (65.20, -3.30, 211.16)
+WALK route 7: floor 3 -> down both flights -> out of the back door -> (81.00, -3.30, 211.50): reached, feet (80.73, -3.30, 211.49)
+WALK route 7: floor 3 -> down both flights -> out of the back door -> (81.00, -3.30, 209.60): reached, feet (80.97, -3.30, 209.84)
+WALK route 7: floor 3 -> down both flights -> out of the back door -> (81.00, -6.60, 198.60): reached, feet (81.00, -6.60, 198.88)
+WALK route 7: floor 3 -> down both flights -> out of the back door -> (81.00, -6.60, 197.00): reached, feet (81.00, -6.60, 197.28)
+WALK route 7: floor 3 -> down both flights -> out of the back door -> (77.50, -6.60, 197.00): reached, feet (77.74, -6.60, 197.02)
+WALK route 7: floor 3 -> down both flights -> out of the back door -> (77.50, -6.60, 211.00): reached, feet (77.50, -6.60, 210.75)
+WALK route 7: floor 3 -> down both flights -> out of the back door -> (81.00, -6.60, 211.50): reached, feet (80.76, -6.60, 211.45)
+WALK route 7: floor 3 -> down both flights -> out of the back door -> (81.00, -6.60, 209.60): reached, feet (80.97, -6.60, 209.86)
+WALK route 7: floor 3 -> down both flights -> out of the back door -> (81.00, -9.90, 198.60): reached, feet (81.00, -9.90, 198.90)
+WALK route 7: floor 3 -> down both flights -> out of the back door -> (81.00, -9.90, 197.00): reached, feet (81.00, -9.90, 197.30)
+WALK route 7: floor 3 -> down both flights -> out of the back door -> (77.50, -9.90, 197.00): reached, feet (77.74, -9.90, 197.02)
+WALK route 7: floor 3 -> down both flights -> out of the back door -> (77.50, -9.90, 211.00): reached, feet (77.50, -9.90, 210.75)
+WALK route 7: floor 3 -> down both flights -> out of the back door -> (65.00, -9.90, 211.00): reached, feet (65.24, -9.90, 211.00)
+WALK route 7: floor 3 -> down both flights -> out of the back door -> (65.00, -9.90, 223.00): reached, feet (65.01, -9.90, 222.73)
+WALK route 7: floor 3 -> down both flights -> out of the back door -> (65.00, -9.90, 228.00): reached, feet (65.00, -9.94, 227.73)
+WALK route 7: floor 3 -> down both flights -> out of the back door done, feet y -9.94..-3.25
+SCARE librarian_rise: nearest feet 1.61 m from Ch4/LibrarianSeat (radius 4.0) -> fires
+SCARE books_fall: nearest feet 1.45 m from Ch4/ScareShelf3F (radius 3.0) -> fires
+SCARE shelf_corpse: nearest feet 2.29 m from Ch4/ThrownBook3F (radius 2.5) -> fires
+WALK outside: back, west of the door -> (65.00, -9.90, 225.81): reached, feet (65.00, -9.94, 226.10)
+WALK outside: back, west of the door -> (44.19, -9.90, 225.81): reached, feet (44.47, -9.94, 225.81)
+WALK outside: back, west of the door done, feet y -9.94..-9.85
+WALK outside: west side -> (44.19, -9.90, 194.19): reached, feet (44.19, -9.94, 194.48)
+WALK outside: west side done, feet y -9.94..-9.85
+WALK outside: front -> (85.81, -9.90, 194.19): reached, feet (85.54, -9.94, 194.20)
+WALK outside: front done, feet y -9.94..-9.85
+WALK outside: front from the east -> (44.19, -9.90, 194.19): reached, feet (44.43, -9.94, 194.19)
+WALK outside: front from the east done, feet y -9.94..-9.85
+WALK outside: east side -> (85.81, -9.90, 225.81): reached, feet (85.81, -9.94, 225.52)
+WALK outside: east side done, feet y -9.94..-9.85
+WALK outside: back, east of the door -> (65.00, -9.90, 225.81): reached, feet (65.28, -9.94, 225.81)
+WALK outside: back, east of the door done, feet y -9.94..-9.85
+FRONT strip x 44.19: z 194.19 [] | z 193.0 [] | z 191.0 []
+FRONT strip x 50.00: z 194.19 [] | z 193.0 [] | z 191.0 []
+FRONT strip x 56.00: z 194.19 [] | z 193.0 [] | z 191.0 ["Props/Solids/Body_p1_p4"]
+FRONT strip x 58.00: z 194.19 [] | z 193.0 ["Props/Solids/Body_p1_p4"] | z 191.0 ["Props/Solids/Body_p1_p4"]
+FRONT strip x 60.00: z 194.19 [] | z 193.0 ["Props/Solids/Body_p1_p4"] | z 191.0 []
+FRONT strip x 65.00: z 194.19 [] | z 193.0 [] | z 191.0 []
+FRONT strip x 70.00: z 194.19 [] | z 193.0 [] | z 191.0 []
+FRONT strip x 76.00: z 194.19 [] | z 193.0 [] | z 191.0 []
+FRONT strip x 78.00: z 194.19 ["Props/Solids/Body_p1_p4"] | z 193.0 ["Props/Solids/Body_p1_p4"] | z 191.0 ["Props/Solids/Body_p1_p4"]
+FRONT strip x 80.00: z 194.19 [] | z 193.0 [] | z 191.0 []
+FRONT strip x 85.81: z 194.19 [] | z 193.0 [] | z 191.0 []
+SPAWN S01 (62.0, -9.9, 228.0): capsule [], ground -9.940
+SPAWN S02 (65.0, -9.9, 228.0): capsule [], ground -9.940
+SPAWN S03 (68.0, -9.9, 228.0): capsule [], ground -9.940
+SPAWN S04 (62.0, -9.9, 231.0): capsule [], ground -9.940
+SPAWN S05 (65.0, -9.9, 231.0): capsule [], ground -9.940
+SPAWN S06 (68.0, -9.9, 231.0): capsule [], ground -9.940
+WALK edge probe floor 2: west edge of the stairwell at z 205 -> (80.50, -6.60, 205.00): reached, feet (80.24, -6.98, 205.00)
+WALK edge probe floor 2: west edge of the stairwell at z 205 done, feet y -6.98..-6.55
+WALK edge probe floor 3: west edge of the stairwell at z 205 -> (80.50, -3.30, 205.00): reached, feet (80.23, -3.68, 205.00)
+WALK edge probe floor 3: west edge of the stairwell at z 205 done, feet y -3.68..-3.25
+WALK edge probe floor 3: north edge at x 81 (top of flight 2) -> (81.00, -3.30, 207.00): reached, feet (81.00, -3.85, 207.29)
+WALK edge probe floor 3: north edge at x 81 (top of flight 2) done, feet y -3.85..-3.25
+WALK edge probe floor 2: north edge at x 83.9 (beside flight 1's top) -> (84.50, -6.60, 207.00): STUCK, feet (83.99, -6.60, 209.30) blockers ["Library/RailCollision0_39"]
+WALK edge probe floor 2: north edge at x 83.9 (beside flight 1's top) stopped, feet y -6.60..-6.55
+PATH Start_library -> counter approach ok 16.3 m, 4 points: (65.0, -9.9, 223.0), (62.0, -9.9, 213.1), (60.5, -9.9, 208.9), (60.0, -9.9, 207.5)
+PATH Start_library -> map board ok 26.0 m, 3 points: (65.0, -9.9, 223.0), (62.0, -9.9, 213.1), (46.5, -9.9, 211.0)
+PATH Start_library -> floor 2 ok 62.2 m, 10 points: (65.0, -9.9, 223.0), (68.0, -9.9, 213.1), (77.0, -9.9, 208.9), (78.1, -9.9, 198.5), (81.0, -9.9, 198.0), (81.0, -9.9, 199.1), (81.0, -6.6, 208.9), (81.0, -6.6, 210.0), (78.1, -6.6, 210.2), (65.0, -6.6, 211.0)
+PATH Start_library -> reading desk ok 69.0 m, 11 points: (65.0, -9.9, 223.0), (68.0, -9.9, 213.1), (77.0, -9.9, 208.9), (78.1, -9.9, 198.5), (81.0, -9.9, 198.0), (81.0, -9.9, 199.1), (81.0, -6.6, 208.9), (81.0, -6.6, 210.0), (78.1, -6.6, 210.5), (61.8, -6.6, 213.1), (60.2, -6.6, 216.0)
+PATH Start_library -> floor 3 ok 91.6 m, 17 points: (65.0, -9.9, 223.0), (68.0, -9.9, 213.1), (77.0, -9.9, 208.9), (78.1, -9.9, 198.5), (81.0, -9.9, 198.0), (81.0, -9.9, 199.1), (81.0, -6.6, 208.9), (81.0, -6.6, 210.0), (78.1, -6.6, 209.5), (78.0, -6.6, 208.9), (78.1, -6.6, 198.5), (81.0, -6.6, 198.0), (81.0, -6.6, 199.1), (81.0, -3.3, 208.9), (81.0, -3.3, 210.0), (78.1, -3.3, 210.2), (65.0, -3.3, 211.0)
+PATH Start_library -> ScareShelf3F side ok 99.8 m, 17 points: (65.0, -9.9, 223.0), (68.0, -9.9, 213.1), (77.0, -9.9, 208.9), (78.1, -9.9, 198.5), (81.0, -9.9, 198.0), (81.0, -9.9, 199.1), (81.0, -6.6, 208.9), (81.0, -6.6, 210.0), (78.1, -6.6, 209.5), (78.0, -6.6, 208.9), (78.1, -6.6, 198.5), (81.0, -6.6, 198.0), (81.0, -6.6, 199.1), (81.0, -3.3, 208.9), (81.0, -3.3, 210.0), (78.1, -3.3, 210.4), (57.0, -3.3, 213.0)
+PATH S01 -> door (65, 226) ok 4.2 m, 3 points: (62.0, -9.9, 228.0), (64.0, -9.9, 228.0), (65.0, -9.9, 226.0)
+PATH S01 -> floor 3 ok 98.7 m, 20 points: (62.0, -9.9, 228.0), (64.0, -9.9, 228.0), (64.6, -9.9, 225.9), (65.0, -9.9, 224.1), (68.0, -9.9, 213.1), (77.0, -9.9, 208.9), (78.1, -9.9, 198.5), (81.0, -9.9, 198.0), (81.0, -9.9, 199.1), (81.0, -6.6, 208.9), (81.0, -6.6, 210.0), (78.1, -6.6, 209.5), (78.0, -6.6, 208.9), (78.1, -6.6, 198.5), (81.0, -6.6, 198.0), (81.0, -6.6, 199.1), (81.0, -3.3, 208.9), (81.0, -3.3, 210.0), (78.1, -3.3, 210.2), (65.0, -3.3, 211.0)
+PATH S02 -> door (65, 226) ok 2.0 m, 2 points: (65.0, -9.9, 228.0), (65.0, -9.9, 226.0)
+PATH S02 -> floor 3 ok 96.5 m, 19 points: (65.0, -9.9, 228.0), (65.3, -9.9, 225.9), (65.6, -9.9, 224.1), (68.0, -9.9, 213.1), (77.0, -9.9, 208.9), (78.1, -9.9, 198.5), (81.0, -9.9, 198.0), (81.0, -9.9, 199.1), (81.0, -6.6, 208.9), (81.0, -6.6, 210.0), (78.1, -6.6, 209.5), (78.0, -6.6, 208.9), (78.1, -6.6, 198.5), (81.0, -6.6, 198.0), (81.0, -6.6, 199.1), (81.0, -3.3, 208.9), (81.0, -3.3, 210.0), (78.1, -3.3, 210.2), (65.0, -3.3, 211.0)
+PATH S03 -> door (65, 226) ok 4.2 m, 3 points: (68.0, -9.9, 228.0), (66.0, -9.9, 228.0), (65.0, -9.9, 226.0)
+PATH S03 -> floor 3 ok 98.5 m, 20 points: (68.0, -9.9, 228.0), (66.0, -9.9, 228.0), (65.6, -9.9, 225.9), (65.6, -9.9, 224.1), (68.0, -9.9, 213.1), (77.0, -9.9, 208.9), (78.1, -9.9, 198.5), (81.0, -9.9, 198.0), (81.0, -9.9, 199.1), (81.0, -6.6, 208.9), (81.0, -6.6, 210.0), (78.1, -6.6, 209.5), (78.0, -6.6, 208.9), (78.1, -6.6, 198.5), (81.0, -6.6, 198.0), (81.0, -6.6, 199.1), (81.0, -3.3, 208.9), (81.0, -3.3, 210.0), (78.1, -3.3, 210.2), (65.0, -3.3, 211.0)
+PATH S04 -> door (65, 226) ok 6.4 m, 3 points: (62.0, -9.9, 231.0), (64.0, -9.9, 230.0), (65.0, -9.9, 226.0)
+PATH S04 -> floor 3 ok 100.9 m, 20 points: (62.0, -9.9, 231.0), (64.0, -9.9, 230.0), (65.0, -9.9, 225.9), (65.4, -9.9, 224.1), (68.0, -9.9, 213.1), (77.0, -9.9, 208.9), (78.1, -9.9, 198.5), (81.0, -9.9, 198.0), (81.0, -9.9, 199.1), (81.0, -6.6, 208.9), (81.0, -6.6, 210.0), (78.1, -6.6, 209.5), (78.0, -6.6, 208.9), (78.1, -6.6, 198.5), (81.0, -6.6, 198.0), (81.0, -6.6, 199.1), (81.0, -3.3, 208.9), (81.0, -3.3, 210.0), (78.1, -3.3, 210.2), (65.0, -3.3, 211.0)
+PATH S05 -> door (65, 226) ok 5.0 m, 2 points: (65.0, -9.9, 231.0), (65.0, -9.9, 226.0)
+PATH S05 -> floor 3 ok 99.5 m, 19 points: (65.0, -9.9, 231.0), (65.4, -9.9, 225.9), (65.6, -9.9, 224.1), (68.0, -9.9, 213.1), (77.0, -9.9, 208.9), (78.1, -9.9, 198.5), (81.0, -9.9, 198.0), (81.0, -9.9, 199.1), (81.0, -6.6, 208.9), (81.0, -6.6, 210.0), (78.1, -6.6, 209.5), (78.0, -6.6, 208.9), (78.1, -6.6, 198.5), (81.0, -6.6, 198.0), (81.0, -6.6, 199.1), (81.0, -3.3, 208.9), (81.0, -3.3, 210.0), (78.1, -3.3, 210.2), (65.0, -3.3, 211.0)
+PATH S06 -> door (65, 226) ok 6.4 m, 3 points: (68.0, -9.9, 231.0), (66.0, -9.9, 230.0), (65.0, -9.9, 226.0)
+PATH S06 -> floor 3 ok 100.7 m, 20 points: (68.0, -9.9, 231.0), (66.0, -9.9, 230.0), (65.6, -9.9, 225.9), (65.6, -9.9, 224.1), (68.0, -9.9, 213.1), (77.0, -9.9, 208.9), (78.1, -9.9, 198.5), (81.0, -9.9, 198.0), (81.0, -9.9, 199.1), (81.0, -6.6, 208.9), (81.0, -6.6, 210.0), (78.1, -6.6, 209.5), (78.0, -6.6, 208.9), (78.1, -6.6, 198.5), (81.0, -6.6, 198.0), (81.0, -6.6, 199.1), (81.0, -3.3, 208.9), (81.0, -3.3, 210.0), (78.1, -3.3, 210.2), (65.0, -3.3, 211.0)
+PATH Start_split -> Start_library ok 272.5 m, 55 points: (167.0, -9.9, 40.5), (166.0, -9.9, 40.5), (164.0, -9.9, 40.6), (162.0, -9.9, 40.6), (160.0, -9.9, 40.7), (158.0, -9.9, 40.7), (156.0, -9.9, 40.8), (154.0, -9.9, 40.8), (152.0, -9.9, 40.9), (150.0, -9.9, 40.9), (148.0, -9.9, 41.0), (146.0, -9.9, 41.0), (144.0, -9.9, 41.1), (142.0, -9.9, 41.1), (140.0, -9.9, 41.2), (138.0, -9.9, 41.2), (136.0, -9.9, 41.3), (134.0, -9.9, 41.3), (132.0, -9.9, 41.4), (130.0, -9.9, 41.4), (128.0, -9.9, 41.5), (126.0, -9.9, 41.5), (124.0, -9.9, 41.6), (122.0, -9.9, 41.6), (120.0, -9.9, 41.7), (118.0, -9.9, 41.7), (116.0, -9.9, 41.8), (114.0, -9.9, 41.8), (112.0, -9.9, 41.9), (110.0, -9.9, 41.9), (108.0, -9.9, 42.0), (106.0, -9.9, 42.0), (104.0, -9.9, 92.0), (102.0, -9.9, 98.0), (100.0, -9.9, 100.0), (98.0, -9.9, 132.0), (96.0, -9.9, 134.0), (94.0, -9.9, 152.0), (92.0, -9.9, 154.0), (90.0, -9.9, 156.0), (88.0, -9.9, 166.0), (86.0, -9.9, 226.0), (84.0, -9.9, 226.0), (82.0, -9.9, 226.0), (80.0, -9.9, 226.0), (78.0, -9.9, 226.0), (76.0, -9.9, 226.0), (74.0, -9.9, 226.0), (72.0, -9.9, 226.0), (70.0, -9.9, 226.0), (68.0, -9.9, 226.0), (66.0, -9.9, 226.0), (65.6, -9.9, 225.9), (65.2, -9.9, 224.1), (65.0, -9.9, 223.0)
+PATH Start_library -> Start_return ok 326.9 m, 52 points: (65.0, -9.9, 223.0), (64.8, -9.9, 224.1), (64.4, -9.9, 225.9), (64.0, -9.9, 226.0), (62.0, -9.9, 226.2), (60.0, -9.9, 226.4), (58.0, -9.9, 226.6), (56.0, -9.9, 226.8), (54.0, -9.9, 227.0), (52.0, -9.9, 227.2), (50.0, -9.9, 227.4), (48.0, -9.9, 227.6), (46.0, -9.9, 227.8), (44.0, -9.9, 228.0), (44.0, -9.9, 194.0), (46.0, -9.9, 192.0), (48.0, -9.9, 30.0), (50.0, -9.9, 18.0), (50.0, -9.9, -10.0), (48.0, -9.9, -10.7), (46.0, -9.9, -11.3), (44.0, -9.9, -12.0), (42.0, -9.9, -14.0), (40.0, -9.9, -14.0), (38.0, -9.9, -14.0), (36.0, -9.9, -14.0), (34.0, -9.9, -14.0), (32.0, -9.9, -14.0), (30.0, -9.9, -14.0), (28.0, -9.9, -14.0), (26.0, -9.9, -14.0), (24.0, -9.9, -14.0), (22.0, -9.9, -14.0), (20.0, -9.9, -14.0), (18.0, -9.9, -14.0), (16.0, -9.9, -14.0), (14.0, -9.9, -14.0), (12.0, -9.9, -14.0), (10.0, -9.9, -14.0), (8.0, -9.9, -14.0), (6.0, -9.9, -14.0), (4.0, -9.9, -14.0), (4.0, -9.9, -12.0), (4.0, -9.8, -10.5), (4.0, -8.9, -8.0), (4.0, -8.9, -7.2), (4.0, -9.8, -4.8), (4.0, -9.9, -4.0), (3.2, -9.9, -2.0), (2.8, -9.9, -1.0), (2.8, -9.9, 1.2), (4.0, -9.9, 2.0)
+SIGHT back door (inside) eye -> counter top: clear
+SIGHT Start_library eye -> counter top: clear
+SIGHT floor 2 stair top eye -> reading desk book: clear
+SIGHT floor 2 stair top eye -> reading desk (from the access): clear
+RESULT: walk_wave8 done
