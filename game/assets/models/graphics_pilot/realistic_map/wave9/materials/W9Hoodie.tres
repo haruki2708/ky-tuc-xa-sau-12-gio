@@ -4,7 +4,7 @@
 
 [resource]
 resource_name = "W9Hoodie"
-albedo_color = Color(0.46, 0.46, 0.47, 1)
+albedo_color = Color(0.27, 0.27, 0.28, 1)
 albedo_texture = ExtResource("1")
 roughness = 0.97
 uv1_scale = Vector3(4, 4, 4)

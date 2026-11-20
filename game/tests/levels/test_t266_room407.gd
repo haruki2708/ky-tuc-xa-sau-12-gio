@@ -119,8 +119,9 @@ func test_slats_lift_and_bedding_lands_apart_in_either_order() -> void:
 		for name: String in landed:
 			var entry: Dictionary = landed[name]
 			var bottom: float = entry.box.position.y
-			if name == "BlanketViet":
-				assert_true(absf(bottom - landed["MattressViet"].box.end.y) < 0.01, "Viet's blanket lies on his own mattress (%.3f)" % bottom)
+			if not name.begins_with("Mattress") and float(_const(anchors.get_node("Slat%d" % entry.bed), "LANDING")[name][0].y) > 0.01:
+				var own := "Mattress" + name.trim_prefix("Blanket").trim_prefix("Pillow")
+				assert_true(absf(bottom - landed[own].box.end.y) < 0.012, "%s lies on its own bed's mattress (%.3f)" % [name, bottom])
 			else:
 				assert_true(bottom > -0.004 and bottom < 0.012, "%s lies on the floor (%.3f)" % [name, bottom])
 			for other: String in landed:
@@ -145,31 +146,70 @@ func test_slats_lift_and_bedding_lands_apart_in_either_order() -> void:
 
 
 ## The fall paths (the same keys slat_visual.gd plays): above the floor all the way; once the thing has left its rest pose
-## it does not cross the bunk's room-side bars or corner posts. Bed 2's mattress (1.90 m) is longer than the 1.80 m between
-## the posts: it leaves tipped 17.5 degrees and its ends brush the posts' inner 7 mm (allowed below, README).
-func test_fall_paths_clear_the_bunk_bars() -> void:
+## it does not cross the bunk's room-side bars or corner posts (oriented boxes, SAT); and no hand-use eye of that bed (the
+## player is there) is ever inside it. Bed 2's mattress (1.90 m) is longer than the 1.80 m between the posts: it leaves
+## tipped 18.8 degrees and its ends brush the posts' inner 8 mm (allowed below, README).
+func test_fall_paths_clear_the_bunk_bars_and_the_player() -> void:
 	for bed in [1, 2, 4]:
 		var slat := anchors.get_node("Slat%d" % bed)
 		var bunk := "B" if bed == 4 else "A"
+		var target: Vector3 = MARKERS["Slat%d" % bed] + Vector3(0, 0, 0.45)
+		var eyes: Array[Vector3] = []
+		for direction: Vector3 in [Vector3.RIGHT, Vector3.LEFT, Vector3.FORWARD, Vector3.BACK]:
+			for distance: float in [0.8, 1.2]:
+				for eye_y: float in [1.6, 1.0]:
+					var eye := target + direction * distance
+					eye.y = eye_y
+					# Only where a player can stand: in the room, outside the bunk's frame.
+					var in_bunk := eye.z > (-4.02 if bunk == "A" else -3.72) and eye.z < (-1.98 if bunk == "A" else -1.68) 							and eye.x > (0.18 if bunk == "A" else 6.88) and eye.x < (1.12 if bunk == "A" else 7.82)
+					if not in_bunk and eye.x > 0.1 and eye.x < 7.9:
+						eyes.append(eye)
+		assert_true(eyes.size() >= 4, "bed %d: hand-use eyes in the room (%d)" % [bed, eyes.size()])
 		for thing: Dictionary in slat._things:
 			var keys: Array = slat.fall_keys(thing.name, _to_room(thing.node as Node3D))
 			var local: AABB = slat.box_of(thing.name)
 			var leave := float(keys[1][0])
-			for step in 101:
-				var t := step / 100.0
-				var box: AABB = slat.pose_at(keys, t) * local
-				assert_true(box.position.y > -0.005, "%s above the floor at t %.2f (%.3f)" % [thing.name, t, box.position.y])
+			for step in 201:
+				var t := step / 200.0
+				var pose: Transform3D = slat.pose_at(keys, t)
+				var box: AABB = pose * local
+				assert_true(box.position.y > -0.005, "%s above the floor at t %.3f (%.3f)" % [thing.name, t, box.position.y])
+				for eye in eyes:
+					assert_false(local.grow(0.02).has_point(pose.affine_inverse() * eye), "bed %d's eye %s not inside %s at t %.3f" % [bed, eye, thing.name, t])
 				if t < leave:
 					continue
 				for bar: Array in BARS[bunk]:
-					assert_false(box.intersects(_bar_box(bar)), "%s clears bar %s at t %.2f" % [thing.name, bar, t])
+					assert_false(_obb_hits(pose, local, _bar_box(bar)), "%s clears bar %s at t %.3f" % [thing.name, bar, t])
 				for post: Array in POSTS[bunk]:
 					var post_box := _bar_box(post)
 					if thing.name == "MattressViet":
 						post_box = post_box.grow(-0.01)
-					assert_false(box.intersects(post_box), "%s clears post %s at t %.2f" % [thing.name, post, t])
+					assert_false(_obb_hits(pose, local, post_box), "%s clears post %s at t %.3f" % [thing.name, post, t])
 		var turn := float(_const(slat, "TURN_DELAY")) + float(_const(slat, "TURN_SECONDS"))
 		assert_true(turn <= 0.6 and float(_const(slat, "FALL_SECONDS")) <= 0.6, "bed %d done within 0.6 s" % bed)
+
+
+## An oriented box (local box at pose) and an axis-aligned box overlap (separating axes; touching is not overlap).
+func _obb_hits(pose: Transform3D, local: AABB, box: AABB) -> bool:
+	var centre := pose * local.get_center()
+	var axes: Array[Vector3] = [pose.basis.x.normalized(), pose.basis.y.normalized(), pose.basis.z.normalized()]
+	var half := local.size / 2.0
+	var box_centre := box.get_center()
+	var box_half := box.size / 2.0
+	var world: Array[Vector3] = [Vector3.RIGHT, Vector3.UP, Vector3.BACK]
+	var tests: Array[Vector3] = world + axes
+	for a in axes:
+		for w in world:
+			var cross := a.cross(w)
+			if cross.length() > 0.0001:
+				tests.append(cross.normalized())
+	var delta := box_centre - centre
+	for axis in tests:
+		var r_obb := half.x * absf(axes[0].dot(axis)) + half.y * absf(axes[1].dot(axis)) + half.z * absf(axes[2].dot(axis))
+		var r_box := box_half.x * absf(axis.x) + box_half.y * absf(axis.y) + box_half.z * absf(axis.z)
+		if absf(delta.dot(axis)) >= r_obb + r_box - 0.0005:
+			return false
+	return true
 
 
 func test_panel_text_hidden_until_lifted() -> void:

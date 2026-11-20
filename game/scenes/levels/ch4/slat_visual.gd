@@ -16,19 +16,19 @@ const FALL_SECONDS := 0.55
 const BEDDING := {1: ["MattressPhuc", "BlanketPhuc", "PillowPhuc"], 2: ["MattressViet", "BlanketViet", "PillowViet"],
 	4: ["MattressDat", "BlanketDat", "PillowDat"]}
 ## Where each lands, Room407 space: origin (x, y, z) and yaw in degrees (the props' origins are their bottom centres).
-## Beds 1 and 2 share bunk A: the floor in front of it is 1.36 m wide between the bunk (x 1.10) and the floor mat
-## (x 2.49), with the power strip (x 1.13..1.55, z -2.40..-2.29) and the desk (z -4.23) at its ends, room for one
-## mattress only: Viet's (lower) lies there, Phuc's (upper, thrown from 1.5 m) lands across the floor in front of the
-## mat's foot (x 2.59..4.51, z -1.55..-0.69), clear of the door's swing (0.17 m) and the mat (0.05 m). Viet's blanket
-## lands on his own mattress (0.049 m thick); every other thing on the floor. Clearances: wave9/README.md.
+## Beds 1 and 2 share bunk A. The floor in front of it is 1.36 m wide between the bunk (x 1.10) and the floor mat (x 2.49),
+## with the power strip (x 1.13..1.55, z -2.40..-2.29) and the desk (z -4.23) at its ends: room for one mattress only.
+## Phuc's (upper) things slide off over the guard rail and drop beside the bunk onto that spot, his pillow and folded
+## blanket on his mattress; Viet's (lower) mattress is shoved out low across the floor in front of the mat's foot
+## (x 2.59..4.51, z -1.55..-0.69, 0.17 m clear of the door's swing), his blanket on it, his pillow beside it. Dat's three
+## land in front of bunk B the same way as Phuc's. Clearances: wave9/README.md.
 const LANDING := {
-	"MattressPhuc": [Vector3(3.55, 0.002, -1.12), 92.0], "BlanketPhuc": [Vector3(1.40, 0.002, -1.78), 15.0],
-	"PillowPhuc": [Vector3(2.10, 0.002, -1.85), -30.0],
-	"MattressViet": [Vector3(2.025, 0.002, -3.2), 2.0], "BlanketViet": [Vector3(2.03, 0.051, -3.45), 2.0],
-	"PillowViet": [Vector3(1.36, 0.002, -3.0), 85.0],
-	"MattressDat": [Vector3(6.43, 0.002, -2.62), -2.0], "BlanketDat": [Vector3(5.6, 0.002, -2.0), -20.0],
-	"PillowDat": [Vector3(5.65, 0.002, -2.85), 70.0]}
-## Bunk frames (Room407 space): room side and its corner posts' top, the upper guard rail's top, the lower deck rail's top.
+	"MattressPhuc": [Vector3(2.025, 0.002, -3.2), 2.0], "BlanketPhuc": [Vector3(2.05, 0.051, -3.7), 15.0],
+	"PillowPhuc": [Vector3(2.0, 0.051, -2.65), 70.0],
+	"MattressViet": [Vector3(3.55, 0.002, -1.12), 92.0], "BlanketViet": [Vector3(3.45, 0.051, -1.12), 92.0],
+	"PillowViet": [Vector3(4.78, 0.002, -1.1), 80.0],
+	"MattressDat": [Vector3(6.43, 0.002, -2.62), -2.0], "BlanketDat": [Vector3(6.45, 0.051, -3.15), -12.0],
+	"PillowDat": [Vector3(6.4, 0.051, -2.05), 75.0]}
 const BUNK_ROOM_SIDE := {1: 1.10, 2: 1.10, 4: 6.90}
 const POSTS_TOP := 1.5
 const LOWER_RAIL_TOP := 0.38
@@ -36,6 +36,12 @@ const LOWER_RAIL_TOP := 0.38
 ## (foot end up, 1 cm over the deck rail and 1 cm under the upper deck's rail), its ends brushing the posts' inner 8 mm.
 const LOWER_PITCH := -18.8
 const LOWER_TIP_SHIFT := 0.007
+## Bed 2's things then go low across the floor (bottom at most this high), under a crouching player's eye (1.0 m).
+const LOWER_ARC_BOTTOM := 0.2
+## Upper bunks: the thing slides over the guard rail (bottom 3 cm over the posts' tops) and tips down over the bunk's edge
+## to this angle, hanging within 0.2 m of the bunk side (the hand-use eyes stand 0.8 m and more from the slat), then drops
+## upright to the floor and falls over onto its spot.
+const TIP_DEGREES := 80.0
 
 var _turn: Tween
 var _fall: Tween
@@ -43,6 +49,8 @@ var _net: Node3D
 var _net_visible: bool = true
 var _room: Node3D
 var _things: Array[Dictionary] = []
+## The bed's lowest thing at rest (its mattress's underside), Room407 space: the blanket and pillow ride on the mattress.
+var _bed_bottom: float = 0.0
 
 
 func _ready() -> void:
@@ -67,6 +75,10 @@ func _bind_net() -> void:
 		var prop := _find_prop(prop_name)
 		if prop != null:
 			_things.append({"node": prop, "name": prop_name, "rest": prop.transform, "box": _local_box(prop)})
+	_bed_bottom = INF
+	for thing: Dictionary in _things:
+		var pose := _room.global_transform.affine_inverse() * (thing.node as Node3D).global_transform
+		_bed_bottom = minf(_bed_bottom, (pose * (thing.box as AABB)).position.y)
 
 
 func _find_prop(prop_name: String) -> Node3D:
@@ -124,34 +136,73 @@ func _pose_bedding(t: float, paths: Array) -> void:
 			node.global_transform = _room.global_transform * pose_at(path.keys, t)
 
 
-## Room407-space keys [time, Transform3D] from a thing's rest pose to its landing (the tests sample the same path).
+## Room407-space keys [time, Transform3D, ease of the leg ending there: "s" smooth, "l" linear, "i" falling] from a thing's
+## rest pose to its landing (the tests sample the same path).
 func fall_keys(prop_name: String, rest: Transform3D) -> Array:
 	var landing: Array = LANDING[prop_name]
 	var end := Transform3D(Basis(Vector3.UP, deg_to_rad(landing[1])), landing[0])
 	var side := 1.0 if bed != 4 else -1.0
 	var room_side: float = BUNK_ROOM_SIDE[bed]
 	var box := box_of(prop_name)
-	var bottom := (rest * box).position.y
 	if bed == 2:
-		# Lower bunk: tip (the mattress only), slide out under the upper deck, then drop.
+		# Lower bunk: tip (the mattress only), slide out under the upper deck, then low across the floor to the spot.
 		var tipped := rest
 		if prop_name.begins_with("Mattress"):
 			tipped.basis = rest.basis * Basis(Vector3.RIGHT, deg_to_rad(LOWER_PITCH))
 			tipped.origin.z += LOWER_TIP_SHIFT
 		tipped.origin.y += LOWER_RAIL_TOP + 0.01 - (tipped * box).position.y
 		var out := tipped
-		var spread := tipped * box
-		out.origin.x += room_side + 0.08 - spread.position.x
-		return [[0.0, rest], [0.09, tipped], [0.33, out], [1.0, end]]
-	# Upper bunks: off the wall-side rail a little, up over the corner posts, out above the landing, then down.
+		out.origin.x += room_side + 0.08 - (tipped * box).position.x
+		var mid := Transform3D(Basis(out.basis.get_rotation_quaternion().slerp(end.basis.get_rotation_quaternion(), 0.5)),
+				out.origin.lerp(end.origin, 0.5))
+		mid.origin.y += LOWER_ARC_BOTTOM - (mid * box).position.y
+		return [[0.0, rest, "s"], [0.09, tipped, "s"], [0.33, out, "s"], [0.62, mid, "s"], [1.0, end, "i"]]
+	# Upper bunks: off the wall-side rail a little, up over the posts, out flat until the middle is over the edge, tip down
+	# over it, drop upright, fall over onto the spot.
+	var ride := maxf(0.0, (rest * box).position.y - _bed_bottom) if is_finite(_bed_bottom) else 0.0
+	var pivot := Vector3(room_side + side * 0.01, POSTS_TOP + 0.03 + ride, 0.0)
 	var nudged := rest.translated(Vector3(-side * 0.035, 0.02, 0.0))
-	var lifted := nudged.translated(Vector3(0.0, POSTS_TOP + 0.03 - bottom, 0.0))
-	var above := end
-	above.origin.y = lifted.origin.y
-	return [[0.0, rest], [0.09, nudged], [0.29, lifted], [0.47, above], [1.0, end]]
+	var lifted := nudged
+	lifted.origin.y += pivot.y - (nudged * box).position.y
+	var centred := lifted
+	centred.origin.x += pivot.x - (lifted * box).get_center().x
+	var keys: Array = [[0.0, rest, "s"], [0.09, nudged, "s"], [0.25, lifted, "s"], [0.33, centred, "s"]]
+	var width := box.size.x
+	for step in range(1, 9):
+		var f := step / 8.0
+		var inside := width / 2.0 * (1.0 - f)
+		var tip := deg_to_rad(TIP_DEGREES) * minf(1.0, f / 0.4)
+		keys.append([0.33 + 0.17 * f, _over_edge(lifted, box, pivot, side, inside, tip), "l"])
+	var hanging: Transform3D = keys[-1][1]
+	var dropped := hanging
+	dropped.origin.y += 0.002 - (hanging * box).position.y
+	keys.append([0.72, dropped, "i"])
+	# Falls over away from the bunk, its lowest point on the floor, turning to the spot's yaw.
+	var start_yaw := lifted.basis.get_rotation_quaternion()
+	for step in range(1, 7):
+		var f := step / 6.0
+		var tip := deg_to_rad(TIP_DEGREES) * (1.0 - f)
+		# The middle moves out ahead of the fall, so the upper edge never swings back over the bunk's side.
+		var out := 1.0 - (1.0 - f) * (1.0 - f)
+		var pose := Transform3D(Basis(Vector3.BACK, -side * tip) * Basis(start_yaw.slerp(end.basis.get_rotation_quaternion(), f)),
+				dropped.origin.lerp(end.origin, out))
+		pose.origin.y += end.origin.y * f + 0.002 * (1.0 - f) - (pose * box).position.y
+		keys.append([0.72 + 0.28 * f, pose, "i" if step == 1 else "l"])
+	keys[-1][1] = end
+	return keys
 
 
-## The pose at t (0..1) on keys: each leg eased in and out (picked up, carried), the last falls (eased in).
+## A thing tipped `tip` radians down over the bunk's edge (`pivot`, outward `side`), `inside` metres of it still in.
+static func _over_edge(lifted: Transform3D, box: AABB, pivot: Vector3, side: float, inside: float, tip: float) -> Transform3D:
+	var basis := Basis(Vector3.BACK, -side * tip) * lifted.basis
+	var centre := box.get_center()
+	var contact := Vector3(centre.x - side * box.size.x / 2.0 + side * inside, box.position.y, centre.z)
+	var origin := pivot - basis * contact
+	origin.z = lifted.origin.z
+	return Transform3D(basis, origin)
+
+
+## The pose at t (0..1) on keys, each leg eased as its end key says.
 static func pose_at(keys: Array, t: float) -> Transform3D:
 	t = clampf(t, 0.0, 1.0)
 	for index in range(keys.size() - 1):
@@ -160,7 +211,11 @@ static func pose_at(keys: Array, t: float) -> Transform3D:
 		if t > float(b[0]) and index < keys.size() - 2:
 			continue
 		var u := clampf((t - float(a[0])) / maxf(float(b[0]) - float(a[0]), 0.0001), 0.0, 1.0)
-		u = u * u if index == keys.size() - 2 else u * u * (3.0 - 2.0 * u)
+		match String(b[2]):
+			"s":
+				u = u * u * (3.0 - 2.0 * u)
+			"i":
+				u = u * u
 		var from: Transform3D = a[1]
 		var to: Transform3D = b[1]
 		var basis := Basis(from.basis.get_rotation_quaternion().slerp(to.basis.get_rotation_quaternion(), u))

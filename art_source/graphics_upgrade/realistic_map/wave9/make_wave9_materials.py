@@ -46,10 +46,11 @@ def looks():
 		"W9SlatUnder4": {"albedo": OWN9 + "slat_4_loang.png", "rough": 0.85},
 		# Round 2: the hand's torn grey hoodie (the corpses' hoodies; the grey curtain cloth scan, darker and grimed) and the
 		# vent grille's sooted paint (round 1's WRVent read near white under the torch).
-		"W9Hoodie": {"albedo": ROOMS + "curtain_grey.jpg", "color": (0.46, 0.46, 0.47), "rough": 0.97, "scale": 4.0},
+		"W9Hoodie": {"albedo": ROOMS + "curtain_grey.jpg", "color": (0.27, 0.27, 0.28), "rough": 0.97, "scale": 4.0},
 		"W9VentPaint": {"color": (0.44, 0.43, 0.39), "rough": 0.62, "metallic": 0.15, "normal": OWN1 + "paint_grey_normal.png", "normal_scale": 0.35},
 		"W9RawWood": {"albedo": OWN9 + "slat_plain.png", "rough": 0.88, "normal": OWN1 + "paint_grey_normal.png", "normal_scale": 0.2},
-		"W9Skin": {"albedo": OWN9 + "zombie_skin.png", "rough": 0.62},
+		# Round 2: darker (the round-1 hand read as a pale mannequin under the torch at the door).
+		"W9Skin": {"albedo": OWN9 + "zombie_skin.png", "color": (0.52, 0.53, 0.49), "rough": 0.78},
 		"W9Soot": {"color": (0.05, 0.05, 0.045), "rough": 0.95},
 		"W9HatchPaint": {"color": (0.6, 0.59, 0.55), "rough": 0.45, "metallic": 0.1, "normal": OWN1 + "paint_grey_normal.png", "normal_scale": 0.3},
 		"W9Void": {"color": (0.015, 0.015, 0.015), "rough": 1.0},
