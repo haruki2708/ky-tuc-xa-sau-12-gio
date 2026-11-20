@@ -19,6 +19,7 @@ Run: python -B art_source/graphics_upgrade/realistic_map/wave9/make_wave9_textur
 import math
 from pathlib import Path
 import random
+import sys
 
 import numpy as np
 from PIL import Image, ImageChops, ImageDraw, ImageFilter, ImageFont
@@ -40,6 +41,7 @@ SCRAPS = {
 STYLES = ("loang", "bi", "khac", "phieu")
 RECOMMENDED = "loang"
 W, H = 2048, 1024      # 1.45 m x 0.72 m: 1412 px per metre
+PILOT = "--pilot" in sys.argv   # round 1's other hands for bed 2 (bi, khac, phieu); round 2 ships loang only (D-187)
 
 
 def rng(seed):
@@ -277,7 +279,7 @@ def make_slats():
 	for bed in (1, 2, 4):
 		wood = raw_wood(100 + bed)
 		for style in STYLES:
-			if bed != 2 and style != RECOMMENDED:
+			if style != RECOMMENDED and (bed != 2 or not PILOT):
 				continue
 			out = INKS[style](wood, bed, 1000 * bed + STYLES.index(style))
 			save(Image.fromarray((np.clip(out, 0, 1) * 255).astype(np.uint8)), "slat_%d_%s.png" % (bed, style))
@@ -372,24 +374,110 @@ def silhouette(draw, cx, base, height, r, cap=False):
 
 
 def make_nurse_shadow():
-	img = Image.new("L", (1024, 1024), 0)
+	"""Round 2 (D-187 point 7): two ordinary people standing still behind the curtain, as a soft shadow layer on its pleats
+	(no light added). The layer spans x 1.1..-1.1 (u) and y 2.4..0.38 (v, the curtain's hem) in HospitalRoom space; the
+	figures stand at Nurse2 (x +0.72, screen left) and Nurse1 (x -0.72, screen right), about 1.6 m tall. Left: a nurse in
+	profile facing the other, her hair in a bun, reading a chart on a clipboard held at her chest. Right: a nurse turned
+	three-quarters toward her, one arm hanging, the other hand in a tunic pocket. Drawn at 2048 and blurred to ~1 cm, the
+	edges of people 0.4 m behind a cloth."""
+	size = 2048
+	img = Image.new("L", (size, size), 0)
 	d = ImageDraw.Draw(img)
-	r = rng(5)
-	silhouette(d, 225, 1010, 880, r, cap=True)
-	silhouette(d, 800, 1010, 840, r)
-	soft = to_np(img.filter(ImageFilter.GaussianBlur(26)))
-	alpha = soft * 0.55
-	rgb = np.zeros((1024, 1024, 3), np.float32) + np.array([0.08, 0.1, 0.11])
+
+	def px(xc, sx, y):
+		return ((1.1 - xc + sx) / 2.2 * size, (2.4 - y) / 2.02 * size)
+
+	def poly(xc, pts):
+		d.polygon([px(xc, sx, y) for sx, y in pts], fill=255)
+
+	def ell(xc, sx, y, rx, ry):
+		a, b = px(xc, sx - rx, y + ry), px(xc, sx + rx, y - ry)
+		d.ellipse((a[0], a[1], b[0], b[1]), fill=255)
+
+	def limb(xc, pts, w0, w1):
+		"""A tapered limb along screen points."""
+		n = len(pts)
+		left, right = [], []
+		for i, (sx, y) in enumerate(pts):
+			a = pts[max(i - 1, 0)]
+			b = pts[min(i + 1, n - 1)]
+			dx, dy = b[0] - a[0], b[1] - a[1]
+			ln = math.hypot(dx, dy) or 1.0
+			nx, ny = -dy / ln, dx / ln
+			w = (w0 + (w1 - w0) * i / max(n - 1, 1)) / 2
+			left.append((sx + nx * w, y + ny * w))
+			right.append((sx - nx * w, y - ny * w))
+		poly(xc, left + right[::-1])
+		ell(xc, pts[0][0], pts[0][1], w0 / 2, w0 / 2)
+		ell(xc, pts[-1][0], pts[-1][1], w1 / 2, w1 / 2)
+
+	# Left: in profile, facing screen right; head a little bowed over the chart.
+	a = 0.72
+	ell(a, 0.0, 1.47, 0.083, 0.105)
+	poly(a, [(0.06, 1.50), (0.1, 1.455), (0.075, 1.43)])				 # nose and brow
+	ell(a, -0.095, 1.5, 0.045, 0.045)									 # bun
+	poly(a, [(-0.03, 1.39), (0.045, 1.39), (0.04, 1.31), (-0.035, 1.31)])  # neck
+	poly(a, [(-0.1, 1.34), (0.03, 1.35), (0.1, 1.27), (0.105, 1.15), (0.08, 1.0), (0.1, 0.88), (0.115, 0.78), (-0.125, 0.78),
+		(-0.13, 0.9), (-0.085, 1.04), (-0.105, 1.18), (-0.12, 1.3)])		 # tunic in profile
+	limb(a, [(-0.01, 1.3), (0.01, 1.07)], 0.08, 0.065)					# upper arm
+	limb(a, [(0.01, 1.07), (0.13, 1.13), (0.2, 1.19)], 0.06, 0.05)		# forearm to the chart
+	poly(a, [(0.16, 1.075), (0.205, 1.055), (0.335, 1.315), (0.29, 1.335)])  # clipboard, tilted toward her
+	poly(a, [(0.28, 1.315), (0.31, 1.305), (0.322, 1.335), (0.292, 1.345)])  # its clip
+	limb(a, [(0.04, 0.84), (0.06, 0.38)], 0.1, 0.085)					 # front leg
+	limb(a, [(-0.07, 0.84), (-0.05, 0.38)], 0.1, 0.085)				   # back leg
+	# Right: three-quarters toward the left figure, short hair, one arm hanging, the other hand in the tunic pocket.
+	b = -0.72
+	ell(b, -0.012, 1.55, 0.08, 0.106)
+	poly(b, [(-0.078, 1.6), (0.07, 1.62), (0.086, 1.54), (-0.086, 1.53)])  # hair over the crown
+	poly(b, [(-0.034, 1.47), (0.034, 1.47), (0.04, 1.39), (-0.04, 1.39)])  # neck
+	poly(b, [(-0.19, 1.405), (0.19, 1.41), (0.205, 1.34), (0.17, 1.2), (0.152, 1.08), (0.168, 0.94), (0.178, 0.8), (-0.172, 0.8),
+		(-0.165, 0.94), (-0.15, 1.08), (-0.168, 1.2), (-0.2, 1.34)])         # tunic: shoulders, waist, hips
+	ell(b, -0.178, 1.365, 0.045, 0.045)
+	ell(b, 0.178, 1.365, 0.045, 0.045)
+	limb(b, [(-0.205, 1.35), (-0.245, 1.1), (-0.24, 0.87)], 0.068, 0.052)  # arm hanging, apart from the waist
+	ell(b, -0.238, 0.84, 0.03, 0.042)                                     # hand
+	limb(b, [(0.205, 1.35), (0.275, 1.12), (0.185, 0.98)], 0.068, 0.054)  # elbow out, hand in the pocket
+	limb(b, [(-0.08, 0.84), (-0.085, 0.38)], 0.115, 0.09)                 # trousers
+	limb(b, [(0.08, 0.84), (0.09, 0.38)], 0.115, 0.09)
+	img = img.resize((1024, 1024), Image.LANCZOS)
+	soft = to_np(img.filter(ImageFilter.GaussianBlur(5)))
+	# a touch fainter toward the hem (the legs stand farther from the cloth than the shoulders lean)
+	yy = np.linspace(0, 1, 1024, dtype=np.float32)[:, None]
+	alpha = soft * (0.46 - 0.08 * yy)
+	rgb = np.zeros((1024, 1024, 3), np.float32) + np.array([0.07, 0.09, 0.1])
 	save(Image.fromarray((np.dstack([rgb, alpha]) * 255).astype(np.uint8), "RGBA"), "nurse_shadow.png")
 
 
 def make_blanket():
-	img = np.zeros((512, 512, 3), np.float32) + np.array([0.6, 0.66, 0.7], np.float32)
-	yy, xx = np.mgrid[0:512, 0:512]
-	stripe = ((xx // 32) % 4 == 0) | ((yy // 32) % 4 == 0)
-	img[stripe] = img[stripe] * 0.82 + np.array([0.3, 0.42, 0.55]) * 0.18
-	img *= (0.9 + 0.12 * noise((512, 512), 30, 31, 2))[..., None]
+	"""Round 2: the ward's thin blanket, 1024 px for 0.5 m: a washed pale blue with a fine double check and a loose weave."""
+	n = 1024
+	yy, xx = np.mgrid[0:n, 0:n]
+	img = np.zeros((n, n, 3), np.float32) + np.array([0.62, 0.68, 0.73], np.float32)
+	line = np.zeros((n, n), np.float32)
+	for off in (0, 14):
+		line = np.maximum(line, (((xx + off) % 256) < 5).astype(np.float32))
+		line = np.maximum(line, (((yy + off) % 256) < 5).astype(np.float32))
+	line = to_np(Image.fromarray((line * 255).astype(np.uint8)).filter(ImageFilter.GaussianBlur(1.2)))
+	img = img * (1 - 0.3 * line[..., None]) + np.array([0.32, 0.43, 0.57]) * 0.3 * line[..., None]
+	weave = ((xx // 2 + yy // 2) % 2).astype(np.float32)
+	img *= (0.95 + 0.04 * weave + 0.1 * (noise((n, n), 40, 31, 2) - 0.5))[..., None]
+	img *= (0.93 + 0.1 * noise((n, n), 3, 32))[..., None]
 	save(Image.fromarray((np.clip(img, 0, 1) * 255).astype(np.uint8)), "blanket_check.png")
+
+
+def make_bandage():
+	"""Round 2: crepe bandage for Trung's forearm (u round the arm, v along it, 0.12 m per tile): off-white, the turns
+	overlapping on a slant, a faint stain."""
+	n = 256
+	yy, xx = np.mgrid[0:n, 0:n].astype(np.float32)
+	base = np.zeros((n, n, 3), np.float32) + np.array([0.82, 0.8, 0.74], np.float32)
+	turn = ((yy + xx * 0.35) % 64) / 64.0
+	edge = np.clip(1 - np.abs(turn - 0.03) / 0.03, 0, 1)
+	crepe = 0.5 + 0.5 * np.sin(yy * 1.9 + xx * 0.6)
+	base *= (0.93 + 0.05 * crepe - 0.18 * edge)[..., None]
+	stain = np.clip(noise((n, n), 3, 51) * 2.2 - 1.4, 0, 1)[..., None]
+	base = base * (1 - 0.25 * stain) + np.array([0.7, 0.6, 0.45]) * 0.25 * stain
+	save(Image.fromarray((np.clip(base, 0, 1) * 255).astype(np.uint8)), "bandage.png")
 
 
 def make_screen():
@@ -432,6 +520,7 @@ def main():
 	make_skin()
 	make_nurse_shadow()
 	make_blanket()
+	make_bandage()
 	make_screen()
 
 

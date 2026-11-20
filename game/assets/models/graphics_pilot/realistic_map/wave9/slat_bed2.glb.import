@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bhit87lsh3s4g"
-path="res://.godot/imported/slat_v2_bed2.glb-80ec9c62172bfa818638c3dfde61857e.scn"
+uid="uid://tjylth3g0g13"
+path="res://.godot/imported/slat_bed2.glb-6836e24b8c8a8b9193c39eab94f027f3.scn"
 
 [deps]
 
-source_file="res://assets/models/graphics_pilot/realistic_map/wave9/slat_v2_bed2.glb"
-dest_files=["res://.godot/imported/slat_v2_bed2.glb-80ec9c62172bfa818638c3dfde61857e.scn"]
+source_file="res://assets/models/graphics_pilot/realistic_map/wave9/slat_bed2.glb"
+dest_files=["res://.godot/imported/slat_bed2.glb-6836e24b8c8a8b9193c39eab94f027f3.scn"]
 
 [params]
 
@@ -56,10 +56,10 @@ _subresources={
 "use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave9/materials/W9RawWood.tres",
 "use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave9/materials/W9RawWood.tres"
 },
-"W9SlatUnder": {
+"W9SlatUnder2": {
 "use_external/enabled": true,
-"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave9/materials/W9SlatUnder.tres",
-"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave9/materials/W9SlatUnder.tres"
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave9/materials/W9SlatUnder2.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave9/materials/W9SlatUnder2.tres"
 }
 }
 }

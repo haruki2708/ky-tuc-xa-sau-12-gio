@@ -40,6 +40,14 @@ def looks():
 	return {
 		# Room 407: the slat's underside (the scrap's words; the capture swaps the style), raw pine on cut edges and splinters.
 		"W9SlatUnder": {"albedo": OWN9 + "slat_2_loang.png", "rough": 0.85},
+		# Round 2 (D-187): each bed's underside carries its own scrap (V2b, bled marker ink).
+		"W9SlatUnder1": {"albedo": OWN9 + "slat_1_loang.png", "rough": 0.85},
+		"W9SlatUnder2": {"albedo": OWN9 + "slat_2_loang.png", "rough": 0.85},
+		"W9SlatUnder4": {"albedo": OWN9 + "slat_4_loang.png", "rough": 0.85},
+		# Round 2: the hand's torn grey hoodie (the corpses' hoodies; the grey curtain cloth scan, darker and grimed) and the
+		# vent grille's sooted paint (round 1's WRVent read near white under the torch).
+		"W9Hoodie": {"albedo": ROOMS + "curtain_grey.jpg", "color": (0.46, 0.46, 0.47), "rough": 0.97, "scale": 4.0},
+		"W9VentPaint": {"color": (0.44, 0.43, 0.39), "rough": 0.62, "metallic": 0.15, "normal": OWN1 + "paint_grey_normal.png", "normal_scale": 0.35},
 		"W9RawWood": {"albedo": OWN9 + "slat_plain.png", "rough": 0.88, "normal": OWN1 + "paint_grey_normal.png", "normal_scale": 0.2},
 		"W9Skin": {"albedo": OWN9 + "zombie_skin.png", "rough": 0.62},
 		"W9Soot": {"color": (0.05, 0.05, 0.045), "rough": 0.95},
@@ -51,7 +59,7 @@ def looks():
 		"W9Vinyl": {"color": (0.16, 0.3, 0.26), "rough": 0.38},
 		"W9Sheet": {"albedo": ROOMS + "curtain_grey.jpg", "color": (0.98, 1.0, 0.98), "rough": 0.95, "scale": 3.0},
 		"W9Blanket": {"albedo": OWN9 + "blanket_check.png", "rough": 0.95},
-		"W9Bandage": {"albedo": ROOMS + "curtain_grey.jpg", "color": (1.12, 1.1, 1.02), "rough": 0.9, "scale": 6.0},
+		"W9Bandage": {"albedo": OWN9 + "bandage.png", "rough": 0.9},
 		"W9Hair": {"color": (0.04, 0.035, 0.03), "rough": 0.6},
 		"W9SkinPatient": {"color": (0.6, 0.48, 0.4), "rough": 0.6},
 		"W9Laminate": {"color": (0.5, 0.53, 0.5), "rough": 0.4},

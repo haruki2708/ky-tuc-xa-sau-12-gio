@@ -190,7 +190,9 @@ func test_hospital_contract_occupancy_and_triangle_budgets() -> void:
 	fixture.add_child(hospital)
 	for name in ["Trung","Nhat","Ngu"]:
 		assert_true(hospital.get_node("Bed_"+name+"/Card") is Marker3D)
-		assert_true(_triangles(hospital.get_node("Bed_"+name))<1500)
+		# T-266 (D-187, card section 5): the wave-9 stainless bed, the body under the blanket and the folded blanket of the
+		# lonely ending (about 3,300 with the hidden PS1 boxes); the card allows up to 8,000.
+		assert_true(_triangles(hospital.get_node("Bed_"+name))<4000)
 	for key in ["Nurse1","Nurse2","MonitorAudio"]:
 		assert_true(hospital.get_node(key) is Marker3D)
 	assert_true(hospital.get_node("Camera_Wake") is Camera3D)
@@ -202,7 +204,9 @@ func test_hospital_contract_occupancy_and_triangle_budgets() -> void:
 	for child in campus.get_node("Library").get_children():
 		if String(child.name).begins_with("Shelf"):
 			assert_true(_triangles(child)<1500)
-	assert_true(_triangles(anchors.get_node("Room407/Door"))<500)
+	# T-266 (D-187, card section 5): the cracks, the broken Tripo leaf and the corpse's arm hang on the proxy (about 3,200
+	# with the hidden PS1 layers); the card allows up to 4,000.
+	assert_true(_triangles(anchors.get_node("Room407/Door"))<3600)
 	for bed in [1,2,4]: assert_true(_triangles(anchors.get_node("Room407/Slat%d"%bed))<500)
 	for node in [campus.get_node("Library"),anchors,hospital]:
 		print("T196_TRIANGLES: %s %d"%[node.name,_triangles(node)])

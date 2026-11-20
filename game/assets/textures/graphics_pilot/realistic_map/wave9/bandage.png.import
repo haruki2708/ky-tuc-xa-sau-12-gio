@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dcv0lds3pnef1"
-path.s3tc="res://.godot/imported/slat_2_khac.png-c8b93f60971b9e8b008924ac293371d7.s3tc.ctex"
+uid="uid://qxl8brer0iya"
+path.s3tc="res://.godot/imported/bandage.png-e079fb6375b865e534d2bc69a1d945fc.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/textures/graphics_pilot/realistic_map/wave9/slat_2_khac.png"
-dest_files=["res://.godot/imported/slat_2_khac.png-c8b93f60971b9e8b008924ac293371d7.s3tc.ctex"]
+source_file="res://assets/textures/graphics_pilot/realistic_map/wave9/bandage.png"
+dest_files=["res://.godot/imported/bandage.png-e079fb6375b865e534d2bc69a1d945fc.s3tc.ctex"]
 
 [params]
 

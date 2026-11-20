@@ -1,5 +1,9 @@
 extends Node3D
 ## Adapt the existing chapter-1/2 leaf without replacing its interaction/latch.
+## T-266 (D-187 point 6): the leaf the player sees is the room's Tripo leaf, Door407/Pivot/RoomDoor (floor4.gd hangs it
+## there). The damage layers draw on it: Damage/Cracks/Real (splits on its room face), Damage/Hole/Real (the leaf broken
+## through under the rules sheet, splinters into the room) and Damage/Hand/Real (a corpse's arm through the hole), each at
+## RoomDoor's own transform. From 60 % RoomDoor hides with the old kit leaf (Pivot/Leaf); both come back on exit.
 var room: StringName = &"407"
 var is_open: bool:
 	get:
@@ -7,6 +11,8 @@ var is_open: bool:
 @onready var blocker: StaticBody3D = $Blocker
 var _door: Node3D
 var _leaf: Node3D
+var _room_door: Node3D
+var _room_door_visibility: bool = true
 var _colliders: Array[Dictionary] = []
 var _original_visibility: bool = true
 var damage_fraction: float = 0.0
@@ -29,6 +35,13 @@ func _bind() -> void:
 	_door = floor4.get_node("Door407")
 	_leaf = _door.get_node("Pivot/Leaf")
 	_original_visibility = _leaf.visible
+	_room_door = _door.get_node_or_null("Pivot/RoomDoor") as Node3D
+	if _room_door != null:
+		_room_door_visibility = _room_door.visible
+		for layer in ["Cracks", "Hole", "Hand"]:
+			var real := get_node_or_null("Damage/%s/Real" % layer) as Node3D
+			if real != null:
+				real.transform = _room_door.transform
 	for node in _leaf.find_children("*", "CollisionObject3D", true, false):
 		_colliders.append({"node": weakref(node), "layer": node.collision_layer})
 		node.collision_layer = 0
@@ -67,6 +80,12 @@ func set_damage_fraction(fraction: float) -> void:
 	$Damage/Hand.visible = damage_fraction >= .8
 	if is_instance_valid(_leaf):
 		_leaf.visible = _original_visibility and damage_fraction < .6
+	if is_instance_valid(_room_door):
+		_room_door.visible = _room_door_visibility and damage_fraction < .6
+	# The splits round the hole give way to the broken leaf's own torn edge.
+	var inner := get_node_or_null("Damage/Cracks/Real/CracksInner") as Node3D
+	if inner != null:
+		inner.visible = damage_fraction < .6
 
 
 func _exit_tree() -> void:
@@ -76,3 +95,5 @@ func _exit_tree() -> void:
 			node.collision_layer = entry.layer
 	if is_instance_valid(_leaf):
 		_leaf.visible = _original_visibility
+	if is_instance_valid(_room_door):
+		_room_door.visible = _room_door_visibility

@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dwp73blrw25e4"
-path="res://.godot/imported/bed_rolled.glb-428f3243d9a6249261136e6a6feabff9.scn"
+uid="uid://cm7m3s31hrqpu"
+path="res://.godot/imported/hatch.glb-6820102ead7e3709ff13f4458e74d3d6.scn"
 
 [deps]
 
-source_file="res://assets/models/graphics_pilot/realistic_map/wave9/bed_rolled.glb"
-dest_files=["res://.godot/imported/bed_rolled.glb-428f3243d9a6249261136e6a6feabff9.scn"]
+source_file="res://assets/models/graphics_pilot/realistic_map/wave9/hatch.glb"
+dest_files=["res://.godot/imported/hatch.glb-6820102ead7e3709ff13f4458e74d3d6.scn"]
 
 [params]
 
@@ -41,20 +41,20 @@ materials/extract_format=0
 materials/extract_path=""
 _subresources={
 "materials": {
-"W9Blanket": {
+"W1Steel": {
 "use_external/enabled": true,
-"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave9/materials/W9Blanket.tres",
-"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave9/materials/W9Blanket.tres"
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Steel.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Steel.tres"
 },
-"W9Sheet": {
+"W9HatchPaint": {
 "use_external/enabled": true,
-"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave9/materials/W9Sheet.tres",
-"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave9/materials/W9Sheet.tres"
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave9/materials/W9HatchPaint.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave9/materials/W9HatchPaint.tres"
 },
-"W9Vinyl": {
+"W9Void": {
 "use_external/enabled": true,
-"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave9/materials/W9Vinyl.tres",
-"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave9/materials/W9Vinyl.tres"
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave9/materials/W9Void.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave9/materials/W9Void.tres"
 }
 }
 }

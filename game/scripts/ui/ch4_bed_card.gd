@@ -1,5 +1,6 @@
 extends Node3D
 ## Attach below Bed_*/Card. The owner can override the inferred character explicitly.
+## T-266 (D-187 point 11): the card reads from both faces (NameBack / DetailsBack copy Name / Details).
 
 @export_enum("auto", "trung", "nhat", "ngu") var character := "auto"
 @export var age_text := ""
@@ -37,6 +38,10 @@ func refresh() -> void:
 		$Details.text = tr("UI_CH4_FORM_AGE") + ": " + age_text
 	if _character != "trung":
 		$Details.text += ("\n" if not age_text.is_empty() else "") + tr("UI_CH4_COMA")
+	for pair: Array in [["Name", "NameBack"], ["Details", "DetailsBack"]]:
+		var back := get_node_or_null(String(pair[1])) as Label3D
+		if back != null:
+			back.text = (get_node(String(pair[0])) as Label3D).text
 
 
 func _notification(what: int) -> void:

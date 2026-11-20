@@ -30,6 +30,10 @@
 
 [ext_resource type="PackedScene" path="res://scenes/levels/ch2/clothesline.tscn" id="t172_line"]
 
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave9/vent.glb" id="t266_vent"]
+
+[ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/wave9/hatch.glb" id="t266_hatch"]
+
 [sub_resource type="BoxShape3D" id="s1"]
 size = Vector3(8, 0.2, 7)
 
@@ -441,3 +445,11 @@ navigation_mesh = SubResource("v2_nav")
 
 [node name="Clothesline" parent="." instance=ExtResource("t172_line")]
 position = Vector3(2.8,1.8,-8.12)
+
+; T-266 (D-187, C2): the room's vent (east wall, FakeVent) and ceiling access hatch (FakeCeiling) in all four chapters.
+; room407.gd keeps them (KEEP_PS1); visual only: no collider, no prompt, no hand target.
+[node name="Wave9Fixtures" type="Node3D" parent="."]
+
+[node name="Vent" parent="Wave9Fixtures" instance=ExtResource("t266_vent")]
+
+[node name="Hatch" parent="Wave9Fixtures" instance=ExtResource("t266_hatch")]

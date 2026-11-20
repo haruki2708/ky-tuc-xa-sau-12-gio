@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://b2gxv2hi04kjc"
-path="res://.godot/imported/vent_open.glb-f4c69270e4389414da1b31bc4dabf55a.scn"
+uid="uid://bnrst7levc183"
+path="res://.godot/imported/slat_bed4.glb-184b73b8fc6ff6728a5d5056a3b516e2.scn"
 
 [deps]
 
-source_file="res://assets/models/graphics_pilot/realistic_map/wave9/vent_open.glb"
-dest_files=["res://.godot/imported/vent_open.glb-f4c69270e4389414da1b31bc4dabf55a.scn"]
+source_file="res://assets/models/graphics_pilot/realistic_map/wave9/slat_bed4.glb"
+dest_files=["res://.godot/imported/slat_bed4.glb-184b73b8fc6ff6728a5d5056a3b516e2.scn"]
 
 [params]
 
@@ -46,20 +46,20 @@ _subresources={
 "use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Steel.tres",
 "use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Steel.tres"
 },
-"W9Screen": {
+"W1WoodPale": {
 "use_external/enabled": true,
-"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave9/materials/W9Screen.tres",
-"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave9/materials/W9Screen.tres"
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1WoodPale.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1WoodPale.tres"
 },
-"W9Soot": {
+"W9RawWood": {
 "use_external/enabled": true,
-"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave9/materials/W9Soot.tres",
-"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave9/materials/W9Soot.tres"
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave9/materials/W9RawWood.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave9/materials/W9RawWood.tres"
 },
-"WRVent": {
+"W9SlatUnder4": {
 "use_external/enabled": true,
-"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/floor4_rest/materials/WRVent.tres",
-"use_external/path": "res://assets/models/graphics_pilot/realistic_map/floor4_rest/materials/WRVent.tres"
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave9/materials/W9SlatUnder4.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave9/materials/W9SlatUnder4.tres"
 }
 }
 }

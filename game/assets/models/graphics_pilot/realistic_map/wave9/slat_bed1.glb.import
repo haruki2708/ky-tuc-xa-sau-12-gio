@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://c1m83eksfv5ea"
-path="res://.godot/imported/hatch_h1.glb-dd36be2f2d8f42a53fe24ccf961daa70.scn"
+uid="uid://dyfer4i3djtb2"
+path="res://.godot/imported/slat_bed1.glb-313e067105b445118b98a0719a428006.scn"
 
 [deps]
 
-source_file="res://assets/models/graphics_pilot/realistic_map/wave9/hatch_h1.glb"
-dest_files=["res://.godot/imported/hatch_h1.glb-dd36be2f2d8f42a53fe24ccf961daa70.scn"]
+source_file="res://assets/models/graphics_pilot/realistic_map/wave9/slat_bed1.glb"
+dest_files=["res://.godot/imported/slat_bed1.glb-313e067105b445118b98a0719a428006.scn"]
 
 [params]
 
@@ -46,15 +46,20 @@ _subresources={
 "use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Steel.tres",
 "use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Steel.tres"
 },
-"W9HatchPaint": {
+"W1WoodPale": {
 "use_external/enabled": true,
-"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave9/materials/W9HatchPaint.tres",
-"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave9/materials/W9HatchPaint.tres"
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1WoodPale.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1WoodPale.tres"
 },
-"W9Void": {
+"W9RawWood": {
 "use_external/enabled": true,
-"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave9/materials/W9Void.tres",
-"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave9/materials/W9Void.tres"
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave9/materials/W9RawWood.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave9/materials/W9RawWood.tres"
+},
+"W9SlatUnder1": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave9/materials/W9SlatUnder1.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave9/materials/W9SlatUnder1.tres"
 }
 }
 }
