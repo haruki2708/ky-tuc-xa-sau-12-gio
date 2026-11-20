@@ -302,6 +302,20 @@ RAIL = {"x": (78.86, 78.94), "z": (199.0, 209.0), "h": 1.1, "post_x": 78.9}
 ZOMBIE_R = 0.31
 RAILS = [{"name": "WellRail_F%d" % (level + 1), "level": level, "box": (RAIL["x"][0], RAIL["x"][1], RAIL["z"][0], RAIL["z"][1]),
 	"height": RAIL["h"], "kind": "rail"} for level in (1, 2)]
+# Round 3 (card 1.14, D-186): the well's last drops, closed by railings like the west one (same height, same 8 cm depth, on
+# the slab's edge). The east slot between each flight's east rail (RailCollision*_39, x 83.95..84.05) and the east wall's
+# inside face (East1|2, x 84.89), z 199..209, on floors 2 and 3, at its south and north ends; floor 3's south edge (z 199,
+# no flight going up there), from the west railing to the east wall. Floor 2's way onto flight two (x 79..84 at z 199) and
+# both flights' tops (x 79..84 at z 209) stay open. Clear of navigation: StairFoot1|2 and StairAccess1|2 end at x 83.8
+# (0.49 m to the east pieces' corners), StairNav* at x 83.6 (0.45 m); StairFoot2 ends at z 198.5 (0.42 m to WellRail_F3S);
+# flight two's StairNav1 under WellRail_F3S is 3.3 m lower there (out of a zombie's reach: it rises under the slab only
+# north of z 199).
+WELL_EAST = (84.05, 84.89)
+RAILS += [{"name": name, "level": level, "box": box, "height": RAIL["h"], "kind": "rail"} for name, level, box in (
+	("WellRail_F3S", 2, (RAIL["x"][0], WELL_EAST[1], 198.92, 199.0)),
+	("WellRail_F2SE", 1, (WELL_EAST[0], WELL_EAST[1], 198.92, 199.0)),
+	("WellRail_F2NE", 1, (WELL_EAST[0], WELL_EAST[1], 209.0, 209.08)),
+	("WellRail_F3NE", 2, (WELL_EAST[0], WELL_EAST[1], 209.0, 209.08)))]
 # Sightlines kept clear (card section 4): the back door to the counter's top, floor 2's stair top to reading table 13.
 SIGHTLINES = [{"level": 0, "eye": (65.0, 225.0), "to": ((COUNTER["at"][0] - 2.5, 206.0), (COUNTER["at"][0] + 2.5, 206.0))},
 	{"level": 1, "eye": STAIR_TOP, "to": ((56.5, TABLE_Z), (59.5, TABLE_Z))}]

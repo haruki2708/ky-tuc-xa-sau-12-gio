@@ -443,16 +443,24 @@ def check_final(level, a):
 		(L.IN_W - 1, L.IN_E + 1, L.IN_S - 1, L.IN_S), (L.IN_W - 1, L.IN_E + 1, L.IN_N, L.IN_N + 1)]
 	others = [("tường", w) for w in walls] + [("PS1", s) for s in L.ps1_solids(level)]
 	links = [(lk["a"], lk["b"]) for lk in GEO["links"] if abs(lk["a"][1] - L.LEVELS[level]) < 0.3 and abs(lk["b"][1] - L.LEVELS[level]) < 0.3]
-	nav = grid_mask([p for _, p, _ in a["parts"][6]])
-	zombie_band = dilate(nav, L.ZOMBIE_R + 0.05)
+	# The navigation polygons are axis-aligned rectangles: the railings' gaps to them are measured exactly (the 5 cm grid
+	# would round round 3's 0.42 m to StairFoot2 under the zombie's 0.31 m plus a cell).
+	nav_boxes = [(min(q[0] for q in poly), max(q[0] for q in poly), min(q[1] for q in poly), max(q[1] for q in poly))
+		for _, poly, _ in a["parts"][6]]
 	out = []
 	for p in pieces + rails:
 		notes = []
 		x0, x1, z0, z1 = p["box"]
 		m = grid_mask([[(x0, z0), (x1, z0), (x1, z1), (x0, z1)]])
 		if p["kind"] == "rail":
-			if (m & zombie_band).any():
-				notes.append("chạm nav + bán kính xác")
+			nav_gap = min(rect_gap(p["box"], b) for b in nav_boxes)
+			link_gap = min([seg_rect_gap((lk[0][0], lk[0][2]), (lk[1][0], lk[1][2]), p["box"]) for lk in links] or [99.0])
+			print("FINAL floor %d %s: x %g..%g z %g..%g, %g m; nav %.2f m, link %.2f m" % (level + 1, p["name"], x0, x1, z0, z1,
+				p["height"], nav_gap, link_gap))
+			if nav_gap < L.ZOMBIE_R:
+				notes.append("chạm nav + bán kính xác (%.2f m)" % nav_gap)
+			if link_gap < L.ZOMBIE_R:
+				notes.append("gần link nav (%.2f m)" % link_gap)
 		else:
 			if (m & a["band"]).any():
 				notes.append("chạm nav+0,6")
@@ -492,7 +500,7 @@ def final():
 				bad += 1
 				print("FINAL floor %d %s: %s" % (level + 1, p["name"], "; ".join(notes)))
 			pieces.append(q)
-		img = draw(level, a, "Bố cục lượt 2 (D-185) — tầng %d: %d món thêm + lan can" % (level + 1, len(pieces)), pieces,
+		img = draw(level, a, "Bố cục lượt 2–3 (D-185, D-186) — tầng %d: %d món thêm + lan can" % (level + 1, len(pieces)), pieces,
 			note="M2 + dãy kệ hai mặt trong bốn khoang. Viền đỏ = phạm luật mục 4 (nav + 0,6 m, vòng 1,5 m, khe < 1,2 m, đường nhìn, link).")
 		img.convert("RGB").save(OUT / ("final_floor%d.jpg" % (level + 1)), quality=90)
 		print("FINAL floor %d: %d pieces" % (level + 1, len(pieces)))

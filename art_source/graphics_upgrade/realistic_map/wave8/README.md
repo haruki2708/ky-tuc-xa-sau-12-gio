@@ -1,5 +1,23 @@
 # Đồ hoạ thật đợt 8 — T-265 (D-166): thư viện ba tầng (A20) và dải đất 6 m quanh thư viện
 
+## Lượt 3 (20/11/2026, D-186): bịt các chỗ còn rơi được của ô cầu thang
+Card mục 1 điểm 14. Bốn đoạn lan can có va chạm như lan can mép tây (cột thép dẹt 12 cm một cột, tay vịn gỗ, cao 1,1 m từ
+sàn, sâu 8 cm, trên mép sàn): `WellRail_F3S` (tầng 3, mép nam x 78,86…84,89, z 198,92…199), `WellRail_F2SE` (tầng 2, đầu nam
+khe đông x 84,05…84,89, z 198,92…199), `WellRail_F2NE`, `WellRail_F3NE` (tầng 2, 3, đầu bắc khe đông x 84,05…84,89,
+z 209…209,08). Lối lên nhịp hai ở tầng 2 và đầu trên hai nhịp (x 79…84) để hở.
+
+```powershell
+$B = "D:\Tools\Blender\5.2.2\blender.exe"
+python -B art_source/graphics_upgrade/realistic_map/wave8/plan_wave8.py final        # luật bố cục; in khoảng cách nav/link của từng lan can
+& $B -b --factory-startup -P art_source/graphics_upgrade/realistic_map/wave8/build_wave8.py -- stairs
+python -B art_source/graphics_upgrade/realistic_map/wave8/patch_wave8.py rails3      # trên cảnh lượt 2: thêm 4 khối WellRail_* dưới Real/Added
+python -B art_source/graphics_upgrade/realistic_map/wave8/count_wave8.py
+pwsh tools/test.ps1 -Filter t265
+```
+Ảnh: chép `capture_wave8_r2.gd` và `capture_wave8_r3.gd` vào `game/_probe_tmp/` cùng một scene gốc gắn `capture_wave8_r3.gd`,
+theo Lượt Godot `godot --path game --log-file <log> res://_probe_tmp/capture_wave8_r3.tscn` (6 ảnh `r3_*`), rồi
+`python -B .../wave8/make_wave8_sheets.py round3` (`r3_well.jpg`).
+
 ## Lượt 2 (20/11/2026, D-185): cả thư viện
 Lựa chọn ở card mục 1 (bộ c của lượt 1 cộng các điểm của integrator). Cảnh đã vá: `library.tscn` (667 hình PS1 ẩn; `Real`;
 `Real/Added`; `BackDoor/Hinge/LeafReal`), `shells.tscn` (ẩn `LibraryBand0…2/Mesh`), `campus.tscn` (`StripLibrary`).
@@ -21,7 +39,7 @@ pwsh tools/test.ps1 -Filter t265
 khoảng 1 phút khi cảnh đã import), rồi `python -B .../wave8/make_wave8_sheets.py round2` (`r2_*.jpg`, `overview.jpg`).
 
 - `wave8_layout.py`: `FINAL` (109 món thêm: kệ sát tường, kệ thấp dưới cửa sổ, dãy kệ hai mặt trong bốn khoang, đồ rời),
-  `RAILS` (lan can mép tây ô cầu thang tầng 2, 3), `SIGHTLINES`, `SCARE_POINTS`/`SCARE_SHELVES`, `ps1_solids`. Danh sách đầy
+  `RAILS` (lan can mép tây ô cầu thang tầng 2, 3; lượt 3 thêm bốn đoạn), `SIGHTLINES`, `SCARE_POINTS`/`SCARE_SHELVES`, `ps1_solids`. Danh sách đầy
   đủ: `survey/final_layout.md`.
 - `build_wave8.py`: 21 glb (xem docstring). Sách: mỗi cụm kệ một lưới gần (`Books_*`, một mặt gáy mỗi cuốn, bìa chỉ ở chỗ
   hở) và một lưới xa (`BooksFar_*`, một khối mỗi đợt). Rèm cửa sổ (`curtain()`) chung cho mặt trong và mặt ngoài.

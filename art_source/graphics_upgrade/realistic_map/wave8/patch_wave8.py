@@ -1,5 +1,6 @@
 """T-265 round 2 (D-185): scene patches, on main's scenes (each step refuses to run twice).
   python -B art_source/graphics_upgrade/realistic_map/wave8/patch_wave8.py library shells campus
+  python -B art_source/graphics_upgrade/realistic_map/wave8/patch_wave8.py rails3     (round 3, on round 2's scene)
 
 - library: library.tscn's 667 PS1 meshes hidden (visible = false; colliders, nodes, transforms, metas, lights, navigation
   unchanged; the iron bar is an instance of iron_bar.tscn and keeps its own model). New node Real (library_real.gd) at
@@ -108,6 +109,29 @@ def step_library():
 	print("patched library.tscn: %d PS1 meshes hidden, Real with %d layers, %d added colliders, BackDoor/Hinge/LeafReal" % (hidden, len(REAL), len(bodies)))
 
 
+def step_rails3():
+	"""Round 3 (card 1.14, D-186), on round 2's library.tscn: Real/Added gets the railings of wave8_layout.RAILS it lacks
+	(the east slot's ends on floors 2 and 3, floor 3's south edge), after the last added body; their boxes after the last
+	t265_box. Nothing else changes."""
+	text = read(LIBRARY)
+	assert 'node name="Real"' in text, "run the library step first"
+	bodies = [b for b in added_bodies() if b[0].startswith("WellRail")
+		and '[node name="%s" type="StaticBody3D" parent="Real/Added"]' % b[0] not in text]
+	assert bodies, "already patched"
+	k0 = max(int(m) for m in re.findall(r'id="t265_box(\d+)"', text)) + 1
+	head = text.index('[sub_resource type="BoxShape3D" id="t265_box%d"]' % (k0 - 1))
+	end = text.index("\n", text.index("\n", head) + 1) + 1
+	subs = ['[sub_resource type="BoxShape3D" id="t265_box%d"]\nsize = Vector3(%s, %s, %s)\n' % (k0 + k, fmt(s[0]), fmt(s[1]), fmt(s[2]))
+		for k, (_, _, s) in enumerate(bodies)]
+	text = text[:end] + "\n" + "\n".join(subs) + text[end:]
+	nodes = ['\n[node name="%s" type="StaticBody3D" parent="Real/Added"]\nposition = Vector3(%s, %s, %s)\ncollision_layer = 1\n'
+		'collision_mask = 0\n\n[node name="Collision" type="CollisionShape3D" parent="Real/Added/%s"]\nshape = SubResource("t265_box%d")\n'
+		% (name, fmt(c[0]), fmt(c[1]), fmt(c[2]), name, k0 + k) for k, (name, c, _) in enumerate(bodies)]
+	at = text.index('\n[node name="LeafReal" parent="BackDoor/Hinge"')
+	write(LIBRARY, text[:at] + "".join(nodes) + text[at:])
+	print("patched library.tscn: %d railings added under Real/Added (%s)" % (len(bodies), ", ".join(b[0] for b in bodies)))
+
+
 def step_shells():
 	path = LEVELS / "shells.tscn"
 	text = read(path)
@@ -135,6 +159,6 @@ def step_campus():
 
 
 if __name__ == "__main__":
-	steps = {"library": step_library, "shells": step_shells, "campus": step_campus}
+	steps = {"library": step_library, "shells": step_shells, "campus": step_campus, "rails3": step_rails3}
 	for key in sys.argv[1:]:
 		steps[key]()

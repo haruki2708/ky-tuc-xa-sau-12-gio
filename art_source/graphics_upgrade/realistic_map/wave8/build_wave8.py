@@ -6,8 +6,9 @@ space with the glb origin at Godot (0, G, 0); the back door's leaf is local to B
                        cement), sills, the windows seen from inside (dark glass, bars, faded curtains: wave8_layout curtains
                        per window, the same ones the facade shows from outside), C2 ceiling (60 x 60 stained panels, a few
                        missing), the battens (lit where the six lights are), the well's slab edges
-  stairs.glb           both flights and their balustrades (inside RailCollision*), and the new railing along the well's west
-                       edge on floors 2 and 3 (WellRail; its colliders are Real/Added/WellRail_F2|F3)
+  stairs.glb           both flights and their balustrades (inside RailCollision*), and the new railings on the well's slab
+                       edges (WellRail; colliders Real/Added/WellRail_*): the west edge on floors 2 and 3, and round 3's
+                       (card 1.14, D-186) east-slot ends on floors 2 and 3 and floor 3's south edge
   counter_q1.glb, librarian_chair.glb, rule_book.glb (local), back_frame.glb, back_leaf.glb (local), front_door.glb,
   barricade.glb        as the pilot (Q1; the chair upright, its seat 0.46 m)
   map_print.glb        the printed map in its aluminium frame under a matt glass (less glare under the torch)
@@ -250,23 +251,35 @@ def build_stairs():
 				rails.beam2(mat, (xr, y + h, za), (xr, y + 3.3 + h, zb), w, t)
 			rails.box("W1Iron", (xr - 0.025, y, za - 0.025), (xr + 0.025, y + 1.0, za + 0.025))
 			rails.box("W1Iron", (xr - 0.025, y + 3.3, zb - 0.025), (xr + 0.025, y + 4.3, zb + 0.025))
-	# The new railing on the slab's edge (floors 2 and 3): flat-bar posts every 12 cm, a timber handrail at 1.1 m, a bottom
-	# bar, newels at both ends; everything inside its collider (x 78.86..78.94).
-	px = L.RAIL["post_x"]
-	z0, z1 = L.RAIL["z"]
-	for level in (1, 2):
-		y = L.LEVELS[level]
-		k = 0
-		z = z0 + 0.06
-		while z < z1 - 0.05:
-			well.box("W1Iron", (px - 0.006, y + 0.05, z - 0.012), (px + 0.006, y + 1.02, z + 0.012))
-			z += 0.12
-			k += 1
-		well.box("W1Wood", (px - 0.03, y + 1.04, z0), (px + 0.03, y + L.RAIL["h"], z1))
-		well.box("W1Iron", (px - 0.012, y + 1.02, z0), (px + 0.012, y + 1.04, z1))
-		well.box("W1Iron", (px - 0.015, y + 0.05, z0), (px + 0.015, y + 0.08, z1))
-		for zz in (z0, z1 - 0.05):
-			well.box("W1Iron", (px - 0.025, y, zz), (px + 0.025, y + 1.08, zz + 0.05))
+	# The railings on the slab's edges (L.RAILS: the west edge on floors 2 and 3, round 3's east-slot ends and floor 3's south
+	# edge): flat-bar posts every 12 cm, a timber handrail at 1.1 m, a bottom bar, newels at both ends (one at a shared
+	# corner); everything inside its collider.
+	newels = []
+	for r in L.RAILS:
+		y = L.LEVELS[r["level"]]
+		x0, x1, z0, z1 = r["box"]
+		along_z = z1 - z0 > x1 - x0
+		run = (z0, z1) if along_z else (x0, x1)
+		mid = (x0 + x1) / 2 if along_z else (z0 + z1) / 2
+
+		def bar(mat, a0, a1, half, y0, y1):
+			if along_z:
+				well.box(mat, (mid - half, y0, a0), (mid + half, y1, a1))
+			else:
+				well.box(mat, (a0, y0, mid - half), (a1, y1, mid + half))
+		a = run[0] + 0.06
+		while a < run[1] - 0.05:
+			bar("W1Iron", a - 0.012, a + 0.012, 0.006, y + 0.05, y + 1.02)
+			a += 0.12
+		bar("W1Wood", run[0], run[1], 0.03, y + 1.04, y + r["height"])
+		bar("W1Iron", run[0], run[1], 0.012, y + 1.02, y + 1.04)
+		bar("W1Iron", run[0], run[1], 0.015, y + 0.05, y + 0.08)
+		for aa in (run[0], run[1] - 0.05):
+			at = (mid, y, aa + 0.025) if along_z else (aa + 0.025, y, mid)
+			if any(abs(at[1] - n[1]) < 0.01 and math.hypot(at[0] - n[0], at[2] - n[2]) < 0.1 for n in newels):
+				continue
+			newels.append(at)
+			bar("W1Iron", aa, aa + 0.05, 0.025, y, y + 1.08)
 	return export("stairs.glb", [treads, sides, rails, well])
 
 

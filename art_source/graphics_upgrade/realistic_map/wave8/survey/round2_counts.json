@@ -373,7 +373,7 @@
   }
  },
  "stairs": {
-  "triangles": 5356,
+  "triangles": 6436,
   "materials": [
    "W1Iron",
    "W1Terrazzo",
@@ -385,7 +385,7 @@
    "Balustrades": 2160,
    "Stringers": 28,
    "Treads": 1056,
-   "WellRail": 2112
+   "WellRail": 3192
   }
  },
  "strip": {

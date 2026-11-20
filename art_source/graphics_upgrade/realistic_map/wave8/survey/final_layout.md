@@ -1,4 +1,4 @@
-# T-265 lượt 2: đồ thêm có va chạm (`Real/Added`, D-185)
+# T-265 lượt 2–3: đồ thêm có va chạm (`Real/Added`, D-185; lượt 3 thêm bốn đoạn lan can, D-186)
 
 Sinh từ `wave8_layout.FINAL` và `RAILS` (toạ độ thế giới; mỗi món một `StaticBody3D` lớp 1, hộp từ sàn tới chiều cao ghi).
 `plan_wave8.py final` kiểm luật mục 4 (ảnh `previews/wave8/final_floor1..3.jpg`), `test_t265_library.gd` kiểm lại trong cảnh.
@@ -40,7 +40,7 @@ Sinh từ `wave8_layout.FINAL` và `RAILS` (toạ độ thế giới; mỗi món
 | `F1_PlantS` | cây chết khô | 53,4…54 | 195,15…195,75 | 1,4 |
 | `F1_PlantE` | cây chết khô | 75,6…76,2 | 207,4…208 | 1,4 |
 
-## Tầng 2 (25 món)
+## Tầng 2 (27 món)
 
 | Tên | Loại | x | z | Cao (m) |
 |---|---|---|---|---|
@@ -69,8 +69,10 @@ Sinh từ `wave8_layout.FINAL` và `RAILS` (toạ độ thế giới; mỗi món
 | `F2_Trolley` | xe đẩy sách | 47…47,9 | 219…219,45 | 1 |
 | `F2_Plant` | cây chết khô | 75,6…76,2 | 195,15…195,75 | 1,4 |
 | `WellRail_F2` | lan can mép tây ô cầu thang | 78,86…78,94 | 199…209 | 1,1 |
+| `WellRail_F2SE` | lan can đầu nam khe đông (lượt 3) | 84,05…84,89 | 198,92…199 | 1,1 |
+| `WellRail_F2NE` | lan can đầu bắc khe đông (lượt 3) | 84,05…84,89 | 209…209,08 | 1,1 |
 
-## Tầng 3 (54 món)
+## Tầng 3 (56 món)
 
 | Tên | Loại | x | z | Cao (m) |
 |---|---|---|---|---|
@@ -128,3 +130,5 @@ Sinh từ `wave8_layout.FINAL` và `RAILS` (toạ độ thế giới; mỗi món
 | `F3_BoxesS` | thùng sách | 59,5…60,8 | 195,15…196,15 | 1 |
 | `F3_BoxesE` | thùng sách | 81,2…82,4 | 214,8…215,4 | 0,7 |
 | `WellRail_F3` | lan can mép tây ô cầu thang | 78,86…78,94 | 199…209 | 1,1 |
+| `WellRail_F3S` | lan can mép nam ô cầu thang (lượt 3) | 78,86…84,89 | 198,92…199 | 1,1 |
+| `WellRail_F3NE` | lan can đầu bắc khe đông (lượt 3) | 84,05…84,89 | 209…209,08 | 1,1 |

@@ -3504,6 +3504,18 @@ size = Vector3(0.08, 1.1, 10)
 [sub_resource type="BoxShape3D" id="t265_box110"]
 size = Vector3(0.08, 1.1, 10)
 
+[sub_resource type="BoxShape3D" id="t265_box111"]
+size = Vector3(6.03, 1.1, 0.08)
+
+[sub_resource type="BoxShape3D" id="t265_box112"]
+size = Vector3(0.84, 1.1, 0.08)
+
+[sub_resource type="BoxShape3D" id="t265_box113"]
+size = Vector3(0.84, 1.1, 0.08)
+
+[sub_resource type="BoxShape3D" id="t265_box114"]
+size = Vector3(0.84, 1.1, 0.08)
+
 [node name="Library" type="Node3D"]
 
 position = Vector3(45,-9.9,195)
@@ -10078,5 +10090,37 @@ collision_mask = 0
 
 [node name="Collision" type="CollisionShape3D" parent="Real/Added/WellRail_F3"]
 shape = SubResource("t265_box110")
+
+[node name="WellRail_F3S" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(81.875, 7.15, 198.96)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/WellRail_F3S"]
+shape = SubResource("t265_box111")
+
+[node name="WellRail_F2SE" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(84.47, 3.85, 198.96)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/WellRail_F2SE"]
+shape = SubResource("t265_box112")
+
+[node name="WellRail_F2NE" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(84.47, 3.85, 209.04)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/WellRail_F2NE"]
+shape = SubResource("t265_box113")
+
+[node name="WellRail_F3NE" type="StaticBody3D" parent="Real/Added"]
+position = Vector3(84.47, 7.15, 209.04)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Real/Added/WellRail_F3NE"]
+shape = SubResource("t265_box114")
 
 [node name="LeafReal" parent="BackDoor/Hinge" instance=ExtResource("t265_back_leaf")]

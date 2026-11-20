@@ -161,8 +161,31 @@ def round2():
 	print("wrote overview.jpg", out.size)
 
 
+VIEW_NAMES.update({
+	"f3_south_edge": "tầng 3, mép nam ô cầu thang: WellRail_F3S (xa bên trái: F3NE)",
+	"f2_flight_two": "tầng 2, chân nhịp hai: WellRail_F2SE bịt khe đông, lối lên để hở",
+	"f2_east_slot": "tầng 2, đầu nhịp một nhìn về nam: WellRail_F2NE bịt đầu bắc khe đông",
+})
+
+
+def round3():
+	"""r3_well.jpg: round 3's railings (card 1.14, D-186), three views without and with the torch."""
+	views = ["f3_south_edge", "f2_flight_two", "f2_east_slot"]
+	size = (800, 450)
+	head = 70
+	out = Image.new("RGB", (len(views) * (size[0] + 8) - 8, head + 2 * (size[1] + 8)), (20, 20, 20))
+	label(out, "T-265 lượt 3 (D-186): lan can bịt các chỗ còn rơi được của ô cầu thang — chương 4 ban đêm", 28)
+	for c, view in enumerate(views):
+		for r, (suffix, extra) in enumerate((("", "không đèn pin"), ("_torch", "đèn pin"))):
+			out.paste(tile("r3_%s%s.jpg" % (view, suffix), "", view, extra, size), (c * (size[0] + 8), head + r * (size[1] + 8)))
+	out.save(PREVIEWS / "r3_well.jpg", quality=84)
+	print("wrote r3_well.jpg", out.size)
+
+
 if __name__ == "__main__":
 	if sys.argv[1:] == ["round2"]:
 		round2()
+	elif sys.argv[1:] == ["round3"]:
+		round3()
 	else:
 		main()

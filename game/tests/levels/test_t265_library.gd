@@ -23,17 +23,24 @@ const REAL := ["Shell_F1", "Shell_F2", "Shell_F3", "Stairs", "Counter", "Librari
 ## md5 of the sorted rows of main's library.tscn (origin/main 4cad2a3, before patch_wave8.py's library step).
 const LIBRARY_ROWS_MD5 := "9b2668a8bc6a14740878a571d110f8cb"
 const LIBRARY_ROWS := 1533
+const CAMPUS_COLLIDERS_MD5 := "5f21b42e2c6bf772a38248595e1a310d"   # main's campus colliders (test_t262_gate, t263, t264)
 const G := -9.9
 const LEVELS := [-9.9, -6.6, -3.3]
-const ADDED := 111            # wave8_layout.FINAL (109 pieces over 0.3 m) and the two railings
+const ADDED := 115            # wave8_layout.FINAL (109 pieces over 0.3 m) and the six railings (RAILS)
 const NAV_BAND := 0.6
 const RING := 1.5
 const LANE := 1.2
 const TOUCH := 0.05
 const ZOMBIE_R := 0.31        # zombie.tscn's widest shape (head sphere 0.31; capsule 0.25, agent 0.3)
 ## The railings (card section 1.11): x 78.86..78.94, z 199..209, 1.1 m over floors 2 and 3.
+# The well's railings (card 1.11; round 3, card 1.14: the east slot's ends on floors 2 and 3, floor 3's south edge).
 const RAILS := {"WellRail_F2": AABB(Vector3(78.86, -6.6, 199.0), Vector3(0.08, 1.1, 10.0)),
-	"WellRail_F3": AABB(Vector3(78.86, -3.3, 199.0), Vector3(0.08, 1.1, 10.0))}
+	"WellRail_F3": AABB(Vector3(78.86, -3.3, 199.0), Vector3(0.08, 1.1, 10.0)),
+	"WellRail_F3S": AABB(Vector3(78.86, -3.3, 198.92), Vector3(6.03, 1.1, 0.08)),
+	"WellRail_F2SE": AABB(Vector3(84.05, -6.6, 198.92), Vector3(0.84, 1.1, 0.08)),
+	"WellRail_F2NE": AABB(Vector3(84.05, -6.6, 209.0), Vector3(0.84, 1.1, 0.08)),
+	"WellRail_F3NE": AABB(Vector3(84.05, -3.3, 209.0), Vector3(0.84, 1.1, 0.08))}
+const ZOMBIE_H := 2.0         # over a zombie's height (zombie.tscn): a ramp lower than this under a railing never meets it
 const ZONE := AABB(Vector3(39, -10.5, 189), Vector3(52, 4.5, 42))
 const FOOTPRINT := Rect2(44.89, 194.89, 40.22, 30.22)
 const SCARES := [Vector2(57, 218), Vector2(73, 218)]
@@ -121,6 +128,18 @@ func test_library_contract_matches_main_and_the_ps1_is_hidden() -> void:
 		assert_false(mesh.visible, "PS1 hidden: " + path)
 		hidden += 1
 	assert_eq(hidden, 667, "every PS1 mesh of the library hidden, none removed")
+	# The whole campus's colliders (T259.collider_rows, as test_t262_gate, test_t263_canteen and test_t264_* print them) are
+	# main's but for this wave's Real/Added (the only new colliders); T265_CAMPUS_COLLIDERS is the full print with them.
+	var campus_scene := CAMPUS.instantiate()
+	var all := T259.collider_rows(campus_scene)
+	var kept := PackedStringArray()
+	for row in all:
+		if not row.begins_with("Library/Real/Added/"):
+			kept.append(row)
+	print("T265_CAMPUS_COLLIDERS %d %s (without Real/Added: %d %s)" % [all.size(), T259.md5(all), kept.size(), T259.md5(kept)])
+	assert_eq(all.size() - kept.size(), ADDED, "the campus's new colliders are Real/Added's")
+	assert_eq(T259.md5(kept), CAMPUS_COLLIDERS_MD5, "every other campus collider as main has it")
+	campus_scene.free()
 	for name: String in REAL:
 		assert_true(lib.has_node("Real/" + name), "Real/" + name)
 	assert_true(lib.has_node("BackDoor/Hinge/LeafReal"), "the new leaf under BackDoor/Hinge")
@@ -293,12 +312,21 @@ func test_added_colliders_keep_card_section_4() -> void:
 		if box.name.begins_with("WellRail"):
 			var want: AABB = RAILS[box.name]
 			var got := _world_box(body.get_node("Collision") as CollisionShape3D)
-			assert_true(got.position.is_equal_approx(want.position) and got.size.is_equal_approx(want.size), "%s where the card puts it (%s)" % [box.name, got])
+			# Within 1 mm (float32 near z 200 rounds a thin box's depth by ~1e-5, past is_equal_approx).
+			assert_true(got.position.distance_to(want.position) < 0.001 and got.size.distance_to(want.size) < 0.001, "%s where the card puts it (%s)" % [box.name, got])
 			for nav: Rect2 in navs:
 				assert_true(_gap(box.rect, nav) >= ZOMBIE_R, "%s clear of navigation by the zombie's width (%.2f)" % [box.name, _gap(box.rect, nav)])
 			for ramp: Rect2 in _nav_rects(box.level - 1):
 				if ramp.size.y > 5.0 and ramp.position.x > 79.0:
-					assert_true(_gap(box.rect, ramp) >= ZOMBIE_R, "%s clear of the flight's navigation" % box.name)
+					# The flight rising to this floor (3.3 m over its 10 m), where a zombie on it reaches this floor's height.
+					var z_reach := ramp.position.y + ramp.size.y * (3.3 - ZOMBIE_H) / 3.3
+					var reach := Rect2(ramp.position.x, z_reach, ramp.size.x, ramp.end.y - z_reach)
+					assert_true(_gap(box.rect, reach) >= ZOMBIE_R, "%s clear of the flight's navigation (%.2f)" % [box.name, _gap(box.rect, reach)])
+			for link: Array in links:
+				var a: Vector3 = link[0]
+				var b: Vector3 = link[1]
+				if absf(a.y - LEVELS[box.level]) < 0.3 and absf(b.y - LEVELS[box.level]) < 0.3:
+					assert_true(_seg_gap(Vector2(a.x, a.z), Vector2(b.x, b.z), box.rect) >= ZOMBIE_R, "%s clear of the link %s" % [box.name, a])
 			continue
 		assert_true(box.top - LEVELS[box.level] > 0.3, box.name + " is over 0.3 m (a collider)")
 		for nav: Rect2 in navs:
@@ -573,6 +601,55 @@ func test_player_walks_the_library_and_the_well_edge_stops_them() -> void:
 				player.move_and_slide()
 			assert_true(player.global_position.x < 78.9 and player.global_position.y > level - 0.1,
 				"the railing stops the player at z %.0f over %.1f (%s)" % [z, level, player.global_position])
+
+
+## Pushes the player straight along `dir` from `from` (4 m/s, 1.8 s: 7.2 m) and returns the lowest their feet went.
+func _walk_straight(from: Vector3, dir: Vector3) -> float:
+	player.global_position = from + Vector3(0, 0.05, 0)
+	player.velocity = Vector3.ZERO
+	for frame in 4:
+		await tree.physics_frame
+	var low := player.global_position.y
+	for frame in 108:
+		await tree.physics_frame
+		player.velocity = Vector3(dir.x * 4.0, 0.0 if player.is_on_floor() else player.velocity.y - 9.8 / 60.0, dir.z * 4.0)
+		player.move_and_slide()
+		low = minf(low, player.global_position.y)
+	return low
+
+
+# Card 1.14 (D-186): the well's last drops. The east slot between each flight's east rail (RailCollision*_39, x 84.05) and
+# the east wall (x 84.89) on floors 2 and 3, from the south (z 197) and from the north (z 211); floor 3's south edge
+# (z 199), which has no flight going up. Each walk fell on round 2's build.
+func test_the_well_has_no_drop_left() -> void:
+	await _campus()
+	await _player_at(Vector3(84.47, -6.6, 197))
+	var walks := [[Vector3(84.47, -6.6, 197), 1.0], [Vector3(84.47, -3.3, 197), 1.0], [Vector3(84.47, -6.6, 211), -1.0],
+		[Vector3(84.47, -3.3, 211), -1.0], [Vector3(80, -3.3, 197), 1.0], [Vector3(82, -3.3, 197), 1.0]]
+	for walk: Array in walks:
+		var from: Vector3 = walk[0]
+		var dz: float = walk[1]
+		var low := await _walk_straight(from, Vector3(0, 0, dz))
+		assert_true(low > from.y - 0.1, "walking %s from %s over %.1f stays on the slab (lowest feet %.2f, now %s)"
+			% ["north" if dz > 0 else "south", from, from.y, low, player.global_position])
+	# Floor 2's way onto flight two stays open (the player's centre fits between the PS1 rails at x 79.35..83.65).
+	for x: float in [80.0, 81.5, 83.0]:
+		player.global_position = Vector3(x, -6.6 + 0.05, 197)
+		player.velocity = Vector3.ZERO
+		for frame in 4:
+			await tree.physics_frame
+		if not await _walk_to(Vector3(x, -3.3, 210.5), "floor 3 up flight two from x %.1f" % x):
+			continue
+		assert_true(absf(player.global_position.y - -3.3) < 0.1, "up flight two at x %.1f to floor 3 (%s)" % [x, player.global_position])
+	# No railing over the flights' ends between their rails (x 79.05..83.95): floor 2's way onto flight two, both tops.
+	for box: Box in _added_boxes():
+		if not box.name.begins_with("WellRail"):
+			continue
+		var ends: Array[Rect2] = [Rect2(79.05, 208.9, 4.9, 1.1)]
+		if box.level == 1:
+			ends.append(Rect2(79.05, 198.0, 4.9, 1.1))
+		for end: Rect2 in ends:
+			assert_false(box.rect.intersects(end), "%s leaves the flight's end %s open" % [box.name, end])
 
 
 func test_zombie_routes_from_the_spawns_reach_floor_three() -> void:
