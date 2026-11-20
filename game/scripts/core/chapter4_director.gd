@@ -422,6 +422,10 @@ func _place_room_props() -> void:
 				var search := (load(FAKE_SEARCH_SCENE) as PackedScene).instantiate()
 				search.name = "Search" + spot.trim_prefix("Fake")
 				anchor.add_child(search)
+				# The locker, the ceiling panel and the vent are drawn by lane B's room; the grey stand-in box is not.
+				var stand_in := search.get_node_or_null("Placeholder") as Node3D
+				if stand_in != null:
+					stand_in.visible = false
 
 
 func _on_407_broken() -> void:

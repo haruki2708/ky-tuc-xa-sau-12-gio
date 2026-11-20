@@ -220,7 +220,10 @@ func test_407_slats_are_placed_and_reachable() -> void:
 						reached = true
 		assert_true(reached, "bed %d slat reachable by the interact ray (at %s)" % [bed, target])
 	for spot in ["Locker", "Ceiling", "Vent"]:
-		assert_not_null(director._anchor("Ch4/Room407/Fake" + spot).get_node_or_null("Search" + spot), "empty search spot " + spot)
+		var search := director._anchor("Ch4/Room407/Fake" + spot).get_node_or_null("Search" + spot)
+		assert_not_null(search, "empty search spot " + spot)
+		if search != null:
+			assert_false((search.get_node("Placeholder") as Node3D).visible, "no grey stand-in box at the %s;" % spot)
 
 
 ## CH4_DESIGN zone 5: the three roommates rose and left in chapter 3, so beds 1, 2 and 4 (whose slats the player
