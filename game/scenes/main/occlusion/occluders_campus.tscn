@@ -358,66 +358,78 @@ size = Vector3(0.040, 4.400, 19.300)
 size = Vector3(0.040, 4.400, 2.300)
 
 [sub_resource type="BoxOccluder3D" id="Box_119"]
-size = Vector3(0.040, 3.100, 29.800)
+size = Vector3(33.800, 0.040, 29.800)
 
 [sub_resource type="BoxOccluder3D" id="Box_120"]
-size = Vector3(0.040, 3.100, 29.800)
+size = Vector3(5.800, 0.040, 3.800)
 
 [sub_resource type="BoxOccluder3D" id="Box_121"]
-size = Vector3(18.800, 3.100, 0.040)
+size = Vector3(5.800, 0.040, 15.800)
 
 [sub_resource type="BoxOccluder3D" id="Box_122"]
-size = Vector3(18.800, 3.100, 0.040)
+size = Vector3(5.800, 0.040, 9.800)
 
 [sub_resource type="BoxOccluder3D" id="Box_123"]
-size = Vector3(18.800, 3.100, 0.040)
+size = Vector3(0.040, 3.100, 29.800)
 
 [sub_resource type="BoxOccluder3D" id="Box_124"]
-size = Vector3(18.800, 3.100, 0.040)
+size = Vector3(0.040, 3.100, 29.800)
 
 [sub_resource type="BoxOccluder3D" id="Box_125"]
-size = Vector3(33.800, 0.040, 29.800)
+size = Vector3(18.800, 3.100, 0.040)
 
 [sub_resource type="BoxOccluder3D" id="Box_126"]
-size = Vector3(5.800, 0.040, 3.800)
+size = Vector3(18.800, 3.100, 0.040)
 
 [sub_resource type="BoxOccluder3D" id="Box_127"]
-size = Vector3(5.800, 0.040, 15.800)
+size = Vector3(18.800, 3.100, 0.040)
 
 [sub_resource type="BoxOccluder3D" id="Box_128"]
-size = Vector3(0.040, 3.100, 29.800)
+size = Vector3(18.800, 3.100, 0.040)
 
 [sub_resource type="BoxOccluder3D" id="Box_129"]
-size = Vector3(0.040, 3.100, 29.800)
-
-[sub_resource type="BoxOccluder3D" id="Box_130"]
-size = Vector3(39.800, 3.100, 0.040)
-
-[sub_resource type="BoxOccluder3D" id="Box_131"]
-size = Vector3(39.800, 3.100, 0.040)
-
-[sub_resource type="BoxOccluder3D" id="Box_132"]
 size = Vector3(33.800, 0.040, 29.800)
 
-[sub_resource type="BoxOccluder3D" id="Box_133"]
+[sub_resource type="BoxOccluder3D" id="Box_130"]
 size = Vector3(5.800, 0.040, 3.800)
 
-[sub_resource type="BoxOccluder3D" id="Box_134"]
+[sub_resource type="BoxOccluder3D" id="Box_131"]
 size = Vector3(5.800, 0.040, 15.800)
 
-[sub_resource type="BoxOccluder3D" id="Box_135"]
+[sub_resource type="BoxOccluder3D" id="Box_132"]
 size = Vector3(0.040, 3.100, 29.800)
+
+[sub_resource type="BoxOccluder3D" id="Box_133"]
+size = Vector3(0.040, 3.100, 29.800)
+
+[sub_resource type="BoxOccluder3D" id="Box_134"]
+size = Vector3(39.800, 3.100, 0.040)
+
+[sub_resource type="BoxOccluder3D" id="Box_135"]
+size = Vector3(39.800, 3.100, 0.040)
 
 [sub_resource type="BoxOccluder3D" id="Box_136"]
-size = Vector3(0.040, 3.100, 29.800)
+size = Vector3(33.800, 0.040, 29.800)
 
 [sub_resource type="BoxOccluder3D" id="Box_137"]
-size = Vector3(39.800, 3.100, 0.040)
+size = Vector3(5.800, 0.040, 3.800)
 
 [sub_resource type="BoxOccluder3D" id="Box_138"]
-size = Vector3(39.800, 3.100, 0.040)
+size = Vector3(5.800, 0.040, 15.800)
 
 [sub_resource type="BoxOccluder3D" id="Box_139"]
+size = Vector3(0.040, 3.100, 29.800)
+
+[sub_resource type="BoxOccluder3D" id="Box_140"]
+size = Vector3(0.040, 3.100, 29.800)
+
+[sub_resource type="BoxOccluder3D" id="Box_141"]
+size = Vector3(39.800, 3.100, 0.040)
+
+[sub_resource type="BoxOccluder3D" id="Box_142"]
+size = Vector3(39.800, 3.100, 0.040)
+
+[sub_resource type="BoxOccluder3D" id="Box_143"]
 size = Vector3(39.800, 0.040, 29.800)
 
 [node name="OccludersCampus" type="Node3D"]
@@ -898,86 +910,102 @@ occluder = SubResource("Box_117")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 170.000, -7.600, 42.750)
 occluder = SubResource("Box_118")
 
+[node name="Library_Floor0_Main" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 62.000, -10.020, 210.000)
+occluder = SubResource("Box_119")
+
+[node name="Library_Floor0_South" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 82.000, -10.020, 197.000)
+occluder = SubResource("Box_120")
+
+[node name="Library_Floor0_North" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 82.000, -10.020, 217.000)
+occluder = SubResource("Box_121")
+
+[node name="Library_StairBase" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 82.000, -10.020, 204.000)
+occluder = SubResource("Box_122")
+
 [node name="Library_West0" type="OccluderInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.000, -8.250, 210.000)
-occluder = SubResource("Box_119")
+occluder = SubResource("Box_123")
 
 [node name="Library_East0" type="OccluderInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 85.000, -8.250, 210.000)
-occluder = SubResource("Box_120")
+occluder = SubResource("Box_124")
 
 [node name="Library_FrontW" type="OccluderInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 54.500, -8.250, 194.970)
-occluder = SubResource("Box_121")
+occluder = SubResource("Box_125")
 
 [node name="Library_FrontE" type="OccluderInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 75.500, -8.250, 194.970)
-occluder = SubResource("Box_122")
+occluder = SubResource("Box_126")
 
 [node name="Library_BackW" type="OccluderInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 54.500, -8.250, 225.030)
-occluder = SubResource("Box_123")
+occluder = SubResource("Box_127")
 
 [node name="Library_BackE" type="OccluderInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 75.500, -8.250, 225.030)
-occluder = SubResource("Box_124")
+occluder = SubResource("Box_128")
 
 [node name="Library_Floor1_Main" type="OccluderInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 62.000, -6.720, 210.000)
-occluder = SubResource("Box_125")
+occluder = SubResource("Box_129")
 
 [node name="Library_Floor1_South" type="OccluderInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 82.000, -6.720, 197.000)
-occluder = SubResource("Box_126")
+occluder = SubResource("Box_130")
 
 [node name="Library_Floor1_North" type="OccluderInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 82.000, -6.720, 217.000)
-occluder = SubResource("Box_127")
+occluder = SubResource("Box_131")
 
 [node name="Library_West1" type="OccluderInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.000, -4.950, 210.000)
-occluder = SubResource("Box_128")
+occluder = SubResource("Box_132")
 
 [node name="Library_East1" type="OccluderInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 85.000, -4.950, 210.000)
-occluder = SubResource("Box_129")
+occluder = SubResource("Box_133")
 
 [node name="Library_Front1" type="OccluderInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 65.000, -4.950, 194.970)
-occluder = SubResource("Box_130")
+occluder = SubResource("Box_134")
 
 [node name="Library_Back1" type="OccluderInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 65.000, -4.950, 225.030)
-occluder = SubResource("Box_131")
+occluder = SubResource("Box_135")
 
 [node name="Library_Floor2_Main" type="OccluderInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 62.000, -3.420, 210.000)
-occluder = SubResource("Box_132")
+occluder = SubResource("Box_136")
 
 [node name="Library_Floor2_South" type="OccluderInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 82.000, -3.420, 197.000)
-occluder = SubResource("Box_133")
+occluder = SubResource("Box_137")
 
 [node name="Library_Floor2_North" type="OccluderInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 82.000, -3.420, 217.000)
-occluder = SubResource("Box_134")
+occluder = SubResource("Box_138")
 
 [node name="Library_West2" type="OccluderInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.000, -1.650, 210.000)
-occluder = SubResource("Box_135")
+occluder = SubResource("Box_139")
 
 [node name="Library_East2" type="OccluderInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 85.000, -1.650, 210.000)
-occluder = SubResource("Box_136")
+occluder = SubResource("Box_140")
 
 [node name="Library_Front2" type="OccluderInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 65.000, -1.650, 194.970)
-occluder = SubResource("Box_137")
+occluder = SubResource("Box_141")
 
 [node name="Library_Back2" type="OccluderInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 65.000, -1.650, 225.030)
-occluder = SubResource("Box_138")
+occluder = SubResource("Box_142")
 
 [node name="Library_Roof" type="OccluderInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 65.000, 0.050, 210.000)
-occluder = SubResource("Box_139")
+occluder = SubResource("Box_143")

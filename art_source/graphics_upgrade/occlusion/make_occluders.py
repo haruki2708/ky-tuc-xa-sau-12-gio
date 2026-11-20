@@ -60,15 +60,18 @@ CAMPUS = [
 # The library (after T-265, D-185/D-186), written after CAMPUS so the boxes above keep their ids. Lane B's "Mặt đặc kín":
 # the four outer walls have no real hole but the front and back doorways (x 64..66, y -9.9..-7.5), every window is dark
 # glass (W7GlassDark, opaque) in the wall's thickness, the slabs are open only over the stair well (x 79..85,
-# z 199..209), which their three pieces per floor leave out, and the roof is closed. The front and back walls' occluders
-# sit in the walls' outer half ("at=": in front of the panes on the middle plane), clear of the shells' window dressing
-# ("Windows", from the panes inward). Not the ground slabs (nothing under them), nor the lintels over the doorways
-# (2 cm from the door frames).
+# z 199..209), which their three pieces per floor leave out, and the roof is closed. The ground slab gets occluders too
+# (its three pieces and StairBase under the well). Nothing lies under it, but without them a view down at floor 1's floor
+# meets no occluder there, which leaves holes in the occlusion buffer: the integrator's capture (20/11) found such views
+# drawing the campus behind the walls. The front and back walls' occluders sit in the walls' outer half ("at=": in front
+# of the panes on the middle plane), clear of the shells' window dressing ("Windows", from the panes inward). Not the
+# lintels over the doorways (2 cm from the door frames).
 LIBRARY = [
 	(r"Campus/Library/(West|East)[012]/Collision", "plane"),
 	(r"Campus/Library/(FrontW|FrontE|Front1|Front2)/Collision", "plane|at=194.97"),
 	(r"Campus/Library/(BackW|BackE|Back1|Back2)/Collision", "plane|at=225.03"),
-	(r"Campus/Library/Floor[12]_(Main|South|North)/Collision", "plane"),
+	(r"Campus/Library/Floor[012]_(Main|South|North)/Collision", "plane"),
+	(r"Campus/Library/StairBase/Collision", "plane"),
 	(r"Campus/Library/Roof/Collision", "plane"),
 ]
 
