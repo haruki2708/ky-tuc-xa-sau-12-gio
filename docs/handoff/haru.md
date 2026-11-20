@@ -131,6 +131,10 @@ Trả lời và viết tài liệu bằng tiếng Việt; code, comment, commit 
   - `48e04b7`: `CAMPUS_COLLIDERS_MD5` thành `1e0dd942…` (1.072 va chạm: thêm 115 khối `Library/Real/Added`) trong `test_t262_gate`, `test_t263_canteen`, `test_t264_buildings`, `test_t264_rest`.
   - `67b5eb2`: 21 hộp che thư viện; `occluders_campus.tscn` từ 119 lên 140 hộp; `test_t260` có bài riêng cho thư viện.
   - Kiểm: full test 1072/0, check 0. Chủ dự án tắt RAV và Chrome, nhưng `rsEngineSvc` của RAV vẫn giữ khoảng 3,8 GB.
+  - **Đóng gói 16:31 bị Claude Code dừng vì thiếu RAM**, lúc đang nén zip; không phải lỗi build.
+    - Export đã xong: `build/windows/KyTucXa.exe` là bản mới, nhưng chưa qua lượt chạy thử 60 khung.
+    - Đã xoá zip dở (thiếu mục lục), thư mục `build/dist/verify-*` và khoá Godot.
+    - **Không chạy lại; chờ chủ dự án bảo.** Zip mới nhất vẫn là `KyTucXa-0.0.1-7a0c932d-win64.zip` (19/11), chưa có đợt 7 lượt 3 và đợt 8.
   - **Chưa chụp ảnh bật/tắt khối che thư viện**: đã đề nghị, chủ dự án chưa nhận; chỉ chụp khi chủ dự án nói "chụp luôn".
   - Việc tiếp: đợt 9 (quay lại phòng 407 chương 4, bệnh viện; card T-266 chưa viết), phần còn của đợt 10, build cuối, rồi lượt chơi thử cuối của chủ dự án (D-176), FPS chỉ đo khi chủ dự án cho. Số tiếp theo D-187, T-266.
 - **20/11: D-185, T-265 lượt 1 review xong**; chủ dự án giao integrator chọn phương án (card mục 1). Chờ chủ dự án dán lượt 2 (`lane-b.md` mục 1s, khối thứ hai, Opus 5.5 xhigh). Sau lượt 2: review (kiểm kỹ lan can ô cầu thang có va chạm, dãy kệ trong khoang ngoài nav + 0,6 m, vùng trống quanh điểm jumpscare), merge, full test + check (nhờ chủ dự án thoát hẳn RAV và Chrome), rồi integrator thêm khối che thư viện (`make_occluders.py`, theo "Mặt đặc kín" ở Handoff lượt 1), build.
