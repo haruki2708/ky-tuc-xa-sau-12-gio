@@ -85,3 +85,11 @@ Nhà A kiểu A2, giảng đường, nhà thể chất (tường vàng, phòng g
 nhẹ chương 1–2 (lượt 2); mặt đất, đường nhựa, vỉa, sân trước lát block, hàng rào B40, ba loài cây, đèn thép cần vươn, đồ rải
 phần còn lại hộp A16 (lượt 3). Nguồn từng file và texture:
 [`wave7/CREDITS.md`](wave7/CREDITS.md). Dựng bằng script Blender, texture vẽ bằng code; không Tripo, không ảnh AI (D-166).
+## `wave9/` — T-266: phòng 407 ở chương 4 (vạt giường, chỗ tìm giả, cửa bị phá) và phòng bệnh của đoạn kết (lượt 1, hình mẫu)
+
+Hình mẫu lượt 1 (chưa gắn vào cảnh nào): vạt V1/V2/V2b giường 2, cửa chớp thông gió, nắp trần H1/H2, vết nứt, cánh vỡ và tay
+xác của cửa 407; phòng bệnh dựng thô (vỏ, giường inox, người dưới chăn T1/T2, giường trống, rèm Y1, cửa Y2, cây truyền).
+Dựng bằng script Blender (`art_source/graphics_upgrade/realistic_map/wave9/build_wave9_pilot.py`), texture vẽ bằng code
+([`../../../textures/graphics_pilot/realistic_map/wave9/CREDITS.md`](../../../textures/graphics_pilot/realistic_map/wave9/CREDITS.md));
+không Tripo mới, không ảnh AI (D-166). `door_broken.glb` là cánh cửa phòng có sẵn của game (`room407_shell/doors/door_room.glb`,
+Tripo gói trả phí theo D-084) cắt lỗ và giảm lưới trong Blender, dùng lại ba map của nó qua vật liệu `W9DoorRoom`.
