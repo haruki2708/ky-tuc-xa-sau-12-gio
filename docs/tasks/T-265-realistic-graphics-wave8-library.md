@@ -1,5 +1,5 @@
 # T-265 — Đồ hoạ thật đợt 8: thư viện ba tầng (vỏ ngoài, ba tầng trong, cầu thang, cửa sau) và dải đất quanh thư viện
-- Lane: B | Trạng thái: **todo, chưa giao** (card viết 19/11/2026; giao **sau khi T-264 lượt 3 merge**) | Agent: tài khoản Claude lane B, `D:\GAME_WORK\lane-b2`. Chủ dự án tự dán prompt (`lane-b.md` mục 1s).
+- Lane: B | Trạng thái: **done, merged `9ae6e4f` (20/11/2026)**: ba lượt của lane B, cộng khối che thư viện của integrator (card viết 19/11/2026; xem "Review integrator, lượt 3 và merge" cuối card) | Agent: tài khoản Claude lane B, `D:\GAME_WORK\lane-b2`. Chủ dự án tự dán prompt (`lane-b.md` mục 1s).
 - **Model (D-183):** lane B **Opus 5.5, effort xhigh** (model cao nhất của lane B). Lượt nào bị trả sửa hai lần cùng một lỗi thì lượt sửa dùng **max**. Phần của integrator (chuyển phương án, review, khối che, hình cho jumpscare nếu có): **Mythos 5.2 high**.
 - Nhánh: `lane-b/T-265-realistic-graphics-wave8-library` từ `origin/main` mới nhất (đã có đợt 7 lượt 3).
 - Quyết định nền:
@@ -225,8 +225,9 @@
 - [x] Lượt 2: vỏ ngoài, cửa chính, cửa sau, cửa sổ, ẩn `LibraryBand*`
 - [x] Lượt 2: ba tầng trong, cầu thang, quầy, bản đồ, kệ và sách, bàn đọc, chướng ngại, đồ thêm (nếu chọn)
 - [x] Lượt 2: dải đất quanh thư viện, khớp mép đợt 7
-- [ ] Lượt 2: ảnh trước/sau, `overview.jpg`, test, full test, check, README, CREDITS, Handoff (xong trừ full test và check: full test bị dừng vì thiếu RAM, check chưa chạy)
+- [x] Lượt 2: ảnh trước/sau, `overview.jpg`, test, full test, check, README, CREDITS, Handoff (full test của lane B bị dừng vì thiếu RAM, check chưa chạy; integrator chạy cả hai khi merge: 1072/0, check 0)
 - [x] Lượt 3: phép thử rơi (hỏng trên lượt 2), bốn đoạn lan can `WellRail_*`, test t265 15/0, `r3_well.jpg`, Handoff (t264 16/2: hằng số va chạm khuôn viên, xem Handoff lượt 3)
+- [x] Integrator: review lượt 3, đổi hằng `CAMPUS_COLLIDERS_MD5` của bốn test cũ, 21 hộp che thư viện (mục 13), full test + check, merge (Review cuối card)
 
 ## Handoff
 *(Lane B ghi: đã làm, còn dở, cách kiểm, dòng RESULT test và check, commit, yêu cầu thay đổi, phần chưa kiểm.)*
@@ -462,3 +463,22 @@ Tầng 2 đi về bắc ở x 80, 81,5 và 83 từ z 197 vẫn lên được t�
 #### Yêu cầu thay đổi
 - Đổi `CAMPUS_COLLIDERS_MD5` thành `"1e0dd9426510b21e245fbf2b84ee80c2"` (1.072 va chạm = 957 của main + 115 `Real/Added` của T-265) trong `test_t262_gate.gd` (comment "957 colliders" thành 1072), `test_t263_canteen.gd`, `test_t264_buildings.gd`, `test_t264_rest.gd`. Integrator sửa khi merge, hoặc cho phép thì lane B làm trong một commit riêng.
 - Ghi chú lượt 2 về mép nam tầng 3 đã xử lý bằng `WellRail_F3S`.
+
+## Review integrator, lượt 3 và merge (20/11/2026)
+- **Đạt, merge `9ae6e4f`** (no-ff, nhánh lane B `e773f0b`, gốc main `a7fcf6f`), cộng hai commit của integrator: `48e04b7` (hằng va chạm khuôn viên) và `67b5eb2` (khối che thư viện). **Đợt 8 (T-265) xong.**
+- Phạm vi lượt 3 đúng mục 14 (D-186): `library.tscn` chỉ thêm 44 dòng (4 hộp `WellRail_*` lớp 1, mask 0, dưới `Real/Added`); `stairs.glb` thêm hình lan can, cùng vật liệu `W1Iron`, `W1Wood`; `test_t265_library` thêm 4 đoạn vào `RAILS`, `ADDED` 111 → 115 và phép thử rơi `test_the_well_has_no_drop_left`; còn lại là script dựng, ảnh, README trong thư mục đợt 8. Cả nhánh chỉ thêm vào `game/`, trừ một dòng `LibraryBand*` của `test_t264_buildings` đã duyệt ở lượt 2.
+- Integrator đối chiếu bốn đoạn với va chạm PS1 (tay vịn nhịp `RailCollision*_39` x 83,95…84,05, mặt trong tường đông x 84,89, sàn y −6,6 và −3,3): mỗi đoạn bịt đúng một đầu khe đông, hoặc mép nam tầng 3. Lối vào nhịp hai ở tầng 2 (x 79…84 tại z 199) và lối ra hai nhịp (z 209) để hở. Đoạn gần navigation nhất cách 0,42 m.
+- Phép thử rơi viết trước: cả sáu hỏng trên bản lượt 2 (bảng ở Handoff lượt 3) và đạt trên lượt 3. Ba đường đi lên tầng 3 qua nhịp hai (x 80; 81,5; 83) vẫn qua. Ảnh `previews/wave8/r3_well.jpg`: lan can cùng kiểu lan can mép tây.
+- **Sửa test của integrator** (yêu cầu thay đổi của lane B): `CAMPUS_COLLIDERS_MD5` trong `test_t262_gate`, `test_t263_canteen`, `test_t264_buildings`, `test_t264_rest` đổi từ `5f21b42e…` (957 va chạm) thành `1e0dd942…`, đúng số lane B đo. Con số mới là 1.072 va chạm: 957 của main cộng 115 khối `Library/Real/Added` của T-265. Phần còn lại của khuôn viên vẫn được giữ như main, vì `test_t265_library` vẫn băm mọi va chạm ngoài `Library/Real/Added` ra `5f21b42e…` và kiểm 115 khối kia từng khối một.
+- **Khối che thư viện (mục 13, `67b5eb2`):** 21 hộp core vào `occluders_campus.tscn` (119 → 140), sinh bằng `make_occluders.py` theo luật `LIBRARY`. Luật này chạy sau `CAMPUS` nên id các hộp cũ giữ nguyên; `occluders_floor4.tscn` không đổi.
+  - Hộp ở: tường tây, đông cả ba tầng; tường trước, sau (bốn khúc mỗi mặt, quanh lỗ cửa); sàn tầng 2 và tầng 3 (ba mảnh mỗi tầng, chừa ô cầu thang); mái.
+  - Tường trước và sau đặt ở nửa ngoài tường (z 194,97 và 225,03): trước lớp kính tối trên mặt giữa, ngoài lớp `Windows` của vỏ.
+  - Không đặt ở sàn tầng 1 (dưới không có gì) và lanh tô trên cửa (chỉ cách khung cửa 2 cm).
+  - `test_t260_occlusion` thêm bài riêng cho thư viện: đủ 21 hộp; không hộp nào chạm lỗ cửa trước, sau hay ô cầu thang; hộp tường trước, sau nằm ngoài mặt kính.
+  - Chi tiết ở [báo cáo T-260](../../tools/reports/T-260-occlusion-culling.md), mục bổ sung 20/11.
+  - **Chưa chụp ảnh bật/tắt** occlusion cho khối che này, chưa đo lại số lần vẽ ở góc tầng 2 nhìn về nam (5.294 lần vẽ trong `r3_well.jpg`); chờ chủ dự án cho chụp.
+- **Kiểm** (20/11, có khoá Godot; chủ dự án đã tắt RAV và Chrome, dù dịch vụ `rsEngineSvc` của RAV vẫn giữ khoảng 3,8 GB và máy còn 4,1 GB trống):
+  - Lọc `t26` trước, có khối che: **`RESULT: 72 passed, 0 failed`**.
+  - Full test: **`RESULT: 1072 passed, 0 failed`** (15:28–16:09).
+  - Check: **`RESULT: check 0 error(s)`** (16:26).
+  - Lượt này phủ cả đợt 7 lượt 3 (lượt full test của integrator ngày 19/11 bị dừng).

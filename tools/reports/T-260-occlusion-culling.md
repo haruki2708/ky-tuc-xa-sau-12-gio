@@ -110,3 +110,22 @@ Kiểm bằng cảnh thử `build/integrator/canteen_occ.gd` (chương thật, d
 - Nhìn thẳng tường tây từ giữa sảnh vẫn còn khoảng 4.000 lần vẽ: qua lỗ lối tây và các cửa sổ trước vẫn thấy một phần khuôn viên, và vật lớn chỉ bị bỏ khi bị che hết.
 - Test: `test_t260_occlusion` 5/0 (thêm bài riêng cho nhà ăn: đủ 13 hộp, không hộp nào chạm tường trước, lối tây, lỗ sang bếp, sang kho, cửa sau kho), `test_t263` 12/0, `test_campus` 5/0. **Chưa chạy full test và check** cho thay đổi này (chỉ đổi cảnh khối che của core và test của nó); sẽ chạy ở lần merge kế tiếp.
 - Không đo FPS (D-179).
+
+## Bổ sung 20/11/2026: khối che thư viện (sau T-265, D-185/D-186)
+Integrator thêm **21 hộp che** cho thư viện vào `occluders_campus.tscn` (nay 140 hộp), sinh bằng `make_occluders.py`. Luật `LIBRARY` chạy sau `CAMPUS`, nên id các hộp cũ giữ nguyên; `occluders_floor4.tscn` không đổi (53 hộp). Chỗ đặt theo mục "Mặt đặc kín" lane B ghi ở Handoff T-265: bốn tường ngoài chỉ có hai lỗ thật là cửa trước và cửa sau (x 64…66, y −9,9…−7,5); mọi cửa sổ là kính tối `W7GlassDark` (đục) nằm trong bề dày tường; sàn chỉ hở ở ô cầu thang; mái kín.
+
+| Mặt | Hộp | Đặt ở |
+|---|---|---|
+| Tường tây, đông (tầng 1–3) | `Library_West0…2`, `Library_East0…2` | mặt giữa tường |
+| Tường trước (bốn khúc quanh lỗ cửa chính) | `Library_FrontW`, `FrontE`, `Front1`, `Front2` | z 194,97 (nửa ngoài tường) |
+| Tường sau (bốn khúc quanh lỗ cửa sau) | `Library_BackW`, `BackE`, `Back1`, `Back2` | z 225,03 (nửa ngoài tường) |
+| Sàn tầng 2 (y −6,72) và tầng 3 (y −3,42), ba mảnh mỗi tầng, chừa ô cầu thang x 79…85, z 199…209 | `Library_Floor1_Main/South/North`, `Library_Floor2_Main/South/North` | mặt giữa sàn |
+| Mái | `Library_Roof` | mặt giữa |
+
+- Tường trước và sau dùng kiểu mới `plane|at=<z>` của `make_occluders.py`: mặt che đặt ở nửa ngoài tường, không ở mặt giữa. Lý do: kính tối nằm trên mặt giữa (z 195, 225), còn lớp `Windows` của vỏ (rèm, song) đi từ mặt kính vào trong, nên hộp ở mặt giữa sẽ chạm lớp đó. Script kiểm hộp vẫn nằm trong bề dày tường.
+- Không đặt ở sàn tầng 1 (dưới không có gì để che), và lanh tô trên hai lỗ cửa (chỉ cách khung cửa 2 cm).
+- Test: `test_t260_occlusion` thêm bài riêng cho thư viện. Bài này kiểm đủ 21 hộp, và không hộp nào chạm lỗ cửa trước, sau (khung x 63,92…66,08, tới y −7,42) hay ô cầu thang (x 79…84,89, z 199…209, tầng 2–3). Hộp tường trước, sau phải nằm ngoài mặt kính. Bài chương 3 thật vẫn kiểm mọi hộp: nằm trong một hộp va chạm đặc, không chạm cửa, cửa sổ, lan can, cách điểm xuất phát.
+  - Lọc `t26`: 72/0.
+  - Full test sau merge T-265: 1072/0. Check: 0.
+- **Chưa chụp ảnh bật/tắt như nhà ăn** và chưa đo số lần vẽ (cần chạy chương thật có hình, tốn RAM; chờ chủ dự án cho). Mốc để so: lane B đo ở tầng 2, đầu nhịp một nhìn về nam, được 5.294 lần vẽ khi thư viện chưa có khối che (`previews/wave8/r3_well.jpg`).
+- Không đo FPS (D-179).

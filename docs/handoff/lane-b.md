@@ -338,7 +338,7 @@ Tiếp tục T-264 lượt 2: chủ dự án đã chọn (card mục 1). Ở D:\
 Tiếp tục T-264 lượt 3. Ở D:\GAME_WORK\lane-b2: git status, git fetch origin, git switch lane-b/T-264-realistic-graphics-wave7-shells-ground, git rebase origin/main (main đã có lượt 2), git lfs pull. Làm lượt 3 (card mục 2, bước 8–9; card mục 1 có thêm việc đổi màu mặt ngoài dãy ban công tầng 4 phía sau nhà B cho khớp mặt sau mới, được sửa floor4_rooms.gd chỉ phần màu đó): mặt đất, đường, vỉa, cây, đèn đường, ghế, xe máy đổ, hàng rào bắc/đông/tây, đồ rải trong hộp A16 đã chốt, khớp mép với các dải đã làm; mảnh xác, máu, vệt kéo không đụng, chỉ thu từng bản MultiMesh về 0. Ảnh trước/sau (cả toàn cảnh từ hành lang tầng 4 nhà B và từ khán đài), overview.jpg, số lần vẽ trước/sau ở ba góc toàn cảnh, test, rồi full pwsh tools/test.ps1, pwsh tools/check.ps1, git checkout -- game/default_bus_layout.tres. Commit, push nhánh, cập nhật Handoff, README, CREDITS, báo ngắn kèm dòng RESULT test và check.
 ```
 
-## 1s. Giao T-265 (viết 19/11/2026; dán SAU KHI T-264 lượt 3 merge): đồ hoạ thật đợt 8 — thư viện ba tầng và dải đất quanh thư viện
+## 1s. Giao T-265 (viết 19/11/2026; dán SAU KHI T-264 lượt 3 merge): đồ hoạ thật đợt 8 — thư viện ba tầng và dải đất quanh thư viện (ĐÃ XONG, merge `9ae6e4f` 20/11; không dán lại)
 Gõ `/clear` (hoặc mở phiên mới), `/model` chọn **Opus 5.5**, effort **xhigh** (model cao nhất của lane B, D-183; lượt sửa lại lần hai thì **max**), rồi dán:
 ```text
 Việc mới cho lane B: T-265 — đồ hoạ thật đợt 8: thư viện ba tầng (vỏ ngoài, ba tầng trong, cầu thang, cửa sau, quầy, bản đồ, kệ sách, bàn đọc) và dải đất 6 m quanh thư viện (chương 3–4). Đọc docs/tasks/T-265-realistic-graphics-wave8-library.md.
