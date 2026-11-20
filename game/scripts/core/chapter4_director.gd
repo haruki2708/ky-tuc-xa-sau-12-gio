@@ -75,6 +75,17 @@ func _ready() -> void:
 	EventBus.fade_message_typed.connect(_on_fade_message_typed)
 	_place_ch4_uses()
 	_place_ch4_audio()
+	_clear_roommates()
+
+
+## The three roommates rose and left in chapter 3 (_roommates_rise; CH4_DESIGN zone 5): beds 1, 2 and 4 are
+## empty in this chapter from any checkpoint.
+func _clear_roommates() -> void:
+	for bed: int in ROOMMATES:
+		var anchor := _room_anchor("Corpse%d" % bed)
+		var body := anchor.get_node_or_null("Body") as Node3D if anchor != null else null
+		if body != null:
+			body.visible = false
 
 
 func run_from(stage: StringName) -> void:

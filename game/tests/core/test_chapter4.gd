@@ -223,6 +223,20 @@ func test_407_slats_are_placed_and_reachable() -> void:
 		assert_not_null(director._anchor("Ch4/Room407/Fake" + spot).get_node_or_null("Search" + spot), "empty search spot " + spot)
 
 
+## CH4_DESIGN zone 5: the three roommates rose and left in chapter 3, so beds 1, 2 and 4 (whose slats the player
+## flips) are empty all through chapter 4, whichever checkpoint it starts from.
+func test_the_roommates_are_gone_from_their_beds() -> void:
+	await wait_frames(4)
+	for bed in [1, 2, 4]:
+		var body := director._room_anchor("Corpse%d" % bed).get_node("Body") as Node3D
+		assert_false(body.is_visible_in_tree(), "no body on bed %d;" % bed)
+	director.run_from(&"room407")
+	await wait_frames(6)
+	for bed in [1, 2, 4]:
+		var body := director._room_anchor("Corpse%d" % bed).get_node("Body") as Node3D
+		assert_false(body.is_visible_in_tree(), "no body on bed %d in the room 407 stage;" % bed)
+
+
 ## The back door is the only way into the library: E opens it, E shuts it.
 func test_library_back_door_opens_and_shuts_by_hand() -> void:
 	await wait_frames(4)
