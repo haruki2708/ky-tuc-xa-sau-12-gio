@@ -482,3 +482,4 @@ Tầng 2 đi về bắc ở x 80, 81,5 và 83 từ z 197 vẫn lên được t�
   - Full test: **`RESULT: 1072 passed, 0 failed`** (15:28–16:09).
   - Check: **`RESULT: check 0 error(s)`** (16:26).
   - Lượt này phủ cả đợt 7 lượt 3 (lượt full test của integrator ngày 19/11 bị dừng).
+- **Bản chơi:** package PASS 20/11 17:35, zip `build/dist/KyTucXa-0.0.1-d893472a-win64.zip`, có đợt 1–8. Lần đóng gói đầu (16:32) bị Claude Code dừng vì thiếu RAM; chủ dự án bảo chạy lại.
