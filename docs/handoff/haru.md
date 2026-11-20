@@ -128,7 +128,8 @@ Trả lời và viết tài liệu bằng tiếng Việt; code, comment, commit 
 
 **Việc dở ngay lúc này (đọc trước):**
 - **20/11 tối: card đợt 9 [T-266](../tasks/T-266-realistic-graphics-wave9-room407-hospital.md) viết xong** (phòng 407 chương 4, phòng bệnh viện; prompt `lane-b.md` mục 1t; lane B Opus 5.5 xhigh). **Chờ chủ dự án dán lượt 1.**
-  - Sau lượt 1: integrator xem ảnh, chuyển phương án cho chủ dự án. Câu chính: hai y tá chỉ có tiếng ngay giữa khung hình kết (Y1 rèm quây giường, Y2 dời tiếng ra cửa…); nệm chăn gối khi lật vạt (N1/N2); khung hình K1/K2; ô thông gió và tấm trần ở cả bốn chương hay không (C1/C2). Ghi D-187 và card mục 1, rồi viết prompt lượt 2 vào `lane-b.md` 1t.
+  - **Lượt 1 xong, review đạt** (nhánh `29c1476`). **D-187**: chủ dự án chọn Y1, N2 không va chạm, K2, C2; integrator chọn phần còn lại (card mục 1, điểm 1–12). Prompt lượt 2 ở `lane-b.md` 1t; **chờ chủ dự án dán.**
+  - Review lượt 2 kiểm kỹ: C2 không làm hỏng test phòng 407 chương 1–2 (hình phải vào `KEEP_PS1` hoặc `Room407Furnish`, nếu không `_furnish()` ẩn mất); hai bộ đồ rơi của bunk A (giường 1 và 2) theo cả hai thứ tự lật; cửa 80 % nhìn từ hành lang có xác; thẻ tên đọc được ở kết thật, ở cả độ sáng 1,45; `Camera_Wake` 11°.
   - Hai sửa core khi khảo sát (đã đẩy main): `138cff2` xác ba bạn cùng phòng không còn trên giường 407 ở chương 4; `78365fa` ẩn hộp xám ở ba chỗ tìm giả. Test lọc chương 4 đạt (`test_chapter4` 15/0, `test_ch4_environment` 6/0, `test_ch4_gameplay` 17/0, `test_ch2_4_hand` 3/0).
   - **Full test + check còn nợ** cho: 4 hộp che sàn tầng 1 thư viện và hai sửa core này. Chạy một lần khi merge T-266 (nhờ chủ dự án thoát RAV và Chrome).
   - Sau T-266: phần còn của đợt 10 (5 cảnh CCTV phòng 102, 306, 209, 106, 310; chi tiết nhỏ phòng 407; rà đồng bộ bốn chương), card T-267. Số tiếp theo D-187, T-267.

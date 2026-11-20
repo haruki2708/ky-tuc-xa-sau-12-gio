@@ -373,7 +373,14 @@ Godot theo luật Lượt Godot (file khóa D:\GAME_WORK\GODOT_DANG_CHAY.txt); m
 Commit nhỏ "T-266: ...", push nhánh. Không push main, không mở PR. Cập nhật Checklist và Handoff trong card. Không sửa STATUS hay DECISIONS.
 Cuối phiên báo ngắn bằng tiếng Việt: xong gì, nhánh, commit, ảnh phương án ở đâu, phương án đề xuất, câu hỏi cho chủ dự án, dòng RESULT test lọc, có bị chặn không.
 ```
-**Lượt 2** (sau khi chủ dự án chọn, integrator đã ghi card mục 1): integrator viết prompt "tiếp tục" vào đây sau lượt 1.
+**Lượt 2** (D-187 đã ghi ở card mục 1): `/clear`, `/model` **Opus 5.5**, effort **xhigh**, rồi dán
+```text
+Tiếp tục T-266 lượt 2: chủ dự án và integrator đã chọn, ghi ở card mục 1 (D-187). Đọc kỹ mục 1 cùng các mục 3, 4, 7, 8, 9 vừa sửa theo D-187. Ở D:\GAME_WORK\lane-b2 trên nhánh lane-b/T-266-realistic-graphics-wave9-room407-hospital: git status, git fetch origin, git rebase origin/main (lấy card mục 1), git lfs pull. Làm lượt 2 (card mục 2, bước 5–7):
+Phòng 407: vạt V2b cả ba giường, mỗi giường một góc lật (giường 2 khoảng 62°); chữ mực loang ba mảnh; N2 không va chạm (rơi ≤ 0,6 giây; giường 1 và 2 cùng một giường tầng: đồ hai giường nằm riêng, không chồng xuyên, lật theo thứ tự nào cũng vậy; camera ở chỗ dùng tay không nằm trong món nào); nắp trần H1 và chớp thông gió, có phản hồi khi tìm xong qua tín hiệu searched; C2: hai hình này vào phòng 407 gốc ở cả bốn chương theo một trong hai đường ở mục 1 điểm 5 (room407.gd._furnish() ẩn mọi mesh ngoài KEEP_PS1 và ngoài cây đồ thật), ẩn CeilingPanel, VentFrame, VentSlat* của ch4_anchors; sửa hình cửa 407 bị phá trong door407_proxy.gd (từ 60 % ẩn cả Pivot/RoomDoor và bốn hộp Damage/Hole, trả lại khi thoát; kiểm 80 % từ hành lang khi có bốn xác đứng ở cửa).
+Phòng bệnh: Y1 rèm có bóng hai người đứng yên như người thường; K2 ngước 11°; vỏ phòng, giường như hình mẫu; Trung T1; Nhật, Ngư dưới chăn không lộ mặt; kết một mình ga phẳng, chăn gấp; thẻ tên (ngoại lệ UI, mục 1 điểm 11): chữ hai mặt, giấy chịu sáng, ở 1,45 không cháy trắng, kết thật đọc được tên Nhật và Ngư từ Camera_Wake.
+Ảnh trước/sau trong chương 4 thật (phòng 407 từ cửa: chưa lật, lật cả ba theo hai thứ tự, cửa 0/30/60/80 % từ trong và từ hành lang có xác), phòng 407 chương 1 cùng góc (C2), khung kết ở hai kết, độ sáng 1,0 và 1,45; overview.jpg; số lần vẽ trước/sau theo card mục 5; test test_t266_* theo card mục 7 (thay test_t266_pilot). Chỉ chạy các test lọc ở card mục 7 (có cả chương 1–2 vì C2), rồi git checkout -- game/default_bus_layout.tres. KHÔNG chạy full test và check: integrator chạy khi merge. Lượt nào bị dừng vì thiếu RAM thì ghi rõ, không tự chạy lại.
+Commit, push nhánh, cập nhật Checklist, Handoff "### Lượt 2", README, CREDITS; báo ngắn bằng tiếng Việt kèm dòng RESULT từng test lọc, rồi dừng.
+```
 
 ## 2. Prompt giao việc (integrator điền T-xxx)
 ```text
