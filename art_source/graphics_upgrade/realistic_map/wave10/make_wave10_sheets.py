@@ -186,7 +186,7 @@ def options():
 		[("pilot_306_back_w2_1080.jpg", (728, 410), "W2 · 1080p", False),
 			("pilot_306_back_w1_1080.jpg", (728, 410), "W1 · 1080p", False)],
 	], [
-		"Chỉ feed phòng 310 nhìn về tường sau; bốn phòng kia có Cam đặt sát tường sau, không thấy. W2: +88 tam giác, +5 lần vẽ ở feed 310.",
+		"Chỉ feed phòng 310 nhìn về tường sau; bốn phòng kia có Cam đặt sát tường sau, không thấy. W2: +864 tam giác, +5 lần vẽ ở feed 310.",
 	])
 	sheet("options_h.jpg", "Hành lang trước cửa: H1 (hành lang tầng 1–3 đợt 2) hay H2 (vật liệu cctv_corridor tầng 4, T-256)", [
 		[("pilot_306_hall_ps1_feed.jpg", F, "main · " + draws("pilot_306_hall_ps1"), False),

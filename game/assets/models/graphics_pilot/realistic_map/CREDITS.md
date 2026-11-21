@@ -95,3 +95,12 @@ dựng lại được các hình mẫu lượt 1 đã xoá khỏi game: V1/V2, H
 ([`../../../textures/graphics_pilot/realistic_map/wave9/CREDITS.md`](../../../textures/graphics_pilot/realistic_map/wave9/CREDITS.md));
 không Tripo mới, không ảnh AI (D-166). `door_broken.glb` là cánh cửa phòng có sẵn của game (`room407_shell/doors/door_room.glb`,
 Tripo gói trả phí theo D-084) cắt lỗ và giảm lưới trong Blender, dùng lại ba map của nó qua vật liệu `W9DoorRoom`.
+
+## `wave10/` — T-267: năm phòng trường quay CCTV (lượt 1: hình mẫu phòng 306)
+
+Lượt 1 (hình mẫu, chưa gắn vào scene nào): vỏ phòng trường quay với tường sau trơn (W1) hoặc có cửa ban công và cửa sổ đóng
+(W2), khung cửa, bảng số, bóng đèn ngủ (`cctv_room.glb`); hành lang tầng 1–3 nhà B với lan can sắt hoặc lan can xây, máng đèn
+(`cctv_hall.glb`); giường tầng thép nhẹ và tủ thép kiểu đợt 2 (`cctv_light_set.glb`). Dựng bằng script Blender
+(`art_source/graphics_upgrade/realistic_map/wave10/build_wave10.py`, theo hàm `bunk()`, `locker()`, `wall()`, `balustrade()`,
+`lamps()` của đợt 2); chỉ dùng vật liệu và texture có sẵn của đợt 1–2 (nguồn ở `wave1/`, `wave2/` và CREDITS của chúng),
+không texture mới, không nguồn ngoài mới, không Tripo, không ảnh AI (D-166).

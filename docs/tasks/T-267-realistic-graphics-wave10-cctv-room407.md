@@ -265,11 +265,178 @@
 - Sửa STATUS, DECISIONS.
 
 ## Checklist
-- [ ] Lượt 1: khảo sát, bảng hợp đồng, ảnh feed hiện trạng của năm phòng và năm hành lang, kiểm kê đồ nhỏ phòng 407
-- [ ] Lượt 1: hình mẫu một phòng, phương án; dừng chờ chủ dự án chọn
+- [x] Lượt 1: khảo sát, bảng hợp đồng, ảnh feed hiện trạng của năm phòng và năm hành lang, kiểm kê đồ nhỏ phòng 407
+- [x] Lượt 1: hình mẫu một phòng, phương án; dừng chờ chủ dự án chọn
 - [ ] Lượt 2: năm phòng, năm hành lang
 - [ ] Lượt 2: đồ nhỏ phòng 407
 - [ ] Lượt 2: ảnh đồng bộ bốn chương, ảnh trước/sau, `overview.jpg`, test lọc, README, CREDITS, Handoff
 
 ## Handoff
 *(Lane B ghi: đã làm, còn dở, cách kiểm, dòng RESULT test, commit, yêu cầu thay đổi, phần chưa kiểm.)*
+
+### Lượt 1 (lane B, 21/11/2026; card đọc ở `d369bf8`) — xong, DỪNG chờ chủ dự án chọn
+Nhánh tạo từ `origin/main` `d369bf8`. Lượt này **không sửa scene nào của game**: hình mẫu được dựng lúc chạy, trong chương 1
+và 2 thật, bằng script chụp. Lượt này thêm glb hình mẫu ở `wave10/`, test `test_t267_cctv.gd`, script và ảnh. Chi tiết, bảng
+số, cách chạy lại: `art_source/graphics_upgrade/realistic_map/wave10/README.md`.
+
+**Xem trước** (`art_source/graphics_upgrade/realistic_map/previews/wave10/`): `survey_feeds.jpg`, `survey_a30.jpg`,
+`pilot_306.jpg`, `options_d.jpg`, `options_w.jpg`, `options_h.jpg`, `options_signs.jpg`. Ảnh lẻ có tên `survey_*` và `pilot_*`;
+feed thô 320 × 240 ở `wave10/survey/feeds/`. Ảnh ghép có thêm cột "như trên điện thoại", mô phỏng `ui/phone/cctv.gdshader`.
+
+#### 1. Khảo sát
+Mục 0 đúng. Thêm các điểm sau:
+- **Bố cục:** năm phòng giống hệt nhau: phòng 4 × 5 m, cửa 0,9 × 2,2 m, hành lang 5,8 × 2,25 m. Gốc phòng ở x 0/6/12/18/40,
+  `CctvSet` ở y −60.
+- **Va chạm:** mỗi phòng có 22 hình va chạm: vỏ 8, hành lang 7, giường 2, tủ 4, bàn 1. Dấu vân tay giống nhau ở cả năm phòng.
+- **Feed vẽ cả phòng bên cạnh.** Camera feed chỉ chép transform và FOV, không chép `far`. `SubViewport` của feed không bật
+  occlusion culling, và trường quay không có occluder. Vì vậy feed vẽ mọi thứ trong khung nhìn, kể cả sau tường:
+  - feed hành lang 102 vẽ 310 lần, vì thấy cả hành lang và phòng của 306, 209, 106; feed hành lang 310 chỉ vẽ 111 lần;
+  - feed phòng thấy phòng bên trái;
+  - nên mọi thứ thêm vào một phòng cũng tốn ở feed của các phòng bên cạnh.
+- **Điện thoại hiện feed qua `cctv.gdshader`:** ảnh xám, lấy mẫu theo lưới 320 × 180, có sọc quét và hạt. Hệ quả:
+  - màu mất hết: đèn bàn 106 chỉ còn là một mảng sáng;
+  - số phòng phía trong: trên điện thoại gần như không đọc được, ở main cũng vậy.
+- **Những chỗ đụng tới trường quay:**
+  - `chapter1_director.gd`:
+    - `_build_cctv`;
+    - `_cctv_room` lấy con đầu tiên của `CctvSet` có tên chứa số phòng;
+    - `_cctv_scene`; `_cctv_follow` đổi feed khi quản lý đi qua z phòng − 0,15;
+    - `_cctv_kill`, `_cctv_leave`.
+  - `chapter2_director.gd`:
+    - `_place_ch2_props` thêm feed `hall_310` và `cam_310`;
+    - `_cctv_310` gọi `set_state(&"lunge")` trên **mọi** node con của `Room310` có hàm đó, nên hình mới không được có hàm
+      `set_state`.
+  - Ngoài lane B: `event_bus.gd`; `phone_tools.gd`, `phone_missions_preview.gd` (lane D); `performance_bot.gd` (lane C, nhóm
+    `cctv_feed`).
+  - Test: `test_cctv`, `test_ch2_props` (hợp đồng 310, đầu ba xác trước `Cam`), `test_t256_floor4_rest` (vân tay `Corridor`),
+    `test_wide_corridors`, `test_phone_missions`.
+- **Bộ nhớ hình lúc vào chương (main):** chương 1: 1.150 MB, chương 3: 1.355 MB.
+
+**Bảng hợp đồng** (tính trong không gian `Room<n>`; `test_t267_cctv.gd` kiểm từng dòng):
+
+| Node | Phải giữ |
+|---|---|
+| `Room102/306/209/106/310` | tên, vị trí x 0/6/12/18/40 |
+| 22 `CollisionShape3D` mỗi phòng | md5 `6686bf8d8b52f9bce03b1a8e4895ac0b` (in theo cách của T-256), giống nhau ở cả năm phòng |
+| `Cam` | (3,72; 2,78; −4,72), xoay (−25,84; 143,07; 0), FOV 66, far 30. Riêng `Room310/Cam`: (2; 2,6; −0,35), xoay (−31,91; 0; 0) |
+| `Hall/Cam` | (−0,7; 2,65; 2,2), xoay (−23,26; −65,32; 0), FOV 70, far 30 |
+| `Hall/Start`, `Door`, `ManagerSpot` | (4,45; 0,05; 1,3); (2,45; 0,05; 1,2); (1,55; 0,05; −2,35) quay −60° |
+| `VictimBed`, `Victim` | (0,65; 1,2; −3) |
+| `Corpse1/2/4` (phòng 310) | (0,65; 0,43; −3); (3,35; 0,43; −3); (3,35; 1,2; −3) |
+| `NumberInside`, `NumberOutside` | (2,45; 2,42; ∓0,11), chữ là số phòng |
+| `NightLight`, `Hall/Tube`, `Room106/DeskLamp` | vị trí, năng lượng, tầm như cũ; phòng 102 không có đèn bàn |
+| Mùng `BunkA` / `BunkB` → `NetLower`, `NetUpper` | giữ. Mùng là con của instance giường kit, nên chỉ ẩn mesh giường, không ẩn node giường |
+
+**Ảnh hiện trạng:**
+- mỗi phòng: `survey_<số>_hall_feed.jpg` và `survey_<số>_room_feed.jpg` (khung feed ×3), kèm `_1080.jpg` cùng camera; ghép trong
+  `survey_feeds.jpg`;
+- phòng 310 có thêm `survey_310_room_before` (trước khi gọi `_cctv_310`).
+
+**Đồ nhỏ phòng 407 (A30):** bảng đầy đủ trong README, ảnh gần có đèn pin ở `survey_a30.jpg`.
+- Khoảng 616 tam giác hình khối, có ở cả bốn chương.
+- Tất cả các món đều nằm dưới `Anchors` (trong `KEEP_PS1`), nên không cần đường C2.
+- **Đề xuất file lane B được sửa ở lượt 2** (integrator duyệt):
+  - `ch1_models/dat_notebook.tscn` (sổ, dùng cho cả sổ Đạt và sổ hợp âm);
+  - `ch1v2/guitar_songbook.tscn` (chỗ dây đàn);
+  - `room407/khoa_outlet.tscn` (ổ điện Khoa);
+  - `room407/room407_anchors.tscn`: chỉ hai mesh `ShowerYes/Button` và `ShowerNo/Button` (nút tắm, hiện là hộp trắng không vật
+    liệu);
+  - `ch1v2/trash_bin.tscn` (giấy vụn).
+- Ưu tiên thấp:
+  - `ch1_models/charger.tscn`: bộ sạc nằm trong tủ Đạt đóng, khi chơi không nhìn thấy;
+  - `ch1_models/router.tscn`: chỉ còn LED, giữ.
+- Không sửa:
+  - giấy đọc được `Ch1*`: `readable.tscn` của lane A, do director đặt; giấy hai tam giác là hợp lý;
+  - ổ cắm nối dài, phích, cổng LAN, cáp: đã là hình thật;
+  - `Door407/Pivot/RulesPaper` trong `floor4.tscn`: từ trong phòng không thấy, phía hành lang lệch 4 cm (đã ghi ở T-266). Sửa
+    hay không do integrator quyết.
+
+#### 2. Hình mẫu phòng 306 và hành lang (`pilot_306.jpg`)
+- **Dựng bằng Blender, chỉ dùng vật liệu và texture có sẵn của đợt 1–2.** Ba glb ở
+  `game/assets/models/graphics_pilot/realistic_map/wave10/`, toạ độ cục bộ của `Room<n>`, nên một bộ dùng chung cho cả năm
+  phòng:
+  - `cctv_room.glb` (2.386 tam giác): vỏ phòng; tường sau W1 hoặc W2; khung cửa sơn xanh; bảng số; bóng đèn ngủ treo ở chỗ
+    `NightLight`.
+    - Bảng số là tấm sơn xanh đậm đặt sau chữ `Label3D`, như nhà B. Lý do: biển nhôm `room_plate.glb` làm chữ trắng xoá trên
+      feed.
+  - `cctv_hall.glb` (1.502): hành lang tầng 1–3 của nhà B (đợt 2). Lan can sắt cho tầng 2–3 (209, 306, 310), lan can xây cho
+    tầng 1 (102, 106); máng đèn ở chỗ `Hall/Tube`; ngoài lan can là trời tối.
+  - `cctv_light_set.glb` (3.784): D1, gồm giường tầng thép và tủ thép kiểu đợt 2.
+  - Cánh cửa dùng lại `wave2/room_door_leaf.glb`, mở vào trong, nằm dọc mép cửa phía đông.
+- **Đồ 407 dùng chung:**
+  - mọi phòng: bàn, ghế, quạt trần, nệm, gối, chăn;
+  - riêng phòng 306: khăn, xô, đồ trên bàn, đặt đúng chỗ cũ.
+- **Giữ nguyên:** mùng PS1 (hợp đồng), người khối, đèn.
+- **Kiểm tầm nhìn bằng test** (đã sửa hai chỗ test bắt được: dầm mép hành lang từng ôm lấy vị trí `Hall/Cam`; thanh đầu giường
+  từng chắn tia từ `Cam` của 310 tới đầu nạn nhân):
+  - tuyến thẳng của quản lý trống ở ngang ngực;
+  - từ `Cam` thấy đầu nạn nhân ở cả năm phòng;
+  - từ `Hall/Cam` thấy cửa.
+
+#### 3. Phương án (số đo trên cùng một khung, phòng 306)
+
+| | Tam giác / vật liệu của phòng | Feed phòng: lần vẽ / tam giác | Bộ nhớ hình chương 1 / chương 3 |
+|---|---|---|---|
+| main | 4.464 / 29 | 111 / 33.697 | 1.150 / 1.355 MB |
+| **D1**: giường, tủ nhẹ đợt 2 + đồ 407 | 105.280 / 38 | 136 / 96.958 | +73 / +0 MB (gồm cả hành lang H1) |
+| **D2**: giường, tủ Tripo của 407 | 148.494 / 37 | 133 / 128.427 | thêm +0 so với D1 (đồ 407 đã nạp) |
+| **W2** thay W1 (chỉ thấy ở feed 310) | +864 tam giác | +5 lần vẽ (feed 310: 141 → 146) | +0 |
+| **H1** / **H2**: hành lang | 1.502 tam giác cả hai | feed hành lang 306: 289 → 318 | H1 dùng mask 4096 px chưa nén: ~60 MB của con số +73 MB ở chương 1 |
+
+- **Đồ trong phòng: đề xuất D1.**
+  - Phòng 102–310 chính là các phòng tầng 1–3 của nhà B. Ở chương 3–4, nhìn qua cửa những phòng đó đã thấy đúng bộ giường,
+    tủ này (đợt 2), nên dùng D1 thì cùng một tòa.
+  - Ít hơn D2 khoảng 43.000 tam giác mỗi phòng; số lần vẽ như nhau.
+  - D2 giống phòng 407 hơn.
+  - Phần lớn tam giác của cả hai phương án là đồ Tripo 407 dùng chung (gối, chăn, bàn, quạt).
+- **Tường sau: đề xuất W2.**
+  - Chỉ có feed 310 nhìn về tường sau. Trong feed đó, ô cửa sổ có song và cửa ban công sau bàn làm 310 đọc ra là phòng ở thật.
+  - Rẻ: +864 tam giác, +5 lần vẽ; bốn feed còn lại không tốn gì.
+- **Hành lang: đề xuất H1** (đúng là hành lang tầng 1–3 nhà B).
+  - Ở lượt 2, H1 dùng vật liệu riêng: cùng texture 407, nhưng mask nhỏ (≤ 512 px, nén VRAM) thay cho ba mask 4096 px chưa nén
+    của đợt 2.
+  - Ước tính chương 1–2 chỉ còn thêm khoảng 10–15 MB thay vì 73 MB; chương 3 vẫn +0.
+  - H2 (vật liệu hành lang tầng 4 của T-256) chỉ khác vật liệu.
+- **Dấu hiệu trên feed** (`options_signs.jpg`): ở khung 320 × 240 đều đọc được: nạn nhân trên giường, quản lý ở cửa, số phòng
+  trên bảng xanh, điện thoại sáng ở 306, mùng ở 209, đèn bàn ở 106, ba xác ở 310.
+  - Mùng không che nạn nhân: mùng tầng trên của giường A vẫn mở như main.
+  - Trên điện thoại (ảnh xám): số phòng phía trong vẫn mờ, như ở main; các dấu hiệu khác vẫn rõ.
+- **Người khối giữa phòng thật:** quản lý thật đứng cạnh sinh viên và xác khối.
+  - Ở 1080p, người khối lộ rõ là đồ chơi.
+  - Trên feed 320 × 240, và nhất là qua bộ lọc xám, họ vẫn đọc được tư thế, nên không phá cảnh.
+  - Không làm nhân vật (ngoài phạm vi).
+- **Trần đề xuất cho lượt 2:**
+  - D1: ≤ 120.000 tam giác mỗi phòng; D2: ≤ 160.000;
+  - mỗi glb đợt 10: < 5.000 tam giác;
+  - feed phòng: ≤ 150 lần vẽ; feed hành lang: ≤ 340.
+
+#### 4. Câu hỏi cho chủ dự án
+1. Đồ trong phòng: D1 hay D2? (đề xuất D1)
+2. Tường sau: W1 hay W2? (đề xuất W2)
+3. Hành lang: H1 hay H2? (đề xuất H1, mask nhỏ)
+4. Cửa phòng mở vào trong, và bảng số sơn xanh sau chữ: đồng ý không?
+5. Mùng: lượt 2 giữ mùng PS1 như hợp đồng, hay thay bằng mùng của 407 với cùng độ trong? Mùng là món "PS1" rõ nhất còn lại
+   trên feed. Đề xuất: giữ, trừ khi chủ dự án muốn thay.
+
+#### 5. Kiểm
+- **Test lọc.** Năm bộ lọc chạy liền nhau từ 15:05 ngày 21/11 và đều đạt:
+  - `-Filter t267`: `RESULT: 4 passed, 0 failed`
+  - `-Filter cctv`: `RESULT: 9 passed, 0 failed`
+  - `-Filter ch2_props`: `RESULT: 7 passed, 0 failed`
+  - `-Filter wide_corridors`: `RESULT: 4 passed, 0 failed`
+  - `-Filter t256`: `RESULT: 9 passed, 0 failed`
+- **Bị dừng, có lẽ vì máy thiếu RAM: không chạy lại.** Khoảng 15:09, lúc đang chạy `-Filter chapter1`, Claude Code báo đã dừng
+  lượt chạy nền. Máy lúc đó còn 1,6–1,8 GB trống; T-266 cũng bị dừng đúng kiểu này.
+  - Lane B thoạt đầu tưởng là do giới hạn thời gian nên mở chạy lại, rồi tự dừng lại ngay. Lần chạy lại không cho kết quả nào.
+  - Các tiến trình Godot sót lại của lane B (`chapter1`, `chapter2`) đã tắt.
+  - `chapter1` và `chapter2` không có dòng RESULT.
+  - Chưa chạy: `story_segments`, `graphics_bindings`, `room407`, `floor4`, `ch1_`, `t266`.
+- Lượt 1 không sửa scene, script game hay test cũ nào. Ba glb mới chưa gắn vào đâu, nên các bộ lọc chưa chạy vẫn kiểm đúng như
+  main.
+- Đã `git checkout -- game/default_bus_layout.tres`.
+- **Commit:** `8b64c4a` (WIP) và commit cuối "T-267: round 1 …" (hash xem `git log`).
+- Không chạy full test, không chạy check (card mục 7). Không bot, không đo FPS.
+- Cảnh tạm `game/_probe_tmp/` đã xoá; khoá `GODOT_DANG_CHAY.txt` của lượt này đã gỡ; Blender, Godot đã đóng.
+- **Yêu cầu thay đổi ngoài phạm vi: không bắt buộc.** Gợi ý cho core, tuỳ integrator: bật `use_occlusion_culling` trên
+  `SubViewport` của feed (trong `_add_feed`). Khi đó lane B thêm occluder hộp ở tường các phòng (trong `Room*`), để feed không
+  vẽ phòng bên cạnh. Chỉ chép `far = 30` của `Cam` thì không đủ, vì các phòng chỉ cách nhau 6 m.
