@@ -396,7 +396,16 @@ Godot theo luật Lượt Godot (file khoá D:\GAME_WORK\GODOT_DANG_CHAY.txt); m
 Commit nhỏ "T-267: ...", push nhánh. Không push main, không mở PR. Cập nhật Checklist và Handoff trong card. Không sửa STATUS hay DECISIONS.
 Cuối phiên báo ngắn bằng tiếng Việt: xong gì, nhánh, commit, ảnh phương án ở đâu, phương án đề xuất, câu hỏi cho chủ dự án, dòng RESULT test lọc, có bị chặn không.
 ```
-**Lượt 2:** integrator viết sau khi chủ dự án chọn (card mục 1).
+**Lượt 2** (D-188 đã ghi ở card mục 1): `/clear`, `/model` **Opus 5.5**, effort **xhigh**, rồi dán
+```text
+Tiếp tục T-267 lượt 2: chủ dự án và integrator đã chọn, ghi ở card mục 1 (D-188). Đọc kỹ mục 1 cùng các mục 4, 5, 7, 8 vừa sửa theo D-188. Ở D:\GAME_WORK\lane-b2 trên nhánh lane-b/T-267-realistic-graphics-wave10-cctv-room407: git status, git fetch origin, git rebase origin/main (lấy card mục 1 và commit core 1324a2aa: feed chép far, bật occlusion culling), git lfs pull. Làm lượt 2 (card mục 2, bước 5–8):
+Năm phòng: D2 (giường tầng, tủ Tripo và đồ 407 như T-255; đồ riêng từng phòng đúng chỗ), W2, mùng PS1 ẩn mesh và thay bằng mùng 407 cùng trạng thái đóng/mở (từ Cam vẫn thấy rõ nạn nhân, mùng 209 vẫn là dấu hiệu), cửa mở vào trong, bảng số xanh đậm sau Label3D; năm hành lang H1 với mask nhỏ ≤ 512 px nén VRAM. Thêm occluder hộp ở tường năm phòng và năm hành lang, chỉ trong năm nhánh Room* (không trong Corridor); chụp bật/tắt occluder ở mọi feed phòng và hành lang, phải giống nhau từng điểm ảnh (chạy 3 s rồi mới dừng thời gian, chụp liền nhau). Trần đo khi có occlusion: phòng ≤ 160.000 tam giác, mỗi glb đợt 10 < 5.000, feed phòng ≤ 150 lần vẽ, feed hành lang ≤ 250; bộ nhớ hình chương 1–2 thêm ≤ 25 MB, chương 3 ≤ 5 MB. Hình mới trong Room310 không có hàm set_state.
+Đồ nhỏ 407 (A30): chỉ các file ở mục 1 điểm 8 (dat_notebook, guitar_songbook, khoa_outlet, trash_bin, hai mesh ShowerYes/Button và ShowerNo/Button trong room407_anchors, transform Door407/Pivot/RulesPaper trong floor4.tscn). Chỉ đổi node mesh và vật liệu; node khác trùng main (test vân tay từng scene); hình bao lệch ≤ vài cm (tay T-239/T-241/T-243 nhắm vào); không đặt hình ở đường dẫn khớp REPLACED_PS1. Test nào băm floor4 bị đổi vì RulesPaper thì cập nhật hằng kèm bằng chứng bỏ dòng đó ra thì trùng main.
+Đồng bộ bốn chương (bước 7): chụp cùng góc ở chương 1–4, liệt kê chỗ khác không có lý do, không sửa ngoài phạm vi.
+Ảnh before/after (feed 320 × 240 phóng ×3 và 1080p), a30_*, sync_ch1..4_*, overview.jpg; test test_t267_* theo mục 7. Trước khi chạy test: grep game/tests theo tên file mọi scene đã sửa và chạy cả những test đó. Mỗi bộ lọc chạy TRỰC TIẾP (không chạy nền), dưới 10 phút; lệnh nào quá 10 phút tự chuyển nền thì chạy ngay bộ lọc kế tiếp trực tiếp. Rồi git checkout -- game/default_bus_layout.tres. KHÔNG chạy full test và check: integrator chạy khi merge. Lượt nào bị dừng vì thiếu RAM thì ghi rõ, không tự chạy lại.
+Luật như lượt 1: dựng bằng Blender, không tạo mẫu Tripo mới, không extension Blender, không ảnh AI, không bot, không đo FPS; Godot theo file khoá D:\GAME_WORK\GODOT_DANG_CHAY.txt, đóng Blender và Godot khi không dùng; không push main, không mở PR, không sửa STATUS hay DECISIONS.
+Commit, push nhánh, cập nhật Checklist, Handoff "### Lượt 2", README, CREDITS; báo ngắn bằng tiếng Việt kèm dòng RESULT từng test lọc, rồi dừng.
+```
 
 ## 2. Prompt giao việc (integrator điền T-xxx)
 ```text

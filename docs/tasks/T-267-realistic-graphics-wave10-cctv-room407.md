@@ -1,5 +1,5 @@
 # T-267 — Đồ hoạ thật đợt 10: năm phòng trường quay CCTV (102, 306, 209, 106, 310) và đồ nhỏ phòng 407
-- Lane: B | Trạng thái: **mới; T-266 đã merge 21/11 (`44843bfa`), chờ chủ dự án dán lượt 1** (card viết 20/11/2026 trong lúc lane B làm T-266 lượt 2) | Agent: tài khoản Claude lane B, `D:\GAME_WORK\lane-b2`. Chủ dự án tự dán prompt (`lane-b.md` mục 1u).
+- Lane: B | Trạng thái: **lượt 1 xong, review đạt; D-188 đã chọn (mục 1), chờ chủ dự án dán lượt 2** (card viết 20/11/2026 trong lúc lane B làm T-266 lượt 2) | Agent: tài khoản Claude lane B, `D:\GAME_WORK\lane-b2`. Chủ dự án tự dán prompt (`lane-b.md` mục 1u).
 - **Model (D-183):** lane B **Opus 5.5, effort xhigh**. Nếu một lượt bị trả sửa hai lần vì cùng một lỗi, lượt sửa tiếp theo dùng **max**. Phần của integrator (chuyển phương án, review, full test + check, merge) dùng Fable 5.2, Mythos 5.2 high hoặc Opus 5.5.
 - Nhánh: `lane-b/T-267-realistic-graphics-wave10-cctv-room407` tạo từ `origin/main` **sau khi T-266 merge**. Lúc đó phòng 407 đã có ô thông gió và nắp trần ở cả bốn chương (D-187 điểm 5).
 - Quyết định nền:
@@ -78,7 +78,50 @@
   - đề xuất những file được sửa. Integrator duyệt danh sách này khi review lượt 1 và ghi vào mục 1.
 
 ## 1. Chủ dự án chốt
-*(Integrator ghi sau lượt 1.)*
+**D-188 (21/11/2026), sau lượt 1** (nhánh lane B `126b6fc`, review đạt). Chủ dự án chọn điểm 1–4; integrator chọn điểm 5–9.
+1. **Đồ trong phòng: D2.** Chủ dự án chọn D2, khác đề xuất D1 của lane B.
+   - Cả năm phòng dùng giường tầng và tủ Tripo của phòng 407, cùng nệm, gối, chăn, bàn, ghế, quạt của 407.
+   - Đồ riêng từng phòng (mục 0a) giữ đúng chỗ.
+   - Không thêm bộ nhớ hình, vì đồ 407 đã được nạp ở mọi chương.
+2. **Tường sau: W2.** Cửa ban công và cửa sổ có song, đều đóng. Chỉ là hình; va chạm vẫn là tường cũ.
+3. **Mùng: thay bằng mùng của phòng 407.** Chủ dự án chọn thay, khác đề xuất giữ của lane B.
+   - Mùng PS1 `NetLower`, `NetUpper` là con của instance giường kit: chỉ ẩn mesh, giữ node.
+   - Mùng mới giữ trạng thái đóng hay mở như cũ ở từng tầng giường. Phòng 310 vẫn không có mùng.
+   - Ảnh feed trước/sau phải cho thấy: từ `Cam` vẫn thấy rõ nạn nhân, và mùng ở phòng 209 vẫn đọc được như dấu hiệu.
+4. **Cửa mở vào trong, bảng số sơn xanh đậm sau chữ: đồng ý.**
+   - Lá cửa `wave2/room_door_leaf.glb`, nép mép đông của ô cửa.
+   - `Label3D` giữ nguyên; bảng xanh đặt phía sau chữ.
+5. **Hành lang: H1**, như đề xuất. Là hành lang tầng 1–3 nhà B, dùng vật liệu riêng:
+   - dùng lại texture có sẵn;
+   - mask nhỏ, tối đa 512 px, nén VRAM, thay cho ba mask 4096 px chưa nén của đợt 2.
+6. **Occlusion cho feed.**
+   - Phần core integrator đã làm (`1324a2aa`): feed chép `far` của `Cam` và bật `use_occlusion_culling`.
+   - Lượt 2, lane B thêm occluder hộp (`OccluderInstance3D` + `BoxOccluder3D`) ở tường năm phòng và năm hành lang.
+   - Occluder **chỉ đặt trong năm nhánh `Room*`**, không đặt trong `Corridor` (để giữ dấu vân tay của T-256).
+   - **Bằng chứng:** chụp bật và tắt occluder ở mọi feed phòng và feed hành lang; hai ảnh phải **giống nhau từng điểm ảnh**. Cách chụp như khối che thư viện (báo cáo T-260, mục bổ sung 20/11): cho chạy 3 s rồi mới dừng thời gian, và chụp hai trạng thái liền nhau.
+7. **Trần**, đo khi đã bật occlusion:
+   - mỗi phòng tối đa 160.000 tam giác; mỗi glb đợt 10 dưới 5.000 tam giác;
+   - feed phòng tối đa 150 lần vẽ, feed hành lang tối đa 250 lần vẽ (main chưa có occlusion: 289–310);
+   - bộ nhớ hình: chương 1–2 thêm tối đa 25 MB cho cả đợt, chương 3 thêm tối đa 5 MB;
+   - mọi texture đợt 10 mà chương 1–2 phải nạp đều nén VRAM.
+8. **A30: các file được sửa** (integrator duyệt):
+   - `game/scenes/levels/ch1_models/dat_notebook.tscn` (sổ của Đạt và sổ hợp âm);
+   - `game/scenes/levels/ch1v2/guitar_songbook.tscn`;
+   - `game/scenes/levels/room407/khoa_outlet.tscn`;
+   - `game/scenes/levels/ch1v2/trash_bin.tscn`;
+   - `game/scenes/levels/room407/room407_anchors.tscn`: chỉ hai mesh `ShowerYes/Button`, `ShowerNo/Button`. Ở chương 2 người chơi thấy và bấm hai mesh này; director chỉ ẩn `Placeholder` của cụm `Choice`;
+   - `game/scenes/levels/floor4/floor4.tscn`: chỉ transform của `Door407/Pivot/RulesPaper`, để đưa tờ nội quy sát mặt cánh Tripo, hết lệch 4 cm. Test nào băm `floor4` mà bị đổi thì cập nhật hằng số, kèm bằng chứng: bỏ dòng đó ra thì trùng main (như integrator làm ở T-266).
+
+   **Ràng buộc:**
+   - Trong mỗi scene chỉ đổi node mesh và vật liệu. Mọi node khác (script, `Area3D`, `CollisionShape3D`, `HandTarget`, marker, giá trị export) phải trùng main, kiểm bằng dấu vân tay từng scene trong `test_t267_*`.
+   - Hình bao của mỗi món lệch không quá vài cm so với cũ, vì tay ở T-239, T-241, T-243 nhắm vào các món này.
+   - Không đặt hình mới ở đường dẫn khớp `REPLACED_PS1` của `room407.gd` (ví dụ `Anchors/TrashBin/Base`, `Anchors/TrashBin/Slat*`), vì khi phòng có đồ thật, các đường dẫn đó bị ẩn. Ảnh trước/sau chụp trong chương thật để thấy hình mới thật sự hiện.
+
+   **Không sửa:**
+   - `charger.tscn` (nằm trong tủ Đạt đóng), `router.tscn` (chỉ còn LED);
+   - giấy đọc được `Ch1*`;
+   - ổ cắm nối dài, phích, cổng LAN, cáp.
+9. **Nhân vật** (sinh viên, xác): giữ người khối, ngoài phạm vi. Hình mới trong `Room310` không được có hàm `set_state`, vì `_cctv_310` gọi hàm đó trên mọi node con của phòng.
 
 ## 2. Việc, theo hai lượt
 
@@ -147,7 +190,7 @@
   - không hình nào chắn ngang ngực trên tuyến thẳng của quản lý: `Hall/Start` → `Door` → (x của cửa, z phòng − 0,6) → `ManagerSpot`.
 - **Tầm nhìn:**
   - từ `Cam` của mỗi phòng thấy `VictimBed` và đầu nạn nhân; từ `Hall/Cam` thấy cửa phòng;
-  - không lưới mới nào nằm giữa camera và nạn nhân. Mùng đã có thì giữ, và giữ độ trong của mùng.
+  - không lưới mới nào nằm giữa camera và nạn nhân, trừ mùng mới theo D-188 (mục 1 điểm 3).
 - Các dấu hiệu ở mục 2 bước 3 phải đọc được trên feed.
 - Hình PS1 chỉ ẩn (`visible = false`), không xoá. Hình mới đặt dưới một node con mới, ví dụ `Real`.
 - **A30:** giữ tên node, vùng tương tác, chữ, UV, key dịch. Không đổi director, luật, lời thoại.
@@ -165,7 +208,7 @@
 - **Ngân sách** (PLAN mục 6): **≤ 0,40 ms cho feed đang xem**; A30 ≤ 0,10 ms. Vì không đo FPS, dùng số tam giác và số lần vẽ để ước.
   - Không nâng độ phân giải feed: giữ 320 × 240.
   - Ghi số tam giác, số vật liệu, **số lần vẽ của từng feed trước/sau**.
-  - Ghi tổng số tam giác của mỗi phương án. Integrator đặt trần tam giác sau lượt 1.
+  - Ghi tổng số tam giác của mỗi phương án. Trần cho lượt 2: mục 1 điểm 7 (D-188).
 - Không đo FPS, không chạy bot (D-179, D-184).
 
 ## 6. Ảnh
@@ -185,12 +228,16 @@
   - tuyến thẳng của quản lý không bị hình mới chắn: quét một hộp ngang ngực dọc tuyến;
   - không lưới mới nào chắn đường từ `Cam` tới đầu nạn nhân; điện thoại ở 306 và đèn bàn ở 106 nằm trong khung hình;
   - A30: các món vẫn đúng chỗ, không bị `_furnish()` ẩn, chữ và key dịch giữ nguyên;
-  - mọi `.import` texture trong thư mục asset đợt 10 đều nén VRAM.
+  - mọi `.import` texture trong thư mục asset đợt 10 đều nén VRAM;
+  - A30 (D-188 điểm 8): mỗi scene được sửa có dấu vân tay các node không phải hình, trùng main;
+  - occluder chỉ nằm trong năm nhánh `Room*`; không có trong `Corridor`.
+- **Trước khi chạy test:** grep `game/tests` theo tên file của mọi scene lane B sửa (`cctv_set`, `room407_anchors`, `dat_notebook`, `guitar_songbook`, `khoa_outlet`, `trash_bin`, `floor4`), rồi chạy cả những test đó. Ở T-266, sáu test khuôn viên hỏng vì nằm ngoài các bộ lọc của card.
 - **Test cũ phải đạt:**
   - trường quay: `test_cctv`, `test_ch2_props`, `test_wide_corridors`, `test_t256_floor4_rest`, `test_chapter1`, `test_chapter2`, `test_story_segments_3_5`, `test_graphics_bindings`;
   - vì đụng phòng 407 (A30): `test_room407_*`, `test_floor4`, `test_ch1_*`, `test_t266*`.
 - **Lane B chỉ chạy test lọc:**
   - lệnh: `pwsh tools/test.ps1 -Filter <bộ lọc>`, chạy với từng bộ lọc `t267`, `cctv`, `ch2_props`, `wide_corridors`, `t256`, `chapter1`, `chapter2`, `story_segments`, `graphics_bindings`, `room407`, `floor4`, `ch1_`, `t266`;
+  - **mỗi bộ lọc chạy trực tiếp (không chạy nền), dưới 10 phút.** Claude Code dừng lượt chạy nền khi máy cạn RAM. Nếu một lệnh quá 10 phút và tự chuyển sang chạy nền, chạy ngay bộ lọc kế tiếp trực tiếp (nó tự chờ khoá Godot), để phiên không rảnh;
   - chạy xong thì `git checkout -- game/default_bus_layout.tres`;
   - **không chạy full test, không chạy check**: máy thiếu RAM. Integrator chạy một lần khi merge, lúc chủ dự án đã tắt RAV và Chrome;
   - lượt nào bị dừng vì thiếu RAM thì ghi rõ, không tự chạy lại.
@@ -203,7 +250,7 @@
   - `game/assets/textures/graphics_pilot/realistic_map/wave10/`.
 - `game/scenes/levels/cctv/cctv_set.tscn` (chỉ năm nhánh `Room*`), và script hình mới trong `game/scenes/levels/cctv/`.
 - Bảng bày đồ, nếu dùng như T-255: file mới đặt trong `game/scenes/levels/cctv/` hoặc `art_source/`. Chỉ đặt trong `game/data/` khi integrator đồng ý.
-- A30: chỉ các file integrator đã duyệt ở review lượt 1 (ghi ở mục 1).
+- A30: các file ở mục 1 điểm 8, trong giới hạn ghi ở đó (kể cả `floor4.tscn`, chỉ transform của `Door407/Pivot/RulesPaper`).
 - Test mới trong `game/tests/levels/`, và card này.
 - Cảnh tạm trong `game/_probe_tmp/`: không commit, xoá khi xong.
 
