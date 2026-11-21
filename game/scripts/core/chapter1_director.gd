@@ -1868,10 +1868,13 @@ func _add_feed(camera_id: StringName, label_key: String, source: Camera3D) -> vo
 	feed.label_key = label_key
 	feed.size = Vector2i(320, 240)
 	feed.render_target_update_mode = SubViewport.UPDATE_WHEN_VISIBLE
+	# T-267: the set's rooms stand 6 m apart; with the rooms' box occluders a feed no longer draws its neighbours.
+	feed.use_occlusion_culling = true
 	feed.add_to_group(&"cctv_feed")
 	add_child(feed)
 	var camera := Camera3D.new()
 	camera.fov = source.fov
+	camera.far = source.far
 	feed.add_child(camera)
 	camera.global_transform = source.global_transform
 	camera.current = true
