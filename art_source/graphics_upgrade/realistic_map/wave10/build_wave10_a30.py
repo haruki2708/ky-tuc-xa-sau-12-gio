@@ -1,7 +1,9 @@
-"""T-267 (D-188 point 8) A30: room 407's small things, new meshes for the mesh nodes the integrator listed. Every
-node keeps its name, place and size (within a few millimetres); only its mesh and material change. Each mesh is built
-in its own node's space (Godot metres) and written as an OBJ (one surface; the node carries the material:
-make_wave10_materials.py writes them, on textures the game already has). Visual only.
+"""T-267 (D-188 point 8) A30: room 407's small things, new meshes for the mesh nodes the integrator listed (PLAN A30:
+bevels and normals where they are needed, the prints, UV and words kept). Every node keeps its name, place and size
+(within a few millimetres); only its mesh changes, and it keeps the material its scene gave the old box (the PS1 surface
+shader on the same 128 px prints; the shower buttons, which had none, get a plain plastic one). Each mesh is built in
+its own node's space (Godot metres) and written as an OBJ (one surface). The old tests' small-prop budgets hold: under
+500 triangles for the notebook (and the songbook with it), the outlet and the bin. Visual only.
   dat_notebook.tscn   Cover      the back cover board, rounded corners, its sports print on top (sport.png)
                       Page       the block of pages over it, rounded corners, the first page on top (paper.png)
                       Binding0-6 the spiral's wire loops round the left edge, through the pages
@@ -35,9 +37,10 @@ def G(x, y, z):
 	return Vector((x, -z, y))
 
 
-def slab(part, mat, axes, centre, half_a, half_b, c0, c1, r, segs=4, bevel=0.0, bevel_segs=2):
+def slab(part, mat, axes, centre, half_a, half_b, c0, c1, r, segs=4, bevel=0.0, bevel_segs=2, only_high=False):
 	"""A slab whose outline is a rounded rectangle in the (a, b) plane, from c0 to c1 along c; axes names the Godot axes
-	of a, b, c ("x", "y" or "z"); centre is the Godot point the a, b offsets start from. The rims bevelled."""
+	of a, b, c ("x", "y" or "z"); centre is the Godot point the a, b offsets start from. The rims bevelled (only the c1
+	one with only_high: the back lies on a desk or a wall)."""
 	outline = []
 	for cx, cy, start in ((half_a - r, half_b - r, 0), (-half_a + r, half_b - r, 90), (-half_a + r, -half_b + r, 180),
 			(half_a - r, -half_b + r, 270)):
@@ -65,7 +68,7 @@ def slab(part, mat, axes, centre, half_a, half_b, c0, c1, r, segs=4, bevel=0.0, 
 	for f in faces:
 		f.material_index = index
 		f.smooth = len(f.verts) == 4
-	caps = faces[:2]
+	caps = faces[:1] if only_high else faces[:2]
 	if bevel > 0.0:
 		rims = list({e for f in caps for e in f.edges})
 		done = bmesh.ops.bevel(bm, geom=rims, offset=bevel, segments=bevel_segs, affect="EDGES", profile=0.5,
@@ -94,22 +97,23 @@ def keep(name, part):
 
 def notebook():
 	part = w1kit.Part("A30NotebookCover")
-	faces = slab(part, "A30Cover", ("x", "z", "y"), (0, -0.008, 0), 0.1, 0.14, 0.0, 0.0026, 0.006, bevel=0.0009)
+	faces = slab(part, "A30Cover", ("x", "z", "y"), (0, -0.008, 0), 0.1, 0.14, 0.0, 0.0026, 0.006, segs=2)
 	top_uv(part, faces, -0.1, 0.1, -0.14, 0.14)
 	keep("notebook_cover", part)
 	part = w1kit.Part("A30NotebookPages")
-	faces = slab(part, "A30Paper", ("x", "z", "y"), (0, -0.02, 0), 0.09, 0.13, 0.0026, 0.0245, 0.004, bevel=0.0012)
+	faces = slab(part, "A30Paper", ("x", "z", "y"), (0, -0.02, 0), 0.09, 0.13, 0.0026, 0.0245, 0.004, segs=2, bevel=0.0012,
+		bevel_segs=1, only_high=True)
 	top_uv(part, faces, -0.09, 0.09, -0.13, 0.13)
 	keep("notebook_pages", part)
 	# One loop of the coil round the left edge (cover from x -0.1, pages from -0.09), through a hole 7 mm in (x -0.083).
 	part = w1kit.Part("A30Ring")
 	centre_x, centre_y, radius = -0.0025, -0.0125, 0.0122
 	points = []
-	steps = 16
+	steps = 8
 	for k in range(steps + 1):
 		a = k / steps * math.tau
 		points.append(G(centre_x + math.cos(a) * radius, centre_y + math.sin(a) * radius, -0.0018 + 0.0036 * k / steps))
-	part.tube("A30Ring", points, 0.0011, segments=5, cap=False)
+	part.tube("A30Ring", points, 0.0012, segments=3, cap=False)
 	keep("notebook_ring", part)
 
 
@@ -132,23 +136,24 @@ def ink_line(name, half_x, half_z):
 
 def outlet():
 	part = w1kit.Part("A30OutletBack")
-	slab(part, "A30Dark", ("z", "y", "x"), (0, 0, 0), 0.063, 0.073, -0.0015, 0.0015, 0.006)
+	part.box("A30Dark", G(-0.0015, -0.073, -0.063), G(0.0015, 0.073, 0.063))
 	keep("outlet_back", part)
 	part = w1kit.Part("A30OutletRail")  # Top/BottomTrim: 0.024 deep, 0.022 high, 0.174 long
-	part.box("A30Ivory", G(-0.012, -0.011, -0.087), G(0.012, 0.011, 0.087), bevel=0.003, segments=2)
+	part.box("A30Ivory", G(-0.012, -0.011, -0.087), G(0.012, 0.011, 0.087), bevel=0.003, segments=1)
 	keep("outlet_rail", part)
 	part = w1kit.Part("A30OutletStile")  # Left/RightTrim: 0.024 deep, 0.15 high, 0.022 wide
-	part.box("A30Ivory", G(-0.012, -0.075, -0.011), G(0.012, 0.075, 0.011), bevel=0.003, segments=2)
+	part.box("A30Ivory", G(-0.012, -0.075, -0.011), G(0.012, 0.075, 0.011), bevel=0.003, segments=1)
 	keep("outlet_stile", part)
 	part = w1kit.Part("A30OutletFace")  # Cover: 0.018 deep, 0.12 square
-	slab(part, "A30Ivory", ("z", "y", "x"), (0, 0, 0), 0.06, 0.06, -0.009, 0.009, 0.013, segs=5, bevel=0.004, bevel_segs=3)
+	slab(part, "A30Ivory", ("z", "y", "x"), (0, 0, 0), 0.06, 0.06, -0.009, 0.009, 0.013, segs=3, bevel=0.004, bevel_segs=2,
+		only_high=True)
 	keep("outlet_face", part)
 	part = w1kit.Part("A30OutletSlot")  # Contact*: a rounded slot just proud of the face (front at x 0.1305)
-	slab(part, "A30Dark", ("z", "y", "x"), (0, 0, 0), 0.0045, 0.0135, -0.0012, 0.0015, 0.0042, segs=4)
+	slab(part, "A30Dark", ("z", "y", "x"), (0, 0, 0), 0.0045, 0.0135, -0.0012, 0.0015, 0.0042, segs=2)
 	keep("outlet_slot", part)
 	part = w1kit.Part("A30OutletScrew")  # ScrewTop: a domed head
-	part.lathe("A30Steel", [(0.0042, 0.0), (0.0041, 0.0006), (0.0034, 0.0013), (0.0018, 0.0018), (0.0, 0.0019)],
-		segments=14, matrix=_x_axis(Vector((-0.0012, 0, 0))))
+	part.lathe("A30Steel", [(0.0042, 0.0), (0.0038, 0.0009), (0.0022, 0.0017), (0.0, 0.0019)],
+		segments=8, matrix=_x_axis(Vector((-0.0012, 0, 0))))
 	keep("outlet_screw", part)
 
 

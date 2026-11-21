@@ -267,9 +267,9 @@
 ## Checklist
 - [x] Lượt 1: khảo sát, bảng hợp đồng, ảnh feed hiện trạng của năm phòng và năm hành lang, kiểm kê đồ nhỏ phòng 407
 - [x] Lượt 1: hình mẫu một phòng, phương án; dừng chờ chủ dự án chọn
-- [ ] Lượt 2: năm phòng, năm hành lang
-- [ ] Lượt 2: đồ nhỏ phòng 407
-- [ ] Lượt 2: ảnh đồng bộ bốn chương, ảnh trước/sau, `overview.jpg`, test lọc, README, CREDITS, Handoff
+- [x] Lượt 2: năm phòng, năm hành lang
+- [x] Lượt 2: đồ nhỏ phòng 407
+- [x] Lượt 2: ảnh đồng bộ bốn chương, ảnh trước/sau, `overview.jpg`, test lọc, README, CREDITS, Handoff
 
 ## Handoff
 *(Lane B ghi: đã làm, còn dở, cách kiểm, dòng RESULT test, commit, yêu cầu thay đổi, phần chưa kiểm.)*
@@ -440,3 +440,141 @@ Mục 0 đúng. Thêm các điểm sau:
 - **Yêu cầu thay đổi ngoài phạm vi: không bắt buộc.** Gợi ý cho core, tuỳ integrator: bật `use_occlusion_culling` trên
   `SubViewport` của feed (trong `_add_feed`). Khi đó lane B thêm occluder hộp ở tường các phòng (trong `Room*`), để feed không
   vẽ phòng bên cạnh. Chỉ chép `far = 30` của `Cam` thì không đủ, vì các phòng chỉ cách nhau 6 m.
+
+### Lượt 2 (lane B, 22/11/2026; card đọc ở `53d4d0e`) — xong, DỪNG
+Nhánh rebase lên `origin/main` `53d4d0e` (mục 1 D-188, core `1324a2a`). Vì rebase viết lại hai commit lượt 1, nhánh được đẩy bằng
+`--force-with-lease` (chỉ nhánh của lane B). Chi tiết, bảng số, cách chạy lại: `art_source/graphics_upgrade/realistic_map/wave10/README.md`,
+mục "Lượt 2".
+
+**Ảnh** (`art_source/graphics_upgrade/realistic_map/previews/wave10/`): `overview.jpg`; `compare_rooms.jpg` (feed ×3 trước/sau,
+kèm bản như trên điện thoại), `compare_1080.jpg`; `before_*`/`after_*` (feed và 1080p cùng camera); `a30_compare.jpg`, `a30_*`;
+`sync.jpg`, `sync_ch{1..4}_*`. Feed thô và log: `wave10/survey/feeds/r2_*.png`, `wave10/survey/r2_*.txt`.
+
+#### 1. Năm phòng, năm hành lang (D-188 điểm 1–7, 9)
+- **`cctv_set.tscn`, chỉ năm nhánh `Room*`** (`patch_cctv_set.py`), mỗi phòng thêm hai node:
+  - `Real` (script `game/scenes/levels/cctv/cctv_room_real.gd`) lúc chạy ẩn mọi mesh PS1 của phòng (giữ node, ghi vào
+    `replaced`), trừ người. Sau đó đặt:
+    - vỏ phòng với W2, khung cửa, bảng số xanh sau `Label3D`, lá cửa mở vào trong dọc mép đông;
+    - hành lang H1;
+    - đồ 407 kiểu D2 như T-255;
+    - mùng 407 đúng trạng thái mùng PS1;
+    - đồ riêng từng phòng ở chỗ cũ.
+  - `Occluders`: 9 hộp, mỗi hộp nằm trong một hộp va chạm tường PS1.
+  - Không va chạm, không đèn, không `set_state`.
+  - `Corridor` không đụng.
+- **Mùng tầng trên vén (nạn nhân nằm ở đó):** phòng 407 không có. `build_wave10_net.py` chạy chính script mùng 407, chỉ đổi hai
+  chỗ:
+  - mái cao 1,0 m trên nệm (407: 0,86 m), vì đầu Đăng (106, `sit_up`) và Bảo (209, `cower`) lòi qua mái thấp;
+  - ô vải 5 cm, để glb dưới 5.000 tam giác.
+  Từ `Cam` vẫn thấy rõ nạn nhân qua mặt vén, mùng 209 vẫn đọc được (`compare_rooms.jpg`).
+- **Hành lang H1:** vật liệu riêng `CW*`, cùng scan với đợt 2, trên ba mask nhỏ (512 × 256, 512 × 256, 256 × 128), nén VRAM.
+  Tường đầu hành lang kéo tới mép ngoài, để lan can dừng ở tường.
+- **Số đo khi bật occlusion** (main = `53d4d0e`):
+  - tam giác mỗi phòng: 112.629–156.690 (trần 160.000);
+  - glb: 2.370 / 1.502 / 4.506 (trần 5.000);
+  - feed phòng: 112–140 lần vẽ (trần 150);
+  - feed hành lang: 92–135 lần vẽ (trần 250);
+  - `cam_corridor`: 167 → 59 lần vẽ;
+  - bộ nhớ hình chương 1: 1.150 → 1.166 MB (+16, trần 25);
+  - bộ nhớ hình chương 3: đồ mới thêm 0 MB (cả lượt chạy 1.355 → 1.358 MB; 3 MB lên khi vẽ góc nhìn xuống, trước khi gắn
+    đồ; trần 5).
+- **Hình `Real` chỉ vẽ trong 40 m quanh camera.** Người chơi luôn cách trường quay trên 60 m. Trên main, góc nhìn người chơi
+  thẳng xuống vẫn vẽ cả trường quay PS1; nay ít lần vẽ hơn (chương 3: 2.664 → 2.047).
+- **Bật/tắt occluder** (chạy 3 s rồi gần như dừng thời gian, chụp liền nhau):
+  - 10/12 feed giống hệt từng điểm ảnh;
+  - hành lang 306: 11 điểm ảnh lệch tối đa 2/255, là một vệt dọc ở mép tường đầu hành lang;
+  - phòng 310 trước khi thua: mọi điểm ảnh dao động 1/255 cả giữa hai khung cùng trạng thái (nhiễu môi trường chương 2). Số
+    lần vẽ bật và tắt bằng nhau (142), nên ở góc này occluder không bỏ vật nào;
+  - không điểm nào vượt 6/255.
+- **Bẫy Godot 4.7.2:** ẩn một `OccluderInstance3D` (hay gỡ khỏi cây) rồi hiện lại thì nó không che nữa, cho tới khi một
+  viewport bật lại cờ occlusion (`survey/r2_occ_probe.txt`). Vì vậy ảnh so sánh bằng cách bật/tắt cờ của viewport. Trong game
+  occluder không bao giờ ẩn.
+
+#### 2. Đồ nhỏ phòng 407 (A30, D-188 điểm 8)
+- **Chỉ trong các file ở mục 1 điểm 8, chỉ đổi node mesh:** mesh OBJ mới trên đúng node cũ; vật liệu giữ của scene (shader bề
+  mặt PS1 trên cùng ảnh 128 px). Nút tắm trước không có vật liệu, nay dùng nhựa trơn.
+- **Hình mới:**
+  - sổ Đạt: bìa bo góc, khối trang vát, 7 vòng lò xo;
+  - ô hợp âm: nét mực phẳng;
+  - ổ điện Khoa: khung bo cạnh, mặt ổ vát, hai khe bo, vít mũ tròn;
+  - thùng rác: ba nắm giấy vo;
+  - nút tắm: đế và nút bấm.
+- **Các node khác trùng main:** `test_t267_a30` băm mọi node trừ phần hình của mesh, so với bản băm lấy từ file của main trong
+  chính trình chạy test.
+- **Hình bao lệch tối đa 1,2 cm.** Không đặt hình ở đường dẫn khớp `REPLACED_PS1`. Trong phòng 407 có đồ thật, cả 42 node mới
+  đều hiện.
+- **Ngân sách tam giác của test cũ giữ nguyên:**
+  - `test_ch1_models`, `test_ch1v2`, `test_room407_fixes`: sổ 448, sổ hợp âm 468, ổ điện 454, dưới 500;
+  - `test_ch1_models` cũng đòi vật liệu `ShaderMaterial` cho sổ.
+  Lần đầu lane B làm sổ, ổ điện nặng hơn và đổi vật liệu, nên `room407_fixes` báo ổ điện quá 500 tam giác. Lane B làm lại theo
+  ngân sách, không nới test (AGENTS.md).
+- **`floor4.tscn`:** chỉ đổi z của `Door407/Pivot/RulesPaper`, từ −0,025 sang −0,063. Lưng tờ nay cách chỗ nhô nhất của cánh
+  Tripo phía hành lang 1,2 mm (trước 4,35 cm). Chỗ tờ vắt qua ô cánh lõm thì mép còn hở theo ô lõm (1,6 cm).
+  - `test_t267_a30`: băm `floor4` bỏ dòng `RulesPaper` thì trùng main; dòng đó chỉ khác vị trí.
+  - Không test cũ nào băm `floor4` cả dòng này, nên không phải cập nhật hằng số nào.
+  - Tay nhắm tờ từ trong phòng vẫn trúng tờ trước cửa (`test_core` 18/0).
+
+#### 3. Đồng bộ bốn chương (`sync.jpg`)
+Bốn góc ở chương 1–4: 407 từ cửa, hành lang tầng 4 từ đầu cầu thang, nhà vệ sinh chung, phòng 403. Cửa 407 và 403 được mở cho
+ảnh. Chỗ khác đều có lý do:
+- đèn bàn 407 bật ở chương 1–2;
+- chương 3–4 tầng 4 nằm trong nhà B giữa khuôn viên: ánh sáng môi trường sáng hơn, ngoài lan can là trời đêm và các nhà;
+- chương 1–2 ngoài lan can là nền đỏ thẫm.
+
+**Không thấy chỗ khác nào không có lý do.** Không sửa ngoài phạm vi.
+
+#### 4. Kiểm
+Mỗi bộ lọc chạy trực tiếp, theo file khoá; sau mỗi lần trả `default_bus_layout.tres`. Không chạy full test, không chạy check,
+không bot, không đo FPS.
+
+**13 bộ lọc của card** (đều chạy trên trạng thái cuối, trừ ghi chú):
+- `t267`: `RESULT: 8 passed, 0 failed`
+- `cctv`: `RESULT: 11 passed, 0 failed`
+- `ch2_props`: `RESULT: 7 passed, 0 failed`. Lần chạy đầu 6/1 ở `test_stuck_door_shakes…`, test hẹn giờ cửa nhà tắm 407, không
+  đụng đợt này; đã ghi chậm như vậy ở `1324a2a`. Chạy lại đạt, lần cuối cũng đạt.
+- `wide_corridors`: `RESULT: 4 passed, 0 failed`
+- `t256`: `RESULT: 9 passed, 0 failed`
+- `chapter1`: `RESULT: 54 passed, 0 failed` (598 s)
+- `chapter2`: `RESULT: 27 passed, 0 failed`
+- `story_segments`: `RESULT: 22 passed, 0 failed`
+- `graphics_bindings`: `RESULT: 8 passed, 0 failed`
+- `room407`: `RESULT: 83 passed, 0 failed`
+- `floor4`: `RESULT: 30 passed, 0 failed`
+- `ch1_`: `RESULT: 26 passed, 0 failed`
+- `t266`: `RESULT: 15 passed, 0 failed`
+
+**Grep `game/tests` theo tên các scene đã sửa** (cả `RulesPaper`): các test nằm ngoài các bộ lọc trên:
+- `test_core.gd`: `RESULT: 18 passed, 0 failed`
+- `t260`: `RESULT: 6 passed, 0 failed`. Lần đầu 4/2: occluder lượt này cao −0,2…3,15 m và có hộp vắt qua hai tường, trái luật
+  "mỗi occluder nằm trong một hộp đặc" của test. Đã đổi thành 9 hộp, mỗi hộp trong một tường, cao 0–3 m, rồi đo lại toàn bộ.
+- `ch4_environment`: `RESULT: 6 passed, 0 failed`. Có lịch sử đổi kết quả:
+  - hai lần đầu 5/1 ở `test_routes_split_library_return_room_and_all_library_floors` (đường ở thư viện, nhà ăn);
+  - với sáu file của main thay vào: đạt hai lần;
+  - với đủ thay đổi của lane B, lần ba đạt.
+  Test này chỉ nạp `floor4` và `campus`. Comment của test nói đồ thị dẫn đường của khuôn viên đồng bộ không đồng thời. Lane B
+  không thấy đường nào nối tờ nội quy hay đồ A30 với lưới dẫn đường. **Nhờ integrator để ý test này lúc chạy full.**
+- `ch1v2`: `RESULT: 33 passed, 0 failed`
+- `corridor_g5`: `RESULT: 9 passed, 0 failed`
+- `fire_stairs`: `RESULT: 3 passed, 0 failed`
+- `levels/test_props.gd`: `RESULT: 6 passed, 0 failed`
+- `room_doors`: `RESULT: 4 passed, 0 failed`
+- `sealed_408`: `RESULT: 2 passed, 0 failed`
+- `t250`: `RESULT: 5 passed, 0 failed`
+- `t254`: `RESULT: 4 passed, 0 failed`
+- `t255`: `RESULT: 12 passed, 0 failed`
+- `t258`: `RESULT: 5 passed, 0 failed`
+- `protagonist_body`: `RESULT: 18 passed, 0 failed`
+- `t242`: `RESULT: 9 passed, 0 failed`
+- `test_campus.gd`: `RESULT: 5 passed, 0 failed`
+
+**Ghi chú về trạng thái lúc chạy:**
+- `room407`, `ch1_`, `ch1v2`, `floor4`, `t266`, `test_core.gd` chạy trên A30 cuối, trước lần đổi occluder. Các test này không
+  nạp `cctv_set.tscn`.
+- Mọi bộ lọc còn lại chạy sau lần đổi occluder.
+- Không lượt nào bị dừng vì thiếu RAM. Máy còn 1,0–2,6 GB trống.
+
+**Yêu cầu thay đổi ngoài phạm vi:** không có.
+
+**Gợi ý:** `test_ch4_environment` (đường qua đồ thị khuôn viên) phụ thuộc thời gian.
+
+**Commit:** WIP `72a2811`, `99c8929`, và commit cuối "T-267: round 2 …" (hash xem `git log`).

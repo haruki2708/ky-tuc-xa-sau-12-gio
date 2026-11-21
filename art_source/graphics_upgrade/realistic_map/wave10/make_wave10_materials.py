@@ -48,21 +48,10 @@ NETS = {
 }
 
 
-## A30 (build_wave10_a30.py): room 407's small things, set on their mesh nodes (surface_material_override/0). The cover
-## and the page keep the prints they had (the game's own 128 px sport.png and paper.png, now smoothly filtered and lit,
-## not PS1-snapped); the rest are plain colours, no texture.
-CH1 = "res://assets/textures/ch1_models/"
+## A30 (build_wave10_a30.py): the shower buttons had no material; every other new mesh keeps its scene's own.
 A30 = {
-	"A30Cover": {"albedo": CH1 + "sport.png", "rough": 0.62},
-	"A30Paper": {"albedo": CH1 + "paper.png", "rough": 0.92},
-	"A30Ring": {"color": (0.62, 0.63, 0.62), "rough": 0.32, "metallic": 1.0},
-	"A30Ink": {"color": (0.05, 0.05, 0.065), "rough": 0.9},
-	"A30Ivory": {"color": (0.72, 0.7, 0.58), "rough": 0.42},
-	"A30Dark": {"color": (0.035, 0.031, 0.025), "rough": 0.7},
-	"A30Steel": {"color": (0.55, 0.55, 0.53), "rough": 0.38, "metallic": 0.85},
 	"A30Plastic": {"color": (0.86, 0.86, 0.83), "rough": 0.34},
 }
-
 
 def main():
 	MATS.mkdir(parents=True, exist_ok=True)

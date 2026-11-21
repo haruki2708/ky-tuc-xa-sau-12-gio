@@ -1,11 +1,14 @@
-"""T-267 round 1 sheets (card section 6): survey_*, pilot_*, options_*.jpg in previews/wave10/ from the stills of
-survey_wave10.gd and capture_wave10_pilot.gd. Feeds are shown at x3 with nearest-neighbour pixels, and also as the phone's
-Camera tab draws them (ui/phone/cctv.gdshader: grey, sampled on a 320 x 180 grid, every other row at 78 %, grain).
-Run: python -B art_source/graphics_upgrade/realistic_map/wave10/make_wave10_sheets.py
+"""T-267 sheets (card section 6) in previews/wave10/. Round 1 (argument r1): survey_*, pilot_*, options_*.jpg from the
+stills of survey_wave10.gd and capture_wave10_pilot.gd. Round 2 (default, r2): compare_rooms.jpg, compare_1080.jpg,
+a30_compare.jpg, sync.jpg and overview.jpg from capture_wave10.gd's stills. Feeds are shown at x3 with nearest-neighbour
+pixels, and also as the phone's Camera tab draws them (ui/phone/cctv.gdshader: grey, sampled on a 320 x 180 grid, every
+other row at 78 %, grain).
+Run: python -B art_source/graphics_upgrade/realistic_map/wave10/make_wave10_sheets.py [r1] [r2]
 """
 from pathlib import Path
 import random
 import re
+import sys
 
 from PIL import Image, ImageDraw, ImageFont
 
@@ -38,6 +41,8 @@ LOG = feeds_log()
 def phone(path):
 	"""The feed as cctv.gdshader draws it (grain from a fixed seed)."""
 	raw = SURVEY / "feeds" / (Path(path).name.replace("_feed.jpg", ".png"))
+	if not raw.exists():
+		raw = SURVEY / "feeds" / ("r2_" + Path(path).name.replace("_feed.jpg", ".png"))
 	src = Image.open(raw).convert("RGB") if raw.exists() else Image.open(path).convert("RGB").resize((320, 240), Image.NEAREST)
 	rng = random.Random(7)
 	out = Image.new("L", (320, 180))
@@ -215,11 +220,137 @@ def options():
 	])
 
 
+def r2_log():
+	"""stem -> {state: (draws, prims)} and stem -> occluder pixels, from round 2's capture logs (the room-310 rerun wins)."""
+	draws_by, occ = {}, {}
+	for log in ("r2_cctv.txt", "r2_cctv310.txt"):  # cctv310: a run of room 310 alone, if one was made after
+		path = SURVEY / log
+		if not path.exists():
+			continue
+		for line in path.read_text(encoding="utf-8").splitlines():
+			m = re.match(r"FEED (\S+) \S+ \| before feed draws (\d+) prims (\d+).*?\| after feed draws (\d+) prims (\d+).*?"
+				r"\| after, occluders off feed draws (\d+) prims (\d+)", line)
+			if m:
+				v = [int(x) for x in m.groups()[1:]]
+				draws_by[m.group(1)] = {"before": v[0:2], "after": v[2:4], "off": v[4:6]}
+			m = re.match(r"OCCLUDERS (\S+) \S+: on/off differ in (\d+) pixels \((\d+) over 6/255\)", line)
+			if m:
+				occ[m.group(1)] = (int(m.group(2)), int(m.group(3)))
+	return draws_by, occ
+
+
+R2, OCC = r2_log()
+
+
+def r2(stem, state):
+	v = R2.get(stem, {}).get(state)
+	return "%d lần vẽ, %dk tam giác" % (v[0], round(v[1] / 1000)) if v else ""
+
+
+ROOMS2 = (("102", "Hùng mở cửa"), ("306", "Kiệt, điện thoại sáng"), ("209", "Bảo co người, mùng"),
+	("106", "Đăng ngồi dậy, đèn bàn"), ("310", "ba xác lao tới (chương 2)"))
+
+
+def compare_rooms():
+	rows = []
+	for number, pose in ROOMS2:
+		hall = "%s_hall" % number
+		room = "%s_room" % number
+		rows.append([
+			("before_%s_feed.jpg" % hall, F, "%s hành lang, main · %s" % (number, r2(hall, "before")), False),
+			("after_%s_feed.jpg" % hall, F, "sau · %s" % r2(hall, "after"), False),
+			("before_%s_feed.jpg" % room, F, "%s phòng, main · %s" % (number, r2(room, "before")), False),
+			("after_%s_feed.jpg" % room, F, "sau · %s" % r2(room, "after"), False),
+			("after_%s_feed.jpg" % room, F, "sau, như trên điện thoại · %s" % pose, True),
+		])
+	sheet("compare_rooms.jpg", "Năm phòng và năm hành lang: feed 320 × 240 (×3) trước/sau, cùng một khung", rows, [
+		"Chương 1: director._cctv_scene() như test_cctv, quản lý và nạn nhân giữ yên, thời gian gần như dừng; 310: chương 2, sau _cctv_310().",
+		"Lần vẽ, tam giác: của riêng SubViewport feed. Sau: occluder bật (feed chép far, bật occlusion culling từ 1324a2a).",
+		"D2 (giường, tủ, bàn, ghế, quạt, nệm, gối, chăn của 407), W2, mùng 407 cùng trạng thái, cửa mở vào trong, bảng số xanh; hành lang H1.",
+	])
+
+
+def compare_1080():
+	rows = []
+	for number, pose in ROOMS2:
+		rows.append([("before_%s_room_1080.jpg" % number, HD, "%s main · 1080p cùng Cam" % number, False),
+			("after_%s_room_1080.jpg" % number, HD, "%s sau · %s" % (number, pose), False),
+			("after_%s_hall_1080.jpg" % number, HD, "%s hành lang sau · 1080p cùng Hall/Cam" % number, False)])
+	rows.append([("before_corridor_cam_feed.jpg", F, "feed hành lang tầng 4 (cam_corridor), main · " + r2("corridor_cam", "before"), False),
+		("after_corridor_cam_feed.jpg", F, "sau (Corridor không đụng) · " + r2("corridor_cam", "after"), False),
+		("after_310_room_before_lunge_1080.jpg", HD, "310 sau, trước khi thua (W2: cửa ban công, cửa sổ)", False)])
+	sheet("compare_1080.jpg", "Cùng camera ở 1080p: trước (main) và sau", rows, [
+		"Người khối (sinh viên, xác) và quản lý không thuộc đợt này. Ánh sáng không đổi: NightLight, Hall/Tube, DeskLamp của 106.",
+	])
+
+
+A30_R2 = [
+	("notebook", "Sổ Đạt: bìa bo góc, khối trang, gáy lò xo"),
+	("songbook", "Sổ hợp âm: ô hợp âm in trên trang (nét mực phẳng)"),
+	("outlet", "Ổ điện Khoa: khung bo cạnh, mặt ổ, hai khe, vít"),
+	("trash_paper", "Giấy vo trong thùng rác (3 nắm)"),
+	("shower_buttons", "Nút tắm Có / Không: đế và nút bấm (chương 2)"),
+]
+
+
+def a30_compare():
+	rows = []
+	for key, caption in A30_R2:
+		rows.append([("survey_a30_%s_torch.jpg" % key, (640, 360), "trước (lượt 1) · " + caption, False),
+			("a30_%s_after.jpg" % key, (640, 360), "sau", False)])
+	rows.append([("a30_rules_paper_edge_before.jpg", (640, 360), "nội quy cửa 407 từ hành lang, trước: cách cánh Tripo 4,35 cm", False),
+		("a30_rules_paper_edge_after.jpg", (640, 360), "sau: sát chỗ nhô nhất của cánh (1,2 mm)", False)])
+	sheet("a30_compare.jpg", "Đồ nhỏ phòng 407 (A30): trước và sau, cùng góc, đèn pin", rows, [
+		"Chỉ đổi mesh và vật liệu trên đúng các node cũ (dấu vân tay các node khác trùng main); hình bao lệch tối đa 1,2 cm.",
+		"Nội quy: chỉ đổi z của Door407/Pivot/RulesPaper (-0,025 -> -0,063); tờ phẳng vắt qua ô cánh lõm 1,6 cm nên mép còn hở theo ô lõm.",
+	])
+
+
+SYNC_VIEWS = (("room407_door", "407 từ cửa (cửa mở cho ảnh)"), ("corridor_stairs", "hành lang tầng 4 từ đầu cầu thang"),
+	("washroom", "nhà vệ sinh chung"), ("room403_open", "phòng 403 (cửa mở cho ảnh)"))
+
+
+def sync():
+	rows = []
+	for view, caption in SYNC_VIEWS:
+		rows.append([("sync_ch%d_%s.jpg" % (c, view), (480, 270), "chương %d · %s" % (c, caption), False) for c in (1, 2, 3, 4)])
+	sheet("sync.jpg", "Đồng bộ bốn chương: cùng góc ở chương 1–4", rows, [
+		"Khác do truyện, chương: đèn bàn 407 bật ở chương 1–2; chương 3–4 tầng 4 nằm trong nhà B giữa khuôn viên (trời, ánh sáng môi trường).",
+	])
+
+
+def overview():
+	rows = [
+		[("after_306_room_1080.jpg", (800, 450), "306 sau (D2, mùng 407, cửa mở vào trong, bảng số xanh)", False),
+			("after_306_room_feed.jpg", (600, 450), "feed 306 sau · " + r2("306_room", "after"), False),
+			("after_306_room_feed.jpg", (600, 450), "như trên điện thoại", True)],
+		[("after_102_hall_1080.jpg", (800, 450), "hành lang 102 (H1, tầng 1: lan can xây)", False),
+			("after_209_room_feed.jpg", (600, 450), "209 sau · " + r2("209_room", "after"), False),
+			("after_310_room_1080.jpg", (600, 450), "310 sau _cctv_310 (W2)", False)],
+		[("a30_notebook_after.jpg", (666, 375), "A30: sổ Đạt", False), ("a30_outlet_after.jpg", (666, 375), "ổ điện Khoa", False),
+			("a30_shower_buttons_after.jpg", (666, 375), "nút tắm", False)],
+		[("sync_ch1_room407_door.jpg", (500, 281), "chương 1", False), ("sync_ch2_room407_door.jpg", (500, 281), "chương 2", False),
+			("sync_ch3_room407_door.jpg", (500, 281), "chương 3", False), ("sync_ch4_room407_door.jpg", (500, 281), "chương 4", False)],
+	]
+	sheet("overview.jpg", "T-267 đợt 10 (lượt 2): năm phòng trường quay CCTV, đồ nhỏ phòng 407, đồng bộ bốn chương", rows, [
+		"Phòng 112.629–156.690 tam giác (trần 160.000); glb đợt 10 < 5.000; feed phòng 112–140 lần vẽ (trần 150), feed hành lang 92–135 (trần 250).",
+		"Bộ nhớ hình: chương 1 1.150 -> 1.166 MB (+16, trần 25); chương 3 không thêm do đồ mới (trần 5). Occluder bật/tắt: không điểm ảnh nào lệch quá 6/255.",
+	])
+
+
 def main():
-	survey()
-	survey_a30()
-	pilot()
-	options()
+	jobs = sys.argv[1:] or ["r2"]
+	if "r1" in jobs:
+		survey()
+		survey_a30()
+		pilot()
+		options()
+	if "r2" in jobs:
+		compare_rooms()
+		compare_1080()
+		a30_compare()
+		sync()
+		overview()
 
 
 if __name__ == "__main__":

@@ -1,0 +1,10 @@
+CAPTURE: a30_notebook_after.jpg draws 306 prims 518822 objects 326 vram 1163 MB
+CAPTURE: a30_songbook_after.jpg draws 1120 prims 1069739 objects 1179 vram 1166 MB
+CAPTURE: a30_outlet_after.jpg draws 634 prims 537319 objects 654 vram 1166 MB
+CAPTURE: a30_trash_paper_after.jpg draws 193 prims 301344 objects 193 vram 1166 MB
+CAPTURE: a30_rules_paper_corridor_before.jpg draws 1918 prims 2113169 objects 2020 vram 1166 MB
+CAPTURE: a30_rules_paper_edge_before.jpg draws 1527 prims 1420230 objects 1594 vram 1166 MB
+CAPTURE: a30_rules_paper_corridor_after.jpg draws 1900 prims 2056916 objects 1997 vram 1166 MB
+CAPTURE: a30_rules_paper_edge_after.jpg draws 1524 prims 1427358 objects 1591 vram 1166 MB
+RULES_PAPER z -0.063, anchor (32.0, 1.4, -0.063)
+CAPTURE: a30_shower_buttons_after.jpg draws 1931 prims 2148507 objects 2172 vram 1174 MB

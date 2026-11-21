@@ -96,11 +96,21 @@ dựng lại được các hình mẫu lượt 1 đã xoá khỏi game: V1/V2, H
 không Tripo mới, không ảnh AI (D-166). `door_broken.glb` là cánh cửa phòng có sẵn của game (`room407_shell/doors/door_room.glb`,
 Tripo gói trả phí theo D-084) cắt lỗ và giảm lưới trong Blender, dùng lại ba map của nó qua vật liệu `W9DoorRoom`.
 
-## `wave10/` — T-267: năm phòng trường quay CCTV (lượt 1: hình mẫu phòng 306)
+## `wave10/` — T-267: năm phòng trường quay CCTV, đồ nhỏ phòng 407 (A30)
 
-Lượt 1 (hình mẫu, chưa gắn vào scene nào): vỏ phòng trường quay với tường sau trơn (W1) hoặc có cửa ban công và cửa sổ đóng
-(W2), khung cửa, bảng số, bóng đèn ngủ (`cctv_room.glb`); hành lang tầng 1–3 nhà B với lan can sắt hoặc lan can xây, máng đèn
-(`cctv_hall.glb`); giường tầng thép nhẹ và tủ thép kiểu đợt 2 (`cctv_light_set.glb`). Dựng bằng script Blender
-(`art_source/graphics_upgrade/realistic_map/wave10/build_wave10.py`, theo hàm `bunk()`, `locker()`, `wall()`, `balustrade()`,
-`lamps()` của đợt 2); chỉ dùng vật liệu và texture có sẵn của đợt 1–2 (nguồn ở `wave1/`, `wave2/` và CREDITS của chúng),
-không texture mới, không nguồn ngoài mới, không Tripo, không ảnh AI (D-166).
+Lượt 2 (D-188), dựng bằng script Blender trong `art_source/graphics_upgrade/realistic_map/wave10/`, không Tripo mới, không
+ảnh AI, không nguồn ngoài mới (D-166):
+- `cctv_room.glb` (`build_wave10.py`): vỏ phòng, tường sau W2 (cửa ban công và cửa sổ đóng), khung cửa, bảng số xanh sau chữ,
+  bóng đèn ngủ. `cctv_hall.glb`: hành lang tầng 1–3 nhà B (H1), lan can sắt hoặc lan can xây, máng đèn, trời tối ngoài lan can.
+  Vật liệu của đợt 1–2 (nguồn ở `wave1/`, `wave2/` và CREDITS của chúng); tường, sàn, trần hành lang dùng vật liệu riêng `CW*`
+  (cùng scan thạch cao của phòng 407, terrazzo của đợt 1) trên ba mask nhỏ vẽ bằng numpy
+  ([`../../../textures/graphics_pilot/realistic_map/wave10/CREDITS.md`](../../../textures/graphics_pilot/realistic_map/wave10/CREDITS.md)).
+- `cctv_net_upper_open.glb` (`build_wave10_net.py`): mùng tầng trên vén một bên, chạy chính script Blender dựng mùng phòng
+  407 (`art_source/graphics_upgrade/room407_furnished/build_nets.py`, D-095: Blender, mô phỏng vải); vật liệu `CWNetWeave`,
+  `CWNetHem` dùng lại texture lưới mùng của phòng 407.
+- `a30/*.obj` (`build_wave10_a30.py`): hình mới cho sổ Đạt, ô hợp âm, ổ điện Khoa, giấy vo trong thùng rác, nút tắm; giữ vật
+  liệu và texture có sẵn của từng scene (`ch1_models/*.png`, 128 px), nút tắm dùng `A30Plastic` (màu trơn).
+- Đồ trong năm phòng là đồ có sẵn của phòng 407 (Tripo gói trả phí theo D-084, Blender theo D-095), đặt lúc chạy bằng
+  `game/scenes/levels/cctv/cctv_room_real.gd`; nguồn ở CREDITS của các thư mục `room407_*`.
+
+Lượt 1 (hình mẫu) có thêm `cctv_light_set.glb` (giường, tủ thép nhẹ, phương án D1); lượt 2 đã bỏ vì D-188 chọn D2.

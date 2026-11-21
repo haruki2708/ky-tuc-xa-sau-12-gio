@@ -2,7 +2,7 @@ extends TestCase
 ## T-267 (card sections 4, 5, 7; D-188) wave 10: the five CCTV rooms of cctv_set.tscn as it ships. The contract stays as
 ## main has it (colliders, cameras with fov and far, markers, lights, the room numbers, people); Room<n>/Real draws the
 ## room and its corridor (the PS1 meshes are hidden, not freed; nothing new collides; no set_state under Room310); the
-## nets keep each PS1 net's state; seven box occluders per room sit only in the five Room* branches (none in Corridor),
+## nets keep each PS1 net's state; nine box occluders per room sit only in the five Room* branches (none in Corridor),
 ## inside the walls' thickness, out of the rooms, the corridors and the doorways; nothing new crosses the manager's
 ## straight route at chest height or the line from Cam to the victim's head; Hall/Cam sees the doorway; 306's phone and
 ## 106's desk lamp are in the frame; the ceilings (a room <= 160,000 triangles, a wave-10 glb < 5,000) hold; wave 10's
@@ -39,7 +39,8 @@ const CORPSES := {"Corpse1": Vector3(0.65, 0.43, -3), "Corpse2": Vector3(3.35, 0
 const PEOPLE := ["Victim", "Corpse1", "Corpse2", "Corpse4"]
 const GLBS := ["cctv_room", "cctv_hall", "cctv_net_upper_open"]
 const STORY_POSES := {"102": &"answer", "306": &"phone_lit", "209": &"cower", "106": &"sit_up", "310": &"lie_awake"}
-const OCCLUDERS := ["WestWall", "EastWall", "FrontWest", "FrontEast", "Lintel", "HallEndWest", "HallEndEast"]
+const OCCLUDERS := ["WestWall", "EastWall", "FrontWest", "FrontEast", "Lintel", "HallWallWest", "HallWallEast",
+	"HallEndWest", "HallEndEast"]
 ## Where no occluder may reach (Room<n> metres): the room's inside, the corridor's, the doorway.
 const CLEAR := [AABB(Vector3(0.1, 0.0, -4.9), Vector3(3.8, 3.0, 4.8)), AABB(Vector3(-0.85, 0.0, 0.1), Vector3(5.7, 3.0, 2.45)),
 	AABB(Vector3(2.0, 0.0, -0.1), Vector3(0.9, 2.2, 0.2))]
@@ -159,7 +160,7 @@ func test_occluders_only_in_the_rooms_and_out_of_sight() -> void:
 	var set_root := _spawn()
 	await wait_frames(2)
 	var all := set_root.find_children("*", "OccluderInstance3D", true, false)
-	assert_eq(all.size(), OCCLUDERS.size() * ROOMS.size(), "seven occluders a room, no other")
+	assert_eq(all.size(), OCCLUDERS.size() * ROOMS.size(), "nine occluders a room, no other")
 	assert_true(set_root.get_node("Corridor").find_children("*", "OccluderInstance3D", true, false).is_empty(), "none in Corridor (T-256)")
 	for node: Node in all:
 		var path := String(set_root.get_path_to(node))
@@ -177,7 +178,18 @@ func test_occluders_only_in_the_rooms_and_out_of_sight() -> void:
 				continue
 			var local := AABB(occluder.position - box.size / 2.0, box.size)
 			for clear: AABB in CLEAR:
-				assert_false(local.intersects(clear), "%s %s %s stays out of %s" % [number, name, local, clear])
+				# A shared face is fine (the lintel's underside is the doorway's top).
+				assert_false(local.grow(-0.001).intersects(clear), "%s %s %s stays out of %s" % [number, name, local, clear])
+			# test_t260_occlusion's rule: inside one solid layer-1 box (one of the room's PS1 walls).
+			var inside := false
+			for shape: CollisionShape3D in room.find_children("*", "CollisionShape3D", true, false):
+				var body := shape.get_parent() as StaticBody3D
+				if body == null or not (shape.shape is BoxShape3D) or not (body.collision_layer & 1):
+					continue
+				var size := (shape.shape as BoxShape3D).size
+				var wall := (room.global_transform.affine_inverse() * shape.global_transform) * AABB(-size / 2.0, size)
+				inside = inside or wall.grow(0.005).encloses(local)
+			assert_true(inside, "%s %s inside one of the room's solid walls" % [number, name])
 
 
 func test_wave10_glbs_are_visual_and_share_materials() -> void:

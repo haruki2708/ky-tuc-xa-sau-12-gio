@@ -1,4 +1,6 @@
 extends "survey_wave10.gd"
+## Round 1 only: it needs round 1's glbs (cctv_light_set.glb, option D1, was removed in round 2 when D-188 chose D2;
+## take it from the round-1 commit to run this again). Round 2's stills: capture_wave10.gd.
 ## T-267 round 1 pilot stills (card section 2, steps 2-3). Chapter 1's real scene; director._cctv_scene(&"cam_306",
 ## &"phone_lit") as test_cctv does; the manager is held (process disabled) once in the corridor and once at ManagerSpot,
 ## and every option is shown on that same frame by switching visibility: the PS1 set as main has it, D1 (wave 2's light
