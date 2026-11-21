@@ -1,0 +1,55 @@
+VRAM ch1 1163 MB
+ROOM 102 after: 86 meshes, 148340 triangles, 41 materials | Victim 596, Real 147744
+ROOM 306 after: 84 meshes, 158338 triangles, 43 materials | Victim 596, Real 157742
+ROOM 209 after: 82 meshes, 151478 triangles, 41 materials | Victim 596, Real 150882
+ROOM 106 after: 83 meshes, 157531 triangles, 41 materials | Victim 584, Real 156947
+ROOM 310 after: 150 meshes, 115001 triangles, 48 materials | Victim 596, Corpse1 584, Corpse2 584, Corpse4 608, Real 112629
+FEED corridor_cam cam_corridor | before feed draws 167 prims 9702 objects 170 (shadow draws 0) | after feed draws 53 prims 26945 objects 56 (shadow draws 0) | after, occluders off feed draws 182 prims 53750 objects 193 (shadow draws 0)
+OCCLUDERS corridor_cam cam_corridor: on/off differ in 0 pixels (0 over 6/255); on/on again 0 (0)
+CAPTURE: before_corridor_cam_1080.jpg draws 324 prims 19404 objects 340 vram 1169 MB
+CAPTURE: after_corridor_cam_1080.jpg draws 113 prims 63677 objects 122 vram 1169 MB
+FEED 102_hall hall_102 | before feed draws 293 prims 37115 objects 323 (shadow draws 0) | after feed draws 125 prims 95838 objects 137 (shadow draws 0) | after, occluders off feed draws 408 prims 299016 objects 456 (shadow draws 0)
+OCCLUDERS 102_hall hall_102: on/off differ in 0 pixels (0 over 6/255); on/on again 0 (0)
+CAPTURE: before_102_hall_1080.jpg draws 708 prims 110593 objects 913 vram 1179 MB
+CAPTURE: after_102_hall_1080.jpg draws 351 prims 373159 objects 425 vram 1179 MB
+FEED 102_room cam_102 | before feed draws 77 prims 29669 objects 84 (shadow draws 0) | after feed draws 113 prims 125098 objects 124 (shadow draws 0) | after, occluders off feed draws 113 prims 125098 objects 124 (shadow draws 0)
+OCCLUDERS 102_room cam_102: on/off differ in 0 pixels (0 over 6/255); on/on again 0 (0)
+CAPTURE: before_102_room_1080.jpg draws 444 prims 97739 objects 496 vram 1179 MB
+CAPTURE: after_102_room_1080.jpg draws 341 prims 385977 objects 392 vram 1179 MB
+FEED 306_hall hall_306 | before feed draws 229 prims 32437 objects 252 (shadow draws 0) | after feed draws 110 prims 94449 objects 128 (shadow draws 0) | after, occluders off feed draws 314 prims 242259 objects 356 (shadow draws 0)
+OCCLUDERS 306_hall hall_306: on/off differ in 11 pixels (0 over 6/255); on/on again 0 (0)
+CAPTURE: before_306_hall_1080.jpg draws 661 prims 105199 objects 835 vram 1183 MB
+CAPTURE: after_306_hall_1080.jpg draws 353 prims 371444 objects 436 vram 1183 MB
+FEED 306_room cam_306 | before feed draws 141 prims 33709 objects 155 (shadow draws 0) | after feed draws 123 prims 124721 objects 134 (shadow draws 0) | after, occluders off feed draws 194 prims 185881 objects 216 (shadow draws 0)
+OCCLUDERS 306_room cam_306: on/off differ in 0 pixels (0 over 6/255); on/on again 0 (0)
+CAPTURE: before_306_room_1080.jpg draws 498 prims 101833 objects 580 vram 1183 MB
+CAPTURE: after_306_room_1080.jpg draws 335 prims 385810 objects 413 vram 1183 MB
+FEED 209_hall hall_209 | before feed draws 278 prims 32073 objects 307 (shadow draws 0) | after feed draws 106 prims 95062 objects 124 (shadow draws 0) | after, occluders off feed draws 352 prims 212900 objects 401 (shadow draws 0)
+OCCLUDERS 209_hall hall_209: on/off differ in 0 pixels (0 over 6/255); on/on again 0 (0)
+CAPTURE: before_209_hall_1080.jpg draws 706 prims 101331 objects 827 vram 1188 MB
+CAPTURE: after_209_hall_1080.jpg draws 339 prims 381933 objects 415 vram 1188 MB
+FEED 209_room cam_209 | before feed draws 165 prims 35301 objects 185 (shadow draws 0) | after feed draws 122 prims 128618 objects 133 (shadow draws 0) | after, occluders off feed draws 227 prims 218156 objects 251 (shadow draws 0)
+OCCLUDERS 209_room cam_209: on/off differ in 0 pixels (0 over 6/255); on/on again 0 (0)
+CAPTURE: before_209_room_1080.jpg draws 619 prims 107405 objects 741 vram 1188 MB
+CAPTURE: after_209_room_1080.jpg draws 331 prims 392441 objects 407 vram 1188 MB
+FEED 106_hall hall_106 | before feed draws 213 prims 27417 objects 228 (shadow draws 0) | after feed draws 93 prims 94993 objects 111 (shadow draws 0) | after, occluders off feed draws 255 prims 141435 objects 285 (shadow draws 0)
+OCCLUDERS 106_hall hall_106: on/off differ in 0 pixels (0 over 6/255); on/on again 0 (0)
+CAPTURE: before_106_hall_1080.jpg draws 588 prims 92211 objects 664 vram 1192 MB
+CAPTURE: after_106_hall_1080.jpg draws 333 prims 385455 objects 394 vram 1192 MB
+FEED 106_room cam_106 | before feed draws 158 prims 35353 objects 178 (shadow draws 0) | after feed draws 124 prims 131237 objects 134 (shadow draws 0) | after, occluders off feed draws 230 prims 229624 objects 253 (shadow draws 0)
+OCCLUDERS 106_room cam_106: on/off differ in 0 pixels (0 over 6/255); on/on again 0 (0)
+CAPTURE: before_106_room_1080.jpg draws 570 prims 106193 objects 706 vram 1192 MB
+CAPTURE: after_106_room_1080.jpg draws 321 prims 399269 objects 390 vram 1192 MB
+FEED 310_hall hall_310 | before feed draws 117 prims 6500 objects 124 (shadow draws 0) | after feed draws 135 prims 68575 objects 145 (shadow draws 0) | after, occluders off feed draws 135 prims 68575 objects 145 (shadow draws 0)
+OCCLUDERS 310_hall hall_310: on/off differ in 0 pixels (0 over 6/255); on/on again 0 (0)
+CAPTURE: before_310_hall_1080.jpg draws 397 prims 20972 objects 567 vram 1183 MB
+CAPTURE: after_310_hall_1080.jpg draws 445 prims 276603 objects 629 vram 1183 MB
+FEED 310_room_before_lunge cam_310 | before feed draws 129 prims 7012 objects 142 (shadow draws 0) | after feed draws 142 prims 92885 objects 160 (shadow draws 0) | after, occluders off feed draws 142 prims 92885 objects 160 (shadow draws 0)
+OCCLUDERS 310_room_before_lunge cam_310: on/off differ in 900 pixels (0 over 6/255); on/on again 1840 (0)
+CAPTURE: before_310_room_before_lunge_1080.jpg draws 384 prims 20828 objects 554 vram 1183 MB
+CAPTURE: after_310_room_before_lunge_1080.jpg draws 427 prims 276571 objects 611 vram 1183 MB
+FEED 310_room cam_310 | before feed draws 127 prims 6984 objects 140 (shadow draws 0) | after feed draws 140 prims 92857 objects 158 (shadow draws 0) | after, occluders off feed draws 140 prims 92857 objects 158 (shadow draws 0)
+OCCLUDERS 310_room cam_310: on/off differ in 0 pixels (0 over 6/255); on/on again 0 (0)
+CAPTURE: before_310_room_1080.jpg draws 385 prims 20904 objects 555 vram 1183 MB
+CAPTURE: after_310_room_1080.jpg draws 428 prims 276647 objects 612 vram 1183 MB
+VRAM ch2 1183 MB

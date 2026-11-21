@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3]
+
+[ext_resource type="Texture2D" path="res://assets/models/graphics_pilot/room407_furnished/mosquito_net_lower_open_mosquito_net_weave.png" id="1"]
+
+[resource]
+resource_name = "CWNetWeave"
+transparency = 1
+cull_mode = 2
+albedo_texture = ExtResource("1")
+roughness = 0.9

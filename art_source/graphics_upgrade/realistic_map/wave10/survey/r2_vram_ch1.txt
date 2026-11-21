@@ -1,0 +1,4 @@
+VRAM ch1 start, PS1 set (as main) 1150 MB
+CAPTURE: r2_vram_ch1_down_before.jpg draws 2500 prims 1995670 objects 2629 vram 1152 MB
+VRAM ch1 wave 10 in the five rooms 1166 MB
+CAPTURE: r2_vram_ch1_down_after.jpg draws 2445 prims 1990350 objects 2547 vram 1166 MB

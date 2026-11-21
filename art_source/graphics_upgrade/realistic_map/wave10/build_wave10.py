@@ -1,28 +1,29 @@
-"""T-267 (D-166) round 1 pilot: one CCTV room of cctv_set.tscn (Room306) and the corridor in front of it, in building
-B's approved style of wave 2 (floors 1-3: two-tone plaster with the green-grey dado, terrazzo floor and skirting, green
-door paint, the steel balustrade with its wooden rail). Every CCTV room has the same layout (Room<n> local metres, the
-PS1 boxes: floor top y 0, walls' inner faces x 0.1 / 3.9 and z -4.9 / -0.1, ceiling 3.0; doorway x 2.0..2.9 under the
-lintel at 2.2; Hall: floor z 0.1..2.35, x -0.85..4.85), so one set of glbs serves all five; the props stay where the
-PS1 set has them. Visual only: no collider (the PS1 colliders stay, their meshes hide). Only wave 1-2 materials: no new
-texture.
+"""T-267 (D-166, D-188) wave 10: the five CCTV rooms of cctv_set.tscn (Room102/306/209/106/310) and the corridor in
+front of each, in building B's approved style of wave 2 (floors 1-3: two-tone plaster with the green-grey dado, terrazzo
+floor and skirting, green door paint, the steel balustrade with its wooden rail). Every CCTV room has the same layout
+(Room<n> local metres, the PS1 boxes: floor top y 0, walls' inner faces x 0.1 / 3.9 and z -4.9 / -0.1, ceiling 3.0;
+doorway x 2.0..2.9 under the lintel at 2.2; Hall: floor z 0.1..2.35, x -0.85..4.85), so one set of glbs serves all five;
+the props stay where the PS1 set has them (cctv_room_real.gd places room 407's things). Visual only: no collider (the
+PS1 colliders stay, their meshes hide). Round 2 (D-188): the back wall is W2 only, the corridor is H1 in its own
+materials (CW*: wave 2's scans with this wave's small masks, make_wave10_textures.py) and its end walls close the
+corridor to the outer edge; the light set of option D1 is gone (D2: room 407's Tripo bunks and lockers).
 Run with Blender 5.2.2 from the repository root:
   blender -b --factory-startup -P art_source/graphics_upgrade/realistic_map/wave10/build_wave10.py
-then python -B art_source/graphics_upgrade/realistic_map/wave10/make_wave10_materials.py and godot --import.
+then python -B art_source/graphics_upgrade/realistic_map/wave10/make_wave10_textures.py, make_wave10_materials.py and
+godot --import (twice).
   cctv_room.glb        Shell        floor, side and front walls (room side), ceiling, skirting
-                       BackPlain    W1: the back wall as now (plaster and dado)
                        BackBalcony  W2: the back wall with a closed balcony door and a closed window (glass, grille),
                                     night behind them
                        DoorFrame    linings, stops, architraves both sides, the granite threshold, hinge knuckles, the green
                                     boards behind the room's Label3D numbers
                        NightLamp    the bulb on its cord where NightLight shines (1.5, 2.5, -2.6)
-  cctv_hall.glb        Hall         the corridor: room-side wall, end walls, terrazzo floor and divider strips, ceiling,
-                                    cross beams over the room partitions and the edge beam
+  cctv_hall.glb        Hall         the corridor: room-side wall, end walls (to the outer edge), terrazzo floor and divider
+                                    strips, ceiling, cross beams over the room partitions and the edge beam
                        Balustrade   floors 2-3 (209, 306, 310): curb, bars, rails, wooden handrail along the open side
                        Parapet      floor 1 (102, 106): the low plastered wall with a terrazzo coping
                        Batten       the tube batten over Hall/Tube (2.8, 2.8, 1.25)
                        Night        the dark beyond the open side
-  cctv_light_set.glb   Bunks        option D1: two light steel bunks (decks under the mattresses at 0.36 and 1.13)
-                       Lockers      option D1: four two-door steel lockers where Locker1..4 stand
+The mosquito net that bunk A's upper deck has open is build_wave10_net.py's (room 407's own net builder).
 """
 import math
 import sys
@@ -44,10 +45,6 @@ DADO = 1.1
 SKIRT = 0.12
 SKIRT_OUT = 0.01
 TOPH = CEIL - 0.002
-BUNKS = (0.65, 3.35)
-BUNK_Z = -3.0
-DECKS = (0.355, 1.125)  # slat tops: the 407 mattress (bunk_mattress.glb) lies on them, its top at 0.43 / 1.2
-LOCKERS_Z = ((-0.83, -0.07), (-1.63, -0.87))
 
 
 def wall(part, plane, c, s0, s1, holes, facing, mats, uv2, top=TOPH, dado=DADO, skirting=True, skirt_mat="W1Terrazzo"):
@@ -98,12 +95,6 @@ def shell():
 	wall(part, "x", X1 - C, ZB, ZF, [], (-1, 0, 0), ROOM_MATS, along(ZF, ZB))
 	wall(part, "z", ZF - C, X0, X1, [(DX0, DX1, DTOP)], (0, 0, -1), ROOM_MATS, along(X1, X0))
 	quad(part, "W1Soffit", (X0, CEIL - C, ZB), (X1, CEIL - C, ZB), (X1, CEIL - C, ZF), (X0, CEIL - C, ZF), (0, -1, 0))
-	return K.build(part)
-
-
-def back_plain():
-	part = K.Part("BackPlain")
-	wall(part, "z", ZB + C, X0, X1, [], (0, 0, 1), ROOM_MATS, along(X0, X1))
 	return K.build(part)
 
 
@@ -198,21 +189,33 @@ def night_lamp():
 
 # ---------------------------------------------------------------- hall
 
-HALL_MATS = ("W2HallDado", "W2HallWall")
+HALL_MATS = ("CWHallDado", "CWHallWall")
+HZ_OUT = 2.55  # the outer face of the PS1 OuterWall: the end walls close the corridor this far
+HALL_LEN = HX1 - HX0
+K.SIZES.update({"CWHallWall": K.PLASTER, "CWHallDado": K.PLASTER, "CWHallCeiling": K.PLASTER, "CWHallFloor": K.TERRAZZO})
+K.PREVIEW.update({"CWHallWall": K.PREVIEW["W2HallWall"], "CWHallDado": K.PREVIEW["W2HallDado"],
+	"CWHallFloor": K.PREVIEW["W2HallFloor"], "CWHallCeiling": K.PREVIEW["W2HallCeiling"]})
 
 
 def hall_uv2(s, h):
-	"""Inside the masks' floor-3 row (wave 2): u along the corridor, v up the wall."""
-	return ((s - HX0) / 44.0 + 0.3, 2.0 / 3.0 + (0.002 + 0.996 * min(max(h / CEIL, 0.0), 1.0)) / 3.0)
+	"""The wall mask (make_wave10_textures.py, 512 x 256): u along the corridor (s metres from its west end; the end
+	walls use the first 2.45 m), v up the wall (image top = ceiling)."""
+	return (min(max(s / HALL_LEN, 0.0), 1.0), 0.002 + 0.996 * min(max(h / CEIL, 0.0), 1.0))
+
+
+def flat_uv2(co):
+	"""Floor and ceiling masks: u along the corridor, v across it (image top = the open side)."""
+	return ((co.x - HX0) / HALL_LEN, min(max((-co.y - HZ0) / (HZ_OUT - HZ0), 0.0), 1.0))
 
 
 def hall():
 	part = K.Part("Hall")
-	wall(part, "z", HZ0 + C, HX0, HX1, [(DX0, DX1, DTOP)], (0, 0, 1), HALL_MATS, hall_uv2)
-	wall(part, "x", HX0 + C, HZ0, HZ1, [], (1, 0, 0), HALL_MATS, lambda s, h: hall_uv2(HX0 + (s - HZ0), h))
-	wall(part, "x", HX1 - C, HZ0, HZ1, [], (-1, 0, 0), HALL_MATS, lambda s, h: hall_uv2(HX1 - (s - HZ0), h))
-	fl = quad(part, "W2HallFloor", (HX0, 0.002, HZ0), (HX1, 0.002, HZ0), (HX1, 0.002, HZ1), (HX0, 0.002, HZ1), (0, 1, 0))
-	part.set_uv2([fl], lambda co: ((co.x - HX0) / 44.0 + 0.3, 2.0 / 3.0 + (0.002 + 0.996 * min(max(-co.y / 4.0, 0.0), 1.0)) / 3.0))
+	wall(part, "z", HZ0 + C, HX0, HX1, [(DX0, DX1, DTOP)], (0, 0, 1), HALL_MATS, lambda s, h: hall_uv2(s - HX0, h))
+	# The end walls reach the outer edge (the PS1 end walls' depth), so the balustrade ends against them.
+	wall(part, "x", HX0 + C, HZ0, HZ_OUT, [], (1, 0, 0), HALL_MATS, lambda s, h: hall_uv2(s - HZ0, h))
+	wall(part, "x", HX1 - C, HZ0, HZ_OUT, [], (-1, 0, 0), HALL_MATS, lambda s, h: hall_uv2(s - HZ0, h))
+	fl = quad(part, "CWHallFloor", (HX0, 0.002, HZ0), (HX1, 0.002, HZ0), (HX1, 0.002, HZ1), (HX0, 0.002, HZ1), (0, 1, 0))
+	part.set_uv2([fl], flat_uv2)
 	lift = 0.0026
 	k = math.ceil(HX0 / 1.1)
 	while k * 1.1 < HX1 - 0.05:
@@ -223,15 +226,14 @@ def hall():
 	for zs in (1.0, 2.0):
 		quad(part, "W2Divider", (HX0, lift, zs - 0.003), (HX1, lift, zs - 0.003), (HX1, lift, zs + 0.003), (HX0, lift, zs + 0.003), (0, 1, 0))
 	ceil = CEIL - C
-	cuv = lambda co: ((co.x - HX0) / 44.0 + 0.3, 2.0 / 3.0 + (0.002 + 0.996 * min(max(-co.y / 4.0, 0.0), 1.0)) / 3.0)  # noqa: E731
-	cf = quad(part, "W2HallCeiling", (HX0, ceil, HZ0), (HX1, ceil, HZ0), (HX1, ceil, HZ1 + 0.15), (HX0, ceil, HZ1 + 0.15), (0, -1, 0))
-	part.set_uv2([cf], cuv)
+	cf = quad(part, "CWHallCeiling", (HX0, ceil, HZ0), (HX1, ceil, HZ0), (HX1, ceil, HZ_OUT), (HX0, ceil, HZ_OUT), (0, -1, 0))
+	part.set_uv2([cf], flat_uv2)
 	# Hall/Cam hangs at (-0.7, 2.65, 2.2): the edge beam stays over the balustrade (z 2.3..2.5) and 0.3 deep, clear of it.
 	beams = []
 	for bx in (0.0, 4.0):
-		beams += gbox(part, "W2HallCeiling", (bx - 0.125, ceil - 0.3, HZ0), (bx + 0.125, ceil, 2.3))
-	beams += gbox(part, "W2HallCeiling", (HX0, ceil - 0.3, 2.3), (HX1, ceil, HZ1 + 0.15))
-	part.set_uv2(beams, cuv)
+		beams += gbox(part, "CWHallCeiling", (bx - 0.125, ceil - 0.3, HZ0), (bx + 0.125, ceil, 2.3))
+	beams += gbox(part, "CWHallCeiling", (HX0, ceil - 0.3, 2.3), (HX1, ceil, HZ1 + 0.15))
+	part.set_uv2(beams, flat_uv2)
 	return K.build(part)
 
 
@@ -263,7 +265,7 @@ def parapet():
 	"""Floor 1 (wave 2's lobby parapet): a low plastered wall with a terrazzo coping."""
 	part = K.Part("Parapet")
 	top = 1.25
-	wall(part, "z", HZ1 + C, HX0, HX1, [], (0, 0, -1), HALL_MATS, hall_uv2, top=top)
+	wall(part, "z", HZ1 + C, HX0, HX1, [], (0, 0, -1), HALL_MATS, lambda s, h: hall_uv2(s - HX0, h), top=top)
 	gbox(part, "W1Terrazzo", (HX0, top, HZ1 - 0.02), (HX1, 1.3, 2.55), bevel=0.008)
 	return K.build(part)
 
@@ -292,88 +294,16 @@ def night():
 	return K.build(part)
 
 
-# ---------------------------------------------------------------- D1: light bunks and lockers (wave 2's)
-
-def bunk(part, cx, room_side):
-	t = 0.018
-	hx, hz = 0.45 - t, 1.0 - t
-	za, zb = BUNK_Z - hz, BUNK_Z + hz
-	for px in (cx - hx, cx + hx):
-		for pz in (za, zb):
-			gbox(part, "W2BunkPaint", (px - t, 0.0, pz - t), (px + t, 1.62, pz + t), bevel=0.004)
-			gbox(part, "W1Black", (px - t - 0.004, 0.0, pz - t - 0.004), (px + t + 0.004, 0.025, pz + t + 0.004), bevel=0.003)
-	for top in DECKS:
-		for side in (-1, 1):
-			gbox(part, "W2BunkPaint", (cx + side * hx - t, top - 0.07, za + t), (cx + side * hx + t, top - 0.015, zb - t))
-		for pz in (za, zb):
-			gbox(part, "W2BunkPaint", (cx - hx + t, top - 0.07, pz - t), (cx + hx - t, top - 0.015, pz + t))
-		for k in range(7):
-			pz = za + 0.09 + k * (zb - za - 0.18) / 6
-			gbox(part, "W1WoodPale", (cx - hx + t, top - 0.03, pz - 0.045), (cx + hx - t, top - 0.012, pz + 0.045), bevel=0.003)
-	# Head and foot: two rails each between the posts (the top one low enough for Room310's Cam to see the head).
-	for pz in (za, zb):
-		for h in (0.62, 1.45):
-			gbox(part, "W2BunkPaint", (cx - hx + t, h - 0.013, pz - 0.013), (cx + hx - t, h + 0.013, pz + 0.013))
-	# The upper deck's guard rail on the room side, over the head half, on two drops.
-	rx = cx + room_side * hx
-	ga, gb = za + 0.06, BUNK_Z + 0.15
-	gbox(part, "W2BunkPaint", (rx - 0.013, 1.40, ga), (rx + 0.013, 1.426, gb), bevel=0.004)
-	for gz in (ga + 0.02, gb - 0.02):
-		gbox(part, "W2BunkPaint", (rx - 0.011, DECKS[1] - 0.015, gz - 0.011), (rx + 0.011, 1.40, gz + 0.011))
-	# The ladder at the foot end, on the room side.
-	lx = rx + room_side * 0.03
-	for lz in (zb - 0.36, zb - 0.06):
-		gbox(part, "W2BunkPaint", (lx - 0.012, 0.0, lz - 0.012), (lx + 0.012, 1.44, lz + 0.012), bevel=0.003)
-	for k in range(4):
-		y = 0.3 + k * 0.28
-		gbox(part, "W2BunkPaint", (lx - 0.01, y - 0.01, zb - 0.36), (lx + 0.01, y + 0.01, zb - 0.06))
-
-
-def bunks():
-	part = K.Part("Bunks")
-	bunk(part, BUNKS[0], 1)
-	bunk(part, BUNKS[1], -1)
-	return K.build(part)
-
-
-def locker(part, x0, x1, z0, z1, door_x, facing):
-	"""Wave 2's two-door steel locker (build_hall.locker) inside the PS1 locker's footprint, doors towards the room."""
-	gbox(part, "W2LockerPaint", (x0, 0.06, z0), (x1, 1.74, z1), bevel=0.006)
-	gbox(part, "W1Black", (x0 + 0.03, 0.0, z0 + 0.03), (x1 - 0.03, 0.06, z1 - 0.03))
-	zc = (z0 + z1) / 2
-	f0, f1 = (door_x, door_x + 0.008) if facing > 0 else (door_x - 0.008, door_x)
-	for k, (a, b) in enumerate(((z0 + 0.01, zc - 0.004), (zc + 0.004, z1 - 0.01))):
-		gbox(part, "W2LockerPaint", (f0, 0.09, a), (f1, 1.71, b), bevel=0.003)
-		for v in range(5):
-			h = 1.46 + v * 0.035
-			l0, l1 = (f1 - 0.002, f1 + 0.0015) if facing > 0 else (f0 - 0.0015, f0 + 0.002)
-			gbox(part, "W1Black", (l0, h, a + 0.05), (l1, h + 0.012, b - 0.05))
-		hz = b - 0.035 if k == 0 else a + 0.035
-		h0, h1 = (f1, f1 + 0.017) if facing > 0 else (f0 - 0.017, f0)
-		gbox(part, "W1Steel", (h0, 0.92, hz - 0.008), (h1, 1.07, hz + 0.008))
-
-
-def lockers():
-	part = K.Part("Lockers")
-	for z0, z1 in LOCKERS_Z:
-		locker(part, 0.06, 0.58, z0, z1, 0.58, 1)
-		locker(part, 3.42, 3.94, z0, z1, 3.42, -1)
-	return K.build(part)
-
-
 def export(name, objs):
 	w1kit.export(OUT / name, objs)
 
 
 def main():
 	K.materials()
-	export("cctv_room.glb", [shell(), back_plain(), back_balcony(), door_frame(), night_lamp()])
+	export("cctv_room.glb", [shell(), back_balcony(), door_frame(), night_lamp()])
 	K.reset()
 	K.materials()
 	export("cctv_hall.glb", [hall(), balustrade(), parapet(), batten(), night()])
-	K.reset()
-	K.materials()
-	export("cctv_light_set.glb", [bunks(), lockers()])
 
 
 main()

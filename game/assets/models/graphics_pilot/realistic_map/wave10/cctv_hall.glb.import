@@ -41,6 +41,26 @@ materials/extract_format=0
 materials/extract_path=""
 _subresources={
 "materials": {
+"CWHallCeiling": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave10/materials/CWHallCeiling.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave10/materials/CWHallCeiling.tres"
+},
+"CWHallDado": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave10/materials/CWHallDado.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave10/materials/CWHallDado.tres"
+},
+"CWHallFloor": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave10/materials/CWHallFloor.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave10/materials/CWHallFloor.tres"
+},
+"CWHallWall": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave10/materials/CWHallWall.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave10/materials/CWHallWall.tres"
+},
 "W1Black": {
 "use_external/enabled": true,
 "use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Black.tres",
@@ -80,26 +100,6 @@ _subresources={
 "use_external/enabled": true,
 "use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave2/materials/W2Divider.tres",
 "use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave2/materials/W2Divider.tres"
-},
-"W2HallCeiling": {
-"use_external/enabled": true,
-"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave2/materials/W2HallCeiling.tres",
-"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave2/materials/W2HallCeiling.tres"
-},
-"W2HallDado": {
-"use_external/enabled": true,
-"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave2/materials/W2HallDado.tres",
-"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave2/materials/W2HallDado.tres"
-},
-"W2HallFloor": {
-"use_external/enabled": true,
-"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave2/materials/W2HallFloor.tres",
-"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave2/materials/W2HallFloor.tres"
-},
-"W2HallWall": {
-"use_external/enabled": true,
-"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave2/materials/W2HallWall.tres",
-"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave2/materials/W2HallWall.tres"
 },
 "W2Tube": {
 "use_external/enabled": true,
