@@ -1,85 +1,58 @@
 [gd_scene format=3]
 
-[ext_resource type="Shader" path="res://rendering/ps1_surface.gdshader" id="shader"]
-
-[sub_resource type="ShaderMaterial" id="ivory"]
-shader = ExtResource("shader")
-shader_parameter/albedo_color = Color(0.65, 0.64, 0.51, 1)
-
-[sub_resource type="ShaderMaterial" id="dark"]
-shader = ExtResource("shader")
-shader_parameter/albedo_color = Color(0.035, 0.031, 0.025, 1)
-
-[sub_resource type="BoxMesh" id="Recess"]
-size = Vector3(0.004, 0.15, 0.13)
-material = SubResource("dark")
-
-[sub_resource type="BoxMesh" id="TopTrim"]
-size = Vector3(0.024, 0.022, 0.174)
-material = SubResource("ivory")
-
-[sub_resource type="BoxMesh" id="BottomTrim"]
-size = Vector3(0.024, 0.022, 0.174)
-material = SubResource("ivory")
-
-[sub_resource type="BoxMesh" id="LeftTrim"]
-size = Vector3(0.024, 0.15, 0.022)
-material = SubResource("ivory")
-
-[sub_resource type="BoxMesh" id="RightTrim"]
-size = Vector3(0.024, 0.15, 0.022)
-material = SubResource("ivory")
-
-[sub_resource type="BoxMesh" id="Cover"]
-size = Vector3(0.018, 0.12, 0.12)
-material = SubResource("ivory")
-
-[sub_resource type="BoxMesh" id="ContactLeft"]
-size = Vector3(0.003, 0.031, 0.009)
-material = SubResource("dark")
-
-[sub_resource type="BoxMesh" id="ContactRight"]
-size = Vector3(0.003, 0.031, 0.009)
-material = SubResource("dark")
-
-[sub_resource type="BoxMesh" id="ScrewTop"]
-size = Vector3(0.003, 0.007, 0.007)
-material = SubResource("dark")
+[ext_resource type="ArrayMesh" path="res://assets/models/graphics_pilot/realistic_map/wave10/a30/outlet_back.obj" id="t267_a30_1"]
+[ext_resource type="Material" path="res://assets/models/graphics_pilot/realistic_map/wave10/materials/A30Dark.tres" id="t267_a30_2"]
+[ext_resource type="ArrayMesh" path="res://assets/models/graphics_pilot/realistic_map/wave10/a30/outlet_rail.obj" id="t267_a30_3"]
+[ext_resource type="Material" path="res://assets/models/graphics_pilot/realistic_map/wave10/materials/A30Ivory.tres" id="t267_a30_4"]
+[ext_resource type="ArrayMesh" path="res://assets/models/graphics_pilot/realistic_map/wave10/a30/outlet_stile.obj" id="t267_a30_5"]
+[ext_resource type="ArrayMesh" path="res://assets/models/graphics_pilot/realistic_map/wave10/a30/outlet_face.obj" id="t267_a30_6"]
+[ext_resource type="ArrayMesh" path="res://assets/models/graphics_pilot/realistic_map/wave10/a30/outlet_slot.obj" id="t267_a30_7"]
+[ext_resource type="ArrayMesh" path="res://assets/models/graphics_pilot/realistic_map/wave10/a30/outlet_screw.obj" id="t267_a30_8"]
+[ext_resource type="Material" path="res://assets/models/graphics_pilot/realistic_map/wave10/materials/A30Steel.tres" id="t267_a30_9"]
 
 [node name="KhoaOutlet" type="Node3D"]
 
 [node name="Recess" type="MeshInstance3D" parent="."]
 position = Vector3(0.102, 0, 0)
-mesh = SubResource("Recess")
+mesh = ExtResource("t267_a30_1")
+surface_material_override/0 = ExtResource("t267_a30_2")
 
 [node name="TopTrim" type="MeshInstance3D" parent="."]
 position = Vector3(0.112, 0.086, 0)
-mesh = SubResource("TopTrim")
+mesh = ExtResource("t267_a30_3")
+surface_material_override/0 = ExtResource("t267_a30_4")
 
 [node name="BottomTrim" type="MeshInstance3D" parent="."]
 position = Vector3(0.112, -0.086, 0)
-mesh = SubResource("BottomTrim")
+mesh = ExtResource("t267_a30_3")
+surface_material_override/0 = ExtResource("t267_a30_4")
 
 [node name="LeftTrim" type="MeshInstance3D" parent="."]
 position = Vector3(0.112, 0, -0.076)
-mesh = SubResource("LeftTrim")
+mesh = ExtResource("t267_a30_5")
+surface_material_override/0 = ExtResource("t267_a30_4")
 
 [node name="RightTrim" type="MeshInstance3D" parent="."]
 position = Vector3(0.112, 0, 0.076)
-mesh = SubResource("RightTrim")
+mesh = ExtResource("t267_a30_5")
+surface_material_override/0 = ExtResource("t267_a30_4")
 
 [node name="Cover" type="MeshInstance3D" parent="."]
 position = Vector3(0.119, 0.008, 0)
-mesh = SubResource("Cover")
+mesh = ExtResource("t267_a30_6")
+surface_material_override/0 = ExtResource("t267_a30_4")
 
 [node name="ContactLeft" type="MeshInstance3D" parent="."]
 position = Vector3(0.129, 0.02, -0.025)
-mesh = SubResource("ContactLeft")
+mesh = ExtResource("t267_a30_7")
+surface_material_override/0 = ExtResource("t267_a30_2")
 
 [node name="ContactRight" type="MeshInstance3D" parent="."]
 position = Vector3(0.129, 0.02, 0.025)
-mesh = SubResource("ContactRight")
+mesh = ExtResource("t267_a30_7")
+surface_material_override/0 = ExtResource("t267_a30_2")
 
 [node name="ScrewTop" type="MeshInstance3D" parent="."]
 position = Vector3(0.129, 0.056, 0)
-mesh = SubResource("ScrewTop")
+mesh = ExtResource("t267_a30_8")
+surface_material_override/0 = ExtResource("t267_a30_9")

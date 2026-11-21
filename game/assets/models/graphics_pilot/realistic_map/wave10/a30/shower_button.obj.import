@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://c3vpt5bd6evuo"
+path="res://.godot/imported/shower_button.obj-b4edf1715afeeee8f284bab1fad0ceae.mesh"
+
+[deps]
+
+files=["res://.godot/imported/shower_button.obj-b4edf1715afeeee8f284bab1fad0ceae.mesh"]
+
+source_file="res://assets/models/graphics_pilot/realistic_map/wave10/a30/shower_button.obj"
+dest_files=["res://.godot/imported/shower_button.obj-b4edf1715afeeee8f284bab1fad0ceae.mesh", "res://.godot/imported/shower_button.obj-b4edf1715afeeee8f284bab1fad0ceae.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

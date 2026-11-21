@@ -39,6 +39,8 @@
 [ext_resource type="PackedScene" path="res://scenes/levels/ch2/shirt.tscn" id="t172_shirt"]
 
 [ext_resource type="Script" path="res://scenes/levels/ch2/gag_anchor.gd" id="t172_gag"]
+[ext_resource type="ArrayMesh" path="res://assets/models/graphics_pilot/realistic_map/wave10/a30/shower_button.obj" id="t267_a30_1"]
+[ext_resource type="Material" path="res://assets/models/graphics_pilot/realistic_map/wave10/materials/A30Plastic.tres" id="t267_a30_2"]
 
 [sub_resource type="ShaderMaterial" id="s1"]
 shader = ExtResource("e2")
@@ -86,9 +88,6 @@ texture_filter = 0
 [sub_resource type="QuadMesh" id="t172_screen"]
 size = Vector2(0.4,0.3)
 material = SubResource("t172_screen_mat")
-
-[sub_resource type="BoxMesh" id="t172_button"]
-size = Vector3(0.11,0.05,0.035)
 
 [sub_resource type="BoxShape3D" id="t172_stall"]
 size = Vector3(1.05,2.4,1.05)
@@ -351,14 +350,16 @@ position = Vector3(5.407,1.20,-5.89)
 rotation_degrees = Vector3(0,90,0)
 
 [node name="Button" type="MeshInstance3D" parent="ShowerYes"]
-mesh = SubResource("t172_button")
+mesh = ExtResource("t267_a30_1")
+surface_material_override/0 = ExtResource("t267_a30_2")
 
 [node name="ShowerNo" type="Marker3D" parent="."]
 position = Vector3(5.407,1.20,-6.11)
 rotation_degrees = Vector3(0,90,0)
 
 [node name="Button" type="MeshInstance3D" parent="ShowerNo"]
-mesh = SubResource("t172_button")
+mesh = ExtResource("t267_a30_1")
+surface_material_override/0 = ExtResource("t267_a30_2")
 
 [node name="ShowerStall" type="Area3D" parent="."]
 position = Vector3(6.18,1.2,-6.32)

@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cnbs0pfxtf6yi"
+path="res://.godot/imported/notebook_cover.obj-2cb5f976ebf6d6f2f7f2aa3adc6f86c2.mesh"
+
+[deps]
+
+files=["res://.godot/imported/notebook_cover.obj-2cb5f976ebf6d6f2f7f2aa3adc6f86c2.mesh"]
+
+source_file="res://assets/models/graphics_pilot/realistic_map/wave10/a30/notebook_cover.obj"
+dest_files=["res://.godot/imported/notebook_cover.obj-2cb5f976ebf6d6f2f7f2aa3adc6f86c2.mesh", "res://.godot/imported/notebook_cover.obj-2cb5f976ebf6d6f2f7f2aa3adc6f86c2.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false
