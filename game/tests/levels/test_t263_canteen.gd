@@ -23,7 +23,7 @@ const REAL := ["HallShell", "Windows", "Ceiling", "LightsFans", "Tables", "Table
 ## md5 of the sorted rows of main's scenes (origin/main d27337c, before patch_canteen.py's round 2 steps).
 const CANTEEN_NODES_MD5 := "7da3acc439769ecf78cf7a00ff4bd4b0"  # 1757 rows: canteen.tscn and its WestExit
 const CAMPUS_COLLIDERS_MD5 := "1e0dd9426510b21e245fbf2b84ee80c2"  # as test_t262_gate has it
-const CAMPUS_CONTRACT_MD5 := "2d7e21aeb14371114326fc6433d81216"  # as T-259, T-261 and T-262 left it
+const CAMPUS_CONTRACT_MD5 := "ff7c018d8f35a3af38e8608811067571"  # as T-259, T-261, T-262 left it, plus T-266's visual rows
 const PROPS_COLLIDERS_MD5 := "97c2301b5e5f2375e59ef5ecf322a76b"  # as T-259 left it
 const G := -9.9
 const HEAD := G + 2.0

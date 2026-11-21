@@ -76,6 +76,6 @@ func _exit_tree() -> void:
 		if tween.is_valid():
 			tween.kill()
 	for marker_name: String in _parts:
-		var part := _parts[marker_name]
-		if is_instance_valid(part):
-			part.transform = _rest[marker_name]
+		# The floor-4 room can be freed first on teardown: check before using the typed value.
+		if is_instance_valid(_parts[marker_name]):
+			_parts[marker_name].transform = _rest[marker_name]

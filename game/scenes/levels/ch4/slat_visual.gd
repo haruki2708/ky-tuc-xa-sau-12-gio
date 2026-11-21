@@ -120,9 +120,10 @@ func _throw_bedding() -> void:
 		_fall.kill()
 	var paths: Array = []
 	for thing: Dictionary in _things:
-		var node := thing.node as Node3D
-		if not is_instance_valid(node):
+		# Check before the cast: casting a freed object is a script error.
+		if not is_instance_valid(thing.node):
 			continue
+		var node := thing.node as Node3D
 		node.transform = thing.rest
 		paths.append({"node": node, "keys": fall_keys(String(thing.name), _room.global_transform.affine_inverse() * node.global_transform)})
 	_fall = create_tween()
@@ -131,9 +132,8 @@ func _throw_bedding() -> void:
 
 func _pose_bedding(t: float, paths: Array) -> void:
 	for path: Dictionary in paths:
-		var node := path.node as Node3D
-		if is_instance_valid(node):
-			node.global_transform = _room.global_transform * pose_at(path.keys, t)
+		if is_instance_valid(path.node) and is_instance_valid(_room):
+			(path.node as Node3D).global_transform = _room.global_transform * pose_at(path.keys, t)
 
 
 ## Room407-space keys [time, Transform3D, ease of the leg ending there: "s" smooth, "l" linear, "i" falling] from a thing's
@@ -245,9 +245,9 @@ func _restore_bedding() -> void:
 	if _fall != null and _fall.is_valid():
 		_fall.kill()
 	for thing: Dictionary in _things:
-		var node := thing.node as Node3D
-		if is_instance_valid(node):
-			node.transform = thing.rest
+		# On teardown the room's props can be freed before this marker leaves the tree: check before the cast.
+		if is_instance_valid(thing.node):
+			(thing.node as Node3D).transform = thing.rest
 
 
 func _exit_tree() -> void:

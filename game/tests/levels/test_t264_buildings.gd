@@ -18,7 +18,7 @@ const GLBS := ["bldga", "figure", "lecture", "gym", "b_outside", "bldga_light"]
 const SHELLS_NODES_MD5 := "de6e542b7223c6ea3180e7016fe8dbdd"
 const B_NODES_MD5 := "559b38455bfdcf19c668d63ddf1ccc53"
 const CAMPUS_COLLIDERS_MD5 := "1e0dd9426510b21e245fbf2b84ee80c2"  # as test_t262_gate has it (T-265's Real/Added in)
-const CAMPUS_CONTRACT_MD5 := "2d7e21aeb14371114326fc6433d81216"
+const CAMPUS_CONTRACT_MD5 := "ff7c018d8f35a3af38e8608811067571"  # T-266 added 17 visual rows under Anchors/Ch4/Room407
 const G := -9.9
 const HEAD := G + 2.0
 ## Shell boxes (x0, x1, z0, z1), their front at z0.

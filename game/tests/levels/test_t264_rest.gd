@@ -13,7 +13,7 @@ const REST := preload("res://scenes/levels/campus/rest_real.gd")
 const MODELS := "res://assets/models/graphics_pilot/realistic_map/wave7/"
 const TEXTURES := "res://assets/textures/graphics_pilot/realistic_map/wave7/"
 const CAMPUS_COLLIDERS_MD5 := "1e0dd9426510b21e245fbf2b84ee80c2"   # as test_t262_gate / test_t263_canteen have it
-const CAMPUS_CONTRACT_MD5 := "2d7e21aeb14371114326fc6433d81216"    # as T-259, T-261, T-262, T-263 left it
+const CAMPUS_CONTRACT_MD5 := "ff7c018d8f35a3af38e8608811067571"    # as T-259, T-261, T-262, T-263 left it, plus T-266's visual rows
 const G := -9.9
 const COLLIDER_TOP := -9.94
 ## Main's props.tscn: drag marks and cracks (D_iron), blood (D_red) and skin-tinted pieces (heads) still drawn.

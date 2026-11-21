@@ -16,7 +16,7 @@ const GLBS := ["field.glb", "goal.glb", "stand.glb", "stand_south.glb", "pole_st
 ## md5 of the sorted rows of main's scenes (_probe_tmp copies of origin/main 072b7bb); this wave changes none of them.
 const STADIUM_COLLIDERS_MD5 := "30bb677dad7fc54fd7a081d4939663d5"  # 53 colliders
 const STADIUM_NODES_MD5 := "be790db1b0a517705d29328f409e7e52"  # 257 nodes
-const CAMPUS_CONTRACT_MD5 := "2d7e21aeb14371114326fc6433d81216"  # as T-259 left it
+const CAMPUS_CONTRACT_MD5 := "ff7c018d8f35a3af38e8608811067571"  # as T-259 left it, plus T-266's 17 visual rows in Room407
 const PROPS_COLLIDERS_MD5 := "97c2301b5e5f2375e59ef5ecf322a76b"  # as T-259 left it
 ## T-262 (D-180): 2124 = main's 2303 kept instances less the 180 the gate strip replaces (scaled to 0, outside this
 ## wave's areas) plus the corpse head given back at (43.6, 30.2) (outside this wave's A16 box, so a kept row again).

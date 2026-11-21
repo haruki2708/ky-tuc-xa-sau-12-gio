@@ -17,7 +17,9 @@ const GLBS := TREE_GLBS + ["garden_beds.glb", "garden_planting.glb", "paving_blo
 ## md5 of the sorted rows of main's scenes (see _rows); this wave changes none of them.
 const GARDEN_COLLIDERS_MD5 := "6e3434f62c26463ec94584e191da9971"  # 32 colliders
 const GARDEN_NODES_MD5 := "a8a0156fbc047dcc88984730980eaecf"  # 524 nodes
-const CAMPUS_CONTRACT_MD5 := "2d7e21aeb14371114326fc6433d81216"  # 1079 rows
+# T-266 added 17 visual rows under Anchors/Ch4/Room407 (the slats', door damage's Real models, SearchFeedback); without
+# them the other 1079 rows still give main's old 2d7e21aeb14371114326fc6433d81216 (integrator probe, 21/11).
+const CAMPUS_CONTRACT_MD5 := "ff7c018d8f35a3af38e8608811067571"  # 1096 rows
 const PROPS_COLLIDERS_MD5 := "97c2301b5e5f2375e59ef5ecf322a76b"  # 175 colliders
 const PAVING_Y := -9.9
 const FREE_HEIGHT := 2.0

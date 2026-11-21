@@ -18,7 +18,7 @@ const GLBS := ["court", "outside", "court_cracks", "pillars_plaster", "gate_swin
 ## md5 of the sorted rows of main's scenes; this wave changes none of them.
 const GATE_NODES_MD5 := "26c58f4a871429596e0983396fa728a1"  # 145 rows
 const CAMPUS_COLLIDERS_MD5 := "1e0dd9426510b21e245fbf2b84ee80c2"  # 1072 colliders: 957 and T-265's 115 in Library/Real/Added
-const CAMPUS_CONTRACT_MD5 := "2d7e21aeb14371114326fc6433d81216"  # as T-259 and T-261 left it
+const CAMPUS_CONTRACT_MD5 := "ff7c018d8f35a3af38e8608811067571"  # as T-259, T-261 left it, plus T-266's visual rows
 const PROPS_COLLIDERS_MD5 := "97c2301b5e5f2375e59ef5ecf322a76b"  # as T-259 left it
 const G := -9.9
 const A16_BOX := AABB(Vector3(180, -10.5, -60), Vector3(82, 4.5, 73))
