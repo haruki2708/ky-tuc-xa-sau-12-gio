@@ -1,5 +1,5 @@
 # T-266 — Đồ hoạ thật đợt 9: phòng 407 ở chương 4 (vạt giường, ba chỗ tìm giả, cửa bị phá) và phòng bệnh viện của đoạn kết
-- Lane: B | Trạng thái: **lượt 1 xong, review đạt; D-187 đã chọn, chờ chủ dự án dán lượt 2** (card viết 20/11/2026, sau khi T-265 merge) | Agent: tài khoản Claude lane B, `D:\GAME_WORK\lane-b2`. Chủ dự án tự dán prompt (`lane-b.md` mục 1t).
+- Lane: B | Trạng thái: **done, merged 21/11 `4a56e72f`, cộng commit sửa `44843bfa` của integrator; full test 1088/0, check 0; bản chơi `44843bfa`** (card viết 20/11/2026, sau khi T-265 merge) | Agent: tài khoản Claude lane B, `D:\GAME_WORK\lane-b2`. Chủ dự án tự dán prompt (`lane-b.md` mục 1t).
 - **Model (D-183):** lane B **Opus 5.5, effort xhigh**. Lượt nào bị trả sửa hai lần cùng một lỗi thì lượt sửa dùng **max**. Phần của integrator (chuyển phương án, review, sửa core nếu có, full test + check): **Fable 5.2 hoặc Mythos 5.2 high**.
 - Nhánh: `lane-b/T-266-realistic-graphics-wave9-room407-hospital` từ `origin/main` mới nhất (đã có đợt 8 và hai sửa core `138cff2`, `78365fa`).
 - Quyết định nền:
@@ -219,6 +219,38 @@
 - [x] Lượt 2: phòng 407 (ba vạt, trần, thông gió, cửa bị phá)
 - [x] Lượt 2: bệnh viện (vỏ, giường, người, y tá, khung hình)
 - [x] Lượt 2: ảnh trước/sau, `overview.jpg`, test lọc, README, CREDITS, Handoff
+
+## Review integrator, lượt 2 và merge (21/11/2026)
+- **Đạt, merged** `4a56e72f` (no-ff từ nhánh `252f6fe`), cộng commit sửa `44843bfa` của integrator (dưới đây).
+- **Phạm vi:**
+  - lane B chỉ sửa file trong mục 8;
+  - card ghi nhầm đường dẫn `levels/room407/room_407.tscn` (lỗi của integrator); lane B sửa đúng file `scenes/levels/floor4/room_407.tscn`;
+  - hình PS1 chỉ ẩn: 31 dòng `visible = false` đều nằm trong nhánh `Room407`; hình mới ở `Real`, `Empty`, `Wave9Fixtures`, `SearchFeedback`;
+  - `test_ch4_environment` nâng hai ngưỡng, vẫn trong giới hạn mục 5: `Door` 3.600 (giới hạn 4.000), `Bed_*` 4.000 (giới hạn 8.000).
+- **Đúng D-187:**
+  - vạt V2b: giường 2 lật 62°, giường 1 và 4 lật 70°, xong ở 0,5 s;
+  - N2 không va chạm: lật theo thứ tự 1-2-4 hay 2-1-4 đều ra cùng chỗ, thoát thì trả lại;
+  - C2 theo đường (a): node `Wave9Fixtures` thêm vào `KEEP_PS1`;
+  - phản hồi khi tìm: script nghe `EventBus.interacted`, vì chỗ tìm giả không phát `searched`. Integrator đã kiểm: `HoldInteractable._finish()` phát tín hiệu này lúc giữ xong;
+  - cửa: từ 60 % ẩn cả `RoomDoor` và `Leaf`, thoát thì trả lại;
+  - `Camera_Wake` ngước 11°;
+  - thẻ tên có chữ hai mặt (`NameBack`, `DetailsBack`), API giữ nguyên;
+  - kết một mình hiện `Empty`.
+- **Ảnh đã xem:** `overview.jpg`, `compare_407_bedding.jpg`, `compare_ward_detail.jpg`. Đọc được "Lý Minh Nhật" và "Khương Ngọc Ngư"; ở độ sáng 1,45 không cháy trắng.
+- **Chấp nhận hai chỗ khác card**, vì N2 không có va chạm nên không chặn đường:
+  - nệm giường 2 nằm giữa phòng, trước đầu chiếu;
+  - khi nhấc lên, nệm tầng trên lướt qua thanh chắn phía tường trong 0,5 s, bị chính tấm nệm che.
+  Nếu chủ dự án chơi thử thấy chướng thì đổi bảng `LANDING`.
+- **Integrator sửa khi merge (`44843bfa`):**
+  - **Lỗi ép kiểu:** `slat_visual.gd` ép kiểu nệm, chăn, gối `as Node3D` trước khi kiểm còn hợp lệ. Khi cảnh có ch4_anchors bị giải phóng, đồ của phòng có thể bị giải phóng trước, nên `_exit_tree` báo "Trying to cast a freed object". Hệ quả: `test_t250` thoát 1 dù cả 5 test đều đạt. Đã sửa ba vòng lặp để kiểm trước khi ép kiểu; `_exit_tree` của `search_feedback.gd` cũng được chặn như vậy.
+  - **Dấu vân tay khuôn viên:** hằng `CAMPUS_CONTRACT_MD5` trong sáu test (t259, t261, t262, t263, t264 ×2) đổi sang `ff7c018d` (1096 dòng). Lý do: T-266 thêm 17 dòng hình dưới `Anchors/Ch4/Room407`. Một probe bỏ 17 dòng đó ra thì được đúng `2d7e21ae` cũ trên 1079 dòng, tức anchor, vùng và navigation không đổi. Lane B không thấy lỗi này vì các test đó nằm ngoài các bộ lọc ở mục 7.
+- **Kiểm:**
+  - Full test chạy nền lần đầu bị Claude Code dừng vì máy thiếu RAM (21/11 02:09 đến khoảng 02:40, không có kết quả).
+  - Chủ dự án bảo chạy lại. Integrator chạy trực tiếp từng phần theo thư mục test, mỗi phần dưới 10 phút; sau khi sửa thì chạy lại `t250`, `t259` và hai test chương 4.
+  - Kết quả: **1088 passed, 0 failed** (core 196, levels 315, player 266, audio 131, ui 126, tools 53, smoke 1), gồm cả sáu bộ lọc lane B chưa chạy được.
+  - Check: **0 lỗi** (21/11 14:12; cho chạy nền, phiên giữ bận bằng lệnh chờ chạy trực tiếp).
+  - Log ở `build/integrator/T266m_*.log`.
+- **Bản chơi:** package PASS 21/11 14:17. File `build/windows/KyTucXa.exe`, zip `build/dist/KyTucXa-0.0.1-44843bfa-win64.zip` (546 MiB); có đồ hoạ đợt 1–9.
 
 ## Handoff
 

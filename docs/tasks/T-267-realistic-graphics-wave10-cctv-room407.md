@@ -1,5 +1,5 @@
 # T-267 — Đồ hoạ thật đợt 10: năm phòng trường quay CCTV (102, 306, 209, 106, 310) và đồ nhỏ phòng 407
-- Lane: B | Trạng thái: **mới; chỉ giao sau khi T-266 merge** (card viết 20/11/2026 trong lúc lane B làm T-266 lượt 2) | Agent: tài khoản Claude lane B, `D:\GAME_WORK\lane-b2`. Chủ dự án tự dán prompt (`lane-b.md` mục 1u).
+- Lane: B | Trạng thái: **mới; T-266 đã merge 21/11 (`44843bfa`), chờ chủ dự án dán lượt 1** (card viết 20/11/2026 trong lúc lane B làm T-266 lượt 2) | Agent: tài khoản Claude lane B, `D:\GAME_WORK\lane-b2`. Chủ dự án tự dán prompt (`lane-b.md` mục 1u).
 - **Model (D-183):** lane B **Opus 5.5, effort xhigh**. Nếu một lượt bị trả sửa hai lần vì cùng một lỗi, lượt sửa tiếp theo dùng **max**. Phần của integrator (chuyển phương án, review, full test + check, merge) dùng Fable 5.2, Mythos 5.2 high hoặc Opus 5.5.
 - Nhánh: `lane-b/T-267-realistic-graphics-wave10-cctv-room407` tạo từ `origin/main` **sau khi T-266 merge**. Lúc đó phòng 407 đã có ô thông gió và nắp trần ở cả bốn chương (D-187 điểm 5).
 - Quyết định nền:

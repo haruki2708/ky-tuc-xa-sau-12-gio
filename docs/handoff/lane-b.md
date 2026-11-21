@@ -384,7 +384,7 @@ Commit, push nhánh, cập nhật Checklist, Handoff "### Lượt 2", README, CR
 ```
 
 ## 1u. Giao T-267 (viết 20/11/2026): đồ hoạ thật đợt 10 — năm phòng trường quay CCTV và đồ nhỏ phòng 407
-**Chỉ dán sau khi integrator merge T-266** (nhánh mới cần phòng 407 đã có ô thông gió và nắp trần). Gõ `/clear` (hoặc mở phiên mới), `/model` chọn **Opus 5.5**, effort **xhigh** (D-183; lượt sửa lại lần hai thì **max**), rồi dán:
+**Dán được: T-266 đã merge 21/11** (`44843bfa`; phòng 407 đã có ô thông gió và nắp trần ở cả bốn chương). Gõ `/clear` (hoặc mở phiên mới), `/model` chọn **Opus 5.5**, effort **xhigh** (D-183; lượt sửa lại lần hai thì **max**), rồi dán:
 ```text
 Việc mới cho lane B: T-267 — đồ hoạ thật đợt 10, đợt môi trường cuối: năm phòng trường quay CCTV (102, 306, 209, 106, 310, cả hành lang trước cửa mỗi phòng) và đồ nhỏ phòng 407. Đọc docs/tasks/T-267-realistic-graphics-wave10-cctv-room407.md.
 Ở D:\GAME_WORK\lane-b2: git status (giữ thay đổi đang có, báo nếu có), git fetch origin, git switch -c lane-b/T-267-realistic-graphics-wave10-cctv-room407 origin/main, git lfs pull.
