@@ -1,0 +1,3 @@
+VRAM ch3 before 1355 MB
+VRAM ch3 D1 kit in five rooms 1355 MB
+VRAM ch3 + D2 in 306 1355 MB

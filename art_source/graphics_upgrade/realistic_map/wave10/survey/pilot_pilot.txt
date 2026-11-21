@@ -1,0 +1,53 @@
+VRAM ch1 before 1150 MB
+VRAM ch1 kit loaded (hidden) 1223 MB
+VRAM ch1 D1 in four rooms 1223 MB
+VRAM ch1 + D2 in 306 1223 MB
+FEED: pilot_306_hall_ps1 hall_306 320x240 feed draws 289 prims 37193 objects 398 (shadow draws 0)
+CAPTURE: pilot_306_hall_ps1_1080.jpg draws 691 prims 109943 objects 980 vram 1235 MB
+  ps1 set 32 meshes 4464 triangles 29 materials
+FEED: pilot_306_hall_h1 hall_306 320x240 feed draws 318 prims 76430 objects 408 (shadow draws 0)
+CAPTURE: pilot_306_hall_h1_1080.jpg draws 776 prims 303422 objects 1019 vram 1235 MB
+  h1 set 45 meshes 105280 triangles 38 materials
+FEED: pilot_306_hall_h2 hall_306 320x240 feed draws 318 prims 76430 objects 408 (shadow draws 0)
+CAPTURE: pilot_306_hall_h2_1080.jpg draws 776 prims 303422 objects 1019 vram 1235 MB
+  h2 set 45 meshes 105280 triangles 36 materials
+CAPTURE: pilot_306_hall_door_1080.jpg draws 775 prims 308316 objects 1018 vram 1235 MB
+FEED: pilot_306_room_ps1 cam_306 320x240 feed draws 111 prims 33697 objects 154 (shadow draws 0)
+CAPTURE: pilot_306_room_ps1_1080.jpg draws 528 prims 106577 objects 725 vram 1235 MB
+  ps1 set 32 meshes 4464 triangles 29 materials
+FEED: pilot_306_room_d1 cam_306 320x240 feed draws 136 prims 96958 objects 170 (shadow draws 0)
+CAPTURE: pilot_306_room_d1_1080.jpg draws 609 prims 293397 objects 767 vram 1235 MB
+  d1 set 45 meshes 105280 triangles 38 materials
+CAPTURE: pilot_306_inside_d1_1080.jpg draws 574 prims 305726 objects 723 vram 1235 MB
+FEED: pilot_306_room_d2 cam_306 320x240 feed draws 133 prims 128427 objects 170 (shadow draws 0)
+CAPTURE: pilot_306_room_d2_1080.jpg draws 599 prims 403464 objects 767 vram 1235 MB
+  d2 set 49 meshes 148494 triangles 37 materials
+CAPTURE: pilot_306_inside_d2_1080.jpg draws 564 prims 407963 objects 722 vram 1235 MB
+FEED: pilot_306_back_ps1 probe feed draws 72 prims 30233 objects 87 (shadow draws 0)
+CAPTURE: pilot_306_back_ps1_1080.jpg draws 547 prims 135398 objects 747 vram 1239 MB
+FEED: pilot_306_back_w1 probe feed draws 79 prims 96954 objects 95 (shadow draws 0)
+CAPTURE: pilot_306_back_w1_1080.jpg draws 622 prims 400616 objects 789 vram 1239 MB
+FEED: pilot_306_back_w2 probe feed draws 84 prims 97818 objects 100 (shadow draws 0)
+CAPTURE: pilot_306_back_w2_1080.jpg draws 642 prims 404072 objects 809 vram 1241 MB
+FEED: pilot_306_back_w2_d2 probe feed draws 80 prims 141032 objects 100 (shadow draws 0)
+CAPTURE: pilot_306_back_w2_d2_1080.jpg draws 628 prims 557353 objects 809 vram 1241 MB
+FEED: pilot_102_hall_kit hall_102 320x240 feed draws 337 prims 109818 objects 510 (shadow draws 0)
+CAPTURE: pilot_102_hall_kit_1080.jpg draws 786 prims 379665 objects 1153 vram 1245 MB
+FEED: pilot_102_room_kit cam_102 320x240 feed draws 87 prims 82518 objects 104 (shadow draws 0)
+CAPTURE: pilot_102_room_kit_1080.jpg draws 514 prims 290780 objects 727 vram 1245 MB
+FEED: pilot_209_hall_kit hall_209 320x240 feed draws 264 prims 63398 objects 329 (shadow draws 0)
+CAPTURE: pilot_209_hall_kit_1080.jpg draws 681 prims 285819 objects 910 vram 1250 MB
+FEED: pilot_209_room_kit cam_209 320x240 feed draws 125 prims 118871 objects 223 (shadow draws 0)
+CAPTURE: pilot_209_room_kit_1080.jpg draws 552 prims 410294 objects 847 vram 1250 MB
+FEED: pilot_106_hall_kit hall_106 320x240 feed draws 216 prims 57946 objects 250 (shadow draws 0)
+CAPTURE: pilot_106_hall_kit_1080.jpg draws 567 prims 279007 objects 760 vram 1255 MB
+FEED: pilot_106_room_kit cam_106 320x240 feed draws 105 prims 122823 objects 229 (shadow draws 0)
+CAPTURE: pilot_106_room_kit_1080.jpg draws 503 prims 434862 objects 844 vram 1255 MB
+FEED: pilot_310_hall_kit hall_310 320x240 feed draws 133 prims 38581 objects 146 (shadow draws 0)
+CAPTURE: pilot_310_hall_kit_1080.jpg draws 452 prims 176841 objects 630 vram 1248 MB
+FEED: pilot_310_room_kit_before cam_310 320x240 feed draws 146 prims 60451 objects 160 (shadow draws 0)
+CAPTURE: pilot_310_room_kit_before_1080.jpg draws 434 prims 176809 objects 612 vram 1248 MB
+FEED: pilot_310_room_kit_w1_before cam_310 320x240 feed draws 141 prims 59587 objects 155 (shadow draws 0)
+CAPTURE: pilot_310_room_kit_w1_before_1080.jpg draws 419 prims 174217 objects 597 vram 1248 MB
+FEED: pilot_310_room_kit cam_310 320x240 feed draws 144 prims 60423 objects 158 (shadow draws 0)
+CAPTURE: pilot_310_room_kit_1080.jpg draws 435 prims 176885 objects 613 vram 1248 MB

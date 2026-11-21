@@ -1,0 +1,10 @@
+CAPTURE: survey_a30_notebook_torch.jpg draws 324 prims 517370 objects 326 vram 1150 MB
+CAPTURE: survey_a30_songbook_torch.jpg draws 1171 prims 1068779 objects 1179 vram 1152 MB
+CAPTURE: survey_a30_charger_torch.jpg draws 646 prims 446352 objects 649 vram 1153 MB
+CAPTURE: survey_a30_outlet_torch.jpg draws 646 prims 535935 objects 654 vram 1153 MB
+CAPTURE: survey_a30_khoa_note_torch.jpg draws 573 prims 523013 objects 577 vram 1153 MB
+CAPTURE: survey_a30_router_led_torch.jpg draws 490 prims 154943 objects 490 vram 1153 MB
+CAPTURE: survey_a30_trash_paper_torch.jpg draws 193 prims 300696 objects 193 vram 1153 MB
+CAPTURE: survey_a30_rules_paper_torch.jpg draws 846 prims 446006 objects 851 vram 1153 MB
+CAPTURE: survey_a30_power_strip_torch.jpg draws 688 prims 873805 objects 698 vram 1153 MB
+CAPTURE: survey_a30_shower_buttons_torch.jpg draws 1974 prims 2142571 objects 2173 vram 1161 MB
