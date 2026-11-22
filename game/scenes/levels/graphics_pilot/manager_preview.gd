@@ -54,6 +54,10 @@ func _ready() -> void:
 	floor4 = FLOOR.instantiate() as Node3D
 	add_child(floor4)
 	room = floor4.get_node("Room407") as Node3D
+	# T-268: --motion=mx puts the pilot's Mixamo walk and slash on him (set before the body is made).
+	for arg: String in OS.get_cmdline_user_args():
+		if arg.begins_with("--motion="):
+			ManagerBody.motion = StringName(arg.trim_prefix("--motion="))
 	body = BODY.instantiate() as Node3D
 	add_child(body)
 	body.position = ORIGIN + STAND
@@ -80,6 +84,8 @@ func _ready() -> void:
 	_apply(VIEWS[0], LIGHTS[light_index], CLIPS[0], -1.0)
 	if "--manager-capture" in OS.get_cmdline_user_args():
 		await _capture()
+	elif "--motion-compare" in OS.get_cmdline_user_args():
+		await _motion_compare()
 
 
 func _apply(view: Dictionary, light: String, clip: StringName, time: float, reach_door: bool = false) -> void:
@@ -129,6 +135,69 @@ func _unhandled_input(event: InputEvent) -> void:
 	else:
 		return
 	_apply(VIEWS[view_index], LIGHTS[light_index], CLIPS[clip_index], -1.0, reach)
+
+
+## T-268 (motion pilot): -- --motion-compare walks him along the floor 4 corridor at chapter 1's
+## pace (WALK_SPEED, as manager.gd plays a walk: Tripo at x1, a packed one at its feet's pace), then
+## stands and chops six times at the game's 0.45 s a chop (as manager.gd plays slash), seen from
+## beside him and from the front. Recorded once as he is and once with --motion=mx, then put side by side.
+const WALK_SPEED := 1.3
+const CHOP_SECONDS := 0.45
+const COMPARE_AT := Vector3(10.0, 0.0, 1.5)
+
+
+func _motion_compare() -> void:
+	var tag: String = "MỚI: Mixamo" if ManagerBody.motion == ManagerBody.MX_MOTION else "CŨ: Tripo"
+	var lamp := OmniLight3D.new()
+	lamp.light_color = Color(1.0, 0.95, 0.86)
+	lamp.light_energy = 2.2
+	lamp.omni_range = 7.0
+	lamp.shadow_enabled = true
+	add_child(lamp)
+	(room.get_node("Room407MainLight") as OmniLight3D).visible = false
+	torch.visible = false
+	camera.fov = 55.0
+	var layer := CanvasLayer.new()
+	add_child(layer)
+	var caption := Label.new()
+	caption.position = Vector2(28, 20)
+	caption.add_theme_font_size_override("font_size", 30)
+	caption.add_theme_color_override("font_outline_color", Color.BLACK)
+	caption.add_theme_constant_override("outline_size", 8)
+	layer.add_child(caption)
+	body.position = COMPARE_AT
+	body.rotation.y = -PI / 2.0
+	var walk := player.get_animation(&"walk")
+	var pace: float = WALK_SPEED / float(walk.get_meta(&"stride_speed")) if walk.has_meta(&"stride_speed") else 1.0
+	var slash := player.get_animation(&"slash")
+	# step: caption, clip, seconds, playback speed, moves, camera from him (x right, y up, z back: he looks down -Z)
+	var steps := [
+		["Đứng", &"stand", 1.5, 1.0, false, Vector3(2.4, 1.3, -1.6)],
+		["Đi (%.1f m/s)" % WALK_SPEED, &"walk", 4.5, pace, true, Vector3(2.4, 1.3, -1.6)],
+		["Đứng", &"stand", 1.0, 1.0, false, Vector3(2.4, 1.3, -1.6)],
+		["Chém 6 nhát (%.2f s/nhát), nhìn ngang" % CHOP_SECONDS, &"slash", CHOP_SECONDS * 6.0, slash.length / CHOP_SECONDS, false, Vector3(2.6, 1.3, 0.0)],
+		["Đứng", &"stand", 0.8, 1.0, false, Vector3(0.8, 1.4, -2.6)],
+		["Chém 6 nhát, nhìn trước mặt", &"slash", CHOP_SECONDS * 6.0, slash.length / CHOP_SECONDS, false, Vector3(0.8, 1.4, -2.6)],
+		["Đứng", &"stand", 1.0, 1.0, false, Vector3(0.8, 1.4, -2.6)],
+	]
+	for step: Array in steps:
+		player.play(step[1], 0.3, step[3])
+		var left: float = step[2]
+		while left > 0.0:
+			var delta := get_process_delta_time()
+			if step[4]:
+				body.position += -body.global_basis.z * WALK_SPEED * delta
+			var offset: Vector3 = step[5]
+			rig.global_position = body.global_transform * Vector3(offset.x, 0.0, offset.z)
+			(camera.get_parent() as Node3D).position.y = offset.y
+			camera.look_at(body.global_position + Vector3.UP * 1.0)
+			lamp.global_position = body.global_position + Vector3(0.6, 2.3, 0.4)
+			caption.text = "%s\n%s\nclip %s, tốc độ phát x%.2f" % [tag, step[0], String(step[1]), float(step[3])]
+			await get_tree().process_frame
+			left -= delta
+	print("MOTION manager walk pace x%.2f, slash x%.2f (length %.2f s)" % [pace, slash.length / CHOP_SECONDS, slash.length])
+	print("RESULT: motion compare PASS")
+	App.quit()
 
 
 func _capture() -> void:

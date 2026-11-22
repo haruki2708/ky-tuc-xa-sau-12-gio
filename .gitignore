@@ -22,3 +22,5 @@ docs/design/ch2/.cache/
 
 # T-229 capture/test logs written by run_stage.ps1
 art_source/graphics_upgrade/floor4_corridor/previews/*.log
+# D-189: raw Mixamo FBX stay in build/graphics/staging/mixamo/, never in the game or the repo.
+*.fbx

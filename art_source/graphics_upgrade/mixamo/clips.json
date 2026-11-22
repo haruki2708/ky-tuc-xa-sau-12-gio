@@ -1,0 +1,15 @@
+{
+	"_note": "T-268 Mixamo pack manifest. file = stem of build/graphics/staging/mixamo/<who>/<file>.fbx; name = clip name in the packed library; loop = loop the clip; window = [start, end] seconds of the source to keep (optional); hips_xz = 'keep' (default), 'rest' (pin to the rest value) or 'loop' (remove the net travel so the end meets the start); fix_loop = blend the end pose back onto the start pose so a cut window loops without a pop.",
+	"trung": [
+		{"name": "idle", "file": "idle_neutral", "loop": true},
+		{"name": "idle_breathing", "file": "idle", "loop": true},
+		{"name": "walk_fwd", "file": "walk_fwd", "loop": true},
+		{"name": "walk_back", "file": "walk_back", "loop": true},
+		{"name": "walk_left", "file": "walk_left", "loop": true},
+		{"name": "walk_right", "file": "walk_right", "loop": true}
+	],
+	"manager": [
+		{"name": "walk", "file": "walk_brutal", "loop": true},
+		{"name": "slash", "file": "slash_downward", "loop": true, "window": [0.0, 1.2], "hips_xz": "rest", "fix_loop": true, "loop_blend": 0.3}
+	]
+}

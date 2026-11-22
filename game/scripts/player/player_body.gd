@@ -215,6 +215,24 @@ const FILL2_SCENE: PackedScene = preload("res://assets/models/characters/standin
 const FILL2_IDLE: StringName = &"Idle_FoldArms"
 const FILL2_CLIPS: Array[StringName] = [&"LayToIdle", &"ClimbUp_1m", &"Hit_Knockback", &"Walk_Carry", &"Idle_FoldArms"]
 const LOCOMOTION: Array[StringName] = [&"idle", &"walk", &"run", &"crouch_idle", &"crouch_walk"]
+## T-268 (motion pilot, D-189): &"mx" stands and walks Tran Trung on Mixamo clips (MX_PATH, packed by
+## art_source/graphics_upgrade/mixamo/) instead of the Tripo ones, with a clip of their own for
+## walking back and sideways. Set before the body's _ready. Off (&"") by default: hand actions, running
+## and crouching keep their clips either way, until the owner approves the pilot.
+static var motion: StringName = &""
+## Which packed idle stands for &"idle" under the pilot: &"idle" (Neutral Idle) or &"idle_breathing".
+static var mx_idle: StringName = &"idle"
+const MX_MOTION: StringName = &"mx"
+const MX_PATH := "res://assets/models/characters/mixamo/trung_mixamo.res"
+const MX_CLIPS := {&"walk": &"mx/walk_fwd", &"walk_back": &"mx/walk_back",
+	&"walk_left": &"mx/walk_left", &"walk_right": &"mx/walk_right"}
+const MX_LOCOMOTION: Array[StringName] = [&"walk_back", &"walk_left", &"walk_right"]
+## Under the pilot, walking (not running or crouched) this far off straight ahead or back plays a
+## sideways step, the body facing ahead (a keyboard's diagonals, at 45 degrees, stay forward walks).
+const STRAFE_FROM: float = deg_to_rad(67.5)
+const BACK_FROM: float = deg_to_rad(100.0)
+## Hysteresis on those edges, so a stick held near one does not swap clips every frame.
+const STRAFE_HOLD: float = deg_to_rad(5.0)
 const GRIP_BONES: PackedStringArray = [
 	"RightIndexProximal", "RightIndexIntermediate", "RightIndexDistal",
 	"RightMiddleProximal", "RightMiddleIntermediate", "RightMiddleDistal",
@@ -237,6 +255,8 @@ var mirror_meshes: Array[MeshInstance3D] = []
 var stride_speeds: Dictionary = {}
 ## Mean eye point (model space, unscaled) of each locomotion clip.
 var eye_points: Dictionary = {}
+## Key to clip: CLIPS, or CLIPS with the T-268 pilot's clips over it (see `motion`).
+var clips: Dictionary = CLIPS
 var acting: bool = false
 ## Shoulder to palm a hand reaches without straining, metres before scaling.
 var arm_reach: float = 0.6
@@ -382,15 +402,20 @@ func _ready() -> void:
 	# skip with the body whenever a render frame holds two physics frames.
 	animator.callback_mode_process = AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_PHYSICS
 	_add_fill_clips()
+	if motion == MX_MOTION:
+		_add_mx_clips()
 	_fit_height()
 	_measure_arm()
 	_split_meshes()
 	_build_modifiers()
 	for key: StringName in LOCOMOTION:
-		_measure(key)
 		# Tran Trung's idle is a short window of Tripo's (pack_tripo_protagonist.py): back and forth
-		# hides the seam.
+		# hides the seam. (The pilot's Mixamo clips come looped from the pack.)
 		animator.get_animation(CLIPS[key]).loop_mode = Animation.LOOP_PINGPONG if key == &"idle" else Animation.LOOP_LINEAR
+		_measure(key)
+	if clips.has(&"walk_back"):
+		for key: StringName in MX_LOCOMOTION:
+			_measure(key)
 	_measure_reach_joints()
 	_measure_reach_hands()
 	_eye = eye_points[&"idle"]
@@ -815,6 +840,8 @@ func _tick_locomotion(delta: float) -> void:
 		var heading: float = atan2(-local.x, -local.z)
 		var direction: float = 1.0
 		var back: bool = absf(heading) > deg_to_rad(100.0)
+		var offset: float = 0.0
+		var walk_key: StringName = &"walk"
 		if back and speed > RUN_FROM and not crouched:
 			# T-249: running with the view turned back. The legs keep running the way he goes and the
 			# body faces that way, round by the side it turned (the chest and head turn back, below).
@@ -830,16 +857,28 @@ func _tick_locomotion(delta: float) -> void:
 			if _back_side != 0.0:
 				_back_side = 0.0
 				_yaw = wrapf(_yaw, -PI, PI)
+			# T-268 pilot: a walk has clips of its own for going back and sideways.
+			var stepping: bool = clips.has(&"walk_back") and not crouched and speed <= RUN_FROM
+			if stepping:
+				var hold: float = STRAFE_HOLD if _key in [&"walk_left", &"walk_right"] else 0.0
+				back = absf(heading) > BACK_FROM + hold
+				if not back and absf(heading) > STRAFE_FROM - hold:
+					# The body faces ahead; the clip's own direction is a quarter turn off it.
+					offset = signf(heading) * PI / 2.0
 			if back:
-				# Walking backwards: face forward-ish and play the stride in reverse.
-				direction = -1.0
+				# Walking backwards: face forward-ish and play the stride in reverse (the pilot plays
+				# its walking-back clip forwards).
+				direction = 1.0 if stepping else -1.0
 				heading = wrapf(heading + PI, -PI, PI)
-			target_yaw = clampf(heading, -MAX_YAW, MAX_YAW)
+			target_yaw = clampf(wrapf(heading - offset, -PI, PI), -MAX_YAW, MAX_YAW)
 			_yaw = lerp_angle(_yaw, target_yaw, follow)
-		var key: StringName = &"crouch_walk" if crouched else (&"run" if speed > RUN_FROM else &"walk")
+			if stepping:
+				walk_key = &"walk_back" if back else (&"walk_left" if offset > 0.0 else (&"walk_right" if offset < 0.0 else &"walk"))
+		var key: StringName = &"crouch_walk" if crouched else (&"run" if speed > RUN_FROM else walk_key)
 		_play(key)
-		# Sideways, only the share of the motion along the body is in the stride.
-		var along: float = speed * cos(absf(heading) - absf(target_yaw)) if _back_side == 0.0 else speed
+		# Sideways, only the share of the motion along the clip's own direction is in the stride.
+		var along: float = speed * cos(absf(heading - offset) - absf(target_yaw)) if offset == 0.0 and _back_side == 0.0 \
+			else (speed * cos(wrapf(heading - offset - target_yaw, -PI, PI)) if _back_side == 0.0 else speed)
 		animator.speed_scale = direction * maxf(along, 0.2) / maxf(stride_speeds[key], 0.05)
 	else:
 		if _back_side != 0.0:
@@ -2245,7 +2284,7 @@ func _bone_world(bone: String) -> Vector3:
 
 func _play(key: StringName) -> void:
 	_key = key
-	var clip: StringName = CLIPS[key]
+	var clip: StringName = clips[key]
 	if clip == _clip and animator.is_playing():
 		return
 	_clip = clip
@@ -2291,6 +2330,30 @@ func _add_fill_clips() -> void:
 			var track: int = animation.find_track(^"%GeneralSkeleton:Hips", Animation.TYPE_POSITION_3D)
 			for key: int in (animation.track_get_key_count(track) if track >= 0 else 0):
 				animation.track_set_key_value(track, key, (animation.track_get_key_value(track, key) as Vector3) + shift)
+
+
+## T-268 pilot: the packed Mixamo clips as library MX_MOTION, copied (the loaded library is shared)
+## and shifted like the Quaternius ones so the pilot's idle hips meet the Tripo idle's.
+func _add_mx_clips() -> void:
+	var packed := load(MX_PATH) as AnimationLibrary
+	if packed == null:
+		push_warning("T-268 motion pilot: no %s, keeping the Tripo clips" % MX_PATH)
+		return
+	if not animator.has_animation_library(MX_MOTION):
+		var library := AnimationLibrary.new()
+		for clip: StringName in packed.get_animation_list():
+			library.add_animation(clip, packed.get_animation(clip).duplicate() as Animation)
+		animator.add_animation_library(MX_MOTION, library)
+		var own: Vector3 = _hips_at(CLIPS[&"idle"])
+		var hips: Vector3 = _hips_at(StringName("%s/%s" % [MX_MOTION, mx_idle]))
+		var shift := Vector3(own.x - hips.x, 0.0, own.z - hips.z) / skeleton.motion_scale
+		for clip: StringName in library.get_animation_list():
+			var animation := library.get_animation(clip)
+			var track: int = animation.find_track(^"%GeneralSkeleton:Hips", Animation.TYPE_POSITION_3D)
+			for key: int in (animation.track_get_key_count(track) if track >= 0 else 0):
+				animation.track_set_key_value(track, key, (animation.track_get_key_value(track, key) as Vector3) + shift)
+	clips = CLIPS.merged(MX_CLIPS, true)
+	clips[&"idle"] = StringName("%s/%s" % [MX_MOTION, mx_idle])
 
 
 ## The hips (skeleton space) at the start of a clip.
@@ -2561,7 +2624,7 @@ func _find_palm_axis(bone: String, finger_bone: String) -> Vector3:
 ## For a locomotion clip: the mean eye point, and for moving clips the stride speed (how fast
 ## a planted foot slides back), over every run of grounded samples in two cycles.
 func _measure(key: StringName) -> void:
-	var clip: StringName = CLIPS[key]
+	var clip: StringName = clips[key]
 	var animation: Animation = animator.get_animation(clip)
 	var foot: int = skeleton.find_bone("LeftFoot")
 	var toe: int = skeleton.find_bone("LeftToes")

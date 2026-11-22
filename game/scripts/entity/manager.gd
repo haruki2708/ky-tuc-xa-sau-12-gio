@@ -519,6 +519,10 @@ func _play_animation(name: StringName, seconds: float = 0.0) -> void:
 		return
 	var animation: Animation = _model_animation.get_animation(name)
 	var clip_speed: float = animation.length / seconds if seconds > 0.0 else 1.0
+	# T-268 pilot: a packed Mixamo walk carries its feet's pace (stride_speed, m/s); played at the
+	# pace he walks, his feet do not slide.
+	if name == &"walk" and seconds <= 0.0 and animation.has_meta(&"stride_speed"):
+		clip_speed = speed / maxf(float(animation.get_meta(&"stride_speed")), 0.05)
 	var blend: float = BLEND_SECONDS
 	if _model_animation.current_animation == name:
 		if animation.loop_mode != Animation.LOOP_NONE:
