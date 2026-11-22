@@ -1,5 +1,5 @@
 # T-267 — Đồ hoạ thật đợt 10: năm phòng trường quay CCTV (102, 306, 209, 106, 310) và đồ nhỏ phòng 407
-- Lane: B | Trạng thái: **lượt 1 xong, review đạt; D-188 đã chọn (mục 1), chờ chủ dự án dán lượt 2** (card viết 20/11/2026 trong lúc lane B làm T-266 lượt 2) | Agent: tài khoản Claude lane B, `D:\GAME_WORK\lane-b2`. Chủ dự án tự dán prompt (`lane-b.md` mục 1u).
+- Lane: B | Trạng thái: **done, merged 22/11 `d36c7a2b`; full test 1096/0, check 0; bản chơi `d36c7a2b`** (card viết 20/11/2026 trong lúc lane B làm T-266 lượt 2) | Agent: tài khoản Claude lane B, `D:\GAME_WORK\lane-b2`. Chủ dự án tự dán prompt (`lane-b.md` mục 1u).
 - **Model (D-183):** lane B **Opus 5.5, effort xhigh**. Nếu một lượt bị trả sửa hai lần vì cùng một lỗi, lượt sửa tiếp theo dùng **max**. Phần của integrator (chuyển phương án, review, full test + check, merge) dùng Fable 5.2, Mythos 5.2 high hoặc Opus 5.5.
 - Nhánh: `lane-b/T-267-realistic-graphics-wave10-cctv-room407` tạo từ `origin/main` **sau khi T-266 merge**. Lúc đó phòng 407 đã có ô thông gió và nắp trần ở cả bốn chương (D-187 điểm 5).
 - Quyết định nền:
@@ -270,6 +270,41 @@
 - [x] Lượt 2: năm phòng, năm hành lang
 - [x] Lượt 2: đồ nhỏ phòng 407
 - [x] Lượt 2: ảnh đồng bộ bốn chương, ảnh trước/sau, `overview.jpg`, test lọc, README, CREDITS, Handoff
+
+## Review integrator, lượt 2 và merge (22/11/2026)
+- **Đạt, merged** `d36c7a2b` (no-ff từ nhánh `5075217`). Không cần commit sửa.
+- **Phạm vi đúng D-188:**
+  - `cctv_set.tscn`: thêm 55 node, 11 trong mỗi nhánh `Room*`; không xoá node nào; `Corridor` không đổi.
+  - 45 occluder, mỗi phòng 9 cái, mỗi cái nằm trong một tường cũ.
+  - `floor4.tscn`: chỉ đổi z của `Door407/Pivot/RulesPaper` (−0,025 → −0,063).
+  - `room407_anchors.tscn`: chỉ đổi mesh và vật liệu của `ShowerYes/Button`, `ShowerNo/Button`; sub-resource `t172_button` không còn ai dùng.
+  - Bốn scene A30 khác: chỉ đổi mesh.
+  - Không test cũ nào bị đổi.
+- **Script `cctv_room_real.gd`:**
+  - dựng phòng lúc chạy;
+  - mọi mesh chỉ vẽ trong phạm vi 40 m quanh camera, nên góc nhìn của người chơi (luôn cao hơn trường quay hơn 60 m) không tốn thêm;
+  - không có `set_state`, `_process`.
+- **Số đo**, đều dưới trần mục 1 điểm 7:
+  - mỗi phòng 112.629–156.690 tam giác;
+  - feed phòng 112–140 lần vẽ, feed hành lang 92–135; feed hành lang tầng 4 giảm từ 167 xuống 59;
+  - bộ nhớ hình chương 1 thêm 16 MB.
+- **Bật/tắt occluder:**
+  - 10/12 feed giống nhau từng điểm ảnh;
+  - hành lang 306: 11 điểm lệch tối đa 2/255;
+  - phòng 310 trước khi thua: lệch 1/255, do khung tự dao động ngay cả giữa hai khung cùng trạng thái;
+  - cả hai dưới ngưỡng 6/255 đã dùng cho khối che thư viện. Chấp nhận.
+  - Lane B ghi: trong Godot 4.7.2, ẩn rồi hiện lại một occluder thì nó thôi che. Vì vậy lane B so bằng cách bật/tắt occlusion của viewport; trong game occluder không bao giờ bị ẩn.
+- **Ảnh đã xem:** `overview.jpg`, `a30_compare.jpg`.
+  - D2 và mùng 407: vẫn thấy rõ nạn nhân.
+  - Bảng số xanh đọc được; W2 thấy ở feed phòng 310.
+  - Đồ A30 thật hơn mà vẫn đúng chỗ.
+  - Ảnh bốn chương nhất quán.
+- **Kiểm:**
+  - Full test chạy trực tiếp theo 16 phần, mỗi phần dưới 10 phút: **1096 passed, 0 failed** (core 196, levels 323, player 266, audio 131, ui 126, tools 53, smoke 1).
+  - `test_ch4_environment`, mà lane B thấy lúc đạt lúc hỏng, lần này đạt.
+  - Check: **0 lỗi** (22/11 15:34).
+  - Log ở `build/integrator/T267m_*.log`.
+- **Bản chơi:** package PASS 22/11 15:36. File `build/windows/KyTucXa.exe`, zip `build/dist/KyTucXa-0.0.1-d36c7a2b-win64.zip` (546 MiB). **Có đủ mười đợt đồ hoạ môi trường.**
 
 ## Handoff
 *(Lane B ghi: đã làm, còn dở, cách kiểm, dòng RESULT test, commit, yêu cầu thay đổi, phần chưa kiểm.)*

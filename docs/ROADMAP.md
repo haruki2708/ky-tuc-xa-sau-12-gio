@@ -1,7 +1,7 @@
 # Bản đồ lộ trình — "Ký túc xá sau 12 giờ"
 
-> **Cập nhật:** 2026-11-12 (sau D-160: thân Trần Trung vào chương 1 với tay, lấy đồ, mở cửa bằng tay T-239/T-241/T-242; hành lang tầng 4 mới ở 4 chương T-237; lane HARU điều phối phụ). Integrator cập nhật file này **mỗi khi qua một mốc** (chốt chương, đóng cổng G, đổi hướng lớn).
-> Chi tiết từng ngày: `docs/STATUS.md`. Lý do từng quyết định: `docs/DECISIONS.md` (D-001…D-160).
+> **Cập nhật:** 2026-11-22 (sau T-267: đồ hoạ thật môi trường đủ 10 đợt T-250…T-267, bản chơi `d36c7a2b`; Trần Trung có thân ở chương 1–3; chờ chủ dự án chơi thử một lượt theo D-176. Nhân vật khác vẫn là người khối, T-221 chờ mẫu m1). Integrator cập nhật file này **mỗi khi qua một mốc** (chốt chương, đóng cổng G, đổi hướng lớn).
+> Chi tiết từng ngày: `docs/STATUS.md`. Lý do từng quyết định: `docs/DECISIONS.md` (D-001…D-188).
 > Ký hiệu: ✅ xong · 🔶 đang làm · ⬜ chưa bắt đầu · 📍 **đang ở đây**
 
 ## 1. Bản đồ tổng
@@ -30,9 +30,10 @@ Bản chữ (xem được trong terminal / Notepad):
   │     ├─ [✅] G3 Phòng 407 đủ đồ vào bản chơi .......... D-103…D-114
   │     ├─ [✅] G4 Nhân vật: quản lý Tripo ............... D-120, chương 1 chủ dự án chấp nhận (D-137)
   │     ├─ [✅] G3+ Vỏ phòng 407, ổ điện, quạt quay ...... T-222…T-226 (D-129, D-136)
-  │     ├─ [📍] G4 Nhân vật chính Trần Trung (Tripo) ..... ĐANG Ở ĐÂY: thân vào chương 1 (D-151), tay/lấy đồ duyệt (D-157), cửa bằng tay T-242 chủ dự án chốt; chương 2–4 chưa có thân
-  │     ├─ [⬜] G4 Xác sống (trước), bạn học, bảo vệ ...... D-122 kiểu A, card T-221, chờ mẫu m1
-  │     └─ [🔶] G5 Hành lang tầng 4 mới ở 4 chương (T-237) → nhà B → khuôn viên → thư viện/bệnh viện
+  │     ├─ [✅] G4 Nhân vật chính Trần Trung (Tripo) ..... có thân ở chương 1–3 (T-239…T-249)
+  │     ├─ [✅] G5 Đồ hoạ thật môi trường, 10 đợt ......... T-250…T-267, xong 22/11 (bản d36c7a2b)
+  │     ├─ [📍] Chủ dự án chơi thử một lượt (D-176) ...... ĐANG Ở ĐÂY; quyết nhân vật làm trước hay sau
+  │     └─ [⬜] G4 Xác sống (trước), bạn học, bảo vệ ...... D-122 kiểu A, card T-221, chờ mẫu m1
   │
 [⬜] GĐ 4  Ghép bản hoàn chỉnh: chơi liền 4 chương, 1 file lưu (D-059)
   │
