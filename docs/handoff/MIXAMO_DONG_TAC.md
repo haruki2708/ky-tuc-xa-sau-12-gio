@@ -51,6 +51,46 @@
 | `kill.fbx` | stab, finishing attack | một cú dứt khoát, dừng thấp | |
 | `lunge.fbx` | charge, run with sword/knife, sprint | lao tới, dao trong tay phải | |
 
+## Clip đã chọn trên Mixamo (integrator rà thư viện 22/11 qua Chrome của chủ dự án)
+Ghi theo dạng `tên clip >> mô tả trên Mixamo` (từ khoá tìm). Nhiều clip trùng tên, nên phải khớp cả mô tả. Clip di chuyển tích In Place.
+
+**Trần Trung**
+- `idle`: Breathing Idle >> Breathing Idle (breathing idle) — **đã tải 22/11**; dự phòng: Neutral Idle >> Neutral Idle (idle)
+- `idle_scared`: Nervously Look Around >> Nervously Looking Around Left To Right - Loop (nervous); Look Over Shoulder >> Quick Nervous Look Over Right Shoulder (nervous)
+- `walk_fwd`: Standard Walk >> Standard Walk (standard walk); dự phòng: Walking >> Careful Walk (walk)
+- `walk_back`: Walking Backwards >> Walking Backwards (walking backward)
+- `walk_left`, `walk_right`: Left Strafe Walking >> Strafe Walking To The Left; Right Strafe Walking >> Strafe Walking To The Right (strafe)
+- `run_fwd`: Jogging >> Jogging (jog); dự phòng: Standard Run >> Standard Running (jog)
+- `walk_start`, `walk_stop`: Start Walking >> Walking From Standing; Stop Walking >> Walking To Standing Idle (walking)
+- `turn_left`, `turn_right`: Left Turn 90 >> Standing Left Turn; Right Turn 90 >> Standing Right Turn (turn)
+- `crouch_idle`: Crouch Idle >> Crouch Idle (crouch)
+- `crouch_fwd/back/left/right`: Crouch Walk Forward >> Walking Forward While Crouched; Crouch Walk Back >> Walking Backwards While Crouched; Crouch Walk Left >> Walking Left While Crouched; Crouch Walk Right >> Walking Right While Crouched (crouch)
+- `stand_to_crouch`, `crouch_to_stand`: Crouching >> Crouching From Standing Position; Crouched To Standing >> Crouch To Stand Transition (crouch)
+- `pick_up`: Picking Up Object >> Picking Up An Object With One Hand; Picking Up >> Picking Up An Object (picking up)
+- `open_door`: Opening Door Inwards >> Male Walking And Opening A Door Inwards; Open Door Outwards >> Open Door Outwards While Walking; Opening >> Attempting To Open A Door (cửa kẹt, chương 2) (door)
+- tủ: Opening >> Opening Cabinet Door; Closing >> Closing Cabinet Door (door)
+- nút tắm: Button Pushing >> Pushing A Button With The Right Hand (push)
+- `push`: Pushing >> Pushing An Object Forward (push). Không có clip hích vai; phần này giữ code tự tính.
+- `carry_idle`, `carry_walk`: Box Idle >> Carrying A Box; Holding Walk >> Holding An Object While Walking (carry)
+- `stairs_up`, `stairs_down`: Ascending Stairs >> Walking Up A Set Of Stairs; Descending Stairs >> Walking Down A Set Of Stairs (stairs)
+- `get_up`: Getting Up >> Getting Up From Back (getting up)
+- `sit_idle`: Sitting Idle >> Sitting With Breathing Idle (sitting); đứng dậy: Stand Up >> Standing Up From Seated Position (standing up)
+- `swing`: Standing Melee Attack Horizontal >> Right To Left Attack With Axe (melee attack); Heavy Weapon Swing >> Two Handed Heavy Weapon Swing (swing)
+- `hit_back`: Hit Reaction >> Hit Reaction (hit reaction)
+- cầm điện thoại (tham khảo dáng tay): Walking While Texting >> Male Walking While Texting On A Smartphone (walking)
+
+**Quản lý**
+- `stand`: Idle >> Standing Idle (idle); Knife Idle >> Knife On The Rear Hand, Reverse Grip (knife)
+- `walk`: Walking >> Male Brutal Walk (walk); dự phòng: Standard Walk
+- `look_around`: Looking Around >> Idle Stand Looking Around (looking around); Idle >> Looking Over Both Shoulders (shoulder)
+- `ask`: chưa tìm được clip chống nạnh cho nam (chỉ có dáng nữ); còn phải tìm thêm ("talking", "arguing", "arms crossed"). Nếu không có thì giữ clip Tripo hiện tại.
+- `turn_left`, `turn_right`, `open_door`: dùng chung clip của Trung.
+- `slash`: Standing Melee Attack Downward >> Downward Attack With Axe (melee attack); Stabbing >> Male Knife Stab With The Rear Hand And Reverse Grip (knife)
+- `kill`: Stabbing >> Male Knife Stab With The Rear Hand And Fore Grip (knife)
+- `lunge`: Fast Run >> Running Fast (jog); còn phải tìm thêm ("sprint")
+
+**Vướng khi tải (22/11):** clip đầu tải được; từ clip thứ hai, Mixamo xuất file xong nhưng file không về máy (yêu cầu tải bị trả 503). Nghi Chrome chặn "tải nhiều file tự động" của mixamo.com; chờ chủ dự án bấm cho phép.
+
 ## Sau khi tải
 - Ghi tên clip thật, ngày tải vào bảng; chép sang `CREDITS.md` khi đóng gói (bước 2 của kế hoạch).
 - Không commit file `.fbx`.
