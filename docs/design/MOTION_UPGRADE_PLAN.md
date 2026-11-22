@@ -1,6 +1,6 @@
 # Kế hoạch nâng chuyển động: Trần Trung và quản lý (tham khảo Mixamo)
 
-- Viết: 22/11/2026, integrator (Mythos 5.2). Trạng thái: **bản kế hoạch, chờ chủ dự án trả lời mục 7**.
+- Viết: 22/11/2026, integrator (Mythos 5.2). Trạng thái: **chủ dự án đã trả lời mục 7 (D-189): chấp nhận giấy phép; chỉ lấy chuyển động, integrator tải qua Chrome của chủ dự án; bỏ qua bước 0 và câu hỏi chơi thử lúc này; integrator làm cả. Đang ở bước 1 (tải clip theo [phiếu](../handoff/MIXAMO_DONG_TAC.md)).**
 - Yêu cầu của chủ dự án (22/11): cử động tay chân, cầm đồ, mở cửa và chuyển động cả người của nhân vật chính và quản lý phải tự nhiên hơn; nguồn tham khảo là https://www.mixamo.com.
 - Số tiếp theo khi chốt: D-189; card T-268 trở đi.
 
