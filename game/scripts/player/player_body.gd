@@ -409,10 +409,10 @@ func _ready() -> void:
 	_split_meshes()
 	_build_modifiers()
 	for key: StringName in LOCOMOTION:
+		_measure(key)
 		# Tran Trung's idle is a short window of Tripo's (pack_tripo_protagonist.py): back and forth
 		# hides the seam. (The pilot's Mixamo clips come looped from the pack.)
 		animator.get_animation(CLIPS[key]).loop_mode = Animation.LOOP_PINGPONG if key == &"idle" else Animation.LOOP_LINEAR
-		_measure(key)
 	if clips.has(&"walk_back"):
 		for key: StringName in MX_LOCOMOTION:
 			_measure(key)
@@ -2339,6 +2339,11 @@ func _add_mx_clips() -> void:
 	if packed == null:
 		push_warning("T-268 motion pilot: no %s, keeping the Tripo clips" % MX_PATH)
 		return
+	# A partial pack (or a mistyped mx_idle) keeps the Tripo clips rather than playing a missing one.
+	for clip: StringName in MX_CLIPS.values() + [StringName("%s/%s" % [MX_MOTION, mx_idle])]:
+		if not packed.has_animation(String(clip).trim_prefix("%s/" % MX_MOTION)):
+			push_warning("T-268 motion pilot: %s has no %s, keeping the Tripo clips" % [MX_PATH, clip])
+			return
 	if not animator.has_animation_library(MX_MOTION):
 		var library := AnimationLibrary.new()
 		for clip: StringName in packed.get_animation_list():

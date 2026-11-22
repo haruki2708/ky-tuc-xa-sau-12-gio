@@ -319,6 +319,11 @@ func _pack_manager(entries: Array) -> void:
 			baked.set_meta(&"stride_speed", stride)
 		library.add_animation(StringName(entry.name), baked)
 		print("PACK manager %-8s <- %-15s %.3f s, %d tracks, planted-foot speed %.3f m/s" % [entry.name, entry.file, baked.length, baked.get_track_count(), stride])
+		var slide := _foot_slide(plain, baked)
+		print("PACK manager %-8s planted feet slide per cycle: left %.3f m, right %.3f m" % [entry.name, slide.x, slide.y])
+		var limit: float = float(entry.get("max_slide", -1.0))
+		if limit >= 0.0 and maxf(slide.x, slide.y) > limit:
+			_fail("manager %s: a planted foot slides %.3f m a cycle (limit %.3f)" % [entry.name, maxf(slide.x, slide.y), limit])
 		if entry.has("print_hand"):
 			_print_hand(plain, baked, prefix)
 	_save(library, "res://out/manager_mixamo.res")
@@ -353,8 +358,6 @@ func _bake(plain: Rig, ret: Rig, source: Animation, toward: Transform3D, carry: 
 			(positions[b] as Array).append(local.origin)
 			if parent >= 0:
 				worst_offset = maxf(worst_offset, local.origin.distance_to(plain.skeleton.get_bone_rest(b).origin))
-		if f == 0 or f == frames / 2:
-			_check_skin(plain, ret, g_plain, g_ret, f)
 	if worst_offset > 0.002:
 		_fail("manager bake: a bone left its rest offset by %.4f m" % worst_offset)
 	var anim := Animation.new()
@@ -375,6 +378,11 @@ func _bake(plain: Rig, ret: Rig, source: Animation, toward: Transform3D, carry: 
 		list = rotations[b]
 		for f in list.size():
 			anim.track_insert_key(track, f / FPS, list[f])
+	# Read back what was written (the plain rig posed by the new clip's own tracks) and skin the
+	# mesh with it: it must land where the retargeted rig puts it.
+	for f: int in [0, frames / 3, frames / 2, frames]:
+		var at: float = minf(f / FPS, source.length)
+		_check_skin(plain, ret, _plain_globals(plain, anim, at), _globals(ret.skeleton, _pose_at(ret.skeleton, source, at)), f)
 	return anim
 
 
@@ -392,8 +400,9 @@ func _solve(plain: Rig, ret: Rig, b: int, g_ret: Array[Transform3D], toward: Tra
 	return out[b]
 
 
-## Skins a sample of the mesh with both rigs: the baked plain pose must put the vertices where the
-## retargeted pose does.
+## Skins a sample of the mesh with both rigs: the plain pose read back from the baked clip must put
+## the vertices where the retargeted pose does (catches a wrong bind pairing, a track on the wrong
+## bone, a lost root position or a flipped key).
 func _check_skin(plain: Rig, ret: Rig, g_plain: Array[Transform3D], g_ret: Array[Transform3D], frame: int) -> void:
 	var worst := 0.0
 	for s in mini(plain.mesh.mesh.get_surface_count(), ret.mesh.mesh.get_surface_count()):
@@ -453,6 +462,27 @@ func _print_hand(plain: Rig, anim: Animation, _prefix: String) -> void:
 		var p := _plain_globals(plain, anim, at)[hand].origin
 		lines.append("%.2f:y%.2f,z%.2f" % [at, p.y, p.z])
 	print("PACK manager hand " + " ".join(lines))
+
+
+## For a clip played in place: how far each foot drifts over the ground while planted (ankle within
+## 2 cm of its lowest), summed over one cycle (x left, y right). A stepping foot does not count.
+func _foot_slide(plain: Rig, anim: Animation) -> Vector2:
+	var frames := roundi(anim.length * FPS)
+	var out := Vector2.ZERO
+	for side in 2:
+		var foot := plain.skeleton.find_bone("mixamorig_LeftFoot" if side == 0 else "mixamorig_RightFoot")
+		var points: Array[Vector3] = []
+		var lowest := INF
+		for f in frames + 1:
+			var p := _plain_globals(plain, anim, f / FPS)[foot].origin
+			points.append(p)
+			lowest = minf(lowest, p.y)
+		var drift := 0.0
+		for f in frames:
+			if points[f].y < lowest + 0.02 and points[f + 1].y < lowest + 0.02:
+				drift += Vector2(points[f + 1].x - points[f].x, points[f + 1].z - points[f].z).length()
+		out[side] = drift
+	return out
 
 
 ## How fast a planted foot moves backwards under him (m/s), as player_body.gd measures Tran Trung's

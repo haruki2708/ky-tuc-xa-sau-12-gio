@@ -50,7 +50,8 @@ pwsh -NoProfile -File art_source/graphics_upgrade/mixamo/pack_mixamo.ps1 -Stage 
   3. Lấy tư thế cục bộ, ghi track `Armature/Skeleton3D:mixamorig_*` như clip Tripo của ông ta.
 - **Kiểm tra:**
   - xương con không được rời độ dài lúc nghỉ quá 2 mm (đo được dưới 2 mm);
-  - đỉnh lưới hai bản trùng nhau.
+  - đọc lại clip đã ghi, dựng lưới bằng nó: đỉnh lưới phải trùng bản `manager_ret` (lệch 0,07 mm);
+  - `max_slide` (trong `clips.json`): chân trụ của clip đánh tại chỗ không được trượt quá mức này mỗi vòng. Cú chém đặt 0,12 m, đo được 0,107 m, bằng clip gốc.
 - **Hai điểm cần nhớ:**
   - Clip đi mang meta `stride_speed` (m/s chân trụ trôi). `manager.gd` phát clip đi ở `speed / stride_speed` nên chân không trượt; clip Tripo không có meta, nên vẫn phát ×1.
   - `manager_body.gd` thay clip trùng tên trên một bản sao thư viện. Thư viện nhập sẵn và thư viện nạp đều dùng chung, nên không sửa trực tiếp.

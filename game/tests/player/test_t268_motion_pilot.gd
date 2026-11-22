@@ -112,10 +112,21 @@ func test_pilot_measures_its_own_back_and_sideways_strides() -> void:
 	assert_eq(body.clips[&"run"], PlayerBody.CLIPS[&"run"], "running keeps its clip")
 	for key: StringName in [&"walk", &"walk_back", &"walk_left", &"walk_right"]:
 		var stride: float = body.stride_speeds[key]
-		assert_true(stride > 0.5 and stride < 2.5 and not is_equal_approx(stride, 1.0), "%s stride %.3f m/s" % [key, stride])
+		# _measure falls back to 1.0 x the model's scale when it finds no planted step.
+		assert_true(stride > 0.5 and stride < 2.5 and not is_equal_approx(stride, body._scale()), "%s stride %.3f m/s" % [key, stride])
 		assert_true(body.eye_points.has(key), "%s has an eye point" % key)
 	assert_eq(PlayerBody.CLIPS[&"idle"], &"idle", "the shared table is untouched")
 	assert_eq(body.animator.get_animation(&"idle").loop_mode, Animation.LOOP_PINGPONG, "the Tripo idle under hand actions still pingpongs")
+	assert_eq(body.animator.get_animation(body.clips[&"idle"]).loop_mode, Animation.LOOP_LINEAR, "the pilot's idle keeps its packed loop")
+
+
+func test_pilot_keeps_the_tripo_clips_when_the_idle_is_missing() -> void:
+	PlayerBody.motion = PlayerBody.MX_MOTION
+	PlayerBody.mx_idle = &"no_such_idle"
+	var body := _body(_walker())
+	await wait_frames(1)
+	assert_eq(body.clips, PlayerBody.CLIPS, "a mistyped idle falls back to the Tripo clips")
+	assert_true(body.eye_points.has(&"idle") and body.stride_speeds.has(&"walk"), "the body still measured its clips")
 
 
 func _walk(walker: CharacterBody3D, velocity: Vector3, seconds: float) -> void:
@@ -201,4 +212,10 @@ func test_manager_pilot_walks_at_his_feet_pace() -> void:
 	var stride: float = float(animation.get_animation(&"walk").get_meta(&"stride_speed"))
 	assert_true(absf(animation.get_playing_speed() - 1.3 / stride) < 0.01,
 		"the walk plays at 1.3 m/s over its %.3f m/s stride: x%.3f" % [stride, animation.get_playing_speed()])
-	assert_true(animation.get_animation(&"stand").get_meta(&"stride_speed", 0.0) == 0.0, "his other clips stay Tripo's")
+	# A body never added to the tree has not run _ready: its library is the imported (Tripo) one.
+	var plain := MANAGER_BODY.instantiate() as Node3D
+	var tripo := plain.find_children("*", "AnimationPlayer", true, false)[0] as AnimationPlayer
+	for clip: StringName in [&"stand", &"ask", &"lunge", &"kill"]:
+		assert_true(animation.get_animation(clip) == tripo.get_animation(clip), "%s stays Tripo's" % clip)
+	assert_false(animation.get_animation(&"slash") == tripo.get_animation(&"slash"), "slash is the pilot's")
+	plain.free()

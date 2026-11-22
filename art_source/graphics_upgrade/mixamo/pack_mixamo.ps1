@@ -170,7 +170,7 @@ import/blender/enabled=false
             $from = Join-Path $staging "$w\$($clip.file).fbx"
             if (-not (Test-Path -LiteralPath $from)) { throw "missing $from" }
             $to = Join-Path $dir "$($clip.file).fbx"
-            if (-not (Test-Path -LiteralPath $to) -or (Get-Item $to).Length -ne (Get-Item $from).Length) { Copy-Item -LiteralPath $from -Destination $to -Force }
+            if (-not (Test-Path -LiteralPath $to) -or (Get-FileHash -LiteralPath $to).Hash -ne (Get-FileHash -LiteralPath $from).Hash) { Copy-Item -LiteralPath $from -Destination $to -Force }
             if (-not (Test-Path -LiteralPath ($to + '.import'))) { Write-FbxImport "res://src/$w/$($clip.file).fbx" $to }
         }
     }
@@ -190,20 +190,38 @@ import/blender/enabled=false
 function Invoke-Godot([string]$label, [string]$godotArgs) {
     & (Join-Path $repo 'build\integrator\godot_steps_locked.ps1') -Label $label -ProjectDir $proj -Steps @("run|900|$godotArgs")
     $log = Join-Path $repo "build\integrator\${label}_run.out.log"
-    Get-Content -LiteralPath $log | Select-String -Pattern 'ERROR|WARNING|PACK|PROBE|CHECK|FAIL' | Select-Object -First 200 | ForEach-Object { $_.Line }
+    foreach ($file in $log, "$log.err") {
+        if (Test-Path -LiteralPath $file) {
+            Get-Content -LiteralPath $file | Select-String -Pattern 'ERROR|WARNING|PACK|PROBE|CHECK|FAIL' | Select-Object -First 200 | ForEach-Object { $_.Line }
+        }
+    }
+}
+
+# The script and the manifest are read at run time: every run takes the art_source copies (the
+# bone map only acts through a reimport: delete build/mixamo_pack/ to change import settings).
+function Update-Scripts {
+    if (Test-Path -LiteralPath $proj) {
+        foreach ($f in 'pack_mixamo.gd', 'clips.json') { Copy-Item -LiteralPath (Join-Path $here $f) -Destination (Join-Path $proj $f) -Force }
+    }
 }
 
 if ($Stage -in 'all', 'setup') { Invoke-Setup }
 if ($Stage -in 'all', 'import') { Invoke-Godot 't268pack_import' '--headless --import' }
-if ($Stage -eq 'probe') { Invoke-Godot 't268pack_probe' "--headless --script res://pack_mixamo.gd -- --probe=$($Who[0])/$Probe" }
+if ($Stage -eq 'probe') { Update-Scripts; Invoke-Godot 't268pack_probe' "--headless --script res://pack_mixamo.gd -- --probe=$($Who[0])/$Probe" }
 if ($Stage -in 'all', 'pack') {
+    Update-Scripts
+    foreach ($w in $Who) { Remove-Item -LiteralPath (Join-Path $proj "out\${w}_mixamo.res") -ErrorAction SilentlyContinue }
     Invoke-Godot 't268pack_pack' ("--headless --script res://pack_mixamo.gd -- --pack=" + ($Who -join ','))
+    $packLog = Get-Content -Raw -LiteralPath (Join-Path $repo 'build\integrator\t268pack_pack_run.out.log')
+    if ($packLog -notmatch 'PACK RESULT: PASS') { throw 'pack failed: nothing copied into the game' }
     if (-not $NoCopy) {
         New-Item -ItemType Directory -Force $out | Out-Null
         foreach ($w in $Who) {
             $res = Join-Path $proj "out\${w}_mixamo.res"
-            if (Test-Path -LiteralPath $res) { Copy-Item -LiteralPath $res -Destination (Join-Path $out "${w}_mixamo.res") -Force; "copied ${w}_mixamo.res ($((Get-Item $res).Length) bytes)" }
-            else { "MISSING $res" }
+            if ($packLog.Contains("PACK saved res://out/${w}_mixamo.res") -and (Test-Path -LiteralPath $res)) {
+                Copy-Item -LiteralPath $res -Destination (Join-Path $out "${w}_mixamo.res") -Force
+                "copied ${w}_mixamo.res ($((Get-Item $res).Length) bytes)"
+            } else { throw "pack did not save ${w}_mixamo.res: nothing copied for it" }
         }
     }
 }

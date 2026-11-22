@@ -60,10 +60,20 @@ Gồm `pack_mixamo.ps1`, `pack_mixamo.gd`, `clips.json`, `mixamo_bone_map.tres`,
 1. **Trần Trung:** dùng bộ đứng và đi Mixamo cho bước 3 không?
 2. **Kiểu đứng:** Neutral Idle (đứng nghiêng một chân, ít đung đưa) hay Breathing Idle (thở rõ hơn, đung đưa nhiều)?
 3. **Quản lý đi:** dùng Male Brutal Walk không?
-4. **Quản lý chém:** clip Mixamo bổ từ trên đầu xuống, tay kia dang ra lấy thăng bằng, trông "diễn" hơn cú cúi chém của Tripo. Có ba hướng:
+4. **Quản lý chém:** clip Mixamo bổ từ trên đầu xuống, tay kia dang ra lấy thăng bằng, trông "diễn" hơn cú cúi chém của Tripo. Nó bước chân theo nhát chém; chân trụ trượt khoảng 6–11 cm mỗi nhát, đúng bằng clip gốc. (Ghim hông tại chỗ thì trượt 15–26 cm, nên đã bỏ cách đó.) Có ba hướng:
    - dùng bản mới;
    - giữ bản cũ;
    - tìm clip khác. Clip đâm dao cầm ngược đã thử: đó là cú đâm ngang ngực, không hợp chém xuống giường, nên đã loại.
+
+### 1e. Rà soát độc lập (23/11)
+4 tác tử rà, mỗi lỗi một tác tử kiểm chứng: 11 điểm, 8 điểm được xác nhận (đều nhẹ), đã sửa hết:
+- Khi cờ tắt, thứ tự đo trong `_ready` trả về đúng như main.
+- Mẫu thử tự quay về clip Tripo nếu thư viện thiếu clip hoặc gõ sai tên idle.
+- `pack_mixamo.ps1`: chỉ chép vào game khi lần đóng gói in `PACK RESULT: PASS`; luôn dùng bản `pack_mixamo.gd` và `clips.json` mới; so FBX theo hash; in cả log lỗi.
+- Kiểm tra lưới đọc lại chính clip đã ghi (lệch 0,07 mm).
+- Có chốt độ trượt chân (`max_slide`) cho clip đánh tại chỗ của quản lý.
+- Hai test không thể hỏng và một test so sai ngưỡng đã được sửa. Thêm test quay về clip cũ.
+- Lần chạy lại sau khi sửa: `tests/player/` 274/0.
 
 ## 3. Phải giữ (bước 3–6)
 - Không đổi luật chơi: 1 giây và 1,4 giây cho thao tác, tốc độ đi, chạy, khom, thời điểm chém.
@@ -79,7 +89,7 @@ Gồm `pack_mixamo.ps1`, `pack_mixamo.gd`, `clips.json`, `mixamo_bone_map.tres`,
   - đi lùi, đi ngang đúng clip và thân quay về trước;
   - chân trụ không trượt quá 4 cm ở cả bốn hướng;
   - quản lý đi đúng nhịp chân.
-- `tests/player/` 273 đạt / 0 hỏng; smoke 1/0; `graphics_pilot` 3/0; `tests/tools/` 53/0.
+- `tests/player/` 273 đạt / 0 hỏng (sau rà soát: 274/0); smoke 1/0; `graphics_pilot` 3/0; `tests/tools/` 53/0.
 - Full test và check: làm khi merge (sau khi chủ dự án duyệt và làm bước 3).
 
 ## Checklist
