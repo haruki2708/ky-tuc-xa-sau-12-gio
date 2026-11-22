@@ -22,6 +22,7 @@
 [ext_resource type="PackedScene" path="res://scenes/levels/ch1_models/corpse_viet.tscn" id="e20"]
 [ext_resource type="PackedScene" path="res://scenes/levels/ch1_models/corpse_dat.tscn" id="e21"]
 [ext_resource type="PackedScene" path="res://assets/models/graphics_pilot/realistic_map/floor4_rest/cctv_corridor.glb" id="t256_cctv"]
+[ext_resource type="Script" path="res://scenes/levels/cctv/cctv_room_real.gd" id="t267_real"]
 
 [sub_resource type="BoxShape3D" id="s1"]
 size = Vector3(4, 0.2, 5)
@@ -639,6 +640,24 @@ size = Vector3(4, 0.15, 5)
 size = Vector3(4, 0.15, 5)
 material = SubResource("s7")
 
+[sub_resource type="BoxOccluder3D" id="t267_occ0"]
+size = Vector3(0.16, 3, 5)
+
+[sub_resource type="BoxOccluder3D" id="t267_occ1"]
+size = Vector3(2, 3, 0.16)
+
+[sub_resource type="BoxOccluder3D" id="t267_occ2"]
+size = Vector3(1.1, 3, 0.16)
+
+[sub_resource type="BoxOccluder3D" id="t267_occ3"]
+size = Vector3(0.9, 0.8, 0.16)
+
+[sub_resource type="BoxOccluder3D" id="t267_occ4"]
+size = Vector3(0.9, 3, 0.16)
+
+[sub_resource type="BoxOccluder3D" id="t267_occ5"]
+size = Vector3(0.16, 3, 2.5)
+
 [node name="CctvSet" type="Node3D"]
 
 position = Vector3(0, -60, 0)
@@ -961,6 +980,47 @@ rotation_degrees = Vector3(-25.8447588, 143.0694398, 0)
 fov = 66.0
 far = 30.0
 
+[node name="Real" type="Node3D" parent="Room102"]
+script = ExtResource("t267_real")
+
+[node name="Occluders" type="Node3D" parent="Room102"]
+
+[node name="WestWall" type="OccluderInstance3D" parent="Room102/Occluders"]
+position = Vector3(0, 1.5, -2.5)
+occluder = SubResource("t267_occ0")
+
+[node name="EastWall" type="OccluderInstance3D" parent="Room102/Occluders"]
+position = Vector3(4, 1.5, -2.5)
+occluder = SubResource("t267_occ0")
+
+[node name="FrontWest" type="OccluderInstance3D" parent="Room102/Occluders"]
+position = Vector3(1, 1.5, 0)
+occluder = SubResource("t267_occ1")
+
+[node name="FrontEast" type="OccluderInstance3D" parent="Room102/Occluders"]
+position = Vector3(3.45, 1.5, 0)
+occluder = SubResource("t267_occ2")
+
+[node name="Lintel" type="OccluderInstance3D" parent="Room102/Occluders"]
+position = Vector3(2.45, 2.6, 0)
+occluder = SubResource("t267_occ3")
+
+[node name="HallWallWest" type="OccluderInstance3D" parent="Room102/Occluders"]
+position = Vector3(-0.45, 1.5, 0)
+occluder = SubResource("t267_occ4")
+
+[node name="HallWallEast" type="OccluderInstance3D" parent="Room102/Occluders"]
+position = Vector3(4.45, 1.5, 0)
+occluder = SubResource("t267_occ4")
+
+[node name="HallEndWest" type="OccluderInstance3D" parent="Room102/Occluders"]
+position = Vector3(-0.95, 1.5, 1.25)
+occluder = SubResource("t267_occ5")
+
+[node name="HallEndEast" type="OccluderInstance3D" parent="Room102/Occluders"]
+position = Vector3(4.95, 1.5, 1.25)
+occluder = SubResource("t267_occ5")
+
 [node name="Room306" type="Node3D" parent="."]
 position = Vector3(6.0, 0, 0)
 
@@ -1277,6 +1337,47 @@ position = Vector3(3.72, 2.78, -4.72)
 rotation_degrees = Vector3(-25.8447588, 143.0694398, 0)
 fov = 66.0
 far = 30.0
+
+[node name="Real" type="Node3D" parent="Room306"]
+script = ExtResource("t267_real")
+
+[node name="Occluders" type="Node3D" parent="Room306"]
+
+[node name="WestWall" type="OccluderInstance3D" parent="Room306/Occluders"]
+position = Vector3(0, 1.5, -2.5)
+occluder = SubResource("t267_occ0")
+
+[node name="EastWall" type="OccluderInstance3D" parent="Room306/Occluders"]
+position = Vector3(4, 1.5, -2.5)
+occluder = SubResource("t267_occ0")
+
+[node name="FrontWest" type="OccluderInstance3D" parent="Room306/Occluders"]
+position = Vector3(1, 1.5, 0)
+occluder = SubResource("t267_occ1")
+
+[node name="FrontEast" type="OccluderInstance3D" parent="Room306/Occluders"]
+position = Vector3(3.45, 1.5, 0)
+occluder = SubResource("t267_occ2")
+
+[node name="Lintel" type="OccluderInstance3D" parent="Room306/Occluders"]
+position = Vector3(2.45, 2.6, 0)
+occluder = SubResource("t267_occ3")
+
+[node name="HallWallWest" type="OccluderInstance3D" parent="Room306/Occluders"]
+position = Vector3(-0.45, 1.5, 0)
+occluder = SubResource("t267_occ4")
+
+[node name="HallWallEast" type="OccluderInstance3D" parent="Room306/Occluders"]
+position = Vector3(4.45, 1.5, 0)
+occluder = SubResource("t267_occ4")
+
+[node name="HallEndWest" type="OccluderInstance3D" parent="Room306/Occluders"]
+position = Vector3(-0.95, 1.5, 1.25)
+occluder = SubResource("t267_occ5")
+
+[node name="HallEndEast" type="OccluderInstance3D" parent="Room306/Occluders"]
+position = Vector3(4.95, 1.5, 1.25)
+occluder = SubResource("t267_occ5")
 
 [node name="Room209" type="Node3D" parent="."]
 position = Vector3(12.0, 0, 0)
@@ -1610,6 +1711,47 @@ rotation_degrees = Vector3(-25.8447588, 143.0694398, 0)
 fov = 66.0
 far = 30.0
 
+[node name="Real" type="Node3D" parent="Room209"]
+script = ExtResource("t267_real")
+
+[node name="Occluders" type="Node3D" parent="Room209"]
+
+[node name="WestWall" type="OccluderInstance3D" parent="Room209/Occluders"]
+position = Vector3(0, 1.5, -2.5)
+occluder = SubResource("t267_occ0")
+
+[node name="EastWall" type="OccluderInstance3D" parent="Room209/Occluders"]
+position = Vector3(4, 1.5, -2.5)
+occluder = SubResource("t267_occ0")
+
+[node name="FrontWest" type="OccluderInstance3D" parent="Room209/Occluders"]
+position = Vector3(1, 1.5, 0)
+occluder = SubResource("t267_occ1")
+
+[node name="FrontEast" type="OccluderInstance3D" parent="Room209/Occluders"]
+position = Vector3(3.45, 1.5, 0)
+occluder = SubResource("t267_occ2")
+
+[node name="Lintel" type="OccluderInstance3D" parent="Room209/Occluders"]
+position = Vector3(2.45, 2.6, 0)
+occluder = SubResource("t267_occ3")
+
+[node name="HallWallWest" type="OccluderInstance3D" parent="Room209/Occluders"]
+position = Vector3(-0.45, 1.5, 0)
+occluder = SubResource("t267_occ4")
+
+[node name="HallWallEast" type="OccluderInstance3D" parent="Room209/Occluders"]
+position = Vector3(4.45, 1.5, 0)
+occluder = SubResource("t267_occ4")
+
+[node name="HallEndWest" type="OccluderInstance3D" parent="Room209/Occluders"]
+position = Vector3(-0.95, 1.5, 1.25)
+occluder = SubResource("t267_occ5")
+
+[node name="HallEndEast" type="OccluderInstance3D" parent="Room209/Occluders"]
+position = Vector3(4.95, 1.5, 1.25)
+occluder = SubResource("t267_occ5")
+
 [node name="Room106" type="Node3D" parent="."]
 position = Vector3(18.0, 0, 0)
 
@@ -1928,6 +2070,47 @@ position = Vector3(3.72, 2.78, -4.72)
 rotation_degrees = Vector3(-25.8447588, 143.0694398, 0)
 fov = 66.0
 far = 30.0
+
+[node name="Real" type="Node3D" parent="Room106"]
+script = ExtResource("t267_real")
+
+[node name="Occluders" type="Node3D" parent="Room106"]
+
+[node name="WestWall" type="OccluderInstance3D" parent="Room106/Occluders"]
+position = Vector3(0, 1.5, -2.5)
+occluder = SubResource("t267_occ0")
+
+[node name="EastWall" type="OccluderInstance3D" parent="Room106/Occluders"]
+position = Vector3(4, 1.5, -2.5)
+occluder = SubResource("t267_occ0")
+
+[node name="FrontWest" type="OccluderInstance3D" parent="Room106/Occluders"]
+position = Vector3(1, 1.5, 0)
+occluder = SubResource("t267_occ1")
+
+[node name="FrontEast" type="OccluderInstance3D" parent="Room106/Occluders"]
+position = Vector3(3.45, 1.5, 0)
+occluder = SubResource("t267_occ2")
+
+[node name="Lintel" type="OccluderInstance3D" parent="Room106/Occluders"]
+position = Vector3(2.45, 2.6, 0)
+occluder = SubResource("t267_occ3")
+
+[node name="HallWallWest" type="OccluderInstance3D" parent="Room106/Occluders"]
+position = Vector3(-0.45, 1.5, 0)
+occluder = SubResource("t267_occ4")
+
+[node name="HallWallEast" type="OccluderInstance3D" parent="Room106/Occluders"]
+position = Vector3(4.45, 1.5, 0)
+occluder = SubResource("t267_occ4")
+
+[node name="HallEndWest" type="OccluderInstance3D" parent="Room106/Occluders"]
+position = Vector3(-0.95, 1.5, 1.25)
+occluder = SubResource("t267_occ5")
+
+[node name="HallEndEast" type="OccluderInstance3D" parent="Room106/Occluders"]
+position = Vector3(4.95, 1.5, 1.25)
+occluder = SubResource("t267_occ5")
 
 [node name="Corridor" type="Node3D" parent="."]
 position = Vector3(26.0, 0, 0)
@@ -2365,3 +2548,44 @@ position = Vector3(2, 2.6, -0.35)
 rotation_degrees = Vector3(-31.9081069, 0.0, 0)
 fov = 66.0
 far = 30.0
+
+[node name="Real" type="Node3D" parent="Room310"]
+script = ExtResource("t267_real")
+
+[node name="Occluders" type="Node3D" parent="Room310"]
+
+[node name="WestWall" type="OccluderInstance3D" parent="Room310/Occluders"]
+position = Vector3(0, 1.5, -2.5)
+occluder = SubResource("t267_occ0")
+
+[node name="EastWall" type="OccluderInstance3D" parent="Room310/Occluders"]
+position = Vector3(4, 1.5, -2.5)
+occluder = SubResource("t267_occ0")
+
+[node name="FrontWest" type="OccluderInstance3D" parent="Room310/Occluders"]
+position = Vector3(1, 1.5, 0)
+occluder = SubResource("t267_occ1")
+
+[node name="FrontEast" type="OccluderInstance3D" parent="Room310/Occluders"]
+position = Vector3(3.45, 1.5, 0)
+occluder = SubResource("t267_occ2")
+
+[node name="Lintel" type="OccluderInstance3D" parent="Room310/Occluders"]
+position = Vector3(2.45, 2.6, 0)
+occluder = SubResource("t267_occ3")
+
+[node name="HallWallWest" type="OccluderInstance3D" parent="Room310/Occluders"]
+position = Vector3(-0.45, 1.5, 0)
+occluder = SubResource("t267_occ4")
+
+[node name="HallWallEast" type="OccluderInstance3D" parent="Room310/Occluders"]
+position = Vector3(4.45, 1.5, 0)
+occluder = SubResource("t267_occ4")
+
+[node name="HallEndWest" type="OccluderInstance3D" parent="Room310/Occluders"]
+position = Vector3(-0.95, 1.5, 1.25)
+occluder = SubResource("t267_occ5")
+
+[node name="HallEndEast" type="OccluderInstance3D" parent="Room310/Occluders"]
+position = Vector3(4.95, 1.5, 1.25)
+occluder = SubResource("t267_occ5")

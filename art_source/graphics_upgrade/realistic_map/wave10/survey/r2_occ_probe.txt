@@ -1,0 +1,8 @@
+feed use_occlusion_culling true, project true, feed size (320, 240), own world false, world same true
+occluders true feed culling true | feed draws 76 prims 41389 objects 76 (shadow draws 0) | mine feed draws 76 prims 41389 objects 76 (shadow draws 0) | main draws 227 prims 132131 objects 228 vram 1175 MB
+occluders false feed culling true | feed draws 403 prims 285331 objects 451 (shadow draws 0) | mine feed draws 403 prims 285331 objects 451 (shadow draws 0) | main draws 1238 prims 1011353 objects 1384 vram 1175 MB
+occluders true feed culling true | feed draws 403 prims 285331 objects 451 (shadow draws 0) | mine feed draws 403 prims 285331 objects 451 (shadow draws 0) | main draws 1238 prims 1011353 objects 1384 vram 1175 MB
+occluders false feed culling true | feed draws 403 prims 285331 objects 451 (shadow draws 0) | mine feed draws 403 prims 285331 objects 451 (shadow draws 0) | main draws 1238 prims 1011353 objects 1384 vram 1175 MB
+occluders true feed culling true | feed draws 403 prims 285331 objects 451 (shadow draws 0) | mine feed draws 403 prims 285331 objects 451 (shadow draws 0) | main draws 1238 prims 1011353 objects 1384 vram 1175 MB
+occluders true feed culling false | feed draws 404 prims 285337 objects 452 (shadow draws 0) | mine feed draws 76 prims 41389 objects 76 (shadow draws 0) | main draws 555 prims 376079 objects 604 vram 1175 MB
+occluders true feed culling true | feed draws 76 prims 41389 objects 76 (shadow draws 0) | mine feed draws 76 prims 41389 objects 76 (shadow draws 0) | main draws 227 prims 132131 objects 228 vram 1175 MB

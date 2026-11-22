@@ -5,6 +5,9 @@
 [ext_resource type="Texture2D" path="res://assets/textures/ch1_models/metal.png" id="e3"]
 [ext_resource type="Texture2D" path="res://assets/textures/ch1_models/paper.png" id="e4"]
 [ext_resource type="PackedScene" path="res://scenes/levels/ch1v2/torn_paper.tscn" id="e5"]
+[ext_resource type="ArrayMesh" path="res://assets/models/graphics_pilot/realistic_map/wave10/a30/waste0.obj" id="t267_a30_1"]
+[ext_resource type="ArrayMesh" path="res://assets/models/graphics_pilot/realistic_map/wave10/a30/waste1.obj" id="t267_a30_2"]
+[ext_resource type="ArrayMesh" path="res://assets/models/graphics_pilot/realistic_map/wave10/a30/waste2.obj" id="t267_a30_3"]
 
 [sub_resource type="ShaderMaterial" id="s1"]
 shader = ExtResource("e1")
@@ -69,18 +72,6 @@ shader = ExtResource("e1")
 shader_parameter/albedo_texture = ExtResource("e4")
 shader_parameter/roughness = 0.9
 
-[sub_resource type="PrismMesh" id="s15"]
-size = Vector3(0.07, 0.025, 0.1)
-material = SubResource("s14")
-
-[sub_resource type="PrismMesh" id="s16"]
-size = Vector3(0.07, 0.025, 0.1)
-material = SubResource("s14")
-
-[sub_resource type="PrismMesh" id="s17"]
-size = Vector3(0.07, 0.025, 0.1)
-material = SubResource("s14")
-
 [node name="TrashBin" type="Marker3D"]
 
 
@@ -141,17 +132,20 @@ rotation_degrees = Vector3(0, -324, 0)
 
 [node name="Waste0" type="MeshInstance3D" parent="."]
 position = Vector3(-0.04, 0.08, 0)
-mesh = SubResource("s15")
+mesh = ExtResource("t267_a30_1")
+surface_material_override/0 = SubResource("s14")
 
 
 [node name="Waste1" type="MeshInstance3D" parent="."]
 position = Vector3(0.0, 0.08, 0)
-mesh = SubResource("s16")
+mesh = ExtResource("t267_a30_2")
+surface_material_override/0 = SubResource("s14")
 
 
 [node name="Waste2" type="MeshInstance3D" parent="."]
 position = Vector3(0.04, 0.08, 0)
-mesh = SubResource("s17")
+mesh = ExtResource("t267_a30_3")
+surface_material_override/0 = SubResource("s14")
 
 
 [node name="Paper3" parent="." instance=ExtResource("e5")]

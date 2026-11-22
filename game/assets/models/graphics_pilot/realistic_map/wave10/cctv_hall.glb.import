@@ -1,0 +1,113 @@
+[remap]
+
+importer="scene"
+importer_version=1
+type="PackedScene"
+uid="uid://f6w7f4qvk2o1"
+path="res://.godot/imported/cctv_hall.glb-0a23315ddf9312293faad0082acc192c.scn"
+
+[deps]
+
+source_file="res://assets/models/graphics_pilot/realistic_map/wave10/cctv_hall.glb"
+dest_files=["res://.godot/imported/cctv_hall.glb-0a23315ddf9312293faad0082acc192c.scn"]
+
+[params]
+
+nodes/root_type=""
+nodes/root_name=""
+nodes/root_script=null
+mesh_library/use_node_names_as_mesh_names=false
+array_mesh/deduplicate_surfaces=true
+nodes/apply_root_scale=true
+nodes/root_scale=1.0
+nodes/import_as_skeleton_bones=false
+nodes/use_name_suffixes=true
+nodes/use_node_type_suffixes=true
+meshes/ensure_tangents=true
+meshes/generate_lods=false
+meshes/create_shadow_meshes=true
+meshes/light_baking=1
+meshes/lightmap_texel_size=0.2
+meshes/force_disable_compression=false
+skins/use_named_skins=true
+animation/import=false
+animation/fps=30
+animation/trimming=false
+animation/remove_immutable_tracks=true
+animation/import_rest_as_RESET=false
+import_script/path=""
+materials/extract=0
+materials/extract_format=0
+materials/extract_path=""
+_subresources={
+"materials": {
+"CWHallCeiling": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave10/materials/CWHallCeiling.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave10/materials/CWHallCeiling.tres"
+},
+"CWHallDado": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave10/materials/CWHallDado.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave10/materials/CWHallDado.tres"
+},
+"CWHallFloor": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave10/materials/CWHallFloor.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave10/materials/CWHallFloor.tres"
+},
+"CWHallWall": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave10/materials/CWHallWall.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave10/materials/CWHallWall.tres"
+},
+"W1Black": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Black.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Black.tres"
+},
+"W1Concrete": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Concrete.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Concrete.tres"
+},
+"W1Enamel": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Enamel.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Enamel.tres"
+},
+"W1RailSteel": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1RailSteel.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1RailSteel.tres"
+},
+"W1RailWood": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1RailWood.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1RailWood.tres"
+},
+"W1Steel": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Steel.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Steel.tres"
+},
+"W1Terrazzo": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Terrazzo.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave1/materials/W1Terrazzo.tres"
+},
+"W2Divider": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave2/materials/W2Divider.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave2/materials/W2Divider.tres"
+},
+"W2Tube": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/graphics_pilot/realistic_map/wave2/materials/W2Tube.tres",
+"use_external/path": "res://assets/models/graphics_pilot/realistic_map/wave2/materials/W2Tube.tres"
+}
+}
+}
+gltf/naming_version=2
+gltf/embedded_image_handling=1
+gltf/texture_map_mode=1

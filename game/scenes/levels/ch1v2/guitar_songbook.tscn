@@ -3,51 +3,14 @@
 [ext_resource type="PackedScene" path="res://scenes/levels/ch1_models/dat_notebook.tscn" id="e1"]
 [ext_resource type="Shader" path="res://rendering/ps1_surface.gdshader" id="e2"]
 [ext_resource type="Texture2D" path="res://assets/textures/ch1_models/hair.png" id="e3"]
+[ext_resource type="ArrayMesh" path="res://assets/models/graphics_pilot/realistic_map/wave10/a30/chordstring.obj" id="t267_a30_1"]
+[ext_resource type="ArrayMesh" path="res://assets/models/graphics_pilot/realistic_map/wave10/a30/chordnut.obj" id="t267_a30_2"]
+[ext_resource type="ArrayMesh" path="res://assets/models/graphics_pilot/realistic_map/wave10/a30/chordfret.obj" id="t267_a30_3"]
 
 [sub_resource type="ShaderMaterial" id="s1"]
 shader = ExtResource("e2")
 shader_parameter/albedo_texture = ExtResource("e3")
 shader_parameter/roughness = 0.9
-
-[sub_resource type="BoxMesh" id="s2"]
-size = Vector3(0.002, 0.001, 0.08)
-material = SubResource("s1")
-
-[sub_resource type="BoxMesh" id="s3"]
-size = Vector3(0.002, 0.001, 0.08)
-material = SubResource("s1")
-
-[sub_resource type="BoxMesh" id="s4"]
-size = Vector3(0.002, 0.001, 0.08)
-material = SubResource("s1")
-
-[sub_resource type="BoxMesh" id="s5"]
-size = Vector3(0.002, 0.001, 0.08)
-material = SubResource("s1")
-
-[sub_resource type="BoxMesh" id="s6"]
-size = Vector3(0.002, 0.001, 0.08)
-material = SubResource("s1")
-
-[sub_resource type="BoxMesh" id="s7"]
-size = Vector3(0.002, 0.001, 0.08)
-material = SubResource("s1")
-
-[sub_resource type="BoxMesh" id="s8"]
-size = Vector3(0.095, 0.001, 0.002)
-material = SubResource("s1")
-
-[sub_resource type="BoxMesh" id="s9"]
-size = Vector3(0.095, 0.001, 0.002)
-material = SubResource("s1")
-
-[sub_resource type="BoxMesh" id="s10"]
-size = Vector3(0.095, 0.001, 0.002)
-material = SubResource("s1")
-
-[sub_resource type="BoxMesh" id="s11"]
-size = Vector3(0.095, 0.001, 0.002)
-material = SubResource("s1")
 
 [node name="GuitarSongbook" type="Marker3D"]
 
@@ -59,52 +22,62 @@ rotation_degrees = Vector3(0, 0, 0)
 
 [node name="ChordString0" type="MeshInstance3D" parent="."]
 position = Vector3(-0.044, 0.027, -0.04)
-mesh = SubResource("s2")
+mesh = ExtResource("t267_a30_1")
+surface_material_override/0 = SubResource("s1")
 
 
 [node name="ChordString1" type="MeshInstance3D" parent="."]
 position = Vector3(-0.026, 0.027, -0.04)
-mesh = SubResource("s3")
+mesh = ExtResource("t267_a30_1")
+surface_material_override/0 = SubResource("s1")
 
 
 [node name="ChordString2" type="MeshInstance3D" parent="."]
 position = Vector3(-0.008, 0.027, -0.04)
-mesh = SubResource("s4")
+mesh = ExtResource("t267_a30_1")
+surface_material_override/0 = SubResource("s1")
 
 
 [node name="ChordString3" type="MeshInstance3D" parent="."]
 position = Vector3(0.01, 0.027, -0.04)
-mesh = SubResource("s5")
+mesh = ExtResource("t267_a30_1")
+surface_material_override/0 = SubResource("s1")
 
 
 [node name="ChordString4" type="MeshInstance3D" parent="."]
 position = Vector3(0.028, 0.027, -0.04)
-mesh = SubResource("s6")
+mesh = ExtResource("t267_a30_1")
+surface_material_override/0 = SubResource("s1")
 
 
 [node name="ChordString5" type="MeshInstance3D" parent="."]
 position = Vector3(0.046, 0.027, -0.04)
-mesh = SubResource("s7")
+mesh = ExtResource("t267_a30_1")
+surface_material_override/0 = SubResource("s1")
 
 
 [node name="ChordFret0" type="MeshInstance3D" parent="."]
 position = Vector3(0, 0.027, -0.08)
-mesh = SubResource("s8")
+mesh = ExtResource("t267_a30_2")
+surface_material_override/0 = SubResource("s1")
 
 
 [node name="ChordFret1" type="MeshInstance3D" parent="."]
 position = Vector3(0, 0.027, -0.055)
-mesh = SubResource("s9")
+mesh = ExtResource("t267_a30_3")
+surface_material_override/0 = SubResource("s1")
 
 
 [node name="ChordFret2" type="MeshInstance3D" parent="."]
 position = Vector3(0, 0.027, -0.03)
-mesh = SubResource("s10")
+mesh = ExtResource("t267_a30_3")
+surface_material_override/0 = SubResource("s1")
 
 
 [node name="ChordFret3" type="MeshInstance3D" parent="."]
 position = Vector3(0, 0.027, -0.005)
-mesh = SubResource("s11")
+mesh = ExtResource("t267_a30_3")
+surface_material_override/0 = SubResource("s1")
 
 
 [node name="CodeSheet" type="Marker3D" parent="."]

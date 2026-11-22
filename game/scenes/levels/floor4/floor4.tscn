@@ -68,7 +68,7 @@ rotation_degrees = Vector3(0, 0, 0)
 scale = Vector3(1, 1, 1)
 
 [node name="RulesPaper" type="Node3D" parent="Door407/Pivot"]
-position = Vector3(-0.44, 1.39, -0.025)
+position = Vector3(-0.44, 1.39, -0.063)
 
 [node name="Mesh" type="MeshInstance3D" parent="Door407/Pivot/RulesPaper"]
 mesh = SubResource("s2")

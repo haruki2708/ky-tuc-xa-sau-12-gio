@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://chjsrt6cqhpev"
+path="res://.godot/imported/outlet_rail.obj-946dcaf1ce08ab0a447295e14c560649.mesh"
+
+[deps]
+
+files=["res://.godot/imported/outlet_rail.obj-946dcaf1ce08ab0a447295e14c560649.mesh"]
+
+source_file="res://assets/models/graphics_pilot/realistic_map/wave10/a30/outlet_rail.obj"
+dest_files=["res://.godot/imported/outlet_rail.obj-946dcaf1ce08ab0a447295e14c560649.mesh", "res://.godot/imported/outlet_rail.obj-946dcaf1ce08ab0a447295e14c560649.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

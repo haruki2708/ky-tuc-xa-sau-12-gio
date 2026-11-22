@@ -1,0 +1,20 @@
+CAPTURE: sync_ch1_room407_door.jpg draws 2488 prims 2750243 objects 2650 vram 1168 MB
+CAPTURE: sync_ch1_corridor_stairs.jpg draws 2452 prims 1692527 objects 2600 vram 1168 MB
+CAPTURE: sync_ch1_washroom.jpg draws 68 prims 32796 objects 68 vram 1168 MB
+CAPTURE: sync_ch1_room403_open.jpg draws 376 prims 756394 objects 429 vram 1168 MB
+SYNC ch1 Floor4 at (0.0, 0.0, 0.0), VRAM 1168 MB
+CAPTURE: sync_ch2_room407_door.jpg draws 2485 prims 2734104 objects 2778 vram 1176 MB
+CAPTURE: sync_ch2_corridor_stairs.jpg draws 2461 prims 1692831 objects 2746 vram 1176 MB
+CAPTURE: sync_ch2_washroom.jpg draws 77 prims 33100 objects 214 vram 1176 MB
+CAPTURE: sync_ch2_room403_open.jpg draws 385 prims 756698 objects 575 vram 1176 MB
+SYNC ch2 Floor4 at (0.0, 0.0, 0.0), VRAM 1176 MB
+CAPTURE: sync_ch3_room407_door.jpg draws 3063 prims 3099575 objects 3213 vram 1363 MB
+CAPTURE: sync_ch3_corridor_stairs.jpg draws 3548 prims 2568211 objects 3741 vram 1363 MB
+CAPTURE: sync_ch3_washroom.jpg draws 135 prims 111520 objects 135 vram 1363 MB
+CAPTURE: sync_ch3_room403_open.jpg draws 536 prims 869330 objects 588 vram 1363 MB
+SYNC ch3 Floor4 at (0.0, 0.0, 0.0), VRAM 1363 MB
+CAPTURE: sync_ch4_room407_door.jpg draws 2901 prims 3090169 objects 3050 vram 1361 MB
+CAPTURE: sync_ch4_corridor_stairs.jpg draws 3437 prims 2560725 objects 3629 vram 1361 MB
+CAPTURE: sync_ch4_washroom.jpg draws 135 prims 111520 objects 135 vram 1361 MB
+CAPTURE: sync_ch4_room403_open.jpg draws 539 prims 880414 objects 594 vram 1361 MB
+SYNC ch4 Floor4 at (0.0, 0.0, 0.0), VRAM 1361 MB
