@@ -1,6 +1,6 @@
 # T-269 — Chuyển động bước 3: Trần Trung đi, chạy, ngồi xổm bằng clip Mixamo (mặc định)
 
-- Lane: integrator | Trạng thái: **đang làm** (nhánh `t268-mixamo-pilot`, chưa merge) | Agent: integrator
+- Lane: integrator | Trạng thái: **phần đầu đã merge vào main (24/11/2026)**; phần còn lại ở mục 3 | Agent: integrator
 - **Model:** Opus 5.5 xhigh (chủ dự án chọn)
 - Quyết định nền: D-189, **D-190** (chủ dự án duyệt mẫu thử T-268), kế hoạch `docs/design/MOTION_UPGRADE_PLAN.md` bước 3
 
@@ -24,12 +24,16 @@
 
 ## 2. Video (trong `build/graphics/motion/`, không commit)
 - `t269_chay_khom_cu_moi.mp4`: chạy, rồi ngồi xổm. Phần ngồi xổm hai bên giống nhau vì giữ clip cũ.
-- `t269_tay_moi.mp4`: dạo phòng, tủ, sổ tay Đạt, cửa 407, cửa tắm, cửa ban công; mắt người chơi rồi nhìn từ trong phòng, đứng trên dáng mới.
-  - Bản cũ để so sánh bị dừng vì thiếu RAM (mã 0xC0000005). Theo quy định không tự chạy lại; chờ chủ dự án tắt RAV và Chrome.
+- `t269_tay_cu_moi.mp4` (cũ | mới, 40 giây): dạo phòng, tủ, sổ tay Đạt, cửa 407, cửa tắm, cửa ban công; mắt người chơi rồi nhìn từ trong phòng.
+  - Lần quay bản cũ đầu tiên (23/11) bị dừng vì thiếu RAM (mã 0xC0000005). Quay lại ngày 24/11 sau khi chủ dự án gỡ RAV.
 
 ## 3. Còn lại của bước 3
 - Xoay tại chỗ có bước chân: hiện dùng clip đi phát 0,7 lần, như cũ.
 - Lên, xuống cầu thang (chương 3).
 - Đứng dậy khỏi giường.
 - Bắt đầu và dừng bước: bỏ, vì người chơi tăng tốc lên 2,2 m/s trong 0,18 giây, ngắn hơn mọi clip bắt đầu bước.
-- Full test, check, rồi merge vào main và đóng bản chơi.
+
+## 4. Kiểm trước khi merge (24/11/2026, sau khi chủ dự án gỡ RAV)
+- Full test chạy trực tiếp 17 phần: **1105 đạt / 0 hỏng** (1096 cũ + 9 test T-268/T-269), mọi file test đều chạy.
+- Check: 0 lỗi.
+- Máy chạy chậm hơn hôm 22/11 khoảng 1,5 lần lúc đầu (Blender đang mở), nên phần core chương 1–2 phải chia đôi.
