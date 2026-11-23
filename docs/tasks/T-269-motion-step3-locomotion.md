@@ -28,6 +28,7 @@
   - Lần quay bản cũ đầu tiên (23/11) bị dừng vì thiếu RAM (mã 0xC0000005). Quay lại ngày 24/11 sau khi chủ dự án gỡ RAV.
 
 ## 3. Còn lại của bước 3
+**D-191 (24/11):** chủ dự án duyệt cách chạy mới; ngồi xổm giữ clip cũ; phần dưới đây chờ chủ dự án chơi thử bản `6dfd01dd` xong.
 - Xoay tại chỗ có bước chân: hiện dùng clip đi phát 0,7 lần, như cũ.
 - Lên, xuống cầu thang (chương 3).
 - Đứng dậy khỏi giường.
