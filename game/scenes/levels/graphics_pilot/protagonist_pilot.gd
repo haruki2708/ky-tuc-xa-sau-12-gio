@@ -120,8 +120,8 @@ func _ready() -> void:
 			PlayerBody.mx_idle = StringName(arg.trim_prefix("--mx-idle="))
 		elif arg.begins_with("--mx-run="):
 			PlayerBody.mx_run = StringName(arg.trim_prefix("--mx-run="))
-		elif arg.begins_with("--mx-crouch-idle="):
-			PlayerBody.mx_crouch_idle = StringName(arg.trim_prefix("--mx-crouch-idle="))
+		elif arg == "--mx-crouch":
+			PlayerBody.mx_crouch = true
 	# D-151: the same body, door levers and mirrors as chapter 1 (Protagonist.attach).
 	body = Protagonist.attach(player, floor4)
 	_add_targets()
