@@ -120,6 +120,8 @@ func _ready() -> void:
 			PlayerBody.mx_idle = StringName(arg.trim_prefix("--mx-idle="))
 		elif arg.begins_with("--mx-run="):
 			PlayerBody.mx_run = StringName(arg.trim_prefix("--mx-run="))
+		elif arg.begins_with("--reach="):
+			PlayerBody.reach_style = StringName(arg.trim_prefix("--reach="))
 		elif arg == "--mx-crouch":
 			PlayerBody.mx_crouch = true
 	# D-151: the same body, door levers and mirrors as chapter 1 (Protagonist.attach).
@@ -166,6 +168,8 @@ func _ready() -> void:
 		await _bed_demo()
 	elif "--reach-demo" in args:
 		await _reach_demo()
+	elif "--bar-demo" in args:
+		await _bar_demo()
 	elif "--motion-compare" in args:
 		await _motion_compare(COMPARE_STEPS)
 	elif "--motion-compare-run-crouch" in args:
@@ -654,4 +658,24 @@ func _motion_compare(steps: Array) -> void:
 	print("MOTION eyes %s" % body.eye_points)
 	print("MOTION pace " + "; ".join(report))
 	print("RESULT: motion compare PASS")
+	App.quit()
+
+
+## T-270: the iron bar in the fist (chapter 3's weapon), swung three times as the player sees it
+## and three times seen from inside the room. Recorded with and without --reach=mx.
+func _bar_demo() -> void:
+	_set_light("tube")
+	_reset_things()
+	third_camera.set_cull_mask_value(PlayerBody.MIRROR_LAYER, true)
+	_place("open", -8.0)
+	player.call("give_bar", 8)
+	await _wait(1.2)
+	var weapon: Node = player.get("bar_weapon")
+	for third: bool in [false, true]:
+		_show_third_person(third)
+		await _wait(0.6)
+		for swing: int in 3:
+			weapon.call("swing")
+			await _wait(1.1)
+	print("RESULT: bar demo PASS")
 	App.quit()

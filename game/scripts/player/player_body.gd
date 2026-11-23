@@ -227,6 +227,12 @@ static var mx_idle: StringName = &"idle"
 ## 1.0 m crouched camera (the camera would sit in his chest), so crouching keeps the Quaternius clips
 ## unless mx_crouch is set.
 static var mx_run: StringName = &"run"
+## T-270 (plan step 4 pilot): &"mx" takes the right hand to a switch, a handle or a door and back
+## along the way a person's wrist goes (ReachPaths, measured on a Mixamo clip: a bow over the
+## straight line, quick in the middle and slowing onto the thing) instead of along the straight
+## line. The start, the touch (CONTACT) and the end are where and when they were. Off until the
+## owner approves.
+static var reach_style: StringName = &""
 static var mx_crouch: bool = false
 const MX_MOTION: StringName = &"mx"
 const MX_PATH := "res://assets/models/characters/mixamo/trung_mixamo.res"
@@ -1072,7 +1078,7 @@ func _tick_action(delta: float) -> void:
 				_aim_hand(Transform3D(_start_basis, _from_wrist).interpolate_with(_bar_hook(), reach))
 				_fingers.influence = smoothstep(CONTACT * 0.3, CONTACT, _time)
 			else:
-				_aim(_from.lerp(_marker.global_position, reach), _start_basis.slerp(_grip_basis(), reach), reach)
+				_aim(_way(&"reach", _from, _marker.global_position, _time / CONTACT, reach), _start_basis.slerp(_grip_basis(), reach), reach)
 			_ik.influence = maxf(smoothstep(0.0, IK_FADE, _time), maxf(_carry_weight, _bar_weight))
 			_grip.influence = 0.0 if _bar_reach else maxf(smoothstep(CONTACT * 0.6, CONTACT, _time), _carry_weight)
 			if _carry_weight > 0.0:
@@ -1145,7 +1151,8 @@ func _tick_action(delta: float) -> void:
 				# The hook that took the bar comes up with it, the fist closing (_tick_bar).
 				_aim_hand(_bar_hook().interpolate_with(Transform3D(rest_basis, rest_tip - rest_basis.y * PALM * _scale()), back))
 			else:
-				_aim(_from.lerp(rest_tip, back), _release_basis.slerp(rest_basis, unwind), 0.0 if carrying else 1.0 - back)
+				_aim(_way(&"back", _from, rest_tip, (_time - _released_at) / maxf(HAND_SECONDS - _released_at, 0.01), back),
+					_release_basis.slerp(rest_basis, unwind), 0.0 if carrying else 1.0 - back)
 			_grip.influence = 0.0 if _has_bar() else (1.0 if carrying else 1.0 - back)
 			_weigh(1.0 - back)
 			_ik.influence = 1.0 if carrying else 1.0 - smoothstep(HAND_SECONDS - IK_FADE, HAND_SECONDS, _time)
@@ -1155,6 +1162,14 @@ func _tick_action(delta: float) -> void:
 	_align.influence = _ik.influence
 	_follow_head()
 	_look(look_at, look)
+
+
+## T-270: the hand's point on its way from `from` to `to`: `eased` (0..1) of the straight line as
+## before, or under reach_style the point `u` (0..1, even in time) of the measured way.
+func _way(leg: StringName, from: Vector3, to: Vector3, u: float, eased: float) -> Vector3:
+	if reach_style != MX_MOTION:
+		return from.lerp(to, eased)
+	return ReachPaths.point(ReachPaths.PATHS[&"press"][leg], from, to, u)
 
 
 ## T-239: a paper, from the reach to letting go of it again (see PAPER_TOUCH, PAPER_PINCH).
@@ -3079,9 +3094,44 @@ func _swing_pose(share: float) -> Array:
 			after = BAR_SWING[index]
 			break
 	var span: float = float(after[0]) - float(before[0])
+	if reach_style == MX_MOTION and span > 0.0:
+		return _swing_through(BAR_SWING.find(after), (share - float(before[0])) / span)
 	var t: float = smoothstep(0.0, 1.0, (share - float(before[0])) / span) if span > 0.0 else 1.0
 	return [_bar_hand((before[1] as Vector3).lerp(after[1], t), lerpf(before[2], after[2], t), lerpf(before[3], after[3], t)),
 			lerpf(before[4], after[4], t)]
+
+
+## T-270: the swing as one motion through its poses (a curve through BAR_SWING's keys) instead of a
+## stop at each: the fist keeps its speed over the shoulder and through the blow, and only stands
+## still where the swing starts, where it is held, and where it ends. `to` is the key it is going
+## to, `x` (0..1) how far it is on the way there from the one before. The keys' poses and times are
+## the same, so the blow lands where and when it did.
+func _swing_through(to: int, x: float) -> Array:
+	var out: Array = []
+	var length: float = float(BAR_SWING[to][0]) - float(BAR_SWING[to - 1][0])
+	for column: int in range(1, 5):
+		var from_value: Variant = BAR_SWING[to - 1][column]
+		var to_value: Variant = BAR_SWING[to][column]
+		var leave: Variant = _swing_speed(to - 1, column) * length
+		var arrive: Variant = _swing_speed(to, column) * length
+		var x2: float = x * x
+		var x3: float = x2 * x
+		out.append(from_value * (2.0 * x3 - 3.0 * x2 + 1.0) + leave * (x3 - 2.0 * x2 + x) + to_value * (-2.0 * x3 + 3.0 * x2) + arrive * (x3 - x2))
+	return [_bar_hand(out[0], out[1], out[2]), out[3]]
+
+
+## How fast a column of BAR_SWING changes as the swing passes key `index` (per share of the swing):
+## from the key before to the key after; none at the first and last keys and at a hold.
+func _swing_speed(index: int, column: int) -> Variant:
+	var value: Variant = BAR_SWING[index][column]
+	var still: Variant = value * 0.0
+	if index <= 0 or index >= BAR_SWING.size() - 1:
+		return still
+	# A hold: the fist of the next (or the last) key is within 3 cm of this one's.
+	var held: bool = (BAR_SWING[index - 1][1] as Vector3).distance_to(BAR_SWING[index][1]) < 0.03 			or (BAR_SWING[index + 1][1] as Vector3).distance_to(BAR_SWING[index][1]) < 0.03
+	if held:
+		return still
+	return (BAR_SWING[index + 1][column] - BAR_SWING[index - 1][column]) / (float(BAR_SWING[index + 1][0]) - float(BAR_SWING[index - 1][0]))
 
 
 ## The last blow broke the bar: its two pieces fall from the hand and lie where they land.

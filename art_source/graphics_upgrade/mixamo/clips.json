@@ -15,6 +15,9 @@
 		{"name": "crouch_left", "file": "crouch_left", "loop": true},
 		{"name": "crouch_right", "file": "crouch_right", "loop": true}
 	],
+	"trung_reach": [
+		{"name": "press", "file": "button_push", "reach": [0.47, 1.17], "back": [1.9, 2.67]}
+	],
 	"manager": [
 		{"name": "walk", "file": "walk_brutal", "loop": true},
 		{"name": "slash", "file": "slash_downward", "loop": true, "window": [0.0, 1.2], "hips_xz": "keep", "fix_loop": true, "loop_blend": 0.3, "max_slide": 0.12}

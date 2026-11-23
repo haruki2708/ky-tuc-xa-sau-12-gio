@@ -11,6 +11,7 @@
 | `game/assets/models/characters/mixamo/manager_mixamo.res`: `walk` | Walking (Male Brutal Walk) | `manager/walk_brutal.fbx` | Như trên; nướng lên khung xương Tripo của quản lý | D-189 |
 | `manager_mixamo.res`: `slash` | Standing Melee Attack Downward (Downward Attack With Axe), đoạn 0–1,2 s, đuôi 0,3 s hoà về khung đầu | `manager/slash_downward.fbx` | Như trên | D-189 |
 
+- **Đường tay (T-270):** `game/scripts/player/reach_paths.gd` là bảng số đo cổ tay phải của clip **Button Pushing** (`trung/button_push.fbx`), do `pack_mixamo.ps1 -Stage reach` sinh ra; cùng ngoại lệ D-189.
 - **Nguồn:** [mixamo.com](https://www.mixamo.com/), tải ngày 22/11/2026 bằng tài khoản Adobe của chủ dự án, qua Chrome của chủ dự án (integrator điều khiển, D-189). Nhân vật X Bot; FBX Binary, Without Skin, 30 khung/giây, không giảm keyframe; tích In Place nếu clip có ô này.
 - **Quyền dùng (D-189):** chủ dự án chấp nhận điều khoản Mixamo như một ngoại lệ của luật CC0/CC-BY (`AGENTS.md`). Dùng miễn phí bản quyền trong game thương mại; không phát tán file gốc ra ngoài nhóm. Vì vậy:
   - FBX gốc chỉ nằm ở `build/graphics/staging/mixamo/`, không commit (`.gitignore` chặn `*.fbx`). Repo chỉ lưu hash: `SHA256SUMS.txt` (đủ 56 file đã tải).
