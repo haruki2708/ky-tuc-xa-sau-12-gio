@@ -1,6 +1,6 @@
 # T-268 — Mẫu thử chuyển động Mixamo: Trần Trung và quản lý (bước 2 của kế hoạch chuyển động)
 
-- Lane: integrator | Trạng thái: **chờ chủ dự án duyệt video** | Agent: integrator
+- Lane: integrator | Trạng thái: **duyệt (D-190, 23/11/2026): cả 4 câu chọn bản mới, kiểu đứng Neutral Idle**; bước 3 làm tiếp trên cùng nhánh | Agent: integrator
 - **Model:** Opus 5.5 xhigh (chủ dự án chọn khi bắt đầu, 22/11/2026)
 - Nhánh: `t268-mixamo-pilot` (chưa merge; chỉ merge khi chủ dự án duyệt)
 - Quyết định nền: D-189 (ngoại lệ giấy phép Mixamo, chỉ lấy động tác), kế hoạch `docs/design/MOTION_UPGRADE_PLAN.md` bước 2, phiếu tải `docs/handoff/MIXAMO_DONG_TAC.md`
@@ -97,4 +97,4 @@ Gồm `pack_mixamo.ps1`, `pack_mixamo.gd`, `clips.json`, `mixamo_bone_map.tres`,
 - [x] Cờ mẫu thử (mặc định tắt) cho Trung và quản lý
 - [x] Video cũ | mới, số đo
 - [x] Test mới; test cũ liên quan đạt
-- [ ] Chủ dự án duyệt (D-190) → bước 3
+- [x] Chủ dự án duyệt (D-190, 23/11) → bước 3

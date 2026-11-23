@@ -6,7 +6,14 @@
 		{"name": "walk_fwd", "file": "walk_fwd", "loop": true},
 		{"name": "walk_back", "file": "walk_back", "loop": true},
 		{"name": "walk_left", "file": "walk_left", "loop": true},
-		{"name": "walk_right", "file": "walk_right", "loop": true}
+		{"name": "walk_right", "file": "walk_right", "loop": true},
+		{"name": "run_jog", "file": "run_fwd", "loop": true},
+		{"name": "run", "file": "run_standard", "loop": true},
+		{"name": "crouch_idle", "file": "crouch_idle", "loop": true},
+		{"name": "crouch_fwd", "file": "crouch_fwd", "loop": true},
+		{"name": "crouch_back", "file": "crouch_back", "loop": true},
+		{"name": "crouch_left", "file": "crouch_left", "loop": true},
+		{"name": "crouch_right", "file": "crouch_right", "loop": true}
 	],
 	"manager": [
 		{"name": "walk", "file": "walk_brutal", "loop": true},

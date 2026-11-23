@@ -215,19 +215,28 @@ const FILL2_SCENE: PackedScene = preload("res://assets/models/characters/standin
 const FILL2_IDLE: StringName = &"Idle_FoldArms"
 const FILL2_CLIPS: Array[StringName] = [&"LayToIdle", &"ClimbUp_1m", &"Hit_Knockback", &"Walk_Carry", &"Idle_FoldArms"]
 const LOCOMOTION: Array[StringName] = [&"idle", &"walk", &"run", &"crouch_idle", &"crouch_walk"]
-## T-268 (motion pilot, D-189): &"mx" stands and walks Tran Trung on Mixamo clips (MX_PATH, packed by
-## art_source/graphics_upgrade/mixamo/) instead of the Tripo ones, with a clip of their own for
-## walking back and sideways. Set before the body's _ready. Off (&"") by default: hand actions, running
-## and crouching keep their clips either way, until the owner approves the pilot.
-static var motion: StringName = &""
-## Which packed idle stands for &"idle" under the pilot: &"idle" (Neutral Idle) or &"idle_breathing".
+## T-268 (D-189, approved D-190), T-269: &"mx" (the default) stands, walks and runs Tran Trung on
+## Mixamo clips (MX_PATH, packed by art_source/graphics_upgrade/mixamo/) instead of the Tripo ones,
+## with clips of their own for walking back and sideways; hand actions hold that idle still under the
+## IK. &"" keeps the Tripo clips (CLIPS). Set before the body's _ready.
+static var motion: StringName = &"mx"
+## Which packed idle stands for &"idle" under the pilot: &"idle" (Neutral Idle, D-190) or &"idle_breathing".
 static var mx_idle: StringName = &"idle"
+## T-269 (plan step 3): the packed run under the pilot (&"run": Standard Run, x0.98 at sprint speed;
+## &"run_jog": Jogging, x2.2). Mixamo's crouched clips (MX_CROUCH) stand about 22 cm taller than the
+## 1.0 m crouched camera (the camera would sit in his chest), so crouching keeps the Quaternius clips
+## unless mx_crouch is set.
+static var mx_run: StringName = &"run"
+static var mx_crouch: bool = false
 const MX_MOTION: StringName = &"mx"
 const MX_PATH := "res://assets/models/characters/mixamo/trung_mixamo.res"
 const MX_CLIPS := {&"walk": &"mx/walk_fwd", &"walk_back": &"mx/walk_back",
 	&"walk_left": &"mx/walk_left", &"walk_right": &"mx/walk_right"}
-const MX_LOCOMOTION: Array[StringName] = [&"walk_back", &"walk_left", &"walk_right"]
-## Under the pilot, walking (not running or crouched) this far off straight ahead or back plays a
+const MX_CROUCH := {&"crouch_idle": &"mx/crouch_idle", &"crouch_walk": &"mx/crouch_fwd",
+	&"crouch_back": &"mx/crouch_back", &"crouch_left": &"mx/crouch_left", &"crouch_right": &"mx/crouch_right"}
+const MX_LOCOMOTION: Array[StringName] = [&"walk_back", &"walk_left", &"walk_right",
+	&"crouch_back", &"crouch_left", &"crouch_right"]
+## Under the pilot, walking or crouched (not running) this far off straight ahead or back plays a
 ## sideways step, the body facing ahead (a keyboard's diagonals, at 45 degrees, stay forward walks).
 const STRAFE_FROM: float = deg_to_rad(67.5)
 const BACK_FROM: float = deg_to_rad(100.0)
@@ -413,8 +422,8 @@ func _ready() -> void:
 		# Tran Trung's idle is a short window of Tripo's (pack_tripo_protagonist.py): back and forth
 		# hides the seam. (The pilot's Mixamo clips come looped from the pack.)
 		animator.get_animation(CLIPS[key]).loop_mode = Animation.LOOP_PINGPONG if key == &"idle" else Animation.LOOP_LINEAR
-	if clips.has(&"walk_back"):
-		for key: StringName in MX_LOCOMOTION:
+	for key: StringName in MX_LOCOMOTION:
+		if clips.has(key):
 			_measure(key)
 	_measure_reach_joints()
 	_measure_reach_hands()
@@ -754,7 +763,7 @@ func perform(target: Interactable) -> void:
 	_plan(goal, grip, PICK_SLACK if _marker.pick_up else 0.0)
 	# The body stands still under every reach (T-241: a reach clip stepped, lifted a heel and raised
 	# the other fist to the chest); the lean, the legs, the toes and the arm are posed on top.
-	_clip = CLIPS[&"crouch_idle" if _reach == &"kneel" else &"idle"]
+	_clip = clips[&"crouch_idle" if _reach == &"kneel" else &"idle"]
 	_key = &""
 	_pace = HAND_SECONDS / maxf(stoop_seconds, 0.1) if _reach == &"stoop" else 1.0
 	animator.speed_scale = 1.0
@@ -841,7 +850,7 @@ func _tick_locomotion(delta: float) -> void:
 		var direction: float = 1.0
 		var back: bool = absf(heading) > deg_to_rad(100.0)
 		var offset: float = 0.0
-		var walk_key: StringName = &"walk"
+		var walk_key: StringName = &"crouch_walk" if crouched else &"walk"
 		if back and speed > RUN_FROM and not crouched:
 			# T-249: running with the view turned back. The legs keep running the way he goes and the
 			# body faces that way, round by the side it turned (the chest and head turn back, below).
@@ -857,10 +866,10 @@ func _tick_locomotion(delta: float) -> void:
 			if _back_side != 0.0:
 				_back_side = 0.0
 				_yaw = wrapf(_yaw, -PI, PI)
-			# T-268 pilot: a walk has clips of its own for going back and sideways.
-			var stepping: bool = clips.has(&"walk_back") and not crouched and speed <= RUN_FROM
+			# T-268 pilot: a walk (or a crouched walk) has clips of its own for going back and sideways.
+			var stepping: bool = clips.has(&"crouch_back") if crouched else (clips.has(&"walk_back") and speed <= RUN_FROM)
 			if stepping:
-				var hold: float = STRAFE_HOLD if _key in [&"walk_left", &"walk_right"] else 0.0
+				var hold: float = STRAFE_HOLD if _key in [&"walk_left", &"walk_right", &"crouch_left", &"crouch_right"] else 0.0
 				back = absf(heading) > BACK_FROM + hold
 				if not back and absf(heading) > STRAFE_FROM - hold:
 					# The body faces ahead; the clip's own direction is a quarter turn off it.
@@ -873,8 +882,9 @@ func _tick_locomotion(delta: float) -> void:
 			target_yaw = clampf(wrapf(heading - offset, -PI, PI), -MAX_YAW, MAX_YAW)
 			_yaw = lerp_angle(_yaw, target_yaw, follow)
 			if stepping:
-				walk_key = &"walk_back" if back else (&"walk_left" if offset > 0.0 else (&"walk_right" if offset < 0.0 else &"walk"))
-		var key: StringName = &"crouch_walk" if crouched else (&"run" if speed > RUN_FROM else walk_key)
+				var low: bool = crouched
+				walk_key = (&"crouch_back" if low else &"walk_back") if back else 					((&"crouch_left" if low else &"walk_left") if offset > 0.0 else 					((&"crouch_right" if low else &"walk_right") if offset < 0.0 else (&"crouch_walk" if low else &"walk")))
+		var key: StringName = &"run" if not crouched and speed > RUN_FROM else walk_key
 		_play(key)
 		# Sideways, only the share of the motion along the clip's own direction is in the stride.
 		var along: float = speed * cos(absf(heading - offset) - absf(target_yaw)) if offset == 0.0 and _back_side == 0.0 \
@@ -1756,7 +1766,7 @@ func _lean_parts(kind: StringName, degrees: float) -> PackedFloat32Array:
 func _joints(pose: StringName) -> Dictionary:
 	if acting and _action_joints.has(pose):
 		return _action_joints[pose]
-	if _key == pose and _clip == CLIPS[pose] and animator.current_animation == String(CLIPS[pose]):
+	if _key == pose and _clip == clips[pose] and animator.current_animation == String(clips[pose]):
 		var frame: int = Engine.get_physics_frames()
 		if _live_frame != frame or _live_pose != pose:
 			_live_frame = frame
@@ -1810,7 +1820,7 @@ func _read_joints() -> Dictionary:
 	var head: Vector3 = at.call("Head")
 	return {"pivot": ((at.call("LeftUpperLeg") as Vector3) + (at.call("RightUpperLeg") as Vector3)) * 0.5,
 			"spine": spine, "neck": at.call("Neck"), "head": head, "eye": head + EYES_FROM_HEAD_BONE,
-			"shoulder": at.call("RightUpperArm"), "left_shoulder": at.call("LeftUpperArm")}
+			"shoulder": at.call("RightUpperArm"), "left_shoulder": at.call("LeftUpperArm"), "collar": at.call("RightShoulder")}
 
 
 ## Flat, from between the hips toward `goal` (world): the way a reach for it leans.
@@ -1955,9 +1965,10 @@ func _overhead(goal: Vector3) -> bool:
 	return goal.y > _standing_shoulder().y + OVERHEAD
 
 
-## The right shoulder joint of the standing pose, world space.
+## The right shoulder joint of the standing pose, world space. T-269: as the idle holds it now (see
+## _joints): the Mixamo idle (D-190) shifts the shoulders up to 9 cm off its first frame.
 func _standing_shoulder() -> Vector3:
-	var joints: Dictionary = _lean_joints.get(&"idle", {})
+	var joints: Dictionary = _joints(&"idle")
 	return model.global_transform * (joints["shoulder"] as Vector3) if not joints.is_empty() else _bone_world("RightUpperArm")
 
 
@@ -2029,7 +2040,7 @@ func _measure_reach_joints() -> void:
 		bones.append(bone)
 	bones.append("RightUpperArm")
 	for pose: StringName in [&"idle", &"crouch_idle"]:
-		animator.play(CLIPS[pose])
+		animator.play(clips[pose])
 		animator.seek(0.0, true)
 		var points: Array[Vector3] = []
 		for bone: String in bones:
@@ -2064,20 +2075,23 @@ func _rise_from(shoulder: Vector3, goal: Vector3, grip: HandTarget.Grip) -> floa
 ## D-152: the lifted shoulder with the chest leaned `degrees` toward `goal` (as SpineBendModifier
 ## shares a lean over the bend bones).
 func _leaned_shoulder(goal: Vector3, degrees: float) -> Vector3:
-	var points: Array[Vector3] = []
-	var posed: Array = _reach_joints.get(_stance(), [])
-	for index: int in range(posed.size() - 1):
-		points.append(model.global_transform * (posed[index] as Vector3))
-	points.append(_lifted_shoulder())
-	var joints: int = points.size() - 1
-	var flat: Vector3 = goal - points[0]
-	flat.y = 0.0
-	var forward: Vector3 = flat.normalized() if flat.length() > 0.01 else -global_basis.z
-	var turn: Basis = Basis(Vector3.UP.cross(forward).normalized(), deg_to_rad(degrees) / joints)
-	for joint: int in joints:
-		for index: int in range(joint + 1, points.size()):
-			points[index] = points[joint] + turn * (points[index] - points[joint])
-	return points[-1]
+	# T-269: posed step by step as BodyLeanModifier poses the bones for an "up" lean (as _leaned does
+	# for the other reaches); the old even share over the bend bones put the drawn shoulder 1 to 3.5
+	# cm off the planned one, which at the edge of reach left the hand short.
+	var held: Dictionary = _joints(_stance())
+	if held.is_empty():
+		return _lifted_shoulder()
+	var to_world: Transform3D = model.global_transform
+	var spine: Array[Vector3] = []
+	for point: Vector3 in held["spine"]:
+		spine.append(to_world * point)
+	var forward: Vector3 = _toward(goal)
+	var parts: PackedFloat32Array = _lean_parts(&"up", degrees)
+	var posed: Dictionary = BodyLeanModifier.pose_points(to_world * (held["pivot"] as Vector3), spine,
+			to_world * (held["neck"] as Vector3), to_world * (held["head"] as Vector3), [to_world * (held["eye"] as Vector3)],
+			[_lifted_shoulder()], Vector3.UP.cross(forward).normalized(), parts[0], parts[1], parts[2], parts[3],
+			-forward * parts[4] + Vector3.DOWN * parts[5])
+	return posed["chest"][0]
 
 
 ## D-152: the least lean (5 degree steps, up to HIGH_LEAN) that brings `goal` within a rise on the
@@ -2091,12 +2105,12 @@ func _up_lean(goal: Vector3, grip: HandTarget.Grip) -> float:
 
 ## The right shoulder joint (world) with the collarbone lifted SHOULDER_RAISE, as for a reach up.
 func _lifted_shoulder() -> Vector3:
-	var pose: StringName = _stance()
-	var joints: Array = _reach_joints.get(pose, [])
+	# T-269: as the pose holds it now (see _joints), like a standing reach.
+	var joints: Dictionary = _joints(_stance())
 	if joints.is_empty():
 		return _bone_world("RightUpperArm")
-	var collar: Vector3 = model.global_transform * (_reach_collars[pose] as Vector3)
-	var joint: Vector3 = model.global_transform * (joints[-1] as Vector3)
+	var collar: Vector3 = model.global_transform * (joints["collar"] as Vector3)
+	var joint: Vector3 = model.global_transform * (joints["shoulder"] as Vector3)
 	return collar + ShoulderRaiseModifier.lift(joint - collar, Vector3.UP, SHOULDER_RAISE) * (joint - collar)
 
 
@@ -2340,7 +2354,10 @@ func _add_mx_clips() -> void:
 		push_warning("T-268 motion pilot: no %s, keeping the Tripo clips" % MX_PATH)
 		return
 	# A partial pack (or a mistyped mx_idle) keeps the Tripo clips rather than playing a missing one.
-	for clip: StringName in MX_CLIPS.values() + [StringName("%s/%s" % [MX_MOTION, mx_idle])]:
+	var picked: Array = [StringName("%s/%s" % [MX_MOTION, mx_idle]), StringName("%s/%s" % [MX_MOTION, mx_run])]
+	if mx_crouch:
+		picked.append_array(MX_CROUCH.values())
+	for clip: StringName in MX_CLIPS.values() + picked:
 		if not packed.has_animation(String(clip).trim_prefix("%s/" % MX_MOTION)):
 			push_warning("T-268 motion pilot: %s has no %s, keeping the Tripo clips" % [MX_PATH, clip])
 			return
@@ -2359,6 +2376,9 @@ func _add_mx_clips() -> void:
 				animation.track_set_key_value(track, key, (animation.track_get_key_value(track, key) as Vector3) + shift)
 	clips = CLIPS.merged(MX_CLIPS, true)
 	clips[&"idle"] = StringName("%s/%s" % [MX_MOTION, mx_idle])
+	clips[&"run"] = StringName("%s/%s" % [MX_MOTION, mx_run])
+	if mx_crouch:
+		clips.merge(MX_CROUCH, true)
 
 
 ## The hips (skeleton space) at the start of a clip.
@@ -2867,7 +2887,7 @@ func _start_shove(target: Interactable) -> void:
 	var room: float = absf((door - player.global_position).dot(face)) - SHOVE_CLEAR
 	_shove_drive = clampf(minf(short, room), 0.0, SHOVE_LUNGE)
 	_shove_from = player.global_position
-	_clip = CLIPS[&"idle"]
+	_clip = clips[&"idle"]
 	_key = &""
 	animator.play(_clip, BLEND_SECONDS, 0.0)
 	if is_instance_valid(player) and player.has_method("acquire_movement_lock"):

@@ -1,7 +1,8 @@
 extends TestCase
-## T-268 (motion pilot, D-189): the Mixamo clips packed by art_source/graphics_upgrade/mixamo/.
-## Off by default nothing changes; under the pilot Tran Trung walks back and sideways on clips of
-## their own, facing ahead, with planted feet, and the manager's walk keeps its feet's pace.
+## T-268 (D-189, approved D-190), T-269: the Mixamo clips packed by art_source/graphics_upgrade/mixamo/,
+## on by default. Tran Trung stands, walks and runs on them, walking back and sideways on clips of
+## their own, facing ahead, with planted feet; the manager's walk keeps its feet's pace. With the
+## flags at &"" both keep their Tripo clips.
 
 const WALKER := preload("res://tests/player/body_walker.gd")
 const MANAGER_BODY: PackedScene = preload("res://scenes/entity/manager_body.tscn")
@@ -17,9 +18,11 @@ func before_each() -> void:
 
 
 func after_each() -> void:
-	PlayerBody.motion = &""
+	PlayerBody.motion = PlayerBody.MX_MOTION
 	PlayerBody.mx_idle = &"idle"
-	ManagerBody.motion = &""
+	PlayerBody.mx_run = &"run"
+	PlayerBody.mx_crouch = false
+	ManagerBody.motion = ManagerBody.MX_MOTION
 	world.queue_free()
 	await wait_frames(2)
 
@@ -59,13 +62,27 @@ func _attach(body: PlayerBody, bone: String) -> BoneAttachment3D:
 	return attachment
 
 
-func test_pilot_is_off_by_default() -> void:
-	assert_eq(PlayerBody.motion, &"", "the pilot waits for the owner")
-	assert_eq(ManagerBody.motion, &"", "the manager's pilot waits for the owner")
+func test_mixamo_clips_are_on_by_default() -> void:
+	assert_eq(PlayerBody.motion, PlayerBody.MX_MOTION, "D-190")
+	assert_eq(ManagerBody.motion, ManagerBody.MX_MOTION, "D-190")
+	var body := _body(_walker())
+	await wait_frames(1)
+	assert_eq(body.clips[&"idle"], &"mx/idle", "Neutral Idle (D-190)")
+	assert_eq(body.clips[&"run"], &"mx/run", "Standard Run (T-269)")
+	assert_eq(body.clips[&"crouch_walk"], PlayerBody.CLIPS[&"crouch_walk"], "crouching keeps its clips (too tall for the crouched camera)")
+	var manager := MANAGER_BODY.instantiate() as Node3D
+	world.add_child(manager)
+	var player := manager.find_children("*", "AnimationPlayer", true, false)[0] as AnimationPlayer
+	assert_true(player.get_animation(&"walk").has_meta(&"stride_speed"), "the manager walks on the packed walk")
+
+
+func test_flags_off_keep_the_tripo_clips() -> void:
+	PlayerBody.motion = &""
+	ManagerBody.motion = &""
 	var body := _body(_walker())
 	await wait_frames(1)
 	assert_eq(body.clips, PlayerBody.CLIPS, "Tran Trung keeps his clips")
-	assert_false(body.animator.has_animation_library(PlayerBody.MX_MOTION), "no Mixamo library without the pilot")
+	assert_false(body.animator.has_animation_library(PlayerBody.MX_MOTION), "no Mixamo library")
 	var manager := MANAGER_BODY.instantiate() as Node3D
 	world.add_child(manager)
 	var player := manager.find_children("*", "AnimationPlayer", true, false)[0] as AnimationPlayer
@@ -109,12 +126,14 @@ func test_pilot_measures_its_own_back_and_sideways_strides() -> void:
 	await wait_frames(1)
 	assert_eq(body.clips[&"walk"], &"mx/walk_fwd")
 	assert_eq(body.clips[&"idle"], &"mx/idle")
-	assert_eq(body.clips[&"run"], PlayerBody.CLIPS[&"run"], "running keeps its clip")
-	for key: StringName in [&"walk", &"walk_back", &"walk_left", &"walk_right"]:
+	assert_eq(body.clips[&"crouch_idle"], PlayerBody.CLIPS[&"crouch_idle"], "crouching keeps its clip")
+	for key: StringName in [&"walk", &"walk_back", &"walk_left", &"walk_right", &"run"]:
 		var stride: float = body.stride_speeds[key]
 		# _measure falls back to 1.0 x the model's scale when it finds no planted step.
-		assert_true(stride > 0.5 and stride < 2.5 and not is_equal_approx(stride, body._scale()), "%s stride %.3f m/s" % [key, stride])
+		assert_true(stride > 0.5 and stride < 4.5 and not is_equal_approx(stride, body._scale()), "%s stride %.3f m/s" % [key, stride])
 		assert_true(body.eye_points.has(key), "%s has an eye point" % key)
+	# The run plays close to its own pace at sprint speed (T-269).
+	assert_true(absf(3.6 / body.stride_speeds[&"run"] - 1.0) < 0.15, "run x%.2f" % (3.6 / body.stride_speeds[&"run"]))
 	assert_eq(PlayerBody.CLIPS[&"idle"], &"idle", "the shared table is untouched")
 	assert_eq(body.animator.get_animation(&"idle").loop_mode, Animation.LOOP_PINGPONG, "the Tripo idle under hand actions still pingpongs")
 	assert_eq(body.animator.get_animation(body.clips[&"idle"]).loop_mode, Animation.LOOP_LINEAR, "the pilot's idle keeps its packed loop")

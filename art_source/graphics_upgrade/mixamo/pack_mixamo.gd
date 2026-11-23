@@ -177,8 +177,10 @@ func _range_of(anim: Animation, path_end: String) -> Array:
 				var v: Vector3 = anim.track_get_key_value(t, k)
 				low = low.min(v)
 				high = high.max(v)
-			return [low, high]
-	return [Vector3.ZERO, Vector3.ZERO]
+			var count := anim.track_get_key_count(t)
+			var travel: Vector3 = (anim.track_get_key_value(t, count - 1) as Vector3) - (anim.track_get_key_value(t, 0) as Vector3)
+			return [low, high, travel]
+	return [Vector3.ZERO, Vector3.ZERO, Vector3.ZERO]
 
 
 # --- Tran Trung ----------------------------------------------------------------------------
@@ -199,8 +201,8 @@ func _pack_trung(entries: Array) -> void:
 				_fail("trung/%s: position track %s besides Hips" % [entry.file, path])
 		var hips := _range_of(anim, ":Hips")
 		library.add_animation(StringName(entry.name), anim)
-		print("PACK trung %-15s <- %-13s %.3f s (source %.3f s), %d tracks, hips %s .. %s (x motion_scale)" % [
-			entry.name, entry.file, anim.length, source.length, anim.get_track_count(), hips[0], hips[1]])
+		print("PACK trung %-15s <- %-13s %.3f s (source %.3f s), %d tracks, hips %s .. %s, first to last %s (x motion_scale)" % [
+			entry.name, entry.file, anim.length, source.length, anim.get_track_count(), hips[0], hips[1], hips[2]])
 		(got[0] as Node).free()
 	_save(library, "res://out/trung_mixamo.res")
 

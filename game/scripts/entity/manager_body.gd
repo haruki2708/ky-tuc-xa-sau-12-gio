@@ -8,10 +8,11 @@ extends Node3D
 ## restarts per call. T-224 (D-134): slash loops too, one chop per cycle, instead of snapping
 ## back to its start at each chop.
 const LOOPING: Array[StringName] = [&"stand", &"walk", &"ask", &"lunge", &"slash"]
-## T-268 (motion pilot, D-189): &"mx" puts the Mixamo clips packed for the manager (MX_PATH, baked
-## onto his own skeleton by art_source/graphics_upgrade/mixamo/) over his Tripo ones of the same
-## names (the pilot packs walk and slash). Set before the body's _ready. Off (&"") by default.
-static var motion: StringName = &""
+## T-268 (D-189, approved D-190): &"mx" (the default) puts the Mixamo clips packed for the manager
+## (MX_PATH, baked onto his own skeleton by art_source/graphics_upgrade/mixamo/) over his Tripo ones
+## of the same names: walk (Male Brutal Walk) and slash (Downward Attack With Axe). &"" keeps Tripo's.
+## Set before the body's _ready.
+static var motion: StringName = &"mx"
 const MX_MOTION: StringName = &"mx"
 const MX_PATH := "res://assets/models/characters/mixamo/manager_mixamo.res"
 
