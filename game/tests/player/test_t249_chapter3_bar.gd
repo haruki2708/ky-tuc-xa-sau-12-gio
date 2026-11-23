@@ -323,7 +323,7 @@ func test_running_with_the_view_back_the_legs_run_on() -> void:
 	await _seconds(1.3)
 	var going: Vector3 = Vector3(player.velocity.x, 0.0, player.velocity.z)
 	assert_true(going.length() > PlayerBody.RUN_FROM, "running the other way from the view (%.2f m/s)" % going.length())
-	assert_eq(body._clip, PlayerBody.CLIPS[&"run"], "the run")
+	assert_eq(body._clip, body.clips[&"run"], "the run")
 	assert_true(body.animator.speed_scale > 0.0, "played forwards (%.2f)" % body.animator.speed_scale)
 	var facing: Vector3 = body.model.global_basis.z
 	facing.y = 0.0
@@ -332,8 +332,10 @@ func test_running_with_the_view_back_the_legs_run_on() -> void:
 	assert_true(absf(body._torso.head_degrees) > 10.0, "the head further (%.0f degrees)" % body._torso.head_degrees)
 	Input.action_release("sprint")
 	await _seconds(0.8)
-	assert_eq(body._clip, PlayerBody.CLIPS[&"walk"], "walking backwards")
-	assert_true(body.animator.speed_scale < 0.0, "the stride played backwards, as before")
+	# T-268 (D-190): walking backwards has a clip of its own, played forwards (before: the forward
+	# stride played in reverse).
+	assert_eq(body._clip, body.clips[&"walk_back"], "walking backwards")
+	assert_true(body.animator.speed_scale > 0.0, "its own clip, played forwards (%.2f)" % body.animator.speed_scale)
 
 
 ## D-165 row 12: out of breath the shoulders rise and fall; the camera stays where it is.

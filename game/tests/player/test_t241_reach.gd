@@ -370,11 +370,19 @@ func test_the_body_is_drawn_where_the_lean_was_planned() -> void:
 		# A stoop runs on its own length (D-157); the action's clock reaches CONTACT that much later.
 		var length: float = (PlayerBody.stoop_seconds if case[1] == &"stoop" else PlayerBody.HAND_SECONDS) / PlayerBody.HAND_SECONDS
 		await _seconds((PlayerBody.CONTACT + 0.05) * length)
-		var planned: Dictionary = made._leaned(made._kind(), (made.global_basis * made._lean_forward).normalized(), made._lean_now)
+		var forward: Vector3 = (made.global_basis * made._lean_forward).normalized()
+		var planned: Dictionary = made._leaned(made._kind(), forward, made._lean_now)
 		var shoulder: float = _at("RightUpperArm").distance_to(planned["shoulder"])
 		var head: Transform3D = drawn["Head"]
 		assert_true(shoulder < 0.015, "%s: the shoulder %.3f m from where it was planned" % [case[1], shoulder])
-		assert_true(camera.global_position.distance_to(planned["eye"]) < 0.03,
+		# The camera rides with the eyes: it has come as far as the lean takes them. T-269 (D-190): the
+		# Neutral Idle stands with its eyes 3.7 cm under the player's 1.6 m camera (the Tripo idle's were
+		# on it), so the camera is checked against the eyes' way from standing, and stays near them.
+		var standing_eye: Vector3 = made._leaned(made._kind(), forward, 0.0)["eye"]
+		var head_rest: Vector3 = walker.global_transform * Vector3(0, 1.6, 0)
+		var rode: Vector3 = (camera.global_position - head_rest) - ((planned["eye"] as Vector3) - standing_eye)
+		assert_true(rode.length() < 0.03, "%s: the camera %.3f m off the eyes' way" % [case[1], rode.length()])
+		assert_true(camera.global_position.distance_to(planned["eye"]) < 0.06,
 			"%s: the camera %.3f m from the planned eyes" % [case[1], camera.global_position.distance_to(planned["eye"])])
 		assert_true((camera.global_position - head.origin).dot((head.basis.orthonormalized() * head_forward).normalized()) >= CAMERA_AHEAD,
 			"%s: the camera in front of the head" % case[1])
@@ -409,7 +417,7 @@ func test_only_the_player_crouches() -> void:
 	assert_eq(made._reach_kind(by_desk.hand_target()), &"kneel", "crouched: from the crouch")
 	assert_eq(made._reach_kind(by_feet.hand_target()), &"kneel", "crouched: low things too")
 	made.perform(by_desk)
-	assert_eq(made._clip, PlayerBody.CLIPS[&"crouch_idle"], "the reach stays in the crouch")
+	assert_eq(made._clip, made.clips[&"crouch_idle"], "the reach stays in the crouch")
 	await _seconds(PlayerBody.HAND_SECONDS + 0.1)
 	assert_false(made.acting, "done")
 

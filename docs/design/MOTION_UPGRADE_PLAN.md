@@ -1,6 +1,6 @@
 # Kế hoạch nâng chuyển động: Trần Trung và quản lý (tham khảo Mixamo)
 
-- Viết: 22/11/2026, integrator (Mythos 5.2). Trạng thái: **chủ dự án đã trả lời mục 7 (D-189): chấp nhận giấy phép; chỉ lấy chuyển động, integrator tải qua Chrome của chủ dự án; bỏ qua bước 0 và câu hỏi chơi thử lúc này; integrator làm cả. Đang ở bước 1 (tải clip theo [phiếu](../handoff/MIXAMO_DONG_TAC.md)).**
+- Viết: 22/11/2026, integrator (Mythos 5.2). Trạng thái: **chủ dự án đã trả lời mục 7 (D-189): chấp nhận giấy phép; chỉ lấy chuyển động, integrator tải qua Chrome của chủ dự án; bỏ qua bước 0 và câu hỏi chơi thử lúc này; integrator làm cả. Bước 1 xong (56 clip, 22/11). Bước 2 (mẫu thử) xong ở [T-268](../tasks/T-268-mixamo-motion-pilot.md), chờ chủ dự án duyệt video; card T-268 mục 0 sửa vài nhận định ở mục 1 dưới đây (camera không gắn vào đầu khi đi, đi ngang, bảng xương, `fix_silhouette`).**
 - Yêu cầu của chủ dự án (22/11): cử động tay chân, cầm đồ, mở cửa và chuyển động cả người của nhân vật chính và quản lý phải tự nhiên hơn; nguồn tham khảo là https://www.mixamo.com.
 - Số tiếp theo khi chốt: D-189; card T-268 trở đi.
 

@@ -112,6 +112,16 @@ func _ready() -> void:
 	room = floor4.get_node("Room407") as Node3D
 	player = $Player as CharacterBody3D
 	CHAPTER.place_papers(room.get_node("Anchors") as Node3D, self)
+	# T-268: --motion=mx stands and walks him on the pilot's Mixamo clips (set before the body is made).
+	for arg: String in OS.get_cmdline_user_args():
+		if arg.begins_with("--motion="):
+			PlayerBody.motion = StringName(arg.trim_prefix("--motion="))
+		elif arg.begins_with("--mx-idle="):
+			PlayerBody.mx_idle = StringName(arg.trim_prefix("--mx-idle="))
+		elif arg.begins_with("--mx-run="):
+			PlayerBody.mx_run = StringName(arg.trim_prefix("--mx-run="))
+		elif arg == "--mx-crouch":
+			PlayerBody.mx_crouch = true
 	# D-151: the same body, door levers and mirrors as chapter 1 (Protagonist.attach).
 	body = Protagonist.attach(player, floor4)
 	_add_targets()
@@ -156,6 +166,10 @@ func _ready() -> void:
 		await _bed_demo()
 	elif "--reach-demo" in args:
 		await _reach_demo()
+	elif "--motion-compare" in args:
+		await _motion_compare(COMPARE_STEPS)
+	elif "--motion-compare-run-crouch" in args:
+		await _motion_compare(COMPARE_RUN_CROUCH)
 
 
 func _add_targets() -> void:
@@ -532,3 +546,112 @@ func _wait(seconds: float) -> void:
 	while left > 0.0:
 		await get_tree().physics_frame
 		left -= get_physics_process_delta_time()
+
+
+## T-268 (motion pilot): -- --motion-compare walks Tran Trung along the floor 4 corridor: standing,
+## forward, back, then sideways (turned to face across it), each seen from a camera that keeps
+## beside him, then the same as the player sees it, looking down. Recorded once as he is and once
+## with --motion=mx (and --mx-idle=idle_breathing for the other idle), then put side by side
+## (art_source/graphics_upgrade/mixamo/README.md). The input is scripted on physics frames, so the
+## two runs move him the same way.
+const COMPARE_AT := Vector3(12.0, 0.02, 1.0)
+## caption, input actions held ("" stands; "a+b" holds both), seconds, facing (yaw), camera from him
+## (x right, y up, z back), first person. A step whose caption starts with "*" starts back at COMPARE_AT.
+const COMPARE_STEPS := [
+	["*Đứng yên", "", 4.0, -PI / 2.0, Vector3(1.6, 1.2, -2.4), false],
+	["Đi tới", "move_forward", 2.6, -PI / 2.0, Vector3(1.6, 1.2, -2.6), false],
+	["Đứng", "", 0.8, -PI / 2.0, Vector3(1.6, 1.2, -2.6), false],
+	["Đi lùi", "move_back", 2.6, -PI / 2.0, Vector3(1.6, 1.2, -2.6), false],
+	["Quay mặt sang ngang", "", 1.6, PI, Vector3(0.4, 1.2, -2.0), false],
+	["Đi ngang sang trái", "move_left", 2.2, PI, Vector3(0.4, 1.2, -2.0), false],
+	["Đi ngang sang phải", "move_right", 2.2, PI, Vector3(0.4, 1.2, -2.0), false],
+	["*Mắt người chơi: đi tới", "move_forward", 1.8, -PI / 2.0, Vector3.ZERO, true],
+	["Mắt người chơi: đi lùi", "move_back", 1.8, -PI / 2.0, Vector3.ZERO, true],
+	["Mắt người chơi: sang trái", "move_left", 1.4, PI, Vector3.ZERO, true],
+	["Mắt người chơi: sang phải", "move_right", 1.4, PI, Vector3.ZERO, true],
+]
+## T-269 (plan step 3): running, then crouched: still, forward, back, sideways, and as the player sees it.
+const COMPARE_RUN_CROUCH := [
+	["*Đứng", "", 1.0, -PI / 2.0, Vector3(1.6, 1.2, -2.6), false],
+	["Chạy (giữ Shift)", "move_forward+sprint", 2.4, -PI / 2.0, Vector3(1.6, 1.2, -3.0), false],
+	["Đứng", "", 1.0, -PI / 2.0, Vector3(1.6, 1.2, -2.6), false],
+	["*Ngồi xổm, đứng yên", "crouch", 2.5, -PI / 2.0, Vector3(1.5, 0.9, -2.2), false],
+	["Đi khom tới", "crouch+move_forward", 2.2, -PI / 2.0, Vector3(1.5, 0.9, -2.2), false],
+	["Đi khom lùi", "crouch+move_back", 2.2, -PI / 2.0, Vector3(1.5, 0.9, -2.2), false],
+	["Ngồi xổm, quay mặt sang ngang", "crouch", 1.4, PI, Vector3(0.4, 0.9, -1.9), false],
+	["Đi khom sang trái", "crouch+move_left", 2.2, PI, Vector3(0.4, 0.9, -1.9), false],
+	["Đi khom sang phải", "crouch+move_right", 2.2, PI, Vector3(0.4, 0.9, -1.9), false],
+	["*Mắt người chơi: chạy", "move_forward+sprint", 1.6, -PI / 2.0, Vector3.ZERO, true],
+	["*Mắt người chơi: ngồi xổm", "crouch", 1.2, -PI / 2.0, Vector3.ZERO, true],
+	["Mắt người chơi: đi khom tới", "crouch+move_forward", 1.6, -PI / 2.0, Vector3.ZERO, true],
+	["Mắt người chơi: đi khom sang trái", "crouch+move_left", 1.4, PI, Vector3.ZERO, true],
+]
+
+
+func _motion_compare(steps: Array) -> void:
+	_set_light("night")
+	_reset_things()
+	var tag: String = "MỚI: Mixamo" if PlayerBody.motion == PlayerBody.MX_MOTION else "CŨ: Tripo"
+	if PlayerBody.motion == PlayerBody.MX_MOTION:
+		tag += " (đứng: %s, chạy: %s)" % ["Breathing Idle" if PlayerBody.mx_idle == &"idle_breathing" else "Neutral Idle",
+			"Jogging" if PlayerBody.mx_run == &"run_jog" else "Standard Run"]
+	# A lamp that keeps over him (the corridor is dark at night), the same in both runs.
+	var lamp := OmniLight3D.new()
+	lamp.light_color = Color(1.0, 0.95, 0.86)
+	lamp.light_energy = 2.2
+	lamp.omni_range = 7.0
+	lamp.shadow_enabled = true
+	add_child(lamp)
+	third_camera.set_cull_mask_value(PlayerBody.MIRROR_LAYER, true)
+	third_camera.fov = 55.0
+	var layer := CanvasLayer.new()
+	add_child(layer)
+	var caption := Label.new()
+	caption.position = Vector2(28, 20)
+	caption.add_theme_font_size_override("font_size", 30)
+	caption.add_theme_color_override("font_outline_color", Color.BLACK)
+	caption.add_theme_constant_override("outline_size", 8)
+	layer.add_child(caption)
+	var head := player.get_node("Head") as Node3D
+	var report: Array[String] = []
+	for step: Array in steps:
+		var first_person: bool = step[5]
+		var title: String = step[0]
+		if title.begins_with("*"):
+			title = title.substr(1)
+			player.global_position = COMPARE_AT
+			player.velocity = Vector3.ZERO
+		player.rotation.y = step[3]
+		head.rotation.x = deg_to_rad(-58.0 if first_person else 0.0)
+		if first_person:
+			_show_third_person(false)
+		else:
+			third_camera.make_current()
+		var action: String = step[1]
+		var held: PackedStringArray = action.split("+", false)
+		for held_action: String in held:
+			Input.action_press(held_action)
+		var left: float = step[2]
+		var pace: float = 0.0
+		var frames: int = 0
+		while left > 0.0:
+			lamp.global_position = player.global_position + Vector3(0.6, 2.3, 0.4)
+			if not first_person:
+				var offset: Vector3 = step[4]
+				third_camera.global_position = player.global_transform * offset
+				third_camera.look_at(player.global_position + Vector3.UP * 0.9)
+			caption.text = "%s\n%s\nclip %s, tốc độ phát x%.2f" % [tag, title, String(body.get("_clip")), absf(body.animator.speed_scale)]
+			await get_tree().physics_frame
+			left -= get_physics_process_delta_time()
+			if action != "" and left < step[2] - 0.5:
+				pace += absf(body.animator.speed_scale)
+				frames += 1
+		for held_action: String in held:
+			Input.action_release(held_action)
+		if action != "":
+			report.append("%s: %s x%.2f" % [title, String(body.get("_clip")), pace / maxi(frames, 1)])
+	print("MOTION strides %s" % body.stride_speeds)
+	print("MOTION eyes %s" % body.eye_points)
+	print("MOTION pace " + "; ".join(report))
+	print("RESULT: motion compare PASS")
+	App.quit()
