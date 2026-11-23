@@ -34,6 +34,8 @@
 - Đứng dậy khỏi giường.
 - Bắt đầu và dừng bước: bỏ, vì người chơi tăng tốc lên 2,2 m/s trong 0,18 giây, ngắn hơn mọi clip bắt đầu bước.
 
+**Chơi thử (24/11):** chủ dự án chơi bản `6dfd01dd` và báo ổn.
+
 ## 4. Kiểm trước khi merge (24/11/2026, sau khi chủ dự án gỡ RAV)
 - Full test chạy trực tiếp 17 phần: **1105 đạt / 0 hỏng** (1096 cũ + 9 test T-268/T-269), mọi file test đều chạy.
 - Check: 0 lỗi.
