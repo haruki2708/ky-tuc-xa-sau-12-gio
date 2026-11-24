@@ -8,6 +8,9 @@
 pwsh -NoProfile -File art_source/graphics_upgrade/mixamo/pack_mixamo.ps1                     # setup, import, pack, chép vào game
 pwsh -NoProfile -File art_source/graphics_upgrade/mixamo/pack_mixamo.ps1 -Stage pack -NoCopy  # chỉ đóng gói, không chép
 pwsh -NoProfile -File art_source/graphics_upgrade/mixamo/pack_mixamo.ps1 -Stage probe -Who trung -Probe walk_fwd
+pwsh -NoProfile -File art_source/graphics_upgrade/mixamo/pack_mixamo.ps1 -Stage body -Who trung -Probe "get_up@4.3,6.6"   # hông, đầu, bàn chân theo thời gian (T-271)
+pwsh -NoProfile -File art_source/graphics_upgrade/mixamo/pack_mixamo.ps1 -Stage hand -Who trung -Probe button_push           # cổ tay phải (T-270)
+pwsh -NoProfile -File art_source/graphics_upgrade/mixamo/pack_mixamo.ps1 -Stage reach                                        # sinh game/scripts/player/reach_paths.gd (T-270)
 ```
 
 - Danh sách clip: `clips.json`. Mỗi clip có các trường:
@@ -16,7 +19,9 @@ pwsh -NoProfile -File art_source/graphics_upgrade/mixamo/pack_mixamo.ps1 -Stage 
   - `loop`;
   - `window` (tuỳ chọn): đoạn giữ lại, tính bằng giây;
   - `hips_xz`: `keep` (giữ hông đung đưa), `rest` (ghim hông tại chỗ) hoặc `loop` (bỏ phần trôi đi);
-  - `fix_loop` + `loop_blend`: hoà đuôi đoạn cắt về khung đầu để lặp không giật.
+  - `fix_loop` + `loop_blend`: hoà đuôi đoạn cắt về khung đầu để lặp không giật;
+  - `mirror` (T-271): đóng gói bản lật gương trái phải. Mỗi xương lấy độ xoay so với dáng nghỉ, lật gương, đặt lên dáng nghỉ của xương đối diện; công cụ in độ lệch so với ảnh gương (đo được 0,0 mm) và báo lỗi nếu quá 3 cm.
+- Danh sách phụ trong `clips.json`: `trung_reach` (đường tay, T-270), `trung_probe` (chỉ nhập để đo, không đóng gói).
 - Mọi lần chạy Godot đều qua khoá chung (`build/integrator/godot_steps_locked.ps1 -ProjectDir`).
 - Thêm clip: thêm dòng vào `clips.json`, chạy `pack_mixamo.ps1`, thêm dòng vào `CREDITS.md`. Lần setup chỉ ghi file `.import` cho FBX chưa có. Đổi thiết lập nhập thì xoá `build/mixamo_pack/` rồi chạy lại.
 

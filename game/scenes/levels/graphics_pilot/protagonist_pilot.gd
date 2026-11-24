@@ -122,6 +122,8 @@ func _ready() -> void:
 			PlayerBody.mx_run = StringName(arg.trim_prefix("--mx-run="))
 		elif arg.begins_with("--reach="):
 			PlayerBody.reach_style = StringName(arg.trim_prefix("--reach="))
+		elif arg.begins_with("--bed-rise="):
+			PlayerBody.bed_rise_seconds = float(arg.trim_prefix("--bed-rise="))
 		elif arg == "--mx-crouch":
 			PlayerBody.mx_crouch = true
 	# D-151: the same body, door levers and mirrors as chapter 1 (Protagonist.attach).
@@ -166,6 +168,10 @@ func _ready() -> void:
 		await _clip_gallery()
 	elif "--bed-demo" in args:
 		await _bed_demo()
+	elif "--bed-slices" in args:
+		await _bed_slices()
+	elif "--bed-rise-demo" in args:
+		await _bed_rise_demo()
 	elif "--reach-demo" in args:
 		await _reach_demo()
 	elif "--bar-demo" in args:
@@ -678,4 +684,103 @@ func _bar_demo() -> void:
 			weapon.call("swing")
 			await _wait(1.1)
 	print("RESULT: bar demo PASS")
+	App.quit()
+
+
+## T-271: the two lower bunks cut across (seen from the foot end, everything nearer than the cut
+## left out), to plan the head's way out of bed under the upper bunk. Dots: the pillow view (red),
+## the exit at the floor and at standing eye height (blue), a 10 cm ladder of ticks at the bed's
+## middle line and at the exit (white). Saved to build/graphics/motion/frames/.
+func _bed_slices() -> void:
+	_set_light("tube")
+	_reset_things()
+	player.global_position += Vector3(0, 0, 6.0)
+	var slice := Camera3D.new()
+	slice.projection = Camera3D.PROJECTION_ORTHOGONAL
+	slice.size = 2.4
+	add_child(slice)
+	slice.set_cull_mask_value(PlayerBody.MIRROR_LAYER, false)
+	for bed: int in [3, 2]:
+		var anchor := room.get_node("Anchors/Bunks/Bunk%d" % bed) as Node3D
+		var view := anchor.get_node("View") as Node3D
+		var exit := anchor.get_node("Exit") as Node3D
+		var dots: Array[Node] = []
+		var marks: Array = [[view.global_position, Color.RED, 0.03], [exit.global_position, Color.BLUE, 0.03],
+				[exit.global_position + Vector3.UP * 1.6, Color.BLUE, 0.03]]
+		for step: int in 19:
+			marks.append([Vector3(anchor.global_position.x, 0.1 * step, view.global_position.z), Color.WHITE, 0.012])
+			marks.append([Vector3(exit.global_position.x, 0.1 * step, view.global_position.z), Color.WHITE, 0.012])
+		for mark: Array in marks:
+			var dot := MeshInstance3D.new()
+			var ball := SphereMesh.new()
+			ball.radius = mark[2]
+			ball.height = float(mark[2]) * 2.0
+			var paint := StandardMaterial3D.new()
+			paint.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+			paint.albedo_color = mark[1]
+			paint.no_depth_test = true
+			ball.material = paint
+			dot.mesh = ball
+			add_child(dot)
+			dot.global_position = mark[0]
+			dots.append(dot)
+		for cut: float in [0.64, 0.1]:
+			# Looking from the foot end to the head end (world +Z here: the anchors are not turned).
+			slice.global_transform = Transform3D(Basis(Vector3.UP, PI), Vector3(anchor.global_position.x, 1.2, anchor.global_position.z - 3.0))
+			slice.near = 3.0 + cut - 0.02
+			slice.far = 3.0 + 1.6
+			slice.make_current()
+			await _wait(0.4)
+			await RenderingServer.frame_post_draw
+			var file := "D:/GAME_DEMO/build/graphics/motion/frames/t271_slice_bed%d_z%02d.png" % [bed, roundi(cut * 100)]
+			get_viewport().get_texture().get_image().save_png(file)
+			print("SLICE bed %d cut %.2f: anchor %s view %s exit %s -> %s" % [bed, cut, anchor.global_position, view.global_position, exit.global_position, file])
+		for dot: Node in dots:
+			dot.queue_free()
+	print("RESULT: bed slices PASS")
+	App.quit()
+
+
+## T-271: getting out of the two lower bunks (3, Tran Trung's own: the way out on his left; 2: on
+## his right). Each: lying as the player sees it, getting up as the player sees it; then the same
+## seen from inside the room, and once more square on to the bed's side. Recorded with and without
+## --bed-rise=<seconds>.
+func _bed_rise_demo() -> void:
+	_set_light("tube")
+	_reset_things()
+	third_camera.set_cull_mask_value(PlayerBody.MIRROR_LAYER, true)
+	var own := player.get_node("Head/Camera3D") as Camera3D
+	for bed: int in [3, 2]:
+		var anchor := room.get_node("Anchors/Bunks/Bunk%d" % bed) as Node3D
+		var spot := (load("res://scenes/interaction/bunk_spot.tscn") as PackedScene).instantiate() as HideSpot
+		spot.set("bed_number", bed)
+		spot.name = "DemoBunk%d" % bed
+		anchor.add_child(spot)
+		spot.view = NodePath("../View")
+		spot.exit = NodePath("../Exit")
+		var exit := anchor.get_node("Exit") as Node3D
+		var room_side: float = signf(exit.global_position.x - anchor.global_position.x)
+		var views: Array = [
+			[],
+			[anchor.global_position + Vector3(2.9 * room_side, 1.1, 2.3), anchor.global_position + Vector3(0.3 * room_side, 0.3, 0.2)],
+			[anchor.global_position + Vector3(2.6 * room_side, 0.9, 0.5), anchor.global_position + Vector3(0.3 * room_side, 0.7, 0.45)],
+		]
+		for view: Array in views:
+			player.global_transform = exit.global_transform
+			player.velocity = Vector3.ZERO
+			var head := player.get_node("Head") as Node3D
+			head.position = Vector3(0, 1.6, 0)
+			head.rotation = Vector3.ZERO
+			await _wait(0.3)
+			player.call("enter_hide_spot", spot)
+			if view.is_empty():
+				own.make_current()
+			else:
+				_aim_third_person(view[0], view[1])
+				third_camera.make_current()
+			await _wait(1.5)
+			player.call("leave_hide_spot")
+			await _wait(3.4)
+		spot.queue_free()
+	print("RESULT: bed rise demo PASS")
 	App.quit()

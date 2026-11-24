@@ -8,7 +8,7 @@
 #
 # Godot runs go through build/integrator/godot_steps_locked.ps1 (the shared Godot lock).
 param(
-    [ValidateSet('all', 'setup', 'import', 'pack', 'probe', 'hand', 'reach')][string]$Stage = 'all',
+    [ValidateSet('all', 'setup', 'import', 'pack', 'probe', 'hand', 'body', 'reach')][string]$Stage = 'all',
     [string[]]$Who = @('trung', 'manager'),
     [string]$Probe = '',
     [switch]$NoCopy
@@ -166,7 +166,7 @@ import/blender/enabled=false
     foreach ($w in $Who) {
         $dir = Join-Path $proj "src\$w"
         New-Item -ItemType Directory -Force $dir | Out-Null
-        foreach ($clip in @($manifest.$w) + @($manifest."${w}_reach") | Where-Object { $_ }) {
+        foreach ($clip in @($manifest.$w) + @($manifest."${w}_reach") + @($manifest."${w}_probe") | Where-Object { $_ }) {
             $from = Join-Path $staging "$w\$($clip.file).fbx"
             if (-not (Test-Path -LiteralPath $from)) { throw "missing $from" }
             $to = Join-Path $dir "$($clip.file).fbx"
@@ -208,6 +208,7 @@ function Update-Scripts {
 if ($Stage -in 'all', 'setup') { Invoke-Setup }
 if ($Stage -in 'all', 'import') { Invoke-Godot 't268pack_import' '--headless --import' }
 if ($Stage -eq 'probe') { Update-Scripts; Invoke-Godot 't268pack_probe' "--headless --script res://pack_mixamo.gd -- --probe=$($Who[0])/$Probe" }
+if ($Stage -eq 'body') { Update-Scripts; Invoke-Godot 't268pack_body' "--headless --script res://pack_mixamo.gd -- --body=$($Who[0])/$Probe" }
 if ($Stage -eq 'hand') { Update-Scripts; Invoke-Godot 't268pack_hand' "--headless --script res://pack_mixamo.gd -- --hand=$($Who[0])/$Probe" }
 # T-270: the wrist paths, written as code into the game.
 if ($Stage -eq 'reach') {
