@@ -2,6 +2,7 @@
 ##   --probe=<who>/<file>   print what Godot made of one imported FBX (tracks, skeleton, hips range)
 ##   --pack=trung,manager   write out/<who>_mixamo.res from clips.json
 ##   --hand=<who>/<file>    print the right wrist's way through one clip (to pick reach windows)
+##   --body=<who>/<file>    print hips, head and feet through one clip (to plan a whole-body motion)
 ##   --reach=trung          write out/reach_paths.gd from clips.json's "<who>_reach" list (T-270)
 ## Tran Trung's library keeps the retargeted tracks as Godot made them (%GeneralSkeleton:<humanoid bone>),
 ## like the Quaternius libraries. The manager's skeleton is not retargeted in the game, so his clips are
@@ -26,6 +27,8 @@ func _main() -> void:
 			_probe(arg.trim_prefix("--probe="))
 		elif arg.begins_with("--hand="):
 			_hand(arg.trim_prefix("--hand="))
+		elif arg.begins_with("--body="):
+			_body(arg.trim_prefix("--body="))
 		elif arg.begins_with("--reach="):
 			var listed: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://clips.json"))
 			_reach_paths(arg.trim_prefix("--reach="), listed.get(arg.trim_prefix("--reach=") + "_reach", []))
@@ -200,6 +203,8 @@ func _pack_trung(entries: Array) -> void:
 			continue
 		var source: Animation = got[2]
 		var anim := _edit(source, entry)
+		if entry.get("mirror", false):
+			anim = _mirror(got[1], anim, entry.name)
 		for t in anim.get_track_count():
 			var path := String(anim.track_get_path(t))
 			if not path.begins_with(PREFIX):
@@ -622,3 +627,110 @@ func _reach_paths(who: String, entries: Array) -> void:
 	file.store_string("\n".join(lines) + "\n")
 	file.close()
 	print("PACK saved res://out/reach_paths.gd, %d paths" % entries.size())
+
+
+# --- T-271: the whole body through a clip (hips, head, feet), to plan getting out of bed -------
+
+func _body(spec: String) -> void:
+	# <who>/<file> or <who>/<file>@<start>,<end> (seconds; then every frame is printed).
+	var window := spec.get_slice("@", 1).split(",") if spec.contains("@") else PackedStringArray()
+	var parts := spec.get_slice("@", 0).split("/")
+	var got := _source(parts[0], parts[1])
+	if got.is_empty():
+		return
+	var skeleton: Skeleton3D = got[1]
+	var anim: Animation = got[2]
+	var lines: Array[String] = []
+	var frames: int = roundi(anim.length * FPS)
+	var step: int = maxi(1, frames / 40)
+	var first: int = 0
+	if window.size() == 2:
+		first = roundi(float(window[0]) * FPS)
+		frames = mini(frames, roundi(float(window[1]) * FPS))
+		step = 2
+	for f in range(first, frames + 1, step):
+		var posed := _globals(skeleton, _pose_at(skeleton, anim, f / FPS))
+		var hips: Transform3D = posed[skeleton.find_bone("Hips")]
+		var head: Vector3 = posed[skeleton.find_bone("Head")].origin
+		var left: Vector3 = posed[skeleton.find_bone("LeftFoot")].origin
+		var right: Vector3 = posed[skeleton.find_bone("RightFoot")].origin
+		var trunk: Vector3 = (head - hips.origin).normalized()
+		var ahead: Vector3 = hips.basis.z
+		lines.append("%.2f: hips(%.2f,%.2f,%.2f) head(%.2f,%.2f,%.2f) L(%.2f,%.2f,%.2f) R(%.2f,%.2f,%.2f) lean%.0f yaw%.0f" % [f / FPS,
+			hips.origin.x, hips.origin.y, hips.origin.z, head.x, head.y, head.z, left.x, left.y, left.z, right.x, right.y, right.z,
+			rad_to_deg(acos(clampf(trunk.y, -1.0, 1.0))), rad_to_deg(atan2(ahead.x, ahead.z))])
+	print("PROBE body %s (%.2f s; skeleton space: x left of the model, y up, z ahead; lean = trunk from upright)
+%s" % [spec, anim.length, "
+".join(lines)])
+	(got[0] as Node).free()
+
+
+# --- T-271: a clip mirrored left to right -----------------------------------------------------
+
+## `anim` (a %GeneralSkeleton clip) as its mirror image: what the left side did the right side
+## does. Each bone's turn away from its rest (in the skeleton's space) is mirrored and laid on the
+## rest of the bone across from it, so the rests of the two sides need not match.
+func _mirror(skeleton: Skeleton3D, anim: Animation, label: String) -> Animation:
+	var count := skeleton.get_bone_count()
+	var across := PackedInt32Array()
+	across.resize(count)
+	var rest_local: Array[Transform3D] = []
+	for i in count:
+		var bone := skeleton.get_bone_name(i)
+		var other := bone
+		if bone.begins_with("Left"):
+			other = "Right" + bone.trim_prefix("Left")
+		elif bone.begins_with("Right"):
+			other = "Left" + bone.trim_prefix("Right")
+		across[i] = skeleton.find_bone(other) if skeleton.find_bone(other) >= 0 else i
+		rest_local.append(skeleton.get_bone_rest(i))
+	var rest := _globals(skeleton, rest_local)
+	var flip := Basis(Vector3(-1, 0, 0), Vector3(0, 1, 0), Vector3(0, 0, 1))
+	var out := Animation.new()
+	out.length = anim.length
+	out.loop_mode = anim.loop_mode
+	var rotation_of := {}
+	var position_of := {}
+	for t in anim.get_track_count():
+		var bone := skeleton.find_bone(String(anim.track_get_path(t)).get_slice(":", 1))
+		if bone < 0:
+			continue
+		var track := out.add_track(anim.track_get_type(t))
+		out.track_set_path(track, anim.track_get_path(t))
+		if anim.track_get_type(t) == Animation.TYPE_ROTATION_3D:
+			rotation_of[bone] = track
+		elif anim.track_get_type(t) == Animation.TYPE_POSITION_3D:
+			position_of[bone] = track
+	var frames := roundi(anim.length * FPS)
+	var last := {}
+	var worst := 0.0
+	for f in frames + 1:
+		var posed := _globals(skeleton, _pose_at(skeleton, anim, f / FPS))
+		var mirrored: Array[Transform3D] = []
+		mirrored.resize(count)
+		for i in count:
+			var turn := posed[i].basis.orthonormalized() * rest[i].basis.orthonormalized().inverse()
+			var origin := posed[i].origin
+			mirrored[across[i]] = Transform3D((flip * turn * flip) * rest[across[i]].basis.orthonormalized(), Vector3(-origin.x, origin.y, origin.z))
+		for i in count:
+			var parent := skeleton.get_bone_parent(i)
+			var local := mirrored[i] if parent < 0 else mirrored[parent].affine_inverse() * mirrored[i]
+			if rotation_of.has(i):
+				var q := local.basis.get_rotation_quaternion()
+				if last.has(i) and q.dot(last[i]) < 0.0:
+					q = -q
+				last[i] = q
+				out.track_insert_key(rotation_of[i], f / FPS, q)
+			if position_of.has(i):
+				out.track_insert_key(position_of[i], f / FPS, local.origin / skeleton.motion_scale)
+		# The check: played back, each bone stands where its twin stood, mirrored.
+		if f % 5 == 0:
+			var back := _globals(skeleton, _pose_at(skeleton, out, f / FPS))
+			for name: String in ["Head", "LeftFoot", "RightFoot", "LeftHand", "RightHand"]:
+				var i := skeleton.find_bone(name)
+				var twin := posed[across[i]].origin
+				worst = maxf(worst, back[i].origin.distance_to(Vector3(-twin.x, twin.y, twin.z)))
+	print("PACK mirror %s: head, feet and hands at most %.1f mm from the mirror image" % [label, worst * 1000.0])
+	if worst > 0.03:
+		_fail("mirror %s: %.1f mm from the mirror image (the two sides of the rest pose differ too much)" % [label, worst * 1000.0])
+	return out

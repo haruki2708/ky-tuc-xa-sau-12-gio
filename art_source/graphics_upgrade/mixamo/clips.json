@@ -1,5 +1,5 @@
 {
-	"_note": "T-268 Mixamo pack manifest. file = stem of build/graphics/staging/mixamo/<who>/<file>.fbx; name = clip name in the packed library; loop = loop the clip; window = [start, end] seconds of the source to keep (optional); hips_xz = 'keep' (default), 'rest' (pin hips X/Z in place, at the window's first frame) or 'loop' (remove the net travel so the end meets the start); fix_loop = blend the end pose back onto the start pose so a cut window loops without a pop (loop_blend seconds); max_slide (manager clips played in place) = fail the pack if a planted foot drifts more than this many metres a cycle. T-268: the slash keeps its hips (pinning them made the planted feet slide 15-26 cm a chop; kept, 6-11 cm, as the source itself).",
+	"_note": "T-268 Mixamo pack manifest. file = stem of build/graphics/staging/mixamo/<who>/<file>.fbx; name = clip name in the packed library; loop = loop the clip; window = [start, end] seconds of the source to keep (optional); hips_xz = 'keep' (default), 'rest' (pin hips X/Z in place, at the window's first frame) or 'loop' (remove the net travel so the end meets the start); fix_loop = blend the end pose back onto the start pose so a cut window loops without a pop (loop_blend seconds); mirror = pack the clip's mirror image (left and right swapped; T-271: the bed is left on either side); max_slide (manager clips played in place) = fail the pack if a planted foot drifts more than this many metres a cycle. T-268: the slash keeps its hips (pinning them made the planted feet slide 15-26 cm a chop; kept, 6-11 cm, as the source itself).",
 	"trung": [
 		{"name": "idle", "file": "idle_neutral", "loop": true},
 		{"name": "idle_breathing", "file": "idle", "loop": true},
@@ -13,10 +13,16 @@
 		{"name": "crouch_fwd", "file": "crouch_fwd", "loop": true},
 		{"name": "crouch_back", "file": "crouch_back", "loop": true},
 		{"name": "crouch_left", "file": "crouch_left", "loop": true},
-		{"name": "crouch_right", "file": "crouch_right", "loop": true}
+		{"name": "crouch_right", "file": "crouch_right", "loop": true},
+		{"name": "bed_rise", "file": "get_up", "window": [4.6, 6.1]},
+		{"name": "bed_rise_left", "file": "get_up", "window": [4.6, 6.1], "mirror": true}
 	],
 	"trung_reach": [
 		{"name": "press", "file": "button_push", "reach": [0.47, 1.17], "back": [1.9, 2.67]}
+	],
+	"trung_probe": [
+		{"file": "sit_to_stand"},
+		{"file": "sit_idle"}
 	],
 	"manager": [
 		{"name": "walk", "file": "walk_brutal", "loop": true},

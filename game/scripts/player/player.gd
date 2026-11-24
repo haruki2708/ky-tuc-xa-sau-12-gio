@@ -180,6 +180,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		get_viewport().set_input_as_handled()
 		return
 	if event is InputEventMouseMotion and _mouse_captured and not controls_locked():
+		# T-271: getting out of bed the view rides the body's eyes; no looking round meanwhile.
+		if is_instance_valid(body) and body.getting_up():
+			return
 		if is_hidden():
 			var previous: Vector2 = Vector2(head.rotation.x, head.rotation.y)
 			head.rotation.y = clampf(head.rotation.y - event.relative.x * mouse_sensitivity,
@@ -552,6 +555,9 @@ func leave_hide_spot(noisy: bool = true) -> void:
 	if not is_hidden():
 		return
 	var spot: HideSpot = _hide_spot
+	# (Leaving with the scene, the camera is out of the tree already: no view to start from.)
+	var rising: bool = noisy and camera.is_inside_tree()
+	var view_from: Transform3D = camera.global_transform if rising else Transform3D.IDENTITY
 	_hide_spot = null
 	if _climb != null and _climb.is_valid():
 		_climb.kill()
@@ -566,7 +572,10 @@ func leave_hide_spot(noisy: bool = true) -> void:
 	body_shape.set_deferred("disabled", false)
 	velocity = Vector3.ZERO
 	if is_instance_valid(body):
-		body.leave_bed()
+		# T-271: the player's own getting up from a lower bunk has the body's motion (the player is at
+		# the way out at once, as ever; the body locks the walking until it stands). Pulled out
+		# without a sound (the scene going, a script), or from an upper bunk: at once, as before.
+		body.leave_bed(view_from, rising and not crouched and spot.bed_id() != 0 and spot.entry_seconds() <= 0.0)
 	GameState.set_flag(&"player_bed", 0)
 	spot.release()
 	EventBus.player_hidden.emit(false, spot.kind)

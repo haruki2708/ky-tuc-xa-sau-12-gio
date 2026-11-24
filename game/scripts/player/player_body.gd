@@ -106,6 +106,38 @@ const TURN_STEP_PACE: float = 0.7
 ## 0.43 m over the mattress, propped on the pillow), its eyes on the camera. Getting in and out of
 ## bed stay as they were (no motion of their own).
 const BED_RECLINE: float = 30.0
+## T-271 (D-192): seconds getting out of a lower bunk takes, with the motion _build_bed_out puts
+## together (the Mixamo clip Getting Up from its sitting moment on; the view rides his eyes). 0 =
+## out at once, as before. Off until the owner approves the pilot.
+static var bed_rise_seconds: float = 0.0
+## The packed clips, by whether the way out is on the lying body's left. The clip as Mixamo made
+## it turns to the right as it stands up, so it sits facing out of a bed whose way out is on the
+## left and ends turned toward the view; bed_rise_left is its mirror image.
+const BED_RISE := {false: &"mx/bed_rise_left", true: &"mx/bed_rise"}
+const BED_OUT: StringName = &"bed_out"
+const RISE_FPS: float = 30.0
+## The motion's own seconds (played over bed_rise_seconds): from lying to sitting on the edge; the
+## packed clip's time where it takes over (he sits leaning out, the feet not yet down); the end
+## that blends onto the standing idle.
+const RISE_TURN: float = 1.0
+const RISE_FROM: float = 0.35
+const RISE_SETTLE: float = 0.3
+## He ends facing this far off the bed's line toward the room (under TURN_START: no stepping round after).
+const RISE_FACE: float = deg_to_rad(48.0)
+## The seat: at most this far out from the bed's middle line, at least this far down the bed from
+## the pillow view (metres); the feet slide at most RISE_SLIDE while he stands to make up for it.
+const RISE_SEAT_OUT: float = 0.42
+const RISE_SEAT_ALONG: float = -0.12
+const RISE_SLIDE: float = 0.25
+## Ducking out from under the upper bunk: on the way to the edge the back and the neck curl
+## forward by these degrees at most (the bones in order up the back), so the head goes out low.
+const RISE_DUCK := {"Spine": 16.0, "Chest": 16.0, "UpperChest": 12.0, "Neck": 18.0}
+## The clip throws its fists up as it stands (a fighter's getting up): from RISE_ARMS[0] seconds
+## after the hips leave the mattress, over RISE_ARMS[1] seconds, the arms go to the idle's instead.
+const RISE_ARMS: Array[float] = [-0.1, 0.4]
+## The view is turned to the player's by this share of the motion, looking down by RISE_DIP on the way.
+const RISE_LOOK: float = 0.8
+const RISE_DIP: float = deg_to_rad(10.0)
 ## Eyes from the head bone, model space (the model faces +Z), metres before scaling. Tran Trung's
 ## head bone sits 1.7 cm left of his face's middle (measured on the Tripo mesh, T-227).
 const EYES_FROM_HEAD_BONE: Vector3 = Vector3(-0.017, 0.08, 0.09)
@@ -322,6 +354,17 @@ var _recline: float = -1.0
 var _recline_lie: Vector3 = Vector3.BACK
 ## The eyes in the head bone's own space (they turn with the head when it lies back).
 var _eye_in_head: Vector3 = Vector3.INF
+## T-271: getting out of bed: the time into it, the model's place meanwhile (where it lay), the
+## view at the start and at the end, the built clip's own length, the head's place to give back,
+## and the heading he ends on.
+var _getting_up: bool = false
+var _up_time: float = 0.0
+var _up_model: Transform3D = Transform3D.IDENTITY
+var _up_from: Transform3D = Transform3D.IDENTITY
+var _up_to: Transform3D = Transform3D.IDENTITY
+var _up_length: float = 1.0
+var _up_head: Vector3 = Vector3.ZERO
+var _up_yaw: float = 0.0
 ## How far up on the toes this reach goes (metres), and how far it is now.
 var _rise_target: float = 0.0
 var _rise: float = 0.0
@@ -518,7 +561,7 @@ func _build_mirror_phone() -> void:
 
 
 func can_handle(target: Interactable) -> bool:
-	if acting or _in_bed or _dead or not is_instance_valid(target) or not target.enabled:
+	if acting or _in_bed or _getting_up or _dead or not is_instance_valid(target) or not target.enabled:
 		return false
 	var marker: HandTarget = target.hand_target(_reach_from())
 	# T-249: a fist that holds the bar pinches up no paper (it is read where it lies, as without a body).
@@ -798,6 +841,8 @@ func _physics_process(delta: float) -> void:
 	visible = _in_bed or not (player.has_method("is_hidden") and player.call("is_hidden"))
 	if _in_bed:
 		_tick_bed()
+	elif _getting_up:
+		_tick_get_up(delta)
 	elif acting:
 		_tick_action(delta)
 	else:
@@ -807,7 +852,9 @@ func _physics_process(delta: float) -> void:
 	_tick_bar(delta)
 	_tick_breath(delta)
 	_tick_phone(delta)
-	_move_head()
+	# T-271: getting out of bed the view rides the body's eyes (_tick_get_up).
+	if not _getting_up:
+		_move_head()
 
 
 ## Head = the player's own position (stand/crouch height) + neck bend + lean. A write by the
@@ -947,6 +994,7 @@ func enter_bed(spot: Node3D) -> void:
 	var view := spot.get_node_or_null(NodePath(str(spot.get("view")))) as Node3D if spot != null else null
 	var feet: Vector3 = -((view if view != null else spot).global_basis.z) if spot != null else -global_basis.z
 	feet.y = 0.0
+	_end_get_up()
 	_measure_recline()
 	_bed_yaw = _yaw_of(feet) - _yaw_of(_recline_lie)
 	_in_bed = true
@@ -956,14 +1004,18 @@ func enter_bed(spot: Node3D) -> void:
 	_hold_recline()
 
 
-## Out of bed: standing again, at once.
-func leave_bed() -> void:
+## Out of bed: standing again, at once; or, with `rise` (T-271: the player's own getting up from
+## a lower bunk, `view_from` the view as it was in bed), over bed_rise_seconds with the motion.
+## Returns whether the motion took it.
+func leave_bed(view_from: Transform3D = Transform3D.IDENTITY, rise: bool = false) -> bool:
 	if not _in_bed:
-		return
+		return false
 	_in_bed = false
 	animator.speed_scale = 1.0
 	if not is_inside_tree():
-		return
+		return false
+	if rise and bed_rise_seconds > 0.0 and not _dead and _start_get_up(view_from):
+		return true
 	_key = &""
 	_clip = &""
 	_play(&"idle")
@@ -972,10 +1024,295 @@ func leave_bed() -> void:
 	if is_instance_valid(player):
 		_stand_yaw = player.global_rotation.y
 	_place_model(0.0)
+	return false
 
 
 func in_bed() -> bool:
 	return _in_bed
+
+
+# --- T-271 (D-192): getting out of a lower bunk -------------------------------------------------
+
+## The clip for the bed being left, built by _build_bed_out in the frame the body lay in (the
+## model does not move while it plays: the hips' track carries the body out of the bed):
+## 1. RISE_TURN seconds from the pose he lay in to sitting on the edge of the mattress, the feet out
+##    over the floor (the clip's frame at RISE_FROM);
+## 2. the clip on from there: he rocks forward, the feet come down, he stands up ducking out from
+##    under the upper bunk; until the hips leave the mattress they ride on it at the height he lay at;
+## 3. over the last RISE_SETTLE seconds, onto the standing idle where the player stands.
+## Returns false (nothing built) when this bed is not one the motion fits.
+func _build_bed_out(view_from: Transform3D) -> bool:
+	if not is_instance_valid(_head) or not animator.has_animation(BED_RISE[false]) or not animator.has_animation(BED_RISE[true]):
+		return false
+	var s: float = _scale()
+	var held := Transform3D(Basis(Vector3.UP, _bed_yaw).scaled(Vector3.ONE * s), Vector3.ZERO)
+	held.origin = view_from.origin - held.basis * _eye_in_model()
+	var to_feet: Vector3 = (Basis(Vector3.UP, _bed_yaw) * _recline_lie).normalized()
+	var floor_y: float = player.global_position.y
+	var view_to := Transform3D(player.global_basis.orthonormalized(), player.global_transform * _head.position)
+	var side: Vector3 = view_to.origin - view_from.origin
+	side.y = 0.0
+	var along: float = side.dot(to_feet)
+	var out: Vector3 = side - to_feet * along
+	var hips: int = skeleton.find_bone("Hips")
+	var hips_base: Transform3D = model.global_transform.affine_inverse() * skeleton.global_transform
+	if skeleton.get_bone_parent(hips) >= 0:
+		hips_base *= skeleton.get_bone_global_rest(skeleton.get_bone_parent(hips))
+	var lying: Transform3D = hips_base * skeleton.get_bone_pose(hips)
+	var seat: float = (held * lying.origin).y - floor_y
+	# A bunk it fits: the way out beside the bed, the floor a seat's height under the mattress.
+	if out.length() < 0.55 or out.length() > 1.3 or absf(along) > 0.6 or seat < 0.3 or seat > 0.75:
+		return false
+	out = out.normalized()
+	var left: bool = out.dot(to_feet.cross(Vector3.UP)) < 0.0
+	var source: Animation = animator.get_animation(BED_RISE[left])
+	var idle: Animation = animator.get_animation(clips[&"idle"])
+	var length: float = RISE_TURN + source.length - RISE_FROM
+	# Where he ends: facing RISE_FACE off the bed's line toward the room, standing as the idle does.
+	var facing: Vector3 = to_feet * cos(RISE_FACE) + out * sin(RISE_FACE)
+	_up_yaw = atan2(-facing.x, -facing.z)
+	var turned: float = PI + wrapf(_up_yaw - player.global_rotation.y, -PI, PI)
+	var stand := Transform3D(Basis(Vector3.UP, turned).scaled(Vector3.ONE * s), Vector3.ZERO)
+	var eye: Vector3 = stand.basis * eye_points[&"idle"]
+	stand.origin = Vector3(-eye.x, 0.0, -eye.z)
+	stand = global_transform * stand
+	var idle_pose: Array[Transform3D] = _clip_pose(idle, 0.0)
+	var last_pose: Array[Transform3D] = _clip_pose(source, source.length)
+	var first_pose: Array[Transform3D] = _clip_pose(source, RISE_FROM)
+	# The clip's own frame in the world: where it ends, its head over where the idle's is and the
+	# hips facing as the idle's (the idle stands with one foot out: the feet are no mark to go by).
+	var clip_yaw: float = _yaw_of(facing) - _yaw_of(_facing_of(last_pose))
+	var placed := Transform3D(Basis(Vector3.UP, clip_yaw).scaled(Vector3.ONE * s), Vector3.ZERO)
+	var between: Vector3 = stand * _joint_of(idle_pose, "Head") - placed * _joint_of(last_pose, "Head")
+	placed.origin = Vector3(between.x, floor_y, between.z)
+	# The seat: where the hips are when the clip takes over, drawn back onto the mattress's edge;
+	# what that takes is slid off again while he stands up.
+	var seat_at: Vector3 = placed * (hips_base * first_pose[hips]).origin
+	var from_view: Vector3 = seat_at - view_from.origin
+	var slide: Vector3 = out * maxf(0.0, from_view.dot(out) - RISE_SEAT_OUT) + to_feet * minf(0.0, from_view.dot(to_feet) - RISE_SEAT_ALONG)
+	slide = slide.limit_length(RISE_SLIDE)
+	# When the hips leave the mattress (the clip's time).
+	var off: float = source.length
+	var frames: int = roundi((source.length - RISE_FROM) * RISE_FPS)
+	for frame: int in frames + 1:
+		var time: float = RISE_FROM + frame / RISE_FPS
+		if (hips_base * _clip_pose(source, time)[hips]).origin.y * s >= seat:
+			off = time
+			break
+	var built := Animation.new()
+	built.length = length
+	var tracks: Dictionary = {}
+	var hips_position: int = -1
+	for track: int in source.get_track_count():
+		var bone: int = skeleton.find_bone(source.track_get_path(track).get_concatenated_subnames())
+		if bone < 0:
+			continue
+		var made: int = built.add_track(source.track_get_type(track))
+		built.track_set_path(made, source.track_get_path(track))
+		if source.track_get_type(track) == Animation.TYPE_ROTATION_3D:
+			tracks[bone] = made
+		elif bone == hips:
+			hips_position = made
+	var held_pose: Array[Transform3D] = []
+	var arms: Array[int] = []
+	for bone: int in skeleton.get_bone_count():
+		held_pose.append(skeleton.get_bone_pose(bone))
+		var up: int = bone
+		while up >= 0 and not skeleton.get_bone_name(up).ends_with("Shoulder"):
+			up = skeleton.get_bone_parent(up)
+		if up >= 0:
+			arms.append(bone)
+	var to_held: Transform3D = held.affine_inverse()
+	var seat_hips: Transform3D = to_held * Transform3D(placed.basis, placed.origin - slide + Vector3.UP * maxf(0.0, seat - (hips_base * first_pose[hips]).origin.y * s)) * (hips_base * first_pose[hips])
+	var stand_hips: Transform3D = to_held * stand * (hips_base * idle_pose[hips])
+	var before: Dictionary = {}
+	for frame: int in roundi(length * RISE_FPS) + 1:
+		var at: float = minf(frame / RISE_FPS, length)
+		var pose: Array[Transform3D]
+		var root: Transform3D
+		var duck: float = 0.0
+		if at < RISE_TURN:
+			# The hips go to the edge a little ahead of the turn, the back curled as the head goes out.
+			var turn: float = smoothstep(0.1, 1.0, at / RISE_TURN)
+			var move: float = smoothstep(0.0, 0.85, at / RISE_TURN)
+			duck = sin(PI * at / RISE_TURN)
+			pose = []
+			for bone: int in skeleton.get_bone_count():
+				pose.append(held_pose[bone].interpolate_with(first_pose[bone], turn))
+			var turned_hips: Transform3D = lying.interpolate_with(seat_hips, turn)
+			root = Transform3D(turned_hips.basis, lying.origin.lerp(seat_hips.origin, move))
+		else:
+			var time: float = RISE_FROM + at - RISE_TURN
+			pose = _clip_pose(source, time)
+			var lowered: float = smoothstep(off + RISE_ARMS[0], off + RISE_ARMS[0] + RISE_ARMS[1], time)
+			if lowered > 0.0:
+				for bone: int in arms:
+					pose[bone] = pose[bone].interpolate_with(idle_pose[bone], lowered)
+			var body: Transform3D = hips_base * pose[hips]
+			var slid: float = smoothstep(off, source.length - RISE_SETTLE, time)
+			var lift: float = maxf(0.0, seat - body.origin.y * s)
+			root = to_held * Transform3D(placed.basis, placed.origin - slide * (1.0 - slid) + Vector3.UP * lift) * body
+			var settle: float = smoothstep(length - RISE_SETTLE, length, at)
+			if settle > 0.0:
+				for bone: int in skeleton.get_bone_count():
+					pose[bone] = pose[bone].interpolate_with(idle_pose[bone], settle)
+				root = root.interpolate_with(stand_hips, settle)
+		pose[hips] = hips_base.affine_inverse() * root
+		if duck > 0.0:
+			_curl(pose, duck * duck)
+		for bone: int in tracks:
+			var turn_to: Quaternion = pose[bone].basis.get_rotation_quaternion()
+			if before.has(bone) and turn_to.dot(before[bone]) < 0.0:
+				turn_to = -turn_to
+			before[bone] = turn_to
+			built.track_insert_key(tracks[bone], at, turn_to)
+		if hips_position >= 0:
+			built.track_insert_key(hips_position, at, pose[hips].origin / skeleton.motion_scale)
+	var library: AnimationLibrary = animator.get_animation_library(MX_MOTION)
+	if library.has_animation(BED_OUT):
+		library.remove_animation(BED_OUT)
+	library.add_animation(BED_OUT, built)
+	_up_model = held
+	_up_from = view_from
+	_up_to = view_to
+	_up_length = length
+	return true
+
+
+## Every bone's own pose at `time` of a clip (rest where the clip has no track).
+func _clip_pose(animation: Animation, time: float) -> Array[Transform3D]:
+	var pose: Array[Transform3D] = []
+	for bone: int in skeleton.get_bone_count():
+		pose.append(skeleton.get_bone_rest(bone))
+	for track: int in animation.get_track_count():
+		var bone: int = skeleton.find_bone(animation.track_get_path(track).get_concatenated_subnames())
+		if bone < 0:
+			continue
+		match animation.track_get_type(track):
+			Animation.TYPE_ROTATION_3D:
+				pose[bone] = Transform3D(Basis(animation.rotation_track_interpolate(track, time)), pose[bone].origin)
+			Animation.TYPE_POSITION_3D:
+				pose[bone] = Transform3D(pose[bone].basis, animation.position_track_interpolate(track, time) * skeleton.motion_scale)
+	return pose
+
+
+## Curl the back and the neck of a pose forward (RISE_DUCK, `amount` of it): each bone turned about
+## the line through the hip joints.
+func _curl(pose: Array[Transform3D], amount: float) -> void:
+	var across: Vector3 = (_bone_in(pose, skeleton.find_bone("LeftUpperLeg")).origin - _bone_in(pose, skeleton.find_bone("RightUpperLeg")).origin).normalized()
+	for bone_name: String in RISE_DUCK:
+		var bone: int = skeleton.find_bone(bone_name)
+		if bone < 0:
+			continue
+		var held: Basis = _bone_in(pose, bone).basis.orthonormalized()
+		var bend := Basis(across, deg_to_rad(float(RISE_DUCK[bone_name])) * amount)
+		pose[bone] = Transform3D(pose[bone].basis * (held.inverse() * bend * held), pose[bone].origin)
+
+
+## A bone in a pose (skeleton space).
+func _bone_in(pose: Array[Transform3D], bone: int) -> Transform3D:
+	var joint: Transform3D = pose[bone]
+	var parent: int = skeleton.get_bone_parent(bone)
+	while parent >= 0:
+		joint = pose[parent] * joint
+		parent = skeleton.get_bone_parent(parent)
+	return joint
+
+
+## A bone's joint in a pose (model space).
+func _joint_of(pose: Array[Transform3D], bone_name: String) -> Vector3:
+	var bone: int = skeleton.find_bone(bone_name)
+	var joint: Transform3D = pose[bone]
+	var parent: int = skeleton.get_bone_parent(bone)
+	while parent >= 0:
+		joint = pose[parent] * joint
+		parent = skeleton.get_bone_parent(parent)
+	return ((model.global_transform.affine_inverse() * skeleton.global_transform) * joint).origin
+
+
+## The point between the ankles of a pose (model space).
+func _between_feet(pose: Array[Transform3D]) -> Vector3:
+	return (_joint_of(pose, "LeftFoot") + _joint_of(pose, "RightFoot")) * 0.5
+
+
+## The way a pose faces (flat, model space): square to the line through the hip joints.
+func _facing_of(pose: Array[Transform3D]) -> Vector3:
+	var across: Vector3 = _joint_of(pose, "LeftUpperLeg") - _joint_of(pose, "RightUpperLeg")
+	return Vector3(across.x, 0.0, across.z).cross(Vector3.UP).normalized()
+
+
+## Out of the bed with the motion: the player is at the way out already (as ever), the body gets
+## there over bed_rise_seconds and the view rides its eyes; no walking and no looking round until
+## it stands.
+func _start_get_up(view_from: Transform3D) -> bool:
+	if not animator.has_animation_library(MX_MOTION) or not _build_bed_out(view_from):
+		return false
+	_getting_up = true
+	_up_time = 0.0
+	_up_head = _head.position
+	_turning = false
+	_set_twist(0.0)
+	_key = &""
+	_clip = StringName("%s/%s" % [MX_MOTION, BED_OUT])
+	animator.speed_scale = 1.0
+	animator.play(_clip, 0.0, 1.0)
+	animator.seek(0.0, true)
+	animator.speed_scale = 0.0
+	if player.has_method("acquire_movement_lock"):
+		player.acquire_movement_lock(self)
+	_tick_get_up(0.0)
+	return true
+
+
+func _tick_get_up(delta: float) -> void:
+	_up_time += delta
+	var done: float = clampf(_up_time / maxf(bed_rise_seconds, 0.05), 0.0, 1.0)
+	animator.seek(done * _up_length, true)
+	model.global_transform = _up_model
+	# The view: on his eyes, and onto the player's own standing view as he settles; turned from
+	# where it looked in bed to where the player faces, with a look down on the way out.
+	var settle: float = smoothstep(1.0 - RISE_SETTLE / _up_length, 1.0, done)
+	var eyes: Vector3 = (model.global_transform * _eye_in_model()).lerp(_up_to.origin, settle)
+	var turn: float = smoothstep(0.0, RISE_LOOK, done)
+	var look: Basis = Basis(_up_from.basis.get_rotation_quaternion().slerp(_up_to.basis.get_rotation_quaternion(), turn))
+	var dip: float = sin(PI * clampf(done / RISE_LOOK, 0.0, 1.0))
+	look = look * Basis(Vector3.RIGHT, -RISE_DIP * dip * dip)
+	_head.global_transform = Transform3D(look, eyes)
+	# The chest turns to the view as he straightens, as it stands when the idle takes over.
+	var lag: float = wrapf(_up_yaw - player.global_rotation.y, -PI, PI)
+	_set_twist(-clampf(lag, -MAX_YAW, MAX_YAW) * TWIST_SHARE * settle)
+	if done >= 1.0:
+		_end_get_up()
+
+
+## Standing where the player stands, the view the player's own again (also when the motion is cut
+## short: back into a bed, dying).
+func _end_get_up() -> void:
+	if not _getting_up:
+		return
+	_getting_up = false
+	animator.speed_scale = 1.0
+	_key = &"idle"
+	_clip = clips[&"idle"]
+	animator.play(_clip, 0.0)
+	animator.seek(0.0, true)
+	_stand_yaw = _up_yaw
+	_yaw = wrapf(_up_yaw - player.global_rotation.y, -PI, PI)
+	_turning = false
+	_eye = eye_points[&"idle"]
+	_place_model(_yaw)
+	if is_instance_valid(_head):
+		_head.position = _up_head
+		_head.rotation = Vector3.ZERO
+	_head_offset = Vector3.ZERO
+	_head_written = Vector3.INF
+	if is_instance_valid(player) and player.has_method("release_movement_lock"):
+		player.release_movement_lock(self)
+
+
+## Getting out of bed (the player neither walks nor looks round meanwhile).
+func getting_up() -> bool:
+	return _getting_up
 
 
 ## In bed the body lies along it with its eyes on the camera (which may still be sliding up to an
@@ -2202,6 +2539,7 @@ func _carry(target: Node3D) -> void:
 func _on_death_started(_kind: StringName) -> void:
 	if _dead or not is_instance_valid(player):
 		return
+	_end_get_up()
 	if acting:
 		_finish()
 	release_item()

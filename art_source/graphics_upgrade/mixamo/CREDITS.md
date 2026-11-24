@@ -15,6 +15,8 @@
 | `trung_mixamo.res`: `crouch_back` | Crouch Walk Back (Walking Backwards While Crouched; tắt, D-191) | `trung/crouch_back.fbx` | Như trên | D-189 |
 | `trung_mixamo.res`: `crouch_left` | Crouch Walk Left (Walking Left While Crouched; tắt, D-191) | `trung/crouch_left.fbx` | Như trên | D-189 |
 | `trung_mixamo.res`: `crouch_right` | Crouch Walk Right (Walking Right While Crouched; tắt, D-191) | `trung/crouch_right.fbx` | Như trên | D-189 |
+| `trung_mixamo.res`: `bed_rise` | Getting Up (Getting Up From Back), đoạn 4,6–6,1 s: rời giường tầng dưới (T-271) | `trung/get_up.fbx` | Như trên | D-189 |
+| `trung_mixamo.res`: `bed_rise_left` | Như `bed_rise`, lật gương trái phải (`mirror` trong `clips.json`) | `trung/get_up.fbx` | Như trên | D-189 |
 | `game/assets/models/characters/mixamo/manager_mixamo.res`: `walk` | Walking (Male Brutal Walk) | `manager/walk_brutal.fbx` | Như trên; nướng lên khung xương Tripo của quản lý | D-189 |
 | `manager_mixamo.res`: `slash` | Standing Melee Attack Downward (Downward Attack With Axe), đoạn 0–1,2 s, đuôi 0,3 s hoà về khung đầu | `manager/slash_downward.fbx` | Như trên | D-189 |
 
