@@ -1,6 +1,6 @@
 # T-270 — Chuyển động bước 4: đường tay của Trần Trung lấy từ clip Mixamo
 
-- Lane: integrator | Trạng thái: **xong (D-193)**: đường tay và cú vung mới bật mặc định; bước 4 đóng ở đây | Agent: integrator
+- Lane: integrator | Trạng thái: **xong (D-193)**: đường tay và cú vung mới bật mặc định; bước 4 đóng ở đây; full test 1108/0, check 0 lỗi, merge `55ca6761`, bản chơi `KyTucXa-0.0.1-55ca6761-win64.zip` | Agent: integrator
 - **Model:** mẫu thử Mythos 5.2 xhigh; bật mặc định, full test, check, merge: Opus 5.5
 - Quyết định nền: D-189, D-190, D-191, **D-192** (bước 4 trước, rồi bước 5; thêm động tác đứng dậy khỏi giường)
 
