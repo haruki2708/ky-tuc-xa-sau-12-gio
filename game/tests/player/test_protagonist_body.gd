@@ -274,7 +274,8 @@ func test_standing_the_feet_keep_their_heading_until_the_view_turns_far() -> voi
 	walker.rotate_y(deg_to_rad(40.0))
 	await _seconds(0.1)
 	assert_true(body._turning, "past %.0f degrees the body steps round" % rad_to_deg(PlayerBody.TURN_START))
-	assert_eq(body._key, &"walk", "stepping")
+	# T-272: the Mixamo pack steps round with the turn's own steps.
+	assert_eq(body._key, &"turn_left" if body.clips.has(&"turn_left") else &"walk", "stepping")
 	await _seconds(0.8)
 	assert_false(body._turning)
 	assert_true(absf(angle_difference(heading.call(), start + deg_to_rad(70.0))) < deg_to_rad(3.0), "facing the view again")

@@ -124,6 +124,9 @@ func _ready() -> void:
 			PlayerBody.reach_style = StringName(arg.trim_prefix("--reach="))
 		elif arg.begins_with("--bed-rise="):
 			PlayerBody.bed_rise_seconds = float(arg.trim_prefix("--bed-rise="))
+		elif arg == "--no-mx-turn-stairs":
+			PlayerBody.mx_turn = false
+			PlayerBody.mx_stairs = false
 		elif arg == "--mx-crouch":
 			PlayerBody.mx_crouch = true
 	# D-151: the same body, door levers and mirrors as chapter 1 (Protagonist.attach).
@@ -172,6 +175,8 @@ func _ready() -> void:
 		await _bed_slices()
 	elif "--bed-rise-demo" in args:
 		await _bed_rise_demo()
+	elif "--turn-stairs-demo" in args:
+		await _turn_stairs_demo()
 	elif "--reach-demo" in args:
 		await _reach_demo()
 	elif "--bar-demo" in args:
@@ -783,4 +788,89 @@ func _bed_rise_demo() -> void:
 			await _wait(3.4)
 		spot.queue_free()
 	print("RESULT: bed rise demo PASS")
+	App.quit()
+
+
+## T-272: stepping round on the spot (a quarter turn each way, 70 degrees each way, 120 degrees),
+## then up and down a ramp as steep as stairs put in the floor 4 corridor (seen from ahead, then
+## as the player sees it looking down). Recorded with and without --no-mx-turn-stairs.
+func _turn_stairs_demo() -> void:
+	_set_light("night")
+	_reset_things()
+	var lamp := OmniLight3D.new()
+	lamp.light_color = Color(1.0, 0.95, 0.86)
+	lamp.light_energy = 2.2
+	lamp.omni_range = 8.0
+	lamp.shadow_enabled = true
+	add_child(lamp)
+	third_camera.set_cull_mask_value(PlayerBody.MIRROR_LAYER, true)
+	third_camera.fov = 55.0
+	var head := player.get_node("Head") as Node3D
+	var report: Array[String] = []
+	# The ramp: 0.9 m up over 2.25 m (0.4 m a metre), a landing after it.
+	var slope: float = atan(0.4)
+	for piece: Array in [[Vector3(14.0 + 1.125, 0.45 - 0.05 / cos(slope), 1.0), Vector3(2.25 / cos(slope), 0.1, 1.7), slope],
+			[Vector3(16.25 + 1.0, 0.85, 1.0), Vector3(2.0, 0.1, 1.7), 0.0]]:
+		var solid := StaticBody3D.new()
+		var shape := CollisionShape3D.new()
+		shape.shape = BoxShape3D.new()
+		(shape.shape as BoxShape3D).size = piece[1]
+		solid.add_child(shape)
+		var seen := MeshInstance3D.new()
+		seen.mesh = BoxMesh.new()
+		(seen.mesh as BoxMesh).size = piece[1]
+		solid.add_child(seen)
+		add_child(solid)
+		solid.global_position = piece[0]
+		solid.rotation.z = piece[2]
+	# 1. Stepping round on the spot, seen from ahead.
+	player.global_position = COMPARE_AT
+	player.velocity = Vector3.ZERO
+	player.rotation.y = -PI / 2.0
+	head.rotation.x = 0.0
+	lamp.global_position = COMPARE_AT + Vector3(1.0, 2.3, 0.3)
+	third_camera.global_position = COMPARE_AT + Vector3(2.8, 1.3, 0.2)
+	third_camera.look_at(COMPARE_AT + Vector3.UP * 0.9)
+	third_camera.make_current()
+	await _wait(1.0)
+	for turn: float in [90.0, -90.0, 70.0, -70.0, 120.0]:
+		var swing := create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
+		swing.tween_property(player, "rotation:y", player.rotation.y + deg_to_rad(turn), 0.3).set_trans(Tween.TRANS_SINE)
+		var seen_clip: String = ""
+		var left: float = 1.5
+		while left > 0.0:
+			await get_tree().physics_frame
+			left -= get_physics_process_delta_time()
+			if bool(body.get("_turning")):
+				seen_clip = String(body.get("_clip"))
+		report.append("turn %.0f: %s" % [turn, seen_clip])
+	# 2. Up the ramp and down again: seen from ahead, then as the player sees it.
+	for first_person: bool in [false, true]:
+		for way: Array in [[Vector3(12.6, 0.02, 1.0), -PI / 2.0, "up"], [Vector3(17.6, 0.92, 1.0), PI / 2.0, "down"]]:
+			player.global_position = way[0]
+			player.velocity = Vector3.ZERO
+			player.rotation.y = way[1]
+			head.rotation.x = deg_to_rad(-55.0 if first_person else 0.0)
+			lamp.global_position = Vector3(15.5, 2.6, 1.2)
+			if first_person:
+				_show_third_person(false)
+			else:
+				third_camera.global_position = Vector3(19.6, 1.9, 0.6)
+				third_camera.look_at(Vector3(15.0, 1.2, 1.0))
+				third_camera.make_current()
+			await _wait(0.5)
+			Input.action_press("move_forward")
+			var clips_seen: Array[String] = []
+			var left: float = 2.6
+			while left > 0.0:
+				await get_tree().physics_frame
+				left -= get_physics_process_delta_time()
+				var clip: String = String(body.get("_clip"))
+				if clip not in clips_seen:
+					clips_seen.append(clip)
+			Input.action_release("move_forward")
+			report.append("%s (%s): %s, ends %.2f m up" % [way[2], "eyes" if first_person else "ahead", ", ".join(clips_seen), player.global_position.y])
+			await _wait(0.4)
+	print("TURNSTAIRS " + "; ".join(report))
+	print("RESULT: turn stairs demo PASS")
 	App.quit()

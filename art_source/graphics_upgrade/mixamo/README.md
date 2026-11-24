@@ -20,6 +20,9 @@ pwsh -NoProfile -File art_source/graphics_upgrade/mixamo/pack_mixamo.ps1 -Stage 
   - `window` (tuỳ chọn): đoạn giữ lại, tính bằng giây;
   - `hips_xz`: `keep` (giữ hông đung đưa), `rest` (ghim hông tại chỗ) hoặc `loop` (bỏ phần trôi đi);
   - `fix_loop` + `loop_blend`: hoà đuôi đoạn cắt về khung đầu để lặp không giật;
+  - `hips_yaw: strip` (T-272): bỏ độ xoay của hông khỏi clip xoay người, từng khung; số độ đã bỏ ghi vào meta `turn_degrees`;
+  - `hips_y: loop` (T-272): bỏ phần lên cao (hoặc xuống thấp) tích luỹ của clip cầu thang;
+  - `lower` (T-272): hạ hông số mét này, gập chân theo, mắt cá giữ nguyên chỗ (in độ lệch mắt cá);
   - `mirror` (T-271): đóng gói bản lật gương trái phải. Mỗi xương lấy độ xoay so với dáng nghỉ, lật gương, đặt lên dáng nghỉ của xương đối diện; công cụ in độ lệch so với ảnh gương (đo được 0,0 mm) và báo lỗi nếu quá 3 cm.
 - Danh sách phụ trong `clips.json`: `trung_reach` (đường tay, T-270), `trung_probe` (chỉ nhập để đo, không đóng gói).
 - Mọi lần chạy Godot đều qua khoá chung (`build/integrator/godot_steps_locked.ps1 -ProjectDir`).

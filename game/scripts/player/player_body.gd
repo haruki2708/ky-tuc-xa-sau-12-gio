@@ -278,6 +278,21 @@ const MX_LOCOMOTION: Array[StringName] = [&"walk_back", &"walk_left", &"walk_rig
 	&"crouch_back", &"crouch_left", &"crouch_right"]
 ## Under the pilot, walking or crouched (not running) this far off straight ahead or back plays a
 ## sideways step, the body facing ahead (a keyboard's diagonals, at 45 degrees, stay forward walks).
+## T-272 (D-196): two more kinds of clip the pack holds. Stepping round on the spot: the Mixamo
+## turns with the turn itself taken out (the model is turned as ever, at TURN_SPEED; the clip
+## brings the steps), played so one clip goes with its own quarter turn. Stairs: wherever the
+## ground carries the player up or down by more than STAIRS_FROM metres a metre (and until it is
+## less than STAIRS_KEEP), walking or running ahead plays the stairs gait at STAIRS_PACE times
+## the walking pace (at most STAIRS_MAX): the game climbs far faster than the clip's steps, so
+## the feet do not take the treads one by one.
+static var mx_turn: bool = true
+static var mx_stairs: bool = true
+const MX_TURNS := {&"turn_left": &"mx/turn_left", &"turn_right": &"mx/turn_right"}
+const MX_STAIRS := {&"stairs_up": &"mx/stairs_up", &"stairs_down": &"mx/stairs_down"}
+const STAIRS_FROM: float = 0.3
+const STAIRS_KEEP: float = 0.15
+const STAIRS_PACE: float = 1.4
+const STAIRS_MAX: float = 2.0
 const STRAFE_FROM: float = deg_to_rad(67.5)
 const BACK_FROM: float = deg_to_rad(100.0)
 ## Hysteresis on those edges, so a stick held near one does not swap clips every frame.
@@ -358,6 +373,9 @@ var _eye_in_head: Vector3 = Vector3.INF
 ## T-271: getting out of bed: the time into it, the model's place meanwhile (where it lay), the
 ## view at the start and at the end, the built clip's own length, the head's place to give back,
 ## and the heading he ends on.
+## T-272: the player's height a tick ago and how steeply the ground carries him (stairs).
+var _ground_height: float = INF
+var _slope: float = 0.0
 var _getting_up: bool = false
 var _up_time: float = 0.0
 var _up_model: Transform3D = Transform3D.IDENTITY
@@ -473,7 +491,7 @@ func _ready() -> void:
 		# Tran Trung's idle is a short window of Tripo's (pack_tripo_protagonist.py): back and forth
 		# hides the seam. (The pilot's Mixamo clips come looped from the pack.)
 		animator.get_animation(CLIPS[key]).loop_mode = Animation.LOOP_PINGPONG if key == &"idle" else Animation.LOOP_LINEAR
-	for key: StringName in MX_LOCOMOTION:
+	for key: StringName in MX_LOCOMOTION + MX_TURNS.keys() + MX_STAIRS.keys():
 		if clips.has(key):
 			_measure(key)
 	_measure_reach_joints()
@@ -899,6 +917,12 @@ func _tick_locomotion(delta: float) -> void:
 	var target_yaw: float = 0.0
 	var follow: float = 1.0 - exp(-10.0 * delta)
 	var view_yaw: float = player.global_rotation.y
+	# T-272: how steeply the ground carries him up (+) or down (-), metres a metre, smoothed.
+	var height: float = player.global_position.y
+	var rise: float = height - _ground_height if is_finite(_ground_height) else 0.0
+	_ground_height = height
+	var carried: float = clampf(rise / (speed * delta), -1.5, 1.5) if speed > MOVING and delta > 0.0 and absf(rise) < 0.3 and player.is_on_floor() else 0.0
+	_slope += (carried - _slope) * (1.0 - exp(-8.0 * delta))
 	if speed > MOVING:
 		_turning = false
 		var heading: float = atan2(-local.x, -local.z)
@@ -940,17 +964,34 @@ func _tick_locomotion(delta: float) -> void:
 				var low: bool = crouched
 				walk_key = (&"crouch_back" if low else &"walk_back") if back else 					((&"crouch_left" if low else &"walk_left") if offset > 0.0 else 					((&"crouch_right" if low else &"walk_right") if offset < 0.0 else (&"crouch_walk" if low else &"walk")))
 		var key: StringName = &"run" if not crouched and speed > RUN_FROM else walk_key
+		# T-272: going ahead up or down stairs has a gait of its own.
+		var stairs: StringName = &""
+		if not crouched and clips.has(&"stairs_up") and _back_side == 0.0 and direction > 0.0 and offset == 0.0 and absf(heading) < STRAFE_FROM:
+			if _slope > (STAIRS_KEEP if _key == &"stairs_up" else STAIRS_FROM):
+				stairs = &"stairs_up"
+			elif _slope < -(STAIRS_KEEP if _key == &"stairs_down" else STAIRS_FROM):
+				stairs = &"stairs_down"
+		if stairs != &"":
+			key = stairs
 		_play(key)
 		# Sideways, only the share of the motion along the clip's own direction is in the stride.
 		var along: float = speed * cos(absf(heading - offset) - absf(target_yaw)) if offset == 0.0 and _back_side == 0.0 \
 			else (speed * cos(wrapf(heading - offset - target_yaw, -PI, PI)) if _back_side == 0.0 else speed)
 		animator.speed_scale = direction * maxf(along, 0.2) / maxf(stride_speeds[key], 0.05)
+		if stairs != &"":
+			animator.speed_scale = clampf(STAIRS_PACE * speed / stride_speeds[&"walk"], 0.6, STAIRS_MAX)
 	else:
 		if _back_side != 0.0:
 			_back_side = 0.0
 			_yaw = wrapf(_yaw, -PI, PI)
 		_yaw = _stand_turn(wrapf(_stand_yaw - view_yaw, -PI, PI), delta)
-		if _turning:
+		var turn_key: StringName = &"turn_right" if _yaw > 0.0 else &"turn_left"
+		if _turning and not crouched and clips.has(turn_key):
+			# T-272: the clip's steps go with its own quarter turn; the model turns at TURN_SPEED.
+			_play(turn_key)
+			var turn: Animation = animator.get_animation(clips[turn_key])
+			animator.speed_scale = TURN_SPEED * turn.length / deg_to_rad(maxf(absf(float(turn.get_meta(&"turn_degrees", 90.0))), 30.0))
+		elif _turning:
 			_play(&"crouch_walk" if crouched else &"walk")
 			animator.speed_scale = TURN_STEP_PACE
 		else:
@@ -2734,6 +2775,11 @@ func _add_mx_clips() -> void:
 	clips[&"run"] = StringName("%s/%s" % [MX_MOTION, mx_run])
 	if mx_crouch:
 		clips.merge(MX_CROUCH, true)
+	# T-272: the turns and the stairs gait, where the pack has them.
+	for extra: Array in [[mx_turn, MX_TURNS], [mx_stairs, MX_STAIRS]]:
+		var wanted: Dictionary = extra[1]
+		if extra[0] and wanted.values().all(func(clip: StringName) -> bool: return packed.has_animation(String(clip).trim_prefix("%s/" % MX_MOTION))):
+			clips.merge(wanted, true)
 
 
 ## The hips (skeleton space) at the start of a clip.

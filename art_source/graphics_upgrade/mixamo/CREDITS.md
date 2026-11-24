@@ -10,11 +10,13 @@
 | `trung_mixamo.res`: `walk_right` | Right Strafe Walking | `trung/walk_right.fbx` | Như trên | D-189 |
 | `trung_mixamo.res`: `run` | Standard Run (dáng chạy trong game, D-191) | `trung/run_standard.fbx` | Như trên | D-189 |
 | `trung_mixamo.res`: `run_jog` | Jogging (dự phòng, không dùng mặc định) | `trung/run_fwd.fbx` | Như trên | D-189 |
-| `trung_mixamo.res`: `crouch_idle` | Crouch Idle (đóng gói sẵn, tắt theo D-191) | `trung/crouch_idle.fbx` | Như trên | D-189 |
+| `trung_mixamo.res`: `crouch_idle` | Crouch Idle (đóng gói sẵn, tắt theo D-191; từ T-272 cả năm clip khom đã hạ hông bằng `lower`, vẫn tắt) | `trung/crouch_idle.fbx` | Như trên | D-189 |
 | `trung_mixamo.res`: `crouch_fwd` | Crouch Walk Forward (Walking Forward While Crouched; tắt, D-191) | `trung/crouch_fwd.fbx` | Như trên | D-189 |
 | `trung_mixamo.res`: `crouch_back` | Crouch Walk Back (Walking Backwards While Crouched; tắt, D-191) | `trung/crouch_back.fbx` | Như trên | D-189 |
 | `trung_mixamo.res`: `crouch_left` | Crouch Walk Left (Walking Left While Crouched; tắt, D-191) | `trung/crouch_left.fbx` | Như trên | D-189 |
 | `trung_mixamo.res`: `crouch_right` | Crouch Walk Right (Walking Right While Crouched; tắt, D-191) | `trung/crouch_right.fbx` | Như trên | D-189 |
+| `trung_mixamo.res`: `turn_left`, `turn_right` | Left Turn 90, Right Turn 90 (xoay 90° tại chỗ; đã bỏ độ xoay, T-272) | `trung/turn_left.fbx`, `trung/turn_right.fbx` | Như trên | D-189 |
+| `trung_mixamo.res`: `stairs_up`, `stairs_down` | Ascending Stairs, Descending Stairs (đã bỏ phần cao dần, T-272) | `trung/stairs_up.fbx`, `trung/stairs_down.fbx` | Như trên | D-189 |
 | `trung_mixamo.res`: `bed_rise` | Getting Up (Getting Up From Back), đoạn 4,6–6,1 s: rời giường tầng dưới (T-271) | `trung/get_up.fbx` | Như trên | D-189 |
 | `trung_mixamo.res`: `bed_rise_left` | Như `bed_rise`, lật gương trái phải (`mirror` trong `clips.json`) | `trung/get_up.fbx` | Như trên | D-189 |
 | `game/assets/models/characters/mixamo/manager_mixamo.res`: `walk` | Walking (Male Brutal Walk) | `manager/walk_brutal.fbx` | Như trên; nướng lên khung xương Tripo của quản lý | D-189 |
