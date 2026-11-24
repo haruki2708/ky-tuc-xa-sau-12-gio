@@ -1,7 +1,9 @@
 extends TestCase
-## T-227 round 2 (D-147): getting into and out of a bed stay as they were (a lower bunk at once, an
-## upper one sliding up in half a second, out at once); with a body, it lies propped along the bed
-## with its eyes on the camera, and stands again on the way out. Real room 407, story stopped.
+## T-227 round 2 (D-147): getting into a bed stays as it was (a lower bunk at once, an upper one
+## sliding up in half a second) and the player is out of it at once; with a body, it lies propped
+## along the bed with its eyes on the camera, and stands again on the way out: out of a lower bunk
+## over PlayerBody.bed_rise_seconds since T-271 (D-194; test_t271_bed_rise.gd has the motion's own
+## checks). Real room 407, story stopped.
 
 const PlayerScript = preload("res://scripts/player/player.gd")
 var scene: Node3D
@@ -80,8 +82,12 @@ func test_with_a_body_it_lies_in_a_lower_bunk_at_once_and_stands_on_the_way_out(
 	assert_eq(GameState.get_flag(&"player_bed", 0), 0, "the flag clears at once")
 	assert_true(player.global_position.distance_to(exit.global_position) < 0.01, "out at once, as before")
 	assert_false(body.in_bed())
+	# T-271 (D-194): the body gets up over bed_rise_seconds; no walking until it stands.
+	assert_true(body.getting_up(), "the body gets up")
+	assert_true(player.movement_locked(), "no walking until it stands")
+	await _seconds(PlayerBody.bed_rise_seconds + 0.3)
+	assert_false(body.getting_up(), "up")
 	assert_false(player.movement_locked())
-	await _seconds(0.2)
 	assert_true(body._bone_world("Hips").y - exit.global_position.y > 0.7, "the body stands")
 	assert_true(absf(body.model.rotation.x) < 0.001 and absf(body.model.rotation.z) < 0.001, "upright again")
 
@@ -103,6 +109,8 @@ func test_with_a_body_it_slides_up_to_an_upper_bunk_as_before_and_lies_there() -
 
 
 func test_without_a_body_bed_timing_is_unchanged() -> void:
+	# (The chapter gives the player a body: this is the player on its own.)
+	player.set_body(null)
 	var spot: HideSpot = director._bunks[2]
 	var view := spot.get_node(spot.view) as Node3D
 	var exit := _beside(spot)

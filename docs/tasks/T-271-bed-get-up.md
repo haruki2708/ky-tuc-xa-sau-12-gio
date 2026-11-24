@@ -1,6 +1,6 @@
 # T-271 — Động tác đứng dậy khỏi giường (Trần Trung)
 
-- Lane: integrator | Trạng thái: **mẫu thử xong, chờ chủ dự án duyệt video và chốt số giây** (nhánh `t271-bed-get-up`, cờ mặc định tắt) | Agent: integrator
+- Lane: integrator | Trạng thái: **chủ dự án duyệt (D-194): bật mặc định 2,0 giây** | Agent: integrator
 - **Model:** Mythos 5.2 xhigh (chủ dự án chọn)
 - Quyết định nền: D-147 (nằm trong giường), D-189 (Mixamo), **D-192** (thêm động tác đứng dậy khỏi giường, chấp nhận rời giường chậm hơn)
 
@@ -24,7 +24,7 @@
 - Chết hoặc bị đặt nằm lại giữa chừng: động tác dừng, camera trả về người chơi.
 
 ## 2. Mẫu thử (cổng duyệt)
-- Cờ: `PlayerBody.bed_rise_seconds` (0 = như cũ; mẫu thử quay ở **2,0 giây**).
+- Cờ: `PlayerBody.bed_rise_seconds` (0 = như cũ; mẫu thử quay ở **2,0 giây**; từ D-194 mặc định 2,0).
 - Cảnh thử: `protagonist_pilot.tscn -- --bed-rise-demo --bed-rise=2.0` (giường 3 rồi giường 2; mỗi giường: mắt người chơi, nhìn từ trong phòng, nhìn ngang).
 - **Video cũ | mới:** `build/graphics/motion/t271_roi_giuong_cu_moi.mp4` (32 giây).
 - Test `tests/player/test_t271_bed_rise.gd` (4 test):
@@ -39,7 +39,7 @@
 - Nếu chết đúng trong 2 giây đang đứng dậy, camera nhảy về tầm đứng trước khi cảnh chết chạy.
 - Tư thế nằm trong giường không đổi (vẫn clip cũ, D-147).
 
-## 4. Chờ chủ dự án
-1. Xem video, duyệt hay không.
-2. Chốt số giây (đề xuất 2,0; nhanh hơn 1,6; chậm hơn 2,4). Đổi số này không cần làm lại gì.
-3. Giường tầng trên: giữ ra ngay, hay làm động tác leo xuống ở phiếu sau?
+## 4. Chủ dự án duyệt (D-194, 24/11)
+- "tôi duyệt nhé". Chủ dự án không đổi số giây và không nói gì về giường tầng trên, nên lấy theo đề xuất: **2,0 giây**; giường tầng trên **vẫn ra ngay** (chưa làm động tác leo xuống).
+- Bật mặc định: `PlayerBody.bed_rise_seconds = 2.0`. Đổi số giây chỉ là sửa một con số.
+- Test cũ sửa theo: `test_protagonist_bed.gd` (thân người đứng dậy trong 2 giây thay vì đứng ngay; test "không có thân" giờ gỡ thân thật).

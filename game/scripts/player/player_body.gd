@@ -103,13 +103,14 @@ const TWIST_SHARE: float = 0.6
 const TURN_STEP_PACE: float = 0.7
 ## T-227 round 2 (D-147): in bed the body lies along the bed (the bed's view looks down it to the
 ## feet), held at the moment of getting up where the chest is BED_RECLINE degrees up (the view sits
-## 0.43 m over the mattress, propped on the pillow), its eyes on the camera. Getting in and out of
-## bed stay as they were (no motion of their own).
+## 0.43 m over the mattress, propped on the pillow), its eyes on the camera. Getting into bed stays
+## as it was (no motion of its own); so does getting out of an upper bunk. Out of a lower bunk he
+## gets up (T-271, below).
 const BED_RECLINE: float = 30.0
 ## T-271 (D-192): seconds getting out of a lower bunk takes, with the motion _build_bed_out puts
 ## together (the Mixamo clip Getting Up from its sitting moment on; the view rides his eyes). 0 =
-## out at once, as before. Off until the owner approves the pilot.
-static var bed_rise_seconds: float = 0.0
+## out at once, as before T-271. Two seconds since D-194 (the owner approved the pilot).
+static var bed_rise_seconds: float = 2.0
 ## The packed clips, by whether the way out is on the lying body's left. The clip as Mixamo made
 ## it turns to the right as it stands up, so it sits facing out of a bed whose way out is on the
 ## left and ends turned toward the view; bed_rise_left is its mirror image.

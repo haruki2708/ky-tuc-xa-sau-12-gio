@@ -10,9 +10,11 @@ var scene: Node3D
 var player: PlayerScript
 var director: Chapter1Director
 var old_mouse: Input.MouseMode
+var set_seconds: float = 0.0
 
 
 func before_each() -> void:
+	set_seconds = PlayerBody.bed_rise_seconds
 	old_mouse = Input.mouse_mode
 	GameState.reset()
 	Chapter1Director.resume_checkpoint = &""
@@ -28,7 +30,7 @@ func before_each() -> void:
 
 
 func after_each() -> void:
-	PlayerBody.bed_rise_seconds = 0.0
+	PlayerBody.bed_rise_seconds = set_seconds
 	tree.paused = false
 	for node: Node in scene.find_children("*", "AudioStreamPlayer3D", true, false):
 		if node.has_method("stop_emitting"):
@@ -59,8 +61,9 @@ func _lie(bed: int) -> HideSpot:
 	return spot
 
 
-func test_the_pilot_waits_for_the_owner() -> void:
-	assert_eq(PlayerBody.bed_rise_seconds, 0.0, "out of bed at once until the owner approves")
+func test_two_seconds_by_default_and_none_is_at_once_as_before() -> void:
+	assert_eq(PlayerBody.bed_rise_seconds, 2.0, "two seconds (D-194)")
+	PlayerBody.bed_rise_seconds = 0.0
 	var spot := await _lie(3)
 	player.leave_hide_spot()
 	assert_false(player.body.getting_up(), "at once, as before")
