@@ -20,7 +20,7 @@
 - Đã thử hạ hông clip Mixamo trong công cụ đóng gói (`lower`: hạ hông, tính lại khớp gối, giữ nguyên mắt cá; lệch 0,0 mm). Phải hạ 25 cm (đứng) và 38 cm (đi) mới vừa camera.
 - Kết quả trông tệ hơn bản đang dùng: thành ngồi xổm dạng gối, một tay giơ ngang vai (dáng gốc của clip). Video `build/graphics/motion/t272_khom_cu_moi.mp4`.
 - **Giữ dáng khom Quaternius** (`PlayerBody.mx_crouch` vẫn tắt). Các clip khom đã hạ vẫn nằm trong thư viện để ai muốn xem thì bật cờ.
-- Muốn có dáng khom Mixamo đẹp thì cần clip khom thấp khác, phải tải thêm từ Mixamo; chủ dự án chưa trả lời có cho tải không.
+- Muốn có dáng khom Mixamo đẹp thì cần clip khom thấp khác, phải tải thêm từ Mixamo. Chủ dự án: **không cần** (D-197).
 
 ## 4. Kiểm tra
 - Theo D-196 **không chạy full test và check**.
