@@ -1,5 +1,5 @@
 # T-221 — G4 xác sống Tripo: mẫu gốc và 10 dạng cho chương 3–4
-- Lane: **chủ dự án + Claude** (chủ dự án tạo mẫu gốc trên Tripo; Claude đóng gói, làm biến thể, nối gameplay, ghi "Claude làm thay A/B") | Trạng thái: **mới (D-122), chờ chủ dự án tạo mẫu m1** | Agent: chủ dự án + Claude
+- Lane: **chủ dự án + Claude** (chủ dự án tạo mẫu gốc trên Tripo; Claude đóng gói, làm biến thể, nối gameplay, ghi "Claude làm thay A/B") | Trạng thái: **đổi cách làm (D-198): dựng từ mô hình Trần Trung trong Blender, chờ ảnh GPT của chủ dự án** | Agent: chủ dự án + Claude
 - Quyết định:
   - **D-121**: xác sống làm trước trong nhóm nhân vật khác.
   - **D-122**: kiểu A xác vừa chết. Chủ dự án: "1: A xác sống vừa chế, 2 : như quản lý ( tôi tạo Trung trên tripo, các xác sống làm tripo khoảng vài mẫu xong bạn bắt chước mà sản xuất hàng loạt xác sống theo kiểu đó)".
@@ -49,6 +49,13 @@ Thay 10 xác sống PS1 bằng xác sống Tripo kiểu A. Giữ nguyên AI, lu�
    - ngân sách tam giác, vật liệu, texture;
    - `Ch3Actor.play_pose` với thân mới;
    - bầy xác chương 3 chạy với thân mới.
+
+## D-198 (24/11): dựng từ mô hình Trần Trung, không dùng Tripo
+- Chủ dự án không tạo mẫu gốc trên Tripo nữa. Integrator dựng trong Blender từ `game/assets/models/characters/protagonist/trung_tripo.glb`, theo ảnh tham chiếu chủ dự án tạo bằng GPT.
+- Phạm vi mở rộng: mẫu Phúc, xác ba bạn cùng phòng, sinh viên trên CCTV, Minh Nhật, Ngư, bảo vệ (hai mục cuối của "Để sau" không còn để sau).
+- Mô hình gốc: một lưới liền 18.986 tam giác, một vật liệu, texture 2048², 65 xương tên Mixamo; áo, quần, tóc, dép dính liền thân; UV vụn (không tô lại trên ảnh phẳng được, phải tô theo vị trí trên lưới rồi nướng).
+- Ngoại hình m1–m4 ở [`TRIPO_XAC_SONG.md`](../handoff/TRIPO_XAC_SONG.md) mục 3 vẫn là mô tả gốc, trừ khi ảnh của chủ dự án khác đi.
+- Chờ chủ dự án: ảnh; làm thử Phúc trước rồi duyệt; bảo vệ dựa vào mô hình quản lý; cách làm Ngư.
 
 ## Để sau
 - **Xác 3 bạn cùng phòng ở chương 1–2** (`ch1_models/corpse_body`): dùng chung mô hình Phúc, Việt, Đạt; làm sau khi `zombie_01`–`03` đạt. Cần giữ bịt miệng, máu và các tư thế của `corpse_body.gd`.

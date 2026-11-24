@@ -1,7 +1,7 @@
 # Bản đồ lộ trình — "Ký túc xá sau 12 giờ"
 
-> **Cập nhật:** 2026-11-22 (sau T-267: đồ hoạ thật môi trường đủ 10 đợt T-250…T-267, bản chơi `d36c7a2b`; Trần Trung có thân ở chương 1–3; chờ chủ dự án chơi thử một lượt theo D-176. Nhân vật khác vẫn là người khối, T-221 chờ mẫu m1). Integrator cập nhật file này **mỗi khi qua một mốc** (chốt chương, đóng cổng G, đổi hướng lớn).
-> Chi tiết từng ngày: `docs/STATUS.md`. Lý do từng quyết định: `docs/DECISIONS.md` (D-001…D-188).
+> **Cập nhật:** 2026-11-24 (chuyển động Mixamo T-268…T-272 xong và đóng ở D-197, bản chơi `42b78000`; D-198: nhân vật khác dựng từ mô hình Trần Trung trong Blender, chờ ảnh của chủ dự án). Trước đó 2026-11-22 (sau T-267: đồ hoạ thật môi trường đủ 10 đợt T-250…T-267, bản chơi `d36c7a2b`; Trần Trung có thân ở chương 1–3; chờ chủ dự án chơi thử một lượt theo D-176. Nhân vật khác vẫn là người khối, T-221 chờ mẫu m1). Integrator cập nhật file này **mỗi khi qua một mốc** (chốt chương, đóng cổng G, đổi hướng lớn).
+> Chi tiết từng ngày: `docs/STATUS.md`. Lý do từng quyết định: `docs/DECISIONS.md` (D-001…D-198).
 > Ký hiệu: ✅ xong · 🔶 đang làm · ⬜ chưa bắt đầu · 📍 **đang ở đây**
 
 ## 1. Bản đồ tổng
