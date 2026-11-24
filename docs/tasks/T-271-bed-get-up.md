@@ -46,4 +46,5 @@
 
 ## 5. Kiểm tra lúc merge (D-195, 24/11)
 - Đã chạy: nhóm test giường, thân người, giường tầng, smoke 65 đạt / 0 hỏng; full test chạy được 486 đạt / 0 hỏng (8 phần đầu và 3/4 phần 9, gồm toàn bộ test cốt truyện bốn chương) rồi bị ngắt vì thiếu RAM; phần còn lại (`levels/test_t265`, `levels/test_t264`, test nhân vật, âm thanh, giao diện, công cụ) và check **chưa chạy**.
+- Merge `701aeecb`, bản chơi `build/dist/KyTucXa-0.0.1-701aeecb-win64.zip`.
 - Chủ dự án: "không cần chạy test nữa đâu, tôi thấy ok rồi nhé". Merge theo lời đó; lần full test + check kế tiếp (ở việc sau) sẽ phủ phần chưa chạy.
