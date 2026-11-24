@@ -8,7 +8,7 @@
 #
 # Godot runs go through build/integrator/godot_steps_locked.ps1 (the shared Godot lock).
 param(
-    [ValidateSet('all', 'setup', 'import', 'pack', 'probe')][string]$Stage = 'all',
+    [ValidateSet('all', 'setup', 'import', 'pack', 'probe', 'hand', 'reach')][string]$Stage = 'all',
     [string[]]$Who = @('trung', 'manager'),
     [string]$Probe = '',
     [switch]$NoCopy
@@ -166,7 +166,7 @@ import/blender/enabled=false
     foreach ($w in $Who) {
         $dir = Join-Path $proj "src\$w"
         New-Item -ItemType Directory -Force $dir | Out-Null
-        foreach ($clip in $manifest.$w) {
+        foreach ($clip in @($manifest.$w) + @($manifest."${w}_reach") | Where-Object { $_ }) {
             $from = Join-Path $staging "$w\$($clip.file).fbx"
             if (-not (Test-Path -LiteralPath $from)) { throw "missing $from" }
             $to = Join-Path $dir "$($clip.file).fbx"
@@ -208,6 +208,16 @@ function Update-Scripts {
 if ($Stage -in 'all', 'setup') { Invoke-Setup }
 if ($Stage -in 'all', 'import') { Invoke-Godot 't268pack_import' '--headless --import' }
 if ($Stage -eq 'probe') { Update-Scripts; Invoke-Godot 't268pack_probe' "--headless --script res://pack_mixamo.gd -- --probe=$($Who[0])/$Probe" }
+if ($Stage -eq 'hand') { Update-Scripts; Invoke-Godot 't268pack_hand' "--headless --script res://pack_mixamo.gd -- --hand=$($Who[0])/$Probe" }
+# T-270: the wrist paths, written as code into the game.
+if ($Stage -eq 'reach') {
+    Update-Scripts
+    Remove-Item -LiteralPath (Join-Path $proj 'out\reach_paths.gd') -ErrorAction SilentlyContinue
+    Invoke-Godot 't268pack_reach' "--headless --script res://pack_mixamo.gd -- --reach=trung"
+    $reachLog = Get-Content -Raw -LiteralPath (Join-Path $repo 'build\integrator\t268pack_reach_run.out.log')
+    if ($reachLog -notmatch 'PACK RESULT: PASS' -or -not (Test-Path -LiteralPath (Join-Path $proj 'out\reach_paths.gd'))) { throw 'reach paths failed: nothing copied into the game' }
+    if (-not $NoCopy) { Copy-Item -LiteralPath (Join-Path $proj 'out\reach_paths.gd') -Destination (Join-Path $repo 'game\scripts\player\reach_paths.gd') -Force; 'copied reach_paths.gd' }
+}
 if ($Stage -in 'all', 'pack') {
     Update-Scripts
     foreach ($w in $Who) { Remove-Item -LiteralPath (Join-Path $proj "out\${w}_mixamo.res") -ErrorAction SilentlyContinue }
