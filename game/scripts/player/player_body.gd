@@ -227,12 +227,13 @@ static var mx_idle: StringName = &"idle"
 ## 1.0 m crouched camera (the camera would sit in his chest), so crouching keeps the Quaternius clips
 ## unless mx_crouch is set.
 static var mx_run: StringName = &"run"
-## T-270 (plan step 4 pilot): &"mx" takes the right hand to a switch, a handle or a door and back
+## T-270 (plan step 4): &"mx" takes the right hand to a switch, a handle or a door and back
 ## along the way a person's wrist goes (ReachPaths, measured on a Mixamo clip: a bow over the
 ## straight line, quick in the middle and slowing onto the thing) instead of along the straight
-## line. The start, the touch (CONTACT) and the end are where and when they were. Off until the
-## owner approves.
-static var reach_style: StringName = &""
+## line. The start, the touch (CONTACT) and the end are where and when they were. Under the same
+## flag the iron bar's swing goes through its keys without stopping (_swing_through). On since
+## D-193; &"" keeps the straight line and the old swing.
+static var reach_style: StringName = &"mx"
 static var mx_crouch: bool = false
 const MX_MOTION: StringName = &"mx"
 const MX_PATH := "res://assets/models/characters/mixamo/trung_mixamo.res"

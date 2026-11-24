@@ -1,7 +1,7 @@
 # T-270 — Chuyển động bước 4: đường tay của Trần Trung lấy từ clip Mixamo
 
-- Lane: integrator | Trạng thái: **mẫu thử xong, chờ chủ dự án duyệt video** (nhánh `t270-hand-paths`, cờ mặc định tắt) | Agent: integrator
-- **Model:** Mythos 5.2 xhigh (chủ dự án chọn)
+- Lane: integrator | Trạng thái: **xong (D-193)**: đường tay và cú vung mới bật mặc định; bước 4 đóng ở đây | Agent: integrator
+- **Model:** mẫu thử Mythos 5.2 xhigh; bật mặc định, full test, check, merge: Opus 5.5
 - Quyết định nền: D-189, D-190, D-191, **D-192** (bước 4 trước, rồi bước 5; thêm động tác đứng dậy khỏi giường)
 
 ## 0. Hiện trạng (đọc code và video `t269_tay_cu_moi.mp4`, 24/11)
@@ -15,7 +15,7 @@
   - độ lệch khỏi đường thẳng đó (đường cong: lên trên, ra ngoài), tính theo tỉ lệ chiều dài đường.
 - **Áp vào game:** điểm tay = điểm trên đường thẳng của game theo tiến độ đó + độ lệch nhân chiều dài. Đầu và cuối trùng đúng chỗ cũ, nên **mốc chạm 0,45 giây, 1 giây cho thao tác và điểm chạm không đổi**.
 - Bảng đường tay sinh ra thành file code `game/scripts/player/reach_paths.gd` (công cụ ghi, không sửa tay).
-- Cờ `PlayerBody.reach_style` (`&"mx"` bật, mặc định tắt tới khi chủ dự án duyệt).
+- Cờ `PlayerBody.reach_style` (`&"mx"` bật, mặc định từ D-193; `&""` giữ đường thẳng và cú vung cũ).
 
 ## 2. Mẫu thử (cổng duyệt)
 - Hai đường: **bấm/với ngang tầm** (clip Button Pushing) và **tay nắm cửa** (clip Opening Door Inwards).
@@ -41,7 +41,9 @@
   - `t270_thanh_sat_cu_moi.mp4` (9 giây): vung thanh sắt 3 lần ở mắt người chơi, 3 lần nhìn từ ngoài.
 - **Nhận xét của integrator:** khác biệt ở đường tay là nhỏ (tay vồng lên vài cm, vào khung nhìn sớm hơn một chút); đây là mức tinh chỉnh, không phải thay đổi lớn. Thân và tay trái theo clip (chỉ thấy trong gương) chưa làm.
 
-## 6. Chờ chủ dự án
-1. Bật đường tay mới và cú vung mới làm mặc định không?
-2. Có làm tiếp phần thân theo clip (chỉ thấy trong gương) không, hay coi bước 4 xong ở đây?
+## 6. Chủ dự án duyệt (D-193, 24/11)
+- "1: bật đường tay và cu vung mới làm mặc định, 2 : coi như bước 4 đã xong".
+- Bật mặc định: `PlayerBody.reach_style = &"mx"`. Muốn xem lại bản cũ trong cảnh thử: `protagonist_pilot.tscn -- --body-demo --reach=` (hoặc `--bar-demo --reach=`).
+- Phần thân và tay trái theo clip (chỉ thấy trong gương) **không làm**, theo lựa chọn của chủ dự án.
+- Cúi nhặt 1,4 giây dùng chung đồng hồ `_pace` với đường tay, nên đường mới cũng co giãn theo (không tới sớm).
 - D-192 (bổ sung 24/11): làm xong bước 4 thì dừng; bước 5 và động tác đứng dậy khỏi giường làm sau.

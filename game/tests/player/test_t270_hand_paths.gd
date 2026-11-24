@@ -1,7 +1,7 @@
 extends TestCase
 ## T-270 (plan step 4 pilot): the right hand's way to a thing and back, measured on a Mixamo clip
 ## (ReachPaths). The touch and the end are where and when they were; in between the hand bows over
-## the straight line. Off by default.
+## the straight line. On by default since D-193 (the owner approved the pilot).
 
 const WALKER := preload("res://tests/player/body_walker.gd")
 
@@ -17,7 +17,7 @@ func before_each() -> void:
 
 
 func after_each() -> void:
-	PlayerBody.reach_style = &""
+	PlayerBody.reach_style = PlayerBody.MX_MOTION
 	EventBus.interacted.disconnect(_on_interacted)
 	world.queue_free()
 	await wait_frames(2)
@@ -65,7 +65,7 @@ func _target(position: Vector3) -> Interactable:
 
 
 func test_the_measured_ways_start_and_end_on_the_line() -> void:
-	assert_eq(PlayerBody.reach_style, &"", "the pilot waits for the owner")
+	assert_eq(PlayerBody.reach_style, PlayerBody.MX_MOTION, "on by default (D-193)")
 	var from := Vector3(0.2, 0.9, 0.1)
 	var to := Vector3(0.3, 1.2, -0.4)
 	for leg: StringName in [&"reach", &"back"]:
@@ -125,7 +125,8 @@ func test_the_bar_swings_through_its_poses_without_stopping() -> void:
 	var body := _body(walker)
 	await _seconds(0.2)
 	var keys: Array = PlayerBody.BAR_SWING
-	# The same poses at the same shares of the swing, either way.
+	# The same poses at the same shares of the swing, either way: first the old swing.
+	PlayerBody.reach_style = &""
 	var poses: Array = []
 	for key: Array in keys:
 		poses.append((body._swing_pose(float(key[0]))[0] as Transform3D).origin)

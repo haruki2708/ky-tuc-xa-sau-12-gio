@@ -8,10 +8,17 @@
 | `trung_mixamo.res`: `walk_back` | Walking Backwards | `trung/walk_back.fbx` | Như trên | D-189 |
 | `trung_mixamo.res`: `walk_left` | Left Strafe Walking | `trung/walk_left.fbx` | Như trên | D-189 |
 | `trung_mixamo.res`: `walk_right` | Right Strafe Walking | `trung/walk_right.fbx` | Như trên | D-189 |
+| `trung_mixamo.res`: `run` | Standard Run (dáng chạy trong game, D-191) | `trung/run_standard.fbx` | Như trên | D-189 |
+| `trung_mixamo.res`: `run_jog` | Jogging (dự phòng, không dùng mặc định) | `trung/run_fwd.fbx` | Như trên | D-189 |
+| `trung_mixamo.res`: `crouch_idle` | Crouch Idle (đóng gói sẵn, tắt theo D-191) | `trung/crouch_idle.fbx` | Như trên | D-189 |
+| `trung_mixamo.res`: `crouch_fwd` | Crouch Walk Forward (Walking Forward While Crouched; tắt, D-191) | `trung/crouch_fwd.fbx` | Như trên | D-189 |
+| `trung_mixamo.res`: `crouch_back` | Crouch Walk Back (Walking Backwards While Crouched; tắt, D-191) | `trung/crouch_back.fbx` | Như trên | D-189 |
+| `trung_mixamo.res`: `crouch_left` | Crouch Walk Left (Walking Left While Crouched; tắt, D-191) | `trung/crouch_left.fbx` | Như trên | D-189 |
+| `trung_mixamo.res`: `crouch_right` | Crouch Walk Right (Walking Right While Crouched; tắt, D-191) | `trung/crouch_right.fbx` | Như trên | D-189 |
 | `game/assets/models/characters/mixamo/manager_mixamo.res`: `walk` | Walking (Male Brutal Walk) | `manager/walk_brutal.fbx` | Như trên; nướng lên khung xương Tripo của quản lý | D-189 |
 | `manager_mixamo.res`: `slash` | Standing Melee Attack Downward (Downward Attack With Axe), đoạn 0–1,2 s, đuôi 0,3 s hoà về khung đầu | `manager/slash_downward.fbx` | Như trên | D-189 |
 
-- **Đường tay (T-270):** `game/scripts/player/reach_paths.gd` là bảng số đo cổ tay phải của clip **Button Pushing** (`trung/button_push.fbx`), do `pack_mixamo.ps1 -Stage reach` sinh ra; cùng ngoại lệ D-189.
+- **Đường tay (T-270, D-193):** `game/scripts/player/reach_paths.gd` là bảng số đo cổ tay phải của clip **Button Pushing** (Pushing A Button With The Right Hand, `trung/button_push.fbx`), do `pack_mixamo.ps1 -Stage reach` sinh ra; cùng ngoại lệ D-189.
 - **Nguồn:** [mixamo.com](https://www.mixamo.com/), tải ngày 22/11/2026 bằng tài khoản Adobe của chủ dự án, qua Chrome của chủ dự án (integrator điều khiển, D-189). Nhân vật X Bot; FBX Binary, Without Skin, 30 khung/giây, không giảm keyframe; tích In Place nếu clip có ô này.
 - **Quyền dùng (D-189):** chủ dự án chấp nhận điều khoản Mixamo như một ngoại lệ của luật CC0/CC-BY (`AGENTS.md`). Dùng miễn phí bản quyền trong game thương mại; không phát tán file gốc ra ngoài nhóm. Vì vậy:
   - FBX gốc chỉ nằm ở `build/graphics/staging/mixamo/`, không commit (`.gitignore` chặn `*.fbx`). Repo chỉ lưu hash: `SHA256SUMS.txt` (đủ 56 file đã tải).
