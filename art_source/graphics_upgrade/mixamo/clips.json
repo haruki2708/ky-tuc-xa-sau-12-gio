@@ -1,5 +1,5 @@
 {
-	"_note": "T-268 Mixamo pack manifest. file = stem of build/graphics/staging/mixamo/<who>/<file>.fbx; name = clip name in the packed library; loop = loop the clip; window = [start, end] seconds of the source to keep (optional); hips_xz = 'keep' (default), 'rest' (pin hips X/Z in place, at the window's first frame) or 'loop' (remove the net travel so the end meets the start); fix_loop = blend the end pose back onto the start pose so a cut window loops without a pop (loop_blend seconds); mirror = pack the clip's mirror image (left and right swapped; T-271: the bed is left on either side); max_slide (manager clips played in place) = fail the pack if a planted foot drifts more than this many metres a cycle. T-268: the slash keeps its hips (pinning them made the planted feet slide 15-26 cm a chop; kept, 6-11 cm, as the source itself).",
+	"_note": "T-268 Mixamo pack manifest. file = stem of build/graphics/staging/mixamo/<who>/<file>.fbx; name = clip name in the packed library; loop = loop the clip; window = [start, end] seconds of the source to keep (optional); hips_xz = 'keep' (default), 'rest' (pin hips X/Z in place, at the window's first frame) or 'loop' (remove the net travel so the end meets the start); fix_loop = blend the end pose back onto the start pose so a cut window loops without a pop (loop_blend seconds); hips_yaw = 'strip' (T-272: take the hips' turn out of a turning clip, frame by frame; the pack notes the degrees in the clip's meta turn_degrees); hips_y = 'loop' (T-272: take the net rise out of a stairs clip); lower = metres to lower the hips by, the legs bent to it with the ankles kept (T-272: the crouch clips, to fit the crouched view); mirror = pack the clip's mirror image (left and right swapped; T-271: the bed is left on either side); max_slide (manager clips played in place) = fail the pack if a planted foot drifts more than this many metres a cycle. T-268: the slash keeps its hips (pinning them made the planted feet slide 15-26 cm a chop; kept, 6-11 cm, as the source itself).",
 	"trung": [
 		{"name": "idle", "file": "idle_neutral", "loop": true},
 		{"name": "idle_breathing", "file": "idle", "loop": true},
@@ -9,11 +9,15 @@
 		{"name": "walk_right", "file": "walk_right", "loop": true},
 		{"name": "run_jog", "file": "run_fwd", "loop": true},
 		{"name": "run", "file": "run_standard", "loop": true},
-		{"name": "crouch_idle", "file": "crouch_idle", "loop": true},
-		{"name": "crouch_fwd", "file": "crouch_fwd", "loop": true},
-		{"name": "crouch_back", "file": "crouch_back", "loop": true},
-		{"name": "crouch_left", "file": "crouch_left", "loop": true},
-		{"name": "crouch_right", "file": "crouch_right", "loop": true},
+		{"name": "crouch_idle", "file": "crouch_idle", "loop": true, "lower": 0.25},
+		{"name": "crouch_fwd", "file": "crouch_fwd", "loop": true, "lower": 0.38},
+		{"name": "crouch_back", "file": "crouch_back", "loop": true, "lower": 0.38},
+		{"name": "crouch_left", "file": "crouch_left", "loop": true, "lower": 0.38},
+		{"name": "crouch_right", "file": "crouch_right", "loop": true, "lower": 0.38},
+		{"name": "turn_left", "file": "turn_left", "loop": true, "hips_yaw": "strip", "fix_loop": true, "loop_blend": 0.15},
+		{"name": "turn_right", "file": "turn_right", "loop": true, "hips_yaw": "strip", "fix_loop": true, "loop_blend": 0.15},
+		{"name": "stairs_up", "file": "stairs_up", "loop": true, "hips_y": "loop"},
+		{"name": "stairs_down", "file": "stairs_down", "loop": true, "hips_y": "loop"},
 		{"name": "bed_rise", "file": "get_up", "window": [4.6, 6.1]},
 		{"name": "bed_rise_left", "file": "get_up", "window": [4.6, 6.1], "mirror": true}
 	],

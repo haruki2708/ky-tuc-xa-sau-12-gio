@@ -127,6 +127,23 @@ func _edit(source: Animation, entry: Dictionary) -> Animation:
 	anim.loop_mode = Animation.LOOP_LINEAR if entry.get("loop", false) else Animation.LOOP_NONE
 	var hips_mode: String = entry.get("hips_xz", "keep")
 	var fix_loop: bool = entry.get("fix_loop", false)
+	# T-272: "hips_yaw": "strip" takes the turn out of a turning clip (the game turns the model, the
+	# clip keeps the steps): how far the hips have turned since the first frame, frame by frame.
+	var turned: PackedFloat32Array = []
+	if entry.get("hips_yaw", "keep") == "strip":
+		var hips_track := source.find_track(NodePath(PREFIX + "Hips"), Animation.TYPE_ROTATION_3D)
+		var first_yaw := 0.0
+		var last_yaw := 0.0
+		for f in frames + 1:
+			var ahead := Basis(source.rotation_track_interpolate(hips_track, minf(start + f / FPS, source.length))).z
+			var yaw := atan2(ahead.x, ahead.z)
+			if f == 0:
+				first_yaw = yaw
+				last_yaw = yaw
+			yaw = last_yaw + wrapf(yaw - last_yaw, -PI, PI)
+			last_yaw = yaw
+			turned.append(yaw - first_yaw)
+		anim.set_meta(&"turn_degrees", rad_to_deg(turned[frames]))
 	for t in source.get_track_count():
 		var kind := source.track_get_type(t)
 		if kind != Animation.TYPE_ROTATION_3D and kind != Animation.TYPE_POSITION_3D and kind != Animation.TYPE_SCALE_3D:
@@ -140,6 +157,18 @@ func _edit(source: Animation, entry: Dictionary) -> Animation:
 				Animation.TYPE_POSITION_3D: values.append(source.position_track_interpolate(t, at))
 				Animation.TYPE_SCALE_3D: values.append(source.scale_track_interpolate(t, at))
 		var is_hips_position := kind == Animation.TYPE_POSITION_3D and String(path).ends_with(":Hips")
+		if not turned.is_empty() and String(path).ends_with(":Hips"):
+			for f in frames + 1:
+				var back := Quaternion(Vector3.UP, -turned[f])
+				values[f] = back * (values[f] as Vector3) if is_hips_position else back * (values[f] as Quaternion)
+		if is_hips_position and entry.get("hips_y", "keep") == "loop":
+			# T-272: a stairs clip climbs (or goes down) all the way: without the net rise the game
+			# carries the model up the stairs and the clip keeps the steps.
+			var rise: float = (values[frames] as Vector3).y - (values[0] as Vector3).y
+			for f in frames + 1:
+				var v: Vector3 = values[f]
+				v.y -= rise * float(f) / frames
+				values[f] = v
 		if is_hips_position and hips_mode != "keep":
 			var first: Vector3 = values[0]
 			var last: Vector3 = values[frames]
@@ -205,6 +234,8 @@ func _pack_trung(entries: Array) -> void:
 		var anim := _edit(source, entry)
 		if entry.get("mirror", false):
 			anim = _mirror(got[1], anim, entry.name)
+		if entry.has("lower"):
+			_lower(got[1], anim, float(entry.lower), entry.name)
 		for t in anim.get_track_count():
 			var path := String(anim.track_get_path(t))
 			if not path.begins_with(PREFIX):
@@ -734,3 +765,56 @@ func _mirror(skeleton: Skeleton3D, anim: Animation, label: String) -> Animation:
 	if worst > 0.03:
 		_fail("mirror %s: %.1f mm from the mirror image (the two sides of the rest pose differ too much)" % [label, worst * 1000.0])
 	return out
+
+
+# --- T-272: a clip crouched deeper ------------------------------------------------------------
+
+## Lower the hips of `anim` by `drop` metres (the pack skeleton's) and bend the legs to it: each
+## ankle stays where it was and the foot keeps its own turn; the knee keeps the side it bent to.
+func _lower(skeleton: Skeleton3D, anim: Animation, drop: float, label: String) -> void:
+	var hips := skeleton.find_bone("Hips")
+	var hips_position := anim.find_track(NodePath(PREFIX + "Hips"), Animation.TYPE_POSITION_3D)
+	var frames := roundi(anim.length * FPS)
+	var worst := 0.0
+	var short := 0
+	for f in frames + 1:
+		var local := _pose_at(skeleton, anim, f / FPS)
+		var posed := _globals(skeleton, local)
+		var down := Vector3(0.0, drop, 0.0)
+		for side: String in ["Left", "Right"]:
+			var upper := skeleton.find_bone(side + "UpperLeg")
+			var lower := skeleton.find_bone(side + "LowerLeg")
+			var foot := skeleton.find_bone(side + "Foot")
+			var hip := posed[upper].origin
+			var knee := posed[lower].origin
+			var ankle := posed[foot].origin
+			var thigh := knee.distance_to(hip)
+			var shin := ankle.distance_to(knee)
+			var hip_now := hip - down
+			var reach := ankle - hip_now
+			var far := clampf(reach.length(), absf(thigh - shin) + 0.005, thigh + shin - 0.002)
+			if reach.length() < absf(thigh - shin) + 0.005:
+				short += 1
+			var along := reach.normalized()
+			var bent := (knee - hip) - (ankle - hip).normalized() * (knee - hip).dot((ankle - hip).normalized())
+			if bent.length() < 0.01:
+				bent = posed[hips].basis.z
+			bent = (bent - along * bent.dot(along)).normalized()
+			var to_knee := (thigh * thigh - shin * shin + far * far) / (2.0 * far)
+			var knee_now := hip_now + along * to_knee + bent * sqrt(maxf(thigh * thigh - to_knee * to_knee, 0.0))
+			var ankle_now := hip_now + along * far
+			var upper_now := Basis(Quaternion((knee - hip).normalized(), (knee_now - hip_now).normalized())) * posed[upper].basis
+			var lower_now := Basis(Quaternion((ankle - knee).normalized(), (ankle_now - knee_now).normalized())) * posed[lower].basis
+			var turns := {upper: posed[hips].basis.inverse() * upper_now, lower: upper_now.inverse() * lower_now, foot: lower_now.inverse() * posed[foot].basis}
+			for bone: int in turns:
+				var track := anim.find_track(NodePath(PREFIX + skeleton.get_bone_name(bone)), Animation.TYPE_ROTATION_3D)
+				var q := (turns[bone] as Basis).orthonormalized().get_rotation_quaternion()
+				if f > 0 and q.dot(anim.track_get_key_value(track, f - 1)) < 0.0:
+					q = -q
+				anim.track_set_key_value(track, f, q)
+		anim.track_set_key_value(hips_position, f, (anim.track_get_key_value(hips_position, f) as Vector3) - down / skeleton.motion_scale)
+		# The check: played back, the ankles are where they were.
+		var back := _globals(skeleton, _pose_at(skeleton, anim, f / FPS))
+		for name: String in ["LeftFoot", "RightFoot"]:
+			worst = maxf(worst, back[skeleton.find_bone(name)].origin.distance_to(posed[skeleton.find_bone(name)].origin))
+	print("PACK lower %s: hips %.2f m down, ankles at most %.1f mm off, %d leg frames folded as far as they go" % [label, drop, worst * 1000.0, short])
