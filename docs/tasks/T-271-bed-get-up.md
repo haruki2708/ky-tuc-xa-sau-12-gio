@@ -1,6 +1,6 @@
 # T-271 — Động tác đứng dậy khỏi giường (Trần Trung)
 
-- Lane: integrator | Trạng thái: **chủ dự án duyệt (D-194): bật mặc định 2,0 giây** | Agent: integrator
+- Lane: integrator | Trạng thái: **xong, đã merge (D-194, D-195)**: bật mặc định 2,0 giây; chủ dự án miễn phần full test còn lại và check | Agent: integrator
 - **Model:** Mythos 5.2 xhigh (chủ dự án chọn)
 - Quyết định nền: D-147 (nằm trong giường), D-189 (Mixamo), **D-192** (thêm động tác đứng dậy khỏi giường, chấp nhận rời giường chậm hơn)
 
@@ -43,3 +43,7 @@
 - "tôi duyệt nhé". Chủ dự án không đổi số giây và không nói gì về giường tầng trên, nên lấy theo đề xuất: **2,0 giây**; giường tầng trên **vẫn ra ngay** (chưa làm động tác leo xuống).
 - Bật mặc định: `PlayerBody.bed_rise_seconds = 2.0`. Đổi số giây chỉ là sửa một con số.
 - Test cũ sửa theo: `test_protagonist_bed.gd` (thân người đứng dậy trong 2 giây thay vì đứng ngay; test "không có thân" giờ gỡ thân thật).
+
+## 5. Kiểm tra lúc merge (D-195, 24/11)
+- Đã chạy: nhóm test giường, thân người, giường tầng, smoke 65 đạt / 0 hỏng; full test chạy được 486 đạt / 0 hỏng (8 phần đầu và 3/4 phần 9, gồm toàn bộ test cốt truyện bốn chương) rồi bị ngắt vì thiếu RAM; phần còn lại (`levels/test_t265`, `levels/test_t264`, test nhân vật, âm thanh, giao diện, công cụ) và check **chưa chạy**.
+- Chủ dự án: "không cần chạy test nữa đâu, tôi thấy ok rồi nhé". Merge theo lời đó; lần full test + check kế tiếp (ở việc sau) sẽ phủ phần chưa chạy.
