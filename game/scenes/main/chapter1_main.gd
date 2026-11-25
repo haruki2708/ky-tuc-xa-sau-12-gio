@@ -7,6 +7,8 @@ const READABLE := preload("res://scenes/interaction/readable.tscn")
 const SPEAKER_SCRIPT := preload("res://scripts/audio/speaker.gd")
 const DIRECTOR := preload("res://scripts/core/chapter1_director.gd")
 const MANAGER_AUDIO := preload("res://audio/entities/manager_audio.tscn")
+## T-273: the reference-picture look (off unless `--look=1`).
+const MAP_LOOK := preload("res://rendering/map_look.gd")
 ## Ceiling fan blade speed (rad/s), as in the demo.
 const FAN_SPEED: float = 15.0
 const PAPER_PICK_DEPTH: float = 0.15
@@ -47,6 +49,7 @@ var _end_card_key_pressed: bool = false
 
 
 func _ready() -> void:
+	add_child(MAP_LOOK.new())
 	# T-251 (D-166): Campus supplies the outdoor world in chapters 3-4.
 	# Room 407's window backdrop has no collision and covers the real road and B04.
 	if has_node("Campus"):

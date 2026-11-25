@@ -6,6 +6,7 @@ extends Node3D
 ## Writes build/graphics/anh_hien_trang/<area>/ch<N>_<id>[_den_pin|_den_tuyp].jpg at 1920 x 1080.
 ## The views are the ones the ten waves, T-255 and T-256 were reviewed with, plus room 407's own.
 const OUTPUT := "res://../build/graphics/anh_hien_trang/"
+## T-273: with `--look=1` (rendering/map_look.gd) send the stills to `--out=<folder under build/graphics>`.
 const RESOLUTION := Vector2i(1920, 1080)
 const WARD_Y := 300.0
 
@@ -282,7 +283,7 @@ func _snap(area: String, file: String) -> void:
 	for frame in range(40):
 		await get_tree().process_frame
 	await RenderingServer.frame_post_draw
-	var folder := OUTPUT + area + "/"
+	var folder := OUTPUT.replace("anh_hien_trang", _arg("out", "anh_hien_trang")) + area + "/"
 	DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(folder))
 	var image: Image = get_viewport().get_texture().get_image()
 	image.save_jpg(folder + file, 0.92)

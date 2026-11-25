@@ -55,6 +55,14 @@ ps1_strength={
 "type": "float",
 "value": 0.0
 }
+look_age={
+"type": "float",
+"value": 0.0
+}
+look_wet={
+"type": "float",
+"value": 0.0
+}
 
 [rendering]
 

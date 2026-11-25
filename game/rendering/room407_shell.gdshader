@@ -31,6 +31,17 @@ uniform float wear_strength = 1.0;
 uniform float grout_strength = 1.0;
 // Review aid: 0..3 shows that mask channel as the albedo.
 uniform int debug_channel = -1;
+// T-273 (R0): the look of the reference pictures, set map-wide by rendering/map_look.gd. Both are 0
+// (surface as built) unless that look is on. They read the same noise in world space, so they need no mask.
+global uniform float look_age;
+global uniform float look_wet;
+varying vec3 world_position;
+varying vec3 world_normal;
+
+void vertex() {
+	world_position = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
+	world_normal = normalize((MODEL_MATRIX * vec4(NORMAL, 0.0)).xyz);
+}
 
 void fragment() {
 	vec4 m = texture(mask, UV2);
@@ -90,6 +101,32 @@ void fragment() {
 		albedo *= 1.0 - 0.5 * wet;
 		rough = mix(rough, 0.04, wet);
 		nrm = mix(nrm, vec3(0.5, 0.5, 1.0), wet * 0.7);
+	}
+	if (look_age > 0.0 && kind == 0 && world_normal.y <= 0.5) {
+		// Along the wall (one of x, z is constant on an axis-aligned wall) and up it; ceilings use the plan.
+		float along = world_position.x + world_position.z;
+		bool flat_face = abs(world_normal.y) > 0.5;
+		vec2 blotch_uv = flat_face ? world_position.xz * 0.23 : vec2(along, world_position.y) * 0.27;
+		vec2 streak_uv = flat_face ? world_position.xz * 0.61 : vec2(along * 0.83, world_position.y * 0.055);
+		vec2 gate_uv = flat_face ? world_position.zx * 0.09 : vec2(along * 0.11, world_position.y * 0.19);
+		float blotch = smoothstep(0.46, 0.8, texture(noise, blotch_uv).a * 0.6 + texture(noise, blotch_uv * 3.3).r * 0.4);
+		float streak = smoothstep(0.5, 0.78, texture(noise, streak_uv).r) * smoothstep(0.35, 0.7, texture(noise, gate_uv).g);
+		// Ceilings take the damp from the slab above: darker, with mould where the blotches are densest.
+		float overhead = step(world_normal.y, -0.5);
+		albedo *= 1.0 - 0.35 * overhead * look_age;
+		albedo = mix(albedo, albedo * grime_color, blotch * (0.32 + 0.5 * overhead) * look_age);
+		albedo = mix(albedo, albedo * stain_color * 0.78, streak * 0.8 * look_age);
+		albedo = mix(albedo, mould_color, overhead * smoothstep(0.7, 0.95, texture(noise, blotch_uv * 1.9).r * blotch) * 0.6 * look_age);
+		rough = min(rough + 0.1 * (blotch + streak) * look_age, 1.0);
+	}
+	if (look_wet > 0.0 && world_normal.y > 0.5) {
+		// Damp, foot-polished floor: glossy everywhere, with pooled patches that are darker and flat.
+		float pool = texture(noise, world_position.xz * 0.11).r * 0.6 + texture(noise, world_position.xz * 0.37).g * 0.4;
+		float damp = smoothstep(0.3, 0.62, pool);
+		rough = mix(rough, mix(max(rough * 0.5, 0.22), 0.16, damp), look_wet);
+		albedo = mix(albedo, vec3(dot(albedo, vec3(0.299, 0.587, 0.114))), 0.35 * look_wet);
+		albedo *= 1.0 - 0.12 * damp * look_wet;
+		nrm = mix(nrm, vec3(0.5, 0.5, 1.0), damp * 0.65 * look_wet);
 	}
 	if (debug_channel >= 0) {
 		albedo = vec3(m[debug_channel]);
