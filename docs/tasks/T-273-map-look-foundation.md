@@ -1,5 +1,5 @@
 # T-273 — R0: nền ánh sáng và bề mặt theo ảnh GPT, hai khu mẫu
-- Lane: integrator | Trạng thái: **đang làm, lượt 1 xong 26/11/2026, chờ chủ dự án xem** | Model: Mythos 5.2 high.
+- Lane: integrator | Trạng thái: **đang làm; lượt 1 xong 26/11/2026; chủ dự án duyệt hình 28/11 (D-202); FPS đo dở** | Model: Mythos 5.2 high (lượt 1), Opus 5.5 (đo FPS).
 - Nhánh: `integrator/T-273-map-look` (chưa merge). `D:\GAME_DEMO` đang đứng ở nhánh này.
 - Quyết định nền: D-200 (208 ảnh GPT là đích), D-201 (làm R0). Kế hoạch: [`MAP_REALISM_PLAN.md`](../design/MAP_REALISM_PLAN.md) đợt R0.
 - Ảnh: `build/graphics/anh_r0/` (không commit). Bảng ba cột *trước | sau | GPT*: `R0_trong_nha.jpg` (20 góc hành lang và nhà vệ sinh tầng 4, chương 1), `R0_ngoai_troi.jpg` (5 góc nhà B mặt ngoài, chương 3).
@@ -42,12 +42,15 @@ Xem thử ở khu chưa làm (cầu thang, sảnh tầng 1, đường, sân vậ
 
 Phản chiếu thật trên màn hình (SSR, `--look-ssr=1`): thử ở 3 góc, gần như không khác vì vệt sáng trên sàn đến từ đèn chứ không từ phản chiếu. Đề xuất không bật.
 
+## FPS (28/11, D-202)
+
+Xem [báo cáo](../../tools/reports/T-273-look-fps.md). Chủ dự án dừng việc đo sau chương 1. Chương 1 bật đồ hoạ mới: mọi góc ≥ 60 FPS trung bình (thấp nhất 60 trong 407), nhưng thêm 2,3–7,5 ms mỗi khung ở 13/16 góc. Chương 3 chưa đo. Tốn nhất là 4 đèn hành lang có bóng đổ (tầm × 1,6, bóng mềm); đề xuất giữ tầm cũ và tắt bóng mềm cho riêng chúng, chờ chủ dự án.
+
 ## Chưa làm
 
-- **Chưa đo FPS.** Chờ chủ dự án cho phép (D-179) và máy rảnh.
 - **Chưa chạy test nào** (full test, check). Phải chạy trước khi merge.
 - Chưa kiểm các trạng thái theo truyện khi bật công tắc: cúp điện, đèn nhấp nháy, đèn sân vận động, phòng bệnh, trường quay CCTV. Chỗ cần xem: `campus/flicker.gd` đặt năng lượng tuyệt đối (0,35 / 0,015) nên đèn nhấp nháy không được nhân 1,3.
-- Chưa có bộ tấm vết (`Decal`) và mảng bong sơn: lượt 1 chỉ dùng shader. Làm ở lượt 2 nếu chủ dự án muốn tường cũ hơn nữa.
+- Tấm vết (`Decal`) và mảng bong sơn: không làm, chủ dự án duyệt hình lượt 1 (D-202).
 - Chưa viết bảng thông số cho lane B.
 
 ## Cách xem trong game
